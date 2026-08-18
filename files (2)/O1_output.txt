@@ -1,0 +1,84 @@
+==========================================================================
+O1 — operator self-adjointness and spectrum   (regimes 1..24)
+==========================================================================
+
+Prime counts per regime, c_r:
+[     1      1      2      2      5      7     13     23     43     75
+    137    255    464    872   1612   3030   5709  10749  20390  38635
+  73586 140336 268216 513708]
+
+[check] matrix Delta reproduces the finite differences: OK
+
+--------------------------------------------------------------------------
+Q1.  Is Delta self-adjoint under any positive diagonal weight?
+--------------------------------------------------------------------------
+  Under plain l2:  ||D - D^T|| = 6.782330   (nonzero => not symmetric)
+  NO.  Obstruction at (i,j) = (0,1):
+    D[0,1] = +1   but   D[1,0] = +0
+    self-adjointness needs w_0*(+1) = w_1*(+0) = 0,  forcing w_0 = 0.
+    No POSITIVE weight exists.  Delta is one-sided: its graph is
+    directed, and symmetry requires a two-sided operator.
+
+  => Delta cannot be made self-adjoint by reweighting.  This is not a
+     limitation of range or precision; it is structural.
+
+--------------------------------------------------------------------------
+Q2.  What symmetric operator is available, and what is its spectrum?
+--------------------------------------------------------------------------
+  M = Delta* Delta      ||M - M^T|| = 0.00e+00   (symmetric)
+  all eigenvalues real: True
+  all eigenvalues >= 0: True   (positive semidefinite)
+  spectrum in [0, 4]:   True
+
+  eigenvalues of Delta* Delta:
+    0.000000  0.017110  0.068148  0.152241  0.267949  0.413293
+    0.585786  0.782477  1.000000  1.234633  1.482362  1.738948
+    2.000000  2.261052  2.517638  2.765367  3.000000  3.217523
+    3.414214  3.586707  3.732051  3.847759  3.931852  3.982890
+
+--------------------------------------------------------------------------
+Q3.  Does this spectrum match anything already in the documents?
+--------------------------------------------------------------------------
+  v2.0 §7.1 derives, from the operator and with nothing fitted, that
+  differencing multiplies a zeta zero of height gamma by
+        (2 sin(omega/2))^d,     omega = gamma * ln2  mod 2*pi.
+  So a single application has gain (2 sin(omega/2))^2 = lambda.
+  Invert:  omega = 2 arcsin( sqrt(lambda) / 2 ).
+
+  implied omega from each eigenvalue:
+    0.000000  0.130900  0.261799  0.392699  0.523599  0.654498
+    0.785398  0.916298  1.047198  1.178097  1.308997  1.439897
+    1.570796  1.701696  1.832596  1.963495  2.094395  2.225295
+    2.356194  2.487094  2.617994  2.748894  2.879793  3.010693
+
+  consecutive spacing: mean 0.130900, sd 2.65e-09
+  pi/n = pi/24 = 0.130900
+  max deviation from uniform pi/n grid: 1.30e-08
+
+  => the spectrum of Delta* Delta IS the comb filter of §7.1,
+     on a uniform omega grid of spacing pi/n.  Two derivations,
+     one analytic and one linear-algebraic, of the same object.
+
+--------------------------------------------------------------------------
+CONTROL.  Numerics check against a closed form.
+--------------------------------------------------------------------------
+  discrete Laplacian eigenvalues vs -4 sin^2(k*pi/(2(n+1))):
+    max abs error = 8.88e-16   -> eigensolver is sound
+
+==========================================================================
+CONCLUSION
+==========================================================================
+
+  Delta is NOT self-adjoint, and no reweighting fixes it.  What is symmetric
+  is Delta* Delta, whose spectrum is real, lies in [0, 4], and is exactly the
+  comb-filter gain already derived analytically in v2.0 §7.1.
+
+  Delta* Delta is positive semidefinite.  That is the shape of a QUADRATIC
+  FORM, not of a Hamiltonian whose eigenvalues could be the zeta heights
+  {gamma}: those are unbounded and this is bounded by 4.  So the real spectrum
+  found here is a real fact about the operator and is NOT the Hilbert-Polya
+  spectrum.
+
+  This neither supports nor refutes RH.  It closes one specific question that
+  the documents left open by assertion on both sides.
+

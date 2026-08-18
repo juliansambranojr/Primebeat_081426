@@ -1,0 +1,6876 @@
+{
+  "schema_version": "1",
+  "script": "O18_joint_multiplicative_ladder.py",
+  "generated_utc": "2026-08-16T02:22:24Z",
+  "params": {
+    "code_version": "54056d086df14150940747375bff994413dac1e5d86a7f49f569bd72446bce0f",
+    "x0": 1000.0,
+    "xmax": 150000000,
+    "gamma_max": 40.0,
+    "gamma_step": 0.01,
+    "n_gamma": 4001,
+    "dps": 30,
+    "surrogates": 200,
+    "seed": 2026,
+    "riemannr_impl": "mpmath.riemannr",
+    "cache_path": "/Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json",
+    "n_primes": 8444396,
+    "largest_prime": 149999957,
+    "ladders": [
+      "L2",
+      "L3",
+      "L23",
+      "L235",
+      "L_irr"
+    ],
+    "band_halfwidth_floor": 0.6,
+    "band_median_factor": 5.0,
+    "window": "hann",
+    "distinct_riemannr_evaluations": 449,
+    "ladder_definition": "L2: x = x0*2^m; L3: x = x0*3^n; L23: x = x0*2^m*3^n; L235: x = x0*2^m*3^n*5^k, all with non-negative exponents and x <= xmax, sorted ascending and deduplicated exactly (multipliers built as exact Python integers). L_irr is the C2 control: same rung count and same first/last x as L23, interior rungs a sorted uniform random sample in log x at the fixed seed",
+    "block_definition": "disjoint half-open intervals (x_j, x_{j+1}] tiling (x_0, x_last]; every prime used exactly once",
+    "count_definition": "c_j = pi(x_{j+1}) - pi(x_j), exact integer via np.searchsorted(primes, x, side='right')",
+    "smooth_definition": "L_j = R(x_{j+1}) - R(x_j), R = Riemann's function sum_n mu(n)/n li(x^(1/n)), differenced in mpf at the recorded dps and cast to float afterwards",
+    "residual_definition": "e_j = c_j - L_j",
+    "normalisation": "ehat_j = e_j / sqrt(x_j)",
+    "projection_definition": "P(gamma) = |sum_j w_j * ehat_j * exp(-i gamma log x_j)|, w = hann; a NON-UNIFORM DFT (direct sum) valid for arbitrary x_j; an inner product, not a fit",
+    "surrogate_definition": "C1: ehat replaced by a random permutation of its own values across j \u2014 the amplitude distribution is preserved exactly \u2014 projected identically, at the fixed seed",
+    "fit_free": true,
+    "precision": "mixed: EXACT integer prime counts (numpy int64 array + binary search); mpmath riemannr at mp.dps = 30 with the difference taken in mpf; float64 residual, projection and surrogates; ladder multipliers exact Python integers"
+  },
+  "constants": {
+    "gamma_1": 14.134725,
+    "gamma_2": 21.02204,
+    "gamma_3": 25.010858,
+    "gamma_4": 30.424876,
+    "gamma_5": 32.935062,
+    "gamma_6": 37.586178,
+    "gammas": [
+      14.134725,
+      21.02204,
+      25.010858,
+      30.424876,
+      32.935062,
+      37.586178
+    ],
+    "pi_over_log2": 4.532360141827194,
+    "pi_over_log3": 2.8596008673801268,
+    "log2": 0.6931471805599453,
+    "log3": 1.0986122886681098,
+    "log5": 1.6094379124341003,
+    "o10_note": "O10 is a deliberate gap in the series and is not filled by this script",
+    "nyquist_note": "a geometric ladder of ratio r samples log x at spacing log(r), so the uniform projection Nyquist is pi/log(r): 4.5324 for base 2 and 2.8595 for base 3, both below gamma_1 = 14.134725. The uniform-equivalent Nyquist pi/median_gap reported for the IRREGULAR ladders is a DESCRIPTIVE NUMBER ONLY and NOT A BOUND, because irregular sampling is not limited by the uniform rate",
+    "band_rule": "DETECT: global max of P within the band half-width of one of gamma_1..gamma_6 AND > 5x median(P); WEAK: a local peak within the band of one of the six > 5x median(P) but the global max is elsewhere; NULL: neither",
+    "band_halfwidth_rule": "per ladder, max(0.6, that ladder's frequency resolution 2*pi/(log x_last - log x_first) over the projection's own points); the value used is recorded",
+    "headline_rule": "precedence H-SINGLE > H-JOINT > H-NONE > UNCLASSIFIED. H-JOINT: L2 = NULL and L3 = NULL and L23 = DETECT. H-NONE: L2 = NULL and L3 = NULL and L23 = NULL. H-SINGLE: either L2 or L3 alone comes out DETECT, which would contradict the Nyquist argument and is the outcome that would falsify the framing",
+    "c1_note": "C1 is the critical control: combining irregular samples can manufacture peaks, and if the real value is not beyond the surrogate 95th percentile the detection is not established",
+    "c2_note": "C2 separates 'irregular sampling helps' from 'the multiplicative structure specifically helps'",
+    "gate_c_pi_known": 78498,
+    "gate_c_li_known": 78627.549,
+    "gate_c_li_abs_known": 129.549
+  },
+  "summary": {
+    "ladders": {
+      "L2": {
+        "ladder": "L2",
+        "description": "x = x0 * 2^m, m >= 0 (pure dyadic; uniform log-gap = log 2)",
+        "n_rungs": 18,
+        "n_blocks": 17,
+        "x_first": 1000.0,
+        "x_last": 131072000.0,
+        "log_gap_stats": {
+          "n_gaps": 17,
+          "min": 0.6931471805599436,
+          "median": 0.6931471805599454,
+          "max": 0.6931471805599472,
+          "mean": 0.6931471805599453,
+          "spread_max_minus_min": 3.552713678800501e-15,
+          "log_span_full_ladder": 11.78350206951907
+        },
+        "uniform_equivalent_nyquist": 4.532360141827193,
+        "uniform_equivalent_nyquist_note": "pi / median(log-gap). For the IRREGULAR ladders (L23, L235, L_irr) this is a DESCRIPTIVE NUMBER ONLY and NOT A BOUND, because irregular sampling is not limited by the uniform rate. For L2 and L3 the gaps are constant and it IS the uniform Nyquist limit",
+        "total_count": 7435429,
+        "block_size_min": 135,
+        "block_size_max": 3565231,
+        "ehat_stats": {
+          "n": 17,
+          "min": -0.11127703012138986,
+          "max": 0.07664056954616515,
+          "mean": 0.0010150856222507535,
+          "rms": 0.04193821160135094
+        },
+        "projection_log_x_span": 11.090354888959126,
+        "frequency_resolution": 0.5665450177283992,
+        "band_halfwidth_used": 0.6,
+        "projection": {
+          "verdict": "NULL",
+          "argmax_gamma": 32.12,
+          "P_max": 0.17711882155390984,
+          "P_median": 0.05017836883017972,
+          "P_max_over_median": 3.52978436093327,
+          "argmax_nearest_gamma_index": 4,
+          "argmax_nearest_gamma": 32.935062,
+          "argmax_distance_to_nearest": 0.8150620000000046,
+          "band_halfwidth_used": 0.6,
+          "band_median_factor": 5.0,
+          "weak_peak_gamma": null,
+          "weak_peak_over_median": null,
+          "P_at_gamma": [
+            0.1727995232039062,
+            0.035958795278328404,
+            0.08475738898208919,
+            0.09122062883573888,
+            0.10023139967719576,
+            0.01666464885891194
+          ],
+          "P_at_gamma_over_median": [
+            3.443705469755648,
+            0.7166194540923584,
+            1.6891220451772033,
+            1.8179273452363471,
+            1.9975021511044357,
+            0.3321082220769402
+          ],
+          "P_at_gamma_grid_point": [
+            14.13,
+            21.02,
+            25.01,
+            30.42,
+            32.94,
+            37.59
+          ],
+          "top_local_peaks": [
+            {
+              "gamma": 32.12,
+              "P": 0.17711882155390984,
+              "P_over_median": 3.52978436093327,
+              "nearest_gamma": 32.935062,
+              "distance_to_nearest": 0.8150620000000046,
+              "in_band": false
+            },
+            {
+              "gamma": 13.99,
+              "P": 0.17711870764108492,
+              "P_over_median": 3.52978209077528,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 0.14472499999999933,
+              "in_band": true
+            },
+            {
+              "gamma": 4.14,
+              "P": 0.1771184656979194,
+              "P_over_median": 3.5297772691126563,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 9.994724999999999,
+              "in_band": false
+            },
+            {
+              "gamma": 22.27,
+              "P": 0.1771180959388292,
+              "P_over_median": 3.5297699002184735,
+              "nearest_gamma": 21.02204,
+              "distance_to_nearest": 1.247959999999999,
+              "in_band": false
+            },
+            {
+              "gamma": 31.330000000000002,
+              "P": 0.17711719089980107,
+              "P_over_median": 3.529751863780677,
+              "nearest_gamma": 30.424876,
+              "distance_to_nearest": 0.9051240000000007,
+              "in_band": false
+            },
+            {
+              "gamma": 13.200000000000001,
+              "P": 0.1771164755499157,
+              "P_over_median": 3.529737607639992,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 0.9347249999999985,
+              "in_band": false
+            },
+            {
+              "gamma": 4.93,
+              "P": 0.1771156306131267,
+              "P_over_median": 3.5297207689740753,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 9.204725,
+              "in_band": false
+            },
+            {
+              "gamma": 23.06,
+              "P": 0.1771146558853007,
+              "P_over_median": 3.5297013437147706,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 1.9508580000000002,
+              "in_band": false
+            },
+            {
+              "gamma": 29.400000000000002,
+              "P": 0.08488944125100296,
+              "P_over_median": 1.6917537024429203,
+              "nearest_gamma": 30.424876,
+              "distance_to_nearest": 1.024875999999999,
+              "in_band": false
+            },
+            {
+              "gamma": 11.27,
+              "P": 0.08488941335072327,
+              "P_over_median": 1.6917531464208664,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 2.864725,
+              "in_band": false
+            }
+          ]
+        },
+        "verdict": "NULL",
+        "gate_a": {
+          "statement": "sum_j c_j == pi(x_last) - pi(x_0)",
+          "pi_x0": 168,
+          "pi_x_last": 7435597,
+          "expected": 7435429,
+          "sum_c_j": 7435429,
+          "difference": 0,
+          "passed": true
+        },
+        "surrogate_null": {
+          "definition": "amplitude-preserving surrogate: a random permutation of the ehat values across j, projected identically",
+          "n_surrogates": 200,
+          "seed": 2026,
+          "P_max_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 1.18072839231994,
+              "median": 1.7891777147059829,
+              "p95": 2.7434119873592593,
+              "max": 3.051364489836194
+            },
+            "real_value": 3.52978436093327,
+            "real_percentile_in_surrogates": 100.0,
+            "real_exceeds_surrogate_p95": true
+          },
+          "P_at_gamma_1_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 0.1464588393478434,
+              "median": 1.0232054712273184,
+              "p95": 1.966504064834667,
+              "max": 2.868910235390605
+            },
+            "real_value": 3.443705469755648,
+            "real_percentile_in_surrogates": 100.0,
+            "real_exceeds_surrogate_p95": true
+          }
+        }
+      },
+      "L3": {
+        "ladder": "L3",
+        "description": "x = x0 * 3^n, n >= 0 (pure triadic; uniform log-gap = log 3)",
+        "n_rungs": 11,
+        "n_blocks": 10,
+        "x_first": 1000.0,
+        "x_last": 59049000.0,
+        "log_gap_stats": {
+          "n_gaps": 10,
+          "min": 1.0986122886681091,
+          "median": 1.0986122886681091,
+          "max": 1.098612288668111,
+          "mean": 1.0986122886681098,
+          "spread_max_minus_min": 1.7763568394002505e-15,
+          "log_span_full_ladder": 10.986122886681098
+        },
+        "uniform_equivalent_nyquist": 2.8596008673801285,
+        "uniform_equivalent_nyquist_note": "pi / median(log-gap). For the IRREGULAR ladders (L23, L235, L_irr) this is a DESCRIPTIVE NUMBER ONLY and NOT A BOUND, because irregular sampling is not limited by the uniform rate. For L2 and L3 the gaps are constant and it IS the uniform Nyquist limit",
+        "total_count": 3508923,
+        "block_size_min": 262,
+        "block_size_max": 2257430,
+        "ehat_stats": {
+          "n": 10,
+          "min": -0.044889919058480124,
+          "max": 0.05024306102185006,
+          "mean": 0.002271044482290618,
+          "rms": 0.02808904169051761
+        },
+        "projection_log_x_span": 9.887510598012987,
+        "frequency_resolution": 0.635466859417806,
+        "band_halfwidth_used": 0.635466859417806,
+        "projection": {
+          "verdict": "NULL",
+          "argmax_gamma": 24.51,
+          "P_max": 0.07643999291409903,
+          "P_median": 0.031767582021517526,
+          "P_max_over_median": 2.4062263493117917,
+          "argmax_nearest_gamma_index": 2,
+          "argmax_nearest_gamma": 25.010858,
+          "argmax_distance_to_nearest": 0.5008579999999974,
+          "band_halfwidth_used": 0.635466859417806,
+          "band_median_factor": 5.0,
+          "weak_peak_gamma": null,
+          "weak_peak_over_median": null,
+          "P_at_gamma": [
+            0.03863210406314072,
+            0.06800953104824478,
+            0.03705996908263346,
+            0.07030012924351875,
+            0.06648465324398663,
+            0.014775597282732303
+          ],
+          "P_at_gamma_over_median": [
+            1.2160857580212925,
+            2.1408469490117015,
+            1.1665971007025708,
+            2.212951844931147,
+            2.0928458829178047,
+            0.4651155782874556
+          ],
+          "P_at_gamma_grid_point": [
+            14.13,
+            21.02,
+            25.01,
+            30.42,
+            32.94,
+            37.59
+          ],
+          "top_local_peaks": [
+            {
+              "gamma": 24.51,
+              "P": 0.07643999291409903,
+              "P_over_median": 2.4062263493117917,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 0.5008579999999974,
+              "in_band": true
+            },
+            {
+              "gamma": 30.23,
+              "P": 0.07643998832384342,
+              "P_over_median": 2.406226204816828,
+              "nearest_gamma": 30.424876,
+              "distance_to_nearest": 0.19487600000000072,
+              "in_band": true
+            },
+            {
+              "gamma": 38.4,
+              "P": 0.07643990095126246,
+              "P_over_median": 2.4062234544475714,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 0.8138220000000018,
+              "in_band": false
+            },
+            {
+              "gamma": 18.79,
+              "P": 0.07643978656204142,
+              "P_over_median": 2.406219853631464,
+              "nearest_gamma": 21.02204,
+              "distance_to_nearest": 2.2320400000000014,
+              "in_band": false
+            },
+            {
+              "gamma": 35.95,
+              "P": 0.07643977266925597,
+              "P_over_median": 2.4062194163055937,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 1.636177999999994,
+              "in_band": false
+            },
+            {
+              "gamma": 32.68,
+              "P": 0.07643957398226034,
+              "P_over_median": 2.406213161910925,
+              "nearest_gamma": 32.935062,
+              "distance_to_nearest": 0.25506200000000234,
+              "in_band": true
+            },
+            {
+              "gamma": 13.07,
+              "P": 0.07643936939067332,
+              "P_over_median": 2.406206721647801,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 1.0647249999999993,
+              "in_band": false
+            },
+            {
+              "gamma": 26.96,
+              "P": 0.07643903576447755,
+              "P_over_median": 2.406196219551811,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 1.949142000000002,
+              "in_band": false
+            },
+            {
+              "gamma": 7.3500000000000005,
+              "P": 0.07643874152397616,
+              "P_over_median": 2.4061869572635706,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 6.784724999999999,
+              "in_band": false
+            },
+            {
+              "gamma": 21.240000000000002,
+              "P": 0.07643828617837752,
+              "P_over_median": 2.4061726236073815,
+              "nearest_gamma": 21.02204,
+              "distance_to_nearest": 0.21796000000000149,
+              "in_band": true
+            }
+          ]
+        },
+        "verdict": "NULL",
+        "gate_a": {
+          "statement": "sum_j c_j == pi(x_last) - pi(x_0)",
+          "pi_x0": 168,
+          "pi_x_last": 3509091,
+          "expected": 3508923,
+          "sum_c_j": 3508923,
+          "difference": 0,
+          "passed": true
+        },
+        "surrogate_null": {
+          "definition": "amplitude-preserving surrogate: a random permutation of the ehat values across j, projected identically",
+          "n_surrogates": 200,
+          "seed": 2026,
+          "P_max_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 1.0784628969274836,
+              "median": 1.684259365644589,
+              "p95": 3.4554883391018323,
+              "max": 7.024266862622043
+            },
+            "real_value": 2.4062263493117917,
+            "real_percentile_in_surrogates": 88.5,
+            "real_exceeds_surrogate_p95": false
+          },
+          "P_at_gamma_1_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 0.06269730518985525,
+              "median": 0.9605518027483686,
+              "p95": 2.465019802748514,
+              "max": 6.656241118615738
+            },
+            "real_value": 1.2160857580212925,
+            "real_percentile_in_surrogates": 68.0,
+            "real_exceeds_surrogate_p95": false
+          }
+        }
+      },
+      "L23": {
+        "ladder": "L23",
+        "description": "x = x0 * 2^m * 3^n, m,n >= 0 (the joint orbit; irregular)",
+        "n_rungs": 108,
+        "n_blocks": 107,
+        "x_first": 1000.0,
+        "x_last": 147456000.0,
+        "log_gap_stats": {
+          "n_gaps": 107,
+          "min": 0.05211600113901227,
+          "median": 0.11778303565638204,
+          "max": 0.6931471805599454,
+          "mean": 0.11122696359977059,
+          "spread_max_minus_min": 0.6410311794209331,
+          "log_span_full_ladder": 11.901285105175454
+        },
+        "uniform_equivalent_nyquist": 26.67270915613871,
+        "uniform_equivalent_nyquist_note": "pi / median(log-gap). For the IRREGULAR ladders (L23, L235, L_irr) this is a DESCRIPTIVE NUMBER ONLY and NOT A BOUND, because irregular sampling is not limited by the uniform rate. For L2 and L3 the gaps are constant and it IS the uniform Nyquist limit",
+        "total_count": 8309087,
+        "block_size_min": 110,
+        "block_size_max": 566394,
+        "ehat_stats": {
+          "n": 107,
+          "min": -0.08075366262015388,
+          "max": 0.06280329416336396,
+          "mean": 9.178007064714148e-05,
+          "rms": 0.022449950060691712
+        },
+        "projection_log_x_span": 11.849169104036442,
+        "frequency_resolution": 0.5302637891326243,
+        "band_halfwidth_used": 0.6,
+        "projection": {
+          "verdict": "NULL",
+          "argmax_gamma": 31.35,
+          "P_max": 0.3571198884927572,
+          "P_median": 0.066812511859646,
+          "P_max_over_median": 5.3451049594268225,
+          "argmax_nearest_gamma_index": 3,
+          "argmax_nearest_gamma": 30.424876,
+          "argmax_distance_to_nearest": 0.9251240000000003,
+          "band_halfwidth_used": 0.6,
+          "band_median_factor": 5.0,
+          "weak_peak_gamma": null,
+          "weak_peak_over_median": null,
+          "P_at_gamma": [
+            0.26354550142128946,
+            0.08623536412885337,
+            0.2931972686581628,
+            0.24189414765592956,
+            0.23551624155439507,
+            0.13634244685842417
+          ],
+          "P_at_gamma_over_median": [
+            3.944553109676871,
+            1.2907068111734705,
+            4.388358714518719,
+            3.6204917450803236,
+            3.5250319887560493,
+            2.0406723690443
+          ],
+          "P_at_gamma_grid_point": [
+            14.13,
+            21.02,
+            25.01,
+            30.42,
+            32.94,
+            37.59
+          ],
+          "top_local_peaks": [
+            {
+              "gamma": 31.35,
+              "P": 0.3571198884927572,
+              "P_over_median": 5.3451049594268225,
+              "nearest_gamma": 30.424876,
+              "distance_to_nearest": 0.9251240000000003,
+              "in_band": false
+            },
+            {
+              "gamma": 24.88,
+              "P": 0.3028538606781183,
+              "P_over_median": 4.532891403848545,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 0.13085799999999992,
+              "in_band": true
+            },
+            {
+              "gamma": 20.35,
+              "P": 0.2807041943797195,
+              "P_over_median": 4.201371667770833,
+              "nearest_gamma": 21.02204,
+              "distance_to_nearest": 0.6720399999999991,
+              "in_band": false
+            },
+            {
+              "gamma": 14.13,
+              "P": 0.26354550142128946,
+              "P_over_median": 3.944553109676871,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 0.004724999999998758,
+              "in_band": true
+            },
+            {
+              "gamma": 32.75,
+              "P": 0.240460162399267,
+              "P_over_median": 3.5990289199784185,
+              "nearest_gamma": 32.935062,
+              "distance_to_nearest": 0.18506200000000206,
+              "in_band": true
+            },
+            {
+              "gamma": 38.83,
+              "P": 0.19557957354936453,
+              "P_over_median": 2.9272896364115355,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 1.2438220000000015,
+              "in_band": false
+            },
+            {
+              "gamma": 26.25,
+              "P": 0.17611534798280037,
+              "P_over_median": 2.635963580485769,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 1.239142000000001,
+              "in_band": false
+            },
+            {
+              "gamma": 37.25,
+              "P": 0.16468695177188084,
+              "P_over_median": 2.46491184342599,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 0.33617799999999676,
+              "in_band": true
+            },
+            {
+              "gamma": 15.22,
+              "P": 0.15926065804243045,
+              "P_over_median": 2.383695113528909,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 1.085275000000001,
+              "in_band": false
+            },
+            {
+              "gamma": 23.11,
+              "P": 0.10333677102801024,
+              "P_over_median": 1.5466679541264858,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 1.9008579999999995,
+              "in_band": false
+            }
+          ]
+        },
+        "verdict": "NULL",
+        "gate_a": {
+          "statement": "sum_j c_j == pi(x_last) - pi(x_0)",
+          "pi_x0": 168,
+          "pi_x_last": 8309255,
+          "expected": 8309087,
+          "sum_c_j": 8309087,
+          "difference": 0,
+          "passed": true
+        },
+        "surrogate_null": {
+          "definition": "amplitude-preserving surrogate: a random permutation of the ehat values across j, projected identically",
+          "n_surrogates": 200,
+          "seed": 2026,
+          "P_max_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 1.8137722564401866,
+              "median": 2.5920577235491633,
+              "p95": 3.308625210336769,
+              "max": 4.0824200292636466
+            },
+            "real_value": 5.3451049594268225,
+            "real_percentile_in_surrogates": 100.0,
+            "real_exceeds_surrogate_p95": true
+          },
+          "P_at_gamma_1_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 0.13267121884565325,
+              "median": 1.0265541565965528,
+              "p95": 2.1462687594420347,
+              "max": 2.670287952179821
+            },
+            "real_value": 3.944553109676871,
+            "real_percentile_in_surrogates": 100.0,
+            "real_exceeds_surrogate_p95": true
+          }
+        }
+      },
+      "L235": {
+        "ladder": "L235",
+        "description": "x = x0 * 2^m * 3^n * 5^k, m,n,k >= 0 (three generators; irregular)",
+        "n_rungs": 341,
+        "n_blocks": 340,
+        "x_first": 1000.0,
+        "x_last": 150000000.0,
+        "log_gap_stats": {
+          "n_gaps": 340,
+          "min": 0.0011285133797969138,
+          "median": 0.02371652661731538,
+          "max": 0.6931471805599454,
+          "mean": 0.03505408992081881,
+          "spread_max_minus_min": 0.6920186671801485,
+          "log_span_full_ladder": 11.918390573078394
+        },
+        "uniform_equivalent_nyquist": 132.46428131242976,
+        "uniform_equivalent_nyquist_note": "pi / median(log-gap). For the IRREGULAR ladders (L23, L235, L_irr) this is a DESCRIPTIVE NUMBER ONLY and NOT A BOUND, because irregular sampling is not limited by the uniform rate. For L2 and L3 the gaps are constant and it IS the uniform Nyquist limit",
+        "total_count": 8444228,
+        "block_size_min": 88,
+        "block_size_max": 201983,
+        "ehat_stats": {
+          "n": 340,
+          "min": -0.06713880519079801,
+          "max": 0.05620298413383087,
+          "mean": 2.316853653439916e-05,
+          "rms": 0.01714630369382885
+        },
+        "projection_log_x_span": 11.901285105175454,
+        "frequency_resolution": 0.5279417518068908,
+        "band_halfwidth_used": 0.6,
+        "projection": {
+          "verdict": "DETECT",
+          "argmax_gamma": 24.95,
+          "P_max": 0.2728944171161277,
+          "P_median": 0.051115504508557744,
+          "P_max_over_median": 5.338779686121259,
+          "argmax_nearest_gamma_index": 2,
+          "argmax_nearest_gamma": 25.010858,
+          "argmax_distance_to_nearest": 0.060857999999999635,
+          "band_halfwidth_used": 0.6,
+          "band_median_factor": 5.0,
+          "weak_peak_gamma": null,
+          "weak_peak_over_median": null,
+          "P_at_gamma": [
+            0.26731652860904137,
+            0.22824710217521552,
+            0.27133126639710536,
+            0.2315021744287988,
+            0.15098997173940454,
+            0.27089796151136764
+          ],
+          "P_at_gamma_over_median": [
+            5.229656464885078,
+            4.465320343986871,
+            5.308198931141903,
+            4.52900106639935,
+            2.9538977105102395,
+            5.299721955517703
+          ],
+          "P_at_gamma_grid_point": [
+            14.13,
+            21.02,
+            25.01,
+            30.42,
+            32.94,
+            37.59
+          ],
+          "top_local_peaks": [
+            {
+              "gamma": 24.95,
+              "P": 0.2728944171161277,
+              "P_over_median": 5.338779686121259,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 0.060857999999999635,
+              "in_band": true
+            },
+            {
+              "gamma": 37.550000000000004,
+              "P": 0.271284995191938,
+              "P_over_median": 5.307293702765264,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 0.036177999999992494,
+              "in_band": true
+            },
+            {
+              "gamma": 14.09,
+              "P": 0.2678637243206024,
+              "P_over_median": 5.240361547752243,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 0.04472499999999968,
+              "in_band": true
+            },
+            {
+              "gamma": 30.16,
+              "P": 0.2514259740315199,
+              "P_over_median": 4.918781032268325,
+              "nearest_gamma": 30.424876,
+              "distance_to_nearest": 0.264876000000001,
+              "in_band": true
+            },
+            {
+              "gamma": 20.88,
+              "P": 0.23361374867535792,
+              "P_over_median": 4.57031092466761,
+              "nearest_gamma": 21.02204,
+              "distance_to_nearest": 0.1420400000000015,
+              "in_band": true
+            },
+            {
+              "gamma": 32.53,
+              "P": 0.1808872635076715,
+              "P_over_median": 3.538794446944907,
+              "nearest_gamma": 32.935062,
+              "distance_to_nearest": 0.4050620000000009,
+              "in_band": true
+            },
+            {
+              "gamma": 28.53,
+              "P": 0.07965968275016906,
+              "P_over_median": 1.558425051577696,
+              "nearest_gamma": 30.424876,
+              "distance_to_nearest": 1.894876,
+              "in_band": false
+            },
+            {
+              "gamma": 23.75,
+              "P": 0.07656492218898735,
+              "P_over_median": 1.4978805926911838,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 1.260857999999999,
+              "in_band": false
+            },
+            {
+              "gamma": 35.64,
+              "P": 0.06549231165462312,
+              "P_over_median": 1.2812611806200291,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 1.9461779999999962,
+              "in_band": false
+            },
+            {
+              "gamma": 9.77,
+              "P": 0.05396785403866415,
+              "P_over_median": 1.0558020420130818,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 4.364725,
+              "in_band": false
+            }
+          ]
+        },
+        "verdict": "DETECT",
+        "gate_a": {
+          "statement": "sum_j c_j == pi(x_last) - pi(x_0)",
+          "pi_x0": 168,
+          "pi_x_last": 8444396,
+          "expected": 8444228,
+          "sum_c_j": 8444228,
+          "difference": 0,
+          "passed": true
+        },
+        "surrogate_null": {
+          "definition": "amplitude-preserving surrogate: a random permutation of the ehat values across j, projected identically",
+          "n_surrogates": 200,
+          "seed": 2026,
+          "P_max_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 1.7061674993402618,
+              "median": 2.512416917910259,
+              "p95": 3.2645805654092146,
+              "max": 3.9948849267960176
+            },
+            "real_value": 5.338779686121259,
+            "real_percentile_in_surrogates": 100.0,
+            "real_exceeds_surrogate_p95": true
+          },
+          "P_at_gamma_1_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 0.10840003162269722,
+              "median": 0.9595841367643883,
+              "p95": 2.0139840827037503,
+              "max": 2.735050729672273
+            },
+            "real_value": 5.229656464885078,
+            "real_percentile_in_surrogates": 100.0,
+            "real_exceeds_surrogate_p95": true
+          }
+        }
+      },
+      "L_irr": {
+        "ladder": "L_irr",
+        "description": "C2 gap-structure control: same rung count and same first/last x as L23, interior rungs a sorted uniform random sample in log x at the fixed seed",
+        "n_rungs": 108,
+        "n_blocks": 107,
+        "x_first": 999.9999999999998,
+        "x_last": 147455999.99999997,
+        "log_gap_stats": {
+          "n_gaps": 107,
+          "min": 0.00020714636741470116,
+          "median": 0.07655647078694372,
+          "max": 0.5799353275492045,
+          "mean": 0.11122696359977059,
+          "spread_max_minus_min": 0.5797281811817898,
+          "log_span_full_ladder": 11.901285105175454
+        },
+        "uniform_equivalent_nyquist": 41.03627846603366,
+        "uniform_equivalent_nyquist_note": "pi / median(log-gap). For the IRREGULAR ladders (L23, L235, L_irr) this is a DESCRIPTIVE NUMBER ONLY and NOT A BOUND, because irregular sampling is not limited by the uniform rate. For L2 and L3 the gaps are constant and it IS the uniform Nyquist limit",
+        "total_count": 8309087,
+        "block_size_min": 0,
+        "block_size_max": 1669683,
+        "ehat_stats": {
+          "n": 107,
+          "min": -0.06329571080737682,
+          "max": 0.06692876821316654,
+          "mean": 0.00022012014706368222,
+          "rms": 0.025828901875165913
+        },
+        "projection_log_x_span": 11.779132309326886,
+        "frequency_resolution": 0.5334166509195647,
+        "band_halfwidth_used": 0.6,
+        "projection": {
+          "verdict": "NULL",
+          "argmax_gamma": 14.1,
+          "P_max": 0.33131868149816773,
+          "P_median": 0.1092069616800172,
+          "P_max_over_median": 3.0338604462685343,
+          "argmax_nearest_gamma_index": 0,
+          "argmax_nearest_gamma": 14.134725,
+          "argmax_distance_to_nearest": 0.034724999999999895,
+          "band_halfwidth_used": 0.6,
+          "band_median_factor": 5.0,
+          "weak_peak_gamma": null,
+          "weak_peak_over_median": null,
+          "P_at_gamma": [
+            0.3310159735547695,
+            0.2352874020886699,
+            0.06314778123163342,
+            0.1914942169858277,
+            0.15744943457502505,
+            0.21297676378957994
+          ],
+          "P_at_gamma_over_median": [
+            3.031088572216355,
+            2.1545091857612135,
+            0.5782395211823594,
+            1.753498257253205,
+            1.441752724852479,
+            1.9502123354884129
+          ],
+          "P_at_gamma_grid_point": [
+            14.13,
+            21.02,
+            25.01,
+            30.42,
+            32.94,
+            37.59
+          ],
+          "top_local_peaks": [
+            {
+              "gamma": 14.1,
+              "P": 0.33131868149816773,
+              "P_over_median": 3.0338604462685343,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 0.034724999999999895,
+              "in_band": true
+            },
+            {
+              "gamma": 23.86,
+              "P": 0.32870396354138026,
+              "P_over_median": 3.0099176690264686,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 1.1508579999999995,
+              "in_band": false
+            },
+            {
+              "gamma": 39.03,
+              "P": 0.30195157235196274,
+              "P_over_median": 2.764948018943138,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 1.4438220000000044,
+              "in_band": false
+            },
+            {
+              "gamma": 21.38,
+              "P": 0.2955976310388717,
+              "P_over_median": 2.7067654524167617,
+              "nearest_gamma": 21.02204,
+              "distance_to_nearest": 0.3579599999999985,
+              "in_band": true
+            },
+            {
+              "gamma": 26.7,
+              "P": 0.2266246980293333,
+              "P_over_median": 2.075185451027902,
+              "nearest_gamma": 25.010858,
+              "distance_to_nearest": 1.6891420000000004,
+              "in_band": false
+            },
+            {
+              "gamma": 37.49,
+              "P": 0.2174063218689461,
+              "P_over_median": 1.9907734683248433,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 0.09617799999999477,
+              "in_band": true
+            },
+            {
+              "gamma": 30.61,
+              "P": 0.20352190279514357,
+              "P_over_median": 1.8636348788044728,
+              "nearest_gamma": 30.424876,
+              "distance_to_nearest": 0.1851239999999983,
+              "in_band": true
+            },
+            {
+              "gamma": 35.32,
+              "P": 0.20067397905032186,
+              "P_over_median": 1.8375566535612298,
+              "nearest_gamma": 37.586178,
+              "distance_to_nearest": 2.2661779999999965,
+              "in_band": false
+            },
+            {
+              "gamma": 17.89,
+              "P": 0.18054896937494383,
+              "P_over_median": 1.6532734415225552,
+              "nearest_gamma": 21.02204,
+              "distance_to_nearest": 3.13204,
+              "in_band": false
+            },
+            {
+              "gamma": 9.46,
+              "P": 0.17999371783029408,
+              "P_over_median": 1.6481890445563923,
+              "nearest_gamma": 14.134725,
+              "distance_to_nearest": 4.674724999999999,
+              "in_band": false
+            }
+          ]
+        },
+        "verdict": "NULL",
+        "gate_a": {
+          "statement": "sum_j c_j == pi(x_last) - pi(x_0)",
+          "pi_x0": 168,
+          "pi_x_last": 8309255,
+          "expected": 8309087,
+          "sum_c_j": 8309087,
+          "difference": 0,
+          "passed": true
+        },
+        "surrogate_null": {
+          "definition": "amplitude-preserving surrogate: a random permutation of the ehat values across j, projected identically",
+          "n_surrogates": 200,
+          "seed": 2026,
+          "P_max_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 1.7433483806439098,
+              "median": 2.471914884361272,
+              "p95": 3.313079003153768,
+              "max": 3.922720115070948
+            },
+            "real_value": 3.0338604462685343,
+            "real_percentile_in_surrogates": 89.0,
+            "real_exceeds_surrogate_p95": false
+          },
+          "P_at_gamma_1_over_median": {
+            "surrogate_distribution": {
+              "n": 200,
+              "min": 0.09294168599466042,
+              "median": 1.0430092817701977,
+              "p95": 2.099829118938177,
+              "max": 3.7626780496169823
+            },
+            "real_value": 3.031088572216355,
+            "real_percentile_in_surrogates": 99.5,
+            "real_exceeds_surrogate_p95": true
+          }
+        }
+      }
+    },
+    "verdicts": {
+      "L2": "NULL",
+      "L3": "NULL",
+      "L23": "NULL",
+      "L235": "DETECT",
+      "L_irr": "NULL"
+    },
+    "headline": "H-NONE",
+    "gate_a_all_passed": true,
+    "gate_b": {
+      "statement": "L2's c_j == N(r) = pi(2^r) - pi(2^(r-1)) from pi2n_cache.json, for every r where x0 * 2^m lands on a power of two",
+      "cache_path": "/Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json",
+      "note": "not applicable: x0 = 1000 is not a power of two, so no L2 ladder point lands on a power of two and there is nothing in pi2n_cache.json to compare against. Run with --x0 2 to exercise this gate",
+      "n_compared": 0,
+      "r_range": null,
+      "mismatches": 0,
+      "mismatch_detail": [],
+      "passed": null
+    },
+    "gate_c": {
+      "statement": "R(10^6) against pi(10^6) = 78498; criterion |R(10^6) - 78498| < |li(10^6) - 78498| = 129.549",
+      "x": 1000000,
+      "riemannr_impl": "mpmath.riemannr",
+      "R_computed": 78527.3994291277,
+      "pi_from_sieve": 78498,
+      "pi_known": 78498,
+      "pi_from_sieve_matches_known": true,
+      "pi_note": "from this run's sieve",
+      "R_abs_difference": 29.399429127704934,
+      "li_reference": 78627.549,
+      "li_abs_difference_known": 129.549,
+      "passed": true
+    }
+  },
+  "rows": [
+    {
+      "ladder": "L2",
+      "j": 0,
+      "x_j": 1000.0,
+      "x_j_plus_1": 2000.0,
+      "c_j": 135,
+      "L_j": 134.97582766406856,
+      "e_j": 0.024172335931439193,
+      "ehat_j": 0.0007643963791007558
+    },
+    {
+      "ladder": "L2",
+      "j": 1,
+      "x_j": 2000.0,
+      "x_j_plus_1": 4000.0,
+      "c_j": 247,
+      "L_j": 247.75046302856057,
+      "e_j": -0.7504630285605742,
+      "ehat_j": -0.0167808634646181
+    },
+    {
+      "ladder": "L2",
+      "j": 2,
+      "x_j": 4000.0,
+      "x_j_plus_1": 8000.0,
+      "c_j": 457,
+      "L_j": 457.4779920592071,
+      "e_j": -0.47799205920711074,
+      "ehat_j": -0.007557718052842638
+    },
+    {
+      "ladder": "L2",
+      "j": 3,
+      "x_j": 8000.0,
+      "x_j_plus_1": 16000.0,
+      "c_j": 855,
+      "L_j": 849.2589700348171,
+      "e_j": 5.741029965182861,
+      "ehat_j": 0.06418666631506063
+    },
+    {
+      "ladder": "L2",
+      "j": 4,
+      "x_j": 16000.0,
+      "x_j_plus_1": 32000.0,
+      "c_j": 1570,
+      "L_j": 1584.0755546577102,
+      "e_j": -14.0755546577102,
+      "ehat_j": -0.11127703012138986
+    },
+    {
+      "ladder": "L2",
+      "j": 5,
+      "x_j": 32000.0,
+      "x_j_plus_1": 64000.0,
+      "c_j": 2981,
+      "L_j": 2967.290118132838,
+      "e_j": 13.70988186716204,
+      "ehat_j": 0.07664056954616515
+    },
+    {
+      "ladder": "L2",
+      "j": 6,
+      "x_j": 64000.0,
+      "x_j_plus_1": 128000.0,
+      "c_j": 5574,
+      "L_j": 5579.591102308174,
+      "e_j": -5.591102308174413,
+      "ehat_j": -0.022100772406069762
+    },
+    {
+      "ladder": "L2",
+      "j": 7,
+      "x_j": 128000.0,
+      "x_j_plus_1": 256000.0,
+      "c_j": 10538,
+      "L_j": 10527.779304534635,
+      "e_j": 10.22069546536477,
+      "ehat_j": 0.028567712297349338
+    },
+    {
+      "ladder": "L2",
+      "j": 8,
+      "x_j": 256000.0,
+      "x_j_plus_1": 512000.0,
+      "c_j": 19920,
+      "L_j": 19925.893857377345,
+      "e_j": -5.89385737734483,
+      "ehat_j": -0.011648758447872594
+    },
+    {
+      "ladder": "L2",
+      "j": 9,
+      "x_j": 512000.0,
+      "x_j_plus_1": 1024000.0,
+      "c_j": 37820,
+      "L_j": 37819.70514968716,
+      "e_j": 0.29485031284275465,
+      "ehat_j": 0.0004120658391896741
+    },
+    {
+      "ladder": "L2",
+      "j": 10,
+      "x_j": 1024000.0,
+      "x_j_plus_1": 2048000.0,
+      "c_j": 71987,
+      "L_j": 71965.77250877646,
+      "e_j": 21.227491223544348,
+      "ehat_j": 0.020977256649260822
+    },
+    {
+      "ladder": "L2",
+      "j": 11,
+      "x_j": 2048000.0,
+      "x_j_plus_1": 4096000.0,
+      "c_j": 137259,
+      "L_j": 137259.71077733635,
+      "e_j": -0.7107773363532033,
+      "ehat_j": -0.0004966707627974984
+    },
+    {
+      "ladder": "L2",
+      "j": 12,
+      "x_j": 4096000.0,
+      "x_j_plus_1": 8192000.0,
+      "c_j": 262303,
+      "L_j": 262351.0061586851,
+      "e_j": -48.006158685078844,
+      "ehat_j": -0.023720125493800478
+    },
+    {
+      "ladder": "L2",
+      "j": 13,
+      "x_j": 8192000.0,
+      "x_j_plus_1": 16384000.0,
+      "c_j": 502358,
+      "L_j": 502421.62707344326,
+      "e_j": -63.62707344326191,
+      "ehat_j": -0.02223038459820394
+    },
+    {
+      "ladder": "L2",
+      "j": 14,
+      "x_j": 16384000.0,
+      "x_j_plus_1": 32768000.0,
+      "c_j": 964086,
+      "L_j": 963899.8247518836,
+      "e_j": 186.17524811637122,
+      "ehat_j": 0.045995142812086394
+    },
+    {
+      "ladder": "L2",
+      "j": 15,
+      "x_j": 32768000.0,
+      "x_j_plus_1": 65536000.0,
+      "c_j": 1852108,
+      "L_j": 1852307.228923621,
+      "e_j": -199.22892362088896,
+      "ehat_j": -0.03480386064847041
+    },
+    {
+      "ladder": "L2",
+      "j": 16,
+      "x_j": 65536000.0,
+      "x_j_plus_1": 131072000.0,
+      "c_j": 3565231,
+      "L_j": 3564985.475057322,
+      "e_j": 245.52494267793372,
+      "ehat_j": 0.030328829736115302
+    },
+    {
+      "ladder": "L3",
+      "j": 0,
+      "x_j": 1000.0,
+      "x_j_plus_1": 3000.0,
+      "c_j": 262,
+      "L_j": 261.36644422282717,
+      "e_j": 0.6335557771728304,
+      "ehat_j": 0.020034792806242572
+    },
+    {
+      "ladder": "L3",
+      "j": 1,
+      "x_j": 3000.0,
+      "x_j_plus_1": 9000.0,
+      "c_j": 687,
+      "L_j": 688.6696577195065,
+      "e_j": -1.6696577195065174,
+      "ehat_j": -0.030483639876211766
+    },
+    {
+      "ladder": "L3",
+      "j": 2,
+      "x_j": 9000.0,
+      "x_j_plus_1": 27000.0,
+      "c_j": 1844,
+      "L_j": 1839.2335247165638,
+      "e_j": 4.766475283436193,
+      "ehat_j": 0.05024306102185006
+    },
+    {
+      "ladder": "L3",
+      "j": 3,
+      "x_j": 27000.0,
+      "x_j_plus_1": 81000.0,
+      "c_j": 4964,
+      "L_j": 4967.809427896157,
+      "e_j": -3.8094278961571035,
+      "ehat_j": -0.023183439887941033
+    },
+    {
+      "ladder": "L3",
+      "j": 4,
+      "x_j": 81000.0,
+      "x_j_plus_1": 243000.0,
+      "c_j": 13543,
+      "L_j": 13546.16101830636,
+      "e_j": -3.161018306360347,
+      "ehat_j": -0.011106686192874013
+    },
+    {
+      "ladder": "L3",
+      "j": 5,
+      "x_j": 243000.0,
+      "x_j_plus_1": 729000.0,
+      "c_j": 37246,
+      "L_j": 37235.85502168135,
+      "e_j": 10.14497831864719,
+      "ehat_j": 0.02058012396490333
+    },
+    {
+      "ladder": "L3",
+      "j": 6,
+      "x_j": 729000.0,
+      "x_j_plus_1": 2187000.0,
+      "c_j": 103077,
+      "L_j": 103060.06102184193,
+      "e_j": 16.938978158068494,
+      "ehat_j": 0.01983916748716301
+    },
+    {
+      "ladder": "L3",
+      "j": 7,
+      "x_j": 2187000.0,
+      "x_j_plus_1": 6561000.0,
+      "c_j": 286872,
+      "L_j": 286938.38549743686,
+      "e_j": -66.38549743685871,
+      "ehat_j": -0.044889919058480124
+    },
+    {
+      "ladder": "L3",
+      "j": 8,
+      "x_j": 6561000.0,
+      "x_j_plus_1": 19683000.0,
+      "c_j": 802998,
+      "L_j": 803001.9685673977,
+      "e_j": -3.968567397678271,
+      "ehat_j": -0.00154934716352476
+    },
+    {
+      "ladder": "L3",
+      "j": 9,
+      "x_j": 19683000.0,
+      "x_j_plus_1": 59049000.0,
+      "c_j": 2257430,
+      "L_j": 2257326.955154922,
+      "e_j": 103.0448450781405,
+      "ehat_j": 0.023226331721778903
+    },
+    {
+      "ladder": "L23",
+      "j": 0,
+      "x_j": 1000.0,
+      "x_j_plus_1": 2000.0,
+      "c_j": 135,
+      "L_j": 134.97582766406856,
+      "e_j": 0.024172335931439193,
+      "ehat_j": 0.0007643963791007558
+    },
+    {
+      "ladder": "L23",
+      "j": 1,
+      "x_j": 2000.0,
+      "x_j_plus_1": 3000.0,
+      "c_j": 127,
+      "L_j": 126.39061655875861,
+      "e_j": 0.6093834412413912,
+      "ehat_j": 0.013626227989784995
+    },
+    {
+      "ladder": "L23",
+      "j": 2,
+      "x_j": 3000.0,
+      "x_j_plus_1": 4000.0,
+      "c_j": 120,
+      "L_j": 121.35984646980195,
+      "e_j": -1.3598464698019512,
+      "ehat_j": -0.024827286208476546
+    },
+    {
+      "ladder": "L23",
+      "j": 3,
+      "x_j": 4000.0,
+      "x_j_plus_1": 6000.0,
+      "c_j": 233,
+      "L_j": 233.06673557182927,
+      "e_j": -0.0667355718292697,
+      "ehat_j": -0.001055182039671309
+    },
+    {
+      "ladder": "L23",
+      "j": 4,
+      "x_j": 6000.0,
+      "x_j_plus_1": 8000.0,
+      "c_j": 224,
+      "L_j": 224.41125648737787,
+      "e_j": -0.41125648737786946,
+      "ehat_j": -0.0053092984221141636
+    },
+    {
+      "ladder": "L23",
+      "j": 5,
+      "x_j": 8000.0,
+      "x_j_plus_1": 9000.0,
+      "c_j": 110,
+      "L_j": 109.83181919049743,
+      "e_j": 0.16818080950257297,
+      "ehat_j": 0.0018803186127934787
+    },
+    {
+      "ladder": "L23",
+      "j": 6,
+      "x_j": 9000.0,
+      "x_j_plus_1": 12000.0,
+      "c_j": 321,
+      "L_j": 322.30690702410106,
+      "e_j": -1.306907024101065,
+      "ehat_j": -0.01377600962077312
+    },
+    {
+      "ladder": "L23",
+      "j": 7,
+      "x_j": 12000.0,
+      "x_j_plus_1": 16000.0,
+      "c_j": 424,
+      "L_j": 417.1202438202186,
+      "e_j": 6.8797561797813955,
+      "ehat_j": 0.06280329416336396
+    },
+    {
+      "ladder": "L23",
+      "j": 8,
+      "x_j": 16000.0,
+      "x_j_plus_1": 18000.0,
+      "c_j": 202,
+      "L_j": 204.42848389098995,
+      "e_j": -2.428483890989952,
+      "ehat_j": -0.019198850891390767
+    },
+    {
+      "ladder": "L23",
+      "j": 9,
+      "x_j": 18000.0,
+      "x_j_plus_1": 24000.0,
+      "c_j": 604,
+      "L_j": 600.7412123182645,
+      "e_j": 3.258787681735498,
+      "ehat_j": 0.02428956926866508
+    },
+    {
+      "ladder": "L23",
+      "j": 10,
+      "x_j": 24000.0,
+      "x_j_plus_1": 27000.0,
+      "c_j": 293,
+      "L_j": 294.63667766298965,
+      "e_j": -1.636677662989655,
+      "ehat_j": -0.010564708886447682
+    },
+    {
+      "ladder": "L23",
+      "j": 11,
+      "x_j": 27000.0,
+      "x_j_plus_1": 32000.0,
+      "c_j": 471,
+      "L_j": 484.269180785466,
+      "e_j": -13.269180785466006,
+      "ehat_j": -0.08075366262015388
+    },
+    {
+      "ladder": "L23",
+      "j": 12,
+      "x_j": 32000.0,
+      "x_j_plus_1": 36000.0,
+      "c_j": 392,
+      "L_j": 382.20704584721966,
+      "e_j": 9.79295415278034,
+      "ehat_j": 0.05474427796538925
+    },
+    {
+      "ladder": "L23",
+      "j": 13,
+      "x_j": 36000.0,
+      "x_j_plus_1": 48000.0,
+      "c_j": 1122,
+      "L_j": 1124.568929494319,
+      "e_j": -2.568929494319036,
+      "ehat_j": -0.013539447250721233
+    },
+    {
+      "ladder": "L23",
+      "j": 14,
+      "x_j": 48000.0,
+      "x_j_plus_1": 54000.0,
+      "c_j": 554,
+      "L_j": 552.1866661202628,
+      "e_j": 1.813333879737229,
+      "ehat_j": 0.00827669891850367
+    },
+    {
+      "ladder": "L23",
+      "j": 15,
+      "x_j": 54000.0,
+      "x_j_plus_1": 64000.0,
+      "c_j": 913,
+      "L_j": 908.3274766710364,
+      "e_j": 4.672523328963621,
+      "ehat_j": 0.02010733893093527
+    },
+    {
+      "ladder": "L23",
+      "j": 16,
+      "x_j": 64000.0,
+      "x_j_plus_1": 72000.0,
+      "c_j": 715,
+      "L_j": 717.4604562294063,
+      "e_j": -2.4604562294063044,
+      "ehat_j": -0.009725807210092101
+    },
+    {
+      "ladder": "L23",
+      "j": 17,
+      "x_j": 72000.0,
+      "x_j_plus_1": 81000.0,
+      "c_j": 797,
+      "L_j": 798.7896727484465,
+      "e_j": -1.7896727484464918,
+      "ehat_j": -0.006669716538342062
+    },
+    {
+      "ladder": "L23",
+      "j": 18,
+      "x_j": 81000.0,
+      "x_j_plus_1": 96000.0,
+      "c_j": 1327,
+      "L_j": 1314.5604375758599,
+      "e_j": 12.43956242414015,
+      "ehat_j": 0.04370816706236489
+    },
+    {
+      "ladder": "L23",
+      "j": 19,
+      "x_j": 96000.0,
+      "x_j_plus_1": 108000.0,
+      "c_j": 1022,
+      "L_j": 1038.773399226941,
+      "e_j": -16.77339922694091,
+      "ehat_j": -0.05413591322102542
+    },
+    {
+      "ladder": "L23",
+      "j": 20,
+      "x_j": 108000.0,
+      "x_j_plus_1": 128000.0,
+      "c_j": 1713,
+      "L_j": 1710.0071365275207,
+      "e_j": 2.9928634724792573,
+      "ehat_j": 0.009106993530056284
+    },
+    {
+      "ladder": "L23",
+      "j": 21,
+      "x_j": 128000.0,
+      "x_j_plus_1": 144000.0,
+      "c_j": 1356,
+      "L_j": 1351.6448721529807,
+      "e_j": 4.355127847019276,
+      "ehat_j": 0.012172952395796756
+    },
+    {
+      "ladder": "L23",
+      "j": 22,
+      "x_j": 144000.0,
+      "x_j_plus_1": 162000.0,
+      "c_j": 1509,
+      "L_j": 1505.7301466903125,
+      "e_j": 3.2698533096875053,
+      "ehat_j": 0.008616820061043697
+    },
+    {
+      "ladder": "L23",
+      "j": 23,
+      "x_j": 162000.0,
+      "x_j_plus_1": 192000.0,
+      "c_j": 2474,
+      "L_j": 2479.687363305682,
+      "e_j": -5.687363305682084,
+      "ehat_j": -0.014130367738047838
+    },
+    {
+      "ladder": "L23",
+      "j": 24,
+      "x_j": 192000.0,
+      "x_j_plus_1": 216000.0,
+      "c_j": 1961,
+      "L_j": 1960.7770383479144,
+      "e_j": 0.22296165208558705,
+      "ehat_j": 0.0005088380262745616
+    },
+    {
+      "ladder": "L23",
+      "j": 25,
+      "x_j": 216000.0,
+      "x_j_plus_1": 243000.0,
+      "c_j": 2181,
+      "L_j": 2184.9806244791494,
+      "e_j": -3.9806244791493555,
+      "ehat_j": -0.008564940175139459
+    },
+    {
+      "ladder": "L23",
+      "j": 26,
+      "x_j": 243000.0,
+      "x_j_plus_1": 256000.0,
+      "c_j": 1057,
+      "L_j": 1044.9592595585962,
+      "e_j": 12.040740441403841,
+      "ehat_j": 0.02442587092156146
+    },
+    {
+      "ladder": "L23",
+      "j": 27,
+      "x_j": 256000.0,
+      "x_j_plus_1": 288000.0,
+      "c_j": 2537,
+      "L_j": 2554.6893682596083,
+      "e_j": -17.689368259608273,
+      "ehat_j": -0.03496168379365678
+    },
+    {
+      "ladder": "L23",
+      "j": 28,
+      "x_j": 288000.0,
+      "x_j_plus_1": 324000.0,
+      "c_j": 2857,
+      "L_j": 2847.3998333813374,
+      "e_j": 9.60016661866257,
+      "ehat_j": 0.01788885429554484
+    },
+    {
+      "ladder": "L23",
+      "j": 29,
+      "x_j": 324000.0,
+      "x_j_plus_1": 384000.0,
+      "c_j": 4684,
+      "L_j": 4692.13842663258,
+      "e_j": -8.138426632580376,
+      "ehat_j": -0.014297758182849053
+    },
+    {
+      "ladder": "L23",
+      "j": 30,
+      "x_j": 384000.0,
+      "x_j_plus_1": 432000.0,
+      "c_j": 3714,
+      "L_j": 3712.4892174764072,
+      "e_j": 1.5107825235927521,
+      "ehat_j": 0.002438014814006643
+    },
+    {
+      "ladder": "L23",
+      "j": 31,
+      "x_j": 432000.0,
+      "x_j_plus_1": 486000.0,
+      "c_j": 4128,
+      "L_j": 4139.02087022434,
+      "e_j": -11.020870224339887,
+      "ehat_j": -0.016767720070022158
+    },
+    {
+      "ladder": "L23",
+      "j": 32,
+      "x_j": 486000.0,
+      "x_j_plus_1": 512000.0,
+      "c_j": 2000,
+      "L_j": 1980.1561414030707,
+      "e_j": 19.843858596929294,
+      "ehat_j": 0.028464790322371123
+    },
+    {
+      "ladder": "L23",
+      "j": 33,
+      "x_j": 512000.0,
+      "x_j_plus_1": 576000.0,
+      "c_j": 4835,
+      "L_j": 4842.718555028807,
+      "e_j": -7.718555028806804,
+      "ehat_j": -0.010787008582803037
+    },
+    {
+      "ladder": "L23",
+      "j": 34,
+      "x_j": 576000.0,
+      "x_j_plus_1": 648000.0,
+      "c_j": 5394,
+      "L_j": 5400.129023765306,
+      "e_j": -6.1290237653056465,
+      "ehat_j": -0.008075697888194637
+    },
+    {
+      "ladder": "L23",
+      "j": 35,
+      "x_j": 648000.0,
+      "x_j_plus_1": 729000.0,
+      "c_j": 6040,
+      "L_j": 6022.154325951296,
+      "e_j": 17.845674048703586,
+      "ehat_j": 0.022168966820669506
+    },
+    {
+      "ladder": "L23",
+      "j": 36,
+      "x_j": 729000.0,
+      "x_j_plus_1": 768000.0,
+      "c_j": 2868,
+      "L_j": 2881.6083837312044,
+      "e_j": -13.608383731204412,
+      "ehat_j": -0.015938328838587604
+    },
+    {
+      "ladder": "L23",
+      "j": 37,
+      "x_j": 768000.0,
+      "x_j_plus_1": 864000.0,
+      "c_j": 7054,
+      "L_j": 7048.660360484256,
+      "e_j": 5.3396395157442385,
+      "ehat_j": 0.006093002107748085
+    },
+    {
+      "ladder": "L23",
+      "j": 38,
+      "x_j": 864000.0,
+      "x_j_plus_1": 972000.0,
+      "c_j": 7868,
+      "L_j": 7861.9874139140575,
+      "e_j": 6.01258608594253,
+      "ehat_j": 0.006468512716248293
+    },
+    {
+      "ladder": "L23",
+      "j": 39,
+      "x_j": 972000.0,
+      "x_j_plus_1": 1024000.0,
+      "c_j": 3761,
+      "L_j": 3762.4470868122266,
+      "e_j": -1.4470868122266438,
+      "ehat_j": -0.001467781647638473
+    },
+    {
+      "ladder": "L23",
+      "j": 40,
+      "x_j": 1024000.0,
+      "x_j_plus_1": 1152000.0,
+      "c_j": 9189,
+      "L_j": 9204.440798489202,
+      "e_j": -15.44079848920228,
+      "ehat_j": -0.015258778786739384
+    },
+    {
+      "ladder": "L23",
+      "j": 41,
+      "x_j": 1152000.0,
+      "x_j_plus_1": 1296000.0,
+      "c_j": 10286,
+      "L_j": 10268.291896075269,
+      "e_j": 17.708103924731404,
+      "ehat_j": 0.0164985517201376
+    },
+    {
+      "ladder": "L23",
+      "j": 42,
+      "x_j": 1296000.0,
+      "x_j_plus_1": 1458000.0,
+      "c_j": 11460,
+      "L_j": 11455.891756159184,
+      "e_j": 4.108243840815703,
+      "ehat_j": 0.003608724366759955
+    },
+    {
+      "ladder": "L23",
+      "j": 43,
+      "x_j": 1458000.0,
+      "x_j_plus_1": 1536000.0,
+      "c_j": 5484,
+      "L_j": 5483.286303276823,
+      "e_j": 0.713696723177236,
+      "ehat_j": 0.0005910645882752405
+    },
+    {
+      "ladder": "L23",
+      "j": 44,
+      "x_j": 1536000.0,
+      "x_j_plus_1": 1728000.0,
+      "c_j": 13395,
+      "L_j": 13416.5995490266,
+      "e_j": -21.59954902659956,
+      "ehat_j": -0.017428061180335568
+    },
+    {
+      "ladder": "L23",
+      "j": 45,
+      "x_j": 1728000.0,
+      "x_j_plus_1": 1944000.0,
+      "c_j": 15011,
+      "L_j": 14970.773900182909,
+      "e_j": 40.22609981709138,
+      "ehat_j": 0.030601030930938036
+    },
+    {
+      "ladder": "L23",
+      "j": 46,
+      "x_j": 1944000.0,
+      "x_j_plus_1": 2048000.0,
+      "c_j": 7162,
+      "L_j": 7166.488305566475,
+      "e_j": -4.488305566474992,
+      "ehat_j": -0.0032190986503051276
+    },
+    {
+      "ladder": "L23",
+      "j": 47,
+      "x_j": 2048000.0,
+      "x_j_plus_1": 2187000.0,
+      "c_j": 9539,
+      "L_j": 9539.585268123728,
+      "e_j": -0.5852681237283832,
+      "ehat_j": -0.00040896853428763205
+    },
+    {
+      "ladder": "L23",
+      "j": 48,
+      "x_j": 2187000.0,
+      "x_j_plus_1": 2304000.0,
+      "c_j": 7998,
+      "L_j": 7997.5418211129745,
+      "e_j": 0.4581788870254968,
+      "ehat_j": 0.0003098208787610811
+    },
+    {
+      "ladder": "L23",
+      "j": 49,
+      "x_j": 2304000.0,
+      "x_j_plus_1": 2592000.0,
+      "c_j": 19546,
+      "L_j": 19571.70754437031,
+      "e_j": -25.707544370310643,
+      "ehat_j": -0.016936331929170986
+    },
+    {
+      "ladder": "L23",
+      "j": 50,
+      "x_j": 2592000.0,
+      "x_j_plus_1": 2916000.0,
+      "c_j": 21843,
+      "L_j": 21843.704586567255,
+      "e_j": -0.7045865672553191,
+      "ehat_j": -0.0004376398501155891
+    },
+    {
+      "ladder": "L23",
+      "j": 51,
+      "x_j": 2916000.0,
+      "x_j_plus_1": 3072000.0,
+      "c_j": 10425,
+      "L_j": 10458.176798472596,
+      "e_j": -33.17679847259569,
+      "ehat_j": -0.019428564564036625
+    },
+    {
+      "ladder": "L23",
+      "j": 52,
+      "x_j": 3072000.0,
+      "x_j_plus_1": 3456000.0,
+      "c_j": 25699,
+      "L_j": 25596.2368344025,
+      "e_j": 102.7631655974983,
+      "ehat_j": 0.0586309415399882
+    },
+    {
+      "ladder": "L23",
+      "j": 53,
+      "x_j": 3456000.0,
+      "x_j_plus_1": 3888000.0,
+      "c_j": 28503,
+      "L_j": 28571.87198133309,
+      "e_j": -68.87198133308993,
+      "ehat_j": -0.03704722732268964
+    },
+    {
+      "ladder": "L23",
+      "j": 54,
+      "x_j": 3888000.0,
+      "x_j_plus_1": 4096000.0,
+      "c_j": 13706,
+      "L_j": 13680.885942953908,
+      "e_j": 25.114057046092057,
+      "ehat_j": 0.012736606995014981
+    },
+    {
+      "ladder": "L23",
+      "j": 55,
+      "x_j": 4096000.0,
+      "x_j_plus_1": 4374000.0,
+      "c_j": 18152,
+      "L_j": 18214.4519576771,
+      "e_j": -62.451957677101746,
+      "ehat_j": -0.030857879780637493
+    },
+    {
+      "ladder": "L23",
+      "j": 56,
+      "x_j": 4374000.0,
+      "x_j_plus_1": 4608000.0,
+      "c_j": 15305,
+      "L_j": 15272.883122090965,
+      "e_j": 32.11687790903488,
+      "ehat_j": 0.015356559663440615
+    },
+    {
+      "ladder": "L23",
+      "j": 57,
+      "x_j": 4608000.0,
+      "x_j_plus_1": 5184000.0,
+      "c_j": 37407,
+      "L_j": 37385.72814491121,
+      "e_j": 21.27185508878756,
+      "ehat_j": 0.009909440413761211
+    },
+    {
+      "ladder": "L23",
+      "j": 58,
+      "x_j": 5184000.0,
+      "x_j_plus_1": 5832000.0,
+      "c_j": 41671,
+      "L_j": 41740.35321224165,
+      "e_j": -69.35321224165091,
+      "ehat_j": -0.03046029357398456
+    },
+    {
+      "ladder": "L23",
+      "j": 59,
+      "x_j": 5832000.0,
+      "x_j_plus_1": 6144000.0,
+      "c_j": 20016,
+      "L_j": 19989.112446903113,
+      "e_j": 26.88755309688713,
+      "ehat_j": 0.011133777124680484
+    },
+    {
+      "ladder": "L23",
+      "j": 60,
+      "x_j": 6144000.0,
+      "x_j_plus_1": 6561000.0,
+      "c_j": 26601,
+      "L_j": 26615.731104400184,
+      "e_j": -14.73110440018354,
+      "ehat_j": -0.005943054376370172
+    },
+    {
+      "ladder": "L23",
+      "j": 61,
+      "x_j": 6561000.0,
+      "x_j_plus_1": 6912000.0,
+      "c_j": 22382,
+      "L_j": 22319.570980515356,
+      "e_j": 62.429019484643504,
+      "ehat_j": 0.024372579464506744
+    },
+    {
+      "ladder": "L23",
+      "j": 62,
+      "x_j": 6912000.0,
+      "x_j_plus_1": 7776000.0,
+      "c_j": 54622,
+      "L_j": 54642.7005228284,
+      "e_j": -20.700522828403336,
+      "ehat_j": -0.007873710628657743
+    },
+    {
+      "ladder": "L23",
+      "j": 63,
+      "x_j": 7776000.0,
+      "x_j_plus_1": 8192000.0,
+      "c_j": 26147,
+      "L_j": 26170.474667117112,
+      "e_j": -23.474667117112404,
+      "ehat_j": -0.008418240259475853
+    },
+    {
+      "ladder": "L23",
+      "j": 64,
+      "x_j": 8192000.0,
+      "x_j_plus_1": 8748000.0,
+      "c_j": 34914,
+      "L_j": 34848.631368429946,
+      "e_j": 65.36863157005428,
+      "ehat_j": 0.0228388599666844
+    },
+    {
+      "ladder": "L23",
+      "j": 65,
+      "x_j": 8748000.0,
+      "x_j_plus_1": 9216000.0,
+      "c_j": 29183,
+      "L_j": 29225.508954295485,
+      "e_j": -42.50895429548473,
+      "ehat_j": -0.014372292076292044
+    },
+    {
+      "ladder": "L23",
+      "j": 66,
+      "x_j": 9216000.0,
+      "x_j_plus_1": 10368000.0,
+      "c_j": 71469,
+      "L_j": 71556.68608926919,
+      "e_j": -87.68608926919114,
+      "ehat_j": -0.028884141792030565
+    },
+    {
+      "ladder": "L23",
+      "j": 67,
+      "x_j": 10368000.0,
+      "x_j_plus_1": 11664000.0,
+      "c_j": 80050,
+      "L_j": 79917.27068892929,
+      "e_j": 132.72931107071054,
+      "ehat_j": 0.04122107807789224
+    },
+    {
+      "ladder": "L23",
+      "j": 68,
+      "x_j": 11664000.0,
+      "x_j_plus_1": 12288000.0,
+      "c_j": 38250,
+      "L_j": 38280.440428715934,
+      "e_j": -30.440428715934104,
+      "ehat_j": -0.008913063675402448
+    },
+    {
+      "ladder": "L23",
+      "j": 69,
+      "x_j": 12288000.0,
+      "x_j_plus_1": 13122000.0,
+      "c_j": 50936,
+      "L_j": 50978.9135188785,
+      "e_j": -42.91351887850033,
+      "ehat_j": -0.01224203245399918
+    },
+    {
+      "ladder": "L23",
+      "j": 70,
+      "x_j": 13122000.0,
+      "x_j_plus_1": 13824000.0,
+      "c_j": 42778,
+      "L_j": 42756.88151301894,
+      "e_j": 21.118486981060414,
+      "ehat_j": 0.005829922527357457
+    },
+    {
+      "ladder": "L23",
+      "j": 71,
+      "x_j": 13824000.0,
+      "x_j_plus_1": 15552000.0,
+      "c_j": 104654,
+      "L_j": 104700.97179580953,
+      "e_j": -46.971795809527976,
+      "ehat_j": -0.012633401591094249
+    },
+    {
+      "ladder": "L23",
+      "j": 72,
+      "x_j": 15552000.0,
+      "x_j_plus_1": 16384000.0,
+      "c_j": 50124,
+      "L_j": 50156.32271609647,
+      "e_j": -32.32271609646705,
+      "ehat_j": -0.00819624107679182
+    },
+    {
+      "ladder": "L23",
+      "j": 73,
+      "x_j": 16384000.0,
+      "x_j_plus_1": 17496000.0,
+      "c_j": 66971,
+      "L_j": 66798.42897524402,
+      "e_j": 172.5710247559764,
+      "ehat_j": 0.042634179404545974
+    },
+    {
+      "ladder": "L23",
+      "j": 74,
+      "x_j": 17496000.0,
+      "x_j_plus_1": 18432000.0,
+      "c_j": 55986,
+      "L_j": 56028.41214935172,
+      "e_j": -42.4121493517232,
+      "ehat_j": -0.010139601735560843
+    },
+    {
+      "ladder": "L23",
+      "j": 75,
+      "x_j": 18432000.0,
+      "x_j_plus_1": 19683000.0,
+      "c_j": 74532,
+      "L_j": 74620.75419889778,
+      "e_j": -88.7541988977755,
+      "ehat_j": -0.02067296062749614
+    },
+    {
+      "ladder": "L23",
+      "j": 76,
+      "x_j": 19683000.0,
+      "x_j_plus_1": 20736000.0,
+      "c_j": 62675,
+      "L_j": 62591.065342585505,
+      "e_j": 83.93465741449472,
+      "ehat_j": 0.01891889103801934
+    },
+    {
+      "ladder": "L23",
+      "j": 77,
+      "x_j": 20736000.0,
+      "x_j_plus_1": 23328000.0,
+      "c_j": 153280,
+      "L_j": 153288.9871947829,
+      "e_j": -8.987194782908773,
+      "ehat_j": -0.001973611478442654
+    },
+    {
+      "ladder": "L23",
+      "j": 78,
+      "x_j": 23328000.0,
+      "x_j_plus_1": 24576000.0,
+      "c_j": 73448,
+      "L_j": 73440.95242707699,
+      "e_j": 7.047572923009284,
+      "ehat_j": 0.0014591529752070046
+    },
+    {
+      "ladder": "L23",
+      "j": 79,
+      "x_j": 24576000.0,
+      "x_j_plus_1": 26244000.0,
+      "c_j": 97717,
+      "L_j": 97817.21427105964,
+      "e_j": -100.21427105963812,
+      "ehat_j": -0.020215010565952832
+    },
+    {
+      "ladder": "L23",
+      "j": 80,
+      "x_j": 26244000.0,
+      "x_j_plus_1": 27648000.0,
+      "c_j": 82130,
+      "L_j": 82052.79807704539,
+      "e_j": 77.20192295461311,
+      "ehat_j": 0.015069994832186014
+    },
+    {
+      "ladder": "L23",
+      "j": 81,
+      "x_j": 27648000.0,
+      "x_j_plus_1": 31104000.0,
+      "c_j": 201023,
+      "L_j": 200968.85670735798,
+      "e_j": 54.14329264202388,
+      "ehat_j": 0.010297049554736098
+    },
+    {
+      "ladder": "L23",
+      "j": 82,
+      "x_j": 31104000.0,
+      "x_j_plus_1": 32768000.0,
+      "c_j": 96324,
+      "L_j": 96292.35540848164,
+      "e_j": 31.64459151835763,
+      "ehat_j": 0.005674026664265536
+    },
+    {
+      "ladder": "L23",
+      "j": 83,
+      "x_j": 32768000.0,
+      "x_j_plus_1": 34992000.0,
+      "c_j": 128057,
+      "L_j": 128260.7100058185,
+      "e_j": -203.7100058185024,
+      "ehat_j": -0.035586673492738204
+    },
+    {
+      "ladder": "L23",
+      "j": 84,
+      "x_j": 34992000.0,
+      "x_j_plus_1": 36864000.0,
+      "c_j": 107555,
+      "L_j": 107596.04813175835,
+      "e_j": -41.048131758347154,
+      "ehat_j": -0.006939193736879918
+    },
+    {
+      "ladder": "L23",
+      "j": 85,
+      "x_j": 36864000.0,
+      "x_j_plus_1": 39366000.0,
+      "c_j": 143561,
+      "L_j": 143320.4255811302,
+      "e_j": 240.57441886980087,
+      "ehat_j": 0.03962307866666466
+    },
+    {
+      "ladder": "L23",
+      "j": 86,
+      "x_j": 39366000.0,
+      "x_j_plus_1": 41472000.0,
+      "c_j": 120227,
+      "L_j": 120232.14743767645,
+      "e_j": -5.147437676452682,
+      "ehat_j": -0.0008204090698165367
+    },
+    {
+      "ladder": "L23",
+      "j": 87,
+      "x_j": 41472000.0,
+      "x_j_plus_1": 46656000.0,
+      "c_j": 294519,
+      "L_j": 294513.8888180914,
+      "e_j": 5.111181908578146,
+      "ehat_j": 0.0007936770967324897
+    },
+    {
+      "ladder": "L23",
+      "j": 88,
+      "x_j": 46656000.0,
+      "x_j_plus_1": 49152000.0,
+      "c_j": 140923,
+      "L_j": 141129.3098317067,
+      "e_j": -206.3098317066906,
+      "ehat_j": -0.030204119068479893
+    },
+    {
+      "ladder": "L23",
+      "j": 89,
+      "x_j": 49152000.0,
+      "x_j_plus_1": 52488000.0,
+      "c_j": 188134,
+      "L_j": 187997.7791744924,
+      "e_j": 136.2208255075966,
+      "ehat_j": 0.019430004930334838
+    },
+    {
+      "ladder": "L23",
+      "j": 90,
+      "x_j": 52488000.0,
+      "x_j_plus_1": 55296000.0,
+      "c_j": 157578,
+      "L_j": 157720.7077908414,
+      "e_j": -142.70779084140668,
+      "ehat_j": -0.0196977976074202
+    },
+    {
+      "ladder": "L23",
+      "j": 91,
+      "x_j": 55296000.0,
+      "x_j_plus_1": 59049000.0,
+      "c_j": 210279,
+      "L_j": 210103.70895501637,
+      "e_j": 175.2910449836345,
+      "ehat_j": 0.02357289229030943
+    },
+    {
+      "ladder": "L23",
+      "j": 92,
+      "x_j": 59049000.0,
+      "x_j_plus_1": 62208000.0,
+      "c_j": 176140,
+      "L_j": 176270.289882337,
+      "e_j": -130.2898823370051,
+      "ehat_j": -0.016955258611534074
+    },
+    {
+      "ladder": "L23",
+      "j": 93,
+      "x_j": 62208000.0,
+      "x_j_plus_1": 65536000.0,
+      "c_j": 185135,
+      "L_j": 185162.21331475215,
+      "e_j": -27.213314752152655,
+      "ehat_j": -0.003450311656074564
+    },
+    {
+      "ladder": "L23",
+      "j": 94,
+      "x_j": 65536000.0,
+      "x_j_plus_1": 69984000.0,
+      "c_j": 246784,
+      "L_j": 246666.88799760368,
+      "e_j": 117.1120023963158,
+      "ehat_j": 0.014466432379509968
+    },
+    {
+      "ladder": "L23",
+      "j": 95,
+      "x_j": 69984000.0,
+      "x_j_plus_1": 73728000.0,
+      "c_j": 207114,
+      "L_j": 206951.98848293658,
+      "e_j": 162.01151706342353,
+      "ehat_j": 0.01936629344075426
+    },
+    {
+      "ladder": "L23",
+      "j": 96,
+      "x_j": 73728000.0,
+      "x_j_plus_1": 78732000.0,
+      "c_j": 275463,
+      "L_j": 275700.33954800357,
+      "e_j": -237.33954800356878,
+      "ehat_j": -0.027641008494013245
+    },
+    {
+      "ladder": "L23",
+      "j": 97,
+      "x_j": 78732000.0,
+      "x_j_plus_1": 82944000.0,
+      "c_j": 231509,
+      "L_j": 231315.7267166025,
+      "e_j": 193.27328339748783,
+      "ehat_j": 0.021781921209854484
+    },
+    {
+      "ladder": "L23",
+      "j": 98,
+      "x_j": 82944000.0,
+      "x_j_plus_1": 93312000.0,
+      "c_j": 566394,
+      "L_j": 566722.5214796996,
+      "e_j": -328.52147969964426,
+      "ehat_j": -0.036072088060404336
+    },
+    {
+      "ladder": "L23",
+      "j": 99,
+      "x_j": 93312000.0,
+      "x_j_plus_1": 98304000.0,
+      "c_j": 271817,
+      "L_j": 271618.7665455151,
+      "e_j": 198.2334544849,
+      "ehat_j": 0.020521457390872543
+    },
+    {
+      "ladder": "L23",
+      "j": 100,
+      "x_j": 98304000.0,
+      "x_j_plus_1": 104976000.0,
+      "c_j": 361947,
+      "L_j": 361867.4076434176,
+      "e_j": 79.59235658240505,
+      "ehat_j": 0.008027600821069193
+    },
+    {
+      "ladder": "L23",
+      "j": 101,
+      "x_j": 104976000.0,
+      "x_j_plus_1": 110592000.0,
+      "c_j": 303727,
+      "L_j": 303626.10016114847,
+      "e_j": 100.89983885153197,
+      "ehat_j": 0.009847941552925588
+    },
+    {
+      "ladder": "L23",
+      "j": 102,
+      "x_j": 110592000.0,
+      "x_j_plus_1": 118098000.0,
+      "c_j": 404392,
+      "L_j": 404517.7762168193,
+      "e_j": -125.77621681930032,
+      "ehat_j": -0.011960151241248516
+    },
+    {
+      "ladder": "L23",
+      "j": 103,
+      "x_j": 118098000.0,
+      "x_j_plus_1": 124416000.0,
+      "c_j": 339315,
+      "L_j": 339418.85664856795,
+      "e_j": -103.85664856794756,
+      "ehat_j": -0.009556811774207282
+    },
+    {
+      "ladder": "L23",
+      "j": 104,
+      "x_j": 124416000.0,
+      "x_j_plus_1": 131072000.0,
+      "c_j": 356769,
+      "L_j": 356579.10361700767,
+      "e_j": 189.89638299233047,
+      "ehat_j": 0.017024665019312994
+    },
+    {
+      "ladder": "L23",
+      "j": 105,
+      "x_j": 131072000.0,
+      "x_j_plus_1": 139968000.0,
+      "c_j": 474909,
+      "L_j": 475080.1870373275,
+      "e_j": -171.18703732750146,
+      "ehat_j": -0.014952572356683092
+    },
+    {
+      "ladder": "L23",
+      "j": 106,
+      "x_j": 139968000.0,
+      "x_j_plus_1": 147456000.0,
+      "c_j": 398749,
+      "L_j": 398637.05552669714,
+      "e_j": 111.94447330286494,
+      "ehat_j": 0.009462116237039193
+    },
+    {
+      "ladder": "L235",
+      "j": 0,
+      "x_j": 1000.0,
+      "x_j_plus_1": 2000.0,
+      "c_j": 135,
+      "L_j": 134.97582766406856,
+      "e_j": 0.024172335931439193,
+      "ehat_j": 0.0007643963791007558
+    },
+    {
+      "ladder": "L235",
+      "j": 1,
+      "x_j": 2000.0,
+      "x_j_plus_1": 3000.0,
+      "c_j": 127,
+      "L_j": 126.39061655875861,
+      "e_j": 0.6093834412413912,
+      "ehat_j": 0.013626227989784995
+    },
+    {
+      "ladder": "L235",
+      "j": 2,
+      "x_j": 3000.0,
+      "x_j_plus_1": 4000.0,
+      "c_j": 120,
+      "L_j": 121.35984646980195,
+      "e_j": -1.3598464698019512,
+      "ehat_j": -0.024827286208476546
+    },
+    {
+      "ladder": "L235",
+      "j": 3,
+      "x_j": 4000.0,
+      "x_j_plus_1": 5000.0,
+      "c_j": 119,
+      "L_j": 117.86034100823397,
+      "e_j": 1.1396589917660265,
+      "ehat_j": 0.018019590849358624
+    },
+    {
+      "ladder": "L235",
+      "j": 4,
+      "x_j": 5000.0,
+      "x_j_plus_1": 6000.0,
+      "c_j": 114,
+      "L_j": 115.20639456359531,
+      "e_j": -1.2063945635953104,
+      "ehat_j": -0.017060995534096592
+    },
+    {
+      "ladder": "L235",
+      "j": 5,
+      "x_j": 6000.0,
+      "x_j_plus_1": 8000.0,
+      "c_j": 224,
+      "L_j": 224.41125648737787,
+      "e_j": -0.41125648737786946,
+      "ehat_j": -0.0053092984221141636
+    },
+    {
+      "ladder": "L235",
+      "j": 6,
+      "x_j": 8000.0,
+      "x_j_plus_1": 9000.0,
+      "c_j": 110,
+      "L_j": 109.83181919049743,
+      "e_j": 0.16818080950257297,
+      "ehat_j": 0.0018803186127934787
+    },
+    {
+      "ladder": "L235",
+      "j": 7,
+      "x_j": 9000.0,
+      "x_j_plus_1": 10000.0,
+      "c_j": 112,
+      "L_j": 108.53567011993205,
+      "e_j": 3.4643298800679503,
+      "ehat_j": 0.03651724329064227
+    },
+    {
+      "ladder": "L235",
+      "j": 8,
+      "x_j": 10000.0,
+      "x_j_plus_1": 12000.0,
+      "c_j": 209,
+      "L_j": 213.77123690416903,
+      "e_j": -4.7712369041690295,
+      "ehat_j": -0.047712369041690295
+    },
+    {
+      "ladder": "L235",
+      "j": 9,
+      "x_j": 12000.0,
+      "x_j_plus_1": 15000.0,
+      "c_j": 316,
+      "L_j": 313.9550136223621,
+      "e_j": 2.0449863776378834,
+      "ehat_j": 0.01866808614705078
+    },
+    {
+      "ladder": "L235",
+      "j": 10,
+      "x_j": 15000.0,
+      "x_j_plus_1": 16000.0,
+      "c_j": 108,
+      "L_j": 103.16523019785647,
+      "e_j": 4.834769802143526,
+      "ehat_j": 0.03947573013022808
+    },
+    {
+      "ladder": "L235",
+      "j": 11,
+      "x_j": 16000.0,
+      "x_j_plus_1": 18000.0,
+      "c_j": 202,
+      "L_j": 204.42848389098995,
+      "e_j": -2.428483890989952,
+      "ehat_j": -0.019198850891390767
+    },
+    {
+      "ladder": "L235",
+      "j": 12,
+      "x_j": 18000.0,
+      "x_j_plus_1": 20000.0,
+      "c_j": 198,
+      "L_j": 202.16822268009756,
+      "e_j": -4.168222680097557,
+      "ehat_j": -0.031068097526848325
+    },
+    {
+      "ladder": "L235",
+      "j": 13,
+      "x_j": 20000.0,
+      "x_j_plus_1": 24000.0,
+      "c_j": 406,
+      "L_j": 398.572989638167,
+      "e_j": 7.427010361833027,
+      "ehat_j": 0.05251689390794887
+    },
+    {
+      "ladder": "L235",
+      "j": 14,
+      "x_j": 24000.0,
+      "x_j_plus_1": 25000.0,
+      "c_j": 94,
+      "L_j": 98.58780716105014,
+      "e_j": -4.5878071610501365,
+      "ehat_j": -0.029614167883930512
+    },
+    {
+      "ladder": "L235",
+      "j": 15,
+      "x_j": 25000.0,
+      "x_j_plus_1": 27000.0,
+      "c_j": 199,
+      "L_j": 196.04887050193952,
+      "e_j": 2.9511294980604816,
+      "ehat_j": 0.018664581767961166
+    },
+    {
+      "ladder": "L235",
+      "j": 16,
+      "x_j": 27000.0,
+      "x_j_plus_1": 30000.0,
+      "c_j": 284,
+      "L_j": 291.4965864972622,
+      "e_j": -7.496586497262172,
+      "ehat_j": -0.045622772542657015
+    },
+    {
+      "ladder": "L235",
+      "j": 17,
+      "x_j": 30000.0,
+      "x_j_plus_1": 32000.0,
+      "c_j": 187,
+      "L_j": 192.7725942882038,
+      "e_j": -5.7725942882038055,
+      "ehat_j": -0.03332808866216963
+    },
+    {
+      "ladder": "L235",
+      "j": 18,
+      "x_j": 32000.0,
+      "x_j_plus_1": 36000.0,
+      "c_j": 392,
+      "L_j": 382.20704584721966,
+      "e_j": 9.79295415278034,
+      "ehat_j": 0.05474427796538925
+    },
+    {
+      "ladder": "L235",
+      "j": 19,
+      "x_j": 36000.0,
+      "x_j_plus_1": 40000.0,
+      "c_j": 379,
+      "L_j": 378.23613428568035,
+      "e_j": 0.7638657143196497,
+      "ehat_j": 0.004025925806269316
+    },
+    {
+      "ladder": "L235",
+      "j": 20,
+      "x_j": 40000.0,
+      "x_j_plus_1": 45000.0,
+      "c_j": 472,
+      "L_j": 467.91248889358513,
+      "e_j": 4.0875111064148655,
+      "ehat_j": 0.02043755553207433
+    },
+    {
+      "ladder": "L235",
+      "j": 21,
+      "x_j": 45000.0,
+      "x_j_plus_1": 48000.0,
+      "c_j": 271,
+      "L_j": 278.42030631505355,
+      "e_j": -7.420306315053551,
+      "ehat_j": -0.03497965942570486
+    },
+    {
+      "ladder": "L235",
+      "j": 22,
+      "x_j": 48000.0,
+      "x_j_plus_1": 50000.0,
+      "c_j": 187,
+      "L_j": 184.72435245156953,
+      "e_j": 2.27564754843047,
+      "ehat_j": 0.01038686246005582
+    },
+    {
+      "ladder": "L235",
+      "j": 23,
+      "x_j": 50000.0,
+      "x_j_plus_1": 54000.0,
+      "c_j": 367,
+      "L_j": 367.4623136686932,
+      "e_j": -0.46231366869318435,
+      "ehat_j": -0.002067529580250553
+    },
+    {
+      "ladder": "L235",
+      "j": 24,
+      "x_j": 54000.0,
+      "x_j_plus_1": 60000.0,
+      "c_j": 557,
+      "L_j": 546.6475131772687,
+      "e_j": 10.352486822731294,
+      "ehat_j": 0.04455001006252226
+    },
+    {
+      "ladder": "L235",
+      "j": 25,
+      "x_j": 60000.0,
+      "x_j_plus_1": 64000.0,
+      "c_j": 356,
+      "L_j": 361.67996349376773,
+      "e_j": -5.67996349376773,
+      "ehat_j": -0.02318835386227826
+    },
+    {
+      "ladder": "L235",
+      "j": 26,
+      "x_j": 64000.0,
+      "x_j_plus_1": 72000.0,
+      "c_j": 715,
+      "L_j": 717.4604562294063,
+      "e_j": -2.4604562294063044,
+      "ehat_j": -0.009725807210092101
+    },
+    {
+      "ladder": "L235",
+      "j": 27,
+      "x_j": 72000.0,
+      "x_j_plus_1": 75000.0,
+      "c_j": 265,
+      "L_j": 267.18861020660506,
+      "e_j": -2.1886102066050626,
+      "ehat_j": -0.008156468663697966
+    },
+    {
+      "ladder": "L235",
+      "j": 28,
+      "x_j": 75000.0,
+      "x_j_plus_1": 80000.0,
+      "c_j": 444,
+      "L_j": 443.24765783303826,
+      "e_j": 0.7523421669617392,
+      "ehat_j": 0.002747165172048416
+    },
+    {
+      "ladder": "L235",
+      "j": 29,
+      "x_j": 80000.0,
+      "x_j_plus_1": 81000.0,
+      "c_j": 88,
+      "L_j": 88.35340470880318,
+      "e_j": -0.35340470880318264,
+      "ehat_j": -0.0012494743304899381
+    },
+    {
+      "ladder": "L235",
+      "j": 30,
+      "x_j": 81000.0,
+      "x_j_plus_1": 90000.0,
+      "c_j": 788,
+      "L_j": 791.0456609634588,
+      "e_j": -3.045660963458772,
+      "ehat_j": -0.01070136180576953
+    },
+    {
+      "ladder": "L235",
+      "j": 31,
+      "x_j": 90000.0,
+      "x_j_plus_1": 96000.0,
+      "c_j": 539,
+      "L_j": 523.5147766124011,
+      "e_j": 15.485223387598921,
+      "ehat_j": 0.0516174112919964
+    },
+    {
+      "ladder": "L235",
+      "j": 32,
+      "x_j": 96000.0,
+      "x_j_plus_1": 100000.0,
+      "c_j": 340,
+      "L_j": 347.432800429892,
+      "e_j": -7.432800429891984,
+      "ehat_j": -0.02398926023387915
+    },
+    {
+      "ladder": "L235",
+      "j": 33,
+      "x_j": 100000.0,
+      "x_j_plus_1": 108000.0,
+      "c_j": 682,
+      "L_j": 691.340598797049,
+      "e_j": -9.340598797048983,
+      "ehat_j": -0.029537566908503635
+    },
+    {
+      "ladder": "L235",
+      "j": 34,
+      "x_j": 108000.0,
+      "x_j_plus_1": 120000.0,
+      "c_j": 1027,
+      "L_j": 1028.9382996065283,
+      "e_j": -1.9382996065282896,
+      "ehat_j": -0.005898057876105177
+    },
+    {
+      "ladder": "L235",
+      "j": 35,
+      "x_j": 120000.0,
+      "x_j_plus_1": 125000.0,
+      "c_j": 433,
+      "L_j": 426.10162944212675,
+      "e_j": 6.89837055787325,
+      "ehat_j": 0.019913880492789547
+    },
+    {
+      "ladder": "L235",
+      "j": 36,
+      "x_j": 125000.0,
+      "x_j_plus_1": 128000.0,
+      "c_j": 253,
+      "L_j": 254.9672074788657,
+      "e_j": -1.9672074788657028,
+      "ehat_j": -0.005564102993227321
+    },
+    {
+      "ladder": "L235",
+      "j": 37,
+      "x_j": 128000.0,
+      "x_j_plus_1": 135000.0,
+      "c_j": 589,
+      "L_j": 592.9906419643767,
+      "e_j": -3.990641964376664,
+      "ehat_j": -0.011154183382761893
+    },
+    {
+      "ladder": "L235",
+      "j": 38,
+      "x_j": 135000.0,
+      "x_j_plus_1": 144000.0,
+      "c_j": 767,
+      "L_j": 758.6542301886041,
+      "e_j": 8.34576981139594,
+      "ehat_j": 0.02271430838738206
+    },
+    {
+      "ladder": "L235",
+      "j": 39,
+      "x_j": 144000.0,
+      "x_j_plus_1": 150000.0,
+      "c_j": 505,
+      "L_j": 503.55814040139984,
+      "e_j": 1.4418595986001606,
+      "ehat_j": 0.003799633664793862
+    },
+    {
+      "ladder": "L235",
+      "j": 40,
+      "x_j": 150000.0,
+      "x_j_plus_1": 160000.0,
+      "c_j": 835,
+      "L_j": 835.5829678245042,
+      "e_j": -0.5829678245041805,
+      "ehat_j": -0.0015052164504529729
+    },
+    {
+      "ladder": "L235",
+      "j": 41,
+      "x_j": 160000.0,
+      "x_j_plus_1": 162000.0,
+      "c_j": 169,
+      "L_j": 166.58903846440862,
+      "e_j": 2.410961535591383,
+      "ehat_j": 0.006027403838978458
+    },
+    {
+      "ladder": "L235",
+      "j": 42,
+      "x_j": 162000.0,
+      "x_j_plus_1": 180000.0,
+      "c_j": 1490,
+      "L_j": 1491.9309474982215,
+      "e_j": -1.9309474982214851,
+      "ehat_j": -0.004797477630007105
+    },
+    {
+      "ladder": "L235",
+      "j": 43,
+      "x_j": 180000.0,
+      "x_j_plus_1": 192000.0,
+      "c_j": 984,
+      "L_j": 987.7564158074604,
+      "e_j": -3.756415807460371,
+      "ehat_j": -0.008853956968038562
+    },
+    {
+      "ladder": "L235",
+      "j": 44,
+      "x_j": 192000.0,
+      "x_j_plus_1": 200000.0,
+      "c_j": 658,
+      "L_j": 655.6901314046377,
+      "e_j": 2.3098685953623317,
+      "ehat_j": 0.005271529727303008
+    },
+    {
+      "ladder": "L235",
+      "j": 45,
+      "x_j": 200000.0,
+      "x_j_plus_1": 216000.0,
+      "c_j": 1303,
+      "L_j": 1305.0869069432767,
+      "e_j": -2.0869069432767446,
+      "ehat_j": -0.004666465787883099
+    },
+    {
+      "ladder": "L235",
+      "j": 46,
+      "x_j": 216000.0,
+      "x_j_plus_1": 225000.0,
+      "c_j": 733,
+      "L_j": 730.6431013810268,
+      "e_j": 2.3568986189732186,
+      "ehat_j": 0.005071238388879186
+    },
+    {
+      "ladder": "L235",
+      "j": 47,
+      "x_j": 225000.0,
+      "x_j_plus_1": 240000.0,
+      "c_j": 1201,
+      "L_j": 1212.565893087386,
+      "e_j": -11.56589308738603,
+      "ehat_j": -0.024383043553424483
+    },
+    {
+      "ladder": "L235",
+      "j": 48,
+      "x_j": 240000.0,
+      "x_j_plus_1": 243000.0,
+      "c_j": 247,
+      "L_j": 241.7716300107366,
+      "e_j": 5.228369989263399,
+      "ehat_j": 0.010672365550146742
+    },
+    {
+      "ladder": "L235",
+      "j": 49,
+      "x_j": 243000.0,
+      "x_j_plus_1": 250000.0,
+      "c_j": 576,
+      "L_j": 563.2106300798011,
+      "e_j": 12.789369920198851,
+      "ehat_j": 0.02594454222804058
+    },
+    {
+      "ladder": "L235",
+      "j": 50,
+      "x_j": 250000.0,
+      "x_j_plus_1": 256000.0,
+      "c_j": 481,
+      "L_j": 481.74862947879495,
+      "e_j": -0.7486294787949532,
+      "ehat_j": -0.0014972589575899065
+    },
+    {
+      "ladder": "L235",
+      "j": 51,
+      "x_j": 256000.0,
+      "x_j_plus_1": 270000.0,
+      "c_j": 1117,
+      "L_j": 1120.6223668314994,
+      "e_j": -3.6223668314994484,
+      "ehat_j": -0.007159331067616014
+    },
+    {
+      "ladder": "L235",
+      "j": 52,
+      "x_j": 270000.0,
+      "x_j_plus_1": 288000.0,
+      "c_j": 1420,
+      "L_j": 1434.0670014281086,
+      "e_j": -14.067001428108597,
+      "ehat_j": -0.027071956870697828
+    },
+    {
+      "ladder": "L235",
+      "j": 53,
+      "x_j": 288000.0,
+      "x_j_plus_1": 300000.0,
+      "c_j": 935,
+      "L_j": 952.0854644396043,
+      "e_j": -17.085464439604266,
+      "ehat_j": -0.03183688326175874
+    },
+    {
+      "ladder": "L235",
+      "j": 54,
+      "x_j": 300000.0,
+      "x_j_plus_1": 320000.0,
+      "c_j": 1611,
+      "L_j": 1580.2163577907959,
+      "e_j": 30.783642209204118,
+      "ehat_j": 0.05620298413383087
+    },
+    {
+      "ladder": "L235",
+      "j": 55,
+      "x_j": 320000.0,
+      "x_j_plus_1": 324000.0,
+      "c_j": 311,
+      "L_j": 315.0980111509372,
+      "e_j": -4.098011150937225,
+      "ehat_j": -0.0072443286855145
+    },
+    {
+      "ladder": "L235",
+      "j": 56,
+      "x_j": 324000.0,
+      "x_j_plus_1": 360000.0,
+      "c_j": 2838,
+      "L_j": 2822.6696317150245,
+      "e_j": 15.33036828497552,
+      "ehat_j": 0.026932711749851068
+    },
+    {
+      "ladder": "L235",
+      "j": 57,
+      "x_j": 360000.0,
+      "x_j_plus_1": 375000.0,
+      "c_j": 1147,
+      "L_j": 1169.5102992027303,
+      "e_j": -22.510299202730266,
+      "ehat_j": -0.037517165337883775
+    },
+    {
+      "ladder": "L235",
+      "j": 58,
+      "x_j": 375000.0,
+      "x_j_plus_1": 384000.0,
+      "c_j": 699,
+      "L_j": 699.9584957148255,
+      "e_j": -0.9584957148255171,
+      "ehat_j": -0.001565216947977823
+    },
+    {
+      "ladder": "L235",
+      "j": 59,
+      "x_j": 384000.0,
+      "x_j_plus_1": 400000.0,
+      "c_j": 1257,
+      "L_j": 1241.2626071750308,
+      "e_j": 15.73739282496922,
+      "ehat_j": 0.02539610846826245
+    },
+    {
+      "ladder": "L235",
+      "j": 60,
+      "x_j": 400000.0,
+      "x_j_plus_1": 405000.0,
+      "c_j": 362,
+      "L_j": 387.10242551558315,
+      "e_j": -25.10242551558315,
+      "ehat_j": -0.03969041971198465
+    },
+    {
+      "ladder": "L235",
+      "j": 61,
+      "x_j": 405000.0,
+      "x_j_plus_1": 432000.0,
+      "c_j": 2095,
+      "L_j": 2084.124184785793,
+      "e_j": 10.875815214206796,
+      "ehat_j": 0.01708969486421655
+    },
+    {
+      "ladder": "L235",
+      "j": 62,
+      "x_j": 432000.0,
+      "x_j_plus_1": 450000.0,
+      "c_j": 1389,
+      "L_j": 1383.835749125908,
+      "e_j": 5.164250874091977,
+      "ehat_j": 0.00785715748987763
+    },
+    {
+      "ladder": "L235",
+      "j": 63,
+      "x_j": 450000.0,
+      "x_j_plus_1": 480000.0,
+      "c_j": 2299,
+      "L_j": 2297.0983295678207,
+      "e_j": 1.901670432179344,
+      "ehat_j": 0.002834842904769611
+    },
+    {
+      "ladder": "L235",
+      "j": 64,
+      "x_j": 480000.0,
+      "x_j_plus_1": 486000.0,
+      "c_j": 440,
+      "L_j": 458.08679153061087,
+      "e_j": -18.086791530610867,
+      "ehat_j": -0.02610603489743707
+    },
+    {
+      "ladder": "L235",
+      "j": 65,
+      "x_j": 486000.0,
+      "x_j_plus_1": 500000.0,
+      "c_j": 1093,
+      "L_j": 1067.2094104024868,
+      "e_j": 25.79058959751319,
+      "ehat_j": 0.03699500888890327
+    },
+    {
+      "ladder": "L235",
+      "j": 66,
+      "x_j": 500000.0,
+      "x_j_plus_1": 512000.0,
+      "c_j": 907,
+      "L_j": 912.9467310005838,
+      "e_j": -5.946731000583782,
+      "ehat_j": -0.008409947632810109
+    },
+    {
+      "ladder": "L235",
+      "j": 67,
+      "x_j": 512000.0,
+      "x_j_plus_1": 540000.0,
+      "c_j": 2127,
+      "L_j": 2123.9896807314144,
+      "e_j": 3.01031926858559,
+      "ehat_j": 0.0042070490740842665
+    },
+    {
+      "ladder": "L235",
+      "j": 68,
+      "x_j": 540000.0,
+      "x_j_plus_1": 576000.0,
+      "c_j": 2708,
+      "L_j": 2718.7288742973924,
+      "e_j": -10.728874297392395,
+      "ehat_j": -0.014600148635040416
+    },
+    {
+      "ladder": "L235",
+      "j": 69,
+      "x_j": 576000.0,
+      "x_j_plus_1": 600000.0,
+      "c_j": 1818,
+      "L_j": 1805.3593372736525,
+      "e_j": 12.6406627263475,
+      "ehat_j": 0.01665553556218826
+    },
+    {
+      "ladder": "L235",
+      "j": 70,
+      "x_j": 600000.0,
+      "x_j_plus_1": 625000.0,
+      "c_j": 1888,
+      "L_j": 1874.848786210513,
+      "e_j": 13.151213789486974,
+      "ehat_j": 0.01697814399636546
+    },
+    {
+      "ladder": "L235",
+      "j": 71,
+      "x_j": 625000.0,
+      "x_j_plus_1": 640000.0,
+      "c_j": 1088,
+      "L_j": 1122.21151287942,
+      "e_j": -34.21151287942007,
+      "ehat_j": -0.04327452115966115
+    },
+    {
+      "ladder": "L235",
+      "j": 72,
+      "x_j": 640000.0,
+      "x_j_plus_1": 648000.0,
+      "c_j": 600,
+      "L_j": 597.7093874017205,
+      "e_j": 2.2906125982794947,
+      "ehat_j": 0.002863265747849368
+    },
+    {
+      "ladder": "L235",
+      "j": 73,
+      "x_j": 648000.0,
+      "x_j_plus_1": 675000.0,
+      "c_j": 2012,
+      "L_j": 2013.262891481167,
+      "e_j": -1.2628914811668892,
+      "ehat_j": -0.0015688395556080887
+    },
+    {
+      "ladder": "L235",
+      "j": 74,
+      "x_j": 675000.0,
+      "x_j_plus_1": 720000.0,
+      "c_j": 3343,
+      "L_j": 3342.3117582418054,
+      "e_j": 0.6882417581946356,
+      "ehat_j": 0.000837701191067151
+    },
+    {
+      "ladder": "L235",
+      "j": 75,
+      "x_j": 720000.0,
+      "x_j_plus_1": 729000.0,
+      "c_j": 685,
+      "L_j": 666.5796762283246,
+      "e_j": 18.420323771675385,
+      "ehat_j": 0.021708559751005708
+    },
+    {
+      "ladder": "L235",
+      "j": 76,
+      "x_j": 729000.0,
+      "x_j_plus_1": 750000.0,
+      "c_j": 1524,
+      "L_j": 1553.007824618608,
+      "e_j": -29.007824618608083,
+      "ehat_j": -0.03397436880055803
+    },
+    {
+      "ladder": "L235",
+      "j": 77,
+      "x_j": 750000.0,
+      "x_j_plus_1": 768000.0,
+      "c_j": 1344,
+      "L_j": 1328.6005591125966,
+      "e_j": 15.399440887403443,
+      "ehat_j": 0.017781742683424216
+    },
+    {
+      "ladder": "L235",
+      "j": 78,
+      "x_j": 768000.0,
+      "x_j_plus_1": 800000.0,
+      "c_j": 2369,
+      "L_j": 2356.3497801376125,
+      "e_j": 12.65021986238753,
+      "ehat_j": 0.01443502245006156
+    },
+    {
+      "ladder": "L235",
+      "j": 79,
+      "x_j": 800000.0,
+      "x_j_plus_1": 810000.0,
+      "c_j": 732,
+      "L_j": 734.93006561666,
+      "e_j": -2.9300656166600447,
+      "ehat_j": -0.00327591294869335
+    },
+    {
+      "ladder": "L235",
+      "j": 80,
+      "x_j": 810000.0,
+      "x_j_plus_1": 864000.0,
+      "c_j": 3953,
+      "L_j": 3957.3805147299836,
+      "e_j": -4.380514729983588,
+      "ehat_j": -0.004867238588870653
+    },
+    {
+      "ladder": "L235",
+      "j": 81,
+      "x_j": 864000.0,
+      "x_j_plus_1": 900000.0,
+      "c_j": 2638,
+      "L_j": 2628.179508744087,
+      "e_j": 9.820491255913112,
+      "ehat_j": 0.010565166412701957
+    },
+    {
+      "ladder": "L235",
+      "j": 82,
+      "x_j": 900000.0,
+      "x_j_plus_1": 960000.0,
+      "c_j": 4344,
+      "L_j": 4363.51311850134,
+      "e_j": -19.513118501339704,
+      "ehat_j": -0.020568632905668276
+    },
+    {
+      "ladder": "L235",
+      "j": 83,
+      "x_j": 960000.0,
+      "x_j_plus_1": 972000.0,
+      "c_j": 886,
+      "L_j": 870.2947866686305,
+      "e_j": 15.705213331369464,
+      "ehat_j": 0.016029066234754637
+    },
+    {
+      "ladder": "L235",
+      "j": 84,
+      "x_j": 972000.0,
+      "x_j_plus_1": 1000000.0,
+      "c_j": 1994,
+      "L_j": 2027.6887301742547,
+      "e_j": -33.688730174254715,
+      "ehat_j": -0.03417051379656343
+    },
+    {
+      "ladder": "L235",
+      "j": 85,
+      "x_j": 1000000.0,
+      "x_j_plus_1": 1024000.0,
+      "c_j": 1767,
+      "L_j": 1734.7583566379722,
+      "e_j": 32.241643362027844,
+      "ehat_j": 0.032241643362027846
+    },
+    {
+      "ladder": "L235",
+      "j": 86,
+      "x_j": 1024000.0,
+      "x_j_plus_1": 1080000.0,
+      "c_j": 4005,
+      "L_j": 4036.527076350629,
+      "e_j": -31.52707635062916,
+      "ehat_j": -0.031155427885630447
+    },
+    {
+      "ladder": "L235",
+      "j": 87,
+      "x_j": 1080000.0,
+      "x_j_plus_1": 1125000.0,
+      "c_j": 3249,
+      "L_j": 3232.7337876040033,
+      "e_j": 16.266212395996718,
+      "ehat_j": 0.01565217017587389
+    },
+    {
+      "ladder": "L235",
+      "j": 88,
+      "x_j": 1125000.0,
+      "x_j_plus_1": 1152000.0,
+      "c_j": 1935,
+      "L_j": 1935.1799345345703,
+      "e_j": -0.17993453457029318,
+      "ehat_j": -0.00016964390608573279
+    },
+    {
+      "ladder": "L235",
+      "j": 89,
+      "x_j": 1152000.0,
+      "x_j_plus_1": 1200000.0,
+      "c_j": 3484,
+      "L_j": 3432.384604889897,
+      "e_j": 51.61539511010278,
+      "ehat_j": 0.04808980506320836
+    },
+    {
+      "ladder": "L235",
+      "j": 90,
+      "x_j": 1200000.0,
+      "x_j_plus_1": 1215000.0,
+      "c_j": 1054,
+      "L_j": 1070.5971772977693,
+      "e_j": -16.59717729776935,
+      "ehat_j": -0.015151080661501516
+    },
+    {
+      "ladder": "L235",
+      "j": 91,
+      "x_j": 1215000.0,
+      "x_j_plus_1": 1250000.0,
+      "c_j": 2477,
+      "L_j": 2494.428092748909,
+      "e_j": -17.428092748908966,
+      "ehat_j": -0.01581108682397274
+    },
+    {
+      "ladder": "L235",
+      "j": 92,
+      "x_j": 1250000.0,
+      "x_j_plus_1": 1280000.0,
+      "c_j": 2141,
+      "L_j": 2134.132433255508,
+      "e_j": 6.867566744491796,
+      "ehat_j": 0.0061425384322802345
+    },
+    {
+      "ladder": "L235",
+      "j": 93,
+      "x_j": 1280000.0,
+      "x_j_plus_1": 1296000.0,
+      "c_j": 1130,
+      "L_j": 1136.7495878831844,
+      "e_j": -6.749587883184404,
+      "ehat_j": -0.005965849203017808
+    },
+    {
+      "ladder": "L235",
+      "j": 94,
+      "x_j": 1296000.0,
+      "x_j_plus_1": 1350000.0,
+      "c_j": 3804,
+      "L_j": 3829.2762864163124,
+      "e_j": -25.27628641631236,
+      "ehat_j": -0.022202954407311678
+    },
+    {
+      "ladder": "L235",
+      "j": 95,
+      "x_j": 1350000.0,
+      "x_j_plus_1": 1440000.0,
+      "c_j": 6384,
+      "L_j": 6358.354941456094,
+      "e_j": 25.64505854390609,
+      "ehat_j": 0.022071752145125
+    },
+    {
+      "ladder": "L235",
+      "j": 96,
+      "x_j": 1440000.0,
+      "x_j_plus_1": 1458000.0,
+      "c_j": 1272,
+      "L_j": 1268.2605282867771,
+      "e_j": 3.7394717132228834,
+      "ehat_j": 0.0031162264276857364
+    },
+    {
+      "ladder": "L235",
+      "j": 97,
+      "x_j": 1458000.0,
+      "x_j_plus_1": 1500000.0,
+      "c_j": 2955,
+      "L_j": 2955.0260650075484,
+      "e_j": -0.026065007548368158,
+      "ehat_j": -2.1586343967480126e-05
+    },
+    {
+      "ladder": "L235",
+      "j": 98,
+      "x_j": 1500000.0,
+      "x_j_plus_1": 1536000.0,
+      "c_j": 2529,
+      "L_j": 2528.260238269274,
+      "e_j": 0.7397617307260589,
+      "ehat_j": 0.0006040129238390042
+    },
+    {
+      "ladder": "L235",
+      "j": 99,
+      "x_j": 1536000.0,
+      "x_j_plus_1": 1600000.0,
+      "c_j": 4443,
+      "L_j": 4484.522335932549,
+      "e_j": -41.52233593254914,
+      "ehat_j": -0.03350319074216513
+    },
+    {
+      "ladder": "L235",
+      "j": 100,
+      "x_j": 1600000.0,
+      "x_j_plus_1": 1620000.0,
+      "c_j": 1413,
+      "L_j": 1398.8222275847027,
+      "e_j": 14.17777241529734,
+      "ehat_j": 0.011208513244961565
+    },
+    {
+      "ladder": "L235",
+      "j": 101,
+      "x_j": 1620000.0,
+      "x_j_plus_1": 1728000.0,
+      "c_j": 7539,
+      "L_j": 7533.254985509347,
+      "e_j": 5.745014490653375,
+      "ehat_j": 0.004513709671506645
+    },
+    {
+      "ladder": "L235",
+      "j": 102,
+      "x_j": 1728000.0,
+      "x_j_plus_1": 1800000.0,
+      "c_j": 4993,
+      "L_j": 5003.897625073168,
+      "e_j": -10.897625073167546,
+      "ehat_j": -0.00829010427195521
+    },
+    {
+      "ladder": "L235",
+      "j": 103,
+      "x_j": 1800000.0,
+      "x_j_plus_1": 1875000.0,
+      "c_j": 5219,
+      "L_j": 5197.684360311549,
+      "e_j": 21.315639688450574,
+      "ehat_j": 0.01588773977575597
+    },
+    {
+      "ladder": "L235",
+      "j": 104,
+      "x_j": 1875000.0,
+      "x_j_plus_1": 1920000.0,
+      "c_j": 3123,
+      "L_j": 3111.687539748352,
+      "e_j": 11.31246025164819,
+      "ehat_j": 0.008261452880944375
+    },
+    {
+      "ladder": "L235",
+      "j": 105,
+      "x_j": 1920000.0,
+      "x_j_plus_1": 1944000.0,
+      "c_j": 1676,
+      "L_j": 1657.504375049839,
+      "e_j": 18.495624950161073,
+      "ehat_j": 0.013348067554757318
+    },
+    {
+      "ladder": "L235",
+      "j": 106,
+      "x_j": 1944000.0,
+      "x_j_plus_1": 2000000.0,
+      "c_j": 3843,
+      "L_j": 3862.0658801414997,
+      "e_j": -19.065880141499747,
+      "ehat_j": -0.013674414123854672
+    },
+    {
+      "ladder": "L235",
+      "j": 107,
+      "x_j": 2000000.0,
+      "x_j_plus_1": 2025000.0,
+      "c_j": 1736,
+      "L_j": 1721.7248109043658,
+      "e_j": 14.275189095634232,
+      "ehat_j": 0.010094083012243224
+    },
+    {
+      "ladder": "L235",
+      "j": 108,
+      "x_j": 2025000.0,
+      "x_j_plus_1": 2048000.0,
+      "c_j": 1583,
+      "L_j": 1582.697614520609,
+      "e_j": 0.3023854793909777,
+      "ehat_j": 0.00021249485471942103
+    },
+    {
+      "ladder": "L235",
+      "j": 109,
+      "x_j": 2048000.0,
+      "x_j_plus_1": 2160000.0,
+      "c_j": 7710,
+      "L_j": 7689.903037741112,
+      "e_j": 20.096962258888198,
+      "ehat_j": 0.014043179297538042
+    },
+    {
+      "ladder": "L235",
+      "j": 110,
+      "x_j": 2160000.0,
+      "x_j_plus_1": 2187000.0,
+      "c_j": 1829,
+      "L_j": 1849.682230382616,
+      "e_j": -20.6822303826159,
+      "ehat_j": -0.014072475327804515
+    },
+    {
+      "ladder": "L235",
+      "j": 111,
+      "x_j": 2187000.0,
+      "x_j_plus_1": 2250000.0,
+      "c_j": 4290,
+      "L_j": 4309.89773346319,
+      "e_j": -19.89773346318998,
+      "ehat_j": -0.013454861062980914
+    },
+    {
+      "ladder": "L235",
+      "j": 112,
+      "x_j": 2250000.0,
+      "x_j_plus_1": 2304000.0,
+      "c_j": 3708,
+      "L_j": 3687.6440876497845,
+      "e_j": 20.355912350215476,
+      "ehat_j": 0.013570608233476984
+    },
+    {
+      "ladder": "L235",
+      "j": 113,
+      "x_j": 2304000.0,
+      "x_j_plus_1": 2400000.0,
+      "c_j": 6513,
+      "L_j": 6541.391089449145,
+      "e_j": -28.3910894491446,
+      "ehat_j": -0.018704272481848368
+    },
+    {
+      "ladder": "L235",
+      "j": 114,
+      "x_j": 2400000.0,
+      "x_j_plus_1": 2430000.0,
+      "c_j": 2024,
+      "L_j": 2040.5077457674129,
+      "e_j": -16.50774576741287,
+      "ehat_j": -0.010655704073436004
+    },
+    {
+      "ladder": "L235",
+      "j": 115,
+      "x_j": 2430000.0,
+      "x_j_plus_1": 2500000.0,
+      "c_j": 4746,
+      "L_j": 4754.582217953518,
+      "e_j": -8.582217953518011,
+      "ehat_j": -0.005505495384119625
+    },
+    {
+      "ladder": "L235",
+      "j": 116,
+      "x_j": 2500000.0,
+      "x_j_plus_1": 2560000.0,
+      "c_j": 4062,
+      "L_j": 4068.1767935716543,
+      "e_j": -6.176793571654343,
+      "ehat_j": -0.0039065472646228365
+    },
+    {
+      "ladder": "L235",
+      "j": 117,
+      "x_j": 2560000.0,
+      "x_j_plus_1": 2592000.0,
+      "c_j": 2201,
+      "L_j": 2167.0496976285817,
+      "e_j": 33.950302371418275,
+      "ehat_j": 0.02121893898213642
+    },
+    {
+      "ladder": "L235",
+      "j": 118,
+      "x_j": 2592000.0,
+      "x_j_plus_1": 2700000.0,
+      "c_j": 7310,
+      "L_j": 7300.600961321054,
+      "e_j": 9.399038678946454,
+      "ehat_j": 0.00583802483590947
+    },
+    {
+      "ladder": "L235",
+      "j": 119,
+      "x_j": 2700000.0,
+      "x_j_plus_1": 2880000.0,
+      "c_j": 12124,
+      "L_j": 12124.424242835574,
+      "e_j": -0.4242428355737502,
+      "ehat_j": -0.00025818596767077567
+    },
+    {
+      "ladder": "L235",
+      "j": 120,
+      "x_j": 2880000.0,
+      "x_j_plus_1": 2916000.0,
+      "c_j": 2409,
+      "L_j": 2418.679382410627,
+      "e_j": -9.679382410627113,
+      "ehat_j": -0.005703630783543519
+    },
+    {
+      "ladder": "L235",
+      "j": 121,
+      "x_j": 2916000.0,
+      "x_j_plus_1": 3000000.0,
+      "c_j": 5638,
+      "L_j": 5635.853250702654,
+      "e_j": 2.146749297346105,
+      "ehat_j": 0.0012571513601814356
+    },
+    {
+      "ladder": "L235",
+      "j": 122,
+      "x_j": 3000000.0,
+      "x_j_plus_1": 3072000.0,
+      "c_j": 4787,
+      "L_j": 4822.323547769942,
+      "e_j": -35.3235477699418,
+      "ehat_j": -0.020394059813708502
+    },
+    {
+      "ladder": "L235",
+      "j": 123,
+      "x_j": 3072000.0,
+      "x_j_plus_1": 3125000.0,
+      "c_j": 3572,
+      "L_j": 3544.9344699573853,
+      "e_j": 27.065530042614682,
+      "ehat_j": 0.015442084724139396
+    },
+    {
+      "ladder": "L235",
+      "j": 124,
+      "x_j": 3125000.0,
+      "x_j_plus_1": 3200000.0,
+      "c_j": 5034,
+      "L_j": 5009.584150192468,
+      "e_j": 24.41584980753214,
+      "ehat_j": 0.01381169037387059
+    },
+    {
+      "ladder": "L235",
+      "j": 125,
+      "x_j": 3200000.0,
+      "x_j_plus_1": 3240000.0,
+      "c_j": 2719,
+      "L_j": 2668.5693817277433,
+      "e_j": 50.43061827225665,
+      "ehat_j": 0.028191572651027216
+    },
+    {
+      "ladder": "L235",
+      "j": 126,
+      "x_j": 3240000.0,
+      "x_j_plus_1": 3375000.0,
+      "c_j": 8939,
+      "L_j": 8990.414574743987,
+      "e_j": -51.41457474398703,
+      "ehat_j": -0.028563652635548352
+    },
+    {
+      "ladder": "L235",
+      "j": 127,
+      "x_j": 3375000.0,
+      "x_j_plus_1": 3456000.0,
+      "c_j": 5435,
+      "L_j": 5382.734257780918,
+      "e_j": 52.26574221908231,
+      "ehat_j": 0.028449866547687074
+    },
+    {
+      "ladder": "L235",
+      "j": 128,
+      "x_j": 3456000.0,
+      "x_j_plus_1": 3600000.0,
+      "c_j": 9424,
+      "L_j": 9548.813187706348,
+      "e_j": -124.81318770634789,
+      "ehat_j": -0.06713880519079801
+    },
+    {
+      "ladder": "L235",
+      "j": 129,
+      "x_j": 3600000.0,
+      "x_j_plus_1": 3645000.0,
+      "c_j": 3019,
+      "L_j": 2978.7785696338046,
+      "e_j": 40.221430366195364,
+      "ehat_j": 0.02119855511783961
+    },
+    {
+      "ladder": "L235",
+      "j": 130,
+      "x_j": 3645000.0,
+      "x_j_plus_1": 3750000.0,
+      "c_j": 6972,
+      "L_j": 6941.099231679249,
+      "e_j": 30.900768320751013,
+      "ehat_j": 0.016185290980353692
+    },
+    {
+      "ladder": "L235",
+      "j": 131,
+      "x_j": 3750000.0,
+      "x_j_plus_1": 3840000.0,
+      "c_j": 5928,
+      "L_j": 5939.308876578232,
+      "e_j": -11.30887657823223,
+      "ehat_j": -0.0058398787535744725
+    },
+    {
+      "ladder": "L235",
+      "j": 132,
+      "x_j": 3840000.0,
+      "x_j_plus_1": 3888000.0,
+      "c_j": 3160,
+      "L_j": 3163.872115735458,
+      "e_j": -3.87211573545801,
+      "ehat_j": -0.001975980786848695
+    },
+    {
+      "ladder": "L235",
+      "j": 133,
+      "x_j": 3888000.0,
+      "x_j_plus_1": 4000000.0,
+      "c_j": 7341,
+      "L_j": 7372.4428161334,
+      "e_j": -31.4428161333999,
+      "ehat_j": -0.015946240433102308
+    },
+    {
+      "ladder": "L235",
+      "j": 134,
+      "x_j": 4000000.0,
+      "x_j_plus_1": 4050000.0,
+      "c_j": 3344,
+      "L_j": 3286.8718497614386,
+      "e_j": 57.128150238561375,
+      "ehat_j": 0.028564075119280687
+    },
+    {
+      "ladder": "L235",
+      "j": 135,
+      "x_j": 4050000.0,
+      "x_j_plus_1": 4096000.0,
+      "c_j": 3021,
+      "L_j": 3021.5712770590685,
+      "e_j": -0.5712770590685068,
+      "ehat_j": -0.0002838698529029653
+    },
+    {
+      "ladder": "L235",
+      "j": 136,
+      "x_j": 4096000.0,
+      "x_j_plus_1": 4320000.0,
+      "c_j": 14641,
+      "L_j": 14682.468237527884,
+      "e_j": -41.46823752788441,
+      "ehat_j": -0.02048970017827889
+    },
+    {
+      "ladder": "L235",
+      "j": 137,
+      "x_j": 4320000.0,
+      "x_j_plus_1": 4374000.0,
+      "c_j": 3511,
+      "L_j": 3531.9837201492187,
+      "e_j": -20.983720149218698,
+      "ehat_j": -0.010095797063959324
+    },
+    {
+      "ladder": "L235",
+      "j": 138,
+      "x_j": 4374000.0,
+      "x_j_plus_1": 4500000.0,
+      "c_j": 8285,
+      "L_j": 8230.299169494509,
+      "e_j": 54.70083050549147,
+      "ehat_j": 0.026154988342158406
+    },
+    {
+      "ladder": "L235",
+      "j": 139,
+      "x_j": 4500000.0,
+      "x_j_plus_1": 4608000.0,
+      "c_j": 7020,
+      "L_j": 7042.583952596457,
+      "e_j": -22.583952596456584,
+      "ehat_j": -0.010646177351299992
+    },
+    {
+      "ladder": "L235",
+      "j": 140,
+      "x_j": 4608000.0,
+      "x_j_plus_1": 4800000.0,
+      "c_j": 12471,
+      "L_j": 12493.83303815861,
+      "e_j": -22.83303815860927,
+      "ehat_j": -0.010636713636561866
+    },
+    {
+      "ladder": "L235",
+      "j": 141,
+      "x_j": 4800000.0,
+      "x_j_plus_1": 4860000.0,
+      "c_j": 3900,
+      "L_j": 3897.6117211365404,
+      "e_j": 2.388278863459618,
+      "ehat_j": 0.0010900951726080278
+    },
+    {
+      "ladder": "L235",
+      "j": 142,
+      "x_j": 4860000.0,
+      "x_j_plus_1": 5000000.0,
+      "c_j": 9174,
+      "L_j": 9082.374715499987,
+      "e_j": 91.62528450001264,
+      "ehat_j": 0.041562073067105826
+    },
+    {
+      "ladder": "L235",
+      "j": 143,
+      "x_j": 5000000.0,
+      "x_j_plus_1": 5120000.0,
+      "c_j": 7731,
+      "L_j": 7771.785299955691,
+      "e_j": -40.78529995569079,
+      "ehat_j": -0.018239740636728754
+    },
+    {
+      "ladder": "L235",
+      "j": 144,
+      "x_j": 5120000.0,
+      "x_j_plus_1": 5184000.0,
+      "c_j": 4131,
+      "L_j": 4140.123370160385,
+      "e_j": -9.123370160385093,
+      "ehat_j": -0.004031998067302062
+    },
+    {
+      "ladder": "L235",
+      "j": 145,
+      "x_j": 5184000.0,
+      "x_j_plus_1": 5400000.0,
+      "c_j": 13987,
+      "L_j": 13948.825836905975,
+      "e_j": 38.17416309402506,
+      "ehat_j": 0.016766292103869398
+    },
+    {
+      "ladder": "L235",
+      "j": 146,
+      "x_j": 5400000.0,
+      "x_j_plus_1": 5625000.0,
+      "c_j": 14430,
+      "L_j": 14491.883070407419,
+      "e_j": -61.88307040741893,
+      "ehat_j": -0.02663023345556828
+    },
+    {
+      "ladder": "L235",
+      "j": 147,
+      "x_j": 5625000.0,
+      "x_j_plus_1": 5760000.0,
+      "c_j": 8670,
+      "L_j": 8677.170883120209,
+      "e_j": -7.1708831202086,
+      "ehat_j": -0.003023509799295224
+    },
+    {
+      "ladder": "L235",
+      "j": 148,
+      "x_j": 5760000.0,
+      "x_j_plus_1": 5832000.0,
+      "c_j": 4584,
+      "L_j": 4622.47342180805,
+      "e_j": -38.47342180805026,
+      "ehat_j": -0.01603059242002094
+    },
+    {
+      "ladder": "L235",
+      "j": 149,
+      "x_j": 5832000.0,
+      "x_j_plus_1": 6000000.0,
+      "c_j": 10803,
+      "L_j": 10771.642218485033,
+      "e_j": 31.357781514967428,
+      "ehat_j": 0.012984839090935835
+    },
+    {
+      "ladder": "L235",
+      "j": 150,
+      "x_j": 6000000.0,
+      "x_j_plus_1": 6075000.0,
+      "c_j": 4800,
+      "L_j": 4802.5088851881155,
+      "e_j": -2.508885188115528,
+      "ehat_j": -0.0010242480890182717
+    },
+    {
+      "ladder": "L235",
+      "j": 151,
+      "x_j": 6075000.0,
+      "x_j_plus_1": 6144000.0,
+      "c_j": 4413,
+      "L_j": 4414.961343229965,
+      "e_j": -1.9613432299647684,
+      "ehat_j": -0.000795756985230923
+    },
+    {
+      "ladder": "L235",
+      "j": 152,
+      "x_j": 6144000.0,
+      "x_j_plus_1": 6250000.0,
+      "c_j": 6754,
+      "L_j": 6776.251190741624,
+      "e_j": -22.25119074162376,
+      "ehat_j": -0.008976926164124321
+    },
+    {
+      "ladder": "L235",
+      "j": 153,
+      "x_j": 6250000.0,
+      "x_j_plus_1": 6400000.0,
+      "c_j": 9594,
+      "L_j": 9576.544527474261,
+      "e_j": 17.455472525738514,
+      "ehat_j": 0.006982189010295406
+    },
+    {
+      "ladder": "L235",
+      "j": 154,
+      "x_j": 6400000.0,
+      "x_j_plus_1": 6480000.0,
+      "c_j": 5071,
+      "L_j": 5101.623960315268,
+      "e_j": -30.62396031526805,
+      "ehat_j": -0.012105183196356893
+    },
+    {
+      "ladder": "L235",
+      "j": 155,
+      "x_j": 6480000.0,
+      "x_j_plus_1": 6561000.0,
+      "c_j": 5182,
+      "L_j": 5161.311425869029,
+      "e_j": 20.688574130970665,
+      "ehat_j": 0.0081272394783833
+    },
+    {
+      "ladder": "L235",
+      "j": 156,
+      "x_j": 6561000.0,
+      "x_j_plus_1": 6750000.0,
+      "c_j": 12044,
+      "L_j": 12027.400741692465,
+      "e_j": 16.59925830753491,
+      "ehat_j": 0.006480427619911361
+    },
+    {
+      "ladder": "L235",
+      "j": 157,
+      "x_j": 6750000.0,
+      "x_j_plus_1": 6912000.0,
+      "c_j": 10338,
+      "L_j": 10292.17023882289,
+      "e_j": 45.82976117711041,
+      "ehat_j": 0.017639883301667304
+    },
+    {
+      "ladder": "L235",
+      "j": 158,
+      "x_j": 6912000.0,
+      "x_j_plus_1": 7200000.0,
+      "c_j": 18274,
+      "L_j": 18259.70929126337,
+      "e_j": 14.290708736629313,
+      "ehat_j": 0.00543565523457502
+    },
+    {
+      "ladder": "L235",
+      "j": 159,
+      "x_j": 7200000.0,
+      "x_j_plus_1": 7290000.0,
+      "c_j": 5715,
+      "L_j": 5696.599732033012,
+      "e_j": 18.400267966988395,
+      "ehat_j": 0.006857374996399651
+    },
+    {
+      "ladder": "L235",
+      "j": 160,
+      "x_j": 7290000.0,
+      "x_j_plus_1": 7500000.0,
+      "c_j": 13227,
+      "L_j": 13274.89656108131,
+      "e_j": -47.89656108131021,
+      "ehat_j": -0.017739467067151928
+    },
+    {
+      "ladder": "L235",
+      "j": 161,
+      "x_j": 7500000.0,
+      "x_j_plus_1": 7680000.0,
+      "c_j": 11367,
+      "L_j": 11359.80957860985,
+      "e_j": 7.190421390150732,
+      "ehat_j": 0.0026255706622354737
+    },
+    {
+      "ladder": "L235",
+      "j": 162,
+      "x_j": 7680000.0,
+      "x_j_plus_1": 7776000.0,
+      "c_j": 6039,
+      "L_j": 6051.685359840861,
+      "e_j": -12.685359840860656,
+      "ehat_j": -0.004577434949305105
+    },
+    {
+      "ladder": "L235",
+      "j": 163,
+      "x_j": 7776000.0,
+      "x_j_plus_1": 8000000.0,
+      "c_j": 14110,
+      "L_j": 14102.432773454546,
+      "e_j": 7.567226545454105,
+      "ehat_j": 0.0027136798506965216
+    },
+    {
+      "ladder": "L235",
+      "j": 164,
+      "x_j": 8000000.0,
+      "x_j_plus_1": 8100000.0,
+      "c_j": 6247,
+      "L_j": 6287.679893249487,
+      "e_j": -40.67989324948667,
+      "ehat_j": -0.01438251418732844
+    },
+    {
+      "ladder": "L235",
+      "j": 165,
+      "x_j": 8100000.0,
+      "x_j_plus_1": 8192000.0,
+      "c_j": 5790,
+      "L_j": 5780.36200041308,
+      "e_j": 9.63799958692016,
+      "ehat_j": 0.0033864478647144093
+    },
+    {
+      "ladder": "L235",
+      "j": 166,
+      "x_j": 8192000.0,
+      "x_j_plus_1": 8640000.0,
+      "c_j": 28150,
+      "L_j": 28090.597503429268,
+      "e_j": 59.40249657073218,
+      "ehat_j": 0.020754378182086766
+    },
+    {
+      "ladder": "L235",
+      "j": 167,
+      "x_j": 8640000.0,
+      "x_j_plus_1": 8748000.0,
+      "c_j": 6764,
+      "L_j": 6758.033865000679,
+      "e_j": 5.966134999321184,
+      "ehat_j": 0.0020297203451245787
+    },
+    {
+      "ladder": "L235",
+      "j": 168,
+      "x_j": 8748000.0,
+      "x_j_plus_1": 9000000.0,
+      "c_j": 15761,
+      "L_j": 15748.606674114102,
+      "e_j": 12.393325885897866,
+      "ehat_j": 0.0041901877470487394
+    },
+    {
+      "ladder": "L235",
+      "j": 169,
+      "x_j": 9000000.0,
+      "x_j_plus_1": 9216000.0,
+      "c_j": 13422,
+      "L_j": 13476.902280181384,
+      "e_j": -54.90228018138441,
+      "ehat_j": -0.018300760060461472
+    },
+    {
+      "ladder": "L235",
+      "j": 170,
+      "x_j": 9216000.0,
+      "x_j_plus_1": 9375000.0,
+      "c_j": 9941,
+      "L_j": 9907.90835805162,
+      "e_j": 33.09164194838013,
+      "ehat_j": 0.010900516674130552
+    },
+    {
+      "ladder": "L235",
+      "j": 171,
+      "x_j": 9375000.0,
+      "x_j_plus_1": 9600000.0,
+      "c_j": 13999,
+      "L_j": 14002.81843174174,
+      "e_j": -3.8184317417399143,
+      "ehat_j": -0.0012470945846546168
+    },
+    {
+      "ladder": "L235",
+      "j": 172,
+      "x_j": 9600000.0,
+      "x_j_plus_1": 9720000.0,
+      "c_j": 7424,
+      "L_j": 7459.805870342921,
+      "e_j": -35.80587034292057,
+      "ehat_j": -0.011556294961216119
+    },
+    {
+      "ladder": "L235",
+      "j": 173,
+      "x_j": 9720000.0,
+      "x_j_plus_1": 10000000.0,
+      "c_j": 17304,
+      "L_j": 17384.12735132246,
+      "e_j": -80.12735132245871,
+      "ehat_j": -0.025700859919707362
+    },
+    {
+      "ladder": "L235",
+      "j": 174,
+      "x_j": 10000000.0,
+      "x_j_plus_1": 10125000.0,
+      "c_j": 7787,
+      "L_j": 7750.985006600839,
+      "e_j": 36.01499339916063,
+      "ehat_j": 0.011388940905727729
+    },
+    {
+      "ladder": "L235",
+      "j": 175,
+      "x_j": 10125000.0,
+      "x_j_plus_1": 10240000.0,
+      "c_j": 7095,
+      "L_j": 7125.673788340252,
+      "e_j": -30.67378834025203,
+      "ehat_j": -0.009639841662254697
+    },
+    {
+      "ladder": "L235",
+      "j": 176,
+      "x_j": 10240000.0,
+      "x_j_plus_1": 10368000.0,
+      "c_j": 7919,
+      "L_j": 7925.367282869359,
+      "e_j": -6.36728286935886,
+      "ehat_j": -0.001989775896674644
+    },
+    {
+      "ladder": "L235",
+      "j": 177,
+      "x_j": 10368000.0,
+      "x_j_plus_1": 10800000.0,
+      "c_j": 26774,
+      "L_j": 26703.952762395875,
+      "e_j": 70.04723760412526,
+      "ehat_j": 0.021754220127625498
+    },
+    {
+      "ladder": "L235",
+      "j": 178,
+      "x_j": 10800000.0,
+      "x_j_plus_1": 10935000.0,
+      "c_j": 8351,
+      "L_j": 8331.351443137233,
+      "e_j": 19.64855686276678,
+      "ehat_j": 0.0059788654534223915
+    },
+    {
+      "ladder": "L235",
+      "j": 179,
+      "x_j": 10935000.0,
+      "x_j_plus_1": 11250000.0,
+      "c_j": 19436,
+      "L_j": 19415.330633754118,
+      "e_j": 20.669366245881974,
+      "ehat_j": 0.0062505432850761405
+    },
+    {
+      "ladder": "L235",
+      "j": 180,
+      "x_j": 11250000.0,
+      "x_j_plus_1": 11520000.0,
+      "c_j": 16555,
+      "L_j": 16615.076047936167,
+      "e_j": -60.076047936167015,
+      "ehat_j": -0.01791121693397405
+    },
+    {
+      "ladder": "L235",
+      "j": 181,
+      "x_j": 11520000.0,
+      "x_j_plus_1": 11664000.0,
+      "c_j": 8934,
+      "L_j": 8851.559801705898,
+      "e_j": 82.44019829410172,
+      "ehat_j": 0.024289176356717904
+    },
+    {
+      "ladder": "L235",
+      "j": 182,
+      "x_j": 11664000.0,
+      "x_j_plus_1": 12000000.0,
+      "c_j": 20630,
+      "L_j": 20627.723148087283,
+      "e_j": 2.2768519127166655,
+      "ehat_j": 0.0006666701795458848
+    },
+    {
+      "ladder": "L235",
+      "j": 183,
+      "x_j": 12000000.0,
+      "x_j_plus_1": 12150000.0,
+      "c_j": 9201,
+      "L_j": 9197.321537076086,
+      "e_j": 3.678462923913685,
+      "ehat_j": 0.001061880779662812
+    },
+    {
+      "ladder": "L235",
+      "j": 184,
+      "x_j": 12150000.0,
+      "x_j_plus_1": 12288000.0,
+      "c_j": 8419,
+      "L_j": 8455.395743552566,
+      "e_j": -36.39574355256627,
+      "ehat_j": -0.010441489529772233
+    },
+    {
+      "ladder": "L235",
+      "j": 185,
+      "x_j": 12288000.0,
+      "x_j_plus_1": 12500000.0,
+      "c_j": 13023,
+      "L_j": 12978.15913634227,
+      "e_j": 44.84086365772964,
+      "ehat_j": 0.012791850272579237
+    },
+    {
+      "ladder": "L235",
+      "j": 186,
+      "x_j": 12500000.0,
+      "x_j_plus_1": 12800000.0,
+      "c_j": 18396,
+      "L_j": 18342.4014594755,
+      "e_j": 53.598540524501004,
+      "ehat_j": 0.015159956586630653
+    },
+    {
+      "ladder": "L235",
+      "j": 187,
+      "x_j": 12800000.0,
+      "x_j_plus_1": 12960000.0,
+      "c_j": 9718,
+      "L_j": 9771.848835684203,
+      "e_j": -53.84883568420264,
+      "ehat_j": -0.015051207137386688
+    },
+    {
+      "ladder": "L235",
+      "j": 188,
+      "x_j": 12960000.0,
+      "x_j_plus_1": 13122000.0,
+      "c_j": 9799,
+      "L_j": 9886.504087376532,
+      "e_j": -87.50408737653197,
+      "ehat_j": -0.02430669093792555
+    },
+    {
+      "ladder": "L235",
+      "j": 189,
+      "x_j": 13122000.0,
+      "x_j_plus_1": 13500000.0,
+      "c_j": 23024,
+      "L_j": 23039.76888075734,
+      "e_j": -15.768880757339502,
+      "ehat_j": -0.004353122136111049
+    },
+    {
+      "ladder": "L235",
+      "j": 190,
+      "x_j": 13500000.0,
+      "x_j_plus_1": 13824000.0,
+      "c_j": 19754,
+      "L_j": 19717.1126322616,
+      "e_j": 36.88736773839992,
+      "ehat_j": 0.010039469879275746
+    },
+    {
+      "ladder": "L235",
+      "j": 191,
+      "x_j": 13824000.0,
+      "x_j_plus_1": 14400000.0,
+      "c_j": 35047,
+      "L_j": 34983.831977113674,
+      "e_j": 63.16802288632607,
+      "ehat_j": 0.01698949310080485
+    },
+    {
+      "ladder": "L235",
+      "j": 192,
+      "x_j": 14400000.0,
+      "x_j_plus_1": 14580000.0,
+      "c_j": 10884,
+      "L_j": 10914.895288241474,
+      "e_j": -30.89528824147419,
+      "ehat_j": -0.00814162331753972
+    },
+    {
+      "ladder": "L235",
+      "j": 193,
+      "x_j": 14580000.0,
+      "x_j_plus_1": 15000000.0,
+      "c_j": 25379,
+      "L_j": 25436.559472864585,
+      "e_j": -57.55947286458468,
+      "ehat_j": -0.015074330957063295
+    },
+    {
+      "ladder": "L235",
+      "j": 194,
+      "x_j": 15000000.0,
+      "x_j_plus_1": 15360000.0,
+      "c_j": 21785,
+      "L_j": 21768.470604244212,
+      "e_j": 16.529395755787846,
+      "ehat_j": 0.0042678716323358585
+    },
+    {
+      "ladder": "L235",
+      "j": 195,
+      "x_j": 15360000.0,
+      "x_j_plus_1": 15552000.0,
+      "c_j": 11559,
+      "L_j": 11597.214453345585,
+      "e_j": -38.21445334558484,
+      "ehat_j": -0.009750615780841288
+    },
+    {
+      "ladder": "L235",
+      "j": 196,
+      "x_j": 15552000.0,
+      "x_j_plus_1": 15625000.0,
+      "c_j": 4427,
+      "L_j": 4407.085853580182,
+      "e_j": 19.91414641981828,
+      "ehat_j": 0.005049734818331118
+    },
+    {
+      "ladder": "L235",
+      "j": 197,
+      "x_j": 15625000.0,
+      "x_j_plus_1": 16000000.0,
+      "c_j": 22655,
+      "L_j": 22619.710014836437,
+      "e_j": 35.28998516356296,
+      "ehat_j": 0.008927738536832696
+    },
+    {
+      "ladder": "L235",
+      "j": 198,
+      "x_j": 16000000.0,
+      "x_j_plus_1": 16200000.0,
+      "c_j": 11983,
+      "L_j": 12050.746701641996,
+      "e_j": -67.74670164199597,
+      "ehat_j": -0.01693667541049899
+    },
+    {
+      "ladder": "L235",
+      "j": 199,
+      "x_j": 16200000.0,
+      "x_j_plus_1": 16384000.0,
+      "c_j": 11059,
+      "L_j": 11078.780146037854,
+      "e_j": -19.780146037854138,
+      "ehat_j": -0.004914416793946109
+    },
+    {
+      "ladder": "L235",
+      "j": 200,
+      "x_j": 16384000.0,
+      "x_j_plus_1": 16875000.0,
+      "c_j": 29591,
+      "L_j": 29527.127385559834,
+      "e_j": 63.87261444016622,
+      "ehat_j": 0.015779917323491082
+    },
+    {
+      "ladder": "L235",
+      "j": 201,
+      "x_j": 16875000.0,
+      "x_j_plus_1": 17280000.0,
+      "c_j": 24294,
+      "L_j": 24316.511952934772,
+      "e_j": -22.511952934772125,
+      "ehat_j": -0.005480135304830809
+    },
+    {
+      "ladder": "L235",
+      "j": 202,
+      "x_j": 17280000.0,
+      "x_j_plus_1": 17496000.0,
+      "c_j": 13086,
+      "L_j": 12954.789636749416,
+      "e_j": 131.21036325058412,
+      "ehat_j": 0.03156430772633055
+    },
+    {
+      "ladder": "L235",
+      "j": 203,
+      "x_j": 17496000.0,
+      "x_j_plus_1": 18000000.0,
+      "c_j": 30224,
+      "L_j": 30190.825732755126,
+      "e_j": 33.1742672448745,
+      "ehat_j": 0.007931073121113156
+    },
+    {
+      "ladder": "L235",
+      "j": 204,
+      "x_j": 18000000.0,
+      "x_j_plus_1": 18225000.0,
+      "c_j": 13350,
+      "L_j": 13461.644402294145,
+      "e_j": -111.64440229414504,
+      "ehat_j": -0.0263148379812363
+    },
+    {
+      "ladder": "L235",
+      "j": 205,
+      "x_j": 18225000.0,
+      "x_j_plus_1": 18432000.0,
+      "c_j": 12412,
+      "L_j": 12375.94201430245,
+      "e_j": 36.05798569754916,
+      "ehat_j": 0.008446323158668936
+    },
+    {
+      "ladder": "L235",
+      "j": 206,
+      "x_j": 18432000.0,
+      "x_j_plus_1": 18750000.0,
+      "c_j": 19004,
+      "L_j": 18996.18965367735,
+      "e_j": 7.81034632265073,
+      "ehat_j": 0.0018192151359648478
+    },
+    {
+      "ladder": "L235",
+      "j": 207,
+      "x_j": 18750000.0,
+      "x_j_plus_1": 19200000.0,
+      "c_j": 26820,
+      "L_j": 26848.66003337105,
+      "e_j": -28.660033371048485,
+      "ehat_j": -0.0066187511927034
+    },
+    {
+      "ladder": "L235",
+      "j": 208,
+      "x_j": 19200000.0,
+      "x_j_plus_1": 19440000.0,
+      "c_j": 14342,
+      "L_j": 14303.9054581685,
+      "e_j": 38.094541831500464,
+      "ehat_j": 0.00869384994955707
+    },
+    {
+      "ladder": "L235",
+      "j": 209,
+      "x_j": 19440000.0,
+      "x_j_plus_1": 19683000.0,
+      "c_j": 14366,
+      "L_j": 14471.999053680878,
+      "e_j": -105.9990536808782,
+      "ehat_j": -0.024041073586669872
+    },
+    {
+      "ladder": "L235",
+      "j": 210,
+      "x_j": 19683000.0,
+      "x_j_plus_1": 20000000.0,
+      "c_j": 18946,
+      "L_j": 18863.163008689236,
+      "e_j": 82.83699131076355,
+      "ehat_j": 0.0186714768464052
+    },
+    {
+      "ladder": "L235",
+      "j": 211,
+      "x_j": 20000000.0,
+      "x_j_plus_1": 20250000.0,
+      "c_j": 14849,
+      "L_j": 14863.770259979265,
+      "e_j": -14.770259979264665,
+      "ehat_j": -0.0033027305358980423
+    },
+    {
+      "ladder": "L235",
+      "j": 212,
+      "x_j": 20250000.0,
+      "x_j_plus_1": 20480000.0,
+      "c_j": 13613,
+      "L_j": 13665.04442662719,
+      "e_j": -52.04442662718975,
+      "ehat_j": -0.0115654281393755
+    },
+    {
+      "ladder": "L235",
+      "j": 213,
+      "x_j": 20480000.0,
+      "x_j_plus_1": 20736000.0,
+      "c_j": 15267,
+      "L_j": 15199.087647289816,
+      "e_j": 67.91235271018377,
+      "ehat_j": 0.01500665160240736
+    },
+    {
+      "ladder": "L235",
+      "j": 214,
+      "x_j": 20736000.0,
+      "x_j_plus_1": 21600000.0,
+      "c_j": 51175,
+      "L_j": 51215.67865708352,
+      "e_j": -40.678657083517464,
+      "ehat_j": -0.008933139482003992
+    },
+    {
+      "ladder": "L235",
+      "j": 215,
+      "x_j": 21600000.0,
+      "x_j_plus_1": 21870000.0,
+      "c_j": 16014,
+      "L_j": 15979.815521029843,
+      "e_j": 34.184478970157215,
+      "ehat_j": 0.007355328763899808
+    },
+    {
+      "ladder": "L235",
+      "j": 216,
+      "x_j": 21870000.0,
+      "x_j_plus_1": 22500000.0,
+      "c_j": 37115,
+      "L_j": 37241.17354666799,
+      "e_j": -126.17354666798929,
+      "ehat_j": -0.026980122641990158
+    },
+    {
+      "ladder": "L235",
+      "j": 217,
+      "x_j": 22500000.0,
+      "x_j_plus_1": 23040000.0,
+      "c_j": 31984,
+      "L_j": 31871.98829279137,
+      "e_j": 112.01170720862865,
+      "ehat_j": 0.023614141292211187
+    },
+    {
+      "ladder": "L235",
+      "j": 218,
+      "x_j": 23040000.0,
+      "x_j_plus_1": 23328000.0,
+      "c_j": 16992,
+      "L_j": 16980.331177210188,
+      "e_j": 11.668822789812111,
+      "ehat_j": 0.002431004747877523
+    },
+    {
+      "ladder": "L235",
+      "j": 219,
+      "x_j": 23328000.0,
+      "x_j_plus_1": 24000000.0,
+      "c_j": 39506,
+      "L_j": 39573.06932657322,
+      "e_j": -67.06932657321886,
+      "ehat_j": -0.013886256798412074
+    },
+    {
+      "ladder": "L235",
+      "j": 220,
+      "x_j": 24000000.0,
+      "x_j_plus_1": 24300000.0,
+      "c_j": 17709,
+      "L_j": 17645.409811991496,
+      "e_j": 63.5901880085039,
+      "ehat_j": 0.012980292772373682
+    },
+    {
+      "ladder": "L235",
+      "j": 221,
+      "x_j": 24300000.0,
+      "x_j_plus_1": 24576000.0,
+      "c_j": 16233,
+      "L_j": 16222.473288512278,
+      "e_j": 10.526711487722423,
+      "ehat_j": 0.002135450865990495
+    },
+    {
+      "ladder": "L235",
+      "j": 222,
+      "x_j": 24576000.0,
+      "x_j_plus_1": 25000000.0,
+      "c_j": 24863,
+      "L_j": 24900.695801097274,
+      "e_j": -37.69580109727394,
+      "ehat_j": -0.0076039171808171485
+    },
+    {
+      "ladder": "L235",
+      "j": 223,
+      "x_j": 25000000.0,
+      "x_j_plus_1": 25600000.0,
+      "c_j": 35122,
+      "L_j": 35194.63569759516,
+      "e_j": -72.63569759515667,
+      "ehat_j": -0.014527139519031335
+    },
+    {
+      "ladder": "L235",
+      "j": 224,
+      "x_j": 25600000.0,
+      "x_j_plus_1": 25920000.0,
+      "c_j": 18781,
+      "L_j": 18750.649079296647,
+      "e_j": 30.35092070335304,
+      "ehat_j": 0.005998627406609704
+    },
+    {
+      "ladder": "L235",
+      "j": 225,
+      "x_j": 25920000.0,
+      "x_j_plus_1": 26244000.0,
+      "c_j": 18951,
+      "L_j": 18971.23369307056,
+      "e_j": -20.233693070560548,
+      "ehat_j": -0.003974272660733505
+    },
+    {
+      "ladder": "L235",
+      "j": 226,
+      "x_j": 26244000.0,
+      "x_j_plus_1": 27000000.0,
+      "c_j": 44284,
+      "L_j": 44213.27999461535,
+      "e_j": 70.72000538465363,
+      "ehat_j": 0.013804709454004794
+    },
+    {
+      "ladder": "L235",
+      "j": 227,
+      "x_j": 27000000.0,
+      "x_j_plus_1": 27648000.0,
+      "c_j": 37846,
+      "L_j": 37839.51808243005,
+      "e_j": 6.481917569952202,
+      "ehat_j": 0.0012474456179589562
+    },
+    {
+      "ladder": "L235",
+      "j": 228,
+      "x_j": 27648000.0,
+      "x_j_plus_1": 28125000.0,
+      "c_j": 27800,
+      "L_j": 27820.98984343689,
+      "e_j": -20.989843436891533,
+      "ehat_j": -0.003991878725308075
+    },
+    {
+      "ladder": "L235",
+      "j": 229,
+      "x_j": 28125000.0,
+      "x_j_plus_1": 28800000.0,
+      "c_j": 39354,
+      "L_j": 39322.49972542987,
+      "e_j": 31.500274570127658,
+      "ehat_j": 0.0059397487354067805
+    },
+    {
+      "ladder": "L235",
+      "j": 230,
+      "x_j": 28800000.0,
+      "x_j_plus_1": 29160000.0,
+      "c_j": 20891,
+      "L_j": 20950.002381510203,
+      "e_j": -59.00238151020312,
+      "ehat_j": -0.01099444465759924
+    },
+    {
+      "ladder": "L235",
+      "j": 231,
+      "x_j": 29160000.0,
+      "x_j_plus_1": 30000000.0,
+      "c_j": 48903,
+      "L_j": 48825.24152726201,
+      "e_j": 77.75847273798718,
+      "ehat_j": 0.014399717173701329
+    },
+    {
+      "ladder": "L235",
+      "j": 232,
+      "x_j": 30000000.0,
+      "x_j_plus_1": 30375000.0,
+      "c_j": 21866,
+      "L_j": 21771.237246079247,
+      "e_j": 94.76275392075331,
+      "ehat_j": 0.017301232644569235
+    },
+    {
+      "ladder": "L235",
+      "j": 233,
+      "x_j": 30375000.0,
+      "x_j_plus_1": 30720000.0,
+      "c_j": 20062,
+      "L_j": 20015.770877258532,
+      "e_j": 46.22912274146802,
+      "ehat_j": 0.008387982368377072
+    },
+    {
+      "ladder": "L235",
+      "j": 234,
+      "x_j": 30720000.0,
+      "x_j_plus_1": 31104000.0,
+      "c_j": 22147,
+      "L_j": 22263.115106381218,
+      "e_j": -116.11510638121763,
+      "ehat_j": -0.020949714976930635
+    },
+    {
+      "ladder": "L235",
+      "j": 235,
+      "x_j": 31104000.0,
+      "x_j_plus_1": 31250000.0,
+      "c_j": 8463,
+      "L_j": 8460.434816100862,
+      "e_j": 2.565183899137992,
+      "ehat_j": 0.0004599497463574467
+    },
+    {
+      "ladder": "L235",
+      "j": 236,
+      "x_j": 31250000.0,
+      "x_j_plus_1": 32000000.0,
+      "c_j": 43418,
+      "L_j": 43425.324200318566,
+      "e_j": -7.324200318566,
+      "ehat_j": -0.001310192783451135
+    },
+    {
+      "ladder": "L235",
+      "j": 237,
+      "x_j": 32000000.0,
+      "x_j_plus_1": 32400000.0,
+      "c_j": 23143,
+      "L_j": 23136.027390616822,
+      "e_j": 6.972609383177769,
+      "ehat_j": 0.0012325948443524877
+    },
+    {
+      "ladder": "L235",
+      "j": 238,
+      "x_j": 32400000.0,
+      "x_j_plus_1": 32768000.0,
+      "c_j": 21300,
+      "L_j": 21270.5690014454,
+      "e_j": 29.430998554598773,
+      "ehat_j": 0.005170499402536419
+    },
+    {
+      "ladder": "L235",
+      "j": 239,
+      "x_j": 32768000.0,
+      "x_j_plus_1": 32805000.0,
+      "c_j": 2133,
+      "L_j": 2137.8512402946703,
+      "e_j": -4.851240294670333,
+      "ehat_j": -0.0008474768026616387
+    },
+    {
+      "ladder": "L235",
+      "j": 240,
+      "x_j": 32805000.0,
+      "x_j_plus_1": 33750000.0,
+      "c_j": 54575,
+      "L_j": 54555.170904484316,
+      "e_j": 19.829095515684457,
+      "ehat_j": 0.0034620463960336393
+    },
+    {
+      "ladder": "L235",
+      "j": 241,
+      "x_j": 33750000.0,
+      "x_j_plus_1": 34560000.0,
+      "c_j": 46524,
+      "L_j": 46691.4358999312,
+      "e_j": -167.43589993120258,
+      "ehat_j": -0.02882117564403552
+    },
+    {
+      "ladder": "L235",
+      "j": 242,
+      "x_j": 34560000.0,
+      "x_j_plus_1": 34992000.0,
+      "c_j": 24825,
+      "L_j": 24876.25196110832,
+      "e_j": -51.25196110831894,
+      "ehat_j": -0.008718135627246501
+    },
+    {
+      "ladder": "L235",
+      "j": 243,
+      "x_j": 34992000.0,
+      "x_j_plus_1": 36000000.0,
+      "c_j": 57947,
+      "L_j": 57976.32135097743,
+      "e_j": -29.321350977428665,
+      "ehat_j": -0.004956779428044392
+    },
+    {
+      "ladder": "L235",
+      "j": 244,
+      "x_j": 36000000.0,
+      "x_j_plus_1": 36450000.0,
+      "c_j": 25875,
+      "L_j": 25852.033670197907,
+      "e_j": 22.96632980209324,
+      "ehat_j": 0.003827721633682207
+    },
+    {
+      "ladder": "L235",
+      "j": 245,
+      "x_j": 36450000.0,
+      "x_j_plus_1": 36864000.0,
+      "c_j": 23733,
+      "L_j": 23767.693110583008,
+      "e_j": -34.69311058300809,
+      "ehat_j": -0.00574638174922396
+    },
+    {
+      "ladder": "L235",
+      "j": 246,
+      "x_j": 36864000.0,
+      "x_j_plus_1": 37500000.0,
+      "c_j": 36480,
+      "L_j": 36482.93961920225,
+      "e_j": -2.9396192022468313,
+      "ehat_j": -0.000484161048576414
+    },
+    {
+      "ladder": "L235",
+      "j": 247,
+      "x_j": 37500000.0,
+      "x_j_plus_1": 38400000.0,
+      "c_j": 51655,
+      "L_j": 51566.402787990286,
+      "e_j": 88.59721200971399,
+      "ehat_j": 0.014467864137132068
+    },
+    {
+      "ladder": "L235",
+      "j": 248,
+      "x_j": 38400000.0,
+      "x_j_plus_1": 38880000.0,
+      "c_j": 27558,
+      "L_j": 27473.706798501604,
+      "e_j": 84.29320149839623,
+      "ehat_j": 0.013602756900074777
+    },
+    {
+      "ladder": "L235",
+      "j": 249,
+      "x_j": 38880000.0,
+      "x_j_plus_1": 39366000.0,
+      "c_j": 27868,
+      "L_j": 27797.37637543608,
+      "e_j": 70.6236245639193,
+      "ehat_j": 0.011326269070312742
+    },
+    {
+      "ladder": "L235",
+      "j": 250,
+      "x_j": 39366000.0,
+      "x_j_plus_1": 40000000.0,
+      "c_j": 36223,
+      "L_j": 36232.99629891743,
+      "e_j": -9.996298917430977,
+      "ehat_j": -0.0015932304210255722
+    },
+    {
+      "ladder": "L235",
+      "j": 251,
+      "x_j": 40000000.0,
+      "x_j_plus_1": 40500000.0,
+      "c_j": 28619,
+      "L_j": 28551.775975802353,
+      "e_j": 67.22402419764694,
+      "ehat_j": 0.010629051497341873
+    },
+    {
+      "ladder": "L235",
+      "j": 252,
+      "x_j": 40500000.0,
+      "x_j_plus_1": 40960000.0,
+      "c_j": 26192,
+      "L_j": 26249.87337795948,
+      "e_j": -57.87337795948042,
+      "ehat_j": -0.009093924001182375
+    },
+    {
+      "ladder": "L235",
+      "j": 253,
+      "x_j": 40960000.0,
+      "x_j_plus_1": 41472000.0,
+      "c_j": 29193,
+      "L_j": 29197.501784997185,
+      "e_j": -4.501784997184586,
+      "ehat_j": -0.0007034039058100916
+    },
+    {
+      "ladder": "L235",
+      "j": 254,
+      "x_j": 41472000.0,
+      "x_j_plus_1": 43200000.0,
+      "c_j": 98249,
+      "L_j": 98391.62130444887,
+      "e_j": -142.6213044488686,
+      "ehat_j": -0.02214659248523357
+    },
+    {
+      "ladder": "L235",
+      "j": 255,
+      "x_j": 43200000.0,
+      "x_j_plus_1": 43740000.0,
+      "c_j": 30687,
+      "L_j": 30701.079840187027,
+      "e_j": -14.079840187027003,
+      "ehat_j": -0.0021421794656951237
+    },
+    {
+      "ladder": "L235",
+      "j": 256,
+      "x_j": 43740000.0,
+      "x_j_plus_1": 45000000.0,
+      "c_j": 71566,
+      "L_j": 71552.66304331433,
+      "e_j": 13.336956685670884,
+      "ehat_j": 0.0020165888025613803
+    },
+    {
+      "ladder": "L235",
+      "j": 257,
+      "x_j": 45000000.0,
+      "x_j_plus_1": 46080000.0,
+      "c_j": 61440,
+      "L_j": 61240.35412703275,
+      "e_j": 199.64587296725222,
+      "ehat_j": 0.029761449558804238
+    },
+    {
+      "ladder": "L235",
+      "j": 258,
+      "x_j": 46080000.0,
+      "x_j_plus_1": 46656000.0,
+      "c_j": 32577,
+      "L_j": 32628.170503108442,
+      "e_j": -51.17050310844206,
+      "ehat_j": -0.007538127030147227
+    },
+    {
+      "ladder": "L235",
+      "j": 259,
+      "x_j": 46656000.0,
+      "x_j_plus_1": 46875000.0,
+      "c_j": 12417,
+      "L_j": 12399.505951855574,
+      "e_j": 17.494048144426415,
+      "ehat_j": 0.002561159149677303
+    },
+    {
+      "ladder": "L235",
+      "j": 260,
+      "x_j": 46875000.0,
+      "x_j_plus_1": 48000000.0,
+      "c_j": 63550,
+      "L_j": 63644.80124443131,
+      "e_j": -94.80124443131353,
+      "ehat_j": -0.013846608014557716
+    },
+    {
+      "ladder": "L235",
+      "j": 261,
+      "x_j": 48000000.0,
+      "x_j_plus_1": 48600000.0,
+      "c_j": 33833,
+      "L_j": 33909.31237812456,
+      "e_j": -76.31237812455947,
+      "ehat_j": -0.011014743013178731
+    },
+    {
+      "ladder": "L235",
+      "j": 262,
+      "x_j": 48600000.0,
+      "x_j_plus_1": 49152000.0,
+      "c_j": 31123,
+      "L_j": 31175.690257295224,
+      "e_j": -52.690257295224,
+      "ehat_j": -0.007558092185621719
+    },
+    {
+      "ladder": "L235",
+      "j": 263,
+      "x_j": 49152000.0,
+      "x_j_plus_1": 50000000.0,
+      "c_j": 48034,
+      "L_j": 47854.69893337196,
+      "e_j": 179.30106662803883,
+      "ehat_j": 0.025574801764821253
+    },
+    {
+      "ladder": "L235",
+      "j": 264,
+      "x_j": 50000000.0,
+      "x_j_plus_1": 50625000.0,
+      "c_j": 35245,
+      "L_j": 35240.94463691946,
+      "e_j": 4.055363080537063,
+      "ehat_j": 0.0005735149468842649
+    },
+    {
+      "ladder": "L235",
+      "j": 265,
+      "x_j": 50625000.0,
+      "x_j_plus_1": 51200000.0,
+      "c_j": 32333,
+      "L_j": 32400.021730932338,
+      "e_j": -67.02173093233796,
+      "ehat_j": -0.009419614332139928
+    },
+    {
+      "ladder": "L235",
+      "j": 266,
+      "x_j": 51200000.0,
+      "x_j_plus_1": 51840000.0,
+      "c_j": 36158,
+      "L_j": 36038.561999035475,
+      "e_j": 119.43800096452469,
+      "ehat_j": 0.016691968078335166
+    },
+    {
+      "ladder": "L235",
+      "j": 267,
+      "x_j": 51840000.0,
+      "x_j_plus_1": 52488000.0,
+      "c_j": 36364,
+      "L_j": 36463.551874233155,
+      "e_j": -99.5518742331551,
+      "ehat_j": -0.01382664919904932
+    },
+    {
+      "ladder": "L235",
+      "j": 268,
+      "x_j": 52488000.0,
+      "x_j_plus_1": 54000000.0,
+      "c_j": 84969,
+      "L_j": 84983.82374707787,
+      "e_j": -14.823747077869484,
+      "ehat_j": -0.0020461053177395086
+    },
+    {
+      "ladder": "L235",
+      "j": 269,
+      "x_j": 54000000.0,
+      "x_j_plus_1": 54675000.0,
+      "c_j": 37822,
+      "L_j": 37895.865732175094,
+      "e_j": -73.86573217509431,
+      "ehat_j": -0.010051852961447939
+    },
+    {
+      "ladder": "L235",
+      "j": 270,
+      "x_j": 54675000.0,
+      "x_j_plus_1": 55296000.0,
+      "c_j": 34787,
+      "L_j": 34841.018311588436,
+      "e_j": -54.01831158843561,
+      "ehat_j": -0.007305443895142939
+    },
+    {
+      "ladder": "L235",
+      "j": 271,
+      "x_j": 55296000.0,
+      "x_j_plus_1": 56250000.0,
+      "c_j": 53580,
+      "L_j": 53481.26102236638,
+      "e_j": 98.73897763362038,
+      "ehat_j": 0.013278278333213833
+    },
+    {
+      "ladder": "L235",
+      "j": 272,
+      "x_j": 56250000.0,
+      "x_j_plus_1": 57600000.0,
+      "c_j": 75685,
+      "L_j": 75594.48940736256,
+      "e_j": 90.5105926374381,
+      "ehat_j": 0.01206807901832508
+    },
+    {
+      "ladder": "L235",
+      "j": 273,
+      "x_j": 57600000.0,
+      "x_j_plus_1": 58320000.0,
+      "c_j": 40153,
+      "L_j": 40276.40332886214,
+      "e_j": -123.4033288621431,
+      "ehat_j": -0.016259816252131954
+    },
+    {
+      "ladder": "L235",
+      "j": 274,
+      "x_j": 58320000.0,
+      "x_j_plus_1": 59049000.0,
+      "c_j": 40861,
+      "L_j": 40751.55519642528,
+      "e_j": 109.44480357471912,
+      "ehat_j": 0.014331326439502516
+    },
+    {
+      "ladder": "L235",
+      "j": 275,
+      "x_j": 59049000.0,
+      "x_j_plus_1": 60000000.0,
+      "c_j": 53024,
+      "L_j": 53119.32835165647,
+      "e_j": -95.32835165646975,
+      "ehat_j": -0.012405543902219325
+    },
+    {
+      "ladder": "L235",
+      "j": 276,
+      "x_j": 60000000.0,
+      "x_j_plus_1": 60750000.0,
+      "c_j": 41907,
+      "L_j": 41859.05095816646,
+      "e_j": 47.94904183354083,
+      "ehat_j": 0.006190194682930213
+    },
+    {
+      "ladder": "L235",
+      "j": 277,
+      "x_j": 60750000.0,
+      "x_j_plus_1": 61440000.0,
+      "c_j": 38385,
+      "L_j": 38484.8744406928,
+      "e_j": -99.87444069280173,
+      "ehat_j": -0.012813896715367198
+    },
+    {
+      "ladder": "L235",
+      "j": 278,
+      "x_j": 61440000.0,
+      "x_j_plus_1": 62208000.0,
+      "c_j": 42824,
+      "L_j": 42807.036131821274,
+      "e_j": 16.963868178725534,
+      "ehat_j": 0.002164209432380945
+    },
+    {
+      "ladder": "L235",
+      "j": 279,
+      "x_j": 62208000.0,
+      "x_j_plus_1": 62500000.0,
+      "c_j": 16256,
+      "L_j": 16267.850288994756,
+      "e_j": -11.850288994755829,
+      "ehat_j": -0.0015024700452275432
+    },
+    {
+      "ladder": "L235",
+      "j": 280,
+      "x_j": 62500000.0,
+      "x_j_plus_1": 64000000.0,
+      "c_j": 83599,
+      "L_j": 83501.50367162093,
+      "e_j": 97.4963283790712,
+      "ehat_j": 0.01233241844726309
+    },
+    {
+      "ladder": "L235",
+      "j": 281,
+      "x_j": 64000000.0,
+      "x_j_plus_1": 64800000.0,
+      "c_j": 44346,
+      "L_j": 44489.48680504537,
+      "e_j": -143.48680504537333,
+      "ehat_j": -0.017935850630671667
+    },
+    {
+      "ladder": "L235",
+      "j": 282,
+      "x_j": 64800000.0,
+      "x_j_plus_1": 65536000.0,
+      "c_j": 40934,
+      "L_j": 40903.3725490911,
+      "e_j": 30.627450908898027,
+      "ehat_j": 0.003804725678324095
+    },
+    {
+      "ladder": "L235",
+      "j": 283,
+      "x_j": 65536000.0,
+      "x_j_plus_1": 65610000.0,
+      "c_j": 4085,
+      "L_j": 4111.151216852071,
+      "e_j": -26.15121685207123,
+      "ehat_j": -0.0032303675327157695
+    },
+    {
+      "ladder": "L235",
+      "j": 284,
+      "x_j": 65610000.0,
+      "x_j_plus_1": 67500000.0,
+      "c_j": 105141,
+      "L_j": 104914.64531947345,
+      "e_j": 226.3546805265505,
+      "ehat_j": 0.02794502228722846
+    },
+    {
+      "ladder": "L235",
+      "j": 285,
+      "x_j": 67500000.0,
+      "x_j_plus_1": 69120000.0,
+      "c_j": 89708,
+      "L_j": 89797.11034560726,
+      "e_j": -89.11034560725966,
+      "ehat_j": -0.010846165865817223
+    },
+    {
+      "ladder": "L235",
+      "j": 286,
+      "x_j": 69120000.0,
+      "x_j_plus_1": 69984000.0,
+      "c_j": 47850,
+      "L_j": 47843.98111567092,
+      "e_j": 6.018884329081629,
+      "ehat_j": 0.0007239592682534372
+    },
+    {
+      "ladder": "L235",
+      "j": 287,
+      "x_j": 69984000.0,
+      "x_j_plus_1": 72000000.0,
+      "c_j": 111508,
+      "L_j": 111509.66752029935,
+      "e_j": -1.6675202993501443,
+      "ehat_j": -0.00019932957866808382
+    },
+    {
+      "ladder": "L235",
+      "j": 288,
+      "x_j": 72000000.0,
+      "x_j_plus_1": 72900000.0,
+      "c_j": 49865,
+      "L_j": 49725.13198771771,
+      "e_j": 139.8680122822916,
+      "ehat_j": 0.016483603325981953
+    },
+    {
+      "ladder": "L235",
+      "j": 289,
+      "x_j": 72900000.0,
+      "x_j_plus_1": 73728000.0,
+      "c_j": 45741,
+      "L_j": 45717.18897491951,
+      "e_j": 23.811025080489344,
+      "ehat_j": 0.002788780469545942
+    },
+    {
+      "ladder": "L235",
+      "j": 290,
+      "x_j": 73728000.0,
+      "x_j_plus_1": 75000000.0,
+      "c_j": 70040,
+      "L_j": 70177.15943987874,
+      "e_j": -137.15943987874198,
+      "ehat_j": -0.015973845381492845
+    },
+    {
+      "ladder": "L235",
+      "j": 291,
+      "x_j": 75000000.0,
+      "x_j_plus_1": 76800000.0,
+      "c_j": 99159,
+      "L_j": 99195.53620970967,
+      "e_j": -36.536209709665854,
+      "ehat_j": -0.00421883810220884
+    },
+    {
+      "ladder": "L235",
+      "j": 292,
+      "x_j": 76800000.0,
+      "x_j_plus_1": 77760000.0,
+      "c_j": 52850,
+      "L_j": 52851.775879170564,
+      "e_j": -1.7758791705637123,
+      "ehat_j": -0.0002026435585669395
+    },
+    {
+      "ladder": "L235",
+      "j": 293,
+      "x_j": 77760000.0,
+      "x_j_plus_1": 78125000.0,
+      "c_j": 20143,
+      "L_j": 20085.244315064163,
+      "e_j": 57.75568493583705,
+      "ehat_j": 0.006549627677673601
+    },
+    {
+      "ladder": "L235",
+      "j": 294,
+      "x_j": 78125000.0,
+      "x_j_plus_1": 78732000.0,
+      "c_j": 33271,
+      "L_j": 33390.62370418044,
+      "e_j": -119.62370418044156,
+      "ehat_j": -0.013533877186663004
+    },
+    {
+      "ladder": "L235",
+      "j": 295,
+      "x_j": 78732000.0,
+      "x_j_plus_1": 80000000.0,
+      "c_j": 69655,
+      "L_j": 69706.24002681757,
+      "e_j": -51.24002681756974,
+      "ehat_j": -0.005774756900237159
+    },
+    {
+      "ladder": "L235",
+      "j": 296,
+      "x_j": 80000000.0,
+      "x_j_plus_1": 81000000.0,
+      "c_j": 55027,
+      "L_j": 54930.54054325346,
+      "e_j": 96.45945674653922,
+      "ehat_j": 0.01078449511789812
+    },
+    {
+      "ladder": "L235",
+      "j": 297,
+      "x_j": 81000000.0,
+      "x_j_plus_1": 81920000.0,
+      "c_j": 50586,
+      "L_j": 50503.22181632985,
+      "e_j": 82.77818367014697,
+      "ehat_j": 0.009197575963349663
+    },
+    {
+      "ladder": "L235",
+      "j": 298,
+      "x_j": 81920000.0,
+      "x_j_plus_1": 82944000.0,
+      "c_j": 56241,
+      "L_j": 56175.72433020163,
+      "e_j": 65.27566979837138,
+      "ehat_j": 0.007212010743894113
+    },
+    {
+      "ladder": "L235",
+      "j": 299,
+      "x_j": 82944000.0,
+      "x_j_plus_1": 84375000.0,
+      "c_j": 78324,
+      "L_j": 78439.83161741834,
+      "e_j": -115.83161741834192,
+      "ehat_j": -0.012718463059138652
+    },
+    {
+      "ladder": "L235",
+      "j": 300,
+      "x_j": 84375000.0,
+      "x_j_plus_1": 86400000.0,
+      "c_j": 110791,
+      "L_j": 110875.63973281224,
+      "e_j": -84.63973281224025,
+      "ehat_j": -0.00921440699357739
+    },
+    {
+      "ladder": "L235",
+      "j": 301,
+      "x_j": 86400000.0,
+      "x_j_plus_1": 87480000.0,
+      "c_j": 59035,
+      "L_j": 59075.35800907523,
+      "e_j": -40.35800907522935,
+      "ehat_j": -0.004341830473179196
+    },
+    {
+      "ladder": "L235",
+      "j": 302,
+      "x_j": 87480000.0,
+      "x_j_plus_1": 90000000.0,
+      "c_j": 137568,
+      "L_j": 137688.4600727888,
+      "e_j": -120.46007278878824,
+      "ehat_j": -0.012879195453927557
+    },
+    {
+      "ladder": "L235",
+      "j": 303,
+      "x_j": 90000000.0,
+      "x_j_plus_1": 91125000.0,
+      "c_j": 61507,
+      "L_j": 61399.79129905232,
+      "e_j": 107.20870094768179,
+      "ehat_j": 0.01130078933275089
+    },
+    {
+      "ladder": "L235",
+      "j": 304,
+      "x_j": 91125000.0,
+      "x_j_plus_1": 92160000.0,
+      "c_j": 56502,
+      "L_j": 56451.29580083543,
+      "e_j": 50.7041991645674,
+      "ehat_j": 0.005311597490947983
+    },
+    {
+      "ladder": "L235",
+      "j": 305,
+      "x_j": 92160000.0,
+      "x_j_plus_1": 93312000.0,
+      "c_j": 62667,
+      "L_j": 62792.14494771728,
+      "e_j": -125.14494771727914,
+      "ehat_j": -0.013035932053883243
+    },
+    {
+      "ladder": "L235",
+      "j": 306,
+      "x_j": 93312000.0,
+      "x_j_plus_1": 93750000.0,
+      "c_j": 23853,
+      "L_j": 23862.990709669117,
+      "e_j": -9.990709669116768,
+      "ehat_j": -0.0010342549057226632
+    },
+    {
+      "ladder": "L235",
+      "j": 307,
+      "x_j": 93750000.0,
+      "x_j_plus_1": 96000000.0,
+      "c_j": 122718,
+      "L_j": 122488.85340950947,
+      "e_j": 229.14659049053444,
+      "ehat_j": 0.023666158101601355
+    },
+    {
+      "ladder": "L235",
+      "j": 308,
+      "x_j": 96000000.0,
+      "x_j_plus_1": 97200000.0,
+      "c_j": 65148,
+      "L_j": 65263.331531883574,
+      "e_j": -115.33153188357392,
+      "ehat_j": -0.011770975182011891
+    },
+    {
+      "ladder": "L235",
+      "j": 309,
+      "x_j": 97200000.0,
+      "x_j_plus_1": 98304000.0,
+      "c_j": 60098,
+      "L_j": 60003.59089445294,
+      "e_j": 94.40910554706352,
+      "ehat_j": 0.009575925322594962
+    },
+    {
+      "ladder": "L235",
+      "j": 310,
+      "x_j": 98304000.0,
+      "x_j_plus_1": 98415000.0,
+      "c_j": 6013,
+      "L_j": 6030.9379021235045,
+      "e_j": -17.9379021235045,
+      "ehat_j": -0.0018091978174539477
+    },
+    {
+      "ladder": "L235",
+      "j": 311,
+      "x_j": 98415000.0,
+      "x_j_plus_1": 100000000.0,
+      "c_j": 85995,
+      "L_j": 86077.37066817358,
+      "e_j": -82.37066817357845,
+      "ehat_j": -0.008303131966970256
+    },
+    {
+      "ladder": "L235",
+      "j": 312,
+      "x_j": 100000000.0,
+      "x_j_plus_1": 101250000.0,
+      "c_j": 67818,
+      "L_j": 67832.10459370578,
+      "e_j": -14.104593705778825,
+      "ehat_j": -0.0014104593705778826
+    },
+    {
+      "ladder": "L235",
+      "j": 313,
+      "x_j": 101250000.0,
+      "x_j_plus_1": 102400000.0,
+      "c_j": 62520,
+      "L_j": 62365.4285280756,
+      "e_j": 154.5714719243988,
+      "ehat_j": 0.015361436382451375
+    },
+    {
+      "ladder": "L235",
+      "j": 314,
+      "x_j": 102400000.0,
+      "x_j_plus_1": 103680000.0,
+      "c_j": 69292,
+      "L_j": 69370.8332684637,
+      "e_j": -78.83326846369891,
+      "ehat_j": -0.007790396366900358
+    },
+    {
+      "ladder": "L235",
+      "j": 315,
+      "x_j": 103680000.0,
+      "x_j_plus_1": 104976000.0,
+      "c_j": 70309,
+      "L_j": 70190.7326828754,
+      "e_j": 118.26731712459878,
+      "ehat_j": 0.011614947490492179
+    },
+    {
+      "ladder": "L235",
+      "j": 316,
+      "x_j": 104976000.0,
+      "x_j_plus_1": 108000000.0,
+      "c_j": 163569,
+      "L_j": 163597.14821581388,
+      "e_j": -28.148215813882416,
+      "ehat_j": -0.0027472985815382303
+    },
+    {
+      "ladder": "L235",
+      "j": 317,
+      "x_j": 108000000.0,
+      "x_j_plus_1": 109350000.0,
+      "c_j": 73101,
+      "L_j": 72954.11957708745,
+      "e_j": 146.8804229125526,
+      "ehat_j": 0.014133575284541386
+    },
+    {
+      "ladder": "L235",
+      "j": 318,
+      "x_j": 109350000.0,
+      "x_j_plus_1": 110592000.0,
+      "c_j": 67057,
+      "L_j": 67074.83236824714,
+      "e_j": -17.83236824713822,
+      "ehat_j": -0.001705295438138377
+    },
+    {
+      "ladder": "L235",
+      "j": 319,
+      "x_j": 110592000.0,
+      "x_j_plus_1": 112500000.0,
+      "c_j": 102943,
+      "L_j": 102963.49713106407,
+      "e_j": -20.497131064068526,
+      "ehat_j": -0.0019490869874878819
+    },
+    {
+      "ladder": "L235",
+      "j": 320,
+      "x_j": 112500000.0,
+      "x_j_plus_1": 115200000.0,
+      "c_j": 145377,
+      "L_j": 145542.65052246721,
+      "e_j": -165.6505224672146,
+      "ehat_j": -0.015617681032488267
+    },
+    {
+      "ladder": "L235",
+      "j": 321,
+      "x_j": 115200000.0,
+      "x_j_plus_1": 116640000.0,
+      "c_j": 77641,
+      "L_j": 77547.37824029117,
+      "e_j": 93.62175970882527,
+      "ehat_j": 0.008722692453420175
+    },
+    {
+      "ladder": "L235",
+      "j": 322,
+      "x_j": 116640000.0,
+      "x_j_plus_1": 118098000.0,
+      "c_j": 78431,
+      "L_j": 78464.25032299683,
+      "e_j": -33.25032299682789,
+      "ehat_j": -0.0030787336108173973
+    },
+    {
+      "ladder": "L235",
+      "j": 323,
+      "x_j": 118098000.0,
+      "x_j_plus_1": 120000000.0,
+      "c_j": 102135,
+      "L_j": 102280.54013458986,
+      "e_j": -145.5401345898572,
+      "ehat_j": -0.013392495242690912
+    },
+    {
+      "ladder": "L235",
+      "j": 324,
+      "x_j": 120000000.0,
+      "x_j_plus_1": 121500000.0,
+      "c_j": 80549,
+      "L_j": 80601.39858220117,
+      "e_j": -52.39858220117458,
+      "ehat_j": -0.004783314242145335
+    },
+    {
+      "ladder": "L235",
+      "j": 325,
+      "x_j": 121500000.0,
+      "x_j_plus_1": 122880000.0,
+      "c_j": 74080,
+      "L_j": 74106.09362407189,
+      "e_j": -26.09362407188746,
+      "ehat_j": -0.0023672616487455025
+    },
+    {
+      "ladder": "L235",
+      "j": 326,
+      "x_j": 122880000.0,
+      "x_j_plus_1": 124416000.0,
+      "c_j": 82551,
+      "L_j": 82430.82430770501,
+      "e_j": 120.17569229498622,
+      "ehat_j": 0.01084116692133749
+    },
+    {
+      "ladder": "L235",
+      "j": 327,
+      "x_j": 124416000.0,
+      "x_j_plus_1": 125000000.0,
+      "c_j": 31314,
+      "L_j": 31326.530900225585,
+      "e_j": -12.530900225585356,
+      "ehat_j": -0.0011234251825620104
+    },
+    {
+      "ladder": "L235",
+      "j": 328,
+      "x_j": 125000000.0,
+      "x_j_plus_1": 128000000.0,
+      "c_j": 160893,
+      "L_j": 160801.1588717747,
+      "e_j": 91.84112822529278,
+      "ehat_j": 0.008214520233681171
+    },
+    {
+      "ladder": "L235",
+      "j": 329,
+      "x_j": 128000000.0,
+      "x_j_plus_1": 129600000.0,
+      "c_j": 85832,
+      "L_j": 85677.81592939835,
+      "e_j": 154.1840706016519,
+      "ehat_j": 0.013628075234171684
+    },
+    {
+      "ladder": "L235",
+      "j": 330,
+      "x_j": 129600000.0,
+      "x_j_plus_1": 131072000.0,
+      "c_j": 78730,
+      "L_j": 78773.59791560906,
+      "e_j": -43.5979156090616,
+      "ehat_j": -0.0038296865155678273
+    },
+    {
+      "ladder": "L235",
+      "j": 331,
+      "x_j": 131072000.0,
+      "x_j_plus_1": 131220000.0,
+      "c_j": 7881,
+      "L_j": 7917.545009022514,
+      "e_j": -36.54500902251402,
+      "ehat_j": -0.003192075172370488
+    },
+    {
+      "ladder": "L235",
+      "j": 332,
+      "x_j": 131220000.0,
+      "x_j_plus_1": 135000000.0,
+      "c_j": 201983,
+      "L_j": 202058.16206292226,
+      "e_j": -75.16206292225979,
+      "ehat_j": -0.006561432639543193
+    },
+    {
+      "ladder": "L235",
+      "j": 333,
+      "x_j": 135000000.0,
+      "x_j_plus_1": 138240000.0,
+      "c_j": 172787,
+      "L_j": 172952.0704989759,
+      "e_j": -165.07049897589604,
+      "ehat_j": -0.014207006521862086
+    },
+    {
+      "ladder": "L235",
+      "j": 334,
+      "x_j": 138240000.0,
+      "x_j_plus_1": 139968000.0,
+      "c_j": 92258,
+      "L_j": 92152.40946640683,
+      "e_j": 105.59053359317477,
+      "ehat_j": 0.008980657255954313
+    },
+    {
+      "ladder": "L235",
+      "j": 335,
+      "x_j": 139968000.0,
+      "x_j_plus_1": 140625000.0,
+      "c_j": 34921,
+      "L_j": 35021.165973588395,
+      "e_j": -100.16597358839499,
+      "ehat_j": -0.008466537535313368
+    },
+    {
+      "ladder": "L235",
+      "j": 336,
+      "x_j": 140625000.0,
+      "x_j_plus_1": 144000000.0,
+      "c_j": 179977,
+      "L_j": 179766.82360865135,
+      "e_j": 210.1763913486502,
+      "ehat_j": 0.017723629521510485
+    },
+    {
+      "ladder": "L235",
+      "j": 337,
+      "x_j": 144000000.0,
+      "x_j_plus_1": 145800000.0,
+      "c_j": 95707,
+      "L_j": 95783.64924465853,
+      "e_j": -76.64924465853255,
+      "ehat_j": -0.006387437054877713
+    },
+    {
+      "ladder": "L235",
+      "j": 338,
+      "x_j": 145800000.0,
+      "x_j_plus_1": 147456000.0,
+      "c_j": 88144,
+      "L_j": 88065.41669979888,
+      "e_j": 78.58330020112044,
+      "ehat_j": 0.006508059301702896
+    },
+    {
+      "ladder": "L235",
+      "j": 339,
+      "x_j": 147456000.0,
+      "x_j_plus_1": 150000000.0,
+      "c_j": 135141,
+      "L_j": 135186.75975979262,
+      "e_j": -45.75975979262148,
+      "ehat_j": -0.0037683610970541182
+    },
+    {
+      "ladder": "L_irr",
+      "j": 0,
+      "x_j": 999.9999999999998,
+      "x_j_plus_1": 1021.6820361379592,
+      "c_j": 4,
+      "L_j": 3.0723193620612994,
+      "e_j": 0.9276806379387006,
+      "ehat_j": 0.02933583757124304
+    },
+    {
+      "ladder": "L_irr",
+      "j": 1,
+      "x_j": 1021.6820361379592,
+      "x_j_plus_1": 1165.1131905114912,
+      "c_j": 20,
+      "L_j": 20.11495258953,
+      "e_j": -0.11495258952999876,
+      "ehat_j": -0.0035963411335818147
+    },
+    {
+      "ladder": "L_irr",
+      "j": 2,
+      "x_j": 1165.1131905114912,
+      "x_j_plus_1": 1165.3545644755395,
+      "c_j": 0,
+      "L_j": 0.0335631667424684,
+      "e_j": -0.0335631667424684,
+      "ehat_j": -0.0009832837704787717
+    },
+    {
+      "ladder": "L_irr",
+      "j": 3,
+      "x_j": 1165.3545644755395,
+      "x_j_plus_1": 1324.7930669445152,
+      "c_j": 24,
+      "L_j": 21.9805139524064,
+      "e_j": 2.019486047593599,
+      "ehat_j": 0.05915777295499667
+    },
+    {
+      "ladder": "L_irr",
+      "j": 4,
+      "x_j": 1324.7930669445152,
+      "x_j_plus_1": 2011.789389089339,
+      "c_j": 89,
+      "L_j": 91.30381872944298,
+      "e_j": -2.3038187294429804,
+      "ehat_j": -0.06329571080737682
+    },
+    {
+      "ladder": "L_irr",
+      "j": 5,
+      "x_j": 2011.789389089339,
+      "x_j_plus_1": 2238.6833692251666,
+      "c_j": 27,
+      "L_j": 29.225408317102545,
+      "e_j": -2.225408317102545,
+      "ehat_j": -0.04961562314486273
+    },
+    {
+      "ladder": "L_irr",
+      "j": 6,
+      "x_j": 2238.6833692251666,
+      "x_j_plus_1": 3020.713620852824,
+      "c_j": 101,
+      "L_j": 98.19353279246282,
+      "e_j": 2.8064672075371817,
+      "ehat_j": 0.05931487718905981
+    },
+    {
+      "ladder": "L_irr",
+      "j": 7,
+      "x_j": 3020.713620852824,
+      "x_j_plus_1": 3040.8184204492595,
+      "c_j": 2,
+      "L_j": 2.4804951745428863,
+      "e_j": -0.48049517454288626,
+      "ehat_j": -0.008742472071731748
+    },
+    {
+      "ladder": "L_irr",
+      "j": 8,
+      "x_j": 3040.8184204492595,
+      "x_j_plus_1": 4972.061072852754,
+      "c_j": 230,
+      "L_j": 230.9281975061872,
+      "e_j": -0.928197506187189,
+      "ehat_j": -0.016832365524625605
+    },
+    {
+      "ladder": "L_irr",
+      "j": 9,
+      "x_j": 4972.061072852754,
+      "x_j_plus_1": 6736.027032691291,
+      "c_j": 203,
+      "L_j": 201.87707411936873,
+      "e_j": 1.1229258806312714,
+      "ehat_j": 0.015925125520181646
+    },
+    {
+      "ladder": "L_irr",
+      "j": 10,
+      "x_j": 6736.027032691291,
+      "x_j_plus_1": 8254.27212952716,
+      "c_j": 167,
+      "L_j": 169.05450658109484,
+      "e_j": -2.0545065810948415,
+      "ehat_j": -0.02503258076590703
+    },
+    {
+      "ladder": "L_irr",
+      "j": 11,
+      "x_j": 8254.27212952716,
+      "x_j_plus_1": 8411.116575690901,
+      "c_j": 16,
+      "L_j": 17.262031772142432,
+      "e_j": -1.2620317721424321,
+      "ehat_j": -0.013890916387579926
+    },
+    {
+      "ladder": "L_irr",
+      "j": 12,
+      "x_j": 8411.116575690901,
+      "x_j_plus_1": 9398.04930851791,
+      "c_j": 111,
+      "L_j": 107.85805856195745,
+      "e_j": 3.1419414380425508,
+      "ehat_j": 0.03425873005416207
+    },
+    {
+      "ladder": "L_irr",
+      "j": 13,
+      "x_j": 9398.04930851791,
+      "x_j_plus_1": 9470.943239341103,
+      "c_j": 11,
+      "L_j": 7.916935382569369,
+      "e_j": 3.0830646174306313,
+      "ehat_j": 0.03180268352361416
+    },
+    {
+      "ladder": "L_irr",
+      "j": 14,
+      "x_j": 9470.943239341103,
+      "x_j_plus_1": 10231.616109333416,
+      "c_j": 81,
+      "L_j": 82.24123445938807,
+      "e_j": -1.2412344593880675,
+      "ehat_j": -0.01275431700720964
+    },
+    {
+      "ladder": "L_irr",
+      "j": 15,
+      "x_j": 10231.616109333416,
+      "x_j_plus_1": 12089.302425016012,
+      "c_j": 192,
+      "L_j": 198.2541602477297,
+      "e_j": -6.254160247729686,
+      "ehat_j": -0.06182966397938915
+    },
+    {
+      "ladder": "L_irr",
+      "j": 16,
+      "x_j": 12089.302425016012,
+      "x_j_plus_1": 14785.607452943592,
+      "c_j": 287,
+      "L_j": 282.2940003962914,
+      "e_j": 4.705999603708619,
+      "ehat_j": 0.04280073876744111
+    },
+    {
+      "ladder": "L_irr",
+      "j": 17,
+      "x_j": 14785.607452943592,
+      "x_j_plus_1": 15062.487993809847,
+      "c_j": 26,
+      "L_j": 28.67376907332169,
+      "e_j": -2.67376907332169,
+      "ehat_j": -0.021988940783724854
+    },
+    {
+      "ladder": "L_irr",
+      "j": 18,
+      "x_j": 15062.487993809847,
+      "x_j_plus_1": 16056.791741540861,
+      "c_j": 106,
+      "L_j": 102.53767832614611,
+      "e_j": 3.462321673853893,
+      "ehat_j": 0.028211037454485076
+    },
+    {
+      "ladder": "L_irr",
+      "j": 19,
+      "x_j": 16056.791741540861,
+      "x_j_plus_1": 22484.3019429025,
+      "c_j": 650,
+      "L_j": 649.1314006122984,
+      "e_j": 0.868599387701579,
+      "ehat_j": 0.006854726503993438
+    },
+    {
+      "ladder": "L_irr",
+      "j": 20,
+      "x_j": 22484.3019429025,
+      "x_j_plus_1": 27312.86384087151,
+      "c_j": 474,
+      "L_j": 475.3751358896069,
+      "e_j": -1.375135889606895,
+      "ehat_j": -0.00917077234020329
+    },
+    {
+      "ladder": "L_irr",
+      "j": 21,
+      "x_j": 27312.86384087151,
+      "x_j_plus_1": 28547.303144566347,
+      "c_j": 116,
+      "L_j": 120.17213149399295,
+      "e_j": -4.17213149399295,
+      "ehat_j": -0.02524494145567655
+    },
+    {
+      "ladder": "L_irr",
+      "j": 22,
+      "x_j": 28547.303144566347,
+      "x_j_plus_1": 34574.80091152243,
+      "c_j": 587,
+      "L_j": 580.0677008075555,
+      "e_j": 6.932299192444475,
+      "ehat_j": 0.04102936115098006
+    },
+    {
+      "ladder": "L_irr",
+      "j": 23,
+      "x_j": 34574.80091152243,
+      "x_j_plus_1": 34819.8031847338,
+      "c_j": 25,
+      "L_j": 23.364195777203552,
+      "e_j": 1.6358042227964482,
+      "ehat_j": 0.008797342107354337
+    },
+    {
+      "ladder": "L_irr",
+      "j": 24,
+      "x_j": 34819.8031847338,
+      "x_j_plus_1": 35526.69604726094,
+      "c_j": 64,
+      "L_j": 67.32537516820304,
+      "e_j": -3.3253751682030384,
+      "ehat_j": -0.017820812196240716
+    },
+    {
+      "ladder": "L_irr",
+      "j": 25,
+      "x_j": 35526.69604726094,
+      "x_j_plus_1": 41882.37887445147,
+      "c_j": 596,
+      "L_j": 600.0024289565511,
+      "e_j": -4.002428956551057,
+      "ehat_j": -0.021234704497659233
+    },
+    {
+      "ladder": "L_irr",
+      "j": 26,
+      "x_j": 41882.37887445147,
+      "x_j_plus_1": 42091.15360838839,
+      "c_j": 25,
+      "L_j": 19.55839184560422,
+      "e_j": 5.44160815439578,
+      "ehat_j": 0.02658958718708393
+    },
+    {
+      "ladder": "L_irr",
+      "j": 27,
+      "x_j": 42091.15360838839,
+      "x_j_plus_1": 44727.02272681084,
+      "c_j": 246,
+      "L_j": 246.17830921194545,
+      "e_j": -0.17830921194544658,
+      "ehat_j": -0.0008691172428867399
+    },
+    {
+      "ladder": "L_irr",
+      "j": 28,
+      "x_j": 44727.02272681084,
+      "x_j_plus_1": 48730.30635361695,
+      "c_j": 360,
+      "L_j": 371.3700936838922,
+      "e_j": -11.370093683892208,
+      "ehat_j": -0.05376244954711745
+    },
+    {
+      "ladder": "L_irr",
+      "j": 29,
+      "x_j": 48730.30635361695,
+      "x_j_plus_1": 56390.66350285022,
+      "c_j": 708,
+      "L_j": 703.0866858549089,
+      "e_j": 4.913314145091135,
+      "ehat_j": 0.022257427217515762
+    },
+    {
+      "ladder": "L_irr",
+      "j": 30,
+      "x_j": 56390.66350285022,
+      "x_j_plus_1": 60772.68187167898,
+      "c_j": 410,
+      "L_j": 398.24472141885565,
+      "e_j": 11.755278581144353,
+      "ehat_j": 0.04950274972915199
+    },
+    {
+      "ladder": "L_irr",
+      "j": 31,
+      "x_j": 60772.68187167898,
+      "x_j_plus_1": 68304.27693041532,
+      "c_j": 670,
+      "L_j": 678.5987283153439,
+      "e_j": -8.59872831534392,
+      "ehat_j": -0.03488028511470723
+    },
+    {
+      "ladder": "L_irr",
+      "j": 32,
+      "x_j": 68304.27693041532,
+      "x_j_plus_1": 71051.9902440509,
+      "c_j": 240,
+      "L_j": 245.87673962518346,
+      "e_j": -5.876739625183461,
+      "ehat_j": -0.022486015213651903
+    },
+    {
+      "ladder": "L_irr",
+      "j": 33,
+      "x_j": 71051.9902440509,
+      "x_j_plus_1": 77178.49292884211,
+      "c_j": 546,
+      "L_j": 545.2552594264182,
+      "e_j": 0.7447405735817938,
+      "ehat_j": 0.002793938814904485
+    },
+    {
+      "ladder": "L_irr",
+      "j": 34,
+      "x_j": 77178.49292884211,
+      "x_j_plus_1": 82222.78099554496,
+      "c_j": 458,
+      "L_j": 446.07692029558154,
+      "e_j": 11.923079704418456,
+      "ehat_j": 0.04291808151259409
+    },
+    {
+      "ladder": "L_irr",
+      "j": 35,
+      "x_j": 82222.78099554496,
+      "x_j_plus_1": 83847.15973002503,
+      "c_j": 138,
+      "L_j": 143.13116181362463,
+      "e_j": -5.1311618136246295,
+      "ehat_j": -0.01789450254094159
+    },
+    {
+      "ladder": "L_irr",
+      "j": 36,
+      "x_j": 83847.15973002503,
+      "x_j_plus_1": 120812.05120868847,
+      "c_j": 3190,
+      "L_j": 3200.537379898338,
+      "e_j": -10.537379898337804,
+      "ehat_j": -0.03639053662352773
+    },
+    {
+      "ladder": "L_irr",
+      "j": 37,
+      "x_j": 120812.05120868847,
+      "x_j_plus_1": 141762.85171696966,
+      "c_j": 1795,
+      "L_j": 1775.2097550901822,
+      "e_j": 19.79024490981783,
+      "ehat_j": 0.056937191305562414
+    },
+    {
+      "ladder": "L_irr",
+      "j": 38,
+      "x_j": 141762.85171696966,
+      "x_j_plus_1": 142270.44507608618,
+      "c_j": 45,
+      "L_j": 42.722914239433194,
+      "e_j": 2.2770857605668056,
+      "ehat_j": 0.006047810393596994
+    },
+    {
+      "ladder": "L_irr",
+      "j": 39,
+      "x_j": 142270.44507608618,
+      "x_j_plus_1": 148537.8466828317,
+      "c_j": 510,
+      "L_j": 526.4793193266504,
+      "e_j": -16.479319326650398,
+      "ehat_j": -0.04368998788202567
+    },
+    {
+      "ladder": "L_irr",
+      "j": 40,
+      "x_j": 148537.8466828317,
+      "x_j_plus_1": 168748.13696159082,
+      "c_j": 1676,
+      "L_j": 1685.5709065119295,
+      "e_j": -9.57090651192948,
+      "ehat_j": -0.024833304409910485
+    },
+    {
+      "ladder": "L_irr",
+      "j": 41,
+      "x_j": 168748.13696159082,
+      "x_j_plus_1": 172506.12569458468,
+      "c_j": 315,
+      "L_j": 311.5239041661943,
+      "e_j": 3.4760958338056867,
+      "ehat_j": 0.008461984934471463
+    },
+    {
+      "ladder": "L_irr",
+      "j": 42,
+      "x_j": 172506.12569458468,
+      "x_j_plus_1": 177822.5208491938,
+      "c_j": 434,
+      "L_j": 439.7609217877224,
+      "e_j": -5.7609217877223955,
+      "ehat_j": -0.013870423403497738
+    },
+    {
+      "ladder": "L_irr",
+      "j": 43,
+      "x_j": 177822.5208491938,
+      "x_j_plus_1": 206072.4842810625,
+      "c_j": 2329,
+      "L_j": 2319.5315029313124,
+      "e_j": 9.468497068687611,
+      "ehat_j": 0.022453687175035448
+    },
+    {
+      "ladder": "L_irr",
+      "j": 44,
+      "x_j": 206072.4842810625,
+      "x_j_plus_1": 207743.6164984116,
+      "c_j": 143,
+      "L_j": 136.36584557943223,
+      "e_j": 6.634154420567768,
+      "ehat_j": 0.014614217711471304
+    },
+    {
+      "ladder": "L_irr",
+      "j": 45,
+      "x_j": 207743.6164984116,
+      "x_j_plus_1": 260107.35838341463,
+      "c_j": 4230,
+      "L_j": 4231.644754147134,
+      "e_j": -1.6447541471343357,
+      "ehat_j": -0.003608586717514668
+    },
+    {
+      "ladder": "L_irr",
+      "j": 46,
+      "x_j": 260107.35838341463,
+      "x_j_plus_1": 268609.27642130275,
+      "c_j": 682,
+      "L_j": 680.2478226275168,
+      "e_j": 1.7521773724831746,
+      "ehat_j": 0.0034355933096862855
+    },
+    {
+      "ladder": "L_irr",
+      "j": 47,
+      "x_j": 268609.27642130275,
+      "x_j_plus_1": 330381.0875910859,
+      "c_j": 4909,
+      "L_j": 4894.614233000184,
+      "e_j": 14.385766999816042,
+      "ehat_j": 0.02775699955625564
+    },
+    {
+      "ladder": "L_irr",
+      "j": 48,
+      "x_j": 330381.0875910859,
+      "x_j_plus_1": 346985.59379047377,
+      "c_j": 1300,
+      "L_j": 1302.8655701055416,
+      "e_j": -2.8655701055415648,
+      "ehat_j": -0.00498543948019801
+    },
+    {
+      "ladder": "L_irr",
+      "j": 49,
+      "x_j": 346985.59379047377,
+      "x_j_plus_1": 353769.84352277365,
+      "c_j": 536,
+      "L_j": 530.9124080996494,
+      "e_j": 5.087591900350617,
+      "ehat_j": 0.008636873230792212
+    },
+    {
+      "ladder": "L_irr",
+      "j": 50,
+      "x_j": 353769.84352277365,
+      "x_j_plus_1": 361083.44290088065,
+      "c_j": 558,
+      "L_j": 571.451400815642,
+      "e_j": -13.451400815642046,
+      "ehat_j": -0.022615547650874843
+    },
+    {
+      "ladder": "L_irr",
+      "j": 51,
+      "x_j": 361083.44290088065,
+      "x_j_plus_1": 383794.50321984035,
+      "c_j": 1755,
+      "L_j": 1768.902826050881,
+      "e_j": -13.902826050881004,
+      "ehat_j": -0.023136587391224858
+    },
+    {
+      "ladder": "L_irr",
+      "j": 52,
+      "x_j": 383794.50321984035,
+      "x_j_plus_1": 459891.6935320234,
+      "c_j": 5868,
+      "L_j": 5870.953047814427,
+      "e_j": -2.953047814427009,
+      "ehat_j": -0.004766736044089182
+    },
+    {
+      "ladder": "L_irr",
+      "j": 53,
+      "x_j": 459891.6935320234,
+      "x_j_plus_1": 483639.4518728117,
+      "c_j": 1835,
+      "L_j": 1816.3538356753793,
+      "e_j": 18.646164324620713,
+      "ehat_j": 0.02749550651123419
+    },
+    {
+      "ladder": "L_irr",
+      "j": 54,
+      "x_j": 483639.4518728117,
+      "x_j_plus_1": 522119.33128719224,
+      "c_j": 2938,
+      "L_j": 2928.9354218307253,
+      "e_j": 9.064578169274682,
+      "ehat_j": 0.013034270760950636
+    },
+    {
+      "ladder": "L_irr",
+      "j": 55,
+      "x_j": 522119.33128719224,
+      "x_j_plus_1": 664356.2194133089,
+      "c_j": 10667,
+      "L_j": 10694.573286953751,
+      "e_j": -27.57328695375145,
+      "ehat_j": -0.038159585969268016
+    },
+    {
+      "ladder": "L_irr",
+      "j": 56,
+      "x_j": 664356.2194133089,
+      "x_j_plus_1": 683791.6920534013,
+      "c_j": 1448,
+      "L_j": 1447.1833633264382,
+      "e_j": 0.8166366735617885,
+      "ehat_j": 0.0010019092283917307
+    },
+    {
+      "ladder": "L_irr",
+      "j": 57,
+      "x_j": 683791.6920534013,
+      "x_j_plus_1": 816408.429230081,
+      "c_j": 9811,
+      "L_j": 9798.150386235644,
+      "e_j": 12.849613764356036,
+      "ehat_j": 0.015539182376072233
+    },
+    {
+      "ladder": "L_irr",
+      "j": 58,
+      "x_j": 816408.429230081,
+      "x_j_plus_1": 822714.1471157636,
+      "c_j": 471,
+      "L_j": 462.8184199692721,
+      "e_j": 8.1815800307279,
+      "ehat_j": 0.009054895506160822
+    },
+    {
+      "ladder": "L_irr",
+      "j": 59,
+      "x_j": 822714.1471157636,
+      "x_j_plus_1": 852881.6933726912,
+      "c_j": 2207,
+      "L_j": 2210.647429440007,
+      "e_j": -3.6474294400068175,
+      "ehat_j": -0.00402126243131006
+    },
+    {
+      "ladder": "L_irr",
+      "j": 60,
+      "x_j": 852881.6933726912,
+      "x_j_plus_1": 962134.2917174781,
+      "c_j": 7954,
+      "L_j": 7959.827982641565,
+      "e_j": -5.827982641564631,
+      "ehat_j": -0.006310646500526134
+    },
+    {
+      "ladder": "L_irr",
+      "j": 61,
+      "x_j": 962134.2917174781,
+      "x_j_plus_1": 995339.6030378509,
+      "c_j": 2373,
+      "L_j": 2405.930920731695,
+      "e_j": -32.930920731695096,
+      "ehat_j": -0.03357268121255356
+    },
+    {
+      "ladder": "L_irr",
+      "j": 62,
+      "x_j": 995339.6030378509,
+      "x_j_plus_1": 1187574.5705401816,
+      "c_j": 13888,
+      "L_j": 13821.22737123126,
+      "e_j": 66.7726287687401,
+      "ehat_j": 0.06692876821316654
+    },
+    {
+      "ladder": "L_irr",
+      "j": 63,
+      "x_j": 1187574.5705401816,
+      "x_j_plus_1": 1252166.4524839576,
+      "c_j": 4571,
+      "L_j": 4606.825730970653,
+      "e_j": -35.82573097065324,
+      "ehat_j": -0.032874913253988065
+    },
+    {
+      "ladder": "L_irr",
+      "j": 64,
+      "x_j": 1252166.4524839576,
+      "x_j_plus_1": 1283338.395597454,
+      "c_j": 2232,
+      "L_j": 2217.1603424015498,
+      "e_j": 14.83965759845023,
+      "ehat_j": 0.013261506067215496
+    },
+    {
+      "ladder": "L_irr",
+      "j": 65,
+      "x_j": 1283338.395597454,
+      "x_j_plus_1": 1328936.1260562923,
+      "c_j": 3229,
+      "L_j": 3236.380740457589,
+      "e_j": -7.380740457589127,
+      "ehat_j": -0.006515223819415788
+    },
+    {
+      "ladder": "L_irr",
+      "j": 66,
+      "x_j": 1328936.1260562923,
+      "x_j_plus_1": 1367343.1622153516,
+      "c_j": 2702,
+      "L_j": 2719.911847842605,
+      "e_j": -17.911847842604857,
+      "ehat_j": -0.015537757446795999
+    },
+    {
+      "ladder": "L_irr",
+      "j": 67,
+      "x_j": 1367343.1622153516,
+      "x_j_plus_1": 1518289.2062178776,
+      "c_j": 10693,
+      "L_j": 10639.075313739155,
+      "e_j": 53.92468626084519,
+      "ehat_j": 0.046115706387984956
+    },
+    {
+      "ladder": "L_irr",
+      "j": 68,
+      "x_j": 1518289.2062178776,
+      "x_j_plus_1": 1619592.742754723,
+      "c_j": 7036,
+      "L_j": 7098.167159003688,
+      "e_j": -62.16715900368763,
+      "ehat_j": -0.050452625175349805
+    },
+    {
+      "ladder": "L_irr",
+      "j": 69,
+      "x_j": 1619592.742754723,
+      "x_j_plus_1": 1630574.1753737538,
+      "c_j": 786,
+      "L_j": 767.5540500582614,
+      "e_j": 18.445949941738604,
+      "ehat_j": 0.014494328991593869
+    },
+    {
+      "ladder": "L_irr",
+      "j": 70,
+      "x_j": 1630574.1753737538,
+      "x_j_plus_1": 1934646.1686853543,
+      "c_j": 21143,
+      "L_j": 21119.114724547188,
+      "e_j": 23.885275452812493,
+      "ehat_j": 0.018705097408870455
+    },
+    {
+      "ladder": "L_irr",
+      "j": 71,
+      "x_j": 1934646.1686853543,
+      "x_j_plus_1": 2008681.1017507422,
+      "c_j": 5110,
+      "L_j": 5105.923338328909,
+      "e_j": 4.076661671090733,
+      "ehat_j": 0.002930919540154625
+    },
+    {
+      "ladder": "L_irr",
+      "j": 72,
+      "x_j": 2008681.1017507422,
+      "x_j_plus_1": 2029995.8500663266,
+      "c_j": 1473,
+      "L_j": 1467.5830022353077,
+      "e_j": 5.416997764692269,
+      "ehat_j": 0.003822109803827577
+    },
+    {
+      "ladder": "L_irr",
+      "j": 73,
+      "x_j": 2029995.8500663266,
+      "x_j_plus_1": 2366052.0633218475,
+      "c_j": 22961,
+      "L_j": 23006.20713353459,
+      "e_j": -45.20713353458996,
+      "ehat_j": -0.03172921995855888
+    },
+    {
+      "ladder": "L_irr",
+      "j": 74,
+      "x_j": 2366052.0633218475,
+      "x_j_plus_1": 2566181.1728722835,
+      "c_j": 13570,
+      "L_j": 13593.124698503918,
+      "e_j": -23.124698503917898,
+      "ehat_j": -0.015033632541059504
+    },
+    {
+      "ladder": "L_irr",
+      "j": 75,
+      "x_j": 2566181.1728722835,
+      "x_j_plus_1": 2677668.2544319257,
+      "c_j": 7566,
+      "L_j": 7540.974075842049,
+      "e_j": 25.025924157950612,
+      "ehat_j": 0.015622353721753475
+    },
+    {
+      "ladder": "L_irr",
+      "j": 76,
+      "x_j": 2677668.2544319257,
+      "x_j_plus_1": 2967848.4733969118,
+      "c_j": 19536,
+      "L_j": 19531.006756471284,
+      "e_j": 4.993243528715539,
+      "ehat_j": 0.0030514366838893412
+    },
+    {
+      "ladder": "L_irr",
+      "j": 77,
+      "x_j": 2967848.4733969118,
+      "x_j_plus_1": 3105639.7735428093,
+      "c_j": 9216,
+      "L_j": 9228.701173529485,
+      "e_j": -12.701173529485459,
+      "ehat_j": -0.0073726393128332735
+    },
+    {
+      "ladder": "L_irr",
+      "j": 78,
+      "x_j": 3105639.7735428093,
+      "x_j_plus_1": 3956968.1059816172,
+      "c_j": 56497,
+      "L_j": 56459.102365844876,
+      "e_j": 37.89763415512425,
+      "ehat_j": 0.021504856999997723
+    },
+    {
+      "ladder": "L_irr",
+      "j": 79,
+      "x_j": 3956968.1059816172,
+      "x_j_plus_1": 4191891.0652259127,
+      "c_j": 15424,
+      "L_j": 15431.024834987758,
+      "e_j": -7.024834987758368,
+      "ehat_j": -0.0035314645604460756
+    },
+    {
+      "ladder": "L_irr",
+      "j": 80,
+      "x_j": 4191891.0652259127,
+      "x_j_plus_1": 5935500.809132612,
+      "c_j": 112962,
+      "L_j": 112960.26629087725,
+      "e_j": 1.7337091227527708,
+      "ehat_j": 0.0008467812643885819
+    },
+    {
+      "ladder": "L_irr",
+      "j": 81,
+      "x_j": 5935500.809132612,
+      "x_j_plus_1": 6019163.382388463,
+      "c_j": 5343,
+      "L_j": 5360.636884254596,
+      "e_j": -17.636884254596225,
+      "ehat_j": -0.0072392434277205615
+    },
+    {
+      "ladder": "L_irr",
+      "j": 82,
+      "x_j": 6019163.382388463,
+      "x_j_plus_1": 7773527.228791579,
+      "c_j": 111417,
+      "L_j": 111412.19183069638,
+      "e_j": 4.80816930362198,
+      "ehat_j": 0.001959799694220575
+    },
+    {
+      "ladder": "L_irr",
+      "j": 83,
+      "x_j": 7773527.228791579,
+      "x_j_plus_1": 9107166.415078837,
+      "c_j": 83620,
+      "L_j": 83612.46378115499,
+      "e_j": 7.536218845008989,
+      "ehat_j": 0.002702990002742063
+    },
+    {
+      "ladder": "L_irr",
+      "j": 84,
+      "x_j": 9107166.415078837,
+      "x_j_plus_1": 10037863.98244001,
+      "c_j": 57809,
+      "L_j": 57891.12694731823,
+      "e_j": -82.12694731823285,
+      "ehat_j": -0.027214104244126444
+    },
+    {
+      "ladder": "L_irr",
+      "j": 85,
+      "x_j": 10037863.98244001,
+      "x_j_plus_1": 11789436.112806,
+      "c_j": 108187,
+      "L_j": 108075.78717058613,
+      "e_j": 111.21282941386744,
+      "ehat_j": 0.03510219194686046
+    },
+    {
+      "ladder": "L_irr",
+      "j": 86,
+      "x_j": 11789436.112806,
+      "x_j_plus_1": 12187706.08550323,
+      "c_j": 24419,
+      "L_j": 24430.92862930326,
+      "e_j": -11.928629303260095,
+      "ehat_j": -0.0034741136844436394
+    },
+    {
+      "ladder": "L_irr",
+      "j": 87,
+      "x_j": 12187706.08550323,
+      "x_j_plus_1": 12708038.648451434,
+      "c_j": 31855,
+      "L_j": 31845.265455535828,
+      "e_j": 9.734544464172359,
+      "ehat_j": 0.0027883972579035737
+    },
+    {
+      "ladder": "L_irr",
+      "j": 88,
+      "x_j": 12708038.648451434,
+      "x_j_plus_1": 13237730.17226613,
+      "c_j": 32304,
+      "L_j": 32336.372931532584,
+      "e_j": -32.37293153258361,
+      "ehat_j": -0.009081190063227372
+    },
+    {
+      "ladder": "L_irr",
+      "j": 89,
+      "x_j": 13237730.17226613,
+      "x_j_plus_1": 16163951.476507196,
+      "c_j": 177247,
+      "L_j": 177305.80355846297,
+      "e_j": -58.803558462968795,
+      "ehat_j": -0.01616206487446242
+    },
+    {
+      "ladder": "L_irr",
+      "j": 90,
+      "x_j": 16163951.476507196,
+      "x_j_plus_1": 18568371.1592003,
+      "c_j": 144279,
+      "L_j": 144225.71905433064,
+      "e_j": 53.28094566936488,
+      "ehat_j": 0.01325251045109449
+    },
+    {
+      "ladder": "L_irr",
+      "j": 91,
+      "x_j": 18568371.1592003,
+      "x_j_plus_1": 33161679.770308495,
+      "c_j": 855744,
+      "L_j": 855663.8893483859,
+      "e_j": 80.11065161414444,
+      "ehat_j": 0.018591026075000034
+    },
+    {
+      "ladder": "L_irr",
+      "j": 92,
+      "x_j": 33161679.770308495,
+      "x_j_plus_1": 39067541.27253853,
+      "c_j": 339272,
+      "L_j": 339369.19422593707,
+      "e_j": -97.19422593706986,
+      "ehat_j": -0.01687804749936465
+    },
+    {
+      "ladder": "L_irr",
+      "j": 93,
+      "x_j": 39067541.27253853,
+      "x_j_plus_1": 40038938.51145405,
+      "c_j": 55613,
+      "L_j": 55525.63116196744,
+      "e_j": 87.36883803256205,
+      "ehat_j": 0.013978112130657624
+    },
+    {
+      "ladder": "L_irr",
+      "j": 94,
+      "x_j": 40038938.51145405,
+      "x_j_plus_1": 45094131.74879342,
+      "c_j": 287697,
+      "L_j": 287761.1956548546,
+      "e_j": -64.19565485458588,
+      "ehat_j": -0.010145287432603107
+    },
+    {
+      "ladder": "L_irr",
+      "j": 95,
+      "x_j": 45094131.74879342,
+      "x_j_plus_1": 47436208.25332523,
+      "c_j": 132768,
+      "L_j": 132687.08480674433,
+      "e_j": 80.9151932556706,
+      "ehat_j": 0.012049528716896012
+    },
+    {
+      "ladder": "L_irr",
+      "j": 96,
+      "x_j": 47436208.25332523,
+      "x_j_plus_1": 47685128.72461055,
+      "c_j": 14033,
+      "L_j": 14080.132771474608,
+      "e_j": -47.13277147460758,
+      "ehat_j": -0.00684333805244733
+    },
+    {
+      "ladder": "L_irr",
+      "j": 97,
+      "x_j": 47685128.72461055,
+      "x_j_plus_1": 55083860.842370644,
+      "c_j": 416622,
+      "L_j": 416708.6440009606,
+      "e_j": -86.64400096057216,
+      "ehat_j": -0.012547205726501257
+    },
+    {
+      "ladder": "L_irr",
+      "j": 98,
+      "x_j": 55083860.842370644,
+      "x_j_plus_1": 55832021.46842886,
+      "c_j": 41939,
+      "L_j": 41955.205770574445,
+      "e_j": -16.205770574444614,
+      "ehat_j": -0.002183521638321789
+    },
+    {
+      "ladder": "L_irr",
+      "j": 99,
+      "x_j": 55832021.46842886,
+      "x_j_plus_1": 56806101.209201895,
+      "c_j": 54706,
+      "L_j": 54577.13906902946,
+      "e_j": 128.86093097054254,
+      "ehat_j": 0.01724565081867395
+    },
+    {
+      "ladder": "L_irr",
+      "j": 100,
+      "x_j": 56806101.209201895,
+      "x_j_plus_1": 74046538.34772632,
+      "c_j": 958177,
+      "L_j": 958102.4812802436,
+      "e_j": 74.5187197563937,
+      "ehat_j": 0.00988707647622311
+    },
+    {
+      "ladder": "L_irr",
+      "j": 101,
+      "x_j": 74046538.34772632,
+      "x_j_plus_1": 78305433.71465567,
+      "c_j": 234528,
+      "L_j": 234656.5133338652,
+      "e_j": -128.51333386520855,
+      "ehat_j": -0.01493467616358525
+    },
+    {
+      "ladder": "L_irr",
+      "j": 102,
+      "x_j": 78305433.71465567,
+      "x_j_plus_1": 78531560.36141607,
+      "c_j": 12357,
+      "L_j": 12439.14618470404,
+      "e_j": -82.14618470403911,
+      "ehat_j": -0.00928306620287505
+    },
+    {
+      "ladder": "L_irr",
+      "j": 103,
+      "x_j": 78531560.36141607,
+      "x_j_plus_1": 89945400.04363412,
+      "c_j": 625280,
+      "L_j": 625438.4871549418,
+      "e_j": -158.48715494177304,
+      "ehat_j": -0.017884300397907796
+    },
+    {
+      "ladder": "L_irr",
+      "j": 104,
+      "x_j": 89945400.04363412,
+      "x_j_plus_1": 99517902.3482391,
+      "c_j": 521252,
+      "L_j": 521177.6806486781,
+      "e_j": 74.3193513219012,
+      "ehat_j": 0.00783632485737887
+    },
+    {
+      "ladder": "L_irr",
+      "j": 105,
+      "x_j": 99517902.3482391,
+      "x_j_plus_1": 130500496.36839513,
+      "c_j": 1669683,
+      "L_j": 1669496.3773209183,
+      "e_j": 186.62267908174545,
+      "ehat_j": 0.01870741639644304
+    },
+    {
+      "ladder": "L_irr",
+      "j": 106,
+      "x_j": 130500496.36839513,
+      "x_j_plus_1": 147455999.99999997,
+      "c_j": 904352,
+      "L_j": 904295.4230380092,
+      "e_j": 56.5769619907951,
+      "ehat_j": 0.004952603288542288
+    }
+  ]
+}

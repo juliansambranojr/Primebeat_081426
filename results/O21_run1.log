@@ -1,0 +1,518 @@
+==============================================================================
+O21 — archimedean convergence: pin T, then re-stand the c curve on it
+     (measures where a truncation parameter stops moving the answer;
+      proves nothing, interprets nothing)
+==============================================================================
+  started        : 2026-08-16T05:19:31.238758Z
+  the problem    : O20 swept c at T = 400. At c = 13, N = 100, dps = 150,
+                   T = 400 -> lambda_1 2.0770e-59, first-zero err 1.455e-55 (O20)
+                   T = 800 -> lambda_1 2.8655e-59, first-zero err 2.005e-55 (O8 log)
+                   Doubling T moved lambda_1 27.5% and made the error WORSE.
+  criterion (pre-registered, fixed before this run):
+    settled at T_i iff the last TWO relative changes are each < 0.001
+
+  phase 1: c = 13, T in [100, 200, 400, 800, 1600, 3200]
+  phase 2: c in [13, 17, 19, 23, 29], at the settled T
+  N              : 100   (matrix is 201 square)
+  dps            : 150
+  n_zeros        : 5
+  settle-tol     : 0.001
+  budget-hours   : 8.0  (8h00m00s)
+  out            : /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+  connes_cvs     : 0.3.1
+  mpmath         : 1.3.0
+
+------------------------------------------------------------------------------
+GATE A — is flint actually in use?
+------------------------------------------------------------------------------
+  import flint                      : OK
+  flint.__version__                 : 0.9.0
+  connes_cvs.operator.HAS_FLINT     : True
+  connes_cvs reported flint version : 0.9.0
+  GATE A: PASS — flint is in use.
+
+------------------------------------------------------------------------------
+PRIOR RECORD (read at runtime; nothing hardcoded)
+------------------------------------------------------------------------------
+  O20 results : /Users/juliansambrano/GitHub/Primebeat_081426/results/O20_connes_cutoff_sweep_results.json
+    generated : 2026-08-16T04:16:00.135110Z
+    params    : {'N': 100, 'T': 400, 'dps': 150, 'n_zeros': 5, 'code_version': '0a6513628eb9ebbd5c34a60bc4435a05a49f94c0becc94d0cc49242cc3434efb', 'cutoffs_requested': [13, 17, 19, 23, 29]}
+    cutoffs   : [13, 17, 19, 23, 29]
+  O8 log      : /Users/juliansambrano/GitHub/Primebeat_081426/O8_run_dps150.log:15
+    line      : '  smallest even-sector eigenvalue: 2.865453615e-59'
+
+##############################################################################
+# PHASE 1 — T SWEEP at c = 13   T in [100, 200, 400, 800, 1600, 3200]
+##############################################################################
+
+==============================================================================
+[2026-08-16T05:19:31Z] START  phase 1  c = 13  T = 100  N = 100  dps = 150
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-16T05:19:31Z] building the CvS Galerkin matrix Q(c) at T = 100...
+  Q is 201 x 201   (build: 150.47 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T05:22:01Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -2.477966387   (13.37 s)
+  log10 |lambda_1| = 0.39409541
+  [2026-08-16T05:22:15Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (13.29 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -2.47796638655
+  lambda_2 = -2.37342908623
+  gap  lambda_2 - lambda_1 = 0.104537300312
+  ratio lambda_2 / lambda_1 = 0.95781326943
+
+  [2026-08-16T05:22:28Z] extracting 5 zeros from the ground-state eigenvector...
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 1: root candidate left the local search window: 13.6589391794 not in [14.1297251417, 14.1397251417]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 2: root candidate left the local search window: 20.7876974789 not in [21.0170396388, 21.0270396388]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 3: root candidate left the local search window: 25.2160241466 not in [25.0058575801, 25.0158575801]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 4: root candidate left the local search window: 30.356716085 not in [30.4198761259, 30.4298761259]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 5: root candidate left the local search window: 32.8307513686 not in [32.9300615877, 32.9400615877]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+  (0.37 s; 0 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725              NOT CONVERGED root candidate left th      False
+    2 21.02203963877155499262848              NOT CONVERGED root candidate left th      False
+    3 25.01085758014568876321379              NOT CONVERGED root candidate left th      False
+    4  30.4248761258595132103119              NOT CONVERGED root candidate left th      False
+    5 32.93506158773918969066237              NOT CONVERGED root candidate left th      False
+
+[2026-08-16T05:22:28Z] FINISH phase 1  c = 13  T = 100   wall 177.69 s (0h02m57s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T05:22:28Z] START  phase 1  c = 13  T = 200  N = 100  dps = 150
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-16T05:22:28Z] building the CvS Galerkin matrix Q(c) at T = 200...
+  Q is 201 x 201   (build: 215.28 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T05:26:04Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -2.064025836   (13.76 s)
+  log10 |lambda_1| = 0.31471513
+  [2026-08-16T05:26:18Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (13.75 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -2.06402583592
+  lambda_2 = -1.89022974349
+  gap  lambda_2 - lambda_1 = 0.173796092426
+  ratio lambda_2 / lambda_1 = 0.915797520844
+
+  [2026-08-16T05:26:31Z] extracting 5 zeros from the ground-state eigenvector...
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 1: root candidate left the local search window: 13.6533779965 not in [14.1297251417, 14.1397251417]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 2: root candidate left the local search window: 20.7648648599 not in [21.0170396388, 21.0270396388]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 3: root candidate left the local search window: 25.1576843435 not in [25.0058575801, 25.0158575801]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 4: root candidate left the local search window: 30.3336691499 not in [30.4198761259, 30.4298761259]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 5: root candidate left the local search window: 32.8066290406 not in [32.9300615877, 32.9400615877]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+  (0.38 s; 0 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725              NOT CONVERGED root candidate left th      False
+    2 21.02203963877155499262848              NOT CONVERGED root candidate left th      False
+    3 25.01085758014568876321379              NOT CONVERGED root candidate left th      False
+    4  30.4248761258595132103119              NOT CONVERGED root candidate left th      False
+    5 32.93506158773918969066237              NOT CONVERGED root candidate left th      False
+
+[2026-08-16T05:26:32Z] FINISH phase 1  c = 13  T = 200   wall 243.36 s (0h04m03s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T05:26:32Z] START  phase 1  c = 13  T = 400  N = 100  dps = 150
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-16T05:26:32Z] building the CvS Galerkin matrix Q(c) at T = 400...
+  Q is 201 x 201   (build: 331.38 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T05:32:03Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 2.076962658e-59   (14.05 s)
+  log10 |lambda_1| = -58.682571
+  [2026-08-16T05:32:17Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (14.17 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = 2.0769626582e-59
+  lambda_2 = 9.12073758878e-52
+  gap  lambda_2 - lambda_1 = 9.12073738108e-52
+  ratio lambda_2 / lambda_1 = 43913825.5701
+
+  [2026-08-16T05:32:32Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.38 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      1.45495241244e-55       True
+    2 21.02203963877155499262848 21.02203963877155499262848      2.69103494637e-52       True
+    3 25.01085758014568876321379 25.01085758014568876321379      2.49199642553e-50       True
+    4  30.4248761258595132103119  30.4248761258595132103119      2.19612720873e-47       True
+    5 32.93506158773918969066237 32.93506158773918969066237      4.28443232933e-46       True
+
+[2026-08-16T05:32:32Z] FINISH phase 1  c = 13  T = 400   wall 360.18 s (0h06m00s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T05:32:32Z] START  phase 1  c = 13  T = 800  N = 100  dps = 150
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-16T05:32:32Z] building the CvS Galerkin matrix Q(c) at T = 800...
+  Q is 201 x 201   (build: 564.68 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T05:41:57Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 2.865453615e-59   (14.10 s)
+  log10 |lambda_1| = -58.542807
+  [2026-08-16T05:42:11Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (14.02 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = 2.86545361493e-59
+  lambda_2 = 1.17602315227e-51
+  gap  lambda_2 - lambda_1 = 1.17602312361e-51
+  ratio lambda_2 / lambda_1 = 41041430.4436
+
+  [2026-08-16T05:42:25Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.37 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      2.00546144405e-55       True
+    2 21.02203963877155499262848 21.02203963877155499262848      3.70478985739e-52       True
+    3 25.01085758014568876321379 25.01085758014568876321379      3.42763721681e-50       True
+    4  30.4248761258595132103119  30.4248761258595132103119      3.01614094898e-47       True
+    5 32.93506158773918969066237 32.93506158773918969066237      5.87947744441e-46       True
+
+[2026-08-16T05:42:25Z] FINISH phase 1  c = 13  T = 800   wall 593.37 s (0h09m53s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T05:42:25Z] START  phase 1  c = 13  T = 1600  N = 100  dps = 150
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-16T05:42:25Z] building the CvS Galerkin matrix Q(c) at T = 1600...
+  Q is 201 x 201   (build: 551.66 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T05:51:37Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 3.126948275e-59   (14.03 s)
+  log10 |lambda_1| = -58.504879
+  [2026-08-16T05:51:51Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (13.95 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = 3.12694827544e-59
+  lambda_2 = 1.23925745496e-51
+  gap  lambda_2 - lambda_1 = 1.23925742369e-51
+  ratio lambda_2 / lambda_1 = 39631530.3548
+
+  [2026-08-16T05:52:05Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.37 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      2.18783514573e-55       True
+    2 21.02203963877155499262848 21.02203963877155499262848       4.0401568818e-52       True
+    3 25.01085758014568876321379 25.01085758014568876321379      3.73683250877e-50       True
+    4  30.4248761258595132103119  30.4248761258595132103119       3.2866509259e-47       True
+    5 32.93506158773918969066237 32.93506158773918969066237      6.40516723989e-46       True
+
+[2026-08-16T05:52:06Z] FINISH phase 1  c = 13  T = 1600   wall 580.20 s (0h09m40s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T05:52:06Z] START  phase 1  c = 13  T = 3200  N = 100  dps = 150
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-16T05:52:06Z] building the CvS Galerkin matrix Q(c) at T = 3200...
+  Q is 201 x 201   (build: 547.84 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T06:01:14Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -0.0005506334658   (15.26 s)
+  log10 |lambda_1| = -3.2591374
+  [2026-08-16T06:01:29Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (15.18 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -0.000550633465823
+  lambda_2 = -0.000471990981701
+  gap  lambda_2 - lambda_1 = 7.86424841221e-5
+  ratio lambda_2 / lambda_1 = 0.857178161148
+
+  [2026-08-16T06:01:44Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.37 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13508809329224537989482      0.000362951557552       True
+    2 21.02203963877155499262848 21.02203915096631200527148       4.87805242987e-7       True
+    3 25.01085758014568876321379 25.01100749640604133536099      0.000149916260353       True
+    4  30.4248761258595132103119 30.42495614281259635904247       8.00169530831e-5       True
+    5 32.93506158773918969066237 32.93514356159149563973997       8.19738523059e-5       True
+
+[2026-08-16T06:01:44Z] FINISH phase 1  c = 13  T = 3200   wall 578.84 s (0h09m38s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+PHASE 1 RESULT — T table and the pre-registered criterion
+==============================================================================
+        T  Qrows      sym         lambda_1   log10|l1|     rel chg         lambda_2         l2/l1  first-zero err     rel chg    wall s
+  ------- ------ -------- ---------------- ----------- ----------- ---------------- ------------- --------------- ----------- ---------
+      100    201        0      -2.47796639  0.39409541           —      -2.37342909      0.957813               —           —    177.69
+      200    201        0      -2.06402584  0.31471513       0.167      -1.89022974      0.915798               —           —    243.36
+      400    201        0   2.07696266e-59  -58.682571           1   9.12073759e-52   4.39138e+07     1.45495e-55           —    360.18
+      800    201        0   2.86545361e-59  -58.542807      0.3796   1.17602315e-51   4.10414e+07     2.00546e-55      0.3784    593.37
+     1600    201        0   3.12694828e-59  -58.504879     0.09126   1.23925745e-51   3.96315e+07     2.18784e-55     0.09094    580.20
+     3200    201        0  -0.000550633466  -3.2591374   1.761e+55  -0.000471990982      0.857178     0.000362952   1.659e+51    578.84
+
+  criterion: a quantity is SETTLED at T_i if |v_i - v_{i-1}| / |v_{i-1}| < settle_tol AND |v_{i-1} - v_{i-2}| / |v_{i-2}| < settle_tol — i.e. two consecutive steps of the T sweep each move it by less than the tolerance. The settled T is the FIRST T in sweep order at which this holds. At least three completed points are needed for the criterion to be evaluable.
+  settle_tol = 0.001
+  lambda_1        : NOT SETTLED — NO T in this sweep settled for lambda_1 at settle_tol=0.001
+  first-zero error: NOT SETTLED — NO T in this sweep settled for first_zero_error at settle_tol=0.001
+
+  NOTHING SETTLED. phase 2 runs at the LARGEST T that completed, T = 3200; t_settled is null and the c curve stands on an UNCONVERGED T
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+##############################################################################
+# PHASE 2 — c SWEEP at T = 3200   c in [13, 17, 19, 23, 29]
+##############################################################################
+
+==============================================================================
+[2026-08-16T06:01:44Z] START  phase 2  c = 13  T = 3200  N = 100  dps = 150
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-16T06:01:44Z] building the CvS Galerkin matrix Q(c) at T = 3200...
+  Q is 201 x 201   (build: 535.54 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T06:10:40Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -0.0005506334658   (15.32 s)
+  log10 |lambda_1| = -3.2591374
+  [2026-08-16T06:10:55Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (15.27 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -0.000550633465823
+  lambda_2 = -0.000471990981701
+  gap  lambda_2 - lambda_1 = 7.86424841221e-5
+  ratio lambda_2 / lambda_1 = 0.857178161148
+
+  [2026-08-16T06:11:11Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.36 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13508809329224537989482      0.000362951557552       True
+    2 21.02203963877155499262848 21.02203915096631200527148       4.87805242987e-7       True
+    3 25.01085758014568876321379 25.01100749640604133536099      0.000149916260353       True
+    4  30.4248761258595132103119 30.42495614281259635904247       8.00169530831e-5       True
+    5 32.93506158773918969066237 32.93514356159149563973997       8.19738523059e-5       True
+
+[2026-08-16T06:11:11Z] FINISH phase 2  c = 13  T = 3200   wall 566.69 s (0h09m26s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T06:11:11Z] START  phase 2  c = 17  T = 3200  N = 100  dps = 150
+==============================================================================
+  primes <= 17 : [2, 3, 5, 7, 11, 13, 17]   (n = 7)
+  bridge coordinate d = 2*log2(c) - 1 = 7.1749256825   (O19's axis)
+  [2026-08-16T06:11:11Z] building the CvS Galerkin matrix Q(c) at T = 3200...
+  Q is 201 x 201   (build: 550.62 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T06:20:22Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -0.005287097134   (14.58 s)
+  log10 |lambda_1| = -2.2767827
+  [2026-08-16T06:20:37Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (14.52 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -0.00528709713361
+  lambda_2 = -0.0026847248791
+  gap  lambda_2 - lambda_1 = 0.00260237225452
+  ratio lambda_2 / lambda_1 = 0.507788075621
+
+  [2026-08-16T06:20:51Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.36 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13570189549362563659849      0.000976753758932       True
+    2 21.02203963877155499262848 21.02257685983892162183365      0.000537221067367       True
+    3 25.01085758014568876321379 25.01243647205567024525108       0.00157889190998       True
+    4  30.4248761258595132103119 30.42512114101538334942304       0.00024501515587       True
+    5 32.93506158773918969066237 32.93252311534317393684737       0.00253847239602       True
+
+[2026-08-16T06:20:51Z] FINISH phase 2  c = 17  T = 3200   wall 580.29 s (0h09m40s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T06:20:51Z] START  phase 2  c = 19  T = 3200  N = 100  dps = 150
+==============================================================================
+  primes <= 19 : [2, 3, 5, 7, 11, 13, 17, 19]   (n = 8)
+  bridge coordinate d = 2*log2(c) - 1 = 7.4958550269   (O19's axis)
+  [2026-08-16T06:20:51Z] building the CvS Galerkin matrix Q(c) at T = 3200...
+  Q is 201 x 201   (build: 549.52 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T06:30:01Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -0.002009713148   (15.23 s)
+  log10 |lambda_1| = -2.6968659
+  [2026-08-16T06:30:16Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (15.15 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -0.00200971314761
+  lambda_2 = -0.0016958099535
+  gap  lambda_2 - lambda_1 = 0.000313903194106
+  ratio lambda_2 / lambda_1 = 0.843806965945
+
+  [2026-08-16T06:30:32Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.38 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13480620884461818914533       8.10671099244e-5       True
+    2 21.02203963877155499262848 21.02151669046833900950022      0.000522948303216       True
+    3 25.01085758014568876321379 25.01052464061061429299256      0.000332939535074       True
+    4  30.4248761258595132103119 30.42465850848205609294006      0.000217617377457       True
+    5 32.93506158773918969066237 32.93507574573468947388431       1.41579954998e-5       True
+
+[2026-08-16T06:30:32Z] FINISH phase 2  c = 19  T = 3200   wall 580.50 s (0h09m40s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T06:30:32Z] START  phase 2  c = 23  T = 3200  N = 100  dps = 150
+==============================================================================
+  primes <= 23 : [2, 3, 5, 7, 11, 13, 17, 19, 23]   (n = 9)
+  bridge coordinate d = 2*log2(c) - 1 = 8.0471239121   (O19's axis)
+  [2026-08-16T06:30:32Z] building the CvS Galerkin matrix Q(c) at T = 3200...
+  Q is 201 x 201   (build: 562.16 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T06:39:54Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -0.005851490456   (14.28 s)
+  log10 |lambda_1| = -2.2327335
+  [2026-08-16T06:40:09Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (14.23 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -0.00585149045603
+  lambda_2 = -0.0046512900073
+  gap  lambda_2 - lambda_1 = 0.00120020044873
+  ratio lambda_2 / lambda_1 = 0.794889787868
+
+  [2026-08-16T06:40:23Z] extracting 5 zeros from the ground-state eigenvector...
+/Users/juliansambrano/GitHub/Primebeat_081426/O21_archimedean_convergence.py:765: RuntimeWarning: extract_zeros did not converge for zeta zero 1: root candidate left the local search window: 14.144970716 not in [14.1297251417, 14.1397251417]
+  zs = cc.extract_zeros(vec, n_zeros=args.n_zeros, dps=args.dps, c=c)
+  (0.36 s; 4 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725              NOT CONVERGED root candidate left th      False
+    2 21.02203963877155499262848 21.02176657473440127647509      0.000273064037154       True
+    3 25.01085758014568876321379 25.01134236279459773738982      0.000484782648909       True
+    4  30.4248761258595132103119 30.42797366383906238612215       0.00309753797955       True
+    5 32.93506158773918969066237 32.93518056990300520941689      0.000118982163816       True
+
+[2026-08-16T06:40:23Z] FINISH phase 2  c = 23  T = 3200   wall 591.23 s (0h09m51s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+[2026-08-16T06:40:23Z] START  phase 2  c = 29  T = 3200  N = 100  dps = 150
+==============================================================================
+  primes <= 29 : [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]   (n = 10)
+  bridge coordinate d = 2*log2(c) - 1 = 8.7159619903   (O19's axis)
+  [2026-08-16T06:40:23Z] building the CvS Galerkin matrix Q(c) at T = 3200...
+  Q is 201 x 201   (build: 553.39 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-16T06:49:37Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -0.007535061221   (14.25 s)
+  log10 |lambda_1| = -2.1229132
+  [2026-08-16T06:49:51Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (14.16 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -0.00753506122053
+  lambda_2 = -0.005833677209
+  gap  lambda_2 - lambda_1 = 0.00170138401153
+  ratio lambda_2 / lambda_1 = 0.774204354585
+
+  [2026-08-16T06:50:05Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.37 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13413090658081883284361      0.000594235153875       True
+    2 21.02203963877155499262848 21.02254846203341096948442      0.000508823261856       True
+    3 25.01085758014568876321379 25.01144858734902382172524      0.000591007203335       True
+    4  30.4248761258595132103119 30.42545129970500830793442      0.000575173845495       True
+    5 32.93506158773918969066237 32.93407808811449487244498      0.000983499624695       True
+
+[2026-08-16T06:50:06Z] FINISH phase 2  c = 29  T = 3200   wall 582.37 s (0h09m42s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json
+
+==============================================================================
+FINAL SUMMARY
+==============================================================================
+
+  T TABLE (phase 1, c = 13, N = 100, dps = 150)
+        T         lambda_1     rel chg  first-zero err     rel chg         l2/l1    wall s
+  ------- ---------------- ----------- --------------- ----------- ------------- ---------
+      100      -2.47796639           —               —           —      0.957813    177.69
+      200      -2.06402584       0.167               —           —      0.915798    243.36
+      400   2.07696266e-59           1     1.45495e-55           —   4.39138e+07    360.18
+      800   2.86545361e-59      0.3796     2.00546e-55      0.3784   4.10414e+07    593.37
+     1600   3.12694828e-59     0.09126     2.18784e-55     0.09094   3.96315e+07    580.20
+     3200  -0.000550633466   1.761e+55     0.000362952   1.659e+51      0.857178    578.84
+
+  SETTLED T (lambda_1)         : NONE — no T in the sweep settled
+  SETTLED T (first-zero error) : NONE — no T in the sweep settled
+  T used for phase 2           : 3200
+  NOTE: the c curve below stands on an UNCONVERGED T.
+
+  c TABLE (phase 2, T = 3200, N = 100, dps = 150)
+     c  n_p         d         lambda_1   log10|l1|         l2/l1  first-zero err    wall s
+  ---- ---- --------- ---------------- ----------- ------------- --------------- ---------
+    13    6   6.40088  -0.000550633466  -3.2591374      0.857178     0.000362952    566.69
+    17    7   7.17493   -0.00528709713  -2.2767827      0.507788     0.000976754    580.29
+    19    8   7.49586   -0.00200971315  -2.6968659      0.843807     8.10671e-05    580.50
+    23    9   8.04712   -0.00585149046  -2.2327335       0.79489               —    591.23
+    29   10   8.71596   -0.00753506122  -2.1229132      0.774204     0.000594235    582.37
+
+  COMPARISON AGAINST O20 (its T = 400, read from O20_connes_cutoff_sweep_results.json)
+       c    this lambda_1     O20 lambda_1     rel chg        this err         O20 err     rel chg
+    ---- ---------------- ---------------- ----------- --------------- --------------- -----------
+      13  -0.000550633466   2.07696266e-59   2.651e+55     0.000362952     1.45495e-55   2.495e+51
+      17   -0.00528709713   1.40107822e-80   3.774e+77     0.000976754     1.12815e-76   8.658e+72
+      19   -0.00200971315   8.77722906e-91    2.29e+87     8.10671e-05     7.42642e-87   1.092e+82
+      23   -0.00585149046   4.1817585e-107  1.399e+104               —    3.87555e-103           1
+      29   -0.00753506122  3.07008025e-124  2.454e+121     0.000594235    3.22781e-120  1.841e+116
+    Both columns are STATED. This script does not interpret them.
+
+  GATES
+    GATE A (flint in use)            : PASS
+    GATE C (Q symmetric every point) : PASS
+    GATE R (V_even replication)      : PASS
+
+  BOOKKEEPING
+    completed : 11
+    pending   : 0   []
+    skipped   : 0   []
+    failed    : 0   []
+
+  total wall: 5434.78 s (1h30m34s), budget 8h00m00s
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_archimedean_convergence_results.json

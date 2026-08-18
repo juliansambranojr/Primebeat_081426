@@ -1,0 +1,8 @@
+prime term (2*sum Lambda(n)n^-1/2 f(log n)) = -1435.9137987828
+arch  main(|t|<3000) 1208.3612746957  + tail 0.000582541  = 1208.3618572363
+ARITHMETIC  = H0+H1-prime+arch = 2644.2756560191
+SPECTRAL    600 pairs 2644.2585543549  + est tail 0.0156023 = 2644.2741566957
+difference  0.00149932   relative 5.67007e-7
+real 49.79
+user 49.43
+sys 0.12

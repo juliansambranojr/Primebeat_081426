@@ -1,0 +1,187 @@
+==============================================================================
+O25 — compression curve  (exact psi, truncated explicit formula, no fitting)
+==============================================================================
+  psi(x)   = SUM_{p^k <= x} log p                       EXACT, from a sieve
+  psi_K(x) = x - log(2pi) - (1/2)log(1 - x^-2)
+             - 2 sqrt(x) SUM_{k<=K} [(1/2)cos(gL) + g sin(gL)]/(1/4 + g^2)
+  L = log x, g = gamma_k, zeros paired as rho, conj(rho), rho = 1/2 + i gamma
+
+  K_needed(x, target) = the SMALLEST swept K with the error <= the target.
+  COMPRESSIVE at x : K_needed is not null AND K_needed <= pi(x).
+  EXPANSIVE   at x : K_needed is null OR K_needed > pi(x).
+
+  O10 is a DELIBERATE GAP in this series and is not filled here.
+
+  reading zeros from /Users/juliansambrano/GitHub/primebeat/primebeat/data/zeros/zeros1.txt (READ ONLY, in place) ...
+  byte size      : 1800000
+  sha256         : 3436c916a7878261ac183fd7b9448c9a4736b8bbccf1356874a6ce1788541632
+  lines in file  : 100000   (expected 100000)   -> OK
+  values parsed  : 100000
+  first three    : [14.134725142, 21.022039639, 25.01085758]
+  expected       : [14.134725142, 21.022039639, 25.01085758]   -> OK (to 9 decimals)
+  last gamma     : 74920.827498994
+  strictly ascending : True
+  GATE A : PASS
+
+  K values swept (clipped to 100000 zeros, 21 values):
+    [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 1000, 2000, 5000, 10000, 20000, 50000, 100000]
+
+  sieving to 10000 for psi_exact and pi ...
+  1229 primes <= 10000, largest = 9973
+
+------------------------------------------------------------------------------
+GATE B — psi_exact(10) against an INDEPENDENT von Mangoldt sum
+------------------------------------------------------------------------------
+  Lambda is non-zero at n = 2,3,4,5,7,8,9 for n <= 10:
+    log2 + log3 + log2 + log5 + log7 + log2 + log3
+  independent sum : 7.832014180505469
+  sieve psi(10)   : 7.832014180505469
+  difference      : 0.0
+  GATE B : PASS
+
+  x grid : 60 requested points, 60 after integer rounding and dedup
+  first x = 10   last x = 10000
+
+  psi_exact at a few grid points, for inspection:
+             x      pi(x)         psi_exact(x)    psi_exact/x
+            10          4         7.8320141805     0.78320142
+            58         16        53.4556727060     0.92164953
+           335         67       328.0061994417     0.97912298
+          1941        295      1933.7311722556     0.99625511
+         10000       1229     10013.3966932631     1.00133967
+
+  sweeping 60 x values x 100000 zeros (cumulative, one pass per x) ...
+
+------------------------------------------------------------------------------
+GATE C — CONVERGENCE at the largest x on the grid
+------------------------------------------------------------------------------
+  x = 10000
+  |psi_1(x)      - psi(x)| = 1.263622481847051
+  |psi_100000(x) - psi(x)| = 0.018411130185995717
+  GATE C : PASS   (criterion: error at K = n_zeros strictly smaller than at K = 1)
+
+------------------------------------------------------------------------------
+ERROR CURVE — |psi_K(x) - psi(x)| at selected x (rows) and K (columns)
+------------------------------------------------------------------------------
+         x           K=1           K=8          K=89         K=610        K=5000       K=50000      K=100000
+        10     0.0758673    0.00833596     0.0120903     0.0137891    0.00118935   0.000251653   0.000177655
+        58       1.87661       1.19398      0.278222     0.0691625    0.00693895   0.000783755   0.000216676
+       335       3.83618       2.20007       1.05768      0.135683     0.0330689    0.00288756    0.00449504
+      1941       3.98261       3.64556      0.219751      0.396984    0.00458864     0.0224031     0.0151642
+     10000       1.26362       10.0336       5.96527        3.8987      0.503935     0.0441418     0.0184111
+
+------------------------------------------------------------------------------
+K_needed BY TARGET — smallest swept K with error <= target; ratio = K_needed/pi(x)
+------------------------------------------------------------------------------
+         x    pi(x) |  relative:0.1      K/pi | relative:0.01      K/pi | relative:0.001      K/pi |    absolute:1      K/pi
+        10        4 |             1      0.25 |             1      0.25 |             3      0.75 |             1      0.25
+        11        5 |             —         — |             —         — |             —         — |             —         —
+        13        6 |             1    0.1667 |             —         — |             —         — |             2    0.3333
+        14        6 |             1    0.1667 |             3       0.5 |            34     5.667 |             1    0.1667
+        16        6 |             1    0.1667 |             1    0.1667 |             —         — |             1    0.1667
+        18        7 |             1    0.1429 |             1    0.1429 |            55     7.857 |             1    0.1429
+        20        8 |             1     0.125 |             5     0.625 |           377     47.12 |             1     0.125
+        23        9 |             1    0.1111 |             —         — |             —         — |             —         —
+        26        9 |             1    0.1111 |             2    0.2222 |            21     2.333 |             1    0.1111
+        29       10 |             1       0.1 |             —         — |             —         — |             1       0.1
+        32       11 |             1   0.09091 |             8    0.7273 |             —         — |             3    0.2727
+        36       11 |             1   0.09091 |            13     1.182 |           377     34.27 |             3    0.2727
+        41       13 |             1   0.07692 |             —         — |             —         — |             —         —
+        46       14 |             1   0.07143 |            13    0.9286 |            89     6.357 |            13    0.9286
+        52       15 |             1   0.06667 |            21       1.4 |           610     40.67 |             2    0.1333
+        58       16 |             1    0.0625 |            13    0.8125 |           233     14.56 |            13    0.8125
+        65       18 |             1   0.05556 |             1   0.05556 |           610     33.89 |             1   0.05556
+        73       21 |             1   0.04762 |             —         — |             —         — |             —         —
+        82       22 |             1   0.04545 |             1   0.04545 |            55       2.5 |             1   0.04545
+        92       24 |             1   0.04167 |             1   0.04167 |            21     0.875 |             1   0.04167
+       104       27 |             1   0.03704 |            55     2.037 |            55     2.037 |            55     2.037
+       117       30 |             1   0.03333 |             1   0.03333 |             3       0.1 |             1   0.03333
+       131       32 |             1   0.03125 |             —         — |             —         — |             —         —
+       148       34 |             1   0.02941 |            21    0.6176 |           144     4.235 |            55     1.618
+       166       38 |             1   0.02632 |             3   0.07895 |           144     3.789 |             3   0.07895
+       187       42 |             1   0.02381 |             8    0.1905 |            13    0.3095 |             8    0.1905
+       210       46 |             1   0.02174 |             1   0.02174 |           233     5.065 |            89     1.935
+       236       51 |             1   0.01961 |             1   0.01961 |           377     7.392 |             5   0.09804
+       265       56 |             1   0.01786 |             1   0.01786 |           610     10.89 |             5   0.08929
+       298       62 |             1   0.01613 |             1   0.01613 |             3   0.04839 |             1   0.01613
+       335       67 |             1   0.01493 |             3   0.04478 |           610     9.104 |            21    0.3134
+       377       74 |             1   0.01351 |             1   0.01351 |           233     3.149 |             2   0.02703
+       424       82 |             1    0.0122 |             1    0.0122 |             2   0.02439 |             2   0.02439
+       476       91 |             1   0.01099 |             1   0.01099 |            13    0.1429 |             1   0.01099
+       536       99 |             1    0.0101 |             1    0.0101 |             5   0.05051 |             2    0.0202
+       602      110 |             1  0.009091 |             1  0.009091 |           377     3.427 |           377     3.427
+       677      123 |             1   0.00813 |             2   0.01626 |             —         — |             —         —
+       761      135 |             1  0.007407 |             1  0.007407 |             —         — |             —         —
+       855      147 |             1  0.006803 |             1  0.006803 |             1  0.006803 |             1  0.006803
+       962      162 |             1  0.006173 |             1  0.006173 |             5   0.03086 |             5   0.03086
+      1081      180 |             1  0.005556 |             1  0.005556 |             2   0.01111 |             2   0.01111
+      1215      198 |             1  0.005051 |             1  0.005051 |            13   0.06566 |            13   0.06566
+      1366      218 |             1  0.004587 |             1  0.004587 |          1000     4.587 |          1000     4.587
+      1536      242 |             1  0.004132 |             1  0.004132 |             3    0.0124 |            21   0.08678
+      1727      269 |             1  0.003717 |             1  0.003717 |             3   0.01115 |             3   0.01115
+      1941      295 |             1   0.00339 |             1   0.00339 |             2   0.00678 |             2   0.00678
+      2183      327 |             1  0.003058 |             1  0.003058 |             2  0.006116 |             2  0.006116
+      2454      363 |             1  0.002755 |             1  0.002755 |            13   0.03581 |            13   0.03581
+      2759      402 |             1  0.002488 |             1  0.002488 |            34   0.08458 |            34   0.08458
+      3101      442 |             1  0.002262 |             1  0.002262 |             1  0.002262 |             2  0.004525
+      3486      487 |             1  0.002053 |             1  0.002053 |            21   0.04312 |            21   0.04312
+      3919      543 |             1  0.001842 |             1  0.001842 |             2  0.003683 |             —         —
+      4406      599 |             1  0.001669 |             1  0.001669 |            55   0.09182 |           233     0.389
+      4954      662 |             1  0.001511 |             1  0.001511 |             2  0.003021 |            34   0.05136
+      5569      735 |             1  0.001361 |             1  0.001361 |             2  0.002721 |           144    0.1959
+      6261      813 |             1   0.00123 |             1   0.00123 |            89    0.1095 |          2000      2.46
+      7038      904 |             1  0.001106 |             1  0.001106 |            21   0.02323 |            21   0.02323
+      7912      999 |             1  0.001001 |             1  0.001001 |             3  0.003003 |            21   0.02102
+      8895     1108 |             1 0.0009025 |             1 0.0009025 |            34   0.03069 |         10000     9.025
+     10000     1229 |             1 0.0008137 |             1 0.0008137 |             1 0.0008137 |          5000     4.068
+
+------------------------------------------------------------------------------
+CROSSOVER AND PRE-REGISTERED BAND, per target
+------------------------------------------------------------------------------
+
+  target relative:0.1
+    compressive points        : 59 / 60
+    expansive points          : 1 / 60
+    null K_needed             : 1
+    smallest x with K > pi(x) : 11
+    largest  x with K <= pi(x): 10000
+    crossover_x               : null (no crossover within the grid)
+    K_needed at top x=10000  : 1   pi = 1229   ratio = 0.00081367
+    PRE-REGISTERED BAND       : NEITHER
+
+  target relative:0.01
+    compressive points        : 50 / 60
+    expansive points          : 10 / 60
+    null K_needed             : 7
+    smallest x with K > pi(x) : 11
+    largest  x with K <= pi(x): 10000
+    crossover_x               : null (no crossover within the grid)
+    K_needed at top x=10000  : 1   pi = 1229   ratio = 0.00081367
+    PRE-REGISTERED BAND       : NEITHER
+
+  target relative:0.001
+    compressive points        : 29 / 60
+    expansive points          : 31 / 60
+    null K_needed             : 11
+    smallest x with K > pi(x) : 11
+    largest  x with K <= pi(x): 10000
+    crossover_x               : null (no crossover within the grid)
+    K_needed at top x=10000  : 1   pi = 1229   ratio = 0.00081367
+    PRE-REGISTERED BAND       : NEITHER
+
+  target absolute:1
+    compressive points        : 44 / 60
+    expansive points          : 16 / 60
+    null K_needed             : 8
+    smallest x with K > pi(x) : 11
+    largest  x with K <= pi(x): 7912
+    crossover_x               : 8895
+    K_needed at top x=10000  : 5000   pi = 1229   ratio = 4.06835
+    PRE-REGISTERED BAND       : INVERTS
+
+  Band rule (fixed before the run): COMPRESSES = K_needed <= pi(x) at EVERY x;
+  INVERTS = expansive for all x beyond a crossover that lies strictly inside the
+  grid; NEITHER otherwise. Precedence COMPRESSES > INVERTS > NEITHER.
+  The numbers are STATED, not interpreted. Interpretation is not this script's job.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O25_compression_curve_results.json

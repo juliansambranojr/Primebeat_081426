@@ -1,0 +1,515 @@
+{
+  "schema_version": "1",
+  "script": "O17_disjoint_block_residual.py",
+  "generated_utc": "2026-08-16T00:39:34Z",
+  "params": {
+    "code_version": "a63d990e173278bc8b238ddc9714454a6da5517fa1be49aea8dc60c15acea2c3",
+    "xmax": 150000000,
+    "x0": 2.0,
+    "ratio": 2.0,
+    "gamma_max": 40.0,
+    "gamma_step": 0.01,
+    "n_gamma": 4001,
+    "dps": 30,
+    "cache_path": "/Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json",
+    "n_primes": 8444396,
+    "largest_prime": 149999957,
+    "ladder_points": 27,
+    "n_blocks": 26,
+    "x_first": 2.0,
+    "x_last": 134217728.0,
+    "log_ratio": 0.6931471805599453,
+    "nyquist_gamma": 4.532360141827194,
+    "dyadic_nyquist_gamma": 4.532360141827194,
+    "projection_log_x_span": 17.328679513998633,
+    "frequency_resolution": 0.3625888113461755,
+    "band_halfwidth_floor": 0.6,
+    "band_halfwidth_used": 0.6,
+    "band_median_factor": 5.0,
+    "window": "hann",
+    "theta_scan": [
+      0.25,
+      0.375,
+      0.5,
+      0.625,
+      0.75
+    ],
+    "block_definition": "disjoint half-open intervals (x_j, x_{j+1}] tiling (x_0, x_last]; every prime used exactly once",
+    "count_definition": "c_j = pi(x_{j+1}) - pi(x_j), exact integer via np.searchsorted(primes, x, side='right')",
+    "smooth_definition": "L_j = li(x_{j+1}) - li(x_j), mpmath.li differenced in mpf at the recorded dps, cast to float afterwards",
+    "residual_definition": "e_j = c_j - L_j",
+    "normalisation": "ehat_j = e_j / sqrt(x_j)",
+    "theta_scan_definition": "e_j / x_j^theta over a FIXED list of theta; half-ladder RMS ratio reported per theta. A parameter-free scan, NOT a fit \u2014 no theta is selected by the script",
+    "projection_definition": "P(gamma) = |sum_j w_j * ehat_j * exp(-i gamma log x_j)|, w = hann; inner product, not a fit",
+    "fit_free": true,
+    "precision": "mixed: EXACT integer prime counts (numpy int64 array + binary search); mpmath li at mp.dps = 30 with the difference taken in mpf; float64 residual, theta scan and projection"
+  },
+  "constants": {
+    "gamma_1": 14.134725,
+    "gamma_2": 21.02204,
+    "gamma_3": 25.010858,
+    "gamma_4": 30.424876,
+    "gamma_5": 32.935062,
+    "gamma_6": 37.586178,
+    "gammas": [
+      14.134725,
+      21.02204,
+      25.010858,
+      30.424876,
+      32.935062,
+      37.586178
+    ],
+    "core_quantity_note": "e = c - (li(upper) - li(lower)) is the project's core residual; CONTEXT.md defines e(r) as that quantity on the dyadic ladder, which is this script at x0 = 2, ratio = 2",
+    "disjointness_note": "O12-O15 summed primes[N:2N] indexed by PRIME INDEX: consecutive rungs overlapped (~90% shared primes at ratio 1.1) and the count was fixed at N by construction, so the count carried no fluctuation. Here the blocks are disjoint in VALUE space and the count fluctuates",
+    "sampling_note": "log x steps by log(r), so the projection Nyquist is pi/log(r); at r = 1.1 that is 32.96, clearing gamma_1..gamma_3",
+    "band_rule": "DETECT: global max of P within the band half-width of one of gamma_1..gamma_6 AND > 5x median(P); WEAK: a local peak within the band of one of the six > 5x median(P) but the global max is elsewhere; NULL: neither",
+    "band_halfwidth_rule": "max(0.6, one frequency resolution element). Deliberate: in O15 the pre-registered half-width 0.5 was NARROWER than one resolution element (0.605) so the band could barely fire. The band here is at least one resolution element wide by construction",
+    "one_verdict_note": "this instrument has no sigma and no t \u2014 it works on the raw count residual \u2014 so there is ONE verdict per (x0, ratio, xmax) setting",
+    "o10_note": "O10 is a deliberate gap in the series and is not filled by this script",
+    "gate_c_li_known": 78627.549,
+    "gate_c_pi_known": 78498
+  },
+  "summary": {
+    "n_blocks": 26,
+    "total_count": 7603552,
+    "block_size_min": 1,
+    "block_size_max": 3645744,
+    "ehat_stats": {
+      "n": 26,
+      "min": -0.6522503668920456,
+      "max": 0.01343314796093864,
+      "mean": -0.09897052651587468,
+      "rms": 0.1752113559510203,
+      "min_at_x": 2.0,
+      "max_at_x": 16777216.0
+    },
+    "theta_scan": [
+      {
+        "theta": 0.25,
+        "rms_lower_half": 0.4920780850830632,
+        "rms_upper_half": 1.6673665916068643,
+        "ratio_upper_over_lower": 3.3884187127037193,
+        "n_half": 13
+      },
+      {
+        "theta": 0.375,
+        "rms_lower_half": 0.317642346625853,
+        "rms_upper_half": 0.24642405432895648,
+        "ratio_upper_over_lower": 0.775790938917903,
+        "n_half": 13
+      },
+      {
+        "theta": 0.5,
+        "rms_lower_half": 0.243333135728812,
+        "rms_upper_half": 0.04676562375050533,
+        "ratio_upper_over_lower": 0.1921876509355648,
+        "n_half": 13
+      },
+      {
+        "theta": 0.625,
+        "rms_lower_half": 0.20229161991159147,
+        "rms_upper_half": 0.011020385395374508,
+        "ratio_upper_over_lower": 0.05447771588457694,
+        "n_half": 13
+      },
+      {
+        "theta": 0.75,
+        "rms_lower_half": 0.17466838148516303,
+        "rms_upper_half": 0.0029158973258674604,
+        "ratio_upper_over_lower": 0.01669390476441294,
+        "n_half": 13
+      }
+    ],
+    "projection": {
+      "verdict": "NULL",
+      "argmax_gamma": 0.0,
+      "P_max": 0.7528008779284224,
+      "P_median": 0.08353738570368581,
+      "P_max_over_median": 9.011544610680911,
+      "argmax_nearest_gamma_index": 0,
+      "argmax_nearest_gamma": 14.134725,
+      "argmax_distance_to_nearest": 14.134725,
+      "band_halfwidth_used": 0.6,
+      "band_median_factor": 5.0,
+      "weak_peak_gamma": null,
+      "weak_peak_over_median": null,
+      "P_at_gamma": [
+        0.2672085499935011,
+        0.06831730413503659,
+        0.10160117355933303,
+        0.15120868421495282,
+        0.17499977148487988,
+        0.03022057208480228
+      ],
+      "P_at_gamma_over_median": [
+        3.1986702449764524,
+        0.8178051486715644,
+        1.2162359727143126,
+        1.810072016753108,
+        2.094867705168784,
+        0.3617610466288377
+      ],
+      "P_at_gamma_grid_point": [
+        14.13,
+        21.02,
+        25.01,
+        30.42,
+        32.94,
+        37.59
+      ],
+      "top_local_peaks": [
+        {
+          "gamma": 18.13,
+          "P": 0.7527996648012981,
+          "P_over_median": 9.01153008871432,
+          "nearest_gamma": 21.02204,
+          "distance_to_nearest": 2.8920400000000015,
+          "in_band": false
+        },
+        {
+          "gamma": 36.26,
+          "P": 0.7527960254294345,
+          "P_over_median": 9.011486522928378,
+          "nearest_gamma": 37.586178,
+          "distance_to_nearest": 1.3261779999999987,
+          "in_band": false
+        },
+        {
+          "gamma": 27.19,
+          "P": 0.7527337722083174,
+          "P_over_median": 9.01074130902693,
+          "nearest_gamma": 25.010858,
+          "distance_to_nearest": 2.1791420000000024,
+          "in_band": false
+        },
+        {
+          "gamma": 9.06,
+          "P": 0.7527145150891558,
+          "P_over_median": 9.010510788057193,
+          "nearest_gamma": 14.134725,
+          "distance_to_nearest": 5.074724999999999,
+          "in_band": false
+        },
+        {
+          "gamma": 21.96,
+          "P": 0.305986987009892,
+          "P_over_median": 3.662874824635449,
+          "nearest_gamma": 21.02204,
+          "distance_to_nearest": 0.9379600000000003,
+          "in_band": false
+        },
+        {
+          "gamma": 3.83,
+          "P": 0.3059845438101093,
+          "P_over_median": 3.662845577852561,
+          "nearest_gamma": 14.134725,
+          "distance_to_nearest": 10.304725,
+          "in_band": false
+        },
+        {
+          "gamma": 23.36,
+          "P": 0.3059833920058665,
+          "P_over_median": 3.6628317899630654,
+          "nearest_gamma": 25.010858,
+          "distance_to_nearest": 1.6508579999999995,
+          "in_band": false
+        },
+        {
+          "gamma": 14.3,
+          "P": 0.3059812964879739,
+          "P_over_median": 3.662806705171688,
+          "nearest_gamma": 14.134725,
+          "distance_to_nearest": 0.16527500000000117,
+          "in_band": true
+        },
+        {
+          "gamma": 5.23,
+          "P": 0.30597982082647984,
+          "P_over_median": 3.6627890404880064,
+          "nearest_gamma": 14.134725,
+          "distance_to_nearest": 8.904725,
+          "in_band": false
+        },
+        {
+          "gamma": 32.43,
+          "P": 0.30597724613376553,
+          "P_over_median": 3.662758219644229,
+          "nearest_gamma": 32.935062,
+          "distance_to_nearest": 0.5050620000000023,
+          "in_band": true
+        }
+      ]
+    },
+    "verdict": "NULL",
+    "gate_a": {
+      "statement": "sum_j c_j == pi(x_last) - pi(x_0)",
+      "pi_x0": 1,
+      "pi_x_last": 7603553,
+      "expected": 7603552,
+      "sum_c_j": 7603552,
+      "difference": 0,
+      "passed": true
+    },
+    "gate_b": {
+      "statement": "at x0 = 2, ratio = 2.0, c_j == N(r) = pi(2^r) - pi(2^(r-1)) from pi2n_cache.json",
+      "note": "compared 26 r values against pi2n_cache.json",
+      "n_compared": 26,
+      "r_range": [
+        2,
+        27
+      ],
+      "mismatches": 0,
+      "mismatch_detail": [],
+      "passed": true
+    },
+    "gate_c": {
+      "statement": "li(10^6) against the known 78627.549..., and pi(10^6) = 78498 from the sieve",
+      "x": 1000000,
+      "li_computed": 78627.54915946219,
+      "li_known": 78627.549,
+      "li_abs_difference": 0.00015946218627505004,
+      "li_passed": true,
+      "pi_from_sieve": 78498,
+      "pi_known": 78498,
+      "pi_passed": true,
+      "pi_note": "from this run's sieve",
+      "li_minus_pi": 129.54915946218534
+    }
+  },
+  "rows": [
+    {
+      "j": 0,
+      "x_j": 2.0,
+      "x_j_plus_1": 4.0,
+      "c_j": 1,
+      "L_j": 1.922421314921558,
+      "e_j": -0.9224213149215581,
+      "ehat_j": -0.6522503668920456
+    },
+    {
+      "j": 1,
+      "x_j": 4.0,
+      "x_j_plus_1": 8.0,
+      "c_j": 2,
+      "L_j": 2.28613320451988,
+      "e_j": -0.2861332045198801,
+      "ehat_j": -0.14306660225994006
+    },
+    {
+      "j": 2,
+      "x_j": 8.0,
+      "x_j_plus_1": 16.0,
+      "c_j": 2,
+      "L_j": 3.265998164152128,
+      "e_j": -1.265998164152128,
+      "ehat_j": -0.4475979434208448
+    },
+    {
+      "j": 3,
+      "x_j": 16.0,
+      "x_j_plus_1": 32.0,
+      "c_j": 5,
+      "L_j": 5.085375713380665,
+      "e_j": -0.08537571338066474,
+      "ehat_j": -0.021343928345166185
+    },
+    {
+      "j": 4,
+      "x_j": 32.0,
+      "x_j_plus_1": 64.0,
+      "c_j": 7,
+      "L_j": 8.329576150959271,
+      "e_j": -1.3295761509592712,
+      "ehat_j": -0.23503807811180236
+    },
+    {
+      "j": 5,
+      "x_j": 64.0,
+      "x_j_plus_1": 128.0,
+      "c_j": 13,
+      "L_j": 14.10787998917844,
+      "e_j": -1.1078799891784392,
+      "ehat_j": -0.1384849986473049
+    },
+    {
+      "j": 6,
+      "x_j": 128.0,
+      "x_j_plus_1": 256.0,
+      "c_j": 23,
+      "L_j": 24.470517020687897,
+      "e_j": -1.4705170206878968,
+      "ehat_j": -0.12997656964733129
+    },
+    {
+      "j": 7,
+      "x_j": 256.0,
+      "x_j_plus_1": 512.0,
+      "c_j": 43,
+      "L_j": 43.20805183111996,
+      "e_j": -0.20805183111995973,
+      "ehat_j": -0.013003239444997483
+    },
+    {
+      "j": 8,
+      "x_j": 512.0,
+      "x_j_plus_1": 1024.0,
+      "c_j": 75,
+      "L_j": 77.35692251265719,
+      "e_j": -2.356922512657192,
+      "ehat_j": -0.10416224321444606
+    },
+    {
+      "j": 9,
+      "x_j": 1024.0,
+      "x_j_plus_1": 2048.0,
+      "c_j": 137,
+      "L_j": 140.03637599298918,
+      "e_j": -3.0363759929891785,
+      "ehat_j": -0.09488674978091183
+    },
+    {
+      "j": 10,
+      "x_j": 2048.0,
+      "x_j_plus_1": 4096.0,
+      "c_j": 255,
+      "L_j": 255.80808835646522,
+      "e_j": -0.8080883564652197,
+      "ehat_j": -0.017856398645451528
+    },
+    {
+      "j": 11,
+      "x_j": 4096.0,
+      "x_j_plus_1": 8192.0,
+      "c_j": 464,
+      "L_j": 470.8293542942081,
+      "e_j": -6.829354294208088,
+      "ehat_j": -0.10670866084700137
+    },
+    {
+      "j": 12,
+      "x_j": 8192.0,
+      "x_j_plus_1": 16384.0,
+      "c_j": 872,
+      "L_j": 872.1365127125104,
+      "e_j": -0.13651271251035269,
+      "ehat_j": -0.0015082666364725002
+    },
+    {
+      "j": 13,
+      "x_j": 16384.0,
+      "x_j_plus_1": 32768.0,
+      "c_j": 1612,
+      "L_j": 1624.355661441808,
+      "e_j": -12.355661441808024,
+      "ehat_j": -0.09652860501412519
+    },
+    {
+      "j": 14,
+      "x_j": 32768.0,
+      "x_j_plus_1": 65536.0,
+      "c_j": 3030,
+      "L_j": 3039.742713935416,
+      "e_j": -9.74271393541585,
+      "ehat_j": -0.0538213991476033
+    },
+    {
+      "j": 15,
+      "x_j": 65536.0,
+      "x_j_plus_1": 131072.0,
+      "c_j": 5709,
+      "L_j": 5712.080383318151,
+      "e_j": -3.08038331815078,
+      "ehat_j": -0.012032747336526484
+    },
+    {
+      "j": 16,
+      "x_j": 131072.0,
+      "x_j_plus_1": 262144.0,
+      "c_j": 10749,
+      "L_j": 10773.125987162526,
+      "e_j": -24.125987162526144,
+      "ehat_j": -0.06663925439625713
+    },
+    {
+      "j": 17,
+      "x_j": 262144.0,
+      "x_j_plus_1": 524288.0,
+      "c_j": 20390,
+      "L_j": 20384.61828790019,
+      "e_j": 5.381712099810102,
+      "ehat_j": 0.010511156444941605
+    },
+    {
+      "j": 18,
+      "x_j": 524288.0,
+      "x_j_plus_1": 1048576.0,
+      "c_j": 38635,
+      "L_j": 38683.71625165975,
+      "e_j": -48.71625165975274,
+      "ehat_j": -0.06728045293476868
+    },
+    {
+      "j": 19,
+      "x_j": 1048576.0,
+      "x_j_plus_1": 2097152.0,
+      "c_j": 73586,
+      "L_j": 73602.43701172147,
+      "e_j": -16.437011721471208,
+      "ehat_j": -0.016051769259249227
+    },
+    {
+      "j": 20,
+      "x_j": 2097152.0,
+      "x_j_plus_1": 4194304.0,
+      "c_j": 140336,
+      "L_j": 140373.87352529258,
+      "e_j": -37.87352529258351,
+      "ehat_j": -0.02615295562678322
+    },
+    {
+      "j": 21,
+      "x_j": 4194304.0,
+      "x_j_plus_1": 8388608.0,
+      "c_j": 268216,
+      "L_j": 268297.6742146491,
+      "e_j": -81.67421464907238,
+      "ehat_j": -0.039879987621617374
+    },
+    {
+      "j": 22,
+      "x_j": 8388608.0,
+      "x_j_plus_1": 16777216.0,
+      "c_j": 513708,
+      "L_j": 513810.1878617327,
+      "e_j": -102.1878617326729,
+      "ehat_j": -0.035282094719788236
+    },
+    {
+      "j": 23,
+      "x_j": 16777216.0,
+      "x_j_plus_1": 33554432.0,
+      "c_j": 985818,
+      "L_j": 985762.977825952,
+      "e_j": 55.02217404800467,
+      "ehat_j": 0.01343314796093864
+    },
+    {
+      "j": 24,
+      "x_j": 33554432.0,
+      "x_j_plus_1": 67108864.0,
+      "c_j": 1894120,
+      "L_j": 1894364.8702631388,
+      "e_j": -244.87026313878596,
+      "ehat_j": -0.042272808490324665
+    },
+    {
+      "j": 25,
+      "x_j": 67108864.0,
+      "x_j_plus_1": 134217728.0,
+      "c_j": 3645744,
+      "L_j": 3646033.6025467115,
+      "e_j": -289.6025467114523,
+      "ehat_j": -0.03535187337786283
+    }
+  ]
+}

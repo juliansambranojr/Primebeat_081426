@@ -1,0 +1,211 @@
+==============================================================================
+O21 — archimedean convergence: pin T, then re-stand the c curve on it
+     (measures where a truncation parameter stops moving the answer;
+      proves nothing, interprets nothing)
+==============================================================================
+  started        : 2026-08-17T03:02:24.310514Z
+  the problem    : O20 swept c at T = 400. At c = 13, N = 100, dps = 150,
+                   T = 400 -> lambda_1 2.0770e-59, first-zero err 1.455e-55 (O20)
+                   T = 800 -> lambda_1 2.8655e-59, first-zero err 2.005e-55 (O8 log)
+                   Doubling T moved lambda_1 27.5% and made the error WORSE.
+  criterion (pre-registered, fixed before this run):
+    settled at T_i iff the last TWO relative changes are each < 0.001
+
+  phase 1: c = 13, T in [800, 1600, 3200, 6400]
+  phase 2: c in [13], at the settled T
+  N              : 100   (matrix is 201 square)
+  dps            : 300
+  n_zeros        : 5
+  settle-tol     : 0.001
+  budget-hours   : 6.0  (6h00m00s)
+  out            : /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_dps300_results.json
+  connes_cvs     : 0.3.1
+  mpmath         : 1.3.0
+
+------------------------------------------------------------------------------
+GATE A — is flint actually in use?
+------------------------------------------------------------------------------
+  import flint                      : OK
+  flint.__version__                 : 0.9.0
+  connes_cvs.operator.HAS_FLINT     : True
+  connes_cvs reported flint version : 0.9.0
+  GATE A: PASS — flint is in use.
+
+------------------------------------------------------------------------------
+PRIOR RECORD (read at runtime; nothing hardcoded)
+------------------------------------------------------------------------------
+  O20 results : /Users/juliansambrano/GitHub/Primebeat_081426/results/O20_connes_cutoff_sweep_results.json
+    generated : 2026-08-16T04:16:00.135110Z
+    params    : {'N': 100, 'T': 400, 'dps': 150, 'n_zeros': 5, 'code_version': '0a6513628eb9ebbd5c34a60bc4435a05a49f94c0becc94d0cc49242cc3434efb', 'cutoffs_requested': [13, 17, 19, 23, 29]}
+    cutoffs   : [13, 17, 19, 23, 29]
+  O8 log      : /Users/juliansambrano/GitHub/Primebeat_081426/O8_run_dps150.log:15
+    line      : '  smallest even-sector eigenvalue: 2.865453615e-59'
+
+##############################################################################
+# PHASE 1 — T SWEEP at c = 13   T in [800, 1600, 3200, 6400]
+##############################################################################
+
+==============================================================================
+[2026-08-17T03:02:24Z] START  phase 1  c = 13  T = 800  N = 100  dps = 300
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-17T03:02:24Z] building the CvS Galerkin matrix Q(c) at T = 800...
+  Q is 201 x 201   (build: 1479.13 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-17T03:27:03Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 2.865453615e-59   (20.32 s)
+  log10 |lambda_1| = -58.542807
+  [2026-08-17T03:27:23Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (20.29 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = 2.86545361493e-59
+  lambda_2 = 1.17602315227e-51
+  gap  lambda_2 - lambda_1 = 1.17602312361e-51
+  ratio lambda_2 / lambda_1 = 41041430.4436
+
+  [2026-08-17T03:27:44Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.70 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      2.00546144405e-55       True
+    2 21.02203963877155499262848 21.02203963877155499262848      3.70478985739e-52       True
+    3 25.01085758014568876321379 25.01085758014568876321379      3.42763721681e-50       True
+    4  30.4248761258595132103119  30.4248761258595132103119      3.01614094898e-47       True
+    5 32.93506158773918969066237 32.93506158773918969066237      5.87947744441e-46       True
+
+[2026-08-17T03:27:44Z] FINISH phase 1  c = 13  T = 800   wall 1520.66 s (0h25m20s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_dps300_results.json
+
+==============================================================================
+[2026-08-17T03:27:44Z] START  phase 1  c = 13  T = 1600  N = 100  dps = 300
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-17T03:27:44Z] building the CvS Galerkin matrix Q(c) at T = 1600...
+  Q is 201 x 201   (build: 2357.18 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-17T04:07:02Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 3.126948275e-59   (19.54 s)
+  log10 |lambda_1| = -58.504879
+  [2026-08-17T04:07:21Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (19.47 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = 3.12694827544e-59
+  lambda_2 = 1.23925745496e-51
+  gap  lambda_2 - lambda_1 = 1.23925742369e-51
+  ratio lambda_2 / lambda_1 = 39631530.3548
+
+  [2026-08-17T04:07:41Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.67 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      2.18783514573e-55       True
+    2 21.02203963877155499262848 21.02203963877155499262848       4.0401568818e-52       True
+    3 25.01085758014568876321379 25.01085758014568876321379      3.73683250877e-50       True
+    4  30.4248761258595132103119  30.4248761258595132103119       3.2866509259e-47       True
+    5 32.93506158773918969066237 32.93506158773918969066237      6.40516723989e-46       True
+
+[2026-08-17T04:07:42Z] FINISH phase 1  c = 13  T = 1600   wall 2397.08 s (0h39m57s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_dps300_results.json
+
+==============================================================================
+[2026-08-17T04:07:42Z] START  phase 1  c = 13  T = 3200  N = 100  dps = 300
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-17T04:07:42Z] building the CvS Galerkin matrix Q(c) at T = 3200...
+  Q is 201 x 201   (build: 2310.94 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-17T04:46:13Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 3.387542981e-59   (19.95 s)
+  log10 |lambda_1| = -58.470115
+  [2026-08-17T04:46:33Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (19.89 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = 3.38754298064e-59
+  lambda_2 = 1.34197389123e-51
+  gap  lambda_2 - lambda_1 = 1.34197385736e-51
+  ratio lambda_2 / lambda_1 = 39614962.7887
+
+  [2026-08-17T04:46:53Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.67 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      2.36949494132e-55       True
+    2 21.02203963877155499262848 21.02203963877155499262848      4.37400474269e-52       True
+    3 25.01085758014568876321379 25.01085758014568876321379      4.04448291001e-50       True
+    4  30.4248761258595132103119  30.4248761258595132103119      3.55560236754e-47       True
+    5 32.93506158773918969066237 32.93506158773918969066237      6.92761451219e-46       True
+
+[2026-08-17T04:46:53Z] FINISH phase 1  c = 13  T = 3200   wall 2351.67 s (0h39m11s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_dps300_results.json
+
+==============================================================================
+[2026-08-17T04:46:53Z] START  phase 1  c = 13  T = 6400  N = 100  dps = 300
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-17T04:46:53Z] building the CvS Galerkin matrix Q(c) at T = 6400...
+  Q is 201 x 201   (build: 2376.54 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  [2026-08-17T05:26:30Z] computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: -0.0004579725779   (22.29 s)
+  log10 |lambda_1| = -3.3391605
+  [2026-08-17T05:26:52Z] computing the FULL even-sector spectrum (mp.eigsy on the package's
+  own projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (22.25 s)
+  GATE R — |min(replicated) - lambda_pkg| / |lambda_pkg| = 0   -> PASS
+  lambda_1 = -0.000457972577855
+  lambda_2 = -0.000353831031957
+  gap  lambda_2 - lambda_1 = 0.000104141545898
+  ratio lambda_2 / lambda_1 = 0.772603096923
+
+  [2026-08-17T05:27:15Z] extracting 5 zeros from the ground-state eigenvector...
+  (0.69 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13470684923914169124325       1.82924955521e-5       True
+    2 21.02203963877155499262848  21.0219555029816482969573       8.41357899067e-5       True
+    3 25.01085758014568876321379 25.01037813425531399576587      0.000479445890375       True
+    4  30.4248761258595132103119 30.42502161842288882012265      0.000145492563376       True
+    5 32.93506158773918969066237 32.93514770806708629175072       8.61203278966e-5       True
+
+[2026-08-17T05:27:15Z] FINISH phase 1  c = 13  T = 6400   wall 2422.00 s (0h40m22s)
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_dps300_results.json
+
+==============================================================================
+PHASE 1 RESULT — T table and the pre-registered criterion
+==============================================================================
+        T  Qrows      sym         lambda_1   log10|l1|     rel chg         lambda_2         l2/l1  first-zero err     rel chg    wall s
+  ------- ------ -------- ---------------- ----------- ----------- ---------------- ------------- --------------- ----------- ---------
+      800    201        0   2.86545361e-59  -58.542807           —   1.17602315e-51   4.10414e+07     2.00546e-55           —   1520.66
+     1600    201        0   3.12694828e-59  -58.504879     0.09126   1.23925745e-51   3.96315e+07     2.18784e-55     0.09094   2397.08
+     3200    201        0   3.38754298e-59  -58.470115     0.08334   1.34197389e-51    3.9615e+07     2.36949e-55     0.08303   2351.67
+     6400    201        0  -0.000457972578  -3.3391605   1.352e+55  -0.000353831032      0.772603     1.82925e-05    7.72e+49   2422.00
+
+  criterion: a quantity is SETTLED at T_i if |v_i - v_{i-1}| / |v_{i-1}| < settle_tol AND |v_{i-1} - v_{i-2}| / |v_{i-2}| < settle_tol — i.e. two consecutive steps of the T sweep each move it by less than the tolerance. The settled T is the FIRST T in sweep order at which this holds. At least three completed points are needed for the criterion to be evaluable.
+  settle_tol = 0.001
+  lambda_1        : NOT SETTLED — NO T in this sweep settled for lambda_1 at settle_tol=0.001
+  first-zero error: NOT SETTLED — NO T in this sweep settled for first_zero_error at settle_tol=0.001
+
+  NOTHING SETTLED. phase 2 runs at the LARGEST T that completed, T = 6400; t_settled is null and the c curve stands on an UNCONVERGED T
+  [checkpoint] results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O21_dps300_results.json
+
+##############################################################################
+# PHASE 2 — c SWEEP at T = 6400   c in [13]
+##############################################################################
+
+==============================================================================
+[2026-08-17T05:27:15Z] START  phase 2  c = 13  T = 6400  N = 100  dps = 300
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  [2026-08-17T05:27:15Z] building the CvS Galerkin matrix Q(c) at T = 6400...

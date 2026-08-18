@@ -1,0 +1,91 @@
+==============================================================================
+O27 — joint dyadic/triadic prime difference table  (EXPLORATORY: no prereg, no verdict)
+==============================================================================
+  N_b(r)   = pi(b^r) - pi(b^(r-1))        primes in (b^(r-1), b^r]
+  T_b(r,d) = T_b(r,d-1) - T_b(r-1,d-1)    backward, support r = d+1..R
+  FIRST BLOCK: pi(1) = 0 (1 is neither prime nor composite). Block r covers the half-open interval (b^(r-1), b^r], so block 1 is (1, b] and excludes 1. Hence N_2(1) = pi(2) = 1 and N_3(1) = pi(3) = 2.
+  PAIRING: by ROW INDEX r, not by magnitude. Dyadic r=10 (x=1024) sits on the
+  same row as triadic r=10 (x=59049). Intentional — do not align on x.
+  BLANKS: a cell with r < d+1 does not exist and is emitted BLANK, never 0.
+  ARITHMETIC: exact Python int throughout. numpy is deliberately NOT imported.
+
+------------------------------------------------------------------------------
+pi() BACKEND
+------------------------------------------------------------------------------
+  callable : primecountpy.prime_pi_128
+  version  : primecountpy 0.2.1
+  python   : 3.14.3
+  no approximate fallback: if pi is unavailable the script stops rather than
+  estimating.
+
+------------------------------------------------------------------------------
+CACHES
+------------------------------------------------------------------------------
+  dyadic: contiguous cache n = 0..62   (63 entries) [/Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json]
+  triadic: contiguous cache n = 0..41   (42 entries) [/Users/juliansambrano/GitHub/Primebeat_081426/pi3n_cache.json]
+
+  R_dyadic  (exact pi available) : 62   largest x = 2^62 = 4611686018427387904
+  R_triadic (exact pi available) : 41   largest x = 3^41 = 36472996377170786403
+  R_joint = min(R_dyadic, R_triadic) = 41   (limited by: exact pi data on the triadic base)
+  depth range : d = 0..40  (full triangle)
+
+------------------------------------------------------------------------------
+DEPTH-0 COUNTS (first 12 r)
+------------------------------------------------------------------------------
+    r              N_dyad(r)                 N_tri(r)
+    1                      1                        2
+    2                      1                        2
+    3                      2                        5
+    4                      2                       13
+    5                      5                       31
+    6                      7                       76
+    7                     13                      198
+    8                     23                      520
+    9                     43                     1380
+   10                     75                     3741
+   11                    137                    10129
+   12                    255                    27837
+
+------------------------------------------------------------------------------
+JOINT TABLE EXTENT
+------------------------------------------------------------------------------
+  rows              : 41   (r = 1..41)
+  columns           : 82   (2 x (dmax+1), interleaved)
+  grid cells        : 3362
+  populated cells   : 1722
+  blank cells       : 1640   (r < d+1; NOT zero-padded)
+  exact zeros dyad  : 4  at [(2, 1), (4, 1), (8, 3), (20, 6)]
+  exact zeros tri   : 1  at [(2, 1)]
+
+------------------------------------------------------------------------------
+TOP-LEFT CORNER — first 12 rows, first 8 columns (depths 0..3)
+------------------------------------------------------------------------------
+   r  d0_dyad  d0_tri  d1_dyad  d1_tri  d2_dyad  d2_tri  d3_dyad  d3_tri
+   1        1       2                                                   
+   2        1       2        0       0                                  
+   3        2       5        1       3        1       3                 
+   4        2      13        0       8       -1       5       -2       2
+   5        5      31        3      18        3      10        4       5
+   6        7      76        2      45       -1      27       -4      17
+   7       13     198        6     122        4      77        5      50
+   8       23     520       10     322        4     200        0     123
+   9       43    1380       20     860       10     538        6     338
+  10       75    3741       32    2361       12    1501        2     963
+  11      137   10129       62    6388       30    4027       18    2526
+  12      255   27837      118   17708       56   11320       26    7293
+
+------------------------------------------------------------------------------
+ARTIFACTS
+------------------------------------------------------------------------------
+  CSV written to /Users/juliansambrano/GitHub/Primebeat_081426/results/joint_dyadic_triadic_table.csv
+  markdown written to /Users/juliansambrano/GitHub/Primebeat_081426/results/joint_dyadic_triadic_table.md
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/joint_dyadic_triadic_table.json
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+  Every number above is an exact Python integer. No float, no estimate, no li().
+  Joint range r = 1..41, limited by: exact pi data on the triadic base.
+  This script states no hypothesis and fires no decision rule. Its output is a
+  table, and is EXPLORATORY per CLAUDE.md § Prereg discipline.

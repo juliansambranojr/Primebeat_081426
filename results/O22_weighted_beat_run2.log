@@ -1,0 +1,316 @@
+==============================================================================
+O22 — weighted beat  (three variants, same primes, same grid, NO FITTING)
+==============================================================================
+  V0_plain         sum_p p^(-1/2) sin(t log p)
+  V1_logp          sum_p (log p) p^(-1/2) sin(t log p)
+  V2_vonmangoldt   sum_{p,m<=mmax} (log p) p^(-m/2) sin(t m log p) = sum_n Lambda(n) n^(-1/2) sin(t log n)
+
+  The Beat is the m = 1 term of Connes' Weil local term with the (log p) weight
+  dropped and the prime powers dropped. This script restores them, one at a time.
+
+  t grid : [10, 50] step 0.0001  (400001 points)
+  mmax   : 20   term floor : 1e-15
+  refine : golden section to bracket width 1e-12
+
+  computing gamma_1..gamma_8 from mpmath.zetazero at mp.dps = 30 ...
+    gamma_1 = 14.134725141734695   (14.13472514173469379045725)
+    gamma_2 = 21.022039638771556   (21.02203963877155499262848)
+    gamma_3 = 25.01085758014569   (25.01085758014568876321379)
+    gamma_4 = 30.424876125859512   (30.4248761258595132103119)
+    gamma_5 = 32.93506158773919   (32.93506158773918969066237)
+    gamma_6 = 37.586178158825675   (37.58617815882567125721776)
+    gamma_7 = 40.9187190121475   (40.91871901214749518739813)
+    gamma_8 = 43.327073280915   (43.32707328091499951949612)
+
+------------------------------------------------------------------------------
+GATE C — the t grid contains every gamma used
+------------------------------------------------------------------------------
+  tmin = 10   tmax = 50
+  gamma_1 = 14.134725142   gamma_8 = 43.327073281
+  GATE C: PASSED
+
+------------------------------------------------------------------------------
+PRIME SETS — every one is a PREFIX of the sorted prime list
+------------------------------------------------------------------------------
+       label   family  n_primes  largest_p   d = 2log2(c)-1
+       c<=13   window         6         13        6.4008794
+       c<=17   window         7         17        7.1749257
+       c<=19   window         8         19         7.495855
+       c<=23   window         9         23        8.0471239
+       c<=29   window        10         29         8.715962
+        n=10    count        10         29                —
+       n=100    count       100        541                —
+      n=1000    count      1000       7919                —
+      n=4000    count      4000      37813                —
+     n=25000    count     25000     287117                —
+
+  distinct prefixes computed once: [6, 7, 8, 9, 10, 100, 1000, 4000, 25000]
+
+==============================================================================
+VARIANT V0_plain — sum_p p^(-1/2) sin(t log p)
+==============================================================================
+  terms total : 25000   (dropped below the floor: 0)
+  term prefixes for the prime prefixes [6, 7, 8, 9, 10, 100, 1000, 4000, 25000] : [6, 7, 8, 9, 10, 100, 1000, 4000, 25000]
+  max frequency : 12.567645   max coefficient : 0.707107
+  evaluating the grid (angle-addition identity, chunked matrix products) ...
+  grid done in 0.24 s
+  identity check vs direct np.sin : max |deviation| = 7.57172e-14
+    prefix n_primes =      6  terms =       6  local minima found =     22
+    prefix n_primes =      7  terms =       7  local minima found =     22
+    prefix n_primes =      8  terms =       8  local minima found =     25
+    prefix n_primes =      9  terms =       9  local minima found =     24
+    prefix n_primes =     10  terms =      10  local minima found =     25
+    prefix n_primes =    100  terms =     100  local minima found =     43
+    prefix n_primes =   1000  terms =    1000  local minima found =     76
+    prefix n_primes =   4000  terms =    4000  local minima found =    101
+    prefix n_primes =  25000  terms =   25000  local minima found =    146
+
+==============================================================================
+VARIANT V1_logp — sum_p (log p) p^(-1/2) sin(t log p)
+==============================================================================
+  terms total : 25000   (dropped below the floor: 0)
+  term prefixes for the prime prefixes [6, 7, 8, 9, 10, 100, 1000, 4000, 25000] : [6, 7, 8, 9, 10, 100, 1000, 4000, 25000]
+  max frequency : 12.567645   max coefficient : 0.735485
+  evaluating the grid (angle-addition identity, chunked matrix products) ...
+  grid done in 0.23 s
+  identity check vs direct np.sin : max |deviation| = 8.10019e-13
+    prefix n_primes =      6  terms =       6  local minima found =     28
+    prefix n_primes =      7  terms =       7  local minima found =     31
+    prefix n_primes =      8  terms =       8  local minima found =     32
+    prefix n_primes =      9  terms =       9  local minima found =     34
+    prefix n_primes =     10  terms =      10  local minima found =     33
+    prefix n_primes =    100  terms =     100  local minima found =     64
+    prefix n_primes =   1000  terms =    1000  local minima found =    105
+    prefix n_primes =   4000  terms =    4000  local minima found =    130
+    prefix n_primes =  25000  terms =   25000  local minima found =    160
+
+==============================================================================
+VARIANT V2_vonmangoldt — sum_{p,m<=mmax} (log p) p^(-m/2) sin(t m log p) = sum_n Lambda(n) n^(-1/2) sin(t log n)
+==============================================================================
+  terms total : 151882   (dropped below the floor: 348118)
+  term prefixes for the prime prefixes [6, 7, 8, 9, 10, 100, 1000, 4000, 25000] : [120, 140, 160, 180, 200, 1392, 9142, 30349, 151882]
+  max frequency : 74.104440   max coefficient : 0.735485
+  evaluating the grid (angle-addition identity, chunked matrix products) ...
+  grid done in 1.54 s
+  identity check vs direct np.sin : max |deviation| = 9.39249e-13
+    prefix n_primes =      6  terms =     120  local minima found =     44
+    prefix n_primes =      7  terms =     140  local minima found =     38
+    prefix n_primes =      8  terms =     160  local minima found =     42
+    prefix n_primes =      9  terms =     180  local minima found =     42
+    prefix n_primes =     10  terms =     200  local minima found =     47
+    prefix n_primes =    100  terms =    1392  local minima found =     65
+    prefix n_primes =   1000  terms =    9142  local minima found =    107
+    prefix n_primes =   4000  terms =   30349  local minima found =    129
+    prefix n_primes =  25000  terms =  151882  local minima found =    160
+
+==============================================================================
+MATCH — nearest refined minimum to each gamma_n
+==============================================================================
+
+------------------------------------------------------------------------------
+SET c<=13  (family window, n_primes = 6, largest prime = 13)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain                22       0.10972      0.188071      0.161477      0.376412        0.3411     0.0858851      0.154211      0.577355
+  V1_logp                 28     0.0762493      0.022956     0.0423386      0.112065     0.0198377     0.0521107      0.274318      0.233054
+  V2_vonmangoldt          44       0.10737      0.170923     0.0146627     0.0329707     0.0554349      0.164544      0.120852     0.0105489
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain               0.17477437       0.57735508       0.10971953
+  V1_logp               0.064180023       0.27431751      0.076249329
+  V2_vonmangoldt        0.081402513       0.17092281       0.10737015
+
+------------------------------------------------------------------------------
+SET c<=17  (family window, n_primes = 7, largest prime = 17)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain                22     0.0374813      0.145022    0.00015283      0.261322      0.503888     0.0718989     0.0964126      0.412389
+  V1_logp                 31     0.0335634     0.0328419      0.214534     0.0387174      0.206084   2.17763e-05      0.176424      0.180004
+  V2_vonmangoldt          38    0.00980011      0.128576      0.133179      0.136785      0.126287      0.279752     0.0679021     0.0327398
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain               0.12071746       0.50388752      0.037481276
+  V1_logp                0.10757075       0.21453395      0.033563395
+  V2_vonmangoldt         0.12743149       0.27975215     0.0098001147
+
+------------------------------------------------------------------------------
+SET c<=19  (family window, n_primes = 8, largest prime = 19)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain                25      0.077166     0.0804856      0.129819      0.340947      0.342666     0.0260741     0.0244825      0.313779
+  V1_logp                 32     0.0429665      0.108713     0.0374304      0.100641     0.0765284      0.115154     0.0954405     0.0575767
+  V2_vonmangoldt          42     0.0636438      0.297888     0.0108066     0.0156817     0.0610005    0.00761646     0.0617264     0.0705205
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain               0.10515242       0.34266618       0.07716597
+  V1_logp               0.085984425       0.11515444      0.042966482
+  V2_vonmangoldt        0.061363471       0.29788754      0.063643764
+
+------------------------------------------------------------------------------
+SET c<=23  (family window, n_primes = 9, largest prime = 23)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain                24      0.070393     0.0641839     0.0838707      0.417338      0.237613      0.126631     0.0156823      0.294654
+  V1_logp                 34     0.0157559     0.0640257     0.0375561      0.237579     0.0158043      0.243499     0.0193622      0.106219
+  V2_vonmangoldt          42     0.0178722      0.197293     0.0161968     0.0933446     0.0201975      0.139861     0.0811167    0.00865906
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain               0.10525096       0.41733838      0.070393028
+  V1_logp               0.050790873       0.24349904      0.015755868
+  V2_vonmangoldt        0.050657112       0.19729279      0.017872157
+
+------------------------------------------------------------------------------
+SET c<=29  (family window, n_primes = 10, largest prime = 29)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain                25     0.0826283      0.130695     0.0325736      0.404997       0.24719      0.073683     0.0153146      0.258233
+  V1_logp                 33     0.0531861     0.0470329     0.0762804      0.275155     0.0770839      0.226589     0.0871766     0.0247684
+  V2_vonmangoldt          47     0.0574799     0.0343733     0.0446063      0.142704     0.0682894     0.0026287     0.0429812     0.0914152
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain               0.10666172       0.40499717      0.082628291
+  V1_logp               0.076682138        0.2751555      0.053186059
+  V2_vonmangoldt        0.051043125       0.14270436      0.057479923
+
+------------------------------------------------------------------------------
+SET n=10  (family count, n_primes = 10, largest prime = 29)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain                25     0.0826283      0.130695     0.0325736      0.404997       0.24719      0.073683     0.0153146      0.258233
+  V1_logp                 33     0.0531861     0.0470329     0.0762804      0.275155     0.0770839      0.226589     0.0871766     0.0247684
+  V2_vonmangoldt          47     0.0574799     0.0343733     0.0446063      0.142704     0.0682894     0.0026287     0.0429812     0.0914152
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain               0.10666172       0.40499717      0.082628291
+  V1_logp               0.076682138        0.2751555      0.053186059
+  V2_vonmangoldt        0.051043125       0.14270436      0.057479923
+
+------------------------------------------------------------------------------
+SET n=100  (family count, n_primes = 100, largest prime = 541)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain                43     0.0709522     0.0282103     0.0707207      0.199302      0.164498    0.00440186     0.0207217      0.170078
+  V1_logp                 64     0.0741431      0.042346     0.0367794     0.0839436     0.0579108     0.0015741     0.0450757     0.0531087
+  V2_vonmangoldt          65     0.0749594     0.0524062     0.0551447     0.0445911     0.0607688     0.0419277     0.0228848     0.0196923
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain              0.070836421       0.19930203      0.070952185
+  V1_logp               0.049092216      0.083943615      0.074143119
+  V2_vonmangoldt        0.048498653      0.074959398      0.074959398
+
+------------------------------------------------------------------------------
+SET n=1000  (family count, n_primes = 1000, largest prime = 7919)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain                76      0.105463     0.0118092     0.0196607      0.149594      0.129513    0.00916125     0.0315859      0.115192
+  V1_logp                105      0.148734     0.0871016    0.00410164     0.0912435     0.0779712    0.00702485     0.0517655     0.0590403
+  V2_vonmangoldt         107      0.109363     0.0937228    0.00353126     0.0721725       0.07894    0.00764043     0.0616999     0.0490524
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain              0.068524541       0.14959371        0.1054632
+  V1_logp               0.068505753       0.14873427       0.14873427
+  V2_vonmangoldt        0.066936239       0.10936321       0.10936321
+
+------------------------------------------------------------------------------
+SET n=4000  (family count, n_primes = 4000, largest prime = 37813)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain               101    0.00117016      0.131096     0.0720062      0.053617      0.146497     0.0603068    0.00969992     0.0577778
+  V1_logp                130     0.0123877     0.0338554     0.0774295     0.0878198     0.0481149     0.0933297     0.0132793    0.00372304
+  V2_vonmangoldt         129     0.0134784     0.0298438     0.0795415      0.088603     0.0669502     0.0848465     0.0187344     0.0110009
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain              0.059042301       0.14649747     0.0011701602
+  V1_logp                0.04098517      0.093329657      0.012387658
+  V2_vonmangoldt        0.048396979      0.088602976      0.013478413
+
+------------------------------------------------------------------------------
+SET n=25000  (family count, n_primes = 25000, largest prime = 287117)
+------------------------------------------------------------------------------
+  variant           n_minima         |d|g1         |d|g2         |d|g3         |d|g4         |d|g5         |d|g6         |d|g7         |d|g8
+  V0_plain               146      0.010984      0.092362      0.101904    0.00114527     0.0636771      0.110917     0.0282019     0.0182169
+  V1_logp                160     0.0163137      0.123025       0.11356     0.0398577     0.0469438     0.0667617     0.0369654     0.0237121
+  V2_vonmangoldt         160     0.0167045      0.122432      0.113758     0.0407708     0.0467855     0.0561133     0.0344561     0.0271348
+
+  variant                 median|d|           max|d|   |d| at gamma_1
+  V0_plain              0.045939467       0.11091673      0.010984018
+  V1_logp               0.043400756       0.12302452       0.01631366
+  V2_vonmangoldt        0.043778143       0.12243157      0.016704489
+
+==============================================================================
+PRE-REGISTERED BANDS — on the MEDIAN absolute difference, test vs V0_plain
+==============================================================================
+  IMPROVES  median(test) <= median(V0)/2
+  WORSENS   median(test) >= 2*median(V0)
+  NEUTRAL   otherwise
+
+         set        median V0        median V1        median V2   V1 vs V0   V2 vs V0
+       c<=13       0.17477437      0.064180023      0.081402513   IMPROVES   IMPROVES
+       c<=17       0.12071746       0.10757075       0.12743149    NEUTRAL    NEUTRAL
+       c<=19       0.10515242      0.085984425      0.061363471    NEUTRAL    NEUTRAL
+       c<=23       0.10525096      0.050790873      0.050657112   IMPROVES   IMPROVES
+       c<=29       0.10666172      0.076682138      0.051043125    NEUTRAL   IMPROVES
+        n=10       0.10666172      0.076682138      0.051043125    NEUTRAL   IMPROVES
+       n=100      0.070836421      0.049092216      0.048498653    NEUTRAL    NEUTRAL
+      n=1000      0.068524541      0.068505753      0.066936239    NEUTRAL    NEUTRAL
+      n=4000      0.059042301       0.04098517      0.048396979    NEUTRAL    NEUTRAL
+     n=25000      0.045939467      0.043400756      0.043778143    NEUTRAL    NEUTRAL
+
+  ORDERING of the three variants by median error, per set:
+         c<=13 : V1_logp < V2_vonmangoldt < V0_plain
+         c<=17 : V1_logp < V0_plain < V2_vonmangoldt
+         c<=19 : V2_vonmangoldt < V1_logp < V0_plain
+         c<=23 : V2_vonmangoldt < V1_logp < V0_plain
+         c<=29 : V2_vonmangoldt < V1_logp < V0_plain
+          n=10 : V2_vonmangoldt < V1_logp < V0_plain
+         n=100 : V2_vonmangoldt < V1_logp < V0_plain
+        n=1000 : V2_vonmangoldt < V1_logp < V0_plain
+        n=4000 : V1_logp < V2_vonmangoldt < V0_plain
+       n=25000 : V1_logp < V2_vonmangoldt < V0_plain
+
+  ordering identical across ALL prime sets : NO   (3 distinct orderings)
+
+==============================================================================
+HEADLINE — c = 13 window: beat error at gamma_1 vs Connes' measured first-zero error
+==============================================================================
+  Connes value source : /Users/juliansambrano/GitHub/Primebeat_081426/results/O20_connes_cutoff_sweep_T1600.json   (primary)
+  Connes first-zero error at c = 13 :    2.187835146e-55
+
+  variant              |d| at gamma_1       connes error      ratio beat/connes
+  V0_plain               0.1097195287    2.187835146e-55         5.01498154e+53
+  V1_logp               0.07624932939    2.187835146e-55        3.485149671e+53
+  V2_vonmangoldt         0.1073701496    2.187835146e-55        4.907597804e+53
+
+------------------------------------------------------------------------------
+GATE A — V0_plain on the first 4000 primes has a local minimum within 0.05 of
+         gamma_1 = 14.134725, gamma_2 = 21.022040, gamma_3 = 25.010858
+------------------------------------------------------------------------------
+    gamma = 14.134725    nearest refined minimum =       14.1358953   distance =      0.0011703   ok
+    gamma = 21.02204     nearest refined minimum =      21.15313614   distance =       0.131096   MISS
+    gamma = 25.010858    nearest refined minimum =      24.93885143   distance =      0.0720066   MISS
+  GATE A: FAILED
+
+------------------------------------------------------------------------------
+GATE B — refinement is doing work, at (V0_plain, n=4000), minimum nearest gamma_1
+------------------------------------------------------------------------------
+    raw grid minimum        : 14.1359
+    golden-section refined  : 14.1358953019334
+    |refined - raw|         : 4.69807e-06
+    grid step               : 0.0001
+    |B| at the refined min  :    4.0055737e-12
+  GATE B: PASSED
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+  Three variants, the SAME primes and the SAME grid; nothing is fitted anywhere.
+  Minima are refined by golden section, so no error is floored at the grid step.
+  The bands were fixed before the run and are applied mechanically.
+  gate A (December canyons) : FAILED
+  gate B (refinement works) : PASSED
+  gate C (grid holds zeros) : PASSED
+  ordering stable across sets : NO
+  wall time : 6.95 s
+  Interpretation of these numbers is NOT this script's job.
+
+  results written to results/O22_weighted_beat_run2.json

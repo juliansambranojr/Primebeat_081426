@@ -1,0 +1,94 @@
+==============================================================================
+O24 — prime-generator orbit  (fit-free; exact counts; projection, not fit)
+==============================================================================
+  O18 showed the integer bases are blind to the zeros SINGLY but not JOINTLY: at
+  x0 = 2 the pure dyadic and pure triadic ladders returned NULL, while the joint
+  orbit {2^m 3^n} detected gamma_2 at P/median 6.95 and {2^m 3^n 5^k} detected
+  gamma_4 at 16.37. Only PRIME bases add generators: 4, 8 and 9 lie inside the
+  semigroup 2 and 3 already generate, so they do not densify the orbit. This script
+  makes the generator set a PARAMETER and sweeps the NESTED family on identical
+  settings, to measure how detection scales with the number of prime generators and
+  whether it saturates. Interpretation of the numbers below is NOT this script's job.
+
+  x0 = 2   xmax = 300000000   dps = 30   surrogates = 200   seed = 2026
+  generators = 2,3,5,7,11,13,17,19   nested family:
+    G1 = {2}
+    G2 = {2, 3}
+    G3 = {2, 3, 5}
+    G4 = {2, 3, 5, 7}
+    G5 = {2, 3, 5, 7, 11}
+    G6 = {2, 3, 5, 7, 11, 13}
+    G7 = {2, 3, 5, 7, 11, 13, 17}
+    G8 = {2, 3, 5, 7, 11, 13, 17, 19}
+  pi/log2 = 4.532360     pi/log3 = 2.859601
+
+  sieving primes to 300000000...
+  16252325 primes, largest = 299999977
+
+  building ladders (multipliers as EXACT Python integers; sort and dedup exact)...
+
+    set       generators   rungs          first x           last x     gap min     gap med     gap max   pi/gap_med
+     G1                2      28                2        268435456   0.6931472   0.6931472   0.6931472     4.532360
+     G2              2,3     255                2        286654464   0.0135510   0.0521160   0.6931472    60.280770
+     G3            2,3,5    1173                2        300000000   0.0011285   0.0112940   0.6931472   278.164584
+     G4          2,3,5,7    3700                2        300000000   0.0000406   0.0030972   0.6931472  1014.320249
+     G5       2,3,5,7,11    8585                2        300000000   0.0000161   0.0009130   0.6931472  3440.814107
+     G6    2,3,5,7,11,13   17221                2        300000000   0.0000075   0.0003306   0.6931472  9501.746894
+     G7 2,3,5,7,11,13,17   30086                2        300000000   0.0000006   0.0002017   0.6931472 15575.492725
+     G8 2,3,5,7,11,13,17,19   48697                2        300000000   0.0000001   0.0001020   0.6931472 30789.178775
+
+  reference: log 2 = 0.6931472   log 3 = 1.0986123   log 5 = 1.6094379   log 7 = 1.9459101
+  For a SINGLE generator the log-gaps are CONSTANT, so pi/gap IS the uniform Nyquist
+  limit. For every multi-generator set the gaps are IRREGULAR and pi/median_gap is a
+  DESCRIPTIVE NUMBER ONLY, NOT A BOUND.
+
+  NESTING CHECK (each ladder must be a superset of the previous)
+        G1 subset G2 :  True   28 -> 255 rungs (+227)
+        G2 subset G3 :  True   255 -> 1173 rungs (+918)
+        G3 subset G4 :  True   1173 -> 3700 rungs (+2527)
+        G4 subset G5 :  True   3700 -> 8585 rungs (+4885)
+        G5 subset G6 :  True   8585 -> 17221 rungs (+8636)
+        G6 subset G7 :  True   17221 -> 30086 rungs (+12865)
+        G7 subset G8 :  True   30086 -> 48697 rungs (+18611)
+
+  running pipeline on G1 = {2} (28 rungs, 27 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G1: total primes counted = 14630842, block size 1..7027290
+  G1: resolution = 0.348643, band hw = 0.600000, median(P) = 0.059378156
+  G1: argmax gamma = 21.9600 (nearest gamma_n = 21.022040, dist 0.9380), P_max/median = 5.111330
+  G1: P/median at the six gamma_n = 4.48860, 1.00729, 1.75240, 2.52399, 3.00588, 0.49257
+  G1: surrogate P_max/median min 1.136822 med 1.906180 p95 2.758600 max 3.464238; real 5.111330 at pct 100.000, > p95 True
+  G1: gate A PASSED   VERDICT WEAK
+
+  running pipeline on G2 = {2,3} (255 rungs, 254 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G2: total primes counted = 15567724, block size 0..748522
+  G2: resolution = 0.335487, band hw = 0.600000, median(P) = 0.094539223
+  G2: argmax gamma = 20.9800 (nearest gamma_n = 21.022040, dist 0.0420), P_max/median = 7.271745
+  G2: P/median at the six gamma_n = 6.32806, 7.22076, 5.54932, 2.18359, 4.47215, 1.92914
+  G2: surrogate P_max/median min 1.886097 med 2.567035 p95 3.268764 max 3.783318; real 7.271745 at pct 100.000, > p95 True
+  G2: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G3 = {2,3,5} (1173 rungs, 1172 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G3: total primes counted = 16252324, block size 0..184731
+  G3: resolution = 0.333831, band hw = 0.600000, median(P) = 0.026147016
+  G3: argmax gamma = 24.9700 (nearest gamma_n = 25.010858, dist 0.0409), P_max/median = 18.003929
+  G3: P/median at the six gamma_n = 16.69759, 14.25534, 17.91743, 17.28253, 14.94763, 17.03789
+  G3: surrogate P_max/median min 1.858149 med 2.589979 p95 3.265472 max 3.948432; real 18.003929 at pct 100.000, > p95 True
+  G3: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G4 = {2,3,5,7} (3700 rungs, 3699 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G4: total primes counted = 16252324, block size 0..65428
+  G4: resolution = 0.333823, band hw = 0.600000, median(P) = 0.01291589
+  G4: argmax gamma = 14.1500 (nearest gamma_n = 14.134725, dist 0.0153), P_max/median = 26.817551
+  G4: P/median at the six gamma_n = 26.79771, 25.89796, 26.74909, 25.45945, 25.63681, 25.72318
+  G4: surrogate P_max/median min 1.863381 med 2.568753 p95 3.203971 max 4.029257; real 26.817551 at pct 100.000, > p95 True
+  G4: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G5 = {2,3,5,7,11} (8585 rungs, 8584 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G5: total primes counted = 16252324, block size 0..26804
+  G5: resolution = 0.333757, band hw = 0.600000, median(P) = 0.016114279
+  G5: argmax gamma = 25.0000 (nearest gamma_n = 25.010858, dist 0.0109), P_max/median = 18.637366
+  G5: P/median at the six gamma_n = 18.13089, 18.01168, 18.63374, 18.13665, 18.33630, 17.79915
+  G5: surrogate P_max/median min 1.749335 med 2.543034 p95 3.240909 max 3.738603; real 18.637366 at pct 100.000, > p95 True
+  G5: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G6 = {2,3,5,7,11,13} (17221 rungs, 17220 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...

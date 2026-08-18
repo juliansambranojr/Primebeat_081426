@@ -1,0 +1,288 @@
+==============================================================================
+O20 — Connes cutoff sweep  (measures an accuracy curve and a spectral gap;
+      proves nothing, interprets nothing)
+==============================================================================
+  Connes, arXiv:2602.04022v1, §5, verbatim:
+    "What we do not know is that, when we increase the upper limit, which was
+     x = 13 here, the corresponding set of zeros will converge towards the
+     zeros of zeta. This is something which at this point is not proved."
+  §6.6, verbatim:
+    "one needs to show that the smallest eigenvalue of the Weil quadratic form
+     QW_lambda is simple with even eigenvector"
+
+  cutoffs        : [13, 17, 19, 23, 29]
+  N              : 100   (matrix is 201 square)
+  T              : 1600
+  dps            : 150
+  n_zeros        : 5
+  budget-minutes : 90.0
+  connes_cvs     : 0.3.1
+  mpmath         : 1.3.0
+
+------------------------------------------------------------------------------
+GATE A — is flint actually in use?
+------------------------------------------------------------------------------
+  import flint                      : OK
+  flint.__version__                 : 0.9.0
+  connes_cvs.operator.HAS_FLINT     : True
+  connes_cvs reported flint version : 0.9.0
+  GATE A: PASS — flint is in use.
+
+==============================================================================
+CUTOFF c = 13
+==============================================================================
+  primes <= 13 : [2, 3, 5, 7, 11, 13]   (n = 6)
+  bridge coordinate d = 2*log2(c) - 1 = 6.4008794363   (O19's axis)
+  N = 100, T = 1600, dps = 150
+
+  building the CvS Galerkin matrix Q(c)...
+  Q is 201 x 201   (build: 563.24 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 3.126948275e-59   (14.65 s)
+  log10 |lambda_1| = -58.504879
+  computing the FULL even-sector spectrum (mp.eigsy on the package's own
+  projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (14.43 s)
+  replication check: |min(replicated) - lambda_pkg| / |lambda_pkg| = 0
+  lambda_1 = 3.12694827544e-59
+  lambda_2 = 1.23925745496e-51
+  gap  lambda_2 - lambda_1 = 1.23925742369e-51
+  ratio lambda_2 / lambda_1 = 39631530.3548
+  five smallest even-sector eigenvalues:
+    lambda_1 = 3.1269482754414514707e-59
+    lambda_2 = 1.2392574549615351576e-51
+    lambda_3 = 9.9336644253134743848e-45
+    lambda_4 = 2.0758056281539874829e-38
+    lambda_5 = 1.1191981116462668955e-32
+
+  extracting 5 zeros from the ground-state eigenvector...
+  (0.39 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      2.18783514573e-55       True
+    2 21.02203963877155499262848 21.02203963877155499262848       4.0401568818e-52       True
+    3 25.01085758014568876321379 25.01085758014568876321379      3.73683250877e-50       True
+    4  30.4248761258595132103119  30.4248761258595132103119       3.2866509259e-47       True
+    5 32.93506158773918969066237 32.93506158773918969066237      6.40516723989e-46       True
+
+  cutoff c = 13 total wall: 592.70 s
+
+  CONNES COMPARISON at c = 13 (arXiv:2602.04022v1, §6):
+    his first-zero error : 2.60179e-55
+    ours                 : 2.18783514573e-55
+    Both numbers are STATED. This script does not interpret them.
+
+==============================================================================
+CUTOFF c = 17
+==============================================================================
+  primes <= 17 : [2, 3, 5, 7, 11, 13, 17]   (n = 7)
+  bridge coordinate d = 2*log2(c) - 1 = 7.1749256825   (O19's axis)
+  N = 100, T = 1600, dps = 150
+
+  building the CvS Galerkin matrix Q(c)...
+  Q is 201 x 201   (build: 571.43 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 2.434672589e-80   (13.81 s)
+  log10 |lambda_1| = -79.613559
+  computing the FULL even-sector spectrum (mp.eigsy on the package's own
+  projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (13.71 s)
+  replication check: |min(replicated) - lambda_pkg| / |lambda_pkg| = 0
+  lambda_1 = 2.43467258912e-80
+  lambda_2 = 3.33051556824e-72
+  gap  lambda_2 - lambda_1 = 3.33051554389e-72
+  ratio lambda_2 / lambda_1 = 136795213.579
+  five smallest even-sector eigenvalues:
+    lambda_1 = 2.4346725891156200303e-80
+    lambda_2 = 3.3305155682402176843e-72
+    lambda_3 = 8.3721404911875768266e-65
+    lambda_4 = 6.1314077444894080508e-58
+    lambda_5 = 1.0297102579575646137e-51
+
+  extracting 5 zeros from the ground-state eigenvector...
+  (0.38 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      1.95854823536e-76       True
+    2 21.02203963877155499262848 21.02203963877155499262848      4.33651073233e-73       True
+    3 25.01085758014568876321379 25.01085758014568876321379      4.60304924965e-71       True
+    4  30.4248761258595132103119  30.4248761258595132103119      5.07420968976e-68       True
+    5 32.93506158773918969066237 32.93506158773918969066237      1.11506235374e-66       True
+
+  cutoff c = 17 total wall: 599.33 s
+
+==============================================================================
+CUTOFF c = 19
+==============================================================================
+  primes <= 19 : [2, 3, 5, 7, 11, 13, 17, 19]   (n = 8)
+  bridge coordinate d = 2*log2(c) - 1 = 7.4958550269   (O19's axis)
+  N = 100, T = 1600, dps = 150
+
+  building the CvS Galerkin matrix Q(c)...
+  Q is 201 x 201   (build: 572.18 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 1.581528646e-90   (13.85 s)
+  log10 |lambda_1| = -89.800923
+  computing the FULL even-sector spectrum (mp.eigsy on the package's own
+  projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (13.76 s)
+  replication check: |min(replicated) - lambda_pkg| / |lambda_pkg| = 0
+  lambda_1 = 1.58152864641e-90
+  lambda_2 = 2.59061051619e-82
+  gap  lambda_2 - lambda_1 = 2.59061050037e-82
+  ratio lambda_2 / lambda_1 = 163804210.696
+  five smallest even-sector eigenvalues:
+    lambda_1 = 1.5815286464097512708e-90
+    lambda_2 = 2.5906105161867764714e-82
+    lambda_3 = 8.624421451506133834e-75
+    lambda_4 = 8.7306148470420954883e-68
+    lambda_5 = 2.2978960455302229226e-61
+
+  extracting 5 zeros from the ground-state eigenvector...
+  (0.38 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725      1.33695075843e-86       True
+    2 21.02203963877155499262848 21.02203963877155499262848      3.15714352995e-83       True
+    3 25.01085758014568876321379 25.01085758014568876321379      3.51886218815e-81       True
+    4  30.4248761258595132103119  30.4248761258595132103119      4.20203257479e-78       True
+    5 32.93506158773918969066237 32.93506158773918969066237      9.63477645601e-77       True
+
+  cutoff c = 19 total wall: 600.18 s
+
+==============================================================================
+CUTOFF c = 23
+==============================================================================
+  primes <= 23 : [2, 3, 5, 7, 11, 13, 17, 19, 23]   (n = 9)
+  bridge coordinate d = 2*log2(c) - 1 = 8.0471239121   (O19's axis)
+  N = 100, T = 1600, dps = 150
+
+  building the CvS Galerkin matrix Q(c)...
+  Q is 201 x 201   (build: 574.76 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 6.941038263e-107   (13.01 s)
+  log10 |lambda_1| = -106.15858
+  computing the FULL even-sector spectrum (mp.eigsy on the package's own
+  projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (12.95 s)
+  replication check: |min(replicated) - lambda_pkg| / |lambda_pkg| = 0
+  lambda_1 = 6.94103826293e-107
+  lambda_2 = 9.29012439265e-99
+  gap  lambda_2 - lambda_1 = 9.29012432324e-99
+  ratio lambda_2 / lambda_1 = 133843440.142
+  five smallest even-sector eigenvalues:
+    lambda_1 = 6.9410382629278898121e-107
+    lambda_2 = 9.2901243926534433613e-99
+    lambda_3 = 3.1121783331834110812e-91
+    lambda_4 = 2.6699833246766958883e-84
+    lambda_5 = 5.6991827670061129971e-78
+
+  extracting 5 zeros from the ground-state eigenvector...
+  (0.38 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725     6.42686164626e-103       True
+    2 21.02203963877155499262848 21.02203963877155499262848      1.70803239244e-99       True
+    3 25.01085758014568876321379 25.01085758014568876321379      2.08217454858e-97       True
+    4  30.4248761258595132103119  30.4248761258595132103119      2.87969765725e-94       True
+    5 32.93506158773918969066237 32.93506158773918969066237      7.13869473159e-93       True
+
+  cutoff c = 23 total wall: 601.10 s
+
+==============================================================================
+CUTOFF c = 29
+==============================================================================
+  primes <= 29 : [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]   (n = 10)
+  bridge coordinate d = 2*log2(c) - 1 = 8.7159619903   (O19's axis)
+  N = 100, T = 1600, dps = 150
+
+  building the CvS Galerkin matrix Q(c)...
+  Q is 201 x 201   (build: 575.67 s)
+  GATE C — ||Q - Q^T|| / ||Q|| = 0.0   -> PASS
+  computing ground state (cc.compute_ground_state)...
+  smallest even-sector eigenvalue: 5.229959048e-124   (12.45 s)
+  log10 |lambda_1| = -123.2815
+  computing the FULL even-sector spectrum (mp.eigsy on the package's own
+  projected matrix, operator.py:684-697) for the spectral gap...
+  even sector has 101 eigenvalues   (12.38 s)
+  replication check: |min(replicated) - lambda_pkg| / |lambda_pkg| = 0
+  lambda_1 = 5.22995904806e-124
+  lambda_2 = 5.9091270312e-116
+  gap  lambda_2 - lambda_1 = 5.9091269789e-116
+  ratio lambda_2 / lambda_1 = 112986105.186
+  five smallest even-sector eigenvalues:
+    lambda_1 = 5.229959048061621176e-124
+    lambda_2 = 5.909127031204255374e-116
+    lambda_3 = 1.4877254839941947419e-108
+    lambda_4 = 1.281277340978175935e-101
+    lambda_5 = 2.1696915079414534313e-95
+
+  extracting 5 zeros from the ground-state eigenvector...
+  (0.38 s; 5 of 5 converged)
+
+    k                 gamma_true             gamma_detected                |error|  converged
+  --- -------------------------- -------------------------- ---------------------- ----------
+    1 14.13472514173469379045725 14.13472514173469379045725     5.49291135969e-120       True
+    2 21.02203963877155499262848 21.02203963877155499262848      1.7191965554e-116       True
+    3 25.01085758014568876321379 25.01085758014568876321379     2.37271965747e-114       True
+    4  30.4248761258595132103119  30.4248761258595132103119     4.02239309557e-111       True
+    5 32.93506158773918969066237 32.93506158773918969066237     1.11115755839e-109       True
+
+  cutoff c = 29 total wall: 600.87 s
+
+------------------------------------------------------------------------------
+GATE B — reproduce O8's recorded eigenvalue at c = 13
+------------------------------------------------------------------------------
+  expected read from : /Users/juliansambrano/GitHub/Primebeat_081426/O8_run_dps150.log:15
+  that line reads    : '  smallest even-sector eigenvalue: 2.865453615e-59'
+  O8 recorded  : 2.865453615e-59
+  ours         : 3.12694827544e-59
+  |ours - O8| / |O8| = 0.0912577   (tolerance 5e-07)
+  GATE B: MISMATCH
+    O8 runs : N = 100, T = 800, dps in (150, 300)
+    this run: N = 100, T = 1600, dps = 150
+    STATED, not adjudicated: a different T is a parameter difference,
+    not a failure of the package.
+
+------------------------------------------------------------------------------
+GATE C — Q symmetric at every cutoff (||Q - Q^T|| / ||Q|| == 0 exactly)
+------------------------------------------------------------------------------
+  c =   13   ratio =            0   -> PASS
+  c =   17   ratio =            0   -> PASS
+  c =   19   ratio =            0   -> PASS
+  c =   23   ratio =            0   -> PASS
+  c =   29   ratio =            0   -> PASS
+  GATE C overall: PASS
+
+==============================================================================
+SWEEP SUMMARY — one row per cutoff
+==============================================================================
+     c  n_p         d  Qrows        lambda_1   log10|l1|        lambda_2             gap         l2/l1  first-zero err    wall s
+  ---- ---- --------- ------ --------------- ----------- --------------- --------------- ------------- --------------- ---------
+    13    6   6.40088    201   3.1269483e-59  -58.504879   1.2392575e-51   1.2392574e-51   3.96315e+07     2.18784e-55    592.70
+    17    7   7.17493    201   2.4346726e-80  -79.613559   3.3305156e-72   3.3305155e-72   1.36795e+08     1.95855e-76    599.33
+    19    8   7.49586    201   1.5815286e-90  -89.800923   2.5906105e-82   2.5906105e-82   1.63804e+08     1.33695e-86    600.18
+    23    9   8.04712    201  6.9410383e-107  -106.15858   9.2901244e-99   9.2901243e-99   1.33843e+08    6.42686e-103    601.10
+    29   10   8.71596    201   5.229959e-124   -123.2815   5.909127e-116   5.909127e-116   1.12986e+08    5.49291e-120    600.87
+
+  no cutoff was skipped by the budget.
+
+------------------------------------------------------------------------------
+STATED FACTS (mechanical; NOT interpreted here)
+------------------------------------------------------------------------------
+  first-zero error, cutoff-ordered : [(13, '2.18784e-55'), (17, '1.95855e-76'), (19, '1.33695e-86'), (23, '6.42686e-103'), (29, '5.49291e-120')]
+  strictly decreasing in c?        : True
+  gap ratio lambda_2/lambda_1      : [(13, '3.96315e+07'), (17, '1.36795e+08'), (19, '1.63804e+08'), (23, '1.33843e+08'), (29, '1.12986e+08')]
+  smallest ratio over the sweep    : 3.96315e+07
+
+  total wall: 2995.26 s (49.92 min)
+
+  results written to results/O20_connes_cutoff_sweep_T1600.json

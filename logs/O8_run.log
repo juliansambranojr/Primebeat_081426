@@ -1,0 +1,62 @@
+==============================================================================
+O8 — the Weil form as the missing inner product
+==============================================================================
+  c = 13, N = 100, T = 800, dps = 300
+
+  building the CvS Galerkin matrix Q(c)...
+  Q is 201 x 201
+  Q symmetric?  ||Q - Q^T|| / ||Q|| = 0.0
+  (Q must be symmetric to be an inner product at all)
+
+------------------------------------------------------------------------------
+STEP 1 — reproduce the published numbers before comparing
+------------------------------------------------------------------------------
+  computing ground state...
+  smallest even-sector eigenvalue: 2.865453615e-59
+  log10 |lambda_min| = -58.542807
+  extracting zeros from the ground-state eigenvector...
+
+    k                    recovered          |error|
+  zero extraction failed at these settings: cannot create mpf from {'k': 1, 'gamma_true': mpf('14.1347251417346937904572519835624702707842571156992431756855674601499634298092567649490103931715610127792029715487974367661426914698822545825053632394471377804133812372059705496219558658602005555667258360107737002054109826615075427805174425913062544819786510723049387256297383215774203952157256748093316'), 'gamma_detected': mpf('14.1347251417346937904572519835624702707842571156992431758861136045549994772202392638817933790559161249712359228092052056217610829066461657752756315382714691182118093883926713780094444389052040535428181554585784212833794266022746884425066069203203291036760456828075231091059753731730098678278027991839077'), 'error': mpf('0.000000000000000000000000000000000000000000000000000000200546144405036047410982498932782985884355112192032951260407768855618391436763911192770268298824331337798428151186700828387488573045003497976092319447804721077968443940767145661989164329014074621697394610502584383476237051595589472612077124374576032496538012750205458131858142345424199984543123244174425'), 'residual': mpf('2.2658163329920744730363624227683615599597575928760737022136527187353468839540535159850882045660541970733059249735856474575568561484452920310477887584756829341940156216753241923326847704483636594723506029599398946948975821165889562106368802640264973882295491598285836255594403574132655531171281203965464e-303'), 'converged': True, 'failure': None, 'tolerance': mpf('1.91132389069459226417170338759437756337580328216925803442527096790214023367838849936269378989646049763245053937730404889439331844373305834463543463363365018876807304425128990776114191561912695093473380515075095166615656963030207240356900509926485013260431027989386543333267417954029764448669217364058685e-298')}
+  (raise --N and --dps; step 2 does not depend on this)
+
+------------------------------------------------------------------------------
+STEP 2 — is Delta self-adjoint in the Weil inner product?
+------------------------------------------------------------------------------
+  test:  Q A = A^T Q   for each operator A
+  measure: ||Q A - A^T Q|| / ||Q A||   (0 = self-adjoint)
+
+                            operator            failure
+  ---------------------------------- ------------------
+           Delta (dyadic difference)         0.99844421
+   d/dt (scaling gen) [control PASS]        0.038227574
+        random matrix [control FAIL]         0.85234065
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+
+  Delta's failure : 0.99844421
+  scaling gen     : 0.038227574   <- the operator CvS is built around
+  random          : 0.85234065   <- total failure baseline
+
+  Delta near the scaling generator
+      -> the Weil form does supply the inner product, and O1's negative was
+         an artifact of restricting to diagonal weights.  The two programs
+         are then the same operator in different coordinates.
+
+  Delta near the random baseline
+      -> the Weil form is not the missing ingredient for THIS operator.  The
+         quantity above is then the size of the gap, which is the useful
+         thing to report either way.
+
+  Neither outcome bears on RH.  O2 separately closed the question of whether
+  any operator built here has {gamma} as its spectrum.
+
+  CAVEAT ON THE BASIS.  Q lives in the trigonometric basis e_k(t) on
+  [0, log c].  Delta as written here differences the BASIS INDEX k, which is
+  the natural finite-dimensional analogue but is not automatically the same
+  as the dyadic shift on the underlying interval.  If the failure comes out
+  large, the first thing to check is whether the basis alignment is right --
+  not to conclude the operators are unrelated.
+

@@ -1,0 +1,193 @@
+==============================================================================
+O17 — disjoint-block residual  (fit-free; exact counts; projection, not fit)
+==============================================================================
+  x_j  = x0 * r^j                        value ladder
+  c_j  = pi(x_{j+1}) - pi(x_j)           EXACT integer count in (x_j, x_{j+1}]
+  L_j  = li(x_{j+1}) - li(x_j)           smooth prediction
+  e_j  = c_j - L_j                       the residual
+  ehat = e_j / sqrt(x_j)                 half-power normalisation
+
+  Blocks are DISJOINT and TILE the range: every prime in (x_0, x_last] is used
+  exactly once and every block is an independent sample. The COUNT fluctuates,
+  because the interval is fixed in VALUE space, not in index space.
+  O12-O15 summed primes[N:2N] by PRIME INDEX: consecutive rungs overlapped, and
+  the count was fixed at N by construction, so it carried no fluctuation at all.
+
+  log-x step = log(r) = 0.6931472   (dyadic ladder: log 2 = 0.6931472)
+  Nyquist = pi/log(r) = 4.532360   (dyadic ladder: 4.532360)
+    gamma_1 = 14.134725    ABOVE Nyquist
+    gamma_2 = 21.02204     ABOVE Nyquist
+    gamma_3 = 25.010858    ABOVE Nyquist
+    gamma_4 = 30.424876    ABOVE Nyquist
+    gamma_5 = 32.935062    ABOVE Nyquist
+    gamma_6 = 37.586178    ABOVE Nyquist
+
+  sieving primes to 150000000...
+  8444396 primes, largest = 149999957
+
+  ladder points (rungs) : 27
+  blocks (disjoint)     : 26
+  first x = 2.0
+  last  x = 134217728.0
+  achieved Nyquist pi/log(r) = 4.532360
+
+  total primes counted across all blocks : 7603552
+  block size range : min = 1   max = 3645744
+
+  computing li at mp.dps = 30 ...
+  mp.dps used : 30   (difference taken in mpf, cast to float only afterwards)
+
+------------------------------------------------------------------------------
+BLOCKS — one row per disjoint interval (x_j, x_{j+1}]
+------------------------------------------------------------------------------
+     j                x_j            x_{j+1}        c_j                L_j              e_j         ehat_j
+     0                  2                  4          1      1.92242131492      -0.92242131     -0.6522504
+     1                  4                  8          2      2.28613320452       -0.2861332     -0.1430666
+     2                  8                 16          2      3.26599816415       -1.2659982     -0.4475979
+     3                 16                 32          5      5.08537571338     -0.085375713    -0.02134393
+     4                 32                 64          7      8.32957615096       -1.3295762     -0.2350381
+     5                 64                128         13      14.1078799892         -1.10788      -0.138485
+     6                128                256         23      24.4705170207        -1.470517     -0.1299766
+     7                256                512         43      43.2080518311      -0.20805183    -0.01300324
+     8                512               1024         75      77.3569225127       -2.3569225     -0.1041622
+     9               1024               2048        137      140.036375993        -3.036376    -0.09488675
+    10               2048               4096        255      255.808088356      -0.80808836     -0.0178564
+    11               4096               8192        464      470.829354294       -6.8293543     -0.1067087
+    12               8192              16384        872      872.136512713      -0.13651271   -0.001508267
+    13              16384              32768       1612      1624.35566144       -12.355661    -0.09652861
+    14              32768              65536       3030      3039.74271394       -9.7427139     -0.0538214
+    15              65536             131072       5709      5712.08038332       -3.0803833    -0.01203275
+    16             131072             262144      10749      10773.1259872       -24.125987    -0.06663925
+    17             262144             524288      20390      20384.6182879        5.3817121     0.01051116
+    18             524288            1048576      38635      38683.7162517       -48.716252    -0.06728045
+    19            1048576            2097152      73586      73602.4370117       -16.437012    -0.01605177
+    20            2097152            4194304     140336      140373.873525       -37.873525    -0.02615296
+    21            4194304            8388608     268216      268297.674215       -81.674215    -0.03987999
+    22            8388608           16777216     513708      513810.187862       -102.18786    -0.03528209
+    23           16777216           33554432     985818      985762.977826        55.022174     0.01343315
+    24           33554432           67108864    1894120      1894364.87026       -244.87026    -0.04227281
+    25           67108864          134217728    3645744      3646033.60255       -289.60255    -0.03535187
+
+------------------------------------------------------------------------------
+RESIDUAL NORMALISED AT THE HALF POWER — ehat_j = e_j / sqrt(x_j)
+------------------------------------------------------------------------------
+  n     = 26
+  min   = -0.6522503669   (at x = 2)
+  max   = 0.01343314796   (at x = 16777216)
+  mean  = -0.09897052652
+  RMS   = 0.175211356
+
+------------------------------------------------------------------------------
+THETA SCAN — e_j / x_j^theta, half-ladder RMS ratio. PARAMETER-FREE SCAN, NOT A FIT.
+------------------------------------------------------------------------------
+  The theta list is fixed in the source. Nothing is optimised and no theta is
+  selected by the script. A ratio near 1 means that theta flattens the residual.
+
+  lower half = blocks 0..12, upper half = blocks 13..25  (middle block dropped when odd)
+
+     theta          RMS_lower          RMS_upper    RMS_upper/RMS_lower
+     0.250       0.4920780851        1.667366592            3.388418713
+     0.375       0.3176423466       0.2464240543           0.7757909389
+     0.500       0.2433331357      0.04676562375           0.1921876509
+     0.625       0.2022916199       0.0110203854          0.05447771588
+     0.750       0.1746683815     0.002915897326          0.01669390476
+
+------------------------------------------------------------------------------
+PROJECTION  P(gamma) = |sum_j w_j ehat_j exp(-i gamma log x_j)|  (inner product, NOT a fit)
+------------------------------------------------------------------------------
+  window      : hann over 26 blocks
+  gamma grid  : 0 to 40 step 0.01  (4001 points)
+  log-x span used by the projection = 17.3286795
+  frequency resolution 2*pi/(log x_last - log x_first) = 0.362589
+
+  BAND HALF-WIDTH USED = max(0.6, 0.362589) = 0.600000
+  This is DELIBERATE: the band is at least ONE FREQUENCY RESOLUTION ELEMENT wide.
+  In O15 the pre-registered half-width (0.5) was NARROWER than one resolution
+  element (0.605), so the band could barely fire. That is not repeated here.
+  threshold : P > 5 x median(P)
+
+  median(P)          = 0.0835373857
+  global max of P    = 0.7528008779  at gamma = 0.0000
+  P_max / median     = 9.011545
+  nearest gamma_n to the argmax = 14.134725  (distance 14.134725, band 0.600000)
+
+  TEN LARGEST LOCAL PEAKS (strict interior maxima)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      18.1300       0.7527996648       9.011530         21.022040     2.8920        no
+      2      36.2600       0.7527960254       9.011487         37.586178     1.3262        no
+      3      27.1900       0.7527337722       9.010741         25.010858     2.1791        no
+      4       9.0600       0.7527145151       9.010511         14.134725     5.0747        no
+      5      21.9600        0.305986987       3.662875         21.022040     0.9380        no
+      6       3.8300       0.3059845438       3.662846         14.134725    10.3047        no
+      7      23.3600        0.305983392       3.662832         25.010858     1.6509        no
+      8      14.3000       0.3059812965       3.662807         14.134725     0.1653       yes
+      9       5.2300       0.3059798208       3.662789         14.134725     8.9047        no
+     10      32.4300       0.3059772461       3.662758         32.935062     0.5051       yes
+
+  P AT THE FIRST SIX ZERO HEIGHTS
+    n      gamma_n   grid point                  P       P/median   below Nyquist
+    1    14.134725      14.1300         0.26720855       3.198670              no
+    2    21.022040      21.0200      0.06831730414       0.817805              no
+    3    25.010858      25.0100       0.1016011736       1.216236              no
+    4    30.424876      30.4200       0.1512086842       1.810072              no
+    5    32.935062      32.9400       0.1749997715       2.094868              no
+    6    37.586178      37.5900      0.03022057208       0.361761              no
+
+------------------------------------------------------------------------------
+GATE A — EXACT TILING: sum_j c_j == pi(x_last) - pi(x_0)
+------------------------------------------------------------------------------
+  pi(x_0)    = pi(2) = 1
+  pi(x_last) = pi(134217728) = 7603553
+  pi(x_last) - pi(x_0) = 7603552
+  sum_j c_j            = 7603552
+  difference           = 0
+  GATE A: PASSED   (no gap, no overlap)
+
+------------------------------------------------------------------------------
+GATE B — TIES TO THE TABLE: at --x0 2 --ratio 2.0, c_j must reproduce
+         N(r) = pi(2^r) - pi(2^(r-1)) from pi2n_cache.json (READ ONLY)
+------------------------------------------------------------------------------
+  source: /Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json   (READ ONLY)
+  cache entries: 63  n range 0..62
+  r values compared : 26   (r = 2..27)
+  mismatches        : 0
+  GATE B: PASSED
+
+------------------------------------------------------------------------------
+GATE C — SANITY ON li: li(10^6) against the known value, and pi(10^6) from the sieve
+------------------------------------------------------------------------------
+  li(10^6) computed at dps 30 : 78627.549159
+  li(10^6) known value           : 78627.549...
+  |difference|                   : 0.000159462   (known value quoted to 3 dp)
+  pi(10^6) from the sieve        : 78498   (from this run's sieve)
+  pi(10^6) known value           : 78498
+  li(10^6) - pi(10^6)            : 129.549159
+  GATE C: li match PASSED, pi match PASSED
+
+------------------------------------------------------------------------------
+BAND VERDICT — pre-registered, applied mechanically
+------------------------------------------------------------------------------
+  This instrument has NO sigma and NO t; it works on the raw count residual.
+  There is therefore exactly ONE verdict per (x0, ratio, xmax) setting.
+
+  configuration : x0 = 2, ratio = 2, xmax = 150000000
+  band half-width used : 0.600000   (floor 0.6, one resolution element 0.362589)
+  threshold            : 5 x median(P)
+
+  VERDICT: NULL
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+  c_j are EXACT INTEGER prime counts by binary search; no float approximation to
+  pi(x) is used anywhere. L_j is an mpmath li difference at dps 30, cast to
+  float only after the cancellation. The projection is float64.
+  The theta scan is a fixed printed list, not a search: no theta is selected.
+  P(gamma) is an INNER PRODUCT, not a fit. The bands were fixed before the run.
+  gate A (exact tiling)   : PASSED
+  gate B (ties to table)  : PASSED
+  gate C (li sanity)      : li PASSED, pi PASSED
+  verdict                 : NULL
+  Interpretation of these numbers is NOT this script's job.
+
+  results written to results/O17_disjoint_block_residual_dyadic.json

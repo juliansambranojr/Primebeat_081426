@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 660" width="900" height="660" font-family="Charter, Iowan Old Style, Palatino, Georgia, serif">
+<rect x="0" y="0" width="900" height="660" fill="#fcfcfb"/>
+
+<style>
+  .ttl   { font-size:15px; font-weight:700; fill:#16181c; }
+  .sub   { font-size:11.5px; fill:#5d636e; font-family:ui-sans-serif,-apple-system,system-ui,sans-serif; }
+  .ax    { font-size:10px; fill:#6b7280; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .lab   { font-size:10.5px; fill:#16181c; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .labm  { font-size:10px; fill:#5d636e; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .axttl { font-size:11px; fill:#3c4552; font-family:ui-sans-serif,-apple-system,system-ui,sans-serif; }
+  .grid  { stroke:#e3e5e8; stroke-width:1; }
+  .axis  { stroke:#b9bec6; stroke-width:1; }
+</style>
+
+<!-- ============ PANEL A ============ -->
+<text class="ttl" x="70" y="26">Connes' approximation error, first 50 zeros</text>
+<text class="sub" x="70" y="42">Using only the primes ≤ 13 — a single window at depth d = 6.40. arXiv:2602.04022, §5.</text>
+
+<!-- gridlines -->
+<line class="grid" x1="70" y1="272.1" x2="840" y2="272.1"/>
+<line class="grid" x1="70" y1="225.7" x2="840" y2="225.7"/>
+<line class="grid" x1="70" y1="179.3" x2="840" y2="179.3"/>
+<line class="grid" x1="70" y1="132.9" x2="840" y2="132.9"/>
+<line class="grid" x1="70" y1="86.4"  x2="840" y2="86.4"/>
+<line class="grid" x1="70" y1="40"    x2="840" y2="40"/>
+<text class="ax" x="62" y="275.6" text-anchor="end">1e−50</text>
+<text class="ax" x="62" y="229.2" text-anchor="end">1e−40</text>
+<text class="ax" x="62" y="182.8" text-anchor="end">1e−30</text>
+<text class="ax" x="62" y="136.4" text-anchor="end">1e−20</text>
+<text class="ax" x="62" y="89.9"  text-anchor="end">1e−10</text>
+<text class="ax" x="62" y="43.5"  text-anchor="end">1e+00</text>
+
+<line class="axis" x1="70" y1="300" x2="840" y2="300"/>
+<text class="ax" x="70"  y="316" text-anchor="middle">1</text>
+<text class="ax" x="211" y="316" text-anchor="middle">10</text>
+<text class="ax" x="369" y="316" text-anchor="middle">20</text>
+<text class="ax" x="526" y="316" text-anchor="middle">30</text>
+<text class="ax" x="683" y="316" text-anchor="middle">40</text>
+<text class="ax" x="840" y="316" text-anchor="middle">50</text>
+<text class="axttl" x="455" y="336" text-anchor="middle">zero index n</text>
+
+<polyline fill="none" stroke="#1F5FA8" stroke-width="2" stroke-linejoin="round" points="
+70.0,293.4 85.7,278.3 101.4,269.1 117.1,255.5 132.9,249.5 148.6,239.4 164.3,230.2 180.0,225.2
+195.7,213.4 211.4,208.9 227.1,203.6 242.9,195.5 258.6,186.8 274.3,184.1 290.0,176.0 305.7,170.7
+321.4,166.2 337.1,162.1 352.9,152.5 368.6,148.8 384.3,146.7 400.0,139.6 415.7,135.3 431.4,129.4
+447.1,127.5 462.9,122.0 478.6,115.2 494.3,113.6 510.0,111.3 525.7,106.6 541.4,101.1 557.1,97.7
+572.9,96.8 588.6,88.2 604.3,86.2 620.0,85.1 635.7,83.1 651.4,80.3 667.1,74.7 682.9,71.0
+698.6,70.9 714.3,68.9 730.0,64.3 745.7,57.9 761.4,55.1 777.1,54.6 792.9,56.3 808.6,47.8
+824.3,51.6 840.0,52.4"/>
+
+<g fill="#1F5FA8">
+<circle cx="70.0" cy="293.4" r="3"/><circle cx="211.4" cy="208.9" r="2"/><circle cx="368.6" cy="148.8" r="2"/>
+<circle cx="525.7" cy="106.6" r="2"/><circle cx="682.9" cy="71.0" r="2"/><circle cx="808.6" cy="47.8" r="3"/>
+<circle cx="840.0" cy="52.4" r="2"/>
+</g>
+
+<text class="lab" x="80" y="290">2.60e−55</text>
+<text class="labm" x="82" y="303">zero 1 · 54 decimals agree</text>
+<text class="lab" x="802" y="38" text-anchor="end">2.09e−02</text>
+<text class="labm" x="802" y="26" text-anchor="end">zero 48 — tail is not monotone</text>
+
+<!-- ============ PANEL B ============ -->
+<text class="ttl" x="70" y="392">The shared coordinate: window depth</text>
+<text class="sub" x="70" y="408">A cell at depth d spans a value window of ratio 2^(d+1); Connes' window [λ⁻¹,λ] has ratio λ². Equate: λ = 2^((d+1)/2).</text>
+
+<line class="grid" x1="70" y1="560" x2="840" y2="560"/>
+<line class="grid" x1="70" y1="515" x2="840" y2="515"/>
+<line class="grid" x1="70" y1="470" x2="840" y2="470"/>
+<line class="grid" x1="70" y1="425" x2="840" y2="425"/>
+<text class="ax" x="62" y="563.5" text-anchor="end">0</text>
+<text class="ax" x="62" y="518.5" text-anchor="end">2</text>
+<text class="ax" x="62" y="473.5" text-anchor="end">4</text>
+<text class="ax" x="62" y="428.5" text-anchor="end">6</text>
+<text class="axttl" x="30" y="475" text-anchor="middle" transform="rotate(-90 30 475)">primes inside the window</text>
+
+<polyline fill="none" stroke="#1F5FA8" stroke-width="2" stroke-linejoin="round" points="
+70,560 166.25,560 166.25,537.5 262.5,537.5 262.5,515 358.75,515 358.75,492.5 455,492.5
+455,470 551.25,470 551.25,447.5 647.5,447.5 647.5,425 743.75,425 743.75,380 840,380"/>
+
+<line class="axis" x1="70" y1="575" x2="840" y2="575"/>
+<g class="ax" text-anchor="middle">
+<text x="70" y="591">0</text><text x="166" y="591">1</text><text x="263" y="591">2</text>
+<text x="359" y="591">3</text><text x="455" y="591">4</text><text x="551" y="591">5</text>
+<text x="648" y="591">6</text><text x="744" y="591">7</text><text x="840" y="591">8</text>
+</g>
+<text class="axttl" x="455" y="611" text-anchor="middle">depth d</text>
+<g class="labm" text-anchor="middle">
+<text x="166" y="605">λ=2</text><text x="359" y="605">λ=4</text><text x="551" y="605">λ=8</text>
+<text x="648" y="605">λ=11.3</text><text x="744" y="605">λ=16</text>
+</g>
+
+<!-- table zeros: diamonds in ink, identity by shape + label -->
+<g fill="#16181c">
+<path d="M166.25,529 l7,8.5 l-7,8.5 l-7,-8.5 z"/>
+<path d="M358.75,507 l7,8.5 l-7,8.5 l-7,-8.5 z"/>
+<path d="M647.5,417 l7,8.5 l-7,8.5 l-7,-8.5 z"/>
+</g>
+<text class="lab" x="166" y="522" text-anchor="middle">(2,1) (4,1)</text>
+<text class="labm" x="166" y="510" text-anchor="middle">{2}</text>
+<text class="lab" x="359" y="500" text-anchor="middle">(8,3)</text>
+<text class="labm" x="359" y="488" text-anchor="middle">{2,3} = the mod-6 lattice</text>
+<text class="lab" x="640" y="410" text-anchor="end">(20,6)</text>
+<text class="labm" x="640" y="398" text-anchor="end">{2,3,5,7,11}</text>
+
+<!-- Connes marker: open ring, distinct shape -->
+<circle cx="686.1" cy="425" r="6.5" fill="none" stroke="#C1651A" stroke-width="2.5"/>
+<line x1="686.1" y1="425" x2="740" y2="460" stroke="#C1651A" stroke-width="1"/>
+<text class="lab" x="745" y="463" fill="#C1651A">Connes  d = 6.40</text>
+<text class="labm" x="745" y="476">λ = 13 · {2,3,5,7,11,13}</text>
+
+<text class="labm" x="70" y="638">Diamonds: exact zeros of the dyadic prime difference table (r,d), verified unique to r ≤ 62, d ≤ 61.</text>
+<text class="labm" x="70" y="652">Ring: the window Connes computes in. The only non-trivial table zero sits one prime short of it.</text>
+</svg>

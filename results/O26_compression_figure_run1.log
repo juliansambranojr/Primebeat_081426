@@ -1,0 +1,35 @@
+==============================================================================
+O26 — compression figure  (reads O25's JSON; recomputes nothing)
+==============================================================================
+  code_version      : e18823ade34026ab454b87e70768cfd72405c63dd51d47b5def7d41b9ea53b33
+  matplotlib        : 3.11.1
+  numpy             : 2.5.2
+  results in        : /Users/juliansambrano/GitHub/Primebeat_081426/results/O25_compression_curve_results.json
+  figure out        : /Users/juliansambrano/GitHub/Primebeat_081426/results/compression_curve.png
+  dpi               : 200
+
+  O25 script        : O25_compression_curve.py
+  O25 generated_utc : 2026-08-17T07:27:51.313068+00:00
+  O25 code_version  : e23638563b29018b892fb679839d5b7f6ac87dbae582cfae1a0d2045920f5bb1
+  xmin/xmax/nx      : 10 / 10000 / 80  ->  80 after dedup
+  offset            : 0.5
+  grid prime powers : 16
+  n_zeros           : 100000
+  kvals             : [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 1000, 2000, 5000, 10000, 20000, 50000, 100000]
+  targets           : ['relative:0.1', 'relative:0.01', 'relative:0.001', 'absolute:1']
+
+  per target — band, crossover_x, K_stay/pi at the top of the grid:
+       relative:0.1 :  COMPRESSES   crossover_x =   none   K_stay_top =      1   K/pi = 0.00081367
+      relative:0.01 :     NEITHER   crossover_x =   none   K_stay_top =      1   K/pi = 0.00081367
+     relative:0.001 :     NEITHER   crossover_x =   none   K_stay_top =     21   K/pi = 0.0170871
+         absolute:1 :     INVERTS   crossover_x =   1030   K_stay_top =   5000   K/pi = 4.06835
+
+  n_grid                  : 80
+  x_first                 : 10
+  x_last                  : 10000
+  pi_at_top               : 1229
+  n_null_k_stay_drawn     : 0
+  crossover_x_absolute_1  : 1030
+  k_stay_at_crossover     : 5000
+
+  wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/compression_curve.png  (606578 bytes)

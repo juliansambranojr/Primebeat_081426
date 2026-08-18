@@ -1,0 +1,239 @@
+"""
+O8 — Does the Weil form supply the inner product that makes the dyadic
+     difference operator self-adjoint?
+
+Reads with: DT-A5 (O1's obstruction), dyadic-table-v2.md §3.2.
+External:   Connes-van Suijlekom truncated Weil form; Groskin, arXiv:2605.20224,
+            package `pip install connes-cvs`.
+
+THE QUESTION
+------------
+O1 (DT-A5 §1) proved: Delta = S - I, the dyadic forward-difference operator,
+is NOT self-adjoint under ANY positive DIAGONAL weight.  The obstruction is
+two lines — Delta is one-sided, D[i,i+1] = +1 while D[i+1,i] = 0, so
+w_i * 1 = w_j * 0 forces w_i = 0.
+
+That proof rules out reweighting cell by cell.  It says nothing about a
+NON-diagonal inner product.
+
+Connes-Consani-Moscovici do exactly what the obstruction does not cover: the
+perturbed scaling operator "becomes self-adjoint provided one modifies the
+inner product using the Weil quadratic form."  Their operator is the scaling
+operator on L^2([0, log c]).  The dyadic table is dilation by 2 on a log
+scale.  Same class of object.
+
+So the question is concrete and checkable:
+
+    Let Q = the CvS Galerkin matrix (the Weil form in a trigonometric basis).
+    Let D = the difference operator in that same basis.
+    Is  Q D = D^T Q  ?
+
+    YES -> the Weil form is the inner product the dyadic operator was missing,
+           and O1's negative was an artifact of restricting to diagonal weights.
+    NO  -> quantify the failure ||QD - D^T Q|| / ||QD||, and compare against
+           the same measure for the scaling generator Q's construction is
+           built around, which should be near zero.
+
+WHAT THIS SCRIPT DOES
+---------------------
+  STEP 1  Reproduce the published CvS numbers at c=13 (six primes: 2,3,5,7,11,13)
+          before comparing anything.  If we cannot reproduce, we do not have
+          the right object and nothing downstream means anything.
+
+  STEP 2  Build D in the same trigonometric basis Q uses and test QD = D^T Q,
+          with two controls:
+            (a) the scaling generator d/dt, which the CvS construction IS
+                built around -- the expected near-zero baseline
+            (b) a random non-symmetric matrix -- the expected total failure
+
+  STEP 3  Report the three failure measures side by side.  The number that
+          matters is where D falls between the two controls.
+
+HONEST STATEMENT OF WHAT A "YES" WOULD AND WOULD NOT MEAN
+---------------------------------------------------------
+A yes would mean the dyadic difference operator is self-adjoint in the Weil
+inner product.  It would NOT prove anything about RH, and it would not make
+the table's spectrum equal {gamma} -- O2 already closed that separately.  It
+would mean the two constructions are the same object in different coordinates,
+which is a structural fact worth knowing and currently unknown.
+
+A no with a quantified gap is equally useful and more likely.
+
+REQUIREMENTS
+------------
+    pip install connes-cvs mpmath numpy
+
+RUNTIME
+-------
+c=13, N=40, dps=150 runs in minutes.  N=100, dps=300 is hours and is what
+the published numbers use.  Start small.
+
+USAGE
+-----
+    python3 O8_weil_inner_product.py                    # quick, N=40
+    python3 O8_weil_inner_product.py --N 100 --dps 300  # published settings
+"""
+
+import argparse
+
+import mpmath as mp
+
+
+def frob(M):
+    """Frobenius norm of an mpmath matrix."""
+    return mp.sqrt(sum(abs(M[i, j]) ** 2 for i in range(M.rows)
+                       for j in range(M.cols)))
+
+
+def difference_matrix(n):
+    """Forward difference D f = f(k+1) - f(k), on the basis index."""
+    D = mp.zeros(n, n)
+    for k in range(n - 1):
+        D[k, k] = -1
+        D[k, k + 1] = 1
+    return D
+
+
+def scaling_generator(n, N, L):
+    """
+    d/dt in the trigonometric basis e_k(t) = exp(2 pi i k t / L), k in [-N,N].
+    Diagonal with entries 2 pi i k / L.  This is the operator the CvS
+    construction is built around, so it is the control that should PASS.
+    Represented as a real skew matrix on the real basis for comparability.
+    """
+    G = mp.zeros(n, n)
+    for idx in range(n):
+        k = idx - N
+        G[idx, idx] = 2 * mp.pi * k / L      # imaginary part; real skew proxy
+    return G
+
+
+def commutator_failure(Q, A):
+    """||Q A - A^T Q|| / ||Q A||   -- zero iff A is self-adjoint wrt Q."""
+    QA = Q * A
+    AtQ = A.T * Q
+    num = frob(QA - AtQ)
+    den = frob(QA)
+    return num / den if den != 0 else mp.mpf('nan')
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--c", type=int, default=13,
+                    help="prime cutoff; c=13 uses primes 2,3,5,7,11,13")
+    ap.add_argument("--N", type=int, default=40, help="band (matrix is 2N+1)")
+    ap.add_argument("--T", type=int, default=400, help="archimedean cutoff")
+    ap.add_argument("--dps", type=int, default=150, help="mpmath precision")
+    ap.add_argument("--skip-step1", action="store_true")
+    args = ap.parse_args()
+
+    mp.mp.dps = args.dps
+
+    print("=" * 78)
+    print("O8 — the Weil form as the missing inner product")
+    print("=" * 78)
+    print(f"  c = {args.c}, N = {args.N}, T = {args.T}, dps = {args.dps}")
+
+    try:
+        import connes_cvs as cc
+    except ImportError:
+        print("\n  connes-cvs not installed.  pip install connes-cvs")
+        return
+
+    print("\n  building the CvS Galerkin matrix Q(c)...", flush=True)
+    Q = cc.build_galerkin_matrix(args.c, N=args.N, T=args.T, dps=args.dps)
+    n = Q.rows
+    print(f"  Q is {n} x {n}")
+
+    sym = frob(Q - Q.T) / frob(Q)
+    print(f"  Q symmetric?  ||Q - Q^T|| / ||Q|| = {mp.nstr(sym, 6)}")
+    print("  (Q must be symmetric to be an inner product at all)")
+
+    # ---------------- STEP 1 -------------------------------------------
+    if not args.skip_step1:
+        print("\n" + "-" * 78)
+        print("STEP 1 — reproduce the published numbers before comparing")
+        print("-" * 78)
+        print("  computing ground state...", flush=True)
+        lam, vec = cc.compute_ground_state(Q)
+        print(f"  smallest even-sector eigenvalue: {mp.nstr(lam, 10)}")
+        print(f"  log10 |lambda_min| = {mp.nstr(mp.log10(abs(lam)), 8)}")
+
+        print("  extracting zeros from the ground-state eigenvector...", flush=True)
+        try:
+            zs = cc.extract_zeros(vec, n_zeros=5, dps=args.dps, c=args.c)
+            known = [mp.mpf('14.134725141734693790457251983562470270784257115699'),
+                     mp.mpf('21.022039638771554992628479593896902777334340524903'),
+                     mp.mpf('25.010857580145688763213790992562821818659549672558'),
+                     mp.mpf('30.424876125859513210311897530584091320181560023715'),
+                     mp.mpf('32.935061587739189690662368964074903488812715603517')]
+            print(f"\n  {'k':>3} {'recovered':>28} {'|error|':>16}")
+            for k, z in enumerate(zs[:5]):
+                err = abs(mp.mpf(z) - known[k])
+                print(f"  {k+1:>3} {mp.nstr(z, 20):>28} {mp.nstr(err, 6):>16}")
+            print("\n  published: at c=13 the first-zero error is ~2.6e-55")
+            print("  (that figure uses N=100..120 and higher dps; at smaller")
+            print("   N expect a larger error -- what matters is the shape)")
+        except Exception as ex:
+            print(f"  zero extraction failed at these settings: {ex}")
+            print("  (raise --N and --dps; step 2 does not depend on this)")
+
+    # ---------------- STEP 2 -------------------------------------------
+    print("\n" + "-" * 78)
+    print("STEP 2 — is Delta self-adjoint in the Weil inner product?")
+    print("-" * 78)
+    print("  test:  Q A = A^T Q   for each operator A")
+    print("  measure: ||Q A - A^T Q|| / ||Q A||   (0 = self-adjoint)\n")
+
+    L = mp.log(args.c)
+
+    D = difference_matrix(n)
+    f_D = commutator_failure(Q, D)
+
+    G = scaling_generator(n, args.N, L)
+    f_G = commutator_failure(Q, G)
+
+    mp.mp.dps = 30
+    R = mp.randmatrix(n, n)
+    mp.mp.dps = args.dps
+    f_R = commutator_failure(Q, R)
+
+    print(f"  {'operator':>34} {'failure':>18}")
+    print(f"  {'-'*34} {'-'*18}")
+    print(f"  {'Delta (dyadic difference)':>34} {mp.nstr(f_D, 8):>18}")
+    print(f"  {'d/dt (scaling gen) [control PASS]':>34} {mp.nstr(f_G, 8):>18}")
+    print(f"  {'random matrix [control FAIL]':>34} {mp.nstr(f_R, 8):>18}")
+
+    # ---------------- STEP 3 -------------------------------------------
+    print("\n" + "=" * 78)
+    print("READ THE RESULT")
+    print("=" * 78)
+    print(f"""
+  Delta's failure : {mp.nstr(f_D, 8)}
+  scaling gen     : {mp.nstr(f_G, 8)}   <- the operator CvS is built around
+  random          : {mp.nstr(f_R, 8)}   <- total failure baseline
+
+  Delta near the scaling generator
+      -> the Weil form does supply the inner product, and O1's negative was
+         an artifact of restricting to diagonal weights.  The two programs
+         are then the same operator in different coordinates.
+
+  Delta near the random baseline
+      -> the Weil form is not the missing ingredient for THIS operator.  The
+         quantity above is then the size of the gap, which is the useful
+         thing to report either way.
+
+  Neither outcome bears on RH.  O2 separately closed the question of whether
+  any operator built here has {{gamma}} as its spectrum.
+
+  CAVEAT ON THE BASIS.  Q lives in the trigonometric basis e_k(t) on
+  [0, log c].  Delta as written here differences the BASIS INDEX k, which is
+  the natural finite-dimensional analogue but is not automatically the same
+  as the dyadic shift on the underlying interval.  If the failure comes out
+  large, the first thing to check is whether the basis alignment is right --
+  not to conclude the operators are unrelated.
+""")
+
+
+if __name__ == "__main__":
+    main()

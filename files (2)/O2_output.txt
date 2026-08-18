@@ -1,0 +1,101 @@
+============================================================================
+O2 — a self-adjoint operator from primes alone, and its spectrum
+============================================================================
+  sieved 25997 primes up to 300000
+  kernel grid: 300 points on x in [0, 60.0]
+
+----------------------------------------------------------------------------
+Q1/Q2.  K(x,y) = sum_p p^(-1/2) cos((ln p)(x-y))
+----------------------------------------------------------------------------
+
+  --- 100 primes ---
+    ||K - K^T|| = 0.000e+00     -> self-adjoint by construction
+    spectrum real: True (spectral theorem);  range [-0.0000, 108.4709]
+    top 8 eigenvalues: [108.471 104.977  87.308  85.9    69.506  68.832  60.265  60.169]
+    distance from each of the first 5 gamma to nearest eigenvalue:
+      gamma =  14.13472   nearest eigenvalue at distance 0.9028
+      gamma =  21.02204   nearest eigenvalue at distance 0.1167
+      gamma =  25.01086   nearest eigenvalue at distance 0.2093
+      gamma =  30.42488   nearest eigenvalue at distance 0.6014
+      gamma =  32.93506   nearest eigenvalue at distance 0.4479
+
+  --- 1000 primes ---
+    ||K - K^T|| = 0.000e+00     -> self-adjoint by construction
+    spectrum real: True (spectral theorem);  range [-0.0000, 144.5909]
+    top 8 eigenvalues: [144.591 144.58  141.482 141.407 139.109 139.055 128.849 128.8  ]
+    distance from each of the first 5 gamma to nearest eigenvalue:
+      gamma =  14.13472   nearest eigenvalue at distance 0.8648
+      gamma =  21.02204   nearest eigenvalue at distance 0.1165
+      gamma =  25.01086   nearest eigenvalue at distance 0.2273
+      gamma =  30.42488   nearest eigenvalue at distance 0.8616
+      gamma =  32.93506   nearest eigenvalue at distance 0.1694
+
+  --- 5000 primes ---
+    ||K - K^T|| = 0.000e+00     -> self-adjoint by construction
+    spectrum real: True (spectral theorem);  range [-0.0000, 303.2817]
+    top 8 eigenvalues: [303.282 303.255 287.9   287.735 280.164 280.122 269.872 269.638]
+    distance from each of the first 5 gamma to nearest eigenvalue:
+      gamma =  14.13472   nearest eigenvalue at distance 0.0952
+      gamma =  21.02204   nearest eigenvalue at distance 0.1216
+      gamma =  25.01086   nearest eigenvalue at distance 0.1155
+      gamma =  30.42488   nearest eigenvalue at distance 0.4502
+      gamma =  32.93506   nearest eigenvalue at distance 0.2992
+
+----------------------------------------------------------------------------
+WHAT THE OPERATOR IS
+----------------------------------------------------------------------------
+
+  K(x,y) depends only on the difference (x - y).  That makes it a CONVOLUTION
+  (Toeplitz) kernel.  A convolution operator is diagonalised by e^{i w x}, and
+  its eigenvalues are the Fourier transform of the kernel — which here is the
+  set of weights p^(-1/2) sitting at the frequencies ln p.
+
+  So the spectrum is  { p^(-1/2) }  at frequencies  { ln p }:
+  the LENGTH spectrum (primes), not the eigenvalue spectrum (gammas).
+
+  top 8 eigenvalues       : [108.471 104.977  87.308  85.9    69.506  68.832  60.265  60.169]
+  top 8 of p^(-1/2)*n/2   : [106.066  86.603  67.082  56.695  45.227  41.603  36.38   34.412]
+  (same object; the offsets are finite-grid dispersion)
+
+----------------------------------------------------------------------------
+Q3.  COUNTING LAW — independent of any operator
+----------------------------------------------------------------------------
+  A genuine spectrum {gamma} must satisfy the Riemann–von Mangoldt law
+      N(T) = (T/2pi) ln(T/2pi) - T/2pi + 7/8
+  Do the Prime Beat's minima have that density?
+
+    #primes    minima   N(T) true    ratio
+        100       200       79.19    2.525
+       1000       279       79.19    3.523
+       5000       378       79.19    4.773
+      25000       529       79.19    6.680
+
+  If the minima were converging to the zero set, the ratio would
+  approach 1.  Observed: 2.53 -> 6.68, DIVERGING.
+  The count of minima grows with the number of primes used; the
+  count of zeros below T does not.
+
+============================================================================
+CONCLUSION
+============================================================================
+
+  Q1. YES — the operator is self-adjoint, exactly, by construction, and is
+      built from primes with no reference to zeta.  Self-adjointness is
+      cheap; it is not the hard part.
+
+  Q2. NO — its spectrum is { p^(-1/2) } at frequencies { ln p }.  This is
+      forced: a kernel that is a superposition of frequencies ln p has those
+      frequencies as its spectrum.  In trace-formula terms the Beat is built
+      from the LENGTH spectrum, and the gammas live on the other side of the
+      identity.  Building from one side cannot deliver the other.
+
+  Q3. NO — the Beat's minima do not obey the Riemann–von Mangoldt counting
+      law, and the discrepancy GROWS with the number of primes.  Whatever the
+      minima are, they are not converging to the zero set.
+
+  One thing does point the other way and is worth isolating: the distance
+  from the first few gammas to the nearest kernel eigenvalue TIGHTENS as more
+  primes enter (gamma_1: 0.90 at 100 primes -> 0.10 at 5000).  The bulk
+  spectrum is not the gammas, but something in it is moving toward them.
+  That is the open thread this script leaves behind.
+

@@ -1,0 +1,928 @@
+#!/usr/bin/env python3
+"""
+O25 — Compression curve: how many ZEROS does it take to buy how much of the
+      PRIME COUNT, and where does compression inverts into expansion.
+
+Reads with: O17_disjoint_block_residual.py; O19_bridge_figure.py; DT-A5; DT-A6.
+Reads the zero list in `primebeat/` READ ONLY, in place, copying nothing.
+
+NAMING
+------
+The O-series in this tree runs O1-O9, O11..O24.  There is NO O10: that number
+is a known, DELIBERATE GAP, and this script does not fill it, because filling a
+reserved gap with unrelated work would silently rewrite the series' history.
+The next free number after O24 is O25; this file takes it.  Capital "O" per
+`CLAUDE.md` § "Naming convention (do not re-break)".
+
+=============================================================================
+WHY THIS EXISTS
+=============================================================================
+
+The zeros are often described as a COMPRESSION of the primes: a short frequency
+list that encodes the whole prime sequence.  This script measures the EXCHANGE
+RATE — how many zeros buy how much of the count — and locates where the
+compression inverts into expansion.
+
+The Riemann-von Mangoldt explicit formula, zeros paired as rho, conj(rho) with
+rho = 1/2 + i*gamma:
+
+    psi(x) = x - log(2*pi) - (1/2)*log(1 - x^(-2))
+             - 2*sqrt(x) * SUM_{gamma > 0}
+                   [ (1/2)*cos(gamma*L) + gamma*sin(gamma*L) ] / (1/4 + gamma^2)
+
+with L = log(x).  Truncating that sum at the first K zeros gives psi_K(x).  The
+exact value is psi(x) = SUM_{p^k <= x} log(p), computable directly with a sieve,
+so the truncation error is measurable rather than modelled.
+
+Asymptotically the truncation error is of order x*log(x)/T, where T is the
+height of the last zero used.  Pinning psi(x) to +/- 1 therefore needs T of
+order x*log(x), i.e. by Riemann-von Mangoldt about x*log(x)^2/(2*pi) zeros,
+against only x/log(x) primes below x.  That predicts the encoding is strongly
+COMPRESSIVE at coarse accuracy and ANTI-COMPRESSIVE at fine accuracy, with a
+crossover in between.  This script measures where.
+
+=============================================================================
+DATA
+=============================================================================
+
+Zeros: `--zeros-file`, default
+`/Users/juliansambrano/GitHub/primebeat/primebeat/data/zeros/zeros1.txt`.
+READ ONLY, read in place, nothing copied.  100,000 imaginary parts, one per
+line, 12 decimals, ascending; first three 14.134725142, 21.022039639,
+25.010857580; last 74920.827498994.  The file's absolute path, byte size and
+sha256 are recorded in `params` so the input is pinned, and the line count and
+first three values are verified before use (GATE A).
+
+PRECISION, stated: the gammas are given to 12 decimals, so gamma*log(x) at
+x = 10^4 carries a phase error of order 1e-8 radians; float64 argument
+reduction at gamma*log(x) ~ 7e5 radians adds order 1e-10.  Both are far below
+the smallest error scale this script reports.  psi_exact is a float64 sum of
+log(p) over prime powers; psi_K is float64 throughout.
+
+=============================================================================
+WHAT IS COMPUTED
+=============================================================================
+
+1. psi_exact(x) for every x on the grid, by sieving to --xmax and summing
+   log(p) over every prime POWER p^k <= x.  Convention: the von Mangoldt
+   weight Lambda(n) is placed at n = p^k and prefix-summed, so
+   psi_exact(x) = sum_{n <= x} Lambda(n) with x inclusive.  Exact float64
+   summation in ascending n.  psi_exact is printed at a few x for inspection.
+
+2. x grid: --nx points (default 60) LOGARITHMICALLY spaced from --xmin
+   (default 10) to --xmax (default 10000), rounded to integers and
+   deduplicated.  The grid size AFTER dedup is reported.
+
+3. For each x, psi_K(x) for K = 1 .. n_zeros as a CUMULATIVE sum over the
+   zeros, so every K comes from ONE pass over the zero list.  The error curve
+   is stored at the K values in --kvals, clipped to the number of zeros
+   available.
+
+4. Errors, BOTH reported: absolute |psi_K(x) - psi_exact(x)|, and relative,
+   that divided by psi_exact(x).
+
+5. For each x and each accuracy target in --targets, K_needed = the SMALLEST K
+   in the SWEPT SET meeting the target (met means error <= the target value),
+   or null when no swept K does.  Targets, as (kind, value) pairs:
+
+       relative 1e-1, relative 1e-2, relative 1e-3, absolute 1.0
+
+   Reported alongside pi(x) (EXACT, from the same sieve) and the RATIO
+   K_needed / pi(x).
+
+6. THE CROSSOVER.  For each target, the smallest x on the grid where
+   K_needed > pi(x), and the largest x where K_needed <= pi(x).  When a target
+   never crosses within the grid that is stated.
+
+   MECHANICAL RULE, fixed here: a grid point is COMPRESSIVE when K_needed is
+   not null AND K_needed <= pi(x); it is EXPANSIVE when K_needed is null OR
+   K_needed > pi(x).  A null K_needed counts as EXPANSIVE because no K in the
+   swept set — up to all 100,000 zeros — buys the target at that x.  The
+   number of null K_needed is reported separately so the two causes stay
+   distinguishable.
+
+   `crossover_x` = the SMALLEST x such that every grid point at or above it is
+   EXPANSIVE; null when the top grid point is compressive.
+
+=============================================================================
+PRE-REGISTERED BANDS — fixed before the run, applied mechanically
+=============================================================================
+
+    COMPRESSES  K_needed <= pi(x) at EVERY x on the grid
+    INVERTS     K_needed > pi(x) for all x beyond some crossover point, and
+                that crossover lies STRICTLY INSIDE the grid — i.e.
+                crossover_x is not null, at least one grid point below it is
+                compressive, and at least one grid point above it is
+                expansive
+    NEITHER     if neither of the above holds
+
+Precedence: COMPRESSES, then INVERTS, then NEITHER.  The docstring's
+expectation is COMPRESSES at relative 1e-1 and INVERTS at absolute 1.0, but
+the band is applied to ALL FOUR targets, together with the crossover x and the
+ratio K_needed/pi(x) at the TOP of the grid for every target.
+
+=============================================================================
+GATES — all three RUN inside the script and recorded in the payload
+=============================================================================
+
+GATE A — ZERO FILE.  The zero file has exactly --expect-zero-lines (100000)
+lines and its first three values match 14.134725142, 21.022039639,
+25.010857580 to 9 decimals.  Path, byte size and sha256 recorded.
+
+GATE B — psi_exact SANITY AT x = 10.  The von Mangoldt sum over prime powers
+<= 10 is Lambda at 2, 3, 4, 5, 7, 8, 9, i.e.
+log2 + log3 + log2 + log5 + log7 + log2 + log3 = 3*log2 + 2*log3 + log5 + log7.
+That is computed INDEPENDENTLY in the gate and compared against the sieve's
+psi_exact(10).  BOTH numbers are reported.
+
+GATE C — CONVERGENCE.  At the LARGEST x on the grid, the absolute error at
+K = n_zeros must be STRICTLY SMALLER than at K = 1.  Both are reported.
+
+ENVELOPE
+--------
+House envelope, schema_version "1": script, generated_utc, params, constants,
+summary, flat `rows` (ONE ROW PER (x, K)).  `params.code_version` is the sha256
+of THIS file read from `__file__` at runtime; `params.zeros_file_sha256` pins
+the input.
+
+REQUIREMENTS
+------------
+    numpy, mpmath   (both already present in this bench's .venv)
+
+USAGE
+-----
+    python3 O25_compression_curve.py
+    python3 O25_compression_curve.py --xmax 100000 --nx 80 \
+        --out results/O25_compression_curve_big.json
+"""
+
+import argparse
+import hashlib
+import json
+import math
+import os
+from datetime import datetime, timezone
+
+try:
+    import numpy as np
+except ImportError:
+    raise ImportError("numpy is required. Install with: pip install numpy")
+
+try:
+    import mpmath  # noqa: F401  (house dependency; version recorded in params)
+except ImportError:
+    raise ImportError(
+        "mpmath is required by this bench's convention and its version is "
+        "recorded in params. Install with: pip install mpmath")
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_STEM = os.path.splitext(os.path.basename(__file__))[0]
+DEFAULT_OUT = os.path.join(_HERE, "results", _STEM + "_results.json")
+
+DEFAULT_ZEROS = ("/Users/juliansambrano/GitHub/primebeat/primebeat/data/"
+                 "zeros/zeros1.txt")
+
+DEFAULT_KVALS = ("1,2,3,5,8,13,21,34,55,89,144,233,377,610,"
+                 "1000,2000,5000,10000,20000,50000,100000")
+
+# Gate A reference values — the documented head of the zero file.
+GATE_A_EXPECT_LINES = 100000
+GATE_A_FIRST_THREE = (14.134725142, 21.022039639, 25.010857580)
+GATE_A_DECIMALS = 9
+
+# Gate B — Lambda(n) is non-zero at n = 2,3,4,5,7,8,9 for n <= 10.
+GATE_B_X = 10
+GATE_B_PRIME_POWERS = ((2, 2), (3, 3), (4, 2), (5, 5), (7, 7), (8, 2), (9, 3))
+
+# Pre-registered accuracy targets, as (kind, value). FIXED.
+DEFAULT_TARGETS = (("relative", 1e-1), ("relative", 1e-2),
+                   ("relative", 1e-3), ("absolute", 1.0))
+
+TWO_PI = 2.0 * math.pi
+LOG_TWO_PI = math.log(TWO_PI)
+
+
+def _code_version():
+    """sha256 of this script file, read at runtime. Self-identifying results."""
+    try:
+        with open(os.path.abspath(__file__), "rb") as fh:
+            return hashlib.sha256(fh.read()).hexdigest()
+    except Exception as exc:
+        return f"unavailable: {exc}"
+
+
+def _file_sha256(path):
+    """sha256 of an arbitrary file; never raises."""
+    try:
+        h = hashlib.sha256()
+        with open(path, "rb") as fh:
+            for chunk in iter(lambda: fh.read(1 << 20), b""):
+                h.update(chunk)
+        return h.hexdigest()
+    except Exception as exc:
+        return f"unavailable: {exc}"
+
+
+def _file_size(path):
+    """Byte size of a file; None when unavailable."""
+    try:
+        return int(os.path.getsize(path))
+    except Exception:
+        return None
+
+
+def _jsonable(o):
+    """Coerce numpy scalars to JSON-safe Python types; non-finite -> None."""
+    if isinstance(o, dict):
+        return {str(k): _jsonable(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [_jsonable(v) for v in o]
+    if o is None or isinstance(o, str):
+        return o
+    if isinstance(o, (bool, np.bool_)):
+        return bool(o)
+    if isinstance(o, (int, np.integer)):
+        return int(o)
+    if isinstance(o, (float, np.floating)):
+        f = float(o)
+        return f if math.isfinite(f) else None
+    try:
+        f = float(o)
+    except (TypeError, ValueError):
+        return str(o)
+    return f if math.isfinite(f) else None
+
+
+def _write_results(payload, out_path):
+    """Write the results envelope; never let a write failure kill a long run."""
+    try:
+        d = os.path.dirname(out_path)
+        if d:
+            os.makedirs(d, exist_ok=True)
+        with open(out_path, "w") as fh:
+            json.dump(_jsonable(payload), fh, indent=2, sort_keys=False,
+                      allow_nan=False)
+        print(f"\n  results written to {out_path}", flush=True)
+    except Exception as exc:
+        print(f"\n  WARNING: could not write results JSON to {out_path}: {exc}",
+              flush=True)
+
+
+def _safe_div(a, b):
+    """Guarded division: returns nan rather than raising or returning inf."""
+    try:
+        if b is None or not math.isfinite(float(b)) or float(b) == 0.0:
+            return float("nan")
+        av = float(a)
+        if not math.isfinite(av):
+            return float("nan")
+        return av / float(b)
+    except (TypeError, ValueError, ZeroDivisionError):
+        return float("nan")
+
+
+def _fmtg(v, w=18, p=10, dash="—"):
+    """Guarded general-format formatter for table cells."""
+    if v is None:
+        return f"{dash:>{w}}"
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return f"{dash:>{w}}"
+    if not math.isfinite(f):
+        return f"{dash:>{w}}"
+    return f"{f:>{w}.{p}g}"
+
+
+def _fmti(v, w=10, dash="—"):
+    """Guarded integer formatter for table cells; None -> dash."""
+    if v is None:
+        return f"{dash:>{w}}"
+    try:
+        return f"{int(v):>{w}d}"
+    except (TypeError, ValueError):
+        return f"{dash:>{w}}"
+
+
+def parse_kvals(s, n_zeros):
+    """
+    Comma-separated K list -> sorted, deduplicated list of ints, CLIPPED to
+    n_zeros (values above n_zeros are dropped, not truncated to n_zeros, except
+    that n_zeros itself is always included so the full-list error is always
+    reported).
+    """
+    out = set()
+    for tok in str(s).split(","):
+        tok = tok.strip()
+        if not tok:
+            continue
+        try:
+            v = int(float(tok))
+        except ValueError:
+            raise SystemExit(f"--kvals: '{tok}' is not an integer")
+        if v < 1:
+            raise SystemExit(f"--kvals: '{tok}' must be >= 1")
+        if v <= n_zeros:
+            out.add(v)
+    out.add(int(n_zeros))
+    return sorted(out)
+
+
+def parse_targets(s):
+    """
+    Comma-separated 'kind:value' target list -> list of (kind, float).
+    kind is 'relative' or 'absolute'. Default is the fixed pre-registered set.
+    """
+    if s is None or str(s).strip() == "":
+        return [(k, float(v)) for k, v in DEFAULT_TARGETS]
+    out = []
+    for tok in str(s).split(","):
+        tok = tok.strip()
+        if not tok:
+            continue
+        if ":" not in tok:
+            raise SystemExit(f"--targets: '{tok}' must be 'kind:value'")
+        kind, val = tok.split(":", 1)
+        kind = kind.strip().lower()
+        if kind not in ("relative", "absolute"):
+            raise SystemExit(f"--targets: kind '{kind}' must be relative "
+                             "or absolute")
+        try:
+            v = float(val)
+        except ValueError:
+            raise SystemExit(f"--targets: '{val}' is not a number")
+        if not math.isfinite(v) or v <= 0.0:
+            raise SystemExit(f"--targets: '{val}' must be finite and > 0")
+        out.append((kind, v))
+    if not out:
+        raise SystemExit("--targets is empty")
+    return out
+
+
+def target_label(kind, value):
+    """Stable label for a target, used as a dict key and a column header."""
+    return f"{kind}:{value:g}"
+
+
+def load_zeros(path):
+    """
+    Read the zero heights, one per line, in place. Returns (array, n_lines).
+    Blank lines are ignored for the array but n_lines counts every line in the
+    file so GATE A measures the file, not the parse.
+    """
+    vals = []
+    n_lines = 0
+    with open(path, "r") as fh:
+        for line in fh:
+            n_lines += 1
+            t = line.strip()
+            if not t:
+                continue
+            vals.append(float(t))
+    return np.asarray(vals, dtype=np.float64), n_lines
+
+
+def sieve_lambda_and_pi(limit):
+    """
+    Sieve to `limit` and return (psi_cum, pi_cum, n_primes, largest_prime).
+
+    psi_cum[n] = sum_{m <= n} Lambda(m), with Lambda(p^k) = log(p) placed at
+    n = p^k for EVERY prime power p^k <= limit, and 0 elsewhere. Prefix sums
+    are accumulated in ascending n in float64.
+
+    pi_cum[n] = number of primes <= n, EXACT integers.
+    """
+    limit = int(limit)
+    s = np.ones(limit + 1, dtype=bool)
+    s[:2] = False
+    for i in range(2, int(limit ** 0.5) + 1):
+        if s[i]:
+            s[i * i::i] = False
+    primes = np.flatnonzero(s).astype(np.int64)
+
+    lam = np.zeros(limit + 1, dtype=np.float64)
+    for p in primes.tolist():
+        lp = math.log(p)
+        pk = p
+        while pk <= limit:
+            lam[pk] = lp
+            pk *= p
+    psi_cum = np.cumsum(lam)
+
+    pi_cum = np.cumsum(s.astype(np.int64))
+
+    n_primes = int(primes.size)
+    largest_prime = int(primes[-1]) if n_primes else None
+    return psi_cum, pi_cum, n_primes, largest_prime
+
+
+def build_x_grid(xmin, xmax, nx):
+    """
+    --nx points logarithmically spaced from xmin to xmax, rounded to integers
+    and deduplicated. Returns a sorted list of ints.
+    """
+    xmin, xmax, nx = int(xmin), int(xmax), int(nx)
+    if xmin < 2:
+        raise SystemExit(f"--xmin {xmin} must be >= 2")
+    if xmax <= xmin:
+        raise SystemExit(f"--xmax {xmax} must exceed --xmin {xmin}")
+    if nx < 2:
+        raise SystemExit(f"--nx {nx} must be >= 2")
+    raw = np.logspace(math.log10(xmin), math.log10(xmax), nx)
+    ints = sorted({int(round(v)) for v in raw.tolist()})
+    return [v for v in ints if xmin <= v <= xmax]
+
+
+def psi_smooth(x):
+    """The non-oscillatory part: x - log(2 pi) - (1/2) log(1 - x^-2)."""
+    xf = float(x)
+    return xf - LOG_TWO_PI - 0.5 * math.log(1.0 - xf ** (-2.0))
+
+
+def psi_cumulative(x, gammas, denom):
+    """
+    CUMULATIVE psi_K(x) for K = 1 .. len(gammas), from ONE pass over the zeros.
+
+        psi_K(x) = x - log(2 pi) - (1/2) log(1 - x^-2)
+                   - 2 sqrt(x) * SUM_{k <= K} [ (1/2) cos(g L) + g sin(g L) ]
+                                              / (1/4 + g^2)
+
+    `denom` = 1/4 + gammas^2, precomputed once by the caller.
+    """
+    L = math.log(float(x))
+    ph = gammas * L
+    terms = (0.5 * np.cos(ph) + gammas * np.sin(ph)) / denom
+    csum = np.cumsum(terms)
+    return psi_smooth(x) - 2.0 * math.sqrt(float(x)) * csum
+
+
+def classify_band(flags_compressive, crossover_index, n_grid):
+    """
+    Mechanical application of the pre-registered band, in precedence order.
+
+    COMPRESSES : every grid point compressive
+    INVERTS    : crossover_index is not None, at least one grid point BELOW it
+                 is compressive, and at least one grid point ABOVE it is
+                 expansive (crossover strictly inside the grid)
+    NEITHER    : otherwise
+    """
+    if n_grid > 0 and all(flags_compressive):
+        return "COMPRESSES"
+    if (crossover_index is not None and crossover_index > 0
+            and crossover_index < n_grid - 1
+            and any(flags_compressive[:crossover_index])):
+        return "INVERTS"
+    return "NEITHER"
+
+
+def main():
+    ap = argparse.ArgumentParser(
+        description="O25 — compression curve: how many zeros buy how much of "
+                    "the prime count, and where compression inverts into "
+                    "expansion")
+    ap.add_argument("--zeros-file", type=str, default=DEFAULT_ZEROS,
+                    help="path to the zero-height list, one imaginary part per "
+                         "line, ascending (READ ONLY; default: "
+                         f"{DEFAULT_ZEROS})")
+    ap.add_argument("--xmin", type=int, default=10,
+                    help="bottom of the x grid (default 10)")
+    ap.add_argument("--xmax", type=int, default=10000,
+                    help="top of the x grid and the sieve limit (default 10000)")
+    ap.add_argument("--nx", type=int, default=60,
+                    help="number of logarithmically spaced x points before "
+                         "integer rounding and dedup (default 60)")
+    ap.add_argument("--kvals", type=str, default=DEFAULT_KVALS,
+                    help="FIXED comma-separated list of K values at which the "
+                         "error curve is stored, clipped to the number of "
+                         f"zeros available. Default '{DEFAULT_KVALS}'")
+    ap.add_argument("--targets", type=str, default=None,
+                    help="comma-separated 'kind:value' accuracy targets, kind "
+                         "in {relative, absolute}. Default is the fixed "
+                         "pre-registered set "
+                         "relative:0.1,relative:0.01,relative:0.001,"
+                         "absolute:1.0")
+    ap.add_argument("--expect-zero-lines", type=int,
+                    default=GATE_A_EXPECT_LINES,
+                    help="GATE A line count the zero file must have "
+                         f"(default {GATE_A_EXPECT_LINES})")
+    ap.add_argument("--out", type=str, default=None,
+                    help="results JSON path "
+                         "(default: results/<script>_results.json)")
+    ap.add_argument("--no-json", action="store_true",
+                    help="skip writing the results JSON")
+    args = ap.parse_args()
+
+    out_path = args.out if args.out else DEFAULT_OUT
+    zpath = os.path.abspath(args.zeros_file)
+    targets = parse_targets(args.targets)
+
+    print("=" * 78, flush=True)
+    print("O25 — compression curve  (exact psi, truncated explicit formula, "
+          "no fitting)", flush=True)
+    print("=" * 78, flush=True)
+    print("  psi(x)   = SUM_{p^k <= x} log p                       EXACT, from "
+          "a sieve", flush=True)
+    print("  psi_K(x) = x - log(2pi) - (1/2)log(1 - x^-2)", flush=True)
+    print("             - 2 sqrt(x) SUM_{k<=K} [(1/2)cos(gL) + g sin(gL)]"
+          "/(1/4 + g^2)", flush=True)
+    print("  L = log x, g = gamma_k, zeros paired as rho, conj(rho), "
+          "rho = 1/2 + i gamma", flush=True)
+    print("", flush=True)
+    print("  K_needed(x, target) = the SMALLEST swept K with the error <= the "
+          "target.", flush=True)
+    print("  COMPRESSIVE at x : K_needed is not null AND K_needed <= pi(x).",
+          flush=True)
+    print("  EXPANSIVE   at x : K_needed is null OR K_needed > pi(x).",
+          flush=True)
+    print("", flush=True)
+    print("  O10 is a DELIBERATE GAP in this series and is not filled here.",
+          flush=True)
+
+    # ---------------- zeros + GATE A ---------------------------------------
+    print(f"\n  reading zeros from {zpath} (READ ONLY, in place) ...",
+          flush=True)
+    zsize = _file_size(zpath)
+    zsha = _file_sha256(zpath)
+    gammas, n_lines = load_zeros(zpath)
+    n_zeros = int(gammas.size)
+    first_three = [float(v) for v in gammas[:3].tolist()]
+    last_gamma = float(gammas[-1]) if n_zeros else None
+
+    tol_a = 0.5 * 10.0 ** (-GATE_A_DECIMALS)
+    first_three_ok = (len(first_three) == 3 and
+                      all(abs(first_three[i] - GATE_A_FIRST_THREE[i]) <= tol_a
+                          for i in range(3)))
+    lines_ok = (n_lines == int(args.expect_zero_lines))
+    ascending = bool(np.all(np.diff(gammas) > 0)) if n_zeros > 1 else True
+    gate_a_passed = bool(lines_ok and first_three_ok)
+
+    print(f"  byte size      : {zsize}", flush=True)
+    print(f"  sha256         : {zsha}", flush=True)
+    print(f"  lines in file  : {n_lines}   (expected "
+          f"{int(args.expect_zero_lines)})   -> "
+          f"{'OK' if lines_ok else 'MISMATCH'}", flush=True)
+    print(f"  values parsed  : {n_zeros}", flush=True)
+    print(f"  first three    : {first_three}", flush=True)
+    print(f"  expected       : {list(GATE_A_FIRST_THREE)}   -> "
+          f"{'OK' if first_three_ok else 'MISMATCH'} "
+          f"(to {GATE_A_DECIMALS} decimals)", flush=True)
+    print(f"  last gamma     : {last_gamma}", flush=True)
+    print(f"  strictly ascending : {ascending}", flush=True)
+    print(f"  GATE A : {'PASS' if gate_a_passed else 'FAIL'}", flush=True)
+    if not gate_a_passed:
+        raise SystemExit("GATE A failed: the zero file is not the pinned one. "
+                         "Refusing to run.")
+
+    denom = 0.25 + gammas * gammas
+
+    kvals = parse_kvals(args.kvals, n_zeros)
+    print(f"\n  K values swept (clipped to {n_zeros} zeros, "
+          f"{len(kvals)} values):", flush=True)
+    print(f"    {kvals}", flush=True)
+
+    # ---------------- sieve + GATE B ---------------------------------------
+    print(f"\n  sieving to {int(args.xmax)} for psi_exact and pi ...",
+          flush=True)
+    psi_cum, pi_cum, n_primes, largest_prime = sieve_lambda_and_pi(args.xmax)
+    print(f"  {n_primes} primes <= {int(args.xmax)}, largest = "
+          f"{largest_prime}", flush=True)
+
+    gate_b_independent = sum(math.log(p) for _, p in GATE_B_PRIME_POWERS)
+    gate_b_sieve = float(psi_cum[GATE_B_X])
+    gate_b_diff = gate_b_sieve - gate_b_independent
+    gate_b_passed = bool(abs(gate_b_diff) < 1e-12)
+    print("\n" + "-" * 78, flush=True)
+    print("GATE B — psi_exact(10) against an INDEPENDENT von Mangoldt sum",
+          flush=True)
+    print("-" * 78, flush=True)
+    print("  Lambda is non-zero at n = 2,3,4,5,7,8,9 for n <= 10:", flush=True)
+    print("    log2 + log3 + log2 + log5 + log7 + log2 + log3", flush=True)
+    print(f"  independent sum : {gate_b_independent!r}", flush=True)
+    print(f"  sieve psi(10)   : {gate_b_sieve!r}", flush=True)
+    print(f"  difference      : {gate_b_diff!r}", flush=True)
+    print(f"  GATE B : {'PASS' if gate_b_passed else 'FAIL'}", flush=True)
+
+    # ---------------- x grid ------------------------------------------------
+    xs = build_x_grid(args.xmin, args.xmax, args.nx)
+    n_grid = len(xs)
+    print(f"\n  x grid : {int(args.nx)} requested points, {n_grid} after "
+          f"integer rounding and dedup", flush=True)
+    print(f"  first x = {xs[0]}   last x = {xs[-1]}", flush=True)
+
+    psi_exact = [float(psi_cum[x]) for x in xs]
+    pi_x = [int(pi_cum[x]) for x in xs]
+
+    print("\n  psi_exact at a few grid points, for inspection:", flush=True)
+    print(f"    {'x':>10} {'pi(x)':>10} {'psi_exact(x)':>20} "
+          f"{'psi_exact/x':>14}", flush=True)
+    idxs = sorted({0, n_grid // 4, n_grid // 2, (3 * n_grid) // 4, n_grid - 1})
+    for i in idxs:
+        print(f"    {xs[i]:>10} {pi_x[i]:>10} {psi_exact[i]:>20.10f} "
+              f"{_safe_div(psi_exact[i], xs[i]):>14.8f}", flush=True)
+
+    # ---------------- the sweep --------------------------------------------
+    print(f"\n  sweeping {n_grid} x values x {n_zeros} zeros "
+          f"(cumulative, one pass per x) ...", flush=True)
+    kidx = np.asarray([k - 1 for k in kvals], dtype=np.int64)
+    abs_err = np.zeros((n_grid, len(kvals)), dtype=np.float64)
+    rel_err = np.zeros((n_grid, len(kvals)), dtype=np.float64)
+    psi_k_at = np.zeros((n_grid, len(kvals)), dtype=np.float64)
+    gate_c_abs_first = None
+    gate_c_abs_last = None
+    for i, x in enumerate(xs):
+        psi_all = psi_cumulative(x, gammas, denom)
+        vals = psi_all[kidx]
+        psi_k_at[i, :] = vals
+        a = np.abs(vals - psi_exact[i])
+        abs_err[i, :] = a
+        rel_err[i, :] = a / psi_exact[i] if psi_exact[i] != 0.0 else np.nan
+        if i == n_grid - 1:
+            gate_c_abs_first = float(abs(psi_all[0] - psi_exact[i]))
+            gate_c_abs_last = float(abs(psi_all[-1] - psi_exact[i]))
+
+    # ---------------- GATE C ------------------------------------------------
+    gate_c_passed = bool(gate_c_abs_last < gate_c_abs_first)
+    print("\n" + "-" * 78, flush=True)
+    print("GATE C — CONVERGENCE at the largest x on the grid", flush=True)
+    print("-" * 78, flush=True)
+    print(f"  x = {xs[-1]}", flush=True)
+    print(f"  |psi_1(x)      - psi(x)| = {gate_c_abs_first!r}", flush=True)
+    print(f"  |psi_{n_zeros}(x) - psi(x)| = {gate_c_abs_last!r}", flush=True)
+    print(f"  GATE C : {'PASS' if gate_c_passed else 'FAIL'}   (criterion: "
+          f"error at K = n_zeros strictly smaller than at K = 1)", flush=True)
+
+    # ---------------- error curve table ------------------------------------
+    print("\n" + "-" * 78, flush=True)
+    print("ERROR CURVE — |psi_K(x) - psi(x)| at selected x (rows) and K "
+          "(columns)", flush=True)
+    print("-" * 78, flush=True)
+    show_k = [k for k in kvals if k in (1, 8, 89, 610, 5000, 50000, n_zeros)]
+    if not show_k:
+        show_k = kvals[:6]
+    hdr = "  " + f"{'x':>8}" + "".join(f"{('K=' + str(k)):>14}"
+                                       for k in show_k)
+    print(hdr, flush=True)
+    for i in idxs:
+        cells = "".join(_fmtg(abs_err[i, kvals.index(k)], 14, 6)
+                        for k in show_k)
+        print(f"  {xs[i]:>8}" + cells, flush=True)
+
+    # ---------------- K_needed per target ----------------------------------
+    target_blocks = []
+    for kind, value in targets:
+        lab = target_label(kind, value)
+        err = rel_err if kind == "relative" else abs_err
+        k_needed = []
+        for i in range(n_grid):
+            hit = None
+            for j, k in enumerate(kvals):
+                e = err[i, j]
+                if math.isfinite(float(e)) and float(e) <= value:
+                    hit = int(k)
+                    break
+            k_needed.append(hit)
+        flags = [bool(k is not None and k <= pi_x[i])
+                 for i, k in enumerate(k_needed)]
+        ratios = [(_safe_div(k, pi_x[i]) if k is not None else None)
+                  for i, k in enumerate(k_needed)]
+
+        first_expansive_i = next((i for i in range(n_grid) if not flags[i]),
+                                 None)
+        last_compressive_i = next((i for i in range(n_grid - 1, -1, -1)
+                                   if flags[i]), None)
+        crossover_i = None
+        for i in range(n_grid):
+            if all(not flags[j] for j in range(i, n_grid)):
+                crossover_i = i
+                break
+        band = classify_band(flags, crossover_i, n_grid)
+
+        target_blocks.append({
+            "target_kind": kind,
+            "target_value": value,
+            "label": lab,
+            "k_needed": k_needed,
+            "compressive": flags,
+            "ratio_k_over_pi": ratios,
+            "n_null_k_needed": int(sum(1 for k in k_needed if k is None)),
+            "n_compressive": int(sum(1 for f in flags if f)),
+            "n_expansive": int(sum(1 for f in flags if not f)),
+            "first_expansive_x": (None if first_expansive_i is None
+                                  else xs[first_expansive_i]),
+            "last_compressive_x": (None if last_compressive_i is None
+                                   else xs[last_compressive_i]),
+            "crossover_x": (None if crossover_i is None else xs[crossover_i]),
+            "crossover_index": crossover_i,
+            "crossover_note": ("crossover_x = the smallest grid x with every "
+                               "point at or above it EXPANSIVE; null when the "
+                               "top grid point is compressive"),
+            "k_needed_at_top": k_needed[-1],
+            "pi_at_top": pi_x[-1],
+            "ratio_at_top": ratios[-1],
+            "band_verdict": band,
+        })
+
+    # ---------------- readable K_needed table ------------------------------
+    print("\n" + "-" * 78, flush=True)
+    print("K_needed BY TARGET — smallest swept K with error <= target; "
+          "ratio = K_needed/pi(x)", flush=True)
+    print("-" * 78, flush=True)
+    head = f"  {'x':>8} {'pi(x)':>8}"
+    for tb in target_blocks:
+        head += f" | {tb['label']:>13} {'K/pi':>9}"
+    print(head, flush=True)
+    for i in range(n_grid):
+        line = f"  {xs[i]:>8} {pi_x[i]:>8}"
+        for tb in target_blocks:
+            line += (" | " + _fmti(tb["k_needed"][i], 13) + " "
+                     + _fmtg(tb["ratio_k_over_pi"][i], 9, 4))
+        print(line, flush=True)
+
+    # ---------------- crossover + band summary ------------------------------
+    print("\n" + "-" * 78, flush=True)
+    print("CROSSOVER AND PRE-REGISTERED BAND, per target", flush=True)
+    print("-" * 78, flush=True)
+    for tb in target_blocks:
+        print(f"\n  target {tb['label']}", flush=True)
+        print(f"    compressive points        : {tb['n_compressive']} / "
+              f"{n_grid}", flush=True)
+        print(f"    expansive points          : {tb['n_expansive']} / "
+              f"{n_grid}", flush=True)
+        print(f"    null K_needed             : {tb['n_null_k_needed']}",
+              flush=True)
+        print(f"    smallest x with K > pi(x) : "
+              f"{tb['first_expansive_x'] if tb['first_expansive_x'] is not None else 'none on the grid'}",
+              flush=True)
+        print(f"    largest  x with K <= pi(x): "
+              f"{tb['last_compressive_x'] if tb['last_compressive_x'] is not None else 'none on the grid'}",
+              flush=True)
+        print(f"    crossover_x               : "
+              f"{tb['crossover_x'] if tb['crossover_x'] is not None else 'null (no crossover within the grid)'}",
+              flush=True)
+        print(f"    K_needed at top x={xs[-1]}  : "
+              f"{tb['k_needed_at_top'] if tb['k_needed_at_top'] is not None else 'null'}"
+              f"   pi = {tb['pi_at_top']}   ratio = "
+              f"{_fmtg(tb['ratio_at_top'], 1, 6).strip()}", flush=True)
+        print(f"    PRE-REGISTERED BAND       : {tb['band_verdict']}",
+              flush=True)
+
+    print("\n  Band rule (fixed before the run): COMPRESSES = K_needed <= "
+          "pi(x) at EVERY x;", flush=True)
+    print("  INVERTS = expansive for all x beyond a crossover that lies "
+          "strictly inside the", flush=True)
+    print("  grid; NEITHER otherwise. Precedence COMPRESSES > INVERTS > "
+          "NEITHER.", flush=True)
+    print("  The numbers are STATED, not interpreted. Interpretation is not "
+          "this script's job.", flush=True)
+
+    # ---------------- rows + envelope --------------------------------------
+    rows = []
+    for i in range(n_grid):
+        for j, k in enumerate(kvals):
+            rows.append({
+                "x": xs[i],
+                "pi_x": pi_x[i],
+                "K": int(k),
+                "psi_exact": psi_exact[i],
+                "psi_K": float(psi_k_at[i, j]),
+                "abs_err": float(abs_err[i, j]),
+                "rel_err": float(rel_err[i, j]),
+            })
+
+    if not args.no_json:
+        payload = {
+            "schema_version": "1",
+            "script": os.path.basename(os.path.abspath(__file__)),
+            "generated_utc": datetime.now(timezone.utc).isoformat(),
+            "params": {
+                "code_version": _code_version(),
+                "zeros_file": zpath,
+                "zeros_file_bytes": zsize,
+                "zeros_file_sha256": zsha,
+                "n_zeros": n_zeros,
+                "n_zero_file_lines": n_lines,
+                "first_three_gammas": first_three,
+                "last_gamma": last_gamma,
+                "zeros_strictly_ascending": ascending,
+                "xmin": int(args.xmin),
+                "xmax": int(args.xmax),
+                "nx_requested": int(args.nx),
+                "nx_after_dedup": n_grid,
+                "x_grid": xs,
+                "kvals_raw": str(args.kvals),
+                "kvals": kvals,
+                "targets": [{"kind": k, "value": v,
+                             "label": target_label(k, v)} for k, v in targets],
+                "out": out_path,
+                "numpy_version": str(np.__version__),
+                "mpmath_version": str(getattr(mpmath, "__version__",
+                                              "unknown")),
+                "explicit_formula":
+                    "psi_K(x) = x - log(2 pi) - (1/2) log(1 - x^-2) "
+                    "- 2 sqrt(x) sum_{k<=K} [(1/2) cos(gamma_k log x) "
+                    "+ gamma_k sin(gamma_k log x)] / (1/4 + gamma_k^2)",
+                "psi_exact_definition":
+                    "psi(x) = sum_{p^k <= x} log p, i.e. sum_{n <= x} "
+                    "Lambda(n) with Lambda(p^k) = log p placed at n = p^k and "
+                    "prefix-summed in ascending n; x inclusive",
+                "pi_definition":
+                    "pi(x) = number of primes <= x, EXACT integer prefix sum "
+                    "of the same sieve",
+                "k_needed_definition":
+                    "K_needed(x, target) = the SMALLEST K in the swept kvals "
+                    "set whose error is <= the target value; null when no "
+                    "swept K meets it",
+                "compressive_definition":
+                    "COMPRESSIVE at x when K_needed is not null AND "
+                    "K_needed <= pi(x); EXPANSIVE when K_needed is null OR "
+                    "K_needed > pi(x). A null K_needed counts as EXPANSIVE "
+                    "because no swept K buys the target at that x; the null "
+                    "count is reported separately",
+                "fit_free": True,
+                "precision":
+                    "EXACT integer pi from the sieve; float64 psi_exact as a "
+                    "prefix sum of log p in ascending n; float64 cumulative "
+                    "explicit-formula sum. Gammas carry 12 decimals, so the "
+                    "phase gamma*log(x) carries ~1e-8 rad of input error at "
+                    "x = 1e4 and ~1e-10 rad of float64 argument-reduction "
+                    "error",
+            },
+            "constants": {
+                "gate_a_expect_lines": int(args.expect_zero_lines),
+                "gate_a_first_three_expected": list(GATE_A_FIRST_THREE),
+                "gate_a_decimals": GATE_A_DECIMALS,
+                "gate_b_x": GATE_B_X,
+                "gate_b_prime_powers": [list(t) for t in GATE_B_PRIME_POWERS],
+                "default_targets": [list(t) for t in DEFAULT_TARGETS],
+                "band_rule": (
+                    "COMPRESSES: K_needed <= pi(x) at EVERY x on the grid; "
+                    "INVERTS: K_needed > pi(x) for all x beyond some crossover "
+                    "point and that crossover lies strictly inside the grid "
+                    "(crossover_x not null, at least one compressive point "
+                    "below it, at least one expansive point above it); "
+                    "NEITHER otherwise. Precedence COMPRESSES > INVERTS > "
+                    "NEITHER"),
+                "truncation_scale_note": (
+                    "the truncation error is of order x log(x)/T with T the "
+                    "height of the last zero used, so pinning psi to +/- 1 "
+                    "needs T of order x log x, i.e. about x log(x)^2/(2 pi) "
+                    "zeros by Riemann-von Mangoldt, against x/log x primes "
+                    "below x"),
+                "o10_note": (
+                    "O10 is a deliberate gap in the series and is not filled "
+                    "by this script"),
+            },
+            "summary": {
+                "n_grid": n_grid,
+                "x_first": xs[0],
+                "x_last": xs[-1],
+                "n_primes_below_xmax": n_primes,
+                "largest_prime": largest_prime,
+                "pi_at_top": pi_x[-1],
+                "psi_exact_at_top": psi_exact[-1],
+                "targets": target_blocks,
+                "gate_a": {
+                    "statement": ("the zero file has exactly the expected line "
+                                  "count and its first three values match to "
+                                  f"{GATE_A_DECIMALS} decimals"),
+                    "path": zpath,
+                    "bytes": zsize,
+                    "sha256": zsha,
+                    "n_lines": n_lines,
+                    "n_lines_expected": int(args.expect_zero_lines),
+                    "lines_ok": lines_ok,
+                    "first_three": first_three,
+                    "first_three_expected": list(GATE_A_FIRST_THREE),
+                    "first_three_ok": first_three_ok,
+                    "strictly_ascending": ascending,
+                    "passed": gate_a_passed,
+                },
+                "gate_b": {
+                    "statement": ("psi_exact(10) equals the independently "
+                                  "computed von Mangoldt sum over prime "
+                                  "powers <= 10 (Lambda at 2,3,4,5,7,8,9)"),
+                    "x": GATE_B_X,
+                    "independent_sum": gate_b_independent,
+                    "sieve_value": gate_b_sieve,
+                    "difference": gate_b_diff,
+                    "tolerance": 1e-12,
+                    "passed": gate_b_passed,
+                },
+                "gate_c": {
+                    "statement": ("at the largest grid x, |psi_K - psi| at "
+                                  "K = n_zeros is strictly smaller than at "
+                                  "K = 1"),
+                    "x": xs[-1],
+                    "abs_err_at_K1": gate_c_abs_first,
+                    "abs_err_at_K_nzeros": gate_c_abs_last,
+                    "n_zeros": n_zeros,
+                    "passed": gate_c_passed,
+                },
+            },
+            "rows": rows,
+        }
+        _write_results(payload, out_path)
+
+
+if __name__ == "__main__":
+    main()

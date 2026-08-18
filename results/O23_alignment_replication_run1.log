@@ -1,0 +1,282 @@
+==============================================================================
+O23 — alignment replication  (mean-amplitude statistic, NOT a minima statistic)
+==============================================================================
+  B_N(t)    = sum_p p^(-1/2) sin(t log p)
+  real_mean = mean(|B_N| at the true zeros)
+  scr_mean  = mean(|B_N| at t ~ U(zeros.min(), zeros.max()))
+  Z         = (real_mean - mean(scr_means)) / std(scr_means, ddof=1)
+
+  replicating : /Users/juliansambrano/GitHub/primebeat/.archive/tests/suites/extreme_alignment_logging.py
+  archived CSV: /Users/juliansambrano/GitHub/primebeat/archived_results/runs/primebeat_extreme_alignment_20251220_022922/results_extreme.csv
+  O10 is a DELIBERATE GAP in this series and is not filled here.
+
+------------------------------------------------------------------------------
+STEP 0 — prime_limits: VALUE bound or COUNT?
+------------------------------------------------------------------------------
+  The original's build_primes_up_to (its lines 111-121) sieves an array of length
+  N_max+1 and returns np.nonzero(sieve)[0] — the surviving INDICES, i.e. the prime
+  VALUES <= N_max. No truncation to a count anywhere. Therefore prime_limits is a
+  VALUE BOUND. PRIMARY convention here = 'value'.
+  The COUNT reading is ALSO computed, as a SECONDARY contrast table.
+  (The original's own comment at its line 128 assumes 25000 COLUMNS, i.e. the COUNT
+   reading, while its code does the VALUE reading. Stated, not adjudicated.)
+
+  Windows: the original masks on INDICES built as np.arange(1, len(data)+1)
+  (its lines 100-109), and zeros1.txt is one column, so the windows are by ZERO
+  INDEX, not by height t.
+
+------------------------------------------------------------------------------
+GATE A — zero file
+------------------------------------------------------------------------------
+  path   : /Users/juliansambrano/GitHub/primebeat/primebeat/data/zeros/zeros1.txt
+  size   : 1800000 bytes
+  sha256 : 3436c916a7878261ac183fd7b9448c9a4736b8bbccf1356874a6ce1788541632
+  lines  : 100000  (expected 100000)  -> PASS
+  first3 : [14.134725142, 21.022039639, 25.01085758]
+           expected [14.134725142, 21.022039639, 25.01085758] to 9 decimals -> PASS
+  GATE A : PASS
+
+------------------------------------------------------------------------------
+GATE C — beat formula: pure-python loop vs vectorized matrix
+------------------------------------------------------------------------------
+  t = 14.134725142, first 100 primes (2 .. 541)
+  pure-python loop : 0.3611876753973784
+  vectorized matrix: 0.3611876753973781
+  |difference|     : 2.776e-16   (tol 1e-12)
+  GATE C : PASS
+
+------------------------------------------------------------------------------
+1. EXACT REPLICATION — legacy np.random.seed(2025) ONCE before the WHOLE sweep
+------------------------------------------------------------------------------
+  The seed is set once (original line 241, in __main__), not per cell, so the
+  null draws depend on cell ordering. Cells run in the original's order: outer
+  loop prime_limits, inner loop zero_windows.
+
+   exact/value/2025       N=1000   1-5000      np=168    real=0.744965 scr=0.847966 Z=-10.7148
+   exact/value/2025       N=1000   5001-10000  np=168    real=0.831900 scr=0.842215 Z=-1.1440
+   exact/value/2025       N=5000   1-5000      np=669    real=0.727580 scr=0.878356 Z=-16.5485
+   exact/value/2025       N=5000   5001-10000  np=669    real=0.769292 scr=0.889843 Z=-13.7870
+   exact/value/2025       N=10000  1-5000      np=1229   real=0.724550 scr=0.888625 Z=-16.7832
+   exact/value/2025       N=10000  5001-10000  np=1229   real=0.759567 scr=0.902035 Z=-15.5562
+   exact/value/2025       N=25000  1-5000      np=2762   real=0.722745 scr=0.896394 Z=-19.8461
+   exact/value/2025       N=25000  5001-10000  np=2762   real=0.755346 scr=0.912576 Z=-15.6957
+
+------------------------------------------------------------------------------
+GATE B — real_mean at N=1000, zeros 1-5000 finite and in (0, 5)
+------------------------------------------------------------------------------
+  cell      : N=1000, zeros 1-5000
+  real_mean : 0.7449646826222296
+  GATE B    : PASS
+
+------------------------------------------------------------------------------
+REPLICATION TABLE — Z here vs archived CSV vs published, with the pre-registered
+band applied mechanically to each  (REPRO <0.01, CLOSE <1.0, DIVERGES >=1.0)
+------------------------------------------------------------------------------
+       N      window    n_p       real        scr     Z_ours      Z_csv     d_csv  band_csv    Z_pub     d_pub  band_pub
+    1000      1-5000    168   0.744965   0.847966   -10.7148   -10.7148    0.0000     REPRO   -10.71   -0.0048     REPRO
+    1000  5001-10000    168   0.831900   0.842215    -1.1440    -1.1440   -0.0000     REPRO    -1.33    0.1860     CLOSE
+    5000      1-5000    669   0.727580   0.878356   -16.5485   -16.5485   -0.0000     REPRO   -16.03   -0.5185     CLOSE
+    5000  5001-10000    669   0.769292   0.889843   -13.7870   -13.7870    0.0000     REPRO   -12.04   -1.7470  DIVERGES
+   10000      1-5000   1229   0.724550   0.888625   -16.7832   -16.7832   -0.0000     REPRO   -16.96    0.1768     CLOSE
+   10000  5001-10000   1229   0.759567   0.902035   -15.5562   -15.5562    0.0000     REPRO        —         —       n/a
+   25000      1-5000   2762   0.722745   0.896394   -19.8461   -19.8461   -0.0000     REPRO   -17.61   -2.2361  DIVERGES
+   25000  5001-10000   2762   0.755346   0.912576   -15.6957   -15.6957   -0.0000     REPRO        —         —       n/a
+
+  band counts vs ARCHIVED CSV : REPRO=8  CLOSE=0  DIVERGES=0  n/a=0
+  band counts vs PUBLISHED    : REPRO=1  CLOSE=3  DIVERGES=2  n/a=2   (n/a = no published value for that cell)
+
+------------------------------------------------------------------------------
+SECONDARY CONVENTION — prime_limits read as a COUNT (first N primes), for contrast
+------------------------------------------------------------------------------
+  NOT the replication. Shown so the size of the ambiguity is visible.
+
+   count/2025             N=1000   1-5000      np=1000   real=0.726221 scr=0.885457 Z=-17.0515
+   count/2025             N=1000   5001-10000  np=1000   real=0.762040 scr=0.894551 Z=-16.0544
+   count/2025             N=5000   1-5000      np=5000   real=0.718348 scr=0.902550 Z=-20.3573
+   count/2025             N=5000   5001-10000  np=5000   real=0.754591 scr=0.920797 Z=-18.5057
+   count/2025             N=10000  1-5000      np=10000  real=0.718367 scr=0.910444 Z=-18.5127
+   count/2025             N=10000  5001-10000  np=10000  real=0.752949 scr=0.929099 Z=-17.5979
+   count/2025             N=25000  1-5000      np=25000  real=0.717414 scr=0.917223 Z=-22.6994
+   count/2025             N=25000  5001-10000  np=25000  real=0.750184 scr=0.935363 Z=-17.8644
+
+       N      window  n_p(value)   Z(value)  n_p(count)   Z(count)   Z_count-Z_value
+    1000      1-5000         168   -10.7148        1000   -17.0515           -6.3367
+    1000  5001-10000         168    -1.1440        1000   -16.0544          -14.9104
+    5000      1-5000         669   -16.5485        5000   -20.3573           -3.8088
+    5000  5001-10000         669   -13.7870        5000   -18.5057           -4.7186
+   10000      1-5000        1229   -16.7832       10000   -18.5127           -1.7295
+   10000  5001-10000        1229   -15.5562       10000   -17.5979           -2.0417
+   25000      1-5000        2762   -19.8461       25000   -22.6994           -2.8533
+   25000  5001-10000        2762   -15.6957       25000   -17.8644           -2.1687
+
+------------------------------------------------------------------------------
+2. SEED SENSITIVITY — full sweep re-run for each of 10 seeds
+------------------------------------------------------------------------------
+  np.random.default_rng(seed) per sweep, VALUE convention, 100 scrambles.
+  NOTE: default_rng(2025) is NOT the legacy np.random.seed(2025) stream, so the
+  2025 row here is a different draw from the same null, not the exact-replication row.
+
+   seed/value/2025        N=1000   1-5000      np=168    real=0.744965 scr=0.848850 Z=-12.4799
+   seed/value/2025        N=1000   5001-10000  np=168    real=0.831900 scr=0.844226 Z=-1.4626
+   seed/value/2025        N=5000   1-5000      np=669    real=0.727580 scr=0.879171 Z=-16.5172
+   seed/value/2025        N=5000   5001-10000  np=669    real=0.769292 scr=0.888595 Z=-12.3966
+   seed/value/2025        N=10000  1-5000      np=1229   real=0.724550 scr=0.887920 Z=-20.0435
+   seed/value/2025        N=10000  5001-10000  np=1229   real=0.759567 scr=0.899593 Z=-18.5739
+   seed/value/2025        N=25000  1-5000      np=2762   real=0.722745 scr=0.897737 Z=-19.1016
+   seed/value/2025        N=25000  5001-10000  np=2762   real=0.755346 scr=0.911427 Z=-16.0764
+   seed/value/1           N=1000   1-5000      np=168    real=0.744965 scr=0.846868 Z=-11.4626
+   seed/value/1           N=1000   5001-10000  np=168    real=0.831900 scr=0.844350 Z=-1.4996
+   seed/value/1           N=5000   1-5000      np=669    real=0.727580 scr=0.879337 Z=-16.4930
+   seed/value/1           N=5000   5001-10000  np=669    real=0.769292 scr=0.890270 Z=-14.0638
+   seed/value/1           N=10000  1-5000      np=1229   real=0.724550 scr=0.889621 Z=-17.8041
+   seed/value/1           N=10000  5001-10000  np=1229   real=0.759567 scr=0.903515 Z=-14.4341
+   seed/value/1           N=25000  1-5000      np=2762   real=0.722745 scr=0.899096 Z=-18.6565
+   seed/value/1           N=25000  5001-10000  np=2762   real=0.755346 scr=0.913076 Z=-20.5802
+   seed/value/2           N=1000   1-5000      np=168    real=0.744965 scr=0.848367 Z=-11.8707
+   seed/value/2           N=1000   5001-10000  np=168    real=0.831900 scr=0.843631 Z=-1.2512
+   seed/value/2           N=5000   1-5000      np=669    real=0.727580 scr=0.879851 Z=-20.0235
+   seed/value/2           N=5000   5001-10000  np=669    real=0.769292 scr=0.890217 Z=-12.8108
+   seed/value/2           N=10000  1-5000      np=1229   real=0.724550 scr=0.889907 Z=-19.5532
+   seed/value/2           N=10000  5001-10000  np=1229   real=0.759567 scr=0.901852 Z=-17.3970
+   seed/value/2           N=25000  1-5000      np=2762   real=0.722745 scr=0.898934 Z=-19.2495
+   seed/value/2           N=25000  5001-10000  np=2762   real=0.755346 scr=0.910911 Z=-18.5011
+   seed/value/3           N=1000   1-5000      np=168    real=0.744965 scr=0.847100 Z=-11.8385
+   seed/value/3           N=1000   5001-10000  np=168    real=0.831900 scr=0.844369 Z=-1.4564
+   seed/value/3           N=5000   1-5000      np=669    real=0.727580 scr=0.878944 Z=-17.2974
+   seed/value/3           N=5000   5001-10000  np=669    real=0.769292 scr=0.886963 Z=-12.5397
+   seed/value/3           N=10000  1-5000      np=1229   real=0.724550 scr=0.889404 Z=-19.1092
+   seed/value/3           N=10000  5001-10000  np=1229   real=0.759567 scr=0.900385 Z=-15.4268
+   seed/value/3           N=25000  1-5000      np=2762   real=0.722745 scr=0.897372 Z=-18.6686
+   seed/value/3           N=25000  5001-10000  np=2762   real=0.755346 scr=0.911113 Z=-16.8209
+   seed/value/4           N=1000   1-5000      np=168    real=0.744965 scr=0.848338 Z=-11.4323
+   seed/value/4           N=1000   5001-10000  np=168    real=0.831900 scr=0.843314 Z=-1.3861
+   seed/value/4           N=5000   1-5000      np=669    real=0.727580 scr=0.877773 Z=-18.9257
+   seed/value/4           N=5000   5001-10000  np=669    real=0.769292 scr=0.887476 Z=-12.9014
+   seed/value/4           N=10000  1-5000      np=1229   real=0.724550 scr=0.888280 Z=-16.9026
+   seed/value/4           N=10000  5001-10000  np=1229   real=0.759567 scr=0.902271 Z=-16.2227
+   seed/value/4           N=25000  1-5000      np=2762   real=0.722745 scr=0.899675 Z=-17.4308
+   seed/value/4           N=25000  5001-10000  np=2762   real=0.755346 scr=0.912318 Z=-16.1865
+   seed/value/5           N=1000   1-5000      np=168    real=0.744965 scr=0.849823 Z=-12.7328
+   seed/value/5           N=1000   5001-10000  np=168    real=0.831900 scr=0.843770 Z=-1.3537
+   seed/value/5           N=5000   1-5000      np=669    real=0.727580 scr=0.879014 Z=-16.4631
+   seed/value/5           N=5000   5001-10000  np=669    real=0.769292 scr=0.890777 Z=-13.8285
+   seed/value/5           N=10000  1-5000      np=1229   real=0.724550 scr=0.888751 Z=-16.8031
+   seed/value/5           N=10000  5001-10000  np=1229   real=0.759567 scr=0.900452 Z=-16.0770
+   seed/value/5           N=25000  1-5000      np=2762   real=0.722745 scr=0.898495 Z=-18.6595
+   seed/value/5           N=25000  5001-10000  np=2762   real=0.755346 scr=0.911384 Z=-16.2390
+   seed/value/6           N=1000   1-5000      np=168    real=0.744965 scr=0.848259 Z=-10.8304
+   seed/value/6           N=1000   5001-10000  np=168    real=0.831900 scr=0.844754 Z=-1.3118
+   seed/value/6           N=5000   1-5000      np=669    real=0.727580 scr=0.878562 Z=-15.3873
+   seed/value/6           N=5000   5001-10000  np=669    real=0.769292 scr=0.888748 Z=-13.6040
+   seed/value/6           N=10000  1-5000      np=1229   real=0.724550 scr=0.888691 Z=-18.1397
+   seed/value/6           N=10000  5001-10000  np=1229   real=0.759567 scr=0.902328 Z=-13.8611
+   seed/value/6           N=25000  1-5000      np=2762   real=0.722745 scr=0.897699 Z=-17.6196
+   seed/value/6           N=25000  5001-10000  np=2762   real=0.755346 scr=0.911691 Z=-19.3951
+   seed/value/7           N=1000   1-5000      np=168    real=0.744965 scr=0.848415 Z=-10.1417
+   seed/value/7           N=1000   5001-10000  np=168    real=0.831900 scr=0.842517 Z=-1.2692
+   seed/value/7           N=5000   1-5000      np=669    real=0.727580 scr=0.878078 Z=-17.4741
+   seed/value/7           N=5000   5001-10000  np=669    real=0.769292 scr=0.890618 Z=-13.2434
+   seed/value/7           N=10000  1-5000      np=1229   real=0.724550 scr=0.888502 Z=-16.6930
+   seed/value/7           N=10000  5001-10000  np=1229   real=0.759567 scr=0.900693 Z=-16.0569
+   seed/value/7           N=25000  1-5000      np=2762   real=0.722745 scr=0.897009 Z=-19.8627
+   seed/value/7           N=25000  5001-10000  np=2762   real=0.755346 scr=0.913896 Z=-17.3919
+   seed/value/8           N=1000   1-5000      np=168    real=0.744965 scr=0.848477 Z=-12.0202
+   seed/value/8           N=1000   5001-10000  np=168    real=0.831900 scr=0.842981 Z=-1.2491
+   seed/value/8           N=5000   1-5000      np=669    real=0.727580 scr=0.878590 Z=-16.6493
+   seed/value/8           N=5000   5001-10000  np=669    real=0.769292 scr=0.887964 Z=-12.9254
+   seed/value/8           N=10000  1-5000      np=1229   real=0.724550 scr=0.889982 Z=-18.5567
+   seed/value/8           N=10000  5001-10000  np=1229   real=0.759567 scr=0.900716 Z=-15.9372
+   seed/value/8           N=25000  1-5000      np=2762   real=0.722745 scr=0.898545 Z=-22.3926
+   seed/value/8           N=25000  5001-10000  np=2762   real=0.755346 scr=0.912234 Z=-17.0928
+   seed/value/9           N=1000   1-5000      np=168    real=0.744965 scr=0.848495 Z=-11.5501
+   seed/value/9           N=1000   5001-10000  np=168    real=0.831900 scr=0.844000 Z=-1.2989
+   seed/value/9           N=5000   1-5000      np=669    real=0.727580 scr=0.879313 Z=-17.8354
+   seed/value/9           N=5000   5001-10000  np=669    real=0.769292 scr=0.889494 Z=-13.2132
+   seed/value/9           N=10000  1-5000      np=1229   real=0.724550 scr=0.889771 Z=-17.2456
+   seed/value/9           N=10000  5001-10000  np=1229   real=0.759567 scr=0.900965 Z=-15.8537
+   seed/value/9           N=25000  1-5000      np=2762   real=0.722745 scr=0.899030 Z=-21.3573
+   seed/value/9           N=25000  5001-10000  np=2762   real=0.755346 scr=0.913550 Z=-14.8958
+
+       N      window  n_seeds      mean_Z       sd_Z       min_Z       max_Z    range_Z  Z_exact2025
+    1000      1-5000       10    -11.6359     0.7542    -12.7328    -10.1417     2.5911     -10.7148
+    1000  5001-10000       10     -1.3539     0.0931     -1.4996     -1.2491     0.2505      -1.1440
+    5000      1-5000       10    -17.3066     1.3509    -20.0235    -15.3873     4.6362     -16.5485
+    5000  5001-10000       10    -13.1527     0.5458    -14.0638    -12.3966     1.6672     -13.7870
+   10000      1-5000       10    -18.0851     1.2032    -20.0435    -16.6930     3.3505     -16.7832
+   10000  5001-10000       10    -15.9840     1.3339    -18.5739    -13.8611     4.7128     -15.5562
+   25000      1-5000       10    -19.2999     1.5526    -22.3926    -17.4308     4.9618     -19.8461
+   25000  5001-10000       10    -17.3180     1.7163    -20.5802    -14.8958     5.6844     -15.6957
+
+  HOW MUCH Z MOVES FROM SEED ALONE, across the 8 cells:
+    sd(Z)    over seeds : min 0.0931  median 1.2685  max 1.7163
+    max-min  over seeds : min 0.2505  median 3.9933  max 5.6844
+  Stated as measured. Interpretation is not this script's job.
+
+------------------------------------------------------------------------------
+3. SCRAMBLE-COUNT SENSITIVITY — seed 2025 (legacy RNG), counts [100, 1000]
+------------------------------------------------------------------------------
+   scr100/value/2025      N=1000   1-5000      np=168    real=0.744965 scr=0.847966 Z=-10.7148
+   scr100/value/2025      N=1000   5001-10000  np=168    real=0.831900 scr=0.842215 Z=-1.1440
+   scr100/value/2025      N=5000   1-5000      np=669    real=0.727580 scr=0.878356 Z=-16.5485
+   scr100/value/2025      N=5000   5001-10000  np=669    real=0.769292 scr=0.889843 Z=-13.7870
+   scr100/value/2025      N=10000  1-5000      np=1229   real=0.724550 scr=0.888625 Z=-16.7832
+   scr100/value/2025      N=10000  5001-10000  np=1229   real=0.759567 scr=0.902035 Z=-15.5562
+   scr100/value/2025      N=25000  1-5000      np=2762   real=0.722745 scr=0.896394 Z=-19.8461
+   scr100/value/2025      N=25000  5001-10000  np=2762   real=0.755346 scr=0.912576 Z=-15.6957
+   scr1000/value/2025     N=1000   1-5000      np=168    real=0.744965 scr=0.848159 Z=-11.9995
+   scr1000/value/2025     N=1000   5001-10000  np=168    real=0.831900 scr=0.844277 Z=-1.3866
+   scr1000/value/2025     N=5000   1-5000      np=669    real=0.727580 scr=0.878753 Z=-17.2646
+   scr1000/value/2025     N=5000   5001-10000  np=669    real=0.769292 scr=0.888999 Z=-13.1203
+   scr1000/value/2025     N=10000  1-5000      np=1229   real=0.724550 scr=0.887790 Z=-17.4932
+   scr1000/value/2025     N=10000  5001-10000  np=1229   real=0.759567 scr=0.900794 Z=-15.3318
+   scr1000/value/2025     N=25000  1-5000      np=2762   real=0.722745 scr=0.897985 Z=-18.8898
+   scr1000/value/2025     N=25000  5001-10000  np=2762   real=0.755346 scr=0.912549 Z=-16.4193
+
+       N      window        Z@100     sd_scr@100       Z@1000    sd_scr@1000  Z_last-Z_first
+    1000      1-5000     -10.7148     0.00961297     -11.9995     0.00859983         -1.2847
+    1000  5001-10000      -1.1440     0.00901705      -1.3866     0.00892611         -0.2426
+    5000      1-5000     -16.5485     0.00911115     -17.2646     0.00875623         -0.7161
+    5000  5001-10000     -13.7870     0.00874383     -13.1203     0.00912384          0.6668
+   10000      1-5000     -16.7832     0.00977615     -17.4932     0.00933163         -0.7100
+   10000  5001-10000     -15.5562     0.00915829     -15.3318     0.00921134          0.2243
+   25000      1-5000     -19.8461     0.00874982     -18.8898     0.00927699          0.9562
+   25000  5001-10000     -15.6957     0.01001737     -16.4193     0.00957426         -0.7236
+
+  |Z change| from 100 to 1000 scrambles: min 0.2243  median 0.7130  max 1.2847
+
+------------------------------------------------------------------------------
+4. SECOND NULL (contrast, NOT primary) — phase scramble: one U(0,2pi) phase per
+   prime, |B| at the SAME true zeros. METHODOLOGY_AUDIT_AND_FIXES.md's prescription.
+------------------------------------------------------------------------------
+   phase/value/2025       N=1000   1-5000      real=0.744965 scr=0.841392 Z=-13.8884
+   phase/value/2025       N=1000   5001-10000  real=0.831900 scr=0.842223 Z=-1.7904
+   phase/value/2025       N=5000   1-5000      real=0.727580 scr=0.880323 Z=-21.4704
+   phase/value/2025       N=5000   5001-10000  real=0.769292 scr=0.879269 Z=-15.4257
+   phase/value/2025       N=10000  1-5000      real=0.724550 scr=0.893379 Z=-23.1882
+   phase/value/2025       N=10000  5001-10000  real=0.759567 scr=0.894344 Z=-19.2470
+   phase/value/2025       N=25000  1-5000      real=0.722745 scr=0.909285 Z=-23.5809
+   phase/value/2025       N=25000  5001-10000  real=0.755346 scr=0.910615 Z=-20.8191
+
+       N      window  Z_uniform_t      Z_phase  Z_phase-Z_unif  scr_mean_unif  scr_mean_phase
+    1000      1-5000     -10.7148     -13.8884         -3.1736       0.847966        0.841392
+    1000  5001-10000      -1.1440      -1.7904         -0.6464       0.842215        0.842223
+    5000      1-5000     -16.5485     -21.4704         -4.9219       0.878356        0.880323
+    5000  5001-10000     -13.7870     -15.4257         -1.6386       0.889843        0.879269
+   10000      1-5000     -16.7832     -23.1882         -6.4050       0.888625        0.893379
+   10000  5001-10000     -15.5562     -19.2470         -3.6908       0.902035        0.894344
+   25000      1-5000     -19.8461     -23.5809         -3.7349       0.896394        0.909285
+   25000  5001-10000     -15.6957     -20.8191         -5.1234       0.912576        0.910615
+
+  The two nulls are REPORTED side by side. The script does NOT adjudicate between
+  them; that is not its job.
+
+  compute wall clock: 186.2 s
+
+==============================================================================
+GATE SUMMARY
+==============================================================================
+  GATE A (zero file 100000 lines + first three to 9 dp) : PASS
+  GATE B (real_mean N=1000 zeros 1-5000 finite in (0,5)): PASS  (real_mean = 0.7449646826222296)
+  GATE C (pure-python vs vectorized beat, tol 1e-12)    : PASS  (|diff| = 2.776e-16)
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O23_alignment_replication_results.json

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Result JSONs over 25 MB — excluded by explicit filename, not by size
+# pattern, so the exclusion is auditable. Not deleted; see
+# results/LOCAL-ONLY.md for sizes, sha256s, and the committed .log
+# files that carry their headline numbers.
+results/O24_gen_xmax3e9_results.json
+results/O24_gen_xmax1e9_results.json
+results/O24_gen_to19_results.json

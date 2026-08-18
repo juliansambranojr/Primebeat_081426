@@ -1,0 +1,445 @@
+#!/usr/bin/env python3
+"""
+O11 — Extend the exact prime counts to r = 80, crash-safe and resumable.
+
+Reads with: dyadic-table-v2.md §7.2, §7.3; DT-A6; DT-A7; DT-A9 §1.4.
+
+WHY r = 80
+----------
+The only RH-relevant quantity in this work is alpha, the growth exponent of
+the fluctuation, which DT-A6 §1(b) identifies as the table's estimate of
+Re(rho).  Its standard error scales as 1 / (sd(r) * sqrt(n)):
+
+    range      n    sd(r)    SE relative to r<=60
+    20-60     41     11.8         1.00
+    20-80     61     17.6         0.55
+    20-90     71     20.5         0.45
+    20-100    81     23.4         0.36
+
+r = 80 nearly halves the error.  r = 100 buys another third for a very large
+multiple of the compute, because primecount is roughly O(x^(2/3)) and each
+regime costs about 1.59x the one before — the total is dominated by the top
+two or three values.
+
+That matters because alpha has drifted: 0.350 at r<=40, 0.4334 at r<=60, and
+about 0.49 at r<=60 once DT-A7's prime-power correction is applied.  Halving
+the error is what distinguishes "converging toward 1/2" from "plateauing near
+0.45".  At r <= 60 those two are not separable.
+
+It also uncensors the boundary curve.  v2.0 §7.2 stops at d = 19 because
+r(d) ~ 3.08d exceeds the data.  r = 80 reaches d ~ 26, adding seven points to
+the seventeen already fitted.
+
+WHAT IT WILL NOT BUY, so it is not a disappointment when it happens:
+  - New zeros.  v2.0 §7.4's expected count beyond r = 60 is about zero, and
+    beyond r = 40 it is two in a million.  A clean search IS the prediction.
+  - Aliasing resolution.  The tightest collision needs 21,750 regimes
+    (DT-A10 §2.1).  Nothing reachable touches it.
+
+CRASH SAFETY
+------------
+Every pi(2^n) is written to disk the moment it is computed, with an atomic
+replace (write to a temp file in the same directory, fsync, os.replace).  A
+kill at any point loses at most the single value in flight.  Re-running skips
+everything already cached and resumes at the first missing n.
+
+The run log records wall time per regime, so the cost curve is measured rather
+than estimated, and a partial run still tells you what the next one will cost.
+SIGINT and SIGTERM are caught and exit cleanly after the current value lands.
+
+REQUIREMENTS
+------------
+    pip install primecountpy numpy
+
+Estimate before you start:
+    python3 O11_extend_counts.py --estimate --rmax 80
+
+USAGE — the incremental workflow
+--------------------------------
+    python3 O11_extend_counts.py --estimate --rmax 72   # cost ladder, no compute
+    python3 O11_extend_counts.py --rmax 72              # do it
+    python3 O11_extend_counts.py --estimate --rmax 76   # now decide, with YOUR timings
+    python3 O11_extend_counts.py --rmax 76              # resumes at 73
+
+Stopping is always safe. Ctrl-C, a kill, a crash, or --budget-hours all leave
+the cache consistent; the next run resumes at the first missing n. Nothing is
+recomputed.
+
+    python3 O11_extend_counts.py --rmax 80 --budget-hours 4
+        computes as far as four hours reaches, then stops cleanly.
+"""
+
+import argparse
+import json
+import math
+import os
+import shutil
+import signal
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+
+try:
+    import numpy as np
+except ImportError:
+    raise ImportError("numpy is required. Install with: pip install numpy")
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_STEM = os.path.splitext(os.path.basename(__file__))[0]
+CACHE = os.path.join(_HERE, "pi2n_cache.json")
+TIMING = os.path.join(_HERE, "results", _STEM + "_timing.json")
+DEFAULT_OUT = os.path.join(_HERE, "results", _STEM + "_results.json")
+
+_STOP = {"flag": False}
+
+
+def _on_signal(signum, frame):
+    """Finish the current value, then stop. Never leave a half-written cache."""
+    _STOP["flag"] = True
+    print(f"\n  [signal {signum} received — will stop after the current "
+          f"regime lands]", flush=True)
+
+
+signal.signal(signal.SIGINT, _on_signal)
+signal.signal(signal.SIGTERM, _on_signal)
+
+
+def _atomic_write_json(obj, path):
+    """Write via temp file + fsync + os.replace. Never a truncated cache."""
+    d = os.path.dirname(path)
+    if d:
+        os.makedirs(d, exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w") as fh:
+        json.dump(obj, fh, indent=2, sort_keys=False)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp, path)
+
+
+def load_cache():
+    """Load pi(2^n) cache, tolerating a corrupt file by falling back to .bak."""
+    for p in (CACHE, CACHE + ".bak"):
+        if os.path.exists(p):
+            try:
+                with open(p) as fh:
+                    return {int(k): int(v) for k, v in json.load(fh).items()}
+            except (json.JSONDecodeError, ValueError) as exc:
+                print(f"  WARNING: {p} unreadable ({exc}); trying fallback")
+    return {}
+
+
+def save_cache(P):
+    """Snapshot the previous cache to .bak, then write atomically."""
+    if os.path.exists(CACHE):
+        try:
+            os.replace(CACHE, CACHE + ".bak")
+        except OSError:
+            pass
+    _atomic_write_json({str(k): v for k, v in sorted(P.items())}, CACHE)
+
+
+def load_timing():
+    if os.path.exists(TIMING):
+        try:
+            with open(TIMING) as fh:
+                return {int(k): float(v) for k, v in json.load(fh).items()}
+        except (json.JSONDecodeError, ValueError):
+            pass
+    return {}
+
+
+def save_timing(T):
+    _atomic_write_json({str(k): v for k, v in sorted(T.items())}, TIMING)
+
+
+def project_cost(timing, rmax):
+    """
+    Project remaining wall time from measured regimes.
+    primecount is ~O(x^(2/3)), so t(n+1)/t(n) ~ 2^(2/3) = 1.587.
+    If two or more regimes have been timed, fit the ratio instead of assuming.
+    """
+    known = {n: t for n, t in timing.items() if t > 0.5}
+    if not known:
+        return None, 1.587
+    ns = sorted(known)
+    if len(ns) >= 3:
+        xs = np.array(ns, dtype=float)
+        ys = np.log2(np.array([known[n] for n in ns]))
+        A = np.vstack([np.ones_like(xs), xs]).T
+        slope = np.linalg.lstsq(A, ys, rcond=None)[0][1]
+        ratio = 2.0 ** slope
+    else:
+        ratio = 1.587
+    ratio = min(max(ratio, 1.2), 2.5)
+    top = max(ns)
+    t = known[top]
+    total = 0.0
+    for n in range(top + 1, rmax + 1):
+        t *= ratio
+        total += t
+    return total, ratio
+
+
+_PI_PROBE_N = 10       # pi(2^10) = 172 — known-answer check, microseconds
+_PI_PROBE_VALUE = 172
+
+
+class _BackendUnavailable(Exception):
+    """A backend that could not answer. Resolution falls through to the next."""
+
+
+def _pi_cli(binary):
+    """pi(2^n) through the primecount CLI: all cores by default, 128-bit."""
+    def f(n):
+        try:
+            r = subprocess.run([binary, str(2 ** n)],
+                               capture_output=True, text=True)
+        except KeyboardInterrupt:
+            raise                     # a user interrupt is never a backend fault
+        except OSError as exc:
+            raise _BackendUnavailable(f"{binary}: {exc}")
+        if r.returncode < 0 and -r.returncode in (signal.SIGINT, signal.SIGTERM):
+            # the child took the same Ctrl-C we did; hand it to the run loop's
+            # KeyboardInterrupt branch so only the in-flight value is discarded
+            raise KeyboardInterrupt
+        if r.returncode != 0:
+            raise _BackendUnavailable(
+                f"{binary} exit {r.returncode}: {r.stderr.strip()}")
+        try:
+            return int(r.stdout.strip())
+        except ValueError:
+            raise _BackendUnavailable(
+                f"{binary}: unparseable output {r.stdout.strip()!r}")
+    return f
+
+
+def resolve_pi_backend():
+    """
+    Pick the fastest available pi(x) backend, validated on a known answer.
+
+    Order of preference:
+      1. the primecount CLI — multithreaded (its default is all cores) and
+         128-bit, so n >= 63 works;
+      2. primecountpy.prime_pi_128 — 128-bit, single-threaded;
+      3. primecountpy.prime_pi — bound to C int64_t, so 2^n for n >= 63
+         raises OverflowError at argument conversion. Correct for n <= 62.
+
+    Returns (label, fn); (None, None) if no backend resolves.
+    """
+    cands = []
+    binary = shutil.which("primecount")
+    if binary:
+        cands.append((f"primecount CLI at {binary} (threaded, 128-bit)",
+                      _pi_cli(binary)))
+    try:
+        import primecountpy as pc
+    except ImportError:
+        pc = None
+    if pc is not None:
+        if hasattr(pc, "prime_pi_128"):
+            cands.append(("primecountpy.prime_pi_128 (128-bit, single-threaded)",
+                          lambda n: int(pc.prime_pi_128(2 ** n))))
+        cands.append(("primecountpy.prime_pi (int64 — correct only to n = 62)",
+                      lambda n: int(pc.prime_pi(2 ** n))))
+    for label, fn in cands:
+        try:
+            if fn(_PI_PROBE_N) == _PI_PROBE_VALUE:
+                return label, fn
+        except KeyboardInterrupt:
+            raise
+        except Exception:
+            continue
+    return None, None
+
+
+def fmt_secs(s):
+    if s is None:
+        return "unknown"
+    if s < 90:
+        return f"{s:.0f}s"
+    if s < 5400:
+        return f"{s/60:.1f} min"
+    return f"{s/3600:.1f} h"
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--rmax", type=int, default=80)
+    ap.add_argument("--budget-hours", type=float, default=None,
+                    help="stop cleanly once this much wall time has been spent "
+                         "computing; the cache is always consistent, so you "
+                         "can resume later with a higher --rmax")
+    ap.add_argument("--estimate", action="store_true",
+                    help="project cost from cached timings and exit")
+    ap.add_argument("--resume-only", action="store_true",
+                    help="report state without computing anything new")
+    ap.add_argument("--out", type=str, default=None)
+    args = ap.parse_args()
+
+    R = args.rmax
+    P = load_cache()
+    T = load_timing()
+
+    print("=" * 78)
+    print(f"O11 — extend exact prime counts to r = {R}")
+    print("=" * 78)
+    have = sorted(n for n in P if n <= R)
+    need = [n for n in range(R + 1) if n not in P]
+    print(f"  cache: {CACHE}")
+    print(f"  have  : {len(have)} values, highest n = {max(have) if have else '-'}")
+    print(f"  need  : {len(need)} values" +
+          (f", from n = {need[0]} to {need[-1]}" if need else ""))
+
+    if T:
+        ns = sorted(T)
+        print(f"\n  measured timings (wall seconds per regime):")
+        for n in ns[-6:]:
+            print(f"    n={n:>3}: {fmt_secs(T[n])}")
+
+    proj, ratio = project_cost(T, R)
+    if need:
+        print(f"\n  projected remaining to r={R}: {fmt_secs(proj)} "
+              f"(growth ratio per regime {ratio:.3f})")
+        if proj is None:
+            print("    no timings yet — the first few regimes will calibrate it")
+        else:
+            print(f"\n  MARGINAL COST LADDER — cumulative from here:")
+            print(f"    {'target r':>9} {'cumulative':>12} {'SE vs r<=60':>12} "
+                  f"{'max depth':>10}")
+            known = {n: t for n, t in T.items() if t > 0.5}
+            if known:
+                top = max(known)
+                t = known[top]
+                cum = 0.0
+                for n in range(top + 1, min(R, 90) + 1):
+                    t *= ratio
+                    cum += t
+                    rs = np.arange(20, n + 1, dtype=float)
+                    se = (11.8 * math.sqrt(41)) / (rs.std() * math.sqrt(len(rs)))
+                    star = "  <-- requested" if n == R else ""
+                    if n % 2 == 0 or n == R:
+                        print(f"    {n:>9} {fmt_secs(cum):>12} {se:>12.2f} "
+                              f"{int(n/3.08):>10}{star}")
+            print("\n  Stop anywhere. The cache resumes: run again with a")
+            print("  higher --rmax and it picks up at the first missing n.")
+    else:
+        print("\n  nothing to compute; cache is complete to r =", R)
+
+    if args.estimate:
+        print("\n  --estimate given; exiting without computing.")
+        return
+    if args.resume_only:
+        print("\n  --resume-only given; exiting without computing.")
+        return
+
+    if need:
+        backend, pi_of_2n = resolve_pi_backend()
+        if pi_of_2n is None:
+            print("\n  no pi(x) backend available. Install either:")
+            print("    brew install primecount   (threaded, 128-bit — preferred)")
+            print("    pip install primecountpy  (single-threaded)")
+            print("  (sympy fallback is not offered here — it is far too slow")
+            print("   past n ~ 40 and would silently run for days)")
+            return
+
+        print("\n" + "-" * 78)
+        print("COMPUTING — each value is written to disk the moment it lands")
+        print(f"  backend: {backend}")
+        if args.budget_hours:
+            print(f"  budget: {args.budget_hours} h, checked before each regime")
+        print("-" * 78)
+        spent = 0.0
+        for n in need:
+            if _STOP["flag"]:
+                print("  stopping early as requested; cache is consistent.")
+                break
+            if args.budget_hours is not None:
+                nxt = (T[max(T)] * ratio) if T else 0.0
+                if spent + nxt > args.budget_hours * 3600:
+                    print(f"  budget reached ({fmt_secs(spent)} spent; next "
+                          f"regime ~{fmt_secs(nxt)}). Stopping cleanly.")
+                    print(f"  resume any time: --rmax {R}")
+                    break
+            t0 = time.time()
+            try:
+                P[n] = int(pi_of_2n(n))
+            except KeyboardInterrupt:
+                # cysignals raises this from inside prime_pi on SIGINT/SIGTERM;
+                # the CLI path re-raises it when the child dies of the same
+                # signal.
+                # It is a BaseException, so a bare `except Exception` misses it.
+                print(f"\n  interrupted during n={n}; that value is discarded.")
+                print(f"  cache is intact through n={max(P)} — "
+                      f"rerun with --rmax {R} to resume.")
+                break
+            except Exception as exc:
+                print(f"  n={n} FAILED: {exc}")
+                print(f"  cache holds everything through n={max(P)}; "
+                      f"rerun to resume.")
+                break
+            dt = time.time() - t0
+            spent += dt
+            T[n] = dt
+            save_cache(P)
+            save_timing(T)
+            proj, ratio = project_cost(T, R)
+            print(f"  n={n:>3}  pi(2^{n}) = {P[n]:>22}  "
+                  f"[{fmt_secs(dt)}]  remaining ~{fmt_secs(proj)}", flush=True)
+
+    # ---- what the cache now supports ------------------------------------
+    have = sorted(n for n in P if n <= R)
+    rmax_have = max(have) if have else 0
+    print("\n" + "=" * 78)
+    print("STATE")
+    print("=" * 78)
+    print(f"  exact counts available to r = {rmax_have}")
+
+    if rmax_have >= 21:
+        rs = np.arange(20, rmax_have + 1, dtype=float)
+        se_rel = (11.8 * math.sqrt(41)) / (rs.std() * math.sqrt(len(rs)))
+        print(f"  alpha fits over r = 20..{rmax_have}: n = {len(rs)}, "
+              f"sd(r) = {rs.std():.1f}")
+        print(f"  standard error relative to r<=60 : {se_rel:.2f}")
+        print(f"  boundary curve reaches depth ~ {int(rmax_have/3.08)} "
+              f"(r(d) ~ 3.08d, v2.0 §7.3)")
+
+    print("""
+  NEXT STEPS once the cache is extended — all reuse the same file:
+    O4  local exponent          --rmax {r}
+    O5  cross-depth alpha       --rmax {r}
+    O7  prime-power correction  --rmax {r}   <- the one that matters for alpha
+    a fresh zero search to r = {r}, depth {r}-1
+
+  Reminder from v2.0 §7.4: the expected number of further zeros beyond r = 60
+  is about zero.  A clean search is the prediction, not a null result.
+""".format(r=rmax_have))
+
+    out_path = args.out if args.out else DEFAULT_OUT
+    payload = {
+        "schema_version": "1",
+        "script": os.path.basename(os.path.abspath(__file__)),
+        "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "params": {"rmax_requested": R},
+        "summary": {
+            "rmax_available": rmax_have,
+            "n_cached": len(have),
+            "missing": [n for n in range(R + 1) if n not in P],
+            "timings_seconds": {str(k): v for k, v in sorted(T.items())},
+            "growth_ratio_per_regime": ratio,
+            "projected_remaining_seconds": proj,
+            "cache_path": CACHE,
+        },
+    }
+    _atomic_write_json(payload, out_path)
+    print(f"  state written to {out_path}")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n  interrupted. The cache is written after every value, so it")
+        print("  is consistent; rerun the same command to resume.")
+        sys.exit(130)

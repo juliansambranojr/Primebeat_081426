@@ -1,0 +1,634 @@
+<title>O9 Instrument Audit</title>
+<div style="border:2px solid #8E1F3C;background:#F6E4E9;color:#12161D;padding:1rem 1.25rem;margin:1.5rem auto;max-width:47rem;font-family:ui-sans-serif,-apple-system,system-ui,sans-serif;line-height:1.55">
+<strong style="display:block;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem">Archived snapshot — partially superseded, 2026-08-15</strong>
+<p style="margin:0 0 0.6rem">This page is preserved as written. Two of its claims were later corrected by measurement and should not be read as current:</p>
+<p style="margin:0 0 0.6rem"><strong>Section 04's analyticity argument is wrong in its strong form.</strong> It states the smoothness statistic is "not measuring the data" and returns the same value regardless. A 91-centre placebo sweep (lab_notebook entry 6, instrument O13_smoothness_null.py) shows max_z does vary, range 1.30. The correct statement is that its null distribution is a spike between 2.50 and 2.60 with a maximum of 2.6041, so a threshold of 3 cannot fire — a measured ceiling, not an analyticity claim.</p>
+<p style="margin:0"><strong>The redirect in section 06 was acted on and returned a negative.</strong> The fit-free instrument (entry 8, O12_dyadic_block_ratio.py) measures a = 1 − σ across settled series: additive, no square-root cancellation, and σ = 1/2 unremarkable on a straight line. See lab_notebook.md entries 6, 8, and 9.</p>
+</div>
+<style>
+:root {
+  --paper: #F2F4F7;
+  --surface: #FBFCFD;
+  --surface-2: #E8ECF2;
+  --ink: #12161D;
+  --ink-2: #3C4552;
+  --ink-3: #6B7686;
+  --rule: #CFD6E0;
+  --rule-soft: #DFE4EC;
+  --accent: #23508C;
+  --accent-soft: #E2EAF5;
+  --falsified: #8E1F3C;
+  --falsified-soft: #F6E4E9;
+  --caution: #8A5410;
+  --caution-soft: #F7ECDC;
+  --intact: #1E6152;
+  --intact-soft: #DFEEE9;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E1116;
+    --surface: #161B22;
+    --surface-2: #1D242E;
+    --ink: #E7EBF1;
+    --ink-2: #B4BECC;
+    --ink-3: #7E8899;
+    --rule: #2A323E;
+    --rule-soft: #222933;
+    --accent: #7BA6DE;
+    --accent-soft: #1A2635;
+    --falsified: #E28AA2;
+    --falsified-soft: #2E1922;
+    --caution: #D9A45F;
+    --caution-soft: #2B2115;
+    --intact: #7FC7B2;
+    --intact-soft: #14261F;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E1116;
+  --surface: #161B22;
+  --surface-2: #1D242E;
+  --ink: #E7EBF1;
+  --ink-2: #B4BECC;
+  --ink-3: #7E8899;
+  --rule: #2A323E;
+  --rule-soft: #222933;
+  --accent: #7BA6DE;
+  --accent-soft: #1A2635;
+  --falsified: #E28AA2;
+  --falsified-soft: #2E1922;
+  --caution: #D9A45F;
+  --caution-soft: #2B2115;
+  --intact: #7FC7B2;
+  --intact-soft: #14261F;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  font-size: 16.5px;
+  line-height: 1.62;
+  margin: 0;
+  padding: 0 1.25rem 6rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 47rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+.serif {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+code, .mono, table, .fig {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ---------- masthead ---------- */
+
+header.masthead {
+  padding: 3.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 1.75rem;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+h1 {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(2.1rem, 6vw, 3rem);
+  line-height: 1.08;
+  font-weight: 700;
+  margin: 0;
+  text-wrap: balance;
+  letter-spacing: -0.015em;
+}
+
+.standfirst {
+  font-size: 1.08rem;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 38rem;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ---------- sections ---------- */
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+h2 {
+  font-family: Charter, "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 700;
+  text-wrap: balance;
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+h2 .num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  flex: none;
+}
+
+h3 {
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+p { margin: 0; max-width: 40rem; }
+
+.lede { font-size: 1.02rem; }
+
+ul { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem; max-width: 40rem; }
+li::marker { color: var(--ink-3); }
+
+strong { font-weight: 700; }
+
+a { color: var(--accent); }
+
+/* ---------- verdict chips ---------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.22rem 0.5rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.chip.falsified { background: var(--falsified-soft); color: var(--falsified); }
+.chip.caution   { background: var(--caution-soft);   color: var(--caution); }
+.chip.intact    { background: var(--intact-soft);    color: var(--intact); }
+.chip.neutral   { background: var(--accent-soft);    color: var(--accent); }
+
+/* ---------- callout ---------- */
+
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.callout.key { border-left-color: var(--falsified); }
+.callout h3 { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+
+/* ---------- data ---------- */
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+table {
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 100%;
+  background: var(--surface);
+}
+
+th, td {
+  text-align: right;
+  padding: 0.42rem 0.7rem;
+  border-bottom: 1px solid var(--rule-soft);
+  white-space: nowrap;
+}
+
+th {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  border-bottom: 1px solid var(--rule);
+}
+
+td:first-child, th:first-child { text-align: left; }
+tbody tr:last-child td { border-bottom: none; }
+tr.highlight td { background: var(--accent-soft); font-weight: 600; }
+tr.dim td { color: var(--ink-3); }
+
+.pos { color: var(--intact); }
+.neg { color: var(--falsified); }
+
+caption {
+  caption-side: bottom;
+  text-align: left;
+  font-family: ui-sans-serif, -apple-system, system-ui, sans-serif;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  padding-top: 0.6rem;
+  white-space: normal;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--rule-soft);
+  padding: 0.9rem 1rem;
+  margin: 0;
+  overflow-x: auto;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+code {
+  background: var(--surface-2);
+  padding: 0.08em 0.34em;
+  font-size: 0.86em;
+  border-radius: 2px;
+}
+pre code { background: none; padding: 0; font-size: 1em; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+/* ---------- ledger ---------- */
+
+.ledger {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+.ledger-row {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.5rem 1.25rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  align-items: start;
+}
+.ledger-row > div:last-child { display: flex; flex-direction: column; gap: 0.3rem; }
+@media (max-width: 34rem) {
+  .ledger-row { grid-template-columns: 1fr; }
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow">Primebeat · O9 convergence abscissa</div>
+  <h1>What the O9 control actually measures</h1>
+  <p class="standfirst serif">Three tests run against the convergence-abscissa experiment. The regression-variable explanation is falsified, the control turns out to be ill-posed, and part&nbsp;3's null is structural rather than measured.</p>
+  <div class="meta-row">
+    <span>2026-08-15</span>
+    <span>O9_convergence_abscissa.py</span>
+    <span>c=13 · pmax=100000 · 9592 primes</span>
+  </div>
+</header>
+
+<section>
+  <h2><span class="num">SUM</span>Summary</h2>
+  <p class="lede">Six bug fixes were applied to O9 and the script was rerun. Three follow-up tests were then run to check whether the part-2 control failure was explicable and whether part 3's negative result on σ&nbsp;=&nbsp;1/2 is trustworthy. Part 1 is unaffected throughout. The headline findings, in the order they were established:</p>
+  <ul>
+    <li><strong>The log&nbsp;log&nbsp;N explanation is falsified.</strong> Switching the regression variable from log&nbsp;N to log&nbsp;p<sub>N</sub> moves the zero crossing by 5.3&times;10<sup>&minus;5</sup>. It cannot move it, for a structural reason given below.</li>
+    <li><strong>The control is ill-posed, not merely off-target.</strong> The crossing is not a single number: it ranges from 1.177 at t&nbsp;=&nbsp;14.5 to 0.491 at t&nbsp;=&nbsp;80. The aggregate 0.8814 is an artifact of averaging four incommensurable columns, two of which are noise.</li>
+    <li><strong>Part 3's null is guaranteed by construction.</strong> For a fixed finite prime set the fitted slope is real-analytic in σ, so a kink at σ&nbsp;=&nbsp;0.500 is impossible at finite truncation. The smoothness test returns max_z&nbsp;≈&nbsp;2.5 on clean data and on pure noise alike.</li>
+  </ul>
+  <div class="callout key">
+    <h3>Consequence for the write-up</h3>
+    <p>The conclusion — that the Beat's optimum at 1/2 comes from the functional equation's reflection axis rather than from convergence — may well be true. Part 3 is not evidence for it. Claiming a measured negative would be overclaiming.</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">00</span>What changed in the script</h2>
+  <p>Six fixes, applied before any of the tests below. All are surgical; no scientific design was altered except where noted.</p>
+
+  <div class="scroll">
+  <table>
+    <thead>
+      <tr><th>Fix</th><th>Before</th><th>After</th><th>Effect on results</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>stdout flush</td><td>1 of ~40 prints</td><td>all result prints</td><td>none — log survives crash</td></tr>
+      <tr><td>ladder guard</td><td><code>ladder[-1]</code> unguarded</td><td>clean exit</td><td>none — small <code>--pmax</code> no longer crashes</td></tr>
+      <tr><td>division guard</td><td>bare <code>dg/dr</code> in print</td><td>guarded, <code>n/a</code></td><td>none — run no longer discarded</td></tr>
+      <tr><td>window tolerance</td><td><code>&gt; win</code></td><td><code>&gt; win + 1e-9</code></td><td><strong>n_inside 3 → 5</strong></td></tr>
+      <tr><td>residual sd</td><td><code>np.std</code>, ddof 0</td><td>dof = n_out &minus; 4</td><td><strong>max_z rescaled</strong></td></tr>
+      <tr><td>params payload</td><td>grids unrecorded</td><td>full provenance</td><td>none — metadata only</td></tr>
+    </tbody>
+    <caption>The two marked fixes both act on <code>departure_over_sd</code>, in opposite directions.</caption>
+  </table>
+  </div>
+
+  <h3>The two fixes cancel — verdict never flipped</h3>
+  <p>Recomputed exactly from the saved <code>fine_sweep</code> array, so all four variants run on identical data. V4 reproduces the saved value bit-for-bit, which validates the reconstruction.</p>
+
+  <div class="scroll">
+  <table>
+    <thead>
+      <tr><th>Variant</th><th>n_in</th><th>n_out</th><th>resid_sd</th><th>max_dep</th><th>max_z</th><th>Verdict</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>V1 old mask + old ddof</td><td>3</td><td>14</td><td>7.4576e&minus;07</td><td>1.4890e&minus;06</td><td>1.9967</td><td>smooth</td></tr>
+      <tr><td>V2 old mask + new dof</td><td>3</td><td>14</td><td>8.8239e&minus;07</td><td>1.4890e&minus;06</td><td>1.6875</td><td>smooth</td></tr>
+      <tr class="dim"><td>V3 new mask + old ddof</td><td>5</td><td>12</td><td>6.4725e&minus;07</td><td>2.0674e&minus;06</td><td>3.1941</td><td>STRUCTURE</td></tr>
+      <tr class="highlight"><td>V4 new mask + new dof</td><td>5</td><td>12</td><td>7.9271e&minus;07</td><td>2.0674e&minus;06</td><td>2.6080</td><td>smooth</td></tr>
+    </tbody>
+    <caption>V1 is the true pre-fix value. V3 is the only combination reading STRUCTURE, and it never existed in running code — it is one fix applied without the other.</caption>
+  </table>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">01</span>Test — the regression variable <span class="chip falsified">falsified</span></h2>
+
+  <p><strong>Hypothesis under test.</strong> <code>decay_exponent</code> regresses log|S<sub>2N</sub>&nbsp;&minus;&nbsp;S<sub>N</sub>| against log&nbsp;N, where N is the prime <em>count</em>. The summed terms are p<sup>&minus;σ</sup> and p<sub>N</sub>&nbsp;~&nbsp;N&nbsp;ln&nbsp;N, so the proposed correct variable is log&nbsp;p<sub>N</sub>&nbsp;=&nbsp;log&nbsp;N&nbsp;+&nbsp;log&nbsp;log&nbsp;N, with the missing term contaminating the slope and displacing the crossing from 1.000 to 0.883.</p>
+
+  <p><strong>Pre-registered before running:</strong> (A) crossing moves to 1.00&nbsp;±&nbsp;0.02 → contamination was the whole story; (B) moves to ~0.93 → coefficient explained, intercept not; (C) does not move → explanation wrong.</p>
+
+  <div class="callout">
+    <h3>Result — outcome (C)</h3>
+    <pre><code>crossing, xvar=count   0.8813531537396102
+crossing, xvar=prime   0.8814060700880200
+                       ─────────────────────
+difference             +0.0000529163484098</code></pre>
+  </div>
+
+  <h3>Why it could not have moved</h3>
+  <p>The reparametrization is a near-exact constant rescaling of every fitted slope:</p>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>σ</th><th>slope (prime)</th><th>slope (count)</th><th>ratio</th></tr></thead>
+    <tbody>
+      <tr><td>0.30</td><td>0.5406</td><td>0.6241</td><td>0.8662</td></tr>
+      <tr><td>0.50</td><td>0.3501</td><td>0.4043</td><td>0.8660</td></tr>
+      <tr><td>1.00</td><td>&minus;0.1097</td><td>&minus;0.1268</td><td>0.8652</td></tr>
+      <tr><td>1.60</td><td>&minus;0.6850</td><td>&minus;0.7911</td><td>0.8659</td></tr>
+    </tbody>
+    <caption>Constant to three digits across the whole grid.</caption>
+  </table>
+  </div>
+
+  <p>A positive rescaling cannot move a zero. Equivalently, the crossing is the ratio of the low-σ fit's intercept to its coefficient, and both are scaled by the same factor:</p>
+
+  <pre><code>count:  0.9441 / 1.0752 = 0.878
+prime:  0.8177 / 0.9313 = 0.878</code></pre>
+
+  <p>The offset survives exactly. It is a property of the data, not of the axis, and no choice of regression variable will fix it. <em>The prediction bands were mis-specified — (A) was structurally unreachable, and that should have been caught before the test was framed.</em></p>
+
+  <p><strong>Residual puzzle.</strong> Under the corrected variable theory predicts a coefficient of exactly &minus;1.000. It comes out &minus;0.931. The simple <code>|Δ| ~ N^a · p_N^(−σ)</code> model does not close even after fixing the axis, and there is currently no account of the remainder.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">02</span>Test — t-dependence of the crossing <span class="chip caution">control ill-posed</span></h2>
+
+  <p>With the axis ruled out, the remaining candidate was partial phase cancellation: the σ&nbsp;=&nbsp;0 exponent sitting near 0.944 rather than 1.000 because the block sum only partially cancels. That predicts a t-dependence — larger t means faster winding of t&nbsp;log&nbsp;p across a dyadic block, so more decoherence and a lower crossing.</p>
+
+  <p><strong>Pre-registered:</strong> (P) crossing decreases monotonically with t; (Q) varies non-monotonically; (R) essentially t-independent, spread &lt; 0.01.</p>
+
+  <div class="scroll">
+  <table>
+    <thead>
+      <tr><th>t</th><th>crossing (count)</th><th>crossing (prime)</th><th>intercept</th><th>coefficient</th><th>phase advance</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>14.5</td><td class="pos">1.1768</td><td>1.1780</td><td>1.1776</td><td>&minus;0.9156</td><td>11.19 rad</td></tr>
+      <tr><td>30.0</td><td class="pos">1.1264</td><td>1.1262</td><td>0.9817</td><td>&minus;0.9007</td><td>23.15 rad</td></tr>
+      <tr><td>50.0</td><td>0.7923</td><td>0.7943</td><td>1.0347</td><td>&minus;1.3089</td><td>38.58 rad</td></tr>
+      <tr><td>80.0</td><td class="neg">0.4914</td><td>0.4885</td><td>0.5823</td><td>&minus;1.1757</td><td>61.73 rad</td></tr>
+    </tbody>
+    <caption>Outcome (P): monotone in t. Spread 0.685 (count), 0.689 (prime). Phase advance is t·Δlog&nbsp;p across the widest dyadic block, Δlog&nbsp;p = 0.7716.</caption>
+  </table>
+  </div>
+
+  <div class="callout key">
+    <h3>The aggregate crossing is an averaging artifact</h3>
+    <p>The spread is 0.685 in σ — not a correction, a collapse. The reported 0.8814 is the crossing of the <em>mean slope column</em>; the mean of the four per-t crossings is 0.8967, a different number, because averaging slopes and then finding a zero is not the same operation as finding zeros and averaging.</p>
+    <p>Further, the two well-fitted columns cross <em>above</em> 1.0, at 1.177 and 1.126. Every proposed explanation — log&nbsp;log&nbsp;N contamination, phase cancellation — predicts a crossing below 1.0. Only the high-t columns drag the mean down.</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">03</span>Fit quality — two columns are noise</h2>
+
+  <p>r² of the underlying log-log regression, read from the saved per-t records.</p>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>σ</th><th>t = 14.5</th><th>t = 30.0</th><th>t = 50.0</th><th>t = 80.0</th></tr></thead>
+    <tbody>
+      <tr><td>0.30</td><td>0.9907</td><td>0.9803</td><td>0.7125</td><td>0.1905</td></tr>
+      <tr><td>0.40</td><td>0.9864</td><td>0.9740</td><td>0.6254</td><td>0.0432</td></tr>
+      <tr class="highlight"><td>0.50</td><td>0.9796</td><td>0.9636</td><td>0.4956</td><td>0.0004</td></tr>
+      <tr><td>0.60</td><td>0.9684</td><td>0.9448</td><td>0.3106</td><td>0.0527</td></tr>
+      <tr><td>0.80</td><td>0.9148</td><td>0.8291</td><td>0.0008</td><td>0.3438</td></tr>
+      <tr><td>1.00</td><td>0.7026</td><td>0.3211</td><td>0.3976</td><td>0.6536</td></tr>
+      <tr><td>1.20</td><td>0.0472</td><td>0.0979</td><td>0.7404</td><td>0.8302</td></tr>
+      <tr><td>1.60</td><td>0.9741</td><td>0.7994</td><td>0.9337</td><td>0.9505</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><th>mean</th><td>0.7798</td><td>0.6206</td><td>0.4802</td><td>0.4802</td></tr>
+      <tr><th>n &lt; 0.9</th><td>7 / 14</td><td>9 / 14</td><td>13 / 14</td><td>12 / 14</td></tr>
+      <tr><th>n &lt; 0.5</th><td>2 / 14</td><td>4 / 14</td><td>7 / 14</td><td>6 / 14</td></tr>
+    </tfoot>
+    <caption>Abridged to 8 of 14 σ rows; means and counts are over all 14. Values under <code>xvar=prime</code> differ by at most 0.011 per cell — no material difference.</caption>
+  </table>
+  </div>
+
+  <p>At t&nbsp;=&nbsp;80, σ&nbsp;=&nbsp;0.50, the regression explains <strong>0.04%</strong> of the variance. That slope is not measuring a decay exponent. The six-rung ladder cannot resolve a power law through 61.7 radians of phase winding — roughly ten full turns across the block.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">04</span>Test — per-t smoothness at σ = 1/2 <span class="chip caution">null is structural</span></h2>
+
+  <p>The script's smoothness control runs on the mean slope across t. The question was whether any individual column shows structure at σ&nbsp;=&nbsp;0.500 that averaging washes out.</p>
+
+  <p><strong>Pre-registered:</strong> (S) no individual t exceeds max_z&nbsp;=&nbsp;3; (T) exactly one does; (U) two or more do.</p>
+
+  <div class="scroll">
+  <table>
+    <thead>
+      <tr><th>Column</th><th>resid_sd</th><th>max_dep</th><th>max_z (17 pt)</th><th>max_z (33 pt)</th><th>r² at σ=0.5</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>t = 14.5</td><td>8.68e&minus;07</td><td>2.20e&minus;06</td><td>2.5861</td><td>2.5318</td><td>0.9796</td></tr>
+      <tr><td>t = 30.0</td><td>3.99e&minus;09</td><td>9.47e&minus;09</td><td>2.3975</td><td>2.3753</td><td>0.9636</td></tr>
+      <tr><td>t = 50.0</td><td>2.26e&minus;08</td><td>5.71e&minus;08</td><td>2.5846</td><td>2.5305</td><td>0.4956</td></tr>
+      <tr><td>t = 80.0</td><td>1.86e&minus;06</td><td>4.78e&minus;06</td><td>2.6187</td><td>2.5620</td><td class="neg">0.0004</td></tr>
+      <tr class="highlight"><td>MEAN (script)</td><td>6.90e&minus;07</td><td>1.76e&minus;06</td><td>2.6080</td><td>2.5521</td><td>—</td></tr>
+    </tbody>
+    <caption>Outcome (S): zero of four exceed 3, on both grids and under both regression variables. resid_sd and max_dep shown for the 33-point grid. All 16 cases return "smooth through 1/2".</caption>
+  </table>
+  </div>
+
+  <div class="callout key">
+    <h3>The statistic is not measuring the data</h3>
+    <p>All sixteen cases land between 2.36 and 2.62, across columns whose residual scales differ by three orders of magnitude — 3.99e&minus;09 at t&nbsp;=&nbsp;30 against 1.86e&minus;06 at t&nbsp;=&nbsp;80. The t&nbsp;=&nbsp;80 column, whose underlying regression has r²&nbsp;=&nbsp;0.0004, returns max_z&nbsp;=&nbsp;2.5620 — indistinguishable from the cleanest column.</p>
+    <p>A statistic that returns ≈2.5 on clean data and ≈2.5 on pure noise is measuring the geometry of its own fit, not the phenomenon.</p>
+  </div>
+
+  <h3>The reason is analytic, not empirical</h3>
+  <p>For a <em>fixed finite</em> set of primes, Σ&nbsp;p<sup>&minus;σ&minus;it</sup> is entire in σ. So |S<sub>2N</sub>&nbsp;&minus;&nbsp;S<sub>N</sub>| is real-analytic in σ wherever it is nonzero, its log is real-analytic, and the least-squares slope — a fixed linear combination of those logs — is real-analytic too. A kink at σ&nbsp;=&nbsp;0.500 is not merely absent from the data; it is <strong>impossible at finite truncation</strong>. The fine sweep is a smooth analytic curve by construction and the cubic absorbs it. The residual ≈2.5 is cubic truncation error over the window, which is exactly why it is the same number regardless of what lies underneath.</p>
+
+  <p>The in-window values confirm it. First differences of the t&nbsp;=&nbsp;14.5 slope column across σ = 0.48 … 0.52:</p>
+
+  <pre><code>−0.0089877392
+−0.0089881512
+−0.0089898159
+−0.0089927983</code></pre>
+
+  <p>A straight line to six digits against values of ~0.72, with nothing happening at 0.500.</p>
+
+  <p>So part 3 cannot distinguish <em>"σ = 1/2 is not distinguished in the divergence"</em> from <em>"this design cannot see structure anywhere."</em> The null was fixed before any prime was summed. The xvar invariance (2.6080 → 2.6082) and the per-t null are both real, but they are invariance under changes that could not have mattered.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">05</span>Status of each claim</h2>
+
+  <div class="ledger">
+    <div class="ledger-row">
+      <div><span class="chip intact">unaffected</span></div>
+      <div>
+        <h3>Part 1 — partial-sum stability vs σ</h3>
+        <p>Untouched by any of the above. The relative |S<sub>2N</sub>&nbsp;&minus;&nbsp;S<sub>N</sub>|/|S<sub>N</sub>| measurement does not use the log-log regression.</p>
+      </div>
+    </div>
+    <div class="ledger-row">
+      <div><span class="chip caution">ill-posed</span></div>
+      <div>
+        <h3>Part 2 — the decay-exponent control</h3>
+        <p>Neither passed nor failed. It is a mean over four curves whose individual crossings span 0.685 in σ, two of which are fitted at r² &lt; 0.5. "The control failed at 0.88" and "the control passed" are both wrong statements about it.</p>
+      </div>
+    </div>
+    <div class="ledger-row">
+      <div><span class="chip falsified">not evidence</span></div>
+      <div>
+        <h3>Part 3 — σ = 1/2 not distinguished</h3>
+        <p>The verdict is correct as a statement about the computed curve and useless as a test of the hypothesis. Any finite-truncation σ-sweep returns "smooth" here for analytic reasons.</p>
+      </div>
+    </div>
+    <div class="ledger-row">
+      <div><span class="chip neutral">open</span></div>
+      <div>
+        <h3>The Beat's optimum at 1/2</h3>
+        <p>May still originate in the functional equation's reflection axis rather than in convergence. That claim now has no supporting measurement from O9.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">06</span>What would actually test it</h2>
+  <p>Structure at σ&nbsp;=&nbsp;1/2, if it exists, lives in the truncation limit — which is precisely where the Euler product stops being a sum. A test has to involve N&nbsp;→&nbsp;∞ behaviour rather than a σ-sweep at fixed N: how the fit degrades along the ladder as N grows, and whether the <em>rate</em> of that degradation carries a feature at 1/2. That is what part 2 was reaching for before its control turned out to be ill-posed.</p>
+  <p>Two prerequisites before that is worth building:</p>
+  <ul>
+    <li><strong>Fix the aggregation.</strong> Weight or drop columns by fit quality rather than taking an unweighted mean over t. As it stands t&nbsp;=&nbsp;80 contributes equally to every reported number while explaining 0.04% of its own variance.</li>
+    <li><strong>Extend the ladder.</strong> Six rungs capping at N&nbsp;=&nbsp;4000 cannot resolve a power law at the larger t values. The ladder, not <code>--pmax</code>, is the binding constraint — raising <code>--pmax</code> above ~68000 currently buys nothing.</li>
+  </ul>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">07</span>Corrections made in the course of this audit</h2>
+  <p>Recorded because each was a wrong intermediate claim that a later measurement overturned.</p>
+  <div class="ledger">
+    <div class="ledger-row">
+      <div class="mono" style="font-size:0.78rem; color:var(--ink-3)">estimate</div>
+      <div><p>The pre-fix max_z was estimated at ≈3.2 by inverting the ddof factor alone, implying the verdict had flipped. Exact recomputation gave <strong>1.997</strong> — the window fix also moved max_departure, and the two fixes push in opposite directions. The verdict never flipped.</p></div>
+    </div>
+    <div class="ledger-row">
+      <div class="mono" style="font-size:0.78rem; color:var(--ink-3)">prediction</div>
+      <div><p>Outcome band (A) — crossing moves to 1.00 — was structurally unreachable, since the reparametrization is a constant positive rescaling. The test could only ever return (C).</p></div>
+    </div>
+    <div class="ledger-row">
+      <div class="mono" style="font-size:0.78rem; color:var(--ink-3)">assessment</div>
+      <div><p>Part 3 was described as having "got stronger" on the strength of its xvar invariance and per-t null. Both hold, but neither is informative — see section 04.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2><span class="num">08</span>Reproduction</h2>
+  <p>All runs preserved; nothing overwritten. Validation gates passed bit-for-bit at each stage — recomputed mean slopes reproduce the saved <code>fine_sweep</code> exactly, and the recomputed mean smoothness control reproduces the saved <code>departure_over_sd</code> to 0.000e+00.</p>
+  <pre><code>results/O9_convergence_abscissa_results.json    default grid, dps —, 17 pt
+results/O9_convergence_abscissa_results_fine.json   fine grid, 33 pt
+results/O9_xvar_count.json                     xvar=count  (reproduces default)
+results/O9_xvar_prime.json                     xvar=prime
+O9_run.log  O9_run_fine.log  O9_run_xvar_count.log  O9_run_xvar_prime.log
+O9_convergence_abscissa.py.bak    pre-fix
+O9_convergence_abscissa.py.bak2   pre-xvar-flag</code></pre>
+  <p>Per-t slopes and r² are stored in <code>summary.decay_exponent[*].slopes</code> and <code>[*].r2</code>, keyed by t as a string. Per-t <em>fine-sweep</em> slopes are not saved — only the mean — so the section-04 table required recomputation.</p>
+</section>
+
+<footer>
+  <p>Instrument audit of O9. Part 1 stands. Part 2's control is not a usable instrument as constructed. Part 3's negative result is real about the curve and uninformative about the hypothesis.</p>
+</footer>
+
+</div>

@@ -1,0 +1,400 @@
+==============================================================================
+O24 — prime-generator orbit  (fit-free; exact counts; projection, not fit)
+==============================================================================
+  O18 showed the integer bases are blind to the zeros SINGLY but not JOINTLY: at
+  x0 = 2 the pure dyadic and pure triadic ladders returned NULL, while the joint
+  orbit {2^m 3^n} detected gamma_2 at P/median 6.95 and {2^m 3^n 5^k} detected
+  gamma_4 at 16.37. Only PRIME bases add generators: 4, 8 and 9 lie inside the
+  semigroup 2 and 3 already generate, so they do not densify the orbit. This script
+  makes the generator set a PARAMETER and sweeps the NESTED family on identical
+  settings, to measure how detection scales with the number of prime generators and
+  whether it saturates. Interpretation of the numbers below is NOT this script's job.
+
+  x0 = 2   xmax = 1000000000   dps = 30   surrogates = 200   seed = 2026
+  generators = 2,3,5,7,11,13,17,19   nested family:
+    G1 = {2}
+    G2 = {2, 3}
+    G3 = {2, 3, 5}
+    G4 = {2, 3, 5, 7}
+    G5 = {2, 3, 5, 7, 11}
+    G6 = {2, 3, 5, 7, 11, 13}
+    G7 = {2, 3, 5, 7, 11, 13, 17}
+    G8 = {2, 3, 5, 7, 11, 13, 17, 19}
+  pi/log2 = 4.532360     pi/log3 = 2.859601
+
+  sieving primes to 1000000000...
+  50847534 primes, largest = 999999937
+
+  building ladders (multipliers as EXACT Python integers; sort and dedup exact)...
+
+    set       generators   rungs          first x           last x     gap min     gap med     gap max   pi/gap_med
+     G1                2      29                2        536870912   0.6931472   0.6931472   0.6931472     4.532360
+     G2              2,3     287                2        967458816   0.0135510   0.0521160   0.6931472    60.280770
+     G3            2,3,5    1392                2       1000000000   0.0011285   0.0112940   0.6931472   278.164584
+     G4          2,3,5,7    4604                2       1000000000   0.0000406   0.0030972   0.6931472  1014.320249
+     G5       2,3,5,7,11   11142                2       1000000000   0.0000161   0.0005186   0.6931472  6057.652884
+     G6    2,3,5,7,11,13   23202                2       1000000000   0.0000057   0.0002442   0.6931472 12866.392649
+     G7 2,3,5,7,11,13,17   41903                2       1000000000   0.0000006   0.0001559   0.6931472 20150.092566
+     G8 2,3,5,7,11,13,17,19   69886                2       1000000000   0.0000001   0.0000808   0.6931472 38878.779865
+
+  reference: log 2 = 0.6931472   log 3 = 1.0986123   log 5 = 1.6094379   log 7 = 1.9459101
+  For a SINGLE generator the log-gaps are CONSTANT, so pi/gap IS the uniform Nyquist
+  limit. For every multi-generator set the gaps are IRREGULAR and pi/median_gap is a
+  DESCRIPTIVE NUMBER ONLY, NOT A BOUND.
+
+  NESTING CHECK (each ladder must be a superset of the previous)
+        G1 subset G2 :  True   29 -> 287 rungs (+258)
+        G2 subset G3 :  True   287 -> 1392 rungs (+1105)
+        G3 subset G4 :  True   1392 -> 4604 rungs (+3212)
+        G4 subset G5 :  True   4604 -> 11142 rungs (+6538)
+        G5 subset G6 :  True   11142 -> 23202 rungs (+12060)
+        G6 subset G7 :  True   23202 -> 41903 rungs (+18701)
+        G7 subset G8 :  True   41903 -> 69886 rungs (+27983)
+
+  running pipeline on G1 = {2} (29 rungs, 28 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G1: total primes counted = 28192749, block size 1..13561907
+  G1: resolution = 0.335730, band hw = 0.600000, median(P) = 0.05414654
+  G1: argmax gamma = 23.3600 (nearest gamma_n = 25.010858, dist 1.6509), P_max/median = 5.537720
+  G1: P/median at the six gamma_n = 4.89689, 1.00636, 1.90811, 2.77054, 3.35386, 0.58297
+  G1: surrogate P_max/median min 1.298733 med 1.871370 p95 2.703011 max 3.801170; real 5.537720 at pct 100.000, > p95 True
+  G1: gate A PASSED   VERDICT WEAK
+
+  running pipeline on G2 = {2,3} (287 rungs, 286 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G2: total primes counted = 49275872, block size 0..2377510
+  G2: resolution = 0.315027, band hw = 0.600000, median(P) = 0.082245304
+  G2: argmax gamma = 21.0000 (nearest gamma_n = 21.022040, dist 0.0220), P_max/median = 8.079112
+  G2: P/median at the six gamma_n = 7.29785, 8.06241, 6.31323, 2.81752, 5.30955, 1.84576
+  G2: surrogate P_max/median min 1.988970 med 2.663676 p95 3.253390 max 3.530294; real 8.079112 at pct 100.000, > p95 True
+  G2: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G3 = {2,3,5} (1392 rungs, 1391 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G3: total primes counted = 50847533, block size 0..557477
+  G3: resolution = 0.313760, band hw = 0.600000, median(P) = 0.021735012
+  G3: argmax gamma = 24.9700 (nearest gamma_n = 25.010858, dist 0.0409), P_max/median = 21.794897
+  G3: P/median at the six gamma_n = 19.91141, 17.49792, 21.66567, 20.09959, 18.35283, 20.46637
+  G3: surrogate P_max/median min 1.831249 med 2.662394 p95 3.434533 max 4.031320; real 21.794897 at pct 100.000, > p95 True
+  G3: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G4 = {2,3,5,7} (4604 rungs, 4603 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G4: total primes counted = 50847533, block size 0..205562
+  G4: resolution = 0.313754, band hw = 0.600000, median(P) = 0.011089991
+  G4: argmax gamma = 25.0000 (nearest gamma_n = 25.010858, dist 0.0109), P_max/median = 31.371849
+  G4: P/median at the six gamma_n = 30.87617, 30.26268, 31.35353, 29.49492, 28.94854, 30.03771
+  G4: surrogate P_max/median min 1.860993 med 2.570844 p95 3.354774 max 3.784333; real 31.371849 at pct 100.000, > p95 True
+  G4: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G5 = {2,3,5,7,11} (11142 rungs, 11141 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G5: total primes counted = 50847533, block size 0..84411
+  G5: resolution = 0.313700, band hw = 0.600000, median(P) = 0.01449543
+  G5: argmax gamma = 25.0000 (nearest gamma_n = 25.010858, dist 0.0109), P_max/median = 20.529395
+  G5: P/median at the six gamma_n = 19.94039, 19.85453, 20.51998, 19.47896, 19.57119, 19.82794
+  G5: surrogate P_max/median min 1.712482 med 2.484680 p95 3.242440 max 4.110150; real 20.529395 at pct 100.000, > p95 True
+  G5: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G6 = {2,3,5,7,11,13} (23202 rungs, 23201 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G6: total primes counted = 50847533, block size 0..60063
+  G6: resolution = 0.313690, band hw = 0.600000, median(P) = 0.019814612
+  G6: argmax gamma = 37.5900 (nearest gamma_n = 37.586178, dist 0.0038), P_max/median = 12.905205
+  G6: P/median at the six gamma_n = 12.77814, 12.72634, 12.77186, 12.47467, 12.56940, 12.90521
+  G6: surrogate P_max/median min 1.688618 med 2.517605 p95 3.225140 max 3.587824; real 12.905205 at pct 100.000, > p95 True
+  G6: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G7 = {2,3,5,7,11,13,17} (41903 rungs, 41902 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G7: total primes counted = 50847533, block size 0..32161
+  G7: resolution = 0.313690, band hw = 0.600000, median(P) = 0.024234736
+  G7: argmax gamma = 37.6000 (nearest gamma_n = 37.586178, dist 0.0138), P_max/median = 9.506672
+  G7: P/median at the six gamma_n = 9.41580, 9.36535, 9.38666, 9.20118, 9.24789, 9.50548
+  G7: surrogate P_max/median min 1.730083 med 2.588157 p95 3.465924 max 4.127504; real 9.506672 at pct 100.000, > p95 True
+  G7: gate A PASSED   VERDICT DETECT
+
+  running pipeline on G8 = {2,3,5,7,11,13,17,19} (69886 rungs, 69885 blocks); computing R at mp.dps = 30 (mpmath.riemannr) ...
+  G8: total primes counted = 50847533, block size 0..12787
+  G8: resolution = 0.313688, band hw = 0.600000, median(P) = 0.028353885
+  G8: argmax gamma = 25.0100 (nearest gamma_n = 25.010858, dist 0.0009), P_max/median = 7.374339
+  G8: P/median at the six gamma_n = 7.36850, 7.34597, 7.37434, 7.18091, 7.18822, 7.35872
+  G8: surrogate P_max/median min 1.602987 med 2.557570 p95 3.377098 max 3.757985; real 7.374339 at pct 100.000, > p95 True
+  G8: gate A PASSED   VERDICT DETECT
+
+  distinct R(x) evaluations : 69886
+
+------------------------------------------------------------------------------
+LADDERS — rung count, endpoints, log-gap spread
+------------------------------------------------------------------------------
+    set         gens   rungs  blocks        first x           last x     gap min     gap med     gap max
+     G1            2      29      28              2        536870912   0.6931472   0.6931472   0.6931472
+     G2          2,3     287     286              2        967458816   0.0135510   0.0521160   0.6931472
+     G3        2,3,5    1392    1391              2       1000000000   0.0011285   0.0112940   0.6931472
+     G4      2,3,5,7    4604    4603              2       1000000000   0.0000406   0.0030972   0.6931472
+     G5   2,3,5,7,11   11142   11141              2       1000000000   0.0000161   0.0005186   0.6931472
+     G6 2,3,5,7,11,13   23202   23201              2       1000000000   0.0000057   0.0002442   0.6931472
+     G7 2,3,5,7,11,13,17   41903   41902              2       1000000000   0.0000006   0.0001559   0.6931472
+     G8 2,3,5,7,11,13,17,19   69886   69885              2       1000000000   0.0000001   0.0000808   0.6931472
+
+------------------------------------------------------------------------------
+PROJECTION  P(gamma) = |sum_j w_j ehat_j exp(-i gamma log x_j)|  (NON-UNIFORM DFT,
+            a direct sum valid for arbitrary x_j; an inner product, NOT a fit)
+------------------------------------------------------------------------------
+  gamma grid : 0 to 40 step 0.01  (4001 points)   window: hann
+  band half-width per set = max(0.6, that set's frequency resolution)
+  threshold : P > 5 x median(P)
+
+    set   n_blk   log-x span    2pi/span    band hw      median(P)   argmax g    P_max/med   verdict
+     G1      28    18.714974    0.335730   0.600000     0.05414654    23.3600     5.537720      WEAK
+     G2     286    19.944920    0.315027   0.600000    0.082245304    21.0000     8.079112    DETECT
+     G3    1391    20.025436    0.313760   0.600000    0.021735012    24.9700    21.794897    DETECT
+     G4    4603    20.025852    0.313754   0.600000    0.011089991    25.0000    31.371849    DETECT
+     G5   11141    20.029280    0.313700   0.600000     0.01449543    25.0000    20.529395    DETECT
+     G6   23201    20.029933    0.313690   0.600000    0.019814612    37.5900    12.905205    DETECT
+     G7   41902    20.029933    0.313690   0.600000    0.024234736    37.6000     9.506672    DETECT
+     G8   69885    20.030069    0.313688   0.600000    0.028353885    25.0100     7.374339    DETECT
+
+  P/median AT THE SIX gamma_n
+    set          g1          g2          g3          g4          g5          g6
+     G1     4.89689     1.00636     1.90811     2.77054     3.35386     0.58297
+     G2     7.29785     8.06241     6.31323     2.81752     5.30955     1.84576
+     G3    19.91141    17.49792    21.66567    20.09959    18.35283    20.46637
+     G4    30.87617    30.26268    31.35353    29.49492    28.94854    30.03771
+     G5    19.94039    19.85453    20.51998    19.47896    19.57119    19.82794
+     G6    12.77814    12.72634    12.77186    12.47467    12.56940    12.90521
+     G7     9.41580     9.36535     9.38666     9.20118     9.24789     9.50548
+     G8     7.36850     7.34597     7.37434     7.18091     7.18822     7.35872
+
+  gamma_n = 14.134725, 21.022040, 25.010858, 30.424876, 32.935062, 37.586178
+
+  TEN LARGEST LOCAL PEAKS — G1  (strict interior maxima; band hw 0.600000)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      23.3600       0.2998483862       5.537720         25.010858     1.6509        no
+      2       5.2300       0.2998471672       5.537698         14.134725     8.9047        no
+      3      12.9000       0.2998452562       5.537662         14.134725     1.2347        no
+      4      31.0300       0.2998426518       5.537614         30.424876     0.6051        no
+      5      21.9600        0.299839755       5.537561         21.022040     0.9380        no
+      6       3.8300       0.2998358682       5.537489         14.134725    10.3047        no
+      7      14.3000       0.2998313004       5.537405         14.134725     0.1653       yes
+      8      32.4300       0.2998260531       5.537308         32.935062     0.5051       yes
+      9       2.1700       0.1034561726       1.910670         14.134725    11.9647        no
+     10      20.3000       0.1034561625       1.910670         21.022040     0.7220        no
+
+  TEN LARGEST LOCAL PEAKS — G2  (strict interior maxima; band hw 0.600000)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      21.0000       0.6644690506       8.079112         21.022040     0.0220       yes
+      2      14.1400       0.6007451652       7.304310         14.134725     0.0053       yes
+      3      32.6600       0.5485045103       6.669129         32.935062     0.2751       yes
+      4      24.9400        0.534986432       6.504766         25.010858     0.0709       yes
+      5      36.8500       0.3282612268       3.991246         37.586178     0.7362        no
+      6      30.2700       0.2736188096       3.326862         30.424876     0.1549       yes
+      7      31.4100       0.2217232353       2.695877         30.424876     0.9851        no
+      8      15.6600       0.1843832988       2.241870         14.134725     1.5253        no
+      9      19.8200       0.1831188917       2.226497         21.022040     1.2020        no
+     10      13.0700       0.1795119617       2.182641         14.134725     1.0647        no
+
+  TEN LARGEST LOCAL PEAKS — G3  (strict interior maxima; band hw 0.600000)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      24.9700        0.473712363      21.794897         25.010858     0.0409       yes
+      2      37.5300        0.450398633      20.722262         37.586178     0.0562       yes
+      3      30.3700       0.4417235448      20.323133         30.424876     0.0549       yes
+      4      14.1400       0.4328397215      19.914399         14.134725     0.0053       yes
+      5      32.9000       0.4014643485      18.470859         32.935062     0.0351       yes
+      6      20.9800       0.3822208747      17.585491         21.022040     0.0420       yes
+      7      33.7500      0.09612675182       4.422668         32.935062     0.8149        no
+      8      36.0600      0.06052688955       2.784764         37.586178     1.5262        no
+      9      18.7900      0.04639686209       2.134660         21.022040     2.2320        no
+     10      34.4000      0.04590855475       2.112194         32.935062     1.4649        no
+
+  TEN LARGEST LOCAL PEAKS — G4  (strict interior maxima; band hw 0.600000)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      25.0000       0.3479135221      31.371849         25.010858     0.0109       yes
+      2      14.1400        0.342496771      30.883413         14.134725     0.0053       yes
+      3      21.0100       0.3356304341      30.264265         21.022040     0.0120       yes
+      4      37.5700       0.3335434965      30.076083         37.586178     0.0162       yes
+      5      30.4000       0.3275338722      29.534187         30.424876     0.0249       yes
+      6      32.9300       0.3210916519      28.953283         32.935062     0.0051       yes
+      7      34.3500      0.03046266906       2.746861         32.935062     1.4149        no
+      8      36.1400      0.02292337124       2.067032         37.586178     1.4462        no
+      9      18.8600      0.01431070045       1.290416         21.022040     2.1620        no
+     10      26.7500      0.01409752657       1.271194         25.010858     1.7391        no
+
+  TEN LARGEST LOCAL PEAKS — G5  (strict interior maxima; band hw 0.600000)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      25.0000       0.2975824109      20.529395         25.010858     0.0109       yes
+      2      14.1300       0.2890445678      19.940392         14.134725     0.0047       yes
+      3      21.0200       0.2877999721      19.854531         21.022040     0.0020       yes
+      4      37.5900       0.2874145493      19.827942         37.586178     0.0038       yes
+      5      32.9400         0.28369285      19.571192         32.935062     0.0049       yes
+      6      30.4100        0.282410172      19.482703         30.424876     0.0149       yes
+      7      23.0500      0.01337210354       0.922505         25.010858     1.9609        no
+      8      17.1700      0.00435456861       0.300410         14.134725     3.0353        no
+      9      11.2600     0.003370952102       0.232553         14.134725     2.8747        no
+     10       7.0700     0.003024581055       0.208658         14.134725     7.0647        no
+
+  TEN LARGEST LOCAL PEAKS — G6  (strict interior maxima; band hw 0.600000)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      37.5900       0.2557116458      12.905205         37.586178     0.0038       yes
+      2      14.1300       0.2531938228      12.778136         14.134725     0.0047       yes
+      3      25.0000       0.2531380046      12.775319         25.010858     0.0109       yes
+      4      21.0200       0.2521675416      12.726342         21.022040     0.0020       yes
+      5      32.9500       0.2491078587      12.571927         32.935062     0.0149       yes
+      6      30.4100       0.2472581353      12.478575         30.424876     0.0149       yes
+      7      11.5100     0.005123170869       0.258555         14.134725     2.6247        no
+      8      16.8200     0.004484570264       0.226326         14.134725     2.6853        no
+      9      10.3000     0.003428699491       0.173039         14.134725     3.8347        no
+     10      27.8900     0.002665544026       0.134524         30.424876     2.5349        no
+
+  TEN LARGEST LOCAL PEAKS — G7  (strict interior maxima; band hw 0.600000)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      37.6000       0.2303916855       9.506672         37.586178     0.0138       yes
+      2      14.1300       0.2281895037       9.415803         14.134725     0.0047       yes
+      3      25.0000       0.2275017221       9.387423         25.010858     0.0109       yes
+      4      21.0200       0.2269668242       9.365352         21.022040     0.0020       yes
+      5      32.9600       0.2242231495       9.252139         32.935062     0.0249       yes
+      6      30.4000       0.2231471085       9.207738         30.424876     0.0249       yes
+      7      10.2900     0.002958903904       0.122094         14.134725     3.8447        no
+      8       7.0900     0.001820030953       0.075100         14.134725     7.0447        no
+      9       9.0800     0.001022490215       0.042191         14.134725     5.0547        no
+     10       4.6500    0.0004481212936       0.018491         14.134725     9.4847        no
+
+  TEN LARGEST LOCAL PEAKS — G8  (strict interior maxima; band hw 0.600000)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      25.0100       0.2090911606       7.374339         25.010858     0.0009       yes
+      2      14.1300        0.208925546       7.368498         14.134725     0.0047       yes
+      3      37.6000       0.2087024047       7.360628         37.586178     0.0138       yes
+      4      21.0200       0.2082867142       7.345967         21.022040     0.0020       yes
+      5      32.9700       0.2040269601       7.195732         32.935062     0.0349       yes
+      6      30.3900        0.203851794       7.189554         30.424876     0.0349       yes
+      7      10.3200     0.002953224436       0.104156         14.134725     3.8147        no
+      8       7.1100     0.001746840879       0.061609         14.134725     7.0247        no
+      9       9.0900    0.0006005667901       0.021181         14.134725     5.0447        no
+     10       4.6400    0.0004707880914       0.016604         14.134725     9.4947        no
+
+------------------------------------------------------------------------------
+SURROGATE CONTROL (amplitude-preserving permutation of ehat across j)
+------------------------------------------------------------------------------
+  200 surrogates per generator set, numpy default_rng(seed=2026), identical projection.
+  THIS IS THE CONTROL THAT MATTERS: combining irregular samples can manufacture peaks.
+  If the real value is not beyond the surrogate 95th percentile the detection is not
+  established.
+
+  SURROGATE P_max/median
+    set     surr min     surr med     surr p95     surr max         REAL   real pct   > p95
+     G1     1.298733     1.871370     2.703011     3.801170     5.537720    100.000    True
+     G2     1.988970     2.663676     3.253390     3.530294     8.079112    100.000    True
+     G3     1.831249     2.662394     3.434533     4.031320    21.794897    100.000    True
+     G4     1.860993     2.570844     3.354774     3.784333    31.371849    100.000    True
+     G5     1.712482     2.484680     3.242440     4.110150    20.529395    100.000    True
+     G6     1.688618     2.517605     3.225140     3.587824    12.905205    100.000    True
+     G7     1.730083     2.588157     3.465924     4.127504     9.506672    100.000    True
+     G8     1.602987     2.557570     3.377098     3.757985     7.374339    100.000    True
+
+  SURROGATE P/median AT gamma_1 = 14.134725
+    set     surr min     surr med     surr p95     surr max         REAL   real pct   > p95
+     G1     0.108283     1.003338     1.824191     2.328049     4.896887    100.000    True
+     G2     0.130348     0.999365     1.958848     2.678052     7.297853    100.000    True
+     G3     0.041728     1.115203     1.995009     2.620252    19.911411    100.000    True
+     G4     0.106429     0.931415     2.087778     2.770924    30.876168    100.000    True
+     G5     0.021338     1.025045     1.957130     2.172334    19.940392    100.000    True
+     G6     0.128177     1.126880     2.146919     2.843630    12.778136    100.000    True
+     G7     0.043875     0.949779     2.050424     2.793916     9.415803    100.000    True
+     G8     0.114001     0.997812     2.362713     3.128188     7.368498    100.000    True
+
+------------------------------------------------------------------------------
+GATE A — EXACT TILING, per generator set: sum_j c_j == pi(x_last) - pi(x_0)
+------------------------------------------------------------------------------
+    set      pi(x_0)   pi(x_last)     expected      sum c_j     diff    gate A
+     G1            1     28192750     28192749     28192749        0    PASSED
+     G2            1     49275873     49275872     49275872        0    PASSED
+     G3            1     50847534     50847533     50847533        0    PASSED
+     G4            1     50847534     50847533     50847533        0    PASSED
+     G5            1     50847534     50847533     50847533        0    PASSED
+     G6            1     50847534     50847533     50847533        0    PASSED
+     G7            1     50847534     50847533     50847533        0    PASSED
+     G8            1     50847534     50847533     50847533        0    PASSED
+  GATE A overall: PASSED
+
+------------------------------------------------------------------------------
+GATE B — TIES TO THE TABLE: G1's c_j vs N(r) = pi(2^r) - pi(2^(r-1))
+         from pi2n_cache.json (READ ONLY; read, not hardcoded)
+------------------------------------------------------------------------------
+  source : /Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json   (READ ONLY)
+  G1 generators : [2]
+  cache entries : 63  n range 0..62
+  compared 28 r values against pi2n_cache.json
+  cells compared : 28   (r = 2..29)
+  mismatches     : 0
+  GATE B: PASSED
+
+------------------------------------------------------------------------------
+GATE C — SANITY ON R: R(10^6) vs pi(10^6) = 78498, against |li(10^6) - 78498| = 129.549
+------------------------------------------------------------------------------
+  R implementation      : mpmath.riemannr
+  R(10^6) at dps 30    : 78527.399429
+  pi(10^6) from sieve   : 78498   (from this run's sieve)
+  pi(10^6) known        : 78498
+  |R(10^6) - 78498|     : 29.399429
+  |li(10^6) - 78498|    : 129.549   (li(10^6) = 78627.549)
+  GATE C: PASSED
+
+------------------------------------------------------------------------------
+PRE-REGISTERED SCALING BAND on P_max/median across the nested chain
+------------------------------------------------------------------------------
+  GROWS     : increases at every step, AND the final step gains >= 10%
+  SATURATES : increases at every step, BUT the final step gains < 10%
+  FALLS     : decreases at any step
+  precedence: FALLS > GROWS > SATURATES > UNCLASSIFIED
+
+    set       generators     P_max/median
+     G1                2         5.537720
+     G2              2,3         8.079112
+     G3            2,3,5        21.794897
+     G4          2,3,5,7        31.371849
+     G5       2,3,5,7,11        20.529395
+     G6    2,3,5,7,11,13        12.905205
+     G7 2,3,5,7,11,13,17         9.506672
+     G8 2,3,5,7,11,13,17,19         7.374339
+
+              step           from             to     abs change    pct change   direction
+          G1 -> G2       5.537720       8.079112       2.541392       45.8924    increase
+          G2 -> G3       8.079112      21.794897      13.715785      169.7685    increase
+          G3 -> G4      21.794897      31.371849       9.576951       43.9413    increase
+          G4 -> G5      31.371849      20.529395     -10.842454      -34.5611    decrease
+          G5 -> G6      20.529395      12.905205      -7.624189      -37.1379    decrease
+          G6 -> G7      12.905205       9.506672      -3.398534      -26.3346    decrease
+          G7 -> G8       9.506672       7.374339      -2.132333      -22.4299    decrease
+
+  increases at every step  : False
+  decreases at any step    : True
+  final step pct change    : -22.4299%
+  final step gain >= 10%   : False
+
+  SCALING BAND: FALLS
+
+------------------------------------------------------------------------------
+DETECT ONSET — mechanical, reported separately from the scaling band
+------------------------------------------------------------------------------
+     G1 : WEAK
+     G2 : DETECT
+     G3 : DETECT
+     G4 : DETECT
+     G5 : DETECT
+     G6 : DETECT
+     G7 : DETECT
+     G8 : DETECT
+
+  first DETECT at          : G2  (2 generators)
+  stays DETECT thereafter  : True
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+  c_j are EXACT INTEGER prime counts by binary search; no float approximation to
+  pi(x) is used anywhere. L_j is an mpmath R difference at dps 30, cast to float
+  only after the cancellation. The projection is float64 and is a NON-UNIFORM DFT.
+  P(gamma) is an INNER PRODUCT, not a fit. The bands were fixed before the run.
+  gate A (exact tiling, all sets)     : PASSED
+  gate B (ties to table, G1)          : PASSED
+  gate C (R sanity)                   : PASSED
+  verdicts : G1 WEAK / G2 DETECT / G3 DETECT / G4 DETECT / G5 DETECT / G6 DETECT / G7 DETECT / G8 DETECT
+  P_max/median : G1 5.537720 / G2 8.079112 / G3 21.794897 / G4 31.371849 / G5 20.529395 / G6 12.905205 / G7 9.506672 / G8 7.374339
+  scaling band : FALLS
+  first DETECT : G2   stays DETECT : True
+  Interpretation of these numbers is NOT this script's job.
+
+  results written to results/O24_gen_xmax1e9_results.json

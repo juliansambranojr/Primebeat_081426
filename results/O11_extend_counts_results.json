@@ -1,0 +1,20 @@
+{
+  "schema_version": "1",
+  "script": "O11_extend_counts.py",
+  "generated_utc": "2026-08-15T19:10:51Z",
+  "params": {
+    "rmax_requested": 62
+  },
+  "summary": {
+    "rmax_available": 62,
+    "n_cached": 63,
+    "missing": [],
+    "timings_seconds": {
+      "61": 61.68423295021057,
+      "62": 96.06664991378784
+    },
+    "growth_ratio_per_regime": 1.587,
+    "projected_remaining_seconds": 0.0,
+    "cache_path": "/Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json"
+  }
+}

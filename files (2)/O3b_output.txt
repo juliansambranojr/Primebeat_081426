@@ -1,0 +1,62 @@
+omega_1 = 3.514260 rad/regime  (> pi, aliases to 2.7689)
+
+==========================================================================
+TEST A — rebound count
+==========================================================================
+  depth  1:  3/12 steps rebound
+  depth  2:  5/12 steps rebound
+  depth  3:  4/12 steps rebound
+  depth  4:  4/12 steps rebound
+  depth  5:  4/12 steps rebound
+  depth  6:  4/12 steps rebound
+  depth  7:  3/12 steps rebound
+  depth  8:  4/12 steps rebound
+  depth  9:  4/12 steps rebound
+  depth 10:  3/12 steps rebound
+
+  TOTAL 38/120 = 0.317  (3.80 per 12 steps)
+
+  CONTROL: pure exponential decay + lognormal noise, 2000 trials
+    null mean rebounds: 4.16/12
+    observed          : 3.80/12
+    p(null >= observed) = 0.7325
+
+  VERDICT: observed is FEWER than noise produces. No signal.
+  The claim 'pure decay predicts zero rebounds' is true only for
+  NOISELESS decay, and was made before this control was run.
+
+==========================================================================
+TEST B — envelope * |cos(w r + phi)| vs pure exponential
+==========================================================================
+    d    exp R^2    osc R^2    improve         w
+    1     0.7877     0.9172    +0.1295    0.7350
+    2     0.8204     0.9146    +0.0942    2.4500
+    3     0.7775     0.9672    +0.1897    0.6150
+    4     0.7981     0.9890    +0.1909    0.5700
+    5     0.7588     0.9799    +0.2211    0.4800
+    6     0.8237     0.9249    +0.1012    2.4350
+    7     0.7863     0.9888    +0.2025    0.6650
+    8     0.8464     0.9620    +0.1156    2.5050
+    9     0.8307     0.9473    +0.1165    2.5950
+   10     0.5516     0.9267    +0.3751    0.1500
+
+  mean improvement +0.1736
+  fitted frequencies: mean 1.3200, sd 0.9724
+  omega_1 aliased to [0,pi]: 2.7689
+
+  CONTROL: same fit on pure monotone decay + noise, 60 trials
+    null mean improvement +0.0890, 95th pct +0.1552
+    observed              +0.1736
+    p(null >= observed) = 0.0500
+    null fitted frequencies: mean 1.8369, sd 0.8033
+    real fitted frequencies: mean 1.3200, sd 0.9724
+
+  VERDICT: improvement sits on the null's 95th percentile, and the
+  frequency scatter is indistinguishable from noise. Marginal at
+  best, and the apparent clustering near omega_1 is a fitting
+  artifact of 4 parameters against 13 points.
+
+==========================================================================
+OVERALL: three tests, three controls, three negatives.
+The collapse is consistent with envelope decay plus noise.
+==========================================================================

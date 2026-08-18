@@ -1,0 +1,435 @@
+#!/usr/bin/env python3
+"""
+O9 — The Euler product's domain of convergence, and whether sigma = 1/2 is
+     distinguished in the way it fails.
+
+Reads with: dyadic-table-v2.md §6.4; DT-A7; DT-A8 §1; and the Prime Beat
+papers (Sambrano, Jan 2026) §4.3.
+
+WHY
+---
+The Euler product converges only for Re(s) > 1.  Everything to the left of
+that line — including the critical line — exists by analytic continuation, not
+by summing.  So a truncated prime sum at s = 1/2 + it is not an approximation
+to a convergent object; it is a partial sum of a divergent one.
+
+This is the structural reason the Prime Beat's minima count DIVERGES as primes
+are added — measured earlier in this work at 2.5x the true zero count with 100
+primes, rising to 6.7x at 25,000 — while Riemann-Siegel, which cuts at
+N = floor(sqrt(t/2pi)) and sums over ALL integers, lands at 0.986 of the true
+count with four terms.
+
+Two questions follow, one confirmatory and one that could go either way.
+
+    Q1. CONFIRM the boundary.  Sweep sigma across Re(s) = 1 and measure
+        partial-sum stability |S_2N - S_N|.  Above 1 it should shrink with N;
+        at and below 1 it should not.  This is textbook and is the control
+        that the instrument works.
+
+    Q2. IS sigma = 1/2 DISTINGUISHED IN THE DIVERGENCE?  The Prime Beat sits
+        at sigma = 1/2, and a sigma-sweep in this work found the cancellation
+        depth at true zeros bottoms out at exactly 0.50.  Is 1/2 also special
+        in the RATE at which the partial sums fail to settle — or is the
+        divergence smooth through it?
+
+            structure at 1/2  -> the Beat's optimum has a convergence-side
+                                 explanation, which would be new
+            smooth through    -> the optimum comes from the functional
+                                 equation's reflection axis and has nothing
+                                 to do with convergence
+
+        Either answer is reportable.  I do not know which it will be.
+
+WHAT IS MEASURED
+----------------
+  1. STABILITY vs sigma.  For a grid of sigma spanning [0.3, 1.6] and several
+     t, compute the truncated prime sum at N and 2N and record
+     |S_2N - S_N| / |S_N|.  Fit the decay exponent in N.
+
+  2. DECAY EXPONENT vs sigma.  For each sigma, regress log|S_2N - S_N| on
+     log N across a ladder of N.  Above sigma=1 the exponent should be
+     negative (settling); below, non-negative (not settling).  The curve of
+     that exponent against sigma is the object of interest.
+
+  3. LOCAL STRUCTURE AT 1/2.  A fine sweep, sigma in [0.42, 0.58] step 0.005,
+     looking for any feature — kink, minimum, discontinuity in slope — at
+     0.500.  With a smoothness control: fit a low-order polynomial through the
+     fine sweep EXCLUDING a window around 0.5, then ask whether the observed
+     values inside that window depart from the extrapolation by more than the
+     residual scatter elsewhere.  That is the falsifiable form of "is 1/2
+     special."
+
+  4. THE COUNTING-LAW CONSEQUENCE.  Minima count of |Im sum| against the
+     Riemann-von Mangoldt N(T), as a function of sigma.  If the divergence is
+     what inflates the Beat's minima count, the inflation should worsen as
+     sigma falls and should be near 1 for sigma > 1.
+
+WHAT THIS IS NOT
+----------------
+Not a test of RH.  Not a claim about zeros.  The convergence abscissa at
+Re(s) = 1 is classical and Q1 only confirms the instrument.  Q2 is the part
+with an unknown answer, and its answer is about the Prime Beat's construction,
+not about zeta.
+
+REQUIREMENTS
+------------
+    pip install numpy mpmath
+
+Runtime: minutes at the defaults.  --pmax 200000 and --fine raises it.
+
+USAGE
+-----
+    python3 O9_convergence_abscissa.py
+    python3 O9_convergence_abscissa.py --pmax 200000 --fine
+"""
+
+import argparse
+import json
+import math
+import os
+from datetime import datetime, timezone
+
+try:
+    import numpy as np
+except ImportError:
+    raise ImportError("numpy is required. Install with: pip install numpy")
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_STEM = os.path.splitext(os.path.basename(__file__))[0]
+DEFAULT_OUT = os.path.join(_HERE, "results", _STEM + "_results.json")
+
+# First 30 nontrivial zeta heights.  USED ONLY in part 4's counting-law
+# comparison, never as an input to any sum.
+GAMMA = np.array([
+    14.134725, 21.022040, 25.010858, 30.424876, 32.935062, 37.586178,
+    40.918719, 43.327073, 48.005151, 49.773832, 52.970321, 56.446248,
+    59.347044, 60.831779, 65.112544, 67.079811, 69.546402, 72.067158,
+    75.704691, 77.144840, 79.337375, 82.910381, 84.735493, 87.425275,
+    88.809111, 92.491899, 94.651344, 95.870634, 98.831194, 101.317851,
+])
+
+
+def _jsonable(o):
+    """Coerce numpy scalars to JSON-safe Python types; non-finite -> None."""
+    if isinstance(o, dict):
+        return {k: _jsonable(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [_jsonable(v) for v in o]
+    if o is None or isinstance(o, str):
+        return o
+    if isinstance(o, (bool, np.bool_)):
+        return bool(o)
+    if isinstance(o, (int, np.integer)):
+        return int(o)
+    if isinstance(o, (float, np.floating)):
+        f = float(o)
+        return f if math.isfinite(f) else None
+    try:
+        f = float(o)
+    except (TypeError, ValueError):
+        return str(o)
+    return f if math.isfinite(f) else None
+
+
+def _write_results(payload, out_path):
+    """Write the results envelope; never let a write failure kill a long run."""
+    try:
+        d = os.path.dirname(out_path)
+        if d:
+            os.makedirs(d, exist_ok=True)
+        with open(out_path, "w") as fh:
+            json.dump(_jsonable(payload), fh, indent=2, sort_keys=False,
+                      allow_nan=False)
+        print(f"\n  results written to {out_path}")
+    except Exception as exc:
+        print(f"\n  WARNING: could not write results JSON to {out_path}: {exc}")
+
+
+def sieve_primes(limit):
+    """Exact primes by sieve of Eratosthenes."""
+    s = np.ones(limit + 1, dtype=bool)
+    s[:2] = False
+    for i in range(2, int(limit ** 0.5) + 1):
+        if s[i]:
+            s[i * i::i] = False
+    return np.flatnonzero(s).astype(np.float64)
+
+
+def prime_sum(primes, n_terms, sigma, t):
+    """
+    Truncated prime sum  sum_{p <= p_n}  p^(-sigma - i t),  returned as a
+    complex number.  This is the object whose convergence abscissa is Re(s)=1.
+    """
+    p = primes[:n_terms]
+    lg = np.log(p)
+    w = p ** (-sigma)
+    return complex(np.sum(w * np.cos(t * lg)), -np.sum(w * np.sin(t * lg)))
+
+
+def decay_exponent(primes, sigma, t, ladder):
+    """
+    Regress log|S_2N - S_N| on log N across a ladder of N.
+    Negative slope  -> partial sums are settling (convergent behaviour).
+    Slope >= 0      -> not settling (divergent behaviour).
+    Returns (slope, r2, n_used).
+    """
+    xs, ys = [], []
+    for N in ladder:
+        if 2 * N > len(primes):
+            continue
+        a = prime_sum(primes, N, sigma, t)
+        b = prime_sum(primes, 2 * N, sigma, t)
+        d = abs(b - a)
+        if d > 0:
+            xs.append(math.log(N))
+            ys.append(math.log(d))
+    if len(xs) < 4:
+        return float('nan'), float('nan'), len(xs)
+    xs = np.array(xs)
+    ys = np.array(ys)
+    A = np.vstack([np.ones_like(xs), xs]).T
+    coef, *_ = np.linalg.lstsq(A, ys, rcond=None)
+    pred = A @ coef
+    ss = np.sum((ys - ys.mean()) ** 2)
+    r2 = 1 - np.sum((ys - pred) ** 2) / ss if ss > 0 else float('nan')
+    return coef[1], r2, len(xs)
+
+
+def riemann_N(T):
+    """Riemann-von Mangoldt: number of zeros with height up to T."""
+    return (T / (2 * np.pi)) * np.log(T / (2 * np.pi)) - T / (2 * np.pi) + 7 / 8
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--pmax", type=int, default=100000,
+                    help="sieve limit for the prime list")
+    ap.add_argument("--tvals", type=str, default="14.5,30.0,50.0,80.0",
+                    help="comma-separated t values (deliberately OFF the zeros)")
+    ap.add_argument("--fine", action="store_true",
+                    help="run the fine sweep around sigma=1/2 at higher density")
+    ap.add_argument("--out", type=str, default=None,
+                    help="results JSON path (default: results/<script>_results.json)")
+    ap.add_argument("--no-json", action="store_true",
+                    help="skip writing the results JSON")
+    args = ap.parse_args()
+
+    tvals = [float(x) for x in args.tvals.split(",")]
+
+    print("=" * 78)
+    print("O9 — the Euler product's domain of convergence")
+    print("=" * 78)
+    print(f"  sieving primes to {args.pmax}...", flush=True)
+    primes = sieve_primes(args.pmax)
+    print(f"  {len(primes)} primes, largest = {int(primes[-1])}")
+    print(f"  t values: {tvals}   (chosen off the zeros, so the sum is not")
+    print("             being evaluated at a cancellation point)")
+
+    ladder = [n for n in [125, 250, 500, 1000, 2000, 4000]
+              if 2 * n <= len(primes)]
+    print(f"  N ladder: {ladder}")
+
+    # ---------------- 1. stability vs sigma ------------------------------
+    print("\n" + "-" * 78)
+    print("1. PARTIAL-SUM STABILITY across the convergence abscissa")
+    print("-" * 78)
+    print("   |S_2N - S_N| / |S_N|  at the largest N, per sigma")
+    coarse = [0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 0.95,
+              1.00, 1.05, 1.10, 1.20, 1.40, 1.60]
+    Nbig = ladder[-1]
+    hdr = f"  {'sigma':>7}" + "".join(f"{'t='+str(t):>14}" for t in tvals)
+    print(hdr)
+    print("  " + "-" * (len(hdr) - 2))
+    stability = []
+    for sg in coarse:
+        row = f"  {sg:>7.2f}"
+        rec = {"sigma": sg, "rel_change": {}}
+        for t in tvals:
+            a = prime_sum(primes, Nbig, sg, t)
+            b = prime_sum(primes, 2 * Nbig, sg, t)
+            rel = abs(b - a) / abs(a) if abs(a) > 0 else float('nan')
+            rec["rel_change"][str(t)] = rel
+            row += f"{rel:>14.6f}"
+        mark = "   <- abscissa" if abs(sg - 1.0) < 1e-9 else ""
+        print(row + mark)
+        stability.append(rec)
+    print("\n  Expected: small and shrinking above sigma=1, not shrinking below.")
+
+    # ---------------- 2. decay exponent vs sigma -------------------------
+    print("\n" + "-" * 78)
+    print("2. DECAY EXPONENT — slope of log|S_2N - S_N| against log N")
+    print("-" * 78)
+    print("   negative -> settling;  >= 0 -> not settling")
+    print(f"  {'sigma':>7} " + "".join(f"{'t='+str(t):>12}" for t in tvals)
+          + f"{'mean':>10}")
+    print("  " + "-" * (7 + 12 * len(tvals) + 10))
+    decay = []
+    for sg in coarse:
+        slopes = []
+        rec = {"sigma": sg, "slopes": {}, "r2": {}}
+        row = f"  {sg:>7.2f} "
+        for t in tvals:
+            sl, r2, n = decay_exponent(primes, sg, t, ladder)
+            rec["slopes"][str(t)] = sl
+            rec["r2"][str(t)] = r2
+            slopes.append(sl)
+            row += f"{sl:>12.4f}"
+        m = float(np.nanmean(slopes))
+        rec["mean_slope"] = m
+        decay.append(rec)
+        mark = "   <- abscissa" if abs(sg - 1.0) < 1e-9 else ""
+        print(row + f"{m:>10.4f}" + mark)
+    print("\n  The sign change locates the abscissa empirically.  If it lands")
+    print("  at sigma=1, the instrument is measuring what it should.")
+
+    # ---------------- 3. is 1/2 distinguished? ---------------------------
+    print("\n" + "-" * 78)
+    print("3. IS sigma = 1/2 DISTINGUISHED IN THE DIVERGENCE?")
+    print("-" * 78)
+    step = 0.005 if args.fine else 0.01
+    fine_sigmas = np.round(np.arange(0.42, 0.5801, step), 4)
+    print(f"  fine sweep, sigma in [0.42, 0.58] step {step}")
+    fine = []
+    for sg in fine_sigmas:
+        slopes = [decay_exponent(primes, float(sg), t, ladder)[0] for t in tvals]
+        m = float(np.nanmean(slopes))
+        fine.append({"sigma": float(sg), "mean_slope": m})
+    fs = np.array([f["sigma"] for f in fine])
+    fm = np.array([f["mean_slope"] for f in fine])
+
+    print(f"  {'sigma':>8} {'mean decay slope':>20}")
+    for sg, m in zip(fs, fm):
+        mark = "   <-- 1/2" if abs(sg - 0.5) < 1e-9 else ""
+        print(f"  {sg:>8.3f} {m:>20.6f}{mark}")
+
+    # smoothness control: fit a cubic EXCLUDING a window around 0.5,
+    # then test whether points inside the window depart from the
+    # extrapolation by more than the residual scatter outside it.
+    win = 0.02
+    out_mask = np.abs(fs - 0.5) > win
+    in_mask = ~out_mask
+    verdict = "insufficient points"
+    departure = resid_sd = max_z = float('nan')
+    if out_mask.sum() >= 6 and in_mask.sum() >= 1:
+        co = np.polyfit(fs[out_mask], fm[out_mask], 3)
+        pred_out = np.polyval(co, fs[out_mask])
+        resid_sd = float(np.std(fm[out_mask] - pred_out))
+        pred_in = np.polyval(co, fs[in_mask])
+        dep = fm[in_mask] - pred_in
+        departure = float(np.max(np.abs(dep)))
+        max_z = departure / resid_sd if resid_sd > 0 else float('nan')
+        verdict = ("STRUCTURE at 1/2" if max_z > 3
+                   else "smooth through 1/2")
+        print(f"\n  SMOOTHNESS CONTROL")
+        print(f"    cubic fitted to sigma outside +-{win} of 0.5 "
+              f"({int(out_mask.sum())} points)")
+        print(f"    residual sd outside the window : {resid_sd:.6f}")
+        print(f"    max departure inside window    : {departure:.6f}")
+        print(f"    departure / residual sd        : {max_z:.2f}")
+        print(f"    VERDICT: {verdict}")
+        print("    (>3 sd would be a real feature; below that the curve is")
+        print("     smooth through 1/2 and the Beat's optimum there has")
+        print("     nothing to do with convergence)")
+
+    # ---------------- 4. counting-law consequence ------------------------
+    print("\n" + "-" * 78)
+    print("4. COUNTING-LAW CONSEQUENCE — minima count vs sigma")
+    print("-" * 78)
+    tt = np.arange(10, 105, 0.002)
+    Ntrue = riemann_N(105.0) - riemann_N(10.0)
+    print(f"  true zeros in [10,105]: {Ntrue:.1f}")
+    print(f"  {'sigma':>7} {'#minima':>9} {'ratio to N(T)':>15} "
+          f"{'d(gamma)':>10} {'d(random)':>11} {'vs chance':>11}")
+    rng = np.random.default_rng(11)
+    rnd = rng.uniform(10, 105, 500)
+    counting = []
+    p_use = primes[:5000]
+    lg = np.log(p_use)
+    for sg in [0.30, 0.40, 0.50, 0.60, 0.80, 1.00, 1.20, 1.50]:
+        w = p_use ** (-sg)
+        b = np.empty(len(tt))
+        for i in range(0, len(tt), 1500):
+            tc = tt[i:i + 1500]
+            b[i:i + 1500] = np.abs((w[None, :] * np.sin(np.outer(tc, lg))).sum(1))
+        loc = np.flatnonzero((b[1:-1] < b[:-2]) & (b[1:-1] < b[2:])) + 1
+        tm = tt[loc]
+        if len(tm) == 0:
+            continue
+        dg = float(np.mean([np.min(np.abs(tm - g)) for g in GAMMA]))
+        dr = float(np.mean([np.min(np.abs(tm - x)) for x in rnd]))
+        ratio = len(tm) / Ntrue
+        counting.append({"sigma": sg, "n_minima": int(len(tm)),
+                         "ratio_to_N": ratio, "d_gamma": dg,
+                         "d_random": dr, "vs_chance": dg / dr if dr else None})
+        print(f"  {sg:>7.2f} {len(tm):>9} {ratio:>15.3f} {dg:>10.4f} "
+              f"{dr:>11.4f} {dg/dr:>11.4f}")
+    print("\n  If divergence inflates the minima count, the ratio should fall")
+    print("  toward 1 as sigma rises past the abscissa.")
+
+    # ---------------- read the result ------------------------------------
+    print("\n" + "=" * 78)
+    print("READ THE RESULT")
+    print("=" * 78)
+    print(f"""
+  Q1 — the abscissa.  Read part 2: the sigma at which the mean decay slope
+  crosses zero.  It should be 1.0.  If it is not, the instrument is wrong and
+  part 3 is unreadable.
+
+  Q2 — is 1/2 special?  Part 3's verdict: {verdict}
+       max departure / residual sd = {max_z:.2f}
+
+    STRUCTURE at 1/2 -> the Prime Beat's measured optimum at sigma = 0.50
+        would have a convergence-side explanation, which is not in the
+        literature as far as this work knows.
+
+    smooth through   -> the optimum comes from the functional equation's
+        reflection axis, and convergence has nothing to do with it.  The
+        Beat's sigma = 1/2 is then the Mellin normalisation showing up, and
+        the fact that it is measurable from primes alone remains true and
+        remains unexplained by anything here.
+
+  Limits: only four t values, chosen off the zeros; the N ladder is short;
+  the decay-exponent regression assumes power-law behaviour in N, which is
+  the right form for a Dirichlet series but is imposed rather than derived.
+""")
+
+    if not args.no_json:
+        out_path = args.out if args.out else DEFAULT_OUT
+        payload = {
+            "schema_version": "1",
+            "script": os.path.basename(os.path.abspath(__file__)),
+            "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "params": {
+                "pmax": args.pmax,
+                "n_primes": int(len(primes)),
+                "tvals": tvals,
+                "ladder": ladder,
+                "fine_step": step,
+                "fine": bool(args.fine),
+            },
+            "constants": {
+                "convergence_abscissa": 1.0,
+                "critical_line": 0.5,
+                "rng_seed": 11,
+            },
+            "summary": {
+                "stability": stability,
+                "decay_exponent": decay,
+                "fine_sweep": fine,
+                "smoothness_control": {
+                    "window": win,
+                    "n_outside": int(out_mask.sum()),
+                    "n_inside": int(in_mask.sum()),
+                    "residual_sd_outside": resid_sd,
+                    "max_departure_inside": departure,
+                    "departure_over_sd": max_z,
+                    "verdict": verdict,
+                },
+                "counting_law": counting,
+            },
+        }
+        _write_results(payload, out_path)
+
+
+if __name__ == "__main__":
+    main()

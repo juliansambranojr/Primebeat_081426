@@ -1,0 +1,134 @@
+==============================================================================
+O9 — the Euler product's domain of convergence
+==============================================================================
+  sieving primes to 100000...
+  9592 primes, largest = 99991
+  t values: [14.5, 30.0, 50.0, 80.0]   (chosen off the zeros, so the sum is not
+             being evaluated at a cancellation point)
+  N ladder: [125, 250, 500, 1000, 2000, 4000]
+  decay-exponent x variable: --xvar prime (log p_N)
+
+------------------------------------------------------------------------------
+1. PARTIAL-SUM STABILITY across the convergence abscissa
+------------------------------------------------------------------------------
+   |S_2N - S_N| / |S_N|  at the largest N, per sigma
+    sigma        t=14.5        t=30.0        t=50.0        t=80.0
+  ---------------------------------------------------------------
+     0.30      1.788214      1.464161      0.474600      1.259791
+     0.40      2.322072      0.992453      0.291617      0.619828
+     0.50      1.363431      0.516209      0.155263      0.255945
+     0.60      0.375629      0.223390      0.073182      0.099978
+     0.70      0.125161      0.089928      0.031720      0.038631
+     0.80      0.045447      0.035273      0.013063      0.014909
+     0.90      0.017040      0.013662      0.005220      0.005749
+     0.95      0.010487      0.008475      0.003276      0.003568
+     1.00      0.006464      0.005247      0.002049      0.002212   <- abscissa
+     1.05      0.003988      0.003243      0.001278      0.001371
+     1.10      0.002461      0.002002      0.000796      0.000849
+     1.20      0.000938      0.000760      0.000307      0.000324
+     1.40      0.000136      0.000108      0.000045      0.000047
+     1.60      0.000020      0.000015      0.000007      0.000007
+
+  Expected: small and shrinking above sigma=1, not shrinking below.
+
+------------------------------------------------------------------------------
+2. DECAY EXPONENT — slope of log|S_2N - S_N| against log N
+------------------------------------------------------------------------------
+   negative -> settling;  >= 0 -> not settling
+    sigma       t=14.5      t=30.0      t=50.0      t=80.0      mean
+  -----------------------------------------------------------------
+     0.30       0.7815      0.6183      0.5614      0.2011    0.5406
+     0.40       0.7030      0.5369      0.4452      0.0931    0.4446
+     0.50       0.6252      0.4571      0.3303     -0.0121    0.3501
+     0.60       0.5472      0.3791      0.2167     -0.1137    0.2573
+     0.70       0.4675      0.3029      0.1045     -0.2122    0.1657
+     0.80       0.3842      0.2287     -0.0063     -0.3083    0.0746
+     0.90       0.2945      0.1565     -0.1157     -0.4033   -0.0170
+     0.95       0.2466      0.1211     -0.1698     -0.4505   -0.0632
+     1.00       0.1964      0.0862     -0.2236     -0.4976   -0.1097   <- abscissa
+     1.05       0.1439      0.0517     -0.2771     -0.5447   -0.1565
+     1.10       0.0893      0.0177     -0.3302     -0.5917   -0.2037
+     1.20      -0.0252     -0.0497     -0.4355     -0.6855   -0.2989
+     1.40      -0.2657     -0.1846     -0.6425     -0.8726   -0.4913
+     1.60      -0.5079     -0.3270     -0.8455     -1.0594   -0.6850
+
+  The sign change locates the abscissa empirically.  If it lands
+  at sigma=1, the instrument is measuring what it should.
+
+------------------------------------------------------------------------------
+3. IS sigma = 1/2 DISTINGUISHED IN THE DIVERGENCE?
+------------------------------------------------------------------------------
+  fine sweep, sigma in [0.42, 0.58] step 0.01
+     sigma     mean decay slope
+     0.420             0.425548
+     0.430             0.416063
+     0.440             0.406595
+     0.450             0.397143
+     0.460             0.387708
+     0.470             0.378289
+     0.480             0.368887
+     0.490             0.359502
+     0.500             0.350133   <-- 1/2
+     0.510             0.340781
+     0.520             0.331445
+     0.530             0.322125
+     0.540             0.312820
+     0.550             0.303532
+     0.560             0.294258
+     0.570             0.284999
+     0.580             0.275754
+
+  SMOOTHNESS CONTROL
+    cubic fitted to sigma outside +-0.02 of 0.5 (12 points)
+    residual sd outside the window : 0.000001
+    max departure inside window    : 0.000002
+    departure / residual sd        : 2.61
+    VERDICT: smooth through 1/2
+    (>3 sd would be a real feature; below that the curve is
+     smooth through 1/2 and the Beat's optimum there has
+     nothing to do with convergence)
+
+------------------------------------------------------------------------------
+4. COUNTING-LAW CONSEQUENCE — minima count vs sigma
+------------------------------------------------------------------------------
+  true zeros in [10,105]: 31.2
+    sigma   #minima   ratio to N(T)   d(gamma)   d(random)   vs chance
+     0.30       313          10.032     0.0473      0.0802      0.5898
+     0.40       277           8.878     0.0393      0.0968      0.4056
+     0.50       226           7.243     0.0618      0.1204      0.5134
+     0.60       160           5.128     0.1143      0.1777      0.6435
+     0.80        76           2.436     0.3005      0.4382      0.6858
+     1.00        45           1.442     0.4697      0.6292      0.7465
+     1.20        41           1.314     0.5557      0.7048      0.7885
+     1.50        34           1.090     0.7794      0.7933      0.9825
+
+  If divergence inflates the minima count, the ratio should fall
+  toward 1 as sigma rises past the abscissa.
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+
+  Q1 — the abscissa.  Read part 2: the sigma at which the mean decay slope
+  crosses zero.  It should be 1.0.  If it is not, the instrument is wrong and
+  part 3 is unreadable.
+
+  Q2 — is 1/2 special?  Part 3's verdict: smooth through 1/2
+       max departure / residual sd = 2.61
+
+    STRUCTURE at 1/2 -> the Prime Beat's measured optimum at sigma = 0.50
+        would have a convergence-side explanation, which is not in the
+        literature as far as this work knows.
+
+    smooth through   -> the optimum comes from the functional equation's
+        reflection axis, and convergence has nothing to do with it.  The
+        Beat's sigma = 1/2 is then the Mellin normalisation showing up, and
+        the fact that it is measurable from primes alone remains true and
+        remains unexplained by anything here.
+
+  Limits: only four t values, chosen off the zeros; the N ladder is short;
+  the decay-exponent regression assumes power-law behaviour in N, which is
+  the right form for a Dirichlet series but is imposed rather than derived.
+
+
+  results written to results/O9_xvar_prime.json

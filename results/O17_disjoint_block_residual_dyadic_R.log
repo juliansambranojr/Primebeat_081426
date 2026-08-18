@@ -1,0 +1,228 @@
+==============================================================================
+O17 — disjoint-block residual  (fit-free; exact counts; projection, not fit)
+==============================================================================
+  x_j  = x0 * r^j                        value ladder
+  c_j  = pi(x_{j+1}) - pi(x_j)           EXACT integer count in (x_j, x_{j+1}]
+  L_j  = R(x_{j+1}) - R(x_j)             smooth prediction (--smooth R; R = Riemann's function)
+  smooth model : R   (R implementation: mpmath.riemannr)
+  e_j  = c_j - L_j                       the residual
+  ehat = e_j / sqrt(x_j)                 half-power normalisation
+
+  Blocks are DISJOINT and TILE the range: every prime in (x_0, x_last] is used
+  exactly once and every block is an independent sample. The COUNT fluctuates,
+  because the interval is fixed in VALUE space, not in index space.
+  O12-O15 summed primes[N:2N] by PRIME INDEX: consecutive rungs overlapped, and
+  the count was fixed at N by construction, so it carried no fluctuation at all.
+
+  log-x step = log(r) = 0.6931472   (dyadic ladder: log 2 = 0.6931472)
+  Nyquist = pi/log(r) = 4.532360   (dyadic ladder: 4.532360)
+    gamma_1 = 14.134725    ABOVE Nyquist
+    gamma_2 = 21.02204     ABOVE Nyquist
+    gamma_3 = 25.010858    ABOVE Nyquist
+    gamma_4 = 30.424876    ABOVE Nyquist
+    gamma_5 = 32.935062    ABOVE Nyquist
+    gamma_6 = 37.586178    ABOVE Nyquist
+
+  sieving primes to 150000000...
+  8444396 primes, largest = 149999957
+
+  ladder points (rungs) : 27
+  blocks (disjoint)     : 26
+  first x = 2.0
+  last  x = 134217728.0
+  achieved Nyquist pi/log(r) = 4.532360
+
+  total primes counted across all blocks : 7603552
+  block size range : min = 1   max = 3645744
+
+  computing li at mp.dps = 30 ...
+  computing R  at mp.dps = 30 (mpmath.riemannr) ...
+  smooth model in use : R
+  mp.dps used : 30   (difference taken in mpf, cast to float only afterwards)
+
+------------------------------------------------------------------------------
+BLOCKS — one row per disjoint interval (x_j, x_{j+1}]
+------------------------------------------------------------------------------
+     j                x_j            x_{j+1}        c_j                L_j              e_j         ehat_j
+     0                  2                  4          1      0.88564873652       0.11435126     0.08085855
+     1                  4                  8          2      1.47452829223       0.52547171      0.2627359
+     2                  8                 16          2      2.49375276186      -0.49375276      -0.174568
+     3                 16                 32          5       4.2786380726       0.72136193      0.1803405
+     4                 32                 64          7      7.43781539981       -0.4378154    -0.07739556
+     5                 64                128         13       13.083403504     -0.083403504    -0.01042544
+     6                128                256         23      23.2597940643      -0.25979406    -0.02296277
+     7                256                512         43      41.7456498212        1.2543502     0.07839689
+     8                512               1024         75      75.5594599954         -0.55946    -0.02472487
+     9               1024               2048        137      137.795300179      -0.79530018    -0.02485313
+    10               2048               4096        255      252.980373191        2.0196268     0.04462787
+    11               4096               8192        464      467.225149328       -3.2251493    -0.05039296
+    12               8192              16384        872      867.502527028         4.497473     0.04969053
+    13              16384              32768       1612      1618.35266873       -6.3526687    -0.04963022
+    14              32768              65536       3030      3031.91499189       -1.9149919    -0.01057894
+    15              65536             131072       5709       5701.8141005        7.1858995     0.02806992
+    16             131072             262144      10749      10759.5924435       -10.592444    -0.02925777
+    17             262144             524288      20390      20366.6963874        23.303613     0.04551487
+    18             524288            1048576      38635      38659.8864789       -24.886479    -0.03436992
+    19            1048576            2097152      73586      73570.6362768        15.363723     0.01500364
+    20            2097152            4194304     140336      140331.296232        4.7037679    0.003248112
+    21            4194304            8388608     268216      268240.499368       -24.499368    -0.01196258
+    22            8388608           16777216     513708       513733.20438        -25.20438    -0.00870224
+    23           16777216           33554432     985818      985659.069656        158.93034     0.03880135
+    24           33554432           67108864    1894120      1894224.30827       -104.30827     -0.0180071
+    25           67108864          134217728    3645744      3645843.06992       -99.069923     -0.0120935
+
+------------------------------------------------------------------------------
+RESIDUAL NORMALISED AT THE HALF POWER — ehat_j = e_j / sqrt(x_j)
+------------------------------------------------------------------------------
+  n     = 26
+  min   = -0.1745679631   (at x = 8)
+  max   = 0.2627358539   (at x = 4)
+  mean  = 0.01028319633
+  RMS   = 0.08073430148
+
+------------------------------------------------------------------------------
+DIAGNOSTIC — D_j = (li(x_{j+1}) - li(x_j)) - (R(x_{j+1}) - R(x_j))
+------------------------------------------------------------------------------
+  R implementation : mpmath.riemannr
+  n            = 26
+  D_j   min    = 0.7722454023
+  D_j   max    = 190.5326234
+  D_j/sqrt(x)  min  = 0.02325837688
+  D_j/sqrt(x)  max  = 0.7331089207
+  D_j/sqrt(x)  mean = 0.1092537228
+  D_j/sqrt(x)  RMS  = 0.1874716484
+
+  closed-form expectation (sqrt(ratio) - 1) / log(x_j):
+    at the FIRST rung x = 2 : 0.5975838523
+    at the LAST  rung x = 67108864 : 0.02298399432
+  Both numbers are STATED, not interpreted. Interpretation is not this script's job.
+
+------------------------------------------------------------------------------
+THETA SCAN — e_j / x_j^theta, half-ladder RMS ratio. PARAMETER-FREE SCAN, NOT A FIT.
+------------------------------------------------------------------------------
+  The theta list is fixed in the source. Nothing is optimised and no theta is
+  selected by the script. A ratio near 1 means that theta flattens the residual.
+
+  lower half = blocks 0..12, upper half = blocks 13..25  (middle block dropped when odd)
+
+     theta          RMS_lower          RMS_upper    RMS_upper/RMS_lower
+     0.250       0.2790622291       0.9908998615             3.55082042
+     0.375        0.158408769       0.1491920026           0.9418165643
+     0.500       0.1107895661      0.02759940076           0.2491155236
+     0.625       0.0850573464     0.006183109242          0.07269341807
+     0.750      0.06776859254     0.001562690029          0.02305920737
+
+------------------------------------------------------------------------------
+PROJECTION  P(gamma) = |sum_j w_j ehat_j exp(-i gamma log x_j)|  (inner product, NOT a fit)
+------------------------------------------------------------------------------
+  window      : hann over 26 blocks
+  gamma grid  : 0 to 40 step 0.01  (4001 points)
+  log-x span used by the projection = 17.3286795
+  frequency resolution 2*pi/(log x_last - log x_first) = 0.362589
+
+  BAND HALF-WIDTH USED = max(0.6, 0.362589) = 0.600000
+  This is DELIBERATE: the band is at least ONE FREQUENCY RESOLUTION ELEMENT wide.
+  In O15 the pre-registered half-width (0.5) was NARROWER than one resolution
+  element (0.605), so the band could barely fire. That is not repeated here.
+  threshold : P > 5 x median(P)
+
+  median(P)          = 0.06390827404
+  global max of P    = 0.3051780072  at gamma = 23.3600
+  P_max / median     = 4.775250
+  nearest gamma_n to the argmax = 25.010858  (distance 1.650858, band 0.600000)
+
+  TEN LARGEST LOCAL PEAKS (strict interior maxima)
+   rank        gamma                  P       P/median   nearest gamma_n       dist   in band
+      1      23.3600       0.3051780072       4.775250         25.010858     1.6509        no
+      2       5.2300       0.3051765625       4.775228         14.134725     8.9047        no
+      3      12.9000       0.3051743203       4.775193         14.134725     1.2347        no
+      4      31.0300       0.3051712795       4.775145         30.424876     0.6051        no
+      5      21.9600       0.3051682902       4.775098         21.022040     0.9380        no
+      6       3.8300       0.3051638385       4.775029         14.134725    10.3047        no
+      7      14.3000       0.3051585987       4.774947         14.134725     0.1653       yes
+      8      32.4300       0.3051525722       4.774852         32.935062     0.5051       yes
+      9      38.3900       0.1064006361       1.664896         37.586178     0.8038        no
+     10      25.0600       0.1063998486       1.664884         25.010858     0.0491       yes
+
+  P AT THE FIRST SIX ZERO HEIGHTS
+    n      gamma_n   grid point                  P       P/median   below Nyquist
+    1    14.134725      14.1300       0.2673857178       4.183898              no
+    2    21.022040      21.0200      0.06657304592       1.041697              no
+    3    25.010858      25.0100       0.1049661755       1.642450              no
+    4    30.424876      30.4200       0.1507299379       2.358536              no
+    5    32.935062      32.9400       0.1755803717       2.747381              no
+    6    37.586178      37.5900      0.02703937661       0.423097              no
+
+------------------------------------------------------------------------------
+GATE A — EXACT TILING: sum_j c_j == pi(x_last) - pi(x_0)
+------------------------------------------------------------------------------
+  pi(x_0)    = pi(2) = 1
+  pi(x_last) = pi(134217728) = 7603553
+  pi(x_last) - pi(x_0) = 7603552
+  sum_j c_j            = 7603552
+  difference           = 0
+  GATE A: PASSED   (no gap, no overlap)
+
+------------------------------------------------------------------------------
+GATE B — TIES TO THE TABLE: at --x0 2 --ratio 2.0, c_j must reproduce
+         N(r) = pi(2^r) - pi(2^(r-1)) from pi2n_cache.json (READ ONLY)
+------------------------------------------------------------------------------
+  source: /Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json   (READ ONLY)
+  cache entries: 63  n range 0..62
+  r values compared : 26   (r = 2..27)
+  mismatches        : 0
+  GATE B: PASSED
+
+------------------------------------------------------------------------------
+GATE C — SANITY ON li: li(10^6) against the known value, and pi(10^6) from the sieve
+------------------------------------------------------------------------------
+  li(10^6) computed at dps 30 : 78627.549159
+  li(10^6) known value           : 78627.549...
+  |difference|                   : 0.000159462   (known value quoted to 3 dp)
+  pi(10^6) from the sieve        : 78498   (from this run's sieve)
+  pi(10^6) known value           : 78498
+  li(10^6) - pi(10^6)            : 129.549159
+  GATE C: li match PASSED, pi match PASSED
+
+------------------------------------------------------------------------------
+GATE D — riemannr SANITY: R(10^6) against pi(10^6) = 78498, and against li(10^6)
+------------------------------------------------------------------------------
+  R implementation               : mpmath.riemannr
+  R(10^6) computed at dps 30   : 78527.399429
+  pi(10^6) from the sieve        : 78498   (from this run's sieve)
+  pi(10^6) known value           : 78498
+  |R(10^6) - 78498|              : 29.399429
+  li(10^6) reference             : 78627.549
+  |li(10^6) - 78498|             : 129.549000
+  criterion: |R - pi| < |li - pi|
+  GATE D: PASSED
+
+------------------------------------------------------------------------------
+BAND VERDICT — pre-registered, applied mechanically
+------------------------------------------------------------------------------
+  This instrument has NO sigma and NO t; it works on the raw count residual.
+  There is therefore exactly ONE verdict per (x0, ratio, xmax) setting.
+
+  configuration : x0 = 2, ratio = 2, xmax = 150000000
+  band half-width used : 0.600000   (floor 0.6, one resolution element 0.362589)
+  threshold            : 5 x median(P)
+
+  VERDICT: NULL
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+  c_j are EXACT INTEGER prime counts by binary search; no float approximation to
+  pi(x) is used anywhere. L_j is an mpmath li difference at dps 30, cast to
+  float only after the cancellation. The projection is float64.
+  The theta scan is a fixed printed list, not a search: no theta is selected.
+  P(gamma) is an INNER PRODUCT, not a fit. The bands were fixed before the run.
+  gate A (exact tiling)   : PASSED
+  gate B (ties to table)  : PASSED
+  gate C (li sanity)      : li PASSED, pi PASSED
+  gate D (riemannr sanity): PASSED
+  smooth model used       : R  (mpmath.riemannr)
+  verdict                 : NULL
+  Interpretation of these numbers is NOT this script's job.
+
+  results written to results/O17_disjoint_block_residual_dyadic_R.json

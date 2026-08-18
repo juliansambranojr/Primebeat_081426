@@ -1,0 +1,111 @@
+==============================================================================
+O13 — null distribution of O9's part-3 smoothness statistic
+==============================================================================
+  O9 asks: does the mean decay-exponent curve depart from a cubic
+  extrapolation across a +-0.02 gap at sigma = 0.5, by more than the
+  residual scatter outside?  O13 slides that ENTIRE geometry across
+  many centres so 0.500 can be read against its own null.
+
+  sieving primes to 100000...
+  9592 primes, largest = 99991
+  ladder: [125, 250, 500, 1000, 2000, 4000]   xvar: count
+  t values: [14.5, 30.0, 50.0, 80.0]
+  master sigma grid: 213 points, 0.2200 .. 1.2800 step 0.005
+  computing decay exponents on the master grid...
+  done; 213 x 4 slopes
+
+------------------------------------------------------------------------------
+VALIDATION GATES — against O9's stored fine-sweep result
+------------------------------------------------------------------------------
+  gate file: /Users/juliansambrano/GitHub/Primebeat_081426/results/O9_convergence_abscissa_results_fine.json
+  GATE (a) mean_slope over 33 fine-sweep points
+           max relative error : 0.000e+00  (tol 1.0e-09)
+           worst at sigma=0.4200: ours=0.49134546583194905 saved=0.49134546583194905
+           PASSED
+  GATE (b) departure_over_sd at centre 0.500
+           computed : 2.5521103290988618
+           expected : 2.5521103290988618
+           abs diff : 0.000e+00   rel err : 0.000e+00
+           n_inside=9 n_outside=24
+           PASSED
+
+------------------------------------------------------------------------------
+SLIDING SWEEP — O9's geometry at every centre
+------------------------------------------------------------------------------
+  91 centres, 0.3000 .. 1.2000 step 0.01
+  band: +-0.08 step 0.005 ; window +-0.02 ; poly degree 3
+  band sizes seen: [33]
+  every centre on every curve yielded n_inside=9, n_outside=24 — no exclusions
+
+------------------------------------------------------------------------------
+NULL DISTRIBUTION OF max_z
+------------------------------------------------------------------------------
+       curve    n      mean        sd    median       min      at       max      at
+        mean   91    2.4495    0.2289    2.5244    1.3040    1.15    2.6041    0.31
+      t=14.5   91    2.4796    0.1965    2.5307    1.2984    1.18    2.5542    0.70
+        t=30   91    2.4956    0.1408    2.5234    1.3617    0.47    2.5514    1.19
+        t=50   91    2.5304    0.0076    2.5332    2.4958    0.30    2.5345    0.86
+        t=80   91    2.4788    0.2066    2.5196    1.1397    0.68    2.5767    0.34
+
+  percentiles of the null (linear interpolation):
+       curve       p90       p95       p99
+        mean    2.5536    2.5563    2.5991
+      t=14.5    2.5511    2.5520    2.5540
+        t=30    2.5434    2.5491    2.5512
+        t=50    2.5344    2.5345    2.5345
+        t=80    2.5708    2.5722    2.5751
+
+------------------------------------------------------------------------------
+THE FOCUS CENTRE  sigma = 0.500
+------------------------------------------------------------------------------
+        mean  max_z = 2.5521103290988618   rank 11 of 91   percentile 89.01
+      t=14.5  max_z = 2.5318275992616055   rank 44 of 91   percentile 52.75
+        t=30  max_z = 2.3752668542384154   rank 87 of 91   percentile 5.49
+        t=50  max_z = 2.5304544726784881   rank 71 of 91   percentile 23.08
+        t=80  max_z = 2.5619759233139061   rank 19 of 91   percentile 80.22
+
+------------------------------------------------------------------------------
+THRESHOLD SWEEP — how many centres fire at each T (max_z > T)
+------------------------------------------------------------------------------
+       T   fire    of      pct   sigma=0.500 verdict
+    1.50     89    91   97.80%   STRUCTURE
+    2.00     88    91   96.70%   STRUCTURE
+    2.25     82    91   90.11%   STRUCTURE
+    2.50     59    91   64.84%   STRUCTURE
+    2.60      1    91    1.10%   smooth
+    2.75      0    91    0.00%   smooth
+    3.00      0    91    0.00%   smooth
+    3.50      0    91    0.00%   smooth
+    4.00      0    91    0.00%   smooth
+
+  per-curve firing counts (count of 91 centres):
+       T            mean          t=14.5            t=30            t=50            t=80
+    1.50      89 (97.8%)      89 (97.8%)      90 (98.9%)     91 (100.0%)      89 (97.8%)
+    2.00      88 (96.7%)      88 (96.7%)      89 (97.8%)     91 (100.0%)      89 (97.8%)
+    2.25      82 (90.1%)      87 (95.6%)      89 (97.8%)     91 (100.0%)      86 (94.5%)
+    2.50      59 (64.8%)      73 (80.2%)      73 (80.2%)      89 (97.8%)      70 (76.9%)
+    2.60        1 (1.1%)        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)
+    2.75        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)
+    3.00        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)
+    3.50        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)
+    4.00        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)        0 (0.0%)
+
+------------------------------------------------------------------------------
+WHAT IT COSTS TO CALL sigma = 0.500 STRUCTURE
+------------------------------------------------------------------------------
+  the rule fires when max_z > T, so sigma=0.500 flips to STRUCTURE only for
+    T < 2.5521103290988618
+  at that threshold 10 OTHER centres also fire (plus 0.500 itself):
+    0.30(2.5985), 0.31(2.6041), 0.51(2.5544), 0.52(2.5558), 0.53(2.5564), 0.54(2.5562), 0.55(2.5553), 0.56(2.5536), 1.19(2.5616), 1.20(2.5593)
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+  The statistic's null over 91 centres has mean 2.4495 and sd 0.2289.
+  Its 95th percentile is 2.5563.  O9's value at 0.500 is 2.5521,
+  which sits at rank 11 of 91.
+  A threshold low enough to call 0.500 STRUCTURE also calls 10 other
+  centres STRUCTURE, none of which is distinguished by any theory.
+  validation gates: PASSED
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/O13_smoothness_null_results.json
