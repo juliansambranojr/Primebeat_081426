@@ -13,6 +13,133 @@ rather than filled — see CONTEXT.md. Do not go looking for it.
 
 ---
 
+## 2026-08-18 — Entry 43 — O42 cited a prereg path that no longer exists; fixed, re-run, non-semantic
+type: instrument-fix
+refs: 12
+
+The prereg was drafted as
+`preregs/zero_winding_phase_v1_draft_20260818.md` and renamed on lock to
+`preregs/zero_winding_phase_v1_locked_20260818.md`. The script was
+written before the lock (its own PROVENANCE line says so) and was not
+updated, so `O42_zero_winding_phase.py` went on citing a path that is
+not on disk — `ls preregs/` holds only the two `alpha_depth_trend`
+files and the two `zero_winding_phase..._locked_...` files. The stale
+citation was not cosmetic: it propagated into the run-1 artifacts, so
+the record of the only preregistered run since O7 pointed at a
+non-existent protocol.
+
+**Sites changed.** Four occurrences of the filename in
+`O42_zero_winding_phase.py`, all of the draft name, all replaced by the
+locked name and nothing else touched:
+
+```text
+  line   5  docstring "Reads with:" header
+  line  10  docstring STATUS paragraph
+  line 417  console header, printed as "  prereg   : ..."
+  line 737  params.prereg in the results payload
+```
+
+Lines 417 and 737 are why the stale path reached
+`results/O42_zero_winding_phase_run1.log` line 4 and
+`results/zero_winding_phase.json` → `params.prereg`. `grep -n draft
+O42_zero_winding_phase.py` now returns nothing. The docstring's line-80
+parenthetical "do not run while the prereg says DRAFT" carries no
+filename and was left as written — it is a status instruction, not a
+path, and this pass was scoped to the path.
+
+**Script SHA-256, before and after** (`shasum -a 256
+O42_zero_winding_phase.py`, run either side of the edit):
+
+```text
+  before  d57e8067d2b9fb32e3fe0e4485665e04dcd15323580c5cd0e958819ece66e398
+  after   abd581a505de7cdd6a055f8d4375b0e2b380ae60f767b222650b66bd83382efc
+```
+
+The before hash is the same string carried in
+`results/zero_winding_phase.json` → `params.code_version`, i.e. run 1
+executed the pre-fix bytes and stamped them.
+
+**Re-run, to new paths.** The docstring invocation verbatim except for
+`--out`, launched 2026-08-18:
+
+```text
+.venv/bin/python O42_zero_winding_phase.py \
+    --base 2 --dps 50 --zeros 200 \
+    --tol-quarter 0.10 --tol-spread 0.10 --n-null 20000 \
+    --alpha 0.05 \
+    --zeros-cache zeros600.json \
+    --o16-log results/O16_run2.log \
+    --out results/zero_winding_phase_run2.json \
+    2>&1 | tee results/O42_zero_winding_phase_run2.log
+```
+
+`run_start_at` 2026-08-18T22:50:05Z, `run_end_at` 2026-08-18T22:50:06Z,
+both read from `results/zero_winding_phase_run2.json` → `params`.
+Artifacts: `results/zero_winding_phase_run2.json` (63464 B) and
+`results/O42_zero_winding_phase_run2.log` (8769 B).
+
+**The change is non-semantic, and here is the evidence.** Both payloads
+flattened to leaves and compared key by key: 1738 leaves, identical key
+sets, **five** differing, every one of them metadata:
+
+```text
+  /generated_utc        2026-08-18T22:36:27Z  ->  2026-08-18T22:50:06Z
+  /params/run_start_at  2026-08-18T22:36:26Z  ->  2026-08-18T22:50:05Z
+  /params/run_end_at    2026-08-18T22:36:27Z  ->  2026-08-18T22:50:06Z
+  /params/prereg        ...draft...           ->  ...locked...
+  /params/code_version  d57e8067...           ->  abd581a5...
+```
+
+The last two are the fix itself. `code_version` moving is expected and
+is the entry-42 hazard read the benign way: `_code_version()` hashes
+`__file__` at write time, so a changed file changes the stamp even when
+behaviour does not.
+
+Every observed statistic is bit-identical across the two runs. Named
+individually, from the two JSONs:
+
+```text
+  S_obs (test_B.min_spread)         0.13305234828042806     both
+  minimising index / gamma          123 / 276.4520495031329386798873
+  test_A qualifying gamma list      []  (empty)             both
+  test_D.p_primary                  0.17904104794760262     both
+  test_D.p_secondary                0.2057397130143493      both
+  merged rep (2,1)  spread / p      0.014309855051043902 / 0.5473226338683066
+  merged rep (4,1)  spread / p      0.010967345004310456 / 0.4631268436578171
+  test_E ln_r_gap_slope / intercept 0.8958797346140285 / -0.2703100720721115
+  test_E d_gap_slope / intercept    1.5 / -1.3333333333333333
+```
+
+`diff` on the two logs returns exactly three hunks — line 4 (the prereg
+path), line 20 (`code_version`), line 176 (the results path). Nothing
+numeric moved anywhere in 176 lines. The decision rule's **mechanical
+output** is the same string in both runs, `no_constant_angle`
+(`summary.mechanical_decision_rule_output`), with
+`compromised_conditions` empty. That is the rule's arithmetic, not a
+verdict; the verdict line in the prereg's Run record is Julian's and is
+still blank.
+
+**Run 1 is undisturbed and remains the prereg's run of record.**
+`results/zero_winding_phase.json` and
+`results/O42_zero_winding_phase_run1.log` were neither rewritten nor
+read-modified — both still carry mtime 2026-08-18 15:36 local, ahead of
+the 15:50 run-2 files. The locked prereg was not opened for edit; its
+parameter table, decision rule, and Run record stand as locked, mtime
+2026-08-18 15:37, and its sidecar-match statement is untouched. The
+consequence to note is that run 1's own artifacts still print the draft
+path — the fix is forward-looking only, and re-running for record under
+the locked prereg would mean clobbering the run of record, which is the
+entry-5 filename-clobber hazard again.
+
+Prior results comparable: **yes, fully.** Nothing in
+`results/zero_winding_phase.json` is invalidated. The only stale pointer
+left in it is `params.prereg` itself, and `params.code_version`, which
+names the pre-fix bytes and correctly so.
+
+No outcome marked.
+
+---
+
 ## 2026-08-17 — Entry 42 — the 3e9 generator sweep, and four corrections it forces
 type: result-triage
 refs: 24, 34, 35, 41

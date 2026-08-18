@@ -16,8 +16,13 @@ is a leap, it will not compile.
   A2 ──┘        ├─→ B5
             B4 ─┘
   C1 ──→ C2 ──→ C3
+
+C1 is no longer a hypothesis: it is discharged below from the node proof
+`EulerFactorChain.gain_sq_on_critical_line`, which is what turns `C2_of_C1`
+into the unconditional `C2`.
 -/
 import Mathlib
+import EulerFactorChain
 
 namespace Chain
 
@@ -44,9 +49,32 @@ noncomputable def h (b : ℝ) (N : ℕ) (s : ℂ) : ℂ :=
 def StmtA1 (b : ℝ) (ρ : ℂ) : Prop :=
   ∀ r : ℂ, bdiff (mode b ρ) r = Sym b ρ * mode b ρ r
 
-/-- **A2.** `Sym b` is the reciprocal Euler factor at `b` — i.e. the factor
-whose inverse appears in the Euler product. -/
-def StmtA2 (b : ℝ) : Prop := ∀ s : ℂ, (Sym b s)⁻¹ * (Sym b s) = 1
+/-- **A2.** Euler's product. It is a statement about *all* primes at once, so
+it carries no base index `b`, and it holds only where the product converges —
+hence the `1 < s.re` hypothesis, which is Euler's own content and not a
+technicality. -/
+def StmtA2 : Prop :=
+  ∀ s : ℂ, 1 < s.re → ∏' p : Nat.Primes, (1 - (p : ℂ) ^ (-s))⁻¹ = riemannZeta s
+
+/-- **A3.** The single-base reading, with the `b` index kept. Two conjuncts.
+
+The first says the chain's `Sym` at a prime base is the Euler product's factor
+at that prime. It is **definitional** — `Sym b s` unfolds to `1 - b^(-s)` and
+the only content is the `ℕ → ℝ → ℂ` cast — and it is stated rather than dressed
+up, because the paper's A3 ("therefore `1 − b^(−s)` is the reciprocal Euler
+factor at `b`") is precisely a renaming, not an inference.
+
+The second is A2 rewritten in that vocabulary. It is what makes A2 and A3 one
+product rather than two adjacent facts: the objects the chain differences with
+are the objects Euler multiplies.
+
+Note what A3 does *not* say. It is quantified over `Nat.Primes`, so it makes no
+claim at the composite bases `b = 4, 6, 8, 9` that blocks D and H use; there
+`1 - b^(-s)` is still the symbol of `Δ` but is not a factor of `ζ`. -/
+def StmtA3 : Prop :=
+  (∀ (p : Nat.Primes) (s : ℂ), Sym ((p : ℕ) : ℝ) s = 1 - (p : ℂ) ^ (-s))
+    ∧ (∀ s : ℂ, 1 < s.re →
+        ∏' p : Nat.Primes, (Sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s)
 
 /-- **A4.** `N` differences multiply a mode by the `N`-th power of the symbol. -/
 def StmtA4 (b : ℝ) (ρ : ℂ) : Prop :=
@@ -140,5 +168,41 @@ theorem C3_of_A4_C2 {b : ℝ} (hb : 0 < b)
   have hpow : ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ N ≤ (1 + b ^ (-(1:ℝ)/2)) ^ N :=
     pow_le_pow_left₀ (norm_nonneg _) hle N
   exact mul_le_mul_of_nonneg_right hpow (norm_nonneg _)
+
+/-! ### Discharging A2 and A3
+
+Neither is a hypothesis. A2 is Mathlib's Euler product; A3 is that same product
+read one factor at a time, in the chain's own notation. -/
+
+/-- **A2**, proved rather than assumed, from
+`EulerFactorChain.euler_product_riemannZeta` (Mathlib's
+`riemannZeta_eulerProduct_tprod`). No base index, and the convergence
+hypothesis travels with it. -/
+theorem A2 : StmtA2 := fun _ hs => EulerFactorChain.euler_product_riemannZeta hs
+
+/-- **A3**, proved rather than assumed. The first conjunct is
+`EulerFactorChain.sym_natCast`, which is a cast lemma; the second is
+`EulerFactorChain.euler_product_sym`, i.e. A2 with `Sym` substituted in. -/
+theorem A3 : StmtA3 :=
+  ⟨fun p s => EulerFactorChain.sym_natCast (p : ℕ) s,
+   fun _ hs => EulerFactorChain.euler_product_sym hs⟩
+
+/-! ### Discharging C1
+
+The chain's only remaining unproved leaf on the C branch. `Sym` here and
+`EulerFactorChain.sym` there are the same definition, so the node theorem
+applies directly. -/
+
+/-- **C1**, proved rather than assumed. The expansion is
+`EulerFactorChain.gain_sq_on_critical_line`, the law of cosines with sides `1`
+and `b^(-1/2)`. Needs only `0 < b`. -/
+theorem C1 {b : ℝ} (hb : 0 < b) : StmtC1 b := by
+  intro γ
+  show ‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ ^ 2 = _
+  exact EulerFactorChain.gain_sq_on_critical_line hb γ
+
+/-- **C2**, now unconditional. Same arrow as `C2_of_C1`, with its hypothesis
+supplied by `C1`; the implication is still the thing Lean checks. -/
+theorem C2 {b : ℝ} (hb : 0 < b) : StmtC2 b := C2_of_C1 hb (C1 hb)
 
 end Chain

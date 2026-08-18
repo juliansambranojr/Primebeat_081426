@@ -22,6 +22,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-18  entry 43: O42 cited the DRAFT prereg path at script lines 5/10/417/737, and that path propagated into run 1's log line 4 and results/zero_winding_phase.json params.prereg — fixed to preregs/zero_winding_phase_v1_locked_20260818.md, script sha256 d57e8067… → abd581a5…, NON-SEMANTIC (run 2 differs from run 1 in 5 metadata leaves of 1738, every statistic bit-identical); run 1 stands as the prereg's run of record and its artifacts still print the dead path
 - [open]   2026-08-17  O24 pi_at float-key defect fixed — search key floored to an exact Python int, killing a whole-array float64 upcast per call; PERFORMANCE ONLY, prior O24 results remain FULLY COMPARABLE (verified cell-by-cell on two settings, only timestamp/path/sha differ); needs an instrument-fix lab_notebook entry
 - [open]   2026-08-17  O24 script sha256 moved 6e2ddd01… → f3525a7f… with that fix — every O24 results JSON on disk records code_version 6e2ddd01…, now a stale pointer even though behaviour is unchanged; decide whether to note or re-stamp
 - [open]   2026-08-17  entry 35: results/O24_gen_xmax3e8_run.log is NOT a run — an aborted timing probe killed at the 2-minute mark, which is why it stops mid-G6, copied into results/ from a scratch dir in error; needs relabelling in results/ and entry 35's "G1 through G5 are reported" framing corrected (Julian's call)

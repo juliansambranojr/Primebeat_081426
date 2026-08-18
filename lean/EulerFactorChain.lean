@@ -1,23 +1,32 @@
 /-
 Euler Factor Chain — the algebraic core, formalised.
 
-Companion to papers/Euler-Factor-Chain.md (statements A1, B1, B2, B4).
+Companion to papers/Euler-Factor-Chain.md (statements A1, A2, A3, B1, B2, B4, C1).
 
 WHAT IS PROVED HERE
   A1  the ladder symbol: backward differencing a mode b^(r*rho) multiplies it
       by (1 - b^(-rho)), so the difference operator's symbol is the reciprocal
       Euler factor at b.
+  A2  Euler's product, over ALL primes at once and only where it converges:
+      for 1 < re s, prod over p of (1 - p^(-s))^(-1) = zeta s. Cited from
+      Mathlib, not reproved.
+  A3  the single-base reading, b index retained: at a prime base p the chain's
+      own `sym` IS the factor A2 inverts, so the two are one product and not
+      two adjacent facts. The pointwise half is definitional; see below.
   B2a the functional equation h s = h (1 - s).
   B2b h 0 = 0 and h 1 = 0  (the stencil annihilates constants; no pole term).
   B4  on the critical line, h = |1 - b^(-s)|^(2N), real and non-negative —
       the depth-transfer gain raised to 2N.
+  C1  on the critical line, |1 - b^(-s)|^2 = 1 - 2*b^(-1/2)*cos(gamma*log b)
+      + b^(-1) — the law of cosines with sides 1 and b^(-1/2), included
+      angle gamma*log b.
 
 WHAT IS NOT PROVED HERE, AND CANNOT BE
   Anything citing a numerical zero (gamma_1 = 14.1347...) is an observation,
   not a theorem. The gain bound of C2, Jentzsch's theorem, and the radius
   results of G are outside this file. See papers/Euler-Factor-Chain.md § J.
 
-STATUS: the four statements below are proved with no `sorry`.
+STATUS: the seven statements below are proved with no `sorry`.
 -/
 import Mathlib
 
@@ -43,6 +52,38 @@ theorem symbol_of_backward_difference (b : ℝ) (hb : b ≠ 0) (ρ r : ℂ) :
     ring_nf
   rw [key]
   ring
+
+/-- **A2.** Euler's product, 1737, in the form Mathlib proves it: over *all*
+primes at once, and only in the half-plane where the product converges. The
+hypothesis `1 < s.re` is not decoration — it is the honest content of the
+statement, and it excludes the whole `sym b s = 0` lattice on which the old
+`(sym s)⁻¹ * sym s = 1` reading of A2 was false. Cited from
+`riemannZeta_eulerProduct_tprod`, not reproved. -/
+theorem euler_product_riemannZeta {s : ℂ} (hs : 1 < s.re) :
+    ∏' p : Nat.Primes, (1 - (p : ℂ) ^ (-s))⁻¹ = riemannZeta s :=
+  riemannZeta_eulerProduct_tprod hs
+
+/-- The chain's `sym` at a natural-number base, written the way the Euler
+product writes its factors. **This is definitional**: `sym` unfolds to
+`1 - b^(-s)` and the only work is the `ℕ → ℝ → ℂ` cast. It is stated as a
+lemma solely so that `euler_product_sym` below can be written in the chain's
+own vocabulary. -/
+theorem sym_natCast (n : ℕ) (s : ℂ) : sym (n : ℝ) s = 1 - (n : ℂ) ^ (-s) := by
+  simp [sym]
+
+/-- **A3**, the single-base reading with the `b` index retained. For a prime
+`p`, `sym ↑p` is exactly the factor A2 inverts: substituting the chain's symbol
+into Euler's product leaves the product unchanged and still equal to `ζ s`.
+
+This is what connects A2 to A3 rather than leaving them adjacent. The
+connection itself is definitional — `sym_natCast` is a cast lemma with no
+content of its own — and saying so is the point: the paper's "therefore" at A3
+is a *renaming*, not an inference. What is not definitional, and is carried
+here from A2, is that the renamed factors multiply to `ζ`. -/
+theorem euler_product_sym {s : ℂ} (hs : 1 < s.re) :
+    ∏' p : Nat.Primes, (sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s := by
+  rw [← euler_product_riemannZeta hs]
+  exact tprod_congr fun p => by rw [sym_natCast]
 
 /-- The Weil test function built from an order-`N` stencil. -/
 noncomputable def h (b : ℝ) (N : ℕ) (s : ℂ) : ℂ :=
@@ -101,5 +142,45 @@ theorem h_eq_gain_pow_on_critical_line (hb : 0 < b) (N : ℕ) (t : ℝ) :
     rw [mul_pow]
   rw [this, Complex.mul_conj', pow_mul]
   norm_cast
+
+/-- Rectangular form of the Euler factor's reciprocal on the critical line.
+Writing `θ = γ · log b`, `b^(-(1/2 + γi)) = b^(-1/2)·(cos θ - i sin θ)`. -/
+theorem cpow_rect_on_critical_line (hb : 0 < b) (γ : ℝ) :
+    (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))
+      = ((b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) : ℝ) : ℂ)
+        + ((-(b ^ (-(1:ℝ)/2) * Real.sin (γ * Real.log b)) : ℝ) : ℂ) * I := by
+  have hb0 : (b : ℂ) ≠ 0 := by exact_mod_cast hb.ne'
+  rw [Complex.cpow_def_of_ne_zero hb0, ← Complex.ofReal_log hb.le]
+  have harg : ((Real.log b : ℝ) : ℂ) * (-((1 : ℂ)/2 + γ * I))
+      = ((-(Real.log b / 2) : ℝ) : ℂ) + ((-(γ * Real.log b) : ℝ) : ℂ) * I := by
+    push_cast; ring
+  have hexp : Real.exp (-(Real.log b / 2)) = b ^ (-(1:ℝ)/2) := by
+    rw [Real.rpow_def_of_pos hb]; ring_nf
+  rw [harg, Complex.exp_add, ← Complex.ofReal_exp, Complex.exp_mul_I,
+    ← Complex.ofReal_cos, ← Complex.ofReal_sin, hexp, Real.cos_neg, Real.sin_neg]
+  push_cast
+  ring_nf
+
+/-- **C1.** On the critical line `s = 1/2 + γi`, the squared modulus of the
+reciprocal Euler factor expands as the law of cosines with sides `1` and
+`b^(-1/2)` and included angle `θ = γ · log b`:
+
+  `‖1 - b^(-s)‖² = 1 - 2·b^(-1/2)·cos θ + b^(-1)`.
+
+The two `b^(-1)` terms collapse into one by `cos²θ + sin²θ = 1`. Only
+`0 < b` is needed. -/
+theorem gain_sq_on_critical_line (hb : 0 < b) (γ : ℝ) :
+    ‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ ^ 2
+      = 1 - 2 * b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) + b ^ (-(1:ℝ)) := by
+  have hkey : 1 - (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))
+      = ((1 - b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) : ℝ) : ℂ)
+        + ((b ^ (-(1:ℝ)/2) * Real.sin (γ * Real.log b) : ℝ) : ℂ) * I := by
+    rw [cpow_rect_on_critical_line hb γ]; push_cast; ring
+  have hsq : (b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ)) := by
+    rw [← Real.rpow_natCast (b ^ (-(1:ℝ)/2)) 2, ← Real.rpow_mul hb.le]
+    norm_num
+  rw [hkey, Complex.sq_norm, Complex.normSq_add_mul_I]
+  linear_combination
+    (b ^ (-(1:ℝ)/2)) ^ 2 * Real.sin_sq_add_cos_sq (γ * Real.log b) + hsq
 
 end EulerFactorChain
