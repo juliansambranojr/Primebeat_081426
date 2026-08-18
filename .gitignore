@@ -10,3 +10,7 @@ __pycache__/
 results/O24_gen_xmax3e9_results.json
 results/O24_gen_xmax1e9_results.json
 results/O24_gen_to19_results.json
+
+# Lean build artifacts — 6.9 GB of compiled Mathlib. Reproducible from
+# lean/lakefile.toml + lean/lean-toolchain via `lake exe cache get`.
+lean/.lake/

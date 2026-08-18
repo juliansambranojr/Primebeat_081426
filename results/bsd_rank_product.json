@@ -1,0 +1,193 @@
+{
+  "schema_version": "1",
+  "script": "O41_bsd_rank_product.py",
+  "generated_utc": "2026-08-18T08:25:13Z",
+  "params": {
+    "curves": [
+      "11a1",
+      "37a1",
+      "389a1"
+    ],
+    "cutoffs": [
+      100,
+      300,
+      1000,
+      3000,
+      10000,
+      30000
+    ],
+    "code_version": "621abbf1a5934679201ecdbac83c47ed02dce81377f11c5fe616aca5a06cf5d7"
+  },
+  "constants": {
+    "identity": "#E(F_p) = 1 - a_p + p = reciprocal local factor at s = 0",
+    "zeta_contrast": "zeta's symbol at s = 0 is 1 - b^0 = 0",
+    "observation": "Birch & Swinnerton-Dyer 1965, reproduced not discovered",
+    "caveat": "product converges slowly; fitted r moves ~+/-0.07 with range"
+  },
+  "summary": {
+    "11a1": {
+      "true_rank": 0,
+      "fitted_r": 0.0301198144374232,
+      "products": {
+        "100": 6.487750940432403,
+        "300": 6.095731263315457,
+        "1000": 5.734452989394969,
+        "3000": 6.749385110874043,
+        "10000": 6.235843204034444,
+        "30000": 6.487342050200171
+      }
+    },
+    "37a1": {
+      "true_rank": 1,
+      "fitted_r": 1.2498415688932238,
+      "products": {
+        "100": 30.572566221098366,
+        "300": 46.48011249275728,
+        "1000": 45.6846908181782,
+        "3000": 60.28693030764471,
+        "10000": 74.74598396727934,
+        "30000": 89.79168160787849
+      }
+    },
+    "389a1": {
+      "true_rank": 2,
+      "fitted_r": 1.9933396889613508,
+      "products": {
+        "100": 151.4326060436903,
+        "300": 186.20551174780832,
+        "1000": 328.63100493183845,
+        "3000": 375.50943209374026,
+        "10000": 637.885643333081,
+        "30000": 665.9047194464638
+      }
+    }
+  },
+  "rows": [
+    {
+      "curve": "11a1",
+      "true_rank": 0,
+      "cutoff": 100,
+      "product": 6.487750940432403,
+      "n_good_primes": 24
+    },
+    {
+      "curve": "11a1",
+      "true_rank": 0,
+      "cutoff": 300,
+      "product": 6.095731263315457,
+      "n_good_primes": 61
+    },
+    {
+      "curve": "11a1",
+      "true_rank": 0,
+      "cutoff": 1000,
+      "product": 5.734452989394969,
+      "n_good_primes": 167
+    },
+    {
+      "curve": "11a1",
+      "true_rank": 0,
+      "cutoff": 3000,
+      "product": 6.749385110874043,
+      "n_good_primes": 429
+    },
+    {
+      "curve": "11a1",
+      "true_rank": 0,
+      "cutoff": 10000,
+      "product": 6.235843204034444,
+      "n_good_primes": 1228
+    },
+    {
+      "curve": "11a1",
+      "true_rank": 0,
+      "cutoff": 30000,
+      "product": 6.487342050200171,
+      "n_good_primes": 3244
+    },
+    {
+      "curve": "37a1",
+      "true_rank": 1,
+      "cutoff": 100,
+      "product": 30.572566221098366,
+      "n_good_primes": 24
+    },
+    {
+      "curve": "37a1",
+      "true_rank": 1,
+      "cutoff": 300,
+      "product": 46.48011249275728,
+      "n_good_primes": 61
+    },
+    {
+      "curve": "37a1",
+      "true_rank": 1,
+      "cutoff": 1000,
+      "product": 45.6846908181782,
+      "n_good_primes": 167
+    },
+    {
+      "curve": "37a1",
+      "true_rank": 1,
+      "cutoff": 3000,
+      "product": 60.28693030764471,
+      "n_good_primes": 429
+    },
+    {
+      "curve": "37a1",
+      "true_rank": 1,
+      "cutoff": 10000,
+      "product": 74.74598396727934,
+      "n_good_primes": 1228
+    },
+    {
+      "curve": "37a1",
+      "true_rank": 1,
+      "cutoff": 30000,
+      "product": 89.79168160787849,
+      "n_good_primes": 3244
+    },
+    {
+      "curve": "389a1",
+      "true_rank": 2,
+      "cutoff": 100,
+      "product": 151.4326060436903,
+      "n_good_primes": 25
+    },
+    {
+      "curve": "389a1",
+      "true_rank": 2,
+      "cutoff": 300,
+      "product": 186.20551174780832,
+      "n_good_primes": 62
+    },
+    {
+      "curve": "389a1",
+      "true_rank": 2,
+      "cutoff": 1000,
+      "product": 328.63100493183845,
+      "n_good_primes": 167
+    },
+    {
+      "curve": "389a1",
+      "true_rank": 2,
+      "cutoff": 3000,
+      "product": 375.50943209374026,
+      "n_good_primes": 429
+    },
+    {
+      "curve": "389a1",
+      "true_rank": 2,
+      "cutoff": 10000,
+      "product": 637.885643333081,
+      "n_good_primes": 1228
+    },
+    {
+      "curve": "389a1",
+      "true_rank": 2,
+      "cutoff": 30000,
+      "product": 665.9047194464638,
+      "n_good_primes": 3244
+    }
+  ]
+}

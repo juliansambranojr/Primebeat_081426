@@ -1,0 +1,17 @@
+name = "EulerFactorChain"
+version = "0.1.0"
+keywords = ["math", "riemann", "euler-product"]
+defaultTargets = ["EulerFactorChain"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.28.0"
+
+[[lean_lib]]
+name = "EulerFactorChain"
+globs = ["EulerFactorChain", "Chain", "Superposition", "GeneratorPeak", "Crossover", "Covering", "Zeros", "Construction", "Measured"]
