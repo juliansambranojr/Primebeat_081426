@@ -131,4 +131,42 @@ def measured_centered_zero_count : ℕ := 0
 theorem four_zeros_only : measured_zeros.length = 4 := by
   unfold measured_zeros; rfl
 
+/-! ## Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+-- **`propext` only.** Claimed in `papers/Formalization.md` § B4 and confirmed here:
+-- the one rewrite (`sub_eq_zero`) is all the axiom weight a zero costs.
+/-- info: 'Zeros.zero_iff_repeat' depends on axioms: [propext] -/
+#guard_msgs in
+#print axioms Zeros.zero_iff_repeat
+
+/-- info: 'Zeros.stencil_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.stencil_add
+
+/-- info: 'Zeros.stencil_smul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.stencil_smul
+
+/-- info: 'Zeros.stencil_annihilates_const' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.stencil_annihilates_const
+
+/-- info: 'Zeros.window_exclusive_of_prime_exponent' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.window_exclusive_of_prime_exponent
+
+/-- info: 'Zeros.window_shared_of_composite_exponent' depends on axioms: [propext] -/
+#guard_msgs in
+#print axioms Zeros.window_shared_of_composite_exponent
+
+/-- info: 'Zeros.four_zeros_only' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.four_zeros_only
+
 end Zeros

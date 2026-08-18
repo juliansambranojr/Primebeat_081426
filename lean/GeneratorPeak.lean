@@ -115,4 +115,36 @@ theorem measured_has_interior_peak :
     (23.628706 : ℝ) < 38.299307 ∧ (27.061132 : ℝ) < 38.299307 := by
   refine ⟨by norm_num, by norm_num⟩
 
+/-! ## Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+/-- info: 'GeneratorPeak.score_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms GeneratorPeak.score_eq
+
+/-- info: 'GeneratorPeak.strictMono_of_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms GeneratorPeak.strictMono_of_lt
+
+/-- info: 'GeneratorPeak.strictAnti_of_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms GeneratorPeak.strictAnti_of_lt
+
+/-- info: 'GeneratorPeak.const_of_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms GeneratorPeak.const_of_eq
+
+/-- info: 'GeneratorPeak.no_interior_peak' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms GeneratorPeak.no_interior_peak
+
+/-- info: 'GeneratorPeak.measured_has_interior_peak' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms GeneratorPeak.measured_has_interior_peak
+
 end GeneratorPeak

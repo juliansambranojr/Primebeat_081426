@@ -64,4 +64,24 @@ theorem depth_reweights_each_mode (hA1 : ∀ i ∈ s, StmtA1 b (ρ i)) (N : ℕ)
   unfold modeSum
   exact Finset.sum_congr rfl fun i _ => by ring
 
+/-! ## Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+/-- info: 'Superposition.bdiff_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Superposition.bdiff_sum
+
+/-- info: 'Superposition.A4_sum_of_A1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Superposition.A4_sum_of_A1
+
+/-- info: 'Superposition.depth_reweights_each_mode' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Superposition.depth_reweights_each_mode
+
 end Superposition

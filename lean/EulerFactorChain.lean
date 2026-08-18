@@ -183,4 +183,56 @@ theorem gain_sq_on_critical_line (hb : 0 < b) (γ : ℝ) :
   linear_combination
     (b ^ (-(1:ℝ)/2)) ^ 2 * Real.sin_sq_add_cos_sq (γ * Real.log b) + hsq
 
+/-! ## Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+/-- info: 'EulerFactorChain.symbol_of_backward_difference' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.symbol_of_backward_difference
+
+/-- info: 'EulerFactorChain.euler_product_riemannZeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.euler_product_riemannZeta
+
+/-- info: 'EulerFactorChain.sym_natCast' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.sym_natCast
+
+/-- info: 'EulerFactorChain.euler_product_sym' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.euler_product_sym
+
+/-- info: 'EulerFactorChain.h_functional_equation' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.h_functional_equation
+
+/-- info: 'EulerFactorChain.h_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.h_zero
+
+/-- info: 'EulerFactorChain.h_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.h_one
+
+/-- info: 'EulerFactorChain.conj_factor_on_critical_line' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.conj_factor_on_critical_line
+
+/-- info: 'EulerFactorChain.h_eq_gain_pow_on_critical_line' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.h_eq_gain_pow_on_critical_line
+
+/-- info: 'EulerFactorChain.cpow_rect_on_critical_line' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.cpow_rect_on_critical_line
+
+/-- info: 'EulerFactorChain.gain_sq_on_critical_line' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.gain_sq_on_critical_line
+
 end EulerFactorChain

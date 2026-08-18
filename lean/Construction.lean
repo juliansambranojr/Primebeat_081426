@@ -115,4 +115,40 @@ freedom in it.
 construction; located by nothing. `results/O16_run2.log`. -/
 def measured_zeros : List (ℕ × ℕ) := [(2, 1), (4, 1), (8, 3), (20, 6)]
 
+/-! ## Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+/-- info: 'Construction.tableFrom_isTableOf' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Construction.tableFrom_isTableOf
+
+-- **No axioms at all.** Pure computation — claimed in `papers/Formalization.md` § B4
+-- and confirmed here by the compiler.
+/-- info: 'Construction.unique_of_isTableOf' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Construction.unique_of_isTableOf
+
+-- **No axioms at all.** Same as above: the table is unique over its row, with
+-- nothing assumed.
+/-- info: 'Construction.eq_of_same_row' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Construction.eq_of_same_row
+
+/-- info: 'Construction.zero_determined_by_row' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms Construction.zero_determined_by_row
+
+/-- info: 'Construction.tableFrom_add' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms Construction.tableFrom_add
+
+/-- info: 'Construction.tableFrom_smul' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms Construction.tableFrom_smul
+
 end Construction

@@ -122,4 +122,36 @@ theorem bench_is_selective : (0.2 : ℝ) < 0.34657 := by norm_num
 theorem bench_selects : measured_contributing < measured_in_support := by
   unfold measured_contributing measured_in_support; norm_num
 
+/-! ## Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+/-- info: 'Covering.exists_near_lattice' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Covering.exists_near_lattice
+
+/-- info: 'Covering.covered_of_half_spacing' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Covering.covered_of_half_spacing
+
+/-- info: 'Covering.covered_smul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Covering.covered_smul
+
+/-- info: 'Covering.covering_not_monotone' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Covering.covering_not_monotone
+
+/-- info: 'Covering.bench_is_selective' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Covering.bench_is_selective
+
+/-- info: 'Covering.bench_selects' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Covering.bench_selects
+
 end Covering

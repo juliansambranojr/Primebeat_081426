@@ -11,12 +11,6 @@ So every theorem here takes the antecedent statements as HYPOTHESES and derives
 the consequent. The chain typechecks as a chain, and Lean can refuse: if a link
 is a leap, it will not compile.
 
-  A1 ──┐
-       ├─→ A4 ──┐
-  A2 ──┘        ├─→ B5
-            B4 ─┘
-  C1 ──→ C2 ──→ C3
-
 C1 is no longer a hypothesis: it is discharged below from the node proof
 `EulerFactorChain.gain_sq_on_critical_line`, which is what turns `C2_of_C1`
 into the unconditional `C2`.
@@ -204,5 +198,104 @@ theorem C1 {b : ℝ} (hb : 0 < b) : StmtC1 b := by
 /-- **C2**, now unconditional. Same arrow as `C2_of_C1`, with its hypothesis
 supplied by `C1`; the implication is still the thing Lean checks. -/
 theorem C2 {b : ℝ} (hb : 0 < b) : StmtC2 b := C2_of_C1 hb (C1 hb)
+
+/-! ### Discharging A1 and B4
+
+The two remaining leaves. Both are node theorems in `EulerFactorChain`, stated
+there in unfolded notation; `Sym`/`sym` and the two `h`s are the same
+definitions, so each applies directly. Closing them makes A4, B5 and C3
+unconditional too — the arrows below are unchanged, they are simply applied. -/
+
+/-- **A1**, proved rather than assumed, from
+`EulerFactorChain.symbol_of_backward_difference`. Needs only `b ≠ 0`. -/
+theorem A1 {b : ℝ} (hb : b ≠ 0) (ρ : ℂ) : StmtA1 b ρ := by
+  intro r
+  show (b : ℂ) ^ (r * ρ) - (b : ℂ) ^ ((r - 1) * ρ) = _
+  exact EulerFactorChain.symbol_of_backward_difference b hb ρ r
+
+/-- **A4**, now unconditional. Same arrow as `A4_of_A1`, with its hypothesis
+supplied by `A1`. -/
+theorem A4 {b : ℝ} (hb : b ≠ 0) (ρ : ℂ) : StmtA4 b ρ := A4_of_A1 (A1 hb ρ)
+
+/-- **B4**, proved rather than assumed, from
+`EulerFactorChain.h_eq_gain_pow_on_critical_line`. Needs only `0 < b`. -/
+theorem B4 {b : ℝ} (hb : 0 < b) (N : ℕ) : StmtB4 b N := by
+  intro t
+  exact EulerFactorChain.h_eq_gain_pow_on_critical_line hb N t
+
+/-- **B5**, now unconditional. Same arrow as `B5_of_A4_B4`, with both
+hypotheses supplied. The depth gain *is* the Weil weight, with nothing
+assumed. -/
+theorem B5 {b : ℝ} (hb : 0 < b) (N : ℕ) : StmtB5 b N :=
+  fun t => B5_of_A4_B4 (A4 hb.ne' ((1 : ℂ)/2 + t * I)) (B4 hb N)
+
+/-- **C3**, now unconditional. Same arrow as `C3_of_A4_C2`, with `A4` and `C2`
+supplied. No mode's depth-`N` gain escapes the bound, with nothing assumed. -/
+theorem C3 {b : ℝ} (hb : 0 < b) : StmtC3 b :=
+  C3_of_A4_C2 hb (fun γ => A4 hb.ne' ((1 : ℂ)/2 + γ * I)) (C2 hb)
+
+/-! ### Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+/-- info: 'Chain.bdiff_smul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.bdiff_smul
+
+/-- info: 'Chain.A4_of_A1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.A4_of_A1
+
+/-- info: 'Chain.B5_of_A4_B4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.B5_of_A4_B4
+
+/-- info: 'Chain.C2_of_C1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C2_of_C1
+
+/-- info: 'Chain.C3_of_A4_C2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C3_of_A4_C2
+
+/-- info: 'Chain.A2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.A2
+
+/-- info: 'Chain.A3' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.A3
+
+/-- info: 'Chain.C1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C1
+
+/-- info: 'Chain.C2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C2
+
+/-- info: 'Chain.A1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.A1
+
+/-- info: 'Chain.A4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.A4
+
+/-- info: 'Chain.B4' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.B4
+
+/-- info: 'Chain.B5' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.B5
+
+/-- info: 'Chain.C3' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C3
 
 end Chain

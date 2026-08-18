@@ -182,4 +182,40 @@ def measured_contributing_primes : ℕ := 25
 
 end Unpaired
 
+/-! ## Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+/-- info: 'Measured.agreement_offsets_match' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Measured.agreement_offsets_match
+
+/-- info: 'Measured.agreement_radius_smooth' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Measured.agreement_radius_smooth
+
+/-- info: 'Measured.agreement_rank_11a1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Measured.agreement_rank_11a1
+
+/-- info: 'Measured.agreement_rank_389a1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Measured.agreement_rank_389a1
+
+/-- info: 'Measured.agreement_rank_37a1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Measured.agreement_rank_37a1
+
+/-- info: 'Measured.agreement_elliptic' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Measured.agreement_elliptic
+
+/-- info: 'Measured.agreement_weil_balance' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Measured.agreement_weil_balance
+
 end Measured

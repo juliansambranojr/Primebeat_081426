@@ -108,4 +108,36 @@ theorem spread_is_non_monotone :
     (0.0591885 : ℝ) < 0.3026405 ∧ (0.0219312 : ℝ) < 0.3026405 := by
   refine ⟨by norm_num, by norm_num⟩
 
+/-! ## Axiom check
+
+An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
+block below pins the exact axiom list of one result: if a proof ever starts
+depending on anything not listed, the docstring stops matching the compiler and
+**`lake build` fails**. This is a check, not a printout.
+-/
+
+/-- info: 'Crossover.ratio_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Crossover.ratio_strictMono
+
+/-- info: 'Crossover.at_most_one_crossover' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Crossover.at_most_one_crossover
+
+/-- info: 'Crossover.dominance_flips' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Crossover.dominance_flips
+
+/-- info: 'Crossover.no_crossover_of_single' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Crossover.no_crossover_of_single
+
+/-- info: 'Crossover.count_does_not_determine_spread' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Crossover.count_does_not_determine_spread
+
+/-- info: 'Crossover.spread_is_non_monotone' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Crossover.spread_is_non_monotone
+
 end Crossover
