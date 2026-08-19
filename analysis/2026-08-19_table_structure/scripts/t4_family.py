@@ -12,7 +12,7 @@ the table and correlate at each depth.
 The honest limit is point count. Every base runs to the same ceiling
 2^32, so base 9 gets ten rungs and its correlations run out of data by
 depth 5. Points remaining are reported at every depth rather than
-smoothed over, and any depth with fewer than five is dropped.
+smoothed over, and any depth with fewer than ten is dropped.
 """
 import math
 import numpy as np

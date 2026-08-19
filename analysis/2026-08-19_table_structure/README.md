@@ -1,12 +1,12 @@
 # 2026-08-19 — table structure (exploratory)
 
-Exploratory analysis from 2026-08-19, copied out of a session scratchpad. **No prereg, no decision rule, no verdict** — nothing here may be cited as a verdict, and none of it is part of the O-series; the `t1`–`t14` names are the session's own, not O-numbers.
+Exploratory analysis from 2026-08-19, copied out of a session scratchpad. **No prereg, no decision rule, no verdict** — nothing here may be cited as a verdict, and none of it is part of the O-series; the `t1`–`t14` names are the session's own, not O-numbers, and `t15` was named later by the reconstruction agent, not during the session.
 
 Run with `.venv/bin/python`; requires `primecountpy`, `mpmath`, `numpy`, `matplotlib`. Output paths inside the figure-writing scripts still point at the original scratchpad directory and need editing before a re-run; `t9`–`t14` are console-only and have no such path.
 
 Ceilings differ and **results are not comparable across ceilings** — the explicit formula is asymptotic, so a taller ceiling improves agreement for reasons unrelated to the structure being measured. `t1`–`t4`, `shape32`, `t13`, `t14` use 2³²; `t9` uses 2⁴⁴; `t4_each48`, `t5`, `t6`, `t10`, `t11`, `t12` and `pages/t4_ceilings.html` use 2⁴⁸.
 
-**`t9`–`t14` are reconstructions, not originals.** Those six analyses were run inline as heredoc commands during the 2026-08-19 session and no script was saved. They were rewritten as scripts afterwards and re-run; the scripts therefore postdate the results they reproduce. See the NOTEPAD line dated 2026-08-19 for the chronology and for what did and did not reproduce.
+**`t9`–`t15` are reconstructions, not originals.** Those seven analyses were run inline as heredoc commands during the 2026-08-19 session and no script was saved. They were rewritten as scripts afterwards and re-run; the scripts therefore postdate the results they reproduce. See the NOTEPAD lines dated 2026-08-19 for the chronology and for what did and did not reproduce — the line covering the reconstructions documents the original six, `t9`–`t14`; `t15` is recorded separately in its own line.
 
 ## Scripts (`scripts/`)
 
@@ -18,7 +18,7 @@ Ceilings differ and **results are not comparable across ceilings** — the expli
 - `t4_family.py` — the same R-vs-Z construction across bases in one summary figure; depths with fewer than ten points dropped.
 - `t4_each.py` — the same, one two-panel figure per base 2–9, at ceiling 2³².
 - `t4_each48.py` — `t4_each.py` re-run at ceiling 2⁴⁸.
-- `t5_2d.py` — 2D FFT over the (r,d) rectangle, since each zero's phase is linear in both axes; marks the predicted (ω_r, ω_d) per zero. Its figure `spectrum2d.png` was not in the scratchpad.
+- `t5_2d.py` — 2D FFT over the (r,d) rectangle, since each zero's phase is linear in both axes; marks the predicted (ω_r, ω_d) per zero. Its figure is `spectrum2d.png`.
 - `shape32.py` — console-only shape description of the eight base curves at 2³²: where each sags, how deep, and on which side of its own run.
 - `t6_multirate.py` — bases 2–9 bound to one number line in the coordinate `u = ln x`, where a zero's frequency is γ with no ln b in it; least-squares periodogram over the combined non-uniform sample set, with each base's own Nyquist ceiling π/ln b marked.
 - `t7_phase.py` — lattice phase `φ_b(r,d) = frac((r−d−1)·ln2/ln b)`, the offset of each dyadic cell's lower edge from the nearest b-rung, for bases 3–9 with the four exact zeros circled. Picture only, no null.
@@ -29,6 +29,7 @@ Ceilings differ and **results are not comparable across ceilings** — the expli
 - `t12_chain_vs_orphan.py` — **reconstruction.** Oscillatory power fraction at depth 0 for bases 2–9 at 2⁴⁸, grouped as roots (2, 3), chain members with a parent in the set (4, 8, 9) and orphans (5, 6, 7).
 - `t13_signflip_crossover.py` — **reconstruction.** The crossover measured without any spectral machinery: fraction of adjacent nonzero pairs whose signs differ, per depth per base at 2³², reported alongside `t2`'s spectral d*.
 - `t14_s_matched_control.py` — **reconstruction.** Control for `t8`'s r−d result: the same 121 zeros against a null matched on `ln S`, the L1 stencil mass, within ±0.35 and still stratified per base.
+- `t15_cell_coverage.py` — **reconstruction.** How many b-rungs fall inside each dyadic cell's window, bases 3–9 over the (r,d) triangle at r ≤ 32, four exact zeros circled; also the distinct-value count per depth, which shows the measure takes at most two values at any fixed depth and so cannot discriminate.
 
 ## Pages (`pages/`) — four, not three
 
@@ -37,4 +38,4 @@ Ceilings differ and **results are not comparable across ceilings** — the expli
 - `t4_by_base.html` — Test 04 by Base — https://claude.ai/code/artifact/5974e9b7-1241-4a3f-8d1a-91b4993706f8
 - `t4_ceilings.html` — Same Test, Two Ceilings — https://claude.ai/code/artifact/049be425-9f29-49a3-8d9b-01ba3cdd305c
 
-Matched by `<title>` against the artifact listing; the pages carry no URL of their own. `figures/` holds the twenty PNGs the scripts wrote — except `coverage.png`, whose analysis was also inline and whose script did not survive; it has no reconstruction here.
+Matched by `<title>` against the artifact listing; the pages carry no URL of their own. `figures/` holds the twenty-four PNGs the scripts wrote — including `coverage.png`, whose analysis was also inline and whose script did not survive; it is reconstructed here as `t15_cell_coverage.py`.
