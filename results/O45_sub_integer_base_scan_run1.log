@@ -1,0 +1,746 @@
+==============================================================================
+O45 - SUB-INTEGER BASE SCAN   (PREREGISTERED)
+==============================================================================
+  started (UTC)          : 2026-08-19T07:16:38Z
+  prereg                 : preregs/sub_integer_base_scan_v1_20260818.md
+  value ceiling V        : 2^32 = 4294967296
+  gamma_1 (locked)       : 14.134725141734693
+  mpmath dps             : 60
+  d-min                  : 1
+  mass_floor             : 88   (S at base 2's (8,3))
+  alpha_level            : 0.05  one-sided
+  top-k                  : 10
+  cache (READ ONLY)      : /Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json
+  out                    : /Users/juliansambrano/GitHub/Primebeat_081426/results/sub_integer_base_scan.json
+  python                 : 3.14.3
+  code_version (sha256)  : f06f6f3cb0711398e34e2225cbda270d42e989e3bf7c2d5780bbd682f13513e8
+
+  Nothing printed here is a verdict.  This script reports the
+  decision rule's mechanical output; the verdict line is Julian's
+  to write.  CLAUDE.md, section 'Prereg discipline'.
+
+------------------------------------------------------------------------------
+CONVENTION IN FORCE
+------------------------------------------------------------------------------
+  THIS PROJECT'S convention: 2 and 3 are COUNTED AS PRIMES, pi(1) = 0, N(r) 
+  = pi(floor(b^r)) - pi(floor(b^(r-1))) on the half-open rung (b^(r-1), b^r]
+  , with floor(b^0) = 1. Source: CONTEXT.md section 'Core quantities'. This 
+  is explicitly NOT the imported lattice_mapper convention (2 and 3 excluded
+   as lattice) that O44 measured under; CONTEXT.md section 'imported/lattice
+  _mapper/' records that the two are not comparable at low r.
+
+==============================================================================
+1. PI BACKEND INTEGRITY   (reported first; stops the run on failure)
+==============================================================================
+  backend               : primecountpy.prime_pi  0.2.1
+  comparisons           : 33 of 33 equal (need 33 of 33)
+  pi(2^32)              : backend 203280221  cache 203280221
+  status                : PASS
+
+==============================================================================
+2. GEOMETRY INTEGRITY   (the support is a locked parameter)
+==============================================================================
+  arm        label                r_max   cells r_thick  resolved   locked?   min rel gap
+  reference  2                       32     496       1       496   yes                -
+  family     exp(pi*1/(2*g1))       199   19701      32     14028   yes        2.389e-12
+  family     exp(pi*2/(2*g1))        99    4851      12      3828   yes        2.389e-12
+  family     exp(pi*3/(2*g1))        66    2145       7      1770   yes        2.389e-12
+  family     exp(pi*4/(2*g1))        49    1176       4      1035   yes        2.709e-11
+  antiphase  exp(pi*3/(4*g1))       133    8778      20      6441   yes        1.665e-12
+  antiphase  exp(pi*5/(4*g1))        79    3081       8      2556   yes        1.665e-12
+  antiphase  exp(pi*7/(4*g1))        57    1596       5      1378   yes        4.006e-11
+  antiphase  exp(pi*9/(4*g1))        44     946       3       861   yes        5.922e-11
+  refinement 2**(1/2)                64    2016       6      1711   yes                -
+  refinement 2**(1/3)                96    4560      12      3570   yes                -
+
+==============================================================================
+3. BASE-2 REPRODUCTION   (a reproduction check, NOT evidence)
+==============================================================================
+  known (prereg / O16)  : [[2, 1], [4, 1], [8, 3], [20, 6]]
+  rebuilt here          : [[2, 1], [4, 1], [8, 3], [20, 6]]
+  cells at d >= 1       : 496 (locked 496)
+  stencil mass S        : {(2, 1): 2, (4, 1): 4, (8, 3): 88, (20, 6): 492384}
+  status                : PASS
+  These four cells are among the most inspected objects in this
+  tree (prereg, provenance 1).  Reproducing them confirms the code
+  path; it is not evidence about the hypothesis.
+
+==============================================================================
+4. THE SUB-INTEGER SCAN
+==============================================================================
+  arm        label                              b    theta r_max   cells  resolv  zeros  z/res  z_res   z*
+  reference  2                       2.0000000000   201.35    32     496     496      4 0.0081      4    2
+  family     exp(pi*1/(2*g1))        1.1175405193    90.00   199   19701   14028     75 0.0021     29    8
+  family     exp(pi*2/(2*g1))        1.2488968123   180.00    99    4851    3828     32 0.0037     14    3
+  family     exp(pi*3/(2*g1))        1.3956927923   270.00    66    2145    1770     17 0.0051      9    1
+  family     exp(pi*4/(2*g1))        1.5597432479     0.00    49    1176    1035     12 0.0068      7    1
+  antiphase  exp(pi*3/(4*g1))        1.1813944270   135.00   133    8778    6441     45 0.0033     21    6
+  antiphase  exp(pi*5/(4*g1))        1.3202561415   225.00    79    3081    2556     20 0.0059     15    8
+  antiphase  exp(pi*7/(4*g1))        1.4754397341   315.00    57    1596    1378     12 0.0073     10    3
+  antiphase  exp(pi*9/(4*g1))        1.6488636866    45.00    44     946     861      3 0.0023      2    1
+  refinement 2**(1/2)                1.4142135624   280.68    64    2016    1711     19 0.0064     11    4
+  refinement 2**(1/3)                1.2599210499   187.12    96    4560    3570      5 0.0008      3    0
+
+  zeros   = exact zeros at d >= 1 over the WHOLE support
+  z_res   = exact zeros in the RESOLVED stratum (r - d >= r_thick)
+  z*      = resolved zeros with stencil mass S >= 88
+  z/res   = z_res / resolved cells.  Raw counts are not comparable
+            across bases; zeros per cell is.
+
+------------------------------------------------------------------------------
+  base 2  b = 2.0  theta = 201.352 deg  (reference)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 32
+    cells at d >= 1          : 496
+    r_thick / resolved cells : 1 / 496
+    W(r_thick) / W(r_max)    : 1 / 2147483648
+    total_true == 0 / < 0    : 0 / 0   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 4 / 4
+    zeros per cell           : 8.064516e-03
+    zeros per resolved cell  : 8.064516e-03
+    min nu_pair              : 0.000000e+00  at {'r': 2, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          2    1     1    y               1                 2         n
+          4    1     3    y               4                 4         n
+          8    3     5    y              16                88         y
+         20    6    14    y            8192            492384         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    2    1    y               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        2    4    1    y               0               4 0.000000e+00 0.000000e+00 0.000000e+00
+        3    8    3    y               0              16 0.000000e+00 0.000000e+00 0.000000e+00
+        4   20    6    y               0            8192 0.000000e+00 0.000000e+00 0.000000e+00
+        5   13    5    y               1             128 7.812500e-03 7.812500e-03 2.440810e-04
+        6   17    5    y              24            2048 1.171875e-02 1.171875e-02 4.971620e-04
+        7   22    6    y             556           32768 1.696777e-02 1.696777e-02 3.145337e-04
+        8   28    8    y            9709          524288 1.851845e-02 1.851845e-02 4.855209e-05
+        9   24    7    y            1311           65536 2.000427e-02 2.000427e-02 1.341155e-04
+       10   30    9    y           21245         1048576 2.026081e-02 2.026081e-02 1.889275e-05
+
+------------------------------------------------------------------------------
+  base exp(pi*1/(2*g1))  b = 1.11754051933074841023  theta = 90.000 deg  (family)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 199
+    cells at d >= 1          : 19701
+    r_thick / resolved cells : 32 / 14028
+    W(r_thick) / W(r_max)    : 4 / 422977008
+    total_true == 0 / < 0    : 101 / 9500   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 75 / 29
+    zeros per cell           : 3.806913e-03
+    zeros per resolved cell  : 2.067294e-03
+    min nu_pair              : 0.000000e+00  at {'r': 13, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          2    1     1    n               0                 0         n
+          3    1     2    n               0                 0         n
+          3    2     1    n               0                 0         n
+          4    1     3    n               0                 0         n
+          4    2     2    n               0                 0         n
+          4    3     1    n               0                 0         n
+          5    1     4    n               0                 0         n
+          5    2     3    n               0                 0         n
+          5    3     2    n               0                 0         n
+          5    4     1    n               0                 0         n
+          6    1     5    n               0                 0         n
+          6    2     4    n               0                 0         n
+          6    3     3    n               0                 0         n
+          6    4     2    n               0                 0         n
+          6    5     1    n               0                 0         n
+          9    1     8    n               0                 0         n
+         10    3     7    n               0                 2         n
+         11    5     6    n               0                10         n
+         12    1    11    n               0                 0         n
+         12    7     5    n               0                42         n
+         13    1    12    n               1                 0         n
+         13    2    11    n               1                 0         n
+         13    9     4    n               1               168         y
+         14    1    13    n              -1                 0         n
+         14    2    12    n              -2                 0         n
+         14    3    11    n              -3                 0         n
+         14   11     3    n             -11               660         y
+         15    5    10    n              10                 2         n
+         16    7     9    n             -35                14         n
+         17    1    16    n               1                 0         n
+         17    9     8    n             127                72         n
+         18    3    15    n              -3                 2         n
+         18   11     7    n            -473               332         y
+         19    5    14    n              11                10         n
+         19   13     6    n            1795              1456         y
+         20    1    19    n               0                 0         n
+         20    7    13    n             -42                42         n
+         20   15     5    n           -6904              6216         y
+         21    1    20    n               0                 0         n
+         21    2    19    n               0                 0         n
+         21    9    12    n             163               168         y
+         21   17     4    n           26810             26112         y
+         27    1    26    n               2                 2         n
+         28    3    25    n              -6                 6         n
+         29    5    24    n              21                22         n
+         30    7    23    n             -75                84         n
+         34    2    32    y               0                 4         n
+         36    1    35    y               1                 2         n
+         37    3    34    y               0                10         n
+         38    5    33    y              -2                42         n
+         40    1    39    y               1                 4         n
+         41    3    38    y               0                14         n
+         43    1    42    y               1                 6         n
+         45    1    44    y               2                 4         n
+         47    1    46    y               1                 8         n
+         48    1    47    y               3                 8         n
+         48    2    46    y               2                16         n
+         49    1    48    y               2                 8         n
+         49    2    47    y              -1                16         n
+         49    3    46    y              -3                32         n
+         51    2    49    y               1                20         n
+         54    2    52    y               0                24         n
+         55    2    53    y               2                28         n
+         55    3    52    y               2                52         n
+         56    2    54    y              -1                32         n
+         56    3    53    y              -3                60         n
+         56    4    52    y              -5               112         y
+         62    1    61    y              10                28         n
+         70    7    63    y               4              2992         y
+         76    2    74    y               6               212         y
+         79    2    77    y              10               284         y
+         80    4    76    y              -9              1136         y
+         81    3    78    y               2               658         y
+         83   10    73    y             429             73004         y
+         99    2    97    y              70              2084         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1   13    1    n               0               1 0.000000e+00 0.000000e+00            -
+        2   13    2    n               0               1 0.000000e+00 0.000000e+00            -
+        3   13    9    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        4   14    1    n               0              -1 0.000000e+00 0.000000e+00            -
+        5   14    2    n               0              -2 0.000000e+00 0.000000e+00            -
+        6   14    3    n               0              -3 0.000000e+00 0.000000e+00            -
+        7   14   11    n               0             -11 0.000000e+00 0.000000e+00 0.000000e+00
+        8   15    5    n               0              10 0.000000e+00 0.000000e+00 0.000000e+00
+        9   16    7    n               0             -35 0.000000e+00 0.000000e+00 0.000000e+00
+       10   17    1    n               0               1 0.000000e+00 0.000000e+00            -
+
+------------------------------------------------------------------------------
+  base exp(pi*2/(2*g1))  b = 1.248896812346038861164  theta = 180.000 deg  (family)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 99
+    cells at d >= 1          : 4851
+    r_thick / resolved cells : 12 / 3828
+    W(r_thick) / W(r_max)    : 3 / 717169700
+    total_true == 0 / < 0    : 21 / 2194   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 32 / 14
+    zeros per cell           : 6.596578e-03
+    zeros per resolved cell  : 3.657262e-03
+    min nu_pair              : 0.000000e+00  at {'r': 7, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          2    1     1    n               0                 0         n
+          3    1     2    n               0                 0         n
+          3    2     1    n               0                 0         n
+          5    1     4    n               0                 2         n
+          6    3     3    n               0                 6         n
+          7    1     6    n               1                 0         n
+          7    5     2    n               1                20         n
+          8    3     5    n              -3                 2         n
+          9    1     8    n               1                 2         n
+          9    5     4    n              11                12         n
+         10    3     7    n              -2                 6         n
+         10    7     3    n             -40                56         n
+         12    1    11    n               1                 2         n
+         12    8     4    n             -62               144         y
+         13    1    12    y               0                 2         n
+         13    2    11    n              -1                 4         n
+         14    1    13    y               2                 2         n
+         14    2    12    y               2                 4         n
+         14    3    11    n               3                 8         n
+         15    1    14    y               1                 2         n
+         15    2    13    y              -1                 4         n
+         15    3    12    y              -3                 8         n
+         15    4    11    n              -6                16         n
+         16    6    10    n              21                64         n
+         17    2    15    y               0                 8         n
+         20    2    18    y               0                12         n
+         21    1    20    y               4                 8         n
+         23    2    21    y               3                20         n
+         27    2    25    y               1                44         n
+         31    2    29    y               7                92         y
+         33    2    31    y              11               140         y
+         35    3    32    y               4               376         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    7    1    n               0               1 0.000000e+00 0.000000e+00            -
+        2    7    5    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        3    8    3    n               0              -3 0.000000e+00 0.000000e+00 0.000000e+00
+        4    9    1    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        5    9    5    n               0              11 0.000000e+00 0.000000e+00 0.000000e+00
+        6   10    3    n               0              -2 0.000000e+00 0.000000e+00 0.000000e+00
+        7   10    7    n               0             -40 0.000000e+00 0.000000e+00 0.000000e+00
+        8   12    1    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        9   12    8    n               0             -62 0.000000e+00 0.000000e+00 0.000000e+00
+       10   13    2    n               0              -1 0.000000e+00 0.000000e+00 0.000000e+00
+
+------------------------------------------------------------------------------
+  base exp(pi*3/(2*g1))  b = 1.395692792259708511724  theta = 270.000 deg  (family)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 66
+    cells at d >= 1          : 2145
+    r_thick / resolved cells : 7 / 1770
+    W(r_thick) / W(r_max)    : 3 / 1020228518
+    total_true == 0 / < 0    : 13 / 899   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 17 / 9
+    zeros per cell           : 7.925408e-03
+    zeros per resolved cell  : 5.084746e-03
+    min nu_pair              : 0.000000e+00  at {'r': 5, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          2    1     1    n               0                 0         n
+          4    1     3    n               0                 2         n
+          5    1     4    n               1                 2         n
+          5    2     3    n               1                 4         n
+          6    1     5    n               0                 2         n
+          6    2     4    n              -1                 4         n
+          6    3     3    n              -2                 8         n
+          7    5     2    n               8                30         n
+          9    1     8    y               2                 4         n
+         13    2    11    y               3                16         n
+         14    2    12    y               1                20         n
+         14    3    11    y              -2                36         n
+         15    2    13    y               4                24         n
+         15    3    12    y               3                44         n
+         15    4    11    y               5                80         n
+         18    2    16    y               9                60         n
+         21    5    16    y               7               724         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    5    1    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        2    5    2    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        3    6    2    n               0              -1 0.000000e+00 0.000000e+00 0.000000e+00
+        4    6    3    n               0              -2 0.000000e+00 0.000000e+00 0.000000e+00
+        5    7    5    n               0               8 0.000000e+00 0.000000e+00 0.000000e+00
+        6    9    1    y               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        7   13    2    y               0               3 0.000000e+00 0.000000e+00 0.000000e+00
+        8   14    2    y               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        9   14    3    y               0              -2 0.000000e+00 0.000000e+00 0.000000e+00
+       10   15    2    y               0               4 0.000000e+00 0.000000e+00 0.000000e+00
+
+------------------------------------------------------------------------------
+  base exp(pi*4/(2*g1))  b = 1.559743247888097005191  theta = 0.000 deg  (family)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 49
+    cells at d >= 1          : 1176
+    r_thick / resolved cells : 4 / 1035
+    W(r_thick) / W(r_max)    : 2 / 1034042401
+    total_true == 0 / < 0    : 5 / 428   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 12 / 7
+    zeros per cell           : 1.020408e-02
+    zeros per resolved cell  : 6.763285e-03
+    min nu_pair              : 0.000000e+00  at {'r': 4, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          3    1     2    n               0                 2         n
+          4    1     3    n               1                 2         n
+          4    2     2    n               1                 4         n
+          5    1     4    y               2                 2         n
+          5    2     3    n               1                 4         n
+          5    3     2    n               0                 8         n
+          7    1     6    y               3                 4         n
+          9    3     6    y              -1                22         n
+         10    2     8    y               6                20         n
+         11    2     9    y               4                28         n
+         11    3     8    y              -2                48         n
+         12    6     6    y              30               332         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    4    1    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        2    4    2    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        3    5    1    y               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        4    5    2    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        5    7    1    y               0               3 0.000000e+00 0.000000e+00 0.000000e+00
+        6    9    3    y               0              -1 0.000000e+00 0.000000e+00 0.000000e+00
+        7   10    2    y               0               6 0.000000e+00 0.000000e+00 0.000000e+00
+        8   11    2    y               0               4 0.000000e+00 0.000000e+00 0.000000e+00
+        9   11    3    y               0              -2 0.000000e+00 0.000000e+00 0.000000e+00
+       10   12    6    y               0              30 0.000000e+00 0.000000e+00 0.000000e+00
+
+------------------------------------------------------------------------------
+  base exp(pi*3/(4*g1))  b = 1.181394427047846079234  theta = 135.000 deg  (antiphase)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 133
+    cells at d >= 1          : 8778
+    r_thick / resolved cells : 20 / 6441
+    W(r_thick) / W(r_max)    : 5 / 652759342
+    total_true == 0 / < 0    : 53 / 4102   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 45 / 21
+    zeros per cell           : 5.126452e-03
+    zeros per resolved cell  : 3.260363e-03
+    min nu_pair              : 0.000000e+00  at {'r': 9, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          2    1     1    n               0                 0         n
+          3    1     2    n               0                 0         n
+          3    2     1    n               0                 0         n
+          4    1     3    n               0                 0         n
+          4    2     2    n               0                 0         n
+          4    3     1    n               0                 0         n
+          9    1     8    n               1                 0         n
+         10    3     7    n              -3                 2         n
+         11    5     6    n              11                10         n
+         12    7     5    n             -42                44         n
+         13    9     4    n             163               186         y
+         14    1    13    n               1                 0         n
+         14   11     3    n            -636               770         y
+         15    3    12    n              -2                 2         n
+         16    1    15    n               0                 2         n
+         17    1    16    n               1                 2         n
+         17    2    15    n               1                 4         n
+         18    1    17    n               0                 2         n
+         18    2    16    n              -1                 4         n
+         18    3    15    n              -2                 8         n
+         19    1    18    n               0                 2         n
+         19    2    17    n               0                 4         n
+         19    3    16    n               1                 8         n
+         19    4    15    n               3                16         n
+         24    1    23    y               1                 4         n
+         25    1    24    y               2                 4         n
+         25    2    23    y               1                 8         n
+         26    4    22    y              -2                32         n
+         27    1    26    y               2                 6         n
+         28    1    27    y               2                 6         n
+         28    2    26    y               0                12         n
+         29    1    28    y               3                 6         n
+         29    2    27    y               1                12         n
+         29    3    26    y               1                24         n
+         31    3    28    y              -1                30         n
+         32    1    31    y               5                12         n
+         32    6    26    y               3               228         y
+         34    2    32    y               3                28         n
+         38    1    37    y              12                24         n
+         41    9    32    y              63              5664         y
+         42    2    40    y               3                84         n
+         46    2    44    y               7               148         y
+         47    4    43    y               4               592         y
+         54    2    52    y              29               484         y
+         76    4    72    y              32             46120         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    9    1    n               0               1 0.000000e+00 0.000000e+00            -
+        2   10    3    n               0              -3 0.000000e+00 0.000000e+00 0.000000e+00
+        3   11    5    n               0              11 0.000000e+00 0.000000e+00 0.000000e+00
+        4   12    7    n               0             -42 0.000000e+00 0.000000e+00 0.000000e+00
+        5   13    9    n               0             163 0.000000e+00 0.000000e+00 0.000000e+00
+        6   14    1    n               0               1 0.000000e+00 0.000000e+00            -
+        7   14   11    n               0            -636 0.000000e+00 0.000000e+00 0.000000e+00
+        8   15    3    n               0              -2 0.000000e+00 0.000000e+00 0.000000e+00
+        9   17    1    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+       10   17    2    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+
+------------------------------------------------------------------------------
+  base exp(pi*5/(4*g1))  b = 1.32025614153750187382  theta = 225.000 deg  (antiphase)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 79
+    cells at d >= 1          : 3081
+    r_thick / resolved cells : 8 / 2556
+    W(r_thick) / W(r_max)    : 3 / 825727572
+    total_true == 0 / < 0    : 19 / 1331   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 20 / 15
+    zeros per cell           : 6.491399e-03
+    zeros per resolved cell  : 5.868545e-03
+    min nu_pair              : 0.000000e+00  at {'r': 5, 'd': 3}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          2    1     1    n               0                 0         n
+          4    1     3    n               0                 2         n
+          5    3     2    n               1                 6         n
+          9    1     8    y               0                 2         n
+         10    1     9    y               1                 2         n
+         10    2     8    y               1                 4         n
+         11    4     7    n              -4                16         n
+         12    6     6    n              17                64         n
+         14    1    13    y               2                 6         n
+         15    1    14    y               5                 6         n
+         15    2    13    y               3                12         n
+         16    4    12    y              -6                48         n
+         19    6    13    y               0               296         y
+         20    9    11    y             -54              2164         y
+         25    2    23    y              14               116         y
+         26    2    24    y              20               148         y
+         26    3    23    y               6               264         y
+         28    7    21    y              28              4338         y
+         41    4    37    y              69             18936         y
+         47    4    43    y             399             87160         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    5    3    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        2   10    1    y               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        3   10    2    y               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        4   11    4    n               0              -4 0.000000e+00 0.000000e+00 0.000000e+00
+        5   12    6    n               0              17 0.000000e+00 0.000000e+00 0.000000e+00
+        6   14    1    y               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        7   15    1    y               0               5 0.000000e+00 0.000000e+00 0.000000e+00
+        8   15    2    y               0               3 0.000000e+00 0.000000e+00 0.000000e+00
+        9   16    4    y               0              -6 0.000000e+00 0.000000e+00 0.000000e+00
+       10   20    9    y               0             -54 0.000000e+00 0.000000e+00 0.000000e+00
+
+------------------------------------------------------------------------------
+  base exp(pi*7/(4*g1))  b = 1.475439734063429921943  theta = 315.000 deg  (antiphase)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 57
+    cells at d >= 1          : 1596
+    r_thick / resolved cells : 5 / 1378
+    W(r_thick) / W(r_max)    : 2 / 1369929042
+    total_true == 0 / < 0    : 8 / 623   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 12 / 10
+    zeros per cell           : 7.518797e-03
+    zeros per resolved cell  : 7.256894e-03
+    min nu_pair              : 0.000000e+00  at {'r': 4, 'd': 3}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          3    1     2    n               0                 2         n
+          4    3     1    n               1                 6         n
+          6    1     5    y               2                 2         n
+          8    1     7    y               2                 4         n
+         10    2     8    y               0                12         n
+         11    2     9    y               5                16         n
+         11    3     8    y               5                28         n
+         12    5     7    y             -16               114         y
+         13    3    10    y               6                50         n
+         14    2    12    y               6                40         n
+         14    5     9    y             -17               206         y
+         21    4    17    y              12              1208         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    4    3    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        2    6    1    y               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        3    8    1    y               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        4   11    2    y               0               5 0.000000e+00 0.000000e+00 0.000000e+00
+        5   11    3    y               0               5 0.000000e+00 0.000000e+00 0.000000e+00
+        6   12    5    y               0             -16 0.000000e+00 0.000000e+00 0.000000e+00
+        7   13    3    y               0               6 0.000000e+00 0.000000e+00 0.000000e+00
+        8   14    2    y               0               6 0.000000e+00 0.000000e+00 0.000000e+00
+        9   14    5    y               0             -17 0.000000e+00 0.000000e+00 0.000000e+00
+       10   21    4    y               0              12 0.000000e+00 0.000000e+00 0.000000e+00
+
+------------------------------------------------------------------------------
+  base exp(pi*9/(4*g1))  b = 1.64886368664646680032  theta = 45.000 deg  (antiphase)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 44
+    cells at d >= 1          : 946
+    r_thick / resolved cells : 3 / 861
+    W(r_thick) / W(r_max)    : 2 / 1416112876
+    total_true == 0 / < 0    : 9 / 309   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 3 / 2
+    zeros per cell           : 3.171247e-03
+    zeros per resolved cell  : 2.322880e-03
+    min nu_pair              : 0.000000e+00  at {'r': 3, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          3    1     2    n               1                 2         n
+          7    1     6    y               5                 6         n
+         17    3    14    y             118              1026         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    3    1    n               0               1 0.000000e+00 0.000000e+00 0.000000e+00
+        2    7    1    y               0               5 0.000000e+00 0.000000e+00 0.000000e+00
+        3   17    3    y               0             118 0.000000e+00 0.000000e+00 0.000000e+00
+        4   23    4    y               1             932 1.072961e-03 1.071290e-03 4.055643e-05
+        5   38    6    y            1929          261665 7.372021e-03 7.371071e-03 2.806264e-05
+        6   29    5    y              93            7376 1.260846e-02 1.259832e-02 1.479481e-04
+        7   43    7    y           16158         1255178 1.287307e-02 1.287341e-02 1.357981e-05
+        8   31    5    y             295           20069 1.469929e-02 1.469882e-02 1.855433e-04
+        9   35    7    y            -458           22996 1.991651e-02 1.993652e-02 1.680639e-05
+       10   36    7    y             813           37840 2.148520e-02 2.146296e-02 1.866166e-05
+
+------------------------------------------------------------------------------
+  base 2**(1/2)  b = 1.414213562373095048802  theta = 280.676 deg  (refinement)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 64
+    cells at d >= 1          : 2016
+    r_thick / resolved cells : 6 / 1711
+    W(r_thick) / W(r_max)    : 3 / 1257966797
+    total_true == 0 / < 0    : 1 / 827   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 19 / 11
+    zeros per cell           : 9.424603e-03
+    zeros per resolved cell  : 6.428989e-03
+    min nu_pair              : 0.000000e+00  at {'r': 5, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          5    1     4    n              -1                 2         n
+          6    1     5    n               2                 2         n
+          6    2     4    n               3                 4         n
+          7    1     6    y               0                 2         n
+          7    2     5    n              -2                 4         n
+          7    3     4    n              -5                 8         n
+          8    1     7    y               2                 2         n
+          8    2     6    y               2                 4         n
+          8    3     5    n               4                 8         n
+          8    4     4    n               9                16         n
+          9    6     3    n             -36                64         n
+         10    2     8    y               3                 8         n
+         11    1    10    y               3                 6         n
+         11    4     7    y              -8                32         n
+         13    3    10    y              -2                30         n
+         14    5     9    y              12               124         y
+         21    2    19    y              36               176         y
+         34   11    23    y             924           1371038         y
+         42    5    37    y            1334            651298         y
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1    5    1    n               0              -1 0.000000e+00 0.000000e+00 0.000000e+00
+        2    6    1    n               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        3    6    2    n               0               3 0.000000e+00 0.000000e+00 0.000000e+00
+        4    7    2    n               0              -2 0.000000e+00 0.000000e+00 0.000000e+00
+        5    7    3    n               0              -5 0.000000e+00 0.000000e+00 0.000000e+00
+        6    8    1    y               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        7    8    2    y               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        8    8    3    n               0               4 0.000000e+00 0.000000e+00 0.000000e+00
+        9    8    4    n               0               9 0.000000e+00 0.000000e+00 0.000000e+00
+       10    9    6    n               0             -36 0.000000e+00 0.000000e+00 0.000000e+00
+
+------------------------------------------------------------------------------
+  base 2**(1/3)  b = 1.259921049894873164767  theta = 187.117 deg  (refinement)
+------------------------------------------------------------------------------
+    value ceiling            : 2^32 = 4294967296
+    r_max                    : 96
+    cells at d >= 1          : 4560
+    r_thick / resolved cells : 12 / 3570
+    W(r_thick) / W(r_max)    : 4 / 886049495
+    total_true == 0 / < 0    : 15 / 2038   (total_geo is positive everywhere; see complication (a))
+    exact zeros (all / res)  : 5 / 3
+    zeros per cell           : 1.096491e-03
+    zeros per resolved cell  : 8.403361e-04
+    min nu_pair              : 0.000000e+00  at {'r': 12, 'd': 1}
+    exact zeros, d >= 1:
+          r    d   r-d  res      total_true                 S  S>=floor
+          2    1     1    n               0                 0         n
+         12    1    11    n               2                 2         n
+         18    1    17    y               4                 6         n
+         20    1    19    y               5                 8         n
+         22    2    20    y               0                20         n
+    10 smallest nu_pair:
+        #    r    d  res            cell      total_true      nu_pair       nu_geo      nu_mass
+        1   12    1    n               0               2 0.000000e+00 0.000000e+00 0.000000e+00
+        2   18    1    y               0               4 0.000000e+00 0.000000e+00 0.000000e+00
+        3   20    1    y               0               5 0.000000e+00 0.000000e+00 0.000000e+00
+        4   78    4    y             -36           25077 1.435578e-03 1.435595e-03 4.396027e-06
+        5   91    5    y             393          104283 3.768591e-03 3.768431e-03 1.547138e-06
+        6   93    5    y            -667          165542 4.029189e-03 4.029093e-03 1.691656e-06
+        7   76    4    y             -71           15800 4.493671e-03 4.494429e-03 1.339825e-05
+        8   95    5    y           -1646          262805 6.263199e-03 6.263608e-03 2.688076e-06
+        9   74    4    y              76            9952 7.636656e-03 7.636888e-03 2.215136e-05
+       10   54    3    y              -4             475 8.421053e-03 8.424179e-03 1.547868e-04
+
+==============================================================================
+5. THE RATE TEST
+==============================================================================
+  resolved cells        : base 2 496   sub-2 37178 (family 20661, antiphase 11236, refinement 5281)
+  Z_2 (base 2, resolved): 4
+  Z   (sub-2, resolved) : 121
+  Z*  (S >= 88)        : 35   (family 13, antiphase 18, refinement 4)
+  E[Z] under H0         : 299.822580645161   (locked 299.822580645161)
+  conditional-binomial p: 8.394656e-02   [exact]  PRIMARY
+  Poisson p (lam=E[Z])  : 6.367145e-32   SECONDARY, cannot move the verdict
+  alpha_level           : 0.05 one-sided
+
+==============================================================================
+6. THE MASS PROFILE   (diagnostic; |cell| <= S exactly)
+==============================================================================
+  base 2 (reference, known before the run):
+    ( 2,1):  S =          2   clears 88: no
+    ( 4,1):  S =          4   clears 88: no
+    ( 8,3):  S =         88   clears 88: yes
+    (20,6):  S =     492384   clears 88: yes
+  sub-2 resolved zeros by mass:
+    2**(1/2)             (  34, 11)  S = 1371038   clears 88: yes
+    2**(1/2)             (  42,  5)  S = 651298   clears 88: yes
+    exp(pi*5/(4*g1))     (  47,  4)  S = 87160   clears 88: yes
+    exp(pi*1/(2*g1))     (  83, 10)  S = 73004   clears 88: yes
+    exp(pi*3/(4*g1))     (  76,  4)  S = 46120   clears 88: yes
+    exp(pi*5/(4*g1))     (  41,  4)  S = 18936   clears 88: yes
+    exp(pi*3/(4*g1))     (  41,  9)  S = 5664   clears 88: yes
+    exp(pi*5/(4*g1))     (  28,  7)  S = 4338   clears 88: yes
+    exp(pi*1/(2*g1))     (  70,  7)  S = 2992   clears 88: yes
+    exp(pi*5/(4*g1))     (  20,  9)  S = 2164   clears 88: yes
+    exp(pi*1/(2*g1))     (  99,  2)  S = 2084   clears 88: yes
+    exp(pi*7/(4*g1))     (  21,  4)  S = 1208   clears 88: yes
+    exp(pi*1/(2*g1))     (  80,  4)  S = 1136   clears 88: yes
+    exp(pi*9/(4*g1))     (  17,  3)  S = 1026   clears 88: yes
+    exp(pi*3/(2*g1))     (  21,  5)  S = 724   clears 88: yes
+    exp(pi*1/(2*g1))     (  81,  3)  S = 658   clears 88: yes
+    exp(pi*3/(4*g1))     (  47,  4)  S = 592   clears 88: yes
+    exp(pi*3/(4*g1))     (  54,  2)  S = 484   clears 88: yes
+    exp(pi*2/(2*g1))     (  35,  3)  S = 376   clears 88: yes
+    exp(pi*4/(2*g1))     (  12,  6)  S = 332   clears 88: yes
+    exp(pi*5/(4*g1))     (  19,  6)  S = 296   clears 88: yes
+    exp(pi*1/(2*g1))     (  79,  2)  S = 284   clears 88: yes
+    exp(pi*5/(4*g1))     (  26,  3)  S = 264   clears 88: yes
+    exp(pi*3/(4*g1))     (  32,  6)  S = 228   clears 88: yes
+    exp(pi*1/(2*g1))     (  76,  2)  S = 212   clears 88: yes
+    exp(pi*7/(4*g1))     (  14,  5)  S = 206   clears 88: yes
+    2**(1/2)             (  21,  2)  S = 176   clears 88: yes
+    exp(pi*3/(4*g1))     (  46,  2)  S = 148   clears 88: yes
+    exp(pi*5/(4*g1))     (  26,  2)  S = 148   clears 88: yes
+    exp(pi*2/(2*g1))     (  33,  2)  S = 140   clears 88: yes
+    2**(1/2)             (  14,  5)  S = 124   clears 88: yes
+    exp(pi*5/(4*g1))     (  25,  2)  S = 116   clears 88: yes
+    exp(pi*7/(4*g1))     (  12,  5)  S = 114   clears 88: yes
+    exp(pi*1/(2*g1))     (  56,  4)  S = 112   clears 88: yes
+    exp(pi*2/(2*g1))     (  31,  2)  S = 92   clears 88: yes
+    exp(pi*3/(4*g1))     (  42,  2)  S = 84   clears 88: no
+    exp(pi*3/(2*g1))     (  15,  4)  S = 80   clears 88: no
+    exp(pi*1/(2*g1))     (  56,  3)  S = 60   clears 88: no
+    exp(pi*3/(2*g1))     (  18,  2)  S = 60   clears 88: no
+    exp(pi*1/(2*g1))     (  55,  3)  S = 52   clears 88: no
+    exp(pi*7/(4*g1))     (  13,  3)  S = 50   clears 88: no
+    exp(pi*4/(2*g1))     (  11,  3)  S = 48   clears 88: no
+    exp(pi*5/(4*g1))     (  16,  4)  S = 48   clears 88: no
+    exp(pi*2/(2*g1))     (  27,  2)  S = 44   clears 88: no
+    exp(pi*3/(2*g1))     (  15,  3)  S = 44   clears 88: no
+    exp(pi*1/(2*g1))     (  38,  5)  S = 42   clears 88: no
+    exp(pi*7/(4*g1))     (  14,  2)  S = 40   clears 88: no
+    exp(pi*3/(2*g1))     (  14,  3)  S = 36   clears 88: no
+    exp(pi*1/(2*g1))     (  49,  3)  S = 32   clears 88: no
+    exp(pi*1/(2*g1))     (  56,  2)  S = 32   clears 88: no
+    ... 71 more, full list in the results JSON
+
+==============================================================================
+MECHANICAL DECISION-RULE OUTPUT (NOT A VERDICT)
+==============================================================================
+  Z  (sub-2 resolved zeros)        : 121
+  Z* (of those, S >= 88)           : 35  (fam 13 / anti 18 / ref 4)
+  conditional-binomial p           : 8.394656e-02
+  alpha_level                      : 0.05
+  compromised conditions tripped   : (none)
+  precedence                       : compromised > thin_rung_forced > family_only > refinement_only > fineness > rate_below_base_two > intrinsic_base_two > ambiguous
+  label the decision rule selects  : fineness
+
+  This is the decision rule's mechanical output, NOT a verdict.
+  The verdict line in the prereg's Run record is Julian's to
+  write.  An agent may compute the SHA and report the decision
+  rule's mechanical output; it does not stamp the verdict.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/sub_integer_base_scan.json
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+  Every cell, every W, every total_true and every stencil mass above is
+  an exact Python integer; every nu_pair was ranked as an exact Fraction.
+  mpmath appears only in floor(b^r) at the transcendental bases; the two
+  dyadic refinements use exact integer roots and no floating point.
+  The convention in force is THIS PROJECT'S (2 and 3 counted, pi(1) = 0),
+  not the imported one O44 measured under, so low-r numbers here do not
+  compare with O44's.
+  Raw zero counts are not comparable across bases; zeros per cell is, and
+  the denominator is printed beside every count.
+  Nothing above is a verdict.
+  finished (UTC): 2026-08-19T07:16:38Z

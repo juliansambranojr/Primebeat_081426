@@ -13,11 +13,19 @@ difference table on it; CONTEXT.md's O29 line records the transfer function
 confirmation (3.53x per depth in base 2 against 1/(1-2^(-1/2)) = 3.414).
 
 This script does NOT build its own table.  It READS eight already-built,
-exact-integer CSV difference tables from a DIFFERENT project,
+exact-integer CSV difference tables vendored into this repo at
 
-    /Users/juliansambrano/GitHub/lattice_mapper/difference_tables/32bit/
+    imported/lattice_mapper/32bit/
 
-which is treated as STRICTLY READ-ONLY.  Nothing is written there.
+resolved against THIS file's own directory (`_HERE`), so runs are
+cwd-independent and the repo is portable.  Those files were copied
+byte-for-byte on 2026-08-18, every one SHA-256 verified, from a DIFFERENT
+project, `/Users/juliansambrano/GitHub/lattice_mapper/difference_tables/32bit/`;
+`imported/lattice_mapper/README.md` is the import manifest and
+`lab_notebook_2.md` entry 46 records the import.  Both the vendored copy and
+the source project are treated as STRICTLY READ-ONLY.  Nothing is written to
+either.  The run of record, `results/base_ladder_crossing.json`, was produced
+BEFORE this repoint and its `params.data_dir` names the external path.
 
 NAMING
 ------
@@ -192,8 +200,10 @@ Both paths are anchored to _HERE, so runs are cwd-independent.  --out,
 EXAMPLE
 -------
     python3 O33_base_ladder_crossing.py \
-        --data-dir /Users/juliansambrano/GitHub/lattice_mapper/difference_tables/32bit \
         --bases 2,3,4,5,6,7,8,9 --min-row 8 --trend-depths 3 --trend-tol 0.02
+
+(--data-dir is no longer needed: its default is the in-repo vendored copy.
+A --data-dir given explicitly is used verbatim, so pass it absolute.)
 """
 
 import argparse
@@ -217,8 +227,10 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_RESULTS_DIR = os.path.join(_HERE, "results")
 DEFAULT_OUT_JSON = os.path.join(DEFAULT_RESULTS_DIR, "base_ladder_crossing.json")
 DEFAULT_OUT_CSV = os.path.join(DEFAULT_RESULTS_DIR, "base_ladder_crossing.csv")
-DEFAULT_DATA_DIR = ("/Users/juliansambrano/GitHub/lattice_mapper/"
-                    "difference_tables/32bit")
+# Repo-relative, resolved against this file -- the eight base tables are
+# vendored at imported/lattice_mapper/32bit/ (entry 46).  Same _HERE anchoring
+# O16_centered_difference_table.py uses for `files (2)`.
+DEFAULT_DATA_DIR = os.path.join(_HERE, "imported", "lattice_mapper", "32bit")
 
 # CONTEXT.md § "Core quantities"
 GAMMA1_DEFAULT = "14.134725141734693"

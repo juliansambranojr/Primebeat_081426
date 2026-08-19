@@ -51,6 +51,662 @@ Julian's call.
 
 ---
 
+## 2026-08-19 — Entry 52 — O46/O47: `density ≈ 1/S` refuted, the zeros live in the thin tail, and (20,6) does not survive refinement
+type: result-triage
+refs: 47, 50, 51
+
+Two EXPLORATORY reads of entry 51's run of record — no prereg, no
+p-value, nothing stamped. `O46_mass_density_check.py` →
+`results/mass_density_check.json` (24,756 B) +
+`results/mass_density_check_run1.log` (126 lines), 2026-08-19T07:43:07Z;
+`O47_high_mass_zeros.py` → `results/high_mass_zeros.json` (180,549 B) +
+`results/O47_high_mass_zeros_run1.log` (278 lines), 08:09:13Z. Both open
+O45's script and JSON read-only and both re-derive its stratum:
+geometry matches the locked table at all eleven bases, zero sets match
+O45 exactly, and O46's mass recurrence agrees with O45's
+`stencil_mass()` over 2297 cells, **0 mismatches**. No cell violates
+`|cell| ≤ S` and no resolved cell has `S = 0`, so not one zero in the
+run is arithmetically forced.
+
+**The mechanism proposed, and its refutation.** `mass_bound` is exact:
+a cell is a signed integer in `[−S, S]`, `S(r,d) = Σ_k C(d,k)·N(r−k)`.
+If cell values were spread over that range, landing on 0 would go like
+`1/S` — a parameter-free prediction with no free constant, testable in
+two forms. Both fail:
+
+```text
+  density x mean(S)    min 3.07433e+09   max 4.25686e+47   spread 1.38465e+38
+  density / mean(1/S)  min 0.617483      max 3.43727       spread 5.56658
+```
+
+A spread of 1 would be exactly constant. The parameter-free product
+spreads by 38 orders of magnitude. The sharper form is far better
+behaved — a factor of 5.6 — but it does not cluster at 1 either: eight
+of the eleven bases sit between 2.30 and 3.44, base 2 at 1.72, and two
+bases fall below 1 (`2^(1/3)` at 0.617, antiphase `k = 4` at 0.799).
+Clustering at 2–3 is a real regularity and is not the prediction.
+
+**And the premise itself is false.** `|cell|/S` over the resolved
+stratum has median between **3.52e−4** (`2^(1/2)`) and **2.20e−3**
+(`2^(1/3)`), so roughly `1e−3` at every base. Cells sit three orders of
+magnitude inside their own bound. They are not spread over `[−S, S]`,
+so the chance of hitting 0 was never `1/S`, and the two spread factors
+above are measuring a model that was wrong at its first line.
+
+**What replaced it: the zeros live in the extreme thin tail of the mass
+distribution.** Per base, median `S` at a resolved zero against median
+`S` over the whole resolved stratum:
+
+```text
+  median S at a zero        8  to  516     across the eleven bases
+  median S over the stratum 2.40e+07 (base 2) to 3.55e+18 (finest base)
+```
+
+Base by base the ratio of the two runs from **5.4 orders** of magnitude
+(antiphase `k = 4`) to **17.1** (the finest family base); base 2's own
+is 5.7. The typical zero is a cell with almost nothing to cancel. Which
+makes the high-`S` end the interesting end, and it is what O47 ranks.
+
+**Checked and only half true: zero density does rise with `b`.** The
+claim carried into this entry was that density rises roughly
+monotonically across the eleven bases with base 2 the maximum at about
+4× the finest. Recomputed from `zeros_per_resolved_cell` in
+`results/sub_integer_base_scan.json`, identical to `density` in
+`results/mass_density_check.json` at all eleven bases: base 2 **is** the
+maximum at 8.065e−3, and the finest base is 2.067e−3, a ratio of
+**3.90**, so "about 4×" holds. "Roughly monotonically" does not, as
+written. Four of the ten adjacent steps in `b` decrease, and two bases
+sit far off any trend — `2^(1/3)` at 8.40e−4, a quarter of its
+neighbours, and antiphase `k = 4` at 2.32e−3. The rank trend is real but
+moderate: Spearman ρ = 0.655, Kendall τ = 0.564 (43 concordant pairs
+against 12 of 55), permutation p ≈ 0.017 one-sided. Direction yes;
+monotone no.
+
+**The pooled ranking, 125 resolved zeros across all eleven bases.**
+Base 2's four carry `S = 2, 4, 88, 492384` and land at pooled ranks
+**115, 102, 37 and 3** — three of the four in the bottom quarter, and
+`(20,6)` third from the top. Above it sit two cells of `2^(1/2)`:
+
+```text
+   1  2^(1/2)  (34,11)  S = 1371038   log2 window [11.5, 17.0]
+   2  2^(1/2)  (42, 5)  S =  651298   log2 window [18.5, 21.0]
+   3  base 2   (20, 6)  S =  492384   log2 window [14.0, 20.0]
+   4  antiphase k=2 (47,4)  S = 87160
+```
+
+and the largest ratio gap anywhere in the pooled list is exactly the one
+after rank 3: **5.649** = 492384/87160 = 61548/10895 exactly. So the
+high-mass end is a four-cell club — two at `2^(1/2)`, `(20,6)`, and one
+antiphase cell — and then it falls off a cliff. `(20,6)` is no longer
+the most massive cancellation on record.
+
+**The (40,12) result, and it is the sharp one.** At `b = 2^(1/2)`, the
+cell `(40,12)` is the exact image of base 2's `(20,6)` under factor-2
+refinement: `r` doubles, `d` doubles, and the window bottom `b^(r−d)`
+lands on `2^14` as `b^r` lands on `2^20`. O47 checks the identity
+directly rather than assuming it — `identical integer bounds: True`,
+window `(16384, 1048576]` on both sides, `80125` primes in the window
+on both sides. The **same primes, the same value interval, the same
+question asked at twice the resolution.** The cell reads
+
+```text
+  base 2      (20, 6)   cell =     0     S =   492384
+  base 2^(1/2)(40,12)   cell = -6884     S = 15723924    |cell|/S = 4.378e-04
+```
+
+`(20,6)` **does not survive refinement.** And `4.378e−04` is not a near
+miss on the scale of anything — it sits essentially at that base's
+median `|cell|/S`, which is 3.52e−4.
+
+**Set that against `SeedPerturbation`.** `lean/SeedPerturbation.lean`
+proves that a change of seed convention replaces the depth-0 row `N` by
+`N − e` and, by linearity plus locality, cannot touch a cell whose
+window bottom clears the last rung `e` moves: `R < r − d` gives
+`cell_eq_of_seed_perturbation`, and `boundary_can_move` shows the strict
+inequality is sharp. Entry 47 measured the same thing from the data —
+`(8,3)` and `(20,6)` are unmoved by three seed conventions, six
+composite variants and two repos, while `(2,1)` and `(4,1)` sit close
+enough to the seed to be reached. So `(20,6)` is **robust to seed
+changes and fragile to resolution changes**, and those were never the
+same invariance: one is about what the bottom of the window reads, the
+other about how finely the window is sampled between its endpoints.
+Nothing in `SeedPerturbation.lean` claimed the second, and nothing in
+it is contradicted. (It is not yet recorded anywhere in this notebook;
+`lean/lakefile.toml` now globs eleven modules against the ten entry 45
+counted.)
+
+Both scripts EXPLORATORY, `summary.verdict` null in both files. Nothing
+above is a verdict and nothing here bears on O45's empty verdict line.
+
+No outcome marked.
+
+---
+
+## 2026-08-19 — Entry 51 — O45 run: 121 resolved sub-2 zeros, 35 clearing the mass floor, p = 0.0839 — the verdict line is empty and is Julian's
+type: run
+refs: 44, 49, 50
+
+`O45_sub_integer_base_scan.py`, one run at the locked flags,
+**PREREGISTERED** against entry 50's protocol. Lock written
+2026-08-19T07:16:07Z; `run_start_utc` = `run_end_utc` =
+2026-08-19T07:16:38Z — thirty-one seconds after lock, and the run
+completes inside one second. Python 3.14.3, `code_version`
+`f06f6f3c…`. Artifacts `results/sub_integer_base_scan.json` (177,989 B)
+and `results/O45_sub_integer_base_scan_run1.log` (50,589 B, 746 lines).
+`pi2n_cache.json` read, not written; nothing under `imported/`,
+`lean/` or `preregs/` opened for writing.
+
+**Sidecar.** `preregs/sub_integer_base_scan_v1_20260818.sha256` reads
+`7985c94015bab8d8f2e606b69aaeac79150ccec1d4ec9d04bca7db177c02aaf5`, and
+the Run record's `post_compute_sha256` is the same string — so no
+parameter, hypothesis or decision-rule text drifted between lock and
+compute.
+
+**Check 1, π backend.** `primecountpy.prime_pi` 0.2.1, **33 of 33**
+audit comparisons equal against `pi2n_cache.json`, including
+`π(2^32) = 203280221` backend and cache. PASS.
+
+**Check 2, geometry.** All eleven bases recompute `r_max`,
+`cells_at_d_ge_1`, `r_thick` and `resolved_cells` equal to the locked
+table — `geometry_matches_locked` true for every base. Minimum relative
+distance of any `b^r` to an integer over the whole support is
+**1.665e−12** at antiphase `k = 1` and `k = 2`, the same number the
+prereg pre-computed, forty-eight orders above the dps-60 floor and far
+above the 1e−30 determinacy threshold. `root_selfcheck_failures` 0 at
+both refinement bases. `summary.compromised_conditions` is `[]`.
+
+**Check 3, base-2 reproduction.** Through the identical code path at the
+same value ceiling, base 2 rebuilds `[[2,1],[4,1],[8,3],[20,6]]` over
+496 cells — the known set, no more and no fewer. A reproduction check,
+not evidence; the prereg says so and so does the log.
+
+**Check 4/5, the scan and the rate test.** The primary statistic:
+
+```text
+  resolved cells   base 2   496     sub-2  37178
+                                    family 20661  antiphase 11236  refinement 5281
+  Z_2  (base 2, resolved)         : 4
+  Z    (sub-2, resolved)          : 121
+  Z*   (of those, S >= 88)        : 35     family 13  antiphase 18  refinement 4
+  E[Z] under H0                   : 299.822580645161  (locked value, reproduced)
+  conditional-binomial p (PRIMARY): 8.394656e-02   [exact]
+  Poisson p (SECONDARY)           : 6.367145e-32
+  alpha_level                     : 0.05, one-sided
+```
+
+Zeros on the **full** support total 240 across the ten sub-2 bases
+against 121 resolved — the resolved criterion discards a little over
+half of them, which is what entry 50 designed it to do. Per base,
+resolved zeros: family 29 / 14 / 9 / 7, antiphase 21 / 15 / 10 / 2,
+refinement 11 (`2^(1/2)`) and 3 (`2^(1/3)`). Every one of the eleven
+bases has at least two resolved zeros.
+
+**The mechanical output of the decision rule is `fineness`**, by
+`Z* ≥ 1`, not `family_only`, not `refinement_only`, and
+`p = 0.0839 > 0.05`. That is the rule's arithmetic and nothing more.
+`summary.verdict` is `null` by design and `verdict_note` reads "the
+verdict line is Julian's to write in the prereg's Run record"; the Run
+record's `- verdict:` line is **empty**. This entry does not fill it and
+does not read the branch as a result.
+
+**What the run eliminates, stated in the prereg's own terms.**
+`intrinsic_base_two` required `Z = 0`; `Z = 121`. So "sub-2 bases stay
+empty" is off the table on the resolved stratum as well as on the full
+one — and not marginally: mass-clearing zeros appear in **all three**
+arms, family, antiphase and refinement alike, which is what closes
+`family_only` (`Z*_antiphase = 18 ≠ 0`) and `refinement_only`
+(`Z*_family = 13 ≠ 0`) as well. `thin_rung_forced` needed `Z* = 0` and
+`Z* = 35`, so the surplus is not confined to the thin end of the
+stratum. The one thing the run does **not** eliminate is a rate below
+base 2's: `p = 0.0839` sits above alpha, but 121 against an H0
+expectation of 299.8 is well under half, and the prereg's own stated
+weakness 1 — resolved cells at neighbouring `r` share most of their
+stencil, so the independence assumption makes `p` anti-conservative
+*against* H0 — cuts in exactly that direction.
+
+**A wrinkle in the new convention, undecided.** Lines 5–8 of the prereg,
+immediately under `STATUS: **LOCKED**`, read: "There is no sidecar
+`sub_integer_base_scan_v1_20260818.sha256` yet; the sidecar is the
+authority on lock, and its absence means this prereg is not locked."
+That text is now false — the sidecar exists — and it sits **inside the
+hashed region**, which measurement confirms: the sidecar hash is the
+SHA-256 of the file's first 680 lines, and lines 5–8 are among them. So
+the sidecar pins a paragraph asserting the file is unlocked, three
+lines below a STATUS block asserting it is. The file cannot be edited
+to fix it without breaking the sidecar match that the Run record
+depends on. This is a wrinkle in the naming convention entry 44
+introduced — the drafting boilerplate assumes the pre-lock state and
+nothing strips it at lock time — not a defect in this prereg's
+protocol, every parameter of which reproduced. Julian's call.
+
+No outcome marked.
+
+---
+
+## 2026-08-19 — Entry 50 — the O45 prereg: fineness against intrinsic, and the empty-rung discovery that forced the resolved stratum
+type: prereg
+refs: 44, 45, 49
+
+`preregs/sub_integer_base_scan_v1_20260818.md`, 695 lines as it now
+stands. It asks one question of entry 49's 4-in-496 / 0-in-496 result:
+
+```text
+  fineness   base 2 is the finest INTEGER sampling of the scaling flow,
+             so bases BELOW 2 - finer still - should produce zeros at
+             at least base 2's per-resolved-cell rate.       [H0]
+  intrinsic  base 2 is special in itself, so sub-2 bases stay empty
+             and the point prediction is Z = 0.              [H1]
+```
+
+The fork is licensed by entry 45's finding that `pair_identity` takes
+**no hypothesis on `b`**, and by `lean/Chain.lean`'s `C1` needing only
+`0 < b`: `π(b^r) − π(b^(r−1))` is well defined for real `b > 1` and the
+cells stay integers. `E[Z] = Z_2·C_sub/C_2 = 4 × 37178 / 496 =
+299.822580645161`, stated as a number before the run.
+
+**Four drafting complications, all resolved inside the locked text.**
+The section is headed "The three complications" and then lists four,
+`(a)` through `(d)` — a wording slip inside the hashed region, recorded
+not corrected.
+
+*(a) The pair identity is only approximate at non-integer `b`.*
+`tableFrom_add_window` (linearity plus locality) is exact for any seed
+rows and any `b`; `tableFrom_of_geometric` needs the rung
+`(b^(r−1), b^r]` to hold exactly `(b−1)·b^(r−1)` integers, and at real
+`b` it holds `⌊b^r⌋ − ⌊b^(r−1)⌋`. So O44's `nu` denominator is not
+reused as such. Two totals are locked and both reported:
+
+```text
+  total_geo (b,r,d) = (b-1)^(d+1) * b^(r-1-d)        O44's denominator
+  total_true(b,r,d) = sum_k (-1)^k C(d,k) W(r-k),  W(r)=|b^r|-|b^(r-1)|
+```
+
+The drift is not small: at `b = exp(π/(2γ₁))`, `(199,20)` has
+`total_geo = 1.16e−11` against `total_true = −86804`, and 9601 of that
+base's 19701 cells have `total_true ≤ 0`, which a positive geometric
+quantity cannot do. `nu_pair = |cell|/|total_true|` is primary.
+
+*(b) Fair comparison is by value range, not by `r`.* Bases are matched
+on a **value ceiling** `V = 2^32` — base 2's extent in entry 49 — with
+`r_max(b)` the largest `r` with `b^r ≤ V`, locked per base rather than
+recomputed. `b = 1.11754` needs `r = 199` to reach where base 2 needs
+32, and carries 19701 cells against 496; that asymmetry *is* the
+fineness prediction, so every count is reported with its denominator.
+Second consequence, load-bearing: `ln(b^r) ≤ ln V` at every base and
+rung, so the prime density `1/ln x` entering any cell is bounded
+identically across the list — density-matched by construction, not by
+correction.
+
+*(c) `(b−1)^(d+1) < 1` below 2, and the naive reading of it is wrong.*
+`PairIdentity.coeff_eq_one_iff_base_two` covers integer `b ≥ 2` only.
+For `1 < b < 2` the coefficient **shrinks** with depth: `total_geo` at
+the ceiling drops below 1 from `d = 9, 13, 17, 21` at the four family
+bases, against supports running to `d = 198, 98, 65, 48`. Read naively
+that is O43's magnitude floor in reverse, forcing zeros over nearly the
+whole sub-2 support. It is wrong for exactly the reason in (a):
+`total_geo` is not the size of anything at a non-integer base. Floor
+jaggedness is `O(1)` per rung and the stencil's L1 weight is `2^d`, so
+deep sub-integer cells are **large**. The prereg's own sentence: "The
+reverse magnitude floor, in the form O43 met it, does not apply."
+
+*(d) A third outcome exists.* Zeros might appear only at the optimal-base
+family `exp(πk/(2γ₁))`, which is neither account. Hence **non-family
+controls in the same range**: four antiphase bases `exp(π(2k+1)/(4γ₁))`,
+interleaved between consecutive family members and exactly half a
+quarter-turn off the family in its own coordinate; and two refinement
+controls `2^(1/2)`, `2^(1/3)`, of which base 2 is a literal
+sub-sampling — the sharpest available test of fineness. Eleven bases,
+`C_2 = 496` against `C_sub = 37178`, split 20661 family / 16517
+non-family, so `family_only` cannot be an artefact of the controls
+having had no chance. Labels `family_only` and `refinement_only` exist
+for it.
+
+**The discovery that shaped the design, and it fired before the run.**
+At the finest base `b = exp(π/(2γ₁)) = 1.11754…`, `⌊b^r⌋ = 1` for
+`r = 0…6` — the first six rungs hold no integers at all. Under this
+project's convention (`π(1) = 0`) that gives `N(r) = 0` there and
+`cell(2,1) = N(2) − N(1) = 0` **exactly**, a zero about an empty rung
+and nothing else. Every sub-2 base has such a region. So `Z_full ≥ 1`
+was guaranteed before a single prime was counted and "sub-integer bases
+stay empty" was already false on the full support — for reasons
+unrelated to the hypothesis. That is why the primary statistic is the
+**resolved** count: a cell counts only if every rung its stencil reads
+is expected to hold at least one prime, `W(r')/ln(b^(r')) ≥ 1` for all
+`r' ∈ [r−d, r]`, equivalently `r − d ≥ r_thick(b)`. Pure geometry, no
+prime counted to evaluate it, so `r_thick` and `resolved_cells` are
+locked per base. At `b = 2` the criterion holds over the entire support
+(`r_thick = 1`, all 496 cells, all four zeros kept) — one more sense in
+which base 2 is the boundary case.
+
+**Decision rule and vacuousness.** Eight labels, precedence
+`compromised > thin_rung_forced > family_only > refinement_only >
+fineness > rate_below_base_two > intrinsic_base_two > ambiguous`, keyed
+on `Z`, on `Z*` (resolved zeros with `S ≥ mass_floor`) and on an exact
+conditional-binomial `p`. The pre-computed p-table gives the smallest
+`Z` with `p > 0.05` as **101** — a third of H0's own point prediction —
+so `fineness` needs 101 mass-clearing zeros in 37178 resolved cells and
+`intrinsic_base_two` needs none. Both directions reachable.
+
+**Provenance, and the non-blind half.** `mass_floor = 88` is
+`S(8,3)` at base 2, chosen with base 2's four masses `S = 2, 4, 88,
+492384` already in view; the resolved criterion was fixed after the same
+base-2 rebuild. Both are **calibrated on already-inspected data** and
+only their application to the sub-2 bases is blind. Entry 49's results
+were read in full while drafting. The genuinely blind arm is that no
+sub-integer base had ever been computed here by anyone — the drafting
+agent evaluated π at no sub-integer argument, and every locked geometric
+quantity came from `⌊b^r⌋` alone.
+
+**First prereg locked under the no-status-in-filename convention** that
+entry 44 recorded into `CLAUDE.md`. Named
+`sub_integer_base_scan_v1_20260818.md` at creation, no `_locked_`
+infix, with the sidecar as the authority on lock. `lock_written_at`
+2026-08-19T07:16:07Z, `locked_by` julian, `pre_compute_sha256` PENDING.
+Measured for this entry, the sidecar
+`7985c94015bab8d8f2e606b69aaeac79150ccec1d4ec9d04bca7db177c02aaf5`
+is the SHA-256 of the file's **first 680 lines** — everything through
+`- locked_by: julian` — so the locked region is the whole protocol and
+the `## Run record` section was appended afterward.
+
+No outcome marked.
+
+---
+
+## 2026-08-18 — Entry 49 — O44: base 2 is the only integer base with exact zeros, and entry 17's conclusion survives by a route entry 17 did not take
+type: run
+refs: 17, 45, 46, 47
+
+`O44_cross_base_zero_scan.py`, one execution, **EXPLORATORY** — no
+prereg, no hypothesis, no decision rule, nothing here is a verdict.
+Invocation read back from `params.argv`:
+
+```text
+python3 O44_cross_base_zero_scan.py --data-dir imported/lattice_mapper/32bit \
+    --bases 2,3,4,5,6,7,8,9 --d-min 1 --top-k 10 --pair-check --variant-scan \
+    --out results/cross_base_zero_scan.json
+```
+
+`run_start_utc` = `run_end_utc` = 2026-08-19T06:30:13Z, completed;
+Python 3.14.3; `code_version` `3ae5a3f1…`. Sixteen of the twenty-two
+imported CSVs read, all read-only. Artifacts
+`results/cross_base_zero_scan.json` (99,469 B) and
+`results/O44_cross_base_zero_scan_run1.log` (25,995 B). The convention
+in force is the **imported** one — 2 and 3 excluded as lattice (entry
+46) — stated in `constants.convention` and `constants.convention_adjusted_for
+= false`, so low-`r` numbers here do not compare with anything in
+`results/`.
+
+**The coordinate.** Raw `|cell|` compares across neither bases nor
+depths, so O44 divides the pair identity's total out:
+`nu(b,r,d) = |cell| / [(b−1)^(d+1)·b^(r−1−d)]`, every ranking on an
+exact `Fraction`. That denominator is `pair_identity` of
+`lean/PairIdentity.lean`, which entry 45 recorded as carrying **no
+hypothesis on `b`** — which is what licenses using it at eight bases
+at once.
+
+**Extent and exact zeros at `d ≥ 1`** (`summary.per_base`):
+
+```text
+   b  file                              maxr maxd  cells  d>=1  zeros
+   2  dyadic_difference_table_32.csv      32   31    528   496      4
+   3  triadic_difference_table_32.csv     32   31    528   496      0
+   4  tetradic_difference_table_32.csv    32   31    528   496      0
+   5  pentadic_difference_table_27.csv    27   26    378   351      0
+   6  hexadic_difference_table_24.csv     24   23    300   276      0
+   7  heptadic_difference_table_22.csv    22   21    253   231      0
+   8  octadic_difference_table_21.csv     21   20    231   210      0
+   9  enneadic_difference_table_20.csv    20   19    210   190      0
+```
+
+Base 2's four are `(2,1) (4,1) (8,3) (20,6)` — the same set entry 47
+read out of this same file. Base 3 is empty over the **identical** 496
+cells, same ceiling and same support, so 4-in-496 against 0-in-496 is
+the one uncensored comparison the table contains.
+
+**Bases 4–9 are uninformative, and the reason is visible in where their
+minima sit.** Every one of them takes its minimum `nu` on the **corner
+cell** `(max r, max d)`: `(32,31)`, `(27,26)`, `(24,23)`, `(22,21)`,
+`(21,20)`, `(20,19)`, at `nu` 0.0134, 0.0186, 0.0196, 0.0203, 0.0203,
+0.0205. A minimum on the boundary of the support is a statement about
+where the table stops, not about a floor. Bases 5–9 are additionally
+extent-censored in `r_max` (27, 24, 22, 21, 20); base 4 is **not** — it
+reaches `r = 32` with the same 496 cells as bases 2 and 3, and is simply
+empty. Recorded because the two facts are distinct and only base 4
+carries both a full extent and a corner minimum.
+
+**The correction to entry 17, and it does not damage entry 17's
+conclusion.** Entry 17 records of `triadic_difference_table_32.csv`
+that "Base 3 reaches **1**, twice". Both of those cells are here and
+both read `|cell| = 1` exactly — `(3,2)` and `(5,4)`, re-read from the
+imported copy for this entry. But their totals are `2^3·3^0 = 8` and
+`2^5·3^0 = 32`, so normalised they are `0.125` and `0.03125`, and
+**neither is in base 3's ten smallest `nu`** (`summary.per_base[1].smallest_nu`,
+which runs 9.77e−4 to 7.87e−3). Base 3's actual closest approach is
+
+```text
+  base 3   (11,10)   cell 2   total 2048   nu = 2/2048 = 9.765625e-04
+  base 2   (13, 5)   cell 1   total  128   nu = 1/128   = 7.8125e-03
+```
+
+so base 3 comes **eight times closer proportionally** than base 2's
+smallest nonzero cell does — exactly `8`, both being dyadic rationals.
+Entry 17 argued base-2 extremality from magnitude and then recorded
+that the magnitude argument fails to separate the bases. It fails
+harder than entry 17 said: on the normalised reading base 3 is the
+*closer* of the two and still never lands. Entry 17's conclusion — base
+2 is where the zeros are — survives, but by the route "base 3 gets
+closer and still misses", not "base 2 gets closest".
+
+**The pair identity holds on data this project did not generate.**
+Three matched pairs, `summary.pair_identity_checks`:
+
+```text
+  plain prime + plain composite                  528 cells   0 mismatches
+  prime_full_silenced + plain composite          410 cells   0 mismatches
+  plain prime + (composite − prime)              351 cells   0 mismatches
+                                       total    1289 cells   0 mismatches
+```
+
+The third runs in mode `diff_plus_2p`. The five unmatched variants in
+§ 4b mismatch at 90, 91, 40, 59, 59 cells and are flagged
+`expected_to_mismatch = true` in the JSON — entry 47's arithmetic, put
+on the record rather than assumed.
+
+**One anomaly, surfaced and not chased.**
+`imported/lattice_mapper/32bit/dyadic_diff_full_silenced_32.csv` is one
+of the six 32bit CSVs O44 did **not** read. Measured for this entry: it
+is exactly `composite_full_silenced − prime_full_silenced`, 410 of 410
+cells, so it is a `C − P` table like `composite_minus_prime_32.csv`.
+But it satisfies the identity against **nothing on disk**. In mode
+`sum` it mismatches all twenty of the directory's other regime-keyed
+CSVs (the wide `prime_composite_sidebyside_32.csv` excluded); in mode
+`diff_plus_2p` its best partner is either dyadic prime arm at **59**
+mismatches of 410 — and 59 is precisely the number of cells at which
+its own parent pair fails, `C_fs + P_fs ≠ 2^(r−1−d)` at 59 of 410. Entry
+47 cites this file as agreeing at `(4,1) = 6`, `(8,3) = 16`,
+`(20,6) = 8192`, which it does; what it does not do is belong to a pair.
+Not chased here.
+
+Still EXPLORATORY. Nothing above is a verdict and nothing is decided.
+
+No outcome marked.
+
+---
+
+## 2026-08-18 — Entry 48 — O33 was still reading the external lattice_mapper directory; repointed at the vendored copy, re-run, non-semantic
+type: instrument-fix
+refs: 36, 46
+
+Entry 46 imported the eight base-series difference tables into
+`imported/lattice_mapper/32bit/`, byte-for-byte and SHA-256 verified, so
+that the evidence would sit with the work that cites it.
+`O33_base_ladder_crossing.py` was not repointed. Its `DEFAULT_DATA_DIR`
+still named
+`/Users/juliansambrano/GitHub/lattice_mapper/difference_tables/32bit`, a
+path outside this repo, and `results/base_ladder_crossing.json` →
+`params.data_dir` records exactly that string. The vendored copy did not
+protect the instrument: had `lattice_mapper/` been moved, renamed or
+regenerated, O33 would have failed or silently read something else, with
+27 verified files sitting unused two directories away. The import closed
+the provenance gap for the *reader*; it did not close it for the *script*.
+
+**Sites changed.** Three, all path, none logic. Line numbers before → after:
+
+```text
+  15-19  →  15-28   docstring, "THE SOURCE TABLES" preamble — the source
+                    directory paragraph now names imported/lattice_mapper/32bit/,
+                    records the byte-for-byte copy and points at the import
+                    manifest and entry 46, and states that the run of record
+                    predates the repoint
+ 194-196 →  202-205  docstring EXAMPLE — the explicit
+                    --data-dir /Users/.../difference_tables/32bit line dropped,
+                    since the default is now correct; a note added that an
+                    explicit --data-dir is used verbatim and should be absolute
+ 220-221 →  230-233  DEFAULT_DATA_DIR, the default constant
+```
+
+The new default is
+
+```python
+DEFAULT_DATA_DIR = os.path.join(_HERE, "imported", "lattice_mapper", "32bit")
+```
+
+anchored to `_HERE = os.path.dirname(os.path.abspath(__file__))`, which
+the file already defined at what is now line 227 for `DEFAULT_RESULTS_DIR`.
+That is the house pattern, not a new one: `O16_centered_difference_table.py`
+lines 169-171 anchor `files (2)` the same way, and `05`, `06`, `07`, `O11`
+through `O23`, `O42` and `O43` all anchor their caches and outputs to `_HERE`.
+An absolute path was rejected in favour of it so the repo stays portable.
+The `--data-dir` flag's help string interpolates `DEFAULT_DATA_DIR`, so it
+followed with no separate edit. `grep -n difference_tables
+O33_base_ladder_crossing.py` now returns one line, 23, inside the docstring
+sentence that records where the vendored files came from.
+
+**Left alone, deliberately.** `constants.source_project` at line 1012 still
+reads `/Users/juliansambrano/GitHub/lattice_mapper (READ ONLY; nothing
+written there)`. That field records where the data *originated*, not where
+this script *reads*, and it remains true — the vendored copy came from
+there and the source tree is still untouched. Changing it would have moved
+a leaf in the `constants` block, and the whole point of the comparison
+below is that `constants` did not move. Same reasoning for the docstring's
+scaffold-silencing section (lines 104-109) and
+`constants.source_silencing`, which cite
+`lattice_mapper/difference_table.py:75` as the generator: that is a
+statement about provenance of the convention, and the generator is not
+vendored here.
+
+**Script SHA-256, before and after** (`shasum -a 256
+O33_base_ladder_crossing.py`, run either side of the edit):
+
+```text
+  before  ffa3d5b746fd7c66cc0c6161d6532dd0d76d77ee4f0a882bec3b22eb2bf227ac
+  after   55e1593b0bd950679c37684ada7ab614c346ea89c003b6cf40e37f0a1d329a01
+```
+
+The before hash is the same string carried in
+`results/base_ladder_crossing.json` → `params.code_version`, so run 1
+executed the pre-fix bytes and stamped them, and nothing had touched the
+file between that run and this edit. 1038 lines before, 1050 after;
+`python3 -m py_compile` clean.
+
+**Re-run, to new paths.** Run 1's own invocation, read from
+`results/base_ladder_crossing.json` → `params.argv`, which is
+`['O33_base_ladder_crossing.py', '--min-row', '8']`, with `--out` and
+`--out-csv` redirected so that neither run-1 artifact could be touched.
+`--min-row 8` is also the flag's default; every other parameter ran at
+default in both runs.
+
+```text
+python3 O33_base_ladder_crossing.py --min-row 8 \
+    --out    /Users/juliansambrano/GitHub/Primebeat_081426/results/base_ladder_crossing_run2.json \
+    --out-csv /Users/juliansambrano/GitHub/Primebeat_081426/results/base_ladder_crossing_run2.csv \
+    2>&1 | tee /Users/juliansambrano/GitHub/Primebeat_081426/results/O33_base_ladder_crossing_run2.log
+```
+
+`run_start_utc` and `run_end_utc` both 2026-08-19T05:49:55Z, read from
+`results/base_ladder_crossing_run2.json` → `params`; the run completes
+inside one second. Python 3.14.3, mpmath 1.3.0, the same interpreter
+string run 1 recorded. There was no run-1 log — `results/` held only
+`base_ladder_crossing.json` and `base_ladder_crossing.csv` for O33 — so
+`results/O33_base_ladder_crossing_run2.log` is the first log this
+instrument has, named to the house `<script>_run2.log` pattern rather than
+back-dated to a run-1 name that never existed.
+
+Artifacts: `results/base_ladder_crossing_run2.json` (215,742 B),
+`results/base_ladder_crossing_run2.csv` (14,600 B),
+`results/O33_base_ladder_crossing_run2.log` (19,014 B, 236 lines).
+
+**The change is non-semantic, and here is the evidence.** Both payloads
+flattened to leaves and compared key by key. Run 1 has 6432 leaves, run 2
+has 6436; the four extra are the four extra `params.argv` elements
+(`--out`, its path, `--out-csv`, its path — 3 elements against 7). Of the
+6429 leaves that are not `params.argv`, **fifteen** differ, every one of
+them metadata:
+
+```text
+  /generated_utc              2026-08-18T03:25:29Z  ->  2026-08-19T05:49:55Z
+  /params/run_start_utc       2026-08-18T03:25:29Z  ->  2026-08-19T05:49:55Z
+  /params/run_end_utc         2026-08-18T03:25:29Z  ->  2026-08-19T05:49:55Z
+  /params/code_version        ffa3d5b7...           ->  55e1593b...
+  /params/data_dir            .../lattice_mapper/difference_tables/32bit
+                                                    ->  .../Primebeat_081426/imported/lattice_mapper/32bit
+  /params/out                 base_ladder_crossing.json  ->  ..._run2.json
+  /params/out_csv             base_ladder_crossing.csv   ->  ..._run2.csv
+  /params/source_files[0..7]/path   eight file paths, external -> vendored
+```
+
+`data_dir` and the eight `source_files` paths are the fix itself.
+`code_version` moving is expected: `_code_version()` hashes `__file__` at
+write time, so a changed file changes the stamp even when behaviour does
+not.
+
+Nothing else moved. The `constants`, `summary` and `rows` blocks are
+**byte-identical** under a sorted-key JSON dump — all 210 rows, all eight
+per-base summaries, all eight schema verifications, all eight unsilence
+checks. So are `schema_version`, `script` and `script_path`. And the
+`results/base_ladder_crossing_run2.csv` is byte-identical to
+`results/base_ladder_crossing.csv`, same SHA-256
+`f71f74b52cf923aca01e0fff8a4e4a4dfbd795302f4e1c47fba38b937d70ba94` —
+the CSV carries no timestamp, so it is the cleanest single statement of
+the result: the fix altered nothing this instrument measures.
+
+**The comparison also checks the import, and the import passes.** Within
+`params.source_files`, only `path` moved. `sha256`, `bytes`, `mtime_utc`,
+`regimes`, `n_columns`, `header_first_4`, `header_last`,
+`filename_trailing_number` and
+`filename_trailing_number_equals_regimes` are identical across the two
+runs at all eight bases. That is the load-bearing check: run 1 hashed the
+files it read at
+`/Users/juliansambrano/GitHub/lattice_mapper/difference_tables/32bit/` and
+run 2 hashed the files it read at `imported/lattice_mapper/32bit/`, and
+the hashes agree — the vendored copies *are* what the run of record read,
+demonstrated by the instrument itself rather than by the copy that made
+them. Those same eight SHA-256s agree a third time with the manifest table
+in `imported/lattice_mapper/README.md`, checked line by line for this
+entry: 8 of 8, 0 mismatches. `cp -p` preserved the mtimes, so even the
+mtime field survives the move.
+
+**Run 1 remains the run of record.** `results/base_ladder_crossing.json`
+was not opened for writing, and still reads 215,439 B at mtime
+2026-08-17 20:25 with SHA-256
+`a0a070622873f424f23cdf1ce33437c0fbc21a1027828ea501b1e820fd5a1927`;
+`results/base_ladder_crossing.csv` likewise. Entry 36 stands unamended.
+`CONTEXT.md`'s O33 bullet still says the input "lived outside this repo at
+run time … (the path `params.data_dir` records)" and that remains exactly
+true of the run it describes — the repoint changes what a *future* run
+reads, not what the recorded one did, and the bullet was deliberately not
+edited. `CONTEXT.md` and `REFERENCES.md` were not touched by this pass.
+
+Still EXPLORATORY. O33 has no prereg and fires no decision rule; run 2
+reproduces run 1's numbers and reproduces its failed pre-stated
+prediction with them — `summary.qualitative_split_matches_prestated`
+reads `false` in both files, `bases_observed_crossing` `[2, 3]` in both.
+Nothing here is a verdict.
+
+No outcome marked.
+
+---
+
 ## 2026-08-18 — Entry 47 — Is `(2,1)` a cancellation or a seeding artifact? The check splits the four zeros deep-versus-shallow
 type: result-triage
 refs: 12, 17, 29, 33, 36, 45, 46

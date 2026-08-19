@@ -1,0 +1,126 @@
+==============================================================================
+O46 - MASS-DENSITY CHECK   (EXPLORATORY - NOT A VERDICT)
+==============================================================================
+  started (UTC)          : 2026-08-19T07:43:07Z
+  status                 : exploratory
+  reads O45 script       : /Users/juliansambrano/GitHub/Primebeat_081426/O45_sub_integer_base_scan.py
+  reads O45 results      : /Users/juliansambrano/GitHub/Primebeat_081426/results/sub_integer_base_scan.json
+  prereg (context only)  : preregs/sub_integer_base_scan_v1_20260818.md
+  stratum                : O45's resolved_criterion, r - d >= r_thick(b), d >= 1
+  pi backend             : primecountpy.prime_pi 0.2.1
+  mpmath dps             : 80  (sum of 1/S only)
+  sampling               : NONE - every resolved cell is used
+  python                 : 3.14.3
+  code_version (sha256)  : bd851bc86fceac5149940ccb0dbc673f7fc12f591b78b9c00ea9942f7577d95d
+
+  This script is EXPLORATORY.  It tests no preregistered
+  hypothesis, computes no p-value, and stamps nothing.  Nothing
+  printed here is a verdict.
+
+------------------------------------------------------------------------------
+THE PREDICTION BEING CHECKED
+------------------------------------------------------------------------------
+  mass_bound (prereg, locked, exact):  |cell(r,d)| <= S(r,d),
+  S(r,d) = sum_k C(d,k) N(r-k).  A cell is a signed integer in
+  [-S, S].  If cell values were spread over that range, the
+  chance of landing exactly on 0 would go like 1/S, giving a
+  parameter-free prediction with no free constant:
+
+      density x mean(S)   constant across bases
+      density  =  mean(1/S)                 [the sharper form]
+
+  The premise is checked too, at the |cell|/S distribution.
+
+  scanning 2 ...
+  scanning exp(pi*1/(2*g1)) ...
+  scanning exp(pi*2/(2*g1)) ...
+  scanning exp(pi*3/(2*g1)) ...
+  scanning exp(pi*4/(2*g1)) ...
+  scanning exp(pi*3/(4*g1)) ...
+  scanning exp(pi*5/(4*g1)) ...
+  scanning exp(pi*7/(4*g1)) ...
+  scanning exp(pi*9/(4*g1)) ...
+  scanning 2**(1/2) ...
+  scanning 2**(1/3) ...
+
+------------------------------------------------------------------------------
+1.  PER-BASE TABLE  (resolved stratum, d >= 1)
+------------------------------------------------------------------------------
+  arm                 b   n_res n_zero     density      mean(S)   mean(1/S)   dens*meanS dens/mean(1/S)
+  reference    2.000000     496      4 0.0080645161 3.8121649e+11 0.0046927015 3.0743265e+9      1.7185231
+  family       1.117541   14028     29 0.002067294 2.0591474e+50 0.00083687088 4.2568631e+47      2.4702664
+  family       1.248897    3828     14 0.0036572623 9.5801271e+26 0.0015872562 3.5037038e+24      2.3041411
+  family       1.395693    1770      9 0.0050847458 1.2185418e+19 0.0019353464 6.1959751e+16      2.6273053
+  family       1.559743    1035      7 0.006763285 1.4709292e+15 0.0027860395 9.9483133e+12      2.4275625
+  antiphase    1.181394    6441     21 0.0032603633 3.7977092e+34 0.00094853387 1.2381912e+32      3.4372661
+  antiphase    1.320256    2556     15 0.0058685446 2.4184175e+22 0.0020247917 1.4192591e+20      2.8983449
+  antiphase    1.475440    1378     10 0.007256894 1.4565586e+17 0.002303594 1.0570091e+15      3.1502487
+  antiphase    1.648864     861      2 0.0023228804 1.3817713e+14 0.0029087322 3.2096895e+11     0.79858859
+  refinement   1.414214    1711     11 0.0064289889 6.5779998e+18 0.0023009174 4.2289888e+16       2.794098
+  refinement   1.259921    3570      3 0.00084033613 1.5468382e+26 0.001360906 1.299864e+23     0.61748288
+
+  harmonic mean of S = 1/mean(1/S), per base:
+    2                    b = 2.000000   harm(S) =    213.09687   1/harm(S) = 0.0046927015
+    exp(pi*1/(2*g1))     b = 1.117541   harm(S) =    1194.9275   1/harm(S) = 0.00083687088
+    exp(pi*2/(2*g1))     b = 1.248897   harm(S) =    630.01802   1/harm(S) = 0.0015872562
+    exp(pi*3/(2*g1))     b = 1.395693   harm(S) =    516.70338   1/harm(S) = 0.0019353464
+    exp(pi*4/(2*g1))     b = 1.559743   harm(S) =    358.93246   1/harm(S) = 0.0027860395
+    exp(pi*3/(4*g1))     b = 1.181394   harm(S) =    1054.2586   1/harm(S) = 0.00094853387
+    exp(pi*5/(4*g1))     b = 1.320256   harm(S) =    493.87797   1/harm(S) = 0.0020247917
+    exp(pi*7/(4*g1))     b = 1.475440   harm(S) =    434.10426   1/harm(S) = 0.002303594
+    exp(pi*9/(4*g1))     b = 1.648864   harm(S) =    343.79239   1/harm(S) = 0.0029087322
+    2**(1/2)             b = 1.414214   harm(S) =    434.60925   1/harm(S) = 0.0023009174
+    2**(1/3)             b = 1.259921   harm(S) =    734.80463   1/harm(S) = 0.001360906
+
+  where the mass sits, and where the zeros sit:
+    label                 median S (all res)   median S at zeros    max S at zeros
+    2                             24048430.0                46.0          492384.0
+    exp(pi*1/(2*g1))           3.5547931e+18                28.0           73004.0
+    exp(pi*2/(2*g1))           5.2030307e+11                 8.0             376.0
+    exp(pi*3/(2*g1))            3.0040622e+9                36.0             724.0
+    exp(pi*4/(2*g1))            2.1715538e+8                22.0             332.0
+    exp(pi*3/(4*g1))           1.0010122e+14                24.0           46120.0
+    exp(pi*5/(4*g1))           2.3075489e+10               116.0           87160.0
+    exp(pi*7/(4*g1))            8.8138815e+8                34.0            1208.0
+    exp(pi*9/(4*g1))            1.1964246e+8               516.0            1026.0
+    2**(1/2)                    2.5540148e+9                30.0         1371038.0
+    2**(1/3)                   3.4248156e+11                 8.0              20.0
+
+------------------------------------------------------------------------------
+2.  IS EITHER QUANTITY CONSTANT ACROSS THE ELEVEN BASES?
+------------------------------------------------------------------------------
+  density x mean(S)      min 3.07433e+09   max 4.25686e+47   spread factor 1.38465e+38
+  density / mean(1/S)    min 0.617483   max 3.43727   spread factor 5.56658
+
+  A spread factor of 1 would be exactly constant.  The number is
+  reported as it comes out; no band is asserted around it here.
+
+------------------------------------------------------------------------------
+3.  DOES THE UNIFORM-SPREAD PREMISE HOLD?  |cell| / S OVER THE
+    RESOLVED STRATUM  (0 = exact zero, 1 = the mass bound met)
+------------------------------------------------------------------------------
+  label                        b        q10       q25    median       q75       q90       max
+  2                     2.000000   0.000058  0.000260  0.001248  0.010425  0.099331  0.428571
+  exp(pi*1/(2*g1))      1.117541   0.000078  0.000180  0.001076  0.004032  0.018349  1.000000
+  exp(pi*2/(2*g1))      1.248897   0.000049  0.000161  0.000682  0.001352  0.015103  0.333333
+  exp(pi*3/(2*g1))      1.395693   0.000022  0.000093  0.000550  0.003676  0.016609  1.000000
+  exp(pi*4/(2*g1))      1.559743   0.000042  0.000366  0.001793  0.004463  0.022249  0.333333
+  exp(pi*3/(4*g1))      1.181394   0.000063  0.000202  0.000760  0.005659  0.024427  1.000000
+  exp(pi*5/(4*g1))      1.320256   0.000025  0.000178  0.000688  0.006597  0.022149  0.500000
+  exp(pi*7/(4*g1))      1.475440   0.000021  0.000161  0.000392  0.004444  0.019822  0.333333
+  exp(pi*9/(4*g1))      1.648864   0.000070  0.000330  0.001124  0.005995  0.054222  0.500000
+  2**(1/2)              1.414214   0.000015  0.000043  0.000352  0.002879  0.025837  0.333333
+  2**(1/3)              1.259921   0.000087  0.000521  0.002203  0.009151  0.027662  0.500000
+
+------------------------------------------------------------------------------
+4.  INTEGRITY
+------------------------------------------------------------------------------
+  bases disagreeing with the prereg's locked table : none
+  bases disagreeing with O45's run of record       : none
+  mass-bound violations (|cell| > S), all bases    : 0
+  resolved cells with S = 0 (zero forced)          : 0
+  S recurrence vs O45 stencil_mass(): 2297 cells checked, 0 mismatches
+
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/mass_density_check.json
+  finished (UTC): 2026-08-19T07:43:07Z

@@ -42,8 +42,12 @@ Locate or reconstruct before treating any script's framing as grounded:
 
 ## Sibling repos
 
-Read-only for orientation. No code is shared in either direction — no
-imports, no shared module, no filename collisions.
+Read-only for orientation. **No code is shared in either direction** — no
+imports, no shared module, no filename collisions. `primebeat/` and
+`primebeat_lean/` share no data either. `lattice_mapper/` is the
+exception on the data side: 27 of its difference-table files are
+vendored in under `imported/lattice_mapper/`, on a convention that is
+not this bench's.
 
 ### `/Users/juliansambrano/GitHub/primebeat/`
 
@@ -64,6 +68,26 @@ Lean 4 formal companion. This is where the shared vocabulary lives:
 - `docs/A_Connes_rh_2026.pdf`
 - `docs/Spectral_Structural_Duality_Sambrano_2026.pdf`
 - `context.md`
+
+### `/Users/juliansambrano/GitHub/lattice_mapper/`
+
+Source of the b-adic difference tables. Read-only and no code shared,
+but its **data is imported**: 27 files from `difference_tables/`, the
+`32bit/` and `64bit/` split preserved, copied byte-for-byte (`cp -p`) on
+2026-08-18 with every file SHA-256 verified source-vs-destination, into
+`imported/lattice_mapper/`, which carries its own manifest with the full
+hash and source-mtime table. `O33_base_ladder_crossing.py` reads eight
+of these tables; its run of record read them at the source path.
+
+The tables use power-regime **backward** differences with **2 and 3
+excluded as lattice rather than counted as primes**
+(`difference_table.py:75`, `silenced_primepi`) — not the convention any
+in-repo artifact uses, so low-r numbers do not cross that boundary
+without naming the convention in force.
+`difference_tables/archive_unsilenced/` was deliberately not imported
+(forward differences, only 2 dropped, plus a third `pi_n` integer-regime
+schema in its `*_64bit_*.csv`) and remains readable in place. See
+CONTEXT.md § `imported/lattice_mapper/` and entry 46.
 
 ## Packages and environment
 

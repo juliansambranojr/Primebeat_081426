@@ -41,7 +41,7 @@ break it.
 | O30 | `O30_silence_scaffold_primes.py` | Zeroing 2,3,5's counts — do the deep zeros survive? |
 | O31 | `O31_excise_scaffold_primes.py` | Deleting 2,3,5 from the line — do they survive? |
 | O32 | `O32_excised_gamma_check.py` | Do the detected γ survive excision? |
-| O33 | `O33_base_ladder_crossing.py` | Do bases 2–9 cross depth where the transfer function says? |
+| O33 | `O33_base_ladder_crossing.py` | Do bases 2–9 cross depth where the transfer function says? (reads the eight base tables in `imported/lattice_mapper/32bit/`) |
 | O34 | `O34_zeta_residual_model.py` | Is the depth residual built from the zeta zeros? |
 | O34 | `O34_zeta_residual_model_FAILED.py` | Superseded — Gram series diverged, kept as evidence |
 | O35 | `O35_nearmiss_residuals.py` | Do the near-miss cells' residuals come from the zeros too? |
@@ -158,6 +158,51 @@ Holds:
   (DT-A6) — the documents the later scripts are arguing with. DT-A6 §1(b)
   is the reading O7 was built to test.
 
+## `imported/lattice_mapper/`
+
+Twenty-seven files copied byte-for-byte (`cp -p`) on 2026-08-18 from
+`/Users/juliansambrano/GitHub/lattice_mapper/difference_tables/`, every
+one SHA-256 verified source-vs-destination at copy time. The `32bit/`
+and `64bit/` split is preserved: 22 files from `32bit/` — the
+complete directory, 12 base-series tables for bases 2–9 plus 10 dyadic
+prime/composite split files — 4 from `64bit/`, and the source README
+under the name `source_README.md`.
+`imported/lattice_mapper/README.md` is the import manifest and carries
+the full SHA-256 and source-mtime table. See entry 46.
+
+**Imported evidence, not outputs of this bench.** No script here
+produced them and none should regenerate them. They are here because
+entry 17 cites `triadic_difference_table_32.csv` by a path outside this
+repo, and O33 read the same source directory; the import closes that
+provenance gap.
+
+**They use a different convention, and that is the load-bearing part.**
+Power-regime **backward** differences, `A(n) = π(bⁿ) − π(bⁿ⁻¹)`, with
+**2 and 3 excluded as lattice rather than counted as primes** —
+`A(1) = π(b) − 2` for b ≥ 3, and at b = 2 the two lattice primes
+straddle the regime boundary (2 in (1,2], 3 in (2,4]) so one is dropped
+from each of `A(1)` and `A(2)`. **No in-repo artifact uses that
+convention**: O27's block r is (b^(r−1), b^r] with 2 and 3 counted,
+`N_2(1) = 1` and `N_3(1) = 2` (entry 29), and the dyadic tables built
+here carry the same. So a number lifted from `imported/` and a number
+lifted from `results/` are **not comparable at low r** without stating
+which convention is in force. `silenceXYZ` suffixes silence the
+additionally-named primes.
+
+`archive_unsilenced/` was deliberately **not** imported: it is an
+earlier generation using **forward** differences with **only 2**
+dropped, its `*_64bit_*.csv` files carry a third schema (`pi_n`,
+integer regime), and it holds ~25 MB of binaries inside a 59 MB
+directory. Mixing conventions in one imported directory is the
+confusion this import exists to end. It stays readable in place at the
+source path above and was not moved or touched.
+
+`source_README.md` is stale and was flagged rather than fixed — it
+describes `64bit/` as an integer-regime π(n) table, but both imported
+`64bit/` files are power-regime `A_count` tables on the same convention
+as `32bit/`, verified identical to `32bit/` on all 496 overlapping
+cells. That description fits the archive's files.
+
 ## Current state of the world
 
 Status: **folded into the research program**, with the four commitment
@@ -256,7 +301,11 @@ What has been run and recorded:
   reproduces `files (2)/unit_weighted_dyadic_table.csv` across 247
   cells with 0 mismatches and returns exactly {(2,1),(4,1),(8,3),(20,6)}
   from an independent construction. The triadic table has one exact
-  zero, (2,1), and it is trivial.
+  zero, (2,1), and it is trivial. That reading is **convention-bound**:
+  O27 counts 2 and 3 as primes. The excluded-as-lattice triadic table
+  in `imported/lattice_mapper/32bit/` has no exact zero in any delta
+  column at all, its single 0 being `A_count` at r = 1, which is the
+  construction (entry 17). The two do not compare at low r.
 - **O29** — the li−R gap decays 3.53× per depth in base 2 and 2.44× in
   base 3, against (1−b^(−1/2)) predicting 3.414 and 2.366. Independent
   confirmation of the transfer function. Verified at dps 120 and 200,
@@ -264,7 +313,13 @@ What has been run and recorded:
 - **O30 / O31 / O32** — silencing 2,3,5 leaves both deep zeros exactly
   intact; excising them from the line destroys both, (20,6) reading 70.
   The detected γ₁,γ₂,γ₃ are unchanged under both excisions. See entry 33.
-- **O33** — the pre-stated crossing-depth prediction FAILED. Bases 5 and 7
+- **O33** — the pre-stated crossing-depth prediction FAILED. Its input is
+  the eight base tables that lived outside this repo at run time, at
+  `/Users/juliansambrano/GitHub/lattice_mapper/difference_tables/32bit/`
+  (the path `params.data_dir` records) and now vendored byte-for-byte at
+  `imported/lattice_mapper/32bit/`; they carry the lattice convention,
+  2 and 3 excluded, which the script adds back before measuring — rows
+  whose crossing moved = 0, all eight bases. Bases 5 and 7
   were fully testable and never cross, so the split is {2,3} against
   {4…9}. Crossing depth is not fixed per base — it grows linearly in r,
   slope 0.3031 (b=2) and 0.7353 (b=3) against a post-hoc ln b/(2 ln ratio)

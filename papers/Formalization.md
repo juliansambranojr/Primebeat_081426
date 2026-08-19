@@ -1,5 +1,26 @@
 # Formalization
 
+> **Written 2026-08-18 at commit `81c0040`. Not revised since, and it will not be.**
+> Parts of what follows are now **false**, and are left standing.
+>
+> **§ D1** — `StmtC1` is no longer a hypothesis proved nowhere. It is proved,
+> `Chain.C1`, needing only `0 < b`, and `C2` is unconditional.
+> **§ D2** — `StmtA2` has been restated as Mathlib's Euler product and proved
+> from `riemannZeta_eulerProduct_tprod`, with `StmtA3` encoded alongside it for
+> the first time; the old encoding was false for **every** `b`, not only on the
+> alias lattice. **§ D4** — three literature searches were run and sit in
+> `papers/literature/`; they are unverified agent output and that directory's
+> README says so, but "no literature search has been done" is wrong.
+> **§ D5** — the pair identity is encoded and proved, `lean/PairIdentity.lean`.
+> **The opening line's counts** are stale in both numbers: measured 2026-08-18
+> 22:58, the tree holds **eleven** modules and `lake build` completes in **8037**
+> jobs, not eight and 8035. "Zero `sorryAx` anywhere" still holds.
+>
+> What happened after this document was written is in `lab_notebook_2.md`
+> entries 45–48 and in `papers/literature/`. This is a dated snapshot, not a
+> living file: corrections go forward into new records rather than back into
+> this one.
+
 Eight Lean 4 modules in `~/GitHub/Primebeat_081426/lean/`, built against Mathlib
 v4.28.0. `lake build` → 8035 jobs, zero `sorryAx` anywhere.
 
