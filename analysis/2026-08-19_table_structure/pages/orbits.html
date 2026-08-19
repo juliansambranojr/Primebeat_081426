@@ -1,0 +1,1058 @@
+<title>Difference Table Orbits</title>
+<style>
+  :root {
+    --ground: #0B0E14;
+    --panel: rgba(20, 25, 36, 0.82);
+    --rule: #232A38;
+    --prime: #3D6FE0;
+    --composite: #7FC8F2;
+    --zero: #FBF7EE;
+    --text: #C3CBDA;
+    --muted: #6B7689;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #field {
+    position: fixed;
+    inset: 0;
+    display: block;
+    cursor: grab;
+    touch-action: none;
+  }
+  #field.dragging { cursor: grabbing; }
+
+  .panel {
+    position: fixed;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 14px 16px;
+    z-index: 10;
+  }
+
+  /* ---- readout, top left ---- */
+  #readout {
+    top: 18px;
+    left: 18px;
+    min-width: 268px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3px 14px;
+    font-variant-numeric: tabular-nums;
+    font-size: 11.5px;
+  }
+  .grid dt { color: var(--muted); }
+  .grid dd { margin: 0; text-align: right; }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* ---- controls, bottom center ---- */
+  #transport {
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    max-width: calc(100vw - 36px);
+  }
+
+  button {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--rule);
+    padding: 6px 11px;
+    cursor: pointer;
+    transition: border-color 120ms, color 120ms;
+  }
+  button:hover { border-color: var(--muted); }
+  button:focus-visible { outline: 2px solid var(--prime); outline-offset: 2px; }
+  button[aria-pressed="true"] {
+    color: var(--ground);
+    background: var(--text);
+    border-color: var(--text);
+  }
+
+  #play { min-width: 74px; }
+
+  #depth {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 260px;
+    height: 2px;
+    background: var(--rule);
+    outline: none;
+    cursor: pointer;
+  }
+  #depth::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 11px; height: 11px;
+    background: var(--zero);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  #depth::-moz-range-thumb {
+    width: 11px; height: 11px;
+    background: var(--zero);
+    border: 0;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  #depth:focus-visible { outline: 2px solid var(--prime); outline-offset: 6px; }
+
+  .dlabel {
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    font-size: 11px;
+    min-width: 56px;
+  }
+  .dlabel b { color: var(--text); font-weight: 500; }
+
+  /* ---- options, top right ---- */
+  #options {
+    top: 18px;
+    right: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  .row { display: flex; gap: 6px; }
+  .rowlabel {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ---- legend, bottom right ---- */
+  #legend {
+    bottom: 18px;
+    right: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 11px;
+  }
+  .key { display: flex; align-items: center; gap: 8px; }
+  .swatch { width: 9px; height: 9px; flex: none; }
+  .note {
+    color: var(--muted);
+    font-size: 10.5px;
+    max-width: 210px;
+    line-height: 1.45;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 820px) {
+    #options, #legend { display: none; }
+    #readout { min-width: 0; max-width: calc(100vw - 36px); }
+    #depth { width: 150px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<canvas id="field"></canvas>
+
+<section class="panel" id="readout">
+  <div>
+    <h1>Difference Table Orbits</h1>
+    <p class="sub">Δᵈ of prime counts along a b-adic ladder</p>
+  </div>
+  <hr>
+  <dl class="grid">
+    <dt>base</dt><dd id="r-base">2</dd>
+    <dt>seed row</dt><dd id="r-seed">0, 0, 2, 2, …</dd>
+    <dt>phase</dt><dd id="r-phase">imposed γ₁·r·ln b</dd>
+    <dt>depth</dt><dd id="r-depth">0</dd>
+    <dt>cells shown</dt><dd id="r-cells">0</dd>
+    <dt>exact zeros</dt><dd id="r-zeros">0</dd>
+    <dt>peak↔real γ</dt><dd id="r-alignR">—</dd>
+    <dt>peak↔shifted</dt><dd id="r-alignN">—</dd>
+  </dl>
+  <hr>
+  <div class="rowlabel" id="r-mlabel">per delta, b = 2</div>
+  <dl class="grid">
+    <dt>smooth ρ=1</dt><dd id="r-smooth">×0.5000</dd>
+    <dt>γ₁ modulus</dt><dd id="r-mod">×1.6784</dd>
+    <dt>γ₁ argument</dt><dd id="r-arg">−0.1540</dd>
+    <dt>ratio / delta</dt><dd id="r-ratio">3.357</dd>
+  </dl>
+</section>
+
+<section class="panel" id="options">
+  <div>
+    <div class="rowlabel" style="text-align:right;margin-bottom:5px">base</div>
+    <div class="row">
+      <button id="b2" aria-pressed="true">2</button>
+      <button id="b3" aria-pressed="false">3</button>
+    </div>
+  </div>
+  <div>
+    <div class="rowlabel" style="text-align:right;margin-bottom:5px">arms</div>
+    <div class="row">
+      <button id="armP" aria-pressed="true">prime</button>
+      <button id="armC" aria-pressed="false">composite</button>
+    </div>
+  </div>
+  <div>
+    <div class="rowlabel" style="text-align:right;margin-bottom:5px">view</div>
+    <div class="row">
+      <button id="vCyl" aria-pressed="true">orbit</button>
+      <button id="vFlat" aria-pressed="false">landscape</button>
+    </div>
+    <div class="row" style="margin-top:6px">
+      <button id="vSpec" aria-pressed="false">spectrum</button>
+      <button id="nullBtn" aria-pressed="false">null</button>
+    </div>
+  </div>
+  <div>
+    <div class="rowlabel" style="text-align:right;margin-bottom:5px">radius</div>
+    <div class="row">
+      <button id="rLog" aria-pressed="true">log</button>
+      <button id="rLin" aria-pressed="false">linear</button>
+    </div>
+  </div>
+  <div>
+    <div class="rowlabel" style="text-align:right;margin-bottom:5px">playback</div>
+    <div class="row">
+      <button id="pSim" aria-pressed="true">together</button>
+      <button id="pSeq" aria-pressed="false">in turn</button>
+    </div>
+  </div>
+  <div>
+    <div class="rowlabel" style="text-align:right;margin-bottom:5px">seed</div>
+    <div class="row">
+      <button id="sScaf" aria-pressed="true">scaffold</button>
+      <button id="sCount" aria-pressed="false">counted</button>
+    </div>
+  </div>
+  <div>
+    <div class="rowlabel" style="text-align:right;margin-bottom:5px">transform</div>
+    <div class="row">
+      <button id="detrend" aria-pressed="false">detrend</button>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="legend">
+  <div class="key"><span class="swatch" style="background:#3D6FE0"></span> dyadic · prime</div>
+  <div class="key"><span class="swatch" style="background:#7FC8F2"></span> dyadic · composite</div>
+  <div class="key"><span class="swatch" style="background:#3EAF63"></span> triadic · prime</div>
+  <div class="key"><span class="swatch" style="background:#A2C79A"></span> triadic · composite</div>
+  <div class="key"><span class="swatch" style="background:var(--zero);border-radius:50%"></span> exact zero</div>
+  <p class="note">Angle is γ₁·r·ln b + d·arg(1−b<sup>−ρ</sup>). Radius is log|cell|. A zero has no log, so it sits on the axis.</p>
+</section>
+
+<div class="panel" id="transport">
+  <button id="play">play</button>
+  <input type="range" id="depth" min="0" max="31" value="0" step="1" aria-label="depth">
+  <span class="dlabel">d <b id="dnum">0</b></span>
+  <button id="reset">reset view</button>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------------------------------------------------------------
+  // Seed rows. Prime counts per rung, this project's convention:
+  // 2 and 3 counted as primes, pi(1) = 0, rung r is (b^(r-1), b^r].
+  // Source: results/animation_seed_rows.json, itself read from
+  // pi2n_cache.json and O27's joint table. Composite arms are NOT
+  // transcribed - they are derived below from the pair identity, so
+  // the two arms cannot disagree with each other by transcription.
+  // ---------------------------------------------------------------
+  // Two seed conventions, differing ONLY at rungs 1 and 2.
+  //   scaffold - 2 and 3 are lattice, not primes. The original table.
+  //   counted  - 2 and 3 counted as primes. pi2n_cache / files (2).
+  // By SeedPerturbation the two tables are identical wherever
+  // r - d > 2, so switching moves a handful of corner cells and
+  // nothing else. The toggle exists to make that visible.
+  var TAIL2 = [2,2,5,7,13,23,43,75,137,255,464,872,1612,3030,5709,10749,
+               20390,38635,73586,140336,268216,513708,985818,1894120,
+               3645744,7027290,13561907,26207278,50697537,98182656];
+  var TAIL3 = [5,13,31,76,198,520,1380,3741,10129,27837,76805,213610,
+               596911,1675905,4724994,13368647,37947482,108029690,
+               308345825,882177037,2529347318,7266270535,20912111193,
+               60284108632,174049197968,503218277350];
+
+  var SEEDS = {
+    scaffold: { 2: [0, 0].concat(TAIL2), 3: [0, 2].concat(TAIL3) },
+    counted:  { 2: [1, 1].concat(TAIL2), 3: [2, 2].concat(TAIL3) }
+  };
+  var SEED = SEEDS.scaffold;
+
+  var GAMMA1 = 14.134725141734693;
+
+  // First eight zeta zeros, read from zeros600.json in the repo.
+  var GAMMAS = [14.134725141734694, 21.022039638771555, 25.010857580145688,
+                30.424876125859513, 32.935061587739190, 37.586178158825671,
+                40.918719012147495, 43.327073280914999];
+
+  // A row is sampled once per rung, so the highest frequency it can
+  // carry is pi radians per step. gamma*ln(b) is far above that for
+  // every zero at these bases, so every one of them ALIASES - folded
+  // into (0, pi]. Two zeros can land on the same apparent frequency
+  // and the table cannot tell them apart. This is not a defect of the
+  // measurement; it is what sampling at integer rungs does.
+  function aliasOf(gamma, lnb) {
+    var w = (gamma * lnb) % (2 * Math.PI);
+    if (w < 0) w += 2 * Math.PI;
+    return w > Math.PI ? 2 * Math.PI - w : w;
+  }
+
+  // per-delta multipliers, from results/animation_seed_rows.json
+  var MULT = {
+    2: { lnb: 0.6931471805599453, smooth: 0.5,
+         mod: 1.6784342176788183, arg: -0.15399975458944432 },
+    3: { lnb: 1.0986122886681098, smooth: 0.6666666666666666,
+         mod: 1.5714661998613928, arg: 0.06559784380052053 }
+  };
+
+  // ---------------------------------------------------------------
+  // Table construction. BigInt throughout: iterated differences carry
+  // a 2^d stencil weight and overflow a double well before the
+  // deepest rows here.
+  // ---------------------------------------------------------------
+  function totalInRung(b, r) {           // integers in (b^(r-1), b^r]
+    var B = BigInt(b);
+    return B ** BigInt(r) - B ** BigInt(r - 1);
+  }
+
+  function buildTable(b, arm) {
+    var seed = SEED[b], R = seed.length, rows = [], r, d;
+    var row0 = [];
+    for (r = 1; r <= R; r++) {
+      var p = BigInt(seed[r - 1]);
+      row0.push(arm === "composite" ? totalInRung(b, r) - p : p);
+    }
+    rows.push(row0);
+    for (d = 1; d < R; d++) {
+      var prev = rows[d - 1], cur = [];
+      for (var i = 1; i < prev.length; i++) cur.push(prev[i] - prev[i - 1]);
+      rows.push(cur);
+    }
+    return rows;   // rows[d][i] is cell (r = i + d + 1, d)
+  }
+
+  // ---------------------------------------------------------------
+  // MEASURED rotation. Nothing here assumes a phase.
+  //
+  // Take four consecutive cells along a row and fit the linear
+  // recurrence v3 = a*v2 + b*v1, v2 = a*v1 + b*v0. The characteristic
+  // polynomial z^2 - a z - b has a complex-conjugate pair exactly when
+  // the sequence is rotating, and the argument of that root IS the
+  // rotation per rung - recovered from four integers, with no model of
+  // where it should be.
+  //
+  // Returns null when the roots are real (no rotation to measure) or
+  // the solve is degenerate. Those cells are dropped rather than
+  // filled in, so an empty region means "not measurable here", not
+  // "zero".
+  // ---------------------------------------------------------------
+  function localRotation(v0, v1, v2, v3) {
+    var m = Math.max(Math.abs(v0), Math.abs(v1), Math.abs(v2), Math.abs(v3));
+    if (!(m > 0) || !isFinite(m)) return null;
+    var x0 = v0 / m, x1 = v1 / m, x2 = v2 / m, x3 = v3 / m;
+    var det = x1 * x1 - x0 * x2;
+    if (Math.abs(det) < 1e-13) return null;
+    var a = (x2 * x1 - x0 * x3) / det;
+    var b = (x1 * x3 - x2 * x2) / det;
+    var disc = a * a + 4 * b;
+    if (disc >= 0) return null;                 // real roots: no rotation
+    var th = Math.atan2(Math.sqrt(-disc) / 2, a / 2);
+    if (!isFinite(th)) return null;
+    return th;                                   // in (0, pi]
+  }
+
+  // BigInt -> double, scaled so the ratios survive. Magnitudes here run
+  // past 2^53, so the four values are divided by their own max before
+  // being converted.
+  function quadToFloat(a, b, c, d) {
+    var mx = 0n, arr = [a, b, c, d], i, t;
+    for (i = 0; i < 4; i++) { t = arr[i] < 0n ? -arr[i] : arr[i]; if (t > mx) mx = t; }
+    if (mx === 0n) return null;
+    var s = Number(mx), out = [];
+    for (i = 0; i < 4; i++) out.push(Number(arr[i] * 1000000n / mx) / 1000000);
+    return out;
+  }
+
+  // natural log of |v| for a BigInt, exact past 2^53
+  function logAbsBig(v) {
+    if (v === 0n) return null;
+    var a = v < 0n ? -v : v, s = a.toString();
+    if (s.length <= 15) return Math.log(Number(a));
+    return Math.log(Number(s.slice(0, 15))) + (s.length - 15) * Math.LN10;
+  }
+
+  // ---------------------------------------------------------------
+  // Point sets. Built once per (base, arm, transform) and cached.
+  // ---------------------------------------------------------------
+  var cache = {};
+
+  function pointsFor(b, arm, detrend) {
+    var key = b + "|" + arm + "|" + (detrend ? 1 : 0);
+    if (cache[key]) return cache[key];
+
+    var rows = buildTable(b, arm);
+    var lnb = MULT[b].lnb, argStep = MULT[b].arg;
+    var pts = [], maxLog = 0;
+
+    for (var d = 0; d < rows.length; d++) {
+      for (var i = 0; i < rows[d].length; i++) {
+        var r = i + d + 1;
+        var v = rows[d][i];
+
+        // Detrend subtracts the geometric total (b-1)^(d+1) b^(r-1-d),
+        // which is the smooth mode alone and carries no primes. What
+        // is left of the composite arm is the prime arm negated - so
+        // the antiphase becomes visible. This is a transform, not the
+        // measurement.
+        if (detrend && arm === "composite") {
+          var B = BigInt(b);
+          v = v - (B - 1n) ** BigInt(d + 1) * B ** BigInt(r - 1 - d);
+        }
+
+        var L = logAbsBig(v);
+        if (L !== null && L > maxLog) maxLog = L;
+
+        // measured rotation from the four cells ending here, along the row
+        var meas = null;
+        if (i >= 3) {
+          var q = quadToFloat(rows[d][i - 3], rows[d][i - 2], rows[d][i - 1], rows[d][i]);
+          if (q) meas = localRotation(q[0], q[1], q[2], q[3]);
+        }
+
+        pts.push({
+          r: r, d: d,
+          log: L,                                   // null at an exact zero
+          neg: v < 0n,
+          phase: GAMMA1 * r * lnb + d * argStep,    // IMPOSED
+          meas: meas                                // MEASURED, null if not recoverable
+        });
+      }
+    }
+
+    var out = { pts: pts, maxLog: Math.max(maxLog, 1), depth: rows.length };
+    cache[key] = out;
+    return out;
+  }
+
+  // ---------------------------------------------------------------
+  // SPECTRUM. No single angle is fitted. Each row is transformed along
+  // r and every frequency it carries is reported, which is the honest
+  // shape of the thing: a cell is a sum over all the zeros, each
+  // turning at its own rate, and the curve is what that sum does.
+  //
+  // Each row is first divided by b^(r/2), the envelope a critical-line
+  // mode carries, so what is transformed is oscillation rather than
+  // growth. A Hann window reduces the leakage from having only a few
+  // dozen rungs.
+  // ---------------------------------------------------------------
+  var specCache = {};
+
+  function spectrumFor(b, arm, detrend) {
+    var key = b + "|" + arm + "|" + (detrend ? 1 : 0) + "|" + st.seed;
+    if (specCache[key]) return specCache[key];
+
+    var rows = buildTable(b, arm), lnb = MULT[b].lnb;
+    var out = [], maxP = 0, d, i, k;
+
+    for (d = 0; d < rows.length; d++) {
+      var row = rows[d], N = row.length;
+      if (N < 6) continue;                       // too few rungs to transform
+
+      var u = [];
+      for (i = 0; i < N; i++) {
+        var r = i + d + 1;
+        var L = logAbsBig(row[i]);
+        var mag = L === null ? 0 : Math.exp(L - (r / 2) * lnb);   // strip b^(r/2)
+        var sgn = row[i] < 0n ? -1 : 1;
+        var win = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1)); // Hann
+        u.push(sgn * mag * win);
+      }
+
+      for (k = 1; k <= Math.floor(N / 2); k++) {
+        var re = 0, im = 0, w = 2 * Math.PI * k / N;
+        for (i = 0; i < N; i++) { re += u[i] * Math.cos(w * i); im -= u[i] * Math.sin(w * i); }
+        var p = Math.sqrt(re * re + im * im) / N;
+        if (p > maxP) maxP = p;
+        out.push({ d: d, w: w, p: p });
+      }
+    }
+
+    var res = { bins: out, maxP: maxP || 1, depth: rows.length };
+    specCache[key] = res;
+    return res;
+  }
+
+  // ---------------------------------------------------------------
+  // THE NULL. Peaks landing near the zero-lines proves nothing if the
+  // lines are dense enough that any peak lands near one. So shift every
+  // gamma by a constant and re-alias. Spacing is preserved exactly -
+  // same number of lines, same gaps - only the absolute placement moves.
+  // If peaks hug the shifted lines as closely as the real ones, the
+  // alignment is density and not identification.
+  // ---------------------------------------------------------------
+  var SHIFTS = [0, 2.5, 5.0, 7.5];
+
+  function linesFor(b, shift) {
+    var lnb = MULT[b].lnb, out = [];
+    for (var j = 0; j < GAMMAS.length; j++) out.push(aliasOf(GAMMAS[j] + shift, lnb));
+    return out;
+  }
+
+  // Mean distance from each spectral peak to the nearest reference line,
+  // in radians. Lower means the lines track the peaks. Compared against
+  // the same figure for the shifted lines, which is the thing that makes
+  // it a test rather than a look.
+  function alignment(b, arm, shift, cut) {
+    var sp = spectrumFor(b, arm, st.detrend), lines = linesFor(b, shift);
+    var byDepth = {}, i, j, k;
+    for (i = 0; i < sp.bins.length; i++) {
+      var s = sp.bins[i];
+      if (s.d > cut) continue;
+      (byDepth[s.d] = byDepth[s.d] || []).push(s);
+    }
+    var tot = 0, n = 0;
+    for (k in byDepth) {
+      var row = byDepth[k];
+      row.sort(function (m, q) { return m.w - q.w; });
+      var pk = 0;
+      for (i = 0; i < row.length; i++) if (row[i].p > pk) pk = row[i].p;
+      for (i = 1; i < row.length - 1; i++) {
+        if (row[i].p <= row[i - 1].p || row[i].p <= row[i + 1].p) continue;
+        if (row[i].p < 0.35 * pk) continue;              // only real peaks
+        var best = Math.PI;
+        for (j = 0; j < lines.length; j++)
+          best = Math.min(best, Math.abs(row[i].w - lines[j]));
+        tot += best; n++;
+      }
+    }
+    return n ? { mean: tot / n, n: n } : null;
+  }
+
+  // ---------------------------------------------------------------
+  // State
+  // ---------------------------------------------------------------
+  var st = {
+    b2: true, b3: true,          // bases are additive - both can show at once
+    prime: true,
+    composite: true,
+    view: "orbit",              // orbit | landscape | spectrum
+    nullIx: 0,                  // index into SHIFTS; 0 is the real zeros
+    detrend: false,
+    seq: false,
+    radLog: true,
+    depth: 0,
+    playing: false,
+    seed: "scaffold",
+    yaw: -0.62, pitch: 0.42, zoom: 1,
+    panX: 0, panY: 0
+  };
+
+  // hue family carries the base, value carries the arm
+  var COLOR = {
+    "2|prime":     "#3D6FE0",   // royal blue
+    "2|composite": "#7FC8F2",   // sky blue
+    "3|prime":     "#3EAF63",   // green
+    "3|composite": "#A2C79A"    // sage
+  };
+
+  function activeBases() {
+    var b = [];
+    if (st.b2) b.push(2);
+    if (st.b3) b.push(3);
+    return b;
+  }
+
+  // In sequence mode the scrubber is one timeline across both bases:
+  // dyadic builds to its full depth, then triadic starts from zero.
+  // Simultaneous mode gates both by the same depth.
+  function span(b) { return SEED[b].length; }
+
+  function depthFor(base) {
+    if (!st.seq) return st.depth;
+    var n2 = span(2);
+    if (base === 2) return Math.min(st.depth, n2 - 1);
+    return st.depth < n2 ? -1 : st.depth - n2;   // -1 hides the set entirely
+  }
+
+  function seqPhase() {
+    if (!st.seq) return "";
+    return st.depth < span(2) ? "dyadic" : "triadic";
+  }
+
+  var cv = document.getElementById("field"),
+      cx = cv.getContext("2d"),
+      W = 0, H = 0, DPR = 1;
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.floor(W * DPR);
+    cv.height = Math.floor(H * DPR);
+    cv.style.width = W + "px";
+    cv.style.height = H + "px";
+    cx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    draw();
+  }
+  window.addEventListener("resize", resize);
+
+  // ---------------------------------------------------------------
+  // Projection
+  // ---------------------------------------------------------------
+  function project(x, y, z) {
+    var cy = Math.cos(st.yaw), sy = Math.sin(st.yaw);
+    var x1 = x * cy - z * sy, z1 = x * sy + z * cy;
+    var cp = Math.cos(st.pitch), sp = Math.sin(st.pitch);
+    var y1 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
+    var f = 3.0 / (3.0 + z2);
+    var s = Math.min(W, H) * 0.34 * st.zoom;
+    return { x: W / 2 + x1 * f * s + st.panX,
+             y: H / 2 - y1 * f * s + st.panY,
+             depth: z2, scale: f };
+  }
+
+  // Radius from the cell's own value. `log` is a scale, not a smoothing -
+  // the alternative is linear, where the largest cell sits at the rim and
+  // everything a few orders below it collapses onto the axis. Sign is
+  // carried as direction: a negative cell sits half a turn opposite a
+  // positive one of the same size, so the alternation is visible instead
+  // of being hidden in the opacity.
+  function radiusOf(p, data) {
+    if (p.log === null) return 0;                       // exact zero
+    if (!st.radLog) return Math.exp(p.log - data.maxLog);
+    return Math.max(p.log, 0) / data.maxLog;
+  }
+
+  function place(p, data, base) {
+    if (st.view === "orbit") {
+      var rad = radiusOf(p, data);
+      var ang = p.phase + (p.neg ? Math.PI : 0);
+      return { x: rad * Math.cos(ang),
+               z: rad * Math.sin(ang),
+               y: -1 + 2 * (p.d / Math.max(data.depth - 1, 1)) };
+    }
+    var maxR = SEED[base].length;
+    return { x: -1 + 2 * (p.r / maxR),
+             z: -1 + 2 * (p.d / Math.max(data.depth - 1, 1)),
+             y: (p.neg ? -1 : 1) * radiusOf(p, data) };   // sign as height
+  }
+
+  // ---------------------------------------------------------------
+  // Draw
+  // ---------------------------------------------------------------
+  // The rotation a real sequence shows is folded into (0, pi] - a turn
+  // of th and one of 2pi-th are indistinguishable from real values. So
+  // the prediction is folded the same way before comparison. For b = 2
+  // that is gamma1*ln2 = 9.79744, which reduces to 3.51426 and folds to
+  // 2.76893 - the alias REFERENCES.md already records as 2.7689.
+  function predictedAngle(b) {
+    var th = (GAMMA1 * MULT[b].lnb) % (2 * Math.PI);
+    if (th < 0) th += 2 * Math.PI;
+    return th > Math.PI ? 2 * Math.PI - th : th;
+  }
+
+  function axis() {
+    var flat = st.view === "landscape";
+    var a = flat ? [{ x: -1, y: -1, z: -1 }, { x: 1, y: -1, z: -1 }]
+                 : [{ x: 0, y: -1, z: 0 }, { x: 0, y: 1, z: 0 }];
+    var p0 = project(a[0].x, a[0].y, a[0].z), p1 = project(a[1].x, a[1].y, a[1].z);
+    cx.strokeStyle = "#232A38";
+    cx.lineWidth = 1;
+    cx.beginPath();
+    cx.moveTo(p0.x, p0.y); cx.lineTo(p1.x, p1.y);
+    cx.stroke();
+
+    // where the zeros alias to, folded into (0, pi] - real, or shifted
+    // by the null offset, which preserves their spacing exactly
+    if (st.view === "spectrum") {
+      var bs = activeBases(), k, j;
+      for (k = 0; k < bs.length; k++) {
+        var ln = linesFor(bs[k], SHIFTS[st.nullIx]);
+        cx.strokeStyle = st.nullIx === 0 ? COLOR[bs[k] + "|prime"] : "#8A6A9C";
+        for (j = 0; j < ln.length; j++) {
+          var x = -1 + 2 * (ln[j] / Math.PI);
+          var q0 = project(x, -1, -1), q1 = project(x, -1, 1);
+          cx.globalAlpha = 0.30;
+          cx.setLineDash([3, 5]);
+          cx.beginPath();
+          cx.moveTo(q0.x, q0.y); cx.lineTo(q1.x, q1.y);
+          cx.stroke();
+          cx.setLineDash([]);
+          cx.globalAlpha = 1;
+        }
+      }
+    }
+  }
+
+  function collectSpectrum() {
+    var out = [], arms = [], bases = activeBases(), b, a, i;
+    if (st.prime) arms.push("prime");
+    if (st.composite) arms.push("composite");
+    for (b = 0; b < bases.length; b++) {
+      for (a = 0; a < arms.length; a++) {
+        var base = bases[b], arm = arms[a];
+        var sp = spectrumFor(base, arm, st.detrend);
+        var cut = depthFor(base);
+        if (cut < 0) continue;
+        for (i = 0; i < sp.bins.length; i++) {
+          var s = sp.bins[i];
+          if (s.d > cut) continue;
+          var q = { x: -1 + 2 * (s.w / Math.PI),
+                    z: -1 + 2 * (s.d / Math.max(sp.depth - 1, 1)),
+                    y: -1 + 2 * Math.sqrt(s.p / sp.maxP) };
+          var pr = project(q.x, q.y, q.z);
+          out.push({ sx: pr.x, sy: pr.y, dep: pr.depth, sc: pr.scale,
+                     col: COLOR[base + "|" + arm], zero: false,
+                     age: cut - s.d });
+        }
+      }
+    }
+    out.sort(function (m, n) { return n.dep - m.dep; });
+    return out;
+  }
+
+  function collect() {
+    if (st.view === "spectrum") return collectSpectrum();
+    var out = [], arms = [], bases = activeBases();
+    if (st.prime) arms.push("prime");
+    if (st.composite) arms.push("composite");
+
+    // One normalisation across every set on screen, so a radius means
+    // the same thing whichever base or arm it belongs to. Normalising
+    // per set would make them look comparable when they are not.
+    var scale = 1, b, a;
+    for (b = 0; b < bases.length; b++)
+      for (a = 0; a < arms.length; a++)
+        scale = Math.max(scale, pointsFor(bases[b], arms[a], st.detrend).maxLog);
+
+    for (b = 0; b < bases.length; b++) {
+      for (a = 0; a < arms.length; a++) {
+        var base = bases[b], arm = arms[a];
+        var data = pointsFor(base, arm, st.detrend);
+        var cut = depthFor(base);
+        if (cut < 0) continue;
+        data = { pts: data.pts, maxLog: scale, depth: data.depth };
+        for (var i = 0; i < data.pts.length; i++) {
+          var p = data.pts[i];
+          if (p.d > cut) continue;
+          // in measured view a cell with no recoverable rotation is
+          // omitted, not defaulted - absence means unmeasurable
+          if (st.view === "measured" && p.meas === null) continue;
+          var q = place(p, data, base), pr = project(q.x, q.y, q.z);
+          out.push({ sx: pr.x, sy: pr.y, dep: pr.depth, sc: pr.scale,
+                     col: COLOR[base + "|" + arm],
+                     zero: p.log === null, neg: p.neg,
+                     age: cut - p.d });
+        }
+      }
+    }
+    out.sort(function (m, n) { return n.dep - m.dep; });
+    return out;
+  }
+
+  function draw() {
+    cx.fillStyle = "#0B0E14";
+    cx.fillRect(0, 0, W, H);
+    axis();
+
+    var pts = collect(), zeros = 0, i, p;
+
+    for (i = 0; i < pts.length; i++) {
+      p = pts[i];
+      if (p.zero) { zeros++; continue; }
+      var fade = Math.max(0.12, 1 - p.age * 0.055);
+      var rad = Math.max(0.7, 1.9 * p.sc * st.zoom);
+      cx.globalAlpha = fade * 0.92;      // sign is geometry now, not opacity
+      cx.fillStyle = p.col;
+      cx.beginPath();
+      cx.arc(p.sx, p.sy, rad, 0, 6.283185307179586);
+      cx.fill();
+    }
+
+    // zeros last, on top, as rings - they are the events
+    for (i = 0; i < pts.length; i++) {
+      p = pts[i];
+      if (!p.zero) continue;
+      cx.globalAlpha = 1;
+      cx.strokeStyle = "#FBF7EE";
+      cx.lineWidth = 1.4;
+      cx.beginPath();
+      cx.arc(p.sx, p.sy, Math.max(3.5, 5.5 * p.sc * st.zoom), 0, 6.283185307179586);
+      cx.stroke();
+    }
+    cx.globalAlpha = 1;
+
+    document.getElementById("r-cells").textContent = pts.length.toLocaleString();
+    document.getElementById("r-zeros").textContent = zeros;
+  }
+
+  // ---------------------------------------------------------------
+  // Readout
+  // ---------------------------------------------------------------
+  function syncReadout() {
+    var b = activeBases(), lead = b.length ? b[0] : 2, m = MULT[lead];
+    document.getElementById("r-base").textContent = b.join(" + ") || "—";
+    if (st.seq) {
+      var ph = seqPhase();
+      document.getElementById("r-depth").textContent =
+        ph + " d" + depthFor(ph === "dyadic" ? 2 : 3);
+    } else {
+      document.getElementById("r-depth").textContent = "d" + st.depth;
+    }
+    document.getElementById("r-mlabel").textContent =
+      "per delta, b = " + lead;
+    document.getElementById("r-smooth").textContent = "×" + m.smooth.toFixed(4);
+    document.getElementById("r-mod").textContent = "×" + m.mod.toFixed(4);
+    document.getElementById("r-arg").textContent =
+      (m.arg < 0 ? "−" : "+") + Math.abs(m.arg).toFixed(4);
+    document.getElementById("r-ratio").textContent = (m.mod / m.smooth).toFixed(3);
+
+    // mean radians from a spectral peak to the nearest reference line -
+    // real zeros against the same lines rigidly shifted. If these two
+    // numbers are close, the lines are not identifying anything.
+    var aR = document.getElementById("r-alignR"),
+        aN = document.getElementById("r-alignN");
+    if (st.view === "spectrum" && b.length) {
+      var arm = st.prime ? "prime" : "composite";
+      var real = alignment(lead, arm, 0, depthFor(lead));
+      var nul = alignment(lead, arm, SHIFTS[st.nullIx] || SHIFTS[1], depthFor(lead));
+      aR.textContent = real ? real.mean.toFixed(4) + " (" + real.n + ")" : "—";
+      aN.textContent = nul ? nul.mean.toFixed(4) : "—";
+    } else { aR.textContent = "—"; aN.textContent = "—"; }
+    document.getElementById("dnum").textContent =
+      st.seq ? seqPhase().slice(0, 3) + " " + depthFor(seqPhase() === "dyadic" ? 2 : 3)
+             : st.depth;
+  }
+
+  // ---------------------------------------------------------------
+  // Controls
+  // ---------------------------------------------------------------
+  var slider = document.getElementById("depth"),
+      playBtn = document.getElementById("play");
+
+  function maxDepth() {
+    if (st.seq) return span(2) + span(3) - 1;
+    var b = activeBases(), m = 0;
+    for (var i = 0; i < b.length; i++) m = Math.max(m, SEED[b[i]].length - 1);
+    return m || SEED[2].length - 1;
+  }
+
+  function setDepth(d) {
+    st.depth = Math.max(0, Math.min(maxDepth(), d));
+    slider.value = st.depth;
+    syncReadout();
+    draw();
+  }
+
+  function press(id, on) {
+    document.getElementById(id).setAttribute("aria-pressed", on ? "true" : "false");
+  }
+
+  function syncBases() {
+    press("b2", st.b2); press("b3", st.b3);
+    slider.max = maxDepth();
+    setDepth(Math.min(st.depth, maxDepth()));
+  }
+
+  document.getElementById("b2").onclick = function () {
+    if (st.b2 && !st.b3) return;          // never leave both off
+    st.b2 = !st.b2; syncBases();
+  };
+  document.getElementById("b3").onclick = function () {
+    if (st.b3 && !st.b2) return;
+    st.b3 = !st.b3; syncBases();
+  };
+
+  document.getElementById("armP").onclick = function () {
+    if (st.prime && !st.composite) return;      // never leave both off
+    st.prime = !st.prime; press("armP", st.prime); draw();
+  };
+  document.getElementById("armC").onclick = function () {
+    if (st.composite && !st.prime) return;
+    st.composite = !st.composite; press("armC", st.composite); draw();
+  };
+
+  function setView(v) {
+    st.view = v;
+    press("vCyl", v === "orbit");
+    press("vFlat", v === "landscape");
+    press("vSpec", v === "spectrum");
+    document.getElementById("r-phase").textContent =
+      v === "spectrum" ? "measured, all frequencies" : "imposed γ₁·r·ln b";
+    draw();
+  }
+  document.getElementById("vCyl").onclick = function () { setView("orbit"); };
+  document.getElementById("vFlat").onclick = function () { setView("landscape"); };
+  document.getElementById("vSpec").onclick = function () { setView("spectrum"); };
+
+  document.getElementById("nullBtn").onclick = function () {
+    st.nullIx = (st.nullIx + 1) % SHIFTS.length;
+    press("nullBtn", st.nullIx !== 0);
+    if (st.view !== "spectrum") setView("spectrum"); else { syncReadout(); draw(); }
+  };
+
+  document.getElementById("detrend").onclick = function () {
+    st.detrend = !st.detrend; press("detrend", st.detrend); draw();
+  };
+
+  function setSeed(which) {
+    SEED = SEEDS[which];
+    cache = {}; specCache = {};      // tables and spectra rebuilt from the new row
+    st.seed = which;
+    press("sScaf", which === "scaffold");
+    press("sCount", which === "counted");
+    document.getElementById("r-seed").textContent =
+      which === "scaffold" ? "0, 0, 2, 2, …" : "1, 1, 2, 2, …";
+    draw();
+  }
+  document.getElementById("sScaf").onclick = function () { setSeed("scaffold"); };
+  document.getElementById("sCount").onclick = function () { setSeed("counted"); };
+
+  function setSeq(on) {
+    stop();
+    st.seq = on;
+    press("pSeq", on); press("pSim", !on);
+    st.depth = 0;
+    slider.max = maxDepth();
+    setDepth(0);
+  }
+  document.getElementById("pSim").onclick = function () { setSeq(false); };
+  document.getElementById("pSeq").onclick = function () { setSeq(true); };
+
+  function setRadius(useLog) {
+    st.radLog = useLog;
+    press("rLog", useLog); press("rLin", !useLog);
+    draw();
+  }
+  document.getElementById("rLog").onclick = function () { setRadius(true); };
+  document.getElementById("rLin").onclick = function () { setRadius(false); };
+
+  slider.oninput = function () { stop(); setDepth(parseInt(this.value, 10)); };
+
+  document.getElementById("reset").onclick = function () {
+    st.yaw = -0.62; st.pitch = 0.42; st.zoom = 1; st.panX = 0; st.panY = 0; draw();
+  };
+
+  // ---------------------------------------------------------------
+  // Transport
+  // ---------------------------------------------------------------
+  var timer = null;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function stop() {
+    st.playing = false;
+    playBtn.textContent = "play";
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+  function start() {
+    if (st.depth >= maxDepth()) setDepth(0);
+    st.playing = true;
+    playBtn.textContent = "pause";
+    timer = setInterval(function () {
+      if (st.depth >= maxDepth()) { stop(); return; }
+      setDepth(st.depth + 1);
+    }, reduced ? 900 : 420);
+  }
+  playBtn.onclick = function () { st.playing ? stop() : start(); };
+
+  // ---------------------------------------------------------------
+  // Pointer
+  // ---------------------------------------------------------------
+  var drag = null;
+  cv.addEventListener("pointerdown", function (e) {
+    drag = { x: e.clientX, y: e.clientY, shift: e.shiftKey };
+    cv.classList.add("dragging");
+    cv.setPointerCapture(e.pointerId);
+  });
+  cv.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (drag.shift) { st.panX += dx; st.panY += dy; }
+    else {
+      st.yaw += dx * 0.006;
+      st.pitch = Math.max(-1.45, Math.min(1.45, st.pitch + dy * 0.006));
+    }
+    drag.x = e.clientX; drag.y = e.clientY;
+    draw();
+  });
+  function endDrag() { drag = null; cv.classList.remove("dragging"); }
+  cv.addEventListener("pointerup", endDrag);
+  cv.addEventListener("pointercancel", endDrag);
+
+  cv.addEventListener("wheel", function (e) {
+    e.preventDefault();
+    st.zoom = Math.max(0.28, Math.min(9, st.zoom * (e.deltaY > 0 ? 0.92 : 1.087)));
+    draw();
+  }, { passive: false });
+
+  window.addEventListener("keydown", function (e) {
+    if (e.key === " ") { e.preventDefault(); st.playing ? stop() : start(); }
+    else if (e.key === "ArrowRight") { stop(); setDepth(st.depth + 1); }
+    else if (e.key === "ArrowLeft") { stop(); setDepth(st.depth - 1); }
+  });
+
+  // ---------------------------------------------------------------
+  press("armP", st.prime);
+  press("armC", st.composite);
+  syncBases();
+  setSeed("scaffold");
+  resize();
+})();
+</script>
