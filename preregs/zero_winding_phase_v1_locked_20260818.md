@@ -321,7 +321,12 @@ before this section existed.
 
 - `run_start_at`: 2026-08-18T22:36:26Z
 - `run_end_at`: 2026-08-18T22:36:27Z
-- `verdict`:
+- `verdict`: `no_constant_angle`
+  The criterion did not fire in the (r,d) coordinate at M = 200. Per the
+  locked decision rule this is a failure to detect constant winding *in
+  that coordinate*, not evidence that the zeros are unstructured. The
+  b-axis reading raised after the run places the turn across bases rather
+  than within a single table; O42 did not examine that coordinate.
 - `post_compute_sha256`: `b0101319708c70e47704002cfe7b7eb85853521481e8a5ad57a64269e958ca17`
 - sidecar match: **yes** — identical to the sidecar
   `zero_winding_phase_v1_locked_20260818.sha256`, so no parameter,
