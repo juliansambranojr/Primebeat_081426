@@ -1,0 +1,672 @@
+{
+  "schema_version": "1",
+  "script": "O43_extended_zero_census.py",
+  "generated_utc": "2026-08-19T02:37:43Z",
+  "params": {
+    "base": 2,
+    "rmax_old": 62,
+    "rmax_ext": 92,
+    "d_min": 1,
+    "near_miss_h": 1024,
+    "alpha": 0.05,
+    "bfile_source": "network",
+    "bfile_url": "https://oeis.org/A007053/b007053.txt",
+    "bfile_raw": "b007053.txt",
+    "cache": "pi2n_cache.json",
+    "o16_log": "results/O16_run2.log",
+    "randomness": "none \u2014 both p-values closed form; no --seed flag",
+    "arithmetic": "exact Python int for the table; float only for p",
+    "run_start_at": "2026-08-19T02:37:42Z",
+    "run_end_at": "2026-08-19T02:37:43Z",
+    "code_version": "9f66c9dffbfdb8bbf0ffe3aedd30b6b3b86e136604ae12b893face3eaeac1458",
+    "prereg": "preregs/extended_zero_census_v1_locked_20260818.md"
+  },
+  "constants": {
+    "table_convention": "B(r,0)=N(r); B(r,d)=B(r,d-1)-B(r-1,d-1); support r = d+1..R",
+    "counts_convention": "N(r) = pi(2^r) - pi(2^(r-1)), primes in (2^(r-1), 2^r]",
+    "known_zeros": [
+      [
+        2,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        20,
+        6
+      ]
+    ],
+    "known_zeros_source": "results/O16_run2.log, section EXACT ZEROS, backward_prime",
+    "zeros_read_from_o16_log": [
+      [
+        2,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        20,
+        6
+      ]
+    ],
+    "bfile_expected_bytes_head_probe": 1572,
+    "bfile_expected_last_modified_head_probe": "Wed, 16 Dec 2020 06:02:57 GMT",
+    "bfile_head_probe_note": "observed by curl -sI while drafting the prereg; drift is reported, never a compromised trip",
+    "null_primary": "constant per-cell rate; exact conditional binomial, K|T ~ Bin(T = 4 + K_new, cells_new/cells_ext)",
+    "null_secondary": "Poisson(4*cells_new/cells_old); cannot change the verdict",
+    "near_miss_bound": "#zeros in a region <= #{cells with |B| <= H}, exactly, for any H >= 0",
+    "verdict_labels": [
+      "rate_constant",
+      "magnitude_floor",
+      "rate_falls_with_r",
+      "ambiguous",
+      "compromised"
+    ],
+    "precedence": "compromised > rate_constant > magnitude_floor > rate_falls_with_r > ambiguous",
+    "verdict_note": "the verdict line is Julian's; this file records the decision rule's mechanical output only"
+  },
+  "summary": {
+    "bfile": {
+      "url": "https://oeis.org/A007053/b007053.txt",
+      "source": "network",
+      "http_status": 200,
+      "sha256": "6f4f5aaca7419f8c3d0a9d41b56617a1347ab4c124eec3f64362e299f7d8179b",
+      "n_bytes": 1572,
+      "content_length_header": "1572",
+      "last_modified_header": null,
+      "retrieved_utc": "2026-08-19T02:37:43Z",
+      "raw_written_to": "/Users/juliansambrano/GitHub/Primebeat_081426/b007053.txt",
+      "bytes_match_head_probe": true,
+      "last_modified_matches_head_probe": false,
+      "comment_lines": []
+    },
+    "check_1_integrity": {
+      "range": [
+        0,
+        62
+      ],
+      "n_comparisons": 63,
+      "n_equal": 63,
+      "n_unequal": 0,
+      "passed": true,
+      "already_known_to_pass": [
+        62
+      ],
+      "already_known_source": "papers/literature/litsearch_2_priority.md"
+    },
+    "check_2_reproduction": {
+      "rebuilt_old_zeros": [
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          20,
+          6
+        ]
+      ],
+      "matches_known": true,
+      "matches_o16_log": true,
+      "note": "reproduction check, not evidence \u2014 these four cells are fully non-blind"
+    },
+    "check_3_census": {
+      "cells_old": 1891,
+      "cells_ext": 4186,
+      "cells_new": 2295,
+      "n_reproduced": 4,
+      "K_new": 0,
+      "new_zeros": []
+    },
+    "check_4_rate": {
+      "E_K_new_H0": 4.854574299312533,
+      "new_cell_share": 0.5482560917343526,
+      "p_conditional_binomial": 0.04164560919604805,
+      "p_poisson_secondary": 0.007792649983770727,
+      "alpha": 0.05,
+      "primary_fires": true
+    },
+    "check_5_near_miss": {
+      "H": 1024,
+      "n_old_region": 131,
+      "max_r_old_region": 22,
+      "M_new": 0,
+      "new_region_cells": [],
+      "bands": [
+        {
+          "r_lo": 1,
+          "r_hi": 10,
+          "near_miss": 45,
+          "min_abs": "0",
+          "min_abs_cell": [
+            2,
+            1
+          ]
+        },
+        {
+          "r_lo": 11,
+          "r_hi": 20,
+          "near_miss": 85,
+          "min_abs": "0",
+          "min_abs_cell": [
+            20,
+            6
+          ]
+        },
+        {
+          "r_lo": 21,
+          "r_hi": 30,
+          "near_miss": 1,
+          "min_abs": "556",
+          "min_abs_cell": [
+            22,
+            6
+          ]
+        },
+        {
+          "r_lo": 31,
+          "r_hi": 40,
+          "near_miss": 0,
+          "min_abs": "12694",
+          "min_abs_cell": [
+            39,
+            14
+          ]
+        },
+        {
+          "r_lo": 41,
+          "r_hi": 50,
+          "near_miss": 0,
+          "min_abs": "609228",
+          "min_abs_cell": [
+            41,
+            14
+          ]
+        },
+        {
+          "r_lo": 51,
+          "r_hi": 60,
+          "near_miss": 0,
+          "min_abs": "442044255",
+          "min_abs_cell": [
+            51,
+            15
+          ]
+        },
+        {
+          "r_lo": 61,
+          "r_hi": 70,
+          "near_miss": 0,
+          "min_abs": "312004291",
+          "min_abs_cell": [
+            65,
+            22
+          ]
+        },
+        {
+          "r_lo": 71,
+          "r_hi": 80,
+          "near_miss": 0,
+          "min_abs": "2646401820804",
+          "min_abs_cell": [
+            76,
+            23
+          ]
+        },
+        {
+          "r_lo": 81,
+          "r_hi": 90,
+          "near_miss": 0,
+          "min_abs": "45960063322751",
+          "min_abs_cell": [
+            84,
+            26
+          ]
+        },
+        {
+          "r_lo": 91,
+          "r_hi": 92,
+          "near_miss": 0,
+          "min_abs": "31490569767031307",
+          "min_abs_cell": [
+            91,
+            29
+          ]
+        }
+      ]
+    },
+    "mechanical_decision_rule_output": "magnitude_floor",
+    "compromised_conditions": [],
+    "extended_counts": {
+      "63": "106356804267969411",
+      "64": "209366672181778359",
+      "65": "412246861431389469",
+      "66": "811916554998178377",
+      "67": "1599434686587771626",
+      "68": "3151517210492380591",
+      "69": "6211093021215415074",
+      "70": "12243590744602332913",
+      "71": "24140116236766772570",
+      "72": "47605503594945728492",
+      "73": "93898748206252718746",
+      "74": "185244341536371703995",
+      "75": "365519356203040503887",
+      "76": "721363146013769525252",
+      "77": "1423880713902358315181",
+      "78": "2811042267897389798956",
+      "79": "5550515966179418056507",
+      "80": "10961493274501708396465",
+      "81": "21650838163312025150648",
+      "82": "42770727643046950718380",
+      "83": "84505283950928880912156",
+      "84": "166987829898286856249656",
+      "85": "330025873121725808464878",
+      "86": "652336840710580659794493",
+      "87": "1289600404574372450581584",
+      "88": "2549742890774213099388415",
+      "89": "5041900556537023017546286",
+      "90": "9971202736892877567950996",
+      "91": "19722182445893026483918920",
+      "92": "39013540330308137681522090"
+    }
+  },
+  "rows": [
+    {
+      "n": 0,
+      "cache": "0",
+      "bfile": "0",
+      "equal": true
+    },
+    {
+      "n": 1,
+      "cache": "1",
+      "bfile": "1",
+      "equal": true
+    },
+    {
+      "n": 2,
+      "cache": "2",
+      "bfile": "2",
+      "equal": true
+    },
+    {
+      "n": 3,
+      "cache": "4",
+      "bfile": "4",
+      "equal": true
+    },
+    {
+      "n": 4,
+      "cache": "6",
+      "bfile": "6",
+      "equal": true
+    },
+    {
+      "n": 5,
+      "cache": "11",
+      "bfile": "11",
+      "equal": true
+    },
+    {
+      "n": 6,
+      "cache": "18",
+      "bfile": "18",
+      "equal": true
+    },
+    {
+      "n": 7,
+      "cache": "31",
+      "bfile": "31",
+      "equal": true
+    },
+    {
+      "n": 8,
+      "cache": "54",
+      "bfile": "54",
+      "equal": true
+    },
+    {
+      "n": 9,
+      "cache": "97",
+      "bfile": "97",
+      "equal": true
+    },
+    {
+      "n": 10,
+      "cache": "172",
+      "bfile": "172",
+      "equal": true
+    },
+    {
+      "n": 11,
+      "cache": "309",
+      "bfile": "309",
+      "equal": true
+    },
+    {
+      "n": 12,
+      "cache": "564",
+      "bfile": "564",
+      "equal": true
+    },
+    {
+      "n": 13,
+      "cache": "1028",
+      "bfile": "1028",
+      "equal": true
+    },
+    {
+      "n": 14,
+      "cache": "1900",
+      "bfile": "1900",
+      "equal": true
+    },
+    {
+      "n": 15,
+      "cache": "3512",
+      "bfile": "3512",
+      "equal": true
+    },
+    {
+      "n": 16,
+      "cache": "6542",
+      "bfile": "6542",
+      "equal": true
+    },
+    {
+      "n": 17,
+      "cache": "12251",
+      "bfile": "12251",
+      "equal": true
+    },
+    {
+      "n": 18,
+      "cache": "23000",
+      "bfile": "23000",
+      "equal": true
+    },
+    {
+      "n": 19,
+      "cache": "43390",
+      "bfile": "43390",
+      "equal": true
+    },
+    {
+      "n": 20,
+      "cache": "82025",
+      "bfile": "82025",
+      "equal": true
+    },
+    {
+      "n": 21,
+      "cache": "155611",
+      "bfile": "155611",
+      "equal": true
+    },
+    {
+      "n": 22,
+      "cache": "295947",
+      "bfile": "295947",
+      "equal": true
+    },
+    {
+      "n": 23,
+      "cache": "564163",
+      "bfile": "564163",
+      "equal": true
+    },
+    {
+      "n": 24,
+      "cache": "1077871",
+      "bfile": "1077871",
+      "equal": true
+    },
+    {
+      "n": 25,
+      "cache": "2063689",
+      "bfile": "2063689",
+      "equal": true
+    },
+    {
+      "n": 26,
+      "cache": "3957809",
+      "bfile": "3957809",
+      "equal": true
+    },
+    {
+      "n": 27,
+      "cache": "7603553",
+      "bfile": "7603553",
+      "equal": true
+    },
+    {
+      "n": 28,
+      "cache": "14630843",
+      "bfile": "14630843",
+      "equal": true
+    },
+    {
+      "n": 29,
+      "cache": "28192750",
+      "bfile": "28192750",
+      "equal": true
+    },
+    {
+      "n": 30,
+      "cache": "54400028",
+      "bfile": "54400028",
+      "equal": true
+    },
+    {
+      "n": 31,
+      "cache": "105097565",
+      "bfile": "105097565",
+      "equal": true
+    },
+    {
+      "n": 32,
+      "cache": "203280221",
+      "bfile": "203280221",
+      "equal": true
+    },
+    {
+      "n": 33,
+      "cache": "393615806",
+      "bfile": "393615806",
+      "equal": true
+    },
+    {
+      "n": 34,
+      "cache": "762939111",
+      "bfile": "762939111",
+      "equal": true
+    },
+    {
+      "n": 35,
+      "cache": "1480206279",
+      "bfile": "1480206279",
+      "equal": true
+    },
+    {
+      "n": 36,
+      "cache": "2874398515",
+      "bfile": "2874398515",
+      "equal": true
+    },
+    {
+      "n": 37,
+      "cache": "5586502348",
+      "bfile": "5586502348",
+      "equal": true
+    },
+    {
+      "n": 38,
+      "cache": "10866266172",
+      "bfile": "10866266172",
+      "equal": true
+    },
+    {
+      "n": 39,
+      "cache": "21151907950",
+      "bfile": "21151907950",
+      "equal": true
+    },
+    {
+      "n": 40,
+      "cache": "41203088796",
+      "bfile": "41203088796",
+      "equal": true
+    },
+    {
+      "n": 41,
+      "cache": "80316571436",
+      "bfile": "80316571436",
+      "equal": true
+    },
+    {
+      "n": 42,
+      "cache": "156661034233",
+      "bfile": "156661034233",
+      "equal": true
+    },
+    {
+      "n": 43,
+      "cache": "305761713237",
+      "bfile": "305761713237",
+      "equal": true
+    },
+    {
+      "n": 44,
+      "cache": "597116381732",
+      "bfile": "597116381732",
+      "equal": true
+    },
+    {
+      "n": 45,
+      "cache": "1166746786182",
+      "bfile": "1166746786182",
+      "equal": true
+    },
+    {
+      "n": 46,
+      "cache": "2280998753949",
+      "bfile": "2280998753949",
+      "equal": true
+    },
+    {
+      "n": 47,
+      "cache": "4461632979717",
+      "bfile": "4461632979717",
+      "equal": true
+    },
+    {
+      "n": 48,
+      "cache": "8731188863470",
+      "bfile": "8731188863470",
+      "equal": true
+    },
+    {
+      "n": 49,
+      "cache": "17094432576778",
+      "bfile": "17094432576778",
+      "equal": true
+    },
+    {
+      "n": 50,
+      "cache": "33483379603407",
+      "bfile": "33483379603407",
+      "equal": true
+    },
+    {
+      "n": 51,
+      "cache": "65612899915304",
+      "bfile": "65612899915304",
+      "equal": true
+    },
+    {
+      "n": 52,
+      "cache": "128625503610475",
+      "bfile": "128625503610475",
+      "equal": true
+    },
+    {
+      "n": 53,
+      "cache": "252252704148404",
+      "bfile": "252252704148404",
+      "equal": true
+    },
+    {
+      "n": 54,
+      "cache": "494890204904784",
+      "bfile": "494890204904784",
+      "equal": true
+    },
+    {
+      "n": 55,
+      "cache": "971269945245201",
+      "bfile": "971269945245201",
+      "equal": true
+    },
+    {
+      "n": 56,
+      "cache": "1906879381028850",
+      "bfile": "1906879381028850",
+      "equal": true
+    },
+    {
+      "n": 57,
+      "cache": "3745011184713964",
+      "bfile": "3745011184713964",
+      "equal": true
+    },
+    {
+      "n": 58,
+      "cache": "7357400267843990",
+      "bfile": "7357400267843990",
+      "equal": true
+    },
+    {
+      "n": 59,
+      "cache": "14458792895301660",
+      "bfile": "14458792895301660",
+      "equal": true
+    },
+    {
+      "n": 60,
+      "cache": "28423094496953330",
+      "bfile": "28423094496953330",
+      "equal": true
+    },
+    {
+      "n": 61,
+      "cache": "55890484045084135",
+      "bfile": "55890484045084135",
+      "equal": true
+    },
+    {
+      "n": 62,
+      "cache": "109932807585469973",
+      "bfile": "109932807585469973",
+      "equal": true
+    }
+  ]
+}

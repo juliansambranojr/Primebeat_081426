@@ -1,0 +1,176 @@
+==============================================================================
+O42 — zero winding phase: are the four exact zeros turn marks on a spiral?
+==============================================================================
+  prereg   : preregs/zero_winding_phase_v1_locked_20260818.md
+  phase map: Phi(r,d) = r*gamma*log b + d*arg(1 - b^-rho), rho = 1/2 + i*gamma
+             papers/Euler-Factor-Chain.md A1
+  NOTE     : the verdict line is Julian's. What follows is the decision
+             rule's mechanical output, not a verdict.
+
+  base            : 2
+  dps             : 50
+  zeros scanned M : 200
+  tol_quarter     : 0.1 rad
+  tol_spread      : 0.1 rad
+  n_null          : 20000
+  alpha           : 0.05
+  seed            : 2026 (hardcoded; no --seed flag, per REFERENCES.md)
+  zeros cache     : /Users/juliansambrano/GitHub/Primebeat_081426/zeros600.json
+  O16 log         : /Users/juliansambrano/GitHub/Primebeat_081426/results/O16_run2.log
+  code_version    : abd581a505de7cdd6a055f8d4375b0e2b380ae60f767b222650b66bd83382efc
+
+------------------------------------------------------------------------------
+ZERO SET — re-read from the O16 log, not from memory
+------------------------------------------------------------------------------
+  read from log : [(2, 1), (4, 1), (8, 3), (20, 6)]
+  locked        : [(2, 1), (4, 1), (8, 3), (20, 6)]
+  MATCH         : yes
+
+------------------------------------------------------------------------------
+ZETA ZEROS
+------------------------------------------------------------------------------
+  cache entries : 600
+  M used        : 200
+  gamma_1       : 14.13472514173469379045725
+  gamma_M       : 396.3818542225921869319995
+
+  per-step phases at gamma_1 (base 2):
+    per r-step, unreduced :  9.79744487998 rad
+    per r-step, mod 2*pi  :  3.5142595728 rad
+      (REFERENCES.md locks omega_1 = 3.514260 rad/regime;
+       Euler-Factor-Chain.md D5 says 201.3 deg, 1.559 turns per rung)
+    per d-step            :  -0.153999754589 rad
+    |1 - b^-rho|          :  1.67843421768
+
+------------------------------------------------------------------------------
+TEST B — constant angle (primary): four zeros, three gaps
+------------------------------------------------------------------------------
+  cells : [(2, 1), (4, 1), (8, 3), (20, 6)]
+  steps : [(2, 0), (4, 2), (12, 3)]  (delta_r, delta_d)
+
+  idx    gamma                      gap1         gap2         gap3         spread      
+  0      14.1347251417346938        0.74533384   1.1826682    4.0100038    3.2646699   
+  6      40.9187190121474952        0.17672167   0.2802524    0.9505436    0.77382194  
+  9      49.7738324776723022        6.1693302    6.1026329    5.6707914    0.49853878  
+  19     77.1448400688748054        0.13130655   0.20822808   0.70626179   0.57495523  
+  56     157.59759181759406         4.8483524    4.0024578    4.8407807    0.84589464  
+  96     231.250188700499165        0.13838194   0.2194488    0.74431901   0.60593707  
+  123    276.452049503132939        6.2527989    6.2349989    6.1197466    0.13305235     <- min
+  162    339.85821672536354         6.1878167    6.1319496    5.7702258    0.41759086  
+  171    353.488900488718807        6.2344008    6.0680719    5.8141616    0.42023917  
+  174    357.952685101632274        6.1393349    6.0550642    5.5094525    0.62988241  
+  186    376.324092230668052        0.19158652   0.30382751   1.0305008    0.8389143   
+
+  minimising gamma index : 123
+  minimising gamma       : 276.4520495031329386798873
+  S_obs (circular range) : 0.13305234828 rad
+  common angle at min    : 6.2025373666 rad
+  tol_spread             : 0.1
+  spread <= tol_spread   : False
+
+------------------------------------------------------------------------------
+TEST A — quarter turn: every gap within tol_quarter of pi/2
+------------------------------------------------------------------------------
+  pi/2 = 1.57079632679  tol_quarter = 0.1
+
+  at gamma_1 (NOT BLIND — see the prereg's provenance section;
+  the assistant hand-estimated these before the prereg was written):
+    gap1 = 0.7453338384    |gap - pi/2| = 0.8254624884
+    gap2 = 1.182668168     |gap - pi/2| = 0.3881281591
+    gap3 = 4.010003767     |gap - pi/2| = 2.43920744
+
+  at the Test-B minimising gamma (index 123):
+    gap1 = 6.252798915     |gap - pi/2| = 1.601182719
+    gap2 = 6.234998931     |gap - pi/2| = 1.618982703
+    gap3 = 6.119746567     |gap - pi/2| = 1.734235067
+
+  gamma indices where ALL three gaps are within tol_quarter of pi/2:
+    (none)
+  Test A fires at the Test-B minimiser : False
+
+------------------------------------------------------------------------------
+TEST C — the same-depth collision: (2,1) and (4,1) share d = 1
+------------------------------------------------------------------------------
+  Both merge representatives are computed. The prereg forbids
+  selecting one after the fact; the merged reading counts only if
+  both representatives fire the same way.
+
+  representative (2, 1)  cells [(2, 1), (8, 3), (20, 6)]
+    steps                 : [(6, 2), (12, 3)]
+    minimising gamma index: 5
+    minimising gamma      : 37.58617815882567125721776
+    min spread (2 gaps)   : 0.014309855051 rad
+    gaps at min           : ['0.7917318767', '0.8060417318']
+    spread <= tol_spread  : True
+
+  representative (4, 1)  cells [(4, 1), (8, 3), (20, 6)]
+    steps                 : [(4, 2), (12, 3)]
+    minimising gamma index: 140
+    minimising gamma      : 304.8643713408572977001488
+    min spread (2 gaps)   : 0.0109673450043 rad
+    gaps at min           : ['2.638245413', '2.649212758']
+    spread <= tol_spread  : True
+
+  representatives agree : True
+
+------------------------------------------------------------------------------
+TEST D — the null (mandatory; without it Test B cannot fail)
+------------------------------------------------------------------------------
+  null domain      : backward-prime support, d >= 1,
+                     1 <= d <= 61, d+1 <= r <= 62
+  cells in domain  : 1891 (O16 log: 1953 cells over d = 0..61; the d = 0 row holds 62)
+  draw shape       : distinct cells, distinct r, ordered by r ascending
+  arithmetic       : float64 (locked); max |phase| < 2e4 rad,
+                     mod-2pi error < 1e-11 rad, 11 orders below tol_spread
+  seed             : 2026
+
+  primary null (4 cells / 3 gaps): draws returned 20000
+    null min-spread  mean 0.363624  sd 0.286317  min 0.000119
+    quantiles 1/5/50 %    0.024961  0.061231  0.285700
+    S_obs                : 0.13305234828
+    p (primary)          : 0.179041
+    alpha                : 0.05
+    p <= alpha           : False
+    Test A null firing rate (fraction of draws where some gamma
+      puts all 3 gaps within tol_quarter of pi/2): 0.004400
+
+  merged null (3 cells / 2 gaps): draws returned 20000
+    representative (2, 1)   S_obs 0.014310   p 0.547323
+    representative (4, 1)   S_obs 0.010967   p 0.463127
+
+  SECONDARY null (non-decreasing d; reported, cannot change the verdict)
+    draws returned : 20000
+    p (secondary)  : 0.205740
+
+------------------------------------------------------------------------------
+TEST E — rate law and forward prediction
+------------------------------------------------------------------------------
+  r-gaps : [2, 4, 12]    d-gaps : [0, 2, 3]   (arithmetic on the locked zero set)
+  ln(r-gap) ~ a + c*k : c = 0.895880  a = -0.270310  (growth factor per turn 2.449490)
+  d-gap     ~ a + c*k : c = 1.500000  a = -1.333333
+  extrapolated turn 4 : delta_r = 27.4731   delta_d = 4.6667
+  predicted 5th zero  : (r, d) ~ (47.473, 10.667)  -> nearest cell (47, 11)
+  inside the O16 search box (r <= 62, d <= 61) : True
+  inside the table support (r >= d+1)          : True
+  -> This position IS inside the box O16 searched, and O16 found
+     no zero there. The rate law predicts a zero that is absent.
+  Test E is interpretable only if Test B fires; a rate law through
+  three points with no constant angle behind it is curve fitting.
+
+==============================================================================
+MECHANICAL DECISION-RULE OUTPUT (NOT A VERDICT)
+==============================================================================
+  Test B spread <= tol_spread      : False
+  Test D p <= alpha                : False
+  Test A fires at the minimiser    : False
+  Test C representatives agree     : True
+  compromised conditions tripped   : (none)
+
+  label the decision rule selects  : no_constant_angle
+
+  The verdict line in the prereg's Run record is Julian's to write.
+  CLAUDE.md § Prereg discipline: an agent may compute the SHA and
+  report the decision rule's mechanical output; it does not stamp
+  the verdict.
+
+results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/zero_winding_phase_run3.json

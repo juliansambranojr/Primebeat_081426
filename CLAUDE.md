@@ -49,6 +49,29 @@ does not stamp the verdict.
 Currently only 07/O7 is preregistered. O3, O4, 05, 06, O8, and O9 are
 exploratory. Do not describe their outputs as verdicts.
 
+### Prereg file naming and status
+
+A prereg's filename carries no status. Name it
+`preregs/<slug>_v<N>_<YYYYMMDD>.md` at creation and never rename it.
+Scripts, results JSONs, and notebook entries cite that path from the
+moment they are written; a rename strands every one of them.
+
+Status lives in two places instead:
+
+- the `STATUS:` block inside the file, reading `DRAFT` or `LOCKED`
+- the presence of a sidecar `preregs/<same-basename>.sha256`, which
+  exists only once locked
+
+The sidecar is the authority. A prereg with one is locked; a prereg
+without one is not, whatever its STATUS block says — the sidecar is
+the thing that pins the text, so it is what a later reader should
+trust.
+
+The three preregs named before this convention keep their names:
+alpha_depth_trend_v1_locked_20260814.md,
+zero_winding_phase_v1_locked_20260818.md, and
+extended_zero_census_v1_locked_20260818.md.
+
 ## Permissions
 
 **CAN:**

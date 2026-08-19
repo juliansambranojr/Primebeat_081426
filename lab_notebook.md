@@ -13,6 +13,245 @@ rather than filled — see CONTEXT.md. Do not go looking for it.
 
 ---
 
+## 2026-08-18 — Entry 44 — prereg filenames stop carrying status; O43's stale draft path fixed and re-run
+type: instrument-fix
+refs: 43
+
+Entry 43 fixed one instance of a defect that had two. The same
+draft→locked rename that stranded `O42_zero_winding_phase.py` also
+stranded `O43_extended_zero_census.py`, and the underlying cause — a
+filename that encodes status, so that locking a prereg forces a rename
+— was left standing. Both are closed here: the cause by a convention
+Julian approved and that is now written into this project's `CLAUDE.md`,
+the remaining instance by a three-site path fix and a paired re-run.
+
+**The convention, approved by Julian and inserted verbatim.** A new
+subsection `### Prereg file naming and status` now sits at the end of
+`CLAUDE.md` § Prereg discipline, immediately before § Permissions. Its
+rule: name a prereg `preregs/<slug>_v<N>_<YYYYMMDD>.md` at creation and
+never rename it, because scripts, results JSONs, and notebook entries
+cite that path from the moment they are written and a rename strands
+every one of them. Status lives instead in the `STATUS:` block inside
+the file and in the presence of a sidecar
+`preregs/<same-basename>.sha256`, which exists only once locked; **the
+sidecar is the authority**, and a prereg without one is not locked
+whatever its STATUS block says, because the sidecar is the thing that
+pins the text. The three preregs named before the convention keep their
+names —
+`alpha_depth_trend_v1_locked_20260814.md`,
+`zero_winding_phase_v1_locked_20260818.md`, and
+`extended_zero_census_v1_locked_20260818.md`. None was renamed here, by
+design: renaming them would be the very failure the rule forbids.
+
+`CLAUDE.md` sha256 moved
+`45bb98e5…0567c0a0` → `7384e263…d8564c49`
+(`shasum -a 256 CLAUDE.md`, taken either side of the edit). The diff is
+one hunk, +23 lines, nothing else in the file touched.
+
+**O42 — already clean.** `grep -n draft O42_zero_winding_phase.py`
+returns nothing, and `grep -n draft_20260818` returns nothing; entry
+43's four-site pass was complete. The file was not edited in this pass
+and its sha256 is unchanged at
+`abd581a505de7cdd6a055f8d4375b0e2b380ae60f767b222650b66bd83382efc`
+before and after (mtime still 2026-08-18 15:49:58, ahead of this
+session).
+
+**O43 — three sites, all of them the filename.**
+`grep -n draft_20260818 O43_extended_zero_census.py` before the edit
+returned exactly three lines, all replaced by the locked name and
+nothing else touched:
+
+```text
+  line   6  docstring "Reads with:" header
+  line  13  docstring STATUS paragraph
+  line 181  PREREG_PATH constant -> console header and params.prereg
+```
+
+Line 181 is why the stale path reached
+`results/O43_extended_zero_census_run1.log` line 4 and
+`results/extended_zero_census.json` → `params.prereg`.
+
+**Caveat on the grep check, recorded so it is not re-litigated.**
+`grep -n draft O43_extended_zero_census.py` still returns five lines —
+19, 104, 175, 504, 828 — and none of them is a path. They are the
+lowercase word *drafting* / *draft time* in prose about the drafting
+process: that the drafting agent issued only a HEAD request and never
+downloaded the b-file, that the old-region numbers were computed while
+drafting and are disclosed non-blind, that `BFILE_EXPECTED_BYTES` came
+from a HEAD probe at draft time, and the `bfile_head_probe_note` string
+that carries that provenance into the results payload. All four
+statements are true and load-bearing as provenance; line 828 in
+particular is a JSON leaf, so rewriting it would have changed the
+payload and broken the non-semantic comparison below. This pass was
+scoped to the path, exactly as entry 43's was — entry 43's `grep -n
+draft` came back empty only because O42's surviving occurrence is the
+uppercase status word `DRAFT`.
+
+**Script SHA-256, before and after** (`shasum -a 256`, run either side
+of the edit):
+
+```text
+  O42  before  abd581a505de7cdd6a055f8d4375b0e2b380ae60f767b222650b66bd83382efc
+  O42  after   abd581a505de7cdd6a055f8d4375b0e2b380ae60f767b222650b66bd83382efc   (unchanged, not edited)
+  O43  before  2c7f9d8cab17f7f85a831fd446ee23d83490f2c6feac70dc2623886608171400
+  O43  after   9f66c9dffbfdb8bbf0ffe3aedd30b6b3b86e136604ae12b893face3eaeac1458
+```
+
+O43's before hash is the same string carried in
+`results/extended_zero_census.json` → `params.code_version`, i.e. run 1
+executed the pre-fix bytes and stamped them correctly.
+
+**Re-runs, to new paths.** Each script's docstring invocation verbatim
+except for `--out` and the tee target, so that no run of record is
+clobbered — the entry-5 filename hazard:
+
+```text
+.venv/bin/python O42_zero_winding_phase.py \
+    --base 2 --dps 50 --zeros 200 \
+    --tol-quarter 0.10 --tol-spread 0.10 --n-null 20000 \
+    --alpha 0.05 \
+    --zeros-cache zeros600.json \
+    --o16-log results/O16_run2.log \
+    --out results/zero_winding_phase_run3.json \
+    2>&1 | tee results/O42_zero_winding_phase_run3.log
+
+.venv/bin/python O43_extended_zero_census.py \
+    --bfile-source network \
+    --bfile-url https://oeis.org/A007053/b007053.txt \
+    --bfile-raw b007053.txt \
+    --cache pi2n_cache.json \
+    --o16-log results/O16_run2.log \
+    --rmax-old 62 --rmax-ext 92 --d-min 1 \
+    --near-miss-h 1024 --alpha 0.05 \
+    --out results/extended_zero_census_run2.json \
+    2>&1 | tee results/O43_extended_zero_census_run2.log
+```
+
+O42 run 3: `run_start_at` 2026-08-19T02:37:27Z, `run_end_at`
+2026-08-19T02:37:28Z. O43 run 2: `run_start_at` 2026-08-19T02:37:42Z,
+`run_end_at` 2026-08-19T02:37:43Z. All four read from the new JSONs'
+`params`. New artifacts:
+
+```text
+  results/zero_winding_phase_run3.json          63464 B
+  results/O42_zero_winding_phase_run3.log        8769 B
+  results/extended_zero_census_run2.json        14004 B
+  results/O43_extended_zero_census_run2.log      6895 B
+```
+
+**The O43 b-file did not move.** The re-run fetched
+`https://oeis.org/A007053/b007053.txt` again over the network, HTTP 200,
+1572 bytes, sha256
+`6f4f5aaca7419f8c3d0a9d41b56617a1347ab4c124eec3f64362e299f7d8179b` —
+byte-identical to run 1's, and identical again on the file left on disk
+at `b007053.txt`. 93 data lines, n = 0..92, contiguous, 0 comment
+lines. The `last-modified` header is absent from the response and is
+recorded as reported drift, exactly as in run 1; it does not trip
+`compromised`. So the upstream data is the same data, and the
+comparison below is a comparison of code, not of inputs.
+
+**Both changes are non-semantic, and here is the evidence.** Each new
+payload was flattened to leaves and compared key by key against its run
+of record.
+
+O42, `results/zero_winding_phase.json` vs
+`results/zero_winding_phase_run3.json`: **1738 leaves each, identical
+key sets, five differing, every one metadata.**
+
+```text
+  /generated_utc        2026-08-18T22:36:27Z  ->  2026-08-19T02:37:28Z
+  /params/run_start_at  2026-08-18T22:36:26Z  ->  2026-08-19T02:37:27Z
+  /params/run_end_at    2026-08-18T22:36:27Z  ->  2026-08-19T02:37:28Z
+  /params/prereg        ...draft...           ->  ...locked...
+  /params/code_version  d57e8067...           ->  abd581a5...
+```
+
+O43, `results/extended_zero_census.json` vs
+`results/extended_zero_census_run2.json`: **440 leaves each, identical
+key sets, six differing, every one metadata.**
+
+```text
+  /generated_utc              2026-08-19T02:25:48Z  ->  2026-08-19T02:37:43Z
+  /params/run_start_at        2026-08-19T02:25:47Z  ->  2026-08-19T02:37:42Z
+  /params/run_end_at          2026-08-19T02:25:48Z  ->  2026-08-19T02:37:43Z
+  /params/prereg              ...draft...           ->  ...locked...
+  /params/code_version        2c7f9d8c...           ->  9f66c9df...
+  /summary/bfile/retrieved_utc 2026-08-19T02:25:48Z ->  2026-08-19T02:37:43Z
+```
+
+`prereg` and `code_version` are the fix itself. `code_version` moving is
+the entry-42 hazard read the benign way: `_code_version()` hashes
+`__file__` at write time, so a changed file changes the stamp even when
+behaviour does not. `retrieved_utc` is a clock, not a datum — the
+`sha256` leaf beside it is unchanged.
+
+Every observed statistic is bit-identical across each pair. Named
+individually, read from the two O43 JSONs:
+
+```text
+  check_1  n_comparisons / n_equal / n_unequal   63 / 63 / 0        both
+  check_2  rebuilt_old_zeros   [[2,1],[4,1],[8,3],[20,6]]           both
+  check_3  cells_old / cells_ext / cells_new     1891 / 4186 / 2295 both
+  check_3  n_reproduced / K_new                  4 / 0              both
+  check_4  E_K_new_H0                            4.854574299312533  both
+  check_4  new_cell_share                        0.5482560917343526 both
+  check_4  p_conditional_binomial                0.04164560919604805 both
+  check_4  p_poisson_secondary                   0.007792649983770727 both
+  check_5  n_old_region / max_r_old_region       131 / 22           both
+  check_5  M_new                                 0                  both
+  check_5  band minima  (22,6) 556, (39,14) 12694, (41,14) 609228,
+           (51,15) 442044255, (65,22) 312004291, (76,23) 2646401820804,
+           (84,26) 45960063322751, (91,29) 31490569767031307       both
+  extended_counts  n = 63..92, all 30 exact integers               both
+```
+
+O42's named statistics are the nine listed in entry 43 and are
+unchanged again at run 3; the 1738-leaf comparison above covers them
+exhaustively, `test_B.min_spread` 0.13305234828042806 and
+`test_D.p_primary` 0.17904104794760262 included.
+
+`diff` on the log pairs is the same story. O42 run 1 vs run 3: three
+hunks, line 4 (prereg path), line 20 (`code_version`), line 176 (the
+results path). O43 run 1 vs run 2: two hunks, lines 4–6 (prereg path,
+`started`, `code_version`) and line 142 (the results path). Nothing
+numeric moved anywhere in 176 and 142 lines respectively.
+
+The decision rules' **mechanical outputs** are unchanged across each
+pair: `no_constant_angle` for O42
+(`summary.mechanical_decision_rule_output`, `compromised_conditions`
+empty) and `magnitude_floor` for O43 (same key, `compromised_conditions`
+empty). Both are the rules' arithmetic, not verdicts. O42's verdict line
+was written by Julian in that prereg's Run record before this pass;
+**O43's verdict line is blank and is Julian's to write.**
+
+**Runs 1 are undisturbed and remain the preregs' runs of record.**
+`results/zero_winding_phase.json` and
+`results/O42_zero_winding_phase_run1.log` still carry mtime 2026-08-18
+15:36:27; `results/extended_zero_census.json` and
+`results/O43_extended_zero_census_run1.log` still carry 2026-08-18
+19:25:48. Neither locked prereg was opened for edit — mtimes 2026-08-18
+16:51:13 and 19:26:21, both ahead of this session's first write at
+19:36:31 — so both parameter tables, both decision rules, and both Run
+records stand as locked, and both sidecar-match statements are
+untouched. Verified in place: the sidecars read
+`b0101319708c70e47704002cfe7b7eb85853521481e8a5ad57a64269e958ca17` and
+`ff6a1794c1129397760779a587aeb737218e480bb48820e3b38e062467beb0dd`,
+which are the strings the two Run records assert as
+`post_compute_sha256` with sidecar match **yes**. The consequence to
+note is the same one entry 43 recorded: run 1's own artifacts still
+print the draft path in both cases, because re-running for record would
+mean clobbering the run of record.
+
+Prior results comparable: **yes, fully.** Nothing in
+`results/zero_winding_phase.json` or
+`results/extended_zero_census.json` is invalidated. The only stale
+pointers left in either are `params.prereg` itself and
+`params.code_version`, which names the pre-fix bytes and correctly so.
+
+No outcome marked.
+
+---
+
 ## 2026-08-18 — Entry 43 — O42 cited a prereg path that no longer exists; fixed, re-run, non-semantic
 type: instrument-fix
 refs: 12

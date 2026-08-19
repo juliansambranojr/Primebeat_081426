@@ -1,0 +1,142 @@
+==============================================================================
+O43 — EXTENDED EXACT-ZERO CENSUS TO r = 92
+==============================================================================
+  prereg      : preregs/extended_zero_census_v1_draft_20260818.md
+  started     : 2026-08-19T02:25:47Z
+  code_version: 2c7f9d8cab17f7f85a831fd446ee23d83490f2c6feac70dc2623886608171400
+  randomness  : none (both p-values closed form; no --seed flag)
+  arithmetic  : exact Python int for the table; float only for p
+
+  Nothing printed here is a verdict.  This script reports the
+  decision rule's mechanical output; the verdict line is Julian's
+  (CLAUDE.md, section 'Prereg discipline').
+
+------------------------------------------------------------------------------
+B-FILE RETRIEVAL
+------------------------------------------------------------------------------
+  source      : network
+  url         : https://oeis.org/A007053/b007053.txt
+  raw written : /Users/juliansambrano/GitHub/Primebeat_081426/b007053.txt
+  http status : 200
+  bytes       : 1572   (HEAD probe at draft time: 1572 -> match)
+  last-modified: None   (HEAD probe: Wed, 16 Dec 2020 06:02:57 GMT -> DRIFT)
+  sha256      : 6f4f5aaca7419f8c3d0a9d41b56617a1347ab4c124eec3f64362e299f7d8179b
+
+  Metadata drift is REPORTED, never a `compromised` trip — OEIS may
+  republish.  Only the term comparisons below trip `compromised`.
+
+  data lines parsed : 93
+  comment lines     : 0
+  n range           : 0..92
+  contiguous        : True
+
+------------------------------------------------------------------------------
+CHECK 1 — INTEGRITY: b-file n = 0..62 vs pi2n_cache.json  (reported first)
+------------------------------------------------------------------------------
+  cache : /Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json   (READ ONLY)
+  entries : 63   n range : 0..62
+
+  independent comparisons : 63
+  equal                   : 63
+  UNEQUAL                 : 0
+
+  pi(2^62) = 109932807585469973 in both.
+  All 63 terms agree.  This is the first external witness this
+  tree's pi(2^n) cache has had.  Every result descending from
+  pi2n_cache.json — 05, 06, 07, O4, O16, O27, O42 — inherits it.
+
+  One of the 63 was already known to pass: n = 62 was
+  spot-checked in papers/literature/litsearch_2_priority.md.
+  The other 62 had not been checked by anyone.
+
+------------------------------------------------------------------------------
+TABLE — backward prime, R = 92, exact integers
+------------------------------------------------------------------------------
+  convention  : B(r,d) = B(r,d-1) - B(r-1,d-1), support r = d+1..R
+  depth floor : d >= 1
+  cells, R=62 : 1891
+  cells, R=92 : 4186
+  new cells   : 2295   (all have r >= 63)
+  N(62) = 54042323540385838
+  N(92) = 39013540330308137681522090
+  max |B|     : 127299657539967357985739225139610  at (r=92, d=91)
+
+------------------------------------------------------------------------------
+CHECK 2 — REPRODUCTION of the known zeros at r <= 62
+------------------------------------------------------------------------------
+  known (prereg)        : [[2, 1], [4, 1], [8, 3], [20, 6]]
+  re-parsed from log    : [[2, 1], [4, 1], [8, 3], [20, 6]]
+  rebuilt, r <= 62      : [[2, 1], [4, 1], [8, 3], [20, 6]]
+  rebuilt == known      : True
+  log     == known      : True
+
+  This is a REPRODUCTION CHECK, not evidence.  Those four cells are
+  the most inspected objects in this tree (prereg, provenance 1).
+  Raising R cannot move an old cell — B(r,d) depends only on
+  N(r-d)..N(r) — so this checks the new construction, not pi.
+
+------------------------------------------------------------------------------
+CHECK 3 — CENSUS: new exact zeros in 62 < r <= 92
+------------------------------------------------------------------------------
+  reproduced (r <= 62) : 4  [[2, 1], [4, 1], [8, 3], [20, 6]]
+  NEW (62 < r <= 92)   : 0
+      (none)
+
+  Reported separately from the reproduced four, never merged.
+
+------------------------------------------------------------------------------
+CHECK 4 — RATE TEST
+------------------------------------------------------------------------------
+  H0: one per-cell rate everywhere on the d >= 1 support.
+  observed K_new                  : 0
+  H0 expectation  4 * 2295 / 1891    : 4.854574299312533
+  new-cell share  2295 / 4186         : 0.5482560917343526
+
+  PRIMARY  exact conditional binomial, K|T ~ Bin(T=4, 0.548256)
+           one-sided deficit p     : 0.041646   (alpha 0.050 -> fires)
+  SECONDARY Poisson(lambda=4.854574)   p : 0.007793   (cannot change the verdict)
+
+  The rate estimate rests on 4 events.  The conditional test is
+  primary because the unknown per-cell rate cancels out of it; the
+  Poisson test treats that rate as known without error.
+
+------------------------------------------------------------------------------
+CHECK 5 — NEAR-MISS PROFILE, H = 1024  (diagnostic)
+------------------------------------------------------------------------------
+  #zeros in a region <= #{cells with |B| <= H}, exactly, for any
+  H >= 0, because a zero IS such a cell.  A hard bound, not a model.
+
+  old region 1 <= r <= 62 : 131 cells with |B| <= 1024, max r = 22
+  NEW region 62 < r <= 92 : 0 cells with |B| <= 1024, max r = None
+
+  per r-band (min |B| over the band, depth >= 1):
+    r  1-10 : |B|<=1024 :   45    min |B| = 0  at (2, 1)
+    r 11-20 : |B|<=1024 :   85    min |B| = 0  at (20, 6)
+    r 21-30 : |B|<=1024 :    1    min |B| = 556  at (22, 6)
+    r 31-40 : |B|<=1024 :    0    min |B| = 12694  at (39, 14)
+    r 41-50 : |B|<=1024 :    0    min |B| = 609228  at (41, 14)
+    r 51-60 : |B|<=1024 :    0    min |B| = 442044255  at (51, 15)
+    r 61-70 : |B|<=1024 :    0    min |B| = 312004291  at (65, 22)
+    r 71-80 : |B|<=1024 :    0    min |B| = 2646401820804  at (76, 23)
+    r 81-90 : |B|<=1024 :    0    min |B| = 45960063322751  at (84, 26)
+    r 91-92 : |B|<=1024 :    0    min |B| = 31490569767031307  at (91, 29)
+
+==============================================================================
+MECHANICAL DECISION-RULE OUTPUT (NOT A VERDICT)
+==============================================================================
+  integrity comparisons unequal    : 0
+  reproduction of the known four   : True
+  K_new                            : 0
+  primary p <= alpha               : True
+  M_new (near-miss at H=1024)      : 0
+  compromised conditions tripped   : (none)
+
+  label the decision rule selects  : magnitude_floor
+  precedence                       : compromised > rate_constant > magnitude_floor > rate_falls_with_r > ambiguous
+
+  The verdict line in the prereg's Run record is Julian's to write.
+  CLAUDE.md, section 'Prereg discipline': an agent may compute the
+  SHA and report the decision rule's mechanical output; it does not
+  stamp the verdict.
+
+results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/extended_zero_census.json
