@@ -11,6 +11,11 @@ Julian's call.
 Note: there is no Entry 18. The gap is unexplained and has been recorded
 rather than filled — see CONTEXT.md. Do not go looking for it.
 
+**This volume is closed.** It holds entries 1–44 and takes no further
+entries. Continue at `lab_notebook_2.md`, which opens at entry 45.
+Numbering is continuous across the two volumes, so `entry N` stays a
+unique address project-wide and `NOTEPAD.md` indexes both files.
+
 ---
 
 ## 2026-08-18 — Entry 44 — prereg filenames stop carrying status; O43's stale draft path fixed and re-run

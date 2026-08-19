@@ -102,14 +102,16 @@ extended_zero_census_v1_locked_20260818.md.
 ## Lab notebook conventions
 
 Lab notebook lives at
-`/Users/juliansambrano/GitHub/Primebeat_081426/lab_notebook.md`.
-Newest at top.
+`/Users/juliansambrano/GitHub/Primebeat_081426/lab_notebook_2.md`.
+Volume 1, `lab_notebook.md`, is closed and holds entries 1–44; new
+entries go in volume 2. Newest at top. Numbering is continuous across
+volumes, so `entry N` is a unique address project-wide.
 
 Entry header format:
 
 ```text
 ## YYYY-MM-DD — Entry N — <title>
-type: <one-of-six>
+type: <one-of-seven>
 refs: <entry numbers, comma-separated, or empty>
 
 <body>
@@ -131,8 +133,12 @@ Type vocabulary (entry must use exactly one):
   precondition was met, what would sharpen it
 - `provenance` — where a file came from, script lineage and renames,
   which cited document is missing, cache coverage
+- `formalization` — a statement encoded in Lean, an arrow checked, or a
+  hypothesis discharged; records what was proved, the hypotheses it
+  actually needed, its `#print axioms` result, and whether it confirmed
+  or refuted an account already in the notebook
 
-If a new entry doesn't fit any of the six types, flag it and stop — do
+If a new entry doesn't fit any of the seven types, flag it and stop — do
 not invent new types.
 
 NOTEPAD.md follows `/Users/juliansambrano/GitHub/NOTEPAD_TEMPLATE.md`.
@@ -152,7 +158,10 @@ direction without an `instrument-fix` entry; the prereg cites
 
 ## Pointers
 
-- `lab_notebook.md` — chronological record of runs, preregs, triage
+- `lab_notebook.md` — chronological record, entries 1–44. Closed.
+- `lab_notebook_2.md` — chronological record, entry 45 onward.
+  Numbering is continuous across volumes, so `entry N` is a unique
+  address project-wide.
 - `NOTEPAD.md` — one-line index of open threads
 - `CONTEXT.md` — what each test measures, output schema, current state
 - `REFERENCES.md` — cited documents, sibling repos, packages, constants
