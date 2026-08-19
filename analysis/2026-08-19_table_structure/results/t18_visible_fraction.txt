@@ -1,0 +1,63 @@
+TEST 18 - visible fraction against bias.  Written after the fact; exploratory.
+ceiling 2^44   x > 100   60 zeros considered   peak window +-0.5   grid 1e-05
+10 bases, coarse to fine: 1.2000, 1.1500, 1.1100, 1.0850, 1.0750, 1.0500, 1.0400, 1.0317, 1.0250, 1.0200
+
+PART 1 - per base: what it can see, and how far off gamma_1 comes out
+    base     Nyq   vis     n   vis frac    g1 est      err
+  1.2000   17.23     1   142     0.0530   14.1785  +0.0438
+  1.1500   22.48     2   186     0.0893   14.1470  +0.0123
+  1.1100   30.10     3   248     0.1108   14.1377  +0.0030
+  1.0850   38.51     6   317     0.1487   14.1466  +0.0119
+  1.0750   43.44     8   358     0.1682   14.1414  +0.0067
+  1.0500   64.39    14   531     0.1812   14.1278  -0.0069
+  1.0400   80.10    21   660     0.2118   14.1363  +0.0016
+  1.0317  100.67    29   830     0.2191   14.1383  +0.0036
+  1.0250  127.23    41  1049     0.2330   14.1390  +0.0042
+  1.0200  158.65    57  1308     0.2498   14.1465  +0.0118
+
+PART 2 - the prediction: finer base -> larger visible fraction -> smaller |error|
+corr(visible fraction, |error|) = -0.642   t = -2.37   n = 10
+The sign is the predicted one and the magnitude looks like the prediction landing.
+
+PART 3 - leave-one-out jackknife on that correlation
+  dropped        r        t
+   1.2000   -0.258    -0.71
+   1.1500   -0.684    -2.48
+   1.1100   -0.758    -3.07
+   1.0850   -0.642    -2.21
+   1.0750   -0.645    -2.23
+   1.0500   -0.639    -2.20
+   1.0400   -0.618    -2.08
+   1.0317   -0.623    -2.11
+   1.0250   -0.628    -2.14
+   1.0200   -0.735    -2.87
+
+dropping base 1.2000 gives r = -0.258, t = -0.71;
+every other drop leaves r between -0.758 and -0.618
+
+the correlation is carried by one point of 10.  Without it the remaining 9 errors
+span a factor of 7.7 with no relation to visible fraction.  THE PREDICTION FAILS.
+
+PART 4 - the visible fraction saturates
+               step       zeros     frac   gained
+1.2000 -> 1.1500      1 -> 2   0.0893  +0.0363
+1.1500 -> 1.1100      2 -> 3   0.1108  +0.0214
+1.1100 -> 1.0850      3 -> 6   0.1487  +0.0379
+1.0850 -> 1.0750      6 -> 8   0.1682  +0.0195
+1.0750 -> 1.0500     8 -> 14   0.1812  +0.0130
+1.0500 -> 1.0400    14 -> 21   0.2118  +0.0306
+1.0400 -> 1.0317    21 -> 29   0.2191  +0.0072
+1.0317 -> 1.0250    29 -> 41   0.2330  +0.0140
+1.0250 -> 1.0200    41 -> 57   0.2498  +0.0168
+
+1 -> 2 zeros gains 0.0363.  41 -> 57 zeros gains only 0.0168.
+The fraction tops out at 0.250 - at Nyquist 158.65, 57 zeros and 1308 samples,
+75% of the signal is still aliased content folded down.
+
+Each zero contributes roughly 1/gamma^2 to the variance, so the series
+over zeros converges and the reachable fraction has a limit.  Refining
+the base cannot buy past it.  Section 8's lever is real but bounded.
+
+SIGN OF THE ERROR.  base 1.0500 at -0.0069
+With t16's gamma_2 at -0.0051 that is a third negative error.  The bias
+is not systematically positive.

@@ -228,7 +228,7 @@ a different base.
 `exp(π/γ_k)`. Stepping the base down, each base finds exactly the zeros
 beneath its own Nyquist and not one more:
 
-```
+```text
 base      Nyquist   under Nyq   found
 1.2000     17.23        1       γ1
 1.1500     22.48        2       γ1 γ2
@@ -307,20 +307,130 @@ it. A z of −9 out of a correlation of −0.2 is what tail selection does.
 
 ---
 
+## 11 · The third decimal
+
+**Observation (Julian).** The ladder recovers 14.158 where the zero is
+14.1347 and the excuse was "inside the resolution element." What if that
+disagreement is structural rather than a bug — zeta is an infinite sum,
+and we are taking something local and asking it to measure the whole.
+
+**Test.** Sweep the ceiling. Same base 1.1175405, same construction, the
+window in `u` extended from 2²⁸ to 2⁴⁸ — each sample set a prefix of the
+next, never resampled. If the displacement is resolution, doubling the
+span must halve it.
+
+**Standing.** It does not converge. Span 14.67 → 28.56, resolution 0.4283
+→ 0.2200, and the error for γ₁ goes `+0.0160 +0.0249 +0.0334 +0.0138
++0.0228 +0.0221` — wandering, no trend. Measured in resolution elements
+it therefore **grows, 0.037 to 0.101**. γ₃ does the same: `+0.0469
++0.0379 +0.0238 +0.0302` over 2³⁶…2⁴⁸. Whatever moves the peak is not the
+shortness of the window.
+
+**A correction.** I had called the bias systematically positive. That was
+read off γ₁ and γ₃ only. γ₂'s error is **−0.0051** — negative, and the
+smallest of the three. There is no consistent sign.
+
+**Observation (Julian).** Decompose it the way zeta composes, see what
+survives, and divide that over zeta.
+
+**Killed, as the explanation.** The candidate was mutual leakage: each
+zero sitting on the skirts of the others, so fitting one at a time
+measures a blend. It is testable because leakage among zeros we can see
+is leakage we can subtract. Base 1.1175405 has Nyquist `π/ln b = 28.27`,
+so of twelve zeros the visible set is three — 14.135, 21.022, 25.011.
+Re-estimating each on a residual with the other two already removed,
+iterated to a fixed point, moves the errors from `+0.0221 −0.0051
++0.0302` to `+0.0218 −0.0028 +0.0266`. Mean |error| 0.0191 → 0.0170, a
+ratio of **0.89**. Removing every zero the base can see removes about a
+tenth of the bias. Nine tenths is untouched, so leakage among the visible
+zeros is not what displaces the peaks.
+
+**Standing, and it is the answer.** The three visible zeros held at their
+true frequencies explain **0.1291** of the variance. The residual carries
+**0.8671** — eighty-seven per cent of the signal is content above 28.27,
+folded down by aliasing onto frequencies beneath it. The strongest
+survivors are 23.602, 1.298, 26.114, 1.541, 3.572, and **not one of them
+is within 0.4 of any zeta zero**, which is exactly what folded content
+looks like: real structure at frequencies that are nobody's γ. It is in
+every sample and it cannot be subtracted, because subtracting it would
+require knowing where it landed and aliasing is the operation that
+destroys that.
+
+**And it explains section 8's ceiling.** A longer ladder does not help
+because more rungs at the same base extend the window without lowering
+`π / ln b`. The 13/87 split is fixed by the base, not by how far up you
+count. The only lever is a smaller base — which is the same lever
+section 8 already found, now with the cost of *not* pulling it measured.
+
+---
+
+## 12 · The prediction that followed, and did not hold
+
+**Prediction (mine, not Julian's).** If the bias is the aliased majority
+pushing the peak around, then a finer base — which sees more zeros and so
+carries a larger visible fraction — must show a smaller bias. Monotone,
+and testable in one sweep.
+
+**Test.** Ten bases from 1.2000 down to 1.0200 at ceiling 2⁴⁴, sixty zeros
+considered, same construction throughout. Per base: Nyquist, how many zeros
+sit beneath it, the variance those visible zeros jointly explain at their
+true frequencies, and the solo error on γ₁. Visible fraction climbs 0.0530
+→ 0.2498 as the visible set goes from one zero to fifty-seven. Correlation
+against |error|: **r = −0.642, t = −2.37** on ten points. Right sign, and
+at a glance it is the prediction landing.
+
+**Killed by the jackknife.** Drop the single coarsest base, 1.2000, and
+the correlation goes to **r = −0.259, t = −0.71**. Every other single drop
+leaves r between −0.62 and −0.76. One point of ten carries the whole
+thing: 1.2000 sees exactly one zero and its error, +0.0438, is three times
+the next largest, so it sits alone in the corner and drags the line through
+itself. The other nine errors span a factor of **7.7** with no relation to
+visible fraction at all. Retracted, not reported.
+
+**Standing, and I did not predict it.** The visible fraction **saturates
+near 0.25**. One zero to two gains 0.0363 of it; forty-one to fifty-seven
+gains 0.0168. At base 1.0200 — Nyquist **158.65**, fifty-seven zeros
+beneath it, **1308** samples — the fraction is still only 0.2498, so three
+quarters of the signal remains irreducibly aliased. Each zero contributes
+about `1/γ²`, so the series over zeros converges: the reachable fraction
+has a limit and refining the base cannot buy past it. Section 8's lever is
+real and it is bounded, and this is where it stops.
+
+**And a third wrong sign.** Base 1.0500's error is **−0.0069**. With γ₂'s
+−0.0051 from the ceiling sweep that is the third negative error on the
+record. "Systematically positive" is closed out for good.
+
+---
+
 ## Where it stands
 
 **Standing:** the block-sum identity and its low-pass; decimation
 aliasing to machine precision; sign flips reproducing the crossover;
 every base starting at the same oscillatory fraction; the per-zero
 visibility threshold `exp(π/γ_k)` confirmed in order across seven bases;
-base 2 lying above all of them.
+base 2 lying above all of them; the recovered γ not converging as the
+window doubles, `err/res` growing 0.037 → 0.101; the 13/87 split —
+three visible zeros explaining 0.1291 of the variance against 0.8671 of
+above-Nyquist content folded down, fixed by the base and not by the
+ceiling; and the saturation of the visible fraction near 0.25 across ten
+bases, so that even at Nyquist 158.65 with fifty-seven zeros beneath it
+three quarters of the signal is still aliased.
 
 **Killed:** inheritance between bases; coarsening producing zeros;
 coverage and divisibility as attractors; the 2D transform as a way past
 aliasing; a constant winding angle, now on 121 zeros rather than 4; `r−d`
-as an independent coordinate for where zeros sit.
+as an independent coordinate for where zeros sit; mutual leakage
+among the visible zeros as the explanation of the recovery bias —
+backfitting all three removes about a tenth of it; and my own prediction
+that the bias tracks the visible fraction — r = −0.642 on ten bases
+collapses to −0.259 when the single coarsest one is dropped. Also killed,
+and it was mine as well: that the bias is systematically positive. γ₂ is
+−0.0051 and base 1.0500 is −0.0069.
 
-**Unexplained:** the 36.4 peak that survives every recombination.
+**Unexplained:** the 36.4 peak that survives every recombination. The
+bias in the recovered γ is no longer on this list — it is above-Nyquist
+content folded down, and the surviving frequencies that carry it match no
+zero.
 
 **Standing above all of it:** zeros live where there is almost nothing to
 cancel. That one fact now accounts for the apparent `r−d` structure too,

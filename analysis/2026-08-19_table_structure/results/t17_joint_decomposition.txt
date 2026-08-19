@@ -1,0 +1,65 @@
+TEST 17 - joint decomposition of the visible zeros.  Reconstruction; exploratory.
+base 1.1175405   ln b = 0.11113029   ceiling 2^48   x > 100
+12 zeros considered   Nyquist pi/ln b = 28.27   peak window +-0.5   grid 1e-05
+
+r = 42..299, n = 258, span in u = 28.56, resolution 2*pi/span = 0.2200
+
+visible zeros (gamma < Nyquist):  g1=14.135, g2=21.022, g3=25.011   (3 of 12)
+aliased zeros (gamma > Nyquist):  g4=30.425, g5=32.935, g6=37.586, g7=40.919, g8=43.327, g9=48.005, g10=49.774, g11=52.970, g12=56.446
+
+PART 1 - each visible zero fitted alone, frequency free
+  zero       true       solo     error  err/res  var expl
+    g1    14.1347    14.1569   +0.0221    0.101    0.0821
+    g2    21.0220    21.0170   -0.0051    0.023    0.0241
+    g3    25.0109    25.0411   +0.0302    0.137    0.0266
+
+PART 2 - all visible zeros together, held at their TRUE frequencies
+linear least squares, 6 columns (cos/sin per zero), 258 samples
+variance explained by the 3 visible zeros: 0.1291
+variance left over:                          0.8709
+   g1 alone at its true frequency: 0.0793
+   g2 alone at its true frequency: 0.0241
+   g3 alone at its true frequency: 0.0251
+
+PART 3 - backfit: re-estimate each zero on a residual with the others removed
+iterated to a fixed point (max 20 sweeps); the window stays centred on the TRUE gamma
+settled after 4 sweep(s)
+  zero       true   solo err    backfit  backfit err   shrank?
+    g1    14.1347    +0.0221    14.1565      +0.0218       yes
+    g2    21.0220    -0.0051    21.0193      -0.0028       yes
+    g3    25.0109    +0.0302    25.0375      +0.0266       yes
+
+mean |error|  solo 0.0191 -> backfit 0.0170   ratio 0.89
+Removing every zero this base can see removes 11% of the bias.  Mutual leakage
+among the VISIBLE zeros is not what displaces the peaks.
+
+PART 4 - what is left after the visible zeros are subtracted
+joint fit at the BACKFIT frequencies: variance explained 0.1329
+residual variance fraction:           0.8671
+
+strongest surviving frequencies (grid 1.0..28.27 step 0.001, peaks separated by >= 0.2200)
+      freq  var expl   nearest zero  distance within 0.4?
+    23.602    0.0289      g3=25.011     1.409          no
+     1.298    0.0256      g1=14.135    12.837          no
+    26.114    0.0181      g3=25.011     1.103          no
+     1.541    0.0145      g1=14.135    12.594          no
+     3.572    0.0130      g1=14.135    10.563          no
+
+the same maxima with NO separation filter, so the filter's effect is
+visible rather than buried - one resolution element is the Rayleigh
+criterion, and 1.541 below is exactly one away from 1.298:
+   23.602(0.0289)  1.298(0.0256)  26.114(0.0181)  1.541(0.0145)  3.572(0.0130)  1.071(0.0129)  15.601(0.0120)  2.836(0.0106)
+
+mirror check - the same fit evaluated above Nyquist, which is why the
+survey stops there:
+   23.602 (var expl 0.0289)  mirrors  32.937 (var expl 0.0289)
+   1.298 (var expl 0.0256)  mirrors  55.241 (var expl 0.0256)
+
+any survivor within 0.4 of a zeta zero: NO
+
+THE SPLIT.  3 visible zeros account for 0.1291 of the variance at their true
+frequencies.  87% is content above the Nyquist ceiling 28.27, folded down
+onto frequencies below it.  It is in every sample and it cannot be
+subtracted, because subtraction needs a location and aliasing is the
+operation that destroys one.  More rungs at this base extend the
+window without lowering the ceiling, so the split does not move.
