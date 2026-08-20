@@ -1,0 +1,130 @@
+dyadic table to r = 32, project convention (seed 1,1,2,2,5,7,...)
+the four zeros: (2,1)=0 (4,1)=0 (8,3)=0 (20,6)=0
+
+1. THE FOLD AT (20,6)
+   Delta^7 pi at 2^20, weights k=0..7: [1, -7, 21, -35, 35, -21, 7, -1]
+   antisymmetric about the midpoint, w[7-k] = -w[k]: True
+   window (2^13, 2^20], fold axis log2 x = 16.5
+     j  weight  hi=2^  lo=2^   pi(hi)-pi(lo)          term
+     0       1     20     13           80997         80997
+     1      -7     19     14           41490       -290430
+     2      21     18     15           19488        409248
+     3     -35     17     16            5709       -199815
+                                                       sum             0
+
+   the fold is an IDENTITY, not a test - non-zero cells fold too:
+      (21,6) folds to 1713, and cell(21,6) = 1713
+      (19,6) folds to 343, and cell(19,6) = 343
+      (22,6) folds to 556, and cell(22,6) = 556
+
+2. THE TWO WINGS
+
+   (20,6)  ZERO
+      wing +  2^20x1  2^18x21  2^16x35  2^14x7   weights sum 64
+      wing -  2^19x7  2^17x35  2^15x21  2^13x1   weights sum 64
+      wing + = 807295   wing - = 807295   difference = 0
+
+   (8,3)  ZERO
+      wing +  2^8x1  2^6x6  2^4x1   weights sum 8
+      wing -  2^7x4  2^5x4   weights sum 8
+      wing + = 168   wing - = 168   difference = 0
+
+   (21,6)  cell = 1713
+      wing +  2^21x1  2^19x21  2^17x35  2^15x7   weights sum 64
+      wing -  2^20x7  2^18x35  2^16x21  2^14x1   weights sum 64
+      wing + = 1520170   wing - = 1518457   difference = 1713
+
+   NOTE: wing+ - wing- = cell identically. The wings are a
+   decomposition, not an independent test.
+
+3. NEIGHBOURHOOD OF (20,6)
+      d=        3        4        5        6        7        8        9
+  r=16       346      213      188      236      348      523      752
+  r=17       583      237       24     -164     -400     -748    -1271
+  r=18      1100      517      280      256      420      820     1568
+  r=19      2240     1140      623      343       87     -333    -1153
+  r=20      4003     1763      623        0     -343     -430      -97
+  r=21      8102     4099     2336     1713     1713     2056     2486
+  r=22     15093     6991     2892      556    -1157    -2870    -4926
+  r=23     29331    14238     7247     4355     3799     4956     7826
+  r=24     56482    27151    12913     5666     1311    -2488    -7444
+
+   a zero forces cell(r,d+1) = -cell(r-1,d), and those two share
+   the diagonal r-d-1, so every zero puts a +-v pair on it:
+      (20,6): left (19,6) = 343, below (20,7) = -343, both on r-d = 13: True
+      (8,3): left (7,3) = 5, below (8,4) = -5, both on r-d = 4: True
+
+   diagonal r-d = 13, total 2^12 = 4096, prime | composite:
+           cell    prime  composite      sum
+      (14,1)      408       3688     4096
+      (15,2)      332       3764     4096
+      (16,3)      346       3750     4096
+      (17,4)      237       3859     4096
+      (18,5)      280       3816     4096
+      (19,6)      343       3753     4096   <-- +-343
+      (20,7)     -343       4439     4096   <-- +-343
+      (21,8)     2056       2040     4096
+      (22,9)    -4926       9022     4096
+      (23,10)    12752      -8656     4096
+      (24,11)   -28022      32118     4096
+      (25,12)    58707     -54611     4096
+
+   diagonal r-d = 14, total 2^13 = 8192, prime | composite:
+           cell    prime  composite      sum
+      (15,1)      740       7452     8192
+      (16,2)      678       7514     8192
+      (17,3)      583       7609     8192
+      (18,4)      517       7675     8192
+      (19,5)      623       7569     8192
+      (20,6)        0       8192     8192   <-- ZERO
+      (21,7)     1713       6479     8192
+      (22,8)    -2870      11062     8192
+      (23,9)     7826        366     8192
+      (24,10)   -15270      23462     8192
+      (25,11)    30685     -22493     8192
+      (26,12)   -56137      64329     8192
+
+4. ARE THE SEVENS STRUCTURAL?
+   (19,5)       623   7  89
+   (20,5)       623   7  89
+   (19,6)       343   7^3
+   (20,6)         0   0
+   (21,6)      1713   3  571
+   (20,7)      -343   7^3
+
+   cells in the 9x7 box: 62   divisible by 7: 12 = 19.4%   (chance ~14.3%)
+   perfect powers in the box: [256, 343, 343, 400]
+   perfect powers table-wide: 21 of 492 nonzero cells at d>=1 = 4.27%
+
+5. DOES (d+1) DIVIDE THE REPEAT?
+        zero  d+1  r-d   repeat  (d+1)|rep    left  (d+1)|left
+   ( 2,1)    2    1        1      False       -           -
+   ( 4,1)    2    3        2       True       1       False
+   ( 8,3)    4    5        4       True       5       False
+   (20,6)    7   14      623       True     343        True
+   (2,1) is the one cell SeedPerturbation does not protect.
+
+6. THE 45-DEGREE DIRECTIONS IN (r,d) DO NOT FOLD
+     k    along r-d=14    along r+d=26
+     1            2336            2423
+     2           -2353            7811
+     3            8409           28060
+     4          -14592          118610
+     5           31425          472224
+
+7. BASE 3'S CLOSEST APPROACH, AND ITS CONVENTION
+   plain   seed rungs 1..5 = [2, 2, 5, 13, 31]
+   lattice seed rungs 1..5 = [0, 2, 5, 13, 31]     e = [2,0,...] so R_e = 1
+   cell(11,10) plain = 4   lattice = 2
+   (11,10) has r-d = 1 = R_e, so it sits ON the boundary.
+   SeedPerturbation.tableFrom_at_boundary predicts a shift of
+      (-1)^d * e(R) = (-1)^10 * 2 = 2   observed 2
+
+   is it a cell repeat, as base 2's zeros are?
+      base 2 (20,6): fed by 623 and 623 -> EXACT repeat
+      base 3 (11,10)   plain: fed by 11 and 7 -> differ by 4
+      base 3 (11,10) lattice: fed by 11 and 9 -> differ by 2
+
+   window contents:
+         base 2 (20,6) (8192, 1048576]  primes   80997   log2 width 7.00
+        base 3 (11,10) (1, 177147]  primes   16097   log2 width 17.43
