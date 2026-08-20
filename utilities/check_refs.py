@@ -31,7 +31,8 @@ def check(src, why, cond):
 
 for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean")) + list(NOTES.glob("*.md"))):
     if f.name in ("FORMAT.md", "notes_format.md"): continue
-    text, where = f.read_text(), f.name
+    # fenced blocks are quoted evidence, not the file's own citations
+    text, where = re.sub(r"```.*?```", "", f.read_text(), flags=re.S), f.name
     for m in re.finditer(r"([A-Za-z][\w\-.]*\.md)`? § ([A-Z]\d*(?:\s*[,+]\s*[A-Z]\d*)*)", text):
         paper = m.group(1)
         if paper not in sections: continue          # commitment file or external
