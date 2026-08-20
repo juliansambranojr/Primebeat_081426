@@ -9,42 +9,7 @@ to whichever volume holds it — 1–44 in `lab_notebook.md`, 45 onward here.
 
 Newest at top, same as volume 1.
 
-Entry format and type vocabulary are defined in this project's
-`CLAUDE.md` § Lab notebook conventions, reproduced here.
-
-Entry header format:
-
-```text
-## YYYY-MM-DD — Entry N — <title>
-type: <one-of-seven>
-refs: <entry numbers, comma-separated, or empty>
-
-<body>
-```
-
-Type vocabulary (entry must use exactly one):
-
-- `motivation` — why this test exists, what claim it is arguing with,
-  scope shifts, what the next deliverable is for
-- `prereg` — writing or locking a protocol before a run; records the
-  hypothesis, decision rule, locked parameters, and pre-compute SHA
-- `run` — one script execution: script, full flags, dps/N/pmax
-  settings, headline numbers, output path, completed-or-errored
-- `instrument-fix` — a change to a script that affects what it measures
-  or whether it completes; always paired with a re-run and a note on
-  whether prior results are still comparable
-- `result-triage` — close reading of an existing result or log: what
-  the number means, whether the instrument's own readability
-  precondition was met, what would sharpen it
-- `provenance` — where a file came from, script lineage and renames,
-  which cited document is missing, cache coverage
-- `formalization` — a statement encoded in Lean, an arrow checked, or a
-  hypothesis discharged; records what was proved, the hypotheses it
-  actually needed, its `#print axioms` result, and whether it confirmed
-  or refuted an account already in the notebook
-
-If a new entry doesn't fit any of the seven types, flag it and stop — do
-not invent new types.
+Entry format and type vocabulary: `notes/notes_format.md`.
 
 Agents append entries. Outcome markings and status transitions are
 Julian's call.

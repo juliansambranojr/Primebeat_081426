@@ -10,7 +10,7 @@ Checks four token types wherever they appear; everything else is prose.
 import re, sys, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PAPERS, LEAN = ROOT / "papers", ROOT / "lean"
+PAPERS, LEAN, NOTES = ROOT / "papers", ROOT / "lean", ROOT / "notes"
 
 # what exists
 sections = {}
@@ -29,8 +29,8 @@ broken = []
 def check(src, why, cond):
     if not cond: broken.append((src, why))
 
-for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean"))):
-    if f.name == "FORMAT.md": continue
+for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean")) + list(NOTES.glob("*.md"))):
+    if f.name in ("FORMAT.md", "notes_format.md"): continue
     text, where = f.read_text(), f.name
     for m in re.finditer(r"([A-Za-z][\w\-.]*\.md)`? § ([A-Z]\d*(?:\s*[,+]\s*[A-Z]\d*)*)", text):
         paper = m.group(1)
@@ -46,8 +46,37 @@ for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean"))):
     for m in re.finditer(r"\b((?:results|imported|preregs)/[\w./\-]+)", text):
         raw = m.group(1)
         if raw.endswith("_") or "*" in raw: continue          # glob in prose
+        if text[m.end():m.end()+1] == "{": continue           # brace expansion in prose
         ref = raw.rstrip(".")
         check(where, ref, (ROOT / ref).exists())
+
+# --- notes: entry numbering, types, NOTEPAD lines ---
+TYPES = {"motivation","prereg","run","instrument-fix","result-triage",
+         "provenance","formalization"}
+entries, GAP = {}, {18}          # Entry 18 is a recorded gap, not an error
+for vol, lo, hi in (("lab_notebook.md", 1, 44), ("lab_notebook_2.md", 45, 10**6)):
+    f = NOTES / vol
+    if not f.exists(): continue
+    body = re.sub(r"```.*?```", "", f.read_text(), flags=re.S)     # drop fences
+    for m in re.finditer(r"^## (\d{4}-\d\d-\d\d) — Entry (\d+).*?\ntype: (\S+)", body, re.M):
+        d, n, ty = m.group(1), int(m.group(2)), m.group(3)
+        check(vol, f"entry {n} outside this volume", lo <= n <= hi)
+        check(vol, f"entry {n} duplicated", n not in entries)
+        check(vol, f"entry {n} type '{ty}'", ty in TYPES)
+        entries[n] = d
+if entries:
+    for n in range(1, max(entries) + 1):
+        check("lab_notebook", f"entry {n} missing", n in entries or n in GAP)
+np = NOTES / "NOTEPAD.md"
+if np.exists():
+    for i, line in enumerate(np.read_text().split("\n"), 1):
+        if not line.startswith("- ["): continue
+        if "YYYY-MM-DD" in line: continue                     # template example
+        check("NOTEPAD.md", f"line {i} malformed",
+              re.match(r"- \[(open|paused|closed|blocked)\]\s+\d{4}-\d\d-\d\d\s", line))
+        check("NOTEPAD.md", f"line {i} is {len(line)} chars, not one line", len(line) <= 400)
+        m = re.search(r"entry (\d+):", line)
+        if m: check("NOTEPAD.md", f"line {i} cites entry {m.group(1)}", int(m.group(1)) in entries)
 
 for w, why in broken: print(f"BROKEN  {w}  ->  {why}")
 print(f"\n{len(broken)} broken reference(s)")

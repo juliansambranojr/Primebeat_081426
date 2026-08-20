@@ -30,6 +30,19 @@ results/high_mass_zeros.json  an artifact — must exist
 
 Bare letters (`A1`, `B3 + C3`) refer to statements in the same paper.
 
+## Numbers
+
+A statement whose source line names an artifact has its numbers checked against
+that artifact, rounding-aware — `0.486` matches a printed `0.4860234`.
+
+If the numbers are **computed from** artifacts rather than printed in them, say
+so and they are skipped:
+
+```text
+derived from results/O22_run2.log: 5.015e53 / 3.485e53 = 1.439; not printed
+O24_gen_xmax3e9_run.log against O24_gen_xmax1e9_run.log
+```
+
 ## Rules
 
 - Every number traces to an artifact through its source line.

@@ -1,9 +1,6 @@
 # Lab notebook — Primebeat_081426
 
-Newest at top. Entry format and type vocabulary are defined in this
-project's `CLAUDE.md` § Lab notebook conventions. Six types:
-`motivation`, `prereg`, `run`, `instrument-fix`, `result-triage`,
-`provenance`.
+Newest at top. Entry format and type vocabulary: `notes/notes_format.md`.
 
 Agents append entries. Outcome markings and status transitions are
 Julian's call.
