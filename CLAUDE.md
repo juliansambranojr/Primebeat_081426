@@ -26,9 +26,61 @@ Project-specific rules below take precedence on conflict.
   `/Users/juliansambrano/GitHub/AGENT_CLAUDE.md`).
 - Read `CONTEXT.md` before any measurement work — it is the blueprint,
   one entry per test, what it measures and what it returned.
-- Before writing a reference to a section, a declaration or a path:
-  open it. `python3 utilities/check_refs.py` and
-  `utilities/check_values.py` are the gate and must exit 0.
+- The two rules below are not advice; they are what went wrong.
+
+## Rule — load, don't recall
+
+**Stable and global: trust the prior. Local and mutable: open the file.**
+
+How a PDF is structured has not changed in twenty years — recall it. Anything
+in this repo could have changed this afternoon — open it. Both feel identical
+while generating. That is why the split cannot be a judgment call.
+
+**Failure.** Each of these felt certain, read correctly, and was wrong:
+
+```text
+"the claim is at § B4"          that section is unnumbered — no B4 exists
+"the output is in results/"     it is two directories away
+"that helper is in utils.py"    it was renamed last week
+```
+
+Nothing signals the error. A generated reference and a recalled one are the
+same experience from the inside.
+
+**Success.** One command before writing the reference:
+
+```text
+grep -n '^#' doc.md      ls the directory      grep -rn 'name' .
+```
+
+If it does not resolve, ask. Do not write the nearest plausible thing.
+
+- Never write a reference you have not opened in this session.
+- A path in context is not a path you read.
+- After a compaction, every remembered specific is suspect. The summary keeps
+  the filename; the section letter gets regenerated.
+
+**Gate:** `python3 utilities/check_refs.py` exits 0.
+
+**Test:** could this reference have been different last week? Then open it.
+
+## Rule — offer the log
+
+**Deciding what is worth logging is Julian's. Asking is not optional.**
+
+After any run, result, insight, or scope change: ask whether to log it. One
+line. If yes: `python3 utilities/extract_run.py <script> --out DRAFT.md`
+stages an entry from the transcript window; you choose the type, and
+`--append` refuses it until you have. If no, move on.
+
+**Failure.** `t22`, `t23`, `t24` all ran on 2026-08-20 and produced three
+papers. Zero notebook entries, zero NOTEPAD lines, and I never once asked. The
+dated record that those scripts ran does not exist.
+
+**Success.** "That's a result — log it?" Then it is his call, and either answer
+is fine. The only wrong outcome is not asking.
+
+**Test:** did something happen that a later reader would want dated? Then ask.
 
 ## Prereg discipline
 

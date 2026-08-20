@@ -43,4 +43,4 @@ One line per thread, newest at top, `entry N:` pointing into the notebook.
 ## Rule
 
 An entry cites artifacts by path and entries by number. Before writing either,
-open it — see `claude_WIP.md` § Rule.
+open it — see `CLAUDE.md` § Rule — load, don't recall.

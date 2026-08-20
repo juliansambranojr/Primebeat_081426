@@ -18,6 +18,12 @@ for f in PAPERS.glob("*.md"):
     t = f.read_text()
     sections[f.name] = ({m.group(1) for m in re.finditer(r"^## ([A-Z])\s*·", t, re.M)}
                         | {m.group(1) for m in re.finditer(r"^\*\*([A-Z]\d+)\.\*\*", t, re.M)})
+# named sections of root-level docs: `CLAUDE.md § Prereg discipline`
+named = {}
+for f in ROOT.glob("*.md"):
+    named[f.name] = {m.group(1).strip() for m in
+                     re.finditer(r"^#{2,3} (.+)$", f.read_text(), re.M)}
+
 mods = {f.stem for f in LEAN.glob("*.lean")}
 decls = set()
 for f in LEAN.glob("*.lean"):
@@ -33,10 +39,20 @@ def check(src, why, cond):
     if cond or any(a in why for a in ALLOW): return
     broken.append((src, why))
 
-for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean")) + list(NOTES.glob("*.md"))):
-    if f.name in ("FORMAT.md", "notes_format.md"): continue
+for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean"))
+                + list(NOTES.glob("*.md")) + list(ROOT.glob("*.md"))):
+    # agent briefs cite bad references on purpose, as examples
+    if f.name in ("FORMAT.md", "notes_format.md") or f.name.startswith("claude_"):
+        continue
     # fenced blocks are quoted evidence, not the file's own citations
     text, where = re.sub(r"```.*?```", "", f.read_text(), flags=re.S), f.name
+    for m in re.finditer(r"`?([A-Za-z][\w\-.]*\.md)`? § ", text):
+        doc = m.group(1)
+        if doc not in named: continue
+        rest = " ".join(text[m.end():m.end() + 140].split()).lstrip('"\'')
+        if re.match(r"[A-Z]\d", rest): continue          # lettered, handled below
+        hit = max((s for s in named[doc] if rest.startswith(s)), key=len, default=None)
+        check(where, f"{doc} § {rest[:40]}", hit is not None)
     for m in re.finditer(r"([A-Za-z][\w\-.]*\.md)`? § ([A-Z]\d*(?:\s*[,+]\s*[A-Z]\d*)*)", text):
         paper = m.group(1)
         if paper not in sections: continue          # commitment file or external
