@@ -243,6 +243,16 @@ Scripts `scripts/t1_permute.py`, `scripts/spectra.py`; outputs
 
 ## 3 · Test 02 — the crossover across bases, and the mechanism failing
 
+> **CONTESTED, 2026-08-20.** This section reads a subcritical base crossing as a
+> refutation of the gain-ratio account. `papers/Depth-as-Time.md` § C2 already
+> tabulates that ratio across all eight integer bases — `2 → 3.3569`, `4 → 0.9570`,
+> `6 → 0.7254`, `9 → 0.7850` — and § C3 gives the account: the critical value is 1,
+> and below it the oscillation never overtakes the trend. So family k=4 at ratio
+> 0.555 crossing at `d* = 5` is not the mechanism failing; it is a **contradiction
+> with § C3** that needs explaining. Either `t2_crossover`'s `d*` is not measuring
+> onset, or § C3 is wrong. This section records only the first reading.
+> Resolution needs `t2_crossover` re-run with `d*` as a function of `r`.
+
 **The test.** Where does oscillation overtake trend, across the dyadic
 and triadic tables and the sub-integer family?
 
@@ -283,6 +293,26 @@ Script `scripts/t2_crossover.py`, output `results/t2_crossover.txt`.
 ---
 
 ## 4 · Test 03 — and the answer is `ln b`
+
+> **CONTESTED, 2026-08-20.** The fit below treats `d*` as a constant per base.
+> `papers/Depth-as-Time.md` § D2 says it is not: *"It is not fixed per base. It
+> grows linearly in `r`, because the base state runs as `b^r` and the mode as
+> `b^(r/2)`, so the gap to close grows"* — with b=2 turning around at d=3 (r=8),
+> d=6 (r=20), d=12 (r=32). So `corr(log b, d*) = +0.999` correlates a quantity the
+> bench had already established is not a per-base constant, and is plausibly an
+> artifact of each base's `d*` being read at a single effective `r` that itself
+> varies with the base, since `r_max` varies.
+>
+> The "censored, not flat" reading below is § C6 verbatim in substance — and § C7
+> **already withdraws it as post-hoc**, citing `results/base_ladder_crossing.json`,
+> which marks bases 5 and 7 `"testable"` with
+> `"reachable_on_triangular_support": false`. Verified in that file 2026-08-20.
+>
+> And the slope is § D3, measured 0.3031 (b=2) and 0.7353 (b=3) — the same quantity
+> this section re-derives as `8.1·ln b`, and one `Euler-Factor-Chain.md` § J1
+> already flags as derived after seeing the data with no out-of-sample test.
+> Resolution needs `t3_family` re-run with `d*` as a function of `r`, against O33's
+> turnaround series.
 
 ```text
 exp(pi*1/2g1)  b= 1.1175  rungs=199  depths=194  d*=2
@@ -691,6 +721,12 @@ it is how fast depth separates it from the trend, which is
 `d* ≈ 1.1 + 8.1·ln b` from section 4. Every base begins in the same state
 and settles at a rate set by how coarsely it samples.
 
+**The first sentence stands; the rate does not.** The measured fact here — all
+eight bases starting at 0.52–0.53 — is independent of section 4. But the `ln b`
+rate it is explained by is contested (see §4), so this paragraph's *explanation*
+is contested with it. What survives unconditionally is that the starting state is
+common and the settling is not inherited.
+
 **Observation (Julian).** *"Yeah it's like sediment"*
 
 **Fits, with one thing the other way round.** Under depth it is the
@@ -907,6 +943,17 @@ the next zero appears. No exceptions across seven bases.
 
 γ₈ at 43.327 sits 0.11 under base 1.0750's ceiling of 43.44 — right on
 the boundary, and it is the one that did not come out.
+
+> **Prior art, added 2026-08-20.** The γ₁ case of this is already in
+> `papers/Euler-Factor-Chain.md`: § H2 (`π/log 2 = 4.532 < γ₁`), § H4 (resolving γ₁
+> needs `b < exp(π/γ₁) = 1.2489`) and § H6 ("no integer ladder resolves γ₁
+> directly"). What is new here is the **per-zero** generalisation `exp(π/γ_k)`,
+> confirmed in strict order across seven bases — the paper has γ₁ only.
+>
+> And this section **closes § J2**, which read: *"The non-integer bases of D4 —
+> 1.2489, 1.948, 3.039 — are constructible and have never been built. D6 predicts
+> their gains before any table exists. `untested`"*. They were built, by O45 and by
+> `scripts/t9_subthreshold_ladder.py`. J2 is closed by measurement.
 
 **This is the explicit formula read forwards, and that it works is not
 news** — Riesel and Göhl computed π from the zeros in 1970. What is new
@@ -1467,8 +1514,9 @@ lattice with room in it.
 - The whip, measured: Julian's eight-panel reading matched on all eight —
   level, severity and side. Drop sequence `0.27 0.57 0.08 1.44 0.55 0.12
   0.84 0.16`.
-- `corr(log b, d*) = +0.999`, fit `d* ≈ 1.1 + 8.1·ln b`. The crossover is
-  set by the sampling step, not by the gain ratio.
+- ~~`corr(log b, d*) = +0.999`, fit `d* ≈ 1.1 + 8.1·ln b`.~~ **CONTESTED** —
+  see §4. `Depth-as-Time.md` § D2 says `d*` is not fixed per base, and § C7
+  already withdrew the censoring reading. Not standing until re-measured.
 - Test 04: dyadic residual against a forty-zero sum, **0.721 → 0.992 by
   depth 5**, two series sharing no input.
 - Sign-flip density reproduces the spectral crossover at base 2 exactly,
