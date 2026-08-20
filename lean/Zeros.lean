@@ -27,22 +27,59 @@ WHAT IS PROVED:
 WHAT IS NOT PROVED, AND IS NOT EXPECTED TO BE: where the zeros are.
 -/
 import Mathlib
+import Construction
 
 namespace Zeros
 
 /-! ## A zero is a repeat -/
 
-variable {f : ℤ → ℤ → ℤ}
+variable {f : ℤ → ℕ → ℤ}
 
-/-- The table recurrence: each cell is the difference of the two above it. -/
-def IsTable (f : ℤ → ℤ → ℤ) : Prop :=
-  ∀ r d, f r (d + 1) = f r d - f (r - 1) d
+/-- The table recurrence: each cell is the difference of the two above it.
+
+Depth is carried in ℕ. An earlier version quantified `d` over ℤ, which is
+satisfiable but not by the bench's table: `Construction.tableFrom` has type
+`ℤ → ℕ → ℤ` and cannot be passed at all, and the obvious `toNat` adapter makes
+the recurrence at `d = -1` read `N r = N r - N (r-1)`, forcing `N (r-1) = 0` at
+every rung. So the theorem below was quantified over a class the object it is
+about is not in. -/
+def IsTable (f : ℤ → ℕ → ℤ) : Prop :=
+  ∀ (r : ℤ) (d : ℕ), f r (d + 1) = f r d - f (r - 1) d
+
+/-- **The bench's table is one.** The hypothesis of `zero_iff_repeat` now has a
+witness: it is the second conjunct of `Construction.tableFrom_isTableOf`, which
+itself depends on no axioms. -/
+theorem tableFrom_isTable (N : ℤ → ℤ) : IsTable (Construction.tableFrom N) :=
+  (Construction.tableFrom_isTableOf N).2
 
 /-- **A zero is exactly a repeat one depth up.** This is definitional, and it is
 the only characterisation of a zero the chain supplies. -/
-theorem zero_iff_repeat (hf : IsTable f) (r d : ℤ) :
+theorem zero_iff_repeat (hf : IsTable f) (r : ℤ) (d : ℕ) :
     f r (d + 1) = 0 ↔ f r d = f (r - 1) d := by
   rw [hf r d, sub_eq_zero]
+
+/-! ## What a zero forces next
+
+`papers/The-Fold.md` § C2 records that a zero propagates a sign-flipped copy
+one depth down, and that the copy lands on the diagonal one in. Both are
+consequences of the recurrence, so both belong here rather than in a
+measurement. -/
+
+/-- **A zero puts its left neighbour, negated, directly beneath it.** With the
+cell above vanishing, the recurrence has nothing to subtract from. -/
+theorem neg_below_zero (N : ℤ → ℤ) (r : ℤ) (d : ℕ)
+    (hz : Construction.tableFrom N r d = 0) :
+    Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (r - 1) d := by
+  show Construction.tableFrom N r d - Construction.tableFrom N (r - 1) d = _
+  rw [hz]; ring
+
+/-- **And those two cells share a diagonal.** The left neighbour sits at
+`(r-1, d)` and the copy at `(r, d+1)`, and `r - d` is the same for both. So
+every zero places a `±v` pair as adjacent cells on the diagonal one in --
+`±343` at `(20,6)`, `±5` at `(8,3)`, both measured in `The-Fold.md` § C3. -/
+theorem pair_shares_diagonal (r : ℤ) (d : ℕ) :
+    (r - 1) - (d : ℤ) = r - ((d + 1 : ℕ) : ℤ) := by
+  push_cast; ring
 
 /-! ## A zero is one linear condition -/
 
@@ -77,6 +114,72 @@ theorem stencil_annihilates_const (N : ℕ) (hN : 0 < N) (c : ℤ) :
     rw [Finset.sum_mul]
   rw [this, Int.alternating_sum_range_choose_of_ne (by omega : N ≠ 0), zero_mul]
 
+/-! ## Why the stencil folds
+
+`papers/The-Fold.md` § A and § B state the deep zero as a balance rather than a
+vanishing: the weights pair off about the midpoint of the window, and the two
+arms weigh the same. Both are properties of `(-1)^k C(N,k)` alone -- neither
+mentions pi -- so both belong here, beside `stencil_annihilates_const`, rather
+than in a measurement. -/
+
+/-- **The stencil is antisymmetric when its order is odd.** Reflecting an index
+about the midpoint negates its weight, because `(N-k) + k = N` is odd and so the
+two indices have opposite parity.
+
+This is what makes `The-Fold.md` § A3's pairing exist: with `N` odd there are
+`(N+1)/2` pairs and no leftover term, so a cell is a sum over differences
+straddling the window's centre. At `N = 7` the weights are
+`+1, -7, +21, -35, +35, -21, +7, -1`. -/
+theorem stencil_weights_antisymm {N : ℕ} (hN : Odd N) (k : ℕ) (hk : k ≤ N) :
+    ((-1 : ℤ)) ^ (N - k) * (N.choose (N - k))
+      = -(((-1 : ℤ)) ^ k * (N.choose k)) := by
+  obtain ⟨j, hj⟩ := hN
+  have hsum : (N - k) + k = N := Nat.sub_add_cancel hk
+  have hmul : ((-1 : ℤ)) ^ (N - k) * ((-1 : ℤ)) ^ k = -1 := by
+    rw [← pow_add, hsum, hj, pow_succ, pow_mul]
+    norm_num
+  have hsq : ((-1 : ℤ)) ^ k * ((-1 : ℤ)) ^ k = 1 := by
+    rw [← pow_add, ← two_mul, pow_mul]; norm_num
+  have hpar : ((-1 : ℤ)) ^ (N - k) = -((-1 : ℤ)) ^ k := by
+    calc ((-1 : ℤ)) ^ (N - k)
+        = ((-1 : ℤ)) ^ (N - k) * (((-1 : ℤ)) ^ k * ((-1 : ℤ)) ^ k) := by
+          rw [hsq]; ring
+      _ = (((-1 : ℤ)) ^ (N - k) * ((-1 : ℤ)) ^ k) * ((-1 : ℤ)) ^ k := by ring
+      _ = -((-1 : ℤ)) ^ k := by rw [hmul]; ring
+  rw [Nat.choose_symm hk, hpar]; ring
+
+/-- **The two arms weigh the same.** `stencil_annihilates_const` says the signed
+weights cancel; written as two sums, that is the positive-index arm equalling
+the negative-index arm. `(1 + (-1)^k)` is twice the indicator of even `k` and
+`(1 - (-1)^k)` twice the indicator of odd `k`, so this is the split with the
+division cleared.
+
+`The-Fold.md` § B1 measures both arms at 64 for `N = 7` and 8 for `N = 4`. -/
+theorem stencil_arms_eq {N : ℕ} (hN : N ≠ 0) :
+    (∑ k ∈ Finset.range (N + 1), (1 + (-1 : ℤ) ^ k) * (N.choose k))
+      = ∑ k ∈ Finset.range (N + 1), (1 - (-1 : ℤ) ^ k) * (N.choose k) := by
+  have halt := Int.alternating_sum_range_choose_of_ne hN
+  simp only [add_mul, sub_mul, one_mul]
+  rw [Finset.sum_add_distrib, Finset.sum_sub_distrib, halt]
+  ring
+
+/-- **And each arm is `2^(N-1)`.** Doubled, an arm is the whole row, `2^N`. With
+`stencil_arms_eq` that fixes both at half the row -- 64 and 64 at `N = 7`, 8 and
+8 at `N = 4`, which is what `The-Fold.md` § B1 reports.
+
+The zero of `The-Fold.md` § B3 is the two arms weighing the same once the
+weights are applied to pi. This theorem is only why the WEIGHTS permit it; it
+says nothing about whether any pi makes it happen. -/
+theorem stencil_arm_doubled {N : ℕ} (hN : N ≠ 0) :
+    (∑ k ∈ Finset.range (N + 1), (1 + (-1 : ℤ) ^ k) * (N.choose k))
+      = 2 ^ N := by
+  have halt := Int.alternating_sum_range_choose_of_ne hN
+  have hrow : (∑ k ∈ Finset.range (N + 1), (N.choose k : ℤ)) = 2 ^ N := by
+    have h := Nat.sum_range_choose N
+    exact_mod_cast h
+  simp only [add_mul, one_mul]
+  rw [Finset.sum_add_distrib, halt, hrow, add_zero]
+
 /-! ## Window exclusivity -/
 
 /-- **The (20,6) window is base-2 exclusive.** Depth 6 spans a ratio of `2^7`.
@@ -103,6 +206,35 @@ theorem window_exclusive_of_prime_exponent (b k : ℕ) (hb : 2 ≤ b) (hk : 2 �
 /-- **The (8,3) window is not.** Depth 3 spans `2^4 = 4^2`, so base 4 reaches it
 at depth 1. The two deep zeros are different kinds of object. -/
 theorem window_shared_of_composite_exponent : (4 : ℕ) ^ 2 = 2 ^ 4 := by norm_num
+
+/-! ## Which ladders meet
+
+`papers/Commensurate-Ladders.md` collects five results that all turn on one
+question -- whether two ladders share a rung -- and § F3 records that the
+general statement is nowhere in this tree. `window_exclusive_of_prime_exponent`
+above settles it for a single window; this settles it for every dyadic one. -/
+
+/-- Two ladders share a rung above `x = 1` exactly when some power of one is a
+power of the other. `Commensurate-Ladders.md` § A2 states the real-log form,
+`log b / log c` rational; this is the same condition in ℕ, which is where the
+rungs actually sit and which needs no transcendence. -/
+def LaddersMeet (b c : ℕ) : Prop :=
+  ∃ n m : ℕ, 0 < n ∧ 0 < m ∧ b ^ n = c ^ m
+
+/-- **Only powers of two reach a dyadic window.** If any positive power of `b`
+equals a power of 2, then `b` is itself a power of 2. So the ladders meeting
+base 2 are exactly `2, 4, 8, 16, …` and no others -- which is the general form
+of `window_exclusive_of_prime_exponent`, stated for every window rather than
+for `2^7`.
+
+`Commensurate-Ladders.md` § C1 measures the consequence: among integer bases
+2..9 the commensurate pairs are exactly the power chains 2-4-8 and 3-9, and
+bases 5, 6, 7 meet nothing. § C3 is what that killed. -/
+theorem base_of_meets_two {b k m : ℕ} (hk : k ≠ 0) (h : b ^ k = 2 ^ m) :
+    ∃ i, b = 2 ^ i := by
+  have hdvd : b ∣ 2 ^ m := h ▸ dvd_pow_self b hk
+  obtain ⟨i, _, hi⟩ := (Nat.dvd_prime_pow Nat.prime_two).mp hdvd
+  exact ⟨i, hi⟩
 
 /-! ## What is NOT proved
 
@@ -131,6 +263,27 @@ def measured_centered_zero_count : ℕ := 0
 theorem four_zeros_only : measured_zeros.length = 4 := by
   unfold measured_zeros; rfl
 
+/-- **The measured repeat gives the deep zero, through the theorem.** `O27` reads
+`d5` at `r = 19` and `r = 20` as both 623; `zero_iff_repeat` turns that into
+`(20,6) = 0` without computing anything. The measurement is the input and the
+vanishing is the output, which is the only direction this file supports. -/
+theorem zero_at_20_6_of_repeat (N : ℤ → ℤ)
+    (h20 : Construction.tableFrom N 20 5 = measured_repeat_20_6)
+    (h19 : Construction.tableFrom N 19 5 = measured_repeat_20_6) :
+    Construction.tableFrom N 20 6 = 0 :=
+  (zero_iff_repeat (tableFrom_isTable N) 20 5).mpr (by
+    have h : (20 : ℤ) - 1 = 19 := by norm_num
+    rw [h, h20, h19])
+
+/-- The same for the other deep zero, where the repeated value is 4. -/
+theorem zero_at_8_3_of_repeat (N : ℤ → ℤ)
+    (h8 : Construction.tableFrom N 8 2 = measured_repeat_8_3)
+    (h7 : Construction.tableFrom N 7 2 = measured_repeat_8_3) :
+    Construction.tableFrom N 8 3 = 0 :=
+  (zero_iff_repeat (tableFrom_isTable N) 8 2).mpr (by
+    have h : (8 : ℤ) - 1 = 7 := by norm_num
+    rw [h, h8, h7])
+
 /-! ## Axiom check
 
 An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
@@ -145,6 +298,38 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms Zeros.zero_iff_repeat
 
+/-- info: 'Zeros.tableFrom_isTable' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.tableFrom_isTable
+
+/-- info: 'Zeros.neg_below_zero' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.neg_below_zero
+
+/-- info: 'Zeros.pair_shares_diagonal' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.pair_shares_diagonal
+
+/-- info: 'Zeros.zero_at_20_6_of_repeat' depends on axioms: [propext] -/
+#guard_msgs in
+#print axioms Zeros.zero_at_20_6_of_repeat
+
+/-- info: 'Zeros.zero_at_8_3_of_repeat' depends on axioms: [propext] -/
+#guard_msgs in
+#print axioms Zeros.zero_at_8_3_of_repeat
+
+/-- info: 'Zeros.stencil_weights_antisymm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.stencil_weights_antisymm
+
+/-- info: 'Zeros.stencil_arms_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.stencil_arms_eq
+
+/-- info: 'Zeros.stencil_arm_doubled' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.stencil_arm_doubled
+
 /-- info: 'Zeros.stencil_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Zeros.stencil_add
@@ -156,6 +341,10 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Zeros.stencil_annihilates_const' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Zeros.stencil_annihilates_const
+
+/-- info: 'Zeros.base_of_meets_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.base_of_meets_two
 
 /-- info: 'Zeros.window_exclusive_of_prime_exponent' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
