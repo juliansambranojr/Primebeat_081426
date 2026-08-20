@@ -229,6 +229,49 @@ theorem base_three_carries_factor (d e : ℕ) :
 theorem base_four_carries_factor (d e : ℕ) :
     ((4 : ℤ) - 1) ^ (d + 1) * 4 ^ e = 3 ^ (d + 1) * 4 ^ e := by norm_num
 
+/-! ## The diagonal is the level set, and only in base two
+
+`pair_identity`'s `hr : r = d + 1 + e` pins `e = r − 1 − d`, so `e` is constant
+along a diagonal `r − d = c` and only `(b−1)^(d+1)` varies with depth there. The
+total is therefore constant along the diagonal exactly when that coefficient is,
+which `coeff_eq_one_iff_base_two` already settles at `b = 2`.
+
+The equivalence quantifies over depths rather than fixing two. It has to: at a
+single depth, or at two equal ones, both sides are identical for every `b`, so a
+two-point version is false right-to-left and says nothing. -/
+
+/-- Along a diagonal the pair identity's exponent is fixed. `hdiag` is `r − d`
+constant; `h₁` and `h₂` are the index convention, which pins `e = r − 1 − d`. -/
+theorem exponent_const_on_diagonal {d₁ d₂ e₁ e₂ : ℕ} {r₁ r₂ : ℤ}
+    (h₁ : r₁ = (d₁ : ℤ) + 1 + e₁) (h₂ : r₂ = (d₂ : ℤ) + 1 + e₂)
+    (hdiag : r₁ - (d₁ : ℤ) = r₂ - (d₂ : ℤ)) : e₁ = e₂ := by
+  omega
+
+/-- **The diagonal is the trend's own level set, and only at `b = 2`.** Fix a
+diagonal — equivalently, fix `e` — and ask whether the cell total is the same at
+every depth along it. It is, exactly in base two.
+
+This is the form of the total again, not a statement about zeros: it says a rung
+step and a depth step cancel at `b = 2` and nowhere else, because only there is
+`(b−1)^(d+1)` free of depth. `measured_composite_matches_pair_identity` below is
+already the numeric side of it — the four zeros' composite values `1, 4, 16, 8192`
+are `2^(r−1−d)` read off four diagonals. -/
+theorem total_const_on_diagonal {b : ℤ} (hb : 2 ≤ b) (e : ℕ) :
+    (∀ d₁ d₂ : ℕ, (b - 1) ^ (d₁ + 1) * b ^ e = (b - 1) ^ (d₂ + 1) * b ^ e)
+      ↔ b = 2 := by
+  constructor
+  · intro h
+    have hbpos : (0 : ℤ) < b ^ e := pow_pos (by omega) e
+    have hc : (b - 1) ^ (0 + 1) = (b - 1) ^ (1 + 1) :=
+      mul_right_cancel₀ (ne_of_gt hbpos) (h 0 1)
+    have hfac : (b - 1) * (b - 2) = 0 := by ring_nf; ring_nf at hc; linarith [hc]
+    rcases mul_eq_zero.mp hfac with h1 | h2
+    · omega
+    · omega
+  · intro h d₁ d₂
+    subst h
+    norm_num
+
 /-! ## What the bench measured
 
 `papers/The-Four-Zeros.md` § E1 records the identity as checked, not derived:
@@ -328,6 +371,14 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'PairIdentity.base_four_carries_factor' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms PairIdentity.base_four_carries_factor
+
+/-- info: 'PairIdentity.exponent_const_on_diagonal' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms PairIdentity.exponent_const_on_diagonal
+
+/-- info: 'PairIdentity.total_const_on_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms PairIdentity.total_const_on_diagonal
 
 /-- info: 'PairIdentity.measured_composite_matches_pair_identity' depends on axioms: [propext] -/
 #guard_msgs in
