@@ -205,18 +205,23 @@ cells. That description fits the archive's files.
 
 ## Current state of the world
 
-Status: **folded into the research program**, with the four commitment
-files and a lab notebook now standing at the root. Results here are
-citable, which makes the exploratory/preregistered distinction
-load-bearing rather than bookkeeping. All content dates 2026-08-14 to
-2026-08-17. Still **not a git repository** and still no requirements
-file or lockfile — the environment is a bare `.venv` on Python 3.14.3
-(see REFERENCES.md), with `python-flint 0.9.0` and a Homebrew
-`primecount 8.6` added on 2026-08-15 and pinned nowhere.
+Status: **folded into the research program**, with the commitment files
+at the root, notes under `notes/`, and papers under `papers/`. Results
+here are citable, which makes the exploratory/preregistered distinction
+load-bearing rather than bookkeeping. Content dates 2026-08-14 to
+2026-08-20. This **is** a git repository, pushed to a remote. The
+environment is a `.venv` on Python 3.14.3, now frozen to
+`requirements.txt`; Homebrew `primecount 8.6` is linked by
+`primecountpy` and is not capturable by a freeze.
+
+**Three preregistered tests carry a mechanical decision-rule output and
+no stamped verdict** — O42 `no_constant_angle`, O43 `magnitude_floor`,
+O45 `fineness`. Writing those verdict lines is Julian's, and it is the
+largest open item in the repository.
 
 What has been run and recorded:
 
-- **O7 — the only preregistered test.** Locked 2026-08-15T01:04:12Z,
+- **O7 — the first preregistered test.** Locked 2026-08-15T01:04:12Z,
   ran 01:06:47→01:06:54Z. `b_obs −0.0040675`, CI [−0.0048144,
   −0.0033207], `p_primary 0.04`, blind-arm sign matches. The prereg's
   Run record carries verdict `depth_dependent` and a sidecar SHA match.
@@ -346,6 +351,47 @@ What has been run and recorded:
   agree, identifying them as artifact. Breakdown at d=13 (prime), d=10
   (residual), never for the control. The annulus 0.5 < |z| < 0.70711 has
   conformal modulus (log b)/4π = 0.05515890.
+
+- **O40** — the reciprocal local factor's zeros for an elliptic curve.
+  43 curve-prime pairs across ranks 0, 1, 2; max `|Re(s) − 1/2|` is
+  2.22e−16, one ulp of a float64. Hasse holds everywhere it was checked.
+  EXPLORATORY.
+- **O41** — the rank read off the symbol at `s = 0`. Fitted exponent
+  against true rank: 11a1 0.0301 (rank 0), 37a1 1.2498 (rank 1), 389a1
+  1.9933 (rank 2). Ranks 0 and 2 land inside 0.05; rank 1 is 0.25 high,
+  which is the product's slow convergence at `X ≤ 30000`, not a
+  disagreement about the rank. EXPLORATORY.
+- **O42** — are the four zeros turn marks on a spiral? PREREGISTERED
+  (`preregs/zero_winding_phase_v1_locked_20260818.md`). Mechanical
+  decision-rule output `no_constant_angle`; no γ index has all gaps near
+  π/2, gaps at γ₁ read 0.745 / 1.183 / 4.010, null firing rate 0.0044, no
+  `compromised` condition fires. **The verdict line is unwritten and is
+  Julian's.**
+- **O43** — extended exact-zero census to `r = 92` on published π(2ⁿ);
+  no primes counted. PREREGISTERED. 4186 cells against O16's 1891, so
+  2295 new; all four known zeros reproduced and **K_new = 0** against
+  `E[K_new] = 4.85` under H0. `p_conditional 0.0416`,
+  `p_poisson 0.0078`. Mechanical output `magnitude_floor`. **Verdict
+  unwritten.**
+- **O44** — cross-base zero scan over the eight imported b-adic tables,
+  in the pair identity's scale coordinate; every number read from CSV.
+  Of bases 2–9, **only base 2 has exact zeros**, and it has the same
+  four. 1289 pair-identity cells checked. EXPLORATORY.
+- **O45** — sub-integer base scan: is base 2 the finest sampling of the
+  scaling flow, or special in itself? PREREGISTERED. Ten bases in (1,2)
+  plus base 2, matched on one value ceiling: 37178 sub-2 cells against
+  base 2's 496, Z = 121 resolved zeros, Z* = 35 clearing the mass floor,
+  against `E[Z] = 299.8` under H0. `p_conditional 0.0839`. Mechanical
+  output `fineness`. **Verdict unwritten** — the results JSON says so in
+  its own `verdict_note`.
+- **O46** — does stencil mass alone account for O45's density trend?
+  `density × mean S` spreads by a factor of 1.4e38 across the eleven
+  bases; `density / mean(1/S)` spreads by 5.57. The `density ≈ 1/S`
+  mechanism is refuted. EXPLORATORY.
+- **O47** — which zeros are cancellations rather than bookkeeping. 125
+  pooled resolved zeros at `d ≥ 1` across eleven bases, ranked by stencil
+  mass. Base 2 is the density maximum and is **not** the mass maximum.
+  EXPLORATORY.
 
 Known defects in the current state:
 

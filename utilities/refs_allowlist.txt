@@ -1,0 +1,23 @@
+# References that legitimately cannot resolve. check_refs.py skips these.
+# Was REFERENCES.md § "Cited but absent everywhere on this machine".
+# A line matches if it appears anywhere in the reference token.
+
+# --- documents cited by script headers, present nowhere on this machine ---
+dyadic-table-v2.md
+DT-A.md
+DT-A2
+DT-A3
+DT-A4
+DT-A7
+DT-A8
+O3c
+
+# --- external generators, not vendored with the tables they produced ---
+# imported/lattice_mapper/README.md cites this as the source of the
+# difference tables; only the tables were imported, not the script.
+difference_table.py
+
+# --- renamed before the no-rename convention existed ---
+# CLAUDE.md § Prereg file naming: a prereg keeps its creation name. This one
+# was renamed draft -> locked before that rule, stranding the citation.
+zero_winding_phase_v1_draft_20260818.md

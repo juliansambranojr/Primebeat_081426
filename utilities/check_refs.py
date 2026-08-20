@@ -25,9 +25,13 @@ for f in LEAN.glob("*.lean"):
         decls.add(f"{f.stem}.{m.group(1)}")
 files = {p.name for p in ROOT.rglob("*") if p.is_file()}
 
+ALLOW = [l.strip() for l in (ROOT / "utilities/refs_allowlist.txt").read_text().splitlines()
+         if l.strip() and not l.startswith("#")] if (ROOT / "utilities/refs_allowlist.txt").exists() else []
+
 broken = []
 def check(src, why, cond):
-    if not cond: broken.append((src, why))
+    if cond or any(a in why for a in ALLOW): return
+    broken.append((src, why))
 
 for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean")) + list(NOTES.glob("*.md"))):
     if f.name in ("FORMAT.md", "notes_format.md"): continue
