@@ -31,6 +31,9 @@ reported numbers and re-run.  Every figure reproduced.  See the NOTEPAD
 line for the chronology.
 """
 import math
+from _paths import tee
+
+tee(__file__)
 
 # --- locked constants ---------------------------------------------------
 GAMMA1 = 14.134725141734693

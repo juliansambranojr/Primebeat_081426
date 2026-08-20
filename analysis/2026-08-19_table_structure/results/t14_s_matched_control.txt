@@ -1,0 +1,33 @@
+TEST 14 - S-matched control for test 8.  Reconstruction; exploratory.
+source /Users/juliansambrano/GitHub/Primebeat_081426/results/sub_integer_base_scan.json
+value ceiling 2^32 = 4294967296   ln S tolerance +-0.35   20000 draws   seed 2026
+
+              base         arm  zeros  support  median pool  min pool
+  exp(pi*1/(2*g1))      family     29    14028           32         1
+  exp(pi*2/(2*g1))      family     14     3828            9         3
+  exp(pi*3/(2*g1))      family      9     1770           11         3
+  exp(pi*4/(2*g1))      family      7     1035            7         1
+  exp(pi*3/(4*g1))   antiphase     21     6441           20         6
+  exp(pi*5/(4*g1))   antiphase     15     2556           19         2
+  exp(pi*7/(4*g1))   antiphase     10     1378            9         1
+  exp(pi*9/(4*g1))   antiphase      2      861            8         4
+          2**(1/2)  refinement     11     1711           10         2
+          2**(1/3)  refinement      3     3570           10         7
+
+S recomputation vs the run of record: 0 mismatches over 121 zeros
+pooled: 121 resolved sub-integer zeros; 0 with an empty matched pool
+
+SCALE COORDINATE r-d, matched on ln S
+   observed mean   26.744
+   matched null    25.724   sd 0.744
+   z               +1.37
+   p (low tail)    0.915
+
+against t8_subzeros.py's unmatched null on the same 121 zeros:
+   observed mean   26.744   (same statistic, same zeros)
+   unmatched null  47.846   sd 2.301
+   z               -9.17
+
+the null mean moves +22.12 in r-d once the
+draws are matched on stencil mass, and the observed value does not
+move at all - it is the same 121 zeros in both.

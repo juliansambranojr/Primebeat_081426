@@ -1,0 +1,17 @@
+rectangle 16 depths x 33 rungs   resolution  w_r 0.190   w_d 0.393
+
+  zero      gamma      w_r      w_d   nearest peak / power there
+     1    14.1347   2.7689   0.1540   bin(+0.000,2.856)  P=0.271
+     2    21.0220   2.0050   0.4592   bin(+0.393,2.094)  P=0.085
+     3    25.0109   1.5134   0.6344   bin(+0.785,1.523)  P=0.005
+     4    30.4249   2.2394   0.3682   bin(+0.393,2.285)  P=0.136
+     5    32.9351   2.3039   0.3426   bin(+0.393,2.285)  P=0.136
+     6    37.5862   0.9200   0.7774   bin(+0.785,0.952)  P=0.002
+     7    40.9187   3.0532   0.0366   bin(+0.000,3.046)  P=0.158
+     8    43.3271   1.3839   0.6747   bin(+0.785,1.333)  P=0.002
+
+closest pair along w_r alone : 0.0645 rad
+closest pair in the plane    : 0.0694 rad
+r-resolution 0.1904   d-resolution 0.3927
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-08-19_table_structure/figures/spectrum2d.png

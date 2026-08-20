@@ -1,0 +1,36 @@
+base 1.1175405   Nyquist = pi/ln b = 28.2695
+first fold zone ends at 2*Nyquist = 56.5389
+
+EVERY ZERO, FOLDED INTO THE VISIBLE BAND
+              gamma             lands at   nearest survivor        d
+  gamma_1    14.1347   visible    14.1347             23.602   9.4673
+  gamma_2    21.0220   visible    21.0220             23.602   2.5800
+  gamma_3    25.0109   visible    25.0109             26.114   1.1031
+  gamma_4    30.4249   folds to   26.1140             26.114   0.0000   <-- MATCH
+  gamma_5    32.9351   folds to   23.6038             23.602   0.0018   <-- MATCH
+  gamma_6    37.5862   folds to   18.9527             23.602   4.6493
+  gamma_7    40.9187   folds to   15.6202             23.602   7.9818
+  gamma_8    43.3271   folds to   13.2118              3.572   9.6398
+  gamma_9    48.0052   folds to    8.5338              3.572   4.9618
+  gamma_10   49.7738   folds to    6.7651              3.572   3.1931
+
+SURVIVORS, EACH AGAINST ITS BEST FOLDED ZERO
+   23.602   gamma_5 = 32.9351 -> 23.6038   d = 0.0018
+    1.298   gamma_10 = 49.7738 -> 6.7651   d = 5.4671
+   26.114   gamma_4 = 30.4249 -> 26.1140   d = 0.0000
+    1.541   gamma_10 = 49.7738 -> 6.7651   d = 5.2241
+    3.572   gamma_10 = 49.7738 -> 6.7651   d = 3.1931
+
+ARE THE SMALL SURVIVORS DIFFERENCES OF FOLDED FREQUENCIES?
+  45 candidate pairs - a loose fit out of this many is
+  selection, not identification.
+    1.298   best |fold(g5) - fold(g3)| = 1.4070   d = 0.1090   NOT a match
+    1.541   best |fold(g7) - fold(g1)| = 1.4855   d = 0.0555   NOT a match
+    3.572   best |fold(g7) - fold(g6)| = 3.3325   d = 0.2395   NOT a match
+
+IS THE FOLD INVERTIBLE HERE?
+  7 of 10 zeros lie above Nyquist
+  0 lie above 2*Nyquist = 56.5389
+  first-zone folding g -> 2*nyq - g is injective, so with zero
+  zeros in the second zone nothing is ambiguous for this base.
+  NOT TESTED: whether the zeros can be recovered from their images.

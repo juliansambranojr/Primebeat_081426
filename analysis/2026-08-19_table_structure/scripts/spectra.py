@@ -17,6 +17,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
+from _paths import FIGURES, tee
+
+tee(__file__)
 
 # --- seed rows, scaffold convention ------------------------------------
 TAIL2 = [2,2,5,7,13,23,43,75,137,255,464,872,1612,3030,5709,10749,20390,
@@ -27,6 +30,8 @@ TAIL3 = [5,13,31,76,198,520,1380,3741,10129,27837,76805,213610,596911,
          2529347318,7266270535,20912111193,60284108632,174049197968,
          503218277350]
 SEED = {2: [0, 0] + TAIL2, 3: [0, 2] + TAIL3}
+
+NPERM = 2000
 
 GAMMAS = [14.134725141734694, 21.022039638771555, 25.010857580145688,
           30.424876125859513, 32.935061587739190, 37.586178158825671,
@@ -99,9 +104,42 @@ def alignment(grid, mat, ln):
 
 
 def chance_level(ln):
-    """A peak dropped at random sits about a quarter of the mean gap away."""
-    g = np.diff(sorted(ln))
-    return g.mean() / 4
+    """Exact mean distance from a uniform point on (0, pi] to the nearest line.
+
+    The old form here was mean_gap / 4, which is only correct when the
+    lines are evenly spaced: it takes the mean of the gaps and then the
+    quarter, when the correct order is the reverse.  A point landing in a
+    gap of width w averages w/4 from a line, but it lands in that gap with
+    probability proportional to w, so wide gaps are weighted by their own
+    width and the exact value is sum(w^2)/(4 sum(w)).  The two agree only
+    at zero gap variance; aliased zeros are strongly uneven, so for the
+    base-2 line set the formula gave 0.0762 against an exact 0.2020, low
+    by 2.65x, and read a real effect as a null.
+
+    The interval ends are one-sided: a point in the strip before the first
+    line or after the last averages half that strip, not a quarter.
+    """
+    L = sorted(ln)
+    a, z = L[0], math.pi - L[-1]                      # one-sided ends
+    tot = a * a / 2 + z * z / 2
+    tot += sum(w * w / 4 for w in np.diff(L))         # interior gaps
+    return tot / math.pi
+
+
+def fold_random(rng, n, lnb):
+    """n arbitrary values across the gamma range, through the same fold.
+
+    The decisive null.  If folding alone concentrates lines where the
+    peaks are, this scores like the real zeros and the alignment says
+    nothing about zeta.
+    """
+    lo, hi = min(GAMMAS), max(GAMMAS)
+    return sorted(alias(v, lnb) for v in rng.uniform(lo, hi, n))
+
+
+def uniform_lines(rng, n):
+    """n lines dropped uniformly on (0, pi] — no fold, no arithmetic."""
+    return sorted(rng.uniform(0, math.pi, n))
 
 
 # --- figure -------------------------------------------------------------
@@ -133,7 +171,19 @@ for k, (b, arm) in enumerate(panels):
     mr, nr = alignment(grid, mat, real)
     mn, _ = alignment(grid, mat, null)
     ch = chance_level(real)
-    report.append((b, arm, mr, mn, ch, nr))
+
+    # decisive null: does the fold alone produce the alignment?
+    rng = np.random.default_rng(2026)               # REFERENCES.md house seed
+    lnb = math.log(b)
+    frs = [alignment(grid, mat, fold_random(rng, len(GAMMAS), lnb))[0]
+           for _ in range(NPERM)]
+    uns = [alignment(grid, mat, uniform_lines(rng, len(GAMMAS)))[0]
+           for _ in range(NPERM)]
+    frs = np.array([v for v in frs if v == v])
+    uns = np.array([v for v in uns if v == v])
+    pv = (1 + (frs <= mr).sum()) / (1 + len(frs)) if len(frs) else float("nan")
+    report.append((b, arm, mr, mn, float(frs.mean()) if len(frs) else float("nan"),
+                   float(uns.mean()) if len(uns) else float("nan"), ch, pv, nr))
 
     ax.set_title(f"base {b} · {arm}", color=INK, fontsize=11, pad=8,
                  fontfamily="monospace")
@@ -143,7 +193,7 @@ for k, (b, arm) in enumerate(panels):
     for s in ax.spines.values():
         s.set_color("#232A38")
     ax.text(0.985, 0.03,
-            f"peak↔real {mr:.4f}   ↔shifted {mn:.4f}   chance {ch:.4f}   n={nr}",
+            f"peak↔real {mr:.4f}   ↔shifted {mn:.4f}   chance {ch:.4f}   p={pv:.3f}   n={nr}",
             transform=ax.transAxes, ha="right", va="bottom",
             color=INK, fontsize=8.2, fontfamily="monospace",
             bbox=dict(fc="#141924", ec="#232A38", pad=3.5))
@@ -155,7 +205,7 @@ x = np.arange(len(report))
 w = 0.27
 axs.bar(x - w, [r[2] for r in report], w, color="#7FC8F2", label="peak ↔ real γ")
 axs.bar(x, [r[3] for r in report], w, color="#B98BD0", label="peak ↔ shifted γ")
-axs.bar(x + w, [r[4] for r in report], w, color="#6B7689", label="chance level")
+axs.bar(x + w, [r[6] for r in report], w, color="#6B7689", label="chance level")
 axs.set_xticks(x)
 axs.set_xticklabels(labels, color=INK, fontsize=8.5, fontfamily="monospace")
 axs.set_ylabel("mean radians to nearest line", color=MUT, fontsize=9)
@@ -173,11 +223,16 @@ fig.text(0.07, 0.918,
          "solid = first eight zeros folded into (0, π] · dotted = same eight shifted +2.5, spacing preserved",
          color=MUT, fontsize=9, fontfamily="monospace")
 
-out = "/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/" \
-      "4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/spectra.png"
+out = str(FIGURES / "spectra.png")
 fig.savefig(out, dpi=155, facecolor=GROUND)
 
-print(f"{'panel':22} {'real':>9} {'shifted':>9} {'chance':>9} {'peaks':>6}")
-for b, a, mr, mn, ch, n in report:
-    print(f"base {b} {a:<14} {mr:9.4f} {mn:9.4f} {ch:9.4f} {n:6d}")
+print("mean radians from each genuine peak to the nearest reference line.")
+print("lower is closer.  chance is exact, not the mean-gap/4 approximation.")
+print(f"p = fraction of {NPERM} folded-random line sets matching at least as")
+print("well as the real zeros.\n")
+print(f"{'panel':22} {'real':>9} {'shiftG':>9} {'foldRND':>9} {'uniform':>9}"
+      f" {'chance':>9} {'p':>7} {'peaks':>6}")
+for b, a, mr, mn, fr, un, ch, pv, n in report:
+    print(f"base {b} {a:<14} {mr:9.4f} {mn:9.4f} {fr:9.4f} {un:9.4f}"
+          f" {ch:9.4f} {pv:7.3f} {n:6d}")
 print("\nwrote", out)

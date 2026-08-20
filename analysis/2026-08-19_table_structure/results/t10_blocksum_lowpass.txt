@@ -1,0 +1,26 @@
+TEST 10 - block-summing and the low-pass.  Reconstruction; exploratory.
+value ceiling 2^48 = 281474976710656
+
+PART 1 - is the coarse rung count the dyadic one summed in blocks?
+   base 2 has 48 rungs
+   base 4 (24 rungs) == dyadic summed in 2s : True
+   base 8 (16 rungs) == dyadic summed in 3s : True
+
+PART 2 - Dirichlet kernel |sin(k w/2) / (k sin(w/2))| at w = 2.7689
+   (gamma_1's dyadic alias; ln2 sampling folds 3.514260 to this)
+   k=2   D = 0.1853   (81.5% of the amplitude removed)
+   k=3   D = 0.2876   (71.2% of the amplitude removed)
+   k=4   D = 0.1725   (82.7% of the amplitude removed)
+
+PART 3 - exact zeros in the dyadic table after block-summing
+ merge k  rungs  zeros   locations (r, d)
+       1     48      4   [(2, 1), (4, 1), (8, 3), (20, 6)]
+       2     24      0   -
+       3     16      0   -
+       4     12      0   -
+       5      9      0   -
+       6      8      0   -
+
+d = 0 is excluded from the zero count: a zero there would be an
+empty rung, not a cancellation.  Zeros are counted on the rebuilt
+table only, at this ceiling only.

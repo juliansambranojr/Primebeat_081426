@@ -21,6 +21,9 @@ over the same stretch of the number line rather than the same r.
 import math
 import numpy as np
 from primecountpy import prime_pi
+from _paths import tee
+
+tee(__file__)
 
 GAMMA1 = 14.134725141734693
 V = 2 ** 32                      # common value ceiling, O45's

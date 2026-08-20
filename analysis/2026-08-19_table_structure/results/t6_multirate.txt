@@ -1,0 +1,17 @@
+Nyquist ceiling for each base on its own, pi / ln b:
+   base 2: gamma <   4.53
+   base 3: gamma <   2.86
+   base 4: gamma <   2.27
+   base 5: gamma <   1.95
+   base 6: gamma <   1.75
+   base 7: gamma <   1.61
+   base 8: gamma <   1.51
+   base 9: gamma <   1.43
+   gamma1 = 14.1347 - above every one of them
+
+base 2 alone   n=  47   top peaks: 36.425(0.486)  8.898(0.486)  17.965(0.486)  27.358(0.486)  45.156(0.486)
+base 3 alone   n=  29   top peaks: 39.872(0.681)  11.275(0.681)  45.916(0.681)  17.320(0.681)  5.558(0.681)
+2 and 3        n=  76   top peaks: 36.425(0.267)  27.358(0.233)  17.965(0.228)  11.292(0.193)  28.436(0.193)
+all eight      n= 180   top peaks: 36.408(0.175)  18.267(0.173)  27.056(0.158)  22.727(0.136)  45.442(0.131)
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-08-19_table_structure/figures/multirate.png

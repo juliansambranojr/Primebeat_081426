@@ -1,0 +1,12 @@
+exp(π·1/2γ₁)   b= 1.1175 rungs= 199 depths=190  peak +0.973 @d146      +0.92 +0.94 +0.94 +0.94 +0.94 +0.95 +0.95 +0.95 +0.95 +0.96 +0.96
+exp(π·2/2γ₁)   b= 1.2489 rungs=  99 depths= 90  peak +0.991 @d89       +0.76 +0.84 +0.83 +0.83 +0.83 +0.84 +0.84 +0.84 +0.85 +0.86 +0.88
+2              b= 2.0000 rungs=  32 depths= 23  peak +0.998 @d22       +0.72 +0.87 +0.92 +0.97 +0.99 +0.99 +0.99 +0.99 +0.98 +0.96 +0.93
+3              b= 3.0000 rungs=  20 depths= 11  peak +0.915 @d10       +0.71 +0.43 +0.48 +0.58 +0.42 +0.21 +0.19 +0.40 +0.65 +0.81 +0.92
+4              b= 4.0000 rungs=  16 depths=  7  peak +0.985 @d2        +0.91 +0.98 +0.98 +0.97 +0.96 +0.97 +0.98
+5              b= 5.0000 rungs=  13 depths=  4  peak +0.707 @d0        +0.71 +0.65 +0.69 +0.70
+6              b= 6.0000 rungs=  12 depths=  3  peak +0.982 @d2        +0.44 +0.73 +0.98
+7              b= 7.0000 rungs=  11 depths=  2  peak +0.922 @d1        +0.90 +0.92
+8              b= 8.0000 rungs=  10 depths=  1  peak -0.766 @d0        -0.77
+9              b= 9.0000 rungs=  10 depths=  1  peak +0.838 @d0        +0.84
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-08-19_table_structure/figures/residual_family.png

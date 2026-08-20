@@ -3,6 +3,9 @@ No data added, no null, no p-value. Where does each curve sag, how deep,
 and on which side of its own run."""
 import math, numpy as np, mpmath as mp
 from primecountpy import prime_pi
+from _paths import tee
+
+tee(__file__)
 mp.mp.dps = 40
 K, V = 40, 2**32
 G = [float(mp.zetazero(k).imag) for k in range(1, K+1)]

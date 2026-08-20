@@ -1,0 +1,11 @@
+shared axes:  rungs 0-48.6   depth 0-45.6   residual +/-1e+06
+base 2 dyadic    rungs= 48  depths= 46  readable= 39  d0=+0.882
+base 3 triadic   rungs= 30  depths= 28  readable= 21  d0=+0.892
+base 4 tetradic  rungs= 24  depths= 22  readable= 15  d0=+0.850
+base 5 pentadic  rungs= 20  depths= 18  readable= 11  d0=-0.354
+base 6 hexadic   rungs= 18  depths= 16  readable=  9  d0=+0.870
+base 7 heptadic  rungs= 17  depths= 15  readable=  8  d0=+0.898
+base 8 octadic   rungs= 16  depths= 14  readable=  7  d0=+0.714
+base 9 enneadic  rungs= 15  depths= 13  readable=  6  d0=+0.970
+
+wrote 8 figures

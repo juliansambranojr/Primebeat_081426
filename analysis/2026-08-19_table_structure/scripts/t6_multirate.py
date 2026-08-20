@@ -32,6 +32,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import mpmath as mp
 from primecountpy import prime_pi
+from _paths import FIGURES, tee
+
+tee(__file__)
 
 mp.mp.dps = 30
 V = 2 ** 48
@@ -135,7 +138,6 @@ fig.text(0.5, 0.012, "dashed grey = the first eight zeta zeros · "
          "red = that base's own Nyquist ceiling π/ln b",
          color=MUT, fontsize=8.4, ha="center", fontfamily="monospace")
 
-p = ("/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/"
-     "4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/multirate.png")
+p = str(FIGURES / "multirate.png")
 fig.savefig(p, dpi=150, facecolor=GR)
 print("\nwrote", p)

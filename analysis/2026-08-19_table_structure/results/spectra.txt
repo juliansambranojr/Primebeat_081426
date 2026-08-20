@@ -1,0 +1,12 @@
+mean radians from each genuine peak to the nearest reference line.
+lower is closer.  chance is exact, not the mean-gap/4 approximation.
+p = fraction of 2000 folded-random line sets matching at least as
+well as the real zeros.
+
+panel                       real    shiftG   foldRND   uniform    chance       p  peaks
+base 2 prime             0.0859    0.0505    0.1777    0.1929    0.2020   0.377     15
+base 2 composite         0.0759    0.0591    0.1791    0.1938    0.2020   0.328     13
+base 3 prime             0.2077    0.1066    0.1935    0.1964    0.2200   0.651      6
+base 3 composite            nan       nan       nan       nan    0.2200     nan      0
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-08-19_table_structure/figures/spectra.png

@@ -1,0 +1,16 @@
+base                 b  r_max  ratio/Δ    d*  osc fraction by depth 0,2,4,…
+dyadic          2.0000     32    3.357     7  0.40  0.39  0.38  0.44  0.95  1.00  1.00
+triadic         3.0000     20    2.357    10  0.40  0.38  0.36  0.35  0.34  0.52
+family k=1      1.1175    199   13.088     2  0.39  0.62  1.00  1.00  1.00  1.00  1.00
+family k=2      1.2489     99    9.508     3  0.39  0.40  0.97  1.00  1.00  1.00  1.00
+family k=3      1.3957     66    4.621     4  0.39  0.39  0.70  1.00  1.00  1.00  1.00
+family k=4      1.5597     49    0.555     5  0.39  0.39  0.44  0.99  1.00  1.00  1.00
+2^(1/2)         1.4142     63    4.033     4  0.39  0.39  0.58  1.00  1.00  1.00  1.00
+2^(1/3)         1.2599     95    9.148     3  0.39  0.40  0.99  1.00  1.00  1.00  1.00
+
+d* = first depth where oscillation carries more than half the power.
+ratio/Δ = |1-b^(-rho)| / ((b-1)/b) at rho = 1/2 + i*gamma1 - how fast
+the residual gains on the trend each step. Larger should cross sooner.
+
+corr(log ratio, d*) = -0.546 over 8 bases that cross
+negative means a faster gain ratio does cross sooner, as the chain says

@@ -1,0 +1,21 @@
+TEST 12 - chain versus orphan.  Reconstruction; exploratory.
+value ceiling 2^48 = 281474976710656   depth 0
+
+  base    group    parent  r_max  osc fraction
+     2     root         -     48        0.5262
+     3     root         -     30        0.5244
+     4    chain       2^2     24        0.5286
+     5   orphan      none     20        0.5197
+     6   orphan      none     18        0.5218
+     7   orphan      none     17        0.5310
+     8    chain       2^3     16        0.5346
+     9    chain       3^2     15        0.5331
+
+all eight span 0.5197 .. 0.5346   (width 0.0149)
+   root   [2, 3]  mean 0.5253   sd 0.0013
+   chain  [4, 8, 9]  mean 0.5321   sd 0.0031
+   orphan [5, 6, 7]  mean 0.5242   sd 0.0060
+
+chain mean - orphan mean = +0.0079, against a total spread of 0.0149 across all eight.
+Three bases per group: this is a description of eight numbers, not
+a test of whether the two groups differ.

@@ -23,6 +23,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import mpmath as mp
 from primecountpy import prime_pi
+from _paths import FIGURES, tee
+
+tee(__file__)
 
 mp.mp.dps = 40
 K = 40
@@ -30,8 +33,7 @@ GAMMAS = [float(mp.zetazero(k).imag) for k in range(1, K + 1)]
 V = 2 ** 48
 SOLID = 10                       # below this many points, hollow marker
 
-OUT = ("/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/"
-       "4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/")
+OUT = str(FIGURES) + "/"
 
 NAMES = {2: "dyadic", 3: "triadic", 4: "tetradic", 5: "pentadic",
          6: "hexadic", 7: "heptadic", 8: "octadic", 9: "enneadic"}

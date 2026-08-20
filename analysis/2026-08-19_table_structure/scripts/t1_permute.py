@@ -21,8 +21,11 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import importlib.util
+from _paths import HERE, tee
 
-spec = importlib.util.spec_from_file_location("sp", "spectra.py")
+tee(__file__)
+
+spec = importlib.util.spec_from_file_location("sp", str(HERE / "spectra.py"))
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
 

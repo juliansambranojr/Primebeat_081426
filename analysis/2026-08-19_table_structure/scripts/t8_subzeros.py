@@ -25,8 +25,11 @@ import json
 import math
 import cmath
 import numpy as np
+from _paths import REPO, tee
 
-RES = "/Users/juliansambrano/GitHub/Primebeat_081426/results/sub_integer_base_scan.json"
+tee(__file__)
+
+RES = str(REPO / "results" / "sub_integer_base_scan.json")
 G1 = 14.134725141734693
 NPERM = 20000
 RNG = np.random.default_rng(2026)          # REFERENCES.md house seed

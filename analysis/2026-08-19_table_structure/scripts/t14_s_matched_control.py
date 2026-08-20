@@ -49,10 +49,12 @@ import math
 
 import numpy as np
 from primecountpy import prime_pi
+from _paths import REPO, tee
+
+tee(__file__)
 
 # --- locked constants ---------------------------------------------------
-RESULTS = ("/Users/juliansambrano/GitHub/Primebeat_081426/results/"
-           "sub_integer_base_scan.json")
+RESULTS = str(REPO / "results" / "sub_integer_base_scan.json")
 LN_S_TOL = 0.35            # matching half-width in ln S
 NPERM = 20000
 SEED = 2026                # REFERENCES.md house seed; t8_subzeros.py's too

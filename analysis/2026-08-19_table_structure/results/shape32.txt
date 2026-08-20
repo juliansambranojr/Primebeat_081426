@@ -1,0 +1,13 @@
+SHAPE OF THE FAMILY AT 2^32 - characterised, not tested.
+Depth axis normalised to [0,1] per base, so position means
+'how far along its own run', not absolute depth.
+
+base              depths   level     dip    at   side   drop
+2 dyadic              30  +0.992  +0.721  0.00   left  0.271
+3 triadic             18  +0.764  +0.192  0.35    mid  0.572
+4 tetradic            14  +0.989  +0.914  0.00   left  0.075
+5 pentadic            11  +0.483  -0.959  1.00  right  1.442
+6 hexadic             10  +0.985  +0.439  0.00   left  0.547
+7 heptadic             9  +0.993  +0.869  0.25   left  0.124
+8 octadic              8  +0.072  -0.766  0.00   left  0.838
+9 enneadic             8  +0.998  +0.838  0.00   left  0.160

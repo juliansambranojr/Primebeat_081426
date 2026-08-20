@@ -18,6 +18,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from primecountpy import prime_pi
+from _paths import FIGURES, tee
+
+tee(__file__)
 
 GAMMA1 = 14.134725141734693
 V = 2 ** 32
@@ -118,8 +121,7 @@ fig.text(0.5, 0.005,
          f"all bases run to 2^32 · base 9 reaches it in 10 rungs, so its rows are short · min row length {MIN_N}",
          color=MUT, fontsize=8.5, ha="center", fontfamily="monospace")
 
-out = ("/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/"
-       "4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/family.png")
+out = str(FIGURES / "family.png")
 fig.savefig(out, dpi=150, facecolor=GROUND, bbox_inches="tight")
 print("\nwrote", out)
 

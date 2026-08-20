@@ -1,0 +1,27 @@
+          base         arm  zeros  resolved
+exp(pi*1/(2*g1))      family     29     14028
+exp(pi*2/(2*g1))      family     14      3828
+exp(pi*3/(2*g1))      family      9      1770
+exp(pi*4/(2*g1))      family      7      1035
+exp(pi*3/(4*g1))   antiphase     21      6441
+exp(pi*5/(4*g1))   antiphase     15      2556
+exp(pi*7/(4*g1))   antiphase     10      1378
+exp(pi*9/(4*g1))   antiphase      2       861
+      2**(1/2)  refinement     11      1711
+      2**(1/3)  refinement      3      3570
+
+pooled: 121 resolved zeros across 10 bases
+
+WINDING PHASE  (O42's coordinate)
+   observed R      0.1142
+   null mean       0.0924   sd 0.0480
+   z               +0.46
+   p               0.3026   (20000 stratified draws from the support)
+
+SCALE COORDINATE r-d
+   observed mean   26.744
+   null mean       47.846   sd 2.301
+   z               -9.17
+   p (low tail)    0.0000
+   zeros' r-d      min 4  median 22  max 97
+   support's r-d   min 3  median 47  max 198

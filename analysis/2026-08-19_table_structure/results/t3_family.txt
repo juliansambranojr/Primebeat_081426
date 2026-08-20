@@ -1,0 +1,15 @@
+exp(π·1/2γ₁)    b= 1.1175  rungs= 199  depths=194  d*=2
+exp(π·2/2γ₁)    b= 1.2489  rungs=  99  depths= 94  d*=3
+exp(π·3/2γ₁)    b= 1.3957  rungs=  66  depths= 61  d*=4
+exp(π·4/2γ₁)    b= 1.5597  rungs=  49  depths= 44  d*=5
+2               b= 2.0000  rungs=  32  depths= 27  d*=7
+3               b= 3.0000  rungs=  20  depths= 15  d*=10
+4               b= 4.0000  rungs=  16  depths= 11  d*=None
+5               b= 5.0000  rungs=  13  depths=  8  d*=None
+6               b= 6.0000  rungs=  12  depths=  7  d*=None
+7               b= 7.0000  rungs=  11  depths=  6  d*=None
+8               b= 8.0000  rungs=  10  depths=  5  d*=None
+9               b= 9.0000  rungs=  10  depths=  5  d*=None
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-08-19_table_structure/figures/family.png
+corr(log b, d*) = +0.999 over 6 bases

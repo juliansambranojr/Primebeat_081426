@@ -1,0 +1,28 @@
+TEST 11 - decimation aliasing.  Reconstruction; exploratory.
+gamma_1 = 14.134725141734693   value ceiling 2^48 = 281474976710656
+
+roots (the bases nothing in this set decimates):
+   base  2   gamma_1*ln b =  9.797445   mod 2pi = 3.514260   folded = 2.768926
+   base  3   gamma_1*ln b = 15.528583   mod 2pi = 2.962212   folded = 2.962212
+
+PART 1 - does fold(k * parent alias) equal the alias computed directly?
+  base  parent  k   fold(k*parent)      direct    difference
+     4       2  2      0.745333838 0.745333838     0.000e+00
+     8       2  3      2.023591896 2.023591896     0.000e+00
+    16       2  4      1.490667677 1.490667677     0.000e+00
+     9       3  2      0.358761061 0.358761061     0.000e+00
+    27       3  3      2.603451063 2.603451063     1.776e-15
+   largest disagreement 1.776e-15 rad (machine precision)
+
+PART 2 - how much of that frequency is actually available?
+  base  r_max    alias w   cycles   note
+     2     48     2.7689    21.15   
+     3     30     2.9622    14.14   
+     4     24     0.7453     2.85   
+     8     16     2.0236     5.15   
+    16     12     1.4907     2.85   
+     9     15     0.3588     0.86   under one cycle - nothing to measure
+    27     10     2.6035     4.14   
+
+cycles = r_max * w / 2*pi, the number of full turns the alias makes
+across the whole ladder at this ceiling.

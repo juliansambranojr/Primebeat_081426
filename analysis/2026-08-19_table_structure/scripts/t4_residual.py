@@ -23,6 +23,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import mpmath as mp
 from primecountpy import prime_pi
+from _paths import FIGURES, tee
+
+tee(__file__)
 
 mp.mp.dps = 40
 GAMMAS = [float(mp.zetazero(k).imag) for k in range(1, 41)]   # 40 zeros
@@ -130,7 +133,6 @@ fig.text(0.5, 0.012,
          "the two curves share no input - one is prime counts, the other is 40 zeta zeros",
          color=MUT, fontsize=8.6, ha="center", fontfamily="monospace")
 
-out = ("/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/"
-       "4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/residual.png")
+out = str(FIGURES / "residual.png")
 fig.savefig(out, dpi=150, facecolor=G, bbox_inches="tight")
 print("\nwrote", out)

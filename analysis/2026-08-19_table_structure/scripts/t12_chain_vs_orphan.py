@@ -35,6 +35,9 @@ import math
 
 import numpy as np
 from primecountpy import prime_pi
+from _paths import tee
+
+tee(__file__)
 
 # --- locked constants ---------------------------------------------------
 VALUE_CEILING = 2 ** 48

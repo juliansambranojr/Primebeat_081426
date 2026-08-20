@@ -1,0 +1,27 @@
+base 2 to r = 48
+
+A. DO BLOCK-SUM AND DIFFERENCE COMMUTE?
+   k=2: 0 of 276 cells agree  (DO NOT commute)
+   k=3: 0 of 120 cells agree  (DO NOT commute)
+
+B. IS THE COARSE TABLE A SCALED COPY?
+   base 4 cell (r,d) against base 2 cell (2r, 2d) - the same value
+   window at twice the resolution.  ratio should be constant if so.
+   139 paired cells
+   ratio: median +14.3954   mean +291.0438   sd 1475.9402
+   spread: -28.916 to +1359.539   (5th-95th)
+   coefficient of variation 5.07   -> NOT constant
+
+C. ARE THE DEPTH PROFILES SIMILAR AFTER NORMALISING?
+   per depth, the row's RMS divided by its own depth-0 RMS.
+   if the shape repeats, the curves lie on top of each other.
+   base  2  depths  41   ln(RMS/RMS0) by depth: +0.00  -0.70  -1.41  -2.11  -2.81  -3.52  -4.22  -4.92
+   base  4  depths  17   ln(RMS/RMS0) by depth: +0.00  -0.28  -0.56  -0.84  -1.12  -1.39  -1.67  -1.94
+   base  8  depths   9   ln(RMS/RMS0) by depth: +0.00  -0.11  -0.22  -0.33  -0.43  -0.53  -0.62  -0.71
+   base 16  depths   5   ln(RMS/RMS0) by depth: +0.00  -0.03  -0.05  -0.07  -0.08
+
+   per-depth slope (growth in ln RMS per depth step):
+   base  2   slope +0.1610   e^slope = 1.1747   (predicted |1-b^-rho| at gamma_1 = 1.6784)
+   base  4   slope -0.2678   e^slope = 0.7651   (predicted |1-b^-rho| at gamma_1 = 0.7177)
+   base  8   slope -0.1001   e^slope = 0.9048   (predicted |1-b^-rho| at gamma_1 = 1.1976)
+   base 16   slope -0.0201   e^slope = 0.9801   (predicted |1-b^-rho| at gamma_1 = 1.0112)

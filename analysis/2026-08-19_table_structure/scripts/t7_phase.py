@@ -26,6 +26,9 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from _paths import FIGURES, tee
+
+tee(__file__)
 
 R = 32
 ZER = [(2, 1), (4, 1), (8, 3), (20, 6)]
@@ -82,8 +85,7 @@ fig.text(.5, .022, "colour is cyclic — 0 and 1 are the same place. "
          "circles are the four exact zeros. bands run along r−d.",
          color=MUT, fontsize=9, ha="center", fontfamily="monospace")
 
-p = ("/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/"
-     "4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/phase.png")
+p = str(FIGURES / "phase.png")
 fig.savefig(p, dpi=140, facecolor=GR)
 print("\nspread: 0 = the four zeros share a phase, 1 = maximally scattered")
 print("(circular, so it does not care where on the cycle they sit)")

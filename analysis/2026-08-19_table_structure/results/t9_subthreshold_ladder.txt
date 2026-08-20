@@ -1,0 +1,37 @@
+TEST 9 - sub-threshold base ladder.  Reconstruction; exploratory.
+value ceiling 2^44 = 17592186044416   x > 100   grid 1.0..50.0 step 0.001   window +-0.5
+
+each zero's own aliasing threshold exp(pi/gamma_k):
+   gamma1 =  14.1347   b must be below 1.2489
+   gamma2 =  21.0220   b must be below 1.1612
+   gamma3 =  25.0109   b must be below 1.1338
+   gamma4 =  30.4249   b must be below 1.1088
+   gamma5 =  32.9351   b must be below 1.1001
+   gamma6 =  37.5862   b must be below 1.0872
+   gamma7 =  40.9187   b must be below 1.0798
+   gamma8 =  43.3271   b must be below 1.0752
+
+    base   Nyquist     n     r range   zeros recovered (peak location, variance explained)
+  1.2000     17.23   142     26..167   g1=14.179(0.060)
+  1.1500     22.48   186     33..218   g1=14.147(0.061)  g2=21.041(0.030)
+  1.1175     28.28   233     42..274   g1=14.157(0.084)  g2=21.038(0.033)  g3=25.032(0.023)
+  1.1100     30.10   248     45..292   g1=14.138(0.059)  g2=21.018(0.034)  g3=25.029(0.019)
+  1.0950     34.62   286     51..336   g1=14.144(0.057)  g2=21.067(0.048)  g3=25.013(0.013)  g4=30.439(0.010)  g5=32.917(0.013)
+  1.0850     38.51   317     57..373   g1=14.147(0.066)  g2=21.023(0.034)  g3=24.993(0.022)  g4=30.417(0.010)  g5=32.945(0.012)  g6=37.568(0.006)
+  1.0750     43.44   358     64..421   g1=14.141(0.064)  g2=21.021(0.030)  g3=25.018(0.031)  g4=30.448(0.010)  g5=32.927(0.016)  g6=37.644(0.008)  g7=40.934(0.005)  g8=43.565(0.008)
+
+* marks a window-edge maximum rather than an interior peak.
+
+recovered value at the finest base on the ladder, against truth:
+  zero   recovered        true     error
+    g1      14.141     14.1347   +0.0063
+    g2      21.021     21.0220   -0.0010
+    g3      25.018     25.0109   +0.0071
+    g4      30.448     30.4249   +0.0231
+    g5      32.927     32.9351   -0.0081
+    g6      37.644     37.5862   +0.0578
+    g7      40.934     40.9187   +0.0153
+    g8      43.565     43.3271   +0.2379
+
+resolution element of the periodogram on this span: 2*pi/25.89 = 0.243 rad
+errors above are well inside it, so the digits are not independent information.

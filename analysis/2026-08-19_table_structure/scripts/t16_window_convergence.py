@@ -41,6 +41,9 @@ import math
 import numpy as np
 import mpmath as mp
 from primecountpy import prime_pi
+from _paths import tee
+
+tee(__file__)
 
 mp.mp.dps = 30
 

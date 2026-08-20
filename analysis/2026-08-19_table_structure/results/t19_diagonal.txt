@@ -1,0 +1,29 @@
+dyadic table to r = 48
+
+1. TOTAL ALONG A DIAGONAL   (prime + composite at each cell)
+   r-d =  1   total = 1            constant over 48 cells: True
+   r-d =  2   total = 2            constant over 47 cells: True
+   r-d =  3   total = 4            constant over 46 cells: True
+   r-d =  4   total = 8            constant over 45 cells: True
+   r-d =  5   total = 16           constant over 44 cells: True
+   r-d =  6   total = 32           constant over 43 cells: True
+   ... 615 cells checked over r-d = 1..15, diagonals not constant: 0
+
+2. MEASURED GROWTH RATE of |cell|
+   predicted: column 1.6784 (gamma_1 mode), diagonal 2.3737 = sqrt(2) x that
+   down a column   median 1.2559   over 29 columns
+   along a diagonal median 2.1547   over 19 diagonals
+   observed ratio diagonal/column = 1.7156   predicted sqrt(2) = 1.4142
+
+3. THE PREDICTED CONSTANTS, from the symbol
+   column   smooth (b-1)/b            = 0.5000
+   column   |1 - b^-rho| at gamma_1   = 1.6784   ratio 3.3569
+   diagonal smooth |b^rho - 1| at rho=1 = 1.0000
+   diagonal |b^rho - 1| at gamma_1     = 2.3737   ratio 2.3737
+   dia/col = 1.414214   sqrt(b) = 1.414214
+
+4. THE FOUR ZEROS BY DIAGONAL
+   ( 2,1) on diagonal r-d =  1, total 2^0 = 1
+   ( 4,1) on diagonal r-d =  3, total 2^2 = 4
+   ( 8,3) on diagonal r-d =  5, total 2^4 = 16
+   (20,6) on diagonal r-d = 14, total 2^13 = 8192

@@ -48,6 +48,9 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from _paths import FIGURES, tee
+
+tee(__file__)
 
 # --- locked constants ---------------------------------------------------
 R = 32                                       # r = 1..R, d = 0..R-1
@@ -157,7 +160,6 @@ fig.suptitle("How many rungs of each coarser base fall inside every dyadic cell"
 fig.text(.5, .022, "circles are the four exact zeros",
          color=MUT, fontsize=9, ha="center", fontfamily="monospace")
 
-p = ("/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/"
-     "4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/coverage.png")
+p = str(FIGURES / "coverage.png")
 fig.savefig(p, dpi=140, facecolor=GR)
 print("\nwrote", p)
