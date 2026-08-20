@@ -1,0 +1,37 @@
+# Paper format — WIP, not canonical
+
+Papers are the record: measured, failed, unexplained. Negative results stay.
+
+## Structure
+
+- Section: `## X · Title` — capital letter, middle dot `·` (U+00B7),
+  contiguous from `A`.
+- Statement: `**Xn.**` at line start. Numbering restarts each section.
+- Source line: **one backtick span, nothing else on the line** — it may run
+  over several lines. Every statement has one. A code block may sit between the
+  statement and its source line.
+- Last section is `Not established`. Exception: an all-negative paper
+  (`What-Didnt-Work.md`).
+
+## Source line
+
+Free prose. Say where the statement comes from — an artifact, an earlier
+statement, a citation, a derivation, or nothing (`open`, `stated`, `untested`).
+
+Four kinds of token are **checked wherever they appear** in it. Everything else
+is prose and is ignored.
+
+```text
+The-Fold.md § A3              a paper section or statement — must exist
+Zeros.zero_iff_repeat         a Lean declaration — must exist in lean/
+t23_fold.py                   a script — must exist
+results/high_mass_zeros.json  an artifact — must exist
+```
+
+Bare letters (`A1`, `B3 + C3`) refer to statements in the same paper.
+
+## Rules
+
+- Every number traces to an artifact through its source line.
+- Never cite a script or results file before it exists — write `PENDING t25`.
+- A checked token that does not resolve is an error, not a warning.
