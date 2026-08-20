@@ -236,6 +236,40 @@ theorem base_of_meets_two {b k m : ℕ} (hk : k ≠ 0) (h : b ^ k = 2 ^ m) :
   obtain ⟨i, _, hi⟩ := (Nat.dvd_prime_pow Nat.prime_two).mp hdvd
   exact ⟨i, hi⟩
 
+/-- **Two ladders that meet have proportional exponents.** If some power of `b`
+equals some power of `c`, then at every prime the two exponents stand in the
+ratio `m : n`. This is the "shared lineage" of `Commensurate-Ladders.md` § A2 in
+exact form -- not that `b` and `c` are related somehow, but that their prime
+signatures are one vector scaled two ways. -/
+theorem factorization_proportional {b c n m : ℕ} (h : b ^ n = c ^ m) (p : ℕ) :
+    n * b.factorization p = m * c.factorization p := by
+  have hf := congrArg Nat.factorization h
+  rw [Nat.factorization_pow, Nat.factorization_pow] at hf
+  have := congrArg (fun f : ℕ →₀ ℕ => f p) hf
+  simpa using this
+
+/-- **And they are built from the same primes.** Proportionality with both
+exponents nonzero forces the supports to agree, so ladders that meet are made
+of one prime set. Bases 2 and 3 meet nowhere above `x = 1` for exactly this
+reason -- there is no common ancestor because there is no common prime. -/
+theorem primeFactors_eq_of_meets {b c n m : ℕ} (hn : n ≠ 0) (hm : m ≠ 0)
+    (h : b ^ n = c ^ m) : b.primeFactors = c.primeFactors := by
+  ext p
+  simp only [Nat.mem_primeFactors_iff_mem_primeFactorsList,
+    ← Nat.support_factorization, Finsupp.mem_support_iff]
+  have hp := factorization_proportional h p
+  constructor
+  · intro hb hc
+    rw [hc, Nat.mul_zero] at hp
+    rcases Nat.mul_eq_zero.mp hp with h1 | h1
+    · exact hn h1
+    · exact hb h1
+  · intro hc hb
+    rw [hb, Nat.mul_zero] at hp
+    rcases Nat.mul_eq_zero.mp hp.symm with h1 | h1
+    · exact hm h1
+    · exact hc h1
+
 /-! ## What is NOT proved
 
 Nothing above determines a location. `zero_iff_repeat` says a zero is a repeat;
@@ -341,6 +375,14 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Zeros.stencil_annihilates_const' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Zeros.stencil_annihilates_const
+
+/-- info: 'Zeros.factorization_proportional' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.factorization_proportional
+
+/-- info: 'Zeros.primeFactors_eq_of_meets' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.primeFactors_eq_of_meets
 
 /-- info: 'Zeros.base_of_meets_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
