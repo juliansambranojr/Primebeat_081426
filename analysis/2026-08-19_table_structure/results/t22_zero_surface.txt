@@ -1,0 +1,235 @@
+BASES, ZEROS, AND SUPPORT
+              base         b  zeros  resolved
+                 2  2.000000      4       496
+  exp(pi*1/(2*g1))  1.117541     29     14028
+  exp(pi*2/(2*g1))  1.248897     14      3828
+  exp(pi*3/(2*g1))  1.395693      9      1770
+  exp(pi*4/(2*g1))  1.559743      7      1035
+  exp(pi*3/(4*g1))  1.181394     21      6441
+  exp(pi*5/(4*g1))  1.320256     15      2556
+  exp(pi*7/(4*g1))  1.475440     10      1378
+  exp(pi*9/(4*g1))  1.648864      2       861
+          2**(1/2)  1.414214     11      1711
+          2**(1/3)  1.259921      3      3570
+
+pooled: 125 resolved zeros across 11 bases
+
+1. EVERY ZERO'S WINDOW, log2 of the values it reads
+   sorted by window bottom.  w = width = (d+1) log2 b
+         lo      hi      w      base           S
+      0.000   2.000  2.000  2.000000           2
+      1.924   3.207  1.283  1.559743           2
+      2.000   4.000  2.000  2.000000           4
+      2.245   3.367  1.122  1.475440           2
+      2.500   4.000  1.500  1.414214           4
+      2.500   3.500  1.000  1.414214           2
+      2.806   4.008  1.202  1.320256           4
+      2.806   3.607  0.802  1.320256           2
+      3.000   5.500  2.500  1.414214          32
+      3.000   4.000  1.000  1.414214           2
+      3.207   4.008  0.802  1.320256           2
+      3.207   5.772  2.565  1.559743          22
+      3.207   4.489  1.283  1.559743           4
+      3.207   7.696  4.489  1.559743         332
+      3.367   4.329  0.962  1.395693           4
+      3.367   4.489  1.122  1.475440           4
+      3.367   6.734  3.367  1.475440         114
+      3.500   5.000  1.500  1.414214           8
+      3.527   4.810  1.283  1.248897           8
+      3.527   4.489  0.962  1.248897           4
+      3.527   4.169  0.641  1.248897           2
+      3.607   5.050  1.443  1.648864           6
+      3.848   4.810  0.962  1.248897           4
+      3.848   4.489  0.641  1.248897           2
+      3.928   5.611  1.683  1.475440          12
+      3.928   6.173  2.245  1.475440          28
+      4.000   8.000  4.000  2.000000          88
+      4.000   7.000  3.000  1.414214         124
+      4.008   8.016  4.008  1.320256        2164
+      4.169   4.810  0.641  1.248897           2
+      4.409   6.413  2.004  1.320256          48
+      4.489   6.173  1.683  1.475440          16
+      4.489   6.413  1.924  1.559743          20
+      4.489   7.856  3.367  1.475440         206
+      4.489   7.054  2.565  1.559743          48
+      4.489   5.451  0.962  1.248897           8
+      4.500   5.500  1.000  1.414214           6
+      4.500   6.500  2.000  1.414214          30
+      4.810   5.611  0.802  1.320256           6
+      4.810   7.215  2.405  1.395693          80
+      4.810   6.734  1.924  1.395693          36
+      4.810   6.253  1.443  1.395693          16
+      4.810   7.616  2.806  1.320256         296
+      4.810   6.012  1.202  1.320256          12
+      4.970   5.451  0.481  1.117541           4
+      5.050   6.253  1.202  1.181394          32
+      5.050   7.295  2.245  1.475440          50
+      5.130   6.092  0.962  1.117541          42
+      5.130   7.054  1.924  1.559743          28
+      5.211   6.012  0.802  1.320256           6
+      5.291   6.734  1.443  1.395693          20
+      5.291   5.772  0.481  1.181394           4
+      5.291   7.215  1.924  1.395693          44
+      5.291   6.012  0.721  1.181394           8
+      5.291   5.932  0.641  1.117541          10
+      5.333   6.000  0.667  1.259921           6
+      5.451   5.772  0.321  1.117541           2
+      5.451   6.413  0.962  1.248897          12
+      5.531   6.012  0.481  1.181394           4
+      5.772   7.215  1.443  1.395693          24
+      5.932   6.573  0.641  1.117541          14
+      6.000   6.667  0.667  1.259921           8
+      6.012   6.493  0.481  1.181394           6
+      6.012   6.734  0.721  1.181394          12
+      6.012   6.974  0.962  1.181394          24
+      6.012   7.696  1.683  1.181394         228
+      6.092   6.413  0.321  1.117541           4
+      6.092   6.734  0.641  1.248897           8
+      6.173   7.856  1.683  1.475440          40
+      6.253   6.734  0.481  1.181394           6
+      6.253   6.974  0.721  1.181394          12
+      6.333   7.333  1.000  1.259921          20
+      6.413   7.375  0.962  1.248897          20
+      6.493   7.455  0.962  1.181394          30
+      6.493   6.974  0.481  1.181394           6
+      6.573   6.894  0.321  1.117541           6
+      6.894   7.215  0.321  1.117541           4
+      7.215   7.696  0.481  1.117541          16
+      7.215   7.696  0.481  1.181394          12
+      7.215   7.856  0.641  1.117541          32
+      7.215   7.535  0.321  1.117541           8
+      7.215   8.658  1.443  1.395693          60
+      7.215  10.101  2.886  1.395693         724
+      7.375   7.856  0.481  1.117541          16
+      7.375   7.696  0.321  1.117541           8
+      7.455   9.860  2.405  1.181394        5664
+      7.455   8.177  0.721  1.181394          28
+      7.535   7.856  0.321  1.117541           8
+      7.696   8.177  0.481  1.117541          20
+      7.696   8.658  0.962  1.248897          44
+      8.016  11.223  3.207  1.320256        4338
+      8.177   8.658  0.481  1.117541          24
+      8.177   8.978  0.802  1.117541         112
+      8.177   8.818  0.641  1.117541          52
+      8.337   8.978  0.641  1.117541          60
+      8.337   8.818  0.481  1.117541          28
+      8.497   8.978  0.481  1.117541          32
+      8.658   9.139  0.481  1.181394          24
+      8.818  10.421  1.603  1.320256         264
+      8.818  10.020  1.202  1.320256         116
+      8.978  11.784  2.806  1.475440        1208
+      8.978   9.940  0.962  1.248897          92
+      9.000  10.500  1.500  1.414214         176
+      9.219  10.421  1.202  1.320256         148
+      9.379  10.101  0.721  1.181394          84
+      9.379  12.265  2.886  1.648864        1026
+      9.620   9.940  0.321  1.117541          28
+      9.620  10.582  0.962  1.248897         140
+      9.940  11.223  1.283  1.117541        2992
+      9.940  11.223  1.283  1.248897         376
+     10.101  11.303  1.202  1.181394         592
+     10.341  11.063  0.721  1.181394         148
+     11.000  17.000  6.000  1.414214     1371038
+     11.544  13.307  1.764  1.117541       73004
+     11.704  12.185  0.481  1.117541         212
+     12.025  12.826  0.802  1.117541        1136
+     12.185  12.666  0.481  1.117541         284
+     12.265  12.986  0.721  1.181394         484
+     12.345  12.986  0.641  1.117541         658
+     13.000  20.000  7.000  2.000000      492384
+     14.429  16.434  2.004  1.320256       18936
+     15.391  15.872  0.481  1.117541        2084
+     16.834  18.838  2.004  1.320256       87160
+     17.075  18.277  1.202  1.181394       46120
+     18.000  21.000  3.000  1.414214      651298
+
+2. IS THERE A RELATION BETWEEN WHERE A ZERO LOOKS AND HOW WIDE?
+   corr(lo, width)   zeros +0.0108   support -0.5053
+   zeros   lo in [0.00, 18.00]   w in [0.32, 7.00]
+   support lo in [0.00, 31.58]   w in [0.32, 32.00]
+
+3. CROSS-BASE ADJACENCY  (the surface test)
+   mean distance in the (lo, hi) plane from each zero to the
+   nearest zero AT A DIFFERENT BASE.  lower = more surface-like.
+   observed        0.3745
+   null mean       1.0524   sd 0.0611
+   z               -11.10
+   p (low tail)    0.0005   (2000 stratified draws)
+   reading: p small = zeros sit closer across bases than the
+            support does.  p near 1 or 0.5 = scatter.
+
+4. CONTROL - the same statistic WITHIN a base
+   if the effect is about the number line rather than about
+   crossing bases, this moves too.
+   observed        1.2550
+   null mean       3.4454   sd 0.2250
+   z               -9.73
+
+5. THE TEN HEAVIEST ZEROS BY STENCIL MASS, in window coordinates
+              S      lo      hi      w      base
+        1371038  11.000  17.000  6.000  1.414214
+         651298  18.000  21.000  3.000  1.414214
+         492384  13.000  20.000  7.000  2.000000
+          87160  16.834  18.838  2.004  1.320256
+          73004  11.544  13.307  1.764  1.117541
+          46120  17.075  18.277  1.202  1.181394
+          18936  14.429  16.434  2.004  1.320256
+           5664   7.455   9.860  2.405  1.181394
+           4338   8.016  11.223  3.207  1.320256
+           2992   9.940  11.223  1.283  1.117541
+
+6. WIDTH-MATCHED CONTROL
+   Sections 3 and 4 BOTH fired, so the compression is not about
+   crossing bases - the zeros simply occupy a corner of window
+   space (w <= 7.00 against the support's 32.00).  Width is
+   (d+1) log2 b, i.e. the shallow-depth selection O46 identified
+   as stencil mass, seen geometrically.  So: redraw the null from
+   support cells MATCHED to each zero's own width, per base, and
+   ask whether any cross-base adjacency survives.
+   matching tolerance +/- 0.25 in log2 width
+   candidate pool per zero: min 26  median 85  max 498
+   observed        0.3745   (unchanged - same zeros)
+   matched null    0.5308   sd 0.0294
+   z               -5.32
+   p (low tail)    0.0005
+   raw z was -11.10; if this collapses toward 0 the cross-base
+   adjacency was the width concentration and nothing else.
+
+7. THE BASES ARE COMMENSURATE BY CONSTRUCTION
+   The sorted list in section 1 shows exact repeats of the window
+   bottom ACROSS bases - lo = 4.810 at 1.248897, 1.395693 and
+   1.320256.  Exact coincidences across different bases do not
+   happen by accident, so check the base set itself.
+
+   unit = pi/(4*gamma_1) in log2 = 0.080163571
+                 base      log2 b     /unit   exact?  zeros
+                    2    1.000000   12.4745       no      4
+     exp(pi*1/(2*g1))    0.160327    2.0000      YES     29
+     exp(pi*2/(2*g1))    0.320654    4.0000      YES     14
+     exp(pi*3/(2*g1))    0.480981    6.0000      YES      9
+     exp(pi*4/(2*g1))    0.641309    8.0000      YES      7
+     exp(pi*3/(4*g1))    0.240491    3.0000      YES     21
+     exp(pi*5/(4*g1))    0.400818    5.0000      YES     15
+     exp(pi*7/(4*g1))    0.561145    7.0000      YES     10
+     exp(pi*9/(4*g1))    0.721472    9.0000      YES      2
+             2**(1/2)    0.500000    6.2372       no     11
+             2**(1/3)    0.333333    4.1582       no      3
+
+   107 of 125 zeros sit at bases whose log2 is an EXACT
+   integer multiple (2,3,4,5,6,7,8,9) of a single unit.  Their
+   ladders therefore land on one shared lattice, and window edges
+   MUST coincide across them.  The remaining three bases -
+   2, 2^(1/2), 2^(1/3) - have log2 1, 1/2, 1/3, mutually
+   commensurate in their own right.
+
+   So every base in the scan is commensurate with the others in
+   its arm, and there is no incommensurate pair anywhere in it.
+   Cross-base window alignment is FORCED by the base selection,
+   which came from D4's optimal-base family exp(pi*k/(2*gamma_1))
+   and was chosen for winding angle, not for this.
+
+   VERDICT: sections 3, 4 and 6 measure the prereg's base choice,
+   not the zeros.  The surface question is UNANSWERABLE with this
+   scan.  Answering it needs bases that are pairwise incommensurate
+   - the same property t6_multirate used to break the alias
+   degeneracy, wanted here for the opposite reason.
