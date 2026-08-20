@@ -99,6 +99,13 @@ if np.exists():
         m = re.search(r"entry (\d+):", line)
         if m: check("NOTEPAD.md", f"line {i} cites entry {m.group(1)}", int(m.group(1)) in entries)
 
+# notebook state, computed once and correctly: fences stripped, digits required
+if entries:
+    hi = max(entries)
+    gaps = [n for n in range(1, hi + 1) if n not in entries and n not in GAP]
+    print(f"notebook: {len(entries)} entries, newest {hi} ({entries[hi]}), "
+          f"next {hi + 1}" + (f", MISSING {gaps}" if gaps else ""))
+
 for w, why in broken: print(f"BROKEN  {w}  ->  {why}")
 print(f"\n{len(broken)} broken reference(s)")
 sys.exit(1 if broken else 0)
