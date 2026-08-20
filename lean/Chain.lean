@@ -124,7 +124,16 @@ theorem A4_of_A1 {b : ℝ} {ρ : ℂ} (hA1 : StmtA1 b ρ) : StmtA4 b ρ := by
       ring
 
 /-- **A4 ∧ B4 → B5.** The payoff arrow: the depth gain *is* the Weil weight.
-Uses A4 for the shape of the depth-`N` multiplier and B4 for the Weil side. -/
+
+**Lean needs only `hB4`.** The proof rewrites by it, then moves the exponent
+inside the norm — `‖Sym‖^(2N) = ‖Sym^N‖^2`, which is `norm_pow` and nothing
+else. `hA4` is carried to mirror the paper's stated dependency, not because the
+proof consumes it: the `have` binding it is inert, and it is instantiated at
+`r = 1`, which appears nowhere in the goal.
+
+`hB4` is also doing silent work. The statement carries no `0 < b`, and the
+conjugate-factor identity behind B4 holds only there, so `hB4` stands in for
+the positivity this signature omits. It cannot be dropped. -/
 theorem B5_of_A4_B4 {b : ℝ} {N : ℕ} {γ : ℝ}
     (hA4 : StmtA4 b ((1 : ℂ)/2 + γ * I)) (hB4 : StmtB4 b N) :
     h b N ((1 : ℂ)/2 + γ * I)
