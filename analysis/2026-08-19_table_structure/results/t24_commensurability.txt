@@ -1,0 +1,83 @@
+1. INTEGER BASES 2..9 - WHICH PAIRS SHARE A LADDER?
+   log b1 / log b2 rational  <=>  the two ladders have common rungs
+              2       3       4       5       6       7       8       9
+      2       -       .     1/2       .       .       .     1/3       .
+      3       .       -       .       .       .       .       .     1/2
+      4       2       .       -       .       .       .     2/3       .
+      5       .       .       .       -       .       .       .       .
+      6       .       .       .       .       -       .       .       .
+      7       .       .       .       .       .       -       .       .
+      8       3       .     3/2       .       .       .       -       .
+      9       .       2       .       .       .       .       .       -
+   '.' means irrational, so the two ladders meet only at x = 1.
+   the rational entries are exactly the power-chains 2-4-8, 3-9.
+
+2. THE SAME FACT AS CHAIN.md 10's INHERITANCE KILL
+   base 4 inherits from base 2: log4/log2 = 2  -> every base-4 rung IS a base-2 rung
+   base 8 inherits from base 2: log8/log2 = 3  -> every base-8 rung IS a base-2 rung
+   base 9 inherits from base 3: log9/log3 = 2  -> every base-9 rung IS a base-3 rung
+   base 3 orphan of base 2: log3/log2 = 1.584962501 irrational  -> no shared rung above x = 1
+   base 5 orphan of base 2: log5/log2 = 2.321928095 irrational  -> no shared rung above x = 1
+   base 6 orphan of base 2: log6/log2 = 2.584962501 irrational  -> no shared rung above x = 1
+   base 7 orphan of base 2: log7/log2 = 2.807354922 irrational  -> no shared rung above x = 1
+
+3. THE SUB-INTEGER SCAN - COMMENSURATE BY CONSTRUCTION
+   unit = pi/(4*gamma_1) = 0.055565153 in natural log
+                   base        ln b    /unit  exact
+       exp(pi*1/(2*g1))    0.111130   2.0000    YES
+       exp(pi*2/(2*g1))    0.222261   4.0000    YES
+       exp(pi*3/(2*g1))    0.333391   6.0000    YES
+       exp(pi*4/(2*g1))    0.444521   8.0000    YES
+       exp(pi*3/(4*g1))    0.166695   3.0000    YES
+       exp(pi*5/(4*g1))    0.277826   5.0000    YES
+       exp(pi*7/(4*g1))    0.388956   7.0000    YES
+       exp(pi*9/(4*g1))    0.500086   9.0000    YES
+               2**(1/2)    0.346574   6.2372     no
+               2**(1/3)    0.231049   4.1582     no
+                      2    0.693147  12.4745     no
+   the family and antiphase arms are m = 2..9 times one unit, so all
+   eight share a lattice.  2, 2^(1/2), 2^(1/3) share a different one.
+   there is no incommensurate PAIR anywhere in the scan.
+
+4. THE SAME FACT WITH THE OPPOSITE SIGN - t6_multirate
+   a single ladder at base b aliases every zero above pi/ln b, and
+   returns a COMB of peaks at spacing 2*pi/ln b, all of equal height:
+      base 2: Nyquist pi/ln b =  4.532   comb spacing 2*pi/ln b = 9.0647
+      base 3: Nyquist pi/ln b =  2.860   comb spacing 2*pi/ln b = 5.7192
+   measured, base 2 alone: five peaks at 8.898 17.965 27.358 36.425
+   45.156, every one at variance explained 0.486 (results/t6_multirate.txt)
+   gaps 9.067 9.393 9.067 8.731 against the stated 9.0647
+   pooling base 2 with base 3 breaks the tie EXACTLY BECAUSE
+   ln3/ln2 is irrational - the two combs share no tooth but the first.
+
+5. THE SAME FACT AS A CENSORING NOTE - The-Four-Zeros C5
+   base 2 depth d spans a window of ratio 2^(d+1).  another base b
+   reaches that window at depth log(2^(d+1))/log b - 1, integer or not:
+      (20,6)'s window has ratio 2^7 = 128:
+         base 3: depth   3.417   not an integer
+         base 4: depth   2.500   not an integer
+         base 5: depth   2.015   not an integer
+         base 6: depth   1.708   not an integer
+         base 7: depth   1.493   not an integer
+         base 9: depth   1.208   not an integer
+      (8,3)'s window has ratio 2^4 = 16:
+         base 3: depth   1.524   not an integer
+         base 4: depth   1.000   INTEGER
+         base 5: depth   0.723   not an integer
+         base 6: depth   0.547   not an integer
+         base 7: depth   0.425   not an integer
+         base 9: depth   0.262   not an integer
+   (8,3)'s window 2^4 IS reached by base 4 at depth 1, since
+   log2/log4 = 1/2 exactly.  (20,6)'s 2^7 is reached by no integer
+   base but 2, because 7 is prime.  That is the whole difference
+   between the two deep zeros.
+   7 is prime, so 2^7 is reached by no integer base but 2 - which is
+   Zeros.window_exclusive_of_prime_exponent, proved.
+
+6. WHERE IT IS ALREADY PROVED
+   Zeros.window_exclusive_of_prime_exponent (b k : N) (hb : 2 <= b)
+      (hk : 2 <= k) (h : b^k = 2^7) : b = 2 and k = 7
+   that is the commensurability question for one window, settled in
+   Lean, and it turns on 7 being PRIME rather than on irrationality.
+   The general statement - which pairs of ladders share rungs - is
+   NOT in the tree.
