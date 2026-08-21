@@ -39,13 +39,20 @@ while generating. That is why the split cannot be a judgment call.
 **Failure.** Each of these felt certain, read correctly, and was wrong:
 
 ```text
-"the claim is at § B4"          that section is unnumbered — no B4 exists
 "the output is in results/"     it is two directories away
 "that helper is in utils.py"    it was renamed last week
+"there is no § B4"              there is; the query only matched `## `
 ```
 
+The third is the instructive one. A docstring cited `Formalization.md § B4`;
+a grep for `^## ` found no B4 and it was declared broken. `### B4 · The four
+zeros: neither placed nor predicted` had been there the whole time. That
+false finding then propagated into a checker, a rule, an agent brief and
+several commit messages before anyone opened the file.
+
 Nothing signals the error. A generated reference and a recalled one are the
-same experience from the inside.
+same experience from the inside — and so is a verification that asked too
+narrow a question.
 
 **Success.** One command before writing the reference:
 

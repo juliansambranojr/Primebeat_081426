@@ -19,9 +19,11 @@ the bullets.
 5. Return the paper + resolution table      → verify: one row per cited token
 ```
 
-Step 2 is the whole job. Never write a citation you have not opened. If a
-bullet says `Formalization.md § B4` and section B is unnumbered, do not write
-it — report it and stop.
+Step 2 is the whole job. Never write a citation you have not opened, and open
+it wide enough: sections are `## X ·`, `### Xn ·` and `**Xn.**`, and a query
+that matches only one of the three will report a real section as missing.
+If a target genuinely is not there, report it and stop — do not write the
+nearest plausible thing.
 
 ## Rules
 

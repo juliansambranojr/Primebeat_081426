@@ -65,6 +65,23 @@ to the sixth vanish — not merely the total.
 midpoint, which lies at `2^16.5` — between samples, never on one.
 `B4 + B5`
 
+**B7.** **The zeros are forced.** Fix the depth-0 row and every cell of the table is
+determined — the recurrence has no parameter, the weights are Pascal's rather than a
+design choice, and the row is itself fixed by `π`. So a zero is not a placement but a
+consequence: nobody put it there and nobody could have put it elsewhere.
+`Construction.unique_of_isTableOf · Construction.eq_of_same_row`
+
+**B8.** That is proved with **no axioms at all** — not `propext`, not `Classical.choice`.
+It is the tightest result in the tree, and it is tight precisely because it says nothing
+about `π`: it is a statement about the construction, which is pure computation.
+`Construction.lean § Axiom check · Formalization.md § B4`
+
+**B9.** Forced is not located, and not meaningful. Determinism is a property of the
+construction; whether `π`'s particular values vanish at these four cells *for a reason*
+is a property of `π`, and nothing here reaches it. `Zeros.lean` states that hole and
+leaves it open.
+`B7 + Zeros.measured_zeros`
+
 ---
 
 ## C · Windows

@@ -17,6 +17,7 @@ sections = {}
 for f in PAPERS.glob("*.md"):
     t = f.read_text()
     sections[f.name] = ({m.group(1) for m in re.finditer(r"^## ([A-Z])\s*·", t, re.M)}
+                        | {m.group(1) for m in re.finditer(r"^#{3,4} ([A-Z]\d*)\s*·", t, re.M)}
                         | {m.group(1) for m in re.finditer(r"^\*\*([A-Z]\d+)\.\*\*", t, re.M)})
 # named sections of root-level docs: `CLAUDE.md § Prereg discipline`
 named = {}
