@@ -16,6 +16,261 @@ Julian's call.
 
 ---
 
+## 2026-08-20 — Entry 63 — six NOTEPAD lines were inside the header's own format example; the trap removed and the checker taught to see it
+type: instrument-fix
+refs: 53, 54, 55, 56, 57, 58
+
+**What was wrong.** `notes/NOTEPAD.md` opened with a `Format (strict, for grep):`
+block whose fenced example contained
+`- [STATUS] YYYY-MM-DD  entry N: terse one-line description` — a line shaped
+exactly like a real thread. Six lines, citing entries 53 through 58, had been
+prepended "to the top of the file" and landed **inside that fence**, above the
+template line, instead of under `## Threads`.
+
+**Why nothing caught it.** `check_refs.py` reads NOTEPAD.md raw rather than
+fence-stripped, so the six were length-checked and format-checked and passed
+both — they are well-formed lines in the wrong place. **The checker had no
+notion of place.** `CLAUDE.md` § Rule — load, don't recall already names this
+file as one that "contains examples of itself", and the rule did not prevent it,
+because a rule you have to remember at write time is not a check.
+
+**Root cause is duplication, not carelessness.** `notes/notes_format.md:39`
+says the NOTEPAD format is system-wide, lives at `~/GitHub/NOTEPAD_TEMPLATE.md`,
+and is "Not restated here." NOTEPAD.md restated it anyway — a third copy of a
+spec that already existed twice, and the copy is what people fall into.
+
+**Three changes, Julian approving each.**
+
+1. The `Format (strict, for grep):` fence and its `STATUS is one of:` line
+   deleted from `notes/NOTEPAD.md`, replaced by a pointer to
+   `~/GitHub/NOTEPAD_TEMPLATE.md`. The `Common greps` fence stays — nothing has
+   ever been prepended into it, because it does not look like entries.
+2. The six lines moved into `## Threads`, immediately below entry 59's, in their
+   existing order. **Content byte-identical; no status transitions.** Relocation
+   only — every one of them is still `[open]`.
+3. `utilities/check_refs.py` now tracks whether it has passed the `## Threads`
+   heading, and reports any `- [status]` line above it as BROKEN.
+
+**Tested in both directions.** A line planted above `## Threads` is caught —
+`BROKEN NOTEPAD.md -> line 9 is above "## Threads"`. On the repaired file the
+check is silent.
+
+**Prior results comparable.** The baseline diff is empty: 14 broken references
+before and after, the same 2 declared-PENDING plus 12 oversized lines. The six
+moved lines were under 400 chars and already passing every other check, so no
+count moved. `check_values.py` unaffected — it reads `papers/` only.
+
+**Still open, not fixed here.** The 12 oversized NOTEPAD lines, and the fact
+that entries 53, 55, 56, 57 and 58 carry the date 2026-08-21 against commits
+timestamped 2026-08-20. Both are Julian's to decide; the dates in particular
+cannot be corrected by an agent without changing the dated record.
+
+---
+
+## 2026-08-20 — Entry 62 — the joint cross-base test has never been run on the exact zeros, only on the gammas
+type: motivation
+refs: 49, 52, 54, 56
+
+**Scope observation, from Julian.** Entry 52's `(40,12)` result was cited in
+conversation as evidence that the four exact zeros are not a feature of any
+cross-base structure. That citation is too broad, and the entry's own text says
+why: the test was at `b = 2^(1/2)`, where `(40,12)` is "the exact image of base
+2's `(20,6)` under factor-2 refinement: `r` doubles, `d` doubles."
+
+`(√2)^(2r) = 2^r`. Base 2 is every other rung of the √2 ladder. So entry 52
+tested **resolution**, not **coupling** — whether the zero survives sampling the
+same ladder finer. It does not, and that stands. It is not a test of whether
+structure runs between ladders that are independent of each other.
+
+**The gap.** Two designs exist in the tree and have never been combined:
+
+* O18 coupled incommensurate ladders and it worked. Base 2 alone NULL, base 3
+  alone NULL, the joint orbit `{2^m 3^n}` detecting γ₂ at P/median 6.95, three
+  generators reaching γ₄. `CONTEXT.md` § O18. **Object: the γ's.**
+* O44 scanned the exact zeros across bases 2–9, 1289 pair-identity cells, and
+  found only base 2 has any (entry 49). **Method: one table at a time.**
+
+O18's whole lesson was that "blind singly" and "blind jointly" are different
+questions. For the exact zeros only the first has been asked.
+
+**Why it is not a straightforward test.** A γ-detection is a spectral statistic
+computable on any orbit; an exact zero is an integer cell in one table. "Joint"
+needs a construction producing one number from two ladders. O44's pair-identity
+scale coordinate is one candidate already in the tree.
+
+**The trap this design walks into.** Entry 56 and entry 54: eight of O45's
+eleven bases are exact multiples of `π/(4γ₁)` in log, commensurate *by
+construction*, carrying 107 of 125 zeros — so cross-base alignment was forced by
+the base choice rather than found, and entry 54 records the surface question as
+unanswerable with that base set. Any joint design must fix its base set against
+commensurability first or it measures its own arithmetic.
+
+**Not evidence it would find anything.** O44's base-by-base answer was a clean
+no. This entry records that a question is unasked, which is not a prediction
+about its answer. No test proposed, no prereg, nothing run.
+
+---
+
+## 2026-08-20 — Entry 61 — the diagonal gain is `√b`, derived rather than measured
+type: formalization
+refs: 45
+
+`analysis/2026-08-19_table_structure/CHAIN.md` lines 1360-1370 record
+`dia/col = 1.414214` against `sqrt(b) = 1.414214`, 615 cells, 0 failures, with a
+prose derivation: along a diagonal `r − d = c` a mode picks up
+`b^(cρ)·[b^ρ − 1]^d`, so the per-step factor is `b^ρ − 1` rather than the
+column's `1 − b^(−ρ)`, and the two differ by exactly `b^ρ`.
+
+**`sqrt` and `b^(1/2)` occur nowhere in `lean/`.** Checked across all eleven
+modules. `PairIdentity.exponent_const_on_diagonal` and
+`PairIdentity.total_const_on_diagonal` prove the diagonal is the trend's level
+set and that this is unique to `b = 2`; neither says anything about the gain
+ratio. The measured fact had no formal counterpart.
+
+**Four theorems, drafted and compiling.** Against `EulerFactorChain.sym b ρ =
+1 − b^(−ρ)`:
+
+```text
+diagonal_gain               b^ρ * sym b ρ = b^ρ − 1
+diagonal_cell               b^((d+c)ρ) * (sym b ρ)^d = b^(cρ) * (b^ρ − 1)^d
+diagonal_over_column        (b^ρ − 1) / sym b ρ = b^ρ          (sym b ρ ≠ 0)
+diagonal_over_column_at_half  b^(1/2) = √b                     (0 ≤ b)
+```
+
+All four at `[propext, Classical.choice, Quot.sound]`. That is the floor, not a
+defect: the statements are ℂ-valued, and ℝ is constructed with `Classical.choice`
+in Mathlib, so no proof style removes it. Compare entry 59 — the split is real.
+
+`diagonal_gain` needs only `b ≠ 0`; the `√b` specialization needs `0 ≤ b`.
+Route: `Complex.cpow_add`, `Complex.cpow_nat_mul`
+(`Mathlib/Analysis/SpecialFunctions/Pow/Complex.lean:109`), `Real.sqrt_eq_rpow`
+and `Complex.ofReal_cpow` (`.../Pow/Real.lean:984` and `:278`).
+
+**Not in the tree.** Draft at the session scratchpad as `diagonal_gain.lean`;
+landing it means editing `lean/EulerFactorChain.lean` and adding four
+`#guard_msgs` pins, which was not done. What is recorded here is that it
+compiles, not that it is committed.
+
+---
+
+## 2026-08-20 — Entry 60 — the operator IS Pascal: `tableFrom = stencil`, and the zeros as one line each
+type: formalization
+refs: 45, 52, 59
+
+`lean/Zeros.lean:88` defines `stencil N g = ∑ k ∈ range (N+1), (−1)^k C(N,k) g k`
+and proves it linear, antisymmetric, and constant-annihilating. **No theorem
+connected it to `Construction.tableFrom`.** The two objects sat in the same
+tree, one the recurrence and one the closed form, with nothing asserting they
+agree.
+
+**Now proved, drafted and compiling:**
+
+```text
+tableFrom_eq_fwdDiff    tableFrom N r d = (−1)^d * (fwdDiff (−1))^[d] N r
+                        [propext, Quot.sound]
+tableFrom_eq_stencil    tableFrom N r d = stencil d (fun k => N (r − k))
+                        [propext, Classical.choice, Quot.sound]
+```
+
+Route is Mathlib's `fwdDiff_iter_eq_sum_shift`
+(`Mathlib/Algebra/Group/ForwardDiff.lean:143`), which carries the binomial
+theorem. Our backward difference is `(−1)^d` times its forward one at step
+`−1`; the sign folds because `d + (d − k) = 2(d − k) + k` for `k ≤ d`, so
+`(−1)^(d+(d−k)) = (−1)^k`. A direct induction with `Finset.sum_range_succ'` and
+Pascal was attempted first and abandoned — the index-shift bookkeeping is worse
+than the bridge.
+
+**What it buys.** A cell stops being a table walk and becomes one linear
+equation on `d+1` values of the row. Checked against real counts, from the
+depth-0 row `N(r) = π(2^r) − π(2^(r−1))` for `r = 1..8` = `1,1,2,2,5,7,13,23`:
+
+```text
+(8,3) zero      23 − 3·13 + 3·7 − 5 = 0      by decide, no axioms
+(7,3) non-zero  13 − 3·7  + 3·5 − 2 = 5      by decide, no axioms
+```
+
+The non-zero is deliberate: without it the check only fires in one direction.
+
+This does **not** predict a location and is not evidence toward one. It moves
+the four zeros from four transcribed pairs in `Construction.measured_zeros` to
+four explicit Pascal-weighted conditions on π. The arithmetic input remains
+π(2^r) and always will.
+
+**Not in the tree.** Draft at the session scratchpad as `stencil_equation.lean`;
+landing it means editing `lean/Zeros.lean` and adding two pins.
+
+---
+
+## 2026-08-20 — Entry 59 — Construction.lean off Mathlib: two of the three axioms were the library's, not the mathematics'
+type: formalization
+refs: 45, 47
+
+**Claim under test.** That the integer half of the tree was at
+`[propext, Classical.choice, Quot.sound]` because of what it proves. It was not.
+It was because every module opens with `import Mathlib`, and Mathlib's generic
+ring and order instances are classical.
+
+**Measured, in a Mathlib-free file against Lean core only:**
+
+```text
+                                  with Mathlib                      core only
+tableFrom_add          [propext, Quot.sound]                        [propext]
+tableFrom_smul         [propext, Quot.sound]                        [propext]
+zero_determined_by_row [propext, Quot.sound]                        [propext]
+tableFrom_zero         [propext]                                    none
+vanishing_above        [propext, Classical.choice, Quot.sound]      [propext]
+```
+
+`vanishing_above` is `SeedPerturbation.tableFrom_eq_zero_of_vanishing_above`,
+the gating theorem for the seed protections of entry 47. It had been read as
+capped by inheritance from `Construction.zero_determined_by_row`; the cap was
+Mathlib's floor, not the theorem's.
+
+**Cost table for core tactics**, measured, no Mathlib:
+
+```text
+rfl / decide / induction / Nat→Int cast     no axioms
+simp, named core Int lemma                  [propext]
+omega                                       [propext, Quot.sound]
+```
+
+So `Classical.choice` came from Mathlib's instances and `Quot.sound` came from
+`omega` — and `omega` was only ever reached for casts that are definitional.
+`r − ((k+1 : ℕ) : ℤ) = r − 1 − (k : ℤ)` closes by `rfl`;
+`Mathlib/Init/Grind/Norm.lean:82` proves the Nat→Int cast by `rfl`.
+
+**A named lemma can be worse than a tactic.** Replacing `ring` with Mathlib's
+`mul_sub` in `tableFrom_smul` *raised* the count to include `Classical.choice`,
+because `mul_sub` is stated over a general ring. Core's `Int.mul_sub` does not.
+Reverted before this work began; recorded because it is counterintuitive.
+
+**Landed.** `lean/Construction.lean` no longer imports Mathlib. `lake build`
+succeeds at 8037 jobs. Two changes beyond the proofs were forced:
+
+1. Core has no `ℕ`/`ℤ` notation. Declaring it unqualified breaks every
+   downstream import — `environment already contains 'termℤ' from
+   Mathlib.Data.Int.Notation`. `local notation` fixes it.
+2. `PairIdentity.tableFrom_add_window` dropped `Quot.sound` **by inheritance**
+   and its pin had to be updated. The `#guard_msgs` check caught it, which is
+   the check working in the improving direction.
+
+Tree tally moved 15 → 11 at `[propext, Quot.sound]` and 8 → 12 at `[propext]`.
+`Classical.choice` is unchanged at 79 of 113: `Construction` never carried any.
+Moving that number requires `SeedPerturbation` (10 theorems, and it uses no
+Mathlib surface at all) and the ℤ half of `PairIdentity` (3).
+
+**The boundary this exposes.** 55 of the 79 `Classical.choice` theorems mention
+ℝ or ℂ. Those can never drop it — ℝ is built with choice in Mathlib. So the
+axiom line, once the integer modules move, *is* the arithmetic/analytic
+boundary, printed by the compiler rather than argued in prose.
+
+Verified separately: axiom lists are fixed in the proof term at elaboration, so
+a downstream `import Mathlib` cannot raise them. `Zeros`, `PairIdentity` and
+`SeedPerturbation` still import Mathlib and read `Construction`'s theorems at
+their reduced counts.
+
+---
+
 ## 2026-08-21 — Entry 58 — one of NEXT.md's two "written record errors" is not an error
 type: result-triage
 refs: 57

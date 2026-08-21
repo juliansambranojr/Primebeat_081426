@@ -91,9 +91,20 @@ if entries:
         check("lab_notebook", f"entry {n} missing", n in entries or n in GAP)
 np = NOTES / "NOTEPAD.md"
 if np.exists():
+    # Six lines once landed in the header's format example instead of the list,
+    # because a restated format contains a line shaped exactly like an entry.
+    # A thread line above `## Threads` is misplaced, wherever it looks fine.
+    in_threads = False
     for i, line in enumerate(np.read_text().split("\n"), 1):
+        if line.strip() == "## Threads":
+            in_threads = True
+            continue
         if not line.startswith("- ["): continue
         if "YYYY-MM-DD" in line: continue                     # template example
+        if not in_threads:
+            broken.append(("NOTEPAD.md",
+                           f'line {i} is above "## Threads": {line[:44].strip()}…'))
+            continue
         m = re.search(r"entry (\d+):", line)
         tag = f"entry {m.group(1)}" if m else f'"{line[12:44].strip()}…"'
         check("NOTEPAD.md", f"{tag} malformed",
