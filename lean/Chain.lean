@@ -333,11 +333,59 @@ theorem tableFrom_norm_on_critical_line {b : ℝ} (hb : b ≠ 0) (γ : ℝ) {N :
       = ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ d * ‖mode b ((1 : ℂ)/2 + γ * I) (r : ℂ)‖ := by
   rw [tableFrom_mode hb _ hag r d, norm_mul, norm_pow]
 
-/-! ### The circle
+/-! ### The pole lattice, and the circle it makes
 
-`EulerFactorChain.gain_sq_on_critical_line` says the gain depends on `γ` only
-through `cos(γ log b)`. So `γ` is not a line but an angle: the gain closes after
-`2π / log b`. That period is the circle. -/
+`1/Sym` is the reciprocal Euler factor, and its poles are the zeros of `Sym`.
+Those sit on a lattice of spacing `2πi / log b` — the `2πik/log b` lattice of
+Flajolet, Grabner, Kirschenhofer, Prodinger and Tichy
+(`papers/literature/litsearch_1_hinge.md` § 3), and the same lattice
+`EulerFactorChain`'s A2 docstring excludes.
+
+**That lattice is why there is a circle.** `Sym` returns to itself after one
+lattice step, so `γ` is an angle rather than a line, and the period is the
+lattice spacing. Deriving the periodicity from `cos` instead would get the same
+number from the symptom. -/
+
+/-- **The pole lattice.** `Sym b s = 0` exactly on `s ∈ (2πi / log b)·ℤ`. -/
+theorem sym_eq_zero_iff {b : ℝ} (hb : 0 < b) (hb1 : b ≠ 1) (s : ℂ) :
+    Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * I / Real.log b) := by
+  have hb0 : (b : ℂ) ≠ 0 := by exact_mod_cast hb.ne'
+  have hlog : Real.log b ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one hb hb1
+  have hlogC : (Real.log b : ℂ) ≠ 0 := by exact_mod_cast hlog
+  have hclog : Complex.log (b : ℂ) = (Real.log b : ℂ) := (Complex.ofReal_log hb.le).symm
+  unfold Sym
+  rw [sub_eq_zero, eq_comm, Complex.cpow_def_of_ne_zero hb0, hclog,
+      Complex.exp_eq_one_iff]
+  constructor
+  · rintro ⟨n, hn⟩
+    refine ⟨-n, ?_⟩
+    push_cast
+    field_simp at hn ⊢
+    linear_combination -hn
+  · rintro ⟨k, hk⟩
+    refine ⟨-k, ?_⟩
+    subst hk
+    push_cast
+    field_simp
+
+/-- **The symbol is periodic with the lattice period.** One step along the pole
+lattice returns `Sym` to itself, because `b^(−2πi/log b) = exp(−2πi) = 1`. This
+is the origin of the circle. -/
+theorem sym_periodic {b : ℝ} (hb : 0 < b) (hb1 : b ≠ 1) (s : ℂ) :
+    Sym b (s + 2 * Real.pi * I / Real.log b) = Sym b s := by
+  have hb0 : (b : ℂ) ≠ 0 := by exact_mod_cast hb.ne'
+  have hlog : Real.log b ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one hb hb1
+  have hlogC : (Real.log b : ℂ) ≠ 0 := by exact_mod_cast hlog
+  have hclog : Complex.log (b : ℂ) = (Real.log b : ℂ) := (Complex.ofReal_log hb.le).symm
+  unfold Sym
+  rw [Complex.cpow_def_of_ne_zero hb0, Complex.cpow_def_of_ne_zero hb0, hclog]
+  congr 1
+  have harg : (Real.log b : ℂ) * -(s + 2 * (Real.pi : ℂ) * I / (Real.log b : ℂ))
+      = (Real.log b : ℂ) * -s + -(2 * (Real.pi : ℂ) * I) := by
+    field_simp
+    ring
+  rw [harg, Complex.exp_add, Complex.exp_neg, Complex.exp_two_pi_mul_I]
+  simp
 
 /-- **The circle.** The gain on the critical line is periodic in `γ` with period
 `2π / log b`.
@@ -351,15 +399,14 @@ theorem gain_sq_periodic {b : ℝ} (hb : 0 < b) (hb1 : b ≠ 1) :
     Function.Periodic (fun γ : ℝ => ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2)
       (2 * Real.pi / Real.log b) := by
   intro γ
-  have hlog : Real.log b ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one hb hb1
+  have hlogC : (Real.log b : ℂ) ≠ 0 := by
+    exact_mod_cast Real.log_ne_zero_of_pos_of_ne_one hb hb1
   show ‖Sym b ((1 : ℂ)/2 + ((γ + 2 * Real.pi / Real.log b) : ℝ) * I)‖ ^ 2
       = ‖Sym b ((1 : ℂ)/2 + (γ : ℝ) * I)‖ ^ 2
-  unfold Sym
-  rw [EulerFactorChain.gain_sq_on_critical_line hb,
-      EulerFactorChain.gain_sq_on_critical_line hb]
-  have harg : (γ + 2 * Real.pi / Real.log b) * Real.log b
-      = γ * Real.log b + 2 * Real.pi := by field_simp
-  rw [harg, Real.cos_add_two_pi]
+  rw [show ((1 : ℂ)/2 + ((γ + 2 * Real.pi / Real.log b : ℝ) : ℂ) * I)
+        = ((1 : ℂ)/2 + (γ : ℂ) * I) + 2 * (Real.pi : ℂ) * I / (Real.log b : ℂ) by
+      push_cast; field_simp; ring,
+      sym_periodic hb hb1]
 
 /-- The trap `gain_sq_periodic`'s `b ≠ 1` closes: at `b = 1` the period is zero
 and the statement holds for **any** function whatsoever. -/
@@ -493,6 +540,14 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Chain.tableFrom_norm_on_critical_line' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Chain.tableFrom_norm_on_critical_line
+
+/-- info: 'Chain.sym_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.sym_eq_zero_iff
+
+/-- info: 'Chain.sym_periodic' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.sym_periodic
 
 /-- info: 'Chain.gain_sq_periodic' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

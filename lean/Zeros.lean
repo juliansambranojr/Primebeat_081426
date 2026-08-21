@@ -153,6 +153,59 @@ theorem stencil_annihilates_const (N : ℕ) (hN : 0 < N) (c : ℤ) :
     rw [Finset.sum_mul]
   rw [this, Int.alternating_sum_range_choose_of_ne (by omega : N ≠ 0), zero_mul]
 
+/-! ## The fold, on values
+
+`stencil_weights_antisymm` and `stencil_arms_eq` below are about the *weights*.
+These four are about the cell: the stencil splits by parity into two unsigned
+arms, and the cell is their difference. `papers/The-Fold.md` § B calls them the
+wings — at `(20,6)` they weigh 807295 each, at `(8,3)` 168 each.
+
+The point of stating it this way is that it is an **identity**, true at every
+cell (notes entry 55). The wings always exist. A zero is where they balance. -/
+
+/-- The `+` wing: the even-index arm of the stencil, unsigned. -/
+def wingPlus (N : ℕ) (g : ℕ → ℤ) : ℤ :=
+  ∑ k ∈ (Finset.range (N + 1)).filter (fun k => Even k), (N.choose k : ℤ) * g k
+
+/-- The `−` wing: the odd-index arm, unsigned. -/
+def wingMinus (N : ℕ) (g : ℕ → ℤ) : ℤ :=
+  ∑ k ∈ (Finset.range (N + 1)).filter (fun k => ¬ Even k), (N.choose k : ℤ) * g k
+
+/-- **The fold is an identity, not a test.** `cell = wing⁺ − wing⁻`, always. -/
+theorem stencil_eq_wings (N : ℕ) (g : ℕ → ℤ) :
+    stencil N g = wingPlus N g - wingMinus N g := by
+  unfold stencil wingPlus wingMinus
+  rw [← Finset.sum_filter_add_sum_filter_not (Finset.range (N + 1)) (fun k => Even k)
+        (fun k => (-1 : ℤ) ^ k * (N.choose k) * g k), sub_eq_add_neg,
+      ← Finset.sum_neg_distrib]
+  congr 1
+  · refine Finset.sum_congr rfl fun k hk => ?_
+    rw [Even.neg_one_pow (Finset.mem_filter.mp hk).2, one_mul]
+  · refine Finset.sum_congr rfl fun k hk => ?_
+    rw [Odd.neg_one_pow (Nat.not_even_iff_odd.mp (Finset.mem_filter.mp hk).2)]
+    ring
+
+/-- **A zero is where the wings balance.** -/
+theorem stencil_eq_zero_iff_wings (N : ℕ) (g : ℕ → ℤ) :
+    stencil N g = 0 ↔ wingPlus N g = wingMinus N g := by
+  rw [stencil_eq_wings, sub_eq_zero]
+
+/-- **The cell, folded.** Through `tableFrom_eq_stencil`: the table's cell at
+`(r,d)` vanishes exactly when the two wings of its window balance. -/
+theorem tableFrom_eq_zero_iff_wings (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
+    Construction.tableFrom N r d = 0
+      ↔ wingPlus d (fun k => N (r - k)) = wingMinus d (fun k => N (r - k)) := by
+  rw [tableFrom_eq_stencil, stencil_eq_zero_iff_wings]
+
+/-- **Two readings of one fact.** `zero_iff_repeat` says a cell vanishes iff the
+row repeats at the depth below. This says it vanishes iff the wings balance. The
+repeat reading and the fold reading are the same statement, and until now nothing
+in the tree connected them. -/
+theorem repeat_iff_wings (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
+    Construction.tableFrom N r d = Construction.tableFrom N (r - 1) d
+      ↔ wingPlus (d + 1) (fun k => N (r - k)) = wingMinus (d + 1) (fun k => N (r - k)) := by
+  rw [← tableFrom_eq_zero_iff_wings, ← zero_iff_repeat (tableFrom_isTable N) r d]
+
 /-! ## Why the stencil folds
 
 `papers/The-Fold.md` § A and § B state the deep zero as a balance rather than a
@@ -410,6 +463,22 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Zeros.tableFrom_eq_stencil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Zeros.tableFrom_eq_stencil
+
+/-- info: 'Zeros.stencil_eq_wings' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.stencil_eq_wings
+
+/-- info: 'Zeros.stencil_eq_zero_iff_wings' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.stencil_eq_zero_iff_wings
+
+/-- info: 'Zeros.tableFrom_eq_zero_iff_wings' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.tableFrom_eq_zero_iff_wings
+
+/-- info: 'Zeros.repeat_iff_wings' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.repeat_iff_wings
 
 /-- info: 'Zeros.stencil_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

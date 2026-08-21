@@ -16,6 +16,74 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 69 — the circle comes from the pole lattice, and the fold is now an identity on cells
+type: formalization
+refs: 33, 55, 60, 68
+
+Entry 68 built the torus and never said where it came from. Both ends of the
+chain were loose: the circle had no origin, and the fold existed in Lean only as
+facts about the stencil's *weights*, never about a cell. Six theorems close both.
+
+**The pole lattice — `Chain.sym_eq_zero_iff`.**
+
+```text
+Sym b s = 0  ↔  ∃ k : ℤ, s = k · (2πi / log b)
+```
+
+These are the poles of `1/Sym`, the reciprocal Euler factor. It is the
+`2πik/log 2` lattice of Flajolet, Grabner, Kirschenhofer, Prodinger and Tichy
+(`papers/literature/litsearch_1_hinge.md` § 3), and it is the lattice
+`EulerFactorChain.lean:112` already excludes in prose — *"it excludes the whole
+`sym b s = 0` lattice"* — without ever stating it.
+
+**`Chain.sym_periodic`** — `Sym b (s + 2πi/log b) = Sym b s`, because
+`b^(−2πi/log b) = exp(−2πi) = 1`. The symbol returns to itself after one lattice
+step. **That is the origin of the circle**: `γ` is an angle because the symbol's
+own zero set is a lattice of that spacing.
+
+**`gain_sq_periodic` rewritten to derive from it.** Entry 68 proved the same
+period from `Real.cos_add_two_pi` — true, and the symptom. The cause is the
+lattice. Same period, correct derivation, and the torus now has a reason inside
+the chain rather than beside it in the record.
+
+**The fold, on cells — four theorems in `Zeros`.**
+
+```text
+wingPlus  / wingMinus            the even- and odd-index arms, unsigned
+stencil_eq_wings                 stencil N g = wing⁺ − wing⁻      an IDENTITY
+stencil_eq_zero_iff_wings        stencil N g = 0 ↔ wing⁺ = wing⁻
+tableFrom_eq_zero_iff_wings      cell = 0 ↔ the window's wings balance
+repeat_iff_wings                 the repeat reading = the fold reading
+```
+
+`stencil_weights_antisymm`, `stencil_arms_eq` and `stencil_arm_doubled` were
+already there but are about the **weights**. Nothing split an actual cell by
+parity. `papers/The-Fold.md` § B calls the arms the wings — 807295 each at
+`(20,6)`, 168 each at `(8,3)` — and entry 55 records that the fold is an
+identity, `wing⁺ − wing⁻ = cell`, true everywhere. It is now that in Lean.
+
+**`repeat_iff_wings` is the bridge that did not exist.** `zero_iff_repeat` says
+a cell vanishes iff the row repeats one depth below. The fold says it vanishes
+iff the wings balance. Both were in the tree; nothing connected them. They are
+one statement, and the connection runs through entry 60's stencil equation.
+
+So the two readings of a zero — `(20,6) = 0` because `d5` reads 623 at both
+`r = 19` and `r = 20` (`The-Fold.md` § C1), and `(20,6) = 0` because the wings
+weigh 807295 each — are now provably the same fact.
+
+Build clean, 8037 jobs, 132 theorems, 132 pins, parity in all 11 modules. Gate
+unchanged at 2, `check_values` 83 confirmed / 0 mismatches.
+
+**Still outside Lean, named so it is not searched for again.** The zeros-as-poles
+reading of entry 33 and `The-Four-Zeros.md` § E3 — the ratio `composite/prime`
+singular at exactly the four cells — is prose only; `pole` and `ratio` occur
+nowhere in `lean/` in that sense. And `lean/BUILD.md` still records block D (the
+winding) and block G (the transform radius, the annulus of modulus `(log b)/4π`)
+as observations. Block G is the z-plane route to the same circle, so one of the
+object's two coordinates remains unformalised.
+
+---
+
 ## 2026-08-20 — Entry 68 — the seam welded: tableFrom IS bdiff, and the chain runs from the integer table to the torus
 type: formalization
 refs: 59, 60, 61, 66
