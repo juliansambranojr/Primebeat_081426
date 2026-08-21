@@ -16,6 +16,160 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 70 — blind adversarial audit of Chain.lean, three rounds: two real defects, both in entry 68's material, and four findings the audit itself retracted
+type: result-triage
+refs: 68, 69
+
+**Method.** A subagent with no memory of the session that wrote `lean/Chain.lean`
+audited it against `papers/Euler-Factor-Chain.md`. Three rounds: it reported,
+then I attacked its findings, then I required it to reverse stance and argue the
+file is better than it said. Read-only throughout, no fixes proposed — findings
+only. Blindness is the point: it has no investment in having been helpful.
+
+**Entry 68 is left as written.** This entry carries the correction. Rewriting a
+dated entry to hide what it got wrong would defeat what the notebook is for.
+
+---
+
+### What survived, and it is mine
+
+**F1 — `Chain.tableFrom_mode` does not reach the dyadic table.** Staked on by
+the auditor over everything else.
+
+`tableFrom_mode` (`Chain.lean:320`) takes
+`hag : ∀ n : ℤ, ((N n : ℤ) : ℂ) = mode b ρ (n : ℂ)`. Since
+`mode b ρ n = w^n` with `w = (b:ℂ)^ρ`, the hypothesis at `n = 1` puts `w` in ℤ
+and at `n = −1` puts `w⁻¹` in ℤ; an integer whose inverse is an integer is `±1`.
+**The hypothesis class is exactly two rows: `N ≡ 1` and `N n = (−1)^n`.** On the
+critical line with `b > 0`, `|w| = b^(1/2) = 1` forces `b = 1`, where `Sym` is
+identically zero.
+
+I challenged this on branch cuts — `(b^ρ)^n` for complex `cpow` is not free. The
+challenge failed and the finding got **stronger**: the outer exponent is an
+integer, so it is `zpow`, and `Complex.cpow_int_mul`
+(`Mathlib/Analysis/SpecialFunctions/Pow/Complex.lean:100`) has **no hypotheses at
+all**, not even on `arg`. So F1 covers exactly the `b ≠ 0` the theorem states.
+
+**And this tree already states the criterion and satisfies it elsewhere.**
+`PairIdentity.lean:76-80`:
+
+> The hypothesis is deliberately local. **No total function `ℤ → ℤ` satisfies
+> `G r = b · G(r−1)` at every `r` except `G = 0`, so a global geometric
+> hypothesis would be vacuous.** What a cell at `(r,d)` actually reads is the
+> window `r, r−1, …, r−d`.
+
+`tableFrom_of_geometric` takes the window-local form and is non-vacuous.
+`tableFrom_mode` takes the global form. Met in one module, walked into in the
+next — the auditor's words: *"I am not importing an outside standard; I am
+reporting that one written in this tree was met in one module and not in the
+next."*
+
+**Consequently entry 68 is false where it is most load-bearing.** Its line
+*"The hypothesis is not hypothetical for the dyadic row"* is true of a
+superposition and false of `tableFrom_mode`, which is the theorem the chain
+diagram there runs through. My second challenge did establish that the
+**sum-level route is open** — per-summand integrality does not bite when only
+the sum must be integer-valued, witness `ρ₂ = −ρ₁`, `c₁ = c₂ = 1/2`, giving
+`(iⁿ + (−i)ⁿ)/2 = Re(iⁿ) ∈ {1,0,−1,0}`, which is how Riemann–von Mangoldt makes
+a real integer row out of non-real modes. But that route is **unwritten**:
+verified by exhaustive grep, of 11 modules, `modeSum` occurs in
+`Superposition.lean` only and `tableFrom` in five others, and the two sets are
+**disjoint**. `Superposition.lean:12` is `import Chain`, so the dependency runs
+the wrong way. Entry 68 cites a legitimate route no theorem takes.
+
+**F2 — `joint_gain_periodic_of_commensurate` has no `0 < m`.** At `m = n = 0`
+the hypothesis `hcomm` reads `0 = 0`, satisfied by **every** pair of bases
+including incommensurate ones, and the conclusion is `Periodic f 0`. I tried
+four ways to break this and could not; `Function.Periodic.nat_mul`
+(`Mathlib/Algebra/Ring/Periodic.lean:131`) has no `n ≠ 0`. The theorem is true
+and has real instances; the defect is that **`hcomm` is not a commensurability
+condition**, so the theorem does not carry the content its docstring and
+`second_ladder_winds_densely`'s back-reference attribute to it. This is the trap
+`period_vacuous_at_one` proves, thirteen lines below, un-closed.
+
+**F8 — the inert `hA4` also silences the linter**, settled from the linter's
+source rather than by analogy: `linter.unusedVariables.funArgs` defaults **true**
+so signature binders are flagged, `analyzeTactics` defaults **false** so a dead
+`have` is invisible. Effect confirmed; the auditor withdrew any imputation of
+intent, the docstring disclosing the inertness in plain words.
+
+**Minor and disclosed:** `StmtC2` encodes one of paper C2's three conjuncts
+without saying so (the periodicity conjunct is now `gain_sq_periodic`, 300 lines
+away); the file header's "every theorem here takes the antecedent statements as
+HYPOTHESES" describes about 6 of 25; `Chain.h` duplicates `EulerFactorChain.h`
+byte-for-byte with nothing enforcing it.
+
+---
+
+### What the audit retracted, and why it matters
+
+**F4 demoted by its own steelman — and this bears on handoff item 1c.** Round 1
+found `StmtB5` and `StmtB4` provably equivalent modulo `norm_pow` and called it
+"drops the depth side." Required to argue the other case, it conceded:
+`(Sym b ρ)^N` **is** the depth side, named rather than unfolded — it is
+precisely the multiplier `StmtA4` says `bdiff^[N]` applies. Writing
+`bdiff^[N] (mode …)` in would drag `‖mode‖` onto both sides and turn an identity
+about a **weight** into one about a **ratio**. What survives is narrow: the
+docstring says `hA4` mirrors "the paper's stated dependency," and paper B5 cites
+`A1 + B4` (`Euler-Factor-Chain.md:46`), not A4 + B4. **So the handoff plan's
+"most serious defect" is milder than recorded there.**
+
+**F3 retracted, and it exonerates the paper's structure.** `StmtA3`'s first
+conjunct is definitional — `EulerFactorChain.sym_natCast` is `by simp [sym]` —
+so `A4_of_A1` is the honest arrow and the paper's `A3 ·` citation is the loose
+one. The auditor also withdrew, as outright false, its claim that nothing
+carries the Euler-factor reading onto the critical line: `Chain.lean:70` is
+`∀ s : ℂ`, unrestricted. It had quoted the disproving line in round 1.
+
+**F6 retracted, and it exonerates the paper's arithmetic.** The exponents differ
+by exactly one because **the depth-0 row is itself already one difference of π**.
+`CONTEXT.md:91-96`: the block holds `(b−1)b^(r−1)` slots and each difference
+multiplies by `(b−1)/b`, giving `(b−1)^(d+1)b^(r−1−d)` — the `d+1` is `1` for the
+row plus `d` for the depth. The paper counts relative to π; Lean counts relative
+to the row; both internally correct. What remains is that Chain.lean never says
+which frame it is in and names its binder `N`, the paper's symbol for the other
+frame.
+
+---
+
+### The bias check
+
+Round 3 required the auditor to argue against itself. It named four places its
+adversarial framing manufactured a defect, the sharpest being F3: it **quoted
+the docstring that disproved its own finding** and argued past it, and asserted
+the critical-line claim with `∀ s : ℂ` on screen. *"An adversary who has found a
+'disconnected component' narrative stops checking, and I did."* On F6: the frame
+was in a file it had read in full, *"because 'off-by-one between paper and Lean'
+is a satisfying find."* On two others: prose notes promoted to findings because
+an empty rubric slot reads as a failed audit.
+
+**This is the reason for three rounds rather than one.** A single pass returns
+ten findings and no way to tell which four are artifacts of being paid to find
+some.
+
+### What the file does well, from a reviewer with no reason to be kind
+
+`period_vacuous_at_one` exists solely to prove a neighbouring hypothesis is
+load-bearing, and correctly names the axis `#guard_msgs` cannot protect.
+`C3lower_of_A4_C2` drops `0 < b` because the proof does not consume it, with the
+rationale written down. `StmtC3lower` uses `|·|` because the unbarred form,
+though true, is contentless for `0 < b < 1`. `StmtA3` volunteers its own negative
+scope unprompted. And **`StmtA2` is more honest than the paper it formalises** —
+paper A2 states the Euler product with no convergence condition, which is false
+as written; the Lean carries `1 < s.re`.
+
+### Standing
+
+Two real defects, both in entry 68's material, both introduced 2026-08-20, and
+**both invisible to the build** — `Chain.lean:396-397` says why: `#guard_msgs`
+pins an axiom list and a near-vacuous theorem has an ordinary one. Both are
+pinned and both pins pass.
+
+Lean fixes follow in a separate entry. Nothing above is a fix; this entry is the
+record of what the audit found.
+
+---
+
 ## 2026-08-21 — Entry 69 — the circle comes from the pole lattice, and the fold is now an identity on cells
 type: formalization
 refs: 33, 55, 60, 68
