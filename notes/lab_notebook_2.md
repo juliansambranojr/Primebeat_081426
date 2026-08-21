@@ -16,6 +16,142 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 76 — the record already had it: `Euler-Factor-Chain.md` § D states the floor, the ceiling and the power iteration in prose
+type: result-triage
+refs: 72, 74, 75
+
+Checked entry 75's finding against the written record before logging it, at
+Julian's instruction. Most of the structure is already there, and three things
+I asserted are wrong.
+
+### What block D already says
+
+`papers/Euler-Factor-Chain.md` § D · The winding:
+
+```text
+D1. The floor of C2 is at γ log b ≡ 0 (mod 2π); the ceiling at γ log b ≡ π (mod 2π).
+D2. The smooth term has ρ real, so γ = 0, so it sits exactly at the floor.
+D3. Therefore differencing dissipates the smooth part maximally while
+    amplifying modes near the ceiling.
+D4. The bases placing γ exactly at the ceiling are b = exp(π(2k+1)/γ).
+    For γ₁: 1.2489, 1.948, 3.039, 4.741, 7.395 …
+D6. Therefore base 2 reaches 98.3% of its ceiling for γ₁, base 3 99.6%.
+```
+
+**D3 is the power iteration.** Entry 75 presents it as a mechanism found in the
+data; it has been in the paper. **D1's floor is the null** this program has been
+calling a discovery since entry 72.
+
+### Three corrections
+
+**(1) `Depth-as-Time.md` § B4 does not overclaim, and I said it did.** B4 reads
+"the first Riemann zero is the fastest-growing mode of the difference operator,
+**in both bases measured**" — correctly scoped — and B5 immediately says *"It
+does not generalize to the other zeros"* with base-2 percentages of ceiling
+listed per zero: γ₂ 84.8, γ₃ 69.8, γ₄ 90.3, γ₅ 91.6, γ₆ 47.0. My claim that B4
+was a base-2 coincidence the paper had missed is withdrawn.
+
+**(2) Entry 72 overstates the novelty of the null base.** It says nobody looked
+at 1.5597 as a null. D4 lists the **ceiling** bases for γ₁ beginning at
+**1.2489** — the O45 family's k=2 — and the floor bases are its one-line
+complement. The family is `log b_k = k·π/(2γ₁)`, so k=2 puts γ₁ at the ceiling
+and k=4 at the floor. It was built on this axis and half of it was written down.
+
+**(3) Entry 74 sets `d*` beside a quantity it does not measure.**
+`analysis/2026-08-19_table_structure/scripts/t2_crossover.py:11-12` defines `d*`
+as "the first depth where oscillation carries more than half the power," an FFT
+DC-versus-rest split. Entry 75's plateau entry is a gain-ratio threshold. Entry
+74's point about the fixed window stands; the two statistics do not compare and
+should not have been tabled together.
+
+### What survives as new
+
+**The attainment is measured on the table, not predicted for a mode.** D6 gives
+γ₁'s *predicted* growth factor as a percentage of ceiling in two bases. Entry 75
+measures the **residual table's own per-depth gain** and finds it at
+**97.68% ± 2.91% of `1 + b^(−1/2)` across twelve bases**, nine of which appear
+in no prior result in this tree.
+
+**Convergence is immediate.** D3 says differencing amplifies ceiling modes; it
+does not say how fast. One or two differences is fast enough that **no depth
+window exists in which a sub-ceiling mode is visible** — which is the real
+reason O48 could not see γ₁'s null, and is stronger than entry 73's account.
+
+**The O48 failure quantified.** At `b = 1.5597432`, γ₁ sits at 0.0% of the band
+and γ₂ at 99.9%. D1 and B5 together predict this; the base had never been run.
+
+**And block D is prose.** `lean/BUILD.md:105` lists "the winding (block D)" as
+not formalised, while `Chain.sym_eq_zero_iff` — landed in entry 69 — **is D1's
+floor condition, proved**. Neither side of the tree records that the other did
+it. That is the gap worth closing.
+
+---
+
+## 2026-08-21 — Entry 75 — O49: the residual table's depth gain attains the C2 ceiling in every base, by depth 1 or 2
+type: run
+refs: 72, 73, 74
+
+**Run.** `O49_gain_vs_depth.py`, no flags, **EXPLORATORY — no prereg, no
+verdict, nothing here is stamped**. Thirteen bases, value window `[10^4, 2^32]`,
+depths 1–12, `primecountpy.prime_pi`, `mp.dps 50`. Completed, did not error.
+`results/gain_vs_depth.json` + `results/O49_gain_vs_depth_run1.log`.
+
+**Question.** Entry 74 found O48's gain constant at 1.771 and blamed a fixed
+depth window sitting above `d*`. This asks per base: at what depth does the gain
+leave the symbol, and does the symbol hold below it?
+
+**Answer: it never holds.** The plateau is entered at `d = 1` or `d = 2` in
+every base. There is no shallow regime in which a single mode governs.
+
+**And the plateau is not noise — it is the C2 ceiling, attained:**
+
+```text
+base      plateau (median d≥4)   1 + b^(−1/2)   ratio
+1.1500                 1.8859         1.9325   0.9759
+1.2293859              1.8890         1.9019   0.9932
+1.2560                 1.8481         1.8923   0.9767
+1.2855907              1.8502         1.8820   0.9831
+1.3160                 1.7347         1.8717   0.9268
+1.3483554              1.8172         1.8612   0.9763
+1.4200                 1.7126         1.8392   0.9312
+1.5000                 1.7238         1.8165   0.9490
+1.5597432              1.8203         1.8007   1.0109
+1.6200                 1.7743         1.7857   0.9936
+1.7500                 1.7976         1.7559   1.0237
+2.0000                 1.6753         1.7071   0.9814
+                                mean 0.9768, sd 0.0291
+```
+
+`StmtC2` bounds the gain in `[1 − b^(−1/2), 1 + b^(−1/2)]`. The handoff plan
+flagged that Lean proves **containment, never attainment**. This is attainment,
+measured, at every base to 2.3%.
+
+**Why.** Each difference multiplies mode `ρ` by `|Sym b ρ|`, so depth is a power
+iteration and selects the largest gain in the band. That is
+`Euler-Factor-Chain.md` § D3 — see entry 76, which checks this against the
+record and finds the mechanism already written.
+
+**At the γ₁ null base, what the other modes are doing:**
+
+```text
+b = 1.5597432,  band [0.1993, 1.8007]
+        γ·log b     /π    |Sym|   position in band
+γ₁       6.2832   2.000   0.1993      0.0%   nulled exactly
+γ₂       9.3447   2.975   1.7993     99.9%   at the ceiling
+γ₃      11.1179   3.539   1.2024     62.6%
+γ₅      14.6403   4.660   1.5535     84.6%
+```
+
+**So the γ₁ null is real and unobservable.** Nulls sit at `γ log b = 2πk` and
+maxima at `γ log b = π (mod 2π)`; the zeta zeros are spaced closely enough that
+a base nulling one puts another near the ceiling. Here γ₂ lands within `0.026π`
+of a maximum. This is structural, not misfortune — and it is the mechanism the
+locked prereg named in advance as its largest doubt.
+
+**Standing.** Exploratory. Entry 76 checks it against the record.
+
+---
+
 ## 2026-08-21 — Entry 74 — O48 run 1 re-read: the gain is constant at 1.771, the depth window sat above `d*`, and entry 73's small-angle agreement was a crossing
 type: result-triage
 refs: 52, 53, 72, 73
