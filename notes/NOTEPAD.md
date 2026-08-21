@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 74: O48 re-read — the raw gain is CONSTANT at 1.7710 +/- 0.0766 (CV 4.3%) across all 12 bases, so entry 73's small-angle agreement was the gamma_1 model CROSSING a constant, not tracking; the locked window d in [3,8] sits ABOVE d* for most of the base set
 - [open]   2026-08-21  entry 72: small angles make the curve — the cross-base transform is the symbol ratio, its cost is Euler-Maclaurin, and its radius of convergence 2pi IS the pole lattice IS Nyquist; O45 family k=4 (b=1.5597) is exactly 2pi/gamma_1, the threshold, locked 08-18 for another reason
 - [open]   2026-08-21  entry 71: audit defects FIXED — tableFrom_mode localised to the window (witness: geometric row 2^n at b=2 gives cell(5,3)=4), 0<m added, and Superposition.tableFrom_eq_modeSum_reweighted written, the composition that was missing
 - [open]   2026-08-21  entry 70: blind adversarial audit of Chain.lean, 3 rounds — tableFrom_mode has a TWO-ROW hypothesis class and does not reach the dyadic table (entry 68 is wrong there); joint_gain_periodic lacks 0<m; F3/F4/F6 retracted, paper exonerated

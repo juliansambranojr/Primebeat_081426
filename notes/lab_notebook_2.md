@@ -16,6 +16,89 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 74 — O48 run 1 re-read: the gain is constant at 1.771, the depth window sat above `d*`, and entry 73's small-angle agreement was a crossing
+type: result-triage
+refs: 52, 53, 72, 73
+
+Entry 73 stands as written. This entry carries the correction, same as 68/70.
+
+### Retraction
+
+Entry 73 reports, as exploratory, that inside the small-angle radius the
+transform tracks to within 3% — ratios 1.137, 0.969, 0.968, 1.023, 0.987. **That
+is a coincidence and I over-read it.** Strip the `1/log b` normalisation and look
+at the raw per-depth gain `G_b = Ĝ_b · log b`:
+
+```text
+base    measured G   γ₁ model   smooth model
+1.1500      1.8351     1.6137        0.0675
+1.2294      1.8323     1.8902        0.0981
+1.2560      1.8307     1.8908        0.1077
+1.2856      1.8846     1.8428        0.1180
+1.3160      1.7235     1.7457        0.1283
+1.3484      1.8454     1.5965        0.1388
+1.4200      1.7177     1.1396        0.1608
+1.5000      1.7074     0.5256        0.1835
+1.5597      1.7441     0.1993        0.1993
+1.6200      1.7279     0.5159        0.2143
+1.7500      1.7826     1.2869        0.2441
+2.0000      1.6200     1.6784        0.2929
+```
+
+**The measured gain is constant: 1.7710 ± 0.0766, CV 4.3%, over all twelve
+bases.** The entire 5.6× spread in `Ĝ` reported in entry 73 is the `1/log b`
+divisor, not structure. There was no curve.
+
+The apparent agreement below `u/2π = 0.62` is the γ₁ model **crossing** that
+constant, because for small `h`, `|1 − e^(−ρh)| → |ρ|h = 14.14h`, which passes
+through 1.8 precisely in that range. From `b = 1.42` the model dives and the
+measurement does not move.
+
+### What the run actually measured
+
+Noise amplification at gain ≈ 1.77, base-independent. That accounts for every
+feature at once: no null (noise has none), a smooth `Ĝ` curve (it is
+`const/log b`), and the control's apparent failure — **the control was not broken
+relative to the data; it was measuring the same thing**, rounding noise at
+`G ≈ 1.6–1.76` for small `b`.
+
+So the `compromised` verdict is right, and for a deeper reason than the one
+entry 73 gives: the pipeline and its control were both in the noise regime.
+
+### The design error, and it is upstream of the control
+
+`analysis/2026-08-19_table_structure/CHAIN.md` § `t2_crossover` already records
+`d*`, the depth where oscillation overtakes trend, per base:
+
+```text
+k=1 1.1175 -> d* = 2      √2  1.4142 -> d* = 4
+k=2 1.2489 -> d* = 3      k=4 1.5597 -> d* = 5
+k=3 1.3957 -> d* = 4      2.0000     -> d* = 7      3.0000 -> d* = 10
+```
+
+`d*` runs 2 to 10 across the set. **The locked window `d ∈ [3,8]` is above `d*`
+for k=1 and k=2, straddles it for k=3, k=4 and √2, and lies below it only for
+bases 2 and 3.** A fixed depth window measures a different regime in every base,
+which is exactly what a base-independent constant looks like when you find one.
+
+Corroborating, from the other direction: O34/O35 report 94% at `d=0`, 92% at
+`d=3`, **80% at `d=6`** — degrading — and entry 52 records the model flipping
+sign at `(25,21)`. The window sat in the decay zone and this was recorded before
+the prereg was written.
+
+### What this points at
+
+Julian's proposal — take the crossover per base and difference across bases —
+is the right instrument, because `d*` is the depth at which the character
+changes and it is already measured to scale with the base. Entry 53: `d*` is not
+a per-base constant, but its slope in `r` is, `corr(ln b, slope) = +0.9735`.
+
+The next run is exploratory and asks the question the fixed window could not:
+**per base, at what depth does the gain leave the symbol and join the 1.77
+plateau, and does the symbol hold below it?** No prereg. Labelled exploratory.
+
+---
+
 ## 2026-08-21 — Entry 73 — O48 run 1: the transform holds inside the small-angle radius, the null does not appear, and the control was the defect
 type: run
 refs: 69, 72
