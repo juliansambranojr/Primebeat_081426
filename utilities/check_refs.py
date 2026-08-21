@@ -94,9 +94,11 @@ if np.exists():
     for i, line in enumerate(np.read_text().split("\n"), 1):
         if not line.startswith("- ["): continue
         if "YYYY-MM-DD" in line: continue                     # template example
-        check("NOTEPAD.md", f"line {i} malformed",
+        m = re.search(r"entry (\d+):", line)
+        tag = f"entry {m.group(1)}" if m else f'"{line[12:44].strip()}…"'
+        check("NOTEPAD.md", f"{tag} malformed",
               re.match(r"- \[(open|paused|closed|blocked)\]\s+\d{4}-\d\d-\d\d\s", line))
-        check("NOTEPAD.md", f"line {i} is {len(line)} chars, not one line", len(line) <= 400)
+        check("NOTEPAD.md", f"{tag} is {len(line)} chars, not one line", len(line) <= 400)
         m = re.search(r"entry (\d+):", line)
         if m: check("NOTEPAD.md", f"line {i} cites entry {m.group(1)}", int(m.group(1)) in entries)
 

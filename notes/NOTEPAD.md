@@ -6,6 +6,7 @@ transitions ([open] → [paused] / [closed] / [blocked]) are Julian's call.
 Format (strict, for grep):
 
 ```text
+- [open]   2026-08-21  entry 53: t26 — `d*` is NOT a per-base constant (dyadic 3→7 over r 13..32), but its SLOPE is: corr(ln b, slope) = +0.9735, so CHAIN.md §4 correlated the wrong variable; and family k=4 at ratio 0.5553 crosses anyway, contradicting Depth-as-Time § C4 — all eight bases cross, so the statistic likely is not measuring § C3
 - [STATUS] YYYY-MM-DD  entry N: terse one-line description
 ```
 

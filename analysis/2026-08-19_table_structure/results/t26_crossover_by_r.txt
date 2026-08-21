@@ -1,0 +1,38 @@
+d*(r): first depth where oscillation carries >1/2 the power, on the
+       depth-0 row truncated to its first r rungs.
+
+base                b   ratio  crit  d*(r) as r grows
+dyadic         2.0000  3.3569 super  13:3, 15:3, 17:4, 19:4, 21:5, 23:5, 25:5, 27:6
+triadic        3.0000  2.3572 super  20:10
+family k=1     1.1175 13.0876 super  10:0, 33:0, 56:1, 79:1, 102:1, 125:1, 148:2, 171:2
+family k=2     1.2489  9.5077 super  10:0, 21:1, 32:1, 43:2, 54:2, 65:2, 76:3, 87:3
+family k=3     1.3957  4.6212 super  11:1, 18:1, 25:1, 32:2, 39:2, 46:3, 53:3, 60:4
+family k=4     1.5597  0.5553   sub  11:1, 15:2, 19:2, 23:3, 27:3, 31:3, 35:4, 39:4
+2^(1/2)        1.4142  4.0333 super  11:1, 17:1, 23:2, 29:2, 35:2, 41:3, 47:3, 53:4
+2^(1/3)        1.2599  9.1482 super  10:0, 20:1, 30:1, 40:1, 50:2, 60:2, 70:2, 80:3
+
+==============================================================================
+1. DOES d* GROW IN r?  (Depth-as-Time D2: yes, linearly)
+==============================================================================
+  dyadic       d* from 3 to 7 over r 13..32   slope +0.2023
+  triadic      too few crossing points to fit
+  family k=1   d* from 0 to 2 over r 10..199   slope +0.0125
+  family k=2   d* from 0 to 3 over r 10..99   slope +0.0324
+  family k=3   d* from 1 to 4 over r 11..66   slope +0.0635
+  family k=4   d* from 1 to 5 over r 11..49   slope +0.0814
+  2^(1/2)      d* from 1 to 4 over r 11..63   slope +0.0611
+  2^(1/3)      d* from 0 to 3 over r 10..95   slope +0.0339
+
+==============================================================================
+2. DO SUBCRITICAL BASES CROSS?  (Depth-as-Time C4: never, at any r)
+==============================================================================
+  family k=4   ratio 0.5553 < 1 but CROSSES: d* = 1 first at r = 11   <-- contradicts C4
+
+==============================================================================
+3. SLOPE AGAINST O33
+==============================================================================
+  Depth-as-Time D3 reports 0.3031 (b=2) and 0.7353 (b=3) from O33's
+  turnaround series. O33 measures the turnaround of a different
+  quantity; agreement would be a check, disagreement is not by itself
+  a refutation of either.
+  dyadic       this statistic: +0.2023

@@ -16,6 +16,71 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 53 — t26: `d*` is not a per-base constant, its slope is — and a subcritical base crosses
+type: run
+refs: 41, 52
+
+EXPLORATORY. No prereg, no decision rule, nothing here is a verdict.
+
+Written to settle the two CONTESTED banners placed on
+`analysis/2026-08-19_table_structure/CHAIN.md` §3 and §4 on 2026-08-20.
+
+**Script.** `analysis/2026-08-19_table_structure/scripts/t26_crossover_by_r.py`,
+new, no flags. Output `analysis/2026-08-19_table_structure/results/t26_crossover_by_r.txt`. `t2_crossover.py` is unchanged and its result stands — t26 is a
+different measurement, not a re-run, so prior numbers remain comparable.
+
+**Method.** t2 computes `d*` once per base over the whole depth-0 row: the
+first depth at which oscillation carries more than half the spectral power.
+t26 computes the identical statistic on the row truncated to its first `r`
+rungs, sweeping `r`. That makes `d*` a function of `r` rather than a scalar.
+Same window, same DC/oscillation split, same `min_n = 10` floor.
+
+**Result 1 — `d*` is not a per-base constant.** Every one of the eight bases
+shows `d*` rising with `r`. Dyadic runs `d* = 3` at `r = 13` to `d* = 7` at
+`r = 32`. So CHAIN.md §4's fit `d* ≈ 1.1 + 8.1·ln b` correlates eight numbers
+that are not constants. `papers/Depth-as-Time.md` § D2 is upheld against it.
+
+**Result 2 — the per-base quantity is the slope.** `d*(r)` is close to
+proportional, `d* ≈ c(b)·r`:
+
+```text
+base          b        ln b     slope    slope/ln b
+family k=1    1.1175   0.1111   0.0125   0.1125
+family k=2    1.2489   0.2223   0.0324   0.1458
+2^(1/3)       1.2599   0.2310   0.0339   0.1467
+family k=3    1.3957   0.3334   0.0635   0.1905
+2^(1/2)       1.4142   0.3466   0.0611   0.1763
+family k=4    1.5597   0.4445   0.0814   0.1831
+dyadic        2.0000   0.6931   0.2023   0.2919
+```
+
+`corr(ln b, slope) = +0.9735`, fit `slope ≈ 0.3246·ln b − 0.0409`. So §4 found
+a real relationship and attached it to the wrong variable. The correlation
+survives the correction; the quantity it correlates does not.
+
+**Result 3 — a subcritical base crosses.** `papers/Depth-as-Time.md` § C4 says
+bases with gain ratio below 1 have "no instability at any depth, at any `r`".
+Family k=4 has ratio 0.5553 and crosses at `d* = 1` by `r = 11`, rising to 5.
+CHAIN.md §3's observation was correct and the contradiction is real.
+
+**Reading, and it is harsher than either section.** All eight bases cross,
+including the subcritical one, each at a fixed fraction of `r`. A statistic
+that fires on every table at `d* ≈ c(b)·r` is not measuring the § C3
+instability — it is measuring something that happens to any table with depth,
+plausibly the shrinking row length. So the resolution is not "§ C3 is wrong":
+t2's `d*` and § C3's crossover are different quantities that were being
+compared as if they were one.
+
+**Against O33.** `Depth-as-Time` § D3 reports slope 0.3031 for b=2 from O33's
+turnaround series. t26 gives 0.2023 on this statistic. Different quantity,
+different turnaround; neither refutes the other, and they are not
+interchangeable.
+
+**Open.** What `d*` actually tracks. If it is row length, `d*` should scale
+with the number of surviving points rather than with `b`, and the
+`slope/ln b` column — which drifts 0.11 → 0.29 rather than staying flat — is
+the place to look. Nothing here tests that.
+
 ## 2026-08-19 — Entry 52 — O46/O47: `density ≈ 1/S` refuted, the zeros live in the thin tail, and (20,6) does not survive refinement
 type: result-triage
 refs: 47, 50, 51

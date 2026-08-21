@@ -1,19 +1,20 @@
 BROKEN  Commensurate-Ladders.md  ->  results/t12_chain_vs_orphan.txt
 BROKEN  Commensurate-Ladders.md  ->  results/t6_multirate.txt
 BROKEN  Commensurate-Ladders.md  ->  results/t6_multirate.txt
-BROKEN  NOTEPAD.md  ->  line 25 is 954 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 26 is 2944 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 27 is 958 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 28 is 968 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 29 is 1068 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 30 is 959 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 31 is 1865 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 32 is 2502 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 33 is 2526 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 34 is 1057 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 35 is 929 chars, not one line
-BROKEN  NOTEPAD.md  ->  line 36 is 479 chars, not one line
+BROKEN  NOTEPAD.md  ->  "026-08-19  figures/coverage.png…" is 954 chars, not one line
+BROKEN  NOTEPAD.md  ->  "026-08-19  six analyses reported…" is 2944 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 43 is 479 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 44 is 929 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 45 is 1057 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 46 is 2526 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 47 is 2502 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 48 is 1865 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 49 is 959 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 50 is 1068 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 51 is 968 chars, not one line
+BROKEN  NOTEPAD.md  ->  entry 52 is 958 chars, not one line
 BROKEN  The-Composite-Arm.md  ->  results/t25_composite_arm.txt
 BROKEN  The-Composite-Arm.md  ->  t25_composite_arm.py
 BROKEN  The-Zero-Surface.md  ->  results/t14_s_matched_control.txt
 BROKEN  The-Zero-Surface.md  ->  results/t6_multirate.txt
+BROKEN  lab_notebook_2.md  ->  results/t26_crossover_by_r.txt
