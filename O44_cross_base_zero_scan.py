@@ -7,9 +7,12 @@ O44 — cross-base zero and near-zero scan of the eight imported b-adic
 STATUS: EXPLORATORY.  There is no prereg for this measurement, no hypothesis
 is stated, no decision rule is defined and none fires.  Nothing this script
 prints is a verdict, and nothing it prints settles anything or supports any
-reading.  CLAUDE.md § "Prereg discipline": "Currently only 07/O7 is
-preregistered.  O3, O4, 05, 06, O8, and O9 are exploratory.  Do not describe
-their outputs as verdicts."  This script joins that list.
+reading.  CLAUDE.md § "Prereg discipline": a test earns a verdict only under
+a locked prereg; everything else is exploratory and must be labelled so.  This
+script is one of the exploratory ones.  Which tests are preregistered, and what
+verdict each carries, is in CONTEXT.md § "Current state of the world" -- not
+enumerated here, because an enumeration goes stale and the one this docstring
+used to quote did.
 
 Reads with: imported/lattice_mapper/README.md  (the import manifest and the
                                                 convention statement)

@@ -1247,7 +1247,10 @@ def main():
                     "O10 is a deliberate gap in this series and is not filled by "
                     "this script"),
                 "exploratory_note": (
-                    "this test is NOT preregistered. Per CLAUDE.md only 07/O7 is. "
+                    "this test is NOT preregistered. Which tests are, and what "
+                    "verdict each carries, is recorded in CONTEXT.md section "
+                    "'Current state of the world' -- not enumerated here, because "
+                    "an enumeration goes stale and this one did. "
                     "Its outputs are exploratory measurements, not verdicts. The "
                     "pre-registered BANDS above are fixed comparison thresholds "
                     "internal to this script, not a project verdict"),
