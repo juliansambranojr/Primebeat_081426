@@ -100,11 +100,16 @@ and the seam is where the arithmetic becomes analytic.
 symmetric-power type. Unqualified inside a file that opens Mathlib it silently
 resolves to Mathlib's and the errors are about universe levels, not about `Sym`.
 
-**What this does not do.** It does not locate a zero, and nothing here says the
-row is a mode — `tableFrom_mode` takes that as a hypothesis. Applying the chain
-to the actual dyadic row would need `π(2^r)` to be a mode, which it is not. What
-is proved is that the transition itself is sound: a table cell and an analytic
-gain are the same object seen twice.
+**On the hypothesis form.** `tableFrom_mode` takes "the row agrees with a mode"
+as a hypothesis. That is this file's method, not a gap in it — see its header,
+lines 9–12: every theorem here takes the antecedent statements as hypotheses and
+derives the consequent, so that Lean can refuse a leap. A hypothesis is a
+quantifier, not an assumption: the theorem is a complete, kernel-checked proof
+about every row of that kind. The `A4` it calls is itself unconditional
+(`Chain.lean:263`), as C1 became when it was discharged.
+
+Still to be asked, and it is a different question: whether the dyadic row
+`π(2^r)` decomposes into modes the chain applies to.
 
 Build clean, 8037 jobs, 126 theorems, 126 pins, parity in all 11 modules.
 
