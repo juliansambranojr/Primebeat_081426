@@ -314,24 +314,55 @@ theorem tableFrom_eq_bdiff_iter {N : ℤ → ℤ} {g : ℂ → ℂ}
       push_cast
       ring
 
-/-- **The chain, welded.** An integer row agreeing with a mode: the table's cell
-is the symbol to the `d`, times the mode. This is `StmtA4` read on the integer
-table, so every arrow below the seam now applies above it. -/
-theorem tableFrom_mode {b : ℝ} (hb : b ≠ 0) (ρ : ℂ) {N : ℤ → ℤ}
-    (hag : ∀ n : ℤ, ((N n : ℤ) : ℂ) = mode b ρ (n : ℂ)) (r : ℤ) (d : ℕ) :
+/-- **The chain, welded.** An integer row agreeing with a mode across the window
+a cell reads: the cell is the symbol to the `d`, times the mode.
+
+**The hypothesis is window-local and that is not a detail.** An earlier version
+asked for agreement at every `n : ℤ`, which is vacuous: `mode b ρ n = w^n`, so
+`n = 1` puts `w` in ℤ and `n = −1` puts `w⁻¹` in ℤ, and an integer whose inverse
+is an integer is `±1` — a hypothesis class of exactly two rows, none of them a
+prime count. `PairIdentity.lean` § "A geometric row collapses" states the same
+criterion and localises for the same reason. Found by adversarial audit; notes
+entry 70. `#guard_msgs` cannot see vacuity, so the build did not object. -/
+theorem tableFrom_mode {b : ℝ} (hb : b ≠ 0) (ρ : ℂ) {N : ℤ → ℤ} (r : ℤ) (d : ℕ)
+    (hag : ∀ k : ℕ, k ≤ d → ((N (r - k) : ℤ) : ℂ) = mode b ρ ((r : ℂ) - k)) :
     ((Construction.tableFrom N r d : ℤ) : ℂ) = (Sym b ρ) ^ d * mode b ρ (r : ℂ) := by
-  rw [tableFrom_eq_bdiff_iter hag r d]
-  exact A4 hb ρ d r
+  induction d generalizing r with
+  | zero =>
+      have h0 := hag 0 (Nat.le_refl 0)
+      simpa using h0
+  | succ n ih =>
+      have h1 : ((Construction.tableFrom N r n : ℤ) : ℂ)
+          = (Sym b ρ) ^ n * mode b ρ (r : ℂ) :=
+        ih r fun k hk => hag k (Nat.le_succ_of_le hk)
+      have h2 : ((Construction.tableFrom N (r - 1) n : ℤ) : ℂ)
+          = (Sym b ρ) ^ n * mode b ρ (((r - 1 : ℤ) : ℂ)) := by
+        refine ih (r - 1) fun k hk => ?_
+        have hk1 := hag (k + 1) (Nat.succ_le_succ hk)
+        have e1 : r - ((k + 1 : ℕ) : ℤ) = r - 1 - (k : ℤ) := by push_cast; ring
+        have e2 : (r : ℂ) - ((k + 1 : ℕ) : ℂ) = ((r - 1 : ℤ) : ℂ) - ((k : ℕ) : ℂ) := by
+          push_cast; ring
+        rw [e1, e2] at hk1
+        exact hk1
+      show ((Construction.tableFrom N r n - Construction.tableFrom N (r - 1) n : ℤ) : ℂ) = _
+      push_cast
+      push_cast at h2
+      rw [h1, h2, ← mul_sub]
+      have hstep : mode b ρ (r : ℂ) - mode b ρ ((r : ℂ) - 1)
+          = Sym b ρ * mode b ρ (r : ℂ) := A1 hb ρ (r : ℂ)
+      rw [hstep, pow_succ]
+      ring
 
 /-- **The table on the critical line.** The cell's modulus is `‖Sym‖^d` times
 the mode's — which is what `StmtC2` and `StmtC3` bound, and what the periodicity
 below makes an angle. -/
 theorem tableFrom_norm_on_critical_line {b : ℝ} (hb : b ≠ 0) (γ : ℝ) {N : ℤ → ℤ}
-    (hag : ∀ n : ℤ, ((N n : ℤ) : ℂ) = mode b ((1 : ℂ)/2 + γ * I) (n : ℂ))
-    (r : ℤ) (d : ℕ) :
+    (r : ℤ) (d : ℕ)
+    (hag : ∀ k : ℕ, k ≤ d →
+      ((N (r - k) : ℤ) : ℂ) = mode b ((1 : ℂ)/2 + γ * I) ((r : ℂ) - k)) :
     ‖((Construction.tableFrom N r d : ℤ) : ℂ)‖
       = ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ d * ‖mode b ((1 : ℂ)/2 + γ * I) (r : ℂ)‖ := by
-  rw [tableFrom_mode hb _ hag r d, norm_mul, norm_pow]
+  rw [tableFrom_mode hb _ r d hag, norm_mul, norm_pow]
 
 /-! ### The pole lattice, and the circle it makes
 
@@ -422,9 +453,17 @@ two circles are one.
 
 This is the trap `analysis/2026-08-19_table_structure` t24 measured, as a
 theorem: a base set commensurate by construction forces cross-base alignment
-rather than finding it. See notes entries 54 and 56. -/
+rather than finding it. See notes entries 54 and 56.
+
+**`0 < m` and `0 < n` are load-bearing.** Without them `m = n = 0` satisfies
+`hcomm` as `0 = 0` for *every* pair of bases, commensurate or not, and the
+conclusion degrades to `Periodic f 0` — which `period_vacuous_at_one` below
+proves is empty. So the unguarded version is true and carries none of the
+commensurability content this docstring claims. Found by adversarial audit;
+notes entry 70. -/
 theorem joint_gain_periodic_of_commensurate
-    {b₁ b₂ : ℝ} (h₁ : 0 < b₁) (hn₁ : b₁ ≠ 1) (h₂ : 0 < b₂) (hn₂ : b₂ ≠ 1) (m n : ℕ)
+    {b₁ b₂ : ℝ} (h₁ : 0 < b₁) (hn₁ : b₁ ≠ 1) (h₂ : 0 < b₂) (hn₂ : b₂ ≠ 1)
+    (m n : ℕ) (hm : 0 < m) (hn : 0 < n)
     (hcomm : (m : ℝ) * (2 * Real.pi / Real.log b₁)
            = (n : ℝ) * (2 * Real.pi / Real.log b₂)) :
     Function.Periodic

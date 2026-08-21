@@ -64,6 +64,36 @@ theorem depth_reweights_each_mode (hA1 : ∀ i ∈ s, StmtA1 b (ρ i)) (N : ℕ)
   unfold modeSum
   exact Finset.sum_congr rfl fun i _ => by ring
 
+/-! ## The integer table, welded to a superposition
+
+`Chain.tableFrom_eq_bdiff_iter` carries the integer table onto `bdiff^[d]`.
+`depth_reweights_each_mode` carries `bdiff^[d]` onto the reweighted sum. Nothing
+composed them, so the chain reached the table and reached the zeros and did not
+join the two — verified by grep across all eleven modules, `modeSum` occurring
+only here and `tableFrom` only in five other files, disjointly. Notes entry 70.
+-/
+
+/-- **The table is a superposition, reweighted by depth.** An integer row
+agreeing at every integer with a finite superposition of ladder modes: its cell
+at `(r,d)` is that superposition with each mode carrying its own `(Sym b ρᵢ)^d`.
+
+**The global hypothesis is not vacuous here, and that is the whole point.**
+`Chain.tableFrom_mode` had to be localised to a window because a single mode
+forces `w = ±1` on an integer row. A *sum* is different: only the total need be
+integer-valued, and no individual `cᵢ · wᵢ^n` is constrained. Conjugate pairs are
+the standard case — `ρ₂ = −ρ₁` with `c₁ = c₂ = 1/2` gives `Re(wⁿ)`, integer at
+every `n`, with neither mode `±1`. That is exactly how Riemann–von Mangoldt
+produces a real integer-valued row from non-real modes.
+
+This is the theorem O34/O35 were measuring against when they reported 94% / 92%
+/ 80% of the row-20 residual at depths 0, 3 and 6. -/
+theorem tableFrom_eq_modeSum_reweighted (hA1 : ∀ i ∈ s, StmtA1 b (ρ i))
+    {N : ℤ → ℤ} (hag : ∀ n : ℤ, ((N n : ℤ) : ℂ) = modeSum b ρ c s (n : ℂ))
+    (r : ℤ) (d : ℕ) :
+    ((Construction.tableFrom N r d : ℤ) : ℂ)
+      = modeSum b ρ (fun i => c i * (Sym b (ρ i)) ^ d) s (r : ℂ) := by
+  rw [Chain.tableFrom_eq_bdiff_iter hag r d, depth_reweights_each_mode hA1 d r]
+
 /-! ## Axiom check
 
 An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
@@ -83,5 +113,9 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Superposition.depth_reweights_each_mode' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Superposition.depth_reweights_each_mode
+
+/-- info: 'Superposition.tableFrom_eq_modeSum_reweighted' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Superposition.tableFrom_eq_modeSum_reweighted
 
 end Superposition
