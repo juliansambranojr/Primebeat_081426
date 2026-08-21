@@ -6,6 +6,7 @@ transitions ([open] → [paused] / [closed] / [blocked]) are Julian's call.
 Format (strict, for grep):
 
 ```text
+- [open]   2026-08-21  entry 57: O23 and O44 quoted CLAUDE.md's "only 07/O7 is preregistered" verbatim; all four preregs now carry verdicts, so both now cite CONTEXT.md rather than enumerate — and O23's two results JSONs still hold the old string, a deliberate script/artifact divergence
 - [open]   2026-08-21  entry 56: t24 — commensurability collected: integer bases 2..9 meet only on the power chains 2-4-8 and 3-9; the sub-integer scan is commensurate BY CONSTRUCTION, all eight arms integer multiples of pi/(4*gamma_1)
 - [open]   2026-08-21  entry 55: t23 — the fold is an IDENTITY not a test (wing+ − wing− = cell always); wings weigh 807295 each at (20,6) and 168 each at (8,3); (25,11) corrected from diagonal 13 to 14
 - [open]   2026-08-20  entry 54: t22 — the zero-surface question is UNANSWERABLE with O45's base set: 8 of 11 bases share a lattice and carry 107 of 125 zeros, so cross-base alignment is forced by the prereg's own base choice

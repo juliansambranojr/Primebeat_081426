@@ -16,6 +16,43 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 57 — two scripts quoted a rule that changed, and one artifact now disagrees with its script
+type: provenance
+refs: 53, 54, 55, 56
+
+**What changed.** `O23_alignment_replication.py` line 1250 and
+`O44_cross_base_zero_scan.py` line 10 both carried this verbatim in their
+STATUS text: *"Currently only 07/O7 is preregistered."* That sentence was
+copied out of `CLAUDE.md` § Prereg discipline when each script was written.
+
+It is now wrong twice over. There are four locked preregs —
+`alpha_depth_trend`, `zero_winding_phase`, `extended_zero_census`,
+`sub_integer_base_scan` — and as of 2026-08-20 all four carry verdicts:
+`depth_dependent`, `no_constant_angle`, `magnitude_floor`, `fineness`.
+The CLAUDE.md line the scripts quoted no longer exists.
+
+**Fix.** Both now cite `CONTEXT.md` § "Current state of the world" instead of
+enumerating, and both say why: an enumeration goes stale, and this one did.
+The same move that took the lab-notebook type vocabulary from four copies to
+one and the prereg mechanics out of CLAUDE.md.
+
+**Not an instrument-fix.** Nothing about what either script measures changed.
+No re-run was performed and none is needed; prior results remain comparable.
+
+**A divergence, recorded rather than repaired.** O23's sentence sits inside a
+JSON output field, `exploratory_note`. So
+`results/O23_alignment_replication_results.json` and
+`results/O23_alignment_replication_results_run2.json` still contain the old
+text. They are frozen records of what the script said when it ran and are
+correct as they stand. The script and those two artifacts now differ by that
+string, deliberately. A re-run would close the gap and is not worth the churn.
+
+**The general shape.** A quoted rule is a copy, and copies go stale silently
+because nothing checks prose against its source. `utilities/check_refs.py`
+catches a citation that does not *resolve*; it cannot catch one that resolves
+to text saying something different from what the quoter claims. That gap is
+open and nothing in the tree closes it.
+
 ## 2026-08-21 — Entry 56 — t24: one fact that had been found five times
 type: run
 refs: 54, 55
