@@ -444,6 +444,85 @@ and the statement holds for **any** function whatsoever. -/
 theorem period_vacuous_at_one (f : ℝ → ℝ) :
     Function.Periodic f (2 * Real.pi / Real.log 1) := by simp
 
+/-! ### Block D, formalised
+
+`papers/Euler-Factor-Chain.md` § D — the winding — is listed as **not
+formalised** in `lean/BUILD.md`. It states in prose that the C2 band's floor
+sits at `γ log b ≡ 0 (mod 2π)` and its ceiling at `γ log b ≡ π (mod 2π)` (D1);
+that the smooth term, having `γ = 0`, sits exactly on the floor (D2); that
+differencing therefore dissipates the smooth part maximally while amplifying
+modes near the ceiling (D3); and that the bases placing `γ` at the ceiling are
+`exp(π(2k+1)/γ)` (D4).
+
+All of it follows from `EulerFactorChain.gain_sq_on_critical_line`, already
+proved, by evaluating `cos` at `±1`. Notes entry 77.
+
+**These supply the attainment `StmtC2` lacks.** C2 proves the gain is
+*contained* in `[1 − b^(−1/2), 1 + b^(−1/2)]` and never exhibits a `γ` reaching
+either end. `C2_floor_attained` and `C2_ceiling_attained` do. O49 measures the
+residual table's own gain at 97.68% ± 2.91% of that ceiling across twelve bases
+(entry 75), so the bound is not merely attainable but attained in the data.
+
+**Not to be confused with `sym_eq_zero_iff`.** That lattice is where `Sym`
+vanishes outright, at `s = 2πik/log b`, which has `Re s = 0`. The floor here is
+on the critical line `Re s = 1/2`, where the gain is `1 − b^(−1/2)` and not
+zero. Same phase condition, different line: the C2 floor is where the critical
+line passes closest to the zero lattice. -/
+
+private theorem sq_rpow_half {b : ℝ} (hb : 0 < b) :
+    (b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ)) := by
+  rw [← Real.rpow_natCast (b ^ (-(1:ℝ)/2)) 2, ← Real.rpow_mul hb.le]
+  norm_num
+
+/-- **D1, floor half.** Where `cos(γ log b) = 1` the gain is the floor of C2. -/
+theorem gain_sq_at_floor {b : ℝ} (hb : 0 < b) (γ : ℝ)
+    (hcos : Real.cos (γ * Real.log b) = 1) :
+    ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2 := by
+  unfold Sym
+  rw [EulerFactorChain.gain_sq_on_critical_line hb, hcos, ← sq_rpow_half hb]
+  ring
+
+/-- **D1, ceiling half.** Where `cos(γ log b) = −1` the gain is the ceiling. -/
+theorem gain_sq_at_ceiling {b : ℝ} (hb : 0 < b) (γ : ℝ)
+    (hcos : Real.cos (γ * Real.log b) = -1) :
+    ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2 := by
+  unfold Sym
+  rw [EulerFactorChain.gain_sq_on_critical_line hb, hcos, ← sq_rpow_half hb]
+  ring
+
+/-- **D2.** The smooth term has `γ = 0`, so it sits exactly ON the floor. This
+is why differencing dissipates it fastest of anything in the band. -/
+theorem C2_floor_attained {b : ℝ} (hb : 0 < b) :
+    ‖Sym b ((1 : ℂ)/2 + (0 : ℝ) * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2 :=
+  gain_sq_at_floor hb 0 (by simp)
+
+/-- **C2's upper bound is ATTAINED.** `StmtC2` proves containment; this exhibits
+a `γ` that reaches the ceiling. Witness `γ = π / log b`. -/
+theorem C2_ceiling_attained {b : ℝ} (hb : 0 < b) (hb1 : b ≠ 1) :
+    ∃ γ : ℝ, ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2 := by
+  have hlog : Real.log b ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one hb hb1
+  refine ⟨Real.pi / Real.log b, gain_sq_at_ceiling hb _ ?_⟩
+  rw [div_mul_cancel₀ _ hlog, Real.cos_pi]
+
+/-- **D4.** The bases placing `γ` exactly at the ceiling are `exp(π(2k+1)/γ)`.
+For `γ₁` the paper lists `1.2489, 1.948, 3.039, 4.741, 7.395 …`; `1.2489` is the
+O45 locked family's `k = 2`. -/
+theorem ceiling_base {γ : ℝ} (hγ : γ ≠ 0) (k : ℤ) :
+    ‖Sym (Real.exp (Real.pi * (2 * k + 1) / γ)) ((1 : ℂ)/2 + γ * I)‖ ^ 2
+      = (1 + (Real.exp (Real.pi * (2 * k + 1) / γ)) ^ (-(1:ℝ)/2)) ^ 2 := by
+  refine gain_sq_at_ceiling (Real.exp_pos _) γ ?_
+  rw [Real.log_exp, mul_div_cancel₀ _ hγ]
+  rw [show Real.pi * (2 * (k : ℝ) + 1) = Real.pi + (k : ℝ) * (2 * Real.pi) by ring]
+  simp [Real.cos_add_int_mul_two_pi]
+
+/-- **D3.** Differencing amplifies ceiling modes strictly more than floor modes.
+That is the power iteration, as an inequality — and it needs only `0 < b`, not
+`b ≠ 1`, because the proof does not consume one. -/
+theorem ceiling_dominates_floor {b : ℝ} (hb : 0 < b) :
+    (1 - b ^ (-(1:ℝ)/2)) ^ 2 < (1 + b ^ (-(1:ℝ)/2)) ^ 2 := by
+  have hpos : 0 < b ^ (-(1:ℝ)/2) := Real.rpow_pos_of_pos hb _
+  nlinarith [hpos]
+
 /-! ### Two ladders: one circle, or a torus -/
 
 /-- **The collapse.** Each base contributes a circle of period `2π / log b`. If
@@ -595,6 +674,30 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Chain.period_vacuous_at_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Chain.period_vacuous_at_one
+
+/-- info: 'Chain.gain_sq_at_floor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.gain_sq_at_floor
+
+/-- info: 'Chain.gain_sq_at_ceiling' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.gain_sq_at_ceiling
+
+/-- info: 'Chain.C2_floor_attained' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C2_floor_attained
+
+/-- info: 'Chain.C2_ceiling_attained' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C2_ceiling_attained
+
+/-- info: 'Chain.ceiling_base' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.ceiling_base
+
+/-- info: 'Chain.ceiling_dominates_floor' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.ceiling_dominates_floor
 
 /-- info: 'Chain.joint_gain_periodic_of_commensurate' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

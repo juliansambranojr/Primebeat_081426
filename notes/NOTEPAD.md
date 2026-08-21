@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 77: block D FORMALISED and wired — six theorems give D1/D2/D3/D4 plus the ATTAINMENT StmtC2 never had (it proved containment only); five paper source lines now cite Lean; BUILD.md corrected 119 -> 139 theorems
 - [open]   2026-08-21  entry 76: record check — Euler-Factor-Chain § D1/D3/D4 already state the floor, the ceiling and the power iteration in prose; three of my claims withdrawn; block D is UNFORMALISED while Chain.sym_eq_zero_iff proves D1's floor half
 - [open]   2026-08-21  entry 75: O49 EXPLORATORY — the residual table's depth gain ATTAINS the C2 ceiling 1+b^(-1/2) at 97.68% +/- 2.91% across 12 bases, entered by d=1 or 2, so no depth window exists where a sub-ceiling mode is visible
 - [open]   2026-08-21  entry 74: O48 re-read — the raw gain is CONSTANT at 1.7710 +/- 0.0766 (CV 4.3%) across all 12 bases, so entry 73's small-angle agreement was the gamma_1 model CROSSING a constant, not tracking; the locked window d in [3,8] sits ABOVE d* for most of the base set

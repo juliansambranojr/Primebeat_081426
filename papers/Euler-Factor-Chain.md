@@ -62,7 +62,9 @@ same quantity.
 
 **C2.** Therefore the gain depends on `γ` only through `cos(γ log b)`, is periodic with
 period `2π/log b`, and is bounded in `[1 − b^(−1/2), 1 + b^(−1/2)]`.
-`C1 · b=2 → [0.2929, 1.7071]; b=3 → [0.4226, 1.5774]`
+`C1 · b=2 → [0.2929, 1.7071]; b=3 → [0.4226, 1.5774] · Chain.gain_sq_periodic ·
+Chain.C2_floor_attained · Chain.C2_ceiling_attained — both ends attained, not
+merely bounded`
 
 **C3.** Therefore no mode grows or decays without bound under depth.
 `C2`
@@ -73,19 +75,21 @@ period `2π/log b`, and is bounded in `[1 − b^(−1/2), 1 + b^(−1/2)]`.
 
 **D1.** The floor of C2 is at `γ log b ≡ 0 (mod 2π)`; the ceiling at `γ log b ≡ π (mod 2π)`.
 At the ceiling `b^(−ρ)` is real negative and the gain is real.
-`C1`
+`C1 · Chain.gain_sq_at_floor · Chain.gain_sq_at_ceiling`
 
 **D2.** The smooth term has `ρ` real, so `γ = 0`, so it sits exactly at the floor.
 `O29: li−R gap decays 3.53 per depth (b=2) against (1−b^(−1/2))^(−1) = 3.414 predicted;
-2.44 (b=3) against 2.366`
+2.44 (b=3) against 2.366 · Chain.C2_floor_attained`
 
 **D3.** Therefore differencing dissipates the smooth part maximally while amplifying
 modes near the ceiling.
-`D1 + D2`
+`D1 + D2 · Chain.ceiling_dominates_floor · measured O49: the residual table's own
+gain sits at 97.68% ± 2.91% of the ceiling across twelve bases, entered by depth
+1 or 2 — lab_notebook_2 entry 75`
 
 **D4.** The bases placing `γ` exactly at the ceiling are `b = exp(π(2k+1)/γ)`.
 For `γ₁`: `1.2489, 1.948, 3.039, 4.741, 7.395 …`
-`D1`
+`D1 · Chain.ceiling_base`
 
 **D5.** `b = 2` lies 2.7% from 1.948 (201.3°, 1.559 turns per rung);
 `b = 3` lies 1.3% from 3.039 (169.7°, 2.471 turns per rung).

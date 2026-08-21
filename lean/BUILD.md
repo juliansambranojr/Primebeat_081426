@@ -19,7 +19,7 @@ track `main` rather than a tag — `plausible`, `LeanSearchClient`, `importGraph
 build is the regression check for every theorem here. Use `lake exe cache get`
 on a fresh clone; reach for `update` only deliberately.
 
-Expected: compiles clean, **8037 jobs**, zero `sorry`, **119 theorems**. Two
+Expected: compiles clean, **8037 jobs**, zero `sorry`, **139 theorems**. Two
 unused-simp-argument linter warnings are harmless.
 
 ## Mathlib-free core
@@ -83,7 +83,7 @@ step first.
 ## What is in here
 
 Eleven modules. Every theorem carries a `#guard_msgs`-pinned `#print axioms`,
-119 of them, so `lake build` fails the moment a proof starts depending on
+139 of them, so `lake build` fails the moment a proof starts depending on
 something new. That is the regression check, and it is why the build is worth
 protecting from `lake update`.
 
@@ -102,6 +102,12 @@ GeneratorPeak      no power-law tradeoff of that form has an interior peak
 Measured           the numbers, each beside what a theorem predicts
 ```
 
-What is **not** formalised: the winding (block D), the transform radius results
-(block G), and every numerical value citing a zeta zero. Those are observations.
+What is **not** formalised: the transform radius results (block G) and every
+numerical value citing a zeta zero. Those are observations.
+
+**Block D — the winding — is now formalised.** D1's floor and ceiling, D2's
+smooth term on the floor, D3's amplification inequality and D4's ceiling-base
+formula are `Chain.gain_sq_at_floor` through `Chain.ceiling_base`; they also
+supply the *attainment* `StmtC2` lacked, which proved containment only. D5 and
+D6 are numeric and stay observations. See notes entry 77.
 `papers/Euler-Factor-Chain.md` § J states the boundary.

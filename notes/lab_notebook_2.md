@@ -16,6 +16,64 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 77 — block D formalised, wired to the paper, and the attainment C2 never had
+type: formalization
+refs: 69, 75, 76
+
+Entry 76 found `papers/Euler-Factor-Chain.md` § D stating the floor, the
+ceiling, the smooth term's position and the ceiling bases **in prose**, while
+`lean/BUILD.md` listed the whole block as not formalised. Six theorems close it.
+
+```text
+gain_sq_at_floor          cos(γ log b) = 1  →  gain² = (1 − b^(−1/2))²     D1
+gain_sq_at_ceiling        cos(γ log b) = −1 →  gain² = (1 + b^(−1/2))²     D1
+C2_floor_attained         γ = 0 sits exactly on the floor                  D2
+C2_ceiling_attained       ∃ γ reaching the ceiling; witness π/log b
+ceiling_dominates_floor   floor² < ceiling², needs only 0 < b              D3
+ceiling_base              exp(π(2k+1)/γ) puts γ at the ceiling             D4
+```
+
+All six fall out of `EulerFactorChain.gain_sq_on_critical_line`, which was
+already proved, by evaluating `cos` at `±1`. Nothing hard happened; the pieces
+were on both sides of a gap nobody had crossed.
+
+**The attainment is the part `StmtC2` did not have.** C2 proves the gain is
+*contained* in `[1 − b^(−1/2), 1 + b^(−1/2)]` and never exhibits a `γ` at
+either end — the handoff plan flagged exactly this, that Lean proves
+containment and never attainment. `C2_floor_attained` and `C2_ceiling_attained`
+supply both ends. And entry 75 measures the residual table's own gain at
+**97.68% ± 2.91% of that ceiling across twelve bases**, so the bound is not
+merely attainable but attained in the data.
+
+**Correction to entry 76.** It says `Chain.sym_eq_zero_iff` "is D1's floor
+condition, proved." That is imprecise and I am not amending 76. `sym_eq_zero_iff`
+is where `Sym` vanishes **outright**, on `s = 2πik/log b`, which has
+`Re s = 0`. D1's floor is on the **critical line** `Re s = 1/2`, where the gain
+is `1 − b^(−1/2)` and is not zero. Same phase condition, different line. The
+honest statement — now in `Chain.lean`'s section docstring — is that **the C2
+floor is where the critical line passes closest to the zero lattice**, and
+`1 − b^(−1/2)` measures that approach.
+
+**Wired to the paper.** Five source lines in `Euler-Factor-Chain.md` now carry
+Lean citations: C2 gains `gain_sq_periodic`, `C2_floor_attained`,
+`C2_ceiling_attained` with the note that both ends are attained rather than
+merely bounded; D1 gains both halves; D2 gains the floor witness; D3 gains the
+inequality and O49's measured 97.68%; D4 gains `ceiling_base`. `check_refs.py`
+resolves every one — the gate is unchanged at 2.
+
+These are all **theorems**, so the `def`-versus-`theorem` hazard the handoff
+plan names does not apply here. That hazard remains open for
+`Zeros.measured_zeros`.
+
+**`lean/BUILD.md` corrected.** It said 119 theorems; the tree has 139. Its
+"not formalised" line dropped block D and now names only block G and the
+numeric values. D5 and D6 stay observations — they are measurements of how far
+base 2 and base 3 sit from a ceiling base, not statements to prove.
+
+Build clean, 8037 jobs, 139 theorems, 139 pins, parity in all 11 modules.
+
+---
+
 ## 2026-08-21 — Entry 76 — the record already had it: `Euler-Factor-Chain.md` § D states the floor, the ceiling and the power iteration in prose
 type: result-triage
 refs: 72, 74, 75
