@@ -16,6 +16,64 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 78 — the four zeros computed rather than transcribed, and the def-citation hazard closed at its most-cited instance
+type: formalization
+refs: 60, 70, 77
+
+`Zeros.measured_zeros` was four hand-typed pairs whose own docstring said *"no
+theorem above predicts these"* — and `papers/The-Four-Zeros.md` § B9 cited it,
+in a source line, as though citing a proof. The handoff plan named this hazard:
+`utilities/check_refs.py:31` resolves a `def` and a `theorem` identically, so a
+citation to a transcription is indistinguishable from a citation to a result.
+That citation was mine.
+
+**Seven theorems, all with no axioms at all.**
+
+```text
+pi2                  π(2^n), n = 0…20, from pi2n_cache.json — 21 integers,
+                     and the ONLY measured input to any of this
+dyadicRow            N(r) = π(2^r) − π(2^(r−1))
+
+zero_2_1  zero_4_1  zero_8_3  zero_20_6
+measured_zeros_all_vanish     the list's own claim, as a theorem
+nonzero_7_3  nonzero_19_6     so the check fires in both directions
+```
+
+Entry 60's `tableFrom_eq_stencil` is what makes this one line each rather than a
+table walk:
+
+```text
+(2,1)    1·1 − 1·1                                                 = 0
+(4,1)    1·2 − 1·2                                                 = 0
+(8,3)    1·23 − 3·13 + 3·7 − 1·5                                   = 0
+(20,6)   1·38635 − 6·20390 + 15·10749 − 20·5709 + 15·3030
+           − 6·1612 + 1·872                                        = 0
+```
+
+`nonzero_19_6 = 343` is the `+343` of `papers/The-Fold.md` § C3, whose partner
+`−343` sits at `(20,7)` because a zero at `(20,6)` forces it there.
+
+**What changed and what did not.** The zeros' *vanishing* is now derived from π
+by the kernel, at zero axioms. Their *location* is not, and the docstring still
+says so. Nothing here predicts why 8 and 20 and no other cell below `r = 92`.
+
+**The citation is repointed.** `The-Four-Zeros.md` § B9 now cites
+`Zeros.measured_zeros_all_vanish` — a theorem — rather than the list, and says
+so in the source line. `measured_zeros` stays, because three other modules carry
+the same list and `SeedPerturbation`/`PairIdentity` cite it; its docstring now
+directs any citation to the theorem.
+
+**Still open.** The hazard itself is not fixed — `check_refs.py` still cannot
+tell a `def` from a `theorem`. What closed here is the one instance that was
+actually being exploited. Three transcribed copies remain:
+`Construction.measured_zeros`, `SeedPerturbation.zero_cells`,
+`PairIdentity.zero_cells`.
+
+Build clean, 8037 jobs, 146 theorems, 146 pins, parity in all 11 modules.
+Axiom-free count rises 15 → 22.
+
+---
+
 ## 2026-08-21 — Entry 77 — block D formalised, wired to the paper, and the attainment C2 never had
 type: formalization
 refs: 69, 75, 76

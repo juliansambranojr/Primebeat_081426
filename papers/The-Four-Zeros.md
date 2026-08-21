@@ -80,7 +80,8 @@ about `π`: it is a statement about the construction, which is pure computation.
 construction; whether `π`'s particular values vanish at these four cells *for a reason*
 is a property of `π`, and nothing here reaches it. `Zeros.lean` states that hole and
 leaves it open.
-`B7 + Zeros.measured_zeros`
+`B7 + Zeros.measured_zeros_all_vanish` — a theorem computing all four
+from `pi2` with no axioms, not the transcribed list
 
 ---
 

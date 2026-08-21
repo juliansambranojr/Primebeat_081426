@@ -373,8 +373,65 @@ The measured locations are recorded below and stand unexplained.
 -/
 
 /-- The four exact zeros, `(r, d)`, over `r <= 62`, `d <= 61`.
-`results/O16_run2.log`. **Unexplained: no theorem above predicts these.** -/
+`results/O16_run2.log`. **Unexplained: no theorem above predicts these** — their
+LOCATION is not derived, and nothing here changes that.
+
+**But their vanishing is no longer transcribed.** `measured_zeros_all_vanish`
+below computes all four from `pi2`, with no axioms. Anything citing this `def`
+should cite that theorem instead: `utilities/check_refs.py` resolves a `def` and
+a `theorem` identically, so a citation to a hand-typed list is indistinguishable
+from a citation to a proof. `papers/The-Four-Zeros.md` § B9 was doing exactly
+that. Notes entry 78. -/
 def measured_zeros : List (ℕ × ℕ) := [(2, 1), (4, 1), (8, 3), (20, 6)]
+
+/-! ## The zeros, computed rather than transcribed
+
+`tableFrom_eq_stencil` makes a cell one Pascal-weighted line on the row. The row
+is `π(2^r) − π(2^(r−1))`. So each zero is one line of arithmetic on `π`, and the
+kernel can check it:
+
+```text
+(2,1)    1·1 − 1·1                                                    = 0
+(4,1)    1·2 − 1·2                                                    = 0
+(8,3)    1·23 − 3·13 + 3·7 − 1·5                                      = 0
+(20,6)   1·38635 − 6·20390 + 15·10749 − 20·5709 + 15·3030
+           − 6·1612 + 1·872                                           = 0
+```
+
+The two non-zero neighbours are proved as well, so the check fires in both
+directions rather than only confirming. `(19,6) = 343` is the `+343` of
+`papers/The-Fold.md` § C3, whose partner `−343` sits at `(20,7)`. -/
+
+/-- `π(2^n)` for `n = 0…20`, read from `pi2n_cache.json`. **This is the only
+measured input to anything below** — 21 integers, and no other data enters. -/
+def pi2 : ℕ → ℤ
+  | 0 => 0      | 1 => 1      | 2 => 2      | 3 => 4      | 4 => 6
+  | 5 => 11     | 6 => 18     | 7 => 31     | 8 => 54     | 9 => 97
+  | 10 => 172   | 11 => 309   | 12 => 564   | 13 => 1028  | 14 => 1900
+  | 15 => 3512  | 16 => 6542  | 17 => 12251 | 18 => 23000 | 19 => 43390
+  | 20 => 82025 | _ => 0
+
+/-- The depth-0 row `N(r) = π(2^r) − π(2^(r−1))`: the primes in `(2^(r−1), 2^r]`. -/
+def dyadicRow : ℤ → ℤ := fun r =>
+  if 1 ≤ r ∧ r ≤ 20 then pi2 r.toNat - pi2 (r - 1).toNat else 0
+
+theorem zero_2_1  : Construction.tableFrom dyadicRow 2 1 = 0 := by decide
+theorem zero_4_1  : Construction.tableFrom dyadicRow 4 1 = 0 := by decide
+theorem zero_8_3  : Construction.tableFrom dyadicRow 8 3 = 0 := by decide
+theorem zero_20_6 : Construction.tableFrom dyadicRow 20 6 = 0 := by decide
+
+/-- **The list's own claim, as a theorem.** Every cell `measured_zeros` names
+vanishes on the dyadic row. -/
+theorem measured_zeros_all_vanish :
+    ∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ) c.2 = 0 := by
+  decide
+
+/-- A non-zero neighbour, so the check can fail. -/
+theorem nonzero_7_3 : Construction.tableFrom dyadicRow 7 3 = 5 := by decide
+
+/-- The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a
+zero at `(20,6)` forces onto `(20,7)`. -/
+theorem nonzero_19_6 : Construction.tableFrom dyadicRow 19 6 = 343 := by decide
 
 /-- The repeats that produce the two deep zeros.
 `results/joint_dyadic_triadic_table.csv`, rows 19/20 at d5 and rows 7/8 at d2. -/
@@ -463,6 +520,34 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Zeros.tableFrom_eq_stencil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Zeros.tableFrom_eq_stencil
+
+/-- info: 'Zeros.zero_2_1' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.zero_2_1
+
+/-- info: 'Zeros.zero_4_1' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.zero_4_1
+
+/-- info: 'Zeros.zero_8_3' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.zero_8_3
+
+/-- info: 'Zeros.zero_20_6' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.zero_20_6
+
+/-- info: 'Zeros.measured_zeros_all_vanish' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.measured_zeros_all_vanish
+
+/-- info: 'Zeros.nonzero_7_3' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.nonzero_7_3
+
+/-- info: 'Zeros.nonzero_19_6' does not depend on any axioms -/
+#guard_msgs in
+#print axioms Zeros.nonzero_19_6
 
 /-- info: 'Zeros.stencil_eq_wings' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
