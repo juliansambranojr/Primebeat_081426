@@ -6,7 +6,7 @@ executed without the session that produced it.
 ## Resume in 30 seconds
 
 ```bash
-cd ~/GitHub/Primebeat_081426/lean && lake build     # expect 8030 jobs, success
+cd ~/GitHub/Primebeat_081426/lean && lake build     # expect 8037 jobs, success
 ```
 
 Toolchain trap: elan defaults to 4.33, Mathlib here is **v4.28.0**. Run from
@@ -15,10 +15,9 @@ Toolchain trap: elan defaults to 4.33, Mathlib here is **v4.28.0**. Run from
 Already built, all `sorry`-free, axioms `propext / Classical.choice / Quot.sound` only:
 
 ```text
-EulerFactorChain.lean   nodes    A1, B2a, B2b, B4 proved against Mathlib
-Chain.lean              arrows   A1→A4, A4∧B4→B5, C1→C2, A4∧C2→C3
-Superposition.lean      licence  A4 extends from one mode to a finite sum
-Measured.lean           numbers  17 literals, 6 agreement theorems
+11 modules, 111 theorems, 111 #guard_msgs-pinned axiom checks.
+See BUILD.md for the module map. Measured.lean carries 7 agreement
+theorems and the Unpaired section below.
 ```
 
 **Method, non-negotiable.** Do not aim a proof at a measured number. Write the
@@ -143,21 +142,24 @@ contrived derivation.
 
 ---
 
-## Two defects in `Chain.lean`, unfixed
+## Two defects in `Chain.lean` — both CLOSED
 
-1. **`StmtC1` is a hypothesis proved nowhere.** `C2` and `C3` rest on it. Prove
-   `‖1 − b^(−s)‖² = 1 − 2b^(−1/2)cos(γ log b) + b^(−1)` on `Re s = 1/2` in
-   `EulerFactorChain.lean` as an entry point, then discharge it.
-2. **`StmtA2` is stated wrong** — `(Sym s)⁻¹ * Sym s = 1` is *false* where
-   `Sym s = 0`, i.e. exactly on the alias lattice. Nothing uses it. State it as the
-   Euler product (Mathlib has `EulerProduct`) or delete it.
+1. ~~`StmtC1` is a hypothesis proved nowhere.~~ Discharged by `Chain.C1`, from
+   `EulerFactorChain.gain_sq_on_critical_line`. `C2` and `C3` are now
+   unconditional.
+2. ~~`StmtA2` is stated wrong.~~ Restated as Euler's product over `Nat.Primes`
+   with the `1 < s.re` convergence hypothesis, and discharged by `Chain.A2` from
+   Mathlib's `riemannZeta_eulerProduct_tprod`. `A3` followed.
+
+`A1` and `B4` were also discharged, so every arrow in `Chain.lean` is now
+applied rather than assumed.
 
 ## Also outstanding, outside `lean/`
 
-- Two errors in the written record, both from writing out of summaries: the G4
-  six-zero spread is **8.56%**, recorded as 8.4% in lab_notebook entry 42 and
-  CONTEXT.md:249; and the 247-cell validation is **O16's GATE A**, mis-attributed
-  to O27 in CONTEXT.md and entry 29. Both want one appended entry, not a rewrite.
-- O40, O41, `papers/convergence.md`, `lean/` and their results are **not committed** —
-  the push predates them.
+- **Still outstanding, verified 2026-08-21.** The G4 six-zero spread is
+  **8.56%**, still recorded as 8.4% at `CONTEXT.md:299`. And the 247-cell
+  validation is **O16's GATE A**, still attributed to O27 at `CONTEXT.md:305`.
+  Both want one appended entry, not a rewrite.
+- ~~O40, O41, `papers/convergence.md`, `lean/` and their results are not
+  committed.~~ All committed; the tree is pushed.
 - No literature search has been done. Nothing in the chain is established as new.
