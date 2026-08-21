@@ -17,6 +17,7 @@ into the unconditional `C2`.
 -/
 import Mathlib
 import EulerFactorChain
+import Construction
 
 namespace Chain
 
@@ -287,6 +288,128 @@ depth-`N` amplitude is trapped between `|1 − b^(−1/2)|^N` and
 theorem C3lower {b : ℝ} (hb : 0 < b) : StmtC3lower b :=
   C3lower_of_A4_C2 (fun γ => A4 hb.ne' ((1 : ℂ)/2 + γ * I)) (C2 hb)
 
+/-! ### The seam: the integer table is this operator
+
+Everything above is about `bdiff` on `ℂ → ℂ`. `Construction.tableFrom` is the
+same backward difference on `ℤ → ℤ`, and until now nothing joined them — the
+formalisation read as two stacks rather than one chain.
+
+These three weld it. After them, an integer cell of the dyadic table is an
+object the analytic half of this file has theorems about. -/
+
+/-- **The weld.** `Construction.tableFrom` and `bdiff` are the same operation on
+two domains. If `g : ℂ → ℂ` agrees with the integer row `N` at every integer,
+the table's cell at `(r,d)` IS `bdiff` iterated `d` times on `g` at `r`. -/
+theorem tableFrom_eq_bdiff_iter {N : ℤ → ℤ} {g : ℂ → ℂ}
+    (hag : ∀ n : ℤ, ((N n : ℤ) : ℂ) = g (n : ℂ)) (r : ℤ) (d : ℕ) :
+    ((Construction.tableFrom N r d : ℤ) : ℂ) = (bdiff^[d]) g (r : ℂ) := by
+  induction d generalizing r with
+  | zero => exact hag r
+  | succ n ih =>
+      rw [Function.iterate_succ_apply']
+      show ((Construction.tableFrom N r n - Construction.tableFrom N (r - 1) n : ℤ) : ℂ)
+        = (bdiff^[n]) g (r : ℂ) - (bdiff^[n]) g ((r : ℂ) - 1)
+      push_cast
+      rw [ih r, ih (r - 1)]
+      push_cast
+      ring
+
+/-- **The chain, welded.** An integer row agreeing with a mode: the table's cell
+is the symbol to the `d`, times the mode. This is `StmtA4` read on the integer
+table, so every arrow below the seam now applies above it. -/
+theorem tableFrom_mode {b : ℝ} (hb : b ≠ 0) (ρ : ℂ) {N : ℤ → ℤ}
+    (hag : ∀ n : ℤ, ((N n : ℤ) : ℂ) = mode b ρ (n : ℂ)) (r : ℤ) (d : ℕ) :
+    ((Construction.tableFrom N r d : ℤ) : ℂ) = (Sym b ρ) ^ d * mode b ρ (r : ℂ) := by
+  rw [tableFrom_eq_bdiff_iter hag r d]
+  exact A4 hb ρ d r
+
+/-- **The table on the critical line.** The cell's modulus is `‖Sym‖^d` times
+the mode's — which is what `StmtC2` and `StmtC3` bound, and what the periodicity
+below makes an angle. -/
+theorem tableFrom_norm_on_critical_line {b : ℝ} (hb : b ≠ 0) (γ : ℝ) {N : ℤ → ℤ}
+    (hag : ∀ n : ℤ, ((N n : ℤ) : ℂ) = mode b ((1 : ℂ)/2 + γ * I) (n : ℂ))
+    (r : ℤ) (d : ℕ) :
+    ‖((Construction.tableFrom N r d : ℤ) : ℂ)‖
+      = ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ d * ‖mode b ((1 : ℂ)/2 + γ * I) (r : ℂ)‖ := by
+  rw [tableFrom_mode hb _ hag r d, norm_mul, norm_pow]
+
+/-! ### The circle
+
+`EulerFactorChain.gain_sq_on_critical_line` says the gain depends on `γ` only
+through `cos(γ log b)`. So `γ` is not a line but an angle: the gain closes after
+`2π / log b`. That period is the circle. -/
+
+/-- **The circle.** The gain on the critical line is periodic in `γ` with period
+`2π / log b`.
+
+`b ≠ 1` is not decoration. At `b = 1` the period is `2π/0 = 0` and
+`Function.Periodic f 0` holds for every `f`, so dropping the hypothesis gives a
+statement that is true and empty exactly at the degenerate base —
+`period_vacuous_at_one` below is that fact, proved. **`#guard_msgs` cannot catch
+vacuity**: a vacuous theorem has a perfectly ordinary axiom list. -/
+theorem gain_sq_periodic {b : ℝ} (hb : 0 < b) (hb1 : b ≠ 1) :
+    Function.Periodic (fun γ : ℝ => ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2)
+      (2 * Real.pi / Real.log b) := by
+  intro γ
+  have hlog : Real.log b ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one hb hb1
+  show ‖Sym b ((1 : ℂ)/2 + ((γ + 2 * Real.pi / Real.log b) : ℝ) * I)‖ ^ 2
+      = ‖Sym b ((1 : ℂ)/2 + (γ : ℝ) * I)‖ ^ 2
+  unfold Sym
+  rw [EulerFactorChain.gain_sq_on_critical_line hb,
+      EulerFactorChain.gain_sq_on_critical_line hb]
+  have harg : (γ + 2 * Real.pi / Real.log b) * Real.log b
+      = γ * Real.log b + 2 * Real.pi := by field_simp
+  rw [harg, Real.cos_add_two_pi]
+
+/-- The trap `gain_sq_periodic`'s `b ≠ 1` closes: at `b = 1` the period is zero
+and the statement holds for **any** function whatsoever. -/
+theorem period_vacuous_at_one (f : ℝ → ℝ) :
+    Function.Periodic f (2 * Real.pi / Real.log 1) := by simp
+
+/-! ### Two ladders: one circle, or a torus -/
+
+/-- **The collapse.** Each base contributes a circle of period `2π / log b`. If
+the two periods are commensurate — an integer multiple of one equals an integer
+multiple of the other — the joint gain is periodic in a SINGLE variable and the
+two circles are one.
+
+This is the trap `analysis/2026-08-19_table_structure` t24 measured, as a
+theorem: a base set commensurate by construction forces cross-base alignment
+rather than finding it. See notes entries 54 and 56. -/
+theorem joint_gain_periodic_of_commensurate
+    {b₁ b₂ : ℝ} (h₁ : 0 < b₁) (hn₁ : b₁ ≠ 1) (h₂ : 0 < b₂) (hn₂ : b₂ ≠ 1) (m n : ℕ)
+    (hcomm : (m : ℝ) * (2 * Real.pi / Real.log b₁)
+           = (n : ℝ) * (2 * Real.pi / Real.log b₂)) :
+    Function.Periodic
+      (fun γ : ℝ => ‖Sym b₁ ((1 : ℂ)/2 + γ * I)‖ ^ 2
+                  * ‖Sym b₂ ((1 : ℂ)/2 + γ * I)‖ ^ 2)
+      ((m : ℝ) * (2 * Real.pi / Real.log b₁)) := by
+  have p₁ := (gain_sq_periodic h₁ hn₁).nat_mul m
+  have p₂ := (gain_sq_periodic h₂ hn₂).nat_mul n
+  rw [← hcomm] at p₂
+  exact p₁.mul p₂
+
+/-- **The torus.** Take the `b₁`-ladder's circle. The `b₂`-ladder steps around
+it by its own period. Those steps are DENSE — the second ladder winds forever
+without closing — exactly when `log b₁ / log b₂` is irrational. Rational, and
+the orbit is finite and the two circles collapse, which is the theorem above.
+
+Kronecker, via `AddCircle.denseRange_zsmul_coe_iff`. The whole content is the
+ratio of the logs: commensurate ladders close, incommensurate ones fill. -/
+theorem second_ladder_winds_densely {b₁ b₂ : ℝ}
+    (h₁ : 0 < b₁) (hn₁ : b₁ ≠ 1) (h₂ : 0 < b₂) (hn₂ : b₂ ≠ 1) :
+    DenseRange (fun k : ℤ => k •
+        ((2 * Real.pi / Real.log b₂ : ℝ) :
+          AddCircle (2 * Real.pi / Real.log b₁)))
+      ↔ Irrational (Real.log b₁ / Real.log b₂) := by
+  rw [AddCircle.denseRange_zsmul_coe_iff]
+  have l₁ : Real.log b₁ ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one h₁ hn₁
+  have l₂ : Real.log b₂ ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one h₂ hn₂
+  have hpi : Real.pi ≠ 0 := Real.pi_ne_zero
+  have hratio : (2 * Real.pi / Real.log b₂) / (2 * Real.pi / Real.log b₁)
+      = Real.log b₁ / Real.log b₂ := by field_simp
+  rw [hratio]
+
 /-! ### Axiom check
 
 An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
@@ -358,5 +481,33 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Chain.C3lower' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Chain.C3lower
+
+/-- info: 'Chain.tableFrom_eq_bdiff_iter' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.tableFrom_eq_bdiff_iter
+
+/-- info: 'Chain.tableFrom_mode' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.tableFrom_mode
+
+/-- info: 'Chain.tableFrom_norm_on_critical_line' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.tableFrom_norm_on_critical_line
+
+/-- info: 'Chain.gain_sq_periodic' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.gain_sq_periodic
+
+/-- info: 'Chain.period_vacuous_at_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.period_vacuous_at_one
+
+/-- info: 'Chain.joint_gain_periodic_of_commensurate' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.joint_gain_periodic_of_commensurate
+
+/-- info: 'Chain.second_ladder_winds_densely' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.second_ladder_winds_densely
 
 end Chain

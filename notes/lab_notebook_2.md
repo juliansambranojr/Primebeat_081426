@@ -16,6 +16,100 @@ Julian's call.
 
 ---
 
+## 2026-08-20 — Entry 68 — the seam welded: tableFrom IS bdiff, and the chain runs from the integer table to the torus
+type: formalization
+refs: 59, 60, 61, 66
+
+**The defect.** `lean/Chain.lean` proved things about `bdiff` on `ℂ → ℂ`.
+`lean/Construction.lean` proved things about `tableFrom` on `ℤ → ℤ`. They are
+the same backward difference on two domains, and **no theorem in the tree joined
+them.** So the formalisation read as two stacks with prose between, not one
+chain. Nothing was wrong; nothing was connected.
+
+**Seven theorems, all landed in `Chain.lean`, which now also imports
+`Construction`.**
+
+*The weld.*
+
+```text
+tableFrom_eq_bdiff_iter   g agrees with N at every integer
+                          -> (tableFrom N r d : ℂ) = (bdiff^[d]) g r
+tableFrom_mode            + A4  ->  cell = (Sym b ρ)^d * mode b ρ r
+tableFrom_norm_on_critical_line   the modulus form C2/C3 bound
+```
+
+`tableFrom_mode` is `StmtA4` read on the integer table. After it, every arrow
+below the seam applies above it: an integer cell of the dyadic table is an
+object the analytic half of the file has theorems about.
+
+*The circle — this closes handoff item 1b.*
+
+```text
+gain_sq_periodic       Periodic (fun γ => ‖Sym b (1/2 + γi)‖²) (2π / log b)
+period_vacuous_at_one  at b = 1 the same statement holds for EVERY f
+```
+
+`EulerFactorChain.gain_sq_on_critical_line` already had the content — the gain
+depends on `γ` only through `cos(γ log b)` — so `γ` is an angle, not a line, and
+the gain closes after `2π / log b`.
+
+**`b ≠ 1` is load-bearing and the second theorem proves it.** At `b = 1` the
+period is `2π/0 = 0`, and `Function.Periodic f 0` is true for any `f` at all —
+so the unguarded statement is true and empty exactly at the degenerate base.
+`period_vacuous_at_one` is that fact, compiled. **`#guard_msgs` cannot catch
+this**: a vacuous theorem has an ordinary axiom list. The handoff flagged the
+risk; it is now a theorem rather than a warning.
+
+*Two ladders.*
+
+```text
+joint_gain_periodic_of_commensurate   m·P₁ = n·P₂  ->  joint gain periodic
+                                      in ONE variable: the circles collapse
+second_ladder_winds_densely           steps dense on the b₁-circle
+                                      <-> log b₁ / log b₂ irrational
+```
+
+The second is Kronecker, via `AddCircle.denseRange_zsmul_coe_iff`. Together they
+are the dichotomy: **commensurate ladders close into one circle, incommensurate
+ones fill a torus**, and the whole content is whether the ratio of logs is
+rational. The first is entry 54 and 56's trap stated as a theorem — a base set
+commensurate by construction forces cross-base alignment rather than finding it.
+
+*The inversion was already there*: `EulerFactorChain.h_functional_equation`,
+`h b N (1 − s) = h b N s`, whose fixed set is the critical line.
+
+**So the chain is now unbroken and is one object:**
+
+```text
+the table                 Construction         ℤ, no axioms
+cell = Pascal             entry 60             tableFrom = stencil
+tableFrom = bdiff^[d]     HERE                 the seam
+cell = Sym^d · mode       HERE                 via A4
+dia/col = √b              entry 61
+period 2π/log b           HERE                 the circle
+commensurate | torus      HERE                 Kronecker
+s ↦ 1 − s                 h_functional_equation
+```
+
+All seven at `[propext, Classical.choice, Quot.sound]`. That is the floor and it
+is correct: every statement mentions ℝ or ℂ. Entry 66's boundary reads exactly
+right here — the table above the seam is axiom-free, everything below it is not,
+and the seam is where the arithmetic becomes analytic.
+
+**Gotcha worth recording.** `Chain.Sym` collides with Mathlib's `Sym`, the
+symmetric-power type. Unqualified inside a file that opens Mathlib it silently
+resolves to Mathlib's and the errors are about universe levels, not about `Sym`.
+
+**What this does not do.** It does not locate a zero, and nothing here says the
+row is a mode — `tableFrom_mode` takes that as a hypothesis. Applying the chain
+to the actual dyadic row would need `π(2^r)` to be a mode, which it is not. What
+is proved is that the transition itself is sound: a table cell and an analytic
+gain are the same object seen twice.
+
+Build clean, 8037 jobs, 126 theorems, 126 pins, parity in all 11 modules.
+
+---
+
 ## 2026-08-20 — Entry 67 — the 12 oversized NOTEPAD lines truncated, and the gate baseline re-cut to 2
 type: instrument-fix
 refs: 63, 64, 65
