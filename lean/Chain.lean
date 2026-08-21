@@ -100,6 +100,25 @@ def StmtC3 (b : ℝ) : Prop :=
     ‖(bdiff^[N]) (mode b ((1 : ℂ)/2 + γ * I)) r‖
       ≤ (1 + b ^ (-(1:ℝ)/2)) ^ N * ‖mode b ((1 : ℂ)/2 + γ * I) r‖
 
+/-- **C3, the other half.** The paper's C3 reads "no mode grows *or decays*
+without bound under depth". `StmtC3` is the growth half only. This is the decay
+half, and the ingredient was already present and unused: `StmtC2`'s FIRST
+conjunct bounds the gain below, `C2_of_C1` proves it, and `C3_of_A4_C2` calls
+only `.2`.
+
+The absolute value is not cosmetic. For `0 < b < 1` the quantity
+`1 - b^(-1/2)` is negative, and the unbarred statement, while still true, says
+nothing. With `|·|` the bound has content at every positive base except `b = 1`,
+where `Sym` vanishes identically and both sides are 0.
+
+`papers/Euler-Factor-Chain.md` § F5's spread
+`((1+b^(-1/2))/(1-b^(-1/2)))^(d+1)` is the ratio of the two bounds; its
+denominator had no formal counterpart until this. -/
+def StmtC3lower (b : ℝ) : Prop :=
+  ∀ (N : ℕ) (γ : ℝ) (r : ℂ),
+    |1 - b ^ (-(1:ℝ)/2)| ^ N * ‖mode b ((1 : ℂ)/2 + γ * I) r‖
+      ≤ ‖(bdiff^[N]) (mode b ((1 : ℂ)/2 + γ * I)) r‖
+
 /-! ### The arrows -/
 
 /-- `bdiff` is homogeneous: scalars pass through. -/
@@ -170,6 +189,23 @@ theorem C3_of_A4_C2 {b : ℝ} (hb : 0 < b)
     nlinarith [norm_nonneg (Sym b ((1 : ℂ)/2 + γ * I)), hb2]
   have hpow : ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ N ≤ (1 + b ^ (-(1:ℝ)/2)) ^ N :=
     pow_le_pow_left₀ (norm_nonneg _) hle N
+  exact mul_le_mul_of_nonneg_right hpow (norm_nonneg _)
+
+/-- **A4 ∧ C2 → C3 (decay half).** A strict mirror of `C3_of_A4_C2`, reading
+`(hC2 γ).1` where that reads `.2`.
+
+Note the signature: no `0 < b`. The proof does not consume one, and carrying a
+hypothesis a proof does not use is what made `B5_of_A4_B4`'s docstring false.
+Positivity enters only through `C2`, at the point where `hC2` is supplied. -/
+theorem C3lower_of_A4_C2 {b : ℝ}
+    (hA4 : ∀ γ : ℝ, StmtA4 b ((1 : ℂ)/2 + γ * I)) (hC2 : StmtC2 b) :
+    StmtC3lower b := by
+  intro N γ r
+  rw [hA4 γ N r, norm_mul, norm_pow]
+  have habs : |1 - b ^ (-(1:ℝ)/2)| ≤ ‖Sym b ((1 : ℂ)/2 + γ * I)‖ :=
+    abs_le_of_sq_le_sq (hC2 γ).1 (norm_nonneg _)
+  have hpow : |1 - b ^ (-(1:ℝ)/2)| ^ N ≤ ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ N :=
+    pow_le_pow_left₀ (abs_nonneg _) habs N
   exact mul_le_mul_of_nonneg_right hpow (norm_nonneg _)
 
 /-! ### Discharging A2 and A3
@@ -243,6 +279,14 @@ supplied. No mode's depth-`N` gain escapes the bound, with nothing assumed. -/
 theorem C3 {b : ℝ} (hb : 0 < b) : StmtC3 b :=
   C3_of_A4_C2 hb (fun γ => A4 hb.ne' ((1 : ℂ)/2 + γ * I)) (C2 hb)
 
+/-- **C3's decay half, unconditional.** Same arrow as `C3lower_of_A4_C2` with
+both hypotheses supplied. With `C3` this is the paper's C3 in full: a mode's
+depth-`N` amplitude is trapped between `|1 − b^(−1/2)|^N` and
+`(1 + b^(−1/2))^N` times its undifferenced amplitude, at every rung and every
+`γ`. -/
+theorem C3lower {b : ℝ} (hb : 0 < b) : StmtC3lower b :=
+  C3lower_of_A4_C2 (fun γ => A4 hb.ne' ((1 : ℂ)/2 + γ * I)) (C2 hb)
+
 /-! ### Axiom check
 
 An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
@@ -306,5 +350,13 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Chain.C3' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Chain.C3
+
+/-- info: 'Chain.C3lower_of_A4_C2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C3lower_of_A4_C2
+
+/-- info: 'Chain.C3lower' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Chain.C3lower
 
 end Chain
