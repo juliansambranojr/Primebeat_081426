@@ -52,6 +52,9 @@ break it.
 | O38 | `O38_weil_form_BUGGY.py` | Superseded — incorrect, kept as evidence |
 | O39 | `O39_transform_radius.py` | Where do the roots of the table's z-transform lie? |
 
+The table above stops at O39. O40 onward are described in § Current state
+of the world rather than tabulated.
+
 There is no O10. The gap is deliberate and has been left unfilled
 rather than absorbed by unrelated work.
 
@@ -202,6 +205,33 @@ describes `64bit/` as an integer-regime π(n) table, but both imported
 `64bit/` files are power-regime `A_count` tables on the same convention
 as `32bit/`, verified identical to `32bit/` on all 496 overlapping
 cells. That description fits the archive's files.
+
+## `imported/twin_count/`
+
+Seven files copied byte-for-byte (`cp -p`) on 2026-08-21 from
+`~/GitHub/twin_count/`, every one SHA-256 verified source-vs-destination at copy
+time, with the manifest at `imported/twin_count/README.md`. The compiled binary
+was deliberately not imported — machine-specific and rebuildable from
+`twincount.c`.
+
+**Imported evidence, not outputs of this bench.** The source is **not a git
+repository and has no commitment files**, so this import is the only versioned
+copy that exists.
+
+**Why it is here.** `twincount.c` streams primes to `10^11` in 16.8 s with
+primesieve. That is what showed O17's ceiling was a sieve limit rather than a
+mathematical one, which produced O50. And `twins_1e11_analysis.json` deprecates
+its own α estimator — `alpha_peak`, `r² = 0.015` — for a linear-sampling defect
+of the same class as O48's fixed depth window: a fixed step in one coordinate
+becoming non-uniform in the coordinate that matters.
+
+**Different convention, and it is load-bearing.** `twins_1e11.csv` is sampled on
+a **linear** ladder, step `10^7`. Every in-repo artifact uses **geometric**
+rungs. Numbers do not cross that boundary without naming which is in force.
+
+Its own results are a clean null on the twin side: `zeta_power_ratio = 0.347`
+where 1.0 is no signal, and `surrogate_p = 0.973`. π₂ has no proven explicit
+formula, so nothing says it should carry zeta lines.
 
 ## Current state of the world
 
@@ -401,6 +431,31 @@ What has been run and recorded:
   pooled resolved zeros at `d ≥ 1` across eleven bases, ranked by stencil
   mass. Base 2 is the density maximum and is **not** the mass maximum.
   EXPLORATORY.
+- **O48** — does the residual table's normalized depth gain follow the symbol,
+  and does it null at `b = exp(2π/γ₁) = 1.5597432`? PREREGISTERED
+  (`preregs/small_angle_cross_base_v1_20260821.md`). Mechanical output
+  **`compromised`**: the control floor read 0.7549 against a locked 0.80,
+  because the control row `round(b^(r/2))` cannot survive the depth window —
+  the mode decays to `4.3e−10` of itself by depth 8 while rounding noise
+  amplifies by `2^8`. No verdict. See entry 73.
+- **O49** — gain as a function of depth, per base. EXPLORATORY. The plateau is
+  entered at `d = 1` or `2` in **every** base, and it is not noise: it is the
+  **C2 ceiling `1 + b^(−1/2)`, attained at 97.68% ± 2.91% across twelve
+  bases**. `StmtC2` proves containment; this is attainment. Depth is a power
+  iteration and saturates immediately, so **no depth window exists in which a
+  sub-ceiling mode is visible** — which is why O48 could not see the null. At
+  `b = 1.5597432`, γ₁ sits at 0.0% of the band and γ₂ at 99.9%: the base that
+  nulls one zero hands the ceiling to a neighbour. Entries 74, 75.
+- **O50** — O17's statistic at 490× its prime count. EXPLORATORY. O17 was
+  capped at `xmax = 1.5e8` by a numpy sieve; primecount evaluates `π(10^11)` in
+  4 ms, so the limit recorded at § Core quantities — "only ~16 disjoint blocks
+  however the ladder is sampled" — was a sieve limit, not a mathematical one.
+  On a ratio-1.002 ladder, 6914 blocks over 4.11e9 primes, **38 zeta zeros
+  separate completely**: amplitude at the zeros median 6.905 / min 6.478,
+  between them median 0.189 / max 2.341, none of 38 below the largest
+  midpoint. O17 found three. The dyadic control still fails (3 of 6 below the
+  max midpoint) because its Nyquist is 4.5 and γ₁ is aliased at any prime
+  count. Entry 79, `papers/The-Deep-Ladder.md`.
 
 Known defects in the current state:
 

@@ -16,6 +16,57 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 80 — twin_count imported, CONTEXT brought current to O50, and The-Deep-Ladder written
+type: provenance
+refs: 46, 73, 75, 79
+
+**Import.** Seven files copied byte-for-byte (`cp -p`) from
+`~/GitHub/twin_count/` into `imported/twin_count/`, every one SHA-256 verified
+source-vs-destination at copy time, manifest at
+`imported/twin_count/README.md` which self-verifies against the files it lists.
+Same discipline as entry 46's lattice_mapper import.
+
+**The source is not a git repository and has no commitment files.** This import
+is the only versioned copy of that work that exists — 10,000 checkpoints to
+`10^11`, an analysis, and 100,000 zeta zeros, previously one disk failure from
+gone.
+
+**Not imported:** `twincount` the compiled binary, 33976 bytes, machine-specific
+(`-march=native`) and rebuildable from `twincount.c`. Same judgment as
+`archive_unsilenced/` in entry 46 — binaries do not belong in an evidence
+import.
+
+**Convention warning recorded in the manifest.** `twins_1e11.csv` is sampled on
+a **linear** ladder, step `10^7`; every in-repo artifact uses **geometric**
+rungs. That difference is not cosmetic — it is exactly what
+`twins_1e11_analysis.json` deprecates its own α estimator for, and it is the
+same class of defect as O48's fixed depth window.
+
+**CONTEXT.md brought current**, Julian approving. It stopped at O47 and its
+test table stops at O39, so the file a new instance reads first to orient did
+not know the last three runs had happened. Added: a note that the table stops
+at O39; entries for **O48** (preregistered, `compromised`, control could not
+survive the depth window), **O49** (the C2 ceiling attained at 97.68% ± 2.91%,
+depth saturates by `d = 1` or `2`), and **O50** (38 zeros separated completely,
+O17's ceiling was a sieve limit); and an `imported/twin_count/` section on the
+lattice_mapper pattern.
+
+**Paper written.** `papers/The-Deep-Ladder.md`, six sections on the house
+format. Its § D records the false start in full — that flat amplitude in γ was
+read as fatal and is in fact what a fine ladder must produce, since
+`(r^ρ − 1)/ρ → log r`. Its § F carries five limits, including that there is no
+prereg and that the separation statistic was chosen *after* the peak list proved
+to be selection, which is the sequence a prereg exists to prevent.
+
+**`check_values` caught six numbers on the first pass** and all six were mine:
+three prime counts written in scientific shorthand against full integers in the
+JSON, a range bound that is a run parameter rather than a measurement, the
+string `O17` parsed as the number 17 inside a statement checked against an
+artifact, and one genuinely derived ratio that needed declaring as derived per
+`papers/FORMAT.md`. Now **99 confirmed, 0 not found**, up from 83.
+
+---
+
 ## 2026-08-21 — Entry 79 — O50: 38 zeta zeros recovered with complete separation, and the dyadic control still fails
 type: run
 refs: 17, 75, 76, 78

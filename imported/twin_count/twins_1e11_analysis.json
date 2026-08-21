@@ -1,0 +1,165 @@
+{
+  "schema_version": 2,
+  "input_csv": "/Users/juliansambrano/GitHub/twin_count/twins_1e11.csv",
+  "timestamp_utc": "2026-08-17T06:01:48.162349+00:00",
+  "seed_surrogate": 0,
+  "seed_zeta": 1,
+  "checkpoints": 10000,
+  "x_final": 100000000000.0,
+  "pi2_final": 224376048.0,
+  "R_final": 7183.318665236235,
+  "R_relative": 3.201464117612159e-05,
+  "zero_crossings": 164,
+  "excursions": 108,
+  "peak_abs_median": 292.65227714180946,
+  "peak_abs_max": 9784.762049824,
+  "excursion_logx_median": 0.0029088332085738244,
+  "excursion_logx_max": 3.1539562787688844,
+  "alpha_note": "alpha_peak is DEPRECATED: its fit has r^2 = 0.015, i.e. it is noise with a line through it, because excursion lengths shrink systematically with x and the peaks it regresses are not commensurable across decades. use the decade-rms estimators alpha_decade_rms_ols and alpha_decade_rms_ratio instead.",
+  "residual_definition": "R(x) = pi_2(x) - 2*C2*Li_2(x) with C2 = 0.66016181584686957 and Li_2(x) = Int_2^x dt/log^2 t, evaluated at the input_csv checkpoints kept by the cutoff x >= 1e4 (a no-op here: the data starts at 1e7). Li_2 is computed by cumulative trapezoid of t/log(t)^2 dw on w = log t over numpy.linspace(log 2, log(max x), 8000001), then numpy.interp of log(x) onto that grid -- reproduce that quadrature to match R to the last digit",
+  "alpha_peak": {
+    "value": 0.10327478107355992,
+    "intercept": 3.3737088762253378,
+    "r_squared": 0.015307065520752783,
+    "n_points": 108,
+    "deprecated": true,
+    "definition": "unweighted ols slope of log|R_peak| on log(x_mid), natural logs, over sign-change excursions with b-a >= 2, where R_peak is the signed value of largest |R| in the excursion and x_mid = x[(a+b)//2] for excursion index bounds a,b",
+    "deprecated_reason": "r^2 = 0.015. checkpoint step is a fixed linear 1e7, so checkpoint density in log x grows like x: median excursion length is 1.15 in log x in the 1e7 decade vs 0.0018 in the 1e10 decade, and 84 of 108 excursions sit in the top decade. a 'peak' at large x is a sub-percent local wiggle; at small x it spans a decade."
+  },
+  "alpha_decade_rms_ols": {
+    "value": 0.41963432802157047,
+    "intercept": -2.150681221813082,
+    "r_squared": 0.9322735423268892,
+    "n_bins": 4,
+    "definition": "unweighted ols slope of log(rms) on log(x_geomean), natural logs both axes, over the strict decade bins listed in decade_bins; rms is about ZERO (sqrt(mean(R^2))), not the standard deviation about the bin mean; x_geomean = exp(mean(log x)) over the ACTUAL x values in the bin"
+  },
+  "alpha_decade_rms_ratio": {
+    "value": 0.4620136332406584,
+    "definition": "mean of log10 of the ratios of rms between consecutive strict decade bins, equivalently log10 of the geometric mean of those ratios; rms about zero, bins as listed in decade_bins",
+    "provenance": "this is the author's section 3 method and the estimator that produced the headline 0.46",
+    "consecutive_ratios": [
+      5.699503661890965,
+      1.272653327156919,
+      3.353464748851703
+    ],
+    "n_ratios": 3,
+    "geometric_mean_ratio": 2.8974345416600826,
+    "telescopes": true,
+    "telescoping_note": "the geometric mean of consecutive ratios collapses algebraically to (rms_last/rms_first)^(1/(n_bins-1)), so this estimator depends ONLY on the first and last decade bins -- every interior bin cancels. the first bin has n = 9. this is a real limitation of the method, not a footnote.",
+    "telescoped_value": 0.4620136332406585,
+    "telescoping_verified": true,
+    "telescoping_abs_diff": 5.551115123125783e-17
+  },
+  "alpha_sensitivity": {
+    "alpha_decade_rms_count_weighted": {
+      "value": 0.4614942769827376,
+      "status": "sensitivity entry only -- NOT a headline estimator",
+      "definition": "ols slope of log(rms) on log(x_geomean) over the strict decade bins, weighted by bin count (numpy.polyfit w = sqrt(count), so the least-squares weight is count)",
+      "coincidence_warning": "its near-agreement with alpha_decade_rms_ratio (0.4615 vs 0.4620) is a COINCIDENCE of two different methods and must not be mistaken for corroboration. an earlier reconstruction wrongly inferred that this was the author's method."
+    },
+    "sweep": {
+      "grid_binning": [
+        "decade",
+        "half_decade",
+        "equal_log_7",
+        "equal_log_10",
+        "equal_log_14",
+        "equal_log_20"
+      ],
+      "grid_quantity": [
+        "rms_about_zero",
+        "std_about_mean",
+        "abs_mean"
+      ],
+      "grid_weighting": [
+        "unweighted",
+        "count_weighted"
+      ],
+      "grid_min_bin_count": [
+        0,
+        3,
+        10,
+        30
+      ],
+      "log10_x_range": [
+        7.0,
+        11.0
+      ],
+      "binning_definition": "edges are in log10 x. decade = width 1.0 from lo10 to hi10; half_decade = width 0.5; equal_log_N = N equal-width bins spanning [lo10, hi10]. assignment is numpy.digitize(log10(x), edges[1:-1], right=False), so the first bin is open below and the last is open above (the top edge is inclusive).",
+      "quantity_definition": "rms_about_zero = sqrt(mean(R^2)); std_about_mean = population std of R about the bin mean; abs_mean = mean(|R|)",
+      "fit_definition": "ols slope of log(quantity) on log(x_geomean) over usable bins, natural logs; a bin is usable if count > 0, count >= min_bin_count, and the quantity is finite and > 0; a combination is skipped if fewer than 3 usable bins remain",
+      "n_combinations": 144,
+      "n_valid_fits": 144,
+      "alpha_min": 0.18956312591103514,
+      "alpha_max": 0.6242387906704031,
+      "alpha_median": 0.4033778203749099
+    }
+  },
+  "decade_bins": {
+    "definition": "strict decade bins in log10 x from lo10 to hi10 with lo10 = floor(log10(min x)) and hi10 = ceil(log10(max x)); assignment numpy.digitize(log10(x), edges[1:-1], right=False), so the top edge is inclusive",
+    "rms_convention": "rms about ZERO: sqrt(mean(R^2)) within the bin, NOT the standard deviation about the bin mean",
+    "x_geomean_convention": "exp(mean(log x)) over the actual x values in the bin",
+    "rms_over_sqrt_x_convention": "rms / sqrt(sqrt(lo*hi)) where lo and hi are the BIN EDGES -- e.g. bin [1e7,1e8] normalises by sqrt(sqrt(1e7*1e8)) = sqrt(3.162e7). normalising instead by the geometric mean of the ACTUAL x in the bin gives 0.0224 for the first bin rather than 0.0257, so the two conventions are distinguishable; the alternative is recorded per bin as rms_over_sqrt_x_data_geomean",
+    "local_slope_definition": "log10(rms ratio) / log10(x_geomean ratio) for consecutive bins",
+    "bins": [
+      {
+        "lo": 10000000.0,
+        "hi": 100000000.0,
+        "count": 9,
+        "rms": 144.3539170271559,
+        "x_geomean": 41471662.7439691,
+        "rms_over_sqrt_x": 0.025670159840785838,
+        "rms_over_sqrt_x_data_geomean": 0.02241572803929744
+      },
+      {
+        "lo": 100000000.0,
+        "hi": 1000000000.0,
+        "count": 90,
+        "rms": 822.7456787045795,
+        "x_geomean": 469056216.1392476,
+        "rms_over_sqrt_x": 0.04626638952573663,
+        "rms_over_sqrt_x_data_geomean": 0.037988588918131436
+      },
+      {
+        "lo": 1000000000.0,
+        "hi": 10000000000.0,
+        "count": 900,
+        "rms": 1047.0700254073606,
+        "x_geomean": 4745267633.95462,
+        "rms_over_sqrt_x": 0.01861983067050841,
+        "rms_over_sqrt_x_data_geomean": 0.015200062416334262
+      },
+      {
+        "lo": 10000000000.0,
+        "hi": 100000000000.0,
+        "count": 9001,
+        "rms": 3511.312419782841,
+        "x_geomean": 47511307414.02338,
+        "rms_over_sqrt_x": 0.019745560792980142,
+        "rms_over_sqrt_x_data_geomean": 0.016109089035821856
+      }
+    ],
+    "consecutive_rms_ratios": [
+      5.699503661890965,
+      1.272653327156919,
+      3.353464748851703
+    ],
+    "consecutive_log10_rms_ratios": [
+      0.7558370370255675,
+      0.10471011723806188,
+      0.5254937454583459
+    ],
+    "consecutive_local_slopes": [
+      0.7174713692833787,
+      0.10418545844535626,
+      0.5252120901083297
+    ]
+  },
+  "surrogate_obs_burst": 13,
+  "surrogate_obs_crossings": 132,
+  "surrogate_mean": 16.377,
+  "surrogate_std": 2.39329709814724,
+  "surrogate_p": 0.973,
+  "spectrum_slope": -2.0824999577894068,
+  "zeta_power_ratio": 0.34723640601006384
+}
