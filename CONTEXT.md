@@ -302,7 +302,10 @@ What has been run and recorded:
 - **O25 / O26** — the residual compresses at a relative 10⁻¹ target and
   inverts in absolute terms at x = 1030. The tighter relative targets
   10⁻² and 10⁻³ read NEITHER.
-- **O27** — joint dyadic/triadic table to r = 41. The dyadic half
+- **O27** — joint dyadic/triadic table to r = 41. *(Correction, entry 58:
+  the 247-cell reproduction below is **O16's GATE A**, not O27 —
+  `results/O16_run2.log` lines 229–244. Left in place rather than rewritten;
+  O27's own result is the r = 41 joint table.)* The dyadic half
   reproduces `files (2)/unit_weighted_dyadic_table.csv` across 247
   cells with 0 mismatches and returns exactly {(2,1),(4,1),(8,3),(20,6)}
   from an independent construction. The triadic table has one exact

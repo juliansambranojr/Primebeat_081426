@@ -6,6 +6,7 @@ transitions ([open] → [paused] / [closed] / [blocked]) are Julian's call.
 Format (strict, for grep):
 
 ```text
+- [open]   2026-08-21  entry 58: NEXT.md's two record errors checked against artifacts — the 8.4% vs 8.56% G4 spread is NOT an error (value AT gamma_n vs height of the peak NEAR it, both correctly sourced, neither should be edited); the 247-cell attribution IS real, it is O16 GATE A not O27
 - [open]   2026-08-21  entry 57: O23 and O44 quoted CLAUDE.md's "only 07/O7 is preregistered" verbatim; all four preregs now carry verdicts, so both now cite CONTEXT.md rather than enumerate — and O23's two results JSONs still hold the old string, a deliberate script/artifact divergence
 - [open]   2026-08-21  entry 56: t24 — commensurability collected: integer bases 2..9 meet only on the power chains 2-4-8 and 3-9; the sub-integer scan is commensurate BY CONSTRUCTION, all eight arms integer multiples of pi/(4*gamma_1)
 - [open]   2026-08-21  entry 55: t23 — the fold is an IDENTITY not a test (wing+ − wing− = cell always); wings weigh 807295 each at (20,6) and 168 each at (8,3); (25,11) corrected from diagonal 13 to 14

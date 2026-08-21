@@ -16,6 +16,58 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 58 — one of NEXT.md's two "written record errors" is not an error
+type: result-triage
+refs: 57
+
+`lean/NEXT.md` has carried two corrections as outstanding since it was written.
+Both were checked against artifacts today. One is real. The other is two
+different quantities being compared as if they were one.
+
+**Not an error — the G4 six-zero spread.** NEXT.md says the spread "is 8.56%,
+recorded as 8.4%". Both numbers are correct and they measure different things.
+
+`results/O24_gen_xmax3e9_run.log` carries two G4 tables.
+
+Line 156, "P/median AT THE SIX gamma_n" — the value of the statistic *exactly
+at* each γₙ:
+
+```text
+37.25863  36.93211  38.25230  36.83018  35.27244  36.70965
+(max−min)/min = 8.4481%   ->  8.4%
+```
+
+Lines 205–210, "TEN LARGEST LOCAL PEAKS — G4" — the height of the local peak
+*nearest* each γₙ, all six in band:
+
+```text
+38.299307  37.258633  36.932107  36.837708  36.760192  35.279641
+(max−min)/min = 8.56%
+```
+
+`CONTEXT.md:299` and `lab_notebook.md` entry 42 report the first.
+`papers/The-Four-Prime-Peak.md` § E2 reports the second, and its source line
+names the table it used. Neither is wrong and neither should be edited to
+match the other. **Recorded so that a later reader does not "fix" one of them.**
+
+The distinction is not cosmetic: a peak *near* γₙ and the value *at* γₙ differ
+by however far the peak sits off the zero, and G4's offsets run 0.0020 to
+0.0209. Which one is the right statistic depends on the question, and the two
+documents are asking different ones.
+
+**Real — the 247-cell attribution.** `CONTEXT.md:305` credits the reproduction
+of `files (2)/unit_weighted_dyadic_table.csv` across 247 cells to **O27**. It
+is **O16's GATE A**: `results/O16_run2.log` lines 229–244 read "cells compared
+: 247, mismatches : 0" for that file and for `composite_unit_dyadic_table.csv`,
+then "GATE A: PASSED". No O27 log mentions 247 or that CSV. O27's own
+contribution — the joint dyadic/triadic table to r = 41 — is separate and
+stands.
+
+**Method note.** NEXT.md is prose, and its claims were propagated into a commit
+message before being checked. The artifacts settled both in under a minute.
+Third time in this session that a recorded defect inverted on inspection: the
+`§ B4` citations were valid, O42's Run record was already filled, and now this.
+
 ## 2026-08-21 — Entry 57 — two scripts quoted a rule that changed, and one artifact now disagrees with its script
 type: provenance
 refs: 53, 54, 55, 56

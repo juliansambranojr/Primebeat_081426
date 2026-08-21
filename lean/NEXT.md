@@ -156,10 +156,15 @@ applied rather than assumed.
 
 ## Also outstanding, outside `lean/`
 
-- **Still outstanding, verified 2026-08-21.** The G4 six-zero spread is
-  **8.56%**, still recorded as 8.4% at `CONTEXT.md:299`. And the 247-cell
-  validation is **O16's GATE A**, still attributed to O27 at `CONTEXT.md:305`.
-  Both want one appended entry, not a rewrite.
+- **Checked against artifacts 2026-08-21 — one of these was not an error.**
+  ~~The G4 six-zero spread is 8.56%, recorded as 8.4%.~~ Both are correct and
+  measure different things: 8.4481% is `P/median` **at** each γₙ (log line
+  156), 8.56% is the height of the local peak **near** each γₙ (log lines
+  205–210). CONTEXT.md and entry 42 report the first,
+  `papers/The-Four-Prime-Peak.md` § E2 the second, each citing its own table.
+  Neither should be edited to match the other. Entry 58.
+  The 247-cell attribution **is** real — O16's GATE A, not O27 — and is now
+  corrected in place at `CONTEXT.md:305` with the original left visible.
 - ~~O40, O41, `papers/convergence.md`, `lean/` and their results are not
   committed.~~ All committed; the tree is pushed.
 - No literature search has been done. Nothing in the chain is established as new.
