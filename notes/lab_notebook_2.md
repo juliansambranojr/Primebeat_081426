@@ -16,6 +16,87 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 73 — O48 run 1: the transform holds inside the small-angle radius, the null does not appear, and the control was the defect
+type: run
+refs: 69, 72
+
+**Run.** `O48_small_angle_cross_base.py`, no flags, under
+`preregs/small_angle_cross_base_v1_20260821.md` **LOCKED**, sidecar
+`14c86dc224de23d62d6c0486106a5a071645ac01ee328e512d3da8c52daa6fbd` verified
+against the file before the Run record was filled. Started
+2026-08-21T19:13:54Z, ended 19:14:36Z. `primecountpy.prime_pi`, `mp.dps 50`,
+twelve bases, value window `[10^4, 2^32]`, depth window `d ∈ [3,8]`. Completed,
+did not error. `results/small_angle_cross_base.json` +
+`results/O48_small_angle_cross_base_run1.log`.
+
+**Mechanical decision-rule output: `compromised`**, precedence branch 1, because
+the control floor came out `0.754867` against the locked threshold `0.80`. The
+verdict line is Julian's and is unfilled.
+
+### The control is the defect, and it is mine
+
+`round(b**(r/2))` does not survive the depth window. At `b = 1.15` the exact
+per-depth gain is `0.0675`, so the mode decays to `4.3e−10` of itself by depth
+8, while `round()` injects `±0.5` amplifying by up to `2` per difference —
+`2^8 = 256`. So the control measured **noise doubling**, `≈ 2/log b`:
+
+```text
+b        2/log b   measured Ghat_ctrl   exact gain it should have read
+1.1500    14.310         12.606                0.4829
+1.3160     7.283          6.181                0.4672
+2.0000     2.885          0.470                0.4226
+```
+
+That definition was written into the prereg in the edit **immediately before
+locking**, replacing the looser "fitted the same way" phrasing, on the grounds
+that it was too vague to implement. Sharpening it made it wrong. A v2 needs a
+control that survives depth.
+
+### What the run showed, EXPLORATORY — the verdict is compromised, so none of
+### this earns one
+
+**Inside the small-angle radius the transform tracks, from a prediction with
+nothing fitted:**
+
+```text
+base      u/2π   measured   pred H1   ratio
+1.1500   0.314    13.1303   11.5458   1.137
+1.2293859 0.465    8.8724    9.1527   0.969
+1.2560   0.513     8.0319    8.2953   0.968
+1.2855907 0.565    7.5018    7.3356   1.023
+1.3160   0.618     6.2766    6.3575   0.987
+```
+
+Four of five within 3%. That is entry 72's claim, holding where entry 72 said it
+would hold.
+
+**The null does not appear.** `D` at `1.5597432` is `1.0070` against a predicted
+`0.3790`. The measured curve falls straight through the predicted null with no
+feature: measured `3.9237` where the symbol gives `0.4483`, a factor `8.75`.
+Beyond `u/2π = 0.62` the measured/predicted ratio runs 1.156, 1.507, 3.249,
+**8.752**, 3.349, 1.385, 0.965 — the divergence is centred exactly on the
+predicted null and closes again past it.
+
+`argmin D` is `1.2293859`, γ₄'s candidate, at `0.8385` — but the control's own
+`D_ctrl` at that same base is `0.8013`, so it is not a dip below the floor even
+before the `compromised` branch fires.
+
+Shape residual `RMS log(measured/predicted H1) = 0.8099`, dominated by the null
+region.
+
+### Two readings this run cannot separate
+
+Either sub-leading modes fill the null — the prereg names this as the largest
+doubt in advance, and γ₂'s null at `1.3483554` sits inside the same base set —
+or the residual at depths 3–8 is not single-mode enough for any null to survive.
+The clean tracking below `u/2π = 0.62` and the clean failure above it are
+consistent with both.
+
+Nothing is stamped. The prereg's Run record carries the same numbers and the
+same unfilled verdict line.
+
+---
+
 ## 2026-08-21 — Entry 72 — small angles make the curve: the cross-base transform, its Euler–Maclaurin cost, and why its radius is the pole lattice
 type: motivation
 refs: 69, 70, 71

@@ -1,0 +1,81 @@
+O48 — small angle cross-base   started 2026-08-21T19:13:54Z
+prereg preregs/small_angle_cross_base_v1_20260821.md (LOCKED)
+pi backend primecountpy.prime_pi   mp.dps 50   code_version 34527592e090deba
+
+1. GEOMETRY
+       base  r_min  r_max  rungs   value window
+  1.1500000     66    158     93   (8.818e+03, 3.893e+09]
+  1.2293859     45    107     63   (8.837e+03, 3.950e+09]
+  1.2560000     41     97     57   (9.111e+03, 3.999e+09]
+  1.2855907     37     88     52   (8.466e+03, 3.991e+09]
+  1.3160000     34     80     47   (8.619e+03, 3.471e+09]
+  1.3483554     31     74     44   (7.837e+03, 4.032e+09]
+  1.4200000     27     63     37   (9.110e+03, 3.928e+09]
+  1.5000000     23     54     32   (7.482e+03, 3.228e+09]
+  1.5597432     21     49     29   (7.262e+03, 2.881e+09]
+  1.6200000     20     45     26   (9.567e+03, 2.680e+09]
+  1.7500000     17     39     23   (7.738e+03, 3.009e+09]
+  2.0000000     14     32     19   (8.192e+03, 4.295e+09]
+
+2. PREDICTED, from constants alone (no data touched)
+       base  H0 smooth  H1 gamma1  candidate
+  1.1500000     0.4829    11.5458  
+  1.2293859     0.4751     9.1527  g4
+  1.2560000     0.4726     8.2953  
+  1.2855907     0.4699     7.3356  g3
+  1.3160000     0.4672     6.3575  
+  1.3483554     0.4644     5.3415  g2
+  1.4200000     0.4586     3.2499  
+  1.5000000     0.4526     1.2963  
+  1.5597432     0.4483     0.4483  g1
+  1.6200000     0.4443     1.0693  
+  1.7500000     0.4361     2.2996  
+  2.0000000     0.4226     2.4215  
+
+3. MEASURED Ghat
+  1.1500000  Ghat=   13.1303  depths=6
+  1.2293859  Ghat=    8.8724  depths=6
+  1.2560000  Ghat=    8.0319  depths=6
+  1.2855907  Ghat=    7.5018  depths=6
+  1.3160000  Ghat=    6.2766  depths=6
+  1.3483554  Ghat=    6.1742  depths=6
+  1.4200000  Ghat=    4.8986  depths=6
+  1.5000000  Ghat=    4.2110  depths=6
+  1.5597432  Ghat=    3.9237  depths=6
+  1.6200000  Ghat=    3.5816  depths=6
+  1.7500000  Ghat=    3.1855  depths=6
+  2.0000000  Ghat=    2.3372  depths=6
+
+4. CONTROL — mode-free row round(b^(r/2))
+  1.1500000  Ghat_ctrl= 12.6065   exact=  0.4829
+  1.2293859  Ghat_ctrl=  7.8687   exact=  0.4751
+  1.2560000  Ghat_ctrl=  7.0336   exact=  0.4726
+  1.2855907  Ghat_ctrl=  6.4164   exact=  0.4699
+  1.3160000  Ghat_ctrl=  6.1808   exact=  0.4672
+  1.3483554  Ghat_ctrl=  4.2569   exact=  0.4644
+  1.4200000  Ghat_ctrl=  3.4459   exact=  0.4586
+  1.5000000  Ghat_ctrl=  2.3782   exact=  0.4526
+  1.5597432  Ghat_ctrl=  2.6513   exact=  0.4483
+  1.6200000  Ghat_ctrl=  1.5423   exact=  0.4443
+  1.7500000  Ghat_ctrl=  1.4350   exact=  0.4361
+  2.0000000  Ghat_ctrl=  0.4703   exact=  0.4226
+
+   D_ctrl: 1.2294:0.8013  1.2560:0.9847  1.2856:0.9711  1.3160:1.1582  1.3484:0.8844  1.4200:1.0387  1.5000:0.7801  1.5597:1.3525  1.6200:0.7549  1.7500:1.4260
+   floor = min D_ctrl = 0.7549
+
+5. D AT EACH CANDIDATE NULL
+   g4  b=1.2293859   D=0.8385   (predicted under H1: 0.9226)
+   g3  b=1.2855907   D=1.0486   (predicted under H1: 1.0013)
+   g2  b=1.3483554   D=1.1050   (predicted under H1: 1.1120)
+   g1  b=1.5597432   D=1.0070   (predicted under H1: 0.3790)
+
+6. ARGMIN over all interior bases
+   argmin D = 1.2293859   D = 0.8385
+
+7. SHAPE RESIDUAL (descriptive, no threshold)
+   RMS log(measured/predicted H1) = 0.8099
+
+DECISION RULE — mechanical output (the verdict line is Julian's)
+   compromised  (control floor 0.754866516777988 < 0.8)
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/small_angle_cross_base.json

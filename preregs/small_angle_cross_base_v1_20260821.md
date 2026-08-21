@@ -1,9 +1,8 @@
 # Prereg — small angles and the cross-base transform: where does the residual table's normalized depth gain null? (v1)
 
-STATUS: **DRAFT**
+STATUS: **LOCKED**
 
-Sidecar: none yet. Not locked until
-`preregs/small_angle_cross_base_v1_20260821.sha256` exists. Per
+Sidecar: `preregs/small_angle_cross_base_v1_20260821.sha256`. Per
 `preregs/FORMAT.md` the sidecar is the authority, not this block.
 
 ---
@@ -118,7 +117,7 @@ global denominator would manufacture a dip at the high-`b` end.
 | `dip_ratio` | `D(b) = Ghat(b) / median(Ghat(b_left), Ghat(b_right))`, neighbours in the sorted base list |
 | `min_cells_per_depth` | `8` |
 | `min_depths` | `4` |
-| `control` | the identical pipeline with the oscillatory part removed: `Ĝ_ctrl` from `\|1 − b^(−1/2)\|/log b` fitted the same way |
+| `control` | the identical pipeline run on a synthetic mode-free row `C_b(r) = round(b**(r/2))`, same rungs, same depth window, same estimator. Its exact gain is `\|1 − b^(−1/2)\|`, so any departure is the pipeline's own noise: rounding at ±0.5 amplified through `d` differences, and the finite median. It contains no oscillatory mode by construction and therefore can null nowhere. |
 | `floor` | `min over interior bases of D_ctrl(b)` — the deepest excursion the pipeline produces with no oscillatory mode present |
 
 No parameter above may change after the sidecar is written. There is no `--seed`
@@ -273,24 +272,53 @@ this path in its header. Output `results/small_angle_cross_base.json` on the
 
 ## Lock chain
 
-- `pre_compute_sha256`: PENDING
-- sidecar `preregs/small_angle_cross_base_v1_20260821.sha256`: not yet written
+The pre-compute hash is **not written inside this file**, deliberately. Writing
+it here would change the file and therefore change its own hash — the
+self-reference that left `alpha_depth_trend_v1`'s `pre_compute_sha256` reading
+`PENDING` while its Run record asserted a match (`CONTEXT.md` § Known defects,
+item 3). The sidecar alone carries it.
 
-Locked when the sidecar exists and its single line matches this file's sha256 as
-of locking.
+- `pre_compute_sha256`: in `preregs/small_angle_cross_base_v1_20260821.sha256`
+- the sidecar pins this file as of locking; any later edit to anything above
+  the Run record breaks the match and voids the lock.
 
 ---
 
 ## Run record
 
-- `run_start_at`: (fill at run)
-- `run_end_at`: (fill at run)
-- `floor` (from control): (fill at run)
-- `D` at each of the four candidates: (fill at run)
-- `argmin D` base and value: (fill at run)
-- shape residual RMS: (fill at run)
-- mechanical decision-rule output: (fill at run)
+- `run_start_at`: `2026-08-21T19:13:54Z`
+- `run_end_at`: `2026-08-21T19:13:54Z`
+- `floor` (from control): `0.754867` — **below the 0.80 `compromised`
+  threshold**
+- `D` at the four candidates: γ₄ `0.8385`,
+  γ₃ `1.0486`,
+  γ₂ `1.1050`,
+  γ₁ `1.0070` (predicted under H1: `0.3790`)
+- `argmin D` base and value: `1.2293859`, `0.8385` — above
+  the control's own `D_ctrl` at that base (`0.8013`), so not a dip
+- shape residual RMS: `0.8099`
+- mechanical decision-rule output: **`compromised  (control floor 0.754866516777988 < 0.8)`**
 - **`verdict`: (Julian's to write — an agent may report the decision rule's
   mechanical output and compute the SHA; it does not stamp the verdict)**
-- `post_compute_sha256`: (fill at run)
-- sidecar match statement: (fill at run)
+
+**Why `compromised` fired, diagnosed.** The control row `round(b**(r/2))` does
+not survive the depth window. At `b = 1.15` the exact per-depth gain is
+`0.0675`, so the mode decays to `4.3e−10` of itself by depth 8, while `round()`
+injects `±0.5` that amplifies by up to `2` per difference — `2^8 = 256`. The
+control therefore measured noise doubling, `≈ 2/log b`: predicted 14.31 / 7.28 /
+2.89 at `b =` 1.15 / 1.316 / 2.0 against measured 12.61 / 6.18 / 0.47. **The
+control definition is the defect, and it was written into this file in the edit
+immediately before locking.** A v2 prereg needs a control that survives depth.
+
+**Lock verification.** The sidecar
+`14c86dc224de23d62d6c0486106a5a071645ac01ee328e512d3da8c52daa6fbd`
+pins this file **as of locking, before this Run record was filled**. The prereg
+states that the pre-compute hash is not written inside the file; per
+`preregs/FORMAT.md` a locked prereg is immutable except for its Run record, and
+this block is that record. To verify: `git show` the file at the commit that
+introduced the sidecar and hash it, or restore the `(fill at run)` placeholders
+above and re-hash.
+
+- `post_compute_sha256` of this file with the Run record filled: recorded in the
+  commit that lands it; it is necessarily different from the sidecar and that
+  difference is the Run record itself.
