@@ -52,8 +52,14 @@ CONVENTION. Rung `r` is the interval `(b^(r−1), b^r]`. In base 2: rung 1 is
 non-zero. Depth `d` is `d` backward differences, matching
 `imported/lattice_mapper/README.md`'s `delta_d` and `Construction.tableFrom`.
 -/
-import Mathlib
 import Construction
+
+-- Mathlib-free: Lean core only. See `lean/BUILD.md` § Mathlib-free core for
+-- the rules, the measured cost table, and why a named Mathlib lemma can cost
+-- more than a tactic. `omega` is allowed here — it costs `Quot.sound`, not
+-- `Classical.choice`.
+local notation "ℤ" => Int
+local notation "ℕ" => Nat
 
 namespace SeedPerturbation
 
@@ -71,7 +77,7 @@ theorem tableFrom_zero (r : ℤ) (d : ℕ) : tableFrom (fun _ : ℤ => (0 : ℤ)
   | succ n ih =>
       show tableFrom _ r n - tableFrom _ (r - 1) n = 0
       rw [ih r, ih (r - 1)]
-      ring
+      decide
 
 /-- **Linearity, in the form the convention change needs.** Replacing the
 depth-0 row `N` by `N − e` subtracts `tableFrom e` from every cell of the
@@ -79,14 +85,14 @@ table, at every depth. -/
 theorem tableFrom_sub (N e : ℤ → ℤ) (r : ℤ) (d : ℕ) :
     tableFrom (fun x => N x - e x) r d = tableFrom N r d - tableFrom e r d := by
   have hneg : tableFrom (fun x => (-1 : ℤ) * e x) r d = -tableFrom e r d := by
-    rw [tableFrom_smul]; ring
+    rw [tableFrom_smul, Int.neg_mul, Int.one_mul]
   have hadd : tableFrom (fun x => N x + (-1 : ℤ) * e x) r d
       = tableFrom N r d + tableFrom (fun x => (-1 : ℤ) * e x) r d :=
     tableFrom_add N (fun x => (-1 : ℤ) * e x) r d
   have hfun : (fun x : ℤ => N x - e x) = (fun x : ℤ => N x + (-1 : ℤ) * e x) := by
-    funext x; ring
-  rw [hfun, hadd, hneg]
-  ring
+    funext x
+    rw [Int.neg_mul, Int.one_mul, ← Int.sub_eq_add_neg]
+  rw [hfun, hadd, hneg, ← Int.sub_eq_add_neg]
 
 /-! ## Locality kills the shift above `R`
 
@@ -104,8 +110,8 @@ theorem tableFrom_eq_zero_of_vanishing_above {e : ℤ → ℤ} {R : ℤ}
     tableFrom e r d = 0 := by
   have hwin : ∀ k : ℕ, k ≤ d → e (r - (k : ℤ)) = (fun _ : ℤ => (0 : ℤ)) (r - (k : ℤ)) := by
     intro k hk
-    have hkd : (k : ℤ) ≤ (d : ℤ) := by exact_mod_cast hk
-    exact he _ (by omega)
+    have hkd : (k : ℤ) ≤ (d : ℤ) := Int.ofNat_le.mpr hk
+    exact he _ (Int.lt_of_lt_of_le hrd (Int.sub_le_sub_left hkd r))
   rw [zero_determined_by_row (M := fun _ : ℤ => (0 : ℤ)) r d hwin, tableFrom_zero]
 
 /-! ## The theorem -/
@@ -118,7 +124,7 @@ No hypothesis about primes, about the base, or about `N` at all. -/
 theorem cell_eq_of_seed_perturbation {N e : ℤ → ℤ} {R : ℤ}
     (he : ∀ s : ℤ, R < s → e s = 0) (r : ℤ) (d : ℕ) (hrd : R < r - (d : ℤ)) :
     tableFrom (fun x => N x - e x) r d = tableFrom N r d := by
-  rw [tableFrom_sub, tableFrom_eq_zero_of_vanishing_above he r d hrd, sub_zero]
+  rw [tableFrom_sub, tableFrom_eq_zero_of_vanishing_above he r d hrd, Int.sub_zero]
 
 /-! ## The corollary that makes it useful -/
 
@@ -153,18 +159,16 @@ theorem tableFrom_at_boundary {e : ℤ → ℤ} {R : ℤ}
     tableFrom e r d = (-1) ^ d * e R := by
   induction d generalizing r with
   | zero =>
-      have hr : r = R := by simpa using hrd
+      have hr : r = R := by omega
       subst hr
       show e r = (-1) ^ 0 * e r
-      ring
+      rw [Int.pow_zero, Int.one_mul]
   | succ n ih =>
-      push_cast at hrd
       have hr1 : tableFrom e (r - 1) n = (-1) ^ n * e R := ih (r - 1) (by omega)
       have hr0 : tableFrom e r n = 0 :=
         tableFrom_eq_zero_of_vanishing_above he r n (by omega)
       show tableFrom e r n - tableFrom e (r - 1) n = _
-      rw [hr0, hr1]
-      ring
+      rw [hr0, hr1, Int.zero_sub, Int.pow_succ, Int.mul_neg_one, Int.neg_mul]
 
 /-- **`r − d > R` cannot be relaxed to `r − d ≥ R`.** Take `R` to be the largest
 rung where `e` is non-zero, which is what `R_e` means. Then every cell with
@@ -174,7 +178,7 @@ theorem boundary_can_move {e : ℤ → ℤ} {R : ℤ} (he : ∀ s : ℤ, R < s �
     (r : ℤ) (d : ℕ) (hrd : r - (d : ℤ) = R) (hne : e R ≠ 0) :
     tableFrom e r d ≠ 0 := by
   rw [tableFrom_at_boundary he r d hrd]
-  exact mul_ne_zero (pow_ne_zero d (by norm_num)) hne
+  exact Int.mul_ne_zero (Int.pow_ne_zero (by decide)) hne
 
 /-- The same fact said about the two conventions rather than about `e`: at the
 boundary the cell genuinely differs. -/
@@ -183,7 +187,7 @@ theorem cell_ne_at_boundary {N e : ℤ → ℤ} {R : ℤ} (he : ∀ s : ℤ, R <
     tableFrom (fun x => N x - e x) r d ≠ tableFrom N r d := by
   rw [tableFrom_sub]
   intro h
-  exact boundary_can_move he r d hrd hne (by linarith [h])
+  exact boundary_can_move he r d hrd hne (by omega)
 
 /-! ## What the bench measured
 
@@ -274,14 +278,14 @@ applies and no computation is needed. -/
 theorem silence46_deep_cells_fixed (N : ℤ → ℤ) :
     tableFrom (fun x => N x - silence46_excess x) 8 3 = tableFrom N 8 3 ∧
       tableFrom (fun x => N x - silence46_excess x) 20 6 = tableFrom N 20 6 :=
-  ⟨cell_eq_of_seed_perturbation silence46_vanishes_above_three 8 3 (by norm_num),
-   cell_eq_of_seed_perturbation silence46_vanishes_above_three 20 6 (by norm_num)⟩
+  ⟨cell_eq_of_seed_perturbation silence46_vanishes_above_three 8 3 (by decide),
+   cell_eq_of_seed_perturbation silence46_vanishes_above_three 20 6 (by decide)⟩
 
 /-- And `(4,1)` is not protected, for the reason the theorem gives rather than
 by inspection: `4 − 1 = 3 = R_e`, so `boundary_can_move` fires. -/
 theorem silence46_cell_4_1_moves (N : ℤ → ℤ) :
     tableFrom (fun x => N x - silence46_excess x) 4 1 ≠ tableFrom N 4 1 :=
-  cell_ne_at_boundary silence46_vanishes_above_three 4 1 (by norm_num)
+  cell_ne_at_boundary silence46_vanishes_above_three 4 1 (by decide)
     silence46_alive_at_three
 
 /-! ### Pair 2 — an excess stopping at rung 2, the `R_e = 2` case
@@ -331,9 +335,9 @@ theorem emptied_protected_cells_fixed (N : ℤ → ℤ) :
     tableFrom (fun x => N x - emptied_excess x) 4 1 = tableFrom N 4 1 ∧
       tableFrom (fun x => N x - emptied_excess x) 8 3 = tableFrom N 8 3 ∧
         tableFrom (fun x => N x - emptied_excess x) 20 6 = tableFrom N 20 6 :=
-  ⟨cell_eq_of_seed_perturbation emptied_vanishes_above_two 4 1 (by norm_num),
-   cell_eq_of_seed_perturbation emptied_vanishes_above_two 8 3 (by norm_num),
-   cell_eq_of_seed_perturbation emptied_vanishes_above_two 20 6 (by norm_num)⟩
+  ⟨cell_eq_of_seed_perturbation emptied_vanishes_above_two 4 1 (by decide),
+   cell_eq_of_seed_perturbation emptied_vanishes_above_two 8 3 (by decide),
+   cell_eq_of_seed_perturbation emptied_vanishes_above_two 20 6 (by decide)⟩
 
 /-! ## What is NOT proved
 
@@ -361,7 +365,7 @@ depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
 
-/-- info: 'SeedPerturbation.tableFrom_zero' depends on axioms: [propext] -/
+/-- info: 'SeedPerturbation.tableFrom_zero' does not depend on any axioms -/
 #guard_msgs in
 #print axioms SeedPerturbation.tableFrom_zero
 
@@ -369,31 +373,31 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms SeedPerturbation.tableFrom_sub
 
-/-- info: 'SeedPerturbation.tableFrom_eq_zero_of_vanishing_above' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.tableFrom_eq_zero_of_vanishing_above' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms SeedPerturbation.tableFrom_eq_zero_of_vanishing_above
 
-/-- info: 'SeedPerturbation.cell_eq_of_seed_perturbation' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.cell_eq_of_seed_perturbation' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.cell_eq_of_seed_perturbation
 
-/-- info: 'SeedPerturbation.zero_stable_of_seed_perturbation' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.zero_stable_of_seed_perturbation' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.zero_stable_of_seed_perturbation
 
-/-- info: 'SeedPerturbation.zero_iff_of_seed_perturbation' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.zero_iff_of_seed_perturbation' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.zero_iff_of_seed_perturbation
 
-/-- info: 'SeedPerturbation.tableFrom_at_boundary' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.tableFrom_at_boundary' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.tableFrom_at_boundary
 
-/-- info: 'SeedPerturbation.boundary_can_move' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.boundary_can_move' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.boundary_can_move
 
-/-- info: 'SeedPerturbation.cell_ne_at_boundary' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.cell_ne_at_boundary' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.cell_ne_at_boundary
 
@@ -421,11 +425,11 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms SeedPerturbation.measured_silence46_matches_shift
 
-/-- info: 'SeedPerturbation.silence46_deep_cells_fixed' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.silence46_deep_cells_fixed' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.silence46_deep_cells_fixed
 
-/-- info: 'SeedPerturbation.silence46_cell_4_1_moves' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.silence46_cell_4_1_moves' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.silence46_cell_4_1_moves
 
@@ -437,7 +441,7 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms SeedPerturbation.measured_emptied_matches_shift
 
-/-- info: 'SeedPerturbation.emptied_protected_cells_fixed' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'SeedPerturbation.emptied_protected_cells_fixed' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms SeedPerturbation.emptied_protected_cells_fixed
 

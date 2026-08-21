@@ -50,9 +50,13 @@ table's support.
 STATUS: the statements below are proved outright, with no numerical input.
 The measured values at the end are inputs to a check, not to a proof.
 -/
-import Mathlib
 import Construction
-import EulerFactorChain
+
+-- Mathlib-free: Lean core only. `lean/BUILD.md` § Mathlib-free core has the
+-- rules. `omega` is fine (Quot.sound, not Classical.choice); `ring`, `grind`,
+-- `norm_num`, `linarith` are not — `grind` costs Classical.choice even here.
+local notation "ℤ" => Int
+local notation "ℕ" => Nat
 
 namespace PairIdentity
 
@@ -60,20 +64,12 @@ open Construction
 
 /-! ## The step, which is A1 at ρ = 1 -/
 
-/-- **A1 at `ρ = 1`.** `EulerFactorChain.symbol_of_backward_difference` says
-backward differencing the mode `b^(rρ)` multiplies it by `1 − b^(−ρ)`. At
-`ρ = 1` the multiplier is `1 − b⁻¹`. Stated here only to name the instance the
-rest of this file uses; it carries no content of its own. -/
-theorem symbol_at_one (b : ℝ) (hb : b ≠ 0) (r : ℂ) :
-    (b : ℂ) ^ (r * 1) - (b : ℂ) ^ ((r - 1) * 1)
-      = EulerFactorChain.sym b 1 * (b : ℂ) ^ (r * 1) :=
-  EulerFactorChain.symbol_of_backward_difference b hb 1 r
-
 /-- The same step inside ℤ, where the table lives: `(1 − b⁻¹)·b^(r) =
 (b−1)·b^(r−1)`. One backward difference of a geometric row multiplies it by
 `b − 1` and drops the exponent by one. -/
 theorem backward_difference_pow (b : ℤ) (r : ℕ) :
-    b ^ (r + 1) - b ^ r = (b - 1) * b ^ r := by ring
+    b ^ (r + 1) - b ^ r = (b - 1) * b ^ r := by
+  rw [Int.pow_succ, Int.sub_mul, Int.one_mul, Int.mul_comm b (b ^ r)]
 
 /-! ## A geometric row collapses
 
@@ -93,21 +89,27 @@ theorem tableFrom_of_geometric (b : ℤ) (G : ℤ → ℤ) (r : ℤ) (d : ℕ)
   induction d generalizing r with
   | zero =>
       show G r = (b - 1) ^ 0 * G (r - ((0 : ℕ) : ℤ))
-      simp
+      rw [Int.pow_zero, Int.one_mul, show ((0 : ℕ) : ℤ) = 0 from rfl, Int.sub_zero]
   | succ n ih =>
       have h1 : tableFrom G r n = (b - 1) ^ n * G (r - (n : ℤ)) :=
         ih r fun k hk => hG k (by omega)
       have h2 : tableFrom G (r - 1) n = (b - 1) ^ n * G (r - 1 - (n : ℤ)) := by
         refine ih (r - 1) fun k hk => ?_
         have hstep := hG (k + 1) (by omega)
-        have hcast : r - ((k + 1 : ℕ) : ℤ) = r - 1 - (k : ℤ) := by push_cast; ring
+        have hcast : r - ((k + 1 : ℕ) : ℤ) = r - 1 - (k : ℤ) := by
+          show r - ((k : ℤ) + 1) = r - 1 - (k : ℤ)
+          rw [Int.sub_sub]
+          exact congrArg (r - ·) (Int.add_comm (k : ℤ) 1)
         rwa [hcast] at hstep
       have h3 : G (r - (n : ℤ)) = b * G (r - (n : ℤ) - 1) := hG n (by omega)
-      have e2 : r - 1 - (n : ℤ) = r - (n : ℤ) - 1 := by ring
-      have e3 : r - ((n + 1 : ℕ) : ℤ) = r - (n : ℤ) - 1 := by push_cast; ring
+      have e2 : r - 1 - (n : ℤ) = r - (n : ℤ) - 1 := by
+        rw [Int.sub_sub, Int.sub_sub, Int.add_comm]
+      have e3 : r - ((n + 1 : ℕ) : ℤ) = r - (n : ℤ) - 1 := by
+        show r - ((n : ℤ) + 1) = r - (n : ℤ) - 1
+        rw [Int.sub_sub]
       show tableFrom G r n - tableFrom G (r - 1) n = _
-      rw [h1, h2, e2, h3, e3]
-      ring
+      rw [h1, h2, e2, h3, e3, Int.pow_succ, ← Int.mul_sub, Int.mul_assoc,
+          Int.sub_mul, Int.one_mul]
 
 /-! ## Only the window matters -/
 
@@ -153,16 +155,15 @@ theorem pair_identity (b : ℤ) (P C : ℤ → ℤ) (r : ℤ) (d e : ℕ)
         = b * ((b - 1) * b ^ (r - (k : ℤ) - 1 - 1).toNat)
     have hstep : (r - (k : ℤ) - 1).toNat = (r - (k : ℤ) - 1 - 1).toNat + 1 := by
       subst hr; omega
-    rw [hstep, pow_succ]
-    ring
+    rw [hstep, Int.pow_succ, Int.mul_comm b ((b - 1) * b ^ (r - (k : ℤ) - 1 - 1).toNat),
+        Int.mul_assoc]
   have hadd := tableFrom_add_window P C (fun x : ℤ => (b - 1) * b ^ (x - 1).toNat) r d hwin
   have hcollapse :=
     tableFrom_of_geometric b (fun x : ℤ => (b - 1) * b ^ (x - 1).toNat) r d hgeom
   have hbot : (r - (d : ℤ) - 1).toNat = e := by subst hr; omega
   rw [hadd, hcollapse]
   show (b - 1) ^ d * ((b - 1) * b ^ (r - (d : ℤ) - 1).toNat) = _
-  rw [hbot]
-  ring
+  rw [hbot, Int.pow_succ, Int.mul_assoc]
 
 /-- **I5, the pole.** Where the prime arm vanishes the composite arm carries the
 whole total — it has nowhere else to go. This is the identity read at a zero,
@@ -174,7 +175,7 @@ theorem composite_of_prime_zero (b : ℤ) (P C : ℤ → ℤ) (r : ℤ) (d e : �
     (hzero : tableFrom P r d = 0) :
     tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e := by
   have h := pair_identity b P C r d e hr hpair
-  rw [hzero, zero_add] at h
+  rw [hzero, Int.zero_add] at h
   exact h
 
 /-! ## Base two is the only base whose total is a bare power
@@ -189,21 +190,29 @@ theorem coeff_eq_one_iff_base_two {b : ℤ} (hb : 2 ≤ b) (d : ℕ) :
     (b - 1) ^ (d + 1) = 1 ↔ b = 2 := by
   constructor
   · intro h
-    by_contra hne
-    have h1 : (1 : ℤ) < b - 1 := by omega
+    -- `by_contra` is Mathlib; the case split is the same argument in core.
+    match (by omega : (1 : ℤ) < b - 1 ∨ b = 2) with
+    | Or.inr hb2 => exact hb2
+    | Or.inl h1 =>
     have key : ∀ n : ℕ, (1 : ℤ) < (b - 1) ^ (n + 1) := by
       intro n
       induction n with
-      | zero => simpa using h1
+      | zero =>
+          show (1 : ℤ) < (b - 1) ^ (0 + 1)
+          rw [Int.pow_succ, Int.pow_zero, Int.one_mul]
+          exact h1
       | succ m ih =>
           calc (1 : ℤ) < (b - 1) ^ (m + 1) := ih
-            _ < (b - 1) ^ (m + 1) * (b - 1) := by nlinarith [ih, h1]
-            _ = (b - 1) ^ (m + 1 + 1) := (pow_succ _ _).symm
+            _ < (b - 1) ^ (m + 1) * (b - 1) := by
+                  have ha : (0 : ℤ) < (b - 1) ^ (m + 1) := by omega
+                  have hm := Int.mul_lt_mul_of_pos_left h1 ha
+                  rwa [Int.mul_one] at hm
+            _ = (b - 1) ^ (m + 1 + 1) := (Int.pow_succ _ _).symm
     have := key d
     omega
   · intro h
     subst h
-    norm_num
+    rw [show ((2 : ℤ) - 1) = 1 from rfl, Int.one_pow]
 
 /-- **The corollary, in the identity's own terms.** The cell total is a bare
 power of the base — no `(b−1)` factor anywhere — exactly in base two. So base
@@ -211,23 +220,24 @@ two is the only grid on which a vanished prime arm leaves the composite arm
 sitting on a power of the base itself. -/
 theorem total_eq_pow_iff_base_two {b : ℤ} (hb : 2 ≤ b) (d e : ℕ) :
     (b - 1) ^ (d + 1) * b ^ e = b ^ e ↔ b = 2 := by
-  have hbpos : (0 : ℤ) < b ^ e := pow_pos (by omega) e
+  have hbpos : (0 : ℤ) < b ^ e := Int.pow_pos (by omega)
   constructor
   · intro h
-    have h' : (b - 1) ^ (d + 1) * b ^ e = 1 * b ^ e := by rw [one_mul]; exact h
-    exact (coeff_eq_one_iff_base_two hb d).mp (mul_right_cancel₀ (ne_of_gt hbpos) h')
+    have h' : (b - 1) ^ (d + 1) * b ^ e = 1 * b ^ e := by rw [Int.one_mul]; exact h
+    exact (coeff_eq_one_iff_base_two hb d).mp
+      (Int.eq_of_mul_eq_mul_right (Int.ne_of_gt hbpos) h')
   · intro h
     subst h
-    norm_num
+    rw [show ((2 : ℤ) - 1) = 1 from rfl, Int.one_pow, Int.one_mul]
 
 /-- Base three does carry the factor: the total at `(r,d)` is
 `2^(d+1)·3^(r−1−d)`, never a bare power of three. -/
 theorem base_three_carries_factor (d e : ℕ) :
-    ((3 : ℤ) - 1) ^ (d + 1) * 3 ^ e = 2 ^ (d + 1) * 3 ^ e := by norm_num
+    ((3 : ℤ) - 1) ^ (d + 1) * 3 ^ e = 2 ^ (d + 1) * 3 ^ e := rfl
 
 /-- Base four likewise: `3^(d+1)·4^(r−1−d)`. -/
 theorem base_four_carries_factor (d e : ℕ) :
-    ((4 : ℤ) - 1) ^ (d + 1) * 4 ^ e = 3 ^ (d + 1) * 4 ^ e := by norm_num
+    ((4 : ℤ) - 1) ^ (d + 1) * 4 ^ e = 3 ^ (d + 1) * 4 ^ e := rfl
 
 /-! ## The diagonal is the level set, and only in base two
 
@@ -261,16 +271,22 @@ theorem total_const_on_diagonal {b : ℤ} (hb : 2 ≤ b) (e : ℕ) :
       ↔ b = 2 := by
   constructor
   · intro h
-    have hbpos : (0 : ℤ) < b ^ e := pow_pos (by omega) e
+    have hbpos : (0 : ℤ) < b ^ e := Int.pow_pos (by omega)
     have hc : (b - 1) ^ (0 + 1) = (b - 1) ^ (1 + 1) :=
-      mul_right_cancel₀ (ne_of_gt hbpos) (h 0 1)
-    have hfac : (b - 1) * (b - 2) = 0 := by ring_nf; ring_nf at hc; linarith [hc]
-    rcases mul_eq_zero.mp hfac with h1 | h2
-    · omega
-    · omega
+      Int.eq_of_mul_eq_mul_right (Int.ne_of_gt hbpos) (h 0 1)
+    have hc1 : b - 1 = (b - 1) * (b - 1) := by
+      rw [Int.pow_succ, Int.pow_succ, Int.pow_succ, Int.pow_zero, Int.one_mul] at hc
+      exact hc
+    have hfac : (b - 1) * (b - 2) = 0 := by
+      rw [show b - 2 = (b - 1) - 1 from (Int.sub_sub b 1 1).symm, Int.mul_sub,
+          Int.mul_one, ← hc1, Int.sub_self]
+    -- `rcases` is Mathlib; `match` is core.
+    match Int.mul_eq_zero.mp hfac with
+    | Or.inl h1 => omega
+    | Or.inr h2 => omega
   · intro h d₁ d₂
     subst h
-    norm_num
+    rw [show ((2 : ℤ) - 1) = 1 from rfl, Int.one_pow, Int.one_pow]
 
 /-! ## What the bench measured
 
@@ -308,9 +324,9 @@ theorem composite_at_zero_20_6 (P C : ℤ → ℤ)
     (hpair : ∀ k : ℕ, k ≤ 6 → P (20 - k) + C (20 - k) = ((2 : ℤ) - 1) * 2 ^ (13 + (6 - k)))
     (hzero : tableFrom P 20 6 = 0) :
     tableFrom C 20 6 = 8192 := by
-  have h := composite_of_prime_zero 2 P C 20 6 13 (by norm_num) hpair hzero
+  have h := composite_of_prime_zero 2 P C 20 6 13 (by decide) hpair hzero
   rw [h]
-  norm_num
+  decide
 
 /-! ## What is NOT proved
 
@@ -332,11 +348,7 @@ depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
 
-/-- info: 'PairIdentity.symbol_at_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms PairIdentity.symbol_at_one
-
-/-- info: 'PairIdentity.backward_difference_pow' depends on axioms: [propext, Quot.sound] -/
+/-- info: 'PairIdentity.backward_difference_pow' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms PairIdentity.backward_difference_pow
 
@@ -357,19 +369,19 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms PairIdentity.composite_of_prime_zero
 
-/-- info: 'PairIdentity.coeff_eq_one_iff_base_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'PairIdentity.coeff_eq_one_iff_base_two' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms PairIdentity.coeff_eq_one_iff_base_two
 
-/-- info: 'PairIdentity.total_eq_pow_iff_base_two' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'PairIdentity.total_eq_pow_iff_base_two' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms PairIdentity.total_eq_pow_iff_base_two
 
-/-- info: 'PairIdentity.base_three_carries_factor' depends on axioms: [propext] -/
+/-- info: 'PairIdentity.base_three_carries_factor' does not depend on any axioms -/
 #guard_msgs in
 #print axioms PairIdentity.base_three_carries_factor
 
-/-- info: 'PairIdentity.base_four_carries_factor' depends on axioms: [propext] -/
+/-- info: 'PairIdentity.base_four_carries_factor' does not depend on any axioms -/
 #guard_msgs in
 #print axioms PairIdentity.base_four_carries_factor
 
@@ -377,11 +389,11 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms PairIdentity.exponent_const_on_diagonal
 
-/-- info: 'PairIdentity.total_const_on_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'PairIdentity.total_const_on_diagonal' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
 #print axioms PairIdentity.total_const_on_diagonal
 
-/-- info: 'PairIdentity.measured_composite_matches_pair_identity' depends on axioms: [propext] -/
+/-- info: 'PairIdentity.measured_composite_matches_pair_identity' does not depend on any axioms -/
 #guard_msgs in
 #print axioms PairIdentity.measured_composite_matches_pair_identity
 

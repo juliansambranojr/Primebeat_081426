@@ -96,6 +96,16 @@ theorem diagonal_over_column_at_half {b : ℝ} (hb : 0 ≤ b) :
   rw [Real.sqrt_eq_rpow, Complex.ofReal_cpow hb]
   norm_num
 
+/-- **A1 at `ρ = 1`.** Moved here from `PairIdentity` when that module went
+Mathlib-free; it is the only ℂ-valued statement that file had. **A1 at `ρ = 1`.** `symbol_of_backward_difference` says
+backward differencing the mode `b^(rρ)` multiplies it by `1 − b^(−ρ)`. At
+`ρ = 1` the multiplier is `1 − b⁻¹`. Stated here only to name the instance the
+rest of this file uses; it carries no content of its own. -/
+theorem symbol_at_one (b : ℝ) (hb : b ≠ 0) (r : ℂ) :
+    (b : ℂ) ^ (r * 1) - (b : ℂ) ^ ((r - 1) * 1)
+      = sym b 1 * (b : ℂ) ^ (r * 1) :=
+  symbol_of_backward_difference b hb 1 r
+
 /-- **A2.** Euler's product, 1737, in the form Mathlib proves it: over *all*
 primes at once, and only in the half-plane where the product converges. The
 hypothesis `1 < s.re` is not decoration — it is the honest content of the
@@ -254,6 +264,10 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'EulerFactorChain.diagonal_over_column_at_half' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms EulerFactorChain.diagonal_over_column_at_half
+
+/-- info: 'EulerFactorChain.symbol_at_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.symbol_at_one
 
 /-- info: 'EulerFactorChain.euler_product_riemannZeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

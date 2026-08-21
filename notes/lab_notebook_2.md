@@ -16,6 +16,188 @@ Julian's call.
 
 ---
 
+## 2026-08-20 — Entry 67 — the 12 oversized NOTEPAD lines truncated, and the gate baseline re-cut to 2
+type: instrument-fix
+refs: 63, 64, 65
+
+Julian approved. `check_refs.py` had flagged 12 NOTEPAD lines over the 400-char
+limit, 479 to 2944 chars against a median of 132. Ten cited an entry holding the
+same text verbatim and could be shortened outright. **Two cited nothing**, so
+truncating them would have destroyed the only copy — those were backfilled first
+as entries 64 and 65, then shortened to point at them.
+
+All 12 now carry `entry N:`. Longest thread line is 357 chars, under the limit.
+No status transitions: every one is still `[open]`.
+
+**The gate went from 14 broken references to 2**, and
+`utilities/refs_baseline.txt` was re-cut to match. What remains is the two
+declared-PENDING references in `papers/The-Composite-Arm.md` — its own header
+lists them as conditions of becoming canonical, and they close when the t25
+composite-arm script is written. (Naming that file here would itself be a
+broken reference — the checker caught exactly that on the first draft of this
+entry.)
+
+Prior results comparable: no reference resolved differently, `check_values.py`
+unchanged at 83 confirmed / 0 mismatches, `lake build` clean at 8037 jobs.
+
+---
+
+## 2026-08-20 — Entry 66 — SeedPerturbation and PairIdentity off Mathlib; the floor is 60, not 0
+type: formalization
+refs: 59, 60, 61
+
+Continuation of entry 59, which did `Construction`. Same method, two more
+modules, plus the measurement that bounds how far this can go.
+
+**Result.** `Classical.choice` fell 84 → 71 across the tree.
+
+```text
+                    before   after
+SeedPerturbation      10        0     20 theorems, no Mathlib surface at all
+PairIdentity           4        0     symbol_at_one moved out; see below
+```
+
+`SeedPerturbation.tableFrom_eq_zero_of_vanishing_above` — the gating theorem for
+the seed protections — is now `[propext]`, from all three. Entry 59 predicted
+this file would port cleanly and it did. It also builds in **340 ms** instead of
+~10 s, because there is no Mathlib to load.
+
+**`symbol_at_one` moved to `EulerFactorChain`.** It was `PairIdentity`'s only
+ℂ-valued statement and is a restatement of
+`EulerFactorChain.symbol_of_backward_difference` at `ρ = 1`, so it belongs where
+`sym` lives. Checked first that no paper cites it — only entry 45 does, by bare
+name, which still resolves.
+
+**`grind` is not a shortcut, and this is the load-bearing measurement.** Lean
+core ships `grind`, and it discharges the `ring`-shaped ℤ goals that `ring`
+was doing. Measured in a Mathlib-free file: **`grind` costs
+`[propext, Classical.choice, Quot.sound]`** — all three, with no Mathlib
+present. So it defeats the entire purpose, and every `ring` had to be replaced
+by a hand chain of core `Int.` lemmas.
+
+Also Mathlib-only, and each needing a core rewrite: `by_contra` (replaced by a
+`match` on `(by omega : 1 < b - 1 ∨ b = 2)`), `rcases` (`match`), `ring_nf`,
+`linarith`, `nlinarith` (replaced by `Int.mul_lt_mul_of_pos_left` plus
+`Int.mul_one`), `norm_num`, `push_cast`, `pow_pos`, `mul_right_cancel₀`,
+`mul_eq_zero`. `omega` stays — measured at `[propext, Quot.sound]`, no
+`Classical.choice`.
+
+**The floor is 60 of 119, and it is not a defect.** Of the 71 remaining, 60
+mention ℝ or ℂ, and Mathlib constructs ℝ with `Classical.choice`, so no proof
+style removes it:
+
+```text
+Chain 16 · EulerFactorChain 16 · Measured 7 · Covering 6 · Crossover 6
+GeneratorPeak 6 · Superposition 3            = 60, permanent
+Zeros 11                                     = the only portable remainder
+```
+
+**`Zeros` is mixed and was not attempted.** Of its 11: six are the `stencil`
+theorems, which need `Finset.range` replaced by a fold; four
+(`factorization_proportional`, `primeFactors_eq_of_meets`, `base_of_meets_two`,
+`window_exclusive_of_prime_exponent`) rest on Mathlib's prime-factorization
+theory and are not portable at any reasonable cost; and one is entry 60's
+`tableFrom_eq_stencil`, which took the `fwdDiff` bridge precisely because the
+direct induction was harder. So the realistic floor is **64**, not 60, unless
+`Zeros` is split. That is an architectural call and is Julian's.
+
+Build clean at 8037 jobs, 119 theorems, 119 pins, parity in all 11 modules.
+
+---
+
+## 2026-08-19 — Entry 65 — figures/coverage.png had no script either; t15 reconstructs it, and finds one transcription slip
+type: provenance
+refs: 64
+
+Backfilled 2026-08-20 from the NOTEPAD line that held this record, so the line
+could be shortened without losing its only copy. Same situation as entry 64 and
+recorded separately because `coverage.png` is **not** among that entry's six.
+
+`figures/coverage.png` was committed at `3da2ee8` with **no script** — its
+analysis was inline too. Reconstructed as
+`analysis/2026-08-19_table_structure/scripts/t15_cell_coverage.py`, which
+**postdates the result it reproduces**, exactly as t9–t14 do.
+
+**Reproduced.** Every per-base mean, zero-mean and z, to printed precision.
+
+**One disagreement, and it is a transcription slip rather than a computational
+difference.** Base 6's per-zero counts are `[0, 1, 2, 2]`, not the reported
+`[0, 1, 1, 3]` — and `[0, 1, 1, 3]` is **base 7's** list. Both sum to 5, so the
+mean 1.25 and the z −1.04 were unaffected, which is why it went unnoticed.
+
+**The kill reproduces.** Maximum distinct coverage values at any fixed depth is
+2, across all 224 depth-base pairs, because the window's width in b-rungs is
+`(d+1)·ln2/ln b` — a function of `d` ALONE.
+
+**Corroboration.** The zeros' mean depth has z = −0.99, the same ≈ −1.0 that the
+coverage z gives at every base. So coverage's z **is** the depth z.
+
+---
+
+## 2026-08-19 — Entry 64 — six analyses ran inline with no script saved; t9–t14 reconstruct them, and two do not fully reproduce
+type: provenance
+refs:
+
+Backfilled 2026-08-20 from the NOTEPAD line that held this record, so the line
+could be shortened without losing its only copy. Nothing here is new work; it is
+the same text, given an entry to live in.
+
+Six analyses reported on 2026-08-19 were run **inline as heredoc commands with
+no script saved**, so the results predate any reproducible instrument.
+Reconstructed as `analysis/2026-08-19_table_structure/scripts/`
+`t9_subthreshold_ladder.py`, `t10_blocksum_lowpass.py`,
+`t11_decimation_alias.py`, `t12_chain_vs_orphan.py`, `t13_signflip_crossover.py`,
+`t14_s_matched_control.py`, and re-run.
+
+**The scripts postdate the results they reproduce** — mtimes 12:23–12:25 against
+a session that ended at 12:09. They are reconstructions from the reported
+numbers, not the code that produced them.
+
+**Ordering evidence**, from file mtimes: 11:01 `shape32.py`, 11:35
+`t5_2d.py`/`spectrum2d.png`, 11:41 `t6_multirate.py`/`multirate.png`, 12:03
+`coverage.png` (its analysis was inline too, no script survived, and it is NOT
+among the six — see entry 65), 12:06 `t7_phase.py`/`phase.png`, 12:09
+`t8_subzeros.py`. The six inline analyses fell between those marks and their
+exact times are **not recoverable**; the interleaving above is the only
+chronology there is.
+
+**What reproduced.**
+
+* **t10** exact — base 4 = dyadic in pairs True, base 8 in triples True,
+  Dirichlet 0.1853 / 0.2876 / 0.1725 at ω 2.7689, four zeros at exactly
+  `(2,1) (4,1) (8,3) (20,6)` for merge k=1 and 0 for k=2..6 at 2^48.
+* **t11** exact — `fold(k·parent alias) = direct alias` to ≤ 1.8e−15 for bases
+  4/8/16/9/27 at 0.7453 / 2.0236 / 1.4907 / 0.3588 / 2.6035; base 9 at 0.86
+  cycles.
+* **t12** exact — 0.5197–0.5346 across bases 2–9 at 2^48, orphan mean 0.5242,
+  chain mean 0.5321, where "chain" is the three bases WITH a parent (4, 8, 9),
+  not the five in any chain; 2 and 3 are roots at 0.5253.
+* **t13** exact — dyadic flip crossover d=7 matching t2's spectral 7, triadic 12
+  against spectral 10, bases 4–9 flat 0.00 at every depth, invariant for
+  MIN_ROW 3..8.
+* **t14** within Monte Carlo error — observed 26.744 exact, matched null
+  25.724±0.744 against a reported 25.731±0.747, i.e. 1.3 MC standard errors;
+  z +1.37 vs +1.36, p 0.915 vs 0.909. Its S recomputation by the Pascal
+  recurrence matched `results/sub_integer_base_scan.json` at all 121 zeros, 0
+  mismatches.
+
+**What did not.** t9's *structure* reproduced exactly — rung counts
+142/186/233/248/286/317/358, Nyquist 17.23/22.48/28.28/30.10/34.62/38.51/43.44,
+and every base recovering exactly the zeros beneath its own ceiling — **but 6 of
+the 7 recovered γ values differ in the third decimal**: 21.021 vs 21.022, 25.018
+vs 25.016, 30.448 vs 30.449, 32.927 vs 32.924, 37.644 vs 37.645, 40.934 vs
+40.933; only 14.141 identical. Differences reach 0.003 against a periodogram
+resolution element of 0.243 rad, so agreement is well inside resolution — but
+the exact digits are **not** reproduced, and the inline original must have
+differed in some detail. The grid was tested at four spacings and all give the
+same peaks to 0.003, so it is not the grid.
+
+**Also unrecovered.** t9 finds γ₈ = 43.3271 beneath base 1.0750's Nyquist 43.44,
+with its peak at 43.565 — ABOVE the ceiling — which the reported table did not
+list. Nothing was tuned to close any gap.
+
+---
+
 ## 2026-08-20 — Entry 63 — six NOTEPAD lines were inside the header's own format example; the trap removed and the checker taught to see it
 type: instrument-fix
 refs: 53, 54, 55, 56, 57, 58
