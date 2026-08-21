@@ -1,0 +1,273 @@
+{
+  "schema_version": "1",
+  "script": "O50_deep_ladder_spectrum.py",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "xmax": 100000000000,
+    "arms": [
+      "replicate_1.1",
+      "fine_1.002",
+      "dyadic_control"
+    ],
+    "dps": 30,
+    "pi_backend": "primecountpy"
+  },
+  "constants": {
+    "n_zeros_loaded": 600
+  },
+  "rows": [
+    {
+      "arm": "replicate_1.1",
+      "ratio": 1.1,
+      "x0": 1000.0,
+      "n_blocks": 193,
+      "separation": {
+        "n_zeros": 6,
+        "n_midpoints": 5,
+        "amp_at_zeros_median": 8.324202586395613,
+        "amp_at_zeros_min": 5.514068431448064,
+        "amp_between_median": 1.7362442289218616,
+        "amp_between_max": 5.173377623292336,
+        "median_ratio": 4.794373077089857,
+        "n_zeros_below_max_midpoint": 0,
+        "complete_separation": true
+      },
+      "total_primes": 4017381387,
+      "nyquist_gamma": 32.96177449291975,
+      "resolution_dgamma": 0.3410940884604603,
+      "block_min": 13,
+      "block_max": 350781232,
+      "peaks": [
+        {
+          "gamma": 14.150000000000013,
+          "P_over_median": 40.994886807805564,
+          "nearest_zero": 14.134725141734695,
+          "dist": 0.015274858265318159
+        },
+        {
+          "gamma": 20.980000000000018,
+          "P_over_median": 35.98086068903364,
+          "nearest_zero": 21.022039638771556,
+          "dist": 0.042039638771537824
+        },
+        {
+          "gamma": 25.030000000000022,
+          "P_over_median": 62.164482401811654,
+          "nearest_zero": 25.01085758014569,
+          "dist": 0.01914241985433307
+        },
+        {
+          "gamma": 28.240000000000023,
+          "P_over_median": 24.98322627040734,
+          "nearest_zero": 30.424876125859512,
+          "dist": 2.184876125859489
+        },
+        {
+          "gamma": 29.740000000000027,
+          "P_over_median": 8.061453704028455,
+          "nearest_zero": 30.424876125859512,
+          "dist": 0.6848761258594855
+        },
+        {
+          "gamma": 30.510000000000026,
+          "P_over_median": 13.819114841355969,
+          "nearest_zero": 30.424876125859512,
+          "dist": 0.08512387414051403
+        },
+        {
+          "gamma": 32.96000000000003,
+          "P_over_median": 22.076804408355315,
+          "nearest_zero": 32.93506158773919,
+          "dist": 0.024938412260837595
+        },
+        {
+          "gamma": 35.41000000000003,
+          "P_over_median": 13.820899996144297,
+          "nearest_zero": 37.586178158825675,
+          "dist": 2.1761781588256426
+        },
+        {
+          "gamma": 36.180000000000035,
+          "P_over_median": 8.05994630569539,
+          "nearest_zero": 37.586178158825675,
+          "dist": 1.4061781588256395
+        },
+        {
+          "gamma": 37.680000000000035,
+          "P_over_median": 24.98536543942469,
+          "nearest_zero": 37.586178158825675,
+          "dist": 0.09382184117436054
+        }
+      ]
+    },
+    {
+      "arm": "fine_1.002",
+      "ratio": 1.002,
+      "x0": 100000.0,
+      "n_blocks": 6914,
+      "separation": {
+        "n_zeros": 38,
+        "n_midpoints": 37,
+        "amp_at_zeros_median": 6.905247011406384,
+        "amp_at_zeros_min": 6.478032190900559,
+        "amp_between_median": 0.1889750837721318,
+        "amp_between_max": 2.340618535332758,
+        "median_ratio": 36.54051567842037,
+        "n_zeros_below_max_midpoint": 0,
+        "complete_separation": true
+      },
+      "total_primes": 4112835107,
+      "nyquist_gamma": 1572.3666000458509,
+      "resolution_dgamma": 0.45479211794728047,
+      "block_min": 13,
+      "block_max": 7870166,
+      "peaks": [
+        {
+          "gamma": 40.92000000000004,
+          "P_over_median": 157.44534837027723,
+          "nearest_zero": 40.9187190121475,
+          "dist": 0.0012809878525388285
+        },
+        {
+          "gamma": 52.97000000000005,
+          "P_over_median": 155.21411651119877,
+          "nearest_zero": 52.970321477714464,
+          "dist": 0.0003214777144151526
+        },
+        {
+          "gamma": 56.45000000000005,
+          "P_over_median": 155.9712720619011,
+          "nearest_zero": 56.44624769706339,
+          "dist": 0.003752302936661067
+        },
+        {
+          "gamma": 60.84000000000005,
+          "P_over_median": 152.9127640773411,
+          "nearest_zero": 60.83177852460981,
+          "dist": 0.008221475390243427
+        },
+        {
+          "gamma": 82.90000000000008,
+          "P_over_median": 153.07772570897492,
+          "nearest_zero": 82.91038085408603,
+          "dist": 0.010380854085951796
+        },
+        {
+          "gamma": 87.41000000000008,
+          "P_over_median": 156.95798751707636,
+          "nearest_zero": 87.42527461312523,
+          "dist": 0.015274613125143333
+        },
+        {
+          "gamma": 95.85000000000008,
+          "P_over_median": 164.6563010126996,
+          "nearest_zero": 95.87063422824531,
+          "dist": 0.020634228245228314
+        },
+        {
+          "gamma": 98.82000000000009,
+          "P_over_median": 157.96875996447642,
+          "nearest_zero": 98.83119421819369,
+          "dist": 0.011194218193594452
+        },
+        {
+          "gamma": 107.1300000000001,
+          "P_over_median": 163.0341759959043,
+          "nearest_zero": 107.1686111842764,
+          "dist": 0.03861118427630572
+        },
+        {
+          "gamma": 116.2300000000001,
+          "P_over_median": 158.17548537384175,
+          "nearest_zero": 116.22668032085755,
+          "dist": 0.003319679142549603
+        }
+      ]
+    },
+    {
+      "arm": "dyadic_control",
+      "ratio": 2.0,
+      "x0": 2.0,
+      "n_blocks": 35,
+      "separation": {
+        "n_zeros": 6,
+        "n_midpoints": 5,
+        "amp_at_zeros_median": 1.5906218074160776,
+        "amp_at_zeros_min": 0.5328654900192169,
+        "amp_between_median": 0.3009258054655057,
+        "amp_between_max": 2.0271989337737737,
+        "median_ratio": 5.285760737453294,
+        "n_zeros_below_max_midpoint": 3,
+        "complete_separation": false
+      },
+      "total_primes": 2874398514,
+      "nyquist_gamma": 4.532360141827194,
+      "resolution_dgamma": 0.2550481688029585,
+      "block_min": 1,
+      "block_max": 1394192236,
+      "peaks": [
+        {
+          "gamma": 3.980000000000003,
+          "P_over_median": 12.526739321615104,
+          "nearest_zero": 14.134725141734695,
+          "dist": 10.15472514173469
+        },
+        {
+          "gamma": 5.080000000000004,
+          "P_over_median": 12.529477029926975,
+          "nearest_zero": 14.134725141734695,
+          "dist": 9.054725141734691
+        },
+        {
+          "gamma": 12.460000000000012,
+          "P_over_median": 12.34898317234627,
+          "nearest_zero": 14.134725141734695,
+          "dist": 1.6747251417346831
+        },
+        {
+          "gamma": 13.050000000000011,
+          "P_over_median": 12.529214684084062,
+          "nearest_zero": 14.134725141734695,
+          "dist": 1.0847251417346833
+        },
+        {
+          "gamma": 14.150000000000013,
+          "P_over_median": 12.52582773760963,
+          "nearest_zero": 14.134725141734695,
+          "dist": 0.015274858265318159
+        },
+        {
+          "gamma": 22.11000000000002,
+          "P_over_median": 12.527526460610737,
+          "nearest_zero": 21.022039638771556,
+          "dist": 1.0879603612284647
+        },
+        {
+          "gamma": 23.21000000000002,
+          "P_over_median": 12.529615089807539,
+          "nearest_zero": 25.01085758014569,
+          "dist": 1.8008575801456708
+        },
+        {
+          "gamma": 30.59000000000003,
+          "P_over_median": 12.349099563633654,
+          "nearest_zero": 30.424876125859512,
+          "dist": 0.16512387414051588
+        },
+        {
+          "gamma": 31.180000000000028,
+          "P_over_median": 12.528828091618367,
+          "nearest_zero": 30.424876125859512,
+          "dist": 0.7551238741405157
+        },
+        {
+          "gamma": 32.28000000000003,
+          "P_over_median": 12.524791710351783,
+          "nearest_zero": 32.93506158773919,
+          "dist": 0.6550615877391621
+        }
+      ]
+    }
+  ]
+}

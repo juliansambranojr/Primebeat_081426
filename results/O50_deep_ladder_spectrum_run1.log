@@ -1,0 +1,59 @@
+O50 — deep ladder spectrum.  EXPLORATORY, no prereg, no verdict.
+xmax = 1e+11   pi(xmax) = 4,118,054,813
+O17 for comparison: 125 blocks, 8,407,584 primes, xmax 1.5e8
+
+--- replicate_1.1:  ratio 1.1  x0 1000  193 blocks  4,017,381,387 primes
+    Nyquist gamma 33.0   resolution dgamma 0.341   block size 13..350,781,232
+    SEPARATION at 6 zeros vs 5 midpoints:
+      at zeros   median 8.324  min 5.514
+      between    median 1.736  max 5.173
+      ratio 4.8x   complete separation: True   (0 of 6 zeros below the max midpoint)
+        gamma  P/median  nearest zeta zero   dist
+       14.150     40.99            14.1347  0.0153  <--
+       20.980     35.98            21.0220  0.0420  <--
+       25.030     62.16            25.0109  0.0191  <--
+       28.240     24.98            30.4249  2.1849
+       29.740      8.06            30.4249  0.6849
+       30.510     13.82            30.4249  0.0851  <--
+       32.960     22.08            32.9351  0.0249  <--
+       35.410     13.82            37.5862  2.1762
+       36.180      8.06            37.5862  1.4062
+       37.680     24.99            37.5862  0.0938  <--
+
+--- fine_1.002:  ratio 1.002  x0 100000  6914 blocks  4,112,835,107 primes
+    Nyquist gamma 1572.4   resolution dgamma 0.455   block size 13..7,870,166
+    SEPARATION at 38 zeros vs 37 midpoints:
+      at zeros   median 6.905  min 6.478
+      between    median 0.189  max 2.341
+      ratio 36.5x   complete separation: True   (0 of 38 zeros below the max midpoint)
+        gamma  P/median  nearest zeta zero   dist
+       40.920    157.45            40.9187  0.0013  <--
+       52.970    155.21            52.9703  0.0003  <--
+       56.450    155.97            56.4462  0.0038  <--
+       60.840    152.91            60.8318  0.0082  <--
+       82.900    153.08            82.9104  0.0104  <--
+       87.410    156.96            87.4253  0.0153  <--
+       95.850    164.66            95.8706  0.0206  <--
+       98.820    157.97            98.8312  0.0112  <--
+      107.130    163.03           107.1686  0.0386  <--
+      116.230    158.18           116.2267  0.0033  <--
+
+--- dyadic_control:  ratio 2.0  x0 2  35 blocks  2,874,398,514 primes
+    Nyquist gamma 4.5   resolution dgamma 0.255   block size 1..1,394,192,236
+    SEPARATION at 6 zeros vs 5 midpoints:
+      at zeros   median 1.591  min 0.533
+      between    median 0.301  max 2.027
+      ratio 5.3x   complete separation: False   (3 of 6 zeros below the max midpoint)
+        gamma  P/median  nearest zeta zero   dist
+        3.980     12.53            14.1347  10.1547
+        5.080     12.53            14.1347  9.0547
+       12.460     12.35            14.1347  1.6747
+       13.050     12.53            14.1347  1.0847
+       14.150     12.53            14.1347  0.0153  <--
+       22.110     12.53            21.0220  1.0880
+       23.210     12.53            25.0109  1.8009
+       30.590     12.35            30.4249  0.1651  <--
+       31.180     12.53            30.4249  0.7551
+       32.280     12.52            32.9351  0.6551
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/deep_ladder_spectrum.json

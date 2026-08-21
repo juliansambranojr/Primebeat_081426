@@ -16,6 +16,82 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 79 — O50: 38 zeta zeros recovered with complete separation, and the dyadic control still fails
+type: run
+refs: 17, 75, 76, 78
+
+**Run.** `O50_deep_ladder_spectrum.py`, no flags, **EXPLORATORY — no prereg, no
+verdict**. `results/deep_ladder_spectrum.json` +
+`results/O50_deep_ladder_spectrum_run1.log`. Completed, did not error.
+
+**Why.** Entries 75/76 established that depth is the wrong axis — the gain
+saturates at the C2 ceiling by `d = 1` or `2`, so differencing destroys mode
+identity immediately. Every success on this bench probed at **depth 0** and
+varied the ladder: O17, O18, O34/O35's 94%. And `CONTEXT.md:250` names the limit
+that stopped O17 — *"over 8.4M primes there are only ~16 disjoint blocks however
+the ladder is sampled."* **That is a sieve limit, not a mathematical one.** O17
+sieves with numpy; primecount evaluates `π(10^11)` in 4 ms.
+
+The statistic is unchanged from O17. Only `xmax` and the `π` backend differ.
+
+**Result.**
+
+```text
+arm              ratio      x0   blocks       primes   zeros  separation  ratio
+replicate_1.1      1.1    1000      193  4.02e9           6   COMPLETE     4.8x
+fine_1.002       1.002     1e5     6914  4.11e9          38   COMPLETE    36.5x
+dyadic_control     2.0       2       35  2.87e9           6   FAILS        5.3x
+```
+
+**The fine arm separates 38 zeta zeros completely:**
+
+```text
+amplitude AT the 38 zeros    median 6.905   min 6.478
+amplitude BETWEEN them       median 0.189   max 2.341
+                             0 of 38 zeros below the largest midpoint
+```
+
+Every zero is above every midpoint. O17 found **three** (γ₁, γ₂, γ₃) on 125
+blocks over 8.41e6 primes; this finds **38** on 6914 blocks over 4.11e9, and
+`replicate_1.1` — O17's own ladder at the new ceiling — goes from 3 to 6.
+
+**The dyadic control still fails**, 3 of 6 zeros below the max midpoint, which is
+O17's finding reproduced at 340× the primes. Its Nyquist is 4.5, so γ₁ at 14.13
+is aliased and cannot be resolved however many primes are thrown at it.
+
+**A false start worth recording, because I nearly threw the result away.** The
+top-ten peak table looked suspicious for two reasons: every peak had nearly the
+same height, and the fine arm appeared to *miss* γ₁, γ₂, γ₃ while finding γ₃₇.
+I read the flat amplitude as fatal, on the grounds that the explicit formula's
+`x^ρ/ρ` predicts a `1/γ` falloff.
+
+**That was wrong.** For a narrow block the mode contributes `x^ρ(r^ρ − 1)/ρ`,
+and `(r^ρ − 1)/ρ → log r` as `|ρ log r| → 0`. The `1/γ` cancels. **Flat amplitude
+in γ is exactly what a fine geometric ladder must give**, and its presence is
+evidence for the reading rather than against it. The apparent "missing" low
+zeros were an artifact of ranking by peak height when the spectrum is flat: the
+top ten were ten zeros among thirty-eight, chosen arbitrarily.
+
+The separation test replaced the peak table as the primary statistic for that
+reason — a top-ten list is selection, a fixed comparison of zeros against exact
+midpoints is not.
+
+**What this is.** A measurement, at 490× O17's prime count, confirming that the
+prime residual on a fine geometric ladder carries the zeta zeros. **It is not new
+mathematics** — the explicit formula says so. What is new here is the resolution,
+and that the working method was resolution-starved rather than exhausted.
+
+**What it does not touch.** The four exact zeros, and the global bridge — the
+Euler product still lives at `Re s > 1` and everything else on the critical line
+(`Euler-Factor-Chain.md` § J5).
+
+**Provenance of the idea.** From `~/GitHub/twin_count`, whose `twincount.c`
+streams to `10^11` in 16.8 s and whose analysis deprecates its own α estimator
+for a linear-sampling defect that is the same class as O48's fixed depth window.
+That folder has no commitment files and is not a git repository.
+
+---
+
 ## 2026-08-21 — Entry 78 — the four zeros computed rather than transcribed, and the def-citation hazard closed at its most-cited instance
 type: formalization
 refs: 60, 70, 77
