@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 81: TwinLattice.lean (12th module) — twin pairs are 6k+-1 PROVED at [propext, Quot.sound], so a twin is a lattice SITE not a spacing coincidence; the mod-6 lattice was already load-bearing in CONTEXT.md twice (O19/O20 (8,3), and lattice_mapper 2-and-3-as-lattice) and nothing connected them
 - [open]   2026-08-21  entry 80: twin_count IMPORTED (7 files, SHA-verified, self-verifying manifest; source is not a git repo so this is the only versioned copy), CONTEXT.md brought current to O50, papers/The-Deep-Ladder.md written — check_values 83 -> 99 confirmed, 0 not found
 - [open]   2026-08-21  entry 79: O50 EXPLORATORY — 38 zeta zeros recovered with COMPLETE separation (at-zeros min 6.478 vs between-zeros max 2.341) on a ratio-1.002 ladder to 1e11; O17 found 3; dyadic control still fails; O17 was sieve-limited not exhausted
 - [open]   2026-08-21  entry 78: the four zeros COMPUTED from pi(2^n) rather than transcribed — 7 theorems, zero axioms, including (20,6); The-Four-Zeros B9 repointed from the def to measured_zeros_all_vanish; 3 transcribed copies remain elsewhere

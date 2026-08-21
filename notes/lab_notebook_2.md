@@ -16,6 +16,80 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 81 — TwinLattice: a twin pair is a lattice site, proved, and the mod-6 lattice was already load-bearing here twice
+type: formalization
+refs: 78, 80
+
+**Julian's theory, in his terms.** Twin primes share a pocket between them, one
+integer apart, and he treats the lattice as navigation: the pair is where a
+trajectory has both arms available.
+
+**The check.** Every twin pair above 3 is `(6k − 1, 6k + 1)`, so the single
+integer between is `6k`. Verified numerically below 2000 — one exception,
+`(3,5)`, and it is the first pair. **So a twin pair is not two primes that happen
+to sit two apart. It is a site on the `2·3` lattice with primes on both
+shoulders**, and counting twins is counting doubly-flanked sites.
+
+**And that lattice is already load-bearing in this tree, in two places nothing
+connected.**
+
+* `CONTEXT.md` § Current state of the world, O19/O20 — `(8,3)` lands at Connes'
+  `λ = 4`, whose window holds exactly `{2,3}`, *"the mod-6 lattice, which is the
+  workbook's own reason for that zero"*.
+* `CONTEXT.md` § `imported/lattice_mapper/` — those tables are built with *"2 and
+  3 excluded as lattice rather than counted as primes"*. **That convention is the
+  mod-6 lattice.**
+
+The twin object, the deep zero's stated explanation, and the imported tables'
+convention are the same lattice, approached from three directions and never
+named once.
+
+**New module `lean/TwinLattice.lean`**, the twelfth, named by Julian. Added to
+`lakefile.toml` globs — that list is explicit, not a wildcard, so a new module
+does not build until it is named there.
+
+```text
+twin_lower_mod_six      p, p+2 prime and 3 < p  →  p % 6 = 5   [propext, Quot.sound]
+twin_pocket             the integer between is ≡ 0 (mod 6)     [propext, Quot.sound]
+three_five_exceptional  (3,5) exhibited, not assumed           full three
+```
+
+**The two lattice theorems carry no `Classical.choice`** despite importing
+Mathlib — they are ℕ-valued and close through `omega`, which costs `Quot.sound`
+and nothing more. The exception theorem does carry it, and the cost is entirely
+Mathlib's: **even `Nat.prime_three` depends on `Classical.choice`**, and `decide`
+on `Nat.Prime` routes through a classical decidability instance. Checked
+directly rather than assumed. Pinned as it is rather than worked around, since
+the honest list says where the cost comes from.
+
+**Placement, and why not `Chain.lean`.** Chain's own header, line 4: *"Companion
+to papers/Euler-Factor-Chain.md."* Its job is checking that paper's arrows, and
+the mod-6 material discharges no statement in it. Putting it there would make
+the file's header false. This tree's modules are named for objects and have held
+their scope; a new object gets a new module.
+
+**Mathlib has nothing on twin primes.** Grepped. Nothing here is reproved.
+
+**What is NOT proved, and was not attempted.** That the lattice explains where
+twins are or how many there are. The three-way occupancy split — sites flanked
+on both sides, one side, neither — is not here. Neither is the character reading
+of the two arms, though it is the standard machinery: the classes `6k ± 1` are
+the two Dirichlet characters mod 6, their difference is the Chebyshev bias
+(measured at 0.46–0.96 in units of `√x/log x` over four decades), and
+`papers/convergence.md:26` already notes that *"only degree-1 L-functions give a
+plain difference table"* — which Dirichlet L-functions are. Each is a separate
+step that can fail on its own.
+
+**Ordering.** Julian's rule for this: prove it in Lean first, and only then add
+it to the paper. That is the reverse of `papers/The-Composite-Arm.md`, which was
+written before its script existed and is still PROVISIONAL with four conditions
+in its header. No paper is written here.
+
+Build clean, 8038 jobs, 149 theorems, 149 pins, parity in all 12 modules. Gate
+unchanged at 2, `check_values` 99 confirmed / 0 not found.
+
+---
+
 ## 2026-08-21 — Entry 80 — twin_count imported, CONTEXT brought current to O50, and The-Deep-Ladder written
 type: provenance
 refs: 46, 73, 75, 79
