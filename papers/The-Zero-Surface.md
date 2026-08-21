@@ -111,7 +111,7 @@ p (low tail)    0.0005
 
 **C7.** Halved, not collapsed. For contrast, the `r−d` result under its own matched
 control went from `z = −9.17` to `z = +1.36` — a complete collapse. C6 is not that.
-`t14_s_matched_control.py · results/t14_s_matched_control.txt`
+`t14_s_matched_control.py · analysis/2026-08-19_table_structure/results/t14_s_matched_control.txt`
 
 ---
 
@@ -183,7 +183,7 @@ the alias degeneracy — base 2 alone returns five peaks at identical variance e
 separates them. § H3 gives the spacing as `2π/log b`, which is 9.0647 at `b = 2`; the
 observed gaps are 9.067, 9.393, 9.067, 8.731, so the comb is approximate in the data
 and exact only in the statement.
-`t6_multirate.py · results/t6_multirate.txt · Euler-Factor-Chain.md § H3 · 2π/ln 2 is arithmetic`
+`t6_multirate.py · analysis/2026-08-19_table_structure/results/t6_multirate.txt · Euler-Factor-Chain.md § H3 · 2π/ln 2 is arithmetic`
 
 **E5.** So the same property is wanted in both places for opposite reasons: present, to
 break degeneracy in frequency; absent, to make cross-base adjacency mean something in

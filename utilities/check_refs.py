@@ -65,7 +65,7 @@ for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean"))
         check(where, n, n in decls or n.rstrip("'") in decls)
     for m in re.finditer(r"(?<![\w/])([\w\-]+\.py)\b", text):
         check(where, m.group(1), m.group(1) in files)
-    for m in re.finditer(r"\b((?:results|imported|preregs)/[\w./\-]+)", text):
+    for m in re.finditer(r"(?<![\w/.])((?:results|imported|preregs)/[\w./\-]+)", text):
         raw = m.group(1)
         if raw.endswith("_") or "*" in raw: continue          # glob in prose
         if text[m.end():m.end()+1] == "{": continue           # brace expansion in prose

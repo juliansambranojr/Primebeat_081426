@@ -16,6 +16,103 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 56 — t24: one fact that had been found five times
+type: run
+refs: 54, 55
+
+EXPLORATORY. No prereg, no decision rule, nothing here is a verdict.
+
+**Script.** `analysis/2026-08-19_table_structure/scripts/t24_commensurability.py`,
+no flags, run 19:09:54. Output
+`analysis/2026-08-19_table_structure/results/t24_commensurability.txt`.
+
+**Question.** Whether `log b₁ / log b₂` is rational had decided at least five
+results on this bench, each time under a different name. This computes the one
+quantity behind all five.
+
+**Headline.** Among integer bases 2…9 the commensurate pairs are exactly the
+power chains 2-4-8 and 3-9; bases 5, 6, 7 meet nothing. The sub-integer scan's
+family and antiphase arms are all `exp(π·m/(4γ₁))`, so all eight are integer
+multiples `m = 2…9` of one unit, `π/(4γ₁) = 0.055565153` in natural log — the
+scan is commensurate by construction. For `(20,6)`'s window ratio `2⁷ = 128`
+no integer base but 2 reaches it at integer depth; for `(8,3)`'s `2⁴ = 16`,
+base 4 reaches it at depth exactly 1.
+
+**What it collects.** The same arithmetic appears as the mechanism in
+`t6_multirate` (incommensurability breaks the alias comb), the kill in
+CHAIN.md §10 (no inheritance between bases), the obstruction in t22 (the scan
+cannot answer its own question), the censoring note in `The-Four-Zeros` § C5,
+and a theorem — `Zeros.window_exclusive_of_prime_exponent`, which settles it
+for one window and turns on 7 being prime.
+
+**Written up as** `papers/Commensurate-Ladders.md`. Its § F3 records that the
+general ladder-intersection statement is the one piece of arithmetic every
+result above leans on and was not in the Lean tree; `Zeros.base_of_meets_two`,
+`factorization_proportional` and `primeFactors_eq_of_meets` have since closed
+the dyadic case and the proportionality, and the ancestor construction remains.
+
+## 2026-08-21 — Entry 55 — t23: the deep zeros as two weighed halves, and one correction to the record
+type: run
+refs: 54
+
+EXPLORATORY. No prereg, no decision rule, nothing here is a verdict.
+
+**Script.** `analysis/2026-08-19_table_structure/scripts/t23_fold.py`, no
+flags, run 06:02:02. Output
+`analysis/2026-08-19_table_structure/results/t23_fold.txt`.
+
+**Question.** Can the deep zeros be read as a balance rather than a vanishing?
+
+**Headline.** The stencil weights `(−1)^k C(7,k)` are antisymmetric about the
+window midpoint at `log₂ x = 16.5`, so `(20,6)` is a sum over four straddling
+pairs with no leftover term. Split by sign, each arm carries total weight 64
+and the two arms weigh **807295 each** on eight values of π sharing no term.
+The same wing split reaches `(8,3)`: weights `1,−4,6,−4,1`, arms 8 and 8,
+totals **168 and 168**.
+
+**Control.** `(21,6)` folds to 1713, which is `cell(21,6)`. The fold is an
+identity for odd stencil order, not a test — every cell equals its folded sum
+whether or not it vanishes. `wing+ − wing− = cell` identically, so the wings
+cannot be evidence for anything the cell value does not already say. Both are
+recorded in the paper as § A4 and § B7 rather than presented as findings.
+
+**Correction to the record.** `(25,11)` was placed on diagonal 13 in
+conversation; it is on 14. Caught because the number did not resolve to the
+result file. Script and paper both fixed in the same pass.
+
+**Written up as** `papers/The-Fold.md`.
+
+## 2026-08-20 — Entry 54 — t22: the zero surface is unanswerable with this scan, and the base set is why
+type: run
+refs: 50, 51, 52
+
+EXPLORATORY. No prereg, no decision rule, nothing here is a verdict.
+
+**Script.** `analysis/2026-08-19_table_structure/scripts/t22_zero_surface.py`,
+no flags, run 05:05:24. Output
+`analysis/2026-08-19_table_structure/results/t22_zero_surface.txt`.
+
+**Question.** Do O45's 125 pooled zeros form a connected object across bases,
+or an interval that merely happens to be occupied? Measured as cross-base
+nearest-neighbour distance in the `(lo, hi)` window plane, against a null drawn
+from each base's own resolved support, stratified so base composition matches.
+
+**Headline.** Cross-base: observed 0.3745, null mean 1.0524 sd 0.0611,
+z = −11.10. Within-base control: observed 1.2550, null mean 3.4454 sd 0.2250,
+z = −9.73. The control moves too, so the compression is not about crossing
+bases — it is present at every base separately. Width-matched null halves it
+to z = −5.32 rather than collapsing it.
+
+**Why it does not count.** The sorted window list carries exact `lo` repeats
+across different bases, which is not an accident. Eight of the eleven bases
+have `log₂ b` an exact integer multiple of `π/(4γ₁)`, and those eight carry
+107 of the 125 zeros. There is no incommensurate pair anywhere in the scan, so
+cross-base window alignment is forced by the base selection. The statistic
+measures the prereg's choice of bases, not the arrangement of the zeros.
+
+**Written up as** `papers/The-Zero-Surface.md`. The commensurability finding
+is also the scope note now attached to O45's `fineness` verdict.
+
 ## 2026-08-21 — Entry 53 — t26: `d*` is not a per-base constant, its slope is — and a subcritical base crosses
 type: run
 refs: 41, 52

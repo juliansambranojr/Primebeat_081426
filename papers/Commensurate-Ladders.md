@@ -39,7 +39,7 @@ returns instead a **comb** of aliased peaks at spacing `2π / log b`, all of equ
 45.156 — every one at variance explained **0.486**. The stated spacing is
 `2π/ln 2 = 9.0647`; the observed gaps are 9.067, 9.393, 9.067, 8.731, so the comb is
 exact in the statement and approximate in the data.
-`t6_multirate.py · results/t6_multirate.txt`
+`t6_multirate.py · analysis/2026-08-19_table_structure/results/t6_multirate.txt`
 
 **B3.** Pooling base 2 with base 3 breaks the tie, and the reason is A2: `ln 3 / ln 2` is
 irrational, so the two combs share no tooth but the first. Incommensurability is the
@@ -49,7 +49,7 @@ working part of the instrument, not an inconvenience.
 **B4.** The construction did what it was built to do and still returned negative on the
 target — the pooled peaks land at 36.408, 18.267, 27.056, 22.727, 45.442, none within
 1.18 of a zeta zero.
-`results/t6_multirate.txt · CHAIN.md § 12`
+`analysis/2026-08-19_table_structure/results/t6_multirate.txt · CHAIN.md § 12`
 
 ---
 
@@ -81,7 +81,7 @@ inherit from nothing at all** — `log 5 / log 2 = 2.321928095`, `log 6 / log 2 
 a parent base, the orphans should carry visibly more oscillation. They do not — every
 base starts at the same oscillatory fraction, 0.52 to 0.53, orphans and chain members
 alike, and the spread inside each group exceeds the gap between them.
-`CHAIN.md § 10 · t12_chain_vs_orphan.py · results/t12_chain_vs_orphan.txt`
+`CHAIN.md § 10 · t12_chain_vs_orphan.py · analysis/2026-08-19_table_structure/results/t12_chain_vs_orphan.txt`
 
 **C4.** The kill and the mechanism of § B are the same fact. Irrational log-ratio means
 two ladders never meet, which is why pooling separates their combs (B3) and why nothing
