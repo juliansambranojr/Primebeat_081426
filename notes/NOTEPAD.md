@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 71: audit defects FIXED — tableFrom_mode localised to the window (witness: geometric row 2^n at b=2 gives cell(5,3)=4), 0<m added, and Superposition.tableFrom_eq_modeSum_reweighted written, the composition that was missing
 - [open]   2026-08-21  entry 70: blind adversarial audit of Chain.lean, 3 rounds — tableFrom_mode has a TWO-ROW hypothesis class and does not reach the dyadic table (entry 68 is wrong there); joint_gain_periodic lacks 0<m; F3/F4/F6 retracted, paper exonerated
 - [open]   2026-08-20  entry 67: the 12 oversized NOTEPAD lines truncated (2 backfilled first as entries 64/65 since they cited nothing) — gate down from 14 broken references to 2, baseline re-cut
 - [open]   2026-08-20  entry 66: SeedPerturbation and PairIdentity off Mathlib, Classical.choice 84 -> 71 — core `grind` costs Classical.choice so it is no shortcut; floor is 60 of 119 (R/C), or 64 unless Zeros is split

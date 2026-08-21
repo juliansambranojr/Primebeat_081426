@@ -16,6 +16,82 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 71 — the two audit defects fixed, and the composition the chain was missing
+type: formalization
+refs: 68, 70
+
+Fixes for the two findings entry 70 records as surviving. Entry 68 stands as
+written; entry 70 carries the correction; this entry carries the repair.
+
+**F1 — `Chain.tableFrom_mode` localised to the window.** The hypothesis was
+`∀ n : ℤ`, which admits exactly `N ≡ 1` and `N n = (−1)^n`. It is now
+
+```text
+hag : ∀ k : ℕ, k ≤ d → ((N (r − k) : ℤ) : ℂ) = mode b ρ ((r : ℂ) − k)
+```
+
+the `d+1` entries a cell at `(r,d)` actually reads — the same form, and for the
+same stated reason, as `PairIdentity.tableFrom_of_geometric`. The proof is now a
+direct induction using `A1` at each step rather than routing through
+`tableFrom_eq_bdiff_iter`, since that route needs global agreement.
+`tableFrom_norm_on_critical_line` takes the same hypothesis.
+
+**Verified non-vacuous by witness, because the build cannot see this.** The
+geometric row `2^n` at `b = 2`, `ρ = 1` satisfies the localised hypothesis on the
+window `(5,3)` reads — `32, 16, 8, 4` — and the theorem then gives
+`cell = (Sym 2 1)^3 · 2^5 = (1/2)^3 · 32 = 4`, with
+`tableFrom geoRow 5 3 = 4` confirmed independently by `decide`. Compiles. The
+old hypothesis had no such instance at any base.
+
+**F2 — `joint_gain_periodic_of_commensurate` gained `0 < m` and `0 < n`**, with
+the docstring stating why: without them `m = n = 0` satisfies `hcomm` as `0 = 0`
+for every pair of bases and the conclusion degrades to `Periodic f 0`, which
+`period_vacuous_at_one` thirteen lines below proves is empty.
+
+**And the composition the audit found missing —
+`Superposition.tableFrom_eq_modeSum_reweighted`.**
+
+```text
+row agrees with modeSum at every integer
+  →  (tableFrom N r d : ℂ) = modeSum b ρ (fun i => c i * (Sym b ρᵢ)^d) s r
+```
+
+Two lines: `Chain.tableFrom_eq_bdiff_iter` carries the integer table onto
+`bdiff^[d]`, `depth_reweights_each_mode` carries that onto the reweighted sum.
+Both existed; nothing composed them, and entry 70's grep confirmed `modeSum` and
+`tableFrom` occupied disjoint sets of modules.
+
+**Here the global hypothesis is correct and non-vacuous, and that distinction is
+the whole content of the fix.** A single mode forces `w = ±1` on an integer row.
+A sum does not: only the total need be integer-valued, and no individual
+`cᵢ·wᵢ^n` is constrained. Conjugate pairs — `ρ₂ = −ρ₁` with `c₁ = c₂ = 1/2`,
+giving `Re(wⁿ)` — are integer at every `n` with neither mode `±1`, which is how
+Riemann–von Mangoldt makes a real integer row out of non-real modes. **This is
+the theorem O34/O35 were measuring against** when they reported 94% / 92% / 80%
+of the row-20 residual at depths 0, 3 and 6.
+
+So entry 68's chain diagram is now true of a theorem that exists, and it runs
+through `Superposition`, not through `tableFrom_mode`.
+
+**What verified this, and what could not.** No axiom pin moved — every theorem
+touched is ℂ-valued and was already at `[propext, Classical.choice, Quot.sound]`.
+The build could not see either defect and cannot see either fix. What checks F1
+is the witness above; what checks F2 is reading the hypothesis. `Chain.lean`
+says this about itself in `gain_sq_periodic`'s docstring, and entry 70 is the
+first time that gap was exercised rather than noted.
+
+**Sequencing defect in this entry's own commit.** The Lean fixes landed at
+`0f64663`, whose message announces "Entry 71" — this entry — while the entry
+itself was not in the working tree, lost to a wrong-directory write. The commit
+is therefore accurate about the code and premature about the record, and this
+entry is committed separately after it. Recorded rather than amended: the same
+reason entry 68 was left standing.
+
+Build clean, 8037 jobs, 133 theorems, 133 pins, parity in all 11 modules. Gate
+unchanged at 2, `check_values` 83 confirmed / 0 mismatches.
+
+---
+
 ## 2026-08-21 — Entry 70 — blind adversarial audit of Chain.lean, three rounds: two real defects, both in entry 68's material, and four findings the audit itself retracted
 type: result-triage
 refs: 68, 69
