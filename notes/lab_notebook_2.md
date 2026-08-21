@@ -108,8 +108,43 @@ quantifier, not an assumption: the theorem is a complete, kernel-checked proof
 about every row of that kind. The `A4` it calls is itself unconditional
 (`Chain.lean:263`), as C1 became when it was discharged.
 
-Still to be asked, and it is a different question: whether the dyadic row
-`π(2^r)` decomposes into modes the chain applies to.
+**What the chain shows.** The hypothesis is not hypothetical for the dyadic row.
+`Superposition.lean` exists precisely to license A4 on a **sum** over zeta zeros
+— its header: *"Every use of it on the bench applies it to a SUM over zeta zeros
+(O34, O35). Nothing so far permits that step. This file supplies it."* And the
+decomposition is measured: `CONTEXT.md` § O34/O35 — **94% of the row-20 residual
+at depth 0, 92% at depth 3, 80% at depth 6, from the explicit formula alone,
+nothing fitted.**
+
+So with the weld in place the chain reads end to end on the actual table:
+
+```text
+cell(r,d)                      integer, computed from π
+  = (bdiff^[d]) on the row     tableFrom_eq_bdiff_iter, here
+  the row is a superposition of modes b^(rρ)      explicit formula
+  ρ = 1/2 + iγ, the zeta zeros                    O34/O35, 94/92/80%
+  each mode reweighted by (Sym b ρ)^d             Superposition
+  ‖Sym‖ inside [1−b^(−1/2), 1+b^(−1/2)]           C2, C3, C3lower
+  phase periodic in γ with period 2π/log b        gain_sq_periodic, here
+  two ladders: one circle, or a torus             Kronecker, here
+  s ↦ 1 − s fixes the critical line               h_functional_equation
+```
+
+**Every cell of the dyadic table is a sum over the zeta zeros, each reweighted
+by its own factor at depth `d`.** That is the mechanism, it is measured at
+80–94% across depths 0 to 6, and every algebraic step in it is now a
+kernel-checked theorem rather than a "therefore" in prose.
+
+**What is underived, stated narrowly.** The chain gives the weight each zeta
+zero carries into a cell. It does not say when that weighted sum — main term
+included — lands on integer `0` exactly. Four cells do. Why those four is not
+derived by anything here.
+
+**And one measured limit, which is a result and not a caveat.** O34/O35 do not
+extend to deep cells: at `(25,21)` the model flips sign between 200 and 600
+zeros, because the depth operator spreads each zero's gain over `(d+1)×0.765`
+decades. So the 80–94% agreement is established at depths 0–6 and the method
+runs out below that — measured, in `CONTEXT.md` § O34/O35, not assumed.
 
 Build clean, 8037 jobs, 126 theorems, 126 pins, parity in all 11 modules.
 
