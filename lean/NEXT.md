@@ -15,7 +15,7 @@ Toolchain trap: elan defaults to 4.33, Mathlib here is **v4.28.0**. Run from
 Already built, all `sorry`-free, axioms `propext / Classical.choice / Quot.sound` only:
 
 ```text
-11 modules, 111 theorems, 111 #guard_msgs-pinned axiom checks.
+11 modules, 119 theorems, 119 #guard_msgs-pinned axiom checks.
 See BUILD.md for the module map. Measured.lean carries 7 agreement
 theorems and the Unpaired section below.
 ```

@@ -14,8 +14,28 @@ alone — nobody put it there, and nobody could have put it somewhere else.
 
 That is the sense in which the zeros are structural: not that their location is
 derivable, but that their existence involves no freedom.
+
+**This module does not import Mathlib.** It is Lean core only, and that is
+deliberate — see `lean/BUILD.md` § Mathlib-free core. Every statement here is
+about ℤ and ℕ, so nothing in Mathlib is needed to say it; importing Mathlib
+only imported Mathlib's assumptions. `Classical.choice` and `Quot.sound` both
+left the file when the import did. Modules downstream still import Mathlib and
+are unaffected: an axiom list is fixed in the proof term at elaboration, so a
+later `import Mathlib` cannot raise it.
+
+Two consequences worth knowing before editing:
+
+* `omega` is unavailable here, and would cost `Quot.sound` if it were. The
+  Nat-to-Int casts it was used for are definitional — `rfl` closes them.
+* Mathlib's generic algebra lemmas (`mul_sub`, `ring`) are stated over general
+  rings whose instances are classical, so reaching for one *raises* the axiom
+  count. Use core's `Int.` lemmas, or `decide`.
 -/
-import Mathlib
+
+-- Core has no `ℕ`/`ℤ` notation; Mathlib's is what we gave up. `local` keeps
+-- these inside this file so downstream modules still get Mathlib's own.
+local notation "ℤ" => Int
+local notation "ℕ" => Nat
 
 namespace Construction
 
@@ -61,15 +81,22 @@ theorem zero_determined_by_row {N M : ℤ → ℤ} (r : ℤ) (d : ℕ)
     (h : ∀ k : ℕ, k ≤ d → N (r - k) = M (r - k)) :
     tableFrom N r d = tableFrom M r d := by
   induction d generalizing r with
-  | zero => simpa using h 0 le_rfl
+  | zero =>
+      have h0 := h 0 (Nat.le_refl 0)
+      show N r = M r
+      rwa [show ((0 : ℕ) : ℤ) = 0 from rfl, Int.sub_zero] at h0
   | succ n ih =>
       have hr : tableFrom N r n = tableFrom M r n :=
         ih r fun k hk => h k (Nat.le_succ_of_le hk)
       have hr1 : tableFrom N (r - 1) n = tableFrom M (r - 1) n := by
         refine ih (r - 1) fun k hk => ?_
-        have hcast : r - ((k + 1 : ℕ) : ℤ) = r - 1 - (k : ℤ) := by push_cast; ring
-        have hk1 := h (k + 1) (by omega)
-        rwa [hcast] at hk1
+        -- the cast step was `omega`; it is definitional
+        have hc : r - ((k + 1 : ℕ) : ℤ) = r - 1 - (k : ℤ) := by
+          show r - ((k : ℤ) + 1) = r - 1 - (k : ℤ)
+          rw [Int.sub_sub]
+          exact congrArg (r - ·) (Int.add_comm (k : ℤ) 1)
+        have hk1 := h (k + 1) (Nat.succ_le_succ hk)
+        rwa [hc] at hk1
       show tableFrom N r n - tableFrom N (r - 1) n = _
       rw [hr, hr1]
       rfl
@@ -85,8 +112,9 @@ theorem tableFrom_add (N M : ℤ → ℤ) (r : ℤ) (d : ℕ) :
   | succ n ih =>
       show tableFrom _ r n - tableFrom _ (r - 1) n = _
       rw [ih r, ih (r - 1)]
-      show _ = tableFrom N r n - tableFrom N (r-1) n + (tableFrom M r n - tableFrom M (r-1) n)
-      ring
+      show _ = tableFrom N r n - tableFrom N (r - 1) n
+                 + (tableFrom M r n - tableFrom M (r - 1) n)
+      simp [Int.sub_eq_add_neg, Int.neg_add, Int.add_assoc, Int.add_left_comm]
 
 theorem tableFrom_smul (c : ℤ) (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
     tableFrom (fun x => c * N x) r d = c * tableFrom N r d := by
@@ -95,8 +123,7 @@ theorem tableFrom_smul (c : ℤ) (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
   | succ n ih =>
       show tableFrom _ r n - tableFrom _ (r - 1) n = _
       rw [ih r, ih (r - 1)]
-      show _ = c * (tableFrom N r n - tableFrom N (r-1) n)
-      ring
+      exact (Int.mul_sub c _ _).symm
 
 /-! ## What this does and does not say
 
@@ -121,6 +148,10 @@ An axiom claim is only a claim unless the build checks it. Each `#guard_msgs`
 block below pins the exact axiom list of one result: if a proof ever starts
 depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
+
+With Mathlib gone, the floor here is `propext` — and `propext` only enters
+through `rw` and `simp`. Where a proof is `rfl`, `decide` or bare `induction`,
+the list is empty.
 -/
 
 /-- info: 'Construction.tableFrom_isTableOf' does not depend on any axioms -/
@@ -139,15 +170,16 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms Construction.eq_of_same_row
 
-/-- info: 'Construction.zero_determined_by_row' depends on axioms: [propext, Quot.sound] -/
+-- Was `[propext, Quot.sound]` under Mathlib; `Quot.sound` came from `omega`.
+/-- info: 'Construction.zero_determined_by_row' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms Construction.zero_determined_by_row
 
-/-- info: 'Construction.tableFrom_add' depends on axioms: [propext, Quot.sound] -/
+/-- info: 'Construction.tableFrom_add' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms Construction.tableFrom_add
 
-/-- info: 'Construction.tableFrom_smul' depends on axioms: [propext, Quot.sound] -/
+/-- info: 'Construction.tableFrom_smul' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms Construction.tableFrom_smul
 

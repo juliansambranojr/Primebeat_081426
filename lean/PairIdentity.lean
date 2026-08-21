@@ -344,7 +344,8 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms PairIdentity.tableFrom_of_geometric
 
-/-- info: 'PairIdentity.tableFrom_add_window' depends on axioms: [propext, Quot.sound] -/
+-- Lost `Quot.sound` when `Construction` dropped its Mathlib import.
+/-- info: 'PairIdentity.tableFrom_add_window' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms PairIdentity.tableFrom_add_window
 

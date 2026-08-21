@@ -53,6 +53,49 @@ theorem symbol_of_backward_difference (b : ℝ) (hb : b ≠ 0) (ρ r : ℂ) :
   rw [key]
   ring
 
+/-! ## The other direction through the table
+
+A1 gives the gain down a *column* — fix `r`, difference once, pick up
+`sym b ρ`. One step along a *diagonal* `r − d = c` moves `r` and `d`
+together, and the mode picks up `b^ρ` on top of that. The two directions
+therefore differ by exactly `b^ρ`, which at `ρ = 1/2` is `√b`.
+
+`analysis/2026-08-19_table_structure/CHAIN.md` measures the ratio as
+`dia/col = 1.414214` against `sqrt(b) = 1.414214`, 615 cells, 0 failures.
+Derived here rather than observed. See notes entry 61.
+-/
+
+/-- **The diagonal gain.** `b^ρ · sym b ρ = b^ρ − 1`. -/
+theorem diagonal_gain (b : ℝ) (hb : b ≠ 0) (ρ : ℂ) :
+    (b : ℂ) ^ ρ * sym b ρ = (b : ℂ) ^ ρ - 1 := by
+  have hb' : (b : ℂ) ≠ 0 := by exact_mod_cast hb
+  unfold sym
+  rw [mul_sub, mul_one, ← Complex.cpow_add _ _ hb']
+  simp
+
+/-- The cell value along a diagonal in closed form: with `r = d + c`, the
+mode's `b^(rρ)·(sym b ρ)^d` collapses to `b^(cρ)·(b^ρ − 1)^d`. -/
+theorem diagonal_cell (b : ℝ) (hb : b ≠ 0) (ρ : ℂ) (c d : ℕ) :
+    (b : ℂ) ^ (((d : ℂ) + c) * ρ) * (sym b ρ) ^ d
+      = (b : ℂ) ^ ((c : ℂ) * ρ) * ((b : ℂ) ^ ρ - 1) ^ d := by
+  have hb' : (b : ℂ) ≠ 0 := by exact_mod_cast hb
+  rw [← diagonal_gain b hb ρ, mul_pow, add_mul, Complex.cpow_add _ _ hb',
+      Complex.cpow_nat_mul]
+  ring
+
+/-- **dia/col = `b^ρ`.** The ratio of the diagonal gain to the column gain. -/
+theorem diagonal_over_column (b : ℝ) (hb : b ≠ 0) (ρ : ℂ) (hs : sym b ρ ≠ 0) :
+    ((b : ℂ) ^ ρ - 1) / sym b ρ = (b : ℂ) ^ ρ := by
+  rw [← diagonal_gain b hb ρ, mul_div_assoc, div_self hs, mul_one]
+
+/-- **At `ρ = 1/2` that ratio is `√b`.** The critical line, read as the table's
+own geometry: moving along a diagonal outruns moving down a column by exactly
+`√b`, which at `b = 2` is 1.414214. -/
+theorem diagonal_over_column_at_half {b : ℝ} (hb : 0 ≤ b) :
+    (b : ℂ) ^ ((1 : ℂ) / 2) = (Real.sqrt b : ℂ) := by
+  rw [Real.sqrt_eq_rpow, Complex.ofReal_cpow hb]
+  norm_num
+
 /-- **A2.** Euler's product, 1737, in the form Mathlib proves it: over *all*
 primes at once, and only in the half-plane where the product converges. The
 hypothesis `1 < s.re` is not decoration — it is the honest content of the
@@ -194,6 +237,23 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'EulerFactorChain.symbol_of_backward_difference' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms EulerFactorChain.symbol_of_backward_difference
+
+-- ℂ-valued, so `Classical.choice` is the floor: ℝ is constructed with it.
+/-- info: 'EulerFactorChain.diagonal_gain' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.diagonal_gain
+
+/-- info: 'EulerFactorChain.diagonal_cell' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.diagonal_cell
+
+/-- info: 'EulerFactorChain.diagonal_over_column' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.diagonal_over_column
+
+/-- info: 'EulerFactorChain.diagonal_over_column_at_half' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms EulerFactorChain.diagonal_over_column_at_half
 
 /-- info: 'EulerFactorChain.euler_product_riemannZeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

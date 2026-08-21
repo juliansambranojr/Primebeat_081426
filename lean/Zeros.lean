@@ -88,6 +88,45 @@ cell at depth `N-1` from `N+1` values of the counting function. -/
 def stencil (N : ℕ) (g : ℕ → ℤ) : ℤ :=
   ∑ k ∈ Finset.range (N + 1), (-1 : ℤ) ^ k * (N.choose k) * g k
 
+/-- The table's `d`-fold backward difference is `(-1)^d` times Mathlib's
+`d`-fold forward difference at step `-1`. The bridge exists so that
+`tableFrom_eq_stencil` can borrow Mathlib's binomial theorem rather than redo
+the index bookkeeping. -/
+theorem tableFrom_eq_fwdDiff (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
+    Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))^[d] N r := by
+  induction d generalizing r with
+  | zero => simp [Construction.tableFrom]
+  | succ n ih =>
+      show Construction.tableFrom N r n - Construction.tableFrom N (r - 1) n = _
+      rw [ih r, ih (r - 1), Function.iterate_succ_apply' (fwdDiff (-1 : ℤ)) n N]
+      show _ = (-1 : ℤ) ^ (n + 1) *
+        ((fwdDiff (-1 : ℤ))^[n] N (r + (-1)) - (fwdDiff (-1 : ℤ))^[n] N r)
+      rw [show r + (-1 : ℤ) = r - 1 by ring, pow_succ]
+      ring
+
+/-- **The operator IS Pascal.** The cell at `(r,d)` — `d` backward differences
+of the row — equals the alternating binomial stencil of order `d` applied to the
+`d+1` row values in its window.
+
+This is what makes "a zero is one linear condition" literal rather than a
+description: `(8,3)` is `23 − 3·13 + 3·7 − 5 = 0` on four values of `π`, and
+`(20,6)` is the same on seven. It does **not** predict a location, and nothing
+here says when the condition is met. See notes entry 60. -/
+theorem tableFrom_eq_stencil (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
+    Construction.tableFrom N r d = stencil d (fun k => N (r - k)) := by
+  rw [tableFrom_eq_fwdDiff, fwdDiff_iter_eq_sum_shift, stencil, Finset.mul_sum]
+  refine Finset.sum_congr rfl fun k hk => ?_
+  have hkd : k ≤ d := Nat.lt_succ_iff.mp (Finset.mem_range.mp hk)
+  have hsign : (-1 : ℤ) ^ d * (-1 : ℤ) ^ (d - k) = (-1 : ℤ) ^ k := by
+    rw [← pow_add, show d + (d - k) = 2 * (d - k) + k by omega, pow_add, pow_mul]
+    norm_num
+  have hshift : r + k • (-1 : ℤ) = r - (k : ℤ) := by
+    simp [sub_eq_add_neg]
+  rw [hshift, smul_eq_mul]
+  rw [show (-1 : ℤ) ^ d * (((-1 : ℤ) ^ (d - k) * (d.choose k)) * N (r - k))
+        = ((-1 : ℤ) ^ d * (-1 : ℤ) ^ (d - k)) * (d.choose k) * N (r - k) by ring,
+      hsign]
+
 /-- **The stencil is linear in the sampled values.** So a zero is a single
 linear equation on the `N+1` values of `pi` inside its window — one condition,
 hence codimension one. Nothing here says when it is satisfied. -/
@@ -363,6 +402,14 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Zeros.stencil_arm_doubled' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Zeros.stencil_arm_doubled
+
+/-- info: 'Zeros.tableFrom_eq_fwdDiff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.tableFrom_eq_fwdDiff
+
+/-- info: 'Zeros.tableFrom_eq_stencil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.tableFrom_eq_stencil
 
 /-- info: 'Zeros.stencil_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
