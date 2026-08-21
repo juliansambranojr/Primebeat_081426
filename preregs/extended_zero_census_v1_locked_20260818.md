@@ -450,7 +450,23 @@ Appended after the run.
 
 - `run_start_at`: 2026-08-19T02:25:47Z
 - `run_end_at`: 2026-08-19T02:25:48Z
-- `verdict`:
+- `verdict`: `magnitude_floor`
+  All three conditions of the branch held: `K_new = 0`,
+  `p_conditional = 0.0416 ≤ alpha_level = 0.05`, and `M_new = 0`. No
+  `compromised` condition tripped, and `rate_constant`, which precedes this
+  branch in the locked precedence, did not fire.
+  Per the locked decision rule the deficit is real but arithmetically
+  forced: no cell in `62 < r ≤ 92` came within `near_miss_H` of zero, so
+  the absence of new zeros is a statement about the magnitude of the
+  entries in the extended region, not about where the primes are. It does
+  not license "the four zeros are all there are"; it licenses "nothing in
+  `62 < r ≤ 92` was close enough to have been one".
+  Corroborated but not arithmetically independent: `notes/lab_notebook_2.md`
+  entry 49 records the lattice_mapper tables reaching `A(64)` from
+  different code, in a different repo, months earlier, under a different
+  convention — but π(2ⁿ) is π(2ⁿ), and O43 reads further, to `r = 92`
+  against that file's 64. What is independent is the convention, not the
+  arithmetic.
 - `post_compute_sha256`: `ff6a1794c1129397760779a587aeb737218e480bb48820e3b38e062467beb0dd`
 - `bfile_sha256`: `6f4f5aaca7419f8c3d0a9d41b56617a1347ab4c124eec3f64362e299f7d8179b`
   (1572 bytes, HTTP 200, 93 data lines n = 0..92 contiguous, 0 comment lines;

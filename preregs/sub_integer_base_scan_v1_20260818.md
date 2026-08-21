@@ -685,7 +685,25 @@ Appended after the run.
 
 - `run_start_at`: 2026-08-19T07:16:38Z
 - `run_end_at`: 2026-08-19T07:16:38Z
-- `verdict`:
+- `verdict`: `fineness`
+  The branch's conditions held: `Z* = 35 ≥ 1`, `p = 0.0839 > alpha_level =
+  0.05`, and the mass-clearing zeros are spread across arms — 13 family, 18
+  antiphase, 4 refinement — so neither `family_only` nor `refinement_only`
+  fired. No `compromised` condition tripped, and `thin_rung_forced`, which
+  precedes every substantive branch, did not fire.
+  H0 is not falsified. Sub-integer bases produce mass-clearing resolved
+  zeros at a rate base 2's rate can account for, across both the family and
+  the controls. "Base 2 is the only base with zeros" was a statement about
+  where the integer lattice stops.
+  Scope, established after the run and not by this test: the locked base
+  set is **commensurate by construction**. Eight of the eleven bases are
+  exact integer multiples of `π/(4γ₁)` in log and carry 107 of the 125
+  zeros, and there is no incommensurate pair anywhere in the scan —
+  `papers/The-Zero-Surface.md` § D2, D6. Nothing in this prereg required,
+  recorded, or noticed that; the base family was selected for winding
+  angle and the shared lattice came with it — `papers/Commensurate-Ladders.md`
+  § D4. That bounds any cross-base *geometry* read off this scan. It does
+  not touch the `Z*` counts this verdict rests on, which are per-base.
 - `post_compute_sha256`: `7985c94015bab8d8f2e606b69aaeac79150ccec1d4ec9d04bca7db177c02aaf5`
 - sidecar match: **yes** — identical to the sidecar
   `sub_integer_base_scan_v1_20260818.sha256`, so no parameter,

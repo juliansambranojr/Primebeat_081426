@@ -214,10 +214,10 @@ environment is a `.venv` on Python 3.14.3, now frozen to
 `requirements.txt`; Homebrew `primecount 8.6` is linked by
 `primecountpy` and is not capturable by a freeze.
 
-**Three preregistered tests carry a mechanical decision-rule output and
-no stamped verdict** — O42 `no_constant_angle`, O43 `magnitude_floor`,
-O45 `fineness`. Writing those verdict lines is Julian's, and it is the
-largest open item in the repository.
+**All four preregistered tests are closed.** O7 `depth_dependent`
+(2026-08-15), O42 `no_constant_angle` (08-18), O43 `magnitude_floor` and
+O45 `fineness` (08-20). Each Run record carries a sidecar match verified
+at compute time.
 
 What has been run and recorded:
 
@@ -365,14 +365,17 @@ What has been run and recorded:
   (`preregs/zero_winding_phase_v1_locked_20260818.md`). Mechanical
   decision-rule output `no_constant_angle`; no γ index has all gaps near
   π/2, gaps at γ₁ read 0.745 / 1.183 / 4.010, null firing rate 0.0044, no
-  `compromised` condition fires. **The verdict line is unwritten and is
-  Julian's.**
+  `compromised` condition fires. Verdict `no_constant_angle`, recorded
+  2026-08-18: a failure to detect constant winding *in the (r,d)
+  coordinate at M = 200*, not evidence the zeros are unstructured.
 - **O43** — extended exact-zero census to `r = 92` on published π(2ⁿ);
   no primes counted. PREREGISTERED. 4186 cells against O16's 1891, so
   2295 new; all four known zeros reproduced and **K_new = 0** against
   `E[K_new] = 4.85` under H0. `p_conditional 0.0416`,
-  `p_poisson 0.0078`. Mechanical output `magnitude_floor`. **Verdict
-  unwritten.**
+  `p_poisson 0.0078`. Mechanical output and verdict:
+  `magnitude_floor` — the deficit is real but arithmetically forced, and
+  corroborated by lattice_mapper reaching `A(64)` under a different
+  convention, though not independently in the arithmetic.
 - **O44** — cross-base zero scan over the eight imported b-adic tables,
   in the pair identity's scale coordinate; every number read from CSV.
   Of bases 2–9, **only base 2 has exact zeros**, and it has the same
@@ -381,9 +384,12 @@ What has been run and recorded:
   scaling flow, or special in itself? PREREGISTERED. Ten bases in (1,2)
   plus base 2, matched on one value ceiling: 37178 sub-2 cells against
   base 2's 496, Z = 121 resolved zeros, Z* = 35 clearing the mass floor,
-  against `E[Z] = 299.8` under H0. `p_conditional 0.0839`. Mechanical
-  output `fineness`. **Verdict unwritten** — the results JSON says so in
-  its own `verdict_note`.
+  against `E[Z] = 299.8` under H0. `p_conditional 0.0839`. Mechanical output
+  and verdict: `fineness` — H0 not falsified. Scope: the locked base set
+  is commensurate by construction, eight of eleven bases exact multiples
+  of `π/(4γ₁)` in log carrying 107 of the 125 zeros, which nothing in the
+  prereg noticed (`papers/Commensurate-Ladders.md` § D4). That bounds
+  cross-base geometry, not the per-base `Z*` counts.
 - **O46** — does stencil mass alone account for O45's density trend?
   `density × mean S` spreads by a factor of 1.4e38 across the eleven
   bases; `density / mean(1/S)` spreads by 5.57. The `density ≈ 1/S`
