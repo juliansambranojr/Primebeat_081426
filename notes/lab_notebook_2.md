@@ -16,6 +16,93 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 72 — small angles make the curve: the cross-base transform, its Euler–Maclaurin cost, and why its radius is the pole lattice
+type: motivation
+refs: 69, 70, 71
+
+**Julian's account, in his terms.** The b-adic tables are not separate objects.
+Small angles are what create a curve, and that is what the explicit formula
+does. So rather than build a table to infinite depth in every base, ask for the
+**rate of change per cell across the b-adic tables** — or equivalently the
+transform between them — and run that. That would give a formula for **when
+local becomes global**, i.e. when the discrete table reaches the analytic
+object, without ever taking a table to infinity.
+
+He named the cost before I checked it: *"by summing averages we lose steps that
+gets abstracted by the averaging, or turning the actual work of looking, where
+something like our zero in a table makes the averaging work."* And the standing
+goal: observe whether small shifts create big curves well enough to infer the
+local data and construct a reliable approximation — here, of the zeta zeros.
+
+**My check. The transform exists and is elementary.** All b-adic tables are one
+object sampled at rate `h = log b`. Normalise a cell by `h^d`:
+
+```text
+cell_b(r,d) / (log b)^d   has symbol   ((1 − e^(−ρh)) / h)^d  →  ρ^d   as h → 0
+```
+
+base-independent in the limit. Between two bases the transform is exact with no
+limit at all — just the ratio of symbols,
+`((1 − b₁^(−ρ)) / (1 − b₂^(−ρ)))^d`, computable per cell.
+
+**The cost is Euler–Maclaurin, literally.** The correction factor is
+`(1 − e^(−u))/u` with `u = ρ log b`, whose expansion is the Bernoulli generating
+function `u/(e^u − 1) = Σ Bₙuⁿ/n!`. Euler–Maclaurin's correction terms **are**
+the steps lost when a sum is replaced by an integral. Julian named the cost from
+the phenomenon; it has a name and a closed form.
+
+**And the radius of convergence is `2π`, because the nearest singularity of
+`u/(e^u − 1)` sits at `u = 2πi` — the pole lattice.** The same lattice
+`Chain.sym_eq_zero_iff` proves (entry 69). So "small angles" is not a feeling.
+It is `|γ log b| < 2π`.
+
+```text
+b        |γ₁ log b|    /2π
+1.1175      1.5703     0.250    inside
+√2          4.8987     0.780    inside
+1.5597      6.2832     1.000    ON the line
+2           9.7974     1.559    OUTSIDE
+3          15.5286     2.471    outside
+```
+
+**Verified against the bench's own recorded numbers.** `γ₁·log 2 = 9.797445`,
+and `9.797445 − 2π = 3.514260` — which is `ω₁` in `CONTEXT.md` § Core quantities
+to six digits, folding to `2π − 3.514260 = 2.768926`, the recorded 2.7689. So
+the small-angle boundary, the pole lattice, and Nyquist are **the same number**,
+and O15's "raised the sampling Nyquist … clearing γ₁/γ₂/γ₃" and O45's *resolved*
+stratum have been measuring it all along under a different name.
+
+Consequence, derived rather than observed: inside one lattice cell the map
+`ρ ↦ symbol` is injective and a single base can invert it; base 2 sits 1.56
+cells out, so base 2 alone cannot recover γ₁. That is O18's "integer bases are
+blind singly but not jointly," obtained from the radius rather than from a
+periodogram.
+
+**The base set is already built on this axis, which neither of us noticed.** The
+O45 family is `log b_k = k · π/(2γ₁) = k · 0.111133`, so
+
+```text
+k = 4  ->  log b = 4 · 0.111133 = 0.444528 = 2π/γ₁  ->  b = 1.5597
+```
+
+and 1.5597 is the recorded family k=4 base. **k=4 is exactly the aliasing
+threshold for γ₁**, with k=1,2,3 inside it and base 2 well outside. The locked
+base set straddles the boundary this entry identifies, so the instrument for
+testing it already exists and was locked on 2026-08-18 for a different reason.
+
+**What is not established, and is the reason for a prereg rather than a claim.**
+The transform above is exact for a single mode. A real cell is a smooth term
+plus a sum over modes, and the transform acts mode-by-mode — so composite
+transport is only as good as the decomposition. Whether the normalised cell
+actually agrees across bases inside the radius and breaks outside it is a
+measurement, not a corollary, and it is what
+`preregs/small_angle_cross_base_v1_20260821.md` tests.
+
+Nothing here is a result. This entry records the reasoning and the arithmetic
+check that motivated a preregistered test.
+
+---
+
 ## 2026-08-21 — Entry 71 — the two audit defects fixed, and the composition the chain was missing
 type: formalization
 refs: 68, 70
