@@ -60,6 +60,24 @@ If it does not resolve, ask. Do not write the nearest plausible thing.
 - After a compaction, every remembered specific is suspect. The summary keeps
   the filename; the section letter gets regenerated.
 
+**And ask it the right question.** Opening the file is not enough. Several
+files here contain examples of themselves, so a *first* match is structurally
+unsafe:
+
+```text
+preregs/alpha_depth_trend_*, preregs/zero_winding_phase_*
+     a blank Run record template — "(fill at run)" — ABOVE the real record
+notes/NOTEPAD.md              a `- [STATUS] YYYY-MM-DD` line in its header
+notes/notes_format.md         the entry-header template it exists to define
+papers/FORMAT.md              citation examples
+claude_writer.md              a deliberately-broken citation, as a warning
+```
+
+Four times in one session `grep -m1` returned a template and it was reported as
+content — once causing a preregistered test to be re-run that had been closed
+for two days. Strip fences, write `[0-9]+` and never `[0-9]*`, and count the
+matches before trusting one.
+
 **Gate:** `python3 utilities/check_refs.py` exits 0.
 
 **Test:** could this reference have been different last week? Then open it.
