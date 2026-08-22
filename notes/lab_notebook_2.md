@@ -16,6 +16,77 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 83 — the pocket read as a BASE: the pair identity's coefficient is the lower twin arm, and the extent arithmetic that bounds it
+type: motivation
+refs: 81, 82
+
+**Julian's reframe, and it is not what entry 82 built.** O51 treated the lattice
+as a *set of sites* and counted occupancy. His reading is that each pocket is a
+**base**, in the same sense as dyadic and triadic: `(11,13)` gives base 12, and
+you build the b-adic table there. Tabled without pursuing, recorded so it is not
+rediscovered.
+
+**The structural consequence, which is the reason to record this at all.**
+`PairIdentity.pair_identity` gives the cell total as `(b−1)^(d+1) · b^e`. At a
+pocket base, **`b−1` is the lower twin arm** — a prime. At a generic base it is
+composite. So the pocket bases are exactly those whose identity coefficient is
+prime, and reading that coefficient across pockets enumerates the lower twins:
+
+```text
+base b     4    6   12   18   30   42   60   72
+b − 1      3    5   11   17   29   41   59   71     <- the lower twin arms
+b + 1      5    7   13   19   31   43   61   73
+```
+
+The arms are not beside the lattice. **One of them is the identity's
+coefficient at that base.**
+
+**A correction Julian caught in conversation.** I said bases 4 and 6 were "two
+pockets already measured, both empty". Wrong on two counts. They are **pockets,
+not twins** — the twins are 3, 5 and 5, 7. And `4 % 6 = 4`, so base 4 is **off
+the lattice**, which is exactly what `TwinLattice.three_five_exceptional`
+proves: `(3,5)` is the one pair whose pocket is not a multiple of 6. My own
+theorem excludes it and I counted it anyway.
+
+Corrected: of the eight bases O44 measured, **exactly one is an on-lattice
+pocket — base 6**, the pocket of `(5,7)`, and it has no exact zeros. Bases 12,
+18, 30, 42 have never been built.
+
+**And base 2 is not a pocket at all** (`b − 1 = 1`, not prime). The one base with
+exact zeros is the one base in range that is not a pocket.
+
+**Base 4 is a control, not a data point.** It is the only base with twin arms
+that sits off the lattice. If the lattice does work, 4 and 6 should behave
+differently; O44 lumped both in with 2–9.
+
+**The extent arithmetic, which bounds the whole idea.** `rungs =
+log(ceiling)/log(b)`, so high bases are starved regardless of compute.
+primecount is not the constraint — `π(10^15)` returns in 0.58 s.
+
+```text
+base    arms      rungs at 2^32   1e11   1e15
+   4    (3,5)          16          18     24
+   6    (5,7)          12          14     19
+  12   (11,13)          8          10     13
+  18   (17,19)          7           8     11
+  30   (29,31)          6           7     10
+  42   (41,43)          5           6      9
+```
+
+Base 30 would need a ceiling near `30^20 ≈ 3.5e29` to hold the twenty rungs base
+2 has at `2^20`. This is arithmetic, not a sieve limit — going deeper in `x`
+buys rungs only logarithmically. O44 already named it: *"bases 5–9 stop at
+regime ceilings 27, 24, 22, 21, 20 and are extent-censored."*
+
+**So the per-pocket table question is extent-limited before it is asked** —
+base 12 gets 13 rungs at `10^15`, not enough to look for anything like `(20,6)`.
+The cross-pocket question, whether the pockets connect to each other, is not
+obviously bounded the same way and was not examined.
+
+Nothing run. Nothing claimed. This entry is the observation and its limit.
+
+---
+
 ## 2026-08-21 — Entry 82 — O51: the twin lattice census, and three things it refuses
 type: run
 refs: 78, 81
