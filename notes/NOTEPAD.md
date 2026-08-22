@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 91: O55 run — the arm involution's fixed set (prime(r,d) = composite(r,d)) is exactly three cells (2,0) (3,0) (3,1), empty beyond, over 1953 cells to r=62; sigma -> 0 by PNT so it is finite for an ordinary reason. Negative on the s -> 1-s correspondence as stated
+- [open]   2026-08-21  entry 91: the four exact zeros and the arm-swap fixed set are DISJOINT, and rho = 0 at exactly 0 cells — three conditions the record had treated as one family, now separated by O55 itself
+- [open]   2026-08-21  entry 91: entry 90 corrected — it called e = prime - S/2 the residual; S/2 is not the smooth model, so that is the arm asymmetry and a different quantity from rho. Entry 90 annotated in place, text unaltered
 - [open]   2026-08-21  entry 90: prime = S/2 + e and composite = S/2 - e, so the residual IS the antisymmetric part of the arm split (pair_identity + Euler-Factor-Chain I3); the symmetric part is closed-form and prime-free
 - [open]   2026-08-21  entry 90: scope fact — O50:70 normalises by sqrt(x)/log x, the RH-consistent scaling (von Koch); nothing in the bench tests whether sqrt(x) is the right normaliser, and every result O17-O50 is expressed in that scale
 - [open]   2026-08-21  entry 90: smallest test — does prime(r,d) = composite(r,d) anywhere in the dyadic table? that is the fixed set of the arm involution, finite and cheap, never looked at; the s-side involution s -> 1-s has the critical line as its fixed set

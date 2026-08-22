@@ -16,9 +16,103 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 91 — O55: the arm involution's fixed set is three cells, and entry 90 conflated two quantities
+type: run
+refs: 87, 88, 90
+
+`O55_arm_involution_fixed_set.py`, base 2, `r ≤ 62`, `dps = 40`, `primecountpy`.
+Completed. `results/arm_involution_fixed_set.json`,
+`results/O55_arm_involution_fixed_set_run1.log`. **EXPLORATORY** — no prereg, no
+verdict.
+
+### What prompted it
+
+Julian wrote the correspondence as two involutions:
+
+```text
+s -> 1 - s              fixed set: the critical line
+prime <-> composite     fixed set: cells where prime(r,d) = composite(r,d)
+```
+
+Normalising by `S = prime + composite` makes the parallel exact: with
+`σ = prime/S` the arm swap is `σ ↦ 1 − σ`, fixed at `σ = 1/2`, the same shape as
+`s + (1−s) = 1` fixed at `1/2`. His arithmetic had `(prime+composite)/2 = S`
+where it is `S/2`; normalising rather than halving is the fix, and it makes the
+correspondence tighter than the version written down.
+
+The s-side fixed set is a **line**. The arm side is finite and computable and
+had never been looked at.
+
+### The correction to entry 90
+
+Entry 90 wrote `prime = S/2 + e`, `composite = S/2 − e` and called `e` the
+residual. With `M` for the smooth model:
+
+```text
+prime = M_p + ρ     composite = M_c − ρ     M_p + M_c = S
+I3: ρ flips sign under the swap                      TRUE
+but M_p ≠ S/2, so prime = S/2 + ρ                    FALSE
+```
+
+`e = prime − S/2` is the **arm asymmetry**. It is a different quantity from `ρ`,
+and it is the one Julian's third line picks out. Entry 90's sentence "the
+residual is exactly the antisymmetric part of the arm split" overstates; the
+residual is *antisymmetric under the swap*, which is weaker and is what I3 says.
+Entry 90 annotated in place with a pointer here, original text unaltered.
+
+So three conditions the record had been treating as one family, now separated
+and reported side by side by the script itself.
+
+### Results
+
+**Self-check.** `pair_identity` holds at every one of **1953 cells**. A failure
+would have been a bug. The run also recovers the four exact zeros
+`(2,1), (4,1), (8,3), (20,6)` from `primecount` at `r ≤ 62`, independently of
+`Zeros.pi2`'s 21 pinned values.
+
+**The fixed set is three cells**, all at `r ≤ 3`:
+
+```text
+(2,0)   block (2,4]  = {3,4}       prime 1, composite 1,  S = 2
+(3,0)   block (4,8]  = {5,6,7,8}   prime 2, composite 2,  S = 4
+(3,1)   depth 1                    prime 1, composite 1,  S = 2
+```
+
+Empty everywhere else. `σ` at depth 0 runs `0.5000, 0.5000, 0.2500, 0.1797,
+0.0925, 0.0457, 0.0303, 0.0234` at `r = 2, 3, 4, 8, 16, 32, 48, 62`. The nearest
+miss after `r = 3` is `(21,8)` at `σ = 0.50195312`.
+
+**`ρ = 0` at exactly 0 cells.** Smallest `|ρ|` at `d ≥ 1` is `(7,1)` at
+`+0.221696`.
+
+**The overlap of condition (1) and condition (2) is empty.** No cell has both
+`cell_prime = 0` and `prime = composite`. The four exact zeros and the arm-swap
+fixed set are disjoint sets.
+
+### The reading
+
+The analogy breaks where it would need to hold. `s ↦ 1 − s` fixes a set of
+dimension 1. The arm swap fixes **three isolated points** at the bottom of the
+table and then nothing, and it is finite for an ordinary reason: `σ → 0` by the
+prime number theorem, since `σ` at depth 0 is `N(r)/2^(r−1) ~ 1/(r log 2)`.
+
+Two involutions each fixing "one half", with fixed sets of incomparable size.
+That is a **negative** on the correspondence as stated, and it was cheap. The
+structure that survives is the normalisation: `σ + (1−σ) = 1` exactly at every
+cell is `pair_identity`, and that much is a theorem.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 90 — The residual is the antisymmetric part of the arm split, and the two halves that are not the same half
 type: motivation
 refs: 84, 87, 88, 89
+
+> **Corrected by entry 91.** The decomposition below writes `prime = S/2 + e`
+> and calls `e` the residual. `S/2` is not the smooth model, so `e` is the arm
+> **asymmetry** and a different quantity from the residual `ρ`. What survives is
+> that `ρ` flips sign under the arm swap, which is I3. Original text unaltered.
 
 Julian's reading: the residuals belong to neither the prime arm nor the
 composite arm, so they cannot sit in either half of the torus and would have to
