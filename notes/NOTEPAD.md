@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 90: prime = S/2 + e and composite = S/2 - e, so the residual IS the antisymmetric part of the arm split (pair_identity + Euler-Factor-Chain I3); the symmetric part is closed-form and prime-free
+- [open]   2026-08-21  entry 90: scope fact — O50:70 normalises by sqrt(x)/log x, the RH-consistent scaling (von Koch); nothing in the bench tests whether sqrt(x) is the right normaliser, and every result O17-O50 is expressed in that scale
+- [open]   2026-08-21  entry 90: smallest test — does prime(r,d) = composite(r,d) anywhere in the dyadic table? that is the fixed set of the arm involution, finite and cheap, never looked at; the s-side involution s -> 1-s has the critical line as its fixed set
 - [open]   2026-08-21  entry 89: check_refs.py --audit pairs every cross-document section citation with the text it points at (31 today); gate default byte-identical so the baseline holds; the tool reproduced the CLAUDE.md '### B4' trap on its own first run and had a second bug where the last statement in a file never matched
 - [open]   2026-08-21  entry 89: Commensurate-Ladders H2 asks whether the power chains 2->4->8 and 3->9 do anything beyond block-summing — entry 87's Isogeny.rowN_eq_blockSum answers it on the arithmetic side; closing the paper's open question is Julian's call, left unedited
 - [open]   2026-08-21  entry 89: CONTEXT.md brought current (approved) — new section on the Lean tree as of entry 88, known defect 6 for the checker gap, content dates to 08-21

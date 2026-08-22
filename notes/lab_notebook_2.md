@@ -16,6 +16,100 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 90 — The residual is the antisymmetric part of the arm split, and the two halves that are not the same half
+type: motivation
+refs: 84, 87, 88, 89
+
+Julian's reading: the residuals belong to neither the prime arm nor the
+composite arm, so they cannot sit in either half of the torus and would have to
+sit on the band between them. Recording what of that is already proved, what is
+a separate object, and what would move it.
+
+### The decomposition is a theorem
+
+`PairIdentity.pair_identity` gives
+
+```text
+prime(r,d) + composite(r,d) = (b−1)^(d+1) · b^e
+```
+
+and its docstring is explicit that the right side contains no primes — the
+identity is forced by the partition alone, and nothing in the proof knows that
+`P` counts anything. `Euler-Factor-Chain.md § I3` adds
+`prime_residual + composite_residual = 0` at every cell, exactly, measured at
+row 20 base 2 as `−24.886 / −133.761 / −453.424` against the same three positive.
+
+Write `S` for the geometric total. Then
+
+```text
+prime     = S/2 + e
+composite = S/2 − e
+```
+
+**The residual is exactly the antisymmetric part of the arm split.** The
+symmetric part is `S`, closed-form and arithmetic-free. So "residuals aren't
+part of either" is what I3 says: `e` is what distinguishes the arms, and it
+belongs to neither.
+
+That reading was available in the record and nobody had written it down in this
+form. It costs nothing and it is now stated.
+
+### The two halves are different halves
+
+The `1/2` in `S/2` splits a count between two arms. The `1/2` in `Re s = 1/2` is
+where ζ's zeros sit in the s-plane. **Nothing in this tree connects them**, and
+the connection would need the explicit formula, which this tree does not have.
+
+### The anchor that does exist, and what it assumes
+
+`O50_deep_ladder_spectrum.py:70` normalises by `√x / log x`. That exponent is
+the same `1/2`: a zero at `ρ = 1/2 + iγ` contributes `x^ρ`, so `|x^ρ| = x^(1/2)`.
+Von Koch: `π(x) = li(x) + O(√x log x)` **iff** RH.
+
+So the residual's magnitude being `x^(1/2)` and the zeros being on the line are
+the same statement, and the bench's normaliser is the RH-consistent scaling.
+
+**Stated carefully:** using it does not assume RH. Off-line zeros would still
+produce peaks, at different `γ` and with a different envelope. What is true is
+that nothing in this bench tests whether `√x` is the right normaliser, and every
+result from O17 through O50 is expressed in a scale chosen to be the one RH
+predicts. That is a scope fact worth having on the record.
+
+### Why computation cannot settle it, in this tree's own terms
+
+RH is disprovable by one off-line zero and unprovable by any amount of
+computation. The torus makes the second half concrete rather than a slogan:
+a quotient is a compression, and `Transform.zmap_period_zsmul` proves infinitely
+many `s` collapse onto one `z`. Extending the table returns more of the same
+fundamental domain. Computation re-reads a compressed image at higher
+resolution, and the thing that would have to be found is folded onto what is
+already there.
+
+### The vacuous test, named so it is not run
+
+An obvious move is to spectrally analyse the composite arm the way O50 does the
+prime arm and check that the same zeros return with opposite sign. **I3 makes
+that vacuous** — the residuals are exact negatives, so the composite spectrum is
+the prime spectrum with a sign, by construction. `The-Composite-Arm.md § A2`
+already says it: anything the composite arm knows, the prime arm already knows.
+
+### The smallest test that would move this
+
+The arm swap `prime ↔ composite` is an involution whose fixed set is the cells
+where `prime(r,d) = composite(r,d) = S/2`. The functional equation `s ↦ 1 − s`
+is an involution whose fixed set is the critical line, and
+`Transform.zmap_functional_equation` carries it to inversion in `|z| = b^(−1/2)`.
+
+Two involutions, each with a fixed set at "one half". Whether they correspond is
+**unformalised and unmeasured**. The arm side is finite and computable and has
+never been looked at: does `prime(r,d) = composite(r,d)` occur anywhere in the
+dyadic table, and where. That is a cheap run and it is the first thing that
+would make the analogy either sharper or dead.
+
+Nothing here is a result. No run, no prereg, no verdict.
+
+---
+
 ## 2026-08-21 — Entry 89 — check_refs --audit, which found its own bugs first and then one stale open question
 type: instrument-fix
 refs: 87, 88
