@@ -1,0 +1,288 @@
+{
+  "schema_version": "1",
+  "script": "O51_twin_lattice_census.py",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "rmax": 30,
+    "ceiling": 1073741824,
+    "lattice": 6
+  },
+  "summary": {
+    "partition_exact_everywhere": true,
+    "site_count_exactly_geometric": false,
+    "twin_arm_exact_zeros": [
+      [
+        4,
+        1
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        8,
+        4
+      ]
+    ],
+    "n_cells_examined": 377
+  },
+  "rows": [
+    {
+      "r": 3,
+      "n_sites": 1,
+      "twin": 1,
+      "lo": 0,
+      "hi": 0,
+      "bare": 0,
+      "partition_ok": true
+    },
+    {
+      "r": 4,
+      "n_sites": 1,
+      "twin": 1,
+      "lo": 0,
+      "hi": 0,
+      "bare": 0,
+      "partition_ok": true
+    },
+    {
+      "r": 5,
+      "n_sites": 3,
+      "twin": 2,
+      "lo": 1,
+      "hi": 0,
+      "bare": 0,
+      "partition_ok": true
+    },
+    {
+      "r": 6,
+      "n_sites": 5,
+      "twin": 2,
+      "lo": 2,
+      "hi": 1,
+      "bare": 0,
+      "partition_ok": true
+    },
+    {
+      "r": 7,
+      "n_sites": 11,
+      "twin": 3,
+      "lo": 3,
+      "hi": 4,
+      "bare": 1,
+      "partition_ok": true
+    },
+    {
+      "r": 8,
+      "n_sites": 21,
+      "twin": 7,
+      "lo": 5,
+      "hi": 4,
+      "bare": 5,
+      "partition_ok": true
+    },
+    {
+      "r": 9,
+      "n_sites": 43,
+      "twin": 7,
+      "lo": 16,
+      "hi": 13,
+      "bare": 7,
+      "partition_ok": true
+    },
+    {
+      "r": 10,
+      "n_sites": 85,
+      "twin": 12,
+      "lo": 26,
+      "hi": 25,
+      "bare": 22,
+      "partition_ok": true
+    },
+    {
+      "r": 11,
+      "n_sites": 171,
+      "twin": 26,
+      "lo": 42,
+      "hi": 43,
+      "bare": 60,
+      "partition_ok": true
+    },
+    {
+      "r": 12,
+      "n_sites": 341,
+      "twin": 45,
+      "lo": 84,
+      "hi": 81,
+      "bare": 131,
+      "partition_ok": true
+    },
+    {
+      "r": 13,
+      "n_sites": 683,
+      "twin": 70,
+      "lo": 166,
+      "hi": 158,
+      "bare": 289,
+      "partition_ok": true
+    },
+    {
+      "r": 14,
+      "n_sites": 1365,
+      "twin": 113,
+      "lo": 325,
+      "hi": 321,
+      "bare": 606,
+      "partition_ok": true
+    },
+    {
+      "r": 15,
+      "n_sites": 2731,
+      "twin": 215,
+      "lo": 591,
+      "hi": 591,
+      "bare": 1334,
+      "partition_ok": true
+    },
+    {
+      "r": 16,
+      "n_sites": 5461,
+      "twin": 355,
+      "lo": 1161,
+      "hi": 1159,
+      "bare": 2786,
+      "partition_ok": true
+    },
+    {
+      "r": 17,
+      "n_sites": 10923,
+      "twin": 666,
+      "lo": 2198,
+      "hi": 2179,
+      "bare": 5880,
+      "partition_ok": true
+    },
+    {
+      "r": 18,
+      "n_sites": 21845,
+      "twin": 1153,
+      "lo": 4235,
+      "hi": 4208,
+      "bare": 12249,
+      "partition_ok": true
+    },
+    {
+      "r": 19,
+      "n_sites": 43691,
+      "twin": 2071,
+      "lo": 8107,
+      "hi": 8141,
+      "bare": 25372,
+      "partition_ok": true
+    },
+    {
+      "r": 20,
+      "n_sites": 87381,
+      "twin": 3785,
+      "lo": 15542,
+      "hi": 15523,
+      "bare": 52531,
+      "partition_ok": true
+    },
+    {
+      "r": 21,
+      "n_sites": 174763,
+      "twin": 6965,
+      "lo": 29874,
+      "hi": 29782,
+      "bare": 108142,
+      "partition_ok": true
+    },
+    {
+      "r": 22,
+      "n_sites": 349525,
+      "twin": 12495,
+      "lo": 57706,
+      "hi": 57640,
+      "bare": 221684,
+      "partition_ok": true
+    },
+    {
+      "r": 23,
+      "n_sites": 699051,
+      "twin": 22643,
+      "lo": 111508,
+      "hi": 111422,
+      "bare": 453478,
+      "partition_ok": true
+    },
+    {
+      "r": 24,
+      "n_sites": 1398101,
+      "twin": 41608,
+      "lo": 215276,
+      "hi": 215216,
+      "bare": 926001,
+      "partition_ok": true
+    },
+    {
+      "r": 25,
+      "n_sites": 2796203,
+      "twin": 76371,
+      "lo": 416576,
+      "hi": 416500,
+      "bare": 1886756,
+      "partition_ok": true
+    },
+    {
+      "r": 26,
+      "n_sites": 5592405,
+      "twin": 140944,
+      "lo": 806296,
+      "hi": 805936,
+      "bare": 3839229,
+      "partition_ok": true
+    },
+    {
+      "r": 27,
+      "n_sites": 11184811,
+      "twin": 261752,
+      "lo": 1561079,
+      "hi": 1561161,
+      "bare": 7800819,
+      "partition_ok": true
+    },
+    {
+      "r": 28,
+      "n_sites": 22369621,
+      "twin": 484968,
+      "lo": 3028585,
+      "hi": 3028769,
+      "bare": 15827299,
+      "partition_ok": true
+    },
+    {
+      "r": 29,
+      "n_sites": 44739243,
+      "twin": 904799,
+      "lo": 5876680,
+      "hi": 5875629,
+      "bare": 32082135,
+      "partition_ok": true
+    },
+    {
+      "r": 30,
+      "n_sites": 89478485,
+      "twin": 1689477,
+      "lo": 11414236,
+      "hi": 11414088,
+      "bare": 64960684,
+      "partition_ok": true
+    }
+  ]
+}

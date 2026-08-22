@@ -16,6 +16,74 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 82 — O51: the twin lattice census, and three things it refuses
+type: run
+refs: 78, 81
+
+**Run.** `O51_twin_lattice_census.py`, no flags, **EXPLORATORY — no prereg, no
+verdict**. Numpy odd sieve to `2^30`, four-way occupancy of the `6k` lattice per
+dyadic block, `r = 3…30`. Completed, did not error.
+`results/twin_lattice_census.json` + `results/O51_twin_lattice_census_run1.log`.
+Paper written on it: `papers/The-Twin-Lattice.md`.
+
+**Self-check passes.** The four-way split — twin / lo / hi / bare — partitions
+the sites exactly at every rung. A failure would have been a bug.
+
+### Three refusals, and the refusals are the content
+
+**1. The total is not geometric, so `pair_identity` does not transfer.** The site
+count per block alternates `±1/3` about `2^(r−1)/6`, at every rung, without
+settling — because `2^(r−1) mod 6` alternates between 2 and 4 and the floor
+follows. So the hypothesis fails for a **structural** reason, and the deviation
+is the `2·3` lattice showing up in the count of its own sites.
+
+This is the second refusal for this object. Partitioning twins against the whole
+block instead gives a geometric total, but the complement is 99.9% of it and
+carries nothing (`The-Composite-Arm.md` § A2's argument, worse).
+
+**2. The occupancy bias is weak and sign-changing, and is NOT the Chebyshev
+bias.** `lo − hi` normalised by `√sites` stays inside `±0.25` and flips sign
+across rungs. Counting **primes** by residue class mod 6 gives a consistent
+one-directional excess for `6k − 1`; counting **sites flanked on exactly one
+side** does not. I conflated the two in conversation before the census ran. The
+census separates them, and the residue-class race is measured nowhere in this
+tree — the figures I quoted came from an inline script and are in no artifact,
+so they are in no paper.
+
+**3. No twin zero is deep.** The twin arm's difference table has exactly four
+exact zeros at `d ≥ 1` over 377 cells to `r = 30`: `(4,1)`, `(6,1)`, `(9,1)`,
+`(8,4)`. **All four sit at `r ≤ 9`**, where counts are single or double digits.
+The prime table's `(20,6)` sits at a count of 38635. Depths to 28 were examined
+across `r = 3…30`, so the deep region was looked at and is empty.
+
+### The parts worth arguing about
+
+`(4,1)` is in **both** lists — the prime table's `(2,1) (4,1) (8,3) (20,6)` and
+the twin table's. One coincidence at a small count, recorded because it is
+checkable, not because it is evidence.
+
+Three of the four twin zeros are adjacent repeats on tiny counts —
+`twin(3) = twin(4) = 1`, `twin(5) = twin(6) = 2`, `twin(8) = twin(9) = 7` — and
+`Zeros.zero_iff_repeat` says a depth-1 zero **is** a repeat, so those are cheap
+at those magnitudes. **`(8,4)` is not**: the row `2, 2, 3, 7, 7` differences to
+`1, 0, 1, 4`, then `−1, 1, 3`, then `2, 2`, then `0`. A depth-4 cancellation,
+walked by hand to confirm.
+
+**Extent caveat, stated rather than buried.** 377 cells to `r = 30` against
+O43's 4186 cells to `r = 92`. The absence of a deep twin zero is an absence over
+the smaller range.
+
+### Ordering
+
+Lean first (entry 81), then the census, then the paper citing both. The reverse
+of `The-Composite-Arm.md`, which went out ahead of its script and is still
+PROVISIONAL. `check_values` caught two numbers on the first pass — O43's `92`
+and `4186` cited against the twin artifact, which does not contain them — and
+they were split into their own statement with their own source. Now **113
+confirmed, 0 not found**.
+
+---
+
 ## 2026-08-21 — Entry 81 — TwinLattice: a twin pair is a lattice site, proved, and the mod-6 lattice was already load-bearing here twice
 type: formalization
 refs: 78, 80
