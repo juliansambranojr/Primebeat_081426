@@ -6,6 +6,15 @@ Checks four token types wherever they appear; everything else is prose.
   Module.name          declaration exists in lean/
   script.py            file exists somewhere in the repo
   results/x.json       path exists
+
+It checks that a target EXISTS. It cannot check that the target says what the
+citing line claims, and one miscitation of exactly that shape stood undetected
+(entry 88: The-Deep-Ladder § F4 cited Euler-Factor-Chain § J5, which is about
+RH, for a claim about analytic continuation).
+
+  --audit    pair every cross-document `§` citation with the text it points
+             at, for review. Reads nothing about meaning; the judgement is a
+             person's. Exits 0 and runs no gate.
 """
 import re, sys, pathlib
 
@@ -34,6 +43,58 @@ files = {p.name for p in ROOT.rglob("*") if p.is_file()}
 
 ALLOW = [l.strip() for l in (ROOT / "utilities/refs_allowlist.txt").read_text().splitlines()
          if l.strip() and not l.startswith("#")] if (ROOT / "utilities/refs_allowlist.txt").exists() else []
+
+def audit():
+    """Pair each cross-document `§` citation with the statement it points at."""
+    def statements(path):
+        """{label: text} for `**A1.** ...`, `## A · ...` and `### A1 · ...`.
+
+        The `#{2,4}` range is load-bearing: `Formalization.md` states B4 as
+        `### B4 · ...`, and matching only `## ` is the documented failure in
+        CLAUDE.md that declared a live section missing. This tool reproduced
+        it on its first run.
+        """
+        t = path.read_text()
+        out = {}
+        for m in re.finditer(r"^\*\*([A-Z]\d+[\u2032\u2033\u2034]?)\.\*\*\s*(.+?)(?=\n\n|\Z)",
+                             t, re.M | re.S):
+            out[m.group(1)] = " ".join(m.group(2).split())
+        for m in re.finditer(r"^#{2,4} ([A-Z]\d*)\s*\u00b7\s*(.+)$", t, re.M):
+            out.setdefault(m.group(1), " ".join(m.group(2).split()))
+        return out
+
+    body = {f.name: statements(f) for f in PAPERS.glob("*.md")}
+    rows, seen, n = [], set(), 0
+    for f in sorted(PAPERS.glob("*.md")):
+        if f.name == "FORMAT.md":
+            continue
+        text = re.sub(r"```.*?```", "", f.read_text(), flags=re.S)
+        here = statements(f)
+        for m in re.finditer(r"([A-Za-z][\w\-.]*\.md)`? \u00a7 ([A-Z]\d*)", text):
+            doc, sec = m.group(1), m.group(2)
+            if doc == f.name or doc not in body:
+                continue          # same-paper and commitment-file cites skipped
+            back = text[:m.start()]
+            cm = list(re.finditer(r"^\*\*([A-Z]\d+[\u2032\u2033\u2034]?)\.\*\*", back, re.M))
+            label = cm[-1].group(1) if cm else "?"
+            key = (f.name, label, doc, sec)
+            if key in seen:
+                continue          # same cite twice in one statement is one cite
+            seen.add(key)
+            rows.append((f.name, label, here.get(label, ""), doc, sec,
+                         body[doc].get(sec, "<<MISSING>>")))
+            n += 1
+    for src, label, claim, doc, sec, target in rows:
+        print(f"\n{src} \u00a7 {label}  ->  {doc} \u00a7 {sec}")
+        print(f"    claims : {claim[:150]}")
+        print(f"    target : {target[:150]}")
+    print(f"\n{n} cross-document citation(s). Existence is checked by the gate; "
+          f"whether each target supports its claim is not.")
+    sys.exit(0)
+
+
+if "--audit" in sys.argv:
+    audit()
 
 broken = []
 def check(src, why, cond):

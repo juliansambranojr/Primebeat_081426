@@ -239,7 +239,7 @@ Status: **folded into the research program**, with the commitment files
 at the root, notes under `notes/`, and papers under `papers/`. Results
 here are citable, which makes the exploratory/preregistered distinction
 load-bearing rather than bookkeeping. Content dates 2026-08-14 to
-2026-08-20. This **is** a git repository, pushed to a remote. The
+2026-08-21. This **is** a git repository, pushed to a remote. The
 environment is a `.venv` on Python 3.14.3, now frozen to
 `requirements.txt`; Homebrew `primecount 8.6` is linked by
 `primecountpy` and is not capturable by a freeze.
@@ -480,6 +480,41 @@ Known defects in the current state:
    and by DT-A5/A6 but exist in no folder on this machine.
 5. **No prereg for O3, O4, 05, 06, O8, O9** — their numbers are
    exploratory, not verdicts.
+6. **`check_refs.py` verifies that a citation's target exists and never
+   that the target says what the citing line claims.** Entry 88:
+   `The-Deep-Ladder.md` § F4 cited `Euler-Factor-Chain.md § J5` for a
+   claim about analytic continuation; J5 is about RH and says nothing of
+   the kind. The gate passed it clean for as long as it stood. Run
+   `python3 utilities/check_refs.py --audit` to pair every cross-document
+   `§` citation with the text it points at; the reading is a person's.
+   This is the same failure shape as the `§ B4` case in `CLAUDE.md`, with
+   the target present and misread rather than absent and misreported.
+
+### The Lean tree, as of entry 88
+
+Fourteen modules, 179 theorems, every one `#guard_msgs`-pinned to its
+`#print axioms`. `lake build` is the regression check; see `lean/BUILD.md`,
+and **do not run `lake update`** — four dependencies track `main`.
+
+Three things landed on 2026-08-21 that change what the tree can say:
+
+* **The torus is an object.** `Transform.lean` carries `Torus b = ℂ ⧸
+  periodLattice b` with `periodLattice_discrete` proving the lattice
+  discrete, so the quotient is a torus rather than a quotient by an
+  arbitrary subgroup. Compactness is open. Entries 84, 86, 88.
+* **The isogeny has an arithmetic shadow.** `Isogeny.rowN_eq_blockSum`
+  proves `row_k(r) = Σ_{j<k} row_1(k·r + j)` — the degree-`k` isogeny
+  sums the row in blocks of `k`. So a base inside an isogeny class
+  carries no count its generator's row already carries, and O53's
+  `BASES = [2, 3, 4, 6, 8, 9]` is three residual sequences: base 2
+  carrying 4 and 8, base 3 carrying 9, base 6 alone. Entry 87.
+* **The analytic continuation is in scope and unused.** Mathlib's
+  `riemannZeta` is the continued function and `Chain.A2` already places
+  it on the right of the Euler product — the `1 < Re s` hypothesis
+  restricts the **product**. `ζ(−1) = −1/12` compiles in two lines.
+  Nothing in this tree connects the table to a value off the critical
+  line, and that is a gap in the work rather than a limit of the
+  instrument. Entry 88.
 
 The smallest test that would falsify the bench as a whole: re-run O7
 from the locked prereg on a clean checkout and reproduce

@@ -16,6 +16,88 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 89 — check_refs --audit, which found its own bugs first and then one stale open question
+type: instrument-fix
+refs: 87, 88
+
+Entry 88 recorded that `check_refs.py` verifies a citation's target **exists**
+and never that the target says what the citing line claims, and that the J5
+miscitation passed the gate clean the whole time it stood. Full semantic
+verification is out of scope for a regex checker, so this does the honest thing
+instead: it makes the invisible reviewable.
+
+### `--audit`
+
+`python3 utilities/check_refs.py --audit` pairs every cross-document `§`
+citation with the statement it points at, and prints both. It reads nothing
+about meaning. Thirty-one pairs today, and the judgement stays with a person.
+
+**The gate default is byte-identical.** `--audit` prints and exits 0 without
+running the checks, so `refs_baseline.txt` needs no re-cut and the pre-commit
+hook is unaffected. Verified before and after every edit below.
+
+### It reproduced the documented failure on its first run
+
+The extractor matched `**A1.**` statements and `## A ·` headings only. So
+`Formalization.md § B4` came back `<<MISSING>>` — because B4 is stated as
+`### B4 · The four zeros: neither placed nor predicted`.
+
+That is the exact failure this project's CLAUDE.md is built around, in a tool
+written to catch it, three hours after re-reading the rule. The gate's own
+section index at `check_refs.py:20` already used `^#{3,4}` and I wrote the new
+one from scratch instead of reusing it. Widened to `#{2,4}`, with the reason in
+the docstring where the next person will read it.
+
+**Second bug, surfaced by the same run.** `J5` also came back `<<MISSING>>`,
+and the cause was different: the statement regex ended at `(?=\n\n)`, so the
+last statement in a file — with no trailing blank line — never matched. J5 is
+the last statement in `Euler-Factor-Chain.md`. Fixed to `(?=\n\n|\Z)`.
+
+So the tool found two of its own defects before finding anything in the corpus,
+and both were invisible to a passing gate.
+
+### The corpus review
+
+All 31 pairs read as coherent. **No second miscitation.** F4′ shows a claim and
+a target that disagree, which is correct — F4′ exists to record that
+disagreement.
+
+Duplicate rows deduped on `(source, statement, target doc, target section)`: a
+citation written twice inside one statement is one citation, and 33 rows became
+31.
+
+### One stale open question, found by reading the pairs
+
+`papers/Commensurate-Ladders.md:206`:
+
+```text
+**H2.** Whether the power chains 2→4→8 and 3→9 do anything beyond block-summing.
+`Euler-Factor-Chain.md § H` records the sampling consequence; nothing tests whether
+commensurate bases behave differently from orphans in any respect other than C3's
+oscillatory fraction, which found no difference.
+```
+
+Entry 87's `Isogeny.rowN_eq_blockSum` answers it: the degree-`k` isogeny acts on
+the row **as** block-summation by `k`, proved by telescope over an arbitrary
+`Q : ℕ → ℤ`. So on the arithmetic side the power chains do nothing beyond
+block-summing, and that is now a theorem.
+
+The paper reached the phrase "block-summing" first and entry 87 arrived at the
+same word without citing it. **Left unedited** — closing a paper's open question
+is Julian's call, and it is recorded here and as a NOTEPAD line for him.
+
+### `CONTEXT.md` brought current
+
+Approved edit. Content dates extended to 2026-08-21; a new
+**§ The Lean tree, as of entry 88** recording the torus as a real object with a
+discrete lattice, the isogeny's arithmetic shadow and what it does to O53's base
+list, and the continuation being in scope and unused. Known defect **6** added
+for the checker gap, pointing at `--audit`.
+
+Gate at baseline, 113 values confirmed and 0 not found.
+
+---
+
 ## 2026-08-21 — Entry 88 — A barrier that was miscited, false, and already imported; the lattice proved discrete
 type: formalization
 refs: 80, 84, 86, 87
