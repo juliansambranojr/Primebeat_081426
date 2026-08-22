@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 93: O57 run — O17's 14.08 run forward in extent arrives at 14.1345 on the fine ladder at xmax=1e11, against the true gamma_1 = 14.134725; err/dgamma falls to 0.002 by 1e10. The 1e8 row reproduces O17's 14.08 independently
+- [open]   2026-08-21  entry 93: the torus coordinate — true gamma_1 folds to 3.994716 in the fundamental domain of C*/2^Z, and the measurement converges 4.029441 -> 3.994941. The fold moves no information; recorded because it is the map-onto-the-globe step, now measured
+- [open]   2026-08-21  entry 93: the trajectory is one-way and the reason is the Hann window — residuals are nested and exactly recoverable (truncate + rewindow reproduces to machine precision), but np.hanning(n) depends on the whole range, so a measurement is recomputed rather than extended; long window on short blocks shifts -0.0350
 - [open]   2026-08-21  entry 92: O56 run — at depth 0 S(r,0) = 2^(r-1) IS the integer count of the block, so sigma + (1-sigma) = 1 is primes-plus-composites-equals-all-integers; holds at the row only, degrading by 2^d under differencing
 - [open]   2026-08-21  entry 92: 1/sigma is the global log-coordinate — 1/sigma = 0.1976 + 0.6813r against ln2 = 0.6931, ratio to ln x 1.9236 -> 1.0091, and sigma against the li density is pinned at 1.00000 from r=40. PNT in the ladder's coordinates, never written down here
 - [open]   2026-08-21  entry 92: the join still fails — s -> 1-s has the pole of zeta as its 1, ours is a partition of a finite integer set; nothing carries the arm swap through the log map. Same shape as entry 91

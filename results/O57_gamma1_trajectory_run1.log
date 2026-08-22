@@ -1,0 +1,33 @@
+O57 - gamma_1's trajectory in extent.  EXPLORATORY, no prereg, no verdict.
+true gamma_1 = 14.134725   tau_2 = 2*pi/log2 = 9.064720   fundamental domain [0, 4.532360]
+folded true gamma_1 = 3.994716
+
+=== O17_ladder:  x0 = 1000, ratio = 1.1
+      xmax  blocks         primes  gamma_hat       err   dgamma  err/dg   P/med    folded
+     1e+06      72         75,143    13.9885   -0.1462   0.9096   0.161    1.35  4.140941
+     1e+07      96        627,990    14.0485   -0.0862   0.6822   0.126    1.86  4.080941
+     1e+08     120      5,364,718    14.0815   -0.0532   0.5458   0.098    2.79  4.047941
+     1e+09     144     46,647,794    14.0940   -0.0407   0.4548   0.090    3.76  4.035441
+     1e+10     169    450,439,362    14.1380   +0.0033   0.3898   0.008    6.34  3.991441
+     1e+11     193  4,017,381,387    14.1470   +0.0123   0.3411   0.036   16.76  3.982441
+
+=== fine_ladder:  x0 = 100000, ratio = 1.002
+      xmax  blocks         primes  gamma_hat       err   dgamma  err/dg   P/med    folded
+     1e+06    1152         68,850    14.1000   -0.0347   2.7288   0.013    1.04  4.029441
+     1e+07    2304        653,905    14.1270   -0.0077   1.3644   0.006    1.17  4.002441
+     1e+08    3457      5,748,259    14.1420   +0.0073   0.9096   0.008    1.43  3.987441
+     1e+09    4609     50,763,563    14.1375   +0.0028   0.6822   0.004    1.91  3.991941
+     1e+10    5762    454,854,474    14.1360   +0.0013   0.5458   0.002    2.83  3.993441
+     1e+11    6914  4,112,835,107    14.1345   -0.0002   0.4548   0.000    4.68  3.994941
+
+=== IS THE TRAJECTORY REVERSIBLE?
+   Same blocks, two ways: measured directly at xmax = 1e8, versus
+   the 1e11 run truncated to the same block set.
+   direct measurement at 1e8            gamma_hat = 14.0815
+   1e11 residuals, truncated, rewindowed gamma_hat = 14.0815   (identical: True)
+   1e11 residuals, truncated, LONG window gamma_hat = 14.0465   shift = -0.0350
+   The residuals themselves are nested and recoverable. The WINDOW is
+   a function of the whole range, so a measurement is not a state that
+   later extents extend -- it is recomputed. That is the asymmetry.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/gamma1_trajectory.json

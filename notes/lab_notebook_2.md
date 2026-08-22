@@ -16,6 +16,109 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 93 — O57: 14.08 run forward in extent arrives at 14.1345, and the window is what makes the trajectory one-way
+type: run
+refs: 84, 90, 91, 92
+
+`O57_gamma1_trajectory.py`, two ladders, six extents from `1e6` to `1e11`,
+`dps = 30`, `primecountpy`, γ-grid step `0.0005`. Completed.
+`results/gamma1_trajectory.json`, `results/O57_gamma1_trajectory_run1.log`.
+**EXPLORATORY** — no prereg, no verdict.
+
+### What prompted it
+
+Julian: take the `14.08` O17 measured, run it forward in time at the same
+coordinate, and see whether it becomes the actual `γ₁`. Going backwards is a
+different operation, because the steps change the trajectory.
+
+**Time here is extent.** The instrument's only clock is how much of the prime
+sequence has been looked at. Holding `x0` and `ratio` fixed and growing `xmax`
+is the forward direction and the only one there is.
+
+### The trajectory
+
+O17's own ladder, `x0 = 1000`, `ratio = 1.1`:
+
+```text
+xmax     blocks         primes   gamma_hat        err    dgamma   err/dg
+1e+06        72         75,143     13.9885    -0.1462    0.9096    0.161
+1e+08       120      5,364,718     14.0815    -0.0532    0.5458    0.098
+1e+10       169    450,439,362     14.1380    +0.0033    0.3898    0.008
+1e+11       193  4,017,381,387     14.1470    +0.0123    0.3411    0.036
+```
+
+The `1e8` row is `14.0815`, which **reproduces O17's `14.08`** — that run used
+`xmax = 1.5e8` on a coarser `0.01` grid. So the starting point is the same
+number, recovered independently.
+
+The fine ladder, `x0 = 1e5`, `ratio = 1.002`:
+
+```text
+1e+06      1152         68,850     14.1000    -0.0347    2.7288    0.013
+1e+08      3457      5,748,259     14.1420    +0.0073    0.9096    0.008
+1e+10      5762    454,854,474     14.1360    +0.0013    0.5458    0.002
+1e+11      6914  4,112,835,107     14.1345    -0.0002    0.4548    0.000
+```
+
+**It arrives.** `14.1345` against `γ₁ = 14.134725`, an error of `0.000225`
+against a resolution element of `0.4548` — one two-thousandth of a resolution
+element. **Stated at its real precision:** the γ-grid step is `0.0005`, so the
+honest claim is that the estimate is inside one grid step of the true value and
+a finer grid would be needed to say more. `err/dγ` falling to `0.002` at `1e10`,
+where the grid is not binding, is the load-bearing number.
+
+The two ladders behave differently and the difference is informative. O17's
+coarse ladder approaches from below, crosses at about `1e10`, and **overshoots**
+to `+0.0123`. The fine ladder crosses at `1e8` and settles. Neither is monotone.
+
+### The torus coordinate
+
+Folded into the fundamental domain of `ℂ*/2^ℤ`, `τ₂ = 9.064720`, domain
+`[0, 4.532360]` — `Transform.tau`. The true `γ₁` folds to **3.994716**. The fine
+ladder's measurement folds
+
+```text
+4.029441 → 4.002441 → 3.987441 → 3.991941 → 3.993441 → 3.994941
+```
+
+landing `0.000225` from the true folded position, which is the same error
+transported. The fold is a change of variable and moves no information; it is
+recorded because it is the "map onto the globe" step and it is now measured
+rather than described.
+
+### Why the trajectory is one-way, concretely
+
+Checked rather than asserted, and the answer has two halves.
+
+```text
+direct measurement at 1e8                 gamma_hat = 14.0815
+1e11 residuals, truncated, rewindowed     gamma_hat = 14.0815   identical
+1e11 residuals, truncated, LONG window    gamma_hat = 14.0465   shift −0.0350
+```
+
+**The residuals are nested and exactly recoverable.** Truncating the `1e11` run
+to the `1e8` block set and rewindowing reproduces the direct measurement to
+machine precision. So the data is reversible.
+
+**The measurement is not.** `np.hanning(n)` is a function of the whole block
+count, so every block's weight changes when the range changes. A measurement at
+extent `T` is not a state that later extents extend — it is recomputed from
+scratch, and carrying the long run's weights onto the short block set shifts the
+answer by `−0.0350`, two thirds of that extent's resolution element.
+
+That is Julian's asymmetry located in the instrument: the past is recoverable,
+and no measurement of it survives into the present unchanged.
+
+### What this does not do
+
+It does not test RH. `γ₁ = 14.134725` is an **input**, read from
+`zeros600.json`; nothing here derives it. The convergence shows the statistic is
+consistent for a quantity already known, which is a property of the instrument.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 92 — O56: the "1" is the integer whole at depth 0, and σ's reciprocal is the global log-coordinate
 type: run
 refs: 90, 91
