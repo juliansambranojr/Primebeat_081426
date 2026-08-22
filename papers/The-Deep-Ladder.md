@@ -171,19 +171,19 @@ the critical line, and no continuation exists anywhere in this tree.
 Every zero in the list is detected; separation stops after the first band.
 `results/deep_ladder_spectrum_run2.json`
 
-**F6.** The floor rises with the midpoints moving closer to their neighbours in
+**F5′.** The floor rises with the midpoints moving closer to their neighbours in
 units of resolution — 3.11 elements down to 1.42 across the same bands. That is
 leakage from adjacent zeros, and it makes `γ = 120` a property of `Δγ = 0.455`
 rather than of the primes.
 `F5 · derived from results/deep_ladder_spectrum_run2.json: mean zero spacing per
 band over 2·Δγ; not printed there`
 
-**F7.** `Δγ = 2π/log(xmax/x0)`, so the cheapest lever is `x0`. Dropping it from
+**F5″.** `Δγ = 2π/log(xmax/x0)`, so the cheapest lever is `x0`. Dropping it from
 `10^5` to `10^2` takes the log range from 13.8 to 20.7 and `Δγ` from 0.455 to
 0.303, at no extra compute. Halving it needs squaring the range.
-`F6 · derived; not printed`
+`F5′ · derived; not printed`
 
-**F8.** Above `γ = 939` nothing has been looked at. The arm's Nyquist is 1572 and
+**F5‴.** Above `γ = 939` nothing has been looked at. The arm's Nyquist is 1572 and
 `zeros600.json` ends at 939.0243, so the remaining range is bounded by the zero
 file rather than by the instrument.
 `B2 · untested`
