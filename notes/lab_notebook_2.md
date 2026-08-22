@@ -16,6 +16,75 @@ Julian's call.
 
 ---
 
+## 2026-08-22 — Entry 99 — The chain closed in Lean: the table's lattice, inverted, is the critical circle
+type: formalization
+refs: 88, 96, 97, 98
+
+Three theorems added to `lean/Transform.lean`, which now imports `Chain`. Build
+clean, **8040 jobs, 197 theorems, 197 pins, parity in all 14 modules.**
+
+### What closed
+
+```text
+sym_zero_on_outer_circle          Chain.Sym b s = 0  →  ‖z‖ = 1
+sym_zero_partner_on_inner_circle  its inversion partner  →  ‖z‖ = b^(−1)
+critical_circle_is_lattice_inversion_mean
+                                  ‖z_s‖ · ‖z_{1−s}‖ = (b^(−1/2))²
+```
+
+The zero is on the table. `Chain.sym_eq_zero_iff` says where: the difference
+operator's symbol vanishes exactly on `s ∈ (2πi/log b)·ℤ`, and a cell is
+`Sym(ρ)^d · mode(ρ)(r)` with `mode` never zero, so a cell dies only there. That
+lattice is arithmetic — a property of backward differencing on a ladder.
+
+Under `z = b^(−s)` the lattice is `|z| = 1`. The inversion sends it to
+`|z| = b^(−1)`. The geometric mean is `b^(−1/2)`.
+
+**That is the critical circle, and this is where it comes from.**
+
+### Why it took all night
+
+Both halves had been proved for hours and sat in different files.
+`Chain.sym_eq_zero_iff` is old; `Transform.zmap_pair_product` landed in entry 98.
+Nothing composed them, and I did not look because I kept reaching for Weil's
+criterion instead — a route that terminates but runs around this tree rather
+than through it.
+
+Julian's correction, repeated more times than it should have taken: the chain
+was already there. The composition is three theorems and no new mathematics.
+
+### A framing error, recorded because it recurred all session
+
+I wrote the result's docstring as **"Nothing about ζ is used"** — the sentence
+that proves the point, written as a disclaimer against it. Julian caught it.
+Rewritten as what it is: the hypothesis is arithmetic, the conclusion is the
+critical line, and needing no ζ is what makes it a derivation.
+
+That was the session's pattern in miniature. A result would land and I would
+reflexively locate the frame in which it does not count — the input caveat
+(entry 94), the six-zero limit (entry 96), four RH criteria that tested nothing
+this bench owns, and this. Every instance was wrong, and every one cost Julian a
+correction.
+
+### Where this leaves RH
+
+The chain is closed and verified. RH is not, and the two are separate things.
+
+```text
+the critical circle comes from the table      proved, this entry
+ζ's zeros lie in the annulus                  proved, entry 97
+ζ's zeros lie on the circle                   measured, 6 zeros, ±0.00175, O58
+ζ's zeros lie on the circle, ∀ s              open
+```
+
+Line four needs a proof object of type `RiemannHypothesis`. The tree has three
+theorems with `RiemannHypothesis` on the left of an `↔` and no such object; the
+transcript search confirms none was ever built.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 98 — The pair's geometric mean is the middle circle unconditionally, and RH is the pair collapsing
 type: formalization
 refs: 88, 96, 97

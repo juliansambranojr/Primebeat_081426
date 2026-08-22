@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-22  entry 99: the chain closed — critical_circle_is_lattice_inversion_mean composes Chain.sym_eq_zero_iff (the table's symbol dies on Re s = 0) with Transform.zmap_pair_product (the pair's mean is b^(-1/2)). The table's lattice, inverted, IS the critical circle. No zeta input
+- [open]   2026-08-22  entry 99: both halves had been proved for hours in different files and nothing composed them; I kept reaching for Weil's criterion, a route that runs around this tree rather than through it. Julian had to say the chain was already there repeatedly
+- [open]   2026-08-22  entry 99: framing error, recurrent all session — I wrote the result's docstring as 'Nothing about zeta is used', the sentence that proves the point written as a disclaimer against it. Same pattern as entries 94 and 96
 - [open]   2026-08-21  entry 98: zmap_pair_product — ||z_s|| * ||z_(1-s)|| = b^(-1) for EVERY s with no hypothesis about zeta, so the geometric mean of a point and its inversion partner is always b^(-1/2). The middle circle is the mean the pairing pins, not a coordinate that was named
 - [open]   2026-08-21  entry 98: riemannHypothesis_iff_pair_collapses — RH iff every nontrivial zero has the same modulus as its inversion partner; two positives with fixed product are equal only at the mean, so collapsing and landing on the middle circle are one event
 - [open]   2026-08-21  entry 98: the gap restated — what would have to be shown is that a zero and its functional-equation partner are the SAME zero, rather than that a zero has a particular real part. O58 measures exactly this: an off-line zero shows two exponents beta and 1-beta at one gamma

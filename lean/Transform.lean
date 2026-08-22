@@ -35,6 +35,7 @@ equivalent restatement of RH "of identical difficulty" by the paper's own words.
 -/
 import Mathlib
 import EulerFactorChain
+import Chain
 
 open Complex
 
@@ -579,6 +580,48 @@ theorem riemannHypothesis_iff_pair_collapses {b : ℝ} (hb : 1 < b) :
   · intro h s hz ht h1
     exact (pair_collapses_iff_critical hb s).mp (h s hz ht h1)
 
+/-! ### The table's lattice, inverted
+
+The zero is on the table. `Chain.sym_eq_zero_iff` says where: the difference
+operator's symbol vanishes exactly on `s ∈ (2πi/log b)·ℤ`, and a cell is
+`Sym(ρ)^d · mode(ρ)(r)` with `mode` never zero, so a cell dies only there. That
+lattice is arithmetic — it is a property of backward differencing on a ladder.
+
+Under `z = b^(−s)` the lattice is the circle `|z| = 1`. The inversion sends it to
+`|z| = b^(−1)`. The geometric mean of the two is `b^(−1/2)`.
+
+That is the critical circle, and this is where it comes from.
+-/
+
+/-- A zero of the table's symbol lands on `|z| = 1`. -/
+theorem sym_zero_on_outer_circle {b : ℝ} (hb : 0 < b) (hb1 : b ≠ 1) {s : ℂ}
+    (hs : Chain.Sym b s = 0) : ‖(b : ℂ) ^ (-s)‖ = 1 := by
+  obtain ⟨k, hk⟩ := (Chain.sym_eq_zero_iff hb hb1 s).mp hs
+  have hlog : Real.log b ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one hb hb1
+  have hre : s.re = 0 := by
+    rw [hk]
+    simp [Complex.div_re, Complex.mul_re, Complex.mul_im, hlog]
+  rw [norm_zmap hb, hre]
+  simp
+
+/-- Its inversion partner lands on `|z| = b^(−1)`. -/
+theorem sym_zero_partner_on_inner_circle {b : ℝ} (hb : 0 < b) (hb1 : b ≠ 1) {s : ℂ}
+    (hs : Chain.Sym b s = 0) : ‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ)) := by
+  have hprod := zmap_pair_product hb s
+  rw [sym_zero_on_outer_circle hb hb1 hs, one_mul] at hprod
+  exact hprod
+
+/-- **The table's lattice, inverted, gives the critical circle.** The zero comes
+from the table; the inversion puts it and its partner at `|z| = 1` and
+`|z| = b^(−1)`; their geometric mean is `b^(−1/2)`, which
+`on_critical_line_iff_norm` reads as `Re s = 1/2`. -/
+theorem critical_circle_is_lattice_inversion_mean {b : ℝ} (hb : 0 < b) (hb1 : b ≠ 1)
+    {s : ℂ} (hs : Chain.Sym b s = 0) :
+    ‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = (b ^ (-(1 : ℝ) / 2)) ^ 2 := by
+  rw [zmap_pair_product hb s, ← Real.rpow_natCast (b ^ (-(1:ℝ)/2)) 2,
+    ← Real.rpow_mul hb.le]
+  norm_num
+
 /-! ## Axiom check
 
 Every theorem here is ℂ-valued, so `Classical.choice` is the floor and stays.
@@ -716,6 +759,19 @@ Every theorem here is ℂ-valued, so `Classical.choice` is the floor and stays.
 /-- info: 'Transform.riemannHypothesis_iff_pair_collapses' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Transform.riemannHypothesis_iff_pair_collapses
+
+/-- info: 'Transform.sym_zero_on_outer_circle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.sym_zero_on_outer_circle
+
+/-- info: 'Transform.sym_zero_partner_on_inner_circle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.sym_zero_partner_on_inner_circle
+
+/-- info: 'Transform.critical_circle_is_lattice_inversion_mean' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.critical_circle_is_lattice_inversion_mean
+
 
 
 
