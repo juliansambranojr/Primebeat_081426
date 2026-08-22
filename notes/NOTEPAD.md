@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 97: strip_is_fundamental_domain — the critical strip's edges Re s = 0 and Re s = 1 are ONE deck step apart, so the strip IS exactly one fundamental domain of C*/b^Z for every b > 1; the strip's width is the period of the deck action
+- [open]   2026-08-21  entry 97: zeros_in_fundamental_annulus — every nontrivial zero proved to lie in b^(-1) < |z| < 1; left edge derived via riemannZeta_one_sub, Gamma_ne_zero, cpow_eq_zero_iff and cos_eq_zero_iff, right edge from Mathlib's riemannZeta_ne_zero_of_one_le_re
+- [open]   2026-08-21  entry 97: riemannHypothesis_iff_zeros_on_middle_circle — RH iff every nontrivial zero sits on the annulus's middle circle |z| = b^(-1/2), the geometric mean of the boundaries and the inversion's fixed set. Containment is proved; position within the annulus is exactly RH
+- [open]   2026-08-21  entry 97: the critical-strip containment itself is classical (Hadamard-de la Vallee Poussin and the functional equation); what is new is that it is in this geometry with the fundamental-domain identification, machine-checked and buildable on
 - [open]   2026-08-21  entry 96: riemannHypothesis_iff_zeros_inversion_fixed compiles — Mathlib's RiemannHypothesis holds iff every nontrivial zero is carried by z = b^(-s) to a fixed point of z -> b^(-1)/z, for every b > 1. An equivalence; it decides nothing
 - [open]   2026-08-21  entry 96: the bridge was on_critical_line_iff_norm (Re s = 1/2 iff |z| = b^(-1/2)) via norm_zmap + rpow_left_inj; zmap_functional_equation and inversion_fixes_circle were already there from entry 88
 - [open]   2026-08-21  entry 96: my framing error again — I nearly wrote the measurement's six-zero range into the formalization as a limit. Julian stopped it. The theorem quantifies over every nontrivial zero and every base; the range belongs to O58, not to the mathematics

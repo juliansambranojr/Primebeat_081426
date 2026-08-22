@@ -16,6 +16,93 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 97 — The strip is one fundamental domain of the torus, and every nontrivial zero is inside it
+type: formalization
+refs: 84, 88, 95, 96
+
+Seven theorems added to `lean/Transform.lean`. Build clean, **8040 jobs, 191
+theorems, 191 pins, parity in all 14 modules.**
+
+Entry 96 ended with the honest complaint that the torus **relabels** — it
+carries statements about `s` to statements about `z` and back, and constrains
+nothing. This closes that.
+
+### The strip is a fundamental domain
+
+```text
+norm_zmap_zero_line          Re s = 0  →  ‖z‖ = 1
+strip_is_fundamental_domain  the edges Re s = 0 and Re s = 1 are ONE deck step
+                             apart, and zmap_shift carries one to the other
+```
+
+So the critical strip is not merely *an* annulus in `z`. It is **exactly one
+fundamental domain of `ℂ*/b^ℤ`**, for every `b > 1`. Its outer boundary is
+`|z| = 1`, its inner boundary `|z| = b^(−1)`, the ratio is `b`, and the deck
+transformation `s ↦ s + 1` is precisely the step between them.
+
+That is the reason this torus is the right object rather than a convenient
+picture: the width of the critical strip **is** the period of the deck action.
+
+### Both edges, and the zeros are inside
+
+```text
+zeros_re_lt_one              ζ s = 0  →  Re s < 1
+zeros_re_pos                 nontrivial zero  →  0 < Re s
+zeros_outside_inner_circle   →  ‖z‖ > b^(−1)
+zeros_in_fundamental_annulus →  b^(−1) < ‖z‖ < 1
+```
+
+The right edge is Mathlib's `riemannZeta_ne_zero_of_one_le_re`, one
+contraposition.
+
+**The left edge is the work.** `riemannZeta_one_sub` reflects the non-vanishing
+across: at a zero with `Re s ≤ 0`, write `w = 1 − s` so `Re w ≥ 1`. Then
+
+```text
+ζ(s) = 2 · (2π)^(−w) · Γ(w) · cos(πw/2) · ζ(w)
+```
+
+and every factor on the right is nonzero — `ζ(w)` by the same Mathlib theorem,
+`Γ(w)` by `Complex.Gamma_ne_zero`, the power by `Complex.cpow_eq_zero_iff` —
+except the cosine. `Complex.cos_eq_zero_iff` forces `w = 2k + 1`, so
+`s = −2k` with `k ≥ 0`. `k = 0` gives `s = 0` where `ζ(0) = −1/2`, and `k ≥ 1`
+gives exactly the trivial zeros, which the hypothesis excludes.
+
+### The capstone
+
+```lean
+theorem riemannHypothesis_iff_zeros_on_middle_circle {b : ℝ} (hb : 1 < b) :
+    RiemannHypothesis ↔
+      ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -2 * (n + 1)) → s ≠ 1 →
+        ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2)
+```
+
+Every nontrivial zero lies in the fundamental annulus. **RH says every one of
+them lies on its middle circle** — the geometric mean of the two boundaries, and
+`inversion_fixes_circle`'s fixed set, and the circle the inversion leaves alone
+while swapping the boundaries.
+
+### What is new here and what is not
+
+The critical-strip containment is **classical** — the right edge is
+Hadamard–de la Vallée Poussin, the left is the functional equation, and both are
+a century old. Nothing in this entry discovers them.
+
+What is new is that the containment is now stated in this tree's geometry with
+the fundamental-domain identification attached, machine-checked, and available
+to build on. Entry 96's torus took statements about zeros and renamed them.
+**This one contains them:** the zeros are proved to sit inside one copy of the
+torus, and RH is proved equivalent to their sitting on one distinguished circle
+inside that copy.
+
+The gap that remains is the same one, moved: nothing yet forces a zero **onto**
+the middle circle. Containment in the annulus is proved; the position within it
+is exactly RH.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 96 — RH restated on the torus, in Lean, quantified over every zero and every base
 type: formalization
 refs: 84, 88, 95

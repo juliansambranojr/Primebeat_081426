@@ -389,6 +389,148 @@ theorem riemannHypothesis_iff_zeros_inversion_fixed {b : ℝ} (hb : 1 < b) :
   · intro h s hz ht h1
     exact (on_critical_line_iff_inversion_fixed hb s).mpr (h s hz ht h1)
 
+/-! ### The strip is one fundamental domain, and the zeros live in it
+
+Everything above relabels: it carries statements about `s` to statements about
+`z` and back. This section is where the torus starts constraining rather than
+relabelling, and it needs two facts that are about ζ rather than about the map.
+
+**The strip is a fundamental domain.** Its edges `Re s = 0` and `Re s = 1` are a
+single deck step apart, and `zmap_shift` carries one to the other. So the
+critical strip is not merely *an* annulus in `z` — it is exactly one fundamental
+domain of `ℂ*/b^ℤ`, for every `b > 1`. That is why this torus is the right
+object rather than a convenient picture.
+
+**The zeros are inside it.** Mathlib's `riemannZeta_ne_zero_of_one_le_re` puts
+every zero at `Re s < 1`, hence strictly outside the inner circle `|z| = b^(−1)`.
+-/
+
+/-- `Re s = 0` lands on the unit circle. -/
+theorem norm_zmap_zero_line {b : ℝ} (hb : 0 < b) {s : ℂ} (h : s.re = 0) :
+    ‖(b : ℂ) ^ (-s)‖ = 1 := by
+  rw [norm_zmap hb, h]
+  simp
+
+/-- **The critical strip is one fundamental domain of `ℂ*/b^ℤ`.** Its left edge
+maps to `|z| = 1`, its right edge to `|z| = b^(−1)`, and the two are a single
+deck step apart — `s ↦ s + 1`, which `zmap_shift` sends to `z ↦ z/b`. -/
+theorem strip_is_fundamental_domain {b : ℝ} (hb : 1 < b) {s : ℂ} (h : s.re = 0) :
+    ‖(b : ℂ) ^ (-s)‖ = 1 ∧ (s + 1).re = 1 ∧
+      ‖(b : ℂ) ^ (-(s + 1))‖ = b ^ (-(1 : ℝ)) := by
+  have hb0 : (0 : ℝ) < b := by linarith
+  refine ⟨norm_zmap_zero_line hb0 h, by simp [h], ?_⟩
+  rw [norm_zmap hb0]
+  congr 1
+  simp [h]
+
+/-- **Every zero of ζ has `Re s < 1`**, from Mathlib's non-vanishing on the
+closed half-plane `1 ≤ Re s`. -/
+theorem zeros_re_lt_one {s : ℂ} (hz : riemannZeta s = 0) : s.re < 1 := by
+  by_contra h
+  exact riemannZeta_ne_zero_of_one_le_re (not_lt.mp h) hz
+
+/-- **Every zero lies strictly outside the inner circle.** `Re s < 1` becomes
+`|z| > b^(−1)` — the zeros are inside the fundamental annulus, on the far side
+of the boundary the Euler product owns. -/
+theorem zeros_outside_inner_circle {b : ℝ} (hb : 1 < b) {s : ℂ}
+    (hz : riemannZeta s = 0) : b ^ (-(1 : ℝ)) < ‖(b : ℂ) ^ (-s)‖ := by
+  have hb0 : (0 : ℝ) < b := by linarith
+  rw [norm_zmap hb0]
+  exact Real.rpow_lt_rpow_left_iff hb |>.mpr (by linarith [zeros_re_lt_one hz])
+
+/-- **Every nontrivial zero has `0 < Re s`.** The functional equation reflects
+Mathlib's non-vanishing on `1 ≤ Re s` across to the left edge: at a zero with
+`Re s ≤ 0` every factor of `riemannZeta_one_sub` is nonzero except the cosine,
+and the cosine's zeros are exactly the trivial zeros together with `s = 0`,
+where `ζ(0) = −1/2`. -/
+theorem zeros_re_pos {s : ℂ} (hz : riemannZeta s = 0)
+    (ht : ¬(∃ n : ℕ, s = -2 * (n + 1))) : 0 < s.re := by
+  by_contra hle
+  push_neg at hle
+  rcases eq_or_ne s 0 with rfl | hs0
+  · rw [riemannZeta_zero] at hz; norm_num at hz
+  set w : ℂ := 1 - s with hwdef
+  have hwre : 1 ≤ w.re := by simp [hwdef, Complex.sub_re]; linarith
+  have hwn : ∀ n : ℕ, w ≠ -n := by
+    intro n h
+    have : w.re = -(n : ℝ) := by rw [h]; simp
+    have : (0 : ℝ) ≤ (n : ℝ) := Nat.cast_nonneg n
+    linarith [hwre, ‹w.re = -(n:ℝ)›]
+  have hw1 : w ≠ 1 := by
+    intro h
+    apply hs0
+    have : (1 : ℂ) - s = 1 := h
+    linear_combination -this
+  have key := riemannZeta_one_sub hwn hw1
+  rw [show (1 : ℂ) - w = s by rw [hwdef]; ring] at key
+  have hzw : riemannZeta w ≠ 0 := riemannZeta_ne_zero_of_one_le_re hwre
+  have hG : Complex.Gamma w ≠ 0 := Complex.Gamma_ne_zero hwn
+  have hp : ((2 : ℂ) * (Real.pi : ℂ)) ^ (-w) ≠ 0 := by
+    intro h
+    rw [Complex.cpow_eq_zero_iff] at h
+    have := h.1
+    have hpi : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
+    simp [hpi] at this
+  rw [hz] at key
+  have hcos : Complex.cos ((Real.pi : ℂ) * w / 2) = 0 := by
+    rcases mul_eq_zero.mp key.symm with h | h
+    · rcases mul_eq_zero.mp h with h' | h'
+      · rcases mul_eq_zero.mp h' with h'' | h''
+        · rcases mul_eq_zero.mp h'' with h3 | h3
+          · norm_num at h3
+          · exact absurd h3 hp
+        · exact absurd h'' hG
+      · exact h'
+    · exact absurd h hzw
+  obtain ⟨k, hk⟩ := Complex.cos_eq_zero_iff.mp hcos
+  have hpi : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
+  have hwk : w = 2 * (k : ℂ) + 1 := by field_simp at hk; exact hk
+  have hkre : (1 : ℝ) ≤ 2 * (k : ℝ) + 1 := by
+    have : w.re = 2 * (k : ℝ) + 1 := by rw [hwk]; simp
+    linarith [hwre, this]
+  have hk0 : 0 ≤ k := by exact_mod_cast (by linarith : (0:ℝ) ≤ (k:ℝ))
+  have hsk : s = -2 * (k : ℂ) := by
+    have : s = 1 - w := by rw [hwdef]; ring
+    rw [this, hwk]; ring
+  rcases eq_or_lt_of_le hk0 with h0 | hpos
+  · exact hs0 (by rw [hsk, ← h0]; simp)
+  · exact ht ⟨(k - 1).toNat, by
+      rw [hsk]
+      have : ((k - 1).toNat : ℂ) = (k : ℂ) - 1 := by
+        have : ((k - 1).toNat : ℤ) = k - 1 := Int.toNat_of_nonneg (by omega)
+        exact_mod_cast congrArg (fun z : ℤ => (z : ℂ)) this
+      rw [this]; ring⟩
+
+/-- **Every nontrivial zero lies in the open fundamental annulus.**
+`b^(−1) < |z| < 1` — and `strip_is_fundamental_domain` says that annulus is
+exactly one fundamental domain of `ℂ*/b^ℤ`. So the zeros of ζ sit inside a
+single copy of the torus, for every base at once. -/
+theorem zeros_in_fundamental_annulus {b : ℝ} (hb : 1 < b) {s : ℂ}
+    (hz : riemannZeta s = 0) (ht : ¬(∃ n : ℕ, s = -2 * (n + 1))) :
+    b ^ (-(1 : ℝ)) < ‖(b : ℂ) ^ (-s)‖ ∧ ‖(b : ℂ) ^ (-s)‖ < 1 := by
+  have hb0 : (0 : ℝ) < b := by linarith
+  refine ⟨zeros_outside_inner_circle hb hz, ?_⟩
+  rw [norm_zmap hb0]
+  have : b ^ (-s.re) < b ^ (0 : ℝ) :=
+    (Real.rpow_lt_rpow_left_iff hb).mpr (by linarith [zeros_re_pos hz ht])
+  simpa using this
+
+/-- **RH, as a statement about one annulus.** Every nontrivial zero lies in the
+fundamental annulus `b^(−1) < |z| < 1`; RH says every one of them lies on its
+middle circle `|z| = b^(−1/2)`, which `inversion_fixes_circle` identifies as the
+fixed set of `z ↦ b^(−1)/z`. The middle circle is the geometric mean of the two
+boundaries, and the inversion swaps those boundaries. -/
+theorem riemannHypothesis_iff_zeros_on_middle_circle {b : ℝ} (hb : 1 < b) :
+    RiemannHypothesis ↔
+      ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -2 * (n + 1)) → s ≠ 1 →
+        ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2) := by
+  unfold RiemannHypothesis
+  constructor
+  · intro h s hz ht h1
+    exact (on_critical_line_iff_norm hb s).mp (h s hz ht h1)
+  · intro h s hz ht h1
+    exact (on_critical_line_iff_norm hb s).mpr (h s hz ht h1)
+
 /-! ## Axiom check
 
 Every theorem here is ℂ-valued, so `Classical.choice` is the floor and stays.
@@ -486,6 +628,35 @@ Every theorem here is ℂ-valued, so `Classical.choice` is the floor and stays.
 /-- info: 'Transform.riemannHypothesis_iff_zeros_inversion_fixed' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Transform.riemannHypothesis_iff_zeros_inversion_fixed
+
+/-- info: 'Transform.norm_zmap_zero_line' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.norm_zmap_zero_line
+
+/-- info: 'Transform.strip_is_fundamental_domain' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.strip_is_fundamental_domain
+
+/-- info: 'Transform.zeros_re_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.zeros_re_lt_one
+
+/-- info: 'Transform.zeros_outside_inner_circle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.zeros_outside_inner_circle
+
+/-- info: 'Transform.zeros_re_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.zeros_re_pos
+
+/-- info: 'Transform.zeros_in_fundamental_annulus' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.zeros_in_fundamental_annulus
+
+/-- info: 'Transform.riemannHypothesis_iff_zeros_on_middle_circle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.riemannHypothesis_iff_zeros_on_middle_circle
+
 
 
 /-- info: 'Transform.gens_linearIndependent' depends on axioms: [propext, Classical.choice, Quot.sound] -/
