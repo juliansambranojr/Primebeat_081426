@@ -16,6 +16,118 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 87 — The isogeny acts on the row as block-summation, and O53 swept three ladders wearing six labels
+type: formalization
+refs: 84, 85, 86, 77
+
+Entry 86 put τ in Lean and stopped at the tori. `Transform.tau_ratio_of_meet`
+relates two ladders that meet, and `ℂ*/b^ℤ` knows only `b` — no prime enters it.
+This entry is the arithmetic shadow of the same relation, which is the one place
+the geometry reaches the counting function.
+
+**`lean/Isogeny.lean`**, the fourteenth module, nine theorems.
+
+```text
+rowN Q k r          = Q (k*(r+1)) − Q (k*r)          def, exponent-indexed
+rowN_eq_blockSum    rowN Q k r = Σ_{j<k} rowN Q 1 (k*r+j)
+rowN_comp           rowN Q (k*l) r = rowN (Q ∘ (k*·)) l r      decimation composes
+row_two_eq_pair     base 4's row is base 2's summed in pairs
+row_three_eq_triple base 8's row is base 2's summed in triples
+dyadicRow_eq_rowN   the weld to Zeros.dyadicRow inside its window
+measured_row_four   the base-4 row from the 21 pinned pi2 values
+measured_row_eight  the base-8 row from the same 21
+```
+
+**What it says.** A block sum followed by a stride-`k` step is a box filter
+followed by decimation. A base inside an isogeny class therefore carries no
+count its generator's row already carries. `{2,4,8}` is one row read at three
+decimations; `{3,9}` is one read at two.
+
+The proof is a telescope over an arbitrary `Q : ℕ → ℤ`. **No arithmetic input is
+used at all**, which is the honest scope: the identity is bookkeeping on a
+ladder, and it applies to `π` because `π` gets evaluated on one.
+
+**The axiom split is the informative part.**
+
+```text
+measured_row_four, measured_row_eight       no axioms whatsoever
+rowOf_eq_rowN, rowN_comp                    [propext]
+row_two_eq_pair, row_three_eq_triple,
+  dyadicRow_eq_rowN                         [propext, Quot.sound]
+telescope, rowN_eq_blockSum                 + Classical.choice
+```
+
+The general-`k` statement quantifies over `Finset.range` and pays
+`Classical.choice` for `Finset.sum`. The concrete `k = 2` and `k = 3` cases need
+no Finset and were rewritten to avoid it, which is what dropped them two levels.
+The two **measured** rows come in at zero axioms, the same standing as
+`Zeros.measured_zeros_all_vanish`:
+
+```text
+base 4   2, 4, 12, 36, 118, 392, 1336, 4642, 16458, 59025
+base 8   4, 14, 79, 467, 2948, 19488
+```
+
+**Lean caught a real error on the first pass.** The weld was written as
+`rowOf Zeros.pi2 2 r`, and `pi2` is indexed by the *exponent* — `π(2ⁿ)` at `n`
+rather than `π` at `2ⁿ`. So that expression meant `π(2^(2^r))`. Everything is
+exponent-indexed now; `rowOf` survives as the count-up-to-`x` reading with
+`rowOf_eq_rowN` as a one-line bridge. Two `omega` failures also had to be fixed
+by unifying arguments — `omega` reads `Q (2r+1+1)` and `Q (2r+2)` as distinct
+atoms, since it never normalises inside an opaque application.
+
+### O53's six bases are three residual sequences
+
+Checked against the residuals `O53_alias_tau.py` actually builds, rather than
+against the argument.
+
+```text
+base 4 residual == base 2 summed in pairs      max rel gap 3.6e-09 over 18 rungs
+base 8 residual == base 2 summed in triples    max rel gap 6.1e-10 over 12 rungs
+base 9 residual == base 3 summed in pairs      max rel gap 2.2e-10 over 11 rungs
+```
+
+Those gaps are mpmath's `li` precision at `dps = 30`. The `li` term telescopes
+exactly alongside the count, so the whole residual decimates and not just the
+prime part.
+
+The rung counts say it independently — 36, 23, 18, 14, 12, 11 for bases
+2, 3, 4, 6, 8, 9, where `36/2 = 18`, `36/3 = 12`, `23/2 ≈ 11`.
+
+So `O53_alias_tau.py:43`'s `BASES = [2, 3, 4, 6, 8, 9]` is base 2 carrying 4 and
+8 as decimations, base 3 carrying 9, and base 6 alone. **Entry 85's reading is
+unchanged** — no measurement supports τ as the alias spacing. What moved is the
+extent of that negative: half the rows in O53's table are arithmetic
+consequences of the other half, so the cross-base structure it swept was three
+ladders.
+
+### An inert hypothesis pair in `Chain.lean`, surfaced and left alone
+
+`lake build` reports `Chain.lean:545` unused variables `hm` and `hn`. Those are
+the `0 < m`, `0 < n` added to `joint_gain_periodic_of_commensurate` under the F2
+audit in entry 77, on the ground that `m = n = 0` satisfies `hcomm` for any pair
+of bases.
+
+Unused means the proof never consumes them, so the theorem holds without them.
+They keep `m = n = 0` out of the *statement* while the conclusion at that
+instantiation stays vacuous, so they hide the vacuous case instead of removing
+it. Entry 86 dropped exactly this shape from `tau_ratio_of_meet`, and
+`C3lower_of_A4_C2` set the precedent.
+
+**Left as it stands.** This reverses an entry-77 decision and is Julian's call,
+so it is recorded here rather than reworked.
+
+### Housekeeping
+
+`lean/BUILD.md` was stale at 11 modules / 8037 jobs / 155 theorems, which
+predates both `TwinLattice` and `Transform`. Brought current, the three missing
+modules added to its manifest, and the `globs`-is-not-a-wildcard trap written
+down where someone adding a module will read it.
+
+Build clean, **8040 jobs, 167 theorems, 167 pins, parity in all 14 modules.**
+
+---
+
 ## 2026-08-21 — Entry 86 — τ in Lean: the modular parameter, the power chain, and the meeting exponents
 type: formalization
 refs: 84, 85

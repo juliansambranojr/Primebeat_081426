@@ -5,7 +5,7 @@ Standalone Lean 4 project. Requires `elan`, which supplies `lake` and `lean`.
 ```bash
 cd lean
 lake exe cache get     # prebuilt Mathlib .olean files (large download)
-lake build             # compiles all 11 modules
+lake build             # compiles all 14 modules
 ```
 
 `lean-toolchain` pins `leanprover/lean4:v4.28.0`, and `elan` reads the pin
@@ -19,8 +19,8 @@ track `main` rather than a tag — `plausible`, `LeanSearchClient`, `importGraph
 build is the regression check for every theorem here. Use `lake exe cache get`
 on a fresh clone; reach for `update` only deliberately.
 
-Expected: compiles clean, **8037 jobs**, zero `sorry`, **155 theorems**. Two
-unused-simp-argument linter warnings are harmless.
+Expected: compiles clean, **8040 jobs**, zero `sorry`, **167 theorems**. A few
+unused-variable and unused-simp-argument linter warnings are harmless.
 
 ## Mathlib-free core
 
@@ -82,8 +82,8 @@ step first.
 
 ## What is in here
 
-Eleven modules. Every theorem carries a `#guard_msgs`-pinned `#print axioms`,
-155 of them, so `lake build` fails the moment a proof starts depending on
+Fourteen modules. Every theorem carries a `#guard_msgs`-pinned `#print axioms`,
+167 of them, so `lake build` fails the moment a proof starts depending on
 something new. That is the regression check, and it is why the build is worth
 protecting from `lake update`.
 
@@ -100,7 +100,13 @@ Covering           contribution is Diophantine, not a size condition
 Crossover          two geometric families cross at most once
 GeneratorPeak      no power-law tradeoff of that form has an interior peak
 Measured           the numbers, each beside what a theorem predicts
+TwinLattice        a twin pair is a site on the 2·3 lattice; the pocket is 6k
+Transform          block G's geometry — z = b^(−s), the two generators, τ
+Isogeny            the isogeny acts on the row as block-summation by k
 ```
+
+`lakefile.toml`'s `globs` is an **explicit list, not a wildcard**. A new module
+does not build until it is named there.
 
 What is **not** formalised: every numerical value citing a zeta zero, and the
 parts of block G that are measurement or literature — G1's Cauchy–Hadamard
@@ -112,6 +118,15 @@ Those are observations.
 inversion in the circle `|z| = b^(−1/2)`, and G7's modulus. The second
 generator — `s ↦ s + 1` giving `z ↦ z/b`, which closes the annulus into
 `ℂ* / b^ℤ` — was absent from the record entirely. See notes entry 84.
+
+**The isogeny has an arithmetic shadow.** `Isogeny.lean` proves
+`row_k(r) = Σ_{j<k} row_1(k·r + j)` — passing from a ladder to its `k`-th power
+sums the row in blocks of `k`. So a base inside an isogeny class carries no
+count its generator's row does not already carry, and `Isogeny.rowN_comp` makes
+`{2,4,8}` a chain rather than three relations. The general-`k` statement needs
+`Finset.sum` and pays `Classical.choice` for it; the concrete `k = 2` and
+`k = 3` cases avoid Finset and stay at `[propext, Quot.sound]`, and the two
+**measured** rows carry no axioms at all. See notes entry 87.
 
 **Block D — the winding — is now formalised.** D1's floor and ceiling, D2's
 smooth term on the floor, D3's amplification inequality and D4's ceiling-base
