@@ -86,7 +86,32 @@ def run_arm(name, ratio, x0, gmax):
                       "dist": (abs(near - g) if near is not None else None)})
     # PRIMARY: amplitude at the zeta zeros vs at exact midpoints between them.
     # A top-ten peak list is selection; this is a fixed comparison on a fixed grid.
+    #
+    # run 2: the separation test runs to the arm's OWN Nyquist rather than to
+    # the peak grid's gmax, and is reported in bands so the question is not
+    # "does it separate" but "up to what gamma". The peak grid stays where it
+    # was; it is descriptive and the paper says so.
     amp = lambda g: abs(np.sum(z * np.exp(-1j * g * lx)))
+    nyq = math.pi / math.log(ratio)
+    sep_gmax = min(nyq, max(ZEROS) if ZEROS else gmax)
+    bands = []
+    edges = [14.0, 120.0, 300.0, 500.0, 700.0, 940.0]
+    for i in range(len(edges) - 1):
+        lo_e, hi_e = edges[i], min(edges[i + 1], sep_gmax)
+        if hi_e <= lo_e:
+            continue
+        bz = [g for g in ZEROS if lo_e < g < hi_e]
+        if len(bz) < 3:
+            continue
+        bm = [(bz[j] + bz[j + 1]) / 2 for j in range(len(bz) - 1)]
+        A = np.array([amp(g) for g in bz]); B = np.array([amp(g) for g in bm])
+        bands.append({"lo": lo_e, "hi": hi_e, "n_zeros": len(bz),
+                      "amp_at_zeros_min": float(A.min()),
+                      "amp_at_zeros_median": float(np.median(A)),
+                      "amp_between_max": float(B.max()),
+                      "amp_between_median": float(np.median(B)),
+                      "complete_separation": bool(A.min() > B.max()),
+                      "n_zeros_below_max_midpoint": int((A < B.max()).sum())})
     zs = [g for g in ZEROS if 14.0 < g < gmax]
     mids = [(zs[i] + zs[i + 1]) / 2 for i in range(len(zs) - 1)]
     A = np.array([amp(g) for g in zs]) if zs else np.array([])
@@ -103,7 +128,7 @@ def run_arm(name, ratio, x0, gmax):
                "complete_separation": bool(A.min() > B.max())}
 
     return {"arm": name, "ratio": ratio, "x0": x0, "n_blocks": len(ehat),
-            "separation": sep,
+            "separation": sep, "separation_bands": bands, "sep_gmax": sep_gmax,
             "total_primes": int(counts.sum()),
             "nyquist_gamma": math.pi / math.log(ratio),
             "resolution_dgamma": 2 * math.pi / math.log(XMAX / x0),
@@ -131,6 +156,19 @@ def main():
             print(f"      between    median {sp['amp_between_median']:.3f}  max {sp['amp_between_max']:.3f}")
             print(f"      ratio {sp['median_ratio']:.1f}x   complete separation: {sp['complete_separation']}"
                   f"   ({sp['n_zeros_below_max_midpoint']} of {sp['n_zeros']} zeros below the max midpoint)")
+        bd = r.get("separation_bands") or []
+        if bd:
+            print(f"    SEPARATION BY BAND, to this arm's Nyquist "
+                  f"({r['sep_gmax']:.1f}):")
+            print(f"      {'band':>14} {'zeros':>6} {'min@zero':>10} "
+                  f"{'max@mid':>10} {'sep':>6}  below")
+            for x in bd:
+                label = f"{int(x['lo'])}-{int(x['hi'])}"
+                print(f"      {label:>14} {x['n_zeros']:>6} "
+                      f"{x['amp_at_zeros_min']:>10.4f} "
+                      f"{x['amp_between_max']:>10.4f} "
+                      f"{str(x['complete_separation']):>6}  "
+                      f"{x['n_zeros_below_max_midpoint']}")
         print(f"    {'gamma':>9} {'P/median':>9}  nearest zeta zero   dist")
         for p in r["peaks"]:
             nz = f"{p['nearest_zero']:.4f}" if p["nearest_zero"] else "n/a"
@@ -139,7 +177,7 @@ def main():
                               and p["dist"] < r["resolution_dgamma"]) else ""
             print(f"    {p['gamma']:>9.3f} {p['P_over_median']:>9.2f}  {nz:>17}  {dd}{hit}")
         print()
-    p = _HERE / "results" / "deep_ladder_spectrum.json"
+    p = _HERE / "results" / "deep_ladder_spectrum_run2.json"
     p.write_text(json.dumps({"schema_version": "1",
                              "script": "O50_deep_ladder_spectrum.py",
                              "exploratory": True, "prereg": None,

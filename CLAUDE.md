@@ -107,6 +107,35 @@ is fine. The only wrong outcome is not asking.
 
 **Test:** did something happen that a later reader would want dated? Then ask.
 
+## Rule — say what is
+
+**State the positive claim and stop.**
+
+Drop the `X, not Y` construction. "It is a lattice site, not a spacing
+coincidence." "That is leakage, not signal loss." "A resolution limit, not a
+boundary." Each of those reads as precision and is doing emphasis.
+
+Two things go wrong. The reader has to hold the wrong thing in mind to reach the
+right one, which abstracts away what is actually there. And the item in the `not`
+slot is usually something the same assistant asserted a few messages earlier — so
+the sentence sounds declarative while it is quietly walking back its own claim.
+
+**Failure.** In one session: "the small-angle agreement was a crossing, not
+tracking", "that is the ceiling attained, not noise", "939 is the end of the
+file, not a feature". Every one of those `not` clauses was correcting something
+said earlier in the same conversation, dressed as a distinction being drawn.
+
+**Success.** Say the thing. "The plateau is the C2 ceiling, attained at
+97.68%." If an earlier statement was wrong, correct it as its own sentence,
+plainly, where it is visible as a correction.
+
+**Same family:** appending a disclaimer *after* a delivery, where it sits behind
+the claim and cannot have informed it. Both put a hedge somewhere that reads as
+rigor while doing something else.
+
+**Test:** does the sentence need a wrong version to make sense? Then write it
+without one.
+
 ## Prereg discipline
 
 A test earns a verdict only under a locked prereg. Everything else is
