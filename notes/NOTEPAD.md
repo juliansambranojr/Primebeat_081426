@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 92: O56 run — at depth 0 S(r,0) = 2^(r-1) IS the integer count of the block, so sigma + (1-sigma) = 1 is primes-plus-composites-equals-all-integers; holds at the row only, degrading by 2^d under differencing
+- [open]   2026-08-21  entry 92: 1/sigma is the global log-coordinate — 1/sigma = 0.1976 + 0.6813r against ln2 = 0.6931, ratio to ln x 1.9236 -> 1.0091, and sigma against the li density is pinned at 1.00000 from r=40. PNT in the ladder's coordinates, never written down here
+- [open]   2026-08-21  entry 92: the join still fails — s -> 1-s has the pole of zeta as its 1, ours is a partition of a finite integer set; nothing carries the arm swap through the log map. Same shape as entry 91
 - [open]   2026-08-21  entry 91: O55 run — the arm involution's fixed set (prime(r,d) = composite(r,d)) is exactly three cells (2,0) (3,0) (3,1), empty beyond, over 1953 cells to r=62; sigma -> 0 by PNT so it is finite for an ordinary reason. Negative on the s -> 1-s correspondence as stated
 - [open]   2026-08-21  entry 91: the four exact zeros and the arm-swap fixed set are DISJOINT, and rho = 0 at exactly 0 cells — three conditions the record had treated as one family, now separated by O55 itself
 - [open]   2026-08-21  entry 91: entry 90 corrected — it called e = prime - S/2 the residual; S/2 is not the smooth model, so that is the arm asymmetry and a different quantity from rho. Entry 90 annotated in place, text unaltered

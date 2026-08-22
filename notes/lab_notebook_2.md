@@ -16,6 +16,85 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 92 — O56: the "1" is the integer whole at depth 0, and σ's reciprocal is the global log-coordinate
+type: run
+refs: 90, 91
+
+`O56_local_global_reciprocal.py`, base 2, twelve rungs to `r = 62`, `dps = 40`,
+`primecountpy`. Completed. `results/local_global_reciprocal.json`,
+`results/O56_local_global_reciprocal_run1.log`. **EXPLORATORY** — no prereg, no
+verdict.
+
+### What prompted it
+
+Julian asked what the `1` in `σ + (1−σ) = 1` is, proposing that it is the
+integer whole rather than the two arms, and that `1 − s` reads as a distance to
+a global base from local coordinates. Two claims, both measurable.
+
+### (a) At depth 0 the 1 is the integer whole, exactly
+
+`S(r,0) = 2^(r−1)` equals the count of every integer in `(2^(r−1), 2^r]`, at
+every rung tested. So `σ + (1−σ) = 1` **is**
+primes-plus-composites-equals-all-integers, and this is `pair_identity` divided
+through by `S`.
+
+**It holds at the row only.** `S(r,d) = 2^(r−1−d)` is the integer count divided
+by `2^d`, so the reading degrades by a factor of two per level of differencing:
+at `r = 20`, `S` runs `524288 / 262144 / 131072 / 8192` for `d = 0, 1, 2, 6`
+against `524288` integers in the block. The row is where "1 = all the integers"
+is literally true.
+
+### (b) The local-to-global map is the reciprocal
+
+```text
+  r        sigma   1/sigma      ln x   ratio    sigma_li  ratio_li
+  4   0.25000000    4.0000    2.0794  1.9236  0.40824977   0.61237
+ 20   0.07369041   13.5703   13.1698  1.0304  0.07378333   0.99874
+ 40   0.03647289   27.4176   27.0327  1.0142  0.03647291   1.00000
+ 62   0.02343712   42.6674   42.2820  1.0091  0.02343712   1.00000
+```
+
+`1/σ = 0.1976 + 0.6813·r` by least squares over twelve rungs, against
+`ln 2 = 0.6931` — slope over `ln 2` is `0.9830`, max residual `1.0771`.
+
+So the reciprocal of the local prime fraction is the global log-coordinate,
+converging from above, `1.9236 → 1.0091`.
+
+**The sharper comparison is against `li`.** `σ` against the li-difference
+density runs `0.61237 → 1.00000` and is pinned at `1.00000` from `r = 40`
+onward. The crude `1/ln x` leaves a visible `1%` at `r = 62`; the li density
+leaves nothing at printed precision. That is the expected ordering and it is
+worth having measured, since it says the local fraction is the li density to
+five decimals over the whole upper range.
+
+This is the prime number theorem in the ladder's own coordinates. Recorded
+because the local-to-global relation was being reached for as an open question
+when it was already this.
+
+### Why the join still fails
+
+`s ↦ 1 − s` is an involution on ℂ whose `1` is the pole of ζ, where `Σ 1/n`
+diverges. The `1` above is a partition of a finite set of integers in one block.
+Both sum to 1 and they are different objects. **Nothing carries the arm swap
+through the log map to the functional equation**, and the numeral `1` appearing
+on both sides is doing more work in the analogy than it has earned.
+
+That is the same shape as entry 91's result. The structure matches — involution,
+sum to one, a fixed point at a half — and the objects on either side then turn
+out to be different kinds. Three isolated cells against a line there; a finite
+partition against a reflection of the plane here.
+
+### What survives
+
+`σ ≈ 1/ln x`, measured to `r = 62`, is a real bridge between the local fraction
+and the global coordinate. It is the one link in this thread that is neither a
+theorem already held nor a coincidence of the numeral 1 — and it is PNT, which
+is to say it was never in doubt and had never been written down here.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 91 — O55: the arm involution's fixed set is three cells, and entry 90 conflated two quantities
 type: run
 refs: 87, 88, 90

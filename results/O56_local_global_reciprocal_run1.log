@@ -1,0 +1,35 @@
+O56 - sigma's reciprocal is the global log-coordinate.
+EXPLORATORY, no prereg, no verdict.  base 2
+
+1. AT DEPTH 0, S IS THE INTEGER COUNT OF THE BLOCK
+   S(r,0) = 2^(r-1) == |(2^(r-1), 2^r]| for every r tested: True
+   below d = 0 it is the integer count divided by 2^d:
+     r=20, d=0:  S =  524288   integers in block =  524288   ratio 1/2^0
+     r=20, d=1:  S =  262144   integers in block =  524288   ratio 1/2^1
+     r=20, d=2:  S =  131072   integers in block =  524288   ratio 1/2^2
+     r=20, d=6:  S =    8192   integers in block =  524288   ratio 1/2^6
+
+2. SIGMA AND ITS RECIPROCAL
+     r       sigma   1/sigma      ln x   ratio    sigma_li ratio_li
+     4  0.25000000    4.0000    2.0794  1.9236  0.40824977  0.61237
+     8  0.17968750    5.5652    4.8520  1.1470  0.19117591  0.93991
+    12  0.12451172    8.0314    7.6246  1.0533  0.12490629  0.99684
+    16  0.09246826   10.8145   10.3972  1.0401  0.09276559  0.99679
+    20  0.07369041   13.5703   13.1698  1.0304  0.07378333  0.99874
+    24  0.06123877   16.3295   15.9424  1.0243  0.06125095  0.99980
+    28  0.05235739   19.0995   18.7150  1.0205  0.05235817  0.99999
+    32  0.04571986   21.8723   21.4876  1.0179  0.04572042  0.99999
+    40  0.03647289   27.4176   27.0327  1.0142  0.03647291  1.00000
+    48  0.03033702   32.9630   32.5779  1.0118  0.03033702  1.00000
+    56  0.02596838   38.5084   38.1231  1.0101  0.02596838  1.00000
+    62  0.02343712   42.6674   42.2820  1.0091  0.02343712  1.00000
+
+3. LINEARITY OF 1/SIGMA IN r
+   1/sigma = 0.1976 + 0.6813 * r
+   ln 2 = 0.6931   slope/ln2 = 0.9830
+   max |residual| = 1.0771
+
+   ratio to ln x runs 1.9236 -> 1.0091, converging from above
+   ratio to the li density runs 0.61237 -> 1.00000, the sharper comparison
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/local_global_reciprocal.json
