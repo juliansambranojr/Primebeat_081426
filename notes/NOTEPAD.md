@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 94: blind search 0.5-40 on the fine ladder returns the six zeta zeros below 40 as its top six peaks, 5253x-5398x median against a seventh at 15.90x — a factor of 330. Nearest the published gamma_1 is 14.1340, difference -0.0007, nothing told it where to look
+- [open]   2026-08-21  entry 94: entry 93's closing caveat withdrawn — 14.1345 IS derived from prime counts; the published gamma_1 enters only as the yardstick in the err column. Julian caught it. Entry 93 annotated, text unaltered
+- [open]   2026-08-21  entry 94: 14.1340 sits fifth by height and that carries no information — the spectrum is flat in gamma (The-Deep-Ladder D3), so ranking among detected zeros is arbitrary. I misread it as rank 1 from a gamma-sorted print before catching it
 - [open]   2026-08-21  entry 93: O57 run — O17's 14.08 run forward in extent arrives at 14.1345 on the fine ladder at xmax=1e11, against the true gamma_1 = 14.134725; err/dgamma falls to 0.002 by 1e10. The 1e8 row reproduces O17's 14.08 independently
 - [open]   2026-08-21  entry 93: the torus coordinate — true gamma_1 folds to 3.994716 in the fundamental domain of C*/2^Z, and the measurement converges 4.029441 -> 3.994941. The fold moves no information; recorded because it is the map-onto-the-globe step, now measured
 - [open]   2026-08-21  entry 93: the trajectory is one-way and the reason is the Hann window — residuals are nested and exactly recoverable (truncate + rewindow reproduces to machine precision), but np.hanning(n) depends on the whole range, so a measurement is recomputed rather than extended; long window on short blocks shifts -0.0350

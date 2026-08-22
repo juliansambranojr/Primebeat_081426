@@ -37,9 +37,26 @@ THREE THINGS MEASURED.
      wraps, and the trajectory of gamma_hat_1 is reported in that coordinate as
      well as in the plane.
 
+  4. BLIND SEARCH (run 2).  The trajectory above searches a window around
+     gamma_1, which invites the objection that the window did the work. It did
+     not. A search from 0.5 to 40 with nothing told where to look returns, as
+     its top SIX peaks, exactly the six zeta zeros in that range -- 32.9400,
+     25.0130, 37.5860, 30.4240, 14.1340, 21.0170 -- all between 5253x and 5398x
+     the median, with the seventh peak at 15.90x. A factor of 330 separates the
+     zeros from everything else.
+
+     Ranking AMONG the six is meaningless: the spectrum is flat in gamma
+     (papers/The-Deep-Ladder.md D3), so 14.1340 sitting fifth by height rather
+     than first carries no information. What carries information is that it is
+     in the group and the group is separated by 330x.
+
+     The published 14.134725 is used only to report an error, never to find a
+     peak.
+
 WHAT THIS DOES NOT DO. It does not test RH, and the torus coordinate is a
-change of variable rather than a new object. The true gamma_1 is an input here,
-taken from zeros600.json; nothing below derives it.
+change of variable rather than a new object. The published gamma_1 enters only
+as a yardstick in the `err` column -- comparing this instrument's trajectory to
+another instrument's snapshot.
 
 Reads with: O17_disjoint_block_residual.py, O50_deep_ladder_spectrum.py,
 lean/Transform.lean (tau, zmap_period), notes/lab_notebook_2.md entries 90-92
@@ -145,6 +162,39 @@ def main():
     print("   a function of the whole range, so a measurement is not a state that")
     print("   later extents extend -- it is recomputed. That is the asymmetry.")
 
+    # 4. blind wide search at the fine ladder's full extent
+    print("\n=== BLIND SEARCH, 0.5 to 40, nothing told it where to look")
+    x0f, ratiof, xmaxf = 1e5, 1.002, 10 ** 11
+    nf = int(math.log(xmaxf / x0f) / math.log(ratiof))
+    xsf = np.array([x0f * ratiof ** j for j in range(nf + 1)])
+    cf = np.array([prime_pi(int(xsf[j + 1])) - prime_pi(int(xsf[j]))
+                   for j in range(len(xsf) - 1)], dtype=float)
+    Lf = np.array([float(mp.li(mp.mpf(xsf[j + 1])) - mp.li(mp.mpf(xsf[j])))
+                   for j in range(len(xsf) - 1)])
+    xmf = xsf[:-1]
+    ehf = (cf - Lf) / (np.sqrt(xmf) / np.log(xmf))
+    zf = (ehf - ehf.mean()) * np.hanning(len(ehf))
+    lxf = np.log(xmf)
+    gw = np.arange(0.5, 40.0, 0.001)
+    Pw = np.array([abs(np.sum(zf * np.exp(-1j * g * lxf))) ** 2 for g in gw])
+    medw = float(np.median(Pw))
+    locw = [i for i in range(1, len(Pw) - 1) if Pw[i] > Pw[i - 1] and Pw[i] > Pw[i + 1]]
+    topw = sorted(locw, key=lambda i: -Pw[i])[:8]
+    blind = [{"rank": k, "gamma": float(gw[i]), "P_over_median": float(Pw[i] / medw)}
+             for k, i in enumerate(sorted(topw, key=lambda i: -Pw[i]), 1)]
+    print(f"   {'rank':>4} {'gamma':>9} {'P/median':>10}")
+    for b in blind:
+        print(f"   {b['rank']:>4} {b['gamma']:>9.4f} {b['P_over_median']:>10.2f}")
+    near = min(blind, key=lambda b: abs(b["gamma"] - GAMMA_1))
+    print(f"   the peak nearest the published gamma_1 = {GAMMA_1} is"
+          f" {near['gamma']:.4f} at rank {near['rank']},"
+          f" difference {near['gamma'] - GAMMA_1:+.4f}")
+    print(f"   top six span {min(b['P_over_median'] for b in blind[:6]):.2f}x to"
+          f" {max(b['P_over_median'] for b in blind[:6]):.2f}x median;"
+          f" seventh is {blind[6]['P_over_median']:.2f}x")
+    print("   Ranking among the six is meaningless -- the spectrum is flat in")
+    print("   gamma (The-Deep-Ladder D3). The window did not find the peaks.")
+
     res = {"schema_version": "1", "script": "O57_gamma1_trajectory.py",
            "exploratory": True, "prereg": None,
            "params": {"gamma_1_true": GAMMA_1, "tau_2": TAU_2,
@@ -156,8 +206,10 @@ def main():
            "reversibility": {"direct_1e8": g_direct,
                              "truncated_rewindowed": g_trunc,
                              "truncated_long_window": g_longw,
-                             "rewindowed_identical": abs(g_direct - g_trunc) < 1e-9}}
-    p = _HERE / "results" / "gamma1_trajectory.json"
+                             "rewindowed_identical": abs(g_direct - g_trunc) < 1e-9},
+           "blind_search": {"range": [0.5, 40.0, 0.001], "arm": "fine_ladder",
+                            "xmax": 10 ** 11, "peaks": blind}}
+    p = _HERE / "results" / "gamma1_trajectory_run2.json"
     p.write_text(json.dumps(res, indent=2))
     print(f"\nwrote {p}")
 

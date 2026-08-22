@@ -1,0 +1,16 @@
+=== BLIND SEARCH, 0.5 to 40, nothing told it where to look
+   rank     gamma   P/median
+      1   32.9400    5397.79
+      2   25.0130    5394.57
+      3   37.5860    5342.84
+      4   30.4240    5268.82
+      5   14.1340    5259.06
+      6   21.0170    5253.69
+      7   22.0850      15.90
+      8   39.7330      13.78
+   the peak nearest the published gamma_1 = 14.134725 is 14.1340 at rank 5, difference -0.0007
+   top six span 5253.69x to 5397.79x median; seventh is 15.90x
+   Ranking among the six is meaningless -- the spectrum is flat in
+   gamma (The-Deep-Ladder D3). The window did not find the peaks.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/gamma1_trajectory_run2.json

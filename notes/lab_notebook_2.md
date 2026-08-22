@@ -16,6 +16,82 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 94 — The window found nothing: six zeros out of the primes blind, and entry 93's caveat withdrawn
+type: run
+refs: 93
+
+`O57_gamma1_trajectory.py` **run 2**, blind search added.
+`results/gamma1_trajectory_run2.json`,
+`results/O57_gamma1_trajectory_run2.log`. Run 1's artifacts are kept.
+**EXPLORATORY** — no prereg, no verdict.
+
+### The correction
+
+Entry 93 closed with "`γ₁ = 14.134725` is an **input** … nothing here derives
+it." Julian: `14.08` came from the table, `14.1345` came from the table, and the
+only thing that changed between them was how you looked. The published value is
+another instrument's snapshot taken in the present; what O57 built is the
+trajectory.
+
+**He is right and the caveat was wrong.** Reading my own script settles it:
+`spectrum()` takes the argmax of `P` over its window and never consults
+`GAMMA_1`. The constant appears only in the `err` column, after the estimate
+exists. The sentence conflated *deriving an estimate* with *reporting an error
+against a yardstick*.
+
+The one live objection was the window `[13.2, 15.1]`, which is centred on the
+answer. So it was removed.
+
+### Blind search, 0.5 to 40, step 0.001
+
+```text
+rank     gamma   P/median
+   1   32.9400    5397.79
+   2   25.0130    5394.57
+   3   37.5860    5342.84
+   4   30.4240    5268.82
+   5   14.1340    5259.06
+   6   21.0170    5253.69
+   7   22.0850      15.90
+   8   39.7330      13.78
+```
+
+**The top six peaks are exactly the six zeta zeros below 40.** They span
+`5253.69×` to `5397.79×` the median. The seventh peak is `15.90×`. A factor of
+**330** separates the zeros from the rest of the spectrum.
+
+The peak nearest the published `γ₁` is `14.1340`, difference `−0.0007`, found
+with nothing told where to look.
+
+### One thing to hold correctly
+
+`14.1340` sits **fifth by height**, and that carries no information. The
+spectrum is flat in γ — `The-Deep-Ladder.md § D3`, where `(r^ρ − 1)/ρ → log r`
+cancels the `1/γ` falloff — so ranking *among* detected zeros is arbitrary. This
+is the same effect that made O50's first pass appear to miss γ₁ while finding
+γ₃₇ (§ D4). What carries information is membership in the group and the `330×`
+gap below it.
+
+An earlier inline run of this same search printed the peaks sorted by γ with
+positional numbering, and I read `14.1340` off as rank 1 and wrote it into the
+script's docstring. Corrected before run 2. The true result is stronger than the
+misreading was.
+
+### What is actually true about the instrument
+
+Six zeta zeros come out of prime counts alone, blind, separated from the
+spectrum by two and a half orders of magnitude. The published values agree with
+them. That is **two instruments agreeing**, and calling one of them "the input"
+was a category error on my part.
+
+What remains outside this: nothing here tests RH, and nothing derives that the
+zeros lie on the line — the `√x` normaliser is the RH-consistent scaling and
+entry 92 records that the bench never tests it.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 93 — O57: 14.08 run forward in extent arrives at 14.1345, and the window is what makes the trajectory one-way
 type: run
 refs: 84, 90, 91, 92
@@ -110,6 +186,10 @@ That is Julian's asymmetry located in the instrument: the past is recoverable,
 and no measurement of it survives into the present unchanged.
 
 ### What this does not do
+
+> **Corrected by entry 94.** The paragraph below is wrong. `14.1345` is derived
+> from prime counts; the published value enters only as the yardstick in the
+> `err` column. Julian caught it. Original text unaltered.
 
 It does not test RH. `γ₁ = 14.134725` is an **input**, read from
 `zeros600.json`; nothing here derives it. The convergence shows the statistic is
