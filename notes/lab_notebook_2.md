@@ -16,6 +16,118 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 88 — A barrier that was miscited, false, and already imported; the lattice proved discrete
+type: formalization
+refs: 80, 84, 86, 87
+
+Julian asked why the torus construction says nothing about primes, and whether
+fixing the base first is what loses the forest. Answering it, I claimed the
+analytic side was out of reach and cited `Euler-Factor-Chain.md § J5`. Three
+things were wrong at once, and they compound.
+
+### 1 — The citation points at a section that says something else
+
+`papers/Euler-Factor-Chain.md:286` in full:
+
+```text
+J5. Nothing above tests RH. G8 is an equivalent restatement; B6 presupposes
+    the zeros lie on the line.
+```
+
+Nothing about continuation, nothing about the Euler product's half-plane. The
+claim I attributed to it exists in exactly one place in the tree,
+`papers/The-Deep-Ladder.md:165`, which **I wrote** in entry 80, and which cites
+J5 for it. So I quoted my own unsupported sentence back as though it were the
+chain paper's finding.
+
+`check_refs.py` passes it: `Euler-Factor-Chain.md § J5` resolves, because the
+section exists. The checker verifies that a target exists and never that it says
+what the citing line claims. That is a real gap in the gate and it is the same
+shape as the `§ B4` failure this project's CLAUDE.md is built around.
+
+### 2 — The claim is false
+
+Mathlib's `riemannZeta` **is** the continued function.
+`Mathlib/NumberTheory/LSeries/RiemannZeta.lean:181` says so in as many words:
+"we use a different definition to obtain the analytic continuation to all `s`."
+
+And it is already in our own code. `lean/Chain.lean:52` and
+`lean/EulerFactorChain.lean:115` both put `riemannZeta s` on the right-hand side
+of the Euler product. The `1 < s.re` hypothesis restricts the **product**; the
+function it equals there carries no restriction at all.
+
+So `ζ(−1)` is two lines. Built as `ZetaProbe.lean`, confirmed, and removed —
+the tree is unchanged, and the proof is recorded here to be reproducible:
+
+```lean
+theorem zeta_neg_one : riemannZeta (-1) = -1/12 := by
+  rw [show ((-1 : ℂ)) = -((1:ℕ):ℂ) by norm_num, riemannZeta_neg_nat_eq_bernoulli 1]
+  norm_num [bernoulli]
+```
+
+`[propext, Classical.choice, Quot.sound]`, via
+`Mathlib/NumberTheory/LSeries/HurwitzZetaValues.lean:239`.
+
+### 3 — The rule I invoked does not apply to that file
+
+I described leaving discreteness unproved as following the Mathlib-free
+convention. `lean/Transform.lean:36` is `import Mathlib`. The Mathlib-free
+discipline in `lean/BUILD.md` covers `Construction.lean` and the integer
+modules and has never touched the geometry module. `ZLattice` was available the
+whole time.
+
+**Julian's reading is the accurate one:** I produced a barrier at the sight of
+zeta rather than checking whether one existed. He had already named this as the
+reason the original wording was written — to stop the reflex — and the reflex
+fired anyway, on the wording written to prevent it.
+
+### The lattice is discrete
+
+With the rule gone, the gap closed the same session.
+
+```text
+gens_linearIndependent   ⟨1, τ(b)·i⟩ is ℝ-linearly independent
+latticeBasis             hence an ℝ-basis of ℂ                      def, no pin
+periodLattice_eq_span    periodLattice b = span ℤ (range basis)
+periodLattice_discrete   DiscreteTopology (periodLattice b)
+```
+
+The route is `Submodule.span_int_eq_addSubgroupClosure` to rewrite the additive
+closure as a ℤ-span, then Mathlib's instance
+`DiscreteTopology (span ℤ (Set.range b))` for `b` a basis
+(`Mathlib/Algebra/Module/ZLattice/Basic.lean:318`).
+
+`Torus b` is now a quotient by a **discrete** rank-2 subgroup of ℂ, which is
+what makes the word earn its place. Compactness is still open, and the docstring
+states it as one line rather than as a barrier: `ZLattice` gives it from here.
+
+Two API surprises worth recording: `Basis` is `Module.Basis` in this Mathlib
+revision, and `linearIndependent_fin2` wants `f 1 ≠ 0 ∧ ∀ a, a • f 1 ≠ f 0`,
+so the two generators enter in the opposite order from the definition.
+
+### What the paper says now
+
+`papers/The-Deep-Ladder.md` § F4 corrected, with the accurate limit and a
+citation that supports it, and **F4′** added recording that the continuation is
+in scope and unused. F4′ names the earlier miscitation in the paper itself, so a
+reader meets it rather than only the notebook.
+
+Numbered as a prime on F4, following `F3′` in The-Twin-Lattice and the `F5′`
+convention set earlier today.
+
+### Standing
+
+Whether the torus connects to `ζ(−1)`, whether the primes-and-composites ratio
+is the torus, and whether `π` is a rate in a growing diameter are all
+undetermined by anything in this tree. What changed is that saying so is now a
+statement about what has been built. The claim that the building was impossible
+is withdrawn.
+
+Build clean, **8040 jobs, 179 theorems, 179 pins, parity in all 14 modules**,
+gate at baseline, 113 values confirmed and 0 not found.
+
+---
+
 ## 2026-08-21 — Entry 87 — The isogeny acts on the row as block-summation, and O53 swept three ladders wearing six labels
 type: formalization
 refs: 84, 85, 86, 77

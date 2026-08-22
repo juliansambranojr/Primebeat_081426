@@ -161,9 +161,19 @@ underived, and this method is at depth 0 where no exact zero exists.
 `The-Four-Zeros.md § A1`
 
 **F4.** Nothing here crosses to the global object. The Euler product converges
-only for `1 < Re s`, every statement in blocks B, C and D of the chain lives on
-the critical line, and no continuation exists anywhere in this tree.
-`Euler-Factor-Chain.md § J5`
+only for `1 < Re s`, and every statement in blocks B, C and D of the chain lives
+on the critical line.
+`EulerFactorChain.euler_product_riemannZeta`
+
+**F4′.** The continuation is in scope and unused. Mathlib's `riemannZeta` is the
+continued function, and `Chain.A2` already places it on the right of the Euler
+product — the `1 < Re s` hypothesis restricts the **product**, and the function
+it equals there was never restricted. So nothing here connects the table to a
+value off the critical line, and that is a gap in this work rather than a limit
+of the instrument. An earlier version of this statement claimed no continuation
+existed in the tree and cited `Euler-Factor-Chain.md § J5`, which says something
+else entirely. See notes entry 88.
+`Chain.A2`
 
 **F5.** Run 2 lifted the bound to the whole zero list and banded the result. The
 **amplitude at the zeros stays flat across every band** — medians 6.9052, 6.9232,
