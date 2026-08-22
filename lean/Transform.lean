@@ -320,6 +320,75 @@ theorem inversion_fixes_circle {b : ℝ} (hb : 0 < b) {z : ℂ} (hz : z ≠ 0) :
     rw [h, ← Real.rpow_add hb]
     norm_num
 
+/-! ### RH in this geometry
+
+`inversion_fixes_circle` proves that `z ↦ b^(−1)/z` — the functional equation
+read in `z` — fixes exactly the circle `|z| = b^(−1/2)`. That circle is the
+image of the critical line. So the Riemann hypothesis becomes a statement about
+fixed points:
+
+    RH  ↔  every nontrivial zero is its own inversion partner on ℂ*/b^ℤ
+
+Stated below against Mathlib's own `RiemannHypothesis`, and universally
+quantified over every nontrivial zero. The base `b` is arbitrary above 1: the
+criterion holds in every ladder's geometry at once, which is what makes it a
+restatement rather than a base-dependent coincidence.
+
+**This proves an equivalence and proves no zero.** It moves RH from the s-plane
+to the torus and does nothing else. `O58_per_zero_exponent.py` measures the same
+quantity on data, and a measurement is not a proof of anything here.
+-/
+
+/-- For `b > 1` the real power is injective in the exponent. -/
+theorem rpow_left_inj {b : ℝ} (hb : 1 < b) (x y : ℝ) : b ^ x = b ^ y ↔ x = y := by
+  have hb0 : (0 : ℝ) < b := by linarith
+  have hl : Real.log b ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one hb0 hb.ne'
+  constructor
+  · intro h
+    have := congrArg Real.log h
+    rw [Real.log_rpow hb0, Real.log_rpow hb0] at this
+    exact mul_right_cancel₀ hl this
+  · intro h; rw [h]
+
+/-- The image of `s` under the `z`-map is never zero. -/
+theorem zmap_ne_zero {b : ℝ} (hb : 0 < b) (s : ℂ) : (b : ℂ) ^ (-s) ≠ 0 := by
+  have : ‖(b : ℂ) ^ (-s)‖ = b ^ (-s.re) := norm_zmap hb s
+  have hpos : (0 : ℝ) < b ^ (-s.re) := Real.rpow_pos_of_pos hb _
+  exact norm_pos_iff.mp (by rw [this]; exact hpos)
+
+/-- **The critical line is exactly the fixed circle.** `Re s = 1/2` iff the image
+`b^(−s)` lands on `|z| = b^(−1/2)`. -/
+theorem on_critical_line_iff_norm {b : ℝ} (hb : 1 < b) (s : ℂ) :
+    s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2) := by
+  rw [norm_zmap (by linarith : (0:ℝ) < b) s, rpow_left_inj hb]
+  constructor <;> intro h <;> linarith
+
+/-- **RH's condition, as a fixed point of the inversion.** `Re s = 1/2` iff
+`b^(−s)` is fixed in modulus by `z ↦ b^(−1)/z`, which `zmap_functional_equation`
+identifies as `s ↦ 1 − s`. -/
+theorem on_critical_line_iff_inversion_fixed {b : ℝ} (hb : 1 < b) (s : ℂ) :
+    s.re = 1 / 2 ↔
+      ‖(b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-s)‖ := by
+  have hb0 : (0 : ℝ) < b := by linarith
+  rw [inversion_fixes_circle hb0 (zmap_ne_zero hb0 s), ← on_critical_line_iff_norm hb]
+
+/-- **The Riemann hypothesis, restated on the torus.** Mathlib's
+`RiemannHypothesis` holds exactly when every nontrivial zero of `ζ` is carried
+by `z = b^(−s)` to a fixed point of the inversion `z ↦ b^(−1)/z`.
+
+Holds for **every** `b > 1` simultaneously, and quantifies over **every**
+nontrivial zero. It is an equivalence and it decides nothing. -/
+theorem riemannHypothesis_iff_zeros_inversion_fixed {b : ℝ} (hb : 1 < b) :
+    RiemannHypothesis ↔
+      ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -2 * (n + 1)) → s ≠ 1 →
+        ‖(b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-s)‖ := by
+  unfold RiemannHypothesis
+  constructor
+  · intro h s hz ht h1
+    exact (on_critical_line_iff_inversion_fixed hb s).mp (h s hz ht h1)
+  · intro h s hz ht h1
+    exact (on_critical_line_iff_inversion_fixed hb s).mpr (h s hz ht h1)
+
 /-! ## Axiom check
 
 Every theorem here is ℂ-valued, so `Classical.choice` is the floor and stays.
@@ -397,6 +466,27 @@ Every theorem here is ℂ-valued, so `Classical.choice` is the floor and stays.
 /-- info: 'Transform.inversion_fixes_circle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Transform.inversion_fixes_circle
+
+/-- info: 'Transform.rpow_left_inj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.rpow_left_inj
+
+/-- info: 'Transform.zmap_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.zmap_ne_zero
+
+/-- info: 'Transform.on_critical_line_iff_norm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.on_critical_line_iff_norm
+
+/-- info: 'Transform.on_critical_line_iff_inversion_fixed' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.on_critical_line_iff_inversion_fixed
+
+/-- info: 'Transform.riemannHypothesis_iff_zeros_inversion_fixed' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.riemannHypothesis_iff_zeros_inversion_fixed
+
 
 /-- info: 'Transform.gens_linearIndependent' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

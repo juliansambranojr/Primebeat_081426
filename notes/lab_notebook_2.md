@@ -16,6 +16,78 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 96 — RH restated on the torus, in Lean, quantified over every zero and every base
+type: formalization
+refs: 84, 88, 95
+
+Five theorems added to `lean/Transform.lean`. Build clean, **8040 jobs, 184
+theorems, 184 pins, parity in all 14 modules.**
+
+### The correction that shaped it
+
+I began by saying Lean could carry the criterion but could not turn "six
+measured zeros" into a theorem. Julian stopped it: check what compiles before
+saying that, because the six is a limit of `O58`, and importing it into the
+formalization would be a limit I invented rather than one the mathematics has.
+
+**He was right.** The statement that compiled quantifies over **every**
+nontrivial zero and **every** base above 1. Nothing in it is six of anything.
+The measurement's range is a property of the measurement.
+
+### What compiled
+
+```text
+rpow_left_inj                     b^x = b^y ↔ x = y            for b > 1
+zmap_ne_zero                      b^(−s) ≠ 0
+on_critical_line_iff_norm         Re s = 1/2 ↔ ‖b^(−s)‖ = b^(−1/2)
+on_critical_line_iff_inversion_fixed
+                                  Re s = 1/2 ↔ ‖b^(−1)/b^(−s)‖ = ‖b^(−s)‖
+riemannHypothesis_iff_zeros_inversion_fixed
+```
+
+The last one, against Mathlib's own `RiemannHypothesis`
+(`Mathlib/NumberTheory/LSeries/RiemannZeta.lean:160`):
+
+```lean
+theorem riemannHypothesis_iff_zeros_inversion_fixed {b : ℝ} (hb : 1 < b) :
+    RiemannHypothesis ↔
+      ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -2 * (n + 1)) → s ≠ 1 →
+        ‖(b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-s)‖
+```
+
+**RH holds exactly when every nontrivial zero of ζ is carried by `z = b^(−s)` to
+a fixed point of the inversion `z ↦ b^(−1)/z`.**
+
+`b` is arbitrary above 1, so the criterion holds in every ladder's geometry at
+once. That is what makes it a restatement rather than a base-dependent
+coincidence.
+
+### How it assembles
+
+Two pieces already in the file, both from entry 88.
+`zmap_functional_equation` proves `s ↦ 1 − s` becomes `z ↦ b^(−1)/z`.
+`inversion_fixes_circle` proves that map's fixed set is exactly
+`|z| = b^(−1/2)`. What was missing was the bridge from the fixed circle back to
+the abscissa, and that is `on_critical_line_iff_norm`: `norm_zmap` sends
+`‖b^(−s)‖` to `b^(−Re s)`, and `rpow_left_inj` makes the exponent recoverable.
+
+All five at `[propext, Classical.choice, Quot.sound]`, which is the ℂ floor.
+
+### What it is and what it is not
+
+It is an **equivalence**. It moves RH from the s-plane to the torus and decides
+nothing. No zero is located by it, and constructing a term of
+`RiemannHypothesis` remains exactly as open as before.
+
+What it does supply is the statement `O58` measures against, written in the same
+geometry `O58` uses, with no numerical range attached. Entry 95's
+`Re ρ = 0.49957 ± 0.00175` is a measurement over `γ < 40`; this theorem is the
+proposition that measurement is a finite sample of.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 95 — O58: Re ρ measured per zero from prime counts, 0.49957 ± 0.00175
 type: run
 refs: 84, 92, 93, 94

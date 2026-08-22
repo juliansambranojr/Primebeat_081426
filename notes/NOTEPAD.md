@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 96: riemannHypothesis_iff_zeros_inversion_fixed compiles — Mathlib's RiemannHypothesis holds iff every nontrivial zero is carried by z = b^(-s) to a fixed point of z -> b^(-1)/z, for every b > 1. An equivalence; it decides nothing
+- [open]   2026-08-21  entry 96: the bridge was on_critical_line_iff_norm (Re s = 1/2 iff |z| = b^(-1/2)) via norm_zmap + rpow_left_inj; zmap_functional_equation and inversion_fixes_circle were already there from entry 88
+- [open]   2026-08-21  entry 96: my framing error again — I nearly wrote the measurement's six-zero range into the formalization as a limit. Julian stopped it. The theorem quantifies over every nontrivial zero and every base; the range belongs to O58, not to the mathematics
 - [open]   2026-08-21  entry 95: O58 measures Re rho = 0.49957 +/- 0.00175 per zero from prime counts alone, for the first six zeros; |beta - 1/2| > 0.0052 would have shown and nothing did. First measurement on this bench that measures Re rho instead of assuming it
 - [open]   2026-08-21  entry 95: the criterion is RH <=> every zero is its own inversion partner on the torus, using Transform.inversion_fixes_circle; the functional-equation partner sits at the SAME gamma so an off-line zero gives a strictly positive per-gamma slope whichever side it falls
 - [open]   2026-08-21  entry 95: run 1 used the midpoint scatter as the noise floor and understated sensitivity by 45x (0.236 vs 0.0052) — wrong model for a peak 330x above the median; the zero-to-zero scatter is the right yardstick. Both kept in the artifact
