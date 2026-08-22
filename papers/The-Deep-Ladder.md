@@ -61,11 +61,11 @@ consecutive zeros. A ranked peak list is selection; a fixed grid is not.
 
 ---
 
-## C · Thirty-eight zeros, completely separated
+## C · Thirty-eight zeros separated below γ = 120, and the floor rising after
 
-**C1.** On `fine_1.002`, over the 38 zeros lying inside the arm's examined
-range and the 37 midpoints between them — the range bound is a parameter of the
-run, not a measurement:
+**C1.** On `fine_1.002`, over the 38 zeros in the run's first band and the 37
+midpoints between them — the band edge is a parameter of the run, and run 2
+lifted it:
 
 ```text
 amplitude AT the zeros      median 6.905     min 6.478
@@ -165,9 +165,27 @@ only for `1 < Re s`, every statement in blocks B, C and D of the chain lives on
 the critical line, and no continuation exists anywhere in this tree.
 `Euler-Factor-Chain.md § J5`
 
-**F5.** The upper end is untested. Nyquist on `fine_1.002` is 1572 and only
-`γ < 120` was examined, so roughly 137 further zeros sit inside the arm's range
-and were never looked at.
+**F5.** Run 2 lifted the bound to the whole zero list and banded the result. The
+**amplitude at the zeros stays flat across every band** — medians 6.9052, 6.9232,
+6.6466, 6.7469, 6.4834 — while the floor between them rises 0.1890 to 3.0449.
+Every zero in the list is detected; separation stops after the first band.
+`results/deep_ladder_spectrum_run2.json`
+
+**F6.** The floor rises with the midpoints moving closer to their neighbours in
+units of resolution — 3.11 elements down to 1.42 across the same bands. That is
+leakage from adjacent zeros, and it makes `γ = 120` a property of `Δγ = 0.455`
+rather than of the primes.
+`F5 · derived from results/deep_ladder_spectrum_run2.json: mean zero spacing per
+band over 2·Δγ; not printed there`
+
+**F7.** `Δγ = 2π/log(xmax/x0)`, so the cheapest lever is `x0`. Dropping it from
+`10^5` to `10^2` takes the log range from 13.8 to 20.7 and `Δγ` from 0.455 to
+0.303, at no extra compute. Halving it needs squaring the range.
+`F6 · derived; not printed`
+
+**F8.** Above `γ = 939` nothing has been looked at. The arm's Nyquist is 1572 and
+`zeros600.json` ends at 939.0243, so the remaining range is bounded by the zero
+file rather than by the instrument.
 `B2 · untested`
 
 **F6.** The idea came from outside this bench. `imported/twin_count/twincount.c`

@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 86: tau in Lean — tau b = 2pi/log b is the period (zmap_period_tau), the power chain tau(b^n)=tau(b)/n, and meeting ladders have tau ratio = the meeting exponents; The-Deep-Ladder corrected, it was claiming "completely separated" and "upper end untested" after its own run 2 superseded both
 - [open]   2026-08-21  entry 85: O53/O54 EXPLORATORY — the {2,4,6,8} vs {3,9} base split was an nz=60 artifact (RETRACTED), and O54 shows the statistic swings 0.27 to 1.94 at base 2 alone with only the ceiling moving, 0 peaks at 12 rungs; base 2 uniqueness survives only as the three proved iffs in PairIdentity
 - [open]   2026-08-21  entry 84: block G geometry FORMALISED — Transform.lean (13th module); the missing generator is s->s+1 giving z->z/b, which closes the annulus into the torus C*/b^Z, so O39 has been measuring HALF a fundamental domain since G7 was written; paper gains G7 prime and G7 double-prime
 - [open]   2026-08-21  entry 83: the pocket read as a BASE — pair_identity's coefficient (b-1) IS the lower twin arm at a pocket base (3,5,11,17,29,41...); base 4 is a pocket but OFF-lattice so only base 6 of O44's eight is an on-lattice pocket; extent arithmetic bounds per-pocket tables before they are asked. Tabled.
