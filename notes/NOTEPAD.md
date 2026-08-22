@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 98: zmap_pair_product — ||z_s|| * ||z_(1-s)|| = b^(-1) for EVERY s with no hypothesis about zeta, so the geometric mean of a point and its inversion partner is always b^(-1/2). The middle circle is the mean the pairing pins, not a coordinate that was named
+- [open]   2026-08-21  entry 98: riemannHypothesis_iff_pair_collapses — RH iff every nontrivial zero has the same modulus as its inversion partner; two positives with fixed product are equal only at the mean, so collapsing and landing on the middle circle are one event
+- [open]   2026-08-21  entry 98: the gap restated — what would have to be shown is that a zero and its functional-equation partner are the SAME zero, rather than that a zero has a particular real part. O58 measures exactly this: an off-line zero shows two exponents beta and 1-beta at one gamma
 - [open]   2026-08-21  entry 97: strip_is_fundamental_domain — the critical strip's edges Re s = 0 and Re s = 1 are ONE deck step apart, so the strip IS exactly one fundamental domain of C*/b^Z for every b > 1; the strip's width is the period of the deck action
 - [open]   2026-08-21  entry 97: zeros_in_fundamental_annulus — every nontrivial zero proved to lie in b^(-1) < |z| < 1; left edge derived via riemannZeta_one_sub, Gamma_ne_zero, cpow_eq_zero_iff and cos_eq_zero_iff, right edge from Mathlib's riemannZeta_ne_zero_of_one_le_re
 - [open]   2026-08-21  entry 97: riemannHypothesis_iff_zeros_on_middle_circle — RH iff every nontrivial zero sits on the annulus's middle circle |z| = b^(-1/2), the geometric mean of the boundaries and the inversion's fixed set. Containment is proved; position within the annulus is exactly RH

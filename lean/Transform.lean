@@ -531,6 +531,54 @@ theorem riemannHypothesis_iff_zeros_on_middle_circle {b : ℝ} (hb : 1 < b) :
   · intro h s hz ht h1
     exact (on_critical_line_iff_norm hb s).mpr (h s hz ht h1)
 
+/-! ### The pair, and why the middle circle is where it lands
+
+The inversion pairs `s` with `1 − s`. Julian's reading: the zero arrives through
+that pairing and lands on the strip. It does, and the reason is an identity that
+needs no hypothesis about ζ at all.
+
+For **any** `s`, the two images `z_s` and `z_{1−s}` have product of moduli
+exactly `b^(−1)`, so their geometric mean is exactly `b^(−1/2)` — the middle
+circle — wherever they sit. The pair always straddles it.
+
+**RH is then the statement that the pair collapses to a single point.** Two
+points whose geometric mean is fixed coincide only on that mean. So a zero being
+its own partner and a zero lying on the middle circle are the same event, and
+the middle circle is where the pair has to land when it collapses.
+-/
+
+/-- **The pair identity.** `‖z_s‖ · ‖z_{1−s}‖ = b^(−1)` for every `s`, so the
+geometric mean of a point and its inversion partner is always `b^(−1/2)`. -/
+theorem zmap_pair_product {b : ℝ} (hb : 0 < b) (s : ℂ) :
+    ‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ)) := by
+  rw [norm_zmap hb, norm_zmap hb, ← Real.rpow_add hb]
+  congr 1
+  simp [Complex.sub_re]
+  ring
+
+/-- **The pair collapses exactly on the critical line.** `‖z_s‖ = ‖z_{1−s}‖` iff
+`Re s = 1/2` — the two are equal only at the geometric mean their product pins. -/
+theorem pair_collapses_iff_critical {b : ℝ} (hb : 1 < b) (s : ℂ) :
+    ‖(b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-(1 - s))‖ ↔ s.re = 1 / 2 := by
+  have hb0 : (0 : ℝ) < b := by linarith
+  rw [norm_zmap hb0, norm_zmap hb0, rpow_left_inj hb]
+  constructor <;> intro h <;> simp [Complex.sub_re] at * <;> linarith
+
+/-- **RH: the pair collapses at every zero.** Mathlib's `RiemannHypothesis`
+holds exactly when each nontrivial zero has the same modulus as its inversion
+partner. Since `zmap_pair_product` pins their geometric mean at `b^(−1/2)`
+unconditionally, collapsing and landing on the middle circle are one event. -/
+theorem riemannHypothesis_iff_pair_collapses {b : ℝ} (hb : 1 < b) :
+    RiemannHypothesis ↔
+      ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -2 * (n + 1)) → s ≠ 1 →
+        ‖(b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-(1 - s))‖ := by
+  unfold RiemannHypothesis
+  constructor
+  · intro h s hz ht h1
+    exact (pair_collapses_iff_critical hb s).mpr (h s hz ht h1)
+  · intro h s hz ht h1
+    exact (pair_collapses_iff_critical hb s).mp (h s hz ht h1)
+
 /-! ## Axiom check
 
 Every theorem here is ℂ-valued, so `Classical.choice` is the floor and stays.
@@ -656,6 +704,19 @@ Every theorem here is ℂ-valued, so `Classical.choice` is the floor and stays.
 /-- info: 'Transform.riemannHypothesis_iff_zeros_on_middle_circle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Transform.riemannHypothesis_iff_zeros_on_middle_circle
+
+/-- info: 'Transform.zmap_pair_product' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.zmap_pair_product
+
+/-- info: 'Transform.pair_collapses_iff_critical' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.pair_collapses_iff_critical
+
+/-- info: 'Transform.riemannHypothesis_iff_pair_collapses' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Transform.riemannHypothesis_iff_pair_collapses
+
 
 
 

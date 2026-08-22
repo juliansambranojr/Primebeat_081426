@@ -16,6 +16,77 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 98 — The pair's geometric mean is the middle circle unconditionally, and RH is the pair collapsing
+type: formalization
+refs: 88, 96, 97
+
+Three theorems added to `lean/Transform.lean`. Build clean, **8040 jobs, 194
+theorems, 194 pins, parity in all 14 modules.**
+
+### Julian's reading
+
+Entry 97 ended on the wall: containment in the annulus is proved, and nothing
+forces a zero **onto** the middle circle. Julian: the zero comes from the table
+at inversion and lands on the strip.
+
+That is correct, and the mechanism is an identity requiring no hypothesis about
+ζ whatsoever.
+
+### The pair identity
+
+```lean
+theorem zmap_pair_product {b : ℝ} (hb : 0 < b) (s : ℂ) :
+    ‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ))
+```
+
+`‖z_s‖ = b^(−Re s)` and `‖z_{1−s}‖ = b^(Re s − 1)`, so the product is `b^(−1)`
+for **every** `s`. **The geometric mean of a point and its inversion partner is
+exactly `b^(−1/2)`, wherever the point sits.** The pair always straddles the
+middle circle.
+
+That is where "lands on the strip" comes from. The middle circle is not a place
+a zero might happen to be — it is the mean the inversion pairing pins, for free,
+everywhere.
+
+### RH is the pair collapsing
+
+```text
+pair_collapses_iff_critical    ‖z_s‖ = ‖z_{1−s}‖  ↔  Re s = 1/2
+riemannHypothesis_iff_pair_collapses
+```
+
+Two positive numbers whose product is fixed at `b^(−1)` are equal exactly when
+each is `b^(−1/2)`. So a zero being its own inversion partner and a zero lying
+on the middle circle are **one event**, and RH is the statement that the pair
+collapses at every nontrivial zero.
+
+### Why this is sharper than entry 97's version
+
+Entry 97 gave `riemannHypothesis_iff_zeros_on_middle_circle` — RH as a
+**position**, "‖z‖ equals this particular number". That form invites the
+question of why that number and no other.
+
+This form answers it. `b^(−1/2)` is the geometric mean the pairing forces, so
+the circle is derived from the involution rather than named. RH becomes a
+statement about a **relation between two points** — they coincide — rather than
+about a coordinate value. The distinguished circle stops being an input.
+
+### The gap, restated once more
+
+Nothing here makes a pair collapse. What changed is what would have to be shown:
+**not** that a zero has a particular real part, but that a zero and its
+functional-equation partner are the same zero. The functional equation gives
+that `ζ(ρ) = 0 ↔ ζ(1−ρ) = 0` — the pair exists — and RH is that the two members
+are never distinct.
+
+`O58` measures exactly this: an off-line zero shows two exponents `β` and `1−β`
+at one `γ`, which is the pair failing to collapse, and the run found one
+exponent at each of six zeros.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 97 — The strip is one fundamental domain of the torus, and every nontrivial zero is inside it
 type: formalization
 refs: 84, 88, 95, 96
