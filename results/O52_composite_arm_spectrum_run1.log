@@ -1,0 +1,25 @@
+O52 - composite arm spectrum.  EXPLORATORY, no prereg, no verdict.
+
+1. PER-CELL NEGATION over 6,914 blocks
+   max |e_prime + e_comp| = 1.490e-08
+   max |e_prime|          = 3392.646
+   ratio                  = 4.392e-12
+
+2. AMPLITUDE AT 599 ZETA ZEROS, both arms
+        gamma      prime  composite      |diff|
+      14.1347     6.8403     6.8403   3.044e-12
+      21.0220     6.8361     6.8361   2.256e-13
+      25.0109     6.9278     6.9278   1.186e-12
+      30.4249     6.8465     6.8465   2.842e-13
+      32.9351     6.9293     6.9293   1.330e-12
+      37.5862     6.8946     6.8946   1.516e-12
+   ...
+     934.9954     9.9083     9.9083   1.414e-12
+     936.2286     5.1266     5.1266   6.581e-13
+     937.5329     3.3473     3.3473   2.367e-13
+
+   max |prime - composite| over all 599 zeros: 5.006e-12
+   median amplitude, prime arm     : 6.7838
+   median amplitude, composite arm : 6.7838
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/composite_arm_spectrum.json

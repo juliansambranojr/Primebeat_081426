@@ -188,7 +188,19 @@ fixed point.
 
 **G7.** Between the two radii lies an annulus `b^(−1) < |z| < b^(−1/2)`, conformal modulus
 `(log b)/4π = 0.05515890` at `b = 2`.
-`O39`
+`O39 · Transform.annulus_modulus`
+
+**G7′.** That annulus has ratio `√b`, so it is **half a fundamental domain** of the
+torus `ℂ* / b^ℤ`, whose modulus is `(log b)/2π`. The lattice has two generators:
+`s ↦ s + 2πi/log b`, which fixes `z` and is why the strip becomes an annulus, and
+`s ↦ s + 1`, which sends `z ↦ z/b` and is what closes it. At `b = 2` the second
+identifies `|z| = 0.5 ~ 1 ~ 2 ~ 4 …`.
+`G7 · Transform.zmap_period · Transform.zmap_shift`
+
+**G7″.** And `s ↦ 1 − s` becomes `z ↦ b^(−1)/z`, inversion in the circle
+`|z| = b^(−1/2)` — the critical line is that inversion's fixed circle. Same fact as
+B2a, read in `z`.
+`Transform.zmap_functional_equation · Transform.norm_zmap_critical`
 
 **G8.** `RH ⟺ residual = O(x^(1/2+ε)) ∀ε > 0 ⟺` outer radius `= b^(−1/2) ⟺` the annulus has
 maximal modulus.

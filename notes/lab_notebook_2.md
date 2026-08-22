@@ -16,6 +16,87 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 84 — block G's geometry formalised, and the identification that closes the annulus into a torus
+type: formalization
+refs: 69, 77, 83
+
+**Where this came from.** Julian asked whether the identification closing the
+annulus is `|z| = 2`. It is, and it is the generator the record never had.
+
+**The picture.** `z = b^(−s)` carries the s-plane to `ℂ*`. A vertical line
+`Re s = σ` becomes the circle `|z| = b^(−σ)`, so the critical strip becomes an
+annulus and the critical line becomes the circle of radius `b^(−1/2)`. At
+`b = 2`:
+
+```text
+Re s = 0     ->  |z| = 1.00000
+Re s = 1/2   ->  |z| = 0.70711     the critical line
+Re s = 1     ->  |z| = 0.50000
+```
+
+**Two generators, and the second was missing.**
+
+* `s ↦ s + 2πi/log b` fixes `z`. That is the pole lattice
+  `Chain.sym_eq_zero_iff` proves, and it is why the strip becomes an annulus
+  rather than a plane.
+* **`s ↦ s + 1` sends `z ↦ z/b`.** That closes the annulus into `ℂ* / b^ℤ`, a
+  complex torus. At `b = 2` it identifies `|z| = 0.5 ~ 1 ~ 2 ~ 4 …`, so every
+  2:1 annulus is a fundamental domain — which is Julian's `|z| = 2`.
+
+**And O39's number is that torus's modulus, halved.**
+
+```text
+full fundamental annulus  1 < |z| < b       modulus  log(b)/2π = 0.1103178
+O39 measured              0.5 < |z| < 0.70711        (log b)/4π = 0.0551589
+                                                      ratio 2.0
+```
+
+O39's annulus has ratio `√b`, so § G7 has been reporting **half a fundamental
+domain** since it was written. The record carried the number and never the
+identification.
+
+**New module `lean/Transform.lean`**, the thirteenth, added to `lakefile.toml`
+globs. Six theorems, all at `[propext, Classical.choice, Quot.sound]`, which is
+the floor for ℂ-valued statements.
+
+```text
+norm_zmap                  ‖b^(−s)‖ = b^(−Re s)          the map
+norm_zmap_critical         critical line -> |z| = b^(−1/2)
+zmap_shift                 b^(−(s+1)) = b^(−s)/b         the closing generator
+zmap_period                b^(−(s + 2πi/log b)) = b^(−s) the pole lattice
+zmap_functional_equation   b^(−(1−s)) = b^(−1)/b^(−s)    inversion in |z|=b^(−1/2)
+annulus_modulus            log(b^(−1/2)/b^(−1))/2π = log b/4π
+```
+
+`zmap_functional_equation` is `EulerFactorChain.h_functional_equation` read in
+`z`: the map `s ↦ 1 − s` becomes inversion in the circle `|z| = b^(−1/2)`, and
+**the critical line is that inversion's fixed circle**.
+
+**Wired to the paper.** § G7 now cites `Transform.annulus_modulus`, and two new
+statements were added — G7′ for the torus and its two generators, G7″ for the
+inversion. `check_refs` resolves every citation; gate unchanged at 2,
+`check_values` 113 confirmed / 0 not found.
+
+**`lean/BUILD.md` corrected.** It claimed 139 theorems against a tree of 155,
+and listed block G whole as unformalised. Now it names what stays an
+observation: G1's Cauchy–Hadamard, G3's Jentzsch, G5's measured migration, G8's
+RH equivalence, G9 and G10. **Only the numeric values and those remain.**
+
+**What this does not do.** G8 says `RH ⟺ the annulus has maximal modulus` and the
+paper's own source line calls it *"an equivalent restatement … of identical
+difficulty"*. Nothing here touches it. The geometry is now stated; which radius
+the residual actually has is the open question, and it is RH.
+
+**Worth noting for later.** `ℂ* / q^ℤ` is the Tate uniformization — the standard
+presentation of an elliptic curve over a non-archimedean field. O40 and O41 went
+to elliptic curve L-functions from the other direction, and
+`papers/convergence.md` records that only degree-1 L-functions give a plain
+difference table. Nothing connects them yet.
+
+Build clean, 8039 jobs, 155 theorems, 155 pins, parity in all 13 modules.
+
+---
+
 ## 2026-08-21 — Entry 83 — the pocket read as a BASE: the pair identity's coefficient is the lower twin arm, and the extent arithmetic that bounds it
 type: motivation
 refs: 81, 82

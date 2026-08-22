@@ -19,7 +19,7 @@ track `main` rather than a tag — `plausible`, `LeanSearchClient`, `importGraph
 build is the regression check for every theorem here. Use `lake exe cache get`
 on a fresh clone; reach for `update` only deliberately.
 
-Expected: compiles clean, **8037 jobs**, zero `sorry`, **139 theorems**. Two
+Expected: compiles clean, **8037 jobs**, zero `sorry`, **155 theorems**. Two
 unused-simp-argument linter warnings are harmless.
 
 ## Mathlib-free core
@@ -83,7 +83,7 @@ step first.
 ## What is in here
 
 Eleven modules. Every theorem carries a `#guard_msgs`-pinned `#print axioms`,
-139 of them, so `lake build` fails the moment a proof starts depending on
+155 of them, so `lake build` fails the moment a proof starts depending on
 something new. That is the regression check, and it is why the build is worth
 protecting from `lake update`.
 
@@ -102,8 +102,16 @@ GeneratorPeak      no power-law tradeoff of that form has an interior peak
 Measured           the numbers, each beside what a theorem predicts
 ```
 
-What is **not** formalised: the transform radius results (block G) and every
-numerical value citing a zeta zero. Those are observations.
+What is **not** formalised: every numerical value citing a zeta zero, and the
+parts of block G that are measurement or literature — G1's Cauchy–Hadamard
+radius, G3's Jentzsch, G5's measured migration, G8's RH equivalence, G9 and G10.
+Those are observations.
+
+**Block G's geometry is formalised.** `Transform.lean` carries the map
+`z = b^(−s)`, the two lattice generators, the functional equation as an
+inversion in the circle `|z| = b^(−1/2)`, and G7's modulus. The second
+generator — `s ↦ s + 1` giving `z ↦ z/b`, which closes the annulus into
+`ℂ* / b^ℤ` — was absent from the record entirely. See notes entry 84.
 
 **Block D — the winding — is now formalised.** D1's floor and ceiling, D2's
 smooth term on the floor, D3's amplification inequality and D4's ceiling-base

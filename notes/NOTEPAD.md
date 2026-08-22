@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 84: block G geometry FORMALISED — Transform.lean (13th module); the missing generator is s->s+1 giving z->z/b, which closes the annulus into the torus C*/b^Z, so O39 has been measuring HALF a fundamental domain since G7 was written; paper gains G7 prime and G7 double-prime
 - [open]   2026-08-21  entry 83: the pocket read as a BASE — pair_identity's coefficient (b-1) IS the lower twin arm at a pocket base (3,5,11,17,29,41...); base 4 is a pocket but OFF-lattice so only base 6 of O44's eight is an on-lattice pocket; extent arithmetic bounds per-pocket tables before they are asked. Tabled.
 - [open]   2026-08-21  entry 82: O51 twin lattice census EXPLORATORY — three refusals: the site count is NOT geometric (alternates +/-1/3, so pair_identity does not transfer), the occupancy bias is weak and sign-changing and is NOT the Chebyshev bias, and NO twin zero is deep (all four at r<=9 vs the prime table's (20,6) at count 38635); papers/The-Twin-Lattice.md written
 - [open]   2026-08-21  entry 81: TwinLattice.lean (12th module) — twin pairs are 6k+-1 PROVED at [propext, Quot.sound], so a twin is a lattice SITE not a spacing coincidence; the mod-6 lattice was already load-bearing in CONTEXT.md twice (O19/O20 (8,3), and lattice_mapper 2-and-3-as-lattice) and nothing connected them
