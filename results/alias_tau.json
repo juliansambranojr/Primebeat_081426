@@ -1,0 +1,205 @@
+{
+  "schema_version": "1",
+  "script": "O53_alias_tau.py",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "ceiling": 1000000000000000,
+    "floor": 10000,
+    "bases": [
+      2,
+      3,
+      4,
+      6,
+      8,
+      9
+    ],
+    "n_zeros_folded": 60
+  },
+  "rows": [
+    {
+      "base": 2,
+      "tau": 9.064720283654388,
+      "n_rungs": 36,
+      "fundamental_domain": 4.532360141827194,
+      "peaks": [
+        {
+          "peak": 1.315999999999999,
+          "nearest_folded_zero": 1.3273,
+          "dist": 0.011300000000000976,
+          "zeta_index": [
+            6
+          ]
+        },
+        {
+          "peak": 2.1439999999999984,
+          "nearest_folded_zero": 2.1452,
+          "dist": 0.0012000000000016442,
+          "zeta_index": [
+            47
+          ]
+        },
+        {
+          "peak": 3.1739999999999973,
+          "nearest_folded_zero": 3.175,
+          "dist": 0.0010000000000025544,
+          "zeta_index": [
+            54
+          ]
+        },
+        {
+          "peak": 3.911999999999997,
+          "nearest_folded_zero": 3.9118,
+          "dist": 0.00019999999999686935,
+          "zeta_index": [
+            49
+          ]
+        },
+        {
+          "peak": 4.341999999999996,
+          "nearest_folded_zero": 4.315,
+          "dist": 0.026999999999995694,
+          "zeta_index": [
+            58
+          ]
+        }
+      ]
+    },
+    {
+      "base": 3,
+      "tau": 5.7192017347602535,
+      "n_rungs": 23,
+      "fundamental_domain": 2.8596008673801268,
+      "peaks": [
+        {
+          "peak": 0.2719999999999998,
+          "nearest_folded_zero": 0.1318,
+          "dist": 0.1401999999999998,
+          "zeta_index": [
+            50
+          ]
+        },
+        {
+          "peak": 0.9079999999999993,
+          "nearest_folded_zero": 0.916,
+          "dist": 0.008000000000000784,
+          "zeta_index": [
+            17
+          ]
+        },
+        {
+          "peak": 1.4059999999999988,
+          "nearest_folded_zero": 1.3938,
+          "dist": 0.012199999999998878,
+          "zeta_index": [
+            55
+          ]
+        },
+        {
+          "peak": 2.069999999999998,
+          "nearest_folded_zero": 2.0794,
+          "dist": 0.009400000000002073,
+          "zeta_index": [
+            14
+          ]
+        },
+        {
+          "peak": 2.631999999999998,
+          "nearest_folded_zero": 2.5751,
+          "dist": 0.05689999999999795,
+          "zeta_index": [
+            27
+          ]
+        }
+      ]
+    },
+    {
+      "base": 4,
+      "tau": 4.532360141827194,
+      "n_rungs": 18,
+      "fundamental_domain": 2.266180070913597,
+      "peaks": [
+        {
+          "peak": 0.6279999999999994,
+          "nearest_folded_zero": 0.6205,
+          "dist": 0.007499999999999396,
+          "zeta_index": [
+            49
+          ]
+        },
+        {
+          "peak": 1.4059999999999988,
+          "nearest_folded_zero": 1.418,
+          "dist": 0.012000000000001121,
+          "zeta_index": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "base": 6,
+      "tau": 3.5067124885275898,
+      "n_rungs": 14,
+      "fundamental_domain": 1.7533562442637949,
+      "peaks": [
+        {
+          "peak": 0.32799999999999974,
+          "nearest_folded_zero": 0.3388,
+          "dist": 0.010800000000000254,
+          "zeta_index": [
+            12
+          ]
+        },
+        {
+          "peak": 1.335999999999999,
+          "nearest_folded_zero": 1.3393,
+          "dist": 0.003300000000000969,
+          "zeta_index": [
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "base": 8,
+      "tau": 3.021573427884796,
+      "n_rungs": 12,
+      "fundamental_domain": 1.510786713942398,
+      "peaks": [
+        {
+          "peak": 0.8859999999999992,
+          "nearest_folded_zero": 0.8902,
+          "dist": 0.004200000000000759,
+          "zeta_index": [
+            49
+          ]
+        }
+      ]
+    },
+    {
+      "base": 9,
+      "tau": 2.8596008673801268,
+      "n_rungs": 11,
+      "fundamental_domain": 1.4298004336900634,
+      "peaks": [
+        {
+          "peak": 0.1459999999999999,
+          "nearest_folded_zero": 0.1318,
+          "dist": 0.014199999999999907,
+          "zeta_index": [
+            50
+          ]
+        },
+        {
+          "peak": 0.8039999999999994,
+          "nearest_folded_zero": 0.7802,
+          "dist": 0.023799999999999377,
+          "zeta_index": [
+            14
+          ]
+        }
+      ]
+    }
+  ]
+}

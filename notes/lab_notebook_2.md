@@ -16,6 +16,106 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 85 — O53/O54: τ is the alias spacing at base 2, the base split was a knob artifact, and the statistic swings 7× at one base
+type: run
+refs: 69, 83, 84
+
+Two runs, both **EXPLORATORY — no prereg, no verdict**, and the second one
+refutes the first's headline. Both kept: `papers/FORMAT.md` — negative results
+stay.
+
+**The question.** `lean/Transform.lean` (entry 84) puts the strip on the torus
+`ℂ*/b^ℤ` with modular parameter `τ = 2π/log b` after the S-transform, and
+`CONTEXT.md` § O18 records the dyadic alias comb as *"eight peaks of identical
+height spaced 2π/log 2"*. Same number. Does it hold on data?
+
+**What is tautological and was skipped.** A ladder sampled uniformly in `log x`
+has a spectrum exactly `2π/log b`-periodic. Measuring that confirms the
+sampling.
+
+**What was tested.** Where the peaks sit inside one period. If the signal is the
+zeta zeros seen through the ladder, every peak lands on a zero folded by
+`g ↦ min(g mod τ, τ − g mod τ)`. The folded positions come from `γₙ` and `log b`
+with no data; the peaks come from the primes.
+
+### O53 run 1, and the trap it walked into
+
+`results/alias_tau.json`. Six bases, ceiling `10^15`, first **60** zeros folded.
+Peaks landed 0.0002 to 0.14 from a folded zero, and the ratio against a random
+frequency read: base 2 `0.24`, base 4 `0.51`, base 6 `0.50`, base 8 `0.32`
+against base 3 `1.40`, base 9 `1.43`. I read that as `{2,4,6,8}` beating chance
+and `{3,9}` failing, and matched it to the isogeny classes.
+
+**The target was nearly a continuum.** 60 folded zeros in base 9's domain
+`[0, 1.43]` leaves a mean gap of 0.024, so a random frequency sits 0.013 from a
+folded zero by construction.
+
+### O53 run 2 — sweep the target density
+
+`results/alias_tau_run2.json`. Same runs, folding 6 / 10 / 20 / 40 / 60 zeros,
+with the chance level computed at every setting.
+
+```text
+base  rungs      tau | nz=6   nz=10  nz=20  nz=40  nz=60
+   2     36   9.0647 | 0.33   0.18   0.38   0.49   0.23
+   3     23   5.7192 | 0.94   0.85   0.88   1.05   1.41
+   4     18   4.5324 | 0.54   0.89   1.00   1.03   0.51
+   6     14   3.5067 | 0.78   1.00   0.62   0.45   0.50
+   8     12   3.0216 | 0.53   0.69   1.41   0.26   0.33
+   9     11   2.8596 | 0.66   1.05   0.68   1.17   1.45
+```
+
+**The `{2,4,6,8}` against `{3,9}` split was an artifact of `nz = 60`.** At
+`nz = 6` base 9 reads 0.66 and joins the "working" group; at `nz = 40` base 8
+reads 0.26 and base 4 reads 1.03, splitting the 2-family. The partition moves
+with the knob. **Retracted.**
+
+Base 2 alone held across all five settings — 0.18 to 0.49, never near 1.
+
+### O54 — the control that killed that too
+
+`results/rung_controlled_alias.json`. Extent and drift **cannot** be separated by
+choosing bases: `rungs = log(ceiling)/log b` and the diagonal drift is `(b−1)`,
+both functions of `b` alone. They can be separated by holding `b = 2` and moving
+the ceiling to hit each other base's rung count.
+
+```text
+rungs    ceiling     peaks found   ratio     that base at same rungs
+   11   1.68e+07          1        1.94      base 9   0.66
+   12   3.36e+07          0         nan      base 8   0.53
+   14   1.34e+08          2        0.28      base 6   0.78
+   18   2.15e+09          3        1.55      base 4   0.54
+   23   6.87e+10          3        0.27      base 3   0.94
+   36   5.63e+14          5        0.34      base 2   0.33
+```
+
+**At one base, with only the ceiling moving, the ratio runs 0.27 to 1.94.** At
+12 rungs the spectrum has **no interior local maximum at all** and the statistic
+is undefined. The peak count runs 0, 1, 2, 3, 3, 5 — the statistic is measuring
+how many peaks a short window happens to produce.
+
+**So O53 run 2's "base 2 holds at every setting" is withdrawn as well.** That
+sweep varied target density while the ceiling sat fixed at 36 rungs. **The
+parameter I never varied was the one that mattered.**
+
+### Standing
+
+Nothing about base coupling is established by either run. What survives is
+independent of both, because it was never measured — base 2's uniqueness is
+three proved `iff`s in `PairIdentity`: `coeff_eq_one_iff_base_two`,
+`total_eq_pow_iff_base_two`, `total_const_on_diagonal`. Base 2 is the only base
+whose diagonal drift is 1.
+
+**Method note.** Julian's framing — the bases couple through 3,4,…,9 rather than
+2 straight to 9 — has two readings the tree distinguishes. Ladders **meet**
+(`b^n = c^m`) only inside a prime-power chain, giving five isolated classes
+`{2,4,8} {3,9} {5} {6} {7}`, with base 6 = 2·3 joining neither since
+`log2/log6` is irrational. And `τ(b) = 2π/log b` is a smooth curve the integer
+bases sample, with the gap falling from 3.346 at `2→3` to 0.162 at `8→9`. The
+chain reading is proved. The curve reading is untested.
+
+---
+
 ## 2026-08-21 — Entry 84 — block G's geometry formalised, and the identification that closes the annulus into a torus
 type: formalization
 refs: 69, 77, 83

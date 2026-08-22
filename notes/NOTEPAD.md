@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 85: O53/O54 EXPLORATORY — the {2,4,6,8} vs {3,9} base split was an nz=60 artifact (RETRACTED), and O54 shows the statistic swings 0.27 to 1.94 at base 2 alone with only the ceiling moving, 0 peaks at 12 rungs; base 2 uniqueness survives only as the three proved iffs in PairIdentity
 - [open]   2026-08-21  entry 84: block G geometry FORMALISED — Transform.lean (13th module); the missing generator is s->s+1 giving z->z/b, which closes the annulus into the torus C*/b^Z, so O39 has been measuring HALF a fundamental domain since G7 was written; paper gains G7 prime and G7 double-prime
 - [open]   2026-08-21  entry 83: the pocket read as a BASE — pair_identity's coefficient (b-1) IS the lower twin arm at a pocket base (3,5,11,17,29,41...); base 4 is a pocket but OFF-lattice so only base 6 of O44's eight is an on-lattice pocket; extent arithmetic bounds per-pocket tables before they are asked. Tabled.
 - [open]   2026-08-21  entry 82: O51 twin lattice census EXPLORATORY — three refusals: the site count is NOT geometric (alternates +/-1/3, so pair_identity does not transfer), the occupancy bias is weak and sign-changing and is NOT the Chebyshev bias, and NO twin zero is deep (all four at r<=9 vs the prime table's (20,6) at count 38635); papers/The-Twin-Lattice.md written

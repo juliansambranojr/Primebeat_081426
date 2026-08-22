@@ -1,0 +1,16 @@
+/Users/juliansambrano/GitHub/Primebeat_081426/.venv/lib/python3.14/site-packages/numpy/_core/fromnumeric.py:3862: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/Users/juliansambrano/GitHub/Primebeat_081426/.venv/lib/python3.14/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+O54 - rung-controlled alias test.  EXPLORATORY, no prereg, no verdict.
+base 2 held fixed, ceiling varied.  tau = 9.0647, 6 zeros folded
+
+ rungs      ceiling      obs   chance   ratio   | that base at same rungs
+    11    1.678e+07   0.6233   0.3216    1.94   | base 9  0.66
+    12    3.355e+07      nan   0.3229     nan   | base 8  0.53
+    14    1.342e+08   0.0897   0.3249    0.28   | base 6  0.78
+    18    2.147e+09   0.4991   0.3212    1.55   | base 4  0.54
+    23    6.872e+10   0.0862   0.3235    0.27   | base 3  0.94
+    36    5.629e+14   0.1075   0.3200    0.34   | base 2  0.33
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/rung_controlled_alias.json

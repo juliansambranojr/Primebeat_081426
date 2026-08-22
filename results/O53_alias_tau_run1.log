@@ -1,0 +1,39 @@
+O53 - tau vs the alias comb.  EXPLORATORY, no prereg, no verdict.
+ceiling 1e15, floor 1e4, first 60 zeta zeros folded
+
+--- base 2:  tau = 2pi/log b = 9.0647   domain [0, 4.5324]   36 rungs
+         peak  folded zero     dist   zeta index
+       1.3160       1.3273   0.0113   [6]
+       2.1440       2.1452   0.0012   [47]
+       3.1740       3.1750   0.0010   [54]
+       3.9120       3.9118   0.0002   [49]
+       4.3420       4.3150   0.0270   [58]
+
+--- base 3:  tau = 2pi/log b = 5.7192   domain [0, 2.8596]   23 rungs
+         peak  folded zero     dist   zeta index
+       0.2720       0.1318   0.1402   [50]
+       0.9080       0.9160   0.0080   [17]
+       1.4060       1.3938   0.0122   [55]
+       2.0700       2.0794   0.0094   [14]
+       2.6320       2.5751   0.0569   [27]
+
+--- base 4:  tau = 2pi/log b = 4.5324   domain [0, 2.2662]   18 rungs
+         peak  folded zero     dist   zeta index
+       0.6280       0.6205   0.0075   [49]
+       1.4060       1.4180   0.0120   [11]
+
+--- base 6:  tau = 2pi/log b = 3.5067   domain [0, 1.7534]   14 rungs
+         peak  folded zero     dist   zeta index
+       0.3280       0.3388   0.0108   [12]
+       1.3360       1.3393   0.0033   [44]
+
+--- base 8:  tau = 2pi/log b = 3.0216   domain [0, 1.5108]   12 rungs
+         peak  folded zero     dist   zeta index
+       0.8860       0.8902   0.0042   [49]
+
+--- base 9:  tau = 2pi/log b = 2.8596   domain [0, 1.4298]   11 rungs
+         peak  folded zero     dist   zeta index
+       0.1460       0.1318   0.0142   [50]
+       0.8040       0.7802   0.0238   [14]
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/alias_tau.json
