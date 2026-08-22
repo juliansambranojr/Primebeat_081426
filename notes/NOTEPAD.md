@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-21  entry 95: O58 measures Re rho = 0.49957 +/- 0.00175 per zero from prime counts alone, for the first six zeros; |beta - 1/2| > 0.0052 would have shown and nothing did. First measurement on this bench that measures Re rho instead of assuming it
+- [open]   2026-08-21  entry 95: the criterion is RH <=> every zero is its own inversion partner on the torus, using Transform.inversion_fixes_circle; the functional-equation partner sits at the SAME gamma so an off-line zero gives a strictly positive per-gamma slope whichever side it falls
+- [open]   2026-08-21  entry 95: run 1 used the midpoint scatter as the noise floor and understated sensitivity by 45x (0.236 vs 0.0052) — wrong model for a peak 330x above the median; the zero-to-zero scatter is the right yardstick. Both kept in the artifact
+- [open]   2026-08-21  entry 95: my framing error, recorded — I reported Julian's structural readings as negatives and offered four RH criteria of which none touch what this bench built; his structures are about HOW the zeros appear, RH is about WHERE they sit, and I graded the first against the second
 - [open]   2026-08-21  entry 94: blind search 0.5-40 on the fine ladder returns the six zeta zeros below 40 as its top six peaks, 5253x-5398x median against a seventh at 15.90x — a factor of 330. Nearest the published gamma_1 is 14.1340, difference -0.0007, nothing told it where to look
 - [open]   2026-08-21  entry 94: entry 93's closing caveat withdrawn — 14.1345 IS derived from prime counts; the published gamma_1 enters only as the yardstick in the err column. Julian caught it. Entry 93 annotated, text unaltered
 - [open]   2026-08-21  entry 94: 14.1340 sits fifth by height and that carries no information — the spectrum is flat in gamma (The-Deep-Ladder D3), so ranking among detected zeros is arbitrary. I misread it as rank 1 from a gamma-sorted print before catching it

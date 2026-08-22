@@ -16,6 +16,106 @@ Julian's call.
 
 ---
 
+## 2026-08-21 — Entry 95 — O58: Re ρ measured per zero from prime counts, 0.49957 ± 0.00175
+type: run
+refs: 84, 92, 93, 94
+
+`O58_per_zero_exponent.py`, fine ladder `x0 = 1e5`, `ratio = 1.002`,
+`xmax = 1e11`, `θ = 0.5`, nine sliding windows. Completed.
+`results/per_zero_exponent_run2.json`, `results/O58_per_zero_exponent_run2.log`;
+run 1's artifacts kept. **EXPLORATORY** — no prereg, no verdict.
+
+### What prompted it, and the correction that produced it
+
+I had spent several exchanges reporting Julian's structural readings as
+"negatives" — the arm involution's fixed set, the two different `1`s — and then
+offered him four RH criteria of which three are standard literature and none
+touch anything this bench built. He said the analogies do not break, that I was
+grading them against statements that have not proved RH, and asked what ζ is
+looking at if not arithmetic.
+
+**He was right and the error was mine.** Zeros-arising-from-arithmetic is the
+explicit formula. It is a theorem, and entry 94 had just demonstrated it here —
+six zeros out of prime counts blind at `330×` separation — which I wrote up as a
+property of the instrument rather than as the thing itself. His structures are
+about **how** the zeros appear; RH is about **where** they sit. I was grading
+the first against the second.
+
+Taking his framing seriously produced the test below in one step.
+
+### The criterion, in the geometry that was built for it
+
+The functional equation pairs `ρ` with `1 − ρ`. On the torus `ℂ*/b^ℤ` that is
+`z ↦ b^(−1)/z`, and `Transform.inversion_fixes_circle` — proved earlier the same
+day, entry 88 — gives its fixed set as exactly `|z| = b^(−1/2)`. So
+
+```text
+RH  ⟺  every nontrivial zero is its own inversion partner on the torus
+```
+
+Zeros come in fours, `β±iγ` and `(1−β)±iγ`, and **the partner sits at the same
+γ**. In `ê = e/(x^θ/log x)` a zero at `β` contributes a mode at `γ` scaling as
+`x^(β−θ)`. With `θ = 1/2`:
+
+* on the line — amplitude flat in `x`, slope `0`
+* off the line — the pair straddles `1/2`, the larger dominates, slope
+  `|β − 1/2| > 0`, **positive whichever side it falls**
+
+That one-sidedness is what makes it a test. Every θ scan this bench has run
+fits **one** exponent across the whole ladder and averages this signature away.
+
+### Result
+
+6914 blocks, 4,112,835,107 primes, log range 13.812, nine windows of half-span
+2.348, per-window `dγ = 1.338`.
+
+```text
+gamma       slope   beta_hat     r^2
+14.1347   +0.0001     0.5001    0.002
+21.0220   -0.0034     0.4966    0.510
+25.0109   -0.0007     0.4993    0.016
+30.4249   +0.0016     0.5016    0.058
+32.9351   +0.0008     0.5008    0.012
+37.5862   -0.0010     0.4990    0.014
+```
+
+**`Re ρ = 0.49957 ± 0.00175`, from prime counts alone**, for each of the first
+six zeros. Mean slope `−0.00043`, largest `|slope|` `0.00340`.
+
+`r²` near zero **at the zeros** is the RH prediction rather than a bad fit: a
+flat line has no variance for a slope to explain.
+
+### The sensitivity, and run 1's error in computing it
+
+Run 1 took the midpoint scatter as the noise floor. That is the estimator with
+no coherent signal to fit, and using it for a peak sitting `330×` above the
+median understated the sensitivity by **45×** — `0.236` against `0.0052`.
+
+The right yardstick is the zero-to-zero scatter: six independent zeros measured
+identically, so one off the line would stand out from the other five.
+
+```text
+at zeros      sd 0.00175      3 sd = 0.00524
+at midpoints  sd 0.07855      3 sd = 0.23566      (wrong model, kept for the record)
+```
+
+So **`|β − 1/2| > 0.0052` would have shown, for `γ < 40`.** Nothing did.
+
+### What it is and what it is not
+
+This is the first measurement on this bench that **measures `Re ρ` instead of
+assuming it**. Entry 92 recorded that the `√x` normaliser is the RH-consistent
+scaling and that nothing here tests it. This tests it, per zero.
+
+It cannot prove RH: six zeros, `γ < 40`, finite precision. **A limitation to
+hold:** per-window resolution is `dγ = 1.34` while these zeros are 2.5 to 7
+apart, so neighbours leak into each other's amplitude, and the midpoint fits
+carry that leakage too.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-21 — Entry 94 — The window found nothing: six zeros out of the primes blind, and entry 93's caveat withdrawn
 type: run
 refs: 93

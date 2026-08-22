@@ -1,0 +1,36 @@
+O58 - the growth exponent of each detected zero.
+EXPLORATORY, no prereg, no verdict.
+ladder x0=100000 ratio=1.002 xmax=1e+11  theta=0.5
+6914 blocks, 4,112,835,107 primes, log range 13.812
+9 windows, half-span 2.348 in log x, per-window resolution dgamma = 1.338
+
+=== AT THE ZEROS   (RH predicts slope 0, beta_hat 1/2)
+       gamma     slope  beta_hat     r^2  pts
+     14.1347   +0.0001    0.5001   0.002    9
+     21.0220   -0.0034    0.4966   0.510    9
+     25.0109   -0.0007    0.4993   0.016    9
+     30.4249   +0.0016    0.5016   0.058    9
+     32.9351   +0.0008    0.5008   0.012    9
+     37.5862   -0.0010    0.4990   0.014    9
+=== AT THE MIDPOINTS   (no zero here - this is the noise floor)
+       gamma     slope  beta_hat     r^2  pts
+     17.5784   +0.0900    0.5900   0.074    9
+     23.0164   +0.0023    0.5023   0.000    9
+     27.7179   -0.0307    0.4693   0.033    9
+     31.6800   +0.1403    0.6403   0.294    9
+     35.2606   -0.0372    0.4628   0.065    9
+
+=== SUMMARY
+   at zeros      mean slope -0.00043   sd 0.00175   max |slope| 0.00340
+   at midpoints  mean slope +0.03293   sd 0.07855   max |slope| 0.14027
+   implied beta at the zeros: 0.49957 +/- 0.00175
+
+   SENSITIVITY. Three midpoint standard deviations is 0.23566.
+   A zero at beta would have shown a slope of |beta - 1/2|, so this
+   run would have caught any zero with |beta - 1/2| > 0.23566,
+   i.e. outside 1/2 +/- 0.23566, in gamma < 40.
+   Largest |slope| actually seen at a zero: 0.00340  (inside it)
+
+   This cannot prove RH. It reports what it would have caught.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/per_zero_exponent.json

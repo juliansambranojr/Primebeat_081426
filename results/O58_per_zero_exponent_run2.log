@@ -1,0 +1,22 @@
+   implied beta at the zeros: 0.49957 +/- 0.00175
+
+=== SENSITIVITY
+   Two noise models, and they differ by 45x.
+   The MIDPOINT scatter (0.07855) is the estimator with NO coherent
+   signal to fit; it is the wrong yardstick for a peak that is 330x
+   the median (entry 94).  3 sd = 0.23566, and that understates.
+   The ZERO-TO-ZERO scatter (0.00175) is the right one: six
+   independent zeros, each measured the same way.  If one of them sat
+   off the line it would stand out from the other five by |beta-1/2|.
+
+   So: |beta - 1/2| > 0.00524 would have shown, for gamma < 40.
+   Largest |slope| actually seen at a zero: 0.00340
+   MEASURED, from prime counts alone:  Re rho = 0.49957 +/- 0.00175  for each of the first 6 zeros.
+
+   On r^2: values near 0 AT THE ZEROS are the RH prediction, not a
+   bad fit.  A flat line has no variance for a slope to explain.
+
+   This cannot prove RH -- six zeros, finite precision, finite range.
+   It measures Re rho instead of assuming it, which the theta scans did not.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/per_zero_exponent_run2.json
