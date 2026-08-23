@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-23  entry 101: the bench's own falsification test passes, first time run — O7's prereg no-drift SHA e8dd8430 reproduces exactly and the results reproduce 170 of 171 JSON leaves eight days later, only generated_utc differing. Same machine, so determinism not portability
+- [open]   2026-08-23  entry 101: lean/THEOREMS.md generated — 197 theorems, 24 depending on no axioms, 146 cited by no paper or note, 14 with no docstring claim. Three quarters of the formalisation is unmapped to prose
+- [open]   2026-08-23  entry 101: the twelve-vs-thirteen bases discrepancy resolves in favour of the text — 97.68% +/- 2.91% recomputes exactly over the twelve bases below 3, and all thirteen gives 98.51% +/- 4.08%. The exclusion of b = 3.0 is now recorded in all three places quoting it; the prereg is about O48 and needed no change
+- [open]   2026-08-23  entry 101: mclass 1.3.4 and mpath 1.1.3 removed from requirements.txt and uninstalled — pinned, imported by zero files across 59 scripts, no homepage, no author, typo in mclass's own summary, installed as a pair. connes-cvs is real and stays
 - [open]   2026-08-22  entry 100: O60 — (2,1) is the only one of the four exact zeros on the leading diagonal r = d+1, so it is the constant term of its depth column and pins a transform root at the origin; the other three are interior coefficients and pin nothing. A different cut from the window exclusivity in Zeros.lean
 - [open]   2026-08-22  entry 100: O61 — the truncation offset at d=0 shrinks monotonically with rungs, 0.36% at b=1.15's 197 rungs against 9.04% at base 2's 39, converging on the theoretical b^(-1). Two readings of mine died: 'truncation artifact' and 'crossing sits at 25% of rungs'. The crossing depth is b-dependent
 - [open]   2026-08-22  entry 100: O62 — OEIS submission package for the iterated difference table of A036378 built from pi2n_cache.json; A095195 is the same recurrence seeded with prime(n) and no member of the family exists for A036378 or A007053. Four zeros at terms 4, 8, 34, 176; exactly four across all 992 entries to r=62

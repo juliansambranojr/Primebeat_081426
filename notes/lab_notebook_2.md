@@ -16,6 +16,112 @@ Julian's call.
 
 ---
 
+## 2026-08-23 — Entry 101 — Making the repo usable by someone else, and settling the base count
+type: provenance
+refs: 100
+
+Six gaps closed in the order they block a newcomer, then four flagged items
+fixed. Nothing here is a measurement except the reproduction run, which is the
+one that matters.
+
+### The falsification test, met for the first time
+
+`CONTEXT.md § Current state of the world` ends with: *"re-run O7 from the locked
+prereg on a clean checkout and reproduce `post_compute_sha256` byte-identically.
+If that SHA does not reproduce, no verdict in this folder is load-bearing."*
+
+It had never been executed. Both halves pass.
+
+**No-drift.** The prereg's `post_compute_sha256`
+`e8dd8430d489fa7dee3135f6f0a7b73bf70100c5fb6aa1aeea9b9cfe433ed109` reproduces
+exactly — file cut at `## Run record`, trailing blanks stripped to a single
+newline. The locked text has not moved since 2026-08-15T01:04:12Z.
+
+**Determinism.** Re-running `07_alpha_depth_trend.py` at locked defaults
+reproduces **170 of 171 JSON leaves identically**, eight days later. The single
+difference is `/generated_utc`, `2026-08-15T01:06:54Z → 2026-08-23T00:33:24Z`.
+
+**Two limits, recorded rather than glossed.** This ran on the same machine and
+environment, so it tests determinism and not portability — a real clean-checkout
+test needs a fresh clone and a fresh interpreter. And "byte-identical" can never
+literally hold while the artifact stamps `generated_utc`; that is a flaw in how
+the test is phrased, and the phrasing should probably become "reproduces every
+field except the timestamp."
+
+### The six
+
+1. **`LICENSE`** — Apache-2.0, canonical text, copyright 2026 Julian Sambrano.
+   Matches Mathlib, which the Lean tree depends on. Until now nobody could
+   legally reuse a line of this.
+2. **`README.md`** — leads with the table and the four zeros, not with RH. The
+   RH framing gets a stranger to close the tab; that judgement is recorded here
+   because it is a choice and could be wrong.
+3. **The reproduction**, above.
+4. **`utilities/check_env.py`** — `requirements.txt` cannot capture
+   `primecountpy`'s native binary, so a fresh checkout with requirements
+   satisfied still fails on **23 of 59 scripts** with an import error that does
+   not explain itself. This names them.
+5. **`utilities/theorem_index.py` → `lean/THEOREMS.md`** — generated, not
+   written. 197 theorems with claim, axiom cost and citing documents.
+   **24 depend on no axioms. 146 are cited by no paper or note. 14 have no
+   docstring claim.** Three quarters of the formalisation is unmapped to prose.
+6. **`four_zeros.py`** — 63 integers of `π(2ⁿ)`, no dependencies, no network.
+   Prints the four zeros, each as its alternating binomial stencil, the repeat
+   one depth up that produces it, and the composite arm. It reproduces four
+   separate results from `Zeros.lean` — `tableFrom_eq_stencil`,
+   `zero_iff_repeat`, `measured_repeat_20_6`/`_8_3` at 623 and 4, and
+   `PairIdentity.measured_composite_at_zeros` at 1, 4, 16, 8192 — without Lean,
+   packages, or the environment. Most likely artifact to travel.
+
+### The base count: the text was right, the provenance was not
+
+Entry 100 flagged `results/gain_vs_depth.json` carrying **thirteen** bases
+against nine documents saying "twelve." I recomputed rather than guessing which
+was wrong, using the recipe `The-Deep-Ladder.md § E1` states — median of
+`gain_by_depth` at `d ≥ 4`, divided by `1 + b^(−1/2)`, meaned.
+
+```text
+twelve bases, b < 3      97.68% ± 2.91%      reproduces exactly
+all thirteen             98.51% ± 4.08%
+```
+
+So **no figure was ever wrong**. What was missing is that nothing recorded the
+exclusion of `b = 3.0` while the artifact carries it. Noted now in the three
+places quoting the figure — `The-Deep-Ladder.md § E1`'s citation line,
+`Chain.lean`'s block-D docstring, `Euler-Factor-Chain.md § D3` — each naming the
+excluded base and what including it gives.
+
+**The prereg needed no change and was not touched.** Its two mentions are about
+**O48**, which genuinely sweeps twelve; O49 added `b = 3.0` to make thirteen.
+There was never a conflict. A locked prereg is immutable outside its Run record
+regardless.
+
+### Two unused packages, removed
+
+`mclass 1.3.4` and `mpath 1.1.3` were pinned in `requirements.txt` and imported
+by **zero files** across 59 scripts. `mpath` requires `mclass`, so they arrived
+as a pair. No homepage, no author, and a typo in `mclass`'s own summary
+("dictoinary"). Not called malicious — but an unused pinned dependency with that
+profile gets installed by everyone reproducing the environment, and should not.
+
+Removed and uninstalled. After: `check_env` reports all present, `four_zeros.py`
+passes, `lake build` clean at 8040 jobs.
+
+`connes-cvs 0.3.1` is real and stays — imported by three files, and it is the
+Connes–van Suijlekom Galerkin package O20/O21 are built on.
+
+### Also
+
+`CLAUDE.md § Pointers` corrected from 11 modules to 14, with a pointer to
+`THEOREMS.md`. **Edited with Julian's explicit approval**, as the rule requires.
+
+O62's `%H` line rewritten from a local path to an OEIS b-file link template, so
+the draft is paste-ready once an A-number is assigned.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-22 — Entry 100 — Walking the proved maps: the table on the annulus, two wrong readings, and the OEIS package
 type: run
 refs: 84, 88, 95, 97, 99
