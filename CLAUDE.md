@@ -204,7 +204,8 @@ direction without an `instrument-fix` entry; the prereg cites
 - `notes/` — `lab_notebook.md` (entries 1–44, closed),
   `lab_notebook_2.md` (45 onward), `NOTEPAD.md`, `notes_format.md`
 - `papers/` — the record, one per object; format in `papers/FORMAT.md`
-- `lean/` — 11 modules, every theorem axiom-pinned by `#guard_msgs`
+- `lean/` — 14 modules, every theorem axiom-pinned by `#guard_msgs`;
+  `lean/THEOREMS.md` is the generated index
 - `preregs/` — locked protocols; format in `preregs/FORMAT.md`
 - `utilities/` — `check_refs.py`, `check_values.py`, `extract_run.py`
 - `results/` — run artifacts; `analysis/<date>/` for session work

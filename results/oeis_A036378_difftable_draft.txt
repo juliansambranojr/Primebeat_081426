@@ -13,7 +13,9 @@
 %C  A036378(r-k-1), so a zero is one linear condition on d+1 values of A036378.
 %C  A(r,d) = 0 iff A(r,d-1) = A(r-1,d-1), i.e. the row repeats one depth up.
 
-%H  b-file: results/oeis_A036378_difftable_bfile.txt
+%H  <a href="bNNNNNN.txt">Table of n, a(n) for n = 1..260</a>
+    (replace NNNNNN with the assigned A-number and upload
+    results/oeis_A036378_difftable_bfile.txt)
 
 %Y  Seed: A036378, A007053.
 %Y  Same recurrence seeded with prime(n): A095195.

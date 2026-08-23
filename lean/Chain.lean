@@ -462,6 +462,8 @@ proved, by evaluating `cos` at `±1`. Notes entry 77.
 either end. `C2_floor_attained` and `C2_ceiling_attained` do. O49 measures the
 residual table's own gain at 97.68% ± 2.91% of that ceiling across twelve bases
 (entry 75), so the bound is not merely attainable but attained in the data.
+`results/gain_vs_depth.json` carries a thirteenth base, `b = 3.0`, which that
+figure excludes; over all thirteen it is 98.51% ± 4.08%.
 
 **Not to be confused with `sym_eq_zero_iff`.** That lattice is where `Sym`
 vanishes outright, at `s = 2πik/log b`, which has `Re s = 0`. The floor here is

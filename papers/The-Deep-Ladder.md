@@ -123,8 +123,9 @@ thirty-eight — which is why the first pass appeared to *miss* γ₁ while find
 per-depth gain reaches the C2 ceiling `1 + b^(−1/2)` at 97.68% ± 2.91%, entered
 by depth 1 or 2.
 `derived from results/gain_vs_depth.json: median of gain_by_depth at d>=4,
-divided by 1+b^(-1/2), meaned over the twelve bases; the ratio is not printed
-in the artifact`
+divided by 1+b^(-1/2), meaned over the twelve bases b < 3; the ratio is not
+printed in the artifact, and the artifact carries a thirteenth base b = 3.0
+which this figure excludes — including it gives 98.51% ± 4.08%`
 
 **E2.** So differencing is a power iteration that selects whichever mode sits at
 the ceiling, and **no depth window exists in which a sub-ceiling mode is

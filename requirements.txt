@@ -1,5 +1,7 @@
 # Python 3.14.3 from /opt/homebrew/opt/python@3.14, venv at .venv/
 # Not capturable by pip freeze: Homebrew primecount 8.6 (primecountpy links against it)
+# mclass/mpath removed 2026-08-23: pinned here, imported by zero files,
+# no homepage, no author. See notes entry 101.
 # Regenerate: .venv/bin/python -m pip freeze
 connes-cvs==0.3.1
 contourpy==1.3.3
@@ -8,8 +10,6 @@ cysignals==1.12.6
 fonttools==4.63.0
 kiwisolver==1.5.0
 matplotlib==3.11.1
-mclass==1.3.4
-mpath==1.1.3
 mpmath==1.3.0
 numpy==2.5.2
 packaging==26.3

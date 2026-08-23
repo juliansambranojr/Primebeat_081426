@@ -84,8 +84,9 @@ At the ceiling `b^(−ρ)` is real negative and the gain is real.
 **D3.** Therefore differencing dissipates the smooth part maximally while amplifying
 modes near the ceiling.
 `D1 + D2 · Chain.ceiling_dominates_floor · measured O49: the residual table's own
-gain sits at 97.68% ± 2.91% of the ceiling across twelve bases, entered by depth
-1 or 2 — lab_notebook_2 entry 75`
+gain sits at 97.68% ± 2.91% of the ceiling across twelve bases b < 3, entered by
+depth 1 or 2; the artifact's thirteenth base b = 3.0 is excluded and including it
+gives 98.51% ± 4.08% — lab_notebook_2 entry 75`
 
 **D4.** The bases placing `γ` exactly at the ceiling are `b = exp(π(2k+1)/γ)`.
 For `γ₁`: `1.2489, 1.948, 3.039, 4.741, 7.395 …`
