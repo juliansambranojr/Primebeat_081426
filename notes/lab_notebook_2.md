@@ -16,6 +16,102 @@ Julian's call.
 
 ---
 
+## 2026-08-23 — Entry 102 — An independent analysis audited, and the depth profile against a Poisson null
+type: run
+refs: 100, 101
+
+Julian brought older work done with Gemini on the same tables and asked whether
+it holds. Six claims, audited against the repo rather than assessed. Three hold,
+two die, one did not reproduce. Then the one live question it raised, run.
+
+### The audit
+
+**HOLDS, and is proved.** The silencing protocol — setting the counts of 2 and 3
+to zero as a change of basis. `SeedPerturbation.cell_eq_of_seed_perturbation`
+proves why it is safe: the excess vanishes above rung 2, so any cell with
+`r − d > 2` is identical under both conventions. Ran it: silenced and unsilenced
+give the same four zeros and the same depth-6 row, bit for bit.
+
+**HOLDS exactly.** `Δ₆(regime 20) = 0` bounded by `[343, 0, 1713]`. The full
+depth-6 row reads `256, 343, 0, 1713, 556`. `Zeros.nonzero_19_6` pins the 343 at
+no axioms; `The-Fold.md` § B already carries the 1713 as `(21,6)`'s folded sum.
+
+**HOLDS.** The twin `[1, 0, 1]` handshake. The twin arm at `Δ₁` has zeros at
+`r = 4, 6, 9`, and `r = 6` reads `[1, 0, 1]` exactly. O51 found the twin arm's
+zeros as `(4,1), (6,1), (9,1), (8,4)` independently.
+
+**DIES.** Φ resonance. `1713/343 = 4.994169`. The nearest power of φ is
+`φ³ = 4.236`, off by 18%. It is **5 to within 0.12%**, which is a cleaner fact
+and is not the golden ratio.
+
+**DIES.** Fibonacci additivity. The silenced dyadic counts run
+`0, 0, 2, 2, 5, 7, 13, 23, 43, 75, 137, 255`. The additive rule fires at exactly
+two positions — `0+2=2`, `2+5=7` — then fails: `5+7=12` against 13, `7+13=20`
+against 23. Two coincidences in a geometrically growing sequence.
+
+**DID NOT REPRODUCE.** The cross-base refraction. Silenced triadic does have a 5
+at `Δ₂`, regime 4. Silenced pentadic has no cell equal to 5 at `Δ₀`, `Δ₁` or
+`Δ₂`. The source's phrasing is ambiguous — "silencing counts 1, 2, 3" may mean
+the first three regimes rather than the primes — and it was read the second way.
+
+**What the audit is worth.** No new content: every surviving claim was already in
+the tree, and `litsearch_2_priority.md:203` had already searched the exact
+depth-6 string in OEIS (No results). What it adds is **independent arrival** —
+a separate model, from the tables alone, reached the same four structural facts.
+Everything in this tree traces to one person and one assistant, so a second path
+to the same spine is the closest thing to external replication on record. And the
+two claims that died are a calibration: golden ratio and Fibonacci are exactly
+what a pattern-matcher produces on a short prefix.
+
+### O63 — the question it raised, asked properly
+
+`O63_value_refraction.py`, ceiling `1e12`, bases 2–9, both conventions.
+`results/value_refraction.json`, run logs 1 and 2. **EXPLORATORY.**
+
+**The refraction framing is the wrong instrument.** Minimum depth at which a
+value appears is dominated by the depth-0 row — base 2's row *is*
+`1, 1, 2, 2, 5, 7, 13…`, so the small values are there before any differencing.
+And bases 4, 8, 9 show almost no small values at all for a reason already proved:
+`Isogeny.rowN_eq_blockSum` makes their rows base 2's and base 3's summed in
+blocks, starting at `2, 4, 12, 36…` and skipping the small integers. What looked
+like refraction is the block structure.
+
+**The control found the real thing.** Fraction of cells with `|v| ≤ 20` per
+depth, against 400 Poisson draws at base 2's own per-rung means:
+
+```text
+  d     real   poisson mean      sd   max of 400      z   draws >= real
+  0    0.179          0.187   0.013        0.205   -0.6      392/400
+  3    0.222          0.197   0.037        0.278    0.7      166/400
+  4    0.257          0.139   0.050        0.257    2.4        4/400
+  5    0.235          0.077   0.047        0.206    3.3        0/400
+  6    0.061          0.039   0.038        0.212    0.6      131/400
+```
+
+At depth 5 **no draw of 400 reaches the real value**, and the maximum over all
+400 is `0.206` against `0.235`. Depth 4 gives `4/400`. Every other depth is
+unremarkable.
+
+**Three caveats, which matter more than the numbers.**
+
+* **Multiple comparisons.** Sixteen depths were tested. Depth 5's `p = 0.0025`
+  survives a crude Bonferroni at 16 (`0.04`); depth 4's `0.01` does not. And the
+  two are adjacent, so the same cells feed both.
+* **`n = 1` where it counts.** There is one prime sequence. The 400 draws
+  randomise the null, not the signal.
+* **It is probably known.** Prime counts in dyadic blocks have variance well
+  below Poisson, and that is the obvious cause of the real table staying
+  small-valued deeper under differencing. This measures it in this coordinate
+  rather than discovering it.
+
+Run 1 used a **single** Poisson draw and reported a factor of 4.5 at depth 4
+without error bars. That was mine and it was wrong to hand over; run 2 replaced
+it. Both logs kept.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-23 — Entry 101 — Making the repo usable by someone else, and settling the base count
 type: provenance
 refs: 100

@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-23  entry 102: an independent Gemini analysis of the same tables audited — silencing, the (20,6) anchor with [343,0,1713], and the twin [1,0,1] handshake all hold and were already in the tree; the golden-ratio and Fibonacci claims die. Value: independent arrival at the same spine, which is the closest thing to external replication on record
+- [open]   2026-08-23  entry 102: O63 — the cross-base refraction framing is the wrong instrument (min-depth is dominated by the depth-0 row, and bases 4/8/9 skip small values because Isogeny.rowN_eq_blockSum blocks their rows). What the control found: at depth 5, 0 of 400 Poisson draws reach the real fraction of small cells, max 0.206 against real 0.235
+- [open]   2026-08-23  entry 102: caveats on that — 16 depths tested so depth 4 does not survive Bonferroni and depth 5 barely does; n=1 in the signal; and sub-Poisson variance of dyadic prime counts is the likely known cause. Run 1 used a single Poisson draw and is superseded by run 2's 400
 - [open]   2026-08-23  entry 101: the bench's own falsification test passes, first time run — O7's prereg no-drift SHA e8dd8430 reproduces exactly and the results reproduce 170 of 171 JSON leaves eight days later, only generated_utc differing. Same machine, so determinism not portability
 - [open]   2026-08-23  entry 101: lean/THEOREMS.md generated — 197 theorems, 24 depending on no axioms, 146 cited by no paper or note, 14 with no docstring claim. Three quarters of the formalisation is unmapped to prose
 - [open]   2026-08-23  entry 101: the twelve-vs-thirteen bases discrepancy resolves in favour of the text — 97.68% +/- 2.91% recomputes exactly over the twelve bases below 3, and all thirteen gives 98.51% +/- 4.08%. The exclusion of b = 3.0 is now recorded in all three places quoting it; the prereg is about O48 and needed no change
