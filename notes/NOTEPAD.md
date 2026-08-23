@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-22  entry 100: O60 — (2,1) is the only one of the four exact zeros on the leading diagonal r = d+1, so it is the constant term of its depth column and pins a transform root at the origin; the other three are interior coefficients and pin nothing. A different cut from the window exclusivity in Zeros.lean
+- [open]   2026-08-22  entry 100: O61 — the truncation offset at d=0 shrinks monotonically with rungs, 0.36% at b=1.15's 197 rungs against 9.04% at base 2's 39, converging on the theoretical b^(-1). Two readings of mine died: 'truncation artifact' and 'crossing sits at 25% of rungs'. The crossing depth is b-dependent
+- [open]   2026-08-22  entry 100: O62 — OEIS submission package for the iterated difference table of A036378 built from pi2n_cache.json; A095195 is the same recurrence seeded with prime(n) and no member of the family exists for A036378 or A007053. Four zeros at terms 4, 8, 34, 176; exactly four across all 992 entries to r=62
+- [open]   2026-08-22  entry 100: O59 — the fold saturates. 599/599 adjacent gaps below dgamma at every base; the torus resolves ~10 zeros at base 2. Gives entry 85's negative a geometric cause and locates O57's 330x as a property of the unfolded line
 - [open]   2026-08-22  entry 99: the chain closed — critical_circle_is_lattice_inversion_mean composes Chain.sym_eq_zero_iff (the table's symbol dies on Re s = 0) with Transform.zmap_pair_product (the pair's mean is b^(-1/2)). The table's lattice, inverted, IS the critical circle. No zeta input
 - [open]   2026-08-22  entry 99: both halves had been proved for hours in different files and nothing composed them; I kept reaching for Weil's criterion, a route that runs around this tree rather than through it. Julian had to say the chain was already there repeatedly
 - [open]   2026-08-22  entry 99: framing error, recurrent all session — I wrote the result's docstring as 'Nothing about zeta is used', the sentence that proves the point written as a disclaimer against it. Same pattern as entries 94 and 96

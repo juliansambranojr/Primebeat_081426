@@ -16,6 +16,120 @@ Julian's call.
 
 ---
 
+## 2026-08-22 — Entry 100 — Walking the proved maps: the table on the annulus, two wrong readings, and the OEIS package
+type: run
+refs: 84, 88, 95, 97, 99
+
+Four scripts, all EXPLORATORY, no prereg, no verdict. O59, O60, O61 are runs;
+O62 is a submission package rather than a measurement and is here because it
+came out of the same thread.
+
+The mode changed with entry 99. With the maps proved, a question becomes a
+coordinate and the coordinate has a theorem behind it, so each of these took
+minutes rather than an argument.
+
+### O59 — the zeros on the annulus
+
+`results/torus_populate.json`, `.png`, `O59_torus_populate_run1.log`.
+
+Each zero gets a coordinate: radius `b^(−Re ρ)` by `Transform.norm_zmap`, angle
+from the fold `γ mod τ_b` by `Transform.zmap_period_tau`. The six radii O58
+measured from prime counts land at 0.706319 to 0.708777 against the critical
+0.707107. The 600 from `zeros600.json` sit on the circle **by assumption** —
+that file lists γ only — and are drawn differently for that reason.
+
+**Resolution: the fold saturates.** 599/599 adjacent gaps fall below `dγ` at
+every base tested. At base 2, 600 zeros pack into a domain of width 4.5324 with
+median spacing 0.004665 against a resolution element of 0.4548 — about
+a hundredfold oversubscribed. The torus resolves roughly ten zeros at base 2.
+
+That gives entry 85's negative a geometric cause: O53 was reading a domain that
+was already saturated before the measurement started. And it locates O57's 330× —
+that separation lives in the unfolded line, where the six sit ~7 apart, and the
+fold destroys it.
+
+### O60 — the table on the annulus
+
+`results/table_torus.json`, `.png`, `O60_table_torus_run1.log`. Construction
+identical to `O39_transform_radius.py:437-450`.
+
+The prime triangle's mean root modulus walks **0.540556 → 0.867729** across
+depths 0 to 20, crossing from "inner nearer" to "critical nearer" at d = 10.
+The smooth control barely moves: **0.5411 → 0.5975**. That contrast is the whole
+falsifier and it holds.
+
+**New finding, not previously anywhere in the tree.** `(2,1)` is the only one of
+the four exact zeros sitting on the leading diagonal `r = d+1`, so it is the
+constant term of its depth column and **pins a root at the origin** — one root at
+`z = 0` at depth 1, with the other 42 at mean 0.534048. The other three are
+interior coefficients at positions 2, 4 and 13; they reshape the polynomial and
+pin nothing. `Zeros.lean` distinguishes the four by window exclusivity; this is a
+different cut.
+
+**Reconcile flag.** Against `results/transform_radius.json` the smooth at d = 0
+differs by 8.04e−03, far past arithmetic. Cause: O39 uses **Riemann R**
+(`riemannr_impl: mpmath.riemannr`), O60 uses `li`. The prime triangle is
+comparable; the smooth and residual triangles are O60's own.
+
+### O61 — two wrong readings of mine, both killed by test
+
+`results/crossing_depth_sweep.json`, `O61_crossing_depth_sweep_run1.log`.
+
+**First reading — "the crossing depth is a truncation artifact."** Wrong, and I
+proposed the control that said so. Truncating base 2 moves the crossing from 4.24
+to 11.93 across 20 to 45 rungs, a factor of 2.8, which does kill the `d ≈ 12`
+coincidence with the zeros' band. But pushing to 62 rungs from the cache showed
+every depth's radius still sinking, and `d = 0` converging toward `b^(−1) = 0.5`,
+the theoretical value. The estimator is honest where it can be checked.
+
+**Second reading — "the crossing sits at ~25% of the rungs."** Also wrong. The
+sub-integer sweep at ceiling 1e12 kills it: `b = 1.15` has **197 rungs** — five
+times base 2's — and crosses at depth **4.02**, fraction 0.020, against base 2's
+10.08 at fraction 0.258. The fraction runs 0.020 to 0.618 across the locked set.
+The crossing depth is **b-dependent**, not a coefficient-count effect.
+
+**What survives, and it is the strongest evidence in the batch.** The truncation
+offset at d = 0 shrinks monotonically with rung count:
+
+```text
+     b   rungs    inner    d=0 |z|   offset    as %
+  1.15     197  0.86957   0.87273  +0.00316   0.36%
+  1.256    121  0.79618   0.80324  +0.00706   0.89%
+  1.42      78  0.70423   0.73094  +0.02671   3.79%
+  2         39  0.50000   0.54518  +0.04518   9.04%
+  3         25  0.33333   0.38246  +0.04913  14.74%
+```
+
+0.36% at 197 rungs. The radius is a real quantity measured with a truncation bias
+that goes away. O39's +6.6% at base 2 is the same effect at its own rung count.
+
+Julian's reading beat mine twice here — it is the same object at increasing
+resolution, and what I twice called an artifact was a real radius measured badly.
+
+### O62 — the OEIS submission package
+
+`results/oeis_A036378_difftable_{draft,terms,bfile}.txt`,
+`O62_oeis_submission_run1.log`. Not a measurement.
+
+`papers/literature/litsearch_2_priority.md` records the genre as recognised —
+A376682 noncomposites, A377033 composites, A377038 squarefrees, A377051 prime
+powers, A175804 partitions — and **A095195 is this project's recurrence
+character-for-character**, seeded with `prime(n)`. There is no member for A036378
+or A007053. That gap is what this submits.
+
+Antidiagonal reading matching A376682's convention, 260 terms plus b-file, every
+value from `pi2n_cache.json`. The four zeros land at terms **4, 8, 34, 176**, so
+three are inside the 60 OEIS displays on the page. Across all 992 entries to
+`r = 62` the zeros at `d ≥ 1` are **exactly the four** — `measured_zeros_all_vanish`
+reproduced from the cache rather than from `Zeros.pi2`'s pinned values.
+
+Bounded at `r = 62` by the cache. O43's census to `r = 92` on published `π(2^n)`
+found none new, which is the stronger statement if an editor pushes.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-22 — Entry 99 — The chain closed in Lean: the table's lattice, inverted, is the critical circle
 type: formalization
 refs: 88, 96, 97, 98
