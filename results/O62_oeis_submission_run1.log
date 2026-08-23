@@ -1,0 +1,24 @@
+O62 — OEIS submission package
+source pi2n_cache.json, pi(2^n) for n = 0..62
+992 array entries available; taking the first 260
+
+first 5 antidiagonals, as (r,d): value
+   s=1: (1,0):1
+   s=2: (2,0):1
+   s=3: (3,0):2  (2,1):0
+   s=4: (4,0):2  (3,1):1
+   s=5: (5,0):5  (4,1):0  (3,2):1
+
+the four exact zeros, checked against the array:
+   A(2,1) = 0   term #4
+   A(4,1) = 0   term #8
+   A(8,3) = 0   term #34
+   A(20,6) = 0   term #176
+   all four vanish: True
+
+every zero at d >= 1 in the whole array (r <= 62): [(2, 1), (4, 1), (8, 3), (20, 6)]
+
+wrote:
+   results/oeis_A036378_difftable_terms.txt
+   results/oeis_A036378_difftable_bfile.txt
+   results/oeis_A036378_difftable_draft.txt

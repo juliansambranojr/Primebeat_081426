@@ -1,0 +1,24 @@
+O59 - the proved identities, run on numbers.
+EXPLORATORY, no prereg, no verdict.
+
+MEASURED radii from O58 (6 zeros, beta fitted from primes):
+   gamma   14.1347   beta_hat 0.50011   radius b^-beta at b=2: 0.707053
+   gamma   21.0220   beta_hat 0.49660   radius b^-beta at b=2: 0.708777
+   gamma   25.0109   beta_hat 0.49929   radius b^-beta at b=2: 0.707457
+   gamma   30.4249   beta_hat 0.50161   radius b^-beta at b=2: 0.706319
+   gamma   32.9351   beta_hat 0.50082   radius b^-beta at b=2: 0.706706
+   gamma   37.5862   beta_hat 0.49899   radius b^-beta at b=2: 0.707601
+   critical radius 2^(-1/2) = 0.707107
+
+RESOLUTION ON THE TORUS  (dgamma = 0.4548, O58's fine ladder)
+     base       tau    domain    min gap     median  collisions
+        2    9.0647    4.5324   0.000001   0.004665     599/599
+        3    5.7192    2.8596   0.000004   0.003150     599/599
+       10    2.7288    1.3644   0.000002   0.001679     599/599
+
+   Larger b -> smaller tau -> smaller fold domain -> more collisions.
+   The torus resolves the zeros only while the fold domain stays wide
+   relative to dgamma. That is Nyquist, in the angular coordinate.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/torus_populate.png
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/torus_populate.json

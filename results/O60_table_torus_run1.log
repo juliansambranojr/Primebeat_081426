@@ -1,0 +1,41 @@
+O60 - the torus from the whole table.  EXPLORATORY, no prereg, no verdict.
+base 2, rmax 45.  inner b^-1 = 0.500000, critical b^-1/2 = 0.707107, outer = 1.000000
+
+triangle   d  roots   mean|z|       min       max  |mean-crit|
+   prime   0     44  0.540556  0.529341  0.548797     0.166550
+   prime   1     43  0.521629  0.000000  0.550733     0.185478
+   prime   3     41  0.554309  0.454724  0.579721     0.152798
+   prime   6     38  0.601308  0.562812  0.624217     0.105799
+   prime  10     34  0.665220  0.626309  0.709580     0.041887
+   prime  14     30  0.753659  0.505850  0.856578     0.046552
+   prime  20     24  0.867729  0.681313  2.072336     0.160623
+  smooth   0     44  0.541091  0.531928  0.544372     0.166015
+  smooth   1     43  0.540207  0.525850  0.547666     0.166900
+  smooth   3     41  0.546224  0.524576  0.554468     0.160883
+  smooth   6     38  0.550803  0.478541  0.561108     0.156304
+  smooth  10     34  0.561319  0.498742  0.572365     0.145788
+  smooth  14     30  0.573135  0.512354  0.585476     0.133972
+  smooth  20     24  0.597455  0.534131  0.612796     0.109652
+   resid   0     44  0.743085  0.049557  0.862456     0.035978
+   resid   1     43  0.761256  0.731306  0.849784     0.054149
+   resid   3     41  0.759187  0.724666  0.783209     0.052080
+   resid   6     38  0.755040  0.725281  0.789799     0.047933
+   resid  10     34  0.757723  0.704257  0.882863     0.050616
+   resid  14     30  0.835789  0.505894  2.436176     0.128682
+   resid  20     24  0.868029  0.681314  2.076291     0.160922
+
+RECONCILE with results/transform_radius.json:
+   smooth d=0 : here 0.5410914891   O39 0.5330466334   delta 8.04e-03
+   resid  d=6 : here 0.7550399680   O39 0.7542802496   delta 7.60e-04
+
+MIGRATION of mean|z| with depth (prime triangle):
+   d= 0  mean|z| = 0.540556   inner is nearer
+   d= 1  mean|z| = 0.521629   inner is nearer
+   d= 3  mean|z| = 0.554309   inner is nearer
+   d= 6  mean|z| = 0.601308   inner is nearer
+   d=10  mean|z| = 0.665220   CRITICAL is nearer
+   d=14  mean|z| = 0.753659   CRITICAL is nearer
+   d=20  mean|z| = 0.867729   CRITICAL is nearer
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/table_torus.png
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/table_torus.json

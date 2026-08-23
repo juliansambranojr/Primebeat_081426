@@ -1,0 +1,120 @@
+{
+  "schema_version": "1",
+  "script": "O61_crossing_depth_sweep.py",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "ceiling": 1000000000000,
+    "bases": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "truncations": [
+      45,
+      40,
+      35,
+      30,
+      25,
+      20
+    ],
+    "min_coeffs": 3
+  },
+  "rows": {
+    "base_sweep": [
+      {
+        "base": 2,
+        "rungs": 39,
+        "crit": 0.7071067811865476,
+        "cross_depth": 10.0785361954968,
+        "cross_over_rungs": 0.2584240050127385
+      },
+      {
+        "base": 3,
+        "rungs": 25,
+        "crit": 0.5773502691896257,
+        "cross_depth": 15.455609205735195,
+        "cross_over_rungs": 0.6182243682294079
+      },
+      {
+        "base": 4,
+        "rungs": 19,
+        "crit": 0.5,
+        "cross_depth": null,
+        "cross_over_rungs": null
+      },
+      {
+        "base": 5,
+        "rungs": 17,
+        "crit": 0.4472135954999579,
+        "cross_depth": null,
+        "cross_over_rungs": null
+      },
+      {
+        "base": 6,
+        "rungs": 15,
+        "crit": 0.408248290463863,
+        "cross_depth": null,
+        "cross_over_rungs": null
+      },
+      {
+        "base": 7,
+        "rungs": 14,
+        "crit": 0.37796447300922725,
+        "cross_depth": null,
+        "cross_over_rungs": null
+      },
+      {
+        "base": 8,
+        "rungs": 13,
+        "crit": 0.3535533905932738,
+        "cross_depth": null,
+        "cross_over_rungs": null
+      },
+      {
+        "base": 9,
+        "rungs": 12,
+        "crit": 0.3333333333333333,
+        "cross_depth": null,
+        "cross_over_rungs": null
+      }
+    ],
+    "truncation_control": [
+      {
+        "rungs": 45,
+        "cross_depth": 11.933580026362907,
+        "cross_over_rungs": 0.26519066725250906
+      },
+      {
+        "rungs": 40,
+        "cross_depth": 10.441238175630144,
+        "cross_over_rungs": 0.2610309543907536
+      },
+      {
+        "rungs": 35,
+        "cross_depth": 8.726225689825691,
+        "cross_over_rungs": 0.24932073399501975
+      },
+      {
+        "rungs": 30,
+        "cross_depth": 7.199074653736825,
+        "cross_over_rungs": 0.23996915512456082
+      },
+      {
+        "rungs": 25,
+        "cross_depth": 5.749017816515943,
+        "cross_over_rungs": 0.22996071266063772
+      },
+      {
+        "rungs": 20,
+        "cross_depth": 4.235941221549372,
+        "cross_over_rungs": 0.2117970610774686
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+%S  1, 1, 2, 0, 2, 1, 5, 0, 1, 7, 3, -1, 13, 2, 3, -2, 23, 6, -1, 4, 43, 10, 4, -4, 6, 75, 20, 4, 5, -8, 137, 32, 10, 0, 9, -14, 255, 62, 12, 6, -5, 17, 464, 118, 30, 2, 6, -14, 31, 872, 209, 56, 18, -4, 11, -31, 1612, 408, 91, 26
+%N  Array read by antidiagonals downward where A(n,k) is the n-th term of the
+    k-th differences of the number of primes between 2^m and 2^(m+1) (A036378).
+
+%C  A(r,0) = pi(2^r) - pi(2^(r-1)) = A036378(r-1); A(r,d+1) = A(r,d) - A(r-1,d).
+%C  Defined for r > d.
+%C  The array has exactly four zero entries at depth d >= 1 for r <= 62:
+%C  A(2,1) = A(4,1) = A(8,3) = A(20,6) = 0, and no others.
+%C  At those four cells the complementary composite array takes the values
+%C  1, 4, 16, 8192, i.e. 2^(r-1-d), since the prime and composite counts in a
+%C  dyadic block partition 2^(r-1) and differencing is linear.
+%C  A(r,d) equals the alternating binomial stencil sum_{k=0..d} (-1)^k C(d,k)
+%C  A036378(r-k-1), so a zero is one linear condition on d+1 values of A036378.
+%C  A(r,d) = 0 iff A(r,d-1) = A(r-1,d-1), i.e. the row repeats one depth up.
+
+%H  b-file: results/oeis_A036378_difftable_bfile.txt
+
+%Y  Seed: A036378, A007053.
+%Y  Same recurrence seeded with prime(n): A095195.
+%Y  Same construction on other sequences: A376682 (noncomposites), A377033
+    (composites), A377038 (squarefrees), A377046 (nonsquarefrees), A377051
+    (prime powers), A175804 (partitions), A378622 (strict partitions).
+%Y  Complementary composite counts: A182095. Li-residual: A223853, A223900.
+
+%K  sign,tabl
+
+%O  1,3
