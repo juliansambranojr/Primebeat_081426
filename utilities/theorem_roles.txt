@@ -78,3 +78,4 @@ TransferOp.mode_ne_zero'                           support
 # Nonvanishing — machinery under the cited arrow theorems
 Nonvanishing.stencilR_sub                          support
 Nonvanishing.window_term_le                        support
+Nonvanishing.iter_bdiffZ_eq_fwdDiff                support

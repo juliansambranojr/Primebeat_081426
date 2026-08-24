@@ -174,7 +174,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `iter_bdiffZ_eq_fwdDiff` | Backward differencing is `(−1)·fwdDiff` at step `−1` — the ℝ copy of `Zeros.tableFrom_eq_fwdDiff`'s bridge. | ℂ floor | **UNTAGGED** |
+| `iter_bdiffZ_eq_fwdDiff` | Backward differencing is `(−1)·fwdDiff` at step `−1` — the ℝ copy of `Zeros.tableFrom_eq_fwdDiff`'s bridge. | ℂ floor | support |
 | `iter_bdiffZ_eq_stencilR` | `n` differences are the stencil. | ℂ floor | `lab_notebook_2.md` |
 | `stencilR_row` | The Pascal step. | ℂ floor | `lab_notebook_2.md` |
 | `stencilR_sub` | Linearity. | ℂ floor | `lab_notebook_2.md` |
