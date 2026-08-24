@@ -262,8 +262,13 @@ sharpened, not replaced: under RH, nothing more arrives in the shallow table,
 and the deep table remains the open side.
 `I1 · B10`
 
-**I5.** Not in Lean. The stencil and the arithmetic are already formalised;
-the analytic steps — iterated MVT, the derivative expansion, Schoenfeld — are
-not, and Schoenfeld itself is in no proof assistant. The theorem lives at the
-standard of the papers, not of `lean/`.
-`open`
+**I5.** The arrow is in Lean; the analytic leaves are not. `lean/Nonvanishing.lean`
+proves the implication in the house pattern — Schoenfeld-on-the-window and the
+main-term floor enter as named hypotheses, and the kernel checks that the
+"therefore" is real: `Nonvanishing.error_bound` (the binomial-weighted Schoenfeld
+sum), `Nonvanishing.nonvanishing_of` (the arrow), and
+`Nonvanishing.tableFrom_ne_zero_of` (the conclusion on the integer table). What
+remains unformalised is exactly the leaves: the MVT/alternating-series bound
+(stage 2, feasible) and Schoenfeld itself, which is in no proof assistant.
+`Nonvanishing.error_bound · Nonvanishing.nonvanishing_of ·
+Nonvanishing.tableFrom_ne_zero_of`

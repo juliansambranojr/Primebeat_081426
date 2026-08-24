@@ -74,3 +74,7 @@ Construction.tableFrom_isTableOf                   support
 Isogeny.telescope                                  support
 Superposition.A4_sum_of_A1                         support
 TransferOp.mode_ne_zero'                           support
+
+# Nonvanishing — machinery under the cited arrow theorems
+Nonvanishing.stencilR_sub                          support
+Nonvanishing.window_term_le                        support

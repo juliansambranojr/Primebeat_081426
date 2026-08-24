@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-213 theorems across 16 modules. Every one carries a
+221 theorems across 17 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -141,7 +141,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `strictMono_of_lt` | If resolution outweighs per-block signal, the score strictly increases with the generator count — more generators is always better, so no interior pea | ℂ floor | support |
 | `strictAnti_of_lt` | If per-block signal outweighs resolution, the score strictly decreases — fewer generators is always better, so again no interior peak. | ℂ floor | support |
 | `const_of_eq` | If the exponents match, the score does not depend on the generator count. | ℂ floor | support |
-| `no_interior_peak` | No power-law tradeoff of this form has an interior peak. | ℂ floor | `Formalization.md` |
+| `no_interior_peak` | No power-law tradeoff of this form has an interior peak. | ℂ floor | `Formalization.md`, `README.md`, `lab_notebook_2.md` |
 | `measured_has_interior_peak` | The measurement is not monotone: G4 exceeds both G3 and G5. | ℂ floor | record |
 
 ## Isogeny (9)
@@ -169,6 +169,19 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `agreement_rank_37a1` | Rank 1 needs a tolerance of 0.3. | ℂ floor | record |
 | `agreement_elliptic` | Agreement at machine epsilon: the deviation is one ulp of a float64. | ℂ floor | record |
 | `agreement_weil_balance` | The two sides agree to 5.7e-7 relative. | ℂ floor | record |
+
+## Nonvanishing (8)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `iter_bdiffZ_eq_fwdDiff` | Backward differencing is `(−1)·fwdDiff` at step `−1` — the ℝ copy of `Zeros.tableFrom_eq_fwdDiff`'s bridge. | ℂ floor | **UNTAGGED** |
+| `iter_bdiffZ_eq_stencilR` | `n` differences are the stencil. | ℂ floor | **UNTAGGED** |
+| `stencilR_row` | The Pascal step. | ℂ floor | **UNTAGGED** |
+| `stencilR_sub` | Linearity. | ℂ floor | support |
+| `window_term_le` | Each windowed Schoenfeld bound is at most the top-of-window bound times `2^(−k/2)`: `(r−k) ≤ r` handles the linear factor and `rpow_add` splits the po | ℂ floor | support |
+| `error_bound` | The error bound. | ℂ floor | `The-Four-Zeros.md` |
+| `nonvanishing_of` | The arrow. | ℂ floor | `The-Four-Zeros.md` |
+| `tableFrom_ne_zero_of` | Onto the integer table. | ℂ floor | `The-Four-Zeros.md` |
 
 ## PairIdentity (13)
 
@@ -309,7 +322,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `neg_below_zero` | A zero puts its left neighbour, negated, directly beneath it. | propext, Quot.sound | `lab_notebook_2.md` |
 | `pair_shares_diagonal` | And those two cells share a diagonal. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_eq_fwdDiff` | The table's `d`-fold backward difference is `(-1)^d` times Mathlib's `d`-fold forward difference at step `-1`. | propext, Quot.sound | `lab_notebook_2.md` |
-| `tableFrom_eq_stencil` | The operator IS Pascal. | ℂ floor | `README.md`, `lab_notebook_2.md` |
+| `tableFrom_eq_stencil` | The operator IS Pascal. | ℂ floor | `README.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 | `stencil_add` | The stencil is linear in the sampled values. | ℂ floor | `lab_notebook_2.md` |
 | `stencil_smul` | And scalars pass through — linearity's other half, beside `stencil_add`. | ℂ floor | support |
 | `stencil_annihilates_const` | The stencil's positive and negative arms carry equal total weight. | ℂ floor | support |

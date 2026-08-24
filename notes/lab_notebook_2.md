@@ -16,6 +16,59 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 113 — Nonvanishing.lean: stage 1 of O67's theorem, the arrow under the kernel
+type: formalization
+refs: 112
+
+`lean/Nonvanishing.lean`, the seventeenth module, eight theorems. Build clean,
+**8043 jobs, 221 theorems, 221 pins, parity in all 17 modules.** Stage 1 of the
+plan approved after entry 112: formalise the implication in the house pattern,
+leave the analytic leaves as named hypotheses, discuss stage 2 if it lands.
+
+It landed.
+
+### What the kernel now checks
+
+```text
+iter_bdiffZ_eq_stencilR   d differences of a real sequence = the alternating
+                          stencil — Zeros.tableFrom_eq_stencil transplanted
+                          to ℝ via Mathlib's fwdDiff
+stencilR_row              depth-d on the row = depth-(d+1) on the counting
+                          function: one Function.iterate_succ, nothing else
+stencilR_sub              linearity, splitting π = li + (π − li)
+window_term_le            each windowed Schoenfeld bound ≤ top-of-window
+                          bound × 2^(−k/2)
+error_bound               the binomial theorem at t = 2^(−1/2) closes the
+                          weighted sum: |stencil of (π − li)| ≤ Ehigh
+nonvanishing_of           THE ARROW: hS + hM + hgap ⟹ stencil of π ≠ 0
+tableFrom_ne_zero_of      the conclusion on the integer table, through the
+                          cast bridge and Zeros.tableFrom_eq_stencil
+```
+
+All at the ℂ floor (ℝ-valued). The named hypotheses, which are the honest
+boundary: `hS` Schoenfeld on the window (stage 3 — in no proof assistant),
+`hM` the main-term floor (stage 2 — the MVT/alternating step, O67's checks 1–2),
+`hgap` the per-(r,d) arithmetic O67 tabulates as `r ≥ R(d)`.
+
+This module is to § I what `Chain.C3_of_A4_C2` is to the chain paper.
+
+### Build friction worth recording
+
+Mathlib's `fwdDiff_iter_eq_sum_shift` carries **ℤ-scalars** — the coefficient
+is a zsmul, so `smul_eq_mul` cannot fire and the fix is
+`zsmul_eq_mul` + `push_cast` + `linear_combination`. And a first draft of the
+Pascal step by direct sum-shuffling died with a `sorry`; the clean route is the
+iterate picture, where the row step is `Function.iterate_succ_apply` and costs
+one line. The failed draft is not in the tree.
+
+`The-Four-Zeros.md § I5` updated: the arrow is in Lean, cited by name; the
+leaves are exactly what remains. Stage 2 — discharging `hM` via an integral
+representation of iterated differences — is scoped and waiting on Julian's go.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 112 — O67: under RH, (20,6) is the last exact zero at every depth up to 15
 type: result-triage
 refs: 26 (vol 1), 111
