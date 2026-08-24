@@ -298,8 +298,12 @@ item 3). The sidecar alone carries it.
   the control's own `D_ctrl` at that base (`0.8013`), so not a dip
 - shape residual RMS: `0.8099`
 - mechanical decision-rule output: **`compromised  (control floor 0.754866516777988 < 0.8)`**
-- **`verdict`: (Julian's to write — an agent may report the decision rule's
-  mechanical output and compute the SHA; it does not stamp the verdict)**
+- **`verdict`: `compromised` — and the design is retired rather than revised.**
+  Written on Julian's approval, 2026-08-24 (entry 110). The control defect
+  could be fixed in a v2, but entry 75 establishes the deeper problem: the
+  gain saturates at the C2 ceiling by depth 1 or 2, so **no depth window
+  exists in which a sub-ceiling mode is visible**, and the design's question
+  cannot be answered by any control on this axis.
 
 **Why `compromised` fired, diagnosed.** The control row `round(b**(r/2))` does
 not survive the depth window. At `b = 1.15` the exact per-depth gain is

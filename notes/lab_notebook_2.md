@@ -16,6 +16,44 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 110 — Three of Julian's open decisions, made and applied
+type: provenance
+refs: 73, 75, 108, 109
+
+Julian approved the recommended shape on each of the standing decisions in one
+pass; this entry records what was decided and what changed on disk.
+
+### The-Composite-Arm stays standalone; the banner is off
+
+Decision: the C-block crossing table — fifteen diagonals, the prime arm always
+going negative first — is its own object, covered nowhere else, so the paper
+earns standalone rather than folding into `The-Four-Zeros.md § E`. The
+PROVISIONAL banner's four conditions being met (t25, entry 108), the banner is
+replaced by a short decision record naming this entry.
+
+### O48's verdict is written, and the design is retired
+
+The Run record's verdict line now reads **`compromised` — and the design is
+retired rather than revised**, written on Julian's approval. The mechanical
+output was `compromised` (control floor 0.7549 against a locked 0.80, entry
+73). Retirement rather than a v2 because entry 75 establishes the deeper
+problem: the gain saturates at the C2 ceiling by depth 1 or 2, so no depth
+window exists in which a sub-ceiling mode is visible — the design's question
+cannot be answered by any control on this axis. The prereg's locked-parameter
+table is untouched; only the Run record moved, which is the mutable part.
+
+### The NOTEPAD sweep is authorised
+
+The proposed-transitions block goes to chat (ephemeral, per root CLAUDE.md);
+transitions remain Julian's to apply. Generated in the same session as this
+entry.
+
+OEIS submission remains with Julian, package ready in `results/`.
+
+Status and any verdict beyond the one recorded above are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 109 — Every theorem accounted for: the citation linker, the roles file, and eleven citations
 type: provenance
 refs: 108

@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 110: three decisions applied on Julian's approval — The-Composite-Arm standalone with the PROVISIONAL banner off; O48's verdict written as compromised-and-retired (entry 75's saturation argument, no depth window shows a sub-ceiling mode); NOTEPAD sweep authorised
 - [open]   2026-08-24  entry 109 addendum: the 17 bare theorems now carry docstring claims (commit 475b02f) — the four zero_r_d kernel computations state their own stencil lines, and the index reads past attribute lists. THEOREMS.md clean on every axis: 213/213 pins, 0 UNTAGGED, 0 without a claim
 - [open]   2026-08-24  entry 109: the 159 'uncited theorems' are now 0 untagged — three citation forms in the linker (qualified, bare unique, chain labels via companion papers), a roles file with 29 support + 22 record, and eleven genuine citations added to four papers. UNTAGGED is now a loud maintained invariant
 - [open]   2026-08-24  entry 109: two linker bugs of mine found — missing space silenced the chain-label form entirely, and the docstring regex could span declarations. Remaining follow-on: 17 theorems have no docstring claim (a writing pass, separate thread)

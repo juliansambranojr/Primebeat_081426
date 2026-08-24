@@ -1,28 +1,9 @@
 # The Composite Arm
 
-> **PROVISIONAL — written before its script exists. Not canonical.**
->
-> Every figure below was computed inline during conversation on 2026-08-20 and
-> exists in no results file. That is the failure `What-Didnt-Work.md` § D1
-> records — writing the record from something other than an artifact — and this
-> document is knowingly in that state because the alternative was losing the
-> numbers to a compaction.
->
-> **Before this becomes canonical, all of:**
->
-> 1. ~~Write `t25_composite_arm.py`~~ — **done 2026-08-24**, tee'd to
->    `results/t25_composite_arm.txt`, JSON alongside.
-> 2. ~~Re-verify each number~~ — **done**: every figure reproduces, with one
->    correction (C4's count of lag-1 diagonals is four, not five; C4 now says
->    so). Entry 108.
-> 3. Decide placement. `The-Four-Zeros.md` § E is already "The complementary
->    side" — E1 the pair identity, E2 the composite arm at the four zeros, E3
->    the pole. This may belong there as an extension rather than as a twelfth
->    paper. That is Julian's call and it is open.
-> 4. If it stays standalone, add it to whatever index the repository settles
->    on, and remove this header.
->
-> Until then: **a lead, not a record.**
+> Standalone by decision 2026-08-24 (entry 110): the C-block crossing table is
+> its own object, covered nowhere else. Every figure computed from
+> `results/t25_composite_arm.json`; the earlier PROVISIONAL banner and its four
+> conditions are met and removed.
 
 The prime arm has been the subject of every measurement on this bench. Its
 complement was used as a counterweight — the thing that makes the total
