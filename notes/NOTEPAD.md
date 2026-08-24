@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 106: Propagation.lean (16th module, MATHLIB-FREE) — the recurrence named as first-order upwind transport; a point source fills exactly its forward cone (outside_cone_zero + cone_filled, no lacunae) and the Green's function is the alternating stencil (propagator). Pascal defined by its own recurrence since core has no Nat.choose; three theorems at zero axioms
+- [open]   2026-08-24  entry 106: cone_filled makes rarity literal — a zero requires exact cancellation of everything upstream because the propagator never vanishes in its cone; zero_iff_repeat from the transport side. Physics list #1-#4 closed, #5 (twin spectral measure) open
 - [open]   2026-08-24  entry 105: O65 run 2 — prime-count variance is sub-Poisson at every scale tested, F falling 0.66 -> 0.15 as H grows from (log x)^2 to x/10, Poisson control pinned at 1; the dyadic block interiors sit on the same curve (0.198 at r=33). Closes O63's caveat in the grounding direction
 - [open]   2026-08-24  entry 105: the Montgomery loop is now two-sided on this bench — zeros' rigidity measured spectrally (entry 103) and primes' suppressed variance measured in counts (entry 105), which Goldston-Montgomery tie to the same pair correlation
 - [open]   2026-08-24  entry 105: run 1's trend confound kept on record — raw Var/mean without li detrending gives F = 40796 at 1e10, H = x/10, which is the smooth density drift and means nothing. Physics list: #1 #2 #3 closed, #4 wave-equation and #5 twin spectral measure open

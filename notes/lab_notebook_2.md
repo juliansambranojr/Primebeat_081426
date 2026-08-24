@@ -16,6 +16,73 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 106 — Propagation: the recurrence as transport, Mathlib-free, with the cone and the propagator
+type: formalization
+refs: 104, 105
+
+`lean/Propagation.lean`, the sixteenth module. **Mathlib-free** — Lean core plus
+`Construction` and `SeedPerturbation`, extending the core discipline exactly as
+`lean/BUILD.md` § Mathlib-free core instructs. Build clean, **8042 jobs, 213
+theorems, 213 pins, parity in all 16 modules.** Physics list #4.
+
+### The honest name
+
+`Depth-as-Time` reads depth as time. Taken literally, the recurrence
+`cell(r,d+1) = cell(r,d) − cell(r−1,d)` is one step of **first-order upwind
+transport**, iterated — not the second-order wave equation. The module header
+records the distinction; "wave" was the loose word.
+
+### What compiled
+
+```text
+pasc, pasc_zero, pasc_succ   binomials BY the Pascal recurrence — core has no
+                             Nat.choose, so Pascal's identity is definitional
+pasc_eq_zero, pasc_pos       vanishing above the diagonal, positive on and below
+neg_one_pow                  (−1)^m is 1 or −1, core carries no pow lemmas
+outside_cone_zero            a point source at rung s reaches nothing outside
+                             s ≤ r ≤ s+d — range of influence, speed exactly 1
+propagator                   inside the cone, cell(s+k,d) = (−1)^k·C(d,k) —
+                             the Green's function IS the alternating stencil
+cone_filled                  and it never vanishes inside: NO LACUNAE
+flux_form                    the recurrence as a conservation step
+```
+
+Axiom profile: `pasc_zero`, `pasc_succ`, `pasc_eq_zero` at **no axioms**;
+`neg_one_pow` at `propext`; the rest at `[propext, Quot.sound]`. The whole
+module sits below the ℂ floor, which is the point of putting the physics
+reading on the integer side.
+
+### What was already there, credited rather than re-proved
+
+The backward cone — a cell reads only `[r−d, r]` — is
+`Construction.zero_determined_by_row`, proved before anyone called it a domain
+of dependence. The reflection at a node — the `±343` pair — is
+`Zeros.neg_below_zero` and `pair_shares_diagonal`. This module adds the forward
+cone, the propagator, and the no-lacunae fact.
+
+### The closure worth stating
+
+`cone_filled` is the structural reason exact zeros are rare: a disturbance
+cannot dodge any cell of its forward cone, so a zero at `(r,d)` requires exact
+cancellation of everything upstream — which is `zero_iff_repeat` seen from the
+transport side. Rarity is a property of the propagator having no zeros, made
+literal.
+
+### Build friction worth recording
+
+Core has no `Nat.choose` (probed before writing), no pow lemmas, and `omega`
+rejects goals with products of opaque atoms — the interior-case algebra had to
+be an explicit `simp only` chain over `Int.neg_mul`/`Int.mul_add` with
+`Int.add_comm` closing, rather than one `omega` call. And an inserted lemma
+landed between a docstring and its theorem, which parses as two consecutive
+docstrings and fails loudly — the discipline's failure mode is at least visible.
+
+Physics list: #1, #2, #3, #4 closed. Open: #5, the twin arm's spectral measure.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 105 — O65: the primes' variance measured directly, closing O63's caveat and meeting entry 103 from the other side
 type: run
 refs: 102, 103, 104

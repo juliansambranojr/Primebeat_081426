@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-204 theorems across 15 modules. Every one carries a
+213 theorems across 16 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -23,6 +23,9 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `PairIdentity` | `base_three_carries_factor` | Base three does carry the factor: the total at `(r,d)` is `2^(d+1)·3^(r−1−d)`, never a bare power of three. |
 | `PairIdentity` | `base_four_carries_factor` | Base four likewise: `3^(d+1)·4^(r−1−d)`. |
 | `PairIdentity` | `measured_composite_matches_pair_identity` | The falsifier. |
+| `Propagation` | `pasc_zero` |  |
+| `Propagation` | `pasc_succ` |  |
+| `Propagation` | `pasc_eq_zero` | Above the diagonal the binomial vanishes. |
 | `SeedPerturbation` | `tableFrom_zero` | The zero row builds the zero table. |
 | `SeedPerturbation` | `window_bottoms_correct` |  |
 | `SeedPerturbation` | `protected_at_R_two` | Which zeros the theorem protects when 2 and 3 are the excluded primes. |
@@ -185,6 +188,20 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `measured_composite_matches_pair_identity` | The falsifier. | **none** | — |
 | `composite_at_zero_20_6` | The deep zero, stated through the identity rather than through arithmetic. | propext, Quot.sound | — |
 
+## Propagation (9)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `pasc_zero` |  | **none** | — |
+| `pasc_succ` |  | **none** | — |
+| `pasc_eq_zero` | Above the diagonal the binomial vanishes. | **none** | — |
+| `pasc_pos` | On and below the diagonal it is positive — this is what "no lacunae" rests on: the propagator never vanishes inside its cone. | propext, Quot.sound | — |
+| `outside_cone_zero` | Outside the forward cone, nothing. | propext, Quot.sound | — |
+| `propagator` | Inside the cone, the propagator. | propext, Quot.sound | — |
+| `neg_one_pow` | `(−1)^m` is `1` or `−1`. | propext | — |
+| `cone_filled` | No lacunae. | propext, Quot.sound | — |
+| `flux_form` | The flux form. | propext, Quot.sound | — |
+
 ## SeedPerturbation (20)
 
 | theorem | claim | axioms | cited by |
@@ -214,7 +231,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `bdiff_sum` | `bdiff` distributes over a finite sum. | ℂ floor | — |
+| `bdiff_sum` | `bdiff` distributes over a finite sum. | ℂ floor | `lab_notebook_2.md` |
 | `A4_sum_of_A1` | The licence. | ℂ floor | — |
 | `depth_reweights_each_mode` | Corollary — the falsifiable form. | ℂ floor | — |
 | `tableFrom_eq_modeSum_reweighted` | The table is a superposition, reweighted by depth. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
