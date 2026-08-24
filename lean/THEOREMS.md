@@ -51,7 +51,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `A4_of_A1` | A1 → A4. | ℂ floor | `lab_notebook_2.md` |
 | `B5_of_A4_B4` | A4 ∧ B4 → B5. | ℂ floor | support |
 | `C2_of_C1` | C1 → C2. | ℂ floor | support |
-| `C3_of_A4_C2` | A4 ∧ C2 → C3. | ℂ floor | support |
+| `C3_of_A4_C2` | A4 ∧ C2 → C3. | ℂ floor | `lab_notebook_2.md` |
 | `C3lower_of_A4_C2` | A4 ∧ C2 → C3 (decay half). | ℂ floor | `lab_notebook_2.md` |
 | `A2` | A2, proved rather than assumed, from `EulerFactorChain.euler_product_riemannZeta` (Mathlib's `riemannZeta_eulerProduct_tprod`). | ℂ floor | `Euler-Factor-Chain.md` |
 | `A3` | A3, proved rather than assumed. | ℂ floor | `Euler-Factor-Chain.md` |
@@ -175,13 +175,13 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
 | `iter_bdiffZ_eq_fwdDiff` | Backward differencing is `(−1)·fwdDiff` at step `−1` — the ℝ copy of `Zeros.tableFrom_eq_fwdDiff`'s bridge. | ℂ floor | **UNTAGGED** |
-| `iter_bdiffZ_eq_stencilR` | `n` differences are the stencil. | ℂ floor | **UNTAGGED** |
-| `stencilR_row` | The Pascal step. | ℂ floor | **UNTAGGED** |
-| `stencilR_sub` | Linearity. | ℂ floor | support |
-| `window_term_le` | Each windowed Schoenfeld bound is at most the top-of-window bound times `2^(−k/2)`: `(r−k) ≤ r` handles the linear factor and `rpow_add` splits the po | ℂ floor | support |
-| `error_bound` | The error bound. | ℂ floor | `The-Four-Zeros.md` |
-| `nonvanishing_of` | The arrow. | ℂ floor | `The-Four-Zeros.md` |
-| `tableFrom_ne_zero_of` | Onto the integer table. | ℂ floor | `The-Four-Zeros.md` |
+| `iter_bdiffZ_eq_stencilR` | `n` differences are the stencil. | ℂ floor | `lab_notebook_2.md` |
+| `stencilR_row` | The Pascal step. | ℂ floor | `lab_notebook_2.md` |
+| `stencilR_sub` | Linearity. | ℂ floor | `lab_notebook_2.md` |
+| `window_term_le` | Each windowed Schoenfeld bound is at most the top-of-window bound times `2^(−k/2)`: `(r−k) ≤ r` handles the linear factor and `rpow_add` splits the po | ℂ floor | `lab_notebook_2.md` |
+| `error_bound` | The error bound. | ℂ floor | `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `nonvanishing_of` | The arrow. | ℂ floor | `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `tableFrom_ne_zero_of` | Onto the integer table. | ℂ floor | `The-Four-Zeros.md`, `lab_notebook_2.md` |
 
 ## PairIdentity (13)
 
