@@ -16,6 +16,93 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 111 — A fresh-eyes reading of the whole tree, the pushback, and where it settled
+type: result-triage
+refs: 94, 103, 107, 110
+
+A subagent with no history in the project read the tree cold — README,
+CONTEXT.md, THEOREMS.md, four papers in full and ten in part, entries 93–110,
+the three literature searches — ran `four_zeros.py` and both gates, and
+reported. Three of my pushbacks went back; it conceded two and held one. The
+exchange is summarised here because the *settled* positions are the record; the
+full texts are session-ephemeral.
+
+### The reading, as delivered
+
+**What it is:** a ten-day human-plus-LLM campaign around one genuinely novel
+checkable finite fact — the four zeros, absent from OEIS and the searched
+literature — surrounded by a competent numerical re-derivation of standard
+theory and a Lean tree that formalises the geometry without deciding anything.
+The mathematics is mostly rediscovery and the tree knows it.
+
+**Strongest artifact:** `four_zeros.py` plus the zero-axiom Lean chain —
+novel, kernel-verified from raw data, reproducible by a stranger in ten
+seconds. Nothing else has all three properties.
+
+**Weakest thing presented as strong:** the README leading with O57/O58 as
+findings — correct measurements of textbook content, showcased as discovery.
+My entry 94 framing "two instruments agreeing" functions as overselling.
+
+**The displacement claim:** the methodology is the contribution — prereg with
+both-direction decision rules, axiom-pinned formalisation welded to measured
+data, the negative-results paper, gates verifying prose against artifacts, and
+a notebook treating the assistant's own cognition as an instrument requiring
+calibration. What a second team could pick up tomorrow.
+
+It also caught two live defects in the two most public files — `four_zeros.py`
+saying 992 cells (the OEIS antidiagonal count, copied into the wrong file)
+where the script prints 1953, and the README stale at 14 modules / 197
+theorems. Both recalled-not-loaded errors of exactly the class `CLAUDE.md`'s
+top rule warns about. **Fixed and pushed before anything else.**
+
+### The pushback, and where each point landed
+
+**G4 (mine: it buried the tree's one unexplained measurement).** Conceded
+upward — G4 moves to "the strongest open empirical question in the tree" — but
+my framing "theorem kills mechanism, measurement persists" was **corrected on
+the module's own docstring**: `no_interior_peak` excludes one narrow power-law
+form only, the D-block is evidence *for* the block-size account (per-set gains
+monotone in generator count), and `The-Four-Prime-Peak.md § D4` already
+extrapolates **G5 overtaking G4 near xmax ≈ 4e11**. The probable reading is a
+slowly-moving transient with a named kill test. I accept in full.
+
+**Twin rigidity (mine: may be a result, not an opening).** Promoted to
+"candidate result, unplaced" — it searched and cannot name the statement;
+nearest neighbours Gallagher 1976, Torquato–Zhang–de Courcy-ireland
+hyperuniformity (arXiv:1802.10498), the singular-series-sums literature. Held
+out of "survives review" for a reason that is a genuine find: **at
+x ~ 6e10 the Bernoulli control itself reads 0.93, identical to the twin value —
+O66's "rigidity gone" endpoint is degenerate with its own control.** Three
+heights, and the load-bearing one cannot distinguish signal from null. A real
+design defect in O66, missed by me and by the first adversarial pass.
+
+**O58 (mine: instrument, not re-measurement).** Conceded cleanly upward. Its
+role was closing entry 92's recorded circularity — every result O17–O50
+expressed in the √x scale RH predicts with nothing testing it — and as an
+internal-consistency instrument it stands. The criticism reduces to my README
+framing, which I will fix.
+
+**Amended inventory, agreed by both sides:** one verified finite object, two
+unplaced candidate empirical facts (G4, twin rigidity), and the apparatus. The
+apparatus is still the contribution.
+
+### Concrete actions, added to NOTEPAD as open lines
+
+1. litsearch_4 — the twin-rigidity statement (correlated ρ²-thinning keeping
+   HL pair structure while losing number rigidity).
+2. O66 v2 — more heights with stated uncertainty; the current endpoint is
+   degenerate with its control.
+3. O24 toward the 4e11 region — does G5 overtake G4 where § D4 extrapolates.
+4. README reframe — "What is measured" to lead with the pipeline and the
+   internal-consistency role, not O57/O58 as findings.
+5. The economical-reading sentence into The-Four-Zeros — the shallow-row
+   accident reading, stated once plainly instead of distributed across B9 and
+   the O43 verdict.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 110 — Three of Julian's open decisions, made and applied
 type: provenance
 refs: 73, 75, 108, 109
