@@ -267,8 +267,14 @@ proves the implication in the house pattern — Schoenfeld-on-the-window and the
 main-term floor enter as named hypotheses, and the kernel checks that the
 "therefore" is real: `Nonvanishing.error_bound` (the binomial-weighted Schoenfeld
 sum), `Nonvanishing.nonvanishing_of` (the arrow), and
-`Nonvanishing.tableFrom_ne_zero_of` (the conclusion on the integer table). What
-remains unformalised is exactly the leaves: the MVT/alternating-series bound
-(stage 2, feasible) and Schoenfeld itself, which is in no proof assistant.
+`Nonvanishing.tableFrom_ne_zero_of` (the conclusion on the integer table). Stage 2a
+(`lean/MainTerm.lean`) retired the MVT: `MainTerm.bdiffR_lb` and
+`MainTerm.iter_bdiffR_lb` prove that a floor on the `(d+1)`-th derivative
+forces the same floor on the stencil, and `MainTerm.tableFrom_ne_zero_of_deriv`
+restates the arrow with `hM` replaced by that derivative bound. What remains
+unformalised: the explicit expansion of the `d`-th derivative of `2^x/x` with
+its alternating pairing bound (stage 2b — O67's CHECK 1), and Schoenfeld
+itself, which is in no proof assistant (stage 3). Mathlib carries no
+logarithmic integral, so li enters only through a smooth interpolant.
 `Nonvanishing.error_bound · Nonvanishing.nonvanishing_of ·
 Nonvanishing.tableFrom_ne_zero_of`

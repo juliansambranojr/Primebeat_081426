@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 114: MainTerm.lean (18th module) — stage 2a lands: the MVT is retired (bdiffR_lb + iter_bdiffR_lb prove derivative-floor => difference-floor), and tableFrom_ne_zero_of_deriv restates the arrow with hM replaced by a derivative bound. Remaining: stage 2b (the 2^x/x expansion + pairing bound) and Schoenfeld. 231/231 pins
 - [open]   2026-08-24  entry 113: Nonvanishing.lean (17th module) — stage 1 of O67's theorem under the kernel: the arrow hS + hM + hgap => cell != 0 is proved, with Schoenfeld (stage 3, in no proof assistant) and the main-term floor (stage 2, feasible) as named hypotheses. Same pattern as Chain's arrows. 221/221 pins
 - [open]   2026-08-24  entry 113: stage 2 scoped and pending — discharge hM via an integral representation of iterated differences (replaces MVT), the derivative expansion of 2^x/x by induction, and the alternating-series bound as Finset algebra
 - [open]   2026-08-24  entry 112: O67 — under RH, cell(r,d) != 0 for r >= R(d) ~ 5d+11 (stencil + MVT + alternating series + Schoenfeld); combined with O43's census the four zeros are COMPLETE at every depth d <= 15 for all r. The-Four-Zeros gains section I; H1/H2 now settled-under-RH at d <= 15

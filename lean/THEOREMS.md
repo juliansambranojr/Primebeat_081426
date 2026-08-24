@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-221 theorems across 17 modules. Every one carries a
+231 theorems across 18 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -157,6 +157,21 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `dyadicRow_eq_rowN` | The weld to the measured row. | propext, Quot.sound | `lab_notebook_2.md` |
 | `measured_row_four` | The measured base-4 row, from the 21 pinned values and nothing else. | **none** | `lab_notebook_2.md` |
 | `measured_row_eight` | The measured base-8 row, same 21 values read at decimation 3. | **none** | `lab_notebook_2.md` |
+
+## MainTerm (10)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `iter_bdiffR_eq_fwdDiff` | The ℝ-domain twin of `Nonvanishing.iter_bdiffZ_eq_fwdDiff`. | ℂ floor | support |
+| `iter_bdiffR_eq_sum` | `n` unit differences are the stencil, on the real line. | ℂ floor | `lab_notebook_2.md` |
+| `stencilR_eq_iter` | The bridge to `Nonvanishing.stencilR`. | ℂ floor | `lab_notebook_2.md` |
+| `deriv_bdiffR` | Δ commutes with d/dx. | ℂ floor | `lab_notebook_2.md` |
+| `contDiff_bdiffR` | Δ preserves smoothness. | ℂ floor | support |
+| `iteratedDeriv_bdiffR` | Δ commutes with iterated derivatives. | ℂ floor | `lab_notebook_2.md` |
+| `bdiffR_lb` | The single step: derivative floor ⟹ difference floor. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `iter_bdiffR_lb` | The induction: MVT retired. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `stencilR_ge_of` | The floor, on the stencil. | ℂ floor | `lab_notebook_2.md` |
+| `tableFrom_ne_zero_of_deriv` | The arrow, with hM discharged into a derivative bound. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 
 ## Measured (7)
 

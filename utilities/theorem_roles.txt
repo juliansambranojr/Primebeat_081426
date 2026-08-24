@@ -79,3 +79,5 @@ TransferOp.mode_ne_zero'                           support
 Nonvanishing.stencilR_sub                          support
 Nonvanishing.window_term_le                        support
 Nonvanishing.iter_bdiffZ_eq_fwdDiff                support
+MainTerm.iter_bdiffR_eq_fwdDiff                    support
+MainTerm.contDiff_bdiffR                           support

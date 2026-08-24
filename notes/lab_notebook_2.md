@@ -16,6 +16,66 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 114 — MainTerm.lean: stage 2a, the MVT retired
+type: formalization
+refs: 112, 113
+
+`lean/MainTerm.lean`, the eighteenth module, ten theorems. Build clean,
+**8044 jobs, 231 theorems, 231 pins, parity in all 18 modules.** Stage 2 of the
+plan from entry 113, first half: the difference calculus.
+
+### What the kernel now checks
+
+```text
+iter_bdiffR_eq_sum       n unit differences of a real function are the
+                         alternating stencil — the ℝ-domain twin, again
+                         through Mathlib's fwdDiff
+stencilR_eq_iter         the bridge to Nonvanishing.stencilR at integers
+deriv_bdiffR             Δ commutes with d/dx
+iteratedDeriv_bdiffR     … and with iterated derivatives, by induction
+bdiffR_lb                THE STEP: deriv g ≥ m on [x−1,x] ⟹ Δg(x) ≥ m,
+                         via the shift y ↦ g(y) − m·y and Mathlib's
+                         monotoneOn_of_deriv_nonneg
+iter_bdiffR_lb           THE INDUCTION: the n-th derivative's floor on
+                         [x−n, x] is the n-fold difference's floor — the
+                         iterated mean value theorem, retired
+stencilR_ge_of           hM's shape, given the derivative floor
+tableFrom_ne_zero_of_deriv    the full arrow with hM replaced by the bound on
+                         the (d+1)-th derivative of the interpolant
+```
+
+The conditional theorem's hypothesis list after this module: `hS` (Schoenfeld,
+stage 3, in no proof assistant), `hD` (the floor on `iteratedDeriv (d+1)` of a
+smooth li-interpolant), `hgap` (O67's arithmetic table). The MVT and the
+difference-vs-derivative bookkeeping — § I2's middle — are theorems.
+
+### What stage 2b still owes
+
+The explicit expansion: `iteratedDeriv d` of `2^x/x` as
+`2^x · Σ C(d,j)(log 2)^(d−j)(−1)^j j!/x^(j+1)`, by induction with a
+Pascal-shaped recombination, plus the alternating pairing bound
+`S ≥ t₀ − t₁ ≥ 0.51·t₀` in the wedge. That discharges `hD` down to `hgap`'s
+arithmetic. It is Finset-and-deriv work, fiddly, not blocked.
+
+A note on li: **Mathlib carries no logarithmic integral**, so li enters the
+formalisation only as a smooth interpolant `G` with the right derivative —
+which is the honest shape anyway, since the lower bound uses nothing about li
+except `L' = 2^x/x`.
+
+### Friction for the next instance
+
+`ContDiff.differentiable_iteratedDeriv` wants `(m : WithTop ℕ∞) < n` — the
+coercion closes with `exact_mod_cast WithTop.coe_lt_top _` and nothing
+simpler. `deriv_sub` will not rewrite under a lambda that is not literally a
+subtraction of named functions; going through `HasDerivAt.sub` and `.deriv`
+avoids the whole shape problem. And a `hM_of_derivBound` promised in the first
+draft's header never existed — the docstring was corrected before landing
+rather than the theorem invented to match it.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 113 — Nonvanishing.lean: stage 1 of O67's theorem, the arrow under the kernel
 type: formalization
 refs: 112
