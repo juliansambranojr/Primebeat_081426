@@ -16,6 +16,52 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 112 — O67: under RH, (20,6) is the last exact zero at every depth up to 15
+type: result-triage
+refs: 26 (vol 1), 111
+
+`O67_conditional_last_zero.py`, `results/conditional_last_zero.json`, run log.
+Ranked action #7 from entry 111's queue. Entry 26 (2026-08-17) recorded
+"THEOREM AVAILABLE — under RH, Δ^d π(2ⁿ) ≠ 0 for r > R with R explicit; would
+settle (20,6) as last." Seven days later, this supplies it, and it lands
+stronger than the line promised.
+
+### The theorem
+
+Under RH, `cell(r,d) ≠ 0` for every `r ≥ R(d)`, `R(d) ≈ 5d + 11` explicit:
+`R(1) = 16` through `R(15) = 91`. Five steps: the stencil (B4, proved); split
+`π = li + (π − li)`; iterated MVT puts the li part at a `(d+1)`-th derivative of
+`li(2^x)` in the window; that derivative is an alternating series with ratio
+`< 0.4905` in the wedge `d ≤ 0.34(r−d−1)`, giving
+`M ≥ 0.5·2^(r−d−1)(log 2)^d/r`; Schoenfeld caps the error at
+`(log 2/8π)·r·2^(r/2)·(1+2^(−1/2))^(d+1)`. The two nonstandard steps —
+alternating lower bound and MVT placement — verified numerically at nine points
+in the artifact, all passing.
+
+### The payoff
+
+`R(d) ≤ 91` for every `d ≤ 15`, and O43's census covers `r ≤ 92`. Overlap, no
+gap: **under RH, the four zeros are the complete set at every depth `d ≤ 15`,
+for all `r`.** `The-Four-Zeros.md` gains § I (five statements); H1 and H2 move
+from "unknown" to "unknown unconditionally; settled under RH at `d ≤ 15`."
+B10's accident reading sharpens: under RH nothing more arrives in the shallow
+table.
+
+### The edges, exactly
+
+Conditional on RH. At `d ≥ 16` a finite strip is unchecked, starting at three
+cells `r ∈ {93,94,95}` at `d = 16` — published `π(2ⁿ)` above 92 would close
+successive strips. The deep region `d > 0.34(r−d−1)` is untouched: Schoenfeld
+does not reach the window bottom and the derivative series is uncontrolled. Not
+in Lean — the analytics (MVT, Schoenfeld) are beyond the tree's current reach
+and Schoenfeld is in no proof assistant; § I5 says so.
+
+`check_values` rose 127 → 132 on § I's numbers.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 111 — A fresh-eyes reading of the whole tree, the pushback, and where it settled
 type: result-triage
 refs: 94, 103, 107, 110

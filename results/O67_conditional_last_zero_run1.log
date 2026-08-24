@@ -1,0 +1,51 @@
+O67 — under RH, cell(r,d) != 0 beyond an explicit R(d).
+Derivation checked numerically; see the docstring for the proof.
+
+CHECK 1 — the alternating-series lower bound (step 3) is honest:
+   (r=16,d=1): |stencil li| 1415  >= M_low 354.9  True
+   (r=30,d=4): |stencil li| 1.432e+06  >= M_low 1.291e+05  True
+   (r=48,d=6): |stencil li| 5.898e+10  >= M_low 2.54e+09  True
+   (r=60,d=8): |stencil li| 4.791e+13  >= M_low 9.999e+11  True
+   (r=80,d=12): |stencil li| 2.319e+18  >= M_low 1.134e+16  True
+   (r=120,d=20): |stencil li| 6.539e+27  >= M_low 1.731e+24  True
+   all pass: True
+
+CHECK 2 — the MVT placement (step 2): stencil inside derivative range:
+   (r=20,d=6): True
+   (r=40,d=8): True
+   (r=60,d=10): True
+   all pass: True
+
+THE TABLE — R(d), and whether O43's r <= 92 census closes the gap:
+     d   R(d)   gap (92, R(d))
+     1     16          covered
+     2     23          covered
+     3     29          covered
+     4     34          covered
+     5     40          covered
+     6     45          covered
+     7     50          covered
+     8     56          covered
+     9     61          covered
+    10     66          covered
+    11     71          covered
+    12     76          covered
+    13     81          covered
+    14     86          covered
+    15     91          covered
+    16     96 UNCHECKED r in (92,96)
+    17    100 UNCHECKED r in (92,100)
+    18    105 UNCHECKED r in (92,105)
+    19    110 UNCHECKED r in (92,110)
+    20    115 UNCHECKED r in (92,115)
+    21    120 UNCHECKED r in (92,120)
+    22    125 UNCHECKED r in (92,125)
+    23    130 UNCHECKED r in (92,130)
+    24    134 UNCHECKED r in (92,134)
+
+THEOREM (conditional). Under RH, combining R(d) with O43's census:
+   (20,6) is the LAST exact zero at every depth d <= 15,
+   for ALL r. First uncovered: d = 16, strip (92, 96).
+   The deep region d > 0.34(r-d-1) is not covered by this argument.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/conditional_last_zero.json

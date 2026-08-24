@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 112: O67 — under RH, cell(r,d) != 0 for r >= R(d) ~ 5d+11 (stencil + MVT + alternating series + Schoenfeld); combined with O43's census the four zeros are COMPLETE at every depth d <= 15 for all r. The-Four-Zeros gains section I; H1/H2 now settled-under-RH at d <= 15
+- [open]   2026-08-24  entry 112: O67's edges — three cells r in {93,94,95} at d=16 would extend coverage (published pi(2^n) above 92 exists); the deep region d > 0.34(r-d-1) needs a different argument; Lean formalization blocked on Schoenfeld existing in no proof assistant
+- [closed] 2026-08-24  entry 26 line resolved: the THEOREM AVAILABLE line from vol 1 is discharged by O67/entry 112
 - [open]   2026-08-24  entry 111: litsearch_4 — place the twin-rigidity statement (rho^2-thinning keeps HL pair structure, loses number rigidity); nearest neighbours named are Gallagher 1976 and arXiv:1802.10498, and the companion statement surfaced in neither probe
 - [open]   2026-08-24  entry 111: O66 v2 — more heights with stated uncertainty; the fresh-eyes review found the x ~ 6e10 endpoint DEGENERATE with its own Bernoulli control (both 0.93), so 'rigidity gone' rests on a three-point trend whose load-bearing point cannot distinguish signal from null
 - [open]   2026-08-24  entry 111: O24 toward xmax ~ 4e11 — The-Four-Prime-Peak D4 extrapolates G5 overtaking G4 there; the run is the kill test for the transient reading of the tree's strongest open empirical question
@@ -158,7 +161,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [paused] 2026-08-17  entry 27: OPEN QUESTION — is 28 decimals per unit depth a law or a range artifact? (later question than Connes')
 - [closed] 2026-08-17  entry 27: new = old things seen a new way; generative = poses new questions. Bibliographic novelty is the wrong test
 - [closed] 2026-08-17  entry 27: method note — this instance oscillated inflate/deflate all session; both avoid a clean judgment
-- [open]   2026-08-17  entry 26: THEOREM AVAILABLE — under RH, Delta^d pi(2^n) != 0 for r > R with R explicit; would settle (20,6) as last
+- [closed] 2026-08-17  entry 26: THEOREM AVAILABLE — under RH, Delta^d pi(2^n) != 0 for r > R with R explicit; would settle (20,6) as last
 - [open]   2026-08-17  entry 26: THEOREM-SHAPED — Nyquist no-go, b < exp(pi/gamma_1) = 1.2489; base 2 fails by 3x
 - [paused] 2026-08-17  entry 26: THIRD DIRECTION — prove Connes' §6.6 simplicity for a range of lambda; our gap ratio says it is true and not marginal
 - [closed] 2026-08-17  entry 26: the lemma for any rigorous treatment — depth d multiplies each zero's contribution by (1 - 2^(-rho))^d, exact

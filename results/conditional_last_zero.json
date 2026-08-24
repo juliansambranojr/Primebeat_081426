@@ -1,0 +1,143 @@
+{
+  "schema_version": "1",
+  "script": "O67_conditional_last_zero.py",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "dps": 40,
+    "o43_extent": 92,
+    "schoenfeld_floor_r_minus_d_minus_1": 12,
+    "wedge": "d <= 0.34*(r-d-1)",
+    "main_constant": 0.5
+  },
+  "checks": {
+    "alternating_lower_bound": true,
+    "mvt_placement": true
+  },
+  "rows": [
+    {
+      "d": 1,
+      "R": 16,
+      "gap_closed": true
+    },
+    {
+      "d": 2,
+      "R": 23,
+      "gap_closed": true
+    },
+    {
+      "d": 3,
+      "R": 29,
+      "gap_closed": true
+    },
+    {
+      "d": 4,
+      "R": 34,
+      "gap_closed": true
+    },
+    {
+      "d": 5,
+      "R": 40,
+      "gap_closed": true
+    },
+    {
+      "d": 6,
+      "R": 45,
+      "gap_closed": true
+    },
+    {
+      "d": 7,
+      "R": 50,
+      "gap_closed": true
+    },
+    {
+      "d": 8,
+      "R": 56,
+      "gap_closed": true
+    },
+    {
+      "d": 9,
+      "R": 61,
+      "gap_closed": true
+    },
+    {
+      "d": 10,
+      "R": 66,
+      "gap_closed": true
+    },
+    {
+      "d": 11,
+      "R": 71,
+      "gap_closed": true
+    },
+    {
+      "d": 12,
+      "R": 76,
+      "gap_closed": true
+    },
+    {
+      "d": 13,
+      "R": 81,
+      "gap_closed": true
+    },
+    {
+      "d": 14,
+      "R": 86,
+      "gap_closed": true
+    },
+    {
+      "d": 15,
+      "R": 91,
+      "gap_closed": true
+    },
+    {
+      "d": 16,
+      "R": 96,
+      "gap_closed": false
+    },
+    {
+      "d": 17,
+      "R": 100,
+      "gap_closed": false
+    },
+    {
+      "d": 18,
+      "R": 105,
+      "gap_closed": false
+    },
+    {
+      "d": 19,
+      "R": 110,
+      "gap_closed": false
+    },
+    {
+      "d": 20,
+      "R": 115,
+      "gap_closed": false
+    },
+    {
+      "d": 21,
+      "R": 120,
+      "gap_closed": false
+    },
+    {
+      "d": 22,
+      "R": 125,
+      "gap_closed": false
+    },
+    {
+      "d": 23,
+      "R": 130,
+      "gap_closed": false
+    },
+    {
+      "d": 24,
+      "R": 134,
+      "gap_closed": false
+    }
+  ],
+  "conclusion": {
+    "last_zero_depth_covered": 15,
+    "first_uncovered_depth": 16
+  }
+}

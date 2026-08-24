@@ -208,10 +208,12 @@ known between them.
 
 ## H · Not established
 
-**H1.** Whether four is the complete set beyond `r ≤ 62` is unknown.
+**H1.** Whether four is the complete set beyond `r ≤ 62` is unknown
+unconditionally. Under RH it is settled at every depth `d ≤ 15` — § I.
 `A1`
 
-**H2.** Whether (20,6) is the last vanishing is unknown.
+**H2.** Whether (20,6) is the last vanishing is unknown unconditionally.
+Under RH it is the last at every depth `d ≤ 15`, for all `r` — § I.
 `open`
 
 **H3.** C5's non-integer matched depths predict a smear rather than a strike in base 3.
@@ -221,3 +223,47 @@ Never measured.
 **H4.** The zeros are made of the zeta zeros only in the sense of B6 plus the residual
 account — the model reproduces 80% of the residual at (20,6), which is not a vanishing.
 `O34_zeta_residual_model.py`
+
+---
+
+## I · Under RH, (20,6) is the last — at every depth up to 15
+
+**I1.** Under RH, `cell(r,d) ≠ 0` for every `r ≥ R(d)`, with `R(d)` explicit and
+roughly `5d + 11`: `R(1) = 16`, `R(6) = 45`, `R(15) = 91`.
+`O67_conditional_last_zero.py · results/conditional_last_zero.json`
+
+**I2.** The proof is five steps, each elementary. The cell is the alternating
+binomial stencil on `π(2^(r−k))` (B4, `Zeros.tableFrom_eq_stencil`). Split
+`π = li + (π − li)`. The li part is a `(d+1)`-fold difference of `li(2^x)` at
+unit step, hence by the iterated mean value theorem the `(d+1)`-th derivative at
+some `ξ ∈ (r−d−1, r)`. That derivative is `2^ξ` times an alternating series in
+`1/ξ` whose term ratio stays below `0.4905` in the wedge `d ≤ 0.34(r−d−1)`,
+giving `M ≥ 0.5·2^(r−d−1)(log 2)^d / r`. Schoenfeld's explicit RH bound
+`|π(x) − li(x)| ≤ √x log x / 8π` (for `x ≥ 2657`, i.e. `r − d − 1 ≥ 12`) caps
+the error at `(log 2 / 8π)·r·2^(r/2)·(1 + 2^(−1/2))^(d+1)`. Main beats error
+from `R(d)` on.
+`I1 · the alternating-series and MVT steps verified numerically at nine points
+in the artifact`
+
+**I3.** Combined with the census: O43 verified no exact zeros beyond the four
+for all `r ≤ 92` on published `π(2ⁿ)`, and `R(d) ≤ 91` for every `d ≤ 15`. So
+**under RH the four zeros are the complete set at every depth `d ≤ 15`, for all
+`r`** — the theorem covers `r ≥ R(d)` and the census covers `r ≤ 92`, with
+overlap.
+`I1 · CONTEXT.md § Current state of the world, O43`
+
+**I4.** What remains open, stated exactly. The result is conditional on RH. At
+depths `d ≥ 16` a finite strip is unchecked, starting at three cells
+`r ∈ {93, 94, 95}` at `d = 16`; published values of `π(2ⁿ)` above 92 would close
+successive strips. And the deep region `d > 0.34(r−d−1)` is untouched — there
+Schoenfeld does not reach the window bottom and the derivative series is
+uncontrolled, so a different argument is needed. B10's accident reading is
+sharpened, not replaced: under RH, nothing more arrives in the shallow table,
+and the deep table remains the open side.
+`I1 · B10`
+
+**I5.** Not in Lean. The stencil and the arithmetic are already formalised;
+the analytic steps — iterated MVT, the derivative expansion, Schoenfeld — are
+not, and Schoenfeld itself is in no proof assistant. The theorem lives at the
+standard of the papers, not of `lean/`.
+`open`
