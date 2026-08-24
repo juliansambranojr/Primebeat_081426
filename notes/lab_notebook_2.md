@@ -16,6 +16,50 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 116 — Stage 3 audited, adversarially re-audited, and re-scoped: the pieces are here
+type: motivation
+refs: 112, 113, 115
+
+I audited stage 3 (Schoenfeld in Lean) and recommended recording it out of
+scope: no explicit formula, no zero counting, no li in the pinned Mathlib,
+PNT+ took years. Julian suspected the call was consensus-shaped and ordered
+an adversarial round: an agent briefed to argue stage 3 IS in scope, with
+every Mathlib claim re-grepped against the pinned tree.
+
+The agent overturned two of my claims and I concede both:
+
+- "No ζ'/ζ machinery" was wrong. The pinned Mathlib has
+  `LSeries_vonMangoldt_eq_deriv_riemannZeta_div`
+  (Mathlib/NumberTheory/LSeries/Dirichlet.lean:434), the functional
+  equation, Mellin inversion, Jensen's formula, Borel–Carathéodory, and a
+  full Abel-summation API. Same failure as the § B4 grep: I asked the tree
+  too narrow a question and reported the miss as absence.
+- I audited the wrong target. The bench needs M_low > E_high, and
+  M_low/E_high grows like 2^(r/2), so the tolerance for a worse constant is
+  enormous: the agent re-tabulated R(d) and a bound of the shape
+  C·√x·(log x)² with C = 1000 still yields "under RH, (20,6) is the last
+  exact zero at every depth ≤ 10" inside O43's census. The buildable
+  question is "any explicit RH-conditional bound", and my "months" was
+  priced on 2024-era human-only effort against the full Schoenfeld summit.
+
+What survived, conceded by the agent in the same brief: the truncated
+explicit formula with explicit remainder (hEF) is open in every proof
+assistant — the IEANTN files targeting it are sorried — and the PNT+
+dependency lives on toolchain v4.32.2 against our pinned v4.28.0, so a
+sibling package composes with our arrow by statement identity, which the
+kernel does not check. Both must be labelled loudly if that route runs.
+
+Decision (Julian): the lesson stands recorded — the default "out of scope"
+was partly consensus; the pieces are in the tree and in reach. Route: do
+the statement shrink now (StmtSchoenfeld verbatim + bridge, step 1 of every
+path), verify the agent's tolerance table with our own O67 script, then
+decide on the sibling-package decomposition (hS → {hRH, hEF}, hNT
+discharged, ~70 theorems).
+
+Eighteen months of work sit under this bench; the operating lesson is that
+"known theorem, too big to formalize" is a prior to be tested, and the test
+is a grep and an adversarial round, both cheap.
+
 ## 2026-08-24 — Entry 115 — Expansion.lean: stage 2b, the derivative floor proved
 type: formalization
 refs: 112, 113, 114

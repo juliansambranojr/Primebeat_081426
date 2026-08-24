@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 116: stage 3 re-scoped after adversarial audit — two audit claims overturned (zeta-prime/zeta IS in pinned Mathlib; C=1000-weak bounds still give depth <= 10), hEF remains the open core. Next: verify tolerance table with O67 variant, then decide sibling-package decomposition
 - [open]   2026-08-24  entry 115: Expansion.lean (19th module) — stage 2b lands: iteratedDeriv_f2x proves the explicit 2^x/x expansion, F_floor proves the wedge floor, and tableFrom_ne_zero_of_li assembles the conditional arrow with only the li-interpolant, Schoenfeld, and O67 arithmetic as hypotheses. Stage 3 = Schoenfeld stays a hypothesis. 248/248 pins
 - [open]   2026-08-24  entry 114: MainTerm.lean (18th module) — stage 2a lands: the MVT is retired (bdiffR_lb + iter_bdiffR_lb prove derivative-floor => difference-floor), and tableFrom_ne_zero_of_deriv restates the arrow with hM replaced by a derivative bound. Remaining: stage 2b (the 2^x/x expansion + pairing bound) and Schoenfeld. 231/231 pins
 - [open]   2026-08-24  entry 113: Nonvanishing.lean (17th module) — stage 1 of O67's theorem under the kernel: the arrow hS + hM + hgap => cell != 0 is proved, with Schoenfeld (stage 3, in no proof assistant) and the main-term floor (stage 2, feasible) as named hypotheses. Same pattern as Chain's arrows. 221/221 pins
