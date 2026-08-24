@@ -16,6 +16,65 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 104 — TransferOp: bdiff named as the operator it is, in Mathlib's vocabulary
+type: formalization
+refs: 103
+
+`lean/TransferOp.lean`, the fifteenth module, six theorems and one definition.
+Build clean, **8041 jobs, 204 theorems, 204 pins, parity in all 15 modules.**
+
+### What was missing
+
+`papers/Depth-as-Time.md` reads depth as iteration — a growth factor per mode
+(A3), γ₁ the fastest-growing mode in base 2 (B4), the C2 band as the gain
+spectrum. That is transfer-operator vocabulary, and none of it was stated in the
+formalization: `Chain.A1` proves the eigen-relation pointwise and stops, and the
+linearity of `bdiff` was consumed everywhere (`bdiff_smul`,
+`Superposition.bdiff_sum`) and asserted nowhere.
+
+### What compiled
+
+```text
+bdiffL                       Chain.bdiff as a Module.End ℂ (ℂ → ℂ)
+bdiffL_apply                 the wrapper is definitional
+mode_ne_zero', mode_ne_zero  a mode never vanishes (cpow_ne_zero_iff)
+mode_hasEigenvector          the mode IS a Module.End.HasEigenvector,
+                             eigenvalue Sym b ρ
+sym_hasEigenvalue            every symbol value is in the point spectrum
+mode_pow                     (bdiffL^N) mode = Sym^N • mode, via Mathlib's
+                             HasEigenvector.pow_apply — Chain.A4 as an
+                             operator identity
+eigenvalue_zero_iff_lattice  the kernel eigenvalue occurs exactly on
+                             (2πi/log b)·ℤ — sym_eq_zero_iff read as spectrum
+```
+
+All at the ℂ floor. The point of the exercise: the difference operator, its
+eigenfunctions, its multipliers and its kernel are now in the standard
+vocabulary (`Module.End`, `HasEigenvector`, `HasEigenvalue`), so anyone from
+the dynamical-systems side recognises the object without reading this tree's
+private definitions.
+
+### What is not claimed, stated in the module
+
+Ruelle theory proper — trace formulas, Fredholm determinants, a spectral gap —
+is not formalised and is not close. The dynamical readings of Depth-as-Time § B
+are measurement; this module supplies the algebra they read through.
+
+### A counter defect, fixed by convention
+
+`@[simp] theorem` on one line escapes the parity counter's `^theorem` grep —
+the build showed 6/7 on the new module with nothing wrong. Fixed by putting the
+attribute on its own line. The counter itself is unchanged; the convention is
+now: attributes on their own line, so the discipline's numbers stay honest.
+
+Physics-connections list: #1 (GUE spacing) closed in entry 103, #2 (transfer
+operator) closed here. Open: #3 sub-Poisson variance, #4 the wave-equation
+reading, #5 the twin arm's spectral measure.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 103 — O64: the measured spectrum carries the zeros' repulsion, and the instrument's fake repulsion quantified
 type: run
 refs: 93, 94, 95, 102

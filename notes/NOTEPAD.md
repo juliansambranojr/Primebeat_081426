@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 104: TransferOp.lean (15th module) — bdiff is now a Module.End with the modes as Mathlib eigenvectors, Sym as eigenvalue, depth-N as the operator power (HasEigenvector.pow_apply), and the pole lattice as the kernel spectrum. Ruelle theory proper explicitly not claimed
+- [open]   2026-08-24  entry 104: parity counter misses '@[simp] theorem' on one line — fixed by convention (attribute on its own line), counter unchanged. Physics list: #1 and #2 closed; open are #3 sub-Poisson variance, #4 wave-equation reading, #5 twin spectral measure
 - [open]   2026-08-24  entry 103: O64 run 2 — in the complete-separation band (10,120) the spectrum measured from prime counts reproduces the true zeros' spacing statistics to three decimals (mean s 1.003, frac<0.5 0.027, 38/38 detected), while Poisson input comes through at 0.212. The primes carry the repulsion, not just the frequencies
 - [open]   2026-08-24  entry 103: O64 run 1 — the instrument manufactures repulsion (Poisson 0.372 in, 0.102 out) and the wide band (10,500) detects 1 zero in 5, making its spacing statistic junk; the script's printed conclusion for run 1 is withdrawn in the entry. First quantification of the resolution confound
 - [open]   2026-08-24  entry 103: not a Montgomery test — n=37, low height where zeros are stiffer than the GUE surmise (0.027 vs 0.106). The open extensions: more zeros needs finer dgamma (x0 down, per The-Deep-Ladder F5''), and pair correlation R_2 rather than nearest-neighbour

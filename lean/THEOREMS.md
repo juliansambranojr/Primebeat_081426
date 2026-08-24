@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-197 theorems across 14 modules. Every one carries a
+204 theorems across 15 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -192,7 +192,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `tableFrom_zero` | The zero row builds the zero table. | **none** | — |
 | `tableFrom_sub` | Linearity, in the form the convention change needs. | propext, Quot.sound | — |
 | `tableFrom_eq_zero_of_vanishing_above` | The excess table vanishes past the excess. | propext | `lab_notebook_2.md` |
-| `cell_eq_of_seed_perturbation` | The claim. | propext, Quot.sound | `The-Composite-Arm.md` |
+| `cell_eq_of_seed_perturbation` | The claim. | propext, Quot.sound | `The-Composite-Arm.md`, `lab_notebook_2.md` |
 | `zero_stable_of_seed_perturbation` | The corollary. | propext, Quot.sound | — |
 | `zero_iff_of_seed_perturbation` | The same statement as an equivalence, which is the honest form: past the excess, the two conventions have the same zero set. | propext, Quot.sound | — |
 | `tableFrom_at_boundary` | The boundary cell, exactly. | propext, Quot.sound | `The-Fold.md` |
@@ -218,6 +218,18 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `A4_sum_of_A1` | The licence. | ℂ floor | — |
 | `depth_reweights_each_mode` | Corollary — the falsifiable form. | ℂ floor | — |
 | `tableFrom_eq_modeSum_reweighted` | The table is a superposition, reweighted by depth. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
+
+## TransferOp (7)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `bdiffL_apply` |  | ℂ floor | — |
+| `mode_ne_zero'` | A mode never vanishes: `b^(rρ) ≠ 0` for `b ≠ 0`. | ℂ floor | — |
+| `mode_ne_zero` | Hence a mode is not the zero function. | ℂ floor | — |
+| `mode_hasEigenvector` | The mode is an eigenvector, in Mathlib's sense. | ℂ floor | — |
+| `sym_hasEigenvalue` | `Sym b ρ` is in the point spectrum. | ℂ floor | — |
+| `mode_pow` | Depth is the operator power on the eigenline. | ℂ floor | — |
+| `eigenvalue_zero_iff_lattice` | The kernel eigenvalue sits exactly on the pole lattice. | ℂ floor | — |
 
 ## Transform (39)
 
@@ -302,7 +314,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `zero_20_6` |  | **none** | — |
 | `measured_zeros_all_vanish` | The list's own claim, as a theorem. | **none** | `README.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 | `nonzero_7_3` | A non-zero neighbour, so the check can fail. | **none** | — |
-| `nonzero_19_6` | The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`. | **none** | — |
+| `nonzero_19_6` | The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`. | **none** | `lab_notebook_2.md` |
 | `four_zeros_only` | Four zeros in 1953 cells. | **none** | — |
 | `zero_at_20_6_of_repeat` | The measured repeat gives the deep zero, through the theorem. | propext | — |
 | `zero_at_8_3_of_repeat` | The same for the other deep zero, where the repeated value is 4. | propext | — |
