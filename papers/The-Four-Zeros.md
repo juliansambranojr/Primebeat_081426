@@ -83,6 +83,15 @@ leaves it open.
 `B7 + Zeros.measured_zeros_all_vanish` — a theorem computing all four
 from `pi2` with no axioms, not the transcribed list
 
+**B10.** Stated once, plainly: the economical reading of the four zeros is a
+shallow-row accident. Cells grow like `2^r` while exact hits require exact
+cancellation, so vanishing is cheap in the shallow rows and improbable ever
+after — which is what O43's `magnitude_floor` verdict says, and why K_new = 0
+over 2295 further cells surprised no decision rule. Nothing measured or proved
+in this tree argues against that reading; B9's hole is where an argument for
+more would have to live, and it is empty.
+`B9 · O43 verdict magnitude_floor · preregs/extended_zero_census_v1_locked_20260818.md`
+
 ---
 
 ## C · Windows

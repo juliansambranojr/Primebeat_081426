@@ -57,16 +57,28 @@ its results depend on nothing; the four zeros are *computed*, not transcribed.
 
 ## What is measured
 
-Scripts `O11`–`O62` and `t*`, each writing a JSON artifact and a run log to
-`results/`. Selected:
+Scripts `O11`–`O66` and `t*`, each writing a JSON artifact and a run log to
+`results/`. What the measurements are **for**: the explicit formula guarantees
+the zeta zeros are in the prime residual, so recovering them is a check that
+the pipeline works, not a discovery about ζ — RH is verified elsewhere to
+heights this bench will never reach. What the bench measures that matters is
+its own consistency, and two open empirical questions.
 
-- **O57** — a blind search from `γ = 0.5` to `40` over the prime counting
-  residual returns, as its top six peaks, exactly the six Riemann zeta zeros in
-  that range, at `5253×` to `5398×` the median against a seventh at `15.90×`.
-- **O58** — the growth exponent fitted per zero gives
-  `Re ρ = 0.49957 ± 0.00175` from prime counts alone, for the first six zeros.
 - **O43** — the exact-zero census extended to `r = 92` on published `π(2ⁿ)`:
-  4186 cells, no new zeros.
+  4186 cells, no new zeros. The one measurement about the central object.
+- **O58** — the internal-consistency instrument. Every earlier result was
+  expressed in the `√x` normalisation RH predicts, with nothing testing it;
+  O58 measures the exponent per zero instead of assuming it
+  (`Re ρ = 0.49957 ± 0.00175` for the six below `γ = 40`), closing a recorded
+  circularity. O57's blind recovery of those six at `330×` separation is the
+  pipeline demonstration it feeds on.
+- **Two unplaced candidates** — the generator-orbit peak at `{2,3,5,7}` (O24),
+  whose proposed mechanism `GeneratorPeak.no_interior_peak` formally excludes
+  in power-law form while the peak persists, with a named kill test near
+  `xmax ≈ 4·10¹¹`; and the twin process keeping Hardy–Littlewood pair
+  structure while losing number rigidity (O66), currently resting on a
+  measurement whose endpoint is degenerate with its own control. Neither is
+  claimable yet; both are stated with what they need.
 
 Measurements are labelled **EXPLORATORY** unless a locked prereg in `preregs/`
 governs them. Four preregistered tests are closed; their verdicts and the
