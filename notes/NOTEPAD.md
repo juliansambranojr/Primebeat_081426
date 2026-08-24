@@ -17,295 +17,295 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
-- [open]   2026-08-24  entry 110: three decisions applied on Julian's approval — The-Composite-Arm standalone with the PROVISIONAL banner off; O48's verdict written as compromised-and-retired (entry 75's saturation argument, no depth window shows a sub-ceiling mode); NOTEPAD sweep authorised
-- [open]   2026-08-24  entry 109 addendum: the 17 bare theorems now carry docstring claims (commit 475b02f) — the four zero_r_d kernel computations state their own stencil lines, and the index reads past attribute lists. THEOREMS.md clean on every axis: 213/213 pins, 0 UNTAGGED, 0 without a claim
-- [open]   2026-08-24  entry 109: the 159 'uncited theorems' are now 0 untagged — three citation forms in the linker (qualified, bare unique, chain labels via companion papers), a roles file with 29 support + 22 record, and eleven genuine citations added to four papers. UNTAGGED is now a loud maintained invariant
-- [open]   2026-08-24  entry 109: two linker bugs of mine found — missing space silenced the chain-label form entirely, and the docstring regex could span declarations. Remaining follow-on: 17 theorems have no docstring claim (a writing pass, separate thread)
-- [open]   2026-08-24  entry 108: t25 run — every figure in The-Composite-Arm reproduces from primecountpy; the gate is at ZERO broken references for the first time (refs_baseline.txt now empty); check_values 113 -> 127. The I3 residual triple is the Riemann R model at depths 0/3/6
-- [open]   2026-08-24  entry 108: one paper error found and fixed — C4 said five lag-1 diagonals, its own C1 table and the measurement say four (diagonals 5, 8, 9, 12). Header conditions 1-2 met and struck through; conditions 3-4 (placement, removing PROVISIONAL) are Julian's
-- [open]   2026-08-24  entry 107: O66 run 2 — Hardy-Littlewood confirmed on the twin lattice at 2-4% over 30 lags and three decades, including the sign structure (repulsion at lag 1, attraction at lag 5); Bernoulli control at 1. Run 1's normalization was mine, off by exactly 6 (lattice conditioning enters numerator once, denominator twice)
-- [open]   2026-08-24  entry 107: the twins do NOT inherit the primes' rigidity — F twin converges to Bernoulli by x ~ 6e10 while prime sites in the same windows keep low-frequency suppression. Primes rigid, twins Poisson-plus-HL; same asymmetry as O51's zero census, now on the fluctuation axis
-- [open]   2026-08-24  entry 107: physics list closed — 103+105 are one object (Montgomery two-sided), 104+106 one operator (spectral and spatial faces of bdiff), 107 the boundary case with correlations but no rigidity
-- [open]   2026-08-24  entry 106: Propagation.lean (16th module, MATHLIB-FREE) — the recurrence named as first-order upwind transport; a point source fills exactly its forward cone (outside_cone_zero + cone_filled, no lacunae) and the Green's function is the alternating stencil (propagator). Pascal defined by its own recurrence since core has no Nat.choose; three theorems at zero axioms
-- [open]   2026-08-24  entry 106: cone_filled makes rarity literal — a zero requires exact cancellation of everything upstream because the propagator never vanishes in its cone; zero_iff_repeat from the transport side. Physics list #1-#4 closed, #5 (twin spectral measure) open
-- [open]   2026-08-24  entry 105: O65 run 2 — prime-count variance is sub-Poisson at every scale tested, F falling 0.66 -> 0.15 as H grows from (log x)^2 to x/10, Poisson control pinned at 1; the dyadic block interiors sit on the same curve (0.198 at r=33). Closes O63's caveat in the grounding direction
-- [open]   2026-08-24  entry 105: the Montgomery loop is now two-sided on this bench — zeros' rigidity measured spectrally (entry 103) and primes' suppressed variance measured in counts (entry 105), which Goldston-Montgomery tie to the same pair correlation
-- [open]   2026-08-24  entry 105: run 1's trend confound kept on record — raw Var/mean without li detrending gives F = 40796 at 1e10, H = x/10, which is the smooth density drift and means nothing. Physics list: #1 #2 #3 closed, #4 wave-equation and #5 twin spectral measure open
-- [open]   2026-08-24  entry 104: TransferOp.lean (15th module) — bdiff is now a Module.End with the modes as Mathlib eigenvectors, Sym as eigenvalue, depth-N as the operator power (HasEigenvector.pow_apply), and the pole lattice as the kernel spectrum. Ruelle theory proper explicitly not claimed
-- [open]   2026-08-24  entry 104: parity counter misses '@[simp] theorem' on one line — fixed by convention (attribute on its own line), counter unchanged. Physics list: #1 and #2 closed; open are #3 sub-Poisson variance, #4 wave-equation reading, #5 twin spectral measure
-- [open]   2026-08-24  entry 103: O64 run 2 — in the complete-separation band (10,120) the spectrum measured from prime counts reproduces the true zeros' spacing statistics to three decimals (mean s 1.003, frac<0.5 0.027, 38/38 detected), while Poisson input comes through at 0.212. The primes carry the repulsion, not just the frequencies
-- [open]   2026-08-24  entry 103: O64 run 1 — the instrument manufactures repulsion (Poisson 0.372 in, 0.102 out) and the wide band (10,500) detects 1 zero in 5, making its spacing statistic junk; the script's printed conclusion for run 1 is withdrawn in the entry. First quantification of the resolution confound
+- [closed] 2026-08-24  entry 110: three decisions applied on Julian's approval — The-Composite-Arm standalone with the PROVISIONAL banner off; O48's verdict written as compromised-and-retired (entry 75's saturation argument, no depth window shows a sub-ceiling mode); NOTEPAD sweep authorised
+- [closed] 2026-08-24  entry 109 addendum: the 17 bare theorems now carry docstring claims (commit 475b02f) — the four zero_r_d kernel computations state their own stencil lines, and the index reads past attribute lists. THEOREMS.md clean on every axis: 213/213 pins, 0 UNTAGGED, 0 without a claim
+- [closed] 2026-08-24  entry 109: the 159 'uncited theorems' are now 0 untagged — three citation forms in the linker (qualified, bare unique, chain labels via companion papers), a roles file with 29 support + 22 record, and eleven genuine citations added to four papers. UNTAGGED is now a loud maintained invariant
+- [closed] 2026-08-24  entry 109: two linker bugs of mine found — missing space silenced the chain-label form entirely, and the docstring regex could span declarations. Remaining follow-on: 17 theorems have no docstring claim (a writing pass, separate thread)
+- [closed] 2026-08-24  entry 108: t25 run — every figure in The-Composite-Arm reproduces from primecountpy; the gate is at ZERO broken references for the first time (refs_baseline.txt now empty); check_values 113 -> 127. The I3 residual triple is the Riemann R model at depths 0/3/6
+- [closed] 2026-08-24  entry 108: one paper error found and fixed — C4 said five lag-1 diagonals, its own C1 table and the measurement say four (diagonals 5, 8, 9, 12). Header conditions 1-2 met and struck through; conditions 3-4 (placement, removing PROVISIONAL) are Julian's
+- [closed] 2026-08-24  entry 107: O66 run 2 — Hardy-Littlewood confirmed on the twin lattice at 2-4% over 30 lags and three decades, including the sign structure (repulsion at lag 1, attraction at lag 5); Bernoulli control at 1. Run 1's normalization was mine, off by exactly 6 (lattice conditioning enters numerator once, denominator twice)
+- [closed] 2026-08-24  entry 107: the twins do NOT inherit the primes' rigidity — F twin converges to Bernoulli by x ~ 6e10 while prime sites in the same windows keep low-frequency suppression. Primes rigid, twins Poisson-plus-HL; same asymmetry as O51's zero census, now on the fluctuation axis
+- [closed] 2026-08-24  entry 107: physics list closed — 103+105 are one object (Montgomery two-sided), 104+106 one operator (spectral and spatial faces of bdiff), 107 the boundary case with correlations but no rigidity
+- [closed] 2026-08-24  entry 106: Propagation.lean (16th module, MATHLIB-FREE) — the recurrence named as first-order upwind transport; a point source fills exactly its forward cone (outside_cone_zero + cone_filled, no lacunae) and the Green's function is the alternating stencil (propagator). Pascal defined by its own recurrence since core has no Nat.choose; three theorems at zero axioms
+- [closed] 2026-08-24  entry 106: cone_filled makes rarity literal — a zero requires exact cancellation of everything upstream because the propagator never vanishes in its cone; zero_iff_repeat from the transport side. Physics list #1-#4 closed, #5 (twin spectral measure) open
+- [closed] 2026-08-24  entry 105: O65 run 2 — prime-count variance is sub-Poisson at every scale tested, F falling 0.66 -> 0.15 as H grows from (log x)^2 to x/10, Poisson control pinned at 1; the dyadic block interiors sit on the same curve (0.198 at r=33). Closes O63's caveat in the grounding direction
+- [closed] 2026-08-24  entry 105: the Montgomery loop is now two-sided on this bench — zeros' rigidity measured spectrally (entry 103) and primes' suppressed variance measured in counts (entry 105), which Goldston-Montgomery tie to the same pair correlation
+- [closed] 2026-08-24  entry 105: run 1's trend confound kept on record — raw Var/mean without li detrending gives F = 40796 at 1e10, H = x/10, which is the smooth density drift and means nothing. Physics list: #1 #2 #3 closed, #4 wave-equation and #5 twin spectral measure open
+- [closed] 2026-08-24  entry 104: TransferOp.lean (15th module) — bdiff is now a Module.End with the modes as Mathlib eigenvectors, Sym as eigenvalue, depth-N as the operator power (HasEigenvector.pow_apply), and the pole lattice as the kernel spectrum. Ruelle theory proper explicitly not claimed
+- [closed] 2026-08-24  entry 104: parity counter misses '@[simp] theorem' on one line — fixed by convention (attribute on its own line), counter unchanged. Physics list: #1 and #2 closed; open are #3 sub-Poisson variance, #4 wave-equation reading, #5 twin spectral measure
+- [closed] 2026-08-24  entry 103: O64 run 2 — in the complete-separation band (10,120) the spectrum measured from prime counts reproduces the true zeros' spacing statistics to three decimals (mean s 1.003, frac<0.5 0.027, 38/38 detected), while Poisson input comes through at 0.212. The primes carry the repulsion, not just the frequencies
+- [closed] 2026-08-24  entry 103: O64 run 1 — the instrument manufactures repulsion (Poisson 0.372 in, 0.102 out) and the wide band (10,500) detects 1 zero in 5, making its spacing statistic junk; the script's printed conclusion for run 1 is withdrawn in the entry. First quantification of the resolution confound
 - [open]   2026-08-24  entry 103: not a Montgomery test — n=37, low height where zeros are stiffer than the GUE surmise (0.027 vs 0.106). The open extensions: more zeros needs finer dgamma (x0 down, per The-Deep-Ladder F5''), and pair correlation R_2 rather than nearest-neighbour
-- [open]   2026-08-23  entry 102: an independent Gemini analysis of the same tables audited — silencing, the (20,6) anchor with [343,0,1713], and the twin [1,0,1] handshake all hold and were already in the tree; the golden-ratio and Fibonacci claims die. Value: independent arrival at the same spine, which is the closest thing to external replication on record
-- [open]   2026-08-23  entry 102: O63 — the cross-base refraction framing is the wrong instrument (min-depth is dominated by the depth-0 row, and bases 4/8/9 skip small values because Isogeny.rowN_eq_blockSum blocks their rows). What the control found: at depth 5, 0 of 400 Poisson draws reach the real fraction of small cells, max 0.206 against real 0.235
-- [open]   2026-08-23  entry 102: caveats on that — 16 depths tested so depth 4 does not survive Bonferroni and depth 5 barely does; n=1 in the signal; and sub-Poisson variance of dyadic prime counts is the likely known cause. Run 1 used a single Poisson draw and is superseded by run 2's 400
+- [closed] 2026-08-23  entry 102: an independent Gemini analysis of the same tables audited — silencing, the (20,6) anchor with [343,0,1713], and the twin [1,0,1] handshake all hold and were already in the tree; the golden-ratio and Fibonacci claims die. Value: independent arrival at the same spine, which is the closest thing to external replication on record
+- [closed] 2026-08-23  entry 102: O63 — the cross-base refraction framing is the wrong instrument (min-depth is dominated by the depth-0 row, and bases 4/8/9 skip small values because Isogeny.rowN_eq_blockSum blocks their rows). What the control found: at depth 5, 0 of 400 Poisson draws reach the real fraction of small cells, max 0.206 against real 0.235
+- [closed] 2026-08-23  entry 102: caveats on that — 16 depths tested so depth 4 does not survive Bonferroni and depth 5 barely does; n=1 in the signal; and sub-Poisson variance of dyadic prime counts is the likely known cause. Run 1 used a single Poisson draw and is superseded by run 2's 400
 - [open]   2026-08-23  entry 101: the bench's own falsification test passes, first time run — O7's prereg no-drift SHA e8dd8430 reproduces exactly and the results reproduce 170 of 171 JSON leaves eight days later, only generated_utc differing. Same machine, so determinism not portability
-- [open]   2026-08-23  entry 101: lean/THEOREMS.md generated — 197 theorems, 24 depending on no axioms, 146 cited by no paper or note, 14 with no docstring claim. Three quarters of the formalisation is unmapped to prose
-- [open]   2026-08-23  entry 101: the twelve-vs-thirteen bases discrepancy resolves in favour of the text — 97.68% +/- 2.91% recomputes exactly over the twelve bases below 3, and all thirteen gives 98.51% +/- 4.08%. The exclusion of b = 3.0 is now recorded in all three places quoting it; the prereg is about O48 and needed no change
-- [open]   2026-08-23  entry 101: mclass 1.3.4 and mpath 1.1.3 removed from requirements.txt and uninstalled — pinned, imported by zero files across 59 scripts, no homepage, no author, typo in mclass's own summary, installed as a pair. connes-cvs is real and stays
-- [open]   2026-08-22  entry 100: O60 — (2,1) is the only one of the four exact zeros on the leading diagonal r = d+1, so it is the constant term of its depth column and pins a transform root at the origin; the other three are interior coefficients and pin nothing. A different cut from the window exclusivity in Zeros.lean
-- [open]   2026-08-22  entry 100: O61 — the truncation offset at d=0 shrinks monotonically with rungs, 0.36% at b=1.15's 197 rungs against 9.04% at base 2's 39, converging on the theoretical b^(-1). Two readings of mine died: 'truncation artifact' and 'crossing sits at 25% of rungs'. The crossing depth is b-dependent
+- [closed] 2026-08-23  entry 101: lean/THEOREMS.md generated — 197 theorems, 24 depending on no axioms, 146 cited by no paper or note, 14 with no docstring claim. Three quarters of the formalisation is unmapped to prose
+- [closed] 2026-08-23  entry 101: the twelve-vs-thirteen bases discrepancy resolves in favour of the text — 97.68% +/- 2.91% recomputes exactly over the twelve bases below 3, and all thirteen gives 98.51% +/- 4.08%. The exclusion of b = 3.0 is now recorded in all three places quoting it; the prereg is about O48 and needed no change
+- [closed] 2026-08-23  entry 101: mclass 1.3.4 and mpath 1.1.3 removed from requirements.txt and uninstalled — pinned, imported by zero files across 59 scripts, no homepage, no author, typo in mclass's own summary, installed as a pair. connes-cvs is real and stays
+- [closed] 2026-08-22  entry 100: O60 — (2,1) is the only one of the four exact zeros on the leading diagonal r = d+1, so it is the constant term of its depth column and pins a transform root at the origin; the other three are interior coefficients and pin nothing. A different cut from the window exclusivity in Zeros.lean
+- [closed] 2026-08-22  entry 100: O61 — the truncation offset at d=0 shrinks monotonically with rungs, 0.36% at b=1.15's 197 rungs against 9.04% at base 2's 39, converging on the theoretical b^(-1). Two readings of mine died: 'truncation artifact' and 'crossing sits at 25% of rungs'. The crossing depth is b-dependent
 - [open]   2026-08-22  entry 100: O62 — OEIS submission package for the iterated difference table of A036378 built from pi2n_cache.json; A095195 is the same recurrence seeded with prime(n) and no member of the family exists for A036378 or A007053. Four zeros at terms 4, 8, 34, 176; exactly four across all 992 entries to r=62
-- [open]   2026-08-22  entry 100: O59 — the fold saturates. 599/599 adjacent gaps below dgamma at every base; the torus resolves ~10 zeros at base 2. Gives entry 85's negative a geometric cause and locates O57's 330x as a property of the unfolded line
-- [open]   2026-08-22  entry 99: the chain closed — critical_circle_is_lattice_inversion_mean composes Chain.sym_eq_zero_iff (the table's symbol dies on Re s = 0) with Transform.zmap_pair_product (the pair's mean is b^(-1/2)). The table's lattice, inverted, IS the critical circle. No zeta input
-- [open]   2026-08-22  entry 99: both halves had been proved for hours in different files and nothing composed them; I kept reaching for Weil's criterion, a route that runs around this tree rather than through it. Julian had to say the chain was already there repeatedly
-- [open]   2026-08-22  entry 99: framing error, recurrent all session — I wrote the result's docstring as 'Nothing about zeta is used', the sentence that proves the point written as a disclaimer against it. Same pattern as entries 94 and 96
-- [open]   2026-08-21  entry 98: zmap_pair_product — ||z_s|| * ||z_(1-s)|| = b^(-1) for EVERY s with no hypothesis about zeta, so the geometric mean of a point and its inversion partner is always b^(-1/2). The middle circle is the mean the pairing pins, not a coordinate that was named
-- [open]   2026-08-21  entry 98: riemannHypothesis_iff_pair_collapses — RH iff every nontrivial zero has the same modulus as its inversion partner; two positives with fixed product are equal only at the mean, so collapsing and landing on the middle circle are one event
-- [open]   2026-08-21  entry 98: the gap restated — what would have to be shown is that a zero and its functional-equation partner are the SAME zero, rather than that a zero has a particular real part. O58 measures exactly this: an off-line zero shows two exponents beta and 1-beta at one gamma
-- [open]   2026-08-21  entry 97: strip_is_fundamental_domain — the critical strip's edges Re s = 0 and Re s = 1 are ONE deck step apart, so the strip IS exactly one fundamental domain of C*/b^Z for every b > 1; the strip's width is the period of the deck action
-- [open]   2026-08-21  entry 97: zeros_in_fundamental_annulus — every nontrivial zero proved to lie in b^(-1) < |z| < 1; left edge derived via riemannZeta_one_sub, Gamma_ne_zero, cpow_eq_zero_iff and cos_eq_zero_iff, right edge from Mathlib's riemannZeta_ne_zero_of_one_le_re
-- [open]   2026-08-21  entry 97: riemannHypothesis_iff_zeros_on_middle_circle — RH iff every nontrivial zero sits on the annulus's middle circle |z| = b^(-1/2), the geometric mean of the boundaries and the inversion's fixed set. Containment is proved; position within the annulus is exactly RH
-- [open]   2026-08-21  entry 97: the critical-strip containment itself is classical (Hadamard-de la Vallee Poussin and the functional equation); what is new is that it is in this geometry with the fundamental-domain identification, machine-checked and buildable on
-- [open]   2026-08-21  entry 96: riemannHypothesis_iff_zeros_inversion_fixed compiles — Mathlib's RiemannHypothesis holds iff every nontrivial zero is carried by z = b^(-s) to a fixed point of z -> b^(-1)/z, for every b > 1. An equivalence; it decides nothing
-- [open]   2026-08-21  entry 96: the bridge was on_critical_line_iff_norm (Re s = 1/2 iff |z| = b^(-1/2)) via norm_zmap + rpow_left_inj; zmap_functional_equation and inversion_fixes_circle were already there from entry 88
-- [open]   2026-08-21  entry 96: my framing error again — I nearly wrote the measurement's six-zero range into the formalization as a limit. Julian stopped it. The theorem quantifies over every nontrivial zero and every base; the range belongs to O58, not to the mathematics
-- [open]   2026-08-21  entry 95: O58 measures Re rho = 0.49957 +/- 0.00175 per zero from prime counts alone, for the first six zeros; |beta - 1/2| > 0.0052 would have shown and nothing did. First measurement on this bench that measures Re rho instead of assuming it
-- [open]   2026-08-21  entry 95: the criterion is RH <=> every zero is its own inversion partner on the torus, using Transform.inversion_fixes_circle; the functional-equation partner sits at the SAME gamma so an off-line zero gives a strictly positive per-gamma slope whichever side it falls
-- [open]   2026-08-21  entry 95: run 1 used the midpoint scatter as the noise floor and understated sensitivity by 45x (0.236 vs 0.0052) — wrong model for a peak 330x above the median; the zero-to-zero scatter is the right yardstick. Both kept in the artifact
-- [open]   2026-08-21  entry 95: my framing error, recorded — I reported Julian's structural readings as negatives and offered four RH criteria of which none touch what this bench built; his structures are about HOW the zeros appear, RH is about WHERE they sit, and I graded the first against the second
-- [open]   2026-08-21  entry 94: blind search 0.5-40 on the fine ladder returns the six zeta zeros below 40 as its top six peaks, 5253x-5398x median against a seventh at 15.90x — a factor of 330. Nearest the published gamma_1 is 14.1340, difference -0.0007, nothing told it where to look
-- [open]   2026-08-21  entry 94: entry 93's closing caveat withdrawn — 14.1345 IS derived from prime counts; the published gamma_1 enters only as the yardstick in the err column. Julian caught it. Entry 93 annotated, text unaltered
-- [open]   2026-08-21  entry 94: 14.1340 sits fifth by height and that carries no information — the spectrum is flat in gamma (The-Deep-Ladder D3), so ranking among detected zeros is arbitrary. I misread it as rank 1 from a gamma-sorted print before catching it
-- [open]   2026-08-21  entry 93: O57 run — O17's 14.08 run forward in extent arrives at 14.1345 on the fine ladder at xmax=1e11, against the true gamma_1 = 14.134725; err/dgamma falls to 0.002 by 1e10. The 1e8 row reproduces O17's 14.08 independently
-- [open]   2026-08-21  entry 93: the torus coordinate — true gamma_1 folds to 3.994716 in the fundamental domain of C*/2^Z, and the measurement converges 4.029441 -> 3.994941. The fold moves no information; recorded because it is the map-onto-the-globe step, now measured
-- [open]   2026-08-21  entry 93: the trajectory is one-way and the reason is the Hann window — residuals are nested and exactly recoverable (truncate + rewindow reproduces to machine precision), but np.hanning(n) depends on the whole range, so a measurement is recomputed rather than extended; long window on short blocks shifts -0.0350
-- [open]   2026-08-21  entry 92: O56 run — at depth 0 S(r,0) = 2^(r-1) IS the integer count of the block, so sigma + (1-sigma) = 1 is primes-plus-composites-equals-all-integers; holds at the row only, degrading by 2^d under differencing
-- [open]   2026-08-21  entry 92: 1/sigma is the global log-coordinate — 1/sigma = 0.1976 + 0.6813r against ln2 = 0.6931, ratio to ln x 1.9236 -> 1.0091, and sigma against the li density is pinned at 1.00000 from r=40. PNT in the ladder's coordinates, never written down here
-- [open]   2026-08-21  entry 92: the join still fails — s -> 1-s has the pole of zeta as its 1, ours is a partition of a finite integer set; nothing carries the arm swap through the log map. Same shape as entry 91
-- [open]   2026-08-21  entry 91: O55 run — the arm involution's fixed set (prime(r,d) = composite(r,d)) is exactly three cells (2,0) (3,0) (3,1), empty beyond, over 1953 cells to r=62; sigma -> 0 by PNT so it is finite for an ordinary reason. Negative on the s -> 1-s correspondence as stated
-- [open]   2026-08-21  entry 91: the four exact zeros and the arm-swap fixed set are DISJOINT, and rho = 0 at exactly 0 cells — three conditions the record had treated as one family, now separated by O55 itself
-- [open]   2026-08-21  entry 91: entry 90 corrected — it called e = prime - S/2 the residual; S/2 is not the smooth model, so that is the arm asymmetry and a different quantity from rho. Entry 90 annotated in place, text unaltered
-- [open]   2026-08-21  entry 90: prime = S/2 + e and composite = S/2 - e, so the residual IS the antisymmetric part of the arm split (pair_identity + Euler-Factor-Chain I3); the symmetric part is closed-form and prime-free
-- [open]   2026-08-21  entry 90: scope fact — O50:70 normalises by sqrt(x)/log x, the RH-consistent scaling (von Koch); nothing in the bench tests whether sqrt(x) is the right normaliser, and every result O17-O50 is expressed in that scale
-- [open]   2026-08-21  entry 90: smallest test — does prime(r,d) = composite(r,d) anywhere in the dyadic table? that is the fixed set of the arm involution, finite and cheap, never looked at; the s-side involution s -> 1-s has the critical line as its fixed set
-- [open]   2026-08-21  entry 89: check_refs.py --audit pairs every cross-document section citation with the text it points at (31 today); gate default byte-identical so the baseline holds; the tool reproduced the CLAUDE.md '### B4' trap on its own first run and had a second bug where the last statement in a file never matched
+- [closed] 2026-08-22  entry 100: O59 — the fold saturates. 599/599 adjacent gaps below dgamma at every base; the torus resolves ~10 zeros at base 2. Gives entry 85's negative a geometric cause and locates O57's 330x as a property of the unfolded line
+- [closed] 2026-08-22  entry 99: the chain closed — critical_circle_is_lattice_inversion_mean composes Chain.sym_eq_zero_iff (the table's symbol dies on Re s = 0) with Transform.zmap_pair_product (the pair's mean is b^(-1/2)). The table's lattice, inverted, IS the critical circle. No zeta input
+- [closed] 2026-08-22  entry 99: both halves had been proved for hours in different files and nothing composed them; I kept reaching for Weil's criterion, a route that runs around this tree rather than through it. Julian had to say the chain was already there repeatedly
+- [closed] 2026-08-22  entry 99: framing error, recurrent all session — I wrote the result's docstring as 'Nothing about zeta is used', the sentence that proves the point written as a disclaimer against it. Same pattern as entries 94 and 96
+- [closed] 2026-08-21  entry 98: zmap_pair_product — ||z_s|| * ||z_(1-s)|| = b^(-1) for EVERY s with no hypothesis about zeta, so the geometric mean of a point and its inversion partner is always b^(-1/2). The middle circle is the mean the pairing pins, not a coordinate that was named
+- [closed] 2026-08-21  entry 98: riemannHypothesis_iff_pair_collapses — RH iff every nontrivial zero has the same modulus as its inversion partner; two positives with fixed product are equal only at the mean, so collapsing and landing on the middle circle are one event
+- [paused] 2026-08-21  entry 98: the gap restated — what would have to be shown is that a zero and its functional-equation partner are the SAME zero, rather than that a zero has a particular real part. O58 measures exactly this: an off-line zero shows two exponents beta and 1-beta at one gamma
+- [closed] 2026-08-21  entry 97: strip_is_fundamental_domain — the critical strip's edges Re s = 0 and Re s = 1 are ONE deck step apart, so the strip IS exactly one fundamental domain of C*/b^Z for every b > 1; the strip's width is the period of the deck action
+- [closed] 2026-08-21  entry 97: zeros_in_fundamental_annulus — every nontrivial zero proved to lie in b^(-1) < |z| < 1; left edge derived via riemannZeta_one_sub, Gamma_ne_zero, cpow_eq_zero_iff and cos_eq_zero_iff, right edge from Mathlib's riemannZeta_ne_zero_of_one_le_re
+- [closed] 2026-08-21  entry 97: riemannHypothesis_iff_zeros_on_middle_circle — RH iff every nontrivial zero sits on the annulus's middle circle |z| = b^(-1/2), the geometric mean of the boundaries and the inversion's fixed set. Containment is proved; position within the annulus is exactly RH
+- [closed] 2026-08-21  entry 97: the critical-strip containment itself is classical (Hadamard-de la Vallee Poussin and the functional equation); what is new is that it is in this geometry with the fundamental-domain identification, machine-checked and buildable on
+- [closed] 2026-08-21  entry 96: riemannHypothesis_iff_zeros_inversion_fixed compiles — Mathlib's RiemannHypothesis holds iff every nontrivial zero is carried by z = b^(-s) to a fixed point of z -> b^(-1)/z, for every b > 1. An equivalence; it decides nothing
+- [closed] 2026-08-21  entry 96: the bridge was on_critical_line_iff_norm (Re s = 1/2 iff |z| = b^(-1/2)) via norm_zmap + rpow_left_inj; zmap_functional_equation and inversion_fixes_circle were already there from entry 88
+- [closed] 2026-08-21  entry 96: my framing error again — I nearly wrote the measurement's six-zero range into the formalization as a limit. Julian stopped it. The theorem quantifies over every nontrivial zero and every base; the range belongs to O58, not to the mathematics
+- [closed] 2026-08-21  entry 95: O58 measures Re rho = 0.49957 +/- 0.00175 per zero from prime counts alone, for the first six zeros; |beta - 1/2| > 0.0052 would have shown and nothing did. First measurement on this bench that measures Re rho instead of assuming it
+- [closed] 2026-08-21  entry 95: the criterion is RH <=> every zero is its own inversion partner on the torus, using Transform.inversion_fixes_circle; the functional-equation partner sits at the SAME gamma so an off-line zero gives a strictly positive per-gamma slope whichever side it falls
+- [closed] 2026-08-21  entry 95: run 1 used the midpoint scatter as the noise floor and understated sensitivity by 45x (0.236 vs 0.0052) — wrong model for a peak 330x above the median; the zero-to-zero scatter is the right yardstick. Both kept in the artifact
+- [closed] 2026-08-21  entry 95: my framing error, recorded — I reported Julian's structural readings as negatives and offered four RH criteria of which none touch what this bench built; his structures are about HOW the zeros appear, RH is about WHERE they sit, and I graded the first against the second
+- [closed] 2026-08-21  entry 94: blind search 0.5-40 on the fine ladder returns the six zeta zeros below 40 as its top six peaks, 5253x-5398x median against a seventh at 15.90x — a factor of 330. Nearest the published gamma_1 is 14.1340, difference -0.0007, nothing told it where to look
+- [closed] 2026-08-21  entry 94: entry 93's closing caveat withdrawn — 14.1345 IS derived from prime counts; the published gamma_1 enters only as the yardstick in the err column. Julian caught it. Entry 93 annotated, text unaltered
+- [closed] 2026-08-21  entry 94: 14.1340 sits fifth by height and that carries no information — the spectrum is flat in gamma (The-Deep-Ladder D3), so ranking among detected zeros is arbitrary. I misread it as rank 1 from a gamma-sorted print before catching it
+- [closed] 2026-08-21  entry 93: O57 run — O17's 14.08 run forward in extent arrives at 14.1345 on the fine ladder at xmax=1e11, against the true gamma_1 = 14.134725; err/dgamma falls to 0.002 by 1e10. The 1e8 row reproduces O17's 14.08 independently
+- [closed] 2026-08-21  entry 93: the torus coordinate — true gamma_1 folds to 3.994716 in the fundamental domain of C*/2^Z, and the measurement converges 4.029441 -> 3.994941. The fold moves no information; recorded because it is the map-onto-the-globe step, now measured
+- [closed] 2026-08-21  entry 93: the trajectory is one-way and the reason is the Hann window — residuals are nested and exactly recoverable (truncate + rewindow reproduces to machine precision), but np.hanning(n) depends on the whole range, so a measurement is recomputed rather than extended; long window on short blocks shifts -0.0350
+- [closed] 2026-08-21  entry 92: O56 run — at depth 0 S(r,0) = 2^(r-1) IS the integer count of the block, so sigma + (1-sigma) = 1 is primes-plus-composites-equals-all-integers; holds at the row only, degrading by 2^d under differencing
+- [closed] 2026-08-21  entry 92: 1/sigma is the global log-coordinate — 1/sigma = 0.1976 + 0.6813r against ln2 = 0.6931, ratio to ln x 1.9236 -> 1.0091, and sigma against the li density is pinned at 1.00000 from r=40. PNT in the ladder's coordinates, never written down here
+- [closed] 2026-08-21  entry 92: the join still fails — s -> 1-s has the pole of zeta as its 1, ours is a partition of a finite integer set; nothing carries the arm swap through the log map. Same shape as entry 91
+- [closed] 2026-08-21  entry 91: O55 run — the arm involution's fixed set (prime(r,d) = composite(r,d)) is exactly three cells (2,0) (3,0) (3,1), empty beyond, over 1953 cells to r=62; sigma -> 0 by PNT so it is finite for an ordinary reason. Negative on the s -> 1-s correspondence as stated
+- [closed] 2026-08-21  entry 91: the four exact zeros and the arm-swap fixed set are DISJOINT, and rho = 0 at exactly 0 cells — three conditions the record had treated as one family, now separated by O55 itself
+- [closed] 2026-08-21  entry 91: entry 90 corrected — it called e = prime - S/2 the residual; S/2 is not the smooth model, so that is the arm asymmetry and a different quantity from rho. Entry 90 annotated in place, text unaltered
+- [closed] 2026-08-21  entry 90: prime = S/2 + e and composite = S/2 - e, so the residual IS the antisymmetric part of the arm split (pair_identity + Euler-Factor-Chain I3); the symmetric part is closed-form and prime-free
+- [closed] 2026-08-21  entry 90: scope fact — O50:70 normalises by sqrt(x)/log x, the RH-consistent scaling (von Koch); nothing in the bench tests whether sqrt(x) is the right normaliser, and every result O17-O50 is expressed in that scale
+- [closed] 2026-08-21  entry 90: smallest test — does prime(r,d) = composite(r,d) anywhere in the dyadic table? that is the fixed set of the arm involution, finite and cheap, never looked at; the s-side involution s -> 1-s has the critical line as its fixed set
+- [closed] 2026-08-21  entry 89: check_refs.py --audit pairs every cross-document section citation with the text it points at (31 today); gate default byte-identical so the baseline holds; the tool reproduced the CLAUDE.md '### B4' trap on its own first run and had a second bug where the last statement in a file never matched
 - [open]   2026-08-21  entry 89: Commensurate-Ladders H2 asks whether the power chains 2->4->8 and 3->9 do anything beyond block-summing — entry 87's Isogeny.rowN_eq_blockSum answers it on the arithmetic side; closing the paper's open question is Julian's call, left unedited
-- [open]   2026-08-21  entry 89: CONTEXT.md brought current (approved) — new section on the Lean tree as of entry 88, known defect 6 for the checker gap, content dates to 08-21
-- [open]   2026-08-21  entry 88: The-Deep-Ladder F4 cited Euler-Factor-Chain J5 for a no-continuation claim J5 never makes; the claim is also false (Mathlib riemannZeta IS continued and Chain.lean:52 already uses it) and zeta(-1) = -1/12 compiles in two lines
-- [open]   2026-08-21  entry 88: periodLattice proved discrete via span_int_eq_addSubgroupClosure + ZLattice basis instance, so Torus b is a quotient by a discrete rank-2 subgroup; compactness still open
-- [open]   2026-08-21  entry 88: check_refs.py verifies a citation TARGET EXISTS and never that it says what the citing line claims — the J5 miscitation passed the gate clean, same shape as the B4 failure in CLAUDE.md
-- [open]   2026-08-21  entry 86: tau in Lean — tau b = 2pi/log b is the period (zmap_period_tau), the power chain tau(b^n)=tau(b)/n, and meeting ladders have tau ratio = the meeting exponents; The-Deep-Ladder corrected, it was claiming "completely separated" and "upper end untested" after its own run 2 superseded both
-- [open]   2026-08-21  entry 85: O53/O54 EXPLORATORY — the {2,4,6,8} vs {3,9} base split was an nz=60 artifact (RETRACTED), and O54 shows the statistic swings 0.27 to 1.94 at base 2 alone with only the ceiling moving, 0 peaks at 12 rungs; base 2 uniqueness survives only as the three proved iffs in PairIdentity
-- [open]   2026-08-21  entry 84: block G geometry FORMALISED — Transform.lean (13th module); the missing generator is s->s+1 giving z->z/b, which closes the annulus into the torus C*/b^Z, so O39 has been measuring HALF a fundamental domain since G7 was written; paper gains G7 prime and G7 double-prime
-- [open]   2026-08-21  entry 83: the pocket read as a BASE — pair_identity's coefficient (b-1) IS the lower twin arm at a pocket base (3,5,11,17,29,41...); base 4 is a pocket but OFF-lattice so only base 6 of O44's eight is an on-lattice pocket; extent arithmetic bounds per-pocket tables before they are asked. Tabled.
-- [open]   2026-08-21  entry 82: O51 twin lattice census EXPLORATORY — three refusals: the site count is NOT geometric (alternates +/-1/3, so pair_identity does not transfer), the occupancy bias is weak and sign-changing and is NOT the Chebyshev bias, and NO twin zero is deep (all four at r<=9 vs the prime table's (20,6) at count 38635); papers/The-Twin-Lattice.md written
-- [open]   2026-08-21  entry 81: TwinLattice.lean (12th module) — twin pairs are 6k+-1 PROVED at [propext, Quot.sound], so a twin is a lattice SITE not a spacing coincidence; the mod-6 lattice was already load-bearing in CONTEXT.md twice (O19/O20 (8,3), and lattice_mapper 2-and-3-as-lattice) and nothing connected them
-- [open]   2026-08-21  entry 80: twin_count IMPORTED (7 files, SHA-verified, self-verifying manifest; source is not a git repo so this is the only versioned copy), CONTEXT.md brought current to O50, papers/The-Deep-Ladder.md written — check_values 83 -> 99 confirmed, 0 not found
-- [open]   2026-08-21  entry 79: O50 EXPLORATORY — 38 zeta zeros recovered with COMPLETE separation (at-zeros min 6.478 vs between-zeros max 2.341) on a ratio-1.002 ladder to 1e11; O17 found 3; dyadic control still fails; O17 was sieve-limited not exhausted
+- [closed] 2026-08-21  entry 89: CONTEXT.md brought current (approved) — new section on the Lean tree as of entry 88, known defect 6 for the checker gap, content dates to 08-21
+- [closed] 2026-08-21  entry 88: The-Deep-Ladder F4 cited Euler-Factor-Chain J5 for a no-continuation claim J5 never makes; the claim is also false (Mathlib riemannZeta IS continued and Chain.lean:52 already uses it) and zeta(-1) = -1/12 compiles in two lines
+- [closed] 2026-08-21  entry 88: periodLattice proved discrete via span_int_eq_addSubgroupClosure + ZLattice basis instance, so Torus b is a quotient by a discrete rank-2 subgroup; compactness still open
+- [closed] 2026-08-21  entry 88: check_refs.py verifies a citation TARGET EXISTS and never that it says what the citing line claims — the J5 miscitation passed the gate clean, same shape as the B4 failure in CLAUDE.md
+- [closed] 2026-08-21  entry 86: tau in Lean — tau b = 2pi/log b is the period (zmap_period_tau), the power chain tau(b^n)=tau(b)/n, and meeting ladders have tau ratio = the meeting exponents; The-Deep-Ladder corrected, it was claiming "completely separated" and "upper end untested" after its own run 2 superseded both
+- [closed] 2026-08-21  entry 85: O53/O54 EXPLORATORY — the {2,4,6,8} vs {3,9} base split was an nz=60 artifact (RETRACTED), and O54 shows the statistic swings 0.27 to 1.94 at base 2 alone with only the ceiling moving, 0 peaks at 12 rungs; base 2 uniqueness survives only as the three proved iffs in PairIdentity
+- [closed] 2026-08-21  entry 84: block G geometry FORMALISED — Transform.lean (13th module); the missing generator is s->s+1 giving z->z/b, which closes the annulus into the torus C*/b^Z, so O39 has been measuring HALF a fundamental domain since G7 was written; paper gains G7 prime and G7 double-prime
+- [paused] 2026-08-21  entry 83: the pocket read as a BASE — pair_identity's coefficient (b-1) IS the lower twin arm at a pocket base (3,5,11,17,29,41...); base 4 is a pocket but OFF-lattice so only base 6 of O44's eight is an on-lattice pocket; extent arithmetic bounds per-pocket tables before they are asked. Tabled.
+- [closed] 2026-08-21  entry 82: O51 twin lattice census EXPLORATORY — three refusals: the site count is NOT geometric (alternates +/-1/3, so pair_identity does not transfer), the occupancy bias is weak and sign-changing and is NOT the Chebyshev bias, and NO twin zero is deep (all four at r<=9 vs the prime table's (20,6) at count 38635); papers/The-Twin-Lattice.md written
+- [closed] 2026-08-21  entry 81: TwinLattice.lean (12th module) — twin pairs are 6k+-1 PROVED at [propext, Quot.sound], so a twin is a lattice SITE not a spacing coincidence; the mod-6 lattice was already load-bearing in CONTEXT.md twice (O19/O20 (8,3), and lattice_mapper 2-and-3-as-lattice) and nothing connected them
+- [closed] 2026-08-21  entry 80: twin_count IMPORTED (7 files, SHA-verified, self-verifying manifest; source is not a git repo so this is the only versioned copy), CONTEXT.md brought current to O50, papers/The-Deep-Ladder.md written — check_values 83 -> 99 confirmed, 0 not found
+- [closed] 2026-08-21  entry 79: O50 EXPLORATORY — 38 zeta zeros recovered with COMPLETE separation (at-zeros min 6.478 vs between-zeros max 2.341) on a ratio-1.002 ladder to 1e11; O17 found 3; dyadic control still fails; O17 was sieve-limited not exhausted
 - [open]   2026-08-21  entry 78: the four zeros COMPUTED from pi(2^n) rather than transcribed — 7 theorems, zero axioms, including (20,6); The-Four-Zeros B9 repointed from the def to measured_zeros_all_vanish; 3 transcribed copies remain elsewhere
-- [open]   2026-08-21  entry 77: block D FORMALISED and wired — six theorems give D1/D2/D3/D4 plus the ATTAINMENT StmtC2 never had (it proved containment only); five paper source lines now cite Lean; BUILD.md corrected 119 -> 139 theorems
-- [open]   2026-08-21  entry 76: record check — Euler-Factor-Chain § D1/D3/D4 already state the floor, the ceiling and the power iteration in prose; three of my claims withdrawn; block D is UNFORMALISED while Chain.sym_eq_zero_iff proves D1's floor half
-- [open]   2026-08-21  entry 75: O49 EXPLORATORY — the residual table's depth gain ATTAINS the C2 ceiling 1+b^(-1/2) at 97.68% +/- 2.91% across 12 bases, entered by d=1 or 2, so no depth window exists where a sub-ceiling mode is visible
-- [open]   2026-08-21  entry 74: O48 re-read — the raw gain is CONSTANT at 1.7710 +/- 0.0766 (CV 4.3%) across all 12 bases, so entry 73's small-angle agreement was the gamma_1 model CROSSING a constant, not tracking; the locked window d in [3,8] sits ABOVE d* for most of the base set
-- [open]   2026-08-21  entry 72: small angles make the curve — the cross-base transform is the symbol ratio, its cost is Euler-Maclaurin, and its radius of convergence 2pi IS the pole lattice IS Nyquist; O45 family k=4 (b=1.5597) is exactly 2pi/gamma_1, the threshold, locked 08-18 for another reason
-- [open]   2026-08-21  entry 71: audit defects FIXED — tableFrom_mode localised to the window (witness: geometric row 2^n at b=2 gives cell(5,3)=4), 0<m added, and Superposition.tableFrom_eq_modeSum_reweighted written, the composition that was missing
-- [open]   2026-08-21  entry 70: blind adversarial audit of Chain.lean, 3 rounds — tableFrom_mode has a TWO-ROW hypothesis class and does not reach the dyadic table (entry 68 is wrong there); joint_gain_periodic lacks 0<m; F3/F4/F6 retracted, paper exonerated
-- [open]   2026-08-20  entry 67: the 12 oversized NOTEPAD lines truncated (2 backfilled first as entries 64/65 since they cited nothing) — gate down from 14 broken references to 2, baseline re-cut
+- [closed] 2026-08-21  entry 77: block D FORMALISED and wired — six theorems give D1/D2/D3/D4 plus the ATTAINMENT StmtC2 never had (it proved containment only); five paper source lines now cite Lean; BUILD.md corrected 119 -> 139 theorems
+- [closed] 2026-08-21  entry 76: record check — Euler-Factor-Chain § D1/D3/D4 already state the floor, the ceiling and the power iteration in prose; three of my claims withdrawn; block D is UNFORMALISED while Chain.sym_eq_zero_iff proves D1's floor half
+- [closed] 2026-08-21  entry 75: O49 EXPLORATORY — the residual table's depth gain ATTAINS the C2 ceiling 1+b^(-1/2) at 97.68% +/- 2.91% across 12 bases, entered by d=1 or 2, so no depth window exists where a sub-ceiling mode is visible
+- [closed] 2026-08-21  entry 74: O48 re-read — the raw gain is CONSTANT at 1.7710 +/- 0.0766 (CV 4.3%) across all 12 bases, so entry 73's small-angle agreement was the gamma_1 model CROSSING a constant, not tracking; the locked window d in [3,8] sits ABOVE d* for most of the base set
+- [closed] 2026-08-21  entry 72: small angles make the curve — the cross-base transform is the symbol ratio, its cost is Euler-Maclaurin, and its radius of convergence 2pi IS the pole lattice IS Nyquist; O45 family k=4 (b=1.5597) is exactly 2pi/gamma_1, the threshold, locked 08-18 for another reason
+- [closed] 2026-08-21  entry 71: audit defects FIXED — tableFrom_mode localised to the window (witness: geometric row 2^n at b=2 gives cell(5,3)=4), 0<m added, and Superposition.tableFrom_eq_modeSum_reweighted written, the composition that was missing
+- [closed] 2026-08-21  entry 70: blind adversarial audit of Chain.lean, 3 rounds — tableFrom_mode has a TWO-ROW hypothesis class and does not reach the dyadic table (entry 68 is wrong there); joint_gain_periodic lacks 0<m; F3/F4/F6 retracted, paper exonerated
+- [closed] 2026-08-20  entry 67: the 12 oversized NOTEPAD lines truncated (2 backfilled first as entries 64/65 since they cited nothing) — gate down from 14 broken references to 2, baseline re-cut
 - [open]   2026-08-20  entry 66: SeedPerturbation and PairIdentity off Mathlib, Classical.choice 84 -> 71 — core `grind` costs Classical.choice so it is no shortcut; floor is 60 of 119 (R/C), or 64 unless Zeros is split
-- [open]   2026-08-20  entry 63: six NOTEPAD lines (entries 53-58) were inside the header's own format-example fence, not under ## Threads — trap deleted, lines moved, check_refs.py now reports any thread line above the heading
+- [closed] 2026-08-20  entry 63: six NOTEPAD lines (entries 53-58) were inside the header's own format-example fence, not under ## Threads — trap deleted, lines moved, check_refs.py now reports any thread line above the heading
 - [open]   2026-08-20  entry 62: the joint cross-base test (O18 design) has never been run on the exact zeros (O44 object) — entry 52 tested RESOLUTION at b=2^(1/2), a refinement of base 2, not coupling between independent ladders
-- [open]   2026-08-20  entry 61: the `dia/col = sqrt(b)` gain measured in CHAIN.md at 615 cells is now four compiling theorems in EulerFactorChain terms; C-valued so [propext, Classical.choice, Quot.sound] is the floor; DRAFT, not in the tree
-- [open]   2026-08-20  entry 60: `tableFrom N r d = stencil d (fun k => N (r-k))` proved via Mathlib fwdDiff_iter_eq_sum_shift — a cell is one Pascal line, (8,3) reads 23-3*13+3*7-5=0 by decide; DRAFT, not in the tree
-- [open]   2026-08-20  entry 59: Construction.lean off Mathlib — Classical.choice was the library instances and Quot.sound was `omega` on casts that are `rfl`; LANDED, 8037 jobs, 4 theorems improved, 55 of 79 remaining are R/C and permanent
-- [open]   2026-08-21  entry 58: NEXT.md's two record errors checked against artifacts — the 8.4% vs 8.56% G4 spread is NOT an error (value AT gamma_n vs height of the peak NEAR it, both correctly sourced, neither should be edited); the 247-cell attribution IS real, it is O16 GATE A not O27
-- [open]   2026-08-21  entry 57: O23 and O44 quoted CLAUDE.md's "only 07/O7 is preregistered" verbatim; all four preregs now carry verdicts, so both now cite CONTEXT.md rather than enumerate — and O23's two results JSONs still hold the old string, a deliberate script/artifact divergence
-- [open]   2026-08-21  entry 56: t24 — commensurability collected: integer bases 2..9 meet only on the power chains 2-4-8 and 3-9; the sub-integer scan is commensurate BY CONSTRUCTION, all eight arms integer multiples of pi/(4*gamma_1)
-- [open]   2026-08-21  entry 55: t23 — the fold is an IDENTITY not a test (wing+ − wing− = cell always); wings weigh 807295 each at (20,6) and 168 each at (8,3); (25,11) corrected from diagonal 13 to 14
-- [open]   2026-08-20  entry 54: t22 — the zero-surface question is UNANSWERABLE with O45's base set: 8 of 11 bases share a lattice and carry 107 of 125 zeros, so cross-base alignment is forced by the prereg's own base choice
+- [closed] 2026-08-20  entry 61: the `dia/col = sqrt(b)` gain measured in CHAIN.md at 615 cells is now four compiling theorems in EulerFactorChain terms; C-valued so [propext, Classical.choice, Quot.sound] is the floor; DRAFT, not in the tree
+- [closed] 2026-08-20  entry 60: `tableFrom N r d = stencil d (fun k => N (r-k))` proved via Mathlib fwdDiff_iter_eq_sum_shift — a cell is one Pascal line, (8,3) reads 23-3*13+3*7-5=0 by decide; DRAFT, not in the tree
+- [closed] 2026-08-20  entry 59: Construction.lean off Mathlib — Classical.choice was the library instances and Quot.sound was `omega` on casts that are `rfl`; LANDED, 8037 jobs, 4 theorems improved, 55 of 79 remaining are R/C and permanent
+- [closed] 2026-08-21  entry 58: NEXT.md's two record errors checked against artifacts — the 8.4% vs 8.56% G4 spread is NOT an error (value AT gamma_n vs height of the peak NEAR it, both correctly sourced, neither should be edited); the 247-cell attribution IS real, it is O16 GATE A not O27
+- [closed] 2026-08-21  entry 57: O23 and O44 quoted CLAUDE.md's "only 07/O7 is preregistered" verbatim; all four preregs now carry verdicts, so both now cite CONTEXT.md rather than enumerate — and O23's two results JSONs still hold the old string, a deliberate script/artifact divergence
+- [closed] 2026-08-21  entry 56: t24 — commensurability collected: integer bases 2..9 meet only on the power chains 2-4-8 and 3-9; the sub-integer scan is commensurate BY CONSTRUCTION, all eight arms integer multiples of pi/(4*gamma_1)
+- [closed] 2026-08-21  entry 55: t23 — the fold is an IDENTITY not a test (wing+ − wing− = cell always); wings weigh 807295 each at (20,6) and 168 each at (8,3); (25,11) corrected from diagonal 13 to 14
+- [closed] 2026-08-20  entry 54: t22 — the zero-surface question is UNANSWERABLE with O45's base set: 8 of 11 bases share a lattice and carry 107 of 125 zeros, so cross-base alignment is forced by the prereg's own base choice
 - [open]   2026-08-21  entry 53: t26 — `d*` is NOT a per-base constant (dyadic 3→7 over r 13..32), but its SLOPE is: corr(ln b, slope) = +0.9735, so CHAIN.md §4 correlated the wrong variable; and family k=4 at ratio 0.5553 crosses anyway, contradicting Depth-as-Time § C4 — all eight bases cross, so the statistic likely is not measuring § C3
 - [open]   2026-08-19  entry 65: figures/coverage.png was committed at 3da2ee8 with NO script; t15_cell_coverage.py reconstructs it and postdates it — the kill reproduces, one transcription slip found (base 6's counts are base 7's)
-- [open]   2026-08-19  entry 64: six analyses ran INLINE with no script saved; t9-t14 reconstruct them and postdate them — t10-t14 reproduce, t9's structure reproduces but 6 of 7 gamma values differ in the third decimal
-- [open]   2026-08-19  entry 52: O46/O47 — the `density ~ 1/S` mechanism is REFUTED, and the zeros live in the extreme thin tail of stencil mass; (20,6) does NOT survive factor-2 refinement, reading -6884 at cell (40,12) of base 2^(1/2)
-- [open]   2026-08-19  entry 51: O45 run — sidecar matches post_compute_sha256, 121 resolved sub-2 zeros, 35 clearing the mass floor, p_conditional 0.0839; the verdict line is empty and is Julian's
-- [open]   2026-08-19  entry 50: the O45 prereg locked — fineness against intrinsic, eleven bases matched on one value ceiling, and the empty-rung discovery that forced the resolved stratum
-- [open]   2026-08-18  entry 49: O44 — base 2 is the only INTEGER base with exact zeros, 4 in 496 resolved cells against base 3's 0 in the identical 496; entry 17's conclusion survives by a route entry 17 did not take
-- [open]   2026-08-18  entry 48: O33 was still reading the EXTERNAL lattice_mapper path after entry 46 vendored those eight tables; repointed at imported/, re-run, non-semantic
-- [open]   2026-08-18  entry 47: is the dyadic (2,1) a cancellation or a seeding artifact? — cell(2,1) is CONVENTION-MOBILE, and the check splits the four zeros deep-versus-shallow
-- [open]   2026-08-18  entry 46: lattice_mapper difference tables IMPORTED — 27 files into imported/lattice_mapper/, every one SHA-256 verified, on a convention no in-repo artifact uses; archive_unsilenced/ deliberately left behind
-- [open]   2026-08-18  entry 45: pair identity PROVED in Lean — and the row hypothesis had to be window-local, because a global geometric hypothesis is vacuous
-- [open]   2026-08-18  entry 44: prereg filenames now carry NO status (CLAUDE.md § Prereg discipline, Julian-approved) — the sidecar preregs/<basename>.sha256 is the authority
-- [open]   2026-08-18  entry 43: O42 cited the DRAFT prereg path at script lines 5/10/417/737 and it propagated into run 1's log and results JSON; the artifacts are frozen and keep the old string
+- [closed] 2026-08-19  entry 64: six analyses ran INLINE with no script saved; t9-t14 reconstruct them and postdate them — t10-t14 reproduce, t9's structure reproduces but 6 of 7 gamma values differ in the third decimal
+- [closed] 2026-08-19  entry 52: O46/O47 — the `density ~ 1/S` mechanism is REFUTED, and the zeros live in the extreme thin tail of stencil mass; (20,6) does NOT survive factor-2 refinement, reading -6884 at cell (40,12) of base 2^(1/2)
+- [closed] 2026-08-19  entry 51: O45 run — sidecar matches post_compute_sha256, 121 resolved sub-2 zeros, 35 clearing the mass floor, p_conditional 0.0839; the verdict line is empty and is Julian's
+- [closed] 2026-08-19  entry 50: the O45 prereg locked — fineness against intrinsic, eleven bases matched on one value ceiling, and the empty-rung discovery that forced the resolved stratum
+- [closed] 2026-08-18  entry 49: O44 — base 2 is the only INTEGER base with exact zeros, 4 in 496 resolved cells against base 3's 0 in the identical 496; entry 17's conclusion survives by a route entry 17 did not take
+- [closed] 2026-08-18  entry 48: O33 was still reading the EXTERNAL lattice_mapper path after entry 46 vendored those eight tables; repointed at imported/, re-run, non-semantic
+- [closed] 2026-08-18  entry 47: is the dyadic (2,1) a cancellation or a seeding artifact? — cell(2,1) is CONVENTION-MOBILE, and the check splits the four zeros deep-versus-shallow
+- [closed] 2026-08-18  entry 46: lattice_mapper difference tables IMPORTED — 27 files into imported/lattice_mapper/, every one SHA-256 verified, on a convention no in-repo artifact uses; archive_unsilenced/ deliberately left behind
+- [closed] 2026-08-18  entry 45: pair identity PROVED in Lean — and the row hypothesis had to be window-local, because a global geometric hypothesis is vacuous
+- [closed] 2026-08-18  entry 44: prereg filenames now carry NO status (CLAUDE.md § Prereg discipline, Julian-approved) — the sidecar preregs/<basename>.sha256 is the authority
+- [closed] 2026-08-18  entry 43: O42 cited the DRAFT prereg path at script lines 5/10/417/737 and it propagated into run 1's log and results JSON; the artifacts are frozen and keep the old string
 - [open]   2026-08-17  O24 pi_at float-key defect fixed — search key floored to an exact Python int, killing a whole-array float64 upcast per call; PERFORMANCE ONLY, prior O24 results remain FULLY COMPARABLE (verified cell-by-cell on two settings, only timestamp/path/sha differ); needs an instrument-fix lab_notebook entry
 - [open]   2026-08-17  O24 script sha256 moved 6e2ddd01… → f3525a7f… with that fix — every O24 results JSON on disk records code_version 6e2ddd01…, now a stale pointer even though behaviour is unchanged; decide whether to note or re-stamp
 - [open]   2026-08-17  entry 35: results/O24_gen_xmax3e8_run.log is NOT a run — an aborted timing probe killed at the 2-minute mark, which is why it stops mid-G6, copied into results/ from a scratch dir in error; needs relabelling in results/ and entry 35's "G1 through G5 are reported" framing corrected (Julian's call)
-- [open]   2026-08-17  entry 34: G4/G5 ratio across the three REAL O24 settings reads 1.35 (1.5e8), 1.53 (1e9), 1.42 (3e9) — it widened then NARROWED, and G5 gained more than G4 between 1e9 and 3e9 (+31.8% vs +22.1%), so the block-size account of the G4 peak is NOT ruled out
-- [open]   2026-08-17  entry 34: the claim made in conversation that the G4/G5 ratio widened monotonically across three points was WRONG — it rested on counting the 3e8 timing probe as a data point; there are three real settings, not four
-- [open]   2026-08-17  entry 35: O24 at xmax=3e9 COMPLETED 2026-08-17 23:02 (PID 63229, ~2h) — G8 P_max/median 12.039652 (argmax 30.4500, DETECT, gate A PASSED), "SCALING BAND: FALLS", peak stays at G4 38.299307; results/O24_gen_xmax3e9_results.json written, 71341222 B, 203334 rows, gates A/B/C all PASSED
-- [open]   2026-08-17  PROVENANCE CONTAMINATION: results/O24_gen_xmax3e9_results.json records code_version f3525a7f… (post-fix) although the process actually executed 6e2ddd01… — _code_version() hashes __file__ at WRITE time and the pi_at fix landed mid-run; numbers unaffected (fix is behaviour-identical) but the stamp names code that did not produce them
+- [closed] 2026-08-17  entry 34: G4/G5 ratio across the three REAL O24 settings reads 1.35 (1.5e8), 1.53 (1e9), 1.42 (3e9) — it widened then NARROWED, and G5 gained more than G4 between 1e9 and 3e9 (+31.8% vs +22.1%), so the block-size account of the G4 peak is NOT ruled out
+- [closed] 2026-08-17  entry 34: the claim made in conversation that the G4/G5 ratio widened monotonically across three points was WRONG — it rested on counting the 3e8 timing probe as a data point; there are three real settings, not four
+- [closed] 2026-08-17  entry 35: O24 at xmax=3e9 COMPLETED 2026-08-17 23:02 (PID 63229, ~2h) — G8 P_max/median 12.039652 (argmax 30.4500, DETECT, gate A PASSED), "SCALING BAND: FALLS", peak stays at G4 38.299307; results/O24_gen_xmax3e9_results.json written, 71341222 B, 203334 rows, gates A/B/C all PASSED
+- [closed] 2026-08-17  PROVENANCE CONTAMINATION: results/O24_gen_xmax3e9_results.json records code_version f3525a7f… (post-fix) although the process actually executed 6e2ddd01… — _code_version() hashes __file__ at WRITE time and the pi_at fix landed mid-run; numbers unaffected (fix is behaviour-identical) but the stamp names code that did not produce them
 - [open]   2026-08-17  entry 36: O33's crossing-slope law ln b/(2 ln ratio) was derived AFTER seeing the data — fits b=2 to 6%, b=3 to 15%, needs an out-of-sample test
 - [open]   2026-08-17  entry 40: does the Weil-form balance survive varying the mollifier W and k? nothing is parameter-independent yet
 - [open]   2026-08-17  entry 40: recompute the per-prime breakdown of the Weil form on the CORRECTED implementation — the only breakdown on record comes from the buggy file
-- [open]   2026-08-17  entry 38: deep cells cannot be tested against the zeros by a truncated explicit formula — a different instrument is needed for d >= 12
+- [paused] 2026-08-17  entry 38: deep cells cannot be tested against the zeros by a truncated explicit formula — a different instrument is needed for d >= 12
 - [open]   2026-08-17  entry 35: O34-O38 have hardcoded parameters instead of CLI flags — same defect as entry 28's O30/O31/O32 thread
-- [open]   2026-08-17  entry 35: the O24 run at larger xmax launched 2026-08-17 had not reported when these entries were written
-- [open]   2026-08-17  entry 32: does the base-3 handover smear near the window where base 2 strikes exactly? 2^7 needs triadic depth 4.42, 2^4 needs 2.52 — neither integer
-- [open]   2026-08-17  entry 30: the 7 anchor-dependent cells on the leading diagonal r = d+1 rest on an arbitrary M(1) := 0 — decorative until a better anchor is argued
+- [closed] 2026-08-17  entry 35: the O24 run at larger xmax launched 2026-08-17 had not reported when these entries were written
+- [paused] 2026-08-17  entry 32: does the base-3 handover smear near the window where base 2 strikes exactly? 2^7 needs triadic depth 4.42, 2^4 needs 2.52 — neither integer
+- [closed] 2026-08-17  entry 30: the 7 anchor-dependent cells on the leading diagonal r = d+1 rest on an arbitrary M(1) := 0 — decorative until a better anchor is argued
 - [open]   2026-08-17  entry 28: O30/O31/O32 have hardcoded parameters instead of CLI flags — deviates from house convention, wants an instrument-fix pass
-- [open]   2026-08-17  entry 29: extend the joint table past r=41 — dyadic data already exists to r=62; the limit is wall clock on pi(3^r), not exactness
+- [paused] 2026-08-17  entry 29: extend the joint table past r=41 — dyadic data already exists to r=62; the limit is wall clock on pi(3^r), not exactness
 - [open]   2026-08-17  entry 31: machine-verify the hand-computed interleaved row sums r=1..6 and extend to r=41 — the intended run was killed before output
-- [open]   2026-08-17  entry 31: measure base 3's crossing depth at r=20 against the predicted d ~ 8.5 — falsifiable test of the transfer function
-- [open]   2026-08-17  entry 27: entry 26's verdicts were an artifact of its own definitions — redone under Julian's, six items land
-- [open]   2026-08-17  entry 27: THE re-seeing — the difference table as a sampling instrument, not as arithmetic
-- [open]   2026-08-17  entry 27: OPEN QUESTION — integers force b >= 2 but the threshold is 1.2489; can the number line sample its own residual?
-- [open]   2026-08-17  entry 27: OPEN QUESTION — what characterises the residual independent of any grid? (four grids, one spectrum)
-- [open]   2026-08-17  entry 27: OPEN QUESTION — which zeros does depth d select for? (comb filter, response (1-b^-rho)^d)
-- [open]   2026-08-17  entry 27: OPEN QUESTION — is 28 decimals per unit depth a law or a range artifact? (later question than Connes')
-- [open]   2026-08-17  entry 27: new = old things seen a new way; generative = poses new questions. Bibliographic novelty is the wrong test
-- [open]   2026-08-17  entry 27: method note — this instance oscillated inflate/deflate all session; both avoid a clean judgment
+- [closed] 2026-08-17  entry 31: measure base 3's crossing depth at r=20 against the predicted d ~ 8.5 — falsifiable test of the transfer function
+- [closed] 2026-08-17  entry 27: entry 26's verdicts were an artifact of its own definitions — redone under Julian's, six items land
+- [closed] 2026-08-17  entry 27: THE re-seeing — the difference table as a sampling instrument, not as arithmetic
+- [closed] 2026-08-17  entry 27: OPEN QUESTION — integers force b >= 2 but the threshold is 1.2489; can the number line sample its own residual?
+- [paused] 2026-08-17  entry 27: OPEN QUESTION — what characterises the residual independent of any grid? (four grids, one spectrum)
+- [closed] 2026-08-17  entry 27: OPEN QUESTION — which zeros does depth d select for? (comb filter, response (1-b^-rho)^d)
+- [paused] 2026-08-17  entry 27: OPEN QUESTION — is 28 decimals per unit depth a law or a range artifact? (later question than Connes')
+- [closed] 2026-08-17  entry 27: new = old things seen a new way; generative = poses new questions. Bibliographic novelty is the wrong test
+- [closed] 2026-08-17  entry 27: method note — this instance oscillated inflate/deflate all session; both avoid a clean judgment
 - [open]   2026-08-17  entry 26: THEOREM AVAILABLE — under RH, Delta^d pi(2^n) != 0 for r > R with R explicit; would settle (20,6) as last
 - [open]   2026-08-17  entry 26: THEOREM-SHAPED — Nyquist no-go, b < exp(pi/gamma_1) = 1.2489; base 2 fails by 3x
-- [open]   2026-08-17  entry 26: THIRD DIRECTION — prove Connes' §6.6 simplicity for a range of lambda; our gap ratio says it is true and not marginal
-- [open]   2026-08-17  entry 26: the lemma for any rigorous treatment — depth d multiplies each zero's contribution by (1 - 2^(-rho))^d, exact
-- [open]   2026-08-17  entry 26: the table is a construction, not a discovery — elementary operator on OEIS A007053
-- [open]   2026-08-17  entry 26: entries 17 and 19 presented as fresh three things already in primebeat/primebeat_lean since Feb-Jul
-- [open]   2026-08-17  entry 25: compression has no answer until accuracy is named — 1 zero for 10%, 5000 for +-1 at x=10^4
-- [open]   2026-08-17  entry 25: absolute-accuracy crossover at x = 1030; relative targets get CHEAPER with x because psi(x) ~ x
-- [open]   2026-08-17  entry 25: psi jumps at prime powers and the explicit formula gives the MIDPOINT — evaluate off-integer or every prime power fails
-- [open]   2026-08-17  entry 25: error is non-monotone in K — K_first fires by luck; K_stay is better and still noisy
-- [open]   2026-08-17  entry 24: {2,3,5,7} pulls all six zeros out together within 6% at ~26x median — the spectrum, not a peak
-- [open]   2026-08-17  entry 24: ceiling is block size — 2604 primes/block at G4, 215 at G8; peak should MOVE with xmax, unverified
-- [open]   2026-08-17  entry 24: {11,13,17,19} detects too (5.75 vs 6.95 at matched 238 vs 237 rungs) — the grid is nearly free
-- [open]   2026-08-17  entry 24: architect-prime question NOT testable by generator choice — grid is not the signal; silencing is the instrument
-- [open]   2026-08-17  entry 24: xmax=1e9 sweep interrupted at G5; G1-G4 all improved, G4 26.73 -> 31.37 — rerun to locate the new peak
-- [open]   2026-08-17  entry 23: bridge coordinate WITHDRAWN — three defensible matchings give d = 2.70, 6.40, or a regime
-- [open]   2026-08-17  entry 23: each matching yields its own pleasing (8,3) reading — the coincidence was the frame, not the data
-- [open]   2026-08-17  entry 23: connes_cvs `c` names the prime set directly (primes <= c, L = log c) — settled from source
-- [open]   2026-08-17  entry 23: O19's figure has an arbitrary x-axis; retained as record, not citable as correspondence
-- [open]   2026-08-17  entry 23: O20/O21/O22 do not use the bridge and stand as measured
-- [open]   2026-08-17  entry 23: what would settle it is a quantity BOTH objects compute — O22 killed the only candidate
-- [open]   2026-08-17  entry 22: December alignment CSV reproduces bit-for-bit; 5 of 6 published cells do not
-- [open]   2026-08-17  entry 22: Z moves up to 5.68 sigma on seed alone — honest form is Z ~= -18 +/- 1.5, not -17.61
-- [open]   2026-08-17  entry 22: more scrambles cannot fix it — Z's denominator is an estimated sd, 7.1% relative error at n=100
-- [open]   2026-08-17  entry 22: the "25,000 primes" row used 2,762 primes — build_primes_up_to sieves to a VALUE not a count
-- [open]   2026-08-17  entry 21: Beat vs Connes at the identical window {2,3,5,7,11,13} is a factor of 10^53
-- [open]   2026-08-17  entry 21: restoring the log p weight moves the Beat 1.4x — the accuracy is variational, not in the weighting
-- [open]   2026-08-17  entry 21: O22's Gate A failed — |B| has 101 local minima in t=[10,50], canyons are envelope not minima
-- [open]   2026-08-17  entry 20: T has a validity window with TWO failure modes — form not yet positive below, precision above
-- [open]   2026-08-17  entry 20: doubling dps buys exactly one more doubling of T; the window slides, it does not widen
-- [open]   2026-08-17  entry 20: lambda_1 is NOT converged — 9.1% then 8.3% per doubling; earlier extrapolation withdrawn
-- [open]   2026-08-17  entry 20: the fallback "largest T that completed" ran two c-sweeps at a dead parameter — design fault
-- [open]   2026-08-17  entry 19: bridge coordinate lambda = 2^((d+1)/2) — matching by window ratio, a choice not a theorem
-- [open]   2026-08-17  entry 19: (8,3) lands at lambda=4 whose window is exactly {2,3} — the mod-6 lattice, unforced agreement
-- [open]   2026-08-17  entry 19: (20,6) sits ONE PRIME short of the window Connes computes in
-- [open]   2026-08-17  entry 19: Connes' open question measured — 2.19e-55 at c=13 to 5.49e-120 at c=29, ~28 decimals per depth
-- [open]   2026-08-17  entry 19: his §6.6 unproved hypothesis (simple + even minimum) holds — gap ratio never below 3.96e7
-- [open]   2026-08-17  entry 19: the gap uses a REPLICATED V_even projector, not a public API — connes_cvs exposes no lambda_2
-- [open]   2026-08-17  entry 19: matplotlib 3.11.1 + 9 transitive deps installed today, unpinned — third addition, still no lockfile
-- [open]   2026-08-17  entry 19: Groskin / arXiv:2605.20224 appear nowhere in Connes' reference list — connes-cvs provenance gap
-- [open]   2026-08-16  entry 17: depth transfer function is |1 - b^(-rho)| — trend 0.5, gamma_1 1.676, ratio 3.35/depth in base 2
-- [open]   2026-08-16  entry 17: (b-1)/b is minimised at b=2 over all integer bases — base 2 suppresses trend fastest
-- [open]   2026-08-16  entry 17: BUT triadic reaches 1 twice ((3,2) and (5,4)) and never lands — the magnitude argument does not separate the bases
-- [open]   2026-08-16  entry 17: minimal form of the deep zero is Delta^7 pi(2^n) = 0 at n=20 — eight values of pi, no table needed
-- [open]   2026-08-16  entry 17: search prior art against OEIS A007053 higher differences, not against "dyadic difference table"
-- [open]   2026-08-16  entry 17: the composite balance is the identity restated, not a second finding — all content is in the vanishing
-- [open]   2026-08-16  entry 16: H-JOINT holds at x0=2 — L2 NULL, L3 NULL, L23 DETECT at gamma_2 (0.052), L235 DETECT at gamma_4
-- [open]   2026-08-16  entry 16: L2 shows EIGHT peaks at identical height spaced 2pi/log2 — the alias comb, measured directly
-- [open]   2026-08-16  entry 16: dyadic ladder is not blind, it is AMBIGUOUS — 100th percentile against surrogates, signal smeared across the comb
-- [open]   2026-08-16  entry 16: headline flips with x0 (H-NONE at 1000, H-JOINT at 2) — rung count, not structure
-- [open]   2026-08-16  entry 16: band rule and surrogate test disagree — surrogate is the better instrument, should have been pre-registered
-- [open]   2026-08-16  entry 16: L_irr control has a block with ZERO primes — not a clean separation of irregular-vs-multiplicative
-- [open]   2026-08-16  entry 15: prime-power correction closes to 5 decimals — mean(ehat) -0.004378 + mean(D/sqrt x) 0.004600 = +0.000222
-- [open]   2026-08-16  entry 15: R lowered the BACKGROUND, did not raise the signal — P_max unchanged to 7 figures, median fell
-- [open]   2026-08-16  entry 15: theta stayed at 0.413 where the addendum series' alpha went to 0.4951 — the two instruments disagree
-- [open]   2026-08-16  entry 15: trimming the low end kills the detection — span buys detection, so extend the top not cut the bottom
-- [open]   2026-08-16  entry 14: FIRST DETECTION — gamma_1, gamma_2, gamma_3 at 14.08, 20.97, 24.98, all inside one resolution element
-- [open]   2026-08-16  entry 14: dyadic control NULL on the same primes and same code — aliasing measured, not argued
-- [open]   2026-08-16  entry 14: indexing by prime index fixes the count by construction — the fluctuation lives in the VALUES
-- [open]   2026-08-16  entry 13: r=2 and r=3 are the ONLY regimes where primes equal composites — 1/1 and 2/2, then composites dominate forever
-- [open]   2026-08-16  entry 13: composite zero (3,2) is caused by prime zero (2,1) — the tables agree until (2,1) splits them
-- [open]   2026-08-16  entry 13: each table's zeros are the OTHER table hitting 2^(r-d-1) — the two zero sets are dual under one identity
-- [open]   2026-08-16  entry 13: (3,2) is a third species of trivial — trivial by smallness of the target, 2^0 = 1
-- [open]   2026-08-16  entry 12: centered (skew-adjoint) table has NO exact zeros anywhere — the Hermitian repair costs the zeros
-- [open]   2026-08-16  entry 12: backward zero = adjacent repeat; centered zero = gap-2 repeat, and there are zero gap-2 repeats at any depth
-- [open]   2026-08-16  entry 12: four backward zeros verified as the ONLY ones to r<=62, d<=61 — past the xlsx's r<=50 spreadsheet ceiling
-- [open]   2026-08-16  entry 12: centered identity composite = 3^d * 2^(r-1-d) - prime holds at all 992 cells — 3^d where backward has 1
-- [open]   2026-08-16  entry 11: dyadic ladder Nyquist is 4.53 but gamma_1 is 14.13 — the zeros were aliased in every dyadic instrument
-- [open]   2026-08-16  entry 11: fine ladder cleared Nyquist (32.96) and still DETECT 0 of 54 — blocks overlap 90%, so no new information
-- [open]   2026-08-16  entry 11: the binding limit is ~16 DISJOINT blocks over 8.4M primes, unchanged since O12 whatever the ladder
-- [open]   2026-08-16  entry 11: disjoint-block instrument (N -> rN matching the step) is the one design where more rungs means more data — not built
-- [open]   2026-08-16  entry 11: theta_rms climbs monotonically to depth 8 and never settles — differencing a log drift, not a power law
-- [open]   2026-08-15  entry 10: O9_audit_20260815.html archived in the tree — body verbatim, dated superseded notice inserted
-- [open]   2026-08-15  entry 10: the archived page's section 04 analyticity claim is wrong in its strong form — corrected by entry 6's placebo sweep
-- [open]   2026-08-15  entry 10: scratchpad is now empty — every artifact from this session's work lives in the tree
-- [open]   2026-08-15  entry 10: the page was written for the other instance and cites DT-A11/A12 section numbers not present in this tree
-- [open]   2026-08-15  entry 9: O12 and O13 now in the tree — entry 8's "scratchpad only, nothing in results/" caveat is superseded
-- [open]   2026-08-15  entry 9: both scripts run twice, generated_utc stripped, byte-identical payload hashes — deterministic
+- [paused] 2026-08-17  entry 26: THIRD DIRECTION — prove Connes' §6.6 simplicity for a range of lambda; our gap ratio says it is true and not marginal
+- [closed] 2026-08-17  entry 26: the lemma for any rigorous treatment — depth d multiplies each zero's contribution by (1 - 2^(-rho))^d, exact
+- [closed] 2026-08-17  entry 26: the table is a construction, not a discovery — elementary operator on OEIS A007053
+- [closed] 2026-08-17  entry 26: entries 17 and 19 presented as fresh three things already in primebeat/primebeat_lean since Feb-Jul
+- [closed] 2026-08-17  entry 25: compression has no answer until accuracy is named — 1 zero for 10%, 5000 for +-1 at x=10^4
+- [closed] 2026-08-17  entry 25: absolute-accuracy crossover at x = 1030; relative targets get CHEAPER with x because psi(x) ~ x
+- [closed] 2026-08-17  entry 25: psi jumps at prime powers and the explicit formula gives the MIDPOINT — evaluate off-integer or every prime power fails
+- [closed] 2026-08-17  entry 25: error is non-monotone in K — K_first fires by luck; K_stay is better and still noisy
+- [closed] 2026-08-17  entry 24: {2,3,5,7} pulls all six zeros out together within 6% at ~26x median — the spectrum, not a peak
+- [closed] 2026-08-17  entry 24: ceiling is block size — 2604 primes/block at G4, 215 at G8; peak should MOVE with xmax, unverified
+- [closed] 2026-08-17  entry 24: {11,13,17,19} detects too (5.75 vs 6.95 at matched 238 vs 237 rungs) — the grid is nearly free
+- [closed] 2026-08-17  entry 24: architect-prime question NOT testable by generator choice — grid is not the signal; silencing is the instrument
+- [closed] 2026-08-17  entry 24: xmax=1e9 sweep interrupted at G5; G1-G4 all improved, G4 26.73 -> 31.37 — rerun to locate the new peak
+- [closed] 2026-08-17  entry 23: bridge coordinate WITHDRAWN — three defensible matchings give d = 2.70, 6.40, or a regime
+- [closed] 2026-08-17  entry 23: each matching yields its own pleasing (8,3) reading — the coincidence was the frame, not the data
+- [closed] 2026-08-17  entry 23: connes_cvs `c` names the prime set directly (primes <= c, L = log c) — settled from source
+- [closed] 2026-08-17  entry 23: O19's figure has an arbitrary x-axis; retained as record, not citable as correspondence
+- [closed] 2026-08-17  entry 23: O20/O21/O22 do not use the bridge and stand as measured
+- [closed] 2026-08-17  entry 23: what would settle it is a quantity BOTH objects compute — O22 killed the only candidate
+- [closed] 2026-08-17  entry 22: December alignment CSV reproduces bit-for-bit; 5 of 6 published cells do not
+- [closed] 2026-08-17  entry 22: Z moves up to 5.68 sigma on seed alone — honest form is Z ~= -18 +/- 1.5, not -17.61
+- [closed] 2026-08-17  entry 22: more scrambles cannot fix it — Z's denominator is an estimated sd, 7.1% relative error at n=100
+- [closed] 2026-08-17  entry 22: the "25,000 primes" row used 2,762 primes — build_primes_up_to sieves to a VALUE not a count
+- [closed] 2026-08-17  entry 21: Beat vs Connes at the identical window {2,3,5,7,11,13} is a factor of 10^53
+- [closed] 2026-08-17  entry 21: restoring the log p weight moves the Beat 1.4x — the accuracy is variational, not in the weighting
+- [closed] 2026-08-17  entry 21: O22's Gate A failed — |B| has 101 local minima in t=[10,50], canyons are envelope not minima
+- [closed] 2026-08-17  entry 20: T has a validity window with TWO failure modes — form not yet positive below, precision above
+- [closed] 2026-08-17  entry 20: doubling dps buys exactly one more doubling of T; the window slides, it does not widen
+- [closed] 2026-08-17  entry 20: lambda_1 is NOT converged — 9.1% then 8.3% per doubling; earlier extrapolation withdrawn
+- [closed] 2026-08-17  entry 20: the fallback "largest T that completed" ran two c-sweeps at a dead parameter — design fault
+- [closed] 2026-08-17  entry 19: bridge coordinate lambda = 2^((d+1)/2) — matching by window ratio, a choice not a theorem
+- [closed] 2026-08-17  entry 19: (8,3) lands at lambda=4 whose window is exactly {2,3} — the mod-6 lattice, unforced agreement
+- [closed] 2026-08-17  entry 19: (20,6) sits ONE PRIME short of the window Connes computes in
+- [closed] 2026-08-17  entry 19: Connes' open question measured — 2.19e-55 at c=13 to 5.49e-120 at c=29, ~28 decimals per depth
+- [closed] 2026-08-17  entry 19: his §6.6 unproved hypothesis (simple + even minimum) holds — gap ratio never below 3.96e7
+- [closed] 2026-08-17  entry 19: the gap uses a REPLICATED V_even projector, not a public API — connes_cvs exposes no lambda_2
+- [closed] 2026-08-17  entry 19: matplotlib 3.11.1 + 9 transitive deps installed today, unpinned — third addition, still no lockfile
+- [closed] 2026-08-17  entry 19: Groskin / arXiv:2605.20224 appear nowhere in Connes' reference list — connes-cvs provenance gap
+- [closed] 2026-08-16  entry 17: depth transfer function is |1 - b^(-rho)| — trend 0.5, gamma_1 1.676, ratio 3.35/depth in base 2
+- [closed] 2026-08-16  entry 17: (b-1)/b is minimised at b=2 over all integer bases — base 2 suppresses trend fastest
+- [closed] 2026-08-16  entry 17: BUT triadic reaches 1 twice ((3,2) and (5,4)) and never lands — the magnitude argument does not separate the bases
+- [closed] 2026-08-16  entry 17: minimal form of the deep zero is Delta^7 pi(2^n) = 0 at n=20 — eight values of pi, no table needed
+- [closed] 2026-08-16  entry 17: search prior art against OEIS A007053 higher differences, not against "dyadic difference table"
+- [closed] 2026-08-16  entry 17: the composite balance is the identity restated, not a second finding — all content is in the vanishing
+- [closed] 2026-08-16  entry 16: H-JOINT holds at x0=2 — L2 NULL, L3 NULL, L23 DETECT at gamma_2 (0.052), L235 DETECT at gamma_4
+- [closed] 2026-08-16  entry 16: L2 shows EIGHT peaks at identical height spaced 2pi/log2 — the alias comb, measured directly
+- [closed] 2026-08-16  entry 16: dyadic ladder is not blind, it is AMBIGUOUS — 100th percentile against surrogates, signal smeared across the comb
+- [closed] 2026-08-16  entry 16: headline flips with x0 (H-NONE at 1000, H-JOINT at 2) — rung count, not structure
+- [closed] 2026-08-16  entry 16: band rule and surrogate test disagree — surrogate is the better instrument, should have been pre-registered
+- [closed] 2026-08-16  entry 16: L_irr control has a block with ZERO primes — not a clean separation of irregular-vs-multiplicative
+- [closed] 2026-08-16  entry 15: prime-power correction closes to 5 decimals — mean(ehat) -0.004378 + mean(D/sqrt x) 0.004600 = +0.000222
+- [closed] 2026-08-16  entry 15: R lowered the BACKGROUND, did not raise the signal — P_max unchanged to 7 figures, median fell
+- [closed] 2026-08-16  entry 15: theta stayed at 0.413 where the addendum series' alpha went to 0.4951 — the two instruments disagree
+- [closed] 2026-08-16  entry 15: trimming the low end kills the detection — span buys detection, so extend the top not cut the bottom
+- [closed] 2026-08-16  entry 14: FIRST DETECTION — gamma_1, gamma_2, gamma_3 at 14.08, 20.97, 24.98, all inside one resolution element
+- [closed] 2026-08-16  entry 14: dyadic control NULL on the same primes and same code — aliasing measured, not argued
+- [closed] 2026-08-16  entry 14: indexing by prime index fixes the count by construction — the fluctuation lives in the VALUES
+- [closed] 2026-08-16  entry 13: r=2 and r=3 are the ONLY regimes where primes equal composites — 1/1 and 2/2, then composites dominate forever
+- [closed] 2026-08-16  entry 13: composite zero (3,2) is caused by prime zero (2,1) — the tables agree until (2,1) splits them
+- [closed] 2026-08-16  entry 13: each table's zeros are the OTHER table hitting 2^(r-d-1) — the two zero sets are dual under one identity
+- [closed] 2026-08-16  entry 13: (3,2) is a third species of trivial — trivial by smallness of the target, 2^0 = 1
+- [closed] 2026-08-16  entry 12: centered (skew-adjoint) table has NO exact zeros anywhere — the Hermitian repair costs the zeros
+- [closed] 2026-08-16  entry 12: backward zero = adjacent repeat; centered zero = gap-2 repeat, and there are zero gap-2 repeats at any depth
+- [closed] 2026-08-16  entry 12: four backward zeros verified as the ONLY ones to r<=62, d<=61 — past the xlsx's r<=50 spreadsheet ceiling
+- [closed] 2026-08-16  entry 12: centered identity composite = 3^d * 2^(r-1-d) - prime holds at all 992 cells — 3^d where backward has 1
+- [closed] 2026-08-16  entry 11: dyadic ladder Nyquist is 4.53 but gamma_1 is 14.13 — the zeros were aliased in every dyadic instrument
+- [closed] 2026-08-16  entry 11: fine ladder cleared Nyquist (32.96) and still DETECT 0 of 54 — blocks overlap 90%, so no new information
+- [closed] 2026-08-16  entry 11: the binding limit is ~16 DISJOINT blocks over 8.4M primes, unchanged since O12 whatever the ladder
+- [closed] 2026-08-16  entry 11: disjoint-block instrument (N -> rN matching the step) is the one design where more rungs means more data — not built
+- [closed] 2026-08-16  entry 11: theta_rms climbs monotonically to depth 8 and never settles — differencing a log drift, not a power law
+- [closed] 2026-08-15  entry 10: O9_audit_20260815.html archived in the tree — body verbatim, dated superseded notice inserted
+- [closed] 2026-08-15  entry 10: the archived page's section 04 analyticity claim is wrong in its strong form — corrected by entry 6's placebo sweep
+- [closed] 2026-08-15  entry 10: scratchpad is now empty — every artifact from this session's work lives in the tree
+- [closed] 2026-08-15  entry 10: the page was written for the other instance and cites DT-A11/A12 section numbers not present in this tree
+- [closed] 2026-08-15  entry 9: O12 and O13 now in the tree — entry 8's "scratchpad only, nothing in results/" caveat is superseded
+- [closed] 2026-08-15  entry 9: both scripts run twice, generated_utc stripped, byte-identical payload hashes — deterministic
 - [open]   2026-08-15  entry 9: params.code_version = script's own sha256, on O12/O13 only — extending it to older scripts still pending Julian
-- [open]   2026-08-15  entry 9: O13's gate reads expected values from the O9 fine JSON rather than hardcoding — breaks if that file changes
-- [open]   2026-08-15  entry 9: entry 8's "15–16 sig figs" on the block-sum gate is really 14.79–16; gate requires 10, passes either way
-- [open]   2026-08-15  entry 9: observed log-log deficit is ~85% of predicted at both σ (−0.034 vs −0.040, −0.070 vs −0.080), not equal
-- [open]   2026-08-15  entry 9: o9_audit.html is still scratchpad-only and session-scoped — the only local copy, needs a home or it is lost
-- [open]   2026-08-15  entry 9: reproducible-from-script is not versioned — still no VCS, nothing committed
-- [open]   2026-08-15  entry 8: fit-free dyadic ratio test gives a = 1 − σ — the block sum is additive, no cancellation at any tested t
-- [open]   2026-08-15  entry 8: σ=0 is the discriminating row and reads a = 1.007 — additive, not square-root
-- [open]   2026-08-15  entry 8: the SQRT band was mis-designed — at σ=0.5 additive also predicts a=1/2, so the two hypotheses coincide there
-- [open]   2026-08-15  entry 8: σ=1/2 not distinguished — a = 1 − σ is a straight line through it, measured with no fit/window/threshold
-- [open]   2026-08-15  entry 8: a = 1 − σ is a reflection with fixed point 1/2, but its origin is count-times-size, not the functional equation
-- [open]   2026-08-15  entry 8: log-log correction measured at −0.07σ against predicted −σ/log N ≈ −0.083σ — entry 3's mechanism confirmed
-- [open]   2026-08-15  entry 8: t = 50, 160, 320 still TRANS at N=256,000 — every large-t exponent in this project is a transient reading
-- [open]   2026-08-15  entry 8: smoothness null is a spike not a tail — 58 of 91 centres inside (2.50, 2.60], no T makes the test graded
-- [open]   2026-08-15  entry 8: no threshold isolates 0.5 — calling it STRUCTURE requires T<2.5521, which fires 0.51–0.56 and the four edge centres too
-- [open]   2026-08-15  entry 8: all four one-outlier exclusions landed on rung N=64000, three at t=40 — not random interference, unexplained
-- [open]   2026-08-15  entry 8: both measurements are scratchpad-only under /private/tmp — nothing in results/, no script in tree computes them
-- [open]   2026-08-15  entry 8: the fit-free ratio instrument has no home in the tree — wants promoting to an O-script if it is going to be cited
-- [open]   2026-08-15  entry 7: O11 fixed and staged UNRUN — launch is ./.venv/bin/python O11_extend_counts.py --rmax 76
-- [open]   2026-08-15  entry 7: new system dependency — brew primecount 8.6 at /opt/homebrew/bin/primecount, not in any lockfile
-- [open]   2026-08-15  entry 7: r=76 now projects 2.7-4.9h threaded (was 27-46h) — 128-bit penalty never paid, same code path
-- [open]   2026-08-15  entry 7: parallel efficiency fell 1532% at n=58 to ~775% at n=63/64 — may degrade further up the ladder
-- [open]   2026-08-15  entry 7: primecount memory footprint at 2^76 unmeasured — the one unbudgeted risk in the 3h estimate
-- [open]   2026-08-15  entry 7: backend resolved once pre-loop and printed — a mid-run failure stops rather than downgrading to 1 core
-- [open]   2026-08-15  entry 7: O11 docstring REQUIREMENTS still says only "pip install primecountpy numpy" — omits brew primecount
-- [open]   2026-08-15  entry 7: --estimate returns before backend resolution, so it cannot report which backend a real run would pick
-- [open]   2026-08-15  entry 5: O9_run.log ≡ O9_run_default.log is a deliberate preservation copy, not an accidental duplicate
-- [open]   2026-08-15  entry 1: O8_run.log ≡ O8_run_dps300.log is likewise deliberate — copied before the dps=150 re-run
-- [open]   2026-08-15  entry 5: results filename is fixed with no timestamp or tag — every rerun clobbers unless --out is passed
-- [open]   2026-08-15  entry 6: part 3's max_z ceiling is 2.604 across 91 window centres — the 3-sd threshold cannot fire on this data
-- [open]   2026-08-15  entry 6: "smooth through 1/2" retracted as evidence — true of the curve, uninformative about the hypothesis
-- [open]   2026-08-15  entry 6: σ=0.500 ranks 11/91 (87.9th pct) and is not even a local max — 0.51/0.52/0.53 all read higher
-- [open]   2026-08-15  entry 6: t=50 column returns 2.4958–2.5345 at every one of 91 centres — that column is fit geometry, not data
-- [open]   2026-08-15  entry 6: max_z dips at centres 0.34, 0.74, 1.15 are the only response to anything — unexplained, not chased
-- [open]   2026-08-15  entry 6: log p_N rescue falsified — reparametrization is a constant ×0.866 rescaling and cannot move a zero
-- [open]   2026-08-15  entry 6: crossing = intercept÷coefficient, invariant under it: 0.9441/1.0752 = 0.8177/0.9313 = 0.878
-- [open]   2026-08-15  entry 6: corrected variable still gives coefficient −0.931 where theory says −1.000 — remainder unaccounted
-- [open]   2026-08-15  entry 6: control is misshapen not displaced — per-t crossings 1.177/1.126/0.792/0.491, spread 0.685
-- [open]   2026-08-15  entry 6: two well-fitted t columns cross ABOVE 1.0 — no proposed mechanism predicts that
-- [open]   2026-08-15  entry 6: r² at σ=0.5 is 0.980/0.964/0.496/0.0004 — t=80 explains 0.04% of its variance, weighted equally in the mean
-- [open]   2026-08-15  entry 6: fix the aggregation — weight or drop t columns by fit quality before any further O9 reading
-- [open]   2026-08-15  entry 6: ladder is the binding constraint (6 rungs, cap N=4000), not --pmax — above ~68000 pmax buys nothing
-- [open]   2026-08-15  entry 5: pre-fix max_z recomputed exactly at 1.997 — the two fixes cancel, verdict never flipped
-- [open]   2026-08-15  entry 5: V3 (window fix without ddof fix) reads STRUCTURE at 3.194 — combination never existed in running code
-- [open]   2026-08-15  entry 5: part 3 max_z not comparable across the fix, and nothing in the envelope distinguishes pre from post
-- [open]   2026-08-15  entry 5: no code_version or git sha in the results envelope — schema change, proposed, pending Julian
-- [open]   2026-08-15  entry 5: declared ±0.02 smoothness window behaved as ±0.01 in IEEE double — now ±0.02 as written
-- [open]   2026-08-15  entry 5: dg/dr print could have discarded a completed run after parts 1–3 — guarded, never fired in practice
-- [open]   2026-08-15  entry 4: O11 call site uses int64 prime_pi — hard stop at n=63; prime_pi_128 is present and is the fix
-- [open]   2026-08-15  entry 4: the overflow fails QUIETLY — --rmax 76 exits clean in 3 min looking like a normal run
-- [open]   2026-08-15  entry 4: primecountpy 0.2.1 wheel is single-threaded, no set_num_threads, OMP ignored — ~8-10x unclaimed
-- [open]   2026-08-15  entry 4: decide target before committing days — r=72 is 3.3h/SE 0.68, r=76 is 27h+/SE 0.61
-- [open]   2026-08-15  entry 4: measured cost ratio 1.52/regime vs the script's hard-coded 1.587 — worth updating the default
-- [open]   2026-08-15  entry 4: pi(2^58) timing measured outside the script, not in the timing file — reproject after next run
-- [open]   2026-08-15  entry 4: O11 is undocumented in all four commitment files, and there is no O10 anywhere in the tree
-- [open]   2026-08-15  entry 4: O11 cites DT-A7, DT-A9 §1.4, DT-A10 §2.1, dyadic-table-v2 §7.2/§7.3/§7.4 — none on this machine
-- [open]   2026-08-15  entry 4: cache now r=62; O4/O5/O7 have not been re-run against the extended cache
-- [open]   2026-08-15  entry 3: re-run O9 part 2 regressing on log p_N not log N — settles the loglog rescue prospectively
-- [open]   2026-08-15  entry 3: write the short prereg for that re-run before running it
-- [open]   2026-08-15  entry 3: O9 part 2 control failed on its own stated criterion — crossing at 0.881, not 1.0
-- [open]   2026-08-15  entry 3: loglog correction predicts slope −1.21..−1.12 over the ladder; observed −1.07 undershoots it
-- [open]   2026-08-15  entry 3: intercept 0.943 unexplained by loglog (should be exactly 1.000) — phase cancellation is a second effect
-- [open]   2026-08-15  entry 3: "smooth through 1/2" has no stated minimum detectable kink — absence-of-evidence, per O7 prereg's own rule
-- [open]   2026-08-15  entry 3: conclusion overreaches — nothing in O9 tests Mellin normalization or the reflection axis
-- [open]   2026-08-15  entry 2: repo folded into the research program; backfill against the git scaffold once it lands
-- [open]   2026-08-15  entry 2: CONTEXT.md still says "uncommitted scratch bench" — correction proposed, pending Julian
-- [open]   2026-08-15  entry 2: six of nine tests unpreregistered — now load-bearing, not bookkeeping
-- [open]   2026-08-15  entry 1: folder is not a git repo — no VCS, two .bak files standing in
-- [open]   2026-08-15  entry 1: no requirements.txt or lockfile for the 3.14.3 venv (connes-cvs 0.3.1 is the fragile pin)
-- [open]   2026-08-15  entry 1: six cited docs missing everywhere — dyadic-table-v2, DT-A/A2/A3/A4, O3c
-- [open]   2026-08-15  entry 1: "Prime Beat papers (Sambrano, Jan 2026)" not confirmed as the primebeat_lean notebook paper
-- [open]   2026-08-15  entry 1: prereg pre_compute_sha256 still PENDING while Run record asserts it matches post
-- [open]   2026-08-15  entry 1: O7 determinism unverified — locked prereg claims byte-identical reproduction, never re-run
-- [open]   2026-08-15  entry 1: O9 reports "smooth through 1/2" though its own abscissa lands near 0.85, not 1.0
-- [open]   2026-08-15  entry 1: O8 has no results JSON — three logs are its entire record
-- [open]   2026-08-15  entry 1: duplicate artifacts — O9_run.log ≡ O9_run_default.log, O8_run.log ≡ O8_run_dps300.log
-- [open]   2026-08-15  entry 1: O1/O2/O3b live only in files (2)/ — never promoted, no result JSON
-- [open]   2026-08-15  entry 1: O3/O4/05/06/O8/O9 unpreregistered — exploratory, not verdicts
+- [closed] 2026-08-15  entry 9: O13's gate reads expected values from the O9 fine JSON rather than hardcoding — breaks if that file changes
+- [closed] 2026-08-15  entry 9: entry 8's "15–16 sig figs" on the block-sum gate is really 14.79–16; gate requires 10, passes either way
+- [closed] 2026-08-15  entry 9: observed log-log deficit is ~85% of predicted at both σ (−0.034 vs −0.040, −0.070 vs −0.080), not equal
+- [closed] 2026-08-15  entry 9: o9_audit.html is still scratchpad-only and session-scoped — the only local copy, needs a home or it is lost
+- [closed] 2026-08-15  entry 9: reproducible-from-script is not versioned — still no VCS, nothing committed
+- [closed] 2026-08-15  entry 8: fit-free dyadic ratio test gives a = 1 − σ — the block sum is additive, no cancellation at any tested t
+- [closed] 2026-08-15  entry 8: σ=0 is the discriminating row and reads a = 1.007 — additive, not square-root
+- [closed] 2026-08-15  entry 8: the SQRT band was mis-designed — at σ=0.5 additive also predicts a=1/2, so the two hypotheses coincide there
+- [closed] 2026-08-15  entry 8: σ=1/2 not distinguished — a = 1 − σ is a straight line through it, measured with no fit/window/threshold
+- [closed] 2026-08-15  entry 8: a = 1 − σ is a reflection with fixed point 1/2, but its origin is count-times-size, not the functional equation
+- [closed] 2026-08-15  entry 8: log-log correction measured at −0.07σ against predicted −σ/log N ≈ −0.083σ — entry 3's mechanism confirmed
+- [closed] 2026-08-15  entry 8: t = 50, 160, 320 still TRANS at N=256,000 — every large-t exponent in this project is a transient reading
+- [closed] 2026-08-15  entry 8: smoothness null is a spike not a tail — 58 of 91 centres inside (2.50, 2.60], no T makes the test graded
+- [closed] 2026-08-15  entry 8: no threshold isolates 0.5 — calling it STRUCTURE requires T<2.5521, which fires 0.51–0.56 and the four edge centres too
+- [closed] 2026-08-15  entry 8: all four one-outlier exclusions landed on rung N=64000, three at t=40 — not random interference, unexplained
+- [closed] 2026-08-15  entry 8: both measurements are scratchpad-only under /private/tmp — nothing in results/, no script in tree computes them
+- [closed] 2026-08-15  entry 8: the fit-free ratio instrument has no home in the tree — wants promoting to an O-script if it is going to be cited
+- [closed] 2026-08-15  entry 7: O11 fixed and staged UNRUN — launch is ./.venv/bin/python O11_extend_counts.py --rmax 76
+- [closed] 2026-08-15  entry 7: new system dependency — brew primecount 8.6 at /opt/homebrew/bin/primecount, not in any lockfile
+- [closed] 2026-08-15  entry 7: r=76 now projects 2.7-4.9h threaded (was 27-46h) — 128-bit penalty never paid, same code path
+- [closed] 2026-08-15  entry 7: parallel efficiency fell 1532% at n=58 to ~775% at n=63/64 — may degrade further up the ladder
+- [closed] 2026-08-15  entry 7: primecount memory footprint at 2^76 unmeasured — the one unbudgeted risk in the 3h estimate
+- [closed] 2026-08-15  entry 7: backend resolved once pre-loop and printed — a mid-run failure stops rather than downgrading to 1 core
+- [closed] 2026-08-15  entry 7: O11 docstring REQUIREMENTS still says only "pip install primecountpy numpy" — omits brew primecount
+- [closed] 2026-08-15  entry 7: --estimate returns before backend resolution, so it cannot report which backend a real run would pick
+- [closed] 2026-08-15  entry 5: O9_run.log ≡ O9_run_default.log is a deliberate preservation copy, not an accidental duplicate
+- [closed] 2026-08-15  entry 1: O8_run.log ≡ O8_run_dps300.log is likewise deliberate — copied before the dps=150 re-run
+- [closed] 2026-08-15  entry 5: results filename is fixed with no timestamp or tag — every rerun clobbers unless --out is passed
+- [closed] 2026-08-15  entry 6: part 3's max_z ceiling is 2.604 across 91 window centres — the 3-sd threshold cannot fire on this data
+- [closed] 2026-08-15  entry 6: "smooth through 1/2" retracted as evidence — true of the curve, uninformative about the hypothesis
+- [closed] 2026-08-15  entry 6: σ=0.500 ranks 11/91 (87.9th pct) and is not even a local max — 0.51/0.52/0.53 all read higher
+- [closed] 2026-08-15  entry 6: t=50 column returns 2.4958–2.5345 at every one of 91 centres — that column is fit geometry, not data
+- [closed] 2026-08-15  entry 6: max_z dips at centres 0.34, 0.74, 1.15 are the only response to anything — unexplained, not chased
+- [closed] 2026-08-15  entry 6: log p_N rescue falsified — reparametrization is a constant ×0.866 rescaling and cannot move a zero
+- [closed] 2026-08-15  entry 6: crossing = intercept÷coefficient, invariant under it: 0.9441/1.0752 = 0.8177/0.9313 = 0.878
+- [closed] 2026-08-15  entry 6: corrected variable still gives coefficient −0.931 where theory says −1.000 — remainder unaccounted
+- [closed] 2026-08-15  entry 6: control is misshapen not displaced — per-t crossings 1.177/1.126/0.792/0.491, spread 0.685
+- [closed] 2026-08-15  entry 6: two well-fitted t columns cross ABOVE 1.0 — no proposed mechanism predicts that
+- [closed] 2026-08-15  entry 6: r² at σ=0.5 is 0.980/0.964/0.496/0.0004 — t=80 explains 0.04% of its variance, weighted equally in the mean
+- [closed] 2026-08-15  entry 6: fix the aggregation — weight or drop t columns by fit quality before any further O9 reading
+- [closed] 2026-08-15  entry 6: ladder is the binding constraint (6 rungs, cap N=4000), not --pmax — above ~68000 pmax buys nothing
+- [closed] 2026-08-15  entry 5: pre-fix max_z recomputed exactly at 1.997 — the two fixes cancel, verdict never flipped
+- [closed] 2026-08-15  entry 5: V3 (window fix without ddof fix) reads STRUCTURE at 3.194 — combination never existed in running code
+- [closed] 2026-08-15  entry 5: part 3 max_z not comparable across the fix, and nothing in the envelope distinguishes pre from post
+- [closed] 2026-08-15  entry 5: no code_version or git sha in the results envelope — schema change, proposed, pending Julian
+- [closed] 2026-08-15  entry 5: declared ±0.02 smoothness window behaved as ±0.01 in IEEE double — now ±0.02 as written
+- [closed] 2026-08-15  entry 5: dg/dr print could have discarded a completed run after parts 1–3 — guarded, never fired in practice
+- [closed] 2026-08-15  entry 4: O11 call site uses int64 prime_pi — hard stop at n=63; prime_pi_128 is present and is the fix
+- [closed] 2026-08-15  entry 4: the overflow fails QUIETLY — --rmax 76 exits clean in 3 min looking like a normal run
+- [closed] 2026-08-15  entry 4: primecountpy 0.2.1 wheel is single-threaded, no set_num_threads, OMP ignored — ~8-10x unclaimed
+- [closed] 2026-08-15  entry 4: decide target before committing days — r=72 is 3.3h/SE 0.68, r=76 is 27h+/SE 0.61
+- [closed] 2026-08-15  entry 4: measured cost ratio 1.52/regime vs the script's hard-coded 1.587 — worth updating the default
+- [closed] 2026-08-15  entry 4: pi(2^58) timing measured outside the script, not in the timing file — reproject after next run
+- [closed] 2026-08-15  entry 4: O11 is undocumented in all four commitment files, and there is no O10 anywhere in the tree
+- [closed] 2026-08-15  entry 4: O11 cites DT-A7, DT-A9 §1.4, DT-A10 §2.1, dyadic-table-v2 §7.2/§7.3/§7.4 — none on this machine
+- [paused] 2026-08-15  entry 4: cache now r=62; O4/O5/O7 have not been re-run against the extended cache
+- [closed] 2026-08-15  entry 3: re-run O9 part 2 regressing on log p_N not log N — settles the loglog rescue prospectively
+- [closed] 2026-08-15  entry 3: write the short prereg for that re-run before running it
+- [closed] 2026-08-15  entry 3: O9 part 2 control failed on its own stated criterion — crossing at 0.881, not 1.0
+- [closed] 2026-08-15  entry 3: loglog correction predicts slope −1.21..−1.12 over the ladder; observed −1.07 undershoots it
+- [closed] 2026-08-15  entry 3: intercept 0.943 unexplained by loglog (should be exactly 1.000) — phase cancellation is a second effect
+- [closed] 2026-08-15  entry 3: "smooth through 1/2" has no stated minimum detectable kink — absence-of-evidence, per O7 prereg's own rule
+- [closed] 2026-08-15  entry 3: conclusion overreaches — nothing in O9 tests Mellin normalization or the reflection axis
+- [closed] 2026-08-15  entry 2: repo folded into the research program; backfill against the git scaffold once it lands
+- [closed] 2026-08-15  entry 2: CONTEXT.md still says "uncommitted scratch bench" — correction proposed, pending Julian
+- [closed] 2026-08-15  entry 2: six of nine tests unpreregistered — now load-bearing, not bookkeeping
+- [closed] 2026-08-15  entry 1: folder is not a git repo — no VCS, two .bak files standing in
+- [closed] 2026-08-15  entry 1: no requirements.txt or lockfile for the 3.14.3 venv (connes-cvs 0.3.1 is the fragile pin)
+- [closed] 2026-08-15  entry 1: six cited docs missing everywhere — dyadic-table-v2, DT-A/A2/A3/A4, O3c
+- [paused] 2026-08-15  entry 1: "Prime Beat papers (Sambrano, Jan 2026)" not confirmed as the primebeat_lean notebook paper
+- [closed] 2026-08-15  entry 1: prereg pre_compute_sha256 still PENDING while Run record asserts it matches post
+- [closed] 2026-08-15  entry 1: O7 determinism unverified — locked prereg claims byte-identical reproduction, never re-run
+- [closed] 2026-08-15  entry 1: O9 reports "smooth through 1/2" though its own abscissa lands near 0.85, not 1.0
+- [closed] 2026-08-15  entry 1: O8 has no results JSON — three logs are its entire record
+- [closed] 2026-08-15  entry 1: duplicate artifacts — O9_run.log ≡ O9_run_default.log, O8_run.log ≡ O8_run_dps300.log
+- [closed] 2026-08-15  entry 1: O1/O2/O3b live only in files (2)/ — never promoted, no result JSON
+- [closed] 2026-08-15  entry 1: O3/O4/05/06/O8/O9 unpreregistered — exploratory, not verdicts
