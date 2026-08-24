@@ -1,0 +1,42 @@
+O66 — the twin process: rigidity and pair correlations.  EXPLORATORY.
+windows of 1048576 sites at k = 1e+06, 1e+08, 1e+10
+
+=== k0 = 1e+06   (x ~ 6.0e+06)   twin density 0.03105   n_twins 32555
+   rigidity F (twin | bernoulli):  B=256: 0.791|0.953   B=1024: 0.713|0.978   B=4096: 0.712|0.887
+      h   R meas     R HL   R bern
+      1    0.419    0.397    1.020
+      2    1.052    1.058    0.996
+      3    0.789    0.794    1.038
+      5    1.594    1.588    0.973
+     10    1.305    1.284    1.020
+     30    1.805    1.785    1.019
+   mean |R - HL| over 30 lags: 0.0209   (bernoulli vs 1: 0.0236)
+   low-freq power ratio: twin 0.949   prime-sites 0.826   bernoulli 1.002
+
+=== k0 = 1e+08   (x ~ 6.0e+08)   twin density 0.01945   n_twins 20394
+   rigidity F (twin | bernoulli):  B=256: 0.912|1.006   B=1024: 0.906|1.025   B=4096: 0.958|1.196
+      h   R meas     R HL   R bern
+      1    0.454    0.397    0.933
+      2    1.039    1.058    1.004
+      3    0.829    0.794    1.012
+      5    1.659    1.588    1.022
+     10    1.273    1.284    0.989
+     30    1.800    1.785    0.930
+   mean |R - HL| over 30 lags: 0.0391   (bernoulli vs 1: 0.0328)
+   low-freq power ratio: twin 0.968   prime-sites 0.868   bernoulli 1.001
+
+=== k0 = 1e+10   (x ~ 6.0e+10)   twin density 0.01290   n_twins 13526
+   rigidity F (twin | bernoulli):  B=256: 0.929|0.932   B=1024: 0.986|0.993   B=4096: 0.925|0.955
+      h   R meas     R HL   R bern
+      1    0.470    0.397    0.913
+      2    1.032    1.058    0.958
+      3    0.797    0.794    1.039
+      5    1.611    1.588    0.878
+     10    1.175    1.284    0.924
+     30    1.874    1.785    0.890
+   mean |R - HL| over 30 lags: 0.0434   (bernoulli vs 1: 0.0736)
+   low-freq power ratio: twin 0.976   prime-sites 0.897   bernoulli 0.998
+
+HL prediction is lag-dependent and nontrivial: R(1)=0.397, R(2)=1.058, R(3)=0.794, R(5)=1.588
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/twin_spectral.json

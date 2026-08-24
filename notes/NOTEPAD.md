@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 107: O66 run 2 — Hardy-Littlewood confirmed on the twin lattice at 2-4% over 30 lags and three decades, including the sign structure (repulsion at lag 1, attraction at lag 5); Bernoulli control at 1. Run 1's normalization was mine, off by exactly 6 (lattice conditioning enters numerator once, denominator twice)
+- [open]   2026-08-24  entry 107: the twins do NOT inherit the primes' rigidity — F twin converges to Bernoulli by x ~ 6e10 while prime sites in the same windows keep low-frequency suppression. Primes rigid, twins Poisson-plus-HL; same asymmetry as O51's zero census, now on the fluctuation axis
+- [open]   2026-08-24  entry 107: physics list closed — 103+105 are one object (Montgomery two-sided), 104+106 one operator (spectral and spatial faces of bdiff), 107 the boundary case with correlations but no rigidity
 - [open]   2026-08-24  entry 106: Propagation.lean (16th module, MATHLIB-FREE) — the recurrence named as first-order upwind transport; a point source fills exactly its forward cone (outside_cone_zero + cone_filled, no lacunae) and the Green's function is the alternating stencil (propagator). Pascal defined by its own recurrence since core has no Nat.choose; three theorems at zero axioms
 - [open]   2026-08-24  entry 106: cone_filled makes rarity literal — a zero requires exact cancellation of everything upstream because the propagator never vanishes in its cone; zero_iff_repeat from the transport side. Physics list #1-#4 closed, #5 (twin spectral measure) open
 - [open]   2026-08-24  entry 105: O65 run 2 — prime-count variance is sub-Poisson at every scale tested, F falling 0.66 -> 0.15 as H grows from (log x)^2 to x/10, Poisson control pinned at 1; the dyadic block interiors sit on the same curve (0.198 at r=33). Closes O63's caveat in the grounding direction

@@ -16,6 +16,89 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 107 — O66: Hardy–Littlewood measured on the twin lattice, and the rigidity the twins do not have
+type: run
+refs: 103, 105, 106
+
+`O66_twin_spectral.py`, two runs. `results/twin_spectral.json`, both run logs.
+**EXPLORATORY** — no prereg, no verdict. Physics list #5, the last one.
+
+### The design
+
+The twin process's zeta-side spectrum is already a measured null
+(`imported/twin_count`, `zeta_power_ratio = 0.347`, The-Deep-Ladder § F6), so
+this asks the two questions that null leaves open, with the instruments entries
+103 and 105 built: does the twin process inherit the primes' **rigidity**, and
+do its **pair correlations** match Hardy–Littlewood.
+
+Windows of `2^20` sites `6k` at `x ~ 6×10^6, 6×10^8, 6×10^10`, occupancy by
+segmented sieve. `R(h) = E[t_k t_{k+h}]/E[t]^2` against the 4-tuple singular
+series `S(0,2,6h,6h+2)`; variance ratio `F` in blocks against a Bernoulli
+control at the same density.
+
+### Run 1's error, mine, kept on the record
+
+The HL prediction was written as `S₄/S₂²` and read a mean error of 4.7. It is
+off by exactly **6**: pairs-of-twins density per site is `6·S₄/log⁴x` while the
+squared single-twin site density is `(12C₂/log²x)²`, so the lattice conditioning
+enters the numerator once and the denominator twice —
+`R(h) = S₄/(6·S₂²)`. The derivation now lives in the script's docstring where
+the constant does. Run 2 is the corrected normalisation.
+
+### Hardy–Littlewood, confirmed at 2–4% over 30 lags and three decades
+
+The prediction is genuinely nontrivial — it oscillates lag by lag — and the
+measurement tracks every swing:
+
+```text
+  h    R meas    R HL      (k = 1e6)
+  1     0.419    0.397     adjacent twin pairs REPEL
+  2     1.052    1.058
+  3     0.789    0.794
+  5     1.594    1.588     lag-5 pairs ATTRACT
+ 30     1.805    1.785
+mean |R − HL| = 0.0209 / 0.0391 / 0.0434 at the three heights
+Bernoulli control: 0.0236 / 0.0328 / 0.0736 from 1, structureless
+```
+
+The sign structure — repulsion at lag 1, attraction at lag 5 — is pure
+arithmetic of the tuple's residues, and it is in the data.
+
+### The rigidity the twins do not have
+
+```text
+                F twin    F bernoulli    prime-sites low-freq ratio
+x ~ 6e6          0.71        0.95              0.826
+x ~ 6e8          0.91        1.01              0.868
+x ~ 6e10         0.93        0.93              0.897
+```
+
+Mild sub-Poisson at low height, gone by `x ~ 6×10^10` — while the prime sites
+in the SAME windows keep their low-frequency suppression. On one lattice, in
+one window: **primes are rigid, twins are Poisson-plus-HL-correlations.**
+Consistent with a density-squared thinning, and it is the same asymmetry O51
+found in the zero census — the twin arm has no deep structure — now on the
+fluctuation axis.
+
+### The physics list, closed
+
+```text
+#1  GUE spacing            entry 103   the zeros' rigidity, spectrally
+#2  transfer operator      entry 104   bdiff in Mathlib's vocabulary
+#3  sub-Poisson variance   entry 105   the primes' rigidity, in counts
+#4  transport + cone       entry 106   the propagator, Mathlib-free
+#5  twin lattice process   here        HL confirmed; rigidity absent
+```
+
+The shape that emerged: 103 and 105 are one object (Montgomery, two-sided);
+104 and 106 are one operator (spectral and spatial faces of `bdiff`); and 107
+is the boundary case — the process on the same lattice that has the
+correlations but not the rigidity.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 106 — Propagation: the recurrence as transport, Mathlib-free, with the cone and the propagator
 type: formalization
 refs: 104, 105
