@@ -7,7 +7,7 @@ No dependencies. No network. Runs in well under a second.
     cell(r, 0)   = N(r)
     cell(r, d+1) = cell(r, d) - cell(r-1, d)
 
-Over r <= 62, d <= 61 -- 992 cells -- exactly four vanish at depth d >= 1:
+Over r <= 62, d <= 61 -- 1953 cells -- exactly four vanish at depth d >= 1:
 
     (2,1)   (4,1)   (8,3)   (20,6)
 
