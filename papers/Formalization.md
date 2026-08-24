@@ -116,7 +116,8 @@ near d = 20 and returns to 0.022 by d = 30, with prime and residual identical fr
 d = 16 on.
 
 `Crossover.lean` supplies the mechanism: the dominance ratio between two geometric
-families is strictly increasing, so there is **at most one** crossover. A single
+families is strictly increasing (`Crossover.ratio_strictMono`), so there is **at
+most one** crossover (`Crossover.at_most_one_crossover`). A single
 family has none — which is exactly the smooth control.
 
 **The change.** d = 13 is the *onset of the migration*, not an exhaustion. The
@@ -143,7 +144,8 @@ list looked strange.
 **The change, and it is the only genuine forward prediction of the four.** The lattice
 has spacing `L`, so every point lies within `L/2` of it (`exists_near_lattice`). Once
 `ε ≥ L/2` the condition is **vacuous** — every prime contributes and the form stops
-selecting. Selectivity is governed by `ε/L` alone, never by the size of `p`.
+selecting (`Covering.covered_of_half_spacing`). Selectivity is governed by `ε/L`
+alone, never by the size of `p`.
 
 ```text
     W       ε        in support   contributing

@@ -122,12 +122,30 @@ def citations(all_names):
     return out
 
 
+def roles():
+    """Module.name -> role, from utilities/theorem_roles.txt."""
+    f = ROOT / "utilities" / "theorem_roles.txt"
+    out = {}
+    if f.exists():
+        for line in f.read_text().splitlines():
+            line = line.split("#")[0].strip()
+            if line:
+                parts = line.split()
+                if len(parts) == 2:
+                    out[parts[0]] = parts[1]
+    return out
+
+
 def main():
     all_names = []
     for f in sorted(LEAN.glob("*.lean")):
         for m in re.finditer(r"^\s*theorem\s+([A-Za-z_][\w']*)", f.read_text(), re.M):
             all_names.append(f"{f.stem}.{m.group(1)}")
     cited = citations(all_names)
+    role = roles()
+    stale = [k for k in role if k not in all_names]
+    if stale:
+        print(f"   WARNING stale roles (not in tree): {stale}")
     rows, totals = [], {}
     for f in sorted(LEAN.glob("*.lean")):
         text = f.read_text()
@@ -172,20 +190,31 @@ def main():
         for m2, name, claim, ax, who in rows:
             if m2 != mod:
                 continue
-            c = ", ".join(f"`{w}`" for w in who[:3]) if who else "—"
-            if len(who) > 3:
-                c += f" +{len(who)-3}"
+            if who:
+                c = ", ".join(f"`{w}`" for w in who[:3])
+                if len(who) > 3:
+                    c += f" +{len(who)-3}"
+            else:
+                c = role.get(f"{mod}.{name}", "**UNTAGGED**")
             lines.append(f"| `{name}` | {claim} | {ax} | {c} |")
         lines.append("")
 
     out = LEAN / "THEOREMS.md"
     out.write_text("\n".join(lines))
-    uncited = sum(1 for r in rows if not r[4])
+    uncited = [r for r in rows if not r[4]]
+    untagged = [f"{m}.{n}" for m, n, _, _, w in rows
+                if not w and f"{m}.{n}" not in role]
     nodoc = sum(1 for r in rows if not r[2])
     print(f"wrote {out.relative_to(ROOT)}")
     print(f"   {len(rows)} theorems, {len(totals)} modules")
     print(f"   {len(zero)} depend on no axioms")
-    print(f"   {uncited} cited by no paper or note")
+    print(f"   {len(uncited)} uncited "
+          f"({sum(1 for r in uncited if role.get(f'{r[0]}.{r[1]}')=='support')} support, "
+          f"{sum(1 for r in uncited if role.get(f'{r[0]}.{r[1]}')=='record')} record, "
+          f"{len(untagged)} UNTAGGED)")
+    if untagged:
+        for u in untagged:
+            print(f"      UNTAGGED {u}")
     print(f"   {nodoc} have no docstring claim")
 
 

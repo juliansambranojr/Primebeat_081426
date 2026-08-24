@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 109: the 159 'uncited theorems' are now 0 untagged — three citation forms in the linker (qualified, bare unique, chain labels via companion papers), a roles file with 29 support + 22 record, and eleven genuine citations added to four papers. UNTAGGED is now a loud maintained invariant
+- [open]   2026-08-24  entry 109: two linker bugs of mine found — missing space silenced the chain-label form entirely, and the docstring regex could span declarations. Remaining follow-on: 17 theorems have no docstring claim (a writing pass, separate thread)
 - [open]   2026-08-24  entry 108: t25 run — every figure in The-Composite-Arm reproduces from primecountpy; the gate is at ZERO broken references for the first time (refs_baseline.txt now empty); check_values 113 -> 127. The I3 residual triple is the Riemann R model at depths 0/3/6
 - [open]   2026-08-24  entry 108: one paper error found and fixed — C4 said five lag-1 diagonals, its own C1 table and the measurement say four (diagonals 5, 8, 9, 12). Header conditions 1-2 met and struck through; conditions 3-4 (placement, removing PROVISIONAL) are Julian's
 - [open]   2026-08-24  entry 107: O66 run 2 — Hardy-Littlewood confirmed on the twin lattice at 2-4% over 30 lags and three decades, including the sign structure (repulsion at lag 1, attraction at lag 5); Bernoulli control at 1. Run 1's normalization was mine, off by exactly 6 (lattice conditioning enters numerator once, denominator twice)

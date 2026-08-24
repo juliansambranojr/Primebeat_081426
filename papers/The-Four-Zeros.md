@@ -47,7 +47,7 @@ the two cells feeding it are equal.
  (8,3) = 0   ⟺   d2 at r=7  and r=8  are both 4
 ```
 
-`O27`
+`O27 · Zeros.zero_at_20_6_of_repeat · Zeros.zero_at_8_3_of_repeat`
 
 **B3.** Minimal form of the deep zero: `Δ⁷π(2ⁿ) = 0` at `n = 20` — eight values of `π`
 spanning `2^13` to `2^20`.

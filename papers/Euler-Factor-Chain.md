@@ -33,7 +33,8 @@ zeta zero `ρ = σ + iγ`, first zero `γ₁ = 14.134725141734693`.
 `O37_weil_form_on_stencil.py`
 
 **B2.** `h(s) = h(1−s)`; `h(0) = h(1) = 0`; `h ≥ 0` on `Re(s) = 1/2`.
-`O37 verified: H(0.3) = H(0.7) = 1.020359521e−8; H(1/2 + 14.1347i) real and positive`
+`O37 verified: H(0.3) = H(0.7) = 1.020359521e−8; H(1/2 + 14.1347i) real and positive ·
+EulerFactorChain.h_functional_equation · EulerFactorChain.h_zero · EulerFactorChain.h_one`
 
 **B3.** Therefore `h` is an admissible Weil test function.
 `Weil 1952, positivity criterion · Connes arXiv:2602.04022 §4.1`
@@ -196,7 +197,8 @@ torus `ℂ* / b^ℤ`, whose modulus is `(log b)/2π`. The lattice has two genera
 `s ↦ s + 2πi/log b`, which fixes `z` and is why the strip becomes an annulus, and
 `s ↦ s + 1`, which sends `z ↦ z/b` and is what closes it. At `b = 2` the second
 identifies `|z| = 0.5 ~ 1 ~ 2 ~ 4 …`.
-`G7 · Transform.zmap_period · Transform.zmap_shift`
+`G7 · Transform.zmap_period · Transform.zmap_shift · Transform.torus_shift ·
+Transform.torus_period · Transform.generators_indep · Transform.zmap_shift_modulus`
 
 **G7″.** And `s ↦ 1 − s` becomes `z ↦ b^(−1)/z`, inversion in the circle
 `|z| = b^(−1/2)` — the critical line is that inversion's fixed circle. Same fact as

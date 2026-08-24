@@ -1,0 +1,76 @@
+# Roles for theorems cited by no paper or note. Read by theorem_index.py.
+# Format: Module.name  role   (role: support | record)
+#
+#   support  a lemma feeding a cited theorem; never needs naming in prose
+#   record   verifies a measured artifact; papers cite the artifact instead
+#
+# A theorem absent from this file and cited nowhere shows as UNTAGGED in
+# lean/THEOREMS.md — that state is actionable and should be empty.
+
+# SeedPerturbation — the measured-pair falsifiers and helper steps
+SeedPerturbation.tableFrom_sub                     support
+SeedPerturbation.zero_stable_of_seed_perturbation  support
+SeedPerturbation.zero_iff_of_seed_perturbation     support
+SeedPerturbation.cell_ne_at_boundary               support
+SeedPerturbation.window_bottoms_correct            record
+SeedPerturbation.protected_at_R_two                record
+SeedPerturbation.protected_at_R_three              record
+SeedPerturbation.silence46_vanishes_above_three    record
+SeedPerturbation.silence46_alive_at_three          record
+SeedPerturbation.measured_silence46_matches_shift  record
+SeedPerturbation.silence46_deep_cells_fixed        record
+SeedPerturbation.silence46_cell_4_1_moves          record
+SeedPerturbation.emptied_vanishes_above_two        record
+SeedPerturbation.measured_emptied_matches_shift    record
+SeedPerturbation.emptied_protected_cells_fixed     record
+
+# Measured — the record file's own agreement rows
+Measured.agreement_offsets_match                   record
+Measured.agreement_radius_smooth                   record
+Measured.agreement_rank_11a1                       record
+Measured.agreement_rank_389a1                      record
+Measured.agreement_rank_37a1                       record
+Measured.agreement_elliptic                        record
+Measured.agreement_weil_balance                    record
+
+# Zeros — machinery under cited results
+Zeros.tableFrom_isTable                            support
+Zeros.stencil_add                                  support
+Zeros.stencil_smul                                 support
+Zeros.stencil_annihilates_const                    support
+Zeros.four_zeros_only                              support
+
+# Chain — the conditional arrows, superseded by the unconditional
+# label-cited forms (A4, B5, C2, C3); and the decay half C3lower
+Chain.B5_of_A4_B4                                  support
+Chain.C2_of_C1                                     support
+Chain.C3_of_A4_C2                                  support
+Chain.C3lower                                      support
+
+# EulerFactorChain — rectangular-form machinery under C1/B4
+EulerFactorChain.conj_factor_on_critical_line      support
+EulerFactorChain.cpow_rect_on_critical_line        support
+
+# Transform — membership and positivity steps under the torus results
+Transform.one_mem_periodLattice                    support
+Transform.tauI_mem_periodLattice                   support
+Transform.tau_pos                                  support
+
+# Crossover / GeneratorPeak / Covering — machinery and bench rows
+Crossover.dominance_flips                          support
+Crossover.no_crossover_of_single                   support
+Crossover.spread_is_non_monotone                   record
+GeneratorPeak.score_eq                             support
+GeneratorPeak.strictMono_of_lt                     support
+GeneratorPeak.strictAnti_of_lt                     support
+GeneratorPeak.const_of_eq                          support
+GeneratorPeak.measured_has_interior_peak           record
+Covering.covered_smul                              support
+Covering.bench_is_selective                        record
+Covering.bench_selects                             record
+
+# Singletons
+Construction.tableFrom_isTableOf                   support
+Isogeny.telescope                                  support
+Superposition.A4_sum_of_A1                         support
+TransferOp.mode_ne_zero'                           support

@@ -16,6 +16,76 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 109 — Every theorem accounted for: the citation linker, the roles file, and eleven citations
+type: provenance
+refs: 108
+
+`lean/THEOREMS.md` reported 159 of 213 theorems cited by no paper or note.
+That number is now zero-or-explained: **162 cited, 29 tagged support, 22 tagged
+record, 0 untagged.** Gate at zero broken references throughout; values at
+127/0.
+
+### The number was mostly a detection artifact
+
+The index accepted only qualified `Module.name` citations. The repo's prose
+uses three forms, and the linker now recognises all of them:
+
+1. **Qualified**, as before.
+2. **Bare unique names** — ≥ 10 chars, or underscore-bearing at ≥ 6, defined in
+   exactly one module. The notebook discusses theorems this way constantly,
+   inside fenced blocks; an underscore makes a prose false positive essentially
+   impossible.
+3. **Chain labels** — a theorem whose docstring opens `**A1.**` formalises that
+   statement of its module's companion paper (read from the "Companion to
+   papers/…" header). The statement existing in the paper is the prose
+   counterpart. This is the papers' own convention: they cite
+   `Euler-Factor-Chain.md § A1`, never `Chain.A1`.
+
+Two bugs in my own linker found on the way: the companion regex was missing the
+space after "Companion to" — form 3 never fired at all — and the
+label-to-theorem match could span a `def`'s docstring boundary, mislinking A1 to
+`bdiff_smul`. `159 → 85 → 74 → 62` as the forms landed.
+
+### The roles file
+
+`utilities/theorem_roles.txt`, 51 entries, two roles:
+
+* **support** (29) — a lemma feeding a cited theorem; never needs prose.
+  `stencil_add`, `pasc_zero`, `telescope`, the Chain arrows, membership steps.
+* **record** (22) — verifies a measured artifact; papers cite the artifact.
+  SeedPerturbation's eleven measured-pair falsifiers, Measured's seven
+  `agreement_*` rows, the bench checks.
+
+The index reads the file, warns on stale names, and prints anything uncited and
+untagged as **UNTAGGED** — so the state is a maintained invariant now, like the
+axiom pins, rather than a number that regrows silently.
+
+### The eleven genuine gaps, closed with citations
+
+Papers claimed the content without naming the proof. One line each, where the
+claim already stood:
+
+* `The-Four-Zeros.md § B2` — the deep-zero repeats now cite
+  `zero_at_20_6_of_repeat` and `zero_at_8_3_of_repeat`.
+* `Euler-Factor-Chain.md § G7′` — the two-generator sentence now cites
+  `torus_shift`, `torus_period`, `generators_indep`, `zmap_shift_modulus`,
+  which are exactly what it asserts.
+* `Euler-Factor-Chain.md § B2` — `h(s) = h(1−s); h(0) = h(1) = 0` now cites
+  `h_functional_equation`, `h_zero`, `h_one` beside the O37 verification.
+* `Formalization.md § B3` — the vacuity threshold cites
+  `covered_of_half_spacing`; § B2's mechanism sentence cites
+  `ratio_strictMono` and `at_most_one_crossover`.
+
+### What this leaves
+
+Nothing on this thread. The follow-on that exists but was not scoped here: 17
+theorems have no docstring claim (the index's third summary line), which is a
+docstring-writing pass, not a citation problem.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 108 — t25: The-Composite-Arm's figures all reproduce, and the gate reaches zero
 type: run
 refs: 107
