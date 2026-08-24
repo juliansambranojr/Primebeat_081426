@@ -16,6 +16,76 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 105 — O65: the primes' variance measured directly, closing O63's caveat and meeting entry 103 from the other side
+type: run
+refs: 102, 103, 104
+
+`O65_variance_ratio.py`, two runs. `results/variance_ratio.json`, both run
+logs. **EXPLORATORY** — no prereg, no verdict. Physics list #3.
+
+### The statistic
+
+Variance-to-mean `F` of prime counts in 400 disjoint width-`H` blocks, detrended
+by `li` per block. Poisson gives `F = 1`. Swept over `H` from `(log x)²` to
+`x/10` at three decades, plus the interiors of single dyadic blocks.
+
+### Run 1's defect, kept on the record
+
+Run 1 used raw `Var(c)/mean(c)`. At large `H` the 400-block window spans a wide
+range of `x`, the density falls across it, and the variance measures the smooth
+trend — `F = 750` at `x0 = 1e8, H = x/10`, and `F = 40796` at `1e10`. Detrending
+by `li` per block is the standard fix and is run 2. Run 1 stands as the warning:
+the trend confound produces spectacular super-Poisson numbers that mean nothing.
+
+### Run 2
+
+```text
+                F real, by H:
+  x0        (log x)²  (log x)³   x^0.5   x^0.75    x/10
+  1e6         0.536     0.365    0.430    0.233   0.222
+  1e8         0.537     0.390    0.412    0.224   0.151
+  1e10        0.663     0.610    0.432    0.198   0.150
+
+  inside dyadic blocks (2^r, 2^(r+1)] chopped into 400:
+      r=20 → 0.376     r=27 → 0.257     r=33 → 0.198
+  Poisson control: 0.91 – 1.17 everywhere
+```
+
+**Sub-Poisson at every scale tested, falling monotonically with `H`**, with the
+control pinned at 1 so the estimator is not inventing it. The dyadic interiors
+sit on the same curve — `0.198` at `r = 33` is the `x^0.75`–`x/10` regime, which
+is where blocks of width `x/2` live.
+
+### What it closes
+
+**O63's caveat, in the grounding direction.** Entry 102 recorded "sub-Poisson
+variance is the likely known cause" of the depth-5 anomaly. Measured directly:
+prime counts fluctuate at 15–40% of Poisson variance, so differencing takes far
+longer to amplify them. O63 saw this through the difference table; O65 sees it
+in the counts; they agree.
+
+**And the loop with entry 103.** Goldston–Montgomery ties this variance in the
+`H ~ x^δ` range to the pair correlation of the zeta zeros — the statistic O64
+measured spectrally. The bench now holds the same object from both sides: the
+zeros' rigidity in the spectrum (0.027 frac<0.5 at n = 37, entry 103) and the
+primes' suppressed variance in the counts (F ~ 0.15–0.2 at large H, here). Two
+faces of the Montgomery connection, both measured on this bench's own data.
+
+### What this is not
+
+Discovery. Sub-Poisson variance of primes in intervals is classical territory
+(Goldston–Montgomery, Montgomery–Soundararajan), and these numbers are
+calibration against it rather than news. The content is that the connection to
+the tree — O63's depth profile, the dyadic blocks' place on the curve, the
+two-sided Montgomery loop with entry 103 — is now measured rather than verbal.
+
+Physics list: #1, #2, #3 closed. Open: #4 the wave-equation reading, #5 the
+twin arm's spectral measure.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 104 — TransferOp: bdiff named as the operator it is, in Mathlib's vocabulary
 type: formalization
 refs: 103

@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 105: O65 run 2 — prime-count variance is sub-Poisson at every scale tested, F falling 0.66 -> 0.15 as H grows from (log x)^2 to x/10, Poisson control pinned at 1; the dyadic block interiors sit on the same curve (0.198 at r=33). Closes O63's caveat in the grounding direction
+- [open]   2026-08-24  entry 105: the Montgomery loop is now two-sided on this bench — zeros' rigidity measured spectrally (entry 103) and primes' suppressed variance measured in counts (entry 105), which Goldston-Montgomery tie to the same pair correlation
+- [open]   2026-08-24  entry 105: run 1's trend confound kept on record — raw Var/mean without li detrending gives F = 40796 at 1e10, H = x/10, which is the smooth density drift and means nothing. Physics list: #1 #2 #3 closed, #4 wave-equation and #5 twin spectral measure open
 - [open]   2026-08-24  entry 104: TransferOp.lean (15th module) — bdiff is now a Module.End with the modes as Mathlib eigenvectors, Sym as eigenvalue, depth-N as the operator power (HasEigenvector.pow_apply), and the pole lattice as the kernel spectrum. Ruelle theory proper explicitly not claimed
 - [open]   2026-08-24  entry 104: parity counter misses '@[simp] theorem' on one line — fixed by convention (attribute on its own line), counter unchanged. Physics list: #1 and #2 closed; open are #3 sub-Poisson variance, #4 wave-equation reading, #5 twin spectral measure
 - [open]   2026-08-24  entry 103: O64 run 2 — in the complete-separation band (10,120) the spectrum measured from prime counts reproduces the true zeros' spacing statistics to three decimals (mean s 1.003, frac<0.5 0.027, 38/38 detected), while Poisson input comes through at 0.212. The primes carry the repulsion, not just the frequencies

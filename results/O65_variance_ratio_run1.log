@@ -1,0 +1,38 @@
+O65 — variance-to-mean of prime counts in blocks.  EXPLORATORY.
+400 blocks per cell; Poisson gives F = 1
+
+     x0          H  mean/blk   F real  F poisson           H as
+  1e+06        190      13.7    0.536      0.981      (log x)^2
+  1e+06       2636     185.5    0.406      0.994      (log x)^3
+  1e+06       1000      71.6    0.433      0.907          x^0.5
+  1e+06      31622    2025.5    4.003      0.916         x^0.75
+  1e+06      10000     675.0    0.907      0.951          x/100
+  1e+06     100000    6030.6   16.300      0.938           x/10
+
+  1e+08        339      18.5    0.537      1.001      (log x)^2
+  1e+08       6250     339.4    0.389      1.166      (log x)^3
+  1e+08      10000     542.6    0.412      1.073          x^0.5
+  1e+08    1000000   51486.0   26.924      1.028         x^0.75
+  1e+08    1000000   51486.0   26.924      0.968         x^0.75
+  1e+08   10000000  471799.0  750.012      0.993           x/10
+
+  1e+10        530      23.0    0.663      0.948      (log x)^2
+  1e+10      12208     530.2    0.610      0.996      (log x)^3
+  1e+10     100000    4342.8    0.433      1.066          x^0.5
+  1e+10   31622776 1346367.5  132.397      1.013         x^0.75
+  1e+10  100000000 4161505.2 1404.828      0.936          x/100
+  1e+10 1000000000 38750277.6 40796.317      1.049           x/10
+
+INSIDE single dyadic blocks (2^r, 2^(r+1)], chopped into 400:
+   r            H  mean/blk   F real  F poisson
+  20         2621     183.9    0.412      0.937
+  27       335544   17568.2    2.155      0.994
+  33     21474836  923308.2   67.234      1.000
+
+READ. F = 1 is Poisson. Falling F with growing H is the
+sub-Poisson regime Goldston-Montgomery ties to the zeros' pair
+correlation — the statistic entry 103 measured spectrally. The
+dyadic table's blocks sit at the far end of this curve, which is
+what O63's depth profile was seeing through the difference table.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/variance_ratio.json
