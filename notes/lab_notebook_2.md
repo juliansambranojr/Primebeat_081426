@@ -16,6 +16,67 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 108 — t25: The-Composite-Arm's figures all reproduce, and the gate reaches zero
+type: run
+refs: 107
+
+`t25_composite_arm.py`, two runs. `results/t25_composite_arm.txt` (tee'd, as
+the paper's header requires) and `.json`. **EXPLORATORY** — no prereg, no
+verdict.
+
+### What this closes
+
+`papers/The-Composite-Arm.md` has been PROVISIONAL since 2026-08-20 — every
+figure computed inline in conversation, existing in no artifact, which is
+exactly the failure `What-Didnt-Work.md` § D1 records. Its header names four
+conditions; this meets 1 and 2. Its two `PENDING t25` citations were the only
+broken references in the tree.
+
+**The gate is at zero broken references for the first time in the repository's
+history.** `utilities/refs_baseline.txt` is now an empty file.
+`check_values` rose 113 → **127 confirmed**, fourteen of the paper's numbers
+now tracing to the new artifact.
+
+### The verification
+
+Every figure reproduces, from `primecountpy` at `r ≤ 32`:
+
+* **A1** — the pair identity at every cell `d ≥ 1`, zero failures; 492 nonzero
+  cells, exactly as stated.
+* **A3** — `prime_res + comp_res = 0`, checked **integer-exactly** as
+  `TP + TC − 2^(r−1−d)`.
+* **B1** — prime zeros exactly the four; composite zeros exactly `{(3,2)}`.
+* **C1** — all fifteen diagonals match: first-negative depths and lags,
+  entry for entry.
+* **C3** — `(23,10) = −8656/+12752`, `(25,11) = −22493/+30685`, The-Fold's
+  two cells, exact.
+
+### Two of run 1's mismatches were mine, one was the paper's
+
+**Mine 1.** I checked the A3 cancellation through float li-differences and got
+`4.5e−8` — the identity is integer-exact and the noise was my pipeline.
+
+**Mine 2.** The I3 residual triple `−24.886 / −133.761 / −453.424` is the
+**Riemann R model at the house depths 0, 3, 6** (O34's depths). I tried `li` at
+`d = 0,1,2`. R at `d = 0` gives `−24.886` and at `d = 3` gives `−133.761`
+exactly, which settles what model the inline conversation used.
+
+**The paper's.** C4 said "five of the fifteen diagonals have a lag of exactly
+1." Its own C1 table lists **four** — diagonals 5, 8, 9, 12 — and the
+measurement reproduces C1 exactly. C4 contradicted the paper's own table. C4
+now reads four, with the correction noted in place.
+
+### Paper state after this
+
+Citations updated from `PENDING t25` to the artifact; header conditions 1 and 2
+struck through as done; C4 corrected; E4 rewritten to say the script exists.
+**Conditions 3 and 4 — placement (standalone versus The-Four-Zeros § E) and
+removing the PROVISIONAL header — are Julian's and remain open.**
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-24 — Entry 107 — O66: Hardy–Littlewood measured on the twin lattice, and the rigidity the twins do not have
 type: run
 refs: 103, 105, 106

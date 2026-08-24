@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 108: t25 run — every figure in The-Composite-Arm reproduces from primecountpy; the gate is at ZERO broken references for the first time (refs_baseline.txt now empty); check_values 113 -> 127. The I3 residual triple is the Riemann R model at depths 0/3/6
+- [open]   2026-08-24  entry 108: one paper error found and fixed — C4 said five lag-1 diagonals, its own C1 table and the measurement say four (diagonals 5, 8, 9, 12). Header conditions 1-2 met and struck through; conditions 3-4 (placement, removing PROVISIONAL) are Julian's
 - [open]   2026-08-24  entry 107: O66 run 2 — Hardy-Littlewood confirmed on the twin lattice at 2-4% over 30 lags and three decades, including the sign structure (repulsion at lag 1, attraction at lag 5); Bernoulli control at 1. Run 1's normalization was mine, off by exactly 6 (lattice conditioning enters numerator once, denominator twice)
 - [open]   2026-08-24  entry 107: the twins do NOT inherit the primes' rigidity — F twin converges to Bernoulli by x ~ 6e10 while prime sites in the same windows keep low-frequency suppression. Primes rigid, twins Poisson-plus-HL; same asymmetry as O51's zero census, now on the fluctuation axis
 - [open]   2026-08-24  entry 107: physics list closed — 103+105 are one object (Montgomery two-sided), 104+106 one operator (spectral and spatial faces of bdiff), 107 the boundary case with correlations but no rigidity

@@ -10,10 +10,11 @@
 >
 > **Before this becomes canonical, all of:**
 >
-> 1. Write `t25_composite_arm.py`, tee'd, computing every figure below from
->    `primecountpy` rather than transcribed from here.
-> 2. Re-verify each number against `results/t25_composite_arm.txt`. Any that
->    does not reproduce is wrong here, not there.
+> 1. ~~Write `t25_composite_arm.py`~~ — **done 2026-08-24**, tee'd to
+>    `results/t25_composite_arm.txt`, JSON alongside.
+> 2. ~~Re-verify each number~~ — **done**: every figure reproduces, with one
+>    correction (C4's count of lag-1 diagonals is four, not five; C4 now says
+>    so). Entry 108.
 > 3. Decide placement. `The-Four-Zeros.md` § E is already "The complementary
 >    side" — E1 the pair identity, E2 the composite arm at the four zeros, E3
 >    the pole. This may belong there as an extension rather than as a twelfth
@@ -34,7 +35,7 @@ what is there, and why looking was reasonable to postpone.
 
 **A1.** `prime(r,d) + composite(r,d) = (b−1)^(d+1)·b^(r−1−d)`, exact at every
 cell in every base. Verified at all 492 nonzero dyadic cells with `d ≥ 1`.
-`PairIdentity.pair_identity · Euler-Factor-Chain.md § I1 · PENDING t25`
+`PairIdentity.pair_identity · Euler-Factor-Chain.md § I1 · results/t25_composite_arm.json`
 
 **A2.** The right-hand side contains no primes, so
 `composite = (closed-form surface) − prime`. Anything the composite arm knows,
@@ -58,7 +59,7 @@ is a different **function** of `(r,d)` even though it is not different data.
 
 **B1.** Over `r ≤ 32`, `d ≥ 1`, the prime arm has four exact zeros —
 `(2,1), (4,1), (8,3), (20,6)`. The composite arm has **one**, at `(3,2)`.
-`PENDING t25 · The-Four-Zeros.md § A1 for the prime side`
+`results/t25_composite_arm.json · The-Four-Zeros.md § A1 for the prime side`
 
 **B2.** A composite zero is the reciprocal pole. Where it vanishes, the **prime**
 arm carries the entire geometric total by itself — the mirror of
@@ -104,7 +105,7 @@ arm follows**:
      18         10                 13              3
 ```
 
-`PENDING t25`
+`results/t25_composite_arm.json`
 
 **C2.** The **sign is invariant, the size is not.** The composite arm follows on
 all fifteen diagonals without exception; the lag ranges 1 to 5 and is not
@@ -119,9 +120,11 @@ diagonal, not two cells.
 `C1 · The-Fold.md § C8`
 
 **C4.** It also corrects something said in conversation and not yet written
-anywhere: the lag was described as "three to five depths." It is not. Five of
-the fifteen diagonals have a lag of exactly 1.
-`C1`
+anywhere: the lag was described as "three to five depths." It is not. Four of
+the fifteen diagonals — 5, 8, 9, 12 — have a lag of exactly 1. (An earlier
+version of this statement said five, contradicting C1's own table; t25 measured
+four.)
+`C1 · results/t25_composite_arm.json`
 
 ---
 
@@ -161,5 +164,7 @@ zero-counts of 1, 4, 1, 3 and 2 under five different silencing conventions.
 The search was `r ≤ 32`, and nothing looked deeper or at another base.
 `B1`
 
-**E4.** No prereg, and no script. See the header.
-`CLAUDE.md § Prereg discipline`
+**E4.** No prereg. The script now exists and every figure above reproduces
+from it — see the header's conditions 1 and 2, which are met. Conditions 3 and
+4 (placement, and removing the PROVISIONAL header) remain Julian's.
+`t25_composite_arm.py · results/t25_composite_arm.txt`

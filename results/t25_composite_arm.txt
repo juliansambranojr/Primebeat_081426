@@ -1,0 +1,47 @@
+t25 — the composite arm.  EXPLORATORY, no prereg, no verdict.
+b = 2, r <= 32, counts exact from primecountpy
+
+A1 — the pair identity, every cell d >= 1:
+   MATCH    identity holds at every cell: got 0
+   MATCH    nonzero dyadic cells at d >= 1: got 492
+
+A3 — residuals are exact negatives (model: Riemann R, depths 0/3/6):
+   MATCH    max |prime_res + comp_res| (integer-exact): got 0
+   MATCH    row-20 prime residuals, R model, d=0,3,6: got [-24.886, -133.761, -453.424]
+
+B1 — the census, r <= 32, d >= 1:
+   MATCH    prime zeros: got [(2, 1), (4, 1), (8, 3), (20, 6)]
+   MATCH    composite zeros: got [(3, 2)]
+
+C1 — the fifteen diagonals, first negative depth per arm:
+    diag  p<0  c<0  lag   paper
+       4    2    5    3   (2, 5, 3)
+       5    5    6    1   (5, 6, 1)
+       6    4    7    3   (4, 7, 3)
+       7    5    9    4   (5, 9, 4)
+       8    7    8    1   (7, 8, 1)
+       9    6    7    1   (6, 7, 1)
+      10    5    8    3   (5, 8, 3)
+      11    6   10    4   (6, 10, 4)
+      12    8    9    1   (8, 9, 1)
+      13    7   10    3   (7, 10, 3)
+      14    8   11    3   (8, 11, 3)
+      15    7   12    5   (7, 12, 5)
+      16    8   13    5   (8, 13, 5)
+      17    9   12    3   (9, 12, 3)
+      18   10   13    3   (10, 13, 3)
+   MATCH    all fifteen diagonals match the paper: got True
+
+C2 — the ordering:
+   MATCH    composite follows on all fifteen: got True
+   MATCH    lag range: got (1, 5)
+   MATCH    lags equal to 1 (paper's C4 says 5; its own C1 table says 4): got 4
+
+C3 — The-Fold's two cells:
+   MATCH    (23,10) composite: got -8656
+   MATCH    (23,10) prime: got 12752
+   MATCH    (25,11) composite: got -22493
+   MATCH    (25,11) prime: got 30685
+
+ALL FIGURES REPRODUCE
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/t25_composite_arm.json

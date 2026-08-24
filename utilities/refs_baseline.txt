@@ -1,2 +1,0 @@
-BROKEN  The-Composite-Arm.md  ->  results/t25_composite_arm.txt
-BROKEN  The-Composite-Arm.md  ->  t25_composite_arm.py
