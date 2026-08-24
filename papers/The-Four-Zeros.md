@@ -271,10 +271,18 @@ sum), `Nonvanishing.nonvanishing_of` (the arrow), and
 (`lean/MainTerm.lean`) retired the MVT: `MainTerm.bdiffR_lb` and
 `MainTerm.iter_bdiffR_lb` prove that a floor on the `(d+1)`-th derivative
 forces the same floor on the stencil, and `MainTerm.tableFrom_ne_zero_of_deriv`
-restates the arrow with `hM` replaced by that derivative bound. What remains
-unformalised: the explicit expansion of the `d`-th derivative of `2^x/x` with
-its alternating pairing bound (stage 2b — O67's CHECK 1), and Schoenfeld
-itself, which is in no proof assistant (stage 3). Mathlib carries no
-logarithmic integral, so li enters only through a smooth interpolant.
+restates the arrow with `hM` replaced by that derivative bound. Stage 2b
+(`lean/Expansion.lean`) retired the derivative floor: `Expansion.iteratedDeriv_f2x`
+proves the explicit expansion — the `d`-th derivative of `2^x/x` is
+`2^x · Σ C(d,j)(log 2)^(d−j)(−1)^j j! x^(−1−j)` on `x > 0` —
+`Expansion.t_halves` proves consecutive unsigned terms halve in the wedge
+`2d ≤ (log 2)·x`, and `Expansion.F_floor` turns the alternating pairing into
+the floor `2^x (log 2)^d / (2x)` (O67's CHECK 1, proved rather than sampled).
+`Expansion.hD_of_window` discharges the derivative hypothesis, and
+`Expansion.tableFrom_ne_zero_of_li` is the assembled arrow: its analytic
+hypotheses are exactly a smooth interpolant with derivative `2^x/x` — Mathlib
+carries no logarithmic integral, so li enters only that way — and
+Schoenfeld-on-the-window. What remains unformalised is Schoenfeld itself,
+which is in no proof assistant (stage 3).
 `Nonvanishing.error_bound · Nonvanishing.nonvanishing_of ·
 Nonvanishing.tableFrom_ne_zero_of`

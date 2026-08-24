@@ -16,6 +16,52 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 115 — Expansion.lean: stage 2b, the derivative floor proved
+type: formalization
+refs: 112, 113, 114
+
+`lean/Expansion.lean`, the nineteenth module, seventeen theorems. Build clean,
+**8045 jobs, 248 theorems, 248 pins, parity in all 19 modules.** Stage 2 of the
+plan from entry 113, second half: the explicit expansion, and the floor.
+
+### What the kernel now checks
+
+```text
+c_rec                    the coefficient recurrence — Pascal with the
+                         factorial absorbed; the j = 0 edge dies on −j
+hasDerivAt_S/F           term-by-term differentiation and the Pascal-shaped
+                         recombination: F d' = F (d+1)
+iteratedDeriv_f2x        THE EXPANSION: the d-th derivative of 2^x/x is
+                         2^x · Σ C(d,j)(log 2)^(d−j)(−1)^j j! x^(−1−j)
+                         on (0,∞), by induction
+choose_factorial_step    C(d,j+1)·(j+1)! = C(d,j)·j!·(d−j), in ℕ
+t_halves                 consecutive unsigned terms halve in the wedge
+                         2d ≤ (log 2)·x
+B_peel / B_bounds        the downward tail: 0 ≤ B k ≤ t k
+S_floor / F_floor        THE FLOOR: S ≥ (log 2)^d/(2x), so the derivative
+                         is ≥ 2^x (log 2)^d/(2x) — O67's CHECK 1, proved
+                         rather than sampled
+hD_of_window             the derivative hypothesis hD discharged from the
+                         floor, wedge, and window bottom
+tableFrom_ne_zero_of_li  THE ARROW ASSEMBLED: cell(r,d) ≠ 0 from a smooth
+                         interpolant with G' = 2^x/x, Schoenfeld on the
+                         window, and O67's gap arithmetic
+```
+
+The conditional theorem's hypothesis list after this module: `hG`/`hG'` (a
+smooth interpolant with derivative `2^x/x` — Mathlib carries no logarithmic
+integral, so li enters only this way), `hS` (Schoenfeld, stage 3, in no proof
+assistant), and the arithmetic side conditions (`hrow`, `hr`, `hbot`, `hw`,
+`hgap`). Every analytic step between Schoenfeld and the integer table is now
+a theorem. § I2's chain is formal end to end; § I5 updated.
+
+### What stage 3 is and is not
+
+Schoenfeld's bound is the one remaining analytic leaf and it stays a named
+hypothesis: it is in no proof assistant, and putting it in one is a project
+on the scale of PrimeNumberTheorem+, out of scope here. The bench's claim is
+the arrow, and the arrow is now kernel-checked.
+
 ## 2026-08-24 — Entry 114 — MainTerm.lean: stage 2a, the MVT retired
 type: formalization
 refs: 112, 113

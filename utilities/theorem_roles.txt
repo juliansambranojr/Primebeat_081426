@@ -81,3 +81,17 @@ Nonvanishing.window_term_le                        support
 Nonvanishing.iter_bdiffZ_eq_fwdDiff                support
 MainTerm.iter_bdiffR_eq_fwdDiff                    support
 MainTerm.contDiff_bdiffR                           support
+
+# Expansion — machinery under the cited stage-2b theorems
+Expansion.exp_eq_rpow                              support
+Expansion.F_zero                                   support
+Expansion.c_rec                                    support
+Expansion.hasDerivAt_S                             support
+Expansion.hasDerivAt_F                             support
+Expansion.t_nonneg                                 support
+Expansion.S_eq_alt                                 support
+Expansion.choose_factorial_step                    support
+Expansion.B_peel                                   support
+Expansion.B_bounds                                 support
+Expansion.t_zero                                   support
+Expansion.S_floor                                  support
