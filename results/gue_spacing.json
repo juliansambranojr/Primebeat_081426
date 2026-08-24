@@ -1,0 +1,68 @@
+{
+  "schema_version": "1",
+  "script": "O64_gue_spacing.py",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "x0": 100000.0,
+    "ratio": 1.002,
+    "xmax": 100000000000,
+    "grid": [
+      10.0,
+      500.0,
+      0.005
+    ],
+    "peak_factor": 5.0,
+    "seed": 2026,
+    "dgamma": 0.45490137423574456
+  },
+  "reference": {
+    "gue_frac_lt_05": 0.106,
+    "poisson_frac_lt_05": 0.393
+  },
+  "rows": {
+    "true_zeros_direct": {
+      "n": 268,
+      "mean": 1.0005989824195158,
+      "frac_lt_05": 0.05223880597014925,
+      "ks_wigner": 0.24723545607299058,
+      "ks_poisson": 0.34680223081466577
+    },
+    "poisson_direct": {
+      "n": 234,
+      "mean": 1.1507608834837844,
+      "frac_lt_05": 0.3717948717948718,
+      "ks_wigner": 0.21433818348607803,
+      "ks_poisson": 0.05075539616972746
+    },
+    "model": {
+      "n": 106,
+      "mean": 1.0284826365153745,
+      "frac_lt_05": 0.02830188679245283,
+      "ks_wigner": 0.27354477360980295,
+      "ks_poisson": 0.36709946639356095,
+      "n_input": 269
+    },
+    "poisson": {
+      "n": 177,
+      "mean": 1.521869575596913,
+      "frac_lt_05": 0.1016949152542373,
+      "ks_wigner": 0.3374677064035806,
+      "ks_poisson": 0.3007881430630773,
+      "n_input": 235
+    },
+    "real": {
+      "n": 41,
+      "mean": 5.2666578002801865,
+      "frac_lt_05": 0.0,
+      "ks_wigner": 0.6572783213844016,
+      "ks_poisson": 0.5249423396568665,
+      "n_input": 269
+    }
+  },
+  "n_peaks": {
+    "model": 107,
+    "poisson": 178,
+    "real": 42
+  }
+}

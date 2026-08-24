@@ -16,6 +16,86 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 103 — O64: the measured spectrum carries the zeros' repulsion, and the instrument's fake repulsion quantified
+type: run
+refs: 93, 94, 95, 102
+
+`O64_gue_spacing.py`, two runs. `results/gue_spacing.json`,
+`results/gue_spacing_run2.json`, both run logs. **EXPLORATORY** — no prereg, no
+verdict.
+
+### The question
+
+Montgomery's pair-correlation conjecture — zeta zeros repel like GUE
+eigenvalues — is the standing physics link to RH, and nothing in this tree had
+touched it. This bench detects zeros out of prime counts. So: do the DETECTED
+peaks show the repulsion, at the resolution this instrument has?
+
+### The design is the control
+
+Finite resolution fakes level repulsion: two frequencies closer than `dγ` merge,
+so any spectrum read through the pipeline is repelled at short range by the
+instrument alone. Three arms through one identical pipeline — the real prime
+residual, a synthetic built from the true zeros, and a synthetic with
+Poisson-placed frequencies at the zeros' own unfolded density. If the pipeline
+cannot tell model from Poisson, the honest answer is "unmeasurable" and that is
+the result.
+
+Statistic: peaks above 5× median, nearest-neighbour spacings unfolded by
+`ρ(γ) = log(γ/2π)/2π`. References: GUE `frac<0.5 ≈ 0.106`, Poisson `≈ 0.393`.
+
+### Run 1, band (10, 500): the statistic fails, informatively
+
+* **The instrument manufactures repulsion, quantified.** Poisson frequencies
+  enter at `frac<0.5 = 0.372` and exit the pipeline at `0.102` — random spacings
+  come out looking GUE-repelled from merging alone.
+* **The real arm detects ~1 zero in 5** — 41 peaks against the model's 106, mean
+  unfolded spacing 5.27 where complete detection gives 1.0. Missed detections
+  destroy nearest-neighbour statistics, so the real arm's numbers in this band
+  are junk. The script's own printed conclusion ("sits nearer the model") is not
+  supportable and is withdrawn here.
+
+The failure has a known cause: O50 run 2 showed separation stops after
+`γ ≈ 120`, where the floor rises with zero density against fixed `dγ`.
+
+### Run 2, band (10, 120) — the complete-separation band
+
+```text
+                 n    mean s   frac<0.5     detection
+true, direct    37     1.003      0.027
+model           37     1.003      0.027     38/38
+poisson         33     1.119      0.212     34/36
+real            37     1.003      0.027     38/38
+```
+
+**The real arm's spacing statistics equal the true zeros' to three decimals.**
+All 38 zeros detected; every peak sits on a zero, so the measured spectrum
+reproduces the spacing structure exactly rather than approximately.
+
+The discrimination now has teeth: model 0.027 against Poisson 0.212, gap 0.185.
+Two of the 36 Poisson frequencies merged — the instrumental repulsion visible
+and small rather than dominant.
+
+### What this is and is not
+
+**Is:** the first measurement on this bench of the zeros' spacing rigidity from
+the arithmetic side. The primes carry the spectral statistics, not just the
+frequencies. Also a calibration point: at this height the zeros are stiffer than
+GUE's asymptotic surmise (0.027 against 0.106), which is the known low-height
+behaviour.
+
+**Is not:** a test of Montgomery's conjecture, which lives at large height and
+large `n`. `n = 37` here. And the real arm equalling the true zeros is expected
+given O50's complete separation — the content is that the expectation is now
+measured, with the null that would have caught a failure.
+
+Run 1 stands as the control study: the wide-band version of this statistic is
+uninformative, and now it is on record why.
+
+Status and any verdict are Julian's.
+
+---
+
 ## 2026-08-23 — Entry 102 — An independent analysis audited, and the depth profile against a Poisson null
 type: run
 refs: 100, 101

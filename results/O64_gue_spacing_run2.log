@@ -1,0 +1,16 @@
+O64 run 2 — restricted to the complete-separation band (10, 120)
+38 true zeros in band, 36 poisson frequencies
+
+CALIBRATION — no instrument:
+     true-dir  n=  37  mean s  1.003  frac<0.5  0.027  KS-Wigner  0.276  KS-Poisson  0.356
+    poiss-dir  n=  35  mean s  1.052  frac<0.5  0.286  KS-Wigner  0.181  KS-Poisson  0.158
+
+THROUGH THE PIPELINE:
+        model  n=  37  mean s  1.003  frac<0.5  0.027  KS-Wigner  0.276  KS-Poisson  0.348
+      poisson  n=  33  mean s  1.119  frac<0.5  0.212  KS-Wigner  0.227  KS-Poisson  0.175
+         real  n=  37  mean s  1.003  frac<0.5  0.027  KS-Wigner  0.275  KS-Poisson  0.347
+
+pipeline discrimination |model-poisson| frac<0.5: 0.185
+detection efficiency: model 38/38, poisson 34/36, real 38/38
+
+wrote results/gue_spacing_run2.json

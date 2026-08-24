@@ -1,0 +1,21 @@
+O64 — spacing statistics of the measured spectrum.
+EXPLORATORY, no prereg, no verdict.
+ladder x0=100000 ratio=1.002 xmax=1e+11; grid (10.0,500.0) step 0.005; peaks > 5.0x median
+
+reference: GUE frac<0.5 ~ 0.106, Poisson frac<0.5 ~ 0.393
+
+6914 blocks, dgamma = 0.4549; 269 true zeros in range, mean gap 1.808
+
+CALIBRATION — no instrument:
+     true-dir  n= 268  mean s  1.001  frac<0.5  0.052  KS-Wigner  0.247  KS-Poisson  0.347
+    poiss-dir  n= 234  mean s  1.151  frac<0.5  0.372  KS-Wigner  0.214  KS-Poisson  0.051
+
+THROUGH THE PIPELINE:
+        model  n= 106  mean s  1.028  frac<0.5  0.028  KS-Wigner  0.274  KS-Poisson  0.367
+      poisson  n= 177  mean s  1.522  frac<0.5  0.102  KS-Wigner  0.337  KS-Poisson  0.301
+         real  n=  41  mean s  5.267  frac<0.5  0.000  KS-Wigner  0.657  KS-Poisson  0.525
+
+pipeline discrimination |model - poisson| in frac<0.5: 0.073
+   -> distinction survives; the real arm sits nearer the model arm.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/gue_spacing.json
