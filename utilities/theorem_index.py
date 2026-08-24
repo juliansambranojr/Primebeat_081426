@@ -53,24 +53,81 @@ def axioms_for(text, name):
     return AX.get(key, key)
 
 
-def citations():
-    """theorem fullname -> set of files citing it."""
+def citations(all_names):
+    """theorem fullname -> set of files citing it.
+
+    Three citation forms are accepted, in decreasing strictness:
+
+      1. Qualified: `Module.name` anywhere in prose.
+      2. Bare unique names: a name defined in exactly one module counts when
+         it appears bare, if it is >= 10 characters or carries an underscore
+         at >= 6 -- the notebook discusses theorems this way constantly,
+         usually inside fenced blocks.
+      3. Chain labels: a theorem whose docstring opens `**A1.**` formalises
+         that statement of its module's companion paper, so a prose citation
+         `<companion>.md § A1` cites the theorem. The companion is read from
+         the module header's "Companion to papers/..." line. This is the
+         paper's own citation convention (papers cite `Euler-Factor-Chain.md
+         § A1`, never `Chain.A1`), so the linker follows it rather than
+         demanding the qualified form.
+    """
     out = {}
     files = []
     for base in CITERS:
         files += list(base.glob("*.md")) if base.is_dir() else []
+    texts = {}
     for f in files:
         try:
-            t = f.read_text()
+            texts[f.name] = f.read_text()
         except Exception:
-            continue
+            pass
+    corpus = "\n".join(texts.values())
+    # 1. qualified
+    for fname, t in texts.items():
         for m in re.finditer(r"\b([A-Z]\w+)\.([a-z]\w*'?)", t):
-            out.setdefault(f"{m.group(1)}.{m.group(2)}", set()).add(f.name)
+            out.setdefault(f"{m.group(1)}.{m.group(2)}", set()).add(fname)
+    # 2. bare long unique
+    by_name = {}
+    for full in all_names:
+        mod, n = full.split(".", 1)
+        by_name.setdefault(n, []).append(mod)
+    for n, mods in by_name.items():
+        # bare-name matching: unique across modules, and either long or
+        # underscore-bearing (an underscore makes a prose false positive
+        # essentially impossible; `tau_pow`, `h_zero`, `A4_of_A1` are all
+        # discussed bare in the notebook)
+        if len(mods) != 1 or not (len(n) >= 10 or ("_" in n and len(n) >= 6)):
+            continue
+        pat = re.compile(rf"\b{re.escape(n)}\b")
+        for fname, t in texts.items():
+            if pat.search(t):
+                out.setdefault(f"{mods[0]}.{n}", set()).add(fname)
+    # 3. chain labels via the companion paper
+    for f in LEAN.glob("*.lean"):
+        t = f.read_text()
+        mcomp = re.search(r"(?:Companion to|Encodes statement.*? of `?)\s*papers/([\w\-]+\.md)", t)
+        if not mcomp:
+            continue
+        paper = mcomp.group(1)
+        ptext = texts.get(paper, "")
+        for m in re.finditer(
+                r"/--\s+\*\*([A-Z]\d*[a-z]?[\u2032\u2033]?)(?:[.,]?\*\*|\*\*[.,])"
+                r"(?:(?!-/).)*-/\s*(?:@\[[^\]]*\]\s*)?theorem\s+([A-Za-z_][\w']*)",
+                t, re.S):
+            label, name = m.group(1), m.group(2)
+            # the theorem FORMALISES statement `label` of the companion paper;
+            # the statement existing there is the prose counterpart
+            if re.search(rf"^\*\*{re.escape(label)}\.\*\*", ptext, re.M):
+                out.setdefault(f"{f.stem}.{name}", set()).add(paper)
     return out
 
 
 def main():
-    cited = citations()
+    all_names = []
+    for f in sorted(LEAN.glob("*.lean")):
+        for m in re.finditer(r"^\s*theorem\s+([A-Za-z_][\w']*)", f.read_text(), re.M):
+            all_names.append(f"{f.stem}.{m.group(1)}")
+    cited = citations(all_names)
     rows, totals = [], {}
     for f in sorted(LEAN.glob("*.lean")):
         text = f.read_text()
