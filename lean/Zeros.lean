@@ -136,6 +136,7 @@ theorem stencil_add (N : ℕ) (g h : ℕ → ℤ) :
   rw [← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun k _ => by ring
 
+/-- And scalars pass through — linearity's other half, beside `stencil_add`. -/
 theorem stencil_smul (N : ℕ) (c : ℤ) (g : ℕ → ℤ) :
     stencil N (fun k => c * g k) = c * stencil N g := by
   unfold stencil
@@ -415,9 +416,14 @@ def pi2 : ℕ → ℤ
 def dyadicRow : ℤ → ℤ := fun r =>
   if 1 ≤ r ∧ r ≤ 20 then pi2 r.toNat - pi2 (r - 1).toNat else 0
 
+/-- `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. -/
 theorem zero_2_1  : Construction.tableFrom dyadicRow 2 1 = 0 := by decide
+/-- `(4,1)` vanishes: `1·2 − 1·2 = 0`. -/
 theorem zero_4_1  : Construction.tableFrom dyadicRow 4 1 = 0 := by decide
+/-- `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. -/
 theorem zero_8_3  : Construction.tableFrom dyadicRow 8 3 = 0 := by decide
+/-- `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning
+`2^13` to `2^20`. The deep zero, computed. -/
 theorem zero_20_6 : Construction.tableFrom dyadicRow 20 6 = 0 := by decide
 
 /-- **The list's own claim, as a theorem.** Every cell `measured_zeros` names

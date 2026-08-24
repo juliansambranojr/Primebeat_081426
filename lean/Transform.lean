@@ -195,9 +195,11 @@ noncomputable def periodLattice (b : ℝ) : AddSubgroup ℂ :=
 /-- **The torus.** `ℂ ⧸ ⟨1, τ(b)·i⟩` — the object `ℂ*/b^ℤ` names. -/
 abbrev Torus (b : ℝ) : Type := ℂ ⧸ periodLattice b
 
+/-- The deck generator `1` is in the lattice. -/
 theorem one_mem_periodLattice (b : ℝ) : (1 : ℂ) ∈ periodLattice b :=
   AddSubgroup.subset_closure (by simp)
 
+/-- The period generator `τ(b)·i` is in the lattice. -/
 theorem tauI_mem_periodLattice (b : ℝ) : ((tau b : ℂ) * I) ∈ periodLattice b :=
   AddSubgroup.subset_closure (by simp)
 
@@ -241,6 +243,9 @@ noncomputable def latticeBasis {b : ℝ} (hb : 1 < b) : Module.Basis (Fin 2) ℝ
   basisOfLinearIndependentOfCardEqFinrank (gens_linearIndependent hb)
     (by simp [Complex.finrank_real_complex])
 
+/-- The additive closure of the two generators is the ℤ-span of the basis —
+the bridge from `AddSubgroup.closure` to the `ZLattice` instance that
+`periodLattice_discrete` consumes. -/
 theorem periodLattice_eq_span {b : ℝ} (hb : 1 < b) :
     periodLattice b = (Submodule.span ℤ (Set.range (latticeBasis hb))).toAddSubgroup := by
   rw [Submodule.span_int_eq_addSubgroupClosure]

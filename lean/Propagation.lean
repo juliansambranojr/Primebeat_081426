@@ -59,8 +59,10 @@ def pasc : ℕ → ℕ → ℤ
   | 0, _ + 1 => 0
   | n + 1, k + 1 => pasc n k + pasc n (k + 1)
 
+/-- The left edge of the triangle is all ones. -/
 theorem pasc_zero (n : ℕ) : pasc n 0 = 1 := by cases n <;> rfl
 
+/-- Pascal's identity — definitional, because `pasc` is defined by it. -/
 theorem pasc_succ (n k : ℕ) : pasc (n + 1) (k + 1) = pasc n k + pasc n (k + 1) := rfl
 
 /-- Above the diagonal the binomial vanishes. -/

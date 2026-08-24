@@ -116,6 +116,8 @@ theorem tableFrom_add (N M : ℤ → ℤ) (r : ℤ) (d : ℕ) :
                  + (tableFrom M r n - tableFrom M (r - 1) n)
       simp [Int.sub_eq_add_neg, Int.neg_add, Int.add_assoc, Int.add_left_comm]
 
+/-- Scalars pass through the table: the table of `c·N` is `c` times the table
+of `N`. The other half of linearity, beside `tableFrom_add`. -/
 theorem tableFrom_smul (c : ℤ) (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
     tableFrom (fun x => c * N x) r d = c * tableFrom N r d := by
   induction d generalizing r with

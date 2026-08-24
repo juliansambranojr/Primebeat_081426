@@ -97,6 +97,7 @@ theorem agreement_rank_11a1 : |measured_rank_11a1 - predicted_rank_11a1| < 0.05 
   unfold measured_rank_11a1 predicted_rank_11a1
   rw [abs_lt]; constructor <;> norm_num
 
+/-- Rank 2 lands inside 0.01 — the tightest of the three curves. -/
 theorem agreement_rank_389a1 : |measured_rank_389a1 - predicted_rank_389a1| < 0.01 := by
   unfold measured_rank_389a1 predicted_rank_389a1
   rw [abs_lt]; constructor <;> norm_num

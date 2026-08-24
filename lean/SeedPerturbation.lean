@@ -216,6 +216,8 @@ def zero_cells : List (ℕ × ℕ) := [(2, 1), (4, 1), (8, 3), (20, 6)]
 /-- The window bottoms `r − d` of the four zeros. -/
 def zero_window_bottoms : List ℤ := [1, 3, 5, 14]
 
+/-- The window bottoms `r − d` of the four zeros are `1, 3, 5, 14`, computed
+rather than transcribed. -/
 theorem window_bottoms_correct :
     zero_cells.map (fun c => (c.1 : ℤ) - (c.2 : ℤ)) = zero_window_bottoms := by decide
 
@@ -244,11 +246,15 @@ The silenced number 4 sits in rung 2, the silenced number 6 in rung 3, so
 rung 3, nothing above. -/
 def silence46_excess : ℤ → ℤ := fun s => if s = 2 ∨ s = 3 then 1 else 0
 
+/-- The `silence46` excess is confined to rungs 2 and 3 — the hypothesis
+`cell_eq_of_seed_perturbation` needs, at `R_e = 3`. -/
 theorem silence46_vanishes_above_three : ∀ s : ℤ, 3 < s → silence46_excess s = 0 := by
   intro s hs
   have h : ¬(s = 2 ∨ s = 3) := by omega
   simp [silence46_excess, h]
 
+/-- And rung 3 genuinely carries excess, so `boundary_can_move` has its
+`e R ≠ 0`. -/
 theorem silence46_alive_at_three : silence46_excess 3 ≠ 0 := by decide
 
 /-- Cells `(4,1)`, `(8,3)`, `(20,6)` of
@@ -305,6 +311,8 @@ Measured: `(2,1)` moved 1 → 0; the other three are 4, 16, 8192 in both files. 
 two, nothing above. -/
 def emptied_excess : ℤ → ℤ := fun s => if s = 1 then 1 else if s = 2 then 2 else 0
 
+/-- The emptied variant's excess is confined to rungs 1 and 2 — `R_e = 2`,
+the same profile as excluding the primes 2 and 3. -/
 theorem emptied_vanishes_above_two : ∀ s : ℤ, 2 < s → emptied_excess s = 0 := by
   intro s hs
   have h1 : ¬(s = 1) := by omega

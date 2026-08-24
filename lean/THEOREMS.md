@@ -23,21 +23,21 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `PairIdentity` | `base_three_carries_factor` | Base three does carry the factor: the total at `(r,d)` is `2^(d+1)·3^(r−1−d)`, never a bare power of three. |
 | `PairIdentity` | `base_four_carries_factor` | Base four likewise: `3^(d+1)·4^(r−1−d)`. |
 | `PairIdentity` | `measured_composite_matches_pair_identity` | The falsifier. |
-| `Propagation` | `pasc_zero` |  |
-| `Propagation` | `pasc_succ` |  |
+| `Propagation` | `pasc_zero` | The left edge of the triangle is all ones. |
+| `Propagation` | `pasc_succ` | Pascal's identity — definitional, because `pasc` is defined by it. |
 | `Propagation` | `pasc_eq_zero` | Above the diagonal the binomial vanishes. |
 | `SeedPerturbation` | `tableFrom_zero` | The zero row builds the zero table. |
-| `SeedPerturbation` | `window_bottoms_correct` |  |
+| `SeedPerturbation` | `window_bottoms_correct` | The window bottoms `r − d` of the four zeros are `1, 3, 5, 14`, computed rather than transcribed. |
 | `SeedPerturbation` | `protected_at_R_two` | Which zeros the theorem protects when 2 and 3 are the excluded primes. |
 | `SeedPerturbation` | `protected_at_R_three` | And when the excess reaches rung 3 — which `silence46` does, since 6 sits in `(4,8]`. |
-| `SeedPerturbation` | `silence46_alive_at_three` |  |
+| `SeedPerturbation` | `silence46_alive_at_three` | And rung 3 genuinely carries excess, so `boundary_can_move` has its `e R ≠ 0`. |
 | `SeedPerturbation` | `measured_silence46_matches_shift` | The falsifier. |
 | `SeedPerturbation` | `measured_emptied_matches_shift` | The second falsifier, at `R_e = 2`. |
 | `Zeros` | `tableFrom_isTable` | The bench's table is one. |
-| `Zeros` | `zero_2_1` |  |
-| `Zeros` | `zero_4_1` |  |
-| `Zeros` | `zero_8_3` |  |
-| `Zeros` | `zero_20_6` |  |
+| `Zeros` | `zero_2_1` | `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. |
+| `Zeros` | `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. |
+| `Zeros` | `zero_8_3` | `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. |
+| `Zeros` | `zero_20_6` | `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning `2^13` to `2^20`. |
 | `Zeros` | `measured_zeros_all_vanish` | The list's own claim, as a theorem. |
 | `Zeros` | `nonzero_7_3` | A non-zero neighbour, so the check can fail. |
 | `Zeros` | `nonzero_19_6` | The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`. |
@@ -88,14 +88,14 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `eq_of_same_row` | Two tables over the same row agree everywhere. | **none** | `Formalization.md`, `The-Four-Zeros.md` |
 | `zero_determined_by_row` | A zero is determined by the row. | propext | `Formalization.md`, `lab_notebook_2.md` |
 | `tableFrom_add` | Differencing is linear, at every depth. | propext | `lab_notebook_2.md` |
-| `tableFrom_smul` |  | propext | `lab_notebook_2.md` |
+| `tableFrom_smul` | Scalars pass through the table: the table of `c·N` is `c` times the table of `N`. | propext | `lab_notebook_2.md` |
 
 ## Covering (6)
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
 | `exists_near_lattice` | The covering lemma. | ℂ floor | `Formalization.md` |
-| `covered_of_half_spacing` | Vacuity. | ℂ floor | `Formalization.md` |
+| `covered_of_half_spacing` | Vacuity. | ℂ floor | `Formalization.md`, `lab_notebook_2.md` |
 | `covered_smul` | Selectivity is a ratio. | ℂ floor | support |
 | `covering_not_monotone` | Non-monotone by construction. | ℂ floor | `Formalization.md` |
 | `bench_is_selective` | The bench sits BELOW the vacuity threshold, so the form genuinely selects. | ℂ floor | record |
@@ -105,8 +105,8 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `ratio_strictMono` | With distinct ratios `x < y`, the dominance ratio is strictly increasing — the `y`-family gains on the `x`-family monotonically, at every index. | ℂ floor | `Formalization.md` |
-| `at_most_one_crossover` | At most one crossover. | ℂ floor | `Formalization.md` |
+| `ratio_strictMono` | With distinct ratios `x < y`, the dominance ratio is strictly increasing — the `y`-family gains on the `x`-family monotonically, at every index. | ℂ floor | `Formalization.md`, `lab_notebook_2.md` |
+| `at_most_one_crossover` | At most one crossover. | ℂ floor | `Formalization.md`, `lab_notebook_2.md` |
 | `dominance_flips` | Before the crossover the `x`-family leads; after it, the `y`-family. | ℂ floor | support |
 | `no_crossover_of_single` | A single family has no crossover. | ℂ floor | support |
 | `count_does_not_determine_spread` | The coefficient-count account fails. | ℂ floor | `Formalization.md` |
@@ -126,7 +126,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `sym_natCast` | The chain's `sym` at a natural-number base, written the way the Euler product writes its factors. | ℂ floor | `lab_notebook_2.md` |
 | `euler_product_sym` | A3, the single-base reading with the `b` index retained. | ℂ floor | `Euler-Factor-Chain.md` |
 | `h_functional_equation` | B2a. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
-| `h_zero` | B2b. | ℂ floor | `Euler-Factor-Chain.md` |
+| `h_zero` | B2b. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
 | `h_one` | B2b. | ℂ floor | `Euler-Factor-Chain.md` |
 | `conj_factor_on_critical_line` | On the critical line the second factor is the conjugate of the first. | ℂ floor | support |
 | `h_eq_gain_pow_on_critical_line` | B4. | ℂ floor | `Euler-Factor-Chain.md` |
@@ -165,7 +165,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `agreement_offsets_match` | The one numeric relation that carries an inference. | ℂ floor | record |
 | `agreement_radius_smooth` | The smooth control sits above `b^(-1) = 0.5` by the measured offset. | ℂ floor | record |
 | `agreement_rank_11a1` | Ranks 0 and 2 land inside 0.05. | ℂ floor | record |
-| `agreement_rank_389a1` |  | ℂ floor | record |
+| `agreement_rank_389a1` | Rank 2 lands inside 0.01 — the tightest of the three curves. | ℂ floor | record |
 | `agreement_rank_37a1` | Rank 1 needs a tolerance of 0.3. | ℂ floor | record |
 | `agreement_elliptic` | Agreement at machine epsilon: the deviation is one ulp of a float64. | ℂ floor | record |
 | `agreement_weil_balance` | The two sides agree to 5.7e-7 relative. | ℂ floor | record |
@@ -192,8 +192,8 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `pasc_zero` |  | **none** | `lab_notebook_2.md` |
-| `pasc_succ` |  | **none** | `lab_notebook_2.md` |
+| `pasc_zero` | The left edge of the triangle is all ones. | **none** | `lab_notebook_2.md` |
+| `pasc_succ` | Pascal's identity — definitional, because `pasc` is defined by it. | **none** | `lab_notebook_2.md` |
 | `pasc_eq_zero` | Above the diagonal the binomial vanishes. | **none** | `lab_notebook_2.md` |
 | `pasc_pos` | On and below the diagonal it is positive — this is what "no lacunae" rests on: the propagator never vanishes inside its cone. | propext, Quot.sound | `lab_notebook_2.md` |
 | `outside_cone_zero` | Outside the forward cone, nothing. | propext, Quot.sound | `NOTEPAD.md`, `lab_notebook_2.md` |
@@ -215,15 +215,15 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `tableFrom_at_boundary` | The boundary cell, exactly. | propext, Quot.sound | `The-Fold.md` |
 | `boundary_can_move` | `r − d > R` cannot be relaxed to `r − d ≥ R`. | propext, Quot.sound | `lab_notebook_2.md` |
 | `cell_ne_at_boundary` | The same fact said about the two conventions rather than about `e`: at the boundary the cell genuinely differs. | propext, Quot.sound | support |
-| `window_bottoms_correct` |  | **none** | record |
+| `window_bottoms_correct` | The window bottoms `r − d` of the four zeros are `1, 3, 5, 14`, computed rather than transcribed. | **none** | record |
 | `protected_at_R_two` | Which zeros the theorem protects when 2 and 3 are the excluded primes. | **none** | record |
 | `protected_at_R_three` | And when the excess reaches rung 3 — which `silence46` does, since 6 sits in `(4,8]`. | **none** | record |
-| `silence46_vanishes_above_three` |  | propext, Quot.sound | record |
-| `silence46_alive_at_three` |  | **none** | record |
+| `silence46_vanishes_above_three` | The `silence46` excess is confined to rungs 2 and 3 — the hypothesis `cell_eq_of_seed_perturbation` needs, at `R_e = 3`. | propext, Quot.sound | record |
+| `silence46_alive_at_three` | And rung 3 genuinely carries excess, so `boundary_can_move` has its `e R ≠ 0`. | **none** | record |
 | `measured_silence46_matches_shift` | The falsifier. | **none** | record |
 | `silence46_deep_cells_fixed` | The two deep cells are protected by the theorem, not by arithmetic luck: `8 − 3 = 5 > 3` and `20 − 6 = 14 > 3`, so `cell_eq_of_seed_perturbation` appl | propext, Quot.sound | record |
 | `silence46_cell_4_1_moves` | And `(4,1)` is not protected, for the reason the theorem gives rather than by inspection: `4 − 1 = 3 = R_e`, so `boundary_can_move` fires. | propext, Quot.sound | record |
-| `emptied_vanishes_above_two` |  | propext, Quot.sound | record |
+| `emptied_vanishes_above_two` | The emptied variant's excess is confined to rungs 1 and 2 — `R_e = 2`, the same profile as excluding the primes 2 and 3. | propext, Quot.sound | record |
 | `measured_emptied_matches_shift` | The second falsifier, at `R_e = 2`. | **none** | record |
 | `emptied_protected_cells_fixed` | The three protected cells, again by theorem rather than by computation: `4 − 1 = 3 > 2`, `8 − 3 = 5 > 2`, `20 − 6 = 14 > 2`. | propext, Quot.sound | record |
 
@@ -240,7 +240,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `bdiffL_apply` |  | ℂ floor | `lab_notebook_2.md` |
+| `bdiffL_apply` | The packaging is definitional: applying the endomorphism is applying `bdiff`. | ℂ floor | `lab_notebook_2.md` |
 | `mode_ne_zero'` | A mode never vanishes: `b^(rρ) ≠ 0` for `b ≠ 0`. | ℂ floor | support |
 | `mode_ne_zero` | Hence a mode is not the zero function. | ℂ floor | `lab_notebook_2.md` |
 | `mode_hasEigenvector` | The mode is an eigenvector, in Mathlib's sense. | ℂ floor | `lab_notebook_2.md` |
@@ -261,17 +261,17 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `zmap_period_tau` | `τ` is exactly the period `zmap_period` uses. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `tau_pow` | The power chain. | ℂ floor | `lab_notebook_2.md` |
 | `tau_ratio_of_meet` | Meeting ladders have rationally related `τ`, and the ratio is the meeting exponents. | ℂ floor | `lab_notebook_2.md` |
-| `one_mem_periodLattice` |  | ℂ floor | support |
-| `tauI_mem_periodLattice` |  | ℂ floor | support |
+| `one_mem_periodLattice` | The deck generator `1` is in the lattice. | ℂ floor | support |
+| `tauI_mem_periodLattice` | The period generator `τ(b)·i` is in the lattice. | ℂ floor | support |
 | `tau_pos` | `τ(b) > 0` for `b > 1`, which is what makes the second generator nonzero. | ℂ floor | support |
-| `generators_indep` | The lattice has rank 2. | ℂ floor | `Euler-Factor-Chain.md` |
+| `generators_indep` | The lattice has rank 2. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
 | `gens_linearIndependent` | `generators_indep` in the form Mathlib's basis constructor wants. | ℂ floor | `lab_notebook_2.md` |
-| `periodLattice_eq_span` |  | ℂ floor | `lab_notebook_2.md` |
+| `periodLattice_eq_span` | The additive closure of the two generators is the ℤ-span of the basis — the bridge from `AddSubgroup.closure` to the `ZLattice` instance that `periodL | ℂ floor | `lab_notebook_2.md` |
 | `periodLattice_discrete` | The lattice is discrete. | ℂ floor | `CONTEXT.md`, `lab_notebook_2.md` |
-| `torus_shift` | The deck transformation is an identity in the torus. | ℂ floor | `Euler-Factor-Chain.md` |
-| `torus_period` | The period is an identity in the torus. | ℂ floor | `Euler-Factor-Chain.md` |
+| `torus_shift` | The deck transformation is an identity in the torus. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
+| `torus_period` | The period is an identity in the torus. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
 | `zmap_period_zsmul` | The `z`-map descends past the whole pole lattice, not just one period. | ℂ floor | `lab_notebook_2.md` |
-| `zmap_shift_modulus` | The deck transformation scales the modulus by `b^(−n)`. | ℂ floor | `Euler-Factor-Chain.md` |
+| `zmap_shift_modulus` | The deck transformation scales the modulus by `b^(−n)`. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
 | `inversion_fixes_circle` | The functional equation is inversion in the critical circle, as a theorem. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `rpow_left_inj` | For `b > 1` the real power is injective in the exponent. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `zmap_ne_zero` | The image of `s` under the `z`-map is never zero. | ℂ floor | `lab_notebook_2.md` |
@@ -310,8 +310,8 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `pair_shares_diagonal` | And those two cells share a diagonal. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_eq_fwdDiff` | The table's `d`-fold backward difference is `(-1)^d` times Mathlib's `d`-fold forward difference at step `-1`. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_eq_stencil` | The operator IS Pascal. | ℂ floor | `README.md`, `lab_notebook_2.md` |
-| `stencil_add` | The stencil is linear in the sampled values. | ℂ floor | support |
-| `stencil_smul` |  | ℂ floor | support |
+| `stencil_add` | The stencil is linear in the sampled values. | ℂ floor | `lab_notebook_2.md` |
+| `stencil_smul` | And scalars pass through — linearity's other half, beside `stencil_add`. | ℂ floor | support |
 | `stencil_annihilates_const` | The stencil's positive and negative arms carry equal total weight. | ℂ floor | support |
 | `stencil_eq_wings` | The fold is an identity, not a test. | ℂ floor | `lab_notebook_2.md` |
 | `stencil_eq_zero_iff_wings` | A zero is where the wings balance. | ℂ floor | `lab_notebook_2.md` |
@@ -325,13 +325,13 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `base_of_meets_two` | Only powers of two reach a dyadic window. | ℂ floor | `lab_notebook_2.md` |
 | `factorization_proportional` | Two ladders that meet have proportional exponents. | ℂ floor | `lab_notebook_2.md` |
 | `primeFactors_eq_of_meets` | And they are built from the same primes. | ℂ floor | `lab_notebook_2.md` |
-| `zero_2_1` |  | **none** | `lab_notebook_2.md` |
-| `zero_4_1` |  | **none** | `lab_notebook_2.md` |
-| `zero_8_3` |  | **none** | `lab_notebook_2.md` |
-| `zero_20_6` |  | **none** | `lab_notebook_2.md` |
+| `zero_2_1` | `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. | **none** | `lab_notebook_2.md` |
+| `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. | **none** | `lab_notebook_2.md` |
+| `zero_8_3` | `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. | **none** | `lab_notebook_2.md` |
+| `zero_20_6` | `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning `2^13` to `2^20`. | **none** | `lab_notebook_2.md` |
 | `measured_zeros_all_vanish` | The list's own claim, as a theorem. | **none** | `NOTEPAD.md`, `README.md`, `The-Four-Zeros.md` +1 |
 | `nonzero_7_3` | A non-zero neighbour, so the check can fail. | **none** | `lab_notebook_2.md` |
 | `nonzero_19_6` | The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`. | **none** | `lab_notebook_2.md` |
 | `four_zeros_only` | Four zeros in 1953 cells. | **none** | support |
-| `zero_at_20_6_of_repeat` | The measured repeat gives the deep zero, through the theorem. | propext | `The-Four-Zeros.md` |
-| `zero_at_8_3_of_repeat` | The same for the other deep zero, where the repeated value is 4. | propext | `The-Four-Zeros.md` |
+| `zero_at_20_6_of_repeat` | The measured repeat gives the deep zero, through the theorem. | propext | `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `zero_at_8_3_of_repeat` | The same for the other deep zero, where the repeated value is 4. | propext | `The-Four-Zeros.md`, `lab_notebook_2.md` |

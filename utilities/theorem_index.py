@@ -35,7 +35,9 @@ def docstring_claim(text, pos):
     j = head.rfind("/--", 0, i)
     if j == -1:
         return ""
-    if head[i + 2:].strip():          # something between docstring and theorem
+    between = head[i + 2:].strip()
+    # attributes may sit between the docstring and its theorem
+    if between and not re.fullmatch(r"(@\[[^\]]*\]\s*)+", between):
         return ""
     body = " ".join(head[j + 3:i].split())
     body = body.replace("**", "")

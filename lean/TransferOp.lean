@@ -55,6 +55,8 @@ noncomputable def bdiffL : Module.End ℂ (ℂ → ℂ) where
     simp [bdiff]
     ring
 
+/-- The packaging is definitional: applying the endomorphism is applying
+`bdiff`. -/
 @[simp]
 theorem bdiffL_apply (f : ℂ → ℂ) : bdiffL f = bdiff f := rfl
 
