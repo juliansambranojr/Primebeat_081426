@@ -16,6 +16,36 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 123 — Stage3/PsiToPi.lean complete: the transfer delivers (3C+13, k−1)
+type: formalization
+refs: 118, 121, 122
+
+Step 3 of the decomposition plan, complete.
+`lean_stage3/Stage3/PsiToPi.lean` grows to twelve theorems, twelve
+pins; package parity 18/18; builds clean at 8707 jobs; welds 2/0.
+
+schoenfeldWeak_of_psiWeak is the capstone: a ψ-side weak bound
+(C, k, x₀), k ≥ 2, x₀ ≥ 2, delivers StmtSchoenfeldWeak (3C+13) (k−1)
+(max(x₀², 9)) for π(⌊·⌋) and Li — the conclusion is Statement.lean's
+own Prop, so weakWindow_of_global composes directly. One log dropped,
+constant inflated to 3C+13, floor squared. The proof: split at the
+family floor; below it |θ−id| ≤ (1+log4)·t and the integrand is ≤ 5
+(one_add_log_four_le: 1+log4 ≤ 5·log²2, from Mathlib's decimal bounds
+on log 2); above it the family envelope integrates to
+2(C·L^(k−2)+3)·√x via integral_A_rpow_le; absorption uses log x ≥ 1
+and x₀ ≤ √x. Supporting: abs_theta_sub_le_linear, rpow_neg_half_mul,
+integrability lemmas generalized to arbitrary endpoints ≥ 2.
+
+The census reach of the delivered constants, checked on O68's
+machinery: the classical RH ψ-bound (1/(8π))√x·log²x, x ≥ 74, delivers
+(13.12, 1, 5476) → depth_covered = 11. A degraded ψ input (C=1, k=3)
+still delivers depth 9. Every row past (20,6)'s own depth.
+
+The chain now kernel-checked: StmtPsiWeak → StmtSchoenfeldWeak →
+StmtWeakWindow. Open: step 4 (zero-sum from hNT), step 5 (hRH + hEF →
+StmtPsiWeak), and the census re-tabulation once the delivered constant
+is final.
+
 ## 2026-08-24 — Entry 122 — Stage3/PsiToPi.lean: the transfer identity proved, integrability discharged
 type: formalization
 refs: 118, 121
