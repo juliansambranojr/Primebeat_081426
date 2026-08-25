@@ -16,6 +16,31 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 127 — The zero side at √x·(log T)²: slice 2 closed
+type: formalization
+refs: 124, 125, 126
+
+ZeroSum slice 2, complete, in `lean_stage3/Stage3/Assembly.lean`.
+Two theorems added; package parity 34/34; builds clean at 8710 jobs;
+welds 2/0. The index bookkeeping (Finset.sum_bij' with structure-eta
+rfl inverses) went through on the first build.
+
+norm_zeroPartialSum_le_sharp — under RH the zero side is controlled
+level by level: ‖zeroPartialSum x 2^(K+1)‖ ≤
+2√x·Σ_{j≤K} (2^j)⁻¹·(2|N(2^(j+1))| + W), each level's weighted count
+entering through IEANTN's sorry-free weighted_cumulative_count_le,
+reached by the scalar domination of entry 126 — no shell partition.
+norm_zeroPartialSum_le_logsq — composed with entry 124's counting
+arithmetic: under hRH + hNT, the zero side is at most
+2√x·(2·[(log2/2π)(K+1)(K+2) + 3(K+1)/π + 2(RvM(2^(K+1))+7/8)] + 2W).
+The √x·(log T)² bound, every constant explicit.
+
+What remains of the decomposition: one theorem. The assembly — from
+StmtExplicitFormula move the zero side across with this bound, choose
+K from log₂ x, deliver StmtPsiWeak with a computed constant. Then
+PsiToPi's transfer (entry 123) and Statement's bridge (entry 121)
+carry it to the census (entry 118).
+
 ## 2026-08-24 — Entry 126 — Dyadic refinement, half landed: the scalar domination and the per-zero bound
 type: formalization
 refs: 124, 125

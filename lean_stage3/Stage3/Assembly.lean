@@ -249,6 +249,141 @@ theorem norm_term_le_dyadic (hRH : RiemannHypothesis) (ρ : NontrivialZeros)
       _ ≤ 2 * Real.sqrt x * _ :=
           mul_le_mul_of_nonneg_left hS1 (by positivity)
 
+/-- **The sharp zero-side bound, dyadic form.** Under RH, the zero side
+is controlled level by level: each level's weighted count enters through
+IEANTN's sorry-free `weighted_cumulative_count_le`, reached by the
+scalar domination — no shell partition anywhere. -/
+theorem norm_zeroPartialSum_le_sharp (hRH : RiemannHypothesis)
+    {x : ℝ} (hx : 0 < x) (K : ℕ) :
+    ‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖
+      ≤ 2 * Real.sqrt x * ∑ j ∈ Finset.range (K + 1),
+          ((2 : ℝ) ^ j)⁻¹
+            * (2 * |riemannZeta.N ((2 : ℝ) ^ (j + 1))|
+              + weightedZeroHeightBucket) := by
+  classical
+  haveI : Fintype {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (K + 1)} :=
+    (nontrivialZeros_abs_im_lt_finite ((2 : ℝ) ^ (K + 1))).fintype
+  rw [zeroPartialSum, tsum_fintype]
+  refine le_trans (norm_sum_le _ _) ?_
+  have hm : ∀ ρ : NontrivialZeros,
+      (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) :=
+    fun ρ => by
+      exact_mod_cast riemannZeta_order_nonneg (nontrivialZero_ne_one ρ)
+  have hterm : ∀ ρ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (K + 1)},
+      ‖((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℂ)
+          * ((x : ℂ) ^ ((ρ : NontrivialZeros) : ℂ) / ((ρ : NontrivialZeros) : ℂ))‖
+        ≤ ∑ j ∈ Finset.range (K + 1),
+            2 * Real.sqrt x * (((2 : ℝ) ^ j)⁻¹
+              * (((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℝ)
+                * (if |((ρ : NontrivialZeros) : ℂ).im| < 2 ^ (j + 1) then 1 else 0))) := by
+    intro ρ
+    rw [norm_mul]
+    have hcast : ‖((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℂ)‖
+        = ((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℝ) := by
+      rw [Complex.norm_intCast]
+      exact abs_of_nonneg (by exact_mod_cast hm ρ.1)
+    rw [hcast]
+    have hd := norm_term_le_dyadic hRH ρ.1 hx K ρ.2
+    calc ((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℝ)
+          * ‖(x : ℂ) ^ ((ρ : NontrivialZeros) : ℂ) / ((ρ : NontrivialZeros) : ℂ)‖
+        ≤ ((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℝ)
+            * (2 * Real.sqrt x * ∑ j ∈ Finset.range (K + 1),
+                ((2 : ℝ) ^ j)⁻¹
+                  * (if |((ρ : NontrivialZeros) : ℂ).im| < 2 ^ (j + 1) then 1 else 0)) :=
+          mul_le_mul_of_nonneg_left hd (hm ρ.1)
+      _ = _ := by
+          rw [Finset.mul_sum, Finset.mul_sum]
+          exact Finset.sum_congr rfl fun j _ => by ring
+  refine le_trans (Finset.sum_le_sum fun ρ _ => hterm ρ) ?_
+  rw [Finset.sum_comm, Finset.mul_sum]
+  refine Finset.sum_le_sum fun j hj => ?_
+  have hjK : j ≤ K := Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
+  haveI : Fintype {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (j + 1)} :=
+    (nontrivialZeros_abs_im_lt_finite ((2 : ℝ) ^ (j + 1))).fintype
+  have hle : (2 : ℝ) ^ (j + 1) ≤ (2 : ℝ) ^ (K + 1) :=
+    pow_le_pow_right₀ (by norm_num) (by omega)
+  have hinner : (∑ ρ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (K + 1)},
+        ((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℝ)
+          * (if |((ρ : NontrivialZeros) : ℂ).im| < 2 ^ (j + 1) then 1 else 0))
+      = ∑ σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (j + 1)},
+          ((riemannZeta.order ((σ : NontrivialZeros) : ℂ) : ℤ) : ℝ) := by
+    simp only [mul_ite, mul_one, mul_zero]
+    rw [← Finset.sum_filter]
+    refine Finset.sum_bij'
+      (fun ρ hρ => (⟨ρ.1, (Finset.mem_filter.mp hρ).2⟩ :
+        {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (j + 1)}))
+      (fun σ _ => (⟨σ.1, lt_of_lt_of_le σ.2 hle⟩ :
+        {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (K + 1)}))
+      ?_ ?_ ?_ ?_ ?_
+    · intro a _
+      exact Finset.mem_univ _
+    · intro σ _
+      rw [Finset.mem_filter]
+      exact ⟨Finset.mem_univ _, σ.2⟩
+    · intro a _
+      rfl
+    · intro σ _
+      rfl
+    · intro a _
+      rfl
+  calc (∑ ρ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (K + 1)},
+        2 * Real.sqrt x * (((2 : ℝ) ^ j)⁻¹
+          * (((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℝ)
+            * (if |((ρ : NontrivialZeros) : ℂ).im| < 2 ^ (j + 1) then 1 else 0))))
+      = 2 * Real.sqrt x * (((2 : ℝ) ^ j)⁻¹
+          * ∑ ρ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (K + 1)},
+            ((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℝ)
+              * (if |((ρ : NontrivialZeros) : ℂ).im| < 2 ^ (j + 1) then 1 else 0)) := by
+        rw [Finset.mul_sum, Finset.mul_sum]
+    _ = 2 * Real.sqrt x * (((2 : ℝ) ^ j)⁻¹
+          * ∑ σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < (2 : ℝ) ^ (j + 1)},
+            ((riemannZeta.order ((σ : NontrivialZeros) : ℂ) : ℤ) : ℝ)) := by
+        rw [hinner]
+    _ ≤ 2 * Real.sqrt x * (((2 : ℝ) ^ j)⁻¹
+          * (2 * |riemannZeta.N ((2 : ℝ) ^ (j + 1))| + weightedZeroHeightBucket)) := by
+        have hc := weighted_cumulative_count_le (k := j)
+        rw [tsum_fintype] at hc
+        have h1 : (0 : ℝ) ≤ ((2 : ℝ) ^ j)⁻¹ := by positivity
+        have h2 : (0 : ℝ) ≤ 2 * Real.sqrt x := by positivity
+        exact mul_le_mul_of_nonneg_left
+          (mul_le_mul_of_nonneg_left hc h1) h2
+
+/-- **The zero side at `√x·(log T)²`, under RH + hNT — the sharp form.**
+Combining the dyadic bound with ZeroSum's counting arithmetic: with
+`T = 2^(K+1)`, the zero side is at most
+`2√x·(2·[(log 2/2π)(K+1)(K+2) + 3(K+1)/π + 2(RvM(T) + 7/8)] + 2W)`. -/
+theorem norm_zeroPartialSum_le_logsq (hRH : RiemannHypothesis)
+    {b₁ b₂ b₃ : ℝ} (hb₁ : 0 ≤ b₁) (hb₂ : 0 ≤ b₂)
+    (hRvM2 : 0 ≤ riemannZeta.RvM b₁ b₂ b₃ 2)
+    (hNT : riemannZeta.Riemann_vonMangoldt_bound b₁ b₂ b₃)
+    {x : ℝ} (hx : 0 < x) (K : ℕ) :
+    ‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖
+      ≤ 2 * Real.sqrt x
+          * (2 * (Real.log 2 / (2 * Real.pi) * (K + 1) * (K + 2)
+                + 3 * (K + 1) / Real.pi
+                + 2 * (riemannZeta.RvM b₁ b₂ b₃ ((2 : ℝ) ^ (K + 1)) + 7 / 8))
+            + 2 * weightedZeroHeightBucket) := by
+  refine le_trans (norm_zeroPartialSum_le_sharp hRH hx K) ?_
+  have hW : (0 : ℝ) ≤ weightedZeroHeightBucket := weightedZeroHeightBucket_nonneg
+  have hsplit : (∑ j ∈ Finset.range (K + 1), ((2 : ℝ) ^ j)⁻¹
+        * (2 * |riemannZeta.N ((2 : ℝ) ^ (j + 1))| + weightedZeroHeightBucket))
+      = 2 * (∑ j ∈ Finset.range (K + 1),
+          ((2 : ℝ) ^ j)⁻¹ * |riemannZeta.N ((2 : ℝ) ^ (j + 1))|)
+        + weightedZeroHeightBucket
+          * ∑ j ∈ Finset.range (K + 1), ((2 : ℝ) ^ j)⁻¹ := by
+    rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
+    exact Finset.sum_congr rfl fun j _ => by ring
+  have hD := dyadic_abs_N_sum_le hb₁ hb₂ hRvM2 hNT K
+  have hgeo := sum_inv_pow_two_le (K + 1)
+  have hWs : weightedZeroHeightBucket
+        * (∑ j ∈ Finset.range (K + 1), ((2 : ℝ) ^ j)⁻¹)
+      ≤ weightedZeroHeightBucket * 2 :=
+    mul_le_mul_of_nonneg_left hgeo hW
+  have h2s : (0 : ℝ) ≤ 2 * Real.sqrt x := by positivity
+  refine mul_le_mul_of_nonneg_left ?_ h2s
+  rw [hsplit]
+  linarith
+
 end
 
 /-! ## Axiom check
@@ -274,6 +409,14 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Stage3.norm_term_le_of_RH' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stage3.norm_term_le_of_RH
+
+/-- info: 'Stage3.norm_zeroPartialSum_le_sharp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.norm_zeroPartialSum_le_sharp
+
+/-- info: 'Stage3.norm_zeroPartialSum_le_logsq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.norm_zeroPartialSum_le_logsq
 
 /-- info: 'Stage3.inv_le_dyadic_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
