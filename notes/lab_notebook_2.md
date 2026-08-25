@@ -16,6 +16,32 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 126 — Dyadic refinement, half landed: the scalar domination and the per-zero bound
+type: formalization
+refs: 124, 125
+
+ZeroSum slice 2, first half, in `lean_stage3/Stage3/Assembly.lean`.
+Two theorems added, both pinned; package parity 32/32; builds clean at
+8710 jobs; welds 2/0.
+
+inv_le_dyadic_sum — the scalar heart of the refinement: for
+1 ≤ γ < 2^(K+1), γ⁻¹ ≤ Σ_{j≤K} (2^j)⁻¹·[γ < 2^(j+1)]. Proved by
+induction on K: the shell containing γ contributes a weight that
+already dominates. This replaces the shell-partition argument — no
+partition, no fibers, one scalar induction.
+norm_term_le_dyadic — per zero, under RH: ‖x^ρ/ρ‖ ≤
+2√x·Σ_{j≤K} (2^j)⁻¹·[|γ| < 2^(j+1)], splitting at |γ| ≥ 1 (the low
+bucket rides on |ρ| ≥ 1/2, the rest on |ρ| ≥ |γ| and the scalar
+lemma).
+
+Remaining for the √x·(log T)² close, route recorded in the module
+header: the sum swap (Finset.sum_comm), the per-level identification
+Σ_{|γ|<2^(K+1)} m·[|γ|<2^(j+1)] = Σ_{|γ|<2^(j+1)} m via
+Fintype.sum_equiv + Equiv.subtypeSubtypeEquivSubtype, then
+weighted_cumulative_count_le per level feeds dyadic_abs_N_sum_le
+(entry 124). After that, the assembly theorem closes hRH + hEF + hNT
+into StmtPsiWeak and PsiToPi's transfer carries it to the census.
+
 ## 2026-08-24 — Entry 125 — Stage3/Assembly.lean: RH meets the zero sum
 type: formalization
 refs: 119, 123, 124
