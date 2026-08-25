@@ -29,6 +29,7 @@ import Stage3.Assembly
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude
+import Stage3.JensenCount
 
 namespace Stage3
 

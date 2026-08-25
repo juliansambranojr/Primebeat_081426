@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 157: JENSEN COUNT DISCHARGED — zeta_local_zero_count <= 7 log T + 30 (budget 100/1000), localCount_holds instantiates the leaf; 77/77 pins, 8720 jobs; StmtArgCrude now needs only the rectangle identity + Backlund's step
 - [open]   2026-08-25  entry 156: upstream probe — backlund_bound still sorry (watch stays open), but PR #1751 landed ZerosBound (Jensen count) + SumBoundII sorry-free; pin bumped 751a8c2->47fa486, 8713 jobs, 56/56 pins, welds green; StmtArgCrude route cheaper
 - [open]   2026-08-25  entry 155: O76 joint {2^m 3^n} zero census — commensurability-gated, 158766 cells to 2.2e12, every cell above x=11664 nonzero; the four zeros remain base 2's own; answers entry 62
 - [open]   2026-08-25  entry 154: O75 out-of-sample crossing slopes — r=0.96 over seven fresh bases, five within ±10.4%, misses at the law's own window edges; testable domain mapped; answers entry 36's line

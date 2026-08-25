@@ -16,6 +16,96 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 157 — JENSEN COUNT DISCHARGED: the Arg half's analytic core, 7 log T + 30
+type: formalization
+refs: 130, 141, 156
+
+Two modules landed. `lean_stage3/Stage3/ArgCrude.lean` (4 theorems)
+decomposes the argument half into three named pieces and proves the
+assembly; `lean_stage3/Stage3/JensenCount.lean` (17 theorems)
+discharges the piece that was the analytic core.
+
+**The decomposition.** `StmtArgIdentity θ S` (the rectangle
+argument-principle identity `N T = θ T / π + 1 + S T`, no bounds
+asserted), `StmtLocalCount cnt A₁ A₃` (a local zero count growing
+like `log T`), `StmtSFromLocal S cnt a b` (Backlund's step from the
+count to the argument). `argCrude_of_pieces` assembles them into
+`StmtBacklundArg θ (a·A₁) (a·A₃+b)`, and
+`rvM_of_stirling_and_pieces` carries that to
+`Riemann_vonMangoldt_bound` against the already-discharged Stirling
+half (entry 140). The count is abstract in the statement for entry
+132's reason: a named leaf whose satisfiability is untested is how
+that correction was earned.
+
+**The discharge, with explicit constants.**
+
+```text
+zeta_local_zero_count (T ≥ 2):
+    sum of zeta zero orders in |s - (2 + iT)| <= 3/2
+      <=  7 * log T + 30
+localCount_holds : StmtLocalCount zetaLocalCount 7 30
+```
+
+The disk contains `1/2 + iT`, so this is the count at the critical
+line's own height. Entry 130's budget allows `A₁ <= 100`,
+`A₃ <= 1000`; delivered 7 and 30, with the leading constant about
+1.08x the literature's `1/log(7/6) ~ 6.4855`. Crude-explicit came
+in sharper than the budget demanded.
+
+**Construction.** `f z = ζ (2z + (2 + iT)) / ζ (2 + iT)`, `r = 3/4`,
+`R = 7/8`, `B = 42T`, fed to upstream `ZerosBound`. The scaling is
+what reaches the critical line: upstream's own window sits at
+`3/2 + it` with radius `3/4`, i.e. `Re ∈ [3/4, 9/4]`, and never
+touches it. The pole at `s = 1` stays outside because
+`2z + (2+iT) = 1` forces `Re z = -1/2` and `Im z <= -1`, so
+`‖z‖² >= 5/4`.
+
+**Correction to entry 156's framing.** That entry said the Jensen
+count "is now a proved upstream lemma rather than substrate," and
+the brief for this slice said the count was an import rather than a
+build. Both were too optimistic. Upstream's `ZerosBound` is the
+general Jensen inequality and is genuinely reusable, but three
+obligations had to be proved here because upstream's versions are
+shaped for its own window:
+
+```text
+zeta_disk_upper    ‖ζ w‖ <= 14 T on ‖w - (2+iT)‖ <= 7/4 — GlobalBound
+                   is a Re ∈ [1/2, 5/2] strip bound, and since
+                   ZerosBound needs r < R, ANY window whose r-disk
+                   reaches Re = 1/2 has its R-disk crossing below it.
+                   Proving our own majorant was forced, not optional.
+zeta_centre_lower  ‖ζ (2+iT)‖ >= 1/3 — ZetaFixedLowerBound exists
+                   only at 3/2 and does not transfer to the centre.
+analyticOrderNatAt_fun_comp_affine — Mathlib/upstream transfer
+                   handles translation only; the scaling needed a
+                   general affine version, proved from
+                   analyticOrderAt_comp_of_deriv_ne_zero.
+```
+
+Finiteness of the window is proved (`zetaWindow_finite`, identity
+theorem on a radius-11/5 ball plus an injective-preimage step), not
+assumed — the count's `if Finite` guard would otherwise make the
+statement vacuously true, which is the entry-133 failure mode.
+
+**Verification, run independently of the building agent.** `lake
+build` green at 8720 jobs (8714 before), zero errors; theorem/pin
+parity 77/77 across all eight modules; every pin carries
+`[propext, Classical.choice, Quot.sound]` — no `sorryAx`, though
+`StrongPNT.lean` holds three sorry-blocked declarations elsewhere in
+the same file; `check_refs.py` and `check_weld.py` both exit 0.
+
+**Ledger.** `{hEF, StmtArgCrude}` stands, but StmtArgCrude's
+analytic core is now discharged. What remains for it is the
+rectangle identity and Backlund's step — both classical, neither
+needing a tool the tree lacks.
+
+**Also corrected.** The stage-3 conventions section of this
+project's CLAUDE.md still named the pin 751a8c2; entry 156 bumped it
+to 47fa486, leaving that line stale. Fixed on Julian's approval,
+this date.
+
+---
+
 ## 2026-08-25 — Entry 156 — Upstream probe: no free discharge, but the Arg half's toolkit landed today; pin bumped
 type: provenance
 refs: 130, 141, 142

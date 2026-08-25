@@ -154,7 +154,7 @@ lock one is `preregs/FORMAT.md`.
 ## Stage-3 formalization conventions (lean_stage3/)
 
 The sibling package lives on toolchain v4.32.2 with the PNT+
-dependency pinned at 751a8c2; the bench's lean/ stays on v4.28.0.
+dependency pinned at 47fa486; the bench's lean/ stays on v4.28.0.
 Composition across the two is BY STATEMENT IDENTITY ONLY, gated by
 `utilities/check_weld.py` — every published claim from lean_stage3
 carries that caveat until the toolchains converge.
