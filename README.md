@@ -150,3 +150,13 @@ No member of that family exists for A036378 or A007053, which is the gap
 ## License
 
 Apache-2.0. See `LICENSE`.
+
+## The notebook is part of the publication
+
+This repository is an open lab notebook as well as a result: the
+`notes/` record is the dated working history of a human–AI
+collaboration, corrections included — the credibility of the papers
+rests on the gates (`check_refs`, `check_values`, the axiom pins)
+that weld the record and the mathematics together. Entries 143–144
+of `notes/lab_notebook_2.md` describe the methodology; it is part of
+what this repository publishes.
