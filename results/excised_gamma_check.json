@@ -1,0 +1,67 @@
+{
+  "schema_version": "1",
+  "script": "/Users/juliansambrano/GitHub/Primebeat_081426/O32_excised_gamma_check.py",
+  "generated_utc": "2026-08-25T18:42:54Z",
+  "status": "EXPLORATORY - no prereg, no decision rule, no verdict. Nothing here may be described as a verdict.",
+  "params": {
+    "code_version": "b53b98229883a9a03ab8c7b5891b7f6936a60b7c95043840e06316419ece93d9",
+    "lim": 20000000,
+    "samples": 8192,
+    "xmin": 3000,
+    "trim": 0.98,
+    "band": 1.2,
+    "out": "/Users/juliansambrano/GitHub/Primebeat_081426/results/excised_gamma_check.json",
+    "run_start_at": "2026-08-25T18:42:53Z",
+    "run_end_at": "2026-08-25T18:42:54Z"
+  },
+  "constants": {
+    "target_gammas": [
+      14.1347,
+      21.022,
+      25.0109
+    ],
+    "moebius_cutoff": 25,
+    "ei_guard": 1.2,
+    "window": "Hann",
+    "normalisation": "res * log(val) / sqrt(val), mean-subtracted"
+  },
+  "summary": {
+    "peaks": {
+      "baseline (untouched line)": {
+        "g1": 14.30313600500573,
+        "g2": 20.73954720725831,
+        "g3": 25.03048800876003
+      },
+      "A: 2,3,5 excised": {
+        "g1": 14.303136249230311,
+        "g2": 20.739547561383954,
+        "g3": 25.030488436153046
+      },
+      "B: 2,3,5 + multiples excised": {
+        "g1": 14.310907337251946,
+        "g2": 21.045451966546977,
+        "g3": 25.254542359856377
+      }
+    }
+  },
+  "rows": [
+    {
+      "sequence": "baseline (untouched line)",
+      "peak_g1": 14.30313600500573,
+      "peak_g2": 20.73954720725831,
+      "peak_g3": 25.03048800876003
+    },
+    {
+      "sequence": "A: 2,3,5 excised",
+      "peak_g1": 14.303136249230311,
+      "peak_g2": 20.739547561383954,
+      "peak_g3": 25.030488436153046
+    },
+    {
+      "sequence": "B: 2,3,5 + multiples excised",
+      "peak_g1": 14.310907337251946,
+      "peak_g2": 21.045451966546977,
+      "peak_g3": 25.254542359856377
+    }
+  ]
+}

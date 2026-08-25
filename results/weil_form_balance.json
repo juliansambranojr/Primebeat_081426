@@ -1,0 +1,42 @@
+{
+  "schema_version": "1",
+  "script": "/Users/juliansambrano/GitHub/Primebeat_081426/O37_weil_form_balance.py",
+  "generated_utc": "2026-08-25T18:44:25Z",
+  "status": "EXPLORATORY - no prereg, no decision rule, no verdict. Nothing here may be described as a verdict.",
+  "params": {
+    "code_version": "4f8f0799b73047ec7b1eadfa23b59a9985f3139db9ccd7114ae28c1e6c4bdf8f",
+    "base": 2,
+    "n": 7,
+    "w": "0.05",
+    "k": 2,
+    "dps": 20,
+    "tc": 3000,
+    "zeros": "/Users/juliansambrano/GitHub/Primebeat_081426/zeros600.json",
+    "n_zeros_loaded": 600,
+    "out": "/Users/juliansambrano/GitHub/Primebeat_081426/results/weil_form_balance.json",
+    "run_start_at": "2026-08-25T18:43:36Z",
+    "run_end_at": "2026-08-25T18:44:25Z"
+  },
+  "constants": {
+    "symbol": "h(s) = (1-b^-s)^N (1-b^(s-1))^N",
+    "mollifier": "T(s) = (sinh(W(s-1/2))/(W(s-1/2)))^(2K), centered at s = 1/2",
+    "kernel_support": 5.052030263919617,
+    "a0": 379.9921875,
+    "arch_nodes": 2501,
+    "tails_note": "Both tails are ESTIMATES from the asymptotic mean of the symbol, not bounds."
+  },
+  "summary": {
+    "prime_term": -1435.9137987828392,
+    "arch_main": 1208.3612746956576,
+    "arch_tail": 0.0005825406348913577,
+    "arch": 1208.3618572362925,
+    "arithmetic": 2644.275656019132,
+    "spectral_pairs": 600,
+    "spectral_sum": 2644.258554354935,
+    "spectral_tail_est": 0.015602340736244402,
+    "spectral_total": 2644.274156695671,
+    "difference": 0.0014993234606745787,
+    "relative_difference": 5.670072472443209e-07
+  },
+  "rows": []
+}

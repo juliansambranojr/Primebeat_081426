@@ -1,0 +1,392 @@
+{
+  "schema_version": "1",
+  "script": "/Users/juliansambrano/GitHub/Primebeat_081426/O34_zeta_residual_model.py",
+  "generated_utc": "2026-08-25T18:47:58Z",
+  "status": "EXPLORATORY - no prereg, no decision rule, no verdict. Nothing here may be described as a verdict.",
+  "params": {
+    "code_version": "af1846c4d6684f84f0dda80f438286c4a57eb8797360ed4cf02f9926559c5fcb",
+    "dps": 40,
+    "rmax": 22,
+    "nz": [
+      50,
+      200,
+      500
+    ],
+    "out": "/Users/juliansambrano/GitHub/Primebeat_081426/results/zeta_residual_model.json",
+    "run_start_at": "2026-08-25T18:47:02Z",
+    "run_end_at": "2026-08-25T18:47:58Z"
+  },
+  "constants": {
+    "true_res_r20": [
+      -24.886,
+      -48.19,
+      -82.086,
+      -133.761,
+      -212.314,
+      -322.41,
+      -453.424
+    ],
+    "true_res_r20_note": "Literal strings transcribed from an earlier run at dps 40; row-20 objects, depths d = 0..6.",
+    "model": "osc(x) = -sum over rho of 2*Re(Ei(rho*log x)), rho = 1/2 + i*gamma_n via mpmath.zetazero, uncached",
+    "zero_cells": [
+      [
+        2,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        20,
+        6
+      ]
+    ]
+  },
+  "summary": {
+    "ratio_at_r20_by_nz": {
+      "50": {
+        "0": 1.1790582704667767,
+        "1": 1.1133753617254987,
+        "2": 1.0766407087974859,
+        "3": 1.0303358796259254,
+        "4": 0.9770634851224622,
+        "5": 0.9297718016033537,
+        "6": 0.8952633509149638
+      },
+      "200": {
+        "0": 0.9445041303271116,
+        "1": 0.9543508169018864,
+        "2": 0.9487791663670846,
+        "3": 0.9185419153397951,
+        "4": 0.8739692754685874,
+        "5": 0.8317253668221861,
+        "6": 0.799850857247795
+      },
+      "500": {
+        "0": 0.6910716548953955,
+        "1": 0.7602608694056905,
+        "2": 0.80425919939353,
+        "3": 0.8236813127142751,
+        "4": 0.8296750521899003,
+        "5": 0.8380163158308044,
+        "6": 0.8618248546011223
+      }
+    }
+  },
+  "rows": [
+    {
+      "nz": 50,
+      "d": 0,
+      "r": 20,
+      "true_resid": -24.886,
+      "from_zeros": -29.342044118836206,
+      "diff": -4.456044118836207,
+      "ratio": 1.1790582704667767
+    },
+    {
+      "nz": 50,
+      "d": 1,
+      "r": 20,
+      "true_resid": -48.19,
+      "from_zeros": -53.65355868155178,
+      "diff": -5.4635586815517785,
+      "ratio": 1.1133753617254987
+    },
+    {
+      "nz": 50,
+      "d": 2,
+      "r": 20,
+      "true_resid": -82.086,
+      "from_zeros": -88.37712922235042,
+      "diff": -6.291129222350421,
+      "ratio": 1.0766407087974859
+    },
+    {
+      "nz": 50,
+      "d": 3,
+      "r": 20,
+      "true_resid": -133.761,
+      "from_zeros": -137.81875759464342,
+      "diff": -4.057757594643423,
+      "ratio": 1.0303358796259254
+    },
+    {
+      "nz": 50,
+      "d": 4,
+      "r": 20,
+      "true_resid": -212.314,
+      "from_zeros": -207.44425678029046,
+      "diff": 4.8697432197095525,
+      "ratio": 0.9770634851224622
+    },
+    {
+      "nz": 50,
+      "d": 5,
+      "r": 20,
+      "true_resid": -322.41,
+      "from_zeros": -299.76772655493727,
+      "diff": 22.64227344506275,
+      "ratio": 0.9297718016033537
+    },
+    {
+      "nz": 50,
+      "d": 6,
+      "r": 20,
+      "true_resid": -453.424,
+      "from_zeros": -405.93388962526654,
+      "diff": 47.490110374733455,
+      "ratio": 0.8952633509149638
+    },
+    {
+      "nz": 50,
+      "d": 1,
+      "r": 2,
+      "true_resid": null,
+      "from_zeros": null,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 50,
+      "d": 1,
+      "r": 4,
+      "true_resid": null,
+      "from_zeros": -0.5771668467157168,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 50,
+      "d": 3,
+      "r": 8,
+      "true_resid": null,
+      "from_zeros": -2.6107526557938114,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 50,
+      "d": 6,
+      "r": 20,
+      "true_resid": null,
+      "from_zeros": -405.93388962526654,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 200,
+      "d": 0,
+      "r": 20,
+      "true_resid": -24.886,
+      "from_zeros": -23.5049297873205,
+      "diff": 1.3810702126795016,
+      "ratio": 0.9445041303271116
+    },
+    {
+      "nz": 200,
+      "d": 1,
+      "r": 20,
+      "true_resid": -48.19,
+      "from_zeros": -45.990165866501904,
+      "diff": 2.199834133498092,
+      "ratio": 0.9543508169018864
+    },
+    {
+      "nz": 200,
+      "d": 2,
+      "r": 20,
+      "true_resid": -82.086,
+      "from_zeros": -77.8814866504085,
+      "diff": 4.204513349591498,
+      "ratio": 0.9487791663670846
+    },
+    {
+      "nz": 200,
+      "d": 3,
+      "r": 20,
+      "true_resid": -133.761,
+      "from_zeros": -122.86508513776633,
+      "diff": 10.895914862233667,
+      "ratio": 0.9185419153397951
+    },
+    {
+      "nz": 200,
+      "d": 4,
+      "r": 20,
+      "true_resid": -212.314,
+      "from_zeros": -185.55591275183767,
+      "diff": 26.758087248162333,
+      "ratio": 0.8739692754685874
+    },
+    {
+      "nz": 200,
+      "d": 5,
+      "r": 20,
+      "true_resid": -322.41,
+      "from_zeros": -268.15657551714105,
+      "diff": 54.25342448285897,
+      "ratio": 0.8317253668221861
+    },
+    {
+      "nz": 200,
+      "d": 6,
+      "r": 20,
+      "true_resid": -453.424,
+      "from_zeros": -362.6715750967242,
+      "diff": 90.75242490327578,
+      "ratio": 0.799850857247795
+    },
+    {
+      "nz": 200,
+      "d": 1,
+      "r": 2,
+      "true_resid": null,
+      "from_zeros": null,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 200,
+      "d": 1,
+      "r": 4,
+      "true_resid": null,
+      "from_zeros": -0.6101149121266499,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 200,
+      "d": 3,
+      "r": 8,
+      "true_resid": null,
+      "from_zeros": -4.202243615493941,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 200,
+      "d": 6,
+      "r": 20,
+      "true_resid": null,
+      "from_zeros": -362.6715750967242,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 500,
+      "d": 0,
+      "r": 20,
+      "true_resid": -24.886,
+      "from_zeros": -17.198009203726812,
+      "diff": 7.68799079627319,
+      "ratio": 0.6910716548953955
+    },
+    {
+      "nz": 500,
+      "d": 1,
+      "r": 20,
+      "true_resid": -48.19,
+      "from_zeros": -36.63697129666022,
+      "diff": 11.553028703339777,
+      "ratio": 0.7602608694056905
+    },
+    {
+      "nz": 500,
+      "d": 2,
+      "r": 20,
+      "true_resid": -82.086,
+      "from_zeros": -66.0184206414173,
+      "diff": 16.0675793585827,
+      "ratio": 0.80425919939353
+    },
+    {
+      "nz": 500,
+      "d": 3,
+      "r": 20,
+      "true_resid": -133.761,
+      "from_zeros": -110.17643606997416,
+      "diff": 23.584563930025844,
+      "ratio": 0.8236813127142751
+    },
+    {
+      "nz": 500,
+      "d": 4,
+      "r": 20,
+      "true_resid": -212.314,
+      "from_zeros": -176.1516290306465,
+      "diff": 36.1623709693535,
+      "ratio": 0.8296750521899003
+    },
+    {
+      "nz": 500,
+      "d": 5,
+      "r": 20,
+      "true_resid": -322.41,
+      "from_zeros": -270.1848403870096,
+      "diff": 52.225159612990375,
+      "ratio": 0.8380163158308044
+    },
+    {
+      "nz": 500,
+      "d": 6,
+      "r": 20,
+      "true_resid": -453.424,
+      "from_zeros": -390.7720728726593,
+      "diff": 62.65192712734071,
+      "ratio": 0.8618248546011223
+    },
+    {
+      "nz": 500,
+      "d": 1,
+      "r": 2,
+      "true_resid": null,
+      "from_zeros": null,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 500,
+      "d": 1,
+      "r": 4,
+      "true_resid": null,
+      "from_zeros": -0.6131901719272566,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 500,
+      "d": 3,
+      "r": 8,
+      "true_resid": null,
+      "from_zeros": -3.7497435682250146,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    },
+    {
+      "nz": 500,
+      "d": 6,
+      "r": 20,
+      "true_resid": null,
+      "from_zeros": -390.7720728726593,
+      "diff": null,
+      "ratio": null,
+      "zero_cell": true
+    }
+  ]
+}

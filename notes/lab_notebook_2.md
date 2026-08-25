@@ -16,6 +16,69 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 148 — O30–O38 instrument-fix pass: flags and results JSON, nine scripts, zero drift
+type: instrument-fix
+refs: 28, 32, 35, 38, 39, 40
+
+Closes the thread entries 28 and 35 opened: hardcoded parameters and
+missing results JSON, against the house convention. Nine scripts now
+carry the O39-style flag set and the standard envelope, every default
+byte-identical to the old hardcoded value: O30_silence_scaffold_primes.py,
+O31_excise_scaffold_primes.py, O32_excised_gamma_check.py,
+O34_zeta_residual_model.py, O35_nearmiss_residuals.py,
+O36_weil_calibration.py, O37_weil_form_balance.py,
+O37_weil_form_on_stencil.py, O38_weil_bug_diagnosis.py.
+O34_zeta_residual_model_FAILED.py and O38_weil_form_BUGGY.py stay
+untouched — frozen evidence, their docstrings forbid citing their
+numbers.
+
+**Guards built in, beyond bare flags.** O31 computes the exact
+variant-B walk bound and refuses before sieving when --lim is too
+small for --rmax (rmax 23 needs lim >= 31457279). O34 refuses
+--rmax < 20 (its TRUE_RES_R20 literals are row-20, dps-40 objects;
+no --row flag exists) and its --dps help states the coupling. O36 and
+both O37s anchor --zeros to the script directory, fixing a recorded
+cwd-dependence defect, with the cache's dps-25 precision stated.
+O37_weil_form_on_stencil's bare positional K became --k. O38 gained
+only --out/--no-json/--results-dir: its b, N, W sit inside a
+deliberately verbatim copy of the buggy objects and stay untouched.
+
+**Re-runs: all nine at defaults, zero drift.** O30/O31/O32 exact to
+entry 32 (baseline and silenced zero lists, excision readings,
+(20,6) = 70 under A and 1086 under B, gamma triple to every digit).
+O36 digit-for-digit to entry 39 (0.4620476309 / 0.4620476476). Both
+O37s line-identical to their frozen logs
+(results/O37_weil_form_balance_run1.log, 48.88 s vs recorded 49.79;
+results/O37_weil_form_on_stencil_run1.log, 11.82 s vs 12.12) and to
+entry 40's balance numbers. O38 matches entry 39's four diagnostics.
+O34 exact to entry 38's row-20 table and non-monotone d6 ratios
+(0.8953/0.7999/0.8618). O35 exact to entry 38's deep-cell failures
+including the (25,21) sign flip (-296432.92 at 200 pairs, +27793.218
+at 600) and the cell-is-the-residual reading. Prior results REMAIN
+FULLY COMPARABLE everywhere; the only stdout addition anywhere is the
+trailing "results written to" line. Interpreters matched each file's
+HOW IT WAS RUN (system python3 for O30–O32, .venv for the rest).
+
+**First-ever JSONs.** Nine default-named results JSONs now exist,
+including the first machine-readable records for O34
+(results/zeta_residual_model.json) and O35
+(results/nearmiss_residuals.json). No pre-existing artifact was
+touched; no results JSON on disk recorded the nine scripts' old shas,
+so the O24-style stale-pointer mode does not arise here.
+
+**Two observations recorded, plainly.** (1) O39's own --results-dir
+flag is dead code — declared, never read. The nine new
+implementations made it functional; O39 itself is unchanged and the
+defect is now on record. (2) O36's set-3 zero/arch diff printed
+3.75e-15 on this run and on the original code — entry 39's "agreeing
+to 1e-18" phrase fits sets 1 and 2 (5.1e-18, 2.7e-22); set 3 always
+sat at the e-15 scale against an arithmetic side of order 1e-8.
+
+Gates after the pass: 0 broken references, 132 values confirmed,
+0 not found.
+
+---
+
 ## 2026-08-25 — Entry 147 — O24 pi_at float-key fix: the instrument-fix entry, eight days late
 type: instrument-fix
 refs: 35

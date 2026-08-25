@@ -1,0 +1,139 @@
+{
+  "schema_version": "1",
+  "script": "/Users/juliansambrano/GitHub/Primebeat_081426/O37_weil_form_on_stencil.py",
+  "generated_utc": "2026-08-25T18:43:31Z",
+  "status": "EXPLORATORY - no prereg, no decision rule, no verdict. Nothing here may be described as a verdict.",
+  "params": {
+    "code_version": "065da2345a0663d4e43e12667fa384fa736d00372632350d588a894074971de9",
+    "k": 2,
+    "base": 2,
+    "n": 7,
+    "w": "0.05",
+    "dps": 25,
+    "zeros": "/Users/juliansambrano/GitHub/Primebeat_081426/zeros600.json",
+    "n_zeros_loaded": 600,
+    "out": "/Users/juliansambrano/GitHub/Primebeat_081426/results/weil_form_on_stencil.json",
+    "run_start_at": "2026-08-25T18:43:19Z",
+    "run_end_at": "2026-08-25T18:43:31Z"
+  },
+  "constants": {
+    "symbol": "h(s) = (1-b^-s)^N (1-b^(s-1))^N",
+    "mollifier": "T(s) = (sinh(W(s-1/2))/(W(s-1/2)))^(2K), centered at s = 1/2",
+    "kernel_half_support": 0.2,
+    "total_half_support": 5.052030263919617,
+    "arch_range": [
+      -400,
+      400
+    ],
+    "zero_checkpoints": [
+      100,
+      200,
+      400,
+      600
+    ]
+  },
+  "summary": {
+    "symmetry_check": {
+      "H_0.3": "1.020359521e-8",
+      "H_0.7": "1.020359521e-8"
+    },
+    "H_at_gamma1": "(1003.62294 + 0.0j)",
+    "primes_in_play": 36,
+    "primes_nonzero": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      17,
+      19,
+      29,
+      31,
+      37,
+      53,
+      59,
+      61,
+      67,
+      71,
+      73,
+      107,
+      109,
+      113,
+      127,
+      131,
+      137,
+      139,
+      149,
+      151
+    ],
+    "H0": 0.0,
+    "H1": 0.0,
+    "prime_term": -1435.9137987828392,
+    "arch": 1208.1500002708128,
+    "arithmetic": 2644.063799053652,
+    "spectral_final": {
+      "pairs": 600,
+      "spectral": 2644.258554354935,
+      "diff": 0.19475530128286747,
+      "ratio": 1.0000736575650528
+    }
+  },
+  "rows": [
+    {
+      "kind": "ft_check",
+      "t": 0.0,
+      "quad": "(3.419246694e-8 + 0.0j)",
+      "H": "(3.419246694e-8 + 0.0j)",
+      "abs_diff": 2.9502165260101434e-29
+    },
+    {
+      "kind": "ft_check",
+      "t": 1.3,
+      "quad": "(0.03596639546 + 2.069611841e-30j)",
+      "H": "(0.03596639546 + 0.0j)",
+      "abs_diff": 3.231174930592712e-27
+    },
+    {
+      "kind": "ft_check",
+      "t": 5.0,
+      "quad": "(1431.204533 - 3.762919165e-30j)",
+      "H": "(1431.204533 + 0.0j)",
+      "abs_diff": 1.5881867761018136e-22
+    },
+    {
+      "kind": "ft_check",
+      "t": 14.1347,
+      "quad": "(1003.62294 - 1.054121644e-30j)",
+      "H": "(1003.62294 + 0.0j)",
+      "abs_diff": 1.4558378780933287e-22
+    },
+    {
+      "kind": "spectral",
+      "pairs": 100,
+      "spectral": 2643.5717475981123,
+      "diff": -0.4920514555398308,
+      "ratio": 0.9998139033348151
+    },
+    {
+      "kind": "spectral",
+      "pairs": 200,
+      "spectral": 2644.0608710975175,
+      "diff": -0.0029279561343839677,
+      "ratio": 0.9999988926303006
+    },
+    {
+      "kind": "spectral",
+      "pairs": 400,
+      "spectral": 2644.2351544916664,
+      "diff": 0.171355438014316,
+      "ratio": 1.0000648076033853
+    },
+    {
+      "kind": "spectral",
+      "pairs": 600,
+      "spectral": 2644.258554354935,
+      "diff": 0.19475530128286747,
+      "ratio": 1.0000736575650528
+    }
+  ]
+}

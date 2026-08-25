@@ -47,32 +47,37 @@ even.  The script then prints, in order:
      prime powers inside the kernel support and the archimedean integral taken over
      [-400, 400];
   4. the spectral side, 2*Re H(1/2 + i*gamma) accumulated over the first 100, 200,
-     400 and 600 zeros from `zeros600.json`, each reported with its difference from
+     400 and 600 zeros from the zeros file, each reported with its difference from
      and ratio to the arithmetic side.
 
 The closing ratio is the quantity of interest: whether the two sides of the explicit
 formula agree once the corrections diagnosed in O38 are applied.
 
-LIMITATION — HARDCODED PARAMETERS
----------------------------------
-Only K is exposed, and as a bare positional argument rather than a CLI flag.  b = 2,
-N = 7, W = 0.05, mp.dps = 25, the archimedean range [-400, 400] and its quadrature
-nodes, the FT probe points and the zero-count checkpoints are all written inline.
-There is no `--out` and no results JSON — the console transcript is the entire
-record.  This is a deviation from house convention (CONTEXT.md § "Output schema");
-an open NOTEPAD thread already records the same deviation for O30/O31/O32 and this
-script falls under it.
-
-The zero list is read as the bare relative path `zeros600.json`, so the script is
-NOT cwd-independent — it must be run from the project root.
+FLAGS AND RESULTS JSON (instrument-fix pass, 2026-08-25)
+--------------------------------------------------------
+CLI flags and the results JSON were added in the 2026-08-25 instrument-fix
+pass.  The bare positional K argument became --k (default 2, unchanged), and
+--base 2, --n 7, --w 0.05 and --dps 25 expose the old inline constants.
+Defaults reproduce the original hardcoded invocation byte-for-byte, so a
+no-flag run prints exactly what the original `... O37_weil_form_on_stencil.py 2`
+run printed and prior transcripts remain fully comparable.  The archimedean
+range [-400, 400] and its quadrature nodes, the FT probe points and the
+zero-count checkpoints stay inline.  The same pass FIXED the recorded
+cwd-dependence: the zero list was read as the bare relative path
+`zeros600.json`; --zeros now defaults to the _HERE-anchored zeros600.json next
+to this script, and the run is cwd-independent.  The run now also writes the
+house envelope (CONTEXT.md § "Output schema") to
+results/weil_form_on_stencil.json, honouring --out, --no-json and
+--results-dir.
 
 HOW IT WAS RUN
 --------------
-    /Users/juliansambrano/GitHub/Primebeat_081426/.venv/bin/python O37_weil_form_on_stencil.py 2
+    /Users/juliansambrano/GitHub/Primebeat_081426/.venv/bin/python O37_weil_form_on_stencil.py --k 2
 
-TAKES ONE OPTIONAL POSITIONAL ARGUMENT: K, the mollifier half-order, so the
-mollifier is sinc^(2K).  Defaults to 2 when omitted.  Run from the project root;
-reads `zeros600.json`.
+No flags needed: the defaults (including --k 2) reproduce the original
+2026-08-17 run exactly (from any cwd, now that the zeros path is anchored),
+plus the results JSON.  See --k, --base, --n, --w, --dps, --zeros,
+--results-dir, --out, --no-json.
 
 REQUIREMENTS
 ------------
@@ -81,12 +86,107 @@ REQUIREMENTS
 from mpmath import (mp, mpf, mpc, binomial, log, pi, digamma, quad, re, im,
                     sinh, exp, sqrt)
 from sympy import primerange
-import json, sys
-mp.dps = 25
+import argparse
+import datetime
+import hashlib
+import json
+import math
+import os
 
-b, N, W = mpf(2), 7, mpf('0.05')
+_HERE = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_RESULTS_DIR = os.path.join(_HERE, "results")
+DEFAULT_OUT_JSON = os.path.join(DEFAULT_RESULTS_DIR, "weil_form_on_stencil.json")
+DEFAULT_ZEROS = os.path.join(_HERE, "zeros600.json")
+
+
+def _code_version():
+    """sha256 of this script file, read at runtime. Self-identifying results."""
+    try:
+        with open(os.path.abspath(__file__), "rb") as fh:
+            return hashlib.sha256(fh.read()).hexdigest()
+    except Exception as exc:
+        return f"unavailable: {exc}"
+
+
+def _jsonable(o):
+    """Coerce to JSON-safe Python types; non-finite floats -> None."""
+    if isinstance(o, dict):
+        return {str(k): _jsonable(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple, set, frozenset)):
+        return [_jsonable(v) for v in o]
+    if o is None or isinstance(o, str):
+        return o
+    if isinstance(o, bool):
+        return bool(o)
+    if isinstance(o, int):
+        return int(o)
+    if isinstance(o, float):
+        return o if math.isfinite(o) else None
+    try:
+        f = float(o)
+    except (TypeError, ValueError):
+        return str(o)
+    return f if math.isfinite(f) else None
+
+
+def _write_results(payload, out_path):
+    """Write the results envelope; never let a write failure kill a run."""
+    try:
+        d = os.path.dirname(out_path)
+        if d:
+            os.makedirs(d, exist_ok=True)
+        with open(out_path, "w") as fh:
+            json.dump(_jsonable(payload), fh, indent=2, sort_keys=False,
+                      allow_nan=False)
+        print(f"\n  results written to {out_path}", flush=True)
+    except Exception as exc:
+        print(f"\n  WARNING: could not write results JSON to {out_path}: {exc}",
+              flush=True)
+
+
+def _parse_args():
+    ap = argparse.ArgumentParser(
+        description=("O37 - the Weil form on the dyadic difference stencil, "
+                     "corrected: explicit formula's two sides checked "
+                     "against each other. EXPLORATORY: no prereg, no "
+                     "decision rule, no verdict."))
+    ap.add_argument("--k", type=int, default=2,
+                    help="mollifier half-order K, so the mollifier is "
+                         "sinc^(2K) (default 2; replaces the original bare "
+                         "positional argument)")
+    ap.add_argument("--base", type=int, default=2,
+                    help="ladder base b (default 2)")
+    ap.add_argument("--n", type=int, default=7,
+                    help="difference order N of the stencil symbol "
+                         "(default 7)")
+    ap.add_argument("--w", type=str, default='0.05',
+                    help="mollifier half-width W (default 0.05)")
+    ap.add_argument("--dps", type=int, default=25,
+                    help="mpmath working precision (default 25)")
+    ap.add_argument("--zeros", type=str, default=DEFAULT_ZEROS,
+                    help="zeta-zero imaginary-parts JSON (default the "
+                         "zeros600.json next to this script, dps-25 "
+                         "precision)")
+    ap.add_argument("--results-dir", type=str, default=DEFAULT_RESULTS_DIR,
+                    help="directory for outputs (default results/)")
+    ap.add_argument("--out", type=str, default=DEFAULT_OUT_JSON,
+                    help="results JSON path")
+    ap.add_argument("--no-json", action="store_true",
+                    help="do not write the results JSON")
+    args = ap.parse_args()
+    if args.out == DEFAULT_OUT_JSON and args.results_dir != DEFAULT_RESULTS_DIR:
+        args.out = os.path.join(args.results_dir,
+                                os.path.basename(DEFAULT_OUT_JSON))
+    return args
+
+
+args = _parse_args()
+_started = datetime.datetime.now(datetime.timezone.utc)
+mp.dps = args.dps
+
+b, N, W = mpf(args.base), args.n, mpf(args.w)
 LB = log(b)
-K = int(sys.argv[1]) if len(sys.argv) > 1 else 2      # mollifier = (sinc)^(2K)
+K = args.k                                            # mollifier = (sinc)^(2K)
 
 # ---- h(s) = (1-b^-s)^N (1-b^(s-1))^N = sum_m a_m b^(m s)
 COEF = {}
@@ -121,6 +221,7 @@ def f(u): return sum(cn*b**(mpf(m)/2)*Kern(u - m*LB) for m, cn in COEF.items())
 
 SUP = N*LB + NK*W  # kernel half-support = NK*W
 
+_ft_rows = []
 # ---- direct numerical check that H(1/2+it) == int f(u) e^{iut} du
 print(f"K={K}  kernel support +-{mp.nstr(NK*W,4)}  total support +-{mp.nstr(SUP,6)}")
 print("Mellin/FT check  int f(u)e^{iut}du   vs   H(1/2+it):")
@@ -131,6 +232,8 @@ for t in ('0', '1.3', '5.0', '14.1347'):
     q = quad(lambda u: f(u)*exp(mpc(0, 1)*u*t), nodes)
     Hv = H(mpc(mpf('0.5'), t))
     print(f"   t={float(t):>8}  quad {mp.nstr(q,10):>28}   H {mp.nstr(Hv,10):>28}   |diff| {mp.nstr(abs(q-Hv),4)}")
+    _ft_rows.append({"t": float(t), "quad": mp.nstr(q, 10),
+                     "H": mp.nstr(Hv, 10), "abs_diff": float(abs(q-Hv))})
 
 # ---- symmetry / reality checks
 print(f"\nH(s)=H(1-s)?  H(0.3)={mp.nstr(H(mpf('0.3')),10)}  H(0.7)={mp.nstr(H(mpf('0.7')),10)}")
@@ -155,9 +258,60 @@ print(f"\nprimes in play: {len(primes)}  nonzero: {sorted(contrib)}")
 print(f"H(0) {mp.nstr(H0,8)}  H(1) {mp.nstr(H1,8)}  prime {mp.nstr(prime,12)}  arch {mp.nstr(arch,12)}")
 print(f"ARITHMETIC = H0+H1-prime+arch = {mp.nstr(rhs,12)}\n")
 
-ZEROS = [mpf(x) for x in json.load(open("zeros600.json"))]
+ZEROS = [mpf(x) for x in json.load(open(args.zeros))]
+_spec_rows = []
 tot = mpf(0); n = 0
 for M in (100, 200, 400, 600):
     while n < M:
         tot += 2*re(H(mpc(mpf('0.5'), ZEROS[n]))); n += 1
     print(f"  spectral {M:>4} pairs {mp.nstr(tot,12):>18}   diff {mp.nstr(tot-rhs,8):>14}  ratio {mp.nstr(tot/rhs,10)}")
+    _spec_rows.append({"pairs": M, "spectral": float(tot),
+                       "diff": float(tot-rhs), "ratio": float(tot/rhs)})
+
+if not args.no_json:
+    _ended = datetime.datetime.now(datetime.timezone.utc)
+    payload = {
+        "schema_version": "1",
+        "script": os.path.abspath(__file__),
+        "generated_utc": _ended.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "status": ("EXPLORATORY - no prereg, no decision rule, no verdict. "
+                   "Nothing here may be described as a verdict."),
+        "params": {
+            "code_version": _code_version(),
+            "k": K,
+            "base": args.base,
+            "n": N,
+            "w": args.w,
+            "dps": args.dps,
+            "zeros": args.zeros,
+            "n_zeros_loaded": len(ZEROS),
+            "out": args.out,
+            "run_start_at": _started.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "run_end_at": _ended.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        },
+        "constants": {
+            "symbol": "h(s) = (1-b^-s)^N (1-b^(s-1))^N",
+            "mollifier": "T(s) = (sinh(W(s-1/2))/(W(s-1/2)))^(2K), "
+                         "centered at s = 1/2",
+            "kernel_half_support": float(NK*W),
+            "total_half_support": float(SUP),
+            "arch_range": [-400, 400],
+            "zero_checkpoints": [100, 200, 400, 600],
+        },
+        "summary": {
+            "symmetry_check": {"H_0.3": mp.nstr(H(mpf('0.3')), 10),
+                               "H_0.7": mp.nstr(H(mpf('0.7')), 10)},
+            "H_at_gamma1": mp.nstr(z, 10),
+            "primes_in_play": len(primes),
+            "primes_nonzero": sorted(contrib),
+            "H0": float(H0),
+            "H1": float(H1),
+            "prime_term": float(prime),
+            "arch": float(arch),
+            "arithmetic": float(rhs),
+            "spectral_final": _spec_rows[-1] if _spec_rows else None,
+        },
+        "rows": ([dict(kind="ft_check", **r) for r in _ft_rows]
+                 + [dict(kind="spectral", **r) for r in _spec_rows]),
+    }
+    _write_results(payload, args.out)

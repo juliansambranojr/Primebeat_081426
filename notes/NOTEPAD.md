@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 148: O30–O38 flags+JSON pass landed, nine re-runs zero-drift — answers the entry-28 and entry-35 hardcoded-params lines; O39 dead --results-dir flag now on record
 - [open]   2026-08-25  entry 147: O24 float-key instrument-fix entry landed (fix was 2026-08-17); shas stay as honest provenance, entry is the crosswalk; aborted 3e8 log labelled in-entry, filename frozen — the three 08-17 O24 lines below are answered by this entry
 - [open]   2026-08-25  entry 146: the_container public at cb06d4f — method extracted to standalone template repo; entry-144 posit operational as its adjudications/ layer; back-translation round and non-research instantiation open in that repo's NOTEPAD
 - [open]   2026-08-24  entry 145: repo PUBLIC at 690e7e8 (gates green, pre-flight verified) — opening move of the group project; #1538 note and identity_16_complex PR now have referenceable code

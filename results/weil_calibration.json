@@ -1,0 +1,135 @@
+{
+  "schema_version": "1",
+  "script": "/Users/juliansambrano/GitHub/Primebeat_081426/O36_weil_calibration.py",
+  "generated_utc": "2026-08-25T18:44:50Z",
+  "status": "EXPLORATORY - no prereg, no decision rule, no verdict. Nothing here may be described as a verdict.",
+  "params": {
+    "code_version": "0daa9825e2727b32c5d1c00ee185be89790a00f059db662b67b4485a135192c2",
+    "dps": 25,
+    "zeros": "/Users/juliansambrano/GitHub/Primebeat_081426/zeros600.json",
+    "n_zeros_loaded": 600,
+    "out": "/Users/juliansambrano/GitHub/Primebeat_081426/results/weil_calibration.json",
+    "run_start_at": "2026-08-25T18:44:48Z",
+    "run_end_at": "2026-08-25T18:44:50Z"
+  },
+  "constants": {
+    "settings": [
+      [
+        "1.0",
+        "14",
+        9,
+        45
+      ],
+      [
+        "0.5",
+        "20",
+        5,
+        70
+      ],
+      [
+        "1.5",
+        "10",
+        13,
+        35
+      ]
+    ],
+    "settings_note": "(sigma, tau, Ucut, Tcut) rows, inline by design",
+    "zero_checkpoints": [
+      50,
+      200,
+      600
+    ],
+    "ft_probe_t": 3.7,
+    "test_function": "f(u) = exp(-u^2/(2 sig^2)) cos(tau u), modulated Gaussian"
+  },
+  "summary": {
+    "diff_at_600_pairs": {
+      "sigma=1.0,tau=14": -5.09917654787543e-18,
+      "sigma=0.5,tau=20": -2.6994522302785213e-22,
+      "sigma=1.5,tau=10": -3.753333296120801e-15
+    }
+  },
+  "rows": [
+    {
+      "sigma": "1.0",
+      "tau": "14",
+      "ucut": 9,
+      "tcut": 45,
+      "ft_check_quad": "(1.150541033e-23 + 0.0j)",
+      "ft_check_H": "(1.150559668e-23 + 0.0j)",
+      "H0": 5.886166732789231e-43,
+      "H1": 5.886166732789231e-43,
+      "prime": -1.6855892033808948,
+      "arch": 0.7983932527989349,
+      "arithmetic": 2.4839824561798296,
+      "zero_sums": {
+        "50": {
+          "sum": 2.4839824561798296,
+          "diff": -5.09917654787543e-18
+        },
+        "200": {
+          "sum": 2.4839824561798296,
+          "diff": -5.09917654787543e-18
+        },
+        "600": {
+          "sum": 2.4839824561798296,
+          "diff": -5.09917654787543e-18
+        }
+      }
+    },
+    {
+      "sigma": "0.5",
+      "tau": "20",
+      "ucut": 5,
+      "tcut": 70,
+      "ft_check_quad": "(2.363563805e-15 + 0.0j)",
+      "ft_check_H": "(2.363563805e-15 + 0.0j)",
+      "H0": -1.9981032305687451e-22,
+      "H1": -1.9981032305687451e-22,
+      "prime": -0.0185593786612591,
+      "arch": 1.1526700547521678,
+      "arithmetic": 1.171229433413427,
+      "zero_sums": {
+        "50": {
+          "sum": 1.171229433413427,
+          "diff": -2.6994522302785213e-22
+        },
+        "200": {
+          "sum": 1.171229433413427,
+          "diff": -2.6994522302785213e-22
+        },
+        "600": {
+          "sum": 1.171229433413427,
+          "diff": -2.6994522302785213e-22
+        }
+      }
+    },
+    {
+      "sigma": "1.5",
+      "tau": "10",
+      "ucut": 13,
+      "tcut": 35,
+      "ft_check_quad": "(-2.13817107e-16 + 0.0j)",
+      "ft_check_H": "(7.627104776e-20 + 0.0j)",
+      "H0": 1.738051573126075e-49,
+      "H1": 1.738051573126075e-49,
+      "prime": 0.4620476309495762,
+      "arch": 0.4620476476381404,
+      "arithmetic": 1.668856418910949e-08,
+      "zero_sums": {
+        "50": {
+          "sum": 1.6688560435776194e-08,
+          "diff": -3.753333296120801e-15
+        },
+        "200": {
+          "sum": 1.6688560435776194e-08,
+          "diff": -3.753333296120801e-15
+        },
+        "600": {
+          "sum": 1.6688560435776194e-08,
+          "diff": -3.753333296120801e-15
+        }
+      }
+    }
+  ]
+}
