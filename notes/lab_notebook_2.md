@@ -16,6 +16,34 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 135 — Stirling slice, construction half: the continuous phase exists
+type: formalization
+refs: 132, 133, 134
+
+`lean_stage3/Stage3/Stirling.lean`, four theorems, four pins; package
+parity 43/43; builds clean at 8713 jobs; welds 2/0.
+
+phaseTheta T = (1/2)·∫₀ᵀ Re ψ(1/4 + it/2) dt − (T/2)·log π, with
+ψ = Complex.digamma (Mathlib's logDeriv Gamma). The continuous phase
+is constructed as the integral of the derivative — wrap-free by
+construction, the entry-132 defect resolved by an object instead of a
+hypothesis. Anchored: phaseTheta_zero (θ(0) = 0 = arg Γ(1/4), Γ(1/4)
+positive). Well-posed: continuous_phasePoint via PNT+'s sorry-free
+continuousAt_digamma_of_re_pos (the quarter-line stays in re > 0);
+intervalIntegrable_phasePoint on every interval. The main-term
+integral is evaluated by FTC avoiding t = 0: integral_log_half,
+∫₁ᵀ log(t/2) dt = T·log(T/2) − T + 1 + log 2, antiderivative
+t·log(t/2) − t.
+
+Remaining for StmtBacklundPhase phaseTheta: the digamma comparison
+|Re ψ(1/4 + it/2) − log(t/2)| ≤ E(t) with explicit E integrating to a
+B₁·log T + B₃ band — from the dependency's sorry-free digamma_eq_tsum
+series; then integrate against integral_log_half. Budget B₁ ≤ 100
+where Rosser needs 0.137. Elaboration note for the record: the
+digamma composition needed ContinuousAt.comp with g and f pinned
+explicitly — higher-order unification guesses the wrong decomposition
+on dotted comp.
+
 ## 2026-08-24 — Entry 134 — The capstones repaired: hG' restricted to (1/2, ∞); vacuity resolved
 type: formalization
 refs: 115, 117, 133
