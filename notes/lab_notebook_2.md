@@ -16,6 +16,29 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 131 — RvMCrude: Backlund's decomposition assembled; hNT is now two smaller leaves
+type: formalization
+refs: 120, 128, 130
+
+hNT-crude slice 1. `lean_stage3/Stage3/RvMCrude.lean`, one theorem,
+one pin; package parity 39/39; builds clean at 8711 jobs; welds 2/0.
+
+rsTheta defines the Riemann–Siegel phase arg Γ(1/4+iT/2) − (T/2)log π
+via Mathlib's complex Gamma. StmtPhaseCrude B₁ B₃ names the Stirling
+half (the smooth phase tracks the RvM main term — no zeros involved);
+StmtArgCrude B₁ B₃ names the argument-principle half (the count tracks
+θ(T)/π + 1 — this distance is S(T), O69's under-2-windings quantity).
+RvM_of_phase_arg assembles them: the two halves give
+Riemann_vonMangoldt_bound (B₁+B₁′) 0 (B₃+B₃′), a legitimate b₂ = 0
+instance, consumed by ZeroSum and the entry-128 assembly unchanged.
+
+Entry 130's budget accepts B₁+B₁′ ≤ 100, B₃+B₃′ ≤ 1000 at depth ≥ 7.
+Discharge routes, for the coming sessions: StmtPhaseCrude by explicit
+Stirling with a generous error; StmtArgCrude by Borel–Carathéodory +
+ZetaBounds (both sorry-free in the dependency). Same architecture as
+entries 113 and 125: name the leaves, kernel-check the assembly,
+discharge in slices.
+
 ## 2026-08-24 — Entry 130 — The leaf budget: crude-explicit suffices for both open leaves
 type: run
 refs: 119, 120, 128, 129
