@@ -16,6 +16,61 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 152 — O73: the Weil balance survives the mollifier grid; the per-prime breakdown, corrected
+type: run
+refs: 39, 40
+
+Script O73_weil_mollifier_sweep.py (new number; O37's pair stay frozen
+with their logs), all defaults. The O37_weil_form_balance construction
+replicated verbatim with two extensions: K-general analytic tails
+(binomial(2K,K)/4^K, power (Wt)^(-2K), reducing to O37's 3/8 and
+(Wt)^(-4) at K = 2) and the prime term grouped by p. Artifacts:
+results/weil_mollifier_sweep.json,
+results/O73_weil_mollifier_sweep_run1.log.
+
+**Sanity gate PASSED.** The anchor (W=0.05, K=2) reproduces entry
+40's recorded prime term, ARITHMETIC, and SPECTRAL(600) to 1e-14
+relative — the sweep's machinery is the machinery that produced the
+recorded balance.
+
+**The sweep** (b=2, N=7, Tc=3000, 600 zero pairs):
+
+```text
+W     K   n_p    ARITHMETIC        SPECTRAL+tail     rel diff
+0.02  2    10    11909.1321568     11909.0808048     4.312e-6
+0.05  2    25    2644.27565602     2644.2741567      5.67e-7
+0.1   2    42    694.238491564     694.238396427     1.37e-7
+0.2   2    61    1.86369031013     1.86368756791     1.471e-6
+0.02  3    15    8843.47306243     8843.47300967     5.966e-9
+0.05  3    36    1956.96884827     1956.96884795     1.635e-10
+0.1   3    51    329.915488971     329.915488966     1.675e-11
+0.2   3    82    0.0432902958634   0.0432902958547   2.019e-10
+```
+
+The sides swing five orders of magnitude across the grid; the
+relative difference stays between 1.7e-11 and 4.3e-6. K=3 balances
+~1000x tighter than K=2 — the K=2 residuals sit at the scale of the
+tail ESTIMATES (which are means, not bounds; entry 40), so the
+residual is tail error. Entry 40's carried caveat now has its
+measurement: the individual numbers move with (W, K), and the balance
+holds at every setting.
+
+**Per-prime breakdown, corrected implementation** (anchor setting;
+the only prior breakdown came from the buggy file, whose numbers are
+not citable). p = 2 contributes -1431.42113069 of the -1435.91379878
+prime term — share 0.9969. The largest counterweight is p = 17 at
++211.05 (share -0.147), then 7, 3, 31 (~0.05 each), falling to parts
+in 1e-7 by p = 107. 25 primes contribute at support
+|log x| <= 5.05203; per-setting breakdowns for all eight grid points
+are in the JSON. Entry 40's "any claim about the 2-ladder must
+survive the smearing" is now quantified: the smearing nets to a
+half-percent correction at the anchor.
+
+EXPLORATORY: no prereg, no verdict. Both entry-40 NOTEPAD lines are
+answered by this entry; transitions are Julian's.
+
+---
+
 ## 2026-08-25 — Entry 151 — O72 (O66 v2): twin rigidity is real at every height — the degenerate endpoint was noise
 type: run
 refs: 105, 107, 111
