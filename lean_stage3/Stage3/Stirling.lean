@@ -550,6 +550,65 @@ theorem inv_quadratic_tsum_le {t : ℝ} (ht : 1 ≤ t) :
   field_simp
   norm_num
 
+/-- **The per-term log-Taylor bound** — the telescope's engine: for
+`w` in the open right half-plane with `‖w‖ ≤ 1`,
+`|Re w − log‖1 + w‖| ≤ 5‖w‖²`. Both sides come from
+`log y ≤ y − 1` alone (applied at `1+u` and at `(1+u)⁻¹`). -/
+theorem re_sub_log_norm_le {w : ℂ} (hw : 0 < w.re) (hw1 : ‖w‖ ≤ 1) :
+    |w.re - Real.log ‖1 + w‖| ≤ 5 * ‖w‖ ^ 2 := by
+  have hnw : (0 : ℝ) ≤ ‖w‖ := norm_nonneg w
+  have hp : (0 : ℝ) ≤ ‖w‖ ^ 2 := by positivity
+  have hwre : w.re ≤ ‖w‖ :=
+    le_trans (le_abs_self _) (Complex.abs_re_le_norm _)
+  have hsq : ‖w‖ ^ 2 = w.re ^ 2 + w.im ^ 2 := by
+    rw [Complex.norm_eq_sqrt_sq_add_sq, Real.sq_sqrt (by positivity)]
+  have hexp : ‖1 + w‖ ^ 2 = 1 + (2 * w.re + ‖w‖ ^ 2) := by
+    rw [Complex.norm_eq_sqrt_sq_add_sq, Real.sq_sqrt (by positivity)]
+    simp only [Complex.add_re, Complex.add_im, Complex.one_re, Complex.one_im]
+    rw [hsq]
+    ring
+  set u : ℝ := 2 * w.re + ‖w‖ ^ 2 with hu
+  have hu0 : (0 : ℝ) < u := by
+    rw [hu]
+    nlinarith
+  have h1u : (0 : ℝ) < 1 + u := by linarith
+  have hlogeq : Real.log ‖1 + w‖ = Real.log (1 + u) / 2 := by
+    rw [← Real.sqrt_sq (norm_nonneg (1 + w)), Real.log_sqrt (by positivity),
+      hexp]
+  have hupper : Real.log (1 + u) ≤ u := by
+    have h := Real.log_le_sub_one_of_pos h1u
+    have h2 : (1 + u) - 1 = u := by ring
+    linarith
+  have hlow : u / (1 + u) ≤ Real.log (1 + u) := by
+    have hinv := Real.log_le_sub_one_of_pos
+      (show (0 : ℝ) < (1 + u)⁻¹ by positivity)
+    rw [Real.log_inv] at hinv
+    have hid : (1 + u)⁻¹ - 1 = -(u / (1 + u)) := by
+      field_simp
+      ring
+    linarith
+  set v : ℝ := u / (1 + u) with hvdef
+  have hv0 : (0 : ℝ) ≤ v := by
+    rw [hvdef]
+    positivity
+  have hval : v * (1 + u) = u := by
+    rw [hvdef]
+    exact div_mul_cancel₀ u (ne_of_gt h1u)
+  have hvu0 : (0 : ℝ) ≤ v * u := mul_nonneg hv0 hu0.le
+  have hvu : v ≤ u := by nlinarith [hval]
+  have hw2w : ‖w‖ ^ 2 ≤ ‖w‖ := by nlinarith
+  have hu3 : u ≤ 3 * ‖w‖ := by
+    rw [hu]
+    linarith [hwre, hw2w]
+  have huv9 : u * v ≤ 9 * ‖w‖ ^ 2 := by
+    have h1 : u * v ≤ u * u := mul_le_mul_of_nonneg_left hvu hu0.le
+    have h2 : u * u ≤ 9 * ‖w‖ ^ 2 := by nlinarith [hu3, hu0]
+    linarith
+  rw [hlogeq, abs_le]
+  constructor
+  · nlinarith [hupper]
+  · nlinarith [hlow, hval, huv9]
+
 end
 
 /-! ## Axiom check
@@ -559,6 +618,10 @@ block below pins the exact axiom list of one result: if a proof ever starts
 depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
+
+/-- info: 'Stage3.re_sub_log_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.re_sub_log_norm_le
 
 /-- info: 'Stage3.log_norm_z_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

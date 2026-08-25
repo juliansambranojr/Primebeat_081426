@@ -16,6 +16,27 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 139 — The telescope's engine: |Re w − log‖1+w‖| ≤ 5‖w‖²
+type: formalization
+refs: 137, 138
+
+`lean_stage3/Stage3/Stirling.lean` grows by re_sub_log_norm_le;
+package parity 49/49; builds clean at 8713 jobs; welds 2/0.
+
+For w with re w > 0 and ‖w‖ ≤ 1: |Re w − log‖1+w‖| ≤ 5‖w‖². The
+proof needs exactly one library estimate — log y ≤ y − 1 — applied at
+1+u and at (1+u)⁻¹, where u = 2·re w + ‖w‖² is the norm-square
+expansion ‖1+w‖² = 1 + u. The lower application gives
+log(1+u) ≥ u/(1+u), and the v := u/(1+u) bookkeeping closes both
+sides of the absolute value by nlinarith.
+
+Component 1's ledger: per-term engine 5‖w‖² (this entry), tail sum
+12/t (entry 138), log ratio 1/(4t) (entry 138). At w = 1/(z+n) the
+composition gives Σ|Re aₙ| ≤ 60/t, and the band lands at C ≈ 61 —
+inside the ≤ 100 budget of entry 130 with room. Remaining: the limit
+assembly Re ψ(z) = log‖z‖ − Σ Re aₙ via Mathlib's harmonic-γ limit —
+pure structure, all its numbers now proved.
+
 ## 2026-08-24 — Entry 138 — The C/t band's two pillars: the log ratio and the quadratic tail sum
 type: formalization
 refs: 130, 136, 137
