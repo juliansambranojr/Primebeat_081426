@@ -16,6 +16,40 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 128 — THE ASSEMBLY: hRH + hEF + hNT → StmtPsiWeak, closed under the kernel
+type: formalization
+refs: 118, 121, 123, 124, 127
+
+The decomposition plan's final theorem, in
+`lean_stage3/Stage3/Assembly.lean`. Package parity 38/38; builds clean
+at 8710 jobs; welds 2/0; gate 0.
+
+psiWeak_of_RH_EF_NT: under Mathlib's RiemannHypothesis, the truncated
+explicit formula (StmtExplicitFormula c₁ c₂ x₁), and Rosser's Th. 19
+(Riemann_vonMangoldt_bound b₁ b₂ b₃, with b₃ ≥ 0 and the RvM(2) ≥ 0
+floor), the kernel derives
+   StmtPsiWeak (9c₁ + c₂ + 28 + 16b₁ + 16b₂ + 8b₃ + 4W) 2 (max x₁ 16)
+with W the weighted zero-height bucket. The proof chooses its own
+dyadic level (K = Nat.log 2 ⌊x⌋, so x < 2^(K+1) ≤ 2x), splits ψ−x
+across the explicit formula, sends the zero side through the
+√x·(log T)² bound (entry 127), and absorbs everything into C·√x·log²x
+via three scalar helper lemmas (rem_arith, zeroinner_arith,
+assembly_arith). Engineering notes for the record: the dyadic level
+and the bucket must be made opaque (clear_value / parameterized W)
+or defeq checks explode, and every linarith after the zero-side
+bound enters context must be `linarith only` — the bound is too
+large for the default preprocessor.
+
+The chain, every arrow kernel-checked: {hRH, hEF, hNT} →(this)
+StmtPsiWeak →(entry 123) StmtSchoenfeldWeak (3C+13, k−1) →(entry 121)
+StmtWeakWindow →(entry 118, O68) the census. The open leaves are hEF
+and hNT — exactly the two the adversarial audit named (entry 119),
+both literature statements, both active IEANTN targets; when either
+lands upstream, this tree inherits it by bumping the pin.
+
+Composition with the bench arrow (lean/, v4.28.0) remains by statement
+identity under utilities/check_weld.py — the standing caveat.
+
 ## 2026-08-24 — Entry 127 — The zero side at √x·(log T)²: slice 2 closed
 type: formalization
 refs: 124, 125, 126

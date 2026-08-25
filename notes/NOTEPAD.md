@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 128: THE ASSEMBLY closed — psiWeak_of_RH_EF_NT derives StmtPsiWeak with computed constant from {hRH, hEF, hNT}; full chain kernel-checked to the census; 38/38 pins. Open: hEF/hNT leaves (upstream), delivered-constant re-tabulation, weld convergence
 - [open]   2026-08-24  entry 127: zero side at sqrt(x)*(log T)^2 closed — sharp dyadic bound + logsq composition under hRH+hNT, all constants explicit; 34/34 pins. Remaining: ONE theorem (the assembly -> StmtPsiWeak), then re-tabulation
 - [open]   2026-08-24  entry 126: dyadic refinement half landed — inv_le_dyadic_sum (scalar domination, no partition needed) + norm_term_le_dyadic under RH; 32/32 pins. Next: sum swap + per-level identification (route in Assembly.lean header), then the assembly theorem
 - [open]   2026-08-24  entry 125: Stage3/Assembly.lean (step 5, slice 1) — RH works under the kernel: re=1/2, norm x^rho = sqrt x, zero side <= 2*sqrt(x)*(2|N|+W); hEF stated as StmtExplicitFormula; 5/5 pins, package 30/30. Open: ZeroSum slice 2, assembly theorem, re-tabulation
