@@ -282,7 +282,13 @@ the floor `2^x (log 2)^d / (2x)` (O67's CHECK 1, proved rather than sampled).
 `Expansion.tableFrom_ne_zero_of_li` is the assembled arrow: its analytic
 hypotheses are exactly a smooth interpolant with derivative `2^x/x` — Mathlib
 carries no logarithmic integral, so li enters only that way — and
-Schoenfeld-on-the-window. What remains unformalised is Schoenfeld itself,
-which is in no proof assistant (stage 3).
+Schoenfeld-on-the-window. Stage 3's interface (`lean/Schoenfeld.lean`) moves
+that hypothesis to the literature's own sentence: `Schoenfeld.window_of_global`
+proves the global bound `|π(x) − li(x)| ≤ √x·log x/(8π)` for `x ≥ 2657` —
+Schoenfeld 1976, Corollary 1, verbatim shape — implies every window hypothesis
+whose bottom clears `2^12`, and `Schoenfeld.tableFrom_ne_zero_of_schoenfeld`
+is the arrow with that sentence as its one analytic input. What remains
+unformalised is the sentence itself; entry 116 records the audit of what
+discharging it would take.
 `Nonvanishing.error_bound · Nonvanishing.nonvanishing_of ·
 Nonvanishing.tableFrom_ne_zero_of`

@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-248 theorems across 19 modules. Every one carries a
+250 theorems across 20 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -140,20 +140,20 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `exp_eq_rpow` | `e^((log 2)·x) = 2^x`. | ℂ floor | support |
 | `F_zero` | `F 0` is the function itself. | ℂ floor | support |
 | `c_rec` | The coefficient recurrence — Pascal with the factorial absorbed; the `j = 0` edge dies against the `−j` factor. | ℂ floor | support |
-| `hasDerivAt_S` | `S` differentiates term-by-term into the pre-recombination sum. | ℂ floor | support |
+| `hasDerivAt_S` | `S` differentiates term-by-term into the pre-recombination sum. | ℂ floor | `lab_notebook_2.md` |
 | `hasDerivAt_F` | The expansion advances: `F d` has derivative `F (d+1)` at `x ≠ 0`. | ℂ floor | support |
-| `iteratedDeriv_f2x` | `iteratedDeriv d` of `2^x/x` IS `F d`, on `(0,∞)`. | ℂ floor | `The-Four-Zeros.md` |
+| `iteratedDeriv_f2x` | `iteratedDeriv d` of `2^x/x` IS `F d`, on `(0,∞)`. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 | `t_nonneg` | Every unsigned term is nonnegative on `x > 0`. | ℂ floor | support |
 | `S_eq_alt` | `S` is the alternating sum of the unsigned terms. | ℂ floor | support |
-| `choose_factorial_step` | The choose-ratio identity, in ℕ where it is clean: `C(d,j+1)·(j+1)! | propext | support |
-| `t_halves` | The terms halve in the wedge `2d ≤ (log 2)·x`: `t (j+1) ≤ t j / 2`. | ℂ floor | `The-Four-Zeros.md` |
-| `B_peel` | Peeling the head of the tail: `B k = t k − B (k+1)` for `k ≤ d`. | ℂ floor | support |
-| `B_bounds` | The tail bound `0 ≤ B k ≤ t k`, by downward induction on the tail length, using only that the terms halve. | ℂ floor | support |
+| `choose_factorial_step` | The choose-ratio identity, in ℕ where it is clean: `C(d,j+1)·(j+1)! | propext | `lab_notebook_2.md` |
+| `t_halves` | The terms halve in the wedge `2d ≤ (log 2)·x`: `t (j+1) ≤ t j / 2`. | ℂ floor | `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `B_peel` | Peeling the head of the tail: `B k = t k − B (k+1)` for `k ≤ d`. | ℂ floor | `lab_notebook_2.md` |
+| `B_bounds` | The tail bound `0 ≤ B k ≤ t k`, by downward induction on the tail length, using only that the terms halve. | ℂ floor | `lab_notebook_2.md` |
 | `t_zero` | The leading term: `t 0 = (log 2)^d / x`. | ℂ floor | support |
-| `S_floor` | The floor on `S`: in the wedge, `S d x ≥ t₀/2 = (log 2)^d/(2x)`. | ℂ floor | support |
-| `F_floor` | The full floor on the closed form: `F d x ≥ (1/2)·2^x·(log 2)^d/x`. | ℂ floor | `The-Four-Zeros.md` |
-| `hD_of_window` | `hD` discharged. | ℂ floor | `The-Four-Zeros.md` |
-| `tableFrom_ne_zero_of_li` | O67's conditional theorem, with the analysis discharged. | ℂ floor | `The-Four-Zeros.md` |
+| `S_floor` | The floor on `S`: in the wedge, `S d x ≥ t₀/2 = (log 2)^d/(2x)`. | ℂ floor | `lab_notebook_2.md` |
+| `F_floor` | The full floor on the closed form: `F d x ≥ (1/2)·2^x·(log 2)^d/x`. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `hD_of_window` | `hD` discharged. | ℂ floor | `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `tableFrom_ne_zero_of_li` | O67's conditional theorem, with the analysis discharged. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 
 ## GeneratorPeak (6)
 
@@ -251,6 +251,13 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `neg_one_pow` | `(−1)^m` is `1` or `−1`. | propext | `lab_notebook_2.md` |
 | `cone_filled` | No lacunae. | propext, Quot.sound | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `flux_form` | The flux form. | propext, Quot.sound | `lab_notebook_2.md` |
+
+## Schoenfeld (2)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `window_of_global` | The bridge: the global sentence implies the bench-shaped window hypothesis whenever the window bottom clears `12`, since `2^12 = 4096 ≥ 2657`. | ℂ floor | `The-Four-Zeros.md` |
+| `tableFrom_ne_zero_of_schoenfeld` | The arrow, with the literature sentence as its one analytic input. | ℂ floor | `The-Four-Zeros.md` |
 
 ## SeedPerturbation (20)
 

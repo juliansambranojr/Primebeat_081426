@@ -16,6 +16,31 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 117 — Schoenfeld.lean: the unproven surface moved to the literature's own sentence
+type: formalization
+refs: 113, 115, 116
+
+`lean/Schoenfeld.lean`, the twentieth module, two theorems and a definition.
+Build clean, **8046 jobs, 250 theorems, 250 pins, parity in all 20 modules.**
+Step 1 of every stage-3 route from entry 116, done in-tree.
+
+`StmtSchoenfeld pi li` states Schoenfeld 1976 Corollary 1 in verbatim shape —
+∀ x ≥ 2657, |pi x − li x| ≤ √x·log x/(8π) — over abstract functions.
+`window_of_global` proves it implies the bench-shaped
+`StmtSchoenfeldWindow` whenever the window bottom clears 12
+(2^12 = 4096 ≥ 2657); the kernel-checked translation is √(2^y) = 2^(y/2)
+and log(2^y) = y·log 2. `tableFrom_ne_zero_of_schoenfeld` restates the
+capstone with the sentence as its one analytic input, the window bottom
+raised to 12 ≤ r−(d+1), and compatibility hypotheses tying f and G to
+pi and li at the points 2^m.
+
+What this changes: before, checking the bench's hS against the literature
+required translating a window-indexed rpow expression by hand. Now the
+unproven surface is one line that can be compared against the published
+corollary by eye. What it does not change: the sentence is still a
+hypothesis. The decomposition hS → {hRH, hEF} (entry 116's option 2) is
+the open decision; the tolerance-table verification gates it.
+
 ## 2026-08-24 — Entry 116 — Stage 3 audited, adversarially re-audited, and re-scoped: the pieces are here
 type: motivation
 refs: 112, 113, 115
