@@ -25,6 +25,7 @@ import PrimeNumberTheoremAnd.IEANTN.ZetaDefinitions
 import Stage3.Statement
 import Stage3.PsiToPi
 import Stage3.ZeroSum
+import Stage3.Assembly
 
 namespace Stage3
 

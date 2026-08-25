@@ -16,6 +16,39 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 125 — Stage3/Assembly.lean: RH meets the zero sum
+type: formalization
+refs: 119, 123, 124
+
+Step 5 of the decomposition plan, slice 1.
+`lean_stage3/Stage3/Assembly.lean`, five theorems, five pins; package
+parity 30/30; builds clean at 8710 jobs; welds 2/0.
+
+Mathlib's RiemannHypothesis now does work under the kernel:
+re_eq_half_of_RH — every nontrivial zero (IEANTN's NontrivialZeros,
+re ∈ (0,1)) has re = 1/2; the strip rules out trivial zeros and s = 1.
+norm_cpow_of_RH — the RH collapse: ‖x^ρ‖ = √x for x > 0.
+norm_term_le_of_RH — ‖x^ρ/ρ‖ ≤ 2√x from |ρ| ≥ 1/2.
+norm_zeroPartialSum_le — the zero side of the explicit formula
+controlled by the count: ‖zeroPartialSum x 2^(K+1)‖ ≤
+2√x·(2|N(2^(K+1))| + W), through IEANTN's sorry-free
+weighted_cumulative_count_le.
+zeroPartialSum defines the order-weighted Σ_{|γ|<T} m(ρ)·x^ρ/ρ;
+StmtExplicitFormula states the hEF leaf — the truncated explicit
+formula with explicit remainder, the genuinely open analytic input —
+over Mathlib's Chebyshev ψ.
+
+The chain standing kernel-checked: hRH collapses the zero side; the
+count controls it (this module); hNT makes the count T·log T explicit
+(entry 124); a ψ-bound transfers to π−Li dropping one log (entry 123);
+the family reaches the window (entry 121); the window feeds the census
+(entry 118: depth 11 at classical constants). Open leaves: hEF, hNT —
+named, literature-shaped, both active IEANTN targets.
+
+Remaining slices: ZeroSum slice 2 (dyadic 1/|γ| refinement through the
+NontrivialZeros shells), the assembly theorem hRH + hEF + hNT →
+StmtPsiWeak, and the census re-tabulation at the final constant.
+
 ## 2026-08-24 — Entry 124 — Stage3/ZeroSum.lean: the (log T)² arithmetic under hNT
 type: formalization
 refs: 119, 120, 123
