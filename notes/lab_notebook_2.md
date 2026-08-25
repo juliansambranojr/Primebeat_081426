@@ -16,6 +16,36 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 130 — The leaf budget: crude-explicit suffices for both open leaves
+type: run
+refs: 119, 120, 128, 129
+
+Inline sensitivity run on O70's machinery (transcript-logged; grid in
+chat, machinery identical to results/delivered_constant.json). Upstream
+check first: our PNT+ pin 751a8c2 IS upstream HEAD — theorem_19 (1
+sorry) and Buthe (8 sorries) still open there; no free inheritance.
+
+The budget, chain constants from entries 123/128:
+hNT — any Riemann_vonMangoldt_bound B: (1,1,10) → depth 9;
+(10,10,100) → depth 8; (100,100,1000) → depth 7. Rosser's
+(0.137,0.443,6.1) is ~70× sharper than the census needs.
+hEF — any StmtExplicitFormula c: (20,10) → depth 9; (100,50) → depth
+8; (1000,500) → depth 7. Both crude simultaneously: c=(200,100) with
+B=(50,50,500) → depth 7, still past (20,6)'s depth 6.
+
+What this respecifies: the leaf targets are crude-explicit versions,
+not the literature's sharp ones — sloppy Stirling, generous Jensen
+constants, wasteful contour estimates all acceptable. Different
+difficulty class; the sorry-free substrate (RectangleArgumentPrinciple,
+BorelCaratheodory, ZetaBounds, Kadiri helpers) is the toolkit.
+
+Slice plans: hNT-crude first (argument principle on the ξ-rectangle +
+generous Gamma-phase Stirling + S(T) ≤ B·log T via Borel–Carathéodory;
+O69 measured the target: fluctuation under 2 windings in 10⁵). Then
+hEF-crude (Perron with explicit truncation + rectangle contour shift +
+ZetaBounds edges). Both are multi-session builds; the budget is the
+spec they build to.
+
 ## 2026-08-24 — Entry 129 — O70: the census at the kernel's computed constant — depth 9, grid-stable
 type: run
 refs: 118, 123, 128

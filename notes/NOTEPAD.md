@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 130: leaf budget measured — crude-explicit suffices: hNT up to B=(100,100,1000), hEF up to c=(1000,500) keep depth >= 7; both-crude keeps 7. Slice plans recorded; hNT-crude first. Pin 751a8c2 = upstream HEAD, sorries still open there
 - [open]   2026-08-24  entry 129: O70 — census at the kernel computed constant: depth 9 in all 16 grid cells (C_pi 301-556, R(1) 48-50); headline "last zero at every depth <= 9" robust to the open hEF constants. Chain numbers from entries 123/128
 - [open]   2026-08-24  entry 128: THE ASSEMBLY closed — psiWeak_of_RH_EF_NT derives StmtPsiWeak with computed constant from {hRH, hEF, hNT}; full chain kernel-checked to the census; 38/38 pins. Open: hEF/hNT leaves (upstream), delivered-constant re-tabulation, weld convergence
 - [open]   2026-08-24  entry 127: zero side at sqrt(x)*(log T)^2 closed — sharp dyadic bound + logsq composition under hRH+hNT, all constants explicit; 34/34 pins. Remaining: ONE theorem (the assembly -> StmtPsiWeak), then re-tabulation
