@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 150: O24 4e11 kill run — G4 69.0 vs G5 47.7, band FALLS, crossing absent; four-prime peak stands at 133x the data; The-Four-Prime-Peak D/G result-triage pending
+- [open]   2026-08-25  entry 149: O24 --pi-backend primecount landed, backend-independence zero-diff verified — the sieve memory wall was the 4e11 barrier and is gone
 - [closed]   2026-08-25  entry 148: O30–O38 flags+JSON pass landed, nine re-runs zero-drift — answers the entry-28 and entry-35 hardcoded-params lines; O39 dead --results-dir flag now on record
 - [closed]   2026-08-25  entry 147: O24 float-key instrument-fix entry landed (fix was 2026-08-17); shas stay as honest provenance, entry is the crosswalk; aborted 3e8 log labelled in-entry, filename frozen — the three 08-17 O24 lines below are answered by this entry
 - [open]   2026-08-25  entry 146: the_container public at cb06d4f — method extracted to standalone template repo; entry-144 posit operational as its adjudications/ layer; back-translation round and non-research instantiation open in that repo's NOTEPAD

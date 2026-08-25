@@ -319,6 +319,36 @@ def sieve_primes(limit):
     return np.flatnonzero(s).astype(np.int64)
 
 
+class PrimecountPi:
+    """
+    PI BACKEND (instrument-fix pass, 2026-08-25). Exact prime counting
+    without the sieve: pi(floor(x)) via primecountpy (Deleglise-Rivat),
+    memoized per distinct floored key. Purpose: the sieve backend needs
+    ~xmax bytes of RAM (400 GB at xmax = 4e11 — The-Four-Prime-Peak D4's
+    "far beyond what this instrument reaches" was a memory fact), while
+    primecountpy computes pi(4e11) in 8 ms with no array at all.
+
+    Floor semantics are IDENTICAL to pi_at's array path: both count
+    {p prime : p <= floor(x)}, so for every key the two backends return
+    the same integer, and results are backend-independent. Verified by
+    running both backends at identical flags and diffing result JSONs
+    (see the instrument-fix entry of 2026-08-25).
+    """
+
+    def __init__(self):
+        import primecountpy
+        self._pi = primecountpy.prime_pi
+        self._memo = {}
+
+    def __call__(self, x):
+        k = math.floor(x)
+        v = self._memo.get(k)
+        if v is None:
+            v = int(self._pi(k))
+            self._memo[k] = v
+        return v
+
+
 def pi_at(primes, x):
     """
     EXACT pi(x) = number of primes <= x, by binary search on the sorted prime
@@ -364,7 +394,14 @@ def pi_at(primes, x):
 
     This is the ONE place where this script no longer matches O18's pi_at
     verbatim; the difference is the key coercion above and nothing else.
+
+    PI BACKEND DISPATCH (instrument-fix pass, 2026-08-25): when `primes`
+    is a PrimecountPi object rather than an int64 array, the count comes
+    from primecountpy under the identical floor semantics — see the
+    PrimecountPi docstring. The array path below is byte-unchanged.
     """
+    if isinstance(primes, PrimecountPi):
+        return primes(x)
     return int(np.searchsorted(primes, math.floor(x), side="right"))
 
 
@@ -1101,6 +1138,14 @@ def main():
                          "(default: results/<script>_results.json)")
     ap.add_argument("--no-json", action="store_true",
                     help="skip writing the results JSON")
+    ap.add_argument("--pi-backend", type=str, default="sieve",
+                    choices=("sieve", "primecount"),
+                    help="exact prime counting backend (default sieve). "
+                         "sieve needs ~xmax bytes of RAM and enumerates the "
+                         "primes; primecount uses primecountpy with no "
+                         "array and reaches xmax far beyond RAM. Both are "
+                         "exact with identical floor semantics; results are "
+                         "backend-independent (verified 2026-08-25).")
     args = ap.parse_args()
 
     dps = int(args.dps)
@@ -1153,12 +1198,21 @@ def main():
     print(f"  pi/log2 = {math.pi / math.log(2.0):.6f}     "
           f"pi/log3 = {math.pi / math.log(3.0):.6f}", flush=True)
 
-    # ---------------- sieve ------------------------------------------------
-    print(f"\n  sieving primes to {xmax}...", flush=True)
-    primes = sieve_primes(xmax)
-    n_primes = int(primes.size)
-    largest_prime = int(primes[-1]) if n_primes else None
-    print(f"  {n_primes} primes, largest = {largest_prime}", flush=True)
+    # ---------------- pi backend -------------------------------------------
+    if args.pi_backend == "primecount":
+        print(f"\n  pi backend: primecountpy (no sieve; exact, memoized)...",
+              flush=True)
+        primes = PrimecountPi()
+        n_primes = primes(xmax)
+        largest_prime = None
+        print(f"  {n_primes} primes <= xmax (largest not enumerated under "
+              f"this backend)", flush=True)
+    else:
+        print(f"\n  sieving primes to {xmax}...", flush=True)
+        primes = sieve_primes(xmax)
+        n_primes = int(primes.size)
+        largest_prime = int(primes[-1]) if n_primes else None
+        print(f"  {n_primes} primes, largest = {largest_prime}", flush=True)
 
     # ---------------- ladders ----------------------------------------------
     print("\n  building ladders (multipliers as EXACT Python integers; sort "
@@ -1592,6 +1646,7 @@ def main():
                 "seed": seed,
                 "riemannr_impl": RIEMANNR_IMPL,
                 "cache_path": args.cache,
+                "pi_backend": args.pi_backend,
                 "n_primes": n_primes,
                 "largest_prime": largest_prime,
                 "band_halfwidth_floor": BAND_HALFWIDTH_FLOOR,

@@ -16,6 +16,86 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 150 — O24 at 4e11: G5 does not overtake — the four-prime peak survives 133x more data
+type: run
+refs: 111, 149
+
+Script O24_prime_generator_orbit.py, invocation `--pi-backend
+primecount --xmax 400000000000 --generators "2,3,5,7,11"`, every
+other flag at default and identical to the 3e9 run (x0 2.0, gamma
+0..40 step 0.01, dps 30, 200 surrogates, seed 2026). Completed clean
+in minutes; gates A, B, C all PASSED. Artifacts:
+results/O24_gen_xmax4e11_results.json,
+results/O24_gen_xmax4e11_run.log.
+
+**Headline table.**
+
+```text
+ set  n_blk    median(P)      argmax g   P_max/med   verdict
+  G1     37   0.052466633     14.1800     4.963683      NULL
+  G2    475   0.069039839     14.1200     8.749549    DETECT
+  G3   2894   0.014731994     37.5600    31.107472    DETECT
+  G4  11787   0.0049192035    37.5900    69.005848    DETECT
+  G5  34343   0.0059499436    25.0100    47.719686    DETECT
+```
+
+Steps: G1→G2 +76.27%, G2→G3 +255.53%, G3→G4 +121.83%,
+G4→G5 −30.85%. The script's mechanical scaling band reads FALLS.
+
+**Against the 3e9 run.** G4 37.26 → 69.01 (+85.2%); G5 26.17 → 47.72
+(+82.3%); the G4/G5 ratio moved 1.42 → 1.45. The-Four-Prime-Peak D4's
+two-point extrapolation put G5 overtaking G4 near 4e11; at 4e11 the
+crossing did not occur, and D2's deeper-gains-more ordering does not
+hold at the G4→G5 step at this scale. The paper's own G1 caveat
+("D4's extrapolation is two points") was the right suspicion.
+
+**Texture.** All six gamma_n sit in-band in each of G4's and G5's top
+six peaks, with nothing else close (G4's seventh peak: 3.64 against a
+top of 69.0). G5 carries the whole spectrum tightly — P/median at
+gamma_1..6 spans 46.83–47.72, spread ~1.9% — while G4 holds the
+height at spread 4.5% (8.56% at 3e9). G4's argmax landed on gamma_6
+(37.59), G5's on gamma_3 (25.01). Surrogate control: real
+P_max/median at percentile 100.000 and above p95 for G2–G5.
+
+EXPLORATORY: no prereg; the scaling band is the script's mechanical
+rule, and no verdict is stamped. The-Four-Prime-Peak's D and G
+sections now want a result-triage pass.
+
+---
+
+## 2026-08-25 — Entry 149 — O24 pi backend: primecountpy option, backend-independence verified, 4e11 unlocked
+type: instrument-fix
+refs: 42, 111
+
+The-Four-Prime-Peak D4 calls xmax ~ 4e11 "far beyond what this
+instrument reaches." That was a memory fact: the sieve backend needs
+~xmax bytes (400 GB at 4e11) plus the enumerated primes (120 GB), and
+the primes array feeds exactly one consumer — exact pi at the block
+edges. primecountpy computes pi(4e11) = 15581005657 in 8 ms with no
+array.
+
+**What changed.** O24_prime_generator_orbit.py gained
+--pi-backend {sieve, primecount}, default sieve — the array path is
+byte-unchanged. The primecount path is a memoized PrimecountPi object
+with floor semantics identical to pi_at's array path (both count
+primes <= floor(x)), dispatched in pi_at with a documented section.
+Under the new backend, params record pi_backend and n_primes =
+pi(xmax); largest_prime is null (never enumerated).
+
+**Backend independence, verified.** The full default run
+(xmax 1.5e8, G1–G4, 200 surrogates) executed on both backends and the
+result JSONs deep-diffed: zero differing leaves outside generated_utc
+and the two backend params fields. Every count, residual, projection,
+surrogate draw, gate, and summary number identical. Prior O24 results
+REMAIN FULLY COMPARABLE; the sieve default means a no-flag invocation
+is byte-identical to before.
+
+**What it unlocks.** The D4 kill test at 4e11 (entry 150), and any
+future xmax the orbit itself can afford — the binding cost is now the
+projection, at ~34k blocks for G5, with pi essentially free.
+
+---
+
 ## 2026-08-25 — Entry 148 — O30–O38 instrument-fix pass: flags and results JSON, nine scripts, zero drift
 type: instrument-fix
 refs: 28, 32, 35, 38, 39, 40
