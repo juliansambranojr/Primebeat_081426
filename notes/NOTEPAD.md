@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 124: Stage3/ZeroSum.lean (step 4, slice 1) — N_abs_le T*logT majorant + dyadic (log T)^2 sum under hNT, explicit constants; 7/7 pins, package 25/25. Open: slice 2 (NontrivialZeros linkage), step 5 (assembly)
 - [open]   2026-08-24  entry 123: step 3 complete — schoenfeldWeak_of_psiWeak delivers (3C+13, k-1, x0^2) into StmtSchoenfeldWeak; RH psi-bound shape gives depth 11 on O68 machinery; 12/12 pins, package 18/18. Open: step 4 (ZeroSum), step 5 (assembly)
 - [open]   2026-08-24  entry 122: Stage3/PsiToPi.lean (step 3, slice 1) — pi_sub_Li_eq exact decomposition + envelope transfer proved, all integrability discharged; 8/8 pins, package 14/14, welds green. Remaining: family-shape instantiation, delivered (C', k-1)
 - [open]   2026-08-24  entry 121: Stage3/Statement.lean (step 2) — weak family StmtSchoenfeldWeak C k x0 named, five bridges + monotonicity proved, bench bridge reproved statement-identically on v4.32.2; 6/6 pins, 2 welds green. Next: PsiToPi.lean (step 3)

@@ -16,6 +16,35 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 124 — Stage3/ZeroSum.lean: the (log T)² arithmetic under hNT
+type: formalization
+refs: 119, 120, 123
+
+Step 4 of the decomposition plan, slice 1.
+`lean_stage3/Stage3/ZeroSum.lean`, seven theorems, seven pins; package
+parity 25/25; builds clean at 8709 jobs; welds 2/0.
+
+The module consumes IEANTN's riemannZeta.Riemann_vonMangoldt_bound
+(Rosser Th. 19 shape — the hNT leaf, O69's measured band) and proves
+the counting arithmetic step 5 needs, pure real analysis from the
+hypothesis, no zero types:
+
+N_abs_le — |N(T)| ≤ (T/2π)(log T + 3) + RvM(T) + 7/8, the T·log T
+majorant with explicit constants (entry 119 recorded why T^(3/2) is
+dead: depth 4, never reaching (20,6)).
+dyadic_abs_N_sum_le — Σ_{j≤K} (2^j)⁻¹·|N(2^(j+1))| ≤
+(log 2/2π)(K+1)(K+2) + 3(K+1)/π + 2(RvM(2^(K+1)) + 7/8). The (log T)²
+zero-sum arithmetic; leading constant log 2/2π against the classical
+Σ 1/γ ~ (log T)²/4π. Under RH this is what multiplies √x in the
+explicit-formula remainder.
+Supporting: RvM_mono, abs_mainterm_le via log_two_pi_le (2π ≤ e² from
+Mathlib's decimal bounds on e and π), Gauss and geometric sums.
+
+Slice 2 (open): link the sum to Σ' over NontrivialZeros through
+IEANTN's sorry-free weighted_cumulative_count_le — zero-type plumbing,
+their machinery, no new analysis. Then step 5: hRH + hEF + these →
+StmtPsiWeak, closing the chain into PsiToPi's transfer.
+
 ## 2026-08-24 — Entry 123 — Stage3/PsiToPi.lean complete: the transfer delivers (3C+13, k−1)
 type: formalization
 refs: 118, 121, 122
