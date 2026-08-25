@@ -28,6 +28,7 @@ import Stage3.ZeroSum
 import Stage3.Assembly
 import Stage3.RvMCrude
 import Stage3.Stirling
+import Stage3.ArgCrude
 
 namespace Stage3
 
