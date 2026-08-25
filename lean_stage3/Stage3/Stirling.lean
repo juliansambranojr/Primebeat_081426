@@ -551,11 +551,12 @@ theorem inv_quadratic_tsum_le {t : ℝ} (ht : 1 ≤ t) :
   norm_num
 
 /-- **The per-term log-Taylor bound** — the telescope's engine: for
-`w` in the open right half-plane with `‖w‖ ≤ 1`,
-`|Re w − log‖1 + w‖| ≤ 5‖w‖²`. Both sides come from
-`log y ≤ y − 1` alone (applied at `1+u` and at `(1+u)⁻¹`). -/
-theorem re_sub_log_norm_le {w : ℂ} (hw : 0 < w.re) (hw1 : ‖w‖ ≤ 1) :
-    |w.re - Real.log ‖1 + w‖| ≤ 5 * ‖w‖ ^ 2 := by
+`w` in the open right half-plane with `‖w‖ ≤ 2`,
+`|Re w − log‖1 + w‖| ≤ 8‖w‖²`. Both sides come from
+`log y ≤ y − 1` alone (applied at `1+u` and at `(1+u)⁻¹`). The `≤ 2`
+radius admits the `n = 0` term of the telescope at every `t ≥ 1`. -/
+theorem re_sub_log_norm_le {w : ℂ} (hw : 0 < w.re) (hw1 : ‖w‖ ≤ 2) :
+    |w.re - Real.log ‖1 + w‖| ≤ 8 * ‖w‖ ^ 2 := by
   have hnw : (0 : ℝ) ≤ ‖w‖ := norm_nonneg w
   have hp : (0 : ℝ) ≤ ‖w‖ ^ 2 := by positivity
   have hwre : w.re ≤ ‖w‖ :=
@@ -596,18 +597,96 @@ theorem re_sub_log_norm_le {w : ℂ} (hw : 0 < w.re) (hw1 : ‖w‖ ≤ 1) :
     exact div_mul_cancel₀ u (ne_of_gt h1u)
   have hvu0 : (0 : ℝ) ≤ v * u := mul_nonneg hv0 hu0.le
   have hvu : v ≤ u := by nlinarith [hval]
-  have hw2w : ‖w‖ ^ 2 ≤ ‖w‖ := by nlinarith
-  have hu3 : u ≤ 3 * ‖w‖ := by
+  have hw2w : ‖w‖ ^ 2 ≤ 2 * ‖w‖ := by nlinarith
+  have hu3 : u ≤ 4 * ‖w‖ := by
     rw [hu]
     linarith [hwre, hw2w]
-  have huv9 : u * v ≤ 9 * ‖w‖ ^ 2 := by
+  have huv9 : u * v ≤ 16 * ‖w‖ ^ 2 := by
     have h1 : u * v ≤ u * u := mul_le_mul_of_nonneg_left hvu hu0.le
-    have h2 : u * u ≤ 9 * ‖w‖ ^ 2 := by nlinarith [hu3, hu0]
+    have h2 : u * u ≤ 16 * ‖w‖ ^ 2 := by nlinarith [hu3, hu0]
     linarith
   rw [hlogeq, abs_le]
   constructor
   · nlinarith [hupper]
   · nlinarith [hlow, hval, huv9]
+
+/-- The quarter-line point, named: `zq t = 1/4 + it/2`. -/
+noncomputable def zq (t : ℝ) : ℂ := (1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I
+
+theorem phasePoint_eq (t : ℝ) :
+    phasePoint t = (Complex.digamma (zq t)).re := rfl
+
+/-- Norm-square along the shifted quarter-line:
+`‖n + zq t‖² = (n + 1/4)² + (t/2)²`. -/
+theorem normSq_add_zq (t : ℝ) (n : ℕ) :
+    ‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 := by
+  have hre : ((n : ℂ) + zq t).re = (n : ℝ) + 1 / 4 := by
+    simp [zq, Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+  have him : ((n : ℂ) + zq t).im = t / 2 := by
+    simp [zq, Complex.add_im, Complex.mul_im, Complex.I_re, Complex.I_im]
+  rw [Complex.norm_eq_sqrt_sq_add_sq, Real.sq_sqrt (by positivity), hre, him]
+
+/-- The shifted point is never zero (its real part is `n + 1/4`). -/
+theorem add_zq_ne_zero (t : ℝ) (n : ℕ) : (n : ℂ) + zq t ≠ 0 := by
+  intro h
+  have hre : ((n : ℂ) + zq t).re = (n : ℝ) + 1 / 4 := by
+    simp [zq, Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+  rw [h] at hre
+  simp at hre
+  nlinarith [Nat.cast_nonneg (α := ℝ) n, hre]
+
+/-- **The per-term telescope bound:** each digamma-series step tracks the
+log-norm step to within `8/((n+1/4)² + (t/2)²)` on `t ≥ 1`. -/
+theorem a_term_le {t : ℝ} (ht : 1 ≤ t) (n : ℕ) :
+    |(((n : ℂ) + zq t)⁻¹).re
+        - (Real.log ‖((n + 1 : ℕ) : ℂ) + zq t‖ - Real.log ‖(n : ℂ) + zq t‖)|
+      ≤ 8 * ((((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) := by
+  have ht0 : (0 : ℝ) < t := by linarith
+  set w : ℂ := ((n : ℂ) + zq t)⁻¹ with hw
+  have hz0 : (n : ℂ) + zq t ≠ 0 := add_zq_ne_zero t n
+  have hnormsq : ‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 :=
+    normSq_add_zq t n
+  have hnpos : (0 : ℝ) < ‖(n : ℂ) + zq t‖ := norm_pos_iff.mpr hz0
+  have hhalf : (1 : ℝ) / 2 ≤ ‖(n : ℂ) + zq t‖ := by
+    nlinarith [hnormsq, hnpos, Nat.cast_nonneg (α := ℝ) n, sq_nonneg ((n : ℝ) + 1 / 4)]
+  -- w-facts
+  have hwnorm : ‖w‖ = ‖(n : ℂ) + zq t‖⁻¹ := by
+    rw [hw, norm_inv]
+  have hw2 : ‖w‖ ≤ 2 := by
+    rw [hwnorm]
+    have h2 : ((1 : ℝ) / 2)⁻¹ = 2 := by norm_num
+    calc ‖(n : ℂ) + zq t‖⁻¹ ≤ ((1 : ℝ) / 2)⁻¹ := inv_anti₀ (by norm_num) hhalf
+      _ = 2 := h2
+  have hwre : 0 < w.re := by
+    rw [hw, Complex.inv_re]
+    have hre : ((n : ℂ) + zq t).re = (n : ℝ) + 1 / 4 := by
+      simp [zq, Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+    rw [hre]
+    have hnsq : (0 : ℝ) < Complex.normSq ((n : ℂ) + zq t) := by
+      rw [Complex.normSq_pos]
+      exact hz0
+    have hn0 : (0 : ℝ) ≤ (n : ℝ) := Nat.cast_nonneg n
+    positivity
+  have hwsq : ‖w‖ ^ 2 = ((((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2))⁻¹ := by
+    rw [hwnorm, ← hnormsq]
+    rw [inv_pow]
+  -- the log step is log‖1 + w‖
+  have hstep : Real.log ‖((n + 1 : ℕ) : ℂ) + zq t‖ - Real.log ‖(n : ℂ) + zq t‖
+      = Real.log ‖1 + w‖ := by
+    have hdivpt : ((n + 1 : ℕ) : ℂ) + zq t = ((n : ℂ) + zq t) * (1 + w) := by
+      rw [hw]
+      field_simp
+      push_cast
+      ring
+    rw [hdivpt, norm_mul, Real.log_mul (ne_of_gt hnpos)
+      (by
+        rw [norm_ne_zero_iff]
+        intro h0
+        rw [h0, mul_zero] at hdivpt
+        exact add_zq_ne_zero t (n + 1) hdivpt)]
+    ring
+  rw [hstep, ← hwsq]
+  exact re_sub_log_norm_le hwre hw2
 
 end
 
@@ -618,6 +697,22 @@ block below pins the exact axiom list of one result: if a proof ever starts
 depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
+
+/-- info: 'Stage3.phasePoint_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.phasePoint_eq
+
+/-- info: 'Stage3.normSq_add_zq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.normSq_add_zq
+
+/-- info: 'Stage3.add_zq_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.add_zq_ne_zero
+
+/-- info: 'Stage3.a_term_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.a_term_le
 
 /-- info: 'Stage3.re_sub_log_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
