@@ -16,6 +16,32 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 122 — Stage3/PsiToPi.lean: the transfer identity proved, integrability discharged
+type: formalization
+refs: 118, 121
+
+Step 3 of the decomposition plan, first slice.
+`lean_stage3/Stage3/PsiToPi.lean`, eight theorems, eight pins, builds
+clean at 8707 jobs. Package parity 14/14; welds 2, broken 0.
+
+Li x = x/log x + ∫₂ˣ dt/log²t is the module's own logarithmic integral
+(Mathlib carries none), offset from the literature's li by li(2) ≈ 1.045
+— absorbed by the weak family's constants. On it, kernel-checked:
+
+pi_sub_Li_eq — the EXACT decomposition, an identity via Mathlib's
+Abel-summation bridge (Chebyshev.primeCounting_eq_theta_div_log_add_integral):
+π(⌊x⌋) − Li x = (θx−x)/log x + ∫₂ˣ (θt−t)/(t·log²t) dt.
+abs_pi_sub_Li_le — the envelope transfer: any pointwise |θ − id| bound
+becomes a |π − Li| bound, top term plus envelope integral.
+theta_err_of_psi — ψ-error to θ-error via |ψ−θ| ≤ 2√x·log x (Mathlib).
+integral_A_rpow_le — ∫₂ˣ A·t^(−1/2) ≤ 2A√x, the envelope workhorse.
+Four continuity/integrability lemmas discharge every side condition —
+the theorem statements carry no integrability hypotheses.
+
+Remaining in step 3: instantiate env with C·√t·(log t)^k + 2√t·log t
+and compute the delivered (C′, k−1) — the transfer drops one log and
+inflates the constant explicitly. Expansion-genre bookkeeping.
+
 ## 2026-08-24 — Entry 121 — Stage3/Statement.lean: the weak family named, the bridges proved
 type: formalization
 refs: 118, 119, 120
