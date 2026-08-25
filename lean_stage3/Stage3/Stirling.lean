@@ -688,6 +688,245 @@ theorem a_term_le {t : ℝ} (ht : 1 ≤ t) (n : ℕ) :
   rw [hstep, ← hwsq]
   exact re_sub_log_norm_le hwre hw2
 
+/-- **The harmonic-γ limit assembly — component 1 of the digamma
+comparison:** `|Re ψ(zq t) − log‖zq t‖| ≤ 96/t` for `t ≥ 1`. The
+digamma series telescopes against log-norm steps; the partial sums of
+the telescope converge to `log‖z‖ − Re ψ(z)` through Mathlib's
+`tendsto_eulerMascheroniSeq`, and every partial sum is bounded by
+`8 · Σ' 1/((n+1/4)² + (t/2)²) ≤ 96/t`. -/
+theorem re_digamma_sub_log_le {t : ℝ} (ht : 1 ≤ t) :
+    |phasePoint t - Real.log ‖zq t‖| ≤ 96 / t := by
+  have ht0 : (0 : ℝ) < t := by linarith
+  have hzre : (zq t).re = 1 / 4 := by
+    simp [zq, Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+  have hcond : ∀ n : ℕ, zq t ≠ -(n : ℂ) := by
+    intro n h
+    have h2 := congrArg Complex.re h
+    rw [hzre] at h2
+    simp at h2
+    nlinarith [Nat.cast_nonneg (α := ℝ) n, h2]
+  have hsum := Complex.hasSum_digamma hcond
+  have hre0 := hsum.mapL Complex.reCLM
+  have hre : HasSum
+      (fun n : ℕ => (1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + zq t)).re)
+      ((Complex.digamma (zq t)).re + Real.eulerMascheroniConstant) := by
+    simpa using hre0
+  have hP := hre.tendsto_sum_nat
+  -- bookkeeping
+  set ℓ : ℕ → ℝ := fun n => Real.log ‖(n : ℂ) + zq t‖ with hℓdef
+  set b : ℕ → ℝ := fun n => (((n : ℂ) + zq t)⁻¹).re with hbdef
+  set a : ℕ → ℝ := fun n => b n - (ℓ (n + 1) - ℓ n) with hadef
+  set q : ℕ → ℝ := fun n => (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹ with hqdef
+  -- per-term real part of the series
+  have hcre : ∀ n : ℕ,
+      (1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + zq t)).re
+        = ((n : ℝ) + 1)⁻¹ - b n := by
+    intro n
+    rw [Complex.sub_re]
+    congr 1
+    · have hcast : (1 : ℂ) / ((n : ℂ) + 1) = ((((n : ℝ) + 1)⁻¹ : ℝ) : ℂ) := by
+        push_cast
+        ring
+      rw [hcast, Complex.ofReal_re]
+    · simp only [hbdef]
+      congr 1
+      rw [one_div]
+  -- the finite telescope
+  have hdecomp : ∀ N : ℕ,
+      (∑ n ∈ Finset.range N, (1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + zq t)).re)
+        = (∑ n ∈ Finset.range N, ((n : ℝ) + 1)⁻¹) - (ℓ N - ℓ 0)
+          - ∑ n ∈ Finset.range N, a n := by
+    intro N
+    have h1 : (∑ n ∈ Finset.range N,
+        (1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + zq t)).re)
+        = ∑ n ∈ Finset.range N, (((n : ℝ) + 1)⁻¹ - b n) :=
+      Finset.sum_congr rfl fun n _ => hcre n
+    have h2 : (∑ n ∈ Finset.range N, b n)
+        = (∑ n ∈ Finset.range N, a n) + (ℓ N - ℓ 0) := by
+      have h3 : ∀ n : ℕ, b n = a n + (ℓ (n + 1) - ℓ n) := by
+        intro n
+        simp only [hadef]
+        ring
+      rw [Finset.sum_congr rfl fun n _ => h3 n, Finset.sum_add_distrib,
+        Finset.sum_range_sub (f := ℓ)]
+    rw [h1, Finset.sum_sub_distrib, h2]
+    ring
+  -- harmonic cast
+  have hharm : ∀ N : ℕ,
+      ((harmonic N : ℚ) : ℝ) = ∑ n ∈ Finset.range N, ((n : ℝ) + 1)⁻¹ := by
+    intro N
+    rw [harmonic]
+    push_cast
+    rfl
+  -- the A-sequence and its limit
+  set A : ℕ → ℝ := fun N => ∑ n ∈ Finset.range N, a n with hAdef
+  have hAeq : ∀ N : ℕ,
+      A N = (((harmonic N : ℚ) : ℝ) - Real.log ((N : ℝ) + 1))
+        - (ℓ N - Real.log ((N : ℝ) + 1)) + ℓ 0
+        - ∑ n ∈ Finset.range N, (1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + zq t)).re := by
+    intro N
+    have hd := hdecomp N
+    have hh := hharm N
+    rw [hAdef]
+    linarith [hd, hh]
+  -- T1: Euler–Mascheroni
+  have hT1 : Filter.Tendsto
+      (fun N : ℕ => ((harmonic N : ℚ) : ℝ) - Real.log ((N : ℝ) + 1))
+      Filter.atTop (nhds Real.eulerMascheroniConstant) := by
+    exact Real.tendsto_eulerMascheroniSeq
+  -- T2: the log-norm drift vanishes
+  have hT2 : Filter.Tendsto
+      (fun N : ℕ => ℓ N - Real.log ((N : ℝ) + 1))
+      Filter.atTop (nhds 0) := by
+    have hnpos : ∀ N : ℕ, (0 : ℝ) < ‖(N : ℂ) + zq t‖ :=
+      fun N => norm_pos_iff.mpr (add_zq_ne_zero t N)
+    have heq : ∀ N : ℕ, ℓ N - Real.log ((N : ℝ) + 1)
+        = Real.log (‖(N : ℂ) + zq t‖ / ((N : ℝ) + 1)) := by
+      intro N
+      simp only [hℓdef]
+      rw [Real.log_div (ne_of_gt (hnpos N)) (by positivity)]
+    have hlow : ∀ N : ℕ, ((N : ℝ) + 1 / 4) / ((N : ℝ) + 1)
+        ≤ ‖(N : ℂ) + zq t‖ / ((N : ℝ) + 1) := by
+      intro N
+      have hreN : ((N : ℂ) + zq t).re = (N : ℝ) + 1 / 4 := by
+        simp [zq, Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+      have h1 : (N : ℝ) + 1 / 4 ≤ ‖(N : ℂ) + zq t‖ := by
+        calc (N : ℝ) + 1 / 4 = ((N : ℂ) + zq t).re := hreN.symm
+          _ ≤ |((N : ℂ) + zq t).re| := le_abs_self _
+          _ ≤ ‖(N : ℂ) + zq t‖ := Complex.abs_re_le_norm _
+      gcongr
+    have hup : ∀ N : ℕ, ‖(N : ℂ) + zq t‖ / ((N : ℝ) + 1)
+        ≤ ((N : ℝ) + ‖zq t‖) / ((N : ℝ) + 1) := by
+      intro N
+      have h1 : ‖(N : ℂ) + zq t‖ ≤ (N : ℝ) + ‖zq t‖ := by
+        calc ‖(N : ℂ) + zq t‖ ≤ ‖(N : ℂ)‖ + ‖zq t‖ := norm_add_le _ _
+          _ = (N : ℝ) + ‖zq t‖ := by
+              rw [Complex.norm_natCast]
+      gcongr
+    have hden : Filter.Tendsto (fun N : ℕ => (N : ℝ) + 1)
+        Filter.atTop Filter.atTop :=
+      Filter.tendsto_atTop_add_const_right _ 1 tendsto_natCast_atTop_atTop
+    have hlim_of : ∀ c : ℝ, Filter.Tendsto
+        (fun N : ℕ => ((N : ℝ) + c) / ((N : ℝ) + 1))
+        Filter.atTop (nhds 1) := by
+      intro c
+      have hrw : ∀ N : ℕ, ((N : ℝ) + c) / ((N : ℝ) + 1)
+          = 1 + (c - 1) / ((N : ℝ) + 1) := by
+        intro N
+        have hN0 : ((N : ℝ) + 1) ≠ 0 := by positivity
+        rw [show (N : ℝ) + c = ((N : ℝ) + 1) + (c - 1) by ring, add_div,
+          div_self hN0]
+      have hz : Filter.Tendsto (fun N : ℕ => (c - 1) / ((N : ℝ) + 1))
+          Filter.atTop (nhds 0) :=
+        Filter.Tendsto.div_atTop tendsto_const_nhds hden
+      have hone := Filter.Tendsto.const_add (1 : ℝ) hz
+      rw [add_zero] at hone
+      exact hone.congr fun N => (hrw N).symm
+    have hratio : Filter.Tendsto
+        (fun N : ℕ => ‖(N : ℂ) + zq t‖ / ((N : ℝ) + 1))
+        Filter.atTop (nhds 1) :=
+      tendsto_of_tendsto_of_tendsto_of_le_of_le
+        (hlim_of (1 / 4)) (hlim_of ‖zq t‖) hlow hup
+    have hcomp := ((Real.continuousAt_log one_ne_zero).tendsto).comp hratio
+    rw [Real.log_one] at hcomp
+    exact (hcomp.congr fun N => (heq N).symm)
+  -- the limit of A
+  have hA : Filter.Tendsto A Filter.atTop
+      (nhds (ℓ 0 - (Complex.digamma (zq t)).re)) := by
+    have hcomb := ((hT1.sub hT2).add_const (ℓ 0)).sub hP
+    have hval : Real.eulerMascheroniConstant - 0 + ℓ 0
+        - ((Complex.digamma (zq t)).re + Real.eulerMascheroniConstant)
+        = ℓ 0 - (Complex.digamma (zq t)).re := by
+      ring
+    rw [hval] at hcomb
+    exact hcomb.congr fun N => (hAeq N).symm
+  -- the uniform bound on A
+  have hq_summ : Summable q := by
+    have hg16 : Summable (fun n : ℕ => 16 / ((n : ℝ) + 1) ^ 2) := by
+      have h := Complex.summable_one_div_natCast_add_one_sq
+      simpa [div_eq_mul_inv] using h.mul_left (16 : ℝ)
+    apply Summable.of_nonneg_of_le (fun n => by simp only [hqdef]; positivity) _ hg16
+    intro n
+    simp only [hqdef]
+    have hn0 : (0 : ℝ) ≤ (n : ℝ) := Nat.cast_nonneg n
+    have hqq : ((n : ℝ) + 1) ^ 2 / 16 ≤ ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 := by
+      nlinarith [sq_nonneg ((t : ℝ) / 2)]
+    calc (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹
+        ≤ (((n : ℝ) + 1) ^ 2 / 16)⁻¹ := inv_anti₀ (by positivity) hqq
+      _ = 16 / ((n : ℝ) + 1) ^ 2 := by rw [inv_div]
+  have hAbd : ∀ N : ℕ, |A N| ≤ 96 / t := by
+    intro N
+    have h1 : |A N| ≤ ∑ n ∈ Finset.range N, |a n| := by
+      rw [hAdef]
+      exact Finset.abs_sum_le_sum_abs _ _
+    have h2 : ∀ n : ℕ, |a n| ≤ 8 * q n := by
+      intro n
+      simp only [hadef, hbdef, hℓdef, hqdef]
+      exact a_term_le ht n
+    have h3 : (∑ n ∈ Finset.range N, |a n|)
+        ≤ ∑ n ∈ Finset.range N, 8 * q n :=
+      Finset.sum_le_sum fun n _ => h2 n
+    have h4 : (∑ n ∈ Finset.range N, 8 * q n)
+        = 8 * ∑ n ∈ Finset.range N, q n := by
+      rw [Finset.mul_sum]
+    have h5 : (∑ n ∈ Finset.range N, q n) ≤ ∑' n : ℕ, q n :=
+      Summable.sum_le_tsum _ (fun n _ => by simp only [hqdef]; positivity) hq_summ
+    have h6 : (∑' n : ℕ, q n) ≤ 12 / t := by
+      have h := inv_quadratic_tsum_le ht
+      simp only [hqdef]
+      exact h
+    calc |A N| ≤ ∑ n ∈ Finset.range N, |a n| := h1
+      _ ≤ ∑ n ∈ Finset.range N, 8 * q n := h3
+      _ = 8 * ∑ n ∈ Finset.range N, q n := h4
+      _ ≤ 8 * (12 / t) := by
+          have := mul_le_mul_of_nonneg_left (le_trans h5 h6) (by norm_num : (0:ℝ) ≤ 8)
+          linarith
+      _ = 96 / t := by ring
+  -- close
+  have hℓ0 : ℓ 0 = Real.log ‖zq t‖ := by
+    simp only [hℓdef]
+    norm_num
+  have hlim_abs := hA.abs
+  have hfinal := le_of_tendsto hlim_abs (Filter.Eventually.of_forall hAbd)
+  rw [hℓ0] at hfinal
+  rw [phasePoint_eq, abs_sub_comm]
+  exact hfinal
+
+/-- **THE DIGAMMA COMPARISON, DISCHARGED:** `StmtDigammaLog 97` holds.
+Component 1 composes the limit assembly (`96/t`) with the log ratio
+(`1/(4t) ≤ t/(4t) = 1/4·(1/t)`); component 2 is the compact bound
+`8 ≤ 97`. A named leaf falls. -/
+theorem stmtDigammaLog_holds : StmtDigammaLog 97 := by
+  constructor
+  · intro t ht
+    have ht0 : (0 : ℝ) < t := by linarith
+    have h1 := re_digamma_sub_log_le ht
+    have h2 := log_norm_z_le ht
+    have hzq : ‖(1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I‖ = ‖zq t‖ := rfl
+    rw [hzq] at h2
+    have htri : |phasePoint t - Real.log (t / 2)|
+        ≤ |phasePoint t - Real.log ‖zq t‖|
+          + |Real.log ‖zq t‖ - Real.log (t / 2)| := abs_sub_le _ _ _
+    have hu : (0 : ℝ) ≤ 1 / t := by positivity
+    have hb : (1 : ℝ) / (4 * t) = (1 / 4) * (1 / t) := by ring
+    have hc : (96 : ℝ) / t = 96 * (1 / t) := by ring
+    have hd : (97 : ℝ) / t = 97 * (1 / t) := by ring
+    linarith [htri, h1, h2]
+  · intro t htm
+    exact le_trans (phasePoint_compact_le t htm) (by norm_num)
+
+/-- **THE STIRLING HALF OF BACKLUND, DISCHARGED:**
+`StmtBacklundPhase phaseTheta 97 98` — the continuous phase tracks the
+Riemann–von Mangoldt main term with explicit crude constants, proved
+end to end from the digamma series. The hNT leaf ledger shrinks to
+`StmtArgCrude` alone. -/
+theorem backlundPhase_holds : StmtBacklundPhase phaseTheta 97 98 := by
+  have h := backlundPhase_of_digammaLog (by norm_num : (0:ℝ) ≤ 97)
+    stmtDigammaLog_holds
+  have h98 : (97 : ℝ) + 1 = 98 := by norm_num
+  rw [h98] at h
+  exact h
+
 end
 
 /-! ## Axiom check
@@ -697,6 +936,18 @@ block below pins the exact axiom list of one result: if a proof ever starts
 depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
+
+/-- info: 'Stage3.stmtDigammaLog_holds' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.stmtDigammaLog_holds
+
+/-- info: 'Stage3.backlundPhase_holds' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.backlundPhase_holds
+
+/-- info: 'Stage3.re_digamma_sub_log_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.re_digamma_sub_log_le
 
 /-- info: 'Stage3.phasePoint_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

@@ -16,6 +16,39 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 140 — THE STIRLING HALF DISCHARGED: StmtBacklundPhase phaseTheta 97 98 is a theorem
+type: formalization
+refs: 132, 135, 136, 137, 138, 139
+
+The first full leaf discharge of the stage-3 effort, in
+`lean_stage3/Stage3/Stirling.lean`. Package parity 56/56; builds clean
+at 8713 jobs; welds 2/0; gate 0.
+
+The session's chain, each piece green on first or second build:
+re_sub_log_norm_le generalized to radius 2 (constant 8 — the n = 0
+term needs it); zq, normSq_add_zq, add_zq_ne_zero, a_term_le (the
+per-term telescope bound 8/((n+1/4)² + (t/2)²));
+re_digamma_sub_log_le — THE HARMONIC-γ LIMIT ASSEMBLY:
+|Re ψ(zq t) − log‖zq t‖| ≤ 96/t, by telescoping the digamma series
+against log-norm steps, with the partial sums converging through
+Mathlib's tendsto_eulerMascheroniSeq, the log-norm drift vanishing by
+a squeeze, and every partial sum bounded by 8·Σ'q ≤ 96/t;
+stmtDigammaLog_holds — StmtDigammaLog 97, both components;
+backlundPhase_holds — StmtBacklundPhase phaseTheta 97 98, through
+entry 136's reduction.
+
+What fell: the Stirling half of Backlund's decomposition, whole. The
+phase that wrapped as a hypothesis in entry 131, was made abstract in
+entry 132, and was constructed as an integral in entry 135, now
+provably tracks the main term with explicit crude constants — 97
+against Rosser's 0.137, inside entry 130's budget shape (the census
+re-tabulates when the Arg half lands).
+
+The ledger: hNT = StmtArgCrude alone (S(T) = O(log T), the argument
+principle). Stage 3 entire: {hEF, StmtArgCrude}. Two leaves, both
+classical, both with sorry-free machinery waiting in the dependency
+(BorelCaratheodory, ZetaBounds, the rectangle argument principle).
+
 ## 2026-08-24 — Entry 139 — The telescope's engine: |Re w − log‖1+w‖| ≤ 5‖w‖²
 type: formalization
 refs: 137, 138
