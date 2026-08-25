@@ -1,0 +1,29 @@
+O71 — the horizontal-vanishes mechanism, tested.
+
+CHECK 1 — J(delta) vs 2*ln(1/delta) at gamma_1:
+   delta=1e-1:  J=    5.505   2ln(1/d)=   4.605   ratio=1.195
+   delta=1e-2:  J=   10.065   2ln(1/d)=   9.210   ratio=1.093
+   delta=1e-3:  J=   14.663   2ln(1/d)=  13.816   ratio=1.061
+   delta=1e-4:  J=   19.267   2ln(1/d)=  18.421   ratio=1.046
+   delta=1e-5:  J=   23.872   2ln(1/d)=  23.026   ratio=1.037
+   delta=1e-6:  J=   28.477   2ln(1/d)=  27.631   ratio=1.031
+
+CHECK 2 — the weighted integral I(T,delta) and the schedule:
+   at gamma_1 (14.135), |Phi| scale ~ 1.562e-06:
+      delta=1e-2:  I = 2.476265e-06
+      delta=1e-4:  I = 4.789730e-06
+      delta=1e-6:  I = 7.080119e-06
+      I exceeds 1 once ln(delta) < -4.022e+06 — such delta exists at THIS height, and at every height.
+   at gamma_29 (98.831), |Phi| scale ~ 4.725e-45:
+      delta=1e-2:  I = 7.672533e-45
+      delta=1e-4:  I = 1.475789e-44
+      delta=1e-6:  I = 2.128842e-44
+      I exceeds 1 once ln(delta) < -1.330e+45 — such delta exists at THIS height, and at every height.
+
+READ. The log law confirms the pole mechanism; the schedule
+shows the required delta exists at every zero height, so the
+limit over ALL T fails for every nonzero admissible phi, while
+heights with |T - gamma| >= c/log T keep the integral -> 0.
+Evidence for the (unposted) #1538 note; posting is Julian's call.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/horizontal_defect.json

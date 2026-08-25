@@ -16,6 +16,49 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 142 — The group-project audit: nine sorries classified, one statement tested and found wanting
+type: result-triage
+refs: 133, 141
+
+Julian's proposal: contribute to the upstream program itself — clean
+their sorries, earn the pin bump as a group project. The audit of
+IEANTN/Kadiri.lean's nine real sorries (five hits are comments):
+
+Deep cores: hadamard_identity (the Hadamard product for ζ'/ζ),
+kadiri_thm_3_1_q1_laplace_inversion. Assemblies inheriting from
+children: backlund_bound, kadiri_thm_3_1_q1 (×2). Entangled medium:
+re_hadamardB_eq (Laurent at s=1 + zero-sum symmetrization,
+discussion #1476). Our genre, adoptable: identity_16_complex
+(discussion #1494) — its COMPLETE proof sketch is written in the
+blueprint comment: apply Thm 3.1 to the Kadiri test function,
+discharge with three named existing lemmas, three terms vanish,
+solve. Adopted as our PR target for a fresh session.
+
+And the two horizontal-vanishes lemmas (#1538) are undischargeable
+as stated — the entry-132/133 defect class, in their tree. The
+statement takes T → ∞ over all reals, but ζ'/ζ has a pole at every
+zero height crossing the σ-segment, and δ := |T − γ| is
+unconstrained while any admissible φ's transform decay is fixed.
+
+O71 (exploratory, results/horizontal_defect.json + run log) tested
+the claim before any note goes anywhere:
+Check 1, the log law: J(δ) = ∫|ζ'/ζ| over σ ∈ (−1/4, 5/4) at
+T = γ₁ + δ, against 2·ln(1/δ): ratio 1.195 → 1.031 across
+δ = 1e−1 → 1e−6. The pole mechanism, confirmed.
+Check 2, the schedule: with the concrete admissible
+φ = e^(−y/2)/cosh(3y/2) (Φ in closed form, exponentially small),
+the weighted integral grows arithmetically in log(1/δ) at γ₁ and
+γ₂₉, and the δ pushing it past any bound exists at every height
+(ln δ < −4.0e6 at γ₁; < −1.3e45 at γ₂₉ — astronomically small,
+and legal). So the limit over the full filter fails for every
+nonzero admissible φ; heights with |T − γ| ≥ c/log T repair it,
+and the downstream consumer needs only a cofinal family.
+
+The note for #1538 is drafted and HELD — posting is outward-facing
+and Julian's call, with these numbers now behind it. The
+contribution ledger: (1) the #1538 restatement note, tested;
+(2) identity_16_complex as the adoptable build.
+
 ## 2026-08-24 — Entry 141 — The Arg half audited: upstream races us, and the crude route is mapped
 type: provenance
 refs: 119, 130, 140
