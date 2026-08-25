@@ -1,0 +1,70 @@
+{
+  "schema_version": "1",
+  "script": "O76_joint_orbit_zero_census.py",
+  "generated_utc": "2026-08-25T22:30:02.271501+00:00",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "code_version": "f4c974cffe86e93964f9a6ee6bfb11323d6eca1b59cd8779fc8542e27acb5d47",
+    "xmax": 2199023255552.0,
+    "x_floor": 100.0,
+    "commens_tol": 0.05,
+    "n_rungs": 564,
+    "n_cells": 158766,
+    "construction": "sorted {2^m 3^n} orbit; N(i) = pi(x_i)-pi(x_{i-1}); backward-difference triangle on rung index"
+  },
+  "commensurability": {
+    "ln 2": {
+      "ratio_to_u": 12.474494258557632,
+      "dist_to_int": 0.47449425855763216
+    },
+    "ln 3": {
+      "ratio_to_u": 19.77160561527521,
+      "dist_to_int": 0.22839438472479046
+    }
+  },
+  "n_zeros_total": 20,
+  "n_zeros_shallow": 15,
+  "deep_zeros": [
+    {
+      "i": 68,
+      "d": 1,
+      "x_lo": 10368,
+      "x_hi": 11664,
+      "pair_value": 129,
+      "depth0": 129
+    },
+    {
+      "i": 38,
+      "d": 5,
+      "x_lo": 768,
+      "x_hi": 864,
+      "pair_value": 13,
+      "depth0": 15
+    },
+    {
+      "i": 23,
+      "d": 2,
+      "x_lo": 144,
+      "x_hi": 162,
+      "pair_value": 0,
+      "depth0": 3
+    },
+    {
+      "i": 23,
+      "d": 1,
+      "x_lo": 144,
+      "x_hi": 162,
+      "pair_value": 3,
+      "depth0": 3
+    },
+    {
+      "i": 22,
+      "d": 1,
+      "x_lo": 128,
+      "x_hi": 144,
+      "pair_value": 3,
+      "depth0": 3
+    }
+  ]
+}

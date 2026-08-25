@@ -1,0 +1,22 @@
+O75 — the crossing-slope law out of sample.  EXPLORATORY.
+  law (entry 36, post-hoc there): slope = ln b / (2 ln ratio),  ratio = |1 - b^(-1/2 - i g1)| / ((b-1)/b)
+  turnaround semantics: O33 measure_row verbatim; min_row 8, margin 2
+
+GATE — anchors from the caches, r <= 32, against entry 36's recorded numbers:
+   b=2: measured 0.3031 (recorded 0.3031) ok   predicted 0.2862 (recorded 0.2862) ok   [23 points]
+   b=3: measured 0.7353 (recorded 0.7353) ok   predicted 0.6406 (recorded 0.6406) ok   [20 points]
+   gate PASSED
+
+OUT OF SAMPLE — fresh bases, floors exact, pi via primecount:
+        b    R  pred slope  measured   n  rel err   sign-chg slope
+     2.05   44      0.3164    0.3336  37    +5.4%           0.6483
+     2.10   43      0.3605    0.3230  34   -10.4%           0.6165
+     2.15   42      0.4290    0.3442  34   -19.8%           0.4816
+     2.20   40      0.5480    0.4168  33   -23.9%           0.4291
+     2.80   31      0.6893    0.6304  24    -8.5%           0.6653
+     3.10   28      0.6817    0.6831  17    +0.2%           0.6812
+     3.25   27      0.8396    0.9041   5    +7.7%           0.8850
+
+  entry 36's in-sample errors were +5.9% (b=2) and +14.8% (b=3); the table above is the law meeting data that did not shape it.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/crossing_slope_oos.json

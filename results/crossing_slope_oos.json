@@ -1,0 +1,122 @@
+{
+  "schema_version": "1",
+  "script": "O75_crossing_slope_oos.py",
+  "generated_utc": "2026-08-25T22:28:49.359912+00:00",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "code_version": "008662e1e1cf1b185627bb17e07851c39c0681836b38863bb18ad9760035485c",
+    "bases": "41/20,21/10,43/20,11/5,14/5,31/10,13/4",
+    "xmax": 100000000000000.0,
+    "anchor_rmax": 32,
+    "min_row": 8,
+    "margin": 2,
+    "gamma1": 14.134725141734695,
+    "semantics": "O33 measure_row verbatim; OLS of turnaround depth on r, rows >= min_row, non-censored"
+  },
+  "gate": {
+    "2": {
+      "measured_slope": 0.3030770447713969,
+      "n_points": 23,
+      "predicted": 0.2861859209181133
+    },
+    "3": {
+      "measured_slope": 0.7353383458646616,
+      "n_points": 20,
+      "predicted": 0.6406095473337335
+    }
+  },
+  "rows": {
+    "41/20": {
+      "b": 2.05,
+      "R": 44,
+      "trend": 0.5121951219512195,
+      "zero_gain": 1.5926124368509726,
+      "ratio": 3.109386186232851,
+      "predicted_slope": 0.3163891745491917,
+      "measured_turnaround_slope": 0.3335704125177809,
+      "n_turnaround_points": 37,
+      "measured_sign_change_slope": 0.6483163336593545,
+      "n_sign_change_points": 30,
+      "relative_error": 0.05430412716576026
+    },
+    "21/10": {
+      "b": 2.1,
+      "R": 43,
+      "trend": 0.5238095238095238,
+      "zero_gain": 1.4656480337954194,
+      "ratio": 2.7980553372458004,
+      "predicted_slope": 0.36054017280202366,
+      "measured_turnaround_slope": 0.32296744351538875,
+      "n_turnaround_points": 34,
+      "measured_sign_change_slope": 0.616454947469228,
+      "n_sign_change_points": 27,
+      "relative_error": -0.10421232395444179
+    },
+    "43/20": {
+      "b": 2.15,
+      "R": 42,
+      "trend": 0.5348837209302325,
+      "zero_gain": 1.305297730652591,
+      "ratio": 2.4403392355678877,
+      "predicted_slope": 0.4290079831538266,
+      "measured_turnaround_slope": 0.3441914250133428,
+      "n_turnaround_points": 34,
+      "measured_sign_change_slope": 0.4815784423915129,
+      "n_sign_change_points": 29,
+      "relative_error": -0.19770391571028564
+    },
+    "11/5": {
+      "b": 2.2,
+      "R": 40,
+      "trend": 0.5454545454545455,
+      "zero_gain": 1.1199574787869189,
+      "ratio": 2.0532553777760176,
+      "predicted_slope": 0.5479762945832056,
+      "measured_turnaround_slope": 0.41677807486631013,
+      "n_turnaround_points": 33,
+      "measured_sign_change_slope": 0.4290613286545976,
+      "n_sign_change_points": 24,
+      "relative_error": -0.23942316668403643
+    },
+    "14/5": {
+      "b": 2.8,
+      "R": 31,
+      "trend": 0.6428571428571428,
+      "zero_gain": 1.3566066530704937,
+      "ratio": 2.110277015887435,
+      "predicted_slope": 0.6893364426802974,
+      "measured_turnaround_slope": 0.6304347826086957,
+      "n_turnaround_points": 24,
+      "measured_sign_change_slope": 0.6652719665271967,
+      "n_sign_change_points": 13,
+      "relative_error": -0.08544689708058753
+    },
+    "31/10": {
+      "b": 3.1,
+      "R": 28,
+      "trend": 0.6774193548387097,
+      "zero_gain": 1.5533743087608807,
+      "ratio": 2.293076360551776,
+      "predicted_slope": 0.681654341276953,
+      "measured_turnaround_slope": 0.6831058726220015,
+      "n_turnaround_points": 17,
+      "measured_sign_change_slope": 0.6812351543942994,
+      "n_sign_change_points": 11,
+      "relative_error": 0.0021294243389242133
+    },
+    "13/4": {
+      "b": 3.25,
+      "R": 27,
+      "trend": 0.6923076923076923,
+      "zero_gain": 1.3968552633563316,
+      "ratio": 2.0176798248480345,
+      "predicted_slope": 0.8395597516184191,
+      "measured_turnaround_slope": 0.9041095890410958,
+      "n_turnaround_points": 5,
+      "measured_sign_change_slope": 0.8850023957834212,
+      "n_sign_change_points": 8,
+      "relative_error": 0.07688534055883935
+    }
+  }
+}

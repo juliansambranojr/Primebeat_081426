@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 155: O76 joint {2^m 3^n} zero census — commensurability-gated, 158766 cells to 2.2e12, every cell above x=11664 nonzero; the four zeros remain base 2's own; answers entry 62
+- [open]   2026-08-25  entry 154: O75 out-of-sample crossing slopes — r=0.96 over seven fresh bases, five within ±10.4%, misses at the law's own window edges; testable domain mapped; answers entry 36's line
+- [open]   2026-08-25  entry 153: O74 interleaved row sums — entry 31's hand computation verified exactly, extended to r=41; dyadic alternates sign throughout, triadic never; answers entry 31's line
 - [open]   2026-08-25  entry 152: O73 mollifier sweep — balance holds at all 8 (W,K) settings (rel 1.7e-11..4.3e-6 while sides swing 5 orders); per-prime breakdown corrected (p=2 share 0.9969); answers both entry-40 lines
 - [open]   2026-08-25  entry 151: O72 (O66 v2) — twin rigidity real at all seven heights (|z| 5.3–37.4), deficit decays ~1/ln^2 x and persists at 6e12; HL holds everywhere; litsearch_4 statement amended to decays-and-persists
 - [open]   2026-08-25  entry 150: O24 4e11 kill run — G4 69.0 vs G5 47.7, band FALLS, crossing absent; four-prime peak stands at 133x the data; The-Four-Prime-Peak D/G result-triage pending

@@ -16,6 +16,116 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 155 — O76: the joint question asked — the four zeros remain base 2's own
+type: run
+refs: 49, 52, 54, 56, 62
+
+Script O76_joint_orbit_zero_census.py, defaults. Entry 62's unasked
+question, run by combining the tree's two designs exactly as that
+entry framed it: O18's joint {2^m 3^n} orbit as the ladder, O16/O27's
+exact-integer backward-difference triangle as the construction — one
+number per cell, built from both ladders at once. Artifacts:
+results/joint_orbit_zero_census.json,
+results/O76_joint_orbit_zero_census_run1.log.
+
+**Commensurability gate PASSED first** (the entry 54/56 trap):
+ln 2 and ln 3 against pi/(4 gamma_1) sit at 12.4745 and 19.7716 —
+distance 0.4745 and 0.2284 from the nearest integer. Alignment
+cannot be forced by this base set.
+
+**The census.** 564 rungs to 2.2e12, 158766 cells. Exact zeros
+(d >= 1): 20 total, of which 15 sit at window top <= 100 — the
+small-count region where consecutive smooth numbers trap 0 or 1
+primes and zeros are chance. Above that floor: five zeros, all with
+pair values <= 129, the deepest at d = 5 (window top 864), the
+highest window top 11664 at d = 1. Every cell above x = 11664 —
+about 150k cells spanning eight further orders of magnitude — is
+nonzero.
+
+**The answer to entry 62.** Asked jointly, the answer matches O44's
+answer asked singly: the joint construction produces no deep
+exact-zero structure, and the four exact zeros — (2,1), (4,1),
+(8,3), (20,6), out to r = 92 in O43's census — remain a property of
+the base-2 table alone. Entry 62 recorded that this outcome was not
+predicted in either direction; it is now measured.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
+## 2026-08-25 — Entry 154 — O75: the crossing-slope law out of sample — r = 0.96 across seven fresh bases, and the law's own domain mapped
+type: run
+refs: 33, 36
+
+Script O75_crossing_slope_oos.py, defaults. Entry 36's post-hoc law —
+slope = ln b / (2 ln ratio), ratio = |1 - b^(-1/2 - i g1)|/((b-1)/b) —
+tested on non-integer bases that did not exist in the tree when it
+was written. Turnaround semantics copied verbatim from O33
+measure_row (min_row 8, margin 2, OLS of turnaround depth on r);
+floors exact via rational integer arithmetic; pi via primecountpy.
+Artifacts: results/crossing_slope_oos.json,
+results/O75_crossing_slope_oos_run1.log.
+
+**Gate PASSED.** Anchors b = 2, 3 from the caches at r <= 32
+reproduce entry 36's measured slopes (0.3031, 0.7353) and derived
+predictions (0.2862, 0.6406) to all four decimals.
+
+**The law's domain, mapped first.** The gamma_1 mode gain oscillates
+in b: ratio <= 1 (no prediction) or slope >= 1 (unreachable on
+triangular support) for b in (2.3, 2.65) and past 3.35. Testable
+windows: roughly [2.05, 2.25] and [2.70, 3.30]. Entry 36's b = 5, 7
+silence is the same phenomenon at integer bases.
+
+**Out of sample** (seven fresh bases, xmax 1e14):
+
+```text
+b      pred    measured   n pts   rel err
+2.05   0.3164  0.3336     37      +5.4%
+2.10   0.3605  0.3230     34      -10.4%
+2.15   0.4290  0.3442     34      -19.8%
+2.20   0.5480  0.4168     33      -23.9%
+2.80   0.6893  0.6304     24      -8.5%
+3.10   0.6817  0.6831     17      +0.2%
+3.25   0.8396  0.9041      5      +7.7%
+```
+
+Pearson r = 0.9602 between predicted and measured. Five of seven sit
+within +-10.4%, bracketing the in-sample +5.9%/+14.8%; the two large
+misses are the window-edge bases 2.15 and 2.20, where ratio
+approaches 1 and the slope formula is most sensitive — the law's
+error concentrates at its own degeneracies. The b = 3.25 row rests
+on 5 points.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
+## 2026-08-25 — Entry 153 — O74: the interleaved row sums, machine-verified and extended to r = 41
+type: run
+refs: 31
+
+Script O74_interleaved_row_sums.py, defaults. O27's construction per
+base from pi2n_cache.json and pi3n_cache.json (READ ONLY; the triadic
+cache reaches exactly r = 41, which sets the extension ceiling —
+entry 31's killed run left its cache behind). Artifacts:
+results/interleaved_row_sums.json,
+results/O74_interleaved_row_sums_run1.log.
+
+**Gate PASSED.** r = 1..6 reproduce entry 31's hand-computed lists
+exactly: totals 3, 3, 15, 27, 88, 168; dyadic 1, 1, 4, -1, 21, -18;
+triadic 2, 2, 11, 28, 67, 186. The 2026-08-17 "hand-computed and
+unverified" flag is discharged.
+
+**Extension to r = 41.** The dyadic component alternates sign through
+the whole range (r = 39..41: +7623467290171, -14953136533899,
++27745758974446); the triadic component stays positive throughout
+(r = 41: 1602671261995703034). Entry 31's observed pattern at r <= 6
+is the pattern at every r the caches reach.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 152 — O73: the Weil balance survives the mollifier grid; the per-prime breakdown, corrected
 type: run
 refs: 39, 40
