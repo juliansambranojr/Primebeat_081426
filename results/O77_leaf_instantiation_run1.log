@@ -1,0 +1,19 @@
+O77 — instantiating the leaf pair before building on it.  EXPLORATORY.
+  zeros: 600 heights to 939.0243   grid T = 20.0..900.0 step 0.5
+
+  |S(T)| over the grid: max 1.0677 at T = 415.5, mean 0.3123
+  (S(T) is unbounded in T — Selberg — so any consumer that forces S bounded is unsatisfiable.)
+
+    radius  half-width  cnt=0 frac  max cnt  max|S| where cnt=0        verdict
+     1.500      0.0000       1.000        0              1.0677    CANNOT FEED
+     1.750      0.9014       0.121        3              0.5083 FEEDS CONSUMER
+     1.875      1.1250       0.051        3              0.4030 FEEDS CONSUMER
+
+  READ. A radius whose count vanishes on essentially the whole grid
+  forces |S(T)| <= b, a bounded-S claim, which is false. The count is
+  true at every radius; only the ones reaching past the critical line
+  can satisfy StmtSFromLocal.
+  radius 1.75: |S(T)| <= 0.462*cnt(T) + 0.508 holds on this grid.
+  radius 1.875: |S(T)| <= 0.549*cnt(T) + 0.403 holds on this grid.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/leaf_instantiation.json

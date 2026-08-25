@@ -1,0 +1,59 @@
+{
+  "schema_version": "1",
+  "script": "O77_leaf_instantiation.py",
+  "generated_utc": "2026-08-25T23:26:43.386489+00:00",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "code_version": "21ed1ca4c985ca77c004fdd8dacaeb69b73ac7395d949c600fd9f46575dd37c1",
+    "radii": [
+      1.5,
+      1.75,
+      1.875
+    ],
+    "tmin": 20.0,
+    "tmax": 900.0,
+    "tstep": 0.5,
+    "dps": 25,
+    "n_zeros": 600,
+    "sigma_gap": 1.5,
+    "definitions": "S(T) = N(T) - (theta(T)/pi + 1); cnt_r(T) = #{gamma : |gamma - T| <= sqrt(r^2 - 9/4)}"
+  },
+  "S_stats": {
+    "max_abs": 1.0676874117154682,
+    "argmax_T": 415.5,
+    "mean_abs": 0.31228071074528185
+  },
+  "rows": {
+    "1.5": {
+      "radius": 1.5,
+      "half_width": 0.0,
+      "frac_grid_with_zero_count": 1.0,
+      "max_count": 0,
+      "max_absS_where_count_zero": 1.0676874117154682,
+      "implied_b": 1.0676874117154682,
+      "implied_a": 0.0,
+      "feeds_consumer": false
+    },
+    "1.75": {
+      "radius": 1.75,
+      "half_width": 0.9013878188659973,
+      "frac_grid_with_zero_count": 0.12095400340715502,
+      "max_count": 3,
+      "max_absS_where_count_zero": 0.50833656296669,
+      "implied_b": 0.50833656296669,
+      "implied_a": 0.46188679662037657,
+      "feeds_consumer": true
+    },
+    "1.875": {
+      "radius": 1.875,
+      "half_width": 1.125,
+      "frac_grid_with_zero_count": 0.05053946621237933,
+      "max_count": 3,
+      "max_absS_where_count_zero": 0.4030091783561467,
+      "implied_b": 0.4030091783561467,
+      "implied_a": 0.5489181641188701,
+      "feeds_consumer": true
+    }
+  }
+}

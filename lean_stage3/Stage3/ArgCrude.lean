@@ -31,11 +31,23 @@ may be crude by two orders and still feed the census.
 THE CONCRETE COUNT, for the discharge slice. Upstream's `ZeroWindow`
 is centred at `3/2 + it` with radius `3/4` — `Re ρ ∈ [3/4, 9/4]`,
 which does not reach the critical line, because it exists for their
-zero-free-strip work. Backlund's count needs the disk that covers
-`Re ∈ [1/2, 2]`, i.e. `f z = ζ (2z + 2 + iT) / ζ (2 + iT)` on the
-unit ball: `r = 3/4` covers `|s - (2+iT)| ≤ 3/2`, `R = 7/8` gives the
-majorant radius `7/4`, and the pole at `s = 1` stays outside because
-`‖(2+iT) - 1‖ = √(1+T²) ≥ √5 > 2` for `T ≥ 2`.
+zero-free-strip work. Backlund's count needs a disk crossing
+`Re = 1/2` in a segment of positive length, i.e.
+`f z = ζ (2z + 2 + iT) / ζ (2 + iT)` on the unit ball with
+`r = 7/8`, covering `|s - (2+iT)| ≤ 7/4`; `R = 15/16` gives the
+majorant radius `15/8`, and the pole at `s = 1` stays outside
+because `‖(2+iT) - 1‖ = √(1+T²) ≥ √5 > 2` for `T ≥ 2`.
+
+THE RADIUS IS `7/4`. A radius-`3/2` disk about `2 + iT` is tangent
+to the critical line: a zero at `1/2 + iγ` sits at distance
+`√((3/2)² + (T-γ)²)`, inside only when `γ = T` exactly. That count
+is `0` for almost every `T`, and `StmtSFromLocal` below would then
+read `|S T| ≤ b`, a bounded-`S` claim, which is false. Radius `7/4`
+reaches `|γ - T| ≤ √(13/16)` ≈ `0.901`; O77
+(`results/leaf_instantiation.json`) measured the count vanishing on
+12% of a `T`-grid to `900`, with `|S T| ≤ 0.462 · cnt T + 0.508`
+holding across it. `Stage3/JensenCount.lean` carries the discharge,
+at `A₁ = 15`, `A₃ = 73`.
 
 Consumes: `riemannZeta.N`, `StmtBacklundArg` (Stage3.RvMCrude).
 Companion to notes entries 130, 141, 156.

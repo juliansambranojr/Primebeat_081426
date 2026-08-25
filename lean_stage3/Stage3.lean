@@ -2,7 +2,7 @@
 Stage3 — scaffold and weld check. Entry 118's step 1.
 
 THE WELD, STATED LOUDLY. This package lives on toolchain v4.32.2 with
-PrimeNumberTheoremAnd (pinned rev 751a8c2) and its Mathlib v4.32.2; the
+PrimeNumberTheoremAnd (pinned rev 47fa486) and its Mathlib v4.32.2; the
 bench's lean/ lives on v4.28.0. Results here compose with the bench's
 arrow (Expansion.tableFrom_ne_zero_of_li, Schoenfeld.window_of_global) BY
 STATEMENT IDENTITY ONLY: `StmtSchoenfeldWindow` below is a character-level

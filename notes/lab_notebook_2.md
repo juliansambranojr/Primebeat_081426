@@ -16,6 +16,105 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 159 — The Jensen count repaired: radius 7/4, 15 log T + 73
+type: formalization
+refs: 130, 157, 158
+
+Entry 158's finding applied. `zetaWindow` moves from radius 3/2 to
+7/4, so the disk now reaches |gamma - T| <= sqrt(0.8125) ~ 0.901 at
+the critical line instead of touching it at a point.
+
+```text
+zeta_local_zero_count (T >= 2):
+    sum of zeta zero orders in ‖s - (2+iT)‖ <= 7/4
+      <=  15 * log T + 73
+localCount_holds : StmtLocalCount zetaLocalCount 15 73
+```
+
+Instantiation: ZerosBound at r = 7/8, R = 15/16, B = 84T. The Jensen
+constant is 1/log(15/14) <= 15 (was 1/log(7/6) ~ 6.49); log 84 <=
+4.86 gives the additive 73. Entry 130's budget allows A1 <= 100 and
+A3 <= 1000, so the doubled constant costs nothing that matters —
+this is what crude-explicit is for.
+
+**What moved and what held.** Re-derived at the wider majorant
+radius 15/8: `zeta_disk_upper` (‖zeta w‖ <= 28T, was 14T on 7/4 —
+Re w >= 1/8 rather than 1/4 propagates through the chain),
+`jensenF_bound`, and the final assembly. Verified rather than
+assumed to survive: `pole_away` (buffer 11/10 still covers the
+pulled-back 7/8), `zetaWindow_finite` (subset-of-radius-2),
+`zeta_centre_lower`, the analyticity lemmas, and the affine
+order-transfer lemma. The Finset.sum_nbij' transport needed only
+rescaled bounds.
+
+**Gates.** Build green at 8720 jobs, zero errors; all 17 pins in
+JensenCount and 4 in ArgCrude carry
+[propext, Classical.choice, Quot.sound] — no new axiom dependency;
+theorem/pin parity 77/77 across eight modules; check_refs and
+check_weld exit 0.
+
+**Two stale pin references fixed.** Both named the old pin 751a8c2
+after entry 156's bump: this project's CLAUDE.md (fixed in entry
+157, on approval) and the weld header of lean_stage3/Stage3.lean
+(fixed this date). Both now read 47fa486.
+
+**Ledger.** {hEF, StmtArgCrude}. StmtArgCrude's analytic core is
+discharged and now reaches the zeros it must count; what remains is
+the rectangle identity and Backlund's step, both classical. Per
+entry 158, each gets a consumer instantiation before any Lean work.
+
+---
+
+## 2026-08-25 — Entry 158 — O77: leaves have consumers, and the interface is where this bench was blind
+type: instrument-fix
+refs: 71, 132, 133, 157
+
+**The gap in the discipline.** Entry 132 asks whether a named leaf
+CAN be true. Entry 133 asks whether a hypothesis pair can hold
+JOINTLY. Neither asks whether what a leaf DELIVERS fits what its
+consumer EATS. Entry 157's Jensen count passed both checks and
+failed that one.
+
+**The defect.** The count's window was the disk
+‖rho - (2+iT)‖ <= 3/2. A zero at 1/2 + i*gamma sits at distance
+sqrt((3/2)^2 + (T-gamma)^2), which is <= 3/2 only when gamma = T
+exactly — the disk is TANGENT to the critical line. So the count is
+0 for almost every T, and StmtSFromLocal, its consumer, would then
+read |S(T)| <= b: S bounded, which is false (Selberg). The theorem
+was true, non-vacuous, and kernel-checked, and it could not feed the
+next statement in its own chain.
+
+**The instrument, which already existed.** O71 instantiated an
+UPSTREAM statement numerically and showed it undischargeable as
+stated. O77_leaf_instantiation.py is that same move aimed at our own
+tree: it computes S(T) = N(T) - (theta(T)/pi + 1) from zeros600.json,
+computes the count at candidate radii, and reports whether the
+interface can hold.
+
+```text
+radius  half-width  cnt=0 frac  max cnt  max|S| where cnt=0  verdict
+ 1.500      0.0000       1.000        0              1.0677  CANNOT FEED
+ 1.750      0.9014       0.121        3              0.5083  FEEDS CONSUMER
+ 1.875      1.1250       0.051        3              0.4030  FEEDS CONSUMER
+```
+
+|S(T)| over the grid T = 20..900: max 1.0677 at T = 415.5, mean
+0.3123. At radius 7/4 the empirical relation |S(T)| <= 0.462*cnt(T)
++ 0.508 holds across the grid — the consumer's shape is satisfiable
+and the constants we must prove are the right size.
+
+**The rule this adds.** Every leaf gets its budget (entry 130), its
+discharge sketch (entry 132), and now its CONSUMER INSTANTIATION:
+what it produces, evaluated in the regime the consumer lives in.
+The kernel cannot see this — it checks that proofs follow from
+statements and has no opinion on whether a statement is useful.
+Artifacts: results/leaf_instantiation.json,
+results/O77_leaf_instantiation_run1.log.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 157 — JENSEN COUNT DISCHARGED: the Arg half's analytic core, 7 log T + 30
 type: formalization
 refs: 130, 141, 156
