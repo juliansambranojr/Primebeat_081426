@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 145: repo PUBLIC at 690e7e8 (gates green, pre-flight verified) — opening move of the group project; #1538 note and identity_16_complex PR now have referenceable code
 - [open]   2026-08-24  entry 144: kernel-for-meaning posit — Lean as adjudicator in LLM discourse (validity to the kernel, meaning to budgeted leaves); revisit for a paper methodology section
 - [open]   2026-08-24  entry 143: inheritance claims (floor+ceiling machine, satisfiability QA, phase kit, leaf-ledger social tech) + the engine explained (stigmergy, decorrelation, human entropy schedule)
 - [open]   2026-08-24  entry 142: upstream group-project audit — nine sorries classified; horizontal-vanishes (#1538) tested undischargeable as stated (O71: log law confirmed, delta-schedule beats every phi); note drafted and HELD; identity_16_complex adopted as PR target

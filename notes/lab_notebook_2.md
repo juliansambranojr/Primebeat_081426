@@ -60,6 +60,26 @@ schedule; each leg covers the failure mode of the others.
 The through-line of both halves: tolerance is a measurable object,
 and most impossibility verdicts have never measured it.
 
+## 2026-08-24 — Entry 145 — The repository is public
+type: provenance
+refs: 142, 143, 144
+
+Flipped public at Julian's instruction — "let them see what's
+possible" — at commit 690e7e8, 2026-08-24:
+https://github.com/juliansambranojr/Primebeat_081426
+
+Pre-flight, verified at HEAD immediately before the flip: 0 broken
+references, 132 values confirmed, 0 broken welds, bench parity
+250/250, stage3 parity 56/56, tree clean and identical to remote,
+LICENSE and README present with the notebook framed as part of the
+publication, sensitivity sweep clean over the full history.
+
+The flip is the opening move of the group project (entry 142): the
+#1538 note and the identity_16_complex PR now have referenceable
+code behind them. Every gate travels with the tree — anyone who
+clones can run check_refs, check_values, and lake build, and watch
+the record verify itself.
+
 ## 2026-08-24 — Entry 144 — Posit: a kernel for meaning — Lean as adjudicator in LLM discourse
 type: motivation
 refs: 133, 142, 143
