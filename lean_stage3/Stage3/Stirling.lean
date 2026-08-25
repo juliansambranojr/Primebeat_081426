@@ -405,6 +405,151 @@ theorem phasePoint_compact_le : ∀ t ∈ Set.Icc (0 : ℝ) 1, |phasePoint t| �
         linarith [htsum]
     _ ≤ 8 := by nlinarith
 
+/-- The norm-vs-`t/2` log ratio on the quarter-line:
+`|log‖z_t‖ − log(t/2)| ≤ 1/(4t)` for `t ≥ 1` — from
+`log(1 + 1/(4t²)) ≤ 1/(4t²)`. -/
+theorem log_norm_z_le {t : ℝ} (ht : 1 ≤ t) :
+    |Real.log ‖(1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I‖ - Real.log (t / 2)|
+      ≤ 1 / (4 * t) := by
+  have ht0 : (0 : ℝ) < t := by linarith
+  have hre : ((1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I).re = 1 / 4 := by
+    simp [Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+  have him : ((1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I).im = t / 2 := by
+    simp [Complex.add_im, Complex.mul_im, Complex.I_re, Complex.I_im]
+  rw [Complex.norm_eq_sqrt_sq_add_sq, hre, him, Real.log_sqrt (by positivity)]
+  have hlogB : Real.log (t / 2) = Real.log ((t / 2) ^ 2) / 2 := by
+    rw [Real.log_pow]
+    push_cast
+    ring
+  rw [hlogB]
+  have hA : (0 : ℝ) < (1 / 4 : ℝ) ^ 2 + (t / 2) ^ 2 := by positivity
+  have hB : (0 : ℝ) < ((t / 2) : ℝ) ^ 2 := by positivity
+  have hcomb : Real.log ((1 / 4 : ℝ) ^ 2 + (t / 2) ^ 2) / 2
+        - Real.log ((t / 2) ^ 2) / 2
+      = Real.log (((1 / 4 : ℝ) ^ 2 + (t / 2) ^ 2) / ((t / 2) ^ 2)) / 2 := by
+    rw [Real.log_div (ne_of_gt hA) (ne_of_gt hB)]
+    ring
+  rw [hcomb]
+  have hratio : ((1 / 4 : ℝ) ^ 2 + (t / 2) ^ 2) / ((t / 2) ^ 2)
+      = 1 + 1 / (4 * t ^ 2) := by
+    field_simp
+    ring
+  rw [hratio]
+  have hup : Real.log (1 + 1 / (4 * t ^ 2)) ≤ 1 / (4 * t ^ 2) := by
+    have h := Real.log_le_sub_one_of_pos
+      (by positivity : (0 : ℝ) < 1 + 1 / (4 * t ^ 2))
+    have h2 : (1 + 1 / (4 * t ^ 2)) - 1 = 1 / (4 * t ^ 2) := by ring
+    linarith
+  have hdn : (0 : ℝ) ≤ Real.log (1 + 1 / (4 * t ^ 2)) := by
+    apply Real.log_nonneg
+    have h3 : (0 : ℝ) < 1 / (4 * t ^ 2) := by positivity
+    linarith
+  rw [abs_of_nonneg (by linarith)]
+  have hqt : 1 / (4 * t ^ 2) ≤ 1 / (2 * t) :=
+    one_div_le_one_div_of_le (by positivity) (by nlinarith)
+  have hb : (1 : ℝ) / (2 * t) / 2 = 1 / (4 * t) := by ring
+  linarith
+
+/-- The quadratic tail sum on the quarter-line:
+`Σ' 1/((n+1/4)² + (t/2)²) ≤ 12/t` for `t ≥ 1`. Head (`n < ⌊t⌋+1`) by
+the `(t/2)²` floor, tail by the dependency's sorry-free
+`tsum_one_div_natCast_add_add_one_sq_le`. -/
+theorem inv_quadratic_tsum_le {t : ℝ} (ht : 1 ≤ t) :
+    (∑' n : ℕ, (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) ≤ 12 / t := by
+  have ht0 : (0 : ℝ) < t := by linarith
+  set K : ℕ := ⌊t⌋₊ + 1 with hKdef
+  have hKt : t < (K : ℝ) := by
+    have h := Nat.lt_floor_add_one t
+    rw [hKdef]
+    push_cast
+    linarith
+  have hKt' : (K : ℝ) ≤ t + 1 := by
+    have h := Nat.floor_le (le_of_lt ht0)
+    rw [hKdef]
+    push_cast
+    linarith
+  have hK1 : 1 ≤ K := by omega
+  clear_value K
+  have hg16 : Summable (fun n : ℕ => 16 / ((n : ℝ) + 1) ^ 2) := by
+    have h := Complex.summable_one_div_natCast_add_one_sq
+    simpa [div_eq_mul_inv] using h.mul_left (16 : ℝ)
+  have hterm16 : ∀ n : ℕ,
+      (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹ ≤ 16 / ((n : ℝ) + 1) ^ 2 := by
+    intro n
+    have hn0 : (0 : ℝ) ≤ (n : ℝ) := Nat.cast_nonneg n
+    have hq : ((n : ℝ) + 1) ^ 2 / 16 ≤ ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 := by
+      nlinarith [sq_nonneg ((t : ℝ) / 2)]
+    calc (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹
+        ≤ (((n : ℝ) + 1) ^ 2 / 16)⁻¹ := inv_anti₀ (by positivity) hq
+      _ = 16 / ((n : ℝ) + 1) ^ 2 := by rw [inv_div]
+  have hf : Summable (fun n : ℕ => (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) :=
+    Summable.of_nonneg_of_le (fun n => by positivity) hterm16 hg16
+  have hhead : (∑ i ∈ Finset.range K,
+      (((i : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) ≤ 8 / t := by
+    have hper : ∀ i ∈ Finset.range K,
+        (((i : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹ ≤ (((t : ℝ) / 2) ^ 2)⁻¹ := by
+      intro i _
+      exact inv_anti₀ (by positivity) (le_add_of_nonneg_left (by positivity))
+    have hsum := Finset.sum_le_sum hper
+    rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul] at hsum
+    have hinv : ((((t : ℝ) / 2) ^ 2))⁻¹ = 4 / t ^ 2 := by
+      rw [div_pow, inv_div]
+      norm_num
+    rw [hinv] at hsum
+    have hKb : (K : ℝ) * (4 / t ^ 2) ≤ 8 / t := by
+      have key : (K : ℝ) * 4 ≤ 8 * t := by linarith
+      have e3 : (8 : ℝ) * t / t ^ 2 = 8 / t := by
+        field_simp
+      calc (K : ℝ) * (4 / t ^ 2) = (K : ℝ) * 4 / t ^ 2 := by ring
+        _ ≤ 8 * t / t ^ 2 := by gcongr
+        _ = 8 / t := e3
+    linarith
+  have htail : (∑' i : ℕ,
+      ((((i + K : ℕ) : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) ≤ 4 / t := by
+    have htailsum : Summable (fun i : ℕ =>
+        ((((i + K : ℕ) : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) :=
+      (summable_nat_add_iff K).mpr hf
+    have hgbase : Summable (fun i : ℕ => 1 / (((i + K : ℕ) : ℝ) + 1) ^ 2) :=
+      (summable_nat_add_iff K).mpr Complex.summable_one_div_natCast_add_one_sq
+    have hgtail : Summable (fun i : ℕ => 4 / (((i + K : ℕ) : ℝ) + 1) ^ 2) := by
+      simpa [div_eq_mul_inv] using hgbase.mul_left (4 : ℝ)
+    have hper : ∀ i : ℕ,
+        ((((i + K : ℕ) : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹
+          ≤ 4 / (((i + K : ℕ) : ℝ) + 1) ^ 2 := by
+      intro i
+      have hm1 : (1 : ℝ) ≤ ((i + K : ℕ) : ℝ) := by
+        have h1 : 1 ≤ i + K := by omega
+        exact_mod_cast h1
+      have hs1 : ((((i + K : ℕ) : ℝ) + 1) ^ 2) / 4
+          ≤ (((i + K : ℕ) : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 := by
+        nlinarith [sq_nonneg ((t : ℝ) / 2)]
+      calc ((((i + K : ℕ) : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹
+          ≤ (((((i + K : ℕ) : ℝ) + 1) ^ 2) / 4)⁻¹ :=
+            inv_anti₀ (by positivity) hs1
+        _ = 4 / (((i + K : ℕ) : ℝ) + 1) ^ 2 := by rw [inv_div]
+    have hcomp := htailsum.tsum_le_tsum hper hgtail
+    have hval : (∑' i : ℕ, 4 / (((i + K : ℕ) : ℝ) + 1) ^ 2) ≤ 4 / (K : ℝ) := by
+      have h4 : (∑' i : ℕ, 4 / (((i + K : ℕ) : ℝ) + 1) ^ 2)
+          = 4 * ∑' i : ℕ, 1 / (((i + K : ℕ) : ℝ) + 1) ^ 2 := by
+        rw [← tsum_mul_left]
+        congr 1
+        funext i
+        ring
+      rw [h4]
+      have hlem := Complex.tsum_one_div_natCast_add_add_one_sq_le (N := K) hK1
+      calc 4 * ∑' i : ℕ, 1 / (((i + K : ℕ) : ℝ) + 1) ^ 2
+          ≤ 4 * (K : ℝ)⁻¹ :=
+            mul_le_mul_of_nonneg_left hlem (by norm_num)
+        _ = 4 / (K : ℝ) := by rw [div_eq_mul_inv]
+    have hKinv : 4 / (K : ℝ) ≤ 4 / t := by
+      gcongr
+    linarith
+  rw [← Summable.sum_add_tsum_nat_add (f := fun n : ℕ =>
+    (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) K hf]
+  refine le_trans (add_le_add hhead htail) (le_of_eq ?_)
+  field_simp
+  norm_num
+
 end
 
 /-! ## Axiom check
@@ -414,6 +559,14 @@ block below pins the exact axiom list of one result: if a proof ever starts
 depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
+
+/-- info: 'Stage3.log_norm_z_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.log_norm_z_le
+
+/-- info: 'Stage3.inv_quadratic_tsum_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.inv_quadratic_tsum_le
 
 /-- info: 'Stage3.digamma_term_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

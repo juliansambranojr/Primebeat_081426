@@ -16,6 +16,35 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 138 — The C/t band's two pillars: the log ratio and the quadratic tail sum
+type: formalization
+refs: 130, 136, 137
+
+Slice C1a of the digamma comparison, in
+`lean_stage3/Stage3/Stirling.lean`. Two theorems; package parity
+48/48; builds clean at 8713 jobs; welds 2/0.
+
+log_norm_z_le — |log‖z_t‖ − log(t/2)| ≤ 1/(4t) for t ≥ 1: log_sqrt,
+the ratio identity (1/16 + t²/4)/(t²/4) = 1 + 1/(4t²), and
+log(1+x) ≤ x.
+inv_quadratic_tsum_le — Σ' 1/((n+1/4)² + (t/2)²) ≤ 12/t for t ≥ 1:
+split at K = ⌊t⌋+1; head ≤ K·4/t² ≤ 8/t by the (t/2)² floor; tail
+≤ 4/K ≤ 4/t through the dependency's sorry-free
+tsum_one_div_natCast_add_add_one_sq_le. This is the sum controlling
+Σ|aₙ| in the digamma telescope — the quantitative heart of
+ψ(z) = log z + O(1/t) on the quarter-line.
+
+Engineering: the ⌊t⌋ dyadic level needed clear_value (third instance
+of the floor-unfolding whnf explosion; entries 128, and now here);
+several v4.32 renames (inv_anti₀, one_div_le_one_div_of_le,
+Summable.sum_add_tsum_nat_add as a dotted method).
+
+Remaining for component 1: the telescope identity
+Re ψ(z) = log‖z‖ − Σ Re aₙ (harmonic-γ limit assembly) and the
+per-term |aₙ| ≤ ‖1/(z+n)‖² (complex log-Taylor). Then C ≈ 12 + small,
+far inside the ≤ 100 budget, and the Stirling half closes through
+entry 136's reduction.
+
 ## 2026-08-24 — Entry 137 — First numeral: the compact half of the digamma comparison, discharged at C = 8
 type: formalization
 refs: 135, 136
