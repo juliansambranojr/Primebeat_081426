@@ -16,6 +16,41 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 141 — The Arg half audited: upstream races us, and the crude route is mapped
+type: provenance
+refs: 119, 130, 140
+
+The StmtArgCrude audit, after entry 140 closed the Stirling half.
+
+The upstream find: the dependency's IEANTN/Kadiri.lean STATES
+Kadiri.backlund_bound : riemannZeta.Riemann_vonMangoldt_bound
+0.137 0.443 6.1 — the full hNT leaf at Rosser's literature constants.
+Probed via #print axioms (probe built, read, removed): it depends on
+sorryAx today — 14 sorries stand in that file. Tao's network is
+building the sharp version of exactly our leaf; when it lands, a pin
+bump discharges hNT entirely and RvM_of_phase_arg's crude route
+becomes a redundant check. Until then ours is the live path.
+
+The crude route, mapped against sorry-free substrate:
+StmtArgCrude decomposes as Backlund's argument bound —
+(A1) the rectangle argument-principle identity connecting their
+riemannZeta.N to the phase θ/π + 1 + S(T)
+(RectangleArgumentPrinciple.lean, sorry-free, is the machinery);
+(A2) S(T) ≤ B·log T via zero counts in disks
+(Jensen: their zetaSurrogate zeros-in-ball counts in
+Backlund/ZeroCountCrude, sorry-free but existential constants;
+BorelCaratheodory.lean sorry-free; ZetaBounds' zeta analytics
+sorry-free) — the crude-explicit constant extraction is the work.
+Budget: entry 130 accepts B₁_total ≤ ~100 at depth ≥ 7 and the
+Stirling half consumed 97; the Arg half rides the B₃-room (≤ 1000)
+and the census re-tabulates at whatever lands — even B₁ ≈ 150 total
+keeps depth 7 by entry 130's pattern.
+
+The ledger after this session: stage 3 = {hEF, StmtArgCrude}. hNT's
+two halves went from named (131) to corrected (132) to constructed
+(135) to one-discharged (140) in a single day; the other half has its
+substrate audited and an upstream race running.
+
 ## 2026-08-24 — Entry 140 — THE STIRLING HALF DISCHARGED: StmtBacklundPhase phaseTheta 97 98 is a theorem
 type: formalization
 refs: 132, 135, 136, 137, 138, 139

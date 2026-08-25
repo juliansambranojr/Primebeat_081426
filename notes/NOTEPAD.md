@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 141: Arg-half audit — upstream Kadiri.backlund_bound states full hNT at Rosser constants (sorry-blocked today; pin-bump watch); crude route mapped (rectangle identity + Jensen counts, substrate sorry-free). Ledger: {hEF, StmtArgCrude}
 - [open]   2026-08-24  entry 140: STIRLING HALF DISCHARGED — StmtBacklundPhase phaseTheta 97 98 proved end to end; StmtDigammaLog eliminated; 56/56. Stage-3 leaves: hEF, StmtArgCrude — two remain
 - [open]   2026-08-24  entry 139: telescope engine — |Re w − log norm(1+w)| <= 5 norm(w)^2 from log y <= y−1 alone; 49/49. Component 1 numbers complete; remaining: the harmonic-gamma limit assembly
 - [open]   2026-08-24  entry 138: C/t band pillars — log ratio <= 1/(4t) + quadratic tail sum <= 12/t (head/tail split at floor(t)+1); 48/48. Remaining: telescope identity + per-term log-Taylor, then Stirling closes
