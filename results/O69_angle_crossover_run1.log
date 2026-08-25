@@ -1,0 +1,19 @@
+O69 — the angle count vs the logarithm, on 100000 zeros (gamma <= 74920.8).
+
+1. BAND ENTRY (Rosser Th. 19 band, checked at every jump):
+   the count never leaves the band on this range (100000 jumps checked) — the crossover happened before the first zero: 0 windings needed.
+
+2. CURVE LOCK-ON (relative deviation |N - mainterm|/N):
+   stays below 0.01 from winding 80 (gamma = 201.265)
+   stays below 0.001 from winding 1049 (gamma = 1476.092)
+
+3. THE PRICE OF SKIPPING ANGLES (crude majorant A*T^(3/2)):
+   smallest possible A on this range: 0.029871, attained at winding 25 (gamma = 88.809)
+   waste at range top: A*.T^(3/2) / N = 6x
+
+4. THE PHASE SPLIT at range top (gamma = 74920.8):
+   smooth (Gamma-phase logarithm) term: 99,999.4 windings
+   max fluctuation |S-part| over range: 1.629 windings
+   the logarithm carries 99.9994% of the count; the fluctuation never exceeds 39% of the Rosser band at range top.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/angle_crossover.json

@@ -1,0 +1,10 @@
+name = "stage3"
+defaultTargets = ["Stage3"]
+
+[[require]]
+name = "PrimeNumberTheoremAnd"
+git = "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd"
+rev = "751a8c2e5a984f89124d1c3294d41fc79f6e786e"
+
+[[lean_lib]]
+name = "Stage3"

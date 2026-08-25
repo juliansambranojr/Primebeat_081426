@@ -1,0 +1,30 @@
+{
+  "schema_version": "1",
+  "script": "O69_angle_crossover.py",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "zeros_file": "imported/twin_count/zeros1.txt",
+    "n_zeros": 100000,
+    "gamma_max": 74920.827498994,
+    "band": "0.137*log T + 0.443*log log T + 1.588",
+    "mainterm": "T/2pi*log(T/2pi) - T/2pi + 7/8"
+  },
+  "band_entry": {
+    "last_excursion_winding": 0,
+    "inside_band_from_first_zero": true
+  },
+  "lock_on": {
+    "0.01": 80,
+    "0.001": 1049
+  },
+  "crude_majorant": {
+    "A_star": 0.029871272458625885,
+    "attained_at_winding": 25,
+    "waste_at_top": 6.125726059015797
+  },
+  "phase_split": {
+    "mainterm_at_top": 99999.40508849116,
+    "max_fluctuation": 1.6286945403408026
+  }
+}

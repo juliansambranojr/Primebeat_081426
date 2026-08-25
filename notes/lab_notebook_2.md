@@ -16,6 +16,99 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 119 — lean_stage3: the sibling package stands, and the decomposition repriced to three leaves
+type: provenance
+refs: 116, 117, 118
+
+Step 1 of the decomposition plan. `lean_stage3/`, a sibling Lake package
+on toolchain v4.32.2, requiring PrimeNumberTheoremAnd pinned at commit
+751a8c2 with its Mathlib v4.32.2. Builds clean: 3665 jobs. The bench's
+lean/ (v4.28.0) is untouched.
+
+The dependency audit, from a shallow clone of the pin:
+
+- Sorry-free where it matters: ZetaBounds, MellinCalculus, the rectangle
+  residue calculus, HadamardFactorization, BorelCaratheodory, MediumPNT,
+  Backlund/ZeroCountCrude all at zero. PerronFormula's one "sorry" is
+  inside a comment. StrongPNT carries 5 (the strong error term; we do
+  not consume it).
+- ZeroCountCrude's count is N(T) ≤ A·T^(3/2) with existential A. Pushed
+  through O68's machinery, a T^(3/2) count degrades the bound to
+  x^(2/3) form: depth 4 at C=1, never reaching (20,6)'s depth 6. The
+  agent's "hNT discharged from PNT+" (entry 116) fails at the shape and
+  the constants.
+- The compensating find: IEANTN's ZetaDefinitions defines
+  riemannZeta.Riemann_vonMangoldt_bound b₁ b₂ b₃ — Rosser's Theorem 19
+  as a named hypothesis Prop with the literature's explicit constants
+  (0.137, 0.443, 6.1) — and KadiriZeroCounting.lean, sorry-free,
+  derives the explicit dyadic zero-count consequences from it. The
+  classical fact itself is one open sorry in their tree, an active
+  target of Tao's IEANTN network. That is this bench's own
+  architecture, found upstream.
+
+The decomposition restated: hS → {hRH (Mathlib's RiemannHypothesis),
+hEF (truncated explicit formula, explicit remainder), hNT (Rosser
+Th. 19, explicit constants)}. Three named literature leaves, everything
+between kernel-checked. Both open leaves are upstream targets; if
+IEANTN lands them, this tree inherits by bumping the pin.
+
+The weld: Stage3.lean states it loudly in its header, carries a
+character-level copy of Nonvanishing.StmtSchoenfeldWindow, and
+utilities/check_weld.py diffs the def blocks across the trees — 0
+broken welds. Composition with the bench arrow is by statement identity
+until the toolchains converge; every claim published from lean_stage3
+carries that caveat.
+
+Existence checks forced through the build: Mathlib's RiemannHypothesis,
+Riemann_vonMangoldt_bound, zetaCounting_crude_majorant all elaborate.
+
+Next: step 2, Statement.lean — StmtSchoenfeldWeak (C k x₀) and the
+window bridge generalized from lean/Schoenfeld.lean's special case.
+
+## 2026-08-24 — Entry 120 — O69: the crossover to the logarithm is at winding zero
+type: run
+refs: 118, 119
+
+`python3 O69_angle_crossover.py`. Exploratory, no prereg. Output:
+results/angle_crossover.json, log results/O69_angle_crossover_run1.log.
+Data: imported/twin_count/zeros1.txt, 100000 zeros, γ ≤ 74920.8.
+
+The question was Julian's pushback on entry 119's finding that PNT+'s
+crude majorant (T^(3/2), no argument-principle input) cannot feed the
+census: the count enters at T·log T "because after enough angles it
+becomes a curve — calculate how many times the angles create the
+crossover to a logarithm." N(T) is an angle count — each zero is one
+2π winding of ξ around the rectangle — and the winding splits into the
+Gamma factor's smooth phase (which is the logarithm) plus the
+fluctuation S(T).
+
+The measurement, four numbers:
+
+1. Band entry: |N(T) − mainterm(T)| checked against Rosser's band
+   0.137·log T + 0.443·log log T + 1.588 at every one of the 100000
+   jumps, from below and above. Never outside — including far below
+   T = 1467 where Theorem 19 claims validity. The crossover is at
+   winding zero: the angle count is the log curve from the first zero.
+2. Lock-on: within 1% of the curve by winding 80 (γ ≈ 201); within
+   0.1% by winding 1049, at γ ≈ 1476 — Rosser's stated floor T ≥ 1467
+   is visible in the data as the 0.1% lock-on point.
+3. The price of skipping angles: the best possible T^(3/2) constant on
+   this range is A* ≈ 0.0299 (attained at winding 25), already 6×
+   wasteful at range top, and the waste grows like √T/log T without
+   bound — the same fact O68 saw as the dead x^(2/3) route.
+4. The phase split: the Gamma-phase logarithm carries 99.9994% of the
+   count. S(T) never exceeds 1.63 windings in a hundred thousand, 39%
+   of the Rosser band at range top.
+
+The reframe this forces on the hNT leaf: the logarithm is what the
+angles are made of — the smooth phase winds, ζ wobbles by under 2.
+Discharging Rosser Th. 19 in Lean is two jobs: Stirling for the Gamma
+phase with explicit constants (Mathlib has Stirling machinery), and
+bounding S(T) by the argument principle on rectangles — and PNT+'s
+RectangleArgumentPrinciple.lean is sorry-free. The entire open
+difficulty of the zero-count leaf is bounding a quantity the data holds
+under 2 windings in 10^5.
+
 ## 2026-08-24 — Entry 118 — O68: the tolerance table verified on bench machinery, and a correction to entry 116
 type: run
 refs: 112, 116, 117
