@@ -16,6 +16,48 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 118 — O68: the tolerance table verified on bench machinery, and a correction to entry 116
+type: run
+refs: 112, 116, 117
+
+`python3 O68_weak_bound_tolerance.py`, dps 40, rmax 600, dmax 24.
+Exploratory, no prereg — a verification run gating entry 116's option 2.
+Output: results/weak_bound_tolerance.json, log at
+results/O68_weak_bound_tolerance_run1.log.
+
+O67's E_high generalized to bound(x) = C·√x·(log x)^k for x ≥ x0:
+E_high = C·(r·log2)^k·2^(r/2)·(1+2^(-1/2))^(d+1), window floor
+r−d−1 ≥ log2(x0). M_low and the wedge unchanged. Sanity gate: at
+(C,k,x0) = (1/(8π), 1, 2657) the R(d) table reproduces O67's committed
+results/conditional_last_zero.json exactly — True.
+
+The tolerance, on our own instrument:
+
+```text
+schoenfeld  C=1/(8π)  k=1            depth_covered = 15
+psi_style   C=1/(8π)  k=2            depth_covered = 12
+crude       C=1       k=2            depth_covered = 10
+very_crude  C=100     k=2  x0=2^30   depth_covered = 8
+crude_1000  C=1000    k=2  x0=2^30   depth_covered = 6
+brutal      C=1e6     k=3  x0=2^60   depth_covered = 0
+```
+
+The adversarial agent's table (entry 116) is confirmed row for row.
+Depth 6 is the last row that still covers (20,6)'s own depth — every
+bound down to C=1000, k=2 keeps the full four-zeros headline, and what
+degrades below C=1 is only the reach past it.
+
+Correction to entry 116: that entry says "C = 1000 still yields depth
+≤ 10". Wrong. C = 1 yields depth 10; C = 1000 yields depth 6. I
+conflated the agent's "a thousand times worse" (C = 1 with the extra
+log factor, ~1600× at census scale) with the literal constant 1000.
+This entry is the dated correction.
+
+Gate result: step 0 passes. The decomposition build (hS → {hRH, hEF})
+is worth doing if its computed constant lands at k = 2 with C ≤ 100,
+and still yields a theorem at C ≤ 1000. Next decision: step 1, the
+sibling-package scaffold and the PNT+ dependency audit.
+
 ## 2026-08-24 — Entry 117 — Schoenfeld.lean: the unproven surface moved to the literature's own sentence
 type: formalization
 refs: 113, 115, 116

@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 118: O68 verifies the tolerance table row-for-row (sanity gate vs O67 exact); depth 10 at C=1 k=2, depth 6 at C=1000; entry 116 correction recorded (C=1, and not C=1000, gives depth 10). Gates step 1 of the decomposition
 - [open]   2026-08-24  entry 117: Schoenfeld.lean (20th module) — StmtSchoenfeld states Schoenfeld 1976 Cor. 1 verbatim; window_of_global bridges it to the window hypothesis; tableFrom_ne_zero_of_schoenfeld is the arrow with the published sentence as its one analytic input. 250/250 pins. Open: tolerance verification, then decide decomposition
 - [open]   2026-08-24  entry 116: stage 3 re-scoped after adversarial audit — two audit claims overturned (zeta-prime/zeta IS in pinned Mathlib; C=1000-weak bounds still give depth <= 10), hEF remains the open core. Next: verify tolerance table with O67 variant, then decide sibling-package decomposition
 - [open]   2026-08-24  entry 115: Expansion.lean (19th module) — stage 2b lands: iteratedDeriv_f2x proves the explicit 2^x/x expansion, F_floor proves the wedge floor, and tableFrom_ne_zero_of_li assembles the conditional arrow with only the li-interpolant, Schoenfeld, and O67 arithmetic as hypotheses. Stage 3 = Schoenfeld stays a hypothesis. 248/248 pins

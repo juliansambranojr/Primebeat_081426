@@ -1,0 +1,16 @@
+O68 — R(d) under |pi - li| <= C*sqrt(x)*(log x)^k for x >= x0.
+Row 1 must reproduce O67; the rest map the tolerance.
+
+   SANITY vs O67 committed table: True
+   schoenfeld  C=0.03979   k=1 log2(x0)= 11.4   R(1)=16 .. R(8)=56       depth_covered=15
+   psi_style   C=0.03979   k=2 log2(x0)=  6.2   R(1)=28 .. R(8)=68       depth_covered=12
+   crude       C=1         k=2 log2(x0)= 11.4   R(1)=40 .. R(8)=78       depth_covered=10
+   very_crude  C=100       k=2 log2(x0)= 30.0   R(1)=57 .. R(8)=93       depth_covered=8
+   crude_1000  C=1000      k=2 log2(x0)= 30.0   R(1)=64 .. R(8)=101      depth_covered=6
+   brutal      C=1e+06     k=3 log2(x0)= 60.0   R(1)=100 .. R(8)=136     depth_covered=0
+
+depth_covered by row is the gate for the stage-3 decomposition:
+the decomposition target (C computed in Lean, k=2) must land at a
+row whose depth_covered is worth the build.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/weak_bound_tolerance.json
