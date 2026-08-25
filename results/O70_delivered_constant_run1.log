@@ -1,0 +1,27 @@
+O70 — the census at the kernel's computed constant.
+   hNT fixed at Rosser (b1,b2,b3)=(0.137,0.443,6.1), W=0.0.
+
+     c1  c2    x1    C_psi     C_pi log2(x0)  R(1)  R(6)  depth
+      1   1    16    96.08   301.24     8.00    48    74      9
+      1   1  2657    96.08   301.24    22.75    48    74      9
+      1   5    16   100.08   313.24     8.00    49    74      9
+      1   5  2657   100.08   313.24    22.75    49    74      9
+      2   1    16   105.08   328.24     8.00    49    74      9
+      2   1  2657   105.08   328.24    22.75    49    74      9
+      2   5    16   109.08   340.24     8.00    49    74      9
+      2   5  2657   109.08   340.24    22.75    49    74      9
+      5   1    16   132.08   409.24     8.00    49    75      9
+      5   1  2657   132.08   409.24    22.75    49    75      9
+      5   5    16   136.08   421.24     8.00    49    75      9
+      5   5  2657   136.08   421.24    22.75    49    75      9
+     10   1    16   177.08   544.24     8.00    50    76      9
+     10   1  2657   177.08   544.24    22.75    50    76      9
+     10   5    16   181.08   556.24     8.00    50    76      9
+     10   5  2657   181.08   556.24    22.75    50    76      9
+
+   depth_covered across the whole grid: [9]
+   Every cell at or past (20,6)'s own depth keeps the full
+   four-zeros headline; the c-constants move R(d), the depth
+   barely moves — the chain's inflation is affordable.
+
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/delivered_constant.json

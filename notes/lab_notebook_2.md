@@ -16,6 +16,33 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 129 — O70: the census at the kernel's computed constant — depth 9, grid-stable
+type: run
+refs: 118, 123, 128
+
+`python3 O70_delivered_constant.py`. Exploratory, no prereg. Output:
+results/delivered_constant.json, log results/O70_delivered_constant_run1.log.
+
+The chain's own numbers, no optimism: C_ψ = 9c₁+c₂+28+16b₁+16b₂+8b₃+4W
+(entry 128, Assembly.lean), C_π = 3C_ψ+13 with k: 2→1 (entry 123,
+PsiToPi.lean), floor x₀ = max(max(x₁,16)², 9). Instantiated at Rosser's
+(0.137, 0.443, 6.1); W = 0 numerically (no zeros below height 1; stays
+symbolic in Lean); hEF's open constants swept: c₁ ∈ {1,2,5,10},
+c₂ ∈ {1,5}, x₁ ∈ {16, 2657}. Same M_low, wedge, census machinery as
+O67/O68 (sanity-gated there).
+
+Result: depth_covered = 9 in every one of the 16 grid cells. C_π runs
+301 → 556 and R(1) moves only 48 → 50, R(6) only 74 → 76. The x₁
+floor is invisible (its 2^22.75 window floor sits far below the
+admissible r anyway).
+
+Read: the conditional theorem the kernel actually proved supports
+"under RH + the truncated explicit formula + Rosser Th. 19, (20,6) is
+the last exact zero at every depth ≤ 9, for all r" — three past
+(20,6)'s own depth, six short of Schoenfeld's ideal 15, and insensitive
+to the open leaf's constants unless c₁ exceeds ten. The chain's
+inflation (3C+13, the +28, the 16b's) is affordable at census width.
+
 ## 2026-08-24 — Entry 128 — THE ASSEMBLY: hRH + hEF + hNT → StmtPsiWeak, closed under the kernel
 type: formalization
 refs: 118, 121, 123, 124, 127
