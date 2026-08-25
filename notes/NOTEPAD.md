@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 137: first numeral — compact half of StmtDigammaLog discharged at C = 8 from the digamma series (per-term engine reusable); 46/46. Remaining: the C/t band (component 1), then Stirling closes
 - [open]   2026-08-24  entry 136: Stirling half reduced — backlundPhase_of_digammaLog: StmtDigammaLog C -> StmtBacklundPhase phaseTheta C (C+1), all integration/cancellation discharged; 44/44. Leaf ledger: hEF, StmtDigammaLog, StmtArgCrude
 - [open]   2026-08-24  entry 135: Stirling construction half — phaseTheta built as digamma integral (wrap-free by construction), continuity/integrability/anchor/FTC main term pinned; 43/43. Remaining: digamma-vs-log comparison -> StmtBacklundPhase
 - [open]   2026-08-24  entry 134: capstones repaired — hG' on Ioi (1/2), pair now satisfiable by patched li(2^x); 8046 jobs, all gates green, pins unchanged. Audit fully resolved; queue returns to the Stirling slice

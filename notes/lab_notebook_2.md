@@ -16,6 +16,30 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 137 — First numeral: the compact half of the digamma comparison, discharged at C = 8
+type: formalization
+refs: 135, 136
+
+`lean_stage3/Stage3/Stirling.lean` grows by two theorems; package
+parity 46/46; builds clean at 8713 jobs; welds 2/0.
+
+digamma_term_norm_le — the per-term engine on the quarter-line
+segment: ‖1/(n+1) − 1/(n+z)‖ ≤ 4/(n+1)² for re z = 1/4, ‖z−1‖ ≤ 1,
+via the exact identity 1/(n+1) − 1/(n+z) = (z−1)/((n+1)(n+z)) and
+‖n+z‖ ≥ n + 1/4. Reusable by component 1.
+phasePoint_compact_le — |Re ψ(1/4 + it/2)| ≤ 8 on [0,1], from the
+dependency's sorry-free digamma_eq_tsum: |ψ| ≤ γ + Σ 4/(n+1)² =
+γ + 4·π²/6 < 2/3 + 6.62 < 8, closed with Mathlib's
+eulerMascheroniConstant_lt_two_thirds, pi_lt_d2, and hasSum_zeta_two
+reindexed through tsum_eq_zero_add.
+
+This is the first analytic estimate with a hard numeral in the
+stage-3 effort — the leaves are made of exactly this kind of fact.
+StmtDigammaLog's remaining piece is component 1 alone: the C/t band
+for t ≥ 1, the same per-term identity telescoped against the
+logarithm. Then the Stirling half closes through
+backlundPhase_of_digammaLog (entry 136).
+
 ## 2026-08-24 — Entry 136 — The Stirling half reduced to the digamma comparison
 type: formalization
 refs: 130, 132, 135

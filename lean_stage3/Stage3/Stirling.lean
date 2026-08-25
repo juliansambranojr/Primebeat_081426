@@ -282,6 +282,129 @@ theorem backlundPhase_of_digammaLog {C : ℝ} (hC : 0 ≤ C)
     nlinarith
   linarith [habs1, t1, t2]
 
+/-- Per-term bound for the digamma series on the quarter-line segment:
+`‖1/(n+1) − 1/(n+z)‖ ≤ 4/(n+1)²` whenever `re z = 1/4` and `‖z−1‖ ≤ 1`. -/
+theorem digamma_term_norm_le {z : ℂ} (hre : z.re = 1 / 4)
+    (hz1 : ‖z - 1‖ ≤ 1) (n : ℕ) :
+    ‖1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z)‖ ≤ 4 / ((n : ℝ) + 1) ^ 2 := by
+  have hnre : ((n : ℂ) + z).re = (n : ℝ) + 1 / 4 := by
+    simp [Complex.add_re, hre]
+  have hnz : ((n : ℂ) + z) ≠ 0 := by
+    intro h
+    rw [h] at hnre
+    simp at hnre
+    nlinarith [Nat.cast_nonneg (α := ℝ) n, hnre]
+  have hn1 : ((n : ℂ) + 1) ≠ 0 := by
+    have hcast : ((n : ℂ) + 1) = ((n + 1 : ℕ) : ℂ) := by push_cast; ring
+    rw [hcast]
+    exact_mod_cast Nat.succ_ne_zero n
+  have hid : 1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z)
+      = (z - 1) / (((n : ℂ) + 1) * ((n : ℂ) + z)) := by
+    field_simp
+    ring
+  rw [hid, norm_div, norm_mul, Complex.norm_natCast_add_one]
+  have hzn : (n : ℝ) + 1 / 4 ≤ ‖(n : ℂ) + z‖ := by
+    calc (n : ℝ) + 1 / 4 = ((n : ℂ) + z).re := hnre.symm
+      _ ≤ |((n : ℂ) + z).re| := le_abs_self _
+      _ ≤ ‖(n : ℂ) + z‖ := Complex.abs_re_le_norm _
+  have hn1p : (0 : ℝ) < (n : ℝ) + 1 := by positivity
+  have hd : ((n : ℝ) + 1) ^ 2 / 4 ≤ ((n : ℝ) + 1) * ‖(n : ℂ) + z‖ := by
+    nlinarith [mul_le_mul_of_nonneg_left hzn hn1p.le,
+      Nat.cast_nonneg (α := ℝ) n]
+  have hdp : (0 : ℝ) < ((n : ℝ) + 1) ^ 2 / 4 := by positivity
+  have hD0 : (0 : ℝ) < ((n : ℝ) + 1) * ‖(n : ℂ) + z‖ :=
+    mul_pos hn1p (norm_pos_iff.mpr hnz)
+  calc ‖z - 1‖ / (((n : ℝ) + 1) * ‖(n : ℂ) + z‖)
+      ≤ 1 / (((n : ℝ) + 1) * ‖(n : ℂ) + z‖) := by gcongr
+    _ ≤ 1 / (((n : ℝ) + 1) ^ 2 / 4) :=
+        one_div_le_one_div_of_le hdp hd
+    _ = 4 / ((n : ℝ) + 1) ^ 2 := by
+        rw [one_div_div]
+
+/-- **Component two of `StmtDigammaLog`, discharged with an explicit
+constant:** `|Re ψ(1/4 + it/2)| ≤ 8` on `[0, 1]`. From the sorry-free
+series: `|ψ| ≤ γ + Σ 4/(n+1)² = γ + 4·π²/6 < 8`. -/
+theorem phasePoint_compact_le : ∀ t ∈ Set.Icc (0 : ℝ) 1, |phasePoint t| ≤ 8 := by
+  intro t ht
+  unfold phasePoint
+  set z : ℂ := (1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I with hz
+  have hre : z.re = 1 / 4 := by
+    simp [hz, Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im]
+  have hz1 : ‖z - 1‖ ≤ 1 := by
+    have hre1 : (z - 1).re = -(3 / 4) := by
+      simp [hz, Complex.sub_re, Complex.add_re, Complex.mul_re,
+        Complex.I_re, Complex.I_im]
+      norm_num
+    have him1 : (z - 1).im = t / 2 := by
+      simp [hz, Complex.sub_im, Complex.add_im, Complex.mul_im,
+        Complex.I_re, Complex.I_im]
+    rw [Complex.norm_eq_sqrt_sq_add_sq, hre1, him1]
+    have ht1 : t ≤ 1 := ht.2
+    have ht0 : 0 ≤ t := ht.1
+    have hs := Real.sqrt_le_sqrt (by nlinarith :
+      (-(3 / 4 : ℝ)) ^ 2 + (t / 2) ^ 2 ≤ 1)
+    simpa using hs
+  have hcond : ∀ n : ℕ, z ≠ -(n : ℂ) := by
+    intro n h
+    have h2 := congrArg Complex.re h
+    rw [hre] at h2
+    simp at h2
+    nlinarith [Nat.cast_nonneg (α := ℝ) n, h2]
+  have hψ := Complex.digamma_eq_tsum hcond
+  have hsummand_le : ∀ n : ℕ,
+      ‖1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z)‖ ≤ 4 / ((n : ℝ) + 1) ^ 2 :=
+    digamma_term_norm_le hre hz1
+  have hg : Summable (fun n : ℕ => 4 / ((n : ℝ) + 1) ^ 2) := by
+    have := Complex.summable_one_div_natCast_add_one_sq
+    simpa [div_eq_mul_inv] using this.mul_left (4 : ℝ)
+  have hf : Summable (fun n : ℕ =>
+      ‖1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z)‖) :=
+    Summable.of_nonneg_of_le (fun n => norm_nonneg _) hsummand_le hg
+  have htsum : ‖∑' n : ℕ, (1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z))‖
+      ≤ ∑' n : ℕ, 4 / ((n : ℝ) + 1) ^ 2 :=
+    le_trans (norm_tsum_le_tsum_norm hf) (hf.tsum_le_tsum (fun n => hsummand_le n) hg)
+  have hzeta : (∑' n : ℕ, 4 / ((n : ℝ) + 1) ^ 2)
+      = 4 * (Real.pi ^ 2 / 6) := by
+    have hbasel := hasSum_zeta_two
+    have hshift : (∑' n : ℕ, (1 : ℝ) / (n : ℝ) ^ 2)
+        = (1 : ℝ) / (0 : ℝ) ^ 2 + ∑' n : ℕ, (1 : ℝ) / ((n : ℝ) + 1) ^ 2 := by
+      rw [Summable.tsum_eq_zero_add hbasel.summable]
+      push_cast
+      ring_nf
+    have h0 : (1 : ℝ) / (0 : ℝ) ^ 2 = 0 := by norm_num
+    have hval : (∑' n : ℕ, (1 : ℝ) / ((n : ℝ) + 1) ^ 2) = Real.pi ^ 2 / 6 := by
+      have := hbasel.tsum_eq
+      rw [hshift, h0] at this
+      linarith
+    calc (∑' n : ℕ, 4 / ((n : ℝ) + 1) ^ 2)
+        = 4 * ∑' n : ℕ, (1 : ℝ) / ((n : ℝ) + 1) ^ 2 := by
+          rw [← tsum_mul_left]
+          congr 1
+          funext n
+          ring
+      _ = 4 * (Real.pi ^ 2 / 6) := by rw [hval]
+  have hγ : Real.eulerMascheroniConstant < 2 / 3 :=
+    Real.eulerMascheroniConstant_lt_two_thirds
+  have hγ0 : (0 : ℝ) < Real.eulerMascheroniConstant :=
+    lt_trans (by norm_num) Real.one_half_lt_eulerMascheroniConstant
+  have hπ : Real.pi < 3.15 := Real.pi_lt_d2
+  have hπ0 : (0 : ℝ) < Real.pi := Real.pi_pos
+  calc |(Complex.digamma z).re| ≤ ‖Complex.digamma z‖ :=
+        Complex.abs_re_le_norm _
+    _ = ‖-(Real.eulerMascheroniConstant : ℂ)
+          + ∑' n : ℕ, (1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z))‖ := by
+        rw [hψ]
+    _ ≤ ‖(-(Real.eulerMascheroniConstant : ℂ))‖
+          + ‖∑' n : ℕ, (1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z))‖ :=
+        norm_add_le _ _
+    _ ≤ Real.eulerMascheroniConstant + 4 * (Real.pi ^ 2 / 6) := by
+        have hnr : ‖(-(Real.eulerMascheroniConstant : ℂ))‖
+            = Real.eulerMascheroniConstant := by
+          rw [norm_neg, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hγ0]
+        rw [hnr, ← hzeta]
+        linarith [htsum]
+    _ ≤ 8 := by nlinarith
+
 end
 
 /-! ## Axiom check
@@ -291,6 +414,14 @@ block below pins the exact axiom list of one result: if a proof ever starts
 depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
+
+/-- info: 'Stage3.digamma_term_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.digamma_term_norm_le
+
+/-- info: 'Stage3.phasePoint_compact_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.phasePoint_compact_le
 
 /-- info: 'Stage3.backlundPhase_of_digammaLog' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
