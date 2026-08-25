@@ -86,7 +86,7 @@ window point clears Schoenfeld's floor `x ≥ 2657`. -/
 theorem tableFrom_ne_zero_of_schoenfeld {N : ℤ → ℤ} {f : ℤ → ℝ} {G : ℝ → ℝ}
     {pi li : ℝ → ℝ} {r : ℤ} {d : ℕ}
     (hG : ContDiff ℝ (⊤ : ℕ∞) G)
-    (hG' : ∀ x ∈ Ioi (0 : ℝ), HasDerivAt G (Expansion.f2x x) x)
+    (hG' : ∀ x ∈ Ioi ((1 : ℝ) / 2), HasDerivAt G (Expansion.f2x x) x)
     (hpi : StmtSchoenfeld pi li)
     (hf : ∀ m : ℤ, f m = pi ((2 : ℝ) ^ (m : ℝ)))
     (hli : ∀ m : ℤ, G (m : ℝ) = li ((2 : ℝ) ^ (m : ℝ)))

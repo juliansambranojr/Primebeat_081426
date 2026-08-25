@@ -374,7 +374,7 @@ positive and the wedge holding there, the `(d+1)`-th derivative of any smooth
 interpolant whose derivative is `2^x/x` on `(0,∞)` clears `Mlow`. The chain:
 `iteratedDeriv (d+1) G = iteratedDeriv d (2^x/x) = F d ≥ floor ≥ Mlow`. -/
 theorem hD_of_window {G : ℝ → ℝ} {r : ℤ} {d : ℕ}
-    (hG' : ∀ x ∈ Ioi (0 : ℝ), HasDerivAt G (f2x x) x)
+    (hG' : ∀ x ∈ Ioi ((1 : ℝ) / 2), HasDerivAt G (f2x x) x)
     (hbot : (1 : ℝ) ≤ (r : ℝ) - (d + 1))
     (hw : 2 * (d : ℝ) ≤ Real.log 2 * ((r : ℝ) - (d + 1))) :
     ∀ y ∈ Icc ((r : ℝ) - (d + 1)) r,
@@ -386,12 +386,12 @@ theorem hD_of_window {G : ℝ → ℝ} {r : ℤ} {d : ℕ}
   -- iteratedDeriv (d+1) G = iteratedDeriv d f2x on (0,∞)
   have hstep : iteratedDeriv (d + 1) G y = iteratedDeriv d f2x y := by
     rw [iteratedDeriv_succ']
-    have hev : ∀ x ∈ Ioi (0 : ℝ), deriv G x = f2x x := fun x hx =>
+    have hev : ∀ x ∈ Ioi ((1 : ℝ) / 2), deriv G x = f2x x := fun x hx =>
       (hG' x hx).deriv
     -- congr of iteratedDeriv on the open half-line, by induction
     have congr_on : ∀ (n : ℕ) (u v : ℝ → ℝ),
-        (∀ x ∈ Ioi (0 : ℝ), u x = v x) →
-        ∀ x ∈ Ioi (0 : ℝ), iteratedDeriv n u x = iteratedDeriv n v x := by
+        (∀ x ∈ Ioi ((1 : ℝ) / 2), u x = v x) →
+        ∀ x ∈ Ioi ((1 : ℝ) / 2), iteratedDeriv n u x = iteratedDeriv n v x := by
       intro n
       induction n with
       | zero => intro u v h x hx; simpa using h x hx
@@ -401,7 +401,7 @@ theorem hD_of_window {G : ℝ → ℝ} {r : ℤ} {d : ℕ}
           have hev2 : iteratedDeriv m u =ᶠ[nhds x] iteratedDeriv m v :=
             Filter.eventuallyEq_of_mem (Ioi_mem_nhds hx) (ih u v h)
           exact hev2.deriv_eq
-    exact congr_on d (deriv G) f2x hev y (by exact hypos)
+    exact congr_on d (deriv G) f2x hev y (by show (1 : ℝ) / 2 < y; linarith)
   rw [hstep, iteratedDeriv_f2x d y (by exact hypos)]
   -- the wedge transports from the window bottom to y (both sides of it grow)
   have hwy : 2 * (d : ℝ) ≤ Real.log 2 * y := by
@@ -437,7 +437,7 @@ gap arithmetic, and the wedge/positivity arithmetic. The MVT, the alternating
 series, the expansion of `2^x/x` — all under the kernel. -/
 theorem tableFrom_ne_zero_of_li {N : ℤ → ℤ} {f : ℤ → ℝ} {G : ℝ → ℝ} {r : ℤ} {d : ℕ}
     (hG : ContDiff ℝ (⊤ : ℕ∞) G)
-    (hG' : ∀ x ∈ Ioi (0 : ℝ), HasDerivAt G (f2x x) x)
+    (hG' : ∀ x ∈ Ioi ((1 : ℝ) / 2), HasDerivAt G (f2x x) x)
     (hrow : ∀ k ∈ range (d + 2), ((N (r - k) : ℤ) : ℝ) = Nonvanishing.bdiffZ f (r - k))
     (hr : ((d + 1 : ℕ) : ℤ) ≤ r)
     (hS : Nonvanishing.StmtSchoenfeldWindow f (fun k : ℤ => G k) r (d + 1))

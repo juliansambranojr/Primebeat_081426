@@ -256,8 +256,8 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `window_of_global` | The bridge: the global sentence implies the bench-shaped window hypothesis whenever the window bottom clears `12`, since `2^12 = 4096 ≥ 2657`. | ℂ floor | `The-Four-Zeros.md` |
-| `tableFrom_ne_zero_of_schoenfeld` | The arrow, with the literature sentence as its one analytic input. | ℂ floor | `The-Four-Zeros.md` |
+| `window_of_global` | The bridge: the global sentence implies the bench-shaped window hypothesis whenever the window bottom clears `12`, since `2^12 = 4096 ≥ 2657`. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `tableFrom_ne_zero_of_schoenfeld` | The arrow, with the literature sentence as its one analytic input. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 
 ## SeedPerturbation (20)
 

@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 134: capstones repaired — hG' on Ioi (1/2), pair now satisfiable by patched li(2^x); 8046 jobs, all gates green, pins unchanged. Audit fully resolved; queue returns to the Stirling slice
 - [open]   2026-08-24  entry 133: adversarial audit — stage-3 package clean; bench capstones (115/117) vacuous via global-smoothness hypothesis (repair: hG' on Ioi (1/2), queued ahead of Stirling slice); Li offset + W-bucket misstatements corrected
 - [open]   2026-08-24  entry 132: entry 131 corrected — principal arg wraps, both sub-leaves were undischargeable; RvMCrude rebuilt over abstract phase (StmtBacklundPhase/Arg, assembly pinned); phase construction now part of the Stirling discharge. 39/39 green
 - [open]   2026-08-24  entry 131: RvMCrude (hNT slice 1) — Backlund decomposed: rsTheta + StmtPhaseCrude + StmtArgCrude named, assembly RvM_of_phase_arg pinned; hNT is now two crude-budget sub-leaves; 39/39. Next: Stirling slice, then S(T) slice

@@ -16,6 +16,30 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 134 — The capstones repaired: hG' restricted to (1/2, ∞); vacuity resolved
+type: formalization
+refs: 115, 117, 133
+
+The Finding-1 repair from entry 133, in the bench tree.
+lean/Expansion.lean: hD_of_window and tableFrom_ne_zero_of_li now take
+hG' : ∀ x ∈ Ioi (1/2), HasDerivAt G (f2x x) x; the congr induction
+runs on Ioi (1/2); the window membership (bottom ≥ 1 > 1/2) closes it.
+lean/Schoenfeld.lean: tableFrom_ne_zero_of_schoenfeld forwards the
+same signature. Build clean at 8046 jobs; 250/250 pins unchanged
+(axiom lists identical); gates 0/0/0; welds 2/0; THEOREMS.md
+regenerated.
+
+The hypothesis pair is now satisfiable: G = li(2^x) on [1/2, ∞),
+smoothly patched below, is globally smooth with the required
+derivative on (1/2, ∞) — the divergence of ∫ 2^t/t dt at 0⁺ no longer
+touches the stated domain. Entries 115/117's capstones are dischargeable
+in principle, as they were always claimed to be.
+
+With this, everything the adversarial audit (entry 133) surfaced is
+resolved: the vacuous pair repaired, the two misstatements corrected,
+the wording noted. The queue returns to the Stirling slice — the
+continuous phase construction — with the chain's both ends now sound.
+
 ## 2026-08-24 — Entry 133 — Adversarial audit of the stage-3 chain: package clean; the bench capstones are vacuous as stated
 type: result-triage
 refs: 115, 117, 122, 128, 129, 132
