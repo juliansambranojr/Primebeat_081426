@@ -16,6 +16,51 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 147 — O24 pi_at float-key fix: the instrument-fix entry, eight days late
+type: instrument-fix
+refs: 35
+
+The fix landed 2026-08-17 and produced two NOTEPAD lines but no entry;
+this is the entry, so the record is dated where later readers look.
+
+**What changed.** In O24_prime_generator_orbit.py, pi_at's searchsorted
+key is floored to an exact Python int before the lookup, removing a
+whole-array float64 upcast of the primes array on every call.
+Performance only: for any real key k, the primes at or below k are the
+primes at or below floor(k), so the count cannot move. The full
+semantic-identity argument, including boundary behaviour, is in the
+function's docstring.
+
+**Comparability.** Prior O24 results REMAIN FULLY COMPARABLE. Verified
+2026-08-17 by running pre-fix and post-fix code on identical flags on
+two settings and comparing result JSONs cell by cell — byte-identical
+apart from timestamps and the recorded code_version sha.
+
+**Sha lineage.** 6e2ddd01… (pre-fix) → f3525a7f… (post-fix, current;
+recomputed for this entry). On disk: five results JSONs record the
+pre-fix sha (O24_gen_11to19_results.json, O24_gen_to19_results.json,
+O24_gen_xmax1e9_results.json, O24_prime_generator_orbit_results.json,
+O24_prime_generator_orbit_run2.json); one,
+O24_gen_xmax3e9_results.json, records the post-fix sha. The NOTEPAD
+line's "every O24 results JSON records 6e2ddd01" was true when written
+and is superseded by that sixth file.
+
+**The re-stamp decision (Julian, 2026-08-25): leave the shas.** The
+five pre-fix shas stay exactly as they are — honest provenance of
+which code produced those numbers — and this entry is the crosswalk.
+Editing shas inside frozen results would falsify that provenance to
+make it tidier.
+
+**The aborted log (same decision principle).**
+results/O24_gen_xmax3e8_run.log is a timing probe killed at the
+two-minute mark — which is why it stops mid-G6 — copied into results/
+from a scratch directory in error (entry 35's thread). The filename
+stays: results are frozen evidence, and this paragraph is the label.
+The correction of entry 35's "G1 through G5 are reported" framing is
+an outcome marking and stays Julian's.
+
+---
+
 ## 2026-08-25 — Entry 146 — The method has its own repository: the_container
 type: motivation
 refs: 143, 144, 145
