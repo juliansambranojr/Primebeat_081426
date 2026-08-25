@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 151: O72 (O66 v2) — twin rigidity real at all seven heights (|z| 5.3–37.4), deficit decays ~1/ln^2 x and persists at 6e12; HL holds everywhere; litsearch_4 statement amended to decays-and-persists
 - [open]   2026-08-25  entry 150: O24 4e11 kill run — G4 69.0 vs G5 47.7, band FALLS, crossing absent; four-prime peak stands at 133x the data; The-Four-Prime-Peak D/G result-triage pending
 - [open]   2026-08-25  entry 149: O24 --pi-backend primecount landed, backend-independence zero-diff verified — the sieve memory wall was the 4e11 barrier and is gone
 - [closed]   2026-08-25  entry 148: O30–O38 flags+JSON pass landed, nine re-runs zero-drift — answers the entry-28 and entry-35 hardcoded-params lines; O39 dead --results-dir flag now on record

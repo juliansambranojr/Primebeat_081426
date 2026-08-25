@@ -16,6 +16,60 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 151 — O72 (O66 v2): twin rigidity is real at every height — the degenerate endpoint was noise
+type: run
+refs: 105, 107, 111
+
+Script O72_twin_spectral_v2.py (new number; O66 stays frozen with its
+logs and JSON), all defaults: seven heights K = 1e6..1e12 (x ~ 6e6 to
+6e12), eight disjoint windows per height, window size scaled with
+ln^2 x (2^20 to 2^22 sites), 32-replicate Bernoulli null per height,
+seed 2026, run-2 HL normalization verbatim. Artifacts:
+results/twin_spectral_v2.json, results/O72_twin_spectral_v2_run1.log.
+
+**The design answers entry 111's demand** ("more heights with stated
+uncertainty; the current endpoint is degenerate with its control"):
+every statistic now carries an across-window mean ± sd, the control
+is a distribution, and each height prints its own separation z.
+
+**Rigidity, per height** (F(256) twin | null, z; low-freq twin |
+null, z):
+
+```text
+x ~ 6e6    0.830|0.977  -14.4     0.952|1.000  -24.6
+x ~ 6e7    0.854|0.976  -14.4     0.958|1.000  -34.8
+x ~ 6e8    0.898|0.979   -9.5     0.966|1.000  -17.0
+x ~ 6e9    0.896|0.980  -12.8     0.973|1.000  -37.4
+x ~ 6e10   0.926|0.991  -11.2     0.978|1.001  -20.7
+x ~ 6e11   0.935|0.988  -17.2     0.982|0.999  -20.7
+x ~ 6e12   0.947|0.990  -12.7     0.985|1.000  -19.9
+```
+
+Twin sits below its null at every height and every block size, |z|
+from 5.3 (F(4096) at 6e12) to 37.4. **The v1 endpoint is resolved:**
+at 6e10 the single-window F(256) pair 0.929 vs 0.932 was sampling
+noise; the distribution-level measurement separates at z = -11.2.
+
+**The trend.** The low-freq deficit (1 - ratio) falls monotonically:
+0.048, 0.042, 0.034, 0.027, 0.022, 0.018, 0.015. Post-hoc
+observation, stated as such: the sequence tracks 1/ln^2 x within
+~10% across the span. Rigidity decays smoothly with height and
+remains many sigma from the null at 6e12.
+
+**Hardy–Littlewood holds at every height.** mean|R - HL| runs
+0.026–0.041 across the seven heights, inside the Bernoulli
+sampling floor (0.026–0.044) at each one.
+
+**Amended candidate statement** (entry 111's promotion, litsearch_4's
+target): the twin process keeps HL pair structure while its number
+rigidity DECAYS SMOOTHLY AND PERSISTS — significant at every measured
+height to 6e12. The earlier "loses rigidity" reading came from the
+degenerate endpoint.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 150 — O24 at 4e11: G5 does not overtake — the four-prime peak survives 133x more data
 type: run
 refs: 111, 149
