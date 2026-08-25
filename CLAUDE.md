@@ -151,6 +151,48 @@ Which tests are preregistered, and which carry an unstamped verdict, is
 recorded in `CONTEXT.md` § Current state of the world. How to write and
 lock one is `preregs/FORMAT.md`.
 
+## Stage-3 formalization conventions (lean_stage3/)
+
+The sibling package lives on toolchain v4.32.2 with the PNT+
+dependency pinned at 751a8c2; the bench's lean/ stays on v4.28.0.
+Composition across the two is BY STATEMENT IDENTITY ONLY, gated by
+`utilities/check_weld.py` — every published claim from lean_stage3
+carries that caveat until the toolchains converge.
+
+- **The leaf ledger.** Open analytic assumptions are named Props
+  (Stmt*), each with a literature citation shape, a crude-constant
+  budget from the census (entry 130), and a sketched discharge
+  route. The ledger lives in the newest notebook entry that touched
+  it; as of entry 141 it reads {hEF, StmtArgCrude}. Never add a leaf
+  without its budget and route; never call a leaf discharged without
+  a pinned theorem.
+- **Crude-explicit is the spec.** Constants are chosen for
+  provability, not sharpness — 97 where Rosser has 0.137 is a
+  success, because the census re-tabulates (O68/O70 machinery) and
+  survives. Chasing literature-sharp constants is scope creep.
+- **Upstream race.** Leaves double as watch targets: upstream
+  IEANTN states Kadiri.backlund_bound (full hNT, Rosser constants),
+  sorry-blocked as of the pin. Before building a leaf, probe
+  upstream HEAD — a pin bump may discharge it for free.
+- **Lean engineering traps, all paid for once:**
+  - `set` bodies containing `Nat.floor`/`Nat.log`/tsum defs explode
+    defeq checks — prove the needed facts, then `clear_value` (or
+    parameterize the def as an equation hypothesis, as with W in
+    Assembly.lean).
+  - After any large hypothesis enters context, every `linarith`/
+    `nlinarith` must be `only`-scoped or hint-fed; the default
+    preprocessor drowns.
+  - `set`-definitions need `simp only [hdef]` (beta), never
+    `rw [hdef]`.
+  - Dotted-`comp` continuity lemmas mis-unify; pin `(g := ...)`
+    `(f := ...)` explicitly.
+  - v4.32 renames encountered: `pow_le_pow_left₀`, `inv_anti₀`,
+    `Real.pi_lt_d2`, `abs_add_le`, `Summable.tsum_le_tsum`,
+    `Summable.sum_add_tsum_nat_add`, `norm_pos_iff`,
+    `one_div_le_one_div_of_le`.
+  - Axiom-pin discipline is identical to the bench: parity per
+    module, `#guard_msgs` on `#print axioms`, attribute-on-own-line.
+
 ## Permissions
 
 **CAN:**
