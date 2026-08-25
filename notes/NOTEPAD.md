@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 146: the_container public at cb06d4f — method extracted to standalone template repo; entry-144 posit operational as its adjudications/ layer; back-translation round and non-research instantiation open in that repo's NOTEPAD
 - [open]   2026-08-24  entry 145: repo PUBLIC at 690e7e8 (gates green, pre-flight verified) — opening move of the group project; #1538 note and identity_16_complex PR now have referenceable code
 - [open]   2026-08-24  entry 144: kernel-for-meaning posit — Lean as adjudicator in LLM discourse (validity to the kernel, meaning to budgeted leaves); revisit for a paper methodology section
 - [open]   2026-08-24  entry 143: inheritance claims (floor+ceiling machine, satisfiability QA, phase kit, leaf-ledger social tech) + the engine explained (stigmergy, decorrelation, human entropy schedule)

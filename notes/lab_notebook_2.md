@@ -16,6 +16,58 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 146 — The method has its own repository: the_container
+type: motivation
+refs: 143, 144, 145
+
+**What exists.** The methodology this program built — and entries 143
+(the engine: stigmergy, decorrelation, entropy schedule) and 144 (the
+posit: a Lean kernel adjudicating meaning) articulated — now lives as
+a standalone, domain-agnostic, public template repository:
+<https://github.com/juliansambranojr/the_container>, first commit
+`cb06d4f`, public from that commit. Julian's framing: build in
+public.
+
+**What it contains.** BLUEPRINT.md (thesis, eight failure modes each
+mapped to the part that answers it, definitions, the nine-step loop,
+separation of powers, when-to-move-in and the minimum seed, gate
+adaptations for seven domains, refusals); AGENT.md, the working
+contract written for any model — the CLAUDE.md role with the
+Claude-specific identity removed; the four commitment files and its
+own notebook, kept by its own rules; and three gates — record
+consistency, kernel adjudication, and a regression suite that
+replays 13 adversarial break scenarios on scratch copies, each
+required to fire. The gates live in that repo's utilities tree;
+paths resolve there, so this entry names them by function.
+
+**Entry 144's posit is now operational.** The repo's
+`adjudications/` layer is the kernel-for-meaning recipe made
+mechanical: domain concepts as opaque atoms, premises as named
+axioms, conclusions as theorems, a zero-axiom satisfiability model,
+`#guard_msgs` pins as the mechanically generated leaf ledger, and a
+gate coupling every pinned axiom to a budget-and-discharge ledger
+line. Adjudication 001 kernel-checks the skeleton of the container's
+own thesis from a single premise (some claim feels right and is
+incorrect). Its back-translation round is open in that repo's
+NOTEPAD.
+
+**The method audited itself before shipping.** A decorrelated
+adversarial review of the repo returned 12 findings (5 more
+retracted under self-attack), the sharpest being three ways to pass
+the adjudication gate falsely — unimported modules, unpinned
+theorems, `sorryAx` allowlisted. All 12 repaired; the review's break
+scenarios became the permanent regression suite. The reviewer's
+summary line earned its keep: the prose describing the gates was
+stronger than the gates.
+
+**Relation to this bench.** One-way, same as everything here: the
+container cites Primebeat as provenance and worked example; nothing
+in this tree depends on it. The bench keeps its own gates.
+
+No outcome marked.
+
+---
+
 ## 2026-08-24 — Entry 143 — What inherits the work, and why the engine ran: four domains, three legs
 type: motivation
 refs: 99, 116, 130, 133, 140, 142
