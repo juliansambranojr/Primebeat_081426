@@ -9,8 +9,9 @@ the logarithmic integral turns any bound on |θ − id| into a bound on
 
   Li x = x/log x + ∫₂ˣ dt/log²t
 
-which differs from the literature's li by the constant li(2) ≈ 1.045 —
-an offset the weak family's constants absorb. What this slice proves,
+which differs from the literature's li by the constant
+Li(2) − li(2) = 2/log 2 − li(2) ≈ 1.840 — an offset the weak family's
+constants absorb. What this slice proves,
 all integrability discharged:
 
   pi_sub_Li_eq        π(⌊x⌋) − Li x = (θx − x)/log x + ∫₂ˣ (θt − t)/(t·log²t)
@@ -37,7 +38,8 @@ open scoped Chebyshev
 noncomputable section
 
 /-- The offset logarithmic integral: `Li x = x/log x + ∫₂ˣ dt/log²t`.
-Differs from the literature's `li` by the constant `li(2) ≈ 1.045`. -/
+Differs from the literature's `li` by the constant
+`2/log 2 − li(2) ≈ 1.840`. -/
 def Li (x : ℝ) : ℝ := x / Real.log x + ∫ t in (2 : ℝ)..x, 1 / Real.log t ^ 2
 
 /-- `1/log²t` is continuous on any interval right of `2`. -/

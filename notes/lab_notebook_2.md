@@ -16,6 +16,51 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 133 — Adversarial audit of the stage-3 chain: package clean; the bench capstones are vacuous as stated
+type: result-triage
+refs: 115, 117, 122, 128, 129, 132
+
+A blind adversarial agent audited entries 115–132, all five lean_stage3
+modules, the pinned dependency's definitions, O68/O70, and the weld
+gate — instructed to hunt the arg-wrap class of defect and to attack
+its own findings before reporting. Four findings survived; I verified
+the severe one independently before accepting it.
+
+Finding 1 (breaks the bench capstones; the stage-3 package is
+unaffected internally). Expansion.tableFrom_ne_zero_of_li (entry 115)
+and Schoenfeld.tableFrom_ne_zero_of_schoenfeld (entry 117) require
+hG : ContDiff ℝ ⊤ G — smooth on all of ℝ — together with
+hG' : derivative 2^x/x on all of (0,∞). Jointly unsatisfiable:
+∫_ε¹ 2^t/t dt ~ log(1/ε) diverges, so G(ε) → −∞ against continuity
+at 0. Both capstones are true but undischargeable — the entry-132
+failure mode at the other end of the weld. The ancestors are sound
+(Nonvanishing.tableFrom_ne_zero_of, MainTerm.tableFrom_ne_zero_of_deriv
+have satisfiable hypotheses). Repair: restrict hG' to Ioi (1/2) — the
+window bottom is ≥ 1, the proofs live on the open half-line, and the
+pair (global smooth G, derivative 2^x/x on (1/2,∞)) is satisfiable by
+a smoothly-patched li∘2^x. Queued immediately, ahead of the Stirling
+slice.
+
+Finding 2 (corrected). The Li offset is 2/log 2 − li(2) ≈ 1.840; three
+places said li(2) ≈ 1.045. Docstrings fixed (PsiToPi.lean, O70);
+entries 122/129 stand corrected by this entry.
+Finding 3 (corrected). W = 0 because the bucket is the order-sum over
+strip zeros with im = 0 exactly, and ζ has no real zeros in (0,1) —
+entry 129 said "no zeros below height 1", which misdescribes the
+bucket. O70 docstring fixed; entry 129 stands corrected by this entry.
+Finding 4 (wording). Entry 128's "every arrow kernel-checked" includes
+the O68 census arrow, which is Python arithmetic — entry 129's wording
+is the accurate one.
+
+Everything else attacked held: leaf satisfiability (including the
+explicit formula's sign convention against the classical ψ₀ = x − Σ −
+log 2π − ½log(1−x⁻²) + R), every chain constant re-derived by hand,
+the one-sided N vs two-sided sum bridge read in full, cpow branch
+guards, the weld gate. The audit cost one vacuous pair and two wrong
+numbers — all caught by an outside read, none by the builder. The
+pattern from entry 99 and today's 132, third instance: the check that
+works is the one that did not write the thing.
+
 ## 2026-08-24 — Entry 132 — Correction to entry 131: the principal arg wraps; the phase is now abstract
 type: formalization
 refs: 130, 131

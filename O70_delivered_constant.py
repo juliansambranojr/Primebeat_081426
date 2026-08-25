@@ -16,12 +16,13 @@ INSTANTIATION.
   hNT: Rosser Th. 19 constants b = (0.137, 0.443, 6.1); RvM(2) > 0
        (checked: 6.03), b's nonnegative — all hypotheses of the
        theorem hold at these values.
-  W  : weightedZeroHeightBucket = 0 numerically — there are no zeros
-       with |im| < 1 (first zero at 14.134); in Lean it stays symbolic.
+  W  : weightedZeroHeightBucket = 0 numerically — the bucket is the
+       order-sum over strip zeros with im = 0 exactly, and zeta has no
+       real zeros in (0,1); in Lean it stays symbolic.
   hEF: the truncated explicit formula's (c1, c2, x1) are swept — the
        formula is the open leaf, so its constants are the unknown.
        Grid: c1 in {1, 2, 5, 10}, c2 in {1, 5}, x1 in {16, 2657}.
-  Li-offset: the chain's Li differs from li by li(2) ~ 1.045; E_high's
+  Li-offset: the chain's Li differs from li by 2/log2 - li(2) ~ 1.840; E_high's
        slack at every admissible r exceeds that by orders of magnitude.
 
 Same M_low, wedge, and census extent as O67/O68 (sanity-gated there).
