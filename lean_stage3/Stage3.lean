@@ -22,18 +22,9 @@ What this file forces the build to elaborate, as existence checks:
 import Mathlib.NumberTheory.LSeries.RiemannZeta
 import PrimeNumberTheoremAnd.Backlund.ZeroCountCrude
 import PrimeNumberTheoremAnd.IEANTN.ZetaDefinitions
+import Stage3.Statement
 
 namespace Stage3
-
-open Finset
-
-/-- Character-level copy of `Nonvanishing.StmtSchoenfeldWindow` from the
-bench tree (lean/Nonvanishing.lean). The weld: utilities/check_weld.py
-verifies the two definition bodies are textually identical. -/
-def StmtSchoenfeldWindow (f L : ℤ → ℝ) (r : ℤ) (n : ℕ) : Prop :=
-  ∀ k ∈ range (n + 1),
-    |f (r - k) - L (r - k)|
-      ≤ (Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : ℝ) - k) / 2)
 
 #check (RiemannHypothesis : Prop)
 #check @riemannZeta.Riemann_vonMangoldt_bound

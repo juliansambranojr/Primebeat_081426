@@ -16,6 +16,33 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 121 — Stage3/Statement.lean: the weak family named, the bridges proved
+type: formalization
+refs: 118, 119, 120
+
+Step 2 of the decomposition plan. `lean_stage3/Stage3/Statement.lean`,
+six theorems, six pins, builds clean at 8706 jobs on v4.32.2.
+
+StmtSchoenfeldWeak C k x₀ names O68's grid as a Prop family;
+StmtWeakWindow C k is its dyadic-window shape. The bridges:
+schoenfeld_iff_weak (Cor. 1 is the member C=1/(8π), k=1, x₀=2657, as an
+iff), weakWindow_of_global (global ⟹ window when the bottom clears x₀),
+weakWindow_at_schoenfeld (at Schoenfeld's parameters the weak window is
+the bench's StmtSchoenfeldWindow), window_of_global (the bench bridge
+from lean/Schoenfeld.lean reproved statement-identically on this
+toolchain — the weld demonstrated), weak_mono and weak_anti_x₀
+(monotonicity in C and x₀).
+
+What this buys: every row of entry 118's tolerance table is one
+instantiation of one Prop, and the step-5 assembly theorem can deliver
+any (C, k, x₀) it manages to compute — the window bridge is already
+proved for all of them. StmtSchoenfeld and StmtSchoenfeldWindow are
+character-level copies of the bench definitions, held by
+utilities/check_weld.py (2 welds, 0 broken).
+
+Next: step 3, PsiToPi.lean — |ψ−x| ≤ B transfers to |π−li| ≤ B′ via
+Abel summation and the li-interpolant pattern from MainTerm.
+
 ## 2026-08-24 — Entry 119 — lean_stage3: the sibling package stands, and the decomposition repriced to three leaves
 type: provenance
 refs: 116, 117, 118

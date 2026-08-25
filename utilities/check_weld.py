@@ -19,7 +19,10 @@ _HERE = pathlib.Path(__file__).resolve().parent.parent
 WELDS = [
     ("StmtSchoenfeldWindow",
      _HERE / "lean" / "Nonvanishing.lean",
-     _HERE / "lean_stage3" / "Stage3.lean"),
+     _HERE / "lean_stage3" / "Stage3" / "Statement.lean"),
+    ("StmtSchoenfeld",
+     _HERE / "lean" / "Schoenfeld.lean",
+     _HERE / "lean_stage3" / "Stage3" / "Statement.lean"),
 ]
 
 

@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 121: Stage3/Statement.lean (step 2) — weak family StmtSchoenfeldWeak C k x0 named, five bridges + monotonicity proved, bench bridge reproved statement-identically on v4.32.2; 6/6 pins, 2 welds green. Next: PsiToPi.lean (step 3)
 - [open]   2026-08-24  entry 120: O69 — crossover to the logarithm is at winding zero: Rosser band never violated on 100k zeros, 0.1% lock-on at gamma~1476 = the Th.19 floor, S(T) max 1.63 windings. Reframes hNT: Stirling phase + argument-principle S(T) bound, both with machinery in reach
 - [open]   2026-08-24  entry 119: lean_stage3 sibling package builds (3665 jobs, PNT+ pinned 751a8c2, v4.32.2); decomposition repriced to three leaves {hRH, hEF, hNT=Rosser Th19}; weld gate check_weld.py at 0 broken. Next: Statement.lean (step 2)
 - [open]   2026-08-24  entry 118: O68 verifies the tolerance table row-for-row (sanity gate vs O67 exact); depth 10 at C=1 k=2, depth 6 at C=1000; entry 116 correction recorded (C=1, and not C=1000, gives depth 10). Gates step 1 of the decomposition
