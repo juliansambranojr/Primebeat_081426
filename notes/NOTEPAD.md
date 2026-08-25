@@ -65,8 +65,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-08-24  entry 112: O67's edges — three cells r in {93,94,95} at d=16 would extend coverage (published pi(2^n) above 92 exists); the deep region d > 0.34(r-d-1) needs a different argument; Lean formalization blocked on Schoenfeld existing in no proof assistant
 - [closed] 2026-08-24  entry 26 line resolved: the THEOREM AVAILABLE line from vol 1 is discharged by O67/entry 112
 - [open]   2026-08-24  entry 111: litsearch_4 — place the twin-rigidity statement (rho^2-thinning keeps HL pair structure, loses number rigidity); nearest neighbours named are Gallagher 1976 and arXiv:1802.10498, and the companion statement surfaced in neither probe
-- [open]   2026-08-24  entry 111: O66 v2 — more heights with stated uncertainty; the fresh-eyes review found the x ~ 6e10 endpoint DEGENERATE with its own Bernoulli control (both 0.93), so 'rigidity gone' rests on a three-point trend whose load-bearing point cannot distinguish signal from null
-- [open]   2026-08-24  entry 111: O24 toward xmax ~ 4e11 — The-Four-Prime-Peak D4 extrapolates G5 overtaking G4 there; the run is the kill test for the transient reading of the tree's strongest open empirical question
+- [closed]   2026-08-24  entry 111: O66 v2 — more heights with stated uncertainty; the fresh-eyes review found the x ~ 6e10 endpoint DEGENERATE with its own Bernoulli control (both 0.93), so 'rigidity gone' rests on a three-point trend whose load-bearing point cannot distinguish signal from null
+- [closed]   2026-08-24  entry 111: O24 toward xmax ~ 4e11 — The-Four-Prime-Peak D4 extrapolates G5 overtaking G4 there; the run is the kill test for the transient reading of the tree's strongest open empirical question
 - [closed] 2026-08-24  entry 111: README reframe — 'What is measured' to lead with the pipeline and O58's internal-consistency role rather than O57/O58 as findings; the fresh-eyes review called the current framing the weakest thing presented as strong
 - [closed] 2026-08-24  entry 111: The-Four-Zeros — write the economical-reading sentence once, plainly: the shallow-row accident reading that B9 and O43's magnitude_floor verdict jointly imply but never state
 - [closed] 2026-08-24  entry 110: three decisions applied on Julian's approval — The-Composite-Arm standalone with the PROVISIONAL banner off; O48's verdict written as compromised-and-retired (entry 75's saturation argument, no depth window shows a sub-ceiling mode); NOTEPAD sweep authorised
@@ -156,7 +156,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-20  entry 67: the 12 oversized NOTEPAD lines truncated (2 backfilled first as entries 64/65 since they cited nothing) — gate down from 14 broken references to 2, baseline re-cut
 - [open]   2026-08-20  entry 66: SeedPerturbation and PairIdentity off Mathlib, Classical.choice 84 -> 71 — core `grind` costs Classical.choice so it is no shortcut; floor is 60 of 119 (R/C), or 64 unless Zeros is split
 - [closed] 2026-08-20  entry 63: six NOTEPAD lines (entries 53-58) were inside the header's own format-example fence, not under ## Threads — trap deleted, lines moved, check_refs.py now reports any thread line above the heading
-- [open]   2026-08-20  entry 62: the joint cross-base test (O18 design) has never been run on the exact zeros (O44 object) — entry 52 tested RESOLUTION at b=2^(1/2), a refinement of base 2, not coupling between independent ladders
+- [closed]   2026-08-20  entry 62: the joint cross-base test (O18 design) has never been run on the exact zeros (O44 object) — entry 52 tested RESOLUTION at b=2^(1/2), a refinement of base 2, not coupling between independent ladders
 - [closed] 2026-08-20  entry 61: the `dia/col = sqrt(b)` gain measured in CHAIN.md at 615 cells is now four compiling theorems in EulerFactorChain terms; C-valued so [propext, Classical.choice, Quot.sound] is the floor; DRAFT, not in the tree
 - [closed] 2026-08-20  entry 60: `tableFrom N r d = stencil d (fun k => N (r-k))` proved via Mathlib fwdDiff_iter_eq_sum_shift — a cell is one Pascal line, (8,3) reads 23-3*13+3*7-5=0 by decide; DRAFT, not in the tree
 - [closed] 2026-08-20  entry 59: Construction.lean off Mathlib — Classical.choice was the library instances and Quot.sound was `omega` on casts that are `rfl`; LANDED, 8037 jobs, 4 theorems improved, 55 of 79 remaining are R/C and permanent
@@ -185,9 +185,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-17  entry 34: the claim made in conversation that the G4/G5 ratio widened monotonically across three points was WRONG — it rested on counting the 3e8 timing probe as a data point; there are three real settings, not four
 - [closed] 2026-08-17  entry 35: O24 at xmax=3e9 COMPLETED 2026-08-17 23:02 (PID 63229, ~2h) — G8 P_max/median 12.039652 (argmax 30.4500, DETECT, gate A PASSED), "SCALING BAND: FALLS", peak stays at G4 38.299307; results/O24_gen_xmax3e9_results.json written, 71341222 B, 203334 rows, gates A/B/C all PASSED
 - [closed] 2026-08-17  PROVENANCE CONTAMINATION: results/O24_gen_xmax3e9_results.json records code_version f3525a7f… (post-fix) although the process actually executed 6e2ddd01… — _code_version() hashes __file__ at WRITE time and the pi_at fix landed mid-run; numbers unaffected (fix is behaviour-identical) but the stamp names code that did not produce them
-- [open]   2026-08-17  entry 36: O33's crossing-slope law ln b/(2 ln ratio) was derived AFTER seeing the data — fits b=2 to 6%, b=3 to 15%, needs an out-of-sample test
-- [open]   2026-08-17  entry 40: does the Weil-form balance survive varying the mollifier W and k? nothing is parameter-independent yet
-- [open]   2026-08-17  entry 40: recompute the per-prime breakdown of the Weil form on the CORRECTED implementation — the only breakdown on record comes from the buggy file
+- [closed]   2026-08-17  entry 36: O33's crossing-slope law ln b/(2 ln ratio) was derived AFTER seeing the data — fits b=2 to 6%, b=3 to 15%, needs an out-of-sample test
+- [closed]   2026-08-17  entry 40: does the Weil-form balance survive varying the mollifier W and k? nothing is parameter-independent yet
+- [closed]   2026-08-17  entry 40: recompute the per-prime breakdown of the Weil form on the CORRECTED implementation — the only breakdown on record comes from the buggy file
 - [paused] 2026-08-17  entry 38: deep cells cannot be tested against the zeros by a truncated explicit formula — a different instrument is needed for d >= 12
 - [closed]   2026-08-17  entry 35: O34-O38 have hardcoded parameters instead of CLI flags — same defect as entry 28's O30/O31/O32 thread
 - [closed] 2026-08-17  entry 35: the O24 run at larger xmax launched 2026-08-17 had not reported when these entries were written
@@ -195,7 +195,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-17  entry 30: the 7 anchor-dependent cells on the leading diagonal r = d+1 rest on an arbitrary M(1) := 0 — decorative until a better anchor is argued
 - [closed]   2026-08-17  entry 28: O30/O31/O32 have hardcoded parameters instead of CLI flags — deviates from house convention, wants an instrument-fix pass
 - [paused] 2026-08-17  entry 29: extend the joint table past r=41 — dyadic data already exists to r=62; the limit is wall clock on pi(3^r), not exactness
-- [open]   2026-08-17  entry 31: machine-verify the hand-computed interleaved row sums r=1..6 and extend to r=41 — the intended run was killed before output
+- [closed]   2026-08-17  entry 31: machine-verify the hand-computed interleaved row sums r=1..6 and extend to r=41 — the intended run was killed before output
 - [closed] 2026-08-17  entry 31: measure base 3's crossing depth at r=20 against the predicted d ~ 8.5 — falsifiable test of the transfer function
 - [closed] 2026-08-17  entry 27: entry 26's verdicts were an artifact of its own definitions — redone under Julian's, six items land
 - [closed] 2026-08-17  entry 27: THE re-seeing — the difference table as a sampling instrument, not as arithmetic
