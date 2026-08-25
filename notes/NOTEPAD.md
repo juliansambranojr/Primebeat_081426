@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 132: entry 131 corrected — principal arg wraps, both sub-leaves were undischargeable; RvMCrude rebuilt over abstract phase (StmtBacklundPhase/Arg, assembly pinned); phase construction now part of the Stirling discharge. 39/39 green
 - [open]   2026-08-24  entry 131: RvMCrude (hNT slice 1) — Backlund decomposed: rsTheta + StmtPhaseCrude + StmtArgCrude named, assembly RvM_of_phase_arg pinned; hNT is now two crude-budget sub-leaves; 39/39. Next: Stirling slice, then S(T) slice
 - [open]   2026-08-24  entry 130: leaf budget measured — crude-explicit suffices: hNT up to B=(100,100,1000), hEF up to c=(1000,500) keep depth >= 7; both-crude keeps 7. Slice plans recorded; hNT-crude first. Pin 751a8c2 = upstream HEAD, sorries still open there
 - [open]   2026-08-24  entry 129: O70 — census at the kernel computed constant: depth 9 in all 16 grid cells (C_pi 301-556, R(1) 48-50); headline "last zero at every depth <= 9" robust to the open hEF constants. Chain numbers from entries 123/128

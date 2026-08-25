@@ -16,6 +16,38 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 132 — Correction to entry 131: the principal arg wraps; the phase is now abstract
+type: formalization
+refs: 130, 131
+
+Designing the Stirling slice exposed a defect in entry 131's module,
+caught before any discharge work built on it. rsTheta was defined with
+Mathlib's principal Complex.arg, which lives in (−π, π] and wraps; the
+classical θ(T) is the continuous branch, growing like T·log T. With
+the principal branch both sub-leaves were unsatisfiable for large T —
+the left sides grow while the band stays log-sized. The assembly
+theorem was true but its hypotheses could never be discharged.
+
+The repair, in `lean_stage3/Stage3/RvMCrude.lean` (rebuilt, 39/39,
+8711 jobs, welds 2/0): rsTheta is removed; the decomposition is
+parameterized by an abstract phase θ : ℝ → ℝ. StmtBacklundPhase θ B₁ B₃
+(the phase tracks the main term) and StmtBacklundArg θ B₁ B₃ (the
+count tracks θ/π + 1) name the two halves; RvM_of_phase_arg proves
+that ANY phase satisfying both gives Riemann_vonMangoldt_bound
+(B₁+B₁′) 0 (B₃+B₃′). Supplying a continuous phase — Binet's integral,
+or Im log Γ integrated along a path — is now explicitly part of the
+Stirling half's discharge.
+
+Audit for that discharge (this session): PNT+'s Mathlib overlay
+carries sorry-free norm-level Stirling machinery (GammaStirlingAux,
+GammaBounds, StripBounds); no arg/Im-log-Γ layer exists anywhere in
+the dependency. The Stirling slice therefore opens with the phase
+construction, budget B₁ ≤ 100 where Rosser needs 0.137.
+
+The meta-note for the record: the defect was caught by the discipline,
+before propagation — designing the discharge against the stated leaf
+is itself a check of the leaf. Same family as entry 96's lesson.
+
 ## 2026-08-24 — Entry 131 — RvMCrude: Backlund's decomposition assembled; hNT is now two smaller leaves
 type: formalization
 refs: 120, 128, 130
