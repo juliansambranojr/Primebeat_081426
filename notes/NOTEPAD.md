@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-24  entry 136: Stirling half reduced — backlundPhase_of_digammaLog: StmtDigammaLog C -> StmtBacklundPhase phaseTheta C (C+1), all integration/cancellation discharged; 44/44. Leaf ledger: hEF, StmtDigammaLog, StmtArgCrude
 - [open]   2026-08-24  entry 135: Stirling construction half — phaseTheta built as digamma integral (wrap-free by construction), continuity/integrability/anchor/FTC main term pinned; 43/43. Remaining: digamma-vs-log comparison -> StmtBacklundPhase
 - [open]   2026-08-24  entry 134: capstones repaired — hG' on Ioi (1/2), pair now satisfiable by patched li(2^x); 8046 jobs, all gates green, pins unchanged. Audit fully resolved; queue returns to the Stirling slice
 - [open]   2026-08-24  entry 133: adversarial audit — stage-3 package clean; bench capstones (115/117) vacuous via global-smoothness hypothesis (repair: hG' on Ioi (1/2), queued ahead of Stirling slice); Li offset + W-bucket misstatements corrected

@@ -16,6 +16,34 @@ Julian's call.
 
 ---
 
+## 2026-08-24 — Entry 136 — The Stirling half reduced to the digamma comparison
+type: formalization
+refs: 130, 132, 135
+
+`lean_stage3/Stage3/Stirling.lean` grows by StmtDigammaLog and
+backlundPhase_of_digammaLog; package parity 44/44; builds clean at
+8713 jobs; welds 2/0; no sorries.
+
+StmtDigammaLog C names the last analytic fact of the Stirling half:
+|Re ψ(1/4 + it/2) − log(t/2)| ≤ C/t for t ≥ 1, plus |Re ψ| ≤ C on
+[0,1] — the textbook ψ(z) = log z + O(1/|z|) on the quarter-line.
+backlundPhase_of_digammaLog proves the full reduction:
+StmtDigammaLog C → StmtBacklundPhase phaseTheta C (C+1). The proof
+splits the phase integral at 1, bounds the compact piece by C,
+integrates the band to C·log T (integral_inv), evaluates the main
+term by integral_log_half, and the T·log terms cancel exactly against
+the RvM main term through log(T/2π) = log(T/2) − log π — the 7/8
+mismatch and integration constants land inside C + 1, with room
+(the true slack at the numeric step is ~3/8).
+
+The Backlund decomposition now reads: StmtDigammaLog C (Stirling
+core, budget C ≤ ~100) + StmtArgCrude (S(T), the argument principle)
+→ RvM_of_phase_arg → hNT. The stage-3 leaf ledger: hEF,
+StmtDigammaLog, StmtArgCrude — three named classical estimates, each
+crude-budgeted, everything between them and the census kernel-checked.
+Discharge route for StmtDigammaLog: the dependency's sorry-free
+digamma_eq_tsum series, next session.
+
 ## 2026-08-24 — Entry 135 — Stirling slice, construction half: the continuous phase exists
 type: formalization
 refs: 132, 133, 134
