@@ -16,6 +16,66 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 156 — Upstream probe: no free discharge, but the Arg half's toolkit landed today; pin bumped
+type: provenance
+refs: 130, 141, 142
+
+**The probe.** PNT+ HEAD against our pin 751a8c2 (which was HEAD on
+2026-08-24): exactly one commit since, 47fa486, "[StrongPNT]: Log
+Deriv Zeta Log Squared Estimate" (#1751), merged 2026-08-25.
+
+**The watch target did not land.** Kadiri.backlund_bound — the full
+hNT at Rosser constants — is still `sorry` (Kadiri.lean carries 14).
+The pin-bump watch of entry 141 stays open; StmtArgCrude remains
+ours to build.
+
+**What did land is that build's toolkit,** rewritten into
+StrongPNT.lean (+636/-410), and proved:
+
+```text
+ZerosBound (line 866) — the Jensen disk count: f analytic on the
+    closed unit ball, f(0) = 1, |f| <= B on radius R implies the
+    zero-order sum inside radius r is <= log B / log(R/r)
+SumBoundII (2427) — |zeta'/zeta(z) - sum_rho m(rho)/(z-rho)| <=
+    C log|t| on the strip
+LogDerivZetaUniformLogSquaredBoundStrip (2595) — |zeta'/zeta| <=
+    C log^2|t| uniform on 1 - F/log|t| <= sigma <= 3/2, |t| >= 3
+```
+
+Entry 141 mapped the StmtArgCrude route as "rectangle
+argument-principle identity + Jensen/Borel-Caratheodory disk counts,
+substrate sorry-free." The Jensen count is now a proved upstream
+lemma rather than substrate. Mathlib also now carries
+Analysis.Complex.BorelCaratheodory, the route's other named tool.
+
+**Sorry-reachability, checked structurally.** Every `sorry` in
+StrongPNT.lean sits at line 2868 or later; all three lemmas above
+are declared earlier, and Lean forbids referencing a later
+declaration, so none of them can depend on the file's sorries. The
+file does not import Kadiri.
+
+**The honest limit.** The strip bound stops at sigma >= 1 - F/log|t|
+and never reaches the critical line, so it does not yield S(T)
+directly. The usable piece is ZerosBound, feeding the classical
+Backlund count of zeros of zeta(z + 2 + iT)/zeta(2 + iT) in a disk.
+
+**Also on the watch list.** I2NewBound and I3NewBound (StrongPNT
+3268, 3358) are still sorry — contour pieces toward a strong
+explicit formula, i.e. upstream building in hEF's neighbourhood,
+our deepest leaf.
+
+**Pin bumped** 751a8c2 -> 47fa486 on Julian's approval. Toolchain
+unchanged (v4.32.2), Mathlib revision unchanged (cache hit, no
+Mathlib rebuild). Rebuild: 8713 jobs (3665 at the old pin — the
+StrongPNT rewrite is the difference), 0 errors. Theorem/pin parity
+holds in all six modules, 56/56, every axiom list unchanged under
+the new upstream. check_weld: 0 broken welds. Nothing in our tree
+moved.
+
+Leaf ledger unchanged: {hEF, StmtArgCrude}.
+
+---
+
 ## 2026-08-25 — Entry 155 — O76: the joint question asked — the four zeros remain base 2's own
 type: run
 refs: 49, 52, 54, 56, 62
