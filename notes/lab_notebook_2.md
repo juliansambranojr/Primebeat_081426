@@ -16,6 +16,97 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 179 — Second reader on O87: the branch is not a knob, and a construction without it exists
+type: result-triage
+refs: 176, 177, 178
+
+Julian commissioned a second reader on the one-case exception entry 178
+flagged in `O87_character_sweep.py` — the `if k == 0` branch that
+subtracts a main term for principal characters only. Verdict: the
+branch is legitimate, nothing fatal was found, and a better
+construction exists. Four claims in entry 178 are withdrawn; they are
+corrected in place there.
+
+**The branch is data-determined, not chosen.** Replace it with a
+UNIFORM rule that knows nothing about characters — OLS-fit the
+main-term coefficient per row — and the fit separates the rows by
+itself:
+
+```text
+principal rows      c = +1.000019, +1.000018
+the other eight     c = -3.0e-5 .. +1.9e-5
+```
+
+Five orders of magnitude, with no character knowledge supplied. Under
+that uniform rule the whole matrix survives: principal 5.494 / 5.510,
+non-principal 3.016 / 2.690 / 3.094 / 2.633 / 2.604 / 2.621 / 2.828 /
+2.550, every diagonal still p = 0.000. **The branch can be deleted.**
+
+**The knob hypothesis fails in the direction it was aimed.** Subtract a
+main term from the non-principal rows, which by theory have no pole:
+every one of their diagonals goes non-significant (3.014 -> 1.411,
+3.095 -> 1.746, and so on, all p >= 0.079). The operation is
+destructive where it does not belong, not flattering.
+
+**The main term is right.** `li(x)` fails outright (0.225 — it is
+`pi(x)`'s main term, not `psi(x)`'s), and `x - log(2*pi)` is provably
+identical to `x` because the construction differences and differencing
+annihilates a constant. The more exact `x - log q * floor(log_q x)`
+gives 5.566 for BOTH principal rows identically, which is the sharpest
+form.
+
+**On post-hoc choice, settled by artifact rather than by assertion.**
+The theory licensing the branch was in the docstring before run 2; runs
+2 and 3 are numerically identical in all eight non-principal rows, so
+the change touched only `k == 0`. The magnitude 5.520 was selected
+under sight of the alternative; the direction was not. The cost is the
+exploratory label the entry already carries.
+
+**What survived every attack.** 88 genuine off-diagonal cells (two
+apparent ones are duplicate diagonals, since the principal columns are
+byte-identical): min p 0.036, mean 0.540, one below 0.05 against 4.4
+expected, and `P(min of 88 uniforms <= 0.036) = 0.961`. Zero lists
+verified against `mp.zetazero` and against O86's stored lists, with a
+5x finer scan at a 3.75x looser threshold finding nothing missed in
+either direction. `class_sums` verified against brute force at
+4.55e-12, and the entry-176 prime-power fix confirmed correct.
+Robustness: ceiling 2^26, orbit {2,3,5}, and **q = 11, never computed
+in this tree before** — all diagonals p = 0.000 with the off-diagonal
+flat.
+
+**Three harder controls, all held**, and the third is the one this
+design should have had from the start:
+
+```text
+density-matched   controls drawn with RvM density log(qt/2pi)
+                  rather than uniform          all diagonals p <= 5e-4
+rigid-shift       translate the ACTUAL zero list, preserving its
+                  spacing and repulsion        p = 0.0013 .. 0.0070
+residue-class     permute, per rung, which class each block's von
+ shuffle          Mangoldt mass lands in — preserves psi(x) exactly,
+                  the grid, the window and the trend, and destroys
+                  ONLY the arithmetic     non-principal diagonals
+                                          collapse 2.5-3.1 -> 0.81-1.18
+```
+
+The shuffle leaves the principal rows exactly invariant, because
+`chi_0` weights all nonzero classes equally, so it is not a control for
+the calibration row.
+
+**Framing the reader stated plainly and this entry adopts.** That the
+residual of `psi(x,chi)` carries `L(s,chi)`'s zeros is the explicit
+formula — a theorem. Every diagonal firing is expected. The
+load-bearing content of the sweep is the OFF-diagonal and the
+specificity, not the diagonal.
+
+The reader retracted three of its own findings, including a KS test on
+the off-diagonal it then withdrew as inapplicable because the cells are
+not independent.
+
+No outcome marked.
+
+---
+
 ## 2026-08-26 — Entry 178 — O87: the character sweep — ten spectra in one dataset, and the calibration the bench never had
 type: run
 refs: 175, 176, 177
@@ -100,6 +191,43 @@ corrected one.
 pattern is strong enough that it should carry one before being cited
 anywhere, and the principal-character branch is a one-case exception in
 code that deserves a second reader.
+
+**CORRECTIONS, 2026-08-26, from that second reader (entry 179).** Four
+claims in this entry are overstated and are withdrawn as written.
+
+```text
+"ten spectra in one dataset"   over-counts. Six distinct residual
+                               objects and six distinct L-functions;
+                               conjugate character pairs k and q-1-k
+                               are the SAME complex series read at
+                               opposite frequencies (verified to
+                               2.1e-12). Nine distinct target lists,
+                               ten tests.
+"the two rows agree to 0.4%,   not an independent check. They differ
+ an internal check"            by a deterministic term, psi(x,chi_0)
+                               = psi(x) - log q * floor(log_q x), and
+                               become literally identical under the
+                               exact main term (both 5.566). The
+                               0.4% spread IS that term.
+"the highest cells, which is   not licensed by the statistic. |F|
+ what one expects since        trends with t, and zeta's six zeros all
+ zeta's zeros are the          sit above t = 14.13 in the elevated
+ strongest signal"             band while every non-principal list
+                               reaches down to 2.5-6.6. Under local
+                               normalisation the 2.1x gap falls to
+                               ~1.4x, and by p-value the ordering
+                               REVERSES: the principal rows are the
+                               weakest two of the ten.
+"every diagonal fires at       not certifiable from 800 controls; a
+ p < 0.001"                    printed 0.000 is 0/800, exact bound
+                               0.00374. Verified separately at 100000
+                               draws: principal 6e-5, the other eight
+                               below 1e-5.
+```
+
+Also corrected: "rms 404.820 against 0.293 elsewhere" compares the same
+row before and after subtraction, not against other rows — the eight
+non-principal rows run 0.441 to 0.463.
 
 No outcome marked.
 

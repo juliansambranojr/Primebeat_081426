@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 179: second reader — O87's branch is data-determined not a knob (uniform OLS fit separates principal at c=1.000019 vs 6e-6), and can be DELETED; residue-class shuffle is the control this design should have had; four entry-178 claims corrected
 - [open]   2026-08-26  entry 178: O87 character sweep — all 10 diagonals fire p<0.001, off-diagonal flat (1 of ~80 at p=0.036); principal rows recover zeta's zeros at 5.520/5.544, the bench's first negative control; wants a prereg before citation
 - [open]   2026-08-26  entry 178: principal-character branch in O87 is a one-case exception in code (main term subtracted only for k=0) — deserves a second reader
 - [open]   2026-08-25  entry 177: character-sweep instrument — sweep all characters mod q across several q, ask which weightings the prime data responds to; a search rather than a check, and it does not exist yet
