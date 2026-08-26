@@ -1,0 +1,26 @@
+O83 — sizing the pooled instrument.  EXPLORATORY.
+  generators [2, 3]   ceiling 2^30   seed 2026
+
+1. ALIASING — the wall O81 hit, as numbers:
+      O81's 2^(j/4): Nyquist = pi/log b =   18.129
+             base 2: Nyquist = pi/log b =    4.532
+             base 3: Nyquist = pi/log b =    2.860
+   pooled orbit    : 308 rungs, median log-gap 0.05212, min 0.01355
+                     pi/median_gap =   60.281  (not a true Nyquist —
+                     the orbit is NOT evenly spaced, which is the point)
+
+2. POWER BY INJECTION — smallest amplitude clearing P/median > 5 in >= 90% of draws:
+   307 blocks; residual rms 0.3327
+        gamma         A*    1/|rho|   A*/(1/|rho|)
+       6.1836     0.2366     0.1617           1.46
+      14.8250     0.2508     0.0675           3.72
+      24.3653     0.2508     0.0410           6.11
+
+  READ. A* is the amplitude the pooled instrument needs to see
+  a mode. The explicit formula puts a single zero's normalised
+  amplitude near 1/|rho|. A ratio far above 1 means the design
+  cannot detect a single zero and a successor prereg would be
+  underpowered by construction; near or below 1 means it can.
+  The unblinded spectrum is deliberately NOT computed here.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/pooled_power.json

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1",
+  "script": "O83_pooled_power.py",
+  "generated_utc": "2026-08-26T03:49:04.294033+00:00",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "code_version": "1dd86c6db516162a602f66596d534d9eb4f3defbb64a7b7bf23c89cc2a375c1a",
+    "generators": [
+      2,
+      3
+    ],
+    "rmax": 30,
+    "targets": [
+      6.183578,
+      14.825026,
+      24.36528
+    ],
+    "draws": 200,
+    "seed": 2026,
+    "n_rungs": 308,
+    "n_blocks": 307,
+    "note": "power sizing only; the unblinded spectrum is not computed by this script"
+  },
+  "median_log_gap": 0.052116001139014045,
+  "min_log_gap": 0.013551033378352173,
+  "residual_rms": 0.33269587375438436,
+  "rows": {
+    "6.183578": {
+      "gamma": 6.183578,
+      "A_star": 0.23660473821364075,
+      "expected_amplitude": 0.16171866838260957,
+      "ratio": 1.463063853913628
+    },
+    "14.825026": {
+      "gamma": 14.825026,
+      "A_star": 0.25081472360430757,
+      "expected_amplitude": 0.06745350733280334,
+      "ratio": 3.718334798616673
+    },
+    "24.36528": {
+      "gamma": 24.36528,
+      "A_star": 0.25081472360430757,
+      "expected_amplitude": 0.04104200731532739,
+      "ratio": 6.111170968741562
+    }
+  }
+}

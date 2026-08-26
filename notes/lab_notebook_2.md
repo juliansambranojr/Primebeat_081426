@@ -16,6 +16,78 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 173 — O83: the pooled successor is underpowered, measured before it was preregistered
+type: run
+refs: 163, 164, 171, 172
+
+Script O83_pooled_power.py, defaults. Artifacts:
+results/pooled_power.json, results/O83_pooled_power_run1.log.
+
+**Why it ran, and why in this order.** Entry 171 retired the DH
+coalition question with Julian's condition attached — *if it is
+important it will come back*. It came back within the hour, and for a
+principled reason rather than a preference: entry 172's
+`lean/Nyquist.lean` proves that a b-adic ladder cannot IDENTIFY a
+frequency past `pi/log b`, and pooling incommensurate ladders is the
+standard escape, which is O18's design. Entry 164 had already named
+that successor. Entry 171 also recorded the format defect O81 exposed:
+the vacuousness check asks whether a rule can fire in both directions
+and never whether the instrument can make it fire. So the power
+question was asked FIRST, before any prereg was written.
+
+**Aliasing, as numbers rather than argument.**
+
+```text
+O81's ladder 2^(j/4)   Nyquist = pi/log b = 18.129   targets ran to 40
+base 2                                    =  4.532
+base 3                                    =  2.860
+pooled {2^m 3^n}       308 rungs, median log-gap 0.05212, min 0.01355
+                       and UNEVENLY spaced, which is the escape
+```
+
+Half of O81's target grid sat past its ladder's wall, unidentifiable in
+principle. The pooled orbit has no such wall. Aliasing is solved.
+
+**Power by injection.** Permute the real residual to destroy its
+structure, add `A*cos(gamma_0 log x)`, and find the smallest `A`
+clearing `P/median > 5` in at least 90% of draws. Against `1/|rho|`,
+the normalised amplitude the explicit formula gives a single zero:
+
+```text
+gamma        A*      1/|rho|   ratio
+ 6.1836   0.2366     0.1617     1.46
+14.8250   0.2508     0.0675     3.72
+24.3653   0.2508     0.0410     6.11
+```
+
+307 blocks, residual rms 0.3327. A single zero at `gamma = 14.8`
+contributes about a fifth of the residual's rms and is buried under the
+sum of all the others; the projection cannot concentrate enough at this
+block count.
+
+**It does not scale away.** Detection improves as `sqrt(n)`, so closing
+the 3.72x gap needs about 14x the blocks. Orbit points grow like `R^2`
+in the ceiling exponent, so 307 -> 4250 blocks puts the ceiling near
+`2^116`. Not reachable by a larger machine and not by patience.
+
+**Outcome.** The successor design entry 164 named is dead, and dead
+before it was locked rather than after another preregistered null. O81
+cost a full gated run to learn its instrument was deaf; this cost one
+exploratory script. That is the entry-171 defect fixed, working once.
+
+**What the measurement does not say.** It sizes SINGLE-ZERO detection
+only. A weaker aggregate observable — whether the spectrum as a whole
+tracks list A better than list B — could be powered where individual
+peaks are not. That is a different design and would need its own
+sizing. It is not proposed here.
+
+The unblinded spectrum was deliberately not computed: the script exists
+to size the instrument, not to look at the answer.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 172 — The Nyquist no-go formalized: entry 26's theorem-shaped item, eight days later
 type: formalization
 refs: 16, 26

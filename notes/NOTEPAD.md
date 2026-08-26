@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 173: O83 power-sizes the pooled successor BEFORE preregging it — aliasing solved (no wall) but underpowered 1.46x/3.72x/6.11x against 1/|rho|, and sqrt(n) scaling puts the fix at 2^116; design dead before lock
 - [open]   2026-08-25  entry 172: Nyquist no-go formalized — lean/Nyquist.lean, 21st module, 5/5 pins; aliasing is constructive (witness γ-2π/log b), base_two_fails_by_three proved from pi_lt_d2 + log_two_gt_d9; bench now 255/255
 - [open]   2026-08-25  entry 171: O81 verdict `null` stamped by Julian, design AND question retired (his call: if it's important it comes back); prereg FORMAT gap recorded — vacuousness check asks 'can it fire both ways', never 'can it fire at all'
 - [open]   2026-08-25  entry 170: operator-over-zeros story withdrawn — history wrong at 4 of 5 links, asymmetry was sorting (O48 and O81 are operator-side deaths), 165 of 327 pins sit downstream of the zeros, entry 111 had settled it the other way; real split is fact vs statistical specialness
