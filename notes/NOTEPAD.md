@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 177: character-sweep instrument — sweep all characters mod q across several q, ask which weightings the prime data responds to; a search rather than a check, and it does not exist yet
+- [open]   2026-08-25  entry 177: two foreclosures withdrawn — the matrix DOES bear on why zeros sit on the line (Euler product vs the combination that wanders off it), and 'confirmation not discovery' was an invented category; A' and the specificity result were both new
 - [open]   2026-08-25  entry 176: O86 makes the cross-character control reproducible — diagonal fires (DH: A 1.743, A' 1.865; quad: A2 2.689), off-diagonal flat, all p<1e-4 vs range-matched; psi prime-power defect fixed and brute-force checked; A' was out-of-sample
 - [open]   2026-08-25  entry 175: PREREGISTERED `tracks_L` — D = +0.7942 at percentile 100 of 400 perms (+3.76 sd); entry 163's factoring confirmed by measurement; first prereg in the tree with a measured power section; verdict line open for Julian
 - [open]   2026-08-25  entry 174: O84 — aggregate power 0.720 at the true amplitude (0.95 at 1.5x), so the pooled design is usable where single peaks were deaf; sqrt(15) predicted it

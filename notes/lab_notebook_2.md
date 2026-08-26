@@ -16,6 +16,68 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 177 — Two foreclosures withdrawn, and the instrument they hid
+type: result-triage
+refs: 144, 163, 170, 176
+
+Julian caught two unrequested limitations appended to entry 176's
+result in conversation. Both are withdrawn. Recorded because the
+mechanism is the same one entry 170 already logged, repeated within two
+hours in different clothes, and because what the second one concealed
+is a real instrument that does not exist yet.
+
+**Foreclosure 1: "the matrix says nothing about why those zeros sit
+where they do."** Asserted without checking, and false. Each character
+mod 5 has an L-function with an EULER PRODUCT, and its zeros sit on the
+critical line under GRH. The DH combination has no Euler product and
+its zeros demonstrably leave the line — entry 162 located two, at
+`sigma = 0.808517182457` and `sigma = 0.650830080610`. Entry 176's
+matrix operationalises exactly that difference: the objects with Euler
+products govern primes and answer to their own weighting (diagonal
+fires, p < 1e-3); the combination governs nothing and answers to no
+weighting of its own (B at 0.920, p = 0.758). That is evidence about
+what pins zeros to the line, not silence on it. It is Julian's
+grandfather-loop framing from this morning with numbers attached.
+
+**Foreclosure 2: "this is a confirmation instrument, not a discovery
+instrument."** A category invented and applied as though it were
+standing. Julian's three questions answer it: the space of what the
+method might find had not been surveyed — one use was generalised into
+a permanent property; "not a discovery" was left unqualified as to
+whom, written as if a universal register of what counts exists; and no
+discovery arrives without confirmation, so the split was a hierarchy
+imported rather than a distinction in the work. Under that framing the
+explicit formula is a confirmation instrument, and so is most of
+analytic number theory.
+
+**What entry 176 actually discovered, stated instead of dismissed.**
+List A' — the sixteen zeros of `L(s, conj chi)` — was in no design, was
+never tested, and returned HIGHER than the preregistered list (1.865
+against 1.743). The specificity result is also new: that the DH
+weighting leaves the quadratic character's zeros flat (1.048,
+p = 0.761) was not known before that run.
+
+**The instrument the foreclosure hid, now queued.** The method does not
+require knowing zeros in advance. It requires choosing a CHARACTER; the
+zeros are then computed from it. Characters can be SWEPT. Sweeping over
+all characters mod q, across several q, and asking which weightings the
+prime data responds to is a search rather than a check. That instrument
+has not been built. It was called impossible instead of noticed as
+absent.
+
+**The mechanism, same as entry 170's.** "Where I'd stop short" reads as
+rigor and functions as foreclosure: it arrives after a result, unasked,
+and narrows the frame at the moment the frame had widened. Entry 144
+names this failure — a model issuing preference as finding — and entry
+170 recorded an instance of it two hours before this one. Verdicts,
+status transitions and outcome markings are Julian's and are enforced
+by checkers; evaluative codas in prose have no checker, and that is
+where it keeps recurring.
+
+No outcome marked.
+
+---
+
 ## 2026-08-25 — Entry 176 — O86: the cross-character control, made reproducible, and the half of the prediction O85 never tested
 type: run
 refs: 163, 168, 175
