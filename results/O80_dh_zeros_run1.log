@@ -1,0 +1,27 @@
+O80 — Davenport-Heilbronn zero locations.  EXPLORATORY.
+
+GATES:
+   tau = 0.28407904384   residual of tau^2+(1+sqrt5)tau-1 = 5.1699e-26
+   max |xi(s)/xi(1-s) - 1| at three points: 9.5963e-26
+   gates PASSED
+
+ON-LINE — sign changes of the Hardy-type Z on sigma = 1/2, t up to 25.0:
+   5.0941598, 8.9399144, 12.133545, 14.404003, 17.130239, 19.3088, 22.159708, 23.34537
+   8 zeros; the lowest is 5.0941598 against zeta's 14.134725
+
+OFF-LINE — winding number of f around rectangles Re s in (0.51, 1.6), before any root is sought:
+   t in (0, 30): winding  1.97989e-26  -> 0 zero(s)
+   t in (30, 60): winding   6.9939e-26  -> 0 zero(s)
+   t in (60, 90): winding          1.0  -> 1 zero(s)
+   t in (90, 120): winding          1.0  -> 1 zero(s)
+
+   locating the flagged ones:
+   t in (60, 90): sigma = 0.808517182457, t = 85.6993484854, |f| = 5.82e-26, displaced 0.308517 from the line (mirror at 0.19148282)
+   t in (90, 120): sigma = 0.65083008061, t = 114.163342731, |f| = 1.01e-25, displaced 0.15083 from the line (mirror at 0.34916992)
+
+  READ. DH's zeros are on the line up to t = 60 by the winding count,
+  and the first departure is at t ~ 85.7. Entry 36's crossing-slope law
+  assumes Re rho = 1/2 in its mode gain; these zeros are where that
+  assumption is false for a function built from the same primes.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/dh_zeros.json

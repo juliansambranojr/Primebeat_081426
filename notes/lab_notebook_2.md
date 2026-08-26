@@ -16,6 +16,68 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 162 — DH's zeros located: on the line to t = 60, off it at 0.8085 + 85.699i
+type: run
+refs: 36, 161
+
+Script O80_dh_zeros.py, defaults. Same object and same gates as entry
+161: tau checked against the eigenvector condition (residual 5.2e-26)
+and the completed function's functional equation checked at three
+off-line points (max 9.6e-26) before any zero is sought. Artifacts:
+results/dh_zeros.json, results/O80_dh_zeros_run1.log.
+
+The numbers were first obtained in throwaway computations during the
+exploratory pass; this script exists so the tree carries nothing it
+cannot regenerate, and it reproduces them.
+
+**On-line zeros** (sign changes of a Hardy-type real function on
+sigma = 1/2), t up to 25:
+
+```text
+5.0941598  8.9399144  12.133545  14.404003
+17.130239  19.308800  22.159708  23.345370
+```
+
+Eight, the lowest at 5.094 against zeta's 14.134725.
+
+**Off-line zeros, counted before they were sought.** Winding number of
+f around rectangles with Re s in (0.51, 1.6):
+
+```text
+t in (0, 30)     winding 2.0e-26   ->  0 zeros
+t in (30, 60)    winding 7.0e-26   ->  0 zeros
+t in (60, 90)    winding 1.0       ->  1 zero
+t in (90, 120)   winding 1.0       ->  1 zero
+```
+
+Then located by grid-seeded Newton:
+
+```text
+sigma = 0.808517182457   t = 85.6993484854    |f| = 5.8e-26
+sigma = 0.650830080610   t = 114.163342731    |f| = 1.0e-25
+```
+
+displaced 0.3085 and 0.1508 from the line, each with a mirror partner
+at 1 - sigma. The argument principle is the honest half of this: it
+counts without finding, so a failed search cannot be reported as an
+absence.
+
+**Why it matters to the bench's law.** Entry 36's crossing-slope law
+takes its mode gain from |1 - b^(-rho)| at the lowest zero with
+Re rho = 1/2 ASSUMED. A zero at sigma > 1/2 is less suppressed by the
+depth operator. These are coordinates where that assumption is false,
+for a function assembled from the same primes the bench counts.
+
+**The gap that still blocks a prereg**, unchanged from entry 161: the
+DH arm carries no integer table, so there is no exact-zero census to
+compare, and a crossing-slope comparison needs an object DH actually
+governs. Naming that object is the open design question. Nothing here
+is a comparison; these are coordinates.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 161 — The same primes sorted mod 5: the deep zeros are a property of the total
 type: run
 refs: 158, 160
