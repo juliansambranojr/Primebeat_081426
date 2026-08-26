@@ -219,6 +219,29 @@ property of the cell, not of the base set.
 Nothing here says they do not.
 `D7`
 
+**G1′.** § F's retry was run and does not move G1. `O78_incommensurate_zero_surface.py`
+rebuilt the scan on ten bases with `log₂ b = 0.18·√p` over distinct primes — pairwise
+incommensurate by construction, zero exact cross-base window-edge coincidences against
+O45's 901 of 918 — and reported `z = −7.20` raw, `−3.71` width-matched. An adversarial
+review retired that reading on four counts: the within-base control of § C2 was dropped
+from the copy and fires harder than the cross-base statistic (`−4.79` against `−3.71`
+width-matched); permutation `z` scales as `√n`, and rescaling § C by `√(54/125)` predicts
+`−7.30` and `−3.50` against the observed `−7.20` and `−3.71`, with the scale-free
+`obs/null` ratio `0.7055` against `0.7025` — so removing the lattice removed nothing
+measurable; the free parameter `α` was never swept, and across § F2's legal window the
+width-matched `z` runs `−0.90` to `−6.89`; and dropping one base of ten takes it to
+`−1.18`.
+`lab_notebook_2.md entry 160 · results/incommensurate_zero_surface.json`
+
+**G1″.** The coordinate itself cannot answer § A3. At fixed `b` the map `(r,d) → (lo,hi)`
+is injective and `log₂ b ≥ 0.2546` at every base in that scan, above the `±0.25` matching
+tolerance, so a null matched on **both** coordinates has candidate pool size exactly 1 for
+every zero and its variance is zero. In this coordinate "the zeros form a surface" and
+"the zeros are concentrated in a sub-region of their support" are the same statement. § F
+is therefore necessary but not sufficient: an incommensurate base set removes § D7's
+confound and leaves the § A3 distinction still unreachable here.
+`lab_notebook_2.md entry 160`
+
 **G2.** The `z = −5.32` surviving the width-matched control cannot be read. It is
 consistent with a genuine cross-base structure and equally consistent with the forced
 lattice alignment of D3, and this scan cannot separate them.
@@ -229,6 +252,17 @@ lattice alignment of D3, and this scan cannot separate them.
 are the same fact in different coordinates; that is an identification, not a
 measurement.
 `C4 + C5`
+
+**G3′.** Measured, at matched sample size, and C5's identification survives while
+exactness does not. Running the same statistic over selections of the incommensurate
+scan's own support, each subsampled to the exact-zero set's size of 54: the zeros reach
+`−3.56` width-matched, against `−2.40` for `|P| = 1`, `−3.86` for `|P| = 2` and `−3.30`
+for `1 ≤ |P| ≤ 3` — indistinguishable, at subsample spreads of `0.7` to `1.2`. A stencil
+mass cut `S ≤ 200` reaches `−6.03`, stronger than the zeros. A pure depth cut `d ≤ 3`,
+which never reads a cell's value, collapses to `−0.13`. So the compression tracks mass,
+exact vanishing does no work that near vanishing does not, and geometry alone does not
+produce it.
+`results/exact_vs_near.json · lab_notebook_2.md entry 165`
 
 **G4.** O47's mass ranking is untouched by any of the above and stands on its own: the
 two heaviest cancellations in the pool are at `2^(1/2)`, cell (34,11) at

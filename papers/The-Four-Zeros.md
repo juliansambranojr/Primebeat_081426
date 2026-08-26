@@ -92,6 +92,40 @@ in this tree argues against that reading; B9's hole is where an argument for
 more would have to live, and it is empty.
 `B9 · O43 verdict magnitude_floor · preregs/extended_zero_census_v1_locked_20260818.md`
 
+**B10′.** What `magnitude_floor` is, stated precisely, because B10's prose is
+stronger than its citation. That prereg's null is a **constant per-cell rate** —
+each `d ≥ 1` cell an independent Bernoulli with one shared `q` — and its own text
+falsifies uniformity before the run: 190 of the 1891 old cells have `r ≤ 20` and
+all four zeros are among them, probability `1.019e−4`, so `rate_constant` was
+never the sober expectation. Its magnitude content is one deterministic bound,
+`M_new = 0`: no cell in `62 < r ≤ 92` came within `near_miss_H = 1024` of zero.
+The branch's name is about magnitude; the branch's arithmetic is a rate test, and
+the prereg says in its own words that it "cannot separate 'the four are
+structurally special' from 'the entries got too large for exact cancellation'."
+`preregs/extended_zero_census_v1_locked_20260818.md · lab_notebook_2.md entry 165`
+
+**B10″.** No expected number of exact zeros under a magnitude null exists in this
+tree for base 2's four, and one should not be computed. `lab_notebook.md` entry 17
+records the reason: the cells are a determined binomial combination
+`cell(r,d) = Σ(−1)^k C(d,k) N(r−k)`, not independent draws, and `(20,6)` is an
+exact identity across seven consecutive counts. Asking how probable that is
+imports a null model the object does not have. The only parameter-free magnitude
+model ever written down here, O46's `density ≈ 1/S`, is refuted, and its premise
+with it: `|cell|/S` has median between `3.52e−4` and `2.20e−3` across bases, so
+cells sit three orders of magnitude inside their own bound.
+`lab_notebook.md entry 17 · results/mass_density_check.json`
+
+**B10‴.** What is measured, and it cuts both ways. At matched sample size on an
+incommensurate base scan, exact vanishing does no work that near vanishing does
+not: the exact-zero set reaches `−3.56` on a width-matched cross-base statistic
+against `−2.40` for `|P| = 1`, `−3.86` for `|P| = 2`, `−3.30` for `1 ≤ |P| ≤ 3`,
+at subsample spreads of `0.7` to `1.2`. That supports B10 on the axis that
+matters. A stencil-mass cut `S ≤ 200` reaches `−6.03`, outrunning the zeros — so
+whatever the compression is, it tracks mass rather than exactness. And a pure
+depth cut `d ≤ 3`, which never reads a cell's value, collapses to `−0.13`, so
+geometry alone does not produce it either.
+`results/exact_vs_near.json · lab_notebook_2.md entry 165`
+
 ---
 
 ## C · Windows

@@ -91,9 +91,33 @@ resource-starvation account predicts.
 peak's location and the mechanism are separate claims.
 `C2 + D2`
 
-**D4.** Naive two-point extrapolation of D1 puts G5 overtaking G4 near `xmax ≈ 4e11` —
-crude, and far beyond what this instrument reaches.
+**D4.** Naive two-point extrapolation of D1 put G5 overtaking G4 near `xmax ≈ 4e11` —
+crude, and beyond what the instrument reached at the time.
 `D1`
+
+**D5.** It was reached, and the crossing is absent. The sieve was the barrier, not the
+arithmetic: `pi` at the block edges is the primes array's only consumer, so a `primecount`
+backend removes the memory wall (`pi(4e11)` in 8 ms, no array). At `xmax = 4e11`,
+G1…G5 on otherwise identical settings:
+
+```text
+set   n_blk     P_max/med   verdict
+ G1      37      4.963683      NULL
+ G2     475      8.749549    DETECT
+ G3    2894     31.107472    DETECT
+ G4   11787     69.005848    DETECT
+ G5   34343     47.719686    DETECT
+```
+
+The scaling band reads FALLS, its final step decreasing. D2's deeper-gains-more
+ordering does not hold at the G4→G5 step at this scale.
+`results/O24_gen_xmax4e11_results.json · lab_notebook entry 150`
+
+**D6.** The step changes and the comparison against `3e9`: G1→G2 `+76.27%`,
+G2→G3 `+255.53%`, G3→G4 `+121.83%`, G4→G5 `−30.85%`; G4 rose `37.26 → 69.01` and G5
+`26.17 → 47.72`, both roughly doubling, with the G4/G5 ratio widening `1.42 → 1.45`.
+`percentages derived from the P_max/median column of D5; the 3e9 figures are E2's,
+from results/O24_gen_xmax3e9_results.json; neither set is printed in the 4e11 artifact`
 
 ---
 
@@ -118,6 +142,11 @@ G5 and G6 rows are 2 dp truncations of the log.`
 **E3.** G4 still holds the height. "Carries the whole spectrum rather than one peak" is now
 **G6's** property.
 `E2`
+
+**E3′.** The pattern persists at `4e11`, with G4's spread tightening: `P/median` at
+γ₁…γ₆ spans `66.03–69.01` for G4, a spread of `4.5%` against `8.56%` at `3e9`, while
+G5 spans `46.83–47.72`, about `1.9%`. G4 holds the height, G5 carries the spectrum.
+`results/O24_gen_xmax4e11_results.json · lab_notebook entry 150`
 
 **E4.** G4's own argmax has drifted off γ₁ across the three settings: 14.15, 25.00, 24.99.
 `B1 sources`
@@ -150,8 +179,11 @@ pre-fix bytes. The numbers are unaffected; the stamp is wrong.
 
 ## G · Not established
 
-**G1.** Whether the peak ever moves is open. D4's extrapolation is two points.
-`D4`
+**G1.** Whether the peak ever moves remains open, but it did not move at 133× the
+data on which it was found. D4's extrapolation was two points and D5 tested it; the
+peak stands at G4. What is unestablished is whether some further scale moves it, and
+nothing here bounds that.
+`D5`
 
 **G2.** Why four generators and not three or five has no account beyond D2, and D2 does not
 predict a *peak* — it predicts monotone improvement with data, which is not the same thing.

@@ -45,13 +45,20 @@ matchings exist.
 
 ## B · Instruments that broke
 
-> **Provenance warning for B3–B9.** `O30, O31, O32, O34, O35, O36` and `O38` write no
-> results file — their console output was never captured. Every figure in B3, B4, B5, B7,
-> B8 and B9 traces to `lab_notebook.md` entries 38 and 39 and to nothing else in the tree.
-> They are transcript-derived, not artifact-verified, and cannot be checked without
-> re-running. The four defects are documented qualitatively in
-> `O38_weil_form_BUGGY.py:38-47`; the numbers are not. The one exception is B7's post-fix
-> agreement, which is in `results/O37_weil_form_on_stencil_run1.log` at `|diff| 1.456e-22`.
+> **Provenance note for B3–B9, superseded 2026-08-25.** These figures were
+> transcript-derived when this section was written: `O30, O31, O32, O34, O35, O36` and
+> `O38` wrote no results file and their console output was never captured, so every
+> figure in B3, B4, B5, B7, B8 and B9 traced to `lab_notebook.md` entries 38 and 39 and
+> to nothing else in the tree. The instrument-fix pass of `lab_notebook_2.md` entry 148
+> gave all nine scripts the house flag set and a results JSON, and re-ran each at
+> defaults with zero drift against those entries — so the numbers below are now
+> artifact-verified. See `results/weil_calibration.json`,
+> `results/weil_form_balance.json`, `results/weil_form_on_stencil.json`,
+> `results/weil_bug_diagnosis.json`, `results/zeta_residual_model.json`,
+> `results/nearmiss_residuals.json`, `results/silence_scaffold_primes.json`,
+> `results/excise_scaffold_primes.json`, `results/excised_gamma_check.json`. The four
+> defects remain documented qualitatively in `O38_weil_form_BUGGY.py:38-47`, which is
+> frozen evidence and whose numbers are not citable.
 
 **B1.** **Gram series divergence.** Building `π(x)` from the zeros via
 `R(z) = 1 + Σ_k (ln z)^k / (k·k!·ζ(k+1))` returned `1.29e+182` for `π(2^20)` against a true
@@ -79,10 +86,18 @@ worth 3.87 on its own.
 `O38_weil_bug_diagnosis.py`
 
 **B5.** All four were found only after an independent implementation was **calibrated on a
-known case first** — modulated Gaussians agreeing to 1e−18, including one where prime
-(0.4620476309) and archimedean (0.4620476476) cancel to eight digits and the residue still
-matches the zero sum.
-`O36_weil_calibration.py`
+known case first** — modulated Gaussians, including one where prime (0.4620476309) and
+archimedean (0.4620476476) cancel to eight digits and the residue still matches the zero
+sum.
+`results/weil_calibration.json`
+
+**B5′.** The "agreeing to 1e−18" figure this section carried applies to two of the three
+settings, not all three: the zero-versus-arithmetic differences at 600 pairs are
+`−5.09918e−18`, `−2.69945e−22` and `−3.75333e−15`. The third has always sat at the
+`e−15` scale, on the original code and on the 2026-08-25 re-run alike, against an
+arithmetic side of order `1e−8`. Recorded because the sharper number was the one
+quoted.
+`results/weil_calibration.json · lab_notebook_2.md entry 148`
 
 **B6.** Calibrating before diagnosing was the skipped step. The original work went straight
 to the hard case and then tuned conventions against a number it could not check.
