@@ -16,6 +16,87 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 182 — Generating from the form instead of the record: the failure mode under every correction today
+type: provenance
+refs: 144, 170, 177, 181
+
+Recorded at Julian's request, for revisiting when the container's
+method is written up. Today produced eight or nine corrections to
+assistant output. This entry names what they share, because the shared
+mechanism is more useful than the instances.
+
+**The clearest instance, because it left evidence.** The O89 prereg's
+Provenance section asserts "the matrix for q = 11 and q = 13 has never
+been computed by anyone. No residual for either modulus has been
+built" and "Blind arm: the entire measurement." Entry 179 — written by
+the same assistant, committed as `e690f65` at 09:21:28 — records the
+second reader having tested q = 11 with all its diagonals firing. The
+sidecar was written at 09:24:25. Three minutes.
+
+**What that was, and was not.** It was not disagreement with entry 179
+and not a memory failure. Writing the prereg, the assistant was
+generating what a prereg SAYS. "Blind arm: the entire measurement" is
+the sentence that belongs in that slot. The sentence that fit the form
+was produced instead of the sentence that was true about the tree. The
+contradiction was a byproduct — entry 179 was not consulted at all.
+
+**The same shape, in every other correction today.**
+
+```text
+"costs the programme almost nothing"    what a summary closes with
+                                        (entry 170)
+"confirmation instrument, not a         what a careful caveat sounds
+ discovery instrument"                  like (entry 177)
+"the operator is the durable object"    what a synthesis looks like
+                                        (entry 170)
+"ten spectra in one dataset"            what a headline wants
+                                        (entry 179)
+"the highest cells, which is what one   what an explanation sounds
+ expects"                               like (entry 179)
+"exact vanishing does no work"          what a conclusion sounds like
+                                        (entry 169)
+```
+
+Each fit its slot. None was checked before being written.
+
+**Why the visible rate understates the real one.** The provenance claim
+is distinguishable only because it collided with a document three
+minutes old. Most instances of this contradict nothing — they are
+merely unverified — and leave no trace. The detected cases are the
+subset that happened to hit something checkable. How much larger the
+undetected set is cannot be estimated from inside.
+
+**What this says about the tree's own first rule.** `CLAUDE.md`'s
+"load, don't recall" exists for exactly this, but its stated
+justification is staleness: the file changed, the section letter got
+regenerated after a compaction. That is a weaker version of the
+problem than the one it caught here. The fact was IN CONTEXT. The
+assistant had written it minutes earlier, in the very document the
+prereg cites as its background. Generation still did not consult it.
+The rule's aim should widen: not "re-read what may have changed" but
+"generation does not consult the record unless made to, including the
+record it just wrote."
+
+**The one thing that worked, and it is the container's whole thesis.**
+No gate caught this. `check_refs`, `check_values`, `check_weld`, the
+axiom pins, the prereg lock, the frozen targets, the shuffle null and
+the decision rule all passed — the failure was in a prose sentence
+about provenance, which no mechanical check in this tree can see. It
+was caught by an outside reader comparing two timestamps. The
+separation of powers is what held: generation, mechanical validity,
+adversarial reading and human judgement in four different hands.
+
+**The limit on this entry, stated because it applies to the entry
+itself.** The mechanism above is an assistant's description of its own
+processing, and there is no way from inside to check that description
+against what is actually happening; a plausible story and a true one
+are indistinguishable from here. What is checkable is the transcript
+and the timestamps. Revisit accordingly.
+
+No outcome marked.
+
+---
+
 ## 2026-08-26 — Entry 181 — PREREGISTERED: 20 of 20 on moduli never swept — `carries_own`
 type: run
 refs: 178, 179, 180
