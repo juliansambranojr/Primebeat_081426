@@ -95,3 +95,9 @@ Expansion.B_peel                                   support
 Expansion.B_bounds                                 support
 Expansion.t_zero                                   support
 Expansion.S_floor                                  support
+ZeroCells.construction_eq                          record
+ZeroCells.pairIdentity_eq                          record
+ZeroCells.construction_all_vanish                  record
+ZeroCells.seedPerturbation_all_vanish              record
+ZeroCells.pairIdentity_all_vanish                  record
+ZeroCells.all_four_have_length_four                record

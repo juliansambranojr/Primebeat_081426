@@ -379,13 +379,13 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `construction_eq` | The construction module's list is the computed one. | **none** | **UNTAGGED** |
+| `construction_eq` | The construction module's list is the computed one. | **none** | record |
 | `seedPerturbation_eq` | The seed-perturbation module's list is the computed one. | **none** | `lab_notebook_2.md` |
-| `pairIdentity_eq` | The pair-identity module's list is the computed one. | **none** | **UNTAGGED** |
-| `construction_all_vanish` | Every cell `Construction.measured_zeros` names vanishes — now derived, not transcribed. | **none** | **UNTAGGED** |
-| `seedPerturbation_all_vanish` | Every cell `SeedPerturbation.zero_cells` names vanishes. | **none** | **UNTAGGED** |
-| `pairIdentity_all_vanish` | Every cell `PairIdentity.zero_cells` names vanishes. | **none** | **UNTAGGED** |
-| `all_four_have_length_four` | All four names, one length. | **none** | **UNTAGGED** |
+| `pairIdentity_eq` | The pair-identity module's list is the computed one. | **none** | record |
+| `construction_all_vanish` | Every cell `Construction.measured_zeros` names vanishes — now derived, not transcribed. | **none** | record |
+| `seedPerturbation_all_vanish` | Every cell `SeedPerturbation.zero_cells` names vanishes. | **none** | record |
+| `pairIdentity_all_vanish` | Every cell `PairIdentity.zero_cells` names vanishes. | **none** | record |
+| `all_four_have_length_four` | All four names, one length. | **none** | record |
 
 ## Zeros (15)
 

@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 189: Zeros.lean is Lean-core only — 8027 jobs/2.8s/5.37 GB to 3 jobs/240ms/0.68 GB; 2 of 31 pins improved, 34 to 35 theorems at zero axioms; the memory figure is the second-machine blocker
+- [open]   2026-08-26  entry 189: ZeroCells broke on transitively-inherited Mathlib notation, not on a proof — a second failure mode for every future Mathlib-free conversion, and it is silent
+- [open]   2026-08-26  entry 189: BUILD.md:49 and Construction.lean:28 say omega is unavailable in core; it is available, and BUILD.md:58's own cost table already records its core price — correction approved by Julian, sweep running
+- [open]   2026-08-26  entry 189: EulerFactorChain.lean:122 is a docstring line starting with `lemma` at column 0 — the line-anchored parity grep reads 17/16; real parity is 262/262
+- [open]   2026-08-26  entry 188: check_refs keyed declarations by FILENAME not namespace, so no module in the bench could ever be split — 48 citations broke on the first attempt; fixed, verified byte-identical on the pre-split tree
 - [open]   2026-08-26  entry 187: ZeroCells lands (22nd module, 7/7 pins, zero axioms) — three transcriptions welded to the computed list; Zeros.lean split scoped, 15 Mathlib theorems identified for the sibling module
 - [open]   2026-08-26  entry 186: THE RECONSTRUCTION TEST — rebuild every script in a clean repo from the accounts alone (entries, NOTEPAD, papers, preregs, commits), not from the source; tests whether the record is complete, fires both ways; open design question is how to enforce the separation
 - [open]   2026-08-26  entry 185: container lesson — nine things today taught about building gates, hooks and guards; read before writing the container's own utilities

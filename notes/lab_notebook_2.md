@@ -16,6 +16,152 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 189 — Zeros.lean builds on Lean core alone: 5.37 GB to 0.68 GB, two pins improved
+type: formalization
+refs: 59, 66, 78, 187, 188
+
+Three commits: `dd3f483` (entry 188), `c532221` the split, `279e40b`
+the core-only build. Bench now **23 modules, 262 theorems, 262 pins,
+8049 jobs**.
+
+**The split bought nothing on its own, and that was known before it
+ran.** `Zeros.lean` held 31 theorems, 15 needing Mathlib (11 stencil,
+4 prime-factorization). Those 15 moved to `lean/ZerosStencil.lean`
+keeping `namespace Zeros`, so every declaration's address is
+unchanged. `Classical.choice` stayed at 163 — the theorems carrying it
+moved with it. Both files still imported Mathlib, so build time did
+not move either. It was committed as a separate fallback point
+precisely because its value is entirely as a prerequisite.
+
+**The move is verified by its axiom records.** All 31 `#guard_msgs`
+pins reproduced byte-for-byte across the two files:
+
+```text
+diff <(git show c532221:lean/Zeros.lean | grep -oE "^/-- info: .*-/$") ...
+```
+
+**Then Mathlib came out.** Seven of the sixteen remaining theorems
+broke; six close in core:
+
+```text
+zero_iff_repeat                      sub_eq_zero    -> Int.sub_eq_zero
+neg_below_zero                       ring           -> Int.zero_sub _
+pair_shares_diagonal                 push_cast;ring -> omega
+window_shared_of_composite_exponent  norm_num       -> decide
+zero_at_20_6_of_repeat               norm_num       -> decide
+zero_at_8_3_of_repeat                norm_num       -> decide
+```
+
+The seventh, `tableFrom_eq_fwdDiff`, cannot: its STATEMENT names
+`fwdDiff`, a Mathlib identifier. It moved to `ZerosStencil.lean`
+intact. Restating it would have made it a different theorem.
+
+**Exactly two of the 31 axiom records changed, both improvements:**
+
+```text
+neg_below_zero                       [propext, Quot.sound] -> [propext]
+window_shared_of_composite_exponent  [propext] -> does not depend on any axioms
+```
+
+`ring`'s generic-ring instances are classical and `Int.zero_sub` is
+not; `decide` on a closed ℕ equation is kernel evaluation. Bench
+theorems depending on nothing: 34 -> 35.
+
+**Measured, after deleting the olean** — `touch` does not force a
+rebuild, because Lake traces file content rather than mtime, so
+`touch && time lake build Zeros` replays the cache and measures
+nothing:
+
+```text
+                    jobs   Built Zeros   peak RSS
+with Mathlib        8027       2.8 s      5.37 GB
+core only              3      240 ms      0.68 GB
+```
+
+The memory figure is the one that matters and was not predicted. A
+module needing 5.4 GB to elaborate is not portable to a small machine,
+which is the standing blocker on the second-machine thread. An earlier
+figure of 24 s -> 268 ms was quoted in chat during scoping; it compared
+a cold cache against a warm one and overstates the change.
+
+**`ZeroCells.lean` broke on notation, not on a proof.** It imports
+`Zeros`, `SeedPerturbation`, `PairIdentity` and was inheriting
+Mathlib's ℕ/ℤ notation transitively through the first. With Mathlib
+gone, `autoImplicit` turned them into free variables and three
+theorems failed with `c.fst has type Nat but is expected to have type
+ℤ`. Fixed with `local notation` — `lean/BUILD.md`:60 asks for exactly
+that and says to extend the convention rather than reverse it. Its
+seven pins came out byte-identical. **This is a second failure mode
+for every future Mathlib-free conversion, and it does not announce
+itself as one.**
+
+**Two documentation defects found in passing, neither yet corrected.**
+`lean/BUILD.md`:49 states "`omega` is unavailable, and would cost
+`Quot.sound` if it were"; `Construction.lean`:28 repeats it. `omega`
+is available on v4.28.0 core and was used above, at the
+`[propext, Quot.sound]` that **BUILD.md:58's own measured cost table
+already records**. The file contradicts itself. Separately,
+`EulerFactorChain.lean`:122 is a docstring line whose prose begins at
+column 0 with the word `lemma`, so the line-anchored parity grep reads
+that module as 17 theorems against 16 pins. Real parity is 262/262.
+
+**Scope note.** The brief for the Mathlib-free stage stated five proof
+replacements and six breaks. It is six and seven — there were three
+`norm_num` sites. The brief summarised a prior exploratory run instead
+of reading it, which is entry 182's mechanism again. The brief also
+carried the instruction "treat that file as a hint, not as truth,
+re-derive it yourself", and that instruction is what caught it.
+
+---
+
+## 2026-08-26 — Entry 188 — check_refs indexed Lean declarations by filename, so no module could ever be split
+type: instrument-fix
+refs: 78, 182
+
+`utilities/check_refs.py`, commit `dd3f483`. Prior results stay
+comparable and this was verified rather than assumed.
+
+**The defect.** The declaration index keyed by file stem:
+
+```python
+decls.add(f"{f.stem}.{m.group(1)}")
+```
+
+A Lean declaration's address is its **namespace**, and
+`papers/FORMAT.md` specifies that a citation names a declaration which
+must exist in `lean/`. Keying by filename made those two things the
+same only by coincidence — every module in the bench happened to
+declare one namespace equal to its own stem.
+
+**How it surfaced.** Splitting `ZerosStencil` out of `Zeros`
+(entry 189) kept `namespace Zeros`, so every cited name still
+resolved in Lean and 48 citations broke in the checker: across
+`papers/The-Four-Zeros.md`, `papers/The-Fold.md`,
+`papers/Commensurate-Ladders.md`, `README.md`,
+`notes/lab_notebook_2.md`, and inside `Propagation.lean`,
+`Transform.lean` and `Nonvanishing.lean`. The alternative to fixing it
+was baselining 48 real resolvable names, which blinds the gate to them
+permanently.
+
+**The fix.** Index by declared namespace AND by stem. Verified in both
+directions: **0 broken on the pre-split tree before the patch and 0
+after** — behaviour is identical on all 22 modules that predate the
+split — and 0 broken on the split tree.
+
+**What this had been costing, silently.** No module in this bench
+could be split without breaking citations, and nothing said so. The
+constraint was invisible because it had never been exercised.
+
+**Provenance of the error in the brief.** The agent brief for the
+split asserted that check_refs "resolves a Lean declaration by name
+across `lean/`". That is the claim in the function's own docstring,
+and it is not what the code does. The brief was written from the
+docstring without opening the code — the same mechanism as entry 182,
+one day later, and the second time in two days that a summary was
+consulted where the source was available.
+
+---
+
 ## 2026-08-26 — Entry 187 — ZeroCells: three transcriptions of the four zeros become one object with four names
 type: formalization
 refs: 60, 66, 78
