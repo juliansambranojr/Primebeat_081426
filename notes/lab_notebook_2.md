@@ -77,6 +77,32 @@ explains, rather than merely accompanies, why O18's joint orbit
 worked: pooling incommensurate ladders is the standard escape from
 aliasing, and O81's single-ladder null is the same wall met again.
 
+**A working-process trap, recorded because it cost a build cycle and
+will recur.** A patch was issued as
+
+```text
+cd lean && python3 - <<'EOF' ... EOF
+PATH=... lake build Nyquist
+```
+
+The shell was already inside `lean/`, so `cd lean` FAILED, `&&`
+short-circuited, and the patch never ran — but the build on the next
+line was not gated by that `&&`, so it ran anyway, on the unchanged
+file. It emitted the identical error list as before, including an
+error naming the very constant the patch was meant to replace.
+
+The dangerous part is the diagnostic shape, not the shell error.
+Identical output after a fix reads as "the fix did not work", and the
+next move is to write a different fix. The true state was "the fix did
+not run". Three of the twelve errors in that list were already solved.
+What broke the loop was checking the FILE — `grep` for the replaced
+constant — rather than reading the build again.
+
+The general form: when a fix produces byte-identical failure output,
+check that the edit landed before changing the edit. And do not mix
+`&&` chaining with multi-line commands whose later lines are not part
+of the chain; either gate everything or gate nothing.
+
 No outcome marked.
 
 ---
