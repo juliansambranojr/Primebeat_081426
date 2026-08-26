@@ -1,0 +1,147 @@
+{
+  "schema_version": "1",
+  "script": "O78_incommensurate_zero_surface.py",
+  "generated_utc": "2026-08-25T23:58:56.900990+00:00",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "code_version": "e640cf6e3aeff55ffba62413cbeae2917bb3fbe60cf449eab985da8b2a7b4688",
+    "primes": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29
+    ],
+    "alpha": 0.18,
+    "xmax": 4294967296.0,
+    "nperm": 2000,
+    "tol": 0.25,
+    "seed": 2026,
+    "unit_log2": 0.08016357050419015,
+    "coordinate": "lo=(r-d-1)log2 b, hi=r log2 b (The-Zero-Surface.md B3)",
+    "stratum": "d>=1 and r-d>=r_thick (O45's)"
+  },
+  "gates": {
+    "exact_cross_base_coincidences": 0,
+    "near_cross_base_coincidences": 5,
+    "o45_exact_for_comparison": 901,
+    "unit_min_distance": 0.020887086471827132
+  },
+  "per_base": [
+    {
+      "prime": 2,
+      "base": 1.1929705603545582,
+      "log2_base": 0.25455844122715704,
+      "r_max": 125,
+      "r_thick": 19,
+      "n_support": 5671,
+      "n_zeros": 9
+    },
+    {
+      "prime": 3,
+      "base": 1.2412288588578797,
+      "log2_base": 0.3117691453623979,
+      "r_max": 102,
+      "r_thick": 12,
+      "n_support": 4095,
+      "n_zeros": 3
+    },
+    {
+      "prime": 5,
+      "base": 1.321789312618427,
+      "log2_base": 0.4024922359499622,
+      "r_max": 79,
+      "r_thick": 9,
+      "n_support": 2485,
+      "n_zeros": 10
+    },
+    {
+      "prime": 7,
+      "base": 1.391108777906961,
+      "log2_base": 0.47623523599162637,
+      "r_max": 67,
+      "r_thick": 5,
+      "n_support": 1953,
+      "n_zeros": 5
+    },
+    {
+      "prime": 11,
+      "base": 1.512560094499118,
+      "log2_base": 0.596992462263972,
+      "r_max": 53,
+      "r_thick": 6,
+      "n_support": 1128,
+      "n_zeros": 5
+    },
+    {
+      "prime": 13,
+      "base": 1.5680800707776594,
+      "log2_base": 0.648999229583518,
+      "r_max": 49,
+      "r_thick": 4,
+      "n_support": 1035,
+      "n_zeros": 6
+    },
+    {
+      "prime": 17,
+      "base": 1.6726771507106954,
+      "log2_base": 0.7421590126111789,
+      "r_max": 43,
+      "r_thick": 3,
+      "n_support": 820,
+      "n_zeros": 6
+    },
+    {
+      "prime": 19,
+      "base": 1.7226168040071215,
+      "log2_base": 0.7846018098373212,
+      "r_max": 40,
+      "r_thick": 3,
+      "n_support": 703,
+      "n_zeros": 3
+    },
+    {
+      "prime": 23,
+      "base": 1.8191312969795685,
+      "log2_base": 0.8632496741962894,
+      "r_max": 37,
+      "r_thick": 2,
+      "n_support": 630,
+      "n_zeros": 4
+    },
+    {
+      "prime": 29,
+      "base": 1.9579306496837867,
+      "log2_base": 0.9693296652842105,
+      "r_max": 33,
+      "r_thick": 2,
+      "n_support": 496,
+      "n_zeros": 3
+    }
+  ],
+  "n_zeros_total": 54,
+  "bases_with_zeros": 10,
+  "cross_base_nn": {
+    "observed": 0.6553423802305676,
+    "null_mean": 1.6373085861372485,
+    "null_sd": 0.13647532161513362,
+    "z": -7.1951924661945,
+    "p_low": 0.0004997501249375312
+  },
+  "width_matched": {
+    "observed": 0.6553423802305676,
+    "null_mean": 0.9328114998444131,
+    "null_sd": 0.07468905866827719,
+    "z": -3.714990181442674,
+    "p_low": 0.0004997501249375312,
+    "pool_min": 30,
+    "pool_median": 53,
+    "pool_max": 106
+  }
+}

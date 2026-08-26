@@ -1,0 +1,50 @@
+O78 — the zero surface over incommensurate bases.  EXPLORATORY.
+  log2 b = 0.18 * sqrt(p), p in [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+  ceiling 4.295e+09 (2^32), nperm 2000, seed 2026
+
+GATE 1 — cross-base window-edge coincidence, the defect § D1
+  actually names ('the sorted window list carries exact repeats
+  of lo across different bases'):
+   O45's base set: 918 edges, EXACT cross-base coincidences 901, within 1e-3 4
+   this base set : 628 edges, EXACT cross-base coincidences 0, within 1e-3 5
+   gate PASSED — no exact coincidence; the near ones are what generic
+   points give, not a shared lattice.
+
+GATE 2 — against the pi/(4 g1) unit that forced O45's alignment (unit = 0.080163571 in log2):
+   closest to an integer multiple: p=5, b=1.321789, log2b/unit = 5.0209 (distance 0.0209)
+   gate PASSED — no base is on the lattice that forced O45's alignment.
+
+THE SCAN:
+      p       base   log2 b  r_max  r_thick  support  zeros
+      2   1.192971  0.25456    125       19     5671      9
+      3   1.241229  0.31177    102       12     4095      3
+      5   1.321789  0.40249     79        9     2485     10
+      7   1.391109  0.47624     67        5     1953      5
+     11   1.512560  0.59699     53        6     1128      5
+     13   1.568080  0.64900     49        4     1035      6
+     17   1.672677  0.74216     43        3      820      6
+     19   1.722617  0.78460     40        3      703      3
+     23   1.819131  0.86325     37        2      630      4
+     29   1.957931  0.96933     33        2      496      3
+
+   54 zeros across 10 bases carrying any (bases with none are excluded from the statistic)
+
+STATISTIC — cross-base nearest neighbour, stratified null (section C1's):
+   observed        0.6553
+   null mean       1.6373   sd 0.1365
+   z               -7.20
+   p (low tail)    0.0005     2000 draws
+
+WIDTH-MATCHED NULL (section C6's, +-0.25 in log2; pools min 30 median 53 max 106):
+   observed        0.6553   (unchanged — same zeros)
+   matched null    0.9328   sd 0.0747
+   z               -3.71
+   p (low tail)    0.0005
+
+  READ. Section C measured z = -11.10 raw and -5.32 width-matched on
+  a base set whose alignment section D showed was forced. These bases
+  cannot force it: the ratios are sqrt(p_i/p_j). Whatever the numbers
+  above are, they are the arrangement of the zeros, not the base set.
+  Interpretation is not this script's job.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/incommensurate_zero_surface.json

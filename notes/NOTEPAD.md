@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 160: adversarial review retires O78's reading — within-base control fires harder, d<=3 beats the zeros, both-coordinate null is the identity map, 'halved not collapsed' was sqrt(n); four of my claims corrected, entry 92 miscited
 - [open]   2026-08-25  entry 159: Jensen count repaired to radius 7/4 — 15 log T + 73 (budget 100/1000), reaches |gamma-T| <= 0.901 at the critical line; 77/77 pins, both stale pin refs fixed
 - [open]   2026-08-25  entry 158: O77 leaf-instantiation instrument — entry 157's count was TANGENT to the critical line, cnt=0 for a.e. T, consumer unsatisfiable; new rule: every leaf gets a consumer instantiation
 - [open]   2026-08-25  entry 157: JENSEN COUNT DISCHARGED — zeta_local_zero_count <= 7 log T + 30 (budget 100/1000), localCount_holds instantiates the leaf; 77/77 pins, 8720 jobs; StmtArgCrude now needs only the rectangle identity + Backlund's step

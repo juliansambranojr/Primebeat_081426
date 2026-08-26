@@ -16,6 +16,125 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 160 — O78 does not measure a surface, and four of my claims were wrong
+type: result-triage
+refs: 40, 54, 56, 92, 152, 157
+
+An adversarial review, briefed with Julian's position verbatim and told
+to attack the translation as well as the statistics, returned findings
+that retire the reading I gave in conversation. It retracted six of its
+own findings under self-attack. The decisive numbers below were
+recomputed here independently.
+
+**FATAL 1 — the control that decided the original reading was dropped
+from the copy, and it still fires.** t22_zero_surface.py computes the
+same statistic WITHIN a base; that control is why
+The-Zero-Surface.md C3 reads "the compression is not about crossing
+bases. It is present at every base separately." O78 copied C1 and C6
+and omitted it. Recomputed on O78's own base set:
+
+```text
+                  cross-base    within-base
+raw z                -7.20         -7.06
+width-matched z      -3.71         -4.79
+```
+
+The within-base control fires as hard raw and HARDER width-matched. By
+section C's own logic applied to O78's own data, nothing here is about
+crossing bases.
+
+**FATAL 2 — exact vanishing does no work.** The same pipeline, same
+bases, same nulls, with the selection criterion changed:
+
+```text
+selection                     n      z_raw   z_width-matched
+P == 0 (the zeros)           54      -7.25       -3.68
+|P| == 1                    106      -9.44       -2.69
+|P| == 2                     90      -9.68       -5.16
+stencil mass S <= 200       548     -29.47      -19.17
+d <= 3 (never reads P)     1659     -39.06      -13.31
+```
+
+A pure geometric cut that never looks at a cell's value compresses far
+harder than the zeros do. The statistic detects that shallow, low-mass
+cells occupy a sub-region of a support dominated by deep ones — O46's
+stencil-mass selection, which C5 already identified.
+
+**FATAL 3 — the test cannot separate the hypotheses.** At fixed b the
+map (r,d) -> (lo, hi) is injective and log2 b >= 0.2546 at every base
+in the run, above the +-0.25 matching tolerance. A null matched on both
+coordinates has pool size exactly 1 for all 54 zeros; the null variance
+is zero and z is undefined. In this coordinate "forms a surface" and
+"is concentrated in a sub-region of its support" are the same
+statement. The statistic licenses "not uniformly placed in the
+support" and nothing more.
+
+**FATAL 4 — "halved, not collapsed" was sample size.** Permutation z
+scales as sqrt(n); section C had 125 zeros, O78 has 54. Rescaling
+section C by sqrt(54/125) = 0.657 predicts -7.30 and -3.50 against
+O78's observed -7.20 and -3.71. The scale-free ratio obs/null under
+width matching is 0.7055 for section C and 0.7025 for O78. Removing
+the lattice removed nothing measurable.
+
+**Fragility.** --alpha is a free parameter and was never swept; across
+section F2's legal window the width-matched z ranges from -0.90 to
+-6.89, with three of seven legal values under |z| = 1.6. Dropping the
+single base p = 5 takes the width-matched z to -1.18.
+
+**Gate 1 does not establish what it says.** It tests EXACT cross-base
+edge coincidence, which is measure-zero: perturbing O45's own
+commensurate set by a relative 1e-7 makes it PASS. The discriminator
+that works is the near-coincidence rate (O78: 5 against ~12 expected
+for generic points; O45: 905 of 918 edges), which the script computes
+and then discards in favour of the gate that cannot discriminate.
+
+**Corrections to claims I made in conversation, all mine.**
+
+```text
+1. The fixed-point set of s -> 1-s is the single point {1/2}, not the
+   critical line. The line is the fixed set of the ANTI-holomorphic
+   s -> 1-conj(s), which needs the functional equation AND Schwarz
+   reflection. Two ingredients, and the distinction is the content of
+   the "two sides" question.
+2. "Zeros are transversal intersections" of the graph with {w=0}
+   assumes every zeta zero is simple, which is open.
+3. O73's 1.7e-11 is the best cell of a grid whose relative differences
+   run to 4.3e-6; entry 152's own summary states the range.
+4. "Cannot anchor on the line" overstates. JensenCount's centre sits at
+   2+iT because that is where a uniform lower bound on |zeta| is
+   PROVED (zeta_centre_lower, from the Dirichlet series at Re s = 2),
+   not because no control point could be on the line.
+```
+
+**Miscitation, and it points the other way.** I cited entry 92 as this
+bench's record of the measurement circularity. Entry 92 is O56, about
+what the "1" in sigma + (1-sigma) = 1 is, and it REFUSES exactly the
+move I cited it for: "Nothing carries the arm swap through the log map
+to the functional equation, and the numeral 1 appearing on both sides
+is doing more work in the analogy than it has earned." The circularity
+is recorded at Connes-Measured.md line 141, Euler-Factor-Chain.md
+section J5, and What-Didnt-Work.md line 189. Entry 40's quotation was
+correct and verbatim; The-Four-Prime-Peak.md contains no circularity
+claim.
+
+**What is sound.** The base set is genuinely incommensurate
+(sqrt(p_i/p_j) irrational for distinct primes; alpha cancels in every
+ratio). The construction is faithful to O45 on the P recursion,
+r_thick, the resolved stratum, and r_max, and the float arithmetic was
+verified against mpmath at dps 60 with zero mismatches at all ten
+bases. The statistic and both nulls are faithful copies of t22 for
+what was copied. The run reproduces. Labelling discipline held
+throughout.
+
+**Where this leaves section G1.** Unmeasured, as it was. O78 does not
+move it. The one thing gained is negative and worth keeping: in this
+coordinate the question cannot be answered, because controlling both
+coordinates is the identity map.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 159 — The Jensen count repaired: radius 7/4, 15 log T + 73
 type: formalization
 refs: 130, 157, 158
