@@ -34,9 +34,12 @@ Reads with: O51_twin_lattice_census.py, O65_variance_ratio.py,
 imported/twin_count/README.md, papers/The-Twin-Lattice.md,
 notes/lab_notebook_2.md entries 103, 105
 """
-import json, math, pathlib
+import json, math, pathlib, sys
 import numpy as np
 from sympy import primerange
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from utilities.resultsguard import guarded_write
 
 _HERE = pathlib.Path(__file__).resolve().parent
 RNG = np.random.default_rng(2026)
@@ -160,14 +163,14 @@ def main():
 
     print("HL prediction is lag-dependent and nontrivial: " +
           ", ".join(f"R({h})={hl[h]:.3f}" for h in (1, 2, 3, 5)))
-    (_HERE / "results" / "twin_spectral.json").write_text(json.dumps(
+    guarded_write(
         {"schema_version": "1", "script": "O66_twin_spectral.py",
          "exploratory": True, "prereg": None,
          "params": {"M": M, "window_starts": KS, "lags": LAGS,
                     "blocks": BLOCKS, "ss_prime_cutoff": P_SS, "seed": 2026},
          "hl_prediction": {str(h): hl[h] for h in LAGS},
-         "rows": out}, indent=2))
-    print(f"\nwrote {_HERE / 'results' / 'twin_spectral.json'}")
+         "rows": out},
+        str(_HERE / "results" / "twin_spectral.json"))
 
 
 if __name__ == "__main__":
