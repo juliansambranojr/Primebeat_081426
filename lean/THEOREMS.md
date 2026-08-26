@@ -41,6 +41,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `ZeroCells` | `pairIdentity_all_vanish` | Every cell `PairIdentity.zero_cells` names vanishes. |
 | `ZeroCells` | `all_four_have_length_four` | All four names, one length. |
 | `Zeros` | `tableFrom_isTable` | The bench's table is one. |
+| `Zeros` | `window_shared_of_composite_exponent` | The (8,3) window is shared. |
 | `Zeros` | `zero_2_1` | `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. |
 | `Zeros` | `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. |
 | `Zeros` | `zero_8_3` | `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. |
@@ -386,16 +387,15 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `pairIdentity_all_vanish` | Every cell `PairIdentity.zero_cells` names vanishes. | **none** | **UNTAGGED** |
 | `all_four_have_length_four` | All four names, one length. | **none** | **UNTAGGED** |
 
-## Zeros (16)
+## Zeros (15)
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
 | `tableFrom_isTable` | The bench's table is one. | **none** | support |
 | `zero_iff_repeat` | A zero is exactly a repeat one depth up. | propext | `FORMAT.md`, `Formalization.md`, `NOTEPAD.md` +5 |
-| `neg_below_zero` | A zero puts its left neighbour, negated, directly beneath it. | propext, Quot.sound | `lab_notebook_2.md` |
+| `neg_below_zero` | A zero puts its left neighbour, negated, directly beneath it. | propext | `lab_notebook_2.md` |
 | `pair_shares_diagonal` | And those two cells share a diagonal. | propext, Quot.sound | `lab_notebook_2.md` |
-| `tableFrom_eq_fwdDiff` | The table's `d`-fold backward difference is `(-1)^d` times Mathlib's `d`-fold forward difference at step `-1`. | propext, Quot.sound | `lab_notebook_2.md` |
-| `window_shared_of_composite_exponent` | The (8,3) window is shared. | propext | `lab_notebook_2.md` |
+| `window_shared_of_composite_exponent` | The (8,3) window is shared. | **none** | `lab_notebook_2.md` |
 | `zero_2_1` | `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. | **none** | `lab_notebook_2.md` |
 | `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. | **none** | `lab_notebook_2.md` |
 | `zero_8_3` | `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. | **none** | `lab_notebook_2.md` |
@@ -407,10 +407,11 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `zero_at_20_6_of_repeat` | The measured repeat gives the deep zero, through the theorem. | propext | `The-Four-Zeros.md`, `lab_notebook_2.md` |
 | `zero_at_8_3_of_repeat` | The same for the other deep zero, where the repeated value is 4. | propext | `The-Four-Zeros.md`, `lab_notebook_2.md` |
 
-## ZerosStencil (15)
+## ZerosStencil (16)
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
+| `tableFrom_eq_fwdDiff` | The table's `d`-fold backward difference is `(-1)^d` times Mathlib's `d`-fold forward difference at step `-1`. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_eq_stencil` | The operator IS Pascal. | ℂ floor | `README.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 | `stencil_add` | The stencil is linear in the sampled values. | ℂ floor | `lab_notebook_2.md` |
 | `stencil_smul` | And scalars pass through — linearity's other half, beside `stencil_add`. | ℂ floor | `lab_notebook_2.md` |

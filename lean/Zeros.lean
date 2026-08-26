@@ -29,11 +29,29 @@ WHAT IS NOT PROVED, AND IS NOT EXPECTED TO BE: where the zeros are.
 WHERE THE REST IS: item 2, and the base-2 half of item 3, are proved in
 `ZerosStencil.lean`, which stays in namespace `Zeros` so every citation of
 `Zeros.<name>` still resolves. That file holds the fifteen theorems whose
-`#print axioms` carries `Classical.choice`; the sixteen below carry none of
-it. Notes entries 66 and 187.
+`#print axioms` carries `Classical.choice`, and `tableFrom_eq_fwdDiff`,
+which joined them because its STATEMENT names Mathlib's `fwdDiff` and so
+cannot leave the import behind. The fifteen below carry none of it. Notes
+entries 66 and 187.
+
+**This module does not import Mathlib.** Lean core only, the convention
+`Construction.lean` set — see `lean/BUILD.md` § Mathlib-free core. Every
+statement below is about ℤ and ℕ, so nothing in Mathlib is needed to say it,
+and dropping the import dropped Mathlib's assumptions with it: measured on
+this file, `window_shared_of_composite_exponent` went to no axioms at all and
+`neg_below_zero` shed `Quot.sound`. Six proofs needed a core replacement:
+`sub_eq_zero` became `Int.sub_eq_zero`, one `ring` became `Int.zero_sub _`,
+`push_cast; ring` became `omega`, and three `norm_num` became `decide`.
+`omega` IS available in core on this toolchain, against what
+`Construction.lean` records, and it costs `[propext, Quot.sound]` — which
+`pair_shares_diagonal` was already paying.
 -/
-import Mathlib
 import Construction
+
+-- Core has no `ℕ`/`ℤ` notation; Mathlib's is what we gave up. `local` keeps
+-- these inside this file so downstream modules still get Mathlib's own.
+local notation "ℤ" => Int
+local notation "ℕ" => Nat
 
 namespace Zeros
 
@@ -62,7 +80,8 @@ theorem tableFrom_isTable (N : ℤ → ℤ) : IsTable (Construction.tableFrom N)
 the only characterisation of a zero the chain supplies. -/
 theorem zero_iff_repeat (hf : IsTable f) (r : ℤ) (d : ℕ) :
     f r (d + 1) = 0 ↔ f r d = f (r - 1) d := by
-  rw [hf r d, sub_eq_zero]
+  rw [hf r d]
+  exact Int.sub_eq_zero
 
 /-! ## What a zero forces next
 
@@ -77,7 +96,7 @@ theorem neg_below_zero (N : ℤ → ℤ) (r : ℤ) (d : ℕ)
     (hz : Construction.tableFrom N r d = 0) :
     Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (r - 1) d := by
   show Construction.tableFrom N r d - Construction.tableFrom N (r - 1) d = _
-  rw [hz]; ring
+  rw [hz]; exact Int.zero_sub _
 
 /-- **And those two cells share a diagonal.** The left neighbour sits at
 `(r-1, d)` and the copy at `(r, d+1)`, and `r - d` is the same for both. So
@@ -85,23 +104,7 @@ every zero places a `±v` pair as adjacent cells on the diagonal one in --
 `±343` at `(20,6)`, `±5` at `(8,3)`, both measured in `The-Fold.md` § C3. -/
 theorem pair_shares_diagonal (r : ℤ) (d : ℕ) :
     (r - 1) - (d : ℤ) = r - ((d + 1 : ℕ) : ℤ) := by
-  push_cast; ring
-
-/-- The table's `d`-fold backward difference is `(-1)^d` times Mathlib's
-`d`-fold forward difference at step `-1`. The bridge exists so that
-`tableFrom_eq_stencil` can borrow Mathlib's binomial theorem rather than redo
-the index bookkeeping. -/
-theorem tableFrom_eq_fwdDiff (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
-    Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))^[d] N r := by
-  induction d generalizing r with
-  | zero => simp [Construction.tableFrom]
-  | succ n ih =>
-      show Construction.tableFrom N r n - Construction.tableFrom N (r - 1) n = _
-      rw [ih r, ih (r - 1), Function.iterate_succ_apply' (fwdDiff (-1 : ℤ)) n N]
-      show _ = (-1 : ℤ) ^ (n + 1) *
-        ((fwdDiff (-1 : ℤ))^[n] N (r + (-1)) - (fwdDiff (-1 : ℤ))^[n] N r)
-      rw [show r + (-1 : ℤ) = r - 1 by ring, pow_succ]
-      ring
+  omega
 
 /-! ## Window exclusivity -/
 
@@ -109,7 +112,7 @@ theorem tableFrom_eq_fwdDiff (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
 it at depth 1. Against `Zeros.window_exclusive_of_prime_exponent`, which puts
 base 2 alone in the (20,6) window, the two deep zeros are different kinds of
 object. -/
-theorem window_shared_of_composite_exponent : (4 : ℕ) ^ 2 = 2 ^ 4 := by norm_num
+theorem window_shared_of_composite_exponent : (4 : ℕ) ^ 2 = 2 ^ 4 := by decide
 
 /-! ## What is NOT proved
 
@@ -209,7 +212,7 @@ theorem zero_at_20_6_of_repeat (N : ℤ → ℤ)
     (h19 : Construction.tableFrom N 19 5 = measured_repeat_20_6) :
     Construction.tableFrom N 20 6 = 0 :=
   (zero_iff_repeat (tableFrom_isTable N) 20 5).mpr (by
-    have h : (20 : ℤ) - 1 = 19 := by norm_num
+    have h : (20 : ℤ) - 1 = 19 := by decide
     rw [h, h20, h19])
 
 /-- The same for the other deep zero, where the repeated value is 4. -/
@@ -218,7 +221,7 @@ theorem zero_at_8_3_of_repeat (N : ℤ → ℤ)
     (h7 : Construction.tableFrom N 7 2 = measured_repeat_8_3) :
     Construction.tableFrom N 8 3 = 0 :=
   (zero_iff_repeat (tableFrom_isTable N) 8 2).mpr (by
-    have h : (8 : ℤ) - 1 = 7 := by norm_num
+    have h : (8 : ℤ) - 1 = 7 := by decide
     rw [h, h8, h7])
 
 /-! ## Axiom check
@@ -239,7 +242,7 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms Zeros.tableFrom_isTable
 
-/-- info: 'Zeros.neg_below_zero' depends on axioms: [propext, Quot.sound] -/
+/-- info: 'Zeros.neg_below_zero' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms Zeros.neg_below_zero
 
@@ -254,10 +257,6 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'Zeros.zero_at_8_3_of_repeat' depends on axioms: [propext] -/
 #guard_msgs in
 #print axioms Zeros.zero_at_8_3_of_repeat
-
-/-- info: 'Zeros.tableFrom_eq_fwdDiff' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in
-#print axioms Zeros.tableFrom_eq_fwdDiff
 
 /-- info: 'Zeros.zero_2_1' does not depend on any axioms -/
 #guard_msgs in
@@ -287,7 +286,7 @@ depending on anything not listed, the docstring stops matching the compiler and
 #guard_msgs in
 #print axioms Zeros.nonzero_19_6
 
-/-- info: 'Zeros.window_shared_of_composite_exponent' depends on axioms: [propext] -/
+/-- info: 'Zeros.window_shared_of_composite_exponent' does not depend on any axioms -/
 #guard_msgs in
 #print axioms Zeros.window_shared_of_composite_exponent
 

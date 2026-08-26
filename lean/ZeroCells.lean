@@ -38,6 +38,13 @@ import Zeros
 import SeedPerturbation
 import PairIdentity
 
+-- All three imports are Lean core only as of 2026-08-26, so this module is
+-- too, and core has no `ℕ`/`ℤ` notation. `local` per `lean/BUILD.md`
+-- § Mathlib-free core: unqualified would collide with Mathlib's own
+-- `termℤ` in every downstream module that imports both.
+local notation "ℤ" => Int
+local notation "ℕ" => Nat
+
 namespace ZeroCells
 
 /-- **The construction module's list is the computed one.** `rfl`, and

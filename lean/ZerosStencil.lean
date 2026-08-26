@@ -15,15 +15,38 @@ side effect of it: `papers/The-Four-Zeros.md`, `papers/The-Fold.md` and
 `Nonvanishing.lean` rewrites with `Zeros.tableFrom_eq_stencil` by that name.
 Nothing was renamed and no statement was touched.
 
-WHAT STAYS IN `Zeros.lean`: the sixteen theorems with no `Classical.choice` —
-the repeat characterisation, the four computed zeros and their two non-zero
-neighbours, and the measured-zero results.
+`tableFrom_eq_fwdDiff` joined them on the same day for a different reason:
+its STATEMENT names Mathlib's `fwdDiff`, so it cannot follow `Zeros.lean` off
+the import however cheap its proof is. Sixteen theorems here now.
+
+WHAT STAYS IN `Zeros.lean`: the fifteen theorems with no `Classical.choice`
+and no Mathlib name in their statements — the repeat characterisation, the
+four computed zeros and their two non-zero neighbours, and the measured-zero
+results. That file is now Lean core only.
 -/
 import Mathlib
 import Construction
 import Zeros
 
 namespace Zeros
+
+/-! ## The bridge to Mathlib's forward difference -/
+
+/-- The table's `d`-fold backward difference is `(-1)^d` times Mathlib's
+`d`-fold forward difference at step `-1`. The bridge exists so that
+`tableFrom_eq_stencil` can borrow Mathlib's binomial theorem rather than redo
+the index bookkeeping. -/
+theorem tableFrom_eq_fwdDiff (N : ℤ → ℤ) (r : ℤ) (d : ℕ) :
+    Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))^[d] N r := by
+  induction d generalizing r with
+  | zero => simp [Construction.tableFrom]
+  | succ n ih =>
+      show Construction.tableFrom N r n - Construction.tableFrom N (r - 1) n = _
+      rw [ih r, ih (r - 1), Function.iterate_succ_apply' (fwdDiff (-1 : ℤ)) n N]
+      show _ = (-1 : ℤ) ^ (n + 1) *
+        ((fwdDiff (-1 : ℤ))^[n] N (r + (-1)) - (fwdDiff (-1 : ℤ))^[n] N r)
+      rw [show r + (-1 : ℤ) = r - 1 by ring, pow_succ]
+      ring
 
 /-! ## A zero is one linear condition -/
 
@@ -294,6 +317,10 @@ block below pins the exact axiom list of one result: if a proof ever starts
 depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
+
+/-- info: 'Zeros.tableFrom_eq_fwdDiff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms Zeros.tableFrom_eq_fwdDiff
 
 /-- info: 'Zeros.tableFrom_eq_stencil' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
