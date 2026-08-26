@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 172: Nyquist no-go formalized — lean/Nyquist.lean, 21st module, 5/5 pins; aliasing is constructive (witness γ-2π/log b), base_two_fails_by_three proved from pi_lt_d2 + log_two_gt_d9; bench now 255/255
 - [open]   2026-08-25  entry 171: O81 verdict `null` stamped by Julian, design AND question retired (his call: if it's important it comes back); prereg FORMAT gap recorded — vacuousness check asks 'can it fire both ways', never 'can it fire at all'
 - [open]   2026-08-25  entry 170: operator-over-zeros story withdrawn — history wrong at 4 of 5 links, asymmetry was sorting (O48 and O81 are operator-side deaths), 165 of 327 pins sit downstream of the zeros, entry 111 had settled it the other way; real split is fact vs statistical specialness
 - [open]   2026-08-25  entry 169: correction — O82's statistic is positional, so it cannot separate exact from near-exact by construction; 'exactness does no work' and the 'deflationary' reading are withdrawn; mass result and the FATAL 2 correction stand
@@ -223,7 +224,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-17  entry 27: new = old things seen a new way; generative = poses new questions. Bibliographic novelty is the wrong test
 - [closed] 2026-08-17  entry 27: method note — this instance oscillated inflate/deflate all session; both avoid a clean judgment
 - [closed] 2026-08-17  entry 26: THEOREM AVAILABLE — under RH, Delta^d pi(2^n) != 0 for r > R with R explicit; would settle (20,6) as last
-- [open]   2026-08-17  entry 26: THEOREM-SHAPED — Nyquist no-go, b < exp(pi/gamma_1) = 1.2489; base 2 fails by 3x
+- [closed] 2026-08-17  entry 26: THEOREM-SHAPED — Nyquist no-go, b < exp(pi/gamma_1) = 1.2489; base 2 fails by 3x
 - [paused] 2026-08-17  entry 26: THIRD DIRECTION — prove Connes' §6.6 simplicity for a range of lambda; our gap ratio says it is true and not marginal
 - [closed] 2026-08-17  entry 26: the lemma for any rigorous treatment — depth d multiplies each zero's contribution by (1 - 2^(-rho))^d, exact
 - [closed] 2026-08-17  entry 26: the table is a construction, not a discovery — elementary operator on OEIS A007053

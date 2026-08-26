@@ -16,6 +16,71 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 172 — The Nyquist no-go formalized: entry 26's theorem-shaped item, eight days later
+type: formalization
+refs: 16, 26
+
+`lean/Nyquist.lean`, the bench's 21st module, 5 theorems, 5 pins. Entry
+26 recorded this as THEOREM-SHAPED on 2026-08-17 and left it
+unformalized: "A b-adic sampling of the residual in log x cannot
+resolve frequency gamma unless log b < pi/gamma. For gamma_1 that is
+b < exp(pi/gamma_1) = 1.2489. Base 2 fails it by a factor of three."
+
+**Why it was worth the kernel, given entry 26's own scope note.** That
+entry says plainly this follows from Shannon and is an application
+rather than new mathematics. The content that needed checking is not
+the inequality but the claim it licenses — that failing it makes a
+frequency UNIDENTIFIABLE — which is an existence statement about a
+second frequency, and existence statements are what a proof assistant
+is for.
+
+**What is proved.**
+
+```text
+sample b r          the rungs in log x: r * log b
+Aliases b γ γ'      the modes agree at EVERY rung, so no measurement
+                    on the ladder separates them
+aliases_of_offset   γ' = γ - 2πk/log b aliases with γ, every k : ℤ
+nyquist b           the Nyquist frequency π / log b
+nyquist_no_go       past it there is ALWAYS a strictly-smaller-modulus
+                    frequency that aliases
+base_bound_of_resolvable   contrapositive, in entry 26's own form:
+                    resolving γ forces b ≤ exp(π/γ)
+base_two_past_nyquist      base 2 exceeds its Nyquist frequency at
+                    every γ ≥ 14, and γ₁ = 14.134… is such a γ
+base_two_fails_by_three    3 * nyquist 2 < 14 — entry 26's "fails by a
+                    factor of three", proved rather than asserted
+```
+
+The no-go is constructive: the witness is `γ - 2π/log b`, and the
+proof that its modulus is strictly smaller is where the Nyquist
+condition `π < γ log b` is actually used.
+
+**The numbers are not free parameters.** `base_two_fails_by_three`
+needs `3π < 14 log 2`, discharged from `Real.pi_lt_d2` (π < 3.15) and
+`Real.log_two_gt_d9`, giving 9.45 against 9.704 — a real margin, not a
+rounding.
+
+**Build.** 8047 jobs, 21 modules, 255 theorems, 255 pins, parity in
+every module. All five new pins carry
+`[propext, Classical.choice, Quot.sound]` and matched on the first
+successful compile. `lakefile.toml`'s `globs` is an explicit list, so
+`Nyquist` was added there — a new module does not build until it is
+named.
+
+**What this says about the bench's own instruments.** Entry 16
+measured the same fact from the data side: the dyadic ladder sits at
+the 100th percentile against surrogates while showing eight peaks of
+identical height spaced `2π/log 2` — signal present, frequency
+unidentifiable. That is `nyquist_no_go` seen as a spectrum. It also
+explains, rather than merely accompanies, why O18's joint orbit
+worked: pooling incommensurate ladders is the standard escape from
+aliasing, and O81's single-ladder null is the same wall met again.
+
+No outcome marked.
+
+---
+
 ## 2026-08-25 — Entry 171 — O81 stamped `null`, the design retired, and the DH question with it
 type: prereg
 refs: 163, 164
