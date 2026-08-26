@@ -1,0 +1,51 @@
+{
+  "schema_version": "1",
+  "script": "O85_dh_aggregate.py",
+  "generated_utc": "2026-08-26T03:59:48.764292+00:00",
+  "exploratory": false,
+  "prereg": "preregs/dh_aggregate_spectrum_v1_20260825.md",
+  "prereg_sha256": "1179f867d80d562b2bc7a3a2994f78a6edad87dc625c2619215fe863e603335e",
+  "params": {
+    "code_version": "74007b0cb1046e63acd6145967bcfdc49cca654781aca08f2ec55d39786847ee",
+    "generators": [
+      2,
+      3
+    ],
+    "rmax": 30,
+    "nperm": 400,
+    "seed": 2026,
+    "n_blocks": 307
+  },
+  "run_start_at": "2026-08-26T03:59:41.575594+00:00",
+  "run_end_at": "2026-08-26T03:59:48.764292+00:00",
+  "list_A_recomputed": [
+    6.183578,
+    8.457229,
+    12.674946,
+    14.825026,
+    17.337802,
+    18.998588,
+    22.487585,
+    24.36528,
+    25.531187,
+    27.982757,
+    30.463641,
+    32.19516,
+    34.457229,
+    35.490893,
+    37.271951
+  ],
+  "list_A_matches": true,
+  "D": 0.7942004474274285,
+  "null": {
+    "mean": 0.005569367386295907,
+    "sd": 0.2094502014533292,
+    "p5": -0.3407926103083761,
+    "p95": 0.34732922162435326
+  },
+  "D_percentile_of_null": 100.0,
+  "power_at_true_amplitude": 0.72,
+  "decision_rule_output": "tracks_L",
+  "compromised_by": [],
+  "verdict": null
+}

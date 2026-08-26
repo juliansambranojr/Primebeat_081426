@@ -1,0 +1,21 @@
+O84 — can the aggregate see what single peaks cannot?  EXPLORATORY.
+
+  307 blocks, orbit [2, 3] to 2^30, residual rms 0.3327
+  list A 15 targets, list B 8; sqrt(15) = 3.87 against O83's 3.72x shortfall
+
+NULL — D under permutation of the residual:
+   mean +0.0056   sd 0.2095   p95 +0.3473   (400 draws)
+
+POWER — inject every list-A mode at 1/|rho| with random phase, into a permuted residual:
+    1.0x (the explicit formula's own amplitude): power 0.720
+                                           1.5x: power 0.950
+                                           2.0x: power 1.000
+                                           3.0x: power 1.000
+
+  READ. Power at 1.0x is the number a prereg on this design
+  must quote. Below ~0.5 the design cannot be relied on to
+  fire when H1 is true, and a null from it would be
+  uninformative in exactly the way O81's was.
+  The unblinded D on the real residual is NOT computed here.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/aggregate_power.json

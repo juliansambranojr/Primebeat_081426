@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 175: PREREGISTERED `tracks_L` — D = +0.7942 at percentile 100 of 400 perms (+3.76 sd); entry 163's factoring confirmed by measurement; first prereg in the tree with a measured power section; verdict line open for Julian
+- [open]   2026-08-25  entry 174: O84 — aggregate power 0.720 at the true amplitude (0.95 at 1.5x), so the pooled design is usable where single peaks were deaf; sqrt(15) predicted it
 - [open]   2026-08-25  entry 173: O83 power-sizes the pooled successor BEFORE preregging it — aliasing solved (no wall) but underpowered 1.46x/3.72x/6.11x against 1/|rho|, and sqrt(n) scaling puts the fix at 2^116; design dead before lock
 - [open]   2026-08-25  entry 172: Nyquist no-go formalized — lean/Nyquist.lean, 21st module, 5/5 pins; aliasing is constructive (witness γ-2π/log b), base_two_fails_by_three proved from pi_lt_d2 + log_two_gt_d9; bench now 255/255
 - [open]   2026-08-25  entry 171: O81 verdict `null` stamped by Julian, design AND question retired (his call: if it's important it comes back); prereg FORMAT gap recorded — vacuousness check asks 'can it fire both ways', never 'can it fire at all'

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1",
+  "script": "O84_aggregate_power.py",
+  "generated_utc": "2026-08-26T03:56:59.061208+00:00",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "code_version": "143f0dddf6f88d72a9a4bf0d5a0ac80fadd7c38a97e1251b759c174f509896cd",
+    "generators": [
+      2,
+      3
+    ],
+    "rmax": 30,
+    "nperm": 400,
+    "trials": 200,
+    "seed": 2026,
+    "n_blocks": 307,
+    "statistic": "D = mean_A P/median - mean_B P/median",
+    "note": "power sizing only; unblinded D not computed"
+  },
+  "list_A": [
+    6.183578,
+    8.457229,
+    12.674946,
+    14.825026,
+    17.337802,
+    18.998588,
+    22.487585,
+    24.36528,
+    25.531187,
+    27.982757,
+    30.463641,
+    32.19516,
+    34.457229,
+    35.490893,
+    37.271951
+  ],
+  "list_B": [
+    5.0941598,
+    8.9399144,
+    12.133545,
+    14.404003,
+    17.130239,
+    19.3088,
+    22.159708,
+    23.34537
+  ],
+  "null": {
+    "mean": 0.005569367386295907,
+    "sd": 0.2094502014533292,
+    "p95": 0.34732922162435326
+  },
+  "power_at_1x": 0.72
+}

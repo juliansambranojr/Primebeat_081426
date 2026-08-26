@@ -1,0 +1,16 @@
+O85 - the aggregate test.  PREREGISTERED.
+  prereg dh_aggregate_spectrum_v1_20260825.md  sha256 1179f867d80d562b...
+
+GATE - tau residual -1.694e-21
+GATE - list A recomputed: 15 zeros, matches frozen: True
+
+  307 blocks, residual rms 0.3327
+  D (observed)      +0.7942
+  null  mean +0.0056  sd 0.2095  p5 -0.3408  p95 +0.3473   (400 draws)
+  D sits at percentile 100.0 of the null
+
+DECISION RULE OUTPUT (mechanical): tracks_L
+   Power at the true amplitude is 0.720 (O84), so a null here
+   carries a ~28% miss rate. The verdict line is Julian's.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/dh_aggregate.json

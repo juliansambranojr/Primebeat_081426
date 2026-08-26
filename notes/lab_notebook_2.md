@@ -16,6 +16,116 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 175 — PREREGISTERED: the residual tracks L(s,chi), not DH — `tracks_L` at percentile 100
+type: run
+refs: 163, 171, 173, 174
+
+Script O85_dh_aggregate.py under
+preregs/dh_aggregate_spectrum_v1_20260825.md, locked at sha256
+1179f867d80d562b2bc7a3a2994f78a6edad87dc625c2619215fe863e603335e
+before the run. Artifacts: results/dh_aggregate.json (sha256
+122ec04ad8325cc0...), results/O85_dh_aggregate_run1.log. The Run
+record is filled; **the verdict line is Julian's and is unwritten.**
+
+**Gates, all passed before measuring.** tau residual -1.694e-21; list A
+recomputed inside the run to the frozen values, 15 zeros; 307 blocks
+against a floor of 300; median(P) > 0.
+
+**The result.**
+
+```text
+D (observed)     +0.7942
+null (400 perms)  mean +0.0056   sd 0.2095   p5 -0.3408   p95 +0.3473
+percentile of D   100.0          (D - mean)/sd = +3.76
+```
+
+Mechanical decision-rule output: **`tracks_L`** — branch 2, `D` exceeds
+the null's 95th percentile. H1 supported: the DH-weighted prime
+residual tracks the zeros of `L(s,chi)` and not DH's own.
+
+**What this confirms.** Entry 163's factoring, which has stood since
+this morning as unattacked algebra:
+`psi_DH(x) = c*psi(x,chi) + conj(c)*psi(x,conj chi)` with
+`c = (1 - i*tau)/2`. Each term is governed by `L(s,chi)`'s zeros
+through its own explicit formula; DH's own zeros are where the
+COMBINATION vanishes, a statement about relative phase, and they
+command no primes. That is why Davenport-Heilbronn violates the
+RH-analogue without threatening RH — its zeros govern no counting
+function — and the measurement now says so rather than the algebra
+alone.
+
+**Why this fired where O81 did not, in one line each.** O81 sampled
+`2^(j/4)`, whose Nyquist frequency is 18.129, against targets running
+to 40 — half the grid unidentifiable in principle, which
+`lean/Nyquist.lean` (entry 172) proves rather than asserts. This design
+uses the pooled incommensurate orbit, which has no such wall. And O81
+asked for per-target peaks, which O83 (entry 173) later measured as
+underpowered by 1.46x to 6.11x; this design pools 15 targets, buying
+about sqrt(15), which O84 measured as 0.720 power at the true
+amplitude.
+
+**The ordering is the point.** The power was measured BEFORE the prereg
+was written and is quoted inside it. O81 cost a full gated run to
+discover its instrument was deaf; O83 and O84 cost two exploratory
+scripts and told us in advance which design could fire. Entry 171
+recorded that gap in `preregs/FORMAT.md` — the vacuousness check asks
+whether a rule can fire in both directions and never whether the
+instrument can make it fire. This is the first prereg in the tree
+written with a measured power section.
+
+**Scope, stated plainly.** This is one statistic on one orbit at one
+ceiling, and `D` is an aggregate over 15 frequencies — it does not
+locate any individual zero, and O83 says individual location is out of
+reach at this scale. What it supports is the factoring, not a claim
+about any particular zero height.
+
+No outcome marked; the verdict line in the prereg is Julian's.
+
+---
+
+## 2026-08-25 — Entry 174 — O84: the aggregate is powered where single peaks are not
+type: run
+refs: 171, 172, 173
+
+Script O84_aggregate_power.py, defaults. Artifacts:
+results/aggregate_power.json, results/O84_aggregate_power_run1.log.
+
+Entry 173 closed by naming, without proposing, the one design its
+measurement did not rule out: a statistic pooling all targets at once.
+Pooling N targets buys about sqrt(N) in aggregate signal-to-noise, and
+list A has 15 entries — sqrt(15) = 3.87 against entry 173's 3.72x
+shortfall. Close enough to require measurement rather than argument.
+
+**The statistic.** `D = mean over list A of P(gamma)/median - mean over
+list B of the same`, on the pooled `{2^m 3^n}` orbit.
+
+**The power test.** Permute the real residual to destroy its structure,
+add a mode at every list-A frequency at amplitude `1/|rho|` — the
+amplitude the explicit formula gives a single zero — with random phase,
+and ask how often `D` clears the permutation null's p95.
+
+```text
+injected amplitude          power
+1.0x (the formula's own)    0.720
+1.5x                        0.950
+2.0x                        1.000
+```
+
+Null: mean +0.0056, sd 0.2095, p95 +0.3473 over 400 draws, on 307
+blocks with residual rms 0.3327.
+
+**Read.** The aggregate is powered where entry 173 found single-peak
+detection deaf, and the sqrt(15) estimate predicted it almost exactly.
+0.720 is usable and is not 0.9 — a null from this design would carry a
+~28% miss rate, and any prereg on it must say so.
+
+The unblinded `D` was deliberately not computed here; the script sizes
+the instrument and does not look at the answer.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 173 — O83: the pooled successor is underpowered, measured before it was preregistered
 type: run
 refs: 163, 164, 171, 172
