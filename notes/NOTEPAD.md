@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 181: PREREGISTERED `carries_own` — R = 20 of 20 on q=11,13 (never swept), null mean 0.705 max 3, 0 of 200 draws reach it; specificity demonstrated, design had no free parameter; verdict line open for Julian
+- [open]   2026-08-26  entry 180: O88 sized the row-max statistic before locking — 8/8 observed, shuffle null 0.730 matching the analytic 0.800, per-row lower bound 0.688
 - [open]   2026-08-26  entry 179: second reader — O87's branch is data-determined not a knob (uniform OLS fit separates principal at c=1.000019 vs 6e-6), and can be DELETED; residue-class shuffle is the control this design should have had; four entry-178 claims corrected
 - [open]   2026-08-26  entry 178: O87 character sweep — all 10 diagonals fire p<0.001, off-diagonal flat (1 of ~80 at p=0.036); principal rows recover zeta's zeros at 5.520/5.544, the bench's first negative control; wants a prereg before citation
 - [open]   2026-08-26  entry 178: principal-character branch in O87 is a one-case exception in code (main term subtracted only for k=0) — deserves a second reader

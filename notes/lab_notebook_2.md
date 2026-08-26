@@ -16,6 +16,114 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 181 — PREREGISTERED: 20 of 20 on moduli never swept — `carries_own`
+type: run
+refs: 178, 179, 180
+
+Script O89_sweep_q11_q13.py under
+preregs/character_sweep_q11_q13_v1_20260826.md, locked at sha256
+8347ec9a88ea7356d68de848457b8ee665d5b0be5c05cbc262ec07ea7a663b60
+before the run. Artifacts: results/sweep_q11_q13.json (sha256
+e888e7438dd5abb8...), results/O89_sweep_q11_q13_run1.log,
+results/frozen_targets_q11_q13.json. Run record filled; **the verdict
+line is Julian's and is unwritten.**
+
+**Gates.** 22 characters recomputed with every target list matching the
+frozen values; 307 blocks against a floor of 300; all fitted
+coefficients finite. The uniform detrend separated the rows by itself,
+with no character knowledge supplied — principal `c = 1.000005` twice,
+every other row `|c| <= 6.24e-05`, reproducing entry 179's finding on
+moduli it had never seen.
+
+**The result.**
+
+```text
+R = 20 of 20 non-principal rows have their diagonal as row maximum
+    diagonals    6.5834 .. 7.8149
+    best rivals  4.2889 .. 6.2076
+null (residue-class shuffle, 200 draws, in-run, same moduli)
+    mean 0.705   sd 0.859   max 3   draws reaching R: 0 of 200
+```
+
+Mechanical decision-rule output: **`carries_own`**. Power quoted before
+locking predicted ~13.8 hits at the conservative bound; observed 20.
+
+**What this demonstrates, stated as entry 179's second reader framed
+it and not more.** That the residual of `psi(x,chi)` carries
+`L(s,chi)`'s zeros is the explicit formula — a theorem. Every diagonal
+firing is EXPECTED. What is demonstrated here is the instrument's
+SPECIFICITY: across 22 characters on two moduli this tree had never
+swept, each residual's own L-function beat all 21 rivals, under a
+design with no branch, no free parameter, no per-cell p-values, no
+control calibration and an ordinal statistic that no magnitude, window,
+grid or trend artifact can move. This is instrument validation of a
+kind the bench did not have before — not a mathematical discovery.
+
+**Why the design could be trusted before it ran.** Every choice was
+fixed by prior measurement rather than by preference: the branch was
+removed because entry 179 showed a uniform fit separates the rows
+(c = 1.000019 against 6e-6); the control is the residue-class shuffle
+because that reader showed it collapses the diagonals while preserving
+psi(x), the grid, the window and the |F|-vs-t trend; the statistic is
+ordinal because rows share residuals and columns share target lists, so
+per-cell testing cannot settle its own degrees of freedom; and the
+power was measured on already-unblinded q = 5, 7 data (entry 180)
+rather than promised.
+
+**One assembly failure, recorded because it is a nice trap.** The
+generator that built O89 from O88 split O88's source on the literal
+`def main():` — which O88 itself contains, inside its own loader for
+O87. The cut landed mid-string and the file failed at parse. A script
+that reads scripts, cut by a marker that appears in the code that reads
+scripts. Fixed by splitting on the line-start form. Nothing about the
+locked design changed; had the fix touched the construction, the
+prereg would have needed re-locking rather than patching.
+
+No outcome marked; the verdict line in the prereg is Julian's.
+
+---
+
+## 2026-08-26 — Entry 180 — O88: the row-max null, measured before the design was locked
+type: run
+refs: 178, 179
+
+Script O88_rowmax_null.py, defaults. Artifacts:
+results/rowmax_null.json, results/O88_rowmax_null_run1.log.
+
+Measured on q = 5 and 7 only — data already unblinded by entries 178
+and 179 — so that a successor prereg on q = 11 and 13 could quote a
+number rather than promise one. This is the practice entry 171 forced
+after O81 and entries 173/174 first exercised.
+
+**The statistic it sizes.** Per non-principal row, is the diagonal cell
+the maximum of its row? `R` is the count. Ordinal, so no cell
+magnitude, window, grid or trend can move it; and no per-cell
+p-values, so the multiple-comparison argument the cells cannot settle
+never arises.
+
+**The construction it fixes.** The uniform per-row OLS fit of the main
+term, from entry 179 — no branch, no character knowledge, no free
+parameter.
+
+**Null and effect.**
+
+```text
+observed, real residuals    R = 8 of 8 non-principal rows
+shuffle null, 300 draws     mean 0.730   sd 0.827   max 3
+analytic expectation        0.800 under exchangeability
+draws reaching R = 8        0 of 300     -> p <= 0.0033
+per-row hit rate            1.000; one-sided 95% lower bound 0.688
+```
+
+**The empirical null matches the analytic one** (0.730 against 0.800),
+which validates the residue-class shuffle as a control rather than
+merely assuming it. At the conservative lower bound a 20-row sweep
+expects ~13.8 hits against a null near 1.8.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-26 — Entry 179 — Second reader on O87: the branch is not a knob, and a construction without it exists
 type: result-triage
 refs: 176, 177, 178

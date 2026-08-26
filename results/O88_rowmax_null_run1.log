@@ -1,0 +1,26 @@
+O88 — the row-max null, measured.  EXPLORATORY.
+
+  10 characters, 2 principal, 8 non-principal; 307 blocks
+
+OBSERVED (real residuals): 8 of 8 non-principal rows have their diagonal as row max
+
+NULL — residue-class shuffle, 300 draws.
+  Permutes per rung which class each block's mass lands in:
+  psi(x), the grid, the window and the trend are preserved
+  exactly; only the arithmetic is destroyed.
+
+   50/300 draws, running mean 0.760
+   100/300 draws, running mean 0.660
+   150/300 draws, running mean 0.693
+   200/300 draws, running mean 0.695
+   250/300 draws, running mean 0.732
+   300/300 draws, running mean 0.730
+
+  null mean 0.730   sd 0.827   max 3   (analytic expectation under exchangeability: 0.800)
+  draws reaching the observed 8: 0 of 300  -> p <= 0.0033
+
+POWER for a successor sweep. Per-row hit rate here: 1.000 (8/8).
+  One-sided 95% lower bound on the per-row rate: 0.688
+  At that lower bound, a 20-row sweep expects 13.8 hits against a null mean of 1.82.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/rowmax_null.json

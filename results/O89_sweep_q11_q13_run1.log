@@ -1,0 +1,45 @@
+O89 - the preregistered sweep, q = 11 and 13.  PREREGISTERED.
+  prereg character_sweep_q11_q13_v1_20260826.md  sha256 8347ec9a88ea7356...
+
+GATE - frozen targets sha256 86bc11a9b637c97a...
+GATE - 22 characters recomputed, 20 non-principal; target lists match frozen: True
+  307 blocks on the orbit
+
+PER-ROW RESULT (non-principal):
+               q=11 k=1  diagonal     7.7546   best rival     4.6692   MAX
+               q=11 k=2  diagonal     6.9629   best rival     4.6192   MAX
+               q=11 k=3  diagonal     7.8149   best rival     5.2426   MAX
+               q=11 k=4  diagonal     7.4048   best rival     5.4376   MAX
+               q=11 k=5  diagonal     6.8438   best rival     4.5855   MAX
+               q=11 k=6  diagonal     7.1850   best rival     4.9635   MAX
+               q=11 k=7  diagonal     7.1079   best rival     4.5749   MAX
+               q=11 k=8  diagonal     7.2872   best rival     4.3438   MAX
+               q=11 k=9  diagonal     7.5862   best rival     4.8755   MAX
+               q=13 k=1  diagonal     7.0084   best rival     4.5483   MAX
+               q=13 k=2  diagonal     7.1034   best rival     4.9356   MAX
+               q=13 k=3  diagonal     7.5611   best rival     4.9421   MAX
+               q=13 k=4  diagonal     7.6127   best rival     5.5107   MAX
+               q=13 k=5  diagonal     7.2676   best rival     4.6306   MAX
+               q=13 k=6  diagonal     7.3360   best rival     4.8242   MAX
+               q=13 k=7  diagonal     6.9629   best rival     5.0880   MAX
+               q=13 k=8  diagonal     6.5834   best rival     4.2889   MAX
+               q=13 k=9  diagonal     7.6393   best rival     6.2076   MAX
+              q=13 k=10  diagonal     7.8124   best rival     5.7387   MAX
+              q=13 k=11  diagonal     7.4534   best rival     5.1651   MAX
+
+  fitted main-term coefficients: principal [1.000005, 1.000005], others max |c| 6.24e-05
+
+  R = 20 of 20
+
+NULL - residue-class shuffle, 200 draws, computed on these same moduli:
+   50/200, running mean 0.540
+   100/200, running mean 0.610
+   150/200, running mean 0.667
+   200/200, running mean 0.705
+
+  null mean 0.705  sd 0.859  max 3   draws reaching R: 0/200
+
+DECISION RULE OUTPUT (mechanical): carries_own
+   The verdict line is Julian's to write.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/sweep_q11_q13.json
