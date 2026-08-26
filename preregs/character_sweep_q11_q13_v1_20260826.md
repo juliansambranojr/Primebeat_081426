@@ -183,4 +183,60 @@ which cell in a row is largest.
   at `8347ec9a88ea7356d68de848457b8ee665d5b0be5c05cbc262ec07ea7a663b60`.
   Per `preregs/FORMAT.md` a locked prereg is immutable except for its
   Run record, and this block is that record.
+- **CORRECTION TO THE PROVENANCE SECTION, 2026-08-26, before any
+  verdict was stamped.** The locked text is immutable, so the false
+  statement stands above and is corrected here.
+
+  § Provenance asserts "The matrix for q = 11 and q = 13 has never been
+  computed by anyone. No residual for either modulus has been built"
+  and "Blind arm: the entire measurement." **That is false for
+  q = 11.** `notes/lab_notebook_2.md` entry 179 records that the second
+  reader tested q = 11 and found all of its diagonals firing; that
+  entry committed as `e690f65` at 09:21:28, and this prereg's sidecar
+  was written at 09:24:25 — three minutes later. The assistant that
+  wrote entry 179 wrote the contradicting provenance line immediately
+  afterwards.
+
+  **The honest statement of what was blind: q = 13's 11 non-principal
+  rows.** q = 11's 9 rows were unblinded at lock. Since the decision
+  threshold is `R >= 10`, a rule cleared with 9 rows already known to
+  fire could have been satisfied by a single hit among the 11 blind
+  rows, so the locked threshold is weaker than it appears.
+
+  **The result on the genuinely blind arm is 11 of 11.** That alone
+  clears `R >= 10` and exceeds every draw of the in-run null (max 3)
+  and of the two shuffle variants an independent reproduction
+  generated (max 4 each, 600 draws total). The `carries_own` branch
+  fires on the blind arm by itself.
+
+- **INDEPENDENT REPRODUCTION, same date.** An agent rebuilt the entire
+  pipeline from scratch — its own segmented sieve (validated at
+  2.2e-15 against a brute-force von Mangoldt sum), its own
+  Euler-Maclaurin `L`-evaluator (8e-14 against mpmath), its own zeros
+  with winding-number completeness proofs, its own shuffle — importing
+  nothing from O87, O88 or O89. Every printed figure reproduced
+  exactly: `R = 20`, diagonals `6.5834 .. 7.8149`, best rivals
+  `4.2889 .. 6.2076`, null mean `0.705` sd `0.859` max `3`, `0/200`.
+  Frozen target lists exact and complete, no zero missed or spurious.
+  `detrend_uniform` confirmed to be the OLS coefficient it claims
+  (three ways); the shuffle confirmed to permute per-rung increments
+  with a valid monotone reconstruction preserving `psi(x)`; dropping
+  O87's median normalisation confirmed statistic-neutral. The result
+  held across ceilings `2^24 / 2^26 / 2^30`, orbits `{2,3}`,
+  `{2,3,5}`, `{3,5,7}`, four windows, mean and median summaries, and
+  with the detrend removed entirely. Longer target lists score LOWER
+  (correlation `-0.450`), so the diagonal is not structurally
+  favoured.
+
+- **Two further qualifications from that reproduction.** The 20 rows
+  are not 20 independent tests — conjugate character pairs share a
+  residual, giving about 11 independent ones — so § Power's
+  `0.05^(1/8) = 0.688` bound treats 8 correlated rows as 8 independent
+  trials and is optimistic. The decision rule does not use it. And the
+  shuffle as shipped permutes all `q` classes including class 0, not
+  the `q-1` nonzero ones; entry 179's remark that it leaves principal
+  rows invariant does not describe the code. Principal rows are
+  excluded from `R`, and the corrected shuffle variant gives max 4
+  against `R = 20`.
+
 - **`verdict`:** *(Julian's to write)*
