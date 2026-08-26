@@ -1,0 +1,31 @@
+O82 — exact vanishing against near vanishing.  EXPLORATORY.
+  bases log2 b = 0.18*sqrt(p), p in [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+  ceiling 2^32, nperm 500, subsamples 60, seed 2026
+
+  resolved support: 19016 cells across 10 bases
+  exact-zero set size (the matched-n target): 54
+
+PANEL 1 — FULL n (reproduces entry 160's FATAL 2, and is NOT comparable across rows because z scales as sqrt(n)):
+                    selection      n   z_cross  z_cross_wm  z_within  z_within_wm
+          P == 0  (the zeros)     54     -7.26       -3.59     -6.77        -4.74
+                     |P| == 1    106     -9.06       -2.83    -10.73        -6.47
+                     |P| == 2     90     -9.97       -4.88    -10.44        -6.16
+                1 <= |P| <= 3    280    -15.28       -5.53    -18.31        -6.51
+         S <= 200  (mass cut)    548    -28.84      -20.03    -26.61        -6.45
+      d <= 3  (never reads P)   1659    -38.66      -12.95    -37.98        49.04
+
+PANEL 2 — MATCHED n = 54, 60 subsamples each; these ARE comparable:
+                    selection          z_cross       z_cross_wm
+          P == 0  (the zeros)     -7.23 ± 0.00     -3.56 ± 0.00
+                     |P| == 1     -6.93 ± 0.73     -2.40 ± 1.19
+                     |P| == 2     -7.23 ± 0.49     -3.86 ± 0.70
+                1 <= |P| <= 3     -7.08 ± 0.80     -3.30 ± 1.22
+         S <= 200  (mass cut)     -8.86 ± 0.57     -6.03 ± 0.56
+      d <= 3  (never reads P)     -6.44 ± 0.63     -0.13 ± 1.00
+
+  READ. Panel 1 is entry 160's comparison, reproduced and kept because
+  it is what that entry recorded. Panel 2 is the same comparison with
+  the sqrt(n) confound removed, which entry 160's own FATAL 4 requires.
+  Interpretation is not this script's job.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/exact_vs_near.json

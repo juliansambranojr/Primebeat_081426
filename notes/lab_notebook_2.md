@@ -16,6 +16,96 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 165 — O82: entry 160's FATAL 2 was a sqrt(n) artifact; exactness still does no work; mass does more
+type: result-triage
+refs: 17, 46, 160
+
+Script O82_exact_vs_near.py, defaults. Artifacts:
+results/exact_vs_near.json, results/O82_exact_vs_near_run1.log.
+Built because a tree audit found entry 160's FATAL 2 numbers existed
+ONLY inside that entry — no script, no artifact, nothing to re-run —
+while being the finding that most constrains any design built on the
+exact-zero set.
+
+**Panel 1 reproduces entry 160 faithfully** (different RNG stream,
+same construction: O78's incommensurate bases, O45's resolved
+stratum, The-Zero-Surface B3's coordinate):
+
+```text
+selection                    n    z_cross   z_cross_wm
+P == 0 (the zeros)          54      -7.26        -3.59
+|P| == 1                   106      -9.06        -2.83
+|P| == 2                    90      -9.97        -4.88
+1 <= |P| <= 3              280     -15.28        -5.53
+S <= 200 (mass cut)        548     -28.84       -20.03
+d <= 3 (never reads P)    1659     -38.66       -12.95
+```
+
+**Panel 2 corrects it.** Entry 160's own FATAL 4 established that
+permutation z scales as sqrt(n); FATAL 2's table compares selections
+of size 54 to 1659 and is therefore not comparable across rows — the
+very error FATAL 4 names, committed in the same entry. Subsampling
+every selection to n = 54, 60 repeats:
+
+```text
+selection                  z_cross        z_cross_wm
+P == 0 (the zeros)     -7.23 ± 0.00      -3.56 ± 0.00
+|P| == 1               -6.93 ± 0.73      -2.40 ± 1.19
+|P| == 2               -7.23 ± 0.49      -3.86 ± 0.70
+1 <= |P| <= 3          -7.08 ± 0.80      -3.30 ± 1.22
+S <= 200 (mass cut)    -8.86 ± 0.57      -6.03 ± 0.56
+d <= 3 (never reads P) -6.44 ± 0.63      -0.13 ± 1.00
+```
+
+**What changes.** Entry 160's headline — "a pure geometric cut that
+never looks at a cell's value compresses far harder than the zeros
+do" — does not survive. At matched size, d <= 3 collapses to -0.13
+under width matching, pure null, while the zeros hold at -3.56. The
+apparent dominance was sqrt(1659/54) = 5.5x of inflation.
+
+**What survives, and it is the constraining part.** Exact vanishing
+is indistinguishable from near vanishing: the zeros at -3.56 against
+|P| = 1 at -2.40, |P| = 2 at -3.86, 1 <= |P| <= 3 at -3.30, with
+subsample spreads 0.7 to 1.2. Nothing in this statistic separates the
+exact-zero set from the nearly-zero set.
+
+**And mass outruns both.** S <= 200 is the strongest selection in the
+table at -6.03, clear of the zeros. The compression tracks stencil
+mass more closely than any property of the cell's value, which is
+O46/C5's identification seen at matched size rather than asserted.
+
+**What was NOT asked, and why.** No expected number of exact zeros
+under any magnitude null is computed here. Entry 17 records Julian's
+correction and it stands: the cells are a determined binomial
+combination, not independent draws, and (20,6) is an exact identity
+across seven consecutive counts, so "how probable is that" imports a
+null model the object does not have. A tree audit this date found
+that an assistant had proposed exactly that computation, unaware the
+record already refused it. The question O82 asks instead is a
+comparison between selections on one object, which imports no such
+model.
+
+**Also established by that audit, and worth stating plainly.** B10 in
+papers/The-Four-Zeros.md cites O43's magnitude_floor verdict. That
+verdict's null is a CONSTANT PER-CELL RATE — each d >= 1 cell an
+independent Bernoulli with one shared q — and its own prereg
+falsified uniformity before the run (190 of 1891 cells have r <= 20
+and all four zeros are among them; probability 1.019e-4). Its
+magnitude content is one deterministic bound, M_new = 0: no cell in
+62 < r <= 92 came within 1024 of zero. No expected-zero-count under a
+magnitude null exists in the tree for base 2's four. B10's prose is a
+fair reading of the branch's name; the branch's arithmetic is a rate
+test.
+
+**Three layers of correction, recorded as such.** An assistant claimed
+a cross-base surface; an adversarial review retired that reading with
+FATAL 1-4; O82 now corrects FATAL 2's headline while confirming its
+core. Each layer was caught by the next, and none by its author.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 164 — PREREGISTERED non-detection: the ladder does not separate the two spectra
 type: run
 refs: 161, 162, 163

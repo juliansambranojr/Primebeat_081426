@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 165: O82 makes FATAL 2 reproducible and corrects it — d<=3 collapses to -0.13 at matched n (was a sqrt(n) artifact), zeros indistinguishable from near-zeros, mass cut strongest at -6.03; B10 rests on a rate test not a magnitude one
 - [open]   2026-08-25  entry 164: PREREGISTERED null — O81 finds 0 hits on both lists (L(s,chi) and DH), surrogate p95 3.47 with nothing clearing 5; single geometric ladder aliases, O18-style pooling is the next prereg; verdict line open for Julian
 - [open]   2026-08-25  entry 163: the coalition governs nothing — psi_DH factors as c*psi(x,chi)+conj(c)*psi(x,conj chi), so prime data carries L(s,chi)'s zeros and NOT DH's; unblocks the test object, prereg to follow
 - [open]   2026-08-25  entry 162: O80 DH zeros — on the line to t=60 by winding count, off-line at (0.8085, 85.699) and (0.6508, 114.163); lowest on-line 5.094 vs zeta's 14.135; prereg still blocked on naming an object DH governs
