@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 166: resultsguard + check_results_guard land — clobber hazard closed structurally, O66 retrofitted, 76 writers remain (sweep queued, entry-148 shaped)
+- [open]   2026-08-25  entry 166: O52 has artifacts and no notebook entry anywhere; O61's entry-100 numbers are in no artifact; O64's run-1 log states a withdrawn conclusion — three record gaps, Julian's call
 - [open]   2026-08-25  entry 165: O82 makes FATAL 2 reproducible and corrects it — d<=3 collapses to -0.13 at matched n (was a sqrt(n) artifact), zeros indistinguishable from near-zeros, mass cut strongest at -6.03; B10 rests on a rate test not a magnitude one
 - [open]   2026-08-25  entry 164: PREREGISTERED null — O81 finds 0 hits on both lists (L(s,chi) and DH), surrogate p95 3.47 with nothing clearing 5; single geometric ladder aliases, O18-style pooling is the next prereg; verdict line open for Julian
 - [open]   2026-08-25  entry 163: the coalition governs nothing — psi_DH factors as c*psi(x,chi)+conj(c)*psi(x,conj chi), so prime data carries L(s,chi)'s zeros and NOT DH's; unblocks the test object, prereg to follow

@@ -16,6 +16,75 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 166 — resultsguard: the clobber hazard closed structurally, and three record gaps found
+type: instrument-fix
+refs: 102, 105, 107
+
+**The hazard, and why git did not catch it.** Run logs in this tree are
+run-stamped (`O66_twin_spectral_run1.log`), so a second run writes a
+second file and both survive. Results JSONs are not
+(`twin_spectral.json`), so a second run overwrites the first. O63, O65
+and O66 each lost run 1 that way. Checked rather than assumed: each of
+`results/value_refraction.json`, `results/variance_ratio.json` and
+`results/twin_spectral.json` carries exactly ONE commit, so the clobber
+happened before anything was committed and there is no earlier version
+in history. Run 1's numbers for all three survive only inside the run-1
+logs. Same script, same run, opposite outcomes for log and JSON, purely
+from a naming convention.
+
+**The fix.** `utilities/resultsguard.py` — `guarded_write(payload,
+out_path)` copies an existing, DIFFERING file to
+`results/archive/<stem>_<utc>_<sha8>.json` before writing the new one.
+Nothing is deleted, which the project's permissions require, and each
+canonical results path keeps resolving, so every paper, prereg and
+notebook citation is untouched. Content is compared with `generated_utc` and the
+run-time fields blanked, so a deterministic rerun differing only in its
+timestamp archives nothing.
+
+**The gate.** `utilities/check_results_guard.py` scans every `O*.py`,
+`0*.py` and `t*.py` for a write into `results/` and reports whether it
+routes through the guard. Report mode now; `--new-only` fails when a
+script NEWER than the guard is unguarded, so nothing new can ship
+without it while the legacy sweep is outstanding; `--enforce` for once
+the sweep lands, wired beside check_refs and check_values.
+
+**The gate missed its own motivating case, twice, and is recorded that
+way.** The first pattern matched `json.dump(` and slid past
+`json.dumps(...)` piped through `pathlib.write_text` — exactly how O66
+writes. Widened, still zero: the second filter looked for a literal
+`results/`, and O66 builds its path as `"results" / "twin_spectral.json"`
+in pathlib components. Both found by running the instrument against the
+scripts it exists for before trusting it. **The true writer count is 77,
+not the 49 the first pattern reported** — the initial estimate of the
+retrofit's size was 36% low.
+
+**State.** O66 retrofitted as the pattern proof, parses clean, guard
+verified on synthetic input (timestamp-only rerun archives nothing, a
+content change archives the prior run, the canonical path always holds
+the current one). 76 writers remain. That sweep is entry-148-shaped —
+mechanical per script, and it owes a re-run at defaults per script to
+prove zero drift — and is queued, not done.
+
+**Three record gaps found while backfilling CONTEXT.md**, stated plainly
+because each is a hole rather than an error:
+
+```text
+O52   has results/composite_arm_spectrum.json and a run log, and NO
+      lab_notebook entry and no NOTEPAD line anywhere in the tree. A
+      run exists with no dated record.
+O61   entry 100's decisive numbers for it — the b = 1.15 sweep at 197
+      rungs crossing at depth 4.02, and the truncation-offset table —
+      are in no artifact. results/crossing_depth_sweep.json holds only
+      the bases 2-9 sweep and the base-2 truncation control.
+O64   the run-1 log prints a conclusion ("the real arm sits nearer the
+      model arm") that entry 103 withdraws. The log is frozen evidence
+      and stays; the withdrawal lives only in the entry.
+```
+
+No outcome marked.
+
+---
+
 ## 2026-08-25 — Entry 165 — O82: entry 160's FATAL 2 was a sqrt(n) artifact; exactness still does no work; mass does more
 type: result-triage
 refs: 17, 46, 160
