@@ -239,15 +239,26 @@ Status: **folded into the research program**, with the commitment files
 at the root, notes under `notes/`, and papers under `papers/`. Results
 here are citable, which makes the exploratory/preregistered distinction
 load-bearing rather than bookkeeping. Content dates 2026-08-14 to
-2026-08-21. This **is** a git repository, pushed to a remote. The
-environment is a `.venv` on Python 3.14.3, now frozen to
-`requirements.txt`; Homebrew `primecount 8.6` is linked by
-`primecountpy` and is not capturable by a freeze.
+2026-08-25. This **is** a git repository, pushed to a **public** remote
+since 2026-08-24 (entry 145). The environment is a `.venv` on Python
+3.14.3, frozen to `requirements.txt`; Homebrew `primecount 8.6` is
+linked by `primecountpy` and is not capturable by a freeze.
 
-**All four preregistered tests are closed.** O7 `depth_dependent`
-(2026-08-15), O42 `no_constant_angle` (08-18), O43 `magnitude_floor` and
-O45 `fineness` (08-20). Each Run record carries a sidecar match verified
-at compute time.
+**Six preregistered tests are locked.** Five carry verdicts: O7
+`depth_dependent` (2026-08-15), O42 `no_constant_angle` (08-18), O43
+`magnitude_floor` and O45 `fineness` (08-20), and O48
+`small_angle_cross_base` **`compromised`** (08-24, entry 110 — the
+control floor read 0.754867 against a locked 0.80, and the design was
+retired rather than revised). The sixth, O81
+`dh_coalition_spectrum_v1_20260825`, has a filled Run record whose
+mechanical decision-rule output is `null`; **its verdict line is
+unwritten and is Julian's.** Each closed Run record carries a sidecar
+match verified at compute time.
+
+**Scale, as of entry 165 (2026-08-25):** 165 notebook entries across two
+volumes, 34 open NOTEPAD threads, 82 O-scripts plus the `t`-series under
+`analysis/`, 14 papers, six preregs, and two Lean packages totalling 327
+axiom-pinned theorems (see § The Lean tree).
 
 What has been run and recorded:
 
@@ -326,7 +337,7 @@ What has been run and recorded:
   But the deep sets are not exhausted — gain from 1e9 to 3e9 rises
   monotonically with generator count, G4 +22.1% through G8 +63.3%, which
   supports the block-size account rather than refuting it. G4's second
-  hallmark has also moved: the six zeros come up together within 8.4% at
+  hallmark has also moved: the six zeros come up together within 8.56% at
   G4 but 1.1% at G6 (entry 42). Three real settings are on disk; the
   `O24_gen_xmax3e8_run.log` file is an aborted timing probe, not a run.
 - **O25 / O26** — the residual compresses at a relative 10⁻¹ target and
@@ -457,6 +468,187 @@ What has been run and recorded:
   max midpoint) because its Nyquist is 4.5 and γ₁ is aliased at any prime
   count. Entry 79, `papers/The-Deep-Ladder.md`.
 
+
+
+- **O51** — the four-way occupancy census of the `2·3` lattice, in dyadic
+  blocks. EXPLORATORY. Sieve to `2^30`, `r = 3…30`; the twin/lo/hi/bare split
+  partitions the sites exactly at every rung. The site count alternates ±1/3
+  about `2^(r−1)/6` and is **not exactly geometric**, so
+  `PairIdentity.pair_identity` does not transfer. `lo − hi` normalised by
+  `√sites` stays inside ±0.25 and changes sign across rungs. The twin arm's
+  difference table has four exact zeros over 377 cells at `d ≥ 1` —
+  (4,1), (6,1), (9,1), (8,4) — all at `r ≤ 9`. Entry 82,
+  `papers/The-Twin-Lattice.md`.
+- **O52** — does the composite arm carry the prime arm's zeta spectrum?
+  EXPLORATORY. On O50's fine ladder, 6914 blocks: `max |e_prime + e_comp|`
+  1.490e−08 against `max |e_prime|` 3392.646, ratio 4.392e−12. Amplitudes at
+  599 zeros agree to 5.006e−12. The algebra forces `e_comp = −e_prime`, so the
+  run is a confirmation with an artifact behind it. **No lab_notebook entry
+  records it** — the only trace is `results/composite_arm_spectrum.json`.
+- **O53 / O54** — is the torus's modular parameter `τ = 2π/log b` the alias
+  spacing? EXPLORATORY. O53 run 1 folded 60 zeros and read a base split
+  `{2,4,6,8}` beating chance against `{3,9}`; run 2 swept the fold density and
+  the split moves with the knob — base 9 reads 0.66 at `nz = 6`, base 8 reads
+  0.26 at `nz = 40`. Run 1's split is **retracted** (entry 85). O54 held
+  `b = 2` and moved only the ceiling: the ratio runs 0.27 to 1.94, the peak
+  count runs 0, 1, 2, 3, 3, 5, and at 12 rungs the statistic is undefined. Run
+  2's "base 2 holds at every setting" is withdrawn as well. Entries 85, 87.
+- **O55 / O56** — the arm involution `prime ↔ composite`, and `σ = prime/S`.
+  EXPLORATORY, base 2, `r ≤ 62`. Pair identity holds at all 1953 cells. The
+  involution's fixed set is three cells — (2,0), (3,0), (3,1) — with empty
+  overlap against the four exact zeros; smallest `|ρ|` is 0.221696 at (7,1).
+  O56: `1/σ` against `ln x` runs 1.9236 → 1.0091, and the least-squares slope
+  of `1/σ` in `r` is 0.6813 against `ln 2 = 0.6931`, ratio 0.9830.
+  Entries 91, 92.
+- **O57 / O58** — EXPLORATORY. O57 runs the measured `γ̂₁` forward in extent:
+  13.9885 at `xmax 1e6` → 14.1470 at `1e11` on O17's ladder; on the fine
+  ladder 14.1000 → 14.1345, error −0.0002 over 6914 blocks. A blind search
+  over 0.5–40 returns the six zeta zeros in range as its top six peaks,
+  5253.69× to 5397.79× the median, the seventh at 15.90×. O58 fits one
+  exponent per zero: mean slope −0.00043, sd 0.00175, `Re ρ = 0.49957 ±
+  0.00175`, against a midpoint noise floor 45× wider. Entries 93, 95.
+- **O59 / O60** — the proved maps of `lean/Transform.lean`, run on numbers.
+  EXPLORATORY. O59: O58's six measured radii land 0.706319 to 0.708777 against
+  the critical `2^(−1/2) = 0.707107`; the fold saturates, 599 of 599 adjacent
+  gaps below `dγ` at bases 2, 3, 10. O60: the prime triangle's mean root
+  modulus walks 0.540556 at `d = 0` to 0.867729 at `d = 20`, crossing at
+  `d = 10`, while the smooth control moves 0.541091 → 0.597455. Entry 100.
+- **O61** — is the critical-radius crossing structural or a truncation
+  artifact? EXPLORATORY. Base sweep at ceiling `1e12`: base 2 crosses at depth
+  10.08, base 3 at 15.46, bases 4–9 never. Truncation control at fixed base 2:
+  crossing depth 4.24 (20 rungs) to 11.93 (45 rungs), spread 7.70; as a
+  fraction of rungs, spread 0.053. Entry 100 records two readings killed by
+  later runs on a sub-integer sweep that is **in no artifact**.
+- **O62** — OEIS submission package for the iterated difference table of
+  A036378. Not a measurement. 992 array entries available, first 260 emitted
+  as downward antidiagonals plus a b-file; the four zeros land at terms 4, 8,
+  34, 176, and across the array to `r = 62` the zeros at `d ≥ 1` are exactly
+  the four. Entry 100.
+- **O63** — where a given density value appears, across bases and difference
+  orders. EXPLORATORY. Entry 102's imported refraction claim does not
+  reproduce; the control is the result. Fraction of cells with `|v| ≤ 20` per
+  depth against 400 Poisson draws at base 2's own per-rung means: depth 5
+  reads 0.235 real against null mean 0.077, `0/400` draws reaching it,
+  `z = 3.3`; depth 4 `z = 2.4`; every other depth unremarkable. Entry 102
+  carries three caveats — sixteen depths tested, `n = 1` where it counts, and
+  sub-Poisson variance as the likely known cause.
+- **O64** — does the spectrum read out of prime counts inherit the zeros' GUE
+  repulsion? EXPLORATORY. Run 1's instrument manufactures repulsion: Poisson
+  frequencies enter at `frac<0.5 = 0.372` and exit at 0.102, and its log line
+  "the real arm sits nearer the model arm" is **withdrawn** in entry 103. Run
+  2, band (10, 120): real `n = 37`, mean `s` 1.003, `frac<0.5` 0.027 — equal
+  to the true zeros' direct values to three decimals. Entry 103.
+- **O65** — variance-to-mean `F` of prime counts in blocks. EXPLORATORY. Run
+  1's raw `Var/mean` is dominated by the falling density at large `H`
+  (`F = 40796` at `x0 = 1e10`). Run 2 detrends by li per block and reads
+  sub-Poisson at every scale: 0.536 → 0.222 for `x0 = 1e6`, 0.663 → 0.150 at
+  `1e10`, and inside single dyadic blocks 0.376 / 0.257 / 0.198 at
+  `r = 20 / 27 / 33`, with the Poisson control pinned at 0.92–1.07. Entry 105;
+  this is the grounding O63's caveat asked for.
+- **O66** — the twin process on the `6k` lattice: rigidity and pair
+  correlations. EXPLORATORY. Run 1 mis-normalised the Hardy–Littlewood
+  prediction; run 2's corrected `S₄/(6·S₂²)` reads `mean |R − HL|` 0.0209 /
+  0.0391 / 0.0434 at `x ~ 6e6 / 6e8 / 6e10`. `F(256)` twin|Bernoulli reads
+  0.929|0.932 at the top height — one window and one draw each, so the
+  load-bearing endpoint is degenerate with its own control. **Rigidity reading
+  superseded by O72** (entry 151). Entry 107.
+- **O67** — under RH, `cell(r,d) ≠ 0` beyond an explicit `R(d)`. A derivation
+  with numerically checked constants; no prereg governs it. `R(d)` runs 16 at
+  `d = 1` to 91 at `d = 15`, `≈ 5d + 11`; O43's `r ≤ 92` census closes every
+  strip to `d = 15`. Under RH, **(20,6) is the last exact zero at every depth
+  `d ≤ 15`, for all `r`**. The deep region `d > 0.34(r−d−1)` is untouched, and
+  `r ∈ (92, 96)` at `d = 16` is open. Entry 112.
+- **O68** — how weak the RH-conditional bound can get before the theorem dies.
+  EXPLORATORY, sanity-gated against O67 R-for-R. Under `|π − li| ≤
+  C√x(log x)^k` for `x ≥ x0`: `depth_covered` 15 (Schoenfeld), 12, 10
+  (`C = 1, k = 2`), 8 (`C = 100`), 6 (`C = 1000`), 0 (`C = 1e6, k = 3`).
+  Entry 118, which also corrects entry 116.
+- **O69** — how many windings until the angle count becomes the logarithm.
+  EXPLORATORY. On 100000 zeros to `γ ≤ 74920.8`, `|N − mainterm|` never leaves
+  Rosser's band, so the crossover is at winding zero; within 0.1% of the curve
+  from winding 1049. The Γ-phase logarithm carries 99.9994% of the count and
+  `max |S-part|` is 1.629 windings. Entry 120.
+- **O70** — O67/O68's census at the constant the stage-3 kernel actually
+  computed. EXPLORATORY. hNT at Rosser (0.137, 0.443, 6.1), `W = 0`, hEF's
+  `(c₁, c₂, x₁)` swept over 16 cells: `C_π` 301.24 → 556.24, and
+  **`depth_covered = 9` in every one of the 16 cells**. The chain's inflation
+  is affordable at census width. Entry 129.
+- **O71** — testing upstream's horizontal-vanishes statement before flagging
+  it. EXPLORATORY. `J(δ)/2 ln(1/δ)` falls 1.195 → 1.031 as `δ: 1e−1 → 1e−6`,
+  which is the pole mechanism; with a concrete admissible `φ`, the required
+  `δ` exists at every height. Entry 142; the PNT+ #1538 note is drafted and
+  **unposted**, and posting is Julian's call.
+- **O72** — O66 v2, with stated uncertainty at every height. EXPLORATORY.
+  Seven heights `1e6…1e12`, eight disjoint windows each, 32 Bernoulli
+  replicates. Twin sits below its null at every height and block size:
+  `F(256)` `z = −14.44` at `6e6` through `−12.66` at `6e12`; low-frequency
+  `z = −24.59` to `−19.92`. `mean |R − HL|` 0.0258–0.0413 against a Bernoulli
+  floor 0.0264–0.0443. Entry 151: O66's `6e10` endpoint was sampling noise,
+  and the rigidity decays smoothly while staying many sigma from the null.
+- **O73** — the Weil-form balance across the mollifier grid. EXPLORATORY. The
+  sanity gate reproduces entry 40's three anchor numbers to 1e−14. Across
+  `W ∈ {0.02, 0.05, 0.1, 0.2} × K ∈ {2, 3}` the two sides swing from 11909.13
+  to 0.0433 while the relative difference stays between 1.635e−10 and 4.312e−6.
+  Per-prime breakdown at the anchor: `p = 2` gives 0.9969 of the prime term,
+  `p = 17` the largest counterweight; 25 primes contribute. Entry 152.
+- **O74** — the interleaved dyadic + triadic row sums, machine-verified.
+  EXPLORATORY. The gate reproduces entry 31's hand-computed `r = 1…6` exactly.
+  Extended to `r = 41`, the `pi3n_cache.json` ceiling: the dyadic component
+  changes sign throughout, the triadic never does. Entry 153.
+- **O75** — entry 36's crossing-slope law, met with data it has never seen.
+  EXPLORATORY. The gate reproduces entry 36's `b = 2, 3` slopes and
+  predictions to four decimals. Seven fresh non-integer bases: five within
+  ±10.4%, Pearson `r = 0.9602`, with the two large misses at the window edge
+  where `ratio → 1`. Entry 154 maps the law's testable windows to roughly
+  [2.05, 2.25] and [2.70, 3.30].
+- **O76** — the exact-zero census on the joint `{2^m 3^n}` orbit, entry 62's
+  unasked question. EXPLORATORY. Commensurability gate passes first. 564 rungs
+  to 2.199e12, 158766 cells; 20 exact zeros at `d ≥ 1`, of which 15 sit at
+  window top ≤ 100. Above the floor: five, pair values ≤ 129, deepest `d = 5`,
+  highest window top 11664. Entry 155: asked jointly, the answer matches O44's
+  answer asked singly.
+- **O77** — instantiating a Lean leaf pair against its consumer, the same
+  instrument O71 aimed upstream. EXPLORATORY. At disk radius `3/2` the count
+  is 0 on the whole grid — CANNOT FEED; at `7/4` the half-width is 0.9014 and
+  `|S(T)| ≤ 0.462·cnt(T) + 0.508` holds. Entry 158 makes consumer
+  instantiation a standing per-leaf requirement.
+- **O78** — the zero-surface statistic over bases pairwise incommensurate by
+  construction. EXPLORATORY. Both gates pass: 0 exact cross-base edge
+  coincidences against O45's 901 of 918, and no base within 0.021 of the
+  `π/(4γ₁)` lattice. 54 zeros, cross-base `z = −7.20`, width-matched `−3.71`.
+  **The reading is retired by entry 160**: the dropped within-base control
+  fires harder, the coordinate map is injective so the two hypotheses are one
+  statement, `√(54/125)` rescaling accounts for both numbers, and `--alpha`
+  was never swept (width-matched `z` ranges −0.90 to −6.89). Entry 165 later
+  corrects entry 160's own FATAL 2. `papers/The-Zero-Surface.md` § G1 stands
+  unmeasured.
+- **O79 / O80** — the same primes sorted mod 5, and where the
+  Davenport–Heilbronn zeros are. EXPLORATORY; both gate on
+  `τ = 0.28407904384` against `τ² + (1+√5)τ − 1 = 0` and on the completed
+  function's functional equation before measuring. O79 to `r = 30`: the zeta
+  arm returns the four zeros; the four class tables carry 5, 3, 5, 6 exact
+  zeros, and **(8,3) and (20,6) appear in no class table**. The DH combination
+  is an integer only where `c₂ = c₃`, so it carries no exact-zero object. O80:
+  eight on-line DH zeros to `t = 25`, lowest 5.0941598 against zeta's
+  14.134725; winding count right of the line is 0 below `t = 60` and 1 in each
+  of `(60, 90)` and `(90, 120)`, located at `σ = 0.808517182457` and
+  `σ = 0.650830080610`. Entries 161, 162.
+- **O81** — does the DH-weighted prime residual carry `L(s,χ)`'s zeros or DH's
+  own? **PREREGISTERED** (`preregs/dh_coalition_spectrum_v1_20260825.md`,
+  locked `9f500ecd2eb81ce7…`). Gates pass; list A recomputed inside the run to
+  the locked values. 119 blocks, surrogate `P_max/median` p95 3.468. Hits at
+  `P/median > 5`: **0 of 15 on list A, 0 of 8 on list B**. Mechanical output
+  `null`; **the verdict line is Julian's and is unwritten.** Entry 164 reads
+  the length as the likely cause.
+- **O82** — does exact vanishing do work that near vanishing does not?
+  EXPLORATORY. 19016 resolved cells, exact-zero set `n = 54`. Panel 1
+  reproduces entry 160's FATAL 2. Panel 2 subsamples every selection to
+  `n = 54`: zeros `−3.56` width-matched, `|P| = 1` `−2.40`, `|P| = 2` `−3.86`,
+  `1 ≤ |P| ≤ 3` `−3.30`, mass cut `S ≤ 200` `−6.03`, `d ≤ 3` `−0.13`. Entry
+  165: FATAL 2's headline does not survive matched `n`, exact vanishing stays
+  indistinguishable from near vanishing, and the mass cut is the strongest
+  selection in the table.
+
 Known defects in the current state:
 
 1. **O9's part 2 control is ill-posed, and part 3's null is not
@@ -473,14 +665,20 @@ Known defects in the current state:
    preservation copies made before re-runs, because the results filename
    is fixed with no timestamp or tag and every re-run clobbers unless
    `--out` is passed. The clobber hazard is the real defect.
-3. **The prereg's `pre_compute_sha256` is still `PENDING`** while its
+3. **FIXED 2026-08-25 (entry 148).** The hardcoded-parameter thread of
+   entries 28 and 35 is closed: O30, O31, O32, O34, O35, O36, both O37s
+   and O38 now carry the house flag set and a results JSON, all nine
+   re-run at defaults with zero drift. `papers/What-Didnt-Work.md`'s
+   provenance warning for B3–B9 is superseded accordingly.
+
+4. **The prereg's `pre_compute_sha256` is still `PENDING`** while its
    Run record asserts the post-compute SHA is identical to it.
-4. **Six of the seven cited documents are absent** — `dyadic-table-v2.md`,
+5. **Six of the seven cited documents are absent** — `dyadic-table-v2.md`,
    DT-A, DT-A2, DT-A3, DT-A4, and O3c are referenced by script headers
    and by DT-A5/A6 but exist in no folder on this machine.
-5. **No prereg for O3, O4, 05, 06, O8, O9** — their numbers are
+6. **No prereg for O3, O4, 05, 06, O8, O9** — their numbers are
    exploratory, not verdicts.
-6. **`check_refs.py` verifies that a citation's target exists and never
+7. **`check_refs.py` verifies that a citation's target exists and never
    that the target says what the citing line claims.** Entry 88:
    `The-Deep-Ladder.md` § F4 cited `Euler-Factor-Chain.md § J5` for a
    claim about analytic continuation; J5 is about RH and says nothing of
@@ -490,34 +688,56 @@ Known defects in the current state:
    This is the same failure shape as the `§ B4` case in `CLAUDE.md`, with
    the target present and misread rather than absent and misreported.
 
-### The Lean tree, as of entry 88
+### The Lean tree, as of entry 165
 
-Fourteen modules, 179 theorems, every one `#guard_msgs`-pinned to its
-`#print axioms`. `lake build` is the regression check; see `lean/BUILD.md`,
-and **do not run `lake update`** — four dependencies track `main`.
+Two packages, welded by statement identity only.
 
-Three things landed on 2026-08-21 that change what the tree can say:
+**`lean/` — the bench, 20 modules, 250 theorems, 250 `#guard_msgs` pins,
+toolchain v4.28.0.** `lake build` is the regression check; see
+`lean/BUILD.md`, and **do not run `lake update`** — four dependencies
+track `main`. The chain runs from the integer table to the pole lattice:
+`Chain.tableFrom_eq_bdiff_iter` welds the table to `bdiff`,
+`Superposition.tableFrom_eq_modeSum_reweighted` carries it onto a
+reweighted sum over zeta modes, and `Zeros.measured_zeros_all_vanish`
+computes all four zeros from `π(2ⁿ)` at zero axioms rather than
+transcribing them. Later modules: `Transform.lean` (the torus, with
+`periodLattice_discrete`; compactness open), `Isogeny.rowN_eq_blockSum`
+(a degree-`k` isogeny sums the row in blocks of `k`, so bases inside an
+isogeny class carry no count their generator lacks), `TwinLattice.lean`
+(`twin_lower_mod_six` — every twin pair above 3 sits at `(6k−1, 6k+1)`),
+`Nonvanishing.lean` / `MainTerm.lean` / `Expansion.lean` (O67's arrow
+under the kernel, the MVT retired, the `2^x/x` expansion), and
+`Schoenfeld.lean` (`StmtSchoenfeld` verbatim from Cor. 1, with
+`tableFrom_ne_zero_of_schoenfeld` as the arrow). `GeneratorPeak.lean` is
+the structural refutation: `no_interior_peak` proves no exponents
+produce the measured four-generator shape.
 
-* **The torus is an object.** `Transform.lean` carries `Torus b = ℂ ⧸
-  periodLattice b` with `periodLattice_discrete` proving the lattice
-  discrete, so the quotient is a torus rather than a quotient by an
-  arbitrary subgroup. Compactness is open. Entries 84, 86, 88.
-* **The isogeny has an arithmetic shadow.** `Isogeny.rowN_eq_blockSum`
-  proves `row_k(r) = Σ_{j<k} row_1(k·r + j)` — the degree-`k` isogeny
-  sums the row in blocks of `k`. So a base inside an isogeny class
-  carries no count its generator's row already carries, and O53's
-  `BASES = [2, 3, 4, 6, 8, 9]` is three residual sequences: base 2
-  carrying 4 and 8, base 3 carrying 9, base 6 alone. Entry 87.
-* **The analytic continuation is in scope and unused.** Mathlib's
-  `riemannZeta` is the continued function and `Chain.A2` already places
-  it on the right of the Euler product — the `1 < Re s` hypothesis
-  restricts the **product**. `ζ(−1) = −1/12` compiles in two lines.
-  Nothing in this tree connects the table to a value off the critical
-  line, and that is a gap in the work rather than a limit of the
-  instrument. Entry 88.
+**`lean_stage3/` — the sibling package, 8 modules, 77 theorems, 77 pins,
+toolchain v4.32.2**, with PrimeNumberTheoremAnd pinned at `47fa486`
+(entry 156 bumped it from `751a8c2`; `lake update` there is a deliberate,
+logged act, not routine). It decomposes Schoenfeld: `Statement.lean`
+names the weak family, `PsiToPi.lean` delivers `(3C+13, k−1)` into it,
+`ZeroSum.lean` and `Assembly.lean` close
+`psiWeak_of_RH_EF_NT` from `{hRH, hEF, hNT}` with a computed constant,
+`RvMCrude.lean` splits hNT over an abstract phase, `Stirling.lean`
+**discharges the Stirling half outright** (`backlundPhase_holds :
+StmtBacklundPhase phaseTheta 97 98`, entry 140), and
+`ArgCrude.lean` / `JensenCount.lean` decompose the argument half and
+discharge its analytic core (`zeta_local_zero_count ≤ 15·log T + 73`,
+entries 157–159, repaired at radius `7/4` after the tangency defect).
+
+**The leaf ledger is `{hEF, StmtArgCrude}`.** Both are upstream-shaped:
+`Kadiri.backlund_bound` states the full hNT and remains `sorry` at the
+current pin, and `I2NewBound` / `I3NewBound` are the contour pieces
+toward hEF. Composition across the two packages is **BY STATEMENT
+IDENTITY ONLY**, gated by `utilities/check_weld.py`, and every published
+claim carries that caveat until the toolchains converge.
 
 The smallest test that would falsify the bench as a whole: re-run O7
 from the locked prereg on a clean checkout and reproduce
 `post_compute_sha256` byte-identically. The prereg claims determinism
-via `default_rng(2026)`. If that SHA does not reproduce, no verdict in
-this folder is load-bearing.
+via `default_rng(2026)`. Entry 101 ran it on the same machine — the SHA
+reproduced and 170 of 171 JSON leaves matched, only `generated_utc`
+differing — so determinism is shown and **portability is not**; a second
+machine has never run it. If that SHA does not reproduce elsewhere, no
+verdict in this folder is load-bearing.
