@@ -239,4 +239,18 @@ which cell in a row is largest.
   excluded from `R`, and the corrected shuffle variant gives max 4
   against `R = 20`.
 
-- **`verdict`:** *(Julian's to write)*
+- **`verdict`: `carries_own`** — written by Julian 2026-08-26, on the
+  CORRECTED provenance above, not on the locked § Provenance text.
+  Branch 2's conditions are met on the genuinely blind arm by itself:
+  q = 13's 11 non-principal rows returned **11 of 11**, clearing
+  `R >= 10` and exceeding every draw of the in-run null (max 3) and of
+  the two shuffle variants an independent reproduction generated (max
+  4 each). The full `R = 20` stands as the measurement; 9 of those
+  rows were unblinded at lock and the verdict does not rest on them.
+- **Scope of the verdict.** It records what the decision rule returned
+  and what the corrected provenance supports: the instrument's
+  SPECIFICITY — each character's residual scores highest against its
+  own L-function's zeros, across two moduli, under a design with no
+  branch and no free parameter. It is not a claim about L-functions;
+  that the residual of `psi(x,chi)` carries `L(s,chi)`'s zeros is the
+  explicit formula, and every diagonal firing was expected.
