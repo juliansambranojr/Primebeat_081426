@@ -16,6 +16,71 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 187 — ZeroCells: three transcriptions of the four zeros become one object with four names
+type: formalization
+refs: 60, 66, 78
+
+`lean/ZeroCells.lean`, the bench's 22nd module, 7 theorems, 7 pins,
+**all at zero axioms**. Bench now 22 modules, 262 theorems, 262 pins,
+8048 jobs.
+
+**What entry 78 left open.** That entry derived the four zeros'
+vanishing from `pi(2^n)` at zero axioms, closing the def-citation
+hazard at its most-cited instance. It recorded what it did not close:
+three further hand-typed copies of the same list, each with a docstring
+asserting it is "the same list" —
+
+```text
+Construction.measured_zeros      Construction.lean:145
+SeedPerturbation.zero_cells      SeedPerturbation.lean:214
+PairIdentity.zero_cells          PairIdentity.lean:304
+```
+
+`utilities/check_refs.py` resolves a `def` and a `theorem` identically,
+so a citation to any of those three was indistinguishable from a
+citation to a result, and their agreement rested on three people typing
+the same four pairs.
+
+**What this module does.** Each list is proved EQUAL to the computed
+one and inherits `Zeros.measured_zeros_all_vanish` rather than
+restating it. The equalities are `rfl`, which is exactly the point:
+they cost nothing, and the moment anyone edits one of the four lists
+the build stops. `seedPerturbation_eq` carries extra content, since
+that list was re-read independently from
+`imported/lattice_mapper/32bit/dyadic_difference_table_32.csv` — so the
+equality also states that the imported table and `pi2n_cache` agree at
+those four cells.
+
+**Unchanged, and restated because the distinction is the discipline.**
+The zeros' VANISHING is derived from `pi` by the kernel. Their LOCATION
+is not. Nothing here predicts why 8 and 20 and no other cell below
+`r = 92`.
+
+**A pin correction, the same one as the container's Lean work.** The
+axiom lists were written as `depends on axioms: []`; this toolchain
+prints `does not depend on any axioms` for a theorem with none. Caught
+by the build, corrected to the compiler's wording rather than argued
+with.
+
+**The Zeros.lean split, scoped.** Entry 66 left it as an architectural
+call. Classified by pin: 15 of the 31 theorems carry
+`Classical.choice` — the stencil family (`stencil_weights_antisymm`,
+`stencil_arms_eq`, `stencil_arm_doubled`, `tableFrom_eq_stencil`,
+`stencil_eq_wings`, `stencil_eq_zero_iff_wings`,
+`tableFrom_eq_zero_iff_wings`, `repeat_iff_wings`, `stencil_add`,
+`stencil_smul`, `stencil_annihilates_const`) and the
+prime-factorization four (`factorization_proportional`,
+`primeFactors_eq_of_meets`, `base_of_meets_two`,
+`window_exclusive_of_prime_exponent`). That matches entry 66's
+prediction exactly. The split moves those into a sibling module
+KEEPING the `Zeros` namespace, so every paper citation of `Zeros.X`
+still resolves, and tests whether the remainder can drop
+`import Mathlib` entirely.
+
+No outcome marked.
+
+---
+
 ## 2026-08-26 — Entry 186 — The reconstruction test: rebuild the tree from its own accounts, in a clean repo
 type: motivation
 refs: 9, 101, 183, 184, 185

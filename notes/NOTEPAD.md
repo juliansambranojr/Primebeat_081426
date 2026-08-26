@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 187: ZeroCells lands (22nd module, 7/7 pins, zero axioms) — three transcriptions welded to the computed list; Zeros.lean split scoped, 15 Mathlib theorems identified for the sibling module
 - [open]   2026-08-26  entry 186: THE RECONSTRUCTION TEST — rebuild every script in a clean repo from the accounts alone (entries, NOTEPAD, papers, preregs, commits), not from the source; tests whether the record is complete, fires both ways; open design question is how to enforce the separation
 - [open]   2026-08-26  entry 185: container lesson — nine things today taught about building gates, hooks and guards; read before writing the container's own utilities
 - [open]   2026-08-26  entry 184: guard defects fixed — atomic write (corruption mode closed), str-key coercion, guarded_write_text unblocking --enforce; sweep would have invalidated 6 prereg artifact hashes via code_version
@@ -180,7 +181,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-21  entry 81: TwinLattice.lean (12th module) — twin pairs are 6k+-1 PROVED at [propext, Quot.sound], so a twin is a lattice SITE not a spacing coincidence; the mod-6 lattice was already load-bearing in CONTEXT.md twice (O19/O20 (8,3), and lattice_mapper 2-and-3-as-lattice) and nothing connected them
 - [closed] 2026-08-21  entry 80: twin_count IMPORTED (7 files, SHA-verified, self-verifying manifest; source is not a git repo so this is the only versioned copy), CONTEXT.md brought current to O50, papers/The-Deep-Ladder.md written — check_values 83 -> 99 confirmed, 0 not found
 - [closed] 2026-08-21  entry 79: O50 EXPLORATORY — 38 zeta zeros recovered with COMPLETE separation (at-zeros min 6.478 vs between-zeros max 2.341) on a ratio-1.002 ladder to 1e11; O17 found 3; dyadic control still fails; O17 was sieve-limited not exhausted
-- [open]   2026-08-21  entry 78: the four zeros COMPUTED from pi(2^n) rather than transcribed — 7 theorems, zero axioms, including (20,6); The-Four-Zeros B9 repointed from the def to measured_zeros_all_vanish; 3 transcribed copies remain elsewhere
+- [closed] 2026-08-21  entry 78: the four zeros COMPUTED from pi(2^n) — the 3 remaining transcriptions closed 2026-08-26 by lean/ZeroCells.lean, each proved equal to the computed list at zero axioms
 - [closed] 2026-08-21  entry 77: block D FORMALISED and wired — six theorems give D1/D2/D3/D4 plus the ATTAINMENT StmtC2 never had (it proved containment only); five paper source lines now cite Lean; BUILD.md corrected 119 -> 139 theorems
 - [closed] 2026-08-21  entry 76: record check — Euler-Factor-Chain § D1/D3/D4 already state the floor, the ceiling and the power iteration in prose; three of my claims withdrawn; block D is UNFORMALISED while Chain.sym_eq_zero_iff proves D1's floor half
 - [closed] 2026-08-21  entry 75: O49 EXPLORATORY — the residual table's depth gain ATTAINS the C2 ceiling 1+b^(-1/2) at 97.68% +/- 2.91% across 12 bases, entered by d=1 or 2, so no depth window exists where a sub-ceiling mode is visible
