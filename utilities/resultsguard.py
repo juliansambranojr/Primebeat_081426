@@ -47,6 +47,7 @@ import hashlib
 import json
 import os
 import shutil
+import tempfile
 from datetime import datetime, timezone
 
 VOLATILE_KEYS = ("generated_utc", "run_end_at", "run_start_at")
@@ -54,7 +55,20 @@ VOLATILE_KEYS = ("generated_utc", "run_end_at", "run_start_at")
 
 def _stable_bytes(path_or_obj):
     """JSON bytes with volatile timestamp fields blanked, so a
-    deterministic rerun is recognised as identical."""
+    deterministic rerun is recognised as identical.
+
+    Keys are coerced to str before sorting. Without that, a dict mixing
+    int and str keys at one level raises TypeError inside
+    json.dumps(sort_keys=True), the exception is swallowed below, and an
+    identical rerun is archived anyway — archive litter, never data
+    loss, but it defeats the point of the comparison. Found by the
+    2026-08-26 scope audit and reproduced."""
+    def _strkeys(o):
+        if isinstance(o, dict):
+            return {str(k): _strkeys(v) for k, v in o.items()}
+        if isinstance(o, (list, tuple)):
+            return [_strkeys(v) for v in o]
+        return o
     try:
         if isinstance(path_or_obj, (str, bytes, os.PathLike)):
             with open(path_or_obj) as f:
@@ -64,7 +78,7 @@ def _stable_bytes(path_or_obj):
         if isinstance(obj, dict):
             obj = {k: ("" if k in VOLATILE_KEYS else v)
                    for k, v in obj.items()}
-        return json.dumps(obj, sort_keys=True).encode()
+        return json.dumps(_strkeys(obj), sort_keys=True).encode()
     except Exception:
         try:
             with open(path_or_obj, "rb") as f:
@@ -95,18 +109,85 @@ def archive_if_needed(out_path, payload=None, archive_dir=None):
     return dest
 
 
-def guarded_write(payload, out_path, indent=2):
-    """Archive-then-write. Never raises; warns and returns False on
-    failure, matching the house _write_results convention."""
+def guarded_write(payload, out_path, indent=2, **dump_kwargs):
+    """Archive-then-write, ATOMICALLY. Never raises; warns and returns
+    False on failure, matching the house _write_results convention.
+
+    The write serialises to a string FIRST, then writes a temporary file
+    beside the target, fsyncs it, and os.replace()s it into place. The
+    earlier version opened the target directly, which truncates before
+    json.dump runs — so an unserialisable payload archived the prior run
+    and then left the canonical file invalid mid-dump. Reproduced by the
+    2026-08-26 scope audit at nine bytes on disk. Nothing was lost
+    permanently, since the archive already held the prior run, but the
+    canonical path stopped parsing. Serialising first means a payload
+    that cannot be encoded fails BEFORE anything on disk is touched.
+
+    dump_kwargs pass through to json.dumps, so a caller may keep
+    allow_nan=False rather than inheriting json's permissive default.
+    """
+    try:
+        text = json.dumps(payload, indent=indent, **dump_kwargs)
+    except Exception as exc:
+        print(f"\n  WARNING: results payload is not serialisable, "
+              f"{out_path} left untouched: {exc}", flush=True)
+        return False
     try:
         arch = archive_if_needed(out_path, payload)
         if arch:
             print(f"  prior run archived to {arch}", flush=True)
-        with open(out_path, "w") as f:
-            json.dump(payload, f, indent=indent)
+        d = os.path.dirname(os.path.abspath(out_path)) or "."
+        fd, tmp = tempfile.mkstemp(dir=d, suffix=".tmp")
+        try:
+            with os.fdopen(fd, "w") as f:
+                f.write(text)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp, out_path)
+        except Exception:
+            try:
+                os.unlink(tmp)
+            except Exception:
+                pass
+            raise
         print(f"\n  results written to {out_path}", flush=True)
         return True
     except Exception as exc:
         print(f"\n  WARNING: could not write results JSON to {out_path}: "
               f"{exc}", flush=True)
+        return False
+
+
+def guarded_write_text(text, out_path):
+    """The same protection for a NON-JSON artifact.
+
+    utilities/check_results_guard.py's --enforce end state was
+    unreachable without this: O62_oeis_submission.py writes three .txt
+    files and no JSON, so it could never leave the unguarded column
+    while the guard was JSON-only. Found by the 2026-08-26 scope audit.
+    Comparison here is on raw bytes — there are no volatile fields to
+    blank in a text artifact."""
+    try:
+        arch = archive_if_needed(out_path, None)
+        if arch:
+            print(f"  prior run archived to {arch}", flush=True)
+        d = os.path.dirname(os.path.abspath(out_path)) or "."
+        fd, tmp = tempfile.mkstemp(dir=d, suffix=".tmp")
+        try:
+            with os.fdopen(fd, "w") as f:
+                f.write(text)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp, out_path)
+        except Exception:
+            try:
+                os.unlink(tmp)
+            except Exception:
+                pass
+            raise
+        print(f"\n  results written to {out_path}", flush=True)
+        return True
+    except Exception as exc:
+        print(f"\n  WARNING: could not write {out_path}: {exc}",
+              flush=True)
         return False

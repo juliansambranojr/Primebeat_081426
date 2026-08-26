@@ -16,6 +16,93 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 184 — The declined sweep's audit paid anyway: three defects in the guard, and the hazard it would have caused
+type: instrument-fix
+refs: 166, 183
+
+Julian declined the 75-writer retrofit (entry 183) in favour of
+protecting the invocation. The scope audit commissioned for that sweep
+had already run, and its findings stand independently of the decision —
+it found defects in `utilities/resultsguard.py` ITSELF, which nine
+scripts already use including two under locked preregs, and it found a
+hazard the sweep would have caused.
+
+**The audit noticed its own premise change and flagged rather than
+resolved it.** Mid-audit it observed `utilities/run.py` appear in the
+tree, read its docstring, identified that it covers non-JSON artifacts
+the retrofit structurally cannot, and reported that 75 edits plus ~3
+hours of re-runs were now being priced against something already in
+the working tree — explicitly leaving the call to Julian.
+
+**Three defects, all reproduced, all now fixed.**
+
+```text
+NOT ATOMIC      open(out_path,"w") truncates BEFORE json.dump runs, so
+                an unserialisable payload archived the prior run and
+                then left the canonical file invalid mid-dump —
+                reproduced at nine bytes on disk. Fixed: serialise to a
+                string FIRST, so an unencodable payload fails before
+                anything on disk is touched; then tempfile + fsync +
+                os.replace into place.
+MIXED KEYS      _stable_bytes called json.dumps(sort_keys=True), which
+                raises on a dict mixing int and str keys at one level;
+                the exception was swallowed and an IDENTICAL rerun was
+                archived anyway. Archive litter, never data loss.
+                Fixed by coercing keys to str before sorting.
+JSON ONLY       check_results_guard's --enforce end state was
+                unreachable: O62_oeis_submission.py writes three .txt
+                files and no JSON, so it could never leave the
+                unguarded column. Fixed by adding guarded_write_text.
+                The end state was blocked on one missing function, not
+                on 75 edits.
+```
+
+`guarded_write` also gained `**dump_kwargs`, so a caller can keep
+`allow_nan=False` rather than inheriting json's permissive default.
+Verified in six cases: good write; unserialisable payload leaving the
+canonical file intact; mixed-key rerun producing no archive; text
+write; text change archiving correctly; and `allow_nan=False` refusing
+a NaN.
+
+**The hazard the sweep would have caused, and it is arithmetic rather
+than risk.** 55 root scripts write `params.code_version` as their own
+sha256. Editing a script changes it, which changes its results JSON,
+which changes that JSON's hash. `preregs/dh_coalition_spectrum_v1_
+20260825.md`'s Run record pins the ARTIFACT hash
+`eec3c729a1e6a154...`, and a locked prereg is immutable except its Run
+record. Six preregs sit downstream of edited scripts. Separately,
+`O43_extended_zero_census.py` must never be re-run: it fetches the OEIS
+b-file at run time and its prereg deliberately left that hash unlocked
+to preserve "the only blind arm this test has."
+
+**Two more things the audit corrected.** The retrofit's write-site
+shapes are five, not the three named in the brief, and the two unnamed
+ones carry the hazards: `O11` and `O21` use atomic tmp + `os.replace`,
+and a mechanical conversion would have REMOVED atomicity from the only
+long unattended run in the tree (O21's recorded runs: 5434.78 s and
+8691.43 s). And O34/O35 are about a minute each, not the tens of
+minutes the brief asserted — benchmarked, not assumed.
+
+**Also on record from that audit, unaddressed:** the gate measures JSON
+only, so CSV, MD and PNG side artifacts of O27, O29, O33, O39, O41,
+O59, O60 stay clobberable; `results/archive/` is tracked in git with no
+ignore rule; `pi2n_cache.json` at the repo root is written by four
+scripts with a bare unclosed truncating `json.dump(..., open(CACHE,
+"w"))`; and the two prereg Run-record formats differ in what
+`post_compute_sha256` names — the prereg file in one, the results
+artifact in the other — so the six locked scripts do not share one
+hazard.
+
+**What this says about declining work.** The sweep was declined and the
+audit still paid: it found live defects in code already in use, and it
+priced a hazard that would have invalidated pinned prereg hashes. The
+audit-before-execute split is what made that possible — the cost of
+learning this was one read-only pass, not 75 edits and a rollback.
+
+No outcome marked.
+
+---
+
 ## 2026-08-26 — Entry 183 — utilities/run.py and a PreToolUse hook: protection at the invocation, not at 75 call sites
 type: instrument-fix
 refs: 166, 167, 168
