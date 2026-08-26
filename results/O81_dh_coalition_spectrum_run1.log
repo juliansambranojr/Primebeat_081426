@@ -1,0 +1,19 @@
+O81 — the coalition's spectrum.  PREREGISTERED.
+  prereg dh_coalition_spectrum_v1_20260825.md  sha256 9f500ecd2eb81ce7…
+
+GATE — tau = 0.28407904384, residual -1.694e-21
+GATE — list A recomputed: 15 zeros, matches locked: True
+        list B (entry 162, O80): 8 zeros
+
+building psi_DH on 120 rungs to 2^30 (exact segmented sieve)...
+   119 blocks, log-x span 20.448, band half-width 0.6000
+   median(P) = 1.5523
+   surrogate P_max/median: med 2.593  p95 3.468  max 4.352
+
+HITS on list A (L(s,chi) zeros), P/median > 5: 0 of 15   ambiguous 5
+HITS on list B (DH's own zeros), P/median > 5: 0 of 8   ambiguous 3
+
+DECISION RULE OUTPUT (mechanical): null
+   The verdict line is Julian's to write.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/dh_coalition_spectrum.json

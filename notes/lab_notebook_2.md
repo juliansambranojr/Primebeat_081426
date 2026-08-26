@@ -16,6 +16,65 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 164 — PREREGISTERED non-detection: the ladder does not separate the two spectra
+type: run
+refs: 161, 162, 163
+
+Script O81_dh_coalition_spectrum.py under
+preregs/dh_coalition_spectrum_v1_20260825.md, locked at sha256
+9f500ecd2eb81ce7b9615a62c2db94e4e5d2ad51775548e87af8d9d6c1f044d7
+before the run. Artifacts: results/dh_coalition_spectrum.json
+(sha256 eec3c729a1e6a154...), results/O81_dh_coalition_spectrum_run1.log.
+The prereg's Run record is filled; its verdict line is Julian's.
+
+**What was asked.** Entry 163 factored the DH-weighted prime sum as
+psi_DH(x) = c*psi(x,chi) + conj(c)*psi(x,conj chi), so the residual
+should carry the zeros of L(s,chi) — list A, 15 heights to gamma = 40
+— and NOT DH's own zeros — list B, 8 heights from entry 162. The two
+lists are disjoint: no pair within 0.01, against a band half-width of
+0.6.
+
+**Gates, all passed.** tau residual -1.694e-21. List A recomputed
+inside the run: 15 zeros, matching the locked values to better than
+1e-4. List B as locked. 119 blocks on the 2^(j/4) ladder to 2^30,
+log-x span 20.448, band half-width 0.6000, median(P) = 1.5523.
+
+**The result.**
+
+```text
+hits on list A (L(s,chi) zeros), P/median > 5:  0 of 15   ambiguous 5
+hits on list B (DH's own zeros), P/median > 5:  0 of 8    ambiguous 3
+surrogate P_max/median:  median 2.593   p95 3.468   max 4.352
+```
+
+Mechanical decision-rule output: **null** — the fifth branch,
+"anything else, including no hits at all."
+
+**What this does and does not settle.** It does not support H1 and
+does not refute it. Entry 163's factoring is untouched by this run: it
+stands as unattacked algebra, not as a measured claim. The instrument
+did not separate the hypotheses at this ladder length, which
+§ Vacuousness check named in advance as a live outcome ("null is live
+... a non-detection at this length would not be surprising — O18's
+single-base ladders returned NULL at comparable lengths").
+
+**Why the length is the likely cause rather than absence.** No peak in
+the real spectrum cleared P/median = 5, and the surrogate maximum
+itself reached 4.352, so there was little headroom above the
+permutation noise for any signal to clear. O18's detections came from
+POOLING incommensurate ladders — a single geometric ladder aliases,
+which was that design's whole point, and this test used one. Eight of
+the 23 targets fell in overlapping bands and were scored for neither
+list, which costs further sensitivity.
+
+**What would answer it**, and it is a new prereg rather than a rerun:
+the O18 pooling design applied to the DH-weighted residual. Re-running
+THIS design deeper would be fishing, and is declined on that ground.
+
+No outcome marked; the verdict line in the prereg is Julian's.
+
+---
+
 ## 2026-08-25 — Entry 163 — The coalition governs nothing: why DH's zeros are absent from prime data, and the object that unblocks the test
 type: motivation
 refs: 36, 103, 160, 161, 162
