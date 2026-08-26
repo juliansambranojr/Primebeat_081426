@@ -16,6 +16,67 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 191 — three of the four dangerous tactics cannot be typed in a Mathlib-free module; the fourth is the silent one
+type: formalization
+refs: 59, 189, 190
+
+Approved follow-on to entry 190. `lean/BUILD.md` gains the `grind`
+warning and the § What is in here table now covers all 23 modules.
+
+**The probe.** Each tactic on the same `ℤ` goal, compiled against core
+with no Mathlib on the path:
+
+```text
+ring        unknown tactic
+norm_num    unknown tactic
+linarith    unknown tactic
+grind       [propext, Classical.choice, Quot.sound]
+omega       [propext, Quot.sound]
+decide      no axioms
+```
+
+**This is sharper than the warning that was going to be written.**
+The plan was "add a `grind` warning alongside the `ring`/`mul_sub`
+one". The measurement says something better: `ring`, `norm_num` and
+`linarith` **cannot be typed** in a Mathlib-free module. They fail
+loudly at elaboration and cost nothing. Only `grind` compiles — and it
+pulls in `Classical.choice`, which no ℤ or ℕ statement in this tree
+otherwise needs.
+
+So the hazard is not "four expensive tactics." It is **one silent
+tactic among three noisy ones**, and the noisy three need no warning
+at all because the compiler already gives it.
+
+`PairIdentity.lean`:56-57 had the finding first — "`omega` is fine
+(Quot.sound, not Classical.choice); `ring`, `grind`, `norm_num`,
+`linarith` are not — `grind` costs Classical.choice even here." Right
+about `grind`, and it lists three tactics as hazards that are not
+reachable. The module-level comment was ahead of the build doc by
+some months and no one had promoted it.
+
+**`BUILD.md`'s `ring`/`mul_sub` bullet was filed where it cannot
+apply** — under "Rules when editing a Mathlib-free module", where
+neither name exists. Kept, since the lesson is real, and re-scoped to
+say it applies when Mathlib *is* imported.
+
+**The table.** Extended from 14 modules to 23, each line taken from
+that module's own header rather than composed. Six marked NO MATHLIB.
+Theorem-level detail deliberately not duplicated — it points at
+`lean/THEOREMS.md`, which `utilities/theorem_index.py` generates and
+keeps current, so the parallel stale table that made this correction
+necessary cannot re-form.
+
+Two things the earlier audit had slightly wrong, both caught by
+checking rather than by reading the report. The missing-module list
+was eight; it is **nine** — `TransferOp` was absent from it. And the
+`Zeros` row still read "a zero is a repeat; window exclusivity; which
+ladders meet" when `window_exclusive_of_prime_exponent` and
+`LaddersMeet` had both left for `ZerosStencil` that morning. A row
+describing a module by what it no longer contains is the same defect
+the whole sweep was about, one file away from where it was found.
+
+---
+
 ## 2026-08-26 — Entry 190 — the omega sweep: nothing to fix in the proofs, seven false sentences in the docs
 type: formalization
 refs: 59, 188, 189

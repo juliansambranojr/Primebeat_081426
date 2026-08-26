@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 191: the grind warning, measured — ring/norm_num/linarith are UNKNOWN TACTICS in core, so grind is the only silent Classical.choice hazard; the noisy three need no warning
+- [open]   2026-08-26  entry 191: BUILD.md table extended 14 -> 23 modules from each module's own header, theorem detail now points at generated THEOREMS.md so the stale parallel table cannot re-form
+- [open]   2026-08-26  entry 191: PairIdentity.lean:56-57 had the grind finding months before BUILD.md; module-level comments are ahead of the build doc and nobody promotes them
 - [open]   2026-08-26  entry 190: CORRECTION to entry 189 — Classical.choice is 181, not 163; the bad census summed to 233 against a known 262 and I never ran the sum check
 - [open]   2026-08-26  entry 190: omega sweep found NO worse-off proofs — Construction's omega-avoiding proof is cheaper, and adding omega back would worsen 3 pins including the seed-protection gating theorem; do not make that change
 - [open]   2026-08-26  entry 190: 'is definitional' was false in BUILD.md:50 and Construction.lean:29, origin entry 59 — and the proof three lines below the comment was the disproof (show + Int.sub_sub); corrected
