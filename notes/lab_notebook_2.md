@@ -16,6 +16,75 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 176 — O86: the cross-character control, made reproducible, and the half of the prediction O85 never tested
+type: run
+refs: 163, 168, 175
+
+Script O86_character_discrimination.py, defaults. Artifacts:
+results/character_discrimination.json,
+results/O86_character_discrimination_run1.log.
+
+**Why it exists.** The adversarial check on entry 175 produced stronger
+evidence than the preregistered statistic did, and produced it in a
+scratchpad — no script, no artifact, nothing in the tree. That is entry
+168's O61 situation repeating: decisive numbers with nothing behind
+them. Julian asked whether the finding was saved and reproducible. It
+was not. It is now.
+
+**The psi defect, fixed and gate-checked.** O83, O84 and O85 share a
+copied defect: prime-power mass never accumulates, because the `extra`
+pointer advances while the running total is rebuilt at each rung. This
+script uses the cumulative form and checks it against brute force
+before measuring — max |err| **5.68e-14** at 2^14, against the shared
+defect's 9.604.
+
+**The two things O85's design missed.**
+
+Entry 163 factors `psi_DH = c*psi(x,chi) + conj(c)*psi(x,conj chi)`.
+Both terms carry zeros and chi is COMPLEX, so `L(s,chi)` and
+`L(s,conj chi)` have different ordinates. O85's list A was only half
+the predicted frequencies; the other 16 — list A' — were never tested,
+which makes them out-of-sample with no freedom to fit.
+
+And the control the design never had: reweight the SAME primes on the
+SAME orbit by a different character mod 5. Significance here is against
+RANGE-MATCHED random frequency sets, not a permutation of the residual,
+because permuting flattens the spectrum by construction and cannot see
+a gamma-trend — the correction entry 175 now carries.
+
+**The matrix.** Mean `P/median` at each target list, with range-matched
+one-sided p over 4000 draws:
+
+```text
+weighting              A (L,chi)     A' (L,conj chi)   A2 (L,chi_quad)   B (DH's own)
+DH   a=(1,t,-t,-1)   1.743 p0.0003   1.865 p<0.0001   1.048 p0.761     0.920 p0.758
+quad a=(1,-1,-1,1)   1.241 p0.678    1.299 p0.466     2.689 p<0.0001   1.274 p0.448
+```
+
+**What makes this stronger than D.** The diagonal fires and the
+off-diagonal is flat, with orbit, window, grid, median normalisation
+and target lists byte-identical across the two rows — only the mod-5
+weight vector changes. No gamma-trend, windowing, spacing or
+normalisation artifact can produce a difference between the rows,
+because every one of them is shared. It is a positive control (the
+method finds the quadratic character's zeros when fed the quadratic
+character's primes) and a specificity control (the DH residual does not
+carry them) in one table.
+
+**A' fires harder than the preregistered list**, at 1.865 against
+1.743, on a prediction the design never used.
+
+**What is still not established, unchanged from entry 175's
+correction.** List B at 0.920 with p = 0.758 is indistinguishable from
+random frequencies in its own span. That is what entry 163 predicts —
+DH's zeros should look random — but indistinguishable-from-random is a
+weaker statement than "commands no primes", and this table does not
+supply the stronger one either.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 175 — PREREGISTERED: the residual tracks L(s,chi), not DH — `tracks_L` at percentile 100
 type: run
 refs: 163, 171, 173, 174
@@ -78,6 +147,34 @@ ceiling, and `D` is an aggregate over 15 frequencies — it does not
 locate any individual zero, and O83 says individual location is out of
 reach at this scale. What it supports is the factoring, not a claim
 about any particular zero height.
+
+**CORRECTION, same date, after an adversarial check.** The strength
+figures above are overstated and the null that produced them is the
+wrong null. Permutation flattens the spectrum by construction, so it
+cannot see the γ-trend it needed to control, and list A's frequencies
+sit systematically higher than list B's. Range-matched: `D` sits at
+percentile **99.10**, one-sided **p = 0.0090**, **z = 2.34** — not
+percentile 100.0 at +3.76 sd. Random 15-frequency lists in A's span
+score `+0.2344` against the real list B, so roughly 29% of `D` is
+trend. Defensible figures: **p ≈ 0.007** at 2^30, **p = 0.0006** on
+`{2,3,5}`.
+
+**And half of this entry's reading is not established.** List B
+behaves like random frequencies — grid-quantile `0.460` against a
+chance `0.500` — and replacing DH's zeros with random frequencies in
+the same span leaves `D` at percentile 71.6. That is CONSISTENT with
+entry 163 (DH's zeros should look random) but `D` supplies no
+discriminating evidence for "DH's zeros command no primes". Four of
+list B's apparently-live targets sit within 0.38 of a predicted zero
+at a spectral resolution of 0.313, which is leakage rather than
+independent mass.
+
+**A conformance defect, recorded plainly.** `psi_dh` does not compute
+`ψ_DH`: prime-power mass never accumulates. Max error `9.604` at
+`2^14` against `6.4e-14` for a cumulative fix, and the same defect
+sits in O83 and O84 by copying. The numbers do not move (`D` to
+`+0.8233`, p to `0.0069`) but the locked parameter table and the
+script disagree.
 
 No outcome marked; the verdict line in the prereg is Julian's.
 

@@ -1,0 +1,23 @@
+O86 — cross-character discrimination.  EXPLORATORY.
+
+computing zeros of the three characters mod 5 ...
+   A  (L,chi)      15 zeros, 6.1836 .. 37.2720
+   A' (L,conj chi) 16 zeros, 4.1329 .. 39.0916
+   A2 (L,chi_quad) 16 zeros, 6.6485 .. 39.5606
+   B  (DH's own)   8 zeros, 5.0942 .. 23.3454
+
+psi FIX CHECK vs brute force at 2^14: max |err| = 5.68e-14
+   passed
+
+             weighting              A (L,chi)       A' (L,conj chi)       A2 (L,chi_quad)            B (DH own)
+     DH  a=(1,t,-t,-1)      1.743 p0.0003         1.865 p0.0000         1.048 p0.7612         0.920 p0.7575    
+    quad a=(1,-1,-1,1)      1.241 p0.6780         1.299 p0.4655         2.689 p0.0000         1.274 p0.4480    
+
+  READ. The diagonal is the claim: DH's weighting elevates
+  chi's and conj-chi's zeros; the quadratic weighting elevates
+  the quadratic character's. Orbit, window, grid and
+  normalisation are identical across the two rows, so no
+  gamma-trend or windowing artifact can produce a difference
+  between them. A' was never used in O85's design.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/character_discrimination.json

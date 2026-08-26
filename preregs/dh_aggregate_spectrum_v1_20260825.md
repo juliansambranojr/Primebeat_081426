@@ -165,6 +165,32 @@ comparison of two different things rather than of a set with itself.
   Run record, and this block is that record; the file's hash now
   necessarily differs from the sidecar, and that difference is this
   block.
+- **CORRECTION, 2026-08-25, after the adversarial check.** The
+  permutation null above is the WRONG null and the strength figures it
+  produced are overstated. Permuting `ê` across `j` makes the spectrum
+  flat by construction (`E|Σ c_j ε_j|²` is γ-independent), so the null
+  cannot see a γ-trend — and list A's frequencies are systematically
+  higher than list B's. The Run record's reasoning that "null mean
+  +0.0056 suggests the trend is controlled" is circular. Measured:
+  15 random frequencies drawn in list A's own span, scored against the
+  real list B, give mean `+0.2344` (sd 0.1742, 20 000 draws), so about
+  29% of `D` is trend. Under a range-matched control `D = +0.7942`
+  sits at **percentile 99.10, one-sided p = 0.0090, z = 2.34** — not
+  percentile 100.0 at `+3.76` sd. The defensible figures are
+  **p ≈ 0.007 at 2^30**, and **p = 0.0006** on the `{2,3,5}` orbit.
+  The `tracks_L` branch still fires; its margin is smaller than this
+  record first stated.
+- **A SECOND CORRECTION: the script does not implement the locked
+  counting rule.** `psi_dh` never accumulates prime-power mass — the
+  `extra` pointer advances while `part` is rebuilt per rung, giving
+  `P(x_j) + [E(x_j) − E(x_{j−1})]` instead of `P(x_j) + E(x_j)`.
+  Measured against brute force at `2^14`: max error `9.604` for the
+  script, `6.4e-14` for a cumulative fix. The defect is identical in
+  O83 and O84, which copied it. Numerically the verdict does not move
+  (`D` `+0.7942 → +0.8233`, p `0.0090 → 0.0069`), but the locked
+  parameter table says `ψ_DH(x) = Σ_{p^k ≤ x} log p · a(p^k mod 5)`
+  and the script computes something else. Recorded as a conformance
+  defect, not a numerical one.
 - **`verdict`: `tracks_L`** — written by Julian 2026-08-25. Branch 2
   fired unambiguously: `D = +0.7942` against a null p95 of `+0.3473`,
   at percentile 100.0 of 400 permutations and `+3.76` sd above the null
