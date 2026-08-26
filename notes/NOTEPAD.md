@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 169: correction — O82's statistic is positional, so it cannot separate exact from near-exact by construction; 'exactness does no work' and the 'deflationary' reading are withdrawn; mass result and the FATAL 2 correction stand
 - [open]   2026-08-25  entry 168: O61 flags+guard landed, defaults verified; sub-integer sweep artifact produced (b=1.15, 197 rungs, depth 4.02 reproduces entry 100) — artifact postdates the entry citing it, stated in-entry
 - [open]   2026-08-25  entry 167: O52's record backfilled from artifacts — arms cancel to 4.4e-12 over 6914 blocks, a confirmation of PairIdentity rather than a finding; run date unrecoverable
 - [open]   2026-08-25  entry 166: resultsguard + check_results_guard land — clobber hazard closed structurally, O66 retrofitted, 76 writers remain (sweep queued, entry-148 shaped)

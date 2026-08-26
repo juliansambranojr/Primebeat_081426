@@ -16,6 +16,71 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 169 — Correction: O82 measured position, not exactness; "deflationary" was an inference the instrument does not license
+type: result-triage
+refs: 160, 165
+
+Julian's catch, and it is the fifth correction layer of the day — the
+first from him rather than from an instrument.
+
+**What entry 165 said, and what I said past it.** Entry 165 reported
+that at matched `n` the exact-zero set is indistinguishable from the
+nearly-zero sets, and glossed that as "exact vanishing does no work
+that near vanishing does not". In conversation I then built on it,
+describing the state of the central question as leaning
+**deflationary**. Both go further than the measurement.
+
+**The gap, stated as Julian stated it.** If exactness sat at one end of
+a continuum, the near-vanishing selections should show a gradient. They
+do not, and they are not even monotone:
+
+```text
+selection            z_cross_wm at matched n = 54
+P == 0 (zeros)             -3.56
+|P| == 1                   -2.40
+|P| == 2                   -3.86
+1 <= |P| <= 3              -3.30
+```
+
+`|P| = 2` reads "stronger" than `|P| = 1`, which no continuum story
+predicts, and the subsample spreads of 0.7 to 1.2 swallow the
+differences. A statistic that cannot order `|P| = 1` against
+`|P| = 2` has no standing to say whether `|P| = 0` is special. The
+absence of a gradient is what one would observe whether or not
+exactness does work, so it discriminates nothing.
+
+**Why, structurally.** The statistic is a nearest-neighbour distance in
+the `(lo, hi)` window plane — it measures POSITION. Exactness is a
+property of the cell's VALUE. Cells with `P = 0` and cells with
+`|P| = 1` occupy the same rows, the same depths and the same windows,
+so a positional statistic cannot separate them by construction. This is
+entry 160's FATAL 3 from the other side: matching both coordinates is
+the identity map because `(r,d)` determines the window, and by the same
+token the window cannot report the value.
+
+**What O82 licenses, corrected.** Exact vanishing does not predict
+window position differently from near vanishing. That is a statement
+about the coordinate, not about the zeros. Entry 165's phrasing
+collapsed the two, and the conversational "deflationary" reading built
+a claim about the programme on top of the collapse.
+
+**What survives unchanged.** The mass result: `S <= 200` reaches
+`-6.03`, outrunning every value-based selection, and that IS a
+statement about which cells sit where, since stencil mass and window
+geometry are both positional. The `d <= 3` collapse to `-0.13` also
+stands, and entry 165's correction of entry 160's FATAL 2 headline
+stands: that part was about sample size and is unaffected.
+
+**Where B10 stands after this.** Where it stood before tonight —
+unattacked, and not supported either. O82 did not test it. Entry 165's
+findings about what `magnitude_floor` actually tested (a constant
+per-cell rate, not magnitude) and about entry 17's refusal of
+magnitude-null arguments are independent of this correction and stand.
+
+No outcome marked.
+
+---
+
 ## 2026-08-25 — Entry 168 — O61 given flags and the guard; the sub-integer crossing sweep now has an artifact
 type: instrument-fix
 refs: 100, 166
