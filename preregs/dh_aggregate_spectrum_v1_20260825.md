@@ -165,4 +165,19 @@ comparison of two different things rather than of a set with itself.
   Run record, and this block is that record; the file's hash now
   necessarily differs from the sidecar, and that difference is this
   block.
-- **`verdict`:** *(Julian's to write)*
+- **`verdict`: `tracks_L`** — written by Julian 2026-08-25. Branch 2
+  fired unambiguously: `D = +0.7942` against a null p95 of `+0.3473`,
+  at percentile 100.0 of 400 permutations and `+3.76` sd above the null
+  mean, with every gate passed and the power section measured before
+  the lock.
+- **Scope of the verdict.** It records what the decision rule returned
+  and nothing further. Whether this confirms entry 163's factoring —
+  the interpretive claim in entry 175 — is held provisional pending an
+  adversarial check, commissioned the same date. Four targets named for
+  that check: whether a γ-trend in `P` survives the permutation null
+  (list A's frequencies are systematically higher than list B's, means
+  ~22.4 against ~15.3); whether a RANDOM 15-frequency list would also
+  beat list B, which is the control this prereg does not contain;
+  whether `D` is distributed across list A or driven by two or three
+  targets; and whether `D` reproduces at another ceiling or generator
+  pair.
