@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 186: THE RECONSTRUCTION TEST — rebuild every script in a clean repo from the accounts alone (entries, NOTEPAD, papers, preregs, commits), not from the source; tests whether the record is complete, fires both ways; open design question is how to enforce the separation
 - [open]   2026-08-26  entry 185: container lesson — nine things today taught about building gates, hooks and guards; read before writing the container's own utilities
 - [open]   2026-08-26  entry 184: guard defects fixed — atomic write (corruption mode closed), str-key coercion, guarded_write_text unblocking --enforce; sweep would have invalidated 6 prereg artifact hashes via code_version
 - [open]   2026-08-26  entry 184: still open from that audit — gate measures JSON only (CSV/MD/PNG clobberable), results/archive tracked with no ignore rule, pi2n_cache written by 4 scripts with a bare truncating dump
@@ -317,7 +318,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-15  entry 10: the page was written for the other instance and cites DT-A11/A12 section numbers not present in this tree
 - [closed] 2026-08-15  entry 9: O12 and O13 now in the tree — entry 8's "scratchpad only, nothing in results/" caveat is superseded
 - [closed] 2026-08-15  entry 9: both scripts run twice, generated_utc stripped, byte-identical payload hashes — deterministic
-- [open]   2026-08-15  entry 9: params.code_version = script's own sha256, on O12/O13 only — extending it to older scripts still pending Julian
+- [closed] 2026-08-15  entry 9: params.code_version — decided 2026-08-26 to leave as is; a stamping pass would invalidate pinned prereg artifact hashes. noted in CONTEXT.md's output-schema section
 - [closed] 2026-08-15  entry 9: O13's gate reads expected values from the O9 fine JSON rather than hardcoding — breaks if that file changes
 - [closed] 2026-08-15  entry 9: entry 8's "15–16 sig figs" on the block-sum gate is really 14.79–16; gate requires 10, passes either way
 - [closed] 2026-08-15  entry 9: observed log-log deficit is ~85% of predicted at both σ (−0.034 vs −0.040, −0.070 vs −0.080), not equal

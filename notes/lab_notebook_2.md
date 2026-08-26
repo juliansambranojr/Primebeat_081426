@@ -16,6 +16,62 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 186 — The reconstruction test: rebuild the tree from its own accounts, in a clean repo
+type: motivation
+refs: 9, 101, 183, 184, 185
+
+Two decisions and one design, from Julian.
+
+**`code_version` stays as it is.** Entry 9 (2026-08-15) opened
+extending the self-sha stamp to the older scripts and left it pending.
+Decided against 2026-08-26, and recorded in the output-schema section
+of `CONTEXT.md` so a later reader meets the reason where the gap is. The reason
+only became visible today: editing a script changes its
+`code_version`, which changes every results JSON it writes, which
+changes those JSONs' sha256 — and six preregs sit downstream, one
+pinning an artifact hash inside a Run record that `preregs/FORMAT.md`
+makes immutable. A retroactive stamping pass would invalidate pinned
+hashes in locked documents to gain provenance on runs that already
+happened. `results/runs/` (entry 183) now supplies that provenance from
+outside the artifact instead of inside it.
+
+**THE RECONSTRUCTION TEST, Julian's design, recorded now so it is not
+reinvented later.** At a good stopping point, rebuild every script in a
+NEW repository, from the accounts alone: the scaffold, the commit
+history, the NOTEPAD lines and the notebook entries. Not copied —
+rebuilt, with the record as the specification.
+
+**What it tests, and why it is the sharpest instrument this tree can
+point at itself.** Every claim here rests on the premise that the
+record is complete: that the entries, artifacts and gates together say
+enough for the work to be checked by someone who was not present. That
+premise has never been tested. The reconstruction is the test, and it
+fires in both directions — a script that cannot be rebuilt from the
+accounts marks a hole in the record at exactly the place the hole is,
+and one that can is evidence the account was sufficient. Julian's
+phrasing: reconstruct everything *through constraint of the accounts*.
+
+**How it relates to what exists.** Entry 101 ran the bench's own
+falsification test — O7's prereg re-run reproducing its SHA and 170 of
+171 JSON leaves — and recorded that it showed DETERMINISM and not
+PORTABILITY, since it ran on the same machine. This is the portability
+question at a different scale: not can the same code reproduce, but
+can the record regenerate the code. And it is the same shape as
+`the_container`'s entry 1 falsifying artifact — a fresh instance,
+handed only the tree, failing to reconstruct — which is currently that
+repo's one open leaf.
+
+**What would make it a real test rather than a copy.** The rebuild has
+to be constrained to the accounts: notebook entries, NOTEPAD lines,
+papers, preregs, CONTEXT.md, REFERENCES.md and the commit messages —
+not the scripts themselves. Reading the original source while
+rebuilding turns the test into transcription. Whether that separation
+can be enforced, and by whom, is the open design question.
+
+No outcome marked.
+
+---
+
 ## 2026-08-26 — Entry 185 — For the container: what today taught about building gates, hooks and guards
 type: provenance
 refs: 166, 182, 183, 184

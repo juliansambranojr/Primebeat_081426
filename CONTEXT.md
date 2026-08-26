@@ -127,6 +127,25 @@ Paths are anchored to `_HERE` so runs are cwd-independent.
 **O8 is the exception** — no `DEFAULT_OUT`, no `json.dump`, no `--out`.
 Its record is console output only, captured in `O8_run*.log`.
 
+**`params.code_version` is not universal, and is deliberately being
+left that way.** 55 root scripts write their own sha256 into
+`params.code_version`; the genuinely old ones — `O11`, the `05_` /
+`06_` / `07_` series, and a few others — do not. Entry 9 (2026-08-15)
+opened extending it to the rest, and on 2026-08-26 that was **decided
+against, for a reason that only became visible later**: editing a
+script changes its `code_version`, which changes every results JSON it
+writes, which changes those JSONs' sha256. Six preregs sit downstream
+of scripts in that set, and
+`preregs/dh_coalition_spectrum_v1_20260825.md` pins an artifact's hash
+inside a Run record that is immutable by `preregs/FORMAT.md`. A
+retroactive stamping pass would therefore invalidate pinned hashes in
+locked documents to gain provenance on runs that already happened.
+The absence is a known gap, not an oversight; `results/runs/` (entry
+183) now records interpreter, argv, script sha256 and git HEAD for
+every run made through `utilities/run.py`, which supplies the same
+provenance from outside the artifact instead of inside it.
+`lab_notebook.md` entry 9 · `lab_notebook_2.md` entries 183, 184
+
 ## Caches
 
 - `pi2n_cache.json` — π(2ⁿ) for n = 0…62, **63 entries**. Shared by 05,
