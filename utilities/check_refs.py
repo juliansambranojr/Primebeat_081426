@@ -34,10 +34,24 @@ for f in ROOT.glob("*.md"):
     named[f.name] = {m.group(1).strip() for m in
                      re.finditer(r"^#{2,3} (.+)$", f.read_text(), re.M)}
 
-mods = {f.stem for f in LEAN.glob("*.lean")}
-decls = set()
+# A Lean declaration's address is its NAMESPACE, not its filename, and
+# papers/FORMAT.md specifies that a citation names a declaration that must
+# exist in lean/. This block keyed only by file stem, so a citation broke
+# the moment a theorem moved between files even when its namespace never
+# changed — 48 of them did, when ZerosStencil was split out of Zeros on
+# 2026-08-26. Indexing by declared namespace AND stem is byte-identical on
+# every module that predates that split, because each declares exactly one
+# namespace equal to its own stem; it differs only where a namespace now
+# spans two files, which is the case this exists to accept.
+mods, decls = set(), set()
 for f in LEAN.glob("*.lean"):
-    for m in re.finditer(r"^(?:theorem|def|noncomputable def)\s+([A-Za-z_][\w']*)", f.read_text(), re.M):
+    src = f.read_text()
+    m_ns = re.search(r"^namespace ([A-Za-z_][\w'.]*)", src, re.M)
+    ns = m_ns.group(1) if m_ns else f.stem
+    mods.add(ns)
+    mods.add(f.stem)
+    for m in re.finditer(r"^(?:theorem|def|noncomputable def)\s+([A-Za-z_][\w']*)", src, re.M):
+        decls.add(f"{ns}.{m.group(1)}")
         decls.add(f"{f.stem}.{m.group(1)}")
 files = {p.name for p in ROOT.rglob("*") if p.is_file()}
 
