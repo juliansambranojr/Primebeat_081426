@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 190: CORRECTION to entry 189 — Classical.choice is 181, not 163; the bad census summed to 233 against a known 262 and I never ran the sum check
+- [open]   2026-08-26  entry 190: omega sweep found NO worse-off proofs — Construction's omega-avoiding proof is cheaper, and adding omega back would worsen 3 pins including the seed-protection gating theorem; do not make that change
+- [open]   2026-08-26  entry 190: 'is definitional' was false in BUILD.md:50 and Construction.lean:29, origin entry 59 — and the proof three lines below the comment was the disproof (show + Int.sub_sub); corrected
+- [open]   2026-08-26  entry 190: BUILD.md § What is in here table covers 14 of 23 modules — regenerate from THEOREMS.md or replace with a pointer? open
+- [open]   2026-08-26  entry 190: `grind` ships in core at [propext, Classical.choice, Quot.sound] and BUILD.md never mentions it; the ring/mul_sub warning it does carry is filed where neither is in scope — new guidance, Julian's call
 - [open]   2026-08-26  entry 189: Zeros.lean is Lean-core only — 8027 jobs/2.8s/5.37 GB to 3 jobs/240ms/0.68 GB; 2 of 31 pins improved, 34 to 35 theorems at zero axioms; the memory figure is the second-machine blocker
 - [open]   2026-08-26  entry 189: ZeroCells broke on transitively-inherited Mathlib notation, not on a proof — a second failure mode for every future Mathlib-free conversion, and it is silent
 - [open]   2026-08-26  entry 189: BUILD.md:49 and Construction.lean:28 say omega is unavailable in core; it is available, and BUILD.md:58's own cost table already records its core price — correction approved by Julian, sweep running

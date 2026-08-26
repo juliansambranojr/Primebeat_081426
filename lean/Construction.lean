@@ -25,8 +25,12 @@ later `import Mathlib` cannot raise it.
 
 Two consequences worth knowing before editing:
 
-* `omega` is unavailable here, and would cost `Quot.sound` if it were. The
-  Nat-to-Int casts it was used for are definitional — `rfl` closes them.
+* `omega` is available in core and costs `[propext, Quot.sound]`. Nothing here
+  needs it, and that is worth keeping: adding it back to the cast step in
+  `zero_determined_by_row` raises this module's pin and two downstream ones.
+  The Nat-to-Int cast itself is definitional — `((k+1 : ℕ) : ℤ) = (k : ℤ) + 1`
+  is `rfl` at no axioms. The step around it is not; see the `hc` block below,
+  which needs `show` and `Int.sub_sub` and costs `[propext]`.
 * Mathlib's generic algebra lemmas (`mul_sub`, `ring`) are stated over general
   rings whose instances are classical, so reaching for one *raises* the axiom
   count. Use core's `Int.` lemmas, or `decide`.
@@ -90,7 +94,7 @@ theorem zero_determined_by_row {N M : ℤ → ℤ} (r : ℤ) (d : ℕ)
         ih r fun k hk => h k (Nat.le_succ_of_le hk)
       have hr1 : tableFrom N (r - 1) n = tableFrom M (r - 1) n := by
         refine ih (r - 1) fun k hk => ?_
-        -- the cast step was `omega`; it is definitional
+        -- the cast step was `omega`; the cast itself is `rfl`, this step is not
         have hc : r - ((k + 1 : ℕ) : ℤ) = r - 1 - (k : ℤ) := by
           show r - ((k : ℤ) + 1) = r - 1 - (k : ℤ)
           rw [Int.sub_sub]

@@ -16,6 +16,101 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 190 — the omega sweep: nothing to fix in the proofs, seven false sentences in the docs
+type: formalization
+refs: 59, 188, 189
+
+**Correction to entry 189 first.** That entry states `Classical.choice`
+"stayed at 163". It stayed, and the number is **181**. The census:
+
+```text
+181  [propext, Classical.choice, Quot.sound]
+ 35  does not depend on any axioms
+ 32  [propext, Quot.sound]
+ 14  [propext]
+---
+262  = the pin count
+```
+
+163 came from a grep of mine earlier that day whose own categories
+summed to 233 against a known total of 262. The sum check was
+available and free and I did not run it. **A census that does not add
+up to the total it partitions is wrong on its face.**
+
+**The sweep's finding is that there is nothing to fix in the proofs.**
+The approved correction was to `omega`'s availability. The obvious
+follow-on — find proofs that took a worse route believing it
+unavailable — returns **none**, and that is the honest answer rather
+than a failure to look.
+
+Six of 23 modules are Mathlib-free, closed transitively:
+`Construction` (root), `PairIdentity`, `SeedPerturbation`, `Zeros`,
+`Propagation`, `ZeroCells`. Four were compiled standalone with bare
+`lean` and `LEAN_PATH` at a scratch directory — no Lake, no Mathlib
+olean present — and every `#guard_msgs` passed.
+
+Five of the six already use `omega` and say so in their own headers.
+The sixth, `Construction`, holds the tree's only `omega`-avoiding
+proof, and it is **cheaper as written**. Measured:
+
+```text
+Construction.zero_determined_by_row       as written  [propext]
+                                     with `by omega`  [propext, Quot.sound]
+```
+
+and by inheritance that raises `PairIdentity.tableFrom_add_window` and
+`SeedPerturbation.tableFrom_eq_zero_of_vanishing_above`, which commit
+`95bb9c1` calls the gating theorem for the seed protections. Four
+lines saved against three pins worsened. **Do not make this change.**
+
+In core, `rfl` and `decide` cost no axioms while `omega` costs
+`[propext, Quot.sound]`, so "`omega` is available" is a convenience
+result and not an axiom result.
+
+**A second false claim, older and separate.** `BUILD.md`:50-51 and
+`Construction.lean`:29 both stated that
+`r - ((k+1 : ℕ) : ℤ) = r - 1 - (k : ℤ)` "is definitional". It is not:
+
+```text
+error: Tactic `rfl` failed: The left-hand side
+  r - ↑(k + 1)
+is not definitionally equal to the right-hand side
+  r - 1 - ↑k
+```
+
+Definitional is the cast alone, `((k+1 : ℕ) : ℤ) = (k : ℤ) + 1`, which
+is `rfl` at no axioms. The step around it costs `[propext]` via
+`Int.sub_sub` and `Int.add_comm`.
+
+**The code contradicted the comment sitting directly above it.**
+`Construction.lean`:93-96 read `-- the cast step was omega; it is
+definitional`, and the next three lines are `show`, `rw [Int.sub_sub]`,
+`Int.add_comm` — which is what a non-definitional step looks like.
+Anyone reading the proof was reading the disproof. The claim originates
+in entry 59 and propagated from there into both files.
+
+**Corrected in `lean/BUILD.md` and `lean/Construction.lean`** (build
+green, 8049 jobs): the `omega` bullet, the definitional claim, the
+inline comment, plus four stale facts — 8040 jobs/167 theorems now
+8049/262; `Zeros`, `PairIdentity`, `SeedPerturbation` described as
+"still import Mathlib" when all three are Mathlib-free; 84 theorems at
+`Classical.choice` now 181; "Fourteen modules" now 23. The table under
+§ What is in here describes 14 of 23 and was left in place with the gap
+named — whether to regenerate it from `lean/THEOREMS.md` or replace it
+with a pointer is open.
+
+**Not applied, needs a decision.** `BUILD.md` warns that Mathlib's
+generic algebra lemmas (`ring`, `mul_sub`) raise the axiom count, and
+files it under "Rules when editing a Mathlib-free module" where neither
+is in scope — without Mathlib, `ring` is an unknown tactic. The live
+form of that hazard is **`grind`**, which core does ship and which
+measures `[propext, Classical.choice, Quot.sound]` on an `Int` ring
+goal. `PairIdentity.lean`:56-57 knows this; `BUILD.md` never mentions
+it. Adding that warning is new guidance rather than a correction, so it
+is left for Julian.
+
+---
+
 ## 2026-08-26 — Entry 189 — Zeros.lean builds on Lean core alone: 5.37 GB to 0.68 GB, two pins improved
 type: formalization
 refs: 59, 66, 78, 187, 188
