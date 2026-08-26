@@ -16,6 +16,64 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 171 — O81 stamped `null`, the design retired, and the DH question with it
+type: prereg
+refs: 163, 164
+
+Julian wrote the verdict line on
+`preregs/dh_coalition_spectrum_v1_20260825.md` this date: **`null`**,
+with the design retired rather than revised, and the question retired
+alongside it. His instruction, recorded verbatim because it is the
+scope decision and not a technical one: *retire it — if it is important
+it will come back.*
+
+**Why `null` and not `compromised`.** The locked rule's `compromised`
+branch is enumerated and closed: τ gate failure, target-list mismatch
+beyond 1e-4, fewer than 8 of list A inside the γ grid, or a degenerate
+band. None fired — τ residual `-1.694e-21`, list A recomputed inside
+the run to the locked values, 15 A-targets against a floor of 8,
+`median(P) = 1.5523`. Branch 5 names this case on its own terms:
+"anything else, including no hits at all." Reaching for `compromised`
+because the outcome was uninformative would be overriding a locked rule
+after seeing the result, which is the thing preregistration exists to
+prevent.
+
+**The contrast with O48, which is the useful one.** That design was
+stamped `compromised` because a locked threshold explicitly fired —
+control floor 0.754867 against 0.80 — and it too was retired rather
+than revised (entry 110). Same discipline, opposite branch, and the
+difference sits in the rule rather than in how the results felt.
+
+**What is being retired, precisely.** The DH-coalition spectral
+question: whether the DH-weighted prime residual carries `L(s,χ)`'s
+zeros rather than DH's own. Entry 164 named the O18-style pooling
+design as the honest successor; it is **not** carried as an open
+thread. Entry 163's factoring —
+`psi_DH(x) = c·psi(x,χ) + conj(c)·psi(x,conj χ)` — stands in the
+notebook as unattacked algebra, neither confirmed nor refuted by
+measurement, and is not being pursued.
+
+**What is not retired.** Entries 161 and 162 are findings rather than
+open questions and stand on their own: the deep zeros (8,3) and (20,6)
+appear in no residue-class table, and DH's zeros are located on the
+line to `t = 60` with the first departure at
+`σ = 0.808517182457, t = 85.6993484854`.
+
+**The format defect this run exposed, which outlives the question.**
+The prereg's vacuousness check asks whether a criterion can fire in
+both directions and never asks whether the instrument has the power to
+make it fire. This design satisfied the first and failed the second —
+119 blocks, a surrogate maximum of 4.352 against a threshold of 5, no
+headroom — and the null was predictable in advance had the second
+question been asked. Julian's own words when the result came back: *we
+ran a prereg with a claim that was possible but lacked the pieces to
+make it falsifiable.* That gap is in `preregs/FORMAT.md`, not in this
+prereg, and closing it is a separate act from stamping this run.
+
+Verdict stamped by Julian. Design retired. Question retired.
+
+---
+
 ## 2026-08-25 — Entry 170 — The operator-over-zeros story, attacked and withdrawn: wrong history, sorted evidence, and a settled inventory ignored
 type: result-triage
 refs: 111, 165, 169

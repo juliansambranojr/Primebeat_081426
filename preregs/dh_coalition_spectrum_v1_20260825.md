@@ -168,4 +168,16 @@ ambiguous peaks is reported.
   necessarily differs from the sidecar, and that difference is this
   block. To verify, restore the `(fill at run)` placeholders and
   re-hash.
-- **`verdict`:** *(Julian's to write)*
+- **`verdict`: `null`** — written by Julian 2026-08-25. The
+  `compromised` branch is enumerated and none of its conditions fired
+  (τ residual `-1.694e-21`; list A recomputed to the locked values; 15
+  A-targets in grid against a floor of 8; `median(P) = 1.5523`), so
+  branch 5 applies on its own terms: "anything else, including no hits
+  at all."
+- **The design is retired rather than revised, and the question with
+  it.** Entry 164 records that no peak cleared the threshold while the
+  surrogate maximum reached 4.352, and that a deeper re-run of this
+  design would be fishing. The O18-style pooling design named there as
+  the honest successor is **not** being carried as an open thread.
+  Julian's instruction, this date: retire it — if it is important it
+  will come back.
