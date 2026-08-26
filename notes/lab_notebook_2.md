@@ -16,6 +16,87 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 185 — For the container: what today taught about building gates, hooks and guards
+type: provenance
+refs: 166, 182, 183, 184
+
+Recorded at Julian's request, to be read when the container's own
+utilities are built rather than rediscovered there. Today produced a
+guard, a gate, a runner and a hook, and every one of them was wrong in
+a way that only showed under use. The failures have a shape.
+
+**1. A gate is blind in exactly the way its author is.** The first
+`check_results_guard.py` matched `json.dump(` and missed
+`json.dumps(...)` piped through `pathlib.write_text` — which is how
+O66 writes, one of the three scripts the gate existed for. Widened,
+and it still missed: the second filter looked for a literal
+`results/`, and O66 builds its path as `"results" / "file.json"` in
+pathlib components. **The true writer count was 77, not the 49 the
+first pattern reported.** Both misses were found by pointing the
+instrument at its own motivating case before trusting it. A gate that
+has never been run against the thing it was built for is an untested
+gate.
+
+**2. Protect at the layer with the fewest call sites.** The guard
+required each of 84 writers to call it, and 9 did. The retrofit was 75
+edits across FIVE write-site shapes — three of which the brief did not
+name, and two of the unnamed ones carried the hazards. Moving the same
+protection to the invocation (`utilities/run.py`) covered every script,
+including ones untouched since August, at zero edits and zero re-runs.
+**Ask where the narrowest waist is before writing the wide fix.**
+
+**3. A guard that writes must be atomic, or it is a corruption
+mechanism.** `open(path, "w")` truncates BEFORE the serialiser runs, so
+an unencodable payload archived the prior run and then destroyed the
+canonical file — nine bytes on disk, reproduced. The fix is ordering:
+serialise to a string first, so a bad payload fails before anything is
+touched, then tempfile + fsync + `os.replace`. **Anything calling
+itself a guard should be written assuming its own write will fail
+halfway.**
+
+**4. Check the escape hatch exists before promising the end state.**
+`--enforce` was designed as the sweep's finish line and was
+unreachable the whole time: one script writes only `.txt` and the
+guard was JSON-only. Blocked on a missing function, not on 75 edits.
+**Enumerate the artifact TYPES before designing the gate that covers
+them.**
+
+**5. An identity check needs a canonicaliser, not a serialiser.**
+`json.dumps(sort_keys=True)` raises on a dict mixing int and str keys;
+the exception was swallowed and identical reruns archived anyway.
+Silent litter. **Comparison paths need their own tests, because they
+fail quietly by design.**
+
+**6. Copy-on-write is the right primitive for a snapshot, and a
+hardlink is a trap.** A hardlink shares the inode, and a truncating
+write destroys the link's content too. An APFS `cp -Rc` clone is
+instant against 181 MB and independent. **Know which of your
+filesystem's cheap copies are actually copies.**
+
+**7. Editing a script can invalidate a hash somewhere else.** 55
+scripts write their own sha256 as `code_version`, so any edit changes
+their artifacts, whose hashes are pinned in locked preregs — one in a
+Run record that is immutable. A mass edit is a mass invalidation.
+**Before a sweep, ask what hashes are downstream of the files being
+swept.**
+
+**8. Audit-before-execute pays even when the execution is declined.**
+The sweep was cancelled and its audit still found three live defects in
+code nine scripts depend on, priced the hash hazard, corrected two
+factual claims in its own brief, and flagged that its premise had
+changed mid-flight. Cost: one read-only pass. The alternative was 75
+edits and a rollback.
+
+**9. Hooks catch what gates cannot, and neither catches prose.** No
+mechanical check in this tree could see the false provenance sentence
+of entry 182 — every gate passed. An outside reader comparing two
+timestamps caught it. **Build the gates, and do not expect them to
+cover the claims made ABOUT the work.**
+
+No outcome marked.
+
+---
+
 ## 2026-08-26 — Entry 184 — The declined sweep's audit paid anyway: three defects in the guard, and the hazard it would have caused
 type: instrument-fix
 refs: 166, 183

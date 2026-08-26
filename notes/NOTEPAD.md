@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 185: container lesson — nine things today taught about building gates, hooks and guards; read before writing the container's own utilities
 - [open]   2026-08-26  entry 184: guard defects fixed — atomic write (corruption mode closed), str-key coercion, guarded_write_text unblocking --enforce; sweep would have invalidated 6 prereg artifact hashes via code_version
 - [open]   2026-08-26  entry 184: still open from that audit — gate measures JSON only (CSV/MD/PNG clobberable), results/archive tracked with no ignore rule, pi2n_cache written by 4 scripts with a bare truncating dump
 - [open]   2026-08-26  entry 183: run.py + PreToolUse hook — protection moved to the invocation layer, retrofit sweep DECLINED by Julian; every run now leaves a manifest tying artifact to invocation, script hash and commit
@@ -165,7 +166,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed] 2026-08-21  entry 90: scope fact — O50:70 normalises by sqrt(x)/log x, the RH-consistent scaling (von Koch); nothing in the bench tests whether sqrt(x) is the right normaliser, and every result O17-O50 is expressed in that scale
 - [closed] 2026-08-21  entry 90: smallest test — does prime(r,d) = composite(r,d) anywhere in the dyadic table? that is the fixed set of the arm involution, finite and cheap, never looked at; the s-side involution s -> 1-s has the critical line as its fixed set
 - [closed] 2026-08-21  entry 89: check_refs.py --audit pairs every cross-document section citation with the text it points at (31 today); gate default byte-identical so the baseline holds; the tool reproduced the CLAUDE.md '### B4' trap on its own first run and had a second bug where the last statement in a file never matched
-- [open]   2026-08-21  entry 89: Commensurate-Ladders H2 asks whether the power chains 2->4->8 and 3->9 do anything beyond block-summing — entry 87's Isogeny.rowN_eq_blockSum answers it on the arithmetic side; closing the paper's open question is Julian's call, left unedited
+- [closed] 2026-08-21  entry 89: Commensurate-Ladders H2 — settled 2026-08-26: H2' added, arithmetic half closed by rowN_eq_blockSum, behavioural half explicitly still open
 - [closed] 2026-08-21  entry 89: CONTEXT.md brought current (approved) — new section on the Lean tree as of entry 88, known defect 6 for the checker gap, content dates to 08-21
 - [closed] 2026-08-21  entry 88: The-Deep-Ladder F4 cited Euler-Factor-Chain J5 for a no-continuation claim J5 never makes; the claim is also false (Mathlib riemannZeta IS continued and Chain.lean:52 already uses it) and zeta(-1) = -1/12 compiles in two lines
 - [closed] 2026-08-21  entry 88: periodLattice proved discrete via span_int_eq_addSubgroupClosure + ZLattice basis instance, so Torus b is a quotient by a discrete rank-2 subgroup; compactness still open

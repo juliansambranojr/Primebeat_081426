@@ -209,6 +209,17 @@ commensurate bases behave differently from orphans in any respect other than C3'
 oscillatory fraction, which found no difference.
 `C3`
 
+**H2′.** The arithmetic half of H2 is now closed, and only that half.
+`Isogeny.rowN_eq_blockSum` proves `rowN Q k r = Σ_{j<k} rowN Q 1 (k·r + j)` for every
+`Q`, `k` and `r` — the degree-`k` row **is** the block sum, so a base inside an isogeny
+class carries no count its generator's row does not already carry. What that settles is
+the counts. It does not settle H2 as asked: a statistic computed on `row_k` may still
+behave differently from the same statistic on `row_1`, the way a moving average is
+determined by its series and has different spectral properties. H2's behavioural half —
+whether commensurate bases differ from orphans in any respect beyond C3's oscillatory
+fraction — remains untested.
+`Isogeny.rowN_eq_blockSum · lab_notebook_2 entry 87`
+
 **H3.** F3's gap. The general ladder-intersection statement is elementary and unencoded,
 and it is the one piece of arithmetic here that every result above leans on.
 `F3`
