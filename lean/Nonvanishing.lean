@@ -41,6 +41,7 @@ Companion to papers/The-Four-Zeros.md § I and notes entry 113.
 -/
 import Mathlib
 import Zeros
+import ZerosStencil
 
 namespace Nonvanishing
 

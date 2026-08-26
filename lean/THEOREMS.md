@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-250 theorems across 20 modules. Every one carries a
+262 theorems across 23 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -33,6 +33,13 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `SeedPerturbation` | `silence46_alive_at_three` | And rung 3 genuinely carries excess, so `boundary_can_move` has its `e R ≠ 0`. |
 | `SeedPerturbation` | `measured_silence46_matches_shift` | The falsifier. |
 | `SeedPerturbation` | `measured_emptied_matches_shift` | The second falsifier, at `R_e = 2`. |
+| `ZeroCells` | `construction_eq` | The construction module's list is the computed one. |
+| `ZeroCells` | `seedPerturbation_eq` | The seed-perturbation module's list is the computed one. |
+| `ZeroCells` | `pairIdentity_eq` | The pair-identity module's list is the computed one. |
+| `ZeroCells` | `construction_all_vanish` | Every cell `Construction.measured_zeros` names vanishes — now derived, not transcribed. |
+| `ZeroCells` | `seedPerturbation_all_vanish` | Every cell `SeedPerturbation.zero_cells` names vanishes. |
+| `ZeroCells` | `pairIdentity_all_vanish` | Every cell `PairIdentity.zero_cells` names vanishes. |
+| `ZeroCells` | `all_four_have_length_four` | All four names, one length. |
 | `Zeros` | `tableFrom_isTable` | The bench's table is one. |
 | `Zeros` | `zero_2_1` | `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. |
 | `Zeros` | `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. |
@@ -63,7 +70,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `B5` | B5, now unconditional. | ℂ floor | `Euler-Factor-Chain.md` |
 | `C3` | C3, now unconditional. | ℂ floor | `Euler-Factor-Chain.md` |
 | `C3lower` | C3's decay half, unconditional. | ℂ floor | support |
-| `tableFrom_eq_bdiff_iter` | The weld. | ℂ floor | `lab_notebook_2.md` |
+| `tableFrom_eq_bdiff_iter` | The weld. | ℂ floor | `CONTEXT.md`, `lab_notebook_2.md` |
 | `tableFrom_mode` | The chain, welded. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `tableFrom_norm_on_critical_line` | The table on the critical line. | ℂ floor | `lab_notebook_2.md` |
 | `sym_eq_zero_iff` | The pole lattice. | ℂ floor | `NOTEPAD.md`, `README.md`, `lab_notebook_2.md` |
@@ -163,7 +170,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `strictMono_of_lt` | If resolution outweighs per-block signal, the score strictly increases with the generator count — more generators is always better, so no interior pea | ℂ floor | support |
 | `strictAnti_of_lt` | If per-block signal outweighs resolution, the score strictly decreases — fewer generators is always better, so again no interior peak. | ℂ floor | support |
 | `const_of_eq` | If the exponents match, the score does not depend on the generator count. | ℂ floor | support |
-| `no_interior_peak` | No power-law tradeoff of this form has an interior peak. | ℂ floor | `Formalization.md`, `README.md`, `lab_notebook_2.md` |
+| `no_interior_peak` | No power-law tradeoff of this form has an interior peak. | ℂ floor | `CONTEXT.md`, `Formalization.md`, `README.md` +1 |
 | `measured_has_interior_peak` | The measurement is not monotone: G4 exceeds both G3 and G5. | ℂ floor | record |
 
 ## Isogeny (9)
@@ -172,7 +179,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 |---|---|---|---|
 | `rowOf_eq_rowN` | The bridge: composing `P` with `b^·` turns one into the other. | propext | `lab_notebook_2.md` |
 | `telescope` | Telescoping over `Finset.range`. | ℂ floor | support |
-| `rowN_eq_blockSum` | The isogeny on the row. | ℂ floor | `CONTEXT.md`, `NOTEPAD.md`, `lab_notebook_2.md` |
+| `rowN_eq_blockSum` | The isogeny on the row. | ℂ floor | `CONTEXT.md`, `Commensurate-Ladders.md`, `NOTEPAD.md` +1 |
 | `row_two_eq_pair` | Base 4's row is base 2's row summed in pairs. | propext, Quot.sound | `lab_notebook_2.md` |
 | `row_three_eq_triple` | Base 8's row is base 2's row summed in triples. | propext, Quot.sound | `lab_notebook_2.md` |
 | `rowN_comp` | Decimation composes. | propext | `lab_notebook_2.md` |
@@ -220,6 +227,16 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `nonvanishing_of` | The arrow. | ℂ floor | `The-Four-Zeros.md`, `lab_notebook_2.md` |
 | `tableFrom_ne_zero_of` | Onto the integer table. | ℂ floor | `The-Four-Zeros.md`, `lab_notebook_2.md` |
 
+## Nyquist (5)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `aliases_of_offset` | The aliasing offset. | ℂ floor | `lab_notebook_2.md` |
+| `nyquist_no_go` | THE NO-GO. | ℂ floor | `lab_notebook_2.md` |
+| `base_bound_of_resolvable` | Entry 26's inequality, as the contrapositive. | ℂ floor | `lab_notebook_2.md` |
+| `base_two_past_nyquist` | Base 2 is past its own Nyquist frequency at every `γ ≥ 14`, and `γ₁ = 14.134…` is such a `γ`. | ℂ floor | `lab_notebook_2.md` |
+| `base_two_fails_by_three` | Entry 26's "fails by a factor of three", proved. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
+
 ## PairIdentity (13)
 
 | theorem | claim | axioms | cited by |
@@ -227,7 +244,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `backward_difference_pow` | The same step inside ℤ, where the table lives: `(1 − b⁻¹)·b^(r) = (b−1)·b^(r−1)`. | propext | `lab_notebook_2.md` |
 | `tableFrom_of_geometric` | The collapse. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_add_window` | Linearity, localised. | propext | `lab_notebook_2.md` |
-| `pair_identity` | I1, the pair identity. | propext, Quot.sound | `NOTEPAD.md`, `README.md`, `The-Composite-Arm.md` +3 |
+| `pair_identity` | I1, the pair identity. | propext, Quot.sound | `CONTEXT.md`, `NOTEPAD.md`, `README.md` +4 |
 | `composite_of_prime_zero` | I5, the pole. | propext, Quot.sound | `lab_notebook_2.md` |
 | `coeff_eq_one_iff_base_two` | The corollary. | propext, Quot.sound | `lab_notebook_2.md` |
 | `total_eq_pow_iff_base_two` | The corollary, in the identity's own terms. | propext, Quot.sound | `lab_notebook_2.md` |
@@ -257,7 +274,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
 | `window_of_global` | The bridge: the global sentence implies the bench-shaped window hypothesis whenever the window bottom clears `12`, since `2^12 = 4096 ≥ 2657`. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
-| `tableFrom_ne_zero_of_schoenfeld` | The arrow, with the literature sentence as its one analytic input. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `tableFrom_ne_zero_of_schoenfeld` | The arrow, with the literature sentence as its one analytic input. | ℂ floor | `CONTEXT.md`, `NOTEPAD.md`, `The-Four-Zeros.md` +1 |
 
 ## SeedPerturbation (20)
 
@@ -291,7 +308,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `bdiff_sum` | `bdiff` distributes over a finite sum. | ℂ floor | `lab_notebook_2.md` |
 | `A4_sum_of_A1` | The licence. | ℂ floor | support |
 | `depth_reweights_each_mode` | Corollary — the falsifiable form. | ℂ floor | `lab_notebook_2.md` |
-| `tableFrom_eq_modeSum_reweighted` | The table is a superposition, reweighted by depth. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
+| `tableFrom_eq_modeSum_reweighted` | The table is a superposition, reweighted by depth. | ℂ floor | `CONTEXT.md`, `NOTEPAD.md`, `lab_notebook_2.md` |
 
 ## TransferOp (7)
 
@@ -353,11 +370,23 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `twin_lower_mod_six` | The lattice. | propext, Quot.sound | `The-Twin-Lattice.md`, `lab_notebook_2.md` |
+| `twin_lower_mod_six` | The lattice. | propext, Quot.sound | `CONTEXT.md`, `The-Twin-Lattice.md`, `lab_notebook_2.md` |
 | `twin_pocket` | The pocket. | propext, Quot.sound | `The-Twin-Lattice.md`, `lab_notebook_2.md` |
 | `three_five_exceptional` | `(3,5)` is the exception, exhibited rather than assumed. | ℂ floor | `The-Twin-Lattice.md`, `lab_notebook_2.md` |
 
-## Zeros (31)
+## ZeroCells (7)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `construction_eq` | The construction module's list is the computed one. | **none** | **UNTAGGED** |
+| `seedPerturbation_eq` | The seed-perturbation module's list is the computed one. | **none** | `lab_notebook_2.md` |
+| `pairIdentity_eq` | The pair-identity module's list is the computed one. | **none** | **UNTAGGED** |
+| `construction_all_vanish` | Every cell `Construction.measured_zeros` names vanishes — now derived, not transcribed. | **none** | **UNTAGGED** |
+| `seedPerturbation_all_vanish` | Every cell `SeedPerturbation.zero_cells` names vanishes. | **none** | **UNTAGGED** |
+| `pairIdentity_all_vanish` | Every cell `PairIdentity.zero_cells` names vanishes. | **none** | **UNTAGGED** |
+| `all_four_have_length_four` | All four names, one length. | **none** | **UNTAGGED** |
+
+## Zeros (16)
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
@@ -366,10 +395,26 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `neg_below_zero` | A zero puts its left neighbour, negated, directly beneath it. | propext, Quot.sound | `lab_notebook_2.md` |
 | `pair_shares_diagonal` | And those two cells share a diagonal. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_eq_fwdDiff` | The table's `d`-fold backward difference is `(-1)^d` times Mathlib's `d`-fold forward difference at step `-1`. | propext, Quot.sound | `lab_notebook_2.md` |
+| `window_shared_of_composite_exponent` | The (8,3) window is shared. | propext | `lab_notebook_2.md` |
+| `zero_2_1` | `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. | **none** | `lab_notebook_2.md` |
+| `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. | **none** | `lab_notebook_2.md` |
+| `zero_8_3` | `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. | **none** | `lab_notebook_2.md` |
+| `zero_20_6` | `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning `2^13` to `2^20`. | **none** | `lab_notebook_2.md` |
+| `measured_zeros_all_vanish` | The list's own claim, as a theorem. | **none** | `CONTEXT.md`, `README.md`, `The-Four-Zeros.md` +1 |
+| `nonzero_7_3` | A non-zero neighbour, so the check can fail. | **none** | `lab_notebook_2.md` |
+| `nonzero_19_6` | The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`. | **none** | `lab_notebook_2.md` |
+| `four_zeros_only` | Four zeros in 1953 cells. | **none** | support |
+| `zero_at_20_6_of_repeat` | The measured repeat gives the deep zero, through the theorem. | propext | `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `zero_at_8_3_of_repeat` | The same for the other deep zero, where the repeated value is 4. | propext | `The-Four-Zeros.md`, `lab_notebook_2.md` |
+
+## ZerosStencil (15)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
 | `tableFrom_eq_stencil` | The operator IS Pascal. | ℂ floor | `README.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 | `stencil_add` | The stencil is linear in the sampled values. | ℂ floor | `lab_notebook_2.md` |
-| `stencil_smul` | And scalars pass through — linearity's other half, beside `stencil_add`. | ℂ floor | support |
-| `stencil_annihilates_const` | The stencil's positive and negative arms carry equal total weight. | ℂ floor | support |
+| `stencil_smul` | And scalars pass through — linearity's other half, beside `stencil_add`. | ℂ floor | `lab_notebook_2.md` |
+| `stencil_annihilates_const` | The stencil's positive and negative arms carry equal total weight. | ℂ floor | `lab_notebook_2.md` |
 | `stencil_eq_wings` | The fold is an identity, not a test. | ℂ floor | `lab_notebook_2.md` |
 | `stencil_eq_zero_iff_wings` | A zero is where the wings balance. | ℂ floor | `lab_notebook_2.md` |
 | `tableFrom_eq_zero_iff_wings` | The cell, folded. | ℂ floor | `lab_notebook_2.md` |
@@ -378,17 +423,6 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `stencil_arms_eq` | The two arms weigh the same. | ℂ floor | `lab_notebook_2.md` |
 | `stencil_arm_doubled` | And each arm is `2^(N-1)`. | ℂ floor | `lab_notebook_2.md` |
 | `window_exclusive_of_prime_exponent` | The (20,6) window is base-2 exclusive. | ℂ floor | `Commensurate-Ladders.md`, `Formalization.md`, `The-Fold.md` +1 |
-| `window_shared_of_composite_exponent` | The (8,3) window is not. | propext | `lab_notebook_2.md` |
 | `base_of_meets_two` | Only powers of two reach a dyadic window. | ℂ floor | `lab_notebook_2.md` |
 | `factorization_proportional` | Two ladders that meet have proportional exponents. | ℂ floor | `lab_notebook_2.md` |
 | `primeFactors_eq_of_meets` | And they are built from the same primes. | ℂ floor | `lab_notebook_2.md` |
-| `zero_2_1` | `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`. | **none** | `lab_notebook_2.md` |
-| `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. | **none** | `lab_notebook_2.md` |
-| `zero_8_3` | `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. | **none** | `lab_notebook_2.md` |
-| `zero_20_6` | `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning `2^13` to `2^20`. | **none** | `lab_notebook_2.md` |
-| `measured_zeros_all_vanish` | The list's own claim, as a theorem. | **none** | `NOTEPAD.md`, `README.md`, `The-Four-Zeros.md` +1 |
-| `nonzero_7_3` | A non-zero neighbour, so the check can fail. | **none** | `lab_notebook_2.md` |
-| `nonzero_19_6` | The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`. | **none** | `lab_notebook_2.md` |
-| `four_zeros_only` | Four zeros in 1953 cells. | **none** | support |
-| `zero_at_20_6_of_repeat` | The measured repeat gives the deep zero, through the theorem. | propext | `The-Four-Zeros.md`, `lab_notebook_2.md` |
-| `zero_at_8_3_of_repeat` | The same for the other deep zero, where the repeated value is 4. | propext | `The-Four-Zeros.md`, `lab_notebook_2.md` |
