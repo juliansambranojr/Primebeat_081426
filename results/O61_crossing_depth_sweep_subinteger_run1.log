@@ -1,0 +1,28 @@
+O61 - is the critical-radius crossing structural or a truncation artifact?
+EXPLORATORY, no prereg, no verdict.
+
+=== 1. BASE SWEEP  (ceiling 1e12, rungs = floor(log ceil / log b))
+     b  rungs  crit=b^-1/2  cross depth  cross/rungs
+   1.15    197     0.932505         4.02        0.020
+   1.5     68     0.816497         7.17        0.105
+     2     39     0.707107        10.08        0.258
+     3     25     0.577350        15.46        0.618
+
+=== 2. TRUNCATION CONTROL, base 2 fixed
+   Same primes, same critical radius. Only the rung count changes.
+    rungs  cross depth  cross/rungs
+       45        11.93        0.265
+       40        10.44        0.261
+       35         8.73        0.249
+       30         7.20        0.240
+       25         5.75        0.230
+       20         4.24        0.212
+
+   crossing depth across truncations: spread 7.70  (min 4.24, max 11.93)
+   as a FRACTION of rungs:            spread 0.053  (min 0.212, max 0.265)
+
+   READ: if the absolute depth is stable and the fraction moves, the
+   crossing is a property of the arithmetic. If the fraction is stable
+   and the absolute depth moves, it is the coefficient count.
+
+  results written to results/crossing_depth_sweep_subinteger.json

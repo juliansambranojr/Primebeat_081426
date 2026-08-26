@@ -16,6 +16,100 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 168 — O61 given flags and the guard; the sub-integer crossing sweep now has an artifact
+type: instrument-fix
+refs: 100, 166
+
+**Why.** Entry 166 recorded that entry 100's decisive O61 numbers — the
+sub-integer sweep at `b = 1.15`, 197 rungs, crossing depth 4.02 — are in
+no artifact. `results/crossing_depth_sweep.json` held only the bases 2–9
+sweep and the base-2 truncation control, because the script's bases were
+an inline constant `BASES = [2,…,9]` and it structurally could not run a
+sub-integer base.
+
+**The instrument fix.** `--bases`, `--ceiling`, `--truncations`, `--out`
+and `--no-json` added, defaults byte-identical to the old inline
+constants; `--bases` accepts floats, which is what makes the sub-integer
+sweep runnable at all. The results write now routes through
+`utilities.resultsguard.guarded_write` (entry 166), so a re-run archives
+the previous artifact rather than overwriting it — O61 is the second
+script retrofitted, after O66.
+
+**Defaults verified before anything new was run.** A no-flag run
+reproduces the recorded truncation control exactly: crossing depth 11.93
+at 45 rungs down to 4.24 at 20, spread 7.70, fraction-of-rungs spread
+0.053 (0.212 to 0.265).
+
+**The run that produces the missing artifact**, `--bases
+"1.15,1.5,2,3"`, ceiling 1e12:
+
+```text
+    b  rungs  crit=b^-1/2  cross depth  cross/rungs
+ 1.15    197     0.932505         4.02        0.020
+  1.5     68     0.816497         7.17        0.105
+    2     39     0.707107        10.08        0.258
+    3     25     0.577350        15.46        0.618
+```
+
+Entry 100's `b = 1.15` / 197 rungs / depth 4.02 reproduces exactly. The
+confound that entry stated in advance is visible across the row: the
+crossing is neither a fixed depth nor a fixed fraction of rungs —
+`cross/rungs` runs 0.020 to 0.618 over four bases.
+
+**Provenance, stated because the order matters.** The artifact
+postdates the entry that cites it. Entry 100 quoted these numbers from a
+transcript in 2026-08-22; `results/crossing_depth_sweep_subinteger.json`
+and its run log were produced 2026-08-25, after entry 166's audit found
+the gap. The numbers agree, so this is a backfill of evidence and not a
+correction — but a later reader should know the artifact was made to
+support the claim rather than the claim read off the artifact.
+
+No outcome marked.
+
+---
+
+## 2026-08-25 — Entry 167 — O52 has a run and no record; this is the record
+type: provenance
+refs: 166
+
+Entry 166's audit found `O52_composite_arm_spectrum.py` with a results
+JSON and a run log and **no lab_notebook entry and no NOTEPAD line
+anywhere in the tree**. A run existed with no dated record. This entry is
+that record, written 2026-08-25 from the artifacts rather than from
+memory of the run.
+
+**What it measures.** Whether the composite arm carries the prime arm's
+zeta spectrum. On O50's fine ladder — ratio 1.002, `x0 = 1e5`,
+`xmax = 1e11`, 6914 blocks, dps 30.
+
+**What it returned.**
+
+```text
+max |e_prime + e_comp|        1.4901161193847656e-08
+max |e_prime|                 3392.64646257367
+ratio                         4.392e-12
+zeros tested                  599
+max amplitude difference      5.005773573429906e-12
+median amplitude, prime       6.783755440398383
+median amplitude, composite   6.783755440396217
+```
+
+**How to read it.** The two arms' residuals cancel to a relative 4.4e−12
+and their amplitudes at 599 zeros agree to 5.0e−12. That is not a
+discovery: the pair identity forces `e_comp = −e_prime`, so the run is a
+confirmation of arithmetic already proved in
+`lean/PairIdentity.lean`. Its value is that the confirmation now has an
+artifact behind it and a dated line pointing at it.
+
+**Provenance.** `results/composite_arm_spectrum.json` and
+`results/O52_composite_arm_spectrum_run1.log` predate this entry. The
+run date is not recorded anywhere; only the artifacts' existence is
+evidence that it happened. EXPLORATORY, no prereg, no verdict.
+
+No outcome marked.
+
+---
+
 ## 2026-08-25 — Entry 166 — resultsguard: the clobber hazard closed structurally, and three record gaps found
 type: instrument-fix
 refs: 102, 105, 107

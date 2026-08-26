@@ -30,18 +30,58 @@ TWO TESTS, and the second is the decisive one.
 
 CONSTRUCTION identical to O39_transform_radius.py:437-450 and O60.
 
+FLAGS AND GUARD (instrument-fix pass, 2026-08-25). The bases, ceiling and
+truncation list were inline constants; they are now flags whose defaults are
+those constants exactly, so a no-flag run reproduces the original byte for
+byte. --bases accepts floats, which is what lets the sub-integer sweep
+lab_notebook_2 entry 100 cites be produced as an artifact rather than quoted
+from a transcript. The results write now routes through
+utilities.resultsguard.guarded_write, so a re-run archives the previous
+artifact instead of overwriting it.
+
 Reads with: O39_transform_radius.py, O60_table_torus.py, lean/Crossover.lean,
 results/table_torus.json, results/per_zero_exponent_run2.json
 """
-import json, math, pathlib
+import argparse, json, math, pathlib, sys
 import numpy as np
 from primecountpy import prime_pi
 
 _HERE = pathlib.Path(__file__).resolve().parent
-CEIL = 10 ** 12
-BASES = [2, 3, 4, 5, 6, 7, 8, 9]
-TRUNCATIONS = [45, 40, 35, 30, 25, 20]     # base-2 rung counts to test
+sys.path.insert(0, str(_HERE))
+from utilities.resultsguard import guarded_write
+
+DEFAULT_CEIL = 10 ** 12
+DEFAULT_BASES = "2,3,4,5,6,7,8,9"
+DEFAULT_TRUNCATIONS = "45,40,35,30,25,20"  # base-2 rung counts to test
 MIN_COEFFS = 3
+DEFAULT_OUT = str(_HERE / "results" / "crossing_depth_sweep.json")
+
+
+def _parse_args():
+    ap = argparse.ArgumentParser(
+        description=("O61 - is the critical-radius crossing structural or a "
+                     "truncation artifact? EXPLORATORY: no prereg, no "
+                     "decision rule, no verdict."))
+    ap.add_argument("--bases", type=str, default=DEFAULT_BASES,
+                    help="comma list of ladder bases; floats allowed, so a "
+                         "sub-integer base such as 1.15 can be swept "
+                         "(default " + DEFAULT_BASES + ")")
+    ap.add_argument("--ceiling", type=float, default=DEFAULT_CEIL,
+                    help="ladder ceiling (default 1e12)")
+    ap.add_argument("--truncations", type=str, default=DEFAULT_TRUNCATIONS,
+                    help="base-2 rung counts for the truncation control "
+                         "(default " + DEFAULT_TRUNCATIONS + ")")
+    ap.add_argument("--out", type=str, default=DEFAULT_OUT,
+                    help="results JSON path")
+    ap.add_argument("--no-json", action="store_true",
+                    help="do not write the results JSON")
+    return ap.parse_args()
+
+
+_args = _parse_args()
+CEIL = int(_args.ceiling)
+BASES = [float(s) if "." in s else int(s) for s in _args.bases.split(",")]
+TRUNCATIONS = [int(s) for s in _args.truncations.split(",")]
 
 
 def row_for(b, rmax):
@@ -127,14 +167,16 @@ def main():
     print("   crossing is a property of the arithmetic. If the fraction is stable")
     print("   and the absolute depth moves, it is the coefficient count.")
 
-    (_HERE / "results" / "crossing_depth_sweep.json").write_text(json.dumps(
-        {"schema_version": "1", "script": "O61_crossing_depth_sweep.py",
-         "exploratory": True, "prereg": None,
-         "params": {"ceiling": CEIL, "bases": BASES,
-                    "truncations": TRUNCATIONS, "min_coeffs": MIN_COEFFS},
-         "rows": {"base_sweep": base_rows, "truncation_control": trunc_rows}},
-        indent=2))
-    print(f"\nwrote {_HERE / 'results' / 'crossing_depth_sweep.json'}")
+    if not _args.no_json:
+        guarded_write(
+            {"schema_version": "1", "script": "O61_crossing_depth_sweep.py",
+             "exploratory": True, "prereg": None,
+             "params": {"ceiling": CEIL, "bases": BASES,
+                        "truncations": TRUNCATIONS,
+                        "min_coeffs": MIN_COEFFS},
+             "rows": {"base_sweep": base_rows,
+                      "truncation_control": trunc_rows}},
+            _args.out)
 
 
 if __name__ == "__main__":

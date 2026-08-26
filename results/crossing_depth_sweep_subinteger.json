@@ -1,0 +1,88 @@
+{
+  "schema_version": "1",
+  "script": "O61_crossing_depth_sweep.py",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "ceiling": 1000000000000,
+    "bases": [
+      1.15,
+      1.5,
+      2,
+      3
+    ],
+    "truncations": [
+      45,
+      40,
+      35,
+      30,
+      25,
+      20
+    ],
+    "min_coeffs": 3
+  },
+  "rows": {
+    "base_sweep": [
+      {
+        "base": 1.15,
+        "rungs": 197,
+        "crit": 0.9325048082403138,
+        "cross_depth": 4.023711092106307,
+        "cross_over_rungs": 0.020424929401554857
+      },
+      {
+        "base": 1.5,
+        "rungs": 68,
+        "crit": 0.816496580927726,
+        "cross_depth": 7.170228806713,
+        "cross_over_rungs": 0.10544454127519118
+      },
+      {
+        "base": 2,
+        "rungs": 39,
+        "crit": 0.7071067811865476,
+        "cross_depth": 10.0785361954968,
+        "cross_over_rungs": 0.2584240050127385
+      },
+      {
+        "base": 3,
+        "rungs": 25,
+        "crit": 0.5773502691896257,
+        "cross_depth": 15.455609205735195,
+        "cross_over_rungs": 0.6182243682294079
+      }
+    ],
+    "truncation_control": [
+      {
+        "rungs": 45,
+        "cross_depth": 11.933580026362907,
+        "cross_over_rungs": 0.26519066725250906
+      },
+      {
+        "rungs": 40,
+        "cross_depth": 10.441238175630144,
+        "cross_over_rungs": 0.2610309543907536
+      },
+      {
+        "rungs": 35,
+        "cross_depth": 8.726225689825691,
+        "cross_over_rungs": 0.24932073399501975
+      },
+      {
+        "rungs": 30,
+        "cross_depth": 7.199074653736825,
+        "cross_over_rungs": 0.23996915512456082
+      },
+      {
+        "rungs": 25,
+        "cross_depth": 5.749017816515943,
+        "cross_over_rungs": 0.22996071266063772
+      },
+      {
+        "rungs": 20,
+        "cross_depth": 4.235941221549372,
+        "cross_over_rungs": 0.2117970610774686
+      }
+    ]
+  }
+}
