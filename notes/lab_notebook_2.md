@@ -16,6 +16,78 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 163 — The coalition governs nothing: why DH's zeros are absent from prime data, and the object that unblocks the test
+type: motivation
+refs: 36, 103, 160, 161, 162
+
+Entries 161 and 162 both closed on the same gap: a crossing-slope
+comparison needs an object DH actually governs, and naming that object
+was an open design question. Julian's frame supplied it, and the
+algebra rather than the analogy is what settles it.
+
+**Julian's frame, in his words.** "What if DH is the repulsion? ...
+each test we ran was an abstraction from our stacked sequence, by the
+time you get to DH the combination looks random but within the noise
+there are local sequences that reconstruct the beat at its lowest
+frequency to still influence it, like a low hum you only notice if you
+pay attention or notice the pattern. Think of it like state, regional,
+and local governments that differ at each level but agree on a
+constitution."
+
+**The decomposition that makes it testable.** With chi the order-4
+character mod 5 — chi = (1, i, -i, -1) on classes 1..4, taking 2 as
+the primitive root — the DH coefficient sequence (1, tau, -tau, -1) is
+exactly c*chi + conj(c)*conj(chi) with c = (1 - i*tau)/2. Derived here
+and matching the literature form. Therefore the DH-weighted prime sum
+factors:
+
+```text
+psi_DH(x) = sum_n Lambda(n) a(n mod 5)
+          = c * psi(x, chi) + conj(c) * psi(x, conj chi)
+```
+
+and each term is governed, through its own explicit formula, by the
+zeros of L(s, chi) — on the critical line under GRH. DH's OWN zeros
+never enter. They are the locus where the combination
+c*L + conj(c)*conj(L) vanishes, a statement about the two
+L-functions' relative phase, not about any counting function.
+
+**The consequence, stated before any run.** The DH-weighted prime
+residual should carry peaks at the zeros of L(s, chi) mod 5 and NOT at
+DH's own zeros — not at 5.0941598, not at the off-line pair
+(0.808517, 85.699348) and (0.650830, 114.163343) that entry 162
+located. The noise has a beat; it is the local spectrum, never the
+coalition's.
+
+**Why this is the whole point rather than a technicality.** It is the
+precise reason Davenport-Heilbronn violates the RH-analogue without
+threatening RH: its zeros command no primes, because it has no Euler
+product. The grandfather loop of Julian's earlier framing — the object
+built from the primes that then governs them — binds only where the
+Euler product is. His governments analogy maps onto that almost
+exactly: the classes mod 5 are local spectra, zeta is the federal one,
+the shared constitution is the functional-equation shape which all of
+them honour, and the tau-weighted combination is a coalition that
+satisfies the constitution while governing nothing.
+
+**On repulsion.** Entry 103 measured this bench's low-height zeros as
+stiffer than the GUE surmise (0.027 against 0.106), and O64 carries
+the spacing machinery. Whether DH's off-line zeros are repelled from
+the line, or its on-line zeros spaced differently from zeta's, is
+measurable with instruments already in the tree and is not tested
+here.
+
+**Status.** This entry is the reasoning, recorded before the run, so
+that the prereg it motivates cites a dated argument rather than a
+remembered conversation. The prediction can fire in both directions:
+peaks at L(s,chi)'s zeros and not at DH's would confirm the
+decomposition; a peak at 5.0941598 would refute it and mean the
+factoring above is wrong.
+
+No run, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 162 — DH's zeros located: on the line to t = 60, off it at 0.8085 + 85.699i
 type: run
 refs: 36, 161
