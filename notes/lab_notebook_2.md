@@ -16,6 +16,62 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 161 — The same primes sorted mod 5: the deep zeros are a property of the total
+type: run
+refs: 158, 160
+
+Julian's question after entry 160 fixed the retry's design. The
+adversary's proposal — rebuild the table over the DH coefficients —
+was degenerate on instantiation (they sum to zero over a period, so
+the partial sum is bounded and periodic). His question was: our table
+is integers, so what integers are there and do they coincide with
+ours. They do, and exactly: DH(s) = c L(s,chi) + conj(c) L(s,conj chi)
+for chi the order-4 character mod 5, and each L has an Euler product
+over the ordinary primes. The combination destroys the Euler product;
+the ingredients are our own primes, sorted.
+
+Script O79_residue_class_tables.py, defaults (rmax 30, segmented
+sieve, exact integers). Artifacts: results/residue_class_tables.json,
+results/O79_residue_class_tables_run1.log.
+
+**Gates passed before measuring.** tau = 0.28407904384 in the
+literature form (sqrt(10-2sqrt5)-2)/(sqrt5-1), checked against the
+independently derived eigenvector condition tau^2+(1+sqrt5)tau-1 = 0
+at residual 3.9e-31; the completed function's functional equation
+|xi(s)/xi(1-s) - 1| < 1.6e-30 at three off-line points. The sieve
+reproduces the bench's four zeros exactly, which is the machinery
+check.
+
+**Arm 1, zeta.** pi(2^30) = 54400028; exact zeros to r = 30 are
+(2,1), (4,1), (8,3), (20,6). As on record.
+
+**Arm 2, the four classes.** Class counts at 2^30 are 13599341,
+13600508, 13600519, 13599659, plus the single prime 5. Exact zeros:
+5, 3, 5, 6 across classes 1..4, nineteen in all. The shallow pair
+appears scattered — (2,1) in classes 1 and 4, (4,1) in class 4 — at
+counts where vanishing is cheap. **(8,3) and (20,6) appear in NO
+class table.** The deep zeros do not survive the split.
+
+**Arm 3, Davenport-Heilbronn.** The tau-weighted combination is an
+integer in 10 of 30 rows, and all ten are exactly the rows where
+c2 = c3 makes the tau terms cancel. Integrality is an accident of
+class balance, not a property of the combination, so the DH arm has
+no exact-zero object to census. That is the finding, not an obstacle:
+the tau-weighting is what removes the arithmetic.
+
+**What this licenses, and what it does not.** It licenses: the deep
+zeros are a property of the total prime count, not inherited from any
+residue class of it. It does not license any statement about zero
+LOCATION, on-line or off, because the DH arm carries no comparable
+object — the three-way comparison the design promised is available
+for two arms, not three. Whether the crossing-slope law behaves
+differently across the arms is untouched here and needs DH's zeros
+located first.
+
+EXPLORATORY: no prereg, no verdict.
+
+---
+
 ## 2026-08-25 — Entry 160 — O78 does not measure a surface, and four of my claims were wrong
 type: result-triage
 refs: 40, 54, 56, 92, 152, 157

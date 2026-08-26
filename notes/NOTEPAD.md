@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-25  entry 161: O79 residue-class arms — DH is built from OUR primes sorted mod 5; the deep zeros (8,3) and (20,6) appear in NO class table, so they are a property of the total; DH combination has no exact-zero object (integrality only when c2=c3)
 - [open]   2026-08-25  entry 160: adversarial review retires O78's reading — within-base control fires harder, d<=3 beats the zeros, both-coordinate null is the identity map, 'halved not collapsed' was sqrt(n); four of my claims corrected, entry 92 miscited
 - [open]   2026-08-25  entry 159: Jensen count repaired to radius 7/4 — 15 log T + 73 (budget 100/1000), reaches |gamma-T| <= 0.901 at the critical line; 77/77 pins, both stale pin refs fixed
 - [open]   2026-08-25  entry 158: O77 leaf-instantiation instrument — entry 157's count was TANGENT to the critical line, cnt=0 for a.e. T, consumer unsatisfiable; new rule: every leaf gets a consumer instantiation

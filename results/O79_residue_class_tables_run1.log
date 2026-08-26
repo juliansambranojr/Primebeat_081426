@@ -1,0 +1,39 @@
+O79 — the same primes, sorted mod 5.  EXPLORATORY.
+
+TAU CHECK — literature form against the eigenvector condition:
+   tau = (sqrt(10-2sqrt5)-2)/(sqrt5-1) = 0.28407904384
+   residual of tau^2 + (1+sqrt5)tau - 1 = 3.9443e-31
+   functional equation |xi(s)/xi(1-s) - 1| at three points: max 1.5617e-30
+   checks PASSED — the object is the one the literature names.
+
+SIEVING to 2^30 and splitting by residue class...
+   pi(2^30) = 54400028   classes 1..4 = 13599341, 13600508, 13600519, 13599659, class 0 = 1
+   sum check: OK
+
+ARM 1 — zeta: pi(2^r), Euler product, zeros on the line under RH
+   exact zeros (d>=1), r <= 30: [(2, 1), (4, 1), (8, 3), (20, 6)]
+
+ARM 2 — Dirichlet: the four classes, Euler products, zeros on the line under GRH
+   class 1 mod 5:   5 exact zeros   shared with the zeta arm: [(2, 1)]
+      [(2, 1), (3, 1), (5, 1), (7, 1), (3, 2)]
+   class 2 mod 5:   3 exact zeros   shared with the zeta arm: none
+      [(6, 2), (11, 2), (10, 3)]
+   class 3 mod 5:   5 exact zeros   shared with the zeta arm: none
+      [(5, 1), (7, 3), (8, 5), (16, 7), (18, 7)]
+   class 4 mod 5:   6 exact zeros   shared with the zeta arm: [(2, 1), (4, 1)]
+      [(2, 1), (3, 1), (4, 1), (3, 2), (4, 2), (4, 3)]
+
+   the zeta arm's four, looked for in every class table:
+      (2, 1): present in class(es) [1, 4]
+      (4, 1): present in class(es) [4]
+      (8, 3): in no class table
+      (20, 6): in no class table
+
+ARM 3 — Davenport-Heilbronn: the tau-weighted combination, no Euler product
+   rows where the combination is an integer: 10 of 30
+   rows where c2 = c3 (the tau terms cancel exactly): 10
+   every integer row is a cancellation row: yes
+   so the DH arm has no exact-zero object of its own; its integrality is
+   an accident of class balance, not a property of the combination.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/residue_class_tables.json

@@ -1,0 +1,129 @@
+{
+  "schema_version": "1",
+  "script": "O79_residue_class_tables.py",
+  "generated_utc": "2026-08-26T00:57:08.654150+00:00",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "code_version": "df11965d79a49b5cfcc3dfc1c7af1afe9c431234c6e4c5dfa9ef856fc4d2c368",
+    "rmax": 30,
+    "dps": 30,
+    "tau": 0.28407904384041227,
+    "tau_condition": "tau^2 + (1+sqrt5)tau - 1 = 0",
+    "construction": "N_a(r) = pi(2^r; a mod 5) - pi(2^(r-1); a mod 5); backward differences, exact integers"
+  },
+  "pi_at_top": 54400028,
+  "class_counts_at_top": {
+    "0": 1,
+    "1": 13599341,
+    "2": 13600508,
+    "3": 13600519,
+    "4": 13599659
+  },
+  "zeta_arm_zeros": [
+    [
+      2,
+      1
+    ],
+    [
+      4,
+      1
+    ],
+    [
+      8,
+      3
+    ],
+    [
+      20,
+      6
+    ]
+  ],
+  "class_arm_zeros": {
+    "1": [
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "2": [
+      [
+        6,
+        2
+      ],
+      [
+        11,
+        2
+      ],
+      [
+        10,
+        3
+      ]
+    ],
+    "3": [
+      [
+        5,
+        1
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        16,
+        7
+      ],
+      [
+        18,
+        7
+      ]
+    ],
+    "4": [
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ]
+    ]
+  },
+  "dh_integer_rows": 10,
+  "dh_balanced_rows": 10
+}
