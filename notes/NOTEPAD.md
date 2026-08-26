@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 178: O87 character sweep — all 10 diagonals fire p<0.001, off-diagonal flat (1 of ~80 at p=0.036); principal rows recover zeta's zeros at 5.520/5.544, the bench's first negative control; wants a prereg before citation
+- [open]   2026-08-26  entry 178: principal-character branch in O87 is a one-case exception in code (main term subtracted only for k=0) — deserves a second reader
 - [open]   2026-08-25  entry 177: character-sweep instrument — sweep all characters mod q across several q, ask which weightings the prime data responds to; a search rather than a check, and it does not exist yet
 - [open]   2026-08-25  entry 177: two foreclosures withdrawn — the matrix DOES bear on why zeros sit on the line (Euler product vs the combination that wanders off it), and 'confirmation not discovery' was an invented category; A' and the specificity result were both new
 - [open]   2026-08-25  entry 176: O86 makes the cross-character control reproducible — diagonal fires (DH: A 1.743, A' 1.865; quad: A2 2.689), off-diagonal flat, all p<1e-4 vs range-matched; psi prime-power defect fixed and brute-force checked; A' was out-of-sample

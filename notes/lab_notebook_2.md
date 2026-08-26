@@ -16,6 +16,95 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 178 — O87: the character sweep — ten spectra in one dataset, and the calibration the bench never had
+type: run
+refs: 175, 176, 177
+
+Script O87_character_sweep.py, defaults (moduli 5 and 7, orbit {2,3} to
+2^30, 307 blocks, 800 range-matched controls per cell). Artifacts:
+results/character_sweep.json,
+results/O87_character_sweep_run3.log; runs 1 and 2 kept as logs.
+
+**What it is.** Entry 177 recorded that an assistant had called this
+method "a confirmation instrument, not a discovery instrument" — an
+invented category, withdrawn — and that the foreclosure hid a real
+instrument: the method needs a CHARACTER, not a list of zeros, and
+characters are enumerable. This is that instrument. Sieve once per
+modulus, accumulate von Mangoldt mass by residue class, and every
+character mod q is a reweighting of those class sums. Nothing tells it
+which spectrum the data carries; it enumerates the family, computes
+each character's zeros from the character, and asks which weightings
+the primes answer to.
+
+**The matrix**, rows = weighting applied to the primes, columns =
+target zero list, cell = mean P/median with range-matched one-sided p:
+
+```text
+weighting            own targets      worst off-diagonal
+q=5 k=0 principal    5.520 p0.000     1.906 p0.318
+q=5 k=1              3.014 p0.000     1.648 p0.169
+q=5 k=2              2.689 p0.000     1.401 p0.329
+q=5 k=3              3.095 p0.000     1.561 p0.484
+q=7 k=0 principal    5.544 p0.000     1.908 p0.302
+q=7 k=1              2.633 p0.000     1.391 p0.399
+q=7 k=2              2.606 p0.000     1.665 p0.036
+q=7 k=3              2.622 p0.000     1.361 p0.339
+q=7 k=4              2.830 p0.000     1.691 p0.166
+q=7 k=5              2.547 p0.000     1.615 p0.104
+```
+
+Every diagonal fires at p < 0.001. Of roughly 80 off-diagonal cells one
+reaches p = 0.036, which is what a hundred cells produce by chance.
+Same primes, same orbit, same window, same grid, same normalisation in
+every cell — only the weight vector changes, so no gamma-trend or
+windowing artifact can produce the pattern.
+
+**The calibration, which this bench has never had.** For prime q the
+principal character gives `L(s, chi_0) = zeta(s)(1 - q^-s)`, so its
+on-line zeros ARE zeta's. Both principal rows recover them at 5.520 and
+5.544 — the highest cells in the matrix, which is what one expects
+since zeta's zeros are the strongest signal in prime data. The two rows
+agree to 0.4%, an internal check: both are essentially unweighted
+psi(x) differing only by which small prime is dropped. Every previous
+detection in this tree (O17, O18, O24, O57) was measured against zeta's
+zeros with no negative control; this is the first time the instrument
+has been fed a spectrum it should NOT find and returned flat.
+
+**A defect found, diagnosed by test rather than asserted, and fixed.**
+Run 2's principal rows read **0.224 at p = 0.999** — anti-correlated
+with the very zeros they should show. Cause: the principal character is
+the one member of the family WITH a pole, `psi(x, chi_0) ~ x`, and the
+construction subtracts no smooth term. The script's own docstring said
+"no smooth term, since a non-principal L has no pole", and principal
+characters were fed through it anyway. Measured rather than reasoned:
+residual rms **404.820** against 0.293 elsewhere, and detrending by
+`x` moves the score 0.224 -> **5.520**, p 0.999 -> 0.000. The branch is
+now in the script with the numbers recorded beside it.
+
+**Run 1 died differently and the failure was the honest kind.**
+`findroot` was solving for a root of `|L|`, which is non-negative and
+non-smooth at its own zeros, and stalled on a local minimum of the
+principal character's `|L|` that was not a zero. Fixed by root-finding
+on the complex `L` seeded on the line, as O80 does, with the result
+accepted only if the root lands on the line and L genuinely vanishes.
+Both failures were in the principal character — the row that was
+supposed to be the easy one.
+
+**First production use of the clobber guard** (entry 166): run 3
+archived run 2's artifact to
+results/archive/character_sweep_20260826T104405Z_22c6f618.json rather
+than overwriting it, so the defective matrix survives beside the
+corrected one.
+
+**Scope.** EXPLORATORY, no prereg. The diagonal-fires/off-diagonal-flat
+pattern is strong enough that it should carry one before being cited
+anywhere, and the principal-character branch is a one-case exception in
+code that deserves a second reader.
+
+No outcome marked.
+
+---
+
 ## 2026-08-25 — Entry 177 — Two foreclosures withdrawn, and the instrument they hid
 type: result-triage
 refs: 144, 163, 170, 176

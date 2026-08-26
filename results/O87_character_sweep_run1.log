@@ -1,0 +1,19 @@
+O87 — the character sweep.  EXPLORATORY.
+  moduli [5, 7]   orbit 2,3 to 2^30   307 blocks
+
+  sieving once for q = 5 ...
+Traceback (most recent call last):
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/O87_character_sweep.py", line 259, in <module>
+    main()
+    ~~~~^^
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/O87_character_sweep.py", line 200, in main
+    z = zeros_of(chi, q, args.tmax)
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/O87_character_sweep.py", line 156, in zeros_of
+    tm = mp.findroot(aL, t - mp.mpf(str(step)), solver='secant',
+                     tol=mp.mpf('1e-12'))
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/.venv/lib/python3.14/site-packages/mpmath/calculus/optimization.py", line 985, in findroot
+    raise ValueError('Could not find root within given tolerance. '
+    ...<2 lines>...
+                     % (norm(f(*xl))**2, tol))
+ValueError: Could not find root within given tolerance. (0.021230061763053238986256202 > 9.9999999999999999999951922e-13)
+Try another starting point or tweak arguments.
