@@ -31,7 +31,7 @@ and nothing depends on it.
 
 ## What is proved
 
-A Lean 4 / Mathlib tree, **16 modules, 213 theorems**, every one pinned to its
+A Lean 4 / Mathlib tree, **20 modules, 250 theorems**, every one pinned to its
 own axiom list by `#guard_msgs` on `#print axioms`, so the build fails the moment
 a proof's axiom footprint changes. No `sorry`.
 
@@ -101,7 +101,7 @@ not usable by anyone else.
 
 ```text
 four_zeros.py      the ten-second check, no dependencies
-lean/              16 modules, 213 theorems; see lean/THEOREMS.md for the index
+lean/              20 modules, 250 theorems; see lean/THEOREMS.md for the index
 papers/            one document per object; format in papers/FORMAT.md
   literature/      prior-art searches, including what was NOT found
 notes/             lab_notebook.md (1–44), lab_notebook_2.md (45–), NOTEPAD.md
@@ -120,7 +120,7 @@ python3 four_zeros.py                    # the central object, no deps
 python3 utilities/check_refs.py          # every citation resolves
 python3 utilities/check_refs.py --audit  # pair each citation with its target
 python3 utilities/check_values.py        # every number in papers/ traced to an artifact
-cd lean && lake build                    # 8042 jobs, 213 theorems, 213 axiom pins
+cd lean && lake build                    # 8046 jobs, 250 theorems, 250 axiom pins
 ```
 
 `check_refs.py` verifies that a citation's target **exists**; it cannot verify

@@ -688,7 +688,7 @@ Known defects in the current state:
    This is the same failure shape as the `§ B4` case in `CLAUDE.md`, with
    the target present and misread rather than absent and misreported.
 
-### The Lean tree, as of entry 165
+### The Lean tree, as of entry 170
 
 Two packages, welded by statement identity only.
 

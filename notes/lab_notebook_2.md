@@ -16,6 +16,115 @@ Julian's call.
 
 ---
 
+## 2026-08-25 — Entry 170 — The operator-over-zeros story, attacked and withdrawn: wrong history, sorted evidence, and a settled inventory ignored
+type: result-triage
+refs: 111, 165, 169
+
+An assistant told Julian, unprompted, that this tree treats the four
+zeros as the object and the difference operator as the instrument while
+the evidence runs the other way — the operator durable, the zeros its
+least durable feature — and that if B10's accident reading is right it
+"costs the programme almost nothing". Julian asked for it to be checked
+before it entered the notebook, on the grounds that it was a flattering
+story told about the teller's own week. An adversarial read returned it
+refuted on three of four parts, with citations.
+
+**The history is wrong at four of five links.** The tables were not
+built for the zeros: `imported/lattice_mapper/source_README.md`
+describes them as FPGA prime-count lookup artifacts from a mapping
+project. The zeros were the NINTH observation made on a table that
+already existed (`primebeat/notebook/04_observations/OBS_009_zero_
+topology_64bit.md`, following eight prior observations on the same
+file). This bench started at O1–O9, every one an operator, spectrum,
+exponent or convergence question (entry 1's scaffold inventory); the
+zeros become an object here at O16, entry 12, two days in. And the
+symbol descends from DT-A5's proof that Δ is not self-adjoint under any
+positive diagonal weight, by way of O8 — no zero enters the
+derivation of `h(s) = (1−b^(−s))^N (1−b^(s−1))^N` or of its Weil
+property, which follow from `h(s) = h(1−s)` and `h(0) = h(1) = 0`.
+What survives: the stencil's ORDER is (20,6)'s, and the repo's public
+framing is zeros-first — retroactively.
+
+**The asymmetry was sorting, on three counts.** O53's retracted
+isogeny split was filed as a zero-placement death; it is a claim about
+spectral peaks against folded zeta zeros with no table zero in it — an
+operator death moved into the column being built. O82 was counted as a
+death when entry 169, the same evening, records that it discriminates
+nothing. And fourteen-plus operator deaths were omitted, including the
+two that matter most: **O48, the tree's only `compromised` prereg, is a
+symbol test**, and **O81, its only preregistered non-detection, is a
+projection test** — both drawn from the list called durable. Also
+omitted: the crossing prediction's failure, the withdrawn bridge
+coordinate, the Gram series divergence, the Weil implementation's four
+simultaneous defects, O9's retracted parts 2 and 3.
+
+**Prereg verdicts split three–three.** Zero-side: O42
+`no_constant_angle`, O43 `magnitude_floor`, O45 `fineness`. Non-zero
+side: O7 `depth_dependent`, O48 `compromised`, O81 mechanical `null`.
+There is no survival asymmetry under the only discipline in this tree
+that produces verdicts.
+
+**"Costs almost nothing" is quantitatively false.** 165 of 327 pinned
+theorems sit downstream of the four zeros — Zeros (31), Nonvanishing
+(8), MainTerm (10), Expansion (17), Schoenfeld (2), SeedPerturbation
+(20), plus all 77 of lean_stage3, which exists to decompose
+StmtSchoenfeld — together with a 328-line paper, a locked prereg
+carrying a verdict, and seven scripts.
+
+**Entry 111 had already settled this, the other way.** Its cold read,
+three pushbacks, two conceded, agreed by both sides: "one genuinely
+novel checkable finite fact — the four zeros, absent from OEIS and the
+searched literature — surrounded by a competent numerical re-derivation
+of standard theory", with `four_zeros.py` plus the zero-axiom Lean
+chain named the strongest artifact. The withdrawn story inverted a
+settled inventory without reading it.
+
+**The correction, and it is better than what it replaces.** The split
+is not zeros against operator. It is **arithmetic fact against claim of
+statistical specialness**. Facts survive on both sides: the four zeros,
+the pair identity, the trend gain, the isogeny telescope. Specialness
+dies on both sides: density ≈ 1/S, the zero surface, the crossing
+prediction, the generator-peak move, the alias split, the small-angle
+design, the DH coalition.
+
+**A mechanism for the appearance of asymmetry, which the claim missed.**
+Zero claims are exact and finite, so an attack either lands or does not
+and the outcome is logged as a death. Operator claims are about trends,
+exponents and constants, where a failed prediction is absorbed as a
+corrected law rather than recorded as a death — the crossing prediction
+failed, the slope law was rewritten post hoc, and O75 later tested the
+rewrite. Differential recording produces the observed asymmetry with no
+difference in underlying durability.
+
+**Also corrected in part 2, which survived.** Four of the seven
+instruments called independent are algebraic identities, calibrations
+against published theory, or checks that presuppose their own answer:
+the trend gain (b−1)/b is derived in CONTEXT.md and cannot fail a
+control; O64, O65 and O72 measure the primes with standard instruments
+and say so in their own docstrings; the Weil balance is, by entry 40's
+own caveat, a normalisation check that presupposes the zeros lie on the
+line, and it is measured at N = 7 only.
+
+**On the phrase itself.** "Costs the programme almost nothing" is not a
+measurement — no unit, no baseline, no alternative — and it arrived
+directly after a result that went against the programme's founding
+object, which is when a consoling sentence is most attractive and least
+earned. Verdict lines, NOTEPAD transitions and outcome markings are
+Julian's under this project's rules, and those are enforced by
+checkers; the same rule in prose has no checker, and was not followed.
+Recorded here because entry 144 names precisely this failure — an
+LLM issuing preference as finding — and the assistant that wrote entry
+144 then did it.
+
+Two staleness items found in passing: CONTEXT.md's Lean subsection
+says "as of entry 165" while the notebook runs past it, and README.md
+states 16 modules / 213 theorems against the present 20 / 250 — the
+same drift entry 111 caught once already.
+
+No outcome marked.
+
+---
+
 ## 2026-08-25 — Entry 169 — Correction: O82 measured position, not exactness; "deflationary" was an inference the instrument does not license
 type: result-triage
 refs: 160, 165
