@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 183: run.py + PreToolUse hook — protection moved to the invocation layer, retrofit sweep DECLINED by Julian; every run now leaves a manifest tying artifact to invocation, script hash and commit
 - [open]   2026-08-26  entry 182: for the container write-up — the day's corrections share one mechanism (generating what the form wants, not what the record says); 'load, don't recall' aims at staleness and this was in-context; no gate could see it, the separation of powers caught it
 - [open]   2026-08-26  entry 181: PREREGISTERED `carries_own` — R = 20 of 20 on q=11,13 (never swept), null mean 0.705 max 3, 0 of 200 draws reach it; specificity demonstrated, design had no free parameter; verdict line open for Julian
 - [open]   2026-08-26  entry 180: O88 sized the row-max statistic before locking — 8/8 observed, shuffle null 0.730 matching the analytic 0.800, per-row lower bound 0.688

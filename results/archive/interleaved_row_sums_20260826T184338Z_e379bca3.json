@@ -1,0 +1,222 @@
+{
+  "schema_version": "1",
+  "script": "O74_interleaved_row_sums.py",
+  "generated_utc": "2026-08-25T22:26:25.868423+00:00",
+  "exploratory": true,
+  "prereg": null,
+  "params": {
+    "code_version": "a946f98da668205e615e1c91e0fa11da6869eaa77584f8d17321c2acc465570e",
+    "rmax": 41,
+    "construction": "O27 backward-difference triangles per base; S_b(r) = sum_d T_b(r,d); T(r) = S_2(r) + S_3(r)",
+    "gate": "r=1..6 equal to entry 31's hand-computed lists, exactly"
+  },
+  "rows": {
+    "1": {
+      "dyadic": 1,
+      "triadic": 2,
+      "total": 3
+    },
+    "2": {
+      "dyadic": 1,
+      "triadic": 2,
+      "total": 3
+    },
+    "3": {
+      "dyadic": 4,
+      "triadic": 11,
+      "total": 15
+    },
+    "4": {
+      "dyadic": -1,
+      "triadic": 28,
+      "total": 27
+    },
+    "5": {
+      "dyadic": 21,
+      "triadic": 67,
+      "total": 88
+    },
+    "6": {
+      "dyadic": -18,
+      "triadic": 186,
+      "total": 168
+    },
+    "7": {
+      "dyadic": 85,
+      "triadic": 513,
+      "total": 598
+    },
+    "8": {
+      "dyadic": -75,
+      "triadic": 1304,
+      "total": 1229
+    },
+    "9": {
+      "dyadic": 295,
+      "triadic": 3734,
+      "total": 4029
+    },
+    "10": {
+      "dyadic": -282,
+      "triadic": 10125,
+      "total": 9843
+    },
+    "11": {
+      "dyadic": 1079,
+      "triadic": 26468,
+      "total": 27547
+    },
+    "12": {
+      "dyadic": -1175,
+      "triadic": 81737,
+      "total": 80562
+    },
+    "13": {
+      "dyadic": 4018,
+      "triadic": 193767,
+      "total": 197785
+    },
+    "14": {
+      "dyadic": -3847,
+      "triadic": 655636,
+      "total": 651789
+    },
+    "15": {
+      "dyadic": 10556,
+      "triadic": 1500826,
+      "total": 1511382
+    },
+    "16": {
+      "dyadic": 1601,
+      "triadic": 5182558,
+      "total": 5184159
+    },
+    "17": {
+      "dyadic": -11355,
+      "triadic": 12193796,
+      "total": 12182441
+    },
+    "18": {
+      "dyadic": 139184,
+      "triadic": 40705123,
+      "total": 40844307
+    },
+    "19": {
+      "dyadic": -363450,
+      "triadic": 101772571,
+      "total": 101409121
+    },
+    "20": {
+      "dyadic": 1199535,
+      "triadic": 321402673,
+      "total": 322602208
+    },
+    "21": {
+      "dyadic": -2644942,
+      "triadic": 856256551,
+      "total": 853611609
+    },
+    "22": {
+      "dyadic": 6472194,
+      "triadic": 2575927707,
+      "total": 2582399901
+    },
+    "23": {
+      "dyadic": -11874761,
+      "triadic": 7189720698,
+      "total": 7177845937
+    },
+    "24": {
+      "dyadic": 22436549,
+      "triadic": 21013115212,
+      "total": 21035551761
+    },
+    "25": {
+      "dyadic": -26822434,
+      "triadic": 60214031437,
+      "total": 60187209003
+    },
+    "26": {
+      "dyadic": 17029780,
+      "triadic": 173815417697,
+      "total": 173832447477
+    },
+    "27": {
+      "dyadic": 97971649,
+      "triadic": 504736256987,
+      "total": 504834228636
+    },
+    "28": {
+      "dyadic": -453833784,
+      "triadic": 1450534266040,
+      "total": 1450080432256
+    },
+    "29": {
+      "dyadic": 1605476135,
+      "triadic": 4245497933632,
+      "total": 4247103409767
+    },
+    "30": {
+      "dyadic": -4483255979,
+      "triadic": 12177461592516,
+      "total": 12172978336537
+    },
+    "31": {
+      "dyadic": 11977694627,
+      "triadic": 35844294040981,
+      "total": 35856271735608
+    },
+    "32": {
+      "dyadic": -29145930875,
+      "triadic": 102764893788646,
+      "total": 102735747857771
+    },
+    "33": {
+      "dyadic": 69919395121,
+      "triadic": 303517939913695,
+      "total": 303587859308816
+    },
+    "34": {
+      "dyadic": -159460311414,
+      "triadic": 871550062428528,
+      "total": 871390602117114
+    },
+    "35": {
+      "dyadic": 362410439118,
+      "triadic": 2576370806431168,
+      "total": 2576733216870286
+    },
+    "36": {
+      "dyadic": -796392700789,
+      "triadic": 7422964564555136,
+      "total": 7422168171854347
+    },
+    "37": {
+      "dyadic": 1741897479547,
+      "triadic": 21927195987884244,
+      "total": 21928937885363791
+    },
+    "38": {
+      "dyadic": -3679718350819,
+      "triadic": 63419193616330616,
+      "total": 63415513897979797
+    },
+    "39": {
+      "dyadic": 7623467290171,
+      "triadic": 187183326771312581,
+      "total": 187190950238602752
+    },
+    "40": {
+      "dyadic": -14953136533899,
+      "triadic": 543086474541999861,
+      "total": 543071521405465962
+    },
+    "41": {
+      "dyadic": 27745758974446,
+      "triadic": 1602671261995703034,
+      "total": 1602699007754677480
+    }
+  },
+  "dyadic_changes_sign": true,
+  "triadic_changes_sign": false
+}

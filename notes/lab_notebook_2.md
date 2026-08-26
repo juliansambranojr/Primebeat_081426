@@ -16,6 +16,76 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 183 — utilities/run.py and a PreToolUse hook: protection at the invocation, not at 75 call sites
+type: instrument-fix
+refs: 166, 167, 168
+
+Julian's call: skip the 75-writer retrofit and intercept one layer up.
+`utilities/resultsguard.py` (entry 166) protects a script only if that
+script calls it, and 9 of 84 writers do. Retrofitting the rest is 75
+edits across three write-site shapes, each owing a re-run. This covers
+every script including the ones untouched since August, with no script
+changed at all.
+
+**`utilities/run.py`.** Invoke a measurement script through it and:
+
+```text
+BEFORE   results/ is cloned with `cp -Rc` — an APFS copy-on-write
+         clone, instant and near-free against the 181 MB and 265 files
+         there, and independent of the original, so a script that
+         TRUNCATES its output cannot reach the clone
+RUN      the script runs with the given interpreter and arguments,
+         output streaming, its exit code returned
+AFTER    any results file whose content changed has its PRE version
+         copied to results/archive/<stem>_<utc>_<sha8><ext>
+RECORD   results/runs/<utc>_<script>.json — argv, interpreter, script
+         sha256, git HEAD and dirty flag, start and end times, exit
+         code, and per touched file its pre and post sha256 and its
+         archive path
+```
+
+Content comparison blanks `generated_utc`, `run_start_at` and
+`run_end_at`, matching resultsguard, so a deterministic re-run
+differing only in when it ran is recognised as unchanged. Verified:
+the first pass through O74 archived its prior artifact; the second
+reported `created 0 modified 0`.
+
+**Why a clone and not a hardlink.** A hardlink shares the inode, and
+`json.dump` into `open(...,"w")` truncates in place — which would
+destroy the linked content too. An APFS clone is copy-on-write and
+independent, so truncation cannot reach it, at no meaningful cost.
+`shutil.copytree` is the fallback on non-APFS.
+
+**The hook, so the protection is not optional.**
+`utilities/hooks/check_direct_run.py`, wired as a PreToolUse matcher on
+Bash in `.claude/settings.json`, blocks a direct interpreter invocation
+of a root-level `O*`/`0*`/`t*` script and prints the runner form
+instead. It stays out of the way when the command already routes
+through run.py, when `--no-json` means no artifact is written, or when
+`PB_DIRECT=1` is set deliberately. Tested on four commands: direct
+invocation BLOCKS; via run.py, with `--no-json`, and an unrelated `ls`
+all pass.
+
+**What this closes that the retrofit would not have.** The retrofit
+addresses clobbering only. The manifest addresses the OTHER two record
+gaps entry 166 found: entry 167's O52, which has artifacts and no dated
+record of the run that produced them, and entry 168's O61, whose cited
+numbers were in no artifact. From here every run leaves a dated record
+tying artifact to invocation, script hash and commit — automatically,
+with no discipline required of the person running it.
+
+**What it does not do.** It protects runs made through the tool the
+hook watches. A script run from a terminal outside this session is
+untouched; the hook is a Claude Code hook, not a filesystem one.
+`resultsguard` remains the in-script belt for the 9 writers that call
+it, and `check_results_guard --new-only` still blocks new unguarded
+writers at commit. The 75 legacy writers stay unretrofitted **by
+decision, not by omission**.
+
+No outcome marked.
+
+---
+
 ## 2026-08-26 — Entry 182 — Generating from the form instead of the record: the failure mode under every correction today
 type: provenance
 refs: 144, 170, 177, 181

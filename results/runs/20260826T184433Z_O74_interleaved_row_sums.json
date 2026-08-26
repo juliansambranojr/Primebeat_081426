@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "script": "O74_interleaved_row_sums.py",
+  "script_sha256": "a946f98da668205e615e1c91e0fa11da6869eaa77584f8d17321c2acc465570e",
+  "interpreter": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+  "argv": [
+    "O74_interleaved_row_sums.py"
+  ],
+  "run_start_at": "2026-08-26T18:44:33.247066+00:00",
+  "run_end_at": "2026-08-26T18:44:33.276819+00:00",
+  "exit_code": 0,
+  "git_head": "580de88f26c6879a08ecb550c6ff5b5a61560492",
+  "git_dirty": true,
+  "files_created": [],
+  "files_modified": []
+}
