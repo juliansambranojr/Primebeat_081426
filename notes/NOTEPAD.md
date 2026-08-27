@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 211: O95 DESIGN GO — coprime aliased arms collapse the joint alias set to nu = +/-1 (mod 8), nearest confusable 7*g1 = 98.9; non-coprime {6,8} keeps 3*g1 in-band and {7,9} has a near-alias inside resolution, both excluded. Subsets locked {5..9} + {8,9}
+- [open]   2026-08-27  entry 211: O95 power priced from O18 (detect 237 rungs, fail 108) — design point is a 2^40 ceiling, 199 union rungs; per-arm controls MUST show the alias comb or the run is compromised; union pi vector unpeeked, blind arm survives to the prereg
+- [open]   2026-08-27  entry 211: Lean theorem PAIR queued — the per-ladder no-go plus 'coprime aliased arms force nu = +/-1 (mod 8)'; beside entry 208's (1-z^2)^7 factorization pin
 - [open]   2026-08-27  entry 210: THE ELEVEN BASES ARE ONE INSTRUMENT — the family b = exp(pi k/(2 g1)) steps the winding by 45 deg, a quadrature bank on g1; the Nyquist no-go is per-ladder, O18 proved joint detection, entry 208's gcd machinery is the combiner. Multi-base synthesis is the road past the no-go
 - [open]   2026-08-27  entry 209: O94 primary — NO clean placement reaches T_obs = 0.101 (null max 0.052, n=15, p floor 1/15); the design's 'unremarkable' peek was reading overlap-contaminated placements; structural bound T <= 1/2 for double-zeros runs against the observed pair
 - [open]   2026-08-27  entry 208: the gcd factorization — (20,6) and sqrt2 (34,11) share annihilator (1-z)^7 and are near-disjoint constraints on one u-field; the overlap framing double-counted the common factor; (1-z^2)^7 = (1-z)^7 (1+z)^7 is a Lean-pin candidate

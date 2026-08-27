@@ -16,6 +16,94 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 211 — O95 design: the joint alias set collapses to ν ≡ ±1 (mod 8), and the claim is priced before it is measured
+type: motivation
+refs: 17, 18, 26, 199, 208, 210
+
+Design pass for the multi-base synthesis (entry 210's thesis), by an
+audit agent; GO. Approved by Julian with the recommended parameters.
+The build is a separate agent; nothing here ran against the prime
+field — the design's scratch used geometry and synthetics only, and
+**no π value at any union site has been computed this session**: the
+data vector is unpeeked.
+
+**The CRT structure, which is the heart.** Master lattice spacing
+`s = π/(4γ₁)`; arm `j` of the family (`b_j = exp(πj/(4γ₁))`) samples
+sites `i ≡ 0 (mod j)` and has alias spacing `8γ₁/j` — in units
+`ν = γ/γ₁`, arm `j` confuses `ν ≡ ±1 (mod 8/j)`. Aliased arms are
+exactly `j > 4`; `j = 4` is entry 199's boundary member. Per-arm fold
+images of γ₁: j=5 → 8.481, j=6 → 4.712 (γ₁/3), j=7 → 2.019 (γ₁/7),
+j=8 → **0 exactly** (γ₁ sits at arm 8's sampling frequency — the
+O48/O49 null base 1.5597), j=9 → 1.571 (γ₁/9). The residues differ
+per arm, which is the entire mechanism.
+
+**Any coprime pair of aliased arms collapses the joint set to
+`ν ≡ ±1 (mod 8)`** — confusables {γ₁, 7γ₁, 9γ₁, …}, nearest at
+`7γ₁ = 98.9`, far outside any scan band. Verified independently in
+chat by a second scan. **Non-coprime pairs fail**: {6,8} keeps
+`3γ₁ = 42.4` exactly confusable in-band; {7,9} has a finite-resolution
+near-alias at 1.795 (miss 0.224, inside resolution) and is excluded.
+Locked subsets: **{5,6,7,8,9} primary, {8,9} secondary**, `j = 4` as
+a labelled sensitivity column, no others.
+
+**The statistic is O17/O18's pipeline verbatim** — union-ladder NUFFT
+periodogram, Hann, 0.01 grid, 5× median, R at floor points (entry
+209's convention) — no new estimator to tune, which is the O64
+defense. Readout is ATTRIBUTION: the joint peak at γ₁ dominating
+every per-arm fold image, with the alias-candidate table printed.
+Prime data enters only through `π` at union sites.
+
+**The control is the theorem.** Each arm runs the identical pipeline
+alone and must show its alias comb (`Nyquist.nyquist_no_go` covers
+every `b_j`, `j > 4`, at γ₁; O18 measured exactly this comb on the
+dyadic ladder). **If any single-arm control cleanly resolves γ₁, the
+run is compromised** — the theorem says that cannot happen, so the
+pipeline would be manufacturing the distinction.
+
+**Power, priced from O18's precedent** — detection at 237 rungs,
+failure at 108. Union {5..9} above `x0 = 1000`: 146 rungs at the
+2^32 ceiling (inside the failure gap) — **the design point is a 2^40
+ceiling**: 199 union rungs, resolution 0.30, ~460 primecount calls.
+Synthetic power at that size: 100% attribution at A/σ ≥ 1, 79% at
+0.5 (marginal regime stated; inconclusive band required in any
+prereg). Pair {8,9}: 84 rungs, 87%/76% — weaker, accepted as
+secondary. Ceiling ramp if underpowered: ≈227 rungs at 2^44, ≈255 at
+2^48.
+
+**The shared-field pricing, load-bearing for any paper.** One array
+of π values; each arm is an index mask; N_eff is the union count
+(199), never the arm sum (281). Per-arm unresolvability is geometric,
+so reading one field under differently-folded masks removes the
+ambiguity — multi-coset sampling: one signal, interleaved cosets,
+joint identification past every coset's Nyquist. The deflation: the
+union averages super-Nyquist (mean gap 0.105 < π/γ₁ = 0.222), so its
+resolving power is Landau-unsurprising; **the {8,9} pair (mean gap
+0.250 > π/γ₁) is the genuinely sub-average-Nyquist sampler where the
+claim has teeth**. The earned claim is an instrument/sampling result
+— aliased arms jointly attribute the known mode against their own
+alias sets — never a new arithmetic detection of γ₁ (O17/O50 already
+measured its presence). O45's `fineness` and § D4 bound Z-count
+claims; this design reuses no Z-counts.
+
+**Lean companion found:** "for coprime aliased arms, joint aliasing
+forces ν ≡ ±1 (mod 8)" is finite algebra over `Nyquist.Aliases`
+stated for two bases at once — with the no-go this makes a theorem
+PAIR, floor and loophole. Queued beside entry 208's
+`(1−z²)⁷ = (1−z)⁷(1+z)⁷` pin candidate.
+
+**Dense scan (entry 199): complement, not absorbed.** It asks the
+per-arm step question at `b = 1.2489`; when it runs it should adopt
+this pipeline's per-arm periodogram as its statistic. Line stays
+open.
+
+**Approved parameters:** subsets as above; 2^40 ceiling; `x0 = 1000`
+primary with `x0 = 2` sensitivity; **exploratory shakedown first**,
+then prereg lock against the exercised pipeline — the union π vector
+stays unpeeked through the shakedown, so the blind arm survives into
+the lock.
+
+---
+
 ## 2026-08-27 — Entry 210 — the eleven bases are one instrument: the synthetic-aperture reading, and the road past the no-go
 type: motivation
 refs: 18, 26, 199, 205, 208, 209
