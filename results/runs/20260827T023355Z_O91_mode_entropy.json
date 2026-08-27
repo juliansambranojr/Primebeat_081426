@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "script": "O91_mode_entropy.py",
+  "script_sha256": "8de10bb7436dfab3fec81cdd1124faaff690e7b631c949fd9d653a5c62120f90",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O91_mode_entropy.py",
+    "--nzeros",
+    "15",
+    "--rmax",
+    "12",
+    "--no-json",
+    "--no-precision-check"
+  ],
+  "run_start_at": "2026-08-27T02:33:55.077175+00:00",
+  "run_end_at": "2026-08-27T02:33:55.224659+00:00",
+  "exit_code": 0,
+  "git_head": "5eae9f269ed0edbdefb7dd078e82ab58cfcaba91",
+  "git_dirty": true,
+  "files_created": [],
+  "files_modified": []
+}

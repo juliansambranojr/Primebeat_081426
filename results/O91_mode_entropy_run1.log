@@ -1,0 +1,265 @@
+run.py: O91_mode_entropy.py  (267 results files cloned)
+
+==============================================================================
+O91 - MODE ENTROPY AT THE FOUR EXACT ZEROS
+EXPLORATORY. No prereg, no decision rule, NO VERDICT. Nothing
+printed below may be described as a verdict.
+==============================================================================
+  zeros        600 pairs from zeros600.json, gamma_1 = 14.1347251417 .. gamma_600 = 939.024300899
+  dps          50 working; the zero strings carry ~25 significant digits, which is the data floor
+  stencil      cell (r,d) = Delta^(d+1) of pi(2^.) at r (lean/Construction.lean + lean/Zeros.lean)
+  modes        imported from O90_mode_coherence.py (sha256 f2b2788c52968dfc...)
+  forms        psi, pi
+  background   depths [1, 3, 6], r = d+1 .. 30
+
+  STATISTIC   p_k = |c_k| / sum_j |c_j| ;  H = -sum p log p ;  Neff = exp(H)
+              q_k = |z_k| / sum_j |z_j| ;  H_z, Neff_z the same way
+              PR  = (sum|c_k|)^2 / sum|c_k|^2, a second effective-count estimator
+
+  REFERENCE   every mode equal:  Neff = 600   H = log 600 = 6.396930   Neff/600 = 1.000
+              one mode carries all: Neff = 1     H = 0           Neff/600 = 0.001667
+
+  building psi-form modes ...
+
+  building pi-form modes ...
+
+==============================================================================
+1. GATE - coherence recomputed here against results/mode_coherence.json
+==============================================================================
+The mode classes are O90's, imported. |S|/A recomputed from them
+must reproduce O90's stored numbers at the six cells. This is a
+check on the reuse, not a new measurement.
+
+    cell  form        O90 stored    O91 recomputed      rel diff
+  (2, 1)   psi  1.7595294574e-02  1.7595294574e-02      0.00e+00
+  (4, 1)   psi  8.5238869851e-02  8.5238869851e-02      0.00e+00
+  (4, 1)    pi  7.4913450696e-02  7.4913450696e-02      0.00e+00
+  (8, 3)   psi  9.3092884248e-02  9.3092884248e-02      0.00e+00
+  (8, 3)    pi  1.0455792301e-01  1.0455792301e-01      0.00e+00
+ (20, 6)   psi  1.1633727972e-01  1.1633727972e-01      0.00e+00
+ (20, 6)    pi  1.1155853629e-01  1.1155853629e-01      0.00e+00
+  (7, 3)   psi  1.5247442671e-01  1.5247442671e-01      0.00e+00
+  (7, 3)    pi  1.6924654323e-01  1.6924654323e-01      0.00e+00
+ (19, 6)   psi  5.3652856132e-02  5.3652856132e-02      0.00e+00
+ (19, 6)    pi  4.4548510604e-02  4.4548510604e-02      0.00e+00
+
+  max relative disagreement 0.00e+00 across 11 cell-form pairs -> PASS
+
+==============================================================================
+2. THE r-INVARIANCE PREDICTION - tested BEFORE the main table
+==============================================================================
+Entry 194 measured that in the psi form the |z| profile is
+r-INVARIANT while |c| is r-DEPENDENT, and that in the pi form BOTH
+are r-dependent. Entropy is a functional of the normalised profile
+alone, so the prediction transfers exactly:
+
+    psi  Neff_z   IDENTICAL across all cells of a given depth
+    psi  Neff_c   varies with r
+    pi   Neff_z   varies with r
+    pi   Neff_c   varies with r
+
+Entry 194's measured max |delta profile|, d = 1/3/6, quoted:
+    psi  |z|    1.3e-51 / 5.0e-52 / 1.7e-51   INVARIANT
+    psi  |c|    4.5e-02 / 8.8e-02 / 1.3e-01   VARIES
+     pi  |z|    1.7e-03 / 4.3e-03 / 3.2e-03   VARIES
+     pi  |c|    5.8e-02 / 1.0e-01 / 1.2e-01   VARIES
+
+--- psi form -----------------------------------------------------------
+ prof depth  cells       min Neff    median Neff       max Neff      max-min   rel spread
+    z     1     29     276.702823     276.702823     276.702823    0.000e+00    0.000e+00
+    z     3     27     220.974873     220.974873     220.974873    0.000e+00    0.000e+00
+    z     6     24     175.666865     175.666865     175.666865    0.000e+00    0.000e+00
+    c     1     29     207.506921     241.201057     285.954577    7.845e+01    3.252e-01
+    c     3     27     165.638033     188.004579     233.852797    6.821e+01    3.628e-01
+    c     6     24     130.122660     150.140158     196.746121    6.662e+01    4.437e-01
+
+--- pi form ------------------------------------------------------------
+ prof depth  cells       min Neff    median Neff       max Neff      max-min   rel spread
+    z     1     28     263.478697     274.244355     275.375710    1.190e+01    4.338e-02
+    z     3     26     204.553652     218.846981     219.846753    1.529e+01    6.988e-02
+    z     6     23     166.150463     173.905972     174.740310    8.590e+00    4.939e-02
+    c     1     28     205.933209     236.871724     281.906427    7.597e+01    3.207e-01
+    c     3     26     164.063902     186.337839     233.373633    6.931e+01    3.720e-01
+    c     6     23     128.250179     149.652459     188.348690    6.010e+01    4.016e-01
+
+READING - each statement is CONFIRMED or REFUTED on its own:
+  psi  Neff on |z|  predicted IDENTICAL  max rel spread over depths 0.000e+00  -> CONFIRMED
+  psi  Neff on |c|  predicted    VARIES  max rel spread over depths 4.437e-01  -> CONFIRMED
+   pi  Neff on |z|  predicted    VARIES  max rel spread over depths 6.988e-02  -> CONFIRMED
+   pi  Neff on |c|  predicted    VARIES  max rel spread over depths 4.016e-01  -> CONFIRMED
+
+  tolerances: IDENTICAL requires rel spread < 1e-35 (dps 50, 15 digits of margin); VARIES requires > 1e-06
+  ALL FOUR STATEMENTS: CONFIRMED
+
+  Note the invariance is a statement about cells of ONE depth. Neff
+  on the psi |z| profile still differs BETWEEN depths, because the
+  factor |1 - 2^(-rho)|^(d+1) carries d and does not cancel.
+
+==============================================================================
+3. TARGETS AND CONTROLS - four exact zeros, two proved non-zeros
+==============================================================================
+The four zeros are lean/Zeros.lean's measured_zeros; the controls
+are nonzero_7_3 = 5 and nonzero_19_6 = 343. Three of the four
+zeros sit at r = 2, 4, 8 and are OUTSIDE the regime where the
+explicit formula tracks pi(x); they are reported and they are not
+equally meaningful. (20,6) with (19,6) is the one pair inside it.
+
+--- profile c:  |c_k| = 2|Re z_k|  (the real contribution summed)
+    cell   lean     role     H(psi)   Neff(psi)     /600    PR(psi)      H(pi)    Neff(pi)     /600     PR(pi)
+--------------------------------------------------------------------------------------------------------------
+  (2, 1)      0     zero   5.526430    251.2454   0.4187   108.3372  undefined           -        -          -
+  (4, 1)      0     zero   5.485631    241.2011   0.4020    81.6937   5.451686    233.1509   0.3886    81.4485
+  (8, 3)      0     zero   5.287807    197.9090   0.3298    78.6127   5.255518    191.6206   0.3194    73.2390
+ (20, 6)      0     zero   5.147757    172.0451   0.2867    78.9622   5.148908    172.2433   0.2871    78.9164
+  (7, 3)      5  control   5.204563    182.1013   0.3035    60.6583   5.135849    170.0087   0.2833    55.9161
+ (19, 6)    343  control   5.092451    162.7884   0.2713    76.1266   5.058532    157.3593   0.2623    73.3073
+
+--- profile z:  |z_k|              (the complex modulus)
+    cell   lean     role     H(psi)   Neff(psi)     /600    PR(psi)      H(pi)    Neff(pi)     /600     PR(pi)
+--------------------------------------------------------------------------------------------------------------
+  (2, 1)      0     zero   5.622944    276.7028   0.4612   113.5578  undefined           -        -          -
+  (4, 1)      0     zero   5.622944    276.7028   0.4612   113.5578   5.573973    263.4787   0.4391   108.2151
+  (8, 3)      0     zero   5.398049    220.9749   0.3683    86.1221   5.368262    214.4898   0.3575    83.6190
+ (20, 6)      0     zero   5.168589    175.6669   0.2928    66.5008   5.159266    174.0368   0.2901    65.8925
+  (7, 3)      5  control   5.398049    220.9749   0.3683    86.1221   5.360020    212.7291   0.3545    82.9141
+ (19, 6)    343  control   5.168589    175.6669   0.2928    66.5008   5.158515    173.9060   0.2898    65.8436
+
+Regime, per cell:
+  (2,1)  OUTSIDE - x = 4; the explicit formula is nowhere near pi(x)
+  (4,1)  OUTSIDE - x = 16; the explicit formula is nowhere near pi(x)
+  (8,3)  OUTSIDE - x = 256; the explicit formula is nowhere near pi(x)
+  (20,6)  INSIDE - O34/O35 measured 80% of the row-20 residual at d=6
+  (7,3)  OUTSIDE - x = 128; control for (8,3), same regime caveat
+  (19,6)  adjacent to measured row 20, same depth
+  (2,1)  pi: pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero
+
+==============================================================================
+4. BACKGROUND - every cell (r,d), d in [1, 3, 6], r = d+1 .. 30
+==============================================================================
+--- psi form -----------------------------------------------------------
+ prof depth  cells     min Neff  median Neff     max Neff  med Neff/600   median PR
+    c     1     29     207.5069     241.2011     285.9546        0.4020     92.7222
+    c     3     27     165.6380     188.0046     233.8528        0.3133     70.7821
+    c     6     24     130.1227     150.1402     196.7461        0.2502     56.6583
+    z     1     29     276.7028     276.7028     276.7028        0.4612    113.5578
+    z     3     27     220.9749     220.9749     220.9749        0.3683     86.1221
+    z     6     24     175.6669     175.6669     175.6669        0.2928     66.5008
+
+--- pi form ------------------------------------------------------------
+ prof depth  cells     min Neff  median Neff     max Neff  med Neff/600   median PR
+    c     1     28     205.9332     236.8717     281.9064        0.3948     90.2425
+    c     3     26     164.0639     186.3378     233.3736        0.3106     72.2561
+    c     6     23     128.2502     149.6525     188.3487        0.2494     54.3308
+    z     1     28     263.4787     274.2444     275.3757        0.4571    112.5127
+    z     3     26     204.5537     218.8470     219.8468        0.3647     85.3115
+    z     6     23     166.1505     173.9060     174.7403        0.2898     65.8436
+
+==============================================================================
+5. WHERE THE TARGETS AND CONTROLS SIT IN THEIR OWN DEPTH'S BACKGROUND
+==============================================================================
+Percentile = share of same-depth defined cells with a SMALLER Neff.
+
+DEGENERATE marks a row where every same-depth cell carries the
+SAME Neff to printed precision. That is the r-invariant case of
+section 2, where the percentile is 0.0 by the strict-less-than
+rule and orders nothing. Read those rows as 'no position'.
+
+ form prof     cell        Neff  percentile  of cells   ties  note
+------------------------------------------------------------------
+  psi    c   (2, 1)    251.2454       79.3%        29      1  
+  psi    c   (4, 1)    241.2011       48.3%        29      1  
+  psi    c   (8, 3)    197.9090       66.7%        27      1  
+  psi    c  (20, 6)    172.0451       79.2%        24      1  
+  psi    c   (7, 3)    182.1013       33.3%        27      1  
+  psi    c  (19, 6)    162.7884       66.7%        24      1  
+  psi    z   (2, 1)    276.7028        0.0%        29     29  DEGENERATE - all same-depth cells equal
+  psi    z   (4, 1)    276.7028        0.0%        29     29  DEGENERATE - all same-depth cells equal
+  psi    z   (8, 3)    220.9749        0.0%        27     27  DEGENERATE - all same-depth cells equal
+  psi    z  (20, 6)    175.6669        0.0%        24     24  DEGENERATE - all same-depth cells equal
+  psi    z   (7, 3)    220.9749        0.0%        27     27  DEGENERATE - all same-depth cells equal
+  psi    z  (19, 6)    175.6669        0.0%        24     24  DEGENERATE - all same-depth cells equal
+   pi    c   (4, 1)    233.1509       42.9%        28      1  
+   pi    c   (8, 3)    191.6206       61.5%        26      1  
+   pi    c  (20, 6)    172.2433       82.6%        23      1  
+   pi    c   (7, 3)    170.0087       15.4%        26      1  
+   pi    c  (19, 6)    157.3593       60.9%        23      1  
+   pi    z   (4, 1)    263.4787        0.0%        28      1  
+   pi    z   (8, 3)    214.4898       11.5%        26      1  
+   pi    z  (20, 6)    174.0368       52.2%        23      1  
+   pi    z   (7, 3)    212.7291        7.7%        26      1  
+   pi    z  (19, 6)    173.9060       47.8%        23      1  
+
+The (20,6) / (19,6) pair, which is the one inside the regime:
+  psi |c|  (20,6) Neff 172.0451 at pct 79.2   (19,6) Neff 162.7884 at pct 66.7   ratio 1.0569
+  psi |z|  (20,6) Neff 175.6669 at pct 0.0   (19,6) Neff 175.6669 at pct 0.0   ratio 1.0000  [DEGENERATE: r-invariant, percentiles order nothing]
+   pi |c|  (20,6) Neff 172.2433 at pct 82.6   (19,6) Neff 157.3593 at pct 60.9   ratio 1.0946
+   pi |z|  (20,6) Neff 174.0368 at pct 52.2   (19,6) Neff 173.9060 at pct 47.8   ratio 1.0008
+
+==============================================================================
+6. Neff AGAINST PR - two estimators of the same effective count
+==============================================================================
+Both return n on a uniform distribution over n modes and 1 on a
+point mass. PR is the inverse collision probability (Renyi order
+2), Neff the exponential of the Shannon entropy (order 1), so PR
+<= Neff for any distribution and the gap measures how heavy the
+head is. The question here is whether they RANK cells the same.
+
+ form prof  cells   min Neff/PR      median   max Neff/PR   rank corr  PR<=Neff
+-------------------------------------------------------------------------------
+  psi    c     80        1.7461      2.6029        3.4004      0.8620      True
+  psi    z     80        2.4367      2.5658        2.6416      1.0000      True
+   pi    c     77        1.7284      2.6164        3.3008      0.8563      True
+   pi    z     77        2.4348      2.5653        2.6514      1.0000      True
+
+Per target and control, Neff / PR:
+  psi (2,1)  |c| Neff 251.2454 PR 108.3372 ratio 2.3191   |z| Neff 276.7028 PR 113.5578 ratio 2.4367
+  psi (4,1)  |c| Neff 241.2011 PR  81.6937 ratio 2.9525   |z| Neff 276.7028 PR 113.5578 ratio 2.4367
+  psi (8,3)  |c| Neff 197.9090 PR  78.6127 ratio 2.5175   |z| Neff 220.9749 PR  86.1221 ratio 2.5658
+  psi (20,6)  |c| Neff 172.0451 PR  78.9622 ratio 2.1788   |z| Neff 175.6669 PR  66.5008 ratio 2.6416
+  psi (7,3)  |c| Neff 182.1013 PR  60.6583 ratio 3.0021   |z| Neff 220.9749 PR  86.1221 ratio 2.5658
+  psi (19,6)  |c| Neff 162.7884 PR  76.1266 ratio 2.1384   |z| Neff 175.6669 PR  66.5008 ratio 2.6416
+   pi (4,1)  |c| Neff 233.1509 PR  81.4485 ratio 2.8626   |z| Neff 263.4787 PR 108.2151 ratio 2.4348
+   pi (8,3)  |c| Neff 191.6206 PR  73.2390 ratio 2.6164   |z| Neff 214.4898 PR  83.6190 ratio 2.5651
+   pi (20,6)  |c| Neff 172.2433 PR  78.9164 ratio 2.1826   |z| Neff 174.0368 PR  65.8925 ratio 2.6412
+   pi (7,3)  |c| Neff 170.0087 PR  55.9161 ratio 3.0404   |z| Neff 212.7291 PR  82.9141 ratio 2.5657
+   pi (19,6)  |c| Neff 157.3593 PR  73.3073 ratio 2.1466   |z| Neff 173.9060 PR  65.8436 ratio 2.6412
+
+==============================================================================
+7. PRECISION CHECK - targets and controls recomputed at dps 80
+==============================================================================
+    cell  form prof         Neff lo         Neff hi    rel diff  H rel diff
+  (2, 1)   psi    c    251.24535966    251.24535966    0.00e+00    0.00e+00
+  (2, 1)   psi    z    276.70282264    276.70282264    0.00e+00    0.00e+00
+  (4, 1)   psi    c    241.20105735    241.20105735    0.00e+00    0.00e+00
+  (4, 1)   psi    z    276.70282264    276.70282264    0.00e+00    0.00e+00
+  (4, 1)    pi    c    233.15094560    233.15094560    0.00e+00    0.00e+00
+  (4, 1)    pi    z    263.47869653    263.47869653    0.00e+00    0.00e+00
+  (8, 3)   psi    c    197.90902158    197.90902158    0.00e+00    0.00e+00
+  (8, 3)   psi    z    220.97487298    220.97487298    0.00e+00    0.00e+00
+  (8, 3)    pi    c    191.62062557    191.62062557    0.00e+00    0.00e+00
+  (8, 3)    pi    z    214.48982506    214.48982506    0.00e+00    0.00e+00
+ (20, 6)   psi    c    172.04511537    172.04511537    0.00e+00    0.00e+00
+ (20, 6)   psi    z    175.66686508    175.66686508    0.00e+00    0.00e+00
+ (20, 6)    pi    c    172.24330063    172.24330063    0.00e+00    0.00e+00
+ (20, 6)    pi    z    174.03675198    174.03675198    0.00e+00    0.00e+00
+  (7, 3)   psi    c    182.10126803    182.10126803    0.00e+00    0.00e+00
+  (7, 3)   psi    z    220.97487298    220.97487298    0.00e+00    0.00e+00
+  (7, 3)    pi    c    170.00867017    170.00867017    0.00e+00    0.00e+00
+  (7, 3)    pi    z    212.72912330    212.72912330    0.00e+00    0.00e+00
+ (19, 6)   psi    c    162.78844442    162.78844442    0.00e+00    0.00e+00
+ (19, 6)   psi    z    175.66686508    175.66686508    0.00e+00    0.00e+00
+ (19, 6)    pi    c    157.35931796    157.35931796    0.00e+00    0.00e+00
+ (19, 6)    pi    z    173.90597226    173.90597226    0.00e+00    0.00e+00
+
+  max relative disagreement  Neff 0.00e+00   H 0.00e+00   across 22 cell-form-profile triples
+
+==============================================================================
+EXPLORATORY. Nothing above is a verdict. No decision rule was
+pre-registered and none fired. The reading is Julian's.
+==============================================================================
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/mode_entropy.json
+
+run.py: exit 0   created 1   modified 1
+  archived prior O91_mode_entropy_run1.log -> results/archive/O91_mode_entropy_run1_20260827T023508Z_e3b0c442.log
+  manifest results/runs/20260827T023508Z_O91_mode_entropy.json

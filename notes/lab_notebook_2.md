@@ -16,6 +16,247 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 197 — 172 modes of 600, and the vacuous combination is now identified rather than argued
+type: result-triage
+refs: 192, 194, 195, 196
+
+Reading of entry 196. EXPLORATORY.
+
+**Entry 194's correction is now measured.** That entry argued the
+vacuousness trap applies to `|z_k|` and not to `|c_k|`. O91 tested all
+four combinations and confirmed every one:
+
+```text
+ψ  Neff_z   predicted IDENTICAL   max rel spread  0.000e+00
+ψ  Neff_c   predicted VARIES                      4.437e-01
+π  Neff_z   predicted VARIES                      6.988e-02
+π  Neff_c   predicted VARIES                      4.016e-01
+```
+
+**So the vacuous combination is exactly one of four, and it is now
+named.** ψ-form entropy on the `|z|` profile is fixed by depth alone —
+276.702823 at all 29 cells of `d = 1`, 220.974873 at all 27 of `d = 3`,
+175.666865 at all 24 of `d = 6`, max minus min exactly zero at dps 50
+with 15 digits of margin. On that profile `(8,3)` and `(7,3)` carry the
+same number, and so do `(20,6)` and `(19,6)`: it **cannot** separate a
+zero from a non-zero, by construction rather than by outcome. The other
+three profiles can.
+
+**The headline is a number the question needed and did not have.** At
+`(20,6)`, `Neff = 172.0` out of 600 — about 29% of the summed modes
+effectively participate. A localized reading, where a table zero is one
+zeta zero showing up, needs `Neff` of order 1. It is 172.
+
+**Direction agrees with O90.** The exact zero has the higher `Neff`:
+
+```text
+        ψ |c|      π |c|
+(20,6)  172.045    172.243
+(19,6)  162.788    157.359
+ratio     1.057      1.095
+```
+
+and the same holds a depth down, `(8,3)` 197.91 against `(7,3)` 182.10.
+O90 found the zero less cancelled; O91 finds it spread over more modes.
+Both say the **non-zero control is the more concentrated cell**, which
+is the second time that has come out backwards from what entry 192
+predicted.
+
+**Depth concentrates.** Median `Neff/600` falls 0.4020 → 0.3133 →
+0.2502 across `d = 1, 3, 6` (ψ `|c|`), because `|1 − 2^(−ρ)|^(d+1)`
+carries `d` and does not cancel under normalisation. The invariance is
+per-depth rather than global.
+
+**The truncation caveat, and it is unmeasured.** `p_k` normalises over
+the first 600 modes, so `Neff` is a statement at `N = 600`. If `|c_k|`
+decays slowly the tail keeps contributing and `Neff` grows with `N`.
+O90 measured its coherence against `N` and flagged the result
+one-sided; **O91 did not measure `Neff` against `N`**, and until it
+does, 172 is a truncation-dependent figure. The ratio 1.057 is safer,
+since both cells are truncated identically. Measuring `Neff(N)` is the
+next thing to do to this instrument and it is cheap.
+
+**Two estimators, agreeing on order and not on level.** `PR ≤ Neff` at
+all 157 defined background cells, rank correlation exactly 1.000 on
+both `|z|` profiles and 0.862 / 0.856 on the `|c|` profiles, with `PR`
+about 2.6× below `Neff` throughout and that ratio itself varying by
+~1.95× across cells. Different Rényi orders, behaving as they should.
+
+---
+
+## 2026-08-27 — Entry 196 — O91: mode entropy and effective mode count
+type: run
+refs: 192, 194, 195
+
+`O91_mode_entropy.py`, EXPLORATORY. Extends O90 — it **imports** O90's
+mode classes rather than re-deriving them, and records O90's sha256 as
+`params.mode_source_sha256` (`f2b2788c…`, matching entry 193's script
+hash).
+
+```text
+.venv/bin/python utilities/run.py --python .venv/bin/python O91_mode_entropy.py
+```
+
+```text
+dps 50   nzeros 600   depths 1,3,6   rmax 30   forms psi,pi
+profiles |c_k| and |z_k|      zeros_file zeros600.json
+script sha256 c9c82ffb9c0a5bb9146b5113582b4b2da35bb630be63276896b5a9a7c03c1a32
+results sha256 fcae817ef577c4098a69981e8da382fabc9a8cfadb6179b0744bb9229ce44fbe
+git HEAD 5eae9f2 (dirty)   exit 0   4.7 s
+manifest results/runs/20260827T023508Z_O91_mode_entropy.json
+```
+
+`p_k = |c_k| / Σ|c_j|`, `H = −Σ p_k log p_k`, `Neff = exp(H)`; the same
+on `q_k = |z_k| / Σ|z_j|`; plus `PR = (Σ|c_k|)² / Σ|c_k|²`. Reference
+poles: `Neff = 600` if every mode contributes equally
+(`H = log 600 = 6.396930`), `Neff = 1` if one carries everything.
+
+**Targets and controls, `Neff` and `Neff/600`:**
+
+```text
+  cell  lean     role   Neff(ψ|c|)  /600   Neff(π|c|)  /600   Neff(ψ|z|)
+ (2,1)     0     zero     251.245  0.4187    undefined     -     276.703
+ (4,1)     0     zero     241.201  0.4020      233.151 0.3886    276.703
+ (8,3)     0     zero     197.909  0.3298      191.621 0.3194    220.975
+(20,6)     0     zero     172.045  0.2867      172.243 0.2871    175.667
+ (7,3)     5  control     182.101  0.3035      170.009 0.2833    220.975
+(19,6)   343  control     162.788  0.2713      157.359 0.2623    175.667
+```
+
+`(2,1)` is null in the π form for O90's reason — the `Δ^(d+1)` stencil
+reaches `x = 1` and `Ei(ρ·log 1) = −∞`. `(2,1)`, `(4,1)`, `(8,3)` and
+`(7,3)` are labelled outside the regime where the explicit formula
+tracks `π`; `(20,6)` with `(19,6)` is the pair inside it.
+
+**Gates.** Coherence recomputed from the imported classes reproduces
+`results/mode_coherence.json` at **0.00e+00** relative disagreement
+across all 11 defined cell-form pairs. `--precision-check` at dps 80
+gives max relative disagreement **0.00e+00** on both `H` and `Neff`
+across 22 cell-form-profile triples. `check_refs` exits 0.
+
+**Three instrument findings.**
+
+`tee` into `results/` collides with `utilities/run.py`'s archive step.
+tee truncates the log at pipeline start, so run.py's clone captured an
+empty file and archived it as a prior run —
+`results/archive/O91_mode_entropy_run1_20260827T023508Z_e3b0c442.log`,
+zero bytes, `e3b0c442` being the sha256 prefix of the empty string.
+Nothing was lost. Teeing outside `results/` and moving afterward avoids
+it. **Unfixed.**
+
+The percentile of an r-invariant quantity is degenerate and reads as
+informative — ψ `|z|` gives 0.0% at every cell under strict-less-than
+with 24 of 24 ties. Marked DEGENERATE in the output rather than printed
+bare.
+
+O91's gate against O90 needed an `nzeros` guard: a 15-zero smoke run
+reported a 4.65e+00 mismatch against O90's 600-zero stored values. It
+now reports NOT COMPARABLE instead of manufacturing a failure. Four
+smoke manifests from that session sit in `results/runs/`, all
+`--no-json`, all created 0 files.
+
+Reading is entry 197.
+
+---
+
+## 2026-08-26 — Entry 195 — the stencil is an Euler factor; its zeros are the ladder's blind spots; two tests queued
+type: motivation
+refs: 26, 103, 192, 194
+
+Julian: "what if the stencil is the shape of the zeta zero — the
+zeros were steep walls at a slope because it's the container for
+everything in every cell in the prime composite side plus the static
+structure?" Then: what does this mean about information, and does the
+zero ensemble connect to GUE?
+
+**Three of his four terms are in the tree already.**
+
+*Container.* `lean/PairIdentity.lean`'s `pair_identity` docstring:
+prime + composite = `(b−1)^(d+1)·b^(r−1−d)`, and "the identity is
+forced by the partition alone, and the whole content of the
+prime/composite split is that it is a partition of a geometric row."
+
+*Static structure.* `papers/Euler-Factor-Chain.md` § E2/E4. Zeroing
+the counts of 2, 3, 5 leaves `(8,3)` and `(20,6)` exactly 0 (O30);
+**excising** 2, 3, 5 from the line destroys both, `(20,6)` reading 70
+after three integers are removed from 4×10⁶ (O31). § E4: a difference
+cell is blind to how many primes lie below it and sensitive to where
+they sit.
+
+*The stencil's shape.* § A3: on the `b`-ladder, `Δ` is multiplication
+by `1 − b^(−s)`; § A4 gives depth-`d` differencing the symbol
+`(1 − b^(−s))^(d+1)`. `lean/Chain.lean`:29 defines that object and its
+docstring names it **the reciprocal Euler factor at `b`**. So the
+stencil's shape has a name, and differencing on the `b`-ladder divides
+base `b`'s factor out of the Euler product.
+
+**Provenance gap, recorded rather than reconstructed.** "Steep walls
+at a slope" is not in this tree. Grepped every `.md` and `.py` for
+steep, wall, slope, container, static — the only walls are wall-clock
+timings and O81's aliasing wall. Either it comes from a session that
+was never logged, or it is Julian's own picture of something the
+record names differently. Left open; do not invent a referent for it.
+
+**The sharpening, and it is the strongest form of the Shannon link.**
+`Chain.sym_eq_zero_iff` proves `Sym b s = 0` exactly on
+`s ∈ (2πi/log b)·ℤ` — an evenly spaced lattice on the imaginary axis,
+where zeta's zeros are irregular and on `Re = ½`. Different sets. But
+that lattice spacing is the same `2π/log b` as
+`Nyquist.aliases_of_offset`. **The frequencies the stencil annihilates
+are exactly the frequencies the sampling cannot see** — two theorems,
+one lattice, from opposite sides.
+
+**What is established about information.** (i) Stopband and blind
+spots coincide, above. (ii) `base_two_fails_by_three`: base 2 runs
+entirely above its own Nyquist frequency, so which-zero-is-which is
+**absent from the samples** rather than hard to extract. (iii) § E4
+plus `stencil_annihilates_const`: the channel discards the level and
+keeps the arrangement. (iv) Entry 194: ~90% of mode mass cancels at
+every cell, uniformly.
+
+**What is missing is that none of it is an information measure.**
+Coherence `|S|/A` is an alignment ratio. `|c_k|/A` is already a
+probability distribution over modes, so `H = −Σ p_k log p_k` and the
+effective mode count `exp(H)` are one small extension of O90 — and
+entry 194's correction says that measure varies with `r` rather than
+being vacuous, which is what makes it worth running.
+
+**GUE has been asked here, and the first attempt failed instructively.**
+`O64_gue_spacing.py`: run 1's instrument **manufactured** the
+repulsion — Poisson-placed frequencies entered at `frac<0.5 = 0.372`
+and exited at 0.102, on top of GUE's 0.106 — and its conclusion was
+withdrawn in entry 103. Run 2, band `(10,120)`: real `n = 37`, mean
+`s` 1.003, `frac<0.5` 0.027, matching the true zeros' direct values to
+three decimals.
+
+**That is not a GUE confirmation and must not be cited as one.** GUE
+predicts 0.106; both the detected peaks and the true zeros give 0.027
+in that band. O64 established that the instrument reads the zeros
+faithfully there. Montgomery–Odlyzko agreement is asymptotic, tested
+near height 10²⁰; this tree has `γ ≤ 939`.
+
+**Our own zeros cannot carry a spacing statistic.** Four zeros, three
+gaps. The only ensemble large enough is O45/O47's **125 pooled
+resolved zeros across eleven bases**, and `papers/The-Zero-Surface.md`
+has already run nearest-neighbour distance on them against a
+width-matched null: § G2 records `z = −5.32` and says plainly that it
+cannot be read.
+
+**Two tests queued, entropy first by Julian's call.**
+
+1. **O91 — mode entropy.** `H` and `N_eff = exp(H)` over the mode
+   distribution, both explicit-formula forms, on `|c_k|` and on
+   `|z_k|` separately since entry 194 showed those behave differently.
+   Same cells as O90. Reference points: `N_eff = 600` if all modes
+   contribute equally, `N_eff = 1` if one carries everything.
+2. **The 125-zero ensemble.** Whether a repulsion question can be
+   asked honestly of it at all, given § G2 already declined to read
+   the one statistic run on it. Design before measurement, and O64
+   run 1 is the standing warning: any pipeline with finite resolution
+   fakes repulsion, so the null has to enter through the same pipeline.
+
+---
+
 ## 2026-08-26 — Entry 194 — the zeros are ordinary and the control is the anomaly; a design claim of mine was half wrong
 type: result-triage
 refs: 26, 112, 192, 193

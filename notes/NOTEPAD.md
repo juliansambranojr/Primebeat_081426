@@ -17,6 +17,17 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 197: Neff = 172 of 600 at (20,6) — a localized reading needs Neff of order 1; the ensemble claim finally has a number
+- [open]   2026-08-27  entry 197: entry 194's correction MEASURED — all four profile/form combinations behave as predicted, and the vacuous one is now named: psi-form entropy on |z| is fixed by depth alone and cannot separate a zero from a non-zero
+- [open]   2026-08-27  entry 197: second time the control comes out more concentrated than the zero (O90 coherence, O91 Neff) — opposite to what entry 192 predicted, both times
+- [open]   2026-08-27  entry 197: Neff(N) is UNMEASURED — 172 is a statement at N=600 and the tail may grow it; the ratio 1.057 is the safer figure. Cheap next measurement on this instrument
+- [open]   2026-08-27  entry 196: run.py archive collides with `tee` into results/ — tee truncates at pipeline start so an empty log got archived as a prior run (e3b0c442 = sha of empty string); nothing lost, UNFIXED
+- [open]   2026-08-26  entry 195: QUEUED 1 of 2 — O91 mode entropy, H and N_eff = exp(H) over the mode distribution, both forms, on |c_k| and |z_k| separately; the first actual information measure on this object
+- [open]   2026-08-26  entry 195: QUEUED 2 of 2 — can a repulsion question be asked of O45/O47's 125 pooled zeros at all? Zero-Surface G2 already declined to read z = -5.32; O64 run 1 is the warning that finite resolution fakes repulsion
+- [open]   2026-08-26  entry 195: the stencil's shape has a name — Chain.lean:29 calls Sym the reciprocal Euler factor at b, so differencing divides base b's factor out of the Euler product
+- [open]   2026-08-26  entry 195: sym_eq_zero_iff and Nyquist.aliases_of_offset are the SAME lattice 2pi/log b — the frequencies the stencil annihilates are the frequencies the sampling cannot see
+- [open]   2026-08-26  entry 195: PROVENANCE GAP — 'steep walls at a slope' is nowhere in the tree; grepped all .md/.py; either an unlogged session or Julian's own picture. Do not invent a referent
+- [open]   2026-08-26  entry 195: O64's frac<0.5 = 0.027 is NOT a GUE confirmation (GUE predicts 0.106; the true zeros give 0.027 in that band too) — guard against it being cited as one
 - [open]   2026-08-26  entry 194: CORRECTION to entry 192 — the vacuousness trap applies to |z_k|, the statistic runs on |c_k| = 2|Re z_k| which carries phase; top-1 share was fine and I argued us out of it
 - [open]   2026-08-26  entry 194: the ensemble picture holds so uniformly it separates nothing — ~90% of mode mass cancels at every cell; where it does separate the exact zero is LESS cancelled than its non-zero neighbour, and sits at its depth's median
 - [open]   2026-08-26  entry 194: coherence at an exact zero is identically |M|/A, so it measures the li-stencil main term rather than anything about the zero — the question entry 192 wanted needs |M| against a non-zero background, which O67 already computes

@@ -1,0 +1,4356 @@
+{
+  "schema_version": "1",
+  "script": "/Users/juliansambrano/GitHub/Primebeat_081426/O91_mode_entropy.py",
+  "generated_utc": "2026-08-27T02:35:13Z",
+  "status": "EXPLORATORY - no prereg, no decision rule, no verdict. Nothing here may be described as a verdict.",
+  "params": {
+    "code_version": "c9c82ffb9c0a5bb9146b5113582b4b2da35bb630be63276896b5a9a7c03c1a32",
+    "mode_source_script": "O90_mode_coherence.py",
+    "mode_source_sha256": "f2b2788c52968dfc1e9120f5e2976e828f47486d0e224d871e4369379eafb1d1",
+    "dps": 50,
+    "nzeros": 600,
+    "rmax": 30,
+    "depths": [
+      1,
+      3,
+      6
+    ],
+    "forms": [
+      "psi",
+      "pi"
+    ],
+    "zeros_file": "/Users/juliansambrano/GitHub/Primebeat_081426/zeros600.json",
+    "precision_check": true,
+    "o90_json": "/Users/juliansambrano/GitHub/Primebeat_081426/results/mode_coherence.json",
+    "out": "/Users/juliansambrano/GitHub/Primebeat_081426/results/mode_entropy.json",
+    "run_start_at": "2026-08-27T02:35:08Z",
+    "run_end_at": "2026-08-27T02:35:13Z"
+  },
+  "constants": {
+    "stencil": "cell (r,d) = Delta^(d+1) of pi(2^.) at r; lean/Construction.lean tableFrom + lean/Zeros.lean dyadicRow",
+    "statistic_p": "p_k = |c_k| / sum_j |c_j|, c_k = -2 Re z_k; H = -sum p log p (natural log); Neff = exp(H)",
+    "statistic_q": "q_k = |z_k| / sum_j |z_j|; H_z and Neff_z the same way",
+    "participation_ratio": "PR = (sum_k |c_k|)^2 / sum_k |c_k|^2, and its |z| twin; a second effective-count estimator",
+    "reference_uniform": {
+      "Neff": 600,
+      "H": 6.396929655216146,
+      "Neff_frac": 1.0
+    },
+    "reference_point_mass": {
+      "Neff": 1,
+      "H": 0.0,
+      "Neff_frac": 0.0016666666666666668
+    },
+    "mode_psi": "z_k(r,d) = 2^(r*rho_k) (1-2^(-rho_k))^(d+1) / rho_k, rho_k = 1/2 + i*gamma_k",
+    "mode_pi": "Z_k(r,d) = sum_j (-1)^j C(d+1,j) Ei(rho_k*(r-j)*ln2); matches O34's osc",
+    "targets": [
+      [
+        2,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        20,
+        6
+      ]
+    ],
+    "controls": [
+      [
+        7,
+        3
+      ],
+      [
+        19,
+        6
+      ]
+    ],
+    "lean_cell_values": {
+      "2,1": 0,
+      "4,1": 0,
+      "8,3": 0,
+      "20,6": 0,
+      "7,3": 5,
+      "19,6": 343
+    },
+    "regime": {
+      "20,6": "INSIDE - O34/O35 measured 80% of the row-20 residual at d=6",
+      "19,6": "adjacent to measured row 20, same depth",
+      "2,1": "OUTSIDE - x = 4; the explicit formula is nowhere near pi(x)",
+      "4,1": "OUTSIDE - x = 16; the explicit formula is nowhere near pi(x)",
+      "8,3": "OUTSIDE - x = 256; the explicit formula is nowhere near pi(x)",
+      "7,3": "OUTSIDE - x = 128; control for (8,3), same regime caveat"
+    },
+    "regime_source": "O34/O35: the explicit formula reproduces 94% of the row-20 residual at d=0, 92% at d=3, 80% at d=6, measured in the pi form.",
+    "pi_undefined_reason": "pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero",
+    "entry_194_profile_deviations": {
+      "psi_z": {
+        "max_abs_profile_diff_d136": "1.3e-51 / 5.0e-52 / 1.7e-51",
+        "reading": "INVARIANT"
+      },
+      "psi_c": {
+        "max_abs_profile_diff_d136": "4.5e-02 / 8.8e-02 / 1.3e-01",
+        "reading": "VARIES"
+      },
+      "pi_z": {
+        "max_abs_profile_diff_d136": "1.7e-03 / 4.3e-03 / 3.2e-03",
+        "reading": "VARIES"
+      },
+      "pi_c": {
+        "max_abs_profile_diff_d136": "5.8e-02 / 1.0e-01 / 1.2e-01",
+        "reading": "VARIES"
+      }
+    },
+    "data_floor": "zeros600.json carries ~25 significant digits; no working precision improves on that"
+  },
+  "summary": {
+    "o90_gate": {
+      "status": "PASS",
+      "pairs": {
+        "psi_2_1": {
+          "o90": 0.01759529457390934,
+          "o91": 0.01759529457390934,
+          "rel_diff": 0.0
+        },
+        "psi_4_1": {
+          "o90": 0.0852388698509163,
+          "o91": 0.0852388698509163,
+          "rel_diff": 0.0
+        },
+        "pi_4_1": {
+          "o90": 0.07491345069603428,
+          "o91": 0.07491345069603428,
+          "rel_diff": 0.0
+        },
+        "psi_8_3": {
+          "o90": 0.0930928842483983,
+          "o91": 0.0930928842483983,
+          "rel_diff": 0.0
+        },
+        "pi_8_3": {
+          "o90": 0.10455792300530355,
+          "o91": 0.10455792300530355,
+          "rel_diff": 0.0
+        },
+        "psi_20_6": {
+          "o90": 0.11633727972301933,
+          "o91": 0.11633727972301933,
+          "rel_diff": 0.0
+        },
+        "pi_20_6": {
+          "o90": 0.11155853629492017,
+          "o91": 0.11155853629492017,
+          "rel_diff": 0.0
+        },
+        "psi_7_3": {
+          "o90": 0.15247442671491443,
+          "o91": 0.15247442671491443,
+          "rel_diff": 0.0
+        },
+        "pi_7_3": {
+          "o90": 0.16924654323098054,
+          "o91": 0.16924654323098054,
+          "rel_diff": 0.0
+        },
+        "psi_19_6": {
+          "o90": 0.05365285613226809,
+          "o91": 0.05365285613226809,
+          "rel_diff": 0.0
+        },
+        "pi_19_6": {
+          "o90": 0.04454851060402431,
+          "o91": 0.04454851060402431,
+          "rel_diff": 0.0
+        }
+      },
+      "max_rel_diff": 0.0,
+      "o90_json": "/Users/juliansambrano/GitHub/Primebeat_081426/results/mode_coherence.json",
+      "o90_nzeros": 600,
+      "o91_nzeros": 600
+    },
+    "r_invariance": {
+      "predicted": {
+        "psi_z": "IDENTICAL",
+        "psi_c": "VARIES",
+        "pi_z": "VARIES",
+        "pi_c": "VARIES"
+      },
+      "outcomes": {
+        "psi_z": {
+          "predicted": "IDENTICAL",
+          "max_rel_spread": 0.0,
+          "reading": "CONFIRMED"
+        },
+        "psi_c": {
+          "predicted": "VARIES",
+          "max_rel_spread": 0.44374178142629944,
+          "reading": "CONFIRMED"
+        },
+        "pi_z": {
+          "predicted": "VARIES",
+          "max_rel_spread": 0.0698803380754818,
+          "reading": "CONFIRMED"
+        },
+        "pi_c": {
+          "predicted": "VARIES",
+          "max_rel_spread": 0.4015871913445564,
+          "reading": "CONFIRMED"
+        }
+      },
+      "all_confirmed": true,
+      "tol_identical": 1e-35,
+      "tol_varies": 1e-06,
+      "per_depth": {
+        "psi": {
+          "z": {
+            "1": {
+              "cells": 29,
+              "Neff_min": 276.70282263675443,
+              "Neff_median": 276.70282263675443,
+              "Neff_max": 276.70282263675443,
+              "Neff_spread": 0.0,
+              "Neff_rel_spread": 0.0,
+              "PR_min": 113.55779472337231,
+              "PR_max": 113.55779472337231,
+              "PR_rel_spread": 0.0
+            },
+            "3": {
+              "cells": 27,
+              "Neff_min": 220.97487298362975,
+              "Neff_median": 220.97487298362975,
+              "Neff_max": 220.97487298362975,
+              "Neff_spread": 0.0,
+              "Neff_rel_spread": 0.0,
+              "PR_min": 86.12205941986342,
+              "PR_max": 86.12205941986342,
+              "PR_rel_spread": 0.0
+            },
+            "6": {
+              "cells": 24,
+              "Neff_min": 175.66686508249646,
+              "Neff_median": 175.66686508249646,
+              "Neff_max": 175.66686508249646,
+              "Neff_spread": 0.0,
+              "Neff_rel_spread": 0.0,
+              "PR_min": 66.5008456879505,
+              "PR_max": 66.5008456879505,
+              "PR_rel_spread": 0.0
+            }
+          },
+          "c": {
+            "1": {
+              "cells": 29,
+              "Neff_min": 207.50692131709104,
+              "Neff_median": 241.20105734873061,
+              "Neff_max": 285.95457696806875,
+              "Neff_spread": 78.44765565097771,
+              "Neff_rel_spread": 0.32523761095108883,
+              "PR_min": 70.44372712731372,
+              "PR_max": 156.84479871657786,
+              "PR_rel_spread": 0.9318273569473252
+            },
+            "3": {
+              "cells": 27,
+              "Neff_min": 165.63803267335015,
+              "Neff_median": 188.0045788083712,
+              "Neff_max": 233.85279689613589,
+              "Neff_spread": 68.21476422278573,
+              "Neff_rel_spread": 0.3628356535524355,
+              "PR_min": 53.34618700311242,
+              "PR_max": 125.08924410885245,
+              "PR_rel_spread": 1.0135764790222825
+            },
+            "6": {
+              "cells": 24,
+              "Neff_min": 130.12266023799089,
+              "Neff_median": 150.14015774154916,
+              "Neff_max": 196.74612129785152,
+              "Neff_spread": 66.62346105986063,
+              "Neff_rel_spread": 0.44374178142629944,
+              "PR_min": 40.36970989546018,
+              "PR_max": 112.677482407534,
+              "PR_rel_spread": 1.2762080760418657
+            }
+          }
+        },
+        "pi": {
+          "z": {
+            "1": {
+              "cells": 28,
+              "Neff_min": 263.47869652718106,
+              "Neff_median": 274.2443550085852,
+              "Neff_max": 275.37570995167107,
+              "Neff_spread": 11.897013424490012,
+              "Neff_rel_spread": 0.04338106949956208,
+              "PR_min": 108.21511066528619,
+              "PR_max": 112.99238110555412,
+              "PR_rel_spread": 0.042459849457830746
+            },
+            "3": {
+              "cells": 26,
+              "Neff_min": 204.55365210550787,
+              "Neff_median": 218.84698101364575,
+              "Neff_max": 219.84675312553998,
+              "Neff_spread": 15.293101020032111,
+              "Neff_rel_spread": 0.0698803380754818,
+              "PR_min": 78.90365658827734,
+              "PR_max": 85.69413229342518,
+              "PR_rel_spread": 0.07959624440399961
+            },
+            "6": {
+              "cells": 23,
+              "Neff_min": 166.1504628447536,
+              "Neff_median": 173.90597226235786,
+              "Neff_max": 174.7403102619273,
+              "Neff_spread": 8.5898474171737,
+              "Neff_rel_spread": 0.049393630968664455,
+              "PR_min": 62.66442620910736,
+              "PR_max": 66.1551080029155,
+              "PR_rel_spread": 0.05301473780035669
+            }
+          },
+          "c": {
+            "1": {
+              "cells": 28,
+              "Neff_min": 205.9332088674178,
+              "Neff_median": 236.87172397565752,
+              "Neff_max": 281.9064273527967,
+              "Neff_spread": 75.97321848537891,
+              "Neff_rel_spread": 0.32073570120672745,
+              "PR_min": 70.02074403362023,
+              "PR_max": 158.242919170107,
+              "PR_rel_spread": 0.9776119353577049
+            },
+            "3": {
+              "cells": 26,
+              "Neff_min": 164.0639022524357,
+              "Neff_median": 186.33783886689005,
+              "Neff_max": 233.37363328626387,
+              "Neff_spread": 69.30973103382817,
+              "Neff_rel_spread": 0.37195736225823356,
+              "PR_min": 52.16992668456081,
+              "PR_max": 128.61735388972073,
+              "PR_rel_spread": 1.0580068356231602
+            },
+            "6": {
+              "cells": 23,
+              "Neff_min": 128.25017881973608,
+              "Neff_median": 149.652459148637,
+              "Neff_max": 188.34868956704318,
+              "Neff_spread": 60.0985107473071,
+              "Neff_rel_spread": 0.4015871913445564,
+              "PR_min": 39.988081660435704,
+              "PR_max": 108.97338469266471,
+              "PR_rel_spread": 1.2697268530386718
+            }
+          }
+        }
+      }
+    },
+    "percentiles": {
+      "psi_c_2_1": {
+        "Neff": 251.24535966123847,
+        "percentile": 79.3103448275862,
+        "n_cells": 29,
+        "ties": 1,
+        "degenerate": false
+      },
+      "psi_c_4_1": {
+        "Neff": 241.20105734873061,
+        "percentile": 48.275862068965516,
+        "n_cells": 29,
+        "ties": 1,
+        "degenerate": false
+      },
+      "psi_c_8_3": {
+        "Neff": 197.9090215810332,
+        "percentile": 66.66666666666667,
+        "n_cells": 27,
+        "ties": 1,
+        "degenerate": false
+      },
+      "psi_c_20_6": {
+        "Neff": 172.0451153722833,
+        "percentile": 79.16666666666667,
+        "n_cells": 24,
+        "ties": 1,
+        "degenerate": false
+      },
+      "psi_c_7_3": {
+        "Neff": 182.10126803482882,
+        "percentile": 33.333333333333336,
+        "n_cells": 27,
+        "ties": 1,
+        "degenerate": false
+      },
+      "psi_c_19_6": {
+        "Neff": 162.78844441687826,
+        "percentile": 66.66666666666667,
+        "n_cells": 24,
+        "ties": 1,
+        "degenerate": false
+      },
+      "psi_z_2_1": {
+        "Neff": 276.70282263675443,
+        "percentile": 0.0,
+        "n_cells": 29,
+        "ties": 29,
+        "degenerate": true
+      },
+      "psi_z_4_1": {
+        "Neff": 276.70282263675443,
+        "percentile": 0.0,
+        "n_cells": 29,
+        "ties": 29,
+        "degenerate": true
+      },
+      "psi_z_8_3": {
+        "Neff": 220.97487298362975,
+        "percentile": 0.0,
+        "n_cells": 27,
+        "ties": 27,
+        "degenerate": true
+      },
+      "psi_z_20_6": {
+        "Neff": 175.66686508249646,
+        "percentile": 0.0,
+        "n_cells": 24,
+        "ties": 24,
+        "degenerate": true
+      },
+      "psi_z_7_3": {
+        "Neff": 220.97487298362975,
+        "percentile": 0.0,
+        "n_cells": 27,
+        "ties": 27,
+        "degenerate": true
+      },
+      "psi_z_19_6": {
+        "Neff": 175.66686508249646,
+        "percentile": 0.0,
+        "n_cells": 24,
+        "ties": 24,
+        "degenerate": true
+      },
+      "pi_c_4_1": {
+        "Neff": 233.15094559976512,
+        "percentile": 42.857142857142854,
+        "n_cells": 28,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_c_8_3": {
+        "Neff": 191.62062557455857,
+        "percentile": 61.53846153846154,
+        "n_cells": 26,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_c_20_6": {
+        "Neff": 172.24330062613953,
+        "percentile": 82.6086956521739,
+        "n_cells": 23,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_c_7_3": {
+        "Neff": 170.00867016574907,
+        "percentile": 15.384615384615385,
+        "n_cells": 26,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_c_19_6": {
+        "Neff": 157.35931795637097,
+        "percentile": 60.869565217391305,
+        "n_cells": 23,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_z_4_1": {
+        "Neff": 263.47869652718106,
+        "percentile": 0.0,
+        "n_cells": 28,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_z_8_3": {
+        "Neff": 214.48982505894938,
+        "percentile": 11.538461538461538,
+        "n_cells": 26,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_z_20_6": {
+        "Neff": 174.03675197578306,
+        "percentile": 52.17391304347826,
+        "n_cells": 23,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_z_7_3": {
+        "Neff": 212.72912329693563,
+        "percentile": 7.6923076923076925,
+        "n_cells": 26,
+        "ties": 1,
+        "degenerate": false
+      },
+      "pi_z_19_6": {
+        "Neff": 173.90597226235786,
+        "percentile": 47.82608695652174,
+        "n_cells": 23,
+        "ties": 1,
+        "degenerate": false
+      }
+    },
+    "neff_vs_pr": {
+      "psi_c": {
+        "cells": 80,
+        "Neff_over_PR_min": 1.7460997272397027,
+        "Neff_over_PR_median": 2.602861995422761,
+        "Neff_over_PR_max": 3.4003870054253262,
+        "spearman_rank_corr": 0.8620487576183778,
+        "PR_le_Neff_everywhere": true
+      },
+      "psi_z": {
+        "cells": 80,
+        "Neff_over_PR_min": 2.436669568221228,
+        "Neff_over_PR_median": 2.565833590977314,
+        "Neff_over_PR_max": 2.641573400536861,
+        "spearman_rank_corr": 1.0,
+        "PR_le_Neff_everywhere": true
+      },
+      "pi_c": {
+        "cells": 77,
+        "Neff_over_PR_min": 1.728391662773795,
+        "Neff_over_PR_median": 2.616374453256951,
+        "Neff_over_PR_max": 3.3007874650496682,
+        "spearman_rank_corr": 0.8562753036437247,
+        "PR_le_Neff_everywhere": true
+      },
+      "pi_z": {
+        "cells": 77,
+        "Neff_over_PR_min": 2.4347680735838413,
+        "Neff_over_PR_median": 2.5652826485312863,
+        "Neff_over_PR_max": 2.6514319670034108,
+        "spearman_rank_corr": 1.0,
+        "PR_le_Neff_everywhere": true
+      }
+    },
+    "background": {
+      "psi": {
+        "c": {
+          "1": {
+            "cells": 29,
+            "Neff_min": 207.50692131709104,
+            "Neff_median": 241.20105734873061,
+            "Neff_max": 285.95457696806875,
+            "Neff_frac_median": 0.40200176224788436,
+            "PR_min": 70.44372712731372,
+            "PR_median": 92.72218823056969,
+            "PR_max": 156.84479871657786,
+            "undefined_cells": 0
+          },
+          "3": {
+            "cells": 27,
+            "Neff_min": 165.63803267335015,
+            "Neff_median": 188.0045788083712,
+            "Neff_max": 233.85279689613589,
+            "Neff_frac_median": 0.31334096468061867,
+            "PR_min": 53.34618700311242,
+            "PR_median": 70.78208560536538,
+            "PR_max": 125.08924410885245,
+            "undefined_cells": 0
+          },
+          "6": {
+            "cells": 24,
+            "Neff_min": 130.12266023799089,
+            "Neff_median": 150.14015774154916,
+            "Neff_max": 196.74612129785152,
+            "Neff_frac_median": 0.2502335962359153,
+            "PR_min": 40.36970989546018,
+            "PR_median": 56.658294105405574,
+            "PR_max": 112.677482407534,
+            "undefined_cells": 0
+          }
+        },
+        "z": {
+          "1": {
+            "cells": 29,
+            "Neff_min": 276.70282263675443,
+            "Neff_median": 276.70282263675443,
+            "Neff_max": 276.70282263675443,
+            "Neff_frac_median": 0.4611713710612574,
+            "PR_min": 113.55779472337231,
+            "PR_median": 113.55779472337231,
+            "PR_max": 113.55779472337231,
+            "undefined_cells": 0
+          },
+          "3": {
+            "cells": 27,
+            "Neff_min": 220.97487298362975,
+            "Neff_median": 220.97487298362975,
+            "Neff_max": 220.97487298362975,
+            "Neff_frac_median": 0.36829145497271626,
+            "PR_min": 86.12205941986342,
+            "PR_median": 86.12205941986342,
+            "PR_max": 86.12205941986342,
+            "undefined_cells": 0
+          },
+          "6": {
+            "cells": 24,
+            "Neff_min": 175.66686508249646,
+            "Neff_median": 175.66686508249646,
+            "Neff_max": 175.66686508249646,
+            "Neff_frac_median": 0.2927781084708274,
+            "PR_min": 66.5008456879505,
+            "PR_median": 66.5008456879505,
+            "PR_max": 66.5008456879505,
+            "undefined_cells": 0
+          }
+        }
+      },
+      "pi": {
+        "c": {
+          "1": {
+            "cells": 28,
+            "Neff_min": 205.9332088674178,
+            "Neff_median": 236.87172397565752,
+            "Neff_max": 281.9064273527967,
+            "Neff_frac_median": 0.39478620662609587,
+            "PR_min": 70.02074403362023,
+            "PR_median": 90.24253074836548,
+            "PR_max": 158.242919170107,
+            "undefined_cells": 1
+          },
+          "3": {
+            "cells": 26,
+            "Neff_min": 164.0639022524357,
+            "Neff_median": 186.33783886689005,
+            "Neff_max": 233.37363328626387,
+            "Neff_frac_median": 0.3105630647781501,
+            "PR_min": 52.16992668456081,
+            "PR_median": 72.25608061419831,
+            "PR_max": 128.61735388972073,
+            "undefined_cells": 1
+          },
+          "6": {
+            "cells": 23,
+            "Neff_min": 128.25017881973608,
+            "Neff_median": 149.652459148637,
+            "Neff_max": 188.34868956704318,
+            "Neff_frac_median": 0.24942076524772835,
+            "PR_min": 39.988081660435704,
+            "PR_median": 54.33082152049906,
+            "PR_max": 108.97338469266471,
+            "undefined_cells": 1
+          }
+        },
+        "z": {
+          "1": {
+            "cells": 28,
+            "Neff_min": 263.47869652718106,
+            "Neff_median": 274.2443550085852,
+            "Neff_max": 275.37570995167107,
+            "Neff_frac_median": 0.4570739250143087,
+            "PR_min": 108.21511066528619,
+            "PR_median": 112.51265610379758,
+            "PR_max": 112.99238110555412,
+            "undefined_cells": 1
+          },
+          "3": {
+            "cells": 26,
+            "Neff_min": 204.55365210550787,
+            "Neff_median": 218.84698101364575,
+            "Neff_max": 219.84675312553998,
+            "Neff_frac_median": 0.3647449683560762,
+            "PR_min": 78.90365658827734,
+            "PR_median": 85.311508802878,
+            "PR_max": 85.69413229342518,
+            "undefined_cells": 1
+          },
+          "6": {
+            "cells": 23,
+            "Neff_min": 166.1504628447536,
+            "Neff_median": 173.90597226235786,
+            "Neff_max": 174.7403102619273,
+            "Neff_frac_median": 0.28984328710392976,
+            "PR_min": 62.66442620910736,
+            "PR_median": 65.84361139261638,
+            "PR_max": 66.1551080029155,
+            "undefined_cells": 1
+          }
+        }
+      }
+    },
+    "precision_check_rel": {
+      "psi_c_2_1": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_z_2_1": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_c_4_1": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_z_4_1": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_c_4_1": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_z_4_1": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_c_8_3": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_z_8_3": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_c_8_3": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_z_8_3": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_c_20_6": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_z_20_6": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_c_20_6": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_z_20_6": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_c_7_3": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_z_7_3": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_c_7_3": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_z_7_3": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_c_19_6": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "psi_z_19_6": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_c_19_6": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      },
+      "pi_z_19_6": {
+        "Neff_rel": 0.0,
+        "H_rel": 0.0
+      }
+    }
+  },
+  "rows": {
+    "cells": [
+      {
+        "r": 2,
+        "d": 1,
+        "role": "zero",
+        "lean_cell_value": 0,
+        "regime": "OUTSIDE - x = 4; the explicit formula is nowhere near pi(x)",
+        "forms": {
+          "psi": {
+            "defined": true,
+            "A": 8.903302771136929,
+            "S": -0.1566562349388576,
+            "coherence": 0.01759529457390934,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 8.903302771136929,
+              "H": 5.526429990192735,
+              "Neff": 251.24535966123847,
+              "Neff_frac": 0.4187422661020641,
+              "PR": 108.33716241513571,
+              "PR_frac": 0.18056193735855952,
+              "Neff_over_PR": 2.3191059656749617,
+              "top1": 0.0434792184558917
+            },
+            "z": {
+              "total_mass": 6.977242184161149,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "PR_frac": 0.1892629912056205,
+              "Neff_over_PR": 2.436669568221228,
+              "top1": 0.057094717790643734
+            }
+          },
+          "pi": {
+            "defined": false,
+            "reason": "pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero"
+          }
+        }
+      },
+      {
+        "r": 4,
+        "d": 1,
+        "role": "zero",
+        "lean_cell_value": 0,
+        "regime": "OUTSIDE - x = 16; the explicit formula is nowhere near pi(x)",
+        "forms": {
+          "psi": {
+            "defined": true,
+            "A": 17.550074982557295,
+            "S": -1.4959485573120235,
+            "coherence": 0.0852388698509163,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 17.550074982557295,
+              "H": 5.485630848544627,
+              "Neff": 241.20105734873061,
+              "Neff_frac": 0.40200176224788436,
+              "PR": 81.69369259612112,
+              "PR_frac": 0.13615615432686853,
+              "Neff_over_PR": 2.9525052630584976,
+              "top1": 0.0852035759699995
+            },
+            "z": {
+              "total_mass": 13.954484368322298,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "PR_frac": 0.1892629912056205,
+              "Neff_over_PR": 2.436669568221228,
+              "top1": 0.057094717790643734
+            }
+          },
+          "pi": {
+            "defined": true,
+            "A": 8.14849820063093,
+            "S": -0.6104321181996892,
+            "coherence": 0.07491345069603428,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 8.14849820063093,
+              "H": 5.451686079003194,
+              "Neff": 233.15094559976512,
+              "Neff_frac": 0.3885849093329419,
+              "PR": 81.44846184217631,
+              "PR_frac": 0.1357474364036272,
+              "Neff_over_PR": 2.86255799466839,
+              "top1": 0.08409321719106094
+            },
+            "z": {
+              "total_mass": 6.455997424738268,
+              "H": 5.573972516618844,
+              "Neff": 263.47869652718106,
+              "Neff_frac": 0.4391311608786351,
+              "PR": 108.21511066528619,
+              "PR_frac": 0.18035851777547698,
+              "Neff_over_PR": 2.4347680735838413,
+              "top1": 0.05902927011931577
+            }
+          }
+        }
+      },
+      {
+        "r": 8,
+        "d": 3,
+        "role": "zero",
+        "lean_cell_value": 0,
+        "regime": "OUTSIDE - x = 256; the explicit formula is nowhere near pi(x)",
+        "forms": {
+          "psi": {
+            "defined": true,
+            "A": 162.9079342860458,
+            "S": -15.165569469636537,
+            "coherence": 0.0930928842483983,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 162.9079342860458,
+              "H": 5.287807438133573,
+              "Neff": 197.9090215810332,
+              "Neff_frac": 0.32984836930172196,
+              "PR": 78.61266724319358,
+              "PR_frac": 0.1310211120719893,
+              "Neff_over_PR": 2.5175207574218073,
+              "top1": 0.07439398866995468
+            },
+            "z": {
+              "total_mass": 124.66238217084987,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "PR_frac": 0.14353676569977236,
+              "Neff_over_PR": 2.565833590977314,
+              "top1": 0.07201831291297837
+            }
+          },
+          "pi": {
+            "defined": true,
+            "A": 37.69025459859565,
+            "S": -3.9408147383702516,
+            "coherence": 0.10455792300530355,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 37.69025459859565,
+              "H": 5.255517508879534,
+              "Neff": 191.62062557455857,
+              "Neff_frac": 0.31936770929093095,
+              "PR": 73.2389912063324,
+              "PR_frac": 0.12206498534388734,
+              "Neff_over_PR": 2.6163744532569506,
+              "top1": 0.08096339249720302
+            },
+            "z": {
+              "total_mass": 28.386077793166823,
+              "H": 5.368262301620353,
+              "Neff": 214.48982505894938,
+              "Neff_frac": 0.35748304176491563,
+              "PR": 83.61899815868908,
+              "PR_frac": 0.13936499693114845,
+              "Neff_over_PR": 2.5650848465309095,
+              "top1": 0.07355004451133182
+            }
+          }
+        }
+      },
+      {
+        "r": 20,
+        "d": 6,
+        "role": "zero",
+        "lean_cell_value": 0,
+        "regime": "INSIDE - O34/O35 measured 80% of the row-20 residual at d=6",
+        "forms": {
+          "psi": {
+            "defined": true,
+            "A": 37347.789510248476,
+            "S": -4344.940235290224,
+            "coherence": 0.11633727972301933,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 37347.789510248476,
+              "H": 5.147756741095235,
+              "Neff": 172.0451153722833,
+              "Neff_frac": 0.2867418589538055,
+              "PR": 78.9622000124958,
+              "PR_frac": 0.131603666687493,
+              "Neff_over_PR": 2.1788287984004637,
+              "top1": 0.056177733046674116
+            },
+            "z": {
+              "total_mass": 31083.691008467566,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "PR_frac": 0.11083474281325084,
+              "Neff_over_PR": 2.6415734005368607,
+              "top1": 0.08740549368095256
+            }
+          },
+          "pi": {
+            "defined": true,
+            "A": 3129.4894199137225,
+            "S": -349.12125903601367,
+            "coherence": 0.11155853629492017,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 3129.4894199137225,
+              "H": 5.1489080158203615,
+              "Neff": 172.24330062613953,
+              "Neff_frac": 0.28707216771023253,
+              "PR": 78.91636610913064,
+              "PR_frac": 0.13152727684855106,
+              "Neff_over_PR": 2.182605574969714,
+              "top1": 0.05685994440689467
+            },
+            "z": {
+              "total_mass": 2616.9479825335334,
+              "H": 5.159266495162721,
+              "Neff": 174.03675197578306,
+              "Neff_frac": 0.2900612532929718,
+              "PR": 65.89253003848128,
+              "PR_frac": 0.1098208833974688,
+              "Neff_over_PR": 2.641221271578819,
+              "top1": 0.08794717338615056
+            }
+          }
+        }
+      },
+      {
+        "r": 7,
+        "d": 3,
+        "role": "control",
+        "lean_cell_value": 5,
+        "regime": "OUTSIDE - x = 128; control for (8,3), same regime caveat",
+        "forms": {
+          "psi": {
+            "defined": true,
+            "A": 117.8103145760853,
+            "S": 17.963060176092334,
+            "coherence": 0.15247442671491443,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 117.8103145760853,
+              "H": 5.204562950107609,
+              "Neff": 182.10126803482882,
+              "Neff_frac": 0.3035021133913814,
+              "PR": 60.65830842434461,
+              "PR_frac": 0.10109718070724102,
+              "Neff_over_PR": 3.0020828599589544,
+              "top1": 0.09670233857099476
+            },
+            "z": {
+              "total_mass": 88.1496157918769,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "PR_frac": 0.14353676569977236,
+              "Neff_over_PR": 2.565833590977314,
+              "top1": 0.07201831291297837
+            }
+          },
+          "pi": {
+            "defined": true,
+            "A": 32.265918341780775,
+            "S": 5.460895143519488,
+            "coherence": 0.16924654323098054,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 32.265918341780775,
+              "H": 5.135849436724751,
+              "Neff": 170.00867016574907,
+              "Neff_frac": 0.2833477836095818,
+              "PR": 55.916120378968664,
+              "PR_frac": 0.09319353396494777,
+              "Neff_over_PR": 3.0404232091483445,
+              "top1": 0.10265625627808793
+            },
+            "z": {
+              "total_mass": 23.93169968739816,
+              "H": 5.360019634774638,
+              "Neff": 212.72912329693563,
+              "Neff_frac": 0.35454853882822607,
+              "PR": 82.91406499047933,
+              "PR_frac": 0.13819010831746556,
+              "Neff_over_PR": 2.5656578690402214,
+              "top1": 0.07398792969845787
+            }
+          }
+        }
+      },
+      {
+        "r": 19,
+        "d": 6,
+        "role": "control",
+        "lean_cell_value": 343,
+        "regime": "adjacent to measured row 20, same depth",
+        "forms": {
+          "psi": {
+            "defined": true,
+            "A": 27397.115780799057,
+            "S": 1469.9335114263035,
+            "coherence": 0.05365285613226809,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 27397.115780799057,
+              "H": 5.092451470808918,
+              "Neff": 162.78844441687826,
+              "Neff_frac": 0.27131407402813046,
+              "PR": 76.12655810206824,
+              "PR_frac": 0.1268775968367804,
+              "Neff_over_PR": 2.1383922835262865,
+              "top1": 0.053712792412365346
+            },
+            "z": {
+              "total_mass": 21979.48869639473,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "PR_frac": 0.11083474281325084,
+              "Neff_over_PR": 2.6415734005368607,
+              "top1": 0.08740549368095256
+            }
+          },
+          "pi": {
+            "defined": true,
+            "A": 2465.702471785218,
+            "S": 109.84337271069275,
+            "coherence": 0.04454851060402431,
+            "n_modes": 600,
+            "c": {
+              "total_mass": 2465.702471785218,
+              "H": 5.05853183978297,
+              "Neff": 157.35931795637097,
+              "Neff_frac": 0.26226552992728497,
+              "PR": 73.30733811579663,
+              "PR_frac": 0.12217889685966105,
+              "Neff_over_PR": 2.146569797798488,
+              "top1": 0.0537429463992284
+            },
+            "z": {
+              "total_mass": 1965.6037352550943,
+              "H": 5.158514763854816,
+              "Neff": 173.90597226235786,
+              "Neff_frac": 0.28984328710392976,
+              "PR": 65.84361139261638,
+              "PR_frac": 0.1097393523210273,
+              "Neff_over_PR": 2.6411973551295738,
+              "top1": 0.087990606022666
+            }
+          }
+        }
+      }
+    ],
+    "background": {
+      "psi": {
+        "c": {
+          "1": [
+            {
+              "r": 2,
+              "d": 1,
+              "defined": true,
+              "H": 5.526429990192735,
+              "Neff": 251.24535966123847,
+              "Neff_frac": 0.4187422661020641,
+              "PR": 108.33716241513571,
+              "top1": 0.0434792184558917
+            },
+            {
+              "r": 3,
+              "d": 1,
+              "defined": true,
+              "H": 5.4784275422439395,
+              "Neff": 239.46985492890548,
+              "Neff_frac": 0.3991164248815091,
+              "PR": 92.72218823056969,
+              "top1": 0.06613724740634477
+            },
+            {
+              "r": 4,
+              "d": 1,
+              "defined": true,
+              "H": 5.485630848544627,
+              "Neff": 241.20105734873061,
+              "Neff_frac": 0.40200176224788436,
+              "PR": 81.69369259612112,
+              "top1": 0.0852035759699995
+            },
+            {
+              "r": 5,
+              "d": 1,
+              "defined": true,
+              "H": 5.4264213152679535,
+              "Neff": 227.3342304134879,
+              "Neff_frac": 0.3788903840224798,
+              "PR": 74.20890328090995,
+              "top1": 0.085387150137845
+            },
+            {
+              "r": 6,
+              "d": 1,
+              "defined": true,
+              "H": 5.415119800006074,
+              "Neff": 224.77947264784635,
+              "Neff_frac": 0.37463245441307724,
+              "PR": 79.29970544643504,
+              "top1": 0.07928475886634642
+            },
+            {
+              "r": 7,
+              "d": 1,
+              "defined": true,
+              "H": 5.496382261480794,
+              "Neff": 243.80830017420382,
+              "Neff_frac": 0.40634716695700634,
+              "PR": 98.80488845034483,
+              "top1": 0.06213682829217472
+            },
+            {
+              "r": 8,
+              "d": 1,
+              "defined": true,
+              "H": 5.580554012218322,
+              "Neff": 265.21849938122875,
+              "Neff_frac": 0.4420308323020479,
+              "PR": 120.96642620521497,
+              "top1": 0.045501291148395205
+            },
+            {
+              "r": 9,
+              "d": 1,
+              "defined": true,
+              "H": 5.6558329764163675,
+              "Neff": 285.95457696806875,
+              "Neff_frac": 0.47659096161344794,
+              "PR": 156.84479871657786,
+              "top1": 0.031416958386298315
+            },
+            {
+              "r": 10,
+              "d": 1,
+              "defined": true,
+              "H": 5.550421495248755,
+              "Neff": 257.3460031667875,
+              "Neff_frac": 0.4289100052779792,
+              "PR": 117.58772538762256,
+              "top1": 0.03838886370615326
+            },
+            {
+              "r": 11,
+              "d": 1,
+              "defined": true,
+              "H": 5.517204390470383,
+              "Neff": 248.93812969530228,
+              "Neff_frac": 0.4148968828255038,
+              "PR": 101.6683867601513,
+              "top1": 0.05735963168929985
+            },
+            {
+              "r": 12,
+              "d": 1,
+              "defined": true,
+              "H": 5.497227622869451,
+              "Neff": 244.01449343903806,
+              "Neff_frac": 0.40669082239839677,
+              "PR": 89.94136362190069,
+              "top1": 0.07701035131528385
+            },
+            {
+              "r": 13,
+              "d": 1,
+              "defined": true,
+              "H": 5.37419711978823,
+              "Neff": 215.7665680407977,
+              "Neff_frac": 0.3596109467346628,
+              "PR": 72.3482185847285,
+              "top1": 0.08107866751847158
+            },
+            {
+              "r": 14,
+              "d": 1,
+              "defined": true,
+              "H": 5.358552394526257,
+              "Neff": 212.4172274342672,
+              "Neff_frac": 0.35402871239044537,
+              "PR": 72.83822494875622,
+              "top1": 0.08280780428098675
+            },
+            {
+              "r": 15,
+              "d": 1,
+              "defined": true,
+              "H": 5.4914937197381555,
+              "Neff": 242.61934162614085,
+              "Neff_frac": 0.40436556937690143,
+              "PR": 87.91614760638014,
+              "top1": 0.07433664261599356
+            },
+            {
+              "r": 16,
+              "d": 1,
+              "defined": true,
+              "H": 5.433375685226696,
+              "Neff": 228.92070683412317,
+              "Neff_frac": 0.3815345113902053,
+              "PR": 93.63216416211164,
+              "top1": 0.04989514946181271
+            },
+            {
+              "r": 17,
+              "d": 1,
+              "defined": true,
+              "H": 5.513029541414889,
+              "Neff": 247.90101698053724,
+              "Neff_frac": 0.4131683616342287,
+              "PR": 118.89572789140122,
+              "top1": 0.03192049764477535
+            },
+            {
+              "r": 18,
+              "d": 1,
+              "defined": true,
+              "H": 5.59397317709599,
+              "Neff": 268.80149680272,
+              "Neff_frac": 0.4480024946712,
+              "PR": 127.8260651635038,
+              "top1": 0.034210602129747594
+            },
+            {
+              "r": 19,
+              "d": 1,
+              "defined": true,
+              "H": 5.468967336492222,
+              "Neff": 237.21510285503368,
+              "Neff_frac": 0.39535850475838946,
+              "PR": 103.34807184387975,
+              "top1": 0.04284625296068317
+            },
+            {
+              "r": 20,
+              "d": 1,
+              "defined": true,
+              "H": 5.4795222298070785,
+              "Neff": 239.73214313646972,
+              "Neff_frac": 0.39955357189411617,
+              "PR": 90.18162815922456,
+              "top1": 0.06940012208053545
+            },
+            {
+              "r": 21,
+              "d": 1,
+              "defined": true,
+              "H": 5.33516469485948,
+              "Neff": 207.50692131709104,
+              "Neff_frac": 0.3458448688618184,
+              "PR": 70.44372712731372,
+              "top1": 0.08194318378997742
+            },
+            {
+              "r": 22,
+              "d": 1,
+              "defined": true,
+              "H": 5.391685974184575,
+              "Neff": 219.57326852212142,
+              "Neff_frac": 0.36595544753686904,
+              "PR": 73.83767326196491,
+              "top1": 0.0826900823351175
+            },
+            {
+              "r": 23,
+              "d": 1,
+              "defined": true,
+              "H": 5.42937645698302,
+              "Neff": 228.00702889885895,
+              "Neff_frac": 0.3800117148314316,
+              "PR": 80.1581382298444,
+              "top1": 0.07771323708855318
+            },
+            {
+              "r": 24,
+              "d": 1,
+              "defined": true,
+              "H": 5.443874198314369,
+              "Neff": 231.3366938157804,
+              "Neff_frac": 0.385561156359634,
+              "PR": 90.6877251408426,
+              "top1": 0.059164433318284027
+            },
+            {
+              "r": 25,
+              "d": 1,
+              "defined": true,
+              "H": 5.5262707822057315,
+              "Neff": 251.20536257729484,
+              "Neff_frac": 0.4186756042954914,
+              "PR": 120.48803114789256,
+              "top1": 0.0320357647175332
+            },
+            {
+              "r": 26,
+              "d": 1,
+              "defined": true,
+              "H": 5.598372754830523,
+              "Neff": 269.98671520151635,
+              "Neff_frac": 0.44997785866919393,
+              "PR": 140.1712027606853,
+              "top1": 0.02730536951395103
+            },
+            {
+              "r": 27,
+              "d": 1,
+              "defined": true,
+              "H": 5.497517926686673,
+              "Neff": 244.0853420612561,
+              "Neff_frac": 0.40680890343542686,
+              "PR": 103.08713230848277,
+              "top1": 0.045232224410744565
+            },
+            {
+              "r": 28,
+              "d": 1,
+              "defined": true,
+              "H": 5.494425823739615,
+              "Neff": 243.33177071623746,
+              "Neff_frac": 0.4055529511937291,
+              "PR": 100.14698182037651,
+              "top1": 0.06046099441714784
+            },
+            {
+              "r": 29,
+              "d": 1,
+              "defined": true,
+              "H": 5.398826572226268,
+              "Neff": 221.14676413739755,
+              "Neff_frac": 0.3685779402289959,
+              "PR": 80.81352473788569,
+              "top1": 0.0755792032298287
+            },
+            {
+              "r": 30,
+              "d": 1,
+              "defined": true,
+              "H": 5.366984910323445,
+              "Neff": 214.21601254323812,
+              "Neff_frac": 0.3570266875720635,
+              "PR": 71.1859911099562,
+              "top1": 0.08330024498405726
+            }
+          ],
+          "3": [
+            {
+              "r": 4,
+              "d": 3,
+              "defined": true,
+              "H": 5.259283857803354,
+              "Neff": 192.34369652546866,
+              "Neff_frac": 0.32057282754244776,
+              "PR": 68.37595049625729,
+              "top1": 0.08863495333971341
+            },
+            {
+              "r": 5,
+              "d": 3,
+              "defined": true,
+              "H": 5.230588274557842,
+              "Neff": 186.90272130181435,
+              "Neff_frac": 0.3115045355030239,
+              "PR": 56.07665135144129,
+              "top1": 0.1102079241389135
+            },
+            {
+              "r": 6,
+              "d": 3,
+              "defined": true,
+              "H": 5.1690352737607865,
+              "Neff": 175.74520965983987,
+              "Neff_frac": 0.2929086827663998,
+              "PR": 55.099343505968186,
+              "top1": 0.10592851746023133
+            },
+            {
+              "r": 7,
+              "d": 3,
+              "defined": true,
+              "H": 5.204562950107609,
+              "Neff": 182.10126803482882,
+              "Neff_frac": 0.3035021133913814,
+              "PR": 60.65830842434461,
+              "top1": 0.09670233857099476
+            },
+            {
+              "r": 8,
+              "d": 3,
+              "defined": true,
+              "H": 5.287807438133573,
+              "Neff": 197.9090215810332,
+              "Neff_frac": 0.32984836930172196,
+              "PR": 78.61266724319358,
+              "top1": 0.07439398866995468
+            },
+            {
+              "r": 9,
+              "d": 3,
+              "defined": true,
+              "H": 5.401198725590403,
+              "Neff": 221.67198087895616,
+              "Neff_frac": 0.36945330146492694,
+              "PR": 109.72487310514803,
+              "top1": 0.043081302956800634
+            },
+            {
+              "r": 10,
+              "d": 3,
+              "defined": true,
+              "H": 5.454691844314766,
+              "Neff": 233.85279689613589,
+              "Neff_frac": 0.3897546614935598,
+              "PR": 125.08924410885245,
+              "top1": 0.03680565567124058
+            },
+            {
+              "r": 11,
+              "d": 3,
+              "defined": true,
+              "H": 5.33586691946495,
+              "Neff": 207.65268895786716,
+              "Neff_frac": 0.3460878149297786,
+              "PR": 92.54327297825704,
+              "top1": 0.04305317122046029
+            },
+            {
+              "r": 12,
+              "d": 3,
+              "defined": true,
+              "H": 5.310739223238231,
+              "Neff": 202.4998656801012,
+              "Neff_frac": 0.337499776133502,
+              "PR": 78.06123891163784,
+              "top1": 0.07750467198520841
+            },
+            {
+              "r": 13,
+              "d": 3,
+              "defined": true,
+              "H": 5.2297942904756045,
+              "Neff": 186.7543824133247,
+              "Neff_frac": 0.3112573040222078,
+              "PR": 62.72666633318507,
+              "top1": 0.09770399585909234
+            },
+            {
+              "r": 14,
+              "d": 3,
+              "defined": true,
+              "H": 5.109804881483856,
+              "Neff": 165.63803267335015,
+              "Neff_frac": 0.2760633877889169,
+              "PR": 53.34618700311242,
+              "top1": 0.10160478879326623
+            },
+            {
+              "r": 15,
+              "d": 3,
+              "defined": true,
+              "H": 5.144209777090043,
+              "Neff": 171.43595850817164,
+              "Neff_frac": 0.2857265975136194,
+              "PR": 54.06186993902731,
+              "top1": 0.10383745598310176
+            },
+            {
+              "r": 16,
+              "d": 3,
+              "defined": true,
+              "H": 5.2384807025727715,
+              "Neff": 188.38367404451824,
+              "Neff_frac": 0.3139727900741971,
+              "PR": 65.93844139101508,
+              "top1": 0.08813194519465373
+            },
+            {
+              "r": 17,
+              "d": 3,
+              "defined": true,
+              "H": 5.192392624849286,
+              "Neff": 179.898467958838,
+              "Neff_frac": 0.2998307799313967,
+              "PR": 75.06993402309065,
+              "top1": 0.05727924991026121
+            },
+            {
+              "r": 18,
+              "d": 3,
+              "defined": true,
+              "H": 5.35423804913822,
+              "Neff": 211.50276023088566,
+              "Neff_frac": 0.3525046003848094,
+              "PR": 99.71578552806314,
+              "top1": 0.042637318581524745
+            },
+            {
+              "r": 19,
+              "d": 3,
+              "defined": true,
+              "H": 5.3431532620885465,
+              "Neff": 209.1712432312586,
+              "Neff_frac": 0.3486187387187643,
+              "PR": 95.49556442167987,
+              "top1": 0.04375380779096664
+            },
+            {
+              "r": 20,
+              "d": 3,
+              "defined": true,
+              "H": 5.2494090969344835,
+              "Neff": 190.45369552953375,
+              "Neff_frac": 0.31742282588255627,
+              "PR": 80.92507833979616,
+              "top1": 0.059824937849814706
+            },
+            {
+              "r": 21,
+              "d": 3,
+              "defined": true,
+              "H": 5.18532529559143,
+              "Neff": 178.63154839488655,
+              "Neff_frac": 0.2977192473248109,
+              "PR": 60.30857736856168,
+              "top1": 0.09236630529357097
+            },
+            {
+              "r": 22,
+              "d": 3,
+              "defined": true,
+              "H": 5.1138217438771205,
+              "Neff": 166.30471594875746,
+              "Neff_frac": 0.27717452658126246,
+              "PR": 53.73999468339298,
+              "top1": 0.10096914108200951
+            },
+            {
+              "r": 23,
+              "d": 3,
+              "defined": true,
+              "H": 5.147877322722133,
+              "Neff": 172.06586210300688,
+              "Neff_frac": 0.2867764368383448,
+              "PR": 55.47244737792977,
+              "top1": 0.10196224957151799
+            },
+            {
+              "r": 24,
+              "d": 3,
+              "defined": true,
+              "H": 5.185308043525475,
+              "Neff": 178.62846665821516,
+              "Neff_frac": 0.2977141110970253,
+              "PR": 60.61191875524035,
+              "top1": 0.09335734497812238
+            },
+            {
+              "r": 25,
+              "d": 3,
+              "defined": true,
+              "H": 5.227999633555329,
+              "Neff": 186.4195229373489,
+              "Neff_frac": 0.3106992048955815,
+              "PR": 74.79336445198923,
+              "top1": 0.06748279735311387
+            },
+            {
+              "r": 26,
+              "d": 3,
+              "defined": true,
+              "H": 5.3412131139957495,
+              "Neff": 208.76581346670332,
+              "Neff_frac": 0.34794302244450553,
+              "PR": 102.2639600959017,
+              "top1": 0.036078199729915585
+            },
+            {
+              "r": 27,
+              "d": 3,
+              "defined": true,
+              "H": 5.39830104789538,
+              "Neff": 221.0305766644923,
+              "Neff_frac": 0.3683842944408205,
+              "PR": 111.24080375917487,
+              "top1": 0.03463910274968414
+            },
+            {
+              "r": 28,
+              "d": 3,
+              "defined": true,
+              "H": 5.283674454560779,
+              "Neff": 197.09275481642055,
+              "Neff_frac": 0.32848792469403426,
+              "PR": 82.29032151920623,
+              "top1": 0.048461190444709056
+            },
+            {
+              "r": 29,
+              "d": 3,
+              "defined": true,
+              "H": 5.2364663178970385,
+              "Neff": 188.0045788083712,
+              "Neff_frac": 0.31334096468061867,
+              "PR": 70.78208560536538,
+              "top1": 0.08038220400071036
+            },
+            {
+              "r": 30,
+              "d": 3,
+              "defined": true,
+              "H": 5.127300691424568,
+              "Neff": 168.56150388699945,
+              "Neff_frac": 0.28093583981166576,
+              "PR": 57.570646353564165,
+              "top1": 0.09694247483618261
+            }
+          ],
+          "6": [
+            {
+              "r": 7,
+              "d": 6,
+              "defined": true,
+              "H": 4.963733629201246,
+              "Neff": 143.12718337317725,
+              "Neff_frac": 0.23854530562196208,
+              "PR": 42.09143934052726,
+              "top1": 0.12970387576866596
+            },
+            {
+              "r": 8,
+              "d": 6,
+              "defined": true,
+              "H": 4.938732238965762,
+              "Neff": 139.59316655704808,
+              "Neff_frac": 0.23265527759508012,
+              "PR": 44.71945392250535,
+              "top1": 0.12018982513065893
+            },
+            {
+              "r": 9,
+              "d": 6,
+              "defined": true,
+              "H": 5.061660295465902,
+              "Neff": 157.85238046886036,
+              "Neff_frac": 0.26308730078143394,
+              "PR": 58.371286531935596,
+              "top1": 0.09683545299428405
+            },
+            {
+              "r": 10,
+              "d": 6,
+              "defined": true,
+              "H": 5.161969109584265,
+              "Neff": 174.50774237759666,
+              "Neff_frac": 0.2908462372959944,
+              "PR": 81.82015087711089,
+              "top1": 0.0633901800882834
+            },
+            {
+              "r": 11,
+              "d": 6,
+              "defined": true,
+              "H": 5.281914173242209,
+              "Neff": 196.74612129785152,
+              "Neff_frac": 0.32791020216308586,
+              "PR": 112.677482407534,
+              "top1": 0.03696230806903745
+            },
+            {
+              "r": 12,
+              "d": 6,
+              "defined": true,
+              "H": 5.168516186174831,
+              "Neff": 175.65400617656027,
+              "Neff_frac": 0.29275667696093377,
+              "PR": 87.54994338316209,
+              "top1": 0.040311022426360726
+            },
+            {
+              "r": 13,
+              "d": 6,
+              "defined": true,
+              "H": 5.084467649078357,
+              "Neff": 161.4939448996412,
+              "Neff_frac": 0.26915657483273536,
+              "PR": 63.42386861648382,
+              "top1": 0.08600800071869215
+            },
+            {
+              "r": 14,
+              "d": 6,
+              "defined": true,
+              "H": 5.017072948711256,
+              "Neff": 150.96876312772613,
+              "Neff_frac": 0.2516146052128769,
+              "PR": 49.291267558134706,
+              "top1": 0.11357758271946233
+            },
+            {
+              "r": 15,
+              "d": 6,
+              "defined": true,
+              "H": 4.900814865457728,
+              "Neff": 134.39925238442984,
+              "Neff_frac": 0.22399875397404975,
+              "PR": 42.81594023657198,
+              "top1": 0.12074001776985346
+            },
+            {
+              "r": 16,
+              "d": 6,
+              "defined": true,
+              "H": 4.870464204627519,
+              "Neff": 130.38142651247998,
+              "Neff_frac": 0.21730237752079995,
+              "PR": 40.36970989546018,
+              "top1": 0.12458315219173702
+            },
+            {
+              "r": 17,
+              "d": 6,
+              "defined": true,
+              "H": 4.9690502333249285,
+              "Neff": 143.8901603726316,
+              "Neff_frac": 0.23981693395438602,
+              "PR": 45.900362689817285,
+              "top1": 0.11322079378953392
+            },
+            {
+              "r": 18,
+              "d": 6,
+              "defined": true,
+              "H": 4.965690117592646,
+              "Neff": 143.40748415914518,
+              "Neff_frac": 0.2390124735985753,
+              "PR": 56.92035706215207,
+              "top1": 0.07993325579604425
+            },
+            {
+              "r": 19,
+              "d": 6,
+              "defined": true,
+              "H": 5.092451470808918,
+              "Neff": 162.78844441687826,
+              "Neff_frac": 0.27131407402813046,
+              "PR": 76.12655810206824,
+              "top1": 0.053712792412365346
+            },
+            {
+              "r": 20,
+              "d": 6,
+              "defined": true,
+              "H": 5.147756741095235,
+              "Neff": 172.0451153722833,
+              "Neff_frac": 0.2867418589538055,
+              "PR": 78.9622000124958,
+              "top1": 0.056177733046674116
+            },
+            {
+              "r": 21,
+              "d": 6,
+              "defined": true,
+              "H": 5.058522786089269,
+              "Neff": 157.3578932797545,
+              "Neff_frac": 0.2622631554662575,
+              "PR": 68.57964088747975,
+              "top1": 0.06344901000701138
+            },
+            {
+              "r": 22,
+              "d": 6,
+              "defined": true,
+              "H": 4.942234297939737,
+              "Neff": 140.08288707324775,
+              "Neff_frac": 0.2334714784554129,
+              "PR": 48.86164984825146,
+              "top1": 0.10232863832878908
+            },
+            {
+              "r": 23,
+              "d": 6,
+              "defined": true,
+              "H": 4.868477545893482,
+              "Neff": 130.12266023799089,
+              "Neff_frac": 0.21687110039665147,
+              "PR": 41.31428596161236,
+              "top1": 0.120292839797233
+            },
+            {
+              "r": 24,
+              "d": 6,
+              "defined": true,
+              "H": 4.897119472920584,
+              "Neff": 133.90351093394935,
+              "Neff_frac": 0.2231725182232489,
+              "PR": 41.54315545543185,
+              "top1": 0.12207512857492583
+            },
+            {
+              "r": 25,
+              "d": 6,
+              "defined": true,
+              "H": 4.906401910353562,
+              "Neff": 135.15224859454955,
+              "Neff_frac": 0.22525374765758258,
+              "PR": 43.581707732211754,
+              "top1": 0.11651738831725171
+            },
+            {
+              "r": 26,
+              "d": 6,
+              "defined": true,
+              "H": 4.986217135672978,
+              "Neff": 146.38163295118306,
+              "Neff_frac": 0.24396938825197179,
+              "PR": 56.05037297856266,
+              "top1": 0.08888145244135182
+            },
+            {
+              "r": 27,
+              "d": 6,
+              "defined": true,
+              "H": 5.101344479875214,
+              "Neff": 164.24257976496384,
+              "Neff_frac": 0.2737376329416064,
+              "PR": 77.25968962681918,
+              "top1": 0.05182552008668562
+            },
+            {
+              "r": 28,
+              "d": 6,
+              "defined": true,
+              "H": 5.177474931821617,
+              "Neff": 177.2347157550798,
+              "Neff_frac": 0.295391192925133,
+              "PR": 89.0755604784182,
+              "top1": 0.04479879575608509
+            },
+            {
+              "r": 29,
+              "d": 6,
+              "defined": true,
+              "H": 5.10224936751633,
+              "Neff": 164.39126810851454,
+              "Neff_frac": 0.27398544684752424,
+              "PR": 72.85834482860737,
+              "top1": 0.04725865875390377
+            },
+            {
+              "r": 30,
+              "d": 6,
+              "defined": true,
+              "H": 5.006035078345902,
+              "Neff": 149.31155235537216,
+              "Neff_frac": 0.2488525872589536,
+              "PR": 56.396231148659076,
+              "top1": 0.08918704309450591
+            }
+          ]
+        },
+        "z": {
+          "1": [
+            {
+              "r": 2,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 3,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 4,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 5,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 6,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 7,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 8,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 9,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 10,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 11,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 12,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 13,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 14,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 15,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 16,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 17,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 18,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 19,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 20,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 21,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 22,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 23,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 24,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 25,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 26,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 27,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 28,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 29,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            },
+            {
+              "r": 30,
+              "d": 1,
+              "defined": true,
+              "H": 5.622944087813327,
+              "Neff": 276.70282263675443,
+              "Neff_frac": 0.4611713710612574,
+              "PR": 113.55779472337231,
+              "top1": 0.057094717790643734
+            }
+          ],
+          "3": [
+            {
+              "r": 4,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 5,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 6,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 7,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 8,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 9,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 10,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 11,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 12,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 13,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 14,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 15,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 16,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 17,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 18,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 19,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 20,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 21,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 22,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 23,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 24,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 25,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 26,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 27,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 28,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 29,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            },
+            {
+              "r": 30,
+              "d": 3,
+              "defined": true,
+              "H": 5.398048998147117,
+              "Neff": 220.97487298362975,
+              "Neff_frac": 0.36829145497271626,
+              "PR": 86.12205941986342,
+              "top1": 0.07201831291297837
+            }
+          ],
+          "6": [
+            {
+              "r": 7,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 8,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 9,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 10,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 11,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 12,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 13,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 14,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 15,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 16,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 17,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 18,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 19,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 20,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 21,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 22,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 23,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 24,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 25,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 26,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 27,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 28,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 29,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            },
+            {
+              "r": 30,
+              "d": 6,
+              "defined": true,
+              "H": 5.1685893893744925,
+              "Neff": 175.66686508249646,
+              "Neff_frac": 0.2927781084708274,
+              "PR": 66.5008456879505,
+              "top1": 0.08740549368095256
+            }
+          ]
+        }
+      },
+      "pi": {
+        "c": {
+          "1": [
+            {
+              "r": 2,
+              "d": 1,
+              "defined": false,
+              "reason": "pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero"
+            },
+            {
+              "r": 3,
+              "d": 1,
+              "defined": true,
+              "H": 5.369375065752697,
+              "Neff": 214.72863448766913,
+              "Neff_frac": 0.35788105747944854,
+              "PR": 85.99370150104768,
+              "top1": 0.05985486536888354
+            },
+            {
+              "r": 4,
+              "d": 1,
+              "defined": true,
+              "H": 5.451686079003194,
+              "Neff": 233.15094559976512,
+              "Neff_frac": 0.3885849093329419,
+              "PR": 81.44846184217631,
+              "top1": 0.08409321719106094
+            },
+            {
+              "r": 5,
+              "d": 1,
+              "defined": true,
+              "H": 5.406562104519364,
+              "Neff": 222.8640857076469,
+              "Neff_frac": 0.3714401428460782,
+              "PR": 71.76714480694545,
+              "top1": 0.0884642054879311
+            },
+            {
+              "r": 6,
+              "d": 1,
+              "defined": true,
+              "H": 5.366287278794372,
+              "Neff": 214.0666208151047,
+              "Neff_frac": 0.35677770135850784,
+              "PR": 74.65483486885525,
+              "top1": 0.08239629514700336
+            },
+            {
+              "r": 7,
+              "d": 1,
+              "defined": true,
+              "H": 5.478775170973316,
+              "Neff": 239.55311600143045,
+              "Neff_frac": 0.3992551933357174,
+              "PR": 94.94438692899496,
+              "top1": 0.065828295965576
+            },
+            {
+              "r": 8,
+              "d": 1,
+              "defined": true,
+              "H": 5.547798202334639,
+              "Neff": 256.6717939309995,
+              "Neff_frac": 0.42778632321833254,
+              "PR": 113.41795865402685,
+              "top1": 0.046560496581234206
+            },
+            {
+              "r": 9,
+              "d": 1,
+              "defined": true,
+              "H": 5.64157519797649,
+              "Neff": 281.9064273527967,
+              "Neff_frac": 0.4698440455879945,
+              "PR": 158.242919170107,
+              "top1": 0.03073335978604546
+            },
+            {
+              "r": 10,
+              "d": 1,
+              "defined": true,
+              "H": 5.538426952481013,
+              "Neff": 254.2776937958261,
+              "Neff_frac": 0.42379615632637685,
+              "PR": 117.80032781495962,
+              "top1": 0.03700391436074957
+            },
+            {
+              "r": 11,
+              "d": 1,
+              "defined": true,
+              "H": 5.49991263397528,
+              "Neff": 244.67055543663534,
+              "Neff_frac": 0.4077842590610589,
+              "PR": 100.36881519968432,
+              "top1": 0.05642333829818432
+            },
+            {
+              "r": 12,
+              "d": 1,
+              "defined": true,
+              "H": 5.494522347547535,
+              "Neff": 243.3552591589135,
+              "Neff_frac": 0.4055920985981892,
+              "PR": 90.23811923385972,
+              "top1": 0.07658795108570224
+            },
+            {
+              "r": 13,
+              "d": 1,
+              "defined": true,
+              "H": 5.371432684242066,
+              "Neff": 215.17091896650328,
+              "Neff_frac": 0.35861819827750546,
+              "PR": 72.41757160849747,
+              "top1": 0.08139931502729957
+            },
+            {
+              "r": 14,
+              "d": 1,
+              "defined": true,
+              "H": 5.341100341795721,
+              "Neff": 208.7422718140748,
+              "Neff_frac": 0.3479037863567913,
+              "PR": 71.47798968687896,
+              "top1": 0.08355768007499734
+            },
+            {
+              "r": 15,
+              "d": 1,
+              "defined": true,
+              "H": 5.478880035430022,
+              "Neff": 239.57823792596753,
+              "Neff_frac": 0.3992970632099459,
+              "PR": 86.02293230430561,
+              "top1": 0.07600985960741655
+            },
+            {
+              "r": 16,
+              "d": 1,
+              "defined": true,
+              "H": 5.417728389444192,
+              "Neff": 225.3665954543426,
+              "Neff_frac": 0.37561099242390433,
+              "PR": 91.91836067881222,
+              "top1": 0.05164251580297073
+            },
+            {
+              "r": 17,
+              "d": 1,
+              "defined": true,
+              "H": 5.497106814750259,
+              "Neff": 243.98501628760556,
+              "Neff_frac": 0.40664169381267595,
+              "PR": 116.67189244680657,
+              "top1": 0.03241084763357427
+            },
+            {
+              "r": 18,
+              "d": 1,
+              "defined": true,
+              "H": 5.590855493438053,
+              "Neff": 267.9647637810931,
+              "Neff_frac": 0.44660793963515516,
+              "PR": 127.95104000953116,
+              "top1": 0.03462124821085409
+            },
+            {
+              "r": 19,
+              "d": 1,
+              "defined": true,
+              "H": 5.463877080897585,
+              "Neff": 236.01068534767833,
+              "Neff_frac": 0.39335114224613055,
+              "PR": 103.53016816601466,
+              "top1": 0.04203001619909994
+            },
+            {
+              "r": 20,
+              "d": 1,
+              "defined": true,
+              "H": 5.471147196604183,
+              "Neff": 237.7327626036367,
+              "Neff_frac": 0.3962212710060612,
+              "PR": 90.24694226287126,
+              "top1": 0.06884691450851194
+            },
+            {
+              "r": 21,
+              "d": 1,
+              "defined": true,
+              "H": 5.327551887417117,
+              "Neff": 205.9332088674178,
+              "Neff_frac": 0.34322201477902964,
+              "PR": 70.02074403362023,
+              "top1": 0.0823297393391122
+            },
+            {
+              "r": 22,
+              "d": 1,
+              "defined": true,
+              "H": 5.385612455663388,
+              "Neff": 218.2437277910865,
+              "Neff_frac": 0.36373954631847755,
+              "PR": 73.29912262239658,
+              "top1": 0.0829268303915188
+            },
+            {
+              "r": 23,
+              "d": 1,
+              "defined": true,
+              "H": 5.417967923979825,
+              "Neff": 225.42058500305464,
+              "Neff_frac": 0.3757009750050911,
+              "PR": 78.8199709975502,
+              "top1": 0.07876848389867716
+            },
+            {
+              "r": 24,
+              "d": 1,
+              "defined": true,
+              "H": 5.434813063794948,
+              "Neff": 229.24998914693245,
+              "Neff_frac": 0.3820833152448874,
+              "PR": 89.53447571787608,
+              "top1": 0.06021313573401403
+            },
+            {
+              "r": 25,
+              "d": 1,
+              "defined": true,
+              "H": 5.517187370084933,
+              "Neff": 248.93389270843943,
+              "Neff_frac": 0.41488982118073237,
+              "PR": 118.83086921161589,
+              "top1": 0.03307241454303444
+            },
+            {
+              "r": 26,
+              "d": 1,
+              "defined": true,
+              "H": 5.5943454328111315,
+              "Neff": 268.90157832294636,
+              "Neff_frac": 0.4481692972049106,
+              "PR": 139.74163531548524,
+              "top1": 0.02757210040043738
+            },
+            {
+              "r": 27,
+              "d": 1,
+              "defined": true,
+              "H": 5.496363275315635,
+              "Neff": 243.80367123349265,
+              "Neff_frac": 0.40633945205582106,
+              "PR": 103.36831969546218,
+              "top1": 0.04512214683526505
+            },
+            {
+              "r": 28,
+              "d": 1,
+              "defined": true,
+              "H": 5.495020902155127,
+              "Neff": 243.47661529346527,
+              "Neff_frac": 0.40579435882244214,
+              "PR": 100.09556137916375,
+              "top1": 0.06010199581325876
+            },
+            {
+              "r": 29,
+              "d": 1,
+              "defined": true,
+              "H": 5.396864713297995,
+              "Neff": 220.71333069037465,
+              "Neff_frac": 0.3678555511506244,
+              "PR": 80.88848703520429,
+              "top1": 0.07545382469079628
+            },
+            {
+              "r": 30,
+              "d": 1,
+              "defined": true,
+              "H": 5.365490410584953,
+              "Neff": 213.8961058782685,
+              "Neff_frac": 0.35649350979711414,
+              "PR": 71.04132156824548,
+              "top1": 0.08339941657712431
+            }
+          ],
+          "3": [
+            {
+              "r": 4,
+              "d": 3,
+              "defined": false,
+              "reason": "pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero"
+            },
+            {
+              "r": 5,
+              "d": 3,
+              "defined": true,
+              "H": 5.190172096424651,
+              "Neff": 179.49944148595796,
+              "Neff_frac": 0.29916573580992994,
+              "PR": 57.01242310120601,
+              "top1": 0.10810596433764975
+            },
+            {
+              "r": 6,
+              "d": 3,
+              "defined": true,
+              "H": 5.14866727749379,
+              "Neff": 172.20184005295852,
+              "Neff_frac": 0.28700306675493087,
+              "PR": 52.16992668456081,
+              "top1": 0.11173508773050982
+            },
+            {
+              "r": 7,
+              "d": 3,
+              "defined": true,
+              "H": 5.135849436724751,
+              "Neff": 170.00867016574907,
+              "Neff_frac": 0.2833477836095818,
+              "PR": 55.916120378968664,
+              "top1": 0.10265625627808793
+            },
+            {
+              "r": 8,
+              "d": 3,
+              "defined": true,
+              "H": 5.255517508879534,
+              "Neff": 191.62062557455857,
+              "Neff_frac": 0.31936770929093095,
+              "PR": 73.2389912063324,
+              "top1": 0.08096339249720302
+            },
+            {
+              "r": 9,
+              "d": 3,
+              "defined": true,
+              "H": 5.353914843304892,
+              "Neff": 211.43441235082577,
+              "Neff_frac": 0.3523906872513763,
+              "PR": 99.17613254643972,
+              "top1": 0.051106426864746056
+            },
+            {
+              "r": 10,
+              "d": 3,
+              "defined": true,
+              "H": 5.4526407455459225,
+              "Neff": 233.37363328626387,
+              "Neff_frac": 0.38895605547710643,
+              "PR": 128.61735388972073,
+              "top1": 0.03526493771423739
+            },
+            {
+              "r": 11,
+              "d": 3,
+              "defined": true,
+              "H": 5.335051151725362,
+              "Neff": 207.48336166843714,
+              "Neff_frac": 0.3458056027807286,
+              "PR": 95.9097503298437,
+              "top1": 0.03820732978287205
+            },
+            {
+              "r": 12,
+              "d": 3,
+              "defined": true,
+              "H": 5.299071456781493,
+              "Neff": 200.1508749261959,
+              "Neff_frac": 0.33358479154365983,
+              "PR": 78.57992339830824,
+              "top1": 0.07479222882847429
+            },
+            {
+              "r": 13,
+              "d": 3,
+              "defined": true,
+              "H": 5.230287581857867,
+              "Neff": 186.8465294665742,
+              "Neff_frac": 0.3114108824442903,
+              "PR": 63.23083436177261,
+              "top1": 0.09734794740254898
+            },
+            {
+              "r": 14,
+              "d": 3,
+              "defined": true,
+              "H": 5.104196418472854,
+              "Neff": 164.71165809092344,
+              "Neff_frac": 0.27451943015153907,
+              "PR": 53.204478417301715,
+              "top1": 0.10216660748332061
+            },
+            {
+              "r": 15,
+              "d": 3,
+              "defined": true,
+              "H": 5.1224513547420685,
+              "Neff": 167.7460711548531,
+              "Neff_frac": 0.2795767852580885,
+              "PR": 53.09949342421555,
+              "top1": 0.10466848236569849
+            },
+            {
+              "r": 16,
+              "d": 3,
+              "defined": true,
+              "H": 5.224827693877359,
+              "Neff": 185.8291482672059,
+              "Neff_frac": 0.3097152471120099,
+              "PR": 63.91787593173501,
+              "top1": 0.09117018088825685
+            },
+            {
+              "r": 17,
+              "d": 3,
+              "defined": true,
+              "H": 5.184365596311831,
+              "Neff": 178.4601980621252,
+              "Neff_frac": 0.29743366343687533,
+              "PR": 73.31434170412379,
+              "top1": 0.060576661042485866
+            },
+            {
+              "r": 18,
+              "d": 3,
+              "defined": true,
+              "H": 5.329879453713829,
+              "Neff": 206.41309032505592,
+              "Neff_frac": 0.3440218172084265,
+              "PR": 97.74261320475424,
+              "top1": 0.042655812981688614
+            },
+            {
+              "r": 19,
+              "d": 3,
+              "defined": true,
+              "H": 5.341426277373494,
+              "Neff": 208.8103194360124,
+              "Neff_frac": 0.34801719906002065,
+              "PR": 95.88529374915306,
+              "top1": 0.04431986920481543
+            },
+            {
+              "r": 20,
+              "d": 3,
+              "defined": true,
+              "H": 5.247390210167677,
+              "Neff": 190.06957895833955,
+              "Neff_frac": 0.3167826315972326,
+              "PR": 81.64797090217952,
+              "top1": 0.05787152760586398
+            },
+            {
+              "r": 21,
+              "d": 3,
+              "defined": true,
+              "H": 5.190701935339734,
+              "Neff": 179.59457247511747,
+              "Neff_frac": 0.2993242874585291,
+              "PR": 61.14282445739606,
+              "top1": 0.09102550984137592
+            },
+            {
+              "r": 22,
+              "d": 3,
+              "defined": true,
+              "H": 5.100255999811882,
+              "Neff": 164.0639022524357,
+              "Neff_frac": 0.27343983708739283,
+              "PR": 53.20093914130575,
+              "top1": 0.10153594803651153
+            },
+            {
+              "r": 23,
+              "d": 3,
+              "defined": true,
+              "H": 5.138418859401965,
+              "Neff": 170.44605597206808,
+              "Neff_frac": 0.2840767599534468,
+              "PR": 54.79326965309148,
+              "top1": 0.10256812875385245
+            },
+            {
+              "r": 24,
+              "d": 3,
+              "defined": true,
+              "H": 5.18032955116997,
+              "Neff": 177.74137622120048,
+              "Neff_frac": 0.2962356270353341,
+              "PR": 59.69991156591517,
+              "top1": 0.09476908927647296
+            },
+            {
+              "r": 25,
+              "d": 3,
+              "defined": true,
+              "H": 5.220268619778455,
+              "Neff": 184.9838677229444,
+              "Neff_frac": 0.3083064462049073,
+              "PR": 73.34913793377127,
+              "top1": 0.06939861442212501
+            },
+            {
+              "r": 26,
+              "d": 3,
+              "defined": true,
+              "H": 5.3352289746238775,
+              "Neff": 207.52026024181117,
+              "Neff_frac": 0.3458671004030186,
+              "PR": 100.7673439280251,
+              "top1": 0.03657412885393548
+            },
+            {
+              "r": 27,
+              "d": 3,
+              "defined": true,
+              "H": 5.38938054590096,
+              "Neff": 219.06764116629915,
+              "Neff_frac": 0.36511273527716526,
+              "PR": 110.53894014184148,
+              "top1": 0.03500638921373441
+            },
+            {
+              "r": 28,
+              "d": 3,
+              "defined": true,
+              "H": 5.280599876830846,
+              "Neff": 196.487708429431,
+              "Neff_frac": 0.3274795140490517,
+              "PR": 82.66073978555075,
+              "top1": 0.04676244311457882
+            },
+            {
+              "r": 29,
+              "d": 3,
+              "defined": true,
+              "H": 5.236843897510563,
+              "Neff": 188.07557890783005,
+              "Neff_frac": 0.31345929817971674,
+              "PR": 71.2731700220642,
+              "top1": 0.07945527348297556
+            },
+            {
+              "r": 30,
+              "d": 3,
+              "defined": true,
+              "H": 5.13047946137748,
+              "Neff": 169.09817465532691,
+              "Neff_frac": 0.2818302910922115,
+              "PR": 57.92866723907431,
+              "top1": 0.09652967018919792
+            }
+          ],
+          "6": [
+            {
+              "r": 7,
+              "d": 6,
+              "defined": false,
+              "reason": "pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero"
+            },
+            {
+              "r": 8,
+              "d": 6,
+              "defined": true,
+              "H": 4.864132816803639,
+              "Neff": 129.55853889540487,
+              "Neff_frac": 0.21593089815900812,
+              "PR": 39.988081660435704,
+              "top1": 0.13116391528751395
+            },
+            {
+              "r": 9,
+              "d": 6,
+              "defined": true,
+              "H": 4.980586949204543,
+              "Neff": 145.55979278975013,
+              "Neff_frac": 0.24259965464958355,
+              "PR": 50.03962025079426,
+              "top1": 0.1096934986870905
+            },
+            {
+              "r": 10,
+              "d": 6,
+              "defined": true,
+              "H": 5.082748353103167,
+              "Neff": 161.21652755975222,
+              "Neff_frac": 0.26869421259958703,
+              "PR": 69.50510082013814,
+              "top1": 0.07795539309718197
+            },
+            {
+              "r": 11,
+              "d": 6,
+              "defined": true,
+              "H": 5.238294976678451,
+              "Neff": 188.34868956704318,
+              "Neff_frac": 0.31391448261173865,
+              "PR": 108.97338469266471,
+              "top1": 0.036688248364895634
+            },
+            {
+              "r": 12,
+              "d": 6,
+              "defined": true,
+              "H": 5.171235198134591,
+              "Neff": 176.13226141634638,
+              "Neff_frac": 0.29355376902724395,
+              "PR": 92.84071366967518,
+              "top1": 0.04026407637241617
+            },
+            {
+              "r": 13,
+              "d": 6,
+              "defined": true,
+              "H": 5.067456861108463,
+              "Neff": 158.77003921921818,
+              "Neff_frac": 0.2646167320320303,
+              "PR": 65.63649139597568,
+              "top1": 0.07911949108993492
+            },
+            {
+              "r": 14,
+              "d": 6,
+              "defined": true,
+              "H": 5.019494871178721,
+              "Neff": 151.3348408940721,
+              "Neff_frac": 0.2522247348234535,
+              "PR": 50.84276384809788,
+              "top1": 0.11086836196644796
+            },
+            {
+              "r": 15,
+              "d": 6,
+              "defined": true,
+              "H": 4.908292015675613,
+              "Neff": 135.40794214665493,
+              "Neff_frac": 0.22567990357775822,
+              "PR": 43.13863331762981,
+              "top1": 0.12083839019809535
+            },
+            {
+              "r": 16,
+              "d": 6,
+              "defined": true,
+              "H": 4.859575010842506,
+              "Neff": 128.96937987068148,
+              "Neff_frac": 0.2149489664511358,
+              "PR": 40.071634244860796,
+              "top1": 0.12508730708749902
+            },
+            {
+              "r": 17,
+              "d": 6,
+              "defined": true,
+              "H": 4.941292717494374,
+              "Neff": 139.95104984346872,
+              "Neff_frac": 0.23325174973911453,
+              "PR": 43.44937094991402,
+              "top1": 0.11806347209391403
+            },
+            {
+              "r": 18,
+              "d": 6,
+              "defined": true,
+              "H": 4.944794033489202,
+              "Neff": 140.44192153976448,
+              "Neff_frac": 0.2340698692329408,
+              "PR": 54.05189009778289,
+              "top1": 0.08628090729491952
+            },
+            {
+              "r": 19,
+              "d": 6,
+              "defined": true,
+              "H": 5.05853183978297,
+              "Neff": 157.35931795637097,
+              "Neff_frac": 0.26226552992728497,
+              "PR": 73.30733811579663,
+              "top1": 0.0537429463992284
+            },
+            {
+              "r": 20,
+              "d": 6,
+              "defined": true,
+              "H": 5.1489080158203615,
+              "Neff": 172.24330062613953,
+              "Neff_frac": 0.28707216771023253,
+              "PR": 78.91636610913064,
+              "top1": 0.05685994440689467
+            },
+            {
+              "r": 21,
+              "d": 6,
+              "defined": true,
+              "H": 5.058163233985258,
+              "Neff": 157.30132508835862,
+              "Neff_frac": 0.2621688751472644,
+              "PR": 69.72889809352647,
+              "top1": 0.05936899062577094
+            },
+            {
+              "r": 22,
+              "d": 6,
+              "defined": true,
+              "H": 4.945018145597583,
+              "Neff": 140.47339980210396,
+              "Neff_frac": 0.2341223330035066,
+              "PR": 50.14283423424845,
+              "top1": 0.09924764791785426
+            },
+            {
+              "r": 23,
+              "d": 6,
+              "defined": true,
+              "H": 4.853982878355842,
+              "Neff": 128.25017881973608,
+              "Neff_frac": 0.21375029803289347,
+              "PR": 41.13210261809328,
+              "top1": 0.12027202810888694
+            },
+            {
+              "r": 24,
+              "d": 6,
+              "defined": true,
+              "H": 4.885248231348843,
+              "Neff": 132.32330805107108,
+              "Neff_frac": 0.22053884675178514,
+              "PR": 40.98482085448991,
+              "top1": 0.12287116248035135
+            },
+            {
+              "r": 25,
+              "d": 6,
+              "defined": true,
+              "H": 4.888693780939083,
+              "Neff": 132.7800209325124,
+              "Neff_frac": 0.22130003488752067,
+              "PR": 42.683272241364946,
+              "top1": 0.1184890977101739
+            },
+            {
+              "r": 26,
+              "d": 6,
+              "defined": true,
+              "H": 4.973230126176982,
+              "Neff": 144.49286456741973,
+              "Neff_frac": 0.24082144094569954,
+              "PR": 54.33082152049906,
+              "top1": 0.09209541467837737
+            },
+            {
+              "r": 27,
+              "d": 6,
+              "defined": true,
+              "H": 5.08620244096254,
+              "Neff": 161.77434643342806,
+              "Neff_frac": 0.2696239107223801,
+              "PR": 75.05662519138555,
+              "top1": 0.05539052294932113
+            },
+            {
+              "r": 28,
+              "d": 6,
+              "defined": true,
+              "H": 5.165378146651845,
+              "Neff": 175.10366091701266,
+              "Neff_frac": 0.2918394348616878,
+              "PR": 88.43715868508633,
+              "top1": 0.04495325268001938
+            },
+            {
+              "r": 29,
+              "d": 6,
+              "defined": true,
+              "H": 5.109707779507879,
+              "Neff": 165.62194967393876,
+              "Neff_frac": 0.27603658278989796,
+              "PR": 74.67330345472202,
+              "top1": 0.045099403412435506
+            },
+            {
+              "r": 30,
+              "d": 6,
+              "defined": true,
+              "H": 5.00831566683083,
+              "Neff": 149.652459148637,
+              "Neff_frac": 0.24942076524772835,
+              "PR": 57.10777320477249,
+              "top1": 0.08697602584371851
+            }
+          ]
+        },
+        "z": {
+          "1": [
+            {
+              "r": 2,
+              "d": 1,
+              "defined": false,
+              "reason": "pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero"
+            },
+            {
+              "r": 3,
+              "d": 1,
+              "defined": true,
+              "H": 5.5834472960288215,
+              "Neff": 265.9869629272286,
+              "Neff_frac": 0.44331160487871435,
+              "PR": 108.25606855632054,
+              "top1": 0.05898254841345774
+            },
+            {
+              "r": 4,
+              "d": 1,
+              "defined": true,
+              "H": 5.573972516618844,
+              "Neff": 263.47869652718106,
+              "Neff_frac": 0.4391311608786351,
+              "PR": 108.21511066528619,
+              "top1": 0.05902927011931577
+            },
+            {
+              "r": 5,
+              "d": 1,
+              "defined": true,
+              "H": 5.587102576790869,
+              "Neff": 266.96099905902486,
+              "Neff_frac": 0.4449349984317081,
+              "PR": 109.5391591868702,
+              "top1": 0.058570171204473505
+            },
+            {
+              "r": 6,
+              "d": 1,
+              "defined": true,
+              "H": 5.594912950688566,
+              "Neff": 269.0542280875532,
+              "Neff_frac": 0.44842371347925536,
+              "PR": 110.36413866820888,
+              "top1": 0.05827582403928659
+            },
+            {
+              "r": 7,
+              "d": 1,
+              "defined": true,
+              "H": 5.599842355024818,
+              "Neff": 270.383779421999,
+              "Neff_frac": 0.4506396323699983,
+              "PR": 110.90275098678921,
+              "top1": 0.05808038596499004
+            },
+            {
+              "r": 8,
+              "d": 1,
+              "defined": true,
+              "H": 5.603244953270804,
+              "Neff": 271.3053537801099,
+              "Neff_frac": 0.4521755896335165,
+              "PR": 111.2816969844693,
+              "top1": 0.05794153203513968
+            },
+            {
+              "r": 9,
+              "d": 1,
+              "defined": true,
+              "H": 5.605744886556509,
+              "Neff": 271.9844475555056,
+              "Neff_frac": 0.45330741259250934,
+              "PR": 111.56345912789791,
+              "top1": 0.05783766080298004
+            },
+            {
+              "r": 10,
+              "d": 1,
+              "defined": true,
+              "H": 5.607665470215021,
+              "Neff": 272.5073183887155,
+              "Neff_frac": 0.45417886398119245,
+              "PR": 111.7816617847349,
+              "top1": 0.057756904590216276
+            },
+            {
+              "r": 11,
+              "d": 1,
+              "defined": true,
+              "H": 5.609190710201288,
+              "Neff": 272.92327458314395,
+              "Neff_frac": 0.45487212430523993,
+              "PR": 111.95593028826055,
+              "top1": 0.057692238554096484
+            },
+            {
+              "r": 12,
+              "d": 1,
+              "defined": true,
+              "H": 5.61043329622948,
+              "Neff": 273.26261601770966,
+              "Neff_frac": 0.45543769336284945,
+              "PR": 112.09849804286593,
+              "top1": 0.057639239783245956
+            },
+            {
+              "r": 13,
+              "d": 1,
+              "defined": true,
+              "H": 5.61146631334739,
+              "Neff": 273.5450468305573,
+              "Neff_frac": 0.45590841138426214,
+              "PR": 112.21740151688486,
+              "top1": 0.05759498147737157
+            },
+            {
+              "r": 14,
+              "d": 1,
+              "defined": true,
+              "H": 5.612339366403826,
+              "Neff": 273.78397045108807,
+              "Neff_frac": 0.4563066174184801,
+              "PR": 112.31814789492614,
+              "top1": 0.05755744706161163
+            },
+            {
+              "r": 15,
+              "d": 1,
+              "defined": true,
+              "H": 5.613087384166337,
+              "Neff": 273.9888423384291,
+              "Neff_frac": 0.4566480705640485,
+              "PR": 112.40464371064287,
+              "top1": 0.05752520018548978
+            },
+            {
+              "r": 16,
+              "d": 1,
+              "defined": true,
+              "H": 5.613735716733797,
+              "Neff": 274.16653582405024,
+              "Neff_frac": 0.4569442263734171,
+              "PR": 112.4797406952564,
+              "top1": 0.05749718901201698
+            },
+            {
+              "r": 17,
+              "d": 1,
+              "defined": true,
+              "H": 5.614303233878288,
+              "Neff": 274.3221741931202,
+              "Neff_frac": 0.45720362365520034,
+              "PR": 112.54557151233877,
+              "top1": 0.05747262499010768
+            },
+            {
+              "r": 18,
+              "d": 1,
+              "defined": true,
+              "H": 5.614804286625565,
+              "Neff": 274.45965851271046,
+              "Neff_frac": 0.4574327641878508,
+              "PR": 112.6037643311051,
+              "top1": 0.05745090493785273
+            },
+            {
+              "r": 19,
+              "d": 1,
+              "defined": true,
+              "H": 5.615249992793022,
+              "Neff": 274.5820141405312,
+              "Neff_frac": 0.4576366902342187,
+              "PR": 112.65558452926962,
+              "top1": 0.05743155935171201
+            },
+            {
+              "r": 20,
+              "d": 1,
+              "defined": true,
+              "H": 5.615649104794614,
+              "Neff": 274.69162498984366,
+              "Neff_frac": 0.4578193749830728,
+              "PR": 112.70203095379595,
+              "top1": 0.05741421716147012
+            },
+            {
+              "r": 21,
+              "d": 1,
+              "defined": true,
+              "H": 5.616008610668202,
+              "Neff": 274.7903959957675,
+              "Neff_frac": 0.45798399332627915,
+              "PR": 112.74390294017107,
+              "top1": 0.0573985811166213
+            },
+            {
+              "r": 22,
+              "d": 1,
+              "defined": true,
+              "H": 5.616334159771484,
+              "Neff": 274.8798683258027,
+              "Neff_frac": 0.4581331138763378,
+              "PR": 112.78184799147287,
+              "top1": 0.05738441023130595
+            },
+            {
+              "r": 23,
+              "d": 1,
+              "defined": true,
+              "H": 5.61663037031013,
+              "Neff": 274.9613026999268,
+              "Neff_frac": 0.4582688378332114,
+              "PR": 112.81639635274195,
+              "top1": 0.05737150702740169
+            },
+            {
+              "r": 24,
+              "d": 1,
+              "defined": true,
+              "H": 5.616901055433107,
+              "Neff": 275.0357407081385,
+              "Neff_frac": 0.45839290118023085,
+              "PR": 112.84798651310955,
+              "top1": 0.05735970810832029
+            },
+            {
+              "r": 25,
+              "d": 1,
+              "defined": true,
+              "H": 5.617149392087933,
+              "Neff": 275.10405064552305,
+              "Neff_frac": 0.45850675107587174,
+              "PR": 112.87698430571923,
+              "top1": 0.05734887708865118
+            },
+            {
+              "r": 26,
+              "d": 1,
+              "defined": true,
+              "H": 5.617378048920892,
+              "Neff": 275.16696225878877,
+              "Neff_frac": 0.45861160376464793,
+              "PR": 112.90369741114033,
+              "top1": 0.05733889921851021
+            },
+            {
+              "r": 27,
+              "d": 1,
+              "defined": true,
+              "H": 5.617589284401738,
+              "Neff": 275.2250934238408,
+              "Neff_frac": 0.45870848903973466,
+              "PR": 112.92838650890258,
+              "top1": 0.0573296772457772
+            },
+            {
+              "r": 28,
+              "d": 1,
+              "defined": true,
+              "H": 5.617785022984766,
+              "Neff": 275.2789708664161,
+              "Neff_frac": 0.4587982847773602,
+              "PR": 112.95127394995939,
+              "top1": 0.05732112819520441
+            },
+            {
+              "r": 29,
+              "d": 1,
+              "defined": true,
+              "H": 5.617966914853454,
+              "Neff": 275.32904642686833,
+              "Neff_frac": 0.45888174404478055,
+              "PR": 112.97255057181096,
+              "top1": 0.05731318083530786
+            },
+            {
+              "r": 30,
+              "d": 1,
+              "defined": true,
+              "H": 5.6181363832459965,
+              "Neff": 275.37570995167107,
+              "Neff_frac": 0.45895951658611844,
+              "PR": 112.99238110555412,
+              "top1": 0.057305773667239525
+            }
+          ],
+          "3": [
+            {
+              "r": 4,
+              "d": 3,
+              "defined": false,
+              "reason": "pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero"
+            },
+            {
+              "r": 5,
+              "d": 3,
+              "defined": true,
+              "H": 5.320830298557296,
+              "Neff": 204.55365210550787,
+              "Neff_frac": 0.3409227535091798,
+              "PR": 78.90365658827734,
+              "top1": 0.07658479790999492
+            },
+            {
+              "r": 6,
+              "d": 3,
+              "defined": true,
+              "H": 5.346132875419704,
+              "Neff": 209.79542210013125,
+              "Neff_frac": 0.3496590368335521,
+              "PR": 81.66313245309637,
+              "top1": 0.07477687407221206
+            },
+            {
+              "r": 7,
+              "d": 3,
+              "defined": true,
+              "H": 5.360019634774638,
+              "Neff": 212.72912329693563,
+              "Neff_frac": 0.35454853882822607,
+              "PR": 82.91406499047933,
+              "top1": 0.07398792969845787
+            },
+            {
+              "r": 8,
+              "d": 3,
+              "defined": true,
+              "H": 5.368262301620353,
+              "Neff": 214.48982505894938,
+              "Neff_frac": 0.35748304176491563,
+              "PR": 83.61899815868908,
+              "top1": 0.07355004451133182
+            },
+            {
+              "r": 9,
+              "d": 3,
+              "defined": true,
+              "H": 5.373609239245797,
+              "Neff": 215.63976035127774,
+              "Neff_frac": 0.3593996005854629,
+              "PR": 84.07025163555463,
+              "top1": 0.07327173308628501
+            },
+            {
+              "r": 10,
+              "d": 3,
+              "defined": true,
+              "H": 5.377334075237621,
+              "Neff": 216.44448088749294,
+              "Neff_frac": 0.3607408014791549,
+              "PR": 84.38371577098818,
+              "top1": 0.07307916514902528
+            },
+            {
+              "r": 11,
+              "d": 3,
+              "defined": true,
+              "H": 5.380074795420054,
+              "Neff": 217.03850830426384,
+              "Neff_frac": 0.3617308471737731,
+              "PR": 84.61416364239597,
+              "top1": 0.07293794806762462
+            },
+            {
+              "r": 12,
+              "d": 3,
+              "defined": true,
+              "H": 5.382175262157348,
+              "Neff": 217.49486958973185,
+              "Neff_frac": 0.36249144931621974,
+              "PR": 84.79072263241741,
+              "top1": 0.07282993431953746
+            },
+            {
+              "r": 13,
+              "d": 3,
+              "defined": true,
+              "H": 5.383836150587845,
+              "Neff": 217.85640445375282,
+              "Neff_frac": 0.36309400742292136,
+              "PR": 84.93031328554966,
+              "top1": 0.07274463610314864
+            },
+            {
+              "r": 14,
+              "d": 3,
+              "defined": true,
+              "H": 5.385182294328789,
+              "Neff": 218.14986796675305,
+              "Neff_frac": 0.36358311327792175,
+              "PR": 85.04344144596536,
+              "top1": 0.07267556573991751
+            },
+            {
+              "r": 15,
+              "d": 3,
+              "defined": true,
+              "H": 5.386295382482929,
+              "Neff": 218.39282319082062,
+              "Neff_frac": 0.3639880386513677,
+              "PR": 85.13697644617812,
+              "top1": 0.07261849292640742
+            },
+            {
+              "r": 16,
+              "d": 3,
+              "defined": true,
+              "H": 5.38723110264113,
+              "Neff": 218.59727339705864,
+              "Neff_frac": 0.36432878899509774,
+              "PR": 85.21559969971302,
+              "top1": 0.07257054082013277
+            },
+            {
+              "r": 17,
+              "d": 3,
+              "defined": true,
+              "H": 5.388028717516445,
+              "Neff": 218.7716993871582,
+              "Neff_frac": 0.364619498978597,
+              "PR": 85.28261164094977,
+              "top1": 0.07252968455873643
+            },
+            {
+              "r": 18,
+              "d": 3,
+              "defined": true,
+              "H": 5.388716701687926,
+              "Neff": 218.92226264013328,
+              "Neff_frac": 0.3648704377335555,
+              "PR": 85.34040596480622,
+              "top1": 0.07249445748675148
+            },
+            {
+              "r": 19,
+              "d": 3,
+              "defined": true,
+              "H": 5.389316207199194,
+              "Neff": 219.05354709206944,
+              "Neff_frac": 0.36508924515344904,
+              "PR": 85.39076096824941,
+              "top1": 0.07246377114808393
+            },
+            {
+              "r": 20,
+              "d": 3,
+              "defined": true,
+              "H": 5.389843274398444,
+              "Neff": 219.16903346348684,
+              "Neff_frac": 0.36528172243914475,
+              "PR": 85.43502533769556,
+              "top1": 0.07243680073843833
+            },
+            {
+              "r": 21,
+              "d": 3,
+              "defined": true,
+              "H": 5.390310287674352,
+              "Neff": 219.2714122160398,
+              "Neff_frac": 0.3654523536933997,
+              "PR": 85.4742404646863,
+              "top1": 0.07241290982282791
+            },
+            {
+              "r": 22,
+              "d": 3,
+              "defined": true,
+              "H": 5.390726960668027,
+              "Neff": 219.36279572899392,
+              "Neff_frac": 0.3656046595483232,
+              "PR": 85.50922322704318,
+              "top1": 0.07239159945966102
+            },
+            {
+              "r": 23,
+              "d": 3,
+              "defined": true,
+              "H": 5.3911010192678726,
+              "Neff": 219.44486561773937,
+              "Neff_frac": 0.36574144269623227,
+              "PR": 85.54062338153312,
+              "top1": 0.07237247297119241
+            },
+            {
+              "r": 24,
+              "d": 3,
+              "defined": true,
+              "H": 5.391438685254466,
+              "Neff": 219.51897719656648,
+              "Neff_frac": 0.3658649619942775,
+              "PR": 85.56896421016667,
+              "top1": 0.07235521101921114
+            },
+            {
+              "r": 25,
+              "d": 3,
+              "defined": true,
+              "H": 5.391745025313092,
+              "Neff": 219.58623495425738,
+              "Neff_frac": 0.36597705825709564,
+              "PR": 85.59467185606103,
+              "top1": 0.07233955363210497
+            },
+            {
+              "r": 26,
+              "d": 3,
+              "defined": true,
+              "H": 5.3920242071898885,
+              "Neff": 219.6475480097993,
+              "Neff_frac": 0.36607924668299885,
+              "PR": 85.61809685758641,
+              "top1": 0.07232528702167235
+            },
+            {
+              "r": 27,
+              "d": 3,
+              "defined": true,
+              "H": 5.392279690584757,
+              "Neff": 219.70367148004144,
+              "Neff_frac": 0.36617278580006907,
+              "PR": 85.6395301983824,
+              "top1": 0.07231223376369308
+            },
+            {
+              "r": 28,
+              "d": 3,
+              "defined": true,
+              "H": 5.392514371386722,
+              "Neff": 219.75523776443077,
+              "Neff_frac": 0.36625872960738465,
+              "PR": 85.65921543609586,
+              "top1": 0.072300245381715
+            },
+            {
+              "r": 29,
+              "d": 3,
+              "defined": true,
+              "H": 5.392730692033683,
+              "Neff": 219.80278050168963,
+              "Neff_frac": 0.36633796750281605,
+              "PR": 85.67735798364286,
+              "top1": 0.07228919667472578
+            },
+            {
+              "r": 30,
+              "d": 3,
+              "defined": true,
+              "H": 5.392930726927997,
+              "Neff": 219.84675312553998,
+              "Neff_frac": 0.3664112552092333,
+              "PR": 85.69413229342518,
+              "top1": 0.07227898132832684
+            }
+          ],
+          "6": [
+            {
+              "r": 7,
+              "d": 6,
+              "defined": false,
+              "reason": "pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero"
+            },
+            {
+              "r": 8,
+              "d": 6,
+              "defined": true,
+              "H": 5.112893780500928,
+              "Neff": 166.1504628447536,
+              "Neff_frac": 0.27691743807458935,
+              "PR": 62.66442620910736,
+              "top1": 0.09089805243921455
+            },
+            {
+              "r": 9,
+              "d": 6,
+              "defined": true,
+              "H": 5.126872482298856,
+              "Neff": 168.4893397645618,
+              "Neff_frac": 0.2808155662742697,
+              "PR": 63.741711635013004,
+              "top1": 0.08988715508178596
+            },
+            {
+              "r": 10,
+              "d": 6,
+              "defined": true,
+              "H": 5.1361168285067205,
+              "Neff": 170.05413516522768,
+              "Neff_frac": 0.2834235586087128,
+              "PR": 64.3707966321278,
+              "top1": 0.089311304850408
+            },
+            {
+              "r": 11,
+              "d": 6,
+              "defined": true,
+              "H": 5.142195525304065,
+              "Neff": 171.09099086504517,
+              "Neff_frac": 0.2851516514417419,
+              "PR": 64.77517223147638,
+              "top1": 0.08894532831917897
+            },
+            {
+              "r": 12,
+              "d": 6,
+              "defined": true,
+              "H": 5.146450969925023,
+              "Neff": 171.82061042859488,
+              "Neff_frac": 0.2863676840476581,
+              "PR": 65.05560133614954,
+              "top1": 0.08869322159802687
+            },
+            {
+              "r": 13,
+              "d": 6,
+              "defined": true,
+              "H": 5.149579586259739,
+              "Neff": 172.35901298537186,
+              "Neff_frac": 0.28726502164228646,
+              "PR": 65.26076079717534,
+              "top1": 0.08850956470539183
+            },
+            {
+              "r": 14,
+              "d": 6,
+              "defined": true,
+              "H": 5.151967986204233,
+              "Neff": 172.7711672410938,
+              "Neff_frac": 0.287951945401823,
+              "PR": 65.41692764641614,
+              "top1": 0.08837015847319729
+            },
+            {
+              "r": 15,
+              "d": 6,
+              "defined": true,
+              "H": 5.153846075974092,
+              "Neff": 173.09595189471787,
+              "Neff_frac": 0.2884932531578631,
+              "PR": 65.53950317533685,
+              "top1": 0.0882609472971964
+            },
+            {
+              "r": 16,
+              "d": 6,
+              "defined": true,
+              "H": 5.155358473916312,
+              "Neff": 173.35793992130817,
+              "Neff_frac": 0.28892989986884693,
+              "PR": 65.63809464730504,
+              "top1": 0.0881732205372137
+            },
+            {
+              "r": 17,
+              "d": 6,
+              "defined": true,
+              "H": 5.156600455812617,
+              "Neff": 173.57338110360166,
+              "Neff_frac": 0.2892889685060028,
+              "PR": 65.71899560244984,
+              "top1": 0.08810129989825269
+            },
+            {
+              "r": 18,
+              "d": 6,
+              "defined": true,
+              "H": 5.157637209687931,
+              "Neff": 173.7534272947785,
+              "Neff_frac": 0.2895890454912975,
+              "PR": 65.78649476203185,
+              "top1": 0.08804133039609267
+            },
+            {
+              "r": 19,
+              "d": 6,
+              "defined": true,
+              "H": 5.158514763854816,
+              "Neff": 173.90597226235786,
+              "Neff_frac": 0.28984328710392976,
+              "PR": 65.84361139261638,
+              "top1": 0.087990606022666
+            },
+            {
+              "r": 20,
+              "d": 6,
+              "defined": true,
+              "H": 5.159266495162721,
+              "Neff": 174.03675197578306,
+              "Neff_frac": 0.2900612532929718,
+              "PR": 65.89253003848128,
+              "top1": 0.08794717338615056
+            },
+            {
+              "r": 21,
+              "d": 6,
+              "defined": true,
+              "H": 5.159917165179725,
+              "Neff": 174.15002932124,
+              "Neff_frac": 0.29025004886873335,
+              "PR": 65.93486863891482,
+              "top1": 0.08790958839409851
+            },
+            {
+              "r": 22,
+              "d": 6,
+              "defined": true,
+              "H": 5.1604855111829755,
+              "Neff": 174.24903492642557,
+              "Neff_frac": 0.2904150582107093,
+              "PR": 65.97184991299986,
+              "top1": 0.08787676131160062
+            },
+            {
+              "r": 23,
+              "d": 6,
+              "defined": true,
+              "H": 5.1609859597051395,
+              "Neff": 174.33625942230768,
+              "Neff_frac": 0.2905604323705128,
+              "PR": 66.0044143274824,
+              "top1": 0.08784785495201088
+            },
+            {
+              "r": 24,
+              "d": 6,
+              "defined": true,
+              "H": 5.1614297896115575,
+              "Neff": 174.41365224136564,
+              "Neff_frac": 0.2906894204022761,
+              "PR": 66.03329657114246,
+              "top1": 0.08782221593671782
+            },
+            {
+              "r": 25,
+              "d": 6,
+              "defined": true,
+              "H": 5.161825939806737,
+              "Neff": 174.48275993135167,
+              "Neff_frac": 0.2908045998855861,
+              "PR": 66.05907854951577,
+              "top1": 0.08779932716468641
+            },
+            {
+              "r": 26,
+              "d": 6,
+              "defined": true,
+              "H": 5.162181581651871,
+              "Neff": 174.54482433773367,
+              "Neff_frac": 0.29090804056288944,
+              "PR": 66.08222687661933,
+              "top1": 0.08777877424900919
+            },
+            {
+              "r": 27,
+              "d": 6,
+              "defined": true,
+              "H": 5.162502532059531,
+              "Neff": 174.60085356107982,
+              "Neff_frac": 0.2910014226017997,
+              "PR": 66.10311989275226,
+              "top1": 0.08776022136819851
+            },
+            {
+              "r": 28,
+              "d": 6,
+              "defined": true,
+              "H": 5.162793556513044,
+              "Neff": 174.65167407371774,
+              "Neff_frac": 0.2910861234561962,
+              "PR": 66.1220674594864,
+              "top1": 0.08774339359717834
+            },
+            {
+              "r": 29,
+              "d": 6,
+              "defined": true,
+              "H": 5.163058594644881,
+              "Neff": 174.6979695619002,
+              "Neff_frac": 0.29116328260316704,
+              "PR": 66.13932568118285,
+              "top1": 0.08772806378207783
+            },
+            {
+              "r": 30,
+              "d": 6,
+              "defined": true,
+              "H": 5.16330093043165,
+              "Neff": 174.7403102619273,
+              "Neff_frac": 0.2912338504365455,
+              "PR": 66.1551080029155,
+              "top1": 0.08771404265555323
+            }
+          ]
+        }
+      }
+    }
+  }
+}
