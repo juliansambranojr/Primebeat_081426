@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 220: sidecar pass done — 5 of 9 recovered (4 by stripping the Run record, 1 via git), 4 UNRECOVERABLE and baselined with reasons; three of those four carry stamped verdicts whose anti-drift guarantee cannot be checked
+- [open]   2026-08-27  entry 220: FORMAT.md's own two rules were unsatisfiable together — the sidecar pins the text, the Run record mutates it; resolved by 'lock, commit, then run', now in the spec
+- [open]   2026-08-27  entry 220: check_sidecar.py built — 4 recovery routes, silent when clean, exits 1 on a new failure, degrades to nothing in a corpus-free clone; wire into pre-commit when convenient
 - [open]   2026-08-27  entry 219: THE RAMP DID NOT CLEAR — P(g1)/med 4.201 vs gate 5 at 2^44; measured slope 3.719 -> 4.201 (1.130x) beats the sqrt(N) floor 1.061, but clearing 5 on g1 by ceiling alone needs ~2^52. That road is priced now
 - [open]   2026-08-27  entry 219: a v2 prereg targeting GAMMA_2 at the 2^44 geometry is the design question this produced — g2 and g3 outread g1 at both ceilings and g2 now dominates on the pair (1.033) where g1 (0.515) and g3 (0.673) fail
 - [open]   2026-08-27  entry 219: entry 215's re-price-on-measured-sigma recommendation was WRONG — the power table is exactly scale-invariant in A/sigma (0 of 54 cells differ); only rung count moves power

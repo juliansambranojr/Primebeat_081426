@@ -39,6 +39,30 @@ without one is not, whatever its STATUS block says — the sidecar is
 the thing that pins the text, so it is what a later reader should
 trust.
 
+## Lock, commit, then run
+
+**The Run record mutates the file the sidecar pins.** Those two rules
+conflict, and the conflict is not cosmetic: on disk, no sidecar in this
+directory matches its own prereg. Unless the locked text was committed
+*before* the Run record was filled, the text the sidecar pins exists
+nowhere and the anti-drift guarantee cannot be checked in either
+direction.
+
+So the order is **lock the text, commit it, then run.** A committed
+pre-image is what makes the sidecar verifiable afterwards.
+
+`utilities/check_sidecar.py` implements the recovery. A sidecar
+verifies if any of these hashes to it: the file as-is; the file
+truncated immediately before its `## Run record` heading; any blob of
+the file in git history; or any such blob truncated the same way.
+
+Audited 2026-08-27 (notes entry 220): **five of nine verify, four do
+not.** The four were edited in place after locking rather than only
+appended to. They are listed with their reasons in
+`utilities/sidecar_baseline.txt` and print as KNOWN, never as PASS —
+for those four the sidecar's promise cannot be checked, which is
+recorded because three of them carry stamped verdicts.
+
 The three preregs named before this convention keep their names:
 alpha_depth_trend_v1_locked_20260814.md,
 zero_winding_phase_v1_locked_20260818.md, and

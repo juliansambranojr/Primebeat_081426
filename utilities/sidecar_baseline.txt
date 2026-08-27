@@ -1,0 +1,23 @@
+# Sidecars whose locked text has no recoverable pre-image.
+#
+# Audited 2026-08-27, notes/lab_notebook_2.md entry 220. Each of these
+# was searched against: the file as-is; the file truncated before its
+# Run record; every blob of the file in git history; and every such blob
+# truncated the same way. None matched, so the file was edited IN PLACE
+# after locking rather than only appended to, and the text the sidecar
+# pins exists nowhere.
+#
+# What this costs: for these four, the sidecar's specific promise — that
+# no parameter, hypothesis or decision-rule text drifted between lock and
+# compute — cannot be verified. Git still dates every change to the file;
+# what is lost is the ability to prove the locked text is what was run
+# against. Three of the four carry stamped verdicts, so this is recorded
+# here rather than baselined silently.
+#
+# Format:  <prereg>.md  <reason>
+# Removing a line means claiming it is now recoverable. Do not.
+
+character_sweep_q11_q13_v1_20260826.md  edited in place after locking; 3 revs searched, none match
+dh_aggregate_spectrum_v1_20260825.md  edited in place after locking; 3 revs searched, none match
+dh_coalition_spectrum_v1_20260825.md  edited in place after locking; 2 revs searched, none match
+small_angle_cross_base_v1_20260821.md  edited in place after locking; 4 revs searched, none match

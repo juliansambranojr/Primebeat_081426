@@ -16,6 +16,76 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 220 — the sidecar reconstruct-or-retire pass: five recovered, four gone, and the rule that caused it
+type: instrument-fix
+refs: 211, 213, 218
+
+The audit behind entry 219 found that **no sidecar in `preregs/`
+matches its own prereg on disk**, and that this was unfalsifiable in
+both directions — nothing recorded how to recover the locked text, so
+drift could be neither confirmed nor detected. This is the pass.
+
+**The cause is a conflict inside `preregs/FORMAT.md` itself.** It calls
+the sidecar "the authority" and "the thing that pins the text," and it
+also mandates filling the Run record after the run. The second mutates
+what the first pins. Neither rule is wrong; together they are
+unsatisfiable unless the locked text is committed before the run, and
+FORMAT.md never said so.
+
+**Recovery, searched exhaustively.** Four routes tried per prereg: the
+file as-is; the file truncated immediately before its `## Run record`
+heading; every blob of the file in git history; every such blob
+truncated the same way. Additionally, every prefix of the current text
+ending at any heading or line boundary was brute-forced.
+
+```text
+VERIFIED 5 of 9
+  alpha_depth_trend_v1_locked_20260814      stripped
+  extended_zero_census_v1_locked_20260818   stripped
+  sub_integer_base_scan_v1_20260818         stripped
+  zero_winding_phase_v1_locked_20260818     stripped
+  multibase_synthesis_v1_20260827           git as-committed cc74c3cd
+
+UNRECOVERABLE 4
+  character_sweep_q11_q13_v1_20260826       3 revs searched
+  dh_aggregate_spectrum_v1_20260825         3 revs searched
+  dh_coalition_spectrum_v1_20260825         2 revs searched
+  small_angle_cross_base_v1_20260821        4 revs searched
+```
+
+**`alpha_depth_trend` states the recovery in its own Run record** — the
+append "is expected to change the file's hash," and the
+`post_compute_sha256` it records *is* the sidecar value, "both taken
+before this section existed." The procedure was written down inside one
+prereg and never promoted to the spec.
+
+**`multibase_synthesis` is the only one recoverable through git**, and
+only because it was locked and committed before its run — which was an
+accident of sequencing, not a rule. It is now the rule.
+
+**What the four cost, stated plainly.** Their sidecars' specific
+promise — that no parameter, hypothesis, or decision-rule text drifted
+between lock and compute — **cannot be verified**. Git still dates
+every change to those files; what is gone is the ability to prove the
+locked text is what was run against. Three of the four carry stamped
+verdicts (`carries_own`, `tracks_L`, `null`), so this is recorded in
+`utilities/sidecar_baseline.txt` with each file's reason and printed as
+KNOWN rather than baselined into silence.
+
+**Built.** `utilities/check_sidecar.py` implements the four recovery
+routes. Verified in three directions: it verifies the five, reports the
+four as KNOWN, exits 1 on a synthetic new failure, and in a clone with
+no `preregs/` directory returns 0 and prints nothing. Silent when clean
+— the container's § 6 cost rule, and the reason it is safe to wire into
+a hook later.
+
+**Prevention.** `preregs/FORMAT.md` gains § "Lock, commit, then run",
+which resolves its own conflict, names the recovery routes, and records
+the 5/4 audit result. The immutable bodies of all nine preregs are
+untouched; nothing was deleted.
+
+---
+
 ## 2026-08-27 — Entry 219 — the ramp triage: the gate needs 2^52, not 2^44 — and γ₂ is the design question this sharpened
 type: result-triage
 refs: 211, 214, 215, 217, 218
