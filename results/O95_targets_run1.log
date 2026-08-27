@@ -1,0 +1,232 @@
+==============================================================================
+O95 — MULTIBASE SYNTHESIS — TARGETS (EXPLORATORY)
+==============================================================================
+  started (UTC)   : 2026-08-27T16:00:22Z
+  code_version    : 39d666f65122885860c9d9eb802dc6fabd3d3ae9e52c2314267dcdc06ed5a80f
+  seed            : 2026
+  ceiling         : 2^40
+  band            : [2, 45] step 0.01
+  sigma (synth)   : 0.042  (O18 dyadic ehat rms 0.04194, placeholder)
+
+==============================================================================
+THE MASTER LATTICE — s = pi/(4 gamma_1), exact floors at dps 50
+==============================================================================
+  s               : 0.05556515287859780964040927757448598184101
+  i range         : 1..498  (union members with x > 2: 278 lattice records, 273 unique sites)
+  first sites     : [3, 4, 5, 6, 7, 9]
+  last site       : 1041253231122  (2^40 = 1099511627776)
+  GATE A (x_i = floor(exp(i s)), x_i <= ceiling) : PASS
+  GATE B (entry 211 geometry at 2^40, x0=1000)   : PASS  union 199 (design 199), arm-sum 281 (design 281), pair 84 (design 84)
+
+==============================================================================
+THE CACHE — pi at every union site (arms {4..9}, x > 2)
+==============================================================================
+  path            : /Users/juliansambrano/GitHub/Primebeat_081426/results/pi_master_lattice_cache.json
+  status          : found
+  backend         : primecountpy.prime_pi
+  lattice records : 278   unique x: 273
+  pi calls (run)  : 0
+  x range         : 3 .. 1041253231122
+  wall            : 0.0 s
+  GATE C spot audit (i = [20, 32, 108, 196, 328, 427, 498]) : PASS
+
+==============================================================================
+O95 --mode targets — EXPLORATORY
+==============================================================================
+  The locked prereg preregs/multibase_synthesis_v1_20260827.md
+  governs the gamma_1 attribution question ONLY. Nothing below
+  is under it: no decision rule fires, no verdict is written.
+  targets         : gamma_2 = 21.022040, gamma_3 = 25.010858  (zeros600.json rows 2, 3)
+  zeros in band [2, 45] : 8 — 14.1347, 21.0220, 25.0109, 30.4249, 32.9351, 37.5862, 40.9187, 43.3271
+  pi calls this run : 0
+
+  GATE R (recomputation reproduces multibase_real.json) : PASS
+
+==============================================================================
+PART 1a — THE JOINT ALIAS SET PER TARGET (entry 211's collapse,
+          re-derived with the target as a free parameter)
+==============================================================================
+  arm j alias spacing 8*gamma_1/j (base geometry, target-free): j=4:28.2695, j=5:22.6156, j=6:18.8463, j=7:16.1540, j=8:14.1347, j=9:12.5642
+  8*gamma_1 = 113.0778
+   gamma1      primary_5to9: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 14.135, 98.943, 127.213, 212.021, 240.290, 325.099, 353.368, 438.176, 466.446
+                             nearest NEAR-alias (max per-arm class distance): 29.840 (miss 3.141), 27.327 (miss 3.769), 32.196 (miss 3.926)
+   gamma1      secondary_89: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 14.135, 98.943, 127.213, 212.021, 240.290, 325.099, 353.368, 438.176, 466.446
+                             nearest NEAR-alias (max per-arm class distance): 27.484 (miss 0.785), 40.834 (miss 1.571), 32.196 (miss 3.926)
+   gamma1  sensitivity_4to9: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 14.135, 98.943, 127.213, 212.021, 240.290, 325.099, 353.368, 438.176, 466.446
+                             nearest NEAR-alias (max per-arm class distance): 38.365 (miss 4.039), 41.596 (miss 4.846)
+   gamma2      primary_5to9: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 21.022, 92.056, 134.100, 205.134, 247.178, 318.211, 360.255, 431.289, 473.333
+                             nearest NEAR-alias (max per-arm class distance): 4.240 (miss 2.647), 39.577 (miss 4.061), 44.580 (miss 4.712)
+   gamma2      secondary_89: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 21.022, 92.056, 134.100, 205.134, 247.178, 318.211, 360.255, 431.289, 473.333
+                             nearest NEAR-alias (max per-arm class distance): 7.853 (miss 0.605), 34.371 (miss 0.785), 5.497 (miss 1.391)
+   gamma2  sensitivity_4to9: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 21.022, 92.056, 134.100, 205.134, 247.178, 318.211, 360.255, 431.289, 473.333
+                             nearest NEAR-alias (max per-arm class distance): 4.420 (miss 2.827), 39.577 (miss 4.061), 44.580 (miss 4.712)
+   gamma3      primary_5to9: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 25.011, 88.067, 138.089, 201.145, 251.166, 314.223, 364.244, 427.300, 477.322
+                             nearest NEAR-alias (max per-arm class distance): 40.834 (miss 3.024), 3.708 (miss 3.590), 7.421 (miss 5.026)
+   gamma3      secondary_89: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 25.011, 88.067, 138.089, 201.145, 251.166, 314.223, 364.244, 427.300, 477.322
+                             nearest NEAR-alias (max per-arm class distance): 38.478 (miss 0.668), 11.662 (miss 0.785), 15.037 (miss 2.356)
+   gamma3  sensitivity_4to9: in-band joint confusables besides the target: none   [prediction +-target + m*8g1 matches: True]
+                             wide window [2,500]: 25.011, 88.067, 138.089, 201.145, 251.166, 314.223, 364.244, 427.300, 477.322
+                             nearest NEAR-alias (max per-arm class distance): 3.708 (miss 3.590), 7.421 (miss 5.026), 37.182 (miss 5.654)
+   gamma1 coprime pair {8,9} over [2,500]: 14.135, 98.943, 127.213, 212.021, 240.290, 325.099, 353.368, 438.176, 466.446   [matches +-t + m*8g1: True]
+   gamma2 coprime pair {8,9} over [2,500]: 21.022, 92.056, 134.100, 205.134, 247.178, 318.211, 360.255, 431.289, 473.333   [matches +-t + m*8g1: True]
+   gamma3 coprime pair {8,9} over [2,500]: 25.011, 88.067, 138.089, 201.145, 251.166, 314.223, 364.244, 427.300, 477.322   [matches +-t + m*8g1: True]
+
+
+==============================================================================
+PART 1b — CANDIDATE TABLES PER TARGET (P/median at the target
+          and at every in-band arm image), EXPLORATORY
+==============================================================================
+
+  TARGET gamma1 = 14.134725
+               unit  P(t)/med   max img   ratio   dom      flat  images (freq: P/med)
+       primary_5to9     3.719     3.031   1.227   yes  9.91e-01  2.019:0.034, 4.712:0.674, 8.481:1.305, 10.994:1.157, 18.173:0.360, 23.558:1.996, 26.699:0.441, 28.269:1.273, 30.289:1.204, 31.096:1.409, 32.981:3.031, 34.327:1.242, 36.122:1.987, 36.750:1.704, 39.263:0.837, 42.404:2.163
+       secondary_89     1.714     3.291   0.521    no  9.20e-01  10.994:2.640, 23.558:1.894, 26.699:3.291, 28.269:1.405, 36.122:1.573, 39.263:1.694, 42.404:1.287
+   sensitivity_4to9     4.070     3.596   1.132   yes  9.71e-01  2.019:0.120, 4.712:0.456, 8.481:1.202, 10.994:0.952, 18.173:1.039, 23.558:2.346, 26.699:0.405, 28.269:1.682, 30.289:2.002, 31.096:1.042, 32.981:3.596, 34.327:1.988, 36.122:1.652, 36.750:1.264, 39.263:0.570, 42.404:2.977
+              arm_4     1.453     1.453   1.000   yes  1.03e-07  42.404:1.453
+              arm_5     6.233     6.233   1.000    no  2.40e-06  8.481:6.233, 31.096:6.233, 36.750:6.233
+              arm_6     4.128     4.129   1.000    no  4.60e-05  4.712:4.128, 23.558:4.129, 32.981:4.128, 42.404:4.129
+              arm_7     2.438     2.438   1.000    no  1.20e-04  2.019:2.438, 18.173:2.438, 30.289:2.438, 34.327:2.438
+              arm_8     0.185     0.185   1.000   yes  1.76e-06  28.269:0.185, 42.404:0.185
+              arm_9     1.002     1.002   1.000    no  1.31e-04  10.994:1.002, 23.558:1.002, 26.699:1.002, 36.122:1.002, 39.263:1.002
+
+  TARGET gamma2 = 21.022040
+               unit  P(t)/med   max img   ratio   dom      flat  images (freq: P/med)
+       primary_5to9     4.050     2.911   1.392   yes  9.78e-01  2.176:0.101, 4.106:0.140, 4.868:0.486, 6.887:0.792, 7.247:0.912, 8.458:1.296, 11.286:1.333, 16.671:1.221, 21.382:2.339, 24.209:1.749, 27.440:0.807, 29.235:0.507, 33.586:1.422, 35.157:0.088, 35.517:1.282, 37.176:2.911, 39.868:1.131, 41.799:0.607, 43.594:1.088, 43.638:1.038
+       secondary_89     1.364     1.274   1.070   yes  8.65e-01  4.106:0.748, 6.887:0.516, 7.247:1.274, 8.458:1.011, 16.671:0.514, 21.382:0.601, 29.235:0.185, 33.586:0.911, 35.157:1.041, 35.517:0.501, 41.799:0.635
+   sensitivity_4to9     4.383     2.553   1.717   yes  9.90e-01  2.176:0.044, 4.106:0.129, 4.868:0.221, 6.887:0.837, 7.247:1.026, 8.458:1.179, 11.286:1.084, 16.671:1.012, 21.382:2.485, 24.209:1.806, 27.440:0.949, 29.235:0.706, 33.586:0.685, 35.157:0.172, 35.517:1.309, 37.176:2.553, 39.868:1.185, 41.799:0.561, 43.594:1.429, 43.638:1.393
+              arm_4     3.822     3.823   1.000    no  6.25e-05  7.247:3.822, 35.517:3.823
+              arm_5     1.261     1.261   1.000    no  9.37e-05  24.209:1.261, 43.638:1.261
+              arm_6     1.037     1.037   1.000    no  1.94e-05  2.176:1.037, 16.671:1.037, 35.517:1.037, 39.868:1.037
+              arm_7     6.026     6.026   1.000    no  5.01e-06  4.868:6.026, 11.286:6.026, 27.440:6.026, 37.176:6.026, 43.594:6.026
+              arm_8     2.229     2.229   1.000    no  1.47e-04  6.887:2.229, 7.247:2.229, 21.382:2.229, 35.157:2.229, 35.517:2.229
+              arm_9     1.924     1.924   1.000    no  2.24e-05  4.106:1.924, 8.458:1.924, 16.671:1.924, 29.235:1.924, 33.586:1.924, 41.799:1.924
+
+  TARGET gamma3 = 25.010858
+               unit  P(t)/med   max img   ratio   dom      flat  images (freq: P/med)
+       primary_5to9     3.461     2.469   1.402   yes  9.53e-01  2.395:0.162, 3.259:0.185, 6.165:0.312, 7.297:0.985, 8.857:0.812, 10.876:1.156, 12.447:1.186, 12.682:1.440, 17.393:0.199, 20.220:1.796, 23.451:2.016, 25.246:2.469, 31.528:1.136, 37.575:2.264, 37.810:0.621, 39.146:0.938, 39.605:0.779, 41.165:0.748, 42.836:2.048, 43.857:1.106
+       secondary_89     1.812     2.688   0.674    no  7.50e-01  3.259:0.494, 10.876:2.688, 12.447:1.691, 12.682:1.475, 17.393:1.726, 25.246:1.264, 31.528:1.251, 37.575:0.454, 37.810:0.759, 39.146:1.787
+   sensitivity_4to9     4.555     2.929   1.555   yes  9.66e-01  2.395:0.176, 3.259:0.234, 6.165:0.156, 7.297:1.100, 8.857:0.616, 10.876:0.843, 12.447:1.081, 12.682:1.645, 17.393:0.415, 20.220:1.419, 23.451:2.244, 25.246:2.929, 31.528:1.578, 37.575:2.893, 37.810:1.587, 39.146:0.371, 39.605:1.114, 41.165:0.770, 42.836:2.516, 43.857:1.249
+              arm_4     1.635     1.635   1.000    no  1.03e-04  3.259:1.635, 31.528:1.635
+              arm_5     1.682     1.683   1.000    no  2.42e-04  2.395:1.682, 20.220:1.682, 42.836:1.683
+              arm_6     2.231     2.231   1.000    no  6.34e-05  6.165:2.231, 12.682:2.231, 31.528:2.231, 43.857:2.231
+              arm_7     3.640     3.640   1.000    no  8.86e-05  7.297:3.640, 8.857:3.640, 23.451:3.639, 39.605:3.639, 41.165:3.640
+              arm_8     2.114     2.115   1.000    no  1.92e-04  3.259:2.114, 10.876:2.114, 17.393:2.114, 31.528:2.115, 39.146:2.114
+              arm_9     0.361     0.361   1.000    no  5.74e-04  12.447:0.361, 12.682:0.361, 25.246:0.361, 37.575:0.361, 37.810:0.361
+
+
+==============================================================================
+PART 2 — DOES THE PEAK SET CLUSTER ON ZETA ZEROS? (the control)
+==============================================================================
+  peak rule: strict local max on the 0.01 grid (P[k] > both
+  neighbours, endpoints excluded), taken in descending P, each
+  accepted only if >= one halfwidth (0.600) from every
+  already-accepted peak.
+
+  primary_5to9 — top 20 peaks (halfwidth 0.600)
+    #     freq    P/med  nearest zero    miss  hit
+    1   21.050    4.068       21.0220   0.028  yes
+    2   14.140    3.719       14.1347   0.005  yes
+    3   24.990    3.469       25.0109   0.021  yes
+    4   37.320    3.054       37.5862   0.266  yes
+    5   32.960    3.039       32.9351   0.025  yes
+    6   30.640    3.027       30.4249   0.215  yes
+    7   25.710    2.748       25.0109   0.699    .
+    8   42.560    2.314       43.3271   0.767    .
+    9   22.730    2.080       21.0220   1.708    .
+   10   23.500    2.042       25.0109   1.511    .
+   11   36.170    2.018       37.5862   1.416    .
+   12   29.840    1.820       30.4249   0.585  yes
+   13   20.240    1.799       21.0220   0.782    .
+   14   24.220    1.751       25.0109   0.791    .
+   15   19.380    1.643       21.0220   1.642    .
+   16   12.830    1.569       14.1347   1.305    .
+   17   33.710    1.509       32.9351   0.775    .
+   18   28.060    1.505       30.4249   2.365    .
+   19   31.350    1.433       30.4249   0.925    .
+   20   12.160    1.407       14.1347   1.975    .
+    N = 10: observed 6 within 0.600 of a zero | analytic uniform null 2.23 (8 zeros in band) / 1.67 (6 zeros)
+            uniform+minsep null mean 2.25 sd 1.22 P(>= obs) = 0.0049   |   zero-shift null mean 2.25 sd 1.35 P(>= obs) = 0.0336
+    N = 20: observed 7 within 0.600 of a zero | analytic uniform null 4.47 (8 zeros in band) / 3.35 (6 zeros)
+            uniform+minsep null mean 4.43 sd 1.48 P(>= obs) = 0.0794   |   zero-shift null mean 4.49 sd 1.84 P(>= obs) = 0.1480
+
+  sensitivity_4to9 — top 20 peaks (halfwidth 0.600)
+    #     freq    P/med  nearest zero    miss  hit
+    1   24.960    4.621       25.0109   0.051  yes
+    2   21.060    4.423       21.0220   0.038  yes
+    3   14.150    4.074       14.1347   0.015  yes
+    4   32.930    3.654       32.9351   0.005  yes
+    5   30.580    3.390       30.4249   0.155  yes
+    6   37.430    3.209       37.5862   0.156  yes
+    7   42.530    3.145       43.3271   0.797    .
+    8   25.810    2.730       25.0109   0.799    .
+    9   23.540    2.349       25.0109   1.471    .
+   10   34.300    1.999       32.9351   1.365    .
+   11   28.020    1.872       30.4249   2.405    .
+   12   31.980    1.840       32.9351   0.955    .
+   13   24.200    1.808       25.0109   0.811    .
+   14   12.820    1.794       14.1347   1.315    .
+   15   36.080    1.677       37.5862   1.506    .
+   16   20.320    1.593       21.0220   0.702    .
+   17   40.890    1.532       40.9187   0.029  yes
+   18   43.430    1.520       43.3271   0.103  yes
+   19   22.740    1.479       21.0220   1.718    .
+   20   29.680    1.428       30.4249   0.745    .
+    N = 10: observed 6 within 0.600 of a zero | analytic uniform null 2.23 (8 zeros in band) / 1.67 (6 zeros)
+            uniform+minsep null mean 2.23 sd 1.19 P(>= obs) = 0.0042   |   zero-shift null mean 2.22 sd 1.26 P(>= obs) = 0.0259
+    N = 20: observed 8 within 0.600 of a zero | analytic uniform null 4.47 (8 zeros in band) / 3.35 (6 zeros)
+            uniform+minsep null mean 4.47 sd 1.48 P(>= obs) = 0.0214   |   zero-shift null mean 4.47 sd 1.66 P(>= obs) = 0.0412
+
+
+==============================================================================
+PART 3 — EACH ARM'S ARGMAX, AND EVERY ZERO THAT FOLDS THERE
+==============================================================================
+  An arm past its Nyquist folds ALL frequencies: a peak at g*
+  is consistent with EVERY zero whose alias class under that
+  arm passes within a halfwidth of g*. All such zeros are
+  listed; where several appear, g* does not identify one.
+
+       primary_5to9: argmax 21.050 at P/med 4.068; nearest zero 21.0220 (miss 0.028, within halfwidth)
+
+       secondary_89: argmax 26.680 at P/med 3.299; nearest zero 25.0109 (miss 1.669)
+
+   sensitivity_4to9: argmax 24.960 at P/med 4.621; nearest zero 25.0109 (miss 0.051, within halfwidth)
+
+              arm_4: argmax 43.800 at P/med 4.724; nearest zero 43.3271 (miss 0.473, within halfwidth)
+                     alias spacing 28.2695; 4 of the first 20 zeros fold to within 0.600:
+                     #7 40.9187 (d 0.090), #8 43.3271 (d 0.473), #17 69.5464 (d 0.269), #18 72.0672 (d 0.002)
+
+              arm_5: argmax 8.460 at P/med 6.250; nearest zero 14.1347 (miss 5.675)
+                     alias spacing 22.6156; 2 of the first 20 zeros fold to within 0.600:
+                     #1 14.1347 (d 0.021), #13 59.3470 (d 0.040)
+
+              arm_6: argmax 4.690 at P/med 4.141; nearest zero 14.1347 (miss 9.445)
+                     alias spacing 18.8463; 3 of the first 20 zeros fold to within 0.600:
+                     #1 14.1347 (d 0.022), #5 32.9351 (d 0.068), #14 60.8318 (d 0.397)
+
+              arm_7: argmax 21.010 at P/med 6.029; nearest zero 21.0220 (miss 0.012, within halfwidth)
+                     alias spacing 16.1540; 7 of the first 20 zeros fold to within 0.600:
+                     #2 21.0220 (d 0.012), #6 37.5862 (d 0.422), #8 43.3271 (d 0.279), #11 52.9703 (d 0.348), #13 59.3470 (d 0.413), #17 69.5464 (d 0.074), #19 75.7047 (d 0.209)
+
+              arm_8: argmax 35.000 at P/med 2.912; nearest zero 32.9351 (miss 2.065)
+                     alias spacing 14.1347; 3 of the first 20 zeros fold to within 0.600:
+                     #2 21.0220 (d 0.157), #10 49.7738 (d 0.035), #20 77.1448 (d 0.259)
+
+              arm_9: argmax 32.730 at P/med 2.105; nearest zero 32.9351 (miss 0.205, within halfwidth)
+                     alias spacing 12.5642; 2 of the first 20 zeros fold to within 0.600:
+                     #4 30.4249 (d 0.334), #5 32.9351 (d 0.205)
+
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/multibase_targets.json
+  wrote /Users/juliansambrano/GitHub/Primebeat_081426/results/multibase_targets.json
+
+==============================================================================
+EXPLORATORY OUTPUT — no verdict, no decision rule, not under the locked prereg.
+==============================================================================

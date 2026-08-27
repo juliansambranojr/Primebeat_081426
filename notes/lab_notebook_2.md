@@ -16,6 +16,133 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 217 — the instrument is reading the spectrum: six of ten peaks are zeta zeros, and γ₂/γ₃ attribute better than γ₁
+type: result-triage
+refs: 211, 214, 215, 216
+
+Reading of entry 216. EXPLORATORY — the locked prereg governs the γ₁
+attribution question only and does not govern this.
+
+**The control decided it, and entry 215's second reading survives.**
+Six of the primary subset's top ten peaks land within one halfwidth
+of a zeta zero, against a null expectation of 2.23:
+
+```text
+                obs   analytic   uniform+minsep      zero-shift
+primary  N=10     6       2.23   p = 0.0049          p = 0.0336
+primary  N=20     7       4.47   p = 0.0794          p = 0.1480
+sens.    N=10     6       2.23   p = 0.0042          p = 0.0259
+sens.    N=20     8       4.47   p = 0.0214          p = 0.0412
+```
+
+In both subsets **the top six peaks are the six strongest in-band
+zeros and nothing else.** The zero-shift null is the conservative one
+(observed peaks held fixed, the real zero set circularly shifted, so
+both configurations keep their real spacings) and it is the number to
+quote. The signal dilutes with N on the primary and holds on the
+sensitivity subset. The top-six observation is post-hoc; no N = 6
+p-value was computed for it and none should be quoted.
+
+**A brief error corrected in the conservative direction.** The brief
+said the band holds 6 zeta zeros; it holds **8** — 40.9187 and
+43.3271 are in band. The agent found it and re-based every null on 8,
+which raises the expectation from 1.67 to 2.23 and weakens the
+result. The mistake would have flattered it.
+
+**γ₂ and γ₃ dominate their own alias images more cleanly than γ₁
+does.** Target `P/median` over strongest in-band image:
+
+```text
+             primary {5..9}   sensitivity {4..9}   pair {8,9}
+γ₁              1.227              1.132             0.521
+γ₂              1.392              1.717             1.070
+γ₃              1.402              1.555             0.674
+```
+
+The attribution condition the prereg asks for is met at all three
+frequencies on the primary and sensitivity subsets, and **best at the
+two frequencies the design never targeted**. The pair still fails,
+consistent with its 84-rung power rather than with the mechanism.
+
+**The joint alias structure was verified, not assumed.** The collapse
+`γ' ≡ ±γ_t (mod 8γ₁)` was computed by intersecting the per-arm
+classes over [2,500] and matches the prediction in all 12 cases
+(3 subsets × 3 targets, plus the coprime pair). Neither γ₂ nor γ₃ has
+an in-band joint confusable; γ₁'s `7γ₁ = 98.94` reproduced. Entry
+211's CRT argument is about the lattice rather than the target, and
+that now has a computation behind it.
+
+**Two limits that bound the reading.**
+
+Single arms are flat for EVERY target — γ₂ and γ₃ alias exactly as γ₁
+does, measured flatness `max|P_img/P_target − 1|` between 1.0e-7 and
+5.7e-4 across all 18 arm × target cells. The strict "dominates"
+boolean on an arm row is decided by float jitter and carries no
+content; the flatness column is the readout.
+
+**Entry 214's arm-7 observation is weaker than it reads.** That entry
+recorded arm 7's argmax at 21.010, γ₂ miss 0.012. The honest form:
+**seven of the first twenty zeros fold to within a halfwidth of that
+argmax** under arm 7's lattice. γ₂ is nearest by a factor of six over
+the runner-up and is the only one in band — but arm 7 alone does not
+identify it, and every arm shows the same multiplicity (arm 4: four
+zeros, arm 6: three, arm 8: three). No arm's argmax picks out a
+single zero. That is the no-go again, in the place it is easiest to
+misread as a detection.
+
+**What this does not settle.** Whether the arms' folding favours γ₂
+over γ₁, or γ₂ is simply locally stronger at these x-scales, is still
+open — this run establishes that the peaks are zeros, not which
+mechanism puts γ₂ on top.
+
+---
+
+## 2026-08-27 — Entry 216 — O95 `--mode targets`: candidate tables for γ₂ and γ₃, and the peak-clustering control
+type: run
+refs: 213, 214, 215
+
+`O95_multibase_synthesis.py --mode targets`, EXPLORATORY. Additive
+mode; `--mode real` still exits 2 without `--confirm-real`, verified.
+
+```text
+.venv/bin/python utilities/run.py --python .venv/bin/python \
+    --log results/O95_targets_run1.log O95_multibase_synthesis.py --mode targets
+exit 0   created 2   modified 0   π calls 0 (cache read)
+manifest results/runs/20260827T160022Z_O95_multibase_synthesis.json
+results/multibase_targets.json
+```
+
+**GATE R, added for this run and the reason it is trustworthy.** The
+targets path recomputes every unit's `P_median`, `argmax_gamma`,
+`P_max_over_median` and `ehat_rms` and checks them against
+`results/multibase_real.json` — the prereg's artifact. **PASS on all
+nine units.** The duplicated code path is verified against the locked
+run rather than trusted.
+
+**The prereg's artifact is untouched:** `results/multibase_real.json`
+sha256 `5460b249…`, matching the `post_compute_sha256` in the Run
+record. Written to `results/multibase_targets.json` instead.
+
+**Provenance item that needs saying.** Editing O95 to add this mode
+moved its file sha256 from `438c0d8d…` to `39d666f6…`. `438c0d8d…` is
+recorded as `params.code_version` inside the prereg's artifact, so a
+later reader checking that field against the file **will find a
+mismatch**. GATE R is the mitigation and it passed; the script's
+behaviour on the prereg's question is unchanged bit-for-bit.
+
+Arm spacings `Δ_j = 8γ₁/j`: 28.2695, 22.6156, 18.8463, 16.1540,
+14.1347, 12.5642 for j = 4..9; `8γ₁ = 113.0778`. Peak rule: strict
+local maximum on the 0.01 grid, taken in descending P, accepted only
+at ≥ one halfwidth from every accepted peak. Two nulls implemented:
+uniform placement under the same minimum separation (10 000 draws),
+and a circular zero-shift null holding the observed peaks fixed
+(10 000 draws).
+
+Precision: ΔR on the first primary block at dps 50 vs 80 identical to
+all 30 printed digits. Gates A/B PASS. Reading is entry 217.
+
+---
+
 ## 2026-08-27 — Entry 215 — O95 triage: the gate failed, the no-go was demonstrated on real primes, and the peak is γ₂
 type: result-triage
 refs: 18, 26, 211, 213, 214

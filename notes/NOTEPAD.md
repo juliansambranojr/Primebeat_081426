@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 217: THE INSTRUMENT IS READING THE SPECTRUM — 6 of 10 top peaks within a halfwidth of a zeta zero vs null 2.23 (p 0.005 uniform / 0.034 zero-shift; sensitivity holds to N=20); top six peaks ARE the six strongest in-band zeros
+- [open]   2026-08-27  entry 217: gamma_2 and gamma_3 attribute BETTER than gamma_1 (target/image ratios 1.392 and 1.402 primary, 1.717 and 1.555 sensitivity, vs gamma_1's 1.227/1.132) — best at the two frequencies the design never targeted
+- [open]   2026-08-27  entry 217: entry 214's arm-7 argmax-near-gamma_2 is WEAKER than it reads — 7 of the first 20 zeros fold within a halfwidth of it; every arm shows the same multiplicity; no arm's argmax identifies a single zero
+- [open]   2026-08-27  entry 217: still open — whether the folding favours gamma_2 over gamma_1 or gamma_2 is locally stronger at these x-scales; this run establishes the peaks are zeros, not the mechanism
+- [open]   2026-08-27  entry 216: PROVENANCE — editing O95 moved its sha 438c0d8d -> 39d666f6, and 438c0d8d is the code_version recorded inside the prereg's artifact; a later reader will find a mismatch. GATE R is the mitigation and passed on all nine units
 - [open]   2026-08-27  entry 215: O95 mechanical output `inconclusive` — detection gate failed at 3.719 vs locked 5; verdict line open for Julian; recorded next step is the 2^44 ceiling ramp, re-priced on the MEASURED ehat_rms 0.025 rather than O18's 0.042 placeholder
 - [open]   2026-08-27  entry 215: THE NO-GO DEMONSTRATED ON REAL PRIMES — every aliased arm reads gamma_1 and all its fold images at identical height (arm 5: 6.233 x4; arm 7: 2.438 x5; arm 9: 1.002 x6); nyquist_no_go proved it, the real field reproduces it to 3-4 decimals
 - [open]   2026-08-27  entry 215: the joint peak is GAMMA_2 (primary argmax 21.050 vs 21.0220, miss 0.028) and the sensitivity subset's is GAMMA_3 (24.960 vs 25.0109) — neither in the gamma_1-centred alias table; compute the candidate tables for gamma_2 and gamma_3 before preferring either reading

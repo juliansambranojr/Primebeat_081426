@@ -162,6 +162,51 @@ Delta R at dps --dps, projects per subset and per arm, prints the alias-
 candidate table on the real field, and guarded_writes
 results/multibase_real.json. Nothing in this session invokes it.
 
+TARGETS MODE (--mode targets) — EXPLORATORY, added 2026-08-27
+------------------------------------------------------------
+**The locked prereg `preregs/multibase_synthesis_v1_20260827.md` governs
+the gamma_1 attribution question ONLY and does NOT govern this mode.** No
+decision rule fires here, no verdict is written, and the prereg's artifact
+`results/multibase_real.json` is never written by this mode — the output is
+`results/multibase_targets.json`.
+
+Entry 215 recorded that the real-field joint periodogram peaks at
+gamma_2 = 21.0220 (primary argmax 21.050) and gamma_3 = 25.0109
+(sensitivity argmax 24.960), neither of which appears in the alias-
+candidate table because the design was built around gamma_1 alone. This
+mode computes the missing tables plus the control that decides whether
+those hits mean anything:
+
+  PART 1a  the joint alias set per target. Arm j's alias lattice spacing
+           is 8*gamma_1/j — set by the BASE GEOMETRY, independent of the
+           target — so arm j confuses gamma_t with every
+           gamma' = +-gamma_t + k*8*gamma_1/j. For coprime aliased arms
+           the both-sign cases force gamma' = +-gamma_t + m*8*gamma_1;
+           the joint set is COMPUTED (intersection of the per-arm classes)
+           and compared against that prediction rather than assumed, in
+           band and over a wide [2, 500] window, with the nearest
+           finite-resolution NEAR-alias reported alongside.
+  PART 1b  the candidate table per target: P/median at the target and at
+           every in-band arm image, per subset and per single arm — the
+           shape entry 214 reports for gamma_1. Reported as numbers; no
+           verdict.
+  PART 2   the peak-clustering control. Top-N peaks of the primary and
+           sensitivity periodograms (strict local max on the 0.01 grid,
+           descending P, minimum separation one halfwidth), each peak's
+           distance to the nearest zeta zero, and how many land within a
+           halfwidth. Three nulls: the analytic uniform expectation, a
+           uniform-placement null under the same minimum separation, and
+           a circular zero-shift null that holds the observed peaks fixed
+           and randomizes only the registration.
+  PART 3   each arm's argmax against the zeros, WITH the fold ambiguity
+           made explicit: an arm past its Nyquist folds all frequencies,
+           so every zero (of the first 20) whose alias class under that
+           arm passes within a halfwidth of the argmax is listed.
+
+GATE R re-runs the pipeline and checks it reproduces every unit statistic
+recorded in `results/multibase_real.json`, so the duplicated code path is
+verified against the prereg's artifact instead of trusted.
+
 GATES (shakedown)
 -----------------
 GATE A — SITE EXACTNESS. Every cached site re-satisfies
@@ -209,6 +254,8 @@ import O93_overlap_identity as o93          # pi backend, file_record, _jsonable
 DEFAULT_RESULTS_DIR = os.path.join(_HERE, "results")
 DEFAULT_OUT = os.path.join(DEFAULT_RESULTS_DIR, "multibase_shakedown.json")
 DEFAULT_REAL_OUT = os.path.join(DEFAULT_RESULTS_DIR, "multibase_real.json")
+DEFAULT_TARGETS_OUT = os.path.join(DEFAULT_RESULTS_DIR,
+                                   "multibase_targets.json")
 DEFAULT_CACHE = os.path.join(DEFAULT_RESULTS_DIR, "pi_master_lattice_cache.json")
 O18_RESULTS = os.path.join(DEFAULT_RESULTS_DIR,
                            "O18_joint_multiplicative_ladder_results.json")
@@ -850,6 +897,638 @@ def run_real(args, xs, owner_arms, pi_rows):
 
 
 # --------------------------------------------------------------------------
+# TARGETS MODE — EXPLORATORY. The locked prereg does NOT govern any of this.
+# --------------------------------------------------------------------------
+
+ZEROS_PATH = os.path.join(_HERE, "zeros600.json")
+
+
+def load_zeros(path=ZEROS_PATH, n=None):
+    """The zeta ordinates as floats, ascending, from zeros600.json."""
+    with open(path) as fh:
+        vals = json.load(fh)
+    out = [float(v) for v in vals]
+    return out[:n] if n else out
+
+
+def alias_class_distance(g, f, j):
+    """
+    Distance from g to arm j's alias class of f, {+-f + k * 8*gamma_1/j}.
+    The lattice spacing is set by the BASE GEOMETRY (8 gamma_1 / j), never
+    by the target f, so this works for any f.
+    """
+    sp = 8.0 * GAMMA1 / j
+    best = float("inf")
+    for base in (f, -f):
+        d = (g - base) % sp
+        best = min(best, d, sp - d)
+    return best
+
+
+def class_members(f, j, lo, hi):
+    """{+-f + k*8*gamma_1/j} intersected with [lo, hi], f itself included."""
+    sp = 8.0 * GAMMA1 / j
+    out = set()
+    for base in (f, -f):
+        k = math.ceil((lo - base) / sp - 1e-12)
+        g = base + k * sp
+        while g <= hi + 1e-12:
+            if g >= lo - 1e-12:
+                out.add(round(g, 9))
+            g += sp
+    return sorted(out)
+
+
+def candidate_set_target(target_f, arms, lo=BAND_LO, hi=BAND_HI):
+    """
+    The generalization of candidate_set to an arbitrary target frequency.
+    Returns [(freq, category, [arms placing it])] with the target first;
+    category "target" or "target_image". Images merged at FREQ_TOL.
+    """
+    cands = {}
+    order = []
+
+    def put(freq, cat, j):
+        for existing in order:
+            if abs(existing - freq) <= FREQ_TOL:
+                cands[existing][1].append(j)
+                return
+        order.append(freq)
+        cands[freq] = [cat, [j] if j else []]
+
+    if lo <= target_f <= hi:
+        put(target_f, "target", None)
+    for j in arms:
+        for g in fold_images(target_f, j, lo, hi):
+            if abs(g - target_f) > FREQ_TOL:
+                put(g, "target_image", j)
+    rows = []
+    for f in sorted(cands):
+        cat, js = cands[f]
+        rows.append((f, cat, sorted(set(js))))
+    return rows
+
+
+def joint_alias_set(target_f, arms, lo, hi, tol=1e-6):
+    """
+    The exact joint confusable set of target_f under ALL of `arms` over
+    [lo, hi]: every g lying in every arm's alias class of target_f.
+    Candidates are drawn from the smallest arm's class (a superset, since
+    8*gamma_1 is a multiple of every 8*gamma_1/j) and filtered.
+
+    Also returns the entry-211 PREDICTION for coprime aliased arms —
+    g = +-target_f + m * 8*gamma_1 — so the two can be compared rather
+    than assumed.
+    """
+    j0 = min(arms)
+    pool = class_members(target_f, j0, lo, hi)
+    joint = [g for g in pool
+             if all(alias_class_distance(g, target_f, j) <= tol
+                    for j in arms)]
+    sp = 8.0 * GAMMA1
+    predicted = sorted(set(class_members(target_f, 1, lo, hi)))  # spacing 8*g1
+    agree = (len(joint) == len(predicted) and
+             all(abs(a - b) <= tol for a, b in zip(joint, predicted)))
+    return {"arms": list(arms), "window": [lo, hi],
+            "joint_spacing_predicted": sp,
+            "joint_members": joint,
+            "predicted_members": predicted,
+            "prediction_matches": bool(agree)}
+
+
+def nearest_joint_near_alias(target_f, arms, halfwidth, exclude_radius,
+                             lo=BAND_LO, hi=BAND_HI, step=0.0005, keep=6):
+    """
+    Finite resolution admits NEAR confusables: a g whose worst per-arm
+    alias-class distance is small but nonzero. maxdist(g) = max over arms
+    of alias_class_distance(g, target_f, j); local minima of maxdist,
+    excluding the target's own neighbourhood, ranked.
+    """
+    n = int(round((hi - lo) / step)) + 1
+    gs = [lo + k * step for k in range(n)]
+    md = [max(alias_class_distance(g, target_f, j) for j in arms) for g in gs]
+    mins = []
+    for k in range(1, n - 1):
+        if md[k] <= md[k - 1] and md[k] < md[k + 1]:
+            if abs(gs[k] - target_f) < exclude_radius:
+                continue
+            mins.append((md[k], gs[k]))
+    mins.sort()
+    return [{"freq": round(g, 4), "joint_miss": round(m, 4),
+             "inside_halfwidth": bool(m <= halfwidth)}
+            for m, g in mins[:keep]]
+
+
+def find_peaks(grid, P, min_sep, n_max):
+    """
+    PEAK RULE (stated so it can be checked): an index k with
+    P[k] > P[k-1] and P[k] > P[k+1] (strict on both sides, grid endpoints
+    excluded) is a local maximum; local maxima are then taken in
+    descending P and accepted only if at least `min_sep` from every
+    already-accepted peak. Returns the first n_max accepted.
+    """
+    loc = [k for k in range(1, len(P) - 1)
+           if P[k] > P[k - 1] and P[k] > P[k + 1]]
+    loc.sort(key=lambda k: -P[k])
+    picked = []
+    for k in loc:
+        if all(abs(grid[k] - grid[m]) >= min_sep for m in picked):
+            picked.append(k)
+        if len(picked) >= n_max:
+            break
+    return picked
+
+
+def nearest_zero(g, zeros):
+    z = min(zeros, key=lambda t: abs(t - g))
+    return z, abs(z - g)
+
+
+def uniform_null_counts(n_peaks, zeros_in_band, halfwidth, lo, hi, min_sep,
+                        draws, rng):
+    """
+    Null B — n_peaks placements drawn uniformly in [lo, hi] subject to the
+    SAME minimum separation the peak rule enforces (rejection sampling),
+    counting how many land within `halfwidth` of some zero. `draws` draws.
+    """
+    zs = np.asarray(zeros_in_band, dtype=np.float64)
+    counts = np.empty(draws, dtype=np.int64)
+    for d in range(draws):
+        pts = []
+        guard = 0
+        while len(pts) < n_peaks and guard < 100000:
+            guard += 1
+            x = rng.uniform(lo, hi)
+            if all(abs(x - y) >= min_sep for y in pts):
+                pts.append(x)
+        a = np.asarray(pts, dtype=np.float64)
+        counts[d] = int(np.sum(np.min(np.abs(a[:, None] - zs[None, :]),
+                                      axis=1) <= halfwidth))
+    return counts
+
+
+def shift_null_counts(peak_freqs, zeros_in_band, halfwidth, lo, hi, draws,
+                      rng):
+    """
+    Null C — hold the OBSERVED peaks fixed and circularly shift the zero
+    set within the band by u ~ U(0, hi-lo), wrapping. Preserves both the
+    peaks' real configuration and the zeros' real spacings; only the
+    registration between them is randomized.
+    """
+    W = hi - lo
+    zs = np.asarray(zeros_in_band, dtype=np.float64)
+    ps = np.asarray(peak_freqs, dtype=np.float64)
+    counts = np.empty(draws, dtype=np.int64)
+    for d in range(draws):
+        u = rng.uniform(0.0, W)
+        zsh = lo + np.mod(zs - lo + u, W)
+        # wrap-aware distance on the circle of circumference W
+        dd = np.abs(ps[:, None] - zsh[None, :])
+        dd = np.minimum(dd, W - dd)
+        counts[d] = int(np.sum(np.min(dd, axis=1) <= halfwidth))
+    return counts
+
+
+def _tail_p(counts, obs):
+    return float(np.mean(counts >= obs))
+
+
+def run_targets(args, xs, owner_arms, pi_rows, cache_report):
+    """
+    EXPLORATORY. Entry 215's follow-up: the alias-candidate tables for
+    gamma_2 and gamma_3, the peak-clustering control against the zeta
+    zeros, and the per-arm argmax fold analysis. The locked prereg
+    (preregs/multibase_synthesis_v1_20260827.md) governs the gamma_1
+    attribution question ONLY and does not govern anything below. No
+    decision rule fires here and no verdict is written.
+    """
+    zeros_all = load_zeros()
+    zeros20 = zeros_all[:20]
+    gamma2 = zeros_all[1]
+    gamma3 = zeros_all[2]
+    targets = (("gamma1", GAMMA1), ("gamma2", gamma2), ("gamma3", gamma3))
+    zeros_in_band = [z for z in zeros_all if BAND_LO <= z <= BAND_HI]
+
+    print()
+    print(RULE)
+    print("O95 --mode targets — EXPLORATORY")
+    print(RULE)
+    print("  The locked prereg preregs/multibase_synthesis_v1_20260827.md")
+    print("  governs the gamma_1 attribution question ONLY. Nothing below")
+    print("  is under it: no decision rule fires, no verdict is written.")
+    print(f"  targets         : gamma_2 = {gamma2:.6f}, "
+          f"gamma_3 = {gamma3:.6f}  (zeros600.json rows 2, 3)")
+    print(f"  zeros in band [{BAND_LO:g}, {BAND_HI:g}] : "
+          f"{len(zeros_in_band)} — "
+          f"{', '.join(f'{z:.4f}' for z in zeros_in_band)}")
+    print(f"  pi calls this run : "
+          f"{cache_report['n_pi_calls_this_run']}", flush=True)
+
+    grid = gamma_grid()
+    pi_by_x = {}
+    for i in sorted(pi_rows):
+        x, p = pi_rows[i]
+        pi_by_x[x] = p
+
+    # ------------------------------------------------ the periodograms
+    old = mp.dps
+    units = {}
+    try:
+        mp.dps = int(args.dps)
+        rcache = {}
+
+        def R_at(x):
+            if x not in rcache:
+                rcache[x] = riemannr(mpf(int(x)))
+            return rcache[x]
+
+        unit_defs = [("subset", name, arms) for name, arms in SUBSETS] + \
+                    [("arm", f"arm_{j}", (j,)) for j in ARMS]
+        for kind, name, arms in unit_defs:
+            sites = subset_sites(xs, owner_arms, arms, args.x0)
+            logx, w, span, freq_res, halfwidth, n_blocks = \
+                block_geometry(sites)
+            c = np.array([pi_by_x[sites[k + 1]] - pi_by_x[sites[k]]
+                          for k in range(n_blocks)], dtype=np.float64)
+            L = np.array([float(R_at(sites[k + 1]) - R_at(sites[k]))
+                          for k in range(n_blocks)], dtype=np.float64)
+            ehat = (c - L) / np.sqrt(np.asarray(sites[:n_blocks],
+                                                dtype=np.float64))
+            C, S = phase_matrices(grid, logx)
+            a = w * ehat
+            P = np.hypot(C @ a, -(S @ a))
+            med = float(np.median(P))
+            k0 = int(np.argmax(P))
+            units[name] = {
+                "kind": kind, "arms": list(arms), "n_rungs": len(sites),
+                "n_blocks": n_blocks, "span": span,
+                "freq_resolution": freq_res,
+                "band_halfwidth_used": halfwidth,
+                "ehat_rms": float(np.sqrt(np.mean(ehat * ehat))),
+                "P_median": med, "argmax_gamma": float(grid[k0]),
+                "P_max": float(P[k0]),
+                "P_max_over_median": float(P[k0]) / med,
+                "_P": P, "_logx": logx, "_w": w,
+            }
+        prim_sites = subset_sites(xs, owner_arms, SUBSETS[0][1], args.x0)
+        prec = precision_check(prim_sites, args.dps, args.precision_dps)
+    finally:
+        mp.dps = old
+
+    # GATE R — reproduce the prereg's artifact rather than trust it.
+    gate_r = {"reference": args.real_ref, "checked": [], "ok": None}
+    try:
+        with open(args.real_ref) as fh:
+            ref = json.load(fh)["summary"]["units"]
+        bad = []
+        for name, u in units.items():
+            r = ref[name]
+            for key, tol in (("P_median", 1e-12), ("argmax_gamma", 1e-9),
+                             ("P_max_over_median", 1e-9),
+                             ("ehat_rms", 1e-12)):
+                a_, b_ = u[key], r[key]
+                if abs(a_ - b_) > tol * max(1.0, abs(b_)):
+                    bad.append(f"{name}.{key} {a_!r} vs {b_!r}")
+            gate_r["checked"].append(name)
+        gate_r["ok"] = not bad
+        gate_r["mismatches"] = bad
+        gate_r["reference_code_version"] = \
+            json.load(open(args.real_ref))["params"]["code_version"]
+    except Exception as exc:                                # pragma: no cover
+        gate_r["ok"] = False
+        gate_r["error"] = repr(exc)
+    print()
+    print(f"  GATE R (recomputation reproduces "
+          f"{os.path.basename(args.real_ref)}) : "
+          f"{'PASS' if gate_r['ok'] else 'FAIL ' + str(gate_r.get('mismatches'))}",
+          flush=True)
+
+    # --------------------------------- PART 1a — joint alias sets
+    print()
+    print(RULE)
+    print("PART 1a — THE JOINT ALIAS SET PER TARGET (entry 211's collapse,")
+    print("          re-derived with the target as a free parameter)")
+    print(RULE)
+    print(f"  arm j alias spacing 8*gamma_1/j (base geometry, target-free): "
+          f"{', '.join(f'j={j}:{8.0*GAMMA1/j:.4f}' for j in ARMS)}")
+    print(f"  8*gamma_1 = {8.0 * GAMMA1:.4f}")
+    joint = {}
+    for tname, tf in targets:
+        joint[tname] = {}
+        for sname, arms in SUBSETS:
+            in_band = joint_alias_set(tf, arms, BAND_LO, BAND_HI)
+            wide = joint_alias_set(tf, arms, 2.0, 500.0)
+            hw = units[sname]["band_halfwidth_used"]
+            near = nearest_joint_near_alias(tf, arms, hw, hw)
+            joint[tname][sname] = {"in_band": in_band, "wide_window": wide,
+                                   "nearest_near_aliases": near}
+            others = [g for g in in_band["joint_members"]
+                      if abs(g - tf) > 1e-6]
+            print(f"  {tname:>7} {sname:>17}: in-band joint confusables "
+                  f"besides the target: "
+                  f"{('none' if not others else ', '.join(f'{g:.4f}' for g in others))}"
+                  f"   [prediction +-target + m*8g1 matches: "
+                  f"{in_band['prediction_matches']}]")
+            print(f"  {'':>7} {'':>17}  wide window [2,500]: "
+                  f"{', '.join(f'{g:.3f}' for g in wide['joint_members'])}")
+            print(f"  {'':>7} {'':>17}  nearest NEAR-alias "
+                  f"(max per-arm class distance): " +
+                  (", ".join(f"{d['freq']:.3f} (miss {d['joint_miss']:.3f})"
+                             for d in near[:3]) or "none"))
+    # coprime pair {8,9} explicitly, since that is the collapse's premise
+    for tname, tf in targets:
+        js = joint_alias_set(tf, (8, 9), 2.0, 500.0)
+        joint[tname]["pair_8_9_wide"] = js
+        print(f"  {tname:>7} coprime pair {{8,9}} over [2,500]: "
+              f"{', '.join(f'{g:.3f}' for g in js['joint_members'])}"
+              f"   [matches +-t + m*8g1: {js['prediction_matches']}]")
+    print(flush=True)
+
+    # --------------------------------- PART 1b — candidate tables
+    print()
+    print(RULE)
+    print("PART 1b — CANDIDATE TABLES PER TARGET (P/median at the target")
+    print("          and at every in-band arm image), EXPLORATORY")
+    print(RULE)
+    tables = {}
+    for tname, tf in targets:
+        tables[tname] = {}
+        for name, u in units.items():
+            arms = tuple(u["arms"])
+            rows = candidate_set_target(tf, arms)
+            tables[tname][name] = {"rows": rows,
+                                   "freqs": [f for f, _, _ in rows]}
+    # P at the EXACT candidate frequencies is an off-grid evaluation and
+    # needs ehat, which the loop above did not retain; the residual is
+    # rebuilt per unit once, reusing the memoised R values.
+    old = mp.dps
+    try:
+        mp.dps = int(args.dps)
+        rcache2 = {}
+
+        def R2(x):
+            if x not in rcache2:
+                rcache2[x] = riemannr(mpf(int(x)))
+            return rcache2[x]
+
+        for name, u in units.items():
+            sites = subset_sites(xs, owner_arms, tuple(u["arms"]), args.x0)
+            nb = u["n_blocks"]
+            c = np.array([pi_by_x[sites[k + 1]] - pi_by_x[sites[k]]
+                          for k in range(nb)], dtype=np.float64)
+            L = np.array([float(R2(sites[k + 1]) - R2(sites[k]))
+                          for k in range(nb)], dtype=np.float64)
+            ehat = (c - L) / np.sqrt(np.asarray(sites[:nb],
+                                                dtype=np.float64))
+            for tname, tf in targets:
+                t = tables[tname][name]
+                Pf = project_single(u["_logx"], u["_w"], ehat, t["freqs"])
+                med = u["P_median"]
+                t["table"] = [
+                    {"freq": float(f), "category": cat, "arms": js,
+                     "P": float(p), "P_over_median": float(p) / med}
+                    for (f, cat, js), p in zip(t["rows"], Pf)]
+                tgt = [r for r in t["table"] if r["category"] == "target"]
+                imgs = [r for r in t["table"] if r["category"] != "target"]
+                t["target_P_over_median"] = tgt[0]["P_over_median"] if tgt \
+                    else None
+                t["max_image_P_over_median"] = (max(r["P_over_median"]
+                                                    for r in imgs)
+                                                if imgs else None)
+                t["dominates_all_images"] = (
+                    bool(imgs) and tgt and
+                    all(tgt[0]["P"] > r["P"] for r in imgs)) or \
+                    (bool(tgt) and not imgs)
+                t["dominance_ratio"] = (
+                    tgt[0]["P"] / max(r["P"] for r in imgs)
+                    if (tgt and imgs) else None)
+                # On a single aliased arm the target and every image are
+                # the SAME number up to floor jitter, so the strict
+                # comparison above decides on float noise. The flatness
+                # figure is the honest readout there.
+                t["comb_flatness"] = (
+                    max(abs(r["P"] / tgt[0]["P"] - 1.0) for r in imgs)
+                    if (tgt and imgs and tgt[0]["P"] > 0) else None)
+                t["comb_is_flat_1e_3"] = (
+                    t["comb_flatness"] is not None and
+                    t["comb_flatness"] <= 1e-3)
+                del t["rows"], t["freqs"]
+    finally:
+        mp.dps = old
+
+    for tname, tf in targets:
+        print()
+        print(f"  TARGET {tname} = {tf:.6f}")
+        print(f"  {'unit':>17} {'P(t)/med':>9} {'max img':>9} "
+              f"{'ratio':>7} {'dom':>5} {'flat':>9}  images (freq: P/med)")
+        for name in list(units):
+            t = tables[tname][name]
+            imgs = [r for r in t["table"] if r["category"] != "target"]
+            istr = ", ".join(f"{r['freq']:.3f}:{r['P_over_median']:.3f}"
+                             for r in imgs) or "none in band"
+            tp = t["target_P_over_median"]
+            mx = t["max_image_P_over_median"]
+            rt = t["dominance_ratio"]
+            fl = t["comb_flatness"]
+            print(f"  {name:>17} {tp:>9.3f} "
+                  f"{(f'{mx:.3f}' if mx is not None else '   -'):>9} "
+                  f"{(f'{rt:.3f}' if rt is not None else '   -'):>7} "
+                  f"{('yes' if t['dominates_all_images'] else 'no'):>5} "
+                  f"{(f'{fl:.2e}' if fl is not None else '   -'):>9}  "
+                  f"{istr}")
+    print(flush=True)
+
+    # --------------------------------- PART 2 — peak clustering control
+    print()
+    print(RULE)
+    print("PART 2 — DOES THE PEAK SET CLUSTER ON ZETA ZEROS? (the control)")
+    print(RULE)
+    print("  peak rule: strict local max on the 0.01 grid (P[k] > both")
+    print("  neighbours, endpoints excluded), taken in descending P, each")
+    print("  accepted only if >= one halfwidth (0.600) from every")
+    print("  already-accepted peak.")
+    rng = np.random.default_rng(args.seed)
+    clustering = {}
+    for name in ("primary_5to9", "sensitivity_4to9"):
+        u = units[name]
+        P, med, hw = u["_P"], u["P_median"], u["band_halfwidth_used"]
+        clustering[name] = {"band_halfwidth": hw, "entries": {}}
+        picked = find_peaks(grid, P, hw, max(args.top_n))
+        print()
+        print(f"  {name} — top {max(args.top_n)} peaks "
+              f"(halfwidth {hw:.3f})")
+        print(f"  {'#':>3} {'freq':>8} {'P/med':>8} {'nearest zero':>13} "
+              f"{'miss':>7} {'hit':>4}")
+        peak_rows = []
+        for rank, k in enumerate(picked, 1):
+            g = float(grid[k])
+            z, d = nearest_zero(g, zeros_all)
+            peak_rows.append({"rank": rank, "freq": g,
+                              "P_over_median": float(P[k]) / med,
+                              "nearest_zero": z, "miss": d,
+                              "within_halfwidth": bool(d <= hw)})
+            print(f"  {rank:>3} {g:>8.3f} {float(P[k])/med:>8.3f} "
+                  f"{z:>13.4f} {d:>7.3f} "
+                  f"{('yes' if d <= hw else '.'):>4}")
+        clustering[name]["peaks"] = peak_rows
+        for N in args.top_n:
+            rows = peak_rows[:N]
+            obs = sum(1 for r in rows if r["within_halfwidth"])
+            freqs = [r["freq"] for r in rows]
+            W = BAND_HI - BAND_LO
+            cov6 = 6 * 2 * hw / W
+            cov_actual = len(zeros_in_band) * 2 * hw / W
+            cA = uniform_null_counts(N, zeros_in_band, hw, BAND_LO, BAND_HI,
+                                     hw, args.null_draws, rng)
+            cB = shift_null_counts(freqs, zeros_in_band, hw, BAND_LO,
+                                   BAND_HI, args.null_draws, rng)
+            ent = {
+                "N": N, "observed_hits": obs,
+                "analytic_null_brief_6_zeros": N * cov6,
+                "analytic_null_actual_zeros": N * cov_actual,
+                "n_zeros_in_band": len(zeros_in_band),
+                "coverage_fraction_actual": cov_actual,
+                "uniform_minsep_null": {
+                    "draws": int(args.null_draws),
+                    "mean": float(cA.mean()), "sd": float(cA.std(ddof=1)),
+                    "p_ge_observed": _tail_p(cA, obs)},
+                "zero_shift_null": {
+                    "draws": int(args.null_draws),
+                    "mean": float(cB.mean()), "sd": float(cB.std(ddof=1)),
+                    "p_ge_observed": _tail_p(cB, obs)},
+            }
+            clustering[name]["entries"][f"N{N}"] = ent
+            print(f"    N = {N:>2}: observed {obs} within {hw:.3f} of a "
+                  f"zero | analytic uniform null "
+                  f"{N * cov_actual:.2f} ({len(zeros_in_band)} zeros in "
+                  f"band) / {N * cov6:.2f} (6 zeros)")
+            print(f"            uniform+minsep null mean "
+                  f"{cA.mean():.2f} sd {cA.std(ddof=1):.2f} "
+                  f"P(>= obs) = {_tail_p(cA, obs):.4f}   |   "
+                  f"zero-shift null mean {cB.mean():.2f} sd "
+                  f"{cB.std(ddof=1):.2f} P(>= obs) = "
+                  f"{_tail_p(cB, obs):.4f}")
+    print(flush=True)
+
+    # --------------------------------- PART 3 — arm argmax fold analysis
+    print()
+    print(RULE)
+    print("PART 3 — EACH ARM'S ARGMAX, AND EVERY ZERO THAT FOLDS THERE")
+    print(RULE)
+    print("  An arm past its Nyquist folds ALL frequencies: a peak at g*")
+    print("  is consistent with EVERY zero whose alias class under that")
+    print("  arm passes within a halfwidth of g*. All such zeros are")
+    print("  listed; where several appear, g* does not identify one.")
+    arm_rows = {}
+    for name, u in units.items():
+        g = u["argmax_gamma"]
+        hw = u["band_halfwidth_used"]
+        z, d = nearest_zero(g, zeros_all)
+        row = {"kind": u["kind"], "arms": u["arms"],
+               "argmax_gamma": g, "P_max_over_median": u["P_max_over_median"],
+               "band_halfwidth_used": hw,
+               "nearest_zero_direct": z, "miss_direct": d,
+               "direct_within_halfwidth": bool(d <= hw)}
+        if u["kind"] == "arm":
+            j = u["arms"][0]
+            folds = []
+            for zi, zz in enumerate(zeros20, 1):
+                dd = alias_class_distance(g, zz, j)
+                if dd <= hw:
+                    folds.append({"index": zi, "zero": zz,
+                                  "fold_distance": dd})
+            row["alias_spacing"] = 8.0 * GAMMA1 / j
+            row["zeros_folding_within_halfwidth"] = folds
+            row["n_zeros_folding"] = len(folds)
+            row["identifies_a_single_zero"] = bool(len(folds) == 1)
+        arm_rows[name] = row
+    for name, r in arm_rows.items():
+        print()
+        print(f"  {name:>17}: argmax {r['argmax_gamma']:.3f} at "
+              f"P/med {r['P_max_over_median']:.3f}; nearest zero "
+              f"{r['nearest_zero_direct']:.4f} (miss "
+              f"{r['miss_direct']:.3f}"
+              f"{', within halfwidth' if r['direct_within_halfwidth'] else ''})")
+        if r["kind"] == "arm":
+            fl = r["zeros_folding_within_halfwidth"]
+            print(f"  {'':>17}  alias spacing {r['alias_spacing']:.4f}; "
+                  f"{len(fl)} of the first 20 zeros fold to within "
+                  f"{r['band_halfwidth_used']:.3f}:")
+            print(f"  {'':>17}  " +
+                  (", ".join(f"#{f['index']} {f['zero']:.4f} "
+                             f"(d {f['fold_distance']:.3f})" for f in fl)
+                   or "none"))
+    print(flush=True)
+
+    for u in units.values():
+        for k in ("_P", "_logx", "_w"):
+            u.pop(k, None)
+
+    payload = {
+        "schema_version": "1",
+        "script": os.path.basename(__file__),
+        "generated_utc": _stamp(_utc()),
+        "status": ("EXPLORATORY — the locked prereg "
+                   "preregs/multibase_synthesis_v1_20260827.md governs the "
+                   "gamma_1 attribution question ONLY and does NOT govern "
+                   "this run. No decision rule fires here; no verdict is "
+                   "written. Entry 215's follow-up: the alias-candidate "
+                   "tables for gamma_2 and gamma_3, the peak-clustering "
+                   "control against the zeta zeros, and the per-arm argmax "
+                   "fold analysis."),
+        "params": {"code_version": _code_version(), "argv": sys.argv,
+                   "mode": "targets", "x0": args.x0, "dps": args.dps,
+                   "precision_dps": args.precision_dps,
+                   "ceiling_pow": args.ceiling_pow,
+                   "band": [BAND_LO, BAND_HI], "gamma_step": GAMMA_STEP,
+                   "seed": args.seed, "top_n": list(args.top_n),
+                   "null_draws": args.null_draws,
+                   "zeros_source": ZEROS_PATH,
+                   "targets": {n: f for n, f in targets},
+                   "pi_calls_this_run":
+                       cache_report["n_pi_calls_this_run"],
+                   "cache": cache_report},
+        "constants": {
+            "alias_algebra": ("arm j alias lattice spacing 8*gamma_1/j, set "
+                              "by the BASE GEOMETRY and independent of the "
+                              "target; arm j confuses any target gamma_t "
+                              "with every gamma' = +-gamma_t + k*8*gamma_1/j"),
+            "joint_collapse": ("for coprime aliased arms the both-sign "
+                               "cases force gamma' = +-gamma_t + m*8*gamma_1; "
+                               "computed and compared against that "
+                               "prediction rather than assumed"),
+            "peak_rule": ("strict local max on the 0.01 grid, endpoints "
+                          "excluded, taken in descending P, accepted only "
+                          "if >= one halfwidth from every accepted peak"),
+            "nulls": ("analytic uniform (N * n_zeros * 2*halfwidth / "
+                      "band width); uniform placements under the same "
+                      "minimum separation; and a circular zero-shift null "
+                      "holding the observed peaks fixed"),
+        },
+        "summary": {
+            "units": units,
+            "gate_r_reproduces_prereg_artifact": gate_r,
+            "zeros_in_band": zeros_in_band,
+            "joint_alias_sets": joint,
+            "candidate_tables": tables,
+            "peak_clustering": clustering,
+            "arm_argmax_fold_analysis": arm_rows,
+            "precision_check": prec,
+        },
+        "rows": [],
+    }
+    if not args.no_json:
+        guarded_write(o93._jsonable(payload), args.targets_out,
+                      allow_nan=False)
+        print(f"  wrote {args.targets_out}")
+    print()
+    print(RULE)
+    print("EXPLORATORY OUTPUT — no verdict, no decision rule, not under "
+          "the locked prereg.")
+    print(RULE)
+    return 0
+
+# --------------------------------------------------------------------------
 # main
 # --------------------------------------------------------------------------
 
@@ -859,7 +1538,7 @@ def parse_args():
                      "is EXPLORATORY: cache build + synthetics only; the "
                      "real-field joint measurement is gated behind "
                      "--mode real --confirm-real."))
-    ap.add_argument("--mode", choices=("shakedown", "real"),
+    ap.add_argument("--mode", choices=("shakedown", "real", "targets"),
                     default="shakedown")
     ap.add_argument("--confirm-real", action="store_true",
                     help="required with --mode real; without it the script "
@@ -887,6 +1566,15 @@ def parse_args():
     ap.add_argument("--cache", type=str, default=DEFAULT_CACHE)
     ap.add_argument("--out", type=str, default=DEFAULT_OUT)
     ap.add_argument("--real-out", type=str, default=DEFAULT_REAL_OUT)
+    ap.add_argument("--targets-out", type=str, default=DEFAULT_TARGETS_OUT,
+                    help="EXPLORATORY targets-mode artifact; a DIFFERENT "
+                         "path from --real-out, which is the prereg's")
+    ap.add_argument("--real-ref", type=str, default=DEFAULT_REAL_OUT,
+                    help="read-only reference for GATE R in targets mode")
+    ap.add_argument("--top-n", type=int, nargs="+", default=[10, 20],
+                    help="peak counts for the clustering control")
+    ap.add_argument("--null-draws", type=int, default=10000,
+                    help="draws for each permutation-style null")
     ap.add_argument("--no-json", action="store_true")
     return ap.parse_args()
 
@@ -908,7 +1596,8 @@ def main():
 
     print(RULE)
     print("O95 — MULTIBASE SYNTHESIS — " +
-          ("SHAKEDOWN" if args.mode == "shakedown" else "REAL"))
+          {"shakedown": "SHAKEDOWN", "real": "REAL",
+           "targets": "TARGETS (EXPLORATORY)"}[args.mode])
     if args.mode == "shakedown":
         print("EXPLORATORY SHAKEDOWN. No prereg, no decision rule, NO")
         print("VERDICT. All statistics below are computed from SYNTHETIC")
@@ -1000,6 +1689,9 @@ def main():
 
     if args.mode == "real":
         return run_real(args, xs, owner_arms, pi_rows)
+
+    if args.mode == "targets":
+        return run_targets(args, xs, owner_arms, pi_rows, cache_report)
 
     # From here on, SHAKEDOWN: geometry only. The pi values drop out of
     # scope — no residual, no periodogram, no statistic touches them.
