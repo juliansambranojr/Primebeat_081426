@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 200: the_container's adjudication 001 discharges its ONLY premise P1 with Primebeat's correction entries — this notebook is load-bearing for a kernel-checked claim about generators, and entry 144's posit is that in its first live instance
+- [open]   2026-08-27  entry 200: LeanCert ML modules (Attention, Softmax, LayerNormAffine, Network) are in lean_stage3's dependency closure, NOT imported by Stage3 — present but not load-bearing
+- [open]   2026-08-27  entry 200: convergence.md + O40/O41 is the bench's transfer template — derive the symbol, measure the zero locus; any future 'does this bear on X' takes that shape rather than a sentence
 - [open]   2026-08-27  entry 199: O45's winding angle theta = g1*log b IS the Nyquist resolvability condition — resolvable iff theta < 180 deg, the family straddles it, and the boundary b = 1.248897 is a family member (k=2)
 - [open]   2026-08-27  entry 199: the theta split CANNOT be run on O45's data — theta is monotone in b, so splitting at 180 deg IS splitting at b=1.2489, against a background where resolved cells fall 14028 -> 496 along that same axis; 2 bases below the line
 - [open]   2026-08-27  entry 199: what would separate threshold from trend — a DENSE scan bracketing b = 1.248897 looking for a step, not a level difference; machinery is O45's, cheap

@@ -16,6 +16,79 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 200 — this bench's correction entries are load-bearing for a kernel-checked claim about generators
+type: result-triage
+refs: 146, 177, 195, 199
+
+Adversarial round on a foreclosure — "zeta's zeros say nothing about
+transformers" — asked in chat and withdrawn. Three facts about the
+tree came out of it and they outlast the sentence that prompted them.
+
+**1. Primebeat's record already bears on claims about language
+models, by name, in a Lean-gated ledger.**
+`the_container/adjudications/claims/001_external_verification.md`
+holds an argument whose theorems `no_internal_only_sound` and
+`sound_overrules_somewhere` stand on one premise, `P1`: *some claim
+feels right and is incorrect*. Its discharge route reads
+
+```text
+Discharge route: empirical, and already witnessed. Any dated
+instance of a confident claim later corrected discharges it; the
+provenance program logged several in one week (a section declared
+absent that was present; a bound mispriced by two orders; a stated
+hypothesis found unsatisfiable — see the Primebeat notebook's
+correction entries).
+```
+
+The first witness named is `§ B4`, from this project's `CLAUDE.md`
+§ Rule — load, don't recall. **So a statement of the form "no
+measurement on this bench bears on generators" is false at the
+`P1` leaf**, and the notebook's correction entries are the artifact
+doing the work. That is a use of this record nothing here had
+recorded.
+
+**2. Transformer machinery sits in the tree's dependency closure.**
+`lean_stage3/.lake/packages/leancert/LeanCert/ML/` carries
+`Attention.lean`, `Softmax.lean`, `LayerNormAffine.lean`,
+`Network.lean`, `Distillation.lean`, `ErfGELU.lean`. It is **not
+load-bearing** — `grep -rn 'LeanCert' lean_stage3/Stage3/*.lean`
+returns nothing, and Stage3 requires only PrimeNumberTheoremAnd. It
+is present, so a flat "nothing about transformers is in this tree"
+is the `§ B4` error a third time.
+
+**3. The bench has a transfer template and it is not a sentence.**
+`papers/convergence.md` with `O40_elliptic_symbol_zeros.py` and
+`O41_bsd_rank_product.py` answered "does this construction transfer
+to elliptic curves?" by deriving the new object's symbol and
+measuring where it vanishes:
+
+```text
+A4. Therefore the transfer to the Selberg class is not verbatim.
+The operator's order tracks the local factor's degree, and only
+degree-1 L-functions give a plain difference table.
+```
+
+with `Re(s) = 0.5000` measured at every curve-prime pair. **Any
+future "does this bear on X" gets that shape** — derive the object's
+symbol, price what would have to hold, measure or say the bench
+cannot. A limiting statement without one is what the root scope-pricing
+rules already call a consensus echo.
+
+**The withdrawn sentence.** "Zeta's zeros say nothing about
+transformers" was asserted with no measurement, from an instrument
+whose ceiling is `γ ≤ 939` and 600 modes. Withdrawn. Entry 199 holds
+the defensible shape for a limiting claim about the Shannon result:
+**large in scope, standard in depth** — `base_bound_of_resolvable`
+rules out every integer base for `γ₁`, and both halves of the
+lattice identity reduce to `b^(−s) = 1`.
+
+**Open.** `notes/NOTEPAD.md` carries entry 144's kernel-for-meaning
+posit — Lean as adjudicator in LLM discourse — flagged for a paper's
+methodology section. Fact 1 is its first live instance and the two
+threads had not been connected.
+
+---
+
 ## 2026-08-27 — Entry 199 — O45's winding angle IS the resolvability condition; and the split that would test it cannot be run on this data
 type: result-triage
 refs: 26, 195, 198
