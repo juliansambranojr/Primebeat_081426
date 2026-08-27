@@ -16,6 +16,268 @@ Julian's call.
 
 ---
 
+## 2026-08-26 — Entry 194 — the zeros are ordinary and the control is the anomaly; a design claim of mine was half wrong
+type: result-triage
+refs: 26, 112, 192, 193
+
+Reading of entry 193's numbers. EXPLORATORY throughout — no prereg
+governs O90 and nothing here is a verdict.
+
+**Correction to entry 192.** That entry argues a concentration
+statistic on mode magnitudes is vacuous by construction, because the
+magnitude factors as `2^(r/2) · |1 − 2^(−ρ)|^(d+1) / |ρ|` with `r` in a
+common scale. **That is a statement about the complex modulus
+`|z_k|`. The statistic runs on `|c_k| = 2|Re z_k|`, which carries
+`cos(arg z_k)`, and the argument depends on `r`.** Measured both ways:
+
+```text
+                     max |Δ profile| across cells of one depth
+ψ  |z|   d=1/3/6      1.3e-51   5.0e-52   1.7e-51     r-invariant
+ψ  |c|   d=1/3/6      4.5e-02   8.8e-02   1.3e-01     r-dependent
+π  |z|   d=1/3/6      1.7e-03   4.3e-03   3.2e-03     r-dependent
+π  |c|   d=1/3/6      5.8e-02   1.0e-01   1.2e-01     r-dependent
+```
+
+`top1` on the ψ `|z|` profile is r-invariant to every printed digit —
+8.740549e-02 at all 24 cells of depth 6. On `|c|` it ranges 3.70e-02 to
+1.30e-01 over those same cells. **So top-1 share was a perfectly good
+statistic and I argued us out of it for a reason that does not apply
+to it.** The vacuousness trap is real and its scope is one quantity
+narrower than entry 192 claims. The π form additionally makes `|z|`
+itself r-dependent at ~3e-3, since nothing factors there.
+
+**The prediction I stated failed.** Entry 192 says Nyquist implies no
+small subset of modes should be able to do the work, so the zeros
+should read as maximally cancelled. What the run says is that
+**every** cell is maximally cancelled — coherence spans 0.003 to 0.20
+across all 158 cells at all three depths, medians 0.073, 0.105, 0.112.
+Around 90% of mode mass cancels everywhere. The ensemble picture holds
+and it holds so uniformly that it separates nothing.
+
+**Where it does separate, it runs the other way.** The exact zero
+`(20,6)` is LESS cancelled than the non-zero `(19,6)`, 2.17× in ψ and
+2.50× in π. Against its own depth `(20,6)` sits at the 50th percentile
+and `(19,6)` at the 21st. The separation is the control sitting low.
+`(20,6)` is ordinary.
+
+**Why that is less strange than it reads.** The model carries the
+oscillating part alone, so at an exact zero the mode sum must equal
+`−M`, the li-stencil main term. Coherence at a zero is therefore
+identically `|M| / A` — the main term as a fraction of total mode
+mass, 11% here. The statistic at a zero measures the size of the
+smooth term, and the question entry 192 wanted to ask is not answered
+by it.
+
+**The convergence caveat is one-sided.** At `(20,6)` the net settles
+by `N = 100` to within 4% (π: −363.5, −362.7, −365.6, −349.1) while
+the mass `A_N` nearly doubles, 1640 → 3130. Coherence falls purely
+because mass accumulates against a fixed net, so **0.116 is an upper
+bound** on the `N → ∞` value and the 2.17× / 2.50× ratios are
+statements at this truncation. At `(19,6)` the net itself still swings
+±25% out to 600, so that cell is not converged in either quantity.
+
+**What would sharpen it.** The comparison entry 192 was reaching for
+is `|M| / A` against a background of `|M|` at non-zero cells — which
+requires computing the li stencil, which O67 already does. Coherence
+answers it only at cells that are exactly zero, which is four cells,
+three of them outside the regime. A statistic that separates zeros
+from non-zeros has to survive the fact that a zero is defined by the
+main term being cancelled, and this one does not.
+
+---
+
+## 2026-08-26 — Entry 193 — O90: mode coherence at the four zeros, in both explicit-formula forms
+type: run
+refs: 26, 112, 192
+
+`O90_mode_coherence.py`, EXPLORATORY. Built and run tonight against
+entry 192's design, with the `Δ^(d+1)` index correction that entry now
+carries.
+
+```text
+.venv/bin/python utilities/run.py --python .venv/bin/python O90_mode_coherence.py
+```
+
+```text
+dps 50   nzeros 600   rmax 30   depths 1,3,6   forms psi,pi
+sn_points 25,50,100,200,400,600   zeros_file zeros600.json
+script sha256 f2b2788c52968dfc1e9120f5e2976e828f47486d0e224d871e4369379eafb1d1
+git HEAD 415156f (dirty)   exit 0
+manifest results/runs/20260826T230545Z_O90_mode_coherence.json
+```
+
+**Headline.** Coherence is `|Σ c_k| / Σ|c_k|` over 600 zero pairs;
+`top1` is `max|c_k| / Σ|c_k|`.
+
+```text
+    cell   lean     role     coh(ψ)    top1(ψ)     coh(π)    top1(π)
+  (2, 1)      0     zero   0.017595   0.043479  undefined          -
+  (4, 1)      0     zero   0.085239   0.085204   0.074913   0.084093
+  (8, 3)      0     zero   0.093093   0.074394   0.104558   0.080963
+ (20, 6)      0     zero   0.116337   0.056178   0.111559   0.056860
+  (7, 3)      5  control   0.152474   0.096702   0.169247   0.102656
+ (19, 6)    343  control   0.053653   0.053713   0.044549   0.053743
+```
+
+Background over `r = d+1 … 30`, coherence min / median / max:
+
+```text
+ψ  d=1  29 cells  0.00315  0.07309  0.16495
+   d=3  27 cells  0.00153  0.10492  0.18502
+   d=6  24 cells  0.00467  0.11310  0.19520
+π  d=1  28 cells  0.00755  0.07364  0.15950
+   d=3  26 cells  0.00490  0.10410  0.18240
+   d=6  23 cells  0.00546  0.11160  0.20140
+```
+
+**Regime.** `(2,1)`, `(4,1)`, `(8,3)` sit at `x = 4, 16, 256` and
+`(7,3)` at `x = 128` — outside the range where the explicit formula
+tracks `π`. `(20,6)` with `(19,6)` is the one target inside it.
+
+**The π form is undefined at `(2,1)`.** The `Δ^(d+1)` stencil reaches
+`m = 0`, `x = 1`, and `Ei(ρ·log 1) = Ei(0) = −∞` for every zero. Also
+kills the first cell of each background row. Reported null with the
+reason, nothing dropped silently.
+
+**Cross-validation against O34, and it is exact.** Running O34's own
+construction against `zeros600.json` at matching truncations
+reproduces its stored values to seven digits — `NZ = 200` gives
+0.799851 against O34's 0.799850857, `NZ = 500` gives 0.861825 against
+0.8618248546 — and at `NZ = 600` gives `T(20,6) = −349.121259`,
+identical to O90's π-form `S(20,6) = −349.1213`. **The π column is
+O34's object reached by a different construction**, so O34/O35's
+94% / 92% / 80% regime figures are directly citable against it. The
+600-pair ratio is 0.7700, a fourth point on O34's documented
+non-monotone curve (0.8953 at 50, 0.7999 at 200, 0.8618 at 500).
+
+**Precision measured rather than asserted.** A built-in
+`--precision-check` recomputes all 11 cell-form pairs at dps 80: max
+relative disagreement **0.00e+00**. The zero strings carry ~25
+significant digits, which is the floor no working precision improves
+on; argument reduction at `r = 30, γ₆₀₀` costs 5 digits, the `2^15`
+scale 5 more, 600 summed terms ~3, the π form's `Δ⁷` binomial weights
+2–3 — leaving ~37 digits of headroom under a ~24-digit data floor.
+
+Results `results/mode_coherence.json` via `guarded_write`,
+`allow_nan=False`; log `results/O90_mode_coherence_run1.log`. Reading
+is entry 194.
+
+---
+
+## 2026-08-26 — Entry 192 — are the four zeros an ensemble cancellation or a localized one? O90 exists to ask
+type: motivation
+refs: 26, 78, 112
+
+**Julian's question, in his words:** could zeta zeros be a localized
+instantiation of the four zeros in our table, each zero a check to
+pass to zeta — with the backward-difference table read as the choice
+the number line makes to become discrete counting blocks, and the
+whole thing correlated to Shannon.
+
+**Three parts of it the tree already answers.**
+
+The Shannon link is a theorem here as of today, rather than an
+analogy. `lean/Nyquist.lean` is the sampling theorem for this bench:
+`nyquist b = π / log b` is the highest frequency a `b`-adic ladder
+carries, `aliases_of_offset` proves `γ` and `γ − 2πk/log b` are
+indistinguishable on it, and `base_two_fails_by_three` proves
+`3 · nyquist 2 < 14` — base 2 is past its own Nyquist frequency before
+it reaches `γ₁ = 14.13`, by a factor of three.
+
+The "check to pass" half is the bench's conditional theorem with the
+arrow drawn the other way. `papers/The-Four-Zeros.md` § I1: under RH,
+`cell(r,d) ≠ 0` for every `r ≥ R(d) ≈ 5d + 11`. Contrapositive: a
+fifth deep zero past that bound refutes RH. O43's census to `r ≤ 92`
+is that check running, and it passes. His framing adds primacy — table
+zeros as prior to zeta's — which nothing here establishes.
+
+The base-relative half is measured. **O44**: of bases 2–9 only base 2
+has exact zeros, and it has the same four, 1289 cells checked.
+**O45**: preregistered sub-integer scan, mechanical output `fineness`,
+with the scope caveat that the locked base set was commensurate by
+construction. **O47**: base 2 is the density maximum and is not the
+mass maximum.
+
+**What is untested is the ensemble claim.** `Superposition` carries the
+cell onto a reweighted sum over every zeta mode, so a table zero is a
+cancellation across that sum. Whether the cancellation is carried by a
+few modes or by the whole ensemble has never been measured, and
+Nyquist makes a prediction about it: if base 2 cannot resolve any
+individual `γ`, no small subset of modes should be able to do the
+work. That prediction can fail.
+
+**A vacuousness trap, found before writing code.** The per-mode
+contribution to the depth-`d` backward difference at `x = 2^r` is
+
+```text
+c_k(r,d) = −2 Re[ 2^(r·ρ_k) · (1 − 2^(−ρ_k))^(d+1) / ρ_k ],   ρ_k = ½ + iγ_k
+```
+
+whose magnitude factors as `2^(r/2) · |1 − 2^(−ρ_k)|^(d+1) / |ρ_k|`. **The
+r-dependence of the magnitudes is a single common scale.** So mode
+magnitudes are identical at every cell of a given depth, and any
+concentration statistic built on them — top-1 share, participation
+ratio, entropy of the `|c_k|` — returns the same number at a zero and
+at its non-zero neighbour by construction. It would have read as a
+null result and been one only in the sense that nothing was measured.
+
+`r` enters through phase alone. The statistic therefore has to be a
+coherence measure: `|Σ c_k| / Σ|c_k|`, which is small exactly when the
+modes cancel each other rather than adding.
+
+**Correction, made before O90 was written.** This entry first gave the
+exponent as `d`. It is `d+1`: `Zeros.dyadicRow` is already one backward
+difference, `π(2^r) − π(2^(r−1))`, and `Construction.tableFrom` applies
+`d` more, so cell `(r,d)` is `Δ^(d+1)` of `π(2^·)`. Checked against
+`pi2n_cache.json` — the `Δ^(d+1)` column reproduces all six
+kernel-proved values and the `Δ^d` column reproduces none:
+
+```text
+   cell     Δ^d   Δ^(d+1)   Lean
+  (2,1)       1         0      0
+  (4,1)       2         0      0
+  (8,3)       4         0      0
+ (20,6)     623         0      0
+  (7,3)       4         5      5   nonzero_7_3
+ (19,6)     623       343    343   nonzero_19_6
+```
+
+The index is not cosmetic. In a scratch diagnostic at 600 pairs the
+target/control coherence ratio moves from 1.52× to 2.17×, and the
+reading at the control flips: under `d+1`, `(19,6)` has coherence
+0.05365 against `top1` 0.05371, so one mode carries essentially its
+entire net. Coded as first written, O90 would have measured cells
+`(2,0)`, `(4,0)`, `(8,2)`, `(20,5)`, `(7,2)`, `(19,5)` — none of them
+an exact zero — and reported them under the zeros' names. The agent
+built to this entry, derived the formula independently, and refused to
+code the version it was given.
+
+**One more thing that needs stating rather than assuming.** `c_k`
+above is a mode of the **ψ** explicit formula, while the table counts
+**π**. O34/O35's regime figures (94% / 92% / 80%) were measured in the
+π form, `−Σ 2Re Ei(ρ log x)`, so transferring them to a ψ-mode sum is
+approximate. O90 therefore computes **both** forms. For ψ the
+factorisation above predicts the vacuousness result; for π nothing
+factors, so whether magnitudes depend on `r` becomes an open
+measurement rather than a prediction.
+
+**O90 measures that**, at the four zeros against the two proved
+non-zero neighbours `nonzero_7_3 = 5` and `nonzero_19_6 = 343`, plus
+the full `d = 1, 3, 6` rows as background. EXPLORATORY, and it is a
+power check before any prereg — entries 171, 173 and 174 set that
+practice and it has killed one design and sized another.
+
+**Known regime limit, from O34/O35.** The explicit formula reproduces
+94% of the row-20 residual at `d = 0`, 92% at `d = 3`, 80% at `d = 6`,
+and deep cells cannot be tested this way at all — at `(25,21)` the
+model flips sign between 200 and 600 zeros. Three of the four zeros
+sit at `r = 2, 4, 8`, where `x` is 4, 16 and 256 and the explicit
+formula is nowhere near `π`. Those three are reported and are outside
+the regime where the model tracks. `(20,6)` is the one target inside
+it, with `(19,6)` as its control.
+
+---
+
 ## 2026-08-26 — Entry 191 — three of the four dangerous tactics cannot be typed in a Mathlib-free module; the fourth is the silent one
 type: formalization
 refs: 59, 189, 190

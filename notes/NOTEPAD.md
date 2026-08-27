@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-26  entry 194: CORRECTION to entry 192 — the vacuousness trap applies to |z_k|, the statistic runs on |c_k| = 2|Re z_k| which carries phase; top-1 share was fine and I argued us out of it
+- [open]   2026-08-26  entry 194: the ensemble picture holds so uniformly it separates nothing — ~90% of mode mass cancels at every cell; where it does separate the exact zero is LESS cancelled than its non-zero neighbour, and sits at its depth's median
+- [open]   2026-08-26  entry 194: coherence at an exact zero is identically |M|/A, so it measures the li-stencil main term rather than anything about the zero — the question entry 192 wanted needs |M| against a non-zero background, which O67 already computes
+- [open]   2026-08-26  entry 193: O90 run, EXPLORATORY, both explicit-formula forms — and its pi column reproduces O34 to seven digits by a different construction, adding a 4th point (0.7700 at 600) to O34's non-monotone curve
 - [open]   2026-08-26  entry 191: the grind warning, measured — ring/norm_num/linarith are UNKNOWN TACTICS in core, so grind is the only silent Classical.choice hazard; the noisy three need no warning
 - [open]   2026-08-26  entry 191: BUILD.md table extended 14 -> 23 modules from each module's own header, theorem detail now points at generated THEOREMS.md so the stale parallel table cannot re-form
 - [open]   2026-08-26  entry 191: PairIdentity.lean:56-57 had the grind finding months before BUILD.md; module-level comments are ahead of the build doc and nobody promotes them

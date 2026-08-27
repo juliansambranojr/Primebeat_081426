@@ -1,0 +1,21 @@
+{
+  "schema_version": "1",
+  "script": "O90_mode_coherence.py",
+  "script_sha256": "f2b2788c52968dfc1e9120f5e2976e828f47486d0e224d871e4369379eafb1d1",
+  "interpreter": "/Users/juliansambrano/GitHub/Primebeat_081426/.venv/bin/python",
+  "argv": [
+    "O90_mode_coherence.py"
+  ],
+  "run_start_at": "2026-08-26T23:05:45.883896+00:00",
+  "run_end_at": "2026-08-26T23:05:50.049241+00:00",
+  "exit_code": 0,
+  "git_head": "415156f659456d29017cbce1a8c7a16adbd5f615",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "mode_coherence.json",
+      "sha256": "465571130a168d3ca19418ef9db749ee78aafcf4e207c005fa9d4875666d22a6"
+    }
+  ],
+  "files_modified": []
+}

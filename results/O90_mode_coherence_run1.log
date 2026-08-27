@@ -1,0 +1,177 @@
+run.py: O90_mode_coherence.py  (264 results files cloned)
+
+==============================================================================
+O90 - MODE COHERENCE AT THE FOUR EXACT ZEROS
+EXPLORATORY. No prereg, no decision rule, NO VERDICT. Nothing
+printed below may be described as a verdict.
+==============================================================================
+  zeros        600 pairs from zeros600.json, gamma_1 = 14.1347251417 .. gamma_600 = 939.024300899
+  dps          50 working; the zero strings carry ~25 significant digits, which is the data floor
+  stencil      cell (r,d) = Delta^(d+1) of pi(2^.) at r (lean/Construction.lean + lean/Zeros.lean)
+  mode         c_k(r,d) = -2 Re[ 2^(r*rho) (1-2^(-rho))^(d+1) / rho ]   [psi form]
+  forms        psi, pi
+  background   depths [1, 3, 6], r = d+1 .. 30
+
+  building psi-form modes ...
+
+  building pi-form modes ...
+
+==============================================================================
+1. VACUOUSNESS CHECK - reported FIRST, before any coherence number
+==============================================================================
+Entry 192 predicts mode MAGNITUDES depend on depth alone, r entering
+as the common scale 2^(r/2) plus phase. If that holds for the
+quantity the statistic is built on, every concentration measure
+returns the same number at a zero and at its neighbour BY
+CONSTRUCTION and nothing is measured. Two quantities, separated:
+
+  |z_k|          complex modulus. psi form: factors exactly as
+                 2^(r/2)|1-2^(-rho)|^(d+1)/|rho|, so PREDICTED
+                 r-independent at fixed depth. pi form: OPEN.
+  |c_k|=2|Re z|  the REAL contribution actually summed. Carries
+                 cos(arg z_k), and arg z_k depends on r, so this is
+                 an OPEN MEASUREMENT in BOTH forms.
+
+--- psi form -----------------------------------------------------------
+ depth  cells  ref r     max|dP_z|     max|dP_c|    top1(z) spread    top1(c) spread
+     1     29      2     1.336e-51     4.465e-02  5.709472e-02-5.709472e-02  2.730537e-02-8.538715e-02
+     3     27      4     5.011e-52     8.811e-02  7.201831e-02-7.201831e-02  3.463910e-02-1.102079e-01
+     6     24      7     1.670e-51     1.251e-01  8.740549e-02-8.740549e-02  3.696231e-02-1.297039e-01
+
+--- pi form ------------------------------------------------------------
+ depth  cells  ref r     max|dP_z|     max|dP_c|    top1(z) spread    top1(c) spread
+     1     28      3     1.677e-03     5.802e-02  5.730577e-02-5.902927e-02  2.757210e-02-8.846421e-02
+     3     26      5     4.306e-03     1.037e-01  7.227898e-02-7.658480e-02  3.500639e-02-1.117351e-01
+     6     23      8     3.184e-03     1.223e-01  8.771404e-02-9.089805e-02  3.668825e-02-1.311639e-01
+
+READING:
+  psi d=1: |z| profile r-independent CONFIRMED (1.34e-51);  |c| profile r-independent   REFUTED (4.46e-02)
+  psi d=3: |z| profile r-independent CONFIRMED (5.01e-52);  |c| profile r-independent   REFUTED (8.81e-02)
+  psi d=6: |z| profile r-independent CONFIRMED (1.67e-51);  |c| profile r-independent   REFUTED (1.25e-01)
+   pi d=1: |z| profile r-independent   REFUTED (1.68e-03);  |c| profile r-independent   REFUTED (5.80e-02)
+   pi d=3: |z| profile r-independent   REFUTED (4.31e-03);  |c| profile r-independent   REFUTED (1.04e-01)
+   pi d=6: |z| profile r-independent   REFUTED (3.18e-03);  |c| profile r-independent   REFUTED (1.22e-01)
+  tolerance for CONFIRMED: 1e-38 (working dps 50, 12 digits of margin)
+
+WHAT THIS MEANS FOR THE DESIGN: the coherence statistic |S|/A is
+well posed exactly where the |c| profile is NOT r-independent -
+read the |c| column above before reading any number in section 2.
+
+==============================================================================
+2. TARGETS AND CONTROLS - psi and pi side by side
+==============================================================================
+The four exact zeros are lean/Zeros.lean's measured_zeros; the two
+controls are nonzero_7_3 = 5 and nonzero_19_6 = 343. Three of the
+four zeros sit at r = 2, 4, 8 and are OUTSIDE the regime where the
+explicit formula tracks pi(x). They are reported and they are not
+equally meaningful. (20,6) with (19,6) is the one pair inside it.
+
+    cell   lean     role     coh(psi)    top1(psi)      coh(pi)     top1(pi)
+----------------------------------------------------------------------------
+  (2, 1)      0     zero 1.759529e-02 4.347922e-02    undefined            -
+  (4, 1)      0     zero 8.523887e-02 8.520358e-02 7.491345e-02 8.409322e-02
+  (8, 3)      0     zero 9.309288e-02 7.439399e-02 1.045579e-01 8.096339e-02
+ (20, 6)      0     zero 1.163373e-01 5.617773e-02 1.115585e-01 5.685994e-02
+  (7, 3)      5  control 1.524744e-01 9.670234e-02 1.692465e-01 1.026563e-01
+ (19, 6)    343  control 5.365286e-02 5.371279e-02 4.454851e-02 5.374295e-02
+
+  (2,1)  OUTSIDE - x = 4; the explicit formula is nowhere near pi(x)
+  (4,1)  OUTSIDE - x = 16; the explicit formula is nowhere near pi(x)
+  (8,3)  OUTSIDE - x = 256; the explicit formula is nowhere near pi(x)
+  (20,6)  INSIDE - O34/O35 measured 80% of the row-20 residual at d=6
+  (7,3)  OUTSIDE - x = 128; control for (8,3), same regime caveat
+  (19,6)  adjacent to measured row 20, same depth
+  (2,1)  pi: pi form undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = Ei(0) = -inf for every zero
+
+==============================================================================
+3. THE (20,6) vs (19,6) SEPARATION - the one pair inside the regime
+==============================================================================
+  form     coh(20,6)     coh(19,6)     ratio    top1(20,6)    top1(19,6)
+------------------------------------------------------------------------
+   psi  1.163373e-01  5.365286e-02    2.1683  5.617773e-02  5.371279e-02
+    pi  1.115585e-01  4.454851e-02    2.5042  5.685994e-02  5.374295e-02
+
+coherence / top1 - 1.0 means a single mode carries the entire net:
+  psi  (20,6) 2.0709    (19,6) 0.9989
+   pi  (20,6) 1.9620    (19,6) 0.8289
+
+  the two forms agree on the DIRECTION of the separation: yes
+  psi ratio 2.1683 vs pi ratio 2.5042
+
+==============================================================================
+4. S_N CONVERGENCE at (20,6) and (19,6)
+==============================================================================
+--- psi form -----------------------------------------------------------
+     N        S_N (20,6)    coh_N (20,6)        S_N (19,6)    coh_N (19,6)
+    25     -2.575778e+03    2.325714e-01     -2.580779e+02    2.802325e-02
+    50     -5.146361e+03    3.447745e-01      1.241027e+03    1.002378e-01
+   100     -4.588802e+03    2.336219e-01      1.334835e+03    8.498087e-02
+   200     -4.602306e+03    1.780126e-01      1.087864e+03    5.545544e-02
+   400     -4.550048e+03    1.396590e-01      1.600205e+03    6.662135e-02
+   600     -4.344940e+03    1.163373e-01      1.469934e+03    5.365286e-02
+
+--- pi form ------------------------------------------------------------
+     N        S_N (20,6)    coh_N (20,6)        S_N (19,6)    coh_N (19,6)
+    25     -1.911384e+02    2.082208e-01     -4.723929e+01    5.552711e-02
+    50     -4.059339e+02    3.253427e-01      8.372913e+01    7.397291e-02
+   100     -3.635166e+02    2.216032e-01      9.883928e+01    6.883196e-02
+   200     -3.626716e+02    1.675708e-01      7.223597e+01    4.067925e-02
+   400     -3.656374e+02    1.340124e-01      1.226225e+02    5.662278e-02
+   600     -3.491213e+02    1.115585e-01      1.098434e+02    4.454851e-02
+
+==============================================================================
+5. BACKGROUND - every cell (r,d), d in [1, 3, 6], r = d+1 .. 30
+==============================================================================
+--- psi form -----------------------------------------------------------
+ depth  cells       min coh    median coh       max coh   median top1
+     1     29  3.152196e-03  7.308603e-02  1.649453e-01  6.213683e-02
+     3     27  1.526037e-03  1.049194e-01  1.850191e-01  8.038220e-02
+     6     24  4.664694e-03  1.130697e-01  1.951927e-01  8.903425e-02
+
+--- pi form ------------------------------------------------------------
+ depth  cells       min coh    median coh       max coh   median top1
+     1     28  7.544585e-03  7.363533e-02  1.594629e-01  6.302072e-02
+     3     26  4.897250e-03  1.041033e-01  1.823804e-01  8.020933e-02
+     6     23  5.462984e-03  1.115585e-01  2.013917e-01  8.697603e-02
+
+Where the targets and controls sit inside their own depth's
+background distribution:
+  psi (2,1) coherence 1.759529e-02 -> percentile  10.3 of 29 same-depth cells
+  psi (4,1) coherence 8.523887e-02 -> percentile  55.2 of 29 same-depth cells
+  psi (8,3) coherence 9.309288e-02 -> percentile  44.4 of 27 same-depth cells
+  psi (20,6) coherence 1.163373e-01 -> percentile  50.0 of 24 same-depth cells
+  psi (7,3) coherence 1.524744e-01 -> percentile  92.6 of 27 same-depth cells
+  psi (19,6) coherence 5.365286e-02 -> percentile  20.8 of 24 same-depth cells
+   pi (4,1) coherence 7.491345e-02 -> percentile  50.0 of 28 same-depth cells
+   pi (8,3) coherence 1.045579e-01 -> percentile  50.0 of 26 same-depth cells
+   pi (20,6) coherence 1.115585e-01 -> percentile  47.8 of 23 same-depth cells
+   pi (7,3) coherence 1.692465e-01 -> percentile  92.3 of 26 same-depth cells
+   pi (19,6) coherence 4.454851e-02 -> percentile  21.7 of 23 same-depth cells
+
+==============================================================================
+6. PRECISION CHECK - targets and controls recomputed at dps 80
+==============================================================================
+    cell  form      coherence lo      coherence hi      rel diff
+  (2, 1)   psi  1.7595294574e-02  1.7595294574e-02      0.00e+00
+  (4, 1)   psi  8.5238869851e-02  8.5238869851e-02      0.00e+00
+  (4, 1)    pi  7.4913450696e-02  7.4913450696e-02      0.00e+00
+  (8, 3)   psi  9.3092884248e-02  9.3092884248e-02      0.00e+00
+  (8, 3)    pi  1.0455792301e-01  1.0455792301e-01      0.00e+00
+ (20, 6)   psi  1.1633727972e-01  1.1633727972e-01      0.00e+00
+ (20, 6)    pi  1.1155853629e-01  1.1155853629e-01      0.00e+00
+  (7, 3)   psi  1.5247442671e-01  1.5247442671e-01      0.00e+00
+  (7, 3)    pi  1.6924654323e-01  1.6924654323e-01      0.00e+00
+ (19, 6)   psi  5.3652856132e-02  5.3652856132e-02      0.00e+00
+ (19, 6)    pi  4.4548510604e-02  4.4548510604e-02      0.00e+00
+
+  max relative disagreement 0.00e+00 across 11 cell-form pairs
+
+==============================================================================
+EXPLORATORY. Nothing above is a verdict. No decision rule was
+pre-registered and none fired. The reading is Julian's.
+==============================================================================
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/mode_coherence.json
+
+run.py: exit 0   created 1   modified 0
+  manifest results/runs/20260826T230545Z_O90_mode_coherence.json
