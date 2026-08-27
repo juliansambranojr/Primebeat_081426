@@ -1,0 +1,326 @@
+==============================================================================
+O93 - THE OVERLAP IDENTITY
+EXPLORATORY. No prereg, no decision rule, NO VERDICT. Nothing
+printed below may be described as a verdict.
+==============================================================================
+  started (UTC)   : 2026-08-27T04:16:28Z
+  dps             : 50 working, 80 for the precision check
+  code_version    : 5ca0ff2e2921093f68a25df10311f1abf513ef48eb78764b812bc6439d9d4c77
+
+  primary target  : 2**(1/2) (34,11) vs 2 (20,6)  overlap 3.0 log2, frac_of_shorter 0.5455
+  containment     : 7 pairs at frac_of_shorter = 1.0 in summary.top_window_overlaps.
+                    Entry 201 records TWO such pairs; the JSON holds
+                    7.  All 7 are run; the discrepancy is reported,
+                    not resolved here.
+
+==============================================================================
+1. PI BACKEND INTEGRITY
+==============================================================================
+  backend         : primecountpy.prime_pi
+  pi(2^n) audit   : 33 of 33 equal against pi2n_cache.json
+  status          : PASS
+
+==============================================================================
+2. TABLE RECONSTRUCTION vs results/sub_integer_base_scan.json
+   (MANDATORY precondition, entry 201: the stencil convention is
+   verified against known values BEFORE any mode is built)
+==============================================================================
+  base                 r_max  cells r_thick resolved zeros   match?
+  2                       32    496       1      496     4   yes
+  2**(1/2)                64   2016       6     1711    19   yes
+  exp(pi*1/(2*g1))       199  19701      32    14028    75   yes
+  exp(pi*3/(4*g1))       133   8778      20     6441    45   yes
+  exp(pi*5/(4*g1))        79   3081       8     2556    20   yes
+
+  Every exact zero of every rebuilt table matches the recorded
+  (r, d, total_true, S) exactly.
+
+==============================================================================
+3. TARGET CELLS vs results/high_mass_zeros.json, AND THE EXPONENT
+==============================================================================
+  cell                          value         S    S(O47)   win_lo   win_hi   match?
+  2 (20,6)                          0    492384    492384    16384  1048576   yes
+  2**(1/2) (34,11)                  0   1371038   1371038     2896   131072   yes
+  exp(pi*1/(2*g1)) (70,7)           0      2992      2992     1097     2390   yes
+  exp(pi*1/(2*g1)) (83,10)          0     73004     73004     3335    10135   yes
+  exp(pi*3/(4*g1)) (76,4)           0     46120     46120   163092   317697   yes
+  exp(pi*5/(4*g1)) (28,7)           0      4338      4338      341     2390   yes
+  exp(pi*5/(4*g1)) (41,4)           0     18936     18936    29130    88508   yes
+  exp(pi*5/(4*g1)) (47,4)           0     87160     87160   154277   468743   yes
+
+  The exponent trap (entry 192), in base sqrt(2): Delta^d vs
+  Delta^(d+1) of the cumulative ladder pi(floor(sqrt(2)^r)) at the
+  recorded resolved zeros clearing the mass floor:
+        cell   Delta^d  Delta^(d+1)  recorded
+      (14,5)        -2            0         0
+      (21,2)        13            0         0
+     (34,11)      -685            0         0
+      (42,5)       137            0         0
+  Delta^(d+1) reproduces every recorded zero; Delta^d misses 4 of 4.
+  recurrence == binomial Delta^(d+1) at every (r, d>=1) cell of every rebuilt table: yes
+
+  CONVENTION, pinned: O45's depth-0 row N(r) = pi(F[r]) - pi(F[r-1])
+  is one backward difference of the cumulative ladder, for every
+  base including sqrt(2).  The mode exponent is therefore n = d+1:
+      z_k(b,r,d) = b^(r*rho_k) * (1 - b^(-rho_k))^(d+1) / rho_k
+  (The table reads pi at floor(b^r); the mode models the count at
+  the exact point b^r - under one integer per rung, no phase touched.)
+
+==============================================================================
+4. THE STATISTIC, AND THE CONFOUND STATED BEFORE THE NUMBERS
+==============================================================================
+  delta_k = Delta * gamma_k + psi_k, where Delta = r_A ln b_A -
+  r_B ln b_B is the log window-TOP offset and psi_k carries only
+  the (base, depth) geometry - the SAME psi_k for every pair in a
+  matched family.  Three structural consequences, measured below:
+    (i)   naive R is a function of Delta alone;
+    (ii)  the fast-phase-corrected R is one number per family,
+          identical at the target and every null pair;
+    (iii) a non-overlapping pair needs |Delta| >= the shorter
+          window, so a position-matched non-overlap null cannot
+          exist when the observed |Delta| is smaller than that.
+
+  building arm 2 d=6: 26 resolved cells (r = 7..32) ...
+  building arm 2**(1/2) d=11: 48 resolved cells (r = 17..64) ...
+  building arm exp(pi*1/(2*g1)) d=7: 161 resolved cells (r = 39..199) ...
+  building arm exp(pi*1/(2*g1)) d=10: 158 resolved cells (r = 42..199) ...
+  building arm exp(pi*3/(4*g1)) d=4: 110 resolved cells (r = 24..133) ...
+  building arm exp(pi*5/(4*g1)) d=4: 68 resolved cells (r = 12..79) ...
+  building arm exp(pi*5/(4*g1)) d=7: 65 resolved cells (r = 15..79) ...
+
+==============================================================================
+5. TARGETS AGAINST THEIR NULLS
+==============================================================================
+
+------------------------------------------------------------------------------
+  primary: 2**(1/2) (34,11) vs 2 (20,6)   overlap 3.0000 log2, frac_of_shorter 0.5455
+------------------------------------------------------------------------------
+    Delta (log2 window-top offset)     : -3.000000
+    shorter window length (log2)       : 5.5000
+    position-matched non-overlap null  : IMPOSSIBLE (|Delta| < shorter window)
+    R naive / weighted                 : 0.153933  /  0.381620
+    R corrected / corrected weighted   : 0.100390  /  0.638509
+    null pairs (all / non-overlap)     : 1248 / 762
+    p naive vs non-overlap null        : 0.0000   (weighted 0.0000)
+    p naive vs all pairs               : 0.1636   (weighted 0.1387)
+    p corrected                        : degenerate - identical at every pair by construction
+    p corrected-weighted vs non-overlap: 0.3753
+    same-Delta pairs                   : 20, max |R diff| 1.388e-16  (naive R is a function of Delta alone)
+    naive R vs |Delta| (log2), all pairs, 8 equal-count bins:
+      |Delta|   0.000 ..   1.500   mean R 0.300761   n 156
+      |Delta|   1.500 ..   3.500   mean R 0.118837   n 156
+      |Delta|   3.500 ..   5.500   mean R 0.070636   n 156
+      |Delta|   5.500 ..   7.500   mean R 0.055967   n 156
+      |Delta|   7.500 ..   9.500   mean R 0.047246   n 156
+      |Delta|   9.500 ..  12.500   mean R 0.044390   n 156
+      |Delta|  12.500 ..  16.000   mean R 0.031960   n 156
+      |Delta|  16.000 ..  25.000   mean R 0.037579   n 156
+
+------------------------------------------------------------------------------
+  containment_1: 2**(1/2) (34,11) vs exp(pi*1/(2*g1)) (83,10)   overlap 1.6033 log2, frac_of_shorter 1.0000
+------------------------------------------------------------------------------
+    Delta (log2 window-top offset)     : +3.692847
+    shorter window length (log2)       : 1.6033
+    position-matched non-overlap null  : possible
+    R naive / weighted                 : 0.021850  /  0.276414
+    R corrected / corrected weighted   : 0.006188  /  0.253176
+    null pairs (all / non-overlap)     : 7584 / 5574
+    p naive vs non-overlap null        : 0.7094   (weighted 0.0579)
+    p naive vs all pairs               : 0.6388   (weighted 0.0787)
+    p corrected                        : degenerate - identical at every pair by construction
+    p corrected-weighted vs non-overlap: 0.0621
+    naive R vs |Delta| (log2), all pairs, 8 equal-count bins:
+      |Delta|   0.000 ..   1.619   mean R 0.024770   n 948
+      |Delta|   1.622 ..   3.329   mean R 0.031810   n 948
+      |Delta|   3.332 ..   5.193   mean R 0.027525   n 948
+      |Delta|   5.196 ..   7.258   mean R 0.033061   n 948
+      |Delta|   7.258 ..   9.598   mean R 0.036203   n 948
+      |Delta|   9.598 ..  12.370   mean R 0.036300   n 948
+      |Delta|  12.372 ..  15.992   mean R 0.037010   n 948
+      |Delta|  15.994 ..  25.266   mean R 0.037100   n 948
+
+------------------------------------------------------------------------------
+  containment_2: 2**(1/2) (34,11) vs exp(pi*5/(4*g1)) (41,4)   overlap 1.6033 log2, frac_of_shorter 1.0000
+------------------------------------------------------------------------------
+    Delta (log2 window-top offset)     : +0.566468
+    shorter window length (log2)       : 1.6033
+    position-matched non-overlap null  : IMPOSSIBLE (|Delta| < shorter window)
+    R naive / weighted                 : 0.018458  /  0.089875
+    R corrected / corrected weighted   : 0.019599  /  0.123896
+    null pairs (all / non-overlap)     : 3264 / 2431
+    p naive vs non-overlap null        : 0.7729   (weighted 0.6092)
+    p naive vs all pairs               : 0.6926   (weighted 0.5906)
+    p corrected                        : degenerate - identical at every pair by construction
+    p corrected-weighted vs non-overlap: 0.1855
+    naive R vs |Delta| (log2), all pairs, 8 equal-count bins:
+      |Delta|   0.020 ..   1.752   mean R 0.020229   n 408
+      |Delta|   1.753 ..   3.558   mean R 0.023570   n 408
+      |Delta|   3.561 ..   5.488   mean R 0.027234   n 408
+      |Delta|   5.529 ..   7.657   mean R 0.032089   n 408
+      |Delta|   7.661 ..  10.079   mean R 0.036636   n 408
+      |Delta|  10.083 ..  12.980   mean R 0.036782   n 408
+      |Delta|  12.984 ..  16.781   mean R 0.035610   n 408
+      |Delta|  16.785 ..  27.190   mean R 0.035776   n 408
+
+------------------------------------------------------------------------------
+  containment_3: 2 (20,6) vs exp(pi*5/(4*g1)) (47,4)   overlap 1.6033 log2, frac_of_shorter 1.0000
+------------------------------------------------------------------------------
+    Delta (log2 window-top offset)     : +1.161561
+    shorter window length (log2)       : 1.6033
+    position-matched non-overlap null  : IMPOSSIBLE (|Delta| < shorter window)
+    R naive / weighted                 : 0.032805  /  0.192150
+    R corrected / corrected weighted   : 0.015457  /  0.111528
+    null pairs (all / non-overlap)     : 1768 / 1302
+    p naive vs non-overlap null        : 0.5054   (weighted 0.2373)
+    p naive vs all pairs               : 0.4194   (weighted 0.2162)
+    p corrected                        : degenerate - identical at every pair by construction
+    p corrected-weighted vs non-overlap: 0.3164
+    naive R vs |Delta| (log2), all pairs, 8 equal-count bins:
+      |Delta|   0.016 ..   1.765   mean R 0.019914   n 221
+      |Delta|   1.769 ..   3.587   mean R 0.028602   n 221
+      |Delta|   3.624 ..   5.628   mean R 0.026705   n 221
+      |Delta|   5.632 ..   7.838   mean R 0.034644   n 221
+      |Delta|   7.843 ..  10.372   mean R 0.036547   n 221
+      |Delta|  10.376 ..  13.376   mean R 0.034796   n 221
+      |Delta|  13.380 ..  17.260   mean R 0.038628   n 221
+      |Delta|  17.264 ..  27.190   mean R 0.035996   n 221
+
+------------------------------------------------------------------------------
+  containment_4: 2 (20,6) vs exp(pi*3/(4*g1)) (76,4)   overlap 0.9620 log2, frac_of_shorter 1.0000
+------------------------------------------------------------------------------
+    Delta (log2 window-top offset)     : +1.722706
+    shorter window length (log2)       : 0.9620
+    position-matched non-overlap null  : possible
+    R naive / weighted                 : 0.023111  /  0.095132
+    R corrected / corrected weighted   : 0.012402  /  0.180387
+    null pairs (all / non-overlap)     : 2860 / 2166
+    p naive vs non-overlap null        : 0.6777   (weighted 0.7281)
+    p naive vs all pairs               : 0.6086   (weighted 0.7205)
+    p corrected                        : degenerate - identical at every pair by construction
+    p corrected-weighted vs non-overlap: 0.2138
+    naive R vs |Delta| (log2), all pairs, 8 equal-count bins:
+      |Delta|   0.001 ..   1.697   mean R 0.023781   n 357
+      |Delta|   1.698 ..   3.520   mean R 0.027850   n 358
+      |Delta|   3.530 ..   5.504   mean R 0.029477   n 357
+      |Delta|   5.506 ..   7.685   mean R 0.033137   n 358
+      |Delta|   7.694 ..  10.166   mean R 0.036128   n 357
+      |Delta|  10.175 ..  13.125   mean R 0.037058   n 358
+      |Delta|  13.128 ..  16.975   mean R 0.035750   n 357
+      |Delta|  16.985 ..  26.228   mean R 0.036487   n 358
+
+------------------------------------------------------------------------------
+  containment_5: 2 (20,6) vs exp(pi*5/(4*g1)) (41,4)   overlap 1.6033 log2, frac_of_shorter 1.0000
+------------------------------------------------------------------------------
+    Delta (log2 window-top offset)     : +3.566468
+    shorter window length (log2)       : 1.6033
+    position-matched non-overlap null  : possible
+    R naive / weighted                 : 0.018453  /  0.098389
+    R corrected / corrected weighted   : 0.015457  /  0.076543
+    null pairs (all / non-overlap)     : 1768 / 1302
+    p naive vs non-overlap null        : 0.8018   (weighted 0.7373)
+    p naive vs all pairs               : 0.7250   (weighted 0.7227)
+    p corrected                        : degenerate - identical at every pair by construction
+    p corrected-weighted vs non-overlap: 0.5177
+    naive R vs |Delta| (log2), all pairs, 8 equal-count bins:
+      |Delta|   0.016 ..   1.765   mean R 0.019914   n 221
+      |Delta|   1.769 ..   3.587   mean R 0.028602   n 221
+      |Delta|   3.624 ..   5.628   mean R 0.026705   n 221
+      |Delta|   5.632 ..   7.838   mean R 0.034644   n 221
+      |Delta|   7.843 ..  10.372   mean R 0.036547   n 221
+      |Delta|  10.376 ..  13.376   mean R 0.034796   n 221
+      |Delta|  13.380 ..  17.260   mean R 0.038628   n 221
+      |Delta|  17.264 ..  27.190   mean R 0.035996   n 221
+
+------------------------------------------------------------------------------
+  containment_6: exp(pi*5/(4*g1)) (47,4) vs exp(pi*3/(4*g1)) (76,4)   overlap 0.9620 log2, frac_of_shorter 1.0000
+------------------------------------------------------------------------------
+    Delta (log2 window-top offset)     : +0.561145
+    shorter window length (log2)       : 0.9620
+    position-matched non-overlap null  : IMPOSSIBLE (|Delta| < shorter window)
+    R naive / weighted                 : 0.209835  /  0.448260
+    R corrected / corrected weighted   : 0.028457  /  0.066315
+    null pairs (all / non-overlap)     : 7480 / 6815
+    p naive vs non-overlap null        : 0.0000   (weighted 0.0000)
+    p naive vs all pairs               : 0.0083   (weighted 0.0181)
+    p corrected                        : degenerate - identical at every pair by construction
+    p corrected-weighted vs non-overlap: 0.5724
+    naive R vs |Delta| (log2), all pairs, 8 equal-count bins:
+      |Delta|   0.000 ..   1.764   mean R 0.075084   n 935
+      |Delta|   1.764 ..   3.607   mean R 0.050262   n 935
+      |Delta|   3.607 ..   5.611   mean R 0.043250   n 935
+      |Delta|   5.611 ..   7.856   mean R 0.039595   n 935
+      |Delta|   7.856 ..  10.421   mean R 0.037776   n 935
+      |Delta|  10.421 ..  13.467   mean R 0.037148   n 935
+      |Delta|  13.467 ..  17.395   mean R 0.038869   n 935
+      |Delta|  17.395 ..  27.175   mean R 0.036865   n 935
+
+------------------------------------------------------------------------------
+  containment_7: exp(pi*5/(4*g1)) (28,7) vs exp(pi*1/(2*g1)) (70,7)   overlap 1.1223 log2, frac_of_shorter 1.0000
+------------------------------------------------------------------------------
+    Delta (log2 window-top offset)     : +0.000000
+    shorter window length (log2)       : 1.1223
+    position-matched non-overlap null  : IMPOSSIBLE (|Delta| < shorter window)
+    R naive / weighted                 : 0.032103  /  0.326571
+    R corrected / corrected weighted   : 0.032103  /  0.326571
+    null pairs (all / non-overlap)     : 10465 / 8988
+    p naive vs non-overlap null        : 0.5922   (weighted 0.0000)
+    p naive vs all pairs               : 0.5959   (weighted 0.0334)
+    p corrected                        : degenerate - identical at every pair by construction
+    p corrected-weighted vs non-overlap: 0.2949
+    naive R vs |Delta| (log2), all pairs, 8 equal-count bins:
+      |Delta|   0.000 ..   1.683   mean R 0.095889   n 1308
+      |Delta|   1.683 ..   3.447   mean R 0.051098   n 1308
+      |Delta|   3.447 ..   5.451   mean R 0.043291   n 1308
+      |Delta|   5.451 ..   7.616   mean R 0.042529   n 1308
+      |Delta|   7.616 ..  10.020   mean R 0.034260   n 1308
+      |Delta|  10.020 ..  12.986   mean R 0.035186   n 1308
+      |Delta|  12.986 ..  16.754   mean R 0.036041   n 1308
+      |Delta|  16.754 ..  25.893   mean R 0.037893   n 1309
+
+==============================================================================
+6. PRECISION CHECK - observed pairs recomputed fully in mpmath at
+   dps 50 and dps 80; the float assembly compared against both
+==============================================================================
+  target          stat                      float path        mp dps80    rel diff
+  primary         R_naive                   0.15393286      0.15393286    1.08e-15
+  primary         R_naive_weighted          0.38162042      0.38162042    1.89e-15
+  primary         R_corrected               0.10039002      0.10039002    0.00e+00
+  primary         R_corrected_weighted      0.63850901      0.63850901    1.22e-15
+  containment_1   R_naive                   0.02185015      0.02185015    1.59e-16
+  containment_1   R_naive_weighted          0.27641450      0.27641450    8.03e-16
+  containment_1   R_corrected               0.00618772      0.00618772    3.78e-15
+  containment_1   R_corrected_weighted      0.25317644      0.25317644    2.63e-15
+  containment_2   R_naive                   0.01845842      0.01845842    0.00e+00
+  containment_2   R_naive_weighted          0.08987505      0.08987505    1.54e-16
+  containment_2   R_corrected               0.01959905      0.01959905    1.06e-15
+  containment_2   R_corrected_weighted      0.12389621      0.12389621    8.96e-16
+  containment_3   R_naive                   0.03280476      0.03280476    2.12e-16
+  containment_3   R_naive_weighted          0.19215001      0.19215001    2.17e-15
+  containment_3   R_corrected               0.01545731      0.01545731    2.24e-16
+  containment_3   R_corrected_weighted      0.11152811      0.11152811    8.71e-16
+  containment_4   R_naive                   0.02311112      0.02311112    3.00e-16
+  containment_4   R_naive_weighted          0.09513177      0.09513177    8.75e-16
+  containment_4   R_corrected               0.01240183      0.01240183    1.26e-15
+  containment_4   R_corrected_weighted      0.18038750      0.18038750    6.15e-16
+  containment_5   R_naive                   0.01845341      0.01845341    7.52e-16
+  containment_5   R_naive_weighted          0.09838942      0.09838942    4.23e-16
+  containment_5   R_corrected               0.01545731      0.01545731    2.24e-16
+  containment_5   R_corrected_weighted      0.07654254      0.07654254    5.44e-16
+  containment_6   R_naive                   0.20983540      0.20983540    3.97e-16
+  containment_6   R_naive_weighted          0.44825958      0.44825958    1.24e-16
+  containment_6   R_corrected               0.02845730      0.02845730    1.22e-16
+  containment_6   R_corrected_weighted      0.06631518      0.06631518    2.09e-15
+  containment_7   R_naive                   0.03210325      0.03210325    2.16e-16
+  containment_7   R_naive_weighted          0.32657141      0.32657141    8.50e-16
+  containment_7   R_corrected               0.03210325      0.03210325    2.16e-16
+  containment_7   R_corrected_weighted      0.32657141      0.32657141    1.19e-15
+
+  max rel diff, float path vs dps 80   : 3.78e-15
+  max rel diff, dps 50 vs dps 80    : 0.00e+00
+
+==============================================================================
+EXPLORATORY. Nothing above is a verdict. No decision rule was
+pre-registered and none fired. The reading is Julian's.
+==============================================================================
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/overlap_identity.json

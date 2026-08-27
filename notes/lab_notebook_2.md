@@ -16,6 +16,181 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 205 — O93 triage: the phase statistic has no access to cancellation, and the naive positive is window geometry
+type: result-triage
+refs: 192, 199, 201, 204
+
+Reading of entry 204. EXPLORATORY.
+
+**The test as posed is not well-posed, and the run proves it rather
+than suspects it.** The per-mode phase difference between two cells
+decomposes as `δ_k = Δ·γ_k + ψ_k`, where `Δ` is the log window-top
+offset and `ψ_k` depends only on (base, depth). **No prime count
+enters the phases anywhere** — they are analytic functions of the
+zeros alone. So "one cancellation event" and "two events" predict
+identical `R`, and the statistic cannot distinguish them in
+principle.
+
+**The naive positive was real and is pure geometry.** `p = 0.0000`
+against the non-overlap null — and the 20 other lattice pairs sharing
+the primary's exact `Δ = −3` reproduce its naive `R` to `1.4e−16`.
+The deterministic rotation explains 100% of pair-to-pair variation.
+The non-overlap null was structurally incapable of matching on
+position: non-overlap forces `|Δ| ≥ 5.5` while the observed pair sits
+at `|Δ| = 3.0`. A cleaner instance of a null that differs from the
+target in exactly the variable driving the statistic is hard to
+construct. After the fast-phase correction nothing survives at any of
+the eight pairs.
+
+**What remains open is the question, with a spec the failure wrote.**
+Whether `√2 (34,11)` and `2 (20,6)` are one cancellation seen at two
+resolutions is untouched — the instrument that could answer it must
+read something the primes actually enter: the cells' values along the
+shared window, prime-block decompositions, not mode phases.
+
+**Found in passing:** containment pair 7 has `Δ = 0` exactly —
+`28·5π/(4γ₁) = 70·π/(2γ₁) = 35π/γ₁` — two commensurate-family cells
+whose window tops coincide identically. The Commensurate-Ladders
+lattice (§ D4, entry 199) surfacing a third time, unlooked-for.
+
+**Scope note.** Entry 201 said two `frac_of_shorter = 1.0` pairs; the
+JSON holds seven. All seven were run; the miscount was mine in 201.
+
+---
+
+## 2026-08-27 — Entry 204 — O93: the overlap identity, run
+type: run
+refs: 192, 201
+
+`O93_overlap_identity.py`, EXPLORATORY. Entry 201 item 2.
+
+```text
+python3 utilities/run.py --python .venv/bin/python \
+    --log results/O93_overlap_identity_run1.log O93_overlap_identity.py
+exit 0   created 2   modified 0
+manifest results/runs/20260827T041628Z_O93_overlap_identity.json
+```
+
+**The mandatory precondition passed before any mode was built.**
+O45's `√2` table reconstructed from prime counts — `F[r] =
+floor(√2^r)` by exact integer square root, depth-0 row `N(r) =
+π(F[r]) − π(F[r−1])`, then the backward-difference recurrence.
+`π(2ⁿ)` audit 33/33 against `pi2n_cache.json`; all five bases the
+targets touch match `sub_integer_base_scan.json` cell-exact,
+including `√2 (34,11)` at total 924, `S = 1,371,038` and `(42,5)` at
+1334 / 651,298. The entry-192 trap discriminates in the new base:
+`Δ^(d+1)` reproduces every recorded zero, `Δ^d` misses all four
+mass-clearing ones (`(34,11)`: `Δ^d = −685`). Mode formula confirmed:
+`n = d+1` for every O45 base.
+
+**Headline numbers.** Primary pair `√2 (34,11) × 2 (20,6)`: naive
+`R = 0.1539` (weighted 0.3816), corrected 0.1004
+(corrected-weighted 0.6385). Nulls: 1248 all-pairs, 762
+non-overlapping. `p_naive` vs non-overlap 0.0000; vs all-pairs 0.164;
+corrected-weighted vs non-overlap 0.375. Seven containment pairs run;
+six read background; `containment 6` reads naive 0.2098 at
+`p = 0.0000` with `|Δ| = 0.56` — the same confound, labelled as such.
+
+**Precision:** float-assembly vs full-mpmath dps 80, max rel diff
+`3.78e−15` across 32 headline values; dps 50 vs 80: 0.00e+00.
+
+Results `results/overlap_identity.json` via `guarded_write`; log via
+run.py `--log` (entry 198's fix, first production use). Reading is
+entry 205.
+
+---
+
+## 2026-08-27 — Entry 203 — O92 triage: the deep zero is uncertifiable at 600 pairs, and O34's residual convention is R, identified by measurement
+type: result-triage
+refs: 193, 197, 201, 202
+
+Reading of entry 202. EXPLORATORY.
+
+**The brief carried a contradiction and the instrument caught it
+before computing.** The spec named the li-stencil as the main term
+AND said to match O34's handling. Those conflict: O34's stored
+residuals are **R-stencil** — `cell − Δ^(d+1)R` reproduces all seven
+of O34's literals to `5e−4` (transcription rounding), while li misses
+depths 0–2 by 23.8 / 5.9 / 1.5, decaying at O29's documented li−R
+gap profile. Under li, certification at `(20,0)` was impossible by
+construction — a 23.8 floor against a 0.5 criterion that no number
+of zeros removes. **Every certification number under the brief-as-
+written would have been wrong.** R adopted, li carried as a
+comparison column. The identification is a dated finding about O34's
+convention that nothing in the tree recorded.
+
+**The certification numbers.** `(20,6)` never touches ±0.5 at any
+`K ≤ 600` — terminal error 104.3. The `K_cert(d)` ladder at `r = 20`:
+first-touch 6, 44, 48, then never for `d ≥ 3`; **no depth certifies
+stably**; best-ever error from `d = 2` on never enters 0.5 at any
+truncation. Background: 9/18 defined `d = 1` cells certify (median
+stable K 304), 1/16 at `d = 3`, 0/13 at `d = 6`. The one certified
+target, `(4,1)`, first touches at `K = 1` and pops out six times
+before settling at 32 — the stable-K definition did real work, and
+transient dips are pervasive across the background.
+
+**The caveat that bounds the reading.** `|err|` GROWS from `K ≈ 200`
+to 600 at every depth (`d = 0`: 1.38 → 8.31) — O34's non-monotone
+convergence under a sharp cutoff. So "uncertified at 600" at `r = 20`
+is partly the truncation scheme. The depth trend itself is clean:
+terminal error monotone 8.3 → 104.3 across `d = 0..6`.
+
+**Read jointly with O93** (entry 205): the spectrum cannot certify
+the deep zero at any measured rate, and the phase statistic cannot
+see cancellation at all. The certification arrow of entry 201 —
+arithmetic pins what the spectrum cannot reach — **survived its
+falsification test**: a bounded small K at `(20,6)` would have
+killed it, and K is unbounded at this truncation with the error
+still growing.
+
+**What would sharpen it:** a smoothed truncation (Gaussian or
+Cesàro weights) separates "sharp-cutoff artifact" from "depth
+barrier" — if `(20,6)` stays uncertified under smoothing, the
+barrier is real.
+
+---
+
+## 2026-08-27 — Entry 202 — O92: certification cost, run
+type: run
+refs: 192, 193, 201
+
+`O92_certification_cost.py`, EXPLORATORY. Entry 201 item 1: minimum
+K zero pairs pinning cell `(r,d)` to within ±0.5 of its integer.
+
+```text
+.venv/bin/python utilities/run.py --python .venv/bin/python \
+    --log results/O92_certification_cost_run1.log O92_certification_cost.py
+exit 0   script sha256 7398fd60…   git HEAD 9f15149 (dirty)
+manifest results/runs/20260827T041704Z_O92_certification_cost.json
+```
+
+**Six-value gate printed first:** `Δ^(d+1)` reproduces all six
+kernel values, `Δ^d` none; the script hard-exits on mismatch.
+
+**Definitions.** `K_first` = smallest K with `|M + S_K − cell| <
+0.5`; `K_stable` = smallest K certified at every larger `K' ≤ 600`.
+Main term `M = Δ^(d+1)R(2^·)` (see entry 203 for why); li column
+alongside. π form primary; ψ cross-check on ψ's own table, labelled
+non-integer parallel-behaviour only.
+
+**Targets:** `(2,1)` MODEL-UNDEFINED (`Ei` at `x = 1`). `(4,1)`
+K_first 1, K_stable 32 — the only certified target, outside regime.
+`(8,3)` K_first 2, UNCERTIFIED, terminal 1.90. `(20,6)` no touch at
+any K, UNCERTIFIED, terminal 104.3. Controls: `(7,3)` UNCERTIFIED
+1.57; `(19,6)` K_first 260, pops out, UNCERTIFIED 2.40.
+
+**d = 0 sanity:** `r = 20` residual_R −24.886 against O34's stored
+−24.886; `r = 15` −6.35.
+
+**Precision:** all 11 headline cells at dps 80 — zero K moves, error
+shift 0.00e+00. `pi2n_cache.json` reaches `n = 62`, so the brief's
+r ≤ 20 scope was conservative rather than cache-bound.
+
+Results `results/certification_cost.json` via `guarded_write`; log
+via run.py `--log`. Reading is entry 203.
+
+---
+
 ## 2026-08-27 — Entry 201 — joint reading of the Shannon/GUE/zeta artifacts; two instruments approved
 type: motivation
 refs: 103, 193, 196, 199, 200

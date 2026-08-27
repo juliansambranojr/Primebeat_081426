@@ -1,0 +1,25 @@
+{
+  "schema_version": "1",
+  "script": "O92_certification_cost.py",
+  "script_sha256": "340a1031113e53a4a1b15499d4af8e95fabf6487fb1b961eb53be882e04de74d",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O92_certification_cost.py",
+    "--nzeros",
+    "50",
+    "--no-precision-check",
+    "--no-psi-crosscheck",
+    "--results-dir",
+    "/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/o92smoke"
+  ],
+  "run_start_at": "2026-08-27T04:15:51.726698+00:00",
+  "run_end_at": "2026-08-27T04:15:51.955360+00:00",
+  "exit_code": 0,
+  "git_head": "9f15149a00418d5819b71b1ac391ae518d6115a6",
+  "git_dirty": true,
+  "files_created": [],
+  "files_modified": [],
+  "log": "../../../../private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/o92smoke/smoke3.log",
+  "log_sha256": "cdafd53df140a8af87039f47b3f5bfbdfebfd311d3f8068200e52db27615870f",
+  "empty_at_snapshot": []
+}

@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 203: (20,6) UNCERTIFIABLE at 600 pairs, terminal error 104.3, no depth stable at r=20 — the certification arrow survived its falsification test; smoothed truncation is the sharpening (sharp-cutoff artifact vs depth barrier)
+- [open]   2026-08-27  entry 203: O34's residual convention is R, not li — identified by measurement (reproduces all seven literals to 5e-4; li leaves a 23.8 floor at (20,0)); nothing in the tree had recorded which convention O34 used
+- [open]   2026-08-27  entry 205: O93 not-well-posed result — mode phases are functions of the zeros alone, NO prime count enters them, so phase correlation cannot see cancellation; naive p=0.0000 was pure window geometry (Delta=-3 lattice pairs reproduce R to 1.4e-16)
+- [open]   2026-08-27  entry 205: the overlap question stays open with a spec — the instrument must read what the primes enter (cell values along the shared window), not mode phases
+- [open]   2026-08-27  entry 205: containment pair 7 has Delta = 0 EXACTLY (35pi/g1 both) — the commensurate lattice surfacing a third time, unlooked-for
 - [open]   2026-08-27  entry 201: joint reading of the Shannon/GUE/zeta artifacts — zero as aimed phase event; certification arrow runs arithmetic -> spectrum; O64's Poisson arm exits at 0.102 vs GUE 0.106 (export after band-dependence check); density and mass choose different bases
 - [open]   2026-08-27  entry 201: APPROVED O92 certification cost — min K zeros to pin a cell to +/-0.5; bounded K at (20,6) falsifies the arrow
 - [open]   2026-08-27  entry 201: APPROVED O93 overlap identity — sqrt2 (34,11) vs 2 (20,6) phase correlation; verified in O47 JSON: 3.0 log2 overlap, 0.545 of shorter; two frac=1.0 containment pairs also unexamined

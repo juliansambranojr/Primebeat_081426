@@ -1,0 +1,28 @@
+{
+  "schema_version": "1",
+  "script": "O93_overlap_identity.py",
+  "script_sha256": "5ca0ff2e2921093f68a25df10311f1abf513ef48eb78764b812bc6439d9d4c77",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O93_overlap_identity.py"
+  ],
+  "run_start_at": "2026-08-27T04:16:28.658332+00:00",
+  "run_end_at": "2026-08-27T04:16:35.001194+00:00",
+  "exit_code": 0,
+  "git_head": "9f15149a00418d5819b71b1ac391ae518d6115a6",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "overlap_identity.json",
+      "sha256": "9d6628a35c85e9f693afa347986de05e8e1c08416963973bab29d39479b183bd"
+    },
+    {
+      "path": "O93_overlap_identity_run1.log",
+      "sha256": "6bc3bf0eedfda52d139d408345ab59b19103e75e80323c037b63977a347b82cc"
+    }
+  ],
+  "files_modified": [],
+  "log": "results/O93_overlap_identity_run1.log",
+  "log_sha256": "6bc3bf0eedfda52d139d408345ab59b19103e75e80323c037b63977a347b82cc",
+  "empty_at_snapshot": []
+}
