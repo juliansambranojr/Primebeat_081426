@@ -1,0 +1,32 @@
+{
+  "schema_version": "1",
+  "script": "O95_multibase_synthesis.py",
+  "script_sha256": "438c0d8dc88309fec4428be949618a187bb2114dda362c2fbd6168cc82addc3d",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O95_multibase_synthesis.py"
+  ],
+  "run_start_at": "2026-08-27T08:23:44.349121+00:00",
+  "run_end_at": "2026-08-27T08:23:45.032177+00:00",
+  "exit_code": 0,
+  "git_head": "386b910a564ea52a9b7f0c55d67af739c27e9351",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "pi_master_lattice_cache.json",
+      "sha256": "296d0122bd1366c5994a0e234e913d623a42494e5f58c052d4d5efd7f9d8c71f"
+    },
+    {
+      "path": "multibase_shakedown.json",
+      "sha256": "bcc1ef438aed44e5e14da7c8aab171f41eadb85e60f84a67cc580becd5ea7d93"
+    },
+    {
+      "path": "O95_multibase_synthesis_run1.log",
+      "sha256": "f123995d082db4420f15bbd00c42be0add0b379ff9c6d6a141fcac0abd240e7d"
+    }
+  ],
+  "files_modified": [],
+  "log": "results/O95_multibase_synthesis_run1.log",
+  "log_sha256": "f123995d082db4420f15bbd00c42be0add0b379ff9c6d6a141fcac0abd240e7d",
+  "empty_at_snapshot": []
+}

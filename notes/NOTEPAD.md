@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 213: O95 PREREG DRAFTED (multibase_synthesis_v1_20260827, no sidecar yet) — detection-gated attribution, misattributed as the informative failure, inconclusive routes to the ceiling ramp, compromised branch IS the theorem; lock awaits Julian
+- [open]   2026-08-27  entry 212: O95 shakedown green — 199-rung geometry reproduced, power 0.925 gated at A/sigma=1, 7*g1 confuses as CRT requires, and the comb is IDENTICALLY flat (noise aliases with signal) giving the X=0.10 criterion 4 orders of margin; blind arm intact, --mode real refuses at exit 2
 - [open]   2026-08-27  entry 211: O95 DESIGN GO — coprime aliased arms collapse the joint alias set to nu = +/-1 (mod 8), nearest confusable 7*g1 = 98.9; non-coprime {6,8} keeps 3*g1 in-band and {7,9} has a near-alias inside resolution, both excluded. Subsets locked {5..9} + {8,9}
 - [open]   2026-08-27  entry 211: O95 power priced from O18 (detect 237 rungs, fail 108) — design point is a 2^40 ceiling, 199 union rungs; per-arm controls MUST show the alias comb or the run is compromised; union pi vector unpeeked, blind arm survives to the prereg
 - [open]   2026-08-27  entry 211: Lean theorem PAIR queued — the per-ladder no-go plus 'coprime aliased arms force nu = +/-1 (mod 8)'; beside entry 208's (1-z^2)^7 factorization pin

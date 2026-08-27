@@ -16,6 +16,97 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 213 — O95 prereg drafted: detection-gated attribution, with the theorem as the compromised branch
+type: prereg
+refs: 211, 212
+
+`preregs/multibase_synthesis_v1_20260827.md`, STATUS DRAFT, no
+sidecar — not yet locked. Julian approved the two design
+recommendations that shaped the rule:
+
+**The rule is detection-gated.** The shakedown produced two readouts;
+the locked rule takes the stricter one — 5× median detection first,
+then attribution (argmax within one halfwidth of γ₁ AND `P(γ₁)`
+dominating every in-band alias candidate at exact frequencies).
+Threshold-free dominance rides as a labelled secondary column.
+`no_detection` routes to an explicit `inconclusive` branch with the
+ceiling ramp (2^44 → ≈227 rungs, 2^48 → ≈255) as the recorded next
+step rather than a forced verdict.
+
+**The compromised branch is the theorem.** If any single-arm control
+fires the X = 0.10 comb criterion — cleanly resolving γ₁ where
+`nyquist_no_go` says it cannot — the run is compromised: the pipeline
+would be manufacturing the distinction. The shakedown's finding that
+noise aliases with signal on a uniform arm (comb ratios identically
+1.0000) gives the criterion ~4 orders of margin.
+
+Labels: `compromised` → `joint_attributes` → `misattributed` →
+`inconclusive`, precedence in that order. `misattributed` is the
+informative failure: signal present, joint mechanism absent.
+Vacuousness: both directions fire on the measured power surface
+(0.925 at `A/σ = 1` for the positive; the combs' ratio-1.0 images
+are exactly what `misattributed` reads).
+
+Blind arm stated: the union residual vector and every statistic on
+it, unread through design and shakedown; `--mode real` refuses
+without `--confirm-real`, verified exit 2. Lock is Julian's call.
+
+---
+
+## 2026-08-27 — Entry 212 — O95 shakedown: pipeline green, power gate reproduced, and the comb is identically flat
+type: run
+refs: 17, 18, 208, 211
+
+`O95_multibase_synthesis.py`, EXPLORATORY shakedown — everything
+except the real measurement, per entry 211's approved sequence.
+
+```text
+python3 utilities/run.py --python .venv/bin/python \
+    --log results/O95_multibase_synthesis_run1.log O95_multibase_synthesis.py
+exit 0   manifest results/runs/20260827T082344Z_O95_multibase_synthesis.json
+results/pi_master_lattice_cache.json + results/multibase_shakedown.json
+```
+
+**Cache.** 278 master-lattice sites `(i, x_i, π(x_i))`, `i = 20..498`,
+ceiling 2^40, largest call `π(1.04e12) = 39,099,802,969`, wall
+0.196 s, 7-site spot audit PASS. Geometry reproduces entry 211
+exactly: primary union 199 rungs vs arm-sum 281 (the shared-field
+arithmetic made literal), pair 84, resolution 0.304, pair mean gap
+0.247 > π/γ₁.
+
+**Power gate, 200 trials/cell, σ = 0.042 (O18's rms).** Two readouts:
+detection-gated (5× median then attribution) 0.010 / 0.925 / 1.000 at
+`A/σ = 0.5 / 1 / 2` primary; threshold-free dominance 0.935 / 1.000 /
+1.000. Pair {8,9}: 0.480 / 0.795 / 0.880 dominance — weaker, as
+designed. In-band alias plants self-attribute at ≥ 0.96 and γ₁ never
+steals them. **7γ₁ must-confuse: confuses** (read as γ₁ at 0.940 /
+1.000) — the instrument fails exactly where ν ≡ −1 (mod 8) says it
+must; a resolution there would have signalled a bug.
+
+**The unanticipated finding, and it strengthens the control.**
+Aliasing on a uniform arm is an identity of the sampling set, so the
+NOISE aliases with the signal: noisy per-arm comb ratios are exactly
+1.0000, the only leakage being floor jitter at ~1e-5. The comb is
+identically flat rather than approximately flat, so the X = 0.10
+compromised criterion carries four orders of magnitude of margin —
+it can only fire on a pipeline that manufactures the distinction.
+Every arm 5–9 shows its full comb (arm 8 through higher images only;
+γ₁ folds to its DC, the O48/O49 null base connection). Arm 4 reported
+as the labelled boundary row.
+
+**{8,9} shared-class tally:** under the pair, 1.571 and γ₁ share arm
+9's entire alias class; at `A/σ = 2` the 1.571 plant's argmax lands
+on shared-class frequencies in 0.50 of trials, never on γ₁ itself.
+Recorded in the prereg's alias-candidate discussion.
+
+**Blind arm intact, stated mechanically:** the code drops the π rows
+before any statistic; no residual, periodogram, or attribution number
+touched the real field; `--mode real` exits 2 without
+`--confirm-real`. Precision: ΔR at dps 50 vs 80 identical to all
+printed digits. Prereg draft is entry 213.
+
+---
+
 ## 2026-08-27 — Entry 211 — O95 design: the joint alias set collapses to ν ≡ ±1 (mod 8), and the claim is priced before it is measured
 type: motivation
 refs: 17, 18, 26, 199, 208, 210
