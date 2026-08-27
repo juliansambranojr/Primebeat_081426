@@ -16,6 +16,87 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 199 — O45's winding angle IS the resolvability condition; and the split that would test it cannot be run on this data
+type: result-triage
+refs: 26, 195, 198
+
+Julian asked whether the Shannon finding was being undersold. Checking
+it found a structural identity nobody had recorded, and then found that
+the obvious test of it is confounded by construction.
+
+**The identity.** O45's eleven bases are `b = exp(πk/(2γ₁))`, selected
+so the winding angle `θ = γ₁·log b` lands on a stated value —
+`papers/Commensurate-Ladders.md` § D4, citing
+`Euler-Factor-Chain.md` § D4. `Nyquist.base_bound_of_resolvable` gives
+resolvability as `γ·log b < π`. **In O45's own coordinate that
+condition is exactly `θ < 180°`.** The family straddles the boundary
+and the boundary is itself a family member, `k = 2`,
+`b = exp(π/γ₁) = 1.248897`.
+
+`Commensurate-Ladders.md` contains one occurrence of
+nyquist/resolvable/alias in the whole document. § D4 caught that the
+set shares a lattice and records that nothing in the prereg noticed;
+the same parameter carrying the resolvability threshold went unnoticed
+as well.
+
+**Where the bases actually fall**, with `θ` unwrapped — the JSON's
+`theta_deg` is taken mod 360, which puts base 2 at 201.35° when its
+true angle is 561.35°:
+
+```text
+             label        b    θ_true      side   res.cells  zeros   z/cell
+ exp(pi*1/(2*g1))   1.1175     90.00   RESOLVE       14028     29  0.00207
+ exp(pi*3/(4*g1))   1.1814    135.00   RESOLVE        6441     21  0.00326
+ exp(pi*2/(2*g1))   1.2489    180.00     LIMIT        3828     14  0.00366
+         2**(1/3)   1.2599    187.12   ALIASED        3570      3  0.00084
+ exp(pi*5/(4*g1))   1.3203    225.00   ALIASED        2556     15  0.00587
+ exp(pi*3/(2*g1))   1.3957    270.00   ALIASED        1770      9  0.00508
+         2**(1/2)   1.4142    280.68   ALIASED        1711     11  0.00643
+ exp(pi*7/(4*g1))   1.4754    315.00   ALIASED        1378     10  0.00726
+ exp(pi*4/(2*g1))   1.5597    360.00   ALIASED        1035      7  0.00676
+ exp(pi*9/(4*g1))   1.6489    405.00   ALIASED         861      2  0.00232
+                2   2.0000    561.35   ALIASED         496      4  0.00806
+```
+
+**The proposed split cannot be run on this data, and the reason is
+structural.** `θ = γ₁·log b` is strictly increasing in `b`, so
+splitting at `θ = 180°` **is** splitting at `b = 1.248897`. The angle
+carries no information the base does not. And the whole table varies
+monotonically along that same axis — resolved cells fall 14028 → 496
+in `θ` order — so a level difference between the groups is what a
+smooth trend in `b` produces anyway. O45 returned `fineness` on
+precisely such a trend, and O46 refuted the `density ≈ 1/S` mechanism
+for it without removing the trend itself.
+
+Two bases below the line, one on it, eight above. **A threshold and a
+trend are not separable at n = 2 against a monotone background.**
+
+The numbers, recorded with that stated: resolvable mean `z/cell`
+0.00267 against aliased mean 0.00533. **Do not read this.** It is the
+same ordering the cell count already imposes.
+
+**What would separate them.** A discontinuity rather than a level
+difference: bases sampled densely on both sides of 1.248897, close
+enough that the smooth trend is locally flat, testing whether the
+statistic steps at the boundary. That is a new scan, and it is
+cheap — the machinery is O45's.
+
+**One hint, at n = 1, offered as a hint.** `2^(1/3) = 1.2599` sits at
+`θ = 187.12°`, the closest base above the boundary, and carries
+`z/cell = 0.00084` — the lowest of all eleven, below both resolvable
+bases and a factor of four under its neighbours on either side. It is
+also an integer-root base rather than a family member, so it differs
+in two ways at once. It is the cell the dense scan should bracket.
+
+**On the original question.** The Shannon finding was undersold in
+scope: `base_bound_of_resolvable` rules out **every integer base** for
+γ₁, since Nyquist falls as base rises and base 2 already misses by
+three. Entry 26 held that as THEOREM-SHAPED and unformalised. It was
+not undersold in depth — both halves reduce to `b^(−s) = 1`, and a
+difference filter having nulls at the sampling harmonics is standard.
+
+---
+
 ## 2026-08-27 — Entry 198 — run.py reported success while its guarantee failed; --log, and a warning for the case it cannot prevent
 type: instrument-fix
 refs: 166, 183, 196

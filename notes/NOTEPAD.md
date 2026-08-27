@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 199: O45's winding angle theta = g1*log b IS the Nyquist resolvability condition — resolvable iff theta < 180 deg, the family straddles it, and the boundary b = 1.248897 is a family member (k=2)
+- [open]   2026-08-27  entry 199: the theta split CANNOT be run on O45's data — theta is monotone in b, so splitting at 180 deg IS splitting at b=1.2489, against a background where resolved cells fall 14028 -> 496 along that same axis; 2 bases below the line
+- [open]   2026-08-27  entry 199: what would separate threshold from trend — a DENSE scan bracketing b = 1.248897 looking for a step, not a level difference; machinery is O45's, cheap
+- [open]   2026-08-27  entry 199: hint at n=1 — 2**(1/3) at theta=187.12 deg is the closest base above the line and has the LOWEST z/cell of all eleven (0.00084); also an integer-root base, so it differs two ways at once
+- [open]   2026-08-27  entry 199: Commensurate-Ladders mentions aliasing ONCE; D4 caught the shared lattice and recorded that the prereg missed it, and missed the resolvability reading of the same parameter
 - [open]   2026-08-27  entry 198: run.py PRINTED 'archived prior' while archiving zero bytes — the shell truncates a redirect target before run.py can snapshot it, so the guarantee failed silently on the exact case it exists for
 - [open]   2026-08-27  entry 198: fixed with --log (run.py opens the file AFTER the snapshot), an empty-at-snapshot warning, manifest fields, and PB_RESULTS_DIR so the guard can be tested at all — it never had been
 - [open]   2026-08-27  entry 198: the tee loss stays unpreventable by run.py since the shell acts first; use --log. O91 re-run confirms entries 196/197 unchanged
