@@ -36,8 +36,20 @@ USE
 ---
     python3 utilities/run.py O34_zeta_residual_model.py --dps 40
     python3 utilities/run.py --python .venv/bin/python O85_dh_aggregate.py
+    python3 utilities/run.py --log results/O91_run1.log O91_mode_entropy.py
 
 Anything after the script name is passed through untouched.
+
+DO NOT PIPE THE LOG THROUGH `tee` INTO results/. USE --log.
+Found 2026-08-27 on O91 (entry 196). The shell creates and truncates a
+redirect target BEFORE run.py starts, so the clone snapshots an already
+empty file. If that log held a prior run, tee destroyed it, the archive
+faithfully preserved the empty version, and run.py printed
+`archived prior ...` — reporting success. **The guarantee failed
+silently in exactly the case it exists for.** With --log the file is
+opened after the snapshot, so a real prior log reaches the clone and is
+archived. Files found empty at snapshot time are now named in a warning
+and recorded in the manifest as `empty_at_snapshot`.
 """
 import argparse
 import hashlib
@@ -51,9 +63,17 @@ from datetime import datetime, timezone
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(_HERE)
-RESULTS = os.path.join(ROOT, "results")
+# PB_RESULTS_DIR exists so this file's own protection can be exercised
+# against a scratch tree. A guard you cannot test without writing junk into
+# the thing it guards is a guard nobody tests.
+RESULTS = os.environ.get("PB_RESULTS_DIR") or os.path.join(ROOT, "results")
 ARCHIVE = os.path.join(RESULTS, "archive")
 RUNS = os.path.join(RESULTS, "runs")
+
+# sha256 of zero bytes. A results file carrying this at snapshot time was
+# almost certainly truncated by the shell before run.py started.
+EMPTY_SHA = ("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b"
+             "7852b855")
 
 
 VOLATILE = ("generated_utc", "run_start_at", "run_end_at")
@@ -101,6 +121,32 @@ def _git(*args):
         return ""
 
 
+class _Rc:
+    def __init__(self, returncode):
+        self.returncode = returncode
+
+
+def _exec(python, script, rest, logpath):
+    """Run the script. With logpath, capture the combined stream, echo it
+    and write it — the file is opened HERE, after the snapshot, so a
+    pre-existing log's real contents reach the clone and get archived."""
+    if not logpath:
+        return subprocess.run([python, script, *rest], cwd=ROOT)
+    os.makedirs(os.path.dirname(os.path.abspath(logpath)) or ".",
+                exist_ok=True)
+    with open(logpath, "w") as lf:
+        proc = subprocess.Popen([python, script, *rest], cwd=ROOT,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT,
+                                text=True, bufsize=1)
+        for line in proc.stdout:
+            sys.stdout.write(line)
+            sys.stdout.flush()
+            lf.write(line)
+        proc.wait()
+    return _Rc(proc.returncode)
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=("Run a measurement script with its results protected "
@@ -108,6 +154,11 @@ def main():
         usage="run.py [--python PY] SCRIPT [script args ...]")
     ap.add_argument("--python", default=sys.executable,
                     help="interpreter (default: the one running this)")
+    ap.add_argument("--log", default=None,
+                    help="write the run's combined output here, streaming "
+                         "to the terminal as well. USE THIS INSTEAD OF "
+                         "`| tee results/...`, which truncates the file "
+                         "before run.py can snapshot it")
     ap.add_argument("script")
     ap.add_argument("rest", nargs=argparse.REMAINDER)
     args = ap.parse_args()
@@ -128,10 +179,22 @@ def main():
         shutil.copytree(RESULTS, clone)
     before = _snapshot(clone)
 
+    empty = sorted(r for r, s in before.items() if s == EMPTY_SHA)
+    if empty:
+        print("run.py: WARNING - empty at snapshot time, so any prior "
+              "contents are ALREADY GONE and the archive cannot recover "
+              "them:", flush=True)
+        for r in empty:
+            print(f"  {r}", flush=True)
+    if not args.log and not sys.stdout.isatty():
+        print("run.py: NOTE - output is piped. A shell redirect into "
+              f"{os.path.basename(RESULTS)}/ is unprotected; use --log.",
+              flush=True)
+
     started = datetime.now(timezone.utc)
     print(f"run.py: {os.path.basename(script)}  "
           f"({len(before)} results files cloned)\n", flush=True)
-    proc = subprocess.run([args.python, script, *args.rest], cwd=ROOT)
+    proc = _exec(args.python, script, args.rest, args.log)
     ended = datetime.now(timezone.utc)
 
     after = _snapshot(RESULTS)
@@ -165,6 +228,10 @@ def main():
         "git_dirty": bool(_git("status", "--porcelain")),
         "files_created": created,
         "files_modified": modified,
+        "log": (os.path.relpath(args.log, ROOT) if args.log else None),
+        "log_sha256": (_sha(args.log)
+                       if args.log and os.path.isfile(args.log) else None),
+        "empty_at_snapshot": empty,
     }
     mpath = os.path.join(
         RUNS, f"{started.strftime('%Y%m%dT%H%M%SZ')}_"

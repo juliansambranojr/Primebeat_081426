@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 198: run.py PRINTED 'archived prior' while archiving zero bytes — the shell truncates a redirect target before run.py can snapshot it, so the guarantee failed silently on the exact case it exists for
+- [open]   2026-08-27  entry 198: fixed with --log (run.py opens the file AFTER the snapshot), an empty-at-snapshot warning, manifest fields, and PB_RESULTS_DIR so the guard can be tested at all — it never had been
+- [open]   2026-08-27  entry 198: the tee loss stays unpreventable by run.py since the shell acts first; use --log. O91 re-run confirms entries 196/197 unchanged
 - [open]   2026-08-27  entry 197: Neff = 172 of 600 at (20,6) — a localized reading needs Neff of order 1; the ensemble claim finally has a number
 - [open]   2026-08-27  entry 197: entry 194's correction MEASURED — all four profile/form combinations behave as predicted, and the vacuous one is now named: psi-form entropy on |z| is fixed by depth alone and cannot separate a zero from a non-zero
 - [open]   2026-08-27  entry 197: second time the control comes out more concentrated than the zero (O90 coherence, O91 Neff) — opposite to what entry 192 predicted, both times

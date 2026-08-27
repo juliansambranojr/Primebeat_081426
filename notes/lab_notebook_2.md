@@ -16,6 +16,75 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 198 — run.py reported success while its guarantee failed; --log, and a warning for the case it cannot prevent
+type: instrument-fix
+refs: 166, 183, 196
+
+`utilities/run.py`. Found from entry 196's zero-byte archived log, and
+the defect is worse than that symptom.
+
+**The failure.** A shell creates and truncates a redirect target
+**before** the command in the pipeline starts. So
+`run.py ... | tee` into a log under results/ truncates that log, then run.py clones
+`results/` and snapshots an already-empty file. If `X.log` held a prior
+run, tee destroyed it, the clone preserved the emptiness, the archive
+faithfully stored a zero-byte "prior version", and run.py printed
+
+```text
+  archived prior X.log -> results/archive/X_<utc>_e3b0c442.log
+```
+
+`e3b0c442` is the sha256 prefix of the empty string. **run.py reported
+success on the exact case it exists to protect.** Entry 166 built this
+machinery because O63, O65 and O66 each lost run 1 to a re-run; this is
+that same loss with a success message on top.
+
+**The fix, four parts.**
+
+1. `--log PATH`. run.py captures the child's combined stream, echoes it
+   and writes it, **opening the file after the snapshot**. A real prior
+   log therefore reaches the clone and is archived. This replaces `tee`
+   entirely.
+2. A warning naming every results file that is empty at snapshot time,
+   since prior contents are already gone by then and no archive can
+   recover them.
+3. `empty_at_snapshot`, `log` and `log_sha256` recorded in the manifest,
+   so the condition is in the record rather than only on a terminal.
+4. `PB_RESULTS_DIR` overrides the results root. A guard that cannot be
+   exercised without writing junk into the thing it guards is a guard
+   nobody tests — and this one had never been tested against a
+   pre-populated file.
+
+**Both paths measured**, in a scratch tree with a log holding
+`RUN 1 OUTPUT - the prior run nobody wants to lose`:
+
+```text
+A  --log         archive contains RUN 1 OUTPUT          fix works
+B  | tee         archive contains 0 bytes               loss still occurs
+                 + WARNING naming demo.log              now loud
+                 + NOTE that piping is unprotected
+                 + manifest empty_at_snapshot ['demo.log']  now recorded
+```
+
+**What the fix does not do.** Under `tee` the loss is unpreventable by
+run.py, because the shell acts first. Part 1 gives a path where it
+cannot happen; parts 2–4 make the remaining case loud and dated instead
+of silent and congratulatory.
+
+**Re-run, and prior results stay comparable.** O91 re-executed through
+the fixed path with `--results-dir` at a scratch tree, and every
+scientific field is identical to `results/mode_entropy.json` —
+`background`, `percentiles`, `r_invariance`, `o90_gate`, `neff_vs_pr`.
+The one differing field is `precision_check_rel`, differing because the
+verify run passed `--no-precision-check`. **Entries 196 and 197 stand
+unchanged.**
+
+The zero-byte artifact from the original incident stays in
+`results/archive/` — `.log` files are not deletable under this
+project's permissions, and it is now the dated evidence of the defect.
+
+---
+
 ## 2026-08-27 — Entry 197 — 172 modes of 600, and the vacuous combination is now identified rather than argued
 type: result-triage
 refs: 192, 194, 195, 196
