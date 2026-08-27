@@ -1,6 +1,6 @@
 # Prereg — do the aliased arms, jointly, attribute the mode to γ₁ against their own alias sets? (v1)
 
-STATUS: **DRAFT**
+STATUS: **LOCKED**
 
 ## Background
 
