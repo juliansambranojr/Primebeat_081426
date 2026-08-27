@@ -1,0 +1,276 @@
+==============================================================================
+O91 --vs-n : Neff AGAINST N, the truncation entry 197 left open
+EXPLORATORY. No prereg, no decision rule, NO VERDICT. Nothing
+printed below may be described as a verdict.
+==============================================================================
+  zeros        600 pairs from zeros600.json, gamma_1 = 14.1347251417 .. gamma_600 = 939.024300899
+  dps          50 working
+  cells        [(2, 1), (4, 1), (8, 3), (20, 6), (7, 3), (19, 6)]
+  forms        psi, pi   profiles  |c| and |z|
+  N grid       every N = 1..600; the table prints 25, 50, 100, 200, 300, 400, 500, 600
+  statistic    Neff(N) = exp(H_N), H_N the entropy of p_k = |c_k| / sum_(j<=N) |c_j|
+
+==============================================================================
+0. GATE - the exponent is d+1, verified against the six kernel-proved values
+==============================================================================
+lean/Zeros.lean's dyadicRow is ALREADY one backward difference of
+pi(2^.), and lean/Construction.lean's tableFrom applies d more, so
+cell (r,d) = Delta^(d+1).  Recomputed here from pi2n_cache.json,
+not quoted from entry 192.  Delta^(d+1) must reproduce all six and
+Delta^d must reproduce none.
+
+    cell    lean     Delta^d   Delta^(d+1)   d+1 == lean   d == lean
+  (2, 1)       0           1             0          True       False
+  (4, 1)       0           2             0          True       False
+  (8, 3)       0           4             0          True       False
+ (20, 6)       0         623             0          True       False
+  (7, 3)       5           4             5          True       False
+ (19, 6)     343         623           343          True       False
+
+  Delta^(d+1) reproduces 6 of 6;  Delta^d reproduces 0 of 6  ->  PASS
+
+==============================================================================
+1. THE PREDICTION - stated before the numbers, from the decay law
+==============================================================================
+|c_k| = 2^(r/2) * B_k^(d+1) * |cos(arg z_k)| * 2 / |rho_k|, with
+B_k = |1 - 2^(-rho_k)| = sqrt(3/2 - sqrt2 cos(gamma_k log 2)).
+B and |cos| are STATIONARY in k; 1/|rho_k| ~ 1/gamma_k is the decay
+envelope. Normalisation kills 2^(r/2). The envelope decides the
+SHAPE of Neff(N); the stationary modulation only the LEVEL, by a
+factor exp(-D) that does not depend on N.
+
+  p_k ~ k^(-s):   s < 1  ->  Neff = (1-s) e^(-s/(1-s)) N   LINEAR
+                  s = 1  ->  Neff ~ sqrt(N) log N          SUBLINEAR
+                  s > 1  ->  Neff -> finite limit          SATURATES
+
+  gamma_k ~ 2 pi k / log(k/(2 pi e))  =>  s(k) = 1 - 1/log(k/(2 pi e))
+  which is BELOW 1 at every finite k and rises to 1 only as k -> inf.
+
+  PREDICTED SHAPE: option 3 - sublinear growth without saturation. Neff(N) rises with local log-log exponent just below 1 across the measured window and does not approach a limit.
+  PREDICTED power-law fit over N = 25..600: slope ~ 0.87
+  PREDICTED ratio (20,6)/(19,6): flat in N. Neff(20,6)/Neff(19,6) is predicted FLAT in N - both cells share one envelope and both level factors are N-independent - at 1.057 (psi |c|) and 1.095 (pi |c|), and EXACTLY 1.000 at every N on the r-invariant psi |z| profile.
+
+  local log-slope s of gamma_k on the actual zero list:
+   k=2..25: 0.5705   k=25..50: 0.6884   k=50..100: 0.7248   k=100..200: 0.7449   k=200..300: 0.7710   k=300..600: 0.7933
+
+==============================================================================
+2. THE ENVELOPE MODEL - Neff_env(N) from a_k = 1 / |rho_k| alone
+==============================================================================
+The magnitude profile with the stationary modulation removed. Its
+Neff is the SHAPE the prediction says the real curves must follow,
+up to one N-independent factor per cell.
+
+      N     Neff_env   Neff_env/N   local exponent
+     25       21.559       0.8623                -
+     50       40.597       0.8119           0.9131
+    100       75.615       0.7562           0.8973
+    200      139.354       0.6968           0.8820
+    300      198.333       0.6611           0.8704
+    400      254.258       0.6356           0.8635
+    500      307.945       0.6159           0.8585
+    600      359.871       0.5998           0.8547
+
+  building psi-form modes ...
+  building pi-form modes ...
+
+==============================================================================
+3. Neff(N) AT THE TARGETS AND CONTROLS
+==============================================================================
+Four exact zeros (lean value 0) and the two proved non-zeros,
+nonzero_7_3 = 5 and nonzero_19_6 = 343. (2,1), (4,1), (8,3) and
+(7,3) sit OUTSIDE the regime where the explicit formula tracks
+pi(x); (20,6) with (19,6) is the one pair inside it. (2,1) is
+undefined in the pi form for O90's reason.
+
+--- psi form, profile |c|  ----------------------------------
+    cell     role      N=25      N=50     N=100     N=200     N=300     N=400     N=500     N=600
+-------------------------------------------------------------------------------------------------
+  (2, 1)     zero     16.62     31.07     55.27    100.83    141.56    179.30    215.53    251.25
+  (4, 1)     zero     13.78     28.00     50.16     94.79    135.40    171.30    207.98    241.20
+  (8, 3)     zero     14.45     25.43     43.87     79.98    110.80    140.05    171.10    197.91
+ (20, 6)     zero     11.60     20.51     37.43     68.28     94.97    121.84    148.17    172.05
+  (7, 3)  control     11.80     23.30     42.83     73.84    103.28    129.57    155.85    182.10
+ (19, 6)  control     13.50     23.79     39.66     68.11     91.53    115.39    140.18    162.79
+
+--- psi form, profile |z|  ----------------------------------
+    cell     role      N=25      N=50     N=100     N=200     N=300     N=400     N=500     N=600
+-------------------------------------------------------------------------------------------------
+  (2, 1)     zero     18.14     33.47     60.53    109.99    154.88    196.84    237.68    276.70
+  (4, 1)     zero     18.14     33.47     60.53    109.99    154.88    196.84    237.68    276.70
+  (8, 3)     zero     15.13     27.59     49.20     88.77    124.44    157.63    190.11    220.97
+ (20, 6)     zero     12.17     22.23     39.42     70.78     99.13    125.38    151.26    175.67
+  (7, 3)  control     15.13     27.59     49.20     88.77    124.44    157.63    190.11    220.97
+ (19, 6)  control     12.17     22.23     39.42     70.78     99.13    125.38    151.26    175.67
+
+--- pi form, profile |c|  ----------------------------------
+    cell     role      N=25      N=50     N=100     N=200     N=300     N=400     N=500     N=600
+-------------------------------------------------------------------------------------------------
+  (2, 1)     zero     undef     undef     undef     undef     undef     undef     undef     undef
+  (4, 1)     zero     13.59     27.88     49.30     91.86    130.47    165.78    199.97    233.15
+  (8, 3)     zero     13.85     24.50     42.30     77.35    107.24    135.73    165.37    191.62
+ (20, 6)     zero     11.65     20.66     37.34     68.60     95.20    122.17    148.67    172.24
+  (7, 3)  control     11.80     22.40     40.82     68.82     96.46    120.77    145.43    170.01
+ (19, 6)  control     13.46     23.35     39.16     66.25     88.70    111.68    135.53    157.36
+
+--- pi form, profile |z|  ----------------------------------
+    cell     role      N=25      N=50     N=100     N=200     N=300     N=400     N=500     N=600
+-------------------------------------------------------------------------------------------------
+  (2, 1)     zero     undef     undef     undef     undef     undef     undef     undef     undef
+  (4, 1)     zero     17.63     32.33     58.14    105.22    147.99    187.77    226.43    263.48
+  (8, 3)     zero     14.77     26.89     47.86     86.27    120.87    153.05    184.56    214.49
+ (20, 6)     zero     12.06     22.04     39.07     70.13     98.22    124.22    149.86    174.04
+  (7, 3)  control     14.66     26.68     47.48     85.58    119.89    151.80    183.05    212.73
+ (19, 6)  control     12.05     22.02     39.04     70.07     98.15    124.13    149.75    173.91
+
+==============================================================================
+4. WHICH SHAPE - saturating, linear, or sublinear
+==============================================================================
+Three discriminators, each of which can fire on its own:
+  local exponent  b = dlog Neff / dlog N near the top of the range.
+                  b -> 0 saturating; b -> 1 linear; 0 < b < 1
+                  sublinear.
+  Neff/N          constant means linear; falling means sublinear;
+                  falling like 1/N means saturating.
+  Neff(600)/Neff(300)   1.00 saturating, 2.00 linear, 2.00^b between.
+
+ form prof     cell  fit b 25-600      r2  fit b 100-600  b 300->600  N600/N300  Neff/N 25  Neff/N 600  reading
+---------------------------------------------------------------------------------------------------------------
+  psi    c   (2, 1)        0.8454 0.99986         0.8363      0.8277     1.7748     0.6647      0.4187  SUBLINEAR
+  psi    c   (4, 1)        0.8785 0.99937         0.8640      0.8330     1.7814     0.5511      0.4020  SUBLINEAR
+  psi    c   (8, 3)        0.8306 0.99981         0.8345      0.8368     1.7861     0.5780      0.3298  SUBLINEAR
+  psi    c  (20, 6)        0.8597 0.99980         0.8595      0.8572     1.8116     0.4640      0.2867  SUBLINEAR
+  psi    c   (7, 3)        0.8239 0.99918         0.8151      0.8182     1.7632     0.4718      0.3035  SUBLINEAR
+  psi    c  (19, 6)        0.7770 0.99946         0.7910      0.8306     1.7785     0.5398      0.2713  SUBLINEAR
+  psi    z   (2, 1)        0.8519 0.99993         0.8449      0.8371     1.7865     0.7255      0.4612  SUBLINEAR
+  psi    z   (4, 1)        0.8519 0.99993         0.8449      0.8371     1.7865     0.7255      0.4612  SUBLINEAR
+  psi    z   (8, 3)        0.8396 0.99993         0.8345      0.8284     1.7757     0.6053      0.3683  SUBLINEAR
+  psi    z  (20, 6)        0.8344 0.99991         0.8304      0.8254     1.7720     0.4867      0.2928  SUBLINEAR
+  psi    z   (7, 3)        0.8396 0.99993         0.8345      0.8284     1.7757     0.6053      0.3683  SUBLINEAR
+  psi    z  (19, 6)        0.8344 0.99991         0.8304      0.8254     1.7720     0.4867      0.2928  SUBLINEAR
+   pi    c   (4, 1)        0.8652 0.99945         0.8554      0.8375     1.7870     0.5435      0.3886  SUBLINEAR
+   pi    c   (8, 3)        0.8325 0.99984         0.8370      0.8374     1.7869     0.5539      0.3194  SUBLINEAR
+   pi    c  (20, 6)        0.8587 0.99980         0.8599      0.8555     1.8093     0.4661      0.2871  SUBLINEAR
+   pi    c   (7, 3)        0.8085 0.99925         0.8053      0.8176     1.7625     0.4721      0.2833  SUBLINEAR
+   pi    c  (19, 6)        0.7663 0.99940         0.7786      0.8271     1.7742     0.5385      0.2623  SUBLINEAR
+   pi    z   (4, 1)        0.8463 0.99994         0.8406      0.8321     1.7803     0.7050      0.4391  SUBLINEAR
+   pi    z   (8, 3)        0.8380 0.99993         0.8333      0.8274     1.7745     0.5908      0.3575  SUBLINEAR
+   pi    z  (20, 6)        0.8343 0.99991         0.8302      0.8253     1.7719     0.4824      0.2901  SUBLINEAR
+   pi    z   (7, 3)        0.8378 0.99993         0.8331      0.8273     1.7744     0.5864      0.3545  SUBLINEAR
+   pi    z  (19, 6)        0.8342 0.99991         0.8302      0.8253     1.7719     0.4820      0.2898  SUBLINEAR
+
+  For reference the envelope model itself, same columns:
+  env    -        -        0.8783 0.99990         0.8684      0.8596     1.8145     0.8623      0.5998
+
+==============================================================================
+5. kappa_N = Neff(N) / Neff_env(N) - the prediction says FLAT
+==============================================================================
+If the shape is set by the envelope alone and the modulation only
+moves the level, kappa_N does not depend on N. Drift in kappa_N is
+the account failing, and would be the finding.
+
+ form prof     cell     N=25     N=50    N=100    N=200    N=300    N=400    N=500    N=600   max/min
+-----------------------------------------------------------------------------------------------------
+  psi    c   (2, 1)   0.7708   0.7653   0.7309   0.7236   0.7137   0.7052   0.6999   0.6982    1.1153
+  psi    c   (4, 1)   0.6390   0.6898   0.6633   0.6802   0.6827   0.6737   0.6754   0.6702    1.1144
+  psi    c   (8, 3)   0.6703   0.6265   0.5801   0.5739   0.5587   0.5508   0.5556   0.5499    1.2256
+  psi    c  (20, 6)   0.5381   0.5052   0.4950   0.4900   0.4788   0.4792   0.4812   0.4781    1.1377
+  psi    c   (7, 3)   0.5472   0.5738   0.5665   0.5299   0.5207   0.5096   0.5061   0.5060    1.1683
+  psi    c  (19, 6)   0.6260   0.5861   0.5245   0.4887   0.4615   0.4538   0.4552   0.4524    1.4201
+  psi    z   (2, 1)   0.8413   0.8245   0.8005   0.7893   0.7809   0.7742   0.7718   0.7689    1.1083
+  psi    z   (4, 1)   0.8413   0.8245   0.8005   0.7893   0.7809   0.7742   0.7718   0.7689    1.1083
+  psi    z   (8, 3)   0.7020   0.6797   0.6507   0.6370   0.6274   0.6200   0.6173   0.6140    1.1682
+  psi    z  (20, 6)   0.5644   0.5476   0.5214   0.5079   0.4998   0.4931   0.4912   0.4881    1.1972
+  psi    z   (7, 3)   0.7020   0.6797   0.6507   0.6370   0.6274   0.6200   0.6173   0.6140    1.1682
+  psi    z  (19, 6)   0.5644   0.5476   0.5214   0.5079   0.4998   0.4931   0.4912   0.4881    1.1972
+   pi    c   (4, 1)   0.6302   0.6866   0.6520   0.6592   0.6579   0.6520   0.6494   0.6479    1.1133
+   pi    c   (8, 3)   0.6423   0.6034   0.5594   0.5551   0.5407   0.5338   0.5370   0.5325    1.2219
+   pi    c  (20, 6)   0.5405   0.5089   0.4938   0.4923   0.4800   0.4805   0.4828   0.4786    1.1427
+   pi    c   (7, 3)   0.5474   0.5517   0.5399   0.4938   0.4864   0.4750   0.4723   0.4724    1.2205
+   pi    c  (19, 6)   0.6245   0.5751   0.5179   0.4754   0.4472   0.4392   0.4401   0.4373    1.4671
+   pi    z   (4, 1)   0.8176   0.7963   0.7689   0.7551   0.7462   0.7385   0.7353   0.7321    1.1330
+   pi    z   (8, 3)   0.6851   0.6623   0.6330   0.6191   0.6094   0.6020   0.5993   0.5960    1.1759
+   pi    z  (20, 6)   0.5594   0.5428   0.5167   0.5032   0.4952   0.4886   0.4866   0.4836    1.1982
+   pi    z   (7, 3)   0.6800   0.6572   0.6280   0.6141   0.6045   0.5970   0.5944   0.5911    1.1772
+   pi    z  (19, 6)   0.5590   0.5424   0.5163   0.5028   0.4949   0.4882   0.4863   0.4832    1.1983
+
+==============================================================================
+6. THE RATIO Neff(20,6) / Neff(19,6) AGAINST N
+==============================================================================
+Entry 197: 'The ratio 1.057 is safer, since both cells are
+truncated identically.' This tests it. A flat row supports the
+claim; a drifting row is the claim failing, and the drift is then
+the number to report rather than the endpoint.
+
+ form prof     N=25     N=50    N=100    N=200    N=300    N=400    N=500    N=600   min>=25   max>=25  drift %     slope
+-------------------------------------------------------------------------------------------------------------------------
+  psi    c   0.8595   0.8619   0.9438   1.0025   1.0375   1.0558   1.0570   1.0569    0.8190    1.0642    23.20   0.08270
+  psi    z   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    1.0000    1.0000     0.00   0.00000
+   pi    c   0.8655   0.8848   0.9534   1.0354   1.0733   1.0939   1.0970   1.0946    0.8315    1.1039    24.89   0.09241
+   pi    z   1.0007   1.0007   1.0007   1.0007   1.0007   1.0008   1.0007   1.0008    1.0007    1.0008     0.01   0.00001
+
+  The psi |z| row is the r-invariant profile of entry 197: it is
+  1.0000 at every N by construction and carries no information
+  about the pair. It is here as the null column.
+
+  Same ratio one depth down, (8,3) / (7,3):
+  psi |c|  N=25: 1.2250  N=50: 1.0917  N=100: 1.0241  N=200: 1.0831  N=300: 1.0729  N=400: 1.0809  N=500: 1.0978  N=600: 1.0868
+  psi |z|  N=25: 1.0000  N=50: 1.0000  N=100: 1.0000  N=200: 1.0000  N=300: 1.0000  N=400: 1.0000  N=500: 1.0000  N=600: 1.0000
+   pi |c|  N=25: 1.1734  N=50: 1.0937  N=100: 1.0361  N=200: 1.1240  N=300: 1.1117  N=400: 1.1239  N=500: 1.1371  N=600: 1.1271
+   pi |z|  N=25: 1.0074  N=50: 1.0077  N=100: 1.0080  N=200: 1.0081  N=300: 1.0082  N=400: 1.0083  N=500: 1.0083  N=600: 1.0083
+
+==============================================================================
+7. PR(N) - the order-2 estimator, same sweep
+==============================================================================
+PR <= Neff always. If both grow with the same exponent the
+truncation dependence is a property of the profile rather than of
+the Renyi order.
+
+ form prof     cell   PR fit b  Neff fit b    PR(top)  Neff/PR(top)
+-------------------------------------------------------------------
+  psi    c   (2, 1)     0.6438      0.8454    108.337        2.3191
+  psi    c   (4, 1)     0.6833      0.8785     81.694        2.9525
+  psi    c   (8, 3)     0.6353      0.8306     78.613        2.5175
+  psi    c  (20, 6)     0.6733      0.8597     78.962        2.1788
+  psi    c   (7, 3)     0.6109      0.8239     60.658        3.0021
+  psi    c  (19, 6)     0.5800      0.7770     76.127        2.1384
+  psi    z   (2, 1)     0.6478      0.8519    113.558        2.4367
+  psi    z   (4, 1)     0.6478      0.8519    113.558        2.4367
+  psi    z   (8, 3)     0.6350      0.8396     86.122        2.5658
+  psi    z  (20, 6)     0.6291      0.8344     66.501        2.6416
+  psi    z   (7, 3)     0.6350      0.8396     86.122        2.5658
+  psi    z  (19, 6)     0.6291      0.8344     66.501        2.6416
+   pi    c   (4, 1)     0.6727      0.8652     81.448        2.8626
+   pi    c   (8, 3)     0.6306      0.8325     73.239        2.6164
+   pi    c  (20, 6)     0.6757      0.8587     78.916        2.1826
+   pi    c   (7, 3)     0.5928      0.8085     55.916        3.0404
+   pi    c  (19, 6)     0.5663      0.7663     73.307        2.1466
+   pi    z   (4, 1)     0.6431      0.8463    108.215        2.4348
+   pi    z   (8, 3)     0.6338      0.8380     83.619        2.5651
+   pi    z  (20, 6)     0.6290      0.8343     65.893        2.6412
+   pi    z   (7, 3)     0.6335      0.8378     82.914        2.5657
+   pi    z  (19, 6)     0.6289      0.8342     65.844        2.6412
+
+==============================================================================
+8. PRECISION CHECK - the headline curve recomputed at dps 80
+==============================================================================
+psi form, |c| profile, cell (20,6): Neff(N) at every N,
+recomputed from a mode set built at higher precision.
+
+      N         Neff dps 50         Neff dps 80    rel diff
+     25       11.5996848710       11.5996848710    0.00e+00
+     50       20.5086837353       20.5086837353    0.00e+00
+    100       37.4308045308       37.4308045308    0.00e+00
+    200       68.2773600301       68.2773600301    0.00e+00
+    300       94.9696007810       94.9696007810    0.00e+00
+    400      121.8378282500      121.8378282500    0.00e+00
+    500      148.1675576639      148.1675576639    0.00e+00
+    600      172.0451153723      172.0451153723    0.00e+00
+
+  max relative disagreement 0.00e+00 over all 600 values of N (worst at N = None)
+
+==============================================================================
+EXPLORATORY. Nothing above is a verdict. No decision rule was
+pre-registered and none fired. The reading is Julian's.
+==============================================================================
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/mode_entropy_vs_N.json

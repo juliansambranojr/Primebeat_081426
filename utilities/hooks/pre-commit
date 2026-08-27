@@ -34,6 +34,15 @@ if ! python3 utilities/check_results_guard.py --new-only >/dev/null 2>&1; then
   echo "guard are checked here."
   exit 1
 fi
+if ! python3 utilities/check_sidecar.py; then
+  echo
+  echo "A locked prereg's text has no recoverable pre-image, so its"
+  echo "sidecar cannot be verified. Lock, COMMIT, then run —"
+  echo "preregs/FORMAT.md \u00a7 'Lock, commit, then run'. Already-known"
+  echo "cases live in utilities/sidecar_baseline.txt with their reasons."
+  exit 1
+fi
+
 fixed=$(python3 utilities/check_refs.py | grep '^BROKEN' | sort | comm -13 - utilities/refs_baseline.txt)
 [ -n "$fixed" ] && { echo "── fixed, trim the baseline ──"; echo "$fixed"; }
 exit 0

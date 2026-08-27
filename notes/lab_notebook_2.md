@@ -16,6 +16,119 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 222 — Neff(N) triage: 172 is truncation-bound, the conclusion is not, and entry 197's ratio argument was wrong
+type: result-triage
+refs: 194, 196, 197, 221
+
+Reading of entry 221. EXPLORATORY. This closes entry 197's stated open
+caveat.
+
+**Shape 3: sublinear and unbounded, at all 22 combinations.** Nothing
+saturates and nothing is linear. `Neff ∝ N^b` with `b` between 0.766
+and 0.879, `r² ≥ 0.9992` everywhere; at `(20,6)` `b = 0.8597` (ψ) and
+0.8587 (π). `Neff(600)/Neff(300)` runs 1.76–1.81 against 2.00 for
+linear and 1.00 for saturating. `Neff/N` falls monotonically from 0.464
+at `N = 25` to 0.287 at 600.
+
+**So entry 197's headline is a statement at one truncation.** `Neff =
+172.0` sits on a curve still rising 16% over its last 100 modes.
+`Neff/600 = 0.287` is equally N-dependent. **No ensemble figure follows
+from either number**, and entry 197 should be read as "172 at
+`N = 600`".
+
+**The conclusion it was drawn for survives, for a reason independent of
+N.** Entry 197 argued a localized reading — a table zero being one zeta
+mode — needs `Neff` of order 1. At **every** N measured, `Neff` is a
+large fraction of N: 11.6 of 25 at the smallest truncation. The number
+is truncation-bound; the order-of-magnitude statement is not.
+
+**Correction to entry 197.** That entry wrote "the ratio 1.057 is the
+safer figure, since both cells are truncated identically." **The
+reasoning is wrong.** The ratio moves 23.2% (ψ) / 24.9% (π) across the
+range and **changes sign** — 0.8595 at `N = 25`, 0.9438 at 100, 1.0025
+at 200, crossing 1.0 near `N ≈ 193` (ψ) and 170 (π). **Below that
+crossing the non-zero control has the higher Neff, reversing entry
+197's direction claim.** Identical truncation does not make a ratio
+N-independent, because the two cells' level factors converge at
+different rates.
+
+What is true is narrower and had to be measured: the ratio **plateaus**
+for `N ≥ 400`, span 0.93% (ψ) / 1.05% (π), log-log slope −0.006. So
+1.057 is a plateau value established by measurement, not a quantity
+protected by a symmetry argument. One depth down, `(8,3)/(7,3)` is
+non-monotone — 1.225 at N=25, dipping to 1.024 at 100, 1.087 at 600 —
+and is not settled.
+
+**The analytic level law was confirmed and its N-independence was
+not.** Predicted `Neff = e^(−D)·Neff_env(N)` with `D` constant in N;
+the `ψ|z|` column is the exact test, since there the modulation is
+`B^(d+1)` alone and `D` is computable. Analytic `e^(−D)` = 0.7701 /
+0.5983 / 0.4728 at `d = 1/3/6` against measured `κ(600)` = 0.7689 /
+0.6140 / 0.4881 — `d = 1` converged to −0.16%, `d = 3` and `d = 6`
+still 2.6% and 3.2% high and falling ~0.6% per 100 modes. The
+mechanism is named: `D_N` is a finite-sample estimate of `E[w log w]`,
+biased low, so `κ_N` approaches its asymptote from above, and wider `W`
+at greater depth converges slower.
+
+**Both cells of the headline pair are phase-flat outliers.**
+`Neff(|c|)/Neff(|z|)` at `N = 600` is 0.979 at `(20,6)` and 0.927 at
+`(19,6)`, against 0.8653 for an equidistributed phase and ~0.855 for
+the depth-6 median. **The whole 1.057 lives in the difference between
+two atypical samples**, which is worth knowing before anyone builds on
+it. Seen a second way: `(19,6)` carries the lowest growth exponent in
+the table (0.777) and `(20,6)` among the highest (0.860).
+
+---
+
+## 2026-08-27 — Entry 221 — O91 `--vs-n`: Neff against truncation, with the prediction written first
+type: run
+refs: 192, 196, 197
+
+`O91_mode_entropy.py --vs-n`, EXPLORATORY. Closes the caveat entry 197
+recorded as owed.
+
+```text
+.venv/bin/python utilities/run.py --python .venv/bin/python \
+    --log results/O91_mode_entropy_vs_N_run1.log O91_mode_entropy.py --vs-n
+exit 0   created 2   modified 0   git HEAD 5e698da (dirty)
+manifest results/runs/20260827T193317Z_O91_mode_entropy.json
+results/mode_entropy_vs_N.json   sha256 d66b7ebd…
+```
+
+**The prediction, written into the docstring before the run.** With
+`p_k ∝ W_k/|ρ_k|` — a stationary modulation on a `1/γ_k` envelope — and
+`γ_k ~ 2πk/log(k/2πe)`, the envelope's local slope is `s(k) = 1 −
+1/log(k/2πe)`, below 1 at every finite k (0.688 over k = 25..50, 0.793
+over 300..600). For `p_k ∝ k^(−s)` with `s < 1`, `Neff` grows linearly;
+at `s = 1`, as `√N log N`. **Predicted: sublinear and unbounded, power
+fit ≈ 0.87 over 25..600.** Measured 0.8597. Held.
+
+**Gates.** Six-value kernel check two-sided: `Δ^(d+1)` reproduces 6 of
+6, `Δ^d` reproduces 0 of 6. **PASS.**
+
+**Default behaviour byte-identical.** The default path re-run to a
+scratch output and compared leaf-wise against
+`results/mode_entropy.json`: **3313 of 3318 leaves identical**, no key
+added or missing. The five differing are `generated_utc`,
+`run_start_at`, `run_end_at`, `params.out` (the redirect), and
+`params.code_version` — the last unavoidable, being the sha of the
+edited file. Every measured number is bit-identical.
+`results/mode_entropy.json` (`fcae817e…`) and
+`results/mode_coherence.json` (`0dcc0a3c…`) unchanged; run.py reports
+`modified 0`.
+
+**An unplanned self-gate:** every curve's `N = 600` endpoint reproduces
+entry 196's published table exactly — 172.045 / 175.667 / 172.243 /
+162.788 / 157.359 / 197.909 / 182.101.
+
+**Precision:** the headline curve recomputed at dps 80 from an
+independently built mode set — max relative disagreement **0.00e+00
+over all 600 values of N**.
+
+Reading is entry 222.
+
+---
+
 ## 2026-08-27 — Entry 220 — the sidecar reconstruct-or-retire pass: five recovered, four gone, and the rule that caused it
 type: instrument-fix
 refs: 211, 213, 218

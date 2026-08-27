@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 222: CORRECTION to entry 197 — 'the ratio is safer since both cells truncate identically' is wrong reasoning; the ratio drifts 23% and CROSSES 1.0 near N=193, below which the control has the higher Neff, reversing the direction claim
+- [open]   2026-08-27  entry 222: Neff is sublinear and unbounded, Neff ~ N^0.86 (r2 0.9998) — 172 is a statement at N=600 and no ensemble figure follows; the order-of-magnitude conclusion survives independently since Neff is a large fraction of N at EVERY N (11.6 of 25)
+- [open]   2026-08-27  entry 222: the whole 1.057 lives in two atypical phase samples — Neff(|c|)/Neff(|z|) is 0.979 and 0.927 against 0.865 for equidistributed phase; know this before building on the ratio
+- [open]   2026-08-27  entry 222: analytic level law CONFIRMED at d=1 (-0.16%) but not converged at d=3/d=6 (2.6%/3.2% high, falling ~0.6% per 100 modes) — finite-sample bias in E[w log w], wider W converges slower
 - [open]   2026-08-27  entry 220: sidecar pass done — 5 of 9 recovered (4 by stripping the Run record, 1 via git), 4 UNRECOVERABLE and baselined with reasons; three of those four carry stamped verdicts whose anti-drift guarantee cannot be checked
 - [open]   2026-08-27  entry 220: FORMAT.md's own two rules were unsatisfiable together — the sidecar pins the text, the Run record mutates it; resolved by 'lock, commit, then run', now in the spec
 - [open]   2026-08-27  entry 220: check_sidecar.py built — 4 recovery routes, silent when clean, exits 1 on a new failure, degrades to nothing in a corpus-free clone; wire into pre-commit when convenient

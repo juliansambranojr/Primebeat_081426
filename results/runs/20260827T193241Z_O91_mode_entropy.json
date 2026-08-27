@@ -1,0 +1,21 @@
+{
+  "schema_version": "1",
+  "script": "O91_mode_entropy.py",
+  "script_sha256": "5a97ef7176ffa3b9ad6f3cfc1d172f8c033d50282c495b58b6fdb4af043785a6",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O91_mode_entropy.py",
+    "--out",
+    "/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/mode_entropy_rerun.json"
+  ],
+  "run_start_at": "2026-08-27T19:32:41.544431+00:00",
+  "run_end_at": "2026-08-27T19:32:46.285497+00:00",
+  "exit_code": 0,
+  "git_head": "5e698daa5869c80afac15e7a31b107b5092805de",
+  "git_dirty": true,
+  "files_created": [],
+  "files_modified": [],
+  "log": null,
+  "log_sha256": null,
+  "empty_at_snapshot": []
+}
