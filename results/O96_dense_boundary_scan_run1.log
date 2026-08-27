@@ -1,0 +1,216 @@
+==============================================================================
+O96 - DENSE BOUNDARY SCAN   (PREREGISTERED)
+==============================================================================
+  started (UTC)          : 2026-08-27T22:51:16Z
+  prereg                 : preregs/dense_boundary_scan_v1_20260827.md
+  gamma_1 (locked)       : 14.134725141734693
+  b* = exp(pi/gamma_1)   : 1.248896812346038861164
+  grid centre            : 1.248896812346038861164
+  mpmath dps             : 60
+  d-min                  : 1
+  alpha_level            : 0.05  two-sided
+  cache (READ ONLY)      : /Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json
+  out                    : /Users/juliansambrano/GitHub/Primebeat_081426/results/dense_boundary_scan.json
+  python                 : 3.14.3
+  code_version (sha256)  : 298adc22ba5cd737ed19610f20104b4d21c7b9e30713bfbe59e162a49ff8263d
+
+  Nothing printed here is a verdict.  This script reports the
+  decision rule's mechanical output; the verdict line is Julian's
+  to write.  CLAUDE.md, section 'Prereg discipline'.
+
+  CONVENTION IN FORCE
+    THIS PROJECT'S convention: 2 and 3 are COUNTED AS PRIMES, pi(1) = 0, N(r) 
+    = pi(floor(b^r)) - pi(floor(b^(r-1))) on the half-open rung (b^(r-1), b^r]
+    , with floor(b^0) = 1. Source: CONTEXT.md section 'Core quantities'. Ident
+    ical to O45's.
+
+==============================================================================
+1. PI BACKEND INTEGRITY   (stops the run on failure)
+==============================================================================
+  backend               : primecountpy.prime_pi  0.2.1
+  comparisons           : 33 of 33 equal (need 33 of 33)
+  status                : PASS
+
+==============================================================================
+2. KERNEL VERIFICATION AGAINST O45   (a reproduction check, NOT evidence)
+==============================================================================
+  base 2 @ V = 2^32
+    cells at d >= 1     : 496  (expected 496)
+    exact zeros         : [[2, 1], [4, 1], [8, 3], [20, 6]]
+    expected            : [[2, 1], [4, 1], [8, 3], [20, 6]]
+    stencil mass S      : {'2,1': 2, '4,1': 4, '8,3': 88, '20,6': 492384}
+  exp(pi*2/(2*g1)) @ V = 2^32
+    ours : r_max 99  r_thick 12  cells 4851  resolved 3828  z_all 32  z_res 14  z* 3
+    O45  : r_max 99  r_thick 12  cells 4851  resolved 3828  z_all 32  z_res 14  z* 3
+    match: yes
+  exp(pi*5/(4*g1)) @ V = 2^32
+    ours : r_max 79  r_thick 8  cells 3081  resolved 2556  z_all 20  z_res 15  z* 8
+    O45  : r_max 79  r_thick 8  cells 3081  resolved 2556  z_all 20  z_res 15  z* 8
+    match: yes
+  2^(1/2) @ V = 2^32, EXACT integer roots
+    ours r_max 64  z_res 11   O45 r_max 64  z_res 11   match: yes
+    the trap: the mpmath route at dps 60 would give r_max = 63
+  2^(1/3) @ V = 2^32, EXACT integer roots
+    ours r_max 96  z_res 3   O45 r_max 96  z_res 3   match: yes
+    the trap: the mpmath route at dps 60 would give r_max = 96
+  the exact-root trap across m = 2..8 at V = 2^32:
+     m  exact r_max  mpmath r_max  interior floors differing
+     2           64            63                          0
+     3           96            96                          0
+     4          128           128                         32
+     5          160           159                          0
+     6          192           192                         31
+     7          224           223                          0
+     8          256           256                         32
+    The trap is not only the top rung, and the pattern is not a simple
+    function of m: r_max comes out short at m = 2, 5, 7 while at m = 4, 6, 8
+    r_max agrees and interior rungs with m | r disagree instead. Which
+    side the rounding falls on is decided by the rounding of 2^(1/m) itself.
+
+==============================================================================
+3. ARM 1 - THE PLATEAU-CONSTANCY GATE   (a varying denominator would invalidate the design)
+==============================================================================
+  log V                 : 22.114930845681928237
+  V                     : 4.021540e+09  = 2^31.905101   (deliberately NOT 2^32)
+  plateau r_max = 99    : (1.2475096804, 1.25029952156]   width 0.0027898
+  centre offset in it   : -7.789e-06
+  grid                  : 26 bases, 13 per side, spacing 0.0001, half-window 0.0013
+  (r_max, r_thick, cells, resolved) on ALL 26 grid bases : (99, 12, 4851, 3828)
+  locked                : (99, 12, 4851, 3828)
+  min rel gap to an integer : 1.144e-12  (threshold 1e-30)
+  GATE                  : PASS
+
+==============================================================================
+4. ARM 1 - THE EMPIRICAL NULL   (Poisson and binomial nulls are WRONG here and are not used)
+==============================================================================
+  locked placebo centres: 116 (locked count 116)
+  evaluated             : 116   rejected by their own geometry gate: 0
+  placebo D             : mean +0.0255  median +0.0332  sd 0.1567  min -0.5018  max +0.3626
+  the null is NOT centred at zero: the local trend in b is real and the placebo set carries it
+  order statistics the rank rule uses at alpha 0.05: 2nd smallest -0.4077, 2nd largest +0.3333
+  mean total Z per window: 239.4
+
+  POWER, measured before lock (seed 2026, 60 draws per window per rho, leave-one-out null):
+       rho   detect
+      0.25    0.922
+      0.50    0.227
+      0.75    0.049
+      1.00    0.034   <- calibration; rho = 1 is the identity
+      1.25    0.080
+      1.50    0.237
+      2.00    0.580
+      3.00    0.927
+
+==============================================================================
+5. ARM 1 - THE MEASUREMENT
+==============================================================================
+     side              b  z_res
+    below      1.2476468     11
+    below      1.2477468     14
+    below      1.2478468     13
+    below      1.2479468     14
+    below      1.2480468     17
+    below      1.2481468     15
+    below      1.2482468     17
+    below      1.2483468     22
+    below      1.2484468     16
+    below      1.2485468     15
+    below      1.2486468     14
+    below      1.2487468     20
+    below      1.2488468     15
+    above      1.2489468     13
+    above      1.2490468     12
+    above      1.2491468     13
+    above      1.2492468     18
+    above      1.2493468     17
+    above      1.2494468     16
+    above      1.2495468     17
+    above      1.2496468     14
+    above      1.2497468     19
+    above      1.2498468     15
+    above      1.2499468     16
+    above      1.2500468     16
+    above      1.2501468     13
+
+  Z_below (13 bases)    : 203
+  Z_above (13 bases)    : 199
+  raw difference        : -4
+  D = (above-below)/total: -0.009950
+  resolved cells / base : 3828  (constant, so no normalisation)
+  placebo D <= D_obs    : 44 of 116
+  placebo D >= D_obs    : 72 of 116
+  rank p (two-sided)    : 0.769231   PRIMARY
+  rotation p (25 rotations of this window's own sequence): 0.846154
+    SECONDARY, LABELLED, and it cannot move the label: a real step inflates
+    the rotation spread that would have to detect it, so it is anti-conservative.
+
+==============================================================================
+6. ARM 2 - THE COMPANION.  AN ARITHMETIC QUESTION, NOT A NYQUIST ONE.
+==============================================================================
+  No verdict label reads this arm.  Its bases were partially
+  inspected during feasibility work; see the prereg's provenance.
+  ceiling V = 4.021540e+09 is generic, so ceiling attainment is
+  broken by construction at every m.
+
+   m          b_m    theta   frac  r_max  r_thick  resolv  z_res    zeta_m  nbr mean   nbr sd  rank  std dev
+   2    1.4142136   280.68  0.810     63        6    1653     11   0.00665   0.00534  0.00053 13/13    +2.49
+   3    1.2599210   187.12  0.715     95       12    3486      3   0.00086   0.00146  0.00057  1/13    -1.05
+   4    1.1892071   140.34  0.620    127       19    5886      7   0.00119   0.00217  0.00083  1/13    -1.18
+   5    1.1486984   112.27  0.526    159       25    9045     18   0.00199   0.00181  0.00026  9/13    +0.71
+   6    1.1224620    93.56  0.431    191       32   12720     28   0.00220   0.00204  0.00018 12/13    +0.93
+   7    1.1040895    80.19  0.336    223       37   17391     27   0.00155   0.00142  0.00019 12/13    +0.72
+   8    1.0905077    70.17  0.241    255       44   22366     31   0.00139   0.00119  0.00020 11/13    +0.96
+
+  m with zeta below its neighbour median : 2 of 7   (one-sided binomial p = 0.2266)
+    of those, above the Nyquist boundary  : [3]
+    of those, below it                    : [4]
+
+  the three accounts, and what each predicts:
+    (i)   Nyquist      -> only m = 2, 3 low
+    (ii)  arithmetic   -> all seven low
+    (iii) ceiling      -> none low (broken by the generic V)
+
+  for contrast, O45's published numbers at V = 2^32 (where the ceiling IS attained):
+    2^(1/2): log V / log b = 64.0000 exactly, z/resolved cell = 0.00643
+    2^(1/3): log V / log b = 96.0000 exactly, z/resolved cell = 0.00084
+
+==============================================================================
+MECHANICAL DECISION-RULE OUTPUT (NOT A VERDICT)
+==============================================================================
+  predicate table (evaluated in precedence order; the last row's
+  predicate is the literal constant True, so the table is total):
+    compromised    False 
+    step_above     False 
+    step_below     False 
+    no_step        True    <== selected
+    undetermined   True  
+  non-residue predicates that fired : 1
+  assertion 'exactly one fires'     : HELD
+  precedence                        : compromised > step_above > step_below > no_step > undetermined (residue, predicate is the constant True)
+
+  Z_below / Z_above                 : 203 / 199
+  D                                 : -0.009950
+  rank p (two-sided, PRIMARY)       : 0.769231
+  rotation p (SECONDARY, labelled)  : 0.846154
+  alpha_level                       : 0.05 two-sided
+  compromised conditions tripped    : (none)
+  label the decision rule selects   : no_step
+
+  The prereg states, before the run, that no mechanism predicts a
+  step and that the expected outcome is `no_step`.
+  This is the decision rule's mechanical output, NOT a verdict.
+  The verdict line in the prereg's Run record is Julian's to write.
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/dense_boundary_scan.json
+
+==============================================================================
+READ THE RESULT
+==============================================================================
+  Every floor, every W, every N and every table cell above is an
+  exact Python integer. The seven integer-root bases use exact
+  integer m-th roots and no floating point.
+  The null is empirical and is not centred at zero: the local
+  trend in b is real and the placebo windows carry it.
+  Arm 2 is an arithmetic question and carries no verdict label.
+  Nothing above is a verdict.
+  finished (UTC): 2026-08-27T22:51:42Z

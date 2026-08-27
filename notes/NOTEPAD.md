@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 224: mechanical output `no_step` — the Nyquist boundary is not a feature of exact-zero density TO A FACTOR OF TWO (the design's stated sensitivity); entry 199's line closed by measurement; verdict open for Julian
+- [open]   2026-08-27  entry 224: THE 2^(1/3) ANOMALY SURVIVED ALL THREE EXPLANATIONS — Nyquist splits the aliased pair (m=3 lowest of 13, m=2 HIGHEST at +2.49 sd), arithmetic predicts all seven low but five read high, and breaking ceiling attainment left it unchanged (0.00086 generic vs 0.00084 at 2^32)
+- [open]   2026-08-27  entry 224: new arithmetic signature — r_thick is DISCONTINUOUS exactly at 2^(1/m), neighbours splitting 6/6 by side down to width/2048; nothing in the tree had recorded it
+- [open]   2026-08-27  entry 223: entry 220's lock-commit-run rule worked first time — check_sidecar resolves the new prereg via git as-committed 0da19b51, the route four older preregs lack
+- [open]   2026-08-27  entry 223: first prereg with an executable predicate table — exactly-one-fires held, and the assertion is REACHABLE (a placebo self-test tripped the plateau gate and fired `compromised`)
 - [open]   2026-08-27  entry 222: CORRECTION to entry 197 — 'the ratio is safer since both cells truncate identically' is wrong reasoning; the ratio drifts 23% and CROSSES 1.0 near N=193, below which the control has the higher Neff, reversing the direction claim
 - [open]   2026-08-27  entry 222: Neff is sublinear and unbounded, Neff ~ N^0.86 (r2 0.9998) — 172 is a statement at N=600 and no ensemble figure follows; the order-of-magnitude conclusion survives independently since Neff is a large fraction of N at EVERY N (11.6 of 25)
 - [open]   2026-08-27  entry 222: the whole 1.057 lives in two atypical phase samples — Neff(|c|)/Neff(|z|) is 0.979 and 0.927 against 0.865 for equidistributed phase; know this before building on the ratio

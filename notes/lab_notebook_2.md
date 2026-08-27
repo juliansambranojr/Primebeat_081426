@@ -16,6 +16,138 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 224 — the boundary is not a feature of the zeros, and the 2^(1/3) anomaly survives all three of its explanations
+type: result-triage
+refs: 199, 211, 215, 223
+
+Reading of entry 223. **The verdict line is Julian's and is empty.**
+
+**Arm 1 delivered the null it preregistered.** `D = −0.009950`, primary
+rank `p = 0.769`, mechanical output `no_step`. Entry 199's open line —
+does exact-zero density step at the Nyquist boundary — is now closed by
+measurement rather than by the structural argument that opened it.
+
+Read against its stated ceiling: the design is **not powered under
+±50%** (0.227 at ρ = 0.5, 0.237 at 1.5), and is sensitive to roughly a
+factor of two. So `no_step` says the boundary is not a feature of
+exact-zero density **to a factor of two**, which is the claim the
+prereg licensed and no more.
+
+**The mechanism argument was right and is now measured.** The
+difference filter's response to γ₁ is `(2 sin(θ/2))^d`, whose
+θ-derivative vanishes at `θ = π` — `b*` is a smooth stationary maximum
+of the γ₁ gain, not a discontinuity. Every ingredient is continuous
+there. The measurement agrees with the algebra.
+
+**Arm 2 is the live finding: all three explanations fail.**
+
+```text
+ m       b_m    theta  z/cell   nbr mean  rank    sd dev
+ 2  1.4142136  280.68  0.00665   0.00534  13/13   +2.49
+ 3  1.2599210  187.12  0.00086   0.00146   1/13   −1.05
+ 4  1.1892071  140.34  0.00119   0.00217   1/13   −1.18
+ 5  1.1486984  112.27  0.00199   0.00181   9/13   +0.71
+ 6  1.1224620   93.56  0.00220   0.00204  12/13   +0.93
+ 7  1.1040895   80.19  0.00155   0.00142  12/13   +0.72
+ 8  1.0905077   70.17  0.00139   0.00119  11/13   +0.96
+```
+
+*Nyquist* predicts `m = 2` and `m = 3` low. `m = 3` is lowest of its
+13 — and **`m = 2` is the highest of its 13, at +2.49 sd.** The aliased
+pair splits. *Integer-root arithmetic* predicts all seven low; five of
+seven read high. *Ceiling attainment* is broken by construction at the
+generic `V`, and `2^(1/3)` still reads 0.00086 against O45's 0.00084 at
+`2^32` — **removing the explanation did not remove the anomaly.**
+
+The one base below its neighbours that Nyquist cannot claim is
+`m = 4` at `θ = 140.3°`, comfortably resolvable. Two of seven below the
+median is `p = 0.227` one-sided, so this is a signature reading at
+`n = 7`, not a test — but the anomaly entry 199 flagged at `n = 1` is
+now `n = 2` and has outlived every account offered for it.
+
+**A new arithmetic signature, unlooked-for.** `r_thick` is
+discontinuous exactly at `2^(1/m)`, neighbours splitting 6/6 by side at
+every divisor tested down to width/2048. That is why arm 2 cannot hold
+a constant denominator the way arm 1 does, and it is a property of the
+integer-root bases nothing in the tree had recorded.
+
+**Three framings of mine that measurement corrected.** Matching
+placebos in μ is closed by arithmetic — requiring `b*`'s exact
+`(99,12,3828)` leaves 17 candidates, several inside the window itself,
+so ≥80 realisations are impossible. The sd variation I read as a μ
+effect tracks location and is not significant (`F = 1.80` against a
+critical 3.7). And self-normalising by the rotation spread **destroys
+the power** — 0.139 at `ρ = 2` against the ratio statistic's 0.580,
+because a real step inflates the very spread meant to detect it.
+
+---
+
+## 2026-08-27 — Entry 223 — O96: the dense boundary scan, and the first prereg with an executable decision rule
+type: run
+refs: 199, 211, 220
+
+`O96_dense_boundary_scan.py` under
+`preregs/dense_boundary_scan_v1_20260827.md`, sha256
+`01f58ca12c7dd8f14f2d7fca6ca8be828c728a8e86b5146c68de7b5d7e435a3e`.
+
+**Entry 220's rule worked on its first use.** Locked → sidecar cut →
+**committed `0da19b5`, prereg and sidecar only** → then run.
+`utilities/check_sidecar.py` exits 0 and resolves this prereg *via git
+as-committed `0da19b51`* — the recovery route that exists only because
+the text was committed before the run. The convention that four
+preregs lost their pre-image for is now demonstrated.
+
+**The decision rule is a predicate table in the script, with an
+exactly-one-fires assertion.** First prereg under that convention.
+It held on both runs, and the assertion is **reachable**: a self-test
+at placebo centre 1.2900 read `(99, 10, 4851, 4005)`, tripped the
+plateau gate, and fired exactly one label — `compromised`. So the
+integrity branch is not decorative. The partition-failure path is
+implemented and was never exercised.
+
+**Gates.** Kernel reproduces O45 exactly on five checks: base 2 at
+`2^32` (496 cells, the four zeros, masses 2/4/88/492384);
+`exp(π·2/(2γ₁))` and `exp(π·5/(4γ₁))` row-for-row; `2^(1/2)` and
+`2^(1/3)` via exact integer roots. Plateau-constancy gate PASS — all 26
+grid bases read `(99, 12, 4851, 3828)`, `b*` sitting 7.79e−06 from the
+plateau centre at `V = exp(99.5·log b*) = 4.021540e9`.
+
+**The instrument trap is broader than the design note said**, and
+partly different. At `V = 2^32`, mpmath loses the top rung at
+`m = 2, 5, 7` only; at **`m = 3` both routes agree** (96 either way),
+contradicting the note's "95 vs 96"; and at `m = 4, 6, 8` the top rung
+agrees while **32 / 31 / 32 interior rungs disagree** — the rungs with
+`m | r`. Which way the rounding falls is set by the rounding of
+`2^(1/m)` itself.
+
+**Statistic and null.** `D = (Z_above − Z_below)/(Z_above + Z_below)`,
+studentised by ratio — chosen by measurement over the sqrt form, which
+assumes Poisson and over-corrects: thinning every placebo window to
+half its counts moved the raw statistic −46.6%, the sqrt form −24.0%,
+and the ratio **+8.5%**, in the conservative direction. Null: 116
+locked placebo windows, all evaluated. Placebo `D` mean **+0.0255**,
+sd 0.1567 — **not centred at zero**, which is the reason the null had
+to be empirical.
+
+**Power, measured before locking** and reproducible under
+`--power-check`: 0.922 / 0.227 / 0.049 / **0.034** / 0.080 / 0.237 /
+0.580 / 0.927 at `ρ` = 0.25 … 3.0. Calibration 0.034 against a nominal
+0.05, conservative by construction at `N = 116`.
+
+**Mechanical output: `no_step`.** `D = −0.009950`, `p = 0.769` primary,
+0.846 on the labelled secondary rotation null. Run record filled;
+**verdict line left empty for Julian.**
+
+**One locked-text discrepancy, disclosed rather than corrected.** The
+prereg quotes the placebo median of `D` as +0.0309 (even-`n` average of
+the two middle values); the script prints +0.0332 (upper middle, which
+is what the rule's side-selection uses). Descriptive only, and
+side-selection never ran because `p > α`. A locked prereg is immutable
+except for its Run record, so it stands as written and the Run record
+says so. Reading is entry 224.
+
+---
+
 ## 2026-08-27 — Entry 222 — Neff(N) triage: 172 is truncation-bound, the conclusion is not, and entry 197's ratio argument was wrong
 type: result-triage
 refs: 194, 196, 197, 221

@@ -1,0 +1,10311 @@
+{
+  "schema_version": "1",
+  "script": "O96_dense_boundary_scan.py",
+  "script_path": "/Users/juliansambrano/GitHub/Primebeat_081426/O96_dense_boundary_scan.py",
+  "generated_utc": "2026-08-27T22:51:42Z",
+  "params": {
+    "code_version": "298adc22ba5cd737ed19610f20104b4d21c7b9e30713bfbe59e162a49ff8263d",
+    "argv": [
+      "/Users/juliansambrano/GitHub/Primebeat_081426/O96_dense_boundary_scan.py",
+      "--cache",
+      "pi2n_cache.json",
+      "--prereg",
+      "preregs/dense_boundary_scan_v1_20260827.md",
+      "--out",
+      "results/dense_boundary_scan.json"
+    ],
+    "run_start_at": "2026-08-27T22:51:16Z",
+    "run_end_at": "2026-08-27T22:51:42Z",
+    "gamma_1": "14.134725141734693",
+    "b_star": "1.248896812346038861164",
+    "plateau_index": 99,
+    "plateau_offset": "99.5",
+    "value_ceiling": 4021540381.5863957,
+    "value_ceiling_log2": 31.905101060667686,
+    "grid_per_side": 13,
+    "grid_spacing": "0.0001",
+    "locked_grid_geometry": [
+      99,
+      12,
+      4851,
+      3828
+    ],
+    "placebo_centres": [
+      "1.2265",
+      "1.2270",
+      "1.2275",
+      "1.2280",
+      "1.2285",
+      "1.2345",
+      "1.2350",
+      "1.2355",
+      "1.2360",
+      "1.2365",
+      "1.2370",
+      "1.2400",
+      "1.2405",
+      "1.2410",
+      "1.2415",
+      "1.2420",
+      "1.2520",
+      "1.2550",
+      "1.2555",
+      "1.2560",
+      "1.2565",
+      "1.2570",
+      "1.2575",
+      "1.2605",
+      "1.2610",
+      "1.2640",
+      "1.2645",
+      "1.2650",
+      "1.2655",
+      "1.2660",
+      "1.2665",
+      "1.2670",
+      "1.2675",
+      "1.2680",
+      "1.2685",
+      "1.2690",
+      "1.2695",
+      "1.2725",
+      "1.2730",
+      "1.2735",
+      "1.2740",
+      "1.2745",
+      "1.2750",
+      "1.2780",
+      "1.2785",
+      "1.2790",
+      "1.2795",
+      "1.2800",
+      "1.2805",
+      "1.2835",
+      "1.2840",
+      "1.2845",
+      "1.2850",
+      "1.2855",
+      "1.2860",
+      "1.2865",
+      "1.2870",
+      "1.2875",
+      "1.2880",
+      "1.2885",
+      "1.2890",
+      "1.2895",
+      "1.2900",
+      "1.2940",
+      "1.2945",
+      "1.2950",
+      "1.2955",
+      "1.2985",
+      "1.2990",
+      "1.2995",
+      "1.3000",
+      "1.3005",
+      "1.3010",
+      "1.3015",
+      "1.3020",
+      "1.3025",
+      "1.3030",
+      "1.3035",
+      "1.3040",
+      "1.3070",
+      "1.3075",
+      "1.3080",
+      "1.3085",
+      "1.3090",
+      "1.3095",
+      "1.3100",
+      "1.3105",
+      "1.3110",
+      "1.3115",
+      "1.3120",
+      "1.3125",
+      "1.3130",
+      "1.3135",
+      "1.3140",
+      "1.3145",
+      "1.3220",
+      "1.3225",
+      "1.3230",
+      "1.3235",
+      "1.3240",
+      "1.3245",
+      "1.3250",
+      "1.3255",
+      "1.3260",
+      "1.3265",
+      "1.3270",
+      "1.3275",
+      "1.3280",
+      "1.3285",
+      "1.3290",
+      "1.3295",
+      "1.3300",
+      "1.3305",
+      "1.3310",
+      "1.3315",
+      "1.3320"
+    ],
+    "n_placebo_locked": 116,
+    "alpha_level": 0.05,
+    "dps": 60,
+    "d_min": 1,
+    "mass_floor": 88,
+    "floor_determinacy_threshold": 1e-30,
+    "arm2_m": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "arm2_neighbours_per_side": 6,
+    "arm2_delta_divisor": 64,
+    "pi_backend": "primecountpy.prime_pi",
+    "pi_backend_version": "0.2.1",
+    "n_distinct_pi_arguments": 69452,
+    "cache": "/Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json",
+    "out": "/Users/juliansambrano/GitHub/Primebeat_081426/results/dense_boundary_scan.json",
+    "python": "3.14.3 (main, Feb  3 2026, 15:32:20) [Clang 17.0.0 (clang-1700.6.3.2)]",
+    "source_files": [
+      {
+        "path": "/Users/juliansambrano/GitHub/Primebeat_081426/pi2n_cache.json",
+        "basename": "pi2n_cache.json",
+        "bytes": 1169,
+        "mtime_utc": "2026-08-15T19:10:51Z",
+        "sha256": "c18c64306a82e1baa20f668e62b233c883658fc4ae8271eab9490fd2d1e3d5f2",
+        "role": "pi_audit"
+      },
+      {
+        "path": "/Users/juliansambrano/GitHub/Primebeat_081426/preregs/dense_boundary_scan_v1_20260827.md",
+        "basename": "dense_boundary_scan_v1_20260827.md",
+        "bytes": 19393,
+        "mtime_utc": "2026-08-27T22:50:28Z",
+        "sha256": "01f58ca12c7dd8f14f2d7fca6ca8be828c728a8e86b5146c68de7b5d7e435a3e",
+        "role": "prereg"
+      },
+      {
+        "path": "/Users/juliansambrano/GitHub/Primebeat_081426/results/sub_integer_base_scan.json",
+        "basename": "sub_integer_base_scan.json",
+        "bytes": 177989,
+        "mtime_utc": "2026-08-19T07:16:38Z",
+        "sha256": "d9acad76d2a33dc62e561ed219c28e6daf693a84fd215f4b2aeb122ec2932f6f",
+        "role": "o45_results"
+      }
+    ],
+    "prereg": "preregs/dense_boundary_scan_v1_20260827.md",
+    "status": "preregistered",
+    "status_note": "PREREGISTERED. This file reports the decision rule's mechanical output at summary.mechanical_decision_rule_output. It does NOT stamp a verdict; summary.verdict is null and the verdict line in the prereg's Run record is Julian's to write. CLAUDE.md, section Prereg discipline."
+  },
+  "constants": {
+    "convention": "THIS PROJECT'S convention: 2 and 3 are COUNTED AS PRIMES, pi(1) = 0, N(r) = pi(floor(b^r)) - pi(floor(b^(r-1))) on the half-open rung (b^(r-1), b^r], with floor(b^0) = 1. Source: CONTEXT.md section 'Core quantities'. Identical to O45's.",
+    "statistic": "D = (Z_above - Z_below) / (Z_above + Z_below), where Z_side sums exact zeros in the resolved stratum (r - d >= r_thick) over the 13 bases on that side. The resolved-cell count is constant across the window by construction, so zeros per resolved cell and zero counts differ by a fixed factor and D is identical under either. The ratio is the studentised form: binomial thinning to half the count level moves the null sd of the raw difference by -46.6%, of (Zh-Zl)/sqrt(Zh+Zl) by -24.0%, and of D by +8.5%.",
+    "null": "EMPIRICAL. 116 locked placebo windows of matched geometry, disjoint from the b* plateau. Zero counts are strongly autocorrelated in b, so Poisson and binomial nulls understate the spread by 2-6x in variance and are NOT used anywhere in this test.",
+    "p_rule": "p = 2 * min(1 + #{D_i <= D_obs}, 1 + #{D_i >= D_obs}) / (N + 1), capped at 1. Exactly valid under exchangeability.",
+    "rotation_null": "SECONDARY and labelled. D over the 25 non-trivial circular rotations of the window's own 26-base sequence. It cannot move the label: a real step inflates the rotation spread that would have to detect it, so it is anti-conservative.",
+    "no_mechanism": "No mechanism predicts a step. The difference filter's per-rung gain at gamma_1 is (2 sin(theta/2))^d, which is smooth and stationary at theta = pi. The expected outcome, stated before the run, is `no_step`.",
+    "arm2": "An ARITHMETIC question, not a Nyquist one, and it carries no verdict label. 2^(1/m), m = 2..8, at a generic ceiling so ceiling attainment is broken, each against 12 local non-root neighbours in its own r_max plateau. Nyquist predicts only m = 2, 3 low; integer-root arithmetic predicts all seven; ceiling attainment predicts none.",
+    "verdict_labels": [
+      "compromised",
+      "step_above",
+      "step_below",
+      "no_step",
+      "undetermined"
+    ],
+    "precedence": "compromised > step_above > step_below > no_step > undetermined (residue, predicate is the constant True)",
+    "power_table": [
+      {
+        "rho": 0.25,
+        "detect": 0.922
+      },
+      {
+        "rho": 0.5,
+        "detect": 0.227
+      },
+      {
+        "rho": 0.75,
+        "detect": 0.049
+      },
+      {
+        "rho": 1.0,
+        "detect": 0.034
+      },
+      {
+        "rho": 1.25,
+        "detect": 0.08
+      },
+      {
+        "rho": 1.5,
+        "detect": 0.237
+      },
+      {
+        "rho": 2.0,
+        "detect": 0.58
+      },
+      {
+        "rho": 3.0,
+        "detect": 0.927
+      }
+    ],
+    "power_seed": 2026,
+    "randomness": "none in the measurement. The power table was measured before lock with seed 2026 and is a locked constant; --power-check recomputes it and is off by default."
+  },
+  "summary": {
+    "pi_audit": [
+      {
+        "n": 0,
+        "cache": 0,
+        "backend": 0,
+        "equal": true
+      },
+      {
+        "n": 1,
+        "cache": 1,
+        "backend": 1,
+        "equal": true
+      },
+      {
+        "n": 2,
+        "cache": 2,
+        "backend": 2,
+        "equal": true
+      },
+      {
+        "n": 3,
+        "cache": 4,
+        "backend": 4,
+        "equal": true
+      },
+      {
+        "n": 4,
+        "cache": 6,
+        "backend": 6,
+        "equal": true
+      },
+      {
+        "n": 5,
+        "cache": 11,
+        "backend": 11,
+        "equal": true
+      },
+      {
+        "n": 6,
+        "cache": 18,
+        "backend": 18,
+        "equal": true
+      },
+      {
+        "n": 7,
+        "cache": 31,
+        "backend": 31,
+        "equal": true
+      },
+      {
+        "n": 8,
+        "cache": 54,
+        "backend": 54,
+        "equal": true
+      },
+      {
+        "n": 9,
+        "cache": 97,
+        "backend": 97,
+        "equal": true
+      },
+      {
+        "n": 10,
+        "cache": 172,
+        "backend": 172,
+        "equal": true
+      },
+      {
+        "n": 11,
+        "cache": 309,
+        "backend": 309,
+        "equal": true
+      },
+      {
+        "n": 12,
+        "cache": 564,
+        "backend": 564,
+        "equal": true
+      },
+      {
+        "n": 13,
+        "cache": 1028,
+        "backend": 1028,
+        "equal": true
+      },
+      {
+        "n": 14,
+        "cache": 1900,
+        "backend": 1900,
+        "equal": true
+      },
+      {
+        "n": 15,
+        "cache": 3512,
+        "backend": 3512,
+        "equal": true
+      },
+      {
+        "n": 16,
+        "cache": 6542,
+        "backend": 6542,
+        "equal": true
+      },
+      {
+        "n": 17,
+        "cache": 12251,
+        "backend": 12251,
+        "equal": true
+      },
+      {
+        "n": 18,
+        "cache": 23000,
+        "backend": 23000,
+        "equal": true
+      },
+      {
+        "n": 19,
+        "cache": 43390,
+        "backend": 43390,
+        "equal": true
+      },
+      {
+        "n": 20,
+        "cache": 82025,
+        "backend": 82025,
+        "equal": true
+      },
+      {
+        "n": 21,
+        "cache": 155611,
+        "backend": 155611,
+        "equal": true
+      },
+      {
+        "n": 22,
+        "cache": 295947,
+        "backend": 295947,
+        "equal": true
+      },
+      {
+        "n": 23,
+        "cache": 564163,
+        "backend": 564163,
+        "equal": true
+      },
+      {
+        "n": 24,
+        "cache": 1077871,
+        "backend": 1077871,
+        "equal": true
+      },
+      {
+        "n": 25,
+        "cache": 2063689,
+        "backend": 2063689,
+        "equal": true
+      },
+      {
+        "n": 26,
+        "cache": 3957809,
+        "backend": 3957809,
+        "equal": true
+      },
+      {
+        "n": 27,
+        "cache": 7603553,
+        "backend": 7603553,
+        "equal": true
+      },
+      {
+        "n": 28,
+        "cache": 14630843,
+        "backend": 14630843,
+        "equal": true
+      },
+      {
+        "n": 29,
+        "cache": 28192750,
+        "backend": 28192750,
+        "equal": true
+      },
+      {
+        "n": 30,
+        "cache": 54400028,
+        "backend": 54400028,
+        "equal": true
+      },
+      {
+        "n": 31,
+        "cache": 105097565,
+        "backend": 105097565,
+        "equal": true
+      },
+      {
+        "n": 32,
+        "cache": 203280221,
+        "backend": 203280221,
+        "equal": true
+      }
+    ],
+    "kernel_verification": {
+      "base_2": {
+        "cells": 496,
+        "cells_expected": 496,
+        "zeros": [
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            20,
+            6
+          ]
+        ],
+        "zeros_expected": [
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            20,
+            6
+          ]
+        ],
+        "stencil_mass": {
+          "2,1": 2,
+          "4,1": 4,
+          "8,3": 88,
+          "20,6": 492384
+        },
+        "mass_matches": true,
+        "matches": true
+      },
+      "exp(pi*2/(2*g1))": {
+        "ours": {
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 32,
+          "z_res": 14,
+          "z_star": 3
+        },
+        "o45": {
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 32,
+          "z_res": 14,
+          "z_star": 3
+        },
+        "matches": true
+      },
+      "exp(pi*5/(4*g1))": {
+        "ours": {
+          "r_max": 79,
+          "r_thick": 8,
+          "cells": 3081,
+          "resolved": 2556,
+          "z_all": 20,
+          "z_res": 15,
+          "z_star": 8
+        },
+        "o45": {
+          "r_max": 79,
+          "r_thick": 8,
+          "cells": 3081,
+          "resolved": 2556,
+          "z_all": 20,
+          "z_res": 15,
+          "z_star": 8
+        },
+        "matches": true
+      },
+      "2**(1/2)": {
+        "ours": {
+          "r_max": 64,
+          "r_thick": 6,
+          "cells": 2016,
+          "resolved": 1711,
+          "z_all": 19,
+          "z_res": 11,
+          "z_star": 4
+        },
+        "o45_r_max": 64,
+        "o45_z_res": 11,
+        "mpmath_route_r_max": 63,
+        "selfcheck_failures": 0,
+        "matches": true
+      },
+      "2**(1/3)": {
+        "ours": {
+          "r_max": 96,
+          "r_thick": 12,
+          "cells": 4560,
+          "resolved": 3570,
+          "z_all": 5,
+          "z_res": 3,
+          "z_star": 0
+        },
+        "o45_r_max": 96,
+        "o45_z_res": 3,
+        "mpmath_route_r_max": 96,
+        "selfcheck_failures": 0,
+        "matches": true
+      },
+      "exact_root_trap_at_2_32": [
+        {
+          "m": 2,
+          "exact_r_max": 64,
+          "mpmath_r_max": 63,
+          "interior_floors_differing": 0
+        },
+        {
+          "m": 3,
+          "exact_r_max": 96,
+          "mpmath_r_max": 96,
+          "interior_floors_differing": 0
+        },
+        {
+          "m": 4,
+          "exact_r_max": 128,
+          "mpmath_r_max": 128,
+          "interior_floors_differing": 32
+        },
+        {
+          "m": 5,
+          "exact_r_max": 160,
+          "mpmath_r_max": 159,
+          "interior_floors_differing": 0
+        },
+        {
+          "m": 6,
+          "exact_r_max": 192,
+          "mpmath_r_max": 192,
+          "interior_floors_differing": 31
+        },
+        {
+          "m": 7,
+          "exact_r_max": 224,
+          "mpmath_r_max": 223,
+          "interior_floors_differing": 0
+        },
+        {
+          "m": 8,
+          "exact_r_max": 256,
+          "mpmath_r_max": 256,
+          "interior_floors_differing": 32
+        }
+      ]
+    },
+    "grid": {
+      "b0": 1.2488968123460389,
+      "b0_str": "1.2488968123460388612",
+      "V": 4021540381.5863957,
+      "plateau_lo": 1.247509680404629,
+      "plateau_hi": 1.2502995215559876,
+      "geometry": [
+        99,
+        12,
+        4851,
+        3828
+      ],
+      "z_below": [
+        11,
+        14,
+        13,
+        14,
+        17,
+        15,
+        17,
+        22,
+        16,
+        15,
+        14,
+        20,
+        15
+      ],
+      "z_above": [
+        13,
+        12,
+        13,
+        18,
+        17,
+        16,
+        17,
+        14,
+        19,
+        15,
+        16,
+        16,
+        13
+      ],
+      "min_rel_gap": 1.1437331672647645e-12,
+      "per_base": [
+        {
+          "side": "below",
+          "b": 1.247646812346039,
+          "b_str": "1.2476468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 29,
+          "z_res": 11,
+          "z_star": 2,
+          "min_rel_gap": 2.3403465256521036e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              19,
+              1
+            ],
+            [
+              22,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              35,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              49,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.247746812346039,
+          "b_str": "1.2477468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 32,
+          "z_res": 14,
+          "z_star": 3,
+          "min_rel_gap": 2.2885589865636218e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              22,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              22,
+              2
+            ],
+            [
+              36,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              34,
+              3
+            ],
+            [
+              38,
+              6
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.247846812346039,
+          "b_str": "1.2478468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 31,
+          "z_res": 13,
+          "z_star": 2,
+          "min_rel_gap": 3.4850893525670315e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              22,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              22,
+              2
+            ],
+            [
+              33,
+              2
+            ],
+            [
+              37,
+              2
+            ],
+            [
+              15,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2479468123460389,
+          "b_str": "1.2479468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 32,
+          "z_res": 14,
+          "z_star": 2,
+          "min_rel_gap": 2.504048797336384e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              22,
+              1
+            ],
+            [
+              25,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              22,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              23,
+              5
+            ],
+            [
+              27,
+              7
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2480468123460389,
+          "b_str": "1.2480468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 35,
+          "z_res": 17,
+          "z_star": 5,
+          "min_rel_gap": 4.687084239149568e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              22,
+              1
+            ],
+            [
+              25,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              22,
+              2
+            ],
+            [
+              33,
+              2
+            ],
+            [
+              41,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              45,
+              4
+            ],
+            [
+              23,
+              5
+            ],
+            [
+              27,
+              7
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2481468123460389,
+          "b_str": "1.2481468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 33,
+          "z_res": 15,
+          "z_star": 2,
+          "min_rel_gap": 9.328186935840394e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              25,
+              1
+            ],
+            [
+              27,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              29,
+              2
+            ],
+            [
+              44,
+              2
+            ],
+            [
+              47,
+              2
+            ],
+            [
+              15,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2482468123460388,
+          "b_str": "1.2482468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 35,
+          "z_res": 17,
+          "z_star": 4,
+          "min_rel_gap": 1.4952035162240012e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              25,
+              1
+            ],
+            [
+              27,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              29,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              31,
+              3
+            ],
+            [
+              35,
+              3
+            ],
+            [
+              41,
+              3
+            ],
+            [
+              49,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2483468123460388,
+          "b_str": "1.2483468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 40,
+          "z_res": 22,
+          "z_star": 9,
+          "min_rel_gap": 1.8339019904388847e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              25,
+              1
+            ],
+            [
+              27,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              29,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              33,
+              2
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              37,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              34,
+              3
+            ],
+            [
+              36,
+              4
+            ],
+            [
+              40,
+              4
+            ],
+            [
+              41,
+              4
+            ],
+            [
+              41,
+              5
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2484468123460388,
+          "b_str": "1.2484468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 34,
+          "z_res": 16,
+          "z_star": 4,
+          "min_rel_gap": 1.1853992151647773e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              25,
+              1
+            ],
+            [
+              27,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              33,
+              4
+            ],
+            [
+              43,
+              4
+            ],
+            [
+              44,
+              8
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2485468123460388,
+          "b_str": "1.2485468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 33,
+          "z_res": 15,
+          "z_star": 5,
+          "min_rel_gap": 8.184313299061156e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              46,
+              3
+            ],
+            [
+              55,
+              6
+            ],
+            [
+              36,
+              7
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2486468123460388,
+          "b_str": "1.2486468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 32,
+          "z_res": 14,
+          "z_star": 2,
+          "min_rel_gap": 1.967033594511367e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              29,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              47,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2487468123460388,
+          "b_str": "1.2487468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 38,
+          "z_res": 20,
+          "z_star": 8,
+          "min_rel_gap": 2.1580445803328707e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              29,
+              2
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              40,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              31,
+              3
+            ],
+            [
+              32,
+              3
+            ],
+            [
+              46,
+              3
+            ],
+            [
+              32,
+              4
+            ],
+            [
+              43,
+              4
+            ],
+            [
+              33,
+              6
+            ]
+          ]
+        },
+        {
+          "side": "below",
+          "b": 1.2488468123460388,
+          "b_str": "1.2488468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 33,
+          "z_res": 15,
+          "z_star": 4,
+          "min_rel_gap": 1.314116515792037e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              41,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              37,
+              3
+            ],
+            [
+              54,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.2489468123460388,
+          "b_str": "1.2489468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 31,
+          "z_res": 13,
+          "z_star": 2,
+          "min_rel_gap": 2.9067576398845808e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              33,
+              3
+            ],
+            [
+              46,
+              4
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.2490468123460388,
+          "b_str": "1.2490468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 30,
+          "z_res": 12,
+          "z_star": 1,
+          "min_rel_gap": 5.657512738428758e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              41,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.249146812346039,
+          "b_str": "1.2491468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 31,
+          "z_res": 13,
+          "z_star": 2,
+          "min_rel_gap": 4.3491457347237326e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              21,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              23,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              36,
+              4
+            ],
+            [
+              40,
+              4
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.249246812346039,
+          "b_str": "1.2492468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 36,
+          "z_res": 18,
+          "z_star": 4,
+          "min_rel_gap": 6.475037354897955e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              24,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              26,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              27,
+              3
+            ],
+            [
+              31,
+              3
+            ],
+            [
+              36,
+              4
+            ],
+            [
+              28,
+              5
+            ],
+            [
+              37,
+              6
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.249346812346039,
+          "b_str": "1.2493468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 35,
+          "z_res": 17,
+          "z_star": 2,
+          "min_rel_gap": 1.9737514761008122e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              24,
+              1
+            ],
+            [
+              29,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              26,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              27,
+              3
+            ],
+            [
+              32,
+              3
+            ],
+            [
+              52,
+              5
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.249446812346039,
+          "b_str": "1.2494468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 34,
+          "z_res": 16,
+          "z_star": 1,
+          "min_rel_gap": 3.611283099121148e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              24,
+              1
+            ],
+            [
+              29,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              26,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              27,
+              3
+            ],
+            [
+              55,
+              4
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.249546812346039,
+          "b_str": "1.2495468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 35,
+          "z_res": 17,
+          "z_star": 4,
+          "min_rel_gap": 1.1437331672647645e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              24,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              26,
+              2
+            ],
+            [
+              28,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              33,
+              3
+            ],
+            [
+              34,
+              3
+            ],
+            [
+              62,
+              3
+            ],
+            [
+              34,
+              4
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.249646812346039,
+          "b_str": "1.2496468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 32,
+          "z_res": 14,
+          "z_star": 1,
+          "min_rel_gap": 7.601296659652788e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              24,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              26,
+              2
+            ],
+            [
+              28,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              38,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.249746812346039,
+          "b_str": "1.2497468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 37,
+          "z_res": 19,
+          "z_star": 7,
+          "min_rel_gap": 2.861583639905748e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              24,
+              1
+            ],
+            [
+              26,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              33,
+              2
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              29,
+              3
+            ],
+            [
+              31,
+              3
+            ],
+            [
+              34,
+              3
+            ],
+            [
+              33,
+              4
+            ],
+            [
+              34,
+              6
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.249846812346039,
+          "b_str": "1.2498468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 33,
+          "z_res": 15,
+          "z_star": 1,
+          "min_rel_gap": 5.727290907570705e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              25,
+              2
+            ],
+            [
+              26,
+              2
+            ],
+            [
+              29,
+              2
+            ],
+            [
+              32,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              26,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.2499468123460389,
+          "b_str": "1.2499468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 34,
+          "z_res": 16,
+          "z_star": 2,
+          "min_rel_gap": 4.773095270800154e-11,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              25,
+              2
+            ],
+            [
+              26,
+              2
+            ],
+            [
+              29,
+              2
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              39,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              26,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.2500468123460389,
+          "b_str": "1.2500468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 34,
+          "z_res": 16,
+          "z_star": 4,
+          "min_rel_gap": 7.116327159235158e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              25,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              45,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              30,
+              3
+            ],
+            [
+              39,
+              3
+            ],
+            [
+              58,
+              3
+            ]
+          ]
+        },
+        {
+          "side": "above",
+          "b": 1.2501468123460389,
+          "b_str": "1.2501468123460388612",
+          "r_max": 99,
+          "r_thick": 12,
+          "cells": 4851,
+          "resolved": 3828,
+          "z_all": 31,
+          "z_res": 13,
+          "z_star": 0,
+          "min_rel_gap": 3.579378106993219e-12,
+          "zeros_res": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              15,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              20,
+              2
+            ],
+            [
+              21,
+              2
+            ],
+            [
+              25,
+              2
+            ],
+            [
+              27,
+              2
+            ],
+            [
+              29,
+              2
+            ],
+            [
+              15,
+              3
+            ],
+            [
+              21,
+              3
+            ]
+          ]
+        }
+      ]
+    },
+    "plateau_constancy_gate": {
+      "observed": [
+        99,
+        12,
+        4851,
+        3828
+      ],
+      "locked": [
+        99,
+        12,
+        4851,
+        3828
+      ],
+      "pass": true
+    },
+    "Z_below": 203,
+    "Z_above": 199,
+    "D": -0.009950248756218905,
+    "p_rank_two_sided": 0.7692307692307693,
+    "p_rotation_secondary": 0.8461538461538461,
+    "n_placebo_evaluated": 116,
+    "placebo_rejected": [],
+    "placebo_D": [
+      -0.08280254777070063,
+      -0.03289473684210526,
+      0.09411764705882353,
+      0.23249299719887956,
+      0.15577889447236182,
+      0.13157894736842105,
+      0.06,
+      -0.027210884353741496,
+      -0.08737864077669903,
+      -0.02857142857142857,
+      0.02857142857142857,
+      -0.2804878048780488,
+      0.0070921985815602835,
+      0.17567567567567569,
+      0.296969696969697,
+      0.164021164021164,
+      -0.04864864864864865,
+      0.10526315789473684,
+      0.19230769230769232,
+      0.2077922077922078,
+      0.18181818181818182,
+      0.05571847507331378,
+      -0.1488095238095238,
+      0.3333333333333333,
+      0.19665271966527198,
+      0.0821917808219178,
+      0.059602649006622516,
+      0.012195121951219513,
+      0.15555555555555556,
+      0.17647058823529413,
+      0.0851063829787234,
+      -0.09375,
+      0.0136986301369863,
+      0.1643192488262911,
+      0.13592233009708737,
+      -0.045871559633027525,
+      -0.0625,
+      -0.07871720116618076,
+      0.09815950920245399,
+      0.12209302325581395,
+      0.0029154518950437317,
+      -0.019943019943019943,
+      -0.09195402298850575,
+      -0.2,
+      -0.08670520231213873,
+      -0.031055900621118012,
+      0.04516129032258064,
+      0.005988023952095809,
+      0.1956521739130435,
+      0.006134969325153374,
+      0.0125,
+      0.06451612903225806,
+      0.2641509433962264,
+      0.22935779816513763,
+      -0.04888888888888889,
+      -0.19111111111111112,
+      -0.19047619047619047,
+      -0.1497005988023952,
+      -0.1125,
+      0.055900621118012424,
+      0.18128654970760233,
+      0.18435754189944134,
+      0.0,
+      0.3008130081300813,
+      0.23448275862068965,
+      0.10365853658536585,
+      -0.08256880733944955,
+      -0.26424870466321243,
+      -0.11351351351351352,
+      0.0,
+      0.16363636363636364,
+      0.09289617486338798,
+      0.06598984771573604,
+      0.11737089201877934,
+      0.0684931506849315,
+      -0.05263157894736842,
+      -0.13488372093023257,
+      -0.06363636363636363,
+      0.08490566037735849,
+      -0.371900826446281,
+      -0.33658536585365856,
+      -0.08875739644970414,
+      0.05063291139240506,
+      0.15476190476190477,
+      0.1111111111111111,
+      0.0945273631840796,
+      0.014925373134328358,
+      0.018867924528301886,
+      0.1111111111111111,
+      0.210727969348659,
+      0.11811023622047244,
+      -0.07575757575757576,
+      -0.17216117216117216,
+      -0.1341991341991342,
+      -0.03167420814479638,
+      -0.05217391304347826,
+      0.03317535545023697,
+      0.1111111111111111,
+      0.24666666666666667,
+      0.3626373626373626,
+      0.2517985611510791,
+      0.0811965811965812,
+      -0.05979381443298969,
+      -0.11063829787234042,
+      -0.13953488372093023,
+      -0.3028571428571429,
+      -0.5018315018315018,
+      -0.40772532188841204,
+      0.015228426395939087,
+      0.20958083832335328,
+      0.017543859649122806,
+      -0.1366120218579235,
+      -0.049723756906077346,
+      0.11956521739130435,
+      0.1443850267379679,
+      0.1
+    ],
+    "power_recomputed": null,
+    "arm2": [
+      {
+        "m": 2,
+        "b": 1.4142135623730951,
+        "b_str": "1.4142135623730950488",
+        "theta_deg": 280.6761208175467,
+        "log_ratio_frac": 0.8102021213353723,
+        "r_max": 63,
+        "r_thick": 6,
+        "resolved": 1653,
+        "z_res": 11,
+        "z_star": 4,
+        "zeta": 0.006654567453115548,
+        "neighbour_mean": 0.005336617405582923,
+        "neighbour_sd": 0.0005295977415736737,
+        "neighbour_median": 0.005012531328320802,
+        "rank_of_13": 13,
+        "std_dev": 2.4885869860705987,
+        "below_neighbour_median": false,
+        "r_max_constant": true,
+        "plateau_contained": true,
+        "above_nyquist": true,
+        "neighbours": [
+          {
+            "j": -6,
+            "b": 1.4134851177605803,
+            "r_max": 63,
+            "r_thick": 7,
+            "resolved": 1596,
+            "z_res": 9,
+            "zeta": 0.005639097744360902,
+            "min_rel_gap": 7.1810457049472646e-12
+          },
+          {
+            "j": -5,
+            "b": 1.4136065251959993,
+            "r_max": 63,
+            "r_thick": 7,
+            "resolved": 1596,
+            "z_res": 8,
+            "zeta": 0.005012531328320802,
+            "min_rel_gap": 3.1286574613780476e-11
+          },
+          {
+            "j": -4,
+            "b": 1.4137279326314185,
+            "r_max": 63,
+            "r_thick": 7,
+            "resolved": 1596,
+            "z_res": 8,
+            "zeta": 0.005012531328320802,
+            "min_rel_gap": 1.475369231620956e-11
+          },
+          {
+            "j": -3,
+            "b": 1.4138493400668377,
+            "r_max": 63,
+            "r_thick": 7,
+            "resolved": 1596,
+            "z_res": 10,
+            "zeta": 0.006265664160401002,
+            "min_rel_gap": 3.5220935131141556e-11
+          },
+          {
+            "j": -2,
+            "b": 1.4139707475022567,
+            "r_max": 63,
+            "r_thick": 7,
+            "resolved": 1596,
+            "z_res": 9,
+            "zeta": 0.005639097744360902,
+            "min_rel_gap": 4.472973068131638e-12
+          },
+          {
+            "j": -1,
+            "b": 1.414092154937676,
+            "r_max": 63,
+            "r_thick": 7,
+            "resolved": 1596,
+            "z_res": 8,
+            "zeta": 0.005012531328320802,
+            "min_rel_gap": 2.9755205140015835e-11
+          },
+          {
+            "j": 1,
+            "b": 1.4143349698085141,
+            "r_max": 63,
+            "r_thick": 6,
+            "resolved": 1653,
+            "z_res": 10,
+            "zeta": 0.006049606775559589,
+            "min_rel_gap": 1.030200342795754e-10
+          },
+          {
+            "j": 2,
+            "b": 1.4144563772439334,
+            "r_max": 63,
+            "r_thick": 6,
+            "resolved": 1653,
+            "z_res": 8,
+            "zeta": 0.004839685420447671,
+            "min_rel_gap": 8.874069388302397e-12
+          },
+          {
+            "j": 3,
+            "b": 1.4145777846793524,
+            "r_max": 63,
+            "r_thick": 6,
+            "resolved": 1653,
+            "z_res": 8,
+            "zeta": 0.004839685420447671,
+            "min_rel_gap": 1.0870462067524108e-10
+          },
+          {
+            "j": 4,
+            "b": 1.4146991921147716,
+            "r_max": 63,
+            "r_thick": 6,
+            "resolved": 1653,
+            "z_res": 8,
+            "zeta": 0.004839685420447671,
+            "min_rel_gap": 2.843121095412056e-11
+          },
+          {
+            "j": 5,
+            "b": 1.4148205995501908,
+            "r_max": 63,
+            "r_thick": 6,
+            "resolved": 1653,
+            "z_res": 8,
+            "zeta": 0.004839685420447671,
+            "min_rel_gap": 1.504552306773741e-11
+          },
+          {
+            "j": 6,
+            "b": 1.4149420069856098,
+            "r_max": 63,
+            "r_thick": 6,
+            "resolved": 1653,
+            "z_res": 10,
+            "zeta": 0.006049606775559589,
+            "min_rel_gap": 3.050683676577256e-12
+          }
+        ]
+      },
+      {
+        "m": 3,
+        "b": 1.2599210498948732,
+        "b_str": "1.2599210498948731648",
+        "theta_deg": 187.11741387836443,
+        "log_ratio_frac": 0.7153031820030691,
+        "r_max": 95,
+        "r_thick": 12,
+        "resolved": 3486,
+        "z_res": 3,
+        "z_star": 0,
+        "zeta": 0.0008605851979345956,
+        "neighbour_mean": 0.001458213807611398,
+        "neighbour_sd": 0.0005672122068131896,
+        "neighbour_median": 0.0012908777969018932,
+        "rank_of_13": 1,
+        "std_dev": -1.0536243799027238,
+        "below_neighbour_median": true,
+        "r_max_constant": true,
+        "plateau_contained": true,
+        "above_nyquist": true,
+        "neighbours": [
+          {
+            "j": -6,
+            "b": 1.2596344774418233,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 5,
+            "zeta": 0.001434308663224326,
+            "min_rel_gap": 1.897931010419343e-11
+          },
+          {
+            "j": -5,
+            "b": 1.2596822395173317,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 3,
+            "zeta": 0.0008605851979345956,
+            "min_rel_gap": 4.693718934559881e-11
+          },
+          {
+            "j": -4,
+            "b": 1.2597300015928399,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 4,
+            "zeta": 0.0011474469305794606,
+            "min_rel_gap": 7.860296175704458e-11
+          },
+          {
+            "j": -3,
+            "b": 1.2597777636683483,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 6,
+            "zeta": 0.0017211703958691911,
+            "min_rel_gap": 1.4510279673969502e-11
+          },
+          {
+            "j": -2,
+            "b": 1.2598255257438566,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 3,
+            "zeta": 0.0008605851979345956,
+            "min_rel_gap": 1.3994773498709371e-11
+          },
+          {
+            "j": -1,
+            "b": 1.2598732878193648,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 4,
+            "zeta": 0.0011474469305794606,
+            "min_rel_gap": 5.0025505698590647e-11
+          },
+          {
+            "j": 1,
+            "b": 1.2599688119703816,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 6,
+            "zeta": 0.0017211703958691911,
+            "min_rel_gap": 4.6272789611966363e-11
+          },
+          {
+            "j": 2,
+            "b": 1.2600165740458897,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 7,
+            "zeta": 0.002008032128514056,
+            "min_rel_gap": 1.3425435125174304e-11
+          },
+          {
+            "j": 3,
+            "b": 1.2600643361213981,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 4,
+            "zeta": 0.0011474469305794606,
+            "min_rel_gap": 2.1291418725466952e-11
+          },
+          {
+            "j": 4,
+            "b": 1.2601120981969063,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 3,
+            "zeta": 0.0008605851979345956,
+            "min_rel_gap": 3.733077141528062e-12
+          },
+          {
+            "j": 5,
+            "b": 1.2601598602724147,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 10,
+            "zeta": 0.002868617326448652,
+            "min_rel_gap": 3.225824946573763e-11
+          },
+          {
+            "j": 6,
+            "b": 1.260207622347923,
+            "r_max": 95,
+            "r_thick": 12,
+            "resolved": 3486,
+            "z_res": 6,
+            "zeta": 0.0017211703958691911,
+            "min_rel_gap": 3.648364835843452e-11
+          }
+        ]
+      },
+      {
+        "m": 4,
+        "b": 1.189207115002721,
+        "b_str": "1.1892071150027210667",
+        "theta_deg": 140.33806040877334,
+        "log_ratio_frac": 0.6204042426707446,
+        "r_max": 127,
+        "r_thick": 19,
+        "resolved": 5886,
+        "z_res": 7,
+        "z_star": 1,
+        "zeta": 0.0011892626571525654,
+        "neighbour_mean": 0.0021650160029364923,
+        "neighbour_sd": 0.0008304115506619582,
+        "neighbour_median": 0.002123683316343867,
+        "rank_of_13": 1,
+        "std_dev": -1.1750238119955223,
+        "below_neighbour_median": true,
+        "r_max_constant": true,
+        "plateau_contained": true,
+        "above_nyquist": false,
+        "neighbours": [
+          {
+            "j": -6,
+            "b": 1.1890554194210732,
+            "r_max": 127,
+            "r_thick": 17,
+            "resolved": 6105,
+            "z_res": 21,
+            "zeta": 0.0034398034398034397,
+            "min_rel_gap": 2.4206103089168053e-11
+          },
+          {
+            "j": -5,
+            "b": 1.1890807020180145,
+            "r_max": 127,
+            "r_thick": 17,
+            "resolved": 6105,
+            "z_res": 17,
+            "zeta": 0.0027846027846027844,
+            "min_rel_gap": 2.1551690073181595e-11
+          },
+          {
+            "j": -4,
+            "b": 1.1891059846149556,
+            "r_max": 127,
+            "r_thick": 17,
+            "resolved": 6105,
+            "z_res": 20,
+            "zeta": 0.003276003276003276,
+            "min_rel_gap": 2.3738663480467268e-11
+          },
+          {
+            "j": -3,
+            "b": 1.189131267211897,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 15,
+            "zeta": 0.0025484199796126403,
+            "min_rel_gap": 6.4272305818139106e-12
+          },
+          {
+            "j": -2,
+            "b": 1.1891565498088383,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 15,
+            "zeta": 0.0025484199796126403,
+            "min_rel_gap": 2.954948813616671e-11
+          },
+          {
+            "j": -1,
+            "b": 1.1891818324057797,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 18,
+            "zeta": 0.0030581039755351682,
+            "min_rel_gap": 1.3623933178500012e-11
+          },
+          {
+            "j": 1,
+            "b": 1.1892323975996624,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 10,
+            "zeta": 0.0016989466530750934,
+            "min_rel_gap": 9.278701325311926e-12
+          },
+          {
+            "j": 2,
+            "b": 1.1892576801966037,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 10,
+            "zeta": 0.0016989466530750934,
+            "min_rel_gap": 1.0102043970332351e-11
+          },
+          {
+            "j": 3,
+            "b": 1.189282962793545,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 7,
+            "zeta": 0.0011892626571525654,
+            "min_rel_gap": 1.2873654937022622e-11
+          },
+          {
+            "j": 4,
+            "b": 1.1893082453904864,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 8,
+            "zeta": 0.0013591573224600749,
+            "min_rel_gap": 3.98783683325521e-11
+          },
+          {
+            "j": 5,
+            "b": 1.1893335279874278,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 7,
+            "zeta": 0.0011892626571525654,
+            "min_rel_gap": 8.35363733682051e-11
+          },
+          {
+            "j": 6,
+            "b": 1.189358810584369,
+            "r_max": 127,
+            "r_thick": 19,
+            "resolved": 5886,
+            "z_res": 7,
+            "zeta": 0.0011892626571525654,
+            "min_rel_gap": 1.856115115425751e-11
+          }
+        ]
+      },
+      {
+        "m": 5,
+        "b": 1.148698354997035,
+        "b_str": "1.1486983549970350068",
+        "theta_deg": 112.27044832701867,
+        "log_ratio_frac": 0.5255053033384343,
+        "r_max": 159,
+        "r_thick": 25,
+        "resolved": 9045,
+        "z_res": 18,
+        "z_star": 8,
+        "zeta": 0.001990049751243781,
+        "neighbour_mean": 0.0018057858853878755,
+        "neighbour_sd": 0.0002605884581487184,
+        "neighbour_median": 0.001824212271973466,
+        "rank_of_13": 9,
+        "std_dev": 0.7071067811865469,
+        "below_neighbour_median": false,
+        "r_max_constant": true,
+        "plateau_contained": true,
+        "above_nyquist": false,
+        "neighbours": [
+          {
+            "j": -6,
+            "b": 1.1486047377238782,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 15,
+            "zeta": 0.001658374792703151,
+            "min_rel_gap": 5.4026356767720665e-12
+          },
+          {
+            "j": -5,
+            "b": 1.1486203406027375,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 13,
+            "zeta": 0.0014372581536760641,
+            "min_rel_gap": 1.945270865840185e-11
+          },
+          {
+            "j": -4,
+            "b": 1.1486359434815971,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 13,
+            "zeta": 0.0014372581536760641,
+            "min_rel_gap": 3.047059717544195e-11
+          },
+          {
+            "j": -3,
+            "b": 1.1486515463604565,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 16,
+            "zeta": 0.0017689331122166944,
+            "min_rel_gap": 1.3715560061500016e-11
+          },
+          {
+            "j": -2,
+            "b": 1.1486671492393161,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 17,
+            "zeta": 0.0018794914317302378,
+            "min_rel_gap": 1.8487184187913633e-11
+          },
+          {
+            "j": -1,
+            "b": 1.1486827521181755,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 18,
+            "zeta": 0.001990049751243781,
+            "min_rel_gap": 3.918564162067837e-12
+          },
+          {
+            "j": 1,
+            "b": 1.1487139578758945,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 17,
+            "zeta": 0.0018794914317302378,
+            "min_rel_gap": 7.330040682511775e-12
+          },
+          {
+            "j": 2,
+            "b": 1.1487295607547539,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 18,
+            "zeta": 0.001990049751243781,
+            "min_rel_gap": 2.6134838455169763e-11
+          },
+          {
+            "j": 3,
+            "b": 1.1487451636336135,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 21,
+            "zeta": 0.002321724709784411,
+            "min_rel_gap": 7.330440233301224e-12
+          },
+          {
+            "j": 4,
+            "b": 1.1487607665124728,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 19,
+            "zeta": 0.0021006080707573244,
+            "min_rel_gap": 8.65697018417956e-12
+          },
+          {
+            "j": 5,
+            "b": 1.1487763693913324,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 15,
+            "zeta": 0.001658374792703151,
+            "min_rel_gap": 1.5586188183726615e-11
+          },
+          {
+            "j": 6,
+            "b": 1.1487919722701918,
+            "r_max": 159,
+            "r_thick": 25,
+            "resolved": 9045,
+            "z_res": 14,
+            "zeta": 0.0015478164731896075,
+            "min_rel_gap": 6.336574904207494e-12
+          }
+        ]
+      },
+      {
+        "m": 6,
+        "b": 1.122462048309373,
+        "b_str": "1.1224620483093729814",
+        "theta_deg": 93.55870693918222,
+        "log_ratio_frac": 0.43060636400613816,
+        "r_max": 191,
+        "r_thick": 32,
+        "resolved": 12720,
+        "z_res": 28,
+        "z_star": 6,
+        "zeta": 0.00220125786163522,
+        "neighbour_mean": 0.0020370668776124065,
+        "neighbour_sd": 0.0001758883620812322,
+        "neighbour_median": 0.002018633540372671,
+        "rank_of_13": 12,
+        "std_dev": 0.9334954404031784,
+        "below_neighbour_median": false,
+        "r_max_constant": true,
+        "plateau_contained": true,
+        "above_nyquist": false,
+        "neighbours": [
+          {
+            "j": -6,
+            "b": 1.1223985918115127,
+            "r_max": 191,
+            "r_thick": 31,
+            "resolved": 12880,
+            "z_res": 26,
+            "zeta": 0.002018633540372671,
+            "min_rel_gap": 2.793673724404717e-12
+          },
+          {
+            "j": -5,
+            "b": 1.1224091678944894,
+            "r_max": 191,
+            "r_thick": 31,
+            "resolved": 12880,
+            "z_res": 26,
+            "zeta": 0.002018633540372671,
+            "min_rel_gap": 1.023219326094512e-11
+          },
+          {
+            "j": -4,
+            "b": 1.1224197439774661,
+            "r_max": 191,
+            "r_thick": 31,
+            "resolved": 12880,
+            "z_res": 28,
+            "zeta": 0.002173913043478261,
+            "min_rel_gap": 3.5784267996186208e-12
+          },
+          {
+            "j": -3,
+            "b": 1.1224303200604429,
+            "r_max": 191,
+            "r_thick": 31,
+            "resolved": 12880,
+            "z_res": 26,
+            "zeta": 0.002018633540372671,
+            "min_rel_gap": 9.419690993676315e-13
+          },
+          {
+            "j": -2,
+            "b": 1.1224408961434196,
+            "r_max": 191,
+            "r_thick": 31,
+            "resolved": 12880,
+            "z_res": 32,
+            "zeta": 0.002484472049689441,
+            "min_rel_gap": 3.216016330219744e-12
+          },
+          {
+            "j": -1,
+            "b": 1.1224514722263963,
+            "r_max": 191,
+            "r_thick": 31,
+            "resolved": 12880,
+            "z_res": 28,
+            "zeta": 0.002173913043478261,
+            "min_rel_gap": 2.7636755335316918e-11
+          },
+          {
+            "j": 1,
+            "b": 1.1224726243923497,
+            "r_max": 191,
+            "r_thick": 32,
+            "resolved": 12720,
+            "z_res": 26,
+            "zeta": 0.0020440251572327044,
+            "min_rel_gap": 2.6675624445930105e-12
+          },
+          {
+            "j": 2,
+            "b": 1.1224832004753265,
+            "r_max": 191,
+            "r_thick": 32,
+            "resolved": 12720,
+            "z_res": 26,
+            "zeta": 0.0020440251572327044,
+            "min_rel_gap": 7.514510897277616e-12
+          },
+          {
+            "j": 3,
+            "b": 1.1224937765583032,
+            "r_max": 191,
+            "r_thick": 32,
+            "resolved": 12720,
+            "z_res": 23,
+            "zeta": 0.0018081761006289308,
+            "min_rel_gap": 2.929154551300862e-11
+          },
+          {
+            "j": 4,
+            "b": 1.12250435264128,
+            "r_max": 191,
+            "r_thick": 32,
+            "resolved": 12720,
+            "z_res": 23,
+            "zeta": 0.0018081761006289308,
+            "min_rel_gap": 4.446762092545912e-12
+          },
+          {
+            "j": 5,
+            "b": 1.1225149287242566,
+            "r_max": 191,
+            "r_thick": 32,
+            "resolved": 12720,
+            "z_res": 25,
+            "zeta": 0.0019654088050314465,
+            "min_rel_gap": 3.595496363058385e-11
+          },
+          {
+            "j": 6,
+            "b": 1.1225255048072333,
+            "r_max": 191,
+            "r_thick": 32,
+            "resolved": 12720,
+            "z_res": 24,
+            "zeta": 0.0018867924528301887,
+            "min_rel_gap": 2.2422858130974895e-12
+          }
+        ]
+      },
+      {
+        "m": 7,
+        "b": 1.1040895136738123,
+        "b_str": "1.1040895136738123376",
+        "theta_deg": 80.19317737644191,
+        "log_ratio_frac": 0.33570742467381365,
+        "r_max": 223,
+        "r_thick": 37,
+        "resolved": 17391,
+        "z_res": 27,
+        "z_star": 10,
+        "zeta": 0.0015525271692254615,
+        "neighbour_mean": 0.001416027032725325,
+        "neighbour_sd": 0.000189190349093764,
+        "neighbour_median": 0.0013874837404249168,
+        "rank_of_13": 12,
+        "std_dev": 0.7214962980616205,
+        "below_neighbour_median": false,
+        "r_max_constant": true,
+        "plateau_contained": true,
+        "above_nyquist": false,
+        "neighbours": [
+          {
+            "j": -6,
+            "b": 1.104043691375075,
+            "r_max": 223,
+            "r_thick": 38,
+            "resolved": 17205,
+            "z_res": 22,
+            "zeta": 0.0012786980528916012,
+            "min_rel_gap": 3.0887954496153554e-13
+          },
+          {
+            "j": -5,
+            "b": 1.1040513284248645,
+            "r_max": 223,
+            "r_thick": 38,
+            "resolved": 17205,
+            "z_res": 22,
+            "zeta": 0.0012786980528916012,
+            "min_rel_gap": 1.773701838939886e-13
+          },
+          {
+            "j": -4,
+            "b": 1.1040589654746542,
+            "r_max": 223,
+            "r_thick": 38,
+            "resolved": 17205,
+            "z_res": 26,
+            "zeta": 0.0015111886079628015,
+            "min_rel_gap": 1.8558379697916164e-12
+          },
+          {
+            "j": -3,
+            "b": 1.1040666025244437,
+            "r_max": 223,
+            "r_thick": 38,
+            "resolved": 17205,
+            "z_res": 23,
+            "zeta": 0.0013368206916594013,
+            "min_rel_gap": 4.55371734998702e-12
+          },
+          {
+            "j": -2,
+            "b": 1.1040742395742333,
+            "r_max": 223,
+            "r_thick": 38,
+            "resolved": 17205,
+            "z_res": 24,
+            "zeta": 0.0013949433304272015,
+            "min_rel_gap": 8.35068912061362e-12
+          },
+          {
+            "j": -1,
+            "b": 1.1040818766240228,
+            "r_max": 223,
+            "r_thick": 38,
+            "resolved": 17205,
+            "z_res": 23,
+            "zeta": 0.0013368206916594013,
+            "min_rel_gap": 1.2147570156469707e-12
+          },
+          {
+            "j": 1,
+            "b": 1.104097150723602,
+            "r_max": 223,
+            "r_thick": 37,
+            "resolved": 17391,
+            "z_res": 25,
+            "zeta": 0.001437525156690242,
+            "min_rel_gap": 1.615691626174197e-11
+          },
+          {
+            "j": 2,
+            "b": 1.1041047877733914,
+            "r_max": 223,
+            "r_thick": 37,
+            "resolved": 17391,
+            "z_res": 34,
+            "zeta": 0.0019550342130987292,
+            "min_rel_gap": 4.501639363822054e-12
+          },
+          {
+            "j": 3,
+            "b": 1.104112424823181,
+            "r_max": 223,
+            "r_thick": 37,
+            "resolved": 17391,
+            "z_res": 24,
+            "zeta": 0.0013800241504226323,
+            "min_rel_gap": 2.466827882529979e-11
+          },
+          {
+            "j": 4,
+            "b": 1.1041200618729705,
+            "r_max": 223,
+            "r_thick": 37,
+            "resolved": 17391,
+            "z_res": 26,
+            "zeta": 0.0014950261629578519,
+            "min_rel_gap": 2.4625987211256642e-12
+          },
+          {
+            "j": 5,
+            "b": 1.1041276989227602,
+            "r_max": 223,
+            "r_thick": 37,
+            "resolved": 17391,
+            "z_res": 20,
+            "zeta": 0.0011500201253521938,
+            "min_rel_gap": 9.390709893164786e-12
+          },
+          {
+            "j": 6,
+            "b": 1.1041353359725496,
+            "r_max": 223,
+            "r_thick": 37,
+            "resolved": 17391,
+            "z_res": 25,
+            "zeta": 0.001437525156690242,
+            "min_rel_gap": 2.164823913982427e-12
+          }
+        ]
+      },
+      {
+        "m": 8,
+        "b": 1.0905077326652577,
+        "b_str": "1.0905077326652576592",
+        "theta_deg": 70.16903020438667,
+        "log_ratio_frac": 0.24080848534148913,
+        "r_max": 255,
+        "r_thick": 44,
+        "resolved": 22366,
+        "z_res": 31,
+        "z_star": 14,
+        "zeta": 0.0013860323705624609,
+        "neighbour_mean": 0.0011922859101612567,
+        "neighbour_sd": 0.00020188704855799079,
+        "neighbour_median": 0.0011624787624072252,
+        "rank_of_13": 11,
+        "std_dev": 0.9596775116832309,
+        "below_neighbour_median": false,
+        "r_max_constant": true,
+        "plateau_contained": true,
+        "above_nyquist": false,
+        "neighbours": [
+          {
+            "j": -6,
+            "b": 1.090473101473319,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 30,
+            "zeta": 0.0013413216489314137,
+            "min_rel_gap": 8.385282686516918e-12
+          },
+          {
+            "j": -5,
+            "b": 1.0904788733386421,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 22,
+            "zeta": 0.0009836358758830367,
+            "min_rel_gap": 2.6296012273128173e-11
+          },
+          {
+            "j": -4,
+            "b": 1.0904846452039654,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 21,
+            "zeta": 0.0009389251542519896,
+            "min_rel_gap": 7.519121951468902e-12
+          },
+          {
+            "j": -3,
+            "b": 1.0904904170692884,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 22,
+            "zeta": 0.0009836358758830367,
+            "min_rel_gap": 7.979662366853118e-12
+          },
+          {
+            "j": -2,
+            "b": 1.0904961889346114,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 22,
+            "zeta": 0.0009836358758830367,
+            "min_rel_gap": 1.1484275879466783e-11
+          },
+          {
+            "j": -1,
+            "b": 1.0905019607999347,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 29,
+            "zeta": 0.0012966109273003666,
+            "min_rel_gap": 8.030438086098929e-13
+          },
+          {
+            "j": 1,
+            "b": 1.0905135045305807,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 25,
+            "zeta": 0.0011177680407761781,
+            "min_rel_gap": 7.099962500494105e-12
+          },
+          {
+            "j": 2,
+            "b": 1.0905192763959037,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 30,
+            "zeta": 0.0013413216489314137,
+            "min_rel_gap": 7.999887815080947e-12
+          },
+          {
+            "j": 3,
+            "b": 1.090525048261227,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 35,
+            "zeta": 0.0015648752570866494,
+            "min_rel_gap": 8.881857786136505e-12
+          },
+          {
+            "j": 4,
+            "b": 1.09053082012655,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 33,
+            "zeta": 0.001475453813824555,
+            "min_rel_gap": 2.4043404314584377e-12
+          },
+          {
+            "j": 5,
+            "b": 1.090536591991873,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 27,
+            "zeta": 0.0012071894840382724,
+            "min_rel_gap": 1.4186212046759849e-11
+          },
+          {
+            "j": 6,
+            "b": 1.0905423638571963,
+            "r_max": 255,
+            "r_thick": 44,
+            "resolved": 22366,
+            "z_res": 24,
+            "zeta": 0.001073057319145131,
+            "min_rel_gap": 1.0398140063263605e-11
+          }
+        ]
+      }
+    ],
+    "predicate_table": [
+      {
+        "label": "compromised",
+        "fired": false
+      },
+      {
+        "label": "step_above",
+        "fired": false
+      },
+      {
+        "label": "step_below",
+        "fired": false
+      },
+      {
+        "label": "no_step",
+        "fired": true
+      },
+      {
+        "label": "undetermined",
+        "fired": true
+      }
+    ],
+    "predicate_partition_ok": true,
+    "n_non_residue_fired": 1,
+    "alpha_level": 0.05,
+    "compromised_conditions": [],
+    "mechanical_decision_rule_output": "no_step",
+    "verdict": null,
+    "verdict_note": "null by design. The verdict line is Julian's to write in the prereg's Run record."
+  },
+  "rows": [
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.247646812346039,
+      "b_str": "1.2476468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 29,
+      "z_res": 11,
+      "z_star": 2,
+      "min_rel_gap": 2.3403465256521036e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          19,
+          1
+        ],
+        [
+          22,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          35,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          49,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.247746812346039,
+      "b_str": "1.2477468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 32,
+      "z_res": 14,
+      "z_star": 3,
+      "min_rel_gap": 2.2885589865636218e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          22,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          22,
+          2
+        ],
+        [
+          36,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          38,
+          6
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.247846812346039,
+      "b_str": "1.2478468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 31,
+      "z_res": 13,
+      "z_star": 2,
+      "min_rel_gap": 3.4850893525670315e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          22,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          22,
+          2
+        ],
+        [
+          33,
+          2
+        ],
+        [
+          37,
+          2
+        ],
+        [
+          15,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2479468123460389,
+      "b_str": "1.2479468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 32,
+      "z_res": 14,
+      "z_star": 2,
+      "min_rel_gap": 2.504048797336384e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          22,
+          1
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          22,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          27,
+          7
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2480468123460389,
+      "b_str": "1.2480468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 35,
+      "z_res": 17,
+      "z_star": 5,
+      "min_rel_gap": 4.687084239149568e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          22,
+          1
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          22,
+          2
+        ],
+        [
+          33,
+          2
+        ],
+        [
+          41,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          45,
+          4
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          27,
+          7
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2481468123460389,
+      "b_str": "1.2481468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 33,
+      "z_res": 15,
+      "z_star": 2,
+      "min_rel_gap": 9.328186935840394e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          27,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          44,
+          2
+        ],
+        [
+          47,
+          2
+        ],
+        [
+          15,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2482468123460388,
+      "b_str": "1.2482468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 35,
+      "z_res": 17,
+      "z_star": 4,
+      "min_rel_gap": 1.4952035162240012e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          27,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          31,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          41,
+          3
+        ],
+        [
+          49,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2483468123460388,
+      "b_str": "1.2483468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 40,
+      "z_res": 22,
+      "z_star": 9,
+      "min_rel_gap": 1.8339019904388847e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          27,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          31,
+          2
+        ],
+        [
+          33,
+          2
+        ],
+        [
+          34,
+          2
+        ],
+        [
+          37,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          40,
+          4
+        ],
+        [
+          41,
+          4
+        ],
+        [
+          41,
+          5
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2484468123460388,
+      "b_str": "1.2484468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 34,
+      "z_res": 16,
+      "z_star": 4,
+      "min_rel_gap": 1.1853992151647773e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          27,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          31,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          33,
+          4
+        ],
+        [
+          43,
+          4
+        ],
+        [
+          44,
+          8
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2485468123460388,
+      "b_str": "1.2485468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 33,
+      "z_res": 15,
+      "z_star": 5,
+      "min_rel_gap": 8.184313299061156e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          31,
+          2
+        ],
+        [
+          34,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          46,
+          3
+        ],
+        [
+          55,
+          6
+        ],
+        [
+          36,
+          7
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2486468123460388,
+      "b_str": "1.2486468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 32,
+      "z_res": 14,
+      "z_star": 2,
+      "min_rel_gap": 1.967033594511367e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          31,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          47,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2487468123460388,
+      "b_str": "1.2487468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 38,
+      "z_res": 20,
+      "z_star": 8,
+      "min_rel_gap": 2.1580445803328707e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          34,
+          2
+        ],
+        [
+          40,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          31,
+          3
+        ],
+        [
+          32,
+          3
+        ],
+        [
+          46,
+          3
+        ],
+        [
+          32,
+          4
+        ],
+        [
+          43,
+          4
+        ],
+        [
+          33,
+          6
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "below",
+      "b": 1.2488468123460388,
+      "b_str": "1.2488468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 33,
+      "z_res": 15,
+      "z_star": 4,
+      "min_rel_gap": 1.314116515792037e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          31,
+          2
+        ],
+        [
+          41,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          37,
+          3
+        ],
+        [
+          54,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.2489468123460388,
+      "b_str": "1.2489468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 31,
+      "z_res": 13,
+      "z_star": 2,
+      "min_rel_gap": 2.9067576398845808e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          33,
+          3
+        ],
+        [
+          46,
+          4
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.2490468123460388,
+      "b_str": "1.2490468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 30,
+      "z_res": 12,
+      "z_star": 1,
+      "min_rel_gap": 5.657512738428758e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          41,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.249146812346039,
+      "b_str": "1.2491468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 31,
+      "z_res": 13,
+      "z_star": 2,
+      "min_rel_gap": 4.3491457347237326e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          40,
+          4
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.249246812346039,
+      "b_str": "1.2492468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 36,
+      "z_res": 18,
+      "z_star": 4,
+      "min_rel_gap": 6.475037354897955e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          24,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          27,
+          3
+        ],
+        [
+          31,
+          3
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          28,
+          5
+        ],
+        [
+          37,
+          6
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.249346812346039,
+      "b_str": "1.2493468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 35,
+      "z_res": 17,
+      "z_star": 2,
+      "min_rel_gap": 1.9737514761008122e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          24,
+          1
+        ],
+        [
+          29,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          27,
+          3
+        ],
+        [
+          32,
+          3
+        ],
+        [
+          52,
+          5
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.249446812346039,
+      "b_str": "1.2494468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 34,
+      "z_res": 16,
+      "z_star": 1,
+      "min_rel_gap": 3.611283099121148e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          24,
+          1
+        ],
+        [
+          29,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          27,
+          3
+        ],
+        [
+          55,
+          4
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.249546812346039,
+      "b_str": "1.2495468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 35,
+      "z_res": 17,
+      "z_star": 4,
+      "min_rel_gap": 1.1437331672647645e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          24,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          28,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          33,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          62,
+          3
+        ],
+        [
+          34,
+          4
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.249646812346039,
+      "b_str": "1.2496468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 32,
+      "z_res": 14,
+      "z_star": 1,
+      "min_rel_gap": 7.601296659652788e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          24,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          28,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          38,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.249746812346039,
+      "b_str": "1.2497468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 37,
+      "z_res": 19,
+      "z_star": 7,
+      "min_rel_gap": 2.861583639905748e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          24,
+          1
+        ],
+        [
+          26,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          33,
+          2
+        ],
+        [
+          34,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          29,
+          3
+        ],
+        [
+          31,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          33,
+          4
+        ],
+        [
+          34,
+          6
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.249846812346039,
+      "b_str": "1.2498468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 33,
+      "z_res": 15,
+      "z_star": 1,
+      "min_rel_gap": 5.727290907570705e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          25,
+          2
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          32,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          26,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.2499468123460389,
+      "b_str": "1.2499468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 34,
+      "z_res": 16,
+      "z_star": 2,
+      "min_rel_gap": 4.773095270800154e-11,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          25,
+          2
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          34,
+          2
+        ],
+        [
+          39,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          26,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.2500468123460389,
+      "b_str": "1.2500468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 34,
+      "z_res": 16,
+      "z_star": 4,
+      "min_rel_gap": 7.116327159235158e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          25,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          45,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          30,
+          3
+        ],
+        [
+          39,
+          3
+        ],
+        [
+          58,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "grid",
+      "side": "above",
+      "b": 1.2501468123460389,
+      "b_str": "1.2501468123460388612",
+      "r_max": 99,
+      "r_thick": 12,
+      "cells": 4851,
+      "resolved": 3828,
+      "z_all": 31,
+      "z_res": 13,
+      "z_star": 0,
+      "min_rel_gap": 3.579378106993219e-12,
+      "zeros_res": [
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          25,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          21,
+          3
+        ]
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2265,
+      "D": -0.08280254777070063,
+      "raw": -26,
+      "total": 314,
+      "z_below": [
+        15,
+        12,
+        17,
+        11,
+        11,
+        12,
+        10,
+        13,
+        13,
+        14,
+        14,
+        14,
+        14
+      ],
+      "z_above": [
+        14,
+        13,
+        11,
+        7,
+        8,
+        8,
+        11,
+        15,
+        15,
+        10,
+        8,
+        12,
+        12
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.227,
+      "D": -0.03289473684210526,
+      "raw": -10,
+      "total": 304,
+      "z_below": [
+        12,
+        10,
+        13,
+        13,
+        14,
+        14,
+        14,
+        14,
+        14,
+        13,
+        11,
+        7,
+        8
+      ],
+      "z_above": [
+        8,
+        11,
+        15,
+        15,
+        10,
+        8,
+        12,
+        12,
+        9,
+        11,
+        11,
+        9,
+        16
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2275,
+      "D": 0.09411764705882353,
+      "raw": 32,
+      "total": 340,
+      "z_below": [
+        14,
+        14,
+        14,
+        14,
+        13,
+        11,
+        7,
+        8,
+        8,
+        11,
+        15,
+        15,
+        10
+      ],
+      "z_above": [
+        8,
+        12,
+        12,
+        9,
+        11,
+        11,
+        9,
+        16,
+        20,
+        20,
+        23,
+        18,
+        17
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.228,
+      "D": 0.23249299719887956,
+      "raw": 83,
+      "total": 357,
+      "z_below": [
+        11,
+        7,
+        8,
+        8,
+        11,
+        15,
+        15,
+        10,
+        8,
+        12,
+        12,
+        9,
+        11
+      ],
+      "z_above": [
+        11,
+        9,
+        16,
+        20,
+        20,
+        23,
+        18,
+        17,
+        14,
+        17,
+        17,
+        20,
+        18
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2285,
+      "D": 0.15577889447236182,
+      "raw": 62,
+      "total": 398,
+      "z_below": [
+        15,
+        15,
+        10,
+        8,
+        12,
+        12,
+        9,
+        11,
+        11,
+        9,
+        16,
+        20,
+        20
+      ],
+      "z_above": [
+        23,
+        18,
+        17,
+        14,
+        17,
+        17,
+        20,
+        18,
+        18,
+        16,
+        17,
+        16,
+        19
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2345,
+      "D": 0.13157894736842105,
+      "raw": 40,
+      "total": 304,
+      "z_below": [
+        6,
+        8,
+        12,
+        13,
+        14,
+        11,
+        16,
+        14,
+        8,
+        5,
+        9,
+        7,
+        9
+      ],
+      "z_above": [
+        13,
+        15,
+        14,
+        10,
+        10,
+        8,
+        8,
+        12,
+        14,
+        22,
+        16,
+        16,
+        14
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.235,
+      "D": 0.06,
+      "raw": 18,
+      "total": 300,
+      "z_below": [
+        11,
+        16,
+        14,
+        8,
+        5,
+        9,
+        7,
+        9,
+        13,
+        15,
+        14,
+        10,
+        10
+      ],
+      "z_above": [
+        8,
+        8,
+        12,
+        14,
+        22,
+        16,
+        16,
+        14,
+        12,
+        12,
+        9,
+        6,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2355,
+      "D": -0.027210884353741496,
+      "raw": -8,
+      "total": 294,
+      "z_below": [
+        9,
+        7,
+        9,
+        13,
+        15,
+        14,
+        10,
+        10,
+        8,
+        8,
+        12,
+        14,
+        22
+      ],
+      "z_above": [
+        16,
+        16,
+        14,
+        12,
+        12,
+        9,
+        6,
+        10,
+        9,
+        10,
+        6,
+        8,
+        15
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.236,
+      "D": -0.08737864077669903,
+      "raw": -27,
+      "total": 309,
+      "z_below": [
+        14,
+        10,
+        10,
+        8,
+        8,
+        12,
+        14,
+        22,
+        16,
+        16,
+        14,
+        12,
+        12
+      ],
+      "z_above": [
+        9,
+        6,
+        10,
+        9,
+        10,
+        6,
+        8,
+        15,
+        13,
+        12,
+        14,
+        14,
+        15
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2365,
+      "D": -0.02857142857142857,
+      "raw": -9,
+      "total": 315,
+      "z_below": [
+        12,
+        14,
+        22,
+        16,
+        16,
+        14,
+        12,
+        12,
+        9,
+        6,
+        10,
+        9,
+        10
+      ],
+      "z_above": [
+        6,
+        8,
+        15,
+        13,
+        12,
+        14,
+        14,
+        15,
+        13,
+        13,
+        13,
+        10,
+        7
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.237,
+      "D": 0.02857142857142857,
+      "raw": 8,
+      "total": 280,
+      "z_below": [
+        14,
+        12,
+        12,
+        9,
+        6,
+        10,
+        9,
+        10,
+        6,
+        8,
+        15,
+        13,
+        12
+      ],
+      "z_above": [
+        14,
+        14,
+        15,
+        13,
+        13,
+        13,
+        10,
+        7,
+        7,
+        10,
+        9,
+        9,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.24,
+      "D": -0.2804878048780488,
+      "raw": -46,
+      "total": 164,
+      "z_below": [
+        11,
+        10,
+        10,
+        11,
+        16,
+        10,
+        9,
+        6,
+        2,
+        5,
+        6,
+        4,
+        5
+      ],
+      "z_above": [
+        5,
+        4,
+        2,
+        6,
+        6,
+        5,
+        2,
+        7,
+        4,
+        5,
+        2,
+        8,
+        3
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2405,
+      "D": 0.0070921985815602835,
+      "raw": 1,
+      "total": 141,
+      "z_below": [
+        10,
+        9,
+        6,
+        2,
+        5,
+        6,
+        4,
+        5,
+        5,
+        4,
+        2,
+        6,
+        6
+      ],
+      "z_above": [
+        5,
+        2,
+        7,
+        4,
+        5,
+        2,
+        8,
+        3,
+        4,
+        4,
+        6,
+        11,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.241,
+      "D": 0.17567567567567569,
+      "raw": 26,
+      "total": 148,
+      "z_below": [
+        6,
+        4,
+        5,
+        5,
+        4,
+        2,
+        6,
+        6,
+        5,
+        2,
+        7,
+        4,
+        5
+      ],
+      "z_above": [
+        2,
+        8,
+        3,
+        4,
+        4,
+        6,
+        11,
+        10,
+        8,
+        7,
+        7,
+        9,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2415,
+      "D": 0.296969696969697,
+      "raw": 49,
+      "total": 165,
+      "z_below": [
+        2,
+        6,
+        6,
+        5,
+        2,
+        7,
+        4,
+        5,
+        2,
+        8,
+        3,
+        4,
+        4
+      ],
+      "z_above": [
+        6,
+        11,
+        10,
+        8,
+        7,
+        7,
+        9,
+        8,
+        7,
+        10,
+        8,
+        8,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.242,
+      "D": 0.164021164021164,
+      "raw": 31,
+      "total": 189,
+      "z_below": [
+        7,
+        4,
+        5,
+        2,
+        8,
+        3,
+        4,
+        4,
+        6,
+        11,
+        10,
+        8,
+        7
+      ],
+      "z_above": [
+        7,
+        9,
+        8,
+        7,
+        10,
+        8,
+        8,
+        8,
+        11,
+        9,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.252,
+      "D": -0.04864864864864865,
+      "raw": -9,
+      "total": 185,
+      "z_below": [
+        14,
+        12,
+        14,
+        6,
+        5,
+        5,
+        4,
+        4,
+        5,
+        6,
+        8,
+        8,
+        6
+      ],
+      "z_above": [
+        9,
+        8,
+        8,
+        5,
+        5,
+        5,
+        5,
+        9,
+        7,
+        8,
+        5,
+        5,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.255,
+      "D": 0.10526315789473684,
+      "raw": 24,
+      "total": 228,
+      "z_below": [
+        7,
+        7,
+        8,
+        8,
+        8,
+        7,
+        7,
+        8,
+        9,
+        7,
+        10,
+        9,
+        7
+      ],
+      "z_above": [
+        8,
+        8,
+        7,
+        8,
+        10,
+        12,
+        12,
+        12,
+        9,
+        10,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2555,
+      "D": 0.19230769230769232,
+      "raw": 50,
+      "total": 260,
+      "z_below": [
+        7,
+        7,
+        8,
+        9,
+        7,
+        10,
+        9,
+        7,
+        8,
+        8,
+        7,
+        8,
+        10
+      ],
+      "z_above": [
+        12,
+        12,
+        12,
+        9,
+        10,
+        9,
+        10,
+        11,
+        13,
+        12,
+        11,
+        15,
+        19
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.256,
+      "D": 0.2077922077922078,
+      "raw": 64,
+      "total": 308,
+      "z_below": [
+        10,
+        9,
+        7,
+        8,
+        8,
+        7,
+        8,
+        10,
+        12,
+        12,
+        12,
+        9,
+        10
+      ],
+      "z_above": [
+        9,
+        10,
+        11,
+        13,
+        12,
+        11,
+        15,
+        19,
+        17,
+        13,
+        18,
+        21,
+        17
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2565,
+      "D": 0.18181818181818182,
+      "raw": 60,
+      "total": 330,
+      "z_below": [
+        7,
+        8,
+        10,
+        12,
+        12,
+        12,
+        9,
+        10,
+        9,
+        10,
+        11,
+        13,
+        12
+      ],
+      "z_above": [
+        11,
+        15,
+        19,
+        17,
+        13,
+        18,
+        21,
+        17,
+        13,
+        13,
+        14,
+        9,
+        15
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.257,
+      "D": 0.05571847507331378,
+      "raw": 19,
+      "total": 341,
+      "z_below": [
+        12,
+        9,
+        10,
+        9,
+        10,
+        11,
+        13,
+        12,
+        11,
+        15,
+        19,
+        17,
+        13
+      ],
+      "z_above": [
+        18,
+        21,
+        17,
+        13,
+        13,
+        14,
+        9,
+        15,
+        10,
+        13,
+        14,
+        12,
+        11
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2575,
+      "D": -0.1488095238095238,
+      "raw": -50,
+      "total": 336,
+      "z_below": [
+        11,
+        13,
+        12,
+        11,
+        15,
+        19,
+        17,
+        13,
+        18,
+        21,
+        17,
+        13,
+        13
+      ],
+      "z_above": [
+        14,
+        9,
+        15,
+        10,
+        13,
+        14,
+        12,
+        11,
+        9,
+        9,
+        10,
+        9,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2605,
+      "D": 0.3333333333333333,
+      "raw": 75,
+      "total": 225,
+      "z_below": [
+        7,
+        5,
+        5,
+        3,
+        6,
+        4,
+        3,
+        5,
+        5,
+        10,
+        7,
+        7,
+        8
+      ],
+      "z_above": [
+        10,
+        10,
+        14,
+        7,
+        6,
+        6,
+        7,
+        12,
+        17,
+        19,
+        16,
+        14,
+        12
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.261,
+      "D": 0.19665271966527198,
+      "raw": 47,
+      "total": 239,
+      "z_below": [
+        4,
+        3,
+        5,
+        5,
+        10,
+        7,
+        7,
+        8,
+        10,
+        10,
+        14,
+        7,
+        6
+      ],
+      "z_above": [
+        6,
+        7,
+        12,
+        17,
+        19,
+        16,
+        14,
+        12,
+        9,
+        6,
+        9,
+        9,
+        7
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.264,
+      "D": 0.0821917808219178,
+      "raw": 12,
+      "total": 146,
+      "z_below": [
+        6,
+        6,
+        5,
+        6,
+        5,
+        3,
+        3,
+        3,
+        3,
+        7,
+        9,
+        7,
+        4
+      ],
+      "z_above": [
+        6,
+        8,
+        7,
+        7,
+        4,
+        7,
+        6,
+        6,
+        5,
+        5,
+        8,
+        5,
+        5
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2645,
+      "D": 0.059602649006622516,
+      "raw": 9,
+      "total": 151,
+      "z_below": [
+        3,
+        3,
+        3,
+        3,
+        7,
+        9,
+        7,
+        4,
+        6,
+        8,
+        7,
+        7,
+        4
+      ],
+      "z_above": [
+        7,
+        6,
+        6,
+        5,
+        5,
+        8,
+        5,
+        5,
+        4,
+        7,
+        11,
+        5,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.265,
+      "D": 0.012195121951219513,
+      "raw": 2,
+      "total": 164,
+      "z_below": [
+        9,
+        7,
+        4,
+        6,
+        8,
+        7,
+        7,
+        4,
+        7,
+        6,
+        6,
+        5,
+        5
+      ],
+      "z_above": [
+        8,
+        5,
+        5,
+        4,
+        7,
+        11,
+        5,
+        6,
+        3,
+        7,
+        4,
+        10,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2655,
+      "D": 0.15555555555555556,
+      "raw": 28,
+      "total": 180,
+      "z_below": [
+        7,
+        7,
+        4,
+        7,
+        6,
+        6,
+        5,
+        5,
+        8,
+        5,
+        5,
+        4,
+        7
+      ],
+      "z_above": [
+        11,
+        5,
+        6,
+        3,
+        7,
+        4,
+        10,
+        8,
+        6,
+        10,
+        15,
+        10,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.266,
+      "D": 0.17647058823529413,
+      "raw": 33,
+      "total": 187,
+      "z_below": [
+        6,
+        5,
+        5,
+        8,
+        5,
+        5,
+        4,
+        7,
+        11,
+        5,
+        6,
+        3,
+        7
+      ],
+      "z_above": [
+        4,
+        10,
+        8,
+        6,
+        10,
+        15,
+        10,
+        9,
+        11,
+        6,
+        6,
+        9,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2665,
+      "D": 0.0851063829787234,
+      "raw": 16,
+      "total": 188,
+      "z_below": [
+        5,
+        4,
+        7,
+        11,
+        5,
+        6,
+        3,
+        7,
+        4,
+        10,
+        8,
+        6,
+        10
+      ],
+      "z_above": [
+        15,
+        10,
+        9,
+        11,
+        6,
+        6,
+        9,
+        6,
+        7,
+        5,
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.267,
+      "D": -0.09375,
+      "raw": -18,
+      "total": 192,
+      "z_below": [
+        6,
+        3,
+        7,
+        4,
+        10,
+        8,
+        6,
+        10,
+        15,
+        10,
+        9,
+        11,
+        6
+      ],
+      "z_above": [
+        6,
+        9,
+        6,
+        7,
+        5,
+        6,
+        6,
+        6,
+        7,
+        5,
+        9,
+        7,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2675,
+      "D": 0.0136986301369863,
+      "raw": 3,
+      "total": 219,
+      "z_below": [
+        8,
+        6,
+        10,
+        15,
+        10,
+        9,
+        11,
+        6,
+        6,
+        9,
+        6,
+        7,
+        5
+      ],
+      "z_above": [
+        6,
+        6,
+        6,
+        7,
+        5,
+        9,
+        7,
+        8,
+        8,
+        9,
+        7,
+        12,
+        21
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.268,
+      "D": 0.1643192488262911,
+      "raw": 35,
+      "total": 213,
+      "z_below": [
+        9,
+        11,
+        6,
+        6,
+        9,
+        6,
+        7,
+        5,
+        6,
+        6,
+        6,
+        7,
+        5
+      ],
+      "z_above": [
+        9,
+        7,
+        8,
+        8,
+        9,
+        7,
+        12,
+        21,
+        8,
+        7,
+        8,
+        10,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2685,
+      "D": 0.13592233009708737,
+      "raw": 28,
+      "total": 206,
+      "z_below": [
+        6,
+        7,
+        5,
+        6,
+        6,
+        6,
+        7,
+        5,
+        9,
+        7,
+        8,
+        8,
+        9
+      ],
+      "z_above": [
+        7,
+        12,
+        21,
+        8,
+        7,
+        8,
+        10,
+        10,
+        5,
+        6,
+        8,
+        7,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.269,
+      "D": -0.045871559633027525,
+      "raw": -10,
+      "total": 218,
+      "z_below": [
+        6,
+        7,
+        5,
+        9,
+        7,
+        8,
+        8,
+        9,
+        7,
+        12,
+        21,
+        8,
+        7
+      ],
+      "z_above": [
+        8,
+        10,
+        10,
+        5,
+        6,
+        8,
+        7,
+        8,
+        5,
+        10,
+        10,
+        8,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2695,
+      "D": -0.0625,
+      "raw": -14,
+      "total": 224,
+      "z_below": [
+        8,
+        8,
+        9,
+        7,
+        12,
+        21,
+        8,
+        7,
+        8,
+        10,
+        10,
+        5,
+        6
+      ],
+      "z_above": [
+        8,
+        7,
+        8,
+        5,
+        10,
+        10,
+        8,
+        9,
+        8,
+        11,
+        7,
+        7,
+        7
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2725,
+      "D": -0.07871720116618076,
+      "raw": -27,
+      "total": 343,
+      "z_below": [
+        19,
+        19,
+        19,
+        20,
+        16,
+        16,
+        18,
+        9,
+        8,
+        7,
+        11,
+        11,
+        12
+      ],
+      "z_above": [
+        11,
+        12,
+        10,
+        10,
+        12,
+        14,
+        14,
+        11,
+        12,
+        11,
+        11,
+        15,
+        15
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.273,
+      "D": 0.09815950920245399,
+      "raw": 32,
+      "total": 326,
+      "z_below": [
+        16,
+        18,
+        9,
+        8,
+        7,
+        11,
+        11,
+        12,
+        11,
+        12,
+        10,
+        10,
+        12
+      ],
+      "z_above": [
+        14,
+        14,
+        11,
+        12,
+        11,
+        11,
+        15,
+        15,
+        15,
+        21,
+        17,
+        12,
+        11
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2735,
+      "D": 0.12209302325581395,
+      "raw": 42,
+      "total": 344,
+      "z_below": [
+        11,
+        11,
+        12,
+        11,
+        12,
+        10,
+        10,
+        12,
+        14,
+        14,
+        11,
+        12,
+        11
+      ],
+      "z_above": [
+        11,
+        15,
+        15,
+        15,
+        21,
+        17,
+        12,
+        11,
+        12,
+        16,
+        19,
+        18,
+        11
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.274,
+      "D": 0.0029154518950437317,
+      "raw": 1,
+      "total": 343,
+      "z_below": [
+        10,
+        10,
+        12,
+        14,
+        14,
+        11,
+        12,
+        11,
+        11,
+        15,
+        15,
+        15,
+        21
+      ],
+      "z_above": [
+        17,
+        12,
+        11,
+        12,
+        16,
+        19,
+        18,
+        11,
+        11,
+        12,
+        12,
+        11,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2745,
+      "D": -0.019943019943019943,
+      "raw": -7,
+      "total": 351,
+      "z_below": [
+        11,
+        12,
+        11,
+        11,
+        15,
+        15,
+        15,
+        21,
+        17,
+        12,
+        11,
+        12,
+        16
+      ],
+      "z_above": [
+        19,
+        18,
+        11,
+        11,
+        12,
+        12,
+        11,
+        10,
+        11,
+        12,
+        13,
+        17,
+        15
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.275,
+      "D": -0.09195402298850575,
+      "raw": -32,
+      "total": 348,
+      "z_below": [
+        15,
+        15,
+        21,
+        17,
+        12,
+        11,
+        12,
+        16,
+        19,
+        18,
+        11,
+        11,
+        12
+      ],
+      "z_above": [
+        12,
+        11,
+        10,
+        11,
+        12,
+        13,
+        17,
+        15,
+        12,
+        12,
+        10,
+        12,
+        11
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.278,
+      "D": -0.2,
+      "raw": -37,
+      "total": 185,
+      "z_below": [
+        8,
+        9,
+        9,
+        10,
+        10,
+        8,
+        8,
+        8,
+        7,
+        9,
+        10,
+        8,
+        7
+      ],
+      "z_above": [
+        8,
+        4,
+        6,
+        6,
+        5,
+        3,
+        6,
+        5,
+        8,
+        7,
+        6,
+        5,
+        5
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2785,
+      "D": -0.08670520231213873,
+      "raw": -15,
+      "total": 173,
+      "z_below": [
+        8,
+        8,
+        8,
+        7,
+        9,
+        10,
+        8,
+        7,
+        8,
+        4,
+        6,
+        6,
+        5
+      ],
+      "z_above": [
+        3,
+        6,
+        5,
+        8,
+        7,
+        6,
+        5,
+        5,
+        7,
+        5,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.279,
+      "D": -0.031055900621118012,
+      "raw": -5,
+      "total": 161,
+      "z_below": [
+        10,
+        8,
+        7,
+        8,
+        4,
+        6,
+        6,
+        5,
+        3,
+        6,
+        5,
+        8,
+        7
+      ],
+      "z_above": [
+        6,
+        5,
+        5,
+        7,
+        5,
+        6,
+        7,
+        9,
+        4,
+        9,
+        4,
+        6,
+        5
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2795,
+      "D": 0.04516129032258064,
+      "raw": 7,
+      "total": 155,
+      "z_below": [
+        6,
+        6,
+        5,
+        3,
+        6,
+        5,
+        8,
+        7,
+        6,
+        5,
+        5,
+        7,
+        5
+      ],
+      "z_above": [
+        6,
+        7,
+        9,
+        4,
+        9,
+        4,
+        6,
+        5,
+        4,
+        3,
+        8,
+        7,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.28,
+      "D": 0.005988023952095809,
+      "raw": 1,
+      "total": 167,
+      "z_below": [
+        5,
+        8,
+        7,
+        6,
+        5,
+        5,
+        7,
+        5,
+        6,
+        7,
+        9,
+        4,
+        9
+      ],
+      "z_above": [
+        4,
+        6,
+        5,
+        4,
+        3,
+        8,
+        7,
+        9,
+        4,
+        9,
+        8,
+        7,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2805,
+      "D": 0.1956521739130435,
+      "raw": 36,
+      "total": 184,
+      "z_below": [
+        5,
+        7,
+        5,
+        6,
+        7,
+        9,
+        4,
+        9,
+        4,
+        6,
+        5,
+        4,
+        3
+      ],
+      "z_above": [
+        8,
+        7,
+        9,
+        4,
+        9,
+        8,
+        7,
+        10,
+        10,
+        11,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2835,
+      "D": 0.006134969325153374,
+      "raw": 1,
+      "total": 163,
+      "z_below": [
+        7,
+        8,
+        5,
+        7,
+        7,
+        6,
+        6,
+        4,
+        5,
+        4,
+        6,
+        7,
+        9
+      ],
+      "z_above": [
+        8,
+        8,
+        5,
+        6,
+        5,
+        5,
+        5,
+        6,
+        9,
+        8,
+        7,
+        4,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.284,
+      "D": 0.0125,
+      "raw": 2,
+      "total": 160,
+      "z_below": [
+        6,
+        6,
+        4,
+        5,
+        4,
+        6,
+        7,
+        9,
+        8,
+        8,
+        5,
+        6,
+        5
+      ],
+      "z_above": [
+        5,
+        5,
+        6,
+        9,
+        8,
+        7,
+        4,
+        6,
+        7,
+        5,
+        7,
+        6,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2845,
+      "D": 0.06451612903225806,
+      "raw": 12,
+      "total": 186,
+      "z_below": [
+        6,
+        7,
+        9,
+        8,
+        8,
+        5,
+        6,
+        5,
+        5,
+        5,
+        6,
+        9,
+        8
+      ],
+      "z_above": [
+        7,
+        4,
+        6,
+        7,
+        5,
+        7,
+        6,
+        6,
+        7,
+        6,
+        13,
+        13,
+        12
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.285,
+      "D": 0.2641509433962264,
+      "raw": 56,
+      "total": 212,
+      "z_below": [
+        5,
+        6,
+        5,
+        5,
+        5,
+        6,
+        9,
+        8,
+        7,
+        4,
+        6,
+        7,
+        5
+      ],
+      "z_above": [
+        7,
+        6,
+        6,
+        7,
+        6,
+        13,
+        13,
+        12,
+        18,
+        12,
+        12,
+        12,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2855,
+      "D": 0.22935779816513763,
+      "raw": 50,
+      "total": 218,
+      "z_below": [
+        6,
+        9,
+        8,
+        7,
+        4,
+        6,
+        7,
+        5,
+        7,
+        6,
+        6,
+        7,
+        6
+      ],
+      "z_above": [
+        13,
+        13,
+        12,
+        18,
+        12,
+        12,
+        12,
+        10,
+        6,
+        7,
+        7,
+        6,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.286,
+      "D": -0.04888888888888889,
+      "raw": -11,
+      "total": 225,
+      "z_below": [
+        6,
+        7,
+        5,
+        7,
+        6,
+        6,
+        7,
+        6,
+        13,
+        13,
+        12,
+        18,
+        12
+      ],
+      "z_above": [
+        12,
+        12,
+        10,
+        6,
+        7,
+        7,
+        6,
+        6,
+        8,
+        9,
+        9,
+        7,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2865,
+      "D": -0.19111111111111112,
+      "raw": -43,
+      "total": 225,
+      "z_below": [
+        6,
+        7,
+        6,
+        13,
+        13,
+        12,
+        18,
+        12,
+        12,
+        12,
+        10,
+        6,
+        7
+      ],
+      "z_above": [
+        7,
+        6,
+        6,
+        8,
+        9,
+        9,
+        7,
+        8,
+        8,
+        5,
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.287,
+      "D": -0.19047619047619047,
+      "raw": -40,
+      "total": 210,
+      "z_below": [
+        12,
+        18,
+        12,
+        12,
+        12,
+        10,
+        6,
+        7,
+        7,
+        6,
+        6,
+        8,
+        9
+      ],
+      "z_above": [
+        9,
+        7,
+        8,
+        8,
+        5,
+        6,
+        6,
+        6,
+        5,
+        6,
+        7,
+        6,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2875,
+      "D": -0.1497005988023952,
+      "raw": -25,
+      "total": 167,
+      "z_below": [
+        10,
+        6,
+        7,
+        7,
+        6,
+        6,
+        8,
+        9,
+        9,
+        7,
+        8,
+        8,
+        5
+      ],
+      "z_above": [
+        6,
+        6,
+        6,
+        5,
+        6,
+        7,
+        6,
+        6,
+        3,
+        4,
+        4,
+        5,
+        7
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.288,
+      "D": -0.1125,
+      "raw": -18,
+      "total": 160,
+      "z_below": [
+        6,
+        8,
+        9,
+        9,
+        7,
+        8,
+        8,
+        5,
+        6,
+        6,
+        6,
+        5,
+        6
+      ],
+      "z_above": [
+        7,
+        6,
+        6,
+        3,
+        4,
+        4,
+        5,
+        7,
+        6,
+        5,
+        5,
+        9,
+        4
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2885,
+      "D": 0.055900621118012424,
+      "raw": 9,
+      "total": 161,
+      "z_below": [
+        8,
+        8,
+        5,
+        6,
+        6,
+        6,
+        5,
+        6,
+        7,
+        6,
+        6,
+        3,
+        4
+      ],
+      "z_above": [
+        4,
+        5,
+        7,
+        6,
+        5,
+        5,
+        9,
+        4,
+        5,
+        10,
+        8,
+        8,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.289,
+      "D": 0.18128654970760233,
+      "raw": 31,
+      "total": 171,
+      "z_below": [
+        6,
+        5,
+        6,
+        7,
+        6,
+        6,
+        3,
+        4,
+        4,
+        5,
+        7,
+        6,
+        5
+      ],
+      "z_above": [
+        5,
+        9,
+        4,
+        5,
+        10,
+        8,
+        8,
+        9,
+        9,
+        12,
+        7,
+        7,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2895,
+      "D": 0.18435754189944134,
+      "raw": 33,
+      "total": 179,
+      "z_below": [
+        6,
+        3,
+        4,
+        4,
+        5,
+        7,
+        6,
+        5,
+        5,
+        9,
+        4,
+        5,
+        10
+      ],
+      "z_above": [
+        8,
+        8,
+        9,
+        9,
+        12,
+        7,
+        7,
+        8,
+        6,
+        6,
+        9,
+        9,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.29,
+      "D": 0.0,
+      "raw": 0,
+      "total": 194,
+      "z_below": [
+        7,
+        6,
+        5,
+        5,
+        9,
+        4,
+        5,
+        10,
+        8,
+        8,
+        9,
+        9,
+        12
+      ],
+      "z_above": [
+        7,
+        7,
+        8,
+        6,
+        6,
+        9,
+        9,
+        8,
+        7,
+        7,
+        7,
+        7,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.294,
+      "D": 0.3008130081300813,
+      "raw": 74,
+      "total": 246,
+      "z_below": [
+        7,
+        7,
+        7,
+        8,
+        7,
+        5,
+        4,
+        5,
+        7,
+        4,
+        6,
+        10,
+        9
+      ],
+      "z_above": [
+        10,
+        10,
+        14,
+        13,
+        14,
+        13,
+        11,
+        13,
+        12,
+        12,
+        12,
+        13,
+        13
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2945,
+      "D": 0.23448275862068965,
+      "raw": 68,
+      "total": 290,
+      "z_below": [
+        5,
+        4,
+        5,
+        7,
+        4,
+        6,
+        10,
+        9,
+        10,
+        10,
+        14,
+        13,
+        14
+      ],
+      "z_above": [
+        13,
+        11,
+        13,
+        12,
+        12,
+        12,
+        13,
+        13,
+        19,
+        18,
+        13,
+        17,
+        13
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.295,
+      "D": 0.10365853658536585,
+      "raw": 34,
+      "total": 328,
+      "z_below": [
+        6,
+        10,
+        9,
+        10,
+        10,
+        14,
+        13,
+        14,
+        13,
+        11,
+        13,
+        12,
+        12
+      ],
+      "z_above": [
+        12,
+        13,
+        13,
+        19,
+        18,
+        13,
+        17,
+        13,
+        12,
+        11,
+        14,
+        13,
+        13
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2955,
+      "D": -0.08256880733944955,
+      "raw": -27,
+      "total": 327,
+      "z_below": [
+        14,
+        13,
+        14,
+        13,
+        11,
+        13,
+        12,
+        12,
+        12,
+        13,
+        13,
+        19,
+        18
+      ],
+      "z_above": [
+        13,
+        17,
+        13,
+        12,
+        11,
+        14,
+        13,
+        13,
+        13,
+        8,
+        7,
+        8,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2985,
+      "D": -0.26424870466321243,
+      "raw": -51,
+      "total": 193,
+      "z_below": [
+        9,
+        10,
+        11,
+        9,
+        8,
+        4,
+        4,
+        11,
+        9,
+        11,
+        10,
+        12,
+        14
+      ],
+      "z_above": [
+        9,
+        6,
+        7,
+        3,
+        3,
+        5,
+        5,
+        4,
+        5,
+        7,
+        7,
+        6,
+        4
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.299,
+      "D": -0.11351351351351352,
+      "raw": -21,
+      "total": 185,
+      "z_below": [
+        4,
+        4,
+        11,
+        9,
+        11,
+        10,
+        12,
+        14,
+        9,
+        6,
+        7,
+        3,
+        3
+      ],
+      "z_above": [
+        5,
+        5,
+        4,
+        5,
+        7,
+        7,
+        6,
+        4,
+        7,
+        6,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.2995,
+      "D": 0.0,
+      "raw": 0,
+      "total": 180,
+      "z_below": [
+        10,
+        12,
+        14,
+        9,
+        6,
+        7,
+        3,
+        3,
+        5,
+        5,
+        4,
+        5,
+        7
+      ],
+      "z_above": [
+        7,
+        6,
+        4,
+        7,
+        6,
+        6,
+        10,
+        10,
+        6,
+        5,
+        8,
+        8,
+        7
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3,
+      "D": 0.16363636363636364,
+      "raw": 27,
+      "total": 165,
+      "z_below": [
+        7,
+        3,
+        3,
+        5,
+        5,
+        4,
+        5,
+        7,
+        7,
+        6,
+        4,
+        7,
+        6
+      ],
+      "z_above": [
+        6,
+        10,
+        10,
+        6,
+        5,
+        8,
+        8,
+        7,
+        8,
+        7,
+        8,
+        7,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3005,
+      "D": 0.09289617486338798,
+      "raw": 17,
+      "total": 183,
+      "z_below": [
+        4,
+        5,
+        7,
+        7,
+        6,
+        4,
+        7,
+        6,
+        6,
+        10,
+        10,
+        6,
+        5
+      ],
+      "z_above": [
+        8,
+        8,
+        7,
+        8,
+        7,
+        8,
+        7,
+        6,
+        5,
+        9,
+        9,
+        9,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.301,
+      "D": 0.06598984771573604,
+      "raw": 13,
+      "total": 197,
+      "z_below": [
+        4,
+        7,
+        6,
+        6,
+        10,
+        10,
+        6,
+        5,
+        8,
+        8,
+        7,
+        8,
+        7
+      ],
+      "z_above": [
+        8,
+        7,
+        6,
+        5,
+        9,
+        9,
+        9,
+        9,
+        11,
+        7,
+        5,
+        6,
+        14
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3015,
+      "D": 0.11737089201877934,
+      "raw": 25,
+      "total": 213,
+      "z_below": [
+        10,
+        6,
+        5,
+        8,
+        8,
+        7,
+        8,
+        7,
+        8,
+        7,
+        6,
+        5,
+        9
+      ],
+      "z_above": [
+        9,
+        9,
+        9,
+        11,
+        7,
+        5,
+        6,
+        14,
+        12,
+        8,
+        9,
+        10,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.302,
+      "D": 0.0684931506849315,
+      "raw": 15,
+      "total": 219,
+      "z_below": [
+        7,
+        8,
+        7,
+        8,
+        7,
+        6,
+        5,
+        9,
+        9,
+        9,
+        9,
+        11,
+        7
+      ],
+      "z_above": [
+        5,
+        6,
+        14,
+        12,
+        8,
+        9,
+        10,
+        10,
+        11,
+        10,
+        10,
+        7,
+        5
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3025,
+      "D": -0.05263157894736842,
+      "raw": -11,
+      "total": 209,
+      "z_below": [
+        6,
+        5,
+        9,
+        9,
+        9,
+        9,
+        11,
+        7,
+        5,
+        6,
+        14,
+        12,
+        8
+      ],
+      "z_above": [
+        9,
+        10,
+        10,
+        11,
+        10,
+        10,
+        7,
+        5,
+        5,
+        6,
+        5,
+        5,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.303,
+      "D": -0.13488372093023257,
+      "raw": -29,
+      "total": 215,
+      "z_below": [
+        9,
+        11,
+        7,
+        5,
+        6,
+        14,
+        12,
+        8,
+        9,
+        10,
+        10,
+        11,
+        10
+      ],
+      "z_above": [
+        10,
+        7,
+        5,
+        5,
+        6,
+        5,
+        5,
+        6,
+        8,
+        9,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3035,
+      "D": -0.06363636363636363,
+      "raw": -14,
+      "total": 220,
+      "z_below": [
+        14,
+        12,
+        8,
+        9,
+        10,
+        10,
+        11,
+        10,
+        10,
+        7,
+        5,
+        5,
+        6
+      ],
+      "z_above": [
+        5,
+        5,
+        6,
+        8,
+        9,
+        8,
+        9,
+        10,
+        8,
+        8,
+        9,
+        9,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.304,
+      "D": 0.08490566037735849,
+      "raw": 18,
+      "total": 212,
+      "z_below": [
+        10,
+        11,
+        10,
+        10,
+        7,
+        5,
+        5,
+        6,
+        5,
+        5,
+        6,
+        8,
+        9
+      ],
+      "z_above": [
+        8,
+        9,
+        10,
+        8,
+        8,
+        9,
+        9,
+        9,
+        9,
+        7,
+        9,
+        12,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.307,
+      "D": -0.371900826446281,
+      "raw": -90,
+      "total": 242,
+      "z_below": [
+        14,
+        14,
+        12,
+        13,
+        11,
+        14,
+        14,
+        14,
+        14,
+        13,
+        15,
+        11,
+        7
+      ],
+      "z_above": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        5,
+        6,
+        5,
+        4,
+        4,
+        5,
+        6,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3075,
+      "D": -0.33658536585365856,
+      "raw": -69,
+      "total": 205,
+      "z_below": [
+        14,
+        14,
+        14,
+        14,
+        13,
+        15,
+        11,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "z_above": [
+        5,
+        6,
+        5,
+        4,
+        4,
+        5,
+        6,
+        6,
+        8,
+        5,
+        5,
+        4,
+        5
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.308,
+      "D": -0.08875739644970414,
+      "raw": -15,
+      "total": 169,
+      "z_below": [
+        15,
+        11,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        5,
+        6,
+        5,
+        4,
+        4
+      ],
+      "z_above": [
+        5,
+        6,
+        6,
+        8,
+        5,
+        5,
+        4,
+        5,
+        8,
+        6,
+        6,
+        6,
+        7
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3085,
+      "D": 0.05063291139240506,
+      "raw": 8,
+      "total": 158,
+      "z_below": [
+        7,
+        7,
+        7,
+        5,
+        6,
+        5,
+        4,
+        4,
+        5,
+        6,
+        6,
+        8,
+        5
+      ],
+      "z_above": [
+        5,
+        4,
+        5,
+        8,
+        6,
+        6,
+        6,
+        7,
+        7,
+        7,
+        7,
+        7,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.309,
+      "D": 0.15476190476190477,
+      "raw": 26,
+      "total": 168,
+      "z_below": [
+        5,
+        4,
+        4,
+        5,
+        6,
+        6,
+        8,
+        5,
+        5,
+        4,
+        5,
+        8,
+        6
+      ],
+      "z_above": [
+        6,
+        6,
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        7,
+        10,
+        9,
+        9,
+        7
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3095,
+      "D": 0.1111111111111111,
+      "raw": 20,
+      "total": 180,
+      "z_below": [
+        6,
+        8,
+        5,
+        5,
+        4,
+        5,
+        8,
+        6,
+        6,
+        6,
+        7,
+        7,
+        7
+      ],
+      "z_above": [
+        7,
+        7,
+        8,
+        7,
+        10,
+        9,
+        9,
+        7,
+        8,
+        6,
+        7,
+        6,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.31,
+      "D": 0.0945273631840796,
+      "raw": 19,
+      "total": 201,
+      "z_below": [
+        5,
+        8,
+        6,
+        6,
+        6,
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        7,
+        10
+      ],
+      "z_above": [
+        9,
+        9,
+        7,
+        8,
+        6,
+        7,
+        6,
+        9,
+        8,
+        10,
+        12,
+        9,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3105,
+      "D": 0.014925373134328358,
+      "raw": 3,
+      "total": 201,
+      "z_below": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        7,
+        10,
+        9,
+        9,
+        7,
+        8,
+        6
+      ],
+      "z_above": [
+        7,
+        6,
+        9,
+        8,
+        10,
+        12,
+        9,
+        10,
+        7,
+        5,
+        6,
+        5,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.311,
+      "D": 0.018867924528301886,
+      "raw": 4,
+      "total": 212,
+      "z_below": [
+        8,
+        7,
+        10,
+        9,
+        9,
+        7,
+        8,
+        6,
+        7,
+        6,
+        9,
+        8,
+        10
+      ],
+      "z_above": [
+        12,
+        9,
+        10,
+        7,
+        5,
+        6,
+        5,
+        8,
+        7,
+        7,
+        9,
+        8,
+        15
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3115,
+      "D": 0.1111111111111111,
+      "raw": 26,
+      "total": 234,
+      "z_below": [
+        7,
+        8,
+        6,
+        7,
+        6,
+        9,
+        8,
+        10,
+        12,
+        9,
+        10,
+        7,
+        5
+      ],
+      "z_above": [
+        6,
+        5,
+        8,
+        7,
+        7,
+        9,
+        8,
+        15,
+        12,
+        13,
+        16,
+        11,
+        13
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.312,
+      "D": 0.210727969348659,
+      "raw": 55,
+      "total": 261,
+      "z_below": [
+        9,
+        8,
+        10,
+        12,
+        9,
+        10,
+        7,
+        5,
+        6,
+        5,
+        8,
+        7,
+        7
+      ],
+      "z_above": [
+        9,
+        8,
+        15,
+        12,
+        13,
+        16,
+        11,
+        13,
+        11,
+        12,
+        12,
+        15,
+        11
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3125,
+      "D": 0.11811023622047244,
+      "raw": 30,
+      "total": 254,
+      "z_below": [
+        10,
+        7,
+        5,
+        6,
+        5,
+        8,
+        7,
+        7,
+        9,
+        8,
+        15,
+        12,
+        13
+      ],
+      "z_above": [
+        16,
+        11,
+        13,
+        11,
+        12,
+        12,
+        15,
+        11,
+        13,
+        6,
+        7,
+        9,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.313,
+      "D": -0.07575757575757576,
+      "raw": -20,
+      "total": 264,
+      "z_below": [
+        8,
+        7,
+        7,
+        9,
+        8,
+        15,
+        12,
+        13,
+        16,
+        11,
+        13,
+        11,
+        12
+      ],
+      "z_above": [
+        12,
+        15,
+        11,
+        13,
+        6,
+        7,
+        9,
+        6,
+        8,
+        8,
+        9,
+        9,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3135,
+      "D": -0.17216117216117216,
+      "raw": -47,
+      "total": 273,
+      "z_below": [
+        15,
+        12,
+        13,
+        16,
+        11,
+        13,
+        11,
+        12,
+        12,
+        15,
+        11,
+        13,
+        6
+      ],
+      "z_above": [
+        7,
+        9,
+        6,
+        8,
+        8,
+        9,
+        9,
+        9,
+        8,
+        11,
+        10,
+        11,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.314,
+      "D": -0.1341991341991342,
+      "raw": -31,
+      "total": 231,
+      "z_below": [
+        13,
+        11,
+        12,
+        12,
+        15,
+        11,
+        13,
+        6,
+        7,
+        9,
+        6,
+        8,
+        8
+      ],
+      "z_above": [
+        9,
+        9,
+        9,
+        8,
+        11,
+        10,
+        11,
+        8,
+        6,
+        6,
+        5,
+        4,
+        4
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3145,
+      "D": -0.03167420814479638,
+      "raw": -7,
+      "total": 221,
+      "z_below": [
+        11,
+        13,
+        6,
+        7,
+        9,
+        6,
+        8,
+        8,
+        9,
+        9,
+        9,
+        8,
+        11
+      ],
+      "z_above": [
+        10,
+        11,
+        8,
+        6,
+        6,
+        5,
+        4,
+        4,
+        8,
+        13,
+        11,
+        11,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.322,
+      "D": -0.05217391304347826,
+      "raw": -12,
+      "total": 230,
+      "z_below": [
+        13,
+        12,
+        10,
+        9,
+        14,
+        9,
+        6,
+        7,
+        9,
+        9,
+        8,
+        7,
+        8
+      ],
+      "z_above": [
+        7,
+        9,
+        7,
+        8,
+        8,
+        9,
+        8,
+        11,
+        12,
+        6,
+        7,
+        7,
+        10
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3225,
+      "D": 0.03317535545023697,
+      "raw": 7,
+      "total": 211,
+      "z_below": [
+        9,
+        6,
+        7,
+        9,
+        9,
+        8,
+        7,
+        8,
+        7,
+        9,
+        7,
+        8,
+        8
+      ],
+      "z_above": [
+        9,
+        8,
+        11,
+        12,
+        6,
+        7,
+        7,
+        10,
+        11,
+        9,
+        7,
+        6,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.323,
+      "D": 0.1111111111111111,
+      "raw": 27,
+      "total": 243,
+      "z_below": [
+        8,
+        7,
+        8,
+        7,
+        9,
+        7,
+        8,
+        8,
+        9,
+        8,
+        11,
+        12,
+        6
+      ],
+      "z_above": [
+        7,
+        7,
+        10,
+        11,
+        9,
+        7,
+        6,
+        6,
+        8,
+        16,
+        15,
+        17,
+        16
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3235,
+      "D": 0.24666666666666667,
+      "raw": 74,
+      "total": 300,
+      "z_below": [
+        7,
+        8,
+        8,
+        9,
+        8,
+        11,
+        12,
+        6,
+        7,
+        7,
+        10,
+        11,
+        9
+      ],
+      "z_above": [
+        7,
+        6,
+        6,
+        8,
+        16,
+        15,
+        17,
+        16,
+        17,
+        18,
+        20,
+        22,
+        19
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.324,
+      "D": 0.3626373626373626,
+      "raw": 132,
+      "total": 364,
+      "z_below": [
+        11,
+        12,
+        6,
+        7,
+        7,
+        10,
+        11,
+        9,
+        7,
+        6,
+        6,
+        8,
+        16
+      ],
+      "z_above": [
+        15,
+        17,
+        16,
+        17,
+        18,
+        20,
+        22,
+        19,
+        20,
+        21,
+        21,
+        19,
+        23
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3245,
+      "D": 0.2517985611510791,
+      "raw": 105,
+      "total": 417,
+      "z_below": [
+        10,
+        11,
+        9,
+        7,
+        6,
+        6,
+        8,
+        16,
+        15,
+        17,
+        16,
+        17,
+        18
+      ],
+      "z_above": [
+        20,
+        22,
+        19,
+        20,
+        21,
+        21,
+        19,
+        23,
+        22,
+        19,
+        18,
+        19,
+        18
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.325,
+      "D": 0.0811965811965812,
+      "raw": 38,
+      "total": 468,
+      "z_below": [
+        6,
+        8,
+        16,
+        15,
+        17,
+        16,
+        17,
+        18,
+        20,
+        22,
+        19,
+        20,
+        21
+      ],
+      "z_above": [
+        21,
+        19,
+        23,
+        22,
+        19,
+        18,
+        19,
+        18,
+        18,
+        24,
+        19,
+        16,
+        17
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3255,
+      "D": -0.05979381443298969,
+      "raw": -29,
+      "total": 485,
+      "z_below": [
+        16,
+        17,
+        18,
+        20,
+        22,
+        19,
+        20,
+        21,
+        21,
+        19,
+        23,
+        22,
+        19
+      ],
+      "z_above": [
+        18,
+        19,
+        18,
+        18,
+        24,
+        19,
+        16,
+        17,
+        15,
+        17,
+        17,
+        15,
+        15
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.326,
+      "D": -0.11063829787234042,
+      "raw": -52,
+      "total": 470,
+      "z_below": [
+        19,
+        20,
+        21,
+        21,
+        19,
+        23,
+        22,
+        19,
+        18,
+        19,
+        18,
+        18,
+        24
+      ],
+      "z_above": [
+        19,
+        16,
+        17,
+        15,
+        17,
+        17,
+        15,
+        15,
+        20,
+        17,
+        16,
+        13,
+        12
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3265,
+      "D": -0.13953488372093023,
+      "raw": -60,
+      "total": 430,
+      "z_below": [
+        23,
+        22,
+        19,
+        18,
+        19,
+        18,
+        18,
+        24,
+        19,
+        16,
+        17,
+        15,
+        17
+      ],
+      "z_above": [
+        17,
+        15,
+        15,
+        20,
+        17,
+        16,
+        13,
+        12,
+        17,
+        14,
+        9,
+        9,
+        11
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.327,
+      "D": -0.3028571428571429,
+      "raw": -106,
+      "total": 350,
+      "z_below": [
+        18,
+        18,
+        24,
+        19,
+        16,
+        17,
+        15,
+        17,
+        17,
+        15,
+        15,
+        20,
+        17
+      ],
+      "z_above": [
+        16,
+        13,
+        12,
+        17,
+        14,
+        9,
+        9,
+        11,
+        9,
+        2,
+        3,
+        3,
+        4
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3275,
+      "D": -0.5018315018315018,
+      "raw": -137,
+      "total": 273,
+      "z_below": [
+        17,
+        15,
+        17,
+        17,
+        15,
+        15,
+        20,
+        17,
+        16,
+        13,
+        12,
+        17,
+        14
+      ],
+      "z_above": [
+        9,
+        9,
+        11,
+        9,
+        2,
+        3,
+        3,
+        4,
+        2,
+        2,
+        3,
+        3,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.328,
+      "D": -0.40772532188841204,
+      "raw": -95,
+      "total": 233,
+      "z_below": [
+        15,
+        20,
+        17,
+        16,
+        13,
+        12,
+        17,
+        14,
+        9,
+        9,
+        11,
+        9,
+        2
+      ],
+      "z_above": [
+        3,
+        3,
+        4,
+        2,
+        2,
+        3,
+        3,
+        8,
+        8,
+        8,
+        9,
+        8,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3285,
+      "D": 0.015228426395939087,
+      "raw": 3,
+      "total": 197,
+      "z_below": [
+        12,
+        17,
+        14,
+        9,
+        9,
+        11,
+        9,
+        2,
+        3,
+        3,
+        4,
+        2,
+        2
+      ],
+      "z_above": [
+        3,
+        3,
+        8,
+        8,
+        8,
+        9,
+        8,
+        8,
+        11,
+        10,
+        8,
+        10,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.329,
+      "D": 0.20958083832335328,
+      "raw": 35,
+      "total": 167,
+      "z_below": [
+        11,
+        9,
+        2,
+        3,
+        3,
+        4,
+        2,
+        2,
+        3,
+        3,
+        8,
+        8,
+        8
+      ],
+      "z_above": [
+        9,
+        8,
+        8,
+        11,
+        10,
+        8,
+        10,
+        6,
+        5,
+        5,
+        6,
+        8,
+        7
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3295,
+      "D": 0.017543859649122806,
+      "raw": 3,
+      "total": 171,
+      "z_below": [
+        4,
+        2,
+        2,
+        3,
+        3,
+        8,
+        8,
+        8,
+        9,
+        8,
+        8,
+        11,
+        10
+      ],
+      "z_above": [
+        8,
+        10,
+        6,
+        5,
+        5,
+        6,
+        8,
+        7,
+        6,
+        5,
+        7,
+        6,
+        8
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.33,
+      "D": -0.1366120218579235,
+      "raw": -25,
+      "total": 183,
+      "z_below": [
+        8,
+        8,
+        8,
+        9,
+        8,
+        8,
+        11,
+        10,
+        8,
+        10,
+        6,
+        5,
+        5
+      ],
+      "z_above": [
+        6,
+        8,
+        7,
+        6,
+        5,
+        7,
+        6,
+        8,
+        6,
+        6,
+        8,
+        3,
+        3
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3305,
+      "D": -0.049723756906077346,
+      "raw": -9,
+      "total": 181,
+      "z_below": [
+        8,
+        11,
+        10,
+        8,
+        10,
+        6,
+        5,
+        5,
+        6,
+        8,
+        7,
+        6,
+        5
+      ],
+      "z_above": [
+        7,
+        6,
+        8,
+        6,
+        6,
+        8,
+        3,
+        3,
+        9,
+        6,
+        8,
+        7,
+        9
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.331,
+      "D": 0.11956521739130435,
+      "raw": 22,
+      "total": 184,
+      "z_below": [
+        6,
+        5,
+        5,
+        6,
+        8,
+        7,
+        6,
+        5,
+        7,
+        6,
+        8,
+        6,
+        6
+      ],
+      "z_above": [
+        8,
+        3,
+        3,
+        9,
+        6,
+        8,
+        7,
+        9,
+        8,
+        9,
+        8,
+        13,
+        12
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.3315,
+      "D": 0.1443850267379679,
+      "raw": 27,
+      "total": 187,
+      "z_below": [
+        7,
+        6,
+        5,
+        7,
+        6,
+        8,
+        6,
+        6,
+        8,
+        3,
+        3,
+        9,
+        6
+      ],
+      "z_above": [
+        8,
+        7,
+        9,
+        8,
+        9,
+        8,
+        13,
+        12,
+        7,
+        7,
+        6,
+        7,
+        6
+      ]
+    },
+    {
+      "arm": 1,
+      "kind": "placebo",
+      "b0": 1.332,
+      "D": 0.1,
+      "raw": 20,
+      "total": 200,
+      "z_below": [
+        8,
+        6,
+        6,
+        8,
+        3,
+        3,
+        9,
+        6,
+        8,
+        7,
+        9,
+        8,
+        9
+      ],
+      "z_above": [
+        8,
+        13,
+        12,
+        7,
+        7,
+        6,
+        7,
+        6,
+        12,
+        9,
+        8,
+        8,
+        7
+      ]
+    }
+  ]
+}

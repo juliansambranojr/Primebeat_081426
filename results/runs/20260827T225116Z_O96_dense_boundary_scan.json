@@ -1,0 +1,34 @@
+{
+  "schema_version": "1",
+  "script": "O96_dense_boundary_scan.py",
+  "script_sha256": "298adc22ba5cd737ed19610f20104b4d21c7b9e30713bfbe59e162a49ff8263d",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O96_dense_boundary_scan.py",
+    "--cache",
+    "pi2n_cache.json",
+    "--prereg",
+    "preregs/dense_boundary_scan_v1_20260827.md",
+    "--out",
+    "results/dense_boundary_scan.json"
+  ],
+  "run_start_at": "2026-08-27T22:51:16.336363+00:00",
+  "run_end_at": "2026-08-27T22:51:42.983073+00:00",
+  "exit_code": 0,
+  "git_head": "0da19b51b4fb29d9965f18c94938929546371d40",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "O96_dense_boundary_scan_run1.log",
+      "sha256": "91b4b2f747f232e2e00f82f13954f0858dd218b8d148f512de91b5c9dd839955"
+    },
+    {
+      "path": "dense_boundary_scan.json",
+      "sha256": "0b12e353f3f8945df0c6175029c7827e5f4d252edb5c4b00b61c4a768b16a69a"
+    }
+  ],
+  "files_modified": [],
+  "log": "results/O96_dense_boundary_scan_run1.log",
+  "log_sha256": "91b4b2f747f232e2e00f82f13954f0858dd218b8d148f512de91b5c9dd839955",
+  "empty_at_snapshot": []
+}

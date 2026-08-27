@@ -340,4 +340,55 @@ not a significance test, and is reported as one.
 
 ## Run record
 
-(fill at run)
+```text
+run_start_at:        2026-08-27T22:51:16.336363+00:00
+run_end_at:          2026-08-27T22:51:42.983073+00:00
+git_head_at_run:     0da19b51b4fb29d9965f18c94938929546371d40
+                     (the commit that carries this file's locked text)
+mechanical_output:   no_step
+    (row 4: p = 0.769231 on the primary rank rule against alpha 0.05,
+     so rows 2 and 3 do not fire. Rows evaluated in precedence: the pi
+     audit passed 33 of 33; the kernel reproduced base 2 at 496 cells
+     with zeros {(2,1),(4,1),(8,3),(20,6)} and masses {2,4,88,492384},
+     reproduced O45's exp(pi*2/(2g1)) and exp(pi*5/(4g1)) rows exactly,
+     and reproduced 2^(1/2) and 2^(1/3) through the exact-integer-root
+     path; the plateau-constancy gate read (99, 12, 4851, 3828) on all
+     26 grid bases against the locked (99, 12, 4851, 3828), with min
+     relative gap to an integer 1.144e-12 against a 1e-30 threshold;
+     all 116 locked placebo centres passed their own geometry gate,
+     none rejected -- not compromised. The partition assertion HELD:
+     exactly one non-residue predicate fired and the residue
+     `undetermined` was not selected.)
+Z_below / Z_above:   203 / 199   (13 bases each, 3828 resolved cells per base)
+D:                   -0.009950
+p_rank_two_sided:    0.769231    PRIMARY
+p_rotation:          0.846154    SECONDARY, labelled, cannot move the label
+placebo D <= D_obs:  44 of 116
+placebo D >= D_obs:  72 of 116
+arm 2 (no verdict label, descriptive):
+     2 of 7 integer-root bases sit below their neighbour median, m = 3
+     and m = 4, one above the Nyquist boundary and one below it;
+     one-sided binomial p = 0.2266. m = 2 sits HIGHEST of its 13 at
+     +2.49 sd. Signature (i) predicts m = 2, 3 only; (ii) predicts all
+     seven; (iii) predicts none.
+post_compute_sha256: e4382e735c7b38c2657da5d80c54511d9f4b48b4ff01275205cde185ea21719a
+    (results/dense_boundary_scan.json, following the convention of
+     multibase_synthesis_v1_20260827.md; the older preregs put this
+     file's own hash in that field)
+sidecar_match:       prereg sha256
+                     01f58ca12c7dd8f14f2d7fca6ca8be828c728a8e86b5146c68de7b5d7e435a3e
+                     verified OK against
+                     preregs/dense_boundary_scan_v1_20260827.sha256.
+                     utilities/check_sidecar.py resolves it through the
+                     `git as-committed` route at 0da19b51, which is what
+                     locking before the run bought.
+noted discrepancy:   the locked text quotes the placebo median of D as
+                     +0.0309 (the even-n average of the two middle
+                     values); the script prints +0.0332 (the upper
+                     middle value, which is what the decision rule's
+                     side-selection uses). Descriptive only, and the
+                     side-selection never ran because p > alpha. Recorded
+                     rather than corrected: a locked prereg is immutable
+                     except for this section.
+verdict:
+```
