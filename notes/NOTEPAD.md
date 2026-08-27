@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 215: O95 mechanical output `inconclusive` — detection gate failed at 3.719 vs locked 5; verdict line open for Julian; recorded next step is the 2^44 ceiling ramp, re-priced on the MEASURED ehat_rms 0.025 rather than O18's 0.042 placeholder
+- [open]   2026-08-27  entry 215: THE NO-GO DEMONSTRATED ON REAL PRIMES — every aliased arm reads gamma_1 and all its fold images at identical height (arm 5: 6.233 x4; arm 7: 2.438 x5; arm 9: 1.002 x6); nyquist_no_go proved it, the real field reproduces it to 3-4 decimals
+- [open]   2026-08-27  entry 215: the joint peak is GAMMA_2 (primary argmax 21.050 vs 21.0220, miss 0.028) and the sensitivity subset's is GAMMA_3 (24.960 vs 25.0109) — neither in the gamma_1-centred alias table; compute the candidate tables for gamma_2 and gamma_3 before preferring either reading
+- [open]   2026-08-27  entry 215: gamma_1 DID dominate every alias candidate in the primary by 2.85x — the attribution condition was met; the gate and the argmax are what failed
+- [open]   2026-08-27  entry 215: the {8,9} pair underperformed — gamma_1 at 1.714 against its own fold image at 3.291; consistent with the shakedown's priced low-power regime at 84 rungs, not separable from mechanism failure without the ramp
 - [open]   2026-08-27  entry 213: O95 PREREG DRAFTED (multibase_synthesis_v1_20260827, no sidecar yet) — detection-gated attribution, misattributed as the informative failure, inconclusive routes to the ceiling ramp, compromised branch IS the theorem; lock awaits Julian
 - [open]   2026-08-27  entry 212: O95 shakedown green — 199-rung geometry reproduced, power 0.925 gated at A/sigma=1, 7*g1 confuses as CRT requires, and the comb is IDENTICALLY flat (noise aliases with signal) giving the X=0.10 criterion 4 orders of margin; blind arm intact, --mode real refuses at exit 2
 - [open]   2026-08-27  entry 211: O95 DESIGN GO — coprime aliased arms collapse the joint alias set to nu = +/-1 (mod 8), nearest confusable 7*g1 = 98.9; non-coprime {6,8} keeps 3*g1 in-band and {7,9} has a near-alias inside resolution, both excluded. Subsets locked {5..9} + {8,9}

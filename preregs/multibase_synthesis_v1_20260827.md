@@ -127,10 +127,17 @@ fire in both directions on the measured power surface.
 (fill at run)
 
 ```text
-run_start_at:
-run_end_at:
-mechanical_output:
-post_compute_sha256:
-sidecar_match:
+run_start_at:        2026-08-27T08:40:45.068272+00:00
+run_end_at:          2026-08-27T08:40:45.538670+00:00
+mechanical_output:   inconclusive
+    (rule 4: the detection gate failed — P(gamma_1)/median = 3.719
+     on the primary against the locked >= 5. Rules 1-3 evaluated in
+     precedence: no single-arm control fires the X = 0.10 criterion
+     (no arm's argmax is within one halfwidth of gamma_1; every arm
+     shows its comb at identical image heights), gates A/B/C PASS,
+     union rung count 199 as locked — not compromised. The recorded
+     next step is the ceiling ramp: ~227 union rungs at 2^44.)
+post_compute_sha256: 5460b2499e359818ac59bdabf0441fc9308b25f31e81f03d5f152374489259a8
+sidecar_match:       prereg sha256 877f150d8b96e92b9f73cdd8ba8c8546c28fd5727e292990167cce42a0b1af19 verified OK against sidecar
 verdict:
 ```

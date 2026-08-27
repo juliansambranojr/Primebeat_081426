@@ -16,6 +16,132 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 215 — O95 triage: the gate failed, the no-go was demonstrated on real primes, and the peak is γ₂
+type: result-triage
+refs: 18, 26, 211, 213, 214
+
+Reading of entry 214, under the locked prereg. **The verdict line is
+Julian's and is empty.**
+
+**The mechanical output is `inconclusive`, and the branch did its
+job.** `P(γ₁)/median = 3.719` on the primary against a locked gate of
+5. Rule 4 fires; the recorded next step is the ceiling ramp to 2^44
+(≈227 union rungs). This is the branch entry 211 insisted on so a
+silent gate would not be read as a negative result — and it is what
+happened.
+
+**The no-go is now demonstrated on the real prime field, not only
+proved.** Every aliased arm reads γ₁ and all of its in-band fold
+images at **identical periodogram height**:
+
+```text
+arm 5   8.481, 14.135, 31.096, 36.750        all 6.233
+arm 6   4.712, 14.135, 23.558, 32.981, 42.404  all 4.128–4.129
+arm 7   2.019, 14.135, 18.173, 30.289, 34.327  all 2.438
+arm 9   10.994, 14.135, 23.558, 26.699, …     all 1.002
+arm 8   14.135, 28.269, 42.404                 all 0.185
+arm 4   14.135, 42.404                         both 1.453
+```
+
+`nyquist_no_go` says an arm past its Nyquist cannot separate γ from
+its aliases; the shakedown found the combs identically flat on
+synthetics because the noise aliases with the signal; **the real
+field reproduces it to three and four decimals.** No arm's argmax is
+within a halfwidth of γ₁, so no control fires the X = 0.10 criterion
+and the run is not compromised. Entry 212's margin argument held.
+
+**The joint mechanism worked on the alias question and the gate is
+what stopped it.** In the primary, γ₁ reads 3.719 while every alias
+candidate reads below it — 8.481 at 1.305, 10.994 at 1.157, 4.712 at
+0.674, 18.173 at 0.360, 2.019 at 0.034. **γ₁ dominates the
+next-highest candidate by 2.85×**, which is the attribution condition
+the rule asks for, met. What failed is the detection threshold, and
+separately the argmax condition — the global peak is elsewhere.
+
+**Where the peak is, and this was not a preregistered question.**
+
+```text
+primary  {5..9}    argmax 21.050   γ₂ = 21.0220   miss 0.028
+sens.    {4..9}    argmax 24.960   γ₃ = 25.0109   miss 0.051
+arm 7    alone     argmax 21.010   γ₂ = 21.0220   miss 0.012
+pair     {8,9}     argmax 26.680   a γ₁ fold image at 26.699
+```
+
+The instrument's strongest joint peak is **γ₂**, and the sensitivity
+subset's is **γ₃** — both inside one halfwidth of a true zeta zero
+and neither in the alias table, which the design built around γ₁
+alone. Two readings are open and this run does not separate them: the
+residual carries every mode, so a subset's peak landing on γ₂ may
+simply be γ₂ being locally stronger at these x-scales; or the arms'
+folding may favour γ₂ over γ₁ in a way the γ₁-centred candidate
+table cannot see. **The alias-candidate table should be computed for
+γ₂ and γ₃** — cheap, since the geometry is cached — before either
+reading is preferred.
+
+**The pair is the honest disappointment.** `{8,9}`, the
+sub-average-Nyquist column where entry 211 said the claim would have
+teeth, reads γ₁ at 1.714 while its own alias image at 26.699 reads
+3.291 — the image beats γ₁. At 84 rungs that is the underpowered
+regime the shakedown priced (0.480 dominance at `A/σ = 0.5`), so it
+is consistent with low power rather than with the mechanism failing;
+the ramp is what would tell them apart.
+
+**Measured noise, for the ramp's power estimate.** `ehat_rms` is
+0.02501 on the primary against the 0.042 placeholder inherited from
+O18 — the residual is quieter than assumed, so the ramp's power
+should be re-priced on 0.025 rather than reusing the shakedown's
+table.
+
+---
+
+## 2026-08-27 — Entry 214 — O95: the real-field joint measurement, under the locked prereg
+type: run
+refs: 211, 212, 213
+
+`O95_multibase_synthesis.py --mode real --confirm-real`, governed by
+`preregs/multibase_synthesis_v1_20260827.md`, sha256
+`877f150d8b96e92b9f73cdd8ba8c8546c28fd5727e292990167cce42a0b1af19`,
+sidecar verified OK before the run.
+
+```text
+python3 utilities/run.py --python .venv/bin/python \
+    --log results/O95_multibase_synthesis_run2.log \
+    O95_multibase_synthesis.py --mode real --confirm-real
+exit 0   created 2   modified 0
+manifest results/runs/20260827T084045Z_O95_multibase_synthesis.json
+results/multibase_real.json
+```
+
+**Gates.** A (site exactness at dps 50, `x_i ≤ 2^40`) PASS; B
+(entry 211 geometry: union 199, arm-sum 281, pair 84) PASS; C (π spot
+audit at 7 sites) PASS. Zero π calls — the cache built in the
+shakedown was read, not rebuilt.
+
+**Primary `{5..9}`, 199 rungs:** `P_median` 0.1462, argmax at
+`γ = 21.050` with `P/med = 4.068`; `P(γ₁)/med = 3.719`. Alias
+candidates all below γ₁ (highest 8.481 at 1.305).
+
+**Secondary `{8,9}`, 84 rungs:** argmax 26.680 at 3.299;
+`P(γ₁)/med = 1.714`; its own fold image at 26.699 reads 3.291.
+
+**Sensitivity `{4..9}`, 219 rungs:** argmax 24.960 at 4.621;
+`P(γ₁)/med = 4.070`.
+
+**Single-arm controls:** every aliased arm's candidate table is flat
+to 3–4 decimals across γ₁ and all its in-band images (arm 5 at 6.233,
+arm 6 at 4.128, arm 7 at 2.438, arm 9 at 1.002, arm 8 at 0.185); arm
+4 at 1.453 on both entries. No arm's argmax falls within a halfwidth
+of γ₁ — **the X = 0.10 compromised criterion does not fire.**
+
+**Mechanical output: `inconclusive`** — precedence rule 4, the
+detection gate failing at 3.719 against the locked 5. Not compromised
+(rule 1 checked and clear). Run record filled in the prereg with
+`post_compute_sha256`; **the verdict line is left empty for Julian.**
+
+Reading is entry 215.
+
+---
+
 ## 2026-08-27 — Entry 213 — O95 prereg drafted: detection-gated attribution, with the theorem as the compromised branch
 type: prereg
 refs: 211, 212

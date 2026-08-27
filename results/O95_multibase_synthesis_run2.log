@@ -1,0 +1,33 @@
+==============================================================================
+O95 — MULTIBASE SYNTHESIS — REAL
+==============================================================================
+  started (UTC)   : 2026-08-27T08:40:45Z
+  code_version    : 438c0d8dc88309fec4428be949618a187bb2114dda362c2fbd6168cc82addc3d
+  seed            : 2026
+  ceiling         : 2^40
+  band            : [2, 45] step 0.01
+  sigma (synth)   : 0.042  (O18 dyadic ehat rms 0.04194, placeholder)
+
+==============================================================================
+THE MASTER LATTICE — s = pi/(4 gamma_1), exact floors at dps 50
+==============================================================================
+  s               : 0.05556515287859780964040927757448598184101
+  i range         : 1..498  (union members with x > 2: 278 lattice records, 273 unique sites)
+  first sites     : [3, 4, 5, 6, 7, 9]
+  last site       : 1041253231122  (2^40 = 1099511627776)
+  GATE A (x_i = floor(exp(i s)), x_i <= ceiling) : PASS
+  GATE B (entry 211 geometry at 2^40, x0=1000)   : PASS  union 199 (design 199), arm-sum 281 (design 281), pair 84 (design 84)
+
+==============================================================================
+THE CACHE — pi at every union site (arms {4..9}, x > 2)
+==============================================================================
+  path            : /Users/juliansambrano/GitHub/Primebeat_081426/results/pi_master_lattice_cache.json
+  status          : found
+  backend         : primecountpy.prime_pi
+  lattice records : 278   unique x: 273
+  pi calls (run)  : 0
+  x range         : 3 .. 1041253231122
+  wall            : 0.0 s
+  GATE C spot audit (i = [20, 32, 108, 196, 328, 427, 498]) : PASS
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/multibase_real.json
