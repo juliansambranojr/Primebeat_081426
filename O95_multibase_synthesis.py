@@ -154,13 +154,28 @@ rule is written at prereg time):
     the target strictly dominates (for 1.571, the fraction where gamma_1
     does NOT dominate).
 
-REAL MODE — implemented, gated, NOT run in this session
--------------------------------------------------------
+REAL MODE — implemented, gated
+------------------------------
 --mode real refuses to run without --confirm-real: the prereg comes first.
 When confirmed it reads the cache, forms c_j at the union sites, subtracts
 Delta R at dps --dps, projects per subset and per arm, prints the alias-
 candidate table on the real field, and guarded_writes
-results/multibase_real.json. Nothing in this session invokes it.
+results/multibase_real.json.
+
+THE CEILING RAMP (--ceiling-pow != 40) IS EXPLORATORY, ALWAYS
+------------------------------------------------------------
+The locked prereg `preregs/multibase_synthesis_v1_20260827.md` fixes
+`ceiling 2^40` and `199 union rungs` in its locked-parameter table. Real
+mode at ANY other ceiling — or any other --x0 — is therefore OUTSIDE that
+prereg: it cannot produce a verdict on the preregistered question, its
+mechanical output is not the rule's output, and every number it prints is
+EXPLORATORY. GATE B, which recomputes entry 211's design geometry, is
+INAPPLICABLE off-design and is reported N/A rather than PASS. If an
+off-design run clears the locked detection gate of 5, that is an
+exploratory observation justifying a v2 prereg AT THE NEW CEILING; it is
+never a retroactive pass of v1. The ramp writes to its own --real-out; the
+prereg's artifact results/multibase_real.json and its cache
+results/pi_master_lattice_cache.json are never touched by it.
 
 TARGETS MODE (--mode targets) — EXPLORATORY, added 2026-08-27
 ------------------------------------------------------------
@@ -809,8 +824,42 @@ def precision_check(sites, dps_lo, dps_hi):
 
 
 # --------------------------------------------------------------------------
-# REAL MODE — implemented, gated. NOT run in this session.
+# REAL MODE — implemented, gated.
 # --------------------------------------------------------------------------
+
+# The locked prereg's parameter table fixes ceiling 2^40 and x0 = 1000 (199
+# union rungs). Real mode at any other geometry is outside it.
+PREREG_CEILING_POW = 40
+PREREG_X0 = 1000.0
+PREREG_PATH = "preregs/multibase_synthesis_v1_20260827.md"
+
+
+def on_design(args):
+    """True iff this run's geometry is the one the locked prereg fixes."""
+    return (int(args.ceiling_pow) == PREREG_CEILING_POW
+            and float(args.x0) == PREREG_X0)
+
+
+def _real_status(args):
+    if on_design(args):
+        return ("REAL-FIELD JOINT MEASUREMENT — check the governing "
+                "prereg before reading anything below as more than "
+                "mechanical output")
+    return ("EXPLORATORY — CEILING RAMP, OUTSIDE THE LOCKED PREREG. "
+            f"This run used ceiling 2^{args.ceiling_pow}, x0 = {args.x0}; "
+            f"the locked prereg {PREREG_PATH} fixes ceiling "
+            f"2^{PREREG_CEILING_POW} and x0 = {PREREG_X0:g} (199 union "
+            "rungs) in its locked-parameter table, so IT DOES NOT GOVERN "
+            "THIS RUN. No decision rule fires here; no mechanical output "
+            "of the locked rule is produced; no verdict is written. "
+            "Clearing the locked detection gate of 5 here would be an "
+            "exploratory observation justifying a v2 prereg at the new "
+            "ceiling, never a retroactive pass of v1. GATE B (entry 211's "
+            "design geometry) is inapplicable off-design and is reported "
+            "N/A. The prereg's artifact results/multibase_real.json and "
+            "its cache results/pi_master_lattice_cache.json are untouched "
+            "by this run.")
+
 
 def run_real(args, xs, owner_arms, pi_rows):
     """
@@ -880,9 +929,7 @@ def run_real(args, xs, owner_arms, pi_rows):
         "schema_version": "1",
         "script": os.path.basename(__file__),
         "generated_utc": _stamp(_utc()),
-        "status": ("REAL-FIELD JOINT MEASUREMENT — check the governing "
-                   "prereg before reading anything below as more than "
-                   "mechanical output"),
+        "status": (_real_status(args)),
         "params": {"code_version": _code_version(), "argv": sys.argv,
                    "mode": "real", "x0": args.x0, "dps": args.dps,
                    "precision_dps": args.precision_dps,
@@ -1598,6 +1645,16 @@ def main():
     print("O95 — MULTIBASE SYNTHESIS — " +
           {"shakedown": "SHAKEDOWN", "real": "REAL",
            "targets": "TARGETS (EXPLORATORY)"}[args.mode])
+    if args.mode == "real" and not on_design(args):
+        print("EXPLORATORY — CEILING RAMP, OUTSIDE THE LOCKED PREREG.")
+        print(f"  This run: ceiling 2^{args.ceiling_pow}, x0 = {args.x0:g}.")
+        print(f"  {PREREG_PATH} fixes ceiling 2^40 and x0 = 1000 (199")
+        print("  union rungs) in its locked-parameter table, so it DOES")
+        print("  NOT govern this run: no decision rule fires, no")
+        print("  mechanical output of the locked rule is produced, no")
+        print("  verdict is written. Clearing the locked gate of 5 here")
+        print("  would justify a v2 prereg AT THE NEW CEILING — never a")
+        print("  retroactive pass of v1.")
     if args.mode == "shakedown":
         print("EXPLORATORY SHAKEDOWN. No prereg, no decision rule, NO")
         print("VERDICT. All statistics below are computed from SYNTHETIC")
@@ -1653,8 +1710,9 @@ def main():
               "pair_rungs": len(pair)}
     gate_b_ok = (args.ceiling_pow != 40 or args.x0 != 1000.0
                  or gate_b == GATE_B_EXPECT)
+    gate_b_applies = on_design(args)
     print(f"  GATE B (entry 211 geometry at 2^40, x0=1000)   : "
-          f"{'PASS' if gate_b_ok else 'FAIL'}  "
+          f"{('PASS' if gate_b_ok else 'FAIL') if gate_b_applies else 'N/A (off-design ceiling/x0 — this gate tests the LOCKED geometry only)'}  "
           f"union {len(prim)} (design 199), arm-sum {arm_sum} (design 281), "
           f"pair {len(pair)} (design 84)")
     if gate_a_bad or not gate_b_ok:

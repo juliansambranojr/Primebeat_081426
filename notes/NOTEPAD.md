@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 219: THE RAMP DID NOT CLEAR — P(g1)/med 4.201 vs gate 5 at 2^44; measured slope 3.719 -> 4.201 (1.130x) beats the sqrt(N) floor 1.061, but clearing 5 on g1 by ceiling alone needs ~2^52. That road is priced now
+- [open]   2026-08-27  entry 219: a v2 prereg targeting GAMMA_2 at the 2^44 geometry is the design question this produced — g2 and g3 outread g1 at both ceilings and g2 now dominates on the pair (1.033) where g1 (0.515) and g3 (0.673) fail
+- [open]   2026-08-27  entry 219: entry 215's re-price-on-measured-sigma recommendation was WRONG — the power table is exactly scale-invariant in A/sigma (0 of 54 cells differ); only rung count moves power
+- [open]   2026-08-27  entry 219: CORRECTION to entry 215 — the g1 dominance margin is 1.227x not 2.85x; I read the max off a 6-row slice of a 17-row table. Conclusions unaffected; entry 217 already carried the right value
+- [open]   2026-08-27  entry 218: gate_b_ok SHORT-CIRCUITS to true when ceiling != 40, so a log printed 'GATE B PASS union 224 (design 199)' — a gate whose verdict contradicts its own printed numbers. Label fixed; SWEEP the other gates for the same shape
 - [open]   2026-08-27  entry 217: THE INSTRUMENT IS READING THE SPECTRUM — 6 of 10 top peaks within a halfwidth of a zeta zero vs null 2.23 (p 0.005 uniform / 0.034 zero-shift; sensitivity holds to N=20); top six peaks ARE the six strongest in-band zeros
 - [open]   2026-08-27  entry 217: gamma_2 and gamma_3 attribute BETTER than gamma_1 (target/image ratios 1.392 and 1.402 primary, 1.717 and 1.555 sensitivity, vs gamma_1's 1.227/1.132) — best at the two frequencies the design never targeted
 - [open]   2026-08-27  entry 217: entry 214's arm-7 argmax-near-gamma_2 is WEAKER than it reads — 7 of the first 20 zeros fold within a halfwidth of it; every arm shows the same multiplicity; no arm's argmax identifies a single zero

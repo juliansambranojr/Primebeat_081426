@@ -1,0 +1,235 @@
+==============================================================================
+O95 — MULTIBASE SYNTHESIS — SHAKEDOWN
+EXPLORATORY SHAKEDOWN. No prereg, no decision rule, NO
+VERDICT. All statistics below are computed from SYNTHETIC
+residual vectors on the real site geometry. The union
+residual on the real prime field stays unread.
+==============================================================================
+  started (UTC)   : 2026-08-27T16:52:06Z
+  code_version    : 39d666f65122885860c9d9eb802dc6fabd3d3ae9e52c2314267dcdc06ed5a80f
+  seed            : 2026
+  ceiling         : 2^44
+  band            : [2, 45] step 0.01
+  sigma (synth)   : 0.025  (O18 dyadic ehat rms 0.04194, placeholder)
+
+==============================================================================
+THE MASTER LATTICE — s = pi/(4 gamma_1), exact floors at dps 50
+==============================================================================
+  s               : 0.05556515287859780964040927757448598184101
+  i range         : 1..548  (union members with x > 2: 306 lattice records, 301 unique sites)
+  first sites     : [3, 4, 5, 6, 7, 9]
+  last site       : 16754764432283  (2^44 = 17592186044416)
+  GATE A (x_i = floor(exp(i s)), x_i <= ceiling) : PASS
+  GATE B (entry 211 geometry at 2^40, x0=1000)   : PASS  union 224 (design 199), arm-sum 317 (design 281), pair 94 (design 84)
+
+==============================================================================
+THE CACHE — pi at every union site (arms {4..9}, x > 2)
+==============================================================================
+
+  results written to results/pi_master_lattice_cache_p44.json
+  path            : results/pi_master_lattice_cache_p44.json
+  status          : absent; created this run
+  backend         : primecountpy.prime_pi
+  lattice records : 306   unique x: 301
+  pi calls (run)  : 306
+  x range         : 3 .. 16754764432283
+  wall            : 0.918 s
+  GATE C spot audit (i = [20, 35, 116, 215, 356, 470, 548]) : PASS
+
+==============================================================================
+N_eff — union counts against arm sums (the union is the instrument)
+==============================================================================
+              subset     x0   union   arm-sum      span    resol   halfw
+        primary_5to9   1000     224       317    23.338   0.2692  0.6000
+        primary_5to9      2     271       394    29.184   0.2153  0.6000
+        secondary_89   1000      94       100    23.005   0.2731  0.6000
+        secondary_89      2     117       124    28.907   0.2174  0.6000
+    sensitivity_4to9   1000     247       423    23.394   0.2686  0.6000
+    sensitivity_4to9      2     301       526    29.240   0.2149  0.6000
+
+  mean log-gap, primary union: 0.1047  (pi/gamma_1 = 0.2223); pair {8,9}: 0.2474
+
+==============================================================================
+ALIAS CANDIDATES — per-arm fold images (exact confusions of uniform arms)
+==============================================================================
+  arm 4: alias spacing  28.2695   in-band images of gamma_1: 14.1347, 42.4042
+  arm 5: alias spacing  22.6156   in-band images of gamma_1: 8.4808, 14.1347, 31.0964, 36.7503
+  arm 6: alias spacing  18.8463   in-band images of gamma_1: 4.7116, 14.1347, 23.5579, 32.9810, 42.4042
+  arm 7: alias spacing  16.1540   in-band images of gamma_1: 2.0192, 14.1347, 18.1732, 30.2887, 34.3272
+  arm 8: alias spacing  14.1347   in-band images of gamma_1: 14.1347, 28.2695, 42.4042
+  arm 9: alias spacing  12.5642   in-band images of gamma_1: 10.9937, 14.1347, 23.5579, 26.6989, 36.1221, 39.2631
+  joint (any coprime aliased pair): nu == +/-1 (mod 8) — nearest confusable 7 gamma_1 = 98.9431, outside [2, 45]
+
+==============================================================================
+THE POWER GATE — 200 trials/cell, synthetic plants over N(0, 0.025)
+==============================================================================
+  gated  : detection-gated headline (argmax > 5x median within
+           halfwidth) — gamma_1 -> assigned to gamma_1; in-band
+           alias -> assigned to the plant; 1.571 (below band) ->
+           NOT assigned to gamma_1; 7 gamma_1 -> confused to
+           gamma_1 (expected HIGH).
+  domin  : entry 211's attribution — the target's off-grid P
+           strictly dominating every other candidate, no
+           threshold (same headline orientation per plant).
+
+  SUBSET primary_5to9  arms [5, 6, 7, 8, 9]  blocks 223  halfwidth 0.6000
+                   plant      freq  A/sig   gated   domin     g1  plant  g1img   pimg  unass  nodet
+                  gamma1   14.1347    0.5   0.025   0.960   0.03   0.00   0.00   0.00   0.00   0.97
+                  gamma1   14.1347    1.0   0.935   1.000   0.94   0.00   0.00   0.00   0.00   0.07
+                  gamma1   14.1347    2.0   1.000   1.000   1.00   0.00   0.00   0.00   0.00   0.00
+       alias_j9_g1_over9    1.5705    0.5   1.000   0.990   0.00   0.00   0.00   0.00   0.00   1.00
+       alias_j9_g1_over9    1.5705    1.0   1.000   0.990   0.00   0.00   0.00   0.00   0.00   1.00
+       alias_j9_g1_over9    1.5705    2.0   1.000   1.000   0.00   0.00   0.01   0.01   0.00   0.97
+       alias_j7_g1_over7    2.0192    0.5   0.020   0.930   0.00   0.02   0.00   0.00   0.00   0.98
+       alias_j7_g1_over7    2.0192    1.0   0.970   1.000   0.00   0.97   0.00   0.00   0.00   0.03
+       alias_j7_g1_over7    2.0192    2.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+       alias_j6_g1_over3    4.7116    0.5   0.075   0.925   0.00   0.07   0.00   0.00   0.00   0.93
+       alias_j6_g1_over3    4.7116    1.0   0.985   1.000   0.00   0.98   0.00   0.00   0.00   0.01
+       alias_j6_g1_over3    4.7116    2.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+      alias_j5_3g1_over5    8.4808    0.5   0.030   0.910   0.00   0.03   0.00   0.00   0.00   0.97
+      alias_j5_3g1_over5    8.4808    1.0   0.980   1.000   0.00   0.98   0.00   0.00   0.00   0.02
+      alias_j5_3g1_over5    8.4808    2.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+            seven_gamma1   98.9431    0.5   0.075   0.975   0.07   0.00   0.00   0.00   0.00   0.93
+            seven_gamma1   98.9431    1.0   0.990   1.000   0.99   0.00   0.00   0.00   0.00   0.01
+            seven_gamma1   98.9431    2.0   1.000   1.000   1.00   0.00   0.00   0.00   0.00   0.00
+
+  SUBSET secondary_89  arms [8, 9]  blocks 93  halfwidth 0.6000
+                   plant      freq  A/sig   gated   domin     g1  plant  g1img   pimg  unass  nodet
+                  gamma1   14.1347    0.5   0.030   0.545   0.03   0.00   0.01   0.00   0.00   0.96
+                  gamma1   14.1347    1.0   0.440   0.745   0.44   0.00   0.01   0.00   0.00   0.55
+                  gamma1   14.1347    2.0   0.850   0.895   0.85   0.00   0.06   0.00   0.00   0.10
+       alias_j9_g1_over9    1.5705    0.5   1.000   0.935   0.00   0.00   0.00   0.00   0.00   1.00
+       alias_j9_g1_over9    1.5705    1.0   1.000   0.970   0.00   0.00   0.04   0.00   0.00   0.95
+       alias_j9_g1_over9    1.5705    2.0   0.995   0.985   0.01   0.00   0.54   0.21   0.00   0.24
+       alias_j7_g1_over7    2.0192    0.5   0.000   0.425   0.00   0.00   0.00   0.00   0.00   1.00
+       alias_j7_g1_over7    2.0192    1.0   0.160   0.970   0.00   0.16   0.00   0.00   0.00   0.84
+       alias_j7_g1_over7    2.0192    2.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+       alias_j6_g1_over3    4.7116    0.5   0.000   0.475   0.00   0.00   0.00   0.00   0.00   1.00
+       alias_j6_g1_over3    4.7116    1.0   0.165   0.910   0.00   0.17   0.00   0.01   0.00   0.83
+       alias_j6_g1_over3    4.7116    2.0   0.950   0.955   0.00   0.95   0.00   0.05   0.00   0.00
+      alias_j5_3g1_over5    8.4808    0.5   0.000   0.435   0.00   0.00   0.00   0.00   0.00   1.00
+      alias_j5_3g1_over5    8.4808    1.0   0.150   0.975   0.00   0.15   0.00   0.00   0.00   0.85
+      alias_j5_3g1_over5    8.4808    2.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+            seven_gamma1   98.9431    0.5   0.010   0.535   0.01   0.00   0.01   0.00   0.00   0.98
+            seven_gamma1   98.9431    1.0   0.465   0.785   0.47   0.00   0.01   0.00   0.00   0.53
+            seven_gamma1   98.9431    2.0   0.855   0.875   0.85   0.00   0.09   0.00   0.00   0.06
+
+  SUBSET sensitivity_4to9  arms [4, 5, 6, 7, 8, 9]  blocks 246  halfwidth 0.6000
+                   plant      freq  A/sig   gated   domin     g1  plant  g1img   pimg  unass  nodet
+                  gamma1   14.1347    0.5   0.125   0.910   0.12   0.00   0.00   0.00   0.00   0.88
+                  gamma1   14.1347    1.0   0.965   1.000   0.96   0.00   0.00   0.00   0.00   0.04
+                  gamma1   14.1347    2.0   1.000   1.000   1.00   0.00   0.00   0.00   0.00   0.00
+       alias_j9_g1_over9    1.5705    0.5   1.000   0.980   0.00   0.00   0.00   0.00   0.00   1.00
+       alias_j9_g1_over9    1.5705    1.0   1.000   0.990   0.00   0.00   0.00   0.00   0.00   1.00
+       alias_j9_g1_over9    1.5705    2.0   1.000   1.000   0.00   0.00   0.01   0.01   0.00   0.98
+       alias_j7_g1_over7    2.0192    0.5   0.095   0.960   0.00   0.10   0.00   0.00   0.00   0.91
+       alias_j7_g1_over7    2.0192    1.0   0.995   1.000   0.00   0.99   0.00   0.00   0.00   0.01
+       alias_j7_g1_over7    2.0192    2.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+       alias_j6_g1_over3    4.7116    0.5   0.125   0.930   0.00   0.12   0.00   0.00   0.00   0.88
+       alias_j6_g1_over3    4.7116    1.0   0.985   1.000   0.00   0.98   0.00   0.00   0.00   0.01
+       alias_j6_g1_over3    4.7116    2.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+      alias_j5_3g1_over5    8.4808    0.5   0.100   0.945   0.00   0.10   0.00   0.00   0.00   0.90
+      alias_j5_3g1_over5    8.4808    1.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+      alias_j5_3g1_over5    8.4808    2.0   1.000   1.000   0.00   1.00   0.00   0.00   0.00   0.00
+            seven_gamma1   98.9431    0.5   0.105   0.955   0.10   0.00   0.00   0.00   0.00   0.90
+            seven_gamma1   98.9431    1.0   0.975   1.000   0.97   0.00   0.00   0.00   0.00   0.03
+            seven_gamma1   98.9431    2.0   1.000   1.000   1.00   0.00   0.00   0.00   0.00   0.00
+
+==============================================================================
+PER-ARM CONTROLS — each arm alone, synthetic gamma_1 plant (A/sigma = 2)
+==============================================================================
+  The control is the theorem: every aliased arm must show its
+  comb. Arm 8's gamma_1 folds to DC; its comb reads through the
+  higher images 2 gamma_1 = 28.269, 3 gamma_1 = 42.404 only.
+
+  ARM 4  (boundary member, sensitivity row)  rungs 106  Nyquist 14.1347  alias spacing 28.2695
+    noiseless comb (P at exact freqs; ratio to P(gamma_1) = 2.6):
+         14.1347  P          2.6  ratio 1.0000  [gamma_1]
+         42.4042  P          2.6  ratio 1.0000  [image]
+    grid argmax 42.4000  P_max/median 65860.93  argmax at gamma_1: no
+    tallest-image ratio (noiseless) : 1.0000
+    noisy ratio (50 trials): min 1.0000  p5 1.0000  median 1.0000
+    criterion row (labelled sensitivity, j = 4 is the boundary member): would not fire
+
+  ARM 5  rungs 85  Nyquist 11.3078  alias spacing 22.6156
+    noiseless comb (P at exact freqs; ratio to P(gamma_1) = 1.03752):
+         14.1347  P      1.03752  ratio 1.0000  [gamma_1]
+          8.4808  P      1.03752  ratio 1.0000  [image]
+         31.0964  P      1.03751  ratio 1.0000  [image]
+         36.7503  P      1.03753  ratio 1.0000  [image]
+    grid argmax 36.7500  P_max/median 5643.86  argmax at gamma_1: no
+    tallest-image ratio (noiseless) : 1.0000
+    noisy ratio (50 trials): min 1.0000  p5 1.0000  median 1.0000
+    COMPROMISED CRITERION (X = 0.1) : does not fire
+
+  ARM 6  rungs 71  Nyquist 9.4232  alias spacing 18.8463
+    noiseless comb (P at exact freqs; ratio to P(gamma_1) = 0.8625):
+         14.1347  P       0.8625  ratio 1.0000  [gamma_1]
+          4.7116  P       0.8625  ratio 1.0000  [image]
+         23.5579  P       0.8625  ratio 1.0000  [image]
+         32.9810  P       0.8625  ratio 1.0000  [image]
+         42.4042  P       0.8625  ratio 1.0000  [image]
+    grid argmax 32.9800  P_max/median 2720.14  argmax at gamma_1: no
+    tallest-image ratio (noiseless) : 1.0000
+    noisy ratio (50 trials): min 1.0000  p5 1.0000  median 1.0000
+    COMPROMISED CRITERION (X = 0.1) : does not fire
+
+  ARM 7  rungs 61  Nyquist 8.0770  alias spacing 16.1540
+    noiseless comb (P at exact freqs; ratio to P(gamma_1) = 0.737462):
+         14.1347  P     0.737462  ratio 1.0000  [gamma_1]
+          2.0192  P     0.737463  ratio 1.0000  [image]
+         18.1732  P     0.737465  ratio 1.0000  [image]
+         30.2887  P     0.737461  ratio 1.0000  [image]
+         34.3272  P     0.737466  ratio 1.0000  [image]
+    grid argmax 2.0200  P_max/median 4252.34  argmax at gamma_1: no
+    tallest-image ratio (noiseless) : 1.0000
+    noisy ratio (50 trials): min 1.0000  p5 1.0000  median 1.0000
+    COMPROMISED CRITERION (X = 0.1) : does not fire
+
+  ARM 8  rungs 53  Nyquist 7.0674  alias spacing 14.1347
+    noiseless comb (P at exact freqs; ratio to P(gamma_1) = 1.275):
+         14.1347  P        1.275  ratio 1.0000  [gamma_1]
+         28.2695  P        1.275  ratio 1.0000  [image]
+         42.4042  P        1.275  ratio 1.0000  [image]
+    grid argmax 28.2700  P_max/median 11783.02  argmax at gamma_1: no
+    tallest-image ratio (noiseless) : 1.0000
+    noisy ratio (50 trials): min 1.0000  p5 1.0000  median 1.0000
+    COMPROMISED CRITERION (X = 0.1) : does not fire
+
+  ARM 9  rungs 47  Nyquist 6.2821  alias spacing 12.5642
+    noiseless comb (P at exact freqs; ratio to P(gamma_1) = 0.562565):
+         14.1347  P     0.562565  ratio 1.0000  [gamma_1]
+         10.9937  P     0.562562  ratio 1.0000  [image]
+         23.5579  P      0.56256  ratio 1.0000  [image]
+         26.6989  P     0.562566  ratio 1.0000  [image]
+         36.1221  P     0.562559  ratio 1.0000  [image]
+         39.2631  P     0.562567  ratio 1.0000  [image]
+    grid argmax 26.7000  P_max/median 1542.14  argmax at gamma_1: no
+    tallest-image ratio (noiseless) : 1.0000
+    noisy ratio (50 trials): min 1.0000  p5 1.0000  median 1.0000
+    COMPROMISED CRITERION (X = 0.1) : does not fire
+
+  No aliased arm singles out gamma_1: every single-arm control shows its comb.
+
+==============================================================================
+PRECISION CHECK — Delta R on one synthetic cell (geometry only)
+==============================================================================
+  cell            : (1038, 1097]  (first primary-union block above x0 = 1000)
+  Delta R dps 50  : 8.29979777451633486756073192672
+  Delta R dps 80  : 8.29979777451633486756073192672
+  rel diff        : 0.000e+00
+
+==============================================================================
+BLIND-ARM STATEMENT
+==============================================================================
+  No residual, periodogram, or statistic was computed on the
+  real prime field in this run. pi values were computed and
+  written to the cache (allowed by entry 211's design) and were
+  read for the cache report and spot audit only; the shakedown
+  statistics saw the site geometry alone. The union residual
+  vector stays unread until the prereg is locked.
+
+  ended (UTC)     : 2026-08-27T16:52:07Z
+  elapsed         : 1.5 s
+
+  results written to results/multibase_ramp_p44_power.json

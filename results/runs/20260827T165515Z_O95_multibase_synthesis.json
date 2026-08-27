@@ -1,0 +1,41 @@
+{
+  "schema_version": "1",
+  "script": "O95_multibase_synthesis.py",
+  "script_sha256": "e93dbbbfb1e376aa34c8206d24ec0de8215df9ce8ac0a96e780102df0e0743c8",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O95_multibase_synthesis.py",
+    "--mode",
+    "shakedown",
+    "--ceiling-pow",
+    "44",
+    "--sigma",
+    "0.025",
+    "--cache",
+    "results/pi_master_lattice_cache_p44.json",
+    "--out",
+    "results/multibase_ramp_p44_power.json"
+  ],
+  "run_start_at": "2026-08-27T16:55:15.092633+00:00",
+  "run_end_at": "2026-08-27T16:55:15.795585+00:00",
+  "exit_code": 0,
+  "git_head": "522e2992d9e8578b4ad217804c59e23dc6645ad4",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "O95_ramp_p44_power_run2.log",
+      "sha256": "e8cd7907f7d287ffe8717c5da6f989972b4aa510951d4120df5a69a40f95df7b"
+    }
+  ],
+  "files_modified": [
+    {
+      "path": "multibase_ramp_p44_power.json",
+      "sha256_before": "2b7b53f0d17f1dfd0fff29a4a5ddea55240c47d3bf0b4b13b91687e8a25e973e",
+      "sha256_after": "4ce668333006fd42822fa3430ef03e620778f3dc7129672512ffc372a3cfc78e",
+      "archived_to": "results/archive/multibase_ramp_p44_power_20260827T165515Z_2b7b53f0.json"
+    }
+  ],
+  "log": "results/O95_ramp_p44_power_run2.log",
+  "log_sha256": "e8cd7907f7d287ffe8717c5da6f989972b4aa510951d4120df5a69a40f95df7b",
+  "empty_at_snapshot": []
+}

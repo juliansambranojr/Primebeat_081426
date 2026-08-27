@@ -16,6 +16,135 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 219 — the ramp triage: the gate needs 2^52, not 2^44 — and γ₂ is the design question this sharpened
+type: result-triage
+refs: 211, 214, 215, 217, 218
+
+Reading of entry 218. EXPLORATORY, outside the locked prereg.
+
+**Correction to entry 215.** That entry says γ₁ "dominates the
+next-highest candidate by 2.85×", from "highest 8.481 at 1.305". The
+2^40 table holds **17 rows**; I printed the first six and read the
+maximum off that slice. The tallest image is **32.981 at 3.0315**, so
+the margin is **1.227×**. γ₁ still dominates all 16 images, so the
+attribution condition and the mechanical output are unaffected —
+entry 217's table already carried 1.227 through targets mode.
+
+**Entry 215's other recommendation was wrong, and provably.** It said
+the ramp's power should be re-priced on the measured `ehat_rms`
+0.025 rather than O18's 0.042 placeholder. **The power table is
+exactly scale-invariant in `A/σ`** — `amp = (A/σ)·σ` and P is linear
+in ê — so the ratio is unchanged. Re-running the shakedown at σ =
+0.025 reproduced entry 212's table with **0 of 54 cells differing**.
+Only the rung count moves power.
+
+**The ramp's odds were known before the field was read.** Inverting
+the observed `P(γ₁)/med = 3.719` at the 2^40 primary geometry gives
+`A/σ = 0.548`; carrying that to 2^44 predicts a median of 3.92 with
+**P(≥ 5) = 0.111**. Roughly one chance in nine, computed in scratch
+before the real run.
+
+**The gate was not cleared: `P(γ₁)/median = 4.201` against 5.** No v2
+prereg is justified by a detection at this ceiling.
+
+**What the ramp did buy is a measured slope.** 3.719 → 4.201 over
+199 → 224 rungs is a gain of **1.130×**, running ahead of the
+√N noise-scaling floor of 1.061. Extrapolating: 2^48 (≈255 rungs)
+lands near 4.5 on both the observed slope and the √N floor.
+**Clearing 5 on γ₁ by ramping the ceiling alone needs roughly 2^52**,
+which prices that road honestly — it is not one more ramp away.
+
+**γ₂ is what this run actually sharpened.** At both ceilings γ₂ and γ₃
+read higher than γ₁ and dominate their alias images by wider margins,
+and at 2^44 **γ₂ dominates on the pair as well** (1.033), where γ₁
+(0.515) and γ₃ (0.673) both fail:
+
+```text
+                 P/med 2^40 → 2^44      dominance 2^40 → 2^44
+γ₁  primary        3.719   4.201          1.227   1.287
+γ₂  primary        4.050   4.306          1.392   1.596
+γ₃  sensitivity    4.555   4.823          1.555   1.705
+```
+
+The highest single reading anywhere is γ₃ on the sensitivity subset
+at 4.823. **A v2 prereg targeting γ₂ at the 2^44 geometry is the
+design question this run produced**, and it would be a fresh
+preregistered question rather than a retry of v1.
+
+**Clustering did not improve with rungs.** N = 10 is unchanged in
+both subsets (6 hits, p = 0.005 uniform / 0.034 shift), and the top
+six peaks remain the six strongest in-band zeros and nothing else.
+The sensitivity N = 20 count fell 8 → 7 and its p-values weakened.
+More rungs bought detection height, not more zeros found.
+
+---
+
+## 2026-08-27 — Entry 218 — O95 ceiling ramp to 2^44: 224 rungs, and a gate that reports PASS on numbers contradicting it
+type: run
+refs: 211, 214, 216, 217
+
+The prereg's `inconclusive` branch names this as the recorded next
+step. **EXPLORATORY and outside the locked prereg** — v1 fixes
+`ceiling 2^40` and `199 union rungs` in its locked table, so nothing
+here can pass or fail the preregistered question.
+
+```text
+.venv/bin/python utilities/run.py --python .venv/bin/python \
+    --log results/O95_ramp_p44_run1.log O95_multibase_synthesis.py \
+    --mode real --confirm-real --ceiling-pow 44 \
+    --cache results/pi_master_lattice_cache_p44.json \
+    --real-out results/multibase_ramp_p44.json
+```
+
+**Cache.** 306 sites at ceiling 2^44, 0.918 s wall, largest call
+`π(16754764432283) = 569,636,754,054` at 0.055 s. The 278 sites shared
+with the 2^40 cache were **independently recomputed and agree in all
+278**. Spot audit PASS. Written to a new path;
+`results/pi_master_lattice_cache.json` untouched.
+
+**Geometry.** Primary {5..9} = **224** union rungs at x0 = 1000, not
+the ≈227 entry 211 priced; arm-sum 317, pair 94, sensitivity 247.
+Resolution 0.3040 → 0.2692.
+
+**Real field.** `P(γ₁)/median = 4.201` primary (2^40: 3.719); argmax
+21.050 at 4.332. Sensitivity 4.518, argmax 24.980. Pair 1.845, argmax
+26.670. No compromised-equivalent fires: no arm's argmax within a
+halfwidth of γ₁ (nearest miss 5.675), every tallest-image ratio
+1.000000 to six places.
+
+**Comparability, and it is stronger than entry 216's.** A full targets
+re-run at 2^40 under the current script reproduced
+`results/multibase_targets.json` with **zero differences across the
+entire summary tree** — every unit statistic, joint alias set,
+candidate table, peak and null p-value — with its internal GATE R
+against `results/multibase_real.json` passing. Protected files
+verified byte-identical at both ends: `multibase_real.json`
+`5460b249…`, the prereg, the 2^40 cache, `multibase_targets.json`.
+
+**A gate that reported PASS on numbers contradicting it.**
+`gate_b_ok` short-circuits to true whenever `ceiling_pow != 40`, so
+the first ramp log printed `GATE B ... PASS  union 224 (design 199)`.
+The label now reads `N/A (off-design ceiling/x0 — this gate tests the
+LOCKED geometry only)`; the logic is untouched.
+`results/O95_ramp_p44_power_run1.log` still carries the misleading
+PASS and is superseded by run2. **A gate whose displayed verdict can
+disagree with its own displayed numbers is the O64 shape in a
+label** — worth a sweep of the other gates for the same
+short-circuit.
+
+**Provenance.** `code_version` moved `39d666f6…` → `e93dbbbf…`, the
+third value for this file; the prereg's artifact records `438c0d8d…`.
+The zero-difference 2^40 reproduction above is the mitigation.
+
+Artifacts: `results/multibase_ramp_p44.json` (`81f9998b…`),
+`…_targets.json`, `…_power.json`, `results/multibase_ramp_gateR_p40.json`,
+`results/pi_master_lattice_cache_p44.json` (`db785e18…`); five
+manifests written under the run-manifest directory, timestamped
+20260827T1652 through T1656. Precision: ΔR at dps 50
+vs 80 identical to all 30 digits. Reading is entry 219.
+
+---
+
 ## 2026-08-27 — Entry 217 — the instrument is reading the spectrum: six of ten peaks are zeta zeros, and γ₂/γ₃ attribute better than γ₁
 type: result-triage
 refs: 211, 214, 215, 216
