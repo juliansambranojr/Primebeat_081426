@@ -1,0 +1,32 @@
+{
+  "schema_version": "1",
+  "script": "O94_joint_localization.py",
+  "script_sha256": "55b563750ed50e32d53073510fa6a2196785c2cb5045328e61ecd8611cdef378",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O94_joint_localization.py"
+  ],
+  "run_start_at": "2026-08-27T07:42:09.879443+00:00",
+  "run_end_at": "2026-08-27T07:42:10.136071+00:00",
+  "exit_code": 0,
+  "git_head": "136d941dbc3a4ab611f819b842225055649e0bbc",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "O94_joint_localization_run1.log",
+      "sha256": "2e4e8de1a424c41c548a4d44ea4700ed5532334bda048c0bd6253035b1372e97"
+    },
+    {
+      "path": "pi_half_octave_cache.json",
+      "sha256": "68c20fa8251b0a06b541f20a21d0c541167c72724bd5ff31374a18ad4dccf507"
+    },
+    {
+      "path": "joint_localization.json",
+      "sha256": "f483e322dbfdfb2973507c3701dedaee787f4b644a22db25e572ada95b34a2f3"
+    }
+  ],
+  "files_modified": [],
+  "log": "results/O94_joint_localization_run1.log",
+  "log_sha256": "2e4e8de1a424c41c548a4d44ea4700ed5532334bda048c0bd6253035b1372e97",
+  "empty_at_snapshot": []
+}

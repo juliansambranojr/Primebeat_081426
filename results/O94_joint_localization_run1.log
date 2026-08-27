@@ -1,0 +1,203 @@
+==============================================================================
+O94 - JOINT LOCALIZATION
+EXPLORATORY. No prereg, no decision rule, NO VERDICT.  T_obs was
+unblinded during the design's scratch phase (~0.101); every p
+below is a mechanical fraction over a stated ensemble.
+==============================================================================
+  started (UTC)   : 2026-08-27T07:42:09Z
+  coverage        : j = 0..80  (values to 2^40)
+  dps             : 50 for the R companion column, 80 for its precision check
+  code_version    : 55b563750ed50e32d53073510fa6a2196785c2cb5045328e61ecd8611cdef378
+
+==============================================================================
+GATE 1 - PI BACKEND INTEGRITY (O93's audit, extended to n = 40)
+==============================================================================
+  backend         : primecountpy.prime_pi
+  pi(2^n) audit   : 41 of 41 equal against pi2n_cache.json (n = 0..40)
+  status          : PASS
+
+==============================================================================
+GATE 2 - THE HALF-OCTAVE FIELD, F, P, u  (O93 machinery reused)
+==============================================================================
+  F[j] = isqrt(2^j) self-check      : PASS  (j = 0..80)
+  F vs O93.base_geometry, j 0..64 : PASS
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/pi_half_octave_cache.json
+  results/pi_half_octave_cache.json : absent (O93 cached in memory only); created this run
+  even sites P[2n] == pi2n cache    : PASS  (n = 0..40)
+
+==============================================================================
+GATE 3 - THE FACTORIZATION, THE REFINEMENT IDENTITY, THE RECORD
+==============================================================================
+  cell A  (1+z)^7 u | 40      = 0
+  cell A  (1-z^2)^7 P | 40    = 0
+  cell A  Delta^7 pi(2^r)|r=20= 0   (O93.binom_delta)
+  cell B  (1-z)^5 u | 34      = 0
+  cell B  Delta^12 P | 34     = 0
+  quotient == direct at every shift t in [-22, 40]     : PASS
+  refinement N_2(r) = n(2r-1) + n(2r), r = 1..32  : PASS
+  recorded zero 2**(1/2) (34,11): S rebuilt 1371038 == recorded 1371038, total_true 924 == 924   PASS
+  recorded zero 2 (20,6): S rebuilt 492384 == recorded 492384, total_true 8192 == 8192   PASS
+
+  Widened support: u_j = Delta^6 n at j reads block sites j-6..j;
+  the pair's u-support 29..40 therefore reads block sites 23..40.
+  A placement at shift t reads 23+t..40+t; data-disjoint from the
+  observed pair iff |t| >= 18.
+
+  geometric floors (flat-|u| sigma): A = 8/128 = 0.0625, B = 6/32 = 0.1875
+
+==============================================================================
+POWER CHECK - run first, judged against the even placement
+ensemble on the real field, before the real statistic is read
+==============================================================================
+  observed |u| scale (max shared)    : 209
+  planting 1 (one event)  u33 = 42, u34 = 209, private [-1, 0, 0, 0] + [0, 0, -43, 0, 0, 0]
+    cells A, B                       : 0, 0  (both exact 0)
+    sigma_A 0.500000  sigma_B 0.997619  T 0.500000
+    even-null max T (incl/excl)      : 0.154639 / 0.051611
+    T_planted >= even-null max       : YES - separates
+    (T = 1/2 is the structural ceiling for an exactly-zero pair; the planting sits on it)
+  planting 2 (two events) u33 = u34 = 0; adjusted sites 37, 40 (81->44, 21->21), 32, 29 (-42->-147, -69->-70)
+    cells A, B                       : 0, 0  (both exact 0)
+    sigma_A 0.000000  sigma_B 0.000000  T 0.000000
+    even-null min T (incl/excl)      : 0.006498 / 0.006498
+    T_planted <= even-null min       : YES - reads the left tail
+
+==============================================================================
+THE OBSERVED STATISTIC  (EXPLORATORY; T_obs was unblinded at
+design time)
+==============================================================================
+  u at the pair's support (29..40)   : [-69, 112, -84, -42, 168, -209, 205, -151, 81, -63, 106, 21]
+  shared sites u_33, u_34            : 168, -209
+  sigma_A = 1631/16142 = 0.101041    geometric floor 0.0625
+  sigma_B = 1049/2938 = 0.357046    geometric floor 0.1875
+  T = min(sigma_A, sigma_B)          : 0.101041
+  structural ceiling for an exactly-zero pair: T <= 0.5
+
+==============================================================================
+THE PLACEMENT ENSEMBLE - rigid translation on the real field
+==============================================================================
+  shifts t in [-22, 40]; even keeps cell A a genuine base-2 cell;
+  odd is a labelled sensitivity column (cell A off the base-2 lattice).
+
+     t  par  ovl    cell_A    cell_B   sigma_A   sigma_B         T
+   -22 even   no        25       -18  0.008169  0.232143  0.008169
+   -21  odd   no        20        71  0.022691  0.119266  0.022691
+   -20 even   no       -21       -15  0.011355  0.360000  0.011355
+   -19  odd   no       -28       -78  0.013175  0.217105  0.013175
+   -18 even   no        30        66  0.038428  0.313725  0.038428
+   -17  odd  yes        39       149  0.073804  0.483384  0.073804
+   -16 even  yes       -28      -537  0.091036  0.414594  0.091036
+   -15  odd  yes       -45       965  0.062159  0.297436  0.062159
+   -14 even  yes         9     -1234  0.013202  0.166937  0.013202
+   -13  odd  yes        74      1121  0.039859  0.053075  0.039859
+   -12 even  yes        63      -528  0.095175  0.228395  0.095175
+   -11  odd  yes       -47      -368  0.163547  0.352227  0.163547
+   -10 even  yes      -112      1196  0.154639  0.273952  0.154639
+    -9  odd  yes        -5     -1637  0.051047  0.168587  0.051047
+    -8 even  yes       236      1577  0.007463  0.075460  0.007463
+    -7  odd  yes       235     -1143  0.008677  0.027122  0.008677
+    -6 even  yes      -164       676  0.022370  0.130178  0.022370
+    -5  odd  yes      -238      -550  0.041366  0.425455  0.041366
+    -4 even  yes       256       940  0.053506  0.486170  0.053506
+    -3  odd  yes       536     -1723  0.034619  0.373767  0.034619
+    -2 even  yes       343      2364  0.017029  0.188725  0.017029
+    -1  odd  yes         1     -1960  0.059956  0.139175  0.059956
+     0 even  yes         0         0  0.101041  0.357046  0.101041 OBS
+     1  odd  yes       894      2818  0.132666  0.321999  0.132666
+     2 even  yes      1713     -5072  0.119814  0.224427  0.119814
+     3  odd  yes       965      5858  0.066475  0.142711  0.066475
+     4 even  yes       556     -5241  0.037217  0.089296  0.037217
+     5  odd  yes      2713      3975  0.036467  0.105912  0.036467
+     6 even  yes      4355     -2909  0.007331  0.186716  0.007331
+     7  odd  yes      3941      1977  0.025523  0.106958  0.025523
+     8 even  yes      5666      -360  0.012455  0.347179  0.012455
+     9  odd  yes      9389     -1178  0.059628  0.232244  0.059628
+    10 even  yes     12460      -300  0.085716  0.508611  0.085716
+    11  odd  yes     16919      5671  0.044181  0.355356  0.044181
+    12 even  yes     22671    -10325  0.032813  0.160182  0.032813
+    13  odd  yes     31754      8392  0.025147  0.172607  0.025147
+    14 even  yes     48944      -427  0.011221  0.177635  0.011221
+    15  odd  yes     67210     -5519  0.035757  0.171499  0.035757
+    16 even  yes     84926      1269  0.037817  0.433908  0.037817
+    17  odd  yes    118424     12868  0.037686  0.331433  0.037686
+    18 even   no    175165    -25068  0.047672  0.254232  0.047672
+    19  odd   no    248761     18814  0.047173  0.259269  0.047173
+    20 even   no    340906     11036  0.051611  0.278005  0.051611
+    21  odd   no    467401    -47480  0.007480  0.293368  0.007480
+    22 even   no    643932     63114  0.006498  0.036410  0.006498
+    23  odd   no    904307    -41832  0.046157  0.188007  0.046157
+    24 even   no   1297470    -16345  0.026856  0.566088  0.026856
+    25  odd   no   1811977    102333  0.061392  0.297156  0.061392
+    26 even   no   2467753   -195011  0.009222  0.390621  0.009222
+    27  odd   no   3436478    254234  0.022736  0.063077  0.022736
+    28 even   no   4863913   -224055  0.042661  0.296862  0.042661
+    29  odd   no   6822120     64393  0.005416  0.410374  0.005416
+    30 even   no   9489287    185867  0.031553  0.106230  0.031553
+    31  odd   no  13200299   -389866  0.021762  0.414980  0.021762
+    32 even   no  18488999    429612  0.025297  0.286234  0.025297
+    33  odd   no  25929769   -338284  0.020998  0.318253  0.020998
+    34 even   no  36127213    270325  0.028003  0.288558  0.028003
+    35  odd   no  50394111   -357104  0.018346  0.340158  0.018346
+    36 even   no  70699727    627972  0.027413  0.257373  0.027413
+    37  odd   no  99001662   -946141  0.023354  0.356548  0.023354
+    38 even   no 138174884   1001647  0.021540  0.292178  0.021540
+    39  odd   no 193145506   -519816  0.025337  0.291091  0.025337
+    40 even   no 270314715   -325084  0.023177  0.329760  0.023177
+
+  T_obs = 0.101041
+  even shifts, overlap-excluded              n = 15   0 at or above T_obs   p = 0.0000   (min nonzero p 0.0667)  <-- PRIMARY
+                                             T range [0.0065, 0.0516], median 0.0269
+  even shifts, overlap-included              n = 31   2 at or above T_obs   p = 0.0645   (min nonzero p 0.0323)
+                                             T range [0.0065, 0.1546], median 0.0274
+  odd shifts, overlap-excluded (sensitivity) n = 13   0 at or above T_obs   p = 0.0000   (min nonzero p 0.0769)
+                                             T range [0.0054, 0.0614], median 0.0227
+  odd shifts, overlap-included (sensitivity) n = 31   2 at or above T_obs   p = 0.0645   (min nonzero p 0.0323)
+                                             T range [0.0054, 0.1635], median 0.0365
+
+==============================================================================
+COMPANION COLUMN phi (SECONDARY; never the headline).  delta_j =
+n_j - (R(F[j]) - R(F[j-1])); du = Delta^6 delta = u - ru;
+phi_X = shared w.du / net w.du.  The denominator equals minus the
+smooth cell value (the cell's aimed net) and CAN BE SMALL - it is
+printed beside every ratio.
+==============================================================================
+  phi_A = -1334.789968 / -453.424190 = +2.943800
+  phi_B = -1068.716053 / -93.681841 = +11.407932
+  |den_A + smooth_cell_A| (algebra check) : 8.391e-45
+  |den_B + smooth_cell_B| (algebra check) : 3.420e-45
+  dps 50 vs dps 80: rel diff phi_A 0.00e+00, phi_B 0.00e+00
+
+==============================================================================
+DIAGNOSTICS
+==============================================================================
+  Zero-conditioning: sigma against the placement's own |cell|/mass
+  (Pearson r over all defined placements, both parities):
+    r(sigma_A, |cell_A|/mass_A) = -0.3213
+    r(sigma_B, |cell_B|/mass_B) = -0.4373
+    r(T, min ratio)             = -0.2011
+    The observed placement is the only one with both cells at 0;
+    exactly-zero pairs obey T <= 1/2 while nonzero placements are
+    bounded only by 1 - the ensemble can reach T values the
+    observed pair could never attain.
+
+  Smooth leakage ru_j = Delta^7 R(F[.]) at j (dps 50), pair support:
+    j : 29  30  31  32  33  34  35  36  37  38  39  40
+    ru: -3.05  3.13  -1.92  3.61  -2.73  6.07  -3.16  7.85  -1.00  9.64  3.47  13.37
+    largest on the support: |ru[40]| = 13.3736  <-- the design brief's ~13.4 at j = 40
+    (u integers on the support run 21..209; the smooth leakage is subdominant at every site.)
+
+==============================================================================
+PRECISION
+==============================================================================
+  u, cells, sigma, T : exact integer / rational arithmetic; the
+  five factorization forms and both plantings verified to exact 0.
+  phi column         : dps 50 vs 80 max rel diff 0.00e+00
+
+==============================================================================
+EXPLORATORY. Nothing above is a verdict. T_obs was unblinded
+before this protocol existed; no decision rule was preregistered
+and none fired. The reading is Julian's.
+==============================================================================
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/joint_localization.json

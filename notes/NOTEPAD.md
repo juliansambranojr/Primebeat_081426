@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 210: THE ELEVEN BASES ARE ONE INSTRUMENT — the family b = exp(pi k/(2 g1)) steps the winding by 45 deg, a quadrature bank on g1; the Nyquist no-go is per-ladder, O18 proved joint detection, entry 208's gcd machinery is the combiner. Multi-base synthesis is the road past the no-go
+- [open]   2026-08-27  entry 209: O94 primary — NO clean placement reaches T_obs = 0.101 (null max 0.052, n=15, p floor 1/15); the design's 'unremarkable' peek was reading overlap-contaminated placements; structural bound T <= 1/2 for double-zeros runs against the observed pair
+- [open]   2026-08-27  entry 208: the gcd factorization — (20,6) and sqrt2 (34,11) share annihilator (1-z)^7 and are near-disjoint constraints on one u-field; the overlap framing double-counted the common factor; (1-z^2)^7 = (1-z)^7 (1+z)^7 is a Lean-pin candidate
+- [open]   2026-08-27  entry 208: pi_half_octave_cache.json now in results/ (j <= 80, self-describing) — the first explicit piece of the common field
 - [open]   2026-08-27  entry 207: THE DEPTH BARRIER IS REAL — (20,6) uncertified under gaussian and Cesaro smoothing with the Cesaro error CONVERGED (tail swing 0.9 over last 100 K, settled ~97 vs criterion 0.5); run 1's oscillation was the sharp cutoff's
 - [open]   2026-08-27  entry 207: certification is a STEP not a slope — where it happens it is nearly free once smoothed ((4,1): 32 -> 4; d=1 median 304 -> 4), where it fails it misses by orders; the arithmetic/spectral boundary visible as a gap
 - [open]   2026-08-27  entry 207: residue of outcome three — slow drift survives smoothing at shallow depths (Cesaro d=0: 2.5 -> 4.3 over last 200 K); 600 zeros not fully converged at r=20; split robust, terminal digits not final

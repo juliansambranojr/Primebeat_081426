@@ -16,6 +16,163 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 210 — the eleven bases are one instrument: the synthetic-aperture reading, and the road past the no-go
+type: motivation
+refs: 18, 26, 199, 205, 208, 209
+
+Julian asked whether something obvious in the tests and results had
+been missed — something possible now that could not be foreseen
+until now. There is one, and entry 208's factorization is what makes
+it visible.
+
+**Four unlooked-for surfacings of the same lattice.**
+`Commensurate-Ladders.md` § D4: O45's base set shares a lattice and
+the prereg never noticed. Entry 199: the winding angle
+`θ = γ₁ log b` IS the Nyquist resolvability condition, with the
+boundary a family member. Entry 205: two cells whose window tops
+coincide exactly, `28·5π/(4γ₁) = 70·π/(2γ₁)`. Entry 208: two zeros
+in different bases share the annihilator `(1−z)⁷` and are
+constraints on one u-field. Four independent instruments, one
+message: **the eleven bases are not eleven instruments. They are one
+instrument, accidentally built.**
+
+**What the family actually is.** `b = exp(πk/(2γ₁))` steps the
+winding `θ` by 45° — a bank of ladders sampling γ₁'s phase in
+QUADRATURE. The family was selected for winding-angle reasons; a
+sampler bank whose phases step in quadrature at one frequency is a
+synthetic aperture centered on that frequency, and nobody chose it
+as one.
+
+**The three pieces already in the tree, in separate drawers.**
+
+1. `Nyquist.lean` proves no SINGLE integer base resolves γ₁
+   (`base_bound_of_resolvable`, `base_two_fails_by_three`). The
+   no-go is per-ladder; its statement does not cover joint sampling.
+2. O18 measured, before the no-go was formalized, that bases blind
+   singly detect JOINTLY — the loophole demonstrated empirically.
+3. Entry 208's gcd machinery expresses any commensurate pair as
+   functionals on one common field, with
+   `results/pi_half_octave_cache.json` now covering `j ≤ 80`.
+
+**The possibility.** Aliasing lattices differ per base — each ladder
+folds γ onto a different residue class of its own `2π/log b` — so
+jointly the family can distinguish frequencies no member can. The
+proved no-go is the floor for every single arm; any joint resolution
+beyond it is the measurement. Multi-base synthesis: the commensurate
+family as one coherent aperture, measured against γ₁.
+
+**Design constraints known in advance,** so the next instrument does
+not repeat this week's failures: the per-arm no-go must be the
+stated floor (the O64 lesson — the null arm through the same
+pipeline); the joint statistic must have the prime data entering it,
+proved non-constant, per entry 205's spec; and O45's Z-counts are
+already measured on these ladders, so any synthesis claim must be
+priced against what `fineness` already bounds.
+
+**The container framing lands here.** The container is not any one
+table. It is the common field all commensurate tables read — the
+u-field is its first explicit piece.
+
+---
+
+## 2026-08-27 — Entry 209 — O94 triage: the shared sites carry more of both balances than any clean placement, at a p-resolution of 1/15
+type: result-triage
+refs: 201, 205, 208
+
+Reading of entry 208's run. EXPLORATORY — the pair was unblinded at
+design time and no verdict is possible on it.
+
+**The primary result.** Among the 15 data-disjoint placements — even
+shifts, supports outside the observed pair's widened support
+`j = 23..40` — **none reaches `T_obs = 0.1010`**; the null tops out
+at 0.0516, median 0.0269. The two placements that exceeded `T_obs`
+in the design scratch (`t = −10` at 0.1546, `t = +2` at 0.1198) sit
+INSIDE the exclusion zone: they were reading the observed data. The
+design's "upper tail, unremarkable" peek was the overlap-included
+column; the clean column reads differently.
+
+**The bounds that keep this honest.** Minimum attainable `p` is
+`1/15 = 0.067` — the instrument cannot deliver small p-values, said
+in advance. `σ` correlates mildly negatively with `|cell|` across
+placements (r: −0.32 A, −0.44 B), so zero-conditioning is live. And
+the structural bound found on the way — **any placement with both
+cells exactly zero has `T ≤ ½`** (sign analysis of `x+7y`, `y−5x`) —
+means null placements can reach T values the observed pair could
+never attain: the conservatism runs against the observed pair.
+
+**The sigmas against their floors.** `σ_A = 0.1010` against a
+geometric floor of 0.0625; `σ_B = 0.3570` against 0.1875 — 1.9×.
+The one-event planting lands on the `T = ½` ceiling exactly; the
+two-event planting reads `T = 0` exactly. The instrument
+discriminates where discrimination is possible.
+
+**What this is and is not.** It is: the shared u-sites `{33, 34}`
+carry a larger share of both cells' balancing mass than identical
+geometry manages anywhere else on the clean lattice, at the stated
+resolution. It is not: a verdict, a p < 0.05 claim, or a statement
+that survives the unblinding. The thread stays open at exactly this
+size; a preregistered version would need a fresh pair.
+
+**Convention finding carried forward:** the smooth-leakage control
+identifies O34's convention as R evaluated at the FLOOR points
+`F[j]`, the points the table reads π at — 13.37 at `j = 40` against
+10.17 at exact half-powers. The φ companion column's denominator
+hazard is convention-dependent (−93.68 floor convention, −0.0024
+exact-point); the script prints the hazard whenever `|den| < 1`.
+
+---
+
+## 2026-08-27 — Entry 208 — O94: the gcd factorization, and the joint-localization run
+type: run
+refs: 88, 192, 201, 204, 205
+
+`O94_joint_localization.py`, EXPLORATORY. The v2 of the overlap
+question, built to entry 205's spec through an audit-before-execute
+split: a design agent produced the statistic, the null and the power
+check; Julian approved; a separate agent built and ran.
+
+**The factorization, verified exact on the real field.** On the
+half-octave lattice `j` with `F[j] = ⌊2^(j/2)⌋` and `P[j] = π(F[j])`:
+
+```text
+base 2 (20,6):  stencil (1−z²)⁷ = (1−z)⁷ · (1+z)⁷,  top j = 40
+√2 (34,11):     stencil (1−z)¹² = (1−z)⁷ · (1−z)⁵,  top j = 34
+gcd = (1−z)⁷    u_j := Δ⁷ P at j
+A = Σ C(7,i)·u_{40−i}        all-positive, support 33..40  = 0
+B = Σ (−1)^i C(5,i)·u_{34−i}  alternating,  support 29..34  = 0
+shared sites {33, 34}: 8/128 = 6.25% of A's mass, 6/32 = 18.75% of B's
+```
+
+Both zeros reproduce in quotient AND direct forms; the refinement
+identity `N₂(r) = n_{2r−1} + n_{2r}` holds for `r = 1..32`; π audit
+41/41 against `pi2n_cache.json`. **The "3.0 log₂ overlap, 0.545 of
+the shorter" framing double-counted the common annihilator: factored
+out, the two heaviest census zeros share their annihilator, not
+their window.** The identity `(1−z²)⁷ = (1−z)⁷(1+z)⁷` is a
+Lean-pin candidate.
+
+**Statistic and null, as designed.** `σ_X` = shared-site share of
+`Σ|w_j u_j|`; `T = min(σ_A, σ_B)`. Data enters solely through the
+integers `u_j`; proven non-constant across placements. Null: rigid
+translation of the whole two-cell configuration along the lattice,
+real primes everywhere — O88's pattern transposed. Power check run
+first: one-event planting `T = 0.500` (the structural ceiling),
+two-event planting `T = 0` exactly; both separate from the null
+cloud.
+
+```text
+python3 utilities/run.py --python .venv/bin/python \
+    --log results/O94_joint_localization_run1.log O94_joint_localization.py
+exit 0   created 3   modified 0
+manifest results/runs/20260827T074209Z_O94_joint_localization.json
+results/joint_localization.json + results/pi_half_octave_cache.json
+    (self-describing: F[j] stored beside π(F[j]), j ≤ 80)
+```
+
+Headline numbers and reading: entry 209.
+
+---
+
 ## 2026-08-27 — Entry 207 — O92 runs 2/3 triage: the depth barrier is real; run 1's oscillation was the cutoff's, and where certification happens it is nearly free
 type: result-triage
 refs: 201, 202, 203, 206
