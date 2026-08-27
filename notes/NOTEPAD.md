@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 226: CORRECTION to entry 224 — the r_thick 6/6 split holds at 3 of 7 divisors, NOT all; and at m=3 the denominator is CONSTANT at 3486 across all 12 neighbours, so the 2^(1/3) anomaly has no normalisation confound and is cleaner than 224 presented it
+- [open]   2026-08-27  entry 225: three of four proposed Lean candidates broken by compiling them — candidate 1 already in the tree as Chain.gain_sq_periodic AND false of the pipeline; candidate 2 is Bezout not CRT and needs candidate 1 to state its ±; candidate 3 is `by ring`
+- [open]   2026-08-27  entry 225: CORRECTION to entry 222 — Neff is Theta(N^(2/3) log N), not a power law; local slope still falling at N=1e7; r2 0.9992 is what a slowly-curving function looks like on a factor-of-24 window. Conclusion survives, exponent does not
+- [open]   2026-08-27  entry 225: MISSED by the survey — the vacuity family (4 instances, one shape, each retired an instrument) and the plateau-width law hw = b*pi^2/(g1^2 ln V), verified against the locked prereg at 3.1e-5
+- [open]   2026-08-27  entry 225: revised Lean order — candidate 4 (stationary maximum, ~26 lines, discharges a locked prereg's mechanism) first, then the base-change telescoping, then Bezout restated base-free
 - [open]   2026-08-27  entry 224: mechanical output `no_step` — the Nyquist boundary is not a feature of exact-zero density TO A FACTOR OF TWO (the design's stated sensitivity); entry 199's line closed by measurement; verdict open for Julian
 - [open]   2026-08-27  entry 224: THE 2^(1/3) ANOMALY SURVIVED ALL THREE EXPLANATIONS — Nyquist splits the aliased pair (m=3 lowest of 13, m=2 HIGHEST at +2.49 sd), arithmetic predicts all seven low but five read high, and breaking ceiling attainment left it unchanged (0.00086 generic vs 0.00084 at 2^32)
 - [open]   2026-08-27  entry 224: new arithmetic signature — r_thick is DISCONTINUOUS exactly at 2^(1/m), neighbours splitting 6/6 by side down to width/2048; nothing in the tree had recorded it

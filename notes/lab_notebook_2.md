@@ -16,6 +16,135 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 226 — correction to entry 224: the r_thick split holds at three of seven, and the 2^(1/3) anomaly is cleaner for it
+type: result-triage
+refs: 223, 224, 225
+
+**The claim.** Entry 224 states `r_thick` is "discontinuous exactly at
+`2^(1/m)`, neighbours splitting 6/6 by side at every divisor tested
+down to width/2048," and uses it to explain why arm 2 normalises per
+base where arm 1 holds a constant denominator.
+
+**It is false, and O96's own output says so** — read from
+`results/dense_boundary_scan.json`, `summary.arm2[].neighbours`, with
+no re-run:
+
+```text
+ m   2^(1/m)   below | above          clean 6/6?
+ 2      1653   [1596] | [1653]           YES
+ 3      3486   [3486] | [3486]           no
+ 4      5886   [5886, 6105] | [5886]     no  (below inhomogeneous)
+ 5      9045   [9045] | [9045]           no
+ 6     12720   [12880] | [12720]         YES
+ 7     17391   [17205] | [17391]         YES
+ 8     22366   [22366] | [22366]         no
+```
+
+**Three of seven, not every divisor.**
+
+**And the correction runs in the finding's favour.** At `m = 3` — the
+base carrying the whole live result — the denominator is **constant at
+3486 across all twelve neighbours**. Entry 224's stated reason for arm
+2's per-base normalisation does not apply where the anomaly lives, so
+`ζ = 0.00086` sits against twelve neighbours at an identical
+denominator with **no normalisation confound at all**. The 2^(1/3)
+reading is cleaner than entry 224 presented it, not dirtier.
+
+**How it was found, and the trap it walked into.** Entry 225's
+adversary reimplemented the geometry rather than calling O96 and got a
+table agreeing with O96 at `m = 2, 3, 5, 6, 8` while swapping which of
+`m = 4, 7` carries the inhomogeneous side — precisely the one-ulp
+hazard entry 223 documents ("which way the rounding falls is set by the
+rounding of `2^(1/m)` itself"). It flagged its own result as the more
+likely error. **It was right on the load-bearing point and wrong in the
+details**, and the instrument's own artifact settled both.
+
+**The method note.** No measurement was needed. The answer was already
+in the run's output, which is the same rule as entry 218's
+git-before-mitigation: before running something to settle a question,
+check whether the artifact you already have answers it.
+
+---
+
+## 2026-08-27 — Entry 225 — adversarial audit of the Lean scoping list: three of four candidates broken
+type: result-triage
+refs: 208, 211, 222, 224
+
+A survey of this session's runs proposed four theorem-shaped results
+for formalisation, ranked. An adversary tested each **by compiling
+it**, and broke three.
+
+**Candidate 1 — periodogram periodicity — dead twice.** It is already
+in the tree: `Chain.gain_sq_periodic` (`lean/Chain.lean`:429) pins
+exactly that periodicity, with `joint_gain_periodic_of_commensurate`
+as the joint form. And it is **false of the pipeline** —
+`O95_multibase_synthesis.py`'s `block_geometry` uses
+`log(floor(exp(i·s)))`, not `j·h + c`, so the exact-ladder statement
+describes something the bench does not compute. The floor-jitter story
+attached to it fails on magnitude: the naive scale is ~2e−4 and
+essentially arm-independent, against observed leakage spanning
+1.0e−7 to 5.7e−4 with an odd/even split the story does not predict.
+**A number was matched to a narrative.** What would be new is the
+approximate form with an explicit `ε_j ≤ 1/x_j` bound — that would give
+entry 213's `X = 0.10` criterion its four-order margin as a theorem
+rather than as a measurement.
+
+**Candidate 2 — mis-stated in three ways.** It is not CRT but Bezout,
+the dual: `(1/j₁)ℤ ∩ (1/j₂)ℤ = ℤ` for coprime indices. There is no γ₁
+and no 8 in the mathematics — the 8 is `2π/s`, so pinning
+`ν ≡ ±1 (mod 8)` pins the units. Entry 217 already states the general
+form correctly. And the `±` is **not expressible in
+`Nyquist.Aliases`**: it comes from `P(−γ) = P(γ)` for real weights, so
+candidate 2 depends on candidate 1's statistic-level definition rather
+than standing beside it. It also carries a vacuity trap at `s = 0`, the
+shape `Chain.period_vacuous_at_one` already documents.
+
+**Candidate 3 — `by ring`, and the wrong statement was named.** Entry
+208's load-bearing content is the base change: `F[2r] = 2^r` exactly,
+which makes the telescoping `N₂(r) = n_{2r−1} + n_{2r}` true for all
+`r` rather than the 32 the run checked. That upgrade is worth pinning;
+the polynomial identity certifies nothing about the two cells.
+
+**Candidate 4 — deferred for a false reason.** It was ranked last as
+costing `Classical.choice`; **all five theorems in `lean/Nyquist.lean`
+already carry it**, as does `Chain.gain_sq_periodic`. House baseline,
+not a cost. It compiles in ~26 lines, and it is the only one of the
+four discharging a mechanism claim a **locked prereg** leaned on —
+entry 224's stationary-maximum argument behind arm 1's `no_step`.
+
+**What the survey missed, and it is the larger half.** Four vacuity
+results this session share one shape — a statistic factoring through a
+quantity constant across the hypotheses being compared — and each
+retired or rescoped an instrument: entry 197's scale-invariance, 194's
+coherence-at-a-zero, 205's phase decomposition, 217's flat combs. Two
+compile in under five lines. Also missed: the plateau-width law
+`hw = b*π²/(γ₁²·ln V)`, verified against the locked prereg at relative
+error 3.1e−5, which says arm 1's constant-denominator trick shrinks as
+`1/ln V` and does not scale; and entry 209's `T ≤ 1/2`.
+
+**A correction to entry 222, independent of any Lean work.** That entry
+reports `Neff ∝ N^0.86` at `r² ≥ 0.9992`. It is **not a power law** —
+the bare envelope reproduces the fit, but the local slope falls
+monotonically and is still falling at `N = 10⁷`, while
+`Neff/(N^(2/3) log N)` drifts toward a constant. From
+`p_k ∝ log k / k`, `⟨log k⟩ = (2/3) log N`, so
+`Neff = Θ(N^(2/3) log N)`. An `r²` of 0.9992 is what a slowly-curving
+function looks like over a factor-of-24 window. **Entry 222's
+conclusion survives; its exponent does not.**
+
+**The revised list**, taking the adversary's own closing argument —
+`lean/NEXT.md` says write the mechanism, do not aim a proof at a
+measured number, and by that standard theorems certifying retired
+instruments rank below one explaining a live design:
+
+1. candidate 4 — cheap, discharges a locked prereg's mechanism
+2. candidate 3 restated as the base-change telescoping
+3. candidate 2 restated base-free, `s ≠ 0` load-bearing, welded to
+   `P_neg` for the `±`
+4. candidate 1 only in its `ε`-bounded form, if at all
+
+---
+
 ## 2026-08-27 — Entry 224 — the boundary is not a feature of the zeros, and the 2^(1/3) anomaly survives all three of its explanations
 type: result-triage
 refs: 199, 211, 215, 223
