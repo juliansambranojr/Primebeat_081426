@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "script": "O92_certification_cost.py",
+  "script_sha256": "648ab07b12e278919b8f0c5caa7e3dbae7458a9950fb9a779d4cc76060a0d596",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O92_certification_cost.py",
+    "--taper",
+    "sharp",
+    "--out",
+    "/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/certification_cost_sharp_check.json"
+  ],
+  "run_start_at": "2026-08-27T06:10:06.307435+00:00",
+  "run_end_at": "2026-08-27T06:10:09.781878+00:00",
+  "exit_code": 0,
+  "git_head": "6e18ec59d88b91c73aa1f2614491d5b6184dc369",
+  "git_dirty": true,
+  "files_created": [],
+  "files_modified": [],
+  "log": "../../../../private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/O92_sharp_check.log",
+  "log_sha256": "4c7a474c9a2deb25dc8a7f6cc8773fd25a8a0dcde3dcf88c99054789e2cb8889",
+  "empty_at_snapshot": []
+}

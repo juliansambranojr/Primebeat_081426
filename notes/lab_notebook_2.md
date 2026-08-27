@@ -16,6 +16,106 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 207 — O92 runs 2/3 triage: the depth barrier is real; run 1's oscillation was the cutoff's, and where certification happens it is nearly free
+type: result-triage
+refs: 201, 202, 203, 206
+
+Reading of entry 206. EXPLORATORY.
+
+**Entry 203's discriminator fired, and it landed on "the barrier is
+real."** `(20,6)` stays UNCERTIFIED under both smoothings, and the
+Cesàro error CONVERGES — tail swing 0.9 over the last 100 effective K
+(97.5, 96.6, 97.0, 97.2, 97.3), settled near **97 against a criterion
+of 0.5**. Two orders of magnitude short with the oscillation removed.
+Run 1's caveat — that the sharp cutoff's swinging tail might account
+for "uncertified at 600" — accounted for the swing alone: the sharp
+tail moved 69.0 over `K ∈ [425,600]`; the smoothed tails move ~10 and
+Cesàro's moves 0.9.
+
+**The depth trend survives every taper, monotone.** Cesàro terminals
+at `r = 20`: 4.28 / 7.56 / 12.61 / 22.61 / 40.98 / 68.07 / 97.35
+across `d = 0..6`, against sharp's 8.31 → 104.30. No depth certifies
+stably under any taper; the `d = 6` background stays 0/13 under all
+three.
+
+**Where certification happens at all, it is nearly free once
+smoothed.** `(4,1)`'s stable K drops 32 → 4 (gaussian) / 5 (cesàro);
+the `d = 1` background median stable K collapses 304 → 4 / 7. Run 1's
+large medians were oscillation-driven pop-outs — smoothing removes
+all six of `(4,1)`'s — so the rate–distortion picture sharpens into a
+step: cells the spectral code can certify, it certifies almost
+immediately; cells it cannot, it misses by orders of magnitude. The
+gap between K ≈ 4 and never is the arithmetic/spectral boundary of
+entry 201's arrow, now visible as a gap rather than a slope.
+
+**The residue of outcome three, stated.** A slow upward drift
+survives smoothing at shallow depths — Cesàro `d = 0` drifts
+2.5 → 4.3 over the last 200 K — so 600 zeros is not fully converged
+data at `r = 20` even smoothed. The "settled near 97" reading is the
+Cesàro tail's. The certified/uncertified split is robust to this; the
+terminal values are not final digits.
+
+**Instrument notes carried forward.** The gaussian terminal at
+`K = 600` is the sharp full sum by construction (all weights → 1), so
+its informative range is effective `K < 600`. Cross-taper K values
+compare only within a taper — Cesàro's half-weighted recent modes lag
+where the sharp sum was close, e.g. the control `(19,6)` reads 13.72
+terminal under Cesàro with no touch. The script states both.
+
+**Joint state of the arrow.** O92 sharp: uncertifiable at 600 under a
+sharp cutoff. O92 smoothed: uncertifiable with the error converged.
+O93: the phase route cannot see cancellation in principle. The
+arithmetic certifies for free — a subtraction of integers — what the
+spectral code misses by two orders at every measured rate.
+
+---
+
+## 2026-08-27 — Entry 206 — O92 runs 2 and 3: smoothed truncation, gaussian and Cesàro
+type: run
+refs: 202, 203
+
+`O92_certification_cost.py` extended with `--taper
+{sharp,gaussian,cesaro}` and `--out`; the sharp default is run 1's
+path unchanged. EXPLORATORY.
+
+**Comparability check first.** The extended script at `--taper sharp`
+diffed leaf-by-leaf against `results/certification_cost.json`: every
+numeric leaf in `summary` and `rows` identical, including `(20,6)`
+terminal 104.30293091011013 and `(4,1)` stable K 32. New keys are
+descriptive only. **Run 1 stands byte-comparable; entries 202/203
+unchanged.**
+
+**Tapers.** Cesàro: `S_K = Σ_{k≤K} (1 − k/(K+1))·c_k`. Gaussian:
+`S_K = Σ_{k≤600} exp(−(γ_k/G)²)·c_k` with `G(K)` the unique width
+making the weight sum equal K — the effective pair count, reducing to
+the sharp count for 0/1 weights, so K keeps run 1's meaning at equal
+spectral mass. Solved by geometric bisection, weight sum matching K
+to 10 decimals at every probe; `G(100) = 257.35`, `G(200) = 435.13`,
+`G(400) = 857.83`. At `K = 600` gaussian is the sharp full sum by
+construction.
+
+```text
+python3 utilities/run.py --python .venv/bin/python \
+    --log results/O92_certification_cost_run2.log \
+    O92_certification_cost.py --taper gaussian
+python3 utilities/run.py ... run3 ... --taper cesaro
+manifests results/runs/20260827T061046Z_… and …T061140Z_…
+results/certification_cost_gaussian.json, …_cesaro.json
+(default --out auto-remaps under a taper; run 1's JSON untouched)
+```
+
+**Headline.** `(20,6)` err at effective `K = 100/200/400/600`: sharp
+89.9 / 90.8 / 87.8 / 104.3; gaussian 132.9 / 106.0 / 93.1 / 104.3;
+cesàro 152.8 / 147.3 / 109.0 / 97.3. UNCERTIFIED under all three.
+Background certified/defined: `d = 1` 9/18, 9/18, 11/18; `d = 3`
+1/16, 1/16, 2/16; `d = 6` 0/13 all. `(8,3)` uncertified at
+1.90/1.90/1.77.
+
+**Precision:** dps 80 on all 11 headline cells, all three runs — zero
+K moves, terminal shift 0.00e+00. Reading is entry 207.
+
+---
+
 ## 2026-08-27 — Entry 205 — O93 triage: the phase statistic has no access to cancellation, and the naive positive is window geometry
 type: result-triage
 refs: 192, 199, 201, 204

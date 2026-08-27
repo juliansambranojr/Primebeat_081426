@@ -1,0 +1,30 @@
+{
+  "schema_version": "1",
+  "script": "O92_certification_cost.py",
+  "script_sha256": "648ab07b12e278919b8f0c5caa7e3dbae7458a9950fb9a779d4cc76060a0d596",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O92_certification_cost.py",
+    "--taper",
+    "cesaro"
+  ],
+  "run_start_at": "2026-08-27T06:11:40.989909+00:00",
+  "run_end_at": "2026-08-27T06:11:44.317553+00:00",
+  "exit_code": 0,
+  "git_head": "6e18ec59d88b91c73aa1f2614491d5b6184dc369",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "certification_cost_cesaro.json",
+      "sha256": "d044f5e77565de965ea7da64bf5cfcdbe7862d07922f27d7e399a99b7bf4211c"
+    },
+    {
+      "path": "O92_certification_cost_run3.log",
+      "sha256": "530a3a49bd3fe53aae737fa7e8818c56c6590d6923d7f85d9c38e3178c5f3bff"
+    }
+  ],
+  "files_modified": [],
+  "log": "results/O92_certification_cost_run3.log",
+  "log_sha256": "530a3a49bd3fe53aae737fa7e8818c56c6590d6923d7f85d9c38e3178c5f3bff",
+  "empty_at_snapshot": []
+}

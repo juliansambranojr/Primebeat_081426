@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 207: THE DEPTH BARRIER IS REAL — (20,6) uncertified under gaussian and Cesaro smoothing with the Cesaro error CONVERGED (tail swing 0.9 over last 100 K, settled ~97 vs criterion 0.5); run 1's oscillation was the sharp cutoff's
+- [open]   2026-08-27  entry 207: certification is a STEP not a slope — where it happens it is nearly free once smoothed ((4,1): 32 -> 4; d=1 median 304 -> 4), where it fails it misses by orders; the arithmetic/spectral boundary visible as a gap
+- [open]   2026-08-27  entry 207: residue of outcome three — slow drift survives smoothing at shallow depths (Cesaro d=0: 2.5 -> 4.3 over last 200 K); 600 zeros not fully converged at r=20; split robust, terminal digits not final
 - [open]   2026-08-27  entry 203: (20,6) UNCERTIFIABLE at 600 pairs, terminal error 104.3, no depth stable at r=20 — the certification arrow survived its falsification test; smoothed truncation is the sharpening (sharp-cutoff artifact vs depth barrier)
 - [open]   2026-08-27  entry 203: O34's residual convention is R, not li — identified by measurement (reproduces all seven literals to 5e-4; li leaves a 23.8 floor at (20,0)); nothing in the tree had recorded which convention O34 used
 - [open]   2026-08-27  entry 205: O93 not-well-posed result — mode phases are functions of the zeros alone, NO prime count enters them, so phase correlation cannot see cancellation; naive p=0.0000 was pure window geometry (Delta=-3 lattice pairs reproduce R to 1.4e-16)

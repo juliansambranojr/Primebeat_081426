@@ -1,0 +1,243 @@
+==============================================================================
+O92 - CERTIFICATION COST AT THE TABLE'S CELLS
+EXPLORATORY. No prereg, no decision rule, NO VERDICT. Nothing
+printed below may be described as a verdict.
+==============================================================================
+
+==============================================================================
+0. STENCIL-INDEX GATE - printed FIRST, before any model number
+==============================================================================
+Entry 192's correction: cell (r,d) = Delta^(d+1) of pi(2^.) at r.
+The Delta^(d+1) column must reproduce all six kernel-proved values
+(lean/Zeros.lean); the Delta^d column is shown to reproduce none.
+
+     cell   Delta^d  Delta^(d+1)   Lean   gate
+   (2, 1)         1            0      0   PASS
+   (4, 1)         2            0      0   PASS
+   (8, 3)         4            0      0   PASS
+  (20, 6)       623            0      0   PASS
+   (7, 3)         4            5      5   PASS
+  (19, 6)       623          343    343   PASS
+
+GATE PASSED: all six kernel values reproduced under Delta^(d+1).
+pi2n_cache.json holds n = 0..62 (63 entries); this run needs m <= 20, entirely inside the cache. No cell is out of scope for cache reasons.
+
+  zeros        600 pairs from zeros600.json, gamma_1 = 14.1347251417 .. gamma_600 = 939.024300899
+  dps          50 working; ~25-digit data floor in the zero strings
+  threshold    |model - cell| < 0.5 certifies the integer
+  model        M(r,d) + S_K(r,d), pi form (O34's object; see docstring)
+  taper        cesaro: S_K = sum_(k<=K) (1 - k/(K+1)) c_k (Fejer mean)
+  building pi-form modes (O90.PiModes, rmax 20) ...
+
+==============================================================================
+1. MAIN-TERM CONVENTION AND SANITY GATES
+==============================================================================
+Convention ADOPTED: M(r,d) = Delta^(d+1) of R(2^.) at r, R =
+Riemann's function (mpmath riemannr). O34's TRUE_RES_R20 literals
+are R-stencil residuals -- the gate below shows the R column
+matching every literal to its printed precision while the li
+column misses depths 0-2 by 23.8 / 5.9 / 1.5 -- and R is the
+smooth part of the J-expansion whose oscillating part IS the Ei
+mode sum, so li would leave an unmodeled li - R floor no number
+of zeros removes. The li-stencil (unoffset; the offset constant
+is annihilated by the stencil) is carried as a comparison column
+at every headline cell.
+
+(a) d = 0: M(r,0) vs the true block count, both conventions
+    r= 15  true=    1612  M_R=   1618.3526687  resid_R=  -6.352669  M_li=   1624.3556614  resid_li=  -12.35566
+    r= 20  true=   38635  M_R=   38659.886479  resid_R=  -24.88648  M_li=   38683.716252  resid_li=  -48.71625
+    scale check: both residuals are the differenced |pi - smooth|
+    gap, O(sqrt(x)/log x); li overestimates pi on this range.
+
+(b) r = 20 residual ladder vs O34's TRUE_RES_R20 literals (dps 40)
+   d      true - M_R  O34 literal       diff     true - M_li   li - R gap
+   0     -24.8864789      -24.886  -0.000479     -48.7162517        23.83
+   1     -48.1900915      -48.190   -9.15e-5     -54.0979638        5.908
+   2     -82.0861475      -82.086  -0.000148      -83.605663         1.52
+   3     -133.760547     -133.761   0.000453     -134.158966       0.3984
+   4      -212.31418     -212.314   -0.00018     -212.420204        0.106
+   5     -322.410263     -322.410  -0.000263     -322.438759       0.0285
+   6      -453.42419     -453.424   -0.00019     -453.431918     0.007728
+    O34's literals are 7-significant-digit transcriptions at dps
+    40; the R column matching them to printed precision is the
+    gate that identifies O34's convention as R.
+
+==============================================================================
+2. K_cert - THE FOUR ZEROS AND THE TWO CONTROLS (pi form)
+==============================================================================
+K_first = first K with |err| < 0.5; K_stable = smallest K certified
+for ALL larger K' <= 600. A transient dip is not certification.
+
+     cell  lean     role    true            M  K_first  K_stable   |err(600)|
+-----------------------------------------------------------------------------
+   (2, 1)     0     zero       0    undefined        -         -            -
+   (4, 1)     0     zero       0    1.0192245        5         5   4.0209e-01
+   (8, 3)     0     zero       0    2.0443917        2    UNCERT   1.7727e+00
+  (20, 6)     0     zero       0    453.42419        -    UNCERT   9.7345e+01
+   (7, 3)     5  control       5    1.1121188        5    UNCERT   1.5502e+00
+  (19, 6)   343  control     343    235.55341        -    UNCERT   1.3718e+01
+
+  (2,1)  OUTSIDE - x = 4; the explicit formula is nowhere near pi(x)
+  (4,1)  OUTSIDE - x = 16; the explicit formula is nowhere near pi(x)
+  (8,3)  OUTSIDE - x = 256; the explicit formula is nowhere near pi(x)
+  (20,6)  INSIDE - O34/O35 measured 80% of the row-20 residual at d=6
+  (7,3)  OUTSIDE - x = 128; control for (8,3), same regime caveat
+  (19,6)  adjacent to measured row 20, same depth
+  (2,1)  model undefined: the Delta^(d+1) stencil reaches m = 0, x = 1, where Ei(rho*log 1) = -inf for every zero (and li(1) = -inf); the true cell is exact but no explicit-formula model value exists
+  (8,3)  first touch K=2 differs from stable K=None: the dip popped back out 1 more time(s) before settling
+  (7,3)  first touch K=5 differs from stable K=None: the dip popped back out 1 more time(s) before settling
+
+==============================================================================
+3. K_cert(d) AT r = 20, d = 0..6 - the direct test of
+   'certification cost blows up with depth' (entry 201)
+==============================================================================
+   d     true              M  K_first  K_stable    |err(0)|  |err(200)|  |err(600)|
+-----------------------------------------------------------------------------------
+   0    38635     38659.8865       51    UNCERT  2.4886e+01  2.9074e-02  4.2792e+00
+   1    18245     18293.1901        -    UNCERT  4.8190e+01  3.2956e+00  7.5566e+00
+   2     8604     8686.08615        -    UNCERT  8.2086e+01  1.0134e+01  1.2609e+01
+   3     4003     4136.76055        -    UNCERT  1.3376e+02  2.4551e+01  2.2612e+01
+   4     1763     1975.31418        -    UNCERT  2.1231e+02  5.1389e+01  4.0979e+01
+   5      623     945.410263        -    UNCERT  3.2241e+02  9.3298e+01  6.8071e+01
+   6        0      453.42419        -    UNCERT  4.5342e+02  1.4734e+02  9.7345e+01
+
+  d=0: first touch 51 vs stable None (4 threshold crossings)
+  certified at 600: depths []; uncertified: [(0, 4.279), (1, 7.557), (2, 12.609), (3, 22.612), (4, 40.979), (5, 68.071), (6, 97.345)]
+
+  li-stencil comparison (same modes, main term Delta^(d+1) li):
+   d    li-R gap  K_stable(R)  K_stable(li)  |err600|(li)
+   0  2.3830e+01       UNCERT        UNCERT    2.8109e+01
+   1  5.9079e+00       UNCERT        UNCERT    1.3464e+01
+   2  1.5195e+00       UNCERT        UNCERT    1.4128e+01
+   3  3.9842e-01       UNCERT        UNCERT    2.3010e+01
+   4  1.0602e-01       UNCERT        UNCERT    4.1085e+01
+   5  2.8496e-02       UNCERT        UNCERT    6.8099e+01
+   6  7.7285e-03       UNCERT        UNCERT    9.7353e+01
+  where the gap exceeds the 0.5 criterion (low d), the li
+  convention decides certification by itself; where it is far
+  below (deep d), the two conventions agree cell by cell.
+
+==============================================================================
+4. BACKGROUND - d in [1, 3, 6], r = d+1 .. 20 (pi form)
+==============================================================================
+--- depth 1 ----------------------------------------------------------------
+   r      true  K_first  K_stable   |err(600)|  note
+   2         0        -         -            -  model undefined (stencil reaches m = 0)
+   3         1        0         0   2.1557e-01  
+   4         0        5         5   4.0209e-01  [kernel cell, lean = 0]
+   5         3        3         3   2.2905e-01  
+   6         2        3         3   4.5938e-01  
+   7         6        0         0   4.0240e-01  
+   8        10        0    UNCERT   5.0850e-01  transient touch at 0
+   9        20      148       148   2.4737e-01  
+  10        32      161       161   2.1620e-01  
+  11        62        0         7   2.4850e-01  transient touch at 0
+  12       118        3       288   8.5812e-02  transient touch at 3
+  13       209      274       274   6.8963e-02  
+  14       408      297       297   4.4623e-01  
+  15       740        -    UNCERT   3.8499e+00  
+  16      1418       23    UNCERT   3.0520e+00  transient touch at 23
+  17      2679        -    UNCERT   3.4125e+00  
+  18      5040        -    UNCERT   4.9514e+00  
+  19      9641        -    UNCERT   5.0520e+00  
+  20     18245        -    UNCERT   7.5566e+00  
+  depth 1: 11/18 defined cells certify at 600; median stable K among certified = 7; 1 model-undefined
+
+--- depth 3 ----------------------------------------------------------------
+   r      true  K_first  K_stable   |err(600)|  note
+   4        -2        -         -            -  model undefined (stencil reaches m = 0)
+   5         4        -    UNCERT   7.9071e-01  
+   6        -4        9    UNCERT   5.1537e-01  transient touch at 9
+   7         5        5    UNCERT   1.5502e+00  transient touch at 5 [kernel cell, lean = 5]
+   8         0        2    UNCERT   1.7727e+00  transient touch at 2 [kernel cell, lean = 0]
+   9         6      118    UNCERT   1.6668e+00  transient touch at 118
+  10         2      212    UNCERT   7.8704e-01  transient touch at 212
+  11        18      241       241   4.3353e-01  
+  12        26       34    UNCERT   6.2740e-01  transient touch at 34
+  13        35      493       493   7.9170e-03  
+  14       108        -    UNCERT   6.6997e-01  
+  15       133        -    UNCERT   4.8113e+00  
+  16       346        -    UNCERT   1.1198e+01  
+  17       583        1    UNCERT   6.5414e+00  transient touch at 1
+  18      1100        -    UNCERT   8.7244e+00  
+  19      2240        -    UNCERT   1.8367e+01  
+  20      4003        -    UNCERT   2.2612e+01  
+  depth 3: 2/16 defined cells certify at 600; median stable K among certified = 367.0; 1 model-undefined
+
+--- depth 6 ----------------------------------------------------------------
+   r      true  K_first  K_stable   |err(600)|  note
+   7        31        -         -            -  model undefined (stencil reaches m = 0)
+   8       -31       14    UNCERT   7.1787e+00  transient touch at 14
+   9        25       18    UNCERT   1.2151e+01  transient touch at 18
+  10       -21      105    UNCERT   1.2656e+01  transient touch at 105
+  11        30      186    UNCERT   8.7006e+00  transient touch at 186
+  12       -28      245    UNCERT   2.0999e+00  transient touch at 245
+  13         9      173    UNCERT   2.4037e+00  transient touch at 173
+  14        63        7    UNCERT   1.6695e+00  transient touch at 7
+  15      -112        -    UNCERT   6.1701e+00  
+  16       236        -    UNCERT   2.7634e+01  
+  17      -164        -    UNCERT   5.5240e+01  
+  18       256       45    UNCERT   4.9306e+01  transient touch at 45
+  19       343        -    UNCERT   1.3718e+01  [kernel cell, lean = 343]
+  20         0        -    UNCERT   9.7345e+01  [kernel cell, lean = 0]
+  depth 6: 0/13 defined cells certify at 600; median stable K among certified = None; 1 model-undefined
+
+==============================================================================
+5. PSI-FORM CROSS-CHECK - same cells, psi's OWN table
+==============================================================================
+The psi modes target Delta^(d+1) psi(2^.), not the pi integer;
+certifying the pi count with psi modes would need the mu-sum /
+1/log conversion O34 never implements. So the cross-check asks
+the SAME +-0.5 question of the psi table itself: true values
+are exact prime-power sums of log p; main term is
+Delta^(d+1)[x - (1/2)log(1-x^-2)] (-log 2pi annihilated by the
+stencil; the ln2/2 jump-midpoint offset at x = 2^m likewise).
+psi cells are NOT integers, so +-0.5 has no integer meaning
+here -- this column is a parallel-behaviour check only.
+
+  computing psi(2^m) exactly from prime powers ...
+  building psi-form modes (O90.PsiModes) ...
+
+     cell      true(psi)  K_first  K_stable   |err(600)|
+--------------------------------------------------------
+   (2, 1)      undefined        -         -            -
+   (4, 1)    2.506108857        2         2   3.8388e-04
+   (8, 3)   0.8643605826        -    UNCERT   6.2028e-01
+  (20, 6)    2206.785705        -    UNCERT   1.5094e+03
+   (7, 3)    25.98564355      160       160   1.0452e-01
+  (19, 6)    6152.252674        -    UNCERT   7.5456e+02
+  (20, 0)    523956.0957      219    UNCERT   5.4073e+01
+  (20, 1)     261516.699        -    UNCERT   9.0593e+01
+  (20, 2)    130021.7112        -    UNCERT   1.4491e+02
+  (20, 3)    63847.01254        -    UNCERT   2.5936e+02
+  (20, 4)    30097.96412        -    UNCERT   4.9477e+02
+  (20, 5)    12281.00355        -    UNCERT   9.0512e+02
+
+  Read against section 2/3's pi column: agreement in which
+  cells are cheap and which resist is the cross-check; the
+  absolute K values are not comparable across forms.
+
+==============================================================================
+6. PRECISION CHECK - headline cells recomputed at dps 80
+==============================================================================
+     cell  K_stable lo  K_stable hi     |errN| lo     |errN| hi       shift
+   (4, 1)            5            5    4.0209e-01    4.0209e-01    0.00e+00
+   (8, 3)       UNCERT       UNCERT    1.7727e+00    1.7727e+00    0.00e+00
+  (20, 6)       UNCERT       UNCERT    9.7345e+01    9.7345e+01    0.00e+00
+   (7, 3)       UNCERT       UNCERT    1.5502e+00    1.5502e+00    0.00e+00
+  (19, 6)       UNCERT       UNCERT    1.3718e+01    1.3718e+01    0.00e+00
+  (20, 0)       UNCERT       UNCERT    4.2792e+00    4.2792e+00    0.00e+00
+  (20, 1)       UNCERT       UNCERT    7.5566e+00    7.5566e+00    0.00e+00
+  (20, 2)       UNCERT       UNCERT    1.2609e+01    1.2609e+01    0.00e+00
+  (20, 3)       UNCERT       UNCERT    2.2612e+01    2.2612e+01    0.00e+00
+  (20, 4)       UNCERT       UNCERT    4.0979e+01    4.0979e+01    0.00e+00
+  (20, 5)       UNCERT       UNCERT    6.8071e+01    6.8071e+01    0.00e+00
+
+  K_first/K_stable moved on 0 of 11 defined headline cells; max terminal-error shift 0.00e+00
+
+==============================================================================
+EXPLORATORY. Nothing above is a verdict. No decision rule was
+pre-registered and none fired. The reading is Julian's.
+==============================================================================
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/certification_cost_cesaro.json

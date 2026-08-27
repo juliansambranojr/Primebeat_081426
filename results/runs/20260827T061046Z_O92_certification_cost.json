@@ -1,0 +1,30 @@
+{
+  "schema_version": "1",
+  "script": "O92_certification_cost.py",
+  "script_sha256": "648ab07b12e278919b8f0c5caa7e3dbae7458a9950fb9a779d4cc76060a0d596",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O92_certification_cost.py",
+    "--taper",
+    "gaussian"
+  ],
+  "run_start_at": "2026-08-27T06:10:46.681236+00:00",
+  "run_end_at": "2026-08-27T06:11:32.382250+00:00",
+  "exit_code": 0,
+  "git_head": "6e18ec59d88b91c73aa1f2614491d5b6184dc369",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "certification_cost_gaussian.json",
+      "sha256": "1ba6397fc6dff7245f3538b299ed965a3c6788d86364ad8f02ecb85d57204a93"
+    },
+    {
+      "path": "O92_certification_cost_run2.log",
+      "sha256": "ce2f8d80aa1da02e727517f1de57b6646b03ef7ab9e799f11d6847fe91dfabdb"
+    }
+  ],
+  "files_modified": [],
+  "log": "results/O92_certification_cost_run2.log",
+  "log_sha256": "ce2f8d80aa1da02e727517f1de57b6646b03ef7ab9e799f11d6847fe91dfabdb",
+  "empty_at_snapshot": []
+}

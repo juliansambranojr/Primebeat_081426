@@ -50,6 +50,49 @@ integer Delta^(d+1) backward difference of pi(2^m) from pi2n_cache.json.
 
 K = 0 (main term alone certifies) is allowed and reported as such.
 
+THE TAPER (--taper), added for run 2/3 -- entry 203's follow-up
+----------------------------------------------------------------
+Run 1's caveat (entry 203): |err| GROWS from K ~ 200 to 600 at every depth
+under the sharp cutoff -- O34's documented non-monotone convergence -- so
+"uncertified at 600" partly reflects the truncation scheme.  A smoothed
+truncation separates "sharp-cutoff artifact" from "depth barrier".  The
+--taper flag selects how S_K truncates; the certification definitions
+(K_first, K_stable, UNCERTIFIED with terminal error) are unchanged, as is
+the main term M = Delta^(d+1) R(2^.).
+
+  sharp     S_K = sum_{k<=K} c_k.  DEFAULT.  Run 1's path, unchanged --
+            the sharp branch dispatches straight into the run-1 certify()
+            so its numbers stay identical.
+  cesaro    S_K = sum_{k<=K} (1 - k/(K+1)) c_k, the Cesaro (Fejer) mean of
+            the partial sums.  Computed exactly via the prefix sums
+            A_K = sum c_k and B_K = sum k c_k: S_K = A_K - B_K/(K+1).
+  gaussian  S_K = sum over ALL N available pairs of exp(-(gamma_k/G)^2) c_k.
+            Every pair enters with a weight; K indexes the EFFECTIVE
+            truncation through the width G.  THE K -> G MAPPING: G(K) is
+            the unique width with
+
+                sum_{k=1..N} exp(-(gamma_k/G(K))^2) = K.
+
+            Justification: the weight sum is the effective number of zero
+            pairs entering -- it reduces to the sharp count when the
+            weights are 0/1 indicators -- so K keeps run 1's meaning and
+            the two columns compare at equal spectral mass.  The sum is
+            continuous and strictly increasing in G, from 0 (G -> 0) to N
+            (G -> inf), so G(K) exists and is unique for 0 < K < N.  K = 0
+            is the empty sum; K = N is the G -> inf limit, all weights
+            exactly 1, which equals the sharp K = N sum -- the natural
+            endpoint of the family.  The table G(1..N-1) is solved once by
+            geometric bisection in float64 from the raw zero strings
+            (dps-independent, so the precision check reuses the identical
+            mapping); the mpf weights below the working resolution
+            (exponent argument > ln(10)*(dps+10)) are dropped as exact
+            zeros.
+
+Under a taper the same K_first/K_stable scan runs on the tapered error
+curve err(K) = |M + S_K - cell|.  Tapered runs write to their own default
+output (certification_cost_<taper>.json) and never touch run 1's
+certification_cost.json.
+
 THE STENCIL INDEX, gated before anything else
 ---------------------------------------------
 Entry 192's correction: `Zeros.dyadicRow` is already one backward difference,
@@ -142,6 +185,14 @@ HOW IT WAS RUN
 --------------
     python3 utilities/run.py --log results/O92_certification_cost_run1.log \
         O92_certification_cost.py
+
+    # run 2/3 -- the smoothed truncations (entry 203's follow-up):
+    python3 utilities/run.py --python .venv/bin/python \
+        --log results/O92_certification_cost_run2.log \
+        O92_certification_cost.py --taper gaussian
+    python3 utilities/run.py --python .venv/bin/python \
+        --log results/O92_certification_cost_run3.log \
+        O92_certification_cost.py --taper cesaro
 
 Direct interpreter invocation of a root O*.py is blocked by
 `utilities/hooks/check_direct_run.py`; the runner clones results/ first,
@@ -328,6 +379,138 @@ def crossings(errs, thr):
     return n
 
 
+# ------------------------------------------------------------------ tapers
+
+def scan_errs(errs, thr):
+    """K_first / K_stable / terminal scan over a precomputed error curve --
+    the identical rule certify() applies, factored out for the tapered
+    paths (certify() itself is untouched: it is run 1's sharp path)."""
+    first = None
+    for K, e in enumerate(errs):
+        if e < thr:
+            first = K
+            break
+    stable = None
+    if errs[-1] < thr:
+        K = len(errs) - 1
+        while K - 1 >= 0 and errs[K - 1] < thr:
+            K -= 1
+        stable = K
+    return first, stable, errs[-1], errs
+
+
+def cesaro_errs(M, true_v, cs):
+    """Cesaro taper: err(K) = |M + S_K - true| with
+    S_K = sum_{k<=K} (1 - k/(K+1)) c_k, K = 0..len(cs).  Computed exactly
+    via the prefix sums A_K = sum c_k and B_K = sum k c_k, so
+    S_K = A_K - B_K/(K+1) -- O(N) for the whole curve."""
+    base = M - true_v
+    errs = [fabs(base)]
+    A = mpf(0)
+    B = mpf(0)
+    for K in range(1, len(cs) + 1):
+        A += cs[K - 1]
+        B += K * cs[K - 1]
+        errs.append(fabs(base + A - B / (K + 1)))
+    return errs
+
+
+def gaussian_G_table(gamma_floats):
+    """The K -> G mapping: G(K) solves sum_{k=1..N} exp(-(gamma_k/G)^2) = K.
+
+    The weight sum is the effective number of zero pairs entering (it
+    reduces to the sharp count for 0/1 indicator weights), continuous and
+    strictly increasing in G from 0 (G -> 0) to N (G -> inf), so G(K)
+    exists and is unique for 0 < K < N.  Solved by geometric bisection in
+    float64 from the raw zero ordinates -- dps-independent, so the
+    precision check reuses the identical table.  table[0] and table[N]
+    are None: K = 0 is the empty sum, K = N the G -> inf limit (all
+    weights exactly 1, equal to the sharp K = N sum)."""
+    import math as fmath
+    N = len(gamma_floats)
+
+    def wsum(G):
+        s = 0.0
+        for g in gamma_floats:
+            a = (g / G) * (g / G)
+            if a < 700.0:
+                s += fmath.exp(-a)
+        return s
+
+    table = [None] * (N + 1)
+    lo_seed = 1e-3
+    for K in range(1, N):
+        lo, hi = lo_seed, 1e9          # G(K) increases in K: seed lo there
+        if wsum(lo) > K:
+            lo = 1e-6
+        for _ in range(120):
+            mid = fmath.sqrt(lo * hi)
+            if wsum(mid) < K:
+                lo = mid
+            else:
+                hi = mid
+            if hi - lo <= 1e-13 * hi:
+                break
+        table[K] = fmath.sqrt(lo * hi)
+        lo_seed = table[K]
+    return table
+
+
+def gaussian_weight_rows(gammas, G_table):
+    """Per-K weight vectors at the CURRENT mp.dps.  Row K holds
+    w_k = exp(-(gamma_k/G(K))^2) for k = 1..n_K, truncated at the first k
+    whose exponent argument exceeds ln(10)*(dps+10) -- below the working
+    resolution; the weights decrease in k, so the tail is exact zeros.
+    Row 0 is empty (S_0 = 0); row N is None, the all-ones G -> inf limit."""
+    from mpmath import exp as mpexp
+    N = len(gammas)
+    cut = 2.302585092994046 * (mp.dps + 10)
+    gf = [float(g) for g in gammas]
+    rows = [[]]
+    for K in range(1, N):
+        G = G_table[K]
+        row = []
+        for k in range(N):
+            if (gf[k] / G) ** 2 > cut:
+                break
+            row.append(mpexp(-power(gammas[k] / mpf(G), 2)))
+        rows.append(row)
+    rows.append(None)
+    return rows
+
+
+def gaussian_errs(M, true_v, cs, weight_rows):
+    """Gaussian taper: err(K) = |M + S_K - true| with S_K the weighted sum
+    over ALL pairs, weights from weight_rows (see gaussian_weight_rows);
+    K = len(cs) uses the all-ones limit, equal to the sharp full sum."""
+    base = M - true_v
+    errs = [fabs(base)]
+    N = len(cs)
+    for K in range(1, N + 1):
+        row = weight_rows[K]
+        if row is None:                 # K = N: G -> inf, all weights 1
+            errs.append(fabs(base + sum(cs)))
+        else:
+            s = mpf(0)
+            for w, c in zip(row, cs):
+                s += w * c
+            errs.append(fabs(base + s))
+    return errs
+
+
+def certify_taper(M, true_v, cs, thr, taper="sharp", gw=None):
+    """Dispatch on the truncation scheme.  sharp goes straight into run
+    1's certify(), unchanged; the tapered paths build their error curve
+    and apply the identical scan."""
+    if taper == "sharp":
+        return certify(M, true_v, cs, thr)
+    if taper == "cesaro":
+        return scan_errs(cesaro_errs(M, true_v, cs), thr)
+    if taper == "gaussian":
+        return scan_errs(gaussian_errs(M, true_v, cs, gw), thr)
+    raise ValueError(f"unknown taper {taper!r}")
+
+
 def fmt_K(first, stable, term):
     if stable is not None:
         if first == stable:
@@ -338,8 +521,8 @@ def fmt_K(first, stable, term):
     return f"UNCERTIFIED (|err(600)| = {mp.nstr(term, 6)})"
 
 
-def cell_record(r, d, form, M, true_v, cs, thr):
-    first, stable, term, errs = certify(M, true_v, cs, thr)
+def cell_record(r, d, form, M, true_v, cs, thr, taper="sharp", gw=None):
+    first, stable, term, errs = certify_taper(M, true_v, cs, thr, taper, gw)
     ncross = crossings(errs, thr)
     rec = {
         "r": r, "d": d, "form": form, "defined": True,
@@ -376,6 +559,13 @@ def parse_args():
                     help="path to the zero list (default zeros600.json)")
     ap.add_argument("--threshold", type=str, default="0.5",
                     help="certification half-width (default 0.5)")
+    ap.add_argument("--taper", type=str, default="sharp",
+                    choices=["sharp", "gaussian", "cesaro"],
+                    help="truncation scheme for S_K (default sharp: run 1's "
+                         "path, unchanged). cesaro: S_K = sum_{k<=K} "
+                         "(1 - k/(K+1)) c_k. gaussian: all pairs enter with "
+                         "weights exp(-(gamma_k/G)^2), G(K) solved so the "
+                         "weight sum equals K (see docstring THE TAPER)")
     ap.add_argument("--precision-check", dest="pcheck", action="store_true",
                     default=True,
                     help="recompute headline cells at dps+30 and report "
@@ -392,7 +582,11 @@ def parse_args():
     ap.add_argument("--no-json", action="store_true",
                     help="do not write the results JSON")
     a = ap.parse_args()
-    if a.out == DEFAULT_OUT_JSON and a.results_dir != DEFAULT_RESULTS_DIR:
+    if a.out == DEFAULT_OUT_JSON and a.taper != "sharp":
+        # tapered runs NEVER touch run 1's certification_cost.json
+        a.out = os.path.join(a.results_dir,
+                             f"certification_cost_{a.taper}.json")
+    elif a.out == DEFAULT_OUT_JSON and a.results_dir != DEFAULT_RESULTS_DIR:
         a.out = os.path.join(a.results_dir, os.path.basename(DEFAULT_OUT_JSON))
     return a
 
@@ -466,6 +660,32 @@ def main():
           f"integer")
     print(f"  model        M(r,d) + S_K(r,d), pi form (O34's object; see "
           f"docstring)")
+    G_table = None
+    gw = None
+    if args.taper == "gaussian":
+        print(f"  taper        gaussian: S_K = sum over ALL {N} pairs of "
+              f"exp(-(gamma_k/G)^2) c_k;")
+        print(f"               G(K) solves sum of weights = K -- the weight "
+              f"sum is the effective")
+        print(f"               pair count, so K keeps run 1's meaning; "
+              f"K = {N} is the G -> inf")
+        print(f"               limit, all weights 1, equal to the sharp "
+              f"K = {N} sum")
+        print(f"  solving the K -> G table ({N - 1} float64 bisections, "
+              f"dps-independent) ...", flush=True)
+        gammas_f = [float(s) for s in raw[:args.nzeros]]
+        G_table = gaussian_G_table(gammas_f)
+        chk = [k for k in CHECKPOINTS if 0 < k < N]
+        print("  G at checkpoints: " +
+              ", ".join(f"G({k})={G_table[k]:.3f}" for k in chk))
+        print(f"  building per-K weight rows at dps {mp.dps} ...", flush=True)
+        gw = gaussian_weight_rows(gammas, G_table)
+    elif args.taper == "cesaro":
+        print(f"  taper        cesaro: S_K = sum_(k<=K) (1 - k/(K+1)) c_k "
+              f"(Fejer mean)")
+    else:
+        print(f"  taper        sharp: S_K = sum_(k<=K) c_k (run 1's path, "
+              f"unchanged)")
     print(f"  building pi-form modes (O90.PiModes, rmax {rmax}) ...",
           flush=True)
     pimodes = PiModes(gammas, rmax, all_depths)
@@ -565,9 +785,11 @@ def main():
                   f"{true_v:>8}{'undefined':>13}{'-':>9}{'-':>10}{'-':>13}")
             continue
         cs = pi_cs(r, d)
-        rec, errs = cell_record(r, d, "pi", M, mpf(true_v), cs, thr)
+        rec, errs = cell_record(r, d, "pi", M, mpf(true_v), cs, thr,
+                                args.taper, gw)
         Mli = smooth_stencil(r, d, li_vals)
-        fl, sl, tl, _ = certify(Mli, mpf(true_v), cs, thr)
+        fl, sl, tl, _ = certify_taper(Mli, mpf(true_v), cs, thr,
+                                      args.taper, gw)
         rec.update(role=role, lean=LEAN_CELL[(r, d)], regime=REGIME[(r, d)],
                    M_li=float(Mli), li_minus_R_gap=float(Mli - M),
                    K_first_li=fl, K_stable_li=sl,
@@ -610,9 +832,11 @@ def main():
         true_v = table_cell(pi, r, d)
         M = smooth_stencil(r, d, R_vals)
         cs = pi_cs(r, d)
-        rec, errs = cell_record(r, d, "pi", M, mpf(true_v), cs, thr)
+        rec, errs = cell_record(r, d, "pi", M, mpf(true_v), cs, thr,
+                                args.taper, gw)
         Mli = smooth_stencil(r, d, li_vals)
-        fl, sl, tl, _ = certify(Mli, mpf(true_v), cs, thr)
+        fl, sl, tl, _ = certify_taper(Mli, mpf(true_v), cs, thr,
+                                      args.taper, gw)
         rec.update(M_li=float(Mli), li_minus_R_gap=float(Mli - M),
                    K_first_li=fl, K_stable_li=sl,
                    terminal_abs_err_li=float(tl))
@@ -670,7 +894,8 @@ def main():
                 print(f"{r:>4}{true_v:>10}{'-':>9}{'-':>10}{'-':>13}  "
                       f"model undefined (stencil reaches m = 0)")
                 continue
-            rec, _ = cell_record(r, d, "pi", M, mpf(true_v), pi_cs(r, d), thr)
+            rec, _ = cell_record(r, d, "pi", M, mpf(true_v), pi_cs(r, d),
+                                 thr, args.taper, gw)
             rec["li_minus_R_gap"] = float(smooth_stencil(r, d, li_vals) - M)
             rows_d.append(rec)
             kf = "-" if rec["K_first"] is None else rec["K_first"]
@@ -743,7 +968,8 @@ def main():
                       f"{'-':>13}")
                 continue
             cs = [-2 * mre(z) for z in psimodes.amps(r, d)]
-            first, stable, term, errs = certify(M, true_v, cs, thr)
+            first, stable, term, errs = certify_taper(M, true_v, cs, thr,
+                                                      args.taper, gw)
             row = {"r": r, "d": d, "form": "psi", "defined": True,
                    "true_psi": float(true_v), "M": float(M),
                    "K_first": first, "K_stable": stable,
@@ -774,6 +1000,11 @@ def main():
         gam_hi = [mpmathify(s) for s in raw[:args.nzeros]]
         pimodes_hi = PiModes(gam_hi, rmax, all_depths)
         R_hi = [None] + [riemannr(power(mpf(2), m)) for m in range(1, rmax + 1)]
+        gw_hi = None
+        if args.taper == "gaussian":
+            print(f"  rebuilding per-K weight rows at dps {hi} (same K -> G "
+                  f"table) ...", flush=True)
+            gw_hi = gaussian_weight_rows(gam_hi, G_table)
         print(f"{'cell':>9}{'K_stable lo':>13}{'K_stable hi':>13}"
               f"{'|errN| lo':>14}{'|errN| hi':>14}{'shift':>12}")
         max_shift = 0.0
@@ -784,7 +1015,8 @@ def main():
                 continue
             true_v = table_cell(pi, r, d)
             cs = [-2 * mre(z) for z in pimodes_hi.amps(r, d)]
-            first_hi, stable_hi, term_hi, _ = certify(M, mpf(true_v), cs, thr)
+            first_hi, stable_hi, term_hi, _ = certify_taper(
+                M, mpf(true_v), cs, thr, args.taper, gw_hi)
             lo = next(x for x in (cells_out + ladder_out)
                       if x.get("defined") and x["r"] == r and x["d"] == d)
             shift = abs(float(term_hi) - lo["terminal_abs_err"])
@@ -825,6 +1057,7 @@ def main():
                 "nzeros": N,
                 "rmax": args.rmax,
                 "background_depths": bg_depths,
+                "taper": args.taper,
                 "ladder_r": LADDER_R,
                 "ladder_depths": LADDER_DEPTHS,
                 "threshold": float(thr),
@@ -854,6 +1087,22 @@ def main():
                                      for (r, d), v in LEAN_CELL.items()},
                 "regime": {f"{r},{d}": v for (r, d), v in REGIME.items()},
                 "model_undefined_reason": MODEL_UNDEFINED,
+                "taper": {
+                    "sharp": "S_K = sum_{k<=K} c_k (run 1's path)",
+                    "cesaro": ("S_K = sum_{k<=K} (1 - k/(K+1)) c_k, via "
+                               "prefix sums A_K - B_K/(K+1)"),
+                    "gaussian": ("S_K = sum over ALL pairs of "
+                                 "exp(-(gamma_k/G)^2) c_k; G(K) solves "
+                                 "sum of weights = K (the weight sum is "
+                                 "the effective pair count); K = N is the "
+                                 "G -> inf limit, all weights 1, equal to "
+                                 "the sharp K = N sum"),
+                    "in_force": args.taper,
+                    "S_600_note": ("the S_600 field in cell records is the "
+                                   "raw untapered full sum; under a taper "
+                                   "the terminal model value is M + the "
+                                   "tapered S at K = N"),
+                },
                 "prediction_under_test": (
                     "entry 201: O34's sign-flip at (25,21) predicts K_cert "
                     "blows up with depth, possibly beyond 600 at (20,6); a "
@@ -870,6 +1119,14 @@ def main():
                 "ladder_r20": ladder_out,
                 "background": {str(d): bg_summary[d] for d in bg_summary},
                 "precision_check": pcheck,
+                "gaussian_mapping": (None if G_table is None else {
+                    "definition": ("G(K) solves "
+                                   "sum_{k=1..N} exp(-(gamma_k/G)^2) = K; "
+                                   "float64 geometric bisection on the raw "
+                                   "zero ordinates, dps-independent"),
+                    "G_of_K": [None if g is None else float(g)
+                               for g in G_table],
+                }),
             },
             "rows": {
                 "targets_controls": cells_out,
