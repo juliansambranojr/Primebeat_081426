@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 201: joint reading of the Shannon/GUE/zeta artifacts — zero as aimed phase event; certification arrow runs arithmetic -> spectrum; O64's Poisson arm exits at 0.102 vs GUE 0.106 (export after band-dependence check); density and mass choose different bases
+- [open]   2026-08-27  entry 201: APPROVED O92 certification cost — min K zeros to pin a cell to +/-0.5; bounded K at (20,6) falsifies the arrow
+- [open]   2026-08-27  entry 201: APPROVED O93 overlap identity — sqrt2 (34,11) vs 2 (20,6) phase correlation; verified in O47 JSON: 3.0 log2 overlap, 0.545 of shorter; two frac=1.0 containment pairs also unexamined
 - [open]   2026-08-27  entry 200: the_container's adjudication 001 discharges its ONLY premise P1 with Primebeat's correction entries — this notebook is load-bearing for a kernel-checked claim about generators, and entry 144's posit is that in its first live instance
 - [open]   2026-08-27  entry 200: LeanCert ML modules (Attention, Softmax, LayerNormAffine, Network) are in lean_stage3's dependency closure, NOT imported by Stage3 — present but not load-bearing
 - [open]   2026-08-27  entry 200: convergence.md + O40/O41 is the bench's transfer template — derive the symbol, measure the zero locus; any future 'does this bear on X' takes that shape rather than a sentence

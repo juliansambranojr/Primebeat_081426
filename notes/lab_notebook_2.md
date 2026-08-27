@@ -16,6 +16,91 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 201 — joint reading of the Shannon/GUE/zeta artifacts; two instruments approved
+type: motivation
+refs: 103, 193, 196, 199, 200
+
+A read-only agent was pointed at the information-theoretic artifacts —
+`lean/Nyquist.lean`, `lean/Chain.lean`, O90/O91, O64, O25, O34, O45's
+JSON, O47's JSON — with Julian's frame (the table, Shannon and the
+zeta zeros as the container) and asked what they imply jointly.
+EXPLORATORY throughout; the report is chat-side, this entry keeps what
+is load-bearing.
+
+**Joint inferences.**
+
+1. *A table zero is a phase event in a fixed ensemble.* O91's
+degenerate arm proves the magnitude profile at fixed depth is
+identical at every `r`; the only degree of freedom separating
+`(20,6)` from `(19,6)` is phase. O90 measures the outcome: the zero
+is a large aimed residual — net `|S| = 4344.9` landing exactly on
+what the pair identity demands, at the 79th percentile of Neff.
+
+2. *The certification arrow runs from arithmetic to spectrum.* O25:
+one zero buys 10% relative accuracy nearly free; integer-exact
+accuracy INVERTS at `x = 1030`, 4.07 zeros per prime at `x = 10⁴`.
+O34: 600 zero pairs recover only 80–86% of the `d = 6` residual,
+non-monotonically. A table zero is integer-exact, so the count
+certifies it for free while the zeta code approaches at unbounded
+rate. The cell is a constraint ON the spectrum rather than a readout
+FROM a truncation.
+
+3. *O64 run 1's sharpest number, restated for export:* a Poisson arm
+entered the pipeline at `frac<0.5 = 0.372` and exited at **0.102**,
+where GUE is 0.106. A resolution-limited channel fabricated level
+repulsion within 0.004 of the GUE value from memoryless input. The
+class is known (missing-level corrections, Bohigas–Pato); the
+instance is sharp. The near-coincidence with GUE itself needs a
+band-dependence check before it is ever quoted.
+
+4. *Density and mass choose different bases* (O47 × O45): exact-zero
+density rises monotonically with coarseness and peaks at base 2; MASS
+peaks off it — `√2` holds ranks 1 and 2 (`S = 1,371,038` and
+`651,298`) against `(20,6)`'s third at `492,384`. Base 2 is the
+boundary of the exact-zero phenomenon rather than its center of mass.
+
+5. *Unexamined micro-fact, verified in the JSON:* O47's
+`top_window_overlaps` — `√2 (34,11)`, the pooled rank-1 zero,
+overlaps `2 (20,6)` by 3.0 log₂ units, 0.545 of the shorter window;
+`√2` is base 2's degree-2 refinement exactly. Two of the three
+heaviest cancellations in the census sit on overlapping stretches of
+the prime field seen by a ladder and its half-step refinement. The
+same table holds two pairs at `frac_of_shorter = 1.0` — full
+containment — also never examined.
+
+**Novelty, priced.** The stencil-lattice = aliasing-lattice identity
+is synthesis of known halves (Flajolet's lattice; Shannon), proved at
+both ends in the kernel. O25's curve is textbook truncation economics
+re-measured. The zero-as-aimed-net and density/mass split are novel
+at object level, standard in depth. Nothing here touches a recognized
+open problem: Montgomery/GUE is touched at n = 37 through a
+verified-faithful channel; RH is not moved.
+
+**LLM-side exports, priced as experiments not results:** RoPE is a
+geometric frequency ladder, so `Nyquist.aliases_of_offset` transfers
+verbatim to positional encodings, with O18's blind-singly /
+sighted-jointly result as the tested prior; O91's degeneracy audit
+transfers to residual-stream Neff measurements (LayerNorm pins norms
+the way the ψ form pins `|z|`); and published RMT-spectra claims about
+neural nets, made through Lanczos-class estimators, owe a three-arm
+O64-style audit.
+
+**Approved by Julian, in order:**
+
+1. **O92 — certification cost.** For each cell, the minimum K such
+   that the K-zero model pins `Δ^(d+1)π(2^·)` to within ±0.5. O34's
+   sign-flip at `(25,21)` predicts K blows up with depth; **a bounded
+   K at `(20,6)` falsifies inference 2**, which is what makes it a
+   test.
+2. **O93 — the overlap identity.** O90's modes generalized to base
+   `√2`; circular phase correlation between `√2 (34,11)` and
+   `2 (20,6)` against matched-depth background pairs. Positive means
+   one cancellation event seen at two resolutions. **The √2 table's
+   stencil convention must be verified against known cells before
+   any mode is built** — entry 192's exponent trap, new base.
+
+---
+
 ## 2026-08-27 — Entry 200 — this bench's correction entries are load-bearing for a kernel-checked claim about generators
 type: result-triage
 refs: 146, 177, 195, 199
