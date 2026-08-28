@@ -29,6 +29,9 @@ Reads with: O67_conditional_last_zero.py, notes/lab_notebook_2.md entries
 """
 import json, math, pathlib
 import mpmath as mp
+import sys as _sys
+_sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from utilities.resultsguard import guarded_write
 
 _HERE = pathlib.Path(__file__).resolve().parent
 mp.mp.dps = 40
@@ -68,7 +71,29 @@ def R_of(d, C, k, x0):
     return None
 
 
+# Cells entry 118 skipped: k=2 with C between 1000 and 1e6. Slice 3 (entry
+# 230) delivers a psi-side constant that lands there after the
+# C_pi = 3*C_psi + 13 inflation of entry 129, so the row that governs the
+# substitute route was never measured. --extra adds them; the default GRID
+# above is untouched and its rows reproduce byte-for-byte.
+EXTRA_GRID = [
+    {"name": "slice3_1e4", "C": 1.0e4, "k": 2, "x0": 2.0 ** 30},
+    {"name": "slice3_1e5", "C": 1.0e5, "k": 2, "x0": 2.0 ** 30},
+    {"name": "slice3_1e6", "C": 1.0e6, "k": 2, "x0": 2.0 ** 30},
+]
+
+
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(description="O68 tolerance table")
+    ap.add_argument("--extra", action="store_true",
+                    help="also run EXTRA_GRID, the k=2 cells between "
+                         "C=1000 and C=1e6 that entry 118 skipped")
+    ap.add_argument("--out", default=None, help="results path override")
+    ap.add_argument("--no-json", action="store_true")
+    args = ap.parse_args()
+    grid = GRID + (EXTRA_GRID if args.extra else [])
+
     print("O68 — R(d) under |pi - li| <= C*sqrt(x)*(log x)^k for x >= x0.")
     print("Row 1 must reproduce O67; the rest map the tolerance.\n")
 
@@ -76,7 +101,7 @@ def main():
     o67_R = {row["d"]: row["R"] for row in o67["rows"]}
 
     out_rows = []
-    for g in GRID:
+    for g in grid:
         Rs = {d: R_of(d, g["C"], g["k"], g["x0"]) for d in range(1, DMAX + 1)}
         depth = 0
         for d in range(1, DMAX + 1):
@@ -102,15 +127,21 @@ def main():
     print("the decomposition target (C computed in Lean, k=2) must land at a")
     print("row whose depth_covered is worth the build.")
 
-    (_HERE / "results" / "weak_bound_tolerance.json").write_text(json.dumps(
-        {"schema_version": "1", "script": "O68_weak_bound_tolerance.py",
-         "exploratory": True, "prereg": None,
-         "params": {"dps": 40, "o43_extent": O43_EXTENT, "dmax": DMAX,
-                    "rmax": RMAX, "main_constant": 0.5,
-                    "wedge": "d <= 0.34*(r-d-1)",
-                    "window_floor": "r-d-1 >= log2(x0)"},
-         "grid": out_rows}, indent=2))
-    print(f"\nwrote {_HERE / 'results' / 'weak_bound_tolerance.json'}")
+    if args.no_json:
+        return 0
+    _out = pathlib.Path(args.out) if args.out else (
+        _HERE / "results" / "weak_bound_tolerance.json")
+    payload = {
+        "schema_version": "1", "script": "O68_weak_bound_tolerance.py",
+        "exploratory": True, "prereg": None,
+        "params": {"dps": 40, "o43_extent": O43_EXTENT, "dmax": DMAX,
+                   "rmax": RMAX, "main_constant": 0.5,
+                   "wedge": "d <= 0.34*(r-d-1)",
+                   "window_floor": "r-d-1 >= log2(x0)",
+                   "extra_grid": bool(args.extra)},
+        "grid": out_rows}
+    guarded_write(payload, str(_out))
+    print(f"\nwrote {_out}")
 
 
 if __name__ == "__main__":

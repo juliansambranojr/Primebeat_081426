@@ -17,6 +17,12 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 231: the budget closes between C=1e3 (depth 6, passes) and C=1e4 (depth 5, fails) — a FACTOR OF TEN is the whole remaining gap, and it is measured rather than argued
+- [open]   2026-08-27  entry 230: SLICE 3 GREEN — under RH the contour stops at 1/2+1/log X and never passes a zero, so hEF's walk is unnecessary; 20000*(log X)^2 on the zeta'/zeta line, exponent 2, route lives
+- [open]   2026-08-27  entry 230: the literal log^2|t| target was FALSE for any method (pole at an ordinate) — the deliverable shape is log X * log t; nobody could have proved what the leaf implied
+- [open]   2026-08-27  entry 230: the docstring was a consensus price and Julian was right to reject the concession — second dated instance after the Schoenfeld 'months, minimum' session
+- [open]   2026-08-27  entry 230: entries 158/159's tangency repair is what makes it work — jensenF's 2z rescale gives r'=3/4 independent of X where upstream's 3/2+it centre needs r'->1
+- [open]   2026-08-27  entry 230: ARCHITECTURE, Julian's call — the substitute retires hNT from the psi path; {hRH,hEF,hNT} collapses to {hRH,StmtLogDerivRH}
 - [open]   2026-08-27  entry 229: slice warning shipped in the PreToolUse hook — advisory, fires on entry 219's actual defect, silent on both legitimate shapes; deliberately does NOT detect aggregation because both real instances aggregated BY EYE with no max() in the command
 - [open]   2026-08-27  entry 229: it is UNSCORED and self-scores — appends to utilities/slice_observations.jsonl (gitignored) so the corpus entry 225 lacked accumulates; score it later and tighten or delete
 - [open]   2026-08-27  entry 229: the diagnosis — errors sat on the TRIVIAL steps, not the hard ones; difficulty summons care and cheap steps summon none, so 'try harder' does nothing and only an instrument helps

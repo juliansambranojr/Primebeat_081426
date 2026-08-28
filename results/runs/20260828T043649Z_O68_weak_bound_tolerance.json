@@ -1,0 +1,21 @@
+{
+  "schema_version": "1",
+  "script": "O68_weak_bound_tolerance.py",
+  "script_sha256": "fdd8a8db0febf00a3a781b2971898189f5aef040b21c05b401ede4c694d4899a",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O68_weak_bound_tolerance.py",
+    "--out",
+    "/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/o68_default.json"
+  ],
+  "run_start_at": "2026-08-28T04:36:49.782968+00:00",
+  "run_end_at": "2026-08-28T04:36:49.978392+00:00",
+  "exit_code": 0,
+  "git_head": "6df22b04f1ae9035d0054d49e90665679d486a78",
+  "git_dirty": true,
+  "files_created": [],
+  "files_modified": [],
+  "log": "../../../../private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/o68_default.log",
+  "log_sha256": "47c98f5ac555a3a6a7fd561098b942dfe57f7986cfe097b4f1e41b4723bca93d",
+  "empty_at_snapshot": []
+}

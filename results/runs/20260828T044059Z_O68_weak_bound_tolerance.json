@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "script": "O68_weak_bound_tolerance.py",
+  "script_sha256": "03f0fc08666db083bb65a410686dba457c3845de8e3fbe48f86bc004c6a409d1",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O68_weak_bound_tolerance.py",
+    "--extra",
+    "--out",
+    "results/weak_bound_tolerance_extra.json"
+  ],
+  "run_start_at": "2026-08-28T04:40:59.093071+00:00",
+  "run_end_at": "2026-08-28T04:40:59.379464+00:00",
+  "exit_code": 0,
+  "git_head": "6df22b04f1ae9035d0054d49e90665679d486a78",
+  "git_dirty": true,
+  "files_created": [],
+  "files_modified": [
+    {
+      "path": "weak_bound_tolerance_extra.json",
+      "sha256_before": "52566ef5dc5100218e604af2bc4f3995b851b1164bee59836471907ad5bc8ff2",
+      "sha256_after": "5f91e869b4018d2b7a16974de124faa385614f5f06c749d48fffdbf1ce90c972",
+      "archived_to": "results/archive/weak_bound_tolerance_extra_20260828T044059Z_52566ef5.json"
+    },
+    {
+      "path": "O68_weak_bound_tolerance_run2.log",
+      "sha256_before": "592cde25fa583a03732c799a4a99c25f948b6b4a4ddb2d57f66a5cb88c378e35",
+      "sha256_after": "12ab621f4e7a7b6ff62a8916bf51ede7556dcb15a5f6043e70b575be572ddcd9",
+      "archived_to": "results/archive/O68_weak_bound_tolerance_run2_20260828T044059Z_592cde25.log"
+    }
+  ],
+  "log": "results/O68_weak_bound_tolerance_run2.log",
+  "log_sha256": "12ab621f4e7a7b6ff62a8916bf51ede7556dcb15a5f6043e70b575be572ddcd9",
+  "empty_at_snapshot": []
+}

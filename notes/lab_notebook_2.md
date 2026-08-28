@@ -16,6 +16,127 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 231 — the cells entry 118 skipped: the exponent survives, the constant does not
+type: run
+refs: 118, 129, 130, 230
+
+`O68_weak_bound_tolerance.py --extra`, EXPLORATORY. Entry 230 delivers a
+ψ-side constant that lands between `C = 1000` and `C = 1e6` at `k = 2`
+after entry 129's `C_π = 3C_ψ + 13` inflation — a range entry 118 never
+measured. Measured now.
+
+**Additive change, default verified unchanged.** `--extra`, `--out` and
+`--no-json` added; `GRID` untouched. The default path re-run through
+`utilities/run.py` reproduces the committed
+`results/weak_bound_tolerance.json` on **all 6 rows** — every `R(d)` and
+every `depth_covered` identical — and the O67 sanity gate still returns
+True.
+
+```text
+   C = 1e3   k=2   log2(x0)=30   R(1)=64 .. R(8)=101   depth_covered = 6
+   C = 1e4   k=2   log2(x0)=30   R(1)=72 .. R(8)=108   depth_covered = 5
+   C = 1e5   k=2   log2(x0)=30   R(1)=80 .. R(8)=115   depth_covered = 3
+   C = 1e6   k=2   log2(x0)=30   R(1)=87 .. R(8)=122   depth_covered = 2
+```
+
+**The gate is depth ≥ 6 (entry 118), so the budget closes between
+`C = 1e3` and `C = 1e4`.** A factor of ten, and entry 230's assembly
+lands on the wrong side of it.
+
+**What this does and does not settle.** The exponent was the thing in
+doubt and entry 230 cleared it: `k = 2` survives. The constant is now
+the whole remaining gap, and it is a *measured* gap rather than an
+argued one — the first time this route has had a number to close rather
+than a difficulty to price.
+
+Artifacts: `results/weak_bound_tolerance_extra.json`, log
+`results/O68_weak_bound_tolerance_run2.log`, manifest under
+`results/runs/`.
+
+---
+
+## 2026-08-27 — Entry 230 — slice 3: the docstring was a consensus price, and the log² shape was never attainable
+type: formalization
+refs: 116, 118, 129, 130, 158, 159
+
+Julian rejected a concession. The hEF leaf's docstring reads "every
+proof assistant lacks it; IEANTN targets it"; an agent read that,
+declared the work impossible, and stopped. His objection: that sentence
+is a consensus price formed before this repository existed, and the
+pieces may already be here. He was right, and this is the second dated
+instance of the same error — the 2026-08-24 session opened with
+"formalizing Schoenfeld is out of scope, months minimum" and closed
+with the Stirling half proved.
+
+**Two grep errors preceded the finding, both the same shape.** A count
+of `sorry` in `lean_stage3/Stage3/` returned 15 — every one the phrase
+"sorry-free" in a docstring. Stage3 has **zero** actual sorries, 77
+theorems, with its open surface stated as named `Stmt*` Props rather
+than holes. The state was read from prose twice before being read from
+the files.
+
+**What the re-pricing found.** The docstring conflates the explicit
+formula with the contour machinery. The machinery is done and
+sorry-free upstream — `SmoothedChebyshevPull1`, `ZetaBoxEval`,
+`SmoothedChebyshevClose`, `I1Bound`…`I9Bound`, `FinalBound`, all at
+`[propext, Classical.choice, Quot.sound]`. And
+`SmoothedChebyshevPull1`'s only zeta-side hypothesis is holomorphy of
+`ζ'/ζ` on the box, **which under RH is free for any `σ₁ > 1/2`** — RH
+puts every zero on the line, so the contour stops at
+`1/2 + 1/log X` and never walks past one. The zero sum never appears.
+Twenty lines, green: `holo_logDerivZeta_of_RH`.
+
+So hEF exists in the ledger to survive a walk that RH makes
+unnecessary. `StmtExplicitFormula` as literally written stays NO-GO —
+no contour pull across the strip collecting zero residues exists
+anywhere, and `Kadiri.hadamard_identity` is sorried — but the consumer
+is `StmtPsiWeak`, and a substitute delivers it from RH alone.
+
+**Slice 3, the falsifier, is green.** Three theorems, no sorries, house
+axiom baseline, in `results/scratch_lean/slice3.lean`:
+
+```text
+logDerivZeta_crude    ‖ζ'/ζ(σ₁+it)‖ ≤ 3300·log(84t) + (15 log t + 73)/(σ₁−1/2)
+logDerivZeta_sq_at_X  at σ₁ = 1/2 + 1/log X, 2 ≤ t ≤ X:  ≤ 20000·(log X)²
+logDerivZeta_sq_at_t  at σ₁ = 1/2 + 1/log t:             ≤ 40000·(log t)²
+```
+
+**The literal target was false and no formalization could have
+delivered it.** `‖ζ'/ζ‖ ≤ C·log²|t|` at fixed numeral `C` fails at any
+`t` equal to an ordinate of a zero: `ζ'/ζ` has a simple pole there, so
+the left side grows like `1/δ = log X` while the right side is fixed.
+What is deliverable is the product `log X · log t`, which on the
+consumer's range — fixed vertical line, `2 ≤ t ≤ X` — **is exponent
+2.** The route lives.
+
+**Why the radii squeeze does not bite, which is the load-bearing
+detail.** It *does* bite upstream's `LogDerivZetaFinalBound`, centred
+at `3/2 + it`: reaching `σ₁` needs `r' → 1` and `16r²/(r−r')³` blows
+up. Stage3's `jensenF`'s `2z` rescale puts `σ₁ ≈ 1/2` at
+`Re z ≈ −3/4`, so `r' = 3/4` suffices **independent of X**. Every
+radius is a fixed numeral: `r = 7/8` is exactly
+`zeta_local_zero_count`'s `7/4` window, `R = 15/16` is exactly
+`jensenF_bound`'s reach. **This is the tangency repair paid for at
+entries 158/159, and it is what makes the substitute possible.**
+
+**Architecture consequence, Julian's to decide.** The substitute
+retires hNT from the ψ path — no zero sum means no zero count — so
+`{hRH, hEF, hNT}` collapses to `{hRH, StmtLogDerivRH}`. The
+Stirling/Arg work stands on its own but stops being load-bearing for
+Schoenfeld.
+
+**And it does not weld Superposition.**
+`Superposition.tableFrom_eq_modeSum_reweighted`'s hypothesis is an
+*exact* identity at every integer over a finite Finset. A truncated
+formula with a remainder cannot discharge it, and no version of hEF
+could. That weld is a separate problem.
+
+Banked out of session tmp to `results/scratch_lean/` — an earlier
+35-line `hgap` proof was lost exactly that way today. Reading is entry
+231.
+
+---
+
 ## 2026-08-27 — Entry 229 — a gate on the cheap step, and the honest half that cannot have one
 type: instrument-fix
 refs: 219, 222, 225, 228

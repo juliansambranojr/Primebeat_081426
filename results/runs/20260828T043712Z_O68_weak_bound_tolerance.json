@@ -1,0 +1,27 @@
+{
+  "schema_version": "1",
+  "script": "O68_weak_bound_tolerance.py",
+  "script_sha256": "fdd8a8db0febf00a3a781b2971898189f5aef040b21c05b401ede4c694d4899a",
+  "interpreter": ".venv/bin/python",
+  "argv": [
+    "O68_weak_bound_tolerance.py",
+    "--extra",
+    "--out",
+    "/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/4d0caf67-f72a-4554-a9cc-a363251155d9/scratchpad/o68_extra.json"
+  ],
+  "run_start_at": "2026-08-28T04:37:12.426244+00:00",
+  "run_end_at": "2026-08-28T04:37:12.708305+00:00",
+  "exit_code": 0,
+  "git_head": "6df22b04f1ae9035d0054d49e90665679d486a78",
+  "git_dirty": true,
+  "files_created": [
+    {
+      "path": "O68_weak_bound_tolerance_run2.log",
+      "sha256": "592cde25fa583a03732c799a4a99c25f948b6b4a4ddb2d57f66a5cb88c378e35"
+    }
+  ],
+  "files_modified": [],
+  "log": "results/O68_weak_bound_tolerance_run2.log",
+  "log_sha256": "592cde25fa583a03732c799a4a99c25f948b6b4a4ddb2d57f66a5cb88c378e35",
+  "empty_at_snapshot": []
+}
