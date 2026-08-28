@@ -139,5 +139,5 @@ mechanical_output:   inconclusive
      next step is the ceiling ramp: ~227 union rungs at 2^44.)
 post_compute_sha256: 5460b2499e359818ac59bdabf0441fc9308b25f31e81f03d5f152374489259a8
 sidecar_match:       prereg sha256 877f150d8b96e92b9f73cdd8ba8c8546c28fd5727e292990167cce42a0b1af19 verified OK against sidecar
-verdict:
+verdict: inconclusive — detection gate failed; ceiling ramp is the recorded next step. (Julian, 2026-08-28)
 ```

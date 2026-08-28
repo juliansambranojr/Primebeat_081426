@@ -390,5 +390,5 @@ noted discrepancy:   the locked text quotes the placebo median of D as
                      side-selection never ran because p > alpha. Recorded
                      rather than corrected: a locked prereg is immutable
                      except for this section.
-verdict:
+verdict: no_step. (Julian, 2026-08-28)
 ```

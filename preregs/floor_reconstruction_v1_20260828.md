@@ -98,4 +98,4 @@ leaves `inconclusive` a real region, not a technicality.
   record heading) hashes to the committed sidecar
   28a5f736f7ddef757553c145274671d8a6aede4e8f6cf801deacbe30dc3c3cf7,
   and the pre-image is committed at da9c79b.
-- verdict:
+- verdict: floor_deterministic — blind arm was the x-range; T-axis untested, v2 on new zeros. (Julian, 2026-08-28)
