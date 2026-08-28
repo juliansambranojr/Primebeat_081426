@@ -16,6 +16,78 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 241 — what the two Lean artifacts are, and what they are for
+type: motivation
+refs: 237, 240
+
+Written to be quoted. When the question "what are these two files" comes up
+again — after a compaction, in a new session, or from a reader who was not
+here — this entry is the answer, and it should be cited rather than
+regenerated.
+
+**They are two different things and they do not touch each other.**
+
+---
+
+### `lean/Elephant.lean` — what the table IS
+
+The dyadic table is the Euler factor at 2, applied `d` times.
+
+That single fact answers the questions the bench kept circling:
+
+- **Why base 2 and not base 6.** 6 has no Euler factor. A table built on it is
+  deaf to the zeros — measured at `+4.2` against base 2's `+7751`, on 100,000
+  zeros (`analysis/2026-08-28/bridges.py`). The law is `Λ(b) ≠ 0`, i.e. `b` a
+  prime power (`filter_couples_iff_isPrimePow`).
+- **Why the γ-structure has spacing `2π/log 2`.** That is where `Sym` vanishes
+  (`sym_eq_zero_iff`), and `lattice_step` gives the step.
+- **Why the C2 band, the gain, the Nyquist bound and the stencil kept turning
+  out to be versions of each other.** They are the modulus, the power, the
+  zeros and the basis of one function.
+
+That question is closed, and closed in a form that does not depend on anyone
+remembering the argument. 29 theorems, `import Mathlib` and nothing from this
+repo, 0 sorries.
+
+---
+
+### `lean_stage3/Stage3/LineBound.lean` — a block removed
+
+This is **not about the table.** It came out of the constant-shaving slices
+and landed somewhere else: a statement about `ψ` and `ζ`.
+
+What it does for the repo is remove a block. Stage 3 exists to reach a
+census-usable `π − Li` bound; hEF was what stood in the way; that consumer no
+longer needs it (`stmtPsiWeak_of_RH`, entry 240). Real, and independent of the
+table.
+
+---
+
+### The honest part
+
+**The two files do not feed each other.** `Elephant.lean` does not feed
+Stage 3. `LineBound.lean` does not use the table. Both are about primes and ζ,
+which is not the same as being about each other.
+
+**The thing tracked since the beginning is still open.** `Elephant.lean`
+proves what the filter *is*. It says nothing about why the filtered sum hits
+exactly zero at `(2,1)`, `(4,1)`, `(8,3)`, `(20,6)`. Entry 236's null found
+those cells unremarkable — 4 at value 0 against 5 at +1 and 4 at +2, across
+1677 cells. That is evidence, not an explanation, and the null may be the
+wrong question.
+
+---
+
+### What the files are FOR
+
+They are the part that cannot drift.
+
+Everything else the assistant produces is subject to misremembering a section
+letter, counting a `sorry` inside a comment, or reading a maximum off a
+six-row slice of a seventeen-row table. All three happened in this repo, the
+last two on 2026-08-27 and 2026-08-28. The Lean file is the only artifact
+where being wrong is not available. That is why the day was worth spending.
+
 ## 2026-08-28 — Entry 240 — StmtPsiWeak proved under RH, sorry-free, with no explicit formula
 type: formalization
 refs: 239

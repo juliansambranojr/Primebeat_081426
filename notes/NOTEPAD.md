@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 241: QUOTABLE — what the two Lean artifacts are. Elephant.lean = what the table IS (the Euler factor at 2, applied d times); LineBound.lean = a block removed (StmtPsiWeak without hEF). Cite this entry rather than regenerating the answer
+- [open]   2026-08-28  entry 241: the two files DO NOT feed each other — Elephant doesn't feed Stage3, LineBound doesn't use the table. Both about primes and zeta is not the same as being about each other
+- [open]   2026-08-28  entry 241: the four zeros are STILL UNEXPLAINED — Elephant proves what the filter is, nothing about why the filtered sum hits exactly zero at (2,1),(4,1),(8,3),(20,6). Entry 236's null is evidence, not explanation, and may be the wrong question
 - [open]   2026-08-28  entry 240: StmtPsiWeak IS PROVED under RH alone — RHPull.stmtPsiWeak_of_RH, guard_msgs-pinned at [propext, Classical.choice, Quot.sound], no sorryAx, two clean rebuilds
 - [open]   2026-08-28  entry 240: hEF is NOT discharged and stays open in the ledger — what changed is that StmtPsiWeak no longer needs it. hNT is also unused on this route: the zero-counting enters only through a zero sum that never appears
 - [open]   2026-08-28  entry 240: every constant OBTAINED, none assumed — B, Cclose, C1, C9, Cmain/eps0 (IsBigO on 𝓝[>]0 unpacked), and a concrete C-infinity Urysohn bump normalised to mass one
