@@ -16,6 +16,81 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 257 — hEF's build order, made durable: the complete slice spec
+type: provenance
+refs: 130, 238, 256
+
+The hEF build order existed only in the session transcript (the
+2026-08-28 adversary report) — Claude-side ephemera that does not
+survive an LLM swap. Julian caught the gap: a spec being worked must be
+durable. This entry is the record; the statements below are recovered
+verbatim from the transcript, and the 1a statement is additionally
+committed as compiling Lean in `lean_stage3/Stage3/PerronKernel.lean`
+(scaffold, 2 named sorries K1/K2, assembly proved; commit `6924ea0`).
+
+**Slice 1a — the truncated Perron kernel bound. Start here.** Zeta-free,
+self-contained, provable from Mathlib alone:
+
+```text
+theorem perron_kernel_truncated {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
+    (hc : 0 < c) (hT : 1 ≤ T) :
+    ‖(2πi)⁻¹ ∫_{-T}^{T} y^(c+it)/(c+it) i dt − [1 < y]‖
+      ≤ y^c · min 1 (1/(T·|log y|))
+```
+
+Classical (Davenport ch. 17; Montgomery–Vaughan Thm 5.2, their constant
+carries a π we drop — crude-explicit). Routes: coarse branch by
+circular-arc deformation (|y^s| ≤ y^c on the arc, |1/s| = 1/R, length
+πR); decay branch by rectangles to ±∞ (horizontals ∫ y^σ dσ/T).
+Upstream probed 2026-08-28: PNT+ main's PerronFormula.lean has no
+sharp-kernel min-bound — its kernel is the smoothed x^s/(s(s+1)) — so
+no pin bump discharges this leaf. Its rectangle machinery
+(vertIntBound, contourPull, HolomorphicOn.upperUIntegral_eq_zero) is
+reusable for the decay branch.
+
+**Slice 1b — the far-terms sum.** With c = 1 + 1/log x:
+Σ_{n≥1, |log(x/n)|≥1/2} Λ(n)·(x/n)^c/(T·|log(x/n)|) ≤ c₁'·x·log(xT)²/T.
+Needs only Chebyshev-type bounds on ψ (IEANTN/Chebyshev.lean supplies).
+
+**Slice 1c — the near-diagonal term.**
+Σ_{|log(x/n)|<1/2} Λ(n)·min(1, 1/(T|log(x/n)|)) ≤ c₂'·log x, using
+|log(x/n)| ≥ |x−n|/(2x) for the nearest integer. This is where hEF's
+c₂ log x term comes from.
+
+**Slice 1 = 1a + 1b + 1c:**
+‖ψ x − (2πi)⁻¹∫_{c−iT}^{c+iT} (−ζ'/ζ)(s)·x^s/s ds‖
+  ≤ c₁'·x·log(xT)²/T + c₂'·log x.
+
+**Slice 2 — good-T selection.** ∀ T ≥ 2, ∃ T' ∈ [T, T+1], every zero
+ordinate at distance ≥ 1/(40 log T') from T'. Immediate from
+Stage3.zeta_local_zero_count (already proved here, sorry-free) by
+pigeonhole. Since hEF quantifies over all T ≥ 2, the shift T → T' is
+absorbed into c₁·x·log(xT)²/T.
+
+**Slice 3 — horizontal and left-edge bounds at T'.**
+‖ζ'/ζ(σ ± iT')‖ ≤ C·log²T' for −1 ≤ σ ≤ 2, from LogDerivZetaFinalBound
+plus slice 2's ordinate gap; for σ ≤ −1, from the functional equation.
+Both inputs sorry-free.
+
+**Slice 4 — the residue identity.** RectangleIntegral'_eq_sumResiduesIn
+applied to G(s) = (−ζ'/ζ)(s)·x^s/s on [−1, c] × [−T', T']. Poles: s = 1
+(residue x), s = 0 (residue −ζ'/ζ(0) = −log 2π), each ρ with |γ| < T'
+(simple pole of ζ'/ζ, residue −m_ρ·x^ρ/ρ). HasSimplePolesOn is
+discharged because ζ'/ζ has a simple pole at every zero regardless of
+multiplicity. Add the σ = −1 edge, fold the trivial-zero tail
+Σ x^(−2n)/(2n) = −½log(1−x⁻²) = O(1) into c₂, and the identity closes
+into StmtExplicitFormula c₁ c₂ x₁.
+
+**Honest assessment (the report's own words).** No step needs
+mathematics absent from the literature or from either library — every
+ingredient except Slice 1 is present and sorry-free in the pin, and
+slice 2's zero count was already built in this repo for a different
+purpose. Slice 1a is the load-bearing unknown: a single self-contained
+contour estimate, the piece both MediumPNT and StrongPNT were designed
+to avoid, and the right first thing to build.
+
+---
+
 ## 2026-08-28 — Entry 256 — O97: floor_deterministic on the blind range, under lock
 type: run
 refs: 247, 249, 252, 255

@@ -87,15 +87,22 @@ Vocabulary (Julian's, keep it):
         of). Not crossable-off until it has a testable statement; it stays
         here so it is not lost.
 
-## D. Ledger (unchanged by all of the above)
+## D. Ledger (updated 2026-08-28 end of day)
 
-- hEF: OPEN. Routed around, not discharged. Build order exists (adversary
-  report 2026-08-28, § separate section): slices 1a (truncated Perron kernel
-  — the ONE missing piece, zeta-free, self-contained), 1b, 1c, 2, 3, 4.
-  RH does not make 1a easier.
+- hEF: OPEN, now with a durable spec and a compiling entry point.
+  [ARTIFACTS: entry 257 (full slice build order 1a/1b/1c/2/3/4, recovered
+  from the adversary report into the notebook); lean_stage3/Stage3/
+  PerronKernel.lean (1a scaffold: statement + assembly proved, K1/K2 the
+  two remaining sorries)]. Upstream probed 2026-08-28: PNT+ main has no
+  sharp-kernel min-bound; the leaf is ours. RH does not make 1a easier.
+  Next slice: K2 (rectangle branch, reusable PNT+ machinery), then K1.
 - StmtArgCrude: OPEN, untouched.
-- The four exact zeros (2,1),(4,1),(8,3),(20,6): UNEXPLAINED. Elephant proves
-  what the filter is, not why the filtered sum vanishes there. Entry 236's
-  null says unremarkable; the null may be the wrong question.
-- Two locked preregs await Julian's verdict lines: multibase_synthesis
-  (inconclusive), dense_boundary_scan (no_step).
+- The four exact zeros: reframed by entries 253-255. The census ranks
+  them by information ((20,6) carries 2.85 digits; the rest near-free);
+  the expensive-balance family {(20,6),(39,14),(13,5)}₂ ∪ {(11,9)}₃ hugs
+  the drift-reachability frontier; every table runs the same economy.
+  The WHY is still unproved; the question is now cross-table.
+- All three verdict lines stamped by Julian 2026-08-28:
+  floor_deterministic (O97, blind-range pass), inconclusive
+  (multibase_synthesis; ceiling ramp is the recorded next step),
+  no_step (dense_boundary_scan).
