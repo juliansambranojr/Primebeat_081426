@@ -2191,3 +2191,303 @@ theorem horiz_small {X B : ℝ} (hX : 0 < X) (hLX : 5 ≤ Real.log X) (hB : 0 �
         ring
 
 end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral Filter Asymptotics
+
+/-- **Unpacking `MellinOfSmooth1c`.** It is stated as
+`(fun ε ↦ 𝓜(Smooth1 ν ε) 1 − 1) =O[𝓝[>]0] id`; this extracts a constant and a
+threshold below which the main-term correction is linear in `ε`. -/
+theorem mellin_main_const {ν : ℝ → ℝ} (diffν : ContDiff ℝ 1 ν)
+    (suppν : ν.support ⊆ Set.Icc (1/2 : ℝ) 2)
+    (mass_one : ∫ x in Set.Ioi (0:ℝ), ν x / x = 1) :
+    ∃ Cmain > 0, ∃ ε₀ > 0, ∀ ε : ℝ, 0 < ε → ε < ε₀ →
+      ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 - 1‖ ≤ Cmain * ε := by
+  have h := MellinOfSmooth1c diffν suppν mass_one
+  rw [Asymptotics.isBigO_iff] at h
+  obtain ⟨c, hc⟩ := h
+  rw [eventually_nhdsWithin_iff, Metric.eventually_nhds_iff] at hc
+  obtain ⟨δ, hδpos, hδ⟩ := hc
+  refine ⟨|c| + 1, by positivity, δ, hδpos, ?_⟩
+  intro ε hε hεδ
+  have hdist : dist ε (0:ℝ) < δ := by
+    rw [Real.dist_eq, sub_zero, abs_of_pos hε]
+    exact hεδ
+  have := hδ hdist (Set.mem_Ioi.mpr hε)
+  simp only [id_eq, Real.norm_eq_abs, abs_of_pos hε] at this
+  calc ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 - 1‖ ≤ c * ε := this
+    _ ≤ (|c| + 1) * ε := by nlinarith [le_abs_self c, hε.le]
+
+end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral Filter Asymptotics
+
+local notation "ψ" => ChebyshevPsi
+
+/-- **The contour bound at the instantiation.** `ε`-free vertical, `B/T`
+horizontals, `I₁`/`I₉` from PNT+ — all summed. -/
+theorem contour_at_instantiation (hRH : RiemannHypothesis)
+    {ν : ℝ → ℝ} {ε X T B B₁ B₉ M₂ M₈ : ℝ}
+    (ε_pos : 0 < ε) (ε_lt_one : ε < 1) (X_gt : 3 < X)
+    (hX : 0 < X) (hLX : 4 ≤ Real.log X) (hT2 : 2 ≤ T) (hTX : T ≤ X) (hB : 0 ≤ B)
+    (suppν : Function.support ν ⊆ Set.Icc (1 / 2) 2)
+    (νnonneg : ∀ x > 0, 0 ≤ ν x)
+    (mass_one : ∫ x in Set.Ioi 0, ν x / x = 1)
+    (diffν : ContDiff ℝ 1 ν)
+    (hB1 : ‖I₁ ν ε X T‖ ≤ B₁) (hB9 : ‖I₉ ν ε X T‖ ≤ B₉)
+    (hMel37 : ∀ t : ℝ, ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σRH X : ℂ) + I * (t : ℂ))‖
+              ≤ B * ‖((σRH X : ℂ)) + I * (t : ℂ)‖⁻¹)
+    (hMel8 : ∀ σ : ℝ, σRH X ≤ σ → σ ≤ 1 + 1 / Real.log X →
+      ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) + I * (T : ℂ))‖ ≤ M₈)
+    (hMel2 : ∀ σ : ℝ, σRH X ≤ σ → σ ≤ 1 + 1 / Real.log X →
+      ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) - (T : ℂ) * I)‖ ≤ M₂) :
+    ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖
+      ≤ B₁ + B₉
+        + (66600 * Real.exp 1 * B / Real.pi) * Real.sqrt X * (Real.log X) ^ 3
+        + (1 / (2 * Real.pi)) * (1 / 2)
+            * ((1996 * Real.log (84 * T) + (29 * Real.log T + 129) * Real.log X)
+                * M₈ * X ^ (1 + 1 / Real.log X))
+        + (1 / (2 * Real.pi)) * (1 / 2)
+            * ((1996 * Real.log (84 * T) + (29 * Real.log T + 129) * Real.log X)
+                * M₂ * X ^ (1 + 1 / Real.log X)) := by
+  have hT0 : (0:ℝ) < T := by linarith
+  have hsplit := pull_at_RH_abscissa hRH ε_pos ε_lt_one X X_gt hT0 hLX
+    suppν νnonneg mass_one diffν
+  have hsplit' : SmoothedChebyshev ν ε X =
+      I₁ ν ε X T - I₂ ν ε T X (σRH X) + I₃₇ ν ε T X (σRH X)
+        + I₈ ν ε T X (σRH X) + I₉ ν ε X T
+        + mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X := by
+    simpa [σRH] using hsplit
+  have hI37 := I37_sqrt_log3 hRH hX hLX hT0 hTX hB hMel37
+  have hI8 := I8_norm_le hRH hX hLX hT2 hMel8
+  have hI2 := I2_norm_le hRH hX hLX hT2 hMel2
+  have hrw : SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X
+      = I₁ ν ε X T - I₂ ν ε T X (σRH X) + I₃₇ ν ε T X (σRH X)
+        + I₈ ν ε T X (σRH X) + I₉ ν ε X T := by
+    rw [hsplit']; ring
+  rw [hrw]
+  have htri : ∀ a b c d e : ℂ,
+      ‖a - b + c + d + e‖ ≤ ‖a‖ + ‖b‖ + ‖c‖ + ‖d‖ + ‖e‖ := by
+    intro a b c d e
+    calc ‖a - b + c + d + e‖
+        ≤ ‖a - b + c + d‖ + ‖e‖ := norm_add_le _ _
+      _ ≤ (‖a - b + c‖ + ‖d‖) + ‖e‖ := by gcongr; exact norm_add_le _ _
+      _ ≤ ((‖a - b‖ + ‖c‖) + ‖d‖) + ‖e‖ := by gcongr; exact norm_add_le _ _
+      _ ≤ (((‖a‖ + ‖b‖) + ‖c‖) + ‖d‖) + ‖e‖ := by gcongr; exact norm_sub_le _ _
+      _ = ‖a‖ + ‖b‖ + ‖c‖ + ‖d‖ + ‖e‖ := by ring
+  have h := htri (I₁ ν ε X T) (I₂ ν ε T X (σRH X)) (I₃₇ ν ε T X (σRH X))
+    (I₈ ν ε T X (σRH X)) (I₉ ν ε X T)
+  linarith
+
+end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral Filter Asymptotics
+
+/-- `‖σ - iT‖ ≥ T`. -/
+theorem norm_ge_height_neg {σ T : ℝ} (hT : 0 ≤ T) :
+    T ≤ ‖((σ : ℂ)) - (T : ℂ) * I‖ := by
+  have heq : ((σ : ℂ)) - (T : ℂ) * I = ((σ : ℂ)) + I * ((-T : ℝ) : ℂ) := by
+    push_cast; ring
+  rw [heq]
+  have hsq := norm_sq_line σ (-T)
+  have hnn : (0:ℝ) ≤ ‖((σ : ℂ)) + I * ((-T : ℝ) : ℂ)‖ := norm_nonneg _
+  nlinarith [hsq, sq_nonneg σ, hnn]
+
+/-- **The Mellin factor on the lower horizontal decays like `1/T`.** -/
+theorem mellin_horiz_le_neg {ν : ℝ → ℝ} (diffν : ContDiff ℝ 1 ν)
+    (suppν : ν.support ⊆ Set.Icc (1/2 : ℝ) 2) {B : ℝ}
+    (hB : ∀ w : ℂ, 0 < w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : ℂ)) w‖ ≤ B)
+    {ε T σ : ℝ} (hε : 0 < ε) (hε1 : ε < 1) (hT : 0 < T)
+    (hσ0 : 0 < σ) (hσ2 : σ ≤ 2) :
+    ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) - (T : ℂ) * I)‖ ≤ B / T := by
+  have hre : (((σ : ℂ)) - (T : ℂ) * I).re = σ := by simp
+  have h := mellin_smooth1_le diffν suppν hB hε hε1
+    (s := (σ : ℂ) - (T : ℂ) * I) (by rw [hre]; exact hσ0) (by rw [hre]; exact hσ2)
+  refine le_trans h ?_
+  have hnT := norm_ge_height_neg (σ := σ) hT.le
+  have hnpos : (0:ℝ) < ‖((σ : ℂ)) - (T : ℂ) * I‖ := lt_of_lt_of_le hT hnT
+  have hB0 : (0:ℝ) ≤ B := le_trans (norm_nonneg _) (hB 1 (by norm_num) (by norm_num))
+  rw [mul_inv_le_iff₀ hnpos, div_mul_eq_mul_div, le_div_iff₀ hT]
+  nlinarith [hnT, hB0]
+
+/-- **The Mellin factor on the RH abscissa, in the ε-free `B/‖s‖` form.** -/
+theorem mellin_vert_le {ν : ℝ → ℝ} (diffν : ContDiff ℝ 1 ν)
+    (suppν : ν.support ⊆ Set.Icc (1/2 : ℝ) 2) {B : ℝ}
+    (hB : ∀ w : ℂ, 0 < w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : ℂ)) w‖ ≤ B)
+    {ε X : ℝ} (hε : 0 < ε) (hε1 : ε < 1) (hLX : 4 ≤ Real.log X) (t : ℝ) :
+    ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σRH X : ℂ) + I * (t : ℂ))‖
+      ≤ B * ‖((σRH X : ℂ)) + I * (t : ℂ)‖⁻¹ := by
+  have hLpos : (0:ℝ) < Real.log X := by linarith
+  have hinv : (0:ℝ) < 1 / Real.log X := by positivity
+  have hre : (((σRH X : ℂ)) + I * (t : ℂ)).re = σRH X := σRH_re X t
+  have h0 : 0 < σRH X := by
+    have := half_lt_σRH hLX; linarith
+  have h2 : σRH X ≤ 2 := by
+    have hq : 1 / Real.log X ≤ 1 / 4 := by
+      rw [div_le_div_iff₀ hLpos (by norm_num)]; linarith
+    simp only [σRH]; linarith
+  exact mellin_smooth1_le diffν suppν hB hε hε1 (by rw [hre]; exact h0) (by rw [hre]; exact h2)
+
+end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral Filter Asymptotics
+
+local notation "ψ" => ChebyshevPsi
+
+/-- `X^(1 + 1/log X) = e·X`. -/
+theorem rpow_one_add {X : ℝ} (hX : 0 < X) (hLX : 4 ≤ Real.log X) :
+    X ^ (1 + 1 / Real.log X) = Real.exp 1 * X := by
+  have hLpos : (0:ℝ) < Real.log X := by linarith
+  have hsplit : Real.log X * (1 + 1 / Real.log X) = Real.log X + 1 := by
+    field_simp
+  rw [Real.rpow_def_of_pos hX, hsplit, Real.exp_add, Real.exp_log hX]
+  ring
+
+/-- **StmtPsiWeak under RH, with no explicit formula.** Every constant is
+obtained: `B` from `mellin_bump_bounded`, `Cclose` from
+`SmoothedChebyshevClose`, `C₁`/`C₉` from `I1Bound`/`I9Bound`, `Cmain` from
+`MellinOfSmooth1c`. The parameters are `ε = X^(-1/2)` and `T = X`. -/
+theorem psi_weak_of_RH (hRH : RiemannHypothesis) :
+    ∃ C > 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t →
+      |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3 := by
+  obtain ⟨ν, diffν, νnonneg, suppν, mass_one⟩ := bump_exists
+  obtain ⟨B, hB0, hB⟩ := mellin_bump_bounded diffν suppν
+  obtain ⟨Cclose, hCclose0, hCclose⟩ :=
+    SmoothedChebyshevClose diffν suppν νnonneg mass_one
+  obtain ⟨C1, hC10, hC1⟩ := I1Bound suppν diffν νnonneg mass_one
+  obtain ⟨C9, hC90, hC9⟩ := I9Bound suppν diffν νnonneg mass_one
+  obtain ⟨Cmain, hCmain0, ε₀, hε₀0, hCmainB⟩ := mellin_main_const diffν suppν mass_one
+  refine ⟨Cclose + C1 + C9 + (66600 * Real.exp 1 * B / Real.pi)
+      + 2 * (900 * Real.exp 1 * B / Real.pi) + Cmain + 1, by positivity,
+    max (Real.exp 6) (max 16 (1 / ε₀ ^ 2 + 1)), ?_⟩
+  intro X hXge
+  have hexp6 : Real.exp 6 ≤ X := le_trans (le_max_left _ _) hXge
+  have h16 : (16:ℝ) ≤ X := le_trans (le_trans (le_max_left _ _) (le_max_right _ _)) hXge
+  have hε₀X : 1 / ε₀ ^ 2 + 1 ≤ X :=
+    le_trans (le_trans (le_max_right _ _) (le_max_right _ _)) hXge
+  have hX : (0:ℝ) < X := by linarith
+  have hLX6 : (6:ℝ) ≤ Real.log X := by
+    have := Real.log_le_log (Real.exp_pos 6) hexp6
+    rwa [Real.log_exp] at this
+  have hLX : (4:ℝ) ≤ Real.log X := by linarith
+  have hLX5 : (5:ℝ) ≤ Real.log X := by linarith
+  have hX3 : (3:ℝ) < X := by linarith
+  have hsq : (0:ℝ) < Real.sqrt X := Real.sqrt_pos.mpr hX
+  have hsq4 : (4:ℝ) ≤ Real.sqrt X := by
+    have := Real.sqrt_le_sqrt h16
+    rwa [show Real.sqrt 16 = 4 by
+      rw [show (16:ℝ) = 4 ^ 2 by norm_num, Real.sqrt_sq (by norm_num)]] at this
+  set ε : ℝ := (Real.sqrt X)⁻¹ with hεdef
+  have hε : (0:ℝ) < ε := by rw [hεdef]; positivity
+  have hε1 : ε < 1 := by
+    rw [hεdef, inv_lt_one_iff₀]
+    right; linarith
+  have hXε : (2:ℝ) < X * ε := by
+    rw [hεdef, mul_comm, inv_sqrt_mul_self hX]
+    linarith
+  have hεε₀ : ε < ε₀ := by
+    rw [hεdef, inv_lt_iff_one_lt_mul₀ hsq]
+    have hinv : 1 / ε₀ < Real.sqrt X := by
+      have hlt : (1 / ε₀) ^ 2 < X := by
+        rw [div_pow, one_pow]
+        linarith [hε₀X]
+      have := Real.sqrt_lt_sqrt (by positivity) hlt
+      rwa [Real.sqrt_sq (by positivity)] at this
+    rw [div_lt_iff₀ hε₀0] at hinv
+    linarith [hinv]
+  -- the three error pieces
+  have hclose := hCclose X hX3 ε hε hε1 hXε
+  have hB1 := hC1 ε hε hε1 X hX3 (T := X) hX3
+  have hB9 := hC9 hε hε1 X hX3 (T := X) hX3
+  have hmainB := hCmainB ε hε hεε₀
+  have hεX : ε * X = Real.sqrt X := by rw [hεdef, inv_sqrt_mul_self hX]
+  -- Mellin instantiations
+  have hMv := mellin_vert_le diffν suppν hB hε hε1 hLX
+  have hMh8 : ∀ σ : ℝ, σRH X ≤ σ → σ ≤ 1 + 1 / Real.log X →
+      ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) + I * (X : ℂ))‖ ≤ B / X := by
+    intro σ hσ1 hσ2
+    have hσ0 : 0 < σ := lt_of_lt_of_le (by
+      have := half_lt_σRH (X := X) hLX; linarith) hσ1
+    have hσ2' : σ ≤ 2 := by
+      have hq : 1 / Real.log X ≤ 1 / 4 := by
+        rw [div_le_div_iff₀ (by linarith) (by norm_num)]; linarith
+      linarith
+    exact mellin_horiz_le diffν suppν hB hε hε1 hX hσ0 hσ2'
+  have hMh2 : ∀ σ : ℝ, σRH X ≤ σ → σ ≤ 1 + 1 / Real.log X →
+      ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) - (X : ℂ) * I)‖ ≤ B / X := by
+    intro σ hσ1 hσ2
+    have hσ0 : 0 < σ := lt_of_lt_of_le (by
+      have := half_lt_σRH (X := X) hLX; linarith) hσ1
+    have hσ2' : σ ≤ 2 := by
+      have hq : 1 / Real.log X ≤ 1 / 4 := by
+        rw [div_le_div_iff₀ (by linarith) (by norm_num)]; linarith
+      linarith
+    exact mellin_horiz_le_neg diffν suppν hB hε hε1 hX hσ0 hσ2'
+  have hcontour := contour_at_instantiation hRH hε hε1 hX3 hX hLX (by linarith) (le_refl X)
+    hB0.le suppν νnonneg mass_one diffν hB1 hB9 hMv hMh8 hMh2
+  -- main-term piece
+  have hmain : ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * (X : ℂ) - (X : ℂ)‖
+      ≤ Cmain * ε * X := by
+    have hfac : mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * (X : ℂ) - (X : ℂ)
+        = (mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 - 1) * (X : ℂ) := by ring
+    rw [hfac, norm_mul, Complex.norm_real, Real.norm_of_nonneg hX.le]
+    calc ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 - 1‖ * X ≤ (Cmain * ε) * X := by
+          gcongr
+      _ = Cmain * ε * X := by ring
+  have htri := psi_sub_self_le hclose hcontour hmain
+  rw [rpow_one_add hX hLX] at htri
+  have hh := horiz_small (X := X) (B := B) hX hLX5 hB0.le
+  have hL1 : (1:ℝ) ≤ Real.log X := by linarith
+  have hs1 : (1:ℝ) ≤ Real.sqrt X := le_trans (by norm_num) hsq4
+  have hS : (0:ℝ) ≤ Real.sqrt X * (Real.log X) ^ 3 := by positivity
+  have hL3 : (0:ℝ) ≤ (Real.log X) ^ 3 := by positivity
+  have hcube : (Real.log X) ^ 2 ≤ Real.sqrt X * (Real.log X) ^ 3 := by
+    have h1 : (Real.log X) ^ 2 ≤ (Real.log X) ^ 3 := by nlinarith [hL1]
+    have h2 : (Real.log X) ^ 3 ≤ Real.sqrt X * (Real.log X) ^ 3 := by
+      nlinarith [hs1, hL3]
+    linarith
+  have hK : (0:ℝ) ≤ 900 * Real.exp 1 * B / Real.pi := by
+    have := Real.exp_pos 1; have := Real.pi_pos; positivity
+  have hhoriz : (900 * Real.exp 1 * B / Real.pi) * (Real.log X) ^ 2
+      ≤ (900 * Real.exp 1 * B / Real.pi) * (Real.sqrt X * (Real.log X) ^ 3) :=
+    mul_le_mul_of_nonneg_left hcube hK
+  -- the five summands, each in √X·log³X form
+  have e1 : Cclose * ε * X * Real.log X ≤ Cclose * Real.sqrt X * (Real.log X) ^ 3 := by
+    rw [hεdef]
+    exact (instantiation_arithmetic (X := X) (c := Cclose) hX hLX hCclose0.le).1
+  have e2 : C1 * X * Real.log X / (ε * X) ≤ C1 * Real.sqrt X * (Real.log X) ^ 3 := by
+    rw [hεX]
+    exact (instantiation_arithmetic (X := X) (c := C1) hX hLX hC10.le).2.1
+  have e3 : C9 * X * Real.log X / (ε * X) ≤ C9 * Real.sqrt X * (Real.log X) ^ 3 := by
+    rw [hεX]
+    exact (instantiation_arithmetic (X := X) (c := C9) hX hLX hC90.le).2.1
+  have e4 : Cmain * ε * X ≤ Cmain * Real.sqrt X * (Real.log X) ^ 3 := by
+    have h := (instantiation_arithmetic (X := X) (c := Cmain) hX hLX hCmain0.le).2.2
+    rw [hεdef]
+    calc Cmain * (Real.sqrt X)⁻¹ * X = Cmain * ((Real.sqrt X)⁻¹ * X) := by ring
+      _ ≤ Cmain * Real.sqrt X * (Real.log X) ^ 3 := h
+  linarith [htri, hh, e1, e2, e3, e4, hhoriz]
+
+end RHPull
+
+namespace RHPull
+
+/-- **`StmtPsiWeak` under RH, with no explicit formula — the leaf's consumer,
+discharged.** `Assembly.psiWeak_of_RH_EF_NT` reaches this from hRH + hEF + hNT;
+this reaches it from hRH alone. -/
+theorem stmtPsiWeak_of_RH (hRH : RiemannHypothesis) :
+    ∃ C > 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ :=
+  psi_weak_of_RH hRH
+
+/-- info: 'RHPull.stmtPsiWeak_of_RH' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms RHPull.stmtPsiWeak_of_RH
+
+end RHPull
