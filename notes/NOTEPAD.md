@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 248: the prime ladder SATURATES at 8.6% by Nmax ~ 10^6 (marginals −0.0017/+0.0013 = noise); the saturated remainder is the density term — the hum's own truncation ringing, zero parameters — and with it resid/floor = 0.0067
+- [open]   2026-08-28  entry 248: the floor is TWO parameter-free pieces — primes' skirts (~91%) + carrier's edge (~8.6%) = 99.33% of every quiet point; prereg candidate claim: skirts + density ringing to ≤ 1% on untouched higher zeros
 - [open]   2026-08-28  entry 247: the floor IS prime-skirt interference — reconstructed with zero fitted constants, scale 1.000, floor-only r_Re +0.997 / r_Im +0.995, jitter null 0.004; entry 245's open question (0.03 constant, sqrt(x) law) answered: summed skirt amplitude of the prime-power comb at height-T truncation
 - [open]   2026-08-28  entry 247: the floor's entropy budget is ≤ 9% and FALLING with Nmax (10.3% → 9.3% → 8.6%) — consistent with zero in the limit; entry 246's posit (primes perturb the floor, coupled to composites) confirmed exploratorily on all three clauses
 - [open]   2026-08-28  entry 247: caveat — raw residual grows with Nmax via the far-tail smooth drift (Σ 1/(√p log p) diverges); the floor test detrends cubic-in-u on both sides. Exploratory; a verdict needs a prereg

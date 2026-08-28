@@ -16,6 +16,40 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 248 — the residual ladder: primes saturate at 8.6%, the hum's edge takes it to 0.67%
+type: run
+refs: 246, 247
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
+Script `analysis/2026-08-28/floor_residual_limit.py`, log
+`analysis/2026-08-28/results/floor_residual_limit.log`. Same grid, quiet
+selection and cubic detrend as entry 247; Nmax ladder to 10^7 (665,134
+prime-power teeth).
+
+**The prime ladder saturates.** Plain skirt model, resid/floor:
+0.1028 → 0.0933 → 0.0859 → 0.0876 → 0.0863 at Nmax = 10^4/10^5/10^6/
+3·10^6/10^7. Marginal gains at the last two rungs: −0.0017, +0.0013 —
+noise. Extending the prime comb past ~10^6 buys nothing: 8.6% of the
+floor is not far-tail teeth.
+
+**The saturated remainder is the hum's own edge.** One more
+zero-parameter piece: the smooth zero density (Riemann–von Mangoldt,
+`(1/2π)log(t/2π)`) has its own truncation ringing,
+`D(u) = log(T/2π)/(2π)·e^{iuT}/(iu)`, coefficient fixed by the counting
+law. With it: resid/floor = 0.0067 at Nmax = 10^7. Absolute: floor
+median 5.14, unexplained remainder ≈ 0.03.
+
+**Reading.** The floor decomposes into exactly two deterministic,
+parameter-free pieces: the primes' skirts (~91%) and the carrier's own
+truncation edge (~8.6%) — perturbation plus hum, entry 246's grammar
+completing itself. Together: 99.33% of every quiet point on the line.
+
+**Expectation, recorded as expectation.** The 0.67% remainder is at the
+scale where zeros-file precision and edge effects would live. That is
+unmeasured; checking it is the next step, before any prereg.
+
+---
+
 ## 2026-08-28 — Entry 247 — the floor reconstructed from the primes: r = 0.997, no fitted constants
 type: run
 refs: 243, 245, 246
