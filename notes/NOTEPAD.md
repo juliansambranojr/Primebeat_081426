@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 227: NyquistPeak built — 20 theorems, the gain DERIVED from Chain.Sym, maximum proved GLOBAL not local, and nyquist_boundaryBase welds b* to Nyquist.nyquist; discharges the prose half of entry 224's mechanism behind a LOCKED prereg's no_step
+- [open]   2026-08-27  entry 227: the missing absolute value is not cosmetic — unbarred, (2 sin)^d goes negative on (2pi,4pi) and the maximum is LOCAL ONLY; with |sin| it is global, at the cost of a corner at theta = 0 mod 2pi where depth 1 is not differentiable
+- [open]   2026-08-27  entry 227: the Stage-3 formalization rules list pow_le_pow_left0 as a 'v4.32 rename', but on the bench's v4.28 the unsubscripted forms do not exist — the 0 names predate v4.32 here; commitment file untouched, Julian's call
+- [open]   2026-08-27  entry 227: pre-existing — theorem_roles.txt still files Zeros.stencil_add/_smul/_annihilates_const under Zeros; they moved to ZerosStencil at 279e40b
 - [open]   2026-08-27  entry 226: CORRECTION to entry 224 — the r_thick 6/6 split holds at 3 of 7 divisors, NOT all; and at m=3 the denominator is CONSTANT at 3486 across all 12 neighbours, so the 2^(1/3) anomaly has no normalisation confound and is cleaner than 224 presented it
 - [open]   2026-08-27  entry 225: three of four proposed Lean candidates broken by compiling them — candidate 1 already in the tree as Chain.gain_sq_periodic AND false of the pipeline; candidate 2 is Bezout not CRT and needs candidate 1 to state its ±; candidate 3 is `by ring`
 - [open]   2026-08-27  entry 225: CORRECTION to entry 222 — Neff is Theta(N^(2/3) log N), not a power law; local slope still falling at N=1e7; r2 0.9992 is what a slowly-curving function looks like on a factor-of-24 window. Conclusion survives, exponent does not

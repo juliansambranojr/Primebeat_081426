@@ -16,6 +16,94 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 227 — NyquistPeak: the boundary is a global stationary maximum, and the abs was not cosmetic
+type: formalization
+refs: 223, 224, 225
+
+`lean/NyquistPeak.lean`, 20 theorems, 20 pins, all at the house
+baseline `[propext, Classical.choice, Quot.sound]`. Bench now **24
+modules, 282 theorems, 282 pins, 8050 jobs**. This is NEXT.md § 5.1,
+the item entry 225's adversary ranked first after breaking three of the
+four candidates.
+
+**What it proves.** The γ₁ gain of the depth-`d` difference filter is
+**derived** from `Chain.Sym` rather than restated —
+`norm_sym_on_imaginary_axis` gives `‖Sym b (γ·I)‖ = 2|sin(γ log b / 2)|`
+and `gain_eq_norm_sym_pow` connects it to the prereg's own form. Then
+both halves: `gain_hasDerivAt_pi` (the derivative vanishes at `θ = π`)
+and `gain_le_gain_pi` (**global** maximum, not merely local), with
+`gain_lt_gain_pi` strict away from the peak.
+
+**In the bench's coordinate.** `nyquist_boundaryBase` proves
+`Nyquist.nyquist (exp(π/γ)) = γ` — `b*` is exactly the base whose
+Nyquist frequency is `γ`, so it is precisely the cap
+`Nyquist.base_bound_of_resolvable` produces. Then
+`gain_stationary_in_base`, `gain_continuousAt_boundaryBase` — the
+literal "not a discontinuity" — and
+`boundary_is_smooth_stationary_maximum` as one object.
+
+**What it discharges.** Entry 224 argued the `no_step` mechanical
+output of the LOCKED `dense_boundary_scan_v1_20260827` was predictable
+because everything is continuous at `b*` and the gain is stationary
+there. That argument was prose. Its load-bearing half is now
+kernel-checked, and it was written as a derivation rather than aimed at
+the measured number — NEXT.md's non-negotiable method rule.
+
+**The vacuity guard, which was needed.** `gain_hasDerivAt_pi` holds at
+**every** depth including `d = 0`, where it says nothing: `gain 0` is
+the constant 1, so every phase is stationary and maximal.
+`depth_zero_vacuous` proves that in `Chain.period_vacuous_at_one`'s
+shape, and the module docstring records that `#guard_msgs` cannot catch
+vacuity. `results/dense_boundary_scan.json` `params.d_min = 1`, so the
+measured regime is the guarded one. `0 < b` and `γ ≠ 0` are
+load-bearing — their failure makes the statements **false, not empty**.
+`b ≠ 1` turned out unnecessary; `b* > 1` follows for `γ > 0`.
+
+**The linter caught a decoration hypothesis** — `hd` sat unused on the
+headline theorem. Fixed by strengthening the statement (adding the
+strict-maximum conjunct) rather than dropping the hypothesis, so `hd`
+is now load-bearing.
+
+**§ 5.1 and the prereg both drop an absolute value, and it is not
+cosmetic.** `|Sym|` forces `|sin|`. Unbarred, `(2 sin(θ/2))^d` goes
+negative on `(2π, 4π)` and stops being a modulus — the maximum would be
+**local only**. With the abs it is global. The cost: at depth 1 the
+gain has a **corner** at `θ ≡ 0 (mod 2π)`, where it is not
+differentiable at all. So "smooth at `θ = π`" is exactly the right
+hedge and the prereg's localised wording is correct; a claim that the
+gain is smooth everywhere would be false.
+
+**Which line, stated so the two are not conflated.** The formula is
+`|Sym|` on `Re s = 0`, not on the critical line where `Chain`'s block D
+lives — there the gain is `1 − 2b^(−1/2)cos θ + b^(−1)`, band
+`1 ± b^(−1/2)`, also peaking at `θ = π` but not equal to
+`(2|sin(θ/2)|)^d`. Same symbol, same phase condition, different line,
+which is why `b*` here and `Chain.ceiling_base`'s `k = 0` base are the
+same number.
+
+**Placement.** A new module rather than `Nyquist.lean`, because the
+content needs `Chain.Sym` and putting it in `Nyquist` would force that
+module to import `Chain` and change a build graph the brief protected.
+Named in `lakefile.toml`'s explicit `globs`.
+
+**Correction to a documented convention.** The root project rules, in
+their Stage-3 formalization section, list `pow_le_pow_left₀` among the
+"v4.32 renames encountered". On the bench's
+own v4.28 Mathlib, `pow_le_pow_left` and `pow_lt_pow_left` do **not**
+exist — only the `₀` forms. The `₀` names predate v4.32 here.
+`CLAUDE.md` untouched; this is flagged for Julian.
+
+**Pre-existing, found not caused:** `theorem_index.py` warns of stale
+roles `Zeros.stencil_add`, `Zeros.stencil_smul`,
+`Zeros.stencil_annihilates_const` — those moved to `ZerosStencil` at
+`279e40b` and `theorem_roles.txt` still files them under `Zeros`.
+
+Gates: `lake build` 8050 jobs; parity 282/282 across 24 modules, no
+existing pin moved; `check_refs` 0; `check_values` 141/0;
+`theorem_index` 0 UNTAGGED (14 new tagged `support`, 6 `record`).
+
+---
+
 ## 2026-08-27 — Entry 226 — correction to entry 224: the r_thick split holds at three of seven, and the 2^(1/3) anomaly is cleaner for it
 type: result-triage
 refs: 223, 224, 225

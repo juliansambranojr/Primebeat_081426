@@ -1,4 +1,7 @@
-# NEXT — closing the four unpaired measurements
+# NEXT — the Lean work order
+
+Three of the original four unpaired measurements are closed; § 2 is still
+live, and § 5 is the queue that came out of the 2026-08-27 session.
 
 Handoff file. Hand this back verbatim after a compaction; it is written to be
 executed without the session that produced it.
@@ -6,7 +9,7 @@ executed without the session that produced it.
 ## Resume in 30 seconds
 
 ```bash
-cd ~/GitHub/Primebeat_081426/lean && lake build     # expect 8037 jobs, success
+cd ~/GitHub/Primebeat_081426/lean && lake build     # expect 8050 jobs, success
 ```
 
 Toolchain trap: elan defaults to 4.33, Mathlib here is **v4.28.0**. Run from
@@ -15,9 +18,9 @@ Toolchain trap: elan defaults to 4.33, Mathlib here is **v4.28.0**. Run from
 Already built, all `sorry`-free, axioms `propext / Classical.choice / Quot.sound` only:
 
 ```text
-11 modules, 119 theorems, 119 #guard_msgs-pinned axiom checks.
-See BUILD.md for the module map. Measured.lean carries 7 agreement
-theorems and the Unpaired section below.
+24 modules, 282 theorems, 282 #guard_msgs-pinned axiom checks.
+Six modules are Mathlib-free. See BUILD.md for the module map and
+lean/THEOREMS.md for the generated index.
 ```
 
 **Method, non-negotiable.** Do not aim a proof at a measured number. Write the
@@ -28,7 +31,12 @@ the time of writing — reading from prose is what produced this session's error
 
 ---
 
-## 1 · G4 peak — **do this first**
+## 1 · G4 peak — **CLOSED** by `GeneratorPeak.lean`
+
+The mechanism below was written as a derivation and **refuted**:
+`no_interior_peak` proves the power-law tradeoff has none, while
+`measured_has_interior_peak` pins the measurement that it does. The
+account is dead and the kernel says so. Kept for the record.
 
 `P_max/median` peaks at G4 = {2,3,5,7} across all three settings: 26.733822
 (xmax 1.5e8), 31.371849 (1e9), 38.299307 (3e9).
@@ -94,7 +102,11 @@ hypothesis rather than proved.
 
 ---
 
-## 3 · The 25 contributing primes
+## 3 · The 25 contributing primes — **CLOSED** by `Covering.lean`
+
+Contribution proved to be a Diophantine-approximation condition rather
+than a size condition, which is why the set skips 13 and 23. Kept for
+the record.
 
 `results/O37_weil_form_on_stencil_run1.log`: 36 primes lie inside the mollified
 support, 25 contribute non-zero, and the surviving set is **not** an initial
@@ -119,7 +131,13 @@ the approach works before spending effort on a harder target.
 
 ---
 
-## 4 · The four exact zeros — **least tractable, expect no derivation**
+## 4 · The four exact zeros — **ANSWERED NEGATIVELY, as predicted**
+
+No mechanism was found and none is expected; the honest deliverable was
+built instead. `Zeros.measured_zeros_all_vanish` derives the vanishing
+from `π(2ⁿ)` at zero axioms (entry 78), and `ZeroCells.lean` welds the
+three further transcriptions to that computed list (entry 187). Kept
+for the record.
 
 `(2,1), (4,1), (8,3), (20,6)`, over `r ≤ 62, d ≤ 61`, from `results/O16_run2.log`.
 
@@ -139,6 +157,59 @@ and neither predicts where the zeros are.
 in `Unpaired` permanently with a docstring saying why. A hole that cannot close is
 still worth marking as such — the record is better for saying so than for a
 contrived derivation.
+
+---
+
+## 5 · The queue from 2026-08-27, in order
+
+Ranked after an adversary compiled each candidate and broke three of
+four (entry 225). The ordering follows this file's own method rule: a
+theorem stating the *mechanism* of a live argument outranks one
+certifying a retired instrument.
+
+**5.1 · The stationary maximum — BUILT, `lean/NyquistPeak.lean`,
+20 theorems.** Marking the outcome is Julian's; the build is done and
+green. What shipped is stronger than the item asked for: the gain is
+*derived* from `Chain.Sym` rather than restated, the maximum is
+**global** rather than local, and `nyquist_boundaryBase` welds `b*` to
+`Nyquist.nyquist` so it is exactly the cap
+`base_bound_of_resolvable` produces. Original text follows.
+
+**5.1 (as written).** The γ₁ gain of the
+difference filter is `(2 sin(θ/2))^d` with `θ = γ₁ log b`, and its
+θ-derivative **vanishes at θ = π**. So `b* = exp(π/γ₁)` is a smooth
+stationary maximum, not a discontinuity. ~26 lines, axioms are the
+house baseline for this module. **What it discharges:** entry 224's
+mechanism claim, which is the argument behind the `no_step` mechanical
+output of a *locked* prereg (`dense_boundary_scan_v1_20260827`). This
+is the only candidate that backs a live preregistered result.
+
+**5.2 · The base-change telescoping.** On the half-octave lattice
+`F[j] = ⌊2^(j/2)⌋`, `F[2r] = 2^r` **exactly**, so
+`N₂(r) = n_{2r−1} + n_{2r}` telescopes for **all** `r` — upgrading
+entry 208's 32-case check to a theorem. The polynomial identity
+`(1−z²)⁷ = (1−z)⁷(1+z)⁷` is `by ring` and certifies nothing on its own;
+the base change is the load-bearing statement.
+
+**5.3 · Bezout, restated base-free.** For coprime aliased arms the
+joint alias set collapses: `(1/j₁)ℤ ∩ (1/j₂)ℤ = ℤ`. Entry 211 called
+this CRT and stated it as `ν ≡ ±1 (mod 8)`; it is the *dual* of CRT,
+and the 8 is `2π/s`, so that form pins the units. State it base-free,
+with `s ≠ 0` load-bearing (the vacuity trap `Chain.period_vacuous_at_one`
+documents), and note the `±` needs `P(−γ) = P(γ)` for real weights —
+it is **not** expressible in `Nyquist.Aliases` alone. **What it
+discharges:** the escape half of the no-go. `lean/` currently proves
+only that every single ladder fails.
+
+**5.4 · Deferred, with reasons.** The periodogram-periodicity statement
+is already in the tree as `Chain.gain_sq_periodic` and is *false* of
+the pipeline, which samples `log⌊b^r⌋` rather than `j·h + c`; only an
+approximate form with an explicit `ε_j ≤ 1/x_j` bound would be new, and
+that one would give entry 213's `X = 0.10` criterion its margin as a
+theorem. The vacuity family (entries 194, 197, 205, 217) and the
+plateau-width law `hw = b*π²/(γ₁²·ln V)` are true and cheap but certify
+retired instruments — they rank below 5.1–5.3 by this file's method
+rule, not by difficulty.
 
 ---
 

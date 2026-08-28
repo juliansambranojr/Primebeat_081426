@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-262 theorems across 23 modules. Every one carries a
+282 theorems across 24 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -76,7 +76,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `tableFrom_norm_on_critical_line` | The table on the critical line. | ℂ floor | `lab_notebook_2.md` |
 | `sym_eq_zero_iff` | The pole lattice. | ℂ floor | `NOTEPAD.md`, `README.md`, `lab_notebook_2.md` |
 | `sym_periodic` | The symbol is periodic with the lattice period. | ℂ floor | `lab_notebook_2.md` |
-| `gain_sq_periodic` | The circle. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
+| `gain_sq_periodic` | The circle. | ℂ floor | `Euler-Factor-Chain.md`, `NOTEPAD.md`, `lab_notebook_2.md` |
 | `period_vacuous_at_one` | The trap `gain_sq_periodic`'s `b ≠ 1` closes: at `b = 1` the period is zero and the statement holds for any function whatsoever. | ℂ floor | `lab_notebook_2.md` |
 | `gain_sq_at_floor` | D1, floor half. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
 | `gain_sq_at_ceiling` | D1, ceiling half. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
@@ -232,11 +232,36 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `aliases_of_offset` | The aliasing offset. | ℂ floor | `lab_notebook_2.md` |
-| `nyquist_no_go` | THE NO-GO. | ℂ floor | `lab_notebook_2.md` |
+| `aliases_of_offset` | The aliasing offset. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
+| `nyquist_no_go` | THE NO-GO. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `base_bound_of_resolvable` | Entry 26's inequality, as the contrapositive. | ℂ floor | `lab_notebook_2.md` |
 | `base_two_past_nyquist` | Base 2 is past its own Nyquist frequency at every `γ ≥ 14`, and `γ₁ = 14.134…` is such a `γ`. | ℂ floor | `lab_notebook_2.md` |
 | `base_two_fails_by_three` | Entry 26's "fails by a factor of three", proved. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
+
+## NyquistPeak (20)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `sym_on_imaginary_axis` | The symbol on the imaginary axis is `1 − e^(−iθ)` with `θ = γ log b`. | ℂ floor | support |
+| `norm_sym_on_imaginary_axis` | The prereg's formula, derived. | ℂ floor | support |
+| `gain_eq_norm_sym_pow` | The depth-`d` gain is the symbol's modulus to the `d`. | ℂ floor | support |
+| `gain_pi` | The gain at phase `π` is `2^d` — the ceiling of the band. | ℂ floor | support |
+| `gain_zero_phase` | The gain at phase `0` is `0` at every positive depth: the smooth term, having `γ = 0`, is annihilated outright. | ℂ floor | support |
+| `gain_hasDerivAt_pi` | HALF ONE — the derivative vanishes at `θ = π`. | ℂ floor | support |
+| `deriv_gain_pi` | The same, in `deriv` form. | ℂ floor | support |
+| `gain_le_gain_pi` | HALF TWO — `π` is a maximum. | ℂ floor | support |
+| `gain_lt_gain_pi` | The maximum is STRICT. | ℂ floor | support |
+| `depth_zero_vacuous` | The degeneracy the depth hypothesis closes. | ℂ floor | support |
+| `stationary_maximum` | § 5.1 in phase coordinates, as one object. | ℂ floor | record |
+| `boundaryBase_pos` | The boundary base is positive. | ℂ floor | support |
+| `one_lt_boundaryBase` | At a positive frequency the boundary base exceeds `1`, so it lies in the range `Nyquist.base_bound_of_resolvable` speaks about. | ℂ floor | support |
+| `phase_at_boundaryBase` | The boundary base puts the phase exactly at `π`. | ℂ floor | support |
+| `nyquist_boundaryBase` | `b*` is exactly the base whose Nyquist frequency is `γ`. | ℂ floor | record |
+| `norm_sym_pow_at_boundaryBase` | The gain at `b*` is the ceiling `2^d`, and it is the symbol's own modulus that reaches it. | ℂ floor | support |
+| `gain_stationary_in_base` | HALF ONE, in the scanned coordinate. | ℂ floor | record |
+| `gain_continuousAt_boundaryBase` | Not a discontinuity. | ℂ floor | record |
+| `gain_le_at_boundaryBase` | HALF TWO, in the scanned coordinate. | ℂ floor | record |
+| `boundary_is_smooth_stationary_maximum` | § 5.1, as the prereg states it. | ℂ floor | record |
 
 ## PairIdentity (13)
 

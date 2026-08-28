@@ -101,3 +101,28 @@ ZeroCells.construction_all_vanish                  record
 ZeroCells.seedPerturbation_all_vanish              record
 ZeroCells.pairIdentity_all_vanish                  record
 ZeroCells.all_four_have_length_four                record
+
+# NyquistPeak — the stationary maximum at b*. The prose that cites this
+# module is the LOCKED prereg dense_boundary_scan_v1_20260827 and its
+# results/dense_boundary_scan.json, so the boundary-facing statements are
+# `record` and the phase-coordinate machinery under them is `support`.
+NyquistPeak.sym_on_imaginary_axis                  support
+NyquistPeak.norm_sym_on_imaginary_axis             support
+NyquistPeak.gain_eq_norm_sym_pow                   support
+NyquistPeak.gain_pi                                support
+NyquistPeak.gain_zero_phase                        support
+NyquistPeak.gain_hasDerivAt_pi                     support
+NyquistPeak.deriv_gain_pi                          support
+NyquistPeak.gain_le_gain_pi                        support
+NyquistPeak.gain_lt_gain_pi                        support
+NyquistPeak.depth_zero_vacuous                     support
+NyquistPeak.boundaryBase_pos                       support
+NyquistPeak.one_lt_boundaryBase                    support
+NyquistPeak.phase_at_boundaryBase                  support
+NyquistPeak.norm_sym_pow_at_boundaryBase           support
+NyquistPeak.stationary_maximum                     record
+NyquistPeak.nyquist_boundaryBase                   record
+NyquistPeak.gain_stationary_in_base                record
+NyquistPeak.gain_continuousAt_boundaryBase         record
+NyquistPeak.gain_le_at_boundaryBase                record
+NyquistPeak.boundary_is_smooth_stationary_maximum  record
