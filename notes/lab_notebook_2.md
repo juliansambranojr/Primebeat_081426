@@ -16,6 +16,84 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 232 — the substitute chain assembles and the constant misses by one order
+type: formalization
+refs: 118, 129, 130, 230, 231
+
+Julian: "you had a plan, see the plan through — if it doesn't make it
+through that's data." The plan was eight slices; a costing step was
+proposed instead and rejected as the same deferral pattern. Ran it.
+
+**Green, all at `[propext, Classical.choice, Quot.sound]`, no sorries**,
+banked to `results/scratch_lean/`:
+
+```text
+slice 1  holo_logDerivZeta_of_RH        RH ⟹ the pull's hypothesis is free
+slice 2  mellin_flat_bound              ‖𝓜(ν)(w)‖ ≤ 3M on 0 < re w ≤ 2
+         mellin_smooth1_flat            ‖𝓜(Smooth1 ν ε)(s)‖ ≤ 3M/‖s‖
+slice 3  logDerivZeta_crude/_sq_at_X    ≤ 20000·(log X)², |t| ≥ 2
+slice 4  logDerivZeta_compact           ≤ 25200 + 115/(σ₁−1/2), |t| ≤ 2
+slice 4b logDerivZeta_line              both signs, |t| ≤ X, welds 3 and 4
+slice 8  schoenfeldWeak_of_psiWeak_three  C_ψ at k=3 → (3C+13, 2)
+```
+
+**Slice 2 removed the `1/ε`**, which the costing had flagged as fatal:
+it entered only because `MellinOfSmooth1b` routes through `MellinOfPsi`
+at the point `εs`. **Slice 4's `σ₁ ≤ 3/4` hypothesis is load-bearing,
+not cosmetic** — the entire-function trick puts an extra zero of the
+local model at `re ρ = −1/2`, and the distance bound survives it only
+below 3/4.
+
+**Not built: 5, 6, 7.** Not conceptually blocked — every upstream
+`I`-bound is stated `∃ C, …` against `LogDerivZetaHasBound` at
+`σ₁ = 1 − A/log T⁹`, so none is reusable and each needs re-proving
+against our line bound. No `sorry` shipped; they simply do not exist.
+**And the route list omitted a slice:** `I₁`/`I₉` sit at
+`σ₀ = 1 + 1/log X` where slice 2's flat `3M/‖s‖` makes `∫dt/t` diverge
+— they need the `1/‖s‖²` form, an explicit re-proof of `MellinOfPsi`.
+
+**The delivered constant, which is the point of the exercise.**
+Green bounds plus the four unbuilt integrals done on paper
+(`results/scratch_lean/constants.py`), at the π-floor `2³⁰` row that
+entry 231's census actually tests:
+
+```text
+bump          M     M'     C_ψ      C_π = 3C_ψ + 13
+optimistic   1.0   4.0    2328          6997
+plausible    1.7   7.0    4008         12036
+conservative 3.0  15.0    7734         23215
+```
+
+**C_π ≈ 7×10³ – 2×10⁴. Entry 231's gate closes between 10³ (depth 6)
+and 10⁴ (depth 5). It misses by roughly 7× to 20×.**
+
+That is the result and it is a good one: **one order of magnitude, not
+three.** The exponent is right, the shape is right, the chain
+assembles. What remains is shaving against a known target rather than
+an open question about feasibility.
+
+**Where the excess sits.** At `L = 10.40`, plausible bump: `I₃₇`
+contributes 2256 of the 4008, `I₁+I₉` contributes 1750, everything
+else under 1. And `I₁+I₉`'s 1750 is an artifact — they are forced to
+borrow slice 3's critical-line bound at `σ₀ = 1 + 1/log X`, where the
+truth is `∑Λ(n)n^(−σ₀) ≈ log X`, roughly **1500× too weak in the wrong
+place.** One explicit Dirichlet-series bound above the line deletes it
+outright, no new machinery, taking `C_π` to ≈6.8×10³ in a single step.
+
+**A limit on how sharp any of this can get.** PNT+'s `SmoothExistence`
+is pure existence — it never constructs a concrete bump, so `sup|ν|`
+and `sup|ν'|` are pinned nowhere in the package. `C_π` is a function of
+two free parameters, which is why the answer is a range and not a
+numeral. Pinning a concrete `ν` is its own slice.
+
+**Two upstream facts found by checking rather than reading.**
+`MediumPNT.lean` has **zero** sorries — all five `I`-bounds and the
+pull are clean. And `SmoothedChebyshevClose`'s constant is explicit
+inside its proof and hidden by the `∃`: `C = 6(3c₁+c₂) = 30 log 2 ≈
+20.8`. Recovering it is a restatement, not a re-proof.
+
+---
+
 ## 2026-08-27 — Entry 231 — the cells entry 118 skipped: the exponent survives, the constant does not
 type: run
 refs: 118, 129, 130, 230

@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 232: THE CHAIN ASSEMBLES AND THE CONSTANT MISSES — C_pi ~ 7e3-2e4 against a gate closing between 1e3 and 1e4; one order of magnitude, exponent and shape both right
+- [open]   2026-08-27  entry 232: the cheapest shave is named — I1/I9 borrow a critical-line bound at sigma_0 = 1+1/log X where the truth is ~log X, 1500x too weak; one Dirichlet-series bound deletes 1750 of 4008 and takes C_pi to ~6.8e3
+- [open]   2026-08-27  entry 232: slices 5,6,7 unbuilt — every upstream I-bound is stated exists-C against a different abscissa so none is reusable; each needs re-proving against our line bound
+- [open]   2026-08-27  entry 232: route list omitted a slice — I1/I9 need the 1/||s||^2 Mellin form, not slice 2's flat one, or the tail integral diverges
+- [open]   2026-08-27  entry 232: PNT+'s SmoothExistence is pure existence, so sup|nu| and sup|nu'| are pinned nowhere — C_pi is a range not a numeral until a concrete bump is built
 - [open]   2026-08-27  entry 231: the budget closes between C=1e3 (depth 6, passes) and C=1e4 (depth 5, fails) — a FACTOR OF TEN is the whole remaining gap, and it is measured rather than argued
 - [open]   2026-08-27  entry 230: SLICE 3 GREEN — under RH the contour stops at 1/2+1/log X and never passes a zero, so hEF's walk is unnecessary; 20000*(log X)^2 on the zeta'/zeta line, exponent 2, route lives
 - [open]   2026-08-27  entry 230: the literal log^2|t| target was FALSE for any method (pole at an ordinate) — the deliverable shape is log X * log t; nobody could have proved what the leaf implied
