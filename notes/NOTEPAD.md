@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 242: B1 PROVED — VonKoch.RH_of_psiWeak, the von Koch converse at k=3, guard_msgs-pinned [propext, Classical.choice, Quot.sound], no sorryAx, commit 8c64a69
+- [open]   2026-08-28  entry 242: B2 PINNED — RH ↔ ∃ C > 0, ∃ x₀, StmtPsiWeak C 3 x₀. The k=3 price is two-sided: RH returns from the coarsened bound
+- [open]   2026-08-28  entry 242: METHOD — V3/V4 ran the identity theorem on G = F·ζ + ζ′ over the half-plane minus ONE point (four convex pieces); Mathlib has no convex-minus-countable connectivity lemma and the restructure removed the need
 - [open]   2026-08-28  entry 241: QUOTABLE — what the two Lean artifacts are. Elephant.lean = what the table IS (the Euler factor at 2, applied d times); LineBound.lean = a block removed (StmtPsiWeak without hEF). Cite this entry rather than regenerating the answer
 - [open]   2026-08-28  entry 241: the two files DO NOT feed each other — Elephant doesn't feed Stage3, LineBound doesn't use the table. Both about primes and zeta is not the same as being about each other
 - [open]   2026-08-28  entry 241: the four zeros are STILL UNEXPLAINED — Elephant proves what the filter is, nothing about why the filtered sum hits exactly zero at (2,1),(4,1),(8,3),(20,6). Entry 236's null is evidence, not explanation, and may be the wrong question

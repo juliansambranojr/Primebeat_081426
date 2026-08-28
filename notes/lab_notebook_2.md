@@ -16,6 +16,59 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 242 — B1/B2: the von Koch converse proved, the equivalence pinned
+type: formalization
+refs: 238, 239, 240, 241
+
+**What was proved.** Two theorems in
+`lean_stage3/Stage3/VonKochScaffold.lean`, commit `8c64a69`:
+
+```text
+VonKoch.RH_of_psiWeak  :
+  (∀ t ≥ x₀, |ψ t − t| ≤ C·√t·(log t)³) → RiemannHypothesis
+
+VonKoch.RH_iff_psiWeak :
+  RiemannHypothesis ↔ ∃ C > 0, ∃ x₀, Stage3.StmtPsiWeak C 3 x₀
+```
+
+Both `#guard_msgs`-pinned at `[propext, Classical.choice, Quot.sound]`, no
+`sorryAx`. `StmtPsiWeak` is `Stage3/PsiToPi.lean:167`; the forward half is
+entry 240's `RHPull.stmtPsiWeak_of_RH`. The default Stage3 target is
+untouched, 8721 jobs green.
+
+**The five slices, as built.** V1: the bound makes `F(s) = s/(s−1) +
+s·∫₁^∞ E(x)x^(−s−1)dx` differentiable past the line
+(`mellin_differentiableAt_of_isBigO_rpow`). V2: `F = −ζ′/ζ` on `re s > 1`
+(`LSeries_eq_mul_integral_of_nonneg`). V3/V4 through one shared fact:
+`G := F·ζ + ζ′` is analytic on `region := {re > 1/2} \ {1}` and vanishes
+on `re s > 1` by V2, so the identity theorem
+(`eqOn_zero_of_preconnected_of_eventuallyEq_zero`) makes it vanish on all
+of `region`. V3 is then a division. V4 factors `ζ = (z−ρ)^(k+1)·g` at a
+hypothetical zero (`analyticOrderAt`, order ⊤ dispatched by `ζ(2) ≠ 0`);
+`G ≡ 0` factors as `(z−ρ)^k·[(k+1)g + (z−ρ)(Fg + g′)] = 0`, the bracket
+vanishes on the punctured neighbourhood, and it is continuous at `ρ` with
+value `(k+1)·g(ρ) ≠ 0`. V5: reflection through `riemannZeta_one_sub`
+(entry-less, committed `21669e7`).
+
+**The restructure that made V3/V4 land.** The scaffold's original route
+named `Set.Countable.isPathConnected_compl_of_one_lt_rank` to connect the
+half-plane minus the countable zero set. That lemma is whole-space; Mathlib
+has no convex-minus-countable version
+(`Analysis/Normed/Module/Connected.lean`, checked 2026-08-28). Running the
+identity theorem on `G` instead needs connectivity of the half-plane minus
+the single point 1 — covered by four convex pieces
+(`preconnected_region`). The zero set of ζ appears in the proof exactly
+once: as the one factored zero being contradicted. Same shape as the
+mouth/stomach principle: no zero positions handled, ever.
+
+**What this confirms in the record.** Entry 238 mapped the route and named
+its price — one logarithm, k=3 against von Koch's k=2, for coarsening
+per-zero weights into a sup. The iff shows the price is two-sided: RH
+comes back from the coarsened k=3 bound. The loss bought at k=3 forward
+does not obstruct the converse.
+
+---
+
 ## 2026-08-28 — Entry 241 — what the two Lean artifacts are, and what they are for
 type: motivation
 refs: 237, 240
