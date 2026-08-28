@@ -16,6 +16,36 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 256 — O97: floor_deterministic on the blind range, under lock
+type: run
+refs: 247, 249, 252, 255
+
+PREREGISTERED. Prereg `preregs/floor_reconstruction_v1_20260828.md`
+(LOCKED, sidecar `28a5f736…`, pre-image committed at `da9c79b` — the
+first prereg in this repo to verify through git exactly as
+`preregs/FORMAT.md` designed). Script `O97_floor_reconstruction.py`
+(sha `dabe0412…`), log `results/O97_floor_reconstruction_run1.log`,
+results `results/floor_reconstruction_fresh.json`.
+
+**The blind arm.** x ∈ [512, 2048), a range no script in this repository
+had computed when the text locked. Zeros file not blind (read all
+session); the blindness is the x-range, disclosed as such in the
+prereg's provenance section. Fail direction was live: ~4× the tooth
+density the method was tuned on.
+
+**Result.** r_Re = +1.0000, r_Im = +1.0000, resid/floor = 0.0022 at
+Nmax = 10^7; ladder convergent (0.0035 at 10^6 → 0.0022). Pass
+thresholds were 0.98 and 0.02. Mechanical output:
+**floor_deterministic**. Cleaner than the explored range. The verdict
+line is Julian's and sits blank in the Run record.
+
+**What this closes, pending the verdict.** The day's exploratory chain
+(entries 247–252) — the floor as two zero-parameter pieces, prime
+skirts plus density edge — now stands under a locked protocol on data
+outside everything the exploratory work touched.
+
+---
+
 ## 2026-08-28 — Entry 255 — the frontier is real, and every table runs the same economy
 type: run
 refs: 253, 254
