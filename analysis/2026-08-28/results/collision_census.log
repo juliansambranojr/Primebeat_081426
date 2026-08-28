@@ -1,0 +1,38 @@
+COLLISION CENSUS — absence measured at its boundary.  EXPLORATORY.
+  1891 cells, r <= 62, exact integer arithmetic
+
+  the four exact zeros — the information each absence carries:
+     (r,d)      mass            s (digits)
+   (20, 6)           492384     2.85
+   ( 8, 3)               88     0.97
+   ( 4, 1)                4     0.30
+   ( 2, 1)                2     0.15
+
+  top 20 cells by surprise (exact zeros marked):
+   rank  (r,d)      |T|            mass             s
+      1  (20, 6)          0             492384     2.85  <- EXACT ZERO
+      2  (39,14)      12694      3425604429782     1.86
+      3  (13, 5)          1               4097     1.33
+      4  ( 8, 3)          0                 88     0.97  <- EXACT ZERO
+      5  (47,20)    5910063   8487162595927647     0.89
+      6  (20, 9)         97            1765941     0.83
+      7  (62,19)   1088117707   133730113971166914721     0.73
+      8  (14, 8)         17              27809     0.68
+      9  (17, 5)         24              48274     0.65
+     10  (13, 6)          9               6345     0.62
+     11  (43,16)    1330680    112260899739704     0.60
+     12  (19, 7)         87             399807     0.56
+     13  (10, 3)          2                286     0.53
+     14  (49,14)    8602371   2705503124728283     0.48
+     15  (41,14)     609228     12934880413924     0.47
+     16  (46,17)    6245514   1256819234242228     0.45
+     17  (12, 5)          8               2248     0.45
+     18  (13, 4)          9               2649     0.43
+     19  (37,12)     129671       396134119471     0.39
+     20  (10, 4)          4                444     0.37
+
+  best NON-zero cell: (39,14)  |T|=12694  mass=3425604429782  s=1.86
+  cells with s > 1 (ten-fold beat of chance): 3 — of which exact zeros: 1
+  cells with s > 0 (any beat of chance): 54 of 1891
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
