@@ -35,9 +35,9 @@ Measured.agreement_weil_balance                    record
 
 # Zeros — machinery under cited results
 Zeros.tableFrom_isTable                            support
-Zeros.stencil_add                                  support
-Zeros.stencil_smul                                 support
-Zeros.stencil_annihilates_const                    support
+ZerosStencil.stencil_add                                  support
+ZerosStencil.stencil_smul                                 support
+ZerosStencil.stencil_annihilates_const                    support
 Zeros.four_zeros_only                              support
 
 # Chain — the conditional arrows, superseded by the unconditional

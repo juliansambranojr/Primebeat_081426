@@ -243,25 +243,25 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
 | `sym_on_imaginary_axis` | The symbol on the imaginary axis is `1 − e^(−iθ)` with `θ = γ log b`. | ℂ floor | support |
-| `norm_sym_on_imaginary_axis` | The prereg's formula, derived. | ℂ floor | support |
-| `gain_eq_norm_sym_pow` | The depth-`d` gain is the symbol's modulus to the `d`. | ℂ floor | support |
+| `norm_sym_on_imaginary_axis` | The prereg's formula, derived. | ℂ floor | `lab_notebook_2.md` |
+| `gain_eq_norm_sym_pow` | The depth-`d` gain is the symbol's modulus to the `d`. | ℂ floor | `lab_notebook_2.md` |
 | `gain_pi` | The gain at phase `π` is `2^d` — the ceiling of the band. | ℂ floor | support |
 | `gain_zero_phase` | The gain at phase `0` is `0` at every positive depth: the smooth term, having `γ = 0`, is annihilated outright. | ℂ floor | support |
-| `gain_hasDerivAt_pi` | HALF ONE — the derivative vanishes at `θ = π`. | ℂ floor | support |
+| `gain_hasDerivAt_pi` | HALF ONE — the derivative vanishes at `θ = π`. | ℂ floor | `lab_notebook_2.md` |
 | `deriv_gain_pi` | The same, in `deriv` form. | ℂ floor | support |
-| `gain_le_gain_pi` | HALF TWO — `π` is a maximum. | ℂ floor | support |
-| `gain_lt_gain_pi` | The maximum is STRICT. | ℂ floor | support |
-| `depth_zero_vacuous` | The degeneracy the depth hypothesis closes. | ℂ floor | support |
+| `gain_le_gain_pi` | HALF TWO — `π` is a maximum. | ℂ floor | `lab_notebook_2.md` |
+| `gain_lt_gain_pi` | The maximum is STRICT. | ℂ floor | `lab_notebook_2.md` |
+| `depth_zero_vacuous` | The degeneracy the depth hypothesis closes. | ℂ floor | `lab_notebook_2.md` |
 | `stationary_maximum` | § 5.1 in phase coordinates, as one object. | ℂ floor | record |
 | `boundaryBase_pos` | The boundary base is positive. | ℂ floor | support |
 | `one_lt_boundaryBase` | At a positive frequency the boundary base exceeds `1`, so it lies in the range `Nyquist.base_bound_of_resolvable` speaks about. | ℂ floor | support |
 | `phase_at_boundaryBase` | The boundary base puts the phase exactly at `π`. | ℂ floor | support |
-| `nyquist_boundaryBase` | `b*` is exactly the base whose Nyquist frequency is `γ`. | ℂ floor | record |
+| `nyquist_boundaryBase` | `b*` is exactly the base whose Nyquist frequency is `γ`. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `norm_sym_pow_at_boundaryBase` | The gain at `b*` is the ceiling `2^d`, and it is the symbol's own modulus that reaches it. | ℂ floor | support |
-| `gain_stationary_in_base` | HALF ONE, in the scanned coordinate. | ℂ floor | record |
-| `gain_continuousAt_boundaryBase` | Not a discontinuity. | ℂ floor | record |
+| `gain_stationary_in_base` | HALF ONE, in the scanned coordinate. | ℂ floor | `lab_notebook_2.md` |
+| `gain_continuousAt_boundaryBase` | Not a discontinuity. | ℂ floor | `lab_notebook_2.md` |
 | `gain_le_at_boundaryBase` | HALF TWO, in the scanned coordinate. | ℂ floor | record |
-| `boundary_is_smooth_stationary_maximum` | § 5.1, as the prereg states it. | ℂ floor | record |
+| `boundary_is_smooth_stationary_maximum` | § 5.1, as the prereg states it. | ℂ floor | `lab_notebook_2.md` |
 
 ## PairIdentity (13)
 
@@ -438,7 +438,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 |---|---|---|---|
 | `tableFrom_eq_fwdDiff` | The table's `d`-fold backward difference is `(-1)^d` times Mathlib's `d`-fold forward difference at step `-1`. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_eq_stencil` | The operator IS Pascal. | ℂ floor | `README.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
-| `stencil_add` | The stencil is linear in the sampled values. | ℂ floor | `lab_notebook_2.md` |
+| `stencil_add` | The stencil is linear in the sampled values. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `stencil_smul` | And scalars pass through — linearity's other half, beside `stencil_add`. | ℂ floor | `lab_notebook_2.md` |
 | `stencil_annihilates_const` | The stencil's positive and negative arms carry equal total weight. | ℂ floor | `lab_notebook_2.md` |
 | `stencil_eq_wings` | The fold is an identity, not a test. | ℂ floor | `lab_notebook_2.md` |
