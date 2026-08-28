@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 246: POSIT (Julian) — primes perturb the floor, coupled to composites; the coupling (log n = Σ Λ(d), no entropy budget) is the candidate for why the floor sits at 0.001 of GUE power. Check: reconstruct the floor from prime skirts, pointwise
+- [open]   2026-08-28  entry 246: visibility calibration — measured floor 0.5·sqrt(x) vs tooth (T/2π)Λ/sqrt(x) puts signal-to-floor = 1 at x ≈ T: the beat sinks exactly at Montgomery's α = 1 transition
 - [open]   2026-08-28  entry 245: the floor is NOT zero-zero correlation — generic median |S| is 30x below the GUE line in amplitude; power ratio median 0.001, mean 1.68: the below-alpha=1 mass sits in the resonances (entry 235's cusps), the space between is quiet
 - [open]   2026-08-28  entry 245: CORRECTS entry 244's speculation — Im S at integers is as small as Re (0.0195 of GUE line), and integers are not specially pinned: one sqrt(x) law everywhere, isotropic in phase
 - [open]   2026-08-28  entry 245: the prime powers are the QUIETEST points on the line after main-term removal (0.0232/0.0115 vs 0.0301/0.0223 at Lambda=0) — the resonance lattice is the stiffest place, 25-50%, exploratory

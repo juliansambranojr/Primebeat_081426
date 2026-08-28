@@ -16,6 +16,55 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 246 — Julian's posit: primes perturb the floor, coupled to composites
+type: motivation
+refs: 243, 244, 245
+
+Julian's posit, in his words (as corrected by him): the composites sit at
+the floor because they are reliable — flat, predictable — and that
+reliability is what the primes are seen against; **primes perturb the
+floor**, and they are **coupled to composites**; the coupling is what keeps
+the floor's structure from blowing up into noise or entropy.
+
+Three groundings, from what is already measured or standing:
+
+1. **The composites hum; they do not beat.** Λ(composite) = 0 — no tooth,
+   measured (D(6,9) has no main term). The composites enter as
+   `ζ(s) = Σ 1/n^s`: the pole at s = 1 is the integers' perfect flatness,
+   and that pole is the `T/2π` in every main term on this bench — N(T),
+   the curve, Landau's resonance. The perturbation reading: the flat side
+   of the Euler identity is the given; the primes are its unique
+   factorization into perturbations.
+
+2. **The coupling is the conservation.** `log n = Σ_{d|n} Λ(d)`: primes
+   and composites are one ledger read from two sides. A coupled
+   perturbation has no entropy budget — every unit of prime wildness is
+   spoken for by composite structure. That is the standing candidate for
+   entry 245's strangest number: the floor at 0.001 of GUE power. Below
+   α = 1 the explicit formula is invertible, so the zero sums there are
+   determined by primes plus smooth density; nothing is free to fill the
+   floor to the noise line.
+
+3. **Visibility calibration.** Measured floor 0.5·√x against tooth height
+   (T/2π)Λ(x)/√x gives signal-to-floor (T/π)·Λ(x)/x, crossing 1 at
+   x ≈ T — the beat stays visible over exactly the below-α=1 range and
+   sinks at Montgomery's transition.
+
+**The check this motivates (run next).** Reconstruct the measured floor
+from the prime side: each tooth's sharp-truncation ringing
+(`K(u−log n) = (e^{iT(u−log n)}−1)/(i(u−log n))`, which reproduces
+Landau's main term at u = log n automatically), summed over prime powers,
+correlated pointwise against the measured complex S on the 4096 generic
+points of entry 245, mean-removed (the truncated-tail constant is
+divergent-in-N_max and carries no u-dependence), with an N_max stability
+sweep. High correlation: the floor is deterministic prime-skirt
+interference — "primes perturb the floor" and "coupled to composites" are
+one measured fact seen from two directions, and the composite floor is
+knitted from the primes' skirts. Low correlation with N_max-stability:
+the coupling has slack, and the slack becomes the object.
+
+---
+
 ## 2026-08-28 — Entry 245 — the floor is not zero-zero correlation: one quiet √x law, with the mass in the teeth
 type: run
 refs: 235, 243, 244
