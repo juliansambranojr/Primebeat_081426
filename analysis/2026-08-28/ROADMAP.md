@@ -34,7 +34,9 @@ Vocabulary (Julian's, keep it):
 
 ## B. The equivalence (the route we hold)
 
-- [ ] B1. von Koch converse in Lean:
+- [ ] B1. von Koch converse in Lean:  [SCAFFOLD: lean_stage3/Stage3/VonKochScaffold.lean
+        — V1..V5 as compiling obligations, B1 assembles from them; NOT in the
+        default target, carries 5 named sorries by design]
         (∃ C x₀, ∀ t ≥ x₀, |ψ t − t| ≤ C·√t·(log t)^3) → RiemannHypothesis.
         Mechanism: −ζ'/ζ(s) = s·∫₁^∞ ψ(x)x^(−s−1)dx; the bound forces
         convergence/analyticity for re s > 1/2; no poles ⇒ no zeros.
