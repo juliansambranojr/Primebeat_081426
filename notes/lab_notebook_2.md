@@ -16,6 +16,57 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 254 — collision census: the absences ranked, the family found, and the null repriced
+type: run
+refs: 236, 253
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
+Script `analysis/2026-08-28/collision_census.py`, log
+`analysis/2026-08-28/results/collision_census.log`. Exact integer
+arithmetic on all 1,891 cells (r ≤ 62) from `pi2n_cache.json`.
+
+**The measure.** Julian's boundary reading (entry 253 discussion): an
+arithmetic zero has no gradation — it is a discrete coincidence of the
+parents, `T(r,d−1) = T(r−1,d−1)`, equivalently the binomial ledger
+splitting into two exactly equal halves (E = O = mass/2; balance,
+absence, half — one equation). So the census measures each cell's
+integer distance-to-balance |T| against the mass balanced, with surprise
+s = log10(√mass/(2|T|+1)).
+
+**The four zeros are not equal citizens.** (20,6): mass 492,384 balanced
+exactly, s = 2.85 — the one expensive absence. (8,3): mass 88, s = 0.97.
+(4,1): mass 4, s = 0.30. (2,1): mass 2, s = 0.15. The tower zeros are
+trivia; (20,6) is the only absence carrying information. The species
+question inverts.
+
+**The expensive-balance family has three members.** Only 3 of 1,891
+cells beat chance ten-fold: (20,6) exact at 2.85; (39,14) — |T| = 12,694
+against mass 3.4×10^12, s = 1.86; (13,5) — |T| = 1 against mass 4,097,
+one unit from a fifth exact zero, s = 1.33. Invisible to both prior
+scans (fluctuation-scale and gross-mass), because it lives in discrete
+boundary coincidences.
+
+**Flags, not welds.** Row 20 appears twice in the top six ((20,6) exact,
+(20,9) near) — plausibly the zero's structure propagating to its
+descendants; checkable. (13,5)'s mass is 4097 = 2^12 + 1 exactly —
+curio, nothing claimed.
+
+**The null, repriced (Julian).** Only 54/1891 cells beat the √mass model
+at all — and Julian's reading of that is the correct one: the table is
+deterministic, so the null is only telling of what you are looking for.
+The other cells' "imbalance" is a comparison against this one chosen
+yardstick; they may be responding to a different null. Concretely: the
+a(r) sequence grows geometrically, so the deterministic drift of
+Δ^d a is the dominant account of a typical cell — the same
+(1−(1−1/b)^d) transfer machinery as the coupling curve (O29 measured its
+smooth side). Under the drift null, an exact zero means the fluctuation
+lands exactly on −drift, and the price of each absence changes with the
+drift's local size. Surprise is a property of the pair (cell, null) —
+the same law as entry 253's (object, account). Next check: reprice the
+family against the drift null (li-based smooth table, Δ^d).
+
+---
+
 ## 2026-08-28 — Entry 253 — the tower map: the four zeros get a where
 type: motivation
 refs: 236, 246, 251, 252

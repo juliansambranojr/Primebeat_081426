@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 254: the four zeros are NOT equal — (20,6) carries 2.85 digits (mass 492,384 balanced exactly); (8,3) 0.97; (4,1)/(2,1) free. The tower zeros are trivia; (20,6) is the only informative absence
+- [open]   2026-08-28  entry 254: the EXPENSIVE-BALANCE FAMILY: {(20,6) exact, (39,14) s=1.86, (13,5) one unit from a fifth zero}. Only 3 of 1,891 cells beat chance ten-fold. What they share is the open question
+- [open]   2026-08-28  entry 254: NULL REPRICED (Julian) — the table is deterministic; surprise is a property of the pair (cell, null); typical cells answer to the drift null (the (1-(1-1/b)^d) transfer), not sqrt(mass). Next: reprice the family against the li-based drift null
 - [open]   2026-08-28  entry 253: THE TOWER MAP — the exact zeros sit on the tower of 2 with its fixed point (2,1),(4,1),(8,3); 8=2³↔9=3² invert around 4=2²; 8|9 the integers' own seam (Mihailescu). The four-zeros question has a WHERE for the first time
 - [open]   2026-08-28  entry 253: FRONTIER — (20,6): 20 = 2²·5 = fixed point x first off-scaffold prime, not on the tower; any tower explanation must reach it or class it. First test: is {4p} a family in the near-zero landscape?
 - [open]   2026-08-28  entry 253: METHOD — residual is a property of the pair (object, account); S never moved, the account did. Look before labeling, saved to memory
