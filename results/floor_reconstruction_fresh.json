@@ -1,0 +1,27 @@
+{
+  "prereg": "preregs/floor_reconstruction_v1_20260828.md",
+  "zeros_sha256": "3436c916a7878261ac183fd7b9448c9a4736b8bbccf1356874a6ce1788541632",
+  "T": 74920.0,
+  "T_edge": 74919.667477,
+  "N": 99998,
+  "range": [
+    512,
+    2048
+  ],
+  "M": 4096,
+  "quiet_n": 2048,
+  "floor_median": 20.104768484637354,
+  "ladder": {
+    "1000000": {
+      "r_Re": 0.9999934030228872,
+      "r_Im": 0.9999932971752319,
+      "resid_over_floor": 0.0035249557894030704
+    },
+    "10000000": {
+      "r_Re": 0.9999973260594093,
+      "r_Im": 0.9999973511860432,
+      "resid_over_floor": 0.0022360353078888302
+    }
+  },
+  "mechanical_output": "floor_deterministic"
+}

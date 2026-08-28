@@ -86,4 +86,16 @@ leaves `inconclusive` a real region, not a technicality.
 
 ## Run record
 
-(fill at run)
+- run_start_at: 2026-08-28T22:33:45Z
+- run_end_at: 2026-08-28T22:34:06Z
+- script sha256 at run: dabe041210b6b91b4913fdc8b2c5d7891affb8a539f7f5c268151e4166aa5eff (matches locked table)
+- zeros sha256 at run: matches locked table
+- ladder: Nmax 1e6 -> r_Re +1.0000, r_Im +1.0000, resid/floor 0.0035;
+  Nmax 1e7 -> r_Re +1.0000, r_Im +1.0000, resid/floor 0.0022 (convergent)
+- mechanical output: floor_deterministic
+- post_compute_sha256: 20714d3d2cc8ac4e0d6e2f5adc691e89b8b5aff4583c0df7fa050330437d4a41 (results/floor_reconstruction_fresh.json)
+- sidecar match: the locked text (this file truncated before this Run
+  record heading) hashes to the committed sidecar
+  28a5f736f7ddef757553c145274671d8a6aede4e8f6cf801deacbe30dc3c3cf7,
+  and the pre-image is committed at da9c79b.
+- verdict:

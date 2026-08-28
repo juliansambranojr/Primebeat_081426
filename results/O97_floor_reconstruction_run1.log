@@ -1,0 +1,11 @@
+O97 - floor reconstruction, fresh range [512, 2048).  PREREGISTERED.
+  zeros sha256 3436c916a7878261...  match: True
+  T=74920.0  N=99998  edge=74919.667477  teeth 665134 <= 1e7
+  Nmax 1e+06:  r_Re +1.0000  r_Im +1.0000  resid/floor 0.0035
+  Nmax 1e+07:  r_Re +1.0000  r_Im +1.0000  resid/floor 0.0022
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/floor_reconstruction_fresh.json
+
+DECISION RULE OUTPUT (mechanical): floor_deterministic
+   The verdict line is Julian's to write.
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/results/floor_reconstruction_fresh.json
