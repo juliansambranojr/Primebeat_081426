@@ -16,6 +16,111 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 251 — Julian's reframe: the residual as the future's shadow on the written page
+type: motivation
+refs: 246, 249, 250
+
+Julian's posit, his frame: the accounting is of an infinite sum, so the
+0.1% is what constrained infinity looks like from inside the truncation —
+a compressed version of the parts already identified; a book whose future
+content has no accounting until it reaches the limit; the residual scales
+with the pages and parts known, and measures how much unknown is
+available. His question: is the 0.1% content 0 and 1?
+
+Two of the day's numbers support the frame literally:
+
+1. **The compression is measured.** The infinite far tail — every prime
+   past 10^7 — arrives on the window as smooth low-order drift: its whole
+   influence compresses to ~5 polynomial coefficients (why detrending
+   works, entry 249).
+2. **The near future casts the sharpest shadow.** The largest remaining
+   term is governed by one number — where the first excluded zero sits
+   (the gap-midpoint rule, entry 249).
+
+On 0-and-1: the choices are discrete (n prime or not is one bit; the next
+zero's position is those bits refracted through the ledger), but what
+reaches the page is their analog shadow, kernel-smoothed to amplitude
+~0.007. The residual is the exchange rate between the future's bits and
+ink on the current page.
+
+One correction, and it is the day's sharpest measured statement: within
+this book no choice was ever free. The explicit formula is linear and
+exact; the next zeros are fully implied by the primes; no entropy was
+found anywhere from 8.6% down. The 0.1% measures the accounting horizon —
+how much of the already-determined future the truncated ledger has not
+yet booked — never the universe's freedom.
+
+**The check this motivates (run next).** The next chapter is in hand:
+zeros1.txt continues past T. Move the model's edge K zeros deeper, book
+the strip [T_deep, T] exactly from the known zeros, and compare against
+the model at the original edge: if the residual travels with the boundary
+(equal medians, uncorrelated residual vectors), the error belongs to the
+edge between booked and unbooked — the shadow reading, measured. If the
+strip-exact version matches better, part of the error was bulk. Sweep K
+for the shadow's penetration depth.
+
+---
+
+## 2026-08-28 — Entry 250 — superposition holds to 0.1%: no interaction at the first moment
+type: result-triage
+refs: 245, 247, 249
+
+Reading of the reconstruction against the question "is the unaccounted
+part interaction?"
+
+The model is pure superposition — each tooth rings independently, the
+density edge adds, nothing multiplies anything — and that strictly linear
+ledger reached 99.9%. Interaction at the level of S itself is therefore
+bounded above by 0.1% of the floor on this range. The explicit formula's
+pairing is linear in the prime comb, and the measurement confirms
+superposition to one part in a thousand. Every reduction from 8.6% to
+0.1% was re-representation of the same linear pieces (a missing linear
+term, drift order, edge placement); nothing ever demanded that tooth A
+know about tooth B.
+
+Where interaction genuinely lives is one moment up: |S|², the weighted
+pair correlation, Montgomery's F — and entry 245 measured that below
+α = 1 even the second moment's mass sits in the teeth, with the pairs
+cancelling (measured F at three-tenths of the diagonal). Across both
+moments: first moment linear to 0.1%; second moment below α = 1 is teeth
+plus suppression. Structure needing cross terms does not appear until
+past α = 1 — beyond x = T, past the visibility horizon, where the beat
+has already sunk under the floor.
+
+---
+
+## 2026-08-28 — Entry 249 — the expectation checked: precision refuted, the residual is edge and drift order
+type: run
+refs: 247, 248
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
+Script `analysis/2026-08-28/residual_expectation.py`, log
+`analysis/2026-08-28/results/residual_expectation.log`.
+
+Entry 248 recorded the expectation that the 0.67% remainder lives at
+zeros-file precision and edge effects. Checked clause by clause:
+
+- **Precision: refuted by five orders.** The file carries 9 decimals;
+  perturbing every zero at that quantization moves the quiet points by
+  2.4e-7 against an absolute residual of 0.034. Ratio 7e-6.
+- **Mirror kernel: validated.** Dropping the K(u+v) term (entered on a
+  symmetry guess) makes the residual 4× worse: 0.0067 → 0.0270.
+- **Detrend order: carried half the remainder.** Cubic → quartic takes
+  the base config 0.0067 → 0.0014 — far-tail drift has more smooth
+  structure than a cubic absorbs.
+- **Edge placement: dominates what is left.** Sweeping the model's T
+  across the last zero gap [74919.075, 74920.260]: resid/floor 0.094 at
+  either edge, 0.010 near the gap midpoint, 0.020 at the arbitrary
+  T = 74920 (Nmax = 10^6 config). The discrete sum's natural edge is the
+  midpoint of the bracketing gap — a principled rule, now measured.
+
+Net: the floor is deterministic to ~0.1% (absolute ~0.007 on a floor of
+5.14, 10^5 zeros), and every step of the accounting from 8.6% down was a
+named model artifact. Prereg consequences: lock T = gap midpoint and lock
+the detrend degree.
+
+---
+
 ## 2026-08-28 — Entry 248 — the residual ladder: primes saturate at 8.6%, the hum's edge takes it to 0.67%
 type: run
 refs: 246, 247

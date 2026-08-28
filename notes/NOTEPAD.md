@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 249: expectation CHECKED — precision refuted by 5 orders (2.4e-7 vs 0.034); mirror kernel validated (4x worse without); quartic detrend 0.0067→0.0014; edge midpoint rule measured. Prereg locks: T = gap midpoint, detrend degree
+- [open]   2026-08-28  entry 250: SUPERPOSITION to 0.1% — the strictly linear ledger reached 99.9%; interaction at first moment bounded by 0.1%; cross-term structure does not appear until past α = 1
+- [open]   2026-08-28  entry 251: REFRAME (Julian) — the 0.1% is the accounting horizon: the already-determined future not yet booked; far tail compresses to ~5 coefficients, the near future (first excluded zero) casts the sharpest shadow. Check next: does the residual travel with the boundary
 - [open]   2026-08-28  entry 248: the prime ladder SATURATES at 8.6% by Nmax ~ 10^6 (marginals −0.0017/+0.0013 = noise); the saturated remainder is the density term — the hum's own truncation ringing, zero parameters — and with it resid/floor = 0.0067
 - [open]   2026-08-28  entry 248: the floor is TWO parameter-free pieces — primes' skirts (~91%) + carrier's edge (~8.6%) = 99.33% of every quiet point; prereg candidate claim: skirts + density ringing to ≤ 1% on untouched higher zeros
 - [open]   2026-08-28  entry 247: the floor IS prime-skirt interference — reconstructed with zero fitted constants, scale 1.000, floor-only r_Re +0.997 / r_Im +0.995, jitter null 0.004; entry 245's open question (0.03 constant, sqrt(x) law) answered: summed skirt amplitude of the prime-power comb at height-T truncation
