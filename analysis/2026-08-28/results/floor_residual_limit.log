@@ -1,0 +1,15 @@
+FLOOR RESIDUAL LIMIT.  EXPLORATORY, no prereg.  T=74920.0  N(T)=99998
+  teeth: 665134 prime powers <= 1e+07
+  quiet points: 2048   median floor amplitude: 5.14
+
+LADDER — detrended floor-only residual, without / with density term
+    Nmax      r_Re     r_Im    resid/floor   +density   marginal
+     1e+04  +0.996  +0.994     0.1028     0.0185    
+     1e+05  +0.997  +0.994     0.0933     0.0299    +0.0096
+     1e+06  +0.997  +0.995     0.0859     0.0197    +0.0074
+     3e+06  +0.997  +0.995     0.0876     0.0165    -0.0017
+     1e+07  +0.997  +0.995     0.0863     0.0067    +0.0013
+
+  (marginal = drop in resid/floor from the previous rung, plain model)
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
