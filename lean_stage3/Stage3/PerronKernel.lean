@@ -40,7 +40,7 @@ import PrimeNumberTheoremAnd.ResidueCalcOnRectangles
 
 namespace PerronKernel
 
-open Complex
+open Complex Topology
 
 /-- The truncated Perron integral `(2πi)⁻¹ ∫_{c-iT}^{c+iT} y^s/s ds`,
 parametrised on the vertical segment. -/
@@ -311,12 +311,116 @@ theorem horiz_bound {y T' : ℝ} (hy : 0 < y) (hy1 : y ≠ 1) (hT : 1 ≤ |T'|)
       _ ≤ max (y ^ a) (y ^ b) / (|T'| * |Real.log y|) := by
           exact div_le_div_of_nonneg_right (le_max_right _ _) (by positivity)
 
-/-- **K2, case `y < 1`.** No pole; rectangle to `+∞`, `horiz_bound` on both
-edges, vertical at `+X` vanishes. -/
+/-- **K2, case `y < 1`.** No pole; rectangles to `+∞` along the naturals,
+`horiz_bound` on both edges, the far vertical vanishes in the limit. -/
 theorem perron_kernel_decay_lt {y c T : ℝ} (hy : 0 < y) (hylt : y < 1)
     (hc : 0 < c) (hT : 1 ≤ T) :
     ‖perronI y c T - perronδ y‖ ≤ y ^ c / (T * |Real.log y|) := by
-  sorry
+  have hT0 : (0:ℝ) < T := lt_of_lt_of_le one_pos hT
+  have hL : Real.log y ≠ 0 := Real.log_ne_zero.mpr ⟨hy.ne', ne_of_lt hylt, by linarith⟩
+  have hδ : perronδ y = 0 := by rw [perronδ, if_neg (not_lt.mpr hylt.le)]
+  rw [hδ, sub_zero, perronI_eq_VIntegral']
+  set f : ℂ → ℂ := fun s ↦ (y : ℂ) ^ s / s with hfdef
+  set A : ℝ := y ^ c / (T * |Real.log y|) with hAdef
+  have hyc : (0:ℝ) < y ^ c := Real.rpow_pos_of_pos hy c
+  have hA0 : 0 < A := by rw [hAdef]; positivity
+  -- the X-parametrised bound
+  have key : ∀ X : ℝ, c ≤ X → 1 ≤ X →
+      ‖VIntegral f c (-T) T‖ ≤ 2 * A + 2 * T * y ^ X := by
+    intro X hcX hX1
+    have hX0 : (0:ℝ) < X := lt_of_lt_of_le one_pos hX1
+    have hvan : RectangleIntegral f ((c:ℂ) - Complex.I * T) ((X:ℂ) + Complex.I * T) = 0 :=
+      HolomorphicOn.vanishesOnRectangle (kernel_holo hy) (rect_subset_right hc hcX)
+    rw [RectangleIntegral] at hvan
+    simp only [Complex.sub_re, Complex.add_re, Complex.ofReal_re, Complex.mul_re,
+      Complex.I_re, Complex.ofReal_im, Complex.I_im, Complex.sub_im, Complex.add_im,
+      Complex.mul_im, mul_zero, mul_one, zero_mul, sub_zero, zero_sub, zero_add] at hvan
+    norm_num at hvan
+    have hV : VIntegral f c (-T) T
+        = HIntegral f c X (-T) - HIntegral f c X T + VIntegral f X (-T) T := by
+      linear_combination -hvan
+    have hmax : max (y ^ c) (y ^ X) = y ^ c :=
+      max_eq_left (Real.rpow_le_rpow_of_exponent_ge hy hylt.le hcX)
+    have hHb : ∀ T' : ℝ, |T'| = T → ‖HIntegral f c X T'‖ ≤ A := by
+      intro T' hT'
+      have h1T' : 1 ≤ |T'| := by rw [hT']; exact hT
+      have hb := horiz_bound hy (ne_of_lt hylt) h1T' hcX
+      rw [HIntegral]
+      simp only [hfdef]
+      rw [hAdef, ← hT']
+      calc ‖∫ x in c..X,
+            (y:ℂ) ^ ((x:ℂ) + (T':ℂ) * Complex.I) / ((x:ℂ) + (T':ℂ) * Complex.I)‖
+          ≤ max (y ^ c) (y ^ X) / (|T'| * |Real.log y|) := hb
+        _ = y ^ c / (|T'| * |Real.log y|) := by rw [hmax]
+    have hVX : ‖VIntegral f X (-T) T‖ ≤ 2 * T * y ^ X := by
+      rw [VIntegral, norm_smul, Complex.norm_I, one_mul]
+      have hpt : ∀ t ∈ Set.uIoc (-T) T, ‖f ((X : ℝ) + (t : ℝ) * Complex.I)‖ ≤ y ^ X / X := by
+        intro t _
+        have hden : X ≤ ‖(X : ℂ) + (t : ℂ) * Complex.I‖ := by
+          have h := Complex.abs_re_le_norm ((X : ℂ) + (t : ℂ) * Complex.I)
+          calc X = |X| := (abs_of_pos hX0).symm
+            _ ≤ ‖(X : ℂ) + (t : ℂ) * Complex.I‖ := by simpa using h
+        have hnum : ‖(y : ℂ) ^ ((X : ℂ) + (t : ℂ) * Complex.I)‖ = y ^ X := by
+          rw [Complex.norm_cpow_eq_rpow_re_of_pos hy]
+          simp
+        rw [hfdef]
+        simp only [norm_div, hnum]
+        exact div_le_div_of_nonneg_left (Real.rpow_pos_of_pos hy X).le hX0 hden
+      calc ‖∫ t in (-T)..T, f (↑X + ↑t * Complex.I)‖
+          ≤ y ^ X / X * |T - (-T)| := intervalIntegral.norm_integral_le_of_norm_le_const hpt
+        _ = y ^ X / X * (2 * T) := by
+            rw [show T - (-T) = 2 * T by ring, abs_of_pos (by linarith)]
+        _ ≤ y ^ X * (2 * T) := by
+            have hds : y ^ X / X ≤ y ^ X := div_le_self (Real.rpow_pos_of_pos hy X).le hX1
+            exact mul_le_mul_of_nonneg_right hds (by linarith)
+        _ = 2 * T * y ^ X := by ring
+    rw [hV]
+    calc ‖HIntegral f c X (-T) - HIntegral f c X T + VIntegral f X (-T) T‖
+        ≤ ‖HIntegral f c X (-T) - HIntegral f c X T‖ + ‖VIntegral f X (-T) T‖ :=
+          norm_add_le _ _
+      _ ≤ ‖HIntegral f c X (-T)‖ + ‖HIntegral f c X T‖ + ‖VIntegral f X (-T) T‖ := by
+          have := norm_sub_le (HIntegral f c X (-T)) (HIntegral f c X T)
+          linarith
+      _ ≤ 2 * A + 2 * T * y ^ X := by
+          have h1 := hHb (-T) (by rw [abs_neg, abs_of_pos hT0])
+          have h2 := hHb T (abs_of_pos hT0)
+          linarith [hVX]
+  -- limit along the naturals: the far vertical dies
+  have hVc : ‖VIntegral f c (-T) T‖ ≤ 2 * A := by
+    have hpow : Filter.Tendsto (fun n : ℕ ↦ y ^ (n : ℝ)) Filter.atTop (𝓝 0) := by
+      have h := tendsto_pow_atTop_nhds_zero_of_lt_one hy.le hylt
+      refine h.congr fun n ↦ ?_
+      rw [← Real.rpow_natCast y n]
+    have hlim : Filter.Tendsto (fun n : ℕ ↦ 2 * A + 2 * T * y ^ (n : ℝ))
+        Filter.atTop (𝓝 (2 * A + 2 * T * 0)) :=
+      Filter.Tendsto.const_add _ (Filter.Tendsto.const_mul _ hpow)
+    have hev : ∀ᶠ n : ℕ in Filter.atTop,
+        ‖VIntegral f c (-T) T‖ ≤ 2 * A + 2 * T * y ^ (n : ℝ) := by
+      filter_upwards [Filter.eventually_ge_atTop (⌈c⌉₊ + 1)] with n hn
+      have hcn : c ≤ (n : ℝ) := by
+        calc c ≤ (⌈c⌉₊ : ℝ) := Nat.le_ceil c
+          _ ≤ (n : ℝ) := by exact_mod_cast Nat.le_of_lt (Nat.lt_of_lt_of_le (Nat.lt_succ_self _) hn)
+      have h1n : (1:ℝ) ≤ (n : ℝ) := by
+        have h1 : 1 ≤ n := by omega
+        exact_mod_cast h1
+      exact key (n : ℝ) hcn h1n
+    have := ge_of_tendsto hlim hev
+    simpa using this
+  -- assemble
+  show ‖(1 / (2 * (Real.pi : ℂ) * Complex.I)) • VIntegral f c (-T) T‖
+      ≤ y ^ c / (T * |Real.log y|)
+  rw [norm_smul]
+  have hns : ‖(1 : ℂ) / (2 * (Real.pi : ℂ) * Complex.I)‖ = 1 / (2 * Real.pi) := by
+    rw [norm_div, norm_one, norm_mul, norm_mul, Complex.norm_I, mul_one]
+    simp [abs_of_pos Real.pi_pos]
+  rw [hns]
+  calc 1 / (2 * Real.pi) * ‖VIntegral f c (-T) T‖
+      ≤ 1 / (2 * Real.pi) * (2 * A) := by
+        apply mul_le_mul_of_nonneg_left hVc
+        positivity
+    _ = A / Real.pi := by ring
+    _ ≤ A / 1 := div_le_div_of_nonneg_left hA0.le one_pos (by linarith [Real.pi_gt_three])
+    _ = y ^ c / (T * |Real.log y|) := by rw [div_one, hAdef]
 
 /-- **K2, case `y > 1`.** Pole at `0` inside; rectangle to `−∞` collects the
 residue `1 = perronδ y`; `horiz_bound` on both edges. -/
