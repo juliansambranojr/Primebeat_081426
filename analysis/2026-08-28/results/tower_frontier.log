@@ -1,0 +1,38 @@
+TOWER FRONTIER.  EXPLORATORY, no prereg.  rows 3..62, depths to 61
+  exact zeros (known): rows 4, 8, 20 in range -> m = 0 expected
+
+  twenty smallest m(r):
+   rank   r   m(r)         d*   class
+      1    4   0.000000     1   EXACT
+      2    8   0.000000     3   EXACT
+      3   20   0.000000     6   EXACT,4p
+      4   62   0.000000    19   
+      5   61   0.000000    21   
+      6   59   0.000000    18   
+      7   47   0.000000    20   
+      8   57   0.000000    18   
+      9   60   0.000000    19   
+     10   55   0.000000    17   
+     11   58   0.000000    20   
+     12   48   0.000000    24   
+     13   49   0.000000    14   
+     14   39   0.000000    14   
+     15   56   0.000000    18   
+     16   45   0.000000    21   
+     17   46   0.000000    17   
+     18   53   0.000000    16   
+     19   43   0.000000    16   
+     20   44   0.000000    19   4p
+
+  the named rows:
+     r   m(r)         d*    rank/60   class
+     20   0.000000     6     3/60    4p,EXACT
+     28   0.000021     9    38/60    4p
+     44   0.000000    19    20/60    4p
+     52   0.000000    36    24/60    4p
+     16   0.000297    13    48/60    tower
+     32   0.000003    12    34/60    tower
+
+  m(r) over non-exact rows: median 0.0000   min 0.000000 (r=62)
+
+EXPLORATORY — no prereg, no decision rule, no verdict.

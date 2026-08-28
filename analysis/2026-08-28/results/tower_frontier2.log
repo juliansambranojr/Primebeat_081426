@@ -1,0 +1,30 @@
+TOWER FRONTIER v2 — z on the fluctuation scale.  EXPLORATORY.
+  fifteen smallest min-z rows:
+   rank   r   min z       d*   class
+      1    4    0.00000    1   EXACT
+      2    8    0.00000    3   EXACT
+      3   20    0.00000    6   EXACT,4p
+      4   39    0.00017   14   
+      5   47    0.00023   20   
+      6   62    0.00047   19   
+      7   45    0.00074   21   
+      8   48    0.00083   27   
+      9   43    0.00090   39   
+     10   49    0.00091   28   
+     11   46    0.00155   24   
+     12   44    0.00168   19   4p
+     13   40    0.00204   32   
+     14   38    0.00234   27   
+     15   61    0.00280   21   
+
+  the named rows:
+     20    0.00000  d*=  6   rank  3/60   4p,EXACT
+     28    0.04170  d*=  9   rank 48/60   4p
+     44    0.00168  d*= 19   rank 12/60   4p
+     52    0.00957  d*= 37   rank 30/60   4p
+     16    0.00873  d*= 13   rank 28/60   tower
+     32    0.01759  d*= 12   rank 40/60   tower
+
+  non-exact rows: median min-z 0.0123   p10 0.0009
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
