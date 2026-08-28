@@ -1,6 +1,6 @@
 # Prereg — the floor is deterministic: skirts + density edge on a fresh range
 
-STATUS: DRAFT
+STATUS: LOCKED
 
 Written 2026-08-28. Script: `O97_floor_reconstruction.py`,
 sha256 `dabe041210b6b91b4913fdc8b2c5d7891affb8a539f7f5c268151e4166aa5eff`.
