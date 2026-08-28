@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-29  entry 258: SLICE 1A PROVED — perron_kernel_truncated sorry-free, pinned [propext, Classical.choice, Quot.sound], commit 5884639. hEF's load-bearing unknown discharged; the classical arc was never needed anywhere
+- [open]   2026-08-29  entry 258: hEF remaining = 1b/1c (Chebyshev sums), 2 (pigeonhole on in-repo zeta_local_zero_count), 3, 4 (assembly, sorry-free machinery). Entry 257's "no step needs absent mathematics" now has zero exceptions
 - [open]   2026-08-28  entry 257: hEF BUILD ORDER now durable — full slice spec (1a/1b/1c/2/3/4) recovered from transcript into the notebook; 1a scaffold compiling at Stage3/PerronKernel.lean (K1 arc + K2 rectangle are the whole missing mathematics); upstream probed, leaf is ours
 - [open]   2026-08-28  entry 256: O97 PREREGISTERED RUN — mechanical output floor_deterministic on the blind range [512,2048): r = +1.0000 both components, resid/floor 0.0022, ladder convergent. Sidecar verified via committed pre-image. VERDICT LINE AWAITS JULIAN
 - [open]   2026-08-28  entry 255: the FRONTIER is real — d_min ≈ r/3 below which absence is arithmetically unreachable (drift > 3·fluctuation); the informative absences hug it ((20,6) at frontier+1, (39,14) at frontier+2). Information at the boundary, third time in one day

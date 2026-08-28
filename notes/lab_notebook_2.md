@@ -16,6 +16,65 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 258 — slice 1a proved: the truncated Perron kernel, and the arc that was never needed
+type: formalization
+refs: 257
+
+**What was proved.** `PerronKernel.perron_kernel_truncated` in
+`lean_stage3/Stage3/PerronKernel.lean`, commit `5884639`:
+
+```text
+‖(2πi)⁻¹ ∫_{c−iT}^{c+iT} y^s/s ds − [1 < y]‖ ≤ y^c · min(1, 1/(T·|log y|))
+```
+
+for 0 < y ≠ 1, c > 0, T ≥ 1. Sorry-free, axioms
+`[propext, Classical.choice, Quot.sound]`, `#guard_msgs`-pinned. This is
+entry 257's slice 1a — hEF's load-bearing unknown, the single
+self-contained contour estimate the adversary report called "the piece
+both MediumPNT and StrongPNT were designed to avoid," classical home
+Davenport ch. 17 / Montgomery–Vaughan Thm 5.2 (their π in the
+denominator dropped: crude-explicit spec).
+
+**The hypotheses actually needed.** Mathlib plus PNT+'s rectangle
+scaffolding (`HolomorphicOn.vanishesOnRectangle`,
+`ResidueTheoremOnRectangleWithSimplePole`, the `HIntegral`/`VIntegral`
+edge algebra). Nothing else; the file's other imports are the ones the
+statement needs.
+
+**How it went, branch by branch — the pricing story.** The route sketch
+(entry 257) named the circular-arc deformation as the coarse branch's
+engine and the file header called it the hard part. The arc was never
+needed anywhere:
+
+- K1, y < 1: ONE finite rectangle of width T, crude endpoint bounds on
+  the three far edges, total (2/π)·y^c. No limits.
+- K1, y > 1: for T·log y ≥ 1, free from the decay branch. Below that,
+  split off the exact `∫ ds/s = 2i·arctan(T/c)` — computed by pure real
+  calculus (odd part cancels by its antiderivative, even part is the
+  arctan derivative; no Complex.log, no arg) — a mean-value bound
+  `‖y^s − 1‖ ≤ ‖s‖·log y·y^(re s)`, and one elementary two-variable
+  inequality (`coarse_gt_ineq`: e^u, π, arctan(v/u); four nlinarith
+  cases with margins 0.09–0.27).
+- K2, both cases: rectangles marched to ∞ along the naturals,
+  `horiz_bound` on every horizontal edge, far vertical dies by
+  `y^n → 0`. The pole at 0 crossed exactly once: regular part
+  `dslope (y^·) 0` proved entire via `has_fpower_series_dslope_fslope`,
+  then `ResidueTheoremOnRectangleWithSimplePole` with residue 1 — which
+  IS the indicator.
+
+**What this confirms in the record.** Entry 257's honest assessment —
+"no step needs mathematics absent from the literature or from either
+library" — now has no exceptions: 1a was the only unpriced step and it
+closed in one session. The remaining hEF slices are 1b/1c
+(Chebyshev-level sums), 2 (pigeonhole on `zeta_local_zero_count`,
+already in this repo), 3, 4 (assembly against sorry-free machinery).
+And the method rule held again, in both directions: "hard is a
+concession before you start" — the arc priced as hard was unnecessary,
+and the piece priced as "decides whether the rest is worth starting"
+took an afternoon against libraries that already held every ingredient.
+
+---
+
 ## 2026-08-28 — Entry 257 — hEF's build order, made durable: the complete slice spec
 type: provenance
 refs: 130, 238, 256
