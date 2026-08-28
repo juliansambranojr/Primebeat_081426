@@ -36,6 +36,7 @@ The assembly from K1 and K2 is proved below — the two branches are the
 whole of the missing mathematics.
 -/
 import Mathlib
+import PrimeNumberTheoremAnd.ResidueCalcOnRectangles
 
 namespace PerronKernel
 
@@ -51,31 +52,194 @@ noncomputable def perronI (y c T : ℝ) : ℂ :=
 /-- The target of the kernel: the indicator of `1 < y`. -/
 noncomputable def perronδ (y : ℝ) : ℂ := if 1 < y then 1 else 0
 
-/-- **K1 — the coarse branch.** The kernel misses its indicator by at most
-`y^c`, uniformly in `T`. Route: circular-arc deformation. -/
-theorem perron_kernel_coarse {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
+/-- `perronI` is PNT+'s right-edge `VIntegral'` of the kernel. -/
+theorem perronI_eq_VIntegral' (y c T : ℝ) :
+    perronI y c T = VIntegral' (fun s : ℂ ↦ (y : ℂ) ^ s / s) c (-T) T := by
+  unfold perronI VIntegral' VIntegral
+  have h : ∀ t : ℝ, (y : ℂ) ^ ((c : ℂ) + Complex.I * t) / ((c : ℂ) + Complex.I * t) * Complex.I
+      = (fun s : ℂ ↦ (y : ℂ) ^ s / s) ((c : ℝ) + (t : ℝ) * Complex.I) * Complex.I := by
+    intro t
+    have harg : (c : ℂ) + Complex.I * (t : ℂ) = ((c : ℝ) : ℂ) + ((t : ℝ) : ℂ) * Complex.I := by
+      ring
+    rw [harg]
+  simp_rw [h]
+  rw [intervalIntegral.integral_mul_const, smul_eq_mul, smul_eq_mul]
+  ring
+
+/-- The kernel is holomorphic on the open right half-plane. -/
+theorem kernel_holo {y : ℝ} (hy : 0 < y) :
+    HolomorphicOn (fun s : ℂ ↦ (y : ℂ) ^ s / s) {s : ℂ | 0 < s.re} := by
+  intro s hs
+  have hs0 : s ≠ 0 := by
+    intro h
+    rw [h] at hs
+    simp at hs
+  exact ((differentiable_id.const_cpow
+    (Or.inl (by exact_mod_cast hy.ne'))).differentiableAt.div
+    differentiableAt_id hs0).differentiableWithinAt
+
+/-- A rectangle with left edge at `c > 0` sits in the right half-plane. -/
+theorem rect_subset_right {c X T : ℝ} (hc : 0 < c) (hcX : c ≤ X) :
+    Rectangle ((c : ℂ) - Complex.I * T) ((X : ℂ) + Complex.I * T) ⊆ {s : ℂ | 0 < s.re} := by
+  intro s hs
+  rw [Rectangle, Complex.mem_reProdIm] at hs
+  have h1 := hs.1
+  simp only [Complex.sub_re, Complex.ofReal_re, Complex.mul_re, Complex.I_re,
+    Complex.ofReal_im, Complex.I_im, Complex.add_re] at h1
+  rw [Set.uIcc_of_le (by norm_num; linarith)] at h1
+  have : c ≤ s.re := by
+    have := h1.1
+    simpa using this
+  simpa using lt_of_lt_of_le hc this
+
+/-- **K1, case `y < 1`.** A single finite rectangle of width `T`: crude
+endpoint bounds on all three far edges give `(2/π)·y^c` — no limits. -/
+theorem perron_kernel_coarse_lt {y c T : ℝ} (hy : 0 < y) (hylt : y < 1)
+    (hc : 0 < c) (hT : 1 ≤ T) :
+    ‖perronI y c T - perronδ y‖ ≤ y ^ c := by
+  have hT0 : (0:ℝ) < T := lt_of_lt_of_le one_pos hT
+  have hδ : perronδ y = 0 := by
+    rw [perronδ, if_neg (not_lt.mpr hylt.le)]
+  rw [hδ, sub_zero, perronI_eq_VIntegral']
+  set f : ℂ → ℂ := fun s ↦ (y : ℂ) ^ s / s with hfdef
+  set X : ℝ := c + T with hXdef
+  have hcX : c ≤ X := by rw [hXdef]; linarith
+  have hX0 : (0:ℝ) < X := by rw [hXdef]; linarith
+  have hyc : (0:ℝ) < y ^ c := Real.rpow_pos_of_pos hy c
+  -- the vanishing rectangle
+  have hvan : RectangleIntegral f ((c:ℂ) - Complex.I * T) ((X:ℂ) + Complex.I * T) = 0 :=
+    HolomorphicOn.vanishesOnRectangle (kernel_holo hy) (rect_subset_right hc hcX)
+  rw [RectangleIntegral] at hvan
+  simp only [Complex.sub_re, Complex.add_re, Complex.ofReal_re, Complex.mul_re,
+    Complex.I_re, Complex.ofReal_im, Complex.I_im, Complex.sub_im, Complex.add_im,
+    Complex.mul_im, mul_zero, mul_one, zero_mul, sub_zero, zero_sub, zero_add] at hvan
+  norm_num at hvan
+  have hV : VIntegral f c (-T) T
+      = HIntegral f c X (-T) - HIntegral f c X T + VIntegral f X (-T) T := by
+    linear_combination -hvan
+  -- crude horizontal bounds at heights ±T
+  have hHbound : ∀ T' : ℝ, |T'| = T → ‖HIntegral f c X T'‖ ≤ y ^ c := by
+    intro T' hT'
+    rw [HIntegral]
+    have hpt : ∀ x ∈ Set.uIoc c X, ‖f ((x : ℝ) + (T' : ℝ) * Complex.I)‖ ≤ y ^ c / T := by
+      intro x hx
+      have hxc : c ≤ x := by
+        rw [Set.uIoc_of_le hcX] at hx
+        exact hx.1.le
+      have hden : T ≤ ‖(x : ℂ) + (T' : ℂ) * Complex.I‖ := by
+        have h := Complex.abs_im_le_norm ((x : ℂ) + (T' : ℂ) * Complex.I)
+        rw [← hT']
+        simpa using h
+      have hnum : ‖(y : ℂ) ^ ((x : ℂ) + (T' : ℂ) * Complex.I)‖ = y ^ x := by
+        rw [Complex.norm_cpow_eq_rpow_re_of_pos hy]
+        simp
+      have h1 : y ^ x ≤ y ^ c := Real.rpow_le_rpow_of_exponent_ge hy hylt.le hxc
+      rw [hfdef]
+      simp only [norm_div, hnum]
+      calc y ^ x / ‖(x : ℂ) + (T' : ℂ) * Complex.I‖
+          ≤ y ^ c / ‖(x : ℂ) + (T' : ℂ) * Complex.I‖ :=
+            div_le_div_of_nonneg_right h1 (hT0.trans_le hden).le
+        _ ≤ y ^ c / T := div_le_div_of_nonneg_left hyc.le hT0 hden
+    calc ‖∫ x in c..X, f (↑x + ↑T' * Complex.I)‖
+        ≤ y ^ c / T * |X - c| := intervalIntegral.norm_integral_le_of_norm_le_const hpt
+      _ = y ^ c := by
+          rw [hXdef]
+          rw [show c + T - c = T by ring, abs_of_pos hT0]
+          field_simp
+  -- the far vertical edge
+  have hVX : ‖VIntegral f X (-T) T‖ ≤ 2 * y ^ c := by
+    rw [VIntegral, norm_smul, Complex.norm_I, one_mul]
+    have hyX : y ^ X ≤ y ^ c := Real.rpow_le_rpow_of_exponent_ge hy hylt.le hcX
+    have hpt : ∀ t ∈ Set.uIoc (-T) T, ‖f ((X : ℝ) + (t : ℝ) * Complex.I)‖ ≤ y ^ X / X := by
+      intro t _
+      have hden : X ≤ ‖(X : ℂ) + (t : ℂ) * Complex.I‖ := by
+        have h := Complex.abs_re_le_norm ((X : ℂ) + (t : ℂ) * Complex.I)
+        calc X = |X| := (abs_of_pos hX0).symm
+          _ ≤ ‖(X : ℂ) + (t : ℂ) * Complex.I‖ := by simpa using h
+      have hnum : ‖(y : ℂ) ^ ((X : ℂ) + (t : ℂ) * Complex.I)‖ = y ^ X := by
+        rw [Complex.norm_cpow_eq_rpow_re_of_pos hy]
+        simp
+      rw [hfdef]
+      simp only [norm_div, hnum]
+      exact div_le_div_of_nonneg_left (Real.rpow_pos_of_pos hy X).le hX0 hden
+    calc ‖∫ t in (-T)..T, f (↑X + ↑t * Complex.I)‖
+        ≤ y ^ X / X * |T - (-T)| := intervalIntegral.norm_integral_le_of_norm_le_const hpt
+      _ = y ^ X * (2 * T / X) := by
+          rw [show T - (-T) = 2 * T by ring, abs_of_pos (by linarith)]
+          ring
+      _ ≤ y ^ c * 2 := by
+          have h2TX : 2 * T / X ≤ 2 := by
+            have hTX : T ≤ X := by rw [hXdef]; linarith
+            calc 2 * T / X ≤ 2 * T / T :=
+                  div_le_div_of_nonneg_left (by positivity) hT0 hTX
+              _ = 2 := by field_simp
+          have := mul_le_mul hyX h2TX (by positivity) hyc.le
+          linarith [this]
+      _ = 2 * y ^ c := by ring
+  -- assemble
+  show ‖(1 / (2 * (Real.pi : ℂ) * Complex.I)) • VIntegral f c (-T) T‖ ≤ y ^ c
+  rw [norm_smul, hV]
+  have hns : ‖(1 : ℂ) / (2 * (Real.pi : ℂ) * Complex.I)‖ = 1 / (2 * Real.pi) := by
+    rw [norm_div, norm_one, norm_mul, norm_mul, Complex.norm_I, mul_one]
+    simp [abs_of_pos Real.pi_pos]
+  rw [hns]
+  have htri : ‖HIntegral f c X (-T) - HIntegral f c X T + VIntegral f X (-T) T‖
+      ≤ y ^ c + y ^ c + 2 * y ^ c := by
+    calc ‖HIntegral f c X (-T) - HIntegral f c X T + VIntegral f X (-T) T‖
+        ≤ ‖HIntegral f c X (-T) - HIntegral f c X T‖ + ‖VIntegral f X (-T) T‖ :=
+          norm_add_le _ _
+      _ ≤ ‖HIntegral f c X (-T)‖ + ‖HIntegral f c X T‖ + ‖VIntegral f X (-T) T‖ := by
+          have := norm_sub_le (HIntegral f c X (-T)) (HIntegral f c X T)
+          linarith
+      _ ≤ y ^ c + y ^ c + 2 * y ^ c := by
+          have h1 := hHbound (-T) (by rw [abs_neg, abs_of_pos hT0])
+          have h2 := hHbound T (abs_of_pos hT0)
+          linarith [hVX]
+  calc 1 / (2 * Real.pi) * ‖HIntegral f c X (-T) - HIntegral f c X T + VIntegral f X (-T) T‖
+      ≤ 1 / (2 * Real.pi) * (y ^ c + y ^ c + 2 * y ^ c) := by
+        apply mul_le_mul_of_nonneg_left htri
+        positivity
+    _ ≤ y ^ c := by
+        have h4 : (4:ℝ) ≤ 2 * Real.pi := by linarith [Real.pi_gt_three]
+        calc 1 / (2 * Real.pi) * (y ^ c + y ^ c + 2 * y ^ c)
+            = (4 * y ^ c) / (2 * Real.pi) := by ring
+          _ ≤ (4 * y ^ c) / 4 := div_le_div_of_nonneg_left (by positivity) (by norm_num) h4
+          _ = y ^ c := by ring
+
+/-- **K1, case `y > 1`.** Route: split off the exact `∫ ds/s = 2i·arctan(T/c)`,
+mean-value bound on `(y^s−1)/s`, and an elementary two-variable inequality;
+the `T·log y ≥ 1` regime follows from the decay branch. -/
+theorem perron_kernel_coarse_gt {y c T : ℝ} (hygt : 1 < y)
     (hc : 0 < c) (hT : 1 ≤ T) :
     ‖perronI y c T - perronδ y‖ ≤ y ^ c := by
   sorry
+
+/-- **K1 — the coarse branch**, assembled from its two cases. -/
+theorem perron_kernel_coarse {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
+    (hc : 0 < c) (hT : 1 ≤ T) :
+    ‖perronI y c T - perronδ y‖ ≤ y ^ c := by
+  rcases lt_or_gt_of_ne hy1 with h | h
+  · exact perron_kernel_coarse_lt hy h hc hT
+  · exact perron_kernel_coarse_gt h hc hT
 
 /-- The shared horizontal-edge estimate: along `Im s = T'` with `|T'| ≥ 1`,
 the kernel's horizontal integral is controlled by the endpoint powers over
 `|T'|·|log y|`. Every rectangle in both decay cases consumes this. -/
 theorem horiz_bound {y T' : ℝ} (hy : 0 < y) (hy1 : y ≠ 1) (hT : 1 ≤ |T'|)
     {a b : ℝ} (hab : a ≤ b) :
-    ‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + Complex.I * T') / ((σ : ℂ) + Complex.I * T')‖
+    ‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + (T' : ℂ) * Complex.I) / ((σ : ℂ) + (T' : ℂ) * Complex.I)‖
       ≤ max (y ^ a) (y ^ b) / (|T'| * |Real.log y|) := by
   have hL : Real.log y ≠ 0 :=
     Real.log_ne_zero.mpr ⟨hy.ne', hy1, by linarith⟩
   have hT0 : (0:ℝ) < |T'| := lt_of_lt_of_le one_pos hT
   -- pointwise: ‖y^(σ+iT')/(σ+iT')‖ ≤ y^σ/|T'|
-  have hpt : ∀ σ : ℝ, ‖(y : ℂ) ^ ((σ : ℂ) + Complex.I * T')
-      / ((σ : ℂ) + Complex.I * T')‖ ≤ y ^ σ / |T'| := by
+  have hpt : ∀ σ : ℝ, ‖(y : ℂ) ^ ((σ : ℂ) + (T' : ℂ) * Complex.I)
+      / ((σ : ℂ) + (T' : ℂ) * Complex.I)‖ ≤ y ^ σ / |T'| := by
     intro σ
-    have hden : |T'| ≤ ‖(σ : ℂ) + Complex.I * T'‖ := by
-      have := Complex.abs_im_le_norm ((σ : ℂ) + Complex.I * T')
+    have hden : |T'| ≤ ‖(σ : ℂ) + (T' : ℂ) * Complex.I‖ := by
+      have := Complex.abs_im_le_norm ((σ : ℂ) + (T' : ℂ) * Complex.I)
       simpa using this
-    have hnum : ‖(y : ℂ) ^ ((σ : ℂ) + Complex.I * T')‖ = y ^ σ := by
+    have hnum : ‖(y : ℂ) ^ ((σ : ℂ) + (T' : ℂ) * Complex.I)‖ = y ^ σ := by
       rw [Complex.norm_cpow_eq_rpow_re_of_pos hy]
       simp
     rw [norm_div, hnum]
@@ -99,14 +263,14 @@ theorem horiz_bound {y T' : ℝ} (hy : 0 < y) (hy1 : y ≠ 1) (hT : 1 ≤ |T'|)
       ((Real.continuous_exp.comp (continuous_const.mul continuous_id)).intervalIntegrable a b)]
     ring
   -- assemble
-  have hmaj : ‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + Complex.I * T')
-      / ((σ : ℂ) + Complex.I * T')‖ ≤ (∫ σ in a..b, y ^ σ) / |T'| := by
+  have hmaj : ‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + (T' : ℂ) * Complex.I)
+      / ((σ : ℂ) + (T' : ℂ) * Complex.I)‖ ≤ (∫ σ in a..b, y ^ σ) / |T'| := by
     have hgc : Continuous fun σ : ℝ ↦ y ^ σ := by
       simp_rw [Real.rpow_def_of_pos hy]
       exact Real.continuous_exp.comp (continuous_const.mul continuous_id)
     have hgi : IntervalIntegrable (fun σ : ℝ ↦ y ^ σ / |T'|) MeasureTheory.volume a b :=
       (hgc.div_const _).intervalIntegrable a b
-    calc ‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + Complex.I * T') / ((σ : ℂ) + Complex.I * T')‖
+    calc ‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + (T' : ℂ) * Complex.I) / ((σ : ℂ) + (T' : ℂ) * Complex.I)‖
         ≤ ∫ σ in a..b, y ^ σ / |T'| := by
           apply intervalIntegral.norm_integral_le_of_norm_le hab _ hgi
           filter_upwards with σ _ using hpt σ
