@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 234: the Montgomery correspondence BROKE — 3 of 4 links fail; T=128 is a tautology and the bench measures it (40x width change moves the zero height by ZERO; the mollifier sets it, not the window)
+- [open]   2026-08-28  entry 234: Montgomery's barrier is Montgomery-Vaughan mean value (length vs integration range), and past alpha=1 it is a SECOND-moment object the bench's first-moment sum cannot reach
+- [open]   2026-08-28  entry 234: what survives is modest — 7*log2 = log128 is the PRIME RANGE the stencil reads, so |alpha|<1 means the height must exceed 128, satisfied at T=939 with a factor-7 margin. A margin, not a barrier
+- [open]   2026-08-28  entry 234: METHOD — building the case FOR then breaking it was faster than defending against 'that's a coincidence'; it surfaced the load-bearing link and broke on measurement in 20 minutes
+- [open]   2026-08-28  entry 234: F(alpha,T) is not asymptotic at T=939 with 600 zeros — the real test needs greater height; imported/twin_count/zeros1.txt has 100k zeros to gamma=74,921, untried for this
 - [open]   2026-08-27  entry 233: THE GATE WAS NEVER 1e3 — bisecting O68's own R_of puts the depth>=6 boundary at C_pi = 2640.5; entry 231 measured 1e3 and 1e4 and never resolved between
 - [open]   2026-08-27  entry 233: paper propagation delivers C_pi = 2604.6, clearing 2640.5 by 1.4% with R(6) exactly on the ceiling rung — zero rungs of margin, and only at the frontier bump; at (1.7, 7.0) it is 4426 and fails
 - [open]   2026-08-27  entry 233: the integrals are still on PAPER — I37, I2, I8, I1, I9 live in constants.py, not Lean; route slices 5,6,7 unbuilt, so 2604.6 is a propagation not a theorem

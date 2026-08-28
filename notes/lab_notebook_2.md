@@ -16,6 +16,94 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 234 — the Montgomery correspondence, built as a case and broken on measurement
+type: result-triage
+refs: 40, 103, 230, 233
+
+Julian's method, and it was faster: instead of my repeatedly saying
+"that's a coincidence" and putting the burden on him, **construct the
+strongest case FOR the connection, then break it.** Building the case
+surfaced which link was load-bearing; it broke in twenty minutes on
+measurement rather than on argument.
+
+**The correspondence.** A cell `(r,d)` reads a window of `(d+1)·log b`
+in `u = log x`; at the deep zero that is `7·log 2 = log 128`.
+Montgomery's pair correlation holds for test functions with Fourier
+support in `α ∈ (−1,1)`, and `α` enters through `T^(iα)`, so the
+condition reads `|u| < log T` — matching at `T = 128`.
+
+**The case I built:** both constraints are set by the zero-counting
+function `N(T) ~ T log T/2π`, so they are two readings of one bound
+rather than a coordinate identity. **Three of its four links fail.**
+
+**The density link is decoration.** `∫t^(−α) log t dt` and
+`∫t^(−α) dt` have the same threshold at `α = 1` — the `log T` does no
+work, only the linear growth. "Forced by `N(T)`" is true in a sense
+that cannot distinguish zeta's zeros from an arithmetic progression.
+What survives is narrower and is about the mollifier, not the density:
+`sinc(Wt)^(2K)` decays as `t^(−2K)`, its `u`-preimage is a B-spline of
+order `2K`, and `K = 1` is exactly one derivative past an indicator.
+
+**Montgomery's barrier is not a density statement.** It is
+Montgomery–Vaughan's mean value theorem — a Dirichlet polynomial of
+length `x = T^α` against integration range `T`, error
+`O(x·Σ|aₙ|²)` versus main term `T·Σ|aₙ|²`. Length against range. And
+past `α = 1` the claim is Goldston–Montgomery-equivalent to a
+Hardy–Littlewood pair conjecture — a **second-moment** object that the
+bench's first-moment `Σ|h(ρ)|` has no access to.
+
+**"Conjugate" did no work.** The bench window in `u` is conjugate to
+`γ`; Montgomery's `α·log T` is conjugate to `γ − γ'`. Different pairs,
+and the two `log T`s are not the same `log T`.
+
+**`T = 128` is a tautology, and the bench measures it.** Sweeping the
+window `N = 1..40` — a 40× width change — the height at which the Weil
+object stops seeing zeros **does not move**: `γ₉₉.₉ = 158.85` at every
+width. What moves it is `W` and `K`, the mollifier, which is not part
+of the correspondence. Width sets magnitude (8.9 → 1.7e18), never
+height. At `N = 7` the actual height is ~159, not 128.
+
+**My proposed test was worthless and instructively so.** I proposed
+varying width against smoothness to see which knob each threshold
+responds to. Both outcomes were settled before running: the bench's
+width-indifference is a three-line bound, and Montgomery's side has no
+smoothness knob — a support condition is a support condition. I
+proposed it because the machinery was already in my context.
+
+**What survives, and it is modest.** `7·log 2 = log 128` is the
+**prime range** the stencil reads — O73's own log confirms it, support
+`|log x| ≤ 5.05203`, 25 primes contributing, largest 151. Under
+explicit-formula duality that is Montgomery's `x = T^α`, so `|α| < 1`
+translates to "the integration height must exceed 128," satisfied at
+`T = 939` with a factor-7 margin. **A comfortable margin, not a shared
+barrier.**
+
+**The Lean support I cited does not support it.**
+`Zeros.window_exclusive_of_prime_exponent` is real and proved, and it
+says `b^k = 2^7 → b = 2 ∧ k = 7`. That is a fact about the integer
+factorisation of 128. It contains nothing about zeros or windows.
+
+**The test that would settle it needs data the bench lacks.** Compute
+`F(α,T)` on the zeros and look for the `p = 2` peak at
+`α = log 2/log T` — the pair-correlation extension NOTEPAD entry 103
+already flags as open. Run on `zeros600.json`: `F(0.101) = 0.72`,
+`F(1.0) = 0.59`, no feature at `α = 1` or at 0.709, and `F` never
+approaches its asymptotic `min(α,1)`. **At `T = 939` with 600 zeros the
+statistic is not asymptotic** — that is the finding, and the cost of a
+real test is the answer.
+
+The adversary's instrument was the bench's own: it reproduced O73's
+recorded spectral sum `2644.2585543549` to 14 digits before measuring
+anything.
+
+**Its own strongest counter, recorded:** the width-indifference is
+indifference of the *mollified* object, and the mollifier carries all
+the decay — so it may have measured that `sinc^(2K)` sets the height,
+which was never in dispute, while the raw stencil's constraint is
+invisible because raw it diverges at every width equally.
+
+---
+
 ## 2026-08-27 — Entry 233 — both levers green, the gate was never 10³, and the paper propagation clears by 1.4%
 type: formalization
 refs: 118, 129, 230, 231, 232
