@@ -30,15 +30,163 @@ noncomputable def E (x : ℝ) : ℝ := ψ x - x
 noncomputable def F (s : ℂ) : ℂ :=
   s / (s - 1) + s * ∫ x in Set.Ioi (1:ℝ), (E x : ℂ) * (x : ℂ) ^ (-s - 1)
 
-/-- **V1 — the E-integral converges and is differentiable for `re s > 1/2`,
-given the hypothesis.** Via `mellin_differentiableAt_of_isBigO_rpow`:
-`E = O(x^(1/2+δ))` at infinity for any `δ > 0` from the hypothesis, and `E`
-is locally bounded on `[1,∞)`. -/
+/-- The truncated error, as a function on `(0,∞)`: `E` on `(1,∞)`, zero below. -/
+noncomputable def Etr : ℝ → ℂ := Set.indicator (Set.Ioi 1) (fun t : ℝ ↦ ((E t : ℝ) : ℂ))
+
+theorem measurable_psi' : Measurable (fun t : ℝ ↦ ψ t) := by
+  have : (fun t : ℝ ↦ ψ t)
+      = (fun n : ℕ ↦ ∑ k ∈ Finset.Ioc 0 n, ArithmeticFunction.vonMangoldt k)
+        ∘ (fun t : ℝ ↦ ⌊t⌋₊) := rfl
+  rw [this]
+  exact Measurable.comp (.of_discrete) Nat.measurable_floor
+
+theorem Etr_measurable : Measurable Etr :=
+  ((Complex.measurable_ofReal.comp
+    (measurable_psi'.sub measurable_id)).indicator measurableSet_Ioi)
+
+/-- Crude bound, no hypothesis: `|E t| ≤ (log 4 + 5)·t` for `t ≥ 0`. -/
+theorem E_le_linear {t : ℝ} (ht : 0 ≤ t) : ‖(E t : ℝ)‖ ≤ (Real.log 4 + 5) * t := by
+  have h1 := Chebyshev.psi_le_const_mul_self ht
+  have h2 : (0:ℝ) ≤ ψ t := Chebyshev.psi_nonneg t
+  rw [E, Real.norm_eq_abs, abs_le]
+  constructor <;> nlinarith [Real.log_nonneg (by norm_num : (1:ℝ) ≤ 4)]
+
+/-- The E-integral IS the Mellin transform of `Etr` at `-s` — as raw integrals,
+no convergence needed. -/
+theorem E_integral_eq_mellin (s : ℂ) :
+    ∫ x in Set.Ioi (1:ℝ), (E x : ℂ) * (x : ℂ) ^ (-s - 1) = mellin Etr (-s) := by
+  rw [mellin]
+  rw [show ∀ f : ℝ → ℂ, ∫ t in Set.Ioi (0:ℝ), f t = ∫ t in Set.Ioi (0:ℝ), f t from fun _ ↦ rfl]
+  have h : ∀ t : ℝ, (t : ℂ) ^ (-s - 1) • Etr t
+      = Set.indicator (Set.Ioi 1) (fun x : ℝ ↦ (E x : ℂ) * (x : ℂ) ^ (-s - 1)) t := by
+    intro t
+    by_cases ht : t ∈ Set.Ioi (1:ℝ)
+    · simp [Etr, Set.indicator_of_mem ht, smul_eq_mul]; ring
+    · simp [Etr, Set.indicator_of_notMem ht]
+  simp_rw [h]
+  rw [MeasureTheory.integral_indicator measurableSet_Ioi,
+    Measure.restrict_restrict measurableSet_Ioi]
+  have hset : Set.Ioi (1:ℝ) ∩ Set.Ioi (0:ℝ) = Set.Ioi (1:ℝ) := by
+    apply Set.inter_eq_left.mpr
+    intro t ht
+    exact Set.mem_Ioi.mpr (lt_trans zero_lt_one (Set.mem_Ioi.mp ht))
+  rw [hset]
+
+/-- `Etr` is locally integrable on `(0,∞)`. -/
+theorem Etr_locallyIntegrable : MeasureTheory.LocallyIntegrableOn Etr (Set.Ioi 0) := by
+  intro x hx
+  obtain ⟨ε, hε, hball⟩ := Metric.nhdsWithin_basis_ball.mem_iff.mp
+    (self_mem_nhdsWithin (a := x) (s := Set.Ioi (0:ℝ)))
+  refine ⟨Metric.ball x ε ∩ Set.Ioi 0, Metric.nhdsWithin_basis_ball.mem_iff.mpr
+    ⟨ε, hε, Set.Subset.rfl⟩, ?_⟩
+  have hbdd : ∀ t ∈ Metric.ball x ε ∩ Set.Ioi (0:ℝ), ‖Etr t‖ ≤ (Real.log 4 + 5) * (x + ε) := by
+    intro t ht
+    have htb : |t - x| < ε := by
+      have := ht.1
+      rwa [Metric.mem_ball, Real.dist_eq] at this
+    have ht0 : (0:ℝ) < t := ht.2
+    have htle : t ≤ x + ε := by cases abs_lt.mp htb; linarith
+    calc ‖Etr t‖ ≤ ‖(E t : ℂ)‖ := by
+          rw [Etr]
+          by_cases h : t ∈ Set.Ioi (1:ℝ)
+          · rw [Set.indicator_of_mem h]
+          · rw [Set.indicator_of_notMem h]; simp
+      _ = ‖(E t : ℝ)‖ := by rw [Complex.norm_real]
+      _ ≤ (Real.log 4 + 5) * t := E_le_linear ht0.le
+      _ ≤ (Real.log 4 + 5) * (x + ε) := by
+          have : (0:ℝ) ≤ Real.log 4 + 5 := by positivity
+          nlinarith
+  have hfin : (volume (Metric.ball x ε ∩ Set.Ioi 0)) < ⊤ :=
+    lt_of_le_of_lt (measure_mono Set.inter_subset_left) measure_ball_lt_top
+  haveI : MeasureTheory.IsFiniteMeasure
+      (volume.restrict (Metric.ball x ε ∩ Set.Ioi (0:ℝ))) :=
+    ⟨by rwa [Measure.restrict_apply_univ]⟩
+  refine MeasureTheory.Integrable.mono' (g := fun _ ↦ (Real.log 4 + 5) * (x + ε))
+    (MeasureTheory.integrable_const _)
+    (Etr_measurable.aestronglyMeasurable.restrict) ?_
+  filter_upwards [MeasureTheory.ae_restrict_mem
+    ((Metric.isOpen_ball.inter isOpen_Ioi).measurableSet)] with t ht
+  exact hbdd t ht
+
+/-- **V1 — F is differentiable on `re s > 1/2`, given the von Koch bound.**
+The hypothesis is consumed here: `E = O(t^{1/2+δ})` at infinity makes the
+Mellin transform of `Etr` differentiable at `-s` whenever `re s > 1/2 + δ`. -/
 theorem F_differentiableAt {C x₀ : ℝ}
     (hbound : ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3)
     {s : ℂ} (hs : 1/2 < s.re) (hs1 : s ≠ 1) :
     DifferentiableAt ℂ F s := by
-  sorry
+  set δ : ℝ := (s.re - 1/2) / 2 with hδ
+  have hδ0 : 0 < δ := by rw [hδ]; linarith
+  -- Etr = O(t^(1/2 + δ)) at infinity
+  have htop : Etr =O[Filter.atTop] (fun t : ℝ ↦ t ^ (-(-(1/2) - δ))) := by
+    have hlog : (fun t : ℝ ↦ (Real.log t) ^ 3) =o[Filter.atTop]
+        (fun t : ℝ ↦ t ^ δ) := by
+      have hδ3 : (0:ℝ) < δ/3 := by positivity
+      have h := (isLittleO_log_rpow_atTop hδ3).pow (n := 3) (by norm_num : (0:ℕ) < 3)
+      refine h.congr' (Filter.EventuallyEq.refl _ _) ?_
+      filter_upwards [Filter.eventually_ge_atTop (0:ℝ)] with t ht
+      rw [← Real.rpow_natCast (t ^ (δ/3)) 3, ← Real.rpow_mul ht]
+      norm_num
+    have hbig : (fun t : ℝ ↦ C * Real.sqrt t * (Real.log t) ^ 3)
+        =O[Filter.atTop] (fun t : ℝ ↦ t ^ (1/2 + δ)) := by
+      have hsq : (fun t : ℝ ↦ Real.sqrt t) =O[Filter.atTop]
+          (fun t : ℝ ↦ t ^ (1/2 : ℝ)) := by
+        apply Asymptotics.IsBigO.of_bound 1
+        filter_upwards [Filter.eventually_ge_atTop (0:ℝ)] with t ht
+        rw [Real.sqrt_eq_rpow, one_mul]
+
+      have := ((hsq.const_mul_left C).mul hlog.isBigO)
+      refine this.trans (Asymptotics.IsBigO.of_bound 1 ?_)
+      filter_upwards [Filter.eventually_ge_atTop (1:ℝ)] with t ht
+      have ht0 : (0:ℝ) < t := lt_of_lt_of_le zero_lt_one ht
+      rw [one_mul, Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg
+        (Real.rpow_nonneg ht0.le _), ← Real.rpow_add ht0, add_comm (1/2 : ℝ) δ]
+    have hEO : Etr =O[Filter.atTop] (fun t : ℝ ↦ C * Real.sqrt t * (Real.log t) ^ 3) := by
+      apply Asymptotics.IsBigO.of_bound 1
+      filter_upwards [Filter.eventually_ge_atTop (max x₀ 1)] with t ht
+      have ht1 : (1:ℝ) ≤ t := le_trans (le_max_right _ _) ht
+      have htx : x₀ ≤ t := le_trans (le_max_left _ _) ht
+      have hb := hbound t htx
+      rw [one_mul, Etr]
+      by_cases h : t ∈ Set.Ioi (1:ℝ)
+      · rw [Set.indicator_of_mem h, Complex.norm_real]
+        calc ‖E t‖ = |ψ t - t| := by rw [E, Real.norm_eq_abs]
+          _ ≤ C * Real.sqrt t * (Real.log t) ^ 3 := hb
+          _ ≤ ‖C * Real.sqrt t * (Real.log t) ^ 3‖ := Real.le_norm_self _
+      · rw [Set.indicator_of_notMem h]
+        simp only [norm_zero]
+        positivity
+    refine (hEO.trans hbig).congr' (Filter.EventuallyEq.refl _ _) ?_
+    filter_upwards with t
+    congr 1
+    ring
+  -- Etr vanishes near 0, so it is O(t^(-b)) for the b we need
+  have hbot : Etr =O[nhdsWithin 0 (Set.Ioi 0)] (fun t : ℝ ↦ t ^ (-(-s.re - 1))) := by
+    apply Asymptotics.IsBigO.of_bound 0
+    filter_upwards [Ioo_mem_nhdsGT zero_lt_one] with t ht
+    have hnot : t ∉ Set.Ioi (1:ℝ) := by
+      simp only [Set.mem_Ioi, not_lt]
+      exact le_of_lt ht.2
+    rw [Etr, Set.indicator_of_notMem hnot]
+    simp
+  have hmel : DifferentiableAt ℂ (mellin Etr) (-s) :=
+    mellin_differentiableAt_of_isBigO_rpow Etr_locallyIntegrable htop
+      (by simp only [Complex.neg_re]; linarith) hbot
+      (by simp only [Complex.neg_re]; linarith)
+  -- F agrees globally with the composite
+  have hFeq : F = fun z : ℂ ↦ z / (z - 1) + z * mellin Etr (-z) := by
+    funext z
+    rw [F]
+    rw [show (∫ x in Set.Ioi (1:ℝ), (E x : ℂ) * (x : ℂ) ^ (-z - 1))
+        = mellin Etr (-z) from E_integral_eq_mellin z]
+  rw [hFeq]
+  have h1 : DifferentiableAt ℂ (fun z : ℂ ↦ z / (z - 1)) s := by
+    apply DifferentiableAt.div differentiableAt_id (by fun_prop)
+    intro h
+    exact hs1 (by linear_combination h)
+  have h2 : DifferentiableAt ℂ (fun z : ℂ ↦ mellin Etr (-z)) s :=
+    hmel.comp s differentiable_neg.differentiableAt
+  exact h1.add (differentiableAt_id.mul h2)
 
 /-- The partial sums of `Λ` over `Icc 1 n` are `ψ n`. -/
 theorem sum_Icc_vonMangoldt (n : ℕ) :
