@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 243: C1 MEASURED (exploratory) — the Landau deviation tracks the unconditional envelope's x-power (slope +0.589 vs +0.500) at ~3% of sqrt(x)log(xT), flat across every octave to x=512. No crossing anywhere in range
+- [open]   2026-08-28  entry 243: the deviation IGNORES Λ(b) — corr −0.065 at d=9; Λ=0 bases {6,10,12} deviate at the same scale as prime bases. Curve reads arithmetic, deviation reads size: different axes
+- [open]   2026-08-28  entry 243: D(b,d) = Σ C(d,k)(−1)^k b^(−k/2) δ(b^k) is an exact identity (2.6e-9); entry 236's drift is mid-k Landau deviation under binomial amplification (k=4,5 dominate D(2,9))
 - [open]   2026-08-28  entry 242: B1 PROVED — VonKoch.RH_of_psiWeak, the von Koch converse at k=3, guard_msgs-pinned [propext, Classical.choice, Quot.sound], no sorryAx, commit 8c64a69
 - [open]   2026-08-28  entry 242: B2 PINNED — RH ↔ ∃ C > 0, ∃ x₀, StmtPsiWeak C 3 x₀. The k=3 price is two-sided: RH returns from the coarsened bound
 - [open]   2026-08-28  entry 242: METHOD — V3/V4 ran the identity theorem on G = F·ζ + ζ′ over the half-plane minus ONE point (four convex pieces); Mathlib has no convex-minus-countable connectivity lemma and the restructure removed the need

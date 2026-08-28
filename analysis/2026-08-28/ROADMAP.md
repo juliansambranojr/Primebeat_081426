@@ -54,12 +54,15 @@ Vocabulary (Julian's, keep it):
 
 ## C. The gap, measured (outside the known routes)
 
-- [ ] C1. The Landau deviation: measured ratios drift 1.00000 -> 1.00042 as
-        d: 1 -> 9 (entry 236 table). Measure properly: deviation vs d and vs b,
-        against Landau's known error-term shape. Question: does it scale like
-        the unconditional error term, or exceed it? Is its base-dependence
-        Λ(b) like the main term, or something else? RH lives in the error
-        term; the main term is unconditional. Artifact: script + log + entry.
+- [x] C1. The Landau deviation: MEASURED (exploratory) 2026-08-28.
+        [ARTIFACT: analysis/2026-08-28/landau_deviation.py + results/
+        landau_deviation.log + entry 243]
+        Answer 1: scales LIKE the unconditional envelope (slope +0.589 vs
+        +0.500; flat would be 0.000) at ~3% of sqrt(x)log(xT) — inside it,
+        no crossing to x=512. Answer 2: base-dependence is NOT Λ(b)
+        (corr −0.065; Λ=0 bases deviate at the same scale). Curve reads
+        arithmetic, deviation reads size — different axes. Exact identity:
+        D(b,d) = Σ C(d,k)(−1)^k b^(−k/2) δ(b^k), verified 2.6e-9.
 - [ ] C2. Pin Nyman–Beurling and Báez-Duarte from SOURCE (not recall — neither
         exists in Mathlib or PNT+; verified 2026-08-28, the "Baez" hit is
         J. Baez on Coxeter diagrams). Need: exact NB criterion; BD

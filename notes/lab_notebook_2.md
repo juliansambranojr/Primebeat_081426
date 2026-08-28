@@ -16,6 +16,57 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 243 — C1: the Landau deviation scales like the envelope and ignores Λ(b)
+type: run
+refs: 236, 242
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
+Script `analysis/2026-08-28/landau_deviation.py`, log
+`analysis/2026-08-28/results/landau_deviation.log`. T = 74920, all 99,998
+zeros of `imported/twin_count/zeros1.txt`.
+
+**The reduction.** The coupling deviation decomposes exactly — an identity,
+verified to 2.6e-9 relative — as
+
+```text
+D(b,d) = Σ_{k=1..d} C(d,k) (−1)^k b^(−k/2) δ(b^k),
+δ(x)   = Σ_{γ≤T} cos(γ log x) + (T/2π)Λ(x)/√x
+```
+
+so entry 236's drift is a binomial resummation of per-x Landau deviations,
+and the whole question is how δ(x) scales.
+
+**Question 1 — envelope or excess.** Measured over every integer
+x ∈ [2, 512]: log|δ| vs log x has least-squares slope +0.589 against the
+unconditional envelope's +0.500 (flat oscillation would be 0.000), and the
+octave-binned median of |δ|/(√x·log(xT)) is 0.030–0.043 in every bin from
+[8,16) to [256,512). The deviation grows parallel to Landau's known
+error-term shape at about 3% of it. There is no crossing anywhere in range:
+the envelope is never approached, and the oscillation scale √(N/2) = 224 is
+never approached either — δ(2) = 0.70 on a hundred thousand zeros.
+
+**Question 2 — base-dependence.** corr(Λ(b), |D(b,9)|) = −0.065 over
+thirteen bases. Mean |D(b,9)| is 63.4 on the Λ=0 bases {6,10,12} and 80.7 on
+the ten prime-power bases — the same scale. The deviation's base-dependence
+is size, b^(k/2) through δ(b^k), paid by every base alike; the main term's
+base-dependence is arithmetic, Λ(b). These are different axes: the curve
+reads what b is made of, the deviation reads only how big its powers are.
+At b = 6 the main term is zero and D(6,9) = −58.6 stands alone — the
+deviation is the floor every base stands on; the curve rises from it only
+where Λ ≠ 0.
+
+**Attribution.** D(2,9) = +45.28 is dominated by interior k: the k = 4 and
+k = 5 terms contribute +75.1 and −104.5, the endpoints ±5 — the binomial
+weights C(d,k)b^(−k/2) amplify mid-depth powers, so the drift entry 236 saw
+grow with d is mid-k Landau deviation under growing binomial coefficients,
+with sign cancellation holding |D| below the coherent worst case.
+
+**T-stability.** δ(x,T)/√N(T) at T = 18730/37460/74920 stays in
+0.001–0.018 and oscillates in T at fixed x. The deviation is an oscillation
+well below every reference scale, growing in x alone.
+
+---
+
 ## 2026-08-28 — Entry 242 — B1/B2: the von Koch converse proved, the equivalence pinned
 type: formalization
 refs: 238, 239, 240, 241
