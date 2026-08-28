@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 239: T = X, NOT sqrt(X) — I1Bound gives C X logX/(eps T), so eps=X^-1/2 needs T=X to make eps*T=sqrt(X). Entry 238's closing note said T~sqrt(X) and was wrong; the instantiation caught it
+- [open]   2026-08-28  entry 239: the correction pays twice — at T=X the horizontal Mellin factor B/X meets X^(1+1/logX)=e*X and the X CANCELS, collapsing the horizontals to O(log^2 X)
+- [open]   2026-08-28  entry 239: the bump is CONCRETE, not assumed — SmoothExistence's C-infinity Urysohn bump on [1/2,2], normalised; mass condition transfers Ici 0 -> Ioi 0 since {0} is null
+- [open]   2026-08-28  entry 239: remaining is existential wiring only — obtain Cclose/C1/C9, unpack MellinOfSmooth1c's IsBigO on 𝓝[>]0 into a constant, pick x0. No unproved inequality in the chain
 - [open]   2026-08-28  entry 238: hEF is ROUTED AROUND, not discharged — under RH the contour pushes to sigma1 = 1/2 + 1/log X, crosses no zero, and the sqrt(X) comes from X^(1/2+1/logX) = e*sqrt(X), the abscissa itself
 - [open]   2026-08-28  entry 238: THE ONE MISSING LEMMA was mellin_bump_bounded — 𝓜nu uniformly bounded on the strip; MellinOfPsi's C/||w|| blows up at the origin where mass-one says the true function is 1, and that artifact is the entire eps^-1
 - [open]   2026-08-28  entry 238: the eps^-1 caps the route at X^(3/4) log^(3/2) X and NO k rescues it — the balance needs sqrt(X) <= c log^(2k-3) X. Killing it is the difference between X^(3/4) and sqrt(X)

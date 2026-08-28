@@ -16,6 +16,57 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 239 — the numeric instantiation: T = X, not √X, and every scale checks
+type: formalization
+refs: 238
+
+Entry 238 left the final instantiation unwritten. Doing it moved one parameter
+and the rest fell out.
+
+**T = X, not √X.** `PrimeNumberTheoremAnd/MediumPNT.lean:1829` (`I1Bound`, and
+`I9Bound` at 2150) gives `‖I₁‖ ≤ C·X·log X/(ε·T)`. With `ε = X^(−1/2)` the
+choice `T = √X` makes `εT = 1` and those terms become `C·X·log X` — worse than
+the target. `T = X` makes `εT = √X`, so they land at `C·√X·log X`. I had
+written `T ~ √X` in entry 238's closing note; that was wrong, and the
+instantiation is what showed it.
+
+The correction pays twice. At `T = X` the horizontal Mellin factor is
+`M ≤ B/T = B/X`, against `X^(1+1/log X) = e·X`, so **the `X` cancels
+outright** and the horizontals collapse from a leading term to `O(log²X)`.
+
+**Landed, `lean_stage3/Stage3/LineBound.lean`:**
+
+```text
+bump_exists              a concrete ν — ContDiff 1, supp ⊆ [1/2,2], nonneg,
+                         mass-one on Ioi 0. From PNT+'s SmoothExistence, whose
+                         mass condition is over Ici 0; {0} is null.
+norm_ge_height           ‖σ + iT‖ ≥ T
+mellin_horiz_le          ‖𝓜(Smooth1 ν ε)(σ + iT)‖ ≤ B/T
+inv_sqrt_mul_self        (√X)⁻¹·X = √X
+instantiation_arithmetic at ε = X^(−1/2), all three of
+                           smoothing  εX log X     = √X log X
+                           I₁, I₉     X log X/(εT) = √X log X
+                           main term  εX           = √X
+                         are ≤ c·√X·log³X
+horiz_small              horizontal contribution ≤ (900·e·B/π)·log²X
+```
+
+**Every scale now checks.** Vertical `O(√X log³X)` by `I37_sqrt_log3`;
+horizontals `O(log²X)`; `I₁`, `I₉`, smoothing and main-term all
+`O(√X log X)`. `psi_weak_at` sums them into the `StmtPsiWeak _ 3 _` shape.
+
+The bump is concrete rather than assumed — `SmoothExistence` builds a `C^∞`
+Urysohn bump supported in `[1/2,2]` and normalises it to mass one.
+
+**Remaining: existential wiring only.** `obtain` the constants from
+`SmoothedChebyshevClose`, `I1Bound`, `I9Bound`; unpack `MellinOfSmooth1c`'s
+`IsBigO` (it is stated as `(fun ε ↦ 𝓜(Smooth1 ν ε) 1 − 1) =O[𝓝[>]0] id`) into
+a constant on a neighbourhood of `0`; choose `x₀`. No inequality in that chain
+is unproved.
+
+`Stage3/LineBound.lean`: 62 theorems, 0 sorries, Stage3 green at 8721 jobs.
+Commit `fa97ebc`.
+
 ## 2026-08-28 — Entry 238 — the hEF-free route: StmtPsiWeak's shape reached at √X log³X, no explicit formula
 type: formalization
 refs: 237
