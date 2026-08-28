@@ -17,6 +17,13 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 233: THE GATE WAS NEVER 1e3 — bisecting O68's own R_of puts the depth>=6 boundary at C_pi = 2640.5; entry 231 measured 1e3 and 1e4 and never resolved between
+- [open]   2026-08-27  entry 233: paper propagation delivers C_pi = 2604.6, clearing 2640.5 by 1.4% with R(6) exactly on the ceiling rung — zero rungs of margin, and only at the frontier bump; at (1.7, 7.0) it is 4426 and fails
+- [open]   2026-08-27  entry 233: the integrals are still on PAPER — I37, I2, I8, I1, I9 live in constants.py, not Lean; route slices 5,6,7 unbuilt, so 2604.6 is a propagation not a theorem
+- [open]   2026-08-27  entry 233: lever 1 green and RH-FREE — Dirichlet series above the line, no contour no zeros, replaces 54136 with 453
+- [open]   2026-08-27  entry 233: r = 7/8 was never a constraint, only inherited — slices 3/4 call ZerosBound directly, never zeta_local_zero_count; freeing it took FinalBound 6600 -> 3991
+- [open]   2026-08-27  entry 233: the Jensen architecture has no further order in it — realizable floor K_FB ~ 1950 against 3991 now, so ~2x remains there and no more
+- [open]   2026-08-27  entry 233: NEXT — construct an explicit bump with proved sup bounds; SmoothExistence builds nothing and the entire 1.4% clearance rests on M <= 1.0, M' <= 3.4
 - [open]   2026-08-27  entry 232: THE CHAIN ASSEMBLES AND THE CONSTANT MISSES — C_pi ~ 7e3-2e4 against a gate closing between 1e3 and 1e4; one order of magnitude, exponent and shape both right
 - [open]   2026-08-27  entry 232: the cheapest shave is named — I1/I9 borrow a critical-line bound at sigma_0 = 1+1/log X where the truth is ~log X, 1500x too weak; one Dirichlet-series bound deletes 1750 of 4008 and takes C_pi to ~6.8e3
 - [open]   2026-08-27  entry 232: slices 5,6,7 unbuilt — every upstream I-bound is stated exists-C against a different abscissa so none is reusable; each needs re-proving against our line bound

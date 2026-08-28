@@ -16,6 +16,90 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 233 — both levers green, the gate was never 10³, and the paper propagation clears by 1.4%
+type: formalization
+refs: 118, 129, 230, 231, 232
+
+**Lever 1 — the Dirichlet bound above the line. GREEN, and RH-free.**
+`results/scratch_lean/slice5.lean`, no sorries, house axioms:
+
+```text
+norm_logDerivZeta_of_one_lt_re : 1 < s.re →
+    ‖ζ'/ζ(s)‖ ≤ 2/(s.re−1) + 4/(s.re−1)²
+norm_logDerivZeta_sigma0 : 1 ≤ L →
+    ‖ζ'/ζ(1 + 1/L + it)‖ ≤ 2L + 4L²        (uniform in t)
+```
+
+Off Mathlib's `LSeries_vonMangoldt_eq_deriv_riemannZeta_div` by
+`norm_tsum_le_tsum_norm` and an integral test — **no contour, no
+zeros, no Jensen, no RH.** Entry 232 priced `I₁/I₉`'s borrowed
+critical-line value as ~1500× too weak; measured, it replaces
+**54136 with 453** at `L = 10.4`, and the `b(L)·M'` column falls from
+1750 to ~7.
+
+**Lever 2 — one of the four radii was never a constraint.** `r = 7/8`
+was inherited from `zeta_local_zero_count`'s `7/4` window, and slices
+3 and 4 never call that theorem — they call `ZerosBound` directly.
+Freeing it, the optimum is `r = 181/200, R' = 29/32`: **FinalBound
+6600 → 3991**, ZerosBound 15 → 29. The trade is real (`K_FB`
+multiplies `L`, `K_ZB` multiplies `L²`) and at `L ≈ 10.4` the split is
+87:13, so it wins. `r' = 3/4` is hard (forced by the `2z` rescale
+reaching `σ₁ ≈ 1/2`); `R = 15/16` is hard as proved (`jensenF_bound`'s
+reach); `R'` is free.
+
+**The gate was never 10³.** Entry 231 measured `C = 10³` (depth 6) and
+`C = 10⁴` (depth 5) and never resolved between them. Bisecting O68's
+own `R_of` — imported, script untouched, EXPLORATORY, no prereg —
+puts the `depth ≥ 6` boundary at **`C_π = 2640.5`**, with
+`R(6) = 93` at 2640 and 94 at 2641 against a ceiling of
+`O43_EXTENT + 1 = 93`. Recomputed independently: same to the decimal.
+
+**Delivered, and the condition on it.** At the frontier bump
+(`M = 1.0, M' = 3.4`) the propagation gives `C_ψ = 863.9`,
+`C_π = 2604.6` — **clearing 2640.5 by 1.4%, with `R(6)` sitting
+exactly on the ceiling rung. Zero rungs of margin.** At the plausible
+bump (1.7, 7.0) it is 4426 and fails.
+
+**What is kernel-checked and what is not, stated plainly.** Green in
+Lean: every ζ'/ζ bound the route uses — critical line `|t| ≥ 2`,
+compact patch `|t| ≤ 2`, the weld across both signs, the Dirichlet
+bound above the line, and slice 8's endpoint drop. **On paper, in
+`results/scratch_lean/constants.py`: all five integrals — `I₃₇`,
+`I₂`, `I₈`, `I₁`, `I₉`.** So `C_π = 2604.6` is a propagation, not a
+theorem. Route slices 5, 6, 7 remain unbuilt.
+
+**Where the excess now sits.** `I₃₇` is 856 of the 864 `C_ψ`; within
+it the `2 ≤ |t| ≤ X` tail is 91%, and within that the FinalBound term
+is 87%. The whole constant is now one product: the Jensen constant
+times `∫dt/|t|`. Structural floor: `16r²/(r−3/4)³ > 1024` for `r < 1`
+while `K_ZB = 1/log(R/r) → ∞` as `r → R`, so the realizable minimum
+over all `R < 1` is `K_FB ≈ 1950` — about 2× below where we sit. **The
+Jensen architecture has no further order in it.**
+
+**Re-proving `jensenF_bound` wider was priced and declined.** `R = 0.99`
+gives `K_FB ≈ 2128` and a further ~1.5× (`C_π ≈ 1.75×10³`); the
+re-proof is numeral-only (`1/Re w ≤ 50` not 8, pinch `28 → 175`,
+`B = 84t → 525t`). Since the gate clears without it, it is margin
+rather than requirement — and margin is exactly what 1.4% lacks.
+
+**The one thing the clearance rests on.** `SmoothExistence` constructs
+nothing, so `M ≤ 1.0` and `M' ≤ 3.4` are assumptions. One step up the
+frontier and the constant fails. Constructing an explicit `ν` with
+proved sup bounds is now the only thing between this chain and a
+number.
+
+Banked: `slice5.lean`, `slice3_opt.lean`, `slice4_opt.lean`,
+`unified_opt.lean`, `unified_opt2.lean` (final, 0 errors, 0 sorries),
+`constants.py` rewritten with the proved numerals.
+
+**Found, not introduced:** `results/scratch_lean/slice4b_8.lean` as
+banked does not compile standalone —
+`PrimeNumberTheoremAnd.logDerivZeta_conj` unknown, and the
+`variable`-hypothesis form does not elaborate. `unified.lean` carries
+the working weld.
+
+---
+
 ## 2026-08-27 — Entry 232 — the substitute chain assembles and the constant misses by one order
 type: formalization
 refs: 118, 129, 130, 230, 231
