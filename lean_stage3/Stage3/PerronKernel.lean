@@ -1,13 +1,13 @@
 /-
 # Slice 1a — the truncated Perron kernel bound (hEF's entry point)
 
-SCRATCH: this file carries named `sorry`s by design. It is the slice map
-for hEF's build order (adversary report 2026-08-28, recovered from the
-session transcript; ledger: CONTEXT.md § hEF, roadmap D). Do not count
-this module in any sorry-free claim.
+COMPLETE, 2026-08-29: every branch proved, no sorry. `perron_kernel_truncated`
+sits at `[propext, Classical.choice, Quot.sound]`. (Build order: entry 257;
+ledger: CONTEXT.md § hEF, roadmap D. This was hEF's load-bearing unknown —
+the piece both MediumPNT and StrongPNT were designed to avoid.)
 
-The ONE missing piece of the truncated explicit formula, zeta-free,
-provable from Mathlib alone:
+The ONE previously-missing piece of the truncated explicit formula,
+zeta-free:
 
     ‖(2πi)⁻¹ ∫_{c-iT}^{c+iT} y^s/s ds − [y > 1]‖ ≤ y^c · min(1, 1/(T·|log y|))
 
@@ -15,16 +15,15 @@ Classical: Davenport ch. 17 Lemma; Montgomery–Vaughan Thm 5.2 (their
 constant has π in the denominator — dropping it is the crude-explicit
 spec, CLAUDE.md Stage-3 conventions).
 
-Routes, per branch:
-  K1 (coarse, ≤ y^c)             deform the vertical segment to the circular
-                                 arc through c±iT centred at 0: on the arc
-                                 |y^s| ≤ y^c (both y-cases), |1/s| = 1/R,
-                                 length ≤ πR — bound y^c/2. Mathlib:
-                                 circleIntegral machinery; the lune between
-                                 segment and arc needs a Cauchy argument.
-  K2 (decay, ≤ y^c/(T|log y|))   close with a rectangle to +∞ (y < 1) or
-                                 −∞ (y > 1, collecting the pole at 0);
-                                 horizontals give ∫ y^σ dσ / T.
+Routes, as built (the classical arc was never needed):
+  K1, y < 1   one finite rectangle of width T, crude endpoint bounds — (2/π)·y^c.
+  K1, y > 1   T·log y ≥ 1 from the decay branch; below that, split off the
+              exact ∫ ds/s = 2i·arctan(T/c) (pure real calculus), mean-value
+              bound ‖y^s−1‖ ≤ ‖s‖·log y·y^c, and the elementary two-variable
+              inequality coarse_gt_ineq.
+  K2, y < 1   rectangles to +∞ along the naturals; horiz_bound on both edges.
+  K2, y > 1   rectangle to −∞ collects the residue at 0
+              (dslope regular part + ResidueTheoremOnRectangleWithSimplePole).
 
 Upstream probed 2026-08-28: PNT+ main's PerronFormula.lean has no sharp-
 kernel min-bound (its kernel is the smoothed x^s/(s(s+1))); the pin bump
@@ -32,8 +31,8 @@ does not discharge this leaf. Its rectangle machinery (vertIntBound,
 contourPull, HolomorphicOn.upperUIntegral_eq_zero) is reusable structure
 for K2.
 
-The assembly from K1 and K2 is proved below — the two branches are the
-whole of the missing mathematics.
+Classical reference for the statement: Davenport ch. 17; MV Thm 5.2 keeps a
+π we drop (crude-explicit spec).
 -/
 import Mathlib
 import PrimeNumberTheoremAnd.ResidueCalcOnRectangles
@@ -205,22 +204,6 @@ theorem perron_kernel_coarse_lt {y c T : ℝ} (hy : 0 < y) (hylt : y < 1)
             = (4 * y ^ c) / (2 * Real.pi) := by ring
           _ ≤ (4 * y ^ c) / 4 := div_le_div_of_nonneg_left (by positivity) (by norm_num) h4
           _ = y ^ c := by ring
-
-/-- **K1, case `y > 1`.** Route: split off the exact `∫ ds/s = 2i·arctan(T/c)`,
-mean-value bound on `(y^s−1)/s`, and an elementary two-variable inequality;
-the `T·log y ≥ 1` regime follows from the decay branch. -/
-theorem perron_kernel_coarse_gt {y c T : ℝ} (hygt : 1 < y)
-    (hc : 0 < c) (hT : 1 ≤ T) :
-    ‖perronI y c T - perronδ y‖ ≤ y ^ c := by
-  sorry
-
-/-- **K1 — the coarse branch**, assembled from its two cases. -/
-theorem perron_kernel_coarse {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
-    (hc : 0 < c) (hT : 1 ≤ T) :
-    ‖perronI y c T - perronδ y‖ ≤ y ^ c := by
-  rcases lt_or_gt_of_ne hy1 with h | h
-  · exact perron_kernel_coarse_lt hy h hc hT
-  · exact perron_kernel_coarse_gt h hc hT
 
 /-- The shared horizontal-edge estimate: along `Im s = T'` with `|T'| ≥ 1`,
 the kernel's horizontal integral is controlled by the endpoint powers over
@@ -606,6 +589,342 @@ theorem perron_kernel_decay {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
   · exact perron_kernel_decay_lt hy h hc hT
   · exact perron_kernel_decay_gt h hc hT
 
+/-- The elementary two-variable inequality behind K1's `y > 1` case, in
+multiplied (division-free) form: for `u = c·log y > 0`, `v = T·log y ∈ (0,1]`,
+`v·e^u + π − arctan(v/u) ≤ π·e^u`. -/
+theorem coarse_gt_ineq {u v : ℝ} (hu : 0 < u) (hv0 : 0 < v) (hv1 : v ≤ 1) :
+    v * Real.exp u + Real.pi - Real.arctan (v / u) ≤ Real.pi * Real.exp u := by
+  have hπ2 : (3.14 : ℝ) < Real.pi := Real.pi_gt_d2
+  have hexp : 1 + u ≤ Real.exp u := by linarith [Real.add_one_le_exp u]
+  have hE1 : (1:ℝ) ≤ Real.exp u := by nlinarith
+  have harct0 : 0 ≤ Real.arctan (v / u) := Real.arctan_nonneg.mpr (by positivity)
+  by_cases hvu : v ≤ u
+  · by_cases hu1 : u ≤ Real.pi - 1
+    · nlinarith [mul_le_mul_of_nonneg_right hexp (by linarith : (0:ℝ) ≤ Real.pi - v)]
+    · push_neg at hu1
+      nlinarith [mul_le_mul_of_nonneg_right hexp (by linarith : (0:ℝ) ≤ Real.pi - v)]
+  · push_neg at hvu
+    have hq1 : (1:ℝ) < v / u := (one_lt_div hu).mpr hvu
+    have harc4 : Real.pi / 4 ≤ Real.arctan (v / u) := by
+      rw [← Real.arctan_one]
+      exact Real.arctan_le_arctan_iff.mpr hq1.le
+    by_cases hv2 : v ≤ 1/2
+    · nlinarith
+    · push_neg at hv2
+      by_cases hu3 : (3/20 : ℝ) ≤ u
+      · nlinarith [mul_le_mul_of_nonneg_right hexp (by linarith : (0:ℝ) ≤ Real.pi - v)]
+      · push_neg at hu3
+        have hq : (10:ℝ)/3 ≤ v / u := by
+          have h1 : (10:ℝ)/3 * u ≤ v := by nlinarith
+          calc (10:ℝ)/3 = ((10:ℝ)/3 * u) / u := by field_simp
+            _ ≤ v / u := div_le_div_of_nonneg_right h1 hu.le
+        have harc : Real.pi / 2 - 3/10 ≤ Real.arctan (v / u) := by
+          have hmono : Real.arctan ((10:ℝ)/3) ≤ Real.arctan (v / u) :=
+            Real.arctan_le_arctan_iff.mpr hq
+          have hself : Real.arctan ((3:ℝ)/10) ≤ (3:ℝ)/10 := by
+            have h3 : (0:ℝ) < Real.arctan ((3:ℝ)/10) :=
+              Real.arctan_pos.mpr (by norm_num)
+            have h4 := Real.lt_tan h3 (Real.arctan_lt_pi_div_two _)
+            rw [Real.tan_arctan] at h4
+            exact h4.le
+          have h5 : Real.arctan ((10:ℝ)/3) = Real.pi / 2 - Real.arctan ((3:ℝ)/10) := by
+            have h := Real.arctan_inv_of_pos (show (0:ℝ) < 3/10 by norm_num)
+            rw [show ((3:ℝ)/10)⁻¹ = (10:ℝ)/3 by norm_num] at h
+            exact h
+          linarith
+        nlinarith
+
+/-- The segment integral of `1/s`: pure real calculus — the odd part cancels
+by its antiderivative, the even part is the arctan derivative. -/
+theorem seg_inv_integral {c T : ℝ} (hc : 0 < c) :
+    (∫ t in (-T)..T, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I)
+      = 2 * Real.arctan (T / c) * Complex.I := by
+  have hD : ∀ t : ℝ, (0:ℝ) < c^2 + t^2 := fun t ↦ by positivity
+  have hsplit : ∀ t : ℝ, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I
+      = ((t / (c^2 + t^2) : ℝ) : ℂ) + ((c / (c^2 + t^2) : ℝ) : ℂ) * Complex.I := by
+    intro t
+    have hne : ((c : ℂ) + Complex.I * t) ≠ 0 := by
+      intro h
+      have hre := congrArg Complex.re h
+      simp at hre
+      linarith
+    have hD' : ((c:ℂ)^2 + (t:ℂ)^2) ≠ 0 := by
+      have : (((c^2 + t^2 : ℝ)) : ℂ) ≠ 0 := by exact_mod_cast (hD t).ne'
+      push_cast at this
+      exact this
+    rw [inv_mul_eq_div, div_eq_iff hne]
+    push_cast
+    linear_combination (-((c:ℂ) * (t:ℂ) / ((c:ℂ)^2 + (t:ℂ)^2))) * Complex.I_sq
+      + (-Complex.I) * (mul_inv_cancel₀ hD')
+  have hcont_odd : Continuous fun t : ℝ ↦ t / (c^2 + t^2) := by
+    fun_prop (disch := intro t; exact (hD t).ne')
+  have hcont_even : Continuous fun t : ℝ ↦ c / (c^2 + t^2) := by
+    fun_prop (disch := intro t; exact (hD t).ne')
+  have hodd : (∫ t in (-T)..T, t / (c^2 + t^2)) = 0 := by
+    have hF : ∀ t : ℝ, HasDerivAt (fun t : ℝ ↦ (1/2) * Real.log (c^2 + t^2))
+        (t / (c^2 + t^2)) t := by
+      intro t
+      have h1 : HasDerivAt (fun t : ℝ ↦ c^2 + t^2) (2*t) t := by
+        simpa using ((hasDerivAt_id t).pow 2).const_add (c^2)
+      have h2 := h1.log (hD t).ne'
+      have h3 := h2.const_mul (1/2 : ℝ)
+      have hval : 1/2 * (2*t / (c^2 + t^2)) = t / (c^2 + t^2) := by
+        field_simp [(hD t).ne']
+        try ring
+      rw [hval] at h3
+      exact h3
+    rw [intervalIntegral.integral_eq_sub_of_hasDerivAt (fun t _ ↦ hF t)
+      (hcont_odd.intervalIntegrable _ _)]
+    ring_nf
+  have heven : (∫ t in (-T)..T, c / (c^2 + t^2)) = 2 * Real.arctan (T / c) := by
+    have hF : ∀ t : ℝ, HasDerivAt (fun t : ℝ ↦ Real.arctan (t / c))
+        (c / (c^2 + t^2)) t := by
+      intro t
+      have h1 : HasDerivAt (fun t : ℝ ↦ t / c) (1/c) t := (hasDerivAt_id t).div_const c
+      have h2 := (Real.hasDerivAt_arctan (t/c)).comp t h1
+      have hval : 1 / (1 + (t/c)^2) * (1/c) = c / (c^2 + t^2) := by
+        field_simp [(hD t).ne', hc.ne']
+        try ring
+      rw [hval] at h2
+      exact h2
+    rw [intervalIntegral.integral_eq_sub_of_hasDerivAt (fun t _ ↦ hF t)
+      (hcont_even.intervalIntegrable _ _)]
+    rw [show (-T)/c = -(T/c) by ring, Real.arctan_neg]
+    ring
+  have hi1 : IntervalIntegrable (fun t : ℝ ↦ ((t / (c^2 + t^2) : ℝ) : ℂ))
+      MeasureTheory.volume (-T) T :=
+    (Complex.continuous_ofReal.comp hcont_odd).intervalIntegrable _ _
+  have hi2 : IntervalIntegrable (fun t : ℝ ↦ ((c / (c^2 + t^2) : ℝ) : ℂ) * Complex.I)
+      MeasureTheory.volume (-T) T :=
+    ((Complex.continuous_ofReal.comp hcont_even).mul continuous_const).intervalIntegrable _ _
+  calc (∫ t in (-T)..T, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I)
+      = ∫ t in (-T)..T, (((t / (c^2 + t^2) : ℝ) : ℂ)
+          + ((c / (c^2 + t^2) : ℝ) : ℂ) * Complex.I) := by
+        apply intervalIntegral.integral_congr
+        intro t _
+        exact hsplit t
+    _ = (∫ t in (-T)..T, ((t / (c^2 + t^2) : ℝ) : ℂ))
+          + ∫ t in (-T)..T, ((c / (c^2 + t^2) : ℝ) : ℂ) * Complex.I :=
+        intervalIntegral.integral_add hi1 hi2
+    _ = 2 * Real.arctan (T / c) * Complex.I := by
+        rw [intervalIntegral.integral_mul_const, intervalIntegral.integral_ofReal,
+          intervalIntegral.integral_ofReal, hodd, heven]
+        push_cast
+        ring
+
+/-- Mean-value bound: `‖y^s − 1‖ ≤ ‖s‖·log y·y^(re s)` for `y > 1`. -/
+theorem cpow_sub_one_bound {y : ℝ} (hygt : 1 < y) {s : ℂ} (hre : 0 ≤ s.re) :
+    ‖(y : ℂ) ^ s - 1‖ ≤ ‖s‖ * Real.log y * y ^ s.re := by
+  have hy : (0:ℝ) < y := lt_trans one_pos hygt
+  have hy0 : (y : ℂ) ≠ 0 := by exact_mod_cast hy.ne'
+  have hL0 : (0:ℝ) ≤ Real.log y := Real.log_nonneg hygt.le
+  set w : ℂ := s * ((Real.log y : ℝ) : ℂ) with hwdef
+  have hg : ∀ τ : ℝ, HasDerivAt (fun τ : ℝ ↦ Complex.exp ((τ : ℝ) • w))
+      (w * Complex.exp ((τ : ℝ) • w)) τ := by
+    intro τ
+    have h1 : HasDerivAt (fun τ : ℝ ↦ (τ : ℝ) • w) w τ := by
+      simpa using (hasDerivAt_id τ).smul_const w
+    have h2 := h1.cexp
+    simpa [mul_comm] using h2
+  have hInt : IntervalIntegrable (fun τ : ℝ ↦ w * Complex.exp ((τ : ℝ) • w))
+      MeasureTheory.volume 0 1 := by
+    apply Continuous.intervalIntegrable
+    fun_prop
+  have hgsub : Complex.exp ((1:ℝ) • w) - Complex.exp ((0:ℝ) • w)
+      = ∫ τ in (0:ℝ)..1, w * Complex.exp ((τ : ℝ) • w) :=
+    (intervalIntegral.integral_eq_sub_of_hasDerivAt (fun τ _ ↦ hg τ) hInt).symm
+  have hend : (y : ℂ) ^ s - 1 = Complex.exp ((1:ℝ) • w) - Complex.exp ((0:ℝ) • w) := by
+    rw [one_smul, zero_smul, Complex.exp_zero, hwdef,
+      Complex.cpow_def_of_ne_zero hy0, Complex.ofReal_log hy.le]
+    congr 2
+    ring
+  rw [hend, hgsub]
+  have hbound : ∀ τ ∈ Set.uIoc (0:ℝ) 1, ‖w * Complex.exp ((τ : ℝ) • w)‖
+      ≤ ‖s‖ * Real.log y * y ^ s.re := by
+    intro τ hτ
+    rw [Set.uIoc_of_le zero_le_one] at hτ
+    have hτ0 : 0 ≤ τ := hτ.1.le
+    have hτ1 : τ ≤ 1 := hτ.2
+    rw [norm_mul, Complex.norm_exp]
+    have hw : ‖w‖ = ‖s‖ * Real.log y := by
+      rw [hwdef, norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hL0]
+    have hrew : ((τ : ℝ) • w).re = τ * (Real.log y * s.re) := by
+      rw [hwdef, Complex.real_smul]
+      simp only [Complex.mul_re, Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im]
+      ring
+    rw [hw, hrew]
+    have hexp : Real.exp (τ * (Real.log y * s.re)) ≤ y ^ s.re := by
+      rw [Real.rpow_def_of_pos hy]
+      apply Real.exp_le_exp.mpr
+      nlinarith [mul_nonneg hL0 hre]
+    have h0 : (0:ℝ) ≤ ‖s‖ * Real.log y := by positivity
+    exact mul_le_mul_of_nonneg_left hexp h0
+  calc ‖∫ τ in (0:ℝ)..1, w * Complex.exp ((τ : ℝ) • w)‖
+      ≤ ‖s‖ * Real.log y * y ^ s.re * |1 - 0| :=
+        intervalIntegral.norm_integral_le_of_norm_le_const hbound
+    _ = ‖s‖ * Real.log y * y ^ s.re := by norm_num
+
+/-- **K1, case `y > 1`.** For `T·log y ≥ 1` this is the decay branch; below
+that, split off the exact `∫ ds/s`, mean-value the rest, and close with
+`coarse_gt_ineq`. -/
+theorem perron_kernel_coarse_gt {y c T : ℝ} (hygt : 1 < y)
+    (hc : 0 < c) (hT : 1 ≤ T) :
+    ‖perronI y c T - perronδ y‖ ≤ y ^ c := by
+  have hy : (0:ℝ) < y := lt_trans one_pos hygt
+  have hT0 : (0:ℝ) < T := lt_of_lt_of_le one_pos hT
+  have hL0 : (0:ℝ) < Real.log y := Real.log_pos hygt
+  have hyc : (0:ℝ) < y ^ c := Real.rpow_pos_of_pos hy c
+  by_cases hbig : 1 ≤ T * |Real.log y|
+  · calc ‖perronI y c T - perronδ y‖
+        ≤ y ^ c / (T * |Real.log y|) := perron_kernel_decay_gt hygt hc hT
+      _ ≤ y ^ c / 1 := div_le_div_of_nonneg_left hyc.le one_pos hbig
+      _ = y ^ c := div_one _
+  · push_neg at hbig
+    have hsmall : T * Real.log y < 1 := by
+      have := hbig
+      rwa [abs_of_pos hL0] at this
+    have hδ : perronδ y = 1 := by rw [perronδ, if_pos hygt]
+    rw [hδ]
+    have hsne : ∀ t : ℝ, ((c : ℂ) + Complex.I * t) ≠ 0 := by
+      intro t h
+      have hre := congrArg Complex.re h
+      simp at hre
+      linarith
+    have hker : ∀ t : ℝ, (y : ℂ) ^ ((c : ℂ) + Complex.I * t) / ((c : ℂ) + Complex.I * t)
+          * Complex.I
+        = ((y : ℂ) ^ ((c : ℂ) + Complex.I * t) - 1) / ((c : ℂ) + Complex.I * t) * Complex.I
+          + ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I := by
+      intro t
+      field_simp
+      try ring_nf
+    have hcont1 : Continuous fun t : ℝ ↦
+        ((y : ℂ) ^ ((c : ℂ) + Complex.I * t) - 1) / ((c : ℂ) + Complex.I * t) * Complex.I := by
+      apply Continuous.mul _ continuous_const
+      apply Continuous.div
+      · apply Continuous.sub _ continuous_const
+        apply Continuous.const_cpow
+        · fun_prop
+        · exact Or.inl (by exact_mod_cast hy.ne')
+      · fun_prop
+      · exact hsne
+    have hcont2 : Continuous fun t : ℝ ↦ ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I := by
+      apply Continuous.mul _ continuous_const
+      exact Continuous.inv₀ (by fun_prop) hsne
+    have hint : (∫ t in (-T)..T,
+          (y : ℂ) ^ ((c : ℂ) + Complex.I * t) / ((c : ℂ) + Complex.I * t) * Complex.I)
+        = (∫ t in (-T)..T,
+            ((y : ℂ) ^ ((c : ℂ) + Complex.I * t) - 1) / ((c : ℂ) + Complex.I * t) * Complex.I)
+          + ∫ t in (-T)..T, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I := by
+      rw [← intervalIntegral.integral_add (hcont1.intervalIntegrable _ _)
+        (hcont2.intervalIntegrable _ _)]
+      apply intervalIntegral.integral_congr
+      intro t _
+      exact hker t
+    rw [perronI, hint, seg_inv_integral hc]
+    set Aint : ℂ := ∫ t in (-T)..T,
+      ((y : ℂ) ^ ((c : ℂ) + Complex.I * t) - 1) / ((c : ℂ) + Complex.I * t) * Complex.I
+      with hAdef
+    have hπ0 : (0:ℝ) < Real.pi := Real.pi_pos
+    have hπC : ((Real.pi : ℝ) : ℂ) ≠ 0 := by
+      exact_mod_cast Real.pi_ne_zero
+    have hsplit2 : (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * (Aint + 2 * Real.arctan (T/c) * Complex.I)
+          - 1
+        = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * Aint
+          + (((Real.arctan (T/c) / Real.pi - 1 : ℝ)) : ℂ) := by
+      push_cast
+      field_simp
+      try ring
+    rw [hsplit2]
+    have harclt : Real.arctan (T/c) < Real.pi / 2 := Real.arctan_lt_pi_div_two _
+    have harc0 : 0 ≤ Real.arctan (T/c) := Real.arctan_nonneg.mpr (by positivity)
+    have hAbound : ‖Aint‖ ≤ 2 * T * Real.log y * y ^ c := by
+      rw [hAdef]
+      have hpt : ∀ t ∈ Set.uIoc (-T) T,
+          ‖((y : ℂ) ^ ((c : ℂ) + Complex.I * t) - 1) / ((c : ℂ) + Complex.I * t) * Complex.I‖
+          ≤ Real.log y * y ^ c := by
+        intro t _
+        rw [norm_mul, Complex.norm_I, mul_one, norm_div]
+        have hre : ((c : ℂ) + Complex.I * t).re = c := by simp
+        have hnum := cpow_sub_one_bound hygt (s := (c : ℂ) + Complex.I * t)
+          (by rw [hre]; exact hc.le)
+        rw [hre] at hnum
+        have hden : (0:ℝ) < ‖(c : ℂ) + Complex.I * t‖ :=
+          norm_pos_iff.mpr (hsne t)
+        calc ‖(y : ℂ) ^ ((c : ℂ) + Complex.I * t) - 1‖ / ‖(c : ℂ) + Complex.I * t‖
+            ≤ ‖(c : ℂ) + Complex.I * t‖ * Real.log y * y ^ c
+                / ‖(c : ℂ) + Complex.I * t‖ :=
+              div_le_div_of_nonneg_right hnum hden.le
+          _ = Real.log y * y ^ c := by field_simp
+      calc ‖∫ t in (-T)..T,
+            ((y : ℂ) ^ ((c : ℂ) + Complex.I * t) - 1) / ((c : ℂ) + Complex.I * t) * Complex.I‖
+          ≤ Real.log y * y ^ c * |T - (-T)| :=
+            intervalIntegral.norm_integral_le_of_norm_le_const hpt
+        _ = 2 * T * Real.log y * y ^ c := by
+            rw [show T - (-T) = 2*T by ring, abs_of_pos (by linarith)]
+            ring
+    have hnorm1 : ‖(2 * (Real.pi:ℂ) * Complex.I)⁻¹ * Aint‖
+        ≤ T * Real.log y / Real.pi * y ^ c := by
+      rw [norm_mul, norm_inv]
+      have h2π : ‖2 * (Real.pi:ℂ) * Complex.I‖ = 2 * Real.pi := by
+        rw [norm_mul, norm_mul, Complex.norm_I, mul_one]
+        simp [abs_of_pos Real.pi_pos]
+      rw [h2π]
+      calc (2 * Real.pi)⁻¹ * ‖Aint‖
+          ≤ (2 * Real.pi)⁻¹ * (2 * T * Real.log y * y ^ c) := by
+            apply mul_le_mul_of_nonneg_left hAbound
+            positivity
+        _ = T * Real.log y / Real.pi * y ^ c := by
+            field_simp
+            try ring
+    have hnorm2 : ‖(((Real.arctan (T/c) / Real.pi - 1 : ℝ)) : ℂ)‖
+        = 1 - Real.arctan (T/c) / Real.pi := by
+      have hle : Real.arctan (T/c) / Real.pi - 1 ≤ 0 := by
+        have h1 : Real.arctan (T/c) / Real.pi ≤ 1 := by
+          rw [div_le_one hπ0]
+          linarith
+        linarith
+      rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonpos hle]
+      ring
+    calc ‖(2 * (Real.pi:ℂ) * Complex.I)⁻¹ * Aint
+          + (((Real.arctan (T/c) / Real.pi - 1 : ℝ)) : ℂ)‖
+        ≤ ‖(2 * (Real.pi:ℂ) * Complex.I)⁻¹ * Aint‖
+          + ‖(((Real.arctan (T/c) / Real.pi - 1 : ℝ)) : ℂ)‖ := norm_add_le _ _
+      _ ≤ T * Real.log y / Real.pi * y ^ c + (1 - Real.arctan (T/c) / Real.pi) := by
+          rw [hnorm2]
+          linarith [hnorm1]
+      _ ≤ y ^ c := by
+          set u : ℝ := c * Real.log y with hudef
+          set v : ℝ := T * Real.log y with hvdef
+          have hu0 : 0 < u := by rw [hudef]; positivity
+          have hv0 : 0 < v := by rw [hvdef]; positivity
+          have hv1 : v ≤ 1 := by rw [hvdef]; linarith
+          have hyc_exp : y ^ c = Real.exp u := by
+            rw [hudef, Real.rpow_def_of_pos hy]
+            ring_nf
+          have hTc : T / c = v / u := by
+            rw [hvdef, hudef]
+            field_simp
+          have hmain := coarse_gt_ineq hu0 hv0 hv1
+          rw [hyc_exp, hTc]
+          have hgoal : (v * Real.exp u + Real.pi - Real.arctan (v/u)) / Real.pi
+              ≤ (Real.pi * Real.exp u) / Real.pi :=
+            div_le_div_of_nonneg_right hmain hπ0.le
+          calc v / Real.pi * Real.exp u + (1 - Real.arctan (v/u) / Real.pi)
+              = (v * Real.exp u + Real.pi - Real.arctan (v/u)) / Real.pi := by
+                field_simp
+                ring
+            _ ≤ (Real.pi * Real.exp u) / Real.pi := hgoal
+            _ = Real.exp u := by
+                field_simp
+
+/-- **K1 — the coarse branch**, assembled from its two cases. -/
+theorem perron_kernel_coarse {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
+    (hc : 0 < c) (hT : 1 ≤ T) :
+    ‖perronI y c T - perronδ y‖ ≤ y ^ c := by
+  rcases lt_or_gt_of_ne hy1 with h | h
+  · exact perron_kernel_coarse_lt hy h hc hT
+  · exact perron_kernel_coarse_gt h hc hT
+
 /-- **Slice 1a — the truncated Perron kernel bound.** Assembled from K1
 and K2; the two branches are the whole of the missing mathematics. -/
 theorem perron_kernel_truncated {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
@@ -618,5 +937,9 @@ theorem perron_kernel_truncated {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
     calc ‖perronI y c T - perronδ y‖
         ≤ y ^ c / (T * |Real.log y|) := perron_kernel_decay hy hy1 hc hT
       _ = y ^ c * (1 / (T * |Real.log y|)) := by ring
+
+/-- info: 'PerronKernel.perron_kernel_truncated' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms perron_kernel_truncated
 
 end PerronKernel

@@ -89,13 +89,16 @@ Vocabulary (Julian's, keep it):
 
 ## D. Ledger (updated 2026-08-28 end of day)
 
-- hEF: OPEN, now with a durable spec and a compiling entry point.
-  [ARTIFACTS: entry 257 (full slice build order 1a/1b/1c/2/3/4, recovered
-  from the adversary report into the notebook); lean_stage3/Stage3/
-  PerronKernel.lean (1a scaffold: statement + assembly proved, K1/K2 the
-  two remaining sorries)]. Upstream probed 2026-08-28: PNT+ main has no
-  sharp-kernel min-bound; the leaf is ours. RH does not make 1a easier.
-  Next slice: K2 (rectangle branch, reusable PNT+ machinery), then K1.
+- hEF: OPEN, and its load-bearing unknown is DISCHARGED. Slice 1a —
+  perron_kernel_truncated — is PROVED sorry-free (2026-08-29),
+  #guard_msgs-pinned at [propext, Classical.choice, Quot.sound].
+  [ARTIFACTS: entry 257 (build order); lean_stage3/Stage3/PerronKernel.lean
+  (COMPLETE: K1 both cases, K2 both cases, pole crossed via dslope +
+  ResidueTheoremOnRectangleWithSimplePole; the classical arc was never
+  needed)]. Remaining: slices 1b, 1c (Chebyshev-level sums), 2 (pigeonhole
+  on zeta_local_zero_count, already in repo), 3, 4 (assembly against
+  sorry-free machinery) — per entry 257, "no step needs mathematics absent
+  from the literature or from either library." 
 - StmtArgCrude: OPEN, untouched.
 - The four exact zeros: reframed by entries 253-255. The census ranks
   them by information ((20,6) carries 2.85 digits; the rest near-free);
