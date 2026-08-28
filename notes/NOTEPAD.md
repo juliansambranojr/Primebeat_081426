@@ -17,6 +17,11 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 240: StmtPsiWeak IS PROVED under RH alone — RHPull.stmtPsiWeak_of_RH, guard_msgs-pinned at [propext, Classical.choice, Quot.sound], no sorryAx, two clean rebuilds
+- [open]   2026-08-28  entry 240: hEF is NOT discharged and stays open in the ledger — what changed is that StmtPsiWeak no longer needs it. hNT is also unused on this route: the zero-counting enters only through a zero sum that never appears
+- [open]   2026-08-28  entry 240: every constant OBTAINED, none assumed — B, Cclose, C1, C9, Cmain/eps0 (IsBigO on 𝓝[>]0 unpacked), and a concrete C-infinity Urysohn bump normalised to mass one
+- [open]   2026-08-28  entry 240: the sqrt(X) is the ABSCISSA — X^(1/2 + 1/log X) = e*sqrt(X); under RH the contour crosses no zero, so |x^rho| never enters
+- [open]   2026-08-28  entry 240: METHOD — I called this a mountain twice in one day, off a sorry counted inside a comment and a price taken from the literature instead of from the consumer. Both were found by attempting the thing, not by re-reading the estimate
 - [open]   2026-08-28  entry 239: T = X, NOT sqrt(X) — I1Bound gives C X logX/(eps T), so eps=X^-1/2 needs T=X to make eps*T=sqrt(X). Entry 238's closing note said T~sqrt(X) and was wrong; the instantiation caught it
 - [open]   2026-08-28  entry 239: the correction pays twice — at T=X the horizontal Mellin factor B/X meets X^(1+1/logX)=e*X and the X CANCELS, collapsing the horizontals to O(log^2 X)
 - [open]   2026-08-28  entry 239: the bump is CONCRETE, not assumed — SmoothExistence's C-infinity Urysohn bump on [1/2,2], normalised; mass condition transfers Ici 0 -> Ioi 0 since {0} is null

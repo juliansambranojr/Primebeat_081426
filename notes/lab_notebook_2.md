@@ -16,6 +16,68 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 240 — StmtPsiWeak proved under RH, sorry-free, with no explicit formula
+type: formalization
+refs: 239
+
+```text
+RHPull.stmtPsiWeak_of_RH :
+  RiemannHypothesis → ∃ C > 0, ∃ x₀, Stage3.StmtPsiWeak C 3 x₀
+```
+
+`#guard_msgs`-pinned at `[propext, Classical.choice, Quot.sound]`. No
+`sorryAx`. Two clean rebuilds from scratch, 0 errors, Stage3 green at 8721
+jobs, 0 real sorries anywhere in Stage3, no `set_option`.
+
+`Assembly.psiWeak_of_RH_EF_NT` (`lean_stage3/Stage3/Assembly.lean:461`)
+reaches `StmtPsiWeak` from hRH + hEF + hNT. This reaches it from **hRH alone**.
+
+**Every constant obtained, none assumed.**
+
+```text
+bump_exists            concrete C^∞ Urysohn bump on [1/2,2], mass-one on Ioi 0
+mellin_bump_bounded    B
+SmoothedChebyshevClose Cclose
+I1Bound / I9Bound      C₁, C₉
+mellin_main_const      Cmain, ε₀ — MellinOfSmooth1c's IsBigO on 𝓝[>]0 unpacked
+                       to a constant on a neighbourhood, via
+                       eventually_nhdsWithin_iff + Metric.eventually_nhds_iff
+x₀ := max (exp 6) (max 16 (1/ε₀² + 1)),  ε := X^(−1/2),  T := X
+```
+
+Every hypothesis discharges at that `x₀`: `log X ≥ 6`, `3 < X`, `3 < T`,
+`ε < 1`, `ε < ε₀`, and `2 < X·ε = √X`.
+
+**The five summands**, each into `c·√X·log³X`:
+
+```text
+smoothing    Cclose·ε·X·log X       = Cclose·√X·log X
+I₁, I₉       C·X·log X/(ε·T)        = C·√X·log X        since ε·T = √X
+vertical     (66600·e·B/π)·√X·log³X                     ε-free
+horizontals  (900·e·B/π)·log²X each                     the X cancels at T = X
+main term    Cmain·ε·X              = Cmain·√X
+```
+
+`C := Cclose + C₁ + C₉ + 66600eB/π + 2·(900eB/π) + Cmain + 1`.
+
+**The `√X` is the abscissa.** `X^(1/2 + 1/log X) = e·√X` (`rpow_σRH`). Under RH
+the contour crosses no zero, so no zero sum appears and hEF is never invoked.
+
+**Two errors of mine, corrected by the work.** I called this a mountain twice
+on 2026-08-28: once off a `sorry` counted inside a commented-out TODO in
+`PerronFormula.lean` (that file is sorry-free), once off pricing hEF from the
+literature instead of from `StmtPsiWeak`, which is all its consumer wants.
+Entry 238's closing note also said `T ~ √X`; entry 239 recorded that as wrong.
+Each was found by attempting the thing rather than by re-reading the estimate.
+
+**The ledger.** hEF (`StmtExplicitFormula`, `Assembly.lean:101`) is **not**
+discharged and remains open. What changed is that `StmtPsiWeak` no longer
+needs it. `StmtArgCrude` is untouched. `hNT` is untouched — this route reaches
+`StmtPsiWeak` without it as well, since the zero-counting enters only through
+the zero sum that never appears.
+
+`Stage3/LineBound.lean`: 70 theorems, 0 sorries. Commit `e8a1801`.
+
 ## 2026-08-28 — Entry 239 — the numeric instantiation: T = X, not √X, and every scale checks
 type: formalization
 refs: 238
