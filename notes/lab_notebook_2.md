@@ -16,6 +16,54 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 247 — the floor reconstructed from the primes: r = 0.997, no fitted constants
+type: run
+refs: 243, 245, 246
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
+Script `analysis/2026-08-28/floor_reconstruction.py`, log
+`analysis/2026-08-28/results/floor_reconstruction.log`. T = 74920, all
+99,998 zeros; same 4096-point generic grid as entry 245.
+
+**The model.** Nothing but each tooth's truncation ringing:
+
+```text
+S_model(u) = Σ_{n prime power ≤ Nmax} c_n [K(u − log n) + K(u + log n)]
+c_n = −(1/2π)Λ(n)/√n,   K(w) = (e^{iTw} − 1)/(iw),  K(0) = T
+```
+
+Calibration is automatic — at u = log n the own-tooth term is Landau's
+main term. Zero fitted constants.
+
+**Result.** Complex scale between model and measurement: 1.000, phase
+0.000. Detrended floor-only test (cubic drift removed from both sides,
+bottom half by amplitude per octave): r_Re = +0.997, r_Im = +0.995,
+residual 8.6% of the floor's amplitude at Nmax = 10^6 — and the residual
+SHRINKS as teeth are added: 10.3% → 9.3% → 8.6% across
+Nmax = 10^4/10^5/10^6. Jittered control: move every tooth 0.05–0.15 in
+log and the correlation collapses to 0.004. At the integers, δ_model vs
+entry 243's δ_measured: r = +0.947.
+
+**Reading, in entry 246's vocabulary.** Primes perturb the floor: the
+floor at every generic point is the interference of neighboring teeth's
+ringing, measured at r = 0.997. Coupled to composites: the value at each
+composite position is an exact knit of prime skirts — the same
+zero-parameter formula produces the tooth at 9 and the quiet at 9.4. No
+blow-up into noise or entropy: the floor's entropy budget is at most 9%
+and falling with Nmax, consistent with zero in the limit. Entry 245's
+standing question — what sets the floor's 0.03 constant and √x law — is
+answered: it is the summed skirt amplitude of the prime-power comb under
+a height-T truncation. Computable, deterministic, and the below-α=1
+quietness of entry 245 is the coupling seen directly.
+
+**Caveats.** The raw (undetrended) residual grows with Nmax — the
+truncated far tail contributes a slowly divergent smooth-in-u drift
+(Σ_p 1/(√p log p) diverges), which is why the floor test detrends both
+sides with a cubic; documented in the script. Exploratory throughout: a
+measured account, and a prereg would be needed for a verdict.
+
+---
+
 ## 2026-08-28 — Entry 246 — Julian's posit: primes perturb the floor, coupled to composites
 type: motivation
 refs: 243, 244, 245

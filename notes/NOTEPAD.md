@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 247: the floor IS prime-skirt interference — reconstructed with zero fitted constants, scale 1.000, floor-only r_Re +0.997 / r_Im +0.995, jitter null 0.004; entry 245's open question (0.03 constant, sqrt(x) law) answered: summed skirt amplitude of the prime-power comb at height-T truncation
+- [open]   2026-08-28  entry 247: the floor's entropy budget is ≤ 9% and FALLING with Nmax (10.3% → 9.3% → 8.6%) — consistent with zero in the limit; entry 246's posit (primes perturb the floor, coupled to composites) confirmed exploratorily on all three clauses
+- [open]   2026-08-28  entry 247: caveat — raw residual grows with Nmax via the far-tail smooth drift (Σ 1/(√p log p) diverges); the floor test detrends cubic-in-u on both sides. Exploratory; a verdict needs a prereg
 - [open]   2026-08-28  entry 246: POSIT (Julian) — primes perturb the floor, coupled to composites; the coupling (log n = Σ Λ(d), no entropy budget) is the candidate for why the floor sits at 0.001 of GUE power. Check: reconstruct the floor from prime skirts, pointwise
 - [open]   2026-08-28  entry 246: visibility calibration — measured floor 0.5·sqrt(x) vs tooth (T/2π)Λ/sqrt(x) puts signal-to-floor = 1 at x ≈ T: the beat sinks exactly at Montgomery's α = 1 transition
 - [open]   2026-08-28  entry 245: the floor is NOT zero-zero correlation — generic median |S| is 30x below the GUE line in amplitude; power ratio median 0.001, mean 1.68: the below-alpha=1 mass sits in the resonances (entry 235's cusps), the space between is quiet
