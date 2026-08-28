@@ -1,0 +1,61 @@
+BRIDGE 5 - the four exact zeros, and what the filter says at them
+  counting table, confirmed from pi2n_cache.json:
+    cell( 2,1) = 0
+    cell( 4,1) = 0
+    cell( 8,3) = 0
+    cell(20,6) = 0
+
+  psi-table explicit formula (exact factorization):
+     r   d      main term        zero sum      zerosum/main
+     2   1             1.00            0.16        0.1605
+     4   1             4.00            1.51        0.3780
+     8   3            16.00           15.15        0.9470
+    20   6          8192.00         5714.35        0.6976
+   -- non-zero cells for contrast --
+    20   5         16384.00         3932.72        0.2400
+    20   7          4096.00         7638.90        1.8650
+    19   6          4096.00        -1924.55       -0.4699
+    21   6         16384.00       -10329.77       -0.6305
+    12   4           128.00           -7.62       -0.0596
+    30   6       8388608.00       -79389.05       -0.0095
+
+BRIDGE 6 - Dirichlet characters.  chi(b^k)=chi(b)^k gives a closed form:
+   coupling(chi) = -(T/2pi) log b [ (1 - chi(b)/b)^d - 1 ]   for prime b
+   q=11:  base 2 has index 1 of 10
+     chi_0  chi(2)=+1.000+0.000i   |coupling| =    7748.4 (principal)
+     chi_1  chi(2)=+0.809+0.588i   |coupling| =    8820.5
+     chi_2  chi(2)=+0.309+0.951i   |coupling| =   13325.6
+     chi_3  chi(2)=-0.309+0.951i   |coupling| =   21661.4
+     chi_4  chi(2)=-0.809+0.588i   |coupling| =   30051.9
+     chi_5  chi(2)=-1.000+0.000i   |coupling| =   33576.6
+     chi_6  chi(2)=-0.809-0.588i   |coupling| =   30051.9
+     chi_7  chi(2)=-0.309-0.951i   |coupling| =   21661.4
+     chi_8  chi(2)=+0.309-0.951i   |coupling| =   13325.6
+     chi_9  chi(2)=+0.809-0.588i   |coupling| =    8820.5
+   q=13:  base 2 has index 1 of 12
+     chi_0  chi(2)=+1.000+0.000i   |coupling| =    7748.4 (principal)
+     chi_1  chi(2)=+0.866+0.500i   |coupling| =    8462.4
+     chi_2  chi(2)=+0.500+0.866i   |coupling| =   11329.1
+     chi_3  chi(2)=+0.000+1.000i   |coupling| =   17171.4
+     chi_4  chi(2)=-0.500+0.866i   |coupling| =   24714.2
+     chi_5  chi(2)=-0.866+0.500i   |coupling| =   31086.7
+     chi_6  chi(2)=-1.000+0.000i   |coupling| =   33576.6
+     chi_7  chi(2)=-0.866-0.500i   |coupling| =   31086.7
+     chi_8  chi(2)=-0.500-0.866i   |coupling| =   24714.2
+     chi_9  chi(2)=-0.000-1.000i   |coupling| =   17171.4
+     chi_10 chi(2)=+0.500-0.866i   |coupling| =   11329.1
+     chi_11 chi(2)=+0.866-0.500i   |coupling| =    8462.4
+
+BRIDGE 7 - elliptic curves.  a_{p^k} by Hecke: a_{p^{k+1}} = a_p a_{p^k} - p a_{p^{k-1}}
+   filter response  sum_k C(d,k)(-1)^k a_{b^k} b^{-k},  d=4
+     curve   rank    b=2         b=3         b=5
+      11a1   0       7.75000     0.27160    -0.45440 
+      37a1   1       7.75000    10.44444     1.94560 
+     389a1   2       7.75000     3.60494     4.21760 
+
+BRIDGE 8 - the twin / 6k+-1 lattice bases, measured (d=4):
+   b= 6  coupling      +4.2   <- twin-lattice base (6k+-1 lives here)
+   b=12  coupling      +1.4   <- twin-lattice base (6k+-1 lives here)
+   b=30  coupling      -0.7   <- twin-lattice base (6k+-1 lives here)
+   b= 2  coupling   +7750.9
+   b= 3  coupling  +10519.3

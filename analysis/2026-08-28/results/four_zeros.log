@@ -1,0 +1,54 @@
+  pi(2^n) cached for n = 0..62
+  exact zeros found, d<=39: [(2, 2), (4, 2), (8, 4), (20, 7)]
+
+  NULL - how many cells sit at each small value?  (all d in 1..39)
+     value   count
+      -6        0
+      -5        1
+      -4        2
+      -3        0
+      -2        1
+      -1        2
+      +0        4   <- the four zeros
+      +1        5
+      +2        4
+      +3        2
+      +4        3
+      +5        2
+      +6        4
+    total cells 1677,  |value|<=6 accounts for 30 (1.79%)
+
+  NULL by depth - median |cell| tells you the scale a zero has to hit
+     d   cells   median|cell|   #|cell|<=1   #==0
+     1      62       98182656           2      0
+     2      61       47485119           3      2
+     3      60       44667810           3      0
+     4      59       21672950           1      1
+     5      58       20494031           0      0
+     6      57        9971053           1      0
+     7      56        9489287           1      1
+     8      55        4625374           0      0
+    10      53        2145124           0      0
+    12      51         977253           0      0
+    16      47        4673743           0      0
+    20      43       63451160           0      0
+
+  WHAT CANCELS - smooth part Delta^d Li(2^r), exact, no zero sum
+     r   d    exact cell   Delta^d Li(2^r)    fluctuation   fluct/typ
+     2   1            1             1.922         -0.922     -0.000
+     4   1            2             3.266         -1.266     -0.000
+     8   3            4             4.584         -0.584     -0.000
+    20   6          623           945.439       -322.439     -0.028
+    20   5         1763          1975.420       -212.420     -0.026
+    20   7            0           453.432       -453.432     -0.029
+    19   6          623           492.007        130.993      0.011
+    21   6         2336          1819.438        516.562      0.045
+    30   6       697985        694201.998       3783.002      0.327
+    40   6    553265878     553320155.491     -54277.491     -4.685
+
+     depth   rms fluctuation over r in [d+2, 40]
+        1          3067.12
+        3          3512.58
+        5          8038.60
+        6         11585.74
+        7         15819.62
