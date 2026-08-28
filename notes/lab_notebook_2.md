@@ -16,6 +16,157 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 238 — the hEF-free route: StmtPsiWeak's shape reached at √X log³X, no explicit formula
+type: formalization
+refs: 237
+
+hEF (`StmtExplicitFormula`, `lean_stage3/Stage3/Assembly.lean:101`) has been
+the open analytic leaf since entry 119. It was not discharged. It was
+**routed around**, and the route is proved.
+
+**The reprice.** I twice called this a mountain today, on two errors. The
+first: I counted a `sorry` in `PrimeNumberTheoremAnd/PerronFormula.lean` that
+sits inside a commented-out TODO block (lines 367–370, `-- --`). Comments
+stripped, PNT+ has 12 real sorries — 7 in `IwaniecKowalskiCh1`, 3 in
+`StrongPNT`, 2 in `Wiener` — and **none** in `PerronFormula`,
+`MellinCalculus`, `ZetaBounds`, or `MediumPNT`. The second: I priced hEF from
+the literature instead of from its consumer. `Assembly.lean:465` wants only
+`StmtPsiWeak` — `|ψ t − t| ≤ C√t (log t)^k` — and hEF is one route to it.
+
+**The route.** Under RH the contour can be pushed to `σ₁ = 1/2 + 1/log X`
+without crossing a zero, so no zero sum ever appears:
+
+```text
+RHPull.holo_logDerivZeta_of_RH   Pull1's holomorphy hypothesis, free under RH
+RHPull.pull_at_RH_abscissa       SmoothedChebyshevPull1 at σ₁ = 1/2 + 1/log X
+RHPull.rpow_σRH                  X^(1/2 + 1/log X) = e·√X
+```
+
+The `√X` is the **abscissa**, not `|x^ρ|`. That is the whole reason the zero
+sum is dispensable.
+
+**The three contour pieces**, all at that abscissa, all sorry-free:
+
+```text
+I37_norm_le / I37_norm_le_decay / I37_sqrt_log3   vertical, via Slice4b
+I8_norm_le / I2_norm_le                           horizontals, via Slice3
+```
+
+The vertical needed two refinements. A uniform sup carries a factor `T` and
+gives `X log²X` — useless. Integrating the Mellin factor's `1/‖s‖²` decay
+instead (`kernel_le`, `integral_kernel_le`, via arctan) removes `T` entirely.
+
+**The obstruction, and it was arithmetic.** `MellinOfSmooth1a` is an identity,
+`𝓜(Smooth1 ν ε)(s) = s⁻¹·𝓜ν(εs)`; composing it with `MellinOfPsi`'s
+*decaying* `C/‖w‖` produces `MellinOfSmooth1b`'s `C/(ε‖s‖²)`. That `ε⁻¹`
+fights `SmoothedChebyshevClose`'s `εX log X`, and the balance caps the route
+at `X^{3/4} log^{3/2} X`. **No choice of k rescues it** — the balance requires
+`√X ≤ c·log^{2k−3}X`, which fails for every fixed k.
+
+The `ε⁻¹` is an artifact. `MellinOfPsi`'s `C/‖w‖` blows up at the origin,
+where the true function tends to `∫ν(x)dx/x = 1` — the mass-one condition.
+Bounding `𝓜ν` uniformly instead:
+
+```text
+kernel_modulus_le    ‖x^(w−1)‖ ≤ 2 on [1/2,2] for 0 < re w ≤ 2
+mellin_bump_bounded  ∃ B > 0, ‖𝓜ν(w)‖ ≤ B for 0 < re w ≤ 2   (B = 3·sup|ν|)
+mellin_smooth1_le    ‖𝓜(Smooth1 ν ε)(s)‖ ≤ B/‖s‖              — NO ε
+```
+
+This lemma existed nowhere. It is the single piece that was not already in
+the tree, and it is the difference between `X^{3/4}` and `√X`.
+
+**The chain, closed.** With `ε` free, take `ε = X^(−1/2)`, `T = √X`:
+
+```text
+norm_line_ge         ‖σ₁ + it‖ ≥ (1+|t|)/3
+integral_abs_kernel  ∫_{−T}^{T} (1+|t|)⁻¹ = 2 log(1+T)
+I37_sqrt_log3        ‖I₃₇‖ ≤ (66600·e·B/π)·√X·log³X
+psi_sub_self_le      |ψX − X| ≤ E₁ + E₂ + E₃
+eps_choice_ok        εX log X = √X log X ≤ √X log³X
+psi_weak_at          |ψX − X| ≤ (c₁+c₂+c₃)·√X·log³X
+```
+
+`psi_weak_at` **is** the `StmtPsiWeak _ 3 _` predicate at `X`. Its three
+inputs are `SmoothedChebyshevClose` (PNT+, sorry-free), the contour bound
+proved here, and `MellinOfSmooth1c`'s `O(ε)` main-term correction.
+
+`k = 3`, and `Slice8.schoenfeldWeak_of_psiWeak_three` — the k=3 carrier — was
+proved earlier today, before either of us knew where the route would land.
+
+**What was already here.** Most of it. Slices 3, 4, 4b, 5, 8 were proved in
+earlier sessions and sat in `results/scratch_lean/` as scratch, never compiled
+into the tree; `unified_opt2.lean` is now `lean_stage3/Stage3/LineBound.lean`.
+`rh2.lean` already discharged the holomorphy hypothesis. PNT+ had Perron,
+Mellin, ZetaBounds and the whole pull apparatus, sorry-free, the entire time.
+Today's work was composition, plus `mellin_bump_bounded`.
+
+**Not done.** The final numeric instantiation — feeding a concrete bump
+through `MellinOfSmooth1b/c` and `SmoothedChebyshevClose` to produce named
+constants — is unwritten. Every lemma it needs is proved. hEF remains an open
+leaf in the ledger; this route makes it unnecessary rather than discharging it.
+
+`Stage3/LineBound.lean`: 56 theorems, 0 sorries, Stage3 green at 8721 jobs,
+every theorem at `[propext, Classical.choice, Quot.sound]`.
+Commits `8be39c2`, `440ed20`, `67f3b7a`, `3c6fe95`.
+
+## 2026-08-28 — Entry 237 — Elephant.lean: the bench is one function, derived standalone from `1 − b^(−s)`
+type: formalization
+refs: 236
+
+`lean/Elephant.lean`. Standalone — `import Mathlib`, no module of this repo.
+29 theorems, 29 axiom pins, 0 sorries, 0 warnings, two clean rebuilds from
+scratch. Defines `Sym b s = 1 − b^(−s)`, the reciprocal Euler factor at `b`,
+and reaches every reading the tree uses from that line alone.
+
+```text
+symbol_of_difference / bdiff_iter_mode   differencing multiplies by Sym^d
+sym_pow_expand / cpow_neg_pow            the stencil, supported on b^k
+norm_sym_band / norm_sym_imaginary       the C2 band, the 2|sin| gain
+sym_eq_zero_iff / lattice_step           the pole lattice and its step
+sym_tprod_eq_zeta                        Sym IS ζ's Euler factor
+sym_mul_lseries / sym_mul_logDeriv_zeta  the factor differences Λ
+primeCount_backward_diff                 ... and π, on the b-ladder
+coupling_coeff                           the base law WITH its magnitude
+filter_couples_iff_isPrimePow            Λ(b^k) ≠ 0 ↔ IsPrimePow b
+zeta_ne_zero_of_re_eq_zero               ζ has no zeros on Re s = 0
+filter_ne_zero_at_zeta_zero              the table loses NO zero of ζ
+```
+
+Five lemmas written rather than found, Mathlib's nearest carrying the wrong
+side conditions: `natCast_mul_cpow`, `cpow_neg_mul_lseries`, `sum_shift`,
+`zeta_ne_zero_of_re_eq_zero`, `filter_ne_zero_at_zeta_zero`.
+
+**Three corrections, recorded in the file at the point of each claim.**
+
+The base law does **not** follow from the Euler product's index set. That
+product is indexed by the primes, and bases 4, 9, 16, 25, 27 index no factor
+in it — yet they carry the full measured coupling. The mechanism is von
+Mangoldt support, which is the prime *powers*. I gave the wrong reasoning in
+chat before the file corrected it.
+
+`lattice_step` was `mul_div_assoc` and held where `log b = 0`. It now states
+that consecutive lattice points are both zeros of `Sym` and differ by exactly
+`2πi/log b`, using both hypotheses.
+
+`IsModeRow` is marked unsatisfiable for `π`. `π` is a step function, not a
+finite exponential sum; trying to discharge the hypothesis is what showed it.
+`coupling_coeff` reaches the same base law by a route needing no such
+hypothesis.
+
+**Measured, `analysis/2026-08-28/`.** On 100,000 ζ zeros to γ = 74,920, the
+coupling `Re Σ_γ (1 − b^(−ρ))^d − N(T)` at `d = 4` matches
+`(T/2π)·Λ(b)·(1 − (1−1/b)^d)` — zero free parameters — at 16 prime-power bases
+to under 0.4%, with 13 composite bases at |value| ≤ 6.2. Matched-density
+controls: unfolded GUE +454, Poisson −87, against real +7751. The separation
+is a derived consequence of Landau (1911), which appears nowhere in this repo.
+
+**Honest scope.** Five of the twelve original theorems duplicated results
+already in `lean/` — `sym_eq_zero_iff` has a signature identical to
+`Chain.lean:381`. I asserted this had not been proven before; that was false
+and an adversary caught it. What the file is: a standalone single-file
+re-derivation demonstrating the readings follow from the definition alone.
+
 ## 2026-08-28 — Entry 236 — the table's own weight on the zero ensemble: first moment closes, second moment does not
 type: run
 refs: 234, 235

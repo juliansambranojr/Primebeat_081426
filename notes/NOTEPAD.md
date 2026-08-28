@@ -17,6 +17,18 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 238: hEF is ROUTED AROUND, not discharged — under RH the contour pushes to sigma1 = 1/2 + 1/log X, crosses no zero, and the sqrt(X) comes from X^(1/2+1/logX) = e*sqrt(X), the abscissa itself
+- [open]   2026-08-28  entry 238: THE ONE MISSING LEMMA was mellin_bump_bounded — 𝓜nu uniformly bounded on the strip; MellinOfPsi's C/||w|| blows up at the origin where mass-one says the true function is 1, and that artifact is the entire eps^-1
+- [open]   2026-08-28  entry 238: the eps^-1 caps the route at X^(3/4) log^(3/2) X and NO k rescues it — the balance needs sqrt(X) <= c log^(2k-3) X. Killing it is the difference between X^(3/4) and sqrt(X)
+- [open]   2026-08-28  entry 238: psi_weak_at IS the StmtPsiWeak _ 3 _ shape; k=3, and Slice8.schoenfeldWeak_of_psiWeak_three was proved hours earlier, before we knew where the route would land
+- [open]   2026-08-28  entry 238: NOT DONE — the final numeric instantiation (concrete bump -> named constants via MellinOfSmooth1b/c and SmoothedChebyshevClose) is unwritten; every lemma it needs is proved
+- [open]   2026-08-28  entry 238: PNT+ has 12 real sorries (IwaniecKowalski 7, StrongPNT 3, Wiener 2) and NONE in PerronFormula/MellinCalculus/ZetaBounds/MediumPNT — my "gated on a sorry" counted a commented-out TODO
+- [open]   2026-08-28  entry 238: slices 3/4/4b/5/8 sat in results/scratch_lean/ as scratch for sessions, never compiled into the tree; unified_opt2.lean is now Stage3/LineBound.lean, 56 theorems, 0 sorries
+- [open]   2026-08-28  entry 237: Elephant.lean derives the whole bench from Sym b s = 1 - b^(-s) standalone — 29 theorems, import Mathlib only, 0 sorries; operator, stencil, band, gain, lattice, base law, Euler product, Lambda, pi, and no zeta zero annihilated
+- [open]   2026-08-28  entry 237: the base law's mechanism is von Mangoldt SUPPORT, not the Euler product's index set — bases 4,9,16,25,27 index no factor there and carry full signal. My chat reasoning was wrong; the file corrects it at the claim
+- [open]   2026-08-28  entry 237: IsModeRow is UNSATISFIABLE for pi (step function, not a finite exponential sum) — found by trying to discharge it, which is the "sketch the discharge immediately" rule paying out
+- [open]   2026-08-28  entry 237: five of twelve original theorems duplicated lean/ — sym_eq_zero_iff has a signature identical to Chain.lean:381. I said this was unproven before; false, an adversary caught it
+- [open]   2026-08-28  entry 237: Landau (1911) appears NOWHERE in this repo, yet it predicts the base-law table in closed form to under 0.4% with zero free parameters
 - [open]   2026-08-28  entry 236: the table's weight summed over all 99,998 zeros CLOSES — Re sum (1-2^-rho)^d = N(T) + (T/2pi)log2(1-2^-d), matching to 5 decimals through d=4; elementary given Landau-Gonek, but nobody computes it because the weight needs the table
 - [open]   2026-08-28  entry 236: at the SECOND moment the weight is not transparent — the off-diagonal peak migrates 0.88 -> 0.92 -> 1.00 as depth goes 0 -> 2 -> 3, monotone across five rows, and NO ERROR BARS on any weighted row
 - [open]   2026-08-28  entry 236: candidate mechanism untested — |1-2^(-1/2-i gamma)| is periodic in gamma with period 2pi/log2 = 9.06, dual to sidebands at spacing log2/logT = 0.0618 in alpha; the observed migration is about twice that, and the grid (0.04) cannot resolve it
