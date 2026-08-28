@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 228: the Stage-3 name list corrected — dating claim DELETED rather than repaired, since it did no operational work; all eight names verified on both toolchains, unsubscripted pow_le_pow_left resolves on neither
+- [open]   2026-08-27  entry 228: RULE — when a claim has an unverified component, ask whether the claim needs it before going to verify it; here accuracy came from deleting, and 'too expensive to verify' was the wrong frame from the start
+- [open]   2026-08-27  entry 228: four attempts, three of them plausible-instead-of-authoritative, inside a conversation about accuracy — #check was definitive the whole time and two source-greps asked narrower questions than the one being answered
 - [open]   2026-08-27  entry 227: NyquistPeak built — 20 theorems, the gain DERIVED from Chain.Sym, maximum proved GLOBAL not local, and nyquist_boundaryBase welds b* to Nyquist.nyquist; discharges the prose half of entry 224's mechanism behind a LOCKED prereg's no_step
 - [open]   2026-08-27  entry 227: the missing absolute value is not cosmetic — unbarred, (2 sin)^d goes negative on (2pi,4pi) and the maximum is LOCAL ONLY; with |sin| it is global, at the cost of a corner at theta = 0 mod 2pi where depth 1 is not differentiable
 - [open]   2026-08-27  entry 227: the Stage-3 formalization rules list pow_le_pow_left0 as a 'v4.32 rename', but on the bench's v4.28 the unsubscripted forms do not exist — the 0 names predate v4.32 here; commitment file untouched, Julian's call

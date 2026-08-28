@@ -186,10 +186,14 @@ carries that caveat until the toolchains converge.
     `rw [hdef]`.
   - Dotted-`comp` continuity lemmas mis-unify; pin `(g := ...)`
     `(f := ...)` explicitly.
-  - v4.32 renames encountered: `pow_le_pow_left₀`, `inv_anti₀`,
-    `Real.pi_lt_d2`, `abs_add_le`, `Summable.tsum_le_tsum`,
-    `Summable.sum_add_tsum_nat_add`, `norm_pos_iff`,
-    `one_div_le_one_div_of_le`.
+  - Names verified present on BOTH toolchains (v4.28 bench, v4.32
+    Stage-3), 2026-08-27 — reach for these forms directly:
+    `pow_le_pow_left₀`, `inv_anti₀`, `Real.pi_lt_d2`, `abs_add_le`,
+    `Summable.tsum_le_tsum`, `Summable.sum_add_tsum_nat_add`,
+    `norm_pos_iff`, `one_div_le_one_div_of_le`. The unsubscripted
+    `pow_le_pow_left` resolves on neither. When each became canonical
+    is NOT established; the previous "v4.32 renames" heading asserted
+    a date nothing here measured.
   - Axiom-pin discipline is identical to the bench: parity per
     module, `#guard_msgs` on `#print axioms`, attribute-on-own-line.
 

@@ -16,6 +16,67 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 228 — accuracy came from deleting a claim, not from verifying one
+type: provenance
+refs: 225, 227
+
+Entry 227 flagged that the Stage-3 rules list `pow_le_pow_left₀` among
+"v4.32 renames encountered" while the unsubscripted form does not exist
+on the bench's v4.28. Julian approved an edit. What the edit turned out
+to require is the entry.
+
+**Measured, by the instrument that settles it** (`#check @name` on each
+toolchain, not source-grepping):
+
+```text
+all eight documented names          resolve on BOTH v4.28 and v4.32
+pow_le_pow_left (unsubscripted)     resolves on NEITHER
+when each became canonical          NOT ESTABLISHED
+```
+
+**The edit removes the dating claim rather than repairing it**, and
+states only the two measured facts plus an explicit note that the
+timing is unestablished. Applied to the project rules' Stage-3
+formalization section with Julian's approval; gates green.
+
+**Why this took four attempts, which is the point.** The obstacle was
+never the difficulty of the question:
+
+1. Proposed replacement wording — "some predate v4.32" — generalised
+   from **one** verified case out of eight.
+2. Then argued to LEAVE the known-imprecise line because dating it
+   "could not be done cheaply." That framing was wrong: the accurate
+   version needed no dating at all.
+3. Then source-grepped the vendored Mathlib for deprecation aliases
+   with a pattern whose `\b` matches `pow_le_pow_left₀` when searching
+   `pow_le_pow_left`, and reported "old form present" for a name Lean
+   says does not resolve. **A third plausible-instead-of-authoritative
+   move, inside a conversation about accuracy.**
+4. Julian: "what is the problem? why can't things be accurate?"
+
+**The generalisable rule.** When a claim has an unverified component,
+the reflex is to go verify it. The cheaper and more often correct move
+is to ask whether the claim needs that component at all. Here the
+dating did no operational work — an agent reading the line needs to
+know which name to type, not when it was renamed — so deleting it
+produced a line that is fully accurate, still warns, and gained a
+concrete trap the original lacked (`pow_le_pow_left` resolving on
+neither).
+
+**And the authoritative instrument existed the whole time.** `#check`
+in Lean is definitive about whether a name resolves. Every wrong step
+above substituted inference for it — including two source-greps whose
+patterns asked a narrower question than the one being answered — the
+project rule about asking the right question, for the third and fourth
+time in one session.
+
+**A fifth, immediately.** Writing this entry, both citations of the
+project rules by section name parsed as broken references and the hook
+blocked the commit. The gate caught in seconds what four rounds of
+reasoning did not.
+
+---
+
 ## 2026-08-27 — Entry 227 — NyquistPeak: the boundary is a global stationary maximum, and the abs was not cosmetic
 type: formalization
 refs: 223, 224, 225
