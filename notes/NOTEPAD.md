@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 252: the residual TRAVELS WITH THE BOUNDARY — vectors decorrelate (|r| ≤ 0.12 vs 0.02 noise floor) as the edge moves; booking 128 pages exactly buys nothing; shadow size set by the local gap at the cut
+- [open]   2026-08-28  entry 252: the 0.1% is the property of HAVING AN EDGE, not of the content — bulk deterministic to the noise floor; prereg claim: bulk deterministic, residual edge-generated, threshold quoted on the bulk with edge rule locked (gap midpoint)
 - [open]   2026-08-28  entry 249: expectation CHECKED — precision refuted by 5 orders (2.4e-7 vs 0.034); mirror kernel validated (4x worse without); quartic detrend 0.0067→0.0014; edge midpoint rule measured. Prereg locks: T = gap midpoint, detrend degree
 - [open]   2026-08-28  entry 250: SUPERPOSITION to 0.1% — the strictly linear ledger reached 99.9%; interaction at first moment bounded by 0.1%; cross-term structure does not appear until past α = 1
 - [open]   2026-08-28  entry 251: REFRAME (Julian) — the 0.1% is the accounting horizon: the already-determined future not yet booked; far tail compresses to ~5 coefficients, the near future (first excluded zero) casts the sharpest shadow. Check next: does the residual travel with the boundary

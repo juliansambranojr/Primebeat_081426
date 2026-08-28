@@ -16,6 +16,49 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 252 — the residual travels with the boundary: the unknown lives at the seam
+type: run
+refs: 249, 251
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
+Script `analysis/2026-08-28/edge_shadow.py`, log
+`analysis/2026-08-28/results/edge_shadow.log`. Nmax = 10^7, quartic
+detrend, quiet points as entries 247–249. The reading key was written
+into the script before the numbers came back.
+
+**The design.** The measured sum (zeros ≤ 74920) is fixed. The model's
+edge moves K zeros deeper — T_K = midpoint of the gap below the
+K-th-from-last zero — and the strip (T_K, T] is booked exactly from the
+known zeros. Every model accounts for the same zero set; only the
+truncated-representation boundary moves. K ∈ {0, 2, 8, 32, 128}.
+
+**Result 1 — the residual vectors decorrelate.** Against K = 0, every
+deeper edge's residual correlates at −0.12 to +0.12 (noise floor 0.02 at
+2048 points). The residual at each edge placement is a fresh object
+generated at that seam.
+
+**Result 2 — booking pages exactly buys nothing systematic.** Medians
+0.0070 / 0.0130 / 0.0029 / 0.0039 / 0.0057 at K = 0/2/8/32/128 — no
+trend in depth; K = 2 is worse than baseline and K = 8 the best. The
+shadow's size is set by the local geometry of the gap where the cut
+falls, never by how much has been read.
+
+**Reading (entry 251's frame, measured).** The unknown is not
+distributed through the book. It is created at the seam between booked
+and unbooked, moves when the seam moves, and its size depends only on
+the local shape of the break. The bulk — every written page — is
+accounted to the method's noise floor. The 0.1% was never a property of
+the content; it is the property of having an edge: a ledger of an
+infinite sum carries an irreducible seam, and the afternoon's descent
+from 8.6% was the seam being sharpened until only the seam remained.
+
+**Prereg consequence.** The claim becomes: bulk deterministic; residual
+edge-generated. The locked pipeline quotes its threshold on the bulk
+residual with the edge rule fixed (gap midpoint); the edge term is
+irreducible and gap-dependent by measurement.
+
+---
+
 ## 2026-08-28 — Entry 251 — Julian's reframe: the residual as the future's shadow on the written page
 type: motivation
 refs: 246, 249, 250
