@@ -1680,3 +1680,113 @@ theorem smoothedChebyshev_sqrt_bound (hRH : RiemannHypothesis)
   linarith
 
 end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral
+
+/-- On `[1/2, 2]` with `0 < re w ≤ 2`, the kernel `x^(w-1)` has modulus at most 2. -/
+theorem kernel_modulus_le {x : ℝ} (hx : x ∈ Set.Icc (1/2 : ℝ) 2)
+    {w : ℂ} (hw0 : 0 < w.re) (hw2 : w.re ≤ 2) :
+    ‖((x : ℂ)) ^ (w - 1)‖ ≤ 2 := by
+  have hx0 : (0:ℝ) < x := lt_of_lt_of_le (by norm_num) hx.1
+  rw [Complex.norm_cpow_eq_rpow_re_of_pos hx0]
+  simp only [Complex.sub_re, Complex.one_re]
+  by_cases h : 0 ≤ w.re - 1
+  · calc x ^ (w.re - 1) ≤ (2:ℝ) ^ (w.re - 1) := Real.rpow_le_rpow hx0.le hx.2 h
+      _ ≤ (2:ℝ) ^ (1:ℝ) := Real.rpow_le_rpow_of_exponent_le (by norm_num) (by linarith)
+      _ = 2 := by norm_num
+  · push_neg at h
+    have hstep : x ^ (w.re - 1) ≤ ((1:ℝ)/2) ^ (w.re - 1) :=
+      Real.rpow_le_rpow_of_nonpos (by norm_num) hx.1 (by linarith)
+    refine le_trans hstep ?_
+    have hhalf : ((1:ℝ)/2) ^ (w.re - 1) = (2:ℝ) ^ (1 - w.re) := by
+      rw [show ((1:ℝ)/2) = (2:ℝ) ^ (-1 : ℝ) by rw [Real.rpow_neg_one]; norm_num,
+        ← Real.rpow_mul (by norm_num)]
+      ring_nf
+    rw [hhalf]
+    calc (2:ℝ) ^ (1 - w.re) ≤ (2:ℝ) ^ (1:ℝ) :=
+          Real.rpow_le_rpow_of_exponent_le (by norm_num) (by linarith)
+      _ = 2 := by norm_num
+
+end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral
+
+/-- **The missing lemma: `𝓜ν` is UNIFORMLY bounded on the strip.**
+`MellinOfPsi` gives `C/‖w‖`, which blows up at the origin where the true
+function tends to `∫ν(x)/x dx = 1`. That blow-up is what forces the `ε⁻¹` in
+`MellinOfSmooth1b`, and the `ε⁻¹` is what caps the hEF-free route at `X^{3/4}`.
+This bound is ε-free, so the route reaches `√X`. -/
+theorem mellin_bump_bounded {ν : ℝ → ℝ} (diffν : ContDiff ℝ 1 ν)
+    (suppν : ν.support ⊆ Set.Icc (1/2 : ℝ) 2) :
+    ∃ B > 0, ∀ w : ℂ, 0 < w.re → w.re ≤ 2 →
+      ‖mellin (fun x ↦ (ν x : ℂ)) w‖ ≤ B := by
+  have hcont : Continuous fun x : ℝ => ‖ν x‖ := diffν.continuous.norm
+  obtain ⟨a, ha, hmax⟩ := isCompact_Icc.exists_isMaxOn
+    (f := fun x : ℝ => ‖ν x‖) (Set.nonempty_Icc.mpr (by norm_num : (1:ℝ)/2 ≤ 2)) hcont.continuousOn
+  set K : ℝ := ‖ν a‖ with hKdef
+  have hK0 : (0:ℝ) ≤ K := norm_nonneg _
+  refine ⟨3 * K + 1, by positivity, ?_⟩
+  intro w hw0 hw2
+  have hsub : Set.Icc (1/2 : ℝ) 2 ⊆ Set.Ioi (0:ℝ) := by
+    intro x hx; exact lt_of_lt_of_le (by norm_num) hx.1
+  have hvanish : ∀ x ∈ Set.Ioi (0:ℝ) \ Set.Icc (1/2 : ℝ) 2,
+      (x : ℂ) ^ (w - 1) • ((ν x : ℝ) : ℂ) = 0 := by
+    intro x hx
+    have hz : ν x = 0 := by
+      by_contra hne
+      exact hx.2 (suppν (Function.mem_support.mpr hne))
+    simp [hz]
+  have hrestr : ∫ x in Set.Ioi (0:ℝ), (x : ℂ) ^ (w - 1) • ((ν x : ℝ) : ℂ)
+      = ∫ x in Set.Icc (1/2 : ℝ) 2, (x : ℂ) ^ (w - 1) • ((ν x : ℝ) : ℂ) :=
+    setIntegral_eq_of_subset_of_forall_sdiff_eq_zero measurableSet_Ioi hsub hvanish
+  rw [mellin, hrestr]
+  have hvol : (volume : Measure ℝ) (Set.Icc (1/2 : ℝ) 2) < ⊤ := by
+    rw [Real.volume_Icc]; exact ENNReal.ofReal_lt_top
+  have hpt : ∀ x ∈ Set.Icc (1/2 : ℝ) 2,
+      ‖(x : ℂ) ^ (w - 1) • ((ν x : ℝ) : ℂ)‖ ≤ 2 * K := by
+    intro x hx
+    rw [norm_smul]
+    have h1 := kernel_modulus_le hx hw0 hw2
+    have h2 : ‖((ν x : ℝ) : ℂ)‖ ≤ K := by
+      rw [Complex.norm_real]
+      exact hmax hx
+    exact mul_le_mul h1 h2 (norm_nonneg _) (by norm_num)
+  refine le_trans (norm_setIntegral_le_of_norm_le_const hvol hpt) ?_
+  have hmeas : (volume : Measure ℝ).real (Set.Icc (1/2 : ℝ) 2) = 3/2 := by
+    rw [measureReal_def, Real.volume_Icc]
+    norm_num
+  rw [hmeas]
+  linarith
+
+end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral
+
+/-- **The ε-free Mellin bound.** `MellinOfSmooth1a` factors
+`𝓜(Smooth1 ν ε)(s) = s⁻¹ · 𝓜ν(εs)`; feeding it the UNIFORM bound on `𝓜ν`
+instead of `MellinOfPsi`'s decaying one gives `B/‖s‖` with no `ε` at all.
+This is what lets `ε = X^(-1/2)` be chosen freely, and it is the difference
+between `X^{3/4}` and `√X`. -/
+theorem mellin_smooth1_le {ν : ℝ → ℝ} (diffν : ContDiff ℝ 1 ν)
+    (suppν : ν.support ⊆ Set.Icc (1/2 : ℝ) 2) {B : ℝ}
+    (hB : ∀ w : ℂ, 0 < w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : ℂ)) w‖ ≤ B)
+    {ε : ℝ} (hε : 0 < ε) (hε1 : ε < 1) {s : ℂ} (hs : 0 < s.re) (hs2 : s.re ≤ 2) :
+    ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) s‖ ≤ B * ‖s‖⁻¹ := by
+  rw [MellinOfSmooth1a diffν suppν hε hs, norm_mul, norm_inv]
+  have hre : ((ε : ℂ) * s).re = ε * s.re := by simp
+  have h1 : 0 < ((ε : ℂ) * s).re := by rw [hre]; positivity
+  have h2 : ((ε : ℂ) * s).re ≤ 2 := by
+    rw [hre]; nlinarith
+  have hmain := hB ((ε : ℂ) * s) h1 h2
+  have hsnorm : (0:ℝ) ≤ ‖s‖⁻¹ := by positivity
+  calc ‖s‖⁻¹ * ‖mellin (fun x ↦ (ν x : ℂ)) ((ε : ℂ) * s)‖
+      ≤ ‖s‖⁻¹ * B := by gcongr
+    _ = B * ‖s‖⁻¹ := by ring
+
+end RHPull
