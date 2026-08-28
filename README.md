@@ -147,6 +147,23 @@ powers) — and **A095195 is this exact recurrence** seeded with `prime(n)`.
 No member of that family exists for A036378 or A007053, which is the gap
 `results/oeis_A036378_difftable_draft.txt` submits.
 
+## Reproducing the runs
+
+Every measurement script in `analysis/<date>/` and every `O*.py` at the
+root commits alongside its log, and every data source it reads
+(`imported/twin_count/zeros1.txt`, `pi2n_cache.json`, `pi3n_cache.json`)
+is tracked in this tree. All randomness is seeded (fixed seed
+`20260828` in the three scripts that use any).
+
+One edit is needed on a fresh clone: the scripts pin absolute paths of
+the form `/Users/juliansambrano/GitHub/Primebeat_081426/...` — change
+that prefix to your clone's location (one line per script, at the top).
+Float sums over the zero file are bit-identical under the same
+numpy/BLAS and drift only in the last digit under a different one, far
+below any reported precision; the integer-exact scripts (`pi2n`/`pi3n`
+censuses, drift comparisons at mpmath dps 60) have no float dependence
+at all.
+
 ## License
 
 Apache-2.0. See `LICENSE`.
