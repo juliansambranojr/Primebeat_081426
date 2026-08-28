@@ -16,6 +16,54 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 255 — the frontier is real, and every table runs the same economy
+type: run
+refs: 253, 254
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
+Scripts `analysis/2026-08-28/drift_null.py`, `analysis/2026-08-28/census3.py`;
+logs `analysis/2026-08-28/results/drift_null.log`,
+`analysis/2026-08-28/results/census3.log`. Both directions were
+Julian's, posited mid-run: "the zero would be a boundary you can't pass on
+another family," and "the other cells' coherence might live in another
+table."
+
+**The boundary you can't pass, computed.** Under the drift null (li-based
+smooth table, dps 60), the dyadic triangle has a reachability frontier:
+per row a minimum depth — d_min ≈ r/3 (5 at r=20, 12 at r=39, 20 at
+r=62) — below which |T_li| > 3√mass and no fluctuation can cancel the
+drift. Shallower than the frontier, absence is arithmetically
+unreachable. 1,312 of 1,891 cells are reachable; the exhaustive search
+found 4 zeros among them — reachability is necessary, far from
+sufficient.
+
+**The informative absences hug the frontier.** (20,6) sits one step
+above row 20's d_min = 5; (39,14) two steps above row 39's d_min = 12.
+At the frontier the drift has just barely decayed into fluctuation range
+— an exact zero there cancels the largest drift a zero can ever cancel,
+which is why those cells carry the information (entry 254's s-ranking).
+The cheap zeros are interior or trivial. Third appearance of the same
+law in one day: information lives at the boundary (entries 252, 253).
+Artifact flagged: (2,1) reads "outside" only because li(1) diverges;
+the cell is trivial regardless.
+
+**The coherence lives in other tables too.** Triadic census
+(π(3^r) − π(3^(r−1)) from `pi3n_cache.json`, r ≤ 41, same measures):
+base 3 has its own expensive balance — (11,9), |T| = 11 against mass
+174,801, s = 1.26, inside its own frontier — while its deep cells are
+drift-blocked exactly like the dyadic ones. No exact zeros in range
+(matches O27's record). Rates comparable: 3 expensive balances per
+1,891 dyadic cells, 1 per 780 triadic. Each base runs the same economy:
+a drift frontier, and rare expensive balances pinned to it.
+
+**The open object, now cross-table.** The frontier family —
+{(20,6), (39,14), (13,5)} in base 2, {(11,9)} in base 3 — the cells
+where each table's ledger balances the largest mass its boundary
+permits. What frontier events share across bases is the question the
+day narrowed to, and no single table can answer it about itself.
+
+---
+
 ## 2026-08-28 — Entry 254 — collision census: the absences ranked, the family found, and the null repriced
 type: run
 refs: 236, 253
