@@ -362,7 +362,83 @@ zero onto it: a zero at `re < 1/2` inside the strip reflects through
 theorem RH_of_no_zero_right_of_half
     (h : ∀ ρ : ℂ, 1/2 < ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0) :
     RiemannHypothesis := by
-  sorry
+  intro s hz htriv hs1
+  by_contra hre
+  rcases lt_or_gt_of_ne hre with hlt | hgt
+  swap
+  · exact h s hgt hs1 hz
+  have h2 : (2 : ℂ) ≠ 0 := two_ne_zero
+  -- re s < 1/2 : reflect through w = 1 - s
+  set w : ℂ := 1 - s with hw
+  have hwre : 1/2 < w.re := by
+    rw [hw]
+    simp only [Complex.sub_re, Complex.one_re]
+    linarith
+  have hs0 : s ≠ 0 := by
+    intro h0
+    rw [h0, riemannZeta_zero] at hz
+    norm_num at hz
+  have hw1 : w ≠ 1 := by
+    rw [hw]
+    intro hcon
+    exact hs0 (by linear_combination -hcon)
+  have hwn : ∀ n : ℕ, w ≠ -(n : ℂ) := by
+    intro n hcon
+    have : w.re = -(n : ℝ) := by rw [hcon]; simp
+    have hn0 : (0:ℝ) ≤ (n:ℝ) := Nat.cast_nonneg n
+    linarith [hwre, this]
+  -- functional equation at w : ζ(1 - w) = ζ(s)
+  have hfe := riemannZeta_one_sub hwn hw1
+  have h1w : (1 : ℂ) - w = s := by rw [hw]; ring
+  rw [h1w, hz] at hfe
+  -- every factor except ζ(w) is nonzero
+  have hbase : ((2:ℂ) * Real.pi) ≠ 0 := by
+    simp [Real.pi_ne_zero]
+  have hpow : ((2:ℂ) * Real.pi) ^ (-w) ≠ 0 :=
+    Complex.cpow_ne_zero_iff.mpr (Or.inl hbase)
+  have hGamma : Complex.Gamma w ≠ 0 := by
+    apply Complex.Gamma_ne_zero
+    intro m
+    exact hwn m
+  have hcos : Complex.cos (Real.pi * w / 2) ≠ 0 := by
+    rw [Ne, Complex.cos_eq_zero_iff]
+    rintro ⟨k, hk⟩
+    -- π·w/2 = (2k+1)·π/2  ⟹  w = 2k+1
+    have hπ : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
+    have hwk : w = 2 * (k : ℂ) + 1 := by
+      have hπw : (Real.pi : ℂ) * w = (Real.pi : ℂ) * (2 * (k : ℂ) + 1) := by
+        linear_combination 2 * hk
+      exact mul_left_cancel₀ hπ hπw
+    -- w = 2k+1 with re w > 1/2 forces k ≥ 0; k = 0 gives w = 1 (excluded);
+    -- k ≥ 1 gives s = 1 - w = -2k, a trivial zero (excluded)
+    have hkre : (2 * (k:ℝ) + 1 : ℝ) = w.re := by
+      have := congrArg Complex.re hwk
+      simp at this
+      linarith [this]
+    have hk0 : 0 ≤ k := by
+      by_contra hneg
+      push_neg at hneg
+      have : (k : ℝ) ≤ -1 := by exact_mod_cast Int.le_sub_one_of_lt hneg
+      linarith [hwre, hkre]
+    rcases eq_or_lt_of_le hk0 with hk0' | hkpos
+    · apply hw1
+      rw [hwk, ← hk0']
+      norm_num
+    · apply htriv
+      have hk1 : 1 ≤ k := hkpos
+      refine ⟨(k - 1).toNat, ?_⟩
+      have htn : ((k - 1).toNat : ℂ) = (k : ℂ) - 1 := by
+        have : ((k - 1).toNat : ℤ) = k - 1 := Int.toNat_of_nonneg (by omega)
+        exact_mod_cast congrArg (Int.cast : ℤ → ℂ) this
+      have hsw : s = 1 - w := by rw [hw]; ring
+      rw [hsw, hwk, htn]
+      push_cast
+      ring
+  -- all factors nonzero, product zero ⟹ ζ(w) = 0
+  have hzw : riemannZeta w = 0 := by
+    by_contra hne
+    exact (mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero h2 hpow) hGamma) hcos) hne) hfe.symm
+  exact h w hwre hw1 hzw
 
 /-- **B1 — the converse, assembled from V1–V5.** -/
 theorem RH_of_psiWeak {C x₀ : ℝ}
