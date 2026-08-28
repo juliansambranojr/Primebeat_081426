@@ -16,6 +16,72 @@ Julian's call.
 
 ---
 
+## 2026-08-27 — Entry 229 — a gate on the cheap step, and the honest half that cannot have one
+type: instrument-fix
+refs: 219, 222, 225, 228
+
+Julian asked whether the session's errors came from avoiding difficulty
+on a hard problem. The record says the opposite, and this instrument
+follows from the correct reading.
+
+**Where the errors actually sat.** Not on the hard parts — the CRT
+collapse, the studentization choice, `NyquistPeak`'s vacuity guard all
+went well or better than specified. They sat on the trivial ones:
+reading a max off a 17-row JSON, dividing two numbers, a regex whose
+`\b` matched a subscript, writing `§` in prose five times, the `d+1`
+exponent. **Difficulty is what summons care**; a cheap step summons
+none and fails at the same rate.
+
+**Which means "try harder" does nothing** — those steps do not route
+anywhere that effort applies. Two cheap steps that were gated cost
+nothing all session: the `§` citations broke five times and
+`check_refs` caught each instantly, and the `d+1` exponent would have
+measured six wrong cells under the four zeros' names but the brief said
+*derive it and stop if you disagree*. The ones that hurt were cheap
+steps with no gate.
+
+**Built: a slice warning at the invocation layer.**
+`utilities/hooks/check_direct_run.py` already parses the Bash payload;
+it now also warns when a command reads a `results/` artifact **and**
+slices it. Advisory, exit 0, never blocks.
+
+Verified in five directions: fires on entry 219's actual defect; silent
+on a results read with no slice; silent on a slice with no results
+artifact; still blocks a direct O-script run; still passes `run.py`
+through.
+
+**It deliberately does not detect the aggregation.** Both instances —
+entry 219's 6-of-17 and entry 222's ratio — sliced, printed, and then
+aggregated **by eye on the printed subset**. There is no `max(` in
+either command, so a narrower trigger would have missed both. The
+trigger is "a results artifact was read and sliced," which does fire on
+legitimate display-slicing. That is the accepted cost, stated rather
+than discovered.
+
+**Unscored, and it self-scores.** Entry 225's audit declined to ship
+this exact check because no corpus of past invocations exists to score
+it against — the container's rule is score-then-adopt. Two things make
+it shippable anyway: it is advisory, so a false positive costs one line
+of stderr rather than a blocked commit or a baseline file; and it
+appends what it sees to `utilities/slice_observations.jsonl`
+(gitignored, local), so the corpus that would score it accumulates from
+here. **Score it later and either tighten it or delete it.**
+
+**The half that cannot be gated, said plainly.** The other ungated
+cheap step was entry 219's "roughly 2^52" — an extrapolation from two
+*nested* points with no interval stated. That lives in prose in the
+record, and entry 225 established the selection rule: gates scanning
+**mutable** state can ship, gates scanning the **append-only record**
+can never be silent when clean, because a true positive in a historical
+entry fires forever and the entry cannot be edited to fix it. So there
+is no gate for it. What there is instead is the requirement now in
+`lean/NEXT.md` and the container blueprint — an extrapolation names its
+points, their independence, its model, and its interval — which is a
+rule that must be read, and therefore will sometimes fail. That is the
+honest boundary of this approach and it is worth having written down.
+
+---
+
 ## 2026-08-27 — Entry 228 — accuracy came from deleting a claim, not from verifying one
 type: provenance
 refs: 225, 227

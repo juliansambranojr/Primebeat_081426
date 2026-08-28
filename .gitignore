@@ -14,3 +14,7 @@ results/O24_gen_to19_results.json
 # Lean build artifacts — 6.9 GB of compiled Mathlib. Reproducible from
 # lean/lakefile.toml + lean/lean-toolchain via `lake exe cache get`.
 lean/.lake/
+
+# local corpus written by utilities/hooks/check_direct_run.py, for scoring
+# the slice warning later; not a shared artifact
+utilities/slice_observations.jsonl

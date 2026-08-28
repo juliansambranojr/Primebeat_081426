@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-27  entry 229: slice warning shipped in the PreToolUse hook — advisory, fires on entry 219's actual defect, silent on both legitimate shapes; deliberately does NOT detect aggregation because both real instances aggregated BY EYE with no max() in the command
+- [open]   2026-08-27  entry 229: it is UNSCORED and self-scores — appends to utilities/slice_observations.jsonl (gitignored) so the corpus entry 225 lacked accumulates; score it later and tighten or delete
+- [open]   2026-08-27  entry 229: the diagnosis — errors sat on the TRIVIAL steps, not the hard ones; difficulty summons care and cheap steps summon none, so 'try harder' does nothing and only an instrument helps
+- [open]   2026-08-27  entry 229: the extrapolation half CANNOT be gated (record-scanning gates can never be silent), so it stays a rule that must be read and will sometimes fail — the honest boundary of the approach
 - [open]   2026-08-27  entry 228: the Stage-3 name list corrected — dating claim DELETED rather than repaired, since it did no operational work; all eight names verified on both toolchains, unsubscripted pow_le_pow_left resolves on neither
 - [open]   2026-08-27  entry 228: RULE — when a claim has an unverified component, ask whether the claim needs it before going to verify it; here accuracy came from deleting, and 'too expensive to verify' was the wrong frame from the start
 - [open]   2026-08-27  entry 228: four attempts, three of them plausible-instead-of-authoritative, inside a conversation about accuracy — #check was definitive the whole time and two source-greps asked narrower questions than the one being answered
