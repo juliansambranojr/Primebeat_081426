@@ -1,0 +1,18 @@
+RESIDUAL EXPECTATION CHECK.  EXPLORATORY, no prereg.
+  T0=74920.0  N=99998  last zero in: 74919.075161  first out: 74920.259793  gap width: 1.1846
+
+BASE (Nmax=1e7, T=74920.0): resid/floor = 0.0067   floor median = 5.14
+  C. drop mirror kernel:  0.0270   (change +0.0204)
+  D. quartic detrend:     0.0014   (change -0.0053)
+
+A. QUANTIZATION (h=1e-9, two draws): median |dS| on quiet points = 2.36e-07, 2.46e-07
+   vs absolute residual 0.034 — ratio 6.9e-06
+
+B. EDGE PLACEMENT (Nmax=1e6, T swept across the gap [74919.075, 74920.260]):
+      T          resid/floor
+    74919.0852   0.0943
+    74919.6675   0.0101
+    74920.0000   0.0197  <- entry 248's choice
+    74920.2498   0.0942
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
