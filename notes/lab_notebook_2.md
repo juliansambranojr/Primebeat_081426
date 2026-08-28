@@ -16,6 +16,200 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 236 — the table's own weight on the zero ensemble: first moment closes, second moment does not
+type: run
+refs: 234, 235
+
+Entry 235 leaves a gap that is not about F. Montgomery 1973 and Odlyzko's
+computations cover F(α,T) itself; neither applies the *table's* weight to the
+zeros, because that weight has no reason to exist without the table.
+
+`Superposition.tableFrom_eq_modeSum_reweighted`
+(`lean/Superposition.lean:90`) carries each zero into the depth-`d` table with
+factor `(Sym b ρ)^d`, and `Sym b s = 1 - b^(-s)` (`lean/Chain.lean:29`).
+Binomial-expanding at `b = 2` gives support exactly on the powers of two:
+
+```text
+(1 - 2^-ρ)^d = Σ_k C(d,k) (-1)^k (2^k)^(-ρ)
+```
+
+Entry 235 established that F's cusps sit at `α = log n / log T` with mass
+`Λ(n)²/(n log T)`; the powers of two are a subset of those positions. Hitting
+each term with Landau–Gonek and resumming (the `k = 0` term is `N(T)`, since
+`Λ(1) = 0`) predicts a closed form.
+
+**FIRST MOMENT — measured, `analysis/2026-08-28/sym_moment.py`,
+log at `analysis/2026-08-28/results/sym_moment.log`.**
+
+```text
+Re Σ_{0<γ≤T} (1 - 2^-ρ)^d  =  N(T) + (T/2π)·log2·(1 - 2^-d)
+
+ d      measured Re      predicted      ratio
+ 1        104130.0        104130.5    1.00000
+ 2        106196.2        106196.8    0.99999
+ 3        107230.0        107229.9    1.00000
+ 6        108148.3        108133.9    1.00013
+ 9        108292.1        108246.9    1.00042
+```
+
+T = 74920, N(T) = 99998, (T/2π)log2 = 8265.0, all 99,998 zeros.
+
+The derivation is elementary given Landau–Gonek — two lines for anyone holding
+both pieces. The whole `d`-dependence collapses to `1 - 2^-d` with no residue,
+so at the first moment the table's weight is transparent: it reads the powers
+of two and returns their resummation. The deviation growing with `d`
+(1.00000 → 1.00042 by `d = 9`, an excess of 45 in 108,292) is unexamined; the
+natural candidate is Landau–Gonek's error term as higher powers of two enter
+with larger binomial coefficients.
+
+**A resemblance checked and rejected.** `1 - 2^-d` reaches 96.88% at `d = 5`
+and 98.44% at `d = 6`, bracketing O49's measured 97.68%. It is a different
+quantity. The C2 ceiling is `1 + b^(-1/2)`, a per-mode modulus bound
+(`lean/Chain.lean:94`), and 97.68% is the fraction of that attained; the
+saturation here is of a summed real part over the ensemble. Recorded because
+the near-match was noticed and nearly asserted.
+
+**SECOND MOMENT — measured, `analysis/2026-08-28/weighted_F.py`,
+log at `analysis/2026-08-28/results/weighted_F.log`.**
+
+Pair correlation with each zero carrying the table weight, normalized so every
+depth has the same diagonal as the unweighted case, so row differences are pure
+off-diagonal:
+
+```text
+F_d(α) = Σ Re[a(γ)ā(γ')e^{iαlogT(γ-γ')}] w(γ-γ') / Σ|a(γ)|²  ×  2πN(T)/(T logT)
+```
+
+`a(γ) = (1 - 2^-ρ)^d`, `w(u) = 4/(4+u²)`, CUT = 60, T = 74920, N = 99998.
+
+```text
+OFF-DIAGONAL  (F_d - 0.7472)
+ d  |   0.20    0.40    0.60    0.80    0.84    0.88    0.92    1.00    1.20
+ 0  | -.5046  -.3663  -.1584   .0122   .0323   .0438   .0328   .0218  -.0015
+ 1  | -.4558  -.4053  -.2063  -.0183   .0164   .0424   .0345   .0301   .0031
+ 2  | -.3287  -.4324  -.2368  -.0439  -.0064   .0246   .0358   .0333   .0080
+ 3  | -.0462  -.4561  -.2638  -.0691  -.0311   .0029   .0287   .0371   .0109
+ 6  | 1.7899  -.4848  -.3399  -.1439  -.1052  -.0674  -.0294   .0264   .0154
+```
+
+Control: `d = 0` reproduces standard F to four decimals (0.2426, 0.3808,
+0.5888, 0.7594 against entry 235's 0.243, 0.381, 0.589, 0.759).
+
+The weight is not transparent here. Two observations, neither with error bars:
+
+- The off-diagonal maximum sits at α = 0.88 for `d = 0` and `d = 1`, at 0.92
+  for `d = 2`, and at 1.00 for `d = 3` and `d = 6` — a monotone rightward
+  migration across five rows. The α = 0.88 hump is entry 235's ~9σ feature.
+- At α = 0.20 the weighted value grows with depth, +1.79 above diagonal by
+  `d = 6`, against −0.50 unweighted.
+
+**Unmeasured, and the first thing needed.** No error bars on any weighted row.
+Entry 235's bootstrap gives sd ≈ 0.005 for unweighted F; whether that transfers
+under reweighting is untested, and the peak-value differences (0.0438 → 0.0371)
+are of that order while the peak-*location* shift is a four-row pattern.
+A candidate mechanism is also untested: `|1 - 2^(-1/2-iγ)|` is periodic in γ
+with period `2π/log2 = 9.06`, which under Fourier duality would place sidebands
+at spacing `log2/log T = 0.0618` in α — finer than this grid's 0.04 near the
+hump, and the observed 0.88 → 1.00 migration is about twice that spacing.
+Recorded as a candidate; nothing here tests it.
+
+## 2026-08-28 — Entry 235 — the F(α,T) verdict broken: the plateau was the diagonal, the primes were there all along
+type: result-triage
+refs: 234
+
+Entry 234 closed with F(α,T) untried at height: 600 zeros to γ = 939 were not
+asymptotic, and `imported/twin_count/zeros1.txt` holds 100,000 to γ = 74,920.8.
+Ran it at four heights, issued a three-part reading, then sent an adversary at
+the artifact rather than at a summary of it. Two of the three parts fell.
+
+**Mechanics — verified, and they held.** The adversary re-derived F from the
+definition and reimplemented independently: tables agree to 3 dp, the fine
+α-scan to 4 dp at all 12 points. Normalization, ordered pairs, diagonal
+included, `cos` as the real part of `T^{iα(γ-γ')}` — all correct. `zeros1.txt`
+SHA-256 matches the manifest in `imported/twin_count/README.md`; the counts
+599 / 4520 / 22491 / 99998 match Riemann–von Mangoldt to |S(T)| ≤ 0.70; 9-dp
+rounding gives max phase error 8.4e-9 rad. The truncation flagged as unmeasured
+was fine: exact O(n²) at T = 939 and T = 5000 differs by ≤ 0.0006, and
+CUT 60 → 400 at T = 74920 moves nothing by more than 0.0008.
+
+**(i) Convergence toward min(α,1) below α = 1 — stands, on different
+evidence.** The four rows T = 939 / 5000 / 20000 / 74920 are nested, and the
+diagonal `2πN(T)/(T log T)` alone is 0.5856, 0.6669, 0.7135, 0.7472 — it moves
+the table +0.162 by itself, against +0.026 for the whole α = 0.4 column. On
+*disjoint* height bands the values settle rather than march: α = 0.4 gives
+0.370, 0.381, 0.382, 0.383, 0.382; α = 0.6 gives 0.568, 0.585, 0.590, 0.592,
+0.591. The cumulative table's smooth approach is a running mean reaching that
+plateau.
+
+**(ii) "Flat at ~0.75 above α = 1, and 167× the height barely moves it" —
+false, in three ways.** 0.75 is the diagonal, `2πN(T)/(T log T)` = 0.7472,
+which was never computed. `F − diag` at α = 1.2, 1.5, 2.0, 3.0 is −0.0014,
+−0.0033, +0.0014, +0.0078 against 1σ = 0.0047: the off-diagonal above α ≈ 1.2
+is zero. The gap to 1.000 is `(1 + log 2π)/log T` — measured against predicted,
+0.4274/0.4146, 0.3111/0.3332, 0.2843/0.2866, 0.2561/0.2528 — a normalization
+deficit predictable to two decimals, needing T ≈ 6e24 to close to 0.05. And
+"barely moves" is backwards on the artifact's own table: α = 1.0 moves +0.177,
+α = 1.2 +0.131, α = 1.5 +0.171, while α = 0.4, the column called convergent,
+moves +0.026.
+
+**(iii) "No prime signature" — false, by two independent measurements.**
+Landau–Gonek, `Re Σ_{0<γ≤T} x^{iγ} ≈ -(T/2π)Λ(x)/√x`, on this file: twelve
+prime powers match to four significant figures (x = 2: −5843.5 measured against
+−5844.2; x = 3, 5, 7, 13 at ratio 1.000), while nine non-prime-powers and eight
+random u give |Z| ≤ 12.4 — roughly 700× background. And inside F itself, via
+the identity `F(α,T)·(T log T/2π) = ∫ e^{-2|t|}|Z(ξ-t)|² dt` (quadrature
+0.35533 against pair-sum 0.35533): each prime power contributes a cusp of
+height `Λ(n)²/(n log T)`, 0.0213 for n = 2 and 0.0482 for n = 7, measured spike
+masses agreeing to 3 digits. The full model
+
+```text
+F(α,74920) = Σ_n Λ(n)²/(n logT)·e^{-2|α logT - log n|} + 6.356·T^{-2α}
+```
+
+has rms residual 0.0108 over 0.25 ≤ α ≤ 0.80 with one free parameter, and the
+de-trended wiggles correlate with the von Mangoldt template at r = 0.996,
+λ = 0.997 ± 0.042 (z = 23). Placebos: prime positions shifted 0.1 in ξ gives
+r = 0.076; jittered, r ≈ −0.11; Cramér random "primes", r ≈ 0; all integers,
+r = 0.066.
+
+**Why the prime test had no power.** The residual model subtracted
+`T^(-2α)·log T + α` with the `(1+o(1))` dropped, and that dropped factor *is*
+the residual: empirical coefficients 0.363, 0.458, 0.519, 0.566 at the four
+heights, and predicted residual ratio `B/logT − 1` = −0.637, −0.542, −0.481,
+−0.434 against measured −0.634, −0.540, −0.480, −0.432 at α = 0.0618. Those
+residuals are 25× larger than the 0.02–0.05 cusps they were meant to expose.
+The sign was also misread: a negative residual means the model over-subtracts.
+Separately, the test looked for a local maximum, and the prime term is a cusp
+on a monotone background — the cusp sum increases across α ∈ [0.05, 0.3], so
+`local max? False` was determined before any data were read.
+
+**Two further defects.** The artifact's residual table does not reproduce from
+its own F scan (p = 2: −1.2208 recomputed against −1.1888 reported; quadratic
+interpolation of the artifact's own scan gives F(0.0618) = 1.6463 against a
+direct 1.6470) — internally inconsistent by up to 0.033. And the 0.2-spaced
+grid stepped over a real feature: `F − diag` humps to +0.0436 at α = 0.88,
+about 9σ, settling to zero only near α ≈ 1.16, and it grows with height across
+disjoint bands: +0.042, 0.050, 0.056, 0.060, 0.066.
+
+**Error bars, which the artifact had none of.** Block bootstrap over 80–100
+height bands, corroborated by a 24-realisation Poisson null at matched density
+(sd 0.0047 against bootstrap 0.005): the 0.3816-vs-0.4008 gap is 4.1σ, the
+0.5883-vs-0.6000 gap is 2.5σ, and the 0.744-vs-1.000 gap is 54σ and
+meaningless.
+
+**Carried hedges.** The α > 1 region discriminates nothing — a Poisson process
+at matched density gives the same answer to |z| ≤ 0.7. And none of this is new:
+Montgomery 1973 and Odlyzko's 10¹²–10²² computations cover all of it. The one
+thing worth keeping is the decomposition, that F below α = 1 on 10⁵ zeros to
+height 7.5e4 is the von Mangoldt sum recovered prime by prime at r = 0.996.
+
+**Method.** The adversary retracted five of its own findings on self-attack,
+including a prime-contribution estimate off by four orders of magnitude and a
+Poisson-null sd off by 15×. Giving it the artifact — numbers, implementation,
+and verdict verbatim — rather than a summary is what let it recompute instead
+of arbitrate; the previous relay failure (entry 234's method note) was the
+opposite case.
+
 ## 2026-08-28 — Entry 234 — the Montgomery correspondence, built as a case and broken on measurement
 type: result-triage
 refs: 40, 103, 230, 233

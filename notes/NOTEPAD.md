@@ -17,6 +17,16 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 236: the table's weight summed over all 99,998 zeros CLOSES — Re sum (1-2^-rho)^d = N(T) + (T/2pi)log2(1-2^-d), matching to 5 decimals through d=4; elementary given Landau-Gonek, but nobody computes it because the weight needs the table
+- [open]   2026-08-28  entry 236: at the SECOND moment the weight is not transparent — the off-diagonal peak migrates 0.88 -> 0.92 -> 1.00 as depth goes 0 -> 2 -> 3, monotone across five rows, and NO ERROR BARS on any weighted row
+- [open]   2026-08-28  entry 236: candidate mechanism untested — |1-2^(-1/2-i gamma)| is periodic in gamma with period 2pi/log2 = 9.06, dual to sidebands at spacing log2/logT = 0.0618 in alpha; the observed migration is about twice that, and the grid (0.04) cannot resolve it
+- [open]   2026-08-28  entry 236: the 1-2^-d saturation is NOT the C2 ceiling — checked; C2 is 1+b^(-1/2), a per-mode modulus bound (lean/Chain.lean:94), and O49's 97.68% is a fraction of that. Near-match noticed and nearly asserted
+- [open]   2026-08-28  entry 235: "no prime signature" was WRONG — Landau-Gonek on this file matches 12 prime powers to 4 significant figures at ~700x background, and inside F the von Mangoldt template correlates at r=0.996 with placebos at r~0
+- [open]   2026-08-28  entry 235: the alpha>1 "plateau at 0.75" WAS THE DIAGONAL, 2piN(T)/(T logT) = 0.7472, never computed; the 0.25 gap to 1.000 is (1+log2pi)/logT and needs T ~ 6e24 to close to 0.05
+- [open]   2026-08-28  entry 235: the residual test had no power BY CONSTRUCTION — the dropped (1+o(1)) on T^(-2a)logT IS the residual (empirical coefficient 0.566), 25x larger than the 0.02-0.05 cusps it was meant to expose
+- [open]   2026-08-28  entry 235: a real feature the coarse grid stepped over — F-diag humps +0.0436 at alpha=0.88 (~9sigma) and GROWS with height across disjoint bands (+0.042 -> +0.066); entry 236 shows it migrating under the table weight
+- [open]   2026-08-28  entry 235: nested rows are not evidence of convergence — on DISJOINT height bands alpha=0.4 settles at 0.370/0.381/0.382/0.383/0.382 rather than marching; the cumulative table was a running mean
+- [open]   2026-08-28  entry 235: METHOD — the adversary got the artifact (numbers, implementation, verdict verbatim) instead of a summary, and recomputed rather than arbitrated; it retracted 5 of its own findings on self-attack, one off by four orders
 - [open]   2026-08-28  entry 234: the Montgomery correspondence BROKE — 3 of 4 links fail; T=128 is a tautology and the bench measures it (40x width change moves the zero height by ZERO; the mollifier sets it, not the window)
 - [open]   2026-08-28  entry 234: Montgomery's barrier is Montgomery-Vaughan mean value (length vs integration range), and past alpha=1 it is a SECOND-moment object the bench's first-moment sum cannot reach
 - [open]   2026-08-28  entry 234: what survives is modest — 7*log2 = log128 is the PRIME RANGE the stencil reads, so |alpha|<1 means the height must exceed 128, satisfied at T=939 with a factor-7 margin. A margin, not a barrier
