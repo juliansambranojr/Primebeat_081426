@@ -7,6 +7,7 @@ redraw the map. If a step turns out wrong, it gets marked WRONG with a pointer
 to what showed it — it does not get silently deleted.
 
 Vocabulary (Julian's, keep it):
+
 - MOUTH/STOMACH: hRH is eaten at exactly one place (Slice3/4's distance bound)
   and only its digest travels downstream. The digest is two scalars: a count
   and a distance. Never a position.
@@ -34,18 +35,19 @@ Vocabulary (Julian's, keep it):
 
 ## B. The equivalence (the route we hold)
 
-- [ ] B1. von Koch converse in Lean:  [SCAFFOLD: lean_stage3/Stage3/VonKochScaffold.lean
-        — V1..V5 as compiling obligations, B1 assembles from them; NOT in the
-        default target, carries 5 named sorries by design]
+- [x] B1. von Koch converse in Lean: DONE 2026-08-28.
+        [ARTIFACT: lean_stage3/Stage3/VonKochScaffold.lean —
+        `VonKoch.RH_of_psiWeak`, axioms [propext, Classical.choice,
+        Quot.sound], no sorryAx; V1–V5 all proved]
         (∃ C x₀, ∀ t ≥ x₀, |ψ t − t| ≤ C·√t·(log t)^3) → RiemannHypothesis.
-        Mechanism: −ζ'/ζ(s) = s·∫₁^∞ ψ(x)x^(−s−1)dx; the bound forces
-        convergence/analyticity for re s > 1/2; no poles ⇒ no zeros.
-        This is a PROOF target, not a citation — Mathlib has the integral
-        representation ingredients; nothing to recall.
-- [ ] B2. The iff, stated and pinned:
-        RH ↔ ∃ C x₀, StmtPsiWeak C 3 x₀.
-        Forward half is RHPull.stmtPsiWeak_of_RH (DONE, e8a1801). B2 closes
-        when B1 does.
+        V3/V4 as built: the identity theorem ran on G := F·ζ + ζ′ over the
+        half-plane minus the SINGLE point 1 (four convex pieces) — the
+        countable zero set never entered a connectivity argument. V4 factors
+        ζ = (z−ρ)^(k+1)·g at a hypothetical zero and contradicts g ρ ≠ 0.
+- [x] B2. The iff, stated and pinned: DONE 2026-08-28.
+        [ARTIFACT: same file — `VonKoch.RH_iff_psiWeak`, #guard_msgs-pinned:
+        RiemannHypothesis ↔ ∃ C > 0, ∃ x₀, Stage3.StmtPsiWeak C 3 x₀]
+        Forward half RHPull.stmtPsiWeak_of_RH (e8a1801); converse B1.
 - [ ] B3. Entry logging the equivalence as an artifact.
 
 ## C. The gap, measured (outside the known routes)

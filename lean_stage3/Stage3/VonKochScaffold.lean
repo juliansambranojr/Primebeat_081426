@@ -1,25 +1,29 @@
 /-
-# Von Koch converse — SCAFFOLD (roadmap B1)
+# Von Koch converse — roadmap B1, COMPLETE
 
     (∃ C x₀, ∀ t ≥ x₀, |ψ t − t| ≤ C·√t·(log t)³)  →  RiemannHypothesis
 
-SCRATCH: this file carries named `sorry`s by design. It is the slice map for
-B1, compiling so the obligations are real Lean statements rather than prose.
-Each sorry is one slice. Do not count this module in any sorry-free claim.
+All five slices proved, 2026-08-28; `RH_of_psiWeak` assembles them and sits
+at `[propext, Classical.choice, Quot.sound]` — no `sorryAx`.
 
-Route (all ingredients verified present 2026-08-28):
-  V1  E-integral analytic on re s > 1/2      mellin_differentiableAt_of_isBigO_rpow
-  V2  −ζ'/ζ = s/(s−1) + s·∫E  on re s > 1    AbelSummation + LSeries_vonMangoldt
-  V3  agreement extends to re > 1/2 off zeros    eqOn_of_preconnected +
-                                             Countable.isPathConnected_compl
-  V4  ζ'/ζ blows up at a zero, F does not    Meromorphic/Order library
-  V5  no zeros re > 1/2 → RH                 riemannZeta_one_sub + conj
+Route as built:
+  V1  F analytic on re s > 1/2 given the bound   mellin_differentiableAt_of_isBigO_rpow
+  V2  F = −ζ'/ζ on re s > 1                      LSeries_eq_mul_integral_of_nonneg
+  V3  agreement extends past the line            identity theorem for G := F·ζ + ζ′
+  V4  no zero right of the line                  factor ζ = (z−ρ)^(k+1)·g, contradict g ρ ≠ 0
+  V5  no zeros re > 1/2 → RH                     riemannZeta_one_sub reflection
+
+V3/V4 note: the identity theorem runs on the half-plane minus the SINGLE
+point 1 (four convex pieces, `preconnected_region`); the countable zero set
+of ζ never enters a connectivity argument. The one fact both slices consume
+is `F_mul_zeta_add_deriv_eqOn_zero`: the analytic function `F·ζ + ζ′`
+vanishes on `re s > 1` by V2, hence everywhere on the region.
 -/
 import Stage3.LineBound
 
 namespace VonKoch
 
-open Complex Set MeasureTheory
+open Complex Set MeasureTheory Topology
 
 local notation "ψ" => ChebyshevPsi
 
@@ -337,24 +341,208 @@ theorem F_eq_neg_logDeriv {s : ℂ} (hs : 1 < s.re) :
   rw [F, hrep]
   ring
 
-/-- **V3 — agreement extends to the punctured half-plane.** The region
-`{re > 1/2} \ ({1} ∪ zeros)` is open and path-connected (zeros of an analytic
-function are countable; `Set.Countable.isPathConnected_compl_of_one_lt_rank`),
-both sides are analytic there, and they agree on the open subset `re > 1`. -/
+/-! ### The region and the identity `F·ζ + ζ′ = 0`
+
+V3 and V4 both consume one fact: `G := F·ζ + ζ′` is analytic on the half-plane
+past the critical line minus the pole, and vanishes on `re s > 1` where V2
+applies — so the identity theorem forces it to vanish on the whole region. The
+identity theorem runs on the half-plane minus the SINGLE point `1`, covered by
+four convex pieces; the zero set of `ζ` never enters the connectivity
+argument. -/
+
+/-- The working region: past the critical line, minus the pole. -/
+def region : Set ℂ := {s : ℂ | 1/2 < s.re ∧ s ≠ 1}
+
+theorem isOpen_region : IsOpen region := by
+  have h : region = {s : ℂ | 1/2 < s.re} ∩ {(1:ℂ)}ᶜ := by
+    ext s
+    simp [region, Set.mem_setOf_eq]
+  rw [h]
+  exact (isOpen_lt continuous_const Complex.continuous_re).inter isOpen_compl_singleton
+
+theorem preconnected_region : IsPreconnected region := by
+  have hA : IsPreconnected {s : ℂ | 1/2 < s.re ∧ 0 < s.im} := by
+    rw [Set.setOf_and]
+    exact ((convex_halfSpace_re_gt _).inter (convex_halfSpace_im_gt _)).isPreconnected
+  have hB : IsPreconnected {s : ℂ | 1/2 < s.re ∧ s.im < 0} := by
+    rw [Set.setOf_and]
+    exact ((convex_halfSpace_re_gt _).inter (convex_halfSpace_im_lt _)).isPreconnected
+  have hC : IsPreconnected {s : ℂ | 1/2 < s.re ∧ s.re < 1} := by
+    rw [Set.setOf_and]
+    exact ((convex_halfSpace_re_gt _).inter (convex_halfSpace_re_lt _)).isPreconnected
+  have hD : IsPreconnected {s : ℂ | 1 < s.re} :=
+    (convex_halfSpace_re_gt _).isPreconnected
+  have hS1 : IsPreconnected
+      ({s : ℂ | 1/2 < s.re ∧ 0 < s.im} ∪ {s : ℂ | 1/2 < s.re ∧ s.re < 1}) :=
+    IsPreconnected.union (⟨3/4, 1⟩ : ℂ)
+      ⟨show (1:ℝ)/2 < 3/4 by norm_num, show (0:ℝ) < 1 by norm_num⟩
+      ⟨show (1:ℝ)/2 < 3/4 by norm_num, show (3:ℝ)/4 < 1 by norm_num⟩ hA hC
+  have hS2 : IsPreconnected
+      (({s : ℂ | 1/2 < s.re ∧ 0 < s.im} ∪ {s : ℂ | 1/2 < s.re ∧ s.re < 1})
+        ∪ {s : ℂ | 1/2 < s.re ∧ s.im < 0}) :=
+    IsPreconnected.union (⟨3/4, -1⟩ : ℂ)
+      (Or.inr ⟨show (1:ℝ)/2 < 3/4 by norm_num, show (3:ℝ)/4 < 1 by norm_num⟩)
+      ⟨show (1:ℝ)/2 < 3/4 by norm_num, show (-1:ℝ) < 0 by norm_num⟩ hS1 hB
+  have hS3 : IsPreconnected
+      ((({s : ℂ | 1/2 < s.re ∧ 0 < s.im} ∪ {s : ℂ | 1/2 < s.re ∧ s.re < 1})
+        ∪ {s : ℂ | 1/2 < s.re ∧ s.im < 0}) ∪ {s : ℂ | 1 < s.re}) :=
+    IsPreconnected.union (⟨2, 1⟩ : ℂ)
+      (Or.inl (Or.inl ⟨show (1:ℝ)/2 < 2 by norm_num, show (0:ℝ) < 1 by norm_num⟩))
+      (show (1:ℝ) < 2 by norm_num) hS2 hD
+  have hcover : region
+      = (({s : ℂ | 1/2 < s.re ∧ 0 < s.im} ∪ {s : ℂ | 1/2 < s.re ∧ s.re < 1})
+        ∪ {s : ℂ | 1/2 < s.re ∧ s.im < 0}) ∪ {s : ℂ | 1 < s.re} := by
+    ext s
+    constructor
+    · rintro ⟨hre, hne⟩
+      rcases lt_trichotomy s.im 0 with him | him | him
+      · exact Or.inl (Or.inr ⟨hre, him⟩)
+      · have hre1 : s.re ≠ 1 := by
+          intro h1
+          exact hne (Complex.ext (by rw [h1, Complex.one_re]) (by rw [him, Complex.one_im]))
+        rcases lt_or_gt_of_ne hre1 with h | h
+        · exact Or.inl (Or.inl (Or.inr ⟨hre, h⟩))
+        · exact Or.inr h
+      · exact Or.inl (Or.inl (Or.inl ⟨hre, him⟩))
+    · rintro (((⟨h1, h2⟩ | ⟨h1, h2⟩) | ⟨h1, h2⟩) | h)
+      · exact ⟨h1, fun he ↦ by rw [he] at h2; simp at h2⟩
+      · exact ⟨h1, fun he ↦ by rw [he] at h2; simp at h2⟩
+      · exact ⟨h1, fun he ↦ by rw [he] at h2; simp at h2⟩
+      · exact ⟨lt_trans (show (1:ℝ)/2 < 1 by norm_num) h,
+          fun he ↦ by rw [he] at h; simp at h⟩
+  rw [hcover]
+  exact hS3
+
+theorem zeta_analyticOnNhd : AnalyticOnNhd ℂ riemannZeta region :=
+  DifferentiableOn.analyticOnNhd
+    (fun _ hs ↦ (differentiableAt_riemannZeta hs.2).differentiableWithinAt) isOpen_region
+
+theorem F_analyticOnNhd {C x₀ : ℝ}
+    (hbound : ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3) :
+    AnalyticOnNhd ℂ F region :=
+  DifferentiableOn.analyticOnNhd
+    (fun _ hs ↦ (F_differentiableAt hbound hs.1 hs.2).differentiableWithinAt) isOpen_region
+
+/-- The load-bearing identity: `F·ζ + ζ′` vanishes on the whole region. -/
+theorem F_mul_zeta_add_deriv_eqOn_zero {C x₀ : ℝ}
+    (hbound : ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3) :
+    Set.EqOn (fun s : ℂ ↦ F s * riemannZeta s + deriv riemannZeta s) 0 region := by
+  have hG : AnalyticOnNhd ℂ (fun s : ℂ ↦ F s * riemannZeta s + deriv riemannZeta s) region :=
+    ((F_analyticOnNhd hbound).mul zeta_analyticOnNhd).add zeta_analyticOnNhd.deriv
+  have h2 : (2:ℂ) ∈ region := ⟨by norm_num, by norm_num⟩
+  have hev : (fun s : ℂ ↦ F s * riemannZeta s + deriv riemannZeta s) =ᶠ[𝓝 2] 0 := by
+    have hopen : IsOpen {s : ℂ | 1 < s.re} := isOpen_lt continuous_const Complex.continuous_re
+    filter_upwards [hopen.mem_nhds (show (2:ℂ) ∈ {s : ℂ | 1 < s.re} by norm_num)] with s hs
+    have hz : riemannZeta s ≠ 0 := riemannZeta_ne_zero_of_one_lt_re hs
+    have hF : F s = -deriv riemannZeta s / riemannZeta s := F_eq_neg_logDeriv hs
+    show F s * riemannZeta s + deriv riemannZeta s = 0
+    rw [hF, neg_div, neg_mul, div_mul_cancel₀ _ hz]
+    ring
+  exact hG.eqOn_zero_of_preconnected_of_eventuallyEq_zero preconnected_region h2 hev
+
+/-- **V3 — agreement extends to the punctured half-plane.** From
+`F·ζ + ζ′ ≡ 0` on the region: divide by `ζ` where it does not vanish. -/
 theorem F_eq_neg_logDeriv_ext {C x₀ : ℝ}
     (hbound : ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3)
     {s : ℂ} (hs : 1/2 < s.re) (hs1 : s ≠ 1) (hz : riemannZeta s ≠ 0) :
     F s = -deriv riemannZeta s / riemannZeta s := by
-  sorry
+  have h0 : F s * riemannZeta s + deriv riemannZeta s = 0 := by
+    simpa using F_mul_zeta_add_deriv_eqOn_zero hbound (show s ∈ region from ⟨hs, hs1⟩)
+  rw [eq_div_iff hz]
+  linear_combination h0
 
-/-- **V4 — contradiction at a zero.** If `ζ(ρ) = 0` with `re ρ > 1/2`, then
-`‖ζ'/ζ‖ → ∞` along `s → ρ` (zero of finite order `m`: `ζ'/ζ ~ m/(s−ρ)`),
-while `F` is continuous at `ρ` by V1 — but they agree near `ρ` by V3. -/
+/-- **V4 — no zeros right of the line.** At a hypothetical zero `ρ`, factor
+`ζ = (z−ρ)^(k+1)·g` with `g ρ ≠ 0`. The identity `F·ζ + ζ′ = 0` factors as
+`(z−ρ)^k · [(k+1)·g + (z−ρ)·(F·g + g′)] = 0`; off `ρ` the power is nonzero, so
+the bracket vanishes on the punctured neighbourhood — yet it is continuous at
+`ρ` with value `(k+1)·g ρ ≠ 0`. (Order `⊤` would make `ζ` vanish identically
+on the region, against `ζ(2) ≠ 0`.) -/
 theorem no_zero_right_of_half {C x₀ : ℝ}
     (hbound : ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3)
     {ρ : ℂ} (hρ : 1/2 < ρ.re) (hρ1 : ρ ≠ 1) :
     riemannZeta ρ ≠ 0 := by
-  sorry
+  intro hzρ
+  have hρmem : ρ ∈ region := ⟨hρ, hρ1⟩
+  have hζan : AnalyticAt ℂ riemannZeta ρ := zeta_analyticOnNhd ρ hρmem
+  rcases eq_or_ne (analyticOrderAt riemannZeta ρ) ⊤ with htop | hfin
+  · -- order ⊤ : ζ ≡ 0 near ρ, hence on the region, against ζ(2) ≠ 0
+    have hev0 : riemannZeta =ᶠ[𝓝 ρ] 0 := by
+      filter_upwards [analyticOrderAt_eq_top.mp htop] with z hz
+      simpa using hz
+    have hall := zeta_analyticOnNhd.eqOn_zero_of_preconnected_of_eventuallyEq_zero
+      preconnected_region hρmem hev0
+    have h20 : riemannZeta 2 = 0 := by
+      simpa using hall (show (2:ℂ) ∈ region from ⟨by norm_num, by norm_num⟩)
+    exact riemannZeta_ne_zero_of_one_lt_re (by norm_num) h20
+  · -- finite order : factor out the zero and contradict `g ρ ≠ 0`
+    have hcast : analyticOrderAt riemannZeta ρ = (analyticOrderNatAt riemannZeta ρ : ℕ∞) :=
+      (Nat.cast_analyticOrderNatAt hfin).symm
+    obtain ⟨g, hg, hgρ, hfac⟩ := (hζan.analyticOrderAt_eq_natCast).mp hcast
+    obtain ⟨k, hk⟩ : ∃ k, analyticOrderNatAt riemannZeta ρ = k + 1 := by
+      rcases Nat.eq_zero_or_pos (analyticOrderNatAt riemannZeta ρ) with h0 | hpos
+      · exfalso
+        have hself := hfac.self_of_nhds
+        rw [h0, pow_zero, one_smul, hzρ] at hself
+        exact hgρ hself.symm
+      · exact ⟨analyticOrderNatAt riemannZeta ρ - 1, by omega⟩
+    rw [hk] at hfac
+    have hfac' : ∀ᶠ z in 𝓝 ρ, riemannZeta z = (z - ρ) ^ (k + 1) * g z := by
+      filter_upwards [hfac] with z hz
+      simpa [smul_eq_mul] using hz
+    have hζ'ev := Filter.EventuallyEq.deriv
+      (show riemannZeta =ᶠ[𝓝 ρ] fun z : ℂ ↦ (z - ρ) ^ (k + 1) * g z from hfac')
+    have hderiv : ∀ᶠ z in 𝓝 ρ, deriv (fun w : ℂ ↦ (w - ρ) ^ (k + 1) * g w) z
+        = ((k : ℂ) + 1) * (z - ρ) ^ k * g z + (z - ρ) ^ (k + 1) * deriv g z := by
+      filter_upwards [hg.eventually_analyticAt] with z hgz
+      have h1 : HasDerivAt (fun w : ℂ ↦ (w - ρ) ^ (k + 1))
+          (((k : ℂ) + 1) * (z - ρ) ^ k) z := by
+        have h := ((hasDerivAt_id z).sub_const ρ).pow (k + 1)
+        simp only [Nat.add_sub_cancel, mul_one, Nat.cast_add, Nat.cast_one, id_eq] at h
+        exact h
+      have h2 : HasDerivAt g (deriv g z) z := hgz.differentiableAt.hasDerivAt
+      have h3 : HasDerivAt (fun w : ℂ ↦ (w - ρ) ^ (k + 1) * g w)
+          (((k : ℂ) + 1) * (z - ρ) ^ k * g z + (z - ρ) ^ (k + 1) * deriv g z) z :=
+        h1.mul h2
+      rw [h3.deriv]
+    have hGev : ∀ᶠ z in 𝓝 ρ, F z * riemannZeta z + deriv riemannZeta z = 0 := by
+      filter_upwards [isOpen_region.mem_nhds hρmem] with z hz
+      simpa using F_mul_zeta_add_deriv_eqOn_zero hbound hz
+    have hpunct : ∀ᶠ z in 𝓝[≠] ρ,
+        ((k : ℂ) + 1) * g z + (z - ρ) * (F z * g z + deriv g z) = 0 := by
+      have hall : ∀ᶠ z in 𝓝 ρ,
+          (z - ρ) ^ k * (((k : ℂ) + 1) * g z + (z - ρ) * (F z * g z + deriv g z)) = 0 := by
+        filter_upwards [hfac', hζ'ev, hderiv, hGev] with z h1 h2 h3 h4
+        calc (z - ρ) ^ k * (((k : ℂ) + 1) * g z + (z - ρ) * (F z * g z + deriv g z))
+            = F z * ((z - ρ) ^ (k + 1) * g z)
+              + (((k : ℂ) + 1) * (z - ρ) ^ k * g z + (z - ρ) ^ (k + 1) * deriv g z) := by
+              ring
+          _ = F z * riemannZeta z + deriv riemannZeta z := by rw [← h1, ← h3, ← h2]
+          _ = 0 := h4
+      filter_upwards [hall.filter_mono nhdsWithin_le_nhds, self_mem_nhdsWithin] with z hz hzρ'
+      have hne : z - ρ ≠ 0 := sub_ne_zero.mpr (Set.mem_compl_singleton_iff.mp hzρ')
+      exact (mul_eq_zero.mp hz).resolve_left (pow_ne_zero k hne)
+    have hcont : ContinuousAt
+        (fun z : ℂ ↦ ((k : ℂ) + 1) * g z + (z - ρ) * (F z * g z + deriv g z)) ρ := by
+      have hFc : ContinuousAt F ρ := (F_differentiableAt hbound hρ hρ1).continuousAt
+      have hgc : ContinuousAt g ρ := hg.continuousAt
+      have hg'c : ContinuousAt (deriv g) ρ := hg.deriv.continuousAt
+      exact (continuousAt_const.mul hgc).add
+        ((continuousAt_id.sub continuousAt_const).mul ((hFc.mul hgc).add hg'c))
+    have hlim1 : Filter.Tendsto
+        (fun z : ℂ ↦ ((k : ℂ) + 1) * g z + (z - ρ) * (F z * g z + deriv g z)) (𝓝[≠] ρ)
+        (𝓝 (((k : ℂ) + 1) * g ρ + (ρ - ρ) * (F ρ * g ρ + deriv g ρ))) :=
+      hcont.tendsto.mono_left nhdsWithin_le_nhds
+    have hlim2 : Filter.Tendsto
+        (fun z : ℂ ↦ ((k : ℂ) + 1) * g z + (z - ρ) * (F z * g z + deriv g z)) (𝓝[≠] ρ)
+        (𝓝 0) := by
+      refine Filter.Tendsto.congr' ?_ tendsto_const_nhds
+      filter_upwards [hpunct] with z hz
+      exact hz.symm
+    have hval : ((k : ℂ) + 1) * g ρ + (ρ - ρ) * (F ρ * g ρ + deriv g ρ) = 0 :=
+      tendsto_nhds_unique hlim1 hlim2
+    rw [sub_self, zero_mul, add_zero] at hval
+    have hk1 : ((k : ℂ) + 1) ≠ 0 := by exact_mod_cast Nat.succ_ne_zero k
+    exact hgρ ((mul_eq_zero.mp hval).resolve_left hk1)
 
 /-- **V5 — reflection.** No zeros right of the line forces every nontrivial
 zero onto it: a zero at `re < 1/2` inside the strip reflects through
@@ -445,5 +633,21 @@ theorem RH_of_psiWeak {C x₀ : ℝ}
     (hbound : ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3) :
     RiemannHypothesis :=
   RH_of_no_zero_right_of_half (fun _ hρ hρ1 => no_zero_right_of_half hbound hρ hρ1)
+
+/-- **B2 — the equivalence.** RH holds iff `ψ` satisfies the von Koch bound at
+one extra logarithm (von Koch's own exponent is `k = 2`; `k = 3` is the
+coarsened route's price). Forward is `RHPull.stmtPsiWeak_of_RH`; the converse
+is B1. -/
+theorem RH_iff_psiWeak :
+    RiemannHypothesis ↔ ∃ C > 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ :=
+  ⟨RHPull.stmtPsiWeak_of_RH, fun ⟨_, _, _, h⟩ => RH_of_psiWeak h⟩
+
+/-- info: 'VonKoch.RH_of_psiWeak' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms RH_of_psiWeak
+
+/-- info: 'VonKoch.RH_iff_psiWeak' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms RH_iff_psiWeak
 
 end VonKoch
