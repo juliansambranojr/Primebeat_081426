@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 244: the deviation is the beat's RECEIVER — same weights b^(−k/2), same frequencies k·log b, aimed at the residue after the prime resonance is subtracted; b^(±k/2) cancel so every harmonic is equally loud (~0.5·C(d,k)), mid-k dominance is pure binomial count
+- [open]   2026-08-28  entry 244: UNMEASURED — Im S(x) at the integers, and whether the floor under the beat is Montgomery zero-zero correlation; entry 235's F predicts |S|² local power far above the measured Re-part at integers
 - [open]   2026-08-28  entry 243: C1 MEASURED (exploratory) — the Landau deviation tracks the unconditional envelope's x-power (slope +0.589 vs +0.500) at ~3% of sqrt(x)log(xT), flat across every octave to x=512. No crossing anywhere in range
 - [open]   2026-08-28  entry 243: the deviation IGNORES Λ(b) — corr −0.065 at d=9; Λ=0 bases {6,10,12} deviate at the same scale as prime bases. Curve reads arithmetic, deviation reads size: different axes
 - [open]   2026-08-28  entry 243: D(b,d) = Σ C(d,k)(−1)^k b^(−k/2) δ(b^k) is an exact identity (2.6e-9); entry 236's drift is mid-k Landau deviation under binomial amplification (k=4,5 dominate D(2,9))

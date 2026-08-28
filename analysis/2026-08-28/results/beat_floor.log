@@ -1,0 +1,27 @@
+BEAT FLOOR vs ZERO-ZERO CORRELATION.  EXPLORATORY, no prereg.
+  T=74920.0  N(T)=99998  sqrt(N)=316.2  (TlogT/2pi)=133836
+
+OCTAVE TABLE — median per bin
+               |            generic grid              |        integers
+    bin    alpha| med|S|  GUEsqrt  med|Re|  med|Im|    | mdRe-pin  med|Im|  n_pp n_l0
+  [  2,  4) 0.093|     2.1   111.3      1.2      1.3    |     0.62      1.3    2    0
+  [  4,  8) 0.154|     2.5   143.7      1.5      1.4    |     0.24      1.1    3    1
+  [  8, 16) 0.216|     3.4   170.1      2.2      1.9    |     1.99      1.4    4    4
+  [ 16, 32) 0.278|     5.0   192.9      3.4      2.5    |     2.15      0.9    8    8
+  [ 32, 64) 0.340|     6.0   213.2      4.0      3.1    |     4.20      1.9    9   23
+  [ 64,128) 0.401|     9.3   231.8      6.1      4.9    |     4.81      2.5   17   47
+  [128,256) 0.463|    12.4   249.0      8.5      6.7    |     6.92      5.9   26  102
+  [256,512) 0.525|    17.7   265.1     12.3      9.6    |    10.12      6.7   47  209
+
+GENERIC FLOOR vs GUE LINE  |S|^2 / ((TlogT/2pi)*alpha):
+    median 0.001   mean 1.681   quartiles [0.000, 0.003]
+    (1.000 = the zero-zero correlation carries the floor)
+
+GENERIC Re/Im SPLIT:  median|Re| 3.5   median|Im| 2.9   (equal = isotropic phase)
+
+INTEGERS AGAINST THE FLOOR (all 511):
+    |Re - main| / floor:  median 0.0282   (prime powers 0.0232, Lambda=0 0.0301)
+    |Im| / floor:         median 0.0195   (prime powers 0.0115, Lambda=0 0.0223)
+    largest |Im S| at integers: x=468 Im=-50.3, x=418 Im=+45.5, x=488 Im=-43.3, x=434 Im=-43.1, x=508 Im=+42.0
+
+EXPLORATORY — no prereg, no decision rule, no verdict.

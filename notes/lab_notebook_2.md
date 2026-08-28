@@ -16,6 +16,48 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 244 — the deviation is the beat's receiver, aimed past the beat
+type: result-triage
+refs: 236, 242, 243
+
+Reading of entry 243's numbers against the Prime Beat source
+(`~/GitHub/primebeat/beat.py`: `B(t) = Σ_p p^(−1/2)·sin(t·log p + φ_p)`,
+valleys on the zeros).
+
+**The curve is the beat.** The coupling main term is the beat's pairing read
+in the mirror direction — zeros summing at prime-power frequencies with
+resonance `Λ(x)/√x`, where the beat is primes oscillating at `log p` with
+weight `p^(−1/2)` and its valleys land on the zeros. One duality, two
+directions.
+
+**The deviation has the beat's form and none of its arithmetic.** The exact
+decomposition `D(b,d) = Σ C(d,k)(−1)^k b^(−k/2) δ(b^k)` (entry 243) carries
+the beat's weights `b^(−k/2)` and the beat's frequencies `k·log b` — the
+same antenna — applied to the residue left after the prime resonance is
+subtracted at every harmonic. Entry 243 measured that residue Λ-blind
+(corr −0.065; base 6 pays the same as base 2).
+
+**The cancellation.** `δ(b^k)` grows like `b^(k/2)` (the envelope power,
+entry 243) and the weight is `b^(−k/2)`: they cancel exactly. Every
+harmonic of the interference arrives equally loud, ≈ 0.5·C(d,k), so the
+attribution table tracks bare binomial coefficients — k = 4,5 dominate
+D(2,9) at +75/−104 because C(9,4) = C(9,5) = 126 is the largest count, for
+no other reason. The beat's weighting is precisely the weighting that
+flattens the Landau residue across depth: the table is tuned so the floor
+under the beat is white in k.
+
+**Open, and it launches the next check.** Whether that floor is zero-zero
+correlation (Montgomery's side of the bench) rather than prime-zero
+resonance is unmeasured. Two loose threads point there: (1) entry 243
+measured only the REAL part of `S(x) = Σ e^{iγ log x}` — the imaginary part
+at the same points is unmeasured; (2) entry 235's F machinery predicts the
+local-average power of `|S|²` below α = 1, and the measured Re-part at
+integers sits far below that scale — whether the gap is carried by Im S, by
+pinning at resonance positions, or by an error in this reading is exactly
+what a direct scan of complex S on a generic grid decides.
+
+---
+
 ## 2026-08-28 — Entry 243 — C1: the Landau deviation scales like the envelope and ignores Λ(b)
 type: run
 refs: 236, 242
