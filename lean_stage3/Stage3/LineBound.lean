@@ -2048,3 +2048,146 @@ theorem psi_weak_at (ν : ℝ → ℝ) (ε X c₁ c₂ c₃ : ℝ)
     _ = (c₁ + c₂ + c₃) * Real.sqrt X * (Real.log X) ^ 3 := by ring
 
 end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral
+
+/-- **A concrete bump, with mass-one on `Ioi 0`.** `SmoothExistence` states the
+mass condition over `Ici 0`; `{0}` is null, so it transfers. -/
+theorem bump_exists :
+    ∃ ν : ℝ → ℝ, ContDiff ℝ 1 ν ∧ (∀ x > 0, 0 ≤ ν x) ∧
+      ν.support ⊆ Set.Icc (1/2 : ℝ) 2 ∧ ∫ x in Set.Ioi (0:ℝ), ν x / x = 1 := by
+  obtain ⟨ν, hsmooth, hnonneg, hsupp, hmass⟩ := SmoothExistence
+  refine ⟨ν, hsmooth.of_le (by norm_num), fun x _ => hnonneg x, hsupp, ?_⟩
+  rw [← MeasureTheory.integral_Ici_eq_integral_Ioi]
+  exact hmass
+
+end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral
+
+/-- `‖σ + iT‖ ≥ T` for `T ≥ 0`. -/
+theorem norm_ge_height {σ T : ℝ} (hT : 0 ≤ T) :
+    T ≤ ‖((σ : ℂ)) + I * (T : ℂ)‖ := by
+  have hsq := norm_sq_line σ T
+  have hnn : (0:ℝ) ≤ ‖((σ : ℂ)) + I * (T : ℂ)‖ := norm_nonneg _
+  nlinarith [hsq, sq_nonneg σ, hnn]
+
+/-- **The Mellin factor on the horizontal segments decays like `1/T`.** -/
+theorem mellin_horiz_le {ν : ℝ → ℝ} (diffν : ContDiff ℝ 1 ν)
+    (suppν : ν.support ⊆ Set.Icc (1/2 : ℝ) 2) {B : ℝ}
+    (hB : ∀ w : ℂ, 0 < w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : ℂ)) w‖ ≤ B)
+    {ε T σ : ℝ} (hε : 0 < ε) (hε1 : ε < 1) (hT : 0 < T)
+    (hσ0 : 0 < σ) (hσ2 : σ ≤ 2) :
+    ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) + I * (T : ℂ))‖ ≤ B / T := by
+  have hre : (((σ : ℂ)) + I * (T : ℂ)).re = σ := by simp
+  have h := mellin_smooth1_le diffν suppν hB hε hε1
+    (s := (σ : ℂ) + I * (T : ℂ)) (by rw [hre]; exact hσ0) (by rw [hre]; exact hσ2)
+  refine le_trans h ?_
+  have hnT := norm_ge_height (σ := σ) hT.le
+  have hnpos : (0:ℝ) < ‖((σ : ℂ)) + I * (T : ℂ)‖ := lt_of_lt_of_le hT hnT
+  have hB0 : (0:ℝ) ≤ B := by
+    have := hB 1 (by norm_num) (by norm_num)
+    exact le_trans (norm_nonneg _) this
+  rw [mul_inv_le_iff₀ hnpos, div_mul_eq_mul_div, le_div_iff₀ hT]
+  nlinarith [hnT, hB0]
+
+end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral
+
+/-- `(√X)⁻¹ · X = √X`. -/
+theorem inv_sqrt_mul_self {X : ℝ} (hX : 0 < X) :
+    (Real.sqrt X)⁻¹ * X = Real.sqrt X := by
+  have hsq : (0:ℝ) < Real.sqrt X := Real.sqrt_pos.mpr hX
+  rw [inv_mul_eq_div, div_eq_iff hsq.ne']
+  linarith [Real.mul_self_sqrt hX.le]
+
+/-- **The instantiation arithmetic.** At `ε = X^(-1/2)` and `T = X` every error
+piece lands under `c·√X·log³X`:
+
+  smoothing   `ε X log X   = √X log X`
+  I₁, I₉      `X log X/(εT) = √X log X`     since `εT = √X`
+  main term   `ε X          = √X`
+-/
+theorem instantiation_arithmetic {X c : ℝ}
+    (hX : 0 < X) (hLX : 4 ≤ Real.log X) (hc : 0 ≤ c) :
+    c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.log X) ^ 3
+    ∧ c * X * Real.log X / Real.sqrt X ≤ c * Real.sqrt X * (Real.log X) ^ 3
+    ∧ c * ((Real.sqrt X)⁻¹ * X) ≤ c * Real.sqrt X * (Real.log X) ^ 3 := by
+  have hsq : (0:ℝ) < Real.sqrt X := Real.sqrt_pos.mpr hX
+  have hkey := inv_sqrt_mul_self hX
+  have hL1 : (1:ℝ) ≤ Real.log X := by linarith
+  have hcube : Real.log X ≤ (Real.log X) ^ 3 := by
+    have hL2 : (1:ℝ) ≤ (Real.log X) ^ 2 := by nlinarith
+    nlinarith [hL2, hL1]
+  have hcs : (0:ℝ) ≤ c * Real.sqrt X := by positivity
+  refine ⟨?_, ?_, ?_⟩
+  · rw [mul_assoc c, hkey]
+    exact mul_le_mul_of_nonneg_left hcube hcs
+  · have hdiv : X / Real.sqrt X = Real.sqrt X := by
+      rw [div_eq_iff hsq.ne']
+      linarith [Real.mul_self_sqrt hX.le]
+    rw [show c * X * Real.log X / Real.sqrt X
+        = (c * (X / Real.sqrt X)) * Real.log X by field_simp, hdiv]
+    exact mul_le_mul_of_nonneg_left hcube hcs
+  · rw [hkey]
+    have h1 : (1:ℝ) ≤ (Real.log X) ^ 3 := by nlinarith
+    calc c * Real.sqrt X ≤ c * Real.sqrt X * (Real.log X) ^ 3 := by nlinarith [hcs, h1]
+      _ = c * Real.sqrt X * (Real.log X) ^ 3 := rfl
+
+end RHPull
+
+namespace RHPull
+
+open Complex Set MeasureTheory intervalIntegral
+
+/-- **Horizontal contribution at `T = X` is `O(log²X)`.** With `M ≤ B/X` and
+`X^(1+1/log X) = e·X`, the `X` cancels outright. -/
+theorem horiz_small {X B : ℝ} (hX : 0 < X) (hLX : 5 ≤ Real.log X) (hB : 0 ≤ B) :
+    (1 / (2 * Real.pi)) * (1 / 2)
+        * ((1996 * Real.log (84 * X) + (29 * Real.log X + 129) * Real.log X)
+            * (B / X) * (Real.exp 1 * X))
+      ≤ (900 * Real.exp 1 * B / Real.pi) * (Real.log X) ^ 2 := by
+  have hpi : (0:ℝ) < Real.pi := Real.pi_pos
+  have hL0 : (0:ℝ) < Real.log X := by linarith
+  have he : (0:ℝ) < Real.exp 1 := Real.exp_pos 1
+  have hlog84 : Real.log (84 * X) ≤ 2 * Real.log X := by
+    have h1 : Real.log (84 * X) = Real.log 84 + Real.log X := by
+      rw [Real.log_mul (by norm_num) (by linarith)]
+    have h2 : Real.log 84 ≤ 5 := by
+      rw [Real.log_le_iff_le_exp (by norm_num)]
+      have he1 : (2.7:ℝ) < Real.exp 1 := lt_trans (by norm_num) Real.exp_one_gt_d9
+      have hexp5 : Real.exp 5 = (Real.exp 1) ^ (5:ℕ) := by
+        rw [← Real.exp_nat_mul]; norm_num
+      rw [hexp5]
+      have hp : (2.7:ℝ) ^ (5:ℕ) ≤ (Real.exp 1) ^ (5:ℕ) :=
+        pow_le_pow_left₀ (by norm_num) he1.le 5
+      nlinarith [hp]
+    linarith
+  have hcancel : (1996 * Real.log (84 * X) + (29 * Real.log X + 129) * Real.log X)
+      * (B / X) * (Real.exp 1 * X)
+      = (1996 * Real.log (84 * X) + (29 * Real.log X + 129) * Real.log X)
+        * (B * Real.exp 1) := by
+    field_simp
+  rw [hcancel]
+  have hnum : 1996 * Real.log (84 * X) + (29 * Real.log X + 129) * Real.log X
+      ≤ 3600 * (Real.log X) ^ 2 := by
+    have hL1 : Real.log X ≤ (Real.log X) ^ 2 / 5 := by nlinarith
+    nlinarith [hlog84, hL1, hL0, sq_nonneg (Real.log X)]
+  have hBe : (0:ℝ) ≤ B * Real.exp 1 := by positivity
+  calc 1 / (2 * Real.pi) * (1 / 2)
+        * ((1996 * Real.log (84 * X) + (29 * Real.log X + 129) * Real.log X) * (B * Real.exp 1))
+      ≤ 1 / (2 * Real.pi) * (1 / 2) * ((3600 * (Real.log X) ^ 2) * (B * Real.exp 1)) := by
+        have : (0:ℝ) ≤ 1 / (2 * Real.pi) * (1 / 2) := by positivity
+        gcongr
+    _ = (900 * Real.exp 1 * B / Real.pi) * (Real.log X) ^ 2 := by
+        field_simp
+        ring
+
+end RHPull
