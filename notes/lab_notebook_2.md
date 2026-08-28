@@ -16,6 +16,50 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 245 — the floor is not zero-zero correlation: one quiet √x law, with the mass in the teeth
+type: run
+refs: 235, 243, 244
+
+EXPLORATORY — no prereg, no decision rule, no verdict.
+Script `analysis/2026-08-28/beat_floor.py`, log
+`analysis/2026-08-28/results/beat_floor.log`. T = 74920, all 99,998 zeros;
+complex `S(x) = Σ e^{iγ log x}` on 4096 generic log-uniform points in
+[2, 512] (offset off the integers) and on all integers 2–512.
+
+**The floor is far below the zero-zero line.** The Montgomery/GUE
+prediction for local power, `(T log T/2π)·α`, gives amplitudes 111–265
+across the range. Measured generic-floor median |S| per octave: 2.1, 2.5,
+3.4, 5.0, 6.0, 9.3, 12.4, 17.7 — thirty times quieter in amplitude, a
+thousand in power, at every α. Ratio |S|²/GUE-line: median 0.001,
+quartiles [0.000, 0.003], mean 1.68. The mean sits above 1 while the
+median sits at 0.001: the below-α=1 correlation mass is concentrated in
+the resonances — the cusps entry 235 placed at α = log n/log T — and the
+space between them is empty by comparison.
+
+**Two corrections to entry 244's closing speculation, from measurement.**
+Im S does not carry the missing scale: at the integers, median |Im S| is
+0.0195 of the GUE line — as small as the real part. And the integers are
+not specially pinned: the generic points between them obey the same law
+(generic median |S| ≈ 2× the integer residual, the factor of a modulus
+over one component). One √x law holds everywhere on the line, on
+resonance and off, isotropic in phase (generic median |Re| 3.5, |Im| 2.9).
+
+**The quietest points are the prime powers.** After the main term is
+removed, prime-power residuals sit at median 0.0232 (Re) and 0.0115 (Im)
+of the GUE scale, against 0.0301 and 0.0223 at Λ=0 integers. The
+resonance lattice is marginally the stiffest place on the line — a
+25–50% effect, exploratory.
+
+**Standing open question.** The picture as measured: prime-power
+resonances carry essentially all the structure below α = 1, over a floor
+thirty times below spread-correlation power, following a clean √x law at
+~3% of the unconditional envelope (entry 243). What sets that floor —
+its 0.03 constant and its √x growth — is accounted for by neither
+prime-zero resonance (subtracted) nor zero-zero correlation (mass is in
+the teeth, both measured here).
+
+---
+
 ## 2026-08-28 — Entry 244 — the deviation is the beat's receiver, aimed past the beat
 type: result-triage
 refs: 236, 242, 243

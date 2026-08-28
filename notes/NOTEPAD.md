@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 245: the floor is NOT zero-zero correlation — generic median |S| is 30x below the GUE line in amplitude; power ratio median 0.001, mean 1.68: the below-alpha=1 mass sits in the resonances (entry 235's cusps), the space between is quiet
+- [open]   2026-08-28  entry 245: CORRECTS entry 244's speculation — Im S at integers is as small as Re (0.0195 of GUE line), and integers are not specially pinned: one sqrt(x) law everywhere, isotropic in phase
+- [open]   2026-08-28  entry 245: the prime powers are the QUIETEST points on the line after main-term removal (0.0232/0.0115 vs 0.0301/0.0223 at Lambda=0) — the resonance lattice is the stiffest place, 25-50%, exploratory
+- [open]   2026-08-28  entry 245: OPEN — what sets the floor: 0.03 of the envelope, clean sqrt(x) law, accounted for by neither prime-zero resonance nor zero-zero correlation
 - [open]   2026-08-28  entry 244: the deviation is the beat's RECEIVER — same weights b^(−k/2), same frequencies k·log b, aimed at the residue after the prime resonance is subtracted; b^(±k/2) cancel so every harmonic is equally loud (~0.5·C(d,k)), mid-k dominance is pure binomial count
 - [open]   2026-08-28  entry 244: UNMEASURED — Im S(x) at the integers, and whether the floor under the beat is Montgomery zero-zero correlation; entry 235's F predicts |S|² local power far above the measured Re-part at integers
 - [open]   2026-08-28  entry 243: C1 MEASURED (exploratory) — the Landau deviation tracks the unconditional envelope's x-power (slope +0.589 vs +0.500) at ~3% of sqrt(x)log(xT), flat across every octave to x=512. No crossing anywhere in range
