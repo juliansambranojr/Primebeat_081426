@@ -48,7 +48,9 @@ Vocabulary (Julian's, keep it):
         [ARTIFACT: same file — `VonKoch.RH_iff_psiWeak`, #guard_msgs-pinned:
         RiemannHypothesis ↔ ∃ C > 0, ∃ x₀, Stage3.StmtPsiWeak C 3 x₀]
         Forward half RHPull.stmtPsiWeak_of_RH (e8a1801); converse B1.
-- [ ] B3. Entry logging the equivalence as an artifact.
+- [x] B3. Entry logging the equivalence as an artifact: DONE 2026-08-28.
+        [ARTIFACT: notes/lab_notebook_2.md entry 242, formalization; three
+        NOTEPAD lines; commit 31473ae]
 
 ## C. The gap, measured (outside the known routes)
 
