@@ -16,6 +16,58 @@ Julian's call.
 
 ---
 
+## 2026-08-28 — Entry 253 — the tower map: the four zeros get a where
+type: motivation
+refs: 236, 246, 251, 252
+
+Julian's structural reading of the small integers, armed clause by clause
+against the record, and the map it produces for the oldest open item.
+
+**The reading, with anchors.** 2 and 3 make the scaffold —
+`twin_lower_mod_six` (`lean/TwinLattice.lean:38`): every twin pair above 3
+is (6k−1, 6k+1). 4, 5, 6, 7 populate it: 6 = 2·3 is the first lattice
+site and the scaffold's own product — which is why it is the first silent
+integer (Λ = 0, the first pure-hum composite); 5 and 7 are the site's twin
+arms (6·1±1, the first occupied rung); 4 = 2² is the first echo. 8 = 2³
+and 9 = 3² are the towers — each other under base↔exponent inversion,
+adjacent once and never again (Mihailescu; the only consecutive proper
+powers). 4 = 2² is the FIXED POINT of that inversion. 9 is the seam the
+integers chose themselves — distinct from the accountant's seam of entry
+252, which moves when the account moves.
+
+**The map.** The table's exact zeros sit at bases 2, 4, 8, 20
+(`CONTEXT.md:316`): the tower of 2 WITH its fixed point — (2,1), then
+(4,1) the echo persisting, then (8,3) the deep one at λ = 4
+(`CONTEXT.md:331`). The four-zeros question now has a shape it lacked:
+the vanishing points of the filter lie on the tower of the scaffold prime
+whose seam is 8|9.
+
+**The frontier, which makes it a map.** (20,6) is not on the tower:
+20 = 2²·5 — the fixed point times the first off-scaffold prime — the deep
+zero at count 38635, and the record already notes (8,3) and (20,6) appear
+in no class table together (`CONTEXT.md:649`). Any explanation the tower
+frame produces must reach (20,6) or say precisely why it is a different
+species. First testable angle: is {4p} a family — does the near-zero
+landscape distinguish bases 4·prime?
+
+**Method note, recorded where it happened.** Three of Julian's structural
+posits in one session were met with a label before a look, and the look
+sided with the structure each time (scaffold → theorem; seam →
+Mihailescu; echo → the record's zeros). The correction is saved as
+working memory: open the record and measure first; a contingent operand
+(the 8.6% share, which moved three times under our own config changes)
+gets a measured sentence about that operand, never a class label on the
+claim. The residual statement that survives: a residual is a property of
+the pair (object, account) — the S vector never moved all afternoon;
+only the account did. Julian's framing: the numbers moved because intent
+moved; it was always one thing — the absence. His namings for the day's
+objects: the zeros as filter (Elephant, literally), the reconstruction as
+fidelity check (r = 0.997), the seam as handshake (entry 252's
+decorrelation: information re-expressed at every cut, compressed in the
+bulk).
+
+---
+
 ## 2026-08-28 — Entry 252 — the residual travels with the boundary: the unknown lives at the seam
 type: run
 refs: 249, 251

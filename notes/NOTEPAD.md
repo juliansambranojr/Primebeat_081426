@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-28  entry 253: THE TOWER MAP — the exact zeros sit on the tower of 2 with its fixed point (2,1),(4,1),(8,3); 8=2³↔9=3² invert around 4=2²; 8|9 the integers' own seam (Mihailescu). The four-zeros question has a WHERE for the first time
+- [open]   2026-08-28  entry 253: FRONTIER — (20,6): 20 = 2²·5 = fixed point x first off-scaffold prime, not on the tower; any tower explanation must reach it or class it. First test: is {4p} a family in the near-zero landscape?
+- [open]   2026-08-28  entry 253: METHOD — residual is a property of the pair (object, account); S never moved, the account did. Look before labeling, saved to memory
 - [open]   2026-08-28  entry 252: the residual TRAVELS WITH THE BOUNDARY — vectors decorrelate (|r| ≤ 0.12 vs 0.02 noise floor) as the edge moves; booking 128 pages exactly buys nothing; shadow size set by the local gap at the cut
 - [open]   2026-08-28  entry 252: the 0.1% is the property of HAVING AN EDGE, not of the content — bulk deterministic to the noise floor; prereg claim: bulk deterministic, residual edge-generated, threshold quoted on the bulk with edge rule locked (gap midpoint)
 - [open]   2026-08-28  entry 249: expectation CHECKED — precision refuted by 5 orders (2.4e-7 vs 0.034); mirror kernel validated (4x worse without); quartic detrend 0.0067→0.0014; edge midpoint rule measured. Prereg locks: T = gap midpoint, detrend degree
