@@ -343,6 +343,194 @@ theorem zeroPartialSum_swap :
     _ = C2 * x * Real.log T / T := by ring
 
 
+/-- The contour integrand of the explicit formula. -/
+noncomputable def Gf (x : ℝ) : ℂ → ℂ :=
+  fun s ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s
+
+/-- **The pointwise good-height bound**, both signs of the height. -/
+theorem zeta_logderiv_good_bound :
+    ∃ C : ℝ, 0 < C ∧ ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) →
+      (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re →
+        ContourShift.zeroGap T ≤ |ρ.im - T'|) →
+      ∀ u : ℂ, |u.im| = T' → -1/4 ≤ u.re → u.re ≤ 2 →
+      ‖deriv riemannZeta u / riemannZeta u‖ ≤ C * Real.log T ^ 2 := by
+  classical
+  obtain ⟨Ce, hCe0, hCe⟩ := EdgeBound.edge_bound_core
+  have hlog2 : (0:ℝ) < Real.log 2 := Real.log_pos (by norm_num)
+  refine ⟨Ce * 2 * (180 + 1060 / Real.log 2), by positivity, ?_⟩
+  intro T T' hT hT' hgood u him hre1 hre2
+  obtain ⟨hT'lo, hT'hi⟩ := hT'
+  have hT'2 : (2:ℝ) ≤ T' := le_trans hT hT'lo
+  have hlogT : Real.log 2 ≤ Real.log T := Real.log_le_log (by norm_num) hT
+  have hlogT0 : 0 < Real.log T := lt_of_lt_of_le hlog2 hlogT
+  have hlogT'0 : Real.log 2 ≤ Real.log T' := Real.log_le_log (by norm_num) hT'2
+  have hgap0 := ContourShift.zeroGap_pos hT
+  have hgap1 := ContourShift.zeroGap_le hT
+  have hmain : ∀ v : ℂ, v.im = T' → -1/4 ≤ v.re → v.re ≤ 2 →
+      ‖deriv riemannZeta v / riemannZeta v‖
+        ≤ Ce * 2 * (180 + 1060 / Real.log 2) * Real.log T ^ 2 := by
+    intro v hvim hvre1 hvre2
+    have hvζ : riemannZeta v ≠ 0 := by
+      intro hz
+      by_cases hvre : v.re ≤ 0
+      · exact ContourShift.zeta_ne_zero_of_re_mem (by linarith) hvre hz
+      · push_neg at hvre
+        have h1 := hgood v hz hvre
+        rw [hvim, sub_self, abs_zero] at h1
+        linarith
+    have hδ : ∀ w ∈ (EdgeBound.gz_zeros_ball_finite T'
+        (by norm_num : (0:ℝ) ≤ 46/25)).toFinset,
+        ContourShift.zeroGap T ≤ ‖v - w‖ := by
+      intro w hw
+      rw [Set.Finite.mem_toFinset] at hw
+      obtain ⟨hζw, ⟨hwre0, _⟩, _⟩ := EdgeBound.ball_zero_shape hT'2 hw.1 hw.2
+      have h2 := hgood w hζw hwre0
+      have h3 := Complex.abs_im_le_norm (v - w)
+      have h4 : (v - w).im = T' - w.im := by
+        rw [Complex.sub_im, hvim]
+      rw [h4] at h3
+      calc ContourShift.zeroGap T ≤ |w.im - T'| := h2
+        _ = |T' - w.im| := abs_sub_comm _ _
+        _ ≤ ‖v - w‖ := h3
+    have h5 := hCe T' hT'2 v hvim hvre1 hvre2 hvζ (ContourShift.zeroGap T)
+      hgap0 (by linarith) hδ
+    have h5b : Ce * Real.log T' / ContourShift.zeroGap T
+        = Ce * Real.log T' * (180 * Real.log T + 1060) := by
+      rw [ContourShift.zeroGap]
+      have hD : (180 * Real.log T + 1060 : ℝ) ≠ 0 := by positivity
+      field_simp
+    rw [h5b] at h5
+    have h7 : Real.log T' ≤ 2 * Real.log T := by
+      have h8 : Real.log T' ≤ Real.log (2*T) := by
+        apply Real.log_le_log (by linarith)
+        linarith
+      rw [Real.log_mul (by norm_num) (by linarith)] at h8
+      linarith
+    have h9 : (1060:ℝ) ≤ 1060 / Real.log 2 * Real.log T := by
+      rw [div_mul_eq_mul_div, le_div_iff₀ hlog2]
+      nlinarith
+    calc ‖deriv riemannZeta v / riemannZeta v‖
+        ≤ Ce * Real.log T' * (180 * Real.log T + 1060) := h5
+      _ ≤ Ce * (2*Real.log T) * (180 * Real.log T + 1060 / Real.log 2 * Real.log T) := by
+          apply mul_le_mul
+          · exact mul_le_mul_of_nonneg_left h7 hCe0.le
+          · linarith
+          · positivity
+          · positivity
+      _ = Ce * 2 * (180 + 1060 / Real.log 2) * Real.log T ^ 2 := by ring
+  rcases (abs_eq (by linarith : (0:ℝ) ≤ T')).mp him with h | h
+  · exact hmain u h hre1 hre2
+  · have hu1 : u ≠ 1 := by
+      intro hc
+      rw [hc] at h
+      simp at h
+      linarith
+    have hv := hmain ((starRingEnd ℂ) u)
+      (by rw [Complex.conj_im, h]; ring)
+      (by rw [Complex.conj_re]; exact hre1)
+      (by rw [Complex.conj_re]; exact hre2)
+    have heq : ‖deriv riemannZeta u / riemannZeta u‖
+        = ‖deriv riemannZeta ((starRingEnd ℂ) u)
+            / riemannZeta ((starRingEnd ℂ) u)‖ := by
+      rw [EdgeBound.deriv_zeta_conj hu1, riemannZeta_conj, ← map_div₀,
+        RCLike.norm_conj]
+    rw [heq]
+    exact hv
+
+/-- **The horizontal-edge integral bound** at a good height, both
+signs: `≤ C·x·log²T/T`. -/
+theorem edge_horizontal_bound :
+    ∃ C : ℝ, 0 < C ∧ ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) →
+      (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re →
+        ContourShift.zeroGap T ≤ |ρ.im - T'|) →
+      ∀ y : ℝ, |y| = T' →
+      ‖HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) y‖
+        ≤ C * x * Real.log T ^ 2 / T := by
+  classical
+  obtain ⟨Cp, hCp0, hCp⟩ := zeta_logderiv_good_bound
+  refine ⟨Cp * 3 * (9/4), by positivity, ?_⟩
+  intro x T T' hx hT hT' hgood y hy
+  obtain ⟨hT'lo, hT'hi⟩ := hT'
+  have hT'2 : (2:ℝ) ≤ T' := le_trans hT hT'lo
+  have hx0 : (0:ℝ) < x := by linarith
+  have hlx : (0:ℝ) < Real.log x :=
+    Real.log_pos (by linarith)
+  have hlx16 : Real.log 16 ≤ Real.log x := Real.log_le_log (by norm_num) hx
+  have hl16 : (2:ℝ) < Real.log 16 := by
+    have h1 : (16:ℝ) = 2^4 := by norm_num
+    rw [h1, Real.log_pow]
+    have h2 : (0.6931471803:ℝ) < Real.log 2 := Real.log_two_gt_d9
+    push_cast
+    nlinarith
+  have hc2 : 1 + 1/Real.log x ≤ 2 := by
+    have h3 : 1/Real.log x ≤ 1/2 := by
+      rw [div_le_div_iff₀ hlx (by norm_num)]
+      linarith
+    linarith
+  have hxc : ∀ σ : ℝ, σ ≤ 1 + 1/Real.log x → x ^ σ ≤ 3 * x := by
+    intro σ hσ
+    have h4 : x ^ σ ≤ x ^ (1 + 1/Real.log x) := by
+      apply Real.rpow_le_rpow_of_exponent_le (by linarith)
+      exact hσ
+    have h5 : x ^ (1 + 1/Real.log x) = x * Real.exp 1 := by
+      rw [Real.rpow_add hx0, Real.rpow_one]
+      congr 1
+      rw [Real.rpow_def_of_pos hx0, mul_one_div, div_self (ne_of_gt hlx)]
+    have h6 : Real.exp 1 ≤ 3 := by
+      have := Real.exp_one_lt_d9
+      linarith
+    calc x ^ σ ≤ x * Real.exp 1 := by rw [← h5]; exact h4
+      _ ≤ 3 * x := by nlinarith
+  have hlogT0 : (0:ℝ) < Real.log T := Real.log_pos (by linarith)
+  rw [HIntegral]
+  have hbound : ∀ σ ∈ Set.uIoc (-1/4 : ℝ) (1 + 1/Real.log x),
+      ‖Gf x (σ + y * Complex.I)‖ ≤ Cp * Real.log T ^ 2 * (3*x) / T := by
+    intro σ hσ
+    rw [Set.uIoc_of_le (by
+      have h30 := one_div_pos.mpr hlx
+      linarith : (-1/4:ℝ) ≤ 1 + 1/Real.log x)] at hσ
+    obtain ⟨hσ1, hσ2⟩ := hσ
+    set u : ℂ := σ + y * Complex.I with hud
+    have hure : u.re = σ := by rw [hud]; simp
+    have huim : u.im = y := by rw [hud]; simp
+    have hp := hCp T T' hT ⟨hT'lo, hT'hi⟩ hgood u (by rw [huim]; exact hy)
+      (by rw [hure]; linarith) (by rw [hure]; linarith)
+    rw [Gf]
+    show ‖(- deriv riemannZeta u / riemannZeta u) * ((x:ℝ):ℂ) ^ u / u‖
+      ≤ Cp * Real.log T ^ 2 * (3*x) / T
+    rw [norm_div, norm_mul, neg_div, norm_neg]
+    have hxu : ‖((x:ℝ):ℂ) ^ u‖ ≤ 3*x := by
+      rw [Complex.norm_cpow_eq_rpow_re_of_pos hx0, hure]
+      exact hxc σ hσ2
+    have hun : T ≤ ‖u‖ := by
+      have h7 := Complex.abs_im_le_norm u
+      rw [huim, hy] at h7
+      linarith
+    have hun0 : (0:ℝ) < ‖u‖ := by linarith
+    rw [div_le_div_iff₀ hun0 (by linarith : (0:ℝ) < T)]
+    calc ‖deriv riemannZeta u / riemannZeta u‖ * ‖((x:ℝ):ℂ) ^ u‖ * T
+        ≤ (Cp * Real.log T ^ 2) * (3*x) * T := by
+          apply mul_le_mul_of_nonneg_right ?_ (by linarith)
+          apply mul_le_mul hp hxu (norm_nonneg _) (by positivity)
+      _ ≤ (Cp * Real.log T ^ 2) * (3*x) * ‖u‖ := by
+          apply mul_le_mul_of_nonneg_left hun ?_
+          positivity
+      _ = Cp * Real.log T ^ 2 * (3*x) * ‖u‖ := by ring
+  calc ‖∫ σ in (-1/4 : ℝ)..(1 + 1/Real.log x), Gf x (σ + y * Complex.I)‖
+      ≤ Cp * Real.log T ^ 2 * (3*x) / T * |(1 + 1/Real.log x) - (-1/4)| :=
+        intervalIntegral.norm_integral_le_of_norm_le_const hbound
+    _ ≤ Cp * 3 * (9/4) * x * Real.log T ^ 2 / T := by
+        have h8 : |(1 + 1/Real.log x) - (-1/4 : ℝ)| ≤ 9/4 := by
+          have h30 := one_div_pos.mpr hlx
+          rw [abs_of_pos (by linarith)]
+          linarith
+        have h9 : (0:ℝ) ≤ Cp * Real.log T ^ 2 * (3*x) / T := by positivity
+        calc Cp * Real.log T ^ 2 * (3*x) / T * |(1 + 1/Real.log x) - (-1/4)|
+            ≤ Cp * Real.log T ^ 2 * (3*x) / T * (9/4) := by
+              apply mul_le_mul_of_nonneg_left h8 h9
+          _ = Cp * 3 * (9/4) * x * Real.log T ^ 2 / T := by ring
+
+
 /-- info: 'Glue.band_order_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms band_order_sum_le
