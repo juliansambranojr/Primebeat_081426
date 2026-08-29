@@ -91,11 +91,126 @@ theorem integrable_emA_tail {N : ℕ} (Npos : 0 < N) {s : ℂ} (hs : -1 < s.re) 
     exact_mod_cast Npos
 
 /-- **The per-interval integration by parts.** On `[n, n+1]` with
-`n ≥ 1`, the first-order tail integrand equals `(s+1)` times the
+`n ≥ 1`, the first-order tail integrand integrates to `(s+1)` times the
 second-order one — the boundary terms vanish at the integers. -/
 theorem interval_ibp {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs1 : s ≠ -1) :
-    ∫ x in (n:ℝ)..((n:ℝ)+1), ((⌊x⌋ : ℝ) + 1/2 - x : ℝ) * (x:ℂ) ^ (-(s+1))
+    ∫ x in (n:ℝ)..((n:ℝ)+1), ((((⌊x⌋ : ℝ) + 1/2 - x : ℝ)) : ℂ) * (x:ℂ) ^ (-(s+1))
       = (s+1) * ∫ x in (n:ℝ)..((n:ℝ)+1), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)) := by
-  sorry
+  have hn1 : (1:ℝ) ≤ (n:ℝ) := by exact_mod_cast hn
+  have hposI : ∀ x ∈ Set.uIcc (n:ℝ) ((n:ℝ)+1), (0:ℝ) < x := by
+    intro x hx
+    rw [Set.uIcc_of_le (by linarith)] at hx
+    linarith [hx.1]
+  have hne : -(s+1) ≠ 0 := by
+    intro h
+    apply hs1
+    linear_combination -h
+  have hcpow_cont : ∀ r : ℂ, ContinuousOn (fun x : ℝ ↦ (x:ℂ) ^ r)
+      (Set.uIcc (n:ℝ) ((n:ℝ)+1)) := by
+    intro r x hx
+    apply ContinuousAt.continuousWithinAt
+    apply ContinuousAt.cpow Complex.continuous_ofReal.continuousAt continuousAt_const
+    rw [Complex.ofReal_mem_slitPlane]
+    exact hposI x hx
+  have hF : ∀ x ∈ Set.uIcc (n:ℝ) ((n:ℝ)+1), HasDerivAt
+      (fun x : ℝ ↦ ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (x:ℂ) ^ (-(s+1)))
+      ((((1 - 2*(x - n))/2 : ℝ) : ℂ) * (x:ℂ) ^ (-(s+1))
+        + ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (-(s+1) * (x:ℂ) ^ (-(s+1) - 1))) x := by
+    intro x hx
+    have hx0 : (0:ℝ) < x := hposI x hx
+    apply HasDerivAt.mul
+    · have h1 : HasDerivAt (fun y : ℝ ↦ y - (n:ℝ)) 1 x := (hasDerivAt_id x).sub_const _
+      have h2 : HasDerivAt (fun y : ℝ ↦ (y - (n:ℝ))^2) (2*(x - n)) x := by
+        have h3 := h1.mul h1
+        have h4 : (fun y : ℝ ↦ (y - (n:ℝ))^2) = fun y : ℝ ↦ (y - n)*(y - n) := by
+          funext y
+          ring
+        have h5 : (1:ℝ) * (x - n) + (x - n) * 1 = 2*(x - n) := by ring
+        rw [h4, ← h5]
+        exact h3
+      have h4 : HasDerivAt (fun y : ℝ ↦ ((y - n) - (y - n)^2)/2) ((1 - 2*(x - n))/2) x :=
+        (h1.sub h2).div_const 2
+      exact h4.ofReal_comp
+    · exact hasDerivAt_ofReal_cpow_const hx0.ne' hne
+  have hint1 : IntervalIntegrable
+      (fun x : ℝ ↦ ((((1 - 2*(x - n))/2 : ℝ)) : ℂ) * (x:ℂ) ^ (-(s+1)))
+      volume (n:ℝ) ((n:ℝ)+1) := by
+    apply ContinuousOn.intervalIntegrable
+    apply ContinuousOn.mul ?_ (hcpow_cont _)
+    exact (Complex.continuous_ofReal.comp (by fun_prop)).continuousOn
+  have hint2 : IntervalIntegrable
+      (fun x : ℝ ↦ ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ)
+        * (-(s+1) * (x:ℂ) ^ (-(s+1) - 1)))
+      volume (n:ℝ) ((n:ℝ)+1) := by
+    apply ContinuousOn.intervalIntegrable
+    apply ContinuousOn.mul
+    · exact (Complex.continuous_ofReal.comp (by fun_prop)).continuousOn
+    · exact ContinuousOn.mul continuousOn_const (hcpow_cont _)
+  have hFTC := intervalIntegral.integral_eq_sub_of_hasDerivAt hF (hint1.add hint2)
+  have hF0 : (fun x : ℝ ↦ ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (x:ℂ) ^ (-(s+1)))
+        ((n:ℝ)+1)
+      - (fun x : ℝ ↦ ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (x:ℂ) ^ (-(s+1))) (n:ℝ)
+      = 0 := by
+    simp
+  rw [hF0, intervalIntegral.integral_add hint1 hint2] at hFTC
+  have hcongr1 : ∫ x in (n:ℝ)..((n:ℝ)+1),
+        ((((⌊x⌋ : ℝ) + 1/2 - x : ℝ)) : ℂ) * (x:ℂ) ^ (-(s+1))
+      = ∫ x in (n:ℝ)..((n:ℝ)+1),
+        ((((1 - 2*(x - n))/2 : ℝ)) : ℂ) * (x:ℂ) ^ (-(s+1)) := by
+    apply intervalIntegral.integral_congr_ae
+    have hae : ∀ᵐ x ∂(volume : Measure ℝ), x ≠ (n:ℝ)+1 := by
+      rw [MeasureTheory.ae_iff]
+      have h5 : {x : ℝ | ¬x ≠ (n:ℝ)+1} = {(n:ℝ)+1} := by
+        ext y
+        simp
+      rw [h5]
+      exact Real.volume_singleton
+    filter_upwards [hae] with x hxne hxI
+    rw [Set.uIoc_of_le (by linarith : (n:ℝ) ≤ (n:ℝ)+1)] at hxI
+    have hlt : x < (n:ℝ)+1 := lt_of_le_of_ne hxI.2 hxne
+    have hfl : ⌊x⌋ = (n:ℤ) := by
+      rw [Int.floor_eq_iff]
+      constructor
+      · exact_mod_cast hxI.1.le
+      · push_cast
+        linarith
+    rw [hfl]
+    congr 1
+    push_cast
+    ring
+  have hcongr2 : ∫ x in (n:ℝ)..((n:ℝ)+1), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))
+      = ∫ x in (n:ℝ)..((n:ℝ)+1),
+          ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (x:ℂ) ^ (-(s+2)) := by
+    apply intervalIntegral.integral_congr
+    intro x hx
+    rw [Set.uIcc_of_le (by linarith)] at hx
+    show (emA x : ℂ) * (x:ℂ) ^ (-(s+2))
+        = ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (x:ℂ) ^ (-(s+2))
+    rw [emA_eq_poly hx.1 hx.2]
+  have hpull : ∫ x in (n:ℝ)..((n:ℝ)+1),
+      ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (-(s+1) * (x:ℂ) ^ (-(s+1) - 1))
+      = -(s+1) * ∫ x in (n:ℝ)..((n:ℝ)+1),
+          ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (x:ℂ) ^ (-(s+2)) := by
+    rw [← intervalIntegral.integral_const_mul]
+    apply intervalIntegral.integral_congr
+    intro x hx
+    have hexp : (x:ℂ) ^ (-(s+1) - 1) = (x:ℂ) ^ (-(s+2)) := by
+      congr 1
+      ring
+    show ((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (-(s+1) * (x:ℂ) ^ (-(s+1) - 1))
+        = -(s+1) * (((((x - n) - (x - n)^2)/2 : ℝ) : ℂ) * (x:ℂ) ^ (-(s+2)))
+    rw [hexp]
+    ring
+  rw [hcongr1, hcongr2]
+  rw [hpull] at hFTC
+  linear_combination hFTC
+
+/-- info: 'ZetaGrowth.interval_ibp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms interval_ibp
+
+/-- info: 'ZetaGrowth.integrable_emA_tail' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms integrable_emA_tail
 
 end ZetaGrowth
