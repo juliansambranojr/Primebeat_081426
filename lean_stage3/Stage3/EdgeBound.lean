@@ -675,6 +675,142 @@ theorem ball_order_sum_le :
           have h17 : 0 ≤ M0 / Real.log 2 * Real.log T' := by positivity
           nlinarith [hlogT0]
 
+/-- The log-derivative identity: `gz′/gz = 2/(s−1) + ζ′/ζ` away from
+the pole and the zeros. -/
+theorem gz_logderiv {u : ℂ} (hu1 : u ≠ 1) (huζ : riemannZeta u ≠ 0) :
+    deriv gz u / gz u = 2/(u - 1) + deriv riemannZeta u / riemannZeta u := by
+  have hu1' : u - 1 ≠ 0 := sub_ne_zero.mpr hu1
+  have h1 : HasDerivAt (fun s : ℂ ↦ (s-1)^2) (2*(u-1)) u := by
+    have h2 : HasDerivAt (fun s : ℂ ↦ s - 1) 1 u := (hasDerivAt_id u).sub_const 1
+    have h3 := h2.mul h2
+    have h4 : (fun s : ℂ ↦ (s - 1)^2) = fun s : ℂ ↦ (s-1)*(s-1) := by
+      funext y
+      ring
+    have h5 : (1:ℂ) * (u - 1) + (u - 1) * 1 = 2*(u-1) := by ring
+    rw [h4, ← h5]
+    exact h3
+  have h6 : HasDerivAt riemannZeta (deriv riemannZeta u) u :=
+    (differentiableAt_riemannZeta hu1).hasDerivAt
+  have h7 : HasDerivAt gz (2*(u-1) * riemannZeta u + (u-1)^2 * deriv riemannZeta u) u :=
+    h1.mul h6
+  rw [h7.deriv]
+  show (2*(u-1) * riemannZeta u + (u-1)^2 * deriv riemannZeta u) / ((u - 1)^2 * riemannZeta u)
+      = 2/(u - 1) + deriv riemannZeta u / riemannZeta u
+  field_simp
+
+/-- Conjugation transfers the derivative of `ζ`. -/
+theorem deriv_zeta_conj {s : ℂ} (hs : s ≠ 1) :
+    deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s) := by
+  have h1 := (differentiableAt_riemannZeta hs).hasDerivAt.conj_conj
+  have h2 : (starRingEnd ℂ) ∘ riemannZeta ∘ (starRingEnd ℂ) = riemannZeta := by
+    funext w
+    show (starRingEnd ℂ) (riemannZeta ((starRingEnd ℂ) w)) = riemannZeta w
+    rw [riemannZeta_conj, Complex.conj_conj]
+  rw [h2] at h1
+  exact h1.deriv
+
+/-- **The pointwise edge bound, unified.** For `u` on the band
+`re ∈ [−1/4, 2]` at height `t ≥ 2`, with a lower bound `δ ≤ 1` on the
+distance from `u` to every ball zero: `‖ζ′/ζ(u)‖ ≤ C·(log t)/δ + C·log t`.
+Both edges specialize this: the left edge with `δ = 1/4`, the good
+horizontals with `δ = zeroGap T`. -/
+theorem edge_bound_core :
+    ∃ C : ℝ, 0 < C ∧ ∀ t : ℝ, 2 ≤ t → ∀ u : ℂ,
+      u.im = t → -1/4 ≤ u.re → u.re ≤ 2 →
+      riemannZeta u ≠ 0 →
+      ∀ δ : ℝ, 0 < δ → δ ≤ 1 →
+      (∀ w ∈ (gz_zeros_ball_finite t (by norm_num : (0:ℝ) ≤ 46/25)).toFinset,
+        δ ≤ ‖u - w‖) →
+      ‖deriv riemannZeta u / riemannZeta u‖ ≤ C * Real.log t / δ := by
+  classical
+  obtain ⟨C1, hC10, hC1⟩ := gz_partial_fraction
+  obtain ⟨C2, hC20, hC2⟩ := ball_order_sum_le
+  have hlog2 : (0:ℝ) < Real.log 2 := Real.log_pos (by norm_num)
+  refine ⟨C1 + C2 + 1/Real.log 2, by positivity, ?_⟩
+  intro t ht u huim hure1 hure2 huζ δ hδ0 hδ1 hδ
+  have hlogt : Real.log 2 ≤ Real.log t := Real.log_le_log (by norm_num) ht
+  have hlogt0 : 0 < Real.log t := lt_of_lt_of_le hlog2 hlogt
+  have hu1 : u ≠ 1 := by
+    intro h
+    have h2 := congrArg Complex.im h
+    rw [huim, Complex.one_im] at h2
+    linarith
+  have hugz : gz u ≠ 0 := by
+    rw [gz]
+    exact mul_ne_zero (pow_ne_zero _ (sub_ne_zero.mpr hu1)) huζ
+  have hPF := hC1 t ht u huim hure1 hure2 hugz
+  set BF := (gz_zeros_ball_finite t (by norm_num : (0:ℝ) ≤ 46/25)).toFinset with hBFd
+  have hSumBound : ‖∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w)‖
+      ≤ C2 * Real.log t / δ := by
+    calc ‖∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w)‖
+        ≤ ∑ w ∈ BF, ‖(analyticOrderNatAt gz w : ℂ) / (u - w)‖ := norm_sum_le _ _
+      _ ≤ ∑ w ∈ BF, (analyticOrderNatAt gz w : ℝ) / δ := by
+          apply Finset.sum_le_sum
+          intro w hw
+          have hdist := hδ w hw
+          rw [norm_div, Complex.norm_natCast]
+          apply div_le_div_of_nonneg_left ?_ hδ0 hdist
+          positivity
+      _ = (∑ w ∈ BF, (analyticOrderNatAt gz w : ℝ)) / δ := by
+          rw [Finset.sum_div]
+      _ ≤ C2 * Real.log t / δ := by
+          gcongr
+          exact hC2 t ht
+  have hld := gz_logderiv hu1 huζ
+  have hpole : ‖(2:ℂ)/(u - 1)‖ ≤ 1 := by
+    rw [norm_div]
+    have h7 := Complex.abs_im_le_norm (u - 1)
+    have h8 : (u - 1).im = t := by
+      rw [Complex.sub_im, huim, Complex.one_im, sub_zero]
+    rw [h8, abs_of_pos (by linarith : (0:ℝ) < t)] at h7
+    rw [div_le_one (by linarith : (0:ℝ) < ‖u - 1‖)]
+    simp only [Complex.norm_ofNat]
+    linarith
+  have hsplit : deriv riemannZeta u / riemannZeta u
+      = (deriv gz u / gz u
+          - ∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w))
+        + (∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w))
+        - (2:ℂ)/(u - 1) := by
+    rw [hld]
+    ring
+  rw [hsplit]
+  have htri : ‖(deriv gz u / gz u
+        - ∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w))
+      + (∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w))
+      - (2:ℂ)/(u - 1)‖
+      ≤ ‖deriv gz u / gz u
+          - ∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w)‖
+        + ‖∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w)‖
+        + ‖(2:ℂ)/(u - 1)‖ := by
+    calc ‖_ + _ - _‖ ≤ ‖_ + _‖ + ‖(2:ℂ)/(u - 1)‖ := norm_sub_le _ _
+      _ ≤ _ := by
+          have := norm_add_le (deriv gz u / gz u
+            - ∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w))
+            (∑ w ∈ BF, (analyticOrderNatAt gz w : ℂ) / (u - w))
+          linarith
+  calc ‖_‖ ≤ _ := htri
+    _ ≤ C1 * Real.log t + C2 * Real.log t / δ + 1 := by
+        have h9 := hPF
+        linarith [hSumBound, hpole]
+    _ ≤ (C1 + C2 + 1/Real.log 2) * Real.log t / δ := by
+        have h10 : C1 * Real.log t ≤ C1 * Real.log t / δ := by
+          rw [le_div_iff₀ hδ0]
+          have hX : (0:ℝ) ≤ C1 * Real.log t := by positivity
+          nlinarith
+        have h11 : (1:ℝ) ≤ (1/Real.log 2) * Real.log t / δ := by
+          rw [le_div_iff₀ hδ0]
+          have h12 : (1:ℝ) ≤ (1/Real.log 2) * Real.log t := by
+            rw [div_mul_eq_mul_div, le_div_iff₀ hlog2]
+            linarith
+          nlinarith
+        have h13 : (C1 + C2 + 1/Real.log 2) * Real.log t / δ
+            = C1 * Real.log t / δ + C2 * Real.log t / δ
+              + (1/Real.log 2) * Real.log t / δ := by
+          field_simp
+        rw [h13]
+        linarith
+
+
 /-- info: 'EdgeBound.ball_order_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms ball_order_sum_le
@@ -682,5 +818,17 @@ theorem ball_order_sum_le :
 /-- info: 'EdgeBound.gz_partial_fraction' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms gz_partial_fraction
+
+/-- info: 'EdgeBound.edge_bound_core' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms edge_bound_core
+
+/-- info: 'EdgeBound.gz_logderiv' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms gz_logderiv
+
+/-- info: 'EdgeBound.deriv_zeta_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms deriv_zeta_conj
 
 end EdgeBound
