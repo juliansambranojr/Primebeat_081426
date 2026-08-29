@@ -936,6 +936,96 @@ theorem zeroPartialSum_eq_sum {x T' : ℝ} {ZF : Finset ℂ}
     _ = ∑ p : {p : ℂ // p ∈ ZF}, G p := Equiv.sum_comp e (fun p ↦ G (p : ℂ))
     _ = ∑ p ∈ ZF, G p := Finset.sum_coe_sort ZF G
 
+/-- Analyticity transports through conjugation:
+`conj ∘ g ∘ conj` is analytic at `conj p`. -/
+theorem analyticAt_conj_conj {g : ℂ → ℂ} {p : ℂ} (hg : AnalyticAt ℂ g p) :
+    AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w)))
+      ((starRingEnd ℂ) p) := by
+  have h1 := hg.eventually_analyticAt
+  rw [Metric.eventually_nhds_iff] at h1
+  obtain ⟨ε, hε, h2⟩ := h1
+  have hd : DifferentiableOn ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w)))
+      (Metric.ball ((starRingEnd ℂ) p) ε) := by
+    intro w hw
+    apply DifferentiableAt.differentiableWithinAt
+    have hw2 : dist ((starRingEnd ℂ) w) p < ε := by
+      rw [Metric.mem_ball] at hw
+      have h3 : dist ((starRingEnd ℂ) w) p
+          = dist w ((starRingEnd ℂ) p) := by
+        rw [dist_eq_norm, dist_eq_norm]
+        calc ‖(starRingEnd ℂ) w - p‖
+            = ‖(starRingEnd ℂ) (w - (starRingEnd ℂ) p)‖ := by
+              rw [map_sub, Complex.conj_conj]
+          _ = ‖w - (starRingEnd ℂ) p‖ := by
+              rw [RCLike.norm_conj]
+      rw [h3]
+      exact hw
+    have h4 := ((h2 hw2).differentiableAt).hasDerivAt.conj_conj
+    rw [Complex.conj_conj] at h4
+    exact h4.differentiableAt
+  exact hd.analyticAt (Metric.ball_mem_nhds _ hε)
+
+/-- The order of `ζ` at the conjugate of a point equals the order at
+the point (`ζ(conj s) = conj ζ(s)`). -/
+theorem zeta_order_conj {ρ : ℂ} (hρ1 : ρ ≠ 1) :
+    analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ)
+      = analyticOrderNatAt riemannZeta ρ := by
+  have hρ1c : (starRingEnd ℂ) ρ ≠ 1 := by
+    intro h
+    apply hρ1
+    have h2 := congrArg (starRingEnd ℂ) h
+    rwa [Complex.conj_conj, map_one] at h2
+  by_cases hz : riemannZeta ρ = 0
+  · -- factorization transport
+    have hm : analyticOrderAt riemannZeta ρ
+        = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℕ∞) :=
+      (ENat.coe_toNat (zeta_order_ne_top hρ1)).symm
+    obtain ⟨g, hg, hgρ, hev⟩ := ((zeta_analyticAt hρ1).analyticOrderAt_eq_natCast).mp hm
+    have hg' := analyticAt_conj_conj hg
+    have hev' : ∀ᶠ w in nhds ((starRingEnd ℂ) ρ),
+        riemannZeta w = (w - (starRingEnd ℂ) ρ) ^ (analyticOrderNatAt riemannZeta ρ)
+          • (starRingEnd ℂ) (g ((starRingEnd ℂ) w)) := by
+      have h5 : Filter.Tendsto (starRingEnd ℂ)
+          (nhds ((starRingEnd ℂ) ρ)) (nhds ρ) := by
+        have h6 := (Complex.continuous_conj).tendsto ((starRingEnd ℂ) ρ)
+        rwa [Complex.conj_conj] at h6
+      filter_upwards [h5.eventually hev] with w hw
+      have h9 : riemannZeta w
+          = (starRingEnd ℂ) (riemannZeta ((starRingEnd ℂ) w)) := by
+        rw [show riemannZeta w = riemannZeta ((starRingEnd ℂ) ((starRingEnd ℂ) w)) by
+          rw [Complex.conj_conj], riemannZeta_conj]
+      rw [h9, hw, smul_eq_mul, smul_eq_mul, map_mul, map_pow, map_sub, Complex.conj_conj]
+    have h10 : analyticOrderAt riemannZeta ((starRingEnd ℂ) ρ)
+        = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℕ∞) := by
+      apply ((zeta_analyticAt hρ1c).analyticOrderAt_eq_natCast).mpr
+      refine ⟨_, hg', ?_, hev'⟩
+      show (starRingEnd ℂ) (g ((starRingEnd ℂ) ((starRingEnd ℂ) ρ))) ≠ 0
+      rw [Complex.conj_conj]
+      intro h
+      exact hgρ (star_eq_zero.mp h)
+    show (analyticOrderAt riemannZeta ((starRingEnd ℂ) ρ)).toNat
+        = analyticOrderNatAt riemannZeta ρ
+    rw [h10]
+    simp
+  · -- both orders zero
+    have hzc : riemannZeta ((starRingEnd ℂ) ρ) ≠ 0 := by
+      rw [riemannZeta_conj]
+      intro h
+      exact hz (star_eq_zero.mp h)
+    have h1 : analyticOrderAt riemannZeta ρ = 0 := by
+      rw [(zeta_analyticAt hρ1).analyticOrderAt_eq_zero]
+      exact hz
+    have h2 : analyticOrderAt riemannZeta ((starRingEnd ℂ) ρ) = 0 := by
+      rw [(zeta_analyticAt hρ1c).analyticOrderAt_eq_zero]
+      exact hzc
+    show (analyticOrderAt riemannZeta ((starRingEnd ℂ) ρ)).toNat
+        = (analyticOrderAt riemannZeta ρ).toNat
+    rw [h1, h2]
+
+/-- info: 'ContourShift.zeta_order_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_order_conj
+
 /-- info: 'ContourShift.zeta_meromorphicOn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms zeta_meromorphicOn
