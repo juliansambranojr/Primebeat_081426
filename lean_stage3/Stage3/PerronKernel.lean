@@ -1226,8 +1226,330 @@ theorem far_terms_sum {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
 #guard_msgs in
 #print axioms perron_kernel_truncated
 
+
+/-! ### Slice 1c — the near-diagonal sum (entry 257's build order)
+
+`Σ_{0<|log(x/n)|<1/2} Λ(n)·min(1, 1/(T|log(x/n)|)) ≤ 100·x·log(xT)²/T + 4·log x`.
+This is where hEF's `c₂·log x` term is born: the two integers nearest `x`
+contribute `min ≤ 1` each, and everything else pays `|log(x/n)| ≥ |x−n|/(4x)`
+into two harmonic sums bounded by `harmonic_le_one_add_log`. -/
+
+/-- `|t − 1|/2 ≤ |log t|` on `[1/2, 2]`. -/
+theorem abs_sub_one_le_two_abs_log {t : ℝ} (h1 : 1/2 ≤ t) (h2 : t ≤ 2) :
+    |t - 1| / 2 ≤ |Real.log t| := by
+  have ht0 : (0:ℝ) < t := by linarith
+  by_cases ht : 1 ≤ t
+  · rw [abs_of_nonneg (by linarith : (0:ℝ) ≤ t - 1),
+      abs_of_nonneg (Real.log_nonneg ht)]
+    have h3 : 1 - 1/t ≤ Real.log t := by
+      have h4 := Real.log_le_sub_one_of_pos (show (0:ℝ) < t⁻¹ by positivity)
+      rw [Real.log_inv] at h4
+      rw [one_div]
+      linarith
+    have h6 : (t-1)/2 ≤ 1 - 1/t := by
+      have he : 1 - 1/t = (t-1)/t := by field_simp
+      rw [he]
+      exact div_le_div_of_nonneg_left (by linarith) ht0 h2
+    linarith
+  · push_neg at ht
+    rw [abs_of_nonpos (by linarith : t - 1 ≤ 0),
+      abs_of_nonpos (Real.log_nonpos ht0.le ht.le)]
+    have h3 := Real.log_le_sub_one_of_pos ht0
+    linarith
+
+/-- **Slice 1c — the near-diagonal sum.** -/
+theorem near_diagonal_sum {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
+    (∑' n : ℕ, if 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2 then
+        ArithmeticFunction.vonMangoldt n * min 1 (1/(T * |Real.log (x / n)|))
+      else 0)
+      ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x := by
+  have hx0 : (0:ℝ) < x := by linarith
+  have hT0 : (0:ℝ) < T := lt_of_lt_of_le one_pos hT
+  have hexp16 : Real.exp 1 < 16 := by linarith [Real.exp_one_lt_d9]
+  have hlx : 1 < Real.log x := by
+    have h1 : Real.log (Real.exp 1) < Real.log x :=
+      Real.log_lt_log (Real.exp_pos 1) (lt_of_lt_of_le hexp16 hx)
+    rwa [Real.log_exp] at h1
+  have hlx0 : (0:ℝ) < Real.log x := by linarith
+  set f : ℕ → ℝ := fun n ↦ if 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2 then
+      ArithmeticFunction.vonMangoldt n * min 1 (1/(T * |Real.log (x / n)|)) else 0 with hfd
+  have hfnn : ∀ n, 0 ≤ f n := by
+    intro n
+    rw [hfd]
+    dsimp only
+    by_cases h : 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2
+    · rw [if_pos h]
+      exact mul_nonneg ArithmeticFunction.vonMangoldt_nonneg
+        (le_min zero_le_one (by positivity))
+    · rw [if_neg h]
+  set N : ℕ := ⌈2*x⌉₊ with hNd
+  set m : ℕ := ⌊x⌋₊ with hmd
+  have hmx : (m:ℝ) ≤ x := Nat.floor_le hx0.le
+  have hxm1 : x < (m:ℝ) + 1 := Nat.lt_floor_add_one x
+  have hNx : 2*x ≤ (N:ℝ) := Nat.le_ceil _
+  have hmN : m + 2 ≤ N := by
+    have h2 : ((m + 2 : ℕ) : ℝ) ≤ (N:ℝ) := by push_cast; linarith
+    exact_mod_cast h2
+  -- the pointwise majorant, valid on all of ℕ
+  set g : ℕ → ℝ := fun n ↦ min 1 (4*x/(T * |x - (n:ℝ)|)) with hgd
+  have hgnn : ∀ n, 0 ≤ g n := fun n ↦ le_min zero_le_one (by positivity)
+  have hg1 : ∀ n, g n ≤ 1 := fun n ↦ min_le_left _ _
+  have hexp2 : Real.exp (1/2) ≤ 2 := by
+    have h := Real.exp_le_exp.mpr
+      (show (1:ℝ)/2 ≤ Real.log 2 by linarith [Real.log_two_gt_d9])
+    rwa [Real.exp_log two_pos] at h
+  have hmaj : ∀ n : ℕ, f n ≤ 2 * Real.log x * g n := by
+    intro n
+    rw [hfd]
+    dsimp only
+    by_cases h : 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2
+    · rw [if_pos h]
+      obtain ⟨hpos, hlt⟩ := h
+      have hn0 : (0:ℝ) < (n:ℝ) := by
+        rcases Nat.eq_zero_or_pos n with rfl | hn
+        · rw [Nat.cast_zero, div_zero, Real.log_zero, abs_zero] at hpos
+          linarith
+        · exact_mod_cast hn
+      have ht0 : (0:ℝ) < x/n := by positivity
+      have hxn : x ≠ (n:ℝ) := by
+        intro he
+        rw [he, div_self hn0.ne', Real.log_one, abs_zero] at hpos
+        linarith
+      obtain ⟨hL1, hL2⟩ := abs_lt.mp hlt
+      have htlo : 1/2 ≤ x/n := by
+        have h3 : Real.exp (-(1/2)) ≤ Real.exp (Real.log (x/n)) :=
+          Real.exp_le_exp.mpr (by linarith)
+        rw [Real.exp_log ht0] at h3
+        have hEinv : (0:ℝ) ≤ (Real.exp ((1:ℝ)/2))⁻¹ := by positivity
+        have h4 : (1/2:ℝ) ≤ Real.exp (-(1/2)) := by
+          rw [Real.exp_neg]
+          nlinarith [mul_inv_cancel₀ (Real.exp_pos ((1:ℝ)/2)).ne', hexp2]
+        linarith
+      have hthi : x/n ≤ 2 := by
+        have h5 : Real.exp (Real.log (x/n)) ≤ Real.exp (1/2) :=
+          Real.exp_le_exp.mpr hL2.le
+        rw [Real.exp_log ht0] at h5
+        exact h5.trans hexp2
+      have hn2x : (n:ℝ) ≤ 2*x := by
+        nlinarith [mul_le_mul_of_nonneg_right htlo hn0.le, div_mul_cancel₀ x hn0.ne']
+      have hdpos : (0:ℝ) < |x - (n:ℝ)| := abs_pos.mpr (sub_ne_zero.mpr hxn)
+      -- |log(x/n)| ≥ |x−n|/(4x)
+      have hlog_ge : |x - (n:ℝ)| / (4*x) ≤ |Real.log (x/n)| := by
+        have h6 := abs_sub_one_le_two_abs_log htlo hthi
+        have h7 : |x/(n:ℝ) - 1| = |x - n| / n := by
+          rw [show x/(n:ℝ) - 1 = (x - n)/n by field_simp, abs_div, abs_of_pos hn0]
+        rw [h7] at h6
+        calc |x - (n:ℝ)| / (4*x) ≤ |x - n| / (2*n) := by
+              apply div_le_div_of_nonneg_left (abs_nonneg _) (by positivity)
+              linarith
+          _ = |x - n| / n / 2 := by ring
+          _ ≤ |Real.log (x/n)| := h6
+      -- min comparison
+      have hmin : min 1 (1/(T * |Real.log (x / n)|)) ≤ g n := by
+        rw [hgd]
+        dsimp only
+        apply min_le_min le_rfl
+        have h8 : T * (|x - n| / (4*x)) ≤ T * |Real.log (x/n)| :=
+          mul_le_mul_of_nonneg_left hlog_ge hT0.le
+        calc 1/(T * |Real.log (x / n)|) ≤ 1/(T * (|x - n| / (4*x))) :=
+              one_div_le_one_div_of_le (by positivity) h8
+          _ = 4*x/(T * |x - n|) := by
+              field_simp
+      -- Λ comparison
+      have hΛ : ArithmeticFunction.vonMangoldt n ≤ 2 * Real.log x := by
+        calc ArithmeticFunction.vonMangoldt n ≤ Real.log n :=
+              ArithmeticFunction.vonMangoldt_le_log
+          _ ≤ Real.log (2*x) := Real.log_le_log hn0 hn2x
+          _ = Real.log 2 + Real.log x := Real.log_mul two_ne_zero hx0.ne'
+          _ ≤ 2 * Real.log x := by linarith [Real.log_two_lt_d9]
+      exact mul_le_mul hΛ hmin (le_min zero_le_one (by positivity)) (by positivity)
+    · rw [if_neg h]
+      exact mul_nonneg (by positivity) (hgnn n)
+  -- the harmonic pieces
+  have hharm : ∀ K : ℕ, (K:ℝ) ≤ 3*x →
+      ∑ j ∈ Finset.range K, 4*x/(T*(j+1)) ≤ (4*x/T) * (3 * Real.log x) := by
+    intro K hK
+    have h1 : ∑ j ∈ Finset.range K, 4*x/(T*(j+1))
+        = (4*x/T) * ∑ j ∈ Finset.range K, (1:ℝ)/(j+1) := by
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro j _
+      have hj : ((j:ℝ)+1) ≠ 0 := by positivity
+      field_simp
+    rw [h1]
+    apply mul_le_mul_of_nonneg_left _ (by positivity)
+    have h2 : ∑ j ∈ Finset.range K, (1:ℝ)/(j+1) = ((harmonic K : ℚ) : ℝ) := by
+      rw [harmonic]
+      push_cast
+      apply Finset.sum_congr rfl
+      intro j _
+      rw [one_div]
+    rw [h2]
+    have h3 := harmonic_le_one_add_log K
+    have h4 : Real.log K ≤ Real.log (3*x) := by
+      rcases Nat.eq_zero_or_pos K with rfl | hK0
+      · simp
+        exact Real.log_nonneg (by linarith)
+      · exact Real.log_le_log (by exact_mod_cast hK0) hK
+    have h5 : Real.log (3*x) ≤ 2 * Real.log x := by
+      have h6 : 3*x ≤ x^2 := by nlinarith
+      calc Real.log (3*x) ≤ Real.log (x^2) := Real.log_le_log (by positivity) h6
+        _ = 2 * Real.log x := by
+            rw [Real.log_pow]
+            push_cast
+            ring
+    linarith
+  -- lower band: n ∈ range m
+  have hlower : ∑ n ∈ Finset.range m, g n ≤ (4*x/T) * (3 * Real.log x) := by
+    have hstep : ∀ n ∈ Finset.range m, g n ≤ 4*x/(T*((m - 1 - n : ℕ)+1)) := by
+      intro n hn
+      rw [Finset.mem_range] at hn
+      have hcast : ((m - 1 - n : ℕ):ℝ) + 1 = (m:ℝ) - n := by
+        have h1 : n ≤ m - 1 := by omega
+        have h2 : (1:ℕ) ≤ m := by omega
+        push_cast [Nat.cast_sub h1, Nat.cast_sub h2]
+        ring
+      rw [hgd]
+      dsimp only
+      calc min 1 (4*x/(T * |x - (n:ℝ)|)) ≤ 4*x/(T * |x - (n:ℝ)|) := min_le_right _ _
+        _ ≤ 4*x/(T*((m - 1 - n : ℕ)+1)) := by
+            rw [hcast]
+            apply div_le_div_of_nonneg_left (by positivity) (by
+              have : (0:ℝ) < (m:ℝ) - n := by
+                have : (n:ℝ) < m := by exact_mod_cast hn
+                linarith
+              positivity)
+            apply mul_le_mul_of_nonneg_left _ hT0.le
+            rw [abs_of_nonneg (by
+              have : (n:ℝ) < m := by exact_mod_cast hn
+              linarith : (0:ℝ) ≤ x - n)]
+            have : (n:ℝ) < m := by exact_mod_cast hn
+            linarith
+    calc ∑ n ∈ Finset.range m, g n
+        ≤ ∑ n ∈ Finset.range m, 4*x/(T*((m - 1 - n : ℕ)+1)) := Finset.sum_le_sum hstep
+      _ = ∑ j ∈ Finset.range m, 4*x/(T*((j:ℝ)+1)) := by
+          rw [← Finset.sum_range_reflect (fun j ↦ 4*x/(T*((j:ℝ)+1))) m]
+      _ ≤ (4*x/T) * (3 * Real.log x) := hharm m (by linarith)
+  -- upper band: n ∈ Ico m N
+  have hupper : ∑ n ∈ Finset.Ico m N, g n
+      ≤ 2 + (4*x/T) * (3 * Real.log x) := by
+    have hmN' : m ≤ N := by omega
+    rw [Finset.sum_Ico_eq_sum_range]
+    have hK2 : N - m = (N - m - 2) + 1 + 1 := by omega
+    rw [hK2, Finset.sum_range_succ', Finset.sum_range_succ']
+    have hstep : ∀ i ∈ Finset.range (N - m - 2), g (m + (i + 1 + 1))
+        ≤ 4*x/(T*((i:ℝ)+1)) := by
+      intro i _
+      rw [hgd]
+      dsimp only
+      calc min 1 (4*x/(T * |x - ((m + (i+1+1) : ℕ):ℝ)|))
+          ≤ 4*x/(T * |x - ((m + (i+1+1) : ℕ):ℝ)|) := min_le_right _ _
+        _ ≤ 4*x/(T*((i:ℝ)+1)) := by
+            apply div_le_div_of_nonneg_left (by positivity) (by positivity)
+            apply mul_le_mul_of_nonneg_left _ hT0.le
+            have h1 : ((m + (i+1+1) : ℕ):ℝ) = (m:ℝ) + i + 2 := by push_cast; ring
+            rw [h1, abs_of_nonpos (by linarith : x - ((m:ℝ) + i + 2) ≤ 0)]
+            linarith
+    calc (∑ i ∈ Finset.range (N - m - 2), g (m + (i + 1 + 1)))
+          + g (m + (0 + 1)) + g (m + 0)
+        ≤ (∑ i ∈ Finset.range (N - m - 2), 4*x/(T*((i:ℝ)+1))) + 1 + 1 := by
+          have := Finset.sum_le_sum hstep
+          have g1 := hg1 (m + (0+1))
+          have g2 := hg1 (m + 0)
+          linarith
+      _ ≤ (4*x/T) * (3 * Real.log x) + 2 := by
+          have := hharm (N - m - 2) (by
+            have : ((N - m - 2 : ℕ):ℝ) ≤ (N:ℝ) := by
+              have : (N - m - 2 : ℕ) ≤ N := by omega
+              exact_mod_cast this
+            have hN3 : (N:ℝ) ≤ 3*x := by
+              have := Nat.ceil_lt_add_one (by positivity : (0:ℝ) ≤ 2*x)
+              linarith
+            linarith)
+          linarith
+      _ = 2 + (4*x/T) * (3 * Real.log x) := by ring
+  -- assemble the finset bound
+  apply Real.tsum_le_of_sum_le hfnn
+  intro s
+  have hvanish : ∀ n : ℕ, n ∉ Finset.range N → f n = 0 := by
+    intro n hn
+    rw [Finset.mem_range, not_lt] at hn
+    rw [hfd]
+    dsimp only
+    rw [if_neg]
+    rintro ⟨hpos, hlt⟩
+    have hnN : (2*x:ℝ) ≤ n := by
+      have h1 : (N:ℝ) ≤ n := by exact_mod_cast hn
+      linarith
+    have hn0 : (0:ℝ) < n := by linarith
+    have hxn2 : x / n ≤ 1/2 := by
+      have h2 : x/(n:ℝ) ≤ x/(2*x) := div_le_div_of_nonneg_left hx0.le (by positivity) hnN
+      have h3 : x/(2*x) = 1/2 := by field_simp
+      rw [h3] at h2
+      exact h2
+    have h4 : Real.log (x/n) ≤ Real.log (1/2) :=
+      Real.log_le_log (by positivity) hxn2
+    have h5 : Real.log ((1:ℝ)/2) = -Real.log 2 := by
+      rw [one_div, Real.log_inv]
+    have h6 : (1/2:ℝ) ≤ |Real.log (x/n)| := by
+      have h7 := neg_le_abs (Real.log (x/n))
+      have h8 : (1/2:ℝ) ≤ -Real.log (x/n) := by
+        rw [h5] at h4
+        linarith [Real.log_two_gt_d9]
+      linarith
+    linarith
+  have hsplit : ∑ n ∈ s, f n ≤ ∑ n ∈ Finset.range N, f n := by
+    classical
+    calc ∑ n ∈ s, f n
+        = ∑ n ∈ s.filter (· ∈ Finset.range N), f n
+          + ∑ n ∈ s.filter (fun n ↦ ¬ (n ∈ Finset.range N)), f n :=
+          (Finset.sum_filter_add_sum_filter_not s _ f).symm
+      _ = ∑ n ∈ s.filter (· ∈ Finset.range N), f n := by
+          have hz : ∑ n ∈ s.filter (fun n ↦ ¬ (n ∈ Finset.range N)), f n = 0 := by
+            apply Finset.sum_eq_zero
+            intro n hn
+            exact hvanish n (Finset.mem_filter.mp hn).2
+          rw [hz, add_zero]
+      _ ≤ ∑ n ∈ Finset.range N, f n := by
+          apply Finset.sum_le_sum_of_subset_of_nonneg
+          · intro n hn
+            exact (Finset.mem_filter.mp hn).2
+          · exact fun n _ _ ↦ hfnn n
+  refine hsplit.trans ?_
+  calc ∑ n ∈ Finset.range N, f n
+      ≤ ∑ n ∈ Finset.range N, 2 * Real.log x * g n :=
+        Finset.sum_le_sum (fun n _ ↦ hmaj n)
+    _ = 2 * Real.log x * ∑ n ∈ Finset.range N, g n := by rw [Finset.mul_sum]
+    _ = 2 * Real.log x * (∑ n ∈ Finset.range m, g n + ∑ n ∈ Finset.Ico m N, g n) := by
+        congr 1
+        rw [Finset.range_eq_Ico, Finset.range_eq_Ico,
+          Finset.sum_Ico_consecutive _ (Nat.zero_le m) (by omega : m ≤ N)]
+    _ ≤ 2 * Real.log x * ((4*x/T) * (3 * Real.log x)
+          + (2 + (4*x/T) * (3 * Real.log x))) := by
+        apply mul_le_mul_of_nonneg_left _ (by positivity)
+        linarith [hlower, hupper]
+    _ ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x := by
+        have hlog_le : Real.log x ≤ Real.log (x*T) := by
+          apply Real.log_le_log hx0
+          nlinarith [mul_le_mul_of_nonneg_left hT hx0.le]
+        have hsq : Real.log x ^ 2 ≤ Real.log (x*T) ^ 2 := by nlinarith
+        have hstep2 : 2 * Real.log x * ((4*x/T) * (3 * Real.log x)
+              + (2 + (4*x/T) * (3 * Real.log x)))
+            = 48 * x * Real.log x ^ 2 / T + 4 * Real.log x := by
+          field_simp
+          ring
+        rw [hstep2]
+        have h48 : 48 * x * Real.log x ^ 2 / T ≤ 100 * x * Real.log (x*T) ^ 2 / T := by
+          apply div_le_div_of_nonneg_right _ hT0.le
+          nlinarith [hsq, sq_nonneg (Real.log x)]
+        linarith
+
 /-- info: 'PerronKernel.far_terms_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms far_terms_sum
+
+/-- info: 'PerronKernel.near_diagonal_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms near_diagonal_sum
 
 end PerronKernel
