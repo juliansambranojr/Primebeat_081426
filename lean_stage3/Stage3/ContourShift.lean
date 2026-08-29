@@ -341,7 +341,7 @@ theorem borderIntegrable_sum_poles {z w : ℂ} {P : Finset ℂ} {A : ℂ → ℂ
     (pIn : ∀ p ∈ P, Rectangle z w ∈ nhds p) :
     RectangleBorderIntegrable (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w := by
   apply ContinuousOn.rectangleBorder_integrable
-  apply continuousOn_finset_sum
+  apply continuousOn_finsetSum
   intro p hp
   apply ContinuousOn.div continuousOn_const
     ((continuous_id.sub continuous_const).continuousOn)
@@ -408,6 +408,96 @@ theorem residue_rectangle_multi {f g : ℂ → ℂ} {z w : ℂ} {P : Finset ℂ}
   rw [RectangleIntegral', RectangleBorderIntegrable.add hgInt hSumInt, smul_add,
     gHolo.vanishesOnRectangle (by rfl), smul_zero, zero_add]
   exact rectangleIntegral_sum_poles zRe_le_wRe zIm_le_wIm pIn
+
+/-- **The residue theorem from local data.** `f` holomorphic on the
+rectangle off a finite interior pole set, and at each pole `p` equal to
+`(analytic at p) + A p/(s − p)` on a punctured neighborhood: the
+rectangle integral collects every residue. The global extension is
+glued from the local analytic parts. -/
+theorem residue_rectangle_of_local {f : ℂ → ℂ} {z w : ℂ} {P : Finset ℂ} {A : ℂ → ℂ}
+    (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)
+    (pIn : ∀ p ∈ P, Rectangle z w ∈ nhds p)
+    (fHolo : HolomorphicOn f (Rectangle z w \ (P : Set ℂ)))
+    (hloc : ∀ p ∈ P, ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧
+        ∀ᶠ s in nhdsWithin p {p}ᶜ, f s = h s + A p / (s - p)) :
+    RectangleIntegral' f z w = ∑ p ∈ P, A p := by
+  classical
+  choose! h hana hev using hloc
+  set g : ℂ → ℂ := fun s ↦ if s ∈ P then h s s - ∑ q ∈ P.erase s, A q / (s - q)
+    else f s - ∑ q ∈ P, A q / (s - q) with hgd
+  have hPclosed : IsClosed (P : Set ℂ) := P.finite_toSet.isClosed
+  have hgHolo : HolomorphicOn g (Rectangle z w) := by
+    intro x hxRect
+    by_cases hxP : x ∈ P
+    · -- glued point: g agrees with the local analytic model on a full nhds
+      have hother : {s : ℂ | s ∉ (P.erase x : Finset ℂ)} ∈ nhds x := by
+        have h1 : IsOpen ((↑(P.erase x) : Set ℂ))ᶜ :=
+          (P.erase x).finite_toSet.isClosed.isOpen_compl
+        exact h1.mem_nhds (by simp)
+      have heq : g =ᶠ[nhds x]
+          (fun s ↦ h x s - ∑ q ∈ P.erase x, A q / (s - q)) := by
+        have h1 := hev x hxP
+        rw [eventually_nhdsWithin_iff] at h1
+        filter_upwards [h1, hother] with s hs1 hs2
+        by_cases hsx : s = x
+        · rw [hsx, hgd]
+          simp only [if_pos hxP]
+        · have hsP : s ∉ P := by
+            intro hsP
+            exact hs2 (Finset.mem_erase.mpr ⟨hsx, hsP⟩)
+          have h2 := hs1 (by simpa using hsx)
+          rw [hgd]
+          simp only [if_neg hsP]
+          rw [h2, ← Finset.add_sum_erase P (fun q ↦ A q / (s - q)) hxP]
+          ring
+      have hH : DifferentiableAt ℂ
+          (fun s ↦ h x s - ∑ q ∈ P.erase x, A q / (s - q)) x := by
+        apply DifferentiableAt.sub (hana x hxP).differentiableAt
+        apply DifferentiableAt.fun_sum
+        intro q hq
+        have hxq : x - q ≠ 0 := by
+          rw [sub_ne_zero]
+          intro hxq
+          exact absurd (hxq ▸ hq) (by simp)
+        exact (differentiableAt_const _).div
+          (differentiableAt_id.sub (differentiableAt_const _)) hxq
+      exact (heq.differentiableAt_iff.mpr hH).differentiableWithinAt
+    · -- plain point: g agrees with f − Σ near x
+      have hcompl : {s : ℂ | s ∉ P} ∈ nhds x :=
+        hPclosed.isOpen_compl.mem_nhds hxP
+      have heq : g =ᶠ[nhds x] (fun s ↦ f s - ∑ q ∈ P, A q / (s - q)) := by
+        filter_upwards [hcompl] with s hs
+        rw [hgd]
+        simp only [if_neg hs]
+      have hd1 : DifferentiableWithinAt ℂ f (Rectangle z w) x := by
+        refine (fHolo x ⟨hxRect, hxP⟩).mono_of_mem_nhdsWithin ?_
+        rw [Set.sdiff_eq]
+        exact Filter.inter_mem self_mem_nhdsWithin
+          (mem_nhdsWithin_of_mem_nhds hcompl)
+      have hd2 : DifferentiableAt ℂ (fun s ↦ ∑ q ∈ P, A q / (s - q)) x := by
+        apply DifferentiableAt.fun_sum
+        intro q hq
+        have hxq : x - q ≠ 0 := by
+          rw [sub_ne_zero]
+          intro hxq
+          exact hxP (hxq ▸ hq)
+        exact (differentiableAt_const _).div
+          (differentiableAt_id.sub (differentiableAt_const _)) hxq
+      refine DifferentiableWithinAt.congr_of_eventuallyEq
+        (hd1.sub hd2.differentiableWithinAt) ?_ ?_
+      · exact heq.filter_mono nhdsWithin_le_nhds
+      · rw [hgd]
+        simp only [if_neg hxP, Pi.sub_apply]
+  apply residue_rectangle_multi zRe_le_wRe zIm_le_wIm pIn hgHolo
+  intro s hs
+  have hsP : s ∉ P := by simpa using hs.2
+  simp only [Pi.sub_apply]
+  rw [hgd]
+  simp only [if_neg hsP]
+
+/-- info: 'ContourShift.residue_rectangle_of_local' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms residue_rectangle_of_local
 
 /-- info: 'ContourShift.residue_rectangle_multi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
