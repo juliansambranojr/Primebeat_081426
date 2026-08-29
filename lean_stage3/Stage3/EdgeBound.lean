@@ -410,6 +410,275 @@ theorem ball_zero_shape {T' : ℝ} (hT' : 2 ≤ T') {w : ℂ}
     push_neg at hge
     exact riemannZeta_ne_zero_of_one_le_re hge hζ
 
+/-- **The ball order-count**: the total multiplicity of `gz`-zeros in
+the `46/25`-ball at height `T′` is `≤ C·log T′` — four Jensen windows
+for `T′ ≥ 4` with the reflection charging left-zeros to partners, and
+a fixed-rectangle constant for `T′ < 4`. -/
+theorem ball_order_sum_le :
+    ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' →
+      (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset,
+        (analyticOrderNatAt gz w : ℝ)) ≤ C * Real.log T' := by
+  classical
+  have hlog2 : (0:ℝ) < Real.log 2 := Real.log_pos (by norm_num)
+  -- the fixed low-corner constant
+  set lowFin := ContourShift.zeta_zeros_rectangle_finite (0:ℂ)
+      ((1:ℝ) + Complex.I * (6:ℝ)) with hlowd
+  set M0 : ℝ := ∑ ρ ∈ lowFin.toFinset, (analyticOrderNatAt riemannZeta ρ : ℝ) with hM0d
+  have hM00 : 0 ≤ M0 := by
+    rw [hM0d]
+    apply Finset.sum_nonneg
+    intro ρ _
+    positivity
+  set W0 : ℝ := 15 + 88 / Real.log 2 with hW0d
+  have hW00 : 0 < W0 := by
+    rw [hW0d]
+    positivity
+  refine ⟨M0 / Real.log 2 + 8 * W0 + 1, by positivity, ?_⟩
+  intro T' hT'
+  have hlogT : Real.log 2 ≤ Real.log T' := Real.log_le_log (by norm_num) hT'
+  have hlogT0 : 0 < Real.log T' := lt_of_lt_of_le hlog2 hlogT
+  set BF := (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset with hBFd
+  have hmemBF : ∀ w, w ∈ BF ↔ (gz w = 0 ∧ ‖w - c0 T'‖ ≤ 46/25) := by
+    intro w
+    rw [hBFd, Set.Finite.mem_toFinset]
+    exact Iff.rfl
+  -- convert to ζ-orders
+  have hconv : ∀ w ∈ BF, (analyticOrderNatAt gz w : ℝ)
+      = (analyticOrderNatAt riemannZeta w : ℝ) := by
+    intro w hw
+    obtain ⟨hz, hball⟩ := (hmemBF w).mp hw
+    obtain ⟨hζ, ⟨hre0, hre1⟩, _⟩ := ball_zero_shape hT' hz hball
+    have hw1 : w ≠ 1 := by
+      intro h
+      rw [h] at hre1
+      simp at hre1
+    rw [gz_order_eq hw1]
+  rw [Finset.sum_congr rfl hconv]
+  by_cases hT4 : T' < 4
+  · -- low case: everything sits in the fixed rectangle
+    have hsub : BF ⊆ lowFin.toFinset := by
+      intro w hw
+      obtain ⟨hz, hball⟩ := (hmemBF w).mp hw
+      obtain ⟨hζ, ⟨hre0, hre1⟩, him⟩ := ball_zero_shape hT' hz hball
+      rw [hlowd, Set.Finite.mem_toFinset]
+      refine ⟨hζ, ?_⟩
+      rw [abs_le] at him
+      simp only [Rectangle]
+      have hzre : (0:ℂ).re = 0 := Complex.zero_re
+      have hzim : (0:ℂ).im = 0 := Complex.zero_im
+      have hwre : ((1:ℝ) + Complex.I * (6:ℝ) : ℂ).re = 1 := by simp
+      have hwim : ((1:ℝ) + Complex.I * (6:ℝ) : ℂ).im = 6 := by simp
+      rw [Complex.mem_reProdIm, hzre, hzim, hwre, hwim,
+        Set.uIcc_of_le (by norm_num : (0:ℝ) ≤ 1),
+        Set.uIcc_of_le (by norm_num : (0:ℝ) ≤ 6),
+        Set.mem_Icc, Set.mem_Icc]
+      constructor
+      · exact ⟨hre0.le, hre1.le⟩
+      · constructor <;> linarith [him.1, him.2]
+    calc ∑ w ∈ BF, (analyticOrderNatAt riemannZeta w : ℝ)
+        ≤ M0 := by
+          rw [hM0d]
+          apply Finset.sum_le_sum_of_subset_of_nonneg hsub
+          intro w _ _
+          positivity
+      _ ≤ M0 / Real.log 2 * Real.log T' := by
+          rw [div_mul_eq_mul_div, le_div_iff₀ hlog2]
+          exact mul_le_mul_of_nonneg_left hlogT hM00
+      _ ≤ (M0 / Real.log 2 + 8 * W0 + 1) * Real.log T' := by
+          apply mul_le_mul_of_nonneg_right ?_ hlogT0.le
+          nlinarith [hW00]
+  · -- high case: four windows and the reflection
+    push_neg at hT4
+    have hc1 : (2:ℝ) ≤ T' - 9/5 := by linarith
+    have hc2 : (2:ℝ) ≤ T' - 9/10 := by linarith
+    have hc3 : (2:ℝ) ≤ T' := hT'
+    have hc4 : (2:ℝ) ≤ T' + 9/5 := by linarith
+    set W : Finset ℂ :=
+      ((Stage3.zetaWindow_finite hc1).toFinset ∪ (Stage3.zetaWindow_finite hc2).toFinset)
+        ∪ ((Stage3.zetaWindow_finite hc3).toFinset ∪ (Stage3.zetaWindow_finite hc4).toFinset)
+      with hWd
+    -- the window chooser
+    have hchoice : ∀ ρ : ℂ, riemannZeta ρ = 0 → 1/2 ≤ ρ.re → ρ.re < 1 →
+        |ρ.im - T'| ≤ 46/25 → ρ ∈ W := by
+      intro ρ hζ hre hre1 him
+      rw [hWd]
+      rw [abs_le] at him
+      rcases le_total (ρ.im - T') (-9/10) with h1 | h1
+      · apply Finset.mem_union_left
+        apply Finset.mem_union_left
+        rw [Set.Finite.mem_toFinset]
+        apply ContourShift.mem_zetaWindow hζ hre hre1
+        rw [abs_le]
+        constructor <;> linarith [him.1]
+      rcases le_total (ρ.im - T') 0 with h2 | h2
+      · apply Finset.mem_union_left
+        apply Finset.mem_union_right
+        rw [Set.Finite.mem_toFinset]
+        apply ContourShift.mem_zetaWindow hζ hre hre1
+        rw [abs_le]
+        constructor <;> linarith
+      rcases le_total (ρ.im - T') (9/10) with h3 | h3
+      · apply Finset.mem_union_right
+        apply Finset.mem_union_left
+        rw [Set.Finite.mem_toFinset]
+        apply ContourShift.mem_zetaWindow hζ hre hre1
+        rw [abs_le]
+        constructor <;> linarith
+      · apply Finset.mem_union_right
+        apply Finset.mem_union_right
+        rw [Set.Finite.mem_toFinset]
+        apply ContourShift.mem_zetaWindow hζ hre hre1
+        rw [abs_le]
+        constructor <;> linarith [him.2]
+    -- union sums split
+    have hunion_le : ∀ (Aset Bset : Finset ℂ),
+        ∑ w ∈ Aset ∪ Bset, (analyticOrderNatAt riemannZeta w : ℝ)
+          ≤ (∑ w ∈ Aset, (analyticOrderNatAt riemannZeta w : ℝ))
+            + ∑ w ∈ Bset, (analyticOrderNatAt riemannZeta w : ℝ) := by
+      intro Aset Bset
+      have h5 := Finset.sum_union_inter (s₁ := Aset) (s₂ := Bset)
+        (f := fun w ↦ (analyticOrderNatAt riemannZeta w : ℝ))
+      have h6 : (0:ℝ) ≤ ∑ w ∈ Aset ∩ Bset, (analyticOrderNatAt riemannZeta w : ℝ) := by
+        apply Finset.sum_nonneg
+        intro w _
+        positivity
+      linarith
+    have hwinsum : ∀ (T0 : ℝ) (hT0 : 2 ≤ T0),
+        (∑ ρ ∈ (Stage3.zetaWindow_finite hT0).toFinset,
+          (analyticOrderNatAt riemannZeta ρ : ℝ)) ≤ 15 * Real.log T0 + 73 :=
+      fun T0 hT0 ↦ Stage3.zeta_local_zero_count hT0
+    have hlogmono : ∀ (T0 : ℝ), 2 ≤ T0 → T0 ≤ T' + 9/5 →
+        15 * Real.log T0 + 73 ≤ W0 * Real.log T' := by
+      intro T0 hT0 hT0le
+      have h7 : Real.log T0 ≤ Real.log (2 * T') := by
+        apply Real.log_le_log (by linarith)
+        linarith
+      rw [Real.log_mul (by norm_num) (by linarith)] at h7
+      have h8 : Real.log 2 ≤ 1 := by
+        have := Real.log_le_sub_one_of_pos (by norm_num : (0:ℝ) < 2)
+        linarith
+      have h9 : (73:ℝ) ≤ 73 / Real.log 2 * Real.log T' := by
+        rw [div_mul_eq_mul_div, le_div_iff₀ hlog2]
+        nlinarith
+      have h10 : (15:ℝ) ≤ 15 / Real.log 2 * Real.log T' := by
+        rw [div_mul_eq_mul_div, le_div_iff₀ hlog2]
+        nlinarith
+      have h13 : 15 * Real.log T0 ≤ 15 * (Real.log 2 + Real.log T') := by linarith
+      have h11 : 73 / Real.log 2 * Real.log T' + 15 / Real.log 2 * Real.log T'
+          = 88 / Real.log 2 * Real.log T' := by ring
+      rw [hW0d, show (15 + 88 / Real.log 2) * Real.log T'
+          = 15 * Real.log T' + 88 / Real.log 2 * Real.log T' by ring]
+      linarith
+    have hWsum : (∑ w ∈ W, (analyticOrderNatAt riemannZeta w : ℝ))
+        ≤ 4 * (W0 * Real.log T') := by
+      rw [hWd]
+      calc ∑ w ∈ _ ∪ _, (analyticOrderNatAt riemannZeta w : ℝ)
+          ≤ _ := hunion_le _ _
+        _ ≤ (W0 * Real.log T') + (W0 * Real.log T')
+            + ((W0 * Real.log T') + (W0 * Real.log T')) := by
+            apply add_le_add
+            · apply le_trans (hunion_le _ _)
+              apply add_le_add
+              · exact le_trans (hwinsum _ hc1) (hlogmono _ hc1 (by linarith))
+              · exact le_trans (hwinsum _ hc2) (hlogmono _ hc2 (by linarith))
+            · apply le_trans (hunion_le _ _)
+              apply add_le_add
+              · exact le_trans (hwinsum _ hc3) (hlogmono _ hc3 (by linarith))
+              · exact le_trans (hwinsum _ hc4) (hlogmono _ hc4 (by linarith))
+        _ = 4 * (W0 * Real.log T') := by ring
+    -- split by half-plane
+    rw [← Finset.sum_filter_add_sum_filter_not BF (fun w ↦ 1/2 ≤ w.re)]
+    have hpart1 : (∑ w ∈ BF.filter (fun w ↦ 1/2 ≤ w.re),
+        (analyticOrderNatAt riemannZeta w : ℝ))
+          ≤ ∑ w ∈ W, (analyticOrderNatAt riemannZeta w : ℝ) := by
+      apply Finset.sum_le_sum_of_subset_of_nonneg
+      · intro w hw
+        rw [Finset.mem_filter] at hw
+        obtain ⟨hwBF, hwre⟩ := hw
+        obtain ⟨hz, hball⟩ := (hmemBF w).mp hwBF
+        obtain ⟨hζ, ⟨hre0, hre1⟩, him⟩ := ball_zero_shape hT' hz hball
+        exact hchoice w hζ hwre hre1 him
+      · intro w _ _
+        positivity
+    have hpart2 : (∑ w ∈ BF.filter (fun w ↦ ¬(1/2 ≤ w.re)),
+        (analyticOrderNatAt riemannZeta w : ℝ))
+          ≤ ∑ w ∈ W, (analyticOrderNatAt riemannZeta w : ℝ) := by
+      have hrinj : Function.Injective (fun w : ℂ ↦ 1 - (starRingEnd ℂ) w) := by
+        intro a b hab
+        have h11 : (starRingEnd ℂ) a = (starRingEnd ℂ) b := by
+          have h12 : (1:ℂ) - (starRingEnd ℂ) a = 1 - (starRingEnd ℂ) b := hab
+          linear_combination -h12
+        have h13 := congrArg (starRingEnd ℂ) h11
+        rwa [Complex.conj_conj, Complex.conj_conj] at h13
+      have hsum_refl : (∑ w ∈ BF.filter (fun w ↦ ¬(1/2 ≤ w.re)),
+          (analyticOrderNatAt riemannZeta w : ℝ))
+            = ∑ w ∈ (BF.filter (fun w ↦ ¬(1/2 ≤ w.re))).image
+                (fun w ↦ 1 - (starRingEnd ℂ) w),
+              (analyticOrderNatAt riemannZeta w : ℝ) := by
+        rw [Finset.sum_image (fun a _ b _ hab ↦ hrinj hab)]
+        apply Finset.sum_congr rfl
+        intro w hw
+        rw [Finset.mem_filter] at hw
+        obtain ⟨hwBF, hwre⟩ := hw
+        obtain ⟨hz, hball⟩ := (hmemBF w).mp hwBF
+        obtain ⟨hζ, ⟨hre0, hre1⟩, _⟩ := ball_zero_shape hT' hz hball
+        rw [ContourShift.zeta_order_reflect hre0 hre1]
+      rw [hsum_refl]
+      apply Finset.sum_le_sum_of_subset_of_nonneg
+      · intro w' hw'
+        rw [Finset.mem_image] at hw'
+        obtain ⟨w, hw, rfl⟩ := hw'
+        rw [Finset.mem_filter] at hw
+        obtain ⟨hwBF, hwre⟩ := hw
+        push_neg at hwre
+        obtain ⟨hz, hball⟩ := (hmemBF w).mp hwBF
+        obtain ⟨hζ, ⟨hre0, hre1⟩, him⟩ := ball_zero_shape hT' hz hball
+        -- the reflected point is a zero at the same height, re ∈ (1/2, 1)
+        have hcw : riemannZeta ((starRingEnd ℂ) w) = 0 := by
+          rw [riemannZeta_conj, hζ, map_zero]
+        have hwn : ∀ n : ℕ, (starRingEnd ℂ) w ≠ -(n:ℂ) := by
+          intro n hcon
+          have h14 := congrArg Complex.re hcon
+          simp only [Complex.conj_re, Complex.neg_re, Complex.natCast_re] at h14
+          have h15 : (0:ℝ) ≤ (n:ℝ) := Nat.cast_nonneg n
+          linarith
+        have hw1c : (starRingEnd ℂ) w ≠ 1 := by
+          intro hcon
+          have h16 := congrArg Complex.re hcon
+          simp only [Complex.conj_re, Complex.one_re] at h16
+          linarith
+        have hfe := riemannZeta_one_sub hwn hw1c
+        rw [hcw, mul_zero] at hfe
+        have hre' : (1 - (starRingEnd ℂ) w).re = 1 - w.re := by
+          simp [Complex.sub_re, Complex.conj_re]
+        have him' : (1 - (starRingEnd ℂ) w).im = w.im := by
+          simp [Complex.sub_im, Complex.conj_im]
+        apply hchoice _ hfe
+        · rw [hre']
+          linarith
+        · rw [hre']
+          linarith
+        · rw [him']
+          exact him
+      · intro w _ _
+        positivity
+    calc (∑ w ∈ BF.filter (fun w ↦ 1/2 ≤ w.re),
+          (analyticOrderNatAt riemannZeta w : ℝ))
+        + ∑ w ∈ BF.filter (fun w ↦ ¬(1/2 ≤ w.re)),
+          (analyticOrderNatAt riemannZeta w : ℝ)
+        ≤ (∑ w ∈ W, (analyticOrderNatAt riemannZeta w : ℝ))
+          + ∑ w ∈ W, (analyticOrderNatAt riemannZeta w : ℝ) :=
+          add_le_add hpart1 hpart2
+      _ ≤ 4 * (W0 * Real.log T') + 4 * (W0 * Real.log T') := by
+          linarith [hWsum]
+      _ ≤ (M0 / Real.log 2 + 8 * W0 + 1) * Real.log T' := by
+          have h17 : 0 ≤ M0 / Real.log 2 * Real.log T' := by positivity
+          nlinarith [hlogT0]
+
+/-- info: 'EdgeBound.ball_order_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms ball_order_sum_le
+
 /-- info: 'EdgeBound.gz_partial_fraction' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms gz_partial_fraction
