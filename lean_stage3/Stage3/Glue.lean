@@ -1191,6 +1191,15 @@ theorem explicit_formula_poly :
         linarith [he1, he2, he3, he4]
 
 
+/-- **hEF DISCHARGED**: constants realizing the ledger's leaf. -/
+theorem stmtEF_poly :
+    ∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ Stage3.StmtExplicitFormulaPoly c₁ c₂ 16 :=
+  explicit_formula_poly
+
+/-- info: 'Glue.stmtEF_poly' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms stmtEF_poly
+
 /-- info: 'Glue.explicit_formula_poly' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms explicit_formula_poly

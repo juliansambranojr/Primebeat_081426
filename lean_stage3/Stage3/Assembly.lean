@@ -103,6 +103,14 @@ def StmtExplicitFormula (c₁ c₂ x₁ : ℝ) : Prop :=
     ‖((ψ x : ℝ) : ℂ) - (x : ℂ) + zeroPartialSum x T‖
       ≤ c₁ * x * Real.log (x * T) ^ 2 / T + c₂ * Real.log x
 
+/-- **The `T ≤ x²`-regime form** — the shape the contour proof
+delivers (`Glue.explicit_formula_poly`) and all the assembly consumes
+(`T = 2^(K+1) ≤ 2x ≤ x²`). Approved leaf-shape change (entry 271). -/
+def StmtExplicitFormulaPoly (c₁ c₂ x₁ : ℝ) : Prop :=
+  ∀ x T : ℝ, x₁ ≤ x → 2 ≤ T → T ≤ x^2 →
+    ‖((ψ x : ℝ) : ℂ) - (x : ℂ) + zeroPartialSum x T‖
+      ≤ c₁ * x * Real.log (x * T) ^ 2 / T + c₂ * Real.log x
+
 /-- **The zero side controlled by the count, under RH:**
 `‖zeroPartialSum x 2^(K+1)‖ ≤ 2√x·(2|N(2^(K+1))| + W)`, through
 IEANTN's sorry-free `weighted_cumulative_count_le`. With ZeroSum's
@@ -462,7 +470,7 @@ theorem psiWeak_of_RH_EF_NT (hRH : RiemannHypothesis)
     (hb₁ : 0 ≤ b₁) (hb₂ : 0 ≤ b₂) (hb₃ : 0 ≤ b₃)
     (hWeq : W = weightedZeroHeightBucket)
     (hRvM2 : 0 ≤ riemannZeta.RvM b₁ b₂ b₃ 2)
-    (hEF : StmtExplicitFormula c₁ c₂ x₁)
+    (hEF : StmtExplicitFormulaPoly c₁ c₂ x₁)
     (hNT : riemannZeta.Riemann_vonMangoldt_bound b₁ b₂ b₃) :
     StmtPsiWeak
       (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃
@@ -526,7 +534,7 @@ theorem psiWeak_of_RH_EF_NT (hRH : RiemannHypothesis)
   rw [← hTdef, ← hWeq] at hzero
   clear_value n K T
   -- the remainder, through the scalar helper
-  have hEFx := hEF x T hx1 hT2
+  have hEFx := hEF x T hx1 hT2 (by nlinarith [hx16, hT2x])
   have hlogxT : Real.log (x * T) ≤ 3 * L := by
     have hmul : x * T ≤ 2 * x ^ 2 := by
       have h := mul_le_mul_of_nonneg_left hT2x hx0.le
