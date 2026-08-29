@@ -587,6 +587,167 @@ theorem zeta_local_data {p : ℂ} {n : ℤ} {g : ℂ → ℂ} {x : ℝ} (hx : 0 
 #guard_msgs in
 #print axioms zeta_local_data
 
+/-- The order of `ζ` at any point off the pole is finite (identity
+theorem on `ℂ∖{1}`, as in `one_le_zeta_order`). -/
+theorem zeta_order_ne_top {ρ : ℂ} (hρ1 : ρ ≠ 1) :
+    analyticOrderAt riemannZeta ρ ≠ ⊤ := by
+  intro htop
+  have hev : riemannZeta =ᶠ[nhds ρ] 0 := by
+    filter_upwards [analyticOrderAt_eq_top.mp htop] with z hz'
+    simpa using hz'
+  have hcon : IsPreconnected ({(1:ℂ)}ᶜ : Set ℂ) := by
+    have h2 := isPathConnected_compl_singleton_of_one_lt_rank
+      (by rw [rank_real_complex]; norm_num) (1:ℂ)
+    exact h2.isConnected.isPreconnected
+  have hAOn : AnalyticOnNhd ℂ riemannZeta ({(1:ℂ)}ᶜ : Set ℂ) := fun z hz' ↦
+    zeta_analyticAt (Set.mem_compl_singleton_iff.mp hz')
+  have hzero := hAOn.eqOn_zero_of_preconnected_of_eventuallyEq_zero hcon
+    (Set.mem_compl_singleton_iff.mpr hρ1) hev
+  have h2 : riemannZeta 2 = 0 := by
+    have h3 := hzero (show (2:ℂ) ∈ ({(1:ℂ)}ᶜ : Set ℂ) by
+      rw [Set.mem_compl_singleton_iff]
+      norm_num)
+    simpa using h3
+  exact riemannZeta_ne_zero_of_one_le_re (by norm_num) h2
+
+/-- Local pole data of `G` at a nontrivial zero: residue
+`−(order)·x^ρ/ρ`. -/
+theorem zeta_local_data_zero {ρ : ℂ} {x : ℝ} (hx : 0 < x)
+    (hρ0 : ρ ≠ 0) (hρ1 : ρ ≠ 1) (hz : riemannZeta ρ = 0) :
+    ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in nhdsWithin ρ {ρ}ᶜ,
+      - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s
+        = h s + (-(analyticOrderNatAt riemannZeta ρ : ℂ) * ((x:ℝ):ℂ) ^ ρ / ρ)
+            / (s - ρ) := by
+  have han := zeta_analyticAt hρ1
+  have hm : analyticOrderAt riemannZeta ρ
+      = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℕ∞) :=
+    (ENat.coe_toNat (zeta_order_ne_top hρ1)).symm
+  obtain ⟨g, hg, hgρ, hev⟩ := (han.analyticOrderAt_eq_natCast).mp hm
+  have hfac : ∀ᶠ s in nhdsWithin ρ {ρ}ᶜ,
+      riemannZeta s = (s - ρ) ^ ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℤ) * g s := by
+    filter_upwards [hev.filter_mono nhdsWithin_le_nhds] with s hs
+    rw [hs, smul_eq_mul, zpow_natCast]
+  obtain ⟨h, hha, hhe⟩ := zeta_local_data
+    (n := ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℤ)) hx hρ0 hg hgρ hfac
+  refine ⟨h, hha, ?_⟩
+  filter_upwards [hhe] with s hs2
+  rw [hs2]
+  push_cast
+  ring
+
+/-- Local pole data of `G` at `1`: residue `+x`. The factorization
+`ζ = (s−1)^{−1}·g` is built from the completed zeta function. -/
+theorem zeta_local_data_one {x : ℝ} (hx : 0 < x) :
+    ∃ h : ℂ → ℂ, AnalyticAt ℂ h 1 ∧ ∀ᶠ s in nhdsWithin 1 {1}ᶜ,
+      - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s
+        = h s + ((x:ℝ):ℂ) / (s - 1) := by
+  have hπ : ((Real.pi:ℝ):ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
+  set D : ℂ → ℂ := fun s ↦ ((Real.pi:ℝ):ℂ) ^ (-s/2) * Complex.Gamma (s/2) with hDd
+  set N : ℂ → ℂ := fun s ↦ (s-1) * completedRiemannZeta₀ s - (s-1)/s + 1 with hNd
+  have hΓ : AnalyticAt ℂ (fun s : ℂ ↦ Complex.Gamma (s/2)) 1 := by
+    have hopen : IsOpen {s : ℂ | 0 < s.re} := isOpen_lt continuous_const Complex.continuous_re
+    have hdiff : DifferentiableOn ℂ (fun s : ℂ ↦ Complex.Gamma (s/2)) {s : ℂ | 0 < s.re} := by
+      intro t ht
+      apply DifferentiableAt.differentiableWithinAt
+      have h1 : DifferentiableAt ℂ Complex.Gamma (t/2) := by
+        apply Complex.differentiableAt_Gamma
+        intro m hcon
+        have h2 : t = -(2 * (m:ℂ)) := by linear_combination 2 * hcon
+        have h3 : (0:ℝ) < t.re := ht
+        have h4 : t.re = -(2 * (m:ℝ)) := by
+          rw [h2]
+          simp
+        rw [h4] at h3
+        have h5 : (0:ℝ) ≤ (m:ℝ) := Nat.cast_nonneg m
+        linarith
+      exact h1.comp t (differentiableAt_id.div_const 2)
+    exact hdiff.analyticAt (hopen.mem_nhds (by simp))
+  have hDana : AnalyticAt ℂ D 1 := by
+    rw [hDd]
+    exact (((differentiable_id.neg.div_const 2).const_cpow
+      (Or.inl hπ)).analyticAt 1).mul hΓ
+  have hD1 : D 1 ≠ 0 := by
+    rw [hDd]
+    apply mul_ne_zero
+    · rw [Complex.cpow_def_of_ne_zero hπ]
+      exact Complex.exp_ne_zero _
+    · exact Complex.Gamma_ne_zero_of_re_pos (by norm_num [Complex.div_re])
+  have hNana : AnalyticAt ℂ N 1 := by
+    rw [hNd]
+    exact (((analyticAt_id.sub analyticAt_const).mul
+      (differentiable_completedZeta₀.analyticAt 1)).sub
+      ((analyticAt_id.sub analyticAt_const).div analyticAt_id one_ne_zero)).add
+      analyticAt_const
+  have hN1 : N 1 = 1 := by
+    rw [hNd]
+    simp
+  have hg : AnalyticAt ℂ (fun s ↦ N s / D s) 1 := hNana.div hDana hD1
+  have hgp : N 1 / D 1 ≠ 0 := by
+    rw [hN1]
+    exact div_ne_zero one_ne_zero hD1
+  have hDne : ∀ᶠ s in nhds 1, D s ≠ 0 := hDana.continuousAt.eventually_ne hD1
+  have hs0 : ∀ᶠ s in nhds (1:ℂ), s ≠ 0 :=
+    isOpen_compl_singleton.eventually_mem (Set.mem_compl_singleton_iff.mpr one_ne_zero)
+  have hfac : ∀ᶠ s in nhdsWithin 1 {1}ᶜ,
+      riemannZeta s = (s - 1) ^ (-1 : ℤ) * (N s / D s) := by
+    filter_upwards [eventually_mem_nhdsWithin,
+      hDne.filter_mono nhdsWithin_le_nhds,
+      hs0.filter_mono nhdsWithin_le_nhds] with s hs1 hsD hs0'
+    have hs1' : s ≠ 1 := Set.mem_compl_singleton_iff.mp hs1
+    have hs1ne : s - 1 ≠ 0 := sub_ne_zero.mpr hs1'
+    have h1s : (1:ℂ) - s ≠ 0 := by
+      intro hcon
+      exact hs1' (by linear_combination -hcon)
+    rw [riemannZeta_eq_completedRiemannZeta₀ hs0', zpow_neg_one]
+    rw [hNd, hDd]
+    field_simp
+    ring
+  obtain ⟨h, hha, hhe⟩ := zeta_local_data (n := (-1 : ℤ)) hx one_ne_zero hg hgp hfac
+  refine ⟨h, hha, ?_⟩
+  filter_upwards [hhe] with s hs2
+  rw [hs2, Complex.cpow_one]
+  push_cast
+  ring
+
+/-- Local pole data of `G` at `0`: residue `−ζ′(0)/ζ(0)`. -/
+theorem zeta_local_data_origin {x : ℝ} (hx : 0 < x) :
+    ∃ h : ℂ → ℂ, AnalyticAt ℂ h 0 ∧ ∀ᶠ s in nhdsWithin 0 {0}ᶜ,
+      - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s
+        = h s + (- deriv riemannZeta 0 / riemannZeta 0) / (s - 0) := by
+  have hxne : ((x:ℝ):ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr (ne_of_gt hx)
+  have hζ0 : riemannZeta 0 ≠ 0 := by
+    rw [riemannZeta_zero]
+    norm_num
+  have hζan := zeta_analyticAt (show (0:ℂ) ≠ 1 by norm_num)
+  have hu : AnalyticAt ℂ
+      (fun t ↦ - deriv riemannZeta t / riemannZeta t * ((x:ℝ):ℂ) ^ t) 0 :=
+    (hζan.deriv.neg.div hζan hζ0).mul
+      ((differentiable_id.const_cpow (Or.inl hxne)).analyticAt 0)
+  refine ⟨dslope (fun t ↦ - deriv riemannZeta t / riemannZeta t * ((x:ℝ):ℂ) ^ t) 0,
+    analyticAt_dslope hu, ?_⟩
+  filter_upwards [eventually_mem_nhdsWithin] with s hs
+  have hs0 : s ≠ 0 := Set.mem_compl_singleton_iff.mp hs
+  have h5 := div_sub_eq_dslope
+    (f := fun t ↦ - deriv riemannZeta t / riemannZeta t * ((x:ℝ):ℂ) ^ t)
+    (p := 0) (s := s) hs0
+  beta_reduce at h5
+  rw [Complex.cpow_zero, mul_one] at h5
+  rw [sub_zero] at h5 ⊢
+  rw [h5]
+  ring
+
+/-- info: 'ContourShift.zeta_local_data_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_local_data_zero
+
+/-- info: 'ContourShift.zeta_local_data_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_local_data_one
+
+/-- info: 'ContourShift.zeta_local_data_origin' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_local_data_origin
+
 /-- info: 'ContourShift.residue_rectangle_of_local' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms residue_rectangle_of_local
