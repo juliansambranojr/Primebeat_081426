@@ -95,10 +95,12 @@ Vocabulary (Julian's, keep it):
   [ARTIFACTS: entry 257 (build order); lean_stage3/Stage3/PerronKernel.lean
   (COMPLETE: K1 both cases, K2 both cases, pole crossed via dslope +
   ResidueTheoremOnRectangleWithSimplePole; the classical arc was never
-  needed)]. Remaining: slices 1b, 1c (Chebyshev-level sums), 2 (pigeonhole
-  on zeta_local_zero_count, already in repo), 3, 4 (assembly against
-  sorry-free machinery) — per entry 257, "no step needs mathematics absent
-  from the literature or from either library." 
+  needed)]. Slices 1b (entry 259, far_terms_sum) and 1c (entry 260,
+  near_diagonal_sum) ALSO PROVED — slice 1's analytic content complete,
+  one file, one axiom set. Remaining: pure composition — slice-1
+  assembly, 2 (pigeonhole on zeta_local_zero_count, already in repo),
+  3, 4 — per entry 257, "no step needs mathematics absent from the
+  literature or from either library." 
 - StmtArgCrude: OPEN, untouched.
 - The four exact zeros: reframed by entries 253-255. The census ranks
   them by information ((20,6) carries 2.85 digits; the rest near-free);
