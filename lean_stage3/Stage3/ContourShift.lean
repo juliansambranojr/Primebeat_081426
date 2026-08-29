@@ -31,6 +31,7 @@ the consumed regime; the `T > x` tail is its own flagged obligation.
 import Stage3.PerronKernel
 import Stage3.JensenCount
 import Stage3.Assembly
+import PrimeNumberTheoremAnd.RectangleArgumentPrinciple
 
 namespace ContourShift
 
@@ -796,6 +797,100 @@ theorem zeta_ne_zero_of_re_mem {w : ℂ} (h1 : -1 ≤ w.re) (h2 : w.re ≤ 0) :
     norm_num
   exact (mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero hf2 hfp) hfΓ) hfc) hfζ)
     hfe.symm
+
+/-- `(s−1)²·ζ` is analytic at `1`, from the unconditional
+completed-zeta formula (junk values at `s = 1` agree on both sides). -/
+theorem sq_mul_zeta_analyticAt_one :
+    AnalyticAt ℂ (fun s ↦ (s - 1)^2 * riemannZeta s) 1 := by
+  have hπ : ((Real.pi:ℝ):ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
+  have heq : (fun s : ℂ ↦ (s - 1)^2 * riemannZeta s)
+      = fun s ↦ ((s-1)^2 * (s * completedRiemannZeta₀ s - 1) + s * (s-1)) /
+          (2 * ((Real.pi:ℝ):ℂ)^(-s/2) * Complex.Gamma (s/2 + 1)) := by
+    funext s
+    rw [riemannZeta_eq_mul_completedRiemannZeta₀, ← mul_div_assoc]
+    congr 1
+    by_cases hs1 : s = 1
+    · rw [hs1]
+      simp
+    · have h1s : (1:ℂ) - s ≠ 0 := by
+        intro hcon
+        exact hs1 (by linear_combination -hcon)
+      field_simp
+      ring
+  rw [heq]
+  apply AnalyticAt.div
+  · exact (((analyticAt_id.sub analyticAt_const).pow 2).mul
+      ((analyticAt_id.mul (differentiable_completedZeta₀.analyticAt 1)).sub
+        analyticAt_const)).add (analyticAt_id.mul (analyticAt_id.sub analyticAt_const))
+  · apply AnalyticAt.mul
+    · exact (analyticAt_const.mul
+        (((differentiable_id.neg.div_const 2).const_cpow (Or.inl hπ)).analyticAt 1))
+    · have hopen : IsOpen {s : ℂ | -2 < s.re} := isOpen_lt continuous_const Complex.continuous_re
+      have hdiff : DifferentiableOn ℂ (fun s : ℂ ↦ Complex.Gamma (s/2 + 1))
+          {s : ℂ | -2 < s.re} := by
+        intro t ht
+        apply DifferentiableAt.differentiableWithinAt
+        have h1 : DifferentiableAt ℂ Complex.Gamma (t/2 + 1) := by
+          apply Complex.differentiableAt_Gamma
+          intro m hcon
+          have h2 : t = -(2 * (m:ℂ)) - 2 := by linear_combination 2 * hcon
+          have h3 : (-2:ℝ) < t.re := ht
+          have h4 : t.re = -(2 * (m:ℝ)) - 2 := by
+            rw [h2]
+            simp
+          rw [h4] at h3
+          have h5 : (0:ℝ) ≤ (m:ℝ) := Nat.cast_nonneg m
+          linarith
+        exact h1.comp t ((differentiableAt_id.div_const 2).add_const 1)
+      exact hdiff.analyticAt (hopen.mem_nhds (by simp; norm_num))
+  · apply mul_ne_zero
+    · apply mul_ne_zero two_ne_zero
+      rw [Complex.cpow_def_of_ne_zero hπ]
+      exact Complex.exp_ne_zero _
+    · apply Complex.Gamma_ne_zero_of_re_pos
+      have : ((1:ℂ)/2 + 1).re = 3/2 := by
+        simp [Complex.add_re]
+        norm_num
+      rw [this]
+      norm_num
+
+/-- `ζ` is meromorphic on any set. -/
+theorem zeta_meromorphicOn (U : Set ℂ) : MeromorphicOn riemannZeta U := by
+  intro s hs
+  by_cases hs1 : s = 1
+  · rw [hs1]
+    exact ⟨2, by simpa [smul_eq_mul] using sq_mul_zeta_analyticAt_one⟩
+  · exact (zeta_analyticAt hs1).meromorphicAt
+
+/-- The zeros of `ζ` in a closed rectangle form a finite set. -/
+theorem zeta_zeros_rectangle_finite (z w : ℂ) :
+    {ρ : ℂ | riemannZeta ρ = 0 ∧ ρ ∈ Rectangle z w}.Finite := by
+  apply Set.Finite.subset
+    ((divisor_support_rectangle_finite riemannZeta z w).union (Set.finite_singleton 1))
+  rintro ρ ⟨hz, hρR⟩
+  by_cases hρ1 : ρ = 1
+  · right
+    exact hρ1
+  · left
+    have h1 := (zeta_meromorphicOn (Rectangle z w)).divisor_apply hρR
+    rw [Function.mem_support, h1, (zeta_analyticAt hρ1).meromorphicOrderAt_eq]
+    cases hO : analyticOrderAt riemannZeta ρ with
+    | top => exact absurd hO (zeta_order_ne_top hρ1)
+    | coe n =>
+      have hn : n ≠ 0 := by
+        intro hn0
+        rw [hn0] at hO
+        exact ((zeta_analyticAt hρ1).analyticOrderAt_eq_zero.mp (by exact_mod_cast hO)) hz
+      rw [ENat.map_coe, WithTop.untop₀_coe]
+      exact_mod_cast hn
+
+/-- info: 'ContourShift.zeta_meromorphicOn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_meromorphicOn
+
+/-- info: 'ContourShift.zeta_zeros_rectangle_finite' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_zeros_rectangle_finite
 
 /-- info: 'ContourShift.zeta_ne_zero_of_re_mem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
