@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-29  entry 262: SLICE 2 PROVED — goodT_exists, good-height pigeonhole on zeta_local_zero_count via FE-partner windows, gap 1/(180·log T + 1060), commit 58045ed. ContourShift.lean scaffold live; S3 edge_bound + S4 residue_identity are the sorried obligations
+- [open]   2026-08-29  entry 261: SLICE 1 COMPOSED + FUBINI — explicit_formula_perron: ψ vs (2πi)⁻¹∫(−ζ′/ζ)x^s/s ds at c = 1+1/log x, error 600·x·log(xT)²/T + 13·log x, sorry-free, pinned, commits 539bc7b/dcab8ed/04395ad
 - [open]   2026-08-29  entry 260: SLICE 1C PROVED — near_diagonal_sum, where c₂·log x is born (the two nearest integers pay min ≤ 1 each), commit 75400f5. Slice 1's analytic content COMPLETE: 1a+1b+1c one file, one axiom set. hEF remaining = pure composition (slices 1-assembly, 2, 3, 4)
 - [open]   2026-08-29  entry 259: SLICE 1B PROVED — far_terms_sum ≤ 300·x·log(xT)²/T, sorry-free, pinned, commit 5f058a7; Real.tsum_le_of_sum_le removes all summability side-conditions. Next: 1c, the near-diagonal
 - [open]   2026-08-29  entry 258: SLICE 1A PROVED — perron_kernel_truncated sorry-free, pinned [propext, Classical.choice, Quot.sound], commit 5884639. hEF's load-bearing unknown discharged; the classical arc was never needed anywhere

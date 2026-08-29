@@ -16,6 +16,118 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 262 — slice 2 proved: goodT_exists, the good-height pigeonhole — the zeros get a fence
+type: formalization
+refs: 257, 261
+
+**What was proved.** `ContourShift.goodT_exists`
+(`lean_stage3/Stage3/ContourShift.lean:149`, commit `58045ed`, pinned
+`[propext, Classical.choice, Quot.sound]`):
+
+```text
+∀ T ≥ 2, ∃ T' ∈ [T, T+1], every zero ρ of ζ with re ρ > 0
+    has |im ρ − T'| ≥ zeroGap T = 1/(180·log T + 1060)
+```
+
+The contour shift needs a height that no zero ordinate sits near; this
+is that height, with a crude-explicit gap.
+
+**The four supporting lemmas, each its own statement:**
+
+- `zeta_analyticAt` — ζ analytic on ℂ∖{1}, from
+  `differentiableAt_riemannZeta` upgraded by `DifferentiableOn.analyticAt`
+  on the open complement.
+- `one_le_zeta_order` — at any zero away from the pole the analytic
+  order is ≥ 1. Order ≠ 0 because ζ vanishes there; order ≠ ⊤ by the
+  identity theorem on ℂ∖{1} (connected via
+  `isPathConnected_compl_singleton_of_one_lt_rank`), which would force
+  ζ(2) = 0 against `riemannZeta_ne_zero_of_one_le_re`. The V4 argument
+  from the von Koch scaffold (entry 256), replayed on a bigger region.
+- `partner_zero` — the functional-equation reflection: every nontrivial
+  zero ordinate carries a zero with re ∈ [1/2, 1) at the same height,
+  via `riemannZeta_conj` + `riemannZeta_one_sub`. ζ(1−conj ρ) = 0 falls
+  out of the FE with the RHS zeroed by ζ(conj ρ) = conj(ζ ρ) = 0.
+- `mem_zetaWindow` — the partner lands in the Jensen window: with
+  re ∈ [1/2, 1) and ordinate within 9/10 of the center,
+  (3/2)² + (9/10)² = 3.06 ≤ (7/4)² = 3.0625. The window is exactly wide
+  enough, with 0.0025 of norm² to spare.
+
+**The count and the pigeonhole.** Two windows, centers T and T+1, cover
+every ordinate in [T−0.9, T+1.9]; anything outside is already ≥ 9/10
+from [T, T+1]. Each window's distinct-zero count is ≤ its order sum
+(order ≥ 1 per zero), and `zeta_local_zero_count` (entry 234's Jensen
+machinery) caps each order sum at 15·log T + 73, so at most
+k ≤ 30·log T + 176 distinct ordinates matter. Then k+1 midpoints spaced
+1/(k+1) across [T, T+1]: if each had an ordinate within 1/(2(k+1)), the
+map midpoint → ordinate would be injective (spacing beats two
+half-gaps), giving k+1 ≤ k. The free midpoint is T', and
+1/(2(k+1)) ≥ zeroGap T with room.
+
+**Toolchain traps paid.** `rw [analyticOrderNatAt]` cannot unfold a
+def — `show` the unfolded form instead. `omega` does not see `Int`
+absolute values — case-split on the sign first. The dependent-choice
+pigeonhole (`f i hi` with membership proofs in the type) breaks
+`Finset.card_le_card_of_injOn` — totalize with a dite `g : ℕ → ℝ`
+first, then everything is `Set.InjOn` on plain terms. `abs_add` is
+`abs_add_le` on both toolchains (the CLAUDE.md rename list already knew).
+
+**State of the contour shift.** `ContourShift.lean` is a scratch
+scaffold (named sorries by design, excluded from sorry-free claims):
+S2 `goodT_exists` proved and pinned; S3 `edge_bound` and S4
+`residue_identity` remain sorried obligations. S4 next by
+tractability — PNT+'s rectangle machinery applies but the rectangle
+holds ~T·log T zeros, so the single-pole residue theorem needs a
+subdivision argument over the finite zero set. S3 keeps its known gap:
+`LogDerivZetaFinalBound` covers σ > 1/2, the FE transports to
+σ < 1/2, and the seam at σ ≈ 1/2 needs the Hadamard partial fraction
+with the good-gap denominators — where this entry's gap gets spent.
+
+## 2026-08-29 — Entry 261 — slice 1 composed and the Fubini crossed: explicit_formula_perron — ψ against the −ζ′/ζ integral, sorry-free
+type: formalization
+refs: 257, 258, 259, 260
+
+**What was proved.** Three theorems in
+`lean_stage3/Stage3/PerronKernel.lean`, commits `539bc7b` → `dcab8ed`
+→ `04395ad`, all pinned `[propext, Classical.choice, Quot.sound]`:
+
+```text
+kernel_sum_bound (line 1595):
+  ‖Σ' n, Λ(n)·(perronI(x/n, c, T) − perronδ(x/n))‖
+      ≤ 600·x·log(xT)²/T + 12·log x           (x ≥ 16, T ≥ 1)
+
+perron_to_psi (line 2071):
+  ‖ψ(x) − Σ' n, Λ(n)·perronI(x/n, c, T)‖
+      ≤ 600·x·log(xT)²/T + 13·log x
+
+explicit_formula_perron (line 2340):
+  ‖ψ(x) − (2πi)⁻¹ ∫_{−T}^{T} (−ζ′/ζ)(c+it)·x^{c+it}/(c+it)·i dt‖
+      ≤ 600·x·log(xT)²/T + 13·log x           c = 1 + 1/log x
+```
+
+**How the composition went.** `kernel_sum_bound` splits the tsum at
+the |log(x/n)| < 1/2 diagonal: far terms by entry 259's
+`far_terms_sum` (300), near terms by entry 260's `near_diagonal_sum`
+(100 + 4·log x), each term first through entry 258's
+`perron_kernel_truncated`, and 300 + 100 ≤ 600 with slack absorbing
+the constant-versus-log bookkeeping. `perron_to_psi` adds the
+δ-side: Σ Λ(n)·perronδ(x/n) is exactly ψ(x) (perronδ is the indicator
+1 < x/n; the n = 0, 1 edge cases and ⌈x⌉ cutoff handled by
+`summable_of_ne_finset_zero`), extra cost one more log x.
+
+**The Fubini.** `perron_sum_eq_integral`: swapping Σ' n and ∫_{−T}^{T}
+via `MeasureTheory.integral_tsum_of_summable_integral_norm` — the
+majorant is Λ(n)·(x/n)^c·(interval length), summable because c > 1.
+Under the swap, `tsum_vonMangoldt_div_cpow` evaluates
+Σ Λ(n)/n^s = (−ζ′/ζ)(s) pointwise on re s = c via
+`LSeries_vonMangoldt_eq_deriv_riemannZeta_div`. The census's finding
+(entry 130) that no sorry-free truncated Perron formula existed at the
+pin: both halves now exist in this file.
+
+**What this is.** hEF slice 1 complete: ψ tied to the zeta side with
+the truncation error the ledger's shape requires. The zeros have not
+entered yet — that is slices 2–4, the contour shift (entry 262
+begins it).
+
 ## 2026-08-29 — Entry 260 — slice 1c proved: the near-diagonal, and where c₂·log x is born
 type: formalization
 refs: 257, 258, 259
