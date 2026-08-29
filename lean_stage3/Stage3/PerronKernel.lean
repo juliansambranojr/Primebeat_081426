@@ -2112,6 +2112,243 @@ theorem perron_to_psi {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
         add_le_add (delta_sum_close hx) (kernel_sum_bound hx hT)
     _ = 600 * x * Real.log (x * T) ^ 2 / T + 13 * Real.log x := by ring
 
+
+/-! ### The Fubini: from the kernel sum to the `−ζ′/ζ` contour integral -/
+
+/-- The Dirichlet-series identity under the integral: at `re s = c > 1`,
+`Σ Λ(n)·(x/n)^s = (−ζ′/ζ)(s)·x^s`. -/
+theorem tsum_vonMangoldt_div_cpow {x : ℝ} (hx0 : 0 < x) {s : ℂ} (hs : 1 < s.re) :
+    (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((x / n : ℝ) : ℂ) ^ s)
+      = (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s := by
+  have hxC : ((x:ℝ):ℂ) ≠ 0 := by exact_mod_cast hx0.ne'
+  have hquot : ∀ n : ℕ, 0 < n → ((x / n : ℝ) : ℂ) ^ s
+      = ((x:ℝ):ℂ) ^ s * ((n:ℝ):ℂ) ^ (-s) := by
+    intro n hn
+    have hn0 : (0:ℝ) < n := by exact_mod_cast hn
+    have hnC : (((n:ℝ)):ℂ) ≠ 0 := by exact_mod_cast hn0.ne'
+    have hqC : (((x/n : ℝ)):ℂ) ≠ 0 := by
+      have : (0:ℝ) < x/n := by positivity
+      exact_mod_cast this.ne'
+    rw [Complex.cpow_def_of_ne_zero hqC, Complex.cpow_def_of_ne_zero hxC,
+      Complex.cpow_def_of_ne_zero hnC, ← Complex.exp_add]
+    congr 1
+    rw [← Complex.ofReal_log (by positivity : (0:ℝ) ≤ x/n),
+      ← Complex.ofReal_log hx0.le, ← Complex.ofReal_log hn0.le,
+      Real.log_div hx0.ne' hn0.ne']
+    push_cast
+    ring
+  have hterm : ∀ n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((x / n : ℝ) : ℂ) ^ s
+      = ((x:ℝ):ℂ) ^ s * ((ArithmeticFunction.vonMangoldt n : ℂ) * ((n:ℝ):ℂ) ^ (-s)) := by
+    intro n
+    rcases Nat.eq_zero_or_pos n with rfl | hn
+    · simp [ArithmeticFunction.map_zero]
+    · rw [hquot n hn]
+      ring
+  calc (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((x / n : ℝ) : ℂ) ^ s)
+      = ∑' n : ℕ, ((x:ℝ):ℂ) ^ s
+          * ((ArithmeticFunction.vonMangoldt n : ℂ) * ((n:ℝ):ℂ) ^ (-s)) :=
+        tsum_congr hterm
+    _ = ((x:ℝ):ℂ) ^ s
+          * ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((n:ℝ):ℂ) ^ (-s) :=
+        tsum_mul_left
+    _ = (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s := by
+        rw [mul_comm]
+        congr 1
+        have hLS : (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((n:ℝ):ℂ) ^ (-s))
+            = LSeries (fun n ↦ (ArithmeticFunction.vonMangoldt n : ℂ)) s := by
+          apply tsum_congr
+          intro n
+          rw [LSeries.term_def]
+          rcases Nat.eq_zero_or_pos n with rfl | hn
+          · simp [ArithmeticFunction.map_zero]
+          · rw [if_neg hn.ne']
+            rw [Complex.cpow_neg, div_eq_mul_inv]
+            norm_num
+        rw [hLS]
+        exact ArithmeticFunction.LSeries_vonMangoldt_eq_deriv_riemannZeta_div hs
+
+/-- **The Fubini.** The kernel sum IS the truncated `−ζ′/ζ` contour integral. -/
+theorem perron_sum_eq_integral {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
+    (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+        * perronI (x/n) (1 + 1/Real.log x) T)
+      = (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+        * ∫ t in (-T)..T,
+            (- deriv riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)
+              / riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t))
+            * ((x:ℝ):ℂ) ^ (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)
+            / (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) * Complex.I := by
+  have hx0 : (0:ℝ) < x := by linarith
+  have hT0 : (0:ℝ) < T := lt_of_lt_of_le one_pos hT
+  have hexp16 : Real.exp 1 < 16 := by linarith [Real.exp_one_lt_d9]
+  have hlx : 1 < Real.log x := by
+    have h1 : Real.log (Real.exp 1) < Real.log x :=
+      Real.log_lt_log (Real.exp_pos 1) (lt_of_lt_of_le hexp16 hx)
+    rwa [Real.log_exp] at h1
+  have hlx0 : (0:ℝ) < Real.log x := by linarith
+  set c : ℝ := 1 + 1/Real.log x with hcd
+  have hc0 : (0:ℝ) < c := by rw [hcd]; positivity
+  have hc1 : 1 < c := by
+    rw [hcd]
+    have h9 : 0 < 1/Real.log x := by positivity
+    linarith
+  have hsre : ∀ t : ℝ, (((c:ℝ):ℂ) + Complex.I * t).re = c := by
+    intro t
+    simp
+  have hsne : ∀ t : ℝ, (((c:ℝ):ℂ) + Complex.I * t) ≠ 0 := by
+    intro t h
+    have hre := congrArg Complex.re h
+    simp at hre
+    linarith
+  -- the summand family, in set-integral form
+  set F : ℕ → ℝ → ℂ := fun n t ↦ (ArithmeticFunction.vonMangoldt n : ℂ)
+    * (((x/n : ℝ):ℂ) ^ (((c:ℝ):ℂ) + Complex.I * t)
+      / (((c:ℝ):ℂ) + Complex.I * t) * Complex.I) with hFd
+  have hFcont : ∀ n : ℕ, 0 < n → Continuous (F n) := by
+    intro n hn
+    rw [hFd]
+    dsimp only
+    apply Continuous.mul continuous_const
+    apply Continuous.mul _ continuous_const
+    apply Continuous.div
+    · apply Continuous.const_cpow (by fun_prop)
+      left
+      have hn0 : (0:ℝ) < n := by exact_mod_cast hn
+      have : (0:ℝ) < x/n := by positivity
+      exact_mod_cast this.ne'
+    · fun_prop
+    · exact hsne
+  have hF0 : F 0 = fun _ ↦ 0 := by
+    funext t
+    rw [hFd]
+    simp [ArithmeticFunction.map_zero]
+  have hFint : ∀ n : ℕ, MeasureTheory.Integrable (F n)
+      (MeasureTheory.volume.restrict (Set.Ioc (-T) T)) := by
+    intro n
+    rcases Nat.eq_zero_or_pos n with rfl | hn
+    · rw [hF0]
+      exact MeasureTheory.integrable_zero _ _ _
+    · exact ((hFcont n hn).intervalIntegrable (-T) T).1
+  have hFbound : ∀ n : ℕ, 0 < n → ∀ t : ℝ,
+      ‖F n t‖ ≤ ArithmeticFunction.vonMangoldt n * (x/n) ^ c / c := by
+    intro n hn t
+    have hn0 : (0:ℝ) < n := by exact_mod_cast hn
+    have hyx : (0:ℝ) < x/n := by positivity
+    rw [hFd]
+    dsimp only
+    rw [norm_mul, norm_mul, Complex.norm_I, mul_one, norm_div,
+      Complex.norm_real, Real.norm_eq_abs,
+      abs_of_nonneg ArithmeticFunction.vonMangoldt_nonneg,
+      Complex.norm_cpow_eq_rpow_re_of_pos hyx, hsre]
+    have hden : c ≤ ‖(((c:ℝ):ℂ) + Complex.I * t)‖ := by
+      have h := Complex.abs_re_le_norm (((c:ℝ):ℂ) + Complex.I * t)
+      rw [hsre] at h
+      calc c = |c| := (abs_of_pos hc0).symm
+        _ ≤ _ := h
+    calc ArithmeticFunction.vonMangoldt n
+          * ((x/n) ^ c / ‖(((c:ℝ):ℂ) + Complex.I * t)‖)
+        ≤ ArithmeticFunction.vonMangoldt n * ((x/n) ^ c / c) := by
+          apply mul_le_mul_of_nonneg_left _ ArithmeticFunction.vonMangoldt_nonneg
+          exact div_le_div_of_nonneg_left (Real.rpow_nonneg hyx.le _) hc0 hden
+      _ = ArithmeticFunction.vonMangoldt n * (x/n) ^ c / c := by ring
+  have hFnorm_sum : Summable (fun n : ℕ ↦
+      ∫ t, ‖F n t‖ ∂(MeasureTheory.volume.restrict (Set.Ioc (-T) T))) := by
+    apply Summable.of_nonneg_of_le
+      (fun n ↦ MeasureTheory.integral_nonneg (fun t ↦ norm_nonneg _)) _
+      ((vonMangoldt_rpow_summable hc1).mul_left (2 * T * x ^ c / c))
+    intro n
+    rcases Nat.eq_zero_or_pos n with rfl | hn
+    · rw [hF0]
+      simp [ArithmeticFunction.map_zero]
+      try positivity
+    · have hn0 : (0:ℝ) < n := by exact_mod_cast hn
+      have hyx : (0:ℝ) < x/n := by positivity
+      have hvol : (MeasureTheory.volume (Set.Ioc (-T) T)).toReal = 2*T := by
+        rw [Real.volume_Ioc, ENNReal.toReal_ofReal (by linarith)]
+        ring
+      calc ∫ t, ‖F n t‖ ∂(MeasureTheory.volume.restrict (Set.Ioc (-T) T))
+          ≤ ∫ _t, (ArithmeticFunction.vonMangoldt n * (x/n) ^ c / c)
+              ∂(MeasureTheory.volume.restrict (Set.Ioc (-T) T)) := by
+            apply MeasureTheory.integral_mono_of_nonneg
+            · filter_upwards with t using norm_nonneg _
+            · exact MeasureTheory.integrable_const _
+            · filter_upwards with t using hFbound n hn t
+          _ = (2*T) * (ArithmeticFunction.vonMangoldt n * (x/n) ^ c / c) := by
+              rw [MeasureTheory.integral_const, smul_eq_mul,
+                MeasureTheory.measureReal_restrict_apply_univ,
+                MeasureTheory.measureReal_def, hvol]
+          _ = 2 * T * x ^ c / c * (ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)) := by
+              rw [Real.div_rpow hx0.le hn0.le, Real.rpow_neg hn0.le]
+              field_simp
+              try ring
+  -- the swap
+  have hswap := MeasureTheory.integral_tsum_of_summable_integral_norm hFint hFnorm_sum
+  -- rewrite each perronI as a set integral of F n
+  have hperron : ∀ n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+      * perronI (x/n) c T
+      = (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+        * ∫ t, F n t ∂(MeasureTheory.volume.restrict (Set.Ioc (-T) T)) := by
+    intro n
+    rw [perronI, hFd]
+    dsimp only
+    rw [intervalIntegral.integral_of_le (by linarith : -T ≤ T),
+      MeasureTheory.integral_const_mul]
+    ring
+  calc (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) c T)
+      = ∑' n : ℕ, (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+          * ∫ t, F n t ∂(MeasureTheory.volume.restrict (Set.Ioc (-T) T)) :=
+        tsum_congr hperron
+    _ = (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+          * ∑' n : ℕ, ∫ t, F n t ∂(MeasureTheory.volume.restrict (Set.Ioc (-T) T)) :=
+        tsum_mul_left
+    _ = (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+          * ∫ t, (∑' n : ℕ, F n t) ∂(MeasureTheory.volume.restrict (Set.Ioc (-T) T)) := by
+        rw [hswap]
+    _ = (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+        * ∫ t in (-T)..T,
+            (- deriv riemannZeta (((c:ℝ):ℂ) + Complex.I * t)
+              / riemannZeta (((c:ℝ):ℂ) + Complex.I * t))
+            * ((x:ℝ):ℂ) ^ (((c:ℝ):ℂ) + Complex.I * t)
+            / (((c:ℝ):ℂ) + Complex.I * t) * Complex.I := by
+        congr 1
+        rw [intervalIntegral.integral_of_le (by linarith : -T ≤ T)]
+        apply MeasureTheory.integral_congr_ae
+        filter_upwards with t
+        have hs1 : 1 < ((((c:ℝ):ℂ) + Complex.I * t)).re := by
+          rw [hsre]
+          exact hc1
+        calc (∑' n : ℕ, F n t)
+            = (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+                * ((x/n : ℝ):ℂ) ^ (((c:ℝ):ℂ) + Complex.I * t))
+              * ((((c:ℝ):ℂ) + Complex.I * t)⁻¹ * Complex.I) := by
+              rw [← tsum_mul_right]
+              apply tsum_congr
+              intro n
+              rw [hFd]
+              dsimp only
+              rw [div_eq_mul_inv]
+              ring
+          _ = (- deriv riemannZeta (((c:ℝ):ℂ) + Complex.I * t)
+                / riemannZeta (((c:ℝ):ℂ) + Complex.I * t))
+              * ((x:ℝ):ℂ) ^ (((c:ℝ):ℂ) + Complex.I * t)
+              / (((c:ℝ):ℂ) + Complex.I * t) * Complex.I := by
+              rw [tsum_vonMangoldt_div_cpow hx0 hs1]
+              rw [div_eq_mul_inv]
+              ring
+
+/-- **hEF, Perron form — the truncated explicit formula at the line `re = c`.**
+`ψ` misses the truncated `−ζ′/ζ` integral by `600·x·log(xT)²/T + 13·log x`. -/
+theorem explicit_formula_perron {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
+    ‖(Chebyshev.psi x : ℂ)
+        - (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+          * ∫ t in (-T)..T,
+              (- deriv riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)
+                / riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t))
+              * ((x:ℝ):ℂ) ^ (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)
+              / (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) * Complex.I‖
+      ≤ 600 * x * Real.log (x * T) ^ 2 / T + 13 * Real.log x := by
+  rw [← perron_sum_eq_integral hx hT]
+  exact perron_to_psi hx hT
+
 /-- info: 'PerronKernel.near_diagonal_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms near_diagonal_sum
@@ -2119,5 +2356,9 @@ theorem perron_to_psi {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
 /-- info: 'PerronKernel.perron_to_psi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms perron_to_psi
+
+/-- info: 'PerronKernel.explicit_formula_perron' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms explicit_formula_perron
 
 end PerronKernel
