@@ -16,6 +16,75 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 265 — S3 priced and its load-bearing unknown discharged: zeta continued to re > −1 in a new file, ZetaGrowth
+type: formalization
+refs: 257, 263, 264
+
+**The measurement that shaped the slice.** S3 (`edge_bound`,
+‖ζ′/ζ‖ ≤ C·log²T on the contour edges at a good height) was priced
+before building. Findings, all read from source: PNT+'s
+`LogDerivZetaFinalBound` is the Landau partial fraction (zero sum
+included) but its ball is pinned at center 3/2 — reaching σ < 1/2
+through it is impossible. The generic `FinalBound` (StrongPNT:1021)
+is rescalable to any center. `GlobalBound` bounds ζ linearly in |t|
+on re ∈ [1/2, 5/2]. The FE-transport route below 1/2 pays complex
+Stirling for Γ at height t — absent from Mathlib, PNT+, and the
+bench's own Stirling.lean (which is the Backlund phase work, real-part
+only). The one buildable input: polynomial growth of ζ on
+σ ∈ [−1/2, 1/2] via a second-order Euler–Maclaurin continuation. The
+ball geometry forced this: any Landau ball whose r′-disk covers a
+left edge at σ < 0 overshoots into σ < 0, so a re > 0-only growth
+bound can never feed it. That unknown is now discharged.
+
+**What was proved** (`lean_stage3/Stage3/ZetaGrowth.lean`, new file,
+commits `8552ffd` → `8257e39` → `324eb4d` → `491c70b` → `ca582d1`,
+all pinned `[propext, Classical.choice, Quot.sound]`):
+
+- `emA` (line 21): the antiderivative `({x} − {x}²)/2` of
+  `⌊x⌋ + 1/2 − x`; `0 ≤ emA ≤ 1/8`; vanishes at every integer; equals
+  a polynomial on each `[n, n+1]` including both endpoints.
+- `interval_ibp` (96): on `[n, n+1]` the first-order EM tail
+  integrand integrates to `(s+1)` times the second-order one — FTC
+  with `emA`'s endpoint zeros, no boundary terms, valid every
+  `s ≠ −1`.
+- `tail_ibp` (210): the identity on `Ioi N` for `re s > 0` —
+  adjacent-interval sum plus `intervalIntegral_tendsto_integral_Ioi`
+  on both sides.
+- `zeta1` (282): the continued form — finite sum (reindexed from 1:
+  the inherited `1/(0:ℂ)^s` term is discontinuous at `s = 0`, inside
+  the new strip; caught before it bit), edge terms, and
+  `s(s+1)·∫emA·x^(−s−2)`, every piece absolutely convergent on
+  `re s > −1`. `zeta1_eq_zeta` (288) on `re > 0` via PNT+'s
+  `Zeta0EqZeta`.
+- `tail_differentiableAt` (311): the tail is
+  `mellin (indicator (Ioi N) emA) (−s−1)` — bounded at ∞ (exponent
+  `a = 0`), vanishing near 0 (exponent free), so Mathlib's
+  `mellin_differentiableAt_of_isBigO_rpow` covers every point of
+  `re > −1` with a per-point choice of the free exponent. Replaced
+  ~150 lines of dominated-convergence machinery.
+- `zeta1_eq_zeta_strip` (488): **the continuation** — identity
+  theorem on `stripRegion = {re > −1} ∖ {1}` (the VonKoch
+  four-convex-piece preconnectedness pattern, entry 256, replayed at
+  −1), agreeing with ζ near 2, hence everywhere. ζ now has a
+  concrete term-by-term boundable formula on the rectangle's entire
+  σ-range.
+
+**What remains for S3, priced with no unknowns:** crude norm bounds
+on zeta1's four terms (sum ≤ N^{3/2}-type, tail ≤
+|s||s+1|·N^(−σ−1)/(8(σ+1))); the compact-region constant for ball
+heights below |t| = 2; the `FinalBound` rescale at center `3/2+iT′`
+with `g = (s−1)ζ` (pole cleared by the entry-263 factorization, f(0)
+lower-bounded elementarily at re = 3/2); and gap-eating the zero sum
+(each term ≤ m/gap via entry 262's good height; the count via Jensen
+windows needs `m(ρ) = m(1−conj ρ)` — order under conjugation and the
+affine map, with `analyticOrderNatAt_fun_comp_affine` already in
+JensenCount). Then the final `StmtExplicitFormula` glue.
+
+**Trap paid.** `Iio_mem_nhds h` is a membership, not an Eventually —
+`.filter_mono` fails on it (second occurrence of this trap; the
+composable forms are `IsOpen.eventually_mem` and
+`mem_nhdsWithin_of_mem_nhds`).
+
 ## 2026-08-29 — Entry 264 — SLICE 4 DISCHARGED: residue_identity — the zeros enter the formula
 type: formalization
 refs: 257, 262, 263

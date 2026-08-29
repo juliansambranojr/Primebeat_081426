@@ -106,11 +106,15 @@ Vocabulary (Julian's, keep it):
   good-rectangle contour of (−ζ′/ζ)x^s/s equals
   x − ζ′/ζ(0) − zeroPartialSum x T′, pinned clean, no sorryAx.
   Analytic layer was entry 263 (commits 2664700..2f795dd). Remaining:
-  the final StmtExplicitFormula glue (S1+S2+S3+S4) and S3
-  edge_bound (seam at σ ≈ 1/2 needs Hadamard partial fraction with the
-  good-gap denominators; LogDerivZetaFinalBound covers σ > 1/2, FE
-  transports below) — per entry 257, "no step needs mathematics absent
-  from the literature or from either library." 
+  the final StmtExplicitFormula glue (S1+S2+S3+S4) and S3 edge_bound.
+  S3's load-bearing unknown DISCHARGED (entry 265, ZetaGrowth.lean,
+  commits 8552ffd..ca582d1): zeta continued to re > −1 by second-order
+  Euler–Maclaurin (Mellin analyticity + identity theorem). S3
+  remainder is priced with no unknowns: crude term bounds, compact
+  patch, FinalBound rescale at 3/2+iT′ with (s−1)ζ, gap-eating the
+  zero sum via the reflection-order lemma — per entry 257, "no step
+  needs mathematics absent from the literature or from either
+  library." 
 - StmtArgCrude: OPEN, untouched.
 - The four exact zeros: reframed by entries 253-255. The census ranks
   them by information ((20,6) carries 2.85 digits; the rest near-free);
