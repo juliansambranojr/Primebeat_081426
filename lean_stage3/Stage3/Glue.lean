@@ -555,7 +555,7 @@ theorem Gf_norm_conj {x : ℝ} (hx : 0 < x) {u : ℂ} (hu1 : u ≠ 1) :
 set_option maxHeartbeats 1600000 in
 /-- **The left-edge integral bound**: `≤ C·log x` for `T′ ≤ x²`. -/
 theorem edge_left_bound :
-    ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ x^2 →
+    ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 →
       ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ C * Real.log x := by
   classical
   obtain ⟨Ce, hCe0, hCe⟩ := EdgeBound.edge_bound_core
@@ -594,7 +594,7 @@ theorem edge_left_bound :
     rw [hDd]
     positivity
   clear_value D
-  refine ⟨32 * 256 * D / 2 + 1, by positivity, ?_⟩
+  refine ⟨72 * 256 * D / 2 + 1, by positivity, ?_⟩
   intro x T' hx hT'2 hT'x
   have hx0 : (0:ℝ) < x := by linarith
   have hx1 : (1:ℝ) ≤ x := by linarith
@@ -608,10 +608,11 @@ theorem edge_left_bound :
     nlinarith
   have hlogT' : (0:ℝ) < Real.log T' := Real.log_pos (by linarith)
   have hlogT'2 : Real.log 2 ≤ Real.log T' := Real.log_le_log (by norm_num) hT'2
-  have hlogT'x : Real.log T' ≤ 2 * Real.log x := by
-    have h4 : Real.log T' ≤ Real.log (x^2) := Real.log_le_log (by linarith) hT'x
-    rw [Real.log_pow] at h4
+  have hlogT'x : Real.log T' ≤ 3 * Real.log x := by
+    have h4 : Real.log T' ≤ Real.log (2*x^2) := Real.log_le_log (by linarith) hT'x
+    rw [Real.log_mul (by norm_num) (by positivity), Real.log_pow] at h4
     push_cast at h4
+    have h4b : Real.log 2 ≤ Real.log x := Real.log_le_log (by norm_num) (by linarith)
     linarith
   -- the pointwise dominating bound
   have hpoint : ∀ t : ℝ, -T' ≤ t → t ≤ T' →
@@ -912,13 +913,13 @@ theorem edge_left_bound :
   calc ‖∫ t in (-T')..T', Gf x (((-1/4:ℝ):ℂ) + t * Complex.I)‖
       ≤ D * Real.log T' * x ^ (-(1:ℝ)/4) * (8 * Real.log T') := hInorm
     _ = 8 * D * (Real.log T')^2 * x ^ (-(1:ℝ)/4) := by ring
-    _ ≤ 8 * D * (2*Real.log x)^2 * x ^ (-(1:ℝ)/4) := by
+    _ ≤ 8 * D * (3*Real.log x)^2 * x ^ (-(1:ℝ)/4) := by
         apply mul_le_mul_of_nonneg_right ?_ hrp0
-        have h39 : (Real.log T')^2 ≤ (2*Real.log x)^2 := by
+        have h39 : (Real.log T')^2 ≤ (3*Real.log x)^2 := by
           apply pow_le_pow_left₀ hlogT'.le hlogT'x
         nlinarith [hD0]
-    _ = 32 * D * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) := by ring
-    _ ≤ 32 * D * 256 := by
+    _ = 72 * D * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) := by ring
+    _ ≤ 72 * D * 256 := by
         apply mul_le_mul_of_nonneg_left ?_ (by positivity)
         have h40 := Real.log_le_rpow_div hx0.le (show (0:ℝ) < 1/16 by norm_num)
         have h41 : Real.log x ≤ 16 * x ^ ((1:ℝ)/16) := by
@@ -944,10 +945,10 @@ theorem edge_left_bound :
           _ = 256 * (x ^ (-(1:ℝ)/4) * x ^ ((1:ℝ)/8)) := by ring
           _ = 256 * x ^ (-(1:ℝ)/8) := by rw [h44]
           _ ≤ 256 := by linarith
-    _ ≤ (32 * 256 * D / 2 + 1) * Real.log x := by
-        have h46 : 32 * D * 256 = (32 * 256 * D / 2) * 2 := by ring
+    _ ≤ (72 * 256 * D / 2 + 1) * Real.log x := by
+        have h46 : 72 * D * 256 = (72 * 256 * D / 2) * 2 := by ring
         rw [h46]
-        have h47 : (0:ℝ) ≤ 32 * 256 * D / 2 := by positivity
+        have h47 : (0:ℝ) ≤ 72 * 256 * D / 2 := by positivity
         nlinarith [hlx2]
 
 
