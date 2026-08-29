@@ -16,6 +16,79 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 263 — slice 4's analytic layer complete: the multi-pole residue theorem and every pole of G, pinned
+type: formalization
+refs: 257, 261, 262
+
+**What was proved.** Nine theorems in
+`lean_stage3/Stage3/ContourShift.lean`, commits `2664700` → `5642ed4`
+→ `a60f5d2` → `3462667` → `2f795dd`, all pinned
+`[propext, Classical.choice, Quot.sound]`. The target is S4,
+`residue_identity`: the rectangle integral of `G = (−ζ′/ζ)·x^s/s`
+collecting `x − ζ′/ζ(0) − Σ_ρ m·x^ρ/ρ`.
+
+**The rectangle machinery** (no new analysis — PNT+'s single-pole
+proof only ever touches border values):
+
+- `residue_rectangle_multi` (line 388): f agreeing off a finite
+  interior pole set with `g + Σ_p A p/(s−p)`, g holomorphic on the
+  rectangle → the integral is `Σ_p A p`. Border congruence, linearity
+  over the pole sum (`borderIntegrable_sum_poles`,
+  `rectangleIntegral_sum_poles`), `vanishesOnRectangle`, one
+  `ResidueTheoremInRectangle` per pole.
+- `residue_rectangle_of_local` (line 417): the same from purely local
+  data — per-pole analytic part + principal part on a punctured
+  neighborhood. The global g is glued: a dite over the pole set,
+  eventual-equality at each pole, congruence elsewhere.
+
+**The pole extraction:**
+
+- `zeta_local_data` (line 518): wherever `ζ =ᶠ (s−p)^n·g` on a
+  punctured neighborhood with g analytic nonvanishing and `p ≠ 0`,
+  `G` splits as `analytic + (−n·x^p/p)/(s−p)`. logDeriv algebra
+  (`logDeriv_mul` + `logDeriv_fun_zpow`) plus the dslope split
+  `k s/(s−p) = k p/(s−p) + dslope k p s` (`div_sub_eq_dslope`,
+  `analyticAt_dslope`).
+- `zeta_local_data_zero` (615): at a nontrivial zero, n = the
+  analytic order, residue `−m·x^ρ/ρ` — factorization from
+  `analyticOrderAt_eq_natCast`, finiteness of the order by
+  `zeta_order_ne_top` (identity theorem on ℂ∖{1}, extracted
+  standalone from entry 262's argument).
+- `zeta_local_data_one` (640): residue `+x`. The factorization
+  `ζ = (s−1)⁻¹·N/D` is built from Mathlib's completed zeta:
+  `N = (s−1)·Λ₀ − (s−1)/s + 1` with `N(1) = 1`,
+  `D = π^(−s/2)·Γ(s/2)` with `D(1) ≠ 0`; Γ analytic on `re > 0` via
+  `DifferentiableOn.analyticAt`.
+- `zeta_local_data_origin` (713): residue `−ζ′(0)/ζ(0)`, the dslope
+  of the analytic numerator, `ζ(0) = −1/2 ≠ 0`.
+
+**The strip fence.** `zeta_ne_zero_of_re_mem`: no zeros with
+`re ∈ [−1, 0]`. The functional equation `riemannZeta_one_sub` carries
+nonvanishing from `re ∈ [1, 2]`: the factors 2, `(2π)^(−s)`, `Γ(s)`
+(re > 0), `ζ(s)` (re ≥ 1) are nonzero, and `cos(πs/2) = 0` forces
+`s = 2k+1` with `k = 0` — s = 1, where ζ has its pole instead. This
+fences the rectangle's left edge and pins every rectangle zero into
+`re ∈ (0, 1)`.
+
+**What remains for S4.** The assembly: finiteness of the rectangle
+zero set (ζ meromorphic on the rectangle — `(s−1)²·ζ` analytic at 1 —
+then PNT+'s `divisor_support_rectangle_finite`); border disjointness
+(entry 262's goodT fences the top edge, `riemannZeta_conj` reflects it
+to the bottom, the strip fence covers the left, `re > 1` the right);
+and matching the finite residue sum to `Stage3.zeroPartialSum`
+(`Kadiri.NontrivialZeros` = zeros with re ∈ (0,1);
+`riemannZeta.order = (meromorphicOrderAt ζ s).untopD 0`, bridged to
+`analyticOrderNatAt` the way PNT+'s KadiriZeroCounting:98 does).
+Then S3, the edge bound, is the last open slice of hEF.
+
+**Toolchain traps paid.** `IsOpen.mem_nhds` is a membership, and
+`.filter_mono` wants an Eventually — `IsOpen.eventually_mem` is the
+form that composes. `logDeriv_mul`/`logDeriv_fun_zpow` unify their
+implicit function from the wrong argument — pass `(f := ...)`
+explicitly. `div_sub_eq_dslope` instantiated at a lambda needs
+`beta_reduce at` before `rw`. `field_simp` on the slope identity
+leaves a `ring` goal.
+
 ## 2026-08-29 — Entry 262 — slice 2 proved: goodT_exists, the good-height pigeonhole — the zeros get a fence
 type: formalization
 refs: 257, 261
