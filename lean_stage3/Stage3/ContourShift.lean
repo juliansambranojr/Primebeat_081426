@@ -495,6 +495,98 @@ theorem residue_rectangle_of_local {f : ℂ → ℂ} {z w : ℂ} {P : Finset ℂ
   rw [hgd]
   simp only [if_neg hsP]
 
+/-- `dslope` of an analytic function is analytic at the point. -/
+theorem analyticAt_dslope {f : ℂ → ℂ} {p : ℂ} (hf : AnalyticAt ℂ f p) :
+    AnalyticAt ℂ (dslope f p) p := by
+  obtain ⟨q, hq⟩ := hf
+  exact hq.has_fpower_series_dslope_fslope.analyticAt
+
+/-- Off the point, `f s/(s−p)` splits as `f p/(s−p) + dslope f p s`. -/
+theorem div_sub_eq_dslope {f : ℂ → ℂ} {p s : ℂ} (hsp : s ≠ p) :
+    f s / (s - p) = f p / (s - p) + dslope f p s := by
+  rw [dslope_of_ne _ hsp, slope_def_field]
+  have h1 : s - p ≠ 0 := sub_ne_zero.mpr hsp
+  field_simp
+  ring
+
+/-- **The local pole data of `G = (−ζ′/ζ)·x^s/s` at a factorization
+point.** Where `ζ` factors as `(s−p)^n·g` with `g` analytic and
+nonvanishing at `p ≠ 0`, `G` splits as `analytic + (−n·x^p/p)/(s−p)`
+on a punctured neighborhood: the pole is simple with residue
+`−n·x^p/p`. Covers every nontrivial zero (`n = order ≥ 1`) and the
+pole of `ζ` at `1` (`n = −1`, residue `+x`) in one statement. -/
+theorem zeta_local_data {p : ℂ} {n : ℤ} {g : ℂ → ℂ} {x : ℝ} (hx : 0 < x)
+    (hp0 : p ≠ 0) (hg : AnalyticAt ℂ g p) (hgp : g p ≠ 0)
+    (hfac : ∀ᶠ s in nhdsWithin p {p}ᶜ, riemannZeta s = (s - p) ^ n * g s) :
+    ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in nhdsWithin p {p}ᶜ,
+      - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s
+        = h s + (-(n:ℂ) * ((x:ℝ):ℂ) ^ p / p) / (s - p) := by
+  have hxne : ((x:ℝ):ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr (ne_of_gt hx)
+  have hcpow : Differentiable ℂ (fun t : ℂ ↦ ((x:ℝ):ℂ) ^ t) :=
+    differentiable_id.const_cpow (Or.inl hxne)
+  have hk : AnalyticAt ℂ (fun t : ℂ ↦ ((x:ℝ):ℂ) ^ t / t) p :=
+    (hcpow.analyticAt p).div analyticAt_id hp0
+  have hlg : AnalyticAt ℂ (logDeriv g) p := by
+    have h1 : logDeriv g = fun t ↦ deriv g t / g t := rfl
+    rw [h1]
+    exact hg.deriv.div hg hgp
+  refine ⟨fun t ↦ -(n:ℂ) * dslope (fun u ↦ ((x:ℝ):ℂ) ^ u / u) p t
+      - logDeriv g t * (((x:ℝ):ℂ) ^ t / t), ?_, ?_⟩
+  · exact (analyticAt_const.mul (analyticAt_dslope hk)).sub
+      (hlg.mul ((hcpow.analyticAt p).div analyticAt_id hp0))
+  · obtain ⟨U, hUfac, hUopen, hpU⟩ := eventually_nhds_iff.mp
+      (eventually_nhdsWithin_iff.mp hfac)
+    have hgana := hg.eventually_analyticAt
+    have hgne : ∀ᶠ t in nhds p, g t ≠ 0 := hg.continuousAt.eventually_ne hgp
+    filter_upwards [eventually_mem_nhdsWithin,
+      (hUopen.eventually_mem hpU).filter_mono nhdsWithin_le_nhds,
+      hgana.filter_mono nhdsWithin_le_nhds,
+      hgne.filter_mono nhdsWithin_le_nhds] with s hsp' hsU hsW hsV
+    have hsp : s ≠ p := Set.mem_compl_singleton_iff.mp hsp'
+    have hspne : s - p ≠ 0 := sub_ne_zero.mpr hsp
+    have hzp : (s - p) ^ n ≠ 0 := zpow_ne_zero n hspne
+    have hev_s : riemannZeta =ᶠ[nhds s] fun t ↦ (t - p) ^ n * g t := by
+      have hopen : IsOpen (U ∩ {p}ᶜ) := hUopen.inter isOpen_compl_singleton
+      filter_upwards [hopen.mem_nhds ⟨hsU, hsp'⟩] with t ht
+      exact hUfac t ht.1 (Set.mem_compl_singleton_iff.mp ht.2)
+    have hζs : riemannZeta s = (s - p) ^ n * g s := hUfac s hsU hsp
+    have hld : logDeriv riemannZeta s = (n:ℂ) / (s - p) + logDeriv g s := by
+      have h1 : logDeriv riemannZeta s = logDeriv (fun t ↦ (t - p) ^ n * g t) s := by
+        rw [logDeriv_apply, logDeriv_apply, hev_s.deriv_eq, hζs]
+      rw [h1, logDeriv_mul (f := fun t : ℂ ↦ (t - p) ^ n) (g := g) s hzp hsV
+        ((differentiableAt_id.sub (differentiableAt_const p)).zpow (Or.inl hspne))
+        hsW.differentiableAt]
+      congr 1
+      have h6 := logDeriv_fun_zpow (f := fun t : ℂ ↦ t - p) (x := s)
+        (differentiableAt_id.sub (differentiableAt_const p)) n
+      beta_reduce at h6
+      rw [h6]
+      have h2 : logDeriv (fun t : ℂ ↦ t - p) s = 1 / (s - p) := by
+        rw [logDeriv_apply, deriv_sub_const, deriv_id'']
+      rw [h2]
+      ring
+    have h3 : - deriv riemannZeta s / riemannZeta s = -logDeriv riemannZeta s := by
+      rw [logDeriv_apply, neg_div]
+    have h5 := div_sub_eq_dslope (f := fun t : ℂ ↦ ((x:ℝ):ℂ) ^ t / t) hsp
+    calc - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s
+        = -((n:ℂ) / (s - p) + logDeriv g s) * ((x:ℝ):ℂ) ^ s / s := by
+          rw [h3, hld]
+      _ = -(n:ℂ) * (((x:ℝ):ℂ) ^ s / s / (s - p))
+            - logDeriv g s * (((x:ℝ):ℂ) ^ s / s) := by
+          ring
+      _ = -(n:ℂ) * (((x:ℝ):ℂ) ^ p / p / (s - p)
+              + dslope (fun u ↦ ((x:ℝ):ℂ) ^ u / u) p s)
+            - logDeriv g s * (((x:ℝ):ℂ) ^ s / s) := by
+          rw [h5]
+      _ = (-(n:ℂ) * dslope (fun u ↦ ((x:ℝ):ℂ) ^ u / u) p s
+            - logDeriv g s * (((x:ℝ):ℂ) ^ s / s))
+            + (-(n:ℂ) * ((x:ℝ):ℂ) ^ p / p) / (s - p) := by
+          ring
+
+/-- info: 'ContourShift.zeta_local_data' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_local_data
+
 /-- info: 'ContourShift.residue_rectangle_of_local' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms residue_rectangle_of_local
