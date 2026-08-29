@@ -280,7 +280,7 @@ theorem tail_ibp {N : ℕ} (Npos : 0 < N) {s : ℂ} (hs : 0 < s.re) :
 /-- **The continued Euler–Maclaurin form**: every piece converges
 absolutely on `re s > −1`. -/
 noncomputable def zeta1 (N : ℕ) (s : ℂ) : ℂ :=
-  (∑ n ∈ Finset.range (N + 1), 1 / (n : ℂ) ^ s)
+  (∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s)
     + (- (N:ℂ) ^ (1 - s)) / (1 - s) + (- (N:ℂ) ^ (-s)) / 2
     + s * ((s+1) * ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)))
 
@@ -293,7 +293,18 @@ theorem zeta1_eq_zeta {N : ℕ} (Npos : 0 < N) {s : ℂ} (hs : 0 < s.re) (hs1 : 
     congr 1
     funext x
     rw [div_cpow_eq_cpow_neg]
-  rw [h2, tail_ibp Npos hs]
+  have hsum : (∑ n ∈ Finset.range (N + 1), 1 / (n : ℂ) ^ s)
+      = ∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s := by
+    rw [Finset.sum_range_succ']
+    have h0 : (1:ℂ) / (0:ℂ) ^ s = 0 := by
+      rw [Complex.zero_cpow (by
+        intro h
+        rw [h] at hs
+        simp at hs)]
+      simp
+    push_cast
+    rw [h0, add_zero]
+  rw [hsum, h2, tail_ibp Npos hs]
 
 /-- The tail integral is differentiable in `s` on `re s > −1`: it is a
 Mellin transform of a bounded function vanishing near `0`. -/
@@ -369,6 +380,143 @@ theorem tail_differentiableAt {N : ℕ} (Npos : 0 < N) {z : ℂ} (hz : -1 < z.re
       simp
     · simp
   · fun_prop
+
+/-- The strip on which the continued form lives. -/
+def stripRegion : Set ℂ := {s : ℂ | -1 < s.re ∧ s ≠ 1}
+
+theorem isOpen_stripRegion : IsOpen stripRegion := by
+  have h : stripRegion = {s : ℂ | -1 < s.re} ∩ {(1:ℂ)}ᶜ := by
+    ext s
+    simp [stripRegion, Set.mem_setOf_eq]
+  rw [h]
+  exact (isOpen_lt continuous_const Complex.continuous_re).inter isOpen_compl_singleton
+
+theorem preconnected_stripRegion : IsPreconnected stripRegion := by
+  have hA : IsPreconnected {s : ℂ | -1 < s.re ∧ 0 < s.im} := by
+    rw [Set.setOf_and]
+    exact ((convex_halfSpace_re_gt _).inter (convex_halfSpace_im_gt _)).isPreconnected
+  have hB : IsPreconnected {s : ℂ | -1 < s.re ∧ s.im < 0} := by
+    rw [Set.setOf_and]
+    exact ((convex_halfSpace_re_gt _).inter (convex_halfSpace_im_lt _)).isPreconnected
+  have hC : IsPreconnected {s : ℂ | -1 < s.re ∧ s.re < 1} := by
+    rw [Set.setOf_and]
+    exact ((convex_halfSpace_re_gt _).inter (convex_halfSpace_re_lt _)).isPreconnected
+  have hD : IsPreconnected {s : ℂ | 1 < s.re} :=
+    (convex_halfSpace_re_gt _).isPreconnected
+  have hS1 : IsPreconnected
+      ({s : ℂ | -1 < s.re ∧ 0 < s.im} ∪ {s : ℂ | -1 < s.re ∧ s.re < 1}) :=
+    IsPreconnected.union (⟨0, 1⟩ : ℂ)
+      ⟨show (-1:ℝ) < 0 by norm_num, show (0:ℝ) < 1 by norm_num⟩
+      ⟨show (-1:ℝ) < 0 by norm_num, show (0:ℝ) < 1 by norm_num⟩ hA hC
+  have hS2 : IsPreconnected
+      (({s : ℂ | -1 < s.re ∧ 0 < s.im} ∪ {s : ℂ | -1 < s.re ∧ s.re < 1})
+        ∪ {s : ℂ | -1 < s.re ∧ s.im < 0}) :=
+    IsPreconnected.union (⟨0, -1⟩ : ℂ)
+      (Or.inr ⟨show (-1:ℝ) < 0 by norm_num, show (0:ℝ) < 1 by norm_num⟩)
+      ⟨show (-1:ℝ) < 0 by norm_num, show (-1:ℝ) < 0 by norm_num⟩ hS1 hB
+  have hS3 : IsPreconnected
+      ((({s : ℂ | -1 < s.re ∧ 0 < s.im} ∪ {s : ℂ | -1 < s.re ∧ s.re < 1})
+        ∪ {s : ℂ | -1 < s.re ∧ s.im < 0}) ∪ {s : ℂ | 1 < s.re}) :=
+    IsPreconnected.union (⟨2, 1⟩ : ℂ)
+      (Or.inl (Or.inl ⟨show (-1:ℝ) < 2 by norm_num, show (0:ℝ) < 1 by norm_num⟩))
+      (show (1:ℝ) < 2 by norm_num) hS2 hD
+  have hcover : stripRegion
+      = (({s : ℂ | -1 < s.re ∧ 0 < s.im} ∪ {s : ℂ | -1 < s.re ∧ s.re < 1})
+        ∪ {s : ℂ | -1 < s.re ∧ s.im < 0}) ∪ {s : ℂ | 1 < s.re} := by
+    ext s
+    constructor
+    · rintro ⟨hre, hne⟩
+      rcases lt_trichotomy s.im 0 with him | him | him
+      · exact Or.inl (Or.inr ⟨hre, him⟩)
+      · have hre1 : s.re ≠ 1 := by
+          intro h1
+          exact hne (Complex.ext (by rw [h1, Complex.one_re]) (by rw [him, Complex.one_im]))
+        rcases lt_or_gt_of_ne hre1 with h | h
+        · exact Or.inl (Or.inl (Or.inr ⟨hre, h⟩))
+        · exact Or.inr h
+      · exact Or.inl (Or.inl (Or.inl ⟨hre, him⟩))
+    · rintro (((⟨h1, h2⟩ | ⟨h1, h2⟩) | ⟨h1, h2⟩) | h)
+      · exact ⟨h1, fun he ↦ by rw [he] at h2; simp at h2⟩
+      · exact ⟨h1, fun he ↦ by rw [he] at h2; simp at h2⟩
+      · exact ⟨h1, fun he ↦ by rw [he] at h2; simp at h2⟩
+      · exact ⟨lt_trans (show (-1:ℝ) < 1 by norm_num) h,
+          fun he ↦ by rw [he] at h; simp at h⟩
+  rw [hcover]
+  exact hS3
+
+/-- `zeta1` is analytic on the strip. -/
+theorem zeta1_analyticOnNhd {N : ℕ} (Npos : 0 < N) :
+    AnalyticOnNhd ℂ (zeta1 N) stripRegion := by
+  apply DifferentiableOn.analyticOnNhd ?_ isOpen_stripRegion
+  intro s hs
+  apply DifferentiableAt.differentiableWithinAt
+  obtain ⟨hre, hne⟩ := hs
+  have hNne : (N:ℂ) ≠ 0 := by
+    exact_mod_cast Npos.ne'
+  have h1s : (1:ℂ) - s ≠ 0 := by
+    intro h
+    exact hne (by linear_combination -h)
+  apply DifferentiableAt.add
+  apply DifferentiableAt.add
+  apply DifferentiableAt.add
+  · apply DifferentiableAt.fun_sum
+    intro n _
+    have hn1 : ((n:ℂ) + 1) ≠ 0 := by
+      intro h
+      have h2 := congrArg Complex.re h
+      simp at h2
+      have h3 : (0:ℝ) ≤ (n:ℝ) := Nat.cast_nonneg n
+      linarith
+    have h4 : (fun s : ℂ ↦ 1 / ((n:ℂ) + 1) ^ s)
+        = fun s : ℂ ↦ ((n:ℂ) + 1) ^ (-s) := by
+      funext w
+      rw [one_div_cpow_eq_cpow_neg]
+    rw [h4]
+    exact (differentiable_neg.const_cpow (Or.inl hn1)).differentiableAt
+  · apply DifferentiableAt.div
+    · exact ((differentiable_const _).sub differentiable_id).const_cpow
+        (Or.inl hNne) |>.neg.differentiableAt
+    · fun_prop
+    · exact h1s
+  · apply DifferentiableAt.div_const
+    exact (differentiable_neg.const_cpow (Or.inl hNne)).neg.differentiableAt
+  · apply DifferentiableAt.mul differentiableAt_id
+    apply DifferentiableAt.mul (by fun_prop)
+    exact tail_differentiableAt Npos hre
+
+/-- **The continuation**: `zeta1 = ζ` on the whole strip. -/
+theorem zeta1_eq_zeta_strip {N : ℕ} (Npos : 0 < N) :
+    Set.EqOn (zeta1 N) riemannZeta stripRegion := by
+  have hζ : AnalyticOnNhd ℂ riemannZeta stripRegion :=
+    DifferentiableOn.analyticOnNhd
+      (fun _ hs ↦ (differentiableAt_riemannZeta hs.2).differentiableWithinAt)
+      isOpen_stripRegion
+  have hdiff : AnalyticOnNhd ℂ (fun s ↦ zeta1 N s - riemannZeta s) stripRegion :=
+    (zeta1_analyticOnNhd Npos).sub hζ
+  have h2mem : (2:ℂ) ∈ stripRegion := ⟨by norm_num, by norm_num⟩
+  have hev : (fun s ↦ zeta1 N s - riemannZeta s) =ᶠ[nhds 2] 0 := by
+    have hopen : IsOpen {s : ℂ | 1 < s.re} := isOpen_lt continuous_const Complex.continuous_re
+    filter_upwards [hopen.mem_nhds (show (2:ℂ) ∈ {s : ℂ | 1 < s.re} by norm_num)] with s hs
+    have hs1 : s ≠ 1 := by
+      intro h
+      rw [h] at hs
+      simp at hs
+    have h3 := zeta1_eq_zeta Npos (by
+      have : (1:ℝ) < s.re := hs
+      linarith) hs1
+    show zeta1 N s - riemannZeta s = 0
+    rw [h3]
+    ring
+  have hzero := hdiff.eqOn_zero_of_preconnected_of_eventuallyEq_zero
+    preconnected_stripRegion h2mem hev
+  intro s hs
+  have h4 := hzero hs
+  have h5 : zeta1 N s - riemannZeta s = 0 := h4
+  linear_combination h5
+
+/-- info: 'ZetaGrowth.zeta1_eq_zeta_strip' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta1_eq_zeta_strip
 
 /-- info: 'ZetaGrowth.zeta1_eq_zeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
