@@ -16,6 +16,41 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 260 — slice 1c proved: the near-diagonal, and where c₂·log x is born
+type: formalization
+refs: 257, 258, 259
+
+**What was proved.** `PerronKernel.near_diagonal_sum`
+(`lean_stage3/Stage3/PerronKernel.lean`, commit `75400f5`):
+
+```text
+Σ_{0<|log(x/n)|<1/2} Λ(n)·min(1, 1/(T·|log(x/n)|))
+    ≤ 100·x·log(xT)²/T + 4·log x        (x ≥ 16, T ≥ 1)
+```
+
+Sorry-free, `[propext, Classical.choice, Quot.sound]`,
+`#guard_msgs`-pinned. Entry 257's slice 1c.
+
+**Where the c₂·log x term is born — now a theorem.** The two integers
+nearest x pay `min ≤ 1` each; that pair of 1's times `Λ ≤ 2·log x` IS
+the `4·log x`. Every other integer pays the distance inequality
+`|log t| ≥ |t−1|/2` on [1/2, 2] — proved from `log ≤ t−1` applied at t
+and 1/t, nothing deeper — into two harmonic tails (one reflected, one
+double-peeled) closed by Mathlib's `harmonic_le_one_add_log`, with
+`log(3x) ≤ log(x²) = 2·log x` sidestepping every log-3 numeric.
+
+**Slice 1's analytic content is complete.** One file, three theorems,
+one axiom set: `perron_kernel_truncated` (1a, the load-bearing unknown),
+`far_terms_sum` (1b), `near_diagonal_sum` (1c). Remaining in hEF is
+composition: assemble 1a+1b+1c into the Perron-to-ψ bound, slice 2's
+pigeonhole on `zeta_local_zero_count` (already in this repo), slice 3's
+log²T edges from `LogDerivZetaFinalBound`, slice 4's residue identity —
+all against machinery sorry-free at the pin. The deepest leaf in the
+ledger went from unpriced unknown to three proved estimates and an
+assembly plan in one day.
+
+---
+
 ## 2026-08-29 — Entry 259 — slice 1b proved: the far-terms sum
 type: formalization
 refs: 257, 258

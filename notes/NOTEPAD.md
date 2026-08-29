@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-29  entry 260: SLICE 1C PROVED — near_diagonal_sum, where c₂·log x is born (the two nearest integers pay min ≤ 1 each), commit 75400f5. Slice 1's analytic content COMPLETE: 1a+1b+1c one file, one axiom set. hEF remaining = pure composition (slices 1-assembly, 2, 3, 4)
 - [open]   2026-08-29  entry 259: SLICE 1B PROVED — far_terms_sum ≤ 300·x·log(xT)²/T, sorry-free, pinned, commit 5f058a7; Real.tsum_le_of_sum_le removes all summability side-conditions. Next: 1c, the near-diagonal
 - [open]   2026-08-29  entry 258: SLICE 1A PROVED — perron_kernel_truncated sorry-free, pinned [propext, Classical.choice, Quot.sound], commit 5884639. hEF's load-bearing unknown discharged; the classical arc was never needed anywhere
 - [open]   2026-08-29  entry 258: hEF remaining = 1b/1c (Chebyshev sums), 2 (pigeonhole on in-repo zeta_local_zero_count), 3, 4 (assembly, sorry-free machinery). Entry 257's "no step needs absent mathematics" now has zero exceptions
