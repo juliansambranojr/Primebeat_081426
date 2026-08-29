@@ -972,4 +972,227 @@ theorem edge_left_bound :
 #guard_msgs in
 #print axioms edge_left_bound
 
+set_option maxHeartbeats 1600000 in
+/-- **THE TRUNCATED EXPLICIT FORMULA** — hEF's deliverable, in the
+`T ≤ x²` regime the consumer uses: constants exist with
+`‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c₁·x·log²(xT)/T + c₂·log x`. -/
+theorem explicit_formula_poly :
+    ∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 →
+      ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖
+        ≤ c₁ * x * Real.log (x*T)^2 / T + c₂ * Real.log x := by
+  classical
+  obtain ⟨Ch, hCh0, hCh⟩ := edge_horizontal_bound
+  obtain ⟨Cl, hCl0, hCl⟩ := edge_left_bound
+  obtain ⟨Cs, hCs0, hCs⟩ := zeroPartialSum_swap
+  set K0 : ℝ := ‖deriv riemannZeta 0 / riemannZeta 0‖ with hK0d
+  have hK00 : (0:ℝ) ≤ K0 := norm_nonneg _
+  refine ⟨2400 + 2*Ch + Cs, 13 + Cl + K0/2, by positivity, by positivity, ?_⟩
+  intro x T hx hT hTx
+  have hx0 : (0:ℝ) < x := by linarith
+  have hlx2 : (2:ℝ) < Real.log x := by
+    have h1 : Real.log 16 ≤ Real.log x := Real.log_le_log (by norm_num) hx
+    rw [show (16:ℝ) = 2^4 by norm_num, Real.log_pow] at h1
+    have h2 : (0.6931471803:ℝ) < Real.log 2 := Real.log_two_gt_d9
+    push_cast at h1
+    nlinarith
+  obtain ⟨T', hT'mem, hgood⟩ := ContourShift.goodT_exists hT
+  obtain ⟨hT'lo, hT'hi⟩ := hT'mem
+  have hT'2 : (2:ℝ) ≤ T' := le_trans hT hT'lo
+  have hT'1 : (1:ℝ) ≤ T' := by linarith
+  have hT0 : (0:ℝ) < T := by linarith
+  have hT'0 : (0:ℝ) < T' := by linarith
+  have hT'2x : T' ≤ 2*x^2 := by nlinarith
+  have hS1 := PerronKernel.explicit_formula_perron (x := x) (T := T') hx hT'1
+  have hS4 := ContourShift.residue_identity hx hT ⟨hT'lo, hT'hi⟩ hgood
+  set P : ℂ := (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+      * ∫ t in (-T')..T',
+          (- deriv riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)
+            / riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t))
+          * ((x:ℝ):ℂ) ^ (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)
+          / (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) * Complex.I with hPd
+  set zc : ℂ := ((-1/4 : ℝ):ℂ) - Complex.I * (T':ℂ) with hzcd
+  set wc : ℂ := ((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * (T':ℂ) with hwcd
+  have hS4g : RectangleIntegral' (Gf x) zc wc
+      = (x:ℂ) - deriv riemannZeta 0 / riemannZeta 0
+        - Stage3.zeroPartialSum x T' := hS4
+  have hzre : zc.re = -1/4 := by rw [hzcd]; simp
+  have hzim : zc.im = -T' := by rw [hzcd]; simp
+  have hwre : wc.re = 1 + 1/Real.log x := by rw [hwcd]; simp
+  have hwim : wc.im = T' := by rw [hwcd]; simp
+  have hsplit : RectangleIntegral (Gf x) zc wc
+      = HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) (-T')
+        - HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) T'
+        + VIntegral (Gf x) (1 + 1/Real.log x) (-T') T'
+        - VIntegral (Gf x) (-1/4) (-T') T' := by
+    simp only [RectangleIntegral]
+    rw [hzre, hzim, hwre, hwim]
+  have hPV : P = (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+      * VIntegral (Gf x) (1 + 1/Real.log x) (-T') T' := by
+    rw [hPd, VIntegral, smul_eq_mul]
+    congr 1
+    rw [intervalIntegral.integral_mul_const, mul_comm]
+    congr 1
+    apply intervalIntegral.integral_congr
+    intro t _
+    have harg : ((1 + 1/Real.log x : ℝ):ℂ) + (t:ℂ) * Complex.I
+        = ((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * (t:ℂ) := by ring
+    simp only [Gf]
+    rw [harg]
+  have hPR : P - RectangleIntegral' (Gf x) zc wc
+      = (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+        * (- HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) (-T')
+          + HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) T'
+          + VIntegral (Gf x) (-1/4) (-T') T') := by
+    rw [hPV, RectangleIntegral', smul_eq_mul, hsplit,
+      show (1 / (2 * (Real.pi:ℂ) * Complex.I)) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+        from one_div _]
+    ring
+  have hinv : ‖(2 * (Real.pi:ℂ) * Complex.I)⁻¹‖ ≤ 1 := by
+    rw [norm_inv, norm_mul, norm_mul, Complex.norm_I, mul_one]
+    have h3 : ‖(2:ℂ)‖ = 2 := by norm_num
+    have h4 : ‖((Real.pi:ℝ):ℂ)‖ = Real.pi := by
+      rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos Real.pi_pos]
+    rw [h3, h4]
+    have h5 : (1:ℝ) ≤ 2 * Real.pi := by nlinarith [Real.pi_gt_three]
+    exact inv_le_one_of_one_le₀ h5
+  have hEtop := hCh x T T' hx hT ⟨hT'lo, hT'hi⟩ hgood T'
+    (abs_of_pos (by linarith))
+  have hEbot := hCh x T T' hx hT ⟨hT'lo, hT'hi⟩ hgood (-T')
+    (by rw [abs_neg]; exact abs_of_pos (by linarith))
+  have hEleft := hCl x T' hx hT'2 hT'2x
+  have hE : ‖P - RectangleIntegral' (Gf x) zc wc‖
+      ≤ 2*(Ch * x * Real.log T^2 / T) + Cl * Real.log x := by
+    rw [hPR, norm_mul]
+    have h6 : ‖- HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) (-T')
+        + HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) T'
+        + VIntegral (Gf x) (-1/4) (-T') T'‖
+        ≤ ‖HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) (-T')‖
+          + ‖HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) T'‖
+          + ‖VIntegral (Gf x) (-1/4) (-T') T'‖ := by
+      calc ‖_ + _ + _‖ ≤ ‖- HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) (-T')
+            + HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) T'‖
+            + ‖VIntegral (Gf x) (-1/4) (-T') T'‖ := norm_add_le _ _
+        _ ≤ _ := by
+            have h7 := norm_add_le (- HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) (-T'))
+              (HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) T')
+            rw [norm_neg] at h7
+            linarith
+    calc ‖(2 * (Real.pi:ℂ) * Complex.I)⁻¹‖ * ‖_‖
+        ≤ 1 * (‖HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) (-T')‖
+          + ‖HIntegral (Gf x) (-1/4) (1 + 1/Real.log x) T'‖
+          + ‖VIntegral (Gf x) (-1/4) (-T') T'‖) := by
+          apply mul_le_mul hinv h6 (norm_nonneg _) (by norm_num)
+      _ ≤ 2*(Ch * x * Real.log T^2 / T) + Cl * Real.log x := by
+          rw [one_mul]
+          linarith [hEtop, hEbot, hEleft]
+  have hswap := hCs x T T' hx hT hT'lo (by linarith)
+  have hswap' : ‖Stage3.zeroPartialSum x T - Stage3.zeroPartialSum x T'‖
+      ≤ Cs * x * Real.log T / T := by
+    rw [← norm_neg, neg_sub]
+    exact hswap
+  have hkey : (Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T
+      = ((Chebyshev.psi x : ℂ) - P)
+        + (P - RectangleIntegral' (Gf x) zc wc)
+        + (RectangleIntegral' (Gf x) zc wc - (x:ℂ) + Stage3.zeroPartialSum x T')
+        + (Stage3.zeroPartialSum x T - Stage3.zeroPartialSum x T') := by
+    ring
+  have hCn : ‖RectangleIntegral' (Gf x) zc wc - (x:ℂ)
+      + Stage3.zeroPartialSum x T'‖ = K0 := by
+    rw [show RectangleIntegral' (Gf x) zc wc - (x:ℂ) + Stage3.zeroPartialSum x T'
+        = - (deriv riemannZeta 0 / riemannZeta 0) by rw [hS4g]; ring]
+    rw [norm_neg]
+  -- the arithmetic
+  have hL1 : (1:ℝ) ≤ Real.log (x*T) := by
+    have h8 : (32:ℝ) ≤ x*T := by nlinarith
+    have h9 : Real.log 32 ≤ Real.log (x*T) := Real.log_le_log (by norm_num) h8
+    rw [show (32:ℝ) = 2^5 by norm_num, Real.log_pow] at h9
+    have h10 : (0.6931471803:ℝ) < Real.log 2 := Real.log_two_gt_d9
+    push_cast at h9
+    nlinarith
+  have hL0 : (0:ℝ) ≤ Real.log (x*T) := by linarith
+  have hsq : Real.log (x*T')^2 ≤ 4*Real.log (x*T)^2 := by
+    have h11 : x*T' ≤ 2*(x*T) := by nlinarith
+    have h12 : Real.log (x*T') ≤ Real.log (2*(x*T)) :=
+      Real.log_le_log (by positivity) h11
+    have h12b : Real.log (2*(x*T)) = Real.log 2 + Real.log (x*T) :=
+      Real.log_mul (by norm_num) (by positivity)
+    rw [h12b] at h12
+    have h13 : Real.log 2 ≤ 1 := by
+      have := Real.log_le_sub_one_of_pos (show (0:ℝ) < 2 by norm_num)
+      linarith
+    have h14 : Real.log (x*T') ≤ 2*Real.log (x*T) := by linarith
+    have h15 : (0:ℝ) ≤ Real.log (x*T') := by
+      apply Real.log_nonneg
+      nlinarith
+    calc Real.log (x*T')^2 ≤ (2*Real.log (x*T))^2 := by
+          apply pow_le_pow_left₀ h15 h14
+      _ = 4*Real.log (x*T)^2 := by ring
+  have he1 : 600 * x * Real.log (x*T')^2 / T' + 13*Real.log x
+      ≤ 2400 * x * Real.log (x*T)^2 / T + 13*Real.log x := by
+    have h16 : 600 * x * Real.log (x*T')^2 ≤ 2400 * x * Real.log (x*T)^2 := by
+      have h16b := mul_le_mul_of_nonneg_left hsq (show (0:ℝ) ≤ 600*x by linarith)
+      nlinarith [h16b]
+    have h17 : 600 * x * Real.log (x*T')^2 / T'
+        ≤ 2400 * x * Real.log (x*T)^2 / T' := by
+      apply div_le_div_of_nonneg_right h16 hT'0.le
+    have h18 : 2400 * x * Real.log (x*T)^2 / T'
+        ≤ 2400 * x * Real.log (x*T)^2 / T := by
+      apply div_le_div_of_nonneg_left (by positivity) hT0 hT'lo
+    linarith
+  have he2 : 2*(Ch * x * Real.log T^2 / T) ≤ 2*Ch * x * Real.log (x*T)^2 / T := by
+    have h19 : Real.log T ≤ Real.log (x*T) := by
+      apply Real.log_le_log hT0
+      nlinarith
+    have h20 : (0:ℝ) ≤ Real.log T := Real.log_nonneg (by linarith)
+    have h21 : Real.log T^2 ≤ Real.log (x*T)^2 := by
+      apply pow_le_pow_left₀ h20 h19
+    have h22 : 2*Ch * x * Real.log T^2 ≤ 2*Ch * x * Real.log (x*T)^2 := by
+      have h22b := mul_le_mul_of_nonneg_left h21 (show (0:ℝ) ≤ 2*Ch*x by positivity)
+      nlinarith [h22b]
+    have h23 : 2*Ch * x * Real.log T^2 / T ≤ 2*Ch * x * Real.log (x*T)^2 / T := by
+      apply div_le_div_of_nonneg_right h22 hT0.le
+    calc 2*(Ch * x * Real.log T^2 / T) = 2*Ch * x * Real.log T^2 / T := by ring
+      _ ≤ 2*Ch * x * Real.log (x*T)^2 / T := h23
+  have he3 : K0 ≤ K0/2 * Real.log x := by
+    nlinarith [hlx2, hK00]
+  have he4 : Cs * x * Real.log T / T ≤ Cs * x * Real.log (x*T)^2 / T := by
+    have h19 : Real.log T ≤ Real.log (x*T) := by
+      apply Real.log_le_log hT0
+      nlinarith
+    have h20 : (0:ℝ) ≤ Real.log T := Real.log_nonneg (by linarith)
+    have h24 : Real.log T ≤ Real.log (x*T)^2 := by
+      nlinarith [hL1]
+    have h25 : Cs * x * Real.log T ≤ Cs * x * Real.log (x*T)^2 := by
+      have h25b := mul_le_mul_of_nonneg_left h24 (show (0:ℝ) ≤ Cs*x by positivity)
+      nlinarith [h25b]
+    apply div_le_div_of_nonneg_right h25 hT0.le
+  rw [hkey]
+  calc ‖((Chebyshev.psi x : ℂ) - P)
+        + (P - RectangleIntegral' (Gf x) zc wc)
+        + (RectangleIntegral' (Gf x) zc wc - (x:ℂ) + Stage3.zeroPartialSum x T')
+        + (Stage3.zeroPartialSum x T - Stage3.zeroPartialSum x T')‖
+      ≤ ‖(Chebyshev.psi x : ℂ) - P‖
+        + ‖P - RectangleIntegral' (Gf x) zc wc‖
+        + ‖RectangleIntegral' (Gf x) zc wc - (x:ℂ) + Stage3.zeroPartialSum x T'‖
+        + ‖Stage3.zeroPartialSum x T - Stage3.zeroPartialSum x T'‖ := norm_add₄_le
+    _ ≤ (600 * x * Real.log (x*T')^2 / T' + 13*Real.log x)
+        + (2*(Ch * x * Real.log T^2 / T) + Cl * Real.log x)
+        + K0 + Cs * x * Real.log T / T := by
+        rw [hCn]
+        linarith [hS1, hE, hswap']
+    _ ≤ (2400 + 2*Ch + Cs) * x * Real.log (x*T)^2 / T
+        + (13 + Cl + K0/2) * Real.log x := by
+        have h26 : (2400 + 2*Ch + Cs) * x * Real.log (x*T)^2 / T
+            = 2400 * x * Real.log (x*T)^2 / T + 2*Ch * x * Real.log (x*T)^2 / T
+              + Cs * x * Real.log (x*T)^2 / T := by ring
+        have h27 : (13 + Cl + K0/2) * Real.log x
+            = 13*Real.log x + Cl * Real.log x + K0/2 * Real.log x := by ring
+        rw [h26, h27]
+        linarith [he1, he2, he3, he4]
+
+
+/-- info: 'Glue.explicit_formula_poly' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms explicit_formula_poly
+
 end Glue
