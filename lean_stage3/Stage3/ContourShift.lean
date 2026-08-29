@@ -1222,7 +1222,7 @@ theorem residue_identity {x T T' : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T)
     RectangleIntegral'
         (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s)
           * ((x:ℝ):ℂ) ^ s / s)
-        (-1 - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * T')
+        (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * T')
       = (x : ℂ) - deriv riemannZeta 0 / riemannZeta 0
         - Stage3.zeroPartialSum x T' := by
   classical
@@ -1235,20 +1235,20 @@ theorem residue_identity {x T T' : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T)
     rw [hcd]
     have h1 : (0:ℝ) < 1/Real.log x := by positivity
     linarith
-  set zc : ℂ := -1 - Complex.I * (T':ℂ) with hzcd
+  set zc : ℂ := ((-1/4 : ℝ):ℂ) - Complex.I * (T':ℂ) with hzcd
   set wc : ℂ := ((c:ℝ):ℂ) + Complex.I * (T':ℂ) with hwcd
-  have hzre : zc.re = -1 := by rw [hzcd]; simp
+  have hzre : zc.re = -1/4 := by rw [hzcd]; simp
   have hzim : zc.im = -T' := by rw [hzcd]; simp
   have hwre : wc.re = c := by rw [hwcd]; simp
   have hwim : wc.im = T' := by rw [hwcd]; simp
   have hrele : zc.re ≤ wc.re := by rw [hzre, hwre]; linarith
   have himle : zc.im ≤ wc.im := by rw [hzim, hwim]; linarith
   have hrect_mem : ∀ s : ℂ, s ∈ Rectangle zc wc ↔
-      ((-1 ≤ s.re ∧ s.re ≤ c) ∧ (-T' ≤ s.im ∧ s.im ≤ T')) := by
+      ((-1/4 ≤ s.re ∧ s.re ≤ c) ∧ (-T' ≤ s.im ∧ s.im ≤ T')) := by
     intro s
     simp only [Rectangle]
     rw [Complex.mem_reProdIm, hzre, hwre, hzim, hwim,
-      Set.uIcc_of_le (by linarith : (-1:ℝ) ≤ c),
+      Set.uIcc_of_le (by linarith : (-1/4:ℝ) ≤ c),
       Set.uIcc_of_le (by linarith : -T' ≤ T'), Set.mem_Icc, Set.mem_Icc]
   have hfence : ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ ∈ Rectangle zc wc →
       ((0 < ρ.re ∧ ρ.re < 1) ∧ |ρ.im| < T') := by
@@ -1257,7 +1257,7 @@ theorem residue_identity {x T T' : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T)
     have hre_pos : 0 < ρ.re := by
       by_contra hle
       push_neg at hle
-      exact zeta_ne_zero_of_re_mem hre1 hle hz
+      exact zeta_ne_zero_of_re_mem (by linarith) hle hz
     have hre_lt1 : ρ.re < 1 := by
       by_contra hge
       push_neg at hge
