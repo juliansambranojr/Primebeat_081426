@@ -16,6 +16,56 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 267 — the reflection-order lemma: m(1 − conj ρ) = m(ρ) — S3's last risky piece discharged
+type: formalization
+refs: 262, 265, 266
+
+**What was proved** (`lean_stage3/Stage3/ContourShift.lean`, commits
+`83f2531` → `adad131`, pinned
+`[propext, Classical.choice, Quot.sound]`, both first-pass compiles):
+
+- `analyticAt_conj_conj` (line 941): analyticity transports through
+  conjugation — `conj ∘ g ∘ conj` is analytic at `conj p`. Mathlib's
+  `HasDerivAt.conj_conj` gives pointwise differentiability; upgrading
+  on a ball (`eventually_analyticAt` → `DifferentiableOn.analyticAt`)
+  gives analyticity.
+- `zeta_order_conj` (970): `m(conj ρ) = m(ρ)` for `ρ ≠ 1`. The
+  factorization `ζ =ᶠ (s−ρ)^m·g` conjugates term by term through
+  `riemannZeta_conj`; the conjugated unit is analytic (previous
+  lemma) and nonvanishing. Nonvanishing case: both orders zero via
+  `analyticOrderAt_eq_zero`.
+- `zeta_order_reflect` (1028): **`m(1 − conj ρ) = m(ρ)`** on the
+  open strip `0 < re ρ < 1`. Near `q = 1 − conj ρ` the FE gives
+  `ζ(w) = χ(1−w)·ζ(1−w)` with
+  `χ(s) = 2·(2π)^(−s)·Γ(s)·cos(πs/2)`; the conj-side factorization
+  transports through `w ↦ 1−w` with `(−1)^m` absorbed into the unit.
+  χ is analytic at `conj ρ` (Γ via the `re > 0` open-region pattern,
+  the rest entire) and nonvanishing — the cosine zero would force
+  `conj ρ = 2k+1`, an odd integer with real part in `(0,1)`, which
+  `omega` refutes.
+
+**Why it matters.** The `edge_bound` window count charges every
+zero with `re < 1/4` (invisible to the Jensen windows, whose disks
+reach only `re ≥ 1/4`) to its reflected partner at `re ≥ 3/4` — at
+full multiplicity, which is exactly what this lemma licenses. The
+count over the Landau ball's zeros now closes: T′-centered windows
+carry the `log T`, fixed windows at heights 2–5 cover the
+low-ordinate corner for `T′ < 3.34`, and the fixed rectangle
+`[0,1]×[0,1.5]` contributes an absolute constant.
+
+**S3 ledger.** Continuation (entry 265) ✓, growth bound and ball
+input (entry 266) ✓, reflection-order (this entry) ✓. Remaining:
+two blocks of verified-tool algebra — the `FinalBound` rescale
+(unit ball → center `3/2+iT′` scale 2; `f(0)` lower-bounded
+elementarily at `re = 3/2`; the transported partial fraction gains
+`2/(s−1)` from the `(s−1)²` factor plus the order-1 zero of
+`(s−1)²ζ` at `1`, each ≤ 1/2 at height `T′ ≥ 2`) and the
+`edge_bound` assembly. Structural note for the assembly: it cannot
+live inside `ContourShift` (it needs `ZetaGrowth`, which imports
+`ContourShift`) — the sorried scratch `edge_bound` moves to a
+downstream file and the placeholder is deleted. Then the
+`StmtExplicitFormula` glue closes hEF.
+
 ## 2026-08-29 — Entry 266 — the growth bound proved: ‖ζ(σ+it)‖ ≤ 15·t² on the strip, and the Landau ball's B-input complete
 type: formalization
 refs: 262, 263, 265

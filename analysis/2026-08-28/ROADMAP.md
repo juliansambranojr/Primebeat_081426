@@ -112,10 +112,12 @@ Vocabulary (Julian's, keep it):
   Euler–Maclaurin (Mellin analyticity + identity theorem). S3
   analytic inputs COMPLETE (entry 266, commits 0341f71/7027223):
   ‖ζ(σ+it)‖ ≤ 15t² explicit on the band, sq_zeta_band_bound with
-  compact patch. S3 remaining: FinalBound rescale at 3/2+iT′ with
-  (s−1)²ζ, gap-eating via the reflection-order lemma, edge_bound
-  assembly — per entry 257, "no step needs mathematics absent from
-  the literature or from either library." 
+  compact patch. Reflection-order PROVED
+  (entry 267, commits 83f2531/adad131): m(1−conj ρ) = m(ρ). S3
+  remaining: FinalBound rescale at 3/2+iT′ with (s−1)²ζ + edge_bound
+  assembly in a downstream file (import direction), then the
+  StmtExplicitFormula glue — per entry 257, "no step needs
+  mathematics absent from the literature or from either library." 
 - StmtArgCrude: OPEN, untouched.
 - The four exact zeros: reframed by entries 253-255. The census ranks
   them by information ((20,6) carries 2.85 digits; the rest near-free);

@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-29  entry 267: REFLECTION-ORDER PROVED — m(1−conj ρ) = m(ρ) via conj-transport + FE unit (analyticAt_conj_conj, zeta_order_conj, zeta_order_reflect), commits 83f2531/adad131, both first-pass. S3 remaining: FinalBound rescale + edge_bound assembly (downstream file), then the glue
 - [open]   2026-08-29  entry 266: GROWTH BOUND PROVED — ‖ζ(σ+it)‖ ≤ 15t² on σ∈[−1/2,4], |t|≥2, explicit; sq_zeta_band_bound gives the Landau ball's B-input with compact patch, commits 0341f71/7027223. S3 remaining: FinalBound rescale, gap-eating (reflection-order), edge_bound assembly, then the StmtExplicitFormula glue
 - [open]   2026-08-29  entry 265: S3 PRICED + LOAD-BEARING UNKNOWN DISCHARGED — ZetaGrowth.lean: second-order EM continuation, zeta1 = ζ on re > −1 via Mellin analyticity + identity theorem, commits 8552ffd..ca582d1. S3 remainder is bounding arithmetic + FinalBound rescale + gap-eating, no unknowns
 - [open]   2026-08-29  entry 264: SLICE 4 DISCHARGED — residue_identity: the good-rectangle contour equals x − ζ′/ζ(0) − zeroPartialSum, pinned clean, first-pass compile, commit 8ca3b02. hEF remaining: S3 edge_bound + final StmtExplicitFormula glue
