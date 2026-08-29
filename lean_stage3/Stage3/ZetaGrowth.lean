@@ -12,6 +12,7 @@ the growth input for the rescaled Landau ball of S3.
 SCRATCH until the growth bound lands; do not count in sorry-free claims.
 -/
 import PrimeNumberTheoremAnd.ZetaBounds
+import Stage3.ContourShift
 
 namespace ZetaGrowth
 
@@ -713,6 +714,88 @@ theorem zeta_growth_strip {s : ℂ} (hσ1 : -1/2 ≤ s.re) (hσ2 : s.re ≤ 4)
         have := hb4
         linarith
     _ = 15 * |s.im| ^ 2 := by ring
+
+/-- `(s−1)²·ζ` is analytic everywhere. -/
+theorem sq_mul_zeta_analytic (s : ℂ) :
+    AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s := by
+  by_cases hs : s = 1
+  · rw [hs]
+    exact ContourShift.sq_mul_zeta_analyticAt_one
+  · exact ((analyticAt_id.sub analyticAt_const).pow 2).mul
+      (ContourShift.zeta_analyticAt hs)
+
+/-- **The Landau-ball input**: `(s−1)²·ζ` bounded on the band
+`re ∈ [−1/2, 4]` by a power of the height — explicit for `|im| ≥ 2`,
+an existential constant absorbing the compact patch below. -/
+theorem sq_zeta_band_bound : ∃ C : ℝ, 0 < C ∧ ∀ s : ℂ, -1/2 ≤ s.re → s.re ≤ 4 →
+    ‖(s - 1)^2 * riemannZeta s‖ ≤ C * (2 + |s.im|) ^ 4 := by
+  classical
+  set K : Set ℂ := Set.Icc (-1/2 : ℝ) 4 ×ℂ Set.Icc (-2 : ℝ) 2 with hKd
+  have hKcompact : IsCompact K := isCompact_Icc.reProdIm isCompact_Icc
+  have hcont : ContinuousOn (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) K := by
+    intro z _
+    exact ((sq_mul_zeta_analytic z).continuousAt).continuousWithinAt
+  obtain ⟨CK, hCK⟩ := hKcompact.exists_bound_of_continuousOn hcont
+  refine ⟨max 135 CK + 1, by positivity, ?_⟩
+  intro s hσ1 hσ2
+  have hpow1 : (1:ℝ) ≤ (2 + |s.im|) ^ 4 := by
+    have h0 : (0:ℝ) ≤ |s.im| := abs_nonneg _
+    have h1 : (1:ℝ) ≤ 2 + |s.im| := by linarith
+    calc (1:ℝ) = 1 ^ 4 := by norm_num
+      _ ≤ (2 + |s.im|) ^ 4 := by
+        apply pow_le_pow_left₀ (by norm_num) h1
+  by_cases ht : 2 ≤ |s.im|
+  · -- growth regime
+    have hζ := zeta_growth_strip hσ1 hσ2 ht
+    have hs1 : ‖s - 1‖ ≤ 5 + |s.im| := by
+      rw [Complex.norm_def]
+      calc Real.sqrt (Complex.normSq (s - 1))
+          ≤ Real.sqrt ((5 + |s.im|)^2) := by
+            apply Real.sqrt_le_sqrt
+            rw [Complex.normSq_apply]
+            simp only [Complex.sub_re, Complex.sub_im, Complex.one_re, Complex.one_im,
+              sub_zero]
+            nlinarith [sq_abs s.im, abs_nonneg s.im]
+        _ = 5 + |s.im| := Real.sqrt_sq (by positivity)
+    have h6 : (5:ℝ) + |s.im| ≤ 3 * (2 + |s.im|) := by
+      have := abs_nonneg s.im
+      linarith
+    have h7 : |s.im| ≤ 2 + |s.im| := by linarith [abs_nonneg s.im]
+    calc ‖(s - 1)^2 * riemannZeta s‖
+        = ‖s - 1‖^2 * ‖riemannZeta s‖ := by
+          rw [norm_mul, norm_pow]
+      _ ≤ (3 * (2 + |s.im|))^2 * (15 * |s.im|^2) := by
+          apply mul_le_mul ?_ hζ (norm_nonneg _) (by positivity)
+          apply pow_le_pow_left₀ (norm_nonneg _)
+          exact le_trans hs1 h6
+      _ ≤ (3 * (2 + |s.im|))^2 * (15 * (2 + |s.im|)^2) := by
+          apply mul_le_mul_of_nonneg_left ?_ (by positivity)
+          have h8 : |s.im|^2 ≤ (2 + |s.im|)^2 := by
+            apply pow_le_pow_left₀ (abs_nonneg _) h7
+          linarith
+      _ = 135 * (2 + |s.im|) ^ 4 := by ring
+      _ ≤ (max 135 CK + 1) * (2 + |s.im|) ^ 4 := by
+          apply mul_le_mul_of_nonneg_right ?_ (by positivity)
+          have := le_max_left (135:ℝ) CK
+          linarith
+  · -- compact regime
+    push_neg at ht
+    have hmem : s ∈ K := by
+      rw [hKd, Complex.mem_reProdIm]
+      rw [abs_lt] at ht
+      exact ⟨⟨hσ1, hσ2⟩, ⟨by linarith [ht.1], by linarith [ht.2]⟩⟩
+    have h9 := hCK s hmem
+    have h10 : CK ≤ max 135 CK := le_max_right _ _
+    calc ‖(s - 1)^2 * riemannZeta s‖ ≤ CK := h9
+      _ ≤ (max 135 CK + 1) * 1 := by linarith
+      _ ≤ (max 135 CK + 1) * (2 + |s.im|) ^ 4 := by
+          apply mul_le_mul_of_nonneg_left hpow1
+          have := le_max_left (135:ℝ) CK
+          linarith
+
+/-- info: 'ZetaGrowth.sq_zeta_band_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms sq_zeta_band_bound
 
 /-- info: 'ZetaGrowth.zeta_growth_strip' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
