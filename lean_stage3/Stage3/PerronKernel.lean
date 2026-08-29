@@ -1889,8 +1889,235 @@ theorem kernel_sum_bound {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
         rw [hexp, hexp2]
         linarith [hs, hA, hlx0]
 
+
+/-- The δ-side of the composition: the indicator sum is `ψ` up to one
+von Mangoldt value at the possible integer point. -/
+theorem delta_sum_close {x : ℝ} (hx : 16 ≤ x) :
+    ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+        * perronδ (x / n)‖ ≤ Real.log x := by
+  have hx0 : (0:ℝ) < x := by linarith
+  have hlx0 : (0:ℝ) < Real.log x := by
+    have h := Real.log_le_log (by norm_num : (0:ℝ) < 16) hx
+    have h16 : (0:ℝ) < Real.log 16 := Real.log_pos (by norm_num)
+    linarith
+  set F : ℕ → ℝ := fun n ↦ if 0 < n ∧ (n:ℝ) < x then ArithmeticFunction.vonMangoldt n
+    else 0 with hFd
+  have hterm : ∀ n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronδ (x/n)
+      = ((F n : ℝ) : ℂ) := by
+    intro n
+    rw [hFd]
+    dsimp only
+    rcases Nat.eq_zero_or_pos n with rfl | hn
+    · simp [perronδ, ArithmeticFunction.map_zero]
+    · have hn0 : (0:ℝ) < (n:ℝ) := by exact_mod_cast hn
+      rw [perronδ]
+      by_cases h : (n:ℝ) < x
+      · rw [if_pos ((one_lt_div hn0).mpr h), if_pos ⟨hn, h⟩, mul_one]
+      · rw [if_neg (fun hcon ↦ h ((one_lt_div hn0).mp hcon)),
+          if_neg (fun hcon ↦ h hcon.2), mul_zero]
+        norm_num
+  have hvan : ∀ n : ℕ, n ∉ Finset.range ⌈x⌉₊ → ((F n : ℝ) : ℂ) = 0 := by
+    intro n hn
+    rw [Finset.mem_range, not_lt] at hn
+    rw [hFd]
+    dsimp only
+    rw [if_neg]
+    · norm_num
+    · rintro ⟨_, h2⟩
+      have h3 : x ≤ ⌈x⌉₊ := Nat.le_ceil x
+      have h4 : ((⌈x⌉₊ : ℕ) : ℝ) ≤ n := by exact_mod_cast hn
+      linarith
+  have htsum : (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronδ (x/n))
+      = ((∑ n ∈ Finset.range ⌈x⌉₊, F n : ℝ) : ℂ) := by
+    calc (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronδ (x/n))
+        = ∑' n : ℕ, ((F n : ℝ) : ℂ) := by
+          apply tsum_congr
+          exact hterm
+      _ = ∑ n ∈ Finset.range ⌈x⌉₊, ((F n : ℝ) : ℂ) := tsum_eq_sum hvan
+      _ = ((∑ n ∈ Finset.range ⌈x⌉₊, F n : ℝ) : ℂ) := by
+          push_cast
+          rfl
+  rw [htsum]
+  rw [show (Chebyshev.psi x : ℂ) - ((∑ n ∈ Finset.range ⌈x⌉₊, F n : ℝ) : ℂ)
+      = (((Chebyshev.psi x - ∑ n ∈ Finset.range ⌈x⌉₊, F n : ℝ)) : ℂ) by push_cast; ring]
+  rw [Complex.norm_real, Real.norm_eq_abs]
+  -- real comparison
+  have hFsum : ∑ n ∈ Finset.range ⌈x⌉₊, F n
+      = ∑ n ∈ (Finset.range ⌈x⌉₊).filter (fun n : ℕ ↦ 0 < n ∧ (n:ℝ) < x),
+          ArithmeticFunction.vonMangoldt n := by
+    rw [Finset.sum_filter]
+  have hψ : Chebyshev.psi x
+      = ∑ n ∈ Finset.Ioc 0 ⌊x⌋₊, ArithmeticFunction.vonMangoldt n := by
+    rw [Chebyshev.psi]
+  have hsub : (Finset.range ⌈x⌉₊).filter (fun n : ℕ ↦ 0 < n ∧ (n:ℝ) < x)
+      ⊆ Finset.Ioc 0 ⌊x⌋₊ := by
+    intro n hn
+    rw [Finset.mem_filter] at hn
+    obtain ⟨_, hn1, hn2⟩ := hn
+    rw [Finset.mem_Ioc]
+    exact ⟨hn1, Nat.le_floor hn2.le⟩
+  have hdiff_sub : Finset.Ioc 0 ⌊x⌋₊
+        \ (Finset.range ⌈x⌉₊).filter (fun n : ℕ ↦ 0 < n ∧ (n:ℝ) < x)
+      ⊆ {⌊x⌋₊} := by
+    intro n hn
+    rw [Finset.mem_sdiff, Finset.mem_Ioc, Finset.mem_filter] at hn
+    obtain ⟨⟨hn1, hn2⟩, hn3⟩ := hn
+    rw [Finset.mem_singleton]
+    by_contra hne
+    apply hn3
+    have hnlt : (n:ℝ) < x := by
+      have h4 : (n:ℝ) ≤ ⌊x⌋₊ := by exact_mod_cast hn2
+      have h5 : ((⌊x⌋₊:ℕ):ℝ) ≤ x := Nat.floor_le hx0.le
+      rcases lt_or_eq_of_le (lt_of_le_of_ne (hn2 : n ≤ ⌊x⌋₊)
+        hne : n < ⌊x⌋₊).le with h6 | h6
+      · have : (n:ℝ) < ⌊x⌋₊ := by exact_mod_cast lt_of_le_of_ne hn2 hne
+        linarith
+      · have : (n:ℝ) < ⌊x⌋₊ := by exact_mod_cast lt_of_le_of_ne hn2 hne
+        linarith
+    constructor
+    · rw [Finset.mem_range]
+      have h7 : x ≤ ⌈x⌉₊ := Nat.le_ceil x
+      have h8 : (n:ℝ) < ⌈x⌉₊ := by linarith
+      exact_mod_cast h8
+    · exact ⟨hn1, hnlt⟩
+  have hkey : Chebyshev.psi x - ∑ n ∈ Finset.range ⌈x⌉₊, F n
+      = ∑ n ∈ (Finset.Ioc 0 ⌊x⌋₊
+          \ (Finset.range ⌈x⌉₊).filter (fun n : ℕ ↦ 0 < n ∧ (n:ℝ) < x)),
+          ArithmeticFunction.vonMangoldt n := by
+    rw [hFsum, hψ, eq_comm, eq_sub_iff_add_eq]
+    exact Finset.sum_sdiff hsub
+  rw [hkey]
+  have hnn : (0:ℝ) ≤ ∑ n ∈ (Finset.Ioc 0 ⌊x⌋₊
+      \ (Finset.range ⌈x⌉₊).filter (fun n : ℕ ↦ 0 < n ∧ (n:ℝ) < x)),
+      ArithmeticFunction.vonMangoldt n :=
+    Finset.sum_nonneg (fun n _ ↦ ArithmeticFunction.vonMangoldt_nonneg)
+  rw [abs_of_nonneg hnn]
+  calc ∑ n ∈ (Finset.Ioc 0 ⌊x⌋₊
+        \ (Finset.range ⌈x⌉₊).filter (fun n : ℕ ↦ 0 < n ∧ (n:ℝ) < x)),
+        ArithmeticFunction.vonMangoldt n
+      ≤ ∑ n ∈ ({⌊x⌋₊} : Finset ℕ), ArithmeticFunction.vonMangoldt n :=
+        Finset.sum_le_sum_of_subset_of_nonneg hdiff_sub
+          (fun n _ _ ↦ ArithmeticFunction.vonMangoldt_nonneg)
+    _ = ArithmeticFunction.vonMangoldt ⌊x⌋₊ := Finset.sum_singleton _ _
+    _ ≤ Real.log ⌊x⌋₊ := ArithmeticFunction.vonMangoldt_le_log
+    _ ≤ Real.log x := by
+        have h9 : ((⌊x⌋₊:ℕ):ℝ) ≤ x := Nat.floor_le hx0.le
+        have h10 : (0:ℝ) < ⌊x⌋₊ := by
+          have : (16:ℕ) ≤ ⌊x⌋₊ := Nat.le_floor (by exact_mod_cast hx)
+          exact_mod_cast Nat.lt_of_lt_of_le (by norm_num) this
+        exact Real.log_le_log h10 h9
+
+/-- Summability of the kernel differences, via the crude majorant
+`Λ(n)·(x/n)^c` — sharp enough for convergence, everywhere. -/
+theorem kernel_diff_summable {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
+    Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ)
+      * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))) := by
+  have hx0 : (0:ℝ) < x := by linarith
+  have hexp16 : Real.exp 1 < 16 := by linarith [Real.exp_one_lt_d9]
+  have hlx : 1 < Real.log x := by
+    have h1 : Real.log (Real.exp 1) < Real.log x :=
+      Real.log_lt_log (Real.exp_pos 1) (lt_of_lt_of_le hexp16 hx)
+    rwa [Real.log_exp] at h1
+  have hlx0 : (0:ℝ) < Real.log x := by linarith
+  set c : ℝ := 1 + 1/Real.log x with hcd
+  have hc0 : (0:ℝ) < c := by rw [hcd]; positivity
+  have hc1 : 1 < c := by
+    rw [hcd]
+    have h9 : 0 < 1/Real.log x := by positivity
+    linarith
+  rw [← summable_norm_iff]
+  apply Summable.of_nonneg_of_le (fun n ↦ norm_nonneg _) _
+    ((vonMangoldt_rpow_summable hc1).mul_left (x ^ c))
+  intro n
+  have hΛnn := ArithmeticFunction.vonMangoldt_nonneg (n := n)
+  rcases Nat.eq_zero_or_pos n with rfl | hn
+  · simp [ArithmeticFunction.map_zero]
+  · have hn0 : (0:ℝ) < (n:ℝ) := by exact_mod_cast hn
+    have hyx : (0:ℝ) < x/n := by positivity
+    have hnorm : ‖(ArithmeticFunction.vonMangoldt n : ℂ)
+          * (perronI (x/n) c T - perronδ (x/n))‖
+        = ArithmeticFunction.vonMangoldt n * ‖perronI (x/n) c T - perronδ (x/n)‖ := by
+      rw [norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hΛnn]
+    rw [hnorm]
+    have hker : ‖perronI (x/n) c T - perronδ (x/n)‖ ≤ (x/n) ^ c := by
+      by_cases hne : x/(n:ℝ) = 1
+      · have hδ1 : perronδ (x/n) = 0 := by
+          rw [perronδ, if_neg]
+          rw [hne]
+          norm_num
+        rw [hδ1, sub_zero, hne]
+        calc ‖perronI 1 c T‖ ≤ 1/2 := perronI_one_norm hc0
+          _ ≤ (1:ℝ) ^ c := by
+              rw [Real.one_rpow]
+              norm_num
+      · calc ‖perronI (x/n) c T - perronδ (x/n)‖
+            ≤ (x/n) ^ c * min 1 (1/(T * |Real.log (x/n)|)) :=
+              perron_kernel_truncated hyx hne hc0 hT
+          _ ≤ (x/n) ^ c * 1 := by
+              apply mul_le_mul_of_nonneg_left (min_le_left _ _)
+                (Real.rpow_nonneg hyx.le _)
+          _ = (x/n) ^ c := mul_one _
+    have hdiv : (x / n) ^ c = x ^ c * (n:ℝ) ^ (-c) := by
+      rw [Real.div_rpow hx0.le hn0.le, Real.rpow_neg hn0.le, div_eq_mul_inv]
+    calc ArithmeticFunction.vonMangoldt n * ‖perronI (x/n) c T - perronδ (x/n)‖
+        ≤ ArithmeticFunction.vonMangoldt n * (x/n) ^ c :=
+          mul_le_mul_of_nonneg_left hker hΛnn
+      _ = x ^ c * (ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)) := by
+          rw [hdiv]
+          ring
+
+/-- **Slice 1 — the Perron-to-ψ bound.** The truncated Perron sum of the
+von Mangoldt function misses `ψ` by at most `600·x·log(xT)²/T + 13·log x`. -/
+theorem perron_to_psi {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
+    ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+        * perronI (x/n) (1 + 1/Real.log x) T‖
+      ≤ 600 * x * Real.log (x * T) ^ 2 / T + 13 * Real.log x := by
+  have hx0 : (0:ℝ) < x := by linarith
+  have hδsum : Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ)
+      * perronδ (x/n)) := by
+    apply summable_of_ne_finset_zero (s := Finset.range ⌈x⌉₊)
+    intro n hn
+    rw [Finset.mem_range, not_lt] at hn
+    have h3 : x ≤ ⌈x⌉₊ := Nat.le_ceil x
+    have h4 : ((⌈x⌉₊ : ℕ) : ℝ) ≤ n := by exact_mod_cast hn
+    have h5 : x/(n:ℝ) ≤ 1 := by
+      have hn0 : (0:ℝ) < n := by linarith
+      rw [div_le_one hn0]
+      linarith
+    rw [perronδ, if_neg (by linarith), mul_zero]
+  have hdiff := kernel_diff_summable hx hT
+  have hsplit : (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+        * perronI (x/n) (1 + 1/Real.log x) T)
+      = (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+          * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))
+        + ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronδ (x/n) := by
+    rw [← hdiff.tsum_add hδsum]
+    apply tsum_congr
+    intro n
+    ring
+  calc ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+        * perronI (x/n) (1 + 1/Real.log x) T‖
+      = ‖((Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+            * perronδ (x/n))
+          - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+            * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))‖ := by
+        rw [hsplit]
+        ring_nf
+    _ ≤ ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+            * perronδ (x/n)‖
+          + ‖∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+            * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n))‖ :=
+        norm_sub_le _ _
+    _ ≤ Real.log x + (600 * x * Real.log (x * T) ^ 2 / T + 12 * Real.log x) :=
+        add_le_add (delta_sum_close hx) (kernel_sum_bound hx hT)
+    _ = 600 * x * Real.log (x * T) ^ 2 / T + 13 * Real.log x := by ring
+
 /-- info: 'PerronKernel.near_diagonal_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms near_diagonal_sum
+
+/-- info: 'PerronKernel.perron_to_psi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms perron_to_psi
 
 end PerronKernel
