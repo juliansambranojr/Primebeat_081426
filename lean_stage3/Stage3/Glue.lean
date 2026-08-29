@@ -531,6 +531,245 @@ theorem edge_horizontal_bound :
           _ = Cp * 3 * (9/4) * x * Real.log T ^ 2 / T := by ring
 
 
+/-- Conjugation symmetry of the integrand's norm. -/
+theorem Gf_norm_conj {x : ℝ} (hx : 0 < x) {u : ℂ} (hu1 : u ≠ 1) :
+    ‖Gf x ((starRingEnd ℂ) u)‖ = ‖Gf x u‖ := by
+  have hxne : ((x:ℝ):ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr (ne_of_gt hx)
+  have hcpow : ((x:ℝ):ℂ) ^ ((starRingEnd ℂ) u)
+      = (starRingEnd ℂ) (((x:ℝ):ℂ) ^ u) := by
+    rw [Complex.cpow_def_of_ne_zero hxne, Complex.cpow_def_of_ne_zero hxne,
+      ← Complex.exp_conj, map_mul]
+    congr 2
+    rw [← Complex.ofReal_log hx.le]
+    exact (Complex.conj_ofReal _).symm
+  show ‖(- deriv riemannZeta ((starRingEnd ℂ) u) / riemannZeta ((starRingEnd ℂ) u))
+      * ((x:ℝ):ℂ) ^ ((starRingEnd ℂ) u) / ((starRingEnd ℂ) u)‖
+    = ‖(- deriv riemannZeta u / riemannZeta u) * ((x:ℝ):ℂ) ^ u / u‖
+  rw [EdgeBound.deriv_zeta_conj hu1, riemannZeta_conj, hcpow,
+    show (- ((starRingEnd ℂ) (deriv riemannZeta u)) / (starRingEnd ℂ) (riemannZeta u))
+      * (starRingEnd ℂ) (((x:ℝ):ℂ) ^ u) / (starRingEnd ℂ) u
+      = (starRingEnd ℂ) ((- deriv riemannZeta u / riemannZeta u) * ((x:ℝ):ℂ) ^ u / u) by
+      rw [map_div₀, map_mul, map_div₀, map_neg],
+    RCLike.norm_conj]
+
+/-- **The left-edge integral bound**: `≤ C·log x` for `T′ ≤ x²`. -/
+theorem edge_left_bound :
+    ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ x^2 →
+      ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ C * Real.log x := by
+  classical
+  obtain ⟨Ce, hCe0, hCe⟩ := EdgeBound.edge_bound_core
+  have hlog2 : (0:ℝ) < Real.log 2 := Real.log_pos (by norm_num)
+  -- the compact-segment constant for ζ′/ζ
+  have hccont : ContinuousOn (fun t : ℝ ↦
+      ‖deriv riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I)
+        / riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I)‖) (Set.Icc (-2:ℝ) 2) := by
+    intro t _
+    apply ContinuousAt.continuousWithinAt
+    apply ContinuousAt.norm
+    have hpre : ((((-1/4 : ℝ):ℂ)) + (t:ℝ) * Complex.I).re = -1/4 := by simp
+    have hu1 : (((-1/4 : ℝ):ℂ) + t * Complex.I) ≠ 1 := by
+      intro h
+      have h2 := congrArg Complex.re h
+      rw [hpre, Complex.one_re] at h2
+      norm_num at h2
+    have hζne : riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I) ≠ 0 := by
+      apply ContourShift.zeta_ne_zero_of_re_mem (by rw [hpre]; norm_num)
+        (by rw [hpre]; norm_num)
+    have han := ContourShift.zeta_analyticAt hu1
+    have hpar : Continuous (fun τ : ℝ ↦ ((-1/4 : ℝ):ℂ) + τ * Complex.I) := by
+      fun_prop
+    apply ContinuousAt.div
+    · exact ContinuousAt.comp (g := deriv riemannZeta)
+        (f := fun τ : ℝ ↦ ((-1/4 : ℝ):ℂ) + τ * Complex.I)
+        (han.deriv.continuousAt) hpar.continuousAt
+    · exact ContinuousAt.comp (g := riemannZeta)
+        (f := fun τ : ℝ ↦ ((-1/4 : ℝ):ℂ) + τ * Complex.I)
+        (han.continuousAt) hpar.continuousAt
+    · exact hζne
+  obtain ⟨Mc, hMc⟩ := (isCompact_Icc).exists_bound_of_continuousOn hccont
+  have hMc0 : (0:ℝ) ≤ Mc := le_trans (norm_nonneg _) (hMc 0 (by norm_num))
+  set D : ℝ := 36*Ce + 9*(Mc+1)/Real.log 2 with hDd
+  have hD0 : 0 < D := by
+    rw [hDd]
+    positivity
+  refine ⟨24 * 256 * D / 2 + 1, by positivity, ?_⟩
+  intro x T' hx hT'2 hT'x
+  have hx0 : (0:ℝ) < x := by linarith
+  have hx1 : (1:ℝ) ≤ x := by linarith
+  have hlx : (0:ℝ) < Real.log x := Real.log_pos (by linarith)
+  have hlx2 : (2:ℝ) < Real.log x := by
+    have h1 : Real.log 16 ≤ Real.log x := Real.log_le_log (by norm_num) hx
+    have h2 : (16:ℝ) = 2^4 := by norm_num
+    rw [h2, Real.log_pow] at h1
+    have h3 : (0.6931471803:ℝ) < Real.log 2 := Real.log_two_gt_d9
+    push_cast at h1
+    nlinarith
+  have hlogT' : (0:ℝ) < Real.log T' := Real.log_pos (by linarith)
+  have hlogT'2 : Real.log 2 ≤ Real.log T' := Real.log_le_log (by norm_num) hT'2
+  have hlogT'x : Real.log T' ≤ 2 * Real.log x := by
+    have h4 : Real.log T' ≤ Real.log (x^2) := Real.log_le_log (by linarith) hT'x
+    rw [Real.log_pow] at h4
+    push_cast at h4
+    linarith
+  -- the pointwise dominating bound
+  have hpoint : ∀ t : ℝ, -T' ≤ t → t ≤ T' →
+      ‖Gf x (((-1/4 : ℝ):ℂ) + t * Complex.I)‖
+        ≤ D * Real.log T' * x ^ (-(1:ℝ)/4) / (1/4 + |t|) := by
+    intro t ht1 ht2
+    set u : ℂ := ((-1/4 : ℝ):ℂ) + t * Complex.I with hud
+    have hure : u.re = -1/4 := by rw [hud]; simp
+    have huim : u.im = t := by rw [hud]; simp
+    have hu1 : u ≠ 1 := by
+      intro h
+      have h2 := congrArg Complex.re h
+      rw [hure] at h2
+      simp at h2
+      linarith
+    have hxu : ‖((x:ℝ):ℂ) ^ u‖ = x ^ (-(1:ℝ)/4) := by
+      rw [Complex.norm_cpow_eq_rpow_re_of_pos hx0, hure]
+      try norm_num
+    have hun : 1/4 ≤ ‖u‖ := by
+      have h5 := Complex.abs_re_le_norm u
+      rw [hure] at h5
+      have h6 : |(-1/4 : ℝ)| = 1/4 := by norm_num
+      linarith [h5, h6.symm.le.trans h5]
+    have hun2 : |t| ≤ ‖u‖ := by
+      have h7 := Complex.abs_im_le_norm u
+      rwa [huim] at h7
+    have hun0 : (0:ℝ) < ‖u‖ := by linarith
+    have hζbound : ‖deriv riemannZeta u / riemannZeta u‖
+        ≤ (4*Ce*Real.log T') + Mc := by
+      by_cases hth : 2 ≤ |t|
+      · -- via edge_bound_core at height |t|
+        have hkey : ∀ v : ℂ, v.re = -1/4 → v.im = |t| →
+            ‖deriv riemannZeta v / riemannZeta v‖ ≤ 4*Ce*Real.log T' := by
+          intro v hvre hvim
+          have hvζ : riemannZeta v ≠ 0 := by
+            apply ContourShift.zeta_ne_zero_of_re_mem <;> rw [hvre] <;> norm_num
+          have hδ : ∀ w ∈ (EdgeBound.gz_zeros_ball_finite (|t|)
+              (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (1/4 : ℝ) ≤ ‖v - w‖ := by
+            intro w hw
+            rw [Set.Finite.mem_toFinset] at hw
+            obtain ⟨_, ⟨hwre0, _⟩, _⟩ := EdgeBound.ball_zero_shape hth hw.1 hw.2
+            have h8 := Complex.abs_re_le_norm (v - w)
+            rw [Complex.sub_re, hvre] at h8
+            have h9 : (1/4:ℝ) ≤ |(-1/4) - w.re| := by
+              rw [abs_sub_comm, abs_of_pos (by linarith)]
+              linarith
+            linarith
+          have h10 := hCe (|t|) hth v hvim (by rw [hvre])
+            (by rw [hvre]; norm_num) hvζ (1/4) (by norm_num) (by norm_num) hδ
+          have h11 : Real.log (|t|) ≤ Real.log T' := by
+            apply Real.log_le_log (by linarith)
+            exact abs_le.mpr ⟨by linarith, by linarith⟩
+          calc ‖deriv riemannZeta v / riemannZeta v‖
+              ≤ Ce * Real.log (|t|) / (1/4) := h10
+            _ = 4 * Ce * Real.log (|t|) := by ring
+            _ ≤ 4*Ce*Real.log T' := by nlinarith
+        rcases le_or_gt 0 t with htp | htn
+        · have h12 : |t| = t := abs_of_nonneg htp
+          have h13 := hkey u hure (by rw [huim, h12])
+          linarith [h13, hMc0]
+        · -- negative height via conjugation
+          set v : ℂ := ((-1/4 : ℝ):ℂ) + (|t|) * Complex.I with hvd
+          have hvre : v.re = -1/4 := by rw [hvd]; simp
+          have hvim : v.im = |t| := by rw [hvd]; simp
+          have hv1 : v ≠ 1 := by
+            intro h
+            have h2 := congrArg Complex.re h
+            rw [hvre] at h2
+            simp at h2
+            linarith
+          have hconj : (starRingEnd ℂ) v = u := by
+            rw [hvd, hud, map_add, map_mul, Complex.conj_I, Complex.conj_ofReal,
+              Complex.conj_ofReal, abs_of_neg htn]
+            push_cast
+            ring
+          have h15 : ‖deriv riemannZeta u / riemannZeta u‖
+              = ‖deriv riemannZeta v / riemannZeta v‖ := by
+            rw [← hconj, EdgeBound.deriv_zeta_conj hv1, riemannZeta_conj,
+              ← map_div₀, RCLike.norm_conj]
+          rw [h15]
+          have h16 := hkey v hvre hvim
+          linarith [hMc0]
+      · -- compact segment
+        push_neg at hth
+        have h17' := hMc t (by
+          rw [Set.mem_Icc]
+          rw [abs_lt] at hth
+          constructor <;> linarith [hth.1, hth.2])
+        rw [norm_norm] at h17'
+        have h17 : ‖deriv riemannZeta u / riemannZeta u‖ ≤ Mc := h17'
+        have h18 : (0:ℝ) ≤ 4*Ce*Real.log T' := by positivity
+        show ‖deriv riemannZeta u / riemannZeta u‖ ≤ (4*Ce*Real.log T') + Mc
+        calc ‖deriv riemannZeta u / riemannZeta u‖ ≤ Mc := h17
+          _ ≤ (4*Ce*Real.log T') + Mc := by linarith
+    -- assemble the pointwise bound
+    show ‖(- deriv riemannZeta u / riemannZeta u) * ((x:ℝ):ℂ) ^ u / u‖
+      ≤ D * Real.log T' * x ^ (-(1:ℝ)/4) / (1/4 + |t|)
+    rw [norm_div, norm_mul, neg_div, norm_neg, hxu]
+    have hq : (0:ℝ) < 1/4 + |t| := by positivity
+    rw [div_le_div_iff₀ hun0 hq]
+    have hrp : (0:ℝ) ≤ x ^ (-(1:ℝ)/4) := Real.rpow_nonneg hx0.le _
+    have h20 : Mc ≤ (Mc+1)/Real.log 2 * Real.log T' := by
+      rw [div_mul_eq_mul_div, le_div_iff₀ hlog2]
+      nlinarith
+    have hDlog : ((4*Ce*Real.log T') + Mc) * (1/4 + |t|)
+        ≤ D * Real.log T' * ‖u‖ := by
+      rcases le_or_gt 2 (|t|) with hth | hth
+      · have h19 : 1/4 + |t| ≤ 2 * ‖u‖ := by
+          have h19a : 1/4 + |t| ≤ 2*|t| := by linarith
+          linarith [hun2]
+        have hA : ((4*Ce*Real.log T') + Mc) * (1/4 + |t|)
+            ≤ ((4*Ce*Real.log T') + Mc) * (2*‖u‖) := by
+          apply mul_le_mul_of_nonneg_left h19 (by positivity)
+        have hC : 2*Mc*‖u‖ ≤ 9*(Mc+1)/Real.log 2 * Real.log T' * ‖u‖ := by
+          apply mul_le_mul_of_nonneg_right ?_ (norm_nonneg u)
+          have h25 : (0:ℝ) ≤ (Mc+1)/Real.log 2 * Real.log T' := by positivity
+          have h26 : 9*(Mc+1)/Real.log 2 * Real.log T'
+              = 9*((Mc+1)/Real.log 2 * Real.log T') := by ring
+          rw [h26]
+          linarith
+        have hE : 8*Ce*Real.log T'*‖u‖ ≤ 36*Ce*Real.log T'*‖u‖ := by
+          have h27 : (0:ℝ) ≤ Ce*Real.log T'*‖u‖ := by positivity
+          nlinarith
+        rw [hDd]
+        calc ((4*Ce*Real.log T') + Mc) * (1/4 + |t|)
+            ≤ ((4*Ce*Real.log T') + Mc) * (2*‖u‖) := hA
+          _ = 8*Ce*Real.log T'*‖u‖ + 2*Mc*‖u‖ := by ring
+          _ ≤ 36*Ce*Real.log T'*‖u‖
+              + 9*(Mc+1)/Real.log 2 * Real.log T' * ‖u‖ := by linarith
+          _ = (36*Ce + 9*(Mc+1)/Real.log 2) * Real.log T' * ‖u‖ := by ring
+      · have h22 : 1/4 + |t| ≤ 9/4 := by linarith
+        have hA : ((4*Ce*Real.log T') + Mc) * (1/4 + |t|)
+            ≤ ((4*Ce*Real.log T') + Mc) * (9/4) := by
+          apply mul_le_mul_of_nonneg_left h22 (by positivity)
+        have hB : D * Real.log T' * (1/4) ≤ D * Real.log T' * ‖u‖ := by
+          apply mul_le_mul_of_nonneg_left hun (by positivity)
+        have hC : ((4*Ce*Real.log T') + Mc) * (9/4) ≤ D * Real.log T' * (1/4) := by
+          rw [hDd]
+          have h28 : (9/4:ℝ)*Mc ≤ (9/4)*((Mc+1)/Real.log 2 * Real.log T') := by
+            linarith
+          have h29 : (36*Ce + 9*(Mc+1)/Real.log 2) * Real.log T' * (1/4)
+              = 9*Ce*Real.log T' + (9/4)*((Mc+1)/Real.log 2 * Real.log T') := by
+            ring
+          rw [h29]
+          have h30 : ((4*Ce*Real.log T') + Mc) * (9/4)
+              = 9*Ce*Real.log T' + (9/4)*Mc := by ring
+          rw [h30]
+          linarith
+        linarith
+    calc ‖deriv riemannZeta u / riemannZeta u‖ * x ^ (-(1:ℝ)/4) * (1/4 + |t|)
+        ≤ ((4*Ce*Real.log T') + Mc) * x ^ (-(1:ℝ)/4) * (1/4 + |t|) := by
+          apply mul_le_mul_of_nonneg_right ?_ hq.le
+          exact mul_le_mul_of_nonneg_right hζbound hrp
+      _ = ((4*Ce*Real.log T') + Mc) * (1/4 + |t|) * x ^ (-(1:ℝ)/4) := by ring
+      _ ≤ D * Real.log T' * ‖u‖ * x ^ (-(1:ℝ)/4) := by
+          apply mul_le_mul_of_nonneg_right hDlog hrp
+      _ = D * Real.log T' * x ^ (-(1:ℝ)/4) * ‖u‖ := by ring
+  sorry
+
+
 /-- info: 'Glue.band_order_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms band_order_sum_le
