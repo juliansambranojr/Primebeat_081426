@@ -985,6 +985,207 @@ theorem residue_identity {x T T' : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T)
         (-1 - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * T')
       = (x : ℂ) - deriv riemannZeta 0 / riemannZeta 0
         - Stage3.zeroPartialSum x T' := by
-  sorry
+  classical
+  have hx0 : (0:ℝ) < x := by linarith
+  have hlx : (0:ℝ) < Real.log x := Real.log_pos (by linarith)
+  obtain ⟨hT'lo, hT'hi⟩ := hT'
+  have hT'2 : (2:ℝ) ≤ T' := le_trans hT hT'lo
+  set c : ℝ := 1 + 1/Real.log x with hcd
+  have hc1 : 1 < c := by
+    rw [hcd]
+    have h1 : (0:ℝ) < 1/Real.log x := by positivity
+    linarith
+  set zc : ℂ := -1 - Complex.I * (T':ℂ) with hzcd
+  set wc : ℂ := ((c:ℝ):ℂ) + Complex.I * (T':ℂ) with hwcd
+  have hzre : zc.re = -1 := by rw [hzcd]; simp
+  have hzim : zc.im = -T' := by rw [hzcd]; simp
+  have hwre : wc.re = c := by rw [hwcd]; simp
+  have hwim : wc.im = T' := by rw [hwcd]; simp
+  have hrele : zc.re ≤ wc.re := by rw [hzre, hwre]; linarith
+  have himle : zc.im ≤ wc.im := by rw [hzim, hwim]; linarith
+  have hrect_mem : ∀ s : ℂ, s ∈ Rectangle zc wc ↔
+      ((-1 ≤ s.re ∧ s.re ≤ c) ∧ (-T' ≤ s.im ∧ s.im ≤ T')) := by
+    intro s
+    simp only [Rectangle]
+    rw [Complex.mem_reProdIm, hzre, hwre, hzim, hwim,
+      Set.uIcc_of_le (by linarith : (-1:ℝ) ≤ c),
+      Set.uIcc_of_le (by linarith : -T' ≤ T'), Set.mem_Icc, Set.mem_Icc]
+  have hfence : ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ ∈ Rectangle zc wc →
+      ((0 < ρ.re ∧ ρ.re < 1) ∧ |ρ.im| < T') := by
+    intro ρ hz hρR
+    obtain ⟨⟨hre1, hre2⟩, him1, him2⟩ := (hrect_mem ρ).mp hρR
+    have hre_pos : 0 < ρ.re := by
+      by_contra hle
+      push_neg at hle
+      exact zeta_ne_zero_of_re_mem hre1 hle hz
+    have hre_lt1 : ρ.re < 1 := by
+      by_contra hge
+      push_neg at hge
+      exact riemannZeta_ne_zero_of_one_le_re hge hz
+    have hgap := zeroGap_pos hT
+    have hgd := hgood ρ hz hre_pos
+    have him_ne : ρ.im ≠ T' := by
+      intro h
+      rw [h, sub_self, abs_zero] at hgd
+      linarith
+    have him_ne2 : ρ.im ≠ -T' := by
+      intro h
+      have hzc2 : riemannZeta ((starRingEnd ℂ) ρ) = 0 := by
+        rw [riemannZeta_conj, hz, map_zero]
+      have hgd2 := hgood _ hzc2 (by rw [Complex.conj_re]; exact hre_pos)
+      rw [Complex.conj_im, h, neg_neg, sub_self, abs_zero] at hgd2
+      linarith
+    refine ⟨⟨hre_pos, hre_lt1⟩, ?_⟩
+    rw [abs_lt]
+    exact ⟨lt_of_le_of_ne him1 (Ne.symm him_ne2), lt_of_le_of_ne him2 him_ne⟩
+  have hfin := zeta_zeros_rectangle_finite zc wc
+  set ZF : Finset ℂ := hfin.toFinset with hZFd
+  have hZF_mem : ∀ ρ : ℂ, ρ ∈ ZF ↔ (riemannZeta ρ = 0 ∧ ρ ∈ Rectangle zc wc) := by
+    intro ρ
+    rw [hZFd, Set.Finite.mem_toFinset]
+    exact Iff.rfl
+  have h0ZF : (0:ℂ) ∉ ZF := by
+    intro h
+    have h2 := ((hZF_mem 0).mp h).1
+    rw [riemannZeta_zero] at h2
+    norm_num at h2
+  have h1ZF : (1:ℂ) ∉ ZF := by
+    intro h
+    obtain ⟨hz2, hρR2⟩ := (hZF_mem 1).mp h
+    have h3 := (hfence 1 hz2 hρR2).1.2
+    simp at h3
+  set P : Finset ℂ := insert 0 (insert 1 ZF) with hPd
+  set A : ℂ → ℂ := fun p ↦ if p = 0 then - deriv riemannZeta 0 / riemannZeta 0
+    else if p = 1 then ((x:ℝ):ℂ)
+    else -(analyticOrderNatAt riemannZeta p : ℂ) * ((x:ℝ):ℂ) ^ p / p with hAd
+  have hpIn : ∀ p ∈ P, Rectangle zc wc ∈ nhds p := by
+    intro p hp
+    rw [rectangle_mem_nhds_iff, Set.uIoo_of_le hrele, Set.uIoo_of_le himle,
+      Complex.mem_reProdIm, hzre, hwre, hzim, hwim, Set.mem_Ioo, Set.mem_Ioo]
+    rw [hPd] at hp
+    rcases Finset.mem_insert.mp hp with rfl | hp2
+    · simp only [Complex.zero_re, Complex.zero_im]
+      refine ⟨⟨by norm_num, by linarith⟩, ⟨by linarith, by linarith⟩⟩
+    rcases Finset.mem_insert.mp hp2 with rfl | hpZ
+    · simp only [Complex.one_re, Complex.one_im]
+      refine ⟨⟨by norm_num, hc1⟩, ⟨by linarith, by linarith⟩⟩
+    · obtain ⟨hz2, hρR2⟩ := (hZF_mem p).mp hpZ
+      obtain ⟨⟨hh1, hh2⟩, hh3⟩ := hfence p hz2 hρR2
+      rw [abs_lt] at hh3
+      exact ⟨⟨by linarith, by linarith⟩, hh3⟩
+  have hfHolo : HolomorphicOn (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s)
+      * ((x:ℝ):ℂ) ^ s / s) (Rectangle zc wc \ (P : Set ℂ)) := by
+    intro s hs
+    obtain ⟨hsR, hsP⟩ := hs
+    have hs0 : s ≠ 0 := by
+      intro h
+      apply hsP
+      rw [hPd, h]
+      simp
+    have hs1 : s ≠ 1 := by
+      intro h
+      apply hsP
+      rw [hPd, h]
+      simp
+    have hsz : riemannZeta s ≠ 0 := by
+      intro h
+      apply hsP
+      rw [hPd]
+      have h4 : s ∈ ZF := (hZF_mem s).mpr ⟨h, hsR⟩
+      simp [h4]
+    have hζan := zeta_analyticAt hs1
+    have hd1 : DifferentiableAt ℂ (fun t : ℂ ↦ - deriv riemannZeta t / riemannZeta t) s :=
+      (hζan.deriv.differentiableAt.neg).div hζan.differentiableAt hsz
+    have hd2 : DifferentiableAt ℂ (fun t : ℂ ↦ ((x:ℝ):ℂ) ^ t) s :=
+      (differentiable_id.const_cpow
+        (Or.inl (Complex.ofReal_ne_zero.mpr hx0.ne'))).differentiableAt
+    exact ((hd1.mul hd2).div differentiableAt_id hs0).differentiableWithinAt
+  have hloc : ∀ p ∈ P, ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧
+      ∀ᶠ s in nhdsWithin p {p}ᶜ,
+        (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s
+          = h s + A p / (s - p) := by
+    intro p hp
+    rw [hPd] at hp
+    rcases Finset.mem_insert.mp hp with rfl | hp2
+    · have hA0 : A 0 = - deriv riemannZeta 0 / riemannZeta 0 := by simp [hAd]
+      obtain ⟨h, hha, hhe⟩ := zeta_local_data_origin hx0
+      refine ⟨h, hha, ?_⟩
+      filter_upwards [hhe] with s hs
+      rw [hA0]
+      exact hs
+    rcases Finset.mem_insert.mp hp2 with rfl | hpZ
+    · have hA1 : A 1 = ((x:ℝ):ℂ) := by simp [hAd]
+      obtain ⟨h, hha, hhe⟩ := zeta_local_data_one hx0
+      refine ⟨h, hha, ?_⟩
+      filter_upwards [hhe] with s hs
+      rw [hA1]
+      exact hs
+    · obtain ⟨hz2, hρR2⟩ := (hZF_mem p).mp hpZ
+      obtain ⟨⟨hh1, hh2⟩, _⟩ := hfence p hz2 hρR2
+      have hp0 : p ≠ 0 := by
+        intro h
+        rw [h] at hh1
+        simp at hh1
+      have hp1 : p ≠ 1 := by
+        intro h
+        rw [h] at hh2
+        simp at hh2
+      have hAρ : A p = -(analyticOrderNatAt riemannZeta p : ℂ) * ((x:ℝ):ℂ) ^ p / p := by
+        simp [hAd, hp0, hp1]
+      obtain ⟨h, hha, hhe⟩ := zeta_local_data_zero hx0 hp0 hp1 hz2
+      refine ⟨h, hha, ?_⟩
+      filter_upwards [hhe] with s hs
+      rw [hAρ]
+      exact hs
+  have hmain := residue_rectangle_of_local hrele himle hpIn hfHolo hloc
+  rw [hmain]
+  have hA0 : A 0 = - deriv riemannZeta 0 / riemannZeta 0 := by simp [hAd]
+  have hA1 : A 1 = ((x:ℝ):ℂ) := by simp [hAd]
+  have h0in : (0:ℂ) ∉ insert (1:ℂ) ZF := by
+    intro h
+    rcases Finset.mem_insert.mp h with h | h
+    · exact (by norm_num : (0:ℂ) ≠ 1) h
+    · exact h0ZF h
+  rw [hPd, Finset.sum_insert h0in, Finset.sum_insert h1ZF, hA0, hA1]
+  have hiff : ∀ ρ : ℂ, ρ ∈ ZF ↔ (ρ ∈ Kadiri.NontrivialZeros ∧ |ρ.im| < T') := by
+    intro ρ
+    rw [hZF_mem]
+    constructor
+    · rintro ⟨hz2, hρR2⟩
+      obtain ⟨⟨hh1, hh2⟩, hh3⟩ := hfence ρ hz2 hρR2
+      exact ⟨⟨⟨hh1, hh2⟩, Set.mem_univ _, hz2⟩, hh3⟩
+    · rintro ⟨⟨hre, _, hz2⟩, him⟩
+      rw [abs_lt] at him
+      refine ⟨hz2, (hrect_mem ρ).mpr ⟨⟨by linarith [hre.1], by linarith [hre.2]⟩,
+        by linarith [him.1], by linarith [him.2]⟩⟩
+  have hZPS := zeroPartialSum_eq_sum (x := x) hiff
+  have hsum2 : ∑ p ∈ ZF, A p
+      = -∑ p ∈ ZF, ((analyticOrderNatAt riemannZeta p : ℂ) * ((x : ℂ) ^ p / p)) := by
+    rw [← Finset.sum_neg_distrib]
+    apply Finset.sum_congr rfl
+    intro p hpZ
+    obtain ⟨hz2, hρR2⟩ := (hZF_mem p).mp hpZ
+    obtain ⟨⟨hh1, hh2⟩, _⟩ := hfence p hz2 hρR2
+    have hp0 : p ≠ 0 := by
+      intro h
+      rw [h] at hh1
+      simp at hh1
+    have hp1 : p ≠ 1 := by
+      intro h
+      rw [h] at hh2
+      simp at hh2
+    rw [hAd]
+    simp only [if_neg hp0, if_neg hp1]
+    ring
+  rw [hsum2, hZPS]
+  ring
+
+/-- info: 'ContourShift.residue_identity' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms residue_identity
+
+/-- info: 'ContourShift.zeroPartialSum_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeroPartialSum_eq_sum
 
 end ContourShift
