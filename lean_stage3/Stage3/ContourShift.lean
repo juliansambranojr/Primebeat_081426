@@ -327,6 +327,96 @@ theorem edge_bound {T T' : ℝ} (hT : 2 ≤ T) (hT' : T' ∈ Set.Icc T (T+1))
         ≤ C * Real.log T ^ 2 := by
   sorry
 
+/-! ## S4 machinery — the multi-pole residue theorem on a rectangle
+
+PNT+'s `ResidueTheoremOnRectangleWithSimplePole` handles one simple pole.
+Its proof only ever uses the border values of `f`, so the many-pole
+version needs no new analysis: congr the border to
+`g + Σ principal parts`, split by linearity, vanish `g`, and fire
+`ResidueTheoremInRectangle` once per pole. -/
+
+/-- A finite sum of simple-pole principal parts is border-integrable
+when every pole is interior. -/
+theorem borderIntegrable_sum_poles {z w : ℂ} {P : Finset ℂ} {A : ℂ → ℂ}
+    (pIn : ∀ p ∈ P, Rectangle z w ∈ nhds p) :
+    RectangleBorderIntegrable (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w := by
+  apply ContinuousOn.rectangleBorder_integrable
+  apply continuousOn_finset_sum
+  intro p hp
+  apply ContinuousOn.div continuousOn_const
+    ((continuous_id.sub continuous_const).continuousOn)
+  intro s hs hzero
+  have hsp : s = p := sub_eq_zero.mp hzero
+  rw [hsp] at hs
+  exact not_mem_rectangleBorder_of_rectangle_mem_nhds (pIn p hp) hs
+
+/-- The rectangle integral of a finite sum of simple-pole principal
+parts, all poles interior, is the sum of the residues. -/
+theorem rectangleIntegral_sum_poles {z w : ℂ} {P : Finset ℂ} {A : ℂ → ℂ}
+    (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)
+    (pIn : ∀ p ∈ P, Rectangle z w ∈ nhds p) :
+    RectangleIntegral' (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w = ∑ p ∈ P, A p := by
+  classical
+  revert pIn
+  refine Finset.induction_on P ?_ ?_
+  · intro _
+    simp [RectangleIntegral', RectangleIntegral, HIntegral, VIntegral]
+  · intro p Q hpQ ih pIn
+    have hpin : Rectangle z w ∈ nhds p := pIn p (Finset.mem_insert_self p Q)
+    have hQin : ∀ q ∈ Q, Rectangle z w ∈ nhds q := fun q hq ↦
+      pIn q (Finset.mem_insert_of_mem hq)
+    have ihQ := ih hQin
+    have hsplit : (fun s ↦ ∑ q ∈ insert p Q, A q / (s - q))
+        = (fun s ↦ A p / (s - p)) + (fun s ↦ ∑ q ∈ Q, A q / (s - q)) := by
+      funext s
+      simp [Finset.sum_insert hpQ]
+    have h1 : RectangleBorderIntegrable (fun s ↦ A p / (s - p)) z w := by
+      have h2 := borderIntegrable_sum_poles (z := z) (w := w)
+        (P := {p}) (A := A) (by simpa using hpin)
+      simpa using h2
+    have h2 := borderIntegrable_sum_poles (z := z) (w := w) (P := Q) (A := A) hQin
+    rw [hsplit, RectangleIntegral', RectangleBorderIntegrable.add h1 h2, smul_add,
+      Finset.sum_insert hpQ]
+    have hres := ResidueTheoremInRectangle (c := A p) (p := p) (z := z) (w := w)
+      zRe_le_wRe zIm_le_wIm hpin
+    exact congrArg₂ (· + ·) hres ihQ
+
+/-- **The multi-pole residue theorem on a rectangle.** If `f` agrees
+off the pole set with `g + Σ_p A p/(s − p)` for `g` holomorphic on the
+whole rectangle and every pole interior, then the rectangle integral of
+`f` collects every residue. -/
+theorem residue_rectangle_multi {f g : ℂ → ℂ} {z w : ℂ} {P : Finset ℂ} {A : ℂ → ℂ}
+    (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)
+    (pIn : ∀ p ∈ P, Rectangle z w ∈ nhds p)
+    (gHolo : HolomorphicOn g (Rectangle z w))
+    (principal : Set.EqOn (f - fun s ↦ ∑ p ∈ P, A p / (s - p)) g
+      (Rectangle z w \ (P : Set ℂ))) :
+    RectangleIntegral' f z w = ∑ p ∈ P, A p := by
+  have hborder : Set.EqOn f (g + fun s ↦ ∑ p ∈ P, A p / (s - p))
+      (RectangleBorder z w) := by
+    intro s hs
+    have hsP : s ∉ (P : Set ℂ) := by
+      intro hsP
+      exact not_mem_rectangleBorder_of_rectangle_mem_nhds (pIn s hsP) hs
+    have h1 := principal ⟨rectangleBorder_subset_rectangle z w hs, hsP⟩
+    simp only [Pi.sub_apply] at h1
+    simp only [Pi.add_apply]
+    linear_combination h1
+  rw [RectangleIntegral'_congr hborder]
+  have hgInt : RectangleBorderIntegrable g z w := gHolo.rectangleBorderIntegrable
+  have hSumInt := borderIntegrable_sum_poles (z := z) (w := w) (P := P) (A := A) pIn
+  rw [RectangleIntegral', RectangleBorderIntegrable.add hgInt hSumInt, smul_add,
+    gHolo.vanishesOnRectangle (by rfl), smul_zero, zero_add]
+  exact rectangleIntegral_sum_poles zRe_le_wRe zIm_le_wIm pIn
+
+/-- info: 'ContourShift.residue_rectangle_multi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms residue_rectangle_multi
+
+/-- info: 'ContourShift.rectangleIntegral_sum_poles' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms rectangleIntegral_sum_poles
+
 /-- **Slice 4 — the residue identity on the good rectangle.** The zeros
 enter here: pulling the line integral to `σ = −1` collects the pole at
 `1` (residue `x`), the pole at `0` (residue `−ζ′/ζ(0)`), and every
