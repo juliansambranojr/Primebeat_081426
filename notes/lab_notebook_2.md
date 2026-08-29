@@ -16,6 +16,70 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 264 — SLICE 4 DISCHARGED: residue_identity — the zeros enter the formula
+type: formalization
+refs: 257, 262, 263
+
+**What was proved.** `ContourShift.residue_identity`
+(`lean_stage3/Stage3/ContourShift.lean:979`, commit `8ca3b02`, pinned
+`[propext, Classical.choice, Quot.sound]` — no sorryAx anywhere in its
+dependency tree):
+
+```text
+x ≥ 16, T ≥ 2, T' ∈ [T, T+1] good (entry 262's gap):
+(2πi)⁻¹ ∮_{[−1,c]×[−T',T']} (−ζ′/ζ)(s)·x^s/s ds
+    = x − ζ′/ζ(0) − Σ_{|γ|<T'} m_ρ·x^ρ/ρ        c = 1 + 1/log x
+```
+
+The right side's zero sum is literally `Stage3.zeroPartialSum x T'` —
+the ledger's own object. The main term, the constant, and every
+nontrivial zero below the height, each with its multiplicity, out of
+one contour.
+
+**The supporting layer** (commits `51c04cf`, `65537e4`):
+
+- `sq_mul_zeta_analyticAt_one` (line 803): `(s−1)²·ζ` is analytic at
+  `1`, from `riemannZeta_eq_mul_completedRiemannZeta₀` — the
+  unconditional form, so the junk values at `s = 1` agree on both
+  sides and no removable-singularity machinery is needed.
+- `zeta_meromorphicOn` (858): ζ meromorphic on any set (`n = 2` at
+  the pole).
+- `zeta_zeros_rectangle_finite` (866): the zeros in any closed
+  rectangle are finite — PNT+'s `divisor_support_rectangle_finite`
+  plus the singleton `{1}`, with order ≠ 0 at each zero.
+- `order_bridge` (889): `riemannZeta.order` (the ledger's
+  meromorphic-order-untopD, IEANTN/ZetaDefinitions:103) agrees with
+  `analyticOrderNatAt` away from the pole — the same dance PNT+'s
+  KadiriZeroCounting:98 performs.
+- `zeroPartialSum_eq_sum` (907): the tsum over
+  `{ρ : NontrivialZeros // |im ρ| < T'}` as a concrete finite sum
+  over any Finset enumerating exactly those zeros — subtype
+  equivalence (a `let`, so the coercion stays definitionally
+  transparent), `tsum_fintype`, `Equiv.sum_comp`,
+  `Finset.sum_coe_sort`.
+
+**How the assembly went.** First-pass compile — the slicing left
+nothing unproved at the end. The fences pin every rectangle zero into
+`re ∈ (0,1)` with `|im| < T'` strictly: entry 263's strip lemma walls
+off `re ∈ [−1, 0]`, `riemannZeta_ne_zero_of_one_le_re` walls off
+`re ≥ 1`, entry 262's goodT keeps ordinates off the top edge, and
+`riemannZeta_conj` reflects that to the bottom edge. The pole set
+`{0, 1} ∪ zeros` is then finite and interior;
+`residue_rectangle_of_local` fires with entry 263's three local
+lemmas; the residue sum crosses to `zeroPartialSum` over the bridge.
+
+**hEF state.** Slice 1 (entry 261), slice 2 (entry 262), slice 4
+(this entry) — all discharged. Remaining: S3 `edge_bound`
+(‖ζ′/ζ‖ ≤ C·log²T' on the contour edges, the seam at σ ≈ 1/2 the
+known deep spot — Hadamard partial fraction with the good-gap
+denominators; `LogDerivZetaFinalBound` covers σ > 1/2, the FE
+transports from the right half only), and the final glue deriving
+`StmtExplicitFormula` from the four slices.
+
+**Trap paid.** A subtype `Equiv` built with `have` is opaque — the
+coercion `↑(e ρ)` will not reduce and `rfl` fails; build it with
+`let`.
+
 ## 2026-08-29 — Entry 263 — slice 4's analytic layer complete: the multi-pole residue theorem and every pole of G, pinned
 type: formalization
 refs: 257, 261, 262

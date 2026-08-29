@@ -101,13 +101,12 @@ Vocabulary (Julian's, keep it):
   explicit_formula_perron: ψ vs the −ζ′/ζ integral, 600·x·log(xT)²/T +
   13·log x, commit 04395ad). Slice 2 PROVED (entry 262, goodT_exists:
   good-height pigeonhole, gap 1/(180·log T + 1060), commit 58045ed;
-  scaffold lean_stage3/Stage3/ContourShift.lean). S4 analytic layer
-  COMPLETE (entry 263, commits 2664700..2f795dd): multi-pole residue
-  theorem on rectangles + gluing from local data + all three pole
-  types of G (zeros/one/origin) + strip fence re ∈ [−1,0]. Remaining:
-  S4 assembly (rectangle-zero finiteness via divisor machinery, border
-  disjointness via goodT + conjugation + fences, residue sum matched
-  to zeroPartialSum via the riemannZeta.order bridge) and S3
+  scaffold lean_stage3/Stage3/ContourShift.lean). SLICE 4
+  DISCHARGED (entry 264, commit 8ca3b02): residue_identity — the
+  good-rectangle contour of (−ζ′/ζ)x^s/s equals
+  x − ζ′/ζ(0) − zeroPartialSum x T′, pinned clean, no sorryAx.
+  Analytic layer was entry 263 (commits 2664700..2f795dd). Remaining:
+  the final StmtExplicitFormula glue (S1+S2+S3+S4) and S3
   edge_bound (seam at σ ≈ 1/2 needs Hadamard partial fraction with the
   good-gap denominators; LogDerivZetaFinalBound covers σ > 1/2, FE
   transports below) — per entry 257, "no step needs mathematics absent
