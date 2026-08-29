@@ -514,6 +514,210 @@ theorem zeta1_eq_zeta_strip {N : ℕ} (Npos : 0 < N) :
   have h5 : zeta1 N s - riemannZeta s = 0 := h4
   linear_combination h5
 
+/-- Crude norm bound for the tail integral: `(1/4)·N^(−σ−1)`. -/
+theorem tail_norm_le {N : ℕ} (Npos : 0 < N) {s : ℂ} (hσ : -1/2 ≤ s.re) :
+    ‖∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))‖
+      ≤ (1/4) * (N:ℝ) ^ (-s.re - 1) := by
+  have hN0 : (0:ℝ) < (N:ℝ) := by exact_mod_cast Npos
+  have hlt : -s.re - 2 < -1 := by linarith
+  have hdom : IntegrableOn (fun x : ℝ ↦ (1/8) * x ^ (-s.re - 2)) (Ioi (N:ℝ)) := by
+    apply Integrable.const_mul
+    exact integrableOn_Ioi_rpow_of_lt hlt hN0
+  calc ‖∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))‖
+      ≤ ∫ x in Ioi (N:ℝ), ‖(emA x : ℂ) * (x:ℂ) ^ (-(s+2))‖ :=
+        MeasureTheory.norm_integral_le_integral_norm _
+    _ ≤ ∫ x in Ioi (N:ℝ), (1/8) * x ^ (-s.re - 2) := by
+        apply MeasureTheory.integral_mono_of_nonneg
+        · exact Filter.Eventually.of_forall (fun x ↦ norm_nonneg _)
+        · exact hdom
+        · filter_upwards [MeasureTheory.ae_restrict_mem measurableSet_Ioi] with x hx
+          rw [Set.mem_Ioi] at hx
+          have hx0 : 0 < x := lt_of_le_of_lt hN0.le hx
+          rw [norm_mul, Complex.norm_real, Complex.norm_cpow_eq_rpow_re_of_pos hx0]
+          have h1 : |emA x| = emA x := abs_of_nonneg (emA_nonneg x)
+          rw [Real.norm_eq_abs, h1]
+          have h2 : (-(s+2)).re = -s.re - 2 := by
+            simp
+            ring
+          rw [h2]
+          have h3 : (0:ℝ) ≤ x ^ (-s.re - 2) := Real.rpow_nonneg hx0.le _
+          nlinarith [emA_le x]
+    _ = (1/8) * ∫ x in Ioi (N:ℝ), x ^ (-s.re - 2) := by
+        rw [MeasureTheory.integral_const_mul]
+    _ = (1/8) * (-(N:ℝ) ^ ((-s.re - 2) + 1) / ((-s.re - 2) + 1)) := by
+        rw [integral_Ioi_rpow_of_lt hlt hN0]
+    _ ≤ (1/4) * (N:ℝ) ^ (-s.re - 1) := by
+        have h4 : (0:ℝ) < s.re + 1 := by linarith
+        have h5 : (0:ℝ) ≤ (N:ℝ) ^ (-s.re - 1) := Real.rpow_nonneg hN0.le _
+        have h7 : ((-s.re - 2) + 1 : ℝ) = -s.re - 1 := by ring
+        rw [h7]
+        have h8 : -(N:ℝ) ^ (-s.re - 1) / (-s.re - 1)
+            = (N:ℝ) ^ (-s.re - 1) * (1/(s.re + 1)) := by
+          rw [show (-s.re - 1 : ℝ) = -(s.re + 1) by ring, div_neg, neg_div, neg_neg]
+          ring
+        rw [h8]
+        have h6 : (1:ℝ)/(s.re + 1) ≤ 2 := by
+          rw [div_le_iff₀ h4]
+          linarith
+        calc (1/8) * ((N:ℝ) ^ (-s.re - 1) * (1/(s.re + 1)))
+            ≤ (1/8) * ((N:ℝ) ^ (-s.re - 1) * 2) := by
+              apply mul_le_mul_of_nonneg_left ?_ (by norm_num)
+              exact mul_le_mul_of_nonneg_left h6 h5
+          _ = (1/4) * (N:ℝ) ^ (-s.re - 1) := by ring
+
+/-- Crude bound for the shifted finite sum: `N·N^(1/2)`. -/
+theorem sum_norm_le {N : ℕ} {s : ℂ} (hσ : -1/2 ≤ s.re) (hN : 1 ≤ N) :
+    ‖∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s‖
+      ≤ (N:ℝ) * (N:ℝ) ^ ((1:ℝ)/2) := by
+  have hN1 : (1:ℝ) ≤ (N:ℝ) := by exact_mod_cast hN
+  calc ‖∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s‖
+      ≤ ∑ n ∈ Finset.range N, ‖1 / ((n:ℂ) + 1) ^ s‖ := norm_sum_le _ _
+    _ ≤ ∑ _n ∈ Finset.range N, (N:ℝ) ^ ((1:ℝ)/2) := by
+        apply Finset.sum_le_sum
+        intro n hn
+        rw [Finset.mem_range] at hn
+        have hn1 : (0:ℝ) < (n:ℝ) + 1 := by positivity
+        have hcast : ((n:ℂ) + 1) = ((((n:ℝ) + 1) : ℝ) : ℂ) := by push_cast; ring
+        rw [norm_div, norm_one, hcast, Complex.norm_cpow_eq_rpow_re_of_pos hn1]
+        rw [show (1:ℝ) / ((n:ℝ)+1) ^ s.re = ((n:ℝ)+1) ^ (-s.re) by
+          rw [Real.rpow_neg hn1.le]
+          ring]
+        calc ((n:ℝ)+1) ^ (-s.re)
+            ≤ ((n:ℝ)+1) ^ ((1:ℝ)/2) := by
+              apply Real.rpow_le_rpow_of_exponent_le (by linarith)
+              linarith
+          _ ≤ (N:ℝ) ^ ((1:ℝ)/2) := by
+              apply Real.rpow_le_rpow (by positivity) ?_ (by norm_num)
+              have h9 : (n:ℝ) + 1 ≤ (N:ℝ) := by exact_mod_cast hn
+              linarith
+    _ = (N:ℝ) * (N:ℝ) ^ ((1:ℝ)/2) := by
+        rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]
+
+/-- **Polynomial growth of `ζ` on the strip** — crude and explicit:
+`‖ζ(σ+it)‖ ≤ 15·t²` on `σ ∈ [−1/2, 4]`, `|t| ≥ 2`. -/
+theorem zeta_growth_strip {s : ℂ} (hσ1 : -1/2 ≤ s.re) (hσ2 : s.re ≤ 4)
+    (ht : 2 ≤ |s.im|) :
+    ‖riemannZeta s‖ ≤ 15 * |s.im| ^ 2 := by
+  set N : ℕ := ⌊|s.im|⌋₊ with hNd
+  have hN2 : (2:ℕ) ≤ N := Nat.le_floor (by exact_mod_cast ht)
+  have hN1 : 1 ≤ N := by omega
+  have hNpos : 0 < N := by omega
+  have hN0 : (0:ℝ) < (N:ℝ) := by exact_mod_cast hNpos
+  have hN1' : (1:ℝ) ≤ (N:ℝ) := by exact_mod_cast hN1
+  have hNt : (N:ℝ) ≤ |s.im| := Nat.floor_le (abs_nonneg _)
+  have ht1 : (1:ℝ) ≤ |s.im| := by linarith
+  have ht0 : (0:ℝ) < |s.im| := by linarith
+  have hs1 : s ≠ 1 := by
+    intro h
+    rw [h] at ht
+    simp at ht
+    linarith
+  have hmem : s ∈ stripRegion := ⟨by linarith, hs1⟩
+  rw [← zeta1_eq_zeta_strip hNpos hmem, zeta1]
+  have hcastN : ((N:ℕ):ℂ) = (((N:ℝ)):ℂ) := by push_cast; ring
+  have hhalf_le : |s.im| ^ ((1:ℝ)/2) ≤ |s.im| := by
+    calc |s.im| ^ ((1:ℝ)/2) ≤ |s.im| ^ ((1:ℝ)) :=
+          Real.rpow_le_rpow_of_exponent_le ht1 (by norm_num)
+      _ = |s.im| := Real.rpow_one _
+  have hb1 : ‖∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s‖ ≤ |s.im| ^ 2 := by
+    calc ‖∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s‖
+        ≤ (N:ℝ) * (N:ℝ) ^ ((1:ℝ)/2) := sum_norm_le hσ1 hN1
+      _ ≤ |s.im| * |s.im| ^ ((1:ℝ)/2) := by
+          apply mul_le_mul hNt ?_ (by positivity) (abs_nonneg _)
+          exact Real.rpow_le_rpow hN0.le hNt (by norm_num)
+      _ ≤ |s.im| * |s.im| := mul_le_mul_of_nonneg_left hhalf_le (abs_nonneg _)
+      _ = |s.im| ^ 2 := by ring
+  have hb2 : ‖(- (N:ℂ) ^ (1 - s)) / (1 - s)‖ ≤ |s.im| ^ 2 := by
+    rw [norm_div, norm_neg, hcastN, Complex.norm_cpow_eq_rpow_re_of_pos hN0]
+    have h1 : (1 - s).re = 1 - s.re := by simp
+    rw [h1]
+    have h2 : |s.im| ≤ ‖1 - s‖ := by
+      have h3 := Complex.abs_im_le_norm (1 - s)
+      have h4 : (1 - s).im = -s.im := by simp
+      rw [h4, abs_neg] at h3
+      exact h3
+    have h6 : (0:ℝ) < ‖1 - s‖ := lt_of_lt_of_le ht0 h2
+    rw [div_le_iff₀ h6]
+    calc (N:ℝ) ^ (1 - s.re)
+        ≤ |s.im| ^ ((3:ℝ)/2) := by
+          calc (N:ℝ) ^ (1 - s.re) ≤ (N:ℝ) ^ ((3:ℝ)/2) :=
+                Real.rpow_le_rpow_of_exponent_le hN1' (by linarith)
+            _ ≤ |s.im| ^ ((3:ℝ)/2) := Real.rpow_le_rpow hN0.le hNt (by norm_num)
+      _ = |s.im| ^ ((1:ℝ)/2) * |s.im| := by
+          rw [show (3:ℝ)/2 = 1/2 + 1 by norm_num, Real.rpow_add ht0, Real.rpow_one]
+      _ ≤ |s.im| ^ ((1:ℝ)/2) * ‖1 - s‖ :=
+          mul_le_mul_of_nonneg_left h2 (Real.rpow_nonneg (abs_nonneg _) _)
+      _ ≤ |s.im| ^ 2 * ‖1 - s‖ := by
+          apply mul_le_mul_of_nonneg_right ?_ (norm_nonneg _)
+          calc |s.im| ^ ((1:ℝ)/2) ≤ |s.im| := hhalf_le
+            _ ≤ |s.im| ^ 2 := by nlinarith
+  have hb3 : ‖(- (N:ℂ) ^ (-s)) / 2‖ ≤ |s.im| ^ 2 := by
+    rw [norm_div, norm_neg, hcastN, Complex.norm_cpow_eq_rpow_re_of_pos hN0]
+    have h1 : (-s).re = -s.re := by simp
+    rw [h1]
+    have h2 : ‖(2:ℂ)‖ = 2 := by norm_num
+    rw [h2]
+    have h3 : (N:ℝ) ^ (-s.re) ≤ |s.im| := by
+      calc (N:ℝ) ^ (-s.re) ≤ (N:ℝ) ^ ((1:ℝ)/2) :=
+            Real.rpow_le_rpow_of_exponent_le hN1' (by linarith)
+        _ ≤ |s.im| ^ ((1:ℝ)/2) := Real.rpow_le_rpow hN0.le hNt (by norm_num)
+        _ ≤ |s.im| := hhalf_le
+    have h4 : (0:ℝ) ≤ (N:ℝ) ^ (-s.re) := Real.rpow_nonneg hN0.le _
+    nlinarith
+  have hb4 : ‖s * ((s+1) * ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)))‖
+      ≤ 12 * |s.im| ^ 2 := by
+    rw [norm_mul, norm_mul]
+    have hnorm_s : ‖s‖ ≤ 4 + |s.im| := by
+      rw [Complex.norm_def]
+      calc Real.sqrt (Complex.normSq s) ≤ Real.sqrt ((4 + |s.im|)^2) := by
+            apply Real.sqrt_le_sqrt
+            rw [Complex.normSq_apply]
+            nlinarith [sq_abs s.im, abs_nonneg s.im]
+        _ = 4 + |s.im| := Real.sqrt_sq (by positivity)
+    have hnorm_s1 : ‖s + 1‖ ≤ 5 + |s.im| := by
+      rw [Complex.norm_def]
+      calc Real.sqrt (Complex.normSq (s+1)) ≤ Real.sqrt ((5 + |s.im|)^2) := by
+            apply Real.sqrt_le_sqrt
+            rw [Complex.normSq_apply]
+            simp only [Complex.add_re, Complex.add_im, Complex.one_re, Complex.one_im,
+              add_zero]
+            nlinarith [sq_abs s.im, abs_nonneg s.im]
+        _ = 5 + |s.im| := Real.sqrt_sq (by positivity)
+    have h1 := tail_norm_le hNpos hσ1
+    have h2 : (N:ℝ) ^ (-s.re - 1) ≤ 1 := by
+      apply Real.rpow_le_one_of_one_le_of_nonpos hN1'
+      linarith
+    have h3 : ‖∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))‖ ≤ 1/4 := by
+      calc ‖∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))‖
+          ≤ (1/4) * (N:ℝ) ^ (-s.re - 1) := h1
+        _ ≤ 1/4 := by nlinarith [Real.rpow_nonneg hN0.le (-s.re - 1)]
+    have h4 : ‖s‖ ≤ 3 * |s.im| := le_trans hnorm_s (by linarith)
+    have h5 : ‖s + 1‖ ≤ 4 * |s.im| := le_trans hnorm_s1 (by linarith)
+    calc ‖s‖ * (‖s + 1‖ * ‖∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))‖)
+        ≤ (3 * |s.im|) * ((4 * |s.im|) * (1/4)) := by
+          apply mul_le_mul h4 ?_ (by positivity) (by positivity)
+          apply mul_le_mul h5 h3 (norm_nonneg _) (by positivity)
+      _ = 3 * |s.im| ^ 2 := by ring
+      _ ≤ 12 * |s.im| ^ 2 := by nlinarith
+  calc ‖(∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s)
+        + (- (N:ℂ) ^ (1 - s)) / (1 - s) + (- (N:ℂ) ^ (-s)) / 2
+        + s * ((s+1) * ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)))‖
+      ≤ ‖∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s‖
+        + ‖(- (N:ℂ) ^ (1 - s)) / (1 - s)‖ + ‖(- (N:ℂ) ^ (-s)) / 2‖
+        + ‖s * ((s+1) * ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)))‖ :=
+        norm_add₄_le
+    _ ≤ |s.im| ^ 2 + |s.im| ^ 2 + |s.im| ^ 2 + 12 * |s.im| ^ 2 := by
+        have := hb1
+        have := hb2
+        have := hb3
+        have := hb4
+        linarith
+    _ = 15 * |s.im| ^ 2 := by ring
+
+/-- info: 'ZetaGrowth.zeta_growth_strip' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_growth_strip
+
 /-- info: 'ZetaGrowth.zeta1_eq_zeta_strip' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms zeta1_eq_zeta_strip
