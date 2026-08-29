@@ -884,6 +884,58 @@ theorem zeta_zeros_rectangle_finite (z w : ℂ) :
       rw [ENat.map_coe, WithTop.untop₀_coe]
       exact_mod_cast hn
 
+/-- The ledger's `riemannZeta.order` agrees with `analyticOrderNatAt`
+away from the pole (mirrors PNT+ KadiriZeroCounting's own bridge). -/
+theorem order_bridge {ρ : ℂ} (hρ1 : ρ ≠ 1) :
+    ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) := by
+  unfold riemannZeta.order
+  rw [(zeta_analyticAt hρ1).meromorphicOrderAt_eq]
+  cases hO : analyticOrderAt riemannZeta ρ with
+  | top => exact absurd hO (zeta_order_ne_top hρ1)
+  | coe n =>
+    rw [ENat.map_coe, WithTop.untopD_coe]
+    have h2 : analyticOrderNatAt riemannZeta ρ = n := by
+      show (analyticOrderAt riemannZeta ρ).toNat = n
+      rw [hO]
+      simp
+    rw [h2]
+    push_cast
+    ring
+
+/-- `zeroPartialSum` as a concrete finite sum, over any `Finset`
+enumerating exactly the nontrivial zeros below the height. -/
+theorem zeroPartialSum_eq_sum {x T' : ℝ} {ZF : Finset ℂ}
+    (hiff : ∀ ρ : ℂ, ρ ∈ ZF ↔ (ρ ∈ Kadiri.NontrivialZeros ∧ |ρ.im| < T')) :
+    Stage3.zeroPartialSum x T'
+      = ∑ p ∈ ZF, ((analyticOrderNatAt riemannZeta p : ℂ) * ((x : ℂ) ^ p / p)) := by
+  classical
+  set G : ℂ → ℂ := fun p ↦ ((analyticOrderNatAt riemannZeta p : ℂ) * ((x : ℂ) ^ p / p))
+    with hGd
+  let e : {ρ : Kadiri.NontrivialZeros // |(ρ:ℂ).im| < T'} ≃ {p : ℂ // p ∈ ZF} :=
+    { toFun := fun ρ ↦ ⟨(ρ.val : ℂ), (hiff _).mpr ⟨ρ.val.property, ρ.property⟩⟩
+      invFun := fun p ↦ ⟨⟨(p : ℂ), ((hiff p).mp p.property).1⟩, ((hiff p).mp p.property).2⟩
+      left_inv := fun ρ ↦ Subtype.ext (Subtype.ext rfl)
+      right_inv := fun p ↦ Subtype.ext rfl }
+  haveI : Fintype {ρ : Kadiri.NontrivialZeros // |(ρ:ℂ).im| < T'} :=
+    Fintype.ofEquiv _ e.symm
+  calc Stage3.zeroPartialSum x T'
+      = ∑ ρ : {ρ : Kadiri.NontrivialZeros // |(ρ:ℂ).im| < T'},
+          ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ)
+            * ((x : ℂ) ^ ((ρ : Kadiri.NontrivialZeros) : ℂ)
+              / ((ρ : Kadiri.NontrivialZeros) : ℂ)) := by
+        rw [Stage3.zeroPartialSum, tsum_fintype]
+    _ = ∑ ρ : {ρ : Kadiri.NontrivialZeros // |(ρ:ℂ).im| < T'}, G ((e ρ : ℂ)) := by
+        apply Finset.sum_congr rfl
+        intro ρ _
+        have hρ1 : ((ρ.val : Kadiri.NontrivialZeros) : ℂ) ≠ 1 :=
+          Kadiri.nontrivialZero_ne_one ρ.val
+        rw [hGd]
+        simp only []
+        rw [order_bridge hρ1]
+        rfl
+    _ = ∑ p : {p : ℂ // p ∈ ZF}, G p := Equiv.sum_comp e (fun p ↦ G (p : ℂ))
+    _ = ∑ p ∈ ZF, G p := Finset.sum_coe_sort ZF G
+
 /-- info: 'ContourShift.zeta_meromorphicOn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms zeta_meromorphicOn
