@@ -116,10 +116,10 @@ Vocabulary (Julian's, keep it):
   (entry 267, commits 83f2531/adad131): m(1−conj ρ) = m(ρ). RESCALE
   PROVED (entry 268, EdgeBound.gz_partial_fraction, commit e452638):
   the Landau partial fraction at 3/2+iT′ over the segment
-  re ∈ [−1/4, 2], error C·log T′. hEF remaining: gap-eating →
-  edge_bound (pole terms ≤ order/gap + window counts with
-  reflection-order), then the StmtExplicitFormula glue in the
-  T ≤ x² regime + the 3-line consumer patch — per entry 257, "no
+  re ∈ [−1/4, 2], error C·log T′. S3 COMPLETE (entry 269,
+  edge_bound_core, commits 905dcd0..624bf67): all four hEF slices
+  proved. Remaining: the glue alone (contour assembly →
+  StmtExplicitFormula, T ≤ x² regime) + the 3-line consumer patch — per entry 257, "no
   step needs mathematics absent from the literature or from either
   library." 
 - StmtArgCrude: OPEN, untouched.

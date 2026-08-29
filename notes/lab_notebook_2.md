@@ -16,6 +16,57 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 269 — S3 COMPLETE: the gap eaten — edge_bound_core, and all four slices of hEF proved
+type: formalization
+refs: 262, 267, 268
+
+**What was proved** (`lean_stage3/Stage3/EdgeBound.lean`, commits
+`905dcd0` → `8df23b8` → `624bf67`, all pinned
+`[propext, Classical.choice, Quot.sound]`):
+
+- `gz_order_eq` (line 365): off `1`, `gz`-orders are `ζ`-orders —
+  `(s−1)²` carries order zero, `analyticOrderAt_mul`.
+- `ball_zero_shape` (386): every ball zero at heights `≥ 2` is a
+  `ζ`-zero on the open strip with ordinate within `46/25` of `T′` —
+  and `1` is never in the ball (`‖1 − c0‖ ≥ T′ ≥ 2 > 46/25`), so its
+  order never needed computing.
+- `ball_order_sum_le` (417): **the count closes** —
+  `Σ_ball m ≤ C·log T′`. Four Jensen windows at
+  `T′−9/5, T′−9/10, T′, T′+9/5` for `T′ ≥ 4` (the interval
+  arithmetic needed four, one fewer than priced), entry 267's
+  `zeta_order_reflect` charging every `re < 1/2` zero to its partner
+  through the injective reflection `w ↦ 1 − conj w`, and the fixed
+  `[0,1]×[0,6]` rectangle constant absorbing the whole `T′ < 4` case
+  with no windows at all.
+- `gz_logderiv` (680): `gz′/gz = 2/(s−1) + ζ′/ζ` away from pole and
+  zeros — product rule plus field algebra.
+- `deriv_zeta_conj` (702): `ζ′(conj s) = conj ζ′(s)` via
+  `HasDerivAt.conj_conj` and `conj ∘ ζ ∘ conj = ζ`.
+- `edge_bound_core` (717): **the pointwise edge bound, unified** —
+  `‖ζ′/ζ(u)‖ ≤ C·log(t)/δ` for `u` on the band `re ∈ [−1/4, 2]` at
+  height `t ≥ 2`, `δ ≤ 1` any lower bound on the distance from `u`
+  to every ball zero. Both contour edges are one-line
+  specializations: the left edge with `δ = 1/4` (horizontal distance
+  to the strip — no goodness needed, valid at every height), the
+  good horizontals with `δ = zeroGap T` (entry 262) giving the
+  classical `C·log²T`; the bottom edge by conjugation.
+
+**hEF ledger: slice 1 ✓ (entry 261), slice 2 ✓ (262), slice 3 ✓
+(this entry), slice 4 ✓ (264).** Every analytic slice of the
+truncated explicit formula is proved and pinned. Remaining: the glue
+alone — split the rectangle integral into its four edges, integrate
+the pointwise edge bounds, combine with Perron on the right edge
+(entry 261) and the residues inside (entry 264), landing
+`StmtExplicitFormula` in the `T ≤ x²` regime; plus the 3-line
+consumer patch in Assembly (`psiWeak_of_RH_EF_NT` uses `T ≤ 2x` —
+the leaf-shape change is Julian's to approve when it lands).
+
+**Sitting note.** The entry-268 rescale plus this entry's three
+stages went from `FinalBound`'s normalized statement to a finished
+S3 in one sitting, with first-pass or near-first-pass compiles
+throughout — the pricing discipline (measure the budget, slice to
+green builds, commit every green state) carried the whole arc.
+
 ## 2026-08-29 — Entry 268 — THE RESCALE PROVED: gz_partial_fraction — the Landau partial fraction at 3/2 + iT′
 type: formalization
 refs: 262, 265, 266, 267
