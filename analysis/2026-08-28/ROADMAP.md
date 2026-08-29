@@ -113,11 +113,15 @@ Vocabulary (Julian's, keep it):
   analytic inputs COMPLETE (entry 266, commits 0341f71/7027223):
   ‖ζ(σ+it)‖ ≤ 15t² explicit on the band, sq_zeta_band_bound with
   compact patch. Reflection-order PROVED
-  (entry 267, commits 83f2531/adad131): m(1−conj ρ) = m(ρ). S3
-  remaining: FinalBound rescale at 3/2+iT′ with (s−1)²ζ + edge_bound
-  assembly in a downstream file (import direction), then the
-  StmtExplicitFormula glue — per entry 257, "no step needs
-  mathematics absent from the literature or from either library." 
+  (entry 267, commits 83f2531/adad131): m(1−conj ρ) = m(ρ). RESCALE
+  PROVED (entry 268, EdgeBound.gz_partial_fraction, commit e452638):
+  the Landau partial fraction at 3/2+iT′ over the segment
+  re ∈ [−1/4, 2], error C·log T′. hEF remaining: gap-eating →
+  edge_bound (pole terms ≤ order/gap + window counts with
+  reflection-order), then the StmtExplicitFormula glue in the
+  T ≤ x² regime + the 3-line consumer patch — per entry 257, "no
+  step needs mathematics absent from the literature or from either
+  library." 
 - StmtArgCrude: OPEN, untouched.
 - The four exact zeros: reframed by entries 253-255. The census ranks
   them by information ((20,6) carries 2.85 digits; the rest near-free);

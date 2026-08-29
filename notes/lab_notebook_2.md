@@ -16,6 +16,65 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 268 — THE RESCALE PROVED: gz_partial_fraction — the Landau partial fraction at 3/2 + iT′
+type: formalization
+refs: 262, 265, 266, 267
+
+**What was proved.** `EdgeBound.gz_partial_fraction`
+(`lean_stage3/Stage3/EdgeBound.lean:128`, new file, commits
+`7c66f17` → `e452638`, pinned
+`[propext, Classical.choice, Quot.sound]`):
+
+```text
+∃ C > 0, ∀ T' ≥ 2, ∀ u with im u = T', re u ∈ [−1/4, 2], gz u ≠ 0:
+  ‖(gz′/gz)(u) − Σ_{w : gz w = 0, ‖w − (3/2+iT′)‖ ≤ 46/25} m_w/(u−w)‖
+      ≤ C·log T'
+```
+
+where `gz = (s−1)²·ζ` (line 24 — entire, pole cleared, one extra
+order-1 zero at 1) and `gz′/gz = ζ′/ζ + 2/(s−1)`.
+
+**How.** PNT+'s normalized `FinalBound` (unit ball, `f(0) = 1`,
+radii `< 1`) transported through `f(z) = gz(2z + c0)/gz(c0)` at
+`c0 = 3/2 + iT′`, radii `22/25 < 23/25 < 19/20 < 49/50`:
+
+- `f(0) = 1` and the B-input: `‖gz(c0)‖ ≥ 4·‖ζ(3)/ζ(3/2)‖`
+  (`gz_lower`, line 37 — `‖c0−1‖ ≥ T′` and PNT+'s
+  `ZetaFixedLowerBound`); numerator from entry 266's
+  `sq_zeta_band_bound` on the ball's band `re ∈ [−0.46, 3.46]`,
+  heights within 2 of `T′`; `B = D0·T′⁴`, `log B ≤ A·log T′` with
+  one `key` inequality (`X ≤ (X/log 2)·log T′`).
+- Zeros pulled back through the affine map: `SetOfZeros r f` equals
+  the preimage of the `46/25`-ball `gz`-zeros (`2·(23/25) = 46/25` —
+  the radii align exactly); orders preserved by
+  `analyticOrderNatAt_fun_div_const` + JensenCount's
+  `analyticOrderNatAt_fun_comp_affine`; the sum reindexed by
+  `Finset.sum_image` under the injective map, each term picking up
+  the factor 2 from `z − ρ = (u − w)/2`, absorbed as
+  `(1/2)·(f′/f − Σ_f)`.
+- Finiteness of the transported zero set from entry 264's
+  `zeta_zeros_rectangle_finite` (`gz_zeros_ball_finite`, line 87).
+
+**Traps paid.** The set-body timeout (project-documented) bit on the
+first full build — three `whnf`/tactic heartbeat deaths. Cure as
+documented: `clear_value G B D0 A` once their facts are established,
+only-scoped/hint-fed closers (`linarith only`, explicit `pow` hints),
+`maxHeartbeats` raised on the one theorem. A bare `nlinarith` in a
+context holding a `∀`-bound band hypothesis drowns — always feed it.
+
+**hEF state.** All four slices' machinery complete. Remaining, fully
+specified: (1) gap-eating — from this partial fraction to the
+pointwise `edge_bound`: pole terms ≤ order/gap (entry 262's good
+height on the horizontals; the fixed `1/4` horizontal distance on the
+left edge at every height), order sums through Jensen windows with
+entry 267's reflection-order charging left-zeros to partners, fixed
+windows at heights 2–5 plus a fixed-rectangle constant for the
+low-ordinate corner; (2) the glue — slices 1+2+4 + edges →
+`StmtExplicitFormula` in the `T ≤ x²` regime, with the 3-line
+consumer patch in Assembly (`psiWeak_of_RH_EF_NT` instantiates
+`T ≤ 2x`, inside the regime; the leaf-shape change is the patch and
+is Julian's to approve when it lands).
+
 ## 2026-08-29 — Entry 267 — the reflection-order lemma: m(1 − conj ρ) = m(ρ) — S3's last risky piece discharged
 type: formalization
 refs: 262, 265, 266
