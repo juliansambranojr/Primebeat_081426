@@ -16,6 +16,43 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 270 — the glue begun: the band count and the height swap, pieces 1–2 of 4
+type: formalization
+refs: 264, 267, 269
+
+**What was proved** (`lean_stage3/Stage3/Glue.lean`, new file, commits
+`4bf8e7b` → `95ae2ab`, pinned `[propext, Classical.choice, Quot.sound]`):
+
+- `band_order_sum_le` (line 19): any finite set of strip zeros with
+  `|im| ∈ [T, T+1]` has total multiplicity `≤ C·log T`. Two Jensen
+  windows per sign (centers `T`, `T+1`), entry 267's reflection
+  charging `re < 1/2` zeros to partners, and `zeta_order_conj`
+  folding negative ordinates onto positive through the injective
+  conjugation. First-pass compile at ~200 lines.
+- `zeroPartialSum_swap` (242): moving the zero sum from a good height
+  `T′ ∈ [T, T+1]` back to `T` costs `≤ C·x·log T/T` — inside the
+  `c₁·x·log²(xT)/T` budget. Both tsums realized as filtered
+  rectangle Finsets through entry 264's `zeroPartialSum_eq_sum`
+  (base rectangle `[0,1]×[−(T+1), T+1]`, edges promoted to the open
+  strip by the fences), the difference collapsed to the band by
+  `Finset.sum_sdiff_eq_sub`, each term `≤ m·x/T` (`x^re ≤ x`,
+  `‖ρ‖ ≥ |im ρ| ≥ T`), the multiplicity eaten by the band count.
+
+**Glue ledger: piece 1 ✓, piece 2 ✓.** Remaining, both fully
+specified: piece 3 — the edge-integral estimates (integrate entry
+269's `edge_bound_core` along the three non-Perron edges: horizontals
+at the good height by interval-length × pointwise `C·log²T`; the left
+edge at `re = −1/4` by the `∫ dt/(1/4+|t|) = 2·log(1+4T′)` integral
+giving `C·x^(−1/4)·log²T′`, the `|t| ≤ 2` piece by a compact-segment
+constant, negative heights by `deriv_zeta_conj`); piece 4 — the
+rectangle-edge splitting (PNT+'s `RectangleIntegral` = HIntegral
+bottom − top + VIntegral right − left, defs read: `VIntegral f x y₁ y₂
+= I • ∫ y in y₁..y₂, f (x + y*I)`; match entry 261's line integral to
+the right edge at `re = c`), then the final arithmetic in the
+`T ≤ x²` regime (the left edge's `x^(−1/4)·log²x` is bounded there)
+and the 3-line consumer patch in Assembly — the leaf-shape change,
+Julian's approval when it lands.
+
 ## 2026-08-29 — Entry 269 — S3 COMPLETE: the gap eaten — edge_bound_core, and all four slices of hEF proved
 type: formalization
 refs: 262, 267, 268

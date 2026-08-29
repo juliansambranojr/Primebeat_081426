@@ -118,8 +118,10 @@ Vocabulary (Julian's, keep it):
   the Landau partial fraction at 3/2+iT′ over the segment
   re ∈ [−1/4, 2], error C·log T′. S3 COMPLETE (entry 269,
   edge_bound_core, commits 905dcd0..624bf67): all four hEF slices
-  proved. Remaining: the glue alone (contour assembly →
-  StmtExplicitFormula, T ≤ x² regime) + the 3-line consumer patch — per entry 257, "no
+  proved. Glue pieces 1–2 of 4 PROVED
+  (entry 270, Glue.lean: band count + height swap). Remaining: edge
+  integrals (piece 3), rectangle splitting + final assembly in the
+  T ≤ x² regime (piece 4) + the 3-line consumer patch — per entry 257, "no
   step needs mathematics absent from the literature or from either
   library." 
 - StmtArgCrude: OPEN, untouched.
