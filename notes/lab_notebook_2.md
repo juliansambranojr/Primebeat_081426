@@ -16,6 +16,53 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 266 — the growth bound proved: ‖ζ(σ+it)‖ ≤ 15·t² on the strip, and the Landau ball's B-input complete
+type: formalization
+refs: 262, 263, 265
+
+**What was proved** (`lean_stage3/Stage3/ZetaGrowth.lean`, commits
+`0341f71` → `7027223`, all pinned
+`[propext, Classical.choice, Quot.sound]`):
+
+```text
+zeta_growth_strip (line 599):
+  σ ∈ [−1/2, 4], |t| ≥ 2  →  ‖ζ(σ+it)‖ ≤ 15·|t|²
+
+sq_zeta_band_bound (line 730):
+  ∃ C > 0, on the same band  ‖(s−1)²·ζ(s)‖ ≤ C·(2+|im s|)⁴
+```
+
+**How.** `N = ⌊|t|⌋` and entry 265's continuation `zeta1 = ζ`; the
+four terms bounded one at a time: the shifted sum ≤ N·N^(1/2)
+(`sum_norm_le`, 570 — per-term rpow monotonicity), the first edge via
+`‖1−s‖ ≥ |t|` and `N^(1−σ) ≤ |t|^(3/2)`, the second edge ≤ |t|, the
+tail ≤ ‖s‖·‖s+1‖/4 by `tail_norm_le` (519 — dominated norm integral
+plus the exact `integral_Ioi_rpow_of_lt` formula, with
+`1/(σ+1) ≤ 2` from σ ≥ −1/2). Total 6·t², stated as 15 with slack.
+Crude-explicit throughout; the census tolerates it.
+
+`sq_zeta_band_bound` splits at |im| = 2: the growth regime gives the
+explicit 135·(2+|im|)⁴ (the (s−1)² factor pays (5+|im|)² ≤
+9(2+|im|)²); the |im| ≤ 2 rectangle is compact and
+`(s−1)²ζ` analytic everywhere (`sq_mul_zeta_analytic`, 719, from
+entry 264's `sq_mul_zeta_analyticAt_one`), so
+`IsCompact.exists_bound_of_continuousOn` supplies the patch constant,
+absorbed into the existential. `ZetaGrowth` now imports
+`ContourShift` for the analyticity lemmas.
+
+Both blocks compiled on the first pass — the entry-265 pricing held.
+
+**S3 state.** Every analytic input for the Landau ball now exists.
+Remaining, tools verified present: the `FinalBound` rescale
+(normalized unit ball → center `3/2+iT′` at scale 2, `f(0)`
+elementarily lower-bounded at `re = 3/2 > 1`); gap-eating the
+transported zero sum (each term ≤ order/gap by entry 262's good
+height; the count via Jensen windows needs the reflection-order
+lemma `m(ρ) = m(1−conj ρ)` — order under conjugation hand-rolled,
+order under the affine map via JensenCount's
+`analyticOrderNatAt_fun_comp_affine`); the `edge_bound` assembly.
+Then the `StmtExplicitFormula` glue closes hEF.
+
 ## 2026-08-29 — Entry 265 — S3 priced and its load-bearing unknown discharged: zeta continued to re > −1 in a new file, ZetaGrowth
 type: formalization
 refs: 257, 263, 264
