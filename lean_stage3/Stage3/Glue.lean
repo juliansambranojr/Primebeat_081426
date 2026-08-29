@@ -552,6 +552,7 @@ theorem Gf_norm_conj {x : ℝ} (hx : 0 < x) {u : ℂ} (hu1 : u ≠ 1) :
       rw [map_div₀, map_mul, map_div₀, map_neg],
     RCLike.norm_conj]
 
+set_option maxHeartbeats 1600000 in
 /-- **The left-edge integral bound**: `≤ C·log x` for `T′ ≤ x²`. -/
 theorem edge_left_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ x^2 →
@@ -592,7 +593,8 @@ theorem edge_left_bound :
   have hD0 : 0 < D := by
     rw [hDd]
     positivity
-  refine ⟨24 * 256 * D / 2 + 1, by positivity, ?_⟩
+  clear_value D
+  refine ⟨32 * 256 * D / 2 + 1, by positivity, ?_⟩
   intro x T' hx hT'2 hT'x
   have hx0 : (0:ℝ) < x := by linarith
   have hx1 : (1:ℝ) ≤ x := by linarith
@@ -767,7 +769,186 @@ theorem edge_left_bound :
       _ ≤ D * Real.log T' * ‖u‖ * x ^ (-(1:ℝ)/4) := by
           apply mul_le_mul_of_nonneg_right hDlog hrp
       _ = D * Real.log T' * x ^ (-(1:ℝ)/4) * ‖u‖ := by ring
-  sorry
+  -- continuity of the integrand along the edge
+  have hGcont : ContinuousOn (fun t : ℝ ↦ Gf x (((-1/4 : ℝ):ℂ) + t * Complex.I))
+      (Set.uIcc (-T') T') := by
+    intro t _
+    apply ContinuousAt.continuousWithinAt
+    have hpre : ((((-1/4 : ℝ):ℂ)) + (t:ℝ) * Complex.I).re = -1/4 := by simp
+    have hu1 : (((-1/4 : ℝ):ℂ) + t * Complex.I) ≠ 1 := by
+      intro h
+      have h2 := congrArg Complex.re h
+      rw [hpre, Complex.one_re] at h2
+      norm_num at h2
+    have hu0 : (((-1/4 : ℝ):ℂ) + t * Complex.I) ≠ 0 := by
+      intro h
+      have h2 := congrArg Complex.re h
+      rw [hpre, Complex.zero_re] at h2
+      norm_num at h2
+    have hζne : riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I) ≠ 0 :=
+      ContourShift.zeta_ne_zero_of_re_mem (by rw [hpre]; norm_num)
+        (by rw [hpre]; norm_num)
+    have han := ContourShift.zeta_analyticAt hu1
+    have hpar : Continuous (fun τ : ℝ ↦ ((-1/4 : ℝ):ℂ) + τ * Complex.I) := by
+      fun_prop
+    show ContinuousAt
+      (fun t : ℝ ↦ (- deriv riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I)
+          / riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I))
+        * ((x:ℝ):ℂ) ^ (((-1/4 : ℝ):ℂ) + t * Complex.I)
+        / (((-1/4 : ℝ):ℂ) + t * Complex.I)) t
+    apply ContinuousAt.div
+    · apply ContinuousAt.mul
+      · apply ContinuousAt.div
+        · apply ContinuousAt.neg
+          exact ContinuousAt.comp (g := deriv riemannZeta)
+            (f := fun τ : ℝ ↦ ((-1/4 : ℝ):ℂ) + τ * Complex.I)
+            (han.deriv.continuousAt) hpar.continuousAt
+        · exact ContinuousAt.comp (g := riemannZeta)
+            (f := fun τ : ℝ ↦ ((-1/4 : ℝ):ℂ) + τ * Complex.I)
+            (han.continuousAt) hpar.continuousAt
+        · exact hζne
+      · apply ContinuousAt.const_cpow ?_ (Or.inl (Complex.ofReal_ne_zero.mpr (ne_of_gt hx0)))
+        exact hpar.continuousAt
+    · exact hpar.continuousAt
+    · exact hu0
+  have hrp0 : (0:ℝ) ≤ x ^ (-(1:ℝ)/4) := Real.rpow_nonneg hx0.le _
+  have hdomcont : ContinuousOn
+      (fun t : ℝ ↦ D * Real.log T' * x ^ (-(1:ℝ)/4) / (1/4 + |t|))
+      (Set.uIcc (-T') T') := by
+    apply ContinuousOn.div continuousOn_const
+    · fun_prop
+    · intro t _
+      positivity
+  -- the |t|-integral
+  have habs_int : ∫ t in (-T')..T', 1/(1/4 + |t|) ≤ 8 * Real.log T' := by
+    have hcont1 : ContinuousOn (fun t : ℝ ↦ 1/(1/4 + |t|)) (Set.uIcc (-T') 0) := by
+      apply ContinuousOn.div continuousOn_const
+      · fun_prop
+      · intro t _
+        positivity
+    have hcont2 : ContinuousOn (fun t : ℝ ↦ 1/(1/4 + |t|)) (Set.uIcc 0 T') := by
+      apply ContinuousOn.div continuousOn_const
+      · fun_prop
+      · intro t _
+        positivity
+    have hii1 : IntervalIntegrable (fun t : ℝ ↦ 1/(1/4 + |t|))
+        MeasureTheory.volume (-T') 0 := hcont1.intervalIntegrable
+    have hii2 : IntervalIntegrable (fun t : ℝ ↦ 1/(1/4 + |t|))
+        MeasureTheory.volume 0 T' := hcont2.intervalIntegrable
+    have hsplit := intervalIntegral.integral_add_adjacent_intervals hii1 hii2
+    have hpos : ∫ t in (0:ℝ)..T', 1/(1/4 + |t|) = Real.log ((1/4+T')/(1/4)) := by
+      rw [intervalIntegral.integral_congr (g := fun t : ℝ ↦ 1/(1/4 + t)) ?_]
+      · have hderiv : ∀ t ∈ Set.uIcc (0:ℝ) T', HasDerivAt
+            (fun τ : ℝ ↦ Real.log (1/4 + τ)) (1/(1/4 + t)) t := by
+          intro t ht
+          rw [Set.uIcc_of_le (by linarith : (0:ℝ) ≤ T')] at ht
+          have h31 : (0:ℝ) < 1/4 + t := by linarith [ht.1]
+          have h32 := Real.hasDerivAt_log (ne_of_gt h31)
+          have h33 : HasDerivAt (fun τ : ℝ ↦ 1/4 + τ) 1 t :=
+            (hasDerivAt_id t).const_add (1/4)
+          have h34 := HasDerivAt.comp t h32 h33
+          have h36 : (1/(1/4 + t) : ℝ) = (1/4+t)⁻¹ * 1 := by
+            rw [one_div, mul_one]
+          rw [h36]
+          exact h34
+        have hcont3 : ContinuousOn (fun t : ℝ ↦ 1/(1/4 + t)) (Set.uIcc (0:ℝ) T') := by
+          apply ContinuousOn.div continuousOn_const (by fun_prop)
+          intro t ht
+          rw [Set.uIcc_of_le (by linarith : (0:ℝ) ≤ T')] at ht
+          have := ht.1
+          positivity
+        rw [intervalIntegral.integral_eq_sub_of_hasDerivAt hderiv
+          hcont3.intervalIntegrable]
+        rw [Real.log_div (by linarith) (by norm_num)]
+        ring
+      · intro t ht
+        rw [Set.uIcc_of_le (by linarith : (0:ℝ) ≤ T')] at ht
+        show 1/(1/4 + |t|) = 1/(1/4 + t)
+        rw [abs_of_nonneg ht.1]
+    have hneg : ∫ t in (-T')..(0:ℝ), 1/(1/4 + |t|)
+        = ∫ t in (0:ℝ)..T', 1/(1/4 + |t|) := by
+      have h35 : (∫ t in (0:ℝ)..T', (fun s : ℝ ↦ 1/(1/4 + |s|)) (-t))
+          = ∫ t in (-T')..(-(0:ℝ)), 1/(1/4 + |t|) :=
+        intervalIntegral.integral_comp_neg (fun s : ℝ ↦ 1/(1/4 + |s|))
+      simp only [abs_neg, neg_zero] at h35
+      exact h35.symm
+    have hlog5 : Real.log ((1/4+T')/(1/4)) ≤ 4 * Real.log T' := by
+      have h36 : (1/4+T')/(1/4 : ℝ) = 1 + 4*T' := by ring
+      rw [h36]
+      have h37 : Real.log (1 + 4*T') ≤ Real.log (T'^4) := by
+        apply Real.log_le_log (by linarith)
+        have hsq : 2*T' ≤ T'^2 := by nlinarith
+        have hq4 : 4*T'^2 ≤ T'^4 := by nlinarith [hsq]
+        nlinarith [hsq, hq4]
+      rw [Real.log_pow] at h37
+      push_cast at h37
+      linarith
+    have h38 : ∫ t in (-T')..T', 1/(1/4 + |t|)
+        = 2 * Real.log ((1/4+T')/(1/4)) := by
+      rw [← hsplit, hneg, hpos]
+      ring
+    rw [h38]
+    linarith
+  -- assemble
+  rw [VIntegral, norm_smul, Complex.norm_I, one_mul]
+  have hInorm : ‖∫ t in (-T')..T', Gf x (((-1/4:ℝ):ℂ) + t * Complex.I)‖
+      ≤ D * Real.log T' * x ^ (-(1:ℝ)/4) * (8 * Real.log T') := by
+    calc ‖∫ t in (-T')..T', Gf x (((-1/4:ℝ):ℂ) + t * Complex.I)‖
+        ≤ ∫ t in (-T')..T', ‖Gf x (((-1/4:ℝ):ℂ) + t * Complex.I)‖ :=
+          intervalIntegral.norm_integral_le_integral_norm (by linarith)
+      _ ≤ ∫ t in (-T')..T', D * Real.log T' * x ^ (-(1:ℝ)/4) / (1/4 + |t|) := by
+          apply intervalIntegral.integral_mono_on (by linarith)
+            (hGcont.norm.intervalIntegrable) (hdomcont.intervalIntegrable)
+          intro t ht
+          exact hpoint t ht.1 ht.2
+      _ = D * Real.log T' * x ^ (-(1:ℝ)/4) * ∫ t in (-T')..T', 1/(1/4 + |t|) := by
+          rw [← intervalIntegral.integral_const_mul]
+          congr 1
+          funext t
+          ring
+      _ ≤ D * Real.log T' * x ^ (-(1:ℝ)/4) * (8 * Real.log T') := by
+          apply mul_le_mul_of_nonneg_left habs_int
+          positivity
+  calc ‖∫ t in (-T')..T', Gf x (((-1/4:ℝ):ℂ) + t * Complex.I)‖
+      ≤ D * Real.log T' * x ^ (-(1:ℝ)/4) * (8 * Real.log T') := hInorm
+    _ = 8 * D * (Real.log T')^2 * x ^ (-(1:ℝ)/4) := by ring
+    _ ≤ 8 * D * (2*Real.log x)^2 * x ^ (-(1:ℝ)/4) := by
+        apply mul_le_mul_of_nonneg_right ?_ hrp0
+        have h39 : (Real.log T')^2 ≤ (2*Real.log x)^2 := by
+          apply pow_le_pow_left₀ hlogT'.le hlogT'x
+        nlinarith [hD0]
+    _ = 32 * D * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) := by ring
+    _ ≤ 32 * D * 256 := by
+        apply mul_le_mul_of_nonneg_left ?_ (by positivity)
+        have h40 := Real.log_le_rpow_div hx0.le (show (0:ℝ) < 1/16 by norm_num)
+        have h41 : Real.log x ≤ 16 * x ^ ((1:ℝ)/16) := by
+          rw [le_div_iff₀ (by norm_num : (0:ℝ) < 1/16)] at h40
+          linarith [h40]
+        have h42 : (Real.log x)^2 ≤ 256 * x ^ ((1:ℝ)/8) := by
+          have h43 : (Real.log x)^2 ≤ (16 * x ^ ((1:ℝ)/16))^2 := by
+            apply pow_le_pow_left₀ hlx.le h41
+          calc (Real.log x)^2 ≤ (16 * x ^ ((1:ℝ)/16))^2 := h43
+            _ = 256 * (x ^ ((1:ℝ)/16))^2 := by ring
+            _ = 256 * x ^ ((1:ℝ)/8) := by
+                rw [← Real.rpow_natCast (x ^ ((1:ℝ)/16)) 2, ← Real.rpow_mul hx0.le]
+                norm_num
+        have h44 : x ^ (-(1:ℝ)/4) * x ^ ((1:ℝ)/8) = x ^ (-(1:ℝ)/8) := by
+          rw [← Real.rpow_add hx0]
+          norm_num
+        have h45 : x ^ (-(1:ℝ)/8) ≤ 1 := by
+          apply Real.rpow_le_one_of_one_le_of_nonpos hx1
+          norm_num
+        calc (Real.log x)^2 * x ^ (-(1:ℝ)/4)
+            ≤ (256 * x ^ ((1:ℝ)/8)) * x ^ (-(1:ℝ)/4) := by
+              apply mul_le_mul_of_nonneg_right h42 hrp0
+          _ = 256 * (x ^ (-(1:ℝ)/4) * x ^ ((1:ℝ)/8)) := by ring
+          _ = 256 * x ^ (-(1:ℝ)/8) := by rw [h44]
+          _ ≤ 256 := by linarith
+    _ ≤ (32 * 256 * D / 2 + 1) * Real.log x := by
+        have h46 : 32 * D * 256 = (32 * 256 * D / 2) * 2 := by ring
+        rw [h46]
+        have h47 : (0:ℝ) ≤ 32 * 256 * D / 2 := by positivity
+        nlinarith [hlx2]
 
 
 /-- info: 'Glue.band_order_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -777,5 +958,17 @@ theorem edge_left_bound :
 /-- info: 'Glue.zeroPartialSum_swap' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms zeroPartialSum_swap
+
+/-- info: 'Glue.zeta_logderiv_good_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_logderiv_good_bound
+
+/-- info: 'Glue.edge_horizontal_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms edge_horizontal_bound
+
+/-- info: 'Glue.edge_left_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms edge_left_bound
 
 end Glue
