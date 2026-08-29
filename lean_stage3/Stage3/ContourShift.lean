@@ -1022,6 +1022,156 @@ theorem zeta_order_conj {ρ : ℂ} (hρ1 : ρ ≠ 1) :
         = (analyticOrderAt riemannZeta ρ).toNat
     rw [h1, h2]
 
+/-- **The reflection-order lemma**: the order of `ζ` at `1 − conj ρ`
+equals the order at `ρ`, on the open strip — the functional equation's
+factor is analytic and nonvanishing there. -/
+theorem zeta_order_reflect {ρ : ℂ} (h0 : 0 < ρ.re) (h1 : ρ.re < 1) :
+    analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ)
+      = analyticOrderNatAt riemannZeta ρ := by
+  set cρ : ℂ := (starRingEnd ℂ) ρ with hcd
+  set q : ℂ := 1 - cρ with hqd
+  have hcre : cρ.re = ρ.re := Complex.conj_re ρ
+  have hρ1 : ρ ≠ 1 := by
+    intro h
+    rw [h] at h1
+    simp at h1
+  have hc1 : cρ ≠ 1 := by
+    intro h
+    have h2 := congrArg Complex.re h
+    rw [hcre, Complex.one_re] at h2
+    linarith
+  have hq1 : q ≠ 1 := by
+    rw [hqd]
+    intro h
+    have h2 := congrArg Complex.re h
+    simp [Complex.sub_re, hcre] at h2
+    linarith
+  have hq0 : q ≠ 0 := by
+    rw [hqd]
+    intro h
+    have h2 := congrArg Complex.re h
+    simp [Complex.sub_re, hcre] at h2
+    linarith
+  have hmconj := zeta_order_conj hρ1
+  set m : ℕ := analyticOrderNatAt riemannZeta ρ with hmd
+  have hmc : analyticOrderAt riemannZeta cρ = (m : ℕ∞) := by
+    rw [show ((m:ℕ) : ℕ∞) = ((analyticOrderNatAt riemannZeta cρ : ℕ) : ℕ∞) by
+      rw [hmconj]]
+    exact (ENat.coe_toNat (zeta_order_ne_top hc1)).symm
+  obtain ⟨g, hg, hgc, hev⟩ := ((zeta_analyticAt hc1).analyticOrderAt_eq_natCast).mp hmc
+  have h2πne : ((2:ℂ) * (Real.pi : ℂ)) ≠ 0 :=
+    mul_ne_zero two_ne_zero (Complex.ofReal_ne_zero.mpr Real.pi_ne_zero)
+  have h1q : (1 - q : ℂ) = cρ := by rw [hqd]; ring
+  have hqre : q.re < 1 := by
+    rw [hqd]
+    simp [Complex.sub_re, hcre]
+    linarith
+  have hev' : ∀ᶠ w in nhds q,
+      riemannZeta w = (w - q) ^ m •
+        ((-1:ℂ)^m * (2 * (2 * (Real.pi : ℂ)) ^ (-(1-w)) * Complex.Gamma (1-w)
+          * Complex.cos ((Real.pi : ℂ) * (1-w) / 2)) * g (1-w)) := by
+    have htend : Filter.Tendsto (fun w : ℂ ↦ 1 - w) (nhds q) (nhds cρ) := by
+      have h5 : Continuous (fun w : ℂ ↦ 1 - w) := by fun_prop
+      have h6 := h5.tendsto q
+      rwa [h1q] at h6
+    have hopen1 : ∀ᶠ w in nhds q, w.re < 1 := by
+      have h7 : IsOpen {w : ℂ | w.re < 1} := isOpen_lt Complex.continuous_re continuous_const
+      exact h7.eventually_mem hqre
+    have hne0 : ∀ᶠ w in nhds q, w ≠ 0 :=
+      isOpen_compl_singleton.eventually_mem hq0
+    filter_upwards [htend.eventually hev, hopen1, hne0] with w hw hwre hw0
+    have hsn : ∀ n : ℕ, (1 - w) ≠ -(n:ℂ) := by
+      intro n hcon
+      have h8 := congrArg Complex.re hcon
+      simp [Complex.sub_re] at h8
+      have h9 : (0:ℝ) ≤ (n:ℝ) := Nat.cast_nonneg n
+      linarith
+    have hs1 : (1 - w) ≠ 1 := by
+      intro hcon
+      apply hw0
+      linear_combination -hcon
+    have hfe := riemannZeta_one_sub hsn hs1
+    rw [show (1 - (1 - w) : ℂ) = w by ring] at hfe
+    rw [hfe, hw, smul_eq_mul, smul_eq_mul,
+      show ((1 - w) - cρ : ℂ) = -(w - q) by rw [hqd]; ring, neg_pow]
+    ring
+  have hGana : AnalyticAt ℂ
+      (fun w ↦ ((-1:ℂ)^m * (2 * (2 * (Real.pi : ℂ)) ^ (-(1-w)) * Complex.Gamma (1-w)
+        * Complex.cos ((Real.pi : ℂ) * (1-w) / 2)) * g (1-w))) q := by
+    have hcpow : AnalyticAt ℂ (fun w : ℂ ↦ (2 * (Real.pi : ℂ)) ^ (-(1-w))) q :=
+      (((differentiable_const (1:ℂ)).sub differentiable_id).neg.const_cpow
+        (Or.inl h2πne)).analyticAt q
+    have hΓ : AnalyticAt ℂ (fun w : ℂ ↦ Complex.Gamma (1-w)) q := by
+      have hopen : IsOpen {w : ℂ | w.re < 1} := isOpen_lt Complex.continuous_re continuous_const
+      have hdiff : DifferentiableOn ℂ (fun w : ℂ ↦ Complex.Gamma (1-w))
+          {w : ℂ | w.re < 1} := by
+        intro t ht
+        apply DifferentiableAt.differentiableWithinAt
+        have hG : DifferentiableAt ℂ Complex.Gamma (1-t) := by
+          apply Complex.differentiableAt_Gamma
+          intro n hcon
+          have h8 := congrArg Complex.re hcon
+          simp [Complex.sub_re] at h8
+          have h9 : (0:ℝ) ≤ (n:ℝ) := Nat.cast_nonneg n
+          have h10 : t.re < 1 := ht
+          linarith
+        exact hG.comp t (by fun_prop)
+      exact hdiff.analyticAt (hopen.mem_nhds hqre)
+    have hcos : AnalyticAt ℂ (fun w : ℂ ↦ Complex.cos ((Real.pi : ℂ) * (1-w) / 2)) q := by
+      have h13 : Differentiable ℂ (fun w : ℂ ↦ Complex.cos ((Real.pi : ℂ) * (1-w) / 2)) := by
+        apply Complex.differentiable_cos.comp
+        fun_prop
+      exact h13.analyticAt q
+    have hgcomp : AnalyticAt ℂ (fun w : ℂ ↦ g (1 - w)) q := by
+      have h11 : (fun w : ℂ ↦ g (1 - w)) = g ∘ (fun w ↦ 1 - w) := rfl
+      rw [h11]
+      apply AnalyticAt.comp
+      · rw [h1q]
+        exact hg
+      · exact analyticAt_const.sub analyticAt_id
+    exact (analyticAt_const.mul (((analyticAt_const.mul hcpow).mul hΓ).mul hcos)).mul hgcomp
+  have hGne : ((-1:ℂ)^m * (2 * (2 * (Real.pi : ℂ)) ^ (-(1-q)) * Complex.Gamma (1-q)
+      * Complex.cos ((Real.pi : ℂ) * (1-q) / 2)) * g (1-q)) ≠ 0 := by
+    rw [h1q]
+    apply mul_ne_zero
+    · apply mul_ne_zero (pow_ne_zero _ (by norm_num : (-1:ℂ) ≠ 0))
+      apply mul_ne_zero
+      · apply mul_ne_zero
+        · apply mul_ne_zero two_ne_zero
+          rw [Complex.cpow_def_of_ne_zero h2πne]
+          exact Complex.exp_ne_zero _
+        · exact Complex.Gamma_ne_zero_of_re_pos (by rw [hcre]; exact h0)
+      · intro hc
+        obtain ⟨k, hk⟩ := Complex.cos_eq_zero_iff.mp hc
+        have hπne : ((Real.pi : ℝ) : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
+        have hs2k : cρ = 2*(k:ℂ)+1 := by
+          have h3 : ((Real.pi : ℝ) : ℂ) * cρ = ((Real.pi : ℝ) : ℂ) * (2*(k:ℂ)+1) := by
+            linear_combination 2 * hk
+          exact mul_left_cancel₀ hπne h3
+        have h4 := congrArg Complex.re hs2k
+        rw [hcre] at h4
+        have h5 : ρ.re = 2*(k:ℝ)+1 := by
+          rw [h4]
+          simp
+        have h6 : (0:ℤ) < 2*k+1 := by
+          have h14 : (0:ℝ) < 2*(k:ℝ)+1 := by linarith
+          exact_mod_cast h14
+        have h7 : (2*k+1 : ℤ) < 1 := by
+          have h15 : 2*(k:ℝ)+1 < 1 := by linarith
+          exact_mod_cast h15
+        omega
+    · exact hgc
+  have h12 : analyticOrderAt riemannZeta q = (m : ℕ∞) := by
+    apply ((zeta_analyticAt hq1).analyticOrderAt_eq_natCast).mpr
+    exact ⟨_, hGana, hGne, hev'⟩
+  show (analyticOrderAt riemannZeta q).toNat = m
+  rw [h12]
+  simp
+
+/-- info: 'ContourShift.zeta_order_reflect' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_order_reflect
+
 /-- info: 'ContourShift.zeta_order_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms zeta_order_conj
