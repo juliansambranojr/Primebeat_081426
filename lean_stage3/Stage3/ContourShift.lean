@@ -736,6 +736,71 @@ theorem zeta_local_data_origin {x : ℝ} (hx : 0 < x) :
   rw [h5]
   ring
 
+/-- No zeros on the strip `re ∈ [−1, 0]`: the functional equation
+carries nonvanishing over from `re ∈ [1, 2]`. The cosine factor can
+only vanish at `s = 1`, where `ζ` has its pole instead. -/
+theorem zeta_ne_zero_of_re_mem {w : ℂ} (h1 : -1 ≤ w.re) (h2 : w.re ≤ 0) :
+    riemannZeta w ≠ 0 := by
+  intro hw
+  by_cases hw0 : w = 0
+  · rw [hw0, riemannZeta_zero] at hw
+    norm_num at hw
+  set s : ℂ := 1 - w with hsd
+  have hsre : s.re = 1 - w.re := by
+    rw [hsd]
+    simp [Complex.sub_re]
+  have hsre1 : 1 ≤ s.re := by rw [hsre]; linarith
+  have hsre2 : s.re ≤ 2 := by rw [hsre]; linarith
+  have hsn : ∀ n : ℕ, s ≠ -(n:ℂ) := by
+    intro n hcon
+    have h5 := congrArg Complex.re hcon
+    simp only [Complex.neg_re, Complex.natCast_re] at h5
+    have h6 : (0:ℝ) ≤ (n:ℝ) := Nat.cast_nonneg n
+    linarith
+  have hs1 : s ≠ 1 := by
+    rw [hsd]
+    intro hcon
+    apply hw0
+    linear_combination -hcon
+  have hfe := riemannZeta_one_sub hsn hs1
+  have h1w : (1:ℂ) - s = w := by rw [hsd]; ring
+  rw [h1w, hw] at hfe
+  have hπne : ((Real.pi:ℝ):ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
+  have hf2 : (2:ℂ) ≠ 0 := two_ne_zero
+  have hfp : ((2:ℂ) * ((Real.pi:ℝ):ℂ)) ^ (-s) ≠ 0 := by
+    rw [Complex.cpow_def_of_ne_zero (mul_ne_zero hf2 hπne)]
+    exact Complex.exp_ne_zero _
+  have hfΓ : Complex.Gamma s ≠ 0 := Complex.Gamma_ne_zero_of_re_pos (by linarith)
+  have hfζ : riemannZeta s ≠ 0 := riemannZeta_ne_zero_of_one_le_re hsre1
+  have hfc : Complex.cos (((Real.pi:ℝ):ℂ) * s / 2) ≠ 0 := by
+    intro hc
+    obtain ⟨k, hk⟩ := Complex.cos_eq_zero_iff.mp hc
+    have hs2k : s = 2*(k:ℂ)+1 := by
+      have h3 : ((Real.pi:ℝ):ℂ) * s = ((Real.pi:ℝ):ℂ) * (2*(k:ℂ)+1) := by
+        linear_combination 2 * hk
+      exact mul_left_cancel₀ hπne h3
+    have h4 := congrArg Complex.re hs2k
+    have h5 : s.re = 2*(k:ℝ)+1 := by
+      rw [h4]
+      simp
+    have h6 : (0:ℤ) ≤ 2*k := by
+      have : (0:ℝ) ≤ 2*(k:ℝ) := by linarith
+      exact_mod_cast this
+    have h7 : (2*k : ℤ) ≤ 1 := by
+      have : 2*(k:ℝ) ≤ 1 := by linarith
+      exact_mod_cast this
+    have hk0 : k = 0 := by omega
+    rw [hk0] at hs2k
+    apply hs1
+    rw [hs2k]
+    norm_num
+  exact (mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero hf2 hfp) hfΓ) hfc) hfζ)
+    hfe.symm
+
+/-- info: 'ContourShift.zeta_ne_zero_of_re_mem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta_ne_zero_of_re_mem
+
 /-- info: 'ContourShift.zeta_local_data_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms zeta_local_data_zero
