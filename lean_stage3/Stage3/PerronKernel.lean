@@ -938,8 +938,296 @@ theorem perron_kernel_truncated {y c T : ℝ} (hy : 0 < y) (hy1 : y ≠ 1)
         ≤ y ^ c / (T * |Real.log y|) := perron_kernel_decay hy hy1 hc hT
       _ = y ^ c * (1 / (T * |Real.log y|)) := by ring
 
+
+/-! ### Slice 1b — the far-terms sum (entry 257's build order)
+
+`Σ_{|log(x/n)| ≥ 1/2} Λ(n)·(x/n)^c/(T·|log(x/n)|) ≤ 300·x·log(xT)²/T` at
+`c = 1 + 1/log x`. The range condition buys `1/(T|log|) ≤ 2/T`; the rest is
+`x^c = e·x` times `Σ Λ(n)/n^c`, bounded by dyadic blocks under Chebyshev's
+`ψ ≤ (log 4 + 4)·t` against a geometric tail, with `1/(1−2^(1−c)) ≤ 5·log x`. -/
+
+/-- Geometric-denominator bound: `δ/5 ≤ 1 − 2^(−δ)` for `0 < δ ≤ 1`. -/
+theorem one_sub_two_neg_rpow {δ : ℝ} (h0 : 0 < δ) (h1 : δ ≤ 1) :
+    δ / 5 ≤ 1 - (2:ℝ) ^ (-δ) := by
+  have hlog2 : (0.6931471803 : ℝ) < Real.log 2 := Real.log_two_gt_d9
+  have hrw : (2:ℝ) ^ (-δ) = Real.exp (-(δ * Real.log 2)) := by
+    rw [Real.rpow_def_of_pos two_pos,
+      show Real.log 2 * (-δ) = -(δ * Real.log 2) by ring]
+  rw [hrw]
+  set a : ℝ := δ * Real.log 2 with ha
+  have ha0 : 0 < a := by rw [ha]; nlinarith
+  have ha1 : a ≤ Real.log 2 := by rw [ha]; nlinarith
+  have hEF : Real.exp a * Real.exp (-a) = 1 := by
+    rw [← Real.exp_add]
+    simp
+  have hexp1 : 1 + a ≤ Real.exp a := by linarith [Real.add_one_le_exp a]
+  have hF0 : 0 < Real.exp (-a) := Real.exp_pos _
+  have hE2 : Real.exp a ≤ 2 := by
+    calc Real.exp a ≤ Real.exp (Real.log 2) := Real.exp_le_exp.mpr ha1
+      _ = 2 := Real.exp_log two_pos
+  have hFa : (1 + a) * Real.exp (-a) ≤ 1 := by
+    calc (1 + a) * Real.exp (-a) ≤ Real.exp a * Real.exp (-a) :=
+          mul_le_mul_of_nonneg_right hexp1 hF0.le
+      _ = 1 := hEF
+  have hFhalf : (1:ℝ)/2 ≤ Real.exp (-a) := by nlinarith
+  nlinarith [mul_le_mul_of_nonneg_left hFhalf ha0.le]
+
+/-- The dyadic partial-sum bound: any finite piece of `Σ Λ(n)·n^(−c)` sits
+under `2(log 4 + 4)/(1 − 2^(1−c))`. -/
+theorem vonMangoldt_rpow_partial {c : ℝ} (hc1 : 1 < c) (s : Finset ℕ) :
+    ∑ n ∈ s, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c)
+      ≤ 2 * (Real.log 4 + 4) / (1 - (2:ℝ) ^ (1 - c)) := by
+  set K : ℝ := Real.log 4 + 4 with hK
+  have hK0 : (0:ℝ) < K := by rw [hK]; positivity
+  set q : ℝ := (2:ℝ) ^ (1 - c) with hq
+  have hq0 : (0:ℝ) < q := Real.rpow_pos_of_pos two_pos _
+  have hq1 : q < 1 := by
+    rw [hq]
+    exact Real.rpow_lt_one_of_one_lt_of_neg one_lt_two (by linarith)
+  have hfnn : ∀ n : ℕ, (0:ℝ) ≤ ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c) :=
+    fun n ↦ mul_nonneg ArithmeticFunction.vonMangoldt_nonneg
+      (Real.rpow_nonneg (Nat.cast_nonneg n) _)
+  obtain ⟨m, hm⟩ := s.exists_nat_subset_range
+  have hsub : s ⊆ Finset.range (2^m) := by
+    intro n hn
+    have h1 := hm hn
+    rw [Finset.mem_range] at h1 ⊢
+    exact lt_of_lt_of_le h1 (Nat.le_of_lt m.lt_two_pow_self)
+  have hstep : ∀ M : ℕ, ∑ n ∈ Finset.range (2^M),
+      ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c)
+      ≤ ∑ k ∈ Finset.range M, 2 * K * q ^ k := by
+    intro M
+    induction M with
+    | zero => simp
+    | succ M ih =>
+      have hle2 : (2:ℕ)^M ≤ 2^(M+1) := Nat.pow_le_pow_right (by norm_num) (Nat.le_succ M)
+      have hψ : ∑ n ∈ Finset.Ico (2^M) (2^(M+1)), ArithmeticFunction.vonMangoldt n
+          ≤ K * (2:ℝ)^(M+1) := by
+        have hsub2 : Finset.Ico ((2:ℕ)^M) (2^(M+1)) ⊆ Finset.Ioc 0 (2^(M+1)) := by
+          intro n hn
+          rw [Finset.mem_Ico] at hn
+          rw [Finset.mem_Ioc]
+          exact ⟨lt_of_lt_of_le (pow_pos (by norm_num) M) hn.1, hn.2.le⟩
+        calc ∑ n ∈ Finset.Ico ((2:ℕ)^M) (2^(M+1)), ArithmeticFunction.vonMangoldt n
+            ≤ ∑ n ∈ Finset.Ioc 0 (2^(M+1)), ArithmeticFunction.vonMangoldt n :=
+              Finset.sum_le_sum_of_subset_of_nonneg hsub2
+                (fun n _ _ ↦ ArithmeticFunction.vonMangoldt_nonneg)
+          _ = Chebyshev.psi (((2:ℕ)^(M+1) : ℕ) : ℝ) := by
+              rw [Chebyshev.psi, Nat.floor_natCast]
+          _ ≤ K * (((2:ℕ)^(M+1) : ℕ) : ℝ) := by
+              rw [hK]
+              exact Chebyshev.psi_le_const_mul_self (by positivity)
+          _ = K * (2:ℝ)^(M+1) := by push_cast; ring
+      have hcast : (((2:ℕ)^M : ℕ) : ℝ) = (2:ℝ)^M := by push_cast; ring
+      have heq : (2:ℝ)^(M+1) * ((2:ℝ)^M)^(-c) = 2 * q ^ M := by
+        have h1 : ((2:ℝ)^M)^(-c) = (2:ℝ) ^ ((M:ℝ) * (-c)) := by
+          rw [← Real.rpow_natCast (2:ℝ) M, ← Real.rpow_mul two_pos.le]
+        have h2 : q ^ M = (2:ℝ) ^ ((1-c) * (M:ℝ)) := by
+          rw [hq, ← Real.rpow_natCast ((2:ℝ)^(1-c)) M, ← Real.rpow_mul two_pos.le]
+        have h3 : (2:ℝ)^(M+1) = (2:ℝ) ^ (((M+1:ℕ)):ℝ) := by
+          rw [Real.rpow_natCast]
+        rw [h1, h2, h3, ← Real.rpow_add two_pos, mul_comm (2:ℝ) ((2:ℝ) ^ ((1-c) * (M:ℝ))),
+          ← Real.rpow_add_one two_ne_zero]
+        congr 1
+        push_cast
+        ring
+      have hblock : ∑ n ∈ Finset.Ico ((2:ℕ)^M) (2^(M+1)),
+          ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c) ≤ 2 * K * q ^ M := by
+        have h1 : ∀ n ∈ Finset.Ico ((2:ℕ)^M) (2^(M+1)),
+            ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)
+            ≤ ArithmeticFunction.vonMangoldt n * (((2:ℕ)^M : ℕ):ℝ)^(-c) := by
+          intro n hn
+          apply mul_le_mul_of_nonneg_left _ ArithmeticFunction.vonMangoldt_nonneg
+          apply Real.rpow_le_rpow_of_nonpos (by positivity) _ (by linarith)
+          exact_mod_cast (Finset.mem_Ico.mp hn).1
+        calc ∑ n ∈ Finset.Ico ((2:ℕ)^M) (2^(M+1)),
+              ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)
+            ≤ ∑ n ∈ Finset.Ico ((2:ℕ)^M) (2^(M+1)),
+              ArithmeticFunction.vonMangoldt n * (((2:ℕ)^M : ℕ):ℝ)^(-c) :=
+              Finset.sum_le_sum h1
+          _ = (∑ n ∈ Finset.Ico ((2:ℕ)^M) (2^(M+1)),
+              ArithmeticFunction.vonMangoldt n) * (((2:ℕ)^M : ℕ):ℝ)^(-c) := by
+              rw [← Finset.sum_mul]
+          _ ≤ (K * (2:ℝ)^(M+1)) * (((2:ℕ)^M : ℕ):ℝ)^(-c) := by
+              apply mul_le_mul_of_nonneg_right hψ
+              exact Real.rpow_nonneg (by positivity) _
+          _ = 2 * K * q ^ M := by
+              rw [hcast, mul_assoc, heq]
+              ring
+      calc ∑ n ∈ Finset.range ((2:ℕ)^(M+1)),
+            ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)
+          = (∑ n ∈ Finset.range ((2:ℕ)^M),
+              ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c))
+            + ∑ n ∈ Finset.Ico ((2:ℕ)^M) (2^(M+1)),
+              ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c) := by
+            rw [Finset.range_eq_Ico, Finset.range_eq_Ico,
+              Finset.sum_Ico_consecutive _ (Nat.zero_le ((2:ℕ)^M)) hle2]
+        _ ≤ (∑ k ∈ Finset.range M, 2*K*q^k) + 2*K*q^M := add_le_add ih hblock
+        _ = ∑ k ∈ Finset.range (M+1), 2*K*q^k := (Finset.sum_range_succ _ M).symm
+  calc ∑ n ∈ s, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c)
+      ≤ ∑ n ∈ Finset.range (2^m), ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c) :=
+        Finset.sum_le_sum_of_subset_of_nonneg hsub (fun n _ _ ↦ hfnn n)
+    _ ≤ ∑ k ∈ Finset.range m, 2 * K * q ^ k := hstep m
+    _ = 2 * K * ∑ k ∈ Finset.range m, q ^ k := by rw [Finset.mul_sum]
+    _ ≤ 2 * K * (1 - q)⁻¹ := by
+        apply mul_le_mul_of_nonneg_left _ (by positivity)
+        calc ∑ k ∈ Finset.range m, q ^ k
+            ≤ ∑' k : ℕ, q ^ k :=
+              (summable_geometric_of_lt_one hq0.le hq1).sum_le_tsum _
+                (fun k _ ↦ by positivity)
+          _ = (1 - q)⁻¹ := tsum_geometric_of_lt_one hq0.le hq1
+    _ = 2 * K / (1 - q) := by rw [div_eq_mul_inv]
+
+/-- The full sum, as a tsum. -/
+theorem vonMangoldt_rpow_tsum {c : ℝ} (hc1 : 1 < c) :
+    ∑' n : ℕ, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c)
+      ≤ 2 * (Real.log 4 + 4) / (1 - (2:ℝ) ^ (1 - c)) :=
+  Real.tsum_le_of_sum_le
+    (fun n ↦ mul_nonneg ArithmeticFunction.vonMangoldt_nonneg
+      (Real.rpow_nonneg (Nat.cast_nonneg n) _))
+    (vonMangoldt_rpow_partial hc1)
+
+theorem vonMangoldt_rpow_summable {c : ℝ} (hc1 : 1 < c) :
+    Summable (fun n : ℕ ↦ ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c)) :=
+  summable_of_sum_le
+    (fun n ↦ mul_nonneg ArithmeticFunction.vonMangoldt_nonneg
+      (Real.rpow_nonneg (Nat.cast_nonneg n) _))
+    (vonMangoldt_rpow_partial hc1)
+
+/-- **Slice 1b — the far-terms sum.** -/
+theorem far_terms_sum {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
+    (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then
+        ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x)
+          / (T * |Real.log (x / n)|)
+      else 0)
+      ≤ 300 * x * Real.log (x * T) ^ 2 / T := by
+  have hx0 : (0:ℝ) < x := by linarith
+  have hT0 : (0:ℝ) < T := lt_of_lt_of_le one_pos hT
+  have hexp16 : Real.exp 1 < 16 := by
+    have := Real.exp_one_lt_d9
+    linarith
+  have hlx : 1 < Real.log x := by
+    have h1 : Real.log (Real.exp 1) < Real.log x :=
+      Real.log_lt_log (Real.exp_pos 1) (lt_of_lt_of_le hexp16 hx)
+    rwa [Real.log_exp] at h1
+  have hlx0 : (0:ℝ) < Real.log x := by linarith
+  set δ : ℝ := 1 / Real.log x with hδ
+  have hδ0 : 0 < δ := by rw [hδ]; positivity
+  have hδ1 : δ ≤ 1 := by
+    rw [hδ]
+    rw [div_le_one hlx0]
+    linarith
+  set c : ℝ := 1 + δ with hc
+  have hc1 : 1 < c := by rw [hc]; linarith
+  have hq : (2:ℝ) ^ (1 - c) = (2:ℝ) ^ (-δ) := by
+    rw [hc]
+    ring_nf
+  have hxc : x ^ c = Real.exp 1 * x := by
+    rw [hc, Real.rpow_add hx0, Real.rpow_one, hδ, Real.rpow_def_of_pos hx0,
+      mul_one_div, div_self hlx0.ne']
+    ring
+  -- pointwise majorisation
+  have hpt : ∀ n : ℕ, (if 1/2 ≤ |Real.log (x / n)| then
+      ArithmeticFunction.vonMangoldt n * (x / n) ^ c / (T * |Real.log (x / n)|) else 0)
+      ≤ (2 * Real.exp 1 * x / T) * (ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)) := by
+    intro n
+    by_cases h : 1/2 ≤ |Real.log (x / n)|
+    · rw [if_pos h]
+      rcases Nat.eq_zero_or_pos n with rfl | hn
+      · exfalso
+        rw [Nat.cast_zero, div_zero, Real.log_zero, abs_zero] at h
+        linarith
+      · have hn0 : (0:ℝ) < (n:ℝ) := by exact_mod_cast hn
+        have hdiv : (x / n) ^ c = x ^ c * (n:ℝ) ^ (-c) := by
+          rw [Real.div_rpow hx0.le hn0.le, Real.rpow_neg hn0.le, div_eq_mul_inv]
+        have hnum0 : (0:ℝ) ≤ ArithmeticFunction.vonMangoldt n * (x / n) ^ c :=
+          mul_nonneg ArithmeticFunction.vonMangoldt_nonneg
+            (Real.rpow_nonneg (by positivity) _)
+        have hden : T / 2 ≤ T * |Real.log (x / n)| := by
+          calc T / 2 = T * (1/2) := by ring
+            _ ≤ T * |Real.log (x / n)| := mul_le_mul_of_nonneg_left h hT0.le
+        calc ArithmeticFunction.vonMangoldt n * (x / n) ^ c / (T * |Real.log (x / n)|)
+            ≤ ArithmeticFunction.vonMangoldt n * (x / n) ^ c / (T / 2) :=
+              div_le_div_of_nonneg_left hnum0 (by positivity) hden
+          _ = (2 / T) * (ArithmeticFunction.vonMangoldt n * (x / n) ^ c) := by
+              field_simp
+          _ = (2 * Real.exp 1 * x / T) * (ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)) := by
+              rw [hdiv, hxc]
+              ring
+    · rw [if_neg h]
+      positivity
+  have hg : Summable (fun n : ℕ ↦
+      (2 * Real.exp 1 * x / T) * (ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c))) :=
+    (vonMangoldt_rpow_summable hc1).mul_left _
+  have hf : Summable (fun n : ℕ ↦ if 1/2 ≤ |Real.log (x / n)| then
+      ArithmeticFunction.vonMangoldt n * (x / n) ^ c / (T * |Real.log (x / n)|) else 0) := by
+    apply Summable.of_nonneg_of_le _ hpt hg
+    intro n
+    by_cases h : 1/2 ≤ |Real.log (x / n)|
+    · rw [if_pos h]
+      positivity
+    · rw [if_neg h]
+  have hq1lt : (2:ℝ) ^ (1 - c) < 1 := by
+    rw [hq]
+    exact Real.rpow_lt_one_of_one_lt_of_neg one_lt_two (by linarith)
+  have hinv : (1 - (2:ℝ) ^ (1 - c))⁻¹ ≤ 5 * Real.log x := by
+    have h5 := one_sub_two_neg_rpow hδ0 hδ1
+    rw [hq]
+    rw [← one_div]
+    calc 1 / (1 - (2:ℝ)^(-δ)) ≤ 1 / (δ/5) :=
+          one_div_le_one_div_of_le (by positivity) h5
+      _ = 5 / δ := by ring
+      _ = 5 * Real.log x := by
+          rw [hδ]
+          field_simp
+  calc (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then
+        ArithmeticFunction.vonMangoldt n * (x / n) ^ c / (T * |Real.log (x / n)|) else 0)
+      ≤ ∑' n : ℕ, (2 * Real.exp 1 * x / T)
+          * (ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)) :=
+        hf.tsum_le_tsum hpt hg
+    _ = (2 * Real.exp 1 * x / T)
+          * ∑' n : ℕ, ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c) := tsum_mul_left
+    _ ≤ (2 * Real.exp 1 * x / T) * (2 * (Real.log 4 + 4) / (1 - (2:ℝ)^(1-c))) := by
+        apply mul_le_mul_of_nonneg_left (vonMangoldt_rpow_tsum hc1)
+        positivity
+    _ ≤ (2 * Real.exp 1 * x / T) * (2 * (Real.log 4 + 4) * (5 * Real.log x)) := by
+        apply mul_le_mul_of_nonneg_left _ (by positivity)
+        rw [div_eq_mul_inv]
+        apply mul_le_mul_of_nonneg_left hinv
+        positivity
+    _ ≤ 300 * x * Real.log (x * T) ^ 2 / T := by
+        have hlogx_le : Real.log x ≤ Real.log (x*T) := by
+          apply Real.log_le_log hx0
+          nlinarith [mul_le_mul_of_nonneg_left hT hx0.le]
+        have hlogxT1 : 1 ≤ Real.log (x*T) := by
+          have hex : Real.exp 1 ≤ x*T := by
+            nlinarith [mul_le_mul_of_nonneg_left hT hx0.le]
+          calc (1:ℝ) = Real.log (Real.exp 1) := (Real.log_exp 1).symm
+            _ ≤ Real.log (x*T) := Real.log_le_log (Real.exp_pos 1) hex
+        have hnum : 20 * Real.exp 1 * (Real.log 4 + 4) ≤ 300 := by
+          have h1 : Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
+          have h2 : Real.log 4 = 2 * Real.log 2 := by
+            rw [show (4:ℝ) = 2^2 by norm_num, Real.log_pow]
+            push_cast
+            ring
+          have h3 : Real.log 2 < 0.6931471808 := Real.log_two_lt_d9
+          nlinarith [mul_nonneg
+            (by linarith : (0:ℝ) ≤ 2.7182818286 - Real.exp 1)
+            (by nlinarith : (0:ℝ) ≤ 5.3862943616 - (Real.log 4 + 4)),
+            Real.exp_pos 1, Real.log_two_gt_d9]
+        have hK0 : (0:ℝ) < Real.log 4 + 4 := by positivity
+        have hchain : Real.log x ≤ Real.log (x*T) ^ 2 := by nlinarith
+        rw [div_mul_eq_mul_div]
+        apply div_le_div_of_nonneg_right _ hT0.le
+        nlinarith [mul_le_mul_of_nonneg_right hnum (mul_nonneg hx0.le hlx0.le),
+          mul_le_mul_of_nonneg_left hchain (by positivity : (0:ℝ) ≤ 300 * x)]
+
 /-- info: 'PerronKernel.perron_kernel_truncated' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms perron_kernel_truncated
+
+/-- info: 'PerronKernel.far_terms_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms far_terms_sum
 
 end PerronKernel
