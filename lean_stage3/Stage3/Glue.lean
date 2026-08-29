@@ -237,4 +237,118 @@ theorem band_order_sum_le :
       ≤ 4 * (W0 * Real.log T) + 4 * (W0 * Real.log T) := add_le_add hpos hneg
     _ = 8 * W0 * Real.log T := by ring
 
+/-- **The swap**: moving the zero sum from a height `T′ ∈ [T, T+1]`
+back to `T` costs `≤ C·x·log T / T`. -/
+theorem zeroPartialSum_swap :
+    ∃ C : ℝ, 0 < C ∧ ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 →
+      ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖
+        ≤ C * x * Real.log T / T := by
+  classical
+  obtain ⟨C2, hC20, hC2⟩ := band_order_sum_le
+  refine ⟨C2, hC20, ?_⟩
+  intro x T T' hx hT hTT' hT'1
+  have hx0 : (0:ℝ) < x := by linarith
+  have hx1 : (1:ℝ) ≤ x := by linarith
+  have hT0 : (0:ℝ) < T := by linarith
+  have hlogT0 : 0 < Real.log T := Real.log_pos (by linarith)
+  set zc : ℂ := ((0:ℝ):ℂ) - Complex.I * (((T+1 : ℝ)):ℂ) with hzcd
+  set wc : ℂ := ((1:ℝ):ℂ) + Complex.I * (((T+1 : ℝ)):ℂ) with hwcd
+  have hzre : zc.re = 0 := by rw [hzcd]; simp
+  have hzim : zc.im = -(T+1) := by rw [hzcd]; simp
+  have hwre : wc.re = 1 := by rw [hwcd]; simp
+  have hwim : wc.im = T+1 := by rw [hwcd]; simp
+  set base := (ContourShift.zeta_zeros_rectangle_finite zc wc).toFinset with hbased
+  have hrect_mem : ∀ ρ : ℂ, ρ ∈ Rectangle zc wc ↔
+      ((0 ≤ ρ.re ∧ ρ.re ≤ 1) ∧ (-(T+1) ≤ ρ.im ∧ ρ.im ≤ T+1)) := by
+    intro ρ
+    simp only [Rectangle]
+    rw [Complex.mem_reProdIm, hzre, hwre, hzim, hwim,
+      Set.uIcc_of_le (by norm_num : (0:ℝ) ≤ 1),
+      Set.uIcc_of_le (by linarith : -(T+1) ≤ T+1),
+      Set.mem_Icc, Set.mem_Icc]
+  have hbase_shape : ∀ ρ ∈ base, riemannZeta ρ = 0 ∧ (0 < ρ.re ∧ ρ.re < 1)
+      ∧ |ρ.im| ≤ T+1 := by
+    intro ρ hρ
+    rw [hbased, Set.Finite.mem_toFinset] at hρ
+    obtain ⟨hζ, hρR⟩ := hρ
+    obtain ⟨⟨hre1, hre2⟩, him1, him2⟩ := (hrect_mem ρ).mp hρR
+    refine ⟨hζ, ⟨?_, ?_⟩, ?_⟩
+    · rcases lt_or_eq_of_le hre1 with h | h
+      · exact h
+      · exfalso
+        exact ContourShift.zeta_ne_zero_of_re_mem (by linarith) (by linarith) hζ
+    · rcases lt_or_eq_of_le hre2 with h | h
+      · exact h
+      · exfalso
+        exact riemannZeta_ne_zero_of_one_le_re (by linarith) hζ
+    · rw [abs_le]
+      exact ⟨him1, him2⟩
+  have hiff : ∀ τ : ℝ, τ ≤ T + 1 → ∀ ρ : ℂ,
+      ρ ∈ base.filter (fun w ↦ |w.im| < τ)
+        ↔ (ρ ∈ Kadiri.NontrivialZeros ∧ |ρ.im| < τ) := by
+    intro τ hτ ρ
+    rw [Finset.mem_filter]
+    constructor
+    · rintro ⟨hρb, him⟩
+      obtain ⟨hζ, ⟨hre1, hre2⟩, _⟩ := hbase_shape ρ hρb
+      exact ⟨⟨⟨hre1, hre2⟩, Set.mem_univ _, hζ⟩, him⟩
+    · rintro ⟨⟨⟨hre1, hre2⟩, -, hζ⟩, him⟩
+      refine ⟨?_, him⟩
+      rw [hbased, Set.Finite.mem_toFinset]
+      refine ⟨hζ, (hrect_mem ρ).mpr ⟨⟨hre1.le, hre2.le⟩, ?_⟩⟩
+      rw [abs_lt] at him
+      constructor <;> linarith [him.1, him.2]
+  have hsub : base.filter (fun w ↦ |w.im| < T)
+      ⊆ base.filter (fun w ↦ |w.im| < T') := by
+    intro ρ hρ
+    rw [Finset.mem_filter] at hρ ⊢
+    exact ⟨hρ.1, lt_of_lt_of_le hρ.2 hTT'⟩
+  rw [ContourShift.zeroPartialSum_eq_sum (fun ρ ↦ hiff T' hT'1 ρ),
+    ContourShift.zeroPartialSum_eq_sum (fun ρ ↦ hiff T (by linarith) ρ),
+    ← Finset.sum_sdiff_eq_sub hsub]
+  set SD := base.filter (fun w ↦ |w.im| < T') \ base.filter (fun w ↦ |w.im| < T)
+    with hSDd
+  have hSD_shape : ∀ ρ ∈ SD, riemannZeta ρ = 0 ∧ (0 < ρ.re ∧ ρ.re < 1)
+      ∧ T ≤ |ρ.im| ∧ |ρ.im| ≤ T + 1 := by
+    intro ρ hρ
+    rw [hSDd, Finset.mem_sdiff, Finset.mem_filter] at hρ
+    obtain ⟨⟨hρb, _⟩, hnot⟩ := hρ
+    rw [Finset.mem_filter] at hnot
+    push_neg at hnot
+    obtain ⟨hζ, hre, himb⟩ := hbase_shape ρ hρb
+    exact ⟨hζ, hre, hnot hρb, himb⟩
+  calc ‖∑ ρ ∈ SD, (analyticOrderNatAt riemannZeta ρ : ℂ) * ((x:ℂ)^ρ/ρ)‖
+      ≤ ∑ ρ ∈ SD, ‖(analyticOrderNatAt riemannZeta ρ : ℂ) * ((x:ℂ)^ρ/ρ)‖ :=
+        norm_sum_le _ _
+    _ ≤ ∑ ρ ∈ SD, (analyticOrderNatAt riemannZeta ρ : ℝ) * (x/T) := by
+        apply Finset.sum_le_sum
+        intro ρ hρ
+        obtain ⟨hζ, ⟨hre1, hre2⟩, him1, _⟩ := hSD_shape ρ hρ
+        rw [norm_mul, Complex.norm_natCast, norm_div]
+        have hxρ : ‖(x:ℂ)^ρ‖ ≤ x := by
+          rw [Complex.norm_cpow_eq_rpow_re_of_pos hx0]
+          calc x ^ ρ.re ≤ x ^ (1:ℝ) := Real.rpow_le_rpow_of_exponent_le hx1 hre2.le
+            _ = x := Real.rpow_one x
+        have hρn : T ≤ ‖ρ‖ := le_trans him1 (Complex.abs_im_le_norm ρ)
+        have hρ0 : (0:ℝ) < ‖ρ‖ := by linarith
+        apply mul_le_mul_of_nonneg_left ?_ (by positivity)
+        rw [div_le_div_iff₀ hρ0 hT0]
+        calc ‖(x:ℂ)^ρ‖ * T ≤ x * T := by
+              nlinarith [norm_nonneg ((x:ℂ)^ρ)]
+          _ ≤ x * ‖ρ‖ := by nlinarith
+    _ = (∑ ρ ∈ SD, (analyticOrderNatAt riemannZeta ρ : ℝ)) * (x/T) := by
+        rw [← Finset.sum_mul]
+    _ ≤ (C2 * Real.log T) * (x/T) := by
+        apply mul_le_mul_of_nonneg_right (hC2 T hT SD hSD_shape) (by positivity)
+    _ = C2 * x * Real.log T / T := by ring
+
+
+/-- info: 'Glue.band_order_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms band_order_sum_le
+
+/-- info: 'Glue.zeroPartialSum_swap' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeroPartialSum_swap
+
 end Glue
