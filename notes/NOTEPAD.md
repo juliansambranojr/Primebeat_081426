@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-08-29  entry 271: hEF DISCHARGED — stmtEF_poly: the truncated explicit formula sorry-free, pinned clean, welded to StmtExplicitFormulaPoly, consumer patched as approved, commit 3d26dd3. The census's missing formula EXISTS. Remaining leaf: StmtArgCrude
 - [open]   2026-08-29  entry 270: GLUE 1–2 OF 4 — band_order_sum_le + zeroPartialSum_swap (T′→T costs C·x·logT/T), Glue.lean, commits 4bf8e7b/95ae2ab. Remaining: edge integrals (piece 3), rectangle splitting + final assembly + consumer patch (piece 4)
 - [open]   2026-08-29  entry 269: S3 COMPLETE — edge_bound_core: ‖ζ′/ζ‖ ≤ C·log t/δ on the band, count closed by 4 windows + reflection + fixed-rect constant, commits 905dcd0..624bf67. ALL FOUR hEF SLICES PROVED. Remaining: the glue (contour assembly → StmtExplicitFormula, T ≤ x²) + consumer patch
 - [open]   2026-08-29  entry 268: THE RESCALE PROVED — gz_partial_fraction: Landau partial fraction at 3/2+iT′, segment re∈[−1/4,2], C·log T′, via FinalBound transport, commits 7c66f17/e452638. hEF remaining: gap-eating → edge_bound, then the T ≤ x² glue + consumer patch

@@ -16,6 +16,69 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 271 — hEF DISCHARGED: the truncated explicit formula, proved sorry-free and welded to the ledger
+type: formalization
+refs: 130, 257, 261, 262, 264, 269, 270
+
+**The claim, realized.** `Glue.stmtEF_poly`
+(`lean_stage3/Stage3/Glue.lean:1195`, commit `3d26dd3`, pinned
+`[propext, Classical.choice, Quot.sound]` — no sorryAx anywhere in
+its dependency tree):
+
+```text
+∃ c₁ c₂ ≥ 0, StmtExplicitFormulaPoly c₁ c₂ 16
+i.e. ∀ x ≥ 16, ∀ T ∈ [2, x²]:
+  ‖ψ(x) − x + Σ_{|γ|<T} m_ρ·x^ρ/ρ‖ ≤ c₁·x·log²(xT)/T + c₂·log x
+```
+
+Entry 130's census recorded that no sorry-free truncated explicit
+formula existed in any proof assistant at the pin. One now exists,
+in this tree, crude-explicit as the spec demands, built from PNT+'s
+parts and this bench's slicing.
+
+**The final assembly** (`explicit_formula_poly`, Glue.lean:979,
+commits `74f7861` → `3d26dd3`): the telescope
+`ψ−P`, `P−Rect′`, `Rect′−x+ZPS(T′)`, `ZPS(T)−ZPS(T′)` — each norm
+fed by its slice: entry 261's Perron at the good height, the
+rectangle split into its four edges by definition, entry 264's
+residue identity (retrofitted this sitting to the `[−1/4, c]`
+rectangle so every S3 bound applies), the three edge integrals
+(horizontals `C·x·log²T/T` at both good heights; the left edge
+`C·log x` via the dominating function
+`D·logT′·x^(−1/4)/(1/4+|t|)`, the even-folded FTC integral
+`∫dt/(1/4+|t|) = 2·log(1+4T′)`, and `log_le_rpow_div` beating
+`x^(−1/4)·log²x`), the entry-270 swap back to `T`, and `ζ′/ζ(0)`
+absorbed into `c₂·log x`. One bug the checker caught:
+`1+4T′ ≤ T′³` fails at `T′ = 2`; `T′⁴` fixed it.
+
+**The leaf-shape change, applied as approved.**
+`StmtExplicitFormulaPoly` (Assembly.lean:109) carries the `T ≤ x²`
+hypothesis the contour proof delivers; `psiWeak_of_RH_EF_NT` now
+consumes it, its `T = 2^(K+1) ≤ 2x ≤ x²` inside the regime — the
+3-line patch. The full Stage3 tree builds clean; the only sorries
+anywhere are upstream StrongPNT's three and ContourShift's
+superseded scratch `edge_bound` statement, none on any pinned path.
+
+**The arc, whole.** Entries 257–271, one build order followed to its
+end: Perron kernel (258), far/near sums (259–260), composition and
+Fubini (261), good heights (262), the residue machinery and every
+pole of `G` (263), the residue identity (264), the strip
+continuation and growth (265–266), reflection-order (267), the
+rescale (268), the gap eaten (269), the glue (270, this entry).
+Forty pinned theorems across five files. The pricing discipline —
+measure the budget, sketch every discharge, slice to green builds,
+commit every green state — held from the first slice to the last:
+the majority of the large blocks compiled on their first or second
+pass. Entry 257's sentence stands proved: no step needed mathematics
+absent from the literature or from either library.
+
+**What it makes possible.** The ledger's hEF leaf is no longer an
+assumption: `psiWeak_of_RH_EF_NT` now runs on hRH + hNT alone at
+this node, and the leaf set {hEF, StmtArgCrude} recorded at entry
+141 loses its analytic half. The remaining open leaf is
+StmtArgCrude; the weld caveat (statement-identity across toolchains,
+entry 118) is unchanged.
+
 ## 2026-08-29 — Entry 270 — the glue begun: the band count and the height swap, pieces 1–2 of 4
 type: formalization
 refs: 264, 267, 269
