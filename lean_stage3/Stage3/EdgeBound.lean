@@ -360,6 +360,56 @@ theorem gz_partial_fraction :
     _ = G / 2 * A * Real.log T' := by ring
 
 
+/-- Away from `1`, the order of `gz` is the order of `ζ` — the factor
+`(s−1)²` carries order zero there. -/
+theorem gz_order_eq {w : ℂ} (hw : w ≠ 1) :
+    analyticOrderNatAt gz w = analyticOrderNatAt riemannZeta w := by
+  have h1 : AnalyticAt ℂ (fun s : ℂ ↦ (s - 1)^2) w :=
+    (analyticAt_id.sub analyticAt_const).pow 2
+  have h2 : AnalyticAt ℂ riemannZeta w := ContourShift.zeta_analyticAt hw
+  have h3 : analyticOrderAt (fun s : ℂ ↦ (s - 1)^2) w = 0 := by
+    rw [h1.analyticOrderAt_eq_zero]
+    intro hcon
+    apply hw
+    have h4 := pow_eq_zero_iff (n := 2) (by norm_num) |>.mp hcon
+    linear_combination h4
+  have h5 : analyticOrderAt gz w
+      = analyticOrderAt (fun s : ℂ ↦ (s - 1)^2) w + analyticOrderAt riemannZeta w := by
+    have h6 : gz = (fun s : ℂ ↦ (s - 1)^2) * riemannZeta := rfl
+    rw [h6]
+    exact analyticOrderAt_mul h1 h2
+  show (analyticOrderAt gz w).toNat = (analyticOrderAt riemannZeta w).toNat
+  rw [h5, h3, zero_add]
+
+/-- Every ball zero at heights `≥ 2` is a `ζ`-zero on the open strip,
+with ordinate within `46/25` of `T′`. -/
+theorem ball_zero_shape {T' : ℝ} (hT' : 2 ≤ T') {w : ℂ}
+    (hz : gz w = 0) (hball : ‖w - c0 T'‖ ≤ 46/25) :
+    riemannZeta w = 0 ∧ (0 < w.re ∧ w.re < 1) ∧ |w.im - T'| ≤ 46/25 := by
+  have hw1 : w ≠ 1 := by
+    intro h1
+    rw [h1] at hball
+    have h2 := Complex.abs_im_le_norm ((1:ℂ) - c0 T')
+    have h3 : ((1:ℂ) - c0 T').im = -T' := by
+      rw [Complex.sub_im, c0_im, Complex.one_im]
+      ring
+    rw [h3, abs_neg, abs_of_pos (by linarith : (0:ℝ) < T')] at h2
+    linarith
+  have hζ : riemannZeta w = 0 := (gz_zero_cases hz).resolve_left hw1
+  have h4 := Complex.abs_re_le_norm (w - c0 T')
+  rw [Complex.sub_re, c0_re] at h4
+  have h5 : |w.re - 3/2| ≤ 46/25 := le_trans h4 hball
+  rw [abs_le] at h5
+  have h6 := Complex.abs_im_le_norm (w - c0 T')
+  rw [Complex.sub_im, c0_im] at h6
+  refine ⟨hζ, ⟨?_, ?_⟩, le_trans h6 hball⟩
+  · by_contra hle
+    push_neg at hle
+    exact ContourShift.zeta_ne_zero_of_re_mem (by linarith [h5.1]) hle hζ
+  · by_contra hge
+    push_neg at hge
+    exact riemannZeta_ne_zero_of_one_le_re hge hζ
+
 /-- info: 'EdgeBound.gz_partial_fraction' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms gz_partial_fraction
