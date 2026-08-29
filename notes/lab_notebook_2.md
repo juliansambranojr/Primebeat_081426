@@ -16,6 +16,42 @@ Julian's call.
 
 ---
 
+## 2026-08-29 — Entry 259 — slice 1b proved: the far-terms sum
+type: formalization
+refs: 257, 258
+
+**What was proved.** `PerronKernel.far_terms_sum`
+(`lean_stage3/Stage3/PerronKernel.lean`, commit `5f058a7`):
+
+```text
+Σ_{|log(x/n)| ≥ 1/2} Λ(n)·(x/n)^(1+1/log x) / (T·|log(x/n)|)
+    ≤ 300·x·log(xT)²/T        (x ≥ 16, T ≥ 1)
+```
+
+Sorry-free, `[propext, Classical.choice, Quot.sound]`,
+`#guard_msgs`-pinned. Entry 257's slice 1b, at the Chebyshev level it was
+priced at.
+
+**The route.** The range condition buys `1/(T|log|) ≤ 2/T`; the power
+splits as `x^c = e·x` times `Σ Λ(n)/n^c`; that sum falls to dyadic
+blocks under `Chebyshev.psi_le_const_mul_self` (`ψ ≤ (log 4 + 4)·t`)
+against a geometric tail; and the denominator lemma
+`1/(1 − 2^(−δ)) ≤ 5/δ` comes from `1 − e^(−a) ≥ a·e^(−a)`, one linarith
+from `1 + a ≤ e^a`. Total constant 20·e·(log 4 + 4) ≈ 293 under the
+crude headline 300.
+
+**The tool worth remembering.** `Real.tsum_le_of_sum_le` bounds a tsum
+of nonnegative reals from finite-piece bounds with NO summability
+side-condition — the whole estimate never argues convergence separately,
+and summability falls out of the same finite bound
+(`summable_of_sum_le`) for free.
+
+**hEF state.** 1a proved (entry 258), 1b proved (this entry). Remaining:
+1c (near-diagonal — where the c₂·log x term is born), then slices 2–4
+(contour assembly against sorry-free machinery).
+
+---
+
 ## 2026-08-29 — Entry 258 — slice 1a proved: the truncated Perron kernel, and the arc that was never needed
 type: formalization
 refs: 257
