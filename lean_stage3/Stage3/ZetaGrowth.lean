@@ -277,6 +277,107 @@ theorem tail_ibp {N : ℕ} (Npos : 0 < N) {s : ℂ} (hs : 0 < s.re) :
   exact tendsto_nhds_unique htend1' htend2'
 
 
+/-- **The continued Euler–Maclaurin form**: every piece converges
+absolutely on `re s > −1`. -/
+noncomputable def zeta1 (N : ℕ) (s : ℂ) : ℂ :=
+  (∑ n ∈ Finset.range (N + 1), 1 / (n : ℂ) ^ s)
+    + (- (N:ℂ) ^ (1 - s)) / (1 - s) + (- (N:ℂ) ^ (-s)) / 2
+    + s * ((s+1) * ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)))
+
+/-- On `re s > 0` the continued form agrees with `ζ`. -/
+theorem zeta1_eq_zeta {N : ℕ} (Npos : 0 < N) {s : ℂ} (hs : 0 < s.re) (hs1 : s ≠ 1) :
+    zeta1 N s = riemannZeta s := by
+  rw [← Zeta0EqZeta Npos hs hs1, zeta1, riemannZeta0]
+  have h2 : ∫ x in Ioi (N:ℝ), ((⌊x⌋:ℂ) + 1/2 - (x:ℂ)) / (x:ℂ) ^ (s+1)
+      = ∫ x in Ioi (N:ℝ), ((⌊x⌋:ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1)) := by
+    congr 1
+    funext x
+    rw [div_cpow_eq_cpow_neg]
+  rw [h2, tail_ibp Npos hs]
+
+/-- The tail integral is differentiable in `s` on `re s > −1`: it is a
+Mellin transform of a bounded function vanishing near `0`. -/
+theorem tail_differentiableAt {N : ℕ} (Npos : 0 < N) {z : ℂ} (hz : -1 < z.re) :
+    DifferentiableAt ℂ
+      (fun w : ℂ ↦ ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(w+2))) z := by
+  classical
+  have hN0 : (0:ℝ) < (N:ℝ) := by exact_mod_cast Npos
+  set f : ℝ → ℂ := (Ioi (N:ℝ)).indicator (fun t ↦ (emA t : ℂ)) with hfd
+  have hfmeas : AEStronglyMeasurable f volume := by
+    apply Measurable.aestronglyMeasurable
+    rw [hfd]
+    apply Measurable.indicator ?_ measurableSet_Ioi
+    apply Measurable.comp Complex.measurable_ofReal
+    exact ((measurable_fract.sub (measurable_fract.pow_const 2)).div_const 2)
+  have hfbound : ∀ t : ℝ, ‖f t‖ ≤ 1/8 := by
+    intro t
+    rw [hfd]
+    by_cases ht : t ∈ Ioi (N:ℝ)
+    · rw [Set.indicator_of_mem ht, Complex.norm_real, Real.norm_eq_abs,
+        abs_of_nonneg (emA_nonneg t)]
+      exact emA_le t
+    · rw [Set.indicator_of_notMem ht]
+      norm_num
+  have hfun : (fun w : ℂ ↦ ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(w+2)))
+      = fun w ↦ mellin f (-w - 1) := by
+    funext w
+    rw [mellin]
+    have h1 : ∀ t : ℝ, (t:ℂ) ^ ((-w - 1) - 1) • f t
+        = (Ioi (N:ℝ)).indicator (fun t ↦ (emA t : ℂ) * (t:ℂ) ^ (-(w+2))) t := by
+      intro t
+      rw [hfd]
+      by_cases ht : t ∈ Ioi (N:ℝ)
+      · rw [Set.indicator_of_mem ht, Set.indicator_of_mem ht, smul_eq_mul]
+        have h3 : ((-w - 1) - 1 : ℂ) = -(w+2) := by ring
+        rw [h3]
+        ring
+      · rw [Set.indicator_of_notMem ht, Set.indicator_of_notMem ht, smul_zero]
+    rw [MeasureTheory.integral_congr_ae (Filter.Eventually.of_forall (fun t ↦ h1 t)),
+      MeasureTheory.setIntegral_indicator measurableSet_Ioi,
+      Set.Ioi_inter_Ioi, max_eq_right hN0.le]
+  rw [hfun]
+  have hcomp : (fun w : ℂ ↦ mellin f (-w - 1))
+      = (mellin f) ∘ (fun w : ℂ ↦ -w - 1) := rfl
+  rw [hcomp]
+  apply DifferentiableAt.comp
+  · apply mellin_differentiableAt_of_isBigO_rpow (a := 0) (b := (-z - 1).re - 1)
+    · apply LocallyIntegrableOn.mono
+        ((MeasureTheory.locallyIntegrable_const ((1:ℝ)/8)).locallyIntegrableOn (Ioi 0))
+        hfmeas
+      apply Filter.Eventually.of_forall
+      intro t
+      have h4 := hfbound t
+      rw [Real.norm_eq_abs, abs_of_pos (by norm_num : (0:ℝ) < 1/8)]
+      exact h4
+    · apply Asymptotics.IsBigO.of_bound (1/8)
+      apply Filter.Eventually.of_forall
+      intro t
+      rw [neg_zero, Real.rpow_zero]
+      simpa using hfbound t
+    · simp
+      linarith
+    · have hev : ∀ᶠ t in nhdsWithin 0 (Ioi (0:ℝ)), f t = 0 := by
+        filter_upwards [mem_nhdsWithin_of_mem_nhds (Iio_mem_nhds hN0)] with t ht
+        rw [hfd, Set.indicator_of_notMem]
+        intro hcon
+        rw [Set.mem_Ioi] at hcon
+        rw [Set.mem_Iio] at ht
+        linarith
+      apply Asymptotics.IsBigO.of_bound 1
+      filter_upwards [hev] with t ht
+      rw [ht]
+      simp
+    · simp
+  · fun_prop
+
+/-- info: 'ZetaGrowth.zeta1_eq_zeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms zeta1_eq_zeta
+
+/-- info: 'ZetaGrowth.tail_differentiableAt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms tail_differentiableAt
+
 /-- info: 'ZetaGrowth.tail_ibp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms tail_ibp
