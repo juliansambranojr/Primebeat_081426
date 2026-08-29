@@ -1548,6 +1548,347 @@ theorem near_diagonal_sum {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
 #guard_msgs in
 #print axioms far_terms_sum
 
+
+/-! ### Slice 1 assembly — composing 1a + 1b + 1c
+
+`‖Σ Λ(n)·(perronI(x/n) − δ(x/n))‖ ≤ 600·x·log(xT)²/T + 12·log x`. 1a bounds
+each kernel; the far range is 1b's summand verbatim, the near range is 1c's
+times `(x/n)^c ≤ e`, and the diagonal `n = x` pays `arctan/π ≤ 1/2` through
+the segment integral. -/
+
+/-- The kernel at `y = 1`, directly: `‖perronI 1 c T‖ ≤ 1/2`. -/
+theorem perronI_one_norm {c T : ℝ} (hc : 0 < c) :
+    ‖perronI 1 c T‖ ≤ 1/2 := by
+  have h1 : perronI 1 c T
+      = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * (2 * Real.arctan (T / c) * Complex.I) := by
+    rw [perronI, ← seg_inv_integral hc]
+    congr 1
+    apply intervalIntegral.integral_congr
+    intro t _
+    simp only [Complex.ofReal_one, Complex.one_cpow]
+    rw [← one_div, div_eq_mul_inv, one_mul]
+  rw [h1, norm_mul, norm_inv]
+  have h2 : ‖2 * (Real.pi:ℂ) * Complex.I‖ = 2 * Real.pi := by
+    rw [norm_mul, norm_mul, Complex.norm_I, mul_one]
+    simp [abs_of_pos Real.pi_pos]
+  have h3 : ‖2 * (Real.arctan (T/c) : ℂ) * Complex.I‖ = 2 * |Real.arctan (T/c)| := by
+    rw [norm_mul, norm_mul, Complex.norm_I, mul_one, Complex.norm_real,
+      Real.norm_eq_abs]
+    norm_num
+  rw [h2]
+  have h4 : ‖2 * ((Real.arctan (T / c) : ℝ) : ℂ) * Complex.I‖ ≤ Real.pi := by
+    rw [h3]
+    have h5 : |Real.arctan (T/c)| ≤ Real.pi / 2 := by
+      rw [abs_le]
+      constructor
+      · linarith [Real.neg_pi_div_two_lt_arctan (T/c)]
+      · linarith [Real.arctan_lt_pi_div_two (T/c)]
+    linarith
+  calc (2 * Real.pi)⁻¹ * ‖2 * ((Real.arctan (T / c) : ℝ) : ℂ) * Complex.I‖
+      ≤ (2 * Real.pi)⁻¹ * Real.pi := by
+        apply mul_le_mul_of_nonneg_left h4
+        positivity
+    _ = 1/2 := by
+        field_simp
+
+/-- **Slice 1's analytic composition.** The summed kernel error. -/
+theorem kernel_sum_bound {x T : ℝ} (hx : 16 ≤ x) (hT : 1 ≤ T) :
+    ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+          * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖
+      ≤ 600 * x * Real.log (x * T) ^ 2 / T + 12 * Real.log x := by
+  have hx0 : (0:ℝ) < x := by linarith
+  have hT0 : (0:ℝ) < T := lt_of_lt_of_le one_pos hT
+  have hexp16 : Real.exp 1 < 16 := by linarith [Real.exp_one_lt_d9]
+  have hlx : 1 < Real.log x := by
+    have h1 : Real.log (Real.exp 1) < Real.log x :=
+      Real.log_lt_log (Real.exp_pos 1) (lt_of_lt_of_le hexp16 hx)
+    rwa [Real.log_exp] at h1
+  have hlx0 : (0:ℝ) < Real.log x := by linarith
+  set c : ℝ := 1 + 1/Real.log x with hcd
+  have hc0 : (0:ℝ) < c := by rw [hcd]; positivity
+  have hc2 : c ≤ 2 := by
+    rw [hcd]
+    have h6 : 1/Real.log x ≤ 1 := by
+      rw [div_le_one hlx0]
+      linarith
+    linarith
+  set far : ℕ → ℝ := fun n ↦ if 1/2 ≤ |Real.log (x / n)| then
+      ArithmeticFunction.vonMangoldt n * (x / n) ^ c / (T * |Real.log (x / n)|)
+    else 0 with hfard
+  set near : ℕ → ℝ := fun n ↦ if 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2 then
+      ArithmeticFunction.vonMangoldt n * min 1 (1/(T * |Real.log (x / n)|))
+    else 0 with hneard
+  set diagI : ℕ → ℝ := fun n ↦ if n = ⌊x⌋₊ ∧ ((⌊x⌋₊ : ℕ) : ℝ) = x then Real.log x
+    else 0 with hdiagd
+  have hfarnn : ∀ n, 0 ≤ far n := by
+    intro n
+    rw [hfard]
+    dsimp only
+    split
+    · positivity
+    · exact le_rfl
+  have hnearnn : ∀ n, 0 ≤ near n := by
+    intro n
+    rw [hneard]
+    dsimp only
+    split
+    · exact mul_nonneg ArithmeticFunction.vonMangoldt_nonneg
+        (le_min zero_le_one (by positivity))
+    · exact le_rfl
+  have hdiagnn : ∀ n, 0 ≤ diagI n := by
+    intro n
+    rw [hdiagd]
+    dsimp only
+    split
+    · positivity
+    · exact le_rfl
+  have hpt : ∀ n : ℕ, ‖(ArithmeticFunction.vonMangoldt n : ℂ)
+        * (perronI (x/n) c T - perronδ (x/n))‖
+      ≤ far n + Real.exp 1 * near n + diagI n := by
+    intro n
+    have hΛnn := ArithmeticFunction.vonMangoldt_nonneg (n := n)
+    have hnorm : ‖(ArithmeticFunction.vonMangoldt n : ℂ)
+          * (perronI (x/n) c T - perronδ (x/n))‖
+        = ArithmeticFunction.vonMangoldt n * ‖perronI (x/n) c T - perronδ (x/n)‖ := by
+      rw [norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hΛnn]
+    rw [hnorm]
+    rcases Nat.eq_zero_or_pos n with rfl | hn
+    · simp only [ArithmeticFunction.map_zero, zero_mul, norm_zero]
+      have h1 := hfarnn 0
+      have h2 := hnearnn 0
+      have h3 := hdiagnn 0
+      nlinarith [Real.exp_pos 1, mul_nonneg (Real.exp_pos 1).le h2]
+    · have hn0 : (0:ℝ) < (n:ℝ) := by exact_mod_cast hn
+      have hyx : (0:ℝ) < x/n := by positivity
+      by_cases hne : x/(n:ℝ) = 1
+      · have hnx : (n:ℝ) = x := by
+          field_simp at hne
+          linarith [hne]
+        have hδ1 : perronδ (x/n) = 0 := by
+          rw [perronδ, if_neg]
+          rw [hne]
+          norm_num
+        have hbound : ‖perronI (x/n) c T - perronδ (x/n)‖ ≤ 1/2 := by
+          rw [hδ1, sub_zero, hne]
+          exact perronI_one_norm hc0
+        have hfl : n = ⌊x⌋₊ := by
+          rw [← hnx, Nat.floor_natCast]
+        have hdiag_val : diagI n = Real.log x := by
+          rw [hdiagd]
+          dsimp only
+          rw [if_pos ⟨hfl, by rw [← hfl]; exact hnx⟩]
+        have hΛlog : ArithmeticFunction.vonMangoldt n ≤ Real.log x := by
+          calc ArithmeticFunction.vonMangoldt n ≤ Real.log n :=
+                ArithmeticFunction.vonMangoldt_le_log
+            _ = Real.log x := by rw [hnx]
+        calc ArithmeticFunction.vonMangoldt n * ‖perronI (x/n) c T - perronδ (x/n)‖
+            ≤ Real.log x * (1/2) := by
+              apply mul_le_mul hΛlog hbound (norm_nonneg _) (by positivity)
+          _ ≤ far n + Real.exp 1 * near n + diagI n := by
+              rw [hdiag_val]
+              have h1 := hfarnn n
+              have h2 := hnearnn n
+              nlinarith [Real.exp_pos 1, hlx0, mul_nonneg (Real.exp_pos 1).le h2]
+      · have h1a := perron_kernel_truncated hyx hne hc0 hT
+        have hlogne : Real.log (x/n) ≠ 0 := by
+          intro h
+          apply hne
+          have h7 := Real.exp_log hyx
+          rw [h, Real.exp_zero] at h7
+          linarith [h7]
+        have habs0 : 0 < |Real.log (x/n)| := abs_pos.mpr hlogne
+        by_cases hfar : 1/2 ≤ |Real.log (x / n)|
+        · have hfar_val : far n = ArithmeticFunction.vonMangoldt n
+              * (x / n) ^ c / (T * |Real.log (x / n)|) := by
+            rw [hfard]
+            dsimp only
+            rw [if_pos hfar]
+          have hminle : min 1 (1/(T * |Real.log (x/n)|)) ≤ 1/(T * |Real.log (x/n)|) :=
+            min_le_right _ _
+          calc ArithmeticFunction.vonMangoldt n * ‖perronI (x/n) c T - perronδ (x/n)‖
+              ≤ ArithmeticFunction.vonMangoldt n
+                  * ((x/n) ^ c * min 1 (1/(T * |Real.log (x/n)|))) :=
+                mul_le_mul_of_nonneg_left h1a hΛnn
+            _ ≤ ArithmeticFunction.vonMangoldt n
+                  * ((x/n) ^ c * (1/(T * |Real.log (x/n)|))) := by
+                apply mul_le_mul_of_nonneg_left _ hΛnn
+                exact mul_le_mul_of_nonneg_left hminle
+                  (Real.rpow_nonneg hyx.le _)
+            _ = far n := by
+                rw [hfar_val]
+                field_simp
+            _ ≤ far n + Real.exp 1 * near n + diagI n := by
+                have h2 := hnearnn n
+                have h3 := hdiagnn n
+                nlinarith [Real.exp_pos 1, mul_nonneg (Real.exp_pos 1).le h2]
+        · push_neg at hfar
+          have hnear_val : near n = ArithmeticFunction.vonMangoldt n
+              * min 1 (1/(T * |Real.log (x / n)|)) := by
+            rw [hneard]
+            dsimp only
+            rw [if_pos ⟨habs0, hfar⟩]
+          have hxc_e : (x/n) ^ c ≤ Real.exp 1 := by
+            rw [Real.rpow_def_of_pos hyx]
+            apply Real.exp_le_exp.mpr
+            calc Real.log (x/n) * c ≤ |Real.log (x/n)| * c := by
+                  apply mul_le_mul_of_nonneg_right (le_abs_self _) hc0.le
+              _ ≤ (1/2) * 2 := by
+                  apply mul_le_mul hfar.le hc2 hc0.le (by norm_num)
+              _ = 1 := by norm_num
+          calc ArithmeticFunction.vonMangoldt n * ‖perronI (x/n) c T - perronδ (x/n)‖
+              ≤ ArithmeticFunction.vonMangoldt n
+                  * ((x/n) ^ c * min 1 (1/(T * |Real.log (x/n)|))) :=
+                mul_le_mul_of_nonneg_left h1a hΛnn
+            _ ≤ ArithmeticFunction.vonMangoldt n
+                  * (Real.exp 1 * min 1 (1/(T * |Real.log (x/n)|))) := by
+                apply mul_le_mul_of_nonneg_left _ hΛnn
+                apply mul_le_mul_of_nonneg_right hxc_e
+                exact le_min zero_le_one (by positivity)
+            _ = Real.exp 1 * near n := by
+                rw [hnear_val]
+                ring
+            _ ≤ far n + Real.exp 1 * near n + diagI n := by
+                have h1 := hfarnn n
+                have h3 := hdiagnn n
+                linarith
+  have hfar_sum : Summable far := by
+    have hc1 : 1 < c := by
+      rw [hcd]
+      have h9 : 0 < 1/Real.log x := by positivity
+      linarith
+    apply Summable.of_nonneg_of_le hfarnn _
+      ((vonMangoldt_rpow_summable hc1).mul_left (2 * Real.exp 1 * x / T))
+    intro n
+    rw [hfard]
+    dsimp only
+    by_cases h : 1/2 ≤ |Real.log (x / n)|
+    · rw [if_pos h]
+      rcases Nat.eq_zero_or_pos n with rfl | hn
+      · simp [ArithmeticFunction.map_zero]
+        try positivity
+      · have hn0 : (0:ℝ) < (n:ℝ) := by exact_mod_cast hn
+        have hdiv : (x / n) ^ c = x ^ c * (n:ℝ) ^ (-c) := by
+          rw [Real.div_rpow hx0.le hn0.le, Real.rpow_neg hn0.le, div_eq_mul_inv]
+        have hxc : x ^ c = Real.exp 1 * x := by
+          rw [hcd, Real.rpow_add hx0, Real.rpow_one, Real.rpow_def_of_pos hx0,
+            mul_one_div, div_self hlx0.ne']
+          ring
+        have hden : T / 2 ≤ T * |Real.log (x / n)| := by
+          calc T / 2 = T * (1/2) := by ring
+            _ ≤ T * |Real.log (x / n)| := mul_le_mul_of_nonneg_left h hT0.le
+        calc ArithmeticFunction.vonMangoldt n * (x / n) ^ c / (T * |Real.log (x / n)|)
+            ≤ ArithmeticFunction.vonMangoldt n * (x / n) ^ c / (T / 2) := by
+              apply div_le_div_of_nonneg_left _ (by positivity) hden
+              exact mul_nonneg ArithmeticFunction.vonMangoldt_nonneg
+                (Real.rpow_nonneg (by positivity) _)
+          _ = (2 * Real.exp 1 * x / T)
+                * (ArithmeticFunction.vonMangoldt n * (n:ℝ)^(-c)) := by
+              rw [hdiv, hxc]
+              field_simp
+              try ring
+    · rw [if_neg h]
+      positivity
+  have hN2 : ∀ n : ℕ, n ∉ Finset.range (⌈2*x⌉₊ + 1) → near n = 0 := by
+    intro n hn
+    rw [Finset.mem_range, not_lt] at hn
+    rw [hneard]
+    dsimp only
+    rw [if_neg]
+    rintro ⟨hpos, hlt⟩
+    have hnN : (2*x:ℝ) ≤ n := by
+      have h1 : ((⌈2*x⌉₊ + 1 : ℕ):ℝ) ≤ n := by exact_mod_cast hn
+      have h2 : (2*x:ℝ) ≤ ⌈2*x⌉₊ := Nat.le_ceil _
+      push_cast at h1
+      linarith
+    have hn0 : (0:ℝ) < n := by linarith
+    have hxn2 : x / n ≤ 1/2 := by
+      have h2 : x/(n:ℝ) ≤ x/(2*x) := div_le_div_of_nonneg_left hx0.le (by positivity) hnN
+      have h3 : x/(2*x) = 1/2 := by field_simp
+      rw [h3] at h2
+      exact h2
+    have h4 : Real.log (x/n) ≤ Real.log (1/2) :=
+      Real.log_le_log (by positivity) hxn2
+    have h5 : Real.log ((1:ℝ)/2) = -Real.log 2 := by
+      rw [one_div, Real.log_inv]
+    have h6 : (1/2:ℝ) ≤ |Real.log (x/n)| := by
+      have h7 := neg_le_abs (Real.log (x/n))
+      rw [h5] at h4
+      linarith [Real.log_two_gt_d9]
+    linarith
+  have hnear_sum : Summable near := summable_of_ne_finset_zero hN2
+  have hdiag_sum : Summable diagI := by
+    apply summable_of_ne_finset_zero (s := {⌊x⌋₊})
+    intro n hn
+    rw [Finset.mem_singleton] at hn
+    rw [hdiagd]
+    dsimp only
+    rw [if_neg]
+    rintro ⟨h1, _⟩
+    exact hn h1
+  have hmaj_sum : Summable (fun n ↦ far n + Real.exp 1 * near n + diagI n) :=
+    ((hfar_sum.add (hnear_sum.mul_left _)).add hdiag_sum)
+  have hnorm_sum : Summable (fun n : ℕ ↦ ‖(ArithmeticFunction.vonMangoldt n : ℂ)
+      * (perronI (x/n) c T - perronδ (x/n))‖) :=
+    Summable.of_nonneg_of_le (fun n ↦ norm_nonneg _) hpt hmaj_sum
+  calc ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+          * (perronI (x/n) c T - perronδ (x/n)))‖
+      ≤ ∑' n : ℕ, ‖(ArithmeticFunction.vonMangoldt n : ℂ)
+          * (perronI (x/n) c T - perronδ (x/n))‖ :=
+        norm_tsum_le_tsum_norm hnorm_sum
+    _ ≤ ∑' n : ℕ, (far n + Real.exp 1 * near n + diagI n) :=
+        hnorm_sum.tsum_le_tsum hpt hmaj_sum
+    _ = ((∑' n, far n) + ∑' n, Real.exp 1 * near n) + ∑' n, diagI n := by
+        rw [(hfar_sum.add (hnear_sum.mul_left _)).tsum_add hdiag_sum,
+          hfar_sum.tsum_add (hnear_sum.mul_left _)]
+    _ ≤ (300 * x * Real.log (x*T)^2 / T)
+          + Real.exp 1 * (100 * x * Real.log (x*T)^2 / T + 4 * Real.log x)
+          + Real.log x := by
+        have h1 := far_terms_sum hx hT
+        have h2 := near_diagonal_sum hx hT
+        have h3 : (∑' n, diagI n) ≤ Real.log x := by
+          rw [tsum_eq_single ⌊x⌋₊ (by
+            intro n hn
+            rw [hdiagd]
+            dsimp only
+            rw [if_neg]
+            rintro ⟨h4, _⟩
+            exact hn h4)]
+          rw [hdiagd]
+          dsimp only
+          split
+          · exact le_rfl
+          · linarith
+        have h5 : (∑' n, Real.exp 1 * near n)
+            = Real.exp 1 * ∑' n, near n := tsum_mul_left
+        have h6 : (∑' n, near n) ≤ 100 * x * Real.log (x*T)^2 / T + 4 * Real.log x := h2
+        have h7 : (0:ℝ) ≤ ∑' n, near n := tsum_nonneg hnearnn
+        rw [h5]
+        have h8 := mul_le_mul_of_nonneg_left h6 (Real.exp_pos 1).le
+        linarith [h1, h3]
+    _ ≤ 600 * x * Real.log (x * T) ^ 2 / T + 12 * Real.log x := by
+        have he : Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
+        have hA : (0:ℝ) ≤ x * Real.log (x*T)^2 / T := by positivity
+        have hs : Real.exp 1 * (100 * x * Real.log (x*T)^2 / T + 4 * Real.log x)
+            ≤ 272 * (x * Real.log (x*T)^2 / T) + 11 * Real.log x := by
+          have h1 : Real.exp 1 * (100 * x * Real.log (x*T)^2 / T + 4 * Real.log x)
+              ≤ 2.72 * (100 * x * Real.log (x*T)^2 / T + 4 * Real.log x) := by
+            apply mul_le_mul_of_nonneg_right (by linarith)
+            have hp1 : (0:ℝ) ≤ 100 * x * Real.log (x*T)^2 / T := by positivity
+            have hp2 : (0:ℝ) ≤ 4 * Real.log x := by positivity
+            linarith
+          have he1 : (2.72:ℝ) * (100 * x * Real.log (x*T)^2 / T + 4 * Real.log x)
+              = 272 * (x * Real.log (x*T)^2 / T) + 10.88 * Real.log x := by
+            ring
+          rw [he1] at h1
+          have hp2 : (0:ℝ) ≤ Real.log x := hlx0.le
+          linarith
+        have hexp : 300 * x * Real.log (x*T)^2 / T
+            = 300 * (x * Real.log (x*T)^2 / T) := by ring
+        have hexp2 : 600 * x * Real.log (x * T) ^ 2 / T
+            = 600 * (x * Real.log (x*T)^2 / T) := by ring
+        rw [hexp, hexp2]
+        linarith [hs, hA, hlx0]
+
 /-- info: 'PerronKernel.near_diagonal_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms near_diagonal_sum
