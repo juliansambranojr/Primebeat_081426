@@ -97,9 +97,16 @@ Vocabulary (Julian's, keep it):
   ResidueTheoremOnRectangleWithSimplePole; the classical arc was never
   needed)]. Slices 1b (entry 259, far_terms_sum) and 1c (entry 260,
   near_diagonal_sum) ALSO PROVED — slice 1's analytic content complete,
-  one file, one axiom set. Remaining: pure composition — slice-1
-  assembly, 2 (pigeonhole on zeta_local_zero_count, already in repo),
-  3, 4 — per entry 257, "no step needs mathematics absent from the
+  one file, one axiom set. Slice-1 assembly + Fubini PROVED (entry 261,
+  explicit_formula_perron: ψ vs the −ζ′/ζ integral, 600·x·log(xT)²/T +
+  13·log x, commit 04395ad). Slice 2 PROVED (entry 262, goodT_exists:
+  good-height pigeonhole, gap 1/(180·log T + 1060), commit 58045ed;
+  scaffold lean_stage3/Stage3/ContourShift.lean). Remaining: S3
+  edge_bound (seam at σ ≈ 1/2 needs Hadamard partial fraction with the
+  good-gap denominators; LogDerivZetaFinalBound covers σ > 1/2, FE
+  transports below) and S4 residue_identity (rectangle holds ~T·log T
+  zeros; single-pole residue theorem needs subdivision over the finite
+  zero set) — per entry 257, "no step needs mathematics absent from the
   literature or from either library." 
 - StmtArgCrude: OPEN, untouched.
 - The four exact zeros: reframed by entries 253-255. The census ranks
