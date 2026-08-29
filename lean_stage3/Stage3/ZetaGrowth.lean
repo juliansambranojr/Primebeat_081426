@@ -94,7 +94,7 @@ theorem integrable_emA_tail {N : ℕ} (Npos : 0 < N) {s : ℂ} (hs : -1 < s.re) 
 `n ≥ 1`, the first-order tail integrand integrates to `(s+1)` times the
 second-order one — the boundary terms vanish at the integers. -/
 theorem interval_ibp {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs1 : s ≠ -1) :
-    ∫ x in (n:ℝ)..((n:ℝ)+1), ((((⌊x⌋ : ℝ) + 1/2 - x : ℝ)) : ℂ) * (x:ℂ) ^ (-(s+1))
+    ∫ x in (n:ℝ)..((n:ℝ)+1), ((⌊x⌋ : ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1))
       = (s+1) * ∫ x in (n:ℝ)..((n:ℝ)+1), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)) := by
   have hn1 : (1:ℝ) ≤ (n:ℝ) := by exact_mod_cast hn
   have hposI : ∀ x ∈ Set.uIcc (n:ℝ) ((n:ℝ)+1), (0:ℝ) < x := by
@@ -154,7 +154,7 @@ theorem interval_ibp {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs1 : s ≠ -1) :
     simp
   rw [hF0, intervalIntegral.integral_add hint1 hint2] at hFTC
   have hcongr1 : ∫ x in (n:ℝ)..((n:ℝ)+1),
-        ((((⌊x⌋ : ℝ) + 1/2 - x : ℝ)) : ℂ) * (x:ℂ) ^ (-(s+1))
+        ((⌊x⌋ : ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1))
       = ∫ x in (n:ℝ)..((n:ℝ)+1),
         ((((1 - 2*(x - n))/2 : ℝ)) : ℂ) * (x:ℂ) ^ (-(s+1)) := by
     apply intervalIntegral.integral_congr_ae
@@ -204,6 +204,82 @@ theorem interval_ibp {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs1 : s ≠ -1) :
   rw [hcongr1, hcongr2]
   rw [hpull] at hFTC
   linear_combination hFTC
+
+/-- **The tail identity on `Ioi N`** for `re s > 0`: the per-interval
+IBP summed over adjacent intervals and passed to the limit. -/
+theorem tail_ibp {N : ℕ} (Npos : 0 < N) {s : ℂ} (hs : 0 < s.re) :
+    ∫ x in Ioi (N:ℝ), ((⌊x⌋ : ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1))
+      = (s+1) * ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)) := by
+  have hs1 : s ≠ -1 := by
+    intro h
+    rw [h] at hs
+    simp at hs
+    linarith
+  have hsm1 : (-1:ℝ) < s.re := by linarith
+  have hint1 := integrableOn_of_Zeta0_fun Npos hs
+  have hint2 := integrable_emA_tail Npos hsm1
+  have hii1 : ∀ a b : ℝ, (N:ℝ) ≤ a → a ≤ b → IntervalIntegrable
+      (fun x : ℝ ↦ ((⌊x⌋ : ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1))) volume a b := by
+    intro a b ha hab
+    rw [intervalIntegrable_iff]
+    apply hint1.mono_set
+    rw [Set.uIoc_of_le hab]
+    intro x hx
+    rw [Set.mem_Ioi]
+    exact lt_of_le_of_lt ha hx.1
+  have hii2 : ∀ a b : ℝ, (N:ℝ) ≤ a → a ≤ b → IntervalIntegrable
+      (fun x : ℝ ↦ (emA x : ℂ) * (x:ℂ) ^ (-(s+2))) volume a b := by
+    intro a b ha hab
+    rw [intervalIntegrable_iff]
+    apply hint2.mono_set
+    rw [Set.uIoc_of_le hab]
+    intro x hx
+    rw [Set.mem_Ioi]
+    exact lt_of_le_of_lt ha hx.1
+  have hle : ∀ m : ℕ, (N:ℝ) ≤ (N:ℝ) + m := by
+    intro m
+    have : (0:ℝ) ≤ (m:ℝ) := Nat.cast_nonneg m
+    linarith
+  have hpart : ∀ M : ℕ,
+      ∫ x in (N:ℝ)..((N:ℝ)+(M:ℝ)), ((⌊x⌋ : ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1))
+        = (s+1) * ∫ x in (N:ℝ)..((N:ℝ)+(M:ℝ)), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)) := by
+    intro M
+    induction M with
+    | zero => simp
+    | succ m ih =>
+      have hcast : ((m+1 : ℕ):ℝ) = (m:ℝ) + 1 := by push_cast; ring
+      rw [hcast, show (N:ℝ) + ((m:ℝ)+1) = ((N:ℝ)+(m:ℝ)) + 1 by ring]
+      have hsplit1 := intervalIntegral.integral_add_adjacent_intervals
+        (hii1 (N:ℝ) ((N:ℝ)+m) (le_refl _) (hle m))
+        (hii1 ((N:ℝ)+m) (((N:ℝ)+m)+1) (hle m) (by linarith))
+      have hsplit2 := intervalIntegral.integral_add_adjacent_intervals
+        (hii2 (N:ℝ) ((N:ℝ)+m) (le_refl _) (hle m))
+        (hii2 ((N:ℝ)+m) (((N:ℝ)+m)+1) (hle m) (by linarith))
+      rw [← hsplit1, ← hsplit2]
+      have hnm : ((N + m : ℕ):ℝ) = (N:ℝ) + (m:ℝ) := by push_cast; ring
+      have hibp := interval_ibp (n := N + m) (by omega) hs1
+      rw [hnm] at hibp
+      rw [ih, hibp]
+      ring
+  have htendb : Filter.Tendsto (fun M : ℕ ↦ (N:ℝ) + (M:ℝ)) Filter.atTop Filter.atTop := by
+    apply Filter.tendsto_atTop_add_const_left
+    exact tendsto_natCast_atTop_atTop
+  have htend1 := MeasureTheory.intervalIntegral_tendsto_integral_Ioi (N:ℝ) hint1 htendb
+  have htend2 := MeasureTheory.intervalIntegral_tendsto_integral_Ioi (N:ℝ) hint2 htendb
+  have htend2' := htend2.const_mul (s+1)
+  have htend1' : Filter.Tendsto
+      (fun M : ℕ ↦ (s+1) * ∫ x in (N:ℝ)..((N:ℝ)+(M:ℝ)), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)))
+      Filter.atTop
+      (nhds (∫ x in Ioi (N:ℝ), ((⌊x⌋ : ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1)))) := by
+    apply htend1.congr
+    intro M
+    exact hpart M
+  exact tendsto_nhds_unique htend1' htend2'
+
+
+/-- info: 'ZetaGrowth.tail_ibp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms tail_ibp
 
 /-- info: 'ZetaGrowth.interval_ibp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
