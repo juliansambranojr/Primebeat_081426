@@ -22,9 +22,17 @@ poles. Slice 1 proves:
     xi_conj               the reflection symmetry
 
 The two symmetries are what fold the rectangle `[−1,2] × [0,T]` onto
-the right-half path in slice 3. Consumes Mathlib only.
+the right-half path in slice 3.
+
+Slice 2A adds the one classical fact the rectangle's bottom edge
+needs and no library holds: `ζ(σ) < 0` for real `σ ∈ (0,1)` — hence
+nonvanishing there. Route: upstream's `ZetaAltFormula`
+(`ζ = 1 + 1/(s−1) − s·∫₁^∞ {u}·u^(−s−1)`) with the fract-integral
+real and nonnegative at real `σ`, so `Re ζ(σ) ≤ σ/(σ−1) < 0`. No eta
+function, no alternating series.
 -/
 import Mathlib
+import PrimeNumberTheoremAnd.StrongPNT
 
 namespace Stage3
 
@@ -176,6 +184,65 @@ theorem xi_conj (s : ℂ) : xi (conj s) = conj (xi s) := by
   rw [xi, xi, completedZeta₀_conj]
   simp only [map_add, map_mul, map_sub, map_one]
 
+/-! ## Slice 2A: `ζ(σ) < 0` on the real interval `(0,1)` -/
+
+open MeasureTheory in
+/-- **The real zeta is strictly negative on `(0,1)`.** From
+`ZetaAltFormula`: `ζ(σ) = 1 + 1/(σ−1) − σ·J` with `J ≥ 0` real, and
+`1 + 1/(σ−1) = σ/(σ−1) < 0`. -/
+theorem zeta_re_neg_of_real_mem_Ioo {σ : ℝ} (h0 : 0 < σ) (h1 : σ < 1) :
+    (riemannZeta (σ : ℂ)).re < 0 := by
+  have hre : (0 : ℝ) < ((σ : ℂ)).re := by simpa using h0
+  have hne1 : (σ : ℂ) ≠ 1 := by
+    intro h
+    have : σ = 1 := by exact_mod_cast h
+    linarith
+  rw [ZetaAltFormula hre hne1]
+  unfold riemannZeta1
+  -- the integral is a coerced nonnegative real
+  set J : ℝ := ∫ u in Set.Ioi (1 : ℝ), Int.fract u * u ^ (-σ - 1) with hJdef
+  have hcoe : (∫ u in Set.Ioi (1 : ℝ), (Int.fract u : ℝ) * (u : ℂ) ^ (-(σ : ℂ) - 1))
+      = (J : ℂ) := by
+    have hcongr : ∀ u ∈ Set.Ioi (1 : ℝ),
+        (Int.fract u : ℝ) * (u : ℂ) ^ (-(σ : ℂ) - 1)
+          = ((Int.fract u * u ^ (-σ - 1) : ℝ) : ℂ) := by
+      intro u hu
+      have hu0 : (0 : ℝ) ≤ u := by
+        have := Set.mem_Ioi.mp hu
+        linarith
+      have hexp : -(σ : ℂ) - 1 = ((-σ - 1 : ℝ) : ℂ) := by push_cast; ring
+      rw [hexp, ← Complex.ofReal_cpow hu0, ← Complex.ofReal_mul]
+    rw [setIntegral_congr_fun measurableSet_Ioi hcongr, integral_complex_ofReal, hJdef]
+  have hJ0 : 0 ≤ J := by
+    rw [hJdef]
+    refine setIntegral_nonneg measurableSet_Ioi fun u hu => ?_
+    have hu0 : (0 : ℝ) ≤ u := by
+      have := Set.mem_Ioi.mp hu
+      linarith
+    exact mul_nonneg (Int.fract_nonneg u) (Real.rpow_nonneg hu0 _)
+  rw [hcoe]
+  -- everything is now the real part of a coerced real
+  have hσ1 : σ - 1 ≠ 0 := by intro h; linarith
+  have hval : (1 : ℂ) + 1 / ((σ : ℂ) - 1) - (σ : ℂ) * (J : ℂ)
+      = ((1 + 1 / (σ - 1) - σ * J : ℝ) : ℂ) := by
+    push_cast
+    ring
+  rw [hval, Complex.ofReal_re]
+  have hmain : 1 + 1 / (σ - 1) = σ / (σ - 1) := by
+    field_simp
+    ring
+  rw [hmain]
+  have hneg : σ / (σ - 1) < 0 := div_neg_of_pos_of_neg h0 (by linarith)
+  nlinarith
+
+/-- Hence `ζ` does not vanish on the real interval `(0,1)`. -/
+theorem zeta_ne_zero_of_real_mem_Ioo {σ : ℝ} (h0 : 0 < σ) (h1 : σ < 1) :
+    riemannZeta (σ : ℂ) ≠ 0 := by
+  intro h
+  have := zeta_re_neg_of_real_mem_Ioo h0 h1
+  rw [h] at this
+  simp at this
+
 end
 
 /-! ## Axiom check
@@ -196,6 +263,14 @@ compiler and **`lake build` fails**. This is a check, not a printout.
 /-- info: 'Stage3.xi_one_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stage3.xi_one_sub
+
+/-- info: 'Stage3.zeta_re_neg_of_real_mem_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.zeta_re_neg_of_real_mem_Ioo
+
+/-- info: 'Stage3.zeta_ne_zero_of_real_mem_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.zeta_ne_zero_of_real_mem_Ioo
 
 /-- info: 'Stage3.completedZeta₀_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
