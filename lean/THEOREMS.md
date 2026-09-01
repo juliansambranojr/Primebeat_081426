@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-282 theorems across 24 modules. Every one carries a
+323 theorems across 26 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -120,6 +120,40 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `count_does_not_determine_spread` | The coefficient-count account fails. | ℂ floor | `Formalization.md` |
 | `spread_is_non_monotone` | The spread is non-monotone. | ℂ floor | record |
 
+## Elephant (29)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `symbol_of_difference` | The symbol is the difference operator. | ℂ floor | `lab_notebook_2.md` |
+| `sym_pow_expand` | The stencil is the symbol, expanded. | ℂ floor | `lab_notebook_2.md` |
+| `cpow_neg_pow` | Each term sits at a power of the base. | ℂ floor | `lab_notebook_2.md` |
+| `norm_cpow_neg` | The modulus of `b ^ (-s)` is `b ^ (-s.re)`. | ℂ floor | **UNTAGGED** |
+| `norm_sym_band` | The band. | ℂ floor | `lab_notebook_2.md` |
+| `norm_sym_imaginary` | The gain. | ℂ floor | `lab_notebook_2.md` |
+| `sym_eq_zero_iff` | The lattice. | ℂ floor | **UNTAGGED** |
+| `lattice_step` | The step. | ℂ floor | `lab_notebook_2.md` |
+| `sym_tprod_eq_zeta` | The definition is not an analogy. | ℂ floor | `lab_notebook_2.md` |
+| `primeTable_eq_stencil` |  | ℂ floor | **UNTAGGED** |
+| `sym_ne_zero_on_critical_line` | The filter and ζ's nontrivial zeros never collide. | ℂ floor | **UNTAGGED** |
+| `zeta_zero_weight_band` | The band, at a zeta zero on the critical line, to every depth. | ℂ floor | **UNTAGGED** |
+| `bdiff_mode` | One difference multiplies a mode by `Sym`. | ℂ floor | **UNTAGGED** |
+| `bdiff_iter_mode` | Depth. | ℂ floor | `lab_notebook_2.md` |
+| `bdiff_iter_modeSum` | The same for a finite superposition of modes. | ℂ floor | **UNTAGGED** |
+| `primeTable_eq_sym_weighted` | The join. | ℂ floor | **UNTAGGED** |
+| `logDeriv_zeta_coeffs` | The Dirichlet coefficients of `-ζ'/ζ` are von Mangoldt. | ℂ floor | **UNTAGGED** |
+| `filter_couples_iff_isPrimePow` | The base law. | ℂ floor | `lab_notebook_2.md` |
+| `coupling_coeff` | The base law with its magnitude, proved. | ℂ floor | `lab_notebook_2.md` |
+| `natCast_mul_cpow` | New lemma. | ℂ floor | `lab_notebook_2.md` |
+| `cpow_neg_mul_lseries` | Multiplying by `b^(-s)` shifts an L-series' coefficients up the `b`-ladder. | ℂ floor | `lab_notebook_2.md` |
+| `sym_mul_lseries` | The central sentence. | ℂ floor | `lab_notebook_2.md` |
+| `sym_mul_logDeriv_zeta` | On ζ. | ℂ floor | `lab_notebook_2.md` |
+| `sum_primeIndicator` | Its partial sums ARE `Nat.primeCounting`. | ℂ floor | **UNTAGGED** |
+| `sum_shift` | New lemma. | ℂ floor | `lab_notebook_2.md` |
+| `summatory_sym` | The summatory reading of `Sym`. | ℂ floor | **UNTAGGED** |
+| `primeCount_backward_diff` | For π. | ℂ floor | `lab_notebook_2.md` |
+| `zeta_ne_zero_of_re_eq_zero` | ζ has no zeros on the imaginary axis. | ℂ floor | `lab_notebook_2.md` |
+| `filter_ne_zero_at_zeta_zero` | The step. | ℂ floor | `lab_notebook_2.md` |
+
 ## EulerFactorChain (16)
 
 | theorem | claim | axioms | cited by |
@@ -187,6 +221,23 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `dyadicRow_eq_rowN` | The weld to the measured row. | propext, Quot.sound | `lab_notebook_2.md` |
 | `measured_row_four` | The measured base-4 row, from the 21 pinned values and nothing else. | **none** | `lab_notebook_2.md` |
 | `measured_row_eight` | The measured base-8 row, same 21 values read at decimation 3. | **none** | `lab_notebook_2.md` |
+
+## JointLadder (12)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `two_pow_ne_three_pow` | Parity kills it. | ℂ floor | **UNTAGGED** |
+| `nat_log_indep` | The same, over `ℕ` and in logarithmic form: `a·log 2 = b·log 3` forces `a = b = 0`. | — | **UNTAGGED** |
+| `log_indep` | `log 2` and `log 3` are independent over `ℤ`. | ℂ floor | **UNTAGGED** |
+| `offset_of_aliases` | Reading the aliasing relation at a single rung: the phase offset is an integer multiple of `2π`. | — | **UNTAGGED** |
+| `jointAliases_iff_eq` | THE JOINT NO-GO, in reverse. | ℂ floor | **UNTAGGED** |
+| `exists_dyadic_alias_ne` | Every frequency has a dyadic alias distinct from it — the single ladder's obstruction, restated from `Nyquist.aliases_of_offset`. | — | **UNTAGGED** |
+| `dyadic_alias_resolved_jointly` | THE CONTRAST, AS ONE STATEMENT. | ℂ floor | **UNTAGGED** |
+| `d2_d3_comm` | The two directions commute, so `Δ₂^a Δ₃^b` is well defined regardless of the order the differences are taken in. | — | **UNTAGGED** |
+| `d2_jmode` | The dyadic direction carries the Euler factor at 2. | ℂ floor | **UNTAGGED** |
+| `d3_jmode` | The triadic direction carries the Euler factor at 3. | ℂ floor | **UNTAGGED** |
+| `d2_iter_jmode` | Iterating the dyadic direction. | ℂ floor | **UNTAGGED** |
+| `d3_iter_jmode` | Iterating the triadic direction. | ℂ floor | **UNTAGGED** |
 
 ## MainTerm (10)
 
