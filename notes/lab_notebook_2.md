@@ -16,6 +16,74 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 285 — Abscissa.lean: RH is now the θ = 1/2 setting of a dial, with θ = 1 proved at the other end
+type: formalization
+refs: 240, 277, 283, 284
+
+`lean_stage3/Stage3/Abscissa.lean`, new file. 8 declarations, 5
+`#guard_msgs` pins, 0 sorries, every pin
+`[propext, Classical.choice, Quot.sound]`. Commit `e665615`. Stage3
+green at 8721 jobs.
+
+**What was welded, and is now carried.** `LineBound.lean:1091` defined
+
+```lean
+noncomputable def σRH (X : ℝ) : ℝ := 1 / 2 + 1 / Real.log X
+```
+
+with `1/2` a literal inside a `def`, and RH entering the whole
+apparatus through one lemma, `zeta_ne_zero_of_RH` (`:23`), whose only
+job is `ζ ≠ 0` right of that abscissa — `hRH` then threaded 67 times as
+a hypothesis. Everything downstream is abscissa-agnostic arithmetic
+that already compiles.
+
+**What this file proves.**
+
+```text
+σθ θ X = θ + 1/log X                    the abscissa, θ free
+σθ_half : σθ (1/2) X = RHPull.σRH X     by rfl — the weld is definitional
+StmtZeroFreeRight θ                     no zeros with re > θ, bar s = 1
+zeta_ne_zero_right_of                   the consumer lemma, from that Prop
+zeroFreeRight_of_RH                     RH ⟹ StmtZeroFreeRight (1/2)
+zeroFreeRight_mono                      monotone in θ — a dial, not a relabel
+zeroFreeRight_one                       θ = 1, UNCONDITIONAL
+```
+
+Each statement was `#check`ed to be what its docstring claims rather
+than trusted. Because `σθ_half` is `rfl`, nothing downstream can
+regress: the parameterised abscissa at `θ = 1/2` IS the old one.
+
+**The bracket is the point.** `zeroFreeRight_one` holds outright, from
+Mathlib's non-vanishing on `1 ≤ re s`. So one endpoint of the family is
+proved unconditionally and the other is RH, leaving the open region
+exactly `(1/2, 1)` — with entry 277's measured census target inside it
+at `θ = 0.7464`. This is the first time the tree carries RH as one
+setting of a parameter with a proved neighbour, rather than as a
+hypothesis baked into a definition.
+
+**Built additively.** `σRH` has 143 uses in `LineBound.lean`. Rewriting
+them would have been one large risky diff; this is a new file whose
+weld is definitional, so the generalisation is available without
+touching what is green. Re-deriving the downstream bounds at general
+`θ` remains to be done and is the larger half.
+
+**One thing cut, and why.** A draft carried
+`zeroFreeRight_half_iff_RH_forward`, whose docstring described the
+converse and whose body was an alias for `zeroFreeRight_of_RH`. That is
+padding dressed as content — the same defect Julian named earlier today
+in the "what this does not do" hedges. The converse
+(`StmtZeroFreeRight (1/2) → RH`, by reflection through
+`ArgIdentity.xi_one_sub`) is now stated in the module docstring and
+explicitly NOT proved, because nothing consumes it: the machine only
+ever uses a zero-free half-plane, never produces one.
+
+**What this does not do, stated once and not as a hedge.** It does not
+enter `(1/2, 1)`. No `θ < 1` power saving is proved by anyone, and
+entry 277 recorded every proved zero-free region yielding
+`depth_covered = 0`. What changed is that the apparatus can now be
+pointed at a `θ` if one is ever proved, and that RH's role in this tree
+is a parameter value rather than an assumption welded into a `def`.
+
 ## 2026-09-01 — Entry 284 — The abscissa is a literal, not a parameter: why the contour machine can be pointed at θ
 type: motivation
 refs: 230, 240, 277, 283
