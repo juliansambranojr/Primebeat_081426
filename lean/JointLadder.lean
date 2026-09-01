@@ -36,9 +36,13 @@ THE ARITHMETIC CORE. Everything rests on `2^l ≠ 3^k` for `l > 0`,
 proved by parity rather than by factorization: `2 ∣ 2^l` and
 `2 ∤ 3^k`. That lifts through `Real.log_pow` to the independence of
 `log 2` and `log 3` over `ℤ`, which is what closes the alias lattice.
-`Chain.second_ladder_winds_densely` is the general Kronecker statement
-this instantiates; it has been in the tree since the Chain work with
-no arithmetic input to activate it.
+`Chain.second_ladder_winds_densely` is the general Kronecker statement,
+in the tree since the Chain work with no arithmetic input to activate
+it. `irrational_log_two_div_log_three` supplies that input and
+`triadic_winds_densely_on_dyadic` fires it at `(2, 3)`: the triadic
+ladder's period steps never close on the dyadic circle, so the pair is
+provably NOT in `Chain.joint_gain_periodic_of_commensurate`'s
+commensurate case.
 
 THE OPERATOR. On the joint grid the mode `2^(rρ)·3^(mρ)` is an
 eigenvector of BOTH difference directions, with eigenvalues
@@ -152,6 +156,43 @@ theorem log_indep {l k : ℤ} (h : (l : ℝ) * Real.log 2 = (k : ℝ) * Real.log
     push_cast at h
     obtain ⟨ha0, hb0⟩ := nat_log_indep h
     exact ⟨by rw [ha, ha0]; simp, by rw [hb, hb0]; simp⟩
+
+
+/-! ## Firing `Chain.second_ladder_winds_densely` at `(2, 3)`
+
+`Chain.second_ladder_winds_densely` proves the general Kronecker
+statement — the second ladder's period steps fill the first ladder's
+circle exactly when the log-ratio is irrational — and has carried no
+arithmetic input since it was written. `log_indep` is that input. -/
+
+/-- **`log 2 / log 3` is irrational.** A rational value `p/n` gives
+`n·log 2 = p·log 3`, which `log_indep` forces to `n = p = 0`, against
+`n ≠ 0`. -/
+theorem irrational_log_two_div_log_three :
+    Irrational (Real.log 2 / Real.log 3) := by
+  rw [irrational_iff_ne_rational]
+  intro a b hb hEq
+  have hl3 : Real.log 3 ≠ 0 := (Real.log_pos (by norm_num)).ne'
+  have hbR : (b : ℝ) ≠ 0 := Int.cast_ne_zero.mpr hb
+  -- clear both denominators: `b·log 2 = a·log 3`
+  have hcross : (b : ℝ) * Real.log 2 = (a : ℝ) * Real.log 3 := by
+    field_simp at hEq
+    linarith [hEq]
+  obtain ⟨hb0, -⟩ := log_indep hcross
+  exact hb hb0
+
+/-- **The triadic ladder winds densely on the dyadic circle.** The
+general theorem, instantiated: the `3`-ladder's period steps around the
+`2`-ladder's circle never close, so the two ladders share no period at
+any scale. `Chain.joint_gain_periodic_of_commensurate` is the opposite
+case — commensurate ladders, whose orbit is finite — and this shows
+`(2, 3)` is not in it. -/
+theorem triadic_winds_densely_on_dyadic :
+    DenseRange (fun k : ℤ => k •
+      ((2 * Real.pi / Real.log 3 : ℝ) :
+        AddCircle (2 * Real.pi / Real.log 2))) :=
+  (Chain.second_ladder_winds_densely (by norm_num : (0:ℝ) < 2) (by norm_num)
+    (by norm_num : (0:ℝ) < 3) (by norm_num)).mpr irrational_log_two_div_log_three
 
 /-! ## The joint grid, and its empty alias lattice -/
 
@@ -357,6 +398,14 @@ depending on anything not listed, the docstring stops matching the compiler and
 /-- info: 'JointLadder.log_indep' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms JointLadder.log_indep
+
+/-- info: 'JointLadder.irrational_log_two_div_log_three' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms JointLadder.irrational_log_two_div_log_three
+
+/-- info: 'JointLadder.triadic_winds_densely_on_dyadic' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms JointLadder.triadic_winds_densely_on_dyadic
 
 /-- info: 'JointLadder.jointAliases_iff_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

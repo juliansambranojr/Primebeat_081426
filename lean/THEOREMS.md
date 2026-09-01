@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-323 theorems across 26 modules. Every one carries a
+325 theorems across 26 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -222,13 +222,15 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `measured_row_four` | The measured base-4 row, from the 21 pinned values and nothing else. | **none** | `lab_notebook_2.md` |
 | `measured_row_eight` | The measured base-8 row, same 21 values read at decimation 3. | **none** | `lab_notebook_2.md` |
 
-## JointLadder (12)
+## JointLadder (14)
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
 | `two_pow_ne_three_pow` | Parity kills it. | ℂ floor | **UNTAGGED** |
 | `nat_log_indep` | The same, over `ℕ` and in logarithmic form: `a·log 2 = b·log 3` forces `a = b = 0`. | — | **UNTAGGED** |
 | `log_indep` | `log 2` and `log 3` are independent over `ℤ`. | ℂ floor | **UNTAGGED** |
+| `irrational_log_two_div_log_three` | `log 2 / log 3` is irrational. | ℂ floor | **UNTAGGED** |
+| `triadic_winds_densely_on_dyadic` | The triadic ladder winds densely on the dyadic circle. | ℂ floor | **UNTAGGED** |
 | `offset_of_aliases` | Reading the aliasing relation at a single rung: the phase offset is an integer multiple of `2π`. | — | **UNTAGGED** |
 | `jointAliases_iff_eq` | THE JOINT NO-GO, in reverse. | ℂ floor | **UNTAGGED** |
 | `exists_dyadic_alias_ne` | Every frequency has a dyadic alias distinct from it — the single ladder's obstruction, restated from `Nyquist.aliases_of_offset`. | — | **UNTAGGED** |
