@@ -40,6 +40,26 @@ pretends to. Nothing consumes it: the machine only ever USES a
 zero-free half-plane, never produces one, so proving it would buy an
 `ArgIdentity` dependency and no caller.
 
+THE REMAINING HALF, PRICED. Re-deriving the downstream bounds at
+general `θ` is five theorems in `LineBound.lean`, ~253 lines, and only
+one is real analysis:
+
+    logDerivZeta_crude       :74    180 lines   THE WORK
+    logDerivZeta_sq_at_X     :295    58
+    I37_norm_le_decay       :1523    64   } mechanical once the
+    I37_norm_le_epsfree     :1873    61   } crude bound generalises
+    I37_sqrt_form/log3      :1601    70   }
+
+`logDerivZeta_crude` carries the whole RH dependence — one call to
+`zeta_ne_zero_of_RH`, which `zeta_ne_zero_right_of` below replaces
+directly — but `1/2` appears twenty times in it, and not only as the
+hypothesis `1/2 < σ₁`: it is the denominator `σ₁ − 1/2`, the distance
+from the zero-free boundary, and the Borel–Carathéodory disk running
+from `2` to that boundary. So at general `θ` the constants `1996`, `29`
+and `129` become functions of `θ` rather than numerals. That is a
+re-derivation, not a substitution, and it is the honest price of the
+remaining half.
+
 WHAT THIS DOES NOT CLAIM. No `θ < 1` power saving is proved by anyone;
 de la Vallée Poussin gives `exp(−c√log x)`, which is not a power, and
 entry 277 recorded every proved zero-free region yielding
@@ -102,6 +122,39 @@ is what makes `θ` a dial rather than a relabelling. -/
 theorem zeroFreeRight_mono {θ θ' : ℝ} (h : θ ≤ θ')
     (hθ : StmtZeroFreeRight θ) : StmtZeroFreeRight θ' :=
   fun s hs hs1 => hθ s (lt_of_le_of_lt h hs) hs1
+
+/-! ## What the abscissa contributes: the power saving, exactly -/
+
+/-- **The abscissa identity at general `θ`.** `X^(θ + 1/log X) = e·X^θ`.
+This is the whole arithmetic content of the choice of abscissa: the
+`1/log X` correction contributes a bare factor of `e`, and the `θ`
+contributes `X^θ`. `RHPull.rpow_σRH` is the `θ = 1/2` case, where
+`X^(1/2) = √X`. -/
+theorem rpow_σθ {θ X : ℝ} (hX : 0 < X) (hLX : 0 < Real.log X) :
+    X ^ (σθ θ X) = Real.exp 1 * X ^ θ := by
+  have hsplit : Real.log X * (θ + 1 / Real.log X) = Real.log X * θ + 1 := by
+    field_simp
+  rw [σθ, Real.rpow_def_of_pos hX, Real.rpow_def_of_pos hX, hsplit,
+    Real.exp_add]
+  ring
+
+/-- **The `θ = 1/2` case is the built one**, so the generalisation
+recovers `RHPull.rpow_σRH` rather than competing with it. -/
+theorem rpow_σθ_half {X : ℝ} (hX : 0 < X) (hLX : 4 ≤ Real.log X) :
+    X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X := by
+  rw [rpow_σθ hX (by linarith), Real.sqrt_eq_rpow]
+
+/-- **Where the power saving comes from.** The vertical segment's bound
+carries `X^(σθ θ X)`, and `rpow_σθ` turns that into `e·X^θ`. So a
+contour run at abscissa `θ` produces a bound of shape `X^θ·(log X)^k` —
+which is exactly the POWER SAVING form entry 277 measured the census to
+need, with `θ = 0.7464` closing depth 6. At `θ = 1/2` it is `√X`, the
+RH-strength bound the built machine produces. -/
+theorem abscissa_gives_power {θ X K : ℝ} (hX : 0 < X) (hLX : 0 < Real.log X)
+    (hK : 0 ≤ K) :
+    K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ := by
+  rw [rpow_σθ hX hLX]
+  ring
 
 /-- **The unconditional endpoint.** `θ = 1` holds outright, from
 Mathlib's non-vanishing on the closed half-plane `1 ≤ re s`. So the
