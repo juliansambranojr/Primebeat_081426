@@ -16,6 +16,61 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 281 — Correction to 280: I9Bound derives nothing, the count is four, and the probe moves in-tree
+type: motivation
+refs: 232, 233, 280
+
+Entry 280 picked `I9Bound` as the price probe because it is 16 lines.
+Opened it. It is 16 lines because it derives no constant at all.
+
+**The whole proof** (`PrimeNumberTheoremAnd/MediumPNT.lean:2160-2164`):
+
+```lean
+obtain ⟨C, Cpos, bound⟩ := I1Bound suppSmoothingF ContDiffSmoothingF
+                                   SmoothingFnonneg mass_one
+refine ⟨C, Cpos, ?_⟩
+intro ε εpos ε_lt_one X X_gt T T_gt
+specialize bound ε εpos ε_lt_one X X_gt T_gt
+rwa [I9I1 (by linarith), norm_conj]
+```
+
+`I9I1` (`:2136-2137`) proves `I₉ ν ε X T = conj (I₁ ν ε X T)`. So
+`I9Bound` is a conjugation symmetry that reuses `I1Bound`'s constant
+verbatim. As a probe of constant-carrying it tests nothing, because
+there is nothing to carry. Entry 280's slice choice was made on line
+count without opening the lines — the same defect that entry made about
+the audit, one entry later.
+
+**Two consequences, both in our favour.**
+
+`C9 = C1` identically, so `psi_weak_of_RH`'s sum is over FOUR distinct
+constants, not five:
+
+```text
+C = Cclose + 2·C1 + 66600·e·B/π + 1800·e·B/π + Cmain + 1
+```
+
+And `I9Bound` becomes effective for free the moment `I1Bound` does — it
+carries no independent obligation.
+
+**The probe moves in-tree.** Both remaining ours-to-control constants
+actually derive something and are small:
+
+```text
+mellin_main_const     LineBound.lean:2202   ~28 lines   → Cmain
+mellin_bump_bounded   LineBound.lean:1723   ~48 lines   → B
+```
+
+`B` is where a numeral moves the answer most: its coefficients in the
+sum are `66600·e/π` and `1800·e/π`, together about `5.8e4·B`, dominating
+every other term. It is also where a concrete bump with proved
+`sup‖ν‖` and `sup‖ν'‖` has to land, which entry 233 named as the next
+construction and nothing has built.
+
+**Revised slice:** `mellin_main_const` (28 lines) as the price probe,
+then `mellin_bump_bounded` (48). Seventy-six in-tree lines before
+anything upstream is touched, and neither needs a fork or a PR.
+
 ## 2026-09-01 — Entry 280 — The C_π numeral repriced: five existentials, not one bump, and effectivization does not cascade
 type: motivation
 refs: 232, 233, 277
