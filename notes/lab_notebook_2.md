@@ -16,6 +16,72 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 282 — Probe result: three of four constants are wrappers, B is real, and the bump has closed-form numbers
+type: motivation
+refs: 233, 280, 281
+
+Entry 281's revised probe ran. `mellin_main_const` is a wrapper like
+`I9Bound` was; `mellin_bump_bounded` is a real derivation; and the
+explicit bump it needs has a closed form.
+
+**`mellin_main_const` is the third wrapper.** `LineBound.lean:2202-2219`
+unpacks `MellinOfSmooth1c` — stated as
+`(fun ε ↦ 𝓜(Smooth1 ν ε) 1 − 1) =O[𝓝[>]0] id` — through
+`Asymptotics.isBigO_iff`, `obtain ⟨c, hc⟩`, and sets
+`Cmain = |c| + 1`. The `c` is the big-O's implicit constant, upstream.
+Nothing in-tree derives it, so `Cmain` cannot be made effective here.
+
+**`mellin_bump_bounded` is a real derivation.**
+`LineBound.lean:1723-1762` proves `B = 3·K + 1` with `K = sup‖ν‖` on
+`[1/2,2]`: `kernel_modulus_le` bounds the kernel by `2`, the integrand
+by `2K`, and the measure of `[1/2,2]` is `3/2`, giving `2K·3/2 = 3K`.
+Its only existential input is `ν` itself, coming from
+`SmoothExistence`. **So it is already effective as a function of
+`sup‖ν‖`** — supply a concrete `ν` and `B` is a numeral, with no
+upstream dependency at all.
+
+**Scoreboard, after three probes.** Of the four distinct constants in
+`psi_weak_of_RH`'s sum:
+
+```text
+Cclose   upstream SmoothedChebyshevClose (~285 lines)   NOT reachable in-tree
+C1 (=C9) upstream I1Bound (~312 lines)                  NOT reachable in-tree
+Cmain    our wrapper over upstream MellinOfSmooth1c     NOT reachable in-tree
+B        ours, B = 3·sup‖ν‖ + 1, blocked only on ν      REACHABLE
+```
+
+Exactly one of four. The audit was right that the bump is the blocker —
+for `B`, not for `C`, which is the distinction entries 280 and 281
+recovered.
+
+**The bump, with its numbers.** `mellin_bump_bounded` needs only
+`ContDiff ℝ 1`, not `C^∞`, so a piecewise polynomial suffices. Take
+
+```text
+ν(x) = c · (max 0 ((x − 1/2)(2 − x)))²
+```
+
+globally C¹ because `u ↦ (max 0 u)²` has continuous derivative
+`2·max 0 u`, with support exactly `[1/2,2]` and no gluing argument.
+Writing `p(x) = (x−1/2)(2−x) = −x² + 5x/2 − 1`, the mass condition has a
+closed-form antiderivative, `x⁴/4 − 5x³/3 + 33x²/16 − 5x + log x`, so it
+is `norm_num` plus one `Real.log 2` rather than an analysis problem:
+
+```text
+∫_{1/2}^{2} p(x)²/x dx = 0.214419        c = 1/I  = 4.663758
+sup ν = c·p(5/4)² = c·(9/16)²            = 1.475642
+B = 3·sup ν + 1                          = 5.426926
+B's contribution to C, (66600+1800)·e·B/π ≈ 321185
+```
+
+**What this buys, stated exactly.** It converts one of four terms from
+existential to explicit and puts a number on the largest coefficient in
+the sum. It does NOT make `C` a numeral — three constants stay
+upstream, so the `2640.5` gate of entry 233 stays uncheckable in Lean
+after this lands. What it does is remove the only obstruction that was
+ours, make the remainder purely an upstream question, and produce an
+artifact that is upstreamable to PNT+ on its own.
+
 ## 2026-09-01 — Entry 281 — Correction to 280: I9Bound derives nothing, the count is four, and the probe moves in-tree
 type: motivation
 refs: 232, 233, 280
