@@ -16,6 +16,52 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 279 — Correction to entry 277: the two "×" ratios are unchecked AND computed through a refuted translation
+type: result-triage
+refs: 277
+
+Two numbers in entry 277 are misfiled, and the second reason is
+technical rather than clerical.
+
+**What 277 says.** Its corrections paragraph reports that adversary 1's
+"9–19×" and "37–73×" figures "understate by ≈2× (18.8–21.4 and
+73.5–83.6)", stated as fact. Its provenance paragraph, written
+specifically to mark what was unverified, lists the `c_eff` table, the
+`r = 677` figure, the A-sensitivity numbers and the α=0.1
+non-monotonicity — and does not list these.
+
+**Clerical half.** I had not checked them when I wrote them. They came
+from adversary 2 and I relayed them as established, in the entry whose
+subject is that exact failure. They do reproduce — `c ≥ 1.9577` gives
+`R ≤ 0.26092`, so `5.573412/0.26092 = 21.4` and
+`4.896/0.26092 = 18.8`; `c ≥ 3.8739` gives `R ≤ 0.06664`, so `83.6` and
+`73.5` — but I verified that only after Julian asked where the numbers
+came from.
+
+**Technical half, which matters more.** Both ranges are computed
+through `c = 1/√R`, and adversary 2's own defect D2 shows that
+translation is asymptotic and fails at census scale: at `r = 93` the
+balance never goes negative, so a classical region yields a vacuous
+bound at `x = 2^93` in that form. A ratio computed through a map that
+does not hold where the ratio is claimed to matter is not a
+measurement. So "understates by ≈2×" should not be read as a
+correction of adversary 1's figure to a right one — **neither range
+measures anything.** Adversary 1's lower endpoints were fabricated;
+adversary 2's replacements are arithmetically sound and structurally
+void.
+
+**What survives in that neighbourhood.** Only the qualitative result,
+which adversary 2 established separately by running the gate directly
+rather than through `c = 1/√R`: every zero-free region anyone has
+proved gives `depth_covered = 0`. That claim does not pass through the
+refuted translation. It is still agent work against scratch scripts —
+see entry 278's closing paragraph for what promoting it requires.
+
+**Filing.** Both ranges belong in 277's "resting on adversary 2 alone"
+list, with the added note that they are computed through a translation
+the same report refutes. Recorded here rather than by editing 277,
+so the correction is visible as one.
+
 ## 2026-09-01 — Entry 278 — RelativeGate: the shape-free gate is a theorem now, not a hand derivation
 type: formalization
 refs: 118, 130, 277
