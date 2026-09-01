@@ -16,6 +16,60 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 287 — Correction to 286: the constants do NOT depend on θ, and I made the error the same entry was warning about
+type: motivation
+refs: 284, 285, 286
+
+Entry 286 priced the `logDerivZeta_crude` generalisation as a
+"CONSTANTS RE-DERIVATION, not a substitution", on the grounds that
+`1/2` occurs twenty times in its 180 lines and therefore `1996`, `29`
+and `129` become functions of `θ`. I then traced each constant to its
+source. That claim is false.
+
+**Where each constant actually comes from** (`LineBound.lean`):
+
+```text
+3991  finalBoundConst_le, at the FIXED radii (3/4, 181/200, 29/32, 15/16)
+1996  = 3991/2, after `hderiv` divides by the 2 of the 2z+c rescale
+  29  from 1/log(375/362) ≤ 29 — the Jensen count at those same radii
+ 129  from 29 · log 84 ≤ 129
+```
+
+Not one of them touches `1/2`. They are all fixed by the disk geometry
+of `Stage3.jensenF`, which is anchored at the centre `2 + it` and does
+not move with `θ`.
+
+**Where `θ` actually enters — three places.**
+
+```text
+hzeroRe   RH gives ρ.re = −3/4 exactly (zeros at re = 1/2, mapped by 2ρ+c)
+hdist     (σ₁ − 1/2)/2 ≤ ‖z0 − ρ‖
+denominator   (29 log t + 129) / (σ₁ − 1/2)
+```
+
+And the mathematical content is that `hdist` consumes `hzeroRe` only
+through `Complex.abs_re_le_norm` — a lower bound on the real part of
+`z0 − ρ`. RH's equality is stronger than the proof uses. A zero-free
+half-plane at `θ` gives `2ρ.re + 2 ≤ θ`, hence `ρ.re ≤ (θ−2)/2`, hence
+`(z0 − ρ).re ≥ (σ₁ − θ)/2` — exactly the shape `hdist` needs. The disk
+constraint `‖z0‖ = (2−σ₁)/2 ≤ 3/4` requires `σ₁ ≥ 1/2`, which holds
+whenever `σ₁ > θ ≥ 1/2`, so the radii are untouched.
+
+So the generalisation replaces one equality with one inequality and
+carries `σ₁ − θ` through the denominator. The constants survive
+verbatim.
+
+**The error, named.** Entry 286's own closing paragraph says judging a
+slice by line count without opening the lines is entry 281's mistake.
+I then made that mistake in the paragraph above it: I counted twenty
+occurrences of a literal and inferred that constants depended on it,
+without tracing a single one to its source. Counting is not reading.
+
+**Revised price.** `logDerivZeta_crude` at general `θ` is a 180-line
+port with one substantive change (`hzeroRe`) and one propagated
+substitution (`σ₁ − 1/2` → `σ₁ − θ`), keeping every numeral. The four
+downstream theorems stay mechanical as 286 said.
+
 ## 2026-09-01 — Entry 286 — The power saving is a theorem, and the remaining half is a constants re-derivation not a substitution
 type: formalization
 refs: 277, 284, 285
