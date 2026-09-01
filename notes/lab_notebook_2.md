@@ -16,6 +16,88 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 283 — ExplicitBump lands, and the numeral it produces prices the hEF-free route out at depth 2
+type: formalization
+refs: 230, 233, 240, 280, 281, 282
+
+`lean_stage3/Stage3/ExplicitBump.lean`, new file. 245 lines, 15
+declarations, 6 `#guard_msgs` pins, 0 sorries, every pin
+`[propext, Classical.choice, Quot.sound]`, three headline theorems
+independently probed for `sorryAx`. Commit `4f71d85`. Stage3 green at
+8721 jobs.
+
+**The construction.** `bump x = bumpC · (max 0 ((x−1/2)(2−x)))²` with
+`bumpC = 1/(33/16 − (3/2)·log 2)`, the closed-form normaliser. The
+chain needs only `ContDiff ℝ 1`, not `C^∞`, so no mollifier is required
+and the whole gluing argument is one lemma: `hasDerivAt_sqPos` proves
+`(max 0 ·)²` has derivative `2·max 0 ·` everywhere, the join at zero
+falling to the little-o estimate `|max 0 t| ≤ |t|`;
+`contDiff_one_iff_deriv` closes it. Proved and pinned: `bump_contDiff`,
+`bump_support` (inside `Icc (1/2) 2`), `bump_nonneg`, `bumpP_le` (peak
+`9/16` at `x = 5/4`), `bump_le`, and
+
+```text
+bump_le_numeral : ∀ (x : ℝ), Stage3.bump x ≤ 1.4757
+```
+
+confirmed by `#check` to be exactly that statement. So
+`mellin_bump_bounded`'s `B = 3·sup‖ν‖ + 1 ≤ 5.4271` is arithmetic a
+consumer can carry.
+
+**And carrying it refutes the route.** `RHPull.psi_weak_of_RH`
+(`LineBound.lean:2357`) assembles
+
+```text
+C = Cclose + 2·C1 + 66600·e·B/π + 1800·e·B/π + Cmain + 1
+```
+
+At `B = 5.4271` the B-terms alone are `321,185`, before adding four
+non-negative constants. Transferred by `schoenfeldWeak_of_psiWeak` at
+`(3C+13, k−1)`, that is `C_π ≥ 963,567` at `k = 2`. Fed to O68's own
+`R_of` (imported, not reimplemented):
+
+```text
+                                    C            k   R(1)  depth_covered
+our chain, after transfer      963,566.6         2    87        2
+entry 233's gate                 2,640.5         2    68        5
+O68 'crude_1000'                 1,000.0         2    64        6
+O68 'slice3_1e6'             1,000,000.0         2    87        2
+```
+
+**Depth 2 against a target of 6, and no upstream work can move it.**
+`Cclose`, `C1` and `Cmain` are all `≥ 0`, so effectivizing every one of
+them to zero still leaves `C_π ≥ 963,567`. The obstruction was never
+upstream. It is the `66600·e/π` coefficient inside our own
+`psi_weak_of_RH`.
+
+**Why this was invisible until now.** You cannot multiply a coefficient
+by `∃ B`. Entry 233 recorded `C_π = 2604.6` clearing the `2640.5` gate
+by 1.4% — that number is a paper propagation living in
+`results/scratch_lean/constants.py:75`, and the Lean chain actually
+built (entry 240's hEF-free RH-abscissa route) is a different and far
+lossier assembly. The two have sat three orders of magnitude apart in
+the record since entry 233 and nothing could see it, because one was a
+numeral and the other was an existential. Pinning `B` is what made the
+comparison possible; the refutation is what pinning it bought, not a
+step toward the gate.
+
+**Correction to entries 280–282.** All three framed the remaining work
+as upstream — "three constants stay upstream, so the gate stays
+uncheckable". That is now false in the direction that matters: the gate
+is checkable, the answer is depth 2, and upstream is irrelevant to it.
+Each of those entries also closed with a "what this does not do"
+paragraph; Julian named the pattern — stating what is unproven in place
+of computing it — and the computation took one line once `B` existed.
+
+**What this leaves.** Two routes to `StmtPsiWeak` coexist
+(`Assembly.psiWeak_of_RH_EF_NT` and `RHPull.stmtPsiWeak_of_RH`). This
+prices the second at depth 2. The first runs through hEF, which entry
+271 discharged and today's build re-verified green. Open question, not
+answered here: whether the `66600` is loose — it comes from
+`RHPull.I37_sqrt_log3` (`LineBound.lean:1935`), the ε-free vertical
+segment bound of entry 240 — or whether entry 240's
+route retires and the hEF route carries the census alone.
+
 ## 2026-09-01 — Entry 282 — Probe result: three of four constants are wrappers, B is real, and the bump has closed-form numbers
 type: motivation
 refs: 233, 280, 281
