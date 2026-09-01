@@ -16,6 +16,155 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 274 — StmtArgIdentity: the entire completion, the fold, and S(T) proved to be the argument
+type: formalization
+refs: 130, 140, 141, 156, 271, 273
+
+`lean_stage3/Stage3/ArgIdentity.lean`, new file. 1745 lines, 58
+declarations (54 theorems, 4 defs), 25 `#guard_msgs` axiom pins, 0
+sorries, every pin `[propext, Classical.choice, Quot.sound]`. Eleven
+commits, `8bedcc6` → `4f34f14`, each one a green build. Stage3 tree
+green at 8721 jobs.
+
+**The obstruction, and the one-line fix.** The rectangle contour for
+the argument principle runs through `s = 0` and `s = 1`, exactly where
+Mathlib's `completedRiemannZeta` has its poles. That is why the leaf
+sat open with a "route mapped" rather than a construction. The fix is
+algebra, not analysis: since `Λ = Λ₀ − 1/s − 1/(1−s)`
+(`completedRiemannZeta_eq`), the product collapses,
+
+    s(s−1)·Λ(s) = s(s−1)·Λ₀(s) + 1,
+
+so `xi s := s(s−1)·Λ₀(s) + 1` is entire BY CONSTRUCTION, equals
+`s(s−1)Λ(s)` off `{0,1}`, and takes the value 1 at both former poles.
+Everything below follows from that definition.
+
+**What was proved, in build order.**
+
+```text
+1    differentiable_xi, xi_eq_completed, xi_one_sub (FE from Λ₀'s),
+     completedZeta₀_conj (identity theorem seeded on Re > 1 through
+     Γℝ·ζ and riemannZeta_conj), xi_conj
+2A   zeta_re_neg_of_real_mem_Ioo — Re ζ(σ) ≤ σ/(σ−1) < 0 on real
+     σ ∈ (0,1), from upstream ZetaAltFormula with the fract-integral
+     shown real and nonnegative. No eta function, no alternating
+     series. No library held this; it is the bottom edge's guard.
+2B   xi_eq_zero_iff (xi vanishes exactly at ζ's strip zeros),
+     meromorphicOrderAt_xi_eq_zeta (orders match, via ζ = B·xi with
+     B analytic nonvanishing)
+2C   rectangleIntegral_logDeriv_xi_eq_N — at a good height the
+     normalised rectangle integral over [−1,2]×[0,T] IS N(T)
+3    pi_mul_N_eq — THE FOLD: π·N(T) = Re W − Im U. Bottom edge odd
+     about 1/2 and cancels itself; left edge and top-left fold onto
+     their right partners by the two symmetries.
+4    logDeriv_xi_split — four classical terms; logDeriv Γℝ =
+     −(log π)/2 + ψ(s/2)/2, and Mathlib's digamma IS logDeriv Gamma,
+     so the link to Stirling.phasePoint is definitional
+5a   the two FTC evaluations; arg_sum_eq_pi
+5b   argS, stmtArgIdentity_holds, rvM_of_sFromLocal
+6    elem_fold_eq_pi (elementary term = π exactly),
+     gammaR_fold_eq_phaseTheta (Γℝ term = phaseTheta T exactly)
+7    argS_eq_zetaArgContour
+```
+
+**The status of the leaf, stated precisely.** `argS T := N T −
+(phaseTheta T/π + 1)` is the classical `S(T)`, so
+`stmtArgIdentity_holds : StmtArgIdentity phaseTheta argS` is true by
+construction — in Backlund's argument the identity IS a definition once
+the continuous phase is fixed. Julian pressed on exactly that hedge
+("what would make it a hard proof — something other than what's
+possible?"), and the answer was no: slice 7 proves the identification
+that carries the content. At every good height,
+
+    argS T = (1/π)·(Re ∫_right logDeriv ζ − Im ∫_top logDeriv ζ)
+
+i.e. the residual IS the continuous argument variation of `ζ` along
+`2 → 2+iT → 1/2+iT`. The two evaluations that make it land are exact:
+the elementary term's four FTC log-differences cancel `arg(2+iT)` and
+`arg(1+iT)` against each other and leave `arg(1/2+iT) + arg(−1/2+iT)`
+— two arcsines sharing a norm, cancelling by oddness — which is `π`,
+and that is where the `+1` comes from. The `Γℝ` term moves by Cauchy
+(upstream `vanishesOnRectangle`) onto the critical vertical, the bottom
+edge contributing nothing because `logDeriv Γℝ` is real on the positive
+axis; on `s = 1/2+it` the digamma argument is `1/4+it/2`, which is
+literally `Stirling.zq t`, so the real part is
+`−(log π)/2 + phasePoint t/2` and integrates to `phaseTheta T` by that
+definition.
+
+**What this makes possible.** `rvM_of_sFromLocal`: with the Stirling
+half (entry 140) and the Jensen count (entry 156) already theorems,
+`StmtSFromLocal argS zetaLocalCount a b` ALONE now delivers
+`Riemann_vonMangoldt_bound (97 + 15a) 0 (98 + 73a + b)`. O77 measured
+`|S T| ≤ 0.462·cnt T + 0.508` to height 900
+(`results/leaf_instantiation.json`, entry 156); entry 130's budget
+accepts it with room. Bad heights reach good ones through
+`ContourShift.goodT_exists`. The remaining bound is now a statement
+about a contour integral rather than about a defined residual, which is
+the whole point of the arc.
+
+**Upstream probe, at the start of the session.** PNT+ moved
+`47fa486` → `a515467` (Aug 25 → Aug 31). The six intervening commits
+touch Dusart and TMEEMT only; `IEANTN/Kadiri.lean` still carries its 14
+sorries at HEAD, so `Kadiri.backlund_bound` is still sorry-blocked and
+our crude route stays live. Both Kadiri lemmas consumed here
+(`zeroes_rect_univ_positive_height_finite`,
+`positiveHeightZero_re_mem_Ioo`) were probed sorry-free before use.
+
+**Engineering, paid for once.** Two traps in `CLAUDE.md`
+§ Stage-3 formalization conventions fired exactly as documented: dotted-`comp` lemmas
+mis-unified (`ContinuousAt.comp` split `2 + ↑t·I` as `HAdd.hAdd 2`
+applied to `↑t·I`) and needed `(f := ...) (g := ...)` pinned; and
+`logDeriv_mul` needed the same. New for the ledger: upstream's
+`HIntegral`/`VIntegral` take REAL edge coordinates, so every contour
+statement written with `(2 : ℂ)` needs a cast bridge to `((2:ℝ) : ℂ)`
+before `rw` will fire — four separate sites here.
+
+## 2026-09-01 — Entry 273 — Both packages kernel-verified in session; the arithmetic re-derived from an independent sieve
+type: run
+refs: 118, 130, 271
+
+Two `lake build` runs on Julian's machine, both completed:
+
+```bash
+cd lean_stage3 && lake build     # Build completed successfully (8721 jobs)
+cd lean       && lake build      # Build completed successfully (8051 jobs)
+```
+
+Stage3's 8721 is the exact job count entry 271 recorded, now recomputed
+rather than inherited from the notebook. The bench's 8051 supersedes
+the committed `lean/build.log` (8027 jobs, commit 8967841); `git diff`
+from that commit to HEAD touches zero `.lean` files, so the two agree
+on identical sources — the delta is toolchain-side, not ours.
+
+**Why this entry exists.** Before today, the claim "Stage3 is green"
+rested on entry 271's text alone: unlike `lean/`, the sibling package
+has no committed build log. It now has an in-session kernel verdict.
+
+**The independent arithmetic check.** Before the builds, a from-scratch
+sieve to 2^20 (`scratchpad/verify_zeros.py`, exploratory, not committed)
+recomputed everything `lean/Zeros.lean` pins: all 21 values of π(2^n)
+match; the table built from the recurrence gives 0 at (2,1), (4,1),
+(8,3), (20,6); the falsifiers hold ((7,3)=5, (19,6)=343, and the fold
+partner (20,7)=−343); the repeats behind the deep zeros are 623 at
+d5/r19–20 and 4 at d2/r7–8; both stencil lines in the docstring
+evaluate to 0; and an exhaustive scan of every cell whose window sits
+inside the pinned range finds exactly those four zeros and no others.
+
+**Gates.** `check_weld.py` exits 0 — the cross-toolchain statement
+identity holds, so `Glue.stmtEF_poly` proves the bench's statement
+shape. `check_refs.py` reports 9 broken references, every one pointing
+at a `results/O24_gen_*` or `operator.py` artifact excluded by
+`.gitignore` (see `results/LOCAL-ONLY.md`); they resolve on a full
+working copy.
+
+**Provenance note on the container.** The first attempt ran in the
+cloud session. Both Lean CDNs (`elan.lean-lang.org`, the Mathlib cache
+host) return 403 through that proxy; the v4.28.0 toolchain came down
+from GitHub releases instead and `lake` ran, but `lake exe cache get`
+failed on 8010 downloads and a from-source Mathlib build was started
+and then cancelled at ~260 modules. Kernel verification of this tree is
+therefore a local-machine operation until that policy changes.
+
 ## 2026-09-01 — Entry 272 — joint_ladder.py first light: the 2-3 grid resolves γ₁–γ₃ where the single ladder shows only the comb
 type: run
 refs: 16, 26, 52
