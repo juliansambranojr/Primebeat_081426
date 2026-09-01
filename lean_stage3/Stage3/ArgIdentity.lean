@@ -35,6 +35,7 @@ import Mathlib
 import PrimeNumberTheoremAnd.StrongPNT
 import PrimeNumberTheoremAnd.RectangleArgumentPrinciple
 import PrimeNumberTheoremAnd.IEANTN.KadiriZeroCounting
+import Stage3.Stirling
 
 namespace Stage3
 
@@ -646,7 +647,7 @@ theorem logDeriv_xi_continuousAt {p : ℂ} (hp : xi p ≠ 0) :
 
 /-- `xi` does not vanish anywhere on a good-height top edge. -/
 theorem xi_ne_zero_on_good_top {T : ℝ}
-    (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ρ.im ≠ T) (hT : 0 < T)
+    (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ρ.im ≠ T) (_hT : 0 < T)
     (x : ℝ) : xi ((x : ℂ) + T * Complex.I) ≠ 0 := by
   intro h
   obtain ⟨hζ, h0, -⟩ := xi_eq_zero_iff.mp h
@@ -849,7 +850,7 @@ theorem differentiableAt_gammaR {s : ℂ} (h0 : 0 < s.re) :
     refine Complex.differentiableAt_Gamma _ fun m => ?_
     intro hm
     have : (s / 2).re = -(m : ℝ) := by rw [hm]; simp
-    have hre : (s / 2).re = s.re / 2 := by simp [Complex.div_re]
+    have hre : (s / 2).re = s.re / 2 := by simp
     rw [hre] at this
     have hm0 : (0:ℝ) ≤ (m : ℝ) := Nat.cast_nonneg m
     linarith
@@ -863,7 +864,7 @@ theorem logDeriv_gammaR {s : ℂ} (h0 : 0 < s.re) :
     refine Complex.Gamma_ne_zero fun m => ?_
     intro hm
     have : (s / 2).re = -(m : ℝ) := by rw [hm]; simp
-    have hre : (s / 2).re = s.re / 2 := by simp [Complex.div_re]
+    have hre : (s / 2).re = s.re / 2 := by simp
     rw [hre] at this
     have hm0 : (0:ℝ) ≤ (m : ℝ) := Nat.cast_nonneg m
     linarith
@@ -872,7 +873,7 @@ theorem logDeriv_gammaR {s : ℂ} (h0 : 0 < s.re) :
     refine Complex.differentiableAt_Gamma _ fun m => ?_
     intro hm
     have : (s / 2).re = -(m : ℝ) := by rw [hm]; simp
-    have hre : (s / 2).re = s.re / 2 := by simp [Complex.div_re]
+    have hre : (s / 2).re = s.re / 2 := by simp
     rw [hre] at this
     have hm0 : (0:ℝ) ≤ (m : ℝ) := Nat.cast_nonneg m
     linarith
@@ -904,7 +905,7 @@ theorem logDeriv_gammaR {s : ℂ} (h0 : 0 < s.re) :
       refine Complex.differentiableAt_Gamma _ fun m => ?_
       intro hm
       have : (s / 2).re = -(m : ℝ) := by rw [hm]; simp
-      have hre : (s / 2).re = s.re / 2 := by simp [Complex.div_re]
+      have hre : (s / 2).re = s.re / 2 := by simp
       rw [hre] at this
       have hm0 : (0:ℝ) ≤ (m : ℝ) := Nat.cast_nonneg m
       linarith) (differentiableAt_id.div_const 2)]
@@ -960,7 +961,178 @@ theorem logDeriv_xi_split {s : ℂ} (h0 : 0 < s.re) (h1 : s ≠ 1)
     rw [this]
   rw [hid, hsub]
 
+/-! ## Slice 5: the three terms, and THE IDENTITY
+
+The elementary factor contributes exactly `π` (its two arcsines
+cancel); the `Γℝ` factor contributes exactly `phaseTheta T` (Cauchy on
+the right sub-rectangle moves it to the critical vertical, where its
+real part is the phase integrand by definition); what remains of the
+folded contour is `π · argS T`, the argument variation of `ζ` itself.
+Together with slice 3: `N T = phaseTheta T / π + 1 + argS T` at every
+good height. -/
+
+/-- Real part passes through the interval integral. -/
+theorem intervalIntegral_re {f : ℝ → ℂ} {a b : ℝ}
+    (hf : IntervalIntegrable f MeasureTheory.volume a b) :
+    (∫ t in a..b, f t).re = ∫ t in a..b, (f t).re := by
+  rcases le_or_gt a b with h | h
+  · rw [intervalIntegral.integral_of_le h, intervalIntegral.integral_of_le h]
+    simpa [RCLike.re_to_complex] using (integral_re hf.1).symm
+  · rw [intervalIntegral.integral_of_ge h.le, intervalIntegral.integral_of_ge h.le,
+      Complex.neg_re]
+    congr 1
+    simpa [RCLike.re_to_complex] using (integral_re hf.2).symm
+
+/-- Imaginary part passes through the interval integral. -/
+theorem intervalIntegral_im {f : ℝ → ℂ} {a b : ℝ}
+    (hf : IntervalIntegrable f MeasureTheory.volume a b) :
+    (∫ t in a..b, f t).im = ∫ t in a..b, (f t).im := by
+  rcases le_or_gt a b with h | h
+  · rw [intervalIntegral.integral_of_le h, intervalIntegral.integral_of_le h]
+    simpa [RCLike.im_to_complex] using (integral_im hf.1).symm
+  · rw [intervalIntegral.integral_of_ge h.le, intervalIntegral.integral_of_ge h.le,
+      Complex.neg_im]
+    congr 1
+    simpa [RCLike.im_to_complex] using (integral_im hf.2).symm
+
+/-- `Γℝ`'s logarithmic derivative reflects: needed for the bottom edge
+of the Cauchy sub-rectangle to be real. -/
+theorem logDeriv_gammaR_conj (s : ℂ) :
+    logDeriv Gammaℝ (conj s) = conj (logDeriv Gammaℝ s) := by
+  have hderiv : deriv Gammaℝ (conj s) = conj (deriv Gammaℝ s) := by
+    have h1 := deriv_conj_conj' Gammaℝ s
+    have hfun : (fun z : ℂ => conj (Gammaℝ (conj z))) = Gammaℝ := by
+      funext z
+      rw [gammaR_conj, Complex.conj_conj]
+    rw [hfun] at h1
+    exact h1
+  rw [logDeriv_apply, logDeriv_apply, hderiv, gammaR_conj, map_div₀]
+
+/-- On the positive real axis, `logDeriv Γℝ` is real. -/
+theorem logDeriv_gammaR_im_eq_zero (x : ℝ) :
+    (logDeriv Gammaℝ ((x : ℝ) : ℂ)).im = 0 := by
+  have h := logDeriv_gammaR_conj ((x : ℝ) : ℂ)
+  rw [Complex.conj_ofReal] at h
+  have := Complex.conj_eq_iff_im.mp h.symm
+  exact this
+
+/-- The vertical FTC: `∫₀ᵀ (c + ti)⁻¹ dt = −i·(log(c+iT) − log c)` for
+`c > 0`. -/
+theorem integral_inv_vertical {c : ℝ} (hc : 0 < c) (T : ℝ) :
+    (∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹)
+      = -Complex.I * (Complex.log ((c : ℂ) + T * Complex.I) - Complex.log (c : ℂ)) := by
+  have hne : ∀ t : ℝ, (c : ℂ) + t * Complex.I ≠ 0 := by
+    intro t h
+    have := congrArg Complex.re h
+    simp at this
+    linarith
+  have hmem : ∀ t : ℝ, (c : ℂ) + t * Complex.I ∈ Complex.slitPlane := by
+    intro t
+    rw [Complex.mem_slitPlane_iff]
+    left
+    simp [hc]
+  have hpath : ∀ t : ℝ, HasDerivAt (fun u : ℝ => (c : ℂ) + u * Complex.I)
+      Complex.I t := by
+    intro t
+    have h1 : HasDerivAt (fun u : ℝ => u • Complex.I) ((1:ℝ) • Complex.I) t :=
+      (hasDerivAt_id t).smul_const Complex.I
+    have h2 : (fun u : ℝ => (c : ℂ) + u * Complex.I)
+        = fun u : ℝ => (c : ℂ) + u • Complex.I := by
+      funext u
+      rw [Complex.real_smul]
+    rw [h2]
+    simpa using h1.const_add (c : ℂ)
+  have hcomp : ∀ t : ℝ, HasDerivAt
+      (fun u : ℝ => Complex.log ((c : ℂ) + u * Complex.I))
+      (Complex.I • ((c : ℂ) + t * Complex.I)⁻¹) t := by
+    intro t
+    exact (Complex.hasDerivAt_log (hmem t)).scomp t (hpath t)
+  have hcont : Continuous fun t : ℝ => Complex.I • ((c : ℂ) + t * Complex.I)⁻¹ := by
+    have hb : Continuous fun t : ℝ => ((c : ℂ) + t * Complex.I)⁻¹ := by
+      refine Continuous.inv₀ ?_ hne
+      continuity
+    simp only [smul_eq_mul]
+    exact continuous_const.mul hb
+  have hftc := intervalIntegral.integral_eq_sub_of_hasDerivAt
+    (f := fun u : ℝ => Complex.log ((c : ℂ) + u * Complex.I))
+    (fun t _ => hcomp t) (hcont.intervalIntegrable 0 T)
+  have hzero : (c : ℂ) + (0 : ℝ) * Complex.I = (c : ℂ) := by push_cast; ring
+  rw [hzero] at hftc
+  have hsmul : (∫ t in (0:ℝ)..T, Complex.I • ((c : ℂ) + t * Complex.I)⁻¹)
+      = Complex.I * ∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹ := by
+    rw [intervalIntegral.integral_smul, smul_eq_mul]
+  rw [hsmul] at hftc
+  linear_combination (-Complex.I) * hftc
+    + (∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹) * Complex.I_mul_I
+
+/-- The horizontal FTC: `∫ₐᵇ ((x−d) + Ti)⁻¹ dx = log((b−d)+iT) − log((a−d)+iT)`
+for `T > 0`. -/
+theorem integral_inv_horizontal (d a b : ℝ) {T : ℝ} (hT : 0 < T) :
+    (∫ x in a..b, (((x : ℂ) - d) + T * Complex.I)⁻¹)
+      = Complex.log (((b : ℂ) - d) + T * Complex.I)
+        - Complex.log (((a : ℂ) - d) + T * Complex.I) := by
+  have hne : ∀ x : ℝ, ((x : ℂ) - d) + T * Complex.I ≠ 0 := by
+    intro x h
+    have := congrArg Complex.im h
+    simp at this
+    linarith
+  have hmem : ∀ x : ℝ, ((x : ℂ) - d) + T * Complex.I ∈ Complex.slitPlane := by
+    intro x
+    rw [Complex.mem_slitPlane_iff]
+    right
+    simp
+    linarith
+  have hpath : ∀ x : ℝ, HasDerivAt (fun u : ℝ => ((u : ℂ) - d) + T * Complex.I)
+      1 x := by
+    intro x
+    have h1 : HasDerivAt (fun u : ℝ => u • (1:ℂ)) ((1:ℝ) • (1:ℂ)) x :=
+      (hasDerivAt_id x).smul_const (1:ℂ)
+    have h2 : (fun u : ℝ => ((u : ℂ) - d) + T * Complex.I)
+        = fun u : ℝ => u • (1:ℂ) + (T * Complex.I - d) := by
+      funext u
+      rw [Complex.real_smul]
+      ring
+    rw [h2]
+    simpa using h1.add_const ((T : ℂ) * Complex.I - d)
+  have hcomp : ∀ x : ℝ, HasDerivAt
+      (fun u : ℝ => Complex.log (((u : ℂ) - d) + T * Complex.I))
+      ((1 : ℂ) • (((x : ℂ) - d) + T * Complex.I)⁻¹) x := by
+    intro x
+    exact (Complex.hasDerivAt_log (hmem x)).scomp x (hpath x)
+  have hcont : Continuous fun x : ℝ => (((x : ℂ) - d) + T * Complex.I)⁻¹ := by
+    refine Continuous.inv₀ ?_ hne
+    continuity
+  have hftc := intervalIntegral.integral_eq_sub_of_hasDerivAt
+    (f := fun u : ℝ => Complex.log (((u : ℂ) - d) + T * Complex.I))
+    (fun x _ => hcomp x) (by simpa using hcont.intervalIntegrable a b)
+  simpa using hftc
+
+/-- **The two boundary arguments sum to `π`:** the arcsines cancel. -/
+theorem arg_sum_eq_pi {T : ℝ} (hT : 0 < T) :
+    Complex.arg ((1/2 : ℝ) + T * Complex.I)
+      + Complex.arg ((-(1/2) : ℝ) + T * Complex.I) = Real.pi := by
+  have hre1 : (((1/2 : ℝ) : ℂ) + T * Complex.I).re = 1/2 := by simp
+  have him1 : (((1/2 : ℝ) : ℂ) + T * Complex.I).im = T := by simp
+  have hre2 : (((-(1/2) : ℝ) : ℂ) + T * Complex.I).re = -(1/2) := by simp
+  have him2 : (((-(1/2) : ℝ) : ℂ) + T * Complex.I).im = T := by simp
+  have hnorm : ‖((1/2 : ℝ) : ℂ) + T * Complex.I‖
+      = ‖((-(1/2) : ℝ) : ℂ) + T * Complex.I‖ := by
+    rw [Complex.norm_def, Complex.norm_def]
+    congr 1
+    rw [Complex.normSq_apply, Complex.normSq_apply, hre1, him1, hre2, him2]
+    ring
+  rw [Complex.arg_of_re_nonneg (by rw [hre1]; norm_num),
+    Complex.arg_of_re_neg_of_im_nonneg (by rw [hre2]; norm_num)
+      (by rw [him2]; linarith)]
+  rw [him1]
+  have hnegim : (-(((-(1/2) : ℝ) : ℂ) + T * Complex.I)).im = -T := by
+    rw [Complex.neg_im, him2]
+  rw [hnegim, hnorm]
+  rw [neg_div, Real.arcsin_neg]
+  ring
+
 end
+
 
 /-! ## Axiom check
 
