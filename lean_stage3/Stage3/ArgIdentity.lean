@@ -243,6 +243,141 @@ theorem zeta_ne_zero_of_real_mem_Ioo {σ : ℝ} (h0 : 0 < σ) (h1 : σ < 1) :
   rw [h] at this
   simp at this
 
+/-! ## Slice 2B: the zero set of `xi` is exactly ζ's nontrivial zeros,
+with matching orders -/
+
+/-- `Λ = Γℝ · ζ` on the whole right half-plane `Re s > 0`. -/
+theorem completed_eq_gammaR_mul_zeta' {s : ℂ} (h0 : 0 < s.re) :
+    completedRiemannZeta s = Gammaℝ s * riemannZeta s := by
+  have hs : s ≠ 0 := by
+    intro h; rw [h] at h0; simp at h0
+  have hΓ : Gammaℝ s ≠ 0 := Gammaℝ_ne_zero_of_re_pos h0
+  rw [riemannZeta_def_of_ne_zero hs]
+  field_simp
+
+/-- The factorised form of `xi` on the right half-plane. -/
+theorem xi_eq_prod {s : ℂ} (h0 : 0 < s.re) (hs1 : s ≠ 1) :
+    xi s = s * (s - 1) * Gammaℝ s * riemannZeta s := by
+  have hs : s ≠ 0 := by
+    intro h; rw [h] at h0; simp at h0
+  rw [xi_eq_completed hs hs1, completed_eq_gammaR_mul_zeta' h0]
+  ring
+
+/-- `xi` does not vanish on `Re s ≥ 1`. -/
+theorem xi_ne_zero_of_one_le_re {s : ℂ} (h : 1 ≤ s.re) : xi s ≠ 0 := by
+  by_cases hs1 : s = 1
+  · rw [hs1, xi_one]; exact one_ne_zero
+  · rw [xi_eq_prod (by linarith) hs1]
+    have hs : s ≠ 0 := by
+      intro hh; rw [hh] at h; simp at h; linarith
+    exact mul_ne_zero (mul_ne_zero (mul_ne_zero hs (sub_ne_zero.mpr hs1))
+      (Gammaℝ_ne_zero_of_re_pos (by linarith))) (riemannZeta_ne_zero_of_one_le_re h)
+
+/-- `xi` does not vanish on `Re s ≤ 0`, by the functional equation. -/
+theorem xi_ne_zero_of_re_nonpos {s : ℂ} (h : s.re ≤ 0) : xi s ≠ 0 := by
+  rw [← xi_one_sub]
+  apply xi_ne_zero_of_one_le_re
+  rw [Complex.sub_re, Complex.one_re]
+  linarith
+
+/-- `xi` does not vanish anywhere on the real axis — the rectangle's
+bottom edge. The interval `(0,1)` is slice 2A's negativity; the rest is
+the two half-plane lemmas and the values at `0` and `1`. -/
+theorem xi_ne_zero_of_real (σ : ℝ) : xi (σ : ℂ) ≠ 0 := by
+  rcases le_or_gt σ 0 with h | h
+  · exact xi_ne_zero_of_re_nonpos (by simpa using h)
+  rcases le_or_gt 1 σ with h1 | h1
+  · exact xi_ne_zero_of_one_le_re (by simpa using h1)
+  · have hs1 : (σ : ℂ) ≠ 1 := by
+      intro hh
+      have : σ = 1 := by exact_mod_cast hh
+      linarith
+    have hs : (σ : ℂ) ≠ 0 := by
+      intro hh
+      have : σ = 0 := by exact_mod_cast hh
+      linarith
+    rw [xi_eq_prod (by simpa using h) hs1]
+    exact mul_ne_zero (mul_ne_zero (mul_ne_zero hs (sub_ne_zero.mpr hs1))
+      (Gammaℝ_ne_zero_of_re_pos (by simpa using h)))
+      (zeta_ne_zero_of_real_mem_Ioo h h1)
+
+/-- **The zero set.** `xi` vanishes exactly at ζ's nontrivial zeros. -/
+theorem xi_eq_zero_iff {s : ℂ} :
+    xi s = 0 ↔ riemannZeta s = 0 ∧ 0 < s.re ∧ s.re < 1 := by
+  constructor
+  · intro h
+    by_cases h0 : 0 < s.re
+    · by_cases h1 : s.re < 1
+      · have hs1 : s ≠ 1 := by
+          intro hh; rw [hh] at h1; simp at h1
+        rw [xi_eq_prod h0 hs1] at h
+        have hs : s ≠ 0 := by
+          intro hh; rw [hh] at h0; simp at h0
+        rcases mul_eq_zero.mp h with h' | hζ
+        · exfalso
+          rcases mul_eq_zero.mp h' with h'' | hΓ
+          · rcases mul_eq_zero.mp h'' with h3 | h3
+            · exact hs h3
+            · exact (sub_ne_zero.mpr hs1) h3
+          · exact Gammaℝ_ne_zero_of_re_pos h0 hΓ
+        · exact ⟨hζ, h0, h1⟩
+      · exact absurd h (xi_ne_zero_of_one_le_re (by linarith))
+    · exact absurd h (xi_ne_zero_of_re_nonpos (by linarith))
+  · rintro ⟨hζ, h0, h1⟩
+    have hs1 : s ≠ 1 := by
+      intro hh; rw [hh] at h1; simp at h1
+    rw [xi_eq_prod h0 hs1, hζ, mul_zero]
+
+/-- **Orders match.** At a strip point, `xi` and `ζ` have the same
+meromorphic order: `ζ = B · xi` near the point with `B` analytic and
+nonvanishing there. -/
+theorem meromorphicOrderAt_xi_eq_zeta {ρ : ℂ} (h0 : 0 < ρ.re) (h1 : ρ.re < 1) :
+    meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ := by
+  have hρ1 : ρ ≠ 1 := by
+    intro hh; rw [hh] at h1; simp at h1
+  have hρ0 : ρ ≠ 0 := by
+    intro hh; rw [hh] at h0; simp at h0
+  -- the correcting factor
+  set B : ℂ → ℂ := fun s => (s * (s - 1))⁻¹ * (Gammaℝ s)⁻¹ with hB
+  have hBanal : AnalyticAt ℂ B ρ := by
+    refine AnalyticAt.mul ?_ ?_
+    · exact ((analyticAt_id.mul (analyticAt_id.sub analyticAt_const)).inv
+        (mul_ne_zero hρ0 (sub_ne_zero.mpr hρ1)))
+    · exact (analyticOnNhd_univ_iff_differentiable.mpr differentiable_Gammaℝ_inv)
+        ρ (Set.mem_univ ρ)
+  have hBne : B ρ ≠ 0 := by
+    rw [hB]
+    exact mul_ne_zero (inv_ne_zero (mul_ne_zero hρ0 (sub_ne_zero.mpr hρ1)))
+      (inv_ne_zero (Gammaℝ_ne_zero_of_re_pos h0))
+  -- ζ agrees with B · xi on a neighbourhood
+  have hUopen : IsOpen {s : ℂ | 0 < s.re ∧ s ≠ 1} :=
+    (isOpen_lt continuous_const continuous_re).inter isOpen_compl_singleton
+  have hmem : ρ ∈ {s : ℂ | 0 < s.re ∧ s ≠ 1} := ⟨h0, hρ1⟩
+  have hagree : ∀ s ∈ {s : ℂ | 0 < s.re ∧ s ≠ 1}, riemannZeta s = (B * xi) s := by
+    intro s hs
+    obtain ⟨hs0, hs1⟩ := hs
+    have hsne : s ≠ 0 := by
+      intro hh; rw [hh] at hs0; simp at hs0
+    have hΓ : Gammaℝ s ≠ 0 := Gammaℝ_ne_zero_of_re_pos hs0
+    show riemannZeta s = (s * (s - 1))⁻¹ * (Gammaℝ s)⁻¹ * xi s
+    rw [xi_eq_prod hs0 hs1]
+    field_simp
+  have hev : riemannZeta =ᶠ[nhds ρ] (B * xi) :=
+    Filter.eventuallyEq_of_mem (hUopen.mem_nhds hmem) hagree
+  -- assemble the order computation
+  have hxiMer : MeromorphicAt xi ρ :=
+    ((analyticOnNhd_univ_iff_differentiable.mpr differentiable_xi) ρ
+      (Set.mem_univ ρ)).meromorphicAt
+  have hBMer : MeromorphicAt B ρ := hBanal.meromorphicAt
+  have hBzero : meromorphicOrderAt B ρ = 0 := by
+    rw [hBanal.meromorphicOrderAt_eq, hBanal.analyticOrderAt_eq_zero.mpr hBne]
+    rfl
+  calc meromorphicOrderAt xi ρ
+      = meromorphicOrderAt B ρ + meromorphicOrderAt xi ρ := by rw [hBzero, zero_add]
+    _ = meromorphicOrderAt (B * xi) ρ := (meromorphicOrderAt_mul hBMer hxiMer).symm
+    _ = meromorphicOrderAt riemannZeta ρ :=
+        (meromorphicOrderAt_congr (hev.filter_mono nhdsWithin_le_nhds)).symm
+
 end
 
 /-! ## Axiom check
@@ -271,6 +406,18 @@ compiler and **`lake build` fails**. This is a check, not a printout.
 /-- info: 'Stage3.zeta_ne_zero_of_real_mem_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stage3.zeta_ne_zero_of_real_mem_Ioo
+
+/-- info: 'Stage3.xi_ne_zero_of_real' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.xi_ne_zero_of_real
+
+/-- info: 'Stage3.xi_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.xi_eq_zero_iff
+
+/-- info: 'Stage3.meromorphicOrderAt_xi_eq_zeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.meromorphicOrderAt_xi_eq_zeta
 
 /-- info: 'Stage3.completedZeta₀_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
