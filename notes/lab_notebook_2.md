@@ -16,6 +16,74 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 284 — The abscissa is a literal, not a parameter: why the contour machine can be pointed at θ
+type: motivation
+refs: 230, 240, 277, 283
+
+Why the next slice exists, and the reasoning error it corrects.
+
+**The error.** Asked what closing the hEF-free route opens, I said every
+chain here consumes RH or is provably equivalent to it, and that
+`VonKochScaffold.RH_iff_psiWeak`'s converse is von Koch, "exactly as
+hard as RH." Julian rejected that as a concession to consensus rather
+than a measurement, and he is right. Logical equivalence transfers a
+proof; it says nothing about which form admits attack. That is the
+entire reason reformulations exist, and the repo has a standing rule
+against exactly this move (entry 130's scope-pricing discipline: a "too
+hard" without a budget measurement is a consensus echo).
+
+**What is actually different about the ψ-form.** `StmtPsiWeak` bounds
+`|ψ(x) − x|` by `C·√x·(log x)^k`. Generalised, the object is
+`|ψ(x) − x| ≤ C·x^θ·(log x)^k`, and `θ` is a free exponent that admits
+partial progress: proving a bound at `θ = 0.9` and improving it is a
+coherent programme. The zero-location form has no such ladder — there
+is no state of being partway to "every zero has real part 1/2". A dial
+is not a wall, and that difference is structural, not rhetorical.
+
+**And the tree hardcodes the dial in one line.**
+`lean_stage3/Stage3/LineBound.lean:1091`:
+
+```lean
+noncomputable def σRH (X : ℝ) : ℝ := 1 / 2 + 1 / Real.log X
+```
+
+The `1/2` is a literal inside a definition, not a parameter. RH enters
+the whole apparatus through one lemma, `zeta_ne_zero_of_RH`
+(`LineBound.lean:23`, restated `:354`), whose only job is to give
+`ζ ≠ 0` to the right of that abscissa; `hRH` then appears 67 times as a
+hypothesis threaded from it. Everything else — the Perron pull, the
+vertical `I₃₇` bound, the horizontals, the Mellin work — is
+abscissa-agnostic arithmetic that already compiles.
+
+**So the generalisation is a definition change plus a hypothesis swap.**
+Replace `σRH X` with `σθ θ X = θ + 1/log X`, and replace
+`zeta_ne_zero_of_RH`'s RH hypothesis with a stated zero-free half-plane
+at `θ`. RH becomes the `θ = 1/2` instance of a machine that is already
+green, rather than a hypothesis baked into its definitions.
+
+**Why that is worth doing rather than tidy.** Entry 277 measured the
+census's real requirement shape-free: it needs a POWER SAVING, and
+**depth 6 is closed by `|π − li| ≤ x^0.7464`** — strictly weaker than
+RH and not known to imply it. A θ-parameterised contour machine is the
+apparatus that would consume such a hypothesis. Today's entry 283 also
+showed the constants question is live and measurable rather than
+notional: pinning `B` turned a route the record believed was 1.4% from
+success into one priced at depth 2.
+
+**Honest state.** No `θ < 1` power saving is proved by anyone; de la
+Vallée Poussin gives `exp(−c√log x)`, which is not a power, and entry
+277 recorded that every proved zero-free region yields
+`depth_covered = 0`. So the interval `(1/2, 1)` is open and hard. That
+is a different claim from "as hard as RH", and only the first is
+measured. The slice below does not close it; it builds the apparatus
+that could consume a result in it, and makes RH one instance rather
+than an assumption welded into a `def`.
+
+**The slice.** Generalise `σRH` to take `θ`, restate
+`zeta_ne_zero_of_RH` as a zero-free-half-plane hypothesis, and
+re-derive the pieces that mention the abscissa, keeping `θ = 1/2`
+recovering the existing theorems verbatim so nothing regresses.
+
 ## 2026-09-01 — Entry 283 — ExplicitBump lands, and the numeral it produces prices the hEF-free route out at depth 2
 type: formalization
 refs: 230, 233, 240, 280, 281, 282
