@@ -1452,6 +1452,173 @@ theorem rvM_of_sFromLocal {a b : ℝ} (ha : 0 ≤ a)
   rvM_of_stirling_and_pieces ha backlundPhase_holds stmtArgIdentity_holds
     hSF localCount_holds
 
+/-! ## Slice 7: `argS` IS the contour argument variation
+
+Splitting the folded functional three ways and feeding it slice 6's
+two evaluations identifies the residual `argS` with the classical
+continuous argument variation of `ζ` along `2 → 2+iT → 1/2+iT`. This
+is the content of the argument principle, and it is what makes the
+bound on `S` attackable by contour estimates. -/
+
+/-- `logDeriv ζ` is analytic wherever `ζ` is analytic and nonzero. -/
+theorem logDeriv_zeta_analyticAt {z : ℂ} (hz1 : z ≠ 1)
+    (hzζ : riemannZeta z ≠ 0) : AnalyticAt ℂ (logDeriv riemannZeta) z := by
+  have hopen : IsOpen {s : ℂ | s ≠ 1} := isOpen_ne
+  have hanal : AnalyticOnNhd ℂ riemannZeta {s : ℂ | s ≠ 1} :=
+    fun w hw => analyticAt_riemannZeta hw
+  have hderiv : AnalyticAt ℂ (deriv riemannZeta) z :=
+    (hanal.deriv_of_isOpen hopen) z hz1
+  have hrw : logDeriv riemannZeta = fun w => deriv riemannZeta w / riemannZeta w := rfl
+  rw [hrw]
+  exact hderiv.div (analyticAt_riemannZeta hz1) hzζ
+
+theorem logDeriv_zeta_continuousAt {z : ℂ} (hz1 : z ≠ 1)
+    (hzζ : riemannZeta z ≠ 0) : ContinuousAt (logDeriv riemannZeta) z :=
+  (logDeriv_zeta_analyticAt hz1 hzζ).continuousAt
+
+/-- The `ζ`-part of the folded functional, normalised: the classical
+`S(T)` as an argument variation. -/
+def zetaArgContour (T : ℝ) : ℝ :=
+  (1 / Real.pi) * ((∫ t in (0:ℝ)..T, logDeriv riemannZeta (2 + (t : ℂ) * Complex.I)).re
+    - (∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + T * Complex.I)).im)
+
+/-- **`argS` is the contour argument variation**, at every good height.
+The residual defined against the phase and the integral of `logDeriv ζ`
+along the right-half path are the same number — this is the argument
+principle, and it is what a bound on `S` will be proved about. -/
+theorem argS_eq_zetaArgContour {T : ℝ} (hT : 2 ≤ T)
+    (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ρ.im ≠ T) :
+    argS T = zetaArgContour T := by
+  have hTpos : (0 : ℝ) < T := by linarith
+  have hπ : Real.pi ≠ 0 := Real.pi_ne_zero
+  have hR : ∀ t : ℝ, 0 < ((2 : ℂ) + (t : ℂ) * Complex.I).re
+      ∧ ((2 : ℂ) + (t : ℂ) * Complex.I) ≠ 1
+      ∧ riemannZeta ((2 : ℂ) + (t : ℂ) * Complex.I) ≠ 0 := by
+    intro t
+    have hre : ((2 : ℂ) + (t : ℂ) * Complex.I).re = 2 := by simp
+    refine ⟨by rw [hre]; norm_num, ?_, ?_⟩
+    · intro h; rw [h] at hre; simp at hre
+    · exact riemannZeta_ne_zero_of_one_lt_re (by rw [hre]; norm_num)
+  have hTop : ∀ x : ℝ, 0 < x → 0 < (((x : ℂ)) + (T : ℂ) * Complex.I).re
+      ∧ (((x : ℂ)) + (T : ℂ) * Complex.I) ≠ 1
+      ∧ riemannZeta (((x : ℂ)) + (T : ℂ) * Complex.I) ≠ 0 := by
+    intro x hx
+    have hre : (((x : ℂ)) + (T : ℂ) * Complex.I).re = x := by simp
+    have him : (((x : ℂ)) + (T : ℂ) * Complex.I).im = T := by simp
+    refine ⟨by rw [hre]; exact hx, ?_, ?_⟩
+    · intro h; rw [h] at him; simp at him; linarith
+    · intro hz
+      exact hgood _ hz (by rw [hre]; exact hx) him
+  have hcE_R : Continuous fun t : ℝ => elemLD ((2 : ℂ) + (t : ℂ) * Complex.I) := by
+    have h2 : ∀ t : ℝ, ((2 : ℂ) + (t : ℂ) * Complex.I) ≠ 0 := by
+      intro t h
+      have := congrArg Complex.re h; simp at this
+    have h1 : ∀ t : ℝ, ((2 : ℂ) + (t : ℂ) * Complex.I) - 1 ≠ 0 := by
+      intro t h
+      have := congrArg Complex.re h; simp at this; norm_num at this
+    simp only [elemLD]
+    exact (Continuous.div continuous_const (by continuity) h2).add
+      (Continuous.div continuous_const (by continuity) h1)
+  have hcG_R : Continuous fun t : ℝ => logDeriv Gammaℝ ((2 : ℂ) + (t : ℂ) * Complex.I) :=
+    logDeriv_gammaR_comp_continuous
+      (continuous_const.add (Complex.continuous_ofReal.mul continuous_const))
+      fun t => (hR t).1
+  have hcZ_R : Continuous fun t : ℝ =>
+      logDeriv riemannZeta ((2 : ℂ) + (t : ℂ) * Complex.I) := by
+    rw [continuous_iff_continuousAt]
+    intro t
+    have hinner : ContinuousAt (fun u : ℝ => ((2 : ℂ) + (u : ℂ) * Complex.I)) t :=
+      (continuous_const.add (Complex.continuous_ofReal.mul continuous_const)).continuousAt
+    have hcomp := ContinuousAt.comp (g := logDeriv riemannZeta)
+      (f := fun u : ℝ => ((2 : ℂ) + (u : ℂ) * Complex.I))
+      (logDeriv_zeta_continuousAt (hR t).2.1 (hR t).2.2) hinner
+    simpa [Function.comp_def] using hcomp
+  have hsubset : ∀ x ∈ Set.uIcc (1/2:ℝ) 2, (0:ℝ) < x := by
+    intro x hx
+    rw [Set.uIcc_of_le (by norm_num : (1/2:ℝ) ≤ 2)] at hx
+    linarith [hx.1]
+  have hcE_T : ContinuousOn (fun x : ℝ => elemLD ((x : ℂ) + (T : ℂ) * Complex.I))
+      (Set.uIcc (1/2:ℝ) 2) := by
+    intro x hx
+    have hx0 := hsubset x hx
+    have h2 : ∀ y : ℝ, 0 < y → ((y : ℂ) + (T : ℂ) * Complex.I) ≠ 0 := by
+      intro y _ h; have := congrArg Complex.im h; simp at this; linarith
+    have h1 : ∀ y : ℝ, 0 < y → ((y : ℂ) + (T : ℂ) * Complex.I) - 1 ≠ 0 := by
+      intro y _ h; have := congrArg Complex.im h; simp at this; linarith
+    have hcA : ContinuousAt (fun y : ℝ => elemLD ((y : ℂ) + (T : ℂ) * Complex.I)) x := by
+      simp only [elemLD]
+      have hinner : ContinuousAt (fun y : ℝ => ((y : ℂ) + (T : ℂ) * Complex.I)) x :=
+        (Complex.continuous_ofReal.add continuous_const).continuousAt
+      have hinner1 : ContinuousAt
+          (fun y : ℝ => ((y : ℂ) + (T : ℂ) * Complex.I) - 1) x := hinner.sub continuousAt_const
+      exact (ContinuousAt.div continuousAt_const hinner (h2 x hx0)).add
+        (ContinuousAt.div continuousAt_const hinner1 (h1 x hx0))
+    exact hcA.continuousWithinAt
+  have hcG_T : ContinuousOn (fun x : ℝ => logDeriv Gammaℝ ((x : ℂ) + (T : ℂ) * Complex.I))
+      (Set.uIcc (1/2:ℝ) 2) := by
+    intro x hx
+    have hinner : ContinuousAt (fun y : ℝ => ((y : ℂ) + (T : ℂ) * Complex.I)) x :=
+      (Complex.continuous_ofReal.add continuous_const).continuousAt
+    have hcomp := ContinuousAt.comp (g := logDeriv Gammaℝ)
+      (f := fun y : ℝ => ((y : ℂ) + (T : ℂ) * Complex.I))
+      (logDeriv_gammaR_continuousAt (hTop x (hsubset x hx)).1) hinner
+    exact (by simpa [Function.comp_def] using hcomp :
+      ContinuousAt (fun y : ℝ => logDeriv Gammaℝ ((y : ℂ) + (T : ℂ) * Complex.I))
+        x).continuousWithinAt
+  have hcZ_T : ContinuousOn
+      (fun x : ℝ => logDeriv riemannZeta ((x : ℂ) + (T : ℂ) * Complex.I))
+      (Set.uIcc (1/2:ℝ) 2) := by
+    intro x hx
+    have hinner : ContinuousAt (fun y : ℝ => ((y : ℂ) + (T : ℂ) * Complex.I)) x :=
+      (Complex.continuous_ofReal.add continuous_const).continuousAt
+    have hcomp := ContinuousAt.comp (g := logDeriv riemannZeta)
+      (f := fun y : ℝ => ((y : ℂ) + (T : ℂ) * Complex.I))
+      (logDeriv_zeta_continuousAt (hTop x (hsubset x hx)).2.1
+        (hTop x (hsubset x hx)).2.2) hinner
+    exact (by simpa [Function.comp_def] using hcomp :
+      ContinuousAt (fun y : ℝ => logDeriv riemannZeta ((y : ℂ) + (T : ℂ) * Complex.I))
+        x).continuousWithinAt
+  have hsplitR : (∫ t in (0:ℝ)..T, logDeriv xi ((2 : ℂ) + (t : ℂ) * Complex.I))
+      = (∫ t in (0:ℝ)..T, elemLD ((2 : ℂ) + (t : ℂ) * Complex.I))
+        + (∫ t in (0:ℝ)..T, logDeriv Gammaℝ ((2 : ℂ) + (t : ℂ) * Complex.I))
+        + ∫ t in (0:ℝ)..T, logDeriv riemannZeta ((2 : ℂ) + (t : ℂ) * Complex.I) := by
+    rw [← intervalIntegral.integral_add (hcE_R.intervalIntegrable _ _)
+        (hcG_R.intervalIntegrable _ _),
+      ← intervalIntegral.integral_add
+        ((hcE_R.intervalIntegrable _ _).add (hcG_R.intervalIntegrable _ _))
+        (hcZ_R.intervalIntegrable _ _)]
+    refine intervalIntegral.integral_congr fun t _ => ?_
+    exact logDeriv_xi_split (hR t).1 (hR t).2.1 (hR t).2.2
+  have hsplitT : (∫ x in (1/2:ℝ)..2, logDeriv xi ((x : ℂ) + (T : ℂ) * Complex.I))
+      = (∫ x in (1/2:ℝ)..2, elemLD ((x : ℂ) + (T : ℂ) * Complex.I))
+        + (∫ x in (1/2:ℝ)..2, logDeriv Gammaℝ ((x : ℂ) + (T : ℂ) * Complex.I))
+        + ∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + (T : ℂ) * Complex.I) := by
+    rw [← intervalIntegral.integral_add hcE_T.intervalIntegrable
+        hcG_T.intervalIntegrable,
+      ← intervalIntegral.integral_add
+        ((hcE_T.intervalIntegrable).add (hcG_T.intervalIntegrable))
+        (hcZ_T.intervalIntegrable)]
+    refine intervalIntegral.integral_congr fun x hx => ?_
+    exact logDeriv_xi_split (hTop x (hsubset x hx)).1 (hTop x (hsubset x hx)).2.1
+      (hTop x (hsubset x hx)).2.2
+  have hfold := pi_mul_N_eq hT hgood
+  rw [hsplitR, hsplitT] at hfold
+  simp only [Complex.add_re, Complex.add_im] at hfold
+  have he := elem_fold_eq_pi hTpos
+  have hg := gammaR_fold_eq_phaseTheta hTpos
+  have hZ : Real.pi * riemannZeta.N T
+      = Real.pi + phaseTheta T
+        + ((∫ t in (0:ℝ)..T, logDeriv riemannZeta ((2 : ℂ) + (t : ℂ) * Complex.I)).re
+          - (∫ x in (1/2:ℝ)..2,
+              logDeriv riemannZeta ((x : ℂ) + (T : ℂ) * Complex.I)).im) := by
+    linarith [hfold, he, hg]
+  rw [argS, zetaArgContour]
+  have hpi : (0:ℝ) < Real.pi := Real.pi_pos
+  field_simp
+  ring_nf
+  ring_nf at hZ
+  linarith [hZ]
+
 end
 
 
@@ -1542,6 +1709,18 @@ compiler and **`lake build` fails**. This is a check, not a printout.
 /-- info: 'Stage3.rvM_of_sFromLocal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stage3.rvM_of_sFromLocal
+
+/-- info: 'Stage3.elem_fold_eq_pi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.elem_fold_eq_pi
+
+/-- info: 'Stage3.gammaR_fold_eq_phaseTheta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.gammaR_fold_eq_phaseTheta
+
+/-- info: 'Stage3.argS_eq_zetaArgContour' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.argS_eq_zetaArgContour
 
 /-- info: 'Stage3.completedZeta₀_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
