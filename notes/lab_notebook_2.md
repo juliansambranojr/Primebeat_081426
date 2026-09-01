@@ -16,6 +16,75 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 288 — logDerivZeta_crude at general θ compiles, constants unchanged: RH's equality was stronger than the proof used
+type: formalization
+refs: 240, 277, 284, 285, 286, 287
+
+`lean_stage3/Stage3/Abscissa.lean` extended to 413 lines, 13
+declarations, 7 `#guard_msgs` pins, 0 sorries. Commit `0af7b45`.
+Stage3 green at 8721 jobs. Compiled on the first attempt.
+
+**What was proved.**
+
+```text
+logDerivZeta_crude_theta  ‖ζ'/ζ (σ₁+it)‖ ≤ 1996·log(84t)
+                            + (29·log t + 129)/(σ₁ − θ)
+                          from StmtZeroFreeRight θ, 1/2 ≤ θ < σ₁ ≤ 2, 2 ≤ t
+logDerivZeta_crude_half   the θ = 1/2 case, under RH
+```
+
+Both `#check`ed against their docstrings and both pinned
+`[propext, Classical.choice, Quot.sound]`. `logDerivZeta_crude_half`'s
+statement is character-for-character `Slice3.logDerivZeta_crude`
+(`LineBound.lean:74`), so the generalisation recovers the built theorem
+rather than competing with it — the same weld discipline as `σθ_half`.
+
+**The one substantive change, and why it is small.** Under RH every zero
+`ρ` of the local model `Stage3.jensenF t` sits exactly at `re = −3/4`,
+since ζ's zeros are on `re = 1/2` and the model rescales by `2ρ + (2+it)`.
+The proof consumes that equality in exactly one place — `hdist`, through
+`Complex.abs_re_le_norm` — as a LOWER BOUND on `(z₀ − ρ).re`. So the
+inequality `StmtZeroFreeRight θ` supplies, `2ρ.re + 2 ≤ θ` hence
+`ρ.re ≤ (θ−2)/2`, is enough, giving `(z₀ − ρ).re ≥ (σ₁ − θ)/2`.
+
+RH was doing less work here than its statement suggests. The
+trivial-zero case analysis also drops out, `StmtZeroFreeRight` being
+stated about half-planes directly, so the θ-version is SHORTER than the
+RH-version it generalises.
+
+**The constants, traced rather than counted.**
+
+```text
+3991  Slice3.finalBoundConst_le (LineBound.lean:43), at the fixed radii
+      r' = 3/4, r = 181/200, R' = 29/32, R = 15/16
+1996  = 3991/2, after the 2z+c rescale is divided out
+  29  1/log(375/362) ≤ 29 — the Jensen count at those same radii
+ 129  29 · log 84 ≤ 129
+```
+
+`3991` does contain `((181/200) − 3/4)³`, so it would move if the inner
+radius moved. It does not: `‖z₀‖ = (2 − σ₁)/2 ≤ 3/4` requires only
+`σ₁ ≥ 1/2`, which `σ₁ > θ ≥ 1/2` supplies. Every numeral survives.
+
+**Correction carried through.** Entry 286 predicted the constants would
+become functions of `θ` and priced the slice as a re-derivation; entry
+287 recorded that as false and named the error. The compile is the
+confirmation. `Abscissa.lean`'s header docstring, which carried the same
+wrong claim, was rewritten in this commit.
+
+**What is now available.** The vertical-segment machinery's crude input
+runs at any `θ ∈ [1/2, 2)` for which a zero-free half-plane is supplied.
+The remaining downstream theorems — `logDerivZeta_sq_at_X` (`:295`),
+`I37_norm_le_decay` (`:1523`), `I37_norm_le_epsfree` (`:1873`),
+`I37_sqrt_form`/`_log3` (`:1601`/`:1935`) — consume the crude bound and
+the abscissa identity `rpow_σθ`, both of which now exist at general `θ`.
+
+**Unchanged by this.** No `θ < 1` zero-free half-plane is proved by
+anyone; `zeroFreeRight_one` is the only unconditional instance, and
+entry 277 measured every proved zero-free region at `depth_covered = 0`.
+Entry 283's `66600·e/π` loss in `I37_sqrt_log3` is untouched and still
+prices the assembled route at depth 2.
+
 ## 2026-09-01 — Entry 287 — Correction to 286: the constants do NOT depend on θ, and I made the error the same entry was warning about
 type: motivation
 refs: 284, 285, 286
