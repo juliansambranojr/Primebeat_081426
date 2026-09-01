@@ -17,6 +17,9 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [closed] 2026-09-01  entry 230 line resolved: StmtLogDerivRH appears in no .lean file because nothing needs it — it named an ALTERNATIVE decomposition ({hRH,hEF,hNT} → {hRH,StmtLogDerivRH}) that the route actually built made unnecessary, hEF discharged direct at 271 and StmtArgCrude at 274. Julian's call: stays in the archive
+- [closed] 2026-09-01  entry 195 line resolved: 'steep walls at a slope' was from Julian's own memory, brought into the conversation and never in the tree — so the provenance gap is answered, not a missing artifact
+- [closed] 2026-09-01  entry 144 line resolved: the kernel-for-meaning methodology section was future state — Julian's call to let it go; it resurfaces if it matters
 - [open]   2026-09-01  StmtSFromLocal — stage 3's last analytic leaf. Per entries 274/278: hEF discharged (271) and StmtArgIdentity discharged, so rvM_of_sFromLocal makes |argS T| ≤ a·cnt T + b ALONE deliver the full RvM band. argS is now a contour integral (argS_eq_zetaArgContour), so the bound is attackable by contour estimates. O77: 0.462·cnt+0.508 to height 900
 - [open]   2026-09-01  entry 279: CORRECTION to 277 — the 18.8-21.4 and 73.5-83.6 ratios were relayed unchecked AND are computed through c = 1/√R, which the same report refutes at census scale. Neither range measures anything; only the qualitative depth_covered = 0 survives, and that by running the gate directly
 - [open]   2026-09-01  entry 278: RelativeGate.lean — the shape-free gate is KERNEL-CHECKED. relGate_iff proves ρ·2^r·(3/2)^(d+1) < Mlow ↔ ρ < (log2)^d/(2r·3^(d+1)); relGate_eps gives ε_d/log x with ε_d = 0.5(log2/3)^(d+1). RH window and power-saving both welded in as instances. 8 pins, 0 sorries. Entry 277's tables still unpromoted
@@ -131,7 +134,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-08-27  entry 230: the literal log^2|t| target was FALSE for any method (pole at an ordinate) — the deliverable shape is log X * log t; nobody could have proved what the leaf implied
 - [open]   2026-08-27  entry 230: the docstring was a consensus price and Julian was right to reject the concession — second dated instance after the Schoenfeld 'months, minimum' session
 - [open]   2026-08-27  entry 230: entries 158/159's tangency repair is what makes it work — jensenF's 2z rescale gives r'=3/4 independent of X where upstream's 3/2+it centre needs r'->1
-- [open]   2026-08-27  entry 230: ARCHITECTURE, Julian's call — the substitute retires hNT from the psi path; {hRH,hEF,hNT} collapses to {hRH,StmtLogDerivRH}
+- [closed] 2026-08-27  entry 230: ARCHITECTURE, Julian's call — the substitute retires hNT from the psi path; {hRH,hEF,hNT} collapses to {hRH,StmtLogDerivRH}
 - [open]   2026-08-27  entry 229: slice warning shipped in the PreToolUse hook — advisory, fires on entry 219's actual defect, silent on both legitimate shapes; deliberately does NOT detect aggregation because both real instances aggregated BY EYE with no max() in the command
 - [open]   2026-08-27  entry 229: it is UNSCORED and self-scores — appends to utilities/slice_observations.jsonl (gitignored) so the corpus entry 225 lacked accumulates; score it later and tighten or delete
 - [open]   2026-08-27  entry 229: the diagnosis — errors sat on the TRIVIAL steps, not the hard ones; difficulty summons care and cheap steps summon none, so 'try harder' does nothing and only an instrument helps
@@ -215,7 +218,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [open]   2026-08-26  entry 195: QUEUED 2 of 2 — can a repulsion question be asked of O45/O47's 125 pooled zeros at all? Zero-Surface G2 already declined to read z = -5.32; O64 run 1 is the warning that finite resolution fakes repulsion
 - [open]   2026-08-26  entry 195: the stencil's shape has a name — Chain.lean:29 calls Sym the reciprocal Euler factor at b, so differencing divides base b's factor out of the Euler product
 - [open]   2026-08-26  entry 195: sym_eq_zero_iff and Nyquist.aliases_of_offset are the SAME lattice 2pi/log b — the frequencies the stencil annihilates are the frequencies the sampling cannot see
-- [open]   2026-08-26  entry 195: PROVENANCE GAP — 'steep walls at a slope' is nowhere in the tree; grepped all .md/.py; either an unlogged session or Julian's own picture. Do not invent a referent
+- [closed] 2026-08-26  entry 195: PROVENANCE GAP — 'steep walls at a slope' is nowhere in the tree; grepped all .md/.py; either an unlogged session or Julian's own picture. Do not invent a referent
 - [open]   2026-08-26  entry 195: O64's frac<0.5 = 0.027 is NOT a GUE confirmation (GUE predicts 0.106; the true zeros give 0.027 in that band too) — guard against it being cited as one
 - [open]   2026-08-26  entry 194: CORRECTION to entry 192 — the vacuousness trap applies to |z_k|, the statistic runs on |c_k| = 2|Re z_k| which carries phase; top-1 share was fine and I argued us out of it
 - [open]   2026-08-26  entry 194: the ensemble picture holds so uniformly it separates nothing — ~90% of mode mass cancels at every cell; where it does separate the exact zero is LESS cancelled than its non-zero neighbour, and sits at its depth's median
@@ -281,7 +284,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 - [closed]   2026-08-25  entry 147: O24 float-key instrument-fix entry landed (fix was 2026-08-17); shas stay as honest provenance, entry is the crosswalk; aborted 3e8 log labelled in-entry, filename frozen — the three 08-17 O24 lines below are answered by this entry
 - [open]   2026-08-25  entry 146: the_container public at cb06d4f — method extracted to standalone template repo; entry-144 posit operational as its adjudications/ layer; back-translation round and non-research instantiation open in that repo's NOTEPAD
 - [closed]   2026-08-24  entry 145: repo PUBLIC at 690e7e8 (gates green, pre-flight verified) — opening move of the group project; #1538 note and identity_16_complex PR now have referenceable code
-- [open]   2026-08-24  entry 144: kernel-for-meaning posit — Lean as adjudicator in LLM discourse (validity to the kernel, meaning to budgeted leaves); revisit for a paper methodology section
+- [closed] 2026-08-24  entry 144: kernel-for-meaning posit — Lean as adjudicator in LLM discourse (validity to the kernel, meaning to budgeted leaves); revisit for a paper methodology section
 - [closed]   2026-08-24  entry 143: inheritance claims (floor+ceiling machine, satisfiability QA, phase kit, leaf-ledger social tech) + the engine explained (stigmergy, decorrelation, human entropy schedule)
 - [open]   2026-08-24  entry 142: upstream group-project audit — nine sorries classified; horizontal-vanishes (#1538) tested undischargeable as stated (O71: log law confirmed, delta-schedule beats every phi); note drafted and HELD; identity_16_complex adopted as PR target
 - [open]   2026-08-24  entry 141: Arg-half audit — upstream Kadiri.backlund_bound states full hNT at Rosser constants (sorry-blocked today; pin-bump watch); crude route mapped (rectangle identity + Jensen counts, substrate sorry-free). Ledger: {hEF, StmtArgCrude}
