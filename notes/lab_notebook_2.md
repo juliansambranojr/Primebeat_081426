@@ -16,6 +16,65 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 286 — The power saving is a theorem, and the remaining half is a constants re-derivation not a substitution
+type: formalization
+refs: 277, 284, 285
+
+`lean_stage3/Stage3/Abscissa.lean` extended. 11 declarations, 0
+sorries, Stage3 green at 8718 jobs. Commit `beeb6fe`.
+
+**What was proved.**
+
+```text
+rpow_σθ       X ^ (σθ θ X) = Real.exp 1 * X ^ θ
+rpow_σθ_half  X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X
+abscissa_gives_power   K · X^(σθ θ X) = (e·K) · X^θ
+```
+
+`rpow_σθ` is the whole arithmetic content of the choice of abscissa:
+the `1/log X` correction contributes a bare `e`, and `θ` contributes
+`X^θ`. `RHPull.rpow_σRH` is its `θ = 1/2` case, and `rpow_σθ_half`
+proves the generalisation recovers it rather than competing with it.
+
+**Why it matters.** The vertical segment's bound carries
+`X^(σθ θ X)`, so a contour run at abscissa `θ` produces a bound of
+shape `X^θ·(log X)^k`. That is exactly the POWER SAVING form entry 277
+measured the census to need, with `θ = 0.7464` closing depth 6. The
+link between entry 277's shape-free requirement and entry 285's dial is
+now a theorem rather than an observation in a docstring.
+
+**The remaining half, measured.** Re-deriving the downstream bounds at
+general `θ` is five theorems in `LineBound.lean`, ~253 lines:
+
+```text
+logDerivZeta_crude       :74    180 lines   THE WORK
+logDerivZeta_sq_at_X     :295     58
+I37_norm_le_decay       :1523     64   } mechanical once the crude
+I37_norm_le_epsfree     :1873     61   } bound generalises
+I37_sqrt_form/_log3     :1601     70   }
+```
+
+**And the load-bearing measurement is what `1/2` does inside the crude
+bound.** `logDerivZeta_crude` carries the entire RH dependence through
+ONE call to `zeta_ne_zero_of_RH`, which `zeta_ne_zero_right_of`
+(entry 285) replaces directly. But `1/2` occurs TWENTY times in those
+180 lines, and not merely as the hypothesis `1/2 < σ₁`: it is the
+denominator `σ₁ − 1/2` — the distance from the zero-free boundary —
+and it fixes the Borel–Carathéodory disk running from `2` to that
+boundary. At general `θ` the constants `1996`, `29` and `129` therefore
+become functions of `θ`.
+
+So the remaining half is a CONSTANTS RE-DERIVATION, not a
+substitution. That distinction is the point of this entry: I was about
+to call it mechanical, which is the same error as entry 281's — picking
+`I9Bound` as a probe on line count without opening the lines. Twenty
+occurrences of a literal in a geometric argument is not a rename.
+
+**Next.** `logDerivZeta_crude` at general `θ`: carry `σ₁ − θ` as the
+boundary distance, run the disk from `2` to `θ`, and let `1996`, `29`,
+`129` come out as expressions in `θ` that reduce to those numerals at
+`θ = 1/2`.
+
 ## 2026-09-01 — Entry 285 — Abscissa.lean: RH is now the θ = 1/2 setting of a dial, with θ = 1 proved at the other end
 type: formalization
 refs: 240, 277, 283, 284
