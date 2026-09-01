@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-09-01  StmtSFromLocal — stage 3's last analytic leaf. Per entries 274/278: hEF discharged (271) and StmtArgIdentity discharged, so rvM_of_sFromLocal makes |argS T| ≤ a·cnt T + b ALONE deliver the full RvM band. argS is now a contour integral (argS_eq_zetaArgContour), so the bound is attackable by contour estimates. O77: 0.462·cnt+0.508 to height 900
 - [open]   2026-09-01  entry 279: CORRECTION to 277 — the 18.8-21.4 and 73.5-83.6 ratios were relayed unchecked AND are computed through c = 1/√R, which the same report refutes at census scale. Neither range measures anything; only the qualitative depth_covered = 0 survives, and that by running the gate directly
 - [open]   2026-09-01  entry 278: RelativeGate.lean — the shape-free gate is KERNEL-CHECKED. relGate_iff proves ρ·2^r·(3/2)^(d+1) < Mlow ↔ ρ < (log2)^d/(2r·3^(d+1)); relGate_eps gives ε_d/log x with ε_d = 0.5(log2/3)^(d+1). RH window and power-saving both welded in as instances. 8 pins, 0 sorries. Entry 277's tables still unpromoted
 - [open]   2026-09-01  entry 277: census priced SHAPE-FREE — gate reduces to |π−li|/x < ε_d/log x, so PNT alone suffices at some R(d) and the binding form is a POWER SAVING (depth 6 = x^0.746, weaker than RH). Every proved zero-free region gives depth_covered = 0; depth 15 closed to any power bound by Littlewood. My unconditional-Primebeat proposal rejected over two adversarial rounds
