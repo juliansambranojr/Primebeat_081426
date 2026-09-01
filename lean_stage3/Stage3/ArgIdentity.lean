@@ -47,23 +47,35 @@ WHAT IS PROVED, in build order:
             oddness. This is where the `+1` is born.
   slice 5b  argS, stmtArgIdentity_holds, rvM_of_sFromLocal
 
-HONEST STATUS OF THE LEAF. `argS T := N T − (phaseTheta T/π + 1)` is
-the classical `S(T)`, defined exactly as the literature defines it, so
-`stmtArgIdentity_holds : StmtArgIdentity phaseTheta argS` is true by
-construction and carries no analytic content on its own. That is the
-correct shape: in Backlund's argument the identity IS a definition
-once the continuous phase is fixed, and every ounce of analysis lives
-in the BOUND on `S`. What slices 1–5a buy is the machinery that bound
-needs — the entire `xi`, its two symmetries, the count bridge, the
-fold, and the four-term split — none of which existed before.
+  slice 6   elem_fold_eq_pi (the elementary term contributes exactly
+            `π` — the four FTC log-differences cancel down to
+            `arg_sum_eq_pi`) and gammaR_fold_eq_phaseTheta (Cauchy
+            moves the path onto the critical vertical, the bottom edge
+            dropping out because `logDeriv Γℝ` is real there)
+  slice 7   argS_eq_zetaArgContour — the argument principle
+
+STATUS OF THE LEAF, PRECISELY. `argS T := N T − (phaseTheta T/π + 1)`
+is the classical `S(T)`, so `stmtArgIdentity_holds` is true by
+construction: the identity IS a definition once the continuous phase
+is fixed, exactly as in Backlund. The content is that this residual is
+the ARGUMENT — and slice 7 proves it: at every good height,
+
+    argS T = (1/π)·(Re ∫_right logDeriv ζ − Im ∫_top logDeriv ζ)
+
+which is the continuous argument variation of `ζ` along
+`2 → 2+iT → 1/2+iT`. That identification is a theorem about an
+independently defined quantity, and it is what makes the remaining
+bound attackable by contour estimates rather than by definition
+chasing.
 
 WHAT REMAINS: `StmtSFromLocal argS zetaLocalCount a b`, i.e.
 `|argS T| ≤ a·cnt T + b`. O77 measured `|S T| ≤ 0.462·cnt T + 0.508`
 on a `T`-grid to 900 (`results/leaf_instantiation.json`, entry 156).
-`rvM_of_sFromLocal` below shows that bound ALONE now delivers the full
+`rvM_of_sFromLocal` shows that bound ALONE delivers the full
 `Riemann_vonMangoldt_bound (97 + 15a) 0 (98 + 73a + b)`, since the
 Stirling half (entry 140) and the Jensen count (entry 156) are already
-theorems. Entry 130's budget accepts it with room.
+theorems; entry 130's budget accepts it with room. Bad heights are
+reached from good ones by `ContourShift.goodT_exists`.
 
 Consumes: Mathlib; upstream `RectangleArgumentPrinciple`, `StrongPNT`
 (`ZetaAltFormula`), `ZetaConj` (`deriv_conj_conj'`,
