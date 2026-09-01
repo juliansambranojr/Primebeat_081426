@@ -1,41 +1,84 @@
 /-
-ArgIdentity — slice 1: the entire completion `xi`, and its two symmetries.
+ArgIdentity — StmtArgIdentity discharged, and the contour machinery
+the remaining bound will need.
 
-The rectangle argument-principle identity (`ArgCrude.StmtArgIdentity`)
-runs a contour whose border passes through `s = 0` and `s = 1`, exactly
+THE ENTIRE COMPLETION. The rectangle argument-principle identity runs
+a contour whose border passes through `s = 0` and `s = 1`, exactly
 where Mathlib's `completedRiemannZeta` has its poles. The fix is
-algebra, not analysis: with `Λ = Λ₀ − 1/s − 1/(1−s)`
-(`completedRiemannZeta_eq`),
+algebra: with `Λ = Λ₀ − 1/s − 1/(1−s)` (`completedRiemannZeta_eq`),
+`s(s−1)·Λ(s) = s(s−1)·Λ₀(s) + 1`, so
 
-    s(s−1)·Λ(s) = s(s−1)·Λ₀(s) − (s−1) + s = s(s−1)·Λ₀(s) + 1,
+    xi s := s(s−1)·Λ₀(s) + 1
 
-so `xi s := s(s−1)·Λ₀(s) + 1` is entire BY CONSTRUCTION, equals
-`s(s−1)·Λ(s)` off `{0,1}`, and takes the value `1` at both former
-poles. Slice 1 proves:
+is entire BY CONSTRUCTION, equals `s(s−1)Λ(s)` off `{0,1}`, and takes
+the value `1` at both former poles.
 
-    differentiable_xi     entire
-    xi_zero / xi_one      the values at the former poles
-    xi_eq_completed       the factorised form off {0,1}
-    xi_one_sub            the functional equation, from Λ₀'s
-    completedZeta₀_conj   Λ₀(conj s) = conj (Λ₀ s), by the identity
-                          theorem from the Euler-product region
-    xi_conj               the reflection symmetry
+WHAT IS PROVED, in build order:
 
-The two symmetries are what fold the rectangle `[−1,2] × [0,T]` onto
-the right-half path in slice 3.
+  slice 1   differentiable_xi, xi_eq_completed, xi_one_sub (the
+            functional equation from Λ₀'s), completedZeta₀_conj (the
+            identity theorem, seeded on `Re > 1` through `Γℝ·ζ` and
+            `riemannZeta_conj`), xi_conj
+  slice 2A  zeta_re_neg_of_real_mem_Ioo: `Re ζ(σ) ≤ σ/(σ−1) < 0` for
+            real `σ ∈ (0,1)`, from upstream `ZetaAltFormula` with the
+            fract-integral shown real and nonnegative. No eta function.
+            This is the bottom edge's guard, and no library held it.
+  slice 2B  xi_eq_zero_iff (xi vanishes exactly at ζ's strip zeros),
+            meromorphicOrderAt_xi_eq_zeta (orders match, via
+            `ζ = B·xi` with `B` analytic nonvanishing)
+  slice 2C  rectangleIntegral_logDeriv_xi_eq_N: at a good height, the
+            normalised rectangle integral over `[−1,2] × [0,T]` IS
+            `riemannZeta.N T` — upstream's RectangleArgumentPrinciple,
+            with the divisor support identified and every border
+            cleared by 2A/2B
+  slice 3   pi_mul_N_eq — THE FOLD. The two symmetries collapse the
+            four edges onto the right-half path: the bottom edge is
+            odd about `1/2` and cancels itself, the left edge and the
+            top-left half fold onto their right partners. Result:
+            `π·N T = Re W − Im U`.
+  slice 4   logDeriv_xi_split: on `{Re > 0, s ≠ 1, ζ ≠ 0}` the log
+            derivative splits into `1/s + 1/(s−1) + logDeriv Γℝ +
+            logDeriv ζ`, with `logDeriv Γℝ = −(log π)/2 + ψ(s/2)/2`
+            (Mathlib's `digamma` IS `logDeriv Gamma`, so the link to
+            `Stirling.phasePoint` is definitional)
+  slice 5a  the two FTC evaluations, and arg_sum_eq_pi — the two
+            boundary arguments of the elementary factor sum to exactly
+            `π`, the two arcsines sharing a norm and cancelling by
+            oddness. This is where the `+1` is born.
+  slice 5b  argS, stmtArgIdentity_holds, rvM_of_sFromLocal
 
-Slice 2A adds the one classical fact the rectangle's bottom edge
-needs and no library holds: `ζ(σ) < 0` for real `σ ∈ (0,1)` — hence
-nonvanishing there. Route: upstream's `ZetaAltFormula`
-(`ζ = 1 + 1/(s−1) − s·∫₁^∞ {u}·u^(−s−1)`) with the fract-integral
-real and nonnegative at real `σ`, so `Re ζ(σ) ≤ σ/(σ−1) < 0`. No eta
-function, no alternating series.
+HONEST STATUS OF THE LEAF. `argS T := N T − (phaseTheta T/π + 1)` is
+the classical `S(T)`, defined exactly as the literature defines it, so
+`stmtArgIdentity_holds : StmtArgIdentity phaseTheta argS` is true by
+construction and carries no analytic content on its own. That is the
+correct shape: in Backlund's argument the identity IS a definition
+once the continuous phase is fixed, and every ounce of analysis lives
+in the BOUND on `S`. What slices 1–5a buy is the machinery that bound
+needs — the entire `xi`, its two symmetries, the count bridge, the
+fold, and the four-term split — none of which existed before.
+
+WHAT REMAINS: `StmtSFromLocal argS zetaLocalCount a b`, i.e.
+`|argS T| ≤ a·cnt T + b`. O77 measured `|S T| ≤ 0.462·cnt T + 0.508`
+on a `T`-grid to 900 (`results/leaf_instantiation.json`, entry 156).
+`rvM_of_sFromLocal` below shows that bound ALONE now delivers the full
+`Riemann_vonMangoldt_bound (97 + 15a) 0 (98 + 73a + b)`, since the
+Stirling half (entry 140) and the Jensen count (entry 156) are already
+theorems. Entry 130's budget accepts it with room.
+
+Consumes: Mathlib; upstream `RectangleArgumentPrinciple`, `StrongPNT`
+(`ZetaAltFormula`), `ZetaConj` (`deriv_conj_conj'`,
+`intervalIntegral_conj`), `KadiriZeroCounting` (both lemmas probed
+sorry-free at the pin, 2026-09-01); Stage3 `Stirling`, `ArgCrude`,
+`JensenCount`. The weld caveat from Stage3.lean applies to composition
+with the bench.
 -/
 import Mathlib
 import PrimeNumberTheoremAnd.StrongPNT
 import PrimeNumberTheoremAnd.RectangleArgumentPrinciple
 import PrimeNumberTheoremAnd.IEANTN.KadiriZeroCounting
 import Stage3.Stirling
+import Stage3.ArgCrude
+import Stage3.JensenCount
 
 namespace Stage3
 
@@ -1131,7 +1174,56 @@ theorem arg_sum_eq_pi {T : ℝ} (hT : 0 < T) :
   rw [neg_div, Real.arcsin_neg]
   ring
 
+/-! ## The identity
+
+`StmtArgIdentity θ S` asks for `N T = θ T / π + 1 + S T` at every
+`T ≥ 2`. Slice 3 gives `π·N T = Re W − Im U` at good heights. Define
+`argS` as exactly the residual that equation leaves once the phase is
+subtracted:
+
+    argS T := N T − (phaseTheta T / π + 1)
+
+so the identity holds BY CONSTRUCTION at every `T`, with no hypothesis
+at all — and the content moves entirely into what `argS` can be bounded
+by, which is `StmtSFromLocal`'s job (the O77 measurement
+`|S T| ≤ 0.462·cnt T + 0.508`, entry 156). This is the honest split:
+the identity is definitional once the phase is fixed, and every ounce
+of analysis lives in the bound. -/
+
+/-- **`S(T)`, defined as the residual** of the count against the phase
+main term. -/
+def argS (T : ℝ) : ℝ := riemannZeta.N T - (phaseTheta T / Real.pi + 1)
+
+/-- **THE IDENTITY, DISCHARGED.** `StmtArgIdentity phaseTheta argS`
+holds — the rectangle identity in the shape `ArgCrude` consumes. -/
+theorem stmtArgIdentity_holds : StmtArgIdentity phaseTheta argS := by
+  intro T _hT
+  rw [argS]
+  ring
+
+/-- **The leaf, in the form `ArgCrude.argCrude_of_pieces` wants.**
+Supplying `StmtSFromLocal argS zetaLocalCount a b` — the remaining
+analytic obligation — now yields `StmtBacklundArg` and hence, with
+entry 140's Stirling half, the full `Riemann_vonMangoldt_bound`. -/
+theorem backlundArg_of_sFromLocal {a b A₁ A₃ : ℝ} (ha : 0 ≤ a)
+    (hSF : StmtSFromLocal argS zetaLocalCount a b)
+    (hL : StmtLocalCount zetaLocalCount A₁ A₃) :
+    StmtBacklundArg phaseTheta (a * A₁) (a * A₃ + b) :=
+  argCrude_of_pieces ha stmtArgIdentity_holds hSF hL
+
+/-- **hNT from one remaining bound.** With the Stirling half already a
+theorem (`backlundPhase_holds : StmtBacklundPhase phaseTheta 97 98`,
+entry 140) and the Jensen count discharged (`localCount_holds :
+StmtLocalCount zetaLocalCount 15 73`, entry 156), the whole
+Riemann–von Mangoldt band follows from `StmtSFromLocal` alone. -/
+theorem rvM_of_sFromLocal {a b : ℝ} (ha : 0 ≤ a)
+    (hSF : StmtSFromLocal argS zetaLocalCount a b) :
+    riemannZeta.Riemann_vonMangoldt_bound (97 + a * 15) 0 (98 + (a * 73 + b)) :=
+  rvM_of_stirling_and_pieces ha backlundPhase_holds stmtArgIdentity_holds
+    hSF localCount_holds
+
 end
+
 
 
 /-! ## Axiom check
@@ -1208,6 +1300,18 @@ compiler and **`lake build` fails**. This is a check, not a printout.
 /-- info: 'Stage3.logDeriv_xi_split' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stage3.logDeriv_xi_split
+
+/-- info: 'Stage3.arg_sum_eq_pi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.arg_sum_eq_pi
+
+/-- info: 'Stage3.stmtArgIdentity_holds' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.stmtArgIdentity_holds
+
+/-- info: 'Stage3.rvM_of_sFromLocal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.rvM_of_sFromLocal
 
 /-- info: 'Stage3.completedZeta₀_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
