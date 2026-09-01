@@ -300,6 +300,10 @@ depending on anything not listed, the docstring stops matching the compiler and
 **`lake build` fails**. This is a check, not a printout.
 -/
 
+/-- info: 'RelativeGate.relWindow_term_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms RelativeGate.relWindow_term_le
+
 /-- info: 'RelativeGate.relError_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms RelativeGate.relError_bound

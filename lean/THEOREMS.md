@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-325 theorems across 26 modules. Every one carries a
+333 theorems across 27 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -85,7 +85,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `ceiling_base` | D4. | ℂ floor | `Euler-Factor-Chain.md`, `lab_notebook_2.md` |
 | `ceiling_dominates_floor` | D3. | ℂ floor | `Euler-Factor-Chain.md`, `The-Deep-Ladder.md`, `lab_notebook_2.md` |
 | `joint_gain_periodic_of_commensurate` | The collapse. | ℂ floor | `lab_notebook_2.md` |
-| `second_ladder_winds_densely` | The torus. | ℂ floor | `lab_notebook_2.md` |
+| `second_ladder_winds_densely` | The torus. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 
 ## Construction (6)
 
@@ -226,20 +226,20 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `two_pow_ne_three_pow` | Parity kills it. | ℂ floor | **UNTAGGED** |
-| `nat_log_indep` | The same, over `ℕ` and in logarithmic form: `a·log 2 = b·log 3` forces `a = b = 0`. | — | **UNTAGGED** |
-| `log_indep` | `log 2` and `log 3` are independent over `ℤ`. | ℂ floor | **UNTAGGED** |
-| `irrational_log_two_div_log_three` | `log 2 / log 3` is irrational. | ℂ floor | **UNTAGGED** |
-| `triadic_winds_densely_on_dyadic` | The triadic ladder winds densely on the dyadic circle. | ℂ floor | **UNTAGGED** |
+| `two_pow_ne_three_pow` | Parity kills it. | ℂ floor | `lab_notebook_2.md` |
+| `nat_log_indep` | The same, over `ℕ` and in logarithmic form: `a·log 2 = b·log 3` forces `a = b = 0`. | — | `lab_notebook_2.md` |
+| `log_indep` | `log 2` and `log 3` are independent over `ℤ`. | ℂ floor | `lab_notebook_2.md` |
+| `irrational_log_two_div_log_three` | `log 2 / log 3` is irrational. | ℂ floor | `lab_notebook_2.md` |
+| `triadic_winds_densely_on_dyadic` | The triadic ladder winds densely on the dyadic circle. | ℂ floor | `lab_notebook_2.md` |
 | `offset_of_aliases` | Reading the aliasing relation at a single rung: the phase offset is an integer multiple of `2π`. | — | **UNTAGGED** |
-| `jointAliases_iff_eq` | THE JOINT NO-GO, in reverse. | ℂ floor | **UNTAGGED** |
+| `jointAliases_iff_eq` | THE JOINT NO-GO, in reverse. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `exists_dyadic_alias_ne` | Every frequency has a dyadic alias distinct from it — the single ladder's obstruction, restated from `Nyquist.aliases_of_offset`. | — | **UNTAGGED** |
-| `dyadic_alias_resolved_jointly` | THE CONTRAST, AS ONE STATEMENT. | ℂ floor | **UNTAGGED** |
-| `d2_d3_comm` | The two directions commute, so `Δ₂^a Δ₃^b` is well defined regardless of the order the differences are taken in. | — | **UNTAGGED** |
-| `d2_jmode` | The dyadic direction carries the Euler factor at 2. | ℂ floor | **UNTAGGED** |
-| `d3_jmode` | The triadic direction carries the Euler factor at 3. | ℂ floor | **UNTAGGED** |
-| `d2_iter_jmode` | Iterating the dyadic direction. | ℂ floor | **UNTAGGED** |
-| `d3_iter_jmode` | Iterating the triadic direction. | ℂ floor | **UNTAGGED** |
+| `dyadic_alias_resolved_jointly` | THE CONTRAST, AS ONE STATEMENT. | ℂ floor | `lab_notebook_2.md` |
+| `d2_d3_comm` | The two directions commute, so `Δ₂^a Δ₃^b` is well defined regardless of the order the differences are taken in. | — | `lab_notebook_2.md` |
+| `d2_jmode` | The dyadic direction carries the Euler factor at 2. | ℂ floor | `lab_notebook_2.md` |
+| `d3_jmode` | The triadic direction carries the Euler factor at 3. | ℂ floor | `lab_notebook_2.md` |
+| `d2_iter_jmode` | Iterating the dyadic direction. | ℂ floor | `lab_notebook_2.md` |
+| `d3_iter_jmode` | Iterating the triadic direction. | ℂ floor | `lab_notebook_2.md` |
 
 ## MainTerm (10)
 
@@ -347,6 +347,19 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `neg_one_pow` | `(−1)^m` is `1` or `−1`. | propext | `lab_notebook_2.md` |
 | `cone_filled` | No lacunae. | propext, Quot.sound | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `flux_form` | The flux form. | propext, Quot.sound | `lab_notebook_2.md` |
+
+## RelativeGate (8)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `relWindow_term_le` | Each windowed relative bound is the top-of-window scale times `2^(−k)`. | ℂ floor | **UNTAGGED** |
+| `relError_bound` | The error bound, shape-free. | ℂ floor | **UNTAGGED** |
+| `relGate_iff` | THE GATE, REDUCED. | ℂ floor | **UNTAGGED** |
+| `relGate_eps` | The threshold as a single constant divided by `log x`: with `log x = r·log 2`, the gate reads `ρ < ε_d / log x` where `ε_d = 0.5·(log 2/3)^(d+1)`. | ℂ floor | **UNTAGGED** |
+| `nonvanishing_of_relErr` | The arrow, with no assumption on the error's shape. | ℂ floor | **UNTAGGED** |
+| `tableFrom_ne_zero_of_relErr` | Onto the integer table, shape-free. | ℂ floor | **UNTAGGED** |
+| `schoenfeldWindow_relErr` | The weld to the RH layer. | ℂ floor | **UNTAGGED** |
+| `powerSaving_relErr` | The power-saving instance. | ℂ floor | **UNTAGGED** |
 
 ## Schoenfeld (2)
 
