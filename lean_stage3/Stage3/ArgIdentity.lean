@@ -1174,6 +1174,236 @@ theorem arg_sum_eq_pi {T : ℝ} (hT : 0 < T) :
   rw [neg_div, Real.arcsin_neg]
   ring
 
+
+/-! ## Slice 6: the two evaluations — `π` and the phase
+
+With `E s = 1/s + 1/(s−1)` and `G = logDeriv Γℝ`, the folded functional
+`Re(∫ right) − Im(∫ top)` evaluates on those two pieces to exactly `π`
+and exactly `phaseTheta T`. What is then left of `logDeriv xi` is
+`π · S`, with `S` the classical continuous argument variation — so the
+identity below is a theorem about an independently-defined `S`, not a
+definition of one. -/
+
+/-- The elementary factor's logarithmic derivative. -/
+def elemLD (s : ℂ) : ℂ := 1 / s + 1 / (s - 1)
+
+/-- **The elementary term contributes exactly `π`.** All four FTC log
+differences cancel except `arg(1/2+iT) + arg(−1/2+iT)`, which is
+`arg_sum_eq_pi`. This is where the `+1` of the identity comes from. -/
+theorem elem_fold_eq_pi {T : ℝ} (hT : 0 < T) :
+    (∫ t in (0:ℝ)..T, elemLD (2 + (t : ℂ) * Complex.I)).re
+      - (∫ x in (1/2:ℝ)..2, elemLD ((x : ℂ) + T * Complex.I)).im
+      = Real.pi := by
+  -- the right edge splits into the two vertical FTCs at `c = 2` and `c = 1`
+  have hcont2 : Continuous fun t : ℝ => ((2 : ℂ) + (t : ℂ) * Complex.I)⁻¹ := by
+    refine Continuous.inv₀ (by continuity) fun t h => ?_
+    have := congrArg Complex.re h
+    simp at this
+  have hcont1 : Continuous fun t : ℝ => ((1 : ℂ) + (t : ℂ) * Complex.I)⁻¹ := by
+    refine Continuous.inv₀ (by continuity) fun t h => ?_
+    have := congrArg Complex.re h
+    simp at this
+  have hW : (∫ t in (0:ℝ)..T, elemLD (2 + (t : ℂ) * Complex.I))
+      = (∫ t in (0:ℝ)..T, ((2 : ℂ) + (t : ℂ) * Complex.I)⁻¹)
+        + ∫ t in (0:ℝ)..T, ((1 : ℂ) + (t : ℂ) * Complex.I)⁻¹ := by
+    rw [← intervalIntegral.integral_add (hcont2.intervalIntegrable _ _)
+      (hcont1.intervalIntegrable _ _)]
+    refine intervalIntegral.integral_congr fun t _ => ?_
+    show (1:ℂ) / (2 + (t : ℂ) * Complex.I)
+      + 1 / ((2 + (t : ℂ) * Complex.I) - 1) = _
+    rw [one_div, one_div]
+    congr 1
+    congr 1
+    ring
+  -- the top edge splits into the two horizontal FTCs at `d = 0` and `d = 1`
+  have hcontT0 : Continuous fun x : ℝ => (((x : ℂ) - ((0:ℝ) : ℂ)) + T * Complex.I)⁻¹ := by
+    refine Continuous.inv₀ (by continuity) fun x h => ?_
+    have := congrArg Complex.im h
+    simp at this
+    linarith
+  have hcontT1 : Continuous fun x : ℝ => (((x : ℂ) - ((1:ℝ) : ℂ)) + T * Complex.I)⁻¹ := by
+    refine Continuous.inv₀ (by continuity) fun x h => ?_
+    have := congrArg Complex.im h
+    simp at this
+    linarith
+  have hU : (∫ x in (1/2:ℝ)..2, elemLD ((x : ℂ) + T * Complex.I))
+      = (∫ x in (1/2:ℝ)..2, (((x : ℂ) - ((0:ℝ) : ℂ)) + T * Complex.I)⁻¹)
+        + ∫ x in (1/2:ℝ)..2, (((x : ℂ) - ((1:ℝ) : ℂ)) + T * Complex.I)⁻¹ := by
+    rw [← intervalIntegral.integral_add (hcontT0.intervalIntegrable _ _)
+      (hcontT1.intervalIntegrable _ _)]
+    refine intervalIntegral.integral_congr fun x _ => ?_
+    show (1:ℂ) / ((x : ℂ) + T * Complex.I)
+      + 1 / (((x : ℂ) + T * Complex.I) - 1) = _
+    rw [one_div, one_div]
+    congr 1
+    · congr 1
+      push_cast
+      ring
+    · congr 1
+      push_cast
+      ring
+  have hv2 := integral_inv_vertical (c := (2:ℝ)) (by norm_num) T
+  have hv1 := integral_inv_vertical (c := (1:ℝ)) (by norm_num) T
+  have hc2 : (∫ t in (0:ℝ)..T, ((2 : ℂ) + (t : ℂ) * Complex.I)⁻¹)
+      = ∫ t in (0:ℝ)..T, (((2:ℝ) : ℂ) + (t : ℂ) * Complex.I)⁻¹ := by
+    refine intervalIntegral.integral_congr fun t _ => ?_
+    norm_num
+  have hc1 : (∫ t in (0:ℝ)..T, ((1 : ℂ) + (t : ℂ) * Complex.I)⁻¹)
+      = ∫ t in (0:ℝ)..T, (((1:ℝ) : ℂ) + (t : ℂ) * Complex.I)⁻¹ := by
+    refine intervalIntegral.integral_congr fun t _ => ?_
+    norm_num
+  rw [hW, hU, hc2, hc1, hv2, hv1,
+    integral_inv_horizontal 0 (1/2) 2 hT, integral_inv_horizontal 1 (1/2) 2 hT]
+  -- everything is now `log`s; take real/imaginary parts
+  have hlog2 : (Complex.log ((2:ℝ) : ℂ)).im = 0 := by
+    rw [Complex.log_im, Complex.arg_ofReal_of_nonneg (by norm_num)]
+  have hlog1 : (Complex.log ((1:ℝ) : ℂ)).im = 0 := by
+    rw [Complex.log_im, Complex.arg_ofReal_of_nonneg (by norm_num)]
+  simp only [Complex.add_re, Complex.add_im, Complex.sub_re, Complex.sub_im,
+    Complex.neg_re, Complex.neg_im, Complex.mul_re, Complex.mul_im,
+    Complex.I_re, Complex.I_im, Complex.log_im]
+  -- normalise the four endpoint arguments
+  have n1 : (((2:ℝ) : ℂ) - ((0:ℝ) : ℂ) + (T : ℂ) * Complex.I)
+      = ((2:ℝ) : ℂ) + (T : ℂ) * Complex.I := by push_cast; ring
+  have n2 : (((1/2:ℝ) : ℂ) - ((0:ℝ) : ℂ) + (T : ℂ) * Complex.I)
+      = ((1/2:ℝ) : ℂ) + (T : ℂ) * Complex.I := by push_cast; ring
+  have n3 : (((2:ℝ) : ℂ) - ((1:ℝ) : ℂ) + (T : ℂ) * Complex.I)
+      = ((1:ℝ) : ℂ) + (T : ℂ) * Complex.I := by push_cast; ring
+  have n4 : (((1/2:ℝ) : ℂ) - ((1:ℝ) : ℂ) + (T : ℂ) * Complex.I)
+      = ((-(1/2):ℝ) : ℂ) + (T : ℂ) * Complex.I := by push_cast; ring
+  rw [n1, n2, n3, n4]
+  have a2 : Complex.arg ((2:ℝ) : ℂ) = 0 :=
+    Complex.arg_ofReal_of_nonneg (by norm_num)
+  have a1 : Complex.arg ((1:ℝ) : ℂ) = 0 :=
+    Complex.arg_ofReal_of_nonneg (by norm_num)
+  rw [a2, a1]
+  have hsum := arg_sum_eq_pi hT
+  linarith [hsum]
+
+/-- `logDeriv Γℝ` is analytic on the open right half-plane. -/
+theorem logDeriv_gammaR_analyticAt {z : ℂ} (hz : 0 < z.re) :
+    AnalyticAt ℂ (logDeriv Gammaℝ) z := by
+  have hopen : IsOpen {s : ℂ | 0 < s.re} := isOpen_lt continuous_const continuous_re
+  have hanal : AnalyticOnNhd ℂ Gammaℝ {s : ℂ | 0 < s.re} := by
+    refine DifferentiableOn.analyticOnNhd ?_ hopen
+    exact fun w hw => (differentiableAt_gammaR hw).differentiableWithinAt
+  have hderiv : AnalyticAt ℂ (deriv Gammaℝ) z := (hanal.deriv_of_isOpen hopen) z hz
+  have hΓ : AnalyticAt ℂ Gammaℝ z := hanal z hz
+  have hrw : logDeriv Gammaℝ = fun w => deriv Gammaℝ w / Gammaℝ w := rfl
+  rw [hrw]
+  exact hderiv.div hΓ (Gammaℝ_ne_zero_of_re_pos hz)
+
+theorem logDeriv_gammaR_continuousAt {z : ℂ} (hz : 0 < z.re) :
+    ContinuousAt (logDeriv Gammaℝ) z :=
+  (logDeriv_gammaR_analyticAt hz).continuousAt
+
+theorem logDeriv_gammaR_holo :
+    HolomorphicOn (logDeriv Gammaℝ) {s : ℂ | 0 < s.re} :=
+  fun z hz => (logDeriv_gammaR_analyticAt hz).differentiableAt.differentiableWithinAt
+
+/-- Continuity of `logDeriv Γℝ` along a real-parametrised path staying
+in the right half-plane. -/
+theorem logDeriv_gammaR_comp_continuous {g : ℝ → ℂ} (hg : Continuous g)
+    (hpos : ∀ x : ℝ, 0 < (g x).re) :
+    Continuous fun x : ℝ => logDeriv Gammaℝ (g x) := by
+  rw [continuous_iff_continuousAt]
+  intro x
+  exact (logDeriv_gammaR_continuousAt (hpos x)).comp hg.continuousAt
+
+/-- **The `Γℝ` term contributes exactly `phaseTheta T`.** Cauchy moves
+the path onto the critical vertical: the bottom edge is real
+(`logDeriv_gammaR_im_eq_zero`) so contributes nothing to the imaginary
+part, and on `s = 1/2 + it` the digamma argument is `1/4 + it/2`,
+which is `Stirling.zq t`, so the real part is
+`−(log π)/2 + phasePoint t / 2` — `phaseTheta`'s integrand. -/
+theorem gammaR_fold_eq_phaseTheta {T : ℝ} (hT : 0 < T) :
+    (∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re
+      - (∫ x in (1/2:ℝ)..2, logDeriv Gammaℝ ((x : ℂ) + T * Complex.I)).im
+      = phaseTheta T := by
+  set G : ℂ → ℂ := logDeriv Gammaℝ with hG
+  -- Cauchy on the rectangle `[1/2,2] × [0,T]`
+  have hsub : Rectangle ((1/2 : ℂ)) ((2 : ℂ) + Complex.I * T) ⊆ {s : ℂ | 0 < s.re} := by
+    intro p hp
+    have hzre : ((1/2 : ℂ)).re = 1/2 := by norm_num
+    have hzim : ((1/2 : ℂ)).im = 0 := by norm_num
+    have hwre : ((2 : ℂ) + Complex.I * (T : ℂ)).re = 2 := by simp
+    have hwim : ((2 : ℂ) + Complex.I * (T : ℂ)).im = T := by simp
+    rw [Rectangle, hzre, hzim, hwre, hwim,
+      Set.uIcc_of_le (by norm_num : (1/2 : ℝ) ≤ 2),
+      Set.uIcc_of_le hT.le] at hp
+    obtain ⟨hre, -⟩ := Complex.mem_reProdIm.mp hp
+    simp only [Set.mem_setOf_eq]
+    linarith [hre.1]
+  have hcauchy : RectangleIntegral G ((1/2 : ℂ)) ((2 : ℂ) + Complex.I * T) = 0 :=
+    logDeriv_gammaR_holo.vanishesOnRectangle hsub
+  have hzre : ((1/2 : ℂ)).re = 1/2 := by norm_num
+  have hzim : ((1/2 : ℂ)).im = 0 := by norm_num
+  have hwre : ((2 : ℂ) + Complex.I * (T : ℂ)).re = 2 := by simp
+  have hwim : ((2 : ℂ) + Complex.I * (T : ℂ)).im = T := by simp
+  rw [RectangleIntegral, hzre, hzim, hwre, hwim, HIntegral, HIntegral,
+    VIntegral, VIntegral] at hcauchy
+  -- match the casts on the two vertical edges and the top edge
+  have hcast2 : (∫ y in (0:ℝ)..T, G (((2:ℝ) : ℂ) + (y : ℂ) * Complex.I))
+      = ∫ t in (0:ℝ)..T, G ((2 : ℂ) + (t : ℂ) * Complex.I) := by
+    refine intervalIntegral.integral_congr fun t _ => ?_
+    norm_num
+  have hcastTop : (∫ x in (1/2:ℝ)..2, G ((x : ℂ) + (T : ℂ) * Complex.I))
+      = ∫ x in (1/2:ℝ)..2, G ((x : ℂ) + T * Complex.I) := rfl
+  rw [hcast2] at hcauchy
+  -- the bottom edge is real, so contributes nothing to the imaginary part
+  have hbot : (∫ x in (1/2:ℝ)..2, G ((x : ℂ) + ((0:ℝ) : ℂ) * Complex.I)).im = 0 := by
+    have hpt : ∀ x : ℝ, G ((x : ℂ) + ((0:ℝ) : ℂ) * Complex.I)
+        = (((G ((x : ℝ) : ℂ)).re : ℝ) : ℂ) := by
+      intro x
+      have hx : ((x : ℂ) + ((0:ℝ) : ℂ) * Complex.I) = ((x : ℝ) : ℂ) := by
+        push_cast; ring
+      rw [hx]
+      refine Complex.ext rfl ?_
+      rw [Complex.ofReal_im, hG]
+      exact logDeriv_gammaR_im_eq_zero x
+    rw [intervalIntegral.integral_congr (fun x _ => hpt x)]
+    rw [show (∫ x in (1/2:ℝ)..2, (((G ((x : ℝ) : ℂ)).re : ℝ) : ℂ))
+        = (((∫ x in (1/2:ℝ)..2, (G ((x : ℝ) : ℂ)).re) : ℝ) : ℂ) from ?_]
+    · simp
+    · rw [intervalIntegral.integral_of_le (by norm_num : (1/2:ℝ) ≤ 2),
+        intervalIntegral.integral_of_le (by norm_num : (1/2:ℝ) ≤ 2)]
+      exact integral_complex_ofReal
+  -- the critical vertical: its real part is the phase
+  have hvert : (∫ y in (0:ℝ)..T, G (((1/2 : ℝ) : ℂ) + (y : ℂ) * Complex.I)).re
+      = phaseTheta T := by
+    have hpos : ∀ y : ℝ, 0 < (((1/2 : ℝ) : ℂ) + (y : ℂ) * Complex.I).re := by
+      intro y; simp
+    have hcont : Continuous fun y : ℝ => G (((1/2 : ℝ) : ℂ) + (y : ℂ) * Complex.I) :=
+      logDeriv_gammaR_comp_continuous (by continuity) hpos
+    rw [intervalIntegral_re (hcont.intervalIntegrable _ _)]
+    have hptwise : ∀ y : ℝ,
+        (G (((1/2 : ℝ) : ℂ) + (y : ℂ) * Complex.I)).re
+          = -(Real.log Real.pi) / 2 + phasePoint y / 2 := by
+      intro y
+      rw [hG, logDeriv_gammaR (hpos y)]
+      have hzq : (((1/2 : ℝ) : ℂ) + (y : ℂ) * Complex.I) / 2 = zq y := by
+        rw [zq]; push_cast; ring
+      rw [hzq, phasePoint_eq]
+      simp only [Complex.add_re, Complex.div_re, Complex.neg_re, Complex.ofReal_re,
+        Complex.ofReal_im, Complex.normSq_ofNat, Complex.re_ofNat, Complex.im_ofNat]
+      ring
+    rw [intervalIntegral.integral_congr (fun y _ => hptwise y)]
+    rw [intervalIntegral.integral_add
+      (intervalIntegrable_const)
+      ((intervalIntegrable_phasePoint 0 T).div_const 2)]
+    rw [intervalIntegral.integral_const, phaseTheta,
+      intervalIntegral.integral_div]
+    simp only [smul_eq_mul, sub_zero]
+    ring
+  -- assemble: take imaginary parts of the Cauchy relation
+  have him := congrArg Complex.im hcauchy
+  simp only [Complex.sub_im, Complex.add_im, Complex.smul_im, Complex.zero_im,
+    smul_eq_mul, Complex.mul_im, Complex.I_re, Complex.I_im, Complex.mul_re] at him
+  rw [hbot] at him
+  rw [← hvert]
+  linarith [him]
+
+
 /-! ## The identity
 
 `StmtArgIdentity θ S` asks for `N T = θ T / π + 1 + S T` at every
