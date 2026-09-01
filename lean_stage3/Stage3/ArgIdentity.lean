@@ -812,6 +812,154 @@ theorem pi_mul_N_eq {T : ℝ} (hT : 2 ≤ T)
   ring_nf at him ⊢
   linarith [him]
 
+/-! ## Slice 4: the factor split on the right half-plane
+
+On `{Re s > 0, s ≠ 1, ζ s ≠ 0}` — which covers both surviving edges at
+a good height — `logDeriv xi` splits into the four classical terms:
+`1/s + 1/(s−1)` (which will integrate to the `+1`), `logDeriv Γℝ`
+(which is `−(log π)/2 + ψ(s/2)/2`, the phase's derivative), and
+`logDeriv ζ` (which becomes `S`). -/
+
+/-- `logDeriv` only sees the germ. -/
+theorem logDeriv_congr_of_eventuallyEq {f g : ℂ → ℂ} {x : ℂ}
+    (h : f =ᶠ[nhds x] g) : logDeriv f x = logDeriv g x := by
+  rw [logDeriv_apply, logDeriv_apply, h.deriv_eq, h.eq_of_nhds]
+
+/-- The exponential factor of `Γℝ`, as an explicit exponential. -/
+theorem gammaR_eq_exp_mul (s : ℂ) :
+    Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Complex.Gamma (s / 2) := by
+  rw [Gammaℝ_def]
+  congr 1
+  rw [Complex.cpow_def_of_ne_zero (by
+    exact_mod_cast Real.pi_ne_zero : (Real.pi : ℂ) ≠ 0)]
+  rw [← Complex.ofReal_log Real.pi_pos.le]
+  congr 1
+  ring
+
+theorem differentiableAt_gammaR {s : ℂ} (h0 : 0 < s.re) :
+    DifferentiableAt ℂ Gammaℝ s := by
+  have h : Gammaℝ = fun s =>
+      Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Complex.Gamma (s / 2) :=
+    funext gammaR_eq_exp_mul
+  rw [h]
+  refine DifferentiableAt.mul ?_ ?_
+  · exact (Complex.differentiable_exp.comp
+      ((differentiable_id.const_mul _))).differentiableAt
+  · refine DifferentiableAt.comp s ?_ (differentiableAt_id.div_const 2)
+    refine Complex.differentiableAt_Gamma _ fun m => ?_
+    intro hm
+    have : (s / 2).re = -(m : ℝ) := by rw [hm]; simp
+    have hre : (s / 2).re = s.re / 2 := by simp [Complex.div_re]
+    rw [hre] at this
+    have hm0 : (0:ℝ) ≤ (m : ℝ) := Nat.cast_nonneg m
+    linarith
+
+/-- **`logDeriv Γℝ` is the phase derivative:** `−(log π)/2 + ψ(s/2)/2`
+on the right half-plane. -/
+theorem logDeriv_gammaR {s : ℂ} (h0 : 0 < s.re) :
+    logDeriv Gammaℝ s
+      = -(Real.log Real.pi : ℂ) / 2 + Complex.digamma (s / 2) / 2 := by
+  have hΓne : Complex.Gamma (s / 2) ≠ 0 := by
+    refine Complex.Gamma_ne_zero fun m => ?_
+    intro hm
+    have : (s / 2).re = -(m : ℝ) := by rw [hm]; simp
+    have hre : (s / 2).re = s.re / 2 := by simp [Complex.div_re]
+    rw [hre] at this
+    have hm0 : (0:ℝ) ≤ (m : ℝ) := Nat.cast_nonneg m
+    linarith
+  have hGdiff : DifferentiableAt ℂ (fun z => Complex.Gamma (z / 2)) s := by
+    refine DifferentiableAt.comp s ?_ (differentiableAt_id.div_const 2)
+    refine Complex.differentiableAt_Gamma _ fun m => ?_
+    intro hm
+    have : (s / 2).re = -(m : ℝ) := by rw [hm]; simp
+    have hre : (s / 2).re = s.re / 2 := by simp [Complex.div_re]
+    rw [hre] at this
+    have hm0 : (0:ℝ) ≤ (m : ℝ) := Nat.cast_nonneg m
+    linarith
+  have h : Gammaℝ = fun z =>
+      Complex.exp (-(Real.log Real.pi : ℂ) / 2 * z) * Complex.Gamma (z / 2) :=
+    funext gammaR_eq_exp_mul
+  rw [h]
+  rw [logDeriv_mul (f := fun z : ℂ => Complex.exp (-(Real.log Real.pi : ℂ) / 2 * z))
+    (g := fun z : ℂ => Complex.Gamma (z / 2)) s (Complex.exp_ne_zero _) hΓne
+    ((Complex.differentiable_exp.comp
+      ((differentiable_id.const_mul _))).differentiableAt) hGdiff]
+  congr 1
+  · -- the exponential factor
+    have hcomp : (fun z : ℂ => Complex.exp (-(Real.log Real.pi : ℂ) / 2 * z))
+        = Complex.exp ∘ (fun z : ℂ => -(Real.log Real.pi : ℂ) / 2 * z) := rfl
+    rw [hcomp, logDeriv_comp (Complex.differentiable_exp.differentiableAt)
+      ((differentiable_id.const_mul _).differentiableAt)]
+    have hde : logDeriv Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) = 1 := by
+      rw [logDeriv_apply, Complex.deriv_exp, div_self (Complex.exp_ne_zero _)]
+    rw [hde, one_mul]
+    have : deriv (fun z : ℂ => -(Real.log Real.pi : ℂ) / 2 * z) s
+        = -(Real.log Real.pi : ℂ) / 2 := by
+      simp
+    rw [this]
+  · -- the Gamma factor
+    have hcomp : (fun z : ℂ => Complex.Gamma (z / 2))
+        = Complex.Gamma ∘ (fun z : ℂ => z / 2) := rfl
+    rw [hcomp, logDeriv_comp (by
+      refine Complex.differentiableAt_Gamma _ fun m => ?_
+      intro hm
+      have : (s / 2).re = -(m : ℝ) := by rw [hm]; simp
+      have hre : (s / 2).re = s.re / 2 := by simp [Complex.div_re]
+      rw [hre] at this
+      have hm0 : (0:ℝ) ≤ (m : ℝ) := Nat.cast_nonneg m
+      linarith) (differentiableAt_id.div_const 2)]
+    have : deriv (fun z : ℂ => z / 2) s = 1 / 2 := by
+      simp [deriv_div_const]
+    rw [this, Complex.digamma_def]
+    ring
+
+/-- **The four-term split** of `logDeriv xi`, valid wherever `Re s > 0`,
+`s ≠ 1` and `ζ s ≠ 0` — both surviving contour edges qualify. -/
+theorem logDeriv_xi_split {s : ℂ} (h0 : 0 < s.re) (h1 : s ≠ 1)
+    (hζ : riemannZeta s ≠ 0) :
+    logDeriv xi s = 1 / s + 1 / (s - 1)
+      + logDeriv Gammaℝ s + logDeriv riemannZeta s := by
+  have hs0 : s ≠ 0 := by
+    intro h; rw [h] at h0; simp at h0
+  have hs1' : s - 1 ≠ 0 := sub_ne_zero.mpr h1
+  have hΓ : Gammaℝ s ≠ 0 := Gammaℝ_ne_zero_of_re_pos h0
+  -- xi agrees with the product on the open right-half slit region
+  have hopen : IsOpen {z : ℂ | 0 < z.re ∧ z ≠ 1} :=
+    (isOpen_lt continuous_const continuous_re).inter isOpen_compl_singleton
+  have hev : xi =ᶠ[nhds s]
+      (fun z => z * (z - 1) * Gammaℝ z * riemannZeta z) :=
+    Filter.eventuallyEq_of_mem (hopen.mem_nhds ⟨h0, h1⟩)
+      (fun z hz => xi_eq_prod hz.1 hz.2)
+  rw [logDeriv_congr_of_eventuallyEq hev]
+  -- peel the four factors
+  have hζdiff : DifferentiableAt ℂ riemannZeta s :=
+    (analyticAt_riemannZeta h1).differentiableAt
+  have hd3 : DifferentiableAt ℂ (fun z : ℂ => z * (z - 1) * Gammaℝ z) s :=
+    ((differentiableAt_id.mul (differentiableAt_id.sub_const 1)).mul
+      (differentiableAt_gammaR h0))
+  have hne3 : s * (s - 1) * Gammaℝ s ≠ 0 :=
+    mul_ne_zero (mul_ne_zero hs0 hs1') hΓ
+  rw [show (fun z : ℂ => z * (z - 1) * Gammaℝ z * riemannZeta z)
+      = (fun z : ℂ => (z * (z - 1) * Gammaℝ z) * riemannZeta z) from rfl,
+    logDeriv_mul (f := fun z : ℂ => z * (z - 1) * Gammaℝ z)
+      (g := riemannZeta) s hne3 hζ hd3 hζdiff]
+  rw [show (fun z : ℂ => z * (z - 1) * Gammaℝ z)
+      = (fun z : ℂ => (z * (z - 1)) * Gammaℝ z) from rfl,
+    logDeriv_mul (f := fun z : ℂ => z * (z - 1)) (g := Gammaℝ) s
+      (mul_ne_zero hs0 hs1') hΓ
+      (differentiableAt_id.mul (differentiableAt_id.sub_const 1))
+      (differentiableAt_gammaR h0)]
+  rw [logDeriv_mul (f := fun z : ℂ => z) (g := fun z : ℂ => z - 1) s
+      hs0 hs1' differentiableAt_id
+      (differentiableAt_id.sub_const 1)]
+  have hid : logDeriv (fun z : ℂ => z) s = 1 / s := logDeriv_id' s
+  have hsub : logDeriv (fun z : ℂ => z - 1) s = 1 / (s - 1) := by
+    rw [logDeriv_apply]
+    have : deriv (fun z : ℂ => z - 1) s = 1 := by
+      simp
+    rw [this]
+  rw [hid, hsub]
+
 end
 
 /-! ## Axiom check
@@ -880,6 +1028,14 @@ compiler and **`lake build` fails**. This is a check, not a printout.
 /-- info: 'Stage3.pi_mul_N_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stage3.pi_mul_N_eq
+
+/-- info: 'Stage3.logDeriv_gammaR' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.logDeriv_gammaR
+
+/-- info: 'Stage3.logDeriv_xi_split' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.logDeriv_xi_split
 
 /-- info: 'Stage3.completedZeta₀_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
