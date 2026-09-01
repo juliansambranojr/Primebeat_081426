@@ -12,7 +12,19 @@ A test earns a verdict only if, **before the run**:
 3. The decision rule names its verdict labels verbatim, including a
    `compromised` branch and a precedence order.
 4. A vacuousness check states that the criterion has a realistic chance
-   of firing in both directions.
+   of firing in both directions. Where the decision rule reads against a
+   null distribution, "realistic chance" is stated as measured **power**:
+   the probability the rule fires at a named effect size, computed
+   *before* the lock, on data that cannot reach the blind arm —
+   synthetics, placebo windows, or an already-unblinded parameter.
+   A design of unknown power cannot tell "no effect" from "could not
+   have seen one", which is what a `null` verdict then fails to mean.
+   Worked examples: `dh_aggregate_spectrum_v1_20260825.md` § Power,
+   `dense_boundary_scan_v1_20260827.md` § Power.
+   A census or a deterministic reconstruction has no null and needs no
+   power — `extended_zero_census_v1_locked_20260818.md` and
+   `floor_reconstruction_v1_20260828.md` are the shape this exempts;
+   the vacuousness check stands alone there.
 5. Provenance is disclosed: which data has already been inspected by
    Julian or an assistant, and which arm is blind.
 
