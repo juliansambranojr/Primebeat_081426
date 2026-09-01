@@ -16,6 +16,121 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 277 — The census priced shape-free: it needs a power saving, not RH — and every proved zero-free region gives depth_covered = 0
+type: result-triage
+refs: 112, 118, 129, 130
+
+Opened as a mispriced scope claim of mine, survived two adversarial
+rounds, and closed as a measurement O68's grid never carried.
+
+**The claim I made, and why it was wrong.** I proposed an
+"unconditional Primebeat": swap `StmtPsiWeak`'s shape for
+`A·x·exp(−c(log x)^α)`, re-tabulate, and run the chain on a zero-free
+region instead of hRH. I priced it on `R(d)` — the rung where the
+arrow starts — and reported that dropping RH costs "a factor of four
+in `r`, which is nothing since `r` is never evaluated numerically."
+
+That is backwards. `R(d)` is not the gate.
+`O68_weak_bound_tolerance.py:22-25` defines it: "covered" means
+`R(d) ≤ 93`, because O43's census supplies computed `π(2^n)` only to
+`r ≤ 92` (`O43_EXTENT = 92` at line 39; the test is
+`Rs[d] ≤ O43_EXTENT + 1` at line 108). The theorem is a PINCER — the
+arrow closes `r ≥ R(d)`, the census closes `r ≤ 92`, and there is a
+result only where they touch. `r` is evaluated numerically at every
+rung to 92, and that evaluation is half the proof. Entry 112 says it
+plainly: "R(d) ≤ 91 for every d ≤ 15, and O43's census covers r ≤ 92.
+Overlap, no gap." Under my own preferred shape, dlVP at c=1, R(1)=89
+but R(3)=194 — `depth_covered = 1`, which does not even reach `(8,3)`.
+
+**The real requirement, stated without assuming a functional form.**
+Reduce `Mlow(r,d) > Ehigh` with a generic relative error
+`ρ(x) = |π(x)−li(x)|/x`. The stencil contributes `(3/2)^(d+1)`, the
+`2^r` cancels on both sides, and what remains is
+
+```text
+ρ(x) < ε_d / log x        ε_d = 0.5·(ln2/3)^(d+1)
+
+d:        1          3          6          10         15
+ε_d:   2.669e-2   1.425e-3   1.758e-5   5.009e-8   3.298e-11
+```
+
+I re-derived this from `lean/Nonvanishing.lean:109-111,178-179` myself
+and it reproduces to every digit. Two consequences follow immediately.
+
+**PNT alone makes the arrow true at every depth — for some R(d).** The
+requirement is `o(1/log x)`, which PNT gives unconditionally. So the
+census never logically needed RH. The entire question is whether
+`R(d)` lands at or below 93.
+
+**And the binding form is a POWER SAVING.** As `|π−li| ≤ A·x^θ` at
+A = 1:
+
+```text
+depth       1        6       10       15
+θ        0.8765   0.7464   0.6310   0.4697
+```
+
+Depth 6 — entry 118's bar, the last row covering `(20,6)`'s own depth
+— is closed by `|π−li| ≤ x^0.7464`, i.e. a zero-free half-plane at
+0.746. That is strictly weaker than RH and is not known to imply it.
+**Depth 15 is closed to any power bound at all**: θ = 0.4697 < 1/2
+contradicts Littlewood's Ω± theorem. RH reaches depth 15 only because
+`√x(log x)²/(8π)` carries log factors no pure power has.
+
+**Every zero-free region anyone has proved gives depth_covered = 0.**
+Not because the gate is RH-shaped — the paragraph above refutes that —
+but because a classical `1 − 1/(R log t)` or Vinogradov–Korobov region
+never yields a power saving at any R. Upstream's sorry-free region is
+`ZetaBounds.lean:2973`, `1 − A/(log|t|)^9`, which is why
+`MediumPNT.lean:3710`'s exponent is `(log x)^(1/10)`. The classical
+region is already an upstream target and already open:
+`IEANTN/ZetaSummary.lean:58,71,82,93` name `classicalZeroFree` at
+R = 5.573412, 5.5666305, 5.558691, 4.896 — all four `sorry`. Under the
+best of those the arrow's first depth-1 rung sits at `r = 677`, i.e.
+`π(2^677) ≈ π(10^204)`.
+
+**The census arm cannot move.** the locked prereg
+`preregs/extended_zero_census_v1_locked_20260818.md` line 116 fixes
+`R_ext = 92` as "the last term of the A007053 b-file … Not chosen for
+the answer; chosen because it is where published data stops." So the
+arrow arm is the only movable one.
+
+**Corrections logged plainly.** Mine: "the cost is a factor of four in
+r, which is nothing" (false — see the pincer); "Stage 3's dependence
+on RH is an artifact of which error shape got assumed" (false); "the
+gap is formalizing de la Vallée Poussin, 1899 mathematics" (it is an
+open upstream target, and it buys `depth_covered = 0`); and I cited
+`VonKochScaffold.lean:641`'s `RH_iff_psiWeak` as proving the shape IS
+RH — that theorem is ψ-side, and grepping `RiemannHypothesis` across
+`lean_stage3/Stage3/` shows every other occurrence is a hypothesis, so
+**no in-tree theorem carries the π-side weak family back to RH**. The
+first adversary's: its verdict sentence "the RH-shaped route is the
+only place a bound strong enough exists" is false by the θ = 0.7464
+row it printed and did not read; its "9–19×" and "37–73×" figures
+understate by ≈2× (18.8–21.4 and 73.5–83.6); its `c = 1/√R`
+translation is asymptotic and at `r = 93` the balance never goes
+negative, so the classical region gives a vacuous bound there; and its
+rebuild table fixes `A = 1`, the same unstated-constant sin it charged
+against MediumPNT three paragraphs earlier.
+
+**Provenance.** Verified by me against the files: the gate reduction
+and every ε_d, the θ = 0.4697 Littlewood contradiction, the
+`depth_covered` semantics, `RH_iff_psiWeak` and `StmtPsiWeak`'s
+definition, the absence of a π-side converse. Produced by adversary 1
+and reproduced independently by adversary 2 (cell for cell, 30/30 to
+three decimals): the `R(d)` table and the minimum-`c` table. Resting on
+adversary 2 alone, unchecked: the `c_eff` table showing `c = 1/√R`
+invalid at census scale, the `r = 677` figure, the A-sensitivity
+numbers, and the non-monotonicity of the α=0.1 row (its `D≥1` cell
+should read 5.287, not 4.788, because `R_of` returns `min r` and the
+gap reopens above it).
+
+**What would sharpen it.** Committing the exponential-family extension
+to O68 itself, so `depth_covered` over
+`A·x·exp(−c(log x)^α)` is a re-runnable artifact rather than scratch;
+and pricing the A-sensitivity properly, since at A = 9.39e9 the depth-6
+θ falls to 0.3612, which Littlewood already forbids.
+
 ## 2026-09-01 — Entry 276 — JointLadder: the joint 2-3 grid has no aliases, and Chain's idle Kronecker theorem finally fires
 type: formalization
 refs: 26, 54, 56, 155, 272, 275

@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-09-01  entry 277: census priced SHAPE-FREE — gate reduces to |π−li|/x < ε_d/log x, so PNT alone suffices at some R(d) and the binding form is a POWER SAVING (depth 6 = x^0.746, weaker than RH). Every proved zero-free region gives depth_covered = 0; depth 15 closed to any power bound by Littlewood. My unconditional-Primebeat proposal rejected over two adversarial rounds
 - [open]   2026-09-01  entry 276: JointLadder.lean — the joint 2-3 grid provably has NO aliases (jointAliases_iff_eq, dual of nyquist_no_go); arithmetic core is parity; Chain.second_ladder_winds_densely fired at (2,3) after sitting idle; the mixed operator carries two Euler factors. 10 pins, 0 sorries, commits ce59e06/32d5339
 - [open]   2026-09-01  entry 275: CORRECTION to 272 — O18 already ran the joint 2-3 test with 200 surrogates and returned NULL on L23, with peaks nearer γ₁ (0.005) than mine; its RANDOM control L_irr peaks at 14.10, 0.035 from γ₁. Entry 272's reading has no evidential content. L235 (341 rungs) DETECTs — density, not the object
 - [open]   2026-09-01  entry 274: StmtArgIdentity DISCHARGED — ArgIdentity.lean: the entire completion xi = s(s-1)Λ₀+1, the fold, and argS PROVED equal to the contour argument variation of ζ at good heights. 58 decls, 25 pins, 0 sorries, commits 8bedcc6→4f34f14. hNT now rests on StmtSFromLocal alone (O77: 0.462·cnt+0.508 to height 900)
