@@ -10,7 +10,19 @@ A test earns a verdict only if, **before the run**:
 1. H0 and H1 are stated, with a predicted direction under H1.
 2. Every parameter is locked in a table (no `--seed` flags added later).
 3. The decision rule names its verdict labels verbatim, including a
-   `compromised` branch and a precedence order.
+   `compromised` branch and a precedence order. `compromised` is the
+   integrity branch: the run executed but the data is corrupt *for
+   reasons unrelated to the hypothesis*, so no verdict is earned —
+   `alpha_depth_trend_v1_locked_20260814.md:103-107` states both its
+   trigger conditions and that reading. Precedence puts it first, ahead
+   of every substantive label, with the did-not-discriminate outcome
+   last: `compromised > depth_dependent > depth_independent >
+   ambiguous` (same file, `:109-110`). Further worked triggers —
+   recomputation disagreeing with frozen values, too few blocks, a
+   control firing a criterion a theorem forbids — are in
+   `dh_aggregate_spectrum_v1_20260825.md:104-106`,
+   `character_sweep_q11_q13_v1_20260826.md:124-126` and
+   `multibase_synthesis_v1_20260827.md:83-86`.
 4. A vacuousness check states that the criterion has a realistic chance
    of firing in both directions. Where the decision rule reads against a
    null distribution, "realistic chance" is stated as measured **power**:
@@ -26,7 +38,15 @@ A test earns a verdict only if, **before the run**:
    `floor_reconstruction_v1_20260828.md` are the shape this exempts;
    the vacuousness check stands alone there.
 5. Provenance is disclosed: which data has already been inspected by
-   Julian or an assistant, and which arm is blind.
+   Julian or an assistant, and which arm is blind. A **blind arm** is a
+   parameter range or data slice never fitted, inspected or tuned
+   before the lock, so the decision rule meets it out of sample. The
+   worked case is again the house standard:
+   `alpha_depth_trend_v1_locked_20260814.md:59` locks
+   `depths (secondary, blind) = 13-18` with the reason "Never fitted.
+   The only out-of-sample arm", `:50` says so in prose, and `:92` shows
+   the rule consuming it. A prereg with no blind arm says so — it is a
+   disclosure, not a requirement.
 
 After the run, the Run record gets `run_start_at`, `run_end_at`, `verdict`,
 `post_compute_sha256`, and a sidecar match statement. **The verdict line is
