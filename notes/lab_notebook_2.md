@@ -16,6 +16,138 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 276 — JointLadder: the joint 2-3 grid has no aliases, and Chain's idle Kronecker theorem finally fires
+type: formalization
+refs: 26, 54, 56, 155, 272, 275
+
+`lean/JointLadder.lean`, new file. 434 lines, 19 declarations (14
+theorems, 5 defs), 10 `#guard_msgs` pins, 0 sorries, every pin
+`[propext, Classical.choice, Quot.sound]` and independently probed for
+`sorryAx`. Commits `ce59e06`, `32d5339`. Bench green at 8052 jobs;
+`THEOREMS.md` regenerated to 325 theorems across 26 modules — which
+also folds in `Elephant`, absent from the index since entry 237.
+
+**Why a theorem and not another run.** Entry 275 records three
+readings of the same object that cannot all be about it: O18 NULL on
+`L23`, DETECT on `L235`, entry 272's peaks on `L23`. A fourth run adds
+a fourth number. What adjudicates is a statement fixed independently of
+any estimator.
+
+**The no-alias theorem.** `jointAliases_iff_eq`: on `{2^m 3^n}` two
+frequencies agree at every rung ONLY IF they are equal. The joint grid
+admits no nonzero alias at all — the exact dual of
+`Nyquist.nyquist_no_go`, which says base 2 alone always admits one.
+Reading the relation at `(1,0)` and `(0,1)` gives `(γ−γ')log 2 = 2πk`
+and `(γ−γ')log 3 = 2πl`; crossing them gives
+`(γ−γ')(l·log 2 − k·log 3) = 0`; and `log_indep` forces `k = l = 0`.
+
+**The arithmetic core is parity, not factorization.**
+`two_pow_ne_three_pow`: `2 ∣ 2^l` while `2 ∤ 3^k`, so `2^l ≠ 3^k` for
+`l > 0`. That lifts through `Real.log_pow` to `nat_log_indep` and then,
+by sign cases, to `log_indep` over ℤ. Cheaper than the factorization
+route and it needs nothing beyond `Nat.prime_two`.
+
+**The contrast, as one statement.** `dyadic_alias_resolved_jointly`:
+for every `γ` there is a `γ' ≠ γ` that the dyadic ladder cannot
+separate from `γ` and the joint grid can. That is the precise sense in
+which the joint instrument escapes what kills the single one.
+
+**Chain's idle theorem, activated.** `Chain.second_ladder_winds_densely`
+proves the general Kronecker iff and had carried no arithmetic input
+since it was written. `irrational_log_two_div_log_three` supplies it (a
+rational `p/n` gives `n·log 2 = p·log 3`, killed by `log_indep`), and
+`triadic_winds_densely_on_dyadic` fires the general theorem at `(2,3)`:
+the triadic ladder's period steps around the dyadic circle never close.
+So `(2,3)` is provably NOT in
+`Chain.joint_gain_periodic_of_commensurate`'s commensurate case — the
+trap t24 measured and entries 54 and 56 recorded. Both compiled on the
+first pass.
+
+**The operator carries two Euler factors.** `d2_jmode`, `d3_jmode` and
+the iterated `d2_iter_jmode` / `d3_iter_jmode`: the joint mode
+`2^(rρ)·3^(mρ)` is an eigenvector of BOTH difference directions, with
+eigenvalues `Chain.Sym 2 ρ` and `Chain.Sym 3 ρ`. So `Δ₂^a Δ₃^b` carries
+the symbol `(1 − 2^(−ρ))^a (1 − 3^(−ρ))^b` — a two-factor truncation of
+the Euler product rather than an ad hoc grid. `d2_d3_comm` makes the
+order immaterial. Single-factor case:
+`Elephant.symbol_of_difference`, `Chain.A3`.
+
+**What it does to the corpus.** O18's NULL on `L23` cannot be the
+structural blindness that kills the single ladder, because that
+blindness provably does not exist on this grid. The NULL is therefore a
+statement about the estimator — grid density, span, weighting, decision
+rule — and entry 275's L23-vs-L235 rung counts (108 against 341) point
+the same way. Without this theorem a NULL quietly closes a line the
+mathematics says is open.
+
+**A defect this caught in itself.** The first draft's docstring claimed
+`log_indep` "is the fact `second_ladder_winds_densely` needs to fire at
+(2,3)" and never fired it — an assertion resting on prose inside a file
+whose purpose is replacing prose with theorems. Julian caught it;
+`32d5339` delivers the instantiation. `check_refs.py` separately caught
+a line-wrapped artifact path in the same docstring.
+
+## 2026-09-01 — Entry 275 — Entry 272 corrected: O18 already ran that test with surrogates, and its random control peaks at γ₁ too
+type: result-triage
+refs: 155, 272
+
+Entry 272 reported the joint 2-3 spectrum as "first light." It is not
+first, and the reading does not survive contact with O18.
+
+**The instrument was not new.** `results/` holds O18
+(`O18_joint_multiplicative_ladder.py`, "Are integer bases blind to the
+zeros *jointly*, or only singly?", CONTEXT.md line 30), O27
+(`joint_dyadic_triadic_table`), O76 (joint orbit zero census, entry
+155) and O94 (`joint_localization`). I proposed the joint ladder as
+"the one genuinely open instrument" without running `ls results/`. I
+had cited O27's own output file earlier the same session, reading
+`Zeros.lean`'s `measured_repeat_20_6`.
+
+**O18 found the same structure and called it NULL.** Run 2, xmax
+1.5e8, γ ∈ [0, 40] step 0.01, 200 surrogates, seed 2026
+(`results/O18_joint_multiplicative_ladder_run2.json`). On `L23` — the
+same 2·3 orbit — the top local peaks include
+
+```text
+γ = 14.13   P/median 3.94   distance to γ₁  0.005
+γ = 24.88   P/median 4.53   distance to γ₃  0.131
+γ = 20.35   P/median 4.20   distance to γ₂  0.672
+```
+
+closer to γ₁ than entry 272's 14.095 (0.040 off), on 108 rungs against
+my 244 grid points. **Verdict: NULL.** The preregistered decision rule,
+with surrogates, declined it.
+
+**The control is the decisive number.** `L_irr` — "same rung count and
+same first/last x as L23, interior rungs a sorted uniform random sample
+in log x at the fixed seed" — peaks at **γ = 14.10, P/median 3.03,
+0.035 from γ₁**. A ladder built from random rungs lands nearer γ₁ than
+my joint grid did. A peak near γ₁ on ~10² log-spaced rungs is what
+this estimator produces from noise. Entry 272's reading therefore has
+no evidential content, and its "the comb is gone / the peaks are the
+zeros" language should be read as retired.
+
+**What a detection looks like here, for contrast.** `L235` (adding
+base 5, 341 rungs) returns **DETECT**: six top peaks, all in-band, all
+within 0.41 of a zero, P/median 3.5–5.3. Same estimator, same
+surrogates, same seed.
+
+**The artifact could not have supported the claim anyway.**
+`analysis/2026-09-01_joint_ladder/joint_ladder.py` computes the full
+power array and writes only `top_peaks(...)[:6]`. The spectrum is not
+in the JSON, so peak width, noise floor and comb structure are not
+recoverable from it — and I read six numbers while describing them as
+a spectrum. Also misstated: the joint grid's actual leading peak is
+`γ = 0.815, P = 0.0741`, above the 14.095 peak's 0.0698; entry 272
+calls the sub-2 peaks "trend" without testing that.
+
+**What the corpus should carry forward.** L23 NULL at 108 rungs and
+L235 DETECT at 341 rungs, on one estimator, points at grid density
+rather than at the object. Entry 276's theorem settles that reading
+from the other side: aliasing is provably not the obstruction on this
+grid, so the NULL is about the estimator. Anything further here needs a
+prereg with surrogates, not another exploratory run.
+
 ## 2026-09-01 — Entry 274 — StmtArgIdentity: the entire completion, the fold, and S(T) proved to be the argument
 type: formalization
 refs: 130, 140, 141, 156, 271, 273
