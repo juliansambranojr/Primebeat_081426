@@ -16,6 +16,70 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 278 — RelativeGate: the shape-free gate is a theorem now, not a hand derivation
+type: formalization
+refs: 118, 130, 277
+
+`lean/RelativeGate.lean`, new file. 335 lines, 10 declarations (8
+theorems, 2 defs), 8 `#guard_msgs` pins, 0 sorries, every pin
+`[propext, Classical.choice, Quot.sound]`, four headline theorems
+independently probed for `sorryAx`. Commits `4fd0294`, `80d2529`.
+Bench green at 8053 jobs; `THEOREMS.md` regenerated to 333 theorems
+across 27 modules.
+
+**What this promotes.** Entry 277's load-bearing claim — that the
+census gate needs no error shape — rested on algebra I did by hand and
+two agents agreeing about a formula that existed in no file. That was
+the entry's own "provisional" tier. It is now kernel-checked.
+
+**The reduction, as a theorem.** `relGate_iff`: carry
+`StmtRelErrWindow f L r n ρ`, i.e. `|f(m) − L(m)| ≤ ρ·2^m` on the
+window with no functional form assumed, and `relError_bound` gives the
+accumulated ceiling `EhighRel r n ρ = ρ·2^r·(3/2)^n` — the binomial
+sum contributing `Σ C(n,k)2^(−k) = (3/2)^n`, the exact analogue of
+`Nonvanishing.Ehigh`'s `(1+2^(−1/2))^n` with `2^(−1/2)` replaced by
+`2^(−1)`. Against `Mlow` the factor `2^r` cancels and the kernel
+certifies
+
+```text
+ρ·2^r·(3/2)^(d+1) < Mlow r d  ↔  ρ < (log 2)^d / (2·r·3^(d+1))
+```
+
+`relGate_eps` rewrites the threshold as `ε_d / log x` with
+`ε_d = 0.5·(log 2/3)^(d+1)`, so the constant falls by `3/log 2 ≈ 4.33`
+per unit of depth. That factor is the price of depth, and it is now a
+theorem rather than a number in a notebook.
+
+`nonvanishing_of_relErr` and `tableFrom_ne_zero_of_relErr` mirror
+`Nonvanishing`'s arrow with the shape-free hypothesis in place of
+`StmtSchoenfeldWindow`.
+
+**Two instances weld it to what exists.** `schoenfeldWindow_relErr`:
+the RH window hypothesis is a special case, so nothing is lost by
+working shape-free. `powerSaving_relErr`: a bound `|f − L| ≤ A·x^θ`
+yields `ρ = A·2^((r−n)(θ−1))`, which is the form in which the depth
+threshold becomes a statement about the exponent `θ` alone.
+
+**The kernel caught two things I would have shipped.** The first weld
+used the TOP of the window as its witness. Relative error `2^(−m/2)`
+grows as `m` falls, so the worst rung is the window's BOTTOM — the
+correct witness is `ρ = (log 2·r/(8π))·2^(−(r−n)/2)`. I had written a
+comment inside that proof conceding the inequality ran the wrong way
+and was still going to build it. Separately, `theorem_index.py` had run
+before my final edit landed, so `4fd0294` committed a stale index
+claiming 325 theorems across 26 modules with no `RelativeGate` section
+at all; `80d2529` fixes that and pins `relWindow_term_le`, which I had
+left without a `#guard_msgs` block while the index header asserts every
+theorem carries one.
+
+**What is still NOT settled.** This file proves the gate's REDUCTION.
+It does not evaluate it. The `R(d)` and minimum-`c` tables of entry
+277, and everything downstream of them — the `θ = 0.7464` figure at
+depth 6, `depth_covered = 0` for the proved regions — remain the work
+of two agents against scratch scripts. Promoting those needs O68 itself
+extended to the exponential family and committed, which entry 277's
+"what would sharpen it" already names.
+
 ## 2026-09-01 — Entry 277 — The census priced shape-free: it needs a power saving, not RH — and every proved zero-free region gives depth_covered = 0
 type: result-triage
 refs: 112, 118, 129, 130
