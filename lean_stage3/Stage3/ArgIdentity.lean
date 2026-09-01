@@ -33,6 +33,8 @@ function, no alternating series.
 -/
 import Mathlib
 import PrimeNumberTheoremAnd.StrongPNT
+import PrimeNumberTheoremAnd.RectangleArgumentPrinciple
+import PrimeNumberTheoremAnd.IEANTN.KadiriZeroCounting
 
 namespace Stage3
 
@@ -378,6 +380,221 @@ theorem meromorphicOrderAt_xi_eq_zeta {ρ : ℂ} (h0 : 0 < ρ.re) (h1 : ρ.re < 
     _ = meromorphicOrderAt riemannZeta ρ :=
         (meromorphicOrderAt_congr (hev.filter_mono nhdsWithin_le_nhds)).symm
 
+/-! ## Slice 2C: the rectangle contour integral IS the zero count
+
+`RectangleIntegral' (logDeriv xi)` over `[−1,2] × [0,T]` equals
+`riemannZeta.N T` at any good height (no zero at `Im = T`), by
+upstream's `rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt`
+plus the identification of `xi`'s divisor support with
+`zeroes_rect univ (Ioo 0 T)`. -/
+
+theorem xi_analyticAt (s : ℂ) : AnalyticAt ℂ xi s :=
+  (analyticOnNhd_univ_iff_differentiable.mpr differentiable_xi) s (Set.mem_univ s)
+
+/-- `xi` is nowhere locally zero: its order is finite everywhere,
+because `xi 0 = 1` and `ℂ` is connected. -/
+theorem xi_meromorphicOrderAt_ne_top (p : ℂ) : meromorphicOrderAt xi p ≠ ⊤ := by
+  intro h
+  rw [(xi_analyticAt p).meromorphicOrderAt_eq] at h
+  have htop : analyticOrderAt xi p = ⊤ := by
+    cases hn : analyticOrderAt xi p
+    · rfl
+    · rw [hn] at h; simp [ENat.map_coe] at h
+  have hev : xi =ᶠ[nhds p] 0 := analyticOrderAt_eq_top.mp htop
+  have hzero : Set.EqOn xi 0 Set.univ :=
+    AnalyticOnNhd.eqOn_zero_of_preconnected_of_eventuallyEq_zero
+      (analyticOnNhd_univ_iff_differentiable.mpr differentiable_xi)
+      isPreconnected_univ (Set.mem_univ p) hev
+  have := hzero (Set.mem_univ 0)
+  rw [xi_zero] at this
+  exact one_ne_zero this
+
+theorem logDeriv_xi_meromorphicAt (s : ℂ) : MeromorphicAt (logDeriv xi) s := by
+  have hd : AnalyticAt ℂ (deriv xi) s :=
+    ((analyticOnNhd_univ_iff_differentiable.mpr differentiable_xi).deriv) s (Set.mem_univ s)
+  exact hd.meromorphicAt.div (xi_analyticAt s).meromorphicAt
+
+/-- **`N` as a finite sum** over the (finite) set of zeros with
+imaginary part in `(0, T)`. -/
+theorem N_eq_sum (T : ℝ) :
+    riemannZeta.N T
+      = ∑ ρ ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset,
+          (riemannZeta.order ρ : ℝ) := by
+  have hfin := Kadiri.zeroes_rect_univ_positive_height_finite T
+  haveI : Fintype (riemannZeta.zeroes_rect (Set.univ : Set ℝ) (Set.Ioo 0 T)) :=
+    hfin.fintype
+  rw [riemannZeta.N, riemannZeta.zeroes_sum, tsum_fintype]
+  refine Finset.sum_bij (fun ρ _ => (ρ : ℂ)) ?_ ?_ ?_ ?_
+  · intro ρ _
+    exact hfin.mem_toFinset.mpr ρ.2
+  · intro a _ b _ hab
+    exact Subtype.ext hab
+  · intro z hz
+    exact ⟨⟨z, hfin.mem_toFinset.mp hz⟩, Finset.mem_univ _, rfl⟩
+  · intro ρ _
+    simp
+
+/-- **The divisor support of `xi` on the rectangle is exactly the zeros
+counted by `N T`**, at a good height. -/
+theorem xi_divisor_support_eq {T : ℝ} (hT : 2 ≤ T)
+    (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ρ.im ≠ T)
+    (hf : MeromorphicOn xi (Rectangle (-1 : ℂ) (2 + Complex.I * T))) :
+    (MeromorphicOn.divisor xi (Rectangle (-1 : ℂ) (2 + Complex.I * T))).support
+      = riemannZeta.zeroes_rect (Set.univ : Set ℝ) (Set.Ioo 0 T) := by
+  have hzre : ((-1 : ℂ)).re = -1 := by simp
+  have hzim : ((-1 : ℂ)).im = 0 := by simp
+  have hwre : ((2 : ℂ) + Complex.I * (T : ℂ)).re = 2 := by simp
+  have hwim : ((2 : ℂ) + Complex.I * (T : ℂ)).im = T := by simp
+  have hRect : Rectangle (-1 : ℂ) (2 + Complex.I * T)
+      = Set.Icc (-1 : ℝ) 2 ×ℂ Set.Icc (0 : ℝ) T := by
+    rw [Rectangle, hzre, hzim, hwre, hwim,
+      Set.uIcc_of_le (by norm_num : (-1 : ℝ) ≤ 2),
+      Set.uIcc_of_le (by linarith : (0 : ℝ) ≤ T)]
+  ext p
+  constructor
+  · intro hp
+    have hpR : p ∈ Rectangle (-1 : ℂ) (2 + Complex.I * T) :=
+      (MeromorphicOn.divisor xi _).supportWithinDomain hp
+    have hdvne : (MeromorphicOn.divisor xi (Rectangle (-1 : ℂ) (2 + Complex.I * T))) p ≠ 0 :=
+      Function.mem_support.mp hp
+    rw [MeromorphicOn.divisor_apply hf hpR] at hdvne
+    -- the order is nonzero, so `xi p = 0`
+    have horder : meromorphicOrderAt xi p ≠ 0 := by
+      intro h; rw [h] at hdvne; simp at hdvne
+    have hxip : xi p = 0 := by
+      by_contra hne
+      exact horder (by
+        rw [(xi_analyticAt p).meromorphicOrderAt_eq,
+          (xi_analyticAt p).analyticOrderAt_eq_zero.mpr hne]
+        rfl)
+    obtain ⟨hζ, h0, h1⟩ := xi_eq_zero_iff.mp hxip
+    -- position: interior of the height range
+    rw [hRect] at hpR
+    obtain ⟨hpre, hpim⟩ := Complex.mem_reProdIm.mp hpR
+    have him0 : p.im ≠ 0 := by
+      intro h
+      have hpreal : p = ((p.re : ℝ) : ℂ) := Complex.ext rfl (by simp [h])
+      rw [hpreal] at hxip
+      exact xi_ne_zero_of_real p.re hxip
+    have himT : p.im ≠ T := hgood p hζ h0
+    refine ⟨Set.mem_univ _, ⟨lt_of_le_of_ne hpim.1 (Ne.symm him0),
+      lt_of_le_of_ne hpim.2 himT⟩, hζ⟩
+  · intro hp
+    obtain ⟨-, him, hζ⟩ := hp
+    have hre : p.re ∈ Set.Ioo (0 : ℝ) 1 :=
+      Kadiri.positiveHeightZero_re_mem_Ioo ⟨p, ⟨Set.mem_univ _, him, hζ⟩⟩
+    have hp1 : p ≠ 1 := by
+      intro h; rw [h] at hre; simp at hre
+    have hpR : p ∈ Rectangle (-1 : ℂ) (2 + Complex.I * T) := by
+      rw [hRect]
+      exact Complex.mem_reProdIm.mpr
+        ⟨⟨by linarith [hre.1], by linarith [hre.2]⟩,
+         ⟨le_of_lt him.1, le_of_lt him.2⟩⟩
+    rw [Function.mem_support, MeromorphicOn.divisor_apply hf hpR]
+    -- the order of `ζ` at `p` is finite, nonzero
+    have heq := meromorphicOrderAt_xi_eq_zeta hre.1 hre.2
+    have hζanal : AnalyticAt ℂ riemannZeta p := analyticAt_riemannZeta hp1
+    have hnetop : meromorphicOrderAt riemannZeta p ≠ ⊤ := by
+      rw [← heq]; exact xi_meromorphicOrderAt_ne_top p
+    have hnezero : meromorphicOrderAt riemannZeta p ≠ 0 := by
+      rw [hζanal.meromorphicOrderAt_eq]
+      intro h
+      have h0 : analyticOrderAt riemannZeta p = 0 := by
+        cases hn : analyticOrderAt riemannZeta p
+        · rw [hn] at h; simp [ENat.map_top] at h
+        · rw [hn] at h
+          rw [ENat.map_coe] at h
+          norm_cast at h
+          simp [h]
+      rw [analyticOrderAt_eq_zero] at h0
+      rcases h0 with h' | h'
+      · exact h' hζanal
+      · exact h' hζ
+    rw [← heq] at hnetop hnezero
+    obtain ⟨n, hn⟩ := WithTop.ne_top_iff_exists.mp hnetop
+    rw [← hn]
+    intro hcontra
+    apply hnezero
+    rw [← hn]
+    have : n = 0 := by exact_mod_cast hcontra
+    rw [this]
+    rfl
+
+/-- **THE COUNT BRIDGE.** At a good height, the normalised rectangle
+integral of `logDeriv xi` over `[−1,2] × [0,T]` is the zero count. -/
+theorem rectangleIntegral_logDeriv_xi_eq_N {T : ℝ} (hT : 2 ≤ T)
+    (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ρ.im ≠ T) :
+    RectangleIntegral' (logDeriv xi) (-1 : ℂ) (2 + Complex.I * T)
+      = ((riemannZeta.N T : ℝ) : ℂ) := by
+  have hzre : ((-1 : ℂ)).re = -1 := by simp
+  have hzim : ((-1 : ℂ)).im = 0 := by simp
+  have hwre : ((2 : ℂ) + Complex.I * (T : ℂ)).re = 2 := by simp
+  have hwim : ((2 : ℂ) + Complex.I * (T : ℂ)).im = T := by simp
+  have hf : MeromorphicOn xi (Rectangle (-1 : ℂ) (2 + Complex.I * T)) :=
+    fun s _ => (xi_analyticAt s).meromorphicAt
+  have hlog : MeromorphicOn (logDeriv xi) (Rectangle (-1 : ℂ) (2 + Complex.I * T)) :=
+    fun s _ => logDeriv_xi_meromorphicAt s
+  have hfinord : ∀ p ∈ Rectangle (-1 : ℂ) (2 + Complex.I * T),
+      meromorphicOrderAt xi p ≠ ⊤ := fun p _ => xi_meromorphicOrderAt_ne_top p
+  have hsupp := xi_divisor_support_eq hT hgood hf
+  -- border disjointness: the support has `Re ∈ (0,1)`, `Im ∈ (0,T)`;
+  -- every border point violates one of the four
+  have hnob : Disjoint (RectangleBorder (-1 : ℂ) (2 + Complex.I * T))
+      (MeromorphicOn.divisor xi (Rectangle (-1 : ℂ) (2 + Complex.I * T))).support := by
+    rw [Set.disjoint_right]
+    intro p hpS hpB
+    rw [hsupp] at hpS
+    obtain ⟨-, him, hζ⟩ := hpS
+    have hre : p.re ∈ Set.Ioo (0 : ℝ) 1 :=
+      Kadiri.positiveHeightZero_re_mem_Ioo ⟨p, ⟨Set.mem_univ _, him, hζ⟩⟩
+    rw [RectangleBorder, hzre, hzim, hwre, hwim] at hpB
+    rcases hpB with ((h | h) | h) | h
+    · exact absurd (Complex.mem_reProdIm.mp h).2 (by
+        simp only [Set.mem_singleton_iff]
+        exact ne_of_gt him.1)
+    · exact absurd (Complex.mem_reProdIm.mp h).1 (by
+        simp only [Set.mem_singleton_iff]
+        intro hh
+        rw [hh] at hre
+        exact absurd hre.1 (by norm_num))
+    · exact absurd (Complex.mem_reProdIm.mp h).2 (by
+        simp only [Set.mem_singleton_iff]
+        exact ne_of_lt him.2)
+    · exact absurd (Complex.mem_reProdIm.mp h).1 (by
+        simp only [Set.mem_singleton_iff]
+        intro hh
+        rw [hh] at hre
+        exact absurd hre.2 (by norm_num))
+  have hmain := rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt
+    (by rw [hzre, hwre]; norm_num) (by rw [hzim, hwim]; linarith)
+    hf hlog hfinord hnob
+  rw [hmain, N_eq_sum]
+  -- the two finsets agree, and so do the values
+  have hsets : (divisor_support_rectangle_finite xi (-1 : ℂ) (2 + Complex.I * T)).toFinset
+      = (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset := by
+    ext p
+    rw [Set.Finite.mem_toFinset, Set.Finite.mem_toFinset, hsupp]
+  rw [hsets]
+  rw [Complex.ofReal_sum]
+  refine Finset.sum_congr rfl ?_
+  intro p hp
+  have hpmem : p ∈ riemannZeta.zeroes_rect (Set.univ : Set ℝ) (Set.Ioo 0 T) :=
+    (Kadiri.zeroes_rect_univ_positive_height_finite T).mem_toFinset.mp hp
+  obtain ⟨-, him, hζ⟩ := hpmem
+  have hre : p.re ∈ Set.Ioo (0 : ℝ) 1 :=
+    Kadiri.positiveHeightZero_re_mem_Ioo ⟨p, ⟨Set.mem_univ _, him, hζ⟩⟩
+  have hpR : p ∈ Rectangle (-1 : ℂ) (2 + Complex.I * T) := by
+    rw [Rectangle, hzre, hzim, hwre, hwim,
+      Set.uIcc_of_le (by norm_num : (-1 : ℝ) ≤ 2),
+      Set.uIcc_of_le (by linarith : (0 : ℝ) ≤ T)]
+    exact Complex.mem_reProdIm.mpr
+      ⟨⟨by linarith [hre.1], by linarith [hre.2]⟩,
+       ⟨le_of_lt him.1, le_of_lt him.2⟩⟩
+  rw [MeromorphicOn.divisor_apply hf hpR, meromorphicOrderAt_xi_eq_zeta hre.1 hre.2]
+  rw [riemannZeta.order]
+  push_cast
+  rfl
+
 end
 
 /-! ## Axiom check
@@ -418,6 +635,22 @@ compiler and **`lake build` fails**. This is a check, not a printout.
 /-- info: 'Stage3.meromorphicOrderAt_xi_eq_zeta' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stage3.meromorphicOrderAt_xi_eq_zeta
+
+/-- info: 'Stage3.xi_meromorphicOrderAt_ne_top' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.xi_meromorphicOrderAt_ne_top
+
+/-- info: 'Stage3.N_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.N_eq_sum
+
+/-- info: 'Stage3.xi_divisor_support_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.xi_divisor_support_eq
+
+/-- info: 'Stage3.rectangleIntegral_logDeriv_xi_eq_N' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.rectangleIntegral_logDeriv_xi_eq_N
 
 /-- info: 'Stage3.completedZeta₀_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
