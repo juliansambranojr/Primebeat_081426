@@ -1,5 +1,15 @@
 {
   "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_response_prefix.py\""
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write|MultiEdit|NotebookEdit",
