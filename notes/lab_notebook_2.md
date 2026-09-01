@@ -16,6 +16,59 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 272 — joint_ladder.py first light: the 2-3 grid resolves γ₁–γ₃ where the single ladder shows only the comb
+type: run
+refs: 16, 26, 52
+
+EXPLORATORY — no prereg, no verdict. Two executions of
+`analysis/2026-09-01_joint_ladder/joint_ladder.py` (new this session,
+commit 09c4fd1), both completed:
+
+```bash
+python3 joint_ladder.py --xmax 10000000  --out results/joint_ladder_1e7.json
+python3 joint_ladder.py --xmax 100000000 --out results/joint_ladder_1e8.json
+```
+
+1.3 s and 11.1 s. Outputs at
+`analysis/2026-09-01_joint_ladder/results/joint_ladder_1e{7,8}.json`,
+both labelled EXPLORATORY inside the JSON.
+
+**The instrument.** Samples π on the 3-smooth grid `2^r · 3^m` — the
+joint 2-3 ladder, whose two alias lattices `(2π/ln2)ℤ` and `(2π/ln3)ℤ`
+meet only at 0 because ln3/ln2 is irrational (the arithmetic fact under
+`Chain.second_ladder_winds_densely`). Two measurements: (A) the mixed
+operator `Δ₂^a Δ₃^b`, symbol `(1−2^(−s))^a (1−3^(−s))^b`, a product of
+two Euler factors; (B) nonuniform power spectrum of the RH-normalized
+residual `(π(x)−li(x))·ln x/√x` on base-2 rungs alone versus the joint
+grid, γ ∈ [0.5, 30] step 0.005.
+
+**Consistency.** The base-2 column reproduces the four known table
+zeros exactly — `(2,2), (4,2), (8,4), (20,7)` here, the depth shifted
+by one because this table differences π directly rather than the
+octave row; ↔ bench `(2,1), (4,1), (8,3), (20,6)`. Mixed cells at
+xmax 1e7: 10 exact zeros in 4782, all shallow, consistent with the
+thin-tail chance picture (entry 52's account); nothing anomalous.
+
+**Headline (spectrum, xmax 1e8, 244 grid points).** Base-2 rungs
+alone: the comb entry 16 measured and the Nyquist theorem requires —
+peaks at 9.44, 18.51, 27.57, spacing 9.065 = 2π/ln2, heights equal to
+three decimals (0.261). Joint grid: the comb is gone; the three
+leading non-trend peaks sit at **14.095, 20.985, 24.90** against
+γ₁, γ₂, γ₃ = 14.135, 21.022, 25.011 — offsets 0.04, 0.04, 0.11, each
+inside the Rayleigh resolution 2π/17.73 ≈ 0.35 at this span. Peak
+spacings 6.89 and 3.92 against zero gaps 6.89 and 3.99, and against
+alias periods 9.065 (base 2) and 5.719 (base 3) — the peaks match the
+zeros and match neither comb. Growing the span 1e7 → 1e8 moved the
+γ₂ peak from 20.935 to 20.985, toward its true value. Sub-2 peaks are
+the smooth-trend artifact.
+
+The instrument the no-go permits and the single ladder forbids, on
+first light, shows peaks at the first three Riemann zeros from prime
+counts on 244 sample points. What would sharpen it: a longer span
+(xmax 1e9+ needs a segmented sieve), a trend model better than mean
+subtraction, and — before any verdict is ever contemplated — a prereg
+with a decision rule that can fire both ways.
+
 ## 2026-08-29 — Entry 271 — hEF DISCHARGED: the truncated explicit formula, proved sorry-free and welded to the ledger
 type: formalization
 refs: 130, 257, 261, 262, 264, 269, 270

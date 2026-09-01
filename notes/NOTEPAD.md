@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-09-01  entry 272: JOINT 2-3 LADDER first light — spectrum on the 3-smooth grid peaks at 14.095/20.985/24.90 vs γ₁₋₃ = 14.135/21.022/25.011, each inside Rayleigh 0.35; base-2 rungs alone give only the 9.065 comb. EXPLORATORY. Next: segmented sieve for 1e9+, trend model, prereg before any verdict
 - [open]   2026-08-29  entry 271: hEF DISCHARGED — stmtEF_poly: the truncated explicit formula sorry-free, pinned clean, welded to StmtExplicitFormulaPoly, consumer patched as approved, commit 3d26dd3. The census's missing formula EXISTS. Remaining leaf: StmtArgCrude
 - [open]   2026-08-29  entry 270: GLUE 1–2 OF 4 — band_order_sum_le + zeroPartialSum_swap (T′→T costs C·x·logT/T), Glue.lean, commits 4bf8e7b/95ae2ab. Remaining: edge integrals (piece 3), rectangle splitting + final assembly + consumer patch (piece 4)
 - [open]   2026-08-29  entry 269: S3 COMPLETE — edge_bound_core: ‖ζ′/ζ‖ ≤ C·log t/δ on the band, count closed by 4 windows + reflection + fixed-rect constant, commits 905dcd0..624bf67. ALL FOUR hEF SLICES PROVED. Remaining: the glue (contour assembly → StmtExplicitFormula, T ≤ x²) + consumer patch
