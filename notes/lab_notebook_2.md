@@ -16,6 +16,67 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 280 — The C_π numeral repriced: five existentials, not one bump, and effectivization does not cascade
+type: motivation
+refs: 232, 233, 277
+
+The NOTEPAD audit reported three lines (entries 232/233) collapsing to
+a single blocker — `bump_exists` unpacking PNT+'s `SmoothExistence`,
+leaving `sup‖ν‖` unpinned. Opened the files. That framing is wrong in
+one direction and the scope is smaller in another.
+
+**Five existentials, not one.** `RHPull.psi_weak_of_RH`
+(`lean_stage3/Stage3/LineBound.lean:2357`) assembles
+
+```text
+C = Cclose + C1 + C9 + 66600·e·B/π + 2·(900·e·B/π) + Cmain + 1
+```
+
+from five `obtain`s. Two are ours: `B` from `mellin_bump_bounded`
+(`LineBound.lean:1723`) and `Cmain` from `mellin_main_const` (`:2202`).
+**Three are upstream**: `Cclose` from `SmoothedChebyshevClose`
+(`PrimeNumberTheoremAnd/MediumPNT.lean:708`), `C1` from `I1Bound`
+(`:1824`), `C9` from `I9Bound` (`:2150`). I read the latter two: both
+open `∃ C > 0` with nothing pinning it.
+
+So a concrete bump with proved sup bounds — the thing the audit named
+as the blocker — converts at most two of five terms. `C` stays
+existential regardless, because three summands are upstream `∃`. The
+bump is a prerequisite, not the obstruction. Entry 232 already said
+this in its own words ("every upstream I-bound is stated exists-C")
+and the audit's summary lost it.
+
+**But the upstream scope is small, and it does not cascade.** Measured:
+
+```text
+∃-constant statements   MediumPNT 5 · ZetaBounds 2 · MellinCalculus 1
+                        PerronFormula 1
+the three theorems      SmoothedChebyshevClose ~285 lines
+                        I1Bound  ~312 · I9Bound ~16
+I1Bound's own draws     exactly one — obtain ⟨K, …⟩ := G0
+```
+
+That last line is the load-bearing measurement. Effectivization is
+transitive in general: making one theorem explicit forces every
+existential it consumes to be made explicit too, and that is what turns
+such a job into a rebuild. Here it does not happen — `I1Bound` pulls a
+single existential and everything else it uses is already explicit. So
+this is roughly 600 lines of existing proof where numerals are carried
+instead of discharged into `∃`, not a re-proof of the mathematics.
+
+**Why this bench is the right place for it.** Effective-constant
+extraction is what it already does: `15 log T + 73` (entry 159), the
+Stirling half at `97`/`98` (entry 140), the `C_π = 2640.5` gate by
+bisection (entry 233). The work is also upstreamable — PNT+ is live and
+an effective `I1Bound` is a contribution rather than a fork.
+
+**The slice, and why this order.** `I9Bound` is 16 lines. Run it first
+as a price probe: if carrying constants through 16 lines is mechanical,
+the other ~600 are a known quantity instead of an estimate; if it
+fights, one sitting bought that knowledge. This is the same
+measure-then-price discipline entry 130 records, applied after I
+mispriced the same cluster once today from a single reading.
+
 ## 2026-09-01 — Entry 279 — Correction to entry 277: the two "×" ratios are unchecked AND computed through a refuted translation
 type: result-triage
 refs: 277
