@@ -595,6 +595,223 @@ theorem rectangleIntegral_logDeriv_xi_eq_N {T : ℝ} (hT : 2 ≤ T)
   push_cast
   rfl
 
+/-! ## Slice 3: THE FOLD
+
+The two symmetries of `xi` collapse the four edges of the rectangle
+onto the right-half path `L : 2 → 2+iT → 1/2+iT`:
+
+  * `logDeriv xi (1−s) = −logDeriv xi s`  (functional equation)
+  * `logDeriv xi (conj s) = conj (logDeriv xi s)`  (reflection)
+
+The bottom edge cancels itself around `1/2`; the left edge folds onto
+the right; the top edge folds onto its right half. What survives is
+`π·N T = Re W − Im U`, with `W` the right-edge integral and `U` the
+top-right-half integral. -/
+
+/-- The functional equation on the logarithmic derivative. Holds
+everywhere — at zeros of `xi` both sides are matching junk. -/
+theorem logDeriv_xi_one_sub (s : ℂ) : logDeriv xi (1 - s) = -logDeriv xi s := by
+  have hderiv : deriv xi s = -deriv xi (1 - s) := by
+    have hx : HasDerivAt xi (deriv xi (1 - s)) (1 - s) :=
+      (differentiable_xi (1 - s)).hasDerivAt
+    have haff : HasDerivAt (fun z : ℂ => 1 - z) (-1 : ℂ) s := by
+      simpa using (hasDerivAt_id s).const_sub 1
+    have h1 : HasDerivAt (fun z : ℂ => xi (1 - z)) (deriv xi (1 - s) * -1) s := by
+      have := hx.comp s haff
+      simpa [Function.comp_def] using this
+    rw [funext xi_one_sub] at h1
+    rw [h1.deriv]
+    ring
+  rw [logDeriv_apply, logDeriv_apply, xi_one_sub, hderiv]
+  ring
+
+/-- The reflection symmetry on the logarithmic derivative. -/
+theorem logDeriv_xi_conj (s : ℂ) : logDeriv xi (conj s) = conj (logDeriv xi s) := by
+  have hderiv : deriv xi (conj s) = conj (deriv xi s) := by
+    have h1 := deriv_conj_conj' xi s
+    have hfun : (fun z : ℂ => conj (xi (conj z))) = xi := by
+      funext z
+      rw [xi_conj, Complex.conj_conj]
+    rw [hfun] at h1
+    exact h1
+  rw [logDeriv_apply, logDeriv_apply, hderiv, xi_conj, map_div₀]
+
+/-- `logDeriv xi` is continuous wherever `xi` does not vanish. -/
+theorem logDeriv_xi_continuousAt {p : ℂ} (hp : xi p ≠ 0) :
+    ContinuousAt (logDeriv xi) p := by
+  have hd : ContinuousAt (deriv xi) p :=
+    (((analyticOnNhd_univ_iff_differentiable.mpr differentiable_xi).deriv) p
+      (Set.mem_univ p)).continuousAt
+  exact hd.div (xi_analyticAt p).continuousAt hp
+
+/-- `xi` does not vanish anywhere on a good-height top edge. -/
+theorem xi_ne_zero_on_good_top {T : ℝ}
+    (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ρ.im ≠ T) (hT : 0 < T)
+    (x : ℝ) : xi ((x : ℂ) + T * Complex.I) ≠ 0 := by
+  intro h
+  obtain ⟨hζ, h0, -⟩ := xi_eq_zero_iff.mp h
+  have him : ((x : ℂ) + T * Complex.I).im = T := by simp
+  exact hgood _ hζ h0 him
+
+/-- **THE FOLD.** At a good height, `π · N T = Re W − Im U`, where `W`
+is the right-edge integral and `U` the top-right-half integral of
+`logDeriv xi`. The bottom edge cancels itself around `1/2`; the left
+edge and the top-left half fold onto their right partners through the
+two symmetries. -/
+theorem pi_mul_N_eq {T : ℝ} (hT : 2 ≤ T)
+    (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ρ.im ≠ T) :
+    Real.pi * riemannZeta.N T
+      = (∫ t in (0:ℝ)..T, logDeriv xi (2 + (t : ℂ) * Complex.I)).re
+        - (∫ x in (1/2:ℝ)..2, logDeriv xi ((x : ℂ) + T * Complex.I)).im := by
+  have hTpos : (0 : ℝ) < T := by linarith
+  set F : ℂ → ℂ := logDeriv xi with hF
+  set W : ℂ := ∫ t in (0:ℝ)..T, F (2 + (t : ℂ) * Complex.I) with hW
+  set U : ℂ := ∫ x in (1/2:ℝ)..2, F ((x : ℂ) + T * Complex.I) with hU
+  -- continuity of the two edge integrands, and of the bottom edge
+  have hcont_of_ne : ∀ (g : ℝ → ℂ), Continuous g → (∀ x, xi (g x) ≠ 0) →
+      Continuous fun x => F (g x) := by
+    intro g hg hne
+    rw [continuous_iff_continuousAt]
+    intro x
+    exact (logDeriv_xi_continuousAt (hne x)).comp hg.continuousAt
+  have hcont_top : Continuous fun x : ℝ => F ((x : ℂ) + T * Complex.I) :=
+    hcont_of_ne _ (by continuity) (fun x => xi_ne_zero_on_good_top hgood hTpos x)
+  have hcont_bot : Continuous fun x : ℝ => F ((x : ℂ) + (0 : ℝ) * Complex.I) := by
+    refine hcont_of_ne _ (by continuity) (fun x => ?_)
+    have : ((x : ℂ) + (0 : ℝ) * Complex.I) = (x : ℂ) := by push_cast; ring
+    rw [this]
+    exact xi_ne_zero_of_real x
+  -- the un-normalised rectangle integral equals `2πi · N`
+  have hrect : RectangleIntegral F (-1 : ℂ) (2 + Complex.I * T)
+      = (2 * Real.pi * Complex.I) * ((riemannZeta.N T : ℝ) : ℂ) := by
+    have h' := rectangleIntegral_logDeriv_xi_eq_N hT hgood
+    rw [RectangleIntegral'] at h'
+    have h2πI : (2 * (Real.pi : ℂ) * Complex.I) ≠ 0 := by
+      simp [Real.pi_ne_zero, Complex.I_ne_zero]
+    rw [smul_eq_mul] at h'
+    field_simp at h'
+    linear_combination h'
+  -- unfold the rectangle into its four edges
+  have hzre : ((-1 : ℂ)).re = -1 := by simp
+  have hzim : ((-1 : ℂ)).im = 0 := by simp
+  have hwre : ((2 : ℂ) + Complex.I * (T : ℂ)).re = 2 := by simp
+  have hwim : ((2 : ℂ) + Complex.I * (T : ℂ)).im = T := by simp
+  rw [RectangleIntegral, hzre, hzim, hwre, hwim] at hrect
+  -- BOTTOM: the odd symmetry about `1/2` kills it
+  have hbot : HIntegral F (-1) 2 0 = 0 := by
+    rw [HIntegral]
+    have hsplit : (∫ x in (-1:ℝ)..(1/2), F ((x:ℂ) + (0:ℝ) * Complex.I))
+        + (∫ x in (1/2:ℝ)..2, F ((x:ℂ) + (0:ℝ) * Complex.I))
+        = ∫ x in (-1:ℝ)..2, F ((x:ℂ) + (0:ℝ) * Complex.I) :=
+      intervalIntegral.integral_add_adjacent_intervals
+        (hcont_bot.intervalIntegrable _ _) (hcont_bot.intervalIntegrable _ _)
+    have hfold : (∫ x in (-1:ℝ)..(1/2), F ((x:ℂ) + (0:ℝ) * Complex.I))
+        = - ∫ x in (1/2:ℝ)..2, F ((x:ℂ) + (0:ℝ) * Complex.I) := by
+      have hpt : ∀ x : ℝ, F ((x:ℂ) + (0:ℝ) * Complex.I)
+          = (fun v : ℝ => - F ((v:ℂ) + (0:ℝ) * Complex.I)) (1 - x) := by
+        intro x
+        show F ((x:ℂ) + (0:ℝ) * Complex.I) = - F (((1 - x : ℝ):ℂ) + (0:ℝ) * Complex.I)
+        have e1 : ((x : ℂ) + (0:ℝ) * Complex.I) = (x : ℂ) := by push_cast; ring
+        have e2 : (((1 - x : ℝ):ℂ) + (0:ℝ) * Complex.I) = 1 - (x : ℂ) := by
+          push_cast; ring
+        rw [e1, e2, hF, logDeriv_xi_one_sub]
+        ring
+      calc (∫ x in (-1:ℝ)..(1/2), F ((x:ℂ) + (0:ℝ) * Complex.I))
+          = ∫ x in (-1:ℝ)..(1/2),
+              (fun v : ℝ => - F ((v:ℂ) + (0:ℝ) * Complex.I)) (1 - x) := by
+            exact intervalIntegral.integral_congr (fun x _ => hpt x)
+        _ = ∫ v in (1/2:ℝ)..2, (fun v : ℝ => - F ((v:ℂ) + (0:ℝ) * Complex.I)) v := by
+            have := intervalIntegral.integral_comp_sub_left
+              (a := (-1:ℝ)) (b := (1/2:ℝ))
+              (fun v : ℝ => - F ((v:ℂ) + (0:ℝ) * Complex.I)) 1
+            norm_num at this ⊢
+            exact this
+        _ = - ∫ v in (1/2:ℝ)..2, F ((v:ℂ) + (0:ℝ) * Complex.I) :=
+            intervalIntegral.integral_neg
+    rw [← hsplit, hfold]
+    ring
+  -- TOP: split at `1/2`; the left half folds onto the conjugate
+  have htop : HIntegral F (-1) 2 T = U - conj U := by
+    rw [HIntegral]
+    have hsplit : (∫ x in (-1:ℝ)..(1/2), F ((x:ℂ) + (T:ℝ) * Complex.I))
+        + (∫ x in (1/2:ℝ)..2, F ((x:ℂ) + (T:ℝ) * Complex.I))
+        = ∫ x in (-1:ℝ)..2, F ((x:ℂ) + (T:ℝ) * Complex.I) :=
+      intervalIntegral.integral_add_adjacent_intervals
+        (hcont_top.intervalIntegrable _ _) (hcont_top.intervalIntegrable _ _)
+    have hfold : (∫ x in (-1:ℝ)..(1/2), F ((x:ℂ) + (T:ℝ) * Complex.I))
+        = - conj U := by
+      have hpt : ∀ x : ℝ, F ((x:ℂ) + (T:ℝ) * Complex.I)
+          = (fun v : ℝ => - conj (F ((v:ℂ) + (T:ℝ) * Complex.I))) (1 - x) := by
+        intro x
+        show F ((x:ℂ) + (T:ℝ) * Complex.I)
+          = - conj (F (((1 - x : ℝ):ℂ) + (T:ℝ) * Complex.I))
+        have e2 : (((1 - x : ℝ):ℂ) + (T:ℝ) * Complex.I)
+            = 1 - conj ((x:ℂ) + (T:ℝ) * Complex.I) := by
+          rw [map_add, map_mul, Complex.conj_ofReal, Complex.conj_ofReal, Complex.conj_I]
+          push_cast
+          ring
+        rw [e2, hF, logDeriv_xi_one_sub, logDeriv_xi_conj]
+        simp
+      calc (∫ x in (-1:ℝ)..(1/2), F ((x:ℂ) + (T:ℝ) * Complex.I))
+          = ∫ x in (-1:ℝ)..(1/2),
+              (fun v : ℝ => - conj (F ((v:ℂ) + (T:ℝ) * Complex.I))) (1 - x) := by
+            exact intervalIntegral.integral_congr (fun x _ => hpt x)
+        _ = ∫ v in (1/2:ℝ)..2,
+              (fun v : ℝ => - conj (F ((v:ℂ) + (T:ℝ) * Complex.I))) v := by
+            have := intervalIntegral.integral_comp_sub_left
+              (a := (-1:ℝ)) (b := (1/2:ℝ))
+              (fun v : ℝ => - conj (F ((v:ℂ) + (T:ℝ) * Complex.I))) 1
+            norm_num at this ⊢
+            exact this
+        _ = - ∫ v in (1/2:ℝ)..2, conj (F ((v:ℂ) + (T:ℝ) * Complex.I)) :=
+            intervalIntegral.integral_neg
+        _ = - conj U := by rw [intervalIntegral_conj]
+    rw [← hsplit, hfold]
+    ring
+  -- LEFT: folds pointwise onto the conjugate of the right edge
+  have hleft : VIntegral F (-1) 0 T = - (Complex.I * conj W) := by
+    rw [VIntegral]
+    have hpt : ∀ t : ℝ, F ((-1:ℝ) + (t:ℝ) * Complex.I)
+        = - conj (F (2 + (t:ℂ) * Complex.I)) := by
+      intro t
+      have e : ((-1:ℝ) : ℂ) + (t:ℝ) * Complex.I
+          = 1 - conj (2 + (t:ℂ) * Complex.I) := by
+        rw [map_add, map_mul, Complex.conj_ofReal, Complex.conj_I]
+        push_cast
+        ring_nf
+        rw [Complex.conj_ofNat]
+        ring
+      rw [e, hF, logDeriv_xi_one_sub, logDeriv_xi_conj]
+    have : (∫ t in (0:ℝ)..T, F ((-1:ℝ) + (t:ℝ) * Complex.I))
+        = - conj W := by
+      calc (∫ t in (0:ℝ)..T, F ((-1:ℝ) + (t:ℝ) * Complex.I))
+          = ∫ t in (0:ℝ)..T, - conj (F (2 + (t:ℂ) * Complex.I)) :=
+            intervalIntegral.integral_congr (fun t _ => hpt t)
+        _ = - ∫ t in (0:ℝ)..T, conj (F (2 + (t:ℂ) * Complex.I)) :=
+            intervalIntegral.integral_neg
+        _ = - conj W := by rw [intervalIntegral_conj]
+    rw [this, smul_eq_mul]
+    ring
+  -- RIGHT edge is `I • W` by definition
+  have hright : VIntegral F 2 0 T = Complex.I * W := by
+    rw [VIntegral, smul_eq_mul, hW]
+    have h2 : ((2:ℝ):ℂ) = (2:ℂ) := by norm_num
+    congr 1
+  -- assemble
+  rw [hbot, htop, hleft, hright] at hrect
+  have hkey : Complex.I * (W + conj W) - (U - conj U)
+      = (2 * Real.pi * Complex.I) * ((riemannZeta.N T : ℝ) : ℂ) := by
+    rw [← hrect]
+    ring
+  -- extract the real equation by taking imaginary parts
+  have him := congrArg Complex.im hkey
+  simp only [Complex.mul_im, Complex.mul_re, Complex.add_re, Complex.add_im,
+    Complex.sub_im, Complex.I_re, Complex.I_im,
+    Complex.conj_re, Complex.conj_im, Complex.ofReal_re, Complex.ofReal_im,
+    Complex.re_ofNat, Complex.im_ofNat] at him
+  ring_nf at him ⊢
+  linarith [him]
+
 end
 
 /-! ## Axiom check
@@ -651,6 +868,18 @@ compiler and **`lake build` fails**. This is a check, not a printout.
 /-- info: 'Stage3.rectangleIntegral_logDeriv_xi_eq_N' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Stage3.rectangleIntegral_logDeriv_xi_eq_N
+
+/-- info: 'Stage3.logDeriv_xi_one_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.logDeriv_xi_one_sub
+
+/-- info: 'Stage3.logDeriv_xi_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.logDeriv_xi_conj
+
+/-- info: 'Stage3.pi_mul_N_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Stage3.pi_mul_N_eq
 
 /-- info: 'Stage3.completedZeta₀_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
