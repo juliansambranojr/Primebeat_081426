@@ -1,0 +1,52 @@
+weil_Lc_mod.txt — 2026-09-02T10:13:37 — EXPLORATORY (no prereg, no decision rule, no verdict)
+json: /private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/e0529930-f9ed-407f-aa48-0dd5f402f85a/scratchpad/mod_smoke2.json  sha256 e2479454aafba1ac8670a6963a6a73f2a6989f482b46a44996da59c50ac4c171
+basis: P_n(u/h) cos(gamma_k u), P_n(u/h) sin(gamma_k u), n < 16 (32 functions), pencil (Q, S), S-cut 1e-24, dps 40
+k = [1, 300]; eps = [0.01] (0 = control); L grid 0.300..19.887 (8 pts), bisect ratio 1.02
+Q = Z'_k + tail + 2w T_eps;  T_eps = 2(|A|^2 - |B|^2);  w = 1/2 primary, w = 1 secondary
+
+== L_c(eps, k) ==
+    k    gamma_k  log g_k   nb gap  mean gap    eps      w=1/2        w=1      X_c lam(1.5Lc)   lam(2Lc)  h_c g_k     |A|^2     |B|^2     Z(G*)   E_gap     E<g1  through
+    1     14.135   2.6486   6.8873    7.7498   0.01     1.1336     1.1126    3.107  -2.73e-05  -6.06e-05      8.0  1.57e-13  9.16e-09  1.76e-08  0.0252  1.0e+00  |B|^2 alone (|A|^2 term negligible against Z')
+  300    541.847   6.2950   1.2160    1.4097   0.01     6.2289     6.1134  507.217  -4.04e-03  -8.93e-03   1687.6  1.03e-08  1.17e-04  1.84e-04  0.2216  2.1e-08  |B|^2 alone (|A|^2 term negligible against Z')
+
+== rows without an L_c ==
+
+== sanity: k = 1 vs Legendre ==
+  eps=0.01 w=1/2: modulated 1.1335829764817584 bracket [1.1125559938630225, 1.1335829764817584]  Legendre M32 1.1387307600097953 bracket [1.1194227574971414, 1.1387307600097953]  M64 1.1387307600097958  modulated >= Legendre M32: False
+      at L=1.11942: lam modulated +9.3508e-09 (floor 4.8e-15)  Legendre M64 +8.9632e-09  modulated >= Legendre: True
+      at L=1.13873: lam modulated -3.3471e-09 (floor 9.1e-16)  Legendre M64 -3.5134e-09  modulated >= Legendre: True
+  eps=0.01 w=1: modulated 1.1125559938630225 bracket [1.0919190435641268, 1.1125559938630225]  Legendre M32 1.1194227574971414 bracket [1.1004421361127756, 1.1194227574971414]  M64 1.1194227574971418  modulated >= Legendre M32: False
+      at L=1.10044: lam modulated +1.2564e-08 (floor 1.3e-14)  Legendre M64 +1.1754e-08  modulated >= Legendre: True
+      at L=1.11942: lam modulated -9.8489e-09 (floor 4.4e-15)  Legendre M64 -1.0227e-08  modulated >= Legendre: True
+
+== fits (w=1/2), per eps: L_c = a + b x ==
+  eps=0.01: n=2 ks=[1, 300] L_c=[1.1336, 6.2289]
+    vs log_gamma_k        a=-2.5676 b=+1.39739 rms=0.0000 R2=1.0000 resid=+0.000 +0.000
+    vs gamma_k            a=+0.9971 b=+0.00966 rms=0.0000 R2=1.0000 resid=+0.000 -0.000
+    vs inv_mean_gap       a=+0.0006 b=+8.78003 rms=0.0000 R2=1.0000 resid=-0.000 -0.000
+    vs neighbour_gap      a=+7.3215 b=-0.89845 rms=0.0000 R2=1.0000 resid=+0.000 +0.000
+    vs inv_neighbour_gap  a=+0.0410 b=+7.52480 rms=0.0000 R2=1.0000 resid=+0.000 +0.000
+
+== minimiser at L_c (w=1/2) ==
+  k=1|eps=0.01: ||G||=1.0000 central-half 0.968 end-tenths 0.000 |G|max@u/h=+0.000 sign changes 0 maxima of |G| 1 env central/outer 1.6841120551122104/None kept 30/32 ||c||=4.77e+02
+      |A|^2=1.569e-13 |B|^2=9.162e-09 Z'=1.755e-08 tail=8.98e-12 E(|t-g_k|<gap)=0.0252 E(|t-g_k|<1)=0.0000 E(|t|<g_1)=9.999e-01 -> |B|^2 alone (|A|^2 term negligible against Z')
+  k=300|eps=0.01: ||G||=1.0000 central-half 0.694 end-tenths 0.003 |G|max@u/h=-0.319 sign changes 1076 maxima of |G| 1077 env central/outer 0.6458381812503725/0.3886520468819098 kept 32/32 ||c||=1.41e+00
+      |A|^2=1.034e-08 |B|^2=1.168e-04 Z'=1.835e-04 tail=1.38e-08 E(|t-g_k|<gap)=0.2216 E(|t-g_k|<1)=0.1340 E(|t|<g_1)=2.115e-08 -> |B|^2 alone (|A|^2 term negligible against Z')
+
+== ladders (lam_min per grid point; floor/kept) ==
+  k=1|eps=0.01|M=16|w=1/2: L_c=1.1335829764817584 bracket=[1.1125559938630225, 1.1335829764817584] 
+      lam: +2.18e-01 +1.81e-02 +1.06e-06 -3.05e-05 -2.16e-04 -1.50e-03 -1.04e-02 -6.40e-02
+      flo: 8e-10/24 3e-10/26 7e-12/29 5e-14/32 1e-17/32 1e-17/32 3e-17/32 2e-17/32
+  k=1|eps=0.01|M=16|w=1: L_c=1.1125559938630225 bracket=[1.0919190435641268, 1.1125559938630225] 
+      lam: +3.62e-01 +2.12e-02 +1.03e-06 -6.22e-05 -4.46e-04 -3.01e-03 -2.08e-02 -1.29e-01
+      flo: 1e-09/24 3e-10/26 7e-12/29 5e-14/32 2e-17/32 2e-17/32 3e-17/32 7e-17/32
+  k=300|eps=0.01|M=16|w=1/2: L_c=6.228939680994865 bracket=[6.113398243691408, 6.228939680994865] 
+      lam: +3.45e+00 +3.80e+00 +3.92e+00 +3.02e+00 +1.82e+00 +2.78e-04 -6.74e-03 -5.67e-02
+      flo: 3e-14/32 2e-14/32 2e-14/32 2e-14/32 1e-14/32 3e-16/32 2e-16/32 6e-16/32
+  k=300|eps=0.01|M=16|w=1: L_c=6.113398243691408 bracket=[6.0, 6.113398243691408] 
+      lam: +3.45e+00 +3.81e+00 +3.92e+00 +3.14e+00 +2.09e+00 +3.98e-05 -1.38e-02 -1.17e-01
+      flo: 3e-14/32 2e-14/32 2e-14/32 2e-14/32 2e-14/32 3e-16/32 2e-16/32 7e-16/32
+
+== unit tests ==
+
+timings: {'Z': 25.75212526321411, 'nZ': 38, 'T': 0.8086633682250977, 'nT': 38, 'S': 0.42895984649658203, 'nS': 38, 'eig': 28.03355860710144, 'neig': 64, 'elapsed_s': 55.492300033569336}

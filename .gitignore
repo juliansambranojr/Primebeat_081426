@@ -18,3 +18,7 @@ lean/.lake/
 # local corpus written by utilities/hooks/check_direct_run.py, for scoring
 # the slice warning later; not a shared artifact
 utilities/slice_observations.jsonl
+
+# one-use approval flags read by utilities/hooks/check_protected_write.py and
+# the pre-commit hook; local, never shared
+.approve/

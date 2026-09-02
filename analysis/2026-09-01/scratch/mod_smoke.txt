@@ -1,0 +1,102 @@
+weil_Lc_mod.txt — 2026-09-02T10:10:30 — EXPLORATORY (no prereg, no decision rule, no verdict)
+json: /private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/e0529930-f9ed-407f-aa48-0dd5f402f85a/scratchpad/mod_smoke.json  sha256 f91f2afeb0767ca3826100f0eff5cce1c9c21865093f6fd37f6c87658b561db6
+basis: P_n(u/h) cos(gamma_k u), P_n(u/h) sin(gamma_k u), n < 16 (32 functions), pencil (Q, S), S-cut 1e-24, dps 40
+k = [1, 1000]; eps = [0.0, 0.01] (0 = control); L grid 0.300..3.000 (4 pts), bisect ratio 1.02
+Q = Z'_k + tail + 2w T_eps;  T_eps = 2(|A|^2 - |B|^2);  w = 1/2 primary, w = 1 secondary
+
+== L_c(eps, k) ==
+    k    gamma_k  log g_k   nb gap  mean gap    eps      w=1/2        w=1      X_c lam(1.5Lc)   lam(2Lc)  h_c g_k     |A|^2     |B|^2     Z(G*)   E_gap     E<g1  through
+    1     14.135   2.6486   6.8873    7.7498      0       none       none     none       none       none     none      none      none      none    none     none  
+    1     14.135   2.6486   6.8873    7.7498   0.01     1.1357     1.1221    3.113  -2.75e-05  -6.05e-05      8.0  1.49e-13  9.11e-09  1.63e-08  0.0251  1.0e+00  |B|^2 alone (|A|^2 term negligible against Z')
+ 1000   1419.422   7.2580   0.7255    1.1592      0       none       none     none       none       none     none      none      none      none    none     none  
+ 1000   1419.422   7.2580   0.7255    1.1592   0.01       none       none     none       none       none     none      none      none      none    none     none  
+
+== rows without an L_c ==
+  k=1 eps=0: no sign change beyond the floor up to L = 3.000 (there: lam_min +1.55e-20, floor 6.1e-25, Z'(G*) 1.6e-20, |A|^2 6.5e-40, |B|^2 0.0e+00, ||c|| 1.4e+00, kept 32/32); min lam on grid +1.55e-20 at L = 3.000
+  k=1000 eps=0: no sign change beyond the floor up to L = 3.000 (there: lam_min +3.11e+00, floor 2.3e-14, Z'(G*) 3.1e+00, |A|^2 1.3e-04, |B|^2 0.0e+00, ||c|| 1.4e+00, kept 32/32); min lam on grid +3.11e+00 at L = 3.000
+  k=1000 eps=0.01: no sign change beyond the floor up to L = 3.000 (there: lam_min +3.11e+00, floor 2.3e-14, Z'(G*) 3.1e+00, |A|^2 1.3e-04, |B|^2 2.2e-05, ||c|| 1.4e+00, kept 32/32); min lam on grid +3.11e+00 at L = 3.000
+
+== sanity: k = 1 vs Legendre ==
+  eps=0 w=1/2: modulated None bracket None  Legendre M32 None  M64 None  modulated >= Legendre M32: None
+  eps=0 w=1: modulated None bracket None  Legendre M32 None  M64 None  modulated >= Legendre M32: None
+  eps=0.01 w=1/2: modulated 1.1356545747775888 bracket [1.1221164301103357, 1.1356545747775888]  Legendre M32 1.1387307600097953  M64 1.1387307600097958  modulated >= Legendre M32: False
+  eps=0.01 w=1: modulated 1.1221164301103357 bracket [1.108739673742925, 1.1221164301103357]  Legendre M32 1.1194227574971414  M64 1.1194227574971418  modulated >= Legendre M32: True
+
+== fits (w=1/2), per eps: L_c = a + b x ==
+  eps=0: n=0 ks=[] L_c=[]
+    vs log_gamma_k        fewer than 2 points
+    vs gamma_k            fewer than 2 points
+    vs inv_mean_gap       fewer than 2 points
+    vs neighbour_gap      fewer than 2 points
+    vs inv_neighbour_gap  fewer than 2 points
+  eps=0.01: n=1 ks=[1] L_c=[1.1357]
+    vs log_gamma_k        fewer than 2 points
+    vs gamma_k            fewer than 2 points
+    vs inv_mean_gap       fewer than 2 points
+    vs neighbour_gap      fewer than 2 points
+    vs inv_neighbour_gap  fewer than 2 points
+
+== minimiser at L_c (w=1/2) ==
+  k=1|eps=0.01: ||G||=1.0000 central-half 0.968 end-tenths 0.000 |G|max@u/h=+0.000 sign changes 0 maxima of |G| 1 env central/outer 1.683873954050991/None kept 30/32 ||c||=2.62e+02
+      |A|^2=1.487e-13 |B|^2=9.105e-09 Z'=1.634e-08 tail=8.50e-12 E(|t-g_k|<gap)=0.0251 E(|t-g_k|<1)=0.0000 E(|t|<g_1)=9.999e-01 -> |B|^2 alone (|A|^2 term negligible against Z')
+
+== ladders (lam_min per grid point; floor/kept) ==
+  k=1|eps=0|M=16|w=1/2: L_c=None bracket=None no sign change beyond the floor up to L = 3.000 (there: lam_min +1.55e-20, floor 6.1e-25, Z'(G*) 1.6e-20, |A|^2 6.5e-40, |B|^2 0.0e+00, ||c|| 1.4e+00, kept 32/32); min lam on grid +1.55e-20 at L = 3.000
+      lam: +2.18e-01 +3.06e-03 +6.19e-13 +1.55e-20
+      flo: 8e-10/24 1e-08/27 7e-18/32 6e-25/32
+  k=1|eps=0.01|M=16|w=1/2: L_c=1.1356545747775888 bracket=[1.1221164301103357, 1.1356545747775888] 
+      lam: +2.18e-01 +3.06e-03 -1.07e-06 -1.60e-04
+      flo: 8e-10/24 1e-08/27 2e-13/32 2e-17/32
+  k=1|eps=0.01|M=16|w=1: L_c=1.1221164301103357 bracket=[1.108739673742925, 1.1221164301103357] 
+      lam: +3.62e-01 +3.19e-03 -2.29e-06 -3.42e-04
+      flo: 1e-09/24 2e-08/27 5e-13/32 3e-17/32
+  k=1000|eps=0|M=16|w=1/2: L_c=None bracket=None no sign change beyond the floor up to L = 3.000 (there: lam_min +3.11e+00, floor 2.3e-14, Z'(G*) 3.1e+00, |A|^2 1.3e-04, |B|^2 0.0e+00, ||c|| 1.4e+00, kept 32/32); min lam on grid +3.11e+00 at L = 3.000
+      lam: +4.93e+00 +5.19e+00 +4.52e+00 +3.11e+00
+      flo: 3e-14/32 3e-14/32 3e-14/32 2e-14/32
+  k=1000|eps=0.01|M=16|w=1/2: L_c=None bracket=None no sign change beyond the floor up to L = 3.000 (there: lam_min +3.11e+00, floor 2.3e-14, Z'(G*) 3.1e+00, |A|^2 1.3e-04, |B|^2 2.2e-05, ||c|| 1.4e+00, kept 32/32); min lam on grid +3.11e+00 at L = 3.000
+      lam: +4.93e+00 +5.19e+00 +4.52e+00 +3.11e+00
+      flo: 3e-14/32 3e-14/32 3e-14/32 2e-14/32
+  k=1000|eps=0.01|M=16|w=1: L_c=None bracket=None no sign change beyond the floor up to L = 3.000 (there: lam_min +3.11e+00, floor 2.3e-14, Z'(G*) 3.1e+00, |A|^2 3.9e-05, |B|^2 2.2e-05, ||c|| 1.4e+00, kept 32/32); min lam on grid +3.11e+00 at L = 3.000
+      lam: +4.94e+00 +5.19e+00 +4.53e+00 +3.11e+00
+      flo: 3e-14/32 3e-14/32 3e-14/32 2e-14/32
+
+== unit tests ==
+  M0_series_vs_besselj:
+    {'z': '(30.0 + 0.1j)', 'max_rel_err': 2.0272430857686791e-41}
+    {'z': '(5.0 - 0.3j)', 'max_rel_err': 1.6793017462503923e-41}
+    {'z': '(39.9 + 2.0j)', 'max_rel_err': 1.255372829889396e-41}
+    {'h': 0.5, 't': '(14.13 - 0.01j)', 'max_abs_err_vs_height_closed_form': 1.1479437019748901e-41}
+    {'h': 3.0, 't': '(1419.4 + 0.01j)', 'max_abs_err_vs_height_closed_form': 4.484189297097199e-44}
+  M1_ghat_vs_quad:
+    {'k': 1, 'h': 0.5, 'eps': 0.0, 'h_gamma': 7.067362570867347, 'T_elem_(0,M+5)_closed': '0.114686201513', 'T_elem_quad': '0.114686201513', 'T_elem_abs_err': 2.8698592549372254e-42, 'quad_seconds': 0.04540109634399414, 'max_abs_err_ghat': 1.1479437019748901e-41}
+    {'k': 1, 'h': 0.5, 'eps': 0.01, 'h_gamma': 7.067362570867347, 'T_elem_(0,M+5)_closed': '0.114688052463', 'T_elem_quad': '0.114688052463', 'T_elem_abs_err': 1.4349296274686127e-42, 'quad_seconds': 0.06346964836120605, 'max_abs_err_ghat': 1.1479586994279016e-41}
+    {'k': 1, 'h': 3.0, 'eps': 0.0, 'h_gamma': 42.40417542520408, 'T_elem_(0,M+5)_closed': '0.115921708927', 'T_elem_quad': '0.115921708927', 'T_elem_abs_err': 9.183549615799121e-41, 'quad_seconds': 0.14744877815246582, 'max_abs_err_ghat': 5.278641013948551e-41}
+    {'k': 1, 'h': 3.0, 'eps': 0.01, 'h_gamma': 42.40417542520408, 'T_elem_(0,M+5)_closed': '0.1159906172', 'T_elem_quad': '0.1159906172', 'T_elem_abs_err': 9.183549615799121e-41, 'quad_seconds': 0.24718117713928223, 'max_abs_err_ghat': 8.406948918419584e-41}
+    {'k': 30, 'h': 0.5, 'eps': 0.0, 'h_gamma': 50.65892550286569, 'T_elem_(0,M+5)_closed': '-0.00979485370327', 'T_elem_quad': '-0.00979485370327', 'T_elem_abs_err': 3.946056475538685e-42, 'quad_seconds': 0.17015290260314941, 'max_abs_err_ghat': 3.4487350783239437e-41}
+    {'k': 30, 'h': 0.5, 'eps': 0.01, 'h_gamma': 50.65892550286569, 'T_elem_(0,M+5)_closed': '-0.00979501616979', 'T_elem_quad': '-0.00979501616979', 'T_elem_abs_err': 3.049225458370802e-42, 'quad_seconds': 0.2924039363861084, 'max_abs_err_ghat': 5.744399063280761e-41}
+    {'k': 30, 'h': 3.0, 'eps': 0.0, 'h_gamma': 303.95355301719417, 'T_elem_(0,M+5)_closed': '-0.000548989894544', 'T_elem_quad': '-0.000548989894544', 'T_elem_abs_err': 1.6139595192707513e-40, 'quad_seconds': 0.9449710845947266, 'max_abs_err_ghat': 1.4024342093721175e-40}
+    {'k': 30, 'h': 3.0, 'eps': 0.01, 'h_gamma': 303.95355301719417, 'T_elem_(0,M+5)_closed': '-0.000549342983807', 'T_elem_quad': '-0.000549342983807', 'T_elem_abs_err': 1.6154168696736491e-40, 'quad_seconds': 1.6407129764556885, 'max_abs_err_ghat': 1.2152692348297936e-40}
+    {'k': 1000, 'h': 0.5, 'eps': 0.0, 'h_gamma': 709.7112404729978, 'T_elem_(0,M+5)_closed': '-0.00098521131821', 'T_elem_quad': '-0.00098521131821', 'T_elem_abs_err': 7.488538993351822e-42, 'quad_seconds': 2.1471598148345947, 'max_abs_err_ghat': 5.743484386219696e-41}
+    {'k': 1000, 'h': 0.5, 'eps': 0.01, 'h_gamma': 709.7112404729978, 'T_elem_(0,M+5)_closed': '-0.00098522773693', 'T_elem_quad': '-0.00098522773693', 'T_elem_abs_err': 7.533380544210217e-42, 'quad_seconds': 3.7179319858551025, 'max_abs_err_ghat': 2.307470996405479e-41}
+    {'k': 1000, 'h': 3.0, 'eps': 0.0, 'h_gamma': 4258.267442837987, 'T_elem_(0,M+5)_closed': '0.00110865221439', 'T_elem_quad': '0.00110865221439', 'T_elem_abs_err': 1.5286484687626564e-40, 'quad_seconds': 12.861390829086304, 'max_abs_err_ghat': 3.723135387196358e-40}
+    {'k': 1000, 'h': 3.0, 'eps': 0.01, 'h_gamma': 4258.267442837987, 'T_elem_(0,M+5)_closed': '0.00110931761354', 'T_elem_quad': '0.00110931761354', 'T_elem_abs_err': 1.523940105922525e-40, 'quad_seconds': 22.153197050094604, 'max_abs_err_ghat': 4.24869930625961e-40}
+  M2_gram_vs_quad:
+    {'k': 1, 'h': 0.5, '2_gamma_h': 14.134725141734695, 'max_abs_err': 1.1479437019748901e-41, 'S_eig_min': 1.2157087536769537e-32, 'S_eig_max': 1.0, 'cond_S': 8.225654351632041e+31}
+    {'k': 30, 'h': 0.5, '2_gamma_h': 101.31785100573138, 'max_abs_err': 3.4438311059246704e-41, 'S_eig_min': 0.050704854995582284, 'S_eig_max': 0.9492951450044177, 'cond_S': 18.721977315330577}
+    {'k': 1000, 'h': 0.15, '2_gamma_h': 425.8267442837987, 'max_abs_err': 9.88756196427591e-41, 'S_eig_min': 0.3465959364929848, 'S_eig_max': 0.6534040635070152, 'cond_S': 1.8852040509143138}
+  M3_rank_one_removal:
+    {'k': 1, 'h': 0.75, 'max_abs_diff': 3.7748226909989823e-31, 'max_abs_entry': 0.881136097298417, 'rel': 4.284040459325946e-31, 'Ghat_k_row_max': 0.6328702185030746}
+    {'k': 30, 'h': 1.5, 'max_abs_diff': 7.946386950541735e-31, 'max_abs_entry': 1.700401089452779, 'rel': 4.673242683641794e-31, 'Ghat_k_row_max': 0.8680310814293466}
+    {'k': 1000, 'h': 0.5, 'max_abs_diff': 7.395570986446986e-32, 'max_abs_entry': 2.836108374805549, 'rel': 2.607647525794583e-32, 'Ghat_k_row_max': 0.5001922774983897}
+  M4_S_conditioning:
+    {'k': 1, 'L': 0.3, 'gamma_h': 2.120208771260204, 'S_eig_min': -4.0178029569121155e-41, 'S_eig_max': 1.0, 'cond_S': -2.48892245519315e+40, 'kept': 24}
+    {'k': 1, 'L': 1.3924766500838337, 'gamma_h': 9.841137357609234, 'S_eig_min': 8.557999781858031e-24, 'S_eig_max': 1.0, 'cond_S': 1.1684973422409805e+23, 'kept': 32}
+    {'k': 1, 'L': 3.0000000000000004, 'gamma_h': 21.202087712602044, 'S_eig_min': 2.714538075579712e-05, 'S_eig_max': 0.9999728546192442, 'cond_S': 36837.680179000316, 'kept': 32}
+    {'k': 1000, 'L': 0.3, 'gamma_h': 212.91337214189934, 'S_eig_min': 0.3465959364929848, 'S_eig_max': 0.6534040635070152, 'cond_S': 1.8852040509143138, 'kept': 32}
+    {'k': 1000, 'L': 1.3924766500838337, 'gamma_h': 988.2563306606821, 'S_eig_min': 0.4665913468376101, 'S_eig_max': 0.5334086531623898, 'cond_S': 1.143203055045156, 'kept': 32}
+    {'k': 1000, 'L': 3.0000000000000004, 'gamma_h': 2129.133721418994, 'S_eig_min': 0.4840401434896083, 'S_eig_max': 0.5159598565103917, 'cond_S': 1.0659443507942616, 'kept': 32}
+  M5_eps0_pair_term:
+    {'k': 1, 'h': 0.75, 'max_abs_diff': 9.11320004488093e-11, 'max_abs_entry': 0.8010494269362587, 'rel': 1.1376576448891321e-10}
+    {'k': 1000, 'h': 0.5, 'max_abs_diff': 6.240502448270693e-13, 'max_abs_entry': 0.5003846289380521, 'rel': 1.2471411165276362e-12}
+
+timings: {'Z': 12.704487562179565, 'nZ': 19, 'T': 0.5593338012695312, 'nT': 27, 'S': 0.2565133571624756, 'nS': 19, 'eig': 18.150196313858032, 'neig': 40, 'elapsed_s': 84.7861499786377}

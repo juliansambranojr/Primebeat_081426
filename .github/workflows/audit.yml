@@ -1,0 +1,50 @@
+# Audit floor, mirrored from utilities/hooks/pre-commit: references resolve,
+# every .numbers sidecar matches its JSON, and the three newest notebook
+# entries cite numbers their .numbers files hold. No Lean build. The three
+# utilities import only the standard library, so nothing is pip-installed.
+name: audit
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: check_refs
+        run: |
+          python3 utilities/check_refs.py | tee refs.out
+          test "${PIPESTATUS[0]}" -eq 0
+
+      - name: flatten_results --check on every .numbers
+        run: |
+          { [ -d analysis ] && find analysis -type f -path '*/results/*.numbers'; \
+            [ -d results ] && find results -maxdepth 1 -type f -name '*.numbers'; } \
+            | sort > numbers.list || true
+          if [ -s numbers.list ]; then
+            tr '\n' '\0' < numbers.list | xargs -0 python3 utilities/flatten_results.py --check
+          else
+            echo "no .numbers files"
+          fi
+
+      - name: check_entry_numbers on the three newest entries
+        run: |
+          newest=$(sed -nE 's/^notebook: .*newest ([0-9]+) .*$/\1/p' refs.out)
+          test -n "$newest" || { echo "check_refs printed no 'newest N' line"; exit 1; }
+          rc=0
+          for n in "$newest" $((newest - 1)) $((newest - 2)); do
+            echo "== entry $n"
+            r=0; python3 utilities/check_entry_numbers.py --entry "$n" || r=$?
+            # 1 = MISMATCH (fail); 2 = entry not found exactly once (report, pass)
+            if [ "$r" -eq 1 ]; then rc=1; fi
+          done
+          exit "$rc"

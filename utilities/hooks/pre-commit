@@ -1,29 +1,64 @@
 #!/bin/sh
-# Runs the gate. Fails only on breaks NOT already in utilities/refs_baseline.txt,
-# so an imperfect tree can still be committed while it cannot get worse.
-# Regenerate the baseline after fixing something:
-#   python3 utilities/check_refs.py | grep '^BROKEN' | sort > utilities/refs_baseline.txt
-# Bypass once, deliberately:  git commit --no-verify
+# Git floor for this repo. Install once with:  git config core.hooksPath utilities/hooks
+# Every check prints the offending line and exits 1; nothing here is advisory.
+#
+#   1. check_refs.py        fails on breaks NOT already in utilities/refs_baseline.txt,
+#                           so an imperfect tree can still be committed while it
+#                           cannot get worse. A crash of the checker itself fails too.
+#                           Regenerate the baseline after fixing something:
+#                             python3 utilities/check_refs.py | grep '^BROKEN' | sort > utilities/refs_baseline.txt
+#   2. check_values.py      a paper states a number its artifact does not
+#   3. check_results_guard  a NEW script writes results/ without the clobber guard
+#   4. check_sidecar.py     a locked prereg's text has no recoverable pre-image
+#   5. flatten_results.py --check   every analysis/**/results/*.numbers and
+#                           results/*.numbers still has its JSON's sha256 on line 1
+#   6. check_entry_numbers  every `## ... Entry N` header ADDED in the staged diff of
+#                           notes/lab_notebook_2.md: fails only on MISMATCH
+#                           (UNRESOLVED passes; exit 2 "not found once" is printed
+#                           as a note and passes — it reads the working tree)
+#   7. approval flag        a staged change to CLAUDE.md / CONTEXT.md / REFERENCES.md
+#                           needs .approve/<basename> to exist (the flag is NOT
+#                           consumed here; utilities/hooks/check_protected_write.py
+#                           consumes it at edit time)
+#
+# Bypass once, deliberately:  git commit --no-verify   (the Bash hook denies that
+# form from inside Claude; from a terminal it is Julian's call).
 set -e
 ROOT=$(git rev-parse --show-toplevel)
 cd "$ROOT"
 
-new=$(python3 utilities/check_refs.py | grep '^BROKEN' | sort | comm -23 - utilities/refs_baseline.txt)
+# ── 1. references ─────────────────────────────────────────────────────────
+refs_out=$(mktemp)
+set +e
+python3 utilities/check_refs.py >"$refs_out" 2>&1
+refs_rc=$?
+set -e
+new=$(grep '^BROKEN' "$refs_out" | sort | comm -23 - utilities/refs_baseline.txt)
 if [ -n "$new" ]; then
   echo "── NEW broken references ──────────────────────────────"
   echo "$new"
   echo
   echo "Not in utilities/refs_baseline.txt. Fix, or add deliberately:"
   echo "  python3 utilities/check_refs.py | grep '^BROKEN' | sort > utilities/refs_baseline.txt"
+  rm -f "$refs_out"
   exit 1
 fi
+if [ "$refs_rc" -ne 0 ] && ! grep -q '^BROKEN' "$refs_out"; then
+  echo "── utilities/check_refs.py exited $refs_rc without a BROKEN line ──"
+  tail -5 "$refs_out"
+  rm -f "$refs_out"
+  exit 1
+fi
+rm -f "$refs_out"
 
+# ── 2. paper values ───────────────────────────────────────────────────────
 if ! python3 utilities/check_values.py >/dev/null 2>&1; then
   echo "── A paper states a number its artifact does not ──────"
   python3 utilities/check_values.py | grep '^MISMATCH'
   exit 1
 fi
 
+# ── 3. clobber guard ──────────────────────────────────────────────────────
 if ! python3 utilities/check_results_guard.py --new-only >/dev/null 2>&1; then
   echo "── A NEW script writes results/ without the clobber guard ──"
   python3 utilities/check_results_guard.py --new-only | tail -4
@@ -34,14 +69,78 @@ if ! python3 utilities/check_results_guard.py --new-only >/dev/null 2>&1; then
   echo "guard are checked here."
   exit 1
 fi
+
+# ── 4. prereg sidecars ────────────────────────────────────────────────────
 if ! python3 utilities/check_sidecar.py; then
   echo
   echo "A locked prereg's text has no recoverable pre-image, so its"
   echo "sidecar cannot be verified. Lock, COMMIT, then run —"
-  echo "preregs/FORMAT.md \u00a7 'Lock, commit, then run'. Already-known"
+  echo "preregs/FORMAT.md § 'Lock, commit, then run'. Already-known"
   echo "cases live in utilities/sidecar_baseline.txt with their reasons."
   exit 1
 fi
+
+# ── 5. .numbers sidecars match their JSON ─────────────────────────────────
+numbers_list=$(mktemp)
+{ [ -d analysis ] && find analysis -type f -path '*/results/*.numbers'; \
+  [ -d results ] && find results -maxdepth 1 -type f -name '*.numbers'; } \
+  | sort >"$numbers_list" || true
+if [ -s "$numbers_list" ]; then
+  flat_out=$(mktemp)
+  set +e
+  tr '\n' '\0' <"$numbers_list" | xargs -0 python3 utilities/flatten_results.py --check >"$flat_out" 2>&1
+  flat_rc=$?
+  set -e
+  if [ "$flat_rc" -ne 0 ]; then
+    echo "── A .numbers file no longer matches its JSON ─────────"
+    grep -v '^OK' "$flat_out"
+    echo
+    echo "Regenerate it:  python3 utilities/flatten_results.py <that>.json"
+    rm -f "$numbers_list" "$flat_out"
+    exit 1
+  fi
+  rm -f "$flat_out"
+fi
+rm -f "$numbers_list"
+
+# ── 6. numbers cited in newly staged notebook entries ─────────────────────
+added_entries=$(git diff --cached -U0 -- notes/lab_notebook_2.md 2>/dev/null \
+  | grep -E '^\+## .*Entry [0-9]+' | sed -E 's/^.*Entry ([0-9]+).*$/\1/' | sort -un)
+for n in $added_entries; do
+  ent_out=$(mktemp)
+  set +e
+  python3 utilities/check_entry_numbers.py --entry "$n" >"$ent_out" 2>&1
+  ent_rc=$?
+  set -e
+  if [ "$ent_rc" -eq 1 ]; then
+    echo "── Entry $n cites a number its .numbers file does not hold ──"
+    grep '^MISMATCH' "$ent_out"
+    echo
+    echo "Read the value from the .numbers file by its key; never retype it."
+    rm -f "$ent_out"
+    exit 1
+  elif [ "$ent_rc" -ne 0 ]; then
+    echo "note: check_entry_numbers.py --entry $n exited $ent_rc (not a MISMATCH):"
+    cat "$ent_out"
+  fi
+  rm -f "$ent_out"
+done
+
+# ── 7. commitment files need an approval flag ─────────────────────────────
+for f in $(git diff --cached --name-only 2>/dev/null); do
+  b=$(basename "$f")
+  case "$b" in
+    CLAUDE.md|CONTEXT.md|REFERENCES.md)
+      if [ ! -e ".approve/$b" ]; then
+        echo "── Staged change to a commitment file without approval ──"
+        echo "$f"
+        echo
+        echo "Julian approves by creating the flag:  touch .approve/$b"
+        exit 1
+      fi
+      ;;
+  esac
+done
 
 fixed=$(python3 utilities/check_refs.py | grep '^BROKEN' | sort | comm -13 - utilities/refs_baseline.txt)
 [ -n "$fixed" ] && { echo "── fixed, trim the baseline ──"; echo "$fixed"; }

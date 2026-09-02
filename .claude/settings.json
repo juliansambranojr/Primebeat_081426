@@ -6,6 +6,10 @@
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_response_prefix.py\""
+          },
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_numbers_in_response.py\""
           }
         ]
       }
@@ -28,6 +32,37 @@
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_direct_run.py\""
+          },
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_bash_guard.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_agent_brief.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_read_range.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_protected_write.py\""
           }
         ]
       }
