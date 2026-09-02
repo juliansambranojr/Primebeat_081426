@@ -16,6 +16,156 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 295 — weil_QX.py: the prime side of Weil's quadratic form as an instrument, ladder X = 2..10⁴ — the identity holds at every rung, the total is positive at every rung, and no published rung contains a prime
+type: run
+refs: 40, 246, 252, 277, 284, 294
+
+**Exploratory.** No prereg, no decision rule, no verdict; the script
+says so in its docstring and stamps every output with it
+(`analysis/2026-09-01/weil_QX.py:2-3,292,450,490,511`).
+
+**What was built** (`analysis/2026-09-01/weil_QX.py`, 516 lines, run
+as `.venv/bin/python analysis/2026-09-01/weil_QX.py` with the defaults
+`--xs 2,3,5,10,20,50,100,1000,10000 --nzeros 2000 --dps 25 --arch-T 400
+--families triangle,bump` (lines 275-280); outputs
+`analysis/2026-09-01/results/weil_QX.json`,
+`analysis/2026-09-01/results/weil_QX.txt`,
+`analysis/2026-09-01/results/weil_QX.log`, zero cache
+`analysis/2026-09-01/results/zetazeros_2000.json`; code_version
+`efd29b6a895c0e21…`, run 2026-09-02T04:30:04Z to 04:32:00Z UTC, which
+is 2026-09-01 21:30 local; completed). The prime side of Weil's
+explicit-formula quadratic form, on a ladder of truncation lengths X.
+Test function F = G⋆G̃ with G supported on [−L/2, L/2], L = log X, so
+F is supported on [−L, L] and exactly the prime powers n ≤ X enter the
+prime sum (lines 35-37). Three arithmetic terms in Bombieri's (12.2)
+normalisation (lines 39-45):
+
+- pole = ∫F(u)·2cosh(u/2) du = 2Ĝ(i/2)² (line 329; checked against the
+  direct quadrature at line 330, agreeing to all printed digits at every
+  X, `weil_QX.log:11-27`);
+- prime = 2Σ_{n≤X} Λ(n) n^{−1/2} F(log n) over prime powers (lines
+  258-269);
+- arch = −(log 4π + γ)F(0) − ∫₀^L (e^{x/2}(F(x)+F(−x)) − 2F(0))
+  dx/(e^x − e^{−x}) + F(0)·log coth(L/2), Bombieri's real-space
+  archimedean integral with the exact tail x > L (lines 211-220);
+  cross-checked on the Fourier side (1/2π)∫Ĝ(t)²[Re ψ(1/4+it/2) − log π]dt
+  (lines 223-255), agreeing to 1e-5..1e-6 for the triangle at T = 400
+  and to machine precision for the bump (`weil_QX.log:11-27,32-48`);
+- total = pole − prime + arch = Σ_ρ F̂(ρ) (line 333).
+
+The zero side is computed independently: Z_N = 2Σ_{k≤N} Ĝ(γ_k)² over
+N = 2000 mpmath zeros (γ₂₀₀₀ = 2515.286) and Z_file over the 100,000
+zeros of `imported/twin_count/zeros1.txt` (to γ = 74920.827; the file
+and mpmath agree to 5.0e-10 on the first 2000, `weil_QX.log:5-6`;
+`wc -l` gives 100000 and the JSON records `N_file: 100000`). Each
+carries a tail estimate (2/π)(log(γ_N/2π)+1)/γ_N (lines 106-111).
+
+**Criterion pinned from source.** Bombieri, "Remarks on Weil's
+quadratic functional in the theory of prime numbers, I", Rend. Lincei
+(9) 11 (2000) 183–233, https://eudml.org/doc/252338, full text
+http://www.bdim.eu/item?id=RLIN_2000_9_11_3_183_0&fmt=pdf. Theorem 1,
+quoted: "The Riemann Hypothesis holds if and only if (3.1)
+Σ_ρ g̃(ρ) g̃(1−ρ) > 0 for every complex-valued g(x) ∈ C₀^∞((0,∞)), not
+identically 0" (the script's docstring carries the same statement,
+`weil_QX.py:29-31`). Theorem 12, quoted: "If F(x) has compact support
+in an interval I of length |I| < log 2 we have T[F(x)∗F(−x)] =
+Σ_γ F̂(γ) conj F̂(γ) ≥ (log(1/|I|) − log log(1/|I|) − O(1)) ‖F‖²" — the
+prime sum vanishes on that support. Connes–Consani, arXiv:2006.13771,
+Theorem 1, quoted: "Let g ∈ C_c^∞(R₊*) have support in the interval
+[2^{−1/2}, 2^{1/2}] and Fourier transform vanishing at i/2 and 0. Then
+one has W_∞(g ∗ g*) ≥ Tr(ϑ(g) S ϑ(g)*)" — the rung with no prime in
+it, Yoshida 1992's regime. Weil 1952 itself was not obtained; nothing
+is quoted from it. The three quotations above were supplied by the
+orchestrator in the brief for this entry; the agent writing it opened
+the repository files cited by path and line and did not open the two
+papers.
+
+**Correction (the orchestrator's).** In chat on 2026-09-01 I said from
+memory that Connes–Consani had proved positivity for small support as
+the foothold of a ladder in X. Verified: their support is
+[2^{−1/2}, 2^{1/2}], where no prime enters. No published rung contains
+a prime.
+
+**Normalisation match.** `O36_weil_calibration.py:29-41` states the
+form Σ_ρ H(ρ) = H(0) + H(1) − 2Σ_{n≥2} Λ(n) n^{−1/2} f(log n) +
+(1/2π)∫H(1/2+it)[Re ψ(1/4+it/2) − log π]dt, and
+`O37_weil_form_on_stencil.py:244-256` computes exactly those three
+terms (primes loop 244-251, `arch = quad(...)` 252-254, `rhs = H0 + H1
+- prime + arch` 256); that is Bombieri's (12.2) with H(0) + H(1) as
+the pole term, and the instrument uses the same (`weil_QX.py:20-27,
+457-458`). Entry 40 is the O36/O37 record. The comb of entries 246–252
+(`analysis/2026-08-28/floor_reconstruction.py:7-9`: S_model(u) =
+Σ c_n[K(u − v_n) + K(u + v_n)], K(w) = (e^{iTw} − 1)/(iw); line 52:
+`cs = -(1.0 / (2 * pi)) * lams / np.sqrt(ns)`) is a sharp-truncation
+ringing kernel, a different object from the quadratic form.
+
+**Ladder, triangle family** (G = indicator of [−L/2, L/2], F(u) = L −
+|u|, Ĝ(t) = 2sin(Lt/2)/t; dps 25; `weil_QX.txt:7-15`). Columns X /
+pole / prime / arch / total / zero side (100,000 zeros) / residual /
+tail estimate:
+
+```text
+    2  /   0.97056 /   0.00000 /  -0.84345 / 0.12711 / 0.12702 / 9.24e-5 / 8.83e-5
+    3  /   2.47521 /   0.39746 /  -1.94336 / 0.13439 / 0.13430 / 9.36e-5 / 8.83e-5
+    5  /   5.46625 /   1.70089 /  -3.63104 / 0.13433 / 0.13423 / 9.44e-5 / 8.83e-5
+   10  /  11.82804 /   5.44911 /  -6.30208 / 0.07685 / 0.07677 / 8.83e-5 / 8.83e-5
+   20  /  21.56594 /  12.20048 /  -9.28399 / 0.08147 / 0.08138 / 8.83e-5 / 8.83e-5
+   50  /  41.69991 /  28.07047 / -13.54883 / 0.08061 / 0.08053 / 8.83e-5 / 8.83e-5
+  100  /  64.80000 /  47.74317 / -16.94116 / 0.11568 / 0.11559 / 8.83e-5 / 8.83e-5
+ 1000  / 237.23520 / 208.35929 / -28.76405 / 0.11186 / 0.11177 / 8.83e-5 / 8.83e-5
+10000  / 784.08000 / 743.02483 / -40.96097 / 0.09420 / 0.09411 / 8.83e-5 / 8.83e-5
+```
+
+Against the 2000 mpmath zeros alone the residual is 1.75e-3..1.95e-3
+with tail estimate 1.77e-3 (`weil_QX.txt:7-15`, columns resid_N /
+tail_N).
+
+**Bump family** (G = exp(−1/(1−(2u/L)²)) on |u| < L/2, F by quadrature;
+`weil_QX.txt:19-27`): total positive at every X; |residual| against the
+zero side between 5.3e-21 (X = 10⁴) and 7.6e-19 (X = 3), the JSON
+summary's `max_abs_resid_N_bump` = 7.59e-19; totals 4.50e-4 at X = 2,
+5.11e-4 at X = 3 (the maximum), then 1.87e-4, 6.35e-6, 2.54e-5,
+4.19e-6, 2.82e-6, 3.30e-7, and 2.55e-8 at X = 10⁴.
+
+**What the numbers show.** The identity holds at every X to the
+zero-truncation tail: the triangle residual against 100,000 zeros
+(8.8e-5..9.4e-5) matches the tail estimate 8.83e-5, three digits of the
+total. The total is positive at every X on the ladder, and the fine
+scan of 159 grid points on [2, 10⁴] (`weil_QX.log:51-95`; JSON
+`summary`) has minimum 0.059745 at X = 216.50 and maximum 0.134392 at
+X = 3. The triangle total has the a-priori ceiling 8Σ_{γ>0} 1/γ² =
+0.184840 for every L (Ĝ(γ)² ≤ 4/γ²; Σ_{γ>0} 1/γ² = 0.023104993 from the
+file plus the Riemann–von Mangoldt tail, `weil_QX.log:54`,
+`weil_QX.py:432-434`). Pole and prime each grow like 8√X — pole =
+2·(4sinh(L/4))² = 8√X − 16 + 8/√X exactly, 784.08 at X = 10⁴; prime
+743.02, prime/pole = 0.948 there — and cancel to leading order. The
+difference pole − prime is 41.06 at X = 10⁴, 4.46·L; by the identity it
+is −arch + total. The archimedean slope is h₊(0) = ψ(1/4) − log π =
+−5.372 (the Fourier form (1/2π)∫Ĝ²h₊ with Ĝ² = 4sin²(Lt/2)/t²
+concentrating at t = 0 as L grows), and arch − h₊(0)·L is 7.80, 8.35,
+8.52 at X = 10², 10³, 10⁴: the archimedean term absorbs the order-L
+growth of pole − prime, and what remains, the total, is bounded. At X =
+10⁴ the total 0.094 sits on terms of 784: a four-digit cancellation.
+The dominant term by magnitude is the pole at every X in both families
+(`weil_QX.txt` column `dominant`). Smallest X at which |prime| >
+|pole + arch| for the triangle: none on the ladder or the fine scan
+(`weil_QX.txt:29`; since pole + arch > 0 that condition is total < 0, a
+positivity failure). Thresholds that do cross, at grid resolution:
+|prime| > |arch| first at X = 12.6612; |prime| > pole/2 first at X = 13
+(`weil_QX.log:53`; JSON `summary.triangle_first_X_prime_exceeds_arch`).
+
+**Rung structure.** F vanishes at ±L, so at X = 3 only n = 2 enters
+with nonzero weight: prime = 0.39746 = 2·(log 2/√2)·(log 3 − log 2)
+(JSON `rows[1].prime_per_n` = [[2, 0.397460…], [3, 0.0]]); at X = 4
+only 2 and 3. Rung X = p_{k+1} is the form with exactly the first k
+prime powers, every constant known.
+
+**Relation to the dial (entry 294).** total = Σ_ρ F̂(ρ) bounded for all
+L is the exponent-1/2 drift bound seen from the Weil side; a zero at
+Re ρ = σ > 1/2 contributes F̂(ρ) growing like e^{(σ−1/2)L}. Open, from
+source: whether positivity on support ≤ L implies any zero-free strip
+(being read now).
+
 ## 2026-09-01 — Entry 294 — ThetaConverse.lean: the Landau converse at general θ — a ψ-bound at exponent θ forces ζ ≠ 0 on re s > θ, and the θ = 1 instance from Chebyshev alone
 type: formalization
 refs: 242, 277, 285, 291, 293
