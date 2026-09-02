@@ -16,6 +16,220 @@ Julian's call.
 
 ---
 
+## 2026-09-02 — Entry 299 — weil_Lc_eps.py: support length at which the restricted Weil form detects γ₁ moved to 1/2 ± ε — L_c(ε) = 0.79 + 0.073·log(1/ε), logarithmic in ε; entry 297's e^{εL} sketch corrected
+type: run
+refs: 295, 296, 297, 298
+
+**Exploratory.** No prereg, no decision rule, no verdict; the script
+says so in its docstring and stamps every output with it
+(`analysis/2026-09-01/weil_Lc_eps.py:1-3,411,729,759,827`;
+`weil_Lc_eps.log:1,172`; `weil_Lc_eps.txt:1`).
+
+**What was run** (`analysis/2026-09-01/weil_Lc_eps.py`, 831 lines —
+the brief for this entry said 813; `wc -l` gives 831 — continuing a
+script left by a rate-limited agent; the edits before the run were the
+roundoff-floor model for the sign call, the `--Ms` default 16,32, and
+the sanity block printing both the M = 32 and M = 64 columns of
+weil_rung_min). Run as `.venv/bin/python
+analysis/2026-09-01/weil_Lc_eps.py` with the defaults `--eps
+0.001,0.003,0.01,0.02,0.05,0.1,0.2 --Ms 16,32 --dps 40 --Lmin 0.3
+--Lmax 8.0 --npts 25 --bisect-ratio 1.02 --floor-rel 1e-30
+--bessel-rel 1e-15` (lines 388-398); outputs
+`analysis/2026-09-01/results/weil_Lc_eps.json`,
+`analysis/2026-09-01/weil_Lc_eps.txt`,
+`analysis/2026-09-01/results/weil_Lc_eps.log`; code_version
+`19e79317ed269adc…`; JSON `run_start_at` 2026-09-02T09:59:59Z,
+`run_end_at` 10:01:18Z, 1 min 19 s (the brief said 1 min 20 s wall;
+the JSON timestamps give 19 s), which is 2026-09-02 03:00 local;
+completed — the log closes with the stamp (`log:172`), exit clean.
+Timings: 106 zero-side builds 22.4 s, 285 pair-term builds 13.7 s,
+900 eigensolves 36.0 s (`log:116`). The script imports
+`weil_rung_min.py` and `weil_QX.py` via importlib (lines 123-131) and
+calls `wr.spherical_jn_table` (148), `wr.describe_G` (635),
+`wr.gap_matrix` (637; `basis_eval` enters through those two) and
+`wq.ZEROS_FILE` (417, 732 — the zeros file is read directly at 417;
+`load_zeros` is unused); weil_rung_min's `zero_tail` is re-implemented as a
+matrix, `tail_matrix` (lines 242-252). Zeros 2..100000 of
+`zeros1.txt` in double-double, zero 1 from `mp.zetazero(1)` (lines
+417-420; `log:5-6`, |file − mp| = 2.7e-10), tail and the moved term
+in mpmath at dps 40, eigenvalues by `mp.eigsy` on the even and odd
+Legendre blocks separately (`lam_min_parity`, lines 342-363), so the
+minimiser is exactly even or exactly odd. Geometric L grid 0.3..8, 25
+points, ratio 1.1466 (line 409; `log:2,117`); on the first sign
+change the bracket is bisected at geometric midpoints to ratio < 1.02
+(lines 618-630), L_c = the negative end of the bracket, and λ_min is
+re-evaluated at 1.5·L_c and 2·L_c (631-632).
+
+**Counterfactual and derivation** (docstring lines 8-55). Zero side
+only: the arithmetic side (pole − prime + arch, the true primes) is
+untouched, and the form is Q_ε = Z′ + tail + T_ε with
+Z′ = 2Σ_{k≥2}|Ĝ(γ_k)|² (lines 13-19). With
+ĝ(s) = ∫G(u)e^{(s−1/2)u}du, ĝ(1/2 + ε + iγ) = Ĝ(γ − iε), and for real
+G conj Ĝ(t) = Ĝ(−conj t) (lines 23-27). The four points
+1/2 ± ε ± iγ₁ at unit multiplicity sum to
+4Re[Ĝ(γ₁ − iε)·conj Ĝ(γ₁ + iε)] (line 36), and with
+A = ∫G·cosh(εu)·e^{iuγ₁}du, B = ∫G·sinh(εu)·e^{iuγ₁}du the real part
+is |A|² − |B|² (lines 38-40). At ε = 0 that four-point sum is
+4|Ĝ(γ₁)|², twice the pair term — the brief's ε = 0 test (must equal
+2|Ĝ(γ₁)|²) FAILED for the unit-multiplicity quadruple by exactly the
+factor 2 (lines 42-46; `log:17-18`: for G = indicator at h = 0.75,
+2|Ĝ(γ₁)|² = 0.0341259971799, four points at w = 1: 0.0682519943597;
+JSON `unit_tests.D0_eps0_equals_pair`). The multiplicity-conserving
+move — the pair {ρ, ρ̄} → {ρ′, ρ̄′}, ρ′ = 1/2 + ε + iγ₁, entry 297's
+formula 2Re[ĝ(ρ′)ĝ(1 − ρ′)] — is
+
+```text
+T_ε(G) = 2Re[Ĝ(γ₁ − iε)·conj Ĝ(γ₁ + iε)] = 2(|A|² − |B|²)
+```
+
+(lines 46-51), which equals the pair term 2|Ĝ(γ₁)|² at ε = 0 exactly
+(`log:17`: max |T₀ − 2Re[ĜĜᴴ]| = 0.0 at M = 32). T_ε is the primary
+column, weight w = 1/2 in `pair_matrix` (lines 319-328, 408, 559); the
+unit-multiplicity quadruple, w = 1, = 2T_ε, is reported as a second
+column (lines 53-55, 415).
+
+**Floor model** (docstring lines 63-79; `solve`, lines 566-570, 576).
+Z′ is the Gram matrix 2RᵀR of the (N−1) × M array of Ĝ_n(γ_k),
+accumulated in double-double (Dekker/Knuth, lines 153-208) and lifted
+to mpmath, so it is PSD by construction; the only error is the
+O(1e-15) relative perturbation of the double-precision Bessel entries,
+which perturbs Z′(G) by at most 2√(Z′(G)/2)·1e-15·√(tr Z′/2). λ_min
+counts as negative only below −max(that, 1e-30·max|Q|). At the ε = 0
+control this predicts |λ| ~ 1e-32 at L = 8 (line 78) and the run gives
+−4.25e-32 there against a floor 9.47e-31 (JSON
+`ladder["eps=0|M=32|w=1/2"].grid[24]`; `log:58` prints −4.3e-32),
+flagged non-negative. The ε = 0 control is positive along the grid to
+L = 6.977 (+2.3e-33 at M = 32; `log:58`), and positive at all 25
+points at M = 16 (`log:56`).
+
+**Unit tests** (lines 427-528; `log:10-35`; `txt:112-119`; JSON
+`unit_tests`).
+
+- [T1] mp quadrature Ĝ_n(γ₁) vs the numpy spherical-Bessel closed
+  form, h = 0.75, M = 32: 7.22e-16 (line 431-436; `log:10`).
+- [T2] A, B vs (Ĝ(γ₁ − iε) ± Ĝ(γ₁ + iε))/2 and the mp quadrature vs
+  `besselj(n + 1/2)` at complex argument, ε ∈ {0.02, 0.2},
+  h ∈ {0.3, 2, 4}: err_A ≤ 2.24e-40, err_B ≤ 6.9e-41, Bessel ≤ 9.9e-41
+  (lines 437-450; `log:11-16`).
+- [D0] ε = 0: T₀ equals 2Re[ĜĜᴴ] to 0.0 at w = 1/2; at w = 1 the
+  discrepancy is 0.724 = the pair term itself (lines 451-469;
+  `log:17-18`).
+- [D1] G = indicator, every ε, h = 0.5 and 2.0: closed form
+  2Re[Ĝ_c(γ₁ − iε)·conj Ĝ_c(γ₁ + iε)] with Ĝ_c(t) = 2sin(ht)/t vs
+  the matrix element ≤ 1.0e-41, vs direct `mp.quad` of A, B
+  ≤ 3.6e-43, vs the (1/2)-weighted four-point sum of F̂ (F = 2h − |x|)
+  ≤ 3.6e-43 with imaginary part 0.0 at every ε (lines 470-496;
+  `log:19-32`; the brief's 1.8e-43 is the second-largest four-point
+  diff; the maximum over the fourteen rows is 3.6e-43, `txt:116`).
+- [T3] double-double Gram vs exact mp Gram, 3000 zeros, 4 even
+  functions: 1.05e-32 (lines 497-506; `log:33`).
+- [T4] Z_all(dd) − P₁(mp) − Z′(dd) = 9.47e-11: the double-precision
+  zero-1 term differs from the mp one at that size, which is why zero
+  1 is excluded from R (lines 507-512; `log:34`).
+- [T5] X = 3, M = 64, at weil_rung_min's minimiser: Z′ + tail + pair
+  here 5.548778567e-8 vs weil_rung_min's Z_file + tail
+  5.5487785669e-8 (entry 298's cross-check), λ_min(Q) 5.5488765780e-8
+  (lines 513-528; `log:35`).
+
+**Sanity, ε = 0 vs weil_rung_min Legendre, arithmetic side, double**
+(lines 581-598; `log:38-51`; `txt:100-110`). M = 32: X = 2
+1.329395e-3 (rel −8.32e-6), X = 2.5 1.031132e-5 (+4.84e-10), X = 3
+5.633697e-8 (−2.07e-5), X = 3.5 2.542557e-10 (+1.35e-5), X = 4
+8.364156e-13 (+6.40e-3, weil_rung_min's value 8.31e-13 sits at its
+2e-15 double floor). The brief's target 5.55e-8 at X = 3 was
+weil_rung_min's M = 64 column; its M = 32 column reads 5.6338e-8 and
+this script's M = 32 reads 5.6337e-8 (`log:48-51`).
+
+**L_c(ε)** (`log:119-127`; `txt:7-15`; JSON `L_c_table`). Columns
+ε / M = 16 L_c / M = 32 L_c / X_c (M = 32) / L_c·ε (M = 32) / w = 1
+M = 32 L_c; primary w = 1/2 unless marked:
+
+```text
+  0.001 / 2.1809 / 1.2835 / 3.609 / 0.00128 / 1.2618
+  0.003 / 1.5229 / 1.2194 / 3.385 / 0.00366 / 1.1987
+  0.01  / 1.1784 / 1.1387 / 3.123 / 0.01139 / 1.1194
+  0.02  / 1.1004 / 1.1004 / 3.005 / 0.02201 / 1.0634
+  0.05  / 1.0277 / 1.0103 / 2.746 / 0.05051 / 0.9931
+  0.1   / 0.9597 / 0.9597 / 2.611 / 0.09597 / 0.9275
+  0.2   / 0.8963 / 0.8963 / 2.450 / 0.17926 / 0.8661
+```
+
+M-convergence (`txt:20-47`, brackets): M = 16 and M = 32 give the
+identical bracket at ε = 0.02 ([1.0818, 1.1004]), 0.1 ([0.9435,
+0.9597]) and 0.2 ([0.8811, 0.8963]); at ε = 0.05 they give adjacent
+brackets, M = 16 [1.0103, 1.0277] and M = 32 [0.9931, 1.0103], 1.7%
+apart (the brief for this entry said identical for every ε ≥ 0.02;
+the file has the 0.05 row one bracket apart at w = 1/2 and identical
+at w = 1, 0.9931 both); 3.5% apart at ε = 0.01 (1.1784 vs 1.1387);
+M = 16 is unconverged at 0.003 (1.5229 vs 1.2194) and 0.001 (2.1809
+vs 1.2835). Persistence: at M = 32 every ε is negative at 1.5·L_c, at
+2·L_c and at every grid point above L_c (`pos above 0/14..0/17`,
+`txt:22-47`) — ε = 0.02: −1.046e-4, −2.183e-4; ε = 0.001: −2.537e-7,
+−6.137e-7; ε = 0.2: −2.59e-3, −1.56e-2 (`log:63,87,111`). The one
+exception is ε = 0.001 at M = 16: λ(1.5·L_c) = +5.64e-16 and one
+positive grid point of ten above L_c (`log:59`), the unconverged
+case. Magnitudes above L_c depend on M where L_c itself agrees:
+ε = 0.02 at 2·L_c reads −1.50e-5 at M = 16 and −2.18e-4 at M = 32
+(`log:83,87`).
+
+**Minimiser at L_c, w = 1/2, M = 32** (lines 703-721; `log:149-165`;
+`txt:121-129`; JSON `ladder[...].minimiser_at_Lc`). ε = 0.02
+(L_c 1.1004, h 0.5502): even, single-signed (0 sign changes), prolate
+bump, |G| max at u = 0, G(0) = 1.688, G(±h) = 4.77e-4; central half
+0.9634, central tenth 0.3037, end tenths 0.0002 of ‖G‖²; Fourier
+energy within |t − γ₁| < 1: 0.0000; within |t| < γ₁: 0.9999;
+|A|² 2.072e-12, |B|² 4.119e-8, T = −8.238e-8; the odd block's
+smallest eigenvalue is +1.29e-5. ε = 0.1 (L_c 0.9597, h 0.4799):
+even, G(0) = 1.708, G(±h) = 3.50e-3; central half 0.9376, central
+tenth 0.2750, end tenths 0.0009; energy near γ₁ 0.0000, in |t| < γ₁
+0.9998; |A|² 2.140e-9, |B|² 1.757e-6, T = −3.509e-6, odd block
++5.39e-4. Detection comes through the B (sinh) term, −2|B|², at a
+function with none of its Fourier energy at the zero's height. The
+M = 16 minimisers are the same functions to three digits (`log:150-
+153,158-161`).
+
+**Fits** (lines 679-701; `log:139-147`; `txt:91-98`; JSON `fits`),
+M = 32, w = 1/2, seven points, least squares L_c = a + b·x:
+
+```text
+  x = log(1/ε)/ε   L_c = 1.0289 + 0.00004·x   rms 0.0832   R² 0.5879
+  x = 1/ε          L_c = 1.0206 + 0.00031·x   rms 0.0786   R² 0.6319
+  x = log(1/ε)     L_c = 0.7924 + 0.07326·x   rms 0.0117   R² 0.9918
+       residuals  −0.015 +0.001 +0.009 +0.021 −0.002 −0.001 −0.014
+```
+
+The two forms entry 297 asked for have structured residuals, positive
+in the middle and negative at both ends (−0.038 +0.108 +0.090 +0.063
+−0.021 −0.070 −0.133 for log(1/ε)/ε). w = 1 gives R² 0.5859 / 0.6302
+/ 0.9928 with L_c = 0.7598 + 0.07504·log(1/ε). M = 16 reaches R²
+0.9536 / 0.9718 for the two requested forms and 0.8410 for the log
+(`log:129-132`), driven by its unconverged ε = 0.001 point (2.1809).
+
+**Correction (the orchestrator's, to entry 297).** Entry 297's sketch
+had the off-line term growing like e^{εL} against a background
+growing polynomially in L, giving L_c ≈ log(·)/ε. The instrument
+shows the detecting function is the RH minimiser itself, the prolate
+bump under γ₁ (entry 298), with no Fourier energy at the zero's
+height; its RH background is the Slepian leakage onto the zero set
+(5.6e-8 at L = 1.10, `log:43`, falling super-exponentially in L), and
+the off-line term at that function is −2|B|², of size ε² times a
+leakage number that falls much more slowly (|B|² = 4.1e-8 at
+ε = 0.02, 1.76e-6 at ε = 0.1, ratio 43 for ε² ratio 25). Detection
+occurs when the RH leakage drops below ε²·(odd-part leakage), which is
+logarithmic in ε. By the fit, ε = 1e-10 would be detected at
+L = 0.7924 + 0.07326·log(1e10) ≈ 2.48, X ≈ 12. This paragraph is an
+account of the numbers above; the mechanism is unmeasured beyond
+what the two minimiser rows show.
+
+**Reading (the orchestrator's, from the numbers; unmeasured beyond
+k = 1).** What makes γ₁ cheap is the empty band below it, width
+14.13 (γ₁ = 14.134725, `log:5`). A zero at height γ_k sits in a gap
+≈ 2π/log γ_k, and a function concentrated there needs L·gap ≫ 1
+before its leakage falls super-exponentially, so the height cost
+should be L ≈ c·log γ_k. That is the next measurement
+(`weil_Lc_height.py`, in progress at the time of writing): move γ_k
+off the line for k up to 1000 and read L_c(ε, k).
+
 ## 2026-09-01 — Entry 298 — weil_rung_min.py: smallest eigenvalue of the restricted Weil form, X = 2..100 — the margin at a rung is prolate leakage under γ₁, 5.5e-8 at X = 3, below double precision from X = 5
 type: run
 refs: 294, 295, 296, 297

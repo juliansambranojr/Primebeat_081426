@@ -1,0 +1,172 @@
+weil_Lc_eps  EXPLORATORY - no prereg, no decision rule, no verdict.
+  eps=[0.001, 0.003, 0.01, 0.02, 0.05, 0.1, 0.2]  M=[16, 32]  dps=40  L grid 0.3..8.0 (25 pts, ratio 1.1466), bisect to 1.02
+  primary term w=1/2: T_eps = 2 Re[Ghat(g1 - i eps) conj Ghat(g1 + i eps)]  (pair -> pair, entry 297 move formula)
+  secondary   w=1  : 2 T_eps, the four points 1/2 +- eps +- i g1 each with multiplicity one
+  zeros1.txt: 100000 zeros, gamma_1 14.134725142 .. gamma_N 74920.827; mp.zetazero(1) = 14.1347251417346937904572519836; |file - mp| = 2.7e-10
+  zero side uses zeros 2..100000 in double-double; zero 1, tail and T_eps in mpmath dps 40
+  mp Gauss-Legendre nodes: 384
+
+===== unit tests =====
+  [T1] h=0.75 M=32: mp quadrature Ghat_n(gamma_1) vs numpy sqrt(2h(2n+1)) i^n j_n(h gamma_1): max |diff| 7.22e-16
+  [T2] eps=0.02 h=0.3: A vs (g-+g+)/2 4.59e-41, B vs (g- - g+)/2 2.89e-42, quadrature vs besselj(n+1/2) at complex t 2.15e-41
+  [T2] eps=0.02 h=2.0: A vs (g-+g+)/2 1.09e-40, B vs (g- - g+)/2 1.44e-41, quadrature vs besselj(n+1/2) at complex t 1.72e-41
+  [T2] eps=0.02 h=4.0: A vs (g-+g+)/2 2.24e-40, B vs (g- - g+)/2 6.2e-42, quadrature vs besselj(n+1/2) at complex t 8.61e-41
+  [T2] eps=0.2 h=0.3: A vs (g-+g+)/2 9.18e-41, B vs (g- - g+)/2 2.96e-42, quadrature vs besselj(n+1/2) at complex t 2.15e-41
+  [T2] eps=0.2 h=2.0: A vs (g-+g+)/2 5.45e-41, B vs (g- - g+)/2 2.44e-41, quadrature vs besselj(n+1/2) at complex t 6.91e-41
+  [T2] eps=0.2 h=4.0: A vs (g-+g+)/2 9.76e-41, B vs (g- - g+)/2 6.89e-41, quadrature vs besselj(n+1/2) at complex t 9.88e-41
+  [D0] eps=0, h=0.75: max |T_0 - 2 Re[Ghat Ghat^H]| = 0.0 (w=1/2, PASS at machine precision); unit-multiplicity four-point sum (w=1): max |.| = 0.724 = the pair term itself: FAILS by the factor 2
+       indicator: 2|Ghat(g1)|^2 = 0.0341259971799, T_0(w=1/2) = 0.0341259971799, four points w=1: 0.0682519943597
+  [D1] eps=0.001  h=0.5: closed form 0.0199720918427088; matrix el diff 3.6e-43; direct quad A,B diff 3.6e-43; (1/2) sum of Fhat over the four points diff 0.0 (Im 0.0)
+  [D1] eps=0.001  h=2.0: closed form 7.94703398865602e-7; matrix el diff 1.8e-44; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 1.6e-43 (Im 0.0)
+  [D1] eps=0.003  h=0.5: closed form 0.0199721119109884; matrix el diff 2.5e-42; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 3.6e-43 (Im 0.0)
+  [D1] eps=0.003  h=2.0: closed form -4.87480410974197e-7; matrix el diff 1.7e-44; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 1.6e-43 (Im 0.0)
+  [D1] eps=0.01   h=0.5: closed form 0.0199723401916745; matrix el diff 7.2e-43; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 0.0 (Im 0.0)
+  [D1] eps=0.01   h=2.0: closed form -1.50742261847695e-5; matrix el diff 6.3e-44; direct quad A,B diff 5.3e-46; (1/2) sum of Fhat over the four points diff 1.6e-43 (Im 0.0)
+  [D1] eps=0.02   h=0.5: closed form 0.0199730928175196; matrix el diff 1.0e-41; direct quad A,B diff 3.6e-43; (1/2) sum of Fhat over the four points diff 0.0 (Im 0.0)
+  [D1] eps=0.02   h=2.0: closed form -6.31872071326662e-5; matrix el diff 2.9e-44; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 1.6e-43 (Im 0.0)
+  [D1] eps=0.05   h=0.5: closed form 0.0199783634395999; matrix el diff 1.8e-42; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 3.6e-43 (Im 0.0)
+  [D1] eps=0.05   h=2.0: closed form -0.000401045389799564; matrix el diff 2.8e-44; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 1.5e-43 (Im 0.0)
+  [D1] eps=0.1    h=0.5: closed form 0.0199972191200923; matrix el diff 2.2e-42; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 0.0 (Im 0.0)
+  [D1] eps=0.1    h=2.0: closed form -0.00162300849246301; matrix el diff 6.1e-43; direct quad A,B diff 2.2e-44; (1/2) sum of Fhat over the four points diff 1.6e-43 (Im 0.0)
+  [D1] eps=0.2    h=0.5: closed form 0.0200731431629185; matrix el diff 5.0e-42; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 0.0 (Im 0.0)
+  [D1] eps=0.2    h=2.0: closed form -0.00675535692016462; matrix el diff 2.1e-42; direct quad A,B diff 0.0; (1/2) sum of Fhat over the four points diff 1.8e-43 (Im 0.0)
+  [T3] double-double Gram vs exact mp Gram (3000 zeros, 4 even fns, entries ~0.018): max |diff| 1.05e-32
+  [T4] h=0.75: max |Z_all - P1(mp) - Z'| = 9.47e-11  (double-precision zero-1 term vs mp: this is why zero 1 is excluded from R)
+  [T5] X=3 M=64, weil_rung_min's minimiser: Z'+tail+pair here 5.548778567e-8; weil_rung_min Z_file+tail 5.5487785669e-08; lam_min(Q) 5.5488765780e-08
+
+===== sanity: eps = 0 (zero side of weil_rung_min) vs its arithmetic-side lam_min (legendre) =====
+  X=2    L=0.6931 M=16: lam_min(zero side, mp) 1.329864e-03 (even)   weil_rung_min (arith side, double) 1.329878e-03   rel diff -1.04e-05
+  X=2    L=0.6931 M=32: lam_min(zero side, mp) 1.329395e-03 (even)   weil_rung_min (arith side, double) 1.329406e-03   rel diff -8.32e-06
+  X=2.5  L=0.9163 M=16: lam_min(zero side, mp) 1.056060e-05 (even)   weil_rung_min (arith side, double) 1.056060e-05   rel diff +3.87e-09
+  X=2.5  L=0.9163 M=32: lam_min(zero side, mp) 1.031132e-05 (even)   weil_rung_min (arith side, double) 1.031132e-05   rel diff +4.84e-10
+  X=3    L=1.0986 M=16: lam_min(zero side, mp) 6.573954e-08 (even)   weil_rung_min (arith side, double) 6.574216e-08   rel diff -3.98e-05
+  X=3    L=1.0986 M=32: lam_min(zero side, mp) 5.633697e-08 (even)   weil_rung_min (arith side, double) 5.633813e-08   rel diff -2.07e-05
+  X=3.5  L=1.2528 M=16: lam_min(zero side, mp) 3.935319e-09 (even)   weil_rung_min (arith side, double) 3.935313e-09   rel diff +1.54e-06
+  X=3.5  L=1.2528 M=32: lam_min(zero side, mp) 2.542557e-10 (even)   weil_rung_min (arith side, double) 2.542522e-10   rel diff +1.35e-05
+  X=4    L=1.3863 M=16: lam_min(zero side, mp) 1.316174e-09 (even)   weil_rung_min (arith side, double) 1.316213e-09   rel diff -2.93e-05
+  X=4    L=1.3863 M=32: lam_min(zero side, mp) 8.364156e-13 (even)   weil_rung_min (arith side, double) 8.310991e-13   rel diff +6.40e-03
+  brief's targets 1.33e-3, 1.03e-5, 5.55e-8 at X = 2, 2.5, 3 against weil_rung_min.txt:11-13 columns:
+    X=2    target 1.33e-3: weil_rung_min M=32 1.3294e-03, M=64 1.3293e-03; this script M=32 1.3294e-03
+    X=2.5  target 1.03e-5: weil_rung_min M=32 1.0311e-05, M=64 1.0276e-05; this script M=32 1.0311e-05
+    X=3    target 5.55e-8: weil_rung_min M=32 5.6338e-08, M=64 5.5489e-08; this script M=32 5.6337e-08
+
+===== ladder: lam_min(Q_eps; L) =====
+  lam_min printed as sign-mantissa; '-' entries beyond the floor are detections; parity e/o of the minimiser
+  eps=0|M=16|w=1/2           L_c=None   [6.4s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.4e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.9e-07e +1.3e-08e +1.9e-09e +2.6e-11e +1.9e-11e +9.5e-13e +5.1e-13o +4.6e-15e +1.6e-15e +2.9e-16e +2.5e-17e +5.8e-18e +5.5e-19e +5.2e-19e +4.9e-20o +5.6e-21e
+  eps=0|M=32|w=1/2           L_c=None   [1.9s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.7e-07e +3.6e-09e +3.9e-12e +6.3e-16e +2.5e-18e +5.6e-21e +3.5e-22e +9.0e-26e +1.8e-25o +2.2e-28e +2.7e-31e +2.8e-31e +7.5e-34e +1.0e-32o +2.3e-33e -4.3e-32o
+  eps=0.001|M=16|w=1/2       L_c=2.1809 X_c=8.855 [2.1440,2.1809] lam(1.5Lc)=+5.64e-16 lam(2Lc)=-3.48e-17 pos-above=1/10   [2.9s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.4e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.8e-07e +1.3e-08e +1.8e-09e +1.9e-11e +1.9e-11e +9.8e-14e -1.7e-12o -1.0e-14e +7.5e-16e -9.4e-17e -2.6e-17e -1.9e-15o -2.1e-18e -7.4e-18o -1.4e-16e -8.6e-20o
+  eps=0.001|M=16|w=1         L_c=1.9683 X_c=7.158 [1.9349,1.9683] lam(1.5Lc)=-9.75e-13 lam(2Lc)=-2.71e-14 pos-above=0/11   [1.7s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.8e-07e +1.3e-08e +1.8e-09e +1.2e-11e +1.8e-11e -7.8e-13e -3.9e-12o -3.5e-13o -1.3e-16e -5.0e-16e -8.2e-17e -4.3e-11o -1.6e-16o -1.8e-17o -4.0e-16e -3.3e-19o
+  eps=0.001|M=32|w=1/2       L_c=1.2835 X_c=3.609 [1.2618,1.2835] lam(1.5Lc)=-2.54e-07 lam(2Lc)=-6.14e-07 pos-above=0/14   [3.5s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.7e-07e +3.4e-09e -9.8e-11e -9.0e-09e -1.1e-07e -2.9e-07e -5.0e-07o -6.6e-07o -1.3e-06e -1.6e-06e -7.2e-07o -1.1e-06o -2.0e-06e -9.4e-08e -1.9e-07o -1.1e-09e
+  eps=0.001|M=32|w=1         L_c=1.2618 X_c=3.532 [1.2404,1.2618] lam(1.5Lc)=-5.13e-07 lam(2Lc)=-1.22e-06 pos-above=0/14   [3.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.7e-07e +3.3e-09e -8.2e-10o -5.1e-08o -2.7e-07o -6.8e-07e -1.0e-06o -1.5e-06o -2.6e-06e -3.4e-06e -1.8e-06o -4.1e-06o -5.4e-06e -1.1e-06o -4.6e-07e -6.8e-09o
+  eps=0.003|M=16|w=1/2       L_c=1.5229 X_c=4.586 [1.4971,1.5229] lam(1.5Lc)=-2.09e-11 lam(2Lc)=-1.02e-10 pos-above=0/13   [3.0s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.8e-07e +1.1e-08e +1.5e-09e -4.0e-11e -1.2e-10o -3.2e-10o -1.3e-10e -4.1e-12o -9.6e-11o -1.5e-11o -8.3e-12o -5.9e-10o -3.6e-13o -7.0e-15e -1.2e-12o -4.0e-15o
+  eps=0.003|M=16|w=1         L_c=1.4971 X_c=4.469 [1.4717,1.4971] lam(1.5Lc)=-6.10e-11 lam(2Lc)=-2.08e-10 pos-above=0/13   [1.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.8e-07e +1.0e-08e +1.0e-09e -1.1e-10e -6.2e-10o -1.1e-09o -4.9e-10e -9.9e-12o -3.3e-10o -5.1e-11o -2.0e-11o -5.0e-09e -8.7e-13o -4.9e-14o -9.2e-12o -1.2e-14o
+  eps=0.003|M=32|w=1/2       L_c=1.2194 X_c=3.385 [1.1987,1.2194] lam(1.5Lc)=-2.35e-06 lam(2Lc)=-5.88e-06 pos-above=0/14   [3.2s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.7e-07e +2.1e-09e -1.2e-08o -3.8e-07o -2.2e-06o -3.4e-06e -4.8e-06o -8.5e-06o -1.4e-05o -1.8e-05o -1.8e-05o -2.7e-05o -3.0e-05e -1.6e-05o -4.9e-06e -6.7e-07o
+  eps=0.003|M=32|w=1         L_c=1.1987 X_c=3.316 [1.1784,1.1987] lam(1.5Lc)=-4.79e-06 lam(2Lc)=-1.26e-05 pos-above=0/14   [2.8s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.7e-07e +7.0e-10e -2.7e-08o -8.1e-07o -4.8e-06o -6.9e-06e -9.7e-06o -1.8e-05o -2.9e-05o -4.3e-05o -5.0e-05o -5.8e-05o -6.2e-05e -3.8e-05o -1.1e-05e -1.9e-06o
+  eps=0.01|M=16|w=1/2        L_c=1.1784 X_c=3.249 [1.1584,1.1784] lam(1.5Lc)=-1.80e-08 lam(2Lc)=-9.98e-09 pos-above=0/14   [3.0s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.6e-07e -2.3e-09e -7.3e-08o -3.8e-09o -1.9e-08e -1.0e-07o -3.8e-09e -9.8e-09o -2.0e-08e -3.4e-09e -2.1e-09e -1.2e-07e -1.4e-10e -1.7e-10o -8.8e-11o -6.6e-12e
+  eps=0.01|M=16|w=1          L_c=1.1194 X_c=3.063 [1.1004,1.1194] lam(1.5Lc)=-1.03e-07 lam(2Lc)=-4.87e-06 pos-above=0/15   [1.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.3e-07e -1.8e-08e -2.1e-07o -2.2e-08o -9.5e-08e -4.9e-07o -1.0e-07o -3.8e-07o -6.0e-08e -1.2e-08e -5.1e-09e -2.8e-07e -4.2e-10e -5.6e-10o -2.8e-09e -3.5e-09o
+  eps=0.01|M=32|w=1/2        L_c=1.1387 X_c=3.123 [1.1194,1.1387] lam(1.5Lc)=-2.75e-05 lam(2Lc)=-5.50e-05 pos-above=0/15   [2.7s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.4e-07e -1.2e-08e -6.3e-07e -1.0e-05e -2.8e-05o -3.9e-05e -7.2e-05e -1.1e-04o -1.7e-04o -2.8e-04o -3.7e-04o -3.6e-04o -6.5e-04o -4.2e-04e -2.4e-04o -3.7e-05e
+  eps=0.01|M=32|w=1          L_c=1.1194 X_c=3.063 [1.1004,1.1194] lam(1.5Lc)=-5.43e-05 lam(2Lc)=-1.10e-04 pos-above=0/15   [2.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.7e-04e +1.8e-05e +4.2e-07e -2.9e-08e -1.9e-06e -2.6e-05e -5.6e-05o -7.9e-05e -1.6e-04e -2.2e-04o -3.5e-04o -5.8e-04o -7.6e-04o -7.8e-04e -1.5e-03o -9.6e-04e -9.8e-04o -2.7e-04o
+  eps=0.02|M=16|w=1/2        L_c=1.1004 X_c=3.005 [1.0818,1.1004] lam(1.5Lc)=-3.14e-07 lam(2Lc)=-1.50e-05 pos-above=0/15   [2.7s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.7e-04e +1.8e-05e +3.8e-07e -5.0e-08e -5.2e-07o -7.1e-08o -1.0e-06o -3.4e-06o -1.5e-06o -1.4e-06o -9.2e-07o -2.9e-08e -5.2e-08o -4.9e-06o -3.1e-08o -8.7e-09e -1.1e-08e -2.1e-08o
+  eps=0.02|M=16|w=1          L_c=1.0818 X_c=2.950 [1.0634,1.0818] lam(1.5Lc)=-7.09e-07 lam(2Lc)=-3.45e-05 pos-above=0/15   [0.9s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.7e-04e +1.8e-05e +2.7e-07e -3.8e-07o -3.4e-06e -3.3e-07o -3.2e-06o -2.4e-05o -3.0e-05o -3.5e-06o -1.4e-05o -2.9e-07o -1.7e-06o -2.1e-05o -5.1e-07o -5.9e-08e -2.9e-08e -6.2e-08o
+  eps=0.02|M=32|w=1/2        L_c=1.1004 X_c=3.005 [1.0818,1.1004] lam(1.5Lc)=-1.05e-04 lam(2Lc)=-2.18e-04 pos-above=0/15   [2.2s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.7e-04e +1.8e-05e +3.6e-07e -6.3e-08e -4.6e-06e -5.8e-05e -1.2e-04e -1.6e-04o -3.3e-04e -4.7e-04e -7.0e-04o -1.2e-03o -1.5e-03o -1.7e-03e -3.2e-03o -2.1e-03e -3.0e-03o -1.4e-03o
+  eps=0.02|M=32|w=1          L_c=1.0634 X_c=2.896 [1.0454,1.0634] lam(1.5Lc)=-1.48e-04 lam(2Lc)=-4.60e-04 pos-above=0/15   [3.0s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.7e-04e +1.8e-05e +2.5e-07e -7.7e-07o -9.9e-06e -1.2e-04e -2.4e-04e -3.6e-04o -6.8e-04e -1.0e-03e -1.4e-03o -2.4e-03e -3.1e-03o -3.8e-03e -6.8e-03o -4.6e-03o -7.4e-03o -4.1e-03o
+  eps=0.05|M=16|w=1/2        L_c=1.0277 X_c=2.795 [1.0103,1.0277] lam(1.5Lc)=-5.32e-05 lam(2Lc)=-1.32e-04 pos-above=0/15   [3.0s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.6e-04e +1.7e-05e -2.0e-07e -4.8e-06o -2.4e-05e -4.8e-05o -1.3e-05o -1.3e-04o -2.0e-04o -2.8e-05e -3.8e-04o -1.0e-05o -2.8e-05o -1.5e-04o -9.1e-06e -2.5e-06o -9.7e-06o -6.1e-06e
+  eps=0.05|M=16|w=1          L_c=0.9931 X_c=2.700 [0.9763,0.9931] lam(1.5Lc)=-2.02e-04 lam(2Lc)=-3.00e-04 pos-above=0/16   [1.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.6e-04e +1.6e-05e -9.0e-07e -1.1e-05o -8.8e-05o -1.6e-04o -7.6e-05e -3.5e-04e -5.8e-04o -1.1e-04e -1.1e-03o -5.7e-05o -8.5e-05o -4.1e-04o -6.5e-05e -5.6e-05o -4.4e-05o -1.8e-05e
+  eps=0.05|M=32|w=1/2        L_c=1.0103 X_c=2.746 [0.9931,1.0103] lam(1.5Lc)=-3.91e-04 lam(2Lc)=-1.24e-03 pos-above=0/16   [2.7s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.6e-03e +2.6e-04e +1.7e-05e -2.1e-07e -5.2e-06o -7.5e-05o -4.0e-04e -7.8e-04e -1.3e-03o -2.2e-03e -3.5e-03e -4.5e-03o -7.9e-03e -1.0e-02e -1.4e-02e -2.3e-02o -2.3e-02o -2.7e-02o -1.7e-02o
+  eps=0.05|M=32|w=1          L_c=0.9931 X_c=2.700 [0.9763,0.9931] lam(1.5Lc)=-7.78e-04 lam(2Lc)=-2.22e-03 pos-above=0/16   [2.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.6e-04e +1.6e-05e -9.1e-07e -1.2e-05o -2.4e-04o -9.8e-04o -1.6e-03e -2.9e-03o -4.4e-03e -7.2e-03e -9.0e-03o -1.6e-02e -2.2e-02e -3.1e-02o -4.7e-02o -5.3e-02o -5.8e-02o -4.3e-02e
+  eps=0.1|M=16|w=1/2         L_c=0.9597 X_c=2.611 [0.9435,0.9597] lam(1.5Lc)=-4.90e-04 lam(2Lc)=-6.71e-04 pos-above=0/16   [2.8s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.5e-03e +2.6e-04e +1.4e-05e -2.3e-06e -2.5e-05o -4.0e-04o -5.3e-04o -2.3e-04e -1.4e-03e -1.6e-03o -2.9e-04e -3.2e-03o -2.4e-04o -5.3e-04e -3.5e-03e -2.0e-04e -2.3e-04o -5.3e-04e -1.6e-03o
+  eps=0.1|M=16|w=1           L_c=0.9275 X_c=2.528 [0.9117,0.9275] lam(1.5Lc)=-1.09e-03 lam(2Lc)=-1.39e-03 pos-above=0/16   [1.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.5e-04e +9.1e-06e -5.3e-06e -1.7e-04e -1.0e-03o -2.2e-03o -5.5e-04e -3.7e-03e -4.1e-03o -9.7e-04o -8.8e-03o -2.0e-03o -2.4e-03o -1.0e-02e -6.1e-03o -2.1e-03e -3.1e-03e -5.7e-03o
+  eps=0.1|M=32|w=1/2         L_c=0.9597 X_c=2.611 [0.9435,0.9597] lam(1.5Lc)=-1.30e-03 lam(2Lc)=-4.08e-03 pos-above=0/16   [2.2s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.3e-03e +1.5e-03e +2.6e-04e +1.3e-05e -2.3e-06e -2.6e-05o -5.7e-04o -2.4e-03o -3.3e-03e -5.9e-03o -8.8e-03e -1.5e-02e -1.8e-02e -3.3e-02e -4.7e-02e -6.8e-02o -9.9e-02o -1.2e-01o -1.3e-01e -1.2e-01e
+  eps=0.1|M=32|w=1           L_c=0.9275 X_c=2.528 [0.9117,0.9275] lam(1.5Lc)=-1.66e-03 lam(2Lc)=-8.24e-03 pos-above=0/16   [2.3s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +8.0e-02e +3.2e-02e +9.1e-03e +1.6e-03e +2.5e-04e +8.8e-06e -5.3e-06e -2.1e-04e -1.2e-03o -5.2e-03o -7.0e-03e -1.2e-02o -1.8e-02o -3.0e-02e -4.0e-02e -6.7e-02e -9.8e-02e -1.4e-01o -2.0e-01o -2.5e-01o -2.8e-01e -2.8e-01e
+  eps=0.2|M=16|w=1/2         L_c=0.8963 X_c=2.450 [0.8811,0.8963] lam(1.5Lc)=-2.35e-03 lam(2Lc)=-2.48e-03 pos-above=0/16   [3.0s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.2e-03e +1.5e-03e +2.3e-04e -3.3e-07e -7.9e-05o -5.8e-04e -2.4e-03o -7.5e-03o -2.0e-03o -8.7e-03e -1.1e-02e -7.7e-03o -2.3e-02o -1.0e-02o -1.0e-02o -2.6e-02e -2.6e-02o -1.2e-02e -4.3e-02o -3.5e-02e
+  eps=0.2|M=16|w=1           L_c=0.8661 X_c=2.378 [0.8515,0.8661] lam(1.5Lc)=-4.96e-03 lam(2Lc)=-1.35e-02 pos-above=0/17   [1.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +7.9e-02e +3.2e-02e +8.9e-03e +1.5e-03e +2.0e-04e -1.9e-05e -2.5e-04o -1.4e-03e -5.1e-03o -1.9e-02o -9.6e-03o -2.7e-02o -3.0e-02e -3.3e-02o -5.7e-02e -3.1e-02o -4.1e-02o -9.4e-02o -6.8e-02e -7.5e-02o -1.8e-01o -1.7e-01e
+  eps=0.2|M=32|w=1/2         L_c=0.8963 X_c=2.450 [0.8811,0.8963] lam(1.5Lc)=-2.59e-03 lam(2Lc)=-1.56e-02 pos-above=0/16   [2.3s]
+      grid: +2.2e-01e +1.5e-01e +1.0e-01e +5.7e-02e +2.6e-02e +8.2e-03e +1.5e-03e +2.3e-04e -6.2e-07e -8.2e-05o -6.2e-04e -2.6e-03o -1.1e-02o -1.5e-02e -2.5e-02o -3.7e-02o -6.0e-02e -8.7e-02e -1.4e-01e -2.1e-01e -3.1e-01o -4.4e-01o -5.5e-01o -6.6e-01e -7.2e-01e
+  eps=0.2|M=32|w=1           L_c=0.8661 X_c=2.378 [0.8515,0.8661] lam(1.5Lc)=-5.34e-03 lam(2Lc)=-2.71e-02 pos-above=0/17   [2.2s]
+      grid: +3.6e-01e +2.5e-01e +1.5e-01e +7.9e-02e +3.2e-02e +8.9e-03e +1.5e-03e +2.0e-04e -2.0e-05e -2.6e-04o -1.5e-03e -8.4e-03e -2.2e-02o -3.1e-02e -5.0e-02o -7.6e-02o -1.2e-01e -1.9e-01e -2.8e-01e -4.2e-01e -6.5e-01o -8.9e-01o -1.1e+00o -1.4e+00e -1.5e+00e
+
+  timings: Z builds 106 (22.4s), T builds 285 (13.7s), eigs 900 (36.0s)
+  L grid: 0.300 0.344 0.394 0.452 0.519 0.595 0.682 0.782 0.896 1.028 1.178 1.351 1.549 1.776 2.037 2.335 2.678 3.070 3.520 4.037 4.628 5.307 6.085 6.977 8.000
+
+===== L_c(eps) =====
+    eps       M=16 w=1/2         M=16 w=1       M=32 w=1/2         M=32 w=1  Lc*eps (Mmax,w=1/2)  log(1/eps)/eps    1/eps
+  0.001           2.1809           1.9683           1.2835           1.2618              0.00128        6907.755   1000.0
+  0.003           1.5229           1.4971           1.2194           1.1987              0.00366        1936.381    333.3
+   0.01           1.1784           1.1194           1.1387           1.1194              0.01139         460.517    100.0
+   0.02           1.1004           1.0818           1.1004           1.0634              0.02201         195.601     50.0
+   0.05           1.0277           0.9931           1.0103           0.9931              0.05051          59.915     20.0
+    0.1           0.9597           0.9275           0.9597           0.9275              0.09597          23.026     10.0
+    0.2           0.8963           0.8661           0.8963           0.8661              0.17926           8.047      5.0
+
+  fit M=16 w=1/2 (7 points): L_c*eps = 0.0022, 0.0046, 0.0118, 0.0220, 0.0514, 0.0960, 0.1793
+    L_c = +1.0281 + +0.00017 * log(1/eps)/eps  rms resid 0.0901  R^2 0.9536  resid -0.049 +0.158 +0.070 +0.038 -0.011 -0.072 -0.133
+    L_c = +1.0011 + +0.00122 * 1/eps           rms resid 0.0703  R^2 0.9718  resid -0.044 +0.114 +0.055 +0.038 +0.002 -0.054 -0.111
+    L_c = +0.3905 + +0.21792 * log(1/eps)      rms resid 0.1668  R^2 0.8410  resid +0.285 -0.134 -0.216 -0.143 -0.016 +0.067 +0.155
+
+  fit M=16 w=1 (7 points): L_c*eps = 0.0020, 0.0045, 0.0112, 0.0216, 0.0497, 0.0927, 0.1732
+    L_c = +1.0042 + +0.00015 * log(1/eps)/eps  rms resid 0.1047  R^2 0.9172  resid -0.061 +0.205 +0.047 +0.049 -0.020 -0.080 -0.139
+    L_c = +0.9802 + +0.00105 * 1/eps           rms resid 0.0875  R^2 0.9422  resid -0.060 +0.167 +0.034 +0.049 -0.008 -0.063 -0.119
+    L_c = +0.4296 + +0.19354 * log(1/eps)      rms resid 0.1277  R^2 0.8769  resid +0.202 -0.057 -0.201 -0.105 -0.016 +0.052 +0.125
+
+  fit M=32 w=1/2 (7 points): L_c*eps = 0.0013, 0.0037, 0.0114, 0.0220, 0.0505, 0.0960, 0.1793
+    L_c = +1.0289 + +0.00004 * log(1/eps)/eps  rms resid 0.0832  R^2 0.5879  resid -0.038 +0.108 +0.090 +0.063 -0.021 -0.070 -0.133
+    L_c = +1.0206 + +0.00031 * 1/eps           rms resid 0.0786  R^2 0.6319  resid -0.043 +0.097 +0.088 +0.065 -0.016 -0.064 -0.126
+    L_c = +0.7924 + +0.07326 * log(1/eps)      rms resid 0.0117  R^2 0.9918  resid -0.015 +0.001 +0.009 +0.021 -0.002 -0.001 -0.014
+
+  fit M=32 w=1 (7 points): L_c*eps = 0.0013, 0.0036, 0.0112, 0.0213, 0.0497, 0.0927, 0.1732
+    L_c = +1.0022 + +0.00004 * log(1/eps)/eps  rms resid 0.0853  R^2 0.5859  resid -0.039 +0.113 +0.097 +0.053 -0.012 -0.076 -0.136
+    L_c = +0.9937 + +0.00031 * 1/eps           rms resid 0.0806  R^2 0.6302  resid -0.044 +0.101 +0.095 +0.054 -0.007 -0.069 -0.129
+    L_c = +0.7598 + +0.07504 * log(1/eps)      rms resid 0.0112  R^2 0.9928  resid -0.016 +0.003 +0.014 +0.010 +0.009 -0.005 -0.014
+
+===== minimiser at L_c (w=1/2) =====
+  eps=0.02  M=16 L_c=1.1004 (h=0.5502): parity even (lam even -1.95e-08, odd +1.34e-05); |A|^2=2.385e-12 |B|^2=4.112e-08 T=-8.224e-08
+      mass: central half 0.9634, central tenth 0.3037, end tenths 0.0002, |G|max at u/h=+0.000, sign changes 0, G(0)=+1.689, G(+-h)=+6.65e-04,+6.65e-04
+      Fourier energy within |t-gamma_1|<1: 0.0000 of ||G||^2 (x2 for the mirror lobe at -gamma_1); energy in |t|<gamma_1: 0.9999
+      G(u/h=-1..1): +0.00 +0.02 +0.07 +0.18 +0.36 +0.62 +0.92 +1.21 +1.46 +1.63 +1.69 +1.63 +1.46 +1.21 +0.92 +0.62 +0.36 +0.18 +0.07 +0.02 +0.00
+  eps=0.02  M=32 L_c=1.1004 (h=0.5502): parity even (lam even -2.85e-08, odd +1.29e-05); |A|^2=2.072e-12 |B|^2=4.119e-08 T=-8.238e-08
+      mass: central half 0.9634, central tenth 0.3037, end tenths 0.0002, |G|max at u/h=+0.000, sign changes 0, G(0)=+1.688, G(+-h)=+4.77e-04,+4.77e-04
+      Fourier energy within |t-gamma_1|<1: 0.0000 of ||G||^2 (x2 for the mirror lobe at -gamma_1); energy in |t|<gamma_1: 0.9999
+      G(u/h=-1..1): +0.00 +0.02 +0.07 +0.18 +0.36 +0.62 +0.92 +1.21 +1.46 +1.63 +1.69 +1.63 +1.46 +1.21 +0.92 +0.62 +0.36 +0.18 +0.07 +0.02 +0.00
+  eps=0.1   M=16 L_c=0.9597 (h=0.4799): parity even (lam even -4.87e-07, odd +5.51e-04); |A|^2=2.185e-09 |B|^2=1.757e-06 T=-3.510e-06
+      mass: central half 0.9376, central tenth 0.2750, end tenths 0.0009, |G|max at u/h=+0.000, sign changes 0, G(0)=+1.708, G(+-h)=+3.96e-03,+3.96e-03
+      Fourier energy within |t-gamma_1|<1: 0.0000 of ||G||^2 (x2 for the mirror lobe at -gamma_1); energy in |t|<gamma_1: 0.9998
+      G(u/h=-1..1): +0.00 +0.05 +0.14 +0.30 +0.52 +0.78 +1.06 +1.32 +1.53 +1.66 +1.71 +1.66 +1.53 +1.32 +1.06 +0.78 +0.52 +0.30 +0.14 +0.05 +0.00
+  eps=0.1   M=32 L_c=0.9597 (h=0.4799): parity even (lam even -5.60e-07, odd +5.39e-04); |A|^2=2.140e-09 |B|^2=1.757e-06 T=-3.509e-06
+      mass: central half 0.9376, central tenth 0.2750, end tenths 0.0009, |G|max at u/h=+0.000, sign changes 0, G(0)=+1.708, G(+-h)=+3.50e-03,+3.50e-03
+      Fourier energy within |t-gamma_1|<1: 0.0000 of ||G||^2 (x2 for the mirror lobe at -gamma_1); energy in |t|<gamma_1: 0.9998
+      G(u/h=-1..1): +0.00 +0.05 +0.14 +0.30 +0.52 +0.78 +1.06 +1.32 +1.53 +1.66 +1.71 +1.66 +1.53 +1.32 +1.06 +0.78 +0.52 +0.30 +0.14 +0.05 +0.00
+
+  eps = 0.02 (cf. Bombieri 2000 s13's fake zero 0.52 + 3.14i, height 3.14, not replicated): L_c = 1.1004421361127756, X_c = 3.005494567911383  (M=32, w=1/2); w=1: L_c = 1.0634409269158864
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-01/results/weil_Lc_eps.json
+  table written to /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-01/weil_Lc_eps.txt
+
+EXPLORATORY - no prereg, no decision rule, no verdict.
