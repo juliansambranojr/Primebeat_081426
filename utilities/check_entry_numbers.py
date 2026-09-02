@@ -11,7 +11,10 @@ finds the .numbers files it cites (a `.numbers` path, or a `.json` path whose
 sibling `.numbers` exists), and for every backticked token that could be a key
 (contains a dot, `|` or `[`; is not a file path) looks the key up and compares the
 nearest number after the token, in the same sentence, rounding-aware -- the
-entry's `3.07` matches the file's `3.070311505664645`.
+entry's `3.07` matches the file's `3.070311505664645`. When that strict shape
+fails, the paragraph holding the key is scanned for the file's value, so an
+entry that writes the value before the key still passes (reported as "value
+precedes key").
 
 One line per key:
   OK          key found, number follows, matches at the entry's precision
@@ -123,7 +126,7 @@ def candidates(text):
             continue
         if FILE_EXT.search(tok) or tok.startswith(PATH_PREFIX) or tok.startswith("/"):
             continue
-        out.append((tok, m.end()))
+        out.append((tok, m.start(), m.end()))
     return out
 
 
@@ -136,6 +139,28 @@ def number_after(text, pos):
             stop = min(stop, m.start())
     m = NUM.search(text, pos, stop)
     return m.group(0) if m else None
+
+
+PARA_END = re.compile(r"\n\s*\n")
+
+
+def numbers_in_paragraph(text, start, end):
+    """Every number in the paragraph holding [start, end), backticked spans included.
+
+    The key-then-value shape of notes_format.md is what `number_after` checks.
+    Entries also write the value first -- `lab_notebook_2.md:691` reads
+    "Wall 1206.07 s = 20.1 min (`txt:359`; `log:401`; JSON `timings.elapsed_s`):
+    422 Z", where the cited value sits four tokens back, past two backticked
+    citations, and the semicolons inside the parenthesis end the sentence. So
+    when the strict shape fails, the invariant that still has to hold is that
+    the file's value appears in the paragraph that cites the key.
+    """
+    lo = 0
+    for m in PARA_END.finditer(text, 0, start):
+        lo = m.end()
+    m = PARA_END.search(text, end)
+    hi = m.start() if m else len(text)
+    return [x.group(0) for x in NUM.finditer(text, lo, hi)]
 
 
 def main(argv):
@@ -155,7 +180,7 @@ def main(argv):
         counts[status] += 1
         print(f"{status:<10} {tok}" + (f"  {why}" if why else ""))
 
-    for tok, end in candidates(text):
+    for tok, start, end in candidates(text):
         hits = [(f, t[tok]) for f, t in files.items() if tok in t]
         if not hits:
             say("UNRESOLVED", tok, "key not in any cited .numbers file")
@@ -178,6 +203,14 @@ def main(argv):
         want = Decimal(found.replace(",", ""))
         if matches(want, {have}):
             say("OK", tok, f"{found}  ({fname}: {raw})")
+            continue
+        for other in numbers_in_paragraph(text, start, end):
+            try:
+                if matches(Decimal(other.replace(",", "")), {have}):
+                    say("OK", tok, f"{other}  ({fname}: {raw}; value precedes key)")
+                    break
+            except Exception:
+                continue
         else:
             say("MISMATCH", tok, f"entry says {found}, {fname} has {raw}")
 
