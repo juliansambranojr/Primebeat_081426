@@ -16,6 +16,63 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 293 — ThetaPi.lean: the ψ→π transfer at general θ — a zero-free half-plane re > θ gives |π−Li| ≤ C·x^θ·log²x, the census gate's shape
+type: formalization
+refs: 122, 231, 277, 291, 292
+
+**What was proved** (`lean_stage3/Stage3/ThetaPi.lean`, commit
+`a6a9ce8`, first-try green at 8722 jobs, six pins all
+`[propext, Classical.choice, Quot.sound]`):
+
+- `StmtPsiWeakTheta θ C k x₀ := ∀ t ≥ x₀, |ψ t − t| ≤ C·t^θ·log^k t` and
+  `StmtSchoenfeldWeakTheta θ C k x₀ pi li` likewise; `StmtPsiWeak` and
+  `StmtSchoenfeldWeak` are the θ = 1/2 members through
+  `Real.sqrt_eq_rpow` (`stmtPsiWeak_iff_theta_half`,
+  `stmtSchoenfeldWeak_iff_theta_half`).
+- `integral_A_rpow_theta_le : ∫ₐˣ A·t^(θ−1) ≤ 2A·x^θ` for θ ≥ 1/2. The
+  exact value is `A·(x^θ − a^θ)/θ`; `1/θ ≤ 2` keeps PsiToPi's `2A`.
+- `theta_err_of_psi_theta : |ϑ x − x| ≤ E + 2·x^θ·log x` from Mathlib's
+  `|ψ − ϑ| ≤ 2√x·log x` and `sqrt_le_rpow_theta : √x ≤ x^θ` (x ≥ 1).
+- `schoenfeldWeakTheta_of_psiWeakTheta`: `(C, k, x₀)` on the ψ side at
+  exponent θ gives `(3C + 13, k − 1, max(x₀², 9))` on the π side at the
+  same exponent. The proof is `PsiToPi.schoenfeldWeak_of_psiWeak`
+  (entry 122) line for line with `x^θ` for `√x`; the constant 13 and
+  the dropped log are unchanged.
+- **`schoenfeldWeakTheta_of_zeroFree`**: `StmtZeroFreeRight θ`,
+  θ ∈ [1/2, 1) → `∃ C > 0, ∃ x₀, StmtSchoenfeldWeakTheta θ C 2 x₀ π Li`,
+  by composing with `psi_weak_of_theta` (entry 291) at k = 3. Constant
+  `3·C_ψ + 13`, floor `max((max x₀ 2)², 9)`.
+- Weld: `schoenfeldWeak_of_psiWeak_half` prints identical to
+  `Stage3.schoenfeldWeak_of_psiWeak` under `#check` (run in session,
+  `lake env lean` on a scratch file). `schoenfeldWeak_of_RH_half` gives
+  RH → `∃ C > 0, ∃ x₀, StmtSchoenfeldWeak C 2 x₀ π Li`; no theorem of
+  that shape existed in Stage3 before — `Slice8.schoenfeldWeak_of_psiWeak_three`
+  (LineBound.lean:848) is the k = 3 transfer and nothing had composed
+  it with `psi_weak_of_RH`.
+
+**Where `1/2 ≤ θ` enters** — twice, both in the transfer, neither in
+the contour: `1/θ ≤ 2` in the envelope integral, and `√x ≤ x^θ` for
+folding the ψ−ϑ gap. Below 1/2 the gap `2√x·log x` would dominate the
+envelope and the transfer would deliver `√x·log x` regardless of θ,
+which is the same floor entry 291 met at the `I₁/I₉` pieces.
+
+**What this closes against entry 277.** The census gate is
+`|π − li|/x < ε_d/log x`. `C·x^θ·log²x/x → 0` for every θ < 1, so a
+zero-free half-plane at any θ < 1 passes depth d beyond an R(d) that
+is now computable from (θ, C, x₀). Entry 277 priced the binding form
+as a power saving (depth 6 at x^0.746); this is that form as a theorem
+with hypothesis `StmtZeroFreeRight 0.746`, strictly weaker than RH.
+The weld to `lean/RelativeGate.lean` on the bench (v4.28) is by
+statement identity, `check_weld.py`, same caveat as everything across
+the toolchains. Li here is PsiToPi's offset Li (Li(2) − li(2) ≈ 1.840),
+which the constants absorb.
+
+**Engineering.** `open scoped Chebyshev` would have taken `θ` for
+Chebyshev's theta, so this file writes `ϑ` for it and keeps `θ` for the
+abscissa, with `local notation` for both and no `open Chebyshev`.
+`Chebyshev.psi` and PNT+'s `ChebyshevPsi` unified by `exact` as in
+entry 291's weld. Root `Stage3.lean` imports 22 of 22; full build 8735.
+
 ## 2026-09-01 — Entry 292 — Stage3 sorry-free: the stale edge_bound placeholder deleted, root imports all 21 modules
 type: formalization
 refs: 262, 267, 271, 291
