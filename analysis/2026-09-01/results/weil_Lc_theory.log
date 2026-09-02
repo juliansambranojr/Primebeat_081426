@@ -1,0 +1,21 @@
+weil_Lc_theory  EXPLORATORY - no prereg, no decision rule, no verdict.
+  fixed window G = N (u/h) cos^2(pi u/2h) cos(gamma_k u), ||G|| = 1;  m2 = 0.1306909660  m22 = 0.0600227807  int|x|P = 0.2973576327
+  measured rows: /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-01/results/weil_Lc_mod.json (sha256 c2717f263ef7cb14...), k=[1, 2, 5, 10, 30, 100, 300, 1000], eps=[0.001, 0.01, 0.1], M=16
+  zeros1.txt: 100000 zeros, gamma_N 74920.827;  near lobe |gamma_j - gamma_k| <= 4 mean gaps
+  L grid 0.0223..12.060 (47 pts, ratio 1.1466; instrument grid extended downward), bisection to rel 1e-10
+  Rmax(T) = 0.137 log T + 0.443 log log T + 4.35 (ASSUMED bound on |N - Nbar|)
+
+Unit tests
+  [U1] Psi closed form vs 8000-node GL quadrature, 13 arguments: max abs err 1.7e-16 (max rel 1.2e-08)
+  [U2] Sigma(s) closed vs quad: max rel err 3.4e-15;  s m2 / Sigma - 1 at s=0.1: -5.24e-04, s=0.5: -1.30e-02
+  [U3] max |Psi|/Psi_bound on [0, 2e5] (400002 pts): 0.999985 at s = 199139.2763;  Psi_bound(2pi) = 0.08401, |Psi(2pi)| = 0.05305
+  [U4] m2 closed 0.130690966049 quad 0.130690966049 (diff 0.0e+00);  m22 closed 0.060022780671 quad 0.060022780671 (diff 0.0e+00);  C(w) max abs err 6.4e-17
+  [U5] ||G||^2 by quadrature at k=10, h=1.53516: 1.000000000000000 (exact-norm N = 4.65887125; C(2 gamma h)/m22 = 5.09e-08)
+Traceback (most recent call last):
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-01/weil_Lc_theory.py", line 672, in <module>
+    main()
+    ~~~~^^
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-01/weil_Lc_theory.py", line 375, in main
+    proj = N10 * np.sqrt((2 * n + 1) / (2 * h10)) * h10 * (Wq * xP) @ Vx   # c_n = int G_env G_n^Leg du
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+ValueError: operands could not be broadcast together with shapes (16,) (8000,) 

@@ -44,3 +44,14 @@ One line per thread, newest at top, `entry N:` pointing into the notebook.
 
 An entry cites artifacts by path and entries by number. Before writing either,
 open it — see `CLAUDE.md` § Rule — load, don't recall.
+
+A number is cited by its `.numbers` key in backticks, followed by the value:
+
+```text
+`ladder.k=10|eps=0.01|M=16|w=1/2.L_c` 3.07
+```
+
+The `.numbers` file sits beside its results JSON and is made by
+`utilities/flatten_results.py`; `python3 utilities/check_entry_numbers.py
+--entry N` verifies every key in entry N against it, rounding-aware. Briefs to
+loggers carry keys and file paths, never pasted numbers.
