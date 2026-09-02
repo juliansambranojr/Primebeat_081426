@@ -16,6 +16,623 @@ Julian's call.
 
 ---
 
+## 2026-09-02 — Entry 303 — pricing a Weil-form leaf for Stage 3: the tree's explicit formula has no test-function argument, upstream states the Weil form (Kadiri Thm 3.1, q = 1) with two limit-management sorries and a compact-support case with one, and the positivity ⇒ RH_up_to arrow has upstream support only for its conclusion
+type: motivation
+refs: 130, 271, 296, 301, 302
+
+**What this entry is.** A read-only pricing, in the shape of entries
+116 and 130: what a Lean leaf for the Weil quadratic form would have
+to say, what the tree and the pinned upstream already hold, and what
+its discharge would cost. No Lean was written; no build was run. The
+type is `motivation` on the precedent of entry 116 (an audit that
+re-scoped without a run); entry 130's precedent is `run` and does not
+apply because nothing here executed. Every location below was opened
+this session; where the brief's line numbers differed from the files,
+the file's number is given and the difference recorded at the end.
+
+**(a) The tree's explicit formula, and why it cannot carry a test
+function.** The discharged leaf is
+
+```text
+def StmtExplicitFormulaPoly (c₁ c₂ x₁ : ℝ) : Prop :=
+  ∀ x T : ℝ, x₁ ≤ x → 2 ≤ T → T ≤ x^2 →
+    ‖((ψ x : ℝ) : ℂ) - (x : ℂ) + zeroPartialSum x T‖
+      ≤ c₁ * x * Real.log (x * T) ^ 2 / T + c₂ * Real.log x
+```
+
+(`lean_stage3/Stage3/Assembly.lean:109-112`; `zeroPartialSum` at
+`:92`, the un-truncated `StmtExplicitFormula` at `:101`), consumed as
+`hEF` by `psiWeak_of_RH_EF_NT` (`Assembly.lean:468`, hypothesis at
+`:473`) and proved as `Glue.stmtEF_poly`
+(`lean_stage3/Stage3/Glue.lean:1195`, from `explicit_formula_poly`
+at `:979`, pinned `[propext, Classical.choice, Quot.sound]` at
+`:1199`; entry 271). Three things about its shape. The prime side is
+ψ(x), the sharp cutoff — there is no function argument anywhere in
+the statement; the test function is the indicator of [1, x] and has
+been Mellin-inverted away. The archimedean and constant terms have
+been absorbed: entry 271 records "`ζ′/ζ(0)` absorbed into
+`c₂·log x`" (`notes/lab_notebook_2.md:2912-2913`; the brief for this
+entry placed that sentence near `:2907`), and the trivial-zero sum
+lives in the same `c₂·log x`. And the zero side is truncated at
+height T with the truncation error `c₁·x·log²(xT)/T`, in the regime
+T ≤ x², which is the finite-T statement the census consumes
+(`EdgeBound.edge_bound_core`, `lean_stage3/Stage3/EdgeBound.lean:717`,
+is the edge estimate that pays for it). The Weil form of entries
+295–302 is a different object: a compactly supported even (or, for
+the modulated family, odd-enveloped) G on [−h, h], both sides
+evaluated at G, the zero side an untruncated Σ_ρ Ĝ(γ), no error
+term, the archimedean term carried explicitly (`analysis/2026-09-01/weil_Lc_theory.md`,
+section 1, and the pole term of section 3(iii)). None of that is
+recoverable from `StmtExplicitFormulaPoly` by specialisation: the
+bound is on one function, and the Weil identity is an equality on a
+class. A Weil leaf is a new Stmt.
+
+The bench's `lean/` has the Weil form only as a measured number:
+`Measured.measured_weil_arithmetic` and
+`Measured.measured_weil_spectral` (`lean/Measured.lean:129-146`,
+O37's two sides at 2644.2756560191 and 2644.2741566957, agreement
+5.7e-7 relative, with the docstring at `:138` calling it a
+normalisation check because summing over known zeros presupposes
+they lie on the line), and the test function of the Euler-factor
+chain, `h b N s = (1 − b^{−s})^N (1 − b^{s−1})^N`
+(`lean/Chain.lean:37`), which is a Dirichlet polynomial in s and
+not a compactly supported G. `grep -rn 'HasCompactSupport\|testFunction\|Fourier'`
+over `lean/*.lean` and `lean_stage3/Stage3/*.lean` (23 modules)
+returns nothing; run as the brief wrote it, over the directories,
+it returns 3323 lines, every one under `lean/.lake` (Mathlib).
+
+**(b) What the pinned upstream holds.** PNT+ at the pin
+`47fa48680663df41146704d02a5b092d792bd5b9` (`lean_stage3/lake-manifest.json:8`,
+dated 2026-08-25) states the Weil-type explicit formula:
+
+- `kadiri_thm_3_1_q1` (`IEANTN/Kadiri.lean:1362`; blueprint docstring
+  from `:1304`, which says at `:1319-1320` "This is the $q = 1$,
+  $\chi$ trivial case of the Weil-type explicit formula of
+  \cite[Theorem 3.1]{Kadiri2005}"). Hypotheses: φ : ℝ → ℂ is C¹;
+  for some b > 0 both φ(x)e^{x/2} and φ′(x)e^{x/2} are
+  O(e^{−(1/2+b)|x|}) at infinity; the zero sum Σ_ρ Φ(−ρ)·ord(ρ) is
+  summable (`hΦ_sum`, `:1368-1370`); the Γ-integrand is integrable
+  (`hΓ_int`, `:1371-1373`). Conclusion (`:1374-1383`): with
+  Φ(z) = ∫ φ(y) e^{−zy} dy,
+  Σ_n Λ(n) φ(log n) = Φ(−1) + Φ(0) − Σ_ρ Φ(−ρ) − φ(0) log π
+  − Σ_n (Λ(n)/n) φ(−log n) + (1/2π) ∫ Re ψ_Γ((1/2 + it)/2) Φ(−(1/2+it)) dt,
+  the ρ-sum over `riemannZeta.zeroes_rect (.Ioo 0 1) .univ` with
+  multiplicity (`riemannZeta.zeroes_sum`,
+  `IEANTN/ZetaDefinitions.lean:107`; `zeroes_rect` at `:24`,
+  `order` at `:103` under the attribute at `:102`, `RH_up_to` at
+  `:117`, `classicalZeroFree` at `:127`). The docstring records a
+  sign correction to Kadiri's printed Theorem 3.1 (`:1326-1334`).
+  The proof (from `:1384`) composes the sublemmas and leaves two
+  `sorry`s: `lim_I_from_eq11` at `:1424` and `lim_I_from_pieces` at
+  `:1444`, both annotated "technical limit-management steps
+  (dominated convergence + summability across the T → ∞ limit)"
+  (`:1415-1416`).
+- The sublemma block (`:147-1300`, "Sublemmas for the proof of
+  Theorem 3.1"): ten `kadiri_thm_3_1_q1_*` theorems in this file
+  (`laplace_inversion :175`, `eq_11 :204`, `eq_12 :252`,
+  `top_horizontal_vanishes :437`, `bot_horizontal_vanishes :469`,
+  `functional_eq :728`, `shifted_eq_I123 :1158`, `eq_13 :1197`,
+  `eq_14 :1240`, `eq_15 :1279`) plus the truncated integral
+  `kadiri_thm_3_1_q1_I` (`IEANTN/KadiriEq11Base.lean:25`) — the
+  "eleven" of the proof docstring. `eq_11` is proved by reduction to
+  `KadiriEq11Reduction.lean:921`; `eq_12` through `eq_15` are proved
+  in the twelve support files, which carry zero `sorry` between them
+  (`grep -c sorry` = 0 in each of KadiriEq11Base, KadiriEq11Reduction,
+  KadiriEq12Foundations, KadiriEq12Helpers, KadiriEq13, KadiriEq14,
+  KadiriEq15, KadiriEq15GammaFactor, KadiriEq15LaplaceStrip,
+  KadiriSupport, KadiriZeroCounting, HadamardLogDerivative; 7402
+  lines in total). The `sorry`s on the theorem's dependency path are
+  its own two plus the two horizontal-arc sublemmas (`:454`, `:486`);
+  `laplace_inversion` (`:189`) is stated with `sorry` and consumed
+  by nothing in the file. The brief for this entry said five blocking
+  sorries; four are on the path and the fifth is stated beside it.
+- The compact-support case: `identity_16_complex`
+  (`Kadiri.lean:3224`, `sorry` at `:3243`) — f real, C² on [0, d],
+  `tsupport f ⊆ Ico 0 d`, vanishing derivatives at the ends, and
+  Re s > 1 — Kadiri's equation (16), the specialisation for which
+  φ(0) = 0 kills the log π term and φ(−log n) = 0 kills the reflected
+  sum (`:3214-3217`). Its weighted and integrable forms
+  (`identity_16_complex_weighted :2423`,
+  `_of_integrable :3105`) are stated too.
+- `Kadiri.lean` as a whole: `grep -c sorry` = 14, of which nine are
+  proof terms — `:145` (`hadamard_identity`), `:189`, `:454`, `:486`,
+  `:1424`, `:1444`, `:2596` (`re_hadamardB_eq`), `:2619`
+  (`backlund_bound`, theorem at `:2618`, the full hNT with Rosser
+  constants (0.137, 0.443, 6.1) — still the watch target of entries
+  130 and 274), `:3243` — and five are comments (`:81`, `:150`,
+  `:1357`, `:1416`, `:2574`). Compact-support machinery exists
+  upstream outside IEANTN: `toSchwartz` (`Wiener.lean:1848`; the
+  brief said `:1849`) packages a smooth compactly supported f as a
+  Schwartz map, and `comp_exp_support` (`:1876`) carries compact
+  support through `exp`.
+- Upstream since the pin: `git log --oneline 47fa486..origin/main`
+  in the package directory lists 5 commits, `a515467` (2026-08-31)
+  back to `c6c7361`, touching Dusart, TMEEMT and the CI action;
+  `grep -i -E 'weil|explicit|fourier|test'` over them returns
+  nothing. Entry 274 counted "six intervening commits" over the same
+  range on 2026-09-01; the log today shows five. Nothing upstream
+  has moved on the Weil form since the pin.
+
+**(c) The candidate leaf, in house shape.** Following
+`StmtArgIdentity` (`lean_stage3/Stage3/ArgCrude.lean:65`, an identity
+with no constant budget, entry 274) rather than the crude-bound
+leaves (`StmtSCrude :70`, `StmtSFromLocal :81`), the natural Stmt is
+an identity on a class:
+
+```text
+def StmtWeilExplicit : Prop :=
+  ∀ G : ℝ → ℂ, ContDiff ℝ 2 G → HasCompactSupport G →
+    (∑' n, Λ n * G (log n)) + (∑' n, (Λ n / n) * G (-log n))
+      = Ĝ(-1) + Ĝ(0) − riemannZeta.zeroes_sum (.Ioo 0 1) .univ (fun ρ ↦ Ĝ(−ρ))
+        − G 0 * log π + (1/2π) ∫ Re ψ_Γ((1/2 + it)/2) Ĝ(−(1/2+it)) dt
+```
+
+with Ĝ the two-sided Laplace transform, the sign convention taken
+from `kadiri_thm_3_1_q1` (`analysis/2026-09-01/weil_Lc_theory.md`
+section 1 uses Bombieri's normalisation; the two differ by the
+Ĝ ↔ Ĝ(1/2 + ·) shift and the pair-to-pair fold, both to be pinned at
+the weld). Budget: none — it is an identity, and the census consumes
+it through the quadratic form, where the constants are entry 302's
+(2|B|², Z_near, Z_far, the N(T) tail with the ASSUMED Rosser form).
+Discharge routes, two: (i) a port of the same lemma kind the hEF arc
+built at finite T — the rectangle contour, the two horizontal arcs at
+good heights (`ContourShift.goodT_exists`, entry 274), the left-edge
+integral — but with G's transform in place of x^s/s, and with the
+T → ∞ limit that the hEF arc never needed (it stops at T ≤ x²), which
+is exactly what the two upstream `sorry`s at `:1424` and `:1444`
+name; (ii) a pin bump when those two land upstream, at which point
+`StmtWeilExplicit` for C¹ G with the (1/2 + b) decay is
+`kadiri_thm_3_1_q1` under the summability and integrability
+side-conditions, which for compactly supported C² G follow from
+Ĝ = O(1/|t|²) on vertical lines and N(T) ≪ T log T — the second of
+which is `backlund_bound`'s content, itself `sorry`. Route (ii) is
+free and unscheduled; route (i) is the hEF arc's size again (entries
+257–271, nine modules) plus the limit, and the limit is where
+upstream stalled. Neither is priced below the arc.
+
+**(d) The positivity arrow.** The statement the ladder wants is
+
+```text
+def StmtWeilPositive (L : ℝ) : Prop :=
+  ∀ G, HasCompactSupport G → tsupport G ⊆ Icc (-L/2) (L/2) → 0 ≤ Q(G)
+StmtWeilPositive L → riemannZeta.RH_up_to (T L)
+```
+
+The conclusion exists upstream (`riemannZeta.RH_up_to`,
+`ZetaDefinitions.lean:117`: no zero with Re ρ ∈ (1/2, 1) and
+Im ρ ∈ [0, T]). The implication does not, in any form: entry 296
+read its sources for "positivity on support ≤ L ⇒ a strip or a
+height" and found no such theorem (`notes/lab_notebook_2.md:1233`,
+its Answer paragraph), only the full-class equivalence (Weil's
+criterion, Connes' §4.1 as cited at `REFERENCES.md:120-124`) and,
+on the truncated form, Theorem 6.1 of Connes' 2026 paper
+(`REFERENCES.md:135-139`): zeros of the Fourier transform of the
+minimiser lie on the real line PROVIDED the minimum of the spectrum
+is a simple isolated eigenvalue with even eigenfunction — the
+hypothesis O20's gap ratio measures (`REFERENCES.md:145-147`). So
+the truncated implication is a theorem under a hypothesis this bench
+measures and nothing proves; the full-class converse has no upstream
+support at all, and a leaf for it would be a named conjecture with
+no discharge sketch, which the scope-pricing rule says is a defect
+in the leaf. What entry 302 adds is the quantitative sketch of the
+arrow at a fixed window: for the raised-cosine G the sign of Q at
+support 2h is decided by 2|B|² against Z_near + Z_far + beyond, each
+in closed form, so "Q(G) < 0 for this G at this h" ⇒ "a zero is off
+the line by at least ε(h, k)" is a computable implication for ONE G
+— the direction the ladder runs — with the far-tail balance
+reproducing the measured log γ_k slope at 0.992 and 1.093. That is
+the shape a truncated `StmtWeilPositive` discharge would have to
+generalise from: a G-family with the near lobe cancelled, and the
+N(T) bound on the far tail carrying the height dependence.
+
+**Leaf ledger after this entry.** hEF: discharged (entry 271,
+`Glue.stmtEF_poly`). `StmtArgIdentity`: true by construction (entry
+274, `stmtArgIdentity_holds`). Open: `StmtSFromLocal argS
+zetaLocalCount a b` (`ArgCrude.lean:81`) — entry 271 names this
+remainder `StmtArgCrude`, and `CONTEXT.md:748` still reads the
+ledger as `{hEF, StmtArgCrude}`, which predates 271 and 274; the
+line is Julian's to update. The θ < 1 half-plane
+(`StmtZeroFreeRight θ`, `lean_stage3/Stage3/Abscissa.lean:112`) is
+the open leaf of the dial (entry 292) and sits beside the ledger,
+outside the RH route. Candidates from this entry, NOT ADDED:
+`StmtWeilExplicit` (identity, no budget, routes (i)/(ii) above) and
+`StmtWeilPositive L → RH_up_to` (no route; sketch only). Adding
+either is Julian's call, and the rule is a leaf enters with its
+budget and its route or does not enter.
+
+**Where the brief differed from the files.** Entry 271's absorbed
+`ζ′/ζ(0)` sentence is at `:2912-2913`, the brief said `~:2907`.
+`toSchwartz` is at `Wiener.lean:1848`; the brief said `:1849`.
+`riemannZeta.order` is at `ZetaDefinitions.lean:103`; the brief's
+`:102` is its attribute line. The brief's "five blocking sorries"
+are four on the dependency path plus `laplace_inversion`, which
+nothing consumes. The brief's "zero hits" for the compact-support
+grep holds for the source modules; the command as written returns
+3323 Mathlib lines under `lean/.lake`. Entry 274's "six intervening
+commits" is five in today's log over the same range.
+
+## 2026-09-02 — Entry 302 — weil_Lc_theory.py: L_c(ε, γ_k) in closed form for a fixed raised-cosine window, tested against entry 301's 24 rows — the fixed window's L_c is set by the near lobe and sits 2–5× above the measured one; the minimiser cancels that lobe by 7.7e4 at the same h, so the measured L_c is the balance 2|B|² = Z_far, whose far-tail slope reproduces b = 1.77 at ε = 0.001 (0.992) and the N(T)-bounded tail b = 1.48 at ε = 0.01 (1.093)
+type: run
+refs: 298, 299, 300, 301
+
+**Exploratory.** No prereg, no decision rule, no verdict; the script
+says so in its docstring and stamps every output with it
+(`analysis/2026-09-01/weil_Lc_theory.py:2-3`,
+`analysis/2026-09-01/weil_Lc_theory.txt:1`, JSON `status`). The
+derivation page is `analysis/2026-09-01/weil_Lc_theory.md`; the
+numbers are `analysis/2026-09-01/results/weil_Lc_theory.numbers`
+(JSON sha256 `0077130f7b02…`, line 1 of the `.numbers`; script
+sha256 `ddc7ca7189ea…`), with entry 301's measured rows read from
+`analysis/2026-09-01/results/weil_Lc_mod.numbers`
+(`meta.params.mod_json_sha256` c2717f26…).
+
+**Why this run.** Entry 301 measured L_c(ε, k) at every k = 1..1000
+and every ε, logarithmic in γ_k with b = 1.77 / 1.48 / 1.32, and read
+the margin at L_c as |B|² against Z′, both polynomial in ε. This run
+asks what a closed-form window predicts for that balance: G(u) =
+N·(u/h)·P(u/h)·cos(γ_k u), P(x) = cos²(πx/2) on [−1, 1], ‖G‖₂ = 1
+(`analysis/2026-09-01/weil_Lc_theory.md`, section 2), with Ψ, Σ, the
+moments and the norm in closed form (section 3), the root of
+2|B|² = Z′ + tail on the instrument's L grid extended downward
+(section 4), and the N(T)-bounded far tail with the ASSUMED Rosser
+form `params.Rmax_form` "0.137 log T + 0.443 log log T + 4.35"
+(section 3(ii), `txt:6`).
+
+**Why the envelope is odd.** An even envelope E gives B = ½∫E·sinh(εu)
+du = 0 exactly, T_ε = 2|A|² > 0 at every h, so P(u/h)·cos(γ_k u) never
+detects at any ε (`.md` section 2). The measured minimisers say the
+same thing twice. Section 0 of the txt (`txt:22-49`) splits each
+minimiser's Legendre coefficients by n-parity: at every one of the 24
+rows one cos-block parity and the opposite sin-block parity carry all
+the mass, the other two columns sitting at 1e-16 of it or below (k = 1
+ε = 0.001: `section0_minimisers[0].cos_even` 26689.2,
+`section0_minimisers[0].sin_odd` 23935.7,
+`section0_minimisers[0].cos_odd` 7.4e-16; k = 1000 ε = 0.1:
+`section0_minimisers[23].cos_odd` 1.3035,
+`section0_minimisers[23].sin_even` 0.5484,
+`section0_minimisers[23].cos_even` 5.0e-38). And their |A|²/|B|² at
+the recorded L_c runs from
+`ladder.k=5|eps=0.001|M=16|w=1/2.minimiser_at_Lc.A2_over_B2` 9.69e-09
+to `ladder.k=300|eps=0.1|M=16|w=1/2.minimiser_at_Lc.A2_over_B2`
+7.62e-03 — the minimiser is an odd envelope times the carrier to
+first order. The `.md` (section 2) and the docstring quote the ceiling
+as 3.4e-3 and the floor as 1.6e-7; those are interior rows, and entry
+301 already recorded the full range. The k = 1000 envelope has no
+simple description: nearest of |x|P, P, x(1−x²) at normalised L2
+distance `section0_minimisers[23].envelope_L2_dist.x(1-x2)` 0.445,
+`section0_minimisers[23].envelope_L2_dist.|x|P` 0.621,
+`section0_minimisers[23].envelope_L2_dist.P` 0.801 (ε = 0.1; the
+`.md` states 0.44–0.46 for the x(1−x²) column over the three ε).
+
+**Command and run record.**
+
+```text
+python3 analysis/2026-09-01/weil_Lc_theory.py
+```
+
+Defaults: `params.M_instrument` 16, `params.near_gaps` 4.0 (W = 4 mean
+gaps), `params.bisect_rel` 1e-10, `params.n_zeros` 100000 zeros with
+`params.gamma_N` 74920.83, L grid `params.L_grid[0]` 0.0223 to
+`params.L_grid[46]` 12.060 at ratio 1.1466 (47 points, `txt:5`), the
+seven variants listed under params.variants[0..6]. Window constants
+`params.window.m2` 0.130691 (= 1/3 − 2/π²) and `params.window.m22`
+0.0600228 (= (2 − 15/π²)/8). The first run crashed
+(`analysis/2026-09-01/results/weil_Lc_theory.log:14-21`) at
+`weil_Lc_theory.py:375` — `h10 * (Wq * xP) @ Vx` bound `*` before
+`@`, so a (16,) vector met an (8000,) one:
+`ValueError: operands could not be broadcast together with shapes
+(16,) (8000,)`; the `.md` run-record paragraph calls this a
+broadcasting precedence error. The brief for this entry cited the
+traceback at log lines 15–22; it is at 14–21. Line 375 now reads
+`h10 * ((Wq * xP) @ Vx)`, and the second run
+(`analysis/2026-09-01/results/weil_Lc_theory_run2.log`, exit 0) wrote
+the txt and the JSON (178122 bytes) in `meta.timings.total_s` 50.6 s
+(`run2.log:145`; unit tests 0.8 s, tables 49.4 s, `txt:20,143`),
+timestamp `meta.timestamp` 2026-09-02T11:12:27.
+
+**Eight unit tests** (`txt:8-20`), all passing at the tolerances the
+script sets:
+
+- U1 Ψ closed form against 8000-node Gauss–Legendre quadrature at 13
+  arguments: max abs err 1.7e-16, max rel 1.2e-08 (`txt:9`; the rel
+  figure is `unit_tests.U1_Psi_vs_quad[9].rel_err` 1.16e-08 at
+  s = 1000, where Ψ is `unit_tests.U1_Psi_vs_quad[9].closed[0]`
+  5.5e-09 and the s^-3 tail is what is being divided by).
+- U2 Σ closed against quadrature, max rel 3.4e-15; the first-order
+  deviation s·m2/Σ − 1 is −5.24e-04 at s = 0.1 and −1.30e-02 at
+  s = 0.5 (`txt:10`), which is what makes εh < 0.25 the first-order
+  regime.
+- U3 the envelope bound Ψ_b ≥ |Ψ| on [0, 2e5]:
+  `unit_tests.U3_Psi_bound.max_ratio` 0.999985 at
+  `unit_tests.U3_Psi_bound.at_s` 199139.3 over
+  `unit_tests.U3_Psi_bound.npts` 400002 points.
+- U4 m2 and m22 closed against quadrature, diff 0.0; C(w) max abs err
+  6.4e-17 across w = 0..1000 (`txt:12`).
+- U5 ‖G‖² by quadrature at k = 10, `unit_tests.U5_norm.h` 1.53516:
+  `unit_tests.U5_norm.norm2_quad` 1.000000000000000, exact-norm
+  `unit_tests.U5_norm.N` 4.658871, C(2γh)/m22 = 5.09e-08 (`txt:13`).
+- U6, the one that carries the reading. The fixed G at k = 10,
+  ε = 0.01, h = 1.53516 (entry 301's L_c/2 for that row) is projected
+  onto the instrument's modulated basis (cos block, odd n < 16;
+  truncation mass `unit_tests.U6_projection_vs_instrument.trunc_mass`
+  2.1e-17, `unit_tests.U6_projection_vs_instrument.cSc` 1.0000) and
+  the instrument's own matrices are evaluated on the coefficients:
+  `unit_tests.U6_projection_vs_instrument.Zprime_instrument` 2.03766
+  against closed `unit_tests.U6_projection_vs_instrument.Zprime_closed`
+  2.03766 (`unit_tests.U6_projection_vs_instrument.Zprime_rel`
+  -8.2e-12); `unit_tests.U6_projection_vs_instrument.B2_instrument`
+  5.14751e-05 against `unit_tests.U6_projection_vs_instrument.B2_closed`
+  5.14751e-05 (rel -2.3e-12); first-order
+  `unit_tests.U6_projection_vs_instrument.B2_first_order` 5.14757e-05;
+  `unit_tests.U6_projection_vs_instrument.A2_instrument` 2.037e-11;
+  instrument tail `unit_tests.U6_projection_vs_instrument.tail_instrument`
+  5.7e-24 against closed 0. The instrument's minimiser at this same h
+  has `unit_tests.U6_projection_vs_instrument.minimiser_Zprime`
+  2.6602e-05 and `unit_tests.U6_projection_vs_instrument.minimiser_B2`
+  2.5062e-05. So at equal support the fixed window carries 7.66e4
+  times the minimiser's Z′ and 2.05 times its |B|².
+- U7 the pole term 2Ĝ(i/2)Ĝ(−i/2) at k = 10, h = 1.53516: closed
+  `unit_tests.U7_pole.closed[0]` -2.849546e-08, quadrature
+  `unit_tests.U7_pole.quad` -2.849546e-08, abs diff 1.8e-20; it sits
+  on the arithmetic side and is outside Q, recorded only.
+- U8 the far-bound integrals at k = 1000, h = 2, 6000 against 24000
+  points: right `unit_tests.U8_far_bound_convergence.right_6000[0]`
+  2.426922e-04 plus R-term
+  `unit_tests.U8_far_bound_convergence.right_6000[1]` 4.442e-03; left
+  `unit_tests.U8_far_bound_convergence.left_6000[0]` 4.846524e-04 plus
+  `unit_tests.U8_far_bound_convergence.left_6000[1]` 8.881e-03; the
+  24000-point values agree to 1e-4 relative (`txt:19`).
+
+**Section 0 — first-order |B|² holds on the measured minimisers.**
+For each of the 24 minimisers, |B|² by quadrature from the JSON
+coefficients against the JSON value
+(quad_over_json, within 3e-8 of 1 at every
+row; k = 1 ε = 0.001: `section0_minimisers[0].quad_over_json`
+1.0000000007), and ε²|∫uG*e^{iγu}du|² against the exact |B|²
+(first_over_exact). Per ε the first-order /
+exact ratio ranges over
+ε = 0.001: `section0_minimisers[21].first_over_exact` 0.9999958 to
+`section0_minimisers[0].first_over_exact` 1.0000001;
+ε = 0.01: `section0_minimisers[22].first_over_exact` 0.99960 to
+`section0_minimisers[4].first_over_exact` 1.0000118;
+ε = 0.1: `section0_minimisers[23].first_over_exact` 0.96236 to
+`section0_minimisers[5].first_over_exact` 1.00067.
+The margin entry 301 measured is the ε² term of |B|² at every row, to
+4e-2 at worst (k = 1000, ε = 0.1) and to 1e-5 at ε ≤ 0.01.
+
+**Section 1 — the fixed window's L_c against the measured** (`txt:51-78`;
+w = 1/2, root of 2|B|² = Z′ + tail, measured L_c the upper bracket
+end from entry 301). 15 of the 24 rows have a fixed-window L_c inside
+the grid; 9 have none ("no sign change up to L = 12.060"): k = 5, 10,
+30, 100, 300 at ε = 0.001, k = 300 at ε = 0.01, and k = 1000 at all
+three ε (`theory.k=5|eps=0.001.variants.full.L_c` null through
+`theory.k=1000|eps=0.1.variants.full.L_c` null). The brief for this
+entry left the count open. Where a root exists the fixed window needs
+2.1–5.2× the measured support:
+
+```text
+    k    eps  L_c_meas    L_c_th  meas/th      h*     2|B|^2     Z_near      Z_far   Zfar_bnd    beyond    2|A|^2 n_near  eps*h B2_1st/ex
+    1  0.001    1.2835    6.6511   0.1930  3.3255  1.047e-05  1.046e-05  7.819e-09  8.214e-08   2.1e-24   7.5e-09     7  0.0033   0.99997
+    1   0.01    1.1387    3.0627   0.3718  1.5314  1.023e-04  1.021e-04  1.919e-07  4.236e-06   1.0e-22   2.5e-07     7  0.0153   0.99899
+    1    0.1    0.9597    2.0491   0.4684  1.0246  3.080e-03  3.079e-03  1.200e-06  3.367e-05   7.4e-22   1.4e-06     7  0.1025   0.99396
+    2  0.001    1.4971    6.9455   0.2155  3.4728  1.192e-05  1.190e-05  2.223e-08  2.062e-06   1.7e-24   1.7e-12     6  0.0035   1.00005
+    2   0.01    1.3057    5.2094   0.2506  2.6047  5.029e-04  5.028e-04  2.854e-08  8.941e-06   7.0e-24   2.1e-09     6  0.0260   0.99997
+    2    0.1    1.1584    3.4390   0.3368  1.7195  1.451e-02  1.451e-02  7.707e-07  7.585e-05   5.6e-23   2.0e-08     6  0.1719   0.99686
+    5   0.01    2.0719    8.1258   0.2550  4.0629  1.909e-03  1.909e-03  7.987e-08  4.506e-06   7.6e-25   1.2e-11     7  0.0406   0.99982
+    5    0.1    1.7763    5.2681   0.3372  2.6341  5.239e-02  5.239e-02  8.622e-07  4.164e-05   6.6e-24   9.2e-11     7  0.2634   0.99274
+   10   0.01    3.0703   11.3102   0.2715  5.6551  5.148e-03  5.148e-03  1.073e-07  3.349e-06   1.5e-25   1.9e-13     7  0.0566   0.99966
+   10    0.1    2.6323    7.2142   0.3649  3.6071  1.354e-01  1.354e-01  1.031e-06  3.344e-05   1.4e-24   1.1e-12     7  0.3607   0.98646
+   30   0.01    3.9681    8.4671   0.4687  4.2336  2.160e-03  2.157e-03  2.250e-06  9.345e-05   6.2e-25   1.6e-14     7  0.0423   0.99981
+   30    0.1    3.4608    5.5536   0.6232  2.7768  6.142e-02  6.141e-02  6.946e-06  8.452e-04   5.1e-24   1.4e-13     7  0.2777   0.99195
+  100   0.01    5.1285   11.5625   0.4435  5.7813  5.500e-03  5.498e-03  2.709e-06  9.962e-05   1.3e-25   7.9e-20     7  0.0578   0.99965
+  100    0.1    4.3969    9.7950   0.4489  4.8975  3.428e-01  3.428e-01  5.621e-06  2.353e-04   3.0e-25   2.0e-18     7  0.4897   0.97520
+  300    0.1    5.3069   10.0403   0.5286  5.0201  3.696e-01  3.696e-01  1.788e-05  7.649e-04   2.6e-25   1.4e-19     7  0.5020   0.97396
+```
+
+The meas/theory ratio runs from
+`theory.k=1|eps=0.001.ratio_meas_over_theory` 0.1930 to
+`theory.k=30|eps=0.1.ratio_meas_over_theory` 0.6232, rising with
+both k and ε. The reference row, k = 10 ε = 0.01
+(`theory.k=10|eps=0.01.variants.full.L_c` 11.3102 against measured
+`theory.k=10|eps=0.01.L_c_meas` 3.0703, ratio
+`theory.k=10|eps=0.01.ratio_meas_over_theory` 0.2715): at h* =
+`theory.k=10|eps=0.01.at_root.h` 5.6551, 2|B|² =
+`theory.k=10|eps=0.01.at_root.two_B2` 5.148e-03 (first order
+`theory.k=10|eps=0.01.at_root.two_B2_first_order` 5.146e-03),
+Z_near = `theory.k=10|eps=0.01.at_root.Z_near` 5.148e-03,
+Z_far = `theory.k=10|eps=0.01.at_root.Z_far_exact` 1.073e-07,
+Zfar_bound = `theory.k=10|eps=0.01.at_root.Z_far_bound` 3.349e-06,
+beyond-file `theory.k=10|eps=0.01.at_root.beyond_file_bound` 1.5e-25,
+2|A|² = `theory.k=10|eps=0.01.at_root.two_A2` 1.9e-13, over
+`theory.k=10|eps=0.01.at_root.n_near` 7 near zeros at εh =
+`theory.k=10|eps=0.01.at_root.eps_h` 0.0566. At every one of the 15
+roots Z_near/Z′ is between 0.99812 (k = 1, ε = 0.01) and 0.99999, and
+2|B|²/(Z_near + Z_far + beyond) is 1 to 3e-9; 2|A|² is outside the
+root equation (the `.md`, section 4) and is at most 2.5e-3 of 2|B|²
+(k = 1, ε = 0.01), below 1e-5 from k = 2. The N(T) bound on the far
+tail sits 10–313× above the exact file sum (k = 2, ε = 0.01 the
+widest), so Zfar_bound is a loose bound at these h and the "beyond
+file" term is 1e-22 or smaller everywhere. First-order / exact |B|²
+at the root is 0.974–1.00005 (the k = 300, ε = 0.1 row the smallest,
+εh = `theory.k=300|eps=0.1.at_root.eps_h` 0.502, the largest).
+
+**Section 2 — which piece sets L_c** (`txt:80-105`; Z′ replaced
+piecewise, the root re-solved). Root counts over the 24 rows: full
+15, near_only 15, far_only_exact 24, far_only_bound 21 (none at
+k = 100, 300, 1000 with ε = 0.001), strip_worst_eh (e^h Z′) 8 (k = 1,
+2 at ε = 0.01 and 0.1; k = 5, 10, 30, 100 at ε = 0.1), first_order_B
+15, w = 1 16 (the one extra is
+`theory.k=300|eps=0.01.variants.w1.L_c` 11.9679, where w = 1/2 has
+none). near_only reproduces full to four decimals at every root
+(k = 10 ε = 0.01: `theory.k=10|eps=0.01.variants.near_only.L_c`
+11.3102; first_order_B
+`theory.k=10|eps=0.01.variants.first_order_B.L_c` 11.3104): the fixed
+window's L_c is the near lobe's. The far-only roots are the ones that
+land near the measured values — at k = 1000, where the full form
+has no root at any ε, far_only_exact gives
+`theory.k=1000|eps=0.001.variants.far_only_exact.L_c` 10.2227
+(measured `theory.k=1000|eps=0.001.L_c_meas` 9.3311),
+`theory.k=1000|eps=0.01.variants.far_only_exact.L_c` 5.4716
+(measured `theory.k=1000|eps=0.01.L_c_meas` 7.8644),
+`theory.k=1000|eps=0.1.variants.far_only_exact.L_c` 3.4432 (measured
+`theory.k=1000|eps=0.1.L_c_meas` 7.0974); the far_only_bound column
+at k = 1000 is `theory.k=1000|eps=0.01.variants.far_only_bound.L_c`
+9.6940 and `theory.k=1000|eps=0.1.variants.far_only_bound.L_c`
+5.6211. The strip worst case e^h Z′ pushes the root up by
+`theory.k=1|eps=0.01.variant_over_full.strip_worst_eh` 1.860 at
+k = 1 ε = 0.01 and `theory.k=10|eps=0.1.variant_over_full.strip_worst_eh`
+1.616 at k = 10 ε = 0.1 (`txt:83,93`). The `w1_meas` column is
+"none" at all 24 rows (`theory.k=1|eps=0.001.L_c_meas_w1` null): the
+script did not pick up entry 301's w = 1 values, so the w = 1 variant
+has no measured partner in this run.
+
+**Section 3 — the log γ_k slope, every fit** (`txt:107-131`; L_c =
+a + b·log γ_k per ε; measured b from entry 301,
+`fits.0.001.log_gamma_k.b` 1.7686, `fits.0.01.log_gamma_k.b` 1.4772,
+`fits.0.1.log_gamma_k.b` 1.3159 in the mod file, R²
+`fits.0.001.log_gamma_k.R2` 0.9934, `fits.0.01.log_gamma_k.R2`
+0.9948, `fits.0.1.log_gamma_k.R2` 0.9921):
+
+```text
+  eps=0.001  measured: a  -3.5132  b  1.7686  rms 0.2199  R2 0.9934
+           full           : a   4.6864  b  0.7418  rms 0.0000  R2 1.0000  b/b_meas 0.4194  n 2   mean meas/th 0.2043 [0.1930, 0.2155]
+           near_only      : a   4.6868  b  0.7416  rms 0.0000  R2 1.0000  b/b_meas 0.4193  n 2   mean meas/th 0.2043 [0.1930, 0.2156]
+           far_only_exact : a  -2.0669  b  1.7543  rms 0.2305  R2 0.9926  b/b_meas 0.9919  n 8   mean meas/th 0.7127 [0.4753, 0.9128]
+           far_only_bound : a  -4.4611  b  3.1927  rms 0.2304  R2 0.9890  b/b_meas 1.8053  n 5   mean meas/th 0.3866 [0.2677, 0.4749]
+           strip_worst_eh : fewer than 2 points
+           first_order_B  : a   4.6864  b  0.7418  rms 0.0000  R2 1.0000  b/b_meas 0.4194  n 2   mean meas/th 0.2043 [0.1930, 0.2155]
+           w1             : a   4.4183  b  0.8179  rms 0.0000  R2 1.0000  b/b_meas 0.4624  n 2   mean meas/th 0.2058 [0.1949, 0.2167]
+  eps=0.01   measured: a  -2.9408  b  1.4772  rms 0.1635  R2 0.9948
+           full           : a  -2.3362  b  2.6641  rms 1.7109  R2 0.6866  b/b_meas 1.8034  n 6   mean meas/th 0.3435 [0.2506, 0.4687]
+           near_only      : a  -2.3361  b  2.6640  rms 1.7109  R2 0.6866  b/b_meas 1.8034  n 6   mean meas/th 0.3435 [0.2506, 0.4687]
+           far_only_exact : a  -0.7226  b  0.8647  rms 0.2034  R2 0.9768  b/b_meas 0.5854  n 8   mean meas/th 1.0882 [0.7352, 1.4373]
+           far_only_bound : a  -1.8369  b  1.6146  rms 0.1724  R2 0.9951  b/b_meas 1.0930  n 8   mean meas/th 0.6409 [0.4108, 0.8113]
+           strip_worst_eh : a  -2.2384  b  2.9957  rms 0.0000  R2 1.0000  b/b_meas 2.0279  n 2   mean meas/th 0.1948 [0.1896, 0.1999]
+           first_order_B  : a  -2.3362  b  2.6641  rms 1.7109  R2 0.6866  b/b_meas 1.8034  n 6   mean meas/th 0.3435 [0.2506, 0.4687]
+           w1             : a  -0.7834  b  2.1843  rms 1.6164  R2 0.7323  b/b_meas 1.4786  n 7   mean meas/th 0.3728 [0.2542, 0.5172]
+  eps=0.1    measured: a  -2.6937  b  1.3159  rms 0.1793  R2 0.9921
+           full           : a  -2.7642  b  2.1275  rms 1.0258  R2 0.8657  b/b_meas 1.6167  n 7   mean meas/th 0.4440 [0.3368, 0.6232]
+           near_only      : a  -2.7642  b  2.1275  rms 1.0258  R2 0.8657  b/b_meas 1.6167  n 7   mean meas/th 0.4440 [0.3368, 0.6232]
+           far_only_exact : a  -0.8146  b  0.6073  rms 0.0852  R2 0.9916  b/b_meas 0.4615  n 8   mean meas/th 1.5808 [1.2166, 2.0613]
+           far_only_bound : a  -1.0969  b  0.9403  rms 0.0982  R2 0.9953  b/b_meas 0.7145  n 8   mean meas/th 0.9638 [0.6353, 1.2626]
+           strip_worst_eh : a  -2.9941  b  2.6247  rms 2.2598  R2 0.5493  b/b_meas 1.9946  n 6   mean meas/th 0.3432 [0.2258, 0.5762]
+           first_order_B  : a  -2.7816  b  2.1332  rms 1.0274  R2 0.8659  b/b_meas 1.6211  n 7   mean meas/th 0.4436 [0.3368, 0.6230]
+           w1             : a  -2.4283  b  1.9851  rms 0.9612  R2 0.8647  b/b_meas 1.5085  n 7   mean meas/th 0.4612 [0.3458, 0.6415]
+```
+
+The two slope matches, by key. At ε = 0.001 the far-only exact tail:
+`fits.0.001.far_only_exact.b` 1.7543 on
+`fits.0.001.far_only_exact.n` 8 rows, rms
+`fits.0.001.far_only_exact.rms_resid` 0.2305, R²
+`fits.0.001.far_only_exact.R2` 0.9926, against the measured
+`fits.0.001.measured.b` 1.7686: slope ratio
+`fits.0.001.far_only_exact.slope_over_measured` 0.9919, mean
+meas/theory `fits.0.001.far_only_exact.mean_ratio_meas_over_theory`
+0.7127 over `fits.0.001.far_only_exact.ratio_range_meas_over_theory[0]`
+0.4753 to `fits.0.001.far_only_exact.ratio_range_meas_over_theory[1]`
+0.9128. At ε = 0.01 the N(T)-bounded tail:
+`fits.0.01.far_only_bound.b` 1.6146 on `fits.0.01.far_only_bound.n` 8
+rows, rms `fits.0.01.far_only_bound.rms_resid` 0.1724, R²
+`fits.0.01.far_only_bound.R2` 0.9951, against
+`fits.0.01.measured.b` 1.4772: slope ratio
+`fits.0.01.far_only_bound.slope_over_measured` 1.0930, mean
+meas/theory `fits.0.01.far_only_bound.mean_ratio_meas_over_theory`
+0.6409 over `fits.0.01.far_only_bound.ratio_range_meas_over_theory[0]`
+0.4108 to `fits.0.01.far_only_bound.ratio_range_meas_over_theory[1]`
+0.8113. The full form at ε = 0.01 is `fits.0.01.full.b` 2.6641 on
+`fits.0.01.full.n` 6 rows at R² `fits.0.01.full.R2` 0.6866
+(`fits.0.01.full.slope_over_measured` 1.8034), and at ε = 0.1
+`fits.0.1.full.b` 2.1275 on `fits.0.1.full.n` 7 rows at R²
+`fits.0.1.full.R2` 0.8657; at ε = 0.001 the full, near_only,
+first_order_B and w1 fits stand on `fits.0.001.full.n` 2 rows (k = 1,
+2) and their R² of 1 is two points. At ε = 0.1 the closest slope is
+far_only_bound, `fits.0.1.far_only_bound.b` 0.9403
+(`fits.0.1.far_only_bound.slope_over_measured` 0.7145, mean ratio
+`fits.0.1.far_only_bound.mean_ratio_meas_over_theory` 0.9638 over
+`fits.0.1.far_only_bound.ratio_range_meas_over_theory[0]` 0.6353 to
+`fits.0.1.far_only_bound.ratio_range_meas_over_theory[1]` 1.2626), with
+far_only_exact at `fits.0.1.far_only_exact.b` 0.6073 (mean ratio
+`fits.0.1.far_only_exact.mean_ratio_meas_over_theory` 1.5808). The
+strip worst case is `fits.0.01.strip_worst_eh.n` 2 rows at ε = 0.01
+and `fits.0.1.strip_worst_eh.b` 2.6247 at R²
+`fits.0.1.strip_worst_eh.R2` 0.5493 on `fits.0.1.strip_worst_eh.n` 6
+rows at ε = 0.1; at ε = 0.001 it has `fits.0.001.strip_worst_eh.n` 0
+points.
+
+**Section 3b — the ε-exponent per k** (`txt:133-142`; log L_c =
+c + p·log ε, theory full against measured, three ε each):
+
+```text
+  k=1     theory p  -0.2557 (R2 0.9675)   measured p  -0.0631 (R2 0.9897)
+  k=2     theory p  -0.1526 (R2 0.9891)   measured p  -0.0557 (R2 0.9985)
+  k=5     theory p  -0.1882 (R2 1.0000)   measured p  -0.0780 (R2 0.9932)
+  k=10    theory p  -0.1953 (R2 1.0000)   measured p  -0.0817 (R2 0.9891)
+  k=30    theory p  -0.1832 (R2 1.0000)   measured p  -0.0668 (R2 0.9959)
+  k=100   theory p  -0.0720 (R2 1.0000)   measured p  -0.0743 (R2 0.9967)
+  k=300   theory p      nan (R2 nan)   measured p  -0.0743 (R2 0.9967)
+  k=1000  theory p      nan (R2 nan)   measured p  -0.0594 (R2 0.9796)
+```
+
+By key: `eps_exponent.1.theory_full.b` -0.2557 against
+`eps_exponent.1.measured.b` -0.0631 (ratio 4.05);
+`eps_exponent.2.theory_full.b` -0.1526 against
+`eps_exponent.2.measured.b` -0.0557 (2.74);
+`eps_exponent.5.theory_full.b` -0.1882 against
+`eps_exponent.5.measured.b` -0.0780 (2.41);
+`eps_exponent.10.theory_full.b` -0.1953 against
+`eps_exponent.10.measured.b` -0.0817 (2.39);
+`eps_exponent.30.theory_full.b` -0.1832 against
+`eps_exponent.30.measured.b` -0.0668 (2.74);
+`eps_exponent.100.theory_full.b` -0.0720 against
+`eps_exponent.100.measured.b` -0.0743 (0.97, a two-point theory fit,
+ε = 0.01 and 0.1 only); k = 300 and 1000 have
+`eps_exponent.300.theory_full.note` "fewer than 2 points" and
+`eps_exponent.1000.theory_full.note` "fewer than 2 points", measured
+`eps_exponent.300.measured.b` -0.0743 and
+`eps_exponent.1000.measured.b` -0.0594. The `.md` (section 4)
+predicts p = −2/3 for hg ≪ 1 and p = −1/4 for hg ≫ 1; the theory
+values at k = 5..30 sit at the −1/4 end, and the k = 1 value between
+the two. The brief for this entry said the fixed second moment's
+ε-exponent is two to four times the measured; that holds at k = 1..30
+(4.05, 2.74, 2.41, 2.39, 2.74) and the k = 100 pair is equal.
+
+**Reading, stated positively.** (1) The ε² first-order form of |B|²
+holds on the measured minimisers at every row (Section 0): the margin
+entry 301 measured is ε²|∫uG e^{iγu}du|², the second moment of the
+envelope against the carrier. (2) The fixed window's L_c is set by the
+near lobe: near_only equals full at every root, and Z_near is 0.998 of
+Z′ or more. At the same h the instrument's minimiser has Z′ smaller by
+7.66e4 and |B|² smaller by 2.05 (U6): the minimiser spends its shape
+on cancelling the near lobe, by orders of magnitude, and keeps half
+the second moment. So the measured L_c is the balance 2|B|² = Z_far
+with the near lobe removed — the far-only variants. (3) That balance
+reproduces the log γ_k slope: the exact far tail gives b = 1.7543
+against 1.7686 at ε = 0.001 (ratio 0.992), and the N(T)-bounded tail
+gives b = 1.6146 against 1.4772 at ε = 0.01 (ratio 1.093); the
+intercepts are off (mean meas/theory 0.71 and 0.64), the slopes are
+the matches. At ε = 0.1 neither far-only slope matches (0.46, 0.71 of
+measured). (4) The fixed second moment's ε-exponent is 2.4–4.0 times
+the measured at k = 1..30: the minimiser trades ε against shape, so
+L_c(ε) at fixed k is flatter than any fixed window's, and the −2/3
+and −1/4 regimes of the `.md` describe the window; the measured
+curve follows the minimiser. (5) The strip worst case e^h Z′ has a root at 8 rows
+only and its slopes (2.0× measured) fit nothing; the Paley–Wiener
+replacement is a bound that the data do not approach.
+
+**What this does to entry 301's reading.** Entry 301 read the margin at
+L_c as |B|² against Z′, both polynomial in ε. This run splits Z′: the
+Z′ the minimiser meets at its own L_c is the far tail, the near lobe
+having been cancelled by the choice of shape; the fixed-window
+counterpart of that cancellation costs 7.66e4 in Z′ at k = 10 and
+that is the gap between 11.31 and 3.07. The log γ_k slope is then a
+property of the far tail — the N(T)-shaped sum of Ψ(hδ)² beyond
+four mean gaps — and the exponent 1.77 at ε = 0.001 is reproduced by
+the exact file sum at 0.992. No prereg, no verdict; the next
+instrument, if one is built, is a window family with the near lobe
+cancelled by construction (an envelope orthogonal to the seven
+nearest Ψ(h(γ_j − γ_k))), which would make the far-tail balance a
+prediction and the intercept the test.
+
 ## 2026-09-02 — Entry 301 — weil_Lc_mod.py: the Weil form on a family modulated to the zero's height, P_n(u/h)·cos(γ_k u), P_n(u/h)·sin(γ_k u) — L_c(ε, k) found at every k = 1..1000 and every ε; logarithmic in γ_k (R² 0.992–0.995, b = 1.77 / 1.48 / 1.32); the margin at L_c is |B|² against Z′, both polynomial in ε; entry 300's linear fit and 1e-25 price corrected
 type: run
 refs: 295, 297, 298, 299, 300
