@@ -16,6 +16,300 @@ Julian's call.
 
 ---
 
+## 2026-09-02 — Entry 300 — weil_Lc_height.py: support length at which the restricted Weil form detects γ_k moved to 1/2 ± ε, k = 1..1000 — L_c found for k ≤ 10 only, linear in γ_k at ε = 0.001; the detection magnitude collapses to 1e-25 by k = 10 and is under the floor for k ≥ 30; entry 299's log γ_k reading corrected
+type: run
+refs: 295, 297, 298, 299
+
+**Exploratory.** No prereg, no decision rule, no verdict; the script
+says so in its docstring and stamps every output with it
+(`analysis/2026-09-01/weil_Lc_height.py:1-3,163,499,529,593`;
+`analysis/2026-09-01/results/weil_Lc_height.log:1,439`; `weil_Lc_height.txt:1`).
+
+**What was run** (`analysis/2026-09-01/weil_Lc_height.py`, new, 597
+lines). It imports `weil_Lc_eps.py` via importlib (lines 66-75) and
+takes from it the Legendre Ĝ table (`ghat_legendre`), the
+double-double Gram (`zero_side_dd`), `tail_matrix`, `pair_matrix`,
+the parity eigensolve `lam_min_parity`, `fourier_energy_near` and the
+floor model (line 73; `solve`, lines 274-297, is entry 299's solve
+with the floor at 287-288); `weil_rung_min.describe_G` and
+`gap_matrix` come through `le.wr` (74, 323, 325). Three changes,
+all forced by height (docstring lines 17-37):
+
+- Z′_k = Z_all − (rank-one term of zero k). The dd Gram over all
+  100,000 file zeros is built once per h at M_max (lines 253-255)
+  and the rank-one term of zero k is subtracted in mpmath from the
+  same double-precision row that entered the Gram (`rank_one_mp`,
+  109-117; `get_Zk`, 249-262). That row needs the helper
+  `ghat_row_as_in_gram` (183-187): weil_rung_min's Miller recurrence
+  picks its starting order from the chunk maximum, so the row is
+  recomputed inside its 25,000-zero chunk. The brief for this entry
+  reports that the first attempt (a fresh single-zero evaluation)
+  agreed only to 5e-16; nothing on disk records that attempt.
+- T from the spherical-Bessel closed form at complex argument,
+  Ĝ_n(t) = √(2h(2n+1))·iⁿ·√(π/2z)·J_{n+1/2}(z), z = ht, by
+  `mp.besselj` (`ghat_complex_bessel`, 84-92; `transforms_bessel`,
+  95-106), because the 384-node quadrature of weil_Lc_eps cannot
+  resolve e^{iuγ_k} at hγ_k ~ 10⁴ (docstring 23-28).
+- Grid: weil_Lc_eps's 25 points 0.3..8 extended at the same ratio
+  1.1466 to 12.06, 28 points (lines 158-161; `log:3,292`; JSON
+  `params.L_grid`, `params.grid_ratio` 1.146609).
+
+Main run: `.venv/bin/python analysis/2026-09-01/weil_Lc_height.py`
+under `time`, with the defaults `--ks 1,2,5,10,30,100,300,1000 --eps
+0.001,0.01,0.1 --Ms 32,64 --Mraise 96 --dps 40 --Lmin 0.3 --Lbase 8.0
+--npts 25 --Lmax 12.0 --bisect-ratio 1.02 --floor-rel 1e-30
+--bessel-rel 1e-15` (lines 133-146; `log:2-3`; JSON `params`). M = 32
+and 64 for every (k, ε); M = 96 added where M = 64 either fails the
+h_c·γ_k/π check at its own L_c or finds no L_c (lines 371-381) — in
+the run that fired only for k ≥ 30, all of them via the no-L_c branch
+(`log:142,155,...,285` print `h_c gamma_k/pi = nan`; JSON
+`params.M_used`). Outputs `analysis/2026-09-01/results/weil_Lc_height.json` (2.4 MB),
+`weil_Lc_height.txt` (355 lines), `analysis/2026-09-01/results/weil_Lc_height.log` (440
+lines); JSON `params.code_version`
+`268256e5c220a1c170f12ac400d88738c6eff482249100d01e1d6e983842ba04`;
+`run_start_at` 2026-09-02T10:14:59Z, `run_end_at` 10:53:05Z; wall
+38:07.95, 2283.84 s user (`log:440`); completed, the log closes with
+the stamp (`log:439`). Timings (`log:291`; JSON `timings`): 3565
+eigensolves 1894.1 s, 320 Z builds 184.8 s over 106 distinct h, 773 T
+builds 67.3 s. Zeros: `zeros1.txt`, 100,000 zeros, γ_N 74920.827
+(`log:5`); γ_k from `mp.zetazero(k)` at dps 40 (line 170), |file − mp|
+2.7e-10 at k = 1 down to 4.3e-12 at k = 1000 (`log:7-14`). Local gap
+= min of the two neighbouring file gaps (lines 173-176).
+
+ε = 0 control: `--eps 0 --Ms 32 --Mraise 0`, outputs
+`weil_Lc_height_eps0.txt` (76 lines), `analysis/2026-09-01/results/weil_Lc_height_eps0.json`,
+`analysis/2026-09-01/results/weil_Lc_height_eps0.log` (118 lines); code_version
+`547e2dd307fd45712c498d644e44c1cd3e7b0441e76063088204fcf632ba18dd`
+(this version already carries the `--txt` flag and the `eps_fit`
+generalisation, see the process record below); `run_start_at`
+10:54:18Z, `run_end_at` 10:55:17Z, 59 s; 224 Z builds 7.4 s, 224 T
+builds 1.4 s, 448 eigensolves 30.0 s (`eps0.log:71`).
+
+**Unit tests** (lines 189-241; `log:17-34`; `txt:322-326`; JSON
+`unit_tests`).
+
+- [H1] Bessel closed form vs weil_Lc_eps's 384-node quadrature,
+  k = 1, 2, 10, 30 at h = 0.75, 2.0, 3.0, 1.5 (hγ_k = 10.6, 42.0,
+  149.3, 152.0), ε ∈ {0, 0.01, 0.1}, 96 orders: max |ΔA| 2.91e-40
+  (k = 10), max |ΔB| 7.53e-41 (k = 10, ε = 0.1) (`log:17-28`; JSON
+  `unit_tests.H1_bessel_vs_quadrature`).
+- [H2] k = 1000, ε = 0.01, G = indicator: closed form 2sin(ht)/t at
+  complex t vs the Bessel matrix element and vs `mp.quad` of A, B on
+  911 panels (h = 0.5, hγ = 710) and 3622 panels (h = 2, hγ = 2839):
+  1.1e-47 and 1.3e-46 for both comparisons (`log:29-30`; JSON
+  `unit_tests.H2_k1000_indicator`).
+- [H3] rank-one removal vs deleting zero k from the file, h = 0.75,
+  M = 96: 7.55e-31 (k = 1), 1.48e-30 (k = 10), 1.35e-31 (k = 1000),
+  entries up to 3.795 (`log:31-33`; JSON
+  `unit_tests.H3_rank_one_removal`). The ε = 0 control, with
+  M_max = 32, gives 9.09e-31, 8.07e-31, 3.1e-32 (`eps0.log:31-33`).
+- [H4] k = 1000, ε = 0: max |T₀(w = 1/2) − 2Re[ĜĜᴴ]| = 0.0 (`log:34`;
+  JSON `unit_tests.H4_eps0_pair_k1000`).
+
+**Sanity, k = 1 at M = 32 vs weil_Lc_eps.json** (lines 385-404;
+`log:295-300`; `txt:314-320`; JSON `sanity_k1_vs_weil_Lc_eps`).
+w = 1/2: L_c 1.2835 [1.2618, 1.2835], 1.1387 [1.1194, 1.1387],
+0.9597 [0.9435, 0.9597] at ε = 0.001, 0.01, 0.1; brackets and λ at
+both bracket ends identical to weil_Lc_eps.json — +5.701e-11,
+−3.863e-11; +9.348e-09, −3.349e-09; +1.004e-06, −5.597e-07. w = 1:
+1.2618, 1.1194, 0.9275, likewise identical. The JSON floats differ
+from weil_Lc_eps.json in the last place (1.2835402603145116 vs …112)
+because the grid is regenerated (line 159).
+
+**ε = 0 control** (`eps0.log:38-68`; `eps0.txt:8-15`; JSON
+`ladder["k=K|eps=0|M=32|w=1/2"]`). All eight k: L_c = None; min λ on
+the grid −3.64e-32, λ at L = 12.06 −3.41e-32 against floor 6.46e-31;
+the first raw-negative grid point is L = 5.307 for every k
+(−1.09e-32 there, floor 1.3e-30), every negative below its floor.
+The eight w = 1/2 grid rows are identical to printed digits except
+one entry: k = 10 at L = 8.000 prints −1.9e-33 where the other seven
+print −2.0e-33 (the brief for this entry said all eight identical).
+
+**L_c(ε, k)** (`log:303-327`; `txt:7-31`; JSON `summary`,
+`ladder["k=K|eps=E|M=M|w=1/2"]`). Columns k / γ_k / log γ_k / local
+gap / ε / M = 32 L_c / M = 64 L_c [bracket] / X_c / λ(1.5L_c) /
+λ(2L_c) / h_c·γ_k/π / pos-above (M = 64, grid points above L_c that
+are non-negative under the floor); w = 1/2:
+
+```text
+   1  14.135  2.6486  6.8873  0.001  1.2835  1.2835 [1.2618,1.2835]  3.609  -3.33e-07  -1.12e-06   2.9  0/17
+   1                          0.01   1.1387  1.1387 [1.1194,1.1387]  3.123  -2.81e-05  -8.54e-05   2.6  0/18
+   1                          0.1    0.9597  0.9597 [0.9435,0.9597]  2.611  -1.32e-03  -4.65e-03   2.2  0/19
+   2  21.022  3.0456  3.9888  0.001  1.4468  1.4222 [1.3981,1.4222]  4.146  -4.44e-07  -1.37e-06   4.8  0/16
+   2                          0.01   1.3057  1.3057 [1.2835,1.3057]  3.690  -3.14e-05  -1.22e-04   4.4  0/17
+   2                          0.1    1.1584  1.1584 [1.1387,1.1584]  3.185  -1.73e-03  -9.03e-03   3.9  0/18
+   5  32.935  3.4945  2.5102  0.001  none    1.6589 [1.6307,1.6589]  5.253  -1.19e-07  -1.34e-07   8.7  0/15
+   5                          0.01   2.3756* 1.5759 [1.5492,1.5759]  4.835  -4.24e-05  -1.18e-04   8.3  0/15
+   5                          0.1    1.4468  1.4468 [1.4222,1.4468]  4.249  -2.92e-03  -1.33e-02   7.6  0/16
+  10  49.774  3.9075  1.7687  0.001  none    2.0022 [1.9683,2.0022]  7.405  -9.67e-32  -8.15e-31  15.9  13/14
+  10                          0.01   none    1.8381 [1.8070,1.8381]  6.285  -9.65e-22  -1.51e-25  14.6  9/14
+  10                          0.1    none    1.7462 [1.7166,1.7462]  5.733  -1.97e-08  -8.37e-15  13.8  3/15
+  30  101.318 4.6183  2.4077  all ε  none at M = 32, 64, 96
+ 100  236.524 5.4661  1.2456  all ε  none at M = 32, 64, 96
+ 300  541.847 6.2950  1.2160  all ε  none at M = 32, 64, 96
+1000  1419.422 7.2580 0.7255  all ε  none at M = 32, 64, 96
+```
+
+`*` k = 5, ε = 0.01, M = 32: a floor-region crossing — λ(1.5L_c)
+−3.61e-30, λ(2L_c) −5.08e-32, pos-above 8/12, λ at the bracket
+−1.42e-22 (`log:94`; JSON `ladder["k=5|eps=0.01|M=32|w=1/2"]`). The
+M = 32, w = 1 column at k = 5, ε = 0.001 has the same character:
+L_c 2.6777 with λ(1.5L_c) +3.18e-31 and pos-above 11/11 (`log:88`).
+w = 1 column, L_c: k = 1 1.2618 / 1.1194 / 0.9275; k = 2 (M = 64)
+1.4222 / 1.2835 / 1.1387; k = 5 (M = 64) 1.6589 / 1.5492 / 1.4222;
+k = 10 (M = 64) 1.9683 / 1.8381 / 1.7462; none for k ≥ 30 (`log:304-
+327`, columns "M=64 w=1").
+
+**M-convergence** (`log:330-353`; `txt:34-41`; JSON `M_convergence`).
+k = 1: 0.0000 at every ε. k = 2: −0.0170 at ε = 0.001 (1.4468 →
+1.4222, one bracket), 0.0000 at 0.01 and 0.1. k = 5: ε = 0.001
+none → 1.6589; ε = 0.01 −0.3366 (the M = 32 value 2.3756 is the
+floor-region crossing above); ε = 0.1 0.0000. k = 10: none → L_c at
+M = 64 at every ε. M = 96 was run only for k ≥ 30 (JSON
+`params.M_used`); M-convergence at k = 5 and 10 between M = 64 and
+96 is UNMEASURED — the supplement that would have measured it
+crashed (process record below).
+
+**Floor.** Every k ≥ 30 row at every M reads "no sign change beyond
+the floor up to L = 12.060"; λ at L = 12.06 is −5.34e-32 / −3.68e-31
+/ −1.27e-30 against floors 6.5e-31 / 1.3e-30 / 3.0e-30 at M = 32 /
+64 / 96, min λ on the grid −7.09e-32 / −1.02e-30 / −2.09e-30
+(`log:134-288`, every k ≥ 30 line). The k = 30..1000 w = 1/2 grid
+rows are identical to printed digits across k and ε at M = 32 and
+at M = 96; at M = 64 one entry differs, L = 6.085 reading −6.6e-31
+or −6.7e-31 (JSON `ladder[...].grid[22].lam_min`; the brief for this
+entry said identical at each M). Against the ε = 0 control's rows
+they are identical through L = 3.520 (the first 19 points) and differ
+at the last nine, from L = 4.037 on — e.g. +2.9e-31 vs +3.1e-31 at
+4.037, −5.2e-32 vs −1.1e-32 at 5.307 — every one of those values
+under both runs' floors (the brief said identical throughout; the
+two runs built their Grams at M_max = 96 and 32 respectively, lines
+156, 227, 254). The moved zero's term is below the floor everywhere
+on the grid at those heights: "none" for k ≥ 30 is an instrument
+floor and says nothing about whether L_c exists there. k = 10 at
+M = 64 is marginal: ε = 0.001 λ(L_c) −3.78e-28 (JSON
+`ladder["k=10|eps=0.001|M=64|w=1/2"].lam_at_bracket[1]`), the
+neighbouring grid points reading −5.6e-26 against floor 2.2e-27 at
+L = 2.037 and −6.8e-29 against floor 7.8e-29 at L = 2.335 (flagged
+non-negative), pos-above 13/14; ε = 0.01 λ(L_c) −4.45e-25, pos-above
+9/14; ε = 0.1 λ(L_c) −1.34e-21, pos-above 3/15. The k = 5 M = 64 rows
+are clean (pos-above 0/15, 0/15, 0/16).
+
+**Fits** (w = 1/2, M_used = 64, four points k = 1, 2, 5, 10 — only
+four k have an L_c; least squares L_c = a + b·x). The script fits
+ε = 0.01 only (line 449; `log:355-391`; `txt:288-312`; JSON `fits`),
+against log γ_k, γ_k and 1/(local gap) — in the JSON the γ_k fit
+sits under `fits[...]["gamma_k"]`, having overwritten the raw γ_k
+list written under the same key (lines 465-467). The fits at
+ε = 0.001 and 0.1, and the 2π/log(γ_k/2π) form at every ε, are in
+NO file: they were computed by the agent writing this entry with
+`numpy.linalg.lstsq` from the JSON `summary` L_c values (the brief
+for this entry supplied the same numbers from a scratch pass; the
+recomputation reproduces them to every printed digit). Local gaps
+6.8873, 3.9888, 2.5102, 1.7687 (JSON `params.local_gap`).
+
+```text
+  ε = 0.001   L_c = 1.2835 1.4222 1.6589 2.0022
+    log γ_k          a -0.2641  b +0.56682  rms 0.0493  R² 0.9672  resid +0.046 -0.040 -0.058 +0.051
+    2π/log(γ_k/2π)   a +2.2696  b -0.13708  rms 0.1164  R² 0.8173  resid +0.076 -0.134 -0.091 +0.149
+    γ_k              a +0.9980  b +0.02015  rms 0.0016  R² 1.0000  resid +0.001 +0.001 -0.003 +0.001
+    1/gap            a +1.0092  b +1.71383  rms 0.0255  R² 0.9912  resid +0.026 -0.017 -0.033 +0.024
+  ε = 0.01    L_c = 1.1387 1.3057 1.5759 1.8381
+    log γ_k          a -0.3728  b +0.56119  rms 0.0227  R² 0.9928  resid +0.025 -0.031 -0.012 +0.018   (log:359)
+    2π/log(γ_k/2π)   a +2.1529  b -0.13919  rms 0.0913  R² 0.8823  resid +0.064 -0.123 -0.049 +0.108
+    γ_k              a +0.8876  b +0.01958  rms 0.0281  R² 0.9888  resid -0.026 +0.006 +0.043 -0.024   (log:360)
+    1/gap            a +0.8931  b +1.68136  rms 0.0084  R² 0.9990  resid +0.002 -0.009 +0.013 -0.006   (log:361)
+  ε = 0.1     L_c = 0.9597 1.1584 1.4468 1.7462
+    log γ_k          a -0.7255  b +0.62714  rms 0.0228  R² 0.9941  resid +0.024 -0.026 -0.019 +0.021
+    2π/log(γ_k/2π)   a +2.0987  b -0.15589  rms 0.0997  R² 0.8875  resid +0.069 -0.129 -0.061 +0.121
+    γ_k              a +0.6833  b +0.02187  rms 0.0309  R² 0.9892  resid -0.033 +0.015 +0.043 -0.026
+    1/gap            a +0.6893  b +1.87829  rms 0.0055  R² 0.9997  resid -0.002 -0.002 +0.009 -0.005
+```
+
+The M = 32-only fits (k = 1, 2, 5 at ε = 0.01) carry the unconverged
+k = 5 point 2.3756 and read R² 0.8737 / 0.9408 / 0.9109 for log γ_k /
+γ_k / 1/gap (`log:369-373`). w = 1 at M = 64, ε = 0.01: R² 0.9886 /
+0.9941 / 0.9994 (`log:387-391`).
+
+**Minimiser at L_c, ε = 0.01, w = 1/2** (lines 476-491; `log:393-
+434`; `txt:328-355`; JSON `ladder[...].minimiser_at_Lc`). k = 1
+(L_c 1.1387, h 0.5694, M = 32 and M = 64 the same function to the
+printed digits, M = 64 with the sign flipped): even, 0 sign changes,
+|G| max at u = 0, G(0) = 1.684, G(±h) = 2.91e-4; central half 0.9686,
+central tenth 0.3134, end tenths 0.0001; E(|t − γ₁| < 1) 1.09e-5,
+E(|t| < γ₁) 0.9999; |A|² 1.377e-13, |B|² 9.022e-9, T −1.804e-8,
+λ(L_c) −3.35e-9 (M = 32), −3.51e-9 (M = 64); odd block +4.30e-6.
+k = 10 (M = 64, L_c 1.8381, h 0.9191): even, 0 sign changes,
+G(0) = 1.627, G(±h) = 4.21e-12; central half 0.9991, central tenth
+0.4554; E(|t − γ₁₀| < 1) 1.79e-21, E(|t| < γ₁) 0.99999; |A|² 1.622e-30,
+|B|² 2.366e-24, T −4.733e-24, λ(L_c) −4.45e-25; odd block +4.91e-21.
+k = 2 and k = 5 (M = 64) sit between: G(±h) 1.26e-5 and 1.60e-8,
+|B|² 1.80e-11 and 1.01e-16. k = 30, 100, 300, 1000: no L_c, so no
+minimiser at L_c; the grid minimisers there are the RH-form
+minimisers of the ε = 0 control (the rows agree as stated under
+Floor). Detection still runs through −2|B|²: at every one of the
+nineteen (k, ε, M) rows with an L_c, |B|² exceeds |A|² — by a ratio
+of 8.2e2 (k = 1, ε = 0.1) up to 2.9e7 (k = 5, ε = 0.001), three to
+seven orders (the brief for this entry said four to six) — and
+E(|t − γ_k| < 1) runs from 2.0e-5 (k = 1, ε = 0.1) down to 2.5e-23
+(k = 10, ε = 0.001; the brief said 1e-21, which is the k = 10
+ε = 0.01 value 1.8e-21). Around L_c the two terms are the same size,
+λ ≈ Z′(G) − 2|B|²: k = 10, ε = 0.01 at L = 2.037 has Z′(G) 1.51e-17,
+|B|² 1.40e-17, λ −1.28e-17 (JSON
+`ladder["k=10|eps=0.01|M=64|w=1/2"].grid[14]`). Every minimiser
+with an L_c is even and single-signed, a prolate bump with its
+Fourier energy under γ₁.
+
+**Process record (the agent's; logged plainly).** After the main
+run, an M = 96 supplement for k = 5, 10 (`--ks 5,10`) was started to
+measure M-convergence at 64 → 96. It crashed after its first ladder,
+per the agent's report: `weil_Lc_height.py` line 325 in `ladder_run`,
+`gapm = wr.gap_matrix("legendre", M, Lc / 2, float(gk_mp[1]))`,
+`KeyError: 1` — the E(|t| < γ₁) energy looked γ₁ up in the
+`--ks`-keyed dict `gk_mp` (line 170), which without k = 1 in `--ks`
+has no entry 1. The agent changed that line to use the `gz(1)`
+helper (line 171 falls back to `mp.zetazero`), started a rerun, and
+killed it on the orchestrator's instruction; the rerun's `tee` had
+truncated `analysis/2026-09-01/results/weil_Lc_height_M96.log` to 0 bytes (mtime 03:57,
+the same minute as the edited `.py`), so the crash traceback
+survives only in the agent's report, quoted here. No JSON or txt
+from the supplement exists. The main run never executed the changed
+line's failure path because k = 1 was in its `--ks`. Three code
+versions are therefore in play:
+
+```text
+  main run      JSON params.code_version  268256e5c220a1c170f12ac400d88738c6eff482249100d01e1d6e983842ba04
+  ε = 0 control JSON params.code_version  547e2dd307fd45712c498d644e44c1cd3e7b0441e76063088204fcf632ba18dd
+  file on disk  sha256 (2026-09-02)       bb931efe28bbc66f1fe0e67e4e5daf00aeb827d78024b8f101342f4ed308aa68
+```
+
+Per the agent's report the file on disk differs from the main run's
+version by that one line (325), the `--txt` flag (line 146) and the
+`eps_fit` generalisation for the ε = 0 control (line 449); the
+control's version is the middle state, with the flag and the
+generalisation and the old line 325. None of the three diffs can be
+reconstructed from disk — the script is untracked before this
+commit and no earlier copy exists.
+
+**Correction (the orchestrator's, to entry 299's closing
+"Reading").** Entry 299 read the height cost as L ≈ c·log γ_k, from
+the local gap ≈ 2π/log γ_k. The four detected points do not show
+that. At ε = 0.001 L_c is linear in γ_k (a = 0.998, b = 0.0202,
+rms 0.0016) and log γ_k leaves alternating residuals (+0.046 −0.040
+−0.058 +0.051); at ε = 0.01 and 0.1 the two forms are not separable
+on four points (R² 0.99 both), with 1/(local gap) at 0.999 for
+ε = 0.01 and 0.9997 for ε = 0.1. What the run does establish is
+about magnitude: λ(L_c) is −3.4e-9 at k = 1 and −4.5e-25 at k = 10
+(ε = 0.01), because the detecting function stays the prolate bump
+under γ₁ and |B|² is its Fourier tail at height γ_k, which falls
+super-exponentially in γ_k·h. For k ≥ 30 the term is below the
+1e-30 floor on the whole grid. Price, stated by the orchestrator:
+positivity at X ≈ 6.3 pins γ₁₀ to 10⁻² only if the prime side
+matches the archimedean deficit to 1e-25; the margin a rung has
+against a zero at height γ is the low-frequency bump's tail at γ.
+Reaching k ≥ 30 needs either dps well beyond 40 with a matching
+floor model, or a different detecting-function family — unbuilt.
+
 ## 2026-09-02 — Entry 299 — weil_Lc_eps.py: support length at which the restricted Weil form detects γ₁ moved to 1/2 ± ε — L_c(ε) = 0.79 + 0.073·log(1/ε), logarithmic in ε; entry 297's e^{εL} sketch corrected
 type: run
 refs: 295, 296, 297, 298
