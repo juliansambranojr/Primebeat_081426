@@ -20,12 +20,13 @@ What this file forces the build to elaborate, as existence checks:
     x^(2/3) check; kept as machinery evidence)
 
 Every module in Stage3/ is imported below, so `import Stage3` elaborates
-the whole package independently of the lakefile glob. Twelve were added
-2026-09-01 (the root had named 9 of 21); `ContourShift` last, once its
-stale sorried `edge_bound` placeholder was deleted. Of the added:
-Abscissa, ThetaLine, ThetaPull and ThetaPsi (notes entries 285–291)
-carry the θ-dial — `psi_weak_of_theta` gives |ψ(X)−X| ≤ C·X^θ·log³X
-from a zero-free half-plane re > θ, for θ ∈ [1/2, 1).
+the whole package independently of the lakefile glob (22 modules as of
+2026-09-01; the root had named 9 of 21 that morning). The θ-dial:
+Abscissa, ThetaLine, ThetaPull, ThetaPsi, ThetaPi (notes entries
+285–293). `psi_weak_of_theta` gives |ψ(X)−X| ≤ C·X^θ·log³X from a
+zero-free half-plane re > θ, θ ∈ [1/2, 1), and
+`schoenfeldWeakTheta_of_zeroFree` carries it to |π−Li| ≤ C·x^θ·log²x,
+the census gate's shape (entry 277).
 -/
 import Mathlib.NumberTheory.LSeries.RiemannZeta
 import PrimeNumberTheoremAnd.Backlund.ZeroCountCrude
@@ -45,6 +46,7 @@ import Stage3.ArgIdentity
 import Stage3.ThetaLine
 import Stage3.ThetaPull
 import Stage3.ThetaPsi
+import Stage3.ThetaPi
 import Stage3.EdgeBound
 import Stage3.Glue
 import Stage3.PerronKernel
