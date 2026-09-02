@@ -16,6 +16,54 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 292 — Stage3 sorry-free: the stale edge_bound placeholder deleted, root imports all 21 modules
+type: formalization
+refs: 262, 267, 271, 291
+
+**What changed** (commits `6f36d80`, `2ed4ff9`).
+`ContourShift.lean` carried one real `sorry`: the slice-3 placeholder
+`edge_bound` (formerly its line 329), stating `‖ζ′/ζ(σ ± iT′)‖ ≤
+C·log²T` on `−1 ≤ σ ≤ 2` at a good height. Entry 267 recorded why it
+could never be proved in place — the proof needs `ZetaGrowth`, which
+imports `ContourShift` — and said the placeholder "moves to a
+downstream file and the placeholder is deleted." The move happened
+(entry 271's hEF discharge consumes it); the deletion did not. The
+placeholder sat three days as the only sorry in the package.
+
+**Where slice 3 actually lives.** Two files, both pinned
+`[propext, Classical.choice, Quot.sound]`:
+
+- `EdgeBound.edge_bound_core` (`Stage3/EdgeBound.lean:717`, pin at
+  822): `‖ζ′/ζ(u)‖ ≤ C·log t/δ` for `im u = t ≥ 2`, `−1/4 ≤ re u ≤ 2`,
+  δ the distance to the nearest zero of `(s−1)²ζ` in the Landau ball.
+- `Glue.zeta_logderiv_good_bound` (`Stage3/Glue.lean:351`, pin at
+  965): the placeholder's own statement — same `2 ≤ T`,
+  `T′ ∈ [T, T+1]`, `zeroGap T ≤ |ρ.im − T′|` hypotheses, conclusion
+  `≤ C·log²T` at `|im u| = T′` — obtained by setting `δ = zeroGap T`,
+  hence its constant `Ce·2·(180 + 1060/log 2)`.
+
+The one difference from the placeholder: `re ≥ −1/4` where it said
+`σ ≥ −1`. The rectangle's left edge is at `−1/4`
+(`edge_horizontal_bound`, `edge_left_bound` at Glue.lean:442, 557), so
+the strip `−1 ≤ σ < −1/4` is never integrated over and has no
+consumer. Nothing imported the sorried theorem: `grep` over `Glue`,
+`Assembly`, `ZetaGrowth` for `edge_bound` returns only
+`edge_bound_core`.
+
+**Done.** Lines 322–329 of `ContourShift.lean` replaced by a comment
+naming the two downstream theorems; the header's "SCRATCH: this file
+carries named `sorry`s by design" paragraph rewritten to say S2 and S4
+are proved here, S3 downstream. `Stage3.lean` (root) now imports all
+21 modules — `ContourShift` was the one held back at entry 291 — and
+its docstring's "every module" sentence is true. `lake build` green,
+8734 jobs. `grep sorry Stage3/*.lean` matches only prose. The only
+`sorry` warnings in the build are upstream `StrongPNT.lean` at 2860,
+3268, 3358, which no Stage3 theorem depends on: every `#guard_msgs`
+pin prints the clean set.
+
+**Also this batch.** Entry 272's NOTEPAD line closed (Julian's call):
+retired by entry 275, aliasing ruled out by 276.
+
 ## 2026-09-01 — Entry 291 — ThetaPsi.lean: |ψ(X)−X| ≤ C·X^θ·log³X from a zero-free half-plane, θ ∈ [1/2, 1)
 type: formalization
 refs: 277, 283, 285, 288, 289, 290
