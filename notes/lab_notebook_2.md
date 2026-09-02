@@ -16,6 +16,251 @@ Julian's call.
 
 ---
 
+## 2026-09-02 — Entry 301 — weil_Lc_mod.py: the Weil form on a family modulated to the zero's height, P_n(u/h)·cos(γ_k u), P_n(u/h)·sin(γ_k u) — L_c(ε, k) found at every k = 1..1000 and every ε; logarithmic in γ_k (R² 0.992–0.995, b = 1.77 / 1.48 / 1.32); the margin at L_c is |B|² against Z′, both polynomial in ε; entry 300's linear fit and 1e-25 price corrected
+type: run
+refs: 295, 297, 298, 299, 300
+
+**Exploratory.** No prereg, no decision rule, no verdict; the script
+says so in its docstring and stamps every output with it
+(`analysis/2026-09-01/weil_Lc_mod.py:4,444,850`;
+`analysis/2026-09-01/results/weil_Lc_mod.log:1`; `weil_Lc_mod.txt:1`).
+
+**Why this run.** Entry 300's height run found nothing at k ≥ 30 and
+the orchestrator read that as a floor limit. The limit was the basis:
+a Legendre basis of M = 96 on support 12 cannot represent a function
+oscillating at frequency γ_k ≥ 101 — Ĝ_n(t) ~ j_n(ht) is evanescent
+for n < ht, so M ≳ γ_k·h/π ≈ 193 is needed at k = 30 (γ₃₀ = 101.318,
+h = 6), and every minimiser there was a low-frequency bump that never
+looked at γ_k (docstring lines 6-9). This run uses the family the
+Legendre run could not reach: G(u) = P_n(u/h)·cos(γ_k u),
+P_n(u/h)·sin(γ_k u), n < 16, 32 functions, M = 16 only (`--M` is a
+flag, line 418; no M-convergence column exists in this run).
+
+**Design** (docstring lines 21-63). The 32 functions are real but
+not L2-orthonormal, so λ_min over ‖G‖₂ = 1 is the smallest eigenvalue
+of the pencil (Q, S). S is computed exactly through Adams'
+linearisation P_nP_m = Σ_l (2l+1)(n m l;000)² P_l and
+∫P_l(u/h)e^{iwu}du = 2h·i^l·j_l(wh) (`gram_mod`, line 237; the brief
+for this entry cited line 214). S is diagonalised, directions below
+`--S-cut` = 1e-24 × the largest S-eigenvalue dropped, Q whitened on
+the kept directions, `mp.eigsy` on the full 32 × 32 block
+(`eig_pencil`, lines 388-410; the brief cited 361); kept count and
+cond(S) are recorded per grid point (JSON
+`ladder[...].grid[i].S_kept`, `.cond_S_kept`). Ĝ at complex t:
+Ĝ^{Leg} at t − γ_k = ∓iε by the power series (entire, no branch), at
+t + γ_k = 2γ_k ∓ iε by `mp.besselj` (`jn_mp`, lines 181-189, series
+below |z| = 40; the brief cited 164). The floor model carries ‖c‖,
+the raw coefficient norm, because the coefficients are not unit-norm
+in the whitened problem (docstring lines 58-63; the brief cited
+47-53); both terms reduce to weil_Lc_eps's at ‖c‖ = 1. Otherwise
+weil_Lc_height.py's instrument through importlib (lines 103-106):
+Z′_k = Z_all − rank-one term of zero k, tail, pair matrix, the same
+k ∈ {1, 2, 5, 10, 30, 100, 300, 1000}, ε ∈ {0.001, 0.01, 0.1} plus the
+ε = 0 control, w = 1/2 primary and w = 1 column (ε = 0 at w = 1
+skipped, lines 740-741), grid 0.3..12.06 at ratio 1.1466 (28 points),
+geometric bisection to bracket ratio 1.02, dps 40, floor_rel 1e-30,
+bessel_rel 1e-15 (`log:2-4`; JSON `params`). The default flags were
+used; the invocation line itself is in no file (the log opens at the
+script's first print). Outputs
+`analysis/2026-09-01/results/weil_Lc_mod.json` (1,547,190 bytes,
+sha256
+`c2717f263ef7cb1435942ecddeb701ad7f9dd0f88ba6d02e34d1e031c64ff1bf`,
+`txt:2`, `log:401`), `weil_Lc_mod.txt` (359 lines),
+`analysis/2026-09-01/results/weil_Lc_mod.log` (402 lines); JSON
+`timestamp` 2026-09-02T10:33:53, stamped at write time (line 851).
+Script on disk, 935 lines, sha256
+`cb2811deb2dcbee5586f0d6fc71321211b9ad7e53791ed89928e6d5f7fde2599`
+(computed 2026-09-02; untracked before this commit). Wall 1206.07 s =
+20.1 min (`txt:359`; `log:401`; JSON `timings.elapsed_s`): 422 Z
+builds 288.7 s, 422 S builds 4.1 s, 1096 T builds 16.2 s, 1820 pencil
+eigsolves 835.3 s (`log:270` prints 1808 / 829.5 s, before the twelve
+sanity solves at the Legendre bracket ends); unit tests 52.3 s
+(`log:49`; the brief for this entry said 52.7). Exit 0; the log
+closes with the two `wrote` lines (`log:401-402`). 56 ladders in the
+JSON: 48 at ε ≠ 0 plus 8 controls.
+
+**L_c(ε, k), w = 1/2** (`log:294-327`; `txt:7-40`; JSON `summary`,
+`ladder["k=K|eps=E|M=16|w=1/2"]`). Columns k / γ_k / ε / L_c /
+bracket / X_c / L_c(w = 1); every bracket read from
+`ladder[key].L_c_bracket` (the txt prints L_c only):
+
+```text
+   1    14.135  0.001  1.2835 [1.2618, 1.2835]      3.609  1.2618
+                0.01   1.1387 [1.1194, 1.1387]      3.123  1.1194
+                0.1    0.9597 [0.9435, 0.9597]      2.611  0.9275
+   2    21.022  0.001  1.4971 [1.4717, 1.4971]      4.469  1.4971
+                0.01   1.3057 [1.2835, 1.3057]      3.690  1.2835
+                0.1    1.1584 [1.1387, 1.1584]      3.185  1.1387
+   5    32.935  0.001  2.5438 [2.5007, 2.5438]     12.728  2.3353
+                0.01   2.0719 [2.0367, 2.0719]      7.940  2.0022
+                0.1    1.7763 [1.7462, 1.7763]      5.908  1.7462
+  10    49.774  0.001  3.8347 [3.7697, 3.8347]     46.280  3.5204
+                0.01   3.0703 [3.0183, 3.0703]     21.549  3.0183
+                0.1    2.6323 [2.5877, 2.6323]     13.906  2.5877
+  30   101.318  0.001  4.7082 [4.6284, 4.7082]    110.853  4.6284
+                0.01   3.9681 [3.9009, 3.9681]     52.886  3.9009
+                0.1    3.4608 [3.4021, 3.4608]     31.841  3.4021
+ 100   236.524  0.001  6.1899 [6.0850, 6.1899]    487.815  6.0850
+                0.01   5.1285 [5.0415, 5.1285]    168.763  4.9561
+                0.1    4.3969 [4.3224, 4.3969]     81.200  4.3224
+ 300   541.847  0.001  7.4711 [7.3444, 7.4711]   1756.470  7.3444
+                0.01   6.1899 [6.0850, 6.1899]    487.815  6.0850
+                0.1    5.3069 [5.2170, 5.3069]    201.731  5.1285
+1000  1419.422  0.001  9.3311 [9.1729, 9.3311]  11283.398  9.1729
+                0.01   7.8644 [7.7310, 7.8644]   2602.829  7.8644
+                0.1    7.0974 [6.9771, 7.0974]   1208.865  6.5158
+```
+
+Four lower bracket ends differ from the brief for this entry and are
+written from the JSON: k = 10, ε = 0.001 reads 3.7697 (brief 3.7699);
+k = 100, ε = 0.01 reads 5.0415 (brief 4.9561, which is that row's
+w = 1 value); k = 300, ε = 0.1 reads 5.2170 (brief 5.1285, likewise
+the w = 1 value); k = 1000, ε = 0.1 reads 6.9771 (the brief asked for
+it to be verified). Every bracket has ratio 1.01725 < 1.02 after 3
+bisections, over all 48 ε ≠ 0 ladders (JSON `n_bisect`).
+`negative_at_1.5Lc` and `negative_at_2Lc` are true for every row;
+`grid_points_above_Lc_positive` is 0/N in every row (N from 19 at
+k = 1, ε = 0.1 down to 2 at k = 1000, ε = 0.001); no ladder is
+negative at the first grid point; and across all 56 × 28 = 1568 grid
+points there is no raw-negative value under its floor (JSON
+`grid[i].raw_negative` vs `.negative`; the brief said 48 × 28). No
+"none" row at ε ≠ 0.
+
+**ε = 0 control** (`txt:43-50`; JSON `ladder["k=K|eps=0|M=16|w=1/2"]`).
+No sign change beyond the floor for any k up to L = 12.06; λ at 12.06
+/ floor: k = 1 +5.98e-29 / 1.8e-29; k = 2 +2.08e-24 / 5.0e-27; k = 5
++3.38e-18 / 1.1e-23; k = 10 +5.74e-15 / 5.1e-22; k = 30 +3.66e-13 /
+5.0e-21; k = 100 +1.86e-11 / 4.0e-20; k = 300 +6.26e-09 / 8.5e-19;
+k = 1000 +1.39e-07 / 4.6e-18. min λ on the grid is positive for every
+k (at 12.06, or at 10.518 for k = 5, 30, 300); |B|² = 0 exactly at
+every grid point (`transforms_mod` returns B = 0 at ε = 0, line
+210-212); ‖c‖ 1.41, kept 32/32. Only k = 1 at 12.06 is within a factor
+4 of its floor (ratio 3.25).
+
+**Fits, w = 1/2, n = 8 per ε** (`log:329-349`; `txt:74-98`; JSON
+`fits[eps][form]`, keys `a`, `b`, `residuals`, `rms_resid`, `R2`,
+`x`; `fits["0"]` has n = 0). Forms, all written by the script (lines
+808-812): `log_gamma_k`; `gamma_k`; `inv_mean_gap`, x =
+log(γ_k/2π)/2π, affine in log γ_k and so with identical residuals;
+`neighbour_gap`, min(γ_k − γ_{k−1}, γ_{k+1} − γ_k) from the file
+(JSON `params.neighbour_gap`: 6.8873, 3.9888, 2.5102, 1.7687, 2.4077,
+1.2456, 1.2160, 0.7255); `inv_neighbour_gap`.
+
+```text
+  ε = 0.001   L_c = 1.2835 1.4971 2.5438 3.8347 4.7082 6.1899 7.4711 9.3311
+    log γ_k        a -3.5132  b +1.76855  rms 0.2199  R² 0.9934  resid +0.113 -0.376 -0.123 +0.437 +0.054 +0.036 -0.149 +0.008
+    γ_k            a +3.0639  b +0.00511  rms 1.3954  R² 0.7342  resid -1.853 -1.674 -0.688 +0.516 +1.127 +1.918 +1.639 -0.984
+    1/mean gap     a -0.2628  b +11.11215 rms 0.2199  R² 0.9934
+    neighbour gap  a +7.6056  b -1.15591  rms 1.6117  R² 0.6454
+    1/nb gap       a +0.4540  b +6.95347  rms 0.8190  R² 0.9084
+  ε = 0.01    L_c = 1.1387 1.3057 2.0719 3.0703 3.9681 5.1285 6.1899 7.8644
+    log γ_k        a -2.9408  b +1.47723  rms 0.1635  R² 0.9948  resid +0.167 -0.253 -0.150 +0.239 +0.087 -0.005 -0.168 +0.083
+    γ_k            a +2.5392  b +0.00431  rms 1.1274  R² 0.7510  resid -1.461 -1.324 -0.609 +0.316 +0.992 +1.569 +1.314 -0.797
+    1/mean gap     a -0.2258  b +9.28173  rms 0.1635  R² 0.9948
+    neighbour gap  a +6.3039  b -0.94908  rms 1.3844  R² 0.6245
+    1/nb gap       a +0.3762  b +5.80264  rms 0.6853  R² 0.9080
+  ε = 0.1     L_c = 0.9597 1.1584 1.7763 2.6323 3.4608 4.3969 5.3069 7.0974
+    log γ_k        a -2.6937  b +1.31592  rms 0.1793  R² 0.9921  resid +0.168 -0.156 -0.129 +0.184 +0.077 -0.102 -0.283 +0.240
+    γ_k            a +2.1621  b +0.00393  rms 0.9396  R² 0.7826  resid -1.258 -1.086 -0.515 +0.275 +0.901 +1.306 +1.017 -0.639
+    1/mean gap     a -0.2752  b +8.26820  rms 0.1793  R² 0.9921
+    neighbour gap  a +5.5224  b -0.83810  rms 1.2552  R² 0.6120
+    1/nb gap       a +0.2357  b +5.21149  rms 0.5683  R² 0.9205
+```
+
+**Minimiser at L_c, ε = 0.01, w = 1/2** (`txt:103-104,121-122,133-
+134,145-146`; `log:351-399`; JSON `ladder[key].minimiser_at_Lc`; the
+E values are the positive-frequency lobe only, docstring line 70).
+k = 1, L_c 1.1387: E(|t − γ_k| < gap 6.887) 0.0251, E(|t − γ_k| < 1)
+0.0000, E(|t| < γ₁) 0.9999, |A|² 1.377e-13, |B|² 9.022e-09, Z′
+1.469e-08, tail 7.75e-12, 0 sign changes, ‖c‖ 1.69e3, kept 30/32,
+cond 6.0e21 — the prolate bump of entries 299 and 300. k = 10, L_c
+3.0703: E(< gap 1.769) 0.0731, E(< 1) 0.0210, E(|t| < γ₁) 9.53e-06,
+|A|² 1.922e-10, |B|² 2.506e-05, Z′ 2.660e-05, tail 1.86e-08, 45 sign
+changes, 48 maxima of |G|, ‖c‖ 1.41, kept 32/32. k = 100, L_c 5.1285:
+E(< gap 1.246) 0.1989, E(< 1) 0.1196, E(|t| < γ₁) 2.91e-07, |A|²
+3.093e-09, |B|² 1.472e-04, Z′ 2.431e-04, tail 1.65e-09, 386 sign
+changes. k = 1000, L_c 7.8644: E(< gap 0.726) 0.0462, E(< 1) 0.0594,
+E(|t| < γ₁) 9.62e-10, |A|² 6.482e-09, |B|² 3.803e-04, Z′ 7.064e-04,
+tail 1.63e-07, 3550 sign changes, 449 maxima. Detection: all 24
+(k, ε ≠ 0) w = 1/2 rows report "|B|² alone (|A|² term negligible
+against Z′)" (`txt:10-40`, last column; JSON
+`minimiser_at_Lc.detection_through`); |A|²/|B|² runs from 9.7e-9
+(k = 5, ε = 0.001) to 7.6e-3 (k = 300, ε = 0.1) (JSON `A2_over_B2`;
+the brief for this entry said 1.6e-7 at k = 1, ε = 0.001 to 3.4e-3 at
+k = 100, ε = 0.1 — those are two interior values); 2w·2|A|² never
+reaches 0.1·Z′ (the criterion is line 687; the brief cited 454); and
+in every row λ(L_c) = Z′ + tail − 2|B|² + 2|A|² to the printed digits,
+2|B|² exceeding Z′ + tail by 1.05× (k = 300, ε = 0.01) to 2.2×
+(k = 5, ε = 0.1).
+
+**k = 1, k = 2 vs the Legendre family** (`txt:52-72`; `log:273-292`;
+JSON `sanity_k1_vs_legendre[]`, incl. `at_legendre_M64_bracket_ends`).
+k = 1: modulated L_c and bracket equal the Legendre M32
+(weil_Lc_eps.json) and M64 (weil_Lc_height.json) values to the last
+printed digit at every ε and both w; `modulated_ge_legendre_M32` True
+for all six; at all twelve Legendre-M64 bracket ends solved at the
+same L, λ_mod ≥ λ_Leg64 (ε = 0.01, w = 1/2: +9.3508e-09 vs
++8.9632e-09 at L 1.11942; −3.3471e-09 vs −3.5134e-09 at 1.13873;
+`txt:62-63`), as containment of the modulated family in the degree-63
+polynomials requires (line 763-764). k = 2 against weil_Lc_height.json
+M64 (1.4222 / 1.3057 / 1.1584): modulated 1.4971 / 1.3057 / 1.1584;
+ε = 0.001 is one grid step larger (bracket [1.4717, 1.4971], λ
++2.02e-12 / −8.10e-13; the Legendre M64 bracket [1.3981, 1.4222] had
+λ +2.44e-13 / −2.54e-14); no same-L comparison is scripted at k = 2.
+A scratchpad cross-check (`xcheck_k1`, in the session scratchpad, in
+no tree file): the k = 1, ε = 0.01 modulated minimiser from the smoke
+run `mod_smoke.json` (`--ks 1,1000 --eps 0,0.01`, L_c 1.13565 on that
+run's grid, λ −1.8620529e-9) projected onto Legendre M64 at the same
+h has ‖proj‖² 1.0 and Q_Leg(proj) −1.862052899e-9 against λ_mod
+−1.862052909e-9, per the orchestrator's report; no output file of
+that script exists.
+
+**Unit tests** (lines 470-585; `log:17-49`; `txt:320-357`; JSON
+`unit_tests`). [M0] series j_n vs `mp.besselj` at complex z, rel ≤
+2.0e-41; `ghat_leg_mp` vs weil_Lc_height's closed form ≤ 1.1e-41.
+[M1] Ĝ^c_n, Ĝ^s_n at t = γ_k − iε vs composite 20-node
+Gauss-Legendre mp quadrature, k ∈ {1, 30, 1000}, h ∈ {0.5, 3},
+ε ∈ {0, 0.01}, a ∈ {0, 5, 16, 21}: ≤ 4.2e-40 over 12 cases; T[0,21]
+closed vs quad ≤ 1.6e-40. [M2] Gram S vs quadrature ≤ 9.9e-41 at
+(k, h) = (1, 0.5), (30, 0.5), (1000, 0.15), cond(S) 8.2e31, 18.7, 1.9.
+[M3] rank-one removal vs the Gram built without zero k: 3.8e-31,
+7.9e-31, 7.4e-32. [M4] S conditioning: k = 1 at L = 0.3 kept 24/32
+(smallest S-eigenvalue −4.0e-41, numerically zero), L = 2.037 cond
+2.0e13 kept 32/32, L = 12.06 cond 5.2; k = 1000 cond ≤ 1.9 at all
+three L. [M5] T₀ (mp γ_k) vs 2Re[vvᴴ] (file γ_k): rel 1.1e-10
+(k = 1), 1.2e-12 (k = 1000). Conditioning across the run: the k = 1
+rows at ε ≠ 0 have ‖c‖ 1.7e3–5.6e6 and 29–31/32 kept (cond 6e21–2e22)
+because cos(γ₁u), sin(γ₁u) are nearly polynomial on a short support;
+k = 2 has ‖c‖ 2.2–91, kept 32/32, cond 1.4e11–3.3e17; k ≥ 5 has ‖c‖
+1.41–1.46 and cond ≤ 5.1e2 (JSON `minimiser_at_Lc.coef_norm`,
+`.S_kept`, `.cond_S_kept`).
+
+**Correction (the orchestrator's, to entry 300).** Entry 300's closing
+read the height cost from four Legendre points as linear in γ_k, and
+its price paragraph said the detection magnitude collapses to 1e-25
+by k = 10 and sits under the floor at k ≥ 30. Both were properties of
+the Legendre family, which cannot hold a modulation at γ_k on the
+supports tested. With the modulated family: L_c is logarithmic in γ_k
+at every ε (R² 0.9934 / 0.9948 / 0.9921; the γ_k-linear form reads
+0.73–0.78 with bowed residuals of size 1–2), slopes b = 1.77 / 1.48 /
+1.32 for ε = 0.001 / 0.01 / 0.1; and the balance at L_c is |B|²
+against Z′ with both of order 1e-5 to 1e-3 (k = 10: 2.5e-5 vs
+2.7e-5; k = 1000: 3.8e-4 vs 7.1e-4), polynomial in ε and L. Entry
+299's log γ_k reading is restored, for the family that carries it.
+Reading (the orchestrator's): the rung that pins γ_k to 10⁻² is
+X_c ≈ e^{−2.94}·γ_k^{1.48}; rung 21.5 sees the tenth zero, rung 2603
+the thousandth (JSON `X_c` 21.549, 2602.829; the fit alone gives 17.0
+and 2394.5). Price restated: the prime side must match the
+archimedean deficit to about ε²·h²·O(1) on support L_c(γ, ε), which
+replaces entry 300's 1e-25. Shape for the rung→strip theorem (the
+orchestrator's plan step 3 — that plan is in no tree file; entry 297's
+sketch, unproved): positivity on every G of support L ⇒
+every zero with log γ ≤ (L − a(ε))/b(ε) has |Re ρ − 1/2| ≤ ε; the
+ε-dependence at fixed k grows with height — from this table, k = 1:
+(1.2835 − 0.9597)/log(100) = 0.0703 per unit log(1/ε) (entry 299's
+seven-point fit gave 0.0733); k = 1000: (9.3311 − 7.0974)/log(100) =
+2.2337/4.6052 = 0.485.
+
 ## 2026-09-02 — Entry 300 — weil_Lc_height.py: support length at which the restricted Weil form detects γ_k moved to 1/2 ± ε, k = 1..1000 — L_c found for k ≤ 10 only, linear in γ_k at ε = 0.001; the detection magnitude collapses to 1e-25 by k = 10 and is under the floor for k ≥ 30; entry 299's log γ_k reading corrected
 type: run
 refs: 295, 297, 298, 299
