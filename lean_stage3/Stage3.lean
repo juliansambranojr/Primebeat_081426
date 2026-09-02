@@ -19,14 +19,13 @@ What this file forces the build to elaborate, as existence checks:
     exponent 3/2 — recorded as insufficient for the census by O68's
     x^(2/3) check; kept as machinery evidence)
 
-Every sorry-free module in Stage3/ is imported below, so `import Stage3`
-elaborates the package independently of the lakefile glob. Eleven were
-added 2026-09-01 (the root had named 9 of 21). The one left out is
-`ContourShift`, a SCRATCH slice map that carries a named `sorry` by
-design (its line 329). Of the added: Abscissa, ThetaLine, ThetaPull and
-ThetaPsi (notes entries 285–291) carry the θ-dial — `psi_weak_of_theta`
-gives |ψ(X)−X| ≤ C·X^θ·log³X from a zero-free half-plane re > θ, for
-θ ∈ [1/2, 1).
+Every module in Stage3/ is imported below, so `import Stage3` elaborates
+the whole package independently of the lakefile glob. Twelve were added
+2026-09-01 (the root had named 9 of 21); `ContourShift` last, once its
+stale sorried `edge_bound` placeholder was deleted. Of the added:
+Abscissa, ThetaLine, ThetaPull and ThetaPsi (notes entries 285–291)
+carry the θ-dial — `psi_weak_of_theta` gives |ψ(X)−X| ≤ C·X^θ·log³X
+from a zero-free half-plane re > θ, for θ ∈ [1/2, 1).
 -/
 import Mathlib.NumberTheory.LSeries.RiemannZeta
 import PrimeNumberTheoremAnd.Backlund.ZeroCountCrude
@@ -51,6 +50,7 @@ import Stage3.Glue
 import Stage3.PerronKernel
 import Stage3.VonKochScaffold
 import Stage3.ZetaGrowth
+import Stage3.ContourShift
 
 namespace Stage3
 

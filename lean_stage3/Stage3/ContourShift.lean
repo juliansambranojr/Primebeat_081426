@@ -1,9 +1,10 @@
 /-
 # The contour shift — slices 2, 3, 4 (hEF's build order, entry 257)
 
-SCRATCH: this file carries named `sorry`s by design. It is the slice map
-for the contour shift, compiling so the obligations are real Lean
-statements. Do not count this module in any sorry-free claim.
+Written as the slice map for the contour shift, with named `sorry`s so
+the obligations were real Lean statements before proof. S2 and S4 are
+proved here; S3 is proved downstream (`EdgeBound`, `Glue`) and its
+placeholder is gone. Sorry-free since 2026-09-01.
 
 Slice 1 is COMPLETE in `Stage3.PerronKernel` (`explicit_formula_perron`):
 `ψ` against the truncated `−ζ′/ζ` integral at `re = 1 + 1/log x`, error
@@ -319,14 +320,11 @@ theorem goodT_exists {T : ℝ} (hT : 2 ≤ T) :
 #guard_msgs in
 #print axioms goodT_exists
 
-/-- **Slice 3 — the edge bound at a good height.** -/
-theorem edge_bound {T T' : ℝ} (hT : 2 ≤ T) (hT' : T' ∈ Set.Icc T (T+1))
-    (hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → zeroGap T ≤ |ρ.im - T'|) :
-    ∃ C : ℝ, 0 < C ∧ C ≤ 10 ^ 7 ∧ ∀ σ : ℝ, -1 ≤ σ → σ ≤ 2 → ∀ ε : ℝ, ε = T' ∨ ε = -T' →
-      ‖deriv riemannZeta ((σ : ℂ) + Complex.I * ε)
-          / riemannZeta ((σ : ℂ) + Complex.I * ε)‖
-        ≤ C * Real.log T ^ 2 := by
-  sorry
+/-! Slice 3, the edge bound at a good height, is proved downstream:
+`EdgeBound.edge_bound_core` (needs `ZetaGrowth`, which imports this
+file, so it cannot live here) and `Glue.zeta_logderiv_good_bound`,
+the placeholder's statement at `re ≥ −1/4`. The sorried placeholder
+that stood here was deleted 2026-09-01 (entry 267 called for it). -/
 
 /-! ## S4 machinery — the multi-pole residue theorem on a rectangle
 
