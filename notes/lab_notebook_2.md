@@ -16,6 +16,275 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 297 — what the bench has that the sources do not, and the shape of the missing rung-to-strip theorem (orchestrator's sketch, unproved)
+type: motivation
+refs: 285, 294, 295, 296
+
+This entry records a reading and a sketch; nothing in it is proved.
+The sketch is the orchestrator's, unproved, and is labelled so below.
+
+**Three things in this tree that entry 296's sources do not have.**
+
+1. The dial as theorems in both directions. The sources' criterion is
+   a switch (positivity for every support ⇔ RH), and a finite rung
+   yields only "a₀ is at least this large" (entry 296). Stage3 has
+   `zeroFreeRight_iff_psiWeakTheta`
+   (`lean_stage3/Stage3/ThetaConverse.lean:382-385`, entry 294):
+   `StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀`
+   for `1/2 ≤ θ`, `θ < 1`; axioms `[propext, Classical.choice,
+   Quot.sound]` (line 433). At every θ ∈ [1/2, 1), a zero-free
+   half-plane Re s > θ and a prime-side bound |ψ(t) − t| ≤ C·t^θ·log^k t
+   are the same sentence. Every partial prime-side statement on this
+   bench is mechanically a statement about a strip.
+
+2. The move formula. Bombieri §13 placed one fake zero at 0.52 + 3.14i
+   with N ≤ 160 and observed a critical support length t_c with no
+   formula (entry 296). The counterfactual runs of 2026-09-01
+   (exploratory, unlogged at Julian's call; scripts
+   `/private/tmp/claude-501/-Users-juliansambrano-GitHub-Primebeat-081426/e0529930-f9ed-407f-aa48-0dd5f402f85a/scratchpad/line_0_100_v2.py`
+   and `…/scratchpad/line_sigma.py`, in the session scratchpad and
+   absent from the tree) have the closed form: moving one zero ρ → ρ′
+   changes Weil's form by 2Re[ĝ(ρ′)ĝ(1−ρ′)] − 2|ĝ(ρ)|² and the prime
+   side by dψ′ − dψ = 2Re(x^(ρ−1) − x^(ρ′−1)) dx (`…/scratchpad/line_sigma.py:5`,
+   `…/scratchpad/line_0_100_v2.py:3`), verified against the number line 0..100; the
+   number side stays flat under every move (residue at 1 through
+   |1−ρ|²), and the prime side carries the constraint. A real-part
+   error ε grows as x^ε on the prime side.
+
+3. The instrument with the identity checked (entry 295): every margin
+   `analysis/2026-09-01/weil_QX.py` prints is checked against 100,000
+   true zeros to 8.8e-5, so a measured minimum at a rung is a fact
+   about the actual zeros.
+
+**Sketch of the missing theorem (orchestrator's sketch, unproved).**
+For g supported in [−L/2, L/2], an off-line zero ρ = 1/2 + ε + iγ
+contributes a term to Σ_ρ ĝ(ρ)ĝ(1−ρ) of magnitude up to e^{εL}‖g‖₁²,
+sign indefinite; the on-line zeros contribute a nonnegative sum growing
+polynomially in L. So the restricted form is blind to an off-line zero
+until L exceeds about log(·)/ε and sees it after — t_c(ε) in closed
+form. The theorem that would follow: positivity on support L ⇒ no zero
+with ε > C·log L / L, which turns rung X into
+θ = 1/2 + C·log log X / log X. The step that must be earned: isolating
+one off-line zero from its neighbours at the same height with a test
+function of length L costs about log log γ in the numerator, so the
+strip is uniform in height only if the offending zeros sit at bounded
+height. That is where the sketch stalls, and it is the "zeros can't
+conspire" gap with a price on it.
+
+**The measurement that no source ran, and that the instrument can.**
+Place γ₁ at real part 1/2 + ε for ε ∈ {0.001, 0.01, 0.02, 0.05, 0.1}
+with every other zero fixed, minimise the form over G at each support
+L, find the first L at which the minimum goes negative — L_c(ε)
+measured — and fit against log(1/ε)/ε. Scheduled to run after the
+rung-minimisation instrument (`analysis/2026-09-01/weil_rung_min.py`,
+in progress) releases the script.
+
+## 2026-09-01 — Entry 296 — source read: does Weil positivity on bounded support say anything about zero locations?
+type: result-triage
+refs: 285, 294, 295
+
+**Question read for.** Entry 295 closed with "whether positivity on
+support ≤ L implies any zero-free strip (being read now)". Read for:
+is there a published theorem "positivity of Weil's form for all test
+functions supported in [X^{−1/2}, X^{1/2}] (additive support
+[−L/2, L/2], L = log X) ⇒ no zero with Re ρ − 1/2 > f(L)", or a theorem
+that bounded-support positivity gives no zero information, or a
+quantitative link between the restricted form's smallest eigenvalue
+and zero locations.
+
+**Provenance.** The sources were read by the orchestrator, in full or
+in the sections named; the quotations below were supplied in the brief
+for this entry. The agent writing it opened the repository files cited
+by path and did not open the papers.
+
+**Sources, with what each says.**
+
+Bombieri, "Remarks on Weil's quadratic functional in the theory of
+prime numbers, I", Rend. Lincei (9) 11 (2000) 183–233,
+http://www.bdim.eu/item?id=RLIN_2000_9_11_3_183_0&fmt=pdf, §1–§13
+read. Abstract: "We prove that this quadratic functional attains its
+minimum in the unit ball of the L2-space of functions with support in
+a given interval [−t; t], and prove again Yoshida's theorem that it is
+positive definite if t is sufficiently small. ... if the Riemann
+Hypothesis is false but only with finitely many non-trivial zeros off
+the critical line we show that the number of negative eigenvalues is
+precisely one-half of the number of zeros failing to satisfy the
+Riemann Hypothesis, provided the truncation is big enough." Theorem 8
+(p.213, finite multiset Γ, any t > 0): "The number of negative
+eigenvalues of the matrix H(Γ;t) equals the number of distinct complex
+conjugate pairs (γ, γ̄) in Γ." Lemma 10 (p.209): "if every γ is real
+all eigenvalues of H(Γ;t) are non-negative." §10 size bound:
+"|λ_N| ≤ (2J max_γ Σ_{γ'} |H(γ,γ';t)|²)^{1/2}" (J = number of complex
+γ) — an upper bound on the negative eigenvalue's size, the only
+quantitative eigenvalue-to-zero statement, for a finite multiset.
+Theorem 10 (p.221), under finitely many off-line zeros and at least
+one: "Then for t > 0 there are complex coefficients w_γ and λ ≤ 0 such
+that ... either T[f∗f*] = λ‖Df‖² < 0 or f(x) is identically 0. In
+addition, if 0 < t < t0 where t0 is a suitable explicitly computable
+constant, the function f(x) must be identically 0." No lower bound on
+|λ| in terms of Re ρ − 1/2, no t(σ). §11 Corollary (p.224), the
+paper's only "positivity on a bounded set ⇒ zeros" statement: "Let
+E ⊂ (0,∞) be a finite union of bounded closed intervals and suppose
+that T[f∗f*] ≥ 0 for every smooth function f with compact support in
+E. Then either the Riemann Hypothesis is true, or ζ(s) has infinitely
+many zeros off the critical line, or the functions x^{−ρ} are linearly
+dependent over E, for a suitable sequence of coefficients {c_ρ} ∈ ℓ²
+such that at least half of its ℓ²-mass is supported on the set of
+zeros ρ with Re(ρ) ≠ 1/2." No f(L). Theorem 12 (p.226): "If F(x) has
+compact support in an interval I of length |I| < log 2 we have
+T[F(x)∗F(−x)] = Σ_γ F̂(γ)F̂(γ̄) ≥ (log(1/|I|) − log log(1/|I|) −
+O(1))‖F‖²" — archimedean term only, the Λ(n) terms vanish. §13
+numerics (fake zero ρ₀ = 0.52 + 3.14i, N ≤ 160): "The numerical
+evidence gathered here indicates in each case the existence of a
+critical value t_c± > 0 such that the unique negative eigenvalue
+λ±_N(t) tends to 0 if t < t_c±, as N → ∞. ... For t > t_c± this
+eigenvalue converges, albeit less rapidly so, to a strictly negative
+value." No formula for t_c in terms of ρ₀. There is no section on
+positivity and zero-free regions; §3 Theorem 1 uses the de la
+Vallée-Poussin region only as a tool in the Li's-criterion proof of
+RH ⇔ Σ g̃(ρ)g̃(1−ρ) > 0.
+
+Connes–Consani, "Weil positivity and Trace formula, the archimedean
+place", arXiv:2006.13771, https://arxiv.org/pdf/2006.13771, intro, §1,
+§3, §6, Appendices B–C read. Intro: "For any smooth, positive definite
+function f with support in the interval (1/2, 2) and whose Fourier
+transform vanishes at ±i/2 one has: W_∞(f) ≥ 0 ... This result was
+proved in [34] by reducing it to an explicit computation" ([34] =
+Yoshida). Theorem 1: support in [2^{−1/2}, 2^{1/2}], ĝ vanishing at
+i/2 and 0 ⇒ W_∞(g∗g*) ≥ Tr(ϑ(g)Sϑ(g)*). Theorem 6.11: W_∞(g∗g*) ≥
+Tr(ϑ(g)Sϑ(g)*) − c|ĝ(0)|², c = 4γ/log 2; Remark 6.12: 13 < c < 17.
+Corollary 3.8: D∘Q ≤ 0 on C_c^∞([u^{−1}, u]), u = 1.10246; Remark 3.9:
+improved to u = 1.15077; "(ii) The functional D∘Q is not negative on
+[2^{−1}, 2]." Appendix C Prop C.1: RH ⇔ Σ_v W_v(g∗ḡ^♯) ≤ 0 for all g
+with g̃ vanishing on a finite set F ⊃ {0,1}. No statement that
+finite-support positivity constrains zero locations.
+
+Yoshida, "On Hermitian Forms attached to Zeta Functions", ASPM 21
+(1992) 281–325, https://doi.org/10.2969/aspm/02110281, §0–§3, §7, §8,
+Theorem 1 read. §0: "Then R.H. is equivalent to the positive
+definiteness of ( , )|C(a) for every a > 0 (cf. Proposition 2). It can
+easily be verified that ( , )|C(a) is positive definite if a is
+sufficiently small. Now we can naturally ask: (I) When a is given, can
+one determine whether ( , )|C(a) is positive definite or not? (II)
+Study the deformation of ( , )|C(a) when a changes. What shall happen
+at the point a = a_0 beyond which ( , )|C(a) is not positive
+definite?" and "We find ( , )|K(a) is positive definite for
+a ≤ log 2/2 (Theorem 1)." Lemma 2 (p.289): "There exists a_0 > 0 such
+that (φ,φ) > 0 for every φ ∈ K(a), φ ≠ 0 if a ≤ a_0". Proposition 6
+(p.320): "Assume that the Riemann hypothesis does not hold for
+ζ_k(s). Then there exists a_0 > 0 which has the following properties.
+(1) If a ≤ a_0, ( , )|K(a) is positive semi-definite and ( , )|C(a) is
+positive definite. (2) If a > a_0, both of ( , )|K(a) and ( , )|C(a)
+are not positive semi-definite." No value or bound for a_0 in terms of
+the off-line zero. Theorem 2 (p.321): "The Riemann hypothesis for
+ζ_k(s) holds if and only if the hermitian form ( , ) on K̂(a) is
+non-degenerate for every a > 0." Proposition 7 (p.322): "If k = Q, the
+hermitian form ( , ) on K(a) is non-degenerate for every a > 0."
+
+Burnol, "Sur les Formules Explicites I: analyse invariante", arXiv
+math/0101068, https://arxiv.org/pdf/math/0101068: "Theorem. – There is
+a c > 1 such that Z(k) ≥ 0 for all smooth g's with support in
+[1/c, c]." and "Computer calculations help being more precise about
+the allowable c's but anyhow a further idea seems necessary to reach
+c = √2."
+
+Suzuki, "Weil's quadratic form via the screw function",
+arXiv:2606.09096v2 (17 Aug 2026), https://arxiv.org/abs/2606.09096,
+§1 read. Theorem 1.3: "The lowest eigenvalue λ_a is continuous in a."
+Text: "the failure of RH is equivalent to the existence of some a > 0
+for which λ_a < 0. Since λ_a > 0 for sufficiently small a > 0 [17,
+Lemma 2], it follows that if RH is false, then Q^a_W must be
+degenerate for some value of a by continuity of λ_a." Theorem 1.4:
+"For sufficiently small a > 0, the lowest eigenvalue λ_a is positive,
+simple, and satisfies λ_a = log(1/a) + µ_1 − log(2π) + ψ(2) − 1 + O(a)
+as a → 0+ ... the corresponding eigenfunction is even." No L(σ).
+
+Connes–Consani, "Spectral triples and ζ-cycles", arXiv:2106.01715,
+https://arxiv.org/pdf/2106.01715. Intro: "One knows that the
+positivity of the Weil quadratic form QW_λ for all λ implies the
+Riemann Hypothesis (RH), and in case RH holds, QW_λ is known to be
+strictly positive. In [14], the positivity was shown to hold for
+λ = √2 using numerical analysis. In Section 2 we test numerically this
+positivity for larger values of λ, showing (§2.2) that the
+contribution from the archimedean place alone ceases to be positive in
+the upper part of the interval log(λ²) ∈ [log 2 − 0.2, log 2 + 0.2] ∼
+[0.493, 0.893], while the positivity is restored by adding the
+contribution of the prime 2. ... in §2.4 we display that when λ² grows
+past a prime power and one ignores its contribution, the quadratic
+form QW_λ fails to remain positive. This fact is displayed up to
+λ² ∼ 7." §2.3: "the smallest eigenvalue λ(p) for L = log 3 is negative
+for p = 1.9999 and also for p = 2.0005, so that the positivity
+requirement restricts the choice of p to an interval of size < 10^{−3}
+around p = 2." Numerical beyond √2; no proved positivity there and no
+zero-location consequence.
+
+Connes–Consani, "The Scaling Hamiltonian", arXiv:1910.14368,
+https://arxiv.org/pdf/1910.14368: "CONJECTURE 4.1. The semi-local
+operator theoretic framework with S := {∞} ∪ {p | p < q} suffices to
+prove the Weil inequality for all test functions with support in the
+interval (q^{−1/2}, q^{1/2})."
+
+Connes–Consani–Moscovici, "Zeta Spectral Triples", arXiv:2511.22755,
+https://arxiv.org/pdf/2511.22755: Theorem 3.6 "The selfadjoint
+operator A_λ has discrete lower bounded spectrum." §8: "in order to
+apply Theorem 5.10 to the Weil quadratic form QW_λ, one must prove
+that its smallest eigenvalue—whose existence is ensured by Theorem
+3.6—is simple and that its corresponding eigenvector ξ_λ is even." No
+zero-location statement from finite-support positivity. Also
+grep-only: arXiv:2310.18423.
+
+Li's-criterion side. Wikipedia "Li's criterion",
+https://en.wikipedia.org/wiki/Li%27s_criterion (Bombieri–Lagarias 1999
+full text not obtained, ScienceDirect 403): "One has Re(ρ) ≤ 1/2 for
+every ρ if and only if Σ_ρ Re[1−(1−1/ρ)^{−n}] ≥ 0 for all positive
+integers n" and "Bombieri and Lagarias also show that Li's criterion
+follows from Weil's criterion". Freitas, arXiv math/0507368,
+https://arxiv.org/pdf/math/0507368, Theorem 1: "Given τ on [1/2, ∞),
+the half-plane ℜ(s) > τ/2 is a zero-free region for the Riemann zeta
+function if and only if α_n(τ) is nonnegative for all positive integer
+n." Palojärvi, arXiv:1807.01506, https://arxiv.org/pdf/1807.01506,
+abstract: "The first main result gives explicit numbers N1 and N2 such
+that if all real parts of the τ-Li coefficients are non-negative for
+all indices between N1 and N2, then the function has no zeros outside
+a certain region." Theorem 3.1: "If all coefficients ℜ(λ_F(n,τ)) are
+non-negative for n ∈ [N, 5N²(A_F log N + M_F)], where N | n, then all
+zeros ρ satisfy the condition |ρ/(ρ−τ)| < R"; and "F. C. Brown [2,
+Theorem 3] proved that if a finite number of the Li coefficients for a
+certain function F(s) are non-negative, then the critical strip
+contains zero-free regions." The clause "the Li coefficients are
+values of Weil's functional at test functions that are not compactly
+supported" is unverified — it is from the reading agent's memory; the
+Bombieri–Lagarias arithmetic formula was not fetched.
+
+**Answer.** (a) No theorem of the form "positivity on support
+[X^{−1/2}, X^{1/2}] ⇒ Re ρ − 1/2 ≤ f(L)" in any source read. (b) The
+opposite holds for small support: positivity below the first prime is
+a theorem independent of RH (Yoshida Lemma 2 / Theorem 1 at
+a ≤ log 2/2, Bombieri Theorem 12 for |I| < log 2, Burnol,
+Connes–Consani Theorem 1 / 6.11, Suzuki Theorem 1.4), so it carries no
+zero information there. Beyond √2 nothing proved was found;
+Connes–Consani's ladder is numerical to λ² ≈ 7–11 and stated as
+Conjecture 4.1. What is proved about the ladder as a whole: Yoshida
+Prop. 6 / Theorem 2 (if RH fails, a threshold a₀ exists; positive
+below, not above, degenerate at a₀), Suzuki Theorem 1.3 (λ_a
+continuous, RH fails ⇔ λ_a < 0 for some a), Bombieri Theorem 10 (λ ≤ 0
+with an explicitly computable t₀ below which f ≡ 0). None gives L as a
+function of the off-line zero. The finite-condition ⇒ explicit-region
+theorems found are on the Li side (Brown 2005 Thm 3; Palojärvi Thm 3.1
+with explicit N; Freitas Thm 1 for the τ/2 half-plane), whose
+hypotheses are bounded-index Li positivity rather than bounded-support
+Weil positivity.
+
+**Consequence for the plan (entry 295's ladder).** A proved rung X
+says a₀ ≥ (log X)/2 and gives no strip; RH is a₀ = ∞. At rung X = 3
+the Connes–Consani numerics (§2.3 above) pin the prime 2 to within
+10^{−3}, so a proof of rung 3 cannot bound the prime term crudely
+against an archimedean margin (Bombieri Thm 12's method); it must use
+log 2 to that precision. The Li side is the one place a finite
+prime-side computation is a published theorem about zero locations,
+with the θ-dial explicit as τ/2; its arithmetic side runs over all
+primes and needs a tail bound, unmeasured.
+
 ## 2026-09-01 — Entry 295 — weil_QX.py: the prime side of Weil's quadratic form as an instrument, ladder X = 2..10⁴ — the identity holds at every rung, the total is positive at every rung, and no published rung contains a prime
 type: run
 refs: 40, 246, 252, 277, 284, 294
