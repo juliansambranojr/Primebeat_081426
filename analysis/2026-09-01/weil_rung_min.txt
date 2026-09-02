@@ -1,0 +1,168 @@
+weil_rung_min  EXPLORATORY - no prereg, no decision rule, no verdict.
+generated 2026-09-02T05:22:14Z  code_version fd1e3e50ea226985
+Q_L(G) = pole - prime + arch on G in L2[-L/2, L/2], L = log X; lam_min relative to ||G||_2 = 1.
+Q0 = pole + arch (no primes); ||P||op = operator norm of the prime term alone.
+floor = 2.2e-16 (||pole||+||prime||+||arch||) (roundoff of the three-term cancellation); gap_leak = lam_min of the band-limitation form
+(energy outside |t| < gamma_1 = 14.134725), no arithmetic in it; E_gap = energy of the minimiser inside |t| < gamma_1;
+m_half = fraction of ||G*||^2 in the central half of the support.
+
+basis: legendre   (values at M = 64; convergence columns are lam_min(Q) at M = [8, 16, 32, 64])
+     X       L   lam_min(Q)    floor  lam_min(Q0)    ||P||op ||P||/lam0   gap_leak        E_gap parity  m_half         M=8        M=16        M=32        M=64
+     2  0.6931   1.3293e-03  1.7e-15    0.0013293   0.000000     0.0000  7.826e-04 0.9977380458   even  0.8412  1.3313e-03  1.3299e-03  1.3294e-03  1.3293e-03
+   2.5  0.9163   1.0276e-05  1.9e-15   -0.2248861   0.490129    -2.1795  3.965e-05 0.9997833149   even  0.9264  1.5080e-05  1.0561e-05  1.0311e-05  1.0276e-05
+     3  1.0986   5.5489e-08  1.9e-15   -0.4303087   0.490129    -1.1390  3.347e-06 0.9999285554   even  0.9632  3.4298e-05  6.5742e-08  5.6338e-08  5.5489e-08
+   3.5  1.2528   2.4828e-10  2.1e-15   -0.5891762   0.900927    -1.5291  4.080e-07 0.9999630581   even  0.9808  3.8645e-05  3.9353e-09  2.5425e-10  2.4828e-10
+     4  1.3863   7.6152e-13  2.1e-15   -0.7206430   0.900928    -1.2502  6.537e-08 0.9999767891   even  0.9895  2.4160e-06  1.3162e-09  8.3110e-13  7.6152e-13
+     5  1.6094  -5.2584e-15  2.3e-15   -0.9355643   1.218838    -1.3028  3.027e-09 0.9999879342  mixed  0.9966  3.4423e-06  3.7467e-11 -1.3760e-15 -5.2584e-15
+     6  1.7918  -8.0296e-15  2.4e-15   -1.1129641   1.537002    -1.3810  2.438e-10 0.9993214408  mixed  0.9297  4.4911e-07  2.3286e-11 -4.4221e-15 -8.0296e-15
+     7  1.9459  -1.1796e-14  2.5e-15   -1.2680677   1.765380    -1.3922  2.884e-11 0.9867487699  mixed  0.6853  3.2613e-08  4.3019e-12 -6.3399e-15 -1.1796e-14
+     8  2.0794  -1.1243e-14  2.6e-15   -1.4083503   2.046041    -1.4528  4.526e-12 0.9984388247  mixed  0.7213  3.5029e-07  1.1150e-12 -1.0503e-14 -1.1243e-14
+     9  2.1972  -1.3784e-14  2.8e-15   -1.5379868   2.275641    -1.4796  8.815e-13 0.9742420888  mixed  0.6985  5.0624e-07  4.7693e-14 -7.8093e-15 -1.3784e-14
+    10  2.3026  -1.4360e-14  2.9e-15   -1.6595317   2.503408    -1.5085  2.044e-13 0.9828989167  mixed  0.6760  1.1765e-07  4.9593e-13 -8.3602e-15 -1.4360e-14
+    12  2.4849  -1.4794e-14  3.0e-15   -1.8845279   2.912220    -1.5453  1.510e-14 0.9981800282  mixed  0.5159  1.0281e-07  1.8605e-13 -9.0127e-15 -1.4794e-14
+    15  2.7081  -1.6637e-14  3.3e-15   -2.1899644   3.475986    -1.5872 -6.661e-16 0.9333669897  mixed  0.5776  2.8194e-08  2.9322e-15 -1.1421e-14 -1.6637e-14
+    20  2.9957  -1.8762e-14  3.6e-15   -2.6431221   4.268721    -1.6150 -8.882e-16 0.9918400290  mixed  0.6081  3.9722e-08  5.2261e-15 -1.4819e-14 -1.8762e-14
+    30  3.4012  -2.4536e-14  4.2e-15   -3.4231678   5.556926    -1.6233 -4.441e-16 0.9473780332  mixed  0.5164  1.3121e-08 -8.8251e-15 -1.8836e-14 -2.4536e-14
+    50  3.9120  -3.5266e-14  5.1e-15   -4.7084227   7.573096    -1.6084 -1.776e-15 0.9027909550  mixed  0.4914  9.1927e-09 -1.5461e-14 -2.1618e-14 -3.5266e-14
+    70  4.2485  -4.6454e-14  5.8e-15   -5.7882762   9.137637    -1.5786 -1.776e-15 0.8878877739  mixed  0.4022  9.3819e-10 -1.7803e-14 -2.9336e-14 -4.6454e-14
+   100  4.6052  -6.9661e-14  6.6e-15   -7.1838030  11.081167    -1.5425 -8.882e-16 0.8826932473  mixed  0.3236  7.8633e-11 -1.6530e-14 -3.5163e-14 -6.9661e-14
+
+basis: sine   (values at M = 64; convergence columns are lam_min(Q) at M = [8, 16, 32, 64])
+     X       L   lam_min(Q)    floor  lam_min(Q0)    ||P||op ||P||/lam0   gap_leak        E_gap parity  m_half         M=8        M=16        M=32        M=64
+     2  0.6931   1.3871e-03  1.1e-15    0.0013871   0.000000     0.0000  8.264e-04 0.9976669811   even  0.8415  1.5769e-03  1.5079e-03  1.4352e-03  1.3871e-03
+   2.5  0.9163   1.1451e-05  1.3e-15   -0.2192564   0.490129    -2.2354  4.251e-05 0.9997761117   even  0.9267  1.6972e-05  1.2627e-05  1.2143e-05  1.1451e-05
+     3  1.0986   6.0735e-08  1.3e-15   -0.4243023   0.490129    -1.1551  3.624e-06 0.9999274169   even  0.9633  1.6333e-07  6.8466e-08  6.2150e-08  6.0735e-08
+   3.5  1.2528   2.7401e-10  1.5e-15   -0.5827305   0.900928    -1.5460  4.444e-07 0.9999625835   even  0.9809  3.4967e-08  3.9645e-10  2.9053e-10  2.7401e-10
+     4  1.3863   8.2616e-13  1.5e-15   -0.7137102   0.900928    -1.2623  7.148e-08 0.9999766578  mixed  0.9896  1.4696e-09  3.2332e-12  1.0050e-12  8.2616e-13
+     5  1.6094  -3.1711e-15  1.7e-15   -0.9275530   1.219128    -1.3143  3.320e-09 0.9999875243  mixed  0.9967  1.3370e-10 -4.3808e-15 -8.9044e-15 -3.1711e-15
+     6  1.7918  -8.4649e-15  1.8e-15   -1.1037781   1.534180    -1.3899  2.672e-10 0.9980907307  mixed  0.8554  5.7786e-11 -9.0057e-15 -1.1570e-14 -8.4649e-15
+     7  1.9459  -8.2365e-15  1.9e-15   -1.2576440   1.758870    -1.3985  3.152e-11 0.9687373267  mixed  0.4742  1.3863e-12 -9.9029e-15 -1.3767e-14 -8.2365e-15
+     8  2.0794  -7.8284e-15  2.0e-15   -1.3966471   2.037666    -1.4590  4.928e-12 0.9981439635  mixed  0.7420  4.3844e-12 -9.6366e-15 -1.3779e-14 -7.8284e-15
+     9  2.1972  -1.0541e-14  2.2e-15   -1.5249764   2.262105    -1.4834  9.560e-13 0.9569076009  mixed  0.6186  1.0307e-12 -1.2877e-14 -1.6743e-14 -1.0541e-14
+    10  2.3026  -1.1869e-14  2.3e-15   -1.6451959   2.481305    -1.5082  2.200e-13 0.9423760664  mixed  0.5147  8.2328e-13 -1.3635e-14 -1.7494e-14 -1.1869e-14
+    12  2.4849  -2.3277e-14  2.5e-15   -1.8675128   2.886138    -1.5454  1.932e-14 0.6544629341  mixed  0.3769  2.3925e-13 -1.5611e-14 -2.0958e-14 -2.3277e-14
+    15  2.7081  -3.3614e-14  2.8e-15   -2.1689148   3.441685    -1.5868  1.110e-15 0.7032711167  mixed  0.4752  6.2281e-14 -1.4227e-14 -2.3716e-14 -3.3614e-14
+    20  2.9957  -5.5966e-14  3.2e-15   -2.6154240   4.206019    -1.6082  1.554e-15 0.7070854663  mixed  0.3457  1.9608e-15 -1.7212e-14 -3.0905e-14 -5.5966e-14
+    30  3.4012  -5.4354e-14  3.8e-15   -3.3826779   5.477714    -1.6193 -1.332e-15 0.7389749863  mixed  0.2938 -1.4105e-14 -1.9889e-14 -3.7904e-14 -5.4354e-14
+    50  3.9120  -8.8442e-14  4.8e-15   -4.6443448   7.459572    -1.6062 -1.110e-15 0.8031624415  mixed  0.2683 -1.6096e-14 -2.5566e-14 -4.1666e-14 -8.8442e-14
+    70  4.2485  -1.1205e-13  5.5e-15   -5.7026952   9.010261    -1.5800 -6.661e-16 0.7053285731  mixed  0.3097 -1.7570e-14 -2.7285e-14 -5.5033e-14 -1.1205e-13
+   100  4.6052  -1.2755e-13  6.4e-15   -7.0687611  10.917266    -1.5444 -1.310e-14 0.7486447139  mixed  0.3135 -1.9089e-14 -3.1250e-14 -6.4364e-14 -1.2755e-13
+
+basis gap at M=64: max |lam_min(legendre) - lam_min(sine)| = 5.78e-05
+negative lam_min rows: 73 of 144; beyond 10x the roundoff floor: 9
+  X=5 legendre M=32 lam_min -1.376e-15 floor 2.0e-15
+  X=5 legendre M=64 lam_min -5.258e-15 floor 2.3e-15
+  X=5 sine     M=16 lam_min -4.381e-15 floor 1.5e-15
+  X=5 sine     M=32 lam_min -8.904e-15 floor 1.5e-15
+  X=5 sine     M=64 lam_min -3.171e-15 floor 1.7e-15
+  X=6 legendre M=32 lam_min -4.422e-15 floor 2.1e-15
+  X=6 legendre M=64 lam_min -8.030e-15 floor 2.4e-15
+  X=6 sine     M=16 lam_min -9.006e-15 floor 1.7e-15
+  X=6 sine     M=32 lam_min -1.157e-14 floor 1.7e-15
+  X=6 sine     M=64 lam_min -8.465e-15 floor 1.8e-15
+  X=7 legendre M=32 lam_min -6.340e-15 floor 2.2e-15
+  X=7 legendre M=64 lam_min -1.180e-14 floor 2.5e-15
+  X=7 sine     M=16 lam_min -9.903e-15 floor 1.8e-15
+  X=7 sine     M=32 lam_min -1.377e-14 floor 1.9e-15
+  X=7 sine     M=64 lam_min -8.237e-15 floor 1.9e-15
+  X=8 legendre M=32 lam_min -1.050e-14 floor 2.3e-15
+  X=8 legendre M=64 lam_min -1.124e-14 floor 2.6e-15
+  X=8 sine     M=16 lam_min -9.637e-15 floor 2.0e-15
+  X=8 sine     M=32 lam_min -1.378e-14 floor 2.0e-15
+  X=8 sine     M=64 lam_min -7.828e-15 floor 2.0e-15
+  X=9 legendre M=32 lam_min -7.809e-15 floor 2.4e-15
+  X=9 legendre M=64 lam_min -1.378e-14 floor 2.8e-15
+  X=9 sine     M=16 lam_min -1.288e-14 floor 2.1e-15
+  X=9 sine     M=32 lam_min -1.674e-14 floor 2.1e-15
+  X=9 sine     M=64 lam_min -1.054e-14 floor 2.2e-15
+  X=10 legendre M=32 lam_min -8.360e-15 floor 2.6e-15
+  X=10 legendre M=64 lam_min -1.436e-14 floor 2.9e-15
+  X=10 sine     M=16 lam_min -1.364e-14 floor 2.2e-15
+  X=10 sine     M=32 lam_min -1.749e-14 floor 2.3e-15
+  X=10 sine     M=64 lam_min -1.187e-14 floor 2.3e-15
+  X=12 legendre M=32 lam_min -9.013e-15 floor 2.7e-15
+  X=12 legendre M=64 lam_min -1.479e-14 floor 3.0e-15
+  X=12 sine     M=16 lam_min -1.561e-14 floor 2.4e-15
+  X=12 sine     M=32 lam_min -2.096e-14 floor 2.5e-15
+  X=12 sine     M=64 lam_min -2.328e-14 floor 2.5e-15
+  X=15 legendre M=32 lam_min -1.142e-14 floor 3.0e-15
+  X=15 legendre M=64 lam_min -1.664e-14 floor 3.3e-15
+  X=15 sine     M=16 lam_min -1.423e-14 floor 2.7e-15
+  X=15 sine     M=32 lam_min -2.372e-14 floor 2.8e-15
+  X=15 sine     M=64 lam_min -3.361e-14 floor 2.8e-15
+  X=20 legendre M=32 lam_min -1.482e-14 floor 3.3e-15
+  X=20 legendre M=64 lam_min -1.876e-14 floor 3.6e-15
+  X=20 sine     M=16 lam_min -1.721e-14 floor 3.1e-15
+  X=20 sine     M=32 lam_min -3.090e-14 floor 3.2e-15
+  X=20 sine     M=64 lam_min -5.597e-14 floor 3.2e-15
+  X=30 legendre M=16 lam_min -8.825e-15 floor 3.9e-15
+  X=30 legendre M=32 lam_min -1.884e-14 floor 3.9e-15
+  X=30 legendre M=64 lam_min -2.454e-14 floor 4.2e-15
+  X=30 sine     M= 8 lam_min -1.410e-14 floor 3.6e-15
+  X=30 sine     M=16 lam_min -1.989e-14 floor 3.7e-15
+  X=30 sine     M=32 lam_min -3.790e-14 floor 3.8e-15
+  X=30 sine     M=64 lam_min -5.435e-14 floor 3.8e-15
+  X=50 legendre M=16 lam_min -1.546e-14 floor 4.8e-15
+  X=50 legendre M=32 lam_min -2.162e-14 floor 4.8e-15
+  X=50 legendre M=64 lam_min -3.527e-14 floor 5.1e-15
+  X=50 sine     M= 8 lam_min -1.610e-14 floor 4.4e-15
+  X=50 sine     M=16 lam_min -2.557e-14 floor 4.6e-15
+  X=50 sine     M=32 lam_min -4.167e-14 floor 4.7e-15
+  X=50 sine     M=64 lam_min -8.844e-14 floor 4.8e-15
+  X=70 legendre M=16 lam_min -1.780e-14 floor 5.6e-15
+  X=70 legendre M=32 lam_min -2.934e-14 floor 5.6e-15
+  X=70 legendre M=64 lam_min -4.645e-14 floor 5.8e-15
+  X=70 sine     M= 8 lam_min -1.757e-14 floor 5.1e-15
+  X=70 sine     M=16 lam_min -2.729e-14 floor 5.3e-15
+  X=70 sine     M=32 lam_min -5.503e-14 floor 5.4e-15
+  X=70 sine     M=64 lam_min -1.121e-13 floor 5.5e-15
+  X=100 legendre M=16 lam_min -1.653e-14 floor 6.5e-15
+  X=100 legendre M=32 lam_min -3.516e-14 floor 6.5e-15
+  X=100 legendre M=64 lam_min -6.966e-14 floor 6.6e-15
+  X=100 sine     M= 8 lam_min -1.909e-14 floor 5.8e-15
+  X=100 sine     M=16 lam_min -3.125e-14 floor 6.1e-15
+  X=100 sine     M=32 lam_min -6.436e-14 floor 6.3e-15
+  X=100 sine     M=64 lam_min -1.276e-13 floor 6.4e-15
+
+unit tests
+  X=3  legendre M= 8 prime(indicator_M) 0.39746047 ref 0.39746047 disc +3.16e-15  ||indicator_M||^2 1.098612 (L 1.098612)
+  X=3  legendre M=16 prime(indicator_M) 0.39746047 ref 0.39746047 disc +2.78e-16  ||indicator_M||^2 1.098612 (L 1.098612)
+  X=3  legendre M=32 prime(indicator_M) 0.39746047 ref 0.39746047 disc +2.16e-15  ||indicator_M||^2 1.098612 (L 1.098612)
+  X=3  legendre M=64 prime(indicator_M) 0.39746047 ref 0.39746047 disc +3.33e-16  ||indicator_M||^2 1.098612 (L 1.098612)
+  X=3  sine     M= 8 prime(indicator_M) 0.33498303 ref 0.39746047 disc -6.25e-02  ||indicator_M||^2 1.043240 (L 1.098612)
+  X=3  sine     M=16 prime(indicator_M) 0.37272478 ref 0.39746047 disc -2.47e-02  ||indicator_M||^2 1.070820 (L 1.098612)
+  X=3  sine     M=32 prime(indicator_M) 0.38452100 ref 0.39746047 disc -1.29e-02  ||indicator_M||^2 1.084703 (L 1.098612)
+  X=3  sine     M=64 prime(indicator_M) 0.39076667 ref 0.39746047 disc -6.69e-03  ||indicator_M||^2 1.091656 (L 1.098612)
+  X=10 legendre M= 8 total(indicator_M) 0.07685392 ref 0.07685392 disc +2.75e-14  ||indicator_M||^2 2.302585 (L 2.302585)
+  X=10 legendre M=16 total(indicator_M) 0.07685392 ref 0.07685392 disc +5.68e-14  ||indicator_M||^2 2.302585 (L 2.302585)
+  X=10 legendre M=32 total(indicator_M) 0.07685392 ref 0.07685392 disc +8.44e-14  ||indicator_M||^2 2.302585 (L 2.302585)
+  X=10 legendre M=64 total(indicator_M) 0.07685392 ref 0.07685392 disc +2.22e-14  ||indicator_M||^2 2.302585 (L 2.302585)
+  X=10 sine     M= 8 total(indicator_M) 0.01485146 ref 0.07685392 disc -6.20e-02  ||indicator_M||^2 2.186530 (L 2.302585)
+  X=10 sine     M=16 total(indicator_M) 0.05540538 ref 0.07685392 disc -2.14e-02  ||indicator_M||^2 2.244335 (L 2.302585)
+  X=10 sine     M=32 total(indicator_M) 0.05838274 ref 0.07685392 disc -1.85e-02  ||indicator_M||^2 2.273432 (L 2.302585)
+  X=10 sine     M=64 total(indicator_M) 0.06483971 ref 0.07685392 disc -1.20e-02  ||indicator_M||^2 2.288005 (L 2.302585)
+  random asymmetric G identity resid (X=10, legendre M=8): -9.77e-10
+  arch real-space vs Fourier(T=2000)+tail, legendre M=8 diagonal at X=10: max |diff| 9.87e-07
+  quadrature doubling max |dQ|: legendre M=16 7.1e-14, sine M=64 5.8e-14
+
+zero-side cross-checks at the minimiser
+  X=3 legendre lam_min 5.5489e-08 (floor 1.9e-15)  Z_2000 5.5119e-08+3.2e-10 resid +4.7e-11  Z_file 5.5472e-08+1.6e-11 resid +9.8e-13  lam_min(Zmat_file) 5.5471e-08  E_gap 0.9999285554
+  X=3 sine     lam_min 6.0735e-08 (floor 1.3e-15)  Z_2000 6.0732e-08+4.9e-38 resid +2.3e-12  Z_file 6.0735e-08+2.5e-39 resid -3.3e-15  lam_min(Zmat_file) 6.0735e-08  E_gap 0.9999274169
+  X=10 legendre lam_min -1.4360e-14 (floor 2.9e-15)  Z_2000 3.8677e-16+1.7e-19 resid -1.5e-14  Z_file 3.8793e-16+8.3e-21 resid -1.5e-14  lam_min(Zmat_file) -1.1821e-14  E_gap 0.9828989167
+  X=10 sine     lam_min -1.1869e-14 (floor 2.3e-15)  Z_2000 5.6473e-16+2.0e-34 resid -1.2e-14  Z_file 5.6553e-16+9.9e-36 resid -1.2e-14  lam_min(Zmat_file) -2.3302e-15  E_gap 0.9423760664
+  X=100 legendre lam_min -6.9661e-14 (floor 6.6e-15)  Z_2000 6.0616e-15+3.0e-17 resid -7.6e-14  Z_file 6.0967e-15+1.5e-18 resid -7.6e-14  lam_min(Zmat_file) -1.4820e-14  E_gap 0.8826932473
+  X=100 sine     lam_min -1.2755e-13 (floor 6.4e-15)  Z_2000 2.5204e-15+7.7e-34 resid -1.3e-13  Z_file 2.5219e-15+3.8e-35 resid -1.3e-13  lam_min(Zmat_file) -6.7334e-15  E_gap 0.7486447139
+
+minimiser shape at largest M (G on 41 points u/h = -1..1)
+  X=3 legendre parity even |G|max at u/h=+0.000 G(0)=-1.6882 G(+-h)=-4.28e-04,-4.28e-04 mass: central half 0.9632, central tenth 0.3045, end tenths 1.78e-04, sign changes 0
+    -0.000 -0.005 -0.016 -0.035 -0.067 -0.114 -0.179 -0.264 -0.366 -0.487 -0.622 -0.767 -0.918 -1.069 -1.214 -1.348 -1.465 -1.560 -1.630 -1.674 -1.688 -1.674 -1.630 -1.560 -1.465 -1.348 -1.214 -1.069 -0.918 -0.767 -0.622 -0.487 -0.366 -0.264 -0.179 -0.114 -0.067 -0.035 -0.016 -0.005 -0.000
+  X=3 sine     parity even |G|max at u/h=+0.000 G(0)=-1.6886 G(+-h)=+0.00e+00,-7.46e-18 mass: central half 0.9633, central tenth 0.3047, end tenths 1.74e-04, sign changes 0
+    +0.000 -0.005 -0.015 -0.035 -0.066 -0.114 -0.179 -0.263 -0.366 -0.486 -0.621 -0.766 -0.918 -1.069 -1.214 -1.348 -1.465 -1.560 -1.631 -1.674 -1.689 -1.674 -1.631 -1.560 -1.465 -1.348 -1.214 -1.069 -0.918 -0.766 -0.621 -0.486 -0.366 -0.263 -0.179 -0.114 -0.066 -0.035 -0.015 -0.005 -0.000
+  X=10 legendre parity mixed |G|max at u/h=+0.000 G(0)=-0.9287 G(+-h)=+9.77e-09,+9.66e-09 mass: central half 0.6760, central tenth 0.1661, end tenths 5.57e-04, sign changes 2
+    +0.000 -0.000 -0.003 -0.026 -0.118 -0.316 -0.577 -0.790 -0.874 -0.834 -0.749 -0.716 -0.776 -0.865 -0.873 -0.763 -0.629 -0.601 -0.711 -0.862 -0.929 -0.860 -0.707 -0.594 -0.620 -0.754 -0.864 -0.858 -0.771 -0.711 -0.744 -0.831 -0.872 -0.790 -0.578 -0.316 -0.118 -0.026 -0.003 -0.000 +0.000
+  X=10 sine     parity mixed |G|max at u/h=-0.509 G(0)=-0.2690 G(+-h)=+0.00e+00,-4.74e-16 mass: central half 0.5147, central tenth 0.0335, end tenths 6.75e-03, sign changes 0
+    +0.000 -0.001 -0.021 -0.140 -0.382 -0.528 -0.443 -0.413 -0.700 -1.100 -1.225 -1.006 -0.716 -0.596 -0.632 -0.693 -0.697 -0.549 -0.270 -0.119 -0.269 -0.527 -0.617 -0.508 -0.315 -0.169 -0.237 -0.585 -1.019 -1.199 -1.040 -0.877 -0.989 -1.151 -1.021 -0.658 -0.311 -0.097 -0.014 -0.001 -0.000
+  X=100 legendre parity mixed |G|max at u/h=-0.818 G(0)=-0.5572 G(+-h)=+1.28e-07,+1.31e-07 mass: central half 0.3236, central tenth 0.0468, end tenths 3.41e-01, sign changes 2
+    +0.000 -0.004 -0.154 -0.873 -1.075 -0.213 -0.510 -0.445 -0.311 -0.518 -0.550 -0.269 -0.217 -0.644 -0.157 -0.367 -0.443 -0.356 -0.259 -0.189 -0.557 -0.178 -0.246 -0.345 -0.425 -0.358 -0.171 -0.631 -0.198 -0.288 -0.552 -0.512 -0.322 -0.443 -0.509 -0.217 -1.065 -0.862 -0.151 -0.004 +0.000
+  X=100 sine     parity mixed |G|max at u/h=+0.856 G(0)=+0.3967 G(+-h)=+0.00e+00,-9.33e-16 mass: central half 0.3135, central tenth 0.0525, end tenths 4.49e-01, sign changes 12
+    +0.000 +0.014 +0.526 +1.292 +0.238 +0.640 +0.093 +0.252 +0.493 +0.312 +0.456 +0.113 +0.333 +0.454 +0.049 +0.239 +0.512 +0.197 +0.181 +0.102 +0.397 +0.554 -0.163 +0.602 +0.236 +0.170 +0.051 +0.732 +0.207 +0.421 +0.484 +0.193 +0.535 +0.368 -0.035 +0.780 -0.039 +1.400 +0.514 +0.013 -0.000

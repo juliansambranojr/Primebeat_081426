@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-09-01  entry 298: weil_rung_min.py EXPLORATORY — λ_min of the restricted Weil form, Legendre+sine M≤64, X=2..100, 144 rows. With primes 1.3e-3, 1.0e-5, 5.5e-8, 2.5e-10, 7.6e-13 at X=2..4; under the 2e-15 floor from X=5 (73 negative rows = roundoff, zero side at same G positive). No-prime form negative from X=2.5. X=3 minimiser prolate-type under γ₁, 96% central mass
 - [closed] 2026-09-01  entry 230 line resolved: StmtLogDerivRH appears in no .lean file because nothing needs it — it named an ALTERNATIVE decomposition ({hRH,hEF,hNT} → {hRH,StmtLogDerivRH}) that the route actually built made unnecessary, hEF discharged direct at 271 and StmtArgCrude at 274. Julian's call: stays in the archive
 - [closed] 2026-09-01  entry 195 line resolved: 'steep walls at a slope' was from Julian's own memory, brought into the conversation and never in the tree — so the provenance gap is answered, not a missing artifact
 - [closed] 2026-09-01  entry 144 line resolved: the kernel-for-meaning methodology section was future state — Julian's call to let it go; it resurfaces if it matters

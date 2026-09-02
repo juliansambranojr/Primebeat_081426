@@ -16,6 +16,227 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 298 — weil_rung_min.py: smallest eigenvalue of the restricted Weil form, X = 2..100 — the margin at a rung is prolate leakage under γ₁, 5.5e-8 at X = 3, below double precision from X = 5
+type: run
+refs: 294, 295, 296, 297
+
+**Exploratory.** No prereg, no decision rule, no verdict; the script
+says so in its docstring and stamps every output with it
+(`analysis/2026-09-01/weil_rung_min.py:1-3,333,631,671,729`).
+
+**What was built** (`analysis/2026-09-01/weil_rung_min.py`, 734 lines,
+run as `.venv/bin/python analysis/2026-09-01/weil_rung_min.py` with
+the defaults `--xs 2,2.5,3,3.5,4,5,6,7,8,9,10,12,15,20,30,50,70,100
+--Ms 8,16,32,64 --bases legendre,sine --zero-check-xs 3,10,100
+--nzeros 2000 --dps 25` (lines 315-320); outputs
+`analysis/2026-09-01/results/weil_rung_min.json`,
+`analysis/2026-09-01/weil_rung_min.txt`,
+`analysis/2026-09-01/results/weil_rung_min.log`; code_version
+`fd1e3e50ea226985…`; JSON `run_start_at` 2026-09-02T05:19:09Z,
+`run_end_at` 05:22:14Z, 3 min 05 s (the brief for this entry said
+3 min 06 s; the JSON's timestamps give 05 s), which is 2026-09-01
+22:19 local; completed — the log closes with the stamp, line 234; the
+orchestrator reported exit 0). The script imports `weil_QX.py` via
+importlib (lines 65-67) and reuses its `Triangle` (368, 394),
+`prime_term` (369, 396), `arch_real` (398), `hplus` (442),
+`load_zeros` (355) and `ZEROS_FILE` (356); the prime-power list is
+built in-script by the instrument's construction (lines 336-345, 35
+prime powers ≤ 100, `weil_rung_min.log:4`). The functional is
+pole − prime + arch in Bombieri's (12.2) normalisation (docstring
+lines 10-15, entry 295), assembled as an M × M symmetric matrix from
+F_ij(x) = ∫G_i(u)G_j(u − x)du, symmetrised (`F_matrices`, lines
+102-114; `build_matrices`, lines 117-158: pole 128-132 as
+2ab, a = ∫G e^{−u/2}, b = ∫G e^{u/2}; prime 133-141; arch 142-155,
+real-space with the exact tail, on `npan = max(8, M/2)` panels of 24
+Gauss nodes and `nu = max(160, 4M)` nodes per correlation). Two
+orthonormal bases on [−h, h], h = L/2, L = log X (`basis_eval`, lines
+80-94): Legendre G_n = √((2n+1)/2h)·P_n(u/h), n = 0..M−1, whose G₀ is
+the indicator/√(2h); and sine G_k = h^{−1/2} sin(kπ(u+h)/2h),
+k = 1..M, vanishing at the ends. M = 8, 16, 32, 64. Smallest
+eigenvalue by `numpy.linalg.eigh` on the symmetrised matrix (`eig_min`,
+lines 161-163; ladder at 504-505). scipy is absent from `.venv`
+(`import scipy` → ModuleNotFoundError, checked 2026-09-01), so the
+spherical Bessel j_n for the Legendre transforms Ĝ_n(t) =
+√(2h(2n+1))·iⁿ·j_n(ht) is hand-coded (`spherical_jn_table`, lines
+167-205: upward recurrence for z > n+20, Miller downward otherwise)
+and validated against quadrature to 1.53e-15 at z ∈ {5, 20, 80, 90,
+5000}, n ≤ 63 (lines 463-471, `weil_rung_min.log:39`). Roundoff floor
+defined as 2.2e-16·(‖pole‖ + ‖prime‖ + ‖arch‖), the three operator
+norms, since Q is a three-term cancellation (lines 508-513; the table
+header, `weil_rung_min.txt:5`). Also computed per row: the no-prime
+form Q0 = pole + arch and its λ_min, ‖prime term‖_op (largest
+|eigenvalue| of the prime matrix alone, lines 506-507), the
+band-limitation form (1/2π)∫_{|t|<γ₁}|Ĝ|² (`gap_matrix`, lines
+264-276) and the minimiser's shape (`describe_G`, lines 284-309).
+144 rows: 18 X × 2 bases × 4 M (JSON `summary.n_rows`).
+
+**Unit tests** (lines 360-484; `weil_rung_min.log:8-40`;
+`weil_rung_min.txt:127-146`).
+
+- X = 3, prime term of the indicator, Legendre (the indicator is
+  exactly G₀): 0.39746047 at every M, discrepancy +3.16e-15, +2.78e-16,
+  +2.16e-15, +3.33e-16 at M = 8, 16, 32, 64 against the instrument's
+  in-process value 0.3974604741, which equals the recorded
+  `weil_QX.json` value 0.3974604741 and the closed form
+  2·(log 2/√2)·(L − log 2) (`log:9-13`). Sine basis converges to it
+  like 1/M: 0.33498, 0.37272, 0.38452, 0.39077 at M = 8..64,
+  discrepancy −6.69e-3 at M = 64 (`log:14-17`).
+- X = 10, indicator total, Legendre: pole 11.82804341, prime
+  5.44910741, arch −6.30208208, total 0.07685392 against the
+  instrument's 0.0768539244 (= recorded), discrepancy +2.75e-14,
+  +5.68e-14, +8.44e-14, +2.22e-14 at M = 8..64; per-term deviations
+  2.0e-14..7.7e-14 (`log:18-22`). Sine at M = 64: 0.06483971, disc
+  −1.20e-2 (`log:26`).
+- Quadrature doubling (npan, nx, nu → 32, 48, 512) changes matrix
+  entries by at most 5.4e-14 (pole), 1.4e-14 (prime), 7.1e-14 (arch)
+  for Legendre M = 16, and 5.5e-14, 1.6e-14, 5.8e-14 for sine M = 64
+  (`log:27-28`).
+- Arch matrix diagonal, real-space vs Fourier (1/2π)∫|Ĝ_i|²h₊ dt to
+  T = 2000 plus tail: |diff| ≤ 9.87e-7, Legendre M = 8 (`log:29-36`).
+- Closed-form Ĝ vs quadrature at 40 t in [0.3, 60]: 5.67e-15
+  (Legendre), 7.38e-13 (sine), M = 64 (`log:37-38`).
+- Random asymmetric G (seed 2026, Legendre M = 8, X = 10):
+  Q = 0.18481969; Z_file = 0.18461652 + tail 2.03e-4 = 0.18481969;
+  resid −9.77e-10; pole term +0.574939 (`log:40`).
+
+**Ladder, Legendre M = 64** (`weil_rung_min.txt:11-28`; columns X /
+L / λ_min(Q) / floor / λ_min(Q0) / ‖P‖_op):
+
+```text
+    2  / 0.6931 /  1.3293e-03          / 1.7e-15 / +0.0013293 /  0
+  2.5  / 0.9163 /  1.0276e-05          / 1.9e-15 / -0.2248861 /  0.490129
+    3  / 1.0986 /  5.5489e-08          / 1.9e-15 / -0.4303087 /  0.490129
+  3.5  / 1.2528 /  2.4828e-10          / 2.1e-15 / -0.5891762 /  0.900927
+    4  / 1.3863 /  7.6152e-13          / 2.1e-15 / -0.7206430 /  0.900928
+    5  / 1.6094 / -5.2584e-15 roundoff / 2.3e-15 / -0.9355643 /  1.218838
+   10  / 2.3026 / -1.4360e-14 roundoff / 2.9e-15 / -1.6595317 /  2.503408
+  100  / 4.6052 / -6.9661e-14 roundoff / 6.6e-15 / -7.1838030 / 11.081167
+```
+
+M-convergence (`txt:11-15`, columns M = 8..64): the M = 32 → 64 step
+changes Legendre λ_min(Q) by 0.01%, 0.3%, 1.5%, 2.4%, 9% at
+X = 2, 2.5, 3, 3.5, 4 (the brief for this entry said "3 digits at
+M = 32"; the file gives 1–2 digits at X ≥ 3); M = 8 is high by a
+factor 1.5 at X = 2.5 and by 3, 5 and 6 orders of magnitude at
+X = 3, 3.5, 4. λ_min(Q0) at M = 16 agrees with M = 64 to 4 digits
+(−0.43025 vs −0.43031 at X = 3; −1.65941 vs −1.65953 at X = 10;
+`log:63-65,127-129`). ‖P‖_op at M = 16 is 1–3% below M = 64 (0.874 vs
+0.9009 at X = 3.5; 2.484 vs 2.503 at X = 10) and at M = 32 within
+0.04–0.3% (`log:71-73,128-129,184-185`); the brief's "5 digits by
+M = 16" holds for neither. Sine basis, M = 64 (`txt:32-36`):
+λ_min(Q) = 1.3871e-3, 1.1451e-5, 6.0735e-8, 2.7401e-10, 8.2616e-13 at
+X = 2, 2.5, 3, 3.5, 4, converging from above — the M = 32 → 64 step is
+3.5%, 6%, 2.3%, 6%, 22% — and sitting 4–11% above the Legendre values
+(the brief said "~2%"; that is the X = 3 step only). Basis gap
+max |λ_min(legendre) − λ_min(sine)| = 5.78e-5 over the ladder, at
+X = 2 (`txt:51`).
+
+**Read-offs.** λ_min(Q0), the form without primes, is negative at every
+X ≥ 2.5 and steepens in L: λ_min(Q0)/L runs −0.25, −0.39, −0.52,
+−0.72, −1.01, −1.56 at X = 2.5, 3, 4, 10, 30, 100 (from `txt:12-28`);
+the brief's "≈ −1.56·L + 0.02" is the X = 100 ratio and does not fit
+the ladder — the least-squares line over X ≥ 2.5 is −1.73·L + 1.95,
+and the curve is convex in L. Likewise ‖P‖_op/L runs 0.53, 0.45, 0.65,
+1.09, 1.63, 2.41 at the same X; "≈ 2.4·L" is the X = 100 ratio. The
+ratio ‖P‖_op/|λ_min(Q0)| is 1.48 at X = 9, 1.51 at X = 10, and
+1.54–1.62 for X ≥ 12 (1.55, 1.59, 1.62, 1.62, 1.61, 1.58, 1.54 at
+X = 12, 15, 20, 30, 50, 70, 100; `txt:22-28`; the brief said the
+1.54–1.62 band starts at X = 9). With primes, λ_min(Q) is positive at
+X = 2, 2.5, 3, 3.5, 4 and falls 1.3e-3, 1.0e-5, 5.5e-8, 2.5e-10,
+7.6e-13 — local log-slopes d log λ_min/dL of −22, −29, −35, −43 over
+the four steps, steepening (computed from `txt:11-15`; the brief
+quoted −28, −35, −43 for the last three). At X ≥ 5 |λ_min| is 1.4e-15
+to 1.3e-13, on or under the floor, and the sign is noise. At X = 2 no
+prime enters (npp = 1 is the prime power 2 itself, weight
+F(log 2) = 0 at the support edge), Q = Q0, λ_min = +1.3293e-3.
+
+**The negative λ_min at X ≥ 5 are artefacts** (73 of 144 rows,
+magnitudes 1.38e-15 to 1.28e-13; 9 of them beyond 10× the floor;
+`txt:52-125`; JSON `summary.negative_lam_min_rows`). (1) The
+per-entry matrix error from quadrature doubling, 5–7e-14, is the
+scale of these eigenvalues, and they grow with M and with X
+(Legendre: −1.4e-14 at X = 10 → −7.0e-14 at X = 100; sine −1.2e-14 →
+−1.3e-13) as roundoff in the cancellation accumulates. (2) The zero
+side evaluated at the same minimiser G — a sum of squares, hence
+positive — is 3.88e-16 (X = 10, Legendre), 5.66e-16 (X = 10, sine),
+6.10e-15 (X = 100, Legendre), 2.52e-15 (X = 100, sine) against the
+100,000 file zeros (`log:200-215`); each is a rigorous upper bound on
+the true λ_min in that M = 64 subspace, so the true value is between
+0 and a few e-15. (3) The zero-side matrix 2Σ_k Re Ĝ_i(γ_k)Ĝ_j(γ_k)*
+built from the file zeros — PSD by construction — has λ_min likewise
+negative: −1.18e-14, −2.33e-15, −1.48e-14, −6.73e-15 (same four
+cases), and from the 2000 cached zeros −4.30e-15, −1.34e-15,
+−3.97e-15, −3.57e-15 (`log:203,207,211,215`; the brief's "4e-15 to
+1.5e-14" is the file-zero band's upper half). That is the roundoff
+of a PSD matrix with a numerical null space: at X = 10 the
+time-bandwidth product 2hγ₁/π = 10.4 and at X = 100 it is 20.7
+(γ₁ = 14.134725, JSON `summary.gamma1`; the brief said 6.5 at X = 10 —
+the arithmetic with h = 1.1513 gives 10.4), so an M = 64 space has
+tens of directions with essentially no energy at the zeros. The
+null-space dimension itself is the orchestrator's estimate from that
+product; the run does not measure it.
+
+**Zero-side cross-checks at the minimiser** (lines 543-588;
+`log:191-215`; `txt:148-154`). X = 3 Legendre: λ_min 5.548877e-8;
+Z_2000 5.511858e-8 + tail 3.24e-10 → resid +4.66e-11; Z_file
+5.547165e-8 + tail 1.61e-11 → resid +9.80e-13; G(−h)² + G(h)² =
+3.657e-7; the first ten zeros carry 2.748e-8 of the sum; λ_min of the
+zero-side matrix (file) 5.547113e-8. X = 3 sine: λ_min 6.073474e-8 vs
+Z_file 6.073475e-8, resid −3.29e-15 (G vanishes at the ends, tail
+2.5e-39); closed-form vs quadrature transform agree to 1e-19.
+
+**The minimiser at X = 3** (h = 0.5493; `log:218-221`, `txt:157-160`;
+JSON `rows[].minimiser`). Legendre M = 64: even, single-signed (0 sign
+changes), bell-shaped, |G| max at the centre; |G(0)| = 1.6882 (the
+file prints −1.6882 — the eigenvector's sign is arbitrary and every
+sample below is |G|); 96.32% of ‖G‖² in the central half of the
+support, 30.45% in the central tenth, 1.78e-4 in the two end tenths;
+|G(±h)| = 4.28e-4. Samples at u/h = −1, −0.9, …, 0: 0.000 0.016
+0.067 0.179 0.366 0.622 0.918 1.214 1.465 1.630 1.688, mirrored. The
+sine minimiser is the same function to three digits (|G(0)| 1.6886,
+central half 0.9633). Fourier energy inside |t| < γ₁ (JSON
+`energy_in_gap_at_minimiser`): 0.9999285554; the maximally
+band-concentrated function in the same M = 64 space leaks 3.347e-6
+(JSON `gap_leak_min`, `txt:13`), and the minimiser's Σ|Ĝ(γ)|² = 5.5e-8
+sits below that by trading gap energy to sit between the zeros. At
+the minimiser the three terms are pole 1.3043761, prime 0.0178511,
+arch −1.2865249 (JSON `terms_at_minimiser`): pole + arch = 0.0178512
+and the prime term cancels it to 5.5e-8. Through X = 4 the Legendre
+minimiser is even and centre-concentrated, central-half mass 0.8412,
+0.9264, 0.9632, 0.9808, 0.9895 at X = 2, 2.5, 3, 3.5, 4 (`txt:11-15`);
+from X = 5 the parity column reads mixed. At X = 100 the minimiser is
+an arbitrary vector of the numerical null space — Legendre and sine
+disagree (|G| max at u/h = −0.818 vs +0.856, sign changes 2 vs 12,
+end-tenth mass 0.34 vs 0.45; `log:226-229`) — and carries no
+information.
+
+**Reading (the orchestrator's, from the numbers above).** The margin
+at rung X under the true zeros is a concentration number: the
+minimiser is a prolate-type function fitted under γ₁ = 14.1347, and
+λ_min is its leakage onto the zero set, which is why it falls
+super-exponentially in L with the gap fixed. Positivity at rung X is
+the statement that the prime term matches the archimedean deficit to
+within that leakage: at X = 3 the no-prime form is −0.4303 at its own
+minimiser and ‖P‖_op = 0.4901, while at the minimiser of Q the prime
+term 0.0178511 cancels pole + arch = 0.0178512 to 5.5e-8, seven
+digits; at X = 4 the cancellation is to 7.6e-13, thirteen digits.
+Connes–Consani's 10⁻³ pin on the prime 2 at L = log 3 (entry 296) is
+a coarse version of the same fact. A proof of any rung with a prime
+in it is a proof that the explicit formula holds at the first zero's
+gap to that precision; a crude archimedean margin (Bombieri Theorem
+12's method, entry 296) is unavailable from X = 2.5 on.
+
+**Two brief assumptions the files contradicted, recorded.** The
+indicator is exactly the Legendre G₀ (the brief for the script said it
+was not; `weil_rung_min.py:29`, and the unit test's ‖indicator_M‖² =
+L to six digits at every M, `log:10-13`). `weil_QX.txt` lives at
+`analysis/2026-09-01/results/weil_QX.txt` (entry 295's path is
+correct; the brief had it beside the script).
+
+**Next** (entry 297): the L_c(ε) measurement — one zero moved off the
+line, minimum over G at each support — now that this script exists
+to be adapted.
+
 ## 2026-09-01 — Entry 297 — what the bench has that the sources do not, and the shape of the missing rung-to-strip theorem (orchestrator's sketch, unproved)
 type: motivation
 refs: 285, 294, 295, 296
