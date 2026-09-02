@@ -16,6 +16,155 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 291 — ThetaPsi.lean: |ψ(X)−X| ≤ C·X^θ·log³X from a zero-free half-plane, θ ∈ [1/2, 1)
+type: formalization
+refs: 277, 283, 285, 288, 289, 290
+
+`lean_stage3/Stage3/ThetaPsi.lean`, new file. 646 lines, 16 theorems,
+5 `#guard_msgs` pins, 0 sorries, every pin
+`[propext, Classical.choice, Quot.sound]`. Commit `e80acc5`. Stage3
+green at 8721 jobs, third attempt.
+
+**What was proved.**
+
+```text
+psi_weak_of_theta : StmtZeroFreeRight θ → 1/2 ≤ θ → θ < 1 →
+  ∃ C > 0, ∃ x₀, ∀ t, x₀ ≤ t → |ψ t − t| ≤ C · t^θ · log³ t
+psi_weak_of_RH_half      ≡ RHPull.psi_weak_of_RH      (LineBound.lean:2357)
+stmtPsiWeak_of_RH_half   ≡ RHPull.stmtPsiWeak_of_RH   (:2485)
+```
+
+Both welds `#check`-printed identical to the built theorems. The
+constant `Cclose + C₁ + C₉ + 66600·e·B/π + 2·900·e·B/π + Cmain + 1` is
+`psi_weak_of_RH`'s, verbatim.
+
+**What θ changes, now that all of it is built.** Three things:
+
+- The horizontal segments have length `1−θ` where they had `1/2`
+  (`horiz_length_theta`). Since `1−θ ≤ 1/2`, the RH-shaped
+  `horiz_small` still covers them.
+- The smoothing parameter is `ε = X^(θ−1)` where it was `X^(−1/2)`, so
+  `ε·X = X^θ`. The `I₁`, `I₉` pieces then come out as `X^(1−θ)·log X`,
+  and `θ ≥ 1/2` is what folds them under `X^θ`.
+- The threshold `x₀` gains a term `(1/ε₀)^(1/(1−θ))`, because the
+  main-term lemma needs `ε < ε₀`, i.e. `X^(1−θ) > 1/ε₀`. At RH this was
+  `1/ε₀² + 1`.
+
+So `1/2 ≤ θ` is load-bearing in two places — `kernel_le_theta` and the
+`I₁`/`I₉` fold — and decorative in the crude bound (entry 288).
+
+**Three fix rounds, all engineering.** `linarith` could not see
+`0 ≤ 2/(1−θ)` without being handed it; two `nlinarith` calls timed out
+in the large context and were replaced by `pow_le_pow_right₀` and
+`le_mul_of_one_le_left` (the trap named under CLAUDE.md § Stage-3 formalization conventions (lean_stage3/));
+`rw [← hPQ]` with `hPQ : X^(1−θ)·X^θ = X` rewrote the `X` inside the
+powers too, and became a two-step `calc`.
+
+**What this is.** Entry 285 made RH one setting of a dial with θ = 1
+proved at the other end. Entry 277 measured the census to need
+`X^θ·log^k X` at `θ = 0.7464`. This module turns the dial: any proved
+zero-free half-plane `re > θ`, for any `θ ∈ [1/2, 1)`, now yields the
+power saving in the form the census consumes, with the constants of the
+RH route. No `θ < 1` half-plane is proved here or anywhere in the tree;
+that remains the open leaf.
+
+**Also in this commit batch.** `Stage3.lean` (root) now imports every
+sorry-free module: eleven added, `Abscissa`, `ExplicitBump`,
+`ArgIdentity`, `ThetaLine`, `ThetaPull`, `ThetaPsi`, `EdgeBound`,
+`Glue`, `PerronKernel`, `VonKochScaffold`, `ZetaGrowth`. It had named 9
+of 21 (I said 14 of 20 in chat before counting — recalled, not
+measured). `ContourShift` stays out: it is a SCRATCH slice map with a
+named `sorry` at its line 329. `lake build` globs all modules so nothing
+had failed to compile, but `import Stage3` alone would have delivered
+the RH-only ψ bound with no error. Root build 8728 jobs.
+
+## 2026-09-01 — Entry 290 — ThetaPull.lean: the I₃₇ chain at general θ — X^θ·log³X, and the 66600 does not move
+type: formalization
+refs: 277, 283, 285, 288, 289
+
+`lean_stage3/Stage3/ThetaPull.lean`, new file. 340 lines, 11 theorems,
+4 `#guard_msgs` pins, 0 sorries, every pin
+`[propext, Classical.choice, Quot.sound]`. Commit `913aa64`. Stage3
+green at 8720 jobs, first attempt.
+
+**What was proved.** The seven `RHPull` theorems from
+`integrand_norm_le` (`LineBound.lean:1096`) to `I37_sqrt_log3` (`:1935`)
+at abscissa `σθ θ X`, plus the two helpers:
+
+```text
+kernel_le_theta, norm_line_ge_theta    need only 1/2 < σ, so θ ≥ 1/2
+integrand_norm_le_theta                11100·log²X · M · X^(σθ θ X)
+I37_norm_le_decay_theta, I37_power_form_theta
+                                       (22200·e·C/ε)·X^θ·log²X
+I37_norm_le_epsfree_theta, I37_power_log3_theta
+                                       (66600·e·B/π)·X^θ·log³X
+I37_sqrt_log3_half                     RH instance ≡ RHPull.I37_sqrt_log3
+```
+
+`#check` printed `I37_sqrt_log3_half` and `RHPull.I37_sqrt_log3` as the
+same statement, `√X` included.
+
+**What θ changes.** `X^θ` where there was `√X`, from `rpow_σθ`
+(entry 286). The hypothesis `4 ≤ log X` becomes `2/(1−θ) ≤ log X`, and
+`four_le_log_of_theta` shows the old one follows from it for `θ ≥ 1/2`,
+so nothing downstream had to be re-derived. `I₃₇` in PNT+
+(`MediumPNT.lean:870`) takes its abscissa as a bare real, so
+`I₃₇ ν ε T X (σθ θ X)` is well-formed with no wrapper.
+
+**The 66600.** Entry 283 located the census-facing loss of this route in
+that coefficient. It is `6 · 11100` — the `log(1+T) ≤ 2·log X` step times
+the line-bound constant — and neither factor sees θ. Moving θ moves the
+POWER and leaves the constant alone. That is the shape entry 277's
+census requirement asked for.
+
+**Next.** Between `I₃₇` and ψ sit `pull_at_RH_abscissa`, `I8_norm_le`,
+`I2_norm_le`, `contour_at_instantiation`, `psi_weak_of_RH`
+(`LineBound.lean:1056, 1242, 1363, 2232, 2357`). Each reaches RH through
+the two facts already ported.
+
+## 2026-09-01 — Entry 289 — ThetaLine.lean: the vertical-line bound at general θ, and the second RH entry point that 286 missed
+type: formalization
+refs: 277, 283, 285, 286, 287, 288
+
+`lean_stage3/Stage3/ThetaLine.lean`, new file. 421 lines, 4 theorems,
+4 `#guard_msgs` pins, 0 sorries, every pin
+`[propext, Classical.choice, Quot.sound]`. Commit `4d72817`. Stage3
+green at 8719 jobs, first attempt.
+
+**What was proved.**
+
+```text
+logDerivZeta_compact_theta   |t| ≤ 2, θ < σ₁ ≤ (1+θ)/2
+                             ‖ζ'/ζ‖ ≤ 14530 + 2/(1−θ) + 212/(σ₁−θ)
+logDerivZeta_sq_at_X_theta   2 ≤ t, log t ≤ log X   → 11100·log²X
+logDerivZeta_line_theta      2/(1−θ) ≤ log X, |t| ≤ X → 11100·log²X
+logDerivZeta_line_half       RH instance ≡ Slice4b.logDerivZeta_line
+```
+
+`#check` printed `logDerivZeta_line_half` and
+`Slice4b.logDerivZeta_line` (`LineBound.lean:801`) as the same
+statement.
+
+**The entry point 286 and 287 both missed.** Entry 287 traced RH into
+the crude bound through one call. There is a second one:
+`Slice4.logDerivZeta_compact` (`LineBound.lean:531`) handles `|t| ≤ 2`,
+where the Borel–Carathéodory disk contains the pole at `s = 1`, and
+patches it with `zetaE s = (s−1)ζ(s)`. RH enters there too, through the
+same `hzeroRe` shape. I found it only when the line bound would not
+close from the crude bound alone.
+
+**What θ changes in the compact patch.** Two things. The bound `14535 +
+212/(σ₁−1/2)` at RH becomes `14530 + 2/(1−θ) + 212/(σ₁−θ)`: the `5` was
+the pole term `‖1/(s−1)‖ ≤ 4` rounded, and at θ it is `2/(1−θ)`, from
+`(1−θ)/2 ≤ ‖s−1‖`. And the geometric constraint `σ₁ ≤ 3/4` becomes
+`σ₁ ≤ (1+θ)/2`. That constraint is the sole θ-dependent piece of the
+line bound: it forces `1/log X ≤ (1−θ)/2`, i.e. `2/(1−θ) ≤ log X`,
+which at `θ = 1/2` is the built `4 ≤ log X`. The `11100` is untouched.
+
+**Next.** The I₃₇ chain (`RHPull.integrand_norm_le` through
+`I37_sqrt_log3`, `LineBound.lean:1096–1935`) consumes the line bound and
+`rpow_σRH`; both now exist at θ.
+
 ## 2026-09-01 — Entry 288 — logDerivZeta_crude at general θ compiles, constants unchanged: RH's equality was stronger than the proof used
 type: formalization
 refs: 240, 277, 284, 285, 286, 287
