@@ -243,7 +243,7 @@ theorem anchor_mem_regionθ (θ : ℝ) :
     ((max θ 1 + 1 : ℝ) : ℂ) ∈ regionθ θ ∧ 1 < ((max θ 1 + 1 : ℝ) : ℂ).re := by
   have h1 : (1:ℝ) < max θ 1 + 1 := by linarith [le_max_right θ 1]
   have h2 : θ < max θ 1 + 1 := by linarith [le_max_left θ 1]
-  refine ⟨⟨by simpa using h2, ?_⟩, by simpa using h1⟩
+  refine ⟨⟨by simp [h2], ?_⟩, by simp⟩
   intro he
   have := congrArg Complex.re he
   simp only [Complex.ofReal_re, Complex.one_re] at this

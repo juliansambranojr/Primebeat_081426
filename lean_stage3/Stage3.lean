@@ -20,13 +20,16 @@ What this file forces the build to elaborate, as existence checks:
     x^(2/3) check; kept as machinery evidence)
 
 Every module in Stage3/ is imported below, so `import Stage3` elaborates
-the whole package independently of the lakefile glob (22 modules as of
+the whole package independently of the lakefile glob (23 modules as of
 2026-09-01; the root had named 9 of 21 that morning). The θ-dial:
-Abscissa, ThetaLine, ThetaPull, ThetaPsi, ThetaPi (notes entries
-285–293). `psi_weak_of_theta` gives |ψ(X)−X| ≤ C·X^θ·log³X from a
+Abscissa, ThetaLine, ThetaPull, ThetaPsi, ThetaPi, ThetaConverse (notes
+entries 285–293). `psi_weak_of_theta` gives |ψ(X)−X| ≤ C·X^θ·log³X from a
 zero-free half-plane re > θ, θ ∈ [1/2, 1), and
 `schoenfeldWeakTheta_of_zeroFree` carries it to |π−Li| ≤ C·x^θ·log²x,
-the census gate's shape (entry 277).
+the census gate's shape (entry 277). `zeroFreeRight_of_psiWeakTheta` is
+the converse for every θ: a ψ-bound at exponent θ forces ζ ≠ 0 on
+re s > θ, so `zeroFreeRight_iff_psiWeakTheta` makes the two abscissae one
+number on [1/2, 1).
 -/
 import Mathlib.NumberTheory.LSeries.RiemannZeta
 import PrimeNumberTheoremAnd.Backlund.ZeroCountCrude
@@ -47,6 +50,7 @@ import Stage3.ThetaLine
 import Stage3.ThetaPull
 import Stage3.ThetaPsi
 import Stage3.ThetaPi
+import Stage3.ThetaConverse
 import Stage3.EdgeBound
 import Stage3.Glue
 import Stage3.PerronKernel
