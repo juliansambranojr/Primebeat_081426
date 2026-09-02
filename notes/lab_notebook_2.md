@@ -16,6 +16,80 @@ Julian's call.
 
 ---
 
+## 2026-09-01 — Entry 294 — ThetaConverse.lean: the Landau converse at general θ — a ψ-bound at exponent θ forces ζ ≠ 0 on re s > θ, and the θ = 1 instance from Chebyshev alone
+type: formalization
+refs: 242, 277, 285, 291, 293
+
+**What was proved** (`lean_stage3/Stage3/ThetaConverse.lean`, commits
+`b30513a`, `1f9f1c8`, `6887513`; eight pins, all
+`[propext, Classical.choice, Quot.sound]`; full build 8736 jobs; root
+`Stage3.lean` imports 23 of 23):
+
+- `zeroFreeRight_of_psiWeakTheta` (line 374):
+  `StmtPsiWeakTheta θ C k x₀ → StmtZeroFreeRight θ`, with θ, C, k, x₀
+  all unconstrained. The bound is consumed only as
+  `‖ψ t − t‖ ≤ ‖C·t^θ·log^k t‖` for `t ≥ max x₀ 1`, so the sign of C
+  and the floor never matter, and `log^k = O(t^δ)` is proved for every
+  k including 0.
+- `zeroFreeRight_iff_psiWeakTheta` (382): for θ ∈ [1/2, 1),
+  `StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀, StmtPsiWeakTheta θ C 3 x₀`.
+  The θ bounds come from the forward half `psi_weak_of_theta`
+  (entry 291), never from the converse.
+- `RH_of_psiWeakTheta_half` (389): `StmtPsiWeakTheta (1/2) C k x₀ →
+  RiemannHypothesis`, any k.
+- `zeroFreeRight_one_of_chebyshev` (401): `StmtZeroFreeRight 1` from
+  Mathlib's `Chebyshev.psi_le_const_mul_self` (ψ x ≤ (log 4 + 4)·x)
+  fed to the converse at θ = 1, C = log 4 + 5, k = 0, x₀ = 1. The
+  primes are a subset of the numbers, so the count's fluctuation is at
+  most x, so no zero has real part above 1 — the Euler-product wall
+  with no Euler product in the proof. It runs through the same V1/V4
+  route as θ = 1/2; nothing in the main theorem excludes θ = 1.
+
+**Route** (the 1/2 proof of entry 242 with √t → t^θ, line for line):
+F(s) = s·∫₁^∞ (ψ(x) − x)·x^(−s−1) dx is analytic on re s > θ by
+`mellin_differentiableAt_of_isBigO_rpow`; F = −ζ′/ζ − s/(s−1) on
+re s > 1 (`VonKoch.F_eq_neg_logDeriv`, hypothesis-free, reused as is);
+Φ = F·ζ + ζ′ + (s/(s−1))·ζ vanishes on the connected region
+`regionθ` = {re > θ} \ {1} by the identity theorem
+(`AnalyticOnNhd.eqOn_zero_of_preconnected_of_eventuallyEq_zero`),
+so a zero of ζ there would be a zero of ζ′ too, and the order
+argument of `VonKoch.no_zero_right_of_half` closes it. Two things had
+to move for general θ: the region is glued from four convex pieces
+at (θ+1)/2 when θ < 1 and is the half-plane itself when θ ≥ 1, and
+the identity theorem's anchor moved from 2 to `max θ 1 + 1` so it
+sits in the region for every θ.
+
+**Reused, by name.** `VonKoch.F`, `E`, `Etr`, `E_le_linear`,
+`E_integral_eq_mellin`, `Etr_locallyIntegrable`, `F_eq_neg_logDeriv`,
+`RH_of_no_zero_right_of_half` (VonKochScaffold.lean 31–550);
+`preconnected_region`, `F_differentiableAt`,
+`F_mul_zeta_add_deriv_eqOn_zero`, `no_zero_right_of_half` were the
+templates. `ChebyshevPsi` is a reducible abbrev of `Chebyshev.psi`
+(PNT+ MediumPNT.lean:49), so `VonKoch.E` and `StmtPsiWeakTheta`'s ψ
+are definitionally the same.
+
+**Correction, mine.** In chat on 2026-09-01 I said the converse at
+1/2 was "unbuilt and unpriced" and proposed it as a new file. Entry
+242 (2026-08-28) had proved it — `VonKoch.RH_of_psiWeak`,
+`RH_iff_psiWeak` — and entries 277 and 284 cite it. I recalled
+instead of opening VonKochScaffold.lean or the notebook. What is new
+today is the θ version, the two-way `iff` on [1/2, 1), and the θ = 1
+instance.
+
+**Where this leaves the dial** (entry 285). With 291, 293 and this
+entry, Stage3 says at every θ ∈ [1/2, 1): a zero-free half-plane
+re > θ and a ψ-bound at exponent θ are the same statement. RH is
+`StmtPsiWeakTheta (1/2) C k x₀` for some C, k, x₀, a sentence with no
+ζ in it. A prime-side proof of that sentence at ANY θ < 1 would give
+a zero-free half-plane, and the census (277) already accepts any
+θ < 1. The θ = 1 instance shows what a prime-side input looks like
+when it exists: a structural fact about the count (primes ⊂ numbers)
+fed straight through. The question that led here was the
+counterfactual runs of this session (γ₁ → 14; re ρ₁ → 0.7 and 2.5;
+exploratory, unlogged at Julian's call), which showed the number
+side flat under every move and the whole constraint landing on the
+prime count's drift.
+
 ## 2026-09-01 — Entry 293 — ThetaPi.lean: the ψ→π transfer at general θ — a zero-free half-plane re > θ gives |π−Li| ≤ C·x^θ·log²x, the census gate's shape
 type: formalization
 refs: 122, 231, 277, 291, 292
