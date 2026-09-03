@@ -211,6 +211,86 @@ This is the container half of § No scratchpad. That section closes the door on
 running outside a unit; this one closes the door on a number ARRIVING outside
 one, whatever produced it.
 
+## Transcript is king
+
+An agent's report reaches Julian through one generation step with no
+witness, and the compression is invisible because what survives is true
+as far as it goes. Measured, on 2026-09-02: the architect's report listed
+fourteen migration steps with costs and three were relayed; the greenfield
+report listed what it dropped and why, and a phrase was relayed; the
+adversary reported seven WEAKENS against the census and three were
+relayed. Whole arguments were lost, and any one of them could have been
+the answer Julian was looking for.
+
+So the chat is the one chance for an agent's finding to become durable,
+and quoting into it has to be impossible to get wrong.
+
+**Relay rule.** An agent's finding appears in chat only as a quote. If the
+agent gave twelve items, all twelve appear, verbatim. The orchestrator's
+reading follows, under its own heading, so the boundary between their text
+and the assistant's is visible on the page.
+
+**The quote gate.** A Stop hook treats every blockquote line and every
+fenced block in the assistant's message as a claimed quote, and requires
+each to appear as an exact substring of the current session transcript.
+Truncation is allowed with an ellipsis; every surviving segment still
+matches exactly. A miss blocks the message and names the failing line.
+
+This works where `check_numbers_in_response.py` failed, and the reason is
+scope again: that hook asked whether a value appears somewhere in a pool
+of 59,700, which accepts almost anything. This asks whether an exact
+string appears in one small document. A corrupted quote cannot pass.
+Whitespace inside a copied table is compared as written rather than
+normalised, or every table quote fails.
+
+What it does not catch: paraphrase that is never marked as a quote. That
+is what the relay rule covers, and it is a discipline rather than a gate.
+
+## The fingerprint
+
+The unit id is the spine. Every other identifier is recorded in the unit,
+so nothing is reconstructed from a guess:
+
+```text
+---
+id: 0305
+agents:
+  - id: a0a8bf60ac645202f
+    role: build
+    block: transcript/b01-phase2b-report.md
+  - id: acafdbdc4f5818254
+    role: build-stopped
+    block: transcript/b02-partial.md
+---
+```
+
+Each block file repeats its agent id in its own header. Every commit that
+touches the unit names the unit id. Values keys already carry their source
+file's stem, so a key traces back into `run/`. A chat quote is tagged
+`[0305 · a0a8bf6]` in front, so the message is greppable too.
+
+One grep of the unit id returns the unit, its blocks, its commits and its
+chat lines. One grep of an agent id returns that agent's transcript file,
+its block, and the unit that consumed it.
+
+A unit names as many agents as worked on it. Two adversaries attacking the
+same result from different angles are both relevant and both stay. An
+agent that was stopped keeps its entry, because what it produced before it
+stopped and what a successor discarded is part of the record — `2b` is the
+worked example.
+
+An adversary's block living inside the unit is what makes review visible
+instead of a separate process: a later reader sees the attack and the
+survival together, and an attack that breaks a unit produces a successor
+that `supersedes:` it.
+
+Agent transcripts themselves live at
+`~/.claude/projects/<project>/<session>/subagents/agent-<id>.jsonl`,
+outside the repo, unversioned, and gone on a machine change. That is why
+the blocks that matter are copied into the unit. Comparing a unit against
+the full agent transcript after the fact is possible and cheap; anything
+of value was cited in chat, and the chat is what the unit preserves.
+
 ## The CLI
 
 ```text
