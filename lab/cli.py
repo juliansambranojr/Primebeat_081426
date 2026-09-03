@@ -4,9 +4,11 @@ PHASE 0 of `analysis/2026-09-02/lab_design.md` shipped one subcommand,
 `lab check`. PHASE 1 adds the rest of the unit's lifecycle: `lab new`,
 `lab values` and `lab seal`. PHASE 2b adds `lab run`, which is the verb that
 closes the window in which a result exists only in a sentence. PHASE 3 adds
-`lab index`, which generates INDEX.md and INDEX-values.tsv. The design's
-§ The CLI lists eight; `lab chain` and `lab cite` belong to later phases and
-are not stubbed here, so that `lab --help` never advertises something that
+`lab index`, which generates INDEX.md and INDEX-values.tsv. PHASE 4 adds
+`lab chain`, which walks the follows: chain, computes segments with
+deterministic labels, detects forks and gaps, and generates CHAIN.tsv.
+The design's § The CLI lists eight; `lab cite` belongs to a later phase and
+is not stubbed here, so that `lab --help` never advertises something that
 does not run.
 
 Exit codes are uniform across every subcommand:
@@ -19,8 +21,8 @@ Exit codes are uniform across every subcommand:
 import argparse
 import sys
 
-from . import __version__, check as check_mod, index as index_mod
-from . import new as new_mod
+from . import __version__, check as check_mod, chain as chain_mod
+from . import index as index_mod, new as new_mod
 from . import run as run_mod, seal as seal_mod, values as values_mod
 
 PROGRAM = """\
@@ -156,6 +158,30 @@ Both files are generated, so neither can drift from the units. Running the
 command twice produces byte-identical files.
 """
 
+CHAIN = """\
+Walk every unit's follows: field, compute segments with deterministic
+labels, and generate CHAIN.tsv at the project root.
+
+A segment is a bounded group of consecutive units in one line of the chain.
+The label is a pure function of the tree: the root segment (lowest unit id)
+is A; at any fork the line continues through the child with the lower first
+unit id, and the others become branches; segments along a line take the next
+label in spreadsheet order; branches off a segment take dotted labels (C.A,
+C.A.A) in first-unit-id order.
+
+Forks (2 units following the same predecessor), gaps (a unit following
+something not present), and unchained units (no follows: field) are reported
+for information. If CHAIN.tsv already exists, a label disagreement, a
+missing segment, or an extra segment is a finding (exit 1).
+"""
+
+CHAIN_EXIT = """\
+exit codes:
+  0  chain computed, CHAIN.tsv regenerated, no disagreements
+  1  CHAIN.tsv disagrees with the computed chain
+  2  no units/ directory at or above here
+"""
+
 INDEX_EXIT = """\
 exit codes:
   0  INDEX.md and INDEX-values.tsv regenerated
@@ -276,6 +302,19 @@ def build_parser():
     sub.add_argument("--cwd", default=None,
                      help="project root or directory at or above units/ "
                           "(default: current directory)")
+
+    sub = subs.add_parser(
+        "chain",
+        help="walk the follows: chain, compute segments, generate CHAIN.tsv",
+        description=CHAIN,
+        epilog=CHAIN_EXIT,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub.add_argument("--cwd", default=None,
+                     help="project root or directory at or above units/ "
+                          "(default: current directory)")
+    sub.add_argument("--segment-size", type=int, default=None,
+                     help="units per segment (default: 25)")
     return parser
 
 
@@ -298,6 +337,11 @@ def main(argv=None):
         return seal_mod.run(args.unit, sys.stdout, sys.stderr)
     if args.command == "index":
         return index_mod.run(sys.stdout, sys.stderr, cwd=args.cwd)
+    if args.command == "chain":
+        kwargs = {"cwd": args.cwd}
+        if args.segment_size is not None:
+            kwargs["segment_size"] = args.segment_size
+        return chain_mod.run(sys.stdout, sys.stderr, **kwargs)
     parser.error(f"unknown command {args.command!r}")     # unreachable
     return 2
 
