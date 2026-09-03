@@ -1,0 +1,18 @@
+{
+  "source": {
+    "cite_py_lines": 63,
+    "brief_py_lines": 177,
+    "report_py_lines": 152,
+    "phase5_test_count": 43,
+    "files_new": 4,
+    "files_modified": 3,
+    "subcommands_registered": 3
+  },
+  "tests": {
+    "suite_passed": 353,
+    "suite_exit": 1
+  },
+  "gates": {
+    "check_refs_exit": 0
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "chain_tsv": {
+    "segments": 9,
+    "units_in_chain": 10,
+    "unchained": 5,
+    "gaps": 1,
+    "forks": 1
+  },
+  "source": {
+    "chain_py_lines": 506,
+    "phase4_test_count": 50,
+    "files_created": 3,
+    "files_modified": 4
+  },
+  "tests": {
+    "suite_passed": 353,
+    "suite_exit": 1
+  },
+  "gates": {
+    "check_refs_exit": 0
+  }
+}
