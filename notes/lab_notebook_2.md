@@ -16,6 +16,183 @@ Julian's call.
 
 ---
 
+## 2026-09-02 — Entry 305 — the scaffold rebuilt from an empty directory, and `lab` phase 0: discrimination is a property of the pool's scope — 95.8% of invented three-decimal values accepted tree-wide against 3.3% by one entry — every drifted fact across three trees is a count or an inventory or a status, the live Stop hook was measured near-inert and deregistered with two others, and the program now exists at 63 passing tests with two permanent fixtures and a fenced-block number caught that every reference checker in `utilities/` strips
+type: run
+refs: 296, 301, 302, 303, 304
+
+**Exploratory.** No prereg, no decision rule, no verdict. This entry records a
+design arc and one build. The six design documents sit in
+`analysis/2026-09-02/` and were committed at `03f979f` together with the hook
+deregistration; the build is `0e4b923`. Every number below was read from the
+file it names or from a command run while writing this entry.
+
+**Where it started.** `analysis/2026-09-02/container_audit_report.md` ran the
+root checklist over this tree and ranked fourteen findings by what breaks a
+later reader first: a committed result cited by no entry in either notebook,
+nothing reproduced at all, a script on disk that cannot reproduce either of
+its committed JSONs, two results JSONs carrying no `code_version`, a crashed
+run's log holding the plainer of two names, and zero of six scripts recording
+their environment. Four of the fourteen are defects in the checklist itself —
+a 20-minute run mispriced at 52 s, a sweep that can never print 0 because it
+walks `lean/.lake/packages/mathlib/`, a byte count flagging eight NOTEPAD
+lines that are all within 400 characters, and an ordering that schedules two
+runs its own rule excludes. The audit's subject was the container; its result
+was that the container's machinery is what needs auditing.
+
+**The measurement the design rests on.**
+`analysis/2026-09-02/scaffold_greenfield.md` § 1 holds the matching rule fixed
+and varies only the scope of the pool a number is checked against, then
+measures what fraction of randomly invented values each pool accepts:
+
+```text
+pool                                  size   accepts random 3dp [0,1)   3dp [0,10)   4dp [0,1)
+whole tree (today's Stop hook)      59,700                 95.8%        29.4%        33.8%
+one artifact store                   4,285                 42.6%        14.3%         7.0%
+one entry's cited values               134                  3.3%         0.5%         0.5%
+```
+
+Discrimination is a property of scope. The same check scoped to one entry
+rejects 96.7% of invented numbers where scoped to the tree it rejects 4.2%.
+Everything expensive in the two designs this replaced — qualified
+`artifact#key` syntax to stop cross-file collisions, a receipt file per entry
+pinning which artifact a key came from, an escaped-dot store format, a
+meta-stripped digest so re-runs would not false-block, a config file so three
+gates would agree where stores live — existed to make a tree-wide pool safe.
+Narrowing the pool to one unit of work retires all of it.
+
+**The second measurement.**
+`analysis/2026-09-02/systems_architecture_v2.md` § 2.2 tabulates eight
+double-work findings here and § 2.3 reproduces the pattern independently in
+`eval_harness/` and `the_container/`. D1: the Lean bench module count is
+stated in five files with four answers — 14 in `CLAUDE.md`, 20 in
+`README.md`, 20 in `CONTEXT.md`, 24 in `lean/BUILD.md`, 27 in the generated
+`lean/THEOREMS.md` — and `ls lean/*.lean | wc -l` returns 27, so the one
+generated file is the one that is right. D3: the leaf ledger
+`{hEF, StmtArgCrude}` is hardcoded in two commitment files, `CLAUDE.md` and
+`CONTEXT.md`, while `CLAUDE.md` states the correct rule one line above its own
+hardcoded copy — the ledger lives in the newest notebook entry that touched
+it — and that entry is 271, where hEF was discharged four days before the
+snapshot beside the rule. § 2.5 draws the conclusion the design turns on:
+every drifted fact is a count, an inventory or a status, and no judgement has
+drifted anywhere the three inventories looked. So counts are generated and
+prose is authored, with no file holding both.
+
+**Correction: the live Stop hook.** Earlier in this session I told Julian in
+chat that the Stop hook had stopped me from sending an ungrounded number.
+That statement was false. `utilities/hooks/check_numbers_in_response.py` pools
+every value from every store into one set and asks whether a number appears
+anywhere in it; § 5.1 of `analysis/2026-09-02/systems_architecture_v2.md`
+measures that set at 59,700 distinct values from five stores and finds it
+accepts 1902 of 2000 random three-decimal values in [0,1), the range this
+project's ratios, R² values and slopes fall in. The hook cannot separate a
+number read from a file from digits that exist somewhere in the haystack.
+`the_container` built the same shape, benched it and rejected it on
+2026-08-30; that record is `experiments/2026-08-30_sidecar/RESULT.md` —
+"Verdict: does not work. 0 of 5 real failures caught" — with the prescription
+to bind a number to the command that produced it, same turn, same tool call.
+Commit `03f979f` deregisters three hooks from `.claude/settings.json`:
+`check_numbers_in_response.py` on that measurement,
+`check_agent_brief.py` because it catches 2 of the 24 errors it was aimed at
+and false-positives on values keys containing digits, and
+`check_read_range.py` because it denies the whole-file read of a commitment
+file that the root audit checklist instructs. Kept:
+`check_response_prefix.py`, `check_direct_run.py`, `check_bash_guard.py`,
+`check_protected_write.py`, the PostToolUse `gate.py`, and the pre-commit
+gate.
+
+**The design.** `analysis/2026-09-02/lab_design.md`. The program is the outer
+thing — the loop of question, run, unit, check, index. The container sits
+inside it as the directory tree of sealed units the program deposits into and
+reads from, and that tree stays readable and correct with the program deleted.
+One unit per notebook entry, immutable once sealed: `unit.md` (authored prose
+over YAML front matter), `question.md` (the transcript bracket the question
+was posed in), `run/` (the code, its results, its logs as produced),
+`values.tsv` (generated, key then tab then value, one line per leaf), and
+`UNIT.sha256` (generated, a hash per file plus a unit digest that excludes the
+declared volatile keys). The invariant is one sentence: every number in a
+unit's prose appears in that unit's own `values.tsv`. Citations are
+`unit 0305 § <bold lead-in>`, with no line numbers anywhere in any file. One
+generated `INDEX.md` at the project root owns every count, inventory and
+status, and authored files lose their count slots rather than transcluding
+from it. Units group into bounded segments, each declaring `inherits:` (the
+digest of the previous segment's handoff) and `handoff:` (the digest computed
+from its own units): segment B follows A when B's `inherits` equals A's
+`handoff`, a missing segment stays visible because its neighbours bracket the
+gap, and a segment declaring an inheritance nothing handed on is a branch,
+rooted at whatever it did inherit and rejoining by declaring two inheritances.
+The segment chain is Julian's design and is recorded as his. Eight verbs,
+standard library only, one `pyproject.toml`, installed once.
+
+**Phase 0 as built** (`0e4b923`, 15 files, 974 insertions). `lab/__init__.py`
+15 lines, `lab/cli.py` 100, `lab/unit.py` 327, `lab/check.py` 183,
+`pyproject.toml` 24, `tests/test_lab.py` 227. The package declares no runtime
+dependency and names exactly one directory, because the repo root holds around
+a hundred top-level modules that auto-discovery would try to package. It
+installs and runs from outside the checkout: from `/tmp`, `lab --version`
+prints `lab 0.0.0`, and `lab check` given an absolute unit path resolves and
+runs. That property is why the rounding-aware comparison is copied into
+`lab/check.py` from `check_entry_numbers.py` rather than imported —
+`utilities/` is a directory of scripts that resolve their own repo paths at
+import, and an import would tie the installed console script to one checkout.
+
+Two permanent fixtures are committed on purpose, and say so in their bodies.
+`units/0000-smoke` (`unit.md` 39 lines, `question.md` 9, `values.tsv` 4 keys)
+exits 1 with three findings — `9.99` and `61` stated in paragraphs, `7.5`
+stated only inside a fenced block — and its summary line reads 7 numbers in
+prose, 4 matched, 3 unmatched, values.tsv 4 keys and 4 numeric.
+`units/0001-smoke-clean` (`unit.md` 30, `question.md` 10, `values.tsv` 3)
+exits 0 silently at 6 numbers in prose, 6 matched, 0 unmatched.
+`python3 -m pytest tests/test_lab.py -q` reports 63 passed.
+
+**A number inside a fenced block is caught.** The design settles it — the
+check reads the file rather than a stripped copy of it — and the failing
+fixture's `7.5` exists nowhere except inside a fenced text block, where
+`lab check` reports it. Verified against the other checkers before writing
+this claim: `check_refs.py` substitutes fenced blocks away before scanning,
+`check_entry_numbers.py` drops them from the entry body and skips fenced
+headers while locating the entry, and `extract_run.py` drops them the same
+way. `check_values.py` strips nothing, and never meets a fenced table either,
+because it scans only a paper's statement body up to its source line and skips
+every value under 10 in absolute value. So a fenced table's numbers are
+ungated by everything in `utilities/` and gated by `lab check`.
+
+**Two self-corrections inside the build.** The help text for `lab check` first
+claimed that prose saying `0.02` fails against a file holding `0.018401`. It
+passes: the comparison tolerates half a unit in the last place the prose
+states, and two decimal places is what `0.018401` rounds to. The help text now
+claims only what the comparison does, and the corrected claim is pinned by a
+parametrised test. Second, `locate()` crashed on the test asking for a missing
+absolute path — `pathlib.Path.glob` raises `NotImplementedError` on a
+non-relative pattern from Python 3.13 onward, and the fixture path in
+`test_missing_directory_exits_2` is absolute. A non-existent path now raises
+`UnitError` before any glob, and only a bare name falls through to the
+`units/` lookup. The build's own test found it.
+
+**A defect in the design's phase table, found by building.** As committed at
+`03f979f`, `analysis/2026-09-02/lab_design.md` lists nine phases and puts
+`lab values` — the generator of `values.tsv` — in phase 2, while phase 0's row
+is `lab check` on one hand-made unit and `lab check` refuses to load a unit
+that has no `values.tsv`. Phase 1 (unit layout, `lab new`, `lab seal`, the
+digest) and phase 2 therefore describe one green state, because a scaffolded
+unit that cannot answer the invariant is not yet a container. The working copy
+merges the two into a single phase 1 and renumbers the rest down to seven
+phases; that edit is uncommitted as of this entry. Review of the document did
+not surface the ordering error. Building phase 0 against it did, because
+phase 0's fixtures had to be hand-written to exist at all.
+
+**What is not done.** Entry 304's census is tabled. Seven of the eight verbs —
+`lab new`, `lab run`, `lab values`, `lab seal`, `lab index`, `lab chain` and
+`lab cite` — are unbuilt and deliberately unstubbed, so the help never
+advertises something that does not run, and nothing in the program is
+registered in any hook or gate. No existing entry is migrated: this entry is
+appended to `notes/lab_notebook_2.md` in the old format, and the old
+line-citation surface is untouched. And the larger half of this session's own
+recorded errors — right-number-wrong-row and qualitative claims, 19 of 41 —
+is caught by nothing in the design. `scaffold_greenfield.md` § 4 states that
+plainly and names adversarial review made cheap as the only thing measured to
+catch them, against nine outside reviews that produced roughly 83 findings
+where eight gates produced none of them.
+
 ## 2026-09-02 — Entry 304 — arrow_price.py: the rung-to-strip arrow priced at the precision a consumer needs — nothing in this tree consumes RH_up_to, all fifteen upstream consumers are sorry, the loosest real target is a rectangle holding one zero ordinate, every proved rung is vacuous because X = 2 is where the first prime enters at weight zero, and of the six pieces the ε quantifier costs 0.073 in L per e-fold while P3 (a G written without the zero list) and P5 (Connes–Consani Conjecture 4.1) stay open
 type: run
 refs: 130, 296, 302, 303
