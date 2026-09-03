@@ -288,8 +288,8 @@ def test_without_a_notebook_the_directory_alone_answers(tmp_path):
     assert new_mod.next_id(root) == "0005"
 
 
-def test_the_real_tree_allocates_after_0308():
-    assert new_mod.next_id(ROOT / "units") == "0309"
+def test_the_real_tree_allocates_after_0309():
+    assert new_mod.next_id(ROOT / "units") == "0310"
 
 
 # --- 6. `follows:` implemented ----------------------------------------------
@@ -473,7 +473,7 @@ def test_the_state_line_names_the_next_record():
     state = [l for l in r.stdout.split("\n") if l.startswith("notebook:")]
     assert len(state) == 1, r.stdout
     assert "newest 307" in state[0] and "FROZEN" in state[0], state[0]
-    assert "next unit 0309" in state[0], state[0]
+    assert "next unit 0310" in state[0], state[0]
     # .github/workflows/audit.yml reads `newest N` out of this line and does
     # arithmetic on it; a zero-padded unit id there would break the shell.
     import subprocess as sp

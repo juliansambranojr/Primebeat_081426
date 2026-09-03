@@ -10,12 +10,11 @@ the design's § The unit, exactly:
       values.tsv       GENERATED: key<TAB>value, one line per leaf
 
 THE ID IS ALLOCATED BY SCANNING `units/`. The design's § The CLI says
-"id from INDEX", and there is no INDEX yet -- `lab index` is Phase 3. So
-this reads the directory: every name matching `<4+ digits>-<slug>` is an
-allocated id, and the new unit takes the highest plus one, zero-padded to
-four places. When Phase 3 lands, INDEX.md becomes the faster path to the
-same answer; the directory stays the ground truth, because it is the thing
-the id has to be unique against.
+"id from INDEX", and Phase 3 generates INDEX.md, but this reads the
+directory: every name matching `<4+ digits>-<slug>` is an allocated id,
+and the new unit takes the highest plus one, zero-padded to four places.
+INDEX.md is the faster path to the same answer; the directory stays the
+ground truth, because it is the thing the id has to be unique against.
 
 PHASE 2c: THE DIRECTORY IS NOT THE ONLY FLOOR. Unit 0308 records what that
 allocation did on the first real unit -- "it produced `0005-` while the

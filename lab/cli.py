@@ -3,10 +3,11 @@
 PHASE 0 of `analysis/2026-09-02/lab_design.md` shipped one subcommand,
 `lab check`. PHASE 1 adds the rest of the unit's lifecycle: `lab new`,
 `lab values` and `lab seal`. PHASE 2b adds `lab run`, which is the verb that
-closes the window in which a result exists only in a sentence. The design's
-§ The CLI lists eight; `lab index`, `lab chain` and `lab cite` belong to later
-phases and are not stubbed here, so that `lab --help` never advertises
-something that does not run.
+closes the window in which a result exists only in a sentence. PHASE 3 adds
+`lab index`, which generates INDEX.md and INDEX-values.tsv. The design's
+§ The CLI lists eight; `lab chain` and `lab cite` belong to later phases and
+are not stubbed here, so that `lab --help` never advertises something that
+does not run.
 
 Exit codes are uniform across every subcommand:
 
@@ -18,7 +19,8 @@ Exit codes are uniform across every subcommand:
 import argparse
 import sys
 
-from . import __version__, check as check_mod, new as new_mod
+from . import __version__, check as check_mod, index as index_mod
+from . import new as new_mod
 from . import run as run_mod, seal as seal_mod, values as values_mod
 
 PROGRAM = """\
@@ -70,7 +72,7 @@ NEW = """\
 Scaffold a unit directory under the nearest units/ directory.
 
 The id is the next one free, read off the existing unit directory names --
-there is no INDEX.md yet, so the directory is what is scanned. The unit is
+the directory is what is scanned rather than INDEX.md. The unit is
 written with the design's front matter, a body of bold lead-ins to fill in,
 an empty question.md for the transcript bracket, an empty run/, and an
 empty values.tsv carrying only its header lines.
@@ -136,6 +138,28 @@ moved.
 Sealing is refused for a unit that does not pass `lab check`, and refused
 for a unit that is already sealed: a changed result is a new unit that
 supersedes the old one.
+"""
+
+INDEX = """\
+Regenerate INDEX.md and INDEX-values.tsv at the project root.
+
+INDEX.md is the generated inventory of every unit: units by type, artifact
+counts, sealed/unsealed status. Authored files lose their count slots and
+point at INDEX.md instead.
+
+INDEX-values.tsv is the reverse map: one line per key, listing every unit
+whose prose cites the value stored under that key. It costs nothing extra
+to build: `lab check` already resolves every number in every unit to a key,
+so the reverse map is the same pass written out.
+
+Both files are generated, so neither can drift from the units. Running the
+command twice produces byte-identical files.
+"""
+
+INDEX_EXIT = """\
+exit codes:
+  0  INDEX.md and INDEX-values.tsv regenerated
+  2  no units/ directory at or above here
 """
 
 EXIT = """\
@@ -241,6 +265,17 @@ def build_parser():
     )
     sub.add_argument("unit", metavar="<unit>",
                      help="unit directory, name, or unambiguous id prefix")
+
+    sub = subs.add_parser(
+        "index",
+        help="regenerate INDEX.md and INDEX-values.tsv",
+        description=INDEX,
+        epilog=INDEX_EXIT,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub.add_argument("--cwd", default=None,
+                     help="project root or directory at or above units/ "
+                          "(default: current directory)")
     return parser
 
 
@@ -261,6 +296,8 @@ def main(argv=None):
         return values_mod.run(args.unit, sys.stdout, sys.stderr)
     if args.command == "seal":
         return seal_mod.run(args.unit, sys.stdout, sys.stderr)
+    if args.command == "index":
+        return index_mod.run(sys.stdout, sys.stderr, cwd=args.cwd)
     parser.error(f"unknown command {args.command!r}")     # unreachable
     return 2
 

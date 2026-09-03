@@ -8,8 +8,9 @@ generates its pool from `run/`, `lab seal` makes it immutable, and
 list into `lab/exempt.py` and gave the commit gate `utilities/check_units.py`.
 PHASE 2b audited that list, admitted numbers stored inside string values, and
 built `lab run` -- the verb that puts a result in a file before it reaches a
-sentence. `lab index`, `lab chain` and `lab cite` are later phases and are
-deliberately absent.
+sentence. PHASE 3 built `lab index` -- the verb that regenerates INDEX.md and
+INDEX-values.tsv from the units tree. `lab chain` and `lab cite` are later
+phases and are deliberately absent.
 
 Standard library only. The design's line is "Python, standard library only
 for the program itself" (§ The CLI), and it is load-bearing: the program has
