@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that every reference in papers/ and lean/ resolves. Exit 1 if not.
+"""Check that every reference in papers/, lean/ and units/ resolves. Exit 1 if not.
 
 Checks four token types wherever they appear; everything else is prose.
   Paper.md § A3        section or statement exists in that paper
@@ -12,14 +12,31 @@ citing line claims, and one miscitation of exactly that shape stood undetected
 (entry 88: The-Deep-Ladder § F4 cited Euler-Factor-Chain § J5, which is about
 RH, for a claim about analytic continuation).
 
-  --audit    pair every cross-document `§` citation with the text it points
-             at, for review. Reads nothing about meaning; the judgement is a
-             person's. Exits 0 and runs no gate.
+  --audit         pair every cross-document `§` citation with the text it
+                  points at, for review. Reads nothing about meaning; the
+                  judgement is a person's. Exits 0 and runs no gate.
+  --list-scanned  print every file this walks, repo-relative, and exit 0.
+
+PHASE 2c ADDS `units/`. It walked papers/, lean/, notes/*.md and root *.md, so
+a unit's citations were ungated -- one of the three findings the design's
+§ The parser matches the spec records as "spec and code written apart". Only
+`units/<unit>/unit.md` is scanned, for the reason `lab/check.py` gives for
+reading only that file: `question.md` is a transcript bracket copied in
+verbatim and `transcript/*.md` are agent reports copied in verbatim, so their
+citations are QUOTED rather than made, and holding a copy of somebody else's
+text to this gate would make a unit unwritable. A unit's own claims are its
+`unit.md`.
+
+Units are labelled by their repo-relative path (`units/0308-.../unit.md`)
+rather than by `f.name`, which every unit shares. Everything else keeps the
+bare filename it has always had, so `utilities/refs_baseline.txt` reads
+unchanged.
 """
 import re, sys, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAPERS, LEAN, NOTES = ROOT / "papers", ROOT / "lean", ROOT / "notes"
+UNITS = ROOT / "units"
 
 # what exists
 sections = {}
@@ -115,13 +132,34 @@ def check(src, why, cond):
     if cond or any(a in why for a in ALLOW): return
     broken.append((src, why))
 
-for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean"))
-                + list(NOTES.glob("*.md")) + list(ROOT.glob("*.md"))):
-    # agent briefs cite bad references on purpose, as examples
-    if f.name in ("FORMAT.md", "notes_format.md") or f.name.startswith("claude_"):
-        continue
+def scanned_files():
+    """[(path, label)] for every file the gate reads, in one place.
+
+    The label is what a BROKEN line names, and what utilities/refs_baseline.txt
+    is keyed on: a bare filename everywhere it has always been one, and a
+    repo-relative path for a unit, whose `unit.md` is not a unique name.
+    """
+    out = []
+    for f in sorted(list(PAPERS.glob("*.md")) + list(LEAN.glob("*.lean"))
+                    + list(NOTES.glob("*.md")) + list(ROOT.glob("*.md"))):
+        # agent briefs cite bad references on purpose, as examples
+        if f.name in ("FORMAT.md", "notes_format.md") \
+                or f.name.startswith("claude_"):
+            continue
+        out.append((f, f.name))
+    for f in sorted(UNITS.glob("*/unit.md")) if UNITS.is_dir() else []:
+        out.append((f, f.relative_to(ROOT).as_posix()))
+    return out
+
+
+if "--list-scanned" in sys.argv:
+    for _, label in scanned_files():
+        print(label)
+    sys.exit(0)
+
+for f, where in scanned_files():
     # fenced blocks are quoted evidence, not the file's own citations
-    text, where = re.sub(r"```.*?```", "", f.read_text(), flags=re.S), f.name
+    text = re.sub(r"```.*?```", "", f.read_text(), flags=re.S)
     for m in re.finditer(r"`?([A-Za-z][\w\-.]*\.md)`? § ", text):
         doc = m.group(1)
         if doc not in named: continue
@@ -189,11 +227,36 @@ if np.exists():
         if m: check("NOTEPAD.md", f"line {i} cites entry {m.group(1)}", int(m.group(1)) in entries)
 
 # notebook state, computed once and correctly: fences stripped, digits required
+#
+# PHASE 2c CHANGED WHAT THIS LINE SAYS. It read `next 308`, computed from
+# notes/ alone, and that number is now wrong in the only sense that matters:
+# entry 308 will never be written. The design's § Phases freezes
+# notes/lab_notebook_2.md "exactly as volume 1 froze at entry 44", and unit
+# 0308 is where the record continued. So the line names both halves and the
+# next record it names is a UNIT -- the same id `lab new` will allocate, read
+# from the same two places `lab/new.py` reads it from, so the two can never
+# disagree.
 if entries:
     hi = max(entries)
     gaps = [n for n in range(1, hi + 1) if n not in entries and n not in GAP]
-    print(f"notebook: {len(entries)} entries, newest {hi} ({entries[hi]}), "
-          f"next {hi + 1}" + (f", MISSING {gaps}" if gaps else ""))
+    # `newest N` is kept, and the units half says `latest` rather than a second
+    # `newest`: .github/workflows/audit.yml reads this line with
+    # `s/^notebook: .*newest ([0-9]+) .*$/\1/p` and then does arithmetic on
+    # what it captures, so a second `newest` carrying a zero-padded unit id
+    # would hand a shell `$((0308 - 1))`, which is not a number in POSIX sh.
+    line = (f"notebook: {len(entries)} entries, newest {hi} ({entries[hi]}), "
+            f"FROZEN" + (f", MISSING {gaps}" if gaps else ""))
+    try:
+        sys.path.insert(0, str(ROOT))
+        from lab.new import next_id
+        from lab.unit import units_of
+        held = units_of(UNITS)
+        if held:
+            line += (f"; units: {len(held)}, latest {max(held)}, "
+                     f"next unit {next_id(UNITS)}")
+    except ImportError:
+        line += "; units: lab is not importable, so no unit state"
+    print(line)
 
 for w, why in broken: print(f"BROKEN  {w}  ->  {why}")
 print(f"\n{len(broken)} broken reference(s)")

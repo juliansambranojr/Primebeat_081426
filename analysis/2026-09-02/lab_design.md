@@ -294,6 +294,43 @@ successor as provenance. The same `supersedes:` discipline the units use,
 applied to the generated layer, so a reader who followed the old number
 can find where it went.
 
+## A correction reads its predecessor
+
+Unit 0308 states the gap: "A correction has no evidence of its own. The
+invariant asks that every number in the prose have a line in this unit's
+`values.tsv`, and a superseded figure — the 1.5% and 3.4% above — was produced
+by code that no longer exists ... A unit correcting a number that was never
+written down anywhere would have no such route."
+
+This is a practice, not a mechanism, and the reason is the measurement the
+whole program rests on. The pool is scoped to one unit, and that scoping is
+what makes the check discriminate; a checker that resolved a superseded figure
+against some other artifact would be the tree-wide pool § The one measurement
+refused. So nothing is added to `lab check`. What is added is a rule about
+which file a correcting unit reads.
+
+**The rule.** A unit that corrects a figure names the artifact that stated the
+wrong one, and its own `run/` READS the figure out of that artifact. The
+superseded number then enters `values.tsv` as a measurement of a document
+rather than as a number somebody remembered, and the correction satisfies the
+invariant the same way every other number does. Unit 0308 is the worked
+example: `run/figures.py` reads the old rates out of entry 307's prose and out
+of `lab/exempt.py`'s docstring, which is a real read of two real files.
+
+**Where there is no artifact.** A number that was never written down anywhere
+has no route, and inventing one is the defect the invariant exists to stop. The
+correcting unit then states only the number that is right, and describes what it
+replaces without quoting a figure — "the rate this file reported before it was
+computed exactly" rather than a digit with nothing behind it. What is lost is
+the size of the error, and that loss is the cost of the number never having been
+recorded, which is the argument for § No scratchpad rather than an argument for
+a new mechanism.
+
+**What this does not fix.** A wrong number that WAS written down, in a file
+that has since been deleted or rewritten, is reachable only through git.
+Reading it out of history is a real read of a real artifact and satisfies the
+rule; nothing here automates it.
+
 ## Transcript is king
 
 An agent's report reaches Julian through one generation step with no
@@ -423,7 +460,7 @@ the next starts.
 | 1 | unit layout, `lab new`, `lab values`, `lab seal`, the digest with volatile-key exclusion | the container exists; scaffolded units load and check; immutability |
 | 2 | commit gate calls `lab check`; retire the checkers it replaces | one gate; drift caught before a commit |
 | 2b | audit the exemption list; admit numbers held inside string values; `lab run`; the one-home rule at the gate | no false exemption in the corpus; a constant that lives only in a formula string is citable; every run leaves a log, a provenance record and a regenerated values.tsv inside a unit; a result cannot land outside one |
-| 2c | unit 0308's seven findings: digits for counts in `lab check`; nested `agents:` in the parser; `lab new` id allocation past the notebook; the run record written before the run; `follows:` implemented; `check_refs` scans `units/`; a correction's evidence | the design matches the code, and the first real unit's findings are closed before a second lands |
+| 2c | unit 0308's seven findings: digits for counts in `lab check` (`lab/counts.py`, a closed noun list); nested `agents:` in the parser; `lab new` id allocation past the notebook, the floor read out of the frozen notebook; the run record written before the run, `status: started`; `follows:` written by `lab new` and validated by `lab check`; `check_refs` scans `units/*/unit.md` and its state line names the next UNIT; a correction's evidence, as § A correction reads its predecessor. 0308 is sealed, so it is baselined in `utilities/lab_check_baseline.txt` with its reason rather than repaired | the design matches the code, and the first real unit's findings are closed before a second lands |
 | 3 | `lab index` both directions; strip count slots from authored files | the largest measured defect class, deleted; the archive inverts |
 | 4 | segments, `lab chain`, branch detection | durability and the inheritance check |
 | 5 | `lab cite`, brief and report blocks | no digit crosses an agent boundary |

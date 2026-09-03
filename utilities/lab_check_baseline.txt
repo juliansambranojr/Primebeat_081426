@@ -7,5 +7,21 @@
 #
 # The gate also speaks when a unit listed here starts PASSING, because that
 # means the fixture stopped being a fixture.
+#
+# PHASE 2c adds the second reason a unit lands here: it was SEALED before an
+# enforcement existed. A sealed unit is immutable, so its prose cannot be
+# brought up to a rule written after it, and the design's § A changed count
+# supersedes rather than mutates does not reach the case -- that section is
+# about the GENERATED layer, and a superseding unit points past a predecessor
+# rather than repairing it. The line below is where a later reader finds out
+# that the failure is expected and what it is.
+#
+# TWO RESIDUES, STATED. A baselined unit's whole `lab check` is suppressed,
+# the sealed-digest verification included, so a line here is a coarser
+# instrument than the finding it covers. And for a SEALED unit the gate never
+# reaches this file at all: rule 2 of utilities/check_units.py refuses any
+# staged change to a unit HEAD records as sealed, before any check runs. The
+# line is therefore documentation first and an arming second.
 
 units/0000-smoke   the permanent failing fixture: two numbers in prose and one in a fenced block have no line in values.tsv, on purpose (tests/test_lab.py)
+units/0308-phase-2b-run-capture-and-one-home   sealed 2026-09-03, before Phase 2c existed: its prose spells 4 counts in words (`Two files`, `four corrections`, `four-line`, `Four runs`) and its `follows: 0307` names notebook entry 307, which is not a unit. Both rules were written FROM this unit's own findings, and a sealed unit is immutable, so it is recorded here rather than repaired

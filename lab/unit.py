@@ -29,6 +29,28 @@ being guessed at. PyYAML is not a dependency, and a parser that silently
 accepted a nested block would let a unit mean something the checker cannot
 see.
 
+PHASE 2c ADDS EXACTLY ONE NESTING: a key whose value is a block sequence of
+FLAT MAPPINGS.
+
+    agents:
+      - id: a0a8bf60ac645202f
+        role: build
+        block: transcript/b01-phase2b-report.md
+
+That is the design's § The fingerprint, drawn there and unparseable until
+now. Unit 0308 records the finding -- "`agents:` cannot be written as the
+design draws it ... It is written here as a flow list of colon-joined
+triples" -- and the design's § The parser matches the spec settles the
+direction: "The spec is the target and the parser moves to meet it."
+
+The nesting is one level and no more. An item is `<indent>- key: value`, a
+continuation is `<indent>  key: value`, an item's values are the same scalars
+and flow lists a top-level value may be, and every other indented shape is
+still refused by name: a nested mapping with no `- `, a second level of
+nesting, an item whose indent disagrees with its siblings', a bare scalar
+item, a tab. 0308's flattened `agents:` is LEFT AS IT IS, because that unit
+is sealed and immutable; the shape a later unit writes is the one above.
+
 DECISIONS taken here where the design is silent. Each is recorded because
 the design names the front-matter shape without naming its grammar.
 
@@ -66,6 +88,7 @@ __all__ = [
     "format_front_matter",
     "split_front_matter",
     "units_root",
+    "units_of",
     "locate",
     "load",
 ]
@@ -85,6 +108,8 @@ RESERVED = {"True", "False", "TRUE", "FALSE", "yes", "no", "Yes", "No",
             "null", "Null", "NULL", "~"}
 BARE_ITEM = re.compile(r"^[^,\[\]'\"#]+$")
 DELIM = "---"
+ITEM = re.compile(r"^( +)- (\S.*)$")        # `  - id: a0`, the only nesting
+CONT = "  "                                 # a continuation lines up past `- `
 
 
 def _scalar(raw, where):
@@ -125,24 +150,110 @@ def _flow_list(raw, where):
     return items
 
 
+def _value(raw, where):
+    """One front-matter value: a flow list, or a scalar."""
+    raw = raw.strip()
+    if raw.startswith("["):
+        if not raw.endswith("]"):
+            raise FrontMatterError(f"{where}: unterminated flow list")
+        return _flow_list(raw, where)
+    return _scalar(raw, where)
+
+
+def _pair(line, where):
+    """`key: value` from one line's text. Raises `FrontMatterError`."""
+    m = KEY.match(line)
+    if not m:
+        raise FrontMatterError(f"{where}: {line!r} is not `key: value`")
+    key, raw = m.group(1), m.group(2)
+    if raw is None or not raw.strip():
+        raise FrontMatterError(
+            f"{where}: key {key!r} has no value; write `{key}: ''` for the "
+            f"empty string")
+    return key, _value(raw, where)
+
+
+def _block_sequence(lines, start):
+    """([flat mapping, ...], lines consumed) for the block starting at `start`.
+
+    PHASE 2c, and this is the ONLY nesting the parser accepts -- a sequence of
+    flat mappings, which is what the design's § The fingerprint draws for
+    `agents:` and nothing more:
+
+        agents:
+          - id: a0a8bf60ac645202f
+            role: build
+            block: transcript/b01-phase2b-report.md
+
+    Returns `(None, 0)` when `start` does not open one, so the caller can
+    raise its own "this key has no value" error. Every other indented shape
+    is refused here by name, which is the strictness the module docstring
+    records: reject what it cannot read rather than guessing at it.
+    """
+    if start >= len(lines):
+        return None, 0
+    first = ITEM.match(lines[start])
+    if not first:
+        return None, 0
+    indent = first.group(1)
+    cont = indent + CONT
+    items, i = [], start
+    while i < len(lines):
+        line, where = lines[i], f"front matter line {i + 1}"
+        if not line[:1].isspace():
+            break
+        if line != line.rstrip():
+            raise FrontMatterError(f"{where}: trailing whitespace")
+        if "\t" in line[:len(line) - len(line.lstrip())]:
+            raise FrontMatterError(f"{where}: a tab in the indentation; this "
+                                   f"parser indents with spaces only")
+        m = ITEM.match(line)
+        if m and m.group(1) == indent:
+            key, value = _pair(m.group(2), where)
+            items.append({key: value})
+        elif line.startswith(cont) and not line[len(cont):len(cont) + 1] in \
+                (" ", "-"):
+            if not items:
+                raise FrontMatterError(
+                    f"{where}: a mapping line before the sequence's first "
+                    f"`- ` item")
+            key, value = _pair(line[len(cont):], where)
+            if key in items[-1]:
+                raise FrontMatterError(f"{where}: duplicate key {key!r} in "
+                                       f"this item")
+            items[-1][key] = value
+        else:
+            raise FrontMatterError(
+                f"{where}: {line!r} is not an item of this block sequence. "
+                f"An item is {indent!r} + '- key: value' and a continuation "
+                f"is {cont!r} + 'key: value'; this parser accepts a sequence "
+                f"of FLAT mappings and no deeper shape")
+        i += 1
+    return items, i - start
+
+
 def parse_front_matter(text):
     """Parse the INNER lines of a front-matter block into a dict.
 
     `text` excludes the `---` delimiters; `split_front_matter` strips those.
     Raises `FrontMatterError` on anything outside the accepted subset.
     """
-    out = {}
-    for n, line in enumerate(text.split("\n"), 1):
+    lines = text.split("\n")
+    out, i = {}, 0
+    while i < len(lines):
+        line, n = lines[i], i + 1
         where = f"front matter line {n}"
         if not line.strip():
+            i += 1
             continue
         if line != line.rstrip():
             raise FrontMatterError(f"{where}: trailing whitespace")
         if line[:1].isspace():
             raise FrontMatterError(
-                f"{where}: indented, so it is a nested mapping, a block "
-                f"sequence or a continuation; this parser accepts flat "
-                f"key/value lines only")
+                f"{where}: indented, and the line above it is not a key "
+                f"opening a block sequence; this parser accepts flat "
+                f"key/value lines and one nesting, `key:` followed by "
+                f"`- key: value` items")
         if line.lstrip().startswith("#"):
             raise FrontMatterError(f"{where}: comments are not accepted")
         m = KEY.match(line)
@@ -152,16 +263,16 @@ def parse_front_matter(text):
         if key in out:
             raise FrontMatterError(f"{where}: duplicate key {key!r}")
         if raw is None or not raw.strip():
-            raise FrontMatterError(
-                f"{where}: key {key!r} has no value; write `{key}: ''` for "
-                f"the empty string")
-        raw = raw.strip()
-        if raw.startswith("["):
-            if not raw.endswith("]"):
-                raise FrontMatterError(f"{where}: unterminated flow list")
-            out[key] = _flow_list(raw, where)
-        else:
-            out[key] = _scalar(raw, where)
+            block, used = _block_sequence(lines, i + 1)
+            if block is None:
+                raise FrontMatterError(
+                    f"{where}: key {key!r} has no value; write `{key}: ''` "
+                    f"for the empty string")
+            out[key] = block
+            i += 1 + used
+            continue
+        out[key] = _value(raw, where)
+        i += 1
     return out
 
 
@@ -178,6 +289,28 @@ def format_front_matter(mapping):
             raise FrontMatterError(f"{key!r} is not a usable key")
         if isinstance(value, bool):
             rendered = "true" if value else "false"
+        elif isinstance(value, list) and value \
+                and all(isinstance(item, dict) for item in value):
+            # PHASE 2c: the block sequence `_block_sequence` reads back.
+            lines.append(f"{key}:")
+            for item in value:
+                if not item:
+                    raise FrontMatterError(f"{key}: an empty mapping is not "
+                                           f"an item of a block sequence")
+                for j, (sub, sub_value) in enumerate(item.items()):
+                    if not KEY.match(f"{sub}: x"):
+                        raise FrontMatterError(f"{key}: {sub!r} is not a "
+                                               f"usable key")
+                    if isinstance(sub_value, bool):
+                        text = "true" if sub_value else "false"
+                    elif isinstance(sub_value, str):
+                        text = _render_scalar(sub, sub_value)
+                    else:
+                        raise FrontMatterError(
+                            f"{key}.{sub}: {type(sub_value).__name__} is not "
+                            f"a flat-mapping value; use str or bool")
+                    lines.append(f"  {'- ' if j == 0 else '  '}{sub}: {text}")
+            continue
         elif isinstance(value, list):
             for item in value:
                 if not isinstance(item, str) or not BARE_ITEM.match(item) \
@@ -242,6 +375,30 @@ def units_root(cwd=None):
     answered privately.
     """
     return _units_root(cwd or pathlib.Path.cwd())
+
+
+ID_DIR = re.compile(r"^(\d{4,})-")
+
+
+def units_of(root):
+    """{id: path} for every `<id>-<slug>` directory under `root`.
+
+    PHASE 2c. `lab new` already read the directory to allocate an id and
+    `lab check` now has to answer "is 0307 a unit" for `follows:`, which is
+    the same question asked twice. The directory is the ground truth for both,
+    because it is the thing an id has to be unique against.
+    """
+    out = {}
+    root = pathlib.Path(root)
+    if not root.is_dir():
+        return out
+    for path in sorted(root.iterdir()):
+        if not path.is_dir():
+            continue
+        m = ID_DIR.match(path.name)
+        if m:
+            out[m.group(1)] = path
+    return out
 
 
 def locate(arg, cwd=None):

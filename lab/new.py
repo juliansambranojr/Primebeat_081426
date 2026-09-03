@@ -17,6 +17,31 @@ four places. When Phase 3 lands, INDEX.md becomes the faster path to the
 same answer; the directory stays the ground truth, because it is the thing
 the id has to be unique against.
 
+PHASE 2c: THE DIRECTORY IS NOT THE ONLY FLOOR. Unit 0308 records what that
+allocation did on the first real unit -- "it produced `0005-` while the
+container's ids continue the notebook's numbering and this one has to be
+0308 ... Nothing in the program knows the notebook's last number." The
+design's § Phases says why the two numberings are one: "`notes/
+lab_notebook_2.md` freezes exactly as volume 1 froze at entry 44; unit 0305
+onward are directories."
+
+So the floor is the notebook's last entry number, and it is READ out of
+`notes/lab_notebook_2.md` rather than written down here as a constant. Two
+reasons, and the second is the load-bearing one:
+
+  - The notebook is the only place that number exists. A constant in this
+    file would be a second copy of a count, which is the defect class the
+    design's § The one measurement names -- every fact that drifted across
+    three project trees was a count, an inventory or a status.
+  - The file is FROZEN, so the read is stable: it returns 307 today and 307
+    in a year, and it costs one regex over one file at scaffold time.
+
+The notebook is found beside `units/` -- `<repo>/notes/lab_notebook_2.md`,
+the repo root being the parent of the units directory. A tree with no
+notebook (a bare `units/` in a test, another project's container) has no
+floor, and the directory alone answers, which is Phase 1's behaviour
+unchanged. The id taken is `max(highest directory id, notebook floor) + 1`.
+
 A FRESHLY SCAFFOLDED UNIT LOADS AND CHECKS CLEAN. The `values.tsv` is
 empty -- only the header comment lines `lab values` writes for a `run/`
 with nothing in it -- and the body states no numbers. An empty pool plus no
@@ -41,6 +66,12 @@ DECISIONS taken here where the design is silent:
     so a scaffold that has none would teach the wrong shape.
   - An existing directory is never touched: `lab new` refuses rather than
     merging into it.
+  - PHASE 2c: `follows:` is written, pointing at the newest SEALED unit, per
+    the design's § What a unit declares. It is OMITTED when no unit under
+    `units/` is sealed, because the parser rejects an empty value and a
+    placeholder would be a unit id naming no unit. `lab check` validates the
+    field -- it names an existing unit, and a unit does not follow itself --
+    and nothing walks it: the walk, forks, gaps and segments are Phase 4.
 """
 
 import datetime
@@ -48,12 +79,23 @@ import pathlib
 import re
 
 from . import values as values_mod
-from .unit import UnitError, format_front_matter, units_root
+from .unit import (
+    FrontMatterError,
+    UnitError,
+    format_front_matter,
+    parse_front_matter,
+    split_front_matter,
+    units_of,
+    units_root,
+)
 
-__all__ = ["SLUG", "next_id", "scaffold", "run"]
+__all__ = ["SLUG", "next_id", "notebook_floor", "newest_sealed", "scaffold",
+           "run"]
 
 SLUG = re.compile(r"^[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*$")
 ID = re.compile(r"^(\d{4,})-")
+NOTEBOOK = ("notes", "lab_notebook_2.md")
+ENTRY = re.compile(r"^## \d{4}-\d{2}-\d{2} . Entry (\d+)\b", re.M)
 
 BODY = """\
 **Question.** <one line: what this unit set out to measure. The transcript
@@ -70,8 +112,52 @@ QUESTION = ("> <paste the transcript bracket this unit's question was posed "
             "in, verbatim>\n")
 
 
+def notebook_floor(root):
+    """The last entry number in `<repo>/notes/lab_notebook_2.md`, or None.
+
+    The container continues the notebook's numbering, so the notebook's last
+    entry is a floor under every unit id. Read rather than stored: see the
+    module docstring for why a constant here would be a second copy of a
+    count.
+    """
+    path = pathlib.Path(root).parent.joinpath(*NOTEBOOK)
+    if not path.is_file():
+        return None
+    numbers = [int(m.group(1))
+               for m in ENTRY.finditer(path.read_text(encoding="utf-8"))]
+    return max(numbers) if numbers else None
+
+
+def newest_sealed(root):
+    """The highest id among the units under `root` that are sealed, or None.
+
+    What `follows:` points at, per the design's § What a unit declares:
+    "`lab new` fills it with the newest sealed unit, so the ordinary case
+    needs no thought and deviating is an explicit edit." Newest is by id,
+    which the design's § The naming is deterministic makes the ordering key --
+    "immutable and only increases" -- rather than by a timestamp.
+    """
+    best = None
+    for unit_id, path in units_of(root).items():
+        md = path / "unit.md"
+        if not md.is_file():
+            continue
+        try:
+            fm_text, _ = split_front_matter(md.read_text(encoding="utf-8"))
+            front = parse_front_matter(fm_text)
+        except (FrontMatterError, OSError, UnicodeDecodeError):
+            continue                     # unreadable is not sealed
+        if front.get("sealed") is True and (best is None or unit_id > best):
+            best = unit_id
+    return best
+
+
 def next_id(root):
-    """The next free unit id under `root`, zero-padded to four places."""
+    """The next free unit id under `root`, zero-padded to four places.
+
+    `max(highest directory id, the notebook's last entry) + 1`. PHASE 2c
+    added the second term; unit 0308 is the finding that asked for it.
+    """
     highest = -1
     for path in pathlib.Path(root).iterdir():
         if not path.is_dir():
@@ -79,6 +165,9 @@ def next_id(root):
         m = ID.match(path.name)
         if m:
             highest = max(highest, int(m.group(1)))
+    floor = notebook_floor(root)
+    if floor is not None:
+        highest = max(highest, floor)
     return f"{highest + 1:04d}"
 
 
@@ -102,6 +191,13 @@ def scaffold(slug, root, today=None, type_="run", title=None):
         "supersedes": [],
         "sealed": False,
     }
+    follows = newest_sealed(root)
+    if follows is not None:
+        # After `supersedes:`, where unit 0308 put it by hand. Omitted
+        # entirely when no unit is sealed yet: the parser rejects an empty
+        # value, and `follows: none` would be a unit id that is not one.
+        front = {**{k: v for k, v in front.items() if k != "sealed"},
+                 "follows": follows, "sealed": front["sealed"]}
     (path / "run").mkdir(parents=True)
     (path / "run" / ".gitkeep").write_text("", encoding="utf-8")
     (path / "unit.md").write_text(

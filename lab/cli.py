@@ -51,6 +51,12 @@ name.ext:NN, list markers and enumerators, digits welded to an identifier,
 and backticked keys and paths. A bare integer with no decimal point is still
 checked -- lab/exempt.py records that decision and what it costs.
 
+Two findings are not about the pool. A count spelled in words -- `four runs`
+where `4 runs` would resolve to a key -- is reported with its digit form, by
+the closed noun list in lab/counts.py. A `follows:` that names no unit, or
+that names the unit's own id, is reported too; walking the field is a later
+phase.
+
 Findings print one per line, located by the bold lead-in they sit under,
 followed by one summary line. Nothing cites a line number, here or
 anywhere else in the container.
@@ -88,6 +94,12 @@ the exact invocation, the exit code, the wall time, the runnable's sha256,
 the interpreter and shell versions, the OS, and the git HEAD and dirty flag
 at the moment it ran. The index is the lowest for which neither file exists,
 so a second run never overwrites the first.
+
+The record is written BEFORE the run, carrying the invocation and
+`status: started`, and completed afterwards with the exit code, the wall
+time and the environment. So a unit's run count is a directory listing at
+any moment, during a run included, and a run that never finished leaves a
+record saying so rather than leaving nothing.
 
 That record is a result file like any other, so `lab values` folds it into
 values.tsv and a prose claim about the run has evidence to point at. Every

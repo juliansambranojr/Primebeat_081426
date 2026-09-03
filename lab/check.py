@@ -162,17 +162,46 @@ measured one, here or anywhere else. A unit citing 4.35 gets evidence that
 the number is in the file, which is all the invariant ever claimed; whether
 it is the right number from the right row is the class of error the design's
 § What this does not fix names and leaves to adversarial review.
+
+PHASE 2c ADDS TWO FINDINGS THAT ARE NOT ABOUT THE POOL.
+
+  - A COUNT SPELLED IN WORDS. `lab check` scans digits, so `four runs` is
+    invisible where `4 runs` resolves to a key -- the design's § Counts are
+    written in digits. The number-word table, the closed noun list and the
+    boundary judgement are `lab/counts.py`; this module reports what it
+    returns and prints the digit form in the message.
+  - A `follows:` THAT DOES NOT RESOLVE. The design's § What a unit declares
+    makes `follows:` the field everything else is computed from, and Phase 2c
+    builds the field and its validation only: it names an existing unit, and
+    a unit does not follow itself. Walking it, forking, gaps and segments are
+    Phase 4 and nothing here computes them.
+
+Both are exit 1, for the same reason a moved file is: the unit is not what it
+says it is. A unit with no `follows:` key is not checked against one -- the
+key is written by `lab new` from Phase 2c onward, and the fixtures predate it.
+
+A CORRECTION'S EVIDENCE IS A PRACTICE, NOT A MECHANISM. Unit 0308 records that
+a superseded figure -- one produced by code that no longer exists -- had to be
+recovered by reading it out of prose, and that a corrected number never
+written down anywhere would have no route at all. The design's new
+§ A correction reads its predecessor states what to do, and it is deliberately
+not enforced here: the pool is scoped to one unit, which is the whole
+mechanism (§ The one measurement), and a checker that resolved a corrected
+figure against some other artifact would be the tree-wide pool that
+measurement refused.
 """
 
 import json
 import re
 from decimal import Decimal, InvalidOperation
 
+from . import counts as counts_mod
 from . import digest as digest_mod
 from . import exempt as exempt_mod
-from .unit import UnitError, load
+from .unit import UnitError, load, units_of
 
-__all__ = ["check", "run", "matches", "findings", "NUM"]
+__all__ = ["check", "run", "matches", "findings", "word_counts",
+           "follows_problems", "NUM"]
 
 # Copied from utilities/check_entry_numbers.py (NUM, matches). See the module
 # docstring for why this is a copy rather than an import.
@@ -304,6 +333,44 @@ def findings(unit):
     return out, scanned, exempted
 
 
+def word_counts(unit):
+    """[(phrase, digit form, section, snippet)] for counts spelled in words.
+
+    The design's § Counts are written in digits. `lab/counts.py` owns the
+    table and the boundary; the exemption spans are passed in so that a
+    number-word inside a backticked key or a path is an address here exactly
+    as a digit is.
+    """
+    body = unit.body
+    out = []
+    for phrase, digits, start, end in counts_mod.findings(
+            body, skip=exempt_mod.spans(body)):
+        out.append((phrase, digits, _section(body, start),
+                    _snippet(body, start, end)))
+    return out
+
+
+def follows_problems(unit):
+    """[problem, ...] for a `follows:` that does not resolve. Empty is clean.
+
+    Two rules and no more, per the design's § What a unit declares: the value
+    names a unit that exists, and a unit does not follow itself. Walking the
+    field is Phase 4.
+    """
+    value = unit.front_matter.get("follows")
+    if value is None:
+        return []
+    if not isinstance(value, str):
+        return [f"FOLLOWS    {value!r} is not a single unit id"]
+    if value == str(unit.id):
+        return [f"FOLLOWS    {value} is this unit's own id; a unit does not "
+                f"follow itself"]
+    known = units_of(unit.path.parent)
+    if value not in known:
+        return [f"FOLLOWS    {value} is not a unit under {unit.path.parent}"]
+    return []
+
+
 def check(arg, out, cwd=None):
     """Run the invariant over one unit. Returns 0 clean, 1 a finding.
 
@@ -321,6 +388,13 @@ def check(arg, out, cwd=None):
     unmatched, scanned, exempted = findings(unit)
     for token, section, snippet in unmatched:
         print(f"UNMATCHED  {token:<14} § {section}  |  {snippet}", file=out)
+    spelled = word_counts(unit)
+    for phrase, digits, section, snippet in spelled:
+        print(f"DIGITS     {phrase:<14} § {section}  |  {snippet}"
+              f"  ->  write `{digits}`", file=out)
+    bad_follows = follows_problems(unit)
+    for problem in bad_follows:
+        print(problem, file=out)
     numeric, from_strings = pool_parts(unit.values)
     # An unsealed unit's summary says nothing about a seal, which keeps the
     # line the Phase 0 tests read exactly as Phase 0 wrote it. The same is
@@ -332,13 +406,19 @@ def check(arg, out, cwd=None):
                       else f"; sealed, {len(moved)} problem(s)")
     extra = from_strings - numeric
     in_strings = f" +{len(extra)} in strings" if extra else ""
+    # The two Phase 2c clauses appear only when they are non-empty, so a unit
+    # with neither prints exactly the line Phase 2b printed.
+    spelled_clause = (f", {len(spelled)} count(s) spelled in words"
+                      if spelled else "")
+    follows_clause = (f", {len(bad_follows)} follows problem(s)"
+                      if bad_follows else "")
     print(f"{unit.path}: {scanned} number(s) in prose, "
           f"{scanned - len(unmatched)} matched, {len(unmatched)} unmatched "
-          f"({exempted} exempt); "
+          f"({exempted} exempt){spelled_clause}{follows_clause}; "
           f"values.tsv: {len(unit.values)} key(s), {len(numeric)} numeric"
           f"{in_strings}{seal_state}",
           file=out)
-    return 1 if (unmatched or moved) else 0
+    return 1 if (unmatched or moved or spelled or bad_follows) else 0
 
 
 def run(arg, out, err, cwd=None):

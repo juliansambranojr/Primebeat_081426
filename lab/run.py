@@ -111,11 +111,43 @@ them would give the program dependencies -- the design's § The CLI says
 "standard library only for the program itself". The runnable knows; `run.sh`
 is free to print `numpy.__version__` into the log, and the log is in the unit.
 
+PHASE 2c: THE RECORD IS WRITTEN BEFORE THE RUN, NOT AFTER IT.
+
+Unit 0308 found the reason: "A unit cannot count its own runs ... because the
+fourth run's record does not exist while the fourth run is producing
+`figures.json`." The design's § A run record exists before the run is the fix,
+and it removes the counting rather than repairing it.
+
+So: the index is allocated, the record is written as a TEMPLATE carrying the
+invocation, the runnable's hash, the start time and `status: started`, and
+only then does anything execute. When the run returns, the same file is
+rewritten with `status: completed`, the exit code, the wall time and the
+environment -- the three the design names, plus the end time the wall time is
+measured against.
+
+Two properties fall out. A unit's run count is a directory listing at any
+moment, DURING a run included, because the Nth record exists while the Nth run
+is still producing its output. And a run that never completes -- killed,
+crashed out of the interpreter, a machine that went down -- leaves a record
+saying `status: started` with no `exit_code`, which is a durable statement
+that it was attempted and did not finish rather than an absence a reader has
+to infer.
+
+`status` is a string in a shape the pool cannot read as a number, like every
+other field but the exit code and the wall time, so the record still
+contributes exactly two numbers and both are facts about the run.
+
+WHAT IS STILL NOT COVERED: a `lab run` killed between allocating the index and
+writing the template. That window is one `write_text` wide and leaves nothing
+at all, which is the state Phase 2b left after every incomplete run.
+
 DECISIONS taken here where the design is silent:
 
-  - NOTHING IS EVER OVERWRITTEN. The log and the provenance record share an
-    index, and the index is the lowest for which NEITHER file exists. A second
-    run of a unit writes `lab_run.002.*` beside the first. The design makes a
+  - NOTHING IS EVER OVERWRITTEN by a LATER RUN. The log and the provenance
+    record share an index, and the index is the lowest for which NEITHER file
+    exists. The completion rewrites the record its own run opened, which is
+    the one file this verb writes twice. A second run of a unit writes
+    `lab_run.002.*` beside the first. The design makes a
     unit immutable only once sealed; before that, an accumulating record is
     the honest one, and the failure mode this avoids -- a re-run destroying
     the run it is compared against -- is what `utilities/resultsguard.py` and
@@ -159,11 +191,15 @@ from datetime import datetime, timezone
 from . import values as values_mod
 from .unit import UnitError, locate, parse_front_matter, split_front_matter
 
-__all__ = ["RUNNABLE", "STEM", "next_index", "provenance", "execute", "run"]
+__all__ = ["RUNNABLE", "STEM", "STARTED", "COMPLETED", "next_index",
+           "template", "completed", "provenance", "write_record", "execute",
+           "run"]
 
 RUNNABLE = "run.sh"
 STEM = "lab_run"
 SHELL = "/bin/sh"
+STARTED = "started"
+COMPLETED = "completed"
 # `-e`, and this was found by the verification rather than designed in. The
 # first failing-runnable test raised a ValueError out of python3, `run.sh`
 # carried on to its next line, and `sh` returned the exit status of that last
@@ -257,8 +293,14 @@ def environment(root):
     }
 
 
-def provenance(unit_path, argv, exit_code, started, ended, wall):
-    """The record `run/lab_run.<NNN>.json` holds, in the order it is written."""
+def template(unit_path, argv, started):
+    """The record as it is written BEFORE the run: `status: started`.
+
+    PHASE 2c. No `exit_code` key, no `environment`, no `run_end` and no
+    `wall_s`: none of them exists yet, and a placeholder would be a claim
+    about a run that has not happened. What is here is what is already true --
+    the invocation, the runnable's hash, and the moment it began.
+    """
     unit_path = pathlib.Path(unit_path)
     runnable = unit_path / "run" / RUNNABLE
     return {
@@ -271,22 +313,58 @@ def provenance(unit_path, argv, exit_code, started, ended, wall):
         "command": " ".join(argv),
         "argv": list(argv),
         "cwd": "run",
-        "exit_code": exit_code,
-        "environment": environment(unit_path),
+        "status": STARTED,
         "meta": {
             "runnable_sha256": hashlib.sha256(
                 runnable.read_bytes()).hexdigest(),
             "run_start": started,
-            "run_end": ended,
-            "wall_s": wall,
         },
     }
 
 
-def execute(run_dir, log_path, out):
-    """Run the runnable, streaming to `out` and to the log. Returns the code."""
-    argv = [SHELL, *SHELL_FLAGS, RUNNABLE]
-    started, clock = _utc(), time.monotonic()
+def completed(record, unit_path, exit_code, ended, wall):
+    """The started record, completed: exit code, wall time, environment.
+
+    The design's § A run record exists before the run names those three. The
+    key order of the Phase 2b record is preserved -- `exit_code` and
+    `environment` sit where they always sat -- so a reader comparing an old
+    record with a new one sees one added `status` line and nothing moved.
+    """
+    out = {}
+    for key, value in record.items():
+        if key == "meta":
+            continue
+        out[key] = value
+    out["status"] = COMPLETED
+    out["exit_code"] = exit_code
+    out["environment"] = environment(unit_path)
+    meta = dict(record.get("meta", {}))
+    meta["run_end"] = ended
+    meta["wall_s"] = wall
+    out["meta"] = meta
+    return out
+
+
+def provenance(unit_path, argv, exit_code, started, ended, wall):
+    """The completed record, in one call. Phase 2b's entry point, kept."""
+    return completed(template(unit_path, argv, started), unit_path,
+                     exit_code, ended, wall)
+
+
+def write_record(path, record):
+    """Write a record to `path`. One place, so both writes are one shape."""
+    path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+
+
+def execute(run_dir, log_path, out, argv=None, started=None):
+    """Run the runnable, streaming to `out` and to the log. Returns the code.
+
+    PHASE 2c passes `argv` and `started` in, because the record carrying both
+    is written before this is called. Called without them it computes them, as
+    Phase 2b did.
+    """
+    argv = list(argv) if argv else [SHELL, *SHELL_FLAGS, RUNNABLE]
+    started, clock = started or _utc(), time.monotonic()
     with log_path.open("w", encoding="utf-8") as log:
         # The unit-relative `run/`, never the absolute path: the log enters
         # the unit digest by the hash of its bytes, and an absolute path
@@ -343,16 +421,24 @@ def run(arg, out, err, cwd=None):
               f"invocation and its flags into it.", file=out)
         return 1
 
+    # PHASE 2c: allocate the index and write the record FIRST. The design's
+    # § A run record exists before the run -- "so a unit's run count is a
+    # directory listing at any moment, including during a run, and a run that
+    # was never executed says so in its own file instead of being an absence".
     index = next_index(run_dir)
     log_path = run_dir / f"{STEM}.{index:03d}.log"
     record_path = run_dir / f"{STEM}.{index:03d}.json"
+    argv = [SHELL, *SHELL_FLAGS, RUNNABLE]
+    started = _utc()
+    opened = template(path, argv, started)
+    write_record(record_path, opened)
+    print(f"RECORD     {record_path}  ({STARTED})", file=out)
 
-    argv, code, started, ended, wall = execute(run_dir, log_path, out)
-    record = provenance(path, argv, code, started, ended, wall)
-    record_path.write_text(json.dumps(record, indent=2) + "\n",
-                           encoding="utf-8")
+    argv, code, started, ended, wall = execute(run_dir, log_path, out,
+                                               argv, started)
+    write_record(record_path, completed(opened, path, code, ended, wall))
     print(f"LOG        {log_path}", file=out)
-    print(f"RECORD     {record_path}", file=out)
+    print(f"RECORD     {record_path}  ({COMPLETED}, exit {code})", file=out)
 
     if code != 0:
         print(f"FAILED     {' '.join(argv)} exited {code} after {wall:.3f}s; "
