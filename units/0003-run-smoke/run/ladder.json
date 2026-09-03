@@ -1,0 +1,10 @@
+{
+  "ladder": {
+    "ratio": 3.070311505664645,
+    "residual": 0.018401
+  },
+  "census": {
+    "rows": 422
+  },
+  "note": "the reach condition is 4.92*sqrt(x/log x) <= T"
+}

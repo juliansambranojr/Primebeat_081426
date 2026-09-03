@@ -13,7 +13,7 @@ and whose closing line explains why the gate rather than a hook carries them:
 "A commit gate is patchable from inside a session where a hook is not, which
 is why the gate carries the load."
 
-Two rules, over `git diff --cached --name-only`:
+Three rules, over `git diff --cached --name-only`:
 
   1. Every `units/<unit>/` directory touched must pass `lab check` (exit 0).
      Units expected to fail are listed with a reason in
@@ -23,6 +23,31 @@ Two rules, over `git diff --cached --name-only`:
   2. A unit that HEAD records as `sealed: true` may not appear in the staged
      diff at all, in any file. A sealed unit is immutable; a changed result is
      a new unit that `supersedes:` it.
+  3. PHASE 2b, THE ONE-HOME RULE. A result written from here on lives inside a
+     unit. A staged file under `results/` or `analysis/**/results/` that HEAD
+     does not already track at that path is refused, and `lab new` plus
+     `lab run` are named as where it goes instead. A staged change to a file
+     HEAD already tracks there passes untouched: those two trees freeze
+     exactly as `notes/lab_notebook_2.md` freezes, and everything they hold
+     stays.
+
+THE ONE-HOME RULE IS OVER THE ARTIFACT, per the design's § Enforcement is over
+artifacts, never over process: "the gate never asks whether `lab new` was run.
+It asks whether the thing on disk has the properties `lab new` produces." So
+the test is `git cat-file -e HEAD:<path>` -- is this path already in the
+frozen tree -- and nothing else. It does not ask which tool wrote the file,
+whether a unit exists for it, or whether the author knew the rule. A file
+copied in by hand, emitted by an old script, or produced by a run outside the
+repo is refused identically, for where it is. That also makes the rule
+survive the thing it is defending against: a run that never called a verb
+still cannot land its output outside a unit.
+
+WHY HEAD RATHER THAN THE STATUS LETTER. `git diff --cached --name-status`
+reports `A` for an add and `R` for a rename, and a rename INTO `results/` is a
+new path in the frozen tree while its letter says otherwise. Asking HEAD
+whether the path exists answers the question the rule actually asks, in one
+form, for adds, renames and copies alike. A staged DELETION passes: the path
+is in HEAD.
 
 SEALED IS READ FROM HEAD, NEVER FROM THE WORKING TREE. A commit that flipped
 `sealed: true` to `false` in the same diff would otherwise unseal itself and
@@ -38,7 +63,9 @@ so: the unit check is never skipped quietly, because a gate that goes silent
 when its tool is missing is a gate that reports clean on the day it matters.
 
 Exit 0 clean, 1 refused, 2 `lab` could not be run. The commit gate refuses on
-any nonzero.
+any nonzero. Rule 3 needs no `lab` at all, so it is evaluated and reported
+before the `lab` probe: a checkout without the program installed still cannot
+land a result outside a unit.
 
 WHY THIS IS A SEPARATE FILE. Phase 2's brief put both rules directly in
 `utilities/hooks/pre-commit`. That file is guarded:
@@ -47,24 +74,14 @@ WHY THIS IS A SEPARATE FILE. Phase 2's brief put both rules directly in
 `utilities/hooks/check_bash_guard.py` refuses any command from a session that
 would create, list or remove such a flag -- flags are Julian's, from his own
 terminal. So the logic lives here, where it is testable on its own, and the
-gate gains four lines. To wire it, after the section numbered 7 and before the
-closing `fixed=` line of `utilities/hooks/pre-commit`:
+gate gains four lines.
 
-    # -- 8. units touched in the staged diff -------------------------------
-    if ! python3 utilities/check_units.py; then
-      exit 1
-    fi
-
-and one entry in that file's header list:
-
-    #   8. check_units.py     every units/<unit>/ touched in the staged diff
-    #                         passes `lab check`, and a unit HEAD records as
-    #                         sealed does not appear in the diff at all.
-    #                         Expected failures: utilities/lab_check_baseline.txt.
-    #                         If `lab` cannot run the commit is refused.
-
-Until that edit is applied the two rules are not enforced at commit time. Run
-this by hand in the meantime.
+CORRECTION. The version of this docstring Phase 2 shipped closed with "Until
+that edit is applied the two rules are not enforced at commit time. Run this
+by hand in the meantime." Julian applied it: `utilities/hooks/pre-commit`
+carries section 8 and its header entry, and calls this file. The rules here
+are enforced at commit time, and adding a rule to this file arms it without
+touching the guarded gate.
 """
 import pathlib
 import shutil
@@ -129,6 +146,51 @@ def sealed_in_head(unit):
     return False
 
 
+def in_frozen_results(path):
+    """True when a repo-relative path sits under a frozen results tree.
+
+    The two the design freezes: `results/` at the root, and any `results/`
+    directory under `analysis/`. A component named `results` is required to be
+    a DIRECTORY component, never the file itself, so a file called `results`
+    is not mistaken for the tree of the same name.
+    """
+    parts = path.split("/")
+    if len(parts) < 2:
+        return False
+    if parts[0] == "results":
+        return True
+    return parts[0] == "analysis" and "results" in parts[1:-1]
+
+
+def tracked_in_head(path):
+    """True when HEAD already holds a blob at exactly this path."""
+    code, _ = git("cat-file", "-e", f"HEAD:{path}")
+    return code == 0
+
+
+def new_results_files(files):
+    """Staged paths under a frozen results tree that HEAD does not hold."""
+    return [f for f in files
+            if in_frozen_results(f) and not tracked_in_head(f)]
+
+
+def report_one_home(files, out=print):
+    """Rule 3. Returns the refused paths, having printed the refusal."""
+    offenders = new_results_files(files)
+    if not offenders:
+        return offenders
+    out("-- A result written from here on lives inside a unit --")
+    for f in offenders:
+        out(f"   NEW  {f}")
+    out("   results/ and analysis/**/results/ are frozen: what they already")
+    out("   hold stays, and nothing new is added to them.")
+    out("   Put it in a unit instead:")
+    out("     lab new <slug>       scaffolds units/<id>-<slug>/")
+    out("     lab run <unit>       executes run/run.sh, captures the log and")
+    out("                          the provenance record, regenerates values.tsv")
+    return offenders
+
+
 def baseline():
     """{unit relpath: reason} for units `lab check` is expected to fail."""
     out = {}
@@ -144,6 +206,16 @@ def baseline():
 
 
 def main():
+    files = staged_files()
+
+    # Rule 3 first: it reads git alone, so it holds in a checkout where the
+    # program is not installed.
+    one_home = report_one_home(files)
+
+    units = touched_units(files)
+    if not units:
+        return 1 if one_home else 0
+
     argv, how = lab_command()
     if argv is None:
         print("-- lab is not runnable, and the unit check is not skippable --")
@@ -151,18 +223,14 @@ def main():
         print("   Install it:  pip install -e .")
         return 2
 
-    units = touched_units(staged_files())
-    if not units:
-        return 0
-
     known = baseline()
     refused, checked = [], 0
     print(f"   unit check via {how}")
 
-    for unit, files in units.items():
+    for unit, staged in units.items():
         if sealed_in_head(unit):
             print(f"-- Staged change to a SEALED unit: {unit} --")
-            for f in files:
+            for f in staged:
                 print(f"   {f}")
             print("   A sealed unit is immutable. A changed result is a NEW")
             print("   unit that supersedes it:  lab new <slug>, then set")
@@ -192,7 +260,7 @@ def main():
         refused.append(unit)
 
     print(f"   {checked} unit(s) checked, {len(refused)} refused")
-    return 1 if refused else 0
+    return 1 if (refused or one_home) else 0
 
 
 if __name__ == "__main__":

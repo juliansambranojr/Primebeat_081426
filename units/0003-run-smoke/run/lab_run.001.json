@@ -1,0 +1,28 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0003-run-smoke",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.14.3",
+    "path_python3": "v3.14.3",
+    "shell": "/bin/sh",
+    "os": "Darwin v25.6.0 arm64",
+    "virtual_env": ".venv",
+    "git_head": "408de2a07b598fe72a25b58b7ea3888fb808aafa",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "842fa8317e42e68d536ac54e3a3825ce46f76168045cf471d54cc2414446dd17",
+    "run_start": "2026-09-03T06:04:24Z",
+    "run_end": "2026-09-03T06:04:24Z",
+    "wall_s": 0.023337375023402274
+  }
+}

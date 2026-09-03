@@ -102,15 +102,22 @@ def test_class_matches_its_own_example(klass):
     assert klass.pattern.search(klass.example), klass.name
 
 
-@pytest.mark.parametrize("klass", exempt_mod.CLASSES, ids=IDS)
-def test_class_does_not_match_its_counter_example(klass):
-    assert not klass.pattern.search(klass.counter), klass.name
+COUNTERS = [(k, c) for k in exempt_mod.CLASSES for c in k.counter]
+
+
+@pytest.mark.parametrize("klass,counter", COUNTERS,
+                         ids=[f"{k.name}-{i}" for i, (k, _)
+                              in enumerate(COUNTERS)])
+def test_class_does_not_match_its_counter_example(klass, counter):
+    assert not klass.pattern.search(counter), f"{klass.name}: {counter!r}"
 
 
 @pytest.mark.parametrize("klass", exempt_mod.CLASSES, ids=IDS)
 def test_class_is_documented(klass):
-    """A class with no reason and no real example is not in the list."""
+    """A class with no reason, no example and no counter is not in the list."""
     assert klass.why.strip() and klass.example.strip()
+    assert isinstance(klass.counter, tuple) and klass.counter
+    assert all(c.strip() for c in klass.counter)
     assert klass.name in __import__("lab.exempt", fromlist=["x"]).__doc__ \
         or klass.why                       # the why line carries the naming
 
@@ -237,3 +244,86 @@ def test_refs_id_is_the_one_class_that_is_not_a_pattern():
     assert unit.ids == {"0000", "0001"}
     assert exempt_mod.refs_id("0001", unit.ids)
     assert not exempt_mod.refs_id("0003", unit.ids)
+
+
+# --- PHASE 2b: the false exemption, in the corpus sentences it came from -----
+
+FALSE_EXEMPTIONS = [
+    ("U1 Ψ closed form against 8000-node Gauss–Legendre quadrature",
+     ["8000"]),
+    ("the 24000-point values agree to 1e-4 relative",
+     ["24000", "1e-4"]),
+]
+
+
+@pytest.mark.parametrize("prose,expected", FALSE_EXEMPTIONS,
+                         ids=["8000-node", "24000-point"])
+def test_a_grid_size_written_with_a_hyphen_is_not_a_unit_address(prose,
+                                                                 expected):
+    """Both tokens `unit-path` used to swallow. They are counts.
+
+    A false exemption is worse than a false accept: the number never reaches
+    the comparison, so it appears in no column a reader could question.
+    """
+    assert scanned_tokens(prose) == expected
+
+
+UNIT_ADDRESSES = [
+    "The unit is units/0305-fixed-window-Lc/unit.md.",
+    "See units/0003-smoke-again for the re-run.",
+    "0305-fixed-window-Lc/unit.md holds the prose.",
+]
+
+
+@pytest.mark.parametrize("prose", UNIT_ADDRESSES,
+                         ids=[p[:24] for p in UNIT_ADDRESSES])
+def test_a_real_unit_address_is_still_exempt(prose):
+    """Tightening bought precision without dropping the class's own job."""
+    assert scanned_tokens(prose) == []
+
+
+def test_the_corpus_fractions_are_what_the_docstring_records():
+    """`lab/exempt.py`'s recorded dry run, held to by a test.
+
+    Reads the notebook, so it is the one test here that depends on the
+    checkout's own corpus -- which is the point: the docstring's 414 and 248
+    stop being true the moment either entry is edited, and this says so.
+    """
+    text = (ROOT / "notes" / "lab_notebook_2.md").read_text(encoding="utf-8")
+    for number, tokens, removed in ((302, 1301, 414), (304, 331, 248)):
+        body = exempt_mod.entry_body(text, number)
+        got_tokens, got_removed = exempt_mod.scan(body)
+        assert (len(got_tokens), len(got_removed)) == (tokens, removed), number
+
+
+# --- PHASE 2b: numbers inside string values ---------------------------------
+
+def test_a_number_that_exists_only_inside_a_string_is_evidence():
+    """Entry 304's one real finding, reduced to its two values.tsv lines."""
+    table = {"inputs.Rmax_form":
+             '"0.137 log T + 0.443 log log T + 4.35 (assumed)"',
+             "consumers[0].t_req_expr":
+             '"4.92*sqrt(x/log x) <= T, x > 59"'}
+    numeric, from_strings = check_mod.pool_parts(table)
+    assert numeric == set()
+    for value in ("0.137", "0.443", "4.35", "4.92", "59"):
+        assert check_mod.matches(Decimal(value), from_strings), value
+
+
+def test_an_address_inside_a_string_value_is_not_evidence():
+    """The exemption list is applied inside the string, not only to prose."""
+    table = {"meta.generated_utc": '"2026-09-02T00:00:00Z"'}
+    _, from_strings = check_mod.pool_parts(table)
+    assert from_strings == set()
+
+
+def test_a_string_value_widens_the_pool_visibly():
+    """`+N in strings` in the summary, so the widening is not silent."""
+    code, out, _ = run(SEALED)
+    assert code == 0
+    assert "4 numeric +1 in strings" in out.splitlines()[-1]
+
+
+def test_a_unit_with_no_string_numbers_prints_what_phase_2_printed():
+    assert "in strings" not in run(FAILING)[1]
+    assert "in strings" not in run(CLEAN)[1]

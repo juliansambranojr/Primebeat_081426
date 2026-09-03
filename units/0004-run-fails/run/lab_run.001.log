@@ -1,0 +1,8 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-09-03T06:04:46Z
+starting the sweep
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    raise ValueError('the grid is empty at this rung')
+ValueError: the grid is empty at this rung
+# exit 1 after 0.031s, ended 2026-09-03T06:04:46Z

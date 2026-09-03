@@ -53,6 +53,8 @@ DECISIONS taken here where the design is silent:
     `meta.` keys included. The design excludes `meta.` from the DIGEST
     (§ The unit); it says nothing about excluding it from the pool, and a
     timing quoted in prose is still a number with evidence behind it.
+  - PHASE 2b: A NUMBER INSIDE A STRING VALUE ALSO JOINS THE POOL. See the
+    section below; the decision and what it costs are recorded there.
   - The prose sets the precision. `matches(want, have)` tolerates half a
     unit in the last place the PROSE states, so `0.0184` in the body
     matches `0.018401` in the file, `0.02` also matches it (two decimal
@@ -84,8 +86,85 @@ the check is what makes the seal MEAN something afterwards.
   - An UNSEALED unit carrying a `UNIT.sha256` is not checked against it.
     That state is what an in-progress `lab seal` leaves behind, and the
     front matter is the unit's own claim about itself.
+
+PHASE 2b: NUMBERS INSIDE STRING VALUES ARE ADMITTED TO THE POOL.
+
+Phase 2 admitted only values that parse as a number whole, and entry 307
+recorded where that breaks. Of the 769 keys in
+`analysis/2026-09-02/results/arrow_price.numbers`, 612 lines parse as a number
+and 431 distinct values reach the pool; 99 lines are strings and 81 of those
+hold digits.
+
+That string count is a correction. Entry 307 wrote "157 are strings", and 157
+is the number of lines that do NOT parse as a number — 99 strings plus 42
+`false`, 11 `true` and 5 `null`. Counting them, from the repository root:
+
+    python3 -c "import sys; sys.path.insert(0, '.'); \
+        from lab.exempt import _read_pool_file as R; from lab.check import _decimal as D; \
+        t = R('analysis/2026-09-02/results/arrow_price.numbers'); \
+        print(len(t), sum(1 for v in t.values() if D(v) is not None), \
+              sum(1 for v in t.values() if v.startswith('\"')))"
+    769 612 99
+
+Nothing else moves with it: 81 of the strings hold digits either way, and the
+one constant with no numeric twin is the same constant.
+
+Entry 304 states constants that live only inside them:
+`inputs.Rmax_form` is the text "0.137 log T + 0.443 log log T + 4.35
+(assumed)" and `consumers[0].t_req_expr` is "4.92*sqrt(x/log x) <= T, x > 59".
+Three of those constants have numeric twins elsewhere in the same file, and
+4.92 has none anywhere in the 431 -- so a migrated entry 304 would report
+exactly one false finding, against a number whose evidence sits on a line of
+its own values.tsv that the checker refused to read.
+
+THE DECISION IS TO ADMIT THEM, and the argument is the invariant's own
+wording. The design's § The invariant is "every number in a unit's prose
+appears in that unit's values.tsv". 4.92 DOES appear in that file. A checker
+that reports it missing is not enforcing the invariant; it is enforcing a
+narrower one it never declared, and the difference falls on exactly the
+constants a formula string is the natural home for. Refusing would leave a
+unit no way to cite one: `lab values` generates values.tsv from the run's own
+JSON, so a hand-added numeric twin would be overwritten on the next
+`lab values`, and rewriting the producing script to emit every constant twice
+is a change to the measurement in order to satisfy its checker.
+
+WHAT IT BUYS THE OTHER WAY, MEASURED RATHER THAN ASSERTED. A string is free
+text and its digits are not necessarily measurements, so the pool grows and
+every added value is another accident a prose number can land on. Two
+mitigations and then the number.
+
+  - The exemption list is applied INSIDE the string, by `numbers_in_string`.
+    A timestamp in a string value is an address exactly as it is in prose, so
+    `"2026-09-02T00:00:00Z"` contributes nothing rather than contributing
+    2026, 9 and 2. This is the whole reason the list lives in one module.
+  - The summary line prints `+N in strings` whenever the widening is
+    non-empty, so a reader sees how much of the pool came out of free text.
+    A unit with no such value prints exactly what Phase 2 printed.
+
+The cost, from `python3 -m lab.exempt rates --exact` over two real result
+files (the fraction of invented values in [0, 1000) the pool accepts):
+
+    pool                              values   bare int      1 dp      3 dp
+    arrow_price.numbers, numbers only    431     6.000%    1.400%    0.030%
+      + numbers inside string values     442     6.100%    1.430%    0.031%
+    weil_Lc_theory.numbers, numbers      4285     7.700%    2.640%    0.166%
+      + numbers inside string values     4333     7.700%    2.650%    0.167%
+
+Eleven values added to one pool and 48 to the other, for a change in the
+false-accept rate of at most a tenth of a percentage point, and none at all
+on the larger pool's integer column. That is what the one real finding of
+entry 304 costs to make checkable.
+
+WHAT IT DOES NOT BUY. The digits admitted out of `"0.137 log T + 0.443 log
+log T + 4.35 (assumed)"` are 0.137, 0.443 and 4.35 -- and the string also
+declares "(assumed)". The pool cannot tell an assumed constant from a
+measured one, here or anywhere else. A unit citing 4.35 gets evidence that
+the number is in the file, which is all the invariant ever claimed; whether
+it is the right number from the right row is the class of error the design's
+§ What this does not fix names and leaves to adversarial review.
 """
 
+import json
 import re
 from decimal import Decimal, InvalidOperation
 
@@ -112,15 +191,63 @@ def matches(want, have):
 LEAD_IN = re.compile(r"^\*\*(.+?)\*\*", re.M)          # a section's bold lead-in
 
 
-def _pool(values):
-    """The unit's numeric evidence: every values.tsv value that is a number."""
+def _decimal(text):
+    """`text` as a Decimal, or None."""
+    try:
+        return Decimal(text.replace(",", ""))
+    except (InvalidOperation, ValueError):
+        return None
+
+
+def numbers_in_string(text):
+    """Every number inside a string VALUE, addresses removed.
+
+    PHASE 2b. The exemption list is applied to the string exactly as it is
+    applied to prose, and for the same reason: a timestamp inside a string
+    value is an address, and admitting `2026`, `09` and `02` out of
+    `"2026-09-02T00:00:00Z"` would hand the pool three numbers that measure
+    nothing. `lab/exempt.py` already knows which shapes those are, so this
+    reuses it rather than growing a second list.
+    """
+    covered = exempt_mod.spans(text)
     out = set()
-    for raw in values.values():
-        try:
-            out.add(Decimal(raw.replace(",", "")))
-        except (InvalidOperation, ValueError):
+    for m in NUM.finditer(text):
+        if any(lo <= m.start() < hi for lo, hi in covered):
             continue
+        value = _decimal(m.group(0))
+        if value is not None:
+            out.add(value)
     return out
+
+
+def pool_parts(values):
+    """(numbers stored as numbers, numbers found inside string values).
+
+    The two are returned apart so the summary line can say how much of the
+    pool came out of free text, which is the widening PHASE 2b bought and the
+    thing a reader should be able to see.
+    """
+    numeric, from_strings = set(), set()
+    for raw in values.values():
+        whole = _decimal(raw)
+        if whole is not None:
+            numeric.add(whole)
+            continue
+        text = raw
+        if len(raw) >= 2 and raw[0] == '"' and raw[-1] == '"':
+            try:
+                text = json.loads(raw)
+            except ValueError:
+                text = raw
+        if isinstance(text, str):
+            from_strings |= numbers_in_string(text)
+    return numeric, from_strings
+
+
+def _pool(values):
+    """The unit's numeric evidence: every number `values.tsv` holds."""
+    numeric, from_strings = pool_parts(values)
+    return numeric | from_strings
 
 
 def _section(body, pos):
@@ -194,18 +321,22 @@ def check(arg, out, cwd=None):
     unmatched, scanned, exempted = findings(unit)
     for token, section, snippet in unmatched:
         print(f"UNMATCHED  {token:<14} § {section}  |  {snippet}", file=out)
-    pool = _pool(unit.values)
+    numeric, from_strings = pool_parts(unit.values)
     # An unsealed unit's summary says nothing about a seal, which keeps the
-    # line the Phase 0 tests read exactly as Phase 0 wrote it.
+    # line the Phase 0 tests read exactly as Phase 0 wrote it. The same is
+    # true of the string clause: a unit whose values.tsv holds no number
+    # inside a string prints exactly what Phase 2 printed.
     seal_state = ""
     if unit.front_matter.get("sealed") is True:
         seal_state = ("; sealed and unchanged" if not moved
                       else f"; sealed, {len(moved)} problem(s)")
+    extra = from_strings - numeric
+    in_strings = f" +{len(extra)} in strings" if extra else ""
     print(f"{unit.path}: {scanned} number(s) in prose, "
           f"{scanned - len(unmatched)} matched, {len(unmatched)} unmatched "
           f"({exempted} exempt); "
-          f"values.tsv: {len(unit.values)} key(s), {len(pool)} numeric"
-          f"{seal_state}",
+          f"values.tsv: {len(unit.values)} key(s), {len(numeric)} numeric"
+          f"{in_strings}{seal_state}",
           file=out)
     return 1 if (unmatched or moved) else 0
 

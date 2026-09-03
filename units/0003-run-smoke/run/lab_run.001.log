@@ -1,0 +1,5 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-09-03T06:04:24Z
+computing the ladder ratio
+wrote ladder.json
+# exit 0 after 0.023s, ended 2026-09-03T06:04:24Z

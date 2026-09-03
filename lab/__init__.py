@@ -4,8 +4,12 @@ Design: `analysis/2026-09-02/lab_design.md`. PHASE 0 of its phase table
 built the entrypoint, the unit loader, `lab check` and two fixtures.
 PHASE 1 built the unit's lifecycle: `lab new` scaffolds one, `lab values`
 generates its pool from `run/`, `lab seal` makes it immutable, and
-`lab check` holds a sealed unit to its manifest. `lab run`, `lab index`,
-`lab chain` and `lab cite` are later phases and are deliberately absent.
+`lab check` holds a sealed unit to its manifest. PHASE 2 moved the exemption
+list into `lab/exempt.py` and gave the commit gate `utilities/check_units.py`.
+PHASE 2b audited that list, admitted numbers stored inside string values, and
+built `lab run` -- the verb that puts a result in a file before it reaches a
+sentence. `lab index`, `lab chain` and `lab cite` are later phases and are
+deliberately absent.
 
 Standard library only. The design's line is "Python, standard library only
 for the program itself" (§ The CLI), and it is load-bearing: the program has

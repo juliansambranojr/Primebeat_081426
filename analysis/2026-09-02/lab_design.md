@@ -192,6 +192,25 @@ unrecorded. Neither can corrupt anything downstream, because a citation
 must resolve to a unit's values file, so an unrecorded number can never
 enter prose. What is lost is the record of having tried.
 
+## One home for a result
+
+A result written from here on lives inside a unit. `results/` and
+`analysis/**/results/` freeze exactly as the notebook does: everything they
+hold stays, cited as it always was, and nothing new is added to them.
+
+The gate is over the artifact, per § Enforcement is over artifacts, never over
+process. A staged file under either path that HEAD does not already track at
+that path is refused, and the refusal names `lab new` and `lab run` as where
+it goes instead. It asks nothing about which tool wrote the file or whether a
+unit exists for it — a hand-copied file, an old script's output and a run from
+outside the repo are refused identically, for where they are. A staged change
+to a file already tracked there passes, which is what keeps the frozen trees
+readable rather than merely present.
+
+This is the container half of § No scratchpad. That section closes the door on
+running outside a unit; this one closes the door on a number ARRIVING outside
+one, whatever produced it.
+
 ## The CLI
 
 ```text
@@ -240,6 +259,7 @@ the next starts.
 | 0 | `lab` skeleton: entrypoint, `pyproject.toml`, `lab check` on one hand-made unit, pytest | the program exists and runs |
 | 1 | unit layout, `lab new`, `lab values`, `lab seal`, the digest with volatile-key exclusion | the container exists; scaffolded units load and check; immutability |
 | 2 | commit gate calls `lab check`; retire the checkers it replaces | one gate; drift caught before a commit |
+| 2b | audit the exemption list; admit numbers held inside string values; `lab run`; the one-home rule at the gate | no false exemption in the corpus; a constant that lives only in a formula string is citable; every run leaves a log, a provenance record and a regenerated values.tsv inside a unit; a result cannot land outside one |
 | 3 | `lab index`; strip count slots from authored files | the largest measured defect class, deleted |
 | 4 | segments, `lab chain`, branch detection | durability and the inheritance check |
 | 5 | `lab cite`, brief and report blocks | no digit crosses an agent boundary |

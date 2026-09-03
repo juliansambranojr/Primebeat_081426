@@ -2,10 +2,11 @@
 
 PHASE 0 of `analysis/2026-09-02/lab_design.md` shipped one subcommand,
 `lab check`. PHASE 1 adds the rest of the unit's lifecycle: `lab new`,
-`lab values` and `lab seal`. The design's § The CLI lists eight; `lab run`,
-`lab index`, `lab chain` and `lab cite` belong to later phases and are not
-stubbed here, so that `lab --help` never advertises something that does not
-run.
+`lab values` and `lab seal`. PHASE 2b adds `lab run`, which is the verb that
+closes the window in which a result exists only in a sentence. The design's
+§ The CLI lists eight; `lab index`, `lab chain` and `lab cite` belong to later
+phases and are not stubbed here, so that `lab --help` never advertises
+something that does not run.
 
 Exit codes are uniform across every subcommand:
 
@@ -18,7 +19,7 @@ import argparse
 import sys
 
 from . import __version__, check as check_mod, new as new_mod
-from . import seal as seal_mod, values as values_mod
+from . import run as run_mod, seal as seal_mod, values as values_mod
 
 PROGRAM = """\
 lab keeps a tree of sealed units honest.
@@ -73,6 +74,32 @@ prose and no evidence needed. Drop the run into run/, write the prose, then
 `lab values` and `lab check`.
 """
 
+RUN = """\
+Execute a unit's runnable and record what produced its artifacts.
+
+A unit declares what to run by holding run/run.sh, which is invoked as
+`/bin/sh run.sh` with the working directory set to run/. There is no
+fallback: a unit without one is refused by name, because an implicit rule
+is one a reader has to already know.
+
+Stdout and stderr are streamed to the terminal and captured, interleaved,
+into run/lab_run.<NNN>.log. Beside it goes run/lab_run.<NNN>.json, holding
+the exact invocation, the exit code, the wall time, the runnable's sha256,
+the interpreter and shell versions, the OS, and the git HEAD and dirty flag
+at the moment it ran. The index is the lowest for which neither file exists,
+so a second run never overwrites the first.
+
+That record is a result file like any other, so `lab values` folds it into
+values.tsv and a prose claim about the run has evidence to point at. Every
+other field in it is written in a shape the exemption list treats as an
+address, so provenance never becomes evidence for a measurement.
+
+On success values.tsv is regenerated. On failure it is left exactly as it
+was -- a half-written result must not reach the evidence pool -- and the
+log and the record are still written, so the failure is diagnosable. A
+sealed unit is refused: a re-run is a new unit that supersedes it.
+"""
+
 VALUES = """\
 Regenerate a unit's values.tsv from every .json under its run/.
 
@@ -120,6 +147,16 @@ exit codes:
   2  bad usage, or no such unit
 """
 
+RUN_EXIT = """\
+exit codes:
+  0  the runnable exited 0 and values.tsv was regenerated
+  1  refused (sealed, or no run/run.sh), or the runnable exited non-zero,
+     or a result file could not be parsed. The runnable's own exit code is
+     recorded in run/lab_run.<NNN>.json rather than propagated.
+  2  bad usage, a unit that could not be loaded, or a path that is not a
+     unit at all -- nothing outside a unit is ever executed
+"""
+
 NEW_EXIT = """\
 exit codes:
   0  the unit was scaffolded
@@ -164,6 +201,16 @@ def build_parser():
                      help="front matter `title:` (default: the slug)")
 
     sub = subs.add_parser(
+        "run",
+        help="execute the unit's run/run.sh and record what produced it",
+        description=RUN,
+        epilog=RUN_EXIT,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub.add_argument("unit", metavar="<unit>",
+                     help="unit directory, name, or unambiguous id prefix")
+
+    sub = subs.add_parser(
         "values",
         help="regenerate a unit's values.tsv from its run/",
         description=VALUES,
@@ -196,6 +243,8 @@ def main(argv=None):
     if args.command == "new":
         return new_mod.run(args.slug, sys.stdout, sys.stderr,
                            type_=args.type_, title=args.title)
+    if args.command == "run":
+        return run_mod.run(args.unit, sys.stdout, sys.stderr)
     if args.command == "values":
         return values_mod.run(args.unit, sys.stdout, sys.stderr)
     if args.command == "seal":
