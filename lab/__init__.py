@@ -12,7 +12,10 @@ sentence. PHASE 3 built `lab index` -- the verb that regenerates INDEX.md and
 INDEX-values.tsv from the units tree. PHASE 4 built `lab chain` -- the verb
 that walks the follows: chain, groups units into bounded segments with
 deterministic labels, detects forks and gaps, and generates CHAIN.tsv.
-`lab cite` is a later phase and is deliberately absent.
+PHASE 5 built the agent interface: `lab cite` prints a value for a program
+to paste, `lab brief` generates a brief block carrying keys and unit ids
+for an agent prompt, and `lab report` generates a tagged report block from
+a unit.
 
 Standard library only. The design's line is "Python, standard library only
 for the program itself" (§ The CLI), and it is load-bearing: the program has

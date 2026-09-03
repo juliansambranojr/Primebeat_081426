@@ -7,9 +7,10 @@ closes the window in which a result exists only in a sentence. PHASE 3 adds
 `lab index`, which generates INDEX.md and INDEX-values.tsv. PHASE 4 adds
 `lab chain`, which walks the follows: chain, computes segments with
 deterministic labels, detects forks and gaps, and generates CHAIN.tsv.
-The design's § The CLI lists eight; `lab cite` belongs to a later phase and
-is not stubbed here, so that `lab --help` never advertises something that
-does not run.
+PHASE 5 adds `lab cite`, `lab brief` and `lab report` — the agent interface.
+`lab cite` is how a value reaches prose; `lab brief` generates a brief block
+for an agent prompt; `lab report` generates a report block from a unit.
+The design's § The CLI lists the full set.
 
 Exit codes are uniform across every subcommand:
 
@@ -22,6 +23,7 @@ import argparse
 import sys
 
 from . import __version__, check as check_mod, chain as chain_mod
+from . import cite as cite_mod, brief as brief_mod, report as report_mod
 from . import index as index_mod, new as new_mod
 from . import run as run_mod, seal as seal_mod, values as values_mod
 
@@ -175,6 +177,56 @@ for information. If CHAIN.tsv already exists, a label disagreement, a
 missing segment, or an extra segment is a finding (exit 1).
 """
 
+CITE = """\
+Print a value from a unit's values.tsv, for a program to paste.
+
+`lab cite <unit> <key>` prints the raw value, one line, no decoration.
+A script capturing it gets exactly what the file holds; an agent pasting
+it into prose gets what the pool will match against, with no retyping
+and no rounding.
+
+The design's § The agent interface: "lab cite is how a value reaches
+prose; a model asking for a number gets it from the program."
+"""
+
+BRIEF = """\
+Generate a brief block for an agent about to work on or with a unit.
+
+The brief carries keys and unit ids -- no digits as keystrokes. The
+output is a fenced block that an orchestrator can paste into an agent
+prompt. It lists the unit's identity, its chain position, the keys it
+can ask for via `lab cite`, and the paths to its files.
+
+Use `lab cite <unit> <key>` to retrieve a value the brief names.
+"""
+
+REPORT = """\
+Generate a report block from a unit, for an orchestrator to quote.
+
+The report is tagged with the unit id so it is greppable in chat. It
+carries the unit's identity, gate results from its run records, a
+values summary, its agents, and its refs.
+"""
+
+CITE_EXIT = """\
+exit codes:
+  0  the value was printed
+  1  the key does not exist in that unit's values.tsv
+  2  the unit could not be loaded
+"""
+
+BRIEF_EXIT = """\
+exit codes:
+  0  the brief was printed
+  2  the unit could not be loaded
+"""
+
+REPORT_EXIT = """\
+exit codes:
+  0  the report was printed
+  2  the unit could not be loaded
+"""
+
 CHAIN_EXIT = """\
 exit codes:
   0  chain computed, CHAIN.tsv regenerated, no disagreements
@@ -315,6 +367,39 @@ def build_parser():
                           "(default: current directory)")
     sub.add_argument("--segment-size", type=int, default=None,
                      help="units per segment (default: 25)")
+
+    sub = subs.add_parser(
+        "cite",
+        help="print a value from a unit's values.tsv",
+        description=CITE,
+        epilog=CITE_EXIT,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub.add_argument("unit", metavar="<unit>",
+                     help="unit directory, name, or unambiguous id prefix")
+    sub.add_argument("key", metavar="<key>",
+                     help="the values.tsv key to print")
+
+    sub = subs.add_parser(
+        "brief",
+        help="generate a brief block for an agent prompt",
+        description=BRIEF,
+        epilog=BRIEF_EXIT,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub.add_argument("unit", metavar="<unit>",
+                     help="unit directory, name, or unambiguous id prefix")
+
+    sub = subs.add_parser(
+        "report",
+        help="generate a report block from a unit",
+        description=REPORT,
+        epilog=REPORT_EXIT,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub.add_argument("unit", metavar="<unit>",
+                     help="unit directory, name, or unambiguous id prefix")
+
     return parser
 
 
@@ -342,6 +427,13 @@ def main(argv=None):
         if args.segment_size is not None:
             kwargs["segment_size"] = args.segment_size
         return chain_mod.run(sys.stdout, sys.stderr, **kwargs)
+    if args.command == "cite":
+        return cite_mod.run(args.unit, args.key,
+                            sys.stdout, sys.stderr)
+    if args.command == "brief":
+        return brief_mod.run(args.unit, sys.stdout, sys.stderr)
+    if args.command == "report":
+        return report_mod.run(args.unit, sys.stdout, sys.stderr)
     parser.error(f"unknown command {args.command!r}")     # unreachable
     return 2
 
