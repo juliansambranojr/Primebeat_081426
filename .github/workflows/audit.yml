@@ -20,10 +20,25 @@ jobs:
         with:
           python-version: '3.11'
 
+      # Mirrors utilities/hooks/pre-commit § 1: fail only on a BROKEN line that
+      # is not already in utilities/refs_baseline.txt. The baseline holds the
+      # references that resolve on a full working copy and not in a clean
+      # checkout — two O24 result JSONs and operator.py, all gitignored
+      # (results/LOCAL-ONLY.md). check_refs exits 1 locally only when a NEW
+      # reference breaks, so a green local run and a green CI run mean the
+      # same thing.
       - name: check_refs
         run: |
+          set +e
           python3 utilities/check_refs.py | tee refs.out
-          test "${PIPESTATUS[0]}" -eq 0
+          set -e
+          new=$(grep '^BROKEN' refs.out | sort | comm -23 - utilities/refs_baseline.txt)
+          if [ -n "$new" ]; then
+            echo "── NEW broken references, not in utilities/refs_baseline.txt ──"
+            echo "$new"
+            exit 1
+          fi
+          grep -q '^notebook:' refs.out || { echo "check_refs printed no notebook line"; exit 1; }
 
       - name: flatten_results --check on every .numbers
         run: |
