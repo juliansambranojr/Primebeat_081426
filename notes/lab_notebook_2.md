@@ -16,6 +16,234 @@ Julian's call.
 
 ---
 
+## 2026-09-02 — Entry 306 — `lab` phase 1: the unit lifecycle — `lab new`, `lab values`, `lab seal`, and the immutability guarantee inside `lab check` — the copied flattener reproduces `utilities/flatten_results.py` leaf for leaf at 769 keys on a real results file, a sealed unit refuses a second seal and names the file that moved, and the build found a false accept in its own checker: a unit path written in prose read as the number 0000 and matched a stored 0.018401, because an integer's tolerance is half a unit in the last stated place
+type: run
+refs: 302, 304, 305
+
+**Exploratory.** No prereg, no decision rule, no verdict. This entry records one
+build and the verification run over it. The build is `870686f`, the only commit
+between entry 305's commit `c95818c` and HEAD. Every number below was read from
+the file it names or from a command run while writing this entry.
+
+**What phase 1 built.** Four verbs' worth of the design's § The CLI, against
+`analysis/2026-09-02/lab_design.md`. `lab new` scaffolds a unit directory under
+the nearest `units/`, allocating its id by scanning that directory. `lab values`
+regenerates a unit's `values.tsv` from every JSON under its `run/`, which makes
+the program the owner of the pool the invariant is checked against. `lab seal`
+writes `UNIT.sha256` — one sha256 per file plus a unit digest over those lines —
+and flips the front matter to `sealed: true`. `lab check` gained the other half
+of that: a unit claiming to be sealed is rehashed against its manifest and every
+file that moved is named. `git show --stat 870686f`:
+
+```text
+ lab/__init__.py                                |  10 +-
+ lab/check.py                                   |  43 ++-
+ lab/cli.py                                     | 117 +++++++-
+ lab/digest.py                                  | 235 +++++++++++++++
+ lab/new.py                                     | 139 +++++++++
+ lab/seal.py                                    |  89 ++++++
+ lab/unit.py                                    |  11 +
+ lab/values.py                                  | 191 ++++++++++++
+ tests/test_phase1.py                           | 388 +++++++++++++++++++++++++
+ units/0002-smoke-sealed/UNIT.sha256            |  12 +
+ units/0002-smoke-sealed/question.md            |  10 +
+ units/0002-smoke-sealed/run/smoke_results.json |  15 +
+ units/0002-smoke-sealed/unit.md                |  30 ++
+ units/0002-smoke-sealed/values.tsv             |  11 +
+ 14 files changed, 1288 insertions(+), 13 deletions(-)
+```
+
+Fourteen files, 1288 insertions, 13 deletions. Four new modules: `digest.py` 235
+lines, `values.py` 191, `new.py` 139, `seal.py` 89. Four existing files changed:
+`cli.py` by 117 lines, `check.py` by 43, `__init__.py` by 10, `unit.py` by 11 —
+the last of these only exposing `units_root`, because `lab new` has to answer
+"where do units live" before any unit exists to locate. A fifth artifact is the
+committed sealed fixture `units/0002-smoke-sealed`, five files, whose `unit.md`
+says in its own body that it is committed on purpose and must not be edited.
+
+**The verification actually run.** In a scratch `units/` tree outside the
+checkout, through the installed console script.
+
+A freshly scaffolded unit loads and checks clean with no numbers anywhere in it:
+`lab new` wrote `unit.md`, `question.md`, `values.tsv` and `run/.gitkeep`, and
+`lab check` returned exit 0 on `0 number(s) in prose, 0 matched, 0 unmatched;
+values.tsv: 0 key(s), 0 numeric`.
+
+Pointed at a real results file — `analysis/2026-09-02/results/arrow_price.json`,
+the census of entry 304 — `lab values` reported 769 keys from 1 of 1 result file
+and exited 0. The sibling that `utilities/flatten_results.py` produced from the
+same JSON, `analysis/2026-09-02/results/arrow_price.numbers`, holds 769
+non-comment lines: the copied flattener and the original agree leaf for leaf.
+Five of the 769 keys carry the `meta.` prefix. Running the command a second time
+left the file byte-identical, sha256 `400bc965ca7db6c0`… both times.
+
+Two copies of one result file in a single unit produce no collision. With
+`arrow_price.json` and `arrow_price_run2.json` both in `run/`, the command
+reported 1538 keys from 2 of 2 result files, and the same inner leaf appears
+twice under two prefixes: `arrow_price.laws.measured.0.001.R2` and
+`arrow_price_run2.laws.measured.0.001.R2`, both 0.9933997636454183, two lines.
+
+A malformed result is reported and skipped. A `run/broken.json` holding the text
+`not json at all` produced `SKIPPED run/broken.json -- JSONDecodeError: Expecting
+value: line 1 column 1 (char 0)` on stderr, wrote that same text into the
+generated file as a `# skipped` line, still generated the other 1538 keys, and
+exited 1. The skip is durable in the artifact rather than only on a stream.
+
+`lab seal` on a clean unit reported 5 files and digest
+`b726693d9f5a8ec8072ea680a590a528f01b442817fde2456dbe75e34cb05f09`, and
+`lab check` afterwards exited 0 with the summary ending `sealed and unchanged`.
+It refuses in both directions. Appending "The second reading gave 9.99." to a
+sealed-ready unit made `lab check` report `UNMATCHED 9.99 § Overclaim`, and
+`lab seal` printed REFUSED with "does not pass `lab check`", exited 1, wrote no
+`UNIT.sha256`, and left the front matter at `sealed: false`. Sealing an
+already-sealed unit printed REFUSED with "a changed result is a new unit that
+supersedes this one", exited 1, and left the manifest bytes untouched.
+
+Tampering is named by file. Appending one sentence to a sealed `unit.md` made
+`lab check` print `CHANGED    unit.md  sealed a6e33c275590  now a30e39a3d4e7`
+and `DIGEST     sealed b726693d9f5a  now 5703641c5289`, close with
+`sealed, 2 problem(s)`, and exit 1. The committed fixture in the repo checks
+clean under the same path: `4 number(s) in prose, 4 matched, 0 unmatched;
+values.tsv: 7 key(s), 4 numeric; sealed and unchanged`, exit 0, its recorded
+digest `e7ce33fce78d909cff88d483b7ac39149eca6b80f58f16a78fe53fc46442d817`.
+
+`python3 -m pytest tests/test_phase1.py -q` reports 25 passed;
+`python3 -m pytest tests/test_lab.py -q` reports 63 passed; the whole `tests/`
+directory reports 88. Phase 0's tests are unmodified — `git log -1 --
+tests/test_lab.py` returns `0e4b923`, phase 0's own commit — so the 63 that
+passed before still pass unchanged, and the phase-1 tests never touch the
+committed sealed fixture: the tamper tests copy it into `tmp_path` and damage
+the copy.
+
+**The decisions the build had to make, and where they are recorded.** The design
+names the shape and is silent on the grammar, so each module's docstring records
+what was chosen. Collected here so they are findable without opening the code.
+
+- **What the digest hashes** (`lab/digest.py`). The manifest lines, joined by
+  newlines, with one substitution: `values.tsv` enters by its STABLE hash rather
+  than its raw one, the stable hash being taken over the file with its `#`
+  header lines and its `meta.`-prefixed keys removed. Every other file enters by
+  the hash of its bytes as produced. The stable hash is written out on its own
+  comment line so the digest can be recomputed by hand. The volatile fields
+  inside `run/*.json` are deliberately left in: the design says the digest covers
+  every file, and the reading taken is the one under which a bit-identical re-run
+  always matches, with the `meta.` exclusion implemented exactly where the design
+  puts it.
+- **The values header shape** (`lab/values.py`). Three fixed comment lines, then
+  one `# source` line per result file carrying that file's sha256, then one
+  `# skipped` line per file that would not parse. The header costs the pool
+  nothing because the values reader already ignores `#` lines. The source
+  sha256s are volatile by the same argument as the `meta.` keys, which is why
+  the digest strips `#` lines out.
+- **The key prefix rule.** Every key is prefixed with its source file's
+  run-relative path with `.json` dropped, so a file one level down takes
+  `sub/ladder` as its prefix. Without the prefix one file would silently
+  overwrite the other's leaf and a wrong number would have evidence.
+- **Only `*.json` under `run/` is a source.** Logs are evidence a reader reads;
+  the design's `values.tsv` is one line per leaf of a results JSON.
+- **A skip exits 1 and is durable.** Written into the generated file and printed
+  on stderr, so a skipped file never disappears quietly.
+- **The scaffold defaults** (`lab/new.py`). A slug is letters and digits
+  separated by `-` or `_` and nothing else, because a slug is half a directory
+  name and is quoted in prose. `date:` is today, `type:` defaults to `run`,
+  `title:` to the slug, `refs: []`, `supersedes: []`, `sealed: false`. `run/`
+  gets a `.gitkeep`. The body is three bold lead-ins with angle-bracket
+  placeholders and no digits at all, which is what makes a fresh scaffold check
+  clean. An existing directory is refused rather than merged into.
+- **Id allocation by directory scan, with INDEX deferred.** The design's § The
+  CLI says the id comes from INDEX and `lab index` is a later phase, so `lab new`
+  reads the directory: every name matching four-or-more digits then a slug is an
+  allocated id, and the new unit takes the highest plus one, zero-padded to four.
+  The directory stays the ground truth, because it is the thing the id has to be
+  unique against.
+- **Seal ordering.** `sealed: true` goes into `unit.md` FIRST, then the manifest
+  is computed over the unit as it then stands. Sealing in the other order would
+  leave every sealed unit reporting its own `unit.md` as changed.
+- **`sealed: true` with no manifest** is a finding, exit 1, rather than an
+  unloadable unit, exit 2: the unit loads, and its claim to be sealed is what
+  fails. The mirror case, an unsealed unit carrying a manifest, is not checked
+  against it, because that is what an interrupted seal leaves behind and the
+  front matter is the unit's own claim about itself.
+- **The `digest`-named-file guard.** A unit holding a top-level file named
+  `digest` is refused, because its manifest line would be indistinguishable from
+  the digest line. The guard is cheap and the alternative is an ambiguous format.
+
+**The false accept the build found in its own checker.** This is the most
+important thing in the entry.
+
+Writing the sealed fixture's prose, the build named the two unsealed fixtures
+beside it by their directory paths. `lab check` reads the file with a number
+regex and no path awareness, so `units/0000-smoke` handed the checker the token
+0000 as a number. The exemption list is the three classes the design names —
+dates, `unit <n>` citations, and the unit's own id together with the ids it names
+in `refs` — and a directory path is none of them. So the token was scanned. It
+parses as the integer zero. The comparison tolerates half a unit in the last
+place the PROSE states, which for an integer is zero decimal places and therefore
+a tolerance of 0.5; the rule is `utilities/check_entry_numbers.py:41–46`, the
+tolerance itself on line 45, copied verbatim into `lab/check.py`. The fixture's
+pool holds `smoke_results.ladder.residual` at 0.018401, which is inside 0.5 of
+zero. The token matched, was counted in the matched column, and printed nothing.
+
+Reproduced on a copy while writing this entry. The fixture as committed reports
+4 numbers in prose, 4 matched, 0 unmatched. With the two directory paths written
+back into it, it reports 5 numbers in prose, 5 matched, 0 unmatched — and the
+fifth is 0000 standing on the residual.
+
+The build reworded the fixture: its prose now reads "Its unsealed twins are the
+two smoke fixtures beside it, one of which is unit 0001", which the existing
+`unit <n>` exemption covers. Widening the exemption list is a phase 2 decision,
+where `lab check` is completed against migrated units, and `lab/check.py` already
+records the same refusal for ordered-list markers.
+
+This is the same false-accept class that made
+`utilities/hooks/check_numbers_in_response.py` worthless. Entry 305 measures that
+hook's pool at 59,700 values and records it accepting 1902 of 2000 invented
+three-decimal values in [0,1), and records its deregistration at `03f979f`.
+Narrowing the pool to one unit shrank the class rather than removing it: a small
+stored value and an integer's half-unit tolerance make a wide gate on a pool of
+four values just as they do on a pool of 59,700. The difference is where it was
+found. The hook was benchmarked after it had been built, trusted and cited; this
+one surfaced while the fixture that exercises it was being written, in the same
+session, before anything depended on it.
+
+**Which of phase 0's decisions held.** Three, and each of them paid.
+
+The values reader skips `#` lines (`lab/unit.py:281`), written in phase 0 when
+there was no header to skip. Phase 1 gave `values.tsv` a header of source
+sha256s and skip records; the pool is unchanged, and no reader needed touching.
+
+The strict front-matter parser makes the seal's flip a lossless round trip.
+Because `format_front_matter` is the exact inverse of `parse_front_matter` over
+every dict the parser can produce, `lab seal` rewrites `sealed: false` to
+`sealed: true` through the parser with key order preserved — which also gives the
+seal a precondition worth having: a unit that cannot be written back losslessly
+is a unit that cannot be sealed.
+
+Copy-don't-import held a second time. Phase 0 copied the number regex and the
+rounding comparison into `lab/check.py`; phase 1 copied `META_TOKENS`,
+`META_SUBSTR`, `is_meta`, `fmt`, `seg` and `leaves` out of
+`utilities/flatten_results.py` for the same reason — that file resolves its own
+repo root at import on its line 40, and importing it would tie an installed
+console script to one checkout. The 769-key agreement above is what the copy
+bought: the same leaves, from a program that runs from anywhere.
+
+**What is not done.** Four of the eight verbs — `lab run`, `lab index`,
+`lab chain` and `lab cite` — are unbuilt and still deliberately unstubbed, so the
+help advertises nothing that does not run. No existing entry is migrated; this
+entry is appended to `notes/lab_notebook_2.md` in the old format, with the old
+line-citation surface untouched. `lab` is registered in no hook and no gate —
+the commit gate calling `lab check` is phase 2 — so nothing outside a test has
+yet been made to answer to the invariant. Entry 304's census stays tabled. The
+phase-table correction entry 305 recorded as uncommitted is still uncommitted:
+`analysis/2026-09-02/lab_design.md` is modified in the working tree and its only
+commit remains `03f979f`, so the committed copy still lists nine phases with
+`lab values` in phase 2 while the working copy lists seven with it merged into
+phase 1 — and phase 1 was built against the working copy. And the error classes
+entry 305 names as caught by nothing, right-number-wrong-row and qualitative
+claims at 19 of that session's 41 recorded errors, are untouched by everything
+above: the invariant establishes that a number has evidence somewhere in its
+unit, and says nothing about whether it is the right number from the right row.
+
 ## 2026-09-02 — Entry 305 — the scaffold rebuilt from an empty directory, and `lab` phase 0: discrimination is a property of the pool's scope — 95.8% of invented three-decimal values accepted tree-wide against 3.3% by one entry — every drifted fact across three trees is a count or an inventory or a status, the live Stop hook was measured near-inert and deregistered with two others, and the program now exists at 63 passing tests with two permanent fixtures and a fenced-block number caught that every reference checker in `utilities/` strips
 type: run
 refs: 296, 301, 302, 303, 304
