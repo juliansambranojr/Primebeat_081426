@@ -16,6 +16,338 @@ Julian's call.
 
 ---
 
+## 2026-09-02 — Entry 307 — `lab` phase 2: the exemption list, the measured decision on bare integers, and a commit gate that is written but not wired — twelve address classes where the design's sentence named three, 32.0% of entry 302's number tokens and 74.9% of entry 304's removed from the scan, bare integers kept checked at a measured 6.0–7.7% false accept because every fact this project has watched drift is a count, and the four-line call into the commit gate left in a docstring because `utilities/hooks/` is write-guarded
+type: run
+refs: 302, 304, 305, 306
+
+**Exploratory.** No prereg, no decision rule, no verdict. This entry records one
+build and the verification run over it. The build is `fb5519b`;
+`git log --oneline d53468a..HEAD` returns two commits, `8014a19` and `fb5519b`,
+where `d53468a` is entry 306's own commit. Every number below was read from the
+file it names or from a command run while writing this entry.
+
+**What phase 2 built.** `git show --stat fb5519b`:
+
+```text
+ lab/check.py                     |  51 ++++----
+ lab/cli.py                       |   9 +-
+ lab/exempt.py                    | 258 +++++++++++++++++++++++++++++++++++++++
+ tests/test_phase2.py             | 239 ++++++++++++++++++++++++++++++++++++
+ units/0000-smoke/unit.md         |  10 ++
+ utilities/check_units.py         | 199 ++++++++++++++++++++++++++++++
+ utilities/lab_check_baseline.txt |  11 ++
+ 7 files changed, 748 insertions(+), 29 deletions(-)
+```
+
+Seven files, 748 insertions, 29 deletions. Four are new: `lab/exempt.py` 258
+lines, `tests/test_phase2.py` 239, `utilities/check_units.py` 199,
+`utilities/lab_check_baseline.txt` 11. `lab/check.py` lost the two patterns
+phase 0 wrote into it and now holds none of its own; `lab/cli.py` restates the
+list in its help; the failing fixture gained a ten-line paragraph whose whole
+subject is addresses. `python3 -m pytest tests/test_phase2.py -q` reports 82
+passed and the whole `tests/` directory reports 170.
+
+The second commit is the phase-table correction that entries 305 and 306 both
+recorded as still uncommitted. `8014a19` touches one file,
+`analysis/2026-09-02/lab_design.md`, 7 insertions and 8 deletions, and the
+committed phase table now reads seven phases with `lab values` merged into
+phase 1 — byte-identical to the working copy phases 1 and 2 were built against.
+`git status --porcelain` on that path returns nothing.
+
+**The false accept, before and after.** Entry 306 records the discovery and why
+it happens; this records the fix and the two counts either side of it.
+
+The token is `0003`, taken out of `units/0003-smoke-again` written in the
+fixture's own prose. It parses as the integer 3. An integer states zero decimal
+places, so `matches` gives it half a unit in the last stated place, a tolerance
+of 0.5. The fixture's pool holds `ladder.ratio` 3.070311505664645, and
+|3.070311505664645 − 3| = 0.070311505664645, inside 0.5. It was counted in the
+matched column and printed nothing.
+
+Run while writing this entry, the phase-1 checker (`lab/check.py` restored from
+`870686f`) against the fixture as `fb5519b` committed it reports 16 numbers in
+prose, 6 matched, 10 unmatched. Two of those six matches are accidents: `0003`
+standing on the ladder ratio, and `13` — the digits of the identifier `eq_13` —
+standing on the fixture's stored timing 12.5, its one `meta.` leaf, at exactly
+the 0.5 tolerance. The build's own recorded reproduction, against the fixture as
+it stood mid-build, is 8 numbers in prose, 5 matched, 3 unmatched.
+
+The same fixture under `fb5519b`: 7 numbers in prose, 4 matched, 3 unmatched
+(18 exempt); values.tsv 4 keys, 4 numeric; exit 1. Neither `0003` nor `13`
+reaches the comparison. The three findings are the ones the fixture is for —
+9.99, 61 and the fenced 7.5. The summary line gained an `(N exempt)` field, so
+what the list removed is visible rather than silent. The clean fixtures are
+unmoved: `units/0001-smoke-clean` 6 in prose, 6 matched, 0 unmatched (5 exempt),
+exit 0; `units/0002-smoke-sealed` 4, 4, 0 (5 exempt), sealed and unchanged,
+exit 0.
+
+**The twelve classes.** Read from `lab/exempt.py` — class, the example it
+carries, and the counter-example that must stay checked. Every row is
+parametrized in `tests/test_phase2.py` four ways: the pattern matches its
+example, it does not match its counter, it carries a reason and an example, and
+no number inside its example survives the whole list.
+
+```text
+class              example                                    counter
+date               2026-09-02T11:12:27                        12.5
+unit-path          units/0003-smoke-again                     2026-09-02
+unit-or-entry-ref  unit 0305                                  a width of 61
+refs-list          refs: 298, 299, 300, 301                   the refs: 298 mentioned mid-sentence
+hex                47fa48680663df41146704d02a5b092d792bd5b9   30610046000
+version            v4.32.2                                    4.32
+file-cite          notes/lab_notebook_2.md:193-199            analysis/2026-09-01/results/weil_Lc_theory.numbers
+list-marker        1. the height law is a regression          1.77 is the fitted slope
+enumerator         (1) The height law is a regression         (16,)
+ident-digits       eq_13                                      1e-16
+code-span          `theory.k=10|eps=0.01.at_root.two_B2`      `3.07`
+named-ref          Theorem 1.4                                b = 1.77
+```
+
+A thirteenth exemption is not a pattern. `refs_id` is a function, because it
+depends on the unit rather than on the text: a bare `0001` in a unit whose front
+matter reads `refs: [0001]` is that unit's address, and the same token in a unit
+that names nothing stays a claim.
+
+The design named three. `analysis/2026-09-02/lab_design.md` § The invariant:
+"Numbers that are not measurements — dates, entry ids, line counts of the unit
+itself — are exempt by pattern and the exemption list lives in the program."
+Phase 0 built two patterns from that sentence, `DATE` and `UNIT_CITE`, plus the
+set test on the unit's own ids. Nine of the twelve are additions the corpus
+forced. Counting every exempted token in entries 302 and 304 and attributing it
+to the first class that claims it, the two largest additions are backticked keys
+and digits welded to identifiers:
+
+```text
+class              entry 302   entry 304   both
+ident-digits             143          63    206
+code-span                167          29    196
+date                      36          53     89
+file-cite                 29          55     84
+unit-or-entry-ref         13          14     27
+hex                        7          17     24
+named-ref                 10           9     19
+enumerator                 5           4      9
+refs-list                  4           4      8
+unit-path                  2           0      2
+version                    0           0      0
+list-marker                0           0      0
+```
+
+**The dry-run coverage over the corpus.** Entry 302 holds 1301 number tokens,
+416 exempt, 32.0%, and 885 reach the pool. Entry 304 holds 331, 248 exempt,
+74.9%, and 83 reach the pool. The gap between the two is where the numbers sit:
+entry 302 is a fit of 24 rows and states its measurements bare, entry 304 is a
+census that quotes its own `.numbers` keys, and a quoted key is an address.
+
+What survives in both is measurements plus small structural integers out of
+expressions written in prose. Entry 302's survivors open `24, 2, 5, 7.7e4, 2,
+1.77, 0.001, 0.992, 1.48, 0.01, 1.093`; entry 304's open `2, 0.073, 0.0234, 2,
+2, 1, 2, 1, 0, 0.5`. The `2` and the `1` are `2|B|`, `w = 1/2` and `k = 1`, and
+those are claims the pool can answer.
+
+**Bare integers, decided as a measurement rather than as a preference.** Held
+`matches` fixed and varied the precision of the invented value against three
+real pools, integers over 0..999 and 1000 uniform invented values in the same
+range, re-run while writing this entry:
+
+```text
+pool                                                 numeric   bare int   1 dp   3 dp
+analysis/2026-09-02/results/arrow_price.numbers          431       6.0%   1.8%   0.0%
+analysis/2026-09-01/results/weil_Lc_theory.numbers      4285       7.7%   2.6%   0.2%
+units/0000-smoke/values.tsv                                4       0.5%   0.1%   0.0%
+```
+
+An integer check is weaker than a three-decimal check by more than an order of
+magnitude and still refuses 92–94% of invented values against a real pool. The
+integer column is deterministic and reproduces the build's table exactly; the
+two decimal columns come from an unseeded draw, and `lab/exempt.py` records
+1.5%, 3.4%, 0.1% and 0.4% where this re-draw gives 1.8%, 2.6%, 0.0% and 0.2% —
+same magnitudes, different digits, and not reproducible as written.
+
+Integers stay checked because the drift this project has actually measured is
+integer-shaped. `analysis/2026-09-02/lab_design.md` § The one measurement:
+"Second measurement: across three project trees, every fact that drifted is a
+count, an inventory, or a status. No judgement drifted." Entry 305 records the
+same finding from the other side — the Lean bench module count stated in five
+files with four answers. Exempting integers would leave the largest measured
+defect class unchecked by the one mechanism built to catch it. Entry 302's own
+prose is the local case: "15 of the 24 rows", root counts 15/15/24/21, `n_near`
+7, `params.M_instrument` 16, `params.n_zeros` 100000 — every one an integer,
+every one a count.
+
+Three residual failure cases are named in `lab/exempt.py` and left standing:
+
+- A small integer near a stored value passes — a claim of "3 rungs" against a
+  stored ratio of 3.07.
+- A bare numeric range with no introducing word passes. Entry 302 writes "cited
+  the traceback at log lines 15-22; it is at 14-21", and the second range has
+  neither `lines` before it nor a file citation attached.
+- An address shape not in the table passes, which is why a new shape is added to
+  the table with its example rather than special-cased at the call site.
+
+**The gate, and why it is a separate file.** The design's § Enforcement puts two
+rows at the commit gate — a number in prose with no evidence, and an overwritten
+result — and closes with "A commit gate is patchable from inside a session where
+a hook is not, which is why the gate carries the load." The logic is
+`utilities/check_units.py` rather than `utilities/hooks/pre-commit` because that
+directory is write-guarded, and the module's docstring section headed WHY THIS
+IS A SEPARATE FILE says so: `utilities/hooks/check_protected_write.py` denies any
+write under `utilities/hooks/` without `.approve/<basename>`, and
+`utilities/hooks/check_bash_guard.py` refuses any command from a session that
+would create, list or remove such a flag. Flags are Julian's, from his own
+terminal. So the gate gains four lines, quoted from that docstring, to go after
+the section numbered 7 and before the closing `fixed=` line:
+
+```text
+    # -- 8. units touched in the staged diff -------------------------------
+    if ! python3 utilities/check_units.py; then
+      exit 1
+    fi
+```
+
+with a matching four-line entry in that file's header list. Until the addition
+is applied the two rules are not enforced at commit time. As of this entry
+`git diff utilities/hooks/pre-commit` shows exactly that block present in the
+working tree, unstaged and uncommitted; the header-list entry the docstring also
+specifies is absent, and the committed copy of the hook does not call the script.
+
+Every behaviour verified by hand, in a scratch git repository built from `lab/`,
+`units/` and the two utilities files, so that nothing was staged in this
+checkout:
+
+- Nothing staged: exit 0, silent.
+- A staged edit to `units/0002-smoke-sealed`, which HEAD records as sealed:
+  refused, exit 1, naming the staged file and printing the supersede recipe.
+- A staged failing unit — `units/0001-smoke-clean` given the sentence "The
+  second reading gave 9.99." — refused, exit 1, with the `lab check` output
+  quoted: 7 numbers in prose, 6 matched, 1 unmatched (5 exempt).
+- The same unit made honest, the sentence reworded to state no number: `OK`,
+  1 unit checked, 0 refused, exit 0.
+- `lab` unavailable — a tree with no `lab/` directory, run under a stripped
+  environment and the system `python3` — exit 2, "lab is not runnable, and the
+  unit check is not skippable", printed before the staged diff is even read.
+
+Sealed-ness is read from HEAD, so a diff cannot unseal itself. Verified: a staged change that flips `sealed: true` to
+`sealed: false` and appends a sentence in the same diff is still refused, exit 1.
+The ordinary flow still works, because `lab seal` then commit finds HEAD holding
+the unit unsealed or not holding it at all.
+
+The permanently failing fixture is handled by a baseline file rather than by an
+exception in the code. `utilities/lab_check_baseline.txt` lists
+`units/0000-smoke` with its reason, the same shape and the same purpose as
+`utilities/refs_baseline.txt`, and the gate also speaks when a listed unit starts
+passing, because that means the fixture stopped being a fixture. Verified both
+ways: staging the fixture prints `baselined units/0000-smoke` and exits 0
+alongside a real unit that passes.
+
+**What phase 2 retires, and what it does not.** The design's phase 2 row reads
+"commit gate calls `lab check`; retire the checkers it replaces". One checker is
+superseded and none is removed.
+
+`utilities/check_entry_numbers.py` is the one `lab check` replaces, and only for
+units. It stays while `notes/lab_notebook_2.md` is the thing being committed —
+this entry is appended to it, and the commit gate's section 6 runs it on every
+`## ... Entry N` header added in the staged diff of that file. Its scope is
+weaker than the invariant in three specific ways, all read from its source:
+
+- It examines only backticked tokens that could be a `.numbers` key — those
+  containing `.`, `|` or `[` and not a file path. A number stated with no key
+  beside it is never looked at at all. `lab check` scans every number token in
+  the body.
+- It drops fenced blocks from the entry before scanning, `re.sub` over the body
+  inside `entry_text`. `lab check` reads them, on the design's instruction, and
+  entry 305 records that a fenced number is ungated by everything else in
+  `utilities/`.
+- It fails only on MISMATCH. UNRESOLVED passes and the script exits 0, so an
+  entry citing no `.numbers` file, or citing a key whose stored value is a
+  string, gates nothing. `lab check` has no third verdict: a number either has
+  evidence in the pool or is a finding.
+
+Four are not superseded, each with its own subject:
+
+- `utilities/check_values.py` — papers. A paper statement's numbers against the
+  artifact its source line names, derived statements skipped and every value
+  under 10 in absolute value skipped. `papers/` is untouched by the program.
+- `utilities/check_refs.py` — whether a cited target exists, across `papers/`,
+  `lean/`, `notes/` and the root docs, plus notebook numbering, entry types and
+  NOTEPAD line shape. It checks that a cited target exists.
+- `utilities/flatten_results.py` — it makes the `.numbers` files the old citation
+  convention rests on, and re-verifies each one's JSON sha256 at the gate. Entry
+  306 records that `lab values` copied its leaves rather than importing it, so
+  the two coexist: the copy owns `values.tsv`, the original owns
+  `analysis/**/results/*.numbers`.
+- `utilities/gate.py` — the advisory PostToolUse early warning that prints when
+  an edit breaks a reference not in `utilities/refs_baseline.txt` and never
+  blocks. Different subject and a different moment.
+
+**Three gaps in the design that building found, and a fourth this entry
+measured.**
+
+The design's invariant sentence names three exempt classes. Real prose has
+twelve, and nine of them were forced by two entries. The sentence is a sketch that
+reads as an enumeration, and phase 0 implemented it as one.
+
+A string-valued key cannot be checked, and that is where a migrated entry 304
+would report false findings. `_pool` in `lab/check.py` admits only values that
+parse as a number, so of the 769 keys in
+`analysis/2026-09-02/results/arrow_price.numbers`, 612 lines are numeric, 431
+distinct values reach the pool, and 157 are strings — 81 of those holding
+digits. Entry 304 states constants that live only inside such strings:
+`inputs.Rmax_form` is the text "0.137 log T + 0.443 log log T + 4.35 (assumed)"
+and `consumers[0].t_req_expr` is "4.92*sqrt(x/log x) <= T, x > 59". Three of
+those constants survive by having numeric twins elsewhere in the same file —
+`rmax_mismatch.b1` 0.137, `rmax_mismatch.b2` 0.443, `rmax_mismatch.assumed_b3`
+4.35, and `consumers[0].x_floor` 59.0 — but 4.92 has no numeric leaf anywhere in
+the 431, so a migrated entry 304 would report it as a number without evidence
+while its evidence sits in a file the check cannot read.
+
+The design assigns immutability to a hook — § Enforcement gives "edit to a
+sealed unit or a protected file" to one PreToolUse hook, a phase 7 concern — and
+the check now carries it. `lab/check.py` states the reason: the check runs at the
+commit gate over the whole tree and catches an edit whatever made it, where a
+hook stops one agent in one session.
+
+The fourth is this entry's own dry run, not the build's. The `unit-path` class
+exempts two tokens in entry 302 that are not addresses: `8000-node` and
+`24000-point`, grid sizes written with a hyphen, caught by that class's second
+alternative, four-or-more digits then a slug. Both are counts, which is the class
+the design names as the one that drifts. In the same measurement, `version` and
+`list-marker` match nothing at all in entries 302 or 304, so `lab/exempt.py`'s
+claim that its classes are "every non-measurement number shape that occurs in the
+prose" of those two entries overstates for those two rows; their examples come
+from elsewhere in the tree.
+
+**CORRECTION.** An earlier revision of the build's own exemption list wrapped
+the dash characters in brackets inside the shared `_DASHES` string, so that every
+regex embedding it nested one character class inside another; Python emits a
+`FutureWarning` and keeps going, so four of the twelve classes silently stopped
+matching part of what they were written for — a file citation truncated at
+`.md:193` and left 199 scanned, `entries 257–271` truncated at `entries 257` and
+left 271 scanned, `lines 15–22` truncated at `lines 15` and left 22 scanned, and
+a timestamp's signed offset `−0700` dropped out of the date span entirely.
+Reintroducing the bracketed form and re-running `tests/test_phase2.py` gives 4
+failed, 78 passed, and all four failures are end-to-end assertions that no number
+inside a real corpus fragment survives the list; all twelve tests asserting that a pattern
+matches its example and all twelve asserting that it refuses its counter pass
+under the bug,
+because a truncated match is still a match. Parametrizing the table end to end,
+rather than testing the patterns alone, is what caught it.
+
+**What is not done.** The gate is written and unwired: the four-line call into
+`utilities/hooks/pre-commit` is present in the working tree and uncommitted, and
+that file cannot be written from a session — it needs Julian's approval flag from
+his own terminal — so the two rules are enforced only when he applies it. Four of
+the eight verbs, `lab run`, `lab index`, `lab chain` and `lab cite`, remain
+unbuilt and deliberately unstubbed. No existing entry is migrated; this one is
+appended to `notes/lab_notebook_2.md` in the old format, with the old
+line-citation surface untouched, and the string-valued-key gap above is a reason
+migration is not mechanical. Entry 304's census stays tabled. And the error
+classes entry 305 names as caught by nothing — right-number-wrong-row and
+qualitative claims, 19 of that session's 41 recorded errors — are untouched by
+everything above. The exemption list makes the invariant precise about which
+numbers it examines; it says nothing about whether an examined number is the
+right one from the right row.
+
 ## 2026-09-02 — Entry 306 — `lab` phase 1: the unit lifecycle — `lab new`, `lab values`, `lab seal`, and the immutability guarantee inside `lab check` — the copied flattener reproduces `utilities/flatten_results.py` leaf for leaf at 769 keys on a real results file, a sealed unit refuses a second seal and names the file that moved, and the build found a false accept in its own checker: a unit path written in prose read as the number 0000 and matched a stored 0.018401, because an integer's tolerance is half a unit in the last stated place
 type: run
 refs: 302, 304, 305
