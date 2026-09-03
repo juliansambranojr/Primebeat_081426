@@ -43,9 +43,12 @@ and must appear there at the precision the prose states -- prose saying
 not. Fenced blocks and tables are read like any other prose, because a
 number in a table is still a claim.
 
-Three kinds of number are exempt, because they are not measurements:
-dates, the unit's own id, and the ids of units it names in refs or
-supersedes.
+Numbers that are addresses rather than measurements are exempt, by the list
+in lab/exempt.py: dates, unit ids and paths, entry references, refs and
+supersedes, sha256 and other hex runs, versions, file citations of the shape
+name.ext:NN, list markers and enumerators, digits welded to an identifier,
+and backticked keys and paths. A bare integer with no decimal point is still
+checked -- lab/exempt.py records that decision and what it costs.
 
 Findings print one per line, located by the bold lead-in they sit under,
 followed by one summary line. Nothing cites a line number, here or

@@ -37,3 +37,13 @@ block contributes a finding exactly as a paragraph does.
 **Exempt by pattern.** The date 2026-09-02 is exempt because it is a date.
 This unit's own id is exempt, and so is unit 0001, which it names in `refs`,
 because an id is an identity rather than a measurement.
+
+**An address is not a measurement.** The re-run of this fixture would live at
+`units/0003-smoke-again`, and unit 0004 would supersede it. Neither id is named
+in `refs`, and before the exemption list the first of them was ACCEPTED — the
+id reads as a small integer, a stated integer's tolerance is half a unit in its
+last place, and the ladder ratio above is nearer than that. The list in
+`lab/exempt.py` is what stops an address being compared to a measurement at
+all. Every other address here is one of its classes and none is a claim:
+version v4.32.2, the date 2026-09-02, commit 47fa48680663df41, the citation
+`lab/check.py:1`, Theorem 1.4, and the identifier eq_13.

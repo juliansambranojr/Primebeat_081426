@@ -15,8 +15,13 @@ one does not, on the design's instruction.
      the unit itself -- are exempt by pattern and the exemption list lives
      in the program."
 
-so the exemption list is here, and it is the three classes the design
-names and no fourth.
+PHASE 2 MOVED THE EXEMPTION LIST OUT OF THIS FILE. It is `lab/exempt.py`,
+where each class carries its own docstring line and one real example from the
+corpus, and this module holds no pattern of its own. Phase 0 wrote three
+patterns here and recorded that a fourth was Phase 2's call; that call is made
+in `lab/exempt.py`, together with the false accept Phase 1 deferred -- a unit
+id inside a path, `units/0003-smoke-again`, matching a stored 3.070311505664645
+by accident because a bare integer's tolerance is half a unit.
 
 Why this discriminates: the design's § The one measurement records that
 holding the matching rule fixed and varying only the pool, tree-wide
@@ -52,10 +57,8 @@ DECISIONS taken here where the design is silent:
     unit in the last place the PROSE states, so `0.0184` in the body
     matches `0.018401` in the file, `0.02` also matches it (two decimal
     places is what `0.018401` rounds to), and `0.03` does not.
-  - An ordered-list marker (`1.`, `2.`) is NOT exempt. The design names
-    three exempt classes; adding a fourth is a decision for Phase 2, when
-    `lab check` is completed against migrated units. Until then a unit
-    body uses `-` markers.
+  - An ordered-list marker (`1.`, `2.`) IS exempt as of Phase 2; the
+    decision and its cost are in `lab/exempt.py`.
   - A finding is located by the bold lead-in above it, never by a line
     number, per the design's § Citations: "No line numbers anywhere, in
     any file."
@@ -87,6 +90,7 @@ import re
 from decimal import Decimal, InvalidOperation
 
 from . import digest as digest_mod
+from . import exempt as exempt_mod
 from .unit import UnitError, load
 
 __all__ = ["check", "run", "matches", "findings", "NUM"]
@@ -104,9 +108,7 @@ def matches(want, have):
     return any(abs(v - want) <= tol for v in have)
 # end of copy
 
-# The exemption list the design says lives in the program. Three classes.
-DATE = re.compile(r"\b\d{4}-\d{2}-\d{2}\b")           # dates
-UNIT_CITE = re.compile(r"\bunits?\s+\d+\b")            # `unit 0305 § ...`
+# The exemption list the design says lives in the program is `lab/exempt.py`.
 LEAD_IN = re.compile(r"^\*\*(.+?)\*\*", re.M)          # a section's bold lead-in
 
 
@@ -119,13 +121,6 @@ def _pool(values):
         except (InvalidOperation, ValueError):
             continue
     return out
-
-
-def _exempt_spans(body):
-    """Character ranges the exemption list removes from the scan."""
-    spans = [m.span() for m in DATE.finditer(body)]
-    spans += [m.span() for m in UNIT_CITE.finditer(body)]
-    return spans
 
 
 def _section(body, pos):
@@ -154,18 +149,21 @@ def _snippet(body, start, end, width=64):
 def findings(unit):
     """[(token, section, snippet)] for every prose number with no evidence.
 
-    Also returns the number of prose numbers scanned, so the summary can
-    report how much the pool actually covered.
+    Also returns the number of prose numbers scanned and the number the
+    exemption list removed, so the summary can report how much the pool
+    actually covered and how much never reached it.
     """
     body, pool, ids = unit.body, _pool(unit.values), unit.ids
-    spans = _exempt_spans(body)
-    out, scanned = [], 0
+    spans = exempt_mod.spans(body)
+    out, scanned, exempted = [], 0, 0
     for m in NUM.finditer(body):
         if any(lo <= m.start() < hi for lo, hi in spans):
-            continue                                   # a date, or a unit citation
+            exempted += 1                              # `lab/exempt.py` CLASSES
+            continue
         token = m.group(0)
-        if token in ids:
-            continue                                   # this unit's id, or one it names
+        if exempt_mod.refs_id(token, ids):
+            exempted += 1                              # this unit's id, or one it names
+            continue
         scanned += 1
         try:
             want = Decimal(token.replace(",", ""))
@@ -176,7 +174,7 @@ def findings(unit):
         if not matches(want, pool):
             out.append((token, _section(body, m.start()),
                         _snippet(body, m.start(), m.end())))
-    return out, scanned
+    return out, scanned, exempted
 
 
 def check(arg, out, cwd=None):
@@ -193,7 +191,7 @@ def check(arg, out, cwd=None):
         if unit.front_matter.get("sealed") is True else []
     for problem in moved:
         print(problem, file=out)
-    unmatched, scanned = findings(unit)
+    unmatched, scanned, exempted = findings(unit)
     for token, section, snippet in unmatched:
         print(f"UNMATCHED  {token:<14} § {section}  |  {snippet}", file=out)
     pool = _pool(unit.values)
@@ -204,7 +202,8 @@ def check(arg, out, cwd=None):
         seal_state = ("; sealed and unchanged" if not moved
                       else f"; sealed, {len(moved)} problem(s)")
     print(f"{unit.path}: {scanned} number(s) in prose, "
-          f"{scanned - len(unmatched)} matched, {len(unmatched)} unmatched; "
+          f"{scanned - len(unmatched)} matched, {len(unmatched)} unmatched "
+          f"({exempted} exempt); "
           f"values.tsv: {len(unit.values)} key(s), {len(pool)} numeric"
           f"{seal_state}",
           file=out)

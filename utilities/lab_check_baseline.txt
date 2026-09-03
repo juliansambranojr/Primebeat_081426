@@ -1,0 +1,11 @@
+# Units that `lab check` is EXPECTED to fail, one path per line with a reason.
+#
+# Same shape and same purpose as utilities/refs_baseline.txt: the commit gate
+# refuses a staged unit that does not check clean, and a unit whose whole job
+# is to fail the check would make the gate unusable. A unit is in this file
+# only because failing is what it is for.
+#
+# The gate also speaks when a unit listed here starts PASSING, because that
+# means the fixture stopped being a fixture.
+
+units/0000-smoke   the permanent failing fixture: two numbers in prose and one in a fenced block have no line in values.tsv, on purpose (tests/test_lab.py)
