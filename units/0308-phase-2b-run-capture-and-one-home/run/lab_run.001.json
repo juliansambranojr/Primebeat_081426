@@ -1,0 +1,28 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0308-phase-2b-run-capture-and-one-home",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.14.3",
+    "path_python3": "v3.14.3",
+    "shell": "/bin/sh",
+    "os": "Darwin v25.6.0 arm64",
+    "virtual_env": ".venv",
+    "git_head": "1193e0f42e3ffc3ada91dfe59c9850112fc55030",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "6dc57d429ebe24e651f8dc2fbb46002f937c8b8c2cb437c27635bd90fd35093f",
+    "run_start": "2026-09-03T09:31:04Z",
+    "run_end": "2026-09-03T09:31:05Z",
+    "wall_s": 1.0623548330040649
+  }
+}

@@ -1,0 +1,14 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-09-03T09:36:29Z
+recomputing unit 0308's figures
+Traceback (most recent call last):
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/units/0308-phase-2b-run-capture-and-one-home/run/figures.py", line 264, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/units/0308-phase-2b-run-capture-and-one-home/run/figures.py", line 254, in main
+    "superseded": superseded_block(),
+                  ~~~~~~~~~~~~~~~~^^
+  File "/Users/juliansambrano/GitHub/Primebeat_081426/units/0308-phase-2b-run-capture-and-one-home/run/figures.py", line 212, in superseded_block
+    raise ValueError("lab/exempt.py no longer quotes the Phase 2 claim")
+ValueError: lab/exempt.py no longer quotes the Phase 2 claim
+# exit 1 after 0.162s, ended 2026-09-03T09:36:29Z

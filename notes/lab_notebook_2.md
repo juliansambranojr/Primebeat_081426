@@ -1,7 +1,11 @@
 # Lab notebook, volume 2 — Primebeat_081426
 
+**Closed on 2026-09-03 at entry 307.** The record continues in `units/`, one
+directory per entry, beginning at `units/0308-phase-2b-run-capture-and-one-home`.
+Nothing below is renumbered, retitled or edited.
+
 Volume 2. Volume 1 is `lab_notebook.md`; it is closed and holds entries
-1–44. This volume opens at entry 45.
+1–44. This volume opens at entry 45 and closes at entry 307.
 
 Numbering is continuous across volumes: `entry N` is a unique address
 project-wide, and a `NOTEPAD.md` line citing a bare entry number resolves

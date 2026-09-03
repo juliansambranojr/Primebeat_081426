@@ -1,0 +1,6 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-09-03T09:31:04Z
+recomputing unit 0308's figures
+wrote figures.json with 5 block(s)
+done
+# exit 0 after 1.062s, ended 2026-09-03T09:31:05Z

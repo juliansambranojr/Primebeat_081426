@@ -1,0 +1,65 @@
+# The question unit 0308 answers
+
+Phase 2b was posed twice, because the first agent to carry it was interrupted.
+Both spawn briefs are below, verbatim, in the order they were sent. They are
+the transcript bracket the design's § The unit asks this file to hold.
+
+---
+
+## Bracket 1 — the brief acafdbdc4f5818254 received (stopped mid-build)
+
+Read /Users/juliansambrano/GitHub/Primebeat_081426/AGENT_CARD.md first, then /Users/juliansambrano/GitHub/AGENT_CLAUDE.md. Repo /Users/juliansambrano/GitHub/Primebeat_081426, branch main, at 155edd8 or later. Julian approved this build.
+
+Read analysis/2026-09-02/lab_design.md in full, then everything phases 0–2 produced: lab/cli.py, lab/unit.py, lab/check.py, lab/exempt.py, lab/new.py, lab/values.py, lab/seal.py, lab/digest.py, utilities/check_units.py, utilities/lab_check_baseline.txt, tests/, and the three fixtures under units/. Read every module docstring and honour the decisions recorded there rather than relitigating them. Also read notes/lab_notebook_2.md entries 305, 306 and 307 (grep -n '^## .*Entry 30[567]', count matches) — they record what each phase found.
+
+This phase inserts before the design's current phase 3 (`lab index`); renumber nothing in the design, and say in your report that the table needs a new row.
+
+PART A — CORRECTNESS DEBT. Three items, each reproduced before it is fixed and re-run after; paste both.
+
+A1. A FALSE EXEMPTION, which is worse than a false accept because the number never appears at all. Entry 307 records it: `lab/exempt.py`'s `unit-path` class exempts `8000-node` and `24000-point` in entry 302's prose. Those are grid sizes — counts, and the design's second measurement says counts are the class every drift belonged to. Tighten the class so it exempts only a real unit address (a four-or-more-digit id followed by a hyphen and a slug, in a path or citation position), and add both tokens as counter-examples in the class table so they stay checked. Then re-run the corpus dry run over entries 302 and 304 and report the new exempt fractions. While you are there, audit every one of the twelve classes the same way: for each, find a token in entries 302 or 304 that the class exempts and should not, or state that none exists. Report that audit as a table.
+
+A2. `lab check` cannot see a value stored inside a string. Entry 307 records that of entry 304's string-only constants, only one has no numeric twin in the same file, so a migrated unit would report exactly one false finding. Decide whether the pool should admit numbers parsed out of string values, and implement your decision. If you admit them, say what false accepts that buys — a string is free text and its digits are not necessarily measurements. If you refuse, say how a unit is supposed to cite a constant that only exists inside a formula string. Record the decision and its cost in the module docstring.
+
+A3. The accept-rate table in `lab/exempt.py`'s docstring came from an unseeded draw and does not reproduce. Make it reproducible: seed the draw, record the seed and the exact command in the docstring, re-run it, and write the numbers that command actually prints. If any figure changes, say so.
+
+PART B — `lab run`. The verb that closes the drift window: a result gets a file before it gets a sentence. Design and build it from the design's § The CLI line and this constraint — read entries 306 and 307 for why. Requirements: it executes a runnable inside a unit's `run/` (decide and document how a unit declares what to run — a `run/run.sh`, a single `*.py`, or a front-matter key; choose one, justify it, and record it); it captures stdout and stderr to a log inside `run/` without overwriting an existing log; it refuses to run inside a sealed unit; on success it calls the values generator so `values.tsv` is current; it records the invocation, the exit code, the wall time and the interpreter version into the unit so a later reader knows what produced the artifacts. Decide where that provenance lives and why — the container audit found that no script in this tree records its environment, so this is the fix for that. Failure of the runnable must leave the unit in a state a reader can diagnose, and must exit non-zero.
+
+PART C — THE ONE-HOME RULE. The container decision: a result written from here on lives inside a unit. Old trees are frozen exactly as `notes/lab_notebook_2.md` freezes — `results/` and `analysis/**/results/` keep everything they hold and are exempt by path. Implement: extend `utilities/check_units.py` so a staged NEW file under `results/` or `analysis/**/results/` is refused with a message naming `lab new` and `lab run` as the path, while a staged MODIFICATION to a file already tracked there passes. Do not touch `utilities/hooks/pre-commit` — it is write-guarded and already calls check_units.py; say so if you need an edit there. Add the rule to `analysis/2026-09-02/lab_design.md` as a short section — that file is yours to edit for this, and only this, plus the phase-table row noted above.
+
+DO NOT BUILD: `lab index`, `lab chain`, `lab cite`. Do not migrate any existing entry. Do not touch the notebook, NOTEPAD, any commitment file, utilities/hooks/, or .github/.
+
+VERIFY and paste each: the A1 reproduction before and after with the corpus fractions; the A2 decision demonstrated on entry 304's constant; the A3 command and its output; `lab run` on a fixture unit whose `run/` holds a trivial runnable, showing the log, the provenance record, and `values.tsv` regenerated; `lab run` refused on the sealed fixture; a failing runnable exiting non-zero with the unit diagnosable; the one-home rule refusing a staged new results file and passing a staged modification, tested through a temporary GIT_INDEX_FILE with no commit created; `python3 -m pytest -q`; `bash utilities/hooks/pre-commit` with nothing staged exits 0; `python3 utilities/check_refs.py` exit 0 in a separate command.
+
+Then `git add` only what you created or changed, commit "Phase 2b: exemption audit, lab run, and results live only in units" plus a few lines ending "Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>", push origin main, pulling and retrying rather than forcing if rejected. Confirm the GitHub audit workflow passes on your push (`gh run list --limit 1`, wait for completion) and report its status.
+
+Report once: the A1 audit table, the A2 decision with its cost, the A3 numbers, `lab run`'s declaration mechanism and provenance location with your reasoning, the one-home rule's tested behaviour, the CI status, and anything in the design that was silent or wrong.
+
+---
+
+## Bracket 2 — the brief a0a8bf60ac645202f received (finished the phase)
+
+Read /Users/juliansambrano/GitHub/Primebeat_081426/AGENT_CARD.md first, then /Users/juliansambrano/GitHub/AGENT_CLAUDE.md. Repo /Users/juliansambrano/GitHub/Primebeat_081426, branch main, HEAD 408de2a. Julian approved this build.
+
+An earlier agent started this phase and was interrupted. Its partial work is UNCOMMITTED in the working tree and unverified: `lab/run.py` (368 lines), `units/0003-run-smoke/`, `units/0004-run-fails/`, and modifications to `lab/__init__.py`, `lab/check.py`, `lab/cli.py`, `lab/exempt.py`, `tests/test_phase2.py`. Your first job is to read all of it and judge it. Keep what is correct, finish what is unfinished, discard what is wrong — and say in your report which you did for each file and why. Do not assume it is right because it exists.
+
+Read first: analysis/2026-09-02/lab_design.md in full — it is the spec and it gained five sections at 408de2a, including § No scratchpad and § Enforcement is over artifacts, never over process, both of which govern this phase. Then lab/cli.py, lab/unit.py, lab/check.py, lab/exempt.py, lab/new.py, lab/values.py, lab/seal.py, lab/digest.py, utilities/check_units.py, utilities/lab_check_baseline.txt, tests/, and the fixtures under units/. Honour the decisions recorded in each module docstring rather than relitigating them.
+
+PART A — CORRECTNESS DEBT. Reproduce each before fixing, paste both states.
+
+A1. A false exemption, which is worse than a false accept because the number never appears at all. Entry 307 records it: `lab/exempt.py`'s `unit-path` class exempts `8000-node` and `24000-point` in entry 302's prose. Those are grid sizes — counts, and the design's second measurement says counts are the class every drift belonged to. Tighten the class to exempt only a real unit address (four or more digits, hyphen, slug, in a path or citation position) and add both tokens as counter-examples so they stay checked. Then audit ALL twelve classes the same way: for each, find a token in entries 302 or 304 that it exempts and should not, or state that none exists. Report that audit as a table. Re-run the corpus dry run and give the new exempt fractions for both entries.
+
+A2. `lab check` cannot see a value stored inside a string. Entry 307 records that of entry 304's string-only constants, exactly one has no numeric twin elsewhere in the same file, so a migrated unit would report exactly one false finding. Decide whether the pool admits numbers parsed out of string values, implement it, and record the decision and its cost in the module docstring. If you admit them, say what false accepts that buys. If you refuse, say how a unit cites a constant that exists only inside a formula string.
+
+A3. The accept-rate table in `lab/exempt.py`'s docstring came from an unseeded draw and does not reproduce. Seed it, record the seed and the exact command in the docstring, re-run, and write the numbers that command prints. Say which figures changed.
+
+PART B — `lab run`. Per § No scratchpad: every run creates a unit first, so the record exists before the first number does. `lab run` must REFUSE to execute anything not inside a unit. Requirements: it executes a runnable inside a unit's `run/` (decide and document how a unit declares what to run — a `run/run.sh`, a single `*.py`, or a front-matter key; pick one, justify it, record it); captures stdout and stderr to a log in `run/` without overwriting an existing log; refuses to run in a sealed unit; on success regenerates `values.tsv`; and records the invocation, exit code, wall time and interpreter version into the unit — the container audit found no script in this tree records its environment, and this is that fix. A failing runnable must exit non-zero and leave the unit diagnosable. Report whether `utilities/hooks/check_direct_run.py` already covers in-repo execution and what routing it through `lab run` would take; do not edit that file, it is write-guarded.
+
+PART C — THE ONE-HOME RULE. A result written from here on lives inside a unit. `results/` and `analysis/**/results/` freeze exactly as the notebook does — everything they hold stays, exempt by path. Extend `utilities/check_units.py`: a staged NEW file under either path is refused, naming `lab new` and `lab run` as the path; a staged MODIFICATION to a file already tracked there passes. Per § Enforcement is over artifacts: refuse it for where it is, with no reference to how it got there. Do not edit `utilities/hooks/pre-commit` — it is write-guarded and already calls check_units.py. Add the rule to `analysis/2026-09-02/lab_design.md` as a short section, plus a phase-table row for this phase; that file is yours to edit for those two things only, and do not alter the five sections added at 408de2a.
+
+DO NOT BUILD: `lab index`, `lab chain`, `lab cite`. Do not migrate any entry. Do not touch the notebook, NOTEPAD, any commitment file, utilities/hooks/, or .github/.
+
+VERIFY and paste: the A1 reproduction before and after with corpus fractions; A2 demonstrated on entry 304's constant; the A3 command and output; `lab run` on a fixture with a trivial runnable, showing the log, the provenance record and values.tsv regenerated; `lab run` refused on the sealed fixture and refused outside a unit; a failing runnable exiting non-zero; the one-home rule refusing a staged new results file and passing a staged modification, through a temporary GIT_INDEX_FILE with no commit created; `python3 -m pytest -q`; `bash utilities/hooks/pre-commit` with nothing staged exits 0; `python3 utilities/check_refs.py` exit 0 in a separate command.
+
+Then `git add` only what you created or changed, commit "Phase 2b: exemption audit, lab run, and results live only in units" plus a few lines ending "Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>", push origin main, pulling and retrying rather than forcing if rejected. Then confirm the GitHub workflow passes on your push: `until [ "$(gh run list --limit 1 --json status --jq '.[0].status')" = "completed" ]; do sleep 10; done; gh run list --limit 1`.
+
+Report once, and keep it short: what you kept, finished or discarded from the interrupted work and why; the A1 audit table; the A2 decision and its cost; the A3 numbers that changed; `lab run`'s declaration mechanism and where provenance lives; the one-home rule's tested behaviour; the CI status; and anything in the design that was silent or wrong.
