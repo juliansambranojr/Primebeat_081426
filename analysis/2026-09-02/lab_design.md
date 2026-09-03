@@ -153,14 +153,13 @@ the next starts.
 | # | phase | buys |
 | --- | --- | --- |
 | 0 | `lab` skeleton: entrypoint, `pyproject.toml`, `lab check` on one hand-made unit, pytest | the program exists and runs |
-| 1 | unit layout, `lab new`, `lab seal`, the digest with volatile-key exclusion | the container exists; immutability |
-| 2 | `lab values`, the invariant, `lab check` complete | the entry-scoped check that actually discriminates |
-| 3 | commit gate calls `lab check`; retire the checkers it replaces | one gate; drift caught before a commit |
-| 4 | `lab index`; strip count slots from authored files | the largest measured defect class, deleted |
-| 5 | segments, `lab chain`, branch detection | durability and the inheritance check |
-| 6 | `lab cite`, brief and report blocks | no digit crosses an agent boundary |
-| 7 | harvest from `the_container` — its benched results fitted to this shape | reuse what was already proved |
-| 8 | retire the hook fleet down to one write-protect hook | machinery whose customer was machinery |
+| 1 | unit layout, `lab new`, `lab values`, `lab seal`, the digest with volatile-key exclusion | the container exists; scaffolded units load and check; immutability |
+| 2 | commit gate calls `lab check`; retire the checkers it replaces | one gate; drift caught before a commit |
+| 3 | `lab index`; strip count slots from authored files | the largest measured defect class, deleted |
+| 4 | segments, `lab chain`, branch detection | durability and the inheritance check |
+| 5 | `lab cite`, brief and report blocks | no digit crosses an agent boundary |
+| 6 | harvest from `the_container` — its benched results fitted to this shape | reuse what was already proved |
+| 7 | retire the hook fleet down to one write-protect hook | machinery whose customer was machinery |
 
 Migration needs no rewriting. `notes/lab_notebook_2.md` freezes exactly as
 volume 1 froze at entry 44; unit 0305 onward are directories. Old entries
