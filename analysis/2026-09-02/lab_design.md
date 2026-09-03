@@ -107,6 +107,91 @@ the gap. A segment declaring an inheritance nothing handed on is a
 and rejoins by declaring two inheritances. The cap keeps any single loss
 small and keeps the walk cheap at ten years of entries.
 
+### What a unit declares
+
+One field, in the unit's front matter:
+
+```text
+follows: 0355
+```
+
+`lab new` fills it with the newest sealed unit, so the ordinary case needs
+no thought and deviating is an explicit edit. Everything else is computed
+from it. Walk the units by `follows`: two units naming one predecessor is
+a fork; a unit naming a predecessor that is not there is a gap. Segments
+are bounded windows over that walk.
+
+### Segment names
+
+Julian tracks letters. Main line, spreadsheet order: A, B, C … Z, AA, AB
+… ZZ, AAA. A main-line label never contains a dot. Branches use a dot —
+the first branch off C is `C.A`, the twenty-seventh `C.AA`, a branch off
+that `C.A.A`. Dot count is depth, so `CA` (the seventy-ninth main
+segment) and `C.A` (the first branch off C) can never be confused.
+
+### The naming is deterministic
+
+The label is a pure function of the tree, recomputable from nothing on
+any machine. The ordering key is the unit id, which is immutable and only
+increases:
+
+- the root segment holds the lowest unit id and is `A`;
+- at any fork the line continues through the child with the lower first
+  unit id, and the others become branches;
+- segments along a line take the next label in spreadsheet order;
+- branches off a segment are ordered by their own first unit id and take
+  the dotted labels in that order.
+
+No timestamps, no file order, no directory-listing order. Stability falls
+out rather than being bolted on: a new branch always has a higher first
+unit id than the continuation that exists, so it sorts last and nothing
+already assigned moves. The label written in a segment file is therefore
+a **cache**; `lab chain` recomputes and compares, and a disagreement is a
+finding. The handoff digest stays underneath as the content address, for
+the case where two segments legitimately claim one label after a bad
+merge — a name identifies, a digest proves.
+
+## Enforcement is over artifacts, never over process
+
+No mechanism can make an agent call a verb, and explicit instructions do
+not hold — several were ignored during the session that produced this
+design. So the gate never asks whether `lab new` was run. It asks whether
+the thing on disk has the properties `lab new` produces: front matter
+that parses, a values file that exists, every number in the prose present
+in it, a label that matches the recomputed one. A hand-written unit that
+satisfies them passes; one that does not is refused, with nobody having
+checked what anyone remembered.
+
+Process compliance is unverifiable and artifact properties are computable
+from the files. The verbs are then the cheap path rather than an
+obligation, and taking the cheap path is the one agent behaviour that can
+be relied on.
+
+## No scratchpad
+
+Every run creates a unit first. `lab run` refuses to execute anything
+outside a unit, so the record exists before the first number does.
+
+This overrides the usual "exploration needs somewhere cheap" argument,
+which the session that produced this design falsified twice: Julian asked
+whether the scripts were saved and twenty-four files were sitting in a
+session scratchpad, and a later audit found five more the first sweep had
+missed, including the cross-check entry 301 describes as living in no
+tree file. The cheap place is where work goes to be lost, and the cost
+lands on Julian's attention.
+
+The unit is the scratchpad. `lab new` takes a second, a failed
+exploration is a unit whose run did not work and whose prose says so, and
+`type:` lets the index fold exploration so volume costs nothing. A
+temporary directory is for machinery with no content — a throwaway git
+index used to test a gate, a diff of two files. Nothing that produces a
+number goes there.
+
+What still leaks: a run outside the repo entirely, and work done and left
+unrecorded. Neither can corrupt anything downstream, because a citation
+must resolve to a unit's values file, so an unrecorded number can never
+enter prose. What is lost is the record of having tried.
+
 ## The CLI
 
 ```text
