@@ -1,0 +1,15 @@
+{
+  "schema_version": "1",
+  "status": "FIXTURE - hand-written, no run behind it, no verdict.",
+  "generated_utc": "2026-09-02T00:00:00Z",
+  "ladder": {
+    "ratio": 3.070311505664645,
+    "residual": 0.018401
+  },
+  "census": {
+    "rows": 422
+  },
+  "timings": {
+    "elapsed_s": 12.5
+  }
+}

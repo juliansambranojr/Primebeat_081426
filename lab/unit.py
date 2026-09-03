@@ -65,6 +65,7 @@ __all__ = [
     "parse_front_matter",
     "format_front_matter",
     "split_front_matter",
+    "units_root",
     "locate",
     "load",
 ]
@@ -231,6 +232,16 @@ def _units_root(start):
         if (candidate / "units").is_dir():
             return candidate / "units"
     return None
+
+
+def units_root(cwd=None):
+    """The nearest `units/` directory at or above `cwd`, or None.
+
+    Phase 1 addition: `lab new` has to answer "where do units live" before
+    any unit exists to locate, which is the same question `locate` already
+    answered privately.
+    """
+    return _units_root(cwd or pathlib.Path.cwd())
 
 
 def locate(arg, cwd=None):

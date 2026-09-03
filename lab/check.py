@@ -59,11 +59,34 @@ DECISIONS taken here where the design is silent:
   - A finding is located by the bold lead-in above it, never by a line
     number, per the design's § Citations: "No line numbers anywhere, in
     any file."
+
+PHASE 1 ADDED THE IMMUTABILITY GUARANTEE. A unit whose front matter says
+`sealed: true` is also held to its `UNIT.sha256`: every file is rehashed,
+every one that moved is reported, and the unit digest is recomputed. The
+design's § Enforcement gives an edit to a sealed unit to a PreToolUse hook,
+which is a Phase 7 concern and stops one agent in one session. The check is
+where the guarantee belongs, because it runs at the commit gate over the
+whole tree and it catches an edit whatever made it -- a hook that was off,
+an editor, a merge, a `git checkout` of one file. A hook refuses a write;
+the check is what makes the seal MEAN something afterwards.
+
+  - Either failure alone is exit 1. A sealed unit that moved and a number
+    without evidence are the same class of answer to the caller: this unit
+    is not what it says it is.
+  - The manifest is verified before the invariant is reported, because a
+    moved file makes every number below it suspect.
+  - `sealed: true` with no `UNIT.sha256` is a finding (exit 1) rather than
+    an unloadable unit (exit 2). The unit loads; its claim to be sealed is
+    what fails.
+  - An UNSEALED unit carrying a `UNIT.sha256` is not checked against it.
+    That state is what an in-progress `lab seal` leaves behind, and the
+    front matter is the unit's own claim about itself.
 """
 
 import re
 from decimal import Decimal, InvalidOperation
 
+from . import digest as digest_mod
 from .unit import UnitError, load
 
 __all__ = ["check", "run", "matches", "findings", "NUM"]
@@ -157,21 +180,35 @@ def findings(unit):
 
 
 def check(arg, out, cwd=None):
-    """Run the invariant over one unit. Returns 0 clean, 1 unmatched.
+    """Run the invariant over one unit. Returns 0 clean, 1 a finding.
+
+    A finding is a number in the prose with no evidence, or a sealed unit
+    whose files no longer match its `UNIT.sha256`.
 
     Raises `UnitError` when the unit cannot be loaded; the caller turns
     that into exit 2.
     """
     unit = load(arg, cwd=cwd)
+    moved = digest_mod.verify(unit.path) \
+        if unit.front_matter.get("sealed") is True else []
+    for problem in moved:
+        print(problem, file=out)
     unmatched, scanned = findings(unit)
     for token, section, snippet in unmatched:
         print(f"UNMATCHED  {token:<14} § {section}  |  {snippet}", file=out)
     pool = _pool(unit.values)
+    # An unsealed unit's summary says nothing about a seal, which keeps the
+    # line the Phase 0 tests read exactly as Phase 0 wrote it.
+    seal_state = ""
+    if unit.front_matter.get("sealed") is True:
+        seal_state = ("; sealed and unchanged" if not moved
+                      else f"; sealed, {len(moved)} problem(s)")
     print(f"{unit.path}: {scanned} number(s) in prose, "
           f"{scanned - len(unmatched)} matched, {len(unmatched)} unmatched; "
-          f"values.tsv: {len(unit.values)} key(s), {len(pool)} numeric",
+          f"values.tsv: {len(unit.values)} key(s), {len(pool)} numeric"
+          f"{seal_state}",
           file=out)
-    return 1 if unmatched else 0
+    return 1 if (unmatched or moved) else 0
 
 
 def run(arg, out, err, cwd=None):
