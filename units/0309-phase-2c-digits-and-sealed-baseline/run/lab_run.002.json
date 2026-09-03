@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0309-phase-2c-digits-and-sealed-baseline",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.14.3",
+    "path_python3": "v3.14.3",
+    "shell": "/bin/sh",
+    "os": "Darwin v25.6.0 arm64",
+    "virtual_env": ".venv",
+    "git_head": "c24f86a3314375c461360643c3486399a701dd24",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "697896f9e240e992569e5c7baf57568a3858b8f0f60b904902e350f2ec6d928e",
+    "run_start": "2026-09-03T10:44:01Z",
+    "run_end": "2026-09-03T10:44:13Z",
+    "wall_s": 11.939367457991466
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "transcript": {
+    "numbered_items": 8,
+    "practices": 1,
+    "findings": 7,
+    "decisions": 2,
+    "corrections": 6,
+    "rejection_cases": 8
+  },
+  "tree": {
+    "notebook_floor": 307,
+    "unit_count": 7
+  },
+  "tests": {
+    "suite_passed": 242,
+    "suite_exit": 1
+  }
+}

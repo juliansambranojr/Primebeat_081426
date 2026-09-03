@@ -1,0 +1,10 @@
+# lab_run -- /bin/sh -e run.sh in run/
+# started 2026-09-03T10:39:19Z
+recomputing unit 0309's figures
+findings=7 decisions=2 corrections=6
+rejection_cases=8
+notebook_floor=307 unit_count=7
+tests_passed=242
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/units/0309-phase-2c-digits-and-sealed-baseline/run/figures.json
+done
+# exit 0 after 6.949s, ended 2026-09-03T10:39:26Z
