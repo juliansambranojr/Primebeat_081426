@@ -90,6 +90,32 @@ threads, the leaf ledger. Authored files lose their count slots and point
 at `INDEX.md` instead. This is the largest measured defect class and it is
 fixed by deleting sections rather than by adding a checker.
 
+### The archive walks both ways
+
+A faithful structure inverts. The unit gives one direction: from an entry
+you reach its values, its run, its transcript blocks and its agents,
+sealed and hashed, so the walk is exact.
+
+`lab index` generates the other direction as `INDEX-values.tsv` — one line
+per key, listing every unit whose prose cites it:
+
+```text
+weil_Lc_theory.fits.0.001.far_only_exact.b    0302  0304
+arrow_price.eps_law_gamma1.b                  0304  0307
+```
+
+It costs nothing extra to build: `lab check` already resolves every number
+in every unit to a key, so the reverse map is the same pass written out.
+
+What it buys: when a measurement turns out wrong — a bad instrument, a
+corrected constant, a re-run that disagrees — what rests on it is
+computable. Today that is a grep and a hope. With the reverse map, break
+one value and the affected units are a lookup, which is what makes
+`supersedes:` usable at scale rather than a field somebody remembers to
+fill in.
+
+Both directions are generated, so neither can drift from the units.
+
 ## Segments and the chain
 
 Units group into bounded **segments** — an index file per N units. Each
