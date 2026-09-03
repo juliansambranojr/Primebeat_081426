@@ -237,6 +237,63 @@ This is the container half of § No scratchpad. That section closes the door on
 running outside a unit; this one closes the door on a number ARRIVING outside
 one, whatever produced it.
 
+## Counts are written in digits
+
+`lab check` scans digits, so a count spelled in words passes unchecked.
+Unit 0308 found it: "four runs" is invisible where `4 runs` resolves to a
+key. Rule: **any number that counts something in the record is written in
+digits.** Runs, units, files, findings, keys, tests, lines, entries.
+
+Boundary, and this is the orchestrator's reading rather than Julian's
+words — a number-word used as ordinary English keeps its word form ("one
+execution", "the second half", "a third of the tokens"). The rule binds
+when the number is a count of things the archive holds, because those are
+the ones with a key. If that boundary turns out to be unusable in
+practice, the fallback is stricter: digits everywhere a number appears.
+
+Enforced by `lab check`: a number-word adjacent to a countable noun is a
+finding, with the digit form named in the message.
+
+## The parser matches the spec
+
+`lab/unit.py` rejects every indented line, so the `agents:` shape § The
+fingerprint draws does not parse, and unit 0308 had to flatten it to
+colon-joined triples. Reconcile them: the parser gains nested sequences of
+flat mappings, which is what `agents:` needs and nothing more. The spec is
+the target and the parser moves to meet it.
+
+General rule, from the same finding: **a spec section never lands without
+a phase row and a test that fails until it is built.** Three of unit
+0308's seven findings were spec and code written apart and never
+reconciled — `agents:` nesting, `follows:` having no implementation, and
+`check_refs` never scanning `units/`. All three were true the moment they
+were written.
+
+## A run record exists before the run
+
+Unit 0308: a unit cannot count its own runs, because the fourth record
+does not exist while the fourth run is producing it. The fix removes the
+counting rather than fixing it.
+
+`lab run` allocates the index and writes the record FIRST, as a template
+carrying the index, the invocation and `status: started`. The run then
+executes and the record is completed with the exit code, the wall time
+and the interpreter version. A run that never completes leaves a record
+saying `status: started` with no exit code, which is a durable statement
+that it was attempted and did not finish.
+
+So a unit's run count is a directory listing at any moment, including
+during a run, and a run that was never executed says so in its own file
+instead of being an absence.
+
+## A changed count supersedes rather than mutates
+
+When a generated count changes, the new file carries the correct count
+and its connections, and the old one is retired with a pointer to its
+successor as provenance. The same `supersedes:` discipline the units use,
+applied to the generated layer, so a reader who followed the old number
+can find where it went.
+
 ## Transcript is king
 
 An agent's report reaches Julian through one generation step with no
@@ -366,7 +423,8 @@ the next starts.
 | 1 | unit layout, `lab new`, `lab values`, `lab seal`, the digest with volatile-key exclusion | the container exists; scaffolded units load and check; immutability |
 | 2 | commit gate calls `lab check`; retire the checkers it replaces | one gate; drift caught before a commit |
 | 2b | audit the exemption list; admit numbers held inside string values; `lab run`; the one-home rule at the gate | no false exemption in the corpus; a constant that lives only in a formula string is citable; every run leaves a log, a provenance record and a regenerated values.tsv inside a unit; a result cannot land outside one |
-| 3 | `lab index`; strip count slots from authored files | the largest measured defect class, deleted |
+| 2c | unit 0308's seven findings: digits for counts in `lab check`; nested `agents:` in the parser; `lab new` id allocation past the notebook; the run record written before the run; `follows:` implemented; `check_refs` scans `units/`; a correction's evidence | the design matches the code, and the first real unit's findings are closed before a second lands |
+| 3 | `lab index` both directions; strip count slots from authored files | the largest measured defect class, deleted; the archive inverts |
 | 4 | segments, `lab chain`, branch detection | durability and the inheritance check |
 | 5 | `lab cite`, brief and report blocks | no digit crosses an agent boundary |
 | 6 | harvest from `the_container` — its benched results fitted to this shape | reuse what was already proved |
