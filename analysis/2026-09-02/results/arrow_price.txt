@@ -1,0 +1,219 @@
+EXPLORATORY - no prereg, no decision rule, no verdict
+arrow_price.py  -  pricing StmtWeilPositive L -> RH_up_to (T L)
+theory numbers : analysis/2026-09-01/results/weil_Lc_theory.numbers
+eps numbers    : analysis/2026-09-01/results/weil_Lc_eps.numbers
+Rmax form used by the far-tail bound (ASSUMED): 0.137 log T + 0.443 log log T + 4.35 (assumed)
+
+==============================================================================
+S1  the height law L_c = a(eps) + b(eps) log gamma, and the eps law
+==============================================================================
+         variant     eps          a         b       R2    n
+        measured   0.001    -3.5132    1.7686   0.9934    8
+        measured    0.01    -2.9408    1.4772   0.9948    8
+        measured     0.1    -2.6937    1.3159   0.9921    8
+  far_only_bound   0.001    -4.4611    3.1927   0.9890    5
+  far_only_bound    0.01    -1.8369    1.6146   0.9951    8
+  far_only_bound     0.1    -1.0969    0.9403   0.9953    8
+  far_only_exact   0.001    -2.0669    1.7543   0.9926    8
+  far_only_exact    0.01    -0.7226    0.8647   0.9768    8
+  far_only_exact     0.1    -0.8146    0.6073   0.9916    8
+            full   0.001     4.6864    0.7418   1.0000    2
+            full    0.01    -2.3362    2.6641   0.6866    6
+            full     0.1    -2.7642    2.1275   0.8657    7
+
+entry 299 eps law at gamma_1 (M=32, w=1/2): L_c = 0.7924 + 0.07326 * log(1/eps),  R2 0.9918
+
+bilinear surface  L_c(eps, gamma) = (A0 + A1 u) + (B0 + B1 u) log gamma,  u = log(1/eps)
+         variant         A0        A1        B0        B1
+        measured    -2.2297   -0.1780    1.0679    0.0983
+  far_only_bound     0.8993   -0.7305   -0.3366    0.4891
+  far_only_exact     0.0510   -0.2719   -0.0716    0.2491
+            full    -7.5886    1.6179    3.2302   -0.3009
+
+surface validation on the 24 measured rows (variant 'measured'):
+  rms residual 0.2050, max |resid| 0.4678, ratio meas/surface in [0.8043, 1.2172]
+
+==============================================================================
+S2  inversion: what height does a rung of support L reach?
+==============================================================================
+T_reach(L, eps) = exp((L - a(eps)) / b(eps)); below gamma_1 = 14.1347
+the arrow excludes nothing, and the rung is VACUOUS.
+
+                                                          rung       L      X=e^L    T(1e-3)    T(1e-2)    T(1e-1)
+  Yoshida 1992 Thm 1 / Bombieri 2000 Thm 12 (PROVED, no prime)  0.6931          2      10.79       11.7      13.11
+   Connes-Consani 2020 Thm 1, support [2^-1/2, 2^1/2] (PROVED)  0.6931          2      10.79       11.7      13.11
+  Connes-Consani 2106.01715 numerics, lambda^2 ~ 7 (NUMERICAL)  1.9459          7      21.91      27.33      33.98
+ Connes-Consani 2106.01715 numerics, lambda^2 ~ 11 (NUMERICAL)  2.3979         11      28.29      37.11      47.91
+              weil_QX.py ladder top X = 1e4 (BENCH INSTRUMENT)  9.2103      1e+04       1332       3735       8486
+
+VACUITY THRESHOLD  L_vac = a + b log gamma_1: below this L the arrow's
+conclusion is empty (no zero of height <= gamma_1 exists to exclude).
+         variant    eps=0.001     eps=0.01      eps=0.1
+        measured       1.1710       0.9718       0.7917
+  far_only_bound       3.9953       2.4397       1.3935
+  far_only_exact       2.5796       1.5677       0.7939
+            full       6.6511       4.7200       2.8707
+  for scale: log 2 = 0.6931 is the whole proved literature;
+            log 11 = 2.3979 is the top of the CC numerics.
+
+------------------------------------------------------------------------------
+S2b  the first non-vacuous rung, from the MEASURED k = 1 rows
+------------------------------------------------------------------------------
+The fit above is a regression over 8 heights; at gamma_1 itself the
+instrument measured L_c directly. Those rows, and entry 299's eps law
+at gamma_1 (7 values of eps, R2 0.9918), are the honest small-L prices.
+
+  eps = 0.001: measured L_c = 1.2835, X = e^L = 3.6094
+  eps =  0.01: measured L_c = 1.1387, X = e^L = 3.1228
+  eps =   0.1: measured L_c = 0.9597, X = e^L = 2.6110
+
+entry 299's law extended in eps (excluding gamma_1 at ever smaller eps):
+  eps =     1e-01: L_c =  0.9611, X = e^L =    2.6145
+  eps =     1e-02: L_c =  1.1298, X = e^L =    3.0949
+  eps =     1e-03: L_c =  1.2985, X = e^L =    3.6636
+  eps =     1e-06: L_c =  1.8045, X = e^L =    6.0772
+  eps =     1e-10: L_c =  2.4793, X = e^L =   11.9331
+  eps =     1e-20: L_c =  4.1663, X = e^L =   64.4743
+  eps =     1e-50: L_c =  9.2271, X = e^L = 10169.1505
+
+proved support today: L = log 2 = 0.6931 (X = 2), where the prime 2
+enters at weight F(log 2) = 0. Distance to the first non-vacuous rung:
+  eps = 0.001: dL = +0.5904 (X from 2.0000 to 3.6094)
+  eps = 0.01: dL = +0.4456 (X from 2.0000 to 3.1228)
+  eps = 0.1: dL = +0.2666 (X from 2.0000 to 2.6110)
+
+==============================================================================
+S3  the consumers of riemannZeta.RH_up_to at the pin
+==============================================================================
+                                consumer     T required   proved?   L(1e-3)     X = e^L
+                  Buthe theorem_2a (psi)        18.7151     False     1.667       5.299
+                Buthe theorem_2b (theta)        47.6156     False     3.319       27.63
+                  Buthe theorem_2c (pi*)        18.7151     False     1.667       5.299
+                   Buthe theorem_2d (pi)        90.3153     False     4.451       85.72
+GourdonDemichel2004.has_prime_in_interva       2.44e+12     False    46.931    2.41e+20
+                           Platt_theorem      3.061e+10     False    39.188   1.045e+17
+                              GW_theorem      2.446e+12     False    46.936    2.42e+20
+                            PT_theorem_1          3e+12     False    47.297   3.473e+20
+                     BKLNW_app.Inputs.hH      2.446e+12      None    46.936    2.42e+20
+                            bklnw_thm_16           3000     False    10.646   4.204e+04
+                          FKS.Inputs.hH0           free      None         -           -
+               riemannZeta.Hsigma_zeroes           free     False         -           -
+                               FKS.eq_13           free     False         -           -
+                           CH2.cor_1_2_a          1e+07     False    24.993   7.147e+10
+                           CH2.cor_1_2_b          1e+07     False    24.993   7.147e+10
+
+LOOSEST finite requirement: Buthe theorem_2a (psi) at T = 18.7151
+  (lean_stage3/.lake/packages/PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/IEANTN/TMEEMT.lean:157; hypothesis 4.92*sqrt(x/log x) <= T, x > 59)
+  gamma_1 = 14.1347 < T = 18.7151 < gamma_2 = 21.0220: the loosest real
+  consumer needs a rectangle containing exactly one zero ordinate.
+  consumers whose own theorem is proved at the pin: 0 of 15
+
+==============================================================================
+S4  the eps budget: how far off the line may a zero sit?
+==============================================================================
+A zero at 1/2 + eps of height <= T inflates its own term in the
+explicit formula by x^eps. Requiring x^eps <= K gives the budget
+eps_max(x, K) = log K / log x. Entry 130's precedent accepts
+constants 70x-700x worse than the literature's.
+
+An off-line zero has Re - 1/2 < 1/2, so the budget is capped at 0.5;
+a capped cell means the consumer tolerates ANY zero in the strip at
+that scale, and the arrow's eps has stopped being the binding side.
+
+           x   T = 4.92 sqrt(x/log x)      eps(K=2)     eps(K=70)    eps(K=700)
+          59                  18.7151      0.16999       0.50000*      0.50000*
+        1000                  59.1966      0.10034       0.50000*      0.50000*
+       1e+06                  1323.68      0.05017       0.30752       0.47418 
+       1e+09                  34177.2      0.03345       0.20501       0.31612 
+       1e+12                   935980      0.02509       0.15376       0.23709 
+       1e+19              2.35223e+09      0.01584       0.09711       0.14974 
+   1.142e+26              6.78772e+12      0.01155       0.07081       0.10918 
+  * capped at 0.5
+
+and the support the arrow needs at that eps, for that T (variant 'measured'):
+           x             T     L(K=2)           X    L(K=70)           X   L(K=700)           X
+          59       18.7151      1.093       2.985      0.975       2.651      0.975       2.651
+        1000       59.1966      2.641       14.03      2.283       9.806      2.283       9.806
+       1e+06       1323.68      7.028        1128      6.070       432.7      5.841       344.2
+       1e+09       34177.2     11.800   1.333e+05     10.263   2.865e+04      9.896   1.984e+04
+       1e+12        935980     16.778   1.935e+07     14.651   2.306e+06     14.143   1.387e+06
+       1e+19   2.35223e+09     28.868   3.447e+12     25.346   1.017e+11     24.504   4.386e+10
+   1.142e+26   6.78772e+12     41.484   1.039e+18     36.542   7.411e+15     35.361   2.276e+15
+
+the same at the fixed explicit window ('full'), which is the variant
+with a G written down independently of the zeros:
+           x             T     L(K=2)           X    L(K=70)           X   L(K=700)           X
+          59       18.7151      3.179       24.01      2.384       10.85      2.384       10.85
+        1000       59.1966      6.490       658.4      5.864         352      5.864         352
+       1e+06       1323.68     13.999   1.202e+06     14.988   3.229e+06     15.224   4.088e+06
+       1e+09       34177.2     20.956   1.262e+09     23.718   1.998e+10     24.378   3.865e+10
+       1e+12        935980     27.539   9.122e+11     32.107   8.786e+13     33.198   2.616e+14
+       1e+19   2.35223e+09     41.906   1.584e+18     50.745   1.092e+22     52.857   9.022e+22
+   1.142e+26   6.78772e+12     55.408   1.157e+24     68.594   6.164e+29     71.743   1.438e+31
+
+Every capped cell above evaluates the height law at eps = 0.5, which is
+5x the instrument's largest measured eps (0.1). The same target at the
+largest MEASURED eps, and the distance to the proved rung L = log 2:
+  eps = 0.5    L =  0.9748  X =   2.6507  dL from log 2 = +0.2817   (EXTRAPOLATED past eps = 0.1)
+  eps = 0.1    L =  1.1518  X =   3.1639  dL from log 2 = +0.4587
+  eps = 0.01   L =  1.4050  X =   4.0755  dL from log 2 = +0.7119
+  eps = 0.001  L =  1.6582  X =   5.2499  dL from log 2 = +0.9651
+
+==============================================================================
+S5  the crude-constant budget
+==============================================================================
+L = a + b log T, so the prime-side truncation is X = e^L = e^a * T^b.
+a is a PREFACTOR (X scales by e^{da}); b is an EXPONENT (X scales by
+T^{db}). At the crude-explicit spec a constant may be 70x-700x worse;
+here that budget buys da = log 70 = 4.248 in a and almost nothing in b.
+
+           T    L(a,b)           X   X @ a+log70    X @ b*1.1      X @ b*2
+      14.136     1.171       3.226         225.8        5.153        349.2
+         100     4.631       102.6          7185        231.8    3.535e+05
+       10000    12.776   3.535e+05     2.475e+07    1.802e+06    4.194e+12
+       1e+07    24.993   7.147e+10     5.003e+12    1.236e+12    1.714e+23
+       3e+12    47.297   3.473e+20     2.431e+22    5.589e+22    4.047e+42
+
+b across every variant measured, at each eps -- the spread IS the
+uncertainty in the exponent:
+  b ranges over [0.6073, 3.1927] across 12 (variant, eps) cells
+  at T = 3e12 that is X between 1.125e+06 and 2.043e+38
+
+the fixed explicit window has NO root at k = 1000 at any eps on the
+instrument's grid (entry 302 Section 1); the highest gamma at which
+an explicitly-written G is measured to detect at all is:
+  gamma_k = 541.8474 (k = 300, eps = 0.1), at L_c = 10.0403
+  key: theory.k=300|eps=0.1.variants.full.L_c
+  and the fixed window fails at gamma_1000 = 1419.4225, where the
+  zero-aware minimiser detects at L_c_meas = 9.3311
+
+==============================================================================
+S6  the far-tail bound's own constants against the upstream statement
+==============================================================================
+The bench's far-tail bound assumes |N(T) - Nbar(T)| <= Rmax(T) with
+  Rmax = 0.137 log T + 0.443 log log T + 4.35 (assumed)
+Upstream states exactly that Prop as
+  riemannZeta.Riemann_vonMangoldt_bound b1 b2 b3
+  = forall T >= 2, |N T - (T/2pi log(T/2pi) - T/2pi + 7/8)|
+      <= b1 log T + b2 log log T + b3
+  (ZetaDefinitions.lean:149-162), and instantiates it at
+  backlund_bound : Riemann_vonMangoldt_bound 0.137 0.443 6.1
+  (Kadiri.lean:2618, proof `sorry` at :2619).
+The first two constants agree; the third does not: the bench assumed
+4.35 where the upstream statement carries 6.1. So the assumed form is
+SHARPER than what upstream would supply. Cost of using 6.1 instead:
+
+           T   Rmax(b3=4.35)   Rmax(b3=6.1)    ratio  ratio^(1/3)
+     14.1347          5.1444         6.8944   1.3402       1.1025
+   1419.4225          6.2224         7.9724   1.2812       1.0861
+  74920.8275          6.9589         8.7089   1.2515       1.0776
+
+The balance at L_c is 2|B|^2 = Z_far with 2|B|^2 proportional to
+eps^2 h^3 (weil_Lc_theory.md section 3(i)), so a factor f on the far
+tail moves h by at most f^(1/3) if Z_far were h-independent -- an
+upper bound on the shift, since Z_far falls with h. That is at most
+  1.1025x in L,
+against a fit rms residual of 0.1724 in L (fits.0.01.far_only_bound.rms_resid).
+
+wrote analysis/2026-09-02/results/arrow_price.json
+wrote analysis/2026-09-02/results/arrow_price.txt

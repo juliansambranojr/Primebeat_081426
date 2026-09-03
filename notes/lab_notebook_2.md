@@ -16,6 +16,178 @@ Julian's call.
 
 ---
 
+## 2026-09-02 — Entry 304 — arrow_price.py: the rung-to-strip arrow priced at the precision a consumer needs — nothing in this tree consumes RH_up_to, all fifteen upstream consumers are sorry, the loosest real target is a rectangle holding one zero ordinate, every proved rung is vacuous because X = 2 is where the first prime enters at weight zero, and of the six pieces the ε quantifier costs 0.073 in L per e-fold while P3 (a G written without the zero list) and P5 (Connes–Consani Conjecture 4.1) stay open
+type: run
+refs: 130, 296, 302, 303
+
+**Exploratory.** No prereg, no decision rule, no verdict; the script stamps
+that on every output (`analysis/2026-09-02/arrow_price.py:3`,
+`analysis/2026-09-02/results/arrow_price.txt:1`, JSON `status`). Run as
+`python3 analysis/2026-09-02/arrow_price.py`, which takes no flags;
+`meta.elapsed_s` 0.0234. Outputs
+`analysis/2026-09-02/results/arrow_price.json`, its `.numbers` and `.txt`;
+the census page is `analysis/2026-09-02/arrow_tolerance.md`. Numbers below
+are keys of `analysis/2026-09-02/results/arrow_price.numbers` (JSON sha256
+on its line 1) or of `analysis/2026-09-01/results/weil_Lc_theory.numbers`,
+read from those files; none is retyped from a report. Lean locations are in
+the PNT+ package at pin `47fa48680663df41146704d02a5b092d792bd5b9`
+(`lean_stage3/lake-manifest.json:8`), abbreviated `PKG` for
+`lean_stage3/.lake/packages/PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/IEANTN`.
+The arrow under price is entry 303 §(d) (`notes/lab_notebook_2.md:193-199`):
+`StmtWeilPositive L → riemannZeta.RH_up_to (T L)`. Units are
+`weil_QX.py`'s — G supported on [−L/2, L/2], prime powers n ≤ X = e^L on the
+arithmetic side, ε the off-line distance Re ρ − 1/2, γ the height.
+
+**Method.** This is the census of entry 130 (`notes/lab_notebook_2.md:11870-11898`)
+applied to a new claim: measure the budget before pricing the scope, which
+`/Users/juliansambrano/GitHub/CLAUDE.md:235-240` states as the first
+scope-pricing rule, and which entry 116's adversarial round
+(`notes/lab_notebook_2.md:12317-12352`) is the other precedent for. The
+type is `run` because a script executed and wrote artefacts; entry 130 is
+the type precedent.
+
+**(a) The target — who consumes the conclusion.** Nothing here does.
+`grep -rn 'RH_up_to'` over `lean_stage3/Stage3/`, `lean_stage3/Stage3.lean`
+and `lean/` returns zero lines. Stage 3's own open leaf is a half-plane,
+`StmtZeroFreeRight θ : ∀ s : ℂ, θ < s.re → s ≠ 1 → ζ s ≠ 0`
+(`lean_stage3/Stage3/Abscissa.lean:112-113`), which no finite-height
+rectangle satisfies at any L. The arrow does not feed the dial. Its
+consumers are the fifteen upstream uses of `riemannZeta.RH_up_to`
+(`PKG/ZetaDefinitions.lean:117-118`, "no zero with Re ρ ∈ (0.5, 1) and
+Im ρ ∈ [0, T]"), tabulated as `consumers[0..14].*`, and
+`consumers_proved_at_pin` is 0 — every one of `theorem_2a`–`2d`,
+`has_prime_in_interval`, `Platt_theorem`, `GW_theorem`, `PT_theorem_1`,
+`bklnw_thm_16`, `cor_1_2_a`, `cor_1_2_b`, `Hσ_zeroes` and `eq_13` closes
+with `sorry`, and the two `Inputs` rows are structure fields. Discharging
+the arrow today would supply a hypothesis to nothing that is itself proved.
+
+The loosest real target is Büthe `theorem_2a` for ψ (`PKG/TMEEMT.lean:157-158`,
+`hRH : riemannZeta.RH_up_to T`, `hT : 4.92 * sqrt (x / log x) ≤ T`,
+`hx : x > 59`, `sorry` at `:159`), evaluated at its own floor in x:
+`loosest_consumer.t_req` 18.71509903700793. That height sits between
+`gamma_1` 14.134725141734695 and `theory.k=2|eps=0.001.gamma_k`
+21.022039638771556 — the loosest real target is a rectangle containing
+exactly one zero ordinate.
+
+**(b) Where the arrow is vacuous.** Below `L_vac = a + b log γ₁` the
+conclusion excludes nothing. The whole proved literature sits at
+`rungs[0].L` 0.6931471805599453 = log 2, `rungs[0].X` 2.0 — Yoshida Lemma 2
+/ Theorem 1 at a ≤ log 2/2, Bombieri Theorem 12 for |I| < log 2, Burnol,
+Connes–Consani Theorem 1, Suzuki Theorem 1.4 (entry 296 Answer (b),
+`notes/lab_notebook_2.md:1850-1856`). At that support the arrow reaches
+`rungs[0].T_reach.0.001` 10.78788063828701,
+`rungs[0].T_reach.0.01` 11.704520307567325 and
+`rungs[0].T_reach.0.1` 13.114984926612154, all three below γ₁ = 14.1347.
+Every proved rung is vacuous at every ε measured.
+
+The first non-vacuous rung, read from the measured k = 1 rows rather than
+the regression, is at ε = 0.1: `k1_measured[2].L_c_meas` 0.959736136497628,
+`k1_measured[2].X` 2.611007432954821. The gap in support between everything
+proved and the first rung that says anything is 0.2666 in L — X from 2 to
+2.611, which does not reach the second prime. The ladder becomes non-empty
+at exactly the support that admits the prime 2 at nonzero weight.
+
+**(c) The six pieces.** What separates entry 302's fixed-window derivation
+(`analysis/2026-09-01/weil_Lc_theory.md`, balancing 2|B|² against
+Z_near + Z_far + beyond at one zero, one height, one ε) from an explicit
+uniform L(ε, γ):
+
+| piece | what it is | price | anchor |
+| --- | --- | --- | --- |
+| P1 | the Weil identity for compactly supported G | must be proved, at the size of the hEF arc (entries 257–271, nine modules) plus a T → ∞ limit the arc never needed | `PKG/Kadiri.lean:1362` (`kadiri_thm_3_1_q1`), compact-support case `:3224`; `grep -c sorry` = 14, the path's four at `:1424`, `:1444`, `:454`, `:486`, plus `:3243` |
+| P2 | the far-tail bound on Z′ via \|R(T)\| ≤ Rmax(T) | literature bound, stated upstream and still `sorry` | `PKG/ZetaDefinitions.lean:161-163` (`Riemann_vonMangoldt_bound b₁ b₂ b₃`), instantiated `backlund_bound` at `PKG/Kadiri.lean:2618`, `sorry` at `:2619` |
+| P3 | the near-lobe cancellation | a construction that does not exist — a missing G-family, neither hypothesis nor bound | entry 302 reading (2), `notes/lab_notebook_2.md:604-607`, and its closing sentence `:631-634` |
+| P4 | the lower bound on \|B\|² | provable, in closed form — elementary integrals, quadrature-checked at U1, U2, U4, U5 | `analysis/2026-09-01/weil_Lc_theory.md` section 3(i) |
+| P5 | the prime side at the rung | unproved hypothesis: Connes–Consani Conjecture 4.1, and the crude-explicit spec buys nothing against it | entry 296 `notes/lab_notebook_2.md:1813-1816` (the conjecture) and `:1869-1877` (the consequence) |
+| P6 | the ε quantifier | dischargeable by the consumer's own tolerance | `eps_law_gamma1.*`, section (d) below |
+
+P3 is the genuinely open one. The measured L_c is attained by a numerical
+minimiser built from the zero list — it reads the ordinates it is trying to
+locate. The one G written down without them is the fixed raised-cosine
+window, and it costs 2.1–5.2× the measured support; its best is
+`fixed_window_highest_detected.gamma_k` 541.8474371212013 (k = 300,
+ε = 0.1), and at `fixed_window_fails_at.gamma_k` 1419.4224809459956 it has
+no root at any ε on the grid while the zero-aware minimiser detects at
+`fixed_window_fails_at.minimiser_L_c` 9.331087701519795.
+
+**(d) The two axes, priced.** The ε axis is cheap. Entry 299's law at γ₁
+over seven values of ε is L_c = `eps_law_gamma1.a` 0.792368024385266 +
+`eps_law_gamma1.b` 0.0732632723135109 · log(1/ε), R²
+`eps_law_gamma1.R2` 0.9917768277454492 — 0.073 in L per e-fold in 1/ε.
+Excluding γ₁ at every ε down to a ten-billionth costs
+`eps_law_extension[4].X` 11.933113840507222 in X, inside the range
+Connes–Consani's numerics have already tested. The height axis is the
+expensive one: L = a + b log T with `laws.measured.0.001.b`
+1.7685542561717171 (R² `laws.measured.0.001.R2` 0.9934, `laws.measured.0.001.n` 8),
+so X = e^a · T^b and b is an exponent. Platt's height, `RH_up_to 30610046000`,
+costs `consumers[5].L_need_measured_eps1e-3` 39.1878011041584 in support.
+That inverts entry 130's usual finding, where the budget was a factor
+70–700 on a multiplicative constant and the leaf came free
+(`notes/lab_notebook_2.md:11880-11885`).
+
+**(e) The Rmax correction the census found.** The bench's far-tail bound
+assumed `params.Rmax_form` "0.137 log T + 0.443 log log T + 4.35
+(assumed)". Upstream's `backlund_bound` carries `rmax_mismatch.upstream_b3`
+6.1 where the bench assumed `rmax_mismatch.assumed_b3` 4.35; the first two
+constants agree. Rmax therefore inflates by `rmax_mismatch.rows[0].ratio`
+1.340178070431896 at γ₁, and since 2|B|² ∝ ε²h³ that moves L by at most
+`rmax_mismatch.max_L_inflation_upper_bound` 1.1025226046052437×, against a
+fit rms residual of
+`rmax_mismatch.fit_rms_resid_far_only_bound_eps0p01` 0.17239329228390704 in
+L. The bench's version of the bound is 1.10× optimistic and the correction
+sits inside the fit's own residual.
+
+**(f) The upstream probe.** Leaves double as watch targets
+(`CLAUDE.md:173-176`). In the package directory `git fetch origin` returned
+exit 0 and `git log --oneline 47fa486..origin/main` lists five commits,
+`a515467` back to `c6c7361`, touching three files:
+`.github/workflows/build.yml`, `IEANTN/Dusart.lean`, `IEANTN/TMEEMT.lean`.
+`git log --format='%h %s%n%b' 47fa486..origin/main` grepped
+case-insensitively for `weil|explicit|positiv|criterion|fourier` returns no
+matches. `grep -rniE 'weil' --include='*.lean'` over the whole package
+returns two lines, `PKG/Kadiri.lean:80` and `:1319`, both naming the
+Weil-type explicit formula. There is no statement of a Weil positivity
+criterion upstream in either direction, and nothing since the pin has moved
+toward one. The one leaf a pin bump could discharge is P2.
+
+**(g) The census's own three weakest points, as it states them.**
+(1) The height law is a regression on eight points fitted over log γ from
+2.649 to 7.258, and `Platt_theorem`'s L rests on extrapolating log T to
+24.15 — more than three times the fitted span; the bilinear surface
+reproduces the 24 measured rows at `surface_validation.rms_resid`
+0.2050049317462969 and says nothing outside the grid. (2) P3's price rests
+on the two worst fits in the file: `fits.0.001.full.n` 2 at
+`fits.0.001.full.R2` 1.0, and `fits.0.01.full.n` 6 at
+`fits.0.01.full.R2` 0.6866. (3) The x^ε tolerance argument of P6 is the
+agent's arithmetic, not a theorem in this tree — no consumer in the pinned
+package is stated with a notched rectangle; every one takes
+`riemannZeta.RH_up_to T` literally, and all fifteen are `sorry`. Cashing
+the tolerance means writing a new Stmt and re-proving a consumer that has
+never been proved.
+
+**CORRECTION.** In chat on 2026-09-02 the orchestrator called this arrow
+"hard for real reasons" without measuring anything. That is the consensus
+echo `/Users/juliansambrano/GitHub/CLAUDE.md:235-240` names. The census
+measures the budget: the ε quantifier, which looked fatal, costs 0.073 in L
+per e-fold and is removed outright by the consumer's own x^ε tolerance,
+while the expensive axis is height, where b is an exponent. The open pieces
+are P3 and P5. The conclusion "hard" survives; the reason given was wrong.
+
+**Where the brief and the census differed from the files.** The brief's
+keys `params.Rmax_form`, `fits.0.001.full.n` and `fits.0.01.full.n` live in
+`analysis/2026-09-01/results/weil_Lc_theory.numbers`, not in
+`arrow_price.numbers`, where the Rmax form is carried as `inputs.Rmax_form`;
+both files are cited above so both resolve. The census cites
+`PKG/ZetaDefinitions.lean:116-117` for `RH_up_to` and `:149-162` for
+`Riemann_vonMangoldt_bound`; the definitions themselves are at `:117-118`
+and `:161-163`, the lower numbers being the blueprint attribute blocks that
+carry the prose statements. The census dates `a515467` 2026-08-30 13:45:29
+−0700 and entry 303 dates it 2026-08-31; `git log --date=iso` prints
+2026-08-31 02:15:29 +0530 for that same commit, so both are the same
+instant in different zones. The census labels `rmax_mismatch.rows` as γ₁,
+γ₁₀₀₀, γ_N; the stored `rmax_mismatch.rows[1].T` is 1419.4224809459956 and
+`rmax_mismatch.rows[2].T` is 74920.827498994.
+
 ## 2026-09-02 — Entry 303 — pricing a Weil-form leaf for Stage 3: the tree's explicit formula has no test-function argument, upstream states the Weil form (Kadiri Thm 3.1, q = 1) with two limit-management sorries and a compact-support case with one, and the positivity ⇒ RH_up_to arrow has upstream support only for its conclusion
 type: motivation
 refs: 130, 271, 296, 301, 302
