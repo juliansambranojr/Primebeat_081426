@@ -20,6 +20,11 @@
 #                           needs .approve/<basename> to exist (the flag is NOT
 #                           consumed here; utilities/hooks/check_protected_write.py
 #                           consumes it at edit time)
+#   8. check_units.py       every units/<unit>/ touched in the staged diff passes
+#                           `lab check`, and a unit HEAD records as sealed does
+#                           not appear in the diff at all. Expected failures:
+#                           utilities/lab_check_baseline.txt. If `lab` cannot
+#                           run the commit is refused rather than skipped.
 #
 # Bypass once, deliberately:  git commit --no-verify   (the Bash hook denies that
 # form from inside Claude; from a terminal it is Julian's call).
