@@ -1,0 +1,24 @@
+# Packaging for `lab` only. The measurement scripts at the repo root keep
+# their own dependencies in requirements.txt and are not packaged here:
+# analysis/2026-09-02/lab_design.md § The CLI specifies "Python, standard
+# library only for the program itself", so this file declares no runtime
+# dependency and `packages` names exactly one directory.
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lab"
+version = "0.0.0"
+description = "Keep a tree of sealed units honest: every number in a unit's prose appears in its own values.tsv."
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+lab = "lab.cli:main"
+
+[tool.setuptools]
+# Explicit, because the repo root holds ~100 top-level modules that
+# auto-discovery would try to package.
+packages = ["lab"]

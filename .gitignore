@@ -3,6 +3,9 @@ __pycache__/
 *.pyc
 .DS_Store
 
+# build metadata written by `pip install -e .` for the `lab` package
+*.egg-info/
+
 # Result JSONs over 25 MB — excluded by explicit filename, not by size
 # pattern, so the exclusion is auditable. Not deleted; see
 # results/LOCAL-ONLY.md for sizes, sha256s, and the committed .log
