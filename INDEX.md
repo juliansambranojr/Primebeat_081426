@@ -2,13 +2,14 @@
 
 # Index
 
-7 units: 2 sealed, 5 unsealed.
+8 units: 2 sealed, 6 unsealed.
 
 ## Units by type
 
-### instrument-fix (1)
+### instrument-fix (2)
 
 - 0309 0309-phase-2c-digits-and-sealed-baseline [unsealed] -- lab Phase 2c — digits enforcement, sealed-unit baseline, 7 findings closed (52 keys)
+- 0310 0310-phase-3-index-both-directions [unsealed] -- lab Phase 3 — INDEX.md, INDEX-values.tsv, lab index (13 keys)
 
 ### run (6)
 
@@ -21,4 +22,4 @@
 
 ## Artifacts
 
-258 values.tsv keys across 7 units.
+271 values.tsv keys across 8 units.

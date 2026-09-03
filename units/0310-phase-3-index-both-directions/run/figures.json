@@ -1,0 +1,25 @@
+{
+  "index_md": {
+    "unit_count": 8,
+    "sealed": 2,
+    "unsealed": 6,
+    "total_keys": 271,
+    "type_count": 2
+  },
+  "index_values": {
+    "reverse_map_keys": 111
+  },
+  "source": {
+    "index_py_lines": 226,
+    "phase3_test_count": 18,
+    "new_files": 4,
+    "modified_files": 5
+  },
+  "tests": {
+    "suite_passed": 260,
+    "suite_exit": 1
+  },
+  "gates": {
+    "check_refs_exit": 0
+  }
+}

@@ -26,6 +26,9 @@ figures.exempt.entry_304.before_exempt_pct	0308
 figures.exempt.entry_304.before_scanned	0308
 figures.exempt.entry_304.recovered	0308
 figures.exempt.entry_304.tokens	0308
+figures.gates.check_refs_exit	0310
+figures.index_md.sealed	0310
+figures.index_md.type_count	0310
 figures.rates.arrow_price.added	0308
 figures.rates.arrow_price.int_over_three_dp	0308
 figures.rates.arrow_price.numbers_only.int_pct	0308
@@ -51,6 +54,9 @@ figures.rates.weil_Lc_theory.widened.int_refused_pct	0308
 figures.rates.weil_Lc_theory.widened.one_dp_pct	0308
 figures.rates.weil_Lc_theory.widened.three_dp_pct	0308
 figures.rates.weil_Lc_theory.widened.values	0308
+figures.source.index_py_lines	0310
+figures.source.new_files	0310
+figures.source.phase3_test_count	0310
 figures.strings.added_by_strings	0308
 figures.strings.added_values[1]	0308
 figures.strings.added_values[2]	0308
@@ -79,8 +85,8 @@ figures.tests.0004_run_fails.from_strings	0308
 figures.tests.0004_run_fails.keys	0308
 figures.tests.0004_run_fails.numeric	0308
 figures.tests.phase2b_passed	0308
-figures.tests.suite_exit	0308	0309
-figures.tests.suite_passed	0308	0309
+figures.tests.suite_exit	0308	0309	0310
+figures.tests.suite_passed	0308	0309	0310
 figures.transcript.corrections	0309
 figures.transcript.decisions	0309
 figures.transcript.findings	0309
