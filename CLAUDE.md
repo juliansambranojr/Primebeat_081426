@@ -138,18 +138,11 @@ without one.
 
 ## Prereg discipline
 
-A test earns a verdict only under a locked prereg. Everything else is
-exploratory and must be labelled so — do not describe an exploratory
-output as a verdict, and do not describe a mechanical decision-rule
-output as one either.
-
-**The verdict line is Julian's to write.** An agent may compute the SHA
-and report what the decision rule mechanically returned; it does not
-stamp the verdict.
-
-Which tests are preregistered, and which carry an unstamped verdict, is
-recorded in `CONTEXT.md` § Current state of the world. How to write and
-lock one is `preregs/FORMAT.md`.
+Do not describe an exploratory output as a verdict, and do not
+describe a mechanical decision-rule output as one either. The
+verdict line is Julian's to write. Which tests are preregistered
+is recorded in `CONTEXT.md` § Current state of the world; how to
+write and lock one is `preregs/FORMAT.md`.
 
 ## Stage-3 formalization conventions (lean_stage3/)
 
@@ -242,17 +235,3 @@ importlib rather than by name. Do not rename further in either
 direction without an `instrument-fix` entry; the prereg cites
 `07_alpha_depth_trend.py` by path.
 
-## Pointers
-
-- `CONTEXT.md` — the blueprint: what each test measures, what it
-  returned, output schema, caches, current state
-- `REFERENCES.md` — cited documents, sibling repos, constants
-- `notes/` — `lab_notebook.md` (entries 1–44, closed),
-  `lab_notebook_2.md` (45 onward), `NOTEPAD.md`, `notes_format.md`
-- `papers/` — the record, one per object; format in `papers/FORMAT.md`
-- `lean/` — 14 modules, every theorem axiom-pinned by `#guard_msgs`;
-  `lean/THEOREMS.md` is the generated index
-- `preregs/` — locked protocols; format in `preregs/FORMAT.md`
-- `utilities/` — `check_refs.py`, `check_values.py`, `extract_run.py`
-- `results/` — run artifacts; `analysis/<date>/` for session work
-- `claude_writer.md`, `claude_notes.md` — agent briefs
