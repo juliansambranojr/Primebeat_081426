@@ -8,6 +8,14 @@
             "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_response_prefix.py\""
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/utilities/hooks/check_quote_gate.py\""
+          }
+        ]
       }
     ],
     "PreToolUse": [

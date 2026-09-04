@@ -1,0 +1,19 @@
+{
+  "hook": {
+    "lines": 218,
+    "stop_hooks": 2,
+    "total_hook_blocks": 3
+  },
+  "tests": {
+    "phase8_test_count": 15,
+    "suite_passed": 382,
+    "suite_exit": 0
+  },
+  "gates": {
+    "check_refs_exit": 0
+  },
+  "files": {
+    "modified": 2,
+    "created": 2
+  }
+}

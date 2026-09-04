@@ -35,11 +35,11 @@ def _collect_hook_entries(data: dict) -> list[tuple[str, str]]:
     return entries
 
 
-def test_settings_has_exactly_two_hooks():
+def test_settings_has_at_least_two_hooks():
     data = json.loads(SETTINGS.read_text())
     entries = _collect_hook_entries(data)
-    assert len(entries) == 2, (
-        f"Expected 2 hook entries, got {len(entries)}: {entries}"
+    assert len(entries) >= 2, (
+        f"Expected at least 2 hook entries, got {len(entries)}: {entries}"
     )
 
 

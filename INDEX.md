@@ -2,17 +2,18 @@
 
 # Index
 
-11 units: 2 sealed, 9 unsealed.
+12 units: 2 sealed, 10 unsealed.
 
 ## Units by type
 
-### instrument-fix (5)
+### instrument-fix (6)
 
 - 0309 0309-phase-2c-digits-and-sealed-baseline [unsealed] -- lab Phase 2c — digits enforcement, sealed-unit baseline, 7 findings closed (52 keys)
 - 0310 0310-phase-3-index-both-directions [unsealed] -- lab Phase 3 — INDEX.md, INDEX-values.tsv, lab index (13 keys)
 - 0311 0311-phase-4-segments-and-chain [unsealed] -- lab Phase 4 — segments, chain, CHAIN.tsv (12 keys)
 - 0312 0312-phase-5-cite-brief-report [unsealed] -- lab Phase 5 — cite, brief, report (10 keys)
 - 0313 0313-phase-7-hook-fleet-retirement [unsealed] -- lab Phase 7 — hook fleet retirement (7 keys)
+- 0314 0314-phase-8-quote-gate [unsealed] -- lab Phase 8 — quote gate (9 keys)
 
 ### run (6)
 
@@ -25,4 +26,4 @@
 
 ## Artifacts
 
-300 values.tsv keys across 11 units.
+309 values.tsv keys across 12 units.
