@@ -1,0 +1,7 @@
+key	value	source
+files_archived	7	count of files moved to archive/
+files_still_active	3	count of load-bearing files left in place
+files_with_docstring_refs	8	agent audit: grep for run.py in O-series docstrings
+scripts_importing_resultsguard	16	agent audit: grep for resultsguard import
+tests_passed	382	pytest tests/ -x -q
+broken_refs	0	python3 utilities/check_refs.py

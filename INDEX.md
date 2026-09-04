@@ -2,7 +2,7 @@
 
 # Index
 
-12 units: 2 sealed, 10 unsealed.
+13 units: 2 sealed, 11 unsealed.
 
 ## Units by type
 
@@ -15,6 +15,10 @@
 - 0313 0313-phase-7-hook-fleet-retirement [unsealed] -- lab Phase 7 — hook fleet retirement (7 keys)
 - 0314 0314-phase-8-quote-gate [unsealed] -- lab Phase 8 — quote gate (9 keys)
 
+### provenance (1)
+
+- 0315 0315-archive-superseded-files [unsealed] -- archive superseded files (7 keys)
+
 ### run (6)
 
 - 0000 0000-smoke [unsealed] -- Smoke fixture that lab check must fail (4 keys)
@@ -26,4 +30,4 @@
 
 ## Artifacts
 
-309 values.tsv keys across 12 units.
+316 values.tsv keys across 13 units.

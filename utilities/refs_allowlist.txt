@@ -31,3 +31,13 @@ CLAUDE.md § Pointers
 check_numbers_in_response.py
 check_agent_brief.py
 check_read_range.py
+
+# --- files archived when lab took over (moved to archive/) ---
+# Historical notebook entries, NOTEPAD lines, and unit transcripts cite these.
+gate.py
+check_direct_run.py
+check_bash_guard.py
+claude_writer.md
+claude_notes.md
+utilities/run.py
+run.py

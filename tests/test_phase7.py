@@ -14,6 +14,7 @@ import pytest
 PROJECT = Path(__file__).resolve().parent.parent
 SETTINGS = PROJECT / ".claude" / "settings.json"
 HOOKS_DIR = PROJECT / "utilities" / "hooks"
+ARCHIVE = PROJECT / "archive"
 
 
 # ── settings.json validity ──────────────────────────────────────────
@@ -99,8 +100,8 @@ def test_deregistered_hook_deleted(filename):
     "check_bash_guard.py",
 ])
 def test_retired_hook_still_on_disk(filename):
-    path = HOOKS_DIR / filename
-    assert path.exists(), f"{path} should still exist (retired, not deleted)"
+    path = ARCHIVE / filename
+    assert path.exists(), f"{path} should exist in archive (retired, moved from hooks)"
 
 
 # ── surviving hooks importable ───────────────────────────────────────

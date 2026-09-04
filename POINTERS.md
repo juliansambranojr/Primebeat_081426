@@ -22,6 +22,6 @@ need orientation. `lab index` and `lab chain` generate the live indexes;
 - `utilities/` — `check_refs.py`, `check_values.py`,
   `check_entry_numbers.py`, `check_sidecar.py`, `check_units.py`,
   `check_weld.py`, `check_results_guard.py`, `flatten_results.py`,
-  `extract_run.py`, `run.py`; hooks in `utilities/hooks/`
+  `extract_run.py`; hooks in `utilities/hooks/`
 - `results/` — run artifacts; `analysis/<date>/` for session work
-- `claude_writer.md`, `claude_notes.md` — agent briefs
+- `archive/` — superseded files moved here when `lab` took over

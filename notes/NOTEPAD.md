@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-09-03  unit 0315: archive superseded files. 7 files moved to archive/ (gate.py, check_direct_run.py, check_bash_guard.py, run.py, claude_writer.md, claude_notes.md, claude_md_trim_proposal.md). 3 still active (resultsguard.py, check_results_guard.py, check_entry_numbers.py). POINTERS.md, refs_allowlist.txt, test_phase7.py updated. 382 passed, 0 broken refs
 - [open]   2026-09-03  unit 0314: lab Phase 8 — quote gate. Stop hook check_quote_gate.py checks every blockquote and fenced block against the session transcript as exact substring. Ellipsis splits into segments. PB_NOQUOTE=1 env var escape. 218 lines. 15 tests in test_phase8.py. 2 files created, 2 modified. 382 passed
 - [open]   2026-09-03  unit 0313: lab Phase 7 — hook fleet retirement. settings.json retired to 2 hooks (check_response_prefix, check_protected_write). 3 deregistered files deleted (check_numbers_in_response, check_agent_brief, check_read_range). 2 tree-state tests in test_phase2c.py made dynamic. 12 tests in test_phase7.py. Phase 8 row added for the quote gate. 367 passed
 - [open]   2026-09-03  unit 0312: lab Phase 5 — cite, brief, report. `lab cite` prints a value from values.tsv (63 lines). `lab brief` generates a fenced brief block with keys and unit ids, no digits (177 lines). `lab report` generates a tagged report block with gate results and values summary (152 lines). 3 subcommands in lab/cli.py. 43 tests in test_phase5.py. 4 new files, 3 modified. 353 passed
