@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "hook_blocks": 2,
+    "deleted_confirmed": 3,
+    "surviving_confirmed": 2
+  },
+  "tests": {
+    "phase7_test_count": 12,
+    "suite_passed": 367,
+    "suite_exit": 0
+  },
+  "gates": {
+    "check_refs_exit": 0
+  }
+}

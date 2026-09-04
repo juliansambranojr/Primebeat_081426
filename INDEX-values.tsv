@@ -31,7 +31,10 @@ figures.exempt.entry_304.before_exempt_pct	0308
 figures.exempt.entry_304.before_scanned	0308
 figures.exempt.entry_304.recovered	0308
 figures.exempt.entry_304.tokens	0308
-figures.gates.check_refs_exit	0310	0311	0312
+figures.gates.check_refs_exit	0310	0311	0312	0313
+figures.hooks.deleted_confirmed	0313
+figures.hooks.hook_blocks	0313
+figures.hooks.surviving_confirmed	0313
 figures.index_md.sealed	0310
 figures.index_md.type_count	0310
 figures.rates.arrow_price.added	0308
@@ -100,8 +103,9 @@ figures.tests.0004_run_fails.from_strings	0308
 figures.tests.0004_run_fails.keys	0308
 figures.tests.0004_run_fails.numeric	0308
 figures.tests.phase2b_passed	0308
-figures.tests.suite_exit	0308	0309	0310	0311	0312
-figures.tests.suite_passed	0308	0309	0310	0311	0312
+figures.tests.phase7_test_count	0313
+figures.tests.suite_exit	0308	0309	0310	0311	0312	0313
+figures.tests.suite_passed	0308	0309	0310	0311	0312	0313
 figures.transcript.corrections	0309
 figures.transcript.decisions	0309
 figures.transcript.findings	0309

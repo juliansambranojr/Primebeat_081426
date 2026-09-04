@@ -21,3 +21,9 @@ difference_table.py
 # CLAUDE.md § Prereg file naming: a prereg keeps its creation name. This one
 # was renamed draft -> locked before that rule, stranding the citation.
 zero_winding_phase_v1_draft_20260818.md
+
+# --- hook scripts deleted in phase 7 (deregistered, measured as ineffective) ---
+# Historical notebook entries and NOTEPAD lines still cite them by name.
+check_numbers_in_response.py
+check_agent_brief.py
+check_read_range.py
