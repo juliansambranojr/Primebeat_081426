@@ -1,6 +1,6 @@
 # The module loop
 
-version: 3
+version: 4
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -118,9 +118,9 @@ refuses them. The unit's `run/` is the place.
 
 Four files. `run/run.sh` is the build. `question.md` quotes the transcript
 verbatim and carries the statements as fenced blocks copied from the
-module. The installed `lab check` requires a `CONTEXT.md:` line and a
-`NOTEPAD:` line in it; they are boilerplate in a Lean unit and their
-removal is on Julian's list with the inline-math exemption (unit 0338). `values.tsv` has one row per number in the prose, including unit
+module; no boilerplate lines. Digits inside inline code spans are
+formula and are not checked; the measured digit sits outside the span,
+beside its backticked key. `values.tsv` has one row per number in the prose, including unit
 ids and numbers inside inline math, the row `loop_version`, and the row
 `design` naming the worksheet section. `unit.md`
 paraphrases the header, keys every number beside its backticked key, and
@@ -133,6 +133,15 @@ python3 -m lab check units/<unit>
 python3 utilities/check_lean_unit.py units/<unit>
 git add lean_stage3/Stage3/<Module>.lean lean_stage3/Stage3.lean units/<unit>
 git commit -q -m "<Module>.lean: <what>; unit <id> logged"
+```
+
+The pre-commit runs `check_lean_unit.py` on every staged unit whose
+`values.tsv` carries `loop_version` (its step 9). Edits to
+`utilities/hooks/` need Julian's one-use approve flag, created from the
+repo root:
+
+```sh
+touch .approve/pre-commit
 ```
 
 Steps that do not depend on each other run in one call: the scaffold
