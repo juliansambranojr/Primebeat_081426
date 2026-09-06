@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-09-06T23:09:36Z
+# unit: 0345-rung5-section9-dies-on-size
+# sources searched: 871
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145794
+  Source: session transcript, 2026-09-06 (this session), the orchestrator's turn in the loop
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145025
+  no, i want you to run in the loop next, so you can see how it feels and if it made it better or wors...
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9310
+  Caveat found and not yet resolved: the cluster is defined through `h`, and
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9311
+  Dirichlet picks `h`. Fix in the sketch: define the cluster by an
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9312
+  `h`-independent superset (all off-line zeros within `1/2` in height of the
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9313
+  widened box) and align all of them; `N` is then the band count of the
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:5851
+  theorem cprime_le (m : ℕ) : cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1)) := by
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:5862
+  4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) ≤ cS m / D m := by
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:5978
+  theorem sum_inv_sq_ge (m : ℕ) :
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:5979
+  ((m : ℝ) + 2) / (2 * (m : ℝ) + 3) ^ 2 ≤ ∑ j ∈ Finset.Ico (m + 1) (2 * m + 3), 1 / ((j : ℝ) + 1) ^ 2 ...
+
+# 10 found, 0 missing

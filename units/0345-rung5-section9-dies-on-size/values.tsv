@@ -1,0 +1,13 @@
+key	value	source
+nine	9	rung5.md section 9
+thirteen	13	rung5.md section 13
+q_min	8	rung5.md section 9 head, the alignment modulus
+band_a	15	rung5.md section 9, band count 15 log T' + 73
+band_b	73	rung5.md section 9, band count 15 log T' + 73
+expo	31	15 * ln 8 = 31.19, rounded down
+rate_loss	4	limit of (2m+3)^2/((m+1)(m+2))
+unit_gauss	0333	WeilPowerGauss
+unit_compare	0341	WeilPowerCompare, cE/cP
+unit_sharp	0346	WeilPowerSharp, this run's module
+loop_ver	8	lean_stage3/LOOP.md version line
+design	rung5.md#9	the section priced

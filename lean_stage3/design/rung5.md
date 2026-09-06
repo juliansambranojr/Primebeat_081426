@@ -90,6 +90,7 @@ the crude lower bound is useless for the assembly. Fine for far zeros
 
 ## 5. The Gaussian regime — PROVED (unit 0333)
 
+
 Euler: `sinh w = w·∏_{j≥1}(1 + w²/(π²j²))` (euler_sinh, from
 `Complex.tendsto_euler_sin_prod` at `iw/π`). The closed form's head product
 cancels the head of Euler's product:
@@ -203,7 +204,20 @@ Lean shape: a maximum over a finite set (zeros in a bounded region are
 finite: `WeilOnLine.lowSet_finite`'s argument, or the band count), an
 induction on `k` with the bounded-increase argument.
 
-## 9. The cluster — SKETCH
+## 9. The cluster — SKETCH, dies on size (unit 0345)
+
+Priced before building, 2026-09-06 (unit 0345). Dirichlet over `N`
+frequencies needs a range of length at least `Q^N` in `h`, with `Q ≥ 8` for
+every phase within `2π/Q` of `0` to leave `cos` bounded away from `0`. `N`
+is the band count at the target's height, `N ≥ 15 log T' + 73`, and the
+target's height after § 8's walk is `T' = T + H/(8K'π²λ)` where `H` is the
+top of the `h`-range. So `H ≥ h₀ + Q^N ≥ (T + H/(8K'π²λ))^{15 log 8}`, an
+exponent above `31`: the range grows faster than the height it must stay
+inside, at every `T`. Bounding `N` by the shell alone does not help, since
+the shell can hold every zero of the band. The alignment route is closed.
+What replaces it is § 13. The paragraphs below are kept as the record of
+the sketch.
+
 
 Cluster = other off-line zeros with `|Δ| < 1/2` and `ε'² > ε² − K'π²λ/h`
 (with the target selected as in §8, `ε'² ≤ ε² + K'π²λ/h`). Their count is
@@ -266,3 +280,42 @@ the theorem trades sharpness for suppression.
   `h₀ ≈ (2π²λ/ε²)·log(poly)`, polynomial in `log T`, `1/ε²`.
 - Whether the tsum split needs the off-line part summable at all: yes, to
   write the form as a sum of three parts; the far bound gives it.
+
+## 13. The averaging route — SKETCH (unit 0345)
+
+Replace alignment by averaging. Take `h` over the integers of `[h₀, H]`
+with `m + 1 = λh`, weights `w_h = 1/(target lower bound at h)` so the
+target's weighted term is at least `1` at every `h`, and consider
+`Σ_h w_h · zeroForm(φ_h)`. If the weighted sum is negative, some `h` has a
+negative form, which is all `StmtDetect` needs. Each other zero's term is
+`−|g_i|² cos 2φ_i(h)` with `2φ_i(h) = ω_i h + 2 arctan(Δ_i/ε') + (phase of
+the tail product)`, `ω_i = 4ε'Δ_i/(π²λ)` (from § 5's exponent
+`w²/(π²(m+1))`, imaginary part `2ε'Δh²/(π²λh)`). Members split by
+`Δ_i h₀`: below `7` the phase is under `0.2·7 = 1.4` radians at `λ = 1` and
+the term is negative; above, the phase turns and Abel summation bounds
+`|Σ_h w_h|g_i|² cos 2φ_i|` by `(max + total variation of w_h|g_i|²)·π/ω_i`,
+while the target contributes at least `H − h₀`. With `N` members, each of
+relative size at most `e^{K'}` (§ 8's selection at `η = K'/H`), the range
+`H − h₀ = C·N·e^{K'}·h₀/ε` suffices, and `N ≥ 15 log(T + H) + 73` closes
+since `H` enters only through a logarithm.
+
+What it needs, in order. (a) The constants of § 5 sharp, so the relative
+size of a member is `e^{(ε'² − Δ² − ε²)h/(π²λ)}` times a constant with no
+power of `m` and no factor in the rate: unit 0346. (b) The phase of the
+tail product: `‖T m w n − 1‖ ≤ 2‖w‖⁴/(3π⁴(m+1)³)`, from
+`|e^z − 1| ≤ |z|e^{|z|}` on `z = Σ(log(1+x_j) − x_j)`; then
+`Re S² ≥ |P|² cos(2 arg P) − |P|²(2δ + δ²)` with `P` the explicit principal
+part. (c) The total variation of `w_h|g_i|²` over the range: log-linear in
+`h` up to the quartic terms, so at most a constant times its maximum.
+(d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.
+(e) The on-line background (§ 6) and the suppressed zeros (§ 7) summed with
+the same weights, both polynomial against the target's `H − h₀`.
+
+Open, with the number that decides it: the quartic phase error
+`‖w‖⁴/(3π⁴(m+1)³) = ε⁴h/(3π⁴λ³)` grows with `h`; it is under `0.3` radians
+only for `h ≤ 88λ³/ε⁴`. Over a range of length `C N e^{K'} h₀/ε` with
+`h₀ ~ 2π²λ log(poly)/ε²` that forces `λ³ ≳ ε⁴ H/88`, so `λ` grows with the
+range, the rate `ε²/(2π²λ)` falls, and `h₀` rises. A fixed point exists
+(everything is polynomial in `log`) and its size is the price of the
+route. The other choice is a phase bound that does not go through the
+Gaussian approximation: the exact argument of the tail product.
