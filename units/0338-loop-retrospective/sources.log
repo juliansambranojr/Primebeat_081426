@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-09-06T18:18:12Z
+# unit: 0338-loop-retrospective
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141726
+  Source: session transcript, 2026-09-06 (this session), after unit 0337 was reported
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141571
+  Ok I am 80% of my limit so let’s be brief. Can any parts of our scaffold / loop be taken out and was...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141583
+  Ok let’s log this and then make the changes
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141593
+  Anything downstream of the window takes the term as a parameter: a band,
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141594
+  tile or series module is stated for `term : ℂ → ℝ` with the nonnegativity
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141595
+  and the bounds as hypotheses, never for one window's test function.
+
+# 6 found, 0 missing

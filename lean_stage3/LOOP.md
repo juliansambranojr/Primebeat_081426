@@ -1,6 +1,6 @@
 # The module loop
 
-version: 2
+version: 3
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -57,12 +57,17 @@ grep -rn 'theorem NAME1\b\|theorem NAME2\b' . --include='*.lean' | head
 A guessed name is an error on the first build, every time. Names that
 resolve on this toolchain are listed in `TRAPS.md` § Names.
 
-## 3. Reuse by copying
+## 3. Parameterize downstream, copy upstream
 
-When a module repeats an old one with a term or a window replaced, read
-the old module in full (`Read`, the whole file) and copy each proof with
-the names changed. Copied modules build with zero errors; abstracting
-them costs more than copying.
+Anything downstream of the window takes the term as a parameter: a band,
+tile or series module is stated for `term : ℂ → ℝ` with the nonnegativity
+and the bounds as hypotheses, never for one window's test function.
+Units 0321–0324 were stated for one window and had to be copied in full
+when the window changed (units 0334–0335, six hundred lines).
+
+When a module does repeat an old one, read the old module in full
+(`Read`, the whole file) and copy each proof with the names changed.
+Copied modules build with zero errors.
 
 ## 4. Build, classify, fix
 
@@ -113,7 +118,9 @@ refuses them. The unit's `run/` is the place.
 
 Four files. `run/run.sh` is the build. `question.md` quotes the transcript
 verbatim and carries the statements as fenced blocks copied from the
-module. `values.tsv` has one row per number in the prose, including unit
+module. The installed `lab check` requires a `CONTEXT.md:` line and a
+`NOTEPAD:` line in it; they are boilerplate in a Lean unit and their
+removal is on Julian's list with the inline-math exemption (unit 0338). `values.tsv` has one row per number in the prose, including unit
 ids and numbers inside inline math, the row `loop_version`, and the row
 `design` naming the worksheet section. `unit.md`
 paraphrases the header, keys every number beside its backticked key, and

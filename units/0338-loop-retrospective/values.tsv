@@ -1,0 +1,19 @@
+key	value	source
+items	5	the list
+lines_copied	600	units 0334 and 0335, wc -l 488 + 227, rounded
+rows_per_unit	5	rows such as two, one, half in units 0329 to 0335
+hours	4	unit 0325 at 04:34, unit 0327 at 08:56
+lines_crude	60	WeilPowerBounds.lean, S_real_eq to S_real_ge
+units_boiler	12	units 0326 to 0337
+loop_version	3	lean_stage3/LOOP.md version line
+section_next	7	lean_stage3/design/rung5.md section 7
+design	rung5.md#12	the worksheet's open questions
+unit_first	0321	old band chain start
+unit_last	0324	old band chain end
+unit_route	0325	the overturned route
+unit_finding	0327	the finding
+unit_bounds	0331	the crude bound
+two	2	two modules instead of four
+four	4	two modules instead of four
+three	3	step three; version 3
+six	6	step six
