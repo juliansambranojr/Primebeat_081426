@@ -52,6 +52,7 @@ import Stage3.WeilPower
 import Stage3.WeilOddPower
 import Stage3.WeilPowerBounds
 import Stage3.WeilPowerBackground
+import Stage3.WeilPowerGauss
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

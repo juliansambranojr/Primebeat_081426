@@ -1,0 +1,56 @@
+# check_prose_source.py  2026-09-06T17:34:35Z
+# unit: 0333-weil-powergauss-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135846
+  Source: session transcript, 2026-09-06 (this session), the decision that switched the window
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136922
+  On the real axis. `S_real_eq`: at real `s` the transform is the real
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136923
+  number `cS m · sinh s / Ps m s`. `Ps_le`: the real product is at most
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136924
+  the largest factor to the power `m+1`. `sinh_ge`: `sinh s` is at least
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136925
+  `e^s` over `sinh_denom` 4 for `s` at least `s_min` 1. `S_real_ge`: the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136926
+  transform at real `s ≥ 1` is at least `cS m · e^s` over `4` times
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136927
+  `(s² + π²(m+1)²)` to the power `m+1`. That is the target's main term,
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137740
+  Tendsto (fun n : ℕ => w * ∏ j ∈ Finset.range n, g w j) atTop (𝓝 (Complex.sinh w)) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138091
+  theorem norm_S_le_gauss_pos {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138092
+  (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (hre : 0 ≤ (w ^ 2).re) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138093
+  ‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138094
+  * Real.exp ((w ^ 2).re / (Real.pi ^ 2 * ((m : ℝ) + 1)) + ‖w‖ ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138195
+  theorem S_real_ge_gauss {m : ℕ} {s : ℝ} (hs : 0 < s)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138196
+  (hsmall : s ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138197
+  4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138198
+  * Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + 3) ^ 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:138199
+  - s ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) ≤ (S m (s : ℂ)).re := by
+
+# 17 found, 0 missing
