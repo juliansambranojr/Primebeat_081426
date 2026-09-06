@@ -1,0 +1,11 @@
+key	value	source
+pin_lines	4	PINS.md: DONE, ASSUMED, DEPENDS, OUT
+outcomes	3	PINS.md: wrong assumption, unmet dependency, narrower done
+misreads	2	PINS.md misreads table
+loop_ver	5	lean_stage3/LOOP.md version line
+design	rung5.md#10	the assembly the investigation points at
+unit_arrow	0316	WeilDetect, the arrow
+unit_probe	0328	the probe, primes reproduce the zero side
+unit_route	0325	the overturned route, misreads row
+seven	7	worksheet section 7
+zero	0	section 0b

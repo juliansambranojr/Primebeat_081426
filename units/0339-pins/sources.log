@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-09-06T18:37:22Z
+# unit: 0339-pins
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:142248
+  Source: session transcript, 2026-09-06 (this session), the last question before the limit
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:142093
+  if i am the principle investigator what are we investigating? what is the all the lean files pointin...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:142109
+  DONE        one line: what the deliverable is, so it can be checked
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:142110
+  ASSUMED     ambiguities resolved the model's way, each as one sentence
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:142111
+  DEPENDS     what the task needs from Julian (a flag, a decision, a file)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:142112
+  OUT         what the model decided is out of scope, and why
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121391
+  theorem box_empty_of_positive_of_detect {ε T L : ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121392
+  (hD : StmtDetect ε T L) (hP : StmtWeilPositive L) :
+
+# 8 found, 0 missing

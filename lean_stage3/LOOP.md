@@ -1,6 +1,6 @@
 # The module loop
 
-version: 4
+version: 5
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -18,6 +18,13 @@ python3 ~/.claude/hooks/orient_gate.py --orient
 
 Re-run it whenever the working directory has moved into
 `lean_stage3/.lake/packages/mathlib`: the gate refuses Bash from there.
+
+## 0b. Pin the task
+
+Before any work on a task above trivial, write its four pins in
+`PINS.md` at the repo root (DONE, ASSUMED, DEPENDS, OUT), silently. When
+the work looks lazy, the pins are read before anything is said; a wrong
+pin goes into the misreads table there.
 
 ## 1. Freeze the design: the worksheet, then the header
 
