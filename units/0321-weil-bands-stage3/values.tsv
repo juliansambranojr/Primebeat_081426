@@ -1,0 +1,17 @@
+key	value	source
+module_lines	146	wc -l lean_stage3/Stage3/WeilBands.lean
+defs	1	weightedTerm
+theorems_proved	4	order_eq_analyticOrderNatAt mem_zetaWindow_of_online band_count band_sum_le
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilBands.lean
+errors_first	2	first lake build
+jobs_package	8742	lake build (full Stage3)
+band_half	9/10	band_count hypothesis |im - T| <= 9/10
+window_radius	7/4	JensenCount.zetaWindow
+count_slope	15	JensenCount.zeta_local_zero_count
+count_const	73	JensenCount.zeta_local_zero_count
+band_step	9/5	next slice: windows stepped by 2 * 9/10
+window_height_min	2	zeta_local_zero_count hypothesis 2 <= T
+sq_re	9/4	(1/2 - 2)^2
+sq_im	81/100	(9/10)^2
+sq_radius	49/16	(7/4)^2

@@ -43,6 +43,7 @@ import Stage3.WeilWindow
 import Stage3.WeilTransform
 import Stage3.WeilLobe
 import Stage3.WeilBackground
+import Stage3.WeilBands
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

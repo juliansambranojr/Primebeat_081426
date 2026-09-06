@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-09-06T11:02:19Z
+# unit: 0321-weil-bands-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:125197
+  Source: session transcript, 2026-09-06 (this session), the bracket in which slice A was asked for
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:129729
+  The lemma I need is `Real.tsum_le_of_sum_le` ... Writing slice A: the multiplicity bridge, the band ...
+
+FOUND  notes/lab_notebook_2.md:932
+  ## 2026-09-02 — Entry 303 — pricing a Weil-form leaf for Stage 3: the tree's explicit formula has no...
+
+FOUND  session/4d0caf67-f72a-4554-a9cc-a363251155d9.jsonl:230172
+  theorem zeta_local_zero_count {T : ℝ} (hT : 2 ≤ T) :
+
+FOUND  session/4d0caf67-f72a-4554-a9cc-a363251155d9.jsonl:230173
+  ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124996
+  theorem band_count {T : ℝ} (hT : 2 ≤ T) (S : Finset ℂ)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124997
+  (hS : ∀ ρ ∈ S, riemannZeta ρ = 0 ∧ ρ.re = 1 / 2 ∧ |ρ.im - T| ≤ 9 / 10) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124998
+  ∑ ρ ∈ S, (analyticOrderNatAt riemannZeta ρ : ℝ) ≤ 15 * Real.log T + 73 := by
+
+# 8 found, 0 missing
