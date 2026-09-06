@@ -1,0 +1,21 @@
+key	value	source
+module_lines	321	wc -l lean_stage3/Stage3/WeilSeries.lean
+defs	3	cFar M A
+theorems_proved	17	cFar_nonneg M_nonneg two_le_of_one_lt dist_ge term_le_M four_h_add_nonneg A_nonneg weight_le weight_nonneg bandTerm_le_A summable_shift3 summable_shift2 bandSeries_summable tsum_shift2 bandSeries_le idx_le tsum_upper_le_explicit tsum_upper_le_explicit'
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilSeries.lean
+errors_first	3	first lake build
+jobs_package	8744	lake build (full Stage3)
+rung	4b	detection ladder rung, second half
+near_bands	1	M: |k - idx γ| ≤ 1
+height_min	11/10	Upper
+p_exp	3	bandTerm_le_A comparison exponent
+count_slope	15	band weight 15 log T + 73
+count_const	73	band weight 15 log T + 73
+weight_slope	88	weight_le: 15 log(centre k) + 73 <= 88 (k+1)
+band_step	9/5	dist_ge
+band_half	9/10	dist_ge
+far_ratio	10/9	cFar
+zeta2_denom	6	pi^2/6, hasSum_zeta_two
+gap_min	2	two_le_of_one_lt
+next_rung	5	rung 5 assembly
