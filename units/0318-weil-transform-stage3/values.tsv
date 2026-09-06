@@ -1,0 +1,11 @@
+key	value	source
+module_lines	237	wc -l lean_stage3/Stage3/WeilTransform.lean
+defs	4	SigmaC, Psi, G, ghat
+theorems_proved	9	P_even xP_odd continuous_xP SigmaC_ofReal SigmaC_I_mul odd_integral_exp ghat_eq ghat_ofReal_I ghat_offline
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilTransform.lean
+errors_first	4	first lake build: 4 errors before the pins
+errors_second	1	second lake build: 1 error
+jobs_package	8739	lake build (full Stage3)
+half	2	the h/2 and the (e^a+e^b)/2 in ghat_eq and key
+lobe_multiple	2	the 2iγ in ghat_offline

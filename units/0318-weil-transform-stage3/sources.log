@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-09-06T09:50:23Z
+# unit: 0318-weil-transform-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:122901
+  Source: session transcript, 2026-09-06 (this session), the bracket in which rung 3 was asked for
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:122455
+  Rung 3, next: the transform of the tuned window in closed form, entry 302's Ψ and Σ identities. This...
+
+FOUND  notes/lab_notebook_2.md:1167
+  ## 2026-09-02 — Entry 302 — weil_Lc_theory.py: L_c(ε, γ_k) in closed form for a fixed raised-cosine ...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:120596
+  Ghat(t)  = (i N h / 2) [Psi(h (t - gamma)) + Psi(h (t + gamma))]
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:120601
+  Ghat(gamma -+ i eps) = (N h / 2) [ +- Sigma(eps h) + i Psi(2 gamma h -+ i eps h) ]
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:122607
+  theorem ghat_eq {h : ℝ} (hh : 0 < h) (γ : ℝ) (z : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:122609
+  (SigmaC ((z + Complex.I * (γ : ℂ)) * (h : ℂ))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:122610
+  + SigmaC ((z - Complex.I * (γ : ℂ)) * (h : ℂ))) := by
+
+# 8 found, 0 missing
