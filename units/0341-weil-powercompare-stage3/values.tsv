@@ -1,0 +1,22 @@
+key	value	source
+module_lines	340	wc -l lean_stage3/Stage3/WeilPowerCompare.lean
+theorems_proved	21	grep -c ^theorem lean_stage3/Stage3/WeilPowerCompare.lean
+defs	8	grep -c ^def lean_stage3/Stage3/WeilPowerCompare.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerCompare.lean
+errors_first	5	first lake build
+jobs_package	8754	lake build (full Stage3)
+jobs_module	8662	lake build Stage3.WeilPowerCompare
+loop_version	5	lean_stage3/LOOP.md version line
+design	rung5.md#7	the comparison at another off-line zero
+rung	5	detection ladder rung
+slice	9	ninth module of the switched-window ladder
+section	7	worksheet section this module is built from
+ratio_min	2/9	cE/cP at m = 0
+ratio_max	1/4	limit of cE/cP
+unit_gauss	0333	WeilPowerGauss, the Gaussian regime
+unit_bounds	0331	WeilPowerBounds, the crude far bound
+unit_prev	0335	WeilPowerOnLine, the previous module
+unit_this	0341	this unit
+unit_arrow	0316	the arrow that empties the box
+section_assembly	10	worksheet section 10, the assembly

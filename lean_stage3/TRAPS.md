@@ -2,7 +2,8 @@
 
 Error pattern, cause, fix. One row per class. Appended after any build
 that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
-2026-09-06, units 0329–0335; rows 13–17 come from CLAUDE.md § Stage-3.
+2026-09-06, units 0329–0335; rows 13–17 come from CLAUDE.md § Stage-3;
+rows 18–20 were paid for by unit 0341.
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -23,6 +24,9 @@ that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 | 15 | `rw [hdef]` fails on a `set` definition | beta | `simp only [hdef]` |
 | 16 | dotted `comp` continuity lemma mis-unifies | implicit `g`, `f` | pin `(g := ...) (f := ...)` |
 | 17 | `pow_le_pow_left` does not resolve | renamed | `pow_le_pow_left₀`; also `inv_anti₀`, `abs_add_le`, `Summable.tsum_le_tsum`, `norm_pos_iff`, `one_div_le_one_div_of_le` |
+| 18 | `nlinarith` reports `linarith failed to find a contradiction` on a short context whose goal is a positive constant times a bracket | the whole proof is the product of two hypotheses and that product is not in the hint list | name the bracket's positivity as its own `have hb`, then `nlinarith [mul_pos h1 hb]` |
+| 19 | `#guard_msgs` refuses a `#print axioms` pin, the diff adding `sorryAx` | a proof earlier in the same module failed, so the theorem is a sorry | fix the earlier errors; these pins are a cascade, they inflate `errors_first` and are not a class to chase |
+| 20 | warning `Variable name X is not explicitly referenced` | a hypothesis in the statement the proof never uses | drop it from the statement and prove it follows from the rest (a positive error term can force the sign the dropped hypothesis asserted) |
 
 ## Bench and gate traps
 
@@ -54,3 +58,10 @@ Verified on v4.32.2 with Mathlib at the pin, 2026-09-06:
 `Nat.factorial_le_pow`, `Real.pi_lt_d2`, `Real.pi_gt_three`,
 `inv_le_comm₀`, `div_le_div_iff₀`, `div_le_iff₀`, `le_div_iff₀`,
 `intervalIntegral.integral_mul_deriv_eq_deriv_mul`.
+
+Added by unit 0341, same toolchain and pin: `Complex.sq_norm` (protected,
+`‖z‖ ^ 2 = normSq z`), `Complex.normSq_apply`, `Complex.mul_re`,
+`Complex.norm_mul` (protected), `Complex.norm_real`, `max_eq_left`,
+`max_eq_right`, `mul_nonpos_of_nonpos_of_nonneg`, `Real.exp_le_exp`,
+`Real.exp_add`, `Real.exp_pos`, `mul_le_mul_of_nonneg_left`,
+`mul_le_mul_of_nonneg_right`, `pow_pos`, `Nat.cast_nonneg`.

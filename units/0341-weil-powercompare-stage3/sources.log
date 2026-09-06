@@ -1,0 +1,74 @@
+# check_prose_source.py  2026-09-06T22:11:47Z
+# unit: 0341-weil-powercompare-stage3
+# sources searched: 870
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:3135
+  Source: session transcript, 2026-09-06, the task that opened this module
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:143666
+  Your task: build one Lean module under this repo's module loop, for section 7 of lean_stage3/design/...
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9254
+  ## 7. The comparison at another off-line zero — SKETCH
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9256
+  Zero at `(ε', Δ)`, target at `(ε, 0)`, both read by the same window
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:3145
+  the other zero is suppressed when `Δ² > ε'² − ε²`, at every real part, once
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9263
+  `h` is large enough that the exponential beats the polynomial. A zero with
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9231
+  Prefactor loss between upper and lower bound: one factor `2m+3`.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2442
+  theorem norm_S_le_gauss {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2443
+  (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2444
+  ‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp (Eup m w) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2498
+  theorem compare_le {m : ℕ} {w : ℂ} {s : ℝ} (hne : QS m w ≠ 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2499
+  (hw : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (hs : 0 < s)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2500
+  (hs2 : s ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2501
+  ‖S m w‖ ≤ (2 * (m : ℝ) + 3) * (‖w‖ / s) * Real.exp (Eup m w - Elow m s)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2559
+  theorem exponent_eq (m : ℕ) (ε' Δ ε h : ℝ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2560
+  Eup m (wOf ε' Δ h) - Elow m (ε * h)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2561
+  = rate m ε' Δ ε * h ^ 2 + qerr m ε' Δ ε * h ^ 4 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2598
+  theorem compare_suppressed {m : ℕ} {ε' Δ ε h : ℝ} (hε : 0 < ε) (hh : 0 < h) (hε' : ε' ≠ 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2599
+  (hq : qerr m ε' Δ ε * h ^ 2 ≤ -rate m ε' Δ ε / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2600
+  (hw : (ε' ^ 2 + Δ ^ 2) * h ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2601
+  (hs : (ε * h) ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2603
+  ≤ (2 * (m : ℝ) + 3) * (‖wOf ε' Δ h‖ / (ε * h))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a70651e61b6489dab.jsonl:2604
+  * Real.exp (rate m ε' Δ ε * h ^ 2 / 2) * (S m ((ε * h : ℝ) : ℂ)).re := by
+
+# 23 found, 0 missing

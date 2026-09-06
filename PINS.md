@@ -22,6 +22,30 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-06 · rung 5 §7 in Lean: the comparison at another off-line zero
+
+    DONE        one module, `lean_stage3/Stage3/WeilPowerCompare.lean`, and
+                its unit, committed through the pre-commit: the Gaussian
+                comparison of `‖S m w‖` at an off-line zero `(ε', Δ)` with
+                `Re (S m s)` at the target `(ε, 0)`, both read by the same
+                window, with the exponent explicit
+    ASSUMED     §7's `poly(h, m)` prefactor is the single factor `2m+3`, the
+                loss between the upper and the lower Gaussian constant
+                (§5's "Prefactor loss between upper and lower bound: one
+                factor `2m+3`"), times `‖w‖/s`; the comparison is stated at
+                the transform `S`, the window's `what` and the term's square
+                being one multiplication away and belonging to the assembly;
+                the two sign cases of `Re(w²)` are unified by one exponent
+                `Eup` written with `max _ 0`, so the module has one upper
+                bound instead of two; §7's second paragraph (the crude far
+                regime) is already `WeilPowerBounds.norm_S_le_far` and is
+                cited, not restated; `λ` stays a parameter, so the module is
+                stated in `m` and `h` and no `m + 1 = λh` is imposed
+    DEPENDS     nothing; the worksheet's §7 is the whole input
+    OUT         §8 selection, §9 cluster, §10 assembly; sharp constants; any
+                edit to §7 of the worksheet itself (a route change would be
+                a decision unit first)
+
 ### 2026-09-06 · probe: does the loop transfer to a weaker agent (unit 0340)
 
     DONE        one Opus subagent given only the repo's files and section 7,
