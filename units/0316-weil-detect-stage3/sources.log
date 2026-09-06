@@ -1,0 +1,38 @@
+# check_prose_source.py  2026-09-06T09:01:46Z
+# unit: 0316-weil-detect-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121683
+  Source: session transcript, 2026-09-06 (this session), the bracket in which the attempt was asked fo...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:119735
+  i want you to tell me what we have left to prove rh
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:120126
+  ok, check the lean proofs just to be sure we didnt already close the rectangle
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:120824
+  bro let me say this, all roads lead to rh, even at the boundary, we have been walking the edgees to ...
+
+FOUND  notes/lab_notebook_2.md:2523
+  ## 2026-09-01 — Entry 297 — what the bench has that the sources do not, and the shape of the missing...
+
+FOUND  notes/lab_notebook_2.md:932
+  ## 2026-09-02 — Entry 303 — pricing a Weil-form leaf for Stage 3: the tree's explicit formula has no...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121391
+  theorem box_empty_of_positive_of_detect {ε T L : ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121392
+  (hD : StmtDetect ε T L) (hP : StmtWeilPositive L) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121426
+  theorem zeroForm_nonneg_of_RH (hRH : RiemannHypothesis) {G : ℝ → ℂ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121427
+  (hG : ∀ u, (G u).im = 0) : 0 ≤ (zeroForm G).re := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121447
+  theorem weilPositive_of_RH (hRH : RiemannHypothesis) (L : ℝ) : StmtWeilPositive L :=
+
+# 11 found, 0 missing

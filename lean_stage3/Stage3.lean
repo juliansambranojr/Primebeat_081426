@@ -38,6 +38,7 @@ import Stage3.Statement
 import Stage3.PsiToPi
 import Stage3.ZeroSum
 import Stage3.Assembly
+import Stage3.WeilDetect
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

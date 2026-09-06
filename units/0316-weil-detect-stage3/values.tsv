@@ -1,0 +1,15 @@
+key	value	source
+module_lines	169	wc -l lean_stage3/Stage3/WeilDetect.lean
+defs	6	laplace, zeroForm, IsTest, StmtWeilPositive, OffLineBox, StmtDetect
+theorems_proved	5	box_empty_of_positive_of_detect, laplace_conj, re_eq_half_of_RH, zeroForm_nonneg_of_RH, weilPositive_of_RH
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilDetect.lean
+errors_fixed	1	unqualified Kadiri.riemannZeta_order_pos_nontrivialZero
+jobs_module	3665	lake build Stage3.WeilDetect
+build_s_first	13	lake build Stage3.WeilDetect, first compile
+build_s_rebuild	1.9	lake build Stage3.WeilDetect after the namespace fix
+jobs_package	8737	lake build (full Stage3)
+statements_open	1	StmtDetect ε T L
+bombieri_year	2000	Bombieri, Rend. Lincei (9) 11 (2000) 183-233
+local_count_slope	15	JensenCount.zeta_local_zero_count: 15*log T + 73
+local_count_const	73	JensenCount.zeta_local_zero_count: 15*log T + 73
