@@ -1,0 +1,14 @@
+key	value	source
+module_lines	244	wc -l lean_stage3/Stage3/WeilOddPower.lean
+defs	6	q S QS cS W what
+theorems_proved	11	grep -c ^theorem lean_stage3/Stage3/WeilOddPower.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilOddPower.lean
+errors_first	5	first lake build
+jobs_package	8748	lake build (full Stage3)
+rung	5	detection ladder rung, third slice
+sin_coeff	2	sin(pi x) = 2 sin(pi x / 2) c(x)
+m_check	0	S_zero_mul, the m = 0 case
+two	2	2w, 2m+1, 2m+2, 2 pi
+one	1	product from j = 1
+half	1/2	h/2

@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-09-06T17:09:51Z
+# unit: 0330-weil-oddpower-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135846
+  Source: session transcript, 2026-09-06 (this session), the decision that switched the window
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133567
+  The identity. `SigmaC_neg`: the odd envelope's transform is odd, because
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133568
+  `sinh` is. `ghat_neg`: the window's transform is odd, both halves of unit
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133569
+  0318's closed form flipping sign. `term_eq_neg_sq`: for every `ρ`, the two
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133570
+  factors of a term are the transform read at `ρ − 1/2` and at its negative,
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133571
+  so the term is `−ghat h γ (ρ − 1/2)²`.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136018
+  S m w = 2 * w * K (m + 1) w / (((m : ℂ) + 1) * (Real.pi : ℂ)) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136062
+  theorem S_mul_QS (m : ℕ) (w : ℂ) : S m w * QS m w = (cS m : ℂ) * Complex.sinh w := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136093
+  theorem what_eq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (z : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136095
+  (S m ((z + Complex.I * (γ : ℂ)) * (h : ℂ)) + S m ((z - Complex.I * (γ : ℂ)) * (h : ℂ))) := by
+
+# 10 found, 0 missing
