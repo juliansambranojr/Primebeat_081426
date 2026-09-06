@@ -1,0 +1,22 @@
+key	value	source
+module_lines	342	wc -l lean_stage3/Stage3/WeilPowerPhase.lean
+theorems_proved	21	grep -c ^theorem lean_stage3/Stage3/WeilPowerPhase.lean
+defs	7	grep -c ^def lean_stage3/Stage3/WeilPowerPhase.lean
+pins_module	4	grep -c guard_msgs lean_stage3/Stage3/WeilPowerPhase.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerPhase.lean
+errors_first	4	first lake build: error: Stage3/WeilPowerPhase.lean lines 235, 308, 336, 340
+roots	2	the two root causes of the first build
+cascade_lines	2	first build, the two guard_msgs lines
+row_cascade	19	lean_stage3/TRAPS.md row 19
+jobs_package	8757	lake build (full Stage3)
+jobs_module	8663	lake build Stage3.WeilPowerPhase
+loop_version	9	lean_stage3/LOOP.md version line at the build
+design	rung5.md#13	the averaging route, requirement (b)
+rung	5	detection ladder rung
+slice	12	twelfth module of the switched-window ladder
+thirteen	13	worksheet section 13
+unit_gauss	0333	WeilPowerGauss
+unit_sharp	0346	WeilPowerSharp
+row_dsimp	23	lean_stage3/TRAPS.md row 23
+row_rename	22	lean_stage3/TRAPS.md row 22

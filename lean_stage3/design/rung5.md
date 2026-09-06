@@ -317,7 +317,25 @@ power of `m` and no factor in the rate: unit 0346. (b) The phase of the
 tail product: `‖T m w n − 1‖ ≤ 2‖w‖⁴/(3π⁴(m+1)³)`, from
 `|e^z − 1| ≤ |z|e^{|z|}` on `z = Σ(log(1+x_j) − x_j)`; then
 `Re S² ≥ |P|² cos(2 arg P) − |P|²(2δ + δ²)` with `P` the explicit principal
-part. (c) The total variation of `w_h|g_i|²` over the range: log-linear in
+part. (b), in detail — PROVED (unit 0347: `WeilPowerPhase.T_eq_mul`, `norm_S_sub_le`,
+`re_A_sq`, `re_S_sq_ge`; `sigma_ge`, `sigma_le` for `σ`). With `x_j = w²/(π²(j+1)²)` and `‖x_j‖ ≤ 1/2` in
+the regime, `T m w n = exp(Σ log(1+x_j)) = exp(w² σ_n)·exp(δ_n)` where
+`σ_n = Σ_{j=m+1}^{n−1} 1/(π²(j+1)²)` and `δ_n = Σ(log(1+x_j) − x_j)`,
+`‖δ_n‖ ≤ Σ‖x_j‖² ≤ q := ‖w‖⁴/(π⁴(m+1)³)` (Mathlib's
+`norm_log_one_add_sub_self_le` at `‖x‖ ≤ 1/2`). For `q ≤ 1`,
+`‖exp δ_n − 1‖ ≤ 2q` (`norm_exp_sub_one_le`). Let `σ = lim σ_n`
+(`1/(π²(m+2)) ≤ σ ≤ 1/(π²(m+1))`) and `P = exp(w²σ)`. In the limit
+`S m w = c·w·P·(1 + E)` with `c = cS m/D m` and `‖E‖ ≤ 2q`, so
+`‖S − c w P‖ ≤ 2q·c‖w‖‖P‖` and
+
+    Re (S m w)² ≥ c²e^{2Re(w²)σ}·[Re(w²) cos(2 Im(w²) σ) − Im(w²) sin(2 Im(w²) σ)]
+                  − c²‖w‖²e^{2Re(w²)σ}·(4q + 4q²).
+
+At `w = (ε' + iΔ)h`, `σ ≈ 1/(π²λh)`: the phase `2 Im(w²) σ = 4ε'Δh/(π²λ)`
+is the `ω_i h` above, and the bracket is `h²[(ε'² − Δ²) cos − 2ε'Δ sin]`,
+positive when the phase is under `π/2` and `Δ < ε'`.
+
+(c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.
 (e) The on-line background (§ 6) and the suppressed zeros (§ 7) summed with

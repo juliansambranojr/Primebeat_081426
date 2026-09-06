@@ -3,8 +3,8 @@
 Error pattern, cause, fix. One row per class. Appended after any build
 that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 2026-09-06, units 0329–0335; rows 13–17 come from CLAUDE.md § Stage-3;
-rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, the
-orchestrator's own run of the loop.
+rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, rows 22–23 by unit 0347, the
+orchestrator's own runs of the loop.
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -29,6 +29,8 @@ orchestrator's own run of the loop.
 | 19 | `#guard_msgs` refuses a `#print axioms` pin, the diff adding `sorryAx` | a proof earlier in the same module failed, so the theorem is a sorry | fix the earlier errors; these pins are a cascade, they inflate `errors_first` and are not a class to chase |
 | 20 | warning `Variable name X is not explicitly referenced` | a hypothesis in the statement the proof never uses | drop it from the statement and prove it follows from the rest (a positive error term can force the sign the dropped hypothesis asserted) |
 | 21 | `field_simp` leaves `(1 - (m+2) * 0)`-type residue and the goal is not closed | a literal `- 0` or `* 0` inside the expression (here from a `Tendsto` limit at `0`) | `rw [sub_zero]` / `simp only [mul_zero, sub_zero]` before `field_simp` |
+| 22 | `Unknown identifier pow_le_pow_left` (or another order lemma without a subscript) | the lemma was renamed with a `₀` suffix on this Mathlib (`pow_le_pow_left₀`, `div_le_div_iff₀`, `inv_le_comm₀`) | add `₀`; grep the name first (LOOP § 2) |
+| 23 | `dsimp made no progress` after `filter_upwards … with n` | the goal is already beta-reduced; `filter_upwards` did it | drop the `dsimp only` |
 
 ## Bench and gate traps
 
@@ -61,6 +63,12 @@ Verified on v4.32.2 with Mathlib at the pin, 2026-09-06:
 `le_of_tendsto_of_tendsto`, `tendsto_one_div_add_atTop_nhds_zero_nat`,
 `Filter.Tendsto.const_sub`, `Filter.Tendsto.const_mul`, `Filter.Tendsto.sub_const`,
 `Real.continuous_exp`, `Nat.le_induction`, `Finset.sum_le_sum`, `Finset.Ico_self`,
+`Real.summable_one_div_nat_pow`, `summable_nat_add_iff`, `Summable.mul_left`,
+`Summable.congr`, `Summable.tendsto_sum_tsum_nat`, `tendsto_sub_atTop_nat`,
+`Finset.sum_Ico_eq_sum_range`, `Complex.exp_sum`, `Complex.exp_log`, `Complex.exp_re`,
+`Complex.exp_im`, `Complex.norm_exp_sub_one_le`, `Filter.Tendsto.cexp`,
+`Complex.continuous_ofReal`, `Complex.abs_re_le_norm`, `neg_le_of_abs_le`,
+`pow_le_pow_left₀`, `norm_sum_le`, `Complex.mul_re`, `Complex.mul_im`,
 `Nat.centralBinom_le_four_pow`, `Nat.four_pow_le_two_mul_add_one_mul_central_binom`,
 `Nat.centralBinom_eq_two_mul_choose`, `Nat.choose_mul_factorial_mul_factorial`,
 `Nat.factorial_le_pow`, `Real.pi_lt_d2`, `Real.pi_gt_three`,

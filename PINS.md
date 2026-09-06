@@ -37,6 +37,19 @@ below with their outcome.
 
 ## Archive
 
+### 2026-09-06 · section 13 (b), the phase module (unit 0347) — pins written AFTER the work
+
+    DONE        WeilPowerPhase.lean committed with unit 0347: the tail product
+                split into principal part and error, S within 2q of c·w·P,
+                Re S² bounded below in closed form
+    ASSUMED     the principal part is exp(w²σ) with σ the full tail tsum,
+                bracketed rather than evaluated; the regime hypothesis q ≤ 1
+                is carried as a hypothesis, traced to h and λ later
+    DEPENDS     nothing
+    OUT         requirement (c) onward; the neg-case sharp exponent
+    OUTCOME     built; step 0b was skipped and these lines were written
+                after the commit, which is the misread below
+
 ### 2026-09-06 · the orchestrator runs the loop: section 9 design, then one module
 
     DONE        a decision unit that prices section 9 as sketched and names the
@@ -171,3 +184,4 @@ reads the pins and finds the misalignment.
 |---|---|---|---|---|
 | 2026-09-06 | rung 5 pricing | ASSUMED | a rung costs a person's day | a rung costs 6–25 min of clock; price from the log |
 | 2026-09-06 | rung 5 route (unit 0325) | DONE | the isolated case, then a window family | the general case with explicit L; the window had to change |
+| 2026-09-06 | section 13 (b) (unit 0347) | (none written) | step 0b skipped: the orchestrator went from the worksheet to the module | pins are written before the module, every run; the checker cannot see this, the retrospective can |

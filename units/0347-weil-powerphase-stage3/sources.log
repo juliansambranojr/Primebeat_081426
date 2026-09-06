@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-09-06T23:34:19Z
+# unit: 0347-weil-powerphase-stage3
+# sources searched: 871
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146907
+  Source: session transcript, 2026-09-06 (this session), the orchestrator's second turn in the loop
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146711
+  theorem T_eq_mul {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (n : ℕ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146712
+  T m w n = Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ)) * Complex.exp (delta m w n) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146743
+  theorem norm_S_sub_le {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146744
+  (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (hq : q m w ≤ 1) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146745
+  ‖S m w - ((cS m / D m : ℝ) : ℂ) * w * P m w‖
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146746
+  ≤ 2 * q m w * ‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146831
+  theorem re_S_sq_ge {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146744
+  (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (hq : q m w ≤ 1) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146779
+  (cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146780
+  * ((w ^ 2).re * Real.cos (2 * (w ^ 2).im * sigma m)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146781
+  - (w ^ 2).im * Real.sin (2 * (w ^ 2).im * sigma m))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146836
+  - (cS m / D m) ^ 2 * ‖w‖ ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m)
+
+# 13 found, 0 missing
