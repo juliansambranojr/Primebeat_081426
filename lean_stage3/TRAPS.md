@@ -35,6 +35,7 @@ that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 | B5 | `REFS  X does not match lean/...::name` | a ref that is not `lean_stage3/File.lean::name`, or a primed name | refs are Lean statements only; primed names cannot be refs |
 | B6 | quote gate refuses a blockquote | not verbatim | copy from the file or the transcript; never from memory |
 | B7 | pre-commit refuses a unit that `python3 -m lab check` passed, with `DIGITS ... three files -> write 3 files` | the installed `lab` console script (`.venv/bin/lab`, what the pre-commit calls) refuses counts spelled in words; the module form only warns | write the digit beside a key: `` `files` 3 files ``; check with `lab check`, the installed one, before committing |
+| B8 | pre-commit step 9 refuses a decision unit with `DEFS ... BUILD run/build.log missing` | the unit has a `loop_version` row, which marks it a Lean unit | in a non-Lean unit key the number `loop_ver`; `loop_version` is the Lean-unit marker |
 
 ## Names
 
@@ -53,4 +54,3 @@ Verified on v4.32.2 with Mathlib at the pin, 2026-09-06:
 `Nat.factorial_le_pow`, `Real.pi_lt_d2`, `Real.pi_gt_three`,
 `inv_le_comm₀`, `div_le_div_iff₀`, `div_le_iff₀`, `le_div_iff₀`,
 `intervalIntegral.integral_mul_deriv_eq_deriv_mul`.
-| B8 | pre-commit step 9 refuses a decision unit with `DEFS ... BUILD run/build.log missing` | the unit has a `loop_version` row, which marks it a Lean unit | in a non-Lean unit key the number `loop_ver`; `loop_version` is the Lean-unit marker |
