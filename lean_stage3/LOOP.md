@@ -1,6 +1,6 @@
 # The module loop
 
-version: 5
+version: 6
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -94,7 +94,14 @@ lake env lean Stage3/Scratch.lean      # delete the file before the commit
 ```
 
 Record the first-build error count; it goes in `values.tsv` as
-`errors_first`.
+`errors_first`. It is the count of lines matching
+`error: Stage3/<Module>.lean:<line>:<col>:`, so the two lines lake ends
+with (`Lean exited with code 1`, `build failed`) are outside it and the
+`#guard_msgs` pins that failed only because an earlier proof did are
+inside it: a failed proof costs its own error and one more for every pin
+that reads it (`TRAPS.md` row 19). Warnings are not errors and the § 4
+filter does not remove them; an unused binder in a statement is
+`TRAPS.md` row 20 and is fixed before the counts are taken.
 
 ## 5. Import, full build, counts, log
 
