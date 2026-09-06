@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-09-06T17:44:53Z
+# unit: 0335-weil-poweronline-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135846
+  Source: session transcript, 2026-09-06 (this session), the decision that switched the window
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131188
+  WeilOnLine — the on-line background, all heights. Rung 4b, second half,
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131189
+  slice B3 of the detection ladder (units 0316–0323). 2026-09-06.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140023
+  theorem term_conj {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) {ρ : ℂ} (hρ : ρ.re = 1 / 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140024
+  termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140164
+  theorem tsum_onLine_le {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) (m : ℕ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140165
+  ∑' ρ : OnLine, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140180
+  theorem onLineBound_le {h γ : ℝ} (hγ : 11 / 10 ≤ γ) (m : ℕ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140182
+  ≤ 2 * (88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ 2) * (Real.pi ^ 2 / 6))
+
+# 9 found, 0 missing

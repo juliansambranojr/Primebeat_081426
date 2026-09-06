@@ -1,0 +1,27 @@
+key	value	source
+module_lines	227	wc -l lean_stage3/Stage3/WeilPowerOnLine.lean
+defs	2	B onLineBound
+theorems_proved	11	grep -c ^theorem lean_stage3/Stage3/WeilPowerOnLine.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilPowerOnLine.lean
+errors_first	0	first lake build
+jobs_package	8753	lake build (full Stage3)
+rung	5	detection ladder rung, eighth slice
+height_min	11/10	Upper / Lower / lowSet
+height_min_neg	-11/10	Lower
+near_coeff	4	online_term_le_near: 4 h^2
+sides	2	onLineBound: 2 B
+weight_slope	88	A
+cfar_bound	1000	cFarM_le
+one	1	r at most 1 + 5(m+1)/h
+five	5	r at most 1 + 5(m+1)/h
+two	2	(gamma + r + 2)^4; 2 times B
+six	6	pi^2/6
+nine	9	nine modules on the switched window
+zero	0	h above zero
+unit_first	0326	first module of the switched-window ladder
+unit_last	0335	this unit
+unit_old	0324	WeilOnLine
+unit_series	0334	WeilPowerBands
+unit_gauss	0333	WeilPowerGauss
+unit_background	0332	WeilPowerBackground
