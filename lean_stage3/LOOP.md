@@ -1,6 +1,6 @@
 # The module loop
 
-version: 7
+version: 8
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -137,7 +137,10 @@ refuses them. The unit's `run/` is the place.
 
 Six files: three written (`question.md`, `unit.md`, `values.tsv`), two
 left by the build (`run/run.sh`, `run/build.log`), one written by
-`check_prose_source.py` below (`sources.log`). `run/run.sh` is the build. `question.md` quotes the transcript
+`check_prose_source.py` below (`sources.log`). `run/run.sh` is hand-written:
+three lines, `cd` to `lean_stage3` and the `lake build Stage3.<Module>`
+command whose output is `run/build.log` (copy unit 0341's and change the
+module name); `lab new` does not write it. `question.md` quotes the transcript
 verbatim and carries the statements as fenced blocks copied from the
 module; no boilerplate lines. Digits inside inline code spans are
 formula and are not checked; the measured digit sits outside the span,

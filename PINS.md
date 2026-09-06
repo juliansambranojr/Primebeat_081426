@@ -22,6 +22,46 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-06 · rung 5 from the worksheet, section 7 onward
+
+    DONE        StmtDetect ε T L proved with L explicit, through the modules
+                the worksheet lists in §7–§10, each logged and committed
+    ASSUMED     the order is §7 comparison, §8 selection, §9 cluster, §10
+                assembly, with the test-function (C¹) proof and the tsum
+                split taken when the assembly needs them; λ = 1;
+                crude-explicit constants throughout; one unit per module
+    DEPENDS     nothing from Julian until a design choice changes the
+                route, which becomes a decision unit first
+    OUT         sharp constants; the old-window modules; porting; anything
+                on the prime side beyond the probe already run
+
+## Archive
+
+### 2026-09-06 · rung 5 §7 in Lean: the comparison at another off-line zero
+
+    DONE        one module, `lean_stage3/Stage3/WeilPowerCompare.lean`, and
+                its unit, committed through the pre-commit: the Gaussian
+                comparison of `‖S m w‖` at an off-line zero `(ε', Δ)` with
+                `Re (S m s)` at the target `(ε, 0)`, both read by the same
+                window, with the exponent explicit
+    ASSUMED     §7's `poly(h, m)` prefactor is the single factor `2m+3`, the
+                loss between the upper and the lower Gaussian constant
+                (§5's "Prefactor loss between upper and lower bound: one
+                factor `2m+3`"), times `‖w‖/s`; the comparison is stated at
+                the transform `S`, the window's `what` and the term's square
+                being one multiplication away and belonging to the assembly;
+                the two sign cases of `Re(w²)` are unified by one exponent
+                `Eup` written with `max _ 0`, so the module has one upper
+                bound instead of two; §7's second paragraph (the crude far
+                regime) is already `WeilPowerBounds.norm_S_le_far` and is
+                cited, not restated; `λ` stays a parameter, so the module is
+                stated in `m` and `h` and no `m + 1 = λh` is imposed
+    DEPENDS     nothing; the worksheet's §7 is the whole input
+    OUT         §8 selection, §9 cluster, §10 assembly; sharp constants; any
+                edit to §7 of the worksheet itself (a route change would be
+                a decision unit first)
+    OUTCOME     built: WeilPowerCompare.lean, unit 0341, commit 94febea
+
 ### 2026-09-06 · rung 5 §8 in Lean: selection of the target
 
     DONE        one Lean module (`lean_stage3/Stage3/WeilPowerSelect.lean`) and
@@ -53,6 +93,7 @@ below with their outcome.
                 (unit 0344) in the same commit; `check_lean_unit.py` refused
                 once (DEFS/PIN, TRAPS row B9, new) before passing; `lab check`
                 passed on every run
+    OUTCOME     built: WeilPowerSelect.lean, unit 0344, commit 0c97dec
 
 ### 2026-09-06 · probe: the loop on a Sonnet agent, section 8 (unit 0343)
 
@@ -67,45 +108,10 @@ below with their outcome.
     DEPENDS     nothing; Julian reads the outcome
     OUT         fixing the agent's module if it fails; a third agent; any
                 edit to the loop while the agent runs
-
-### 2026-09-06 · rung 5 §7 in Lean: the comparison at another off-line zero
-
-    DONE        one module, `lean_stage3/Stage3/WeilPowerCompare.lean`, and
-                its unit, committed through the pre-commit: the Gaussian
-                comparison of `‖S m w‖` at an off-line zero `(ε', Δ)` with
-                `Re (S m s)` at the target `(ε, 0)`, both read by the same
-                window, with the exponent explicit
-    ASSUMED     §7's `poly(h, m)` prefactor is the single factor `2m+3`, the
-                loss between the upper and the lower Gaussian constant
-                (§5's "Prefactor loss between upper and lower bound: one
-                factor `2m+3`"), times `‖w‖/s`; the comparison is stated at
-                the transform `S`, the window's `what` and the term's square
-                being one multiplication away and belonging to the assembly;
-                the two sign cases of `Re(w²)` are unified by one exponent
-                `Eup` written with `max _ 0`, so the module has one upper
-                bound instead of two; §7's second paragraph (the crude far
-                regime) is already `WeilPowerBounds.norm_S_le_far` and is
-                cited, not restated; `λ` stays a parameter, so the module is
-                stated in `m` and `h` and no `m + 1 = λh` is imposed
-    DEPENDS     nothing; the worksheet's §7 is the whole input
-    OUT         §8 selection, §9 cluster, §10 assembly; sharp constants; any
-                edit to §7 of the worksheet itself (a route change would be
-                a decision unit first)
-
-### 2026-09-06 · rung 5 from the worksheet, section 7 onward
-
-    DONE        StmtDetect ε T L proved with L explicit, through the modules
-                the worksheet lists in §7–§10, each logged and committed
-    ASSUMED     the order is §7 comparison, §8 selection, §9 cluster, §10
-                assembly, with the test-function (C¹) proof and the tsum
-                split taken when the assembly needs them; λ = 1;
-                crude-explicit constants throughout; one unit per module
-    DEPENDS     nothing from Julian until a design choice changes the
-                route, which becomes a decision unit first
-    OUT         sharp constants; the old-window modules; porting; anything
-                on the prime side beyond the probe already run
-
-## Archive
+    OUTCOME     transferred, fixes held: commit through the gate, no
+                restart, errors_first 3, 19 minutes, section 8 PROVED in
+                the same commit, none of the seven defects recurred; three
+                new ones, one now TRAPS B9, one LOOP.md v8 (run.sh)
 
 ### 2026-09-06 · probe: does the loop transfer to a weaker agent (unit 0340)
 

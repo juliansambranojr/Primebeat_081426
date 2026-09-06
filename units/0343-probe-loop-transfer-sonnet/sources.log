@@ -1,6 +1,6 @@
-# check_prose_source.py  2026-09-06T22:26:09Z
+# check_prose_source.py  2026-09-06T22:47:03Z
 # unit: 0343-probe-loop-transfer-sonnet
-# sources searched: 870
+# sources searched: 871
 
 FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:144572
   Source: session transcript, 2026-09-06 (this session), after unit 0342 was committed

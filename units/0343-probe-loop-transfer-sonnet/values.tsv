@@ -19,3 +19,23 @@ pred_pins	1	prediction, written before the spawn
 pred_worksheet	1	prediction, written before the spawn
 pred_recurrence	0	prediction, written before the spawn
 pred_new_defects	1	prediction, written before the spawn: at least one
+commit	1	git log 0c97dec, 15:44
+errors_first	3	units/0344-weil-powerselect-stage3/values.tsv
+minutes	19	spawn 15:25 (this unit) to 0c97dec at 15:44, git log
+restarts	0	no SendMessage to the agent
+pins	1	PINS.md, the agent's section "rung 5 §8 in Lean"
+worksheet	1	rung5.md section 8 heading PROVED (unit 0344), in commit 0c97dec
+recurrence	0	run/report.md against units/0340-probe-loop-transfer/run/report.md items 1-7
+new_defects	3	run/report.md, numbered list
+lab_runs	3	run/report.md
+checker_runs	2	run/report.md
+refusals	0	run/report.md
+files_touched	11	git show --stat 0c97dec
+module_lines	190	wc -l lean_stage3/Stage3/WeilPowerSelect.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/WeilPowerSelect.lean
+defs	1	grep -c ^def lean_stage3/Stage3/WeilPowerSelect.lean
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerSelect.lean
+pins_module	4	grep -c guard_msgs lean_stage3/Stage3/WeilPowerSelect.lean
+unit_agent	0344	the agent's unit
+unit_prev_agent	0341	the Opus agent's unit, whose run.sh was copied
+loop_ver_after	8	lean_stage3/LOOP.md version line after this commit
