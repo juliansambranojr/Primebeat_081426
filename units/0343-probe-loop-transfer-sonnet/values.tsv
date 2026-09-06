@@ -39,3 +39,6 @@ pins_module	4	grep -c guard_msgs lean_stage3/Stage3/WeilPowerSelect.lean
 unit_agent	0344	the agent's unit
 unit_prev_agent	0341	the Opus agent's unit, whose run.sh was copied
 loop_ver_after	8	lean_stage3/LOOP.md version line after this commit
+tokens	199021	run/report.md line 1, the harness usage line
+tool_uses	86	run/report.md line 1
+wall_ms	1137972	run/report.md line 1

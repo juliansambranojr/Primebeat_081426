@@ -42,3 +42,6 @@ unit_agent	0341	the agent's unit
 defects	7	run/report.md, numbered list
 loop_ver_after	7	lean_stage3/LOOP.md version line after this commit
 loop_ver_agent	6	lean_stage3/LOOP.md version line at 654150c
+tokens	166268	run/report.md line 1, the harness usage line
+tool_uses	50	run/report.md line 1
+wall_ms	854994	run/report.md line 1
