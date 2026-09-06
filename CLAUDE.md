@@ -3,12 +3,12 @@
 You are helping Julian with Primebeat_081426 — an adversarial follow-up
 testbed that runs numerical tests (the O-series, O3–O47, plus the
 `t`-series under `analysis/`) against claims made in the Prime Beat work
-and in the dyadic-table addendum series (DT-A5, DT-A6).
+and in the dyadic-table addendum series (DT-A5, DT-A6), and since
+2026-09-06 builds the rung-to-strip theorem in Lean under `lean_stage3/`.
 
 The folder is a working measurement bench, not a library. Nothing here
 is importable by `primebeat/` or `primebeat_lean/`, and nothing there
-imports from here. The dependence is one-way: this folder cites those
-documents; they do not cite back.
+imports from here. The dependence is one-way.
 
 The load-bearing deliverable is the **recorded verdict under a locked
 protocol** — a prereg written before the run, a decision rule that can
@@ -16,76 +16,44 @@ fire in both directions, and a result JSON whose SHA matches the
 sidecar. Numbers produced outside that discipline are exploratory and
 must be labelled as such.
 
-## Rules
+## Where the method lives
 
-This file extends the rules in `/Users/juliansambrano/GitHub/CLAUDE.md`.
-Project-specific rules below take precedence on conflict.
+Read these before the thing they govern; they hold the content, this
+file holds the rules.
 
-- Spawn-time orientation: every agent brief in this project opens with
-  the AGENT_CLAUDE.md preamble (see system-wide
-  `/Users/juliansambrano/GitHub/AGENT_CLAUDE.md`).
-- Read `CONTEXT.md` before any measurement work — it is the blueprint,
-  one entry per test, what it measures and what it returned.
-- The two rules below are not advice; they are what went wrong.
+- `CONTEXT.md` — the blueprint, one entry per test. Read before any
+  measurement work.
+- `lean_stage3/LOOP.md` — the module loop, versioned; one Lean module
+  from design to commit. `lean_stage3/TRAPS.md` — build error, cause,
+  fix; append a row for any new class.
+- `lean_stage3/design/<rung>.md` — the derivations, PROVED or SKETCH,
+  with the numbers. Read first after any compaction; never re-derive
+  what it holds.
+- `PINS.md` — four lines per task (DONE, ASSUMED, DEPENDS, OUT), written
+  silently before the work. When work looks lazy, read the pins first.
+- `utilities/check_lean_unit.py` — refuses a Lean unit whose record
+  disagrees with its module.
 
 ## Rule — load, don't recall
 
 **Stable and global: trust the prior. Local and mutable: open the file.**
 
-How a PDF is structured has not changed in twenty years — recall it. Anything
-in this repo could have changed this afternoon — open it. Both feel identical
-while generating. That is why the split cannot be a judgment call.
+Anything in this repo could have changed this afternoon. A generated
+reference and a recalled one are the same experience from the inside.
 
-**Failure.** Each of these felt certain, read correctly, and was wrong:
-
-```text
-"the output is in results/"     it is two directories away
-"that helper is in utils.py"    it was renamed last week
-"there is no § B4"              there is; the query only matched `## `
-```
-
-The third is the instructive one. A docstring cited `Formalization.md § B4`;
-a grep for `^## ` found no B4 and it was declared broken. `### B4 · The four
-zeros: neither placed nor predicted` had been there the whole time. That
-false finding then propagated into a checker, a rule, an agent brief and
-several commit messages before anyone opened the file.
-
-Nothing signals the error. A generated reference and a recalled one are the
-same experience from the inside — and so is a verification that asked too
-narrow a question.
-
-**Success.** One command before writing the reference:
-
-```text
-grep -n '^#' doc.md      ls the directory      grep -rn 'name' .
-```
-
-If it does not resolve, ask. Do not write the nearest plausible thing.
+**Failure.** A docstring cited `Formalization.md § B4`; a grep for
+`^## ` found no B4 and it was declared broken. `### B4` had been there
+the whole time. The false finding propagated into a checker, a rule and
+several commits before anyone opened the file. Several files here
+contain templates of themselves, so a first match is unsafe: strip
+fences, write `[0-9]+`, count the matches before trusting one.
 
 - Never write a reference you have not opened in this session.
 - A path in context is not a path you read.
-- After a compaction, every remembered specific is suspect. The summary keeps
-  the filename; the section letter gets regenerated.
+- After a compaction, every remembered specific is suspect.
 
-**And ask it the right question.** Opening the file is not enough. Several
-files here contain examples of themselves, so a *first* match is structurally
-unsafe:
-
-```text
-preregs/alpha_depth_trend_*, preregs/zero_winding_phase_*
-     a blank Run record template — "(fill at run)" — ABOVE the real record
-notes/NOTEPAD.md              a `- [STATUS] YYYY-MM-DD` line in its header
-notes/notes_format.md         the entry-header template it exists to define
-papers/FORMAT.md              citation examples
-claude_writer.md              a deliberately-broken citation, as a warning
-```
-
-Four times in one session `grep -m1` returned a template and it was reported as
-content — once causing a preregistered test to be re-run that had been closed
-for two days. Strip fences, write `[0-9]+` and never `[0-9]*`, and count the
-matches before trusting one.
-
-**Gate:** `python3 utilities/check_refs.py` exits 0.
+**Gate:** `python3 utilities/check_refs.py` exits 0; the quote gate
+refuses any quote that is not verbatim in a file or the transcript.
 
 **Test:** could this reference have been different last week? Then open it.
 
@@ -93,17 +61,12 @@ matches before trusting one.
 
 **Deciding what is worth logging is Julian's. Asking is not optional.**
 
-After any run, result, insight, or scope change: ask whether to log it. One
-line. If yes: `python3 utilities/extract_run.py <script> --out DRAFT.md`
-stages an entry from the transcript window; you choose the type, and
-`--append` refuses it until you have. If no, move on.
+After any run, result, insight, or scope change: ask whether to log it.
+One line. If yes, a unit (`python3 -m lab new <slug> --type <type>`) or
+`python3 utilities/extract_run.py <script> --out DRAFT.md`. If no, move on.
 
-**Failure.** `t22`, `t23`, `t24` all ran on 2026-08-20 and produced three
-papers. Zero notebook entries, zero NOTEPAD lines, and I never once asked. The
-dated record that those scripts ran does not exist.
-
-**Success.** "That's a result — log it?" Then it is his call, and either answer
-is fine. The only wrong outcome is not asking.
+**Failure.** `t22`, `t23`, `t24` ran on 2026-08-20 and produced three
+papers. Zero entries, zero NOTEPAD lines, never asked.
 
 **Test:** did something happen that a later reader would want dated? Then ask.
 
@@ -111,84 +74,61 @@ is fine. The only wrong outcome is not asking.
 
 **State the positive claim and stop.**
 
-Drop the `X, not Y` construction. "It is a lattice site, not a spacing
-coincidence." "That is leakage, not signal loss." "A resolution limit, not a
-boundary." Each of those reads as precision and is doing emphasis.
+Drop the `X, not Y` construction. The item in the `not` slot is usually
+something the same assistant asserted a few messages earlier, so the
+sentence sounds declarative while walking back its own claim. Same
+family: a disclaimer appended after a delivery, where it cannot have
+informed it.
 
-Two things go wrong. The reader has to hold the wrong thing in mind to reach the
-right one, which abstracts away what is actually there. And the item in the `not`
-slot is usually something the same assistant asserted a few messages earlier — so
-the sentence sounds declarative while it is quietly walking back its own claim.
+**Failure.** "the small-angle agreement was a crossing, not tracking";
+"939 is the end of the file, not a feature". Each corrected an earlier
+statement, dressed as a distinction.
 
-**Failure.** In one session: "the small-angle agreement was a crossing, not
-tracking", "that is the ceiling attained, not noise", "939 is the end of the
-file, not a feature". Every one of those `not` clauses was correcting something
-said earlier in the same conversation, dressed as a distinction being drawn.
+**Test:** does the sentence need a wrong version to make sense? Then
+write it without one.
 
-**Success.** Say the thing. "The plateau is the C2 ceiling, attained at
-97.68%." If an earlier statement was wrong, correct it as its own sentence,
-plainly, where it is visible as a correction.
+## Rule — a lost factor is a design failure
 
-**Same family:** appending a disclaimer *after* a delivery, where it sits behind
-the claim and cannot have informed it. Both put a hedge somewhere that reads as
-rigor while doing something else.
+**When a bound loses a factor that grows with the parameter, the proof
+is right and the design is wrong. Stop, name the factor, write a
+decision unit.**
 
-**Test:** does the sentence need a wrong version to make sense? Then write it
-without one.
+**Failure, and the recovery.** Unit 0331 bounded the target's main term
+below by comparing a product with its largest factor to the `m`-th
+power. The proof was fine. The bound lost a factor near `e^{2m}`, and
+with `m` of the order of the support that swallowed the term. The tactic
+was never the problem. Unit 0333 replaced the route with Euler's product
+and the loss was gone. An agent that thrashes on the tactic there has
+missed that the size comparison, and not the step, failed.
+
+**Test:** is the thing that failed a step, or the size of what the steps
+add up to? If the size, it is design.
 
 ## Prereg discipline
 
-Do not describe an exploratory output as a verdict, and do not
-describe a mechanical decision-rule output as one either. The
-verdict line is Julian's to write. Which tests are preregistered
-is recorded in `CONTEXT.md` § Current state of the world; how to
-write and lock one is `preregs/FORMAT.md`.
+Do not describe an exploratory output as a verdict, and do not describe
+a mechanical decision-rule output as one either. The verdict line is
+Julian's to write. Which tests are preregistered is in `CONTEXT.md`
+§ Current state of the world; how to write and lock one is
+`preregs/FORMAT.md`.
 
 ## Stage-3 formalization conventions (lean_stage3/)
 
-The sibling package lives on toolchain v4.32.2 with the PNT+
-dependency pinned at 47fa486; the bench's lean/ stays on v4.28.0.
-Composition across the two is BY STATEMENT IDENTITY ONLY, gated by
-`utilities/check_weld.py` — every published claim from lean_stage3
-carries that caveat until the toolchains converge.
+Toolchain v4.32.2, PNT+ pinned at 47fa486; the bench's `lean/` stays on
+v4.28.0. Composition across the two is BY STATEMENT IDENTITY ONLY, gated
+by `utilities/check_weld.py`.
 
-- **The leaf ledger.** Open analytic assumptions are named Props
-  (Stmt*), each with a literature citation shape, a crude-constant
-  budget from the census (entry 130), and a sketched discharge
-  route. The ledger lives in the newest notebook entry that touched
-  it; as of entry 141 it reads {hEF, StmtArgCrude}. Never add a leaf
-  without its budget and route; never call a leaf discharged without
-  a pinned theorem.
-- **Crude-explicit is the spec.** Constants are chosen for
-  provability, not sharpness — 97 where Rosser has 0.137 is a
-  success, because the census re-tabulates (O68/O70 machinery) and
-  survives. Chasing literature-sharp constants is scope creep.
-- **Upstream race.** Leaves double as watch targets: upstream
-  IEANTN states Kadiri.backlund_bound (full hNT, Rosser constants),
-  sorry-blocked as of the pin. Before building a leaf, probe
-  upstream HEAD — a pin bump may discharge it for free.
-- **Lean engineering traps, all paid for once:**
-  - `set` bodies containing `Nat.floor`/`Nat.log`/tsum defs explode
-    defeq checks — prove the needed facts, then `clear_value` (or
-    parameterize the def as an equation hypothesis, as with W in
-    Assembly.lean).
-  - After any large hypothesis enters context, every `linarith`/
-    `nlinarith` must be `only`-scoped or hint-fed; the default
-    preprocessor drowns.
-  - `set`-definitions need `simp only [hdef]` (beta), never
-    `rw [hdef]`.
-  - Dotted-`comp` continuity lemmas mis-unify; pin `(g := ...)`
-    `(f := ...)` explicitly.
-  - Names verified present on BOTH toolchains (v4.28 bench, v4.32
-    Stage-3), 2026-08-27 — reach for these forms directly:
-    `pow_le_pow_left₀`, `inv_anti₀`, `Real.pi_lt_d2`, `abs_add_le`,
-    `Summable.tsum_le_tsum`, `Summable.sum_add_tsum_nat_add`,
-    `norm_pos_iff`, `one_div_le_one_div_of_le`. The unsubscripted
-    `pow_le_pow_left` resolves on neither. When each became canonical
-    is NOT established; the previous "v4.32 renames" heading asserted
-    a date nothing here measured.
-  - Axiom-pin discipline is identical to the bench: parity per
-    module, `#guard_msgs` on `#print axioms`, attribute-on-own-line.
+- **Leaves.** Open analytic assumptions are named Props (Stmt*), each
+  with a citation shape, a crude-constant budget and a discharge route.
+  Never add a leaf without its budget and route; never call a leaf
+  discharged without a pinned theorem.
+- **Crude-explicit is the spec.** Constants are chosen for provability.
+  Chasing literature-sharp constants is scope creep.
+- **Upstream race.** Before building a leaf, probe upstream HEAD; a pin
+  bump may discharge it for free.
+- **Pins.** Parity per module, `#guard_msgs` on `#print axioms`,
+  attribute on its own line. Lean traps and verified names:
+  `lean_stage3/TRAPS.md`.
 
 ## Permissions
 
@@ -222,16 +162,14 @@ carries that caveat until the toolchains converge.
 ## Lab notebook and NOTEPAD
 
 Format, entry header and the seven-type vocabulary: `notes/notes_format.md`.
-
 Agents append entries and `[open]` lines. Status transitions and outcome
 markings are Julian's.
 
 ## Naming convention (do not re-break)
 
-The O-series is one series. O5, O6, and O7 were partially
-renamed to `05_`, `06_`, `07_` — their docstrings still say O5/O6/O7,
-and the leading digit is why `07_alpha_depth_trend.py` imports 05 via
-importlib rather than by name. Do not rename further in either
-direction without an `instrument-fix` entry; the prereg cites
-`07_alpha_depth_trend.py` by path.
-
+The O-series is one series. O5, O6, and O7 were partially renamed to
+`05_`, `06_`, `07_` — their docstrings still say O5/O6/O7, and the
+leading digit is why `07_alpha_depth_trend.py` imports 05 via importlib
+rather than by name. Do not rename further in either direction without
+an `instrument-fix` entry; the prereg cites `07_alpha_depth_trend.py`
+by path.
