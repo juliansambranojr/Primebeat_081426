@@ -1,0 +1,19 @@
+key	value	source
+module_lines	190	wc -l lean_stage3/Stage3/WeilPowerSelect.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/WeilPowerSelect.lean
+defs	1	grep -c '^def' lean_stage3/Stage3/WeilPowerSelect.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerSelect.lean
+errors_first	3	first lake build, run/build.log's predecessor (see units/0344 build history)
+jobs_package	8755	lake build (full Stage3)
+jobs_module	8663	lake build Stage3.WeilPowerSelect
+loop_version	7	lean_stage3/LOOP.md version line
+design	rung5.md#8	selection of the target
+rung	5	detection ladder rung
+slice	10	tenth module of the switched-window ladder
+section	8	worksheet section this module is built from
+unit_prev	0341	WeilPowerCompare, the previous module
+unit_this	0344	this unit
+unit_arrow	0316	the arrow that empties the box
+section_cluster	9	worksheet section 9, the cluster
+section_assembly	10	worksheet section 10, the assembly

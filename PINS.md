@@ -22,6 +22,38 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-06 · rung 5 §8 in Lean: selection of the target
+
+    DONE        one Lean module (`lean_stage3/Stage3/WeilPowerSelect.lean`) and
+                its unit, committed through the pre-commit: the target-selection
+                argument of `rung5.md#8` — a monotone-bounded-sequence pigeonhole
+                lemma, applied to give an explicit step `k` and height bound, plus
+                the trivial "large `Δ`" case that needs no selection at all
+    ASSUMED     the "max real part over zeros in the box of height `T+k/2`" is a
+                parameter `E : ℕ → ℝ` (monotone, bounded by `1/2`, `0 ≤ E 0`), not
+                derived here from an actual finite zero set — the same
+                parameterize-downstream choice unit 0341 made for `ε', Δ, ε, h`;
+                the "maximum over a finite set" half of the worksheet's "Lean
+                shape" note is deferred to whichever later module wires `E` to a
+                real zero set (band count or `WeilOnLine.lowSet_finite`'s
+                argument, widened); `K'` stays a free positive parameter, as it is
+                in the worksheet itself (never given a value there); `ε' ≥ 0`
+                (only the symmetric half of zeros, real part at or above the
+                line) is assumed alongside the worksheet's `ε' ≤ 1/2`, needed to
+                square the inequality; this module does not import
+                `Stage3.WeilPowerCompare` — nothing in it is used, so the module
+                is stated over bare Mathlib order/real-number lemmas
+    DEPENDS     nothing; the worksheet's §8 is the whole input
+    OUT         §9 cluster, §10 assembly; wiring `E` to an actual off-line zero
+                set; sharp constants; matching the sketch's rough "`+1`" slop
+                term literally — the module's own constant is computed and the
+                worksheet is corrected to it, not forced to agree with the sketch
+    OUTCOME     built and committed: 7 theorems, 1 def, 3 axioms, 0 sorries,
+                190 lines, `errors_first` 3, worksheet §8 flipped to PROVED
+                (unit 0344) in the same commit; `check_lean_unit.py` refused
+                once (DEFS/PIN, TRAPS row B9, new) before passing; `lab check`
+                passed on every run
+
 ### 2026-09-06 · probe: the loop on a Sonnet agent, section 8 (unit 0343)
 
     DONE        one Sonnet subagent given the Opus agent's prompt with the

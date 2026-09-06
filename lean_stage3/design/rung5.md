@@ -168,7 +168,25 @@ bound `4h²`-type crude bound on `|S| ≤ ∫|q| ≤ 2` still applies to the
 term, and those zeros are counted by the band count. Their total is
 polynomial; fine.
 
-## 8. Selection of the target — SKETCH
+## 8. Selection of the target — PROVED (unit 0344)
+
+In Lean: `WeilPowerSelect.farDelta_le`, `exists_step_le`, `exists_target_step`,
+`target_bound`, `target_height_le`, `target_ge_box`
+(`lean_stage3/Stage3/WeilPowerSelect.lean`). The "maximum over a finite set"
+half of the Lean shape below stays open: `E : ℕ → ℝ` ("the largest
+real-part offset among zeros in box `k`") is a parameter, the same
+parameterize-downstream choice unit 0341 made for `ε', Δ, ε, h`; wiring it
+to an actual finite zero set (`WeilOnLine.lowSet_finite`'s argument
+widened, or a band count) is left to whichever later module needs it.
+Monotonicity of `E` turns out not to be needed for the step bound at all
+— only for the closing sentence below (`target_ge_box`) — since
+boundedness of `ε(t_k)²` at every step already stops the climb; the
+module proves the pigeonhole lemma (`exists_step_le`) with no
+monotonicity hypothesis. The target's explicit height is
+`T + h/(8K'π²λ)` (`target_height_le`), not `T + h/(8K'π²λ) + 1`: once the
+step count is `⌊h/(4K'π²λ)⌋₊ + 1` rather than a crude round number, the
+sketch's `+1` slack (from rounding `(k+1)/2` rather than `k/2`) is not
+needed.
 
 Need: a target with `ε'² − Δ² ≤ ε² + K'π²λ/h` for every other zero, so the
 cluster contributes at most a bounded factor. Zeros with `|Δ| ≥ 1/2` satisfy

@@ -40,6 +40,7 @@ rows 18–20 were paid for by unit 0341.
 | B6 | quote gate refuses a blockquote | not verbatim | copy from the file or the transcript; never from memory |
 | B7 | pre-commit refuses a unit that `python3 -m lab check` passed, with `DIGITS ... three files -> write 3 files` | the installed `lab` console script (`.venv/bin/lab`, what the pre-commit calls) refuses counts spelled in words; the module form only warns | write the digit beside a key: `` `files` 3 files ``; check with `lab check`, the installed one, before committing |
 | B8 | pre-commit step 9 refuses a decision unit with `DEFS ... BUILD run/build.log missing` | the unit has a `loop_version` row, which marks it a Lean unit | in a non-Lean unit key the number `loop_ver`; `loop_version` is the Lean-unit marker |
+| B9 | `check_lean_unit.py`: `DEFS values defs=N but grep -c ^def=0`, and `PIN <name> has no '#print axioms <name>' line` for every pinned theorem | a def written as `noncomputable def foo` rather than plain `def` inside a `noncomputable section`; the `#print axioms` line placed after `end <Namespace>` so it needs the qualified name `Namespace.foo`, which does not match the checker's `^#print axioms <bare name>$` regex | wrap defs in `noncomputable section … end` (bare `def`, matching `grep -c ^def`); put every `#guard_msgs`/`#print axioms <bare name>` pin before `end <Namespace>`, inside the namespace |
 
 ## Names
 

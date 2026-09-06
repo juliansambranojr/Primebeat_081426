@@ -1,0 +1,86 @@
+# check_prose_source.py  2026-09-06T22:43:15Z
+# unit: 0344-weil-powerselect-stage3
+# sources searched: 871
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:3029
+  Source: session transcript, 2026-09-06 (this session), the task that opened this module
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1
+  Your task: build one Lean module under this repo's module loop, for section 8 of lean_stage3/design/...
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9276
+  ## 8. Selection of the target — SKETCH
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9278
+  Need: a target with `ε'² − Δ² ≤ ε² + K'π²λ/h` for every other zero, so the
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9281
+  Choose `t_k` = a zero of largest real part among zeros with `|Im| ≤ T + k/2`
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:3041
+  The sequence `ε(t_k)` is nondecreasing and bounded by `1/2`. If
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9289
+  Lean shape: a maximum over a finite set (zeros in a bounded region are
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9291
+  induction on `k` with the bounded-increase argument.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1941
+  theorem farDelta_le {ε' Δ : ℝ} (hε'0 : 0 ≤ ε') (hε'half : ε' ≤ 1 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1942
+  (hΔ : 1 / 2 ≤ |Δ|) : ε' ^ 2 - Δ ^ 2 ≤ 0 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:2265
+  theorem exists_step_le {f : ℕ → ℝ} {B δ : ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1953
+  (hbound : ∀ k, f k ≤ B) (hnonneg : 0 ≤ f 0) {N : ℕ} (hN : B < (N : ℝ) * δ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1954
+  ∃ k < N, f (k + 1) ≤ f k + δ := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1984
+  theorem exists_target_step {E : ℕ → ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1985
+  (hbound : ∀ k, 0 ≤ E k ∧ E k ≤ 1 / 2) {K' lam h : ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1976
+  (hK' : 0 < K') (hlam : 0 < lam) (hh : 0 < h) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1987
+  ∃ k : ℕ, (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam) ∧
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1988
+  (E (k + 1)) ^ 2 ≤ (E k) ^ 2 + δSel K' lam h := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:2024
+  theorem target_bound {E : ℕ → ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1985
+  (hbound : ∀ k, 0 ≤ E k ∧ E k ≤ 1 / 2) {K' lam h : ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1976
+  (hK' : 0 < K') (hlam : 0 < lam) (hh : 0 < h) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:1987
+  ∃ k : ℕ, (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam) ∧
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:2028
+  ∀ ε', 0 ≤ ε' → ε' ≤ E (k + 1) → ε' ^ 2 ≤ (E k) ^ 2 + δSel K' lam h := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:2035
+  theorem target_height_le {k : ℕ} {K' lam h T : ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:2037
+  (hk : (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam)) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:2038
+  T + (k : ℝ) / 2 ≤ T + h / (8 * K' * Real.pi ^ 2 * lam) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a81b2648ada1bf40b.jsonl:2046
+  theorem target_ge_box {E : ℕ → ℝ} (hmono : Monotone E) (k : ℕ) : E 0 ≤ E k :=
+
+# 27 found, 0 missing
