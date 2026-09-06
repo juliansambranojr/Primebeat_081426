@@ -164,6 +164,11 @@ for u in $(git diff --cached --name-only | grep '^units/' | cut -d/ -f2 | sort -
   fi
 done
 
+# ── 10. the O-series naming convention (was CLAUDE.md prose until 2026-09-06)
+if ! python3 utilities/check_naming.py; then
+  exit 1
+fi
+
 fixed=$(python3 utilities/check_refs.py | grep '^BROKEN' | sort | comm -13 - utilities/refs_baseline.txt)
 [ -n "$fixed" ] && { echo "── fixed, trim the baseline ──"; echo "$fixed"; }
 exit 0

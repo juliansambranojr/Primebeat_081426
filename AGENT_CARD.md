@@ -34,6 +34,42 @@ your task touches its subject or a line below sends you there.
   (`analysis/<date>/results/<file>`); every bare script filename you
   mention must exist in the tree.
 
+## Permissions
+
+Enforced by `utilities/hooks/check_protected_write.py` (writes) and the
+pre-commit (commits); the list here is the same list.
+
+**CAN:**
+
+- Read everything in this tree.
+- Run any `O*.py` / `0*.py` / `t*.py` script with explicit flags; write
+  under `results/` or the session's `analysis/<date>/results/`.
+- Run anything in `utilities/`; it is read-only over the tree except
+  `extract_run.py --append`, which needs a reviewed draft.
+- Read `/Users/juliansambrano/GitHub/primebeat/` and
+  `/Users/juliansambrano/GitHub/primebeat_lean/` read-only for
+  orientation.
+- Append lab_notebook entries and `[open]` NOTEPAD lines.
+
+**CANNOT:**
+
+- Modify or delete anything under `files (2)/` — that is an imported
+  bundle and the only surviving record of O1, O2, and O3b. Treat it as
+  frozen evidence.
+- Delete `results/*.json` or the `.log` files. O8 has no results JSON;
+  its three logs are its entire record.
+- Delete `preregs/*` or edit a `LOCKED` prereg's locked-parameter
+  table. A locked prereg is immutable except for its Run record.
+- Modify anything in `primebeat/` or `primebeat_lean/`.
+- Edit `CLAUDE.md`, `CONTEXT.md`, or `REFERENCES.md` without Julian's
+  explicit approval (a one-use flag, `touch .approve/<basename>`).
+- Apply NOTEPAD status transitions or lab_notebook outcome markings —
+  Julian's call.
+
+The O-series naming convention (O5–O7 partially renamed to `05_`–`07_`;
+no further renames without an `instrument-fix` entry) is held by
+`utilities/check_naming.py`, which the pre-commit runs.
+
 ## Where things are
 
 - Notebook: `notes/lab_notebook_2.md`, newest entry at the TOP; header
