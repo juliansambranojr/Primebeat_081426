@@ -39,11 +39,17 @@ your task touches its subject or a line below sends you there.
 - Notebook: `notes/lab_notebook_2.md`, newest entry at the TOP; header
   and the type vocabulary in `notes/notes_format.md`. NOTEPAD lines
   ≤ 400 chars, format `~/GitHub/NOTEPAD_TEMPLATE.md`.
-- Preregs and verdicts: `CLAUDE.md:139–152`, `preregs/FORMAT.md`. A run
-  without a locked prereg is exploratory and is labelled so.
+- Preregs and verdicts: `CLAUDE.md` § Prereg discipline, `preregs/FORMAT.md`.
+  A run without a locked prereg is exploratory and is labelled so.
 - Lean: `lean/` (v4.28) and `lean_stage3/` (v4.32, PNT+ pin 47fa486);
-  conventions and named traps `CLAUDE.md:154–199`. Read that section
-  before touching either tree.
+  conventions in
+  CLAUDE.md § Stage-3 formalization conventions (lean_stage3/)
+  The method for one module: `lean_stage3/LOOP.md` (the loop, versioned),
+  `lean_stage3/TRAPS.md` (build error, cause, fix),
+  `lean_stage3/design/<rung>.md` (the derivations; read first after a
+  compaction), `PINS.md` (four lines per task, written before the work),
+  `utilities/check_lean_unit.py` (refuses a Lean unit that disagrees with
+  its module; the pre-commit runs it).
 - Blueprint of every test and the current state: `CONTEXT.md` — open
   the section for your test only.
 - Cited documents and constants: `REFERENCES.md` — grep for the item.

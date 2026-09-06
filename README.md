@@ -25,7 +25,9 @@ repository is required to reproduce it.
 
 This repo is a measurement bench and a Lean 4 formalization built around that
 object. It is a working research log, not a library — nothing here is importable
-and nothing depends on it.
+and nothing depends on it. The rules an agent works under are `CLAUDE.md`; the
+method that enforces them is `lean_stage3/LOOP.md`, `lean_stage3/TRAPS.md`,
+`lean_stage3/design/`, `PINS.md` and the checkers in `utilities/`.
 
 ---
 

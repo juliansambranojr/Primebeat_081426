@@ -16,11 +16,13 @@ need orientation. `lab index` and `lab chain` generate the live indexes;
 - `papers/` — the record, one per object; format in `papers/FORMAT.md`
 - `lean/` — 14 modules, every theorem axiom-pinned by `#guard_msgs`;
   `lean/THEOREMS.md` is the generated index
-- `lean_stage3/` — Stage-3 formalization on v4.32.2; see
+- `lean_stage3/` — Stage-3 formalization on v4.32.2; conventions in
   CLAUDE.md § Stage-3 formalization conventions (lean_stage3/)
+  the module loop in `lean_stage3/LOOP.md`, traps in `lean_stage3/TRAPS.md`, derivations in
+  `lean_stage3/design/`, task pins in `PINS.md`
 - `preregs/` — locked protocols; format in `preregs/FORMAT.md`
 - `utilities/` — `check_refs.py`, `check_values.py`,
-  `check_entry_numbers.py`, `check_sidecar.py`, `check_units.py`,
+  `check_entry_numbers.py`, `check_sidecar.py`, `check_units.py`, `check_lean_unit.py`,
   `check_weld.py`, `check_results_guard.py`, `flatten_results.py`,
   `extract_run.py`; hooks in `utilities/hooks/`
 - `results/` — run artifacts; `analysis/<date>/` for session work
