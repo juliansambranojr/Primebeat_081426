@@ -315,6 +315,10 @@ def findings(unit):
     """
     body, pool, ids = unit.body, _pool(unit.values), unit.ids
     spans = exempt_mod.spans(body)
+    # Digits inside an inline code span are formula, not measurement:
+    # `(h/2)²`, `Σ_{j=1}^{m}`. The keyed convention puts the measured digit
+    # OUTSIDE the span (`key` 3), so it is still scanned. Unit 0338.
+    spans = spans + [(m.start(), m.end()) for m in INLINE_CODE.finditer(body)]
     out, scanned, exempted = [], 0, 0
     for m in NUM.finditer(body):
         if any(lo <= m.start() < hi for lo, hi in spans):
@@ -631,6 +635,7 @@ PLACEHOLDER = re.compile(r"<(?:paste the transcript bracket|UNFILLED)", re.I)
 FENCE = re.compile(r"^`{3,}", re.M)
 CONTEXT_REF = re.compile(r"CONTEXT\.md", re.M)
 NOTEPAD_LINE = re.compile(r"^NOTEPAD:", re.M)
+INLINE_CODE = re.compile(r"`[^`\n]+`")          # one inline code span; unit 0338
 SOURCE_HEADER = re.compile(r"^>\s*Source:", re.M)
 SOURCES_MISSING = re.compile(r"^MISSING\b", re.M)
 
@@ -684,10 +689,9 @@ def question_problems(unit):
     if len(fences) < 2:
         out.append("QUESTION   question.md has no fenced code block "
                    "(docstring or notebook entry)")
-    if not CONTEXT_REF.search(text):
-        out.append("QUESTION   question.md has no CONTEXT.md reference")
-    if not NOTEPAD_LINE.search(text):
-        out.append("QUESTION   question.md has no NOTEPAD line")
+    # The CONTEXT.md reference and the NOTEPAD line were required until
+    # unit 0338: in a Lean unit they were boilerplate repeated verbatim and
+    # never read. They remain welcome when they say something.
     sources_log = unit.path / "sources.log"
     if not sources_log.is_file():
         out.append("QUESTION   sources.log missing — run: "
