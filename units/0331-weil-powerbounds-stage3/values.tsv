@@ -1,0 +1,15 @@
+key	value	source
+module_lines	249	wc -l lean_stage3/Stage3/WeilPowerBounds.lean
+defs	1	Ps
+theorems_proved	19	grep -c ^theorem lean_stage3/Stage3/WeilPowerBounds.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilPowerBounds.lean
+errors_first	1	first lake build
+jobs_package	8749	lake build (full Stage3)
+rung	5	detection ladder rung, fourth slice
+far_mult	2	norm_S_le_far hypothesis: 2 ((Re w)^2 + pi^2 (m+1)^2) <= (Im w)^2
+sinh_denom	4	sinh_ge: exp s / 4 <= sinh s
+s_min	1	sinh_ge, S_real_ge: 1 <= s
+half	1/2	rho - 1/2; e^{-u/2}
+two	2	(Re w)^2, 2(m+1), 2m+2
+one	1	m+1

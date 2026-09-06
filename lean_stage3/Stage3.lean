@@ -50,6 +50,7 @@ import Stage3.WeilOnLine
 import Stage3.WeilOffLine
 import Stage3.WeilPower
 import Stage3.WeilOddPower
+import Stage3.WeilPowerBounds
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

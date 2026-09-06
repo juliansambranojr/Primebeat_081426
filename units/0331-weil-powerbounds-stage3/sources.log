@@ -1,0 +1,53 @@
+# check_prose_source.py  2026-09-06T17:16:41Z
+# unit: 0331-weil-powerbounds-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135846
+  Source: session transcript, 2026-09-06 (this session), the decision that switched the window
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133864
+  Every other off-line zero grows the same way. By `term_eq_neg_sq` the term
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133865
+  of a zero at real part one half plus `ε'` is minus the square of the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133866
+  transform read at its own point, and by `SigmaC_bound` that transform is at
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133867
+  most `cosh(ε'h)` over a power of its distance. Its size is exponential in
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133868
+  its own real part times `h` and polynomial in its height gap from the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133869
+  window. A zero with a larger real part than the target, at any height,
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133870
+  therefore beats the target once `h` is large, and no polynomial decay in
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133710
+  height can cancel an exponential in the real part.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136500
+  theorem norm_S_le {m : ℕ} {w : ℂ} (hw : w.re ≠ 0) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136501
+  ‖S m w‖ ≤ cS m * Real.cosh w.re / ‖QS m w‖ :=
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136543
+  theorem norm_S_le_far {m : ℕ} {w : ℂ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136522
+  (hfar : 2 * (w.re ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2) ≤ w.im ^ 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136545
+  ‖S m w‖ ≤ cS m * Real.cosh w.re * (2 / w.im ^ 2) ^ (m + 1) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136808
+  theorem S_real_ge {m : ℕ} {s : ℝ} (hs : 1 ≤ s) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:136809
+  cS m * Real.exp s / (4 * (s ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2) ^ (m + 1))
+
+# 16 found, 0 missing
