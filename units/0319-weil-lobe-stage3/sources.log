@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-09-06T10:11:10Z
+# unit: 0319-weil-lobe-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:123953
+  Source: session transcript, 2026-09-06 (this session), the bracket in which rung 4a was asked for
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:122991
+  Rung 4a, the lobe. The bound comes from integrating by parts twice: the envelope vanishes with its f...
+
+FOUND  notes/lab_notebook_2.md:1167
+  ## 2026-09-02 — Entry 302 — weil_Lc_theory.py: L_c(ε, γ_k) in closed form for a fixed raised-cosine ...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:120559
+  Then Ghat(gamma_k +- i eps) = (1/2) Ehat(+- i eps) + (1/2) Ehat(2 gamma_k +- i eps),
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:120560
+  and the second (2 gamma) lobe is O((h gamma)^-3) for a smooth E.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:123210
+  theorem SigmaC_eq_ibp (w : ℂ) (hw : w ≠ 0) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:123211
+  SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:123269
+  theorem SigmaC_bound (w : ℂ) (hw : w ≠ 0) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:123270
+  ‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2 := by
+
+# 9 found, 0 missing

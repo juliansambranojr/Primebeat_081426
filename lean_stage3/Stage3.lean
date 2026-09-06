@@ -41,6 +41,7 @@ import Stage3.Assembly
 import Stage3.WeilDetect
 import Stage3.WeilWindow
 import Stage3.WeilTransform
+import Stage3.WeilLobe
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

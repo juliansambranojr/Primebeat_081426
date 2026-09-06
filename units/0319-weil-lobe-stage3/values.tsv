@@ -1,0 +1,15 @@
+key	value	source
+module_lines	255	wc -l lean_stage3/Stage3/WeilLobe.lean
+defs	3	q, q1, q2
+theorems_proved	17	P_eq q_eq hasDerivAt_cos_pi hasDerivAt_sin_pi hasDerivAt_q hasDerivAt_q1 q_one q_neg_one q1_one q1_neg_one continuous_q1 continuous_q2 q2_bound norm_sinh_le SigmaC_eq_ibp SigmaC_bound lobe_bound
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilLobe.lean
+errors_first	9	first lake build
+errors_second	4	second lake build
+errors_third	2	third lake build
+jobs_package	8740	lake build (full Stage3)
+decay_order_true	3	analysis/2026-09-01/weil_Lc_theory.md section 2: the second lobe is O((h gamma)^-3)
+decay_order	2	lobe_bound: (2 gamma h)^2 in the denominator
+lobe_height_multiple	2	the 2iγ in the lobe's argument
+boundary_point	1	q(±1) = 0, q'(±1) = 0; the interval [-1, 1]; the numerator of 1/w² and 1/ε
+main_term_divisor	24	WeilWindow.Sigma_ge: s/24 ≤ Sigma s
