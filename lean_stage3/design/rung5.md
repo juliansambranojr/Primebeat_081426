@@ -140,7 +140,13 @@ absorbs the factorials. Then unit 0323's series with `K + 3 → K + r + 2`:
     on-line background ≤ 2·88·(γ + r + 2)⁴·(4h² + cFarM m/h²)·π²/6 + 4h²·lowCount
                                                        (WeilPowerOnLine.onLineBound_le)
 
-## 7. The comparison at another off-line zero — SKETCH
+## 7. The comparison at another off-line zero — PROVED (unit 0341)
+
+In Lean: `WeilPowerCompare.compare_le`, `exponent_eq`, `rate_neg_of_le`,
+`rate_neg_of_ge`, `compare_suppressed` (`lean_stage3/Stage3/WeilPowerCompare.lean`).
+The `poly(h, m)` below is the single factor `2m+3` times `‖w‖/s`; the
+second paragraph is `WeilPowerBounds.norm_S_le_far`, cited. Marked here by
+the orchestrator after the probe: the agent left the mark at SKETCH.
 
 Zero at `(ε', Δ)`, target at `(ε, 0)`, both read by the same window
 (`m+1 = λh`, regime condition holding for both). From §5:

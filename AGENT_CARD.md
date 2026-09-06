@@ -10,17 +10,17 @@ your task touches its subject or a line below sends you there.
   stamp a verdict or outcome, never retitle an old entry. Corrections
   are new entries.
 - Never edit `CLAUDE.md`, `CONTEXT.md`, `REFERENCES.md`, `files (2)/`,
-  `results/*.json`, any `.log`, or a locked prereg. (`CLAUDE.md:200–228`)
+  `results/*.json`, any `.log`, or a locked prereg. (`AGENT_CARD.md` § Permissions)
 
 ## Three rules that were failures
 
-- Load, don't recall (`CLAUDE.md:31–90`): open every file before citing
+- Load, don't recall (`CLAUDE.md` § Rule — load, don't recall): open every file before citing
   it; count grep matches — several files contain templates of
   themselves; write `[0-9]+` never `[0-9]*`. A path in context is not a
   path you read.
-- Offer the log (`CLAUDE.md:92–108`): after any run or result, ask in
+- Offer the log (`CLAUDE.md` § Rule — offer the log): after any run or result, ask in
   one line whether to log it.
-- Say what is (`CLAUDE.md:110–137`): no `X, not Y`; state the positive
+- Say what is (`CLAUDE.md` § Rule — say what is): no `X, not Y`; state the positive
   claim; correct an earlier statement as its own sentence.
 
 ## Numbers

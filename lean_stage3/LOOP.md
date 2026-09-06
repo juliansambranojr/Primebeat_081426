@@ -1,6 +1,6 @@
 # The module loop
 
-version: 6
+version: 7
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -48,9 +48,11 @@ gate and the values rows. The worksheet is the scratch; the unit is the
 record. A numerical probe takes its predictions from the worksheet,
 written before the run.
 
-The unit's `values.tsv` names its section: `design	<rung>.md#<heading>`,
-the heading in lower case with dashes for spaces. The checker refuses a
-unit without it or with a section that does not exist.
+The unit's `values.tsv` names its section: `design	<rung>.md#<n>`, the
+section number (`rung5.md#7`); a slug of the heading in lower case with
+dashes also resolves. The checker refuses a unit without it or with a
+section that does not exist. When the module lands, the section's mark
+changes from SKETCH to PROVED naming the theorem, in the same commit.
 
 ## 2. Verify every name before writing
 
@@ -60,6 +62,9 @@ One batched grep for every Mathlib lemma the file will use:
 cd lean_stage3/.lake/packages/mathlib/Mathlib
 grep -rn 'theorem NAME1\b\|theorem NAME2\b' . --include='*.lean' | head
 ```
+
+Run it as one `cd … && grep …` from the repo root so the working
+directory does not stay in mathlib, where § 0's gate refuses Bash.
 
 A guessed name is an error on the first build, every time. Names that
 resolve on this toolchain are listed in `TRAPS.md` § Names.
@@ -130,7 +135,9 @@ refuses them. The unit's `run/` is the place.
 
 ## 6. The unit
 
-Four files. `run/run.sh` is the build. `question.md` quotes the transcript
+Six files: three written (`question.md`, `unit.md`, `values.tsv`), two
+left by the build (`run/run.sh`, `run/build.log`), one written by
+`check_prose_source.py` below (`sources.log`). `run/run.sh` is the build. `question.md` quotes the transcript
 verbatim and carries the statements as fenced blocks copied from the
 module; no boilerplate lines. Digits inside inline code spans are
 formula and are not checked; the measured digit sits outside the span,
@@ -171,7 +178,9 @@ After the commit, one step, every time:
 - A step that was reordered, batched, or skipped without loss gets the
   checklist edited.
 - Any recipe edit bumps `version:` above and is committed with the unit
-  that caused it. The next units record the new `loop_version`.
+  that caused it. The next units record the new `loop_version`. The
+  checker accepts a unit whose `loop_version` is at or below the line
+  above: a unit records the recipe it was built under (unit 0340).
 - Keep an edit when `errors_first` and the minutes per module trend down
   over the following units; revert it when they do not. The evaluation is
   fixed: the build passes with the pin, both checkers pass, the counts

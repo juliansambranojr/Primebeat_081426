@@ -23,3 +23,22 @@ unit_hi	0335	last baseline unit
 unit_loop	0336	the loop unit
 loop_ver	5	lean_stage3/LOOP.md version line
 design	rung5.md#7	the section under test
+commit	1	git log 94febea, 15:12
+errors_first	5	units/0341-weil-powercompare-stage3/values.tsv
+minutes	14	spawn 14:58 (this unit) to 94febea at 15:12, git log
+restarts	0	no SendMessage to the agent
+pins	1	PINS.md archive, the agent's section
+worksheet	0	rung5.md section 7 heading read SKETCH after the run
+traps_added	3	lean_stage3/TRAPS.md rows 18-20
+names_added	15	run/report.md, TRAPS.md Names list
+refusals	0	run/report.md, pre-commit refusals
+commits	2	git log 94febea, 654150c
+module_lines	340	wc -l lean_stage3/Stage3/WeilPowerCompare.lean
+theorems_proved	21	grep -c ^theorem lean_stage3/Stage3/WeilPowerCompare.lean
+defs	8	grep -c ^def lean_stage3/Stage3/WeilPowerCompare.lean
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerCompare.lean
+pins_module	4	grep -c guard_msgs lean_stage3/Stage3/WeilPowerCompare.lean
+unit_agent	0341	the agent's unit
+defects	7	run/report.md, numbered list
+loop_ver_after	7	lean_stage3/LOOP.md version line after this commit
+loop_ver_agent	6	lean_stage3/LOOP.md version line at 654150c

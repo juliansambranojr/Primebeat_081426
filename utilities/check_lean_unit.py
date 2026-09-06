@@ -15,7 +15,7 @@ Checks, each a line of output, exit 1 if any fails:
            '#print axioms <name>' line
   NEXT     unit.md has a paragraph beginning 'What the next slice' or
            'What remains'
-  LOOP     values.tsv has loop_version equal to the 'version:' line of
+  LOOP     values.tsv has loop_version at or below the 'version:' line of
            lean_stage3/LOOP.md
   DESIGN   values.tsv has design = <file>#<heading-slug>; the file exists
            under lean_stage3/design/ and has a heading whose slug (lower
@@ -134,8 +134,23 @@ def main():
         loop_version = m.group(1) if m else None
     if loop_version is None:
         fails.append("LOOP     lean_stage3/LOOP.md has no 'version:' line")
-    elif vals.get("loop_version") != loop_version:
-        fails.append(f"LOOP     values loop_version={vals.get('loop_version')} but LOOP.md version={loop_version}")
+    else:
+        # A unit records the recipe it was built under; the line in LOOP.md
+        # only moves up.  Refuse a version above the current line (a typo or
+        # a bump that never landed); accept anything at or below it, so a
+        # retrospective's bump can be committed with the unit that caused
+        # it (unit 0340, the agent probe, found the equality rule refused
+        # exactly that commit).
+        try:
+            unit_v = int(vals.get("loop_version"))
+            cur_v = int(loop_version)
+        except (TypeError, ValueError):
+            unit_v, cur_v = None, None
+        if unit_v is None or cur_v is None:
+            if vals.get("loop_version") != loop_version:
+                fails.append(f"LOOP     values loop_version={vals.get('loop_version')} but LOOP.md version={loop_version}")
+        elif unit_v > cur_v:
+            fails.append(f"LOOP     values loop_version={unit_v} is above LOOP.md version={cur_v}")
 
     # DESIGN
     design = vals.get("design")

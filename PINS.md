@@ -46,21 +46,6 @@ below with their outcome.
                 edit to §7 of the worksheet itself (a route change would be
                 a decision unit first)
 
-### 2026-09-06 · probe: does the loop transfer to a weaker agent (unit 0340)
-
-    DONE        one Opus subagent given only the repo's files and section 7,
-                its report and the tree's measures recorded in unit 0340
-                against predictions written before the spawn
-    ASSUMED     the harness's `opus` option stands for the weaker agent
-                Julian named; the orchestrator writes nothing into the
-                agent's module or unit; the agent's commits are real
-                commits on main; a restart counts against transfer
-    DEPENDS     nothing; Julian reads the outcome and decides what the
-                loop's next edit is
-    OUT         fixing the agent's module if it fails (that would measure
-                the orchestrator); a second agent; sharpening the
-                predictions after the run
-
 ### 2026-09-06 · rung 5 from the worksheet, section 7 onward
 
     DONE        StmtDetect ε T L proved with L explicit, through the modules
@@ -75,6 +60,25 @@ below with their outcome.
                 on the prime side beyond the probe already run
 
 ## Archive
+
+### 2026-09-06 · probe: does the loop transfer to a weaker agent (unit 0340)
+
+    DONE        one Opus subagent given only the repo's files and section 7,
+                its report and the tree's measures recorded in unit 0340
+                against predictions written before the spawn
+    ASSUMED     the harness's `opus` option stands for the weaker agent
+                Julian named; the orchestrator writes nothing into the
+                agent's module or unit; the agent's commits are real
+                commits on main; a restart counts against transfer
+    DEPENDS     nothing; Julian reads the outcome and decides what the
+                loop's next edit is
+    OUT         fixing the agent's module if it fails (that would measure
+                the orchestrator); a second agent; sharpening the
+                predictions after the run
+    OUTCOME     transferred: commit landed through the gate, no restart,
+                errors_first 5, first commit 14 minutes after the spawn;
+                the agent left section 7 marked SKETCH; four loop defects
+                named, fixed in LOOP.md v7 and check_lean_unit.py
 
 ### 2026-09-06 · the pins file itself
 
