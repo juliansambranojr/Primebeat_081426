@@ -34,6 +34,7 @@ that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 | B4 | `lab check`: `module_lines` mismatch | counted before the last edit | `wc -l` after the final edit |
 | B5 | `REFS  X does not match lean/...::name` | a ref that is not `lean_stage3/File.lean::name`, or a primed name | refs are Lean statements only; primed names cannot be refs |
 | B6 | quote gate refuses a blockquote | not verbatim | copy from the file or the transcript; never from memory |
+| B7 | pre-commit refuses a unit that `python3 -m lab check` passed, with `DIGITS ... three files -> write 3 files` | the installed `lab` console script (`.venv/bin/lab`, what the pre-commit calls) refuses counts spelled in words; the module form only warns | write the digit beside a key: `` `files` 3 files ``; check with `lab check`, the installed one, before committing |
 
 ## Names
 
