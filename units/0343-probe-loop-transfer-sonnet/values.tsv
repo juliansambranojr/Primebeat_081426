@@ -1,0 +1,21 @@
+key	value	source
+loop_ver	7	lean_stage3/LOOP.md version line
+eight	8	rung5.md section 8
+seven	7	rung5.md section 7
+design	rung5.md#8	the section under test
+unit_opus	0340	the Opus probe
+unit_fix	0342	the checker fix
+prompt_lines_changed	2	diff of the two prompt.md files
+opus_errors	5	units/0341-weil-powercompare-stage3/values.tsv errors_first
+opus_minutes	14	units/0340-probe-loop-transfer/values.tsv minutes
+opus_defects	7	units/0340-probe-loop-transfer/values.tsv defects
+pred_commit	1	prediction, written before the spawn
+pred_errors_lo	8	prediction, written before the spawn
+pred_errors_hi	20	prediction, written before the spawn
+pred_min_lo	20	prediction, written before the spawn
+pred_min_hi	50	prediction, written before the spawn
+pred_restarts	0	prediction, written before the spawn
+pred_pins	1	prediction, written before the spawn
+pred_worksheet	1	prediction, written before the spawn
+pred_recurrence	0	prediction, written before the spawn
+pred_new_defects	1	prediction, written before the spawn: at least one

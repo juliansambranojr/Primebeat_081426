@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-09-06T22:26:09Z
+# unit: 0343-probe-loop-transfer-sonnet
+# sources searched: 870
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:144572
+  Source: session transcript, 2026-09-06 (this session), after unit 0342 was committed
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:144544
+  can we keep the fixes, and run the same loop on a sonnet agent? i want to see if the opus fixes real...
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9276
+  ## 8. Selection of the target — SKETCH
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:143718
+  Decision rule, fixed now. The loop transfers if `commit` is 1 with `restarts` 0 and `errors_first` a...
+
+# 4 found, 0 missing

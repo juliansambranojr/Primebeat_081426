@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-06 · probe: the loop on a Sonnet agent, section 8 (unit 0343)
+
+    DONE        one Sonnet subagent given the Opus agent's prompt with the
+                section changed to 8; report and tree measures recorded in
+                unit 0343 against predictions written before the spawn,
+                with a recurrence count over the seven defects of unit 0340
+    ASSUMED     section 8 is the right next section (7 is PROVED); the same
+                decision rule with the error band widened to 20 for the
+                tier; the orchestrator writes nothing into the module or
+                unit; a recurrence is the same defect met again, by text
+    DEPENDS     nothing; Julian reads the outcome
+    OUT         fixing the agent's module if it fails; a third agent; any
+                edit to the loop while the agent runs
+
 ### 2026-09-06 · rung 5 §7 in Lean: the comparison at another off-line zero
 
     DONE        one module, `lean_stage3/Stage3/WeilPowerCompare.lean`, and
