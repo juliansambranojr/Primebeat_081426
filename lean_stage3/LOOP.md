@@ -1,6 +1,6 @@
 # The module loop
 
-version: 8
+version: 9
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -59,12 +59,16 @@ changes from SKETCH to PROVED naming the theorem, in the same commit.
 One batched grep for every Mathlib lemma the file will use:
 
 ```sh
-cd lean_stage3/.lake/packages/mathlib/Mathlib
-grep -rn 'theorem NAME1\b\|theorem NAME2\b' . --include='*.lean' | head
+M=lean_stage3/.lake/packages/mathlib/Mathlib
+grep -rn 'theorem NAME1\b\|theorem NAME2\b' $M --include='*.lean' | sed "s|$M/||" | head
 ```
 
-Run it as one `cd … && grep …` from the repo root so the working
-directory does not stay in mathlib, where § 0's gate refuses Bash.
+By full path from the repo root, with no `cd`: the orient gate reads the
+whole command text and refuses one that mentions the library path beside a
+write anywhere in the tree (`TRAPS.md` B11); a command that only greps
+passes. A name made by `@[to_additive]` (`sum_*` from `prod_*`,
+`Tendsto.sub` from `Tendsto.div`) has no `theorem` line of its own; grep
+the multiplicative name.
 
 A guessed name is an error on the first build, every time. Names that
 resolve on this toolchain are listed in `TRAPS.md` § Names.

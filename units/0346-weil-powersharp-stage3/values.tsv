@@ -1,0 +1,24 @@
+key	value	source
+module_lines	244	wc -l lean_stage3/Stage3/WeilPowerSharp.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/WeilPowerSharp.lean
+defs	0	grep -c ^def lean_stage3/Stage3/WeilPowerSharp.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+pins_module	4	grep -c guard_msgs lean_stage3/Stage3/WeilPowerSharp.lean
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerSharp.lean
+errors_first	4	first lake build: error: Stage3/WeilPowerSharp.lean lines 146, 220, 232, 240
+roots	2	the two root causes of the first build
+jobs_package	8756	lake build (full Stage3)
+jobs_module	8662	lake build Stage3.WeilPowerSharp
+loop_version	8	lean_stage3/LOOP.md version line at the build
+design	rung5.md#5	the Gaussian regime, constants sharpened
+rung	5	detection ladder rung
+slice	11	eleventh module of the switched-window ladder
+five	5	worksheet section 5
+thirteen	13	worksheet section 13
+rate_loss	4	limit of (2m+3)^2/((m+1)(m+2))
+unit_decision	0345	the decision unit
+unit_gauss	0333	WeilPowerGauss
+unit_opus	0340	the Opus probe
+unit_sonnet	0343	the Sonnet probe
+cascade_lines	2	first build, the two guard_msgs lines
+row_cascade	19	lean_stage3/TRAPS.md row 19

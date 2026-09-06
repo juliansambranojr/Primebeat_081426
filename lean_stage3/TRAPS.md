@@ -3,7 +3,8 @@
 Error pattern, cause, fix. One row per class. Appended after any build
 that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 2026-09-06, units 0329–0335; rows 13–17 come from CLAUDE.md § Stage-3;
-rows 18–20 were paid for by unit 0341.
+rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, the
+orchestrator's own run of the loop.
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -27,6 +28,7 @@ rows 18–20 were paid for by unit 0341.
 | 18 | `nlinarith` reports `linarith failed to find a contradiction` on a short context whose goal is a positive constant times a bracket | the whole proof is the product of two hypotheses and that product is not in the hint list | name the bracket's positivity as its own `have hb`, then `nlinarith [mul_pos h1 hb]` |
 | 19 | `#guard_msgs` refuses a `#print axioms` pin, the diff adding `sorryAx` | a proof earlier in the same module failed, so the theorem is a sorry | fix the earlier errors; these pins are a cascade, they inflate `errors_first` and are not a class to chase |
 | 20 | warning `Variable name X is not explicitly referenced` | a hypothesis in the statement the proof never uses | drop it from the statement and prove it follows from the rest (a positive error term can force the sign the dropped hypothesis asserted) |
+| 21 | `field_simp` leaves `(1 - (m+2) * 0)`-type residue and the goal is not closed | a literal `- 0` or `* 0` inside the expression (here from a `Tendsto` limit at `0`) | `rw [sub_zero]` / `simp only [mul_zero, sub_zero]` before `field_simp` |
 
 ## Bench and gate traps
 
@@ -41,6 +43,8 @@ rows 18–20 were paid for by unit 0341.
 | B7 | pre-commit refuses a unit that `python3 -m lab check` passed, with `DIGITS ... three files -> write 3 files` | the installed `lab` console script (`.venv/bin/lab`, what the pre-commit calls) refuses counts spelled in words; the module form only warns | write the digit beside a key: `` `files` 3 files ``; check with `lab check`, the installed one, before committing |
 | B8 | pre-commit step 9 refuses a decision unit with `DEFS ... BUILD run/build.log missing` | the unit has a `loop_version` row, which marks it a Lean unit | in a non-Lean unit key the number `loop_ver`; `loop_version` is the Lean-unit marker |
 | B9 | `check_lean_unit.py`: `DEFS values defs=N but grep -c ^def=0`, and `PIN <name> has no '#print axioms <name>' line` for every pinned theorem | a def written as `noncomputable def foo` rather than plain `def` inside a `noncomputable section`; the `#print axioms` line placed after `end <Namespace>` so it needs the qualified name `Namespace.foo`, which does not match the checker's `^#print axioms <bare name>$` regex | wrap defs in `noncomputable section … end` (bare `def`, matching `grep -c ^def`); put every `#guard_msgs`/`#print axioms <bare name>` pin before `end <Namespace>`, inside the namespace |
+| B10 | zsh: `===== not found` and a `set -e` script dies at an `echo` | a word beginning with `=` is zsh equals-expansion (`=cmd` → path of `cmd`) | never start a word with `=` in a Bash tool command; use `---` as a separator |
+| B11 | orient gate refuses a command as one that "may write into `.lake/packages`" | the command text mentions the library path (a `cd` into it, or even a doc edit quoting it) beside writes elsewhere; the gate reads the whole text | grep by full path from the repo root with no `cd`; when a doc edit must quote the path, build the string in a script file and run the file (LOOP.md v9 § 2) |
 
 ## Names
 
@@ -54,6 +58,9 @@ Verified on v4.32.2 with Mathlib at the pin, 2026-09-06:
 `Complex.norm_exp`, `Complex.ofReal_log`, `le_of_tendsto`, `ge_of_tendsto`,
 `Filter.Tendsto.norm`, `Finset.prod_range_mul_prod_Ico`,
 `Finset.prod_range_add_one_eq_factorial`, `Finset.sum_Ico_succ_top`,
+`le_of_tendsto_of_tendsto`, `tendsto_one_div_add_atTop_nhds_zero_nat`,
+`Filter.Tendsto.const_sub`, `Filter.Tendsto.const_mul`, `Filter.Tendsto.sub_const`,
+`Real.continuous_exp`, `Nat.le_induction`, `Finset.sum_le_sum`, `Finset.Ico_self`,
 `Nat.centralBinom_le_four_pow`, `Nat.four_pow_le_two_mul_add_one_mul_central_binom`,
 `Nat.centralBinom_eq_two_mul_choose`, `Nat.choose_mul_factorial_mul_factorial`,
 `Nat.factorial_le_pow`, `Real.pi_lt_d2`, `Real.pi_gt_three`,

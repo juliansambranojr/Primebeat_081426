@@ -57,6 +57,7 @@ import Stage3.WeilPowerBands
 import Stage3.WeilPowerOnLine
 import Stage3.WeilPowerCompare
 import Stage3.WeilPowerSelect
+import Stage3.WeilPowerSharp
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

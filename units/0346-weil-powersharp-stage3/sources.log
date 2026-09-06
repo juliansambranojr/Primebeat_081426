@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-09-06T23:09:48Z
+# unit: 0346-weil-powersharp-stage3
+# sources searched: 871
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145794
+  Source: session transcript, 2026-09-06 (this session), the orchestrator's turn in the loop
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145450
+  theorem sum_inv_sq_ge_sharp (m : ℕ) {n : ℕ} (hn : m + 1 ≤ n) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145451
+  1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1) ≤ ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145514
+  theorem S_real_ge_sharp {m : ℕ} {s : ℝ} (hs : 0 < s)
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:6228
+  (hsmall : s ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145516
+  cS m / D m * s * Real.exp (s ^ 2 / (Real.pi ^ 2 * ((m : ℝ) + 2))
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:6231
+  - s ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) ≤ (S m (s : ℂ)).re := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145570
+  theorem compare_sharp {m : ℕ} {w : ℂ} {s : ℝ} (hne : QS m w ≠ 0) (hs : 0 < s)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145571
+  (hw : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145572
+  (hsm : s ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (hre : 0 ≤ (w ^ 2).re) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145573
+  ‖S m w‖ ≤ ‖w‖ / s * Real.exp (((w ^ 2).re - s ^ 2) / (Real.pi ^ 2 * ((m : ℝ) + 1))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145574
+  + s ^ 2 / (Real.pi ^ 2 * ((m : ℝ) + 1) * ((m : ℝ) + 2))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145575
+  + (‖w‖ ^ 4 + s ^ 4) / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) * (S m (s : ℂ)).re := by
+
+# 13 found, 0 missing

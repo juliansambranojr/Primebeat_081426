@@ -88,7 +88,19 @@ factor to the `m+1`: `Ps ≈ π^{2m+2}((m+1)!)²·e^{s²/(π²m)}` against
 the crude lower bound is useless for the assembly. Fine for far zeros
 (§6), useless for the target.
 
-## 5. The Gaussian regime — PROVED (unit 0333)
+## 5. The Gaussian regime — PROVED (unit 0333); constants sharpened (unit 0346)
+
+Two factors were lost between the upper bound at a zero and the lower
+bound at the target (found in unit 0345): the constant `cS m / D m` was
+bracketed by `4/(π(m+1)(2m+3))` below and `4/(π(m+1))` above, a factor
+`2m+3`; the tail sum `Σ_{j≥m+2} 1/j²` was bracketed by `(m+2)/(2m+3)²` below
+and `1/(m+1)` above, a factor near `4` in the rate, so the target's proven
+growth was a quarter of a competitor's. `WeilPowerSharp` (unit 0346) keeps
+the constant exact on both sides and uses the telescoping sum
+`1/(j+1)² ≥ 1/((j+1)(j+2))`: `S_real_ge_sharp` has rate `s²/(π²(m+2))`, and
+`compare_sharp` reads `‖S m w‖ ≤ (‖w‖/s)·exp((Re w² − s²)/(π²(m+1)) +
+s²/(π²(m+1)(m+2)) + quartics)·Re S m s`, prefactor `‖w‖/s`. The `neg` case
+(`Re w² ≤ 0`) still carries the old exponent.
 
 
 Euler: `sinh w = w·∏_{j≥1}(1 + w²/(π²j²))` (euler_sinh, from

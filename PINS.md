@@ -37,6 +37,26 @@ below with their outcome.
 
 ## Archive
 
+### 2026-09-06 · the orchestrator runs the loop: section 9 design, then one module
+
+    DONE        a decision unit that prices section 9 as sketched and names the
+                route change, the worksheet updated, and one module committed
+                under LOOP.md v8 with its unit; the run's own errors_first,
+                minutes and refusals recorded for comparison with units 0340
+                and 0343
+    ASSUMED     the module is whatever the decision unit says every route
+                needs first; the comparison measures are read the same way
+                as for the agents (git log for minutes, values.tsv for
+                errors_first); the loop's text is followed literally, and
+                each place it fails me is named in the retrospective
+    DEPENDS     nothing from Julian; a route change becomes a decision unit,
+                which this run makes
+    OUT         the remaining sections after this module; any agent spawn
+                during the run
+    OUTCOME     built: unit 0345 (section 9 dies on size, section 13), then
+                WeilPowerSharp.lean, unit 0346; errors_first 4, two root
+                causes; two bench traps hit (B10, B11), LOOP.md v9
+
 ### 2026-09-06 · rung 5 §7 in Lean: the comparison at another off-line zero
 
     DONE        one module, `lean_stage3/Stage3/WeilPowerCompare.lean`, and
