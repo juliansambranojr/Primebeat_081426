@@ -1,0 +1,20 @@
+key	value	source
+rederived	3	before units 0327, 0331, 0333, this session
+sections	12	lean_stage3/design/rung5.md headings 1 to 12
+lambda	1	worksheet section 12
+rate_coeff	0.05	1/(2 pi^2) = 0.0507, worksheet section 12
+loop_version	2	lean_stage3/LOOP.md version line
+checks	9	utilities/check_lean_unit.py docstring
+section_test	6	check_lean_unit.py on the scratch copy of 0335 with design rung5.md#6
+design	rung5.md#12	the open questions, this unit's own section
+unit_loop	0336	the module loop
+unit_finding	0327	the finding, section 2
+unit_bounds	0331	the crude bounds, section 4
+unit_gauss	0333	the Gaussian regime, section 5
+unit_first	0326	first unit the worksheet covers
+unit_last	0335	last unit the worksheet covers
+unit_next	0338	first unit that carries the design row
+seven	7	SKETCH section 7
+ten	10	SKETCH section 10
+two	2	2 pi^2; e to the 2m; version 2
+one	1	lambda equal 1

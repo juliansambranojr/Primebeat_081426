@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-09-06T18:11:17Z
+# unit: 0337-rung5-worksheet
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141501
+  Source: session transcript, 2026-09-06 (this session), after unit 0336 was reported
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141057
+  You said the analysis lives in your head and leaves no trace. Where is your “head “ exactly? I ask b...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141332
+  The derivation lives in a file, never only in the session. Each rung has
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141333
+  a worksheet, `lean_stage3/design/<rung>.md`, with one section per piece
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141334
+  of analysis, each marked PROVED (names the Lean theorem) or SKETCH (the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141335
+  numbers and the plan). Do the analysis there first: the quantities and
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141336
+  their sizes, the regime conditions, the constants, the comparison, the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141337
+  open questions. Append as you go. Re-read it instead of re-deriving. A
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141338
+  compaction loses nothing in it, and a fresh instance starts from it.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:141227
+  |term_other| / term_target ≲ poly(h, m) · exp( [ (ε'² − Δ²) − ε² ] · h/(π²λ) · c )
+
+# 10 found, 0 missing

@@ -1,6 +1,6 @@
 # The module loop
 
-version: 1
+version: 2
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -19,17 +19,31 @@ python3 ~/.claude/hooks/orient_gate.py --orient
 Re-run it whenever the working directory has moved into
 `lean_stage3/.lake/packages/mathlib`: the gate refuses Bash from there.
 
-## 1. Freeze the design: the header first
+## 1. Freeze the design: the worksheet, then the header
 
-Write the module's header comment before any proof. It lists every
-theorem in words, states its hypotheses, and ends with what the next
-slice needs. The header is the contract; the unit's prose paraphrases it.
-Name the pinned theorems now: the `#guard_msgs in #print axioms` lines
-are fixed targets.
+The derivation lives in a file, never only in the session. Each rung has
+a worksheet, `lean_stage3/design/<rung>.md`, with one section per piece
+of analysis, each marked PROVED (names the Lean theorem) or SKETCH (the
+numbers and the plan). Do the analysis there first: the quantities and
+their sizes, the regime conditions, the constants, the comparison, the
+open questions. Append as you go. Re-read it instead of re-deriving. A
+compaction loses nothing in it, and a fresh instance starts from it.
 
-If a proof route is still open, do not start the file. Write the route
-down (a decision unit, `python3 -m lab new <slug> --type decision`) and
-decide first.
+Then write the module's header comment before any proof. It lists every
+theorem in words, states its hypotheses, cites the worksheet section it
+comes from, and ends with what the next slice needs. The header is the
+contract; the unit's prose paraphrases it. Name the pinned theorems now:
+the `#guard_msgs in #print axioms` lines are fixed targets.
+
+When the analysis changes the route, it is also a decision unit
+(`python3 -m lab new <slug> --type decision`), which carries the quote
+gate and the values rows. The worksheet is the scratch; the unit is the
+record. A numerical probe takes its predictions from the worksheet,
+written before the run.
+
+The unit's `values.tsv` names its section: `design	<rung>.md#<heading>`,
+the heading in lower case with dashes for spaces. The checker refuses a
+unit without it or with a section that does not exist.
 
 ## 2. Verify every name before writing
 
@@ -100,7 +114,8 @@ refuses them. The unit's `run/` is the place.
 Four files. `run/run.sh` is the build. `question.md` quotes the transcript
 verbatim and carries the statements as fenced blocks copied from the
 module. `values.tsv` has one row per number in the prose, including unit
-ids and numbers inside inline math, and the row `loop_version`. `unit.md`
+ids and numbers inside inline math, the row `loop_version`, and the row
+`design` naming the worksheet section. `unit.md`
 paraphrases the header, keys every number beside its backticked key, and
 ends with a paragraph beginning `What the next slice` or `What remains`:
 that paragraph is the next module's question.

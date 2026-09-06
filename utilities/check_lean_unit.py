@@ -17,6 +17,10 @@ Checks, each a line of output, exit 1 if any fails:
            'What remains'
   LOOP     values.tsv has loop_version equal to the 'version:' line of
            lean_stage3/LOOP.md
+  DESIGN   values.tsv has design = <file>#<heading-slug>; the file exists
+           under lean_stage3/design/ and has a heading whose slug (lower
+           case, spaces to dashes, punctuation dropped) equals it or starts
+           with it: `rung5.md#6` names section 6
   BUILD    run/build.log exists and ends with 'Build completed successfully'
 
 Read-only over the tree.
@@ -133,6 +137,25 @@ def main():
     elif vals.get("loop_version") != loop_version:
         fails.append(f"LOOP     values loop_version={vals.get('loop_version')} but LOOP.md version={loop_version}")
 
+    # DESIGN
+    design = vals.get("design")
+    if not design or "#" not in design:
+        fails.append("DESIGN   values.tsv has no row design = <file>#<heading-slug>")
+    else:
+        dfile, slug = design.split("#", 1)
+        dpath = os.path.join(repo, "lean_stage3", "design", dfile)
+        if not os.path.exists(dpath):
+            fails.append(f"DESIGN   lean_stage3/design/{dfile} does not exist")
+        else:
+            def slugify(s):
+                s = s.strip().lower()
+                s = re.sub(r"[^a-z0-9\s-]", "", s)
+                return re.sub(r"\s+", "-", s).strip("-")
+            heads = [slugify(m.group(1)) for m in re.finditer(r"^#{1,6}\s+(.*)$", read(dpath), re.M)]
+            # the slug may be a prefix of the heading's slug: `rung5.md#6` names section 6
+            if not any(hd == slug or hd.startswith(slug + "-") for hd in heads):
+                fails.append(f"DESIGN   no heading '{slug}' in lean_stage3/design/{dfile}; headings: {', '.join(heads)[:200]}")
+
     # BUILD
     log = os.path.join(unit, "run", "build.log")
     if not os.path.exists(log):
@@ -147,7 +170,7 @@ def main():
         for f in fails:
             print("  " + f)
         sys.exit(1)
-    print(f"{name}: OK  ({len(names)} pin(s), loop_version {loop_version})")
+    print(f"{name}: OK  ({len(names)} pin(s), loop_version {loop_version}, design {vals.get('design')})")
 
 
 if __name__ == "__main__":
