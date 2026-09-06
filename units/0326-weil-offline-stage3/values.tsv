@@ -1,0 +1,14 @@
+key	value	source
+module_lines	151	wc -l lean_stage3/Stage3/WeilOffLine.lean
+defs	1	offPt
+theorems_proved	7	SigmaC_neg ghat_neg term_eq_neg_sq term_re_eq offPt_sub_half offline_term_le offline_term_le_explicit
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilOffLine.lean
+errors_first	0	first lake build
+jobs_package	8746	lake build (full Stage3)
+rung	5	detection ladder rung, first slice
+half	1/2	rho - 1/2, the shift to where the transform is read
+lobe_mult	2	offline_term_le: Sigma - 2 * lobe
+lobe_two_gamma	2	the 2 gamma lobe, SigmaC((eps + 2 i gamma) h)
+half_denom	2	(h/2)^2
+sq	2	exponent in (Im g)^2 - (Re g)^2

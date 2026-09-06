@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-09-06T15:50:57Z
+# unit: 0326-weil-offline-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133616
+  Source: session transcript, 2026-09-06 (this session), the bracket in which rung 5 was started
+
+FOUND  notes/lab_notebook_2.md:932
+  ## 2026-09-02 — Entry 303 — pricing a Weil-form leaf for Stage 3: the tree's explicit formula has no...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133256
+  theorem term_eq_neg_sq {h : ℝ} (hh : 0 < h) (γ : ℝ) (ρ : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133257
+  laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133311
+  theorem offline_term_le_explicit {h γ ε : ℝ} (hh : 0 < h) (hγ : 0 < γ)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133312
+  (hs : (2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133282
+  (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133283
+  ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133317
+  - 2 * ((2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2)))) := by
+
+# 9 found, 0 missing
