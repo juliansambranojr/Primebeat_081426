@@ -130,46 +130,16 @@ by `utilities/check_weld.py`.
   attribute on its own line. Lean traps and verified names:
   `lean_stage3/TRAPS.md`.
 
-## Permissions
+## Permissions and conventions
 
-**CAN:**
-
-- Read everything in this tree.
-- Run any `O*.py` / `0*.py` / `t*.py` script with explicit flags; write
-  under `results/` or the session's `analysis/<date>/results/`.
-- Run anything in `utilities/`; it is read-only over the tree except
-  `extract_run.py --append`, which needs a reviewed draft.
-- Read `/Users/juliansambrano/GitHub/primebeat/` and
-  `/Users/juliansambrano/GitHub/primebeat_lean/` read-only for
-  orientation.
-- Append lab_notebook entries and `[open]` NOTEPAD lines.
-
-**CANNOT:**
-
-- Modify or delete anything under `files (2)/` — that is an imported
-  bundle and the only surviving record of O1, O2, and O3b. Treat it as
-  frozen evidence.
-- Delete `results/*.json` or the `.log` files. O8 has no results JSON;
-  its three logs are its entire record.
-- Delete `preregs/*` or edit a `LOCKED` prereg's locked-parameter
-  table. A locked prereg is immutable except for its Run record.
-- Modify anything in `primebeat/` or `primebeat_lean/`.
-- Edit this file, `CONTEXT.md`, or `REFERENCES.md` without Julian's
-  explicit approval.
-- Apply NOTEPAD status transitions or lab_notebook outcome markings —
-  Julian's call.
+Enforced, not recited: the write hook and the pre-commit hold the CAN
+and CANNOT list, and `utilities/check_naming.py` holds the O-series
+naming convention. The list is in `AGENT_CARD.md` § Permissions. Three
+things a gate cannot see are Julian's alone: status transitions in the
+NOTEPAD, outcome markings in the notebook, and the verdict line.
 
 ## Lab notebook and NOTEPAD
 
 Format, entry header and the seven-type vocabulary: `notes/notes_format.md`.
 Agents append entries and `[open]` lines. Status transitions and outcome
 markings are Julian's.
-
-## Naming convention (do not re-break)
-
-The O-series is one series. O5, O6, and O7 were partially renamed to
-`05_`, `06_`, `07_` — their docstrings still say O5/O6/O7, and the
-leading digit is why `07_alpha_depth_trend.py` imports 05 via importlib
-rather than by name. Do not rename further in either direction without
-an `instrument-fix` entry; the prereg cites `07_alpha_depth_trend.py`
-by path.
