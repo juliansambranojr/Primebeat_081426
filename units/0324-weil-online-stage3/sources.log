@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-09-06T11:25:23Z
+# unit: 0324-weil-online-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131607
+  Source: session transcript, 2026-09-06 (this session), the bracket in which slice B3 was asked for
+
+FOUND  notes/lab_notebook_2.md:932
+  ## 2026-09-02 — Entry 303 — pricing a Weil-form leaf for Stage 3: the tree's explicit formula has no...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131344
+  theorem lowSet_finite : lowSet.Finite := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131464
+  theorem tsum_onLine_le {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131465
+  ∑' ρ : OnLine, weightedTerm h γ ρ.1 ≤ onLineBound h γ := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131490
+  theorem onLineBound_le {h γ : ℝ} (hγ : 11 / 10 ≤ γ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131492
+  ≤ 2 * (88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2) * (Real.pi ^ 2 / 6))
+
+# 7 found, 0 missing

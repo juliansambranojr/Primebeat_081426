@@ -46,6 +46,7 @@ import Stage3.WeilBackground
 import Stage3.WeilBands
 import Stage3.WeilTiles
 import Stage3.WeilSeries
+import Stage3.WeilOnLine
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

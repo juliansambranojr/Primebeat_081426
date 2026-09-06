@@ -1,0 +1,20 @@
+key	value	source
+module_lines	329	wc -l lean_stage3/Stage3/WeilOnLine.lean
+defs	7	conjZ B lowSet lowU lowCount onLineBound OnLine
+theorems_proved	17	Psi_neg term_conj conj_mem conjZ_injective weightedTerm_conjZ sum_upper_le sum_lower_le lowU_preconnected lowU_analytic lowSet_finite lowCount_nonneg sum_low_le sum_onLine_le sum_onLine_subtype_le tsum_onLine_le summable_onLine A_le onLineBound_le
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilOnLine.lean
+errors_first	0	first lake build
+jobs_package	8745	lake build (full Stage3)
+rung	4b	detection ladder rung, second half
+height_min	11/10	Upper / Lower / lowSet
+halfplane_re	3/4	lowU
+zeta_zero_value	-1/2	riemannZeta_zero
+pole	1	riemannZeta pole
+zeta2_denom	6	pi^2/6
+weight_slope	88	A
+sides	2	onLineBound: 2 B
+near_coeff	4	online_term_le_near
+first_zero_height	14	first nontrivial zero at 14.13..., not proved here
+next_rung	5	rung 5 assembly
+height_min_neg	-11/10	Lower
