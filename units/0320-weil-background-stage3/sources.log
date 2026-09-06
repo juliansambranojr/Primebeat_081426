@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-09-06T10:48:53Z
+# unit: 0320-weil-background-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124643
+  Source: session transcript, 2026-09-06 (this session), the bracket in which rung 4b's first half was...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124101
+  Before writing, one structural fact I have to put in front of you, because it changes the shape of r...
+
+FOUND  notes/lab_notebook_2.md:932
+  ## 2026-09-02 — Entry 303 — pricing a Weil-form leaf for Stage 3: the tree's explicit formula has no...
+
+FOUND  notes/lab_notebook_2.md:1003
+  trivial case of the Weil-type explicit formula of
+
+FOUND  notes/lab_notebook_2.md:1004
+  \cite[Theorem 3.1]{Kadiri2005}"). Hypotheses: φ : ℝ → ℂ is C¹;
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124201
+  theorem laplace_phi {h : ℝ} (hh : 0 < h) (γ : ℝ) (z : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124202
+  laplace (phiC h γ) z = ghat h γ (-z - 1 / 2) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124669
+  theorem Psi_bound {s : ℝ} (hs : s ≠ 0) : |WeilTransform.Psi s| ≤ (2 * Real.pi + Real.pi ^ 2) / s ^ 2...
+
+# 8 found, 0 missing

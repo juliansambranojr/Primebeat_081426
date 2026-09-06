@@ -1,0 +1,19 @@
+key	value	source
+module_lines	216	wc -l lean_stage3/Stage3/WeilBackground.lean
+defs	2	phi, phiC
+theorems_proved	7	phiC_real laplace_phi Psi_bound Psi_le_two online_term_eq online_term_le_near online_term_le_far
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilBackground.lean
+errors_first	3	first lake build (kinds)
+errors_second	2	second lake build (kinds)
+jobs_package	8741	lake build (full Stage3)
+near_bound	4	online_term_le_near: 4 h^2
+psi_le	2	Psi_le_two
+window_radius	7/4	JensenCount.zetaWindow: |rho - (2 + iT)| <= 7/4
+band_half	0.9	sqrt((7/4)^2 - (3/2)^2) = 0.901 at Re rho = 1/2
+c1	1	IsTest now asks ContDiff 1
+c2	2	IsTest asked ContDiff 2 before this unit
+half	1/2	the e^{-u/2} and the rho - 1/2
+rung_assembly	5	the ladder numbering: rung 5 is the assembly (unit 0316)
+bombieri_year	2000	Bombieri, Rend. Lincei (9) 11 (2000) 183-233
+bombieri_theorem	8	Bombieri (2000) Theorem 8, negative eigenvalues = complex pairs

@@ -13,7 +13,8 @@ two-sided Laplace transform (Kadiri's Φ; entry 303 §(c) takes its sign from
 over `riemannZeta.zeroes_rect (.Ioo 0 1) .univ` with multiplicity, which is
 upstream's `riemannZeta.zeroes_sum` and the ρ-sum of the Weil-type explicit
 formula. `IsTest L G` is the test-function class: real-valued, C², compactly
-supported in [−L/2, L/2]. `StmtWeilPositive L` says the zero side is
+supported in [−L/2, L/2] (C¹ is what Kadiri's explicit formula asks; the
+cut-off window of WeilTransform is C¹ at its ends and not C²). `StmtWeilPositive L` says the zero side is
 nonnegative on that class; `StmtDetect ε T L` says an off-line zero in the
 box {Re ρ ≥ 1/2 + ε, |Im ρ| ≤ T} forces a negative value at some G of
 support L.
@@ -72,7 +73,7 @@ noncomputable def zeroForm (G : ℝ → ℂ) : ℂ :=
 /-- The test-function class at support `L`: real-valued, `C²`, compactly
 supported inside `[−L/2, L/2]`. -/
 def IsTest (L : ℝ) (G : ℝ → ℂ) : Prop :=
-  (∀ u, (G u).im = 0) ∧ ContDiff ℝ 2 G ∧ HasCompactSupport G ∧
+  (∀ u, (G u).im = 0) ∧ ContDiff ℝ 1 G ∧ HasCompactSupport G ∧
     tsupport G ⊆ Set.Icc (-L / 2) (L / 2)
 
 /-- Weil positivity on support `L`, zero side. -/
