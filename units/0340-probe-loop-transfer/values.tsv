@@ -1,0 +1,25 @@
+key	value	source
+seven	7	rung5.md section 7
+errors_median	3	units 0329-0335 values.tsv, errors_first, median of 5,5,1,0,8,3,0
+baseline_minutes	41	units/0336-module-loop/values.tsv minutes
+pred_errors_lo	4	prediction, written before the spawn
+pred_errors_hi	12	prediction, written before the spawn
+pred_min_lo	30	prediction, written before the spawn
+pred_min_hi	60	prediction, written before the spawn
+pred_restarts	0	prediction, written before the spawn
+pred_commit	1	prediction, written before the spawn
+pred_pins	1	prediction, written before the spawn
+pred_worksheet	1	prediction, written before the spawn
+pred_traps	1	prediction, written before the spawn: at least one row
+e1	5	errors_first unit 0329
+e2	5	errors_first unit 0330
+e3	1	errors_first unit 0331
+e4	0	errors_first unit 0332
+e5	8	errors_first unit 0333
+e6	3	errors_first unit 0334
+e7	0	errors_first unit 0335
+unit_lo	0329	first baseline unit
+unit_hi	0335	last baseline unit
+unit_loop	0336	the loop unit
+loop_ver	5	lean_stage3/LOOP.md version line
+design	rung5.md#7	the section under test

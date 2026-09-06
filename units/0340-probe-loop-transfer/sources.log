@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-09-06T22:00:50Z
+# unit: 0340-probe-loop-transfer
+# sources searched: 870
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:143675
+  Source: session transcript, 2026-09-06 (this session), after the approve flags were cleared
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:143133
+  can you spawn for opus 4.6 to probe that would settle whether the loop transfers to a weaker agent, ...
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:8496
+  One Stage-3 module, from design to commit. Every step is a command or a
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:8497
+  file. An instance that has never seen this repo follows it top to bottom.
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:9254
+  ## 7. The comparison at another off-line zero — SKETCH
+
+# 5 found, 0 missing

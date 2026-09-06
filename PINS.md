@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-06 · probe: does the loop transfer to a weaker agent (unit 0340)
+
+    DONE        one Opus subagent given only the repo's files and section 7,
+                its report and the tree's measures recorded in unit 0340
+                against predictions written before the spawn
+    ASSUMED     the harness's `opus` option stands for the weaker agent
+                Julian named; the orchestrator writes nothing into the
+                agent's module or unit; the agent's commits are real
+                commits on main; a restart counts against transfer
+    DEPENDS     nothing; Julian reads the outcome and decides what the
+                loop's next edit is
+    OUT         fixing the agent's module if it fails (that would measure
+                the orchestrator); a second agent; sharpening the
+                predictions after the run
+
 ### 2026-09-06 · rung 5 from the worksheet, section 7 onward
 
     DONE        StmtDetect ε T L proved with L explicit, through the modules
