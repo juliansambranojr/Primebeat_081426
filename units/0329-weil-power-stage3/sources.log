@@ -1,0 +1,47 @@
+# check_prose_source.py  2026-09-06T17:04:47Z
+# unit: 0329-weil-power-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135846
+  Source: session transcript, 2026-09-06 (this session), the decision that switched the window
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133881
+  The fix. The window's smoothness has to grow with its support. Replace the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133882
+  envelope `P` by its `m`-th power with `m` of the order of `h`. That is a
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133883
+  truncated Gaussian. Its transform has a closed form: a constant times
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133884
+  `sinh(w)` over `w` times the product over `j` up to `m` of `w² + π²j²`. At
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133885
+  `m` equal to `m_check` 1 this is `π²·sinh(w)/(w(w² + π²))`, checked by hand
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133886
+  against unit 0318's transform. The proof is the partial-fraction identity
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133887
+  for a binomial sum over `j` of `(−1)^j·C(n, j)/(x + j)`, by induction on
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133888
+  `n`, each step subtracting the shifted sum.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135322
+  theorem K_succ (m : ℕ) (w : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135323
+  K (m + 1) w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1) ^ 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135324
+  = ((m : ℂ) + 1) * (2 * (m : ℂ) + 1) * (Real.pi : ℂ) ^ 2 / 2 * K m w := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135392
+  theorem K_mul_Q (m : ℕ) (w : ℂ) : K m w * Q m w = (cK m : ℂ) * Complex.sinh w := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135413
+  K 1 w * (w * (w ^ 2 + (Real.pi : ℂ) ^ 2)) = (Real.pi : ℂ) ^ 2 * Complex.sinh w := by
+
+# 14 found, 0 missing

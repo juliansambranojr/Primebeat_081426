@@ -1,0 +1,13 @@
+key	value	source
+module_lines	303	wc -l lean_stage3/Stage3/WeilPower.lean
+defs	6	c f1 f2 K Q cK
+theorems_proved	24	grep -c ^theorem lean_stage3/Stage3/WeilPower.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilPower.lean
+errors_first	5	first lake build
+jobs_package	8747	lake build (full Stage3)
+rung	5	detection ladder rung, second slice
+half_denom	2	theta = pi / 2
+m_check	1	K_one_mul, the m = 1 case
+two	2	2m, 2m+1, 2 sinh w
+one	1	product from j = 1
