@@ -54,7 +54,7 @@ DECISIONS taken here where the design is silent:
     in prose as `unit 0305 § ...`; a space or a slash in it would make the
     unit hard to name and impossible to cite.
   - `date:` is today, `type:` defaults to `run` (the design's own example),
-    `title:` defaults to the slug, `refs: []`, `supersedes: []`,
+    `title:` defaults to the slug, `refs: [none]`, `supersedes: []`,
     `sealed: false`. `--type` and `--title` override the two that are
     guesses. The type vocabulary is not checked here; the container's
     types are settled when entries migrate, which is not this phase.
@@ -107,8 +107,22 @@ are in `run/`, copied in as produced.>
 have a line in `values.tsv`: run `lab values`, then `lab check`.>
 """
 
-QUESTION = ("> <paste the transcript bracket this unit's question was posed "
-            "in, verbatim>\n")
+QUESTION_TEMPLATE = """\
+> <UNFILLED — run these utilities before writing this file>
+>
+> Step 1 — see what sources exist:
+>   python3 utilities/find_provenance.py units/{unit_dir}
+>
+> Step 2 — extract the transcript bracket from session logs:
+>   python3 utilities/extract_run.py <SCRIPT.py> --all
+>   (replace <SCRIPT.py> with the O-script filename from run/)
+>
+> Step 3 — after writing, verify every line traces to a source:
+>   python3 utilities/check_prose_source.py units/{unit_dir}
+>
+> The output of steps 1 and 2 is the content. Step 3 produces sources.log.
+> lab check requires sources.log to exist alongside question.md.
+"""
 
 
 def notebook_floor(root):
@@ -186,7 +200,7 @@ def scaffold(slug, root, today=None, type_="run", title=None):
         "date": (today or datetime.date.today()).isoformat(),
         "type": type_,
         "title": title if title is not None else slug,
-        "refs": [],
+        "refs": ["none"],
         "supersedes": [],
         "sealed": False,
     }
@@ -202,7 +216,8 @@ def scaffold(slug, root, today=None, type_="run", title=None):
     (path / "unit.md").write_text(
         "---\n" + format_front_matter(front) + "\n---\n\n" + BODY,
         encoding="utf-8")
-    (path / "question.md").write_text(QUESTION, encoding="utf-8")
+    (path / "question.md").write_text(
+        QUESTION_TEMPLATE.format(unit_dir=path.name), encoding="utf-8")
     (path / "values.tsv").write_text(values_mod.EMPTY, encoding="utf-8")
     return path
 

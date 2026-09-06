@@ -24,7 +24,8 @@ import sys
 
 from . import __version__, check as check_mod, chain as chain_mod
 from . import cite as cite_mod, brief as brief_mod, report as report_mod
-from . import index as index_mod, new as new_mod
+from . import index as index_mod, logsections, new as new_mod
+from . import portlog as portlog_mod
 from . import run as run_mod, seal as seal_mod, values as values_mod
 
 PROGRAM = """\
@@ -207,6 +208,42 @@ The report is tagged with the unit id so it is greppable in chat. It
 carries the unit's identity, gate results from its run records, a
 values summary, its agents, and its refs.
 """
+
+SECTIONS = """\
+Print the numbered section map of a unit's run log.
+
+Each line shows a section number (§N), its title, and its line count.
+The map is what `lab check` uses to verify [§N subject] citation tags
+in unit.md. An agent writing citations runs this first to see what §1,
+§2, etc. refer to.
+"""
+
+SECTIONS_EXIT = """\
+exit codes:
+  0  sections printed
+  1  no log found in run/
+  2  the unit could not be loaded
+"""
+
+PORT_LOG = """\
+Record what a porting session taught into units/PORTING.md.
+
+Each flag targets a section of the file: --gotcha adds a bullet to
+Known gotchas, --data adds a row to the data-file table, --grep adds
+a pattern to the grep block, and --note adds a bullet to a dated log
+entry under the heading you give as the positional argument.
+
+The file learns from every agent that ports a unit, so the next agent
+starts with a longer checklist and a shorter debugging session.
+"""
+
+PORT_LOG_EXIT = """\
+exit codes:
+  0  PORTING.md updated
+  1  nothing to record (no flags given)
+  2  no units/PORTING.md at or above here
+"""
+
 
 CITE_EXIT = """\
 exit codes:
@@ -400,6 +437,38 @@ def build_parser():
     sub.add_argument("unit", metavar="<unit>",
                      help="unit directory, name, or unambiguous id prefix")
 
+    sub = subs.add_parser(
+        "sections",
+        help="print the numbered section map of a unit's run log",
+        description=SECTIONS,
+        epilog=SECTIONS_EXIT,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub.add_argument("unit", metavar="<unit>",
+                     help="unit directory, name, or unambiguous id prefix")
+
+    sub = subs.add_parser(
+        "port-log",
+        help="record what a porting session taught into PORTING.md",
+        description=PORT_LOG,
+        epilog=PORT_LOG_EXIT,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub.add_argument("heading", metavar="<heading>", nargs="?", default=None,
+                     help="log entry heading, e.g. 'units 0035-0046 (O37-O47)'")
+    sub.add_argument("--gotcha", dest="gotchas", action="append", default=[],
+                     metavar="TEXT",
+                     help="add a bullet to Known gotchas (repeatable)")
+    sub.add_argument("--data", dest="data_entries", action="append", nargs=2,
+                     metavar=("NAME", "PATH"), default=[],
+                     help="add a row to the data-file table (repeatable)")
+    sub.add_argument("--grep", dest="greps", action="append", default=[],
+                     metavar="PATTERN",
+                     help="add a grep pattern to the grep block (repeatable)")
+    sub.add_argument("--note", dest="notes", action="append", default=[],
+                     metavar="TEXT",
+                     help="add a bullet to the log entry (repeatable)")
+
     return parser
 
 
@@ -434,6 +503,32 @@ def main(argv=None):
         return brief_mod.run(args.unit, sys.stdout, sys.stderr)
     if args.command == "report":
         return report_mod.run(args.unit, sys.stdout, sys.stderr)
+    if args.command == "sections":
+        from .unit import UnitError, locate
+        try:
+            path = locate(args.unit)
+        except UnitError as exc:
+            print(f"lab sections: {exc}", file=sys.stderr)
+            return 2
+        log_file = check_mod._log_path(path)
+        if log_file is None:
+            print(f"lab sections: no lab_run log in {path}/run/",
+                  file=sys.stderr)
+            return 1
+        sections = logsections.parse(
+            log_file.read_text(encoding="utf-8"))
+        for s in sections:
+            print(f"§{s.number:<3} {s.title}  ({len(s.lines)} lines)")
+        return 0
+    if args.command == "port-log":
+        return portlog_mod.run(
+            sys.stdout, sys.stderr,
+            heading=args.heading,
+            gotchas=args.gotchas,
+            data_entries=args.data_entries,
+            greps=args.greps,
+            notes=args.notes,
+        )
     parser.error(f"unknown command {args.command!r}")     # unreachable
     return 2
 

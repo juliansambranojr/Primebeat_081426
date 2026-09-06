@@ -189,6 +189,7 @@ import time
 from datetime import datetime, timezone
 
 from . import values as values_mod
+from .deps import resolve as resolve_deps
 from .unit import UnitError, locate, parse_front_matter, split_front_matter
 
 __all__ = ["RUNNABLE", "STEM", "STARTED", "COMPLETED", "next_index",
@@ -434,6 +435,10 @@ def run(arg, out, err, cwd=None):
     write_record(record_path, opened)
     print(f"RECORD     {record_path}  ({STARTED})", file=out)
 
+    deps_rc = resolve_deps(run_dir, out, err)
+    if deps_rc != 0:
+        return 1
+
     argv, code, started, ended, wall = execute(run_dir, log_path, out,
                                                argv, started)
     write_record(record_path, completed(opened, path, code, ended, wall))
@@ -451,4 +456,9 @@ def run(arg, out, err, cwd=None):
         print(f"SKIPPED    {message}", file=err)
     print(f"{path}: exit {code} after {wall:.3f}s; {tsv.name} regenerated, "
           f"{keys} key(s)", file=out)
+    if index == 1:
+        porting = path.parent / "PORTING.md"
+        if porting.is_file():
+            print(f"PORTING    {porting.name} exists; when done porting, "
+                  f"run `lab port-log` to record what you learned", file=out)
     return 1 if skipped else 0

@@ -192,16 +192,20 @@ measurement refused.
 """
 
 import json
+import pathlib
 import re
 from decimal import Decimal, InvalidOperation
 
 from . import counts as counts_mod
 from . import digest as digest_mod
 from . import exempt as exempt_mod
+from . import logsections
 from .unit import UnitError, load, units_of
 
 __all__ = ["check", "run", "matches", "findings", "word_counts",
-           "follows_problems", "NUM"]
+           "follows_problems", "provenance_problems", "nan_findings",
+           "citation_findings", "structure_findings", "question_problems",
+           "NUM"]
 
 # Copied from utilities/check_entry_numbers.py (NUM, matches). See the module
 # docstring for why this is a copy rather than an import.
@@ -213,7 +217,7 @@ def matches(want, have):
     exp = want.as_tuple().exponent
     places = -exp if isinstance(exp, int) and exp < 0 else 0
     tol = Decimal(5).scaleb(-places - 1)      # half a unit in the last stated place
-    return any(abs(v - want) <= tol for v in have)
+    return any(v.is_finite() and abs(v - want) <= tol for v in have)
 # end of copy
 
 # The exemption list the design says lives in the program is `lab/exempt.py`.
@@ -371,11 +375,340 @@ def follows_problems(unit):
     return []
 
 
+REF_LEAN = re.compile(r"^(lean(?:_stage3)?/.+\.lean)::(\S+)$")
+LEAN_DECL = re.compile(r"^(?:theorem|lemma|def|noncomputable def)\s+(\S+)")
+
+
+def refs_problems(unit):
+    """[problem, ...] for refs that are empty or don't resolve. Empty is clean.
+
+    Rules:
+      - refs: [] is a finding. Every unit must either map to a lean theorem
+        or explicitly say refs: [none].
+      - A ref matching lean/File.lean::name must point at a file that exists
+        and contain a declaration of that name.
+    """
+    refs = unit.front_matter.get("refs")
+    if refs is None:
+        return []
+    if isinstance(refs, list) and len(refs) == 0:
+        return ["REFS       refs is empty; map to a lean theorem "
+                "(lean/File.lean::name) or write refs: [none]"]
+    if not isinstance(refs, list):
+        return [f"REFS       refs must be a list, got {refs!r}"]
+    repo = unit.path.resolve()
+    while True:
+        if (repo / "lean").is_dir():
+            break
+        parent = repo.parent
+        if parent == repo:
+            return []
+        repo = parent
+    problems = []
+    for ref in refs:
+        if ref == "none":
+            continue
+        m = REF_LEAN.match(ref)
+        if not m:
+            problems.append(f"REFS       {ref} does not match "
+                            f"lean/File.lean::name or lean_stage3/File.lean::name")
+            continue
+        filepath, name = repo / m.group(1), m.group(2)
+        if not filepath.is_file():
+            problems.append(f"REFS       {ref}: file {m.group(1)} not found")
+            continue
+        found = False
+        for line in filepath.read_text(encoding="utf-8").splitlines():
+            dm = LEAN_DECL.match(line.strip())
+            if dm and dm.group(1) == name:
+                found = True
+                break
+        if not found:
+            problems.append(f"REFS       {ref}: no declaration of {name} "
+                            f"in {m.group(1)}")
+    return problems
+
+
+def provenance_problems(unit):
+    """[problem, ...] when run/results.json exists without a lab_run provenance file."""
+    run_dir = unit.path / "run"
+    if not run_dir.is_dir():
+        return []
+    results = list(run_dir.glob("results*.json"))
+    if not results:
+        return []
+    provenance = list(run_dir.glob("lab_run.*.json"))
+    if provenance:
+        return []
+    names = ", ".join(r.name for r in results)
+    return [f"PROVENANCE {names} exist(s) without a lab_run provenance "
+            f"file — run through `lab run`, not directly"]
+
+
+def nan_findings(values):
+    """[(key, raw)] for every NaN or Infinity in values.tsv."""
+    out = []
+    for key, raw in values.items():
+        if raw in ("nan", "NaN", "inf", "-inf", "Infinity", "-Infinity"):
+            out.append((key, raw))
+    return out
+
+
+KEY_DUMP = re.compile(r"`[a-zA-Z][a-zA-Z0-9_.]*\.[a-zA-Z][a-zA-Z0-9_.]*`\s*=")
+
+CITATION_TAG = re.compile(r"\[§(\d+)\s*(.*?)\]")
+
+
+def _log_path(unit_path):
+    """The latest lab_run log in the unit's run/ directory, or None."""
+    run_dir = unit_path / "run"
+    if not run_dir.is_dir():
+        return None
+    logs = sorted(run_dir.glob("lab_run.*.log"))
+    return logs[-1] if logs else None
+
+
+def _numbers_in_text(text):
+    """All Decimals found in a text string."""
+    out = set()
+    for m in NUM.finditer(text):
+        d = _decimal(m.group(0))
+        if d is not None and d.is_finite():
+            out.add(d)
+    return out
+
+
+SHOWS_LEAD = re.compile(r"^\*\*What it shows\.\*\*[ \t]*(.*)$", re.M)
+BULLET = re.compile(r"^- ", re.M)
+
+
+def keydump_findings(unit):
+    """[(problem, snippet)] for key-dump style in 'What it shows.'
+
+    Flags lines where a dotted key path appears as `key.path` = value.
+    The prose should read as sentences with numbers, not as key=value
+    assignments copied from values.tsv.
+    """
+    body = unit.body
+    m = SHOWS_LEAD.search(body)
+    if m is None:
+        return []
+    next_lead = LEAD_IN.search(body, m.end())
+    shows_end = next_lead.start() if next_lead else len(body)
+    shows_text = body[m.start():shows_end]
+    out = []
+    for line in shows_text.splitlines():
+        if KEY_DUMP.search(line):
+            snippet = line.strip()[:80]
+            out.append(("KEY_DUMP    dotted key path used as prose — write a "
+                        "sentence with the number, not `key.path` = value",
+                        snippet))
+    return out
+
+
+def structure_findings(unit):
+    """[(problem, snippet)] for shape violations in "What it shows."
+
+    Two rules:
+      1. If "What it shows" has bullet lines, each must carry a [§N] tag.
+      2. If it has any [§N] tags, a summary sentence must precede the
+         first bullet.
+
+    Units with no bullets in "What it shows" are untouched — they
+    predate the citation format.
+    """
+    body = unit.body
+    m = SHOWS_LEAD.search(body)
+    if m is None:
+        return []
+
+    # Extract the "What it shows" section: from the lead-in to the next
+    # bold lead-in or end of body.
+    shows_start = m.start()
+    next_lead = LEAD_IN.search(body, m.end())
+    shows_end = next_lead.start() if next_lead else len(body)
+    shows_text = body[shows_start:shows_end]
+
+    bullets = list(BULLET.finditer(shows_text))
+    if not bullets:
+        return []
+
+    out = []
+
+    # Rule 1: every bullet must have a citation tag.
+    for bm in bullets:
+        line_start = bm.start()
+        line_end = shows_text.find("\n", line_start)
+        if line_end < 0:
+            line_end = len(shows_text)
+        line = shows_text[line_start:line_end]
+        if not CITATION_TAG.search(line):
+            snippet = line.strip()[:80]
+            out.append((f"UNCITED    bullet in 'What it shows' has no "
+                        f"[§N subject] citation tag", snippet))
+
+    # Rule 2: if any tags exist, a summary sentence must come before
+    # the first bullet. Text on the same line as **What it shows.**
+    # counts, and so does any text between the lead-in and the first
+    # bullet.
+    has_tags = bool(CITATION_TAG.search(shows_text))
+    if has_tags:
+        lead_in_text = m.group(1).strip()
+        first_bullet_pos = bullets[0].start()
+        between = shows_text[m.end() - shows_start:first_bullet_pos].strip()
+        if not lead_in_text and not between:
+            out.append(("SUMMARY    'What it shows' has citation tags but "
+                        "no summary sentence before the first bullet", ""))
+
+    return out
+
+
+def citation_findings(unit):
+    """[(problem, section_snippet)] for each citation tag that doesn't verify.
+
+    Returns (findings_list, n_citations). If the unit has no citations,
+    returns ([], 0) and the check is skipped silently.
+    """
+    body = unit.body
+    tags = list(CITATION_TAG.finditer(body))
+    if not tags:
+        return [], 0
+
+    log_file = _log_path(unit.path)
+    if log_file is None:
+        return ([(f"CITATION   {len(tags)} citation(s) but no lab_run log "
+                  f"found in run/", "")], len(tags))
+
+    sections = logsections.parse(log_file.read_text(encoding="utf-8"))
+    by_number = {s.number: s for s in sections}
+
+    out = []
+    for m in tags:
+        sec_num = int(m.group(1))
+        subject = m.group(2).strip()
+        tag_text = m.group(0)
+
+        if sec_num not in by_number:
+            max_sec = max(by_number.keys()) if by_number else 0
+            out.append((f"CITATION   {tag_text}: section §{sec_num} does not "
+                        f"exist (log has §0..§{max_sec})", ""))
+            continue
+
+        section = by_number[sec_num]
+        section_text = section.text
+
+        if subject and subject.lower() not in section_text.lower():
+            out.append((f"CITATION   {tag_text}: subject {subject!r} not "
+                        f"found in §{sec_num} ({section.title!r})", ""))
+            continue
+
+        # Check that numbers in the claim appear in the cited section.
+        # The claim is everything after the closing ] to the next newline.
+        claim_start = m.end()
+        claim_end = body.find("\n", claim_start)
+        if claim_end < 0:
+            claim_end = len(body)
+        claim = body[claim_start:claim_end]
+
+        claim_numbers = _numbers_in_text(claim)
+        section_numbers = _numbers_in_text(section_text)
+
+        missing = []
+        for want in sorted(claim_numbers, key=abs):
+            if not matches(want, section_numbers):
+                missing.append(str(want))
+
+        if missing:
+            out.append((f"CITATION   {tag_text}: number(s) "
+                        f"{', '.join(missing)} not found in §{sec_num} "
+                        f"({section.title!r})",
+                        claim.strip()[:80]))
+
+    return out, len(tags)
+
+
+PLACEHOLDER = re.compile(r"<(?:paste the transcript bracket|UNFILLED)", re.I)
+FENCE = re.compile(r"^`{3,}", re.M)
+CONTEXT_REF = re.compile(r"CONTEXT\.md", re.M)
+NOTEPAD_LINE = re.compile(r"^NOTEPAD:", re.M)
+SOURCE_HEADER = re.compile(r"^>\s*Source:", re.M)
+SOURCES_MISSING = re.compile(r"^MISSING\b", re.M)
+
+
+def _script_name(unit):
+    """The O-script filename from run/run.sh, or None."""
+    run_sh = unit.path / "run" / "run.sh"
+    if not run_sh.is_file():
+        return None
+    m = re.search(r"([A-Za-z0-9_]+\.py)", run_sh.read_text(encoding="utf-8"))
+    return m.group(1) if m else None
+
+
+def question_problems(unit):
+    """[problem, ...] for a question.md that is still a placeholder,
+    missing required provenance sections, or missing sources.log.
+
+    question.md is a transcript bracket — its numbers are not checked
+    against values.tsv (line 44 of this module's docstring). But a
+    placeholder is a finding: the provenance was never filled in.
+
+    Required sections: a source header (> Source:), at least one fenced
+    code block (docstring or notebook entry), a CONTEXT.md reference,
+    and a NOTEPAD line.
+
+    Required companion: sources.log, produced by check_prose_source.py.
+    That tool searches all six source locations INCLUDING the session
+    .jsonl transcripts. Without it, question.md has no verified
+    provenance chain.
+    """
+    qmd = unit.path / "question.md"
+    if not qmd.is_file():
+        return []
+    text = qmd.read_text(encoding="utf-8")
+    if not text.strip():
+        return ["QUESTION   question.md is empty"]
+    out = []
+    script = _script_name(unit)
+    unit_rel = unit.path.name
+    if PLACEHOLDER.search(text):
+        msg = "QUESTION   question.md is still a placeholder — run the utilities:"
+        out.append(msg)
+        out.append(f"QUESTION     1. python3 utilities/find_provenance.py units/{unit_rel}")
+        if script:
+            out.append(f"QUESTION     2. python3 utilities/extract_run.py {script} --all")
+        out.append(f"QUESTION     3. python3 utilities/check_prose_source.py units/{unit_rel}")
+        return out
+    if not SOURCE_HEADER.search(text):
+        out.append("QUESTION   question.md has no source header (> Source: ...)")
+    fences = FENCE.findall(text)
+    if len(fences) < 2:
+        out.append("QUESTION   question.md has no fenced code block "
+                   "(docstring or notebook entry)")
+    if not CONTEXT_REF.search(text):
+        out.append("QUESTION   question.md has no CONTEXT.md reference")
+    if not NOTEPAD_LINE.search(text):
+        out.append("QUESTION   question.md has no NOTEPAD line")
+    sources_log = unit.path / "sources.log"
+    if not sources_log.is_file():
+        out.append("QUESTION   sources.log missing — run: "
+                   f"python3 utilities/check_prose_source.py units/{unit_rel}")
+    else:
+        stext = sources_log.read_text(encoding="utf-8")
+        missing = SOURCES_MISSING.findall(stext)
+        if missing:
+            out.append(f"QUESTION   sources.log has {len(missing)} MISSING line(s) — "
+                       "question.md content does not trace to any source file")
+    return out
+
+
 def check(arg, out, cwd=None):
     """Run the invariant over one unit. Returns 0 clean, 1 a finding.
 
-    A finding is a number in the prose with no evidence, or a sealed unit
-    whose files no longer match its `UNIT.sha256`.
+    A finding is a number in the prose with no evidence, a sealed unit
+    whose files no longer match its `UNIT.sha256`, a result file without
+    provenance, a NaN/Infinity in values.tsv, a citation tag whose
+    section/subject/numbers don't match the run log, or a question.md
+    that is still a placeholder or missing required provenance sections.
 
     Raises `UnitError` when the unit cannot be loaded; the caller turns
     that into exit 2.
@@ -395,30 +728,68 @@ def check(arg, out, cwd=None):
     bad_follows = follows_problems(unit)
     for problem in bad_follows:
         print(problem, file=out)
+    bad_refs = refs_problems(unit)
+    for problem in bad_refs:
+        print(problem, file=out)
+    bad_prov = provenance_problems(unit)
+    for problem in bad_prov:
+        print(problem, file=out)
+    bad_nan = nan_findings(unit.values)
+    for key, raw in bad_nan:
+        print(f"NAN_VALUE  {key}  =  {raw}", file=out)
+    bad_cite, n_citations = citation_findings(unit)
+    for problem, snippet in bad_cite:
+        line = f"{problem}  |  {snippet}" if snippet else problem
+        print(line, file=out)
+    bad_struct = structure_findings(unit)
+    for problem, snippet in bad_struct:
+        line = f"{problem}  |  {snippet}" if snippet else problem
+        print(line, file=out)
+    bad_keydump = keydump_findings(unit)
+    for problem, snippet in bad_keydump:
+        line = f"{problem}  |  {snippet}" if snippet else problem
+        print(line, file=out)
+    bad_question = question_problems(unit)
+    for problem in bad_question:
+        print(problem, file=out)
     numeric, from_strings = pool_parts(unit.values)
-    # An unsealed unit's summary says nothing about a seal, which keeps the
-    # line the Phase 0 tests read exactly as Phase 0 wrote it. The same is
-    # true of the string clause: a unit whose values.tsv holds no number
-    # inside a string prints exactly what Phase 2 printed.
     seal_state = ""
     if unit.front_matter.get("sealed") is True:
         seal_state = ("; sealed and unchanged" if not moved
                       else f"; sealed, {len(moved)} problem(s)")
     extra = from_strings - numeric
     in_strings = f" +{len(extra)} in strings" if extra else ""
-    # The two Phase 2c clauses appear only when they are non-empty, so a unit
-    # with neither prints exactly the line Phase 2b printed.
     spelled_clause = (f", {len(spelled)} count(s) spelled in words"
                       if spelled else "")
     follows_clause = (f", {len(bad_follows)} follows problem(s)"
                       if bad_follows else "")
+    refs_clause = (f", {len(bad_refs)} refs problem(s)"
+                   if bad_refs else "")
+    prov_clause = (f", {len(bad_prov)} provenance problem(s)"
+                   if bad_prov else "")
+    nan_clause = (f", {len(bad_nan)} NaN/Inf value(s)"
+                  if bad_nan else "")
+    cite_clause = (f", {len(bad_cite)} citation problem(s)"
+                   if bad_cite else
+                   f", {n_citations} citation(s) verified"
+                   if n_citations else "")
+    struct_clause = (f", {len(bad_struct)} structure problem(s)"
+                     if bad_struct else "")
+    keydump_clause = (f", {len(bad_keydump)} key-dump warning(s)"
+                      if bad_keydump else "")
+    question_clause = (f", {len(bad_question)} question.md problem(s)"
+                       if bad_question else "")
     print(f"{unit.path}: {scanned} number(s) in prose, "
           f"{scanned - len(unmatched)} matched, {len(unmatched)} unmatched "
-          f"({exempted} exempt){spelled_clause}{follows_clause}; "
+          f"({exempted} exempt){spelled_clause}{follows_clause}"
+          f"{refs_clause}{prov_clause}{nan_clause}{cite_clause}"
+          f"{struct_clause}{keydump_clause}{question_clause}; "
           f"values.tsv: {len(unit.values)} key(s), {len(numeric)} numeric"
           f"{in_strings}{seal_state}",
           file=out)
-    return 1 if (unmatched or moved or spelled or bad_follows) else 0
+    return 1 if (unmatched or moved or spelled or bad_follows
+                 or bad_refs or bad_prov or bad_nan or bad_cite
+                 or bad_struct or bad_keydump or bad_question) else 0
 
 
 def run(arg, out, err, cwd=None):

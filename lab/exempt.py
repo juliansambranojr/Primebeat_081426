@@ -294,6 +294,13 @@ CLASSES = [
             rf"\b(?:{_NAMED})\s*\.?\s*\d+(?:\.\d+)*"
             rf"(?:\s*{_DASH}\s*\d+(?:\.\d+)*)?"),
     ),
+    Klass(
+        name="citation-tag",
+        why="a [§N subject] log-section citation tag in unit.md prose",
+        example="[§3 crude majorant]",
+        counter=("[3 items]",),
+        pattern=re.compile(r"\[§\d+[^\]]*\]"),
+    ),
 ]
 
 _BY_NAME = {k.name: k for k in CLASSES}
