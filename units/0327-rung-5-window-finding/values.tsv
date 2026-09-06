@@ -1,0 +1,18 @@
+key	value	source
+bg_power	2	onLineBound_le: 4 h^2 and cFar / h^2
+sigma_denom	24	WeilWindow.Sigma_ge: s/24 <= Sigma s
+m_check	1	closed form at m = 1 against ghat_eq
+modules_min	10	estimate, this session
+modules_max	12	estimate, this session
+rung_min_minutes	6	git log, units 0321 to 0324, 2026-09-06
+rung_max_minutes	25	git log, units 0321 to 0324, 2026-09-06
+half	1/2	real part one half
+sq	2	exponents in w^2 + pi^2 j^2 and pi^2
+unit_identity	0326	term_eq_neg_sq
+unit_route	0325	the route this finding revises
+unit_cluster	0320	where the cancellation was recorded
+unit_bands	0321	WeilBands, survives
+unit_tiles	0322	WeilTiles, survives
+unit_sigma	0317	Sigma_ge
+unit_transform	0318	ghat_eq
+unit_last	0324	WeilOnLine

@@ -1,0 +1,47 @@
+# check_prose_source.py  2026-09-06T15:56:28Z
+# unit: 0327-rung-5-window-finding
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133939
+  Source: session transcript, 2026-09-06 (this session), after unit 0326 was reported
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121334
+  WHAT IS NOT PROVED. `StmtDetect ε T L` for any explicit L(ε, T). That is the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121335
+  bounded-height rectangle theorem: Bombieri's Theorem 8 / Theorem 10 (finite
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121336
+  multiset of off-line zeros ⇒ negative eigenvalues, no formula for the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:121337
+  support) made explicit by entry 302's raised-cosine window, with the zeros
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133593
+  What it opens. The identity holds for every zero, so the terms of the other
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133594
+  off-line zeros have the same shape, with `g` read at their own points. Their
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133595
+  size grows like `cosh` of their own distance from the line times `h`, while
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133596
+  their decay in height is polynomial. That is the constraint the next slice
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133597
+  has to meet, and it is recorded in the transcript bracket of this unit.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133256
+  theorem term_eq_neg_sq {h : ℝ} (hh : 0 < h) (γ : ℝ) (ρ : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133257
+  laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:123269
+  theorem SigmaC_bound (w : ℂ) (hw : w ≠ 0) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:123270
+  ‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2 := by
+
+# 14 found, 0 missing
