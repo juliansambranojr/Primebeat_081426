@@ -1,0 +1,15 @@
+key	value	source
+module_lines	169	wc -l lean_stage3/Stage3/WeilTiles.lean
+defs	3	centre idx Upper
+theorems_proved	8	two_le_centre idx_spec online_term_nonneg weightedTerm_nonneg sum_by_bands bandSeries_nonneg sum_le_bandSeries tsum_upper_le
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilTiles.lean
+errors_first	0	first lake build
+jobs_package	8720	lake build (full Stage3)
+band_half	9/10	idx_spec
+band_step	9/5	centre
+height_min	11/10	Upper
+window_height_min	2	two_le_centre
+count_slope	15	band series
+count_const	73	band series
+rung	4b	detection ladder rung, second half

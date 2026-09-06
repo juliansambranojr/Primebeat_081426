@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-09-06T11:08:32Z
+# unit: 0322-weil-tiles-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130347
+  Source: session transcript, 2026-09-06 (this session), the bracket in which slice B1 was asked for
+
+FOUND  notes/lab_notebook_2.md:932
+  ## 2026-09-02 — Entry 303 — pricing a Weil-form leaf for Stage 3: the tree's explicit formula has no...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130156
+  theorem idx_spec {t : ℝ} (ht : 11 / 10 ≤ t) : |t - centre (idx t)| ≤ 9 / 10 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130236
+  theorem tsum_upper_le {h γ : ℝ} (hh : 0 < h) (M : ℕ → ℝ) (hM0 : ∀ k, 0 ≤ M k)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130237
+  (hM : ∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re = 1 / 2 → 11 / 10 ≤ (ρ : ℂ).im →
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:125011
+  (laplace (phiC h γ) (-(ρ : ℂ)) * laplace (phiC h γ) (-(1 - (ρ : ℂ)))).re
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130224
+  (hsum : Summable (fun k : ℕ => M k * (15 * Real.log (centre k) + 73))) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130241
+  ∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ ∑' k : ℕ, M k * (15 * Real.log (centre k) + 73) := by
+
+# 8 found, 0 missing
