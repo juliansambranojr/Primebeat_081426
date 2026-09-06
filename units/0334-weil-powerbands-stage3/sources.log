@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-09-06T17:43:02Z
+# unit: 0334-weil-powerbands-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135846
+  Source: session transcript, 2026-09-06 (this session), the decision that switched the window
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130432
+  WeilSeries — the band series made explicit. Rung 4b, second half, slice B2
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130433
+  of the detection ladder (units 0316–0322). 2026-09-06.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:139534
+  theorem term_le_M {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) (m : ℕ) (ρ : Kadiri.NontrivialZeros)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:130520
+  (hre : (ρ : ℂ).re = 1 / 2) (him : 11 / 10 ≤ (ρ : ℂ).im) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:139536
+  termW h γ m ρ ≤ M h γ m (idx (ρ : ℂ).im) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:139486
+  theorem cFarM_le (m : ℕ) : cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:139745
+  theorem tsum_upper_le_explicit' {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) (m : ℕ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:139432
+  ∑' ρ : Upper, weightedTermW h γ m ρ.1
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:139747
+  ≤ 88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ 2) * (Real.pi ^ 2 / 6) := by
+
+# 10 found, 0 missing
