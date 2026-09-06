@@ -1,0 +1,6 @@
+0336-module-loop loop_version=1 old_LOOP_fail=1 new_LOOP_fail=0 new=REFUSED
+0337-rung5-worksheet loop_version=2 old_LOOP_fail=1 new_LOOP_fail=0 new=REFUSED
+0338-loop-retrospective loop_version=3 old_LOOP_fail=1 new_LOOP_fail=0 new=REFUSED
+0341-weil-powercompare-stage3 loop_version=5 old_LOOP_fail=1 new_LOOP_fail=0 new=OK
+3:version: 7
+9:version does not match the line above.

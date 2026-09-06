@@ -1,0 +1,19 @@
+key	value	source
+seven	7	lean_stage3/LOOP.md step 7
+v_unit	5	units/0341-weil-powercompare-stage3/values.tsv loop_version
+v_agent	6	lean_stage3/LOOP.md version line at 654150c
+v_now	7	run/compare.log last line, LOOP.md version line
+units_with_row	4	run/compare.log, rows
+old_fail	4	run/compare.log, old_LOOP_fail=1 count
+new_fail	0	run/compare.log, new_LOOP_fail=0 on every row
+three_decision	3	run/compare.log, rows 0336-0338 new=REFUSED
+unit_probe	0340	the probe unit
+unit_agent	0341	the agent's unit
+unit_loop	0336	first decision unit with the row
+unit_ws	0337	second
+unit_retro	0338	third
+unit_pins	0339	last unit before the probe
+unit_first_mod	0329	first switched-window module unit
+unit_last_mod	0335	last module unit before the probe
+loop_ver	7	lean_stage3/LOOP.md version line
+v_next	8	the next version line, if the next retrospective bumps it

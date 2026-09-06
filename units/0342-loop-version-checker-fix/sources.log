@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-09-06T22:21:27Z
+# unit: 0342-loop-version-checker-fix
+# sources searched: 870
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:144457
+  Source: session transcript, 2026-09-06 (this session), after the probe's outcome was reported
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:144290
+  yes to the notebook entry on loop vs checker. then come back and lets discuss
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:143877
+  1. Step 7 contradicts the gate it commits through. "Any recipe edit bumps `version:` above and is co...
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:8818
+  elif vals.get("loop_version") != loop_version:
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:8819
+  fails.append(f"LOOP     values loop_version={vals.get('loop_version')} but LOOP.md version={loop_ver...
+
+# 5 found, 0 missing
