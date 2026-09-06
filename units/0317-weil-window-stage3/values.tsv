@@ -1,0 +1,13 @@
+key	value	source
+module_lines	171	wc -l lean_stage3/Stage3/WeilWindow.lean
+defs	3	P, m2, Sigma
+theorems_proved	12	P_nonneg P_le_one P_one P_neg_one continuous_P continuous_x2P P_ge_half m2_le m2_ge mul_sinh_ge Sigma_ge_mul Sigma_ge
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilWindow.lean
+errors_first	6	first lake build: 6 errors before the fixes
+jobs_package	8738	lake build (full Stage3)
+p_max	1	P_le_one
+m2_lower	1/24	m2_ge
+m2_upper	2/3	m2_le
+m2_true	0.130691	analysis/2026-09-01/weil_Lc_theory.md section 3, m2 = 1/3 - 2/pi^2
+pi_divisor	4	P_ge_half: cos(pi/4) = sqrt(2)/2 on |x| <= 1/2
