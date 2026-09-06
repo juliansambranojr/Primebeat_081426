@@ -1,0 +1,15 @@
+key	value	source
+rung_done	4b	unit 0324
+rung_next	5	unit 0320 split
+isolated_pairs	1	5a hypothesis
+isolated_matrix	1	5a as 5b with a 1x1 matrix
+block_rank	2	one off-line pair per block
+price_5a_days	1	estimate, this session
+price_5a_days_max	2	estimate, this session
+bombieri_year	2000	Bombieri, Remarks on Weil's quadratic functional
+bombieri_thm	8	Bombieri (2000) Theorem 8
+rung_3	3	lobe rung
+rung_4	4	background rung
+unit_first	0316	ladder start
+unit_last	0324	ladder end
+unit_split	0320	where rung 5 was split

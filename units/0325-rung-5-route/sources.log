@@ -1,0 +1,56 @@
+# check_prose_source.py  2026-09-06T11:34:05Z
+# unit: 0325-rung-5-route
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131913
+  Source: session transcript, 2026-09-06 (this session), after unit 0324 was reported
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131771
+  Is that the best way or the easy way? I’m genuinely curious
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131790
+  Log it and come back to discuss
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124609
+  A structural fact recorded here for rung 5. One tuned window detects an
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124610
+  ISOLATED off-line zero. A second off-line zero at nearly the same height
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124611
+  contributes a term of the opposite sign and can cancel the first. Bombieri
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124612
+  (2000) Theorem 8 handles that with a finite Hermitian matrix over all the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124613
+  off-line zeros in the box and a count of its negative eigenvalues, with a
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124614
+  linear combination of tuned functions rather than one. So rung 5 splits:
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124615
+  5a, the isolated case, which these rungs support; 5b, the general case,
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131464
+  theorem tsum_onLine_le {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:131465
+  ∑' ρ : OnLine, weightedTerm h γ ρ.1 ≤ onLineBound h γ := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124308
+  theorem online_term_le_far {h : ℝ} (hh : 0 < h) (γ : ℝ) {ρ : ℂ} (hρ : ρ.re = 1 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124309
+  (hfar : 1 ≤ |ρ.im - γ|) (hsum : 1 ≤ ρ.im + γ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124290
+  (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124311
+  ≤ (h / 2) ^ 2 * ((2 * Real.pi + Real.pi ^ 2) / (h * (ρ.im - γ)) ^ 2
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124312
+  + (2 * Real.pi + Real.pi ^ 2) / (h * (ρ.im + γ)) ^ 2) ^ 2 := by
+
+# 17 found, 0 missing
