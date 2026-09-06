@@ -1,0 +1,62 @@
+# check_prose_source.py  2026-09-06T17:59:48Z
+# unit: 0336-module-loop
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140948
+  Source: session transcript, 2026-09-06 (this session), after unit 0335 was reported
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140427
+  Not yet, can you reflect on your process the tool calls sequence of calls or any other process you a...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140456
+  Build it into the loop and name what you built changed acs modified in the chat after you are done. ...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140583
+  - Classify each first-build error. A class with no row in `TRAPS.md` gets
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140585
+  - A step that was reordered, batched, or skipped without loss gets the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140587
+  - Any recipe edit bumps `version:` above and is committed with the unit
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140588
+  that caused it. The next units record the new `loop_version`.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140589
+  - Keep an edit when `errors_first` and the minutes per module trend down
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140590
+  over the following units; revert it when they do not. The evaluation is
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140591
+  fixed: the build passes with the pin, both checkers pass, the counts
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140592
+  match. The recipe is what moves.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140663
+  MODULE   every ref in unit.md names one lean_stage3 file; that file exists
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140664
+  LINES    values.tsv module_lines == wc -l of the module
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140665
+  THEOREMS values.tsv theorems_proved == count of lines starting 'theorem '
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140666
+  DEFS     values.tsv defs == count of lines starting 'def '
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140667
+  PIN      every ref name is declared in the module and has a
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140669
+  NEXT     unit.md has a paragraph beginning 'What the next slice' or
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140671
+  LOOP     values.tsv has loop_version equal to the 'version:' line of
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:140673
+  BUILD    run/build.log exists and ends with 'Build completed successfully'
+
+# 19 found, 0 missing

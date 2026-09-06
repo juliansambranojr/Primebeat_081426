@@ -1,0 +1,154 @@
+#!/usr/bin/env python3
+"""
+check_lean_unit.py -- refuse a Lean formalization unit whose record
+disagrees with its module.  Part of lean_stage3/LOOP.md (step 6).
+
+    python3 utilities/check_lean_unit.py units/<unit> [--repo <root>]
+
+Checks, each a line of output, exit 1 if any fails:
+
+  MODULE   every ref in unit.md names one lean_stage3 file; that file exists
+  LINES    values.tsv module_lines == wc -l of the module
+  THEOREMS values.tsv theorems_proved == count of lines starting 'theorem '
+  DEFS     values.tsv defs == count of lines starting 'def '
+  PIN      every ref name is declared in the module and has a
+           '#print axioms <name>' line
+  NEXT     unit.md has a paragraph beginning 'What the next slice' or
+           'What remains'
+  LOOP     values.tsv has loop_version equal to the 'version:' line of
+           lean_stage3/LOOP.md
+  BUILD    run/build.log exists and ends with 'Build completed successfully'
+
+Read-only over the tree.
+"""
+import argparse
+import os
+import re
+import sys
+
+
+def read(path):
+    with open(path, encoding="utf-8") as f:
+        return f.read()
+
+
+def front_matter(text):
+    m = re.match(r"---\n(.*?)\n---\n(.*)", text, re.S)
+    if not m:
+        return {}, text
+    fm = {}
+    for line in m.group(1).splitlines():
+        if ":" in line:
+            k, v = line.split(":", 1)
+            fm[k.strip()] = v.strip()
+    return fm, m.group(2)
+
+
+def parse_refs(s):
+    s = s.strip()
+    if s.startswith("[") and s.endswith("]"):
+        s = s[1:-1]
+    return [r.strip() for r in s.split(",") if r.strip()]
+
+
+def values(path):
+    out = {}
+    if not os.path.exists(path):
+        return out
+    for line in read(path).splitlines()[1:]:
+        parts = line.split("\t")
+        if len(parts) >= 2:
+            out[parts[0]] = parts[1]
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("unit")
+    ap.add_argument("--repo", default=None, help="repo root (default: parent of units/)")
+    args = ap.parse_args()
+    unit = os.path.abspath(args.unit.rstrip("/"))
+    repo = os.path.abspath(args.repo) if args.repo else os.path.dirname(os.path.dirname(unit))
+    name = os.path.basename(unit)
+    fails = []
+
+    fm, body = front_matter(read(os.path.join(unit, "unit.md")))
+    vals = values(os.path.join(unit, "values.tsv"))
+    refs = parse_refs(fm.get("refs", ""))
+
+    # MODULE
+    files = set()
+    names = []
+    for r in refs:
+        if "::" not in r:
+            fails.append(f"MODULE   ref without ::name: {r}")
+            continue
+        f, n = r.split("::", 1)
+        files.add(f)
+        names.append((f, n))
+    if len(files) != 1:
+        fails.append(f"MODULE   refs name {len(files)} file(s); a Lean unit has one module")
+        module = None
+    else:
+        module = os.path.join(repo, next(iter(files)))
+        if not os.path.exists(module):
+            fails.append(f"MODULE   {module} does not exist")
+            module = None
+
+    if module:
+        src = read(module)
+        lines = src.splitlines()
+        n_lines = len(lines) + (0 if src.endswith("\n") else 0)
+        n_thm = sum(1 for l in lines if l.startswith("theorem "))
+        n_def = sum(1 for l in lines if l.startswith("def "))
+        # LINES: wc -l counts newlines
+        wc = src.count("\n")
+        if vals.get("module_lines") != str(wc):
+            fails.append(f"LINES    values module_lines={vals.get('module_lines')} but wc -l={wc}")
+        if vals.get("theorems_proved") != str(n_thm):
+            fails.append(f"THEOREMS values theorems_proved={vals.get('theorems_proved')} but grep -c ^theorem={n_thm}")
+        if vals.get("defs") != str(n_def):
+            fails.append(f"DEFS     values defs={vals.get('defs')} but grep -c ^def={n_def}")
+        # PIN
+        for _, n in names:
+            declared = re.search(rf"^(theorem|def|abbrev) {re.escape(n)}\b", src, re.M)
+            pinned = re.search(rf"^#print axioms {re.escape(n)}\s*$", src, re.M)
+            if not declared:
+                fails.append(f"PIN      {n} is not declared in the module")
+            elif not pinned:
+                fails.append(f"PIN      {n} has no '#print axioms {n}' line")
+
+    # NEXT
+    if not re.search(r"^(What the next slice|What remains)", body, re.M):
+        fails.append("NEXT     unit.md has no paragraph beginning 'What the next slice' or 'What remains'")
+
+    # LOOP
+    loop_path = os.path.join(repo, "lean_stage3", "LOOP.md")
+    loop_version = None
+    if os.path.exists(loop_path):
+        m = re.search(r"^version:\s*(\S+)", read(loop_path), re.M)
+        loop_version = m.group(1) if m else None
+    if loop_version is None:
+        fails.append("LOOP     lean_stage3/LOOP.md has no 'version:' line")
+    elif vals.get("loop_version") != loop_version:
+        fails.append(f"LOOP     values loop_version={vals.get('loop_version')} but LOOP.md version={loop_version}")
+
+    # BUILD
+    log = os.path.join(unit, "run", "build.log")
+    if not os.path.exists(log):
+        fails.append("BUILD    run/build.log missing")
+    else:
+        tail = read(log).rstrip().splitlines()[-1:] or [""]
+        if "Build completed successfully" not in tail[0]:
+            fails.append(f"BUILD    run/build.log last line: {tail[0][:80]!r}")
+
+    if fails:
+        print(f"{name}: REFUSED")
+        for f in fails:
+            print("  " + f)
+        sys.exit(1)
+    print(f"{name}: OK  ({len(names)} pin(s), loop_version {loop_version})")
+
+
+if __name__ == "__main__":
+    main()

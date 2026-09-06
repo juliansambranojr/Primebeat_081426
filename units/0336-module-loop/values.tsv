@@ -1,0 +1,29 @@
+key	value	source
+files	3	LOOP.md, TRAPS.md, check_lean_unit.py
+modules	7	units 0329 to 0335
+minutes	41	git log: 0329 at 10:04, 0335 at 10:45
+unit_first	0329	WeilPower
+unit_last	0335	WeilPowerOnLine
+e0329	5	units/0329-weil-power-stage3/values.tsv errors_first
+e0330	5	units/0330-weil-oddpower-stage3/values.tsv errors_first
+e0331	1	units/0331-weil-powerbounds-stage3/values.tsv errors_first
+e0332	0	units/0332-weil-powerbackground-stage3/values.tsv errors_first
+e0333	8	units/0333-weil-powergauss-stage3/values.tsv errors_first
+e0334	3	units/0334-weil-powerbands-stage3/values.tsv errors_first
+e0335	0	units/0335-weil-poweronline-stage3/values.tsv errors_first
+classes	12	lean_stage3/TRAPS.md rows 1 to 12
+loop_version	1	lean_stage3/LOOP.md version line
+sections	8	lean_stage3/LOOP.md sections 0 to 7
+trap_rows	17	lean_stage3/TRAPS.md first table
+bench_rows	6	lean_stage3/TRAPS.md second table
+checks	8	utilities/check_lean_unit.py docstring
+refused_0335	1	check_lean_unit.py on units/0335: one REFUSED line
+refused_0333	2	check_lean_unit.py on units/0333: two REFUSED lines
+pins_0335	3	check_lean_unit.py on the scratch copy of 0335 with loop_version
+unit_decision	0327	the one design analysis logged before its build
+six	6	six steps per module as it ran
+seven	7	section seven, the retrospective
+zero	0	section zero, orient
+twelve	12	twelve rows paid for today
+five	5	five rows from CLAUDE.md
+one	1	one edit per iteration
