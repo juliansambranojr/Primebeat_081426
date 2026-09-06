@@ -1,0 +1,19 @@
+key	value	source
+module_lines	264	wc -l lean_stage3/Stage3/WeilPowerBackground.lean
+defs	3	phiW phiWC PsiW
+theorems_proved	16	grep -c ^theorem lean_stage3/Stage3/WeilPowerBackground.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep sorry Stage3/WeilPowerBackground.lean
+errors_first	0	first lake build
+jobs_package	8750	lake build (full Stage3)
+rung	5	detection ladder rung, fifth slice
+psi_bound	2	PsiW_le_two
+near_coeff	4	online_term_le_near: 4 h^2
+far_mult	2	PsiW_le_far hypothesis: 2 pi^2 (m+1)^2 <= t^2
+half	1/2	rho - 1/2; e^{-u/2}; h/2
+one	1	m >= 1; envelope at most 1; m+1
+two	2	2m+2; order 2; (2/t^2)
+order_old	2	unit 0320's decay order
+unit_bands	0321	WeilBands, reads the old window by name
+unit_online	0324	WeilOnLine, reads the old window by name
+unit_offline	0326	WeilOffLine, the sign structure this module repeats

@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-09-06T17:20:09Z
+# unit: 0332-weil-powerbackground-stage3
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:135846
+  Source: session transcript, 2026-09-06 (this session), the decision that switched the window
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124141
+  WeilBackground — the window as a test function of the explicit formula, and
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124142
+  the on-line terms of the zero side. Rung 4b, first half, of the detection
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:124143
+  ladder (units 0316–0319). 2026-09-06.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137085
+  theorem laplace_phiW {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (z : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137086
+  laplace (phiWC h γ m) z = what h γ m (-z - 1 / 2) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137132
+  theorem term_eq_neg_sq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137133
+  laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137134
+  = -(what h γ m (ρ - 1 / 2)) ^ 2 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137176
+  theorem online_term_eq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) {ρ : ℂ} (hρ : ρ.re = 1 / 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137133
+  laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:137178
+  = (((h / 2) ^ 2 * (PsiW m (h * (ρ.im + γ)) + PsiW m (h * (ρ.im - γ))) ^ 2 : ℝ) : ℂ) := by
+
+# 12 found, 0 missing
