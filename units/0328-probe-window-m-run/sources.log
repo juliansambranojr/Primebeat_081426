@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-09-06T16:43:40Z
+# unit: 0328-probe-window-m-run
+# sources searched: 868
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:134933
+  Source: session transcript, 2026-09-06 (this session), after unit 0327 was reported
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:134017
+  Log it and can we run the probe and if the probe dies what we think what should we try next? What if...
+
+FOUND  scripts/O8_weil_inner_product.py:39
+  STEP 1  Reproduce the published CvS numbers at c=13 (six primes: 2,3,5,7,11,13)
+
+FOUND  scripts/O8_weil_inner_product.py:40
+  before comparing anything.  If we cannot reproduce, we do not have
+
+FOUND  scripts/O8_weil_inner_product.py:41
+  the right object and nothing downstream means anything.
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:134155
+  sum_gamma' Ahat(gamma') = Ahat(i/2) + Ahat(-i/2) - A(0) log pi
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:134156
+  + (1/2pi) int Ahat(r) Re psi(1/4 + i r/2) dr
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:134157
+  - 2 sum_n Lambda(n) n^{-1/2} A(log n),
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133256
+  theorem term_eq_neg_sq {h : ℝ} (hh : 0 < h) (γ : ℝ) (ρ : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:133257
+  laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2 := by
+
+# 10 found, 0 missing

@@ -1,0 +1,37 @@
+key	value	source
+zeros	600	probe_window_m.json: zeros
+zero_max	939	probe_window_m.json: zero_max 939.024
+seconds_pin	191	probe_window_m.json: seconds
+seconds_h12	150	sweep_h12.json: seconds
+seconds_h24	119	sweep_h24.json: seconds
+gauss_sigma	1	session transcript, Gaussian self-test, sig = 1.0
+gauss_residual	2.2e-10	session transcript, Gaussian self-test residual 2.21e-10
+combos	27	probe_window_m.json: pin, 3 h x 3 m x 3 gamma
+h_lo	4	--hs 4,6,8
+h_mid	6	--hs 4,6,8; --sweep-h 6
+h_hi	8	--hs 4,6,8
+m_lo	1	--ms 1,4,16
+m_mid	4	--ms 1,4,16
+m_hi	16	--ms 1,4,16
+nmax	8886110	full_h6.log: Lambda sieve to 8886110
+prime_powers_max	595877	full_h6.log: #pp at h = 8
+residual_min	1.3e-10	probe_window_m.json: min |residual| 1.25e-10
+residual_max	3.5e-7	probe_window_m.json: max |residual| 3.52e-07
+rel_threshold	1e-5	relative residual reported where zero_side > 1e-5
+rel_n	9	points with zero_side > 1e-5
+rel_max	3.4e-3	max relative residual on those 9 points, 3.36e-3
+slope_m1	-6.00	full_h6.log: odd m=1 slope
+slope_m2	-10.01	full_h6.log: odd m=2 slope
+slope_m3	-14.02	full_h6.log: odd m=3 slope
+slope_m4	-18.13	full_h6.log: odd m=4 slope
+slope_m6	-2.95	full_h6.log: odd m=6 slope, quadrature floor
+four	4	predicted slope -(4m+2)
+two	2	predicted slope -(4m+2)
+m_floor	6	first m where the envelope is under the quadrature floor
+c_h6_m1	307.86	full_h6.log: odd, zero 1, m=1
+c_h6_m16	1.24	full_h6.log: odd, zero 1, m=16
+h_12	12	--sweep-h 12
+h_24	24	--sweep-h 24
+peak_h12	2	sweep_h12.log: m of peak contrast, odd, zeros 1..5
+peak_h24	4	sweep_h24.log: m of peak contrast, odd, zeros 1..5
+half	1/2	rho - 1/2

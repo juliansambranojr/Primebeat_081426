@@ -1,0 +1,48 @@
+EXPLORATORY -- no prereg, no verdict.  probe_window_m.py
+zeros: 600, last 939.024  (0.0s)
+
+== 2. contrast at the first zeros, zero-side image, h = 12.0, odd window ==
+m=  1  contrast at zeros 1..5:  30294.21  18579.69  16576.82   6561.70   6277.08   median(1..12):   9054.44
+m=  2  contrast at zeros 1..5: 187241.58 122188.57 109499.29  40338.39  38555.14   median(1..12):  57638.81
+m=  3  contrast at zeros 1..5:  60736.28  44249.51  40045.82  15200.94  14400.41   median(1..12):  20031.16
+m=  4  contrast at zeros 1..5:   2044.79   1328.19   1189.18    431.04    412.41   median(1..12):    628.04
+m=  6  contrast at zeros 1..5:    163.24    100.62     89.77     31.97     30.71   median(1..12):     48.60
+m=  8  contrast at zeros 1..5:     50.48     30.50     27.19      9.71      9.33   median(1..12):     14.86
+m= 12  contrast at zeros 1..5:     15.54      9.22      8.21      3.08      2.96   median(1..12):      5.29
+m= 16  contrast at zeros 1..5:      8.45      4.97      4.42      1.89      1.81   median(1..12):      2.86
+m= 24  contrast at zeros 1..5:      4.42      2.58      2.30      1.58      1.51   median(1..12):      1.62
+m of peak contrast, zeros 1..5: {1: 2, 2: 2, 3: 2, 4: 2, 5: 2}
+
+== 2. contrast at the first zeros, zero-side image, h = 12.0, even window ==
+m=  1  contrast at zeros 1..5: 831496.32 494877.24 440300.11 174650.00 167393.81   median(1..12): 246037.28
+m=  2  contrast at zeros 1..5: 14593745.67 9050552.97 8092678.47 2939861.21 2820266.76   median(1..12): 4389750.65
+m=  3  contrast at zeros 1..5: 14128128.26 9900262.01 8969675.28 3344767.28 3180017.89   median(1..12): 4615454.69
+m=  4  contrast at zeros 1..5:  87275.71  58542.22  52570.28  19274.84  18395.01   median(1..12):  27344.14
+m=  6  contrast at zeros 1..5:   3107.16   1948.63   1741.08    623.12    597.75   median(1..12):    934.88
+m=  8  contrast at zeros 1..5:    680.08    416.94    372.00    132.60    127.39   median(1..12):    201.90
+m= 12  contrast at zeros 1..5:    143.20     86.04     76.67     27.79     26.71   median(1..12):     42.02
+m= 16  contrast at zeros 1..5:     61.98     36.88     32.85     12.32     11.83   median(1..12):     18.09
+m= 24  contrast at zeros 1..5:     24.51     14.44     12.86      5.25      5.02   median(1..12):      7.12
+m of peak contrast, zeros 1..5: {1: 2, 2: 3, 3: 3, 4: 3, 5: 3}
+
+== 3. decay exponent of the transform squared, envelope maxima, s in [50, 500] ==
+odd  m=  1  slope    -6.00   predicted    -6   (144 maxima)
+odd  m=  2  slope   -10.01   predicted   -10   (144 maxima)
+odd  m=  3  slope   -14.02   predicted   -14   (144 maxima)
+odd  m=  4  slope   -18.13   predicted   -18   (1021 maxima)
+odd  m=  6  slope    -2.95   predicted   -26   (2364 maxima)
+odd  m=  8  slope    -0.56   predicted   -34   (2678 maxima)
+odd  m= 12  slope     0.11   predicted   -50   (2839 maxima)
+odd  m= 16  slope     0.16   predicted   -66   (2841 maxima)
+odd  m= 24  slope    -0.09   predicted   -98   (2771 maxima)
+even m=  1  slope    -6.00   predicted    -6   (143 maxima)
+even m=  2  slope   -10.01   predicted   -10   (143 maxima)
+even m=  3  slope   -14.03   predicted   -14   (154 maxima)
+even m=  4  slope   -15.83   predicted   -18   (1338 maxima)
+even m=  6  slope    -1.62   predicted   -26   (2451 maxima)
+even m=  8  slope    -0.47   predicted   -34   (2727 maxima)
+even m= 12  slope    -0.03   predicted   -50   (2881 maxima)
+even m= 16  slope    -0.23   predicted   -66   (2904 maxima)
+even m= 24  slope    -0.64   predicted   -98   (2848 maxima)
+
+wrote results/sweep_h12.json  (150.2s)
