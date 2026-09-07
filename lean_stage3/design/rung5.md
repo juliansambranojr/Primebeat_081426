@@ -440,6 +440,62 @@ Open.      none; the next block (13e) reads `z`, `Mab` and the regime at
            the shell: `Im z = 4ε'Δ`, `|Re z| ≤ η`, `Mab ≤ e^{K'}`, and
            traces `q ≤ 1/(N e^{K'})` to `h` and `λ`.
 
+### 13e The geometric bound with a free slope, and `u` at general `λ` — SKETCH
+Objects.   Blocks 13c–13d were stated at `λ = 1` (`h = m + 1`, slope `1/π²`,
+           intercept `½/π²`). The shell needs `λ` free: the error term of
+           unit 0347 is `q = ‖w‖⁴/(π⁴(m+1)³) = |ζ|⁴h/(π⁴λ³)` at `m+1 = λh`,
+           and the assembly needs `4q·Σ_i (|ζ_i|²/ε²)·e^{K'} < ½` at the top
+           of the range, i.e. `q ≤ ε²/(4N e^{K'})`, so `λ³ ≥ 4N e^{K'} |ζ|⁴ H/(π⁴ε²)`:
+           `λ` grows with the range and is polynomial in `N, e^{K'}, 1/ε`.
+           With `m + 1 = λh` the exponent is `z·h²σ(λh−1) = z·uLam λ h` and
+           `uLam λ h = u(λh−1)/λ² = h/(λπ²) − 1/(2λ²π²) + r'`, so the sum
+           over `h` is geometric with ratio `exp(z/(λπ²))`. This block is
+           13d with slope `α`, intercept `β₀` and correction scale `c` free
+           (LOOP § 3: parameterize downstream), plus the bracket for `uLam`.
+Sizes.     At `α = 1/(λπ²)` the geometric bound is `13d's × λ` (the phase
+           advances `λ` times slower per step); the correction sum is
+           `2‖z‖·c·Mab·(log b − log a)` with `c = 1/(2λ³π²)`. Lost factor:
+           none; `λ` is the price of the slower phase and is polynomial.
+Regime.    G1 `0 < α`;  G2 `0 < z.im`;  G3 `z.im · α ≤ π/2`;  G4 `1 ≤ a`;
+           G5 `a ≤ b`;  G6 `‖z‖ · c ≤ (a:ℝ) + 1`;
+           G7 `∀ h, 0 ≤ u h − (α h + β₀) ∧ u h − (α h + β₀) ≤ c/((h:ℝ)+1)`;
+           L1 `1 ≤ λ` (ℕ);  L2 `1 ≤ h` (ℕ).
+Defs.      `MabGen z α β₀ a b = max (exp(z.re(αa+β₀))) (exp(z.re(αb+β₀)))`;
+           `geomBoundGen z α β₀ a b = (exp(z.re(αa+β₀)) + exp(z.re(αb+β₀))) · π / (2·exp(z.re·α)·z.im·α)`;
+           `uLam (λ h : ℕ) : ℝ = (h:ℝ)² · WeilPowerPhase.sigma (λ*h − 1)`.
+Theorems.  exp_shift_gen — none — `exp(z(αh+β₀)) = exp(z β₀) · exp(z α)^h`
+             (`Complex.exp_add`, `Complex.exp_nat_mul`; `(αh+β₀ : ℝ)` cast).
+           sin_im_ge_gen — G2, G3 — `2·z.im·α/π ≤ sin(z.im·α)`  (`Real.mul_le_sin`).
+           rho_ne_one_gen — G1, G2, G3 — `exp(z·α) ≠ 1`
+             (`WeilPowerGeom.norm_one_sub_exp_ge` at `w = z·α`, the sine positive).
+           norm_geom_le_gen — G1, G2, G3, G5 — `‖Σ_{Ico a b} exp(z(αh+β₀))‖ ≤ geomBoundGen z α β₀ a b`
+             (`geom_sum_Ico`, then `norm_one_sub_exp_ge` and `sin_im_ge_gen`).
+           exp_lin_le_MabGen — G1, `a ≤ h`, `h ≤ b` — `exp(z.re(αh+β₀)) ≤ MabGen z α β₀ a b`.
+           norm_corr_le_gen — G6, G7, `a ≤ h` — `‖exp(z·u h) − exp(z(αh+β₀))‖
+             ≤ exp(z.re(αh+β₀)) · 2‖z‖ · c/((h:ℝ)+1)`  (`Complex.norm_exp_sub_one_le`).
+           norm_sum_exp_u_le_gen — G1–G7 — `‖Σ_{Ico a b} exp(z·u h)‖
+             ≤ geomBoundGen z α β₀ a b + 2‖z‖ · c · MabGen z α β₀ a b · (log b − log a)`
+             (`WeilPowerGeom.log_telescope` for `Σ 1/(h+1)`).
+           uLam_eq — L1, L2 — `uLam λ h = WeilPowerSigma.u (λ*h − 1) / (λ:ℝ)²`
+             (`((λ*h − 1 : ℕ) : ℝ) + 1 = λ h`, needs `1 ≤ λ*h`).
+           uLam_bracket — L1, L2 — `0 ≤ uLam λ h − ((h:ℝ)/(λπ²) − 1/(2λ²π²))
+             ∧ uLam λ h − (…) ≤ 1/(2λ³π²) / ((h:ℝ)+1)`
+             (from `WeilPowerSigma.r_pos`, `r_le` at `m = λh − 1`, divided by `λ²`;
+             the last step is `λ²π²(4λh+2) ≥ 2λ³π²(h+1)`, i.e. `λh + 1 ≥ λ`).
+Composes.  WeilPowerGeom.norm_one_sub_exp_ge, WeilPowerGeom.log_telescope,
+           WeilPowerGeom.exp_lin_le_Mab (shape), WeilPowerGeom.norm_geom_le (shape),
+           WeilPowerSigma.u, WeilPowerSigma.r_pos, WeilPowerSigma.r_le,
+           WeilPowerPhase.sigma, geom_sum_Ico (a `lemma`), Complex.exp_nat_mul,
+           Complex.exp_add, Complex.norm_exp, Real.mul_le_sin,
+           Complex.norm_exp_sub_one_le, norm_sum_le, Finset.sum_le_sum.
+Module.    Stage3/WeilPowerGeomGen.lean, namespace WeilPowerGeomGen, importing
+           WeilPowerGeom and WeilPowerSigma; pins: norm_geom_le_gen,
+           norm_sum_exp_u_le_gen, uLam_bracket, norm_corr_le_gen.
+Open.      none; 13f reads `z = 2(ζ² − ε²)`, `α = 1/(λπ²)`, `c = 1/(2λ³π²)`,
+           `u = uLam λ` at one shell member and bounds
+           `|Σ_h Re((ζ²/ε²) exp(z·uLam λ h))|` by explicit constants in
+           `ε, ε', Δ, η, K', λ, a, b`.
+
 (c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.
@@ -454,3 +510,9 @@ range, the rate `ε²/(2π²λ)` falls, and `h₀` rises. A fixed point exists
 (everything is polynomial in `log`) and its size is the price of the
 route. The other choice is a phase bound that does not go through the
 Gaussian approximation: the exact argument of the tail product.
+
+
+Resolved in block 13e (2026-09-06): `λ` is a free integer parameter with
+`λ³ ≥ 4N e^{K'} |ζ|⁴ H/(π⁴ε²)`, polynomial in `N`, `e^{K'}`, `1/ε` and the
+range; blocks 13c–13d were stated at `λ = 1` and 13e restates the
+geometric bound with the slope free.

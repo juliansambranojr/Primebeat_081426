@@ -1,6 +1,6 @@
 # The design loop
 
-version: 3
+version: 4
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -44,6 +44,9 @@ in angle brackets; delete a line only when it has nothing to say.
       `lemma`; a `theorem`-only grep declared it absent and the block said so).
 - [ ] The block's arithmetic was checked once by hand in the block itself,
       not in the session.
+- [ ] Every window parameter (`λ`, `h`, `m`) is free in the block unless the
+      block says why it is fixed (blocks 13c–13d fixed `λ = 1` silently and
+      13e had to restate 13d with the slope free).
 - [ ] The brief names one block and one module.
 
 ## 3. The brief

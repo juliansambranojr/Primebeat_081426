@@ -22,6 +22,17 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-06 · block 13e, the geometric bound with a free slope and uLam (Opus run)
+
+    DONE        WeilPowerGeomGen.lean committed by the agent with its unit:
+                13d restated with slope, intercept and correction scale free,
+                and the bracket for uLam λ h = h²σ(λh−1) at general λ
+    ASSUMED     λ is a positive integer and m + 1 = λh; the special case
+                α = 1/π², β₀ = ½/π², c = 1/(4π²) is 13d and need not be
+                re-derived; the casts around λh − 1 are the executor's
+    DEPENDS     nothing
+    OUT         the shell reading (13f); the error term q at the shell
+
 ### 2026-09-06 · rung 5 from the worksheet, section 7 onward
 
     DONE        StmtDetect ε T L proved with L explicit, through the modules
@@ -221,3 +232,4 @@ reads the pins and finds the misalignment.
 | 2026-09-06 | rung 5 route (unit 0325) | DONE | the isolated case, then a window family | the general case with explicit L; the window had to change |
 | 2026-09-06 | section 13 (b) (unit 0347) | (none written) | step 0b skipped: the orchestrator went from the worksheet to the module | pins are written before the module, every run; the checker cannot see this, the retrospective can |
 | 2026-09-06 | block 13d (unit 0349) | ASSUMED | `geom_sum_Ico` is absent on this Mathlib | it is present as a `lemma`; the checklist grep matched `theorem` only; DESIGN.md v3 fixes the pattern |
+| 2026-09-06 | blocks 13c–13d | ASSUMED | λ = 1, silently in 13c ("With λ = 1") and by inheritance in 13d | the shell forces λ³ ~ N e^{K'} H/ε², so λ is free; 13e restates 13d parameterized (LOOP § 3, DESIGN.md v4) |
