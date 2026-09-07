@@ -25,3 +25,4 @@ utilities/slice_observations.jsonl
 # one-use approval flags read by utilities/hooks/check_protected_write.py and
 # the pre-commit hook; local, never shared
 .approve/
+.venv-torch/
