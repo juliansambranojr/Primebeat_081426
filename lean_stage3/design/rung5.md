@@ -335,6 +335,46 @@ At `w = (ε' + iΔ)h`, `σ ≈ 1/(π²λh)`: the phase `2 Im(w²) σ = 4ε'Δh/(
 is the `ω_i h` above, and the bracket is `h²[(ε'² − Δ²) cos − 2ε'Δ sin]`,
 positive when the phase is under `π/2` and `Δ < ε'`.
 
+### 13c The tail sum to order 1/h — SKETCH
+Objects.   `σ(m) = Σ_{j≥m+2} 1/(π²j²)` (WeilPowerPhase.sigma). With `λ = 1`,
+           `h = m + 1`, the exponent of a member's principal part is
+           `2ζ²h²σ(m)`, `ζ = ε' + iΔ`; define `u(m) = (m+1)²·σ(m)`. The
+           averaging in (c) needs `u` linear in `m` to order `1/m`: the
+           member's normalized term is `(ζ²/ε²)·exp(z·u)` with
+           `z = 2(ζ² − ε²)`, and `exp(z·u) = exp(z(m+½)/π²)·exp(z·r)` with
+           `r = u − (m+½)/π²`; the first factor is geometric in `m`, the
+           second is `1 + O(|z| r)`.
+Sizes.     Unit 0347 has `1/(π²(m+2)) ≤ σ ≤ 1/(π²(m+1))`, which gives
+           `|u − m/π²| ≤ 1/π²`: an `O(1)` error, and `exp(z·r)` is then a
+           bounded factor, not a small one; summed over the `h`-range that
+           costs a constant times the range, the same size as the target.
+           The sharp brackets give `0 < r ≤ 1/(π²(4m+6))`, so the
+           correction summed over `m ∈ [a, b]` is `O(|z| log(b/a))` against
+           the target's `b − a`. Lost factor: none once `r = O(1/m)`.
+Regime.    none (m : ℕ).
+Theorems.  sum_upper_half — `m + 1 ≤ n` — `Σ_{j∈Ico(m+1)n} 1/(j+1)² ≤ 2/(2m+3)`
+             (via `1/(j+1)² ≤ 1/(j+½) − 1/(j+3/2)`, telescoping).
+           sum_lower_amgm — `m + 1 ≤ n` — `1/(m+2) + 1/(2(m+2)²) − 1/(n+1) − 1/(2(n+1)²)
+             ≤ Σ_{j∈Ico(m+1)n} 1/(j+1)²`
+             (via `1/(j+1)² ≥ [1/(j+1) − 1/(j+2)] + [1/(2(j+1)²) − 1/(2(j+2)²)]`,
+             which is `1/(2(j+1)²) + 1/(2(j+2)²) ≥ 1/((j+1)(j+2))`, AM–GM).
+           sigma_le_half — none — `σ(m) ≤ 2/(π²(2m+3))`   (limit of sum_upper_half).
+           sigma_ge_amgm — none — `1/(π²(m+2)) + 1/(2π²(m+2)²) ≤ σ(m)`   (limit).
+           u_def — `u m = ((m:ℝ)+1)² · σ(m)`.
+           r_pos — none — `1/(2π²(m+2)²) ≤ u m − (m + 1/2)/π²`.
+           r_le — none — `u m − (m + 1/2)/π² ≤ 1/(π²(4m+6))`.
+           u_mono — none — `u m ≤ u (m+1)`   (from r_pos, r_le: the step is
+             at least `(1 + 1/(2(m+3)²) − 1/(4m+6))/π² > 0`).
+Composes.  WeilPowerPhase.sigma, WeilPowerPhase.sigmaN_tendsto,
+           WeilPowerPhase.sigmaN_eq, WeilPowerSharp.sum_telescope (shape),
+           le_of_tendsto, le_of_tendsto_of_tendsto,
+           tendsto_one_div_add_atTop_nhds_zero_nat (as in unit 0346).
+Module.    Stage3/WeilPowerSigma.lean, namespace WeilPowerSigma; pins:
+           sigma_le_half, sigma_ge_amgm, r_le, u_mono.
+Open.      none; the next block (13d) is the geometric sum
+           `|Σ_{m∈Ico a b} exp(z(m+½)/π²)| ≤ (|r|^a + |r|^b)/(e^{Re z/π²}|sin(Im z/π²)|)`
+           and the harmonic bound on `Σ r(m)`.
+
 (c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.

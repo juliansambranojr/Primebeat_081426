@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-06 · block 13c, the tail sum to order 1/h (Opus run under DESIGN.md v1)
+
+    DONE        WeilPowerSigma.lean committed by the agent with its unit;
+                σ(m) bracketed to order 1/m² and u(m) = (m+1)²σ(m) within
+                [1/(2π²(m+2)²), 1/(π²(4m+6))] of (m+½)/π²
+    ASSUMED     λ = 1 so h = m+1 and the block is stated in m alone; the
+                two telescoping inequalities are elementary and the block's
+                arithmetic was checked in the block; no pre-registration
+                unit per run, the agent's unit is the record
+    DEPENDS     nothing
+    OUT         the geometric sum and the harmonic bound (13d); the
+                Re(w²) ≤ 0 sharp exponent
+
 ### 2026-09-06 · rung 5 from the worksheet, section 7 onward
 
     DONE        StmtDetect ε T L proved with L explicit, through the modules

@@ -1,6 +1,6 @@
 # The module loop
 
-version: 9
+version: 10
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -36,9 +36,15 @@ their sizes, the regime conditions, the constants, the comparison, the
 open questions. Append as you go. Re-read it instead of re-deriving. A
 compaction loses nothing in it, and a fresh instance starts from it.
 
-Then write the module's header comment before any proof. It lists every
-theorem in words, states its hypotheses, cites the worksheet section it
-comes from, and ends with what the next slice needs. The header is the
+The worksheet block is the orchestrator's and is written before the run
+in the shape `DESIGN.md` § 1 gives (Objects, Sizes, Regime, Theorems,
+Composes, Module, Open). Then write the module's header comment before any
+proof. Its theorem list is copied from the block's Theorems lines, with
+their hypotheses; a hypothesis the proof needs that the block does not
+list is an ASSUMED pin and a line in the report, never a silent addition.
+A size that does not close is the orchestrator's decision: stop and
+report. The header cites the block and ends with what the next slice
+needs. The header is the
 contract; the unit's prose paraphrases it. Name the pinned theorems now:
 the `#guard_msgs in #print axioms` lines are fixed targets.
 
