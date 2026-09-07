@@ -1,0 +1,40 @@
+key	value	source
+module_lines	515	wc -l lean_stage3/Stage3/WeilPowerShell.lean
+theorems_proved	15	grep -c ^theorem lean_stage3/Stage3/WeilPowerShell.lean
+defs	4	grep -c ^def lean_stage3/Stage3/WeilPowerShell.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerShell.lean
+pins	4	uSh_bracket, geomBound_le, shellSum_le, shellSum_le_abs
+errors_first	3	first lake build Stage3.WeilPowerShell
+jobs_package	8761	lake build (full Stage3)
+jobs_module	8668	lake build Stage3.WeilPowerShell
+loop_version	14	lean_stage3/LOOP.md version line
+design	rung5.md#13f	one shell member's weighted sum, explicit
+rung	5	detection ladder rung
+slice	16	sixteenth module of the switched-window ladder
+section	13	worksheet section this module is built from
+traps_added	4	lean_stage3/TRAPS.md rows 25-28
+roots	1	the single root cause of the first build, the nlinarith on three factors
+row_triple	28	lean_stage3/TRAPS.md row 28
+row_cascade	19	lean_stage3/TRAPS.md row 19
+row_first	25	lean_stage3/TRAPS.md row 25
+sorries_first	1	the builder's report: one sorry at the first-pass stop
+foreman_edits	1	the foreman's pass: one edit to WeilPowerShell.lean
+foreman_builds	1	the foreman's pass: one lake build, clean
+loop_next	15	lean_stage3/LOOP.md version after this run's retrospective
+eight	8	worksheet section 8, the selection threshold
+tokens_first	164440	harness usage line at the builder's first stop
+calls_first	32	harness usage line at the builder's first stop
+minutes_first	16	harness usage line at the builder's first stop, 985653 ms
+tokens_end	177604	harness usage line at the builder's second stop, cumulative
+calls_second	15	harness usage line at the builder's second stop
+minutes_second	3	harness usage line at the builder's second stop, 171480 ms
+tokens_13e	138681	session transcript, harness usage line of the 13e run (unit 0350)
+calls_13e	40	session transcript, harness usage line of the 13e run (unit 0350)
+minutes_13e	11	session transcript, harness usage line of the 13e run (unit 0350)
+module_lines_13e	430	units/0350-weil-powergeomgen-stage3/values.tsv module_lines
+theorems_13e	9	units/0350-weil-powergeomgen-stage3/values.tsv theorems_proved
+unit_phase	0347	WeilPowerPhase, re_S_sq_ge
+unit_ulam	0350	WeilPowerGeomGen, uLam_bracket
+unit_decision	0351	section 13 dies on size at the shell
+pins_cascade	2	the two pins reading sorryAx on the first build, TRAPS row 19

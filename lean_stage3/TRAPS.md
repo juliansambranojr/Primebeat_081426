@@ -4,7 +4,8 @@ Error pattern, cause, fix. One row per class. Appended after any build
 that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 2026-09-06, units 0329–0335; rows 13–17 come from CLAUDE.md § Stage-3;
 rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, rows 22–23 by unit 0347, the
-orchestrator's own runs of the loop; row 24 by unit 0349.
+orchestrator's own runs of the loop; row 24 by unit 0349; rows 25-28 by
+unit 0352, the first module built under the relay (LOOP.md 4b).
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -32,6 +33,10 @@ orchestrator's own runs of the loop; row 24 by unit 0349.
 | 22 | `Unknown identifier pow_le_pow_left` (or another order lemma without a subscript) | the lemma was renamed with a `₀` suffix on this Mathlib (`pow_le_pow_left₀`, `div_le_div_iff₀`, `inv_le_comm₀`) | add `₀`; grep the name first (LOOP § 2) |
 | 23 | `dsimp made no progress` after `filter_upwards … with n` | the goal is already beta-reduced; `filter_upwards` did it | drop the `dsimp only` |
 | 24 | `Unknown identifier le_or_lt`, then `Tactic rcases failed: x is not an inductive datatype` on the next line | the case-split lemma is `le_or_gt` on this Mathlib (`lt_or_ge` for the other order); one root shows as two error lines, the unknown name and the `rcases` left with a metavariable | `rcases le_or_gt 0 x with h | h`; grep the name first (LOOP § 2) |
+| 25 | `simp [<def>]` on a conjugation identity leaves `2 = (starRingEnd ℂ) 2 ∨ <rest> = 0` | `simp` cancelled the leading numeral factor and split the goal into a disjunction (row 11's family, `simp` rather than `norm_num`) | `simp only [<def>, Complex.ofReal_neg, map_mul, map_sub, map_pow, map_add, map_ofNat, Complex.conj_ofReal, Complex.conj_I]`, then `ring` |
+| 26 | `Complex.re_sum f` reports a type mismatch whose actual type is `∀ (f : α → ℂ), …` | the `Finset` is a section `variable` and is the first explicit argument, though it appears only in the conclusion | write `Complex.re_sum s f`, or use it as a rewrite: `rw [Complex.re_sum]` |
+| 27 | `neg_le_of_abs_le h` rejects `h : |z.re| ≤ ‖z‖` "but is expected to have type `|‖z‖| ≤ z.re`" | the goal `-z.re ≤ ‖z‖` unified with the conclusion `-b ≤ a` the other way round (row 16's family, at a non-dotted lemma) | name the intermediate: `have h1 : -‖z‖ ≤ z.re := neg_le_of_abs_le (Complex.abs_re_le_norm z)`, then `linarith`/`nlinarith` |
+| 28 | `nlinarith` fails on `x * y * L ≤ X * Y * L` with `x ≤ X`, `y ≤ Y`, `0 ≤ L`, `0 ≤ x`, `0 < y` all in the hint list | the conclusion is a product of three bounded factors and `nlinarith` multiplies hypothesis pairs, not triples | chain it factorwise, `mul_le_mul` for `x*y ≤ X*Y` and then `mul_le_mul_of_nonneg_right … hlog` (unit 0352's one `sorry`, closed by the foreman with exactly this chain) |
 
 ## Bench and gate traps
 
@@ -91,3 +96,12 @@ Added by unit 0341, same toolchain and pin: `Complex.sq_norm` (protected,
 `max_eq_right`, `mul_nonpos_of_nonpos_of_nonneg`, `Real.exp_le_exp`,
 `Real.exp_add`, `Real.exp_pos`, `mul_le_mul_of_nonneg_left`,
 `mul_le_mul_of_nonneg_right`, `pow_pos`, `Nat.cast_nonneg`.
+
+Added by unit 0352, same toolchain and pin: `Complex.re_sum` (the `Finset` is
+its first explicit argument), `Complex.exp_conj`, `Complex.conj_re`,
+`Complex.conj_ofReal`, `Complex.conj_I`, `Complex.norm_div` (protected),
+`Complex.norm_pow` (protected), `Complex.ofReal_neg`, `Real.log_le_log` (a
+`lemma`, hypotheses `0 < x` then `x ≤ y`), `one_le_pow₀` (a `lemma`), `sq_abs`
+(a `lemma`), `max_le`, `abs_pos`, `abs_of_neg`, `abs_of_nonneg`,
+`div_nonpos_of_nonpos_of_nonneg`, `Nat.one_le_iff_ne_zero`, `map_ofNat`,
+`map_add`, `map_pow`, `map_sub`, `map_mul`, `Nat.lt_of_lt_of_le`.

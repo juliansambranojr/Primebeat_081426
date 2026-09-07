@@ -1,6 +1,6 @@
 # The design loop
 
-version: 6
+version: 7
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -50,6 +50,11 @@ in angle brackets; delete a line only when it has nothing to say.
       block says why it is fixed (blocks 13c–13d fixed `λ = 1` silently and
       13e had to restate 13d with the slope free).
 - [ ] The brief names one block and one module.
+- [ ] A hint on a product of three bounded factors names the factorwise
+      chain, never `nlinarith` (unit 0352: the run's one `sorry`; `nlinarith`
+      multiplies pairs). A Composes entry is the name that resolves, without a
+      `to_additive` aside when the additive name has its own `theorem` line
+      (unit 0352: `Finset.sum_congr`).
 
 ## 3. The brief
 

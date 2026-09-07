@@ -35,6 +35,8 @@ below with their outcome.
     OUT         sharp constants; the old-window modules; porting; anything
                 on the prime side beyond the probe already run
 
+## Archive
+
 ### 2026-09-06 · block 13f, WeilPowerShell, under the relay
 
     DONE        the four pinned theorems of rung5.md#13f built and committed
@@ -45,12 +47,24 @@ below with their outcome.
                 norm_sum_exp_u_le_gen, closed by uSh; the relay's two
                 reports carry errors_first and the counts; the run is the
                 measure of the relay against runs 13c–13e
+                — builder's run, 2026-09-06: no hypothesis outside the
+                block's per-theorem lists was needed; three readings of
+                the block's shapes were taken: uSh_bracket keeps the
+                block's `∀ k` inside the statement so it is
+                norm_sum_exp_u_le_gen's `hu` after one `ring` step on the
+                affine form `α·k + β₀`; norm_zOf_c_le takes the block's
+                `∀ a : ℕ` as an explicit argument; shellSum_le_abs reads
+                "the bound with |Δ| in place of Δ" as the substitution at
+                every occurrence, |Δ|² included, the same real number as
+                substituting only in 4ε'Δ since |Δ|² = Δ²
     DEPENDS     nothing from Julian; the finding of unit 0351 stands and
                 this block is the far-member bound any variant needs
     OUT         the shell below Δ ≈ λ/(εX); the tight count leaf; the
                 assembly; any second attempt by the builder on a proof
+    OUTCOME     PROVED, unit 0352, commit with the module; one sorry at the
+                first stop, closed by the foreman in one edit; builder
+                164440 + 13164 tokens, 47 calls, against 13e's 138681 / 40
 
-## Archive
 
 ### 2026-09-06 · block 13e, the geometric bound with a free slope and uLam (Opus run)
 

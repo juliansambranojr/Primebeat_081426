@@ -516,7 +516,8 @@ Open.      none; 13f reads `z = 2(ζ² − ε²)`, `α = 1/(λπ²)`, `c = 1/(2�
            `|Σ_h Re((ζ²/ε²) exp(z·uLam λ h))|` by explicit constants in
            `ε, ε', Δ, η, K', λ, a, b`.
 
-### 13f One shell member's weighted sum, explicit — SKETCH
+### 13f One shell member's weighted sum, explicit — PROVED (unit 0352:
+`WeilPowerShell.shellSum_le`, `shellSum_le_abs`, `geomBound_le`, `uSh_bracket`)
 Objects.   The member at `ζ = ε' + iΔ`, the target at `ε`, the window
            `m + 1 = λh`. Its weighted principal term at `h` is
            `coef · exp(z · uLam λ h)` with `coef = ζ²/ε²`, `z = 2(ζ² − ε²)`

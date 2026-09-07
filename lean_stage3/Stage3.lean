@@ -62,6 +62,7 @@ import Stage3.WeilPowerPhase
 import Stage3.WeilPowerSigma
 import Stage3.WeilPowerGeom
 import Stage3.WeilPowerGeomGen
+import Stage3.WeilPowerShell
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-09-07T07:20:58Z
+# unit: 0352-weil-powershell-stage3
+# sources searched: 875
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161296
+  Source: session transcript, 2026-09-06 to 2026-09-07, the first module built under the relay
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:160410
+  What I’m thinking is that you design the blocks. Opus executes at first pass. Then hands off the lea...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161038
+  theorem uSh_bracket {lam : ℕ} (hl : 1 ≤ lam) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161039
+  theorem geomBound_le {e' D e eta : ℝ} {lam a b : ℕ} (h1 : 0 < e') (h3 : 0 < D)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161040
+  theorem shellSum_le {e' D e eta : ℝ} {lam a b : ℕ} (h1 : 0 < e') (h2 : e' ≤ 1 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161043
+  (h3 : 0 < D) (h4 : D ≤ 1 / 2) (h5 : 0 < e) (h6 : e ≤ 1 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161044
+  (h7 : e' ^ 2 - D ^ 2 - e ^ 2 ≤ eta) (h8 : 0 ≤ eta) (hl : 1 ≤ lam) (ha : 1 ≤ a)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161047
+  ≤ (e' ^ 2 + D ^ 2) / e ^ 2 * Real.exp (2 * eta * (b : ℝ) / ((lam : ℝ) * Real.pi ^ 2))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:160980
+  * Real.exp (2 * (e' ^ 2 + D ^ 2 + e ^ 2) * (1 / ((lam : ℝ) * Real.pi ^ 2)))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161051
+  + 2 * (e' ^ 2 + D ^ 2 + e ^ 2) * (Real.log b - Real.log a)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161013
+  / ((lam : ℝ) ^ 3 * Real.pi ^ 2)) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161041
+  theorem shellSum_le_abs {e' D e eta : ℝ} {lam a b : ℕ} (h1 : 0 < e') (h2 : e' ≤ 1 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161054
+  (hD0 : D ≠ 0) (h4 : |D| ≤ 1 / 2) (h5 : 0 < e) (h6 : e ≤ 1 / 2)
+
+# 13 found, 0 missing

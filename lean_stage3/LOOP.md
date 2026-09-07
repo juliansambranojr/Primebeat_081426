@@ -1,6 +1,6 @@
 # The module loop
 
-version: 14
+version: 15
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -150,8 +150,9 @@ block's Theorems lines, the scratch pass, the `field_simp` grep, one build.
 Each proof is tried once from the block's hint; one that does not close
 on that try becomes `sorry` with a one-line comment naming the goal state.
 No second attempt. Record `errors_first` from that build, run the § 4
-command once more so the file builds with its `sorry`s, and stop with a
-report: the file, the list of `sorry` lines with their goals, errors_first
+command once more so that the only errors left are the `#guard_msgs` pins
+of the sorried theorems (a pin reads `sorryAx` until its proof is closed;
+leave the pin lines as they are), and stop with a report: the file, the list of `sorry` lines with their goals, errors_first
 and its root causes, TRAPS rows hit. Then wait for the signal.
 
 The foreman (the orchestrator) replaces every `sorry`, builds, and sends
