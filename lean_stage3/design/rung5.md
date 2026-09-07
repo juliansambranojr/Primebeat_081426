@@ -335,7 +335,10 @@ At `w = (ε' + iΔ)h`, `σ ≈ 1/(π²λh)`: the phase `2 Im(w²) σ = 4ε'Δh/(
 is the `ω_i h` above, and the bracket is `h²[(ε'² − Δ²) cos − 2ε'Δ sin]`,
 positive when the phase is under `π/2` and `Δ < ε'`.
 
-### 13c The tail sum to order 1/h — SKETCH
+### 13c The tail sum to order 1/h — PROVED (unit 0348: `WeilPowerSigma.sigma_le_half`,
+`sigma_ge_amgm`, `r_pos`, `r_le`, `u_mono`; the two telescoping identities are
+`sum_telescope_half` and `sum_telescope_amgm`, the block's "via" clauses as their own
+theorems)
 Objects.   `σ(m) = Σ_{j≥m+2} 1/(π²j²)` (WeilPowerPhase.sigma). With `λ = 1`,
            `h = m + 1`, the exponent of a member's principal part is
            `2ζ²h²σ(m)`, `ζ = ε' + iΔ`; define `u(m) = (m+1)²·σ(m)`. The

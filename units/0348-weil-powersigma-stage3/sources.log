@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-09-07T00:17:34Z
+# unit: 0348-weil-powersigma-stage3
+# sources searched: 872
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:2010
+  Source: session transcript, 2026-09-06, the task given to this run
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:1
+  Build one Lean module under the repo's module loop: block 13c of lean_stage3/design/rung5.md, module...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:1429
+  theorem sigma_le_half (m : ℕ) : sigma m ≤ 2 / (Real.pi ^ 2 * (2 * (m : ℝ) + 3)) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:1443
+  theorem sigma_ge_amgm (m : ℕ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:1444
+  1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) + 1 / (2 * Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2) ≤ sigma m := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:1477
+  def u (m : ℕ) : ℝ := ((m : ℝ) + 1) ^ 2 * sigma m
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:1483
+  1 / (2 * Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2) ≤ u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2 := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:1499
+  u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2 ≤ 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 6)) := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:1513
+  theorem u_mono (m : ℕ) : u m ≤ u (m + 1) := by
+
+# 9 found, 0 missing

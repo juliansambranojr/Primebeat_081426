@@ -1,6 +1,6 @@
 # The module loop
 
-version: 10
+version: 11
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -56,7 +56,8 @@ written before the run.
 
 The unit's `values.tsv` names its section: `design	<rung>.md#<n>`, the
 section number (`rung5.md#7`); a slug of the heading in lower case with
-dashes also resolves. The checker refuses a unit without it or with a
+dashes also resolves, and so does a lettered sub-block of a section
+(`rung5.md#13c` for `### 13c`, unit 0348). The checker refuses a unit without it or with a
 section that does not exist. When the module lands, the section's mark
 changes from SKETCH to PROVED naming the theorem, in the same commit.
 
@@ -100,7 +101,11 @@ cd lean_stage3 && lake build Stage3.<Module> 2>&1 \
 ```
 
 Classify every error against `TRAPS.md` before fixing any. Most fall
-into a row there. A `linear_combination` residual is read, never
+into a row there. After a `field_simp`, write `try ring`, never a bare
+`ring`: whether `field_simp` closes the goal depends on the denominators
+it clears, and a bare `ring` on a goal already closed is `TRAPS.md` row 1,
+costing one error plus one more for every pin downstream (unit 0348's
+whole first build was that, in one of five `field_simp`s). A `linear_combination` residual is read, never
 recomputed. For one stubborn lemma, iterate in a scratch file at seconds
 per try:
 
