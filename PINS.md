@@ -38,6 +38,8 @@ below with their outcome.
     OUT         section 9's alignment (dead, unit 0345); sharp constants
                 beyond the one leaf; the old-window modules; porting
 
+## Archive
+
 ### 2026-09-07 · block 13h, WeilPowerClean, under the relay at loop v16
 
     DONE        the four pinned theorems of rung5.md#13h built and committed
@@ -50,8 +52,11 @@ below with their outcome.
     DEPENDS     nothing from Julian; 0351's finding stands as corrected here
     OUT         instantiating B from 13f and 13g (that is 13i); the leaf's
                 own proof; the assembly; any second attempt by the builder
+    OUTCOME     PROVED, unit 0357, commit with the module; the first block
+                the builder closed whole: 0 errors, 0 sorry, 0 foreman
+                edits; four block errors it named and I corrected; the
+                leaf's constant tightened from 1.23 to c1 log(hi/lo) < 1
 
-## Archive
 
 ### 2026-09-07 · block 13g, WeilPowerNear, under the relay at loop v16
 

@@ -1,0 +1,41 @@
+key	value	source
+module_lines	151	wc -l lean_stage3/Stage3/WeilPowerClean.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/WeilPowerClean.lean
+defs	0	grep -c ^def lean_stage3/Stage3/WeilPowerClean.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerClean.lean
+pins	4	blocked_card_le, exists_unblocked, exists_clean_shell, exists_clean_shell_of_count
+errors_first	0	first lake build Stage3.WeilPowerClean, clean
+roots	0	no error on the first build, so no root cause
+warnings_first	1	the push_neg deprecation, run/build.log
+sorries_first	0	the builder's report at the first-pass stop
+foreman_edits	0	the foreman's pass: nothing was left to close
+jobs_package	8763	lake build (full Stage3)
+jobs_module	8656	run/build.log, lake build Stage3.WeilPowerClean
+loop_version	17	lean_stage3/LOOP.md version line
+design	rung5.md#13h	the clean shell, a sub-range no member blocks
+rung	5	detection ladder rung
+slice	18	eighteenth module of the switched-window ladder
+section	13	worksheet section this module is built from
+traps_added	1	lean_stage3/TRAPS.md row 30
+row_new	30	lean_stage3/TRAPS.md row 30, the push_neg deprecation warning
+c1_old	1.23	unit 0351, 1/(2 ln 1.5) = 1.233
+c1_new	0.481	1/ln 8 = 0.4809, the requirement at window ratio 8
+ratio_ex	8	the worked window ratio in block 13h
+trudgian	0.112	Trudgian 2014, |S(T)| <= 0.112 log T + 0.278 log log T + 2.51
+crude	7	0.462 * 15 = 6.93, the tree's crude chain (unit 0351)
+tokens_first	78312	harness usage line at the builder's first stop
+calls_first	21	harness usage line at the builder's first stop
+minutes_first	5	harness usage line at the builder's first stop, 291989 ms
+tokens_end	87464	harness usage line at the builder's second stop, cumulative
+calls_second	12	harness usage line at the builder's second stop
+minutes_second	2	harness usage line at the builder's second stop, 107589 ms
+per_13f	11.8	units/0354-weil-powernear-stage3/values.tsv per_13f
+per_13g	12.7	units/0354-weil-powernear-stage3/values.tsv per_13g
+per_13h	21.9	87464 / 4 / 1000
+errors_13f	3	units/0352-weil-powershell-stage3/values.tsv errors_first
+errors_13g	5	units/0354-weil-powernear-stage3/values.tsv errors_first
+ten	10	worksheet section 10, the assembly
+unit_decision	0351	section 13 dies on size at the shell
+unit_shell	0352	WeilPowerShell, block 13f
+unit_near	0354	WeilPowerNear, block 13g

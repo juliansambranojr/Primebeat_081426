@@ -6,7 +6,7 @@ that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, rows 22–23 by unit 0347, the
 orchestrator's own runs of the loop; row 24 by unit 0349; rows 25-28 by
 unit 0352, the first module built under the relay (LOOP.md 4b); row 29 by
-unit 0354.
+unit 0354; row 30 by unit 0357.
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -39,6 +39,7 @@ unit 0354.
 | 27 | `neg_le_of_abs_le h` rejects `h : |z.re| ≤ ‖z‖` "but is expected to have type `|‖z‖| ≤ z.re`" | the goal `-z.re ≤ ‖z‖` unified with the conclusion `-b ≤ a` the other way round (row 16's family, at a non-dotted lemma) | name the intermediate: `have h1 : -‖z‖ ≤ z.re := neg_le_of_abs_le (Complex.abs_re_le_norm z)`, then `linarith`/`nlinarith` |
 | 28 | `nlinarith` fails on `x * y * L ≤ X * Y * L` with `x ≤ X`, `y ≤ Y`, `0 ≤ L`, `0 ≤ x`, `0 < y` all in the hint list | the conclusion is a product of three bounded factors and `nlinarith` multiplies hypothesis pairs, not triples | chain it factorwise, `mul_le_mul` for `x*y ≤ X*Y` and then `mul_le_mul_of_nonneg_right … hlog` (unit 0352's one `sorry`, closed by the foreman with exactly this chain) |
 | 29 | `nlinarith [h1, h2]` reports `linarith failed to find a contradiction` on a goal whose certificate is the plain sum `h1 + h2 + h3` of hypotheses already in the context | row 14's family at the hint-fed form: the context also carries derived facts mixing `Real.pi` and `Real.pi⁻¹` monomials (here `hmul`, `hexp`, `hstep`, `hθpi` beside the three that matter), and the products `nlinarith` adds over them bury the linear certificate | `linarith [h1, h2, h3]` alone fails too, because linarith takes each product as one atom; name the rearrangement as its own identity, `have key : (e'^2 - D^2) * (1 - 2*θ/Real.pi) - 2*e'*D*θ = (e'^2 - D^2) - θ * (2*e'*D + 2*(e'^2 - D^2)/Real.pi) := by ring`, then `linarith [h1, h2, h3, key]` (unit 0354's one `sorry`, `WeilPowerNear.bracket_nonneg`, closed by the foreman with exactly this) |
+| 30 | warning `` `push_neg` has been deprecated. Prefer using `push Not` instead. `` with a macro suggestion in the message | Mathlib at the pin deprecated `push_neg` | it is a warning, so it does not count in `errors_first` and the build is clean; write `push Not at h`, or drop the tactic where the next step is `omega`, which reads a negated linear hypothesis `¬ x ≤ y` directly (unit 0357's `blocked_card_le`) |
 
 ## Bench and gate traps
 
@@ -107,3 +108,15 @@ its first explicit argument), `Complex.exp_conj`, `Complex.conj_re`,
 (a `lemma`), `max_le`, `abs_pos`, `abs_of_neg`, `abs_of_nonneg`,
 `div_nonpos_of_nonpos_of_nonneg`, `Nat.one_le_iff_ne_zero`, `map_ofNat`,
 `map_add`, `map_pow`, `map_sub`, `map_mul`, `Nat.lt_of_lt_of_le`.
+
+Added by unit 0357, same toolchain and pin: `Finset.card_le_card`,
+`Finset.card_range`, `Finset.mem_range`, `Finset.not_subset`,
+`Finset.card_biUnion_le`, `Finset.mem_biUnion` (a `lemma`, `@[simp]`),
+`Finset.min'_mem`, `Finset.max'_mem`, `Finset.min'_le` (explicit `x` then
+`x ∈ s`, the nonemptiness proof supplied as `⟨x, H2⟩` and matched to any
+other by proof irrelevance), `Finset.le_max'`, `Finset.mem_Icc`,
+`Nat.card_Icc` (a `lemma`, `@[simp]`), `Finset.card_pos` (a `lemma`),
+`Finset.eq_empty_or_nonempty`, `pow_le_pow_right₀` (a `lemma`),
+`Finset.sum_const`, `smul_eq_mul` (a `lemma`, `Algebra/Group/Action/Defs`),
+`pow_add`, `Nat.sub_add_cancel`, `Nat.mul_le_mul_right` (the multiplier `k`
+explicit and first: `Nat.mul_le_mul_right k h`), `pow_nonneg`, `mul_le_mul`.

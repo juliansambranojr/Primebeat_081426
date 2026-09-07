@@ -739,7 +739,9 @@ give `(ε'²−Δ²)cos θ − 2ε'Δ sin θ ≥ (ε'²−Δ²) − θ(2(ε'²�
 `uLam ≤ h/(λπ²)` because `1/(2λ³π²(h+1)) ≤ 1/(2λ²π²)` iff `λ(h+1) ≥ 1`;
 `coef = (ε'² − Δ² + 2iε'Δ)/ε²`.
 
-### 13h The clean shell: a sub-range no member blocks — SKETCH
+### 13h The clean shell: a sub-range no member blocks — PROVED (unit 0357:
+`WeilPowerClean.blocked_card_le`, `exists_unblocked`, `exists_clean_shell`,
+`exists_clean_shell_of_count`)
 Objects.   The range `[a, b]` in `h` is cut into shells `[aρ^k, aρ^{k+1})`,
            `k = 0 .. K-1`, at a ratio `ρ > 1`. A member at `ζ = ε' + iΔ` is
            *blocked on shell k* when neither 13f nor 13g settles it there:
@@ -789,8 +791,8 @@ Theorems.  Written as the Lean statements the module carries; the builder
              from `hB` at `k₀` and `ρ ^ (W + 1) ≤ ρ ^ (k₁ - k₀)` from
              `pow_le_pow_right₀ hρ`, giving
              `lo * ρ ^ (W + 1) ≤ d * (a * ρ ^ k₁) ≤ hi`, against `hW`;
-             `nlinarith` is the wrong tool here, chain it with
-             `mul_le_mul_of_nonneg_left` and `le_trans`. Finish with `omega`.)
+             `nlinarith` is the wrong tool here: one `mul_le_mul` on the two
+             factor bounds does it. Finish with `omega`.)
            exists_unblocked — P4 —
              `theorem exists_unblocked {ι : Type*} [DecidableEq ι] (S : Finset ι)
                 (B : ι → Finset ℕ) {K W : ℕ}
@@ -835,19 +837,19 @@ Composes.  Exact statements, so the builder opens no other module:
              `Finset.le_max' (x) (H2 : x ∈ s) : x ≤ s.max' ⟨x, H2⟩`
              `Finset.mem_Icc : x ∈ Icc a b ↔ a ≤ x ∧ x ≤ b`
              `Nat.card_Icc : #(Icc a b) = b + 1 - a` (a `lemma`, `@[simp]`)
-             `Finset.card_pos : 0 < #s ↔ s.Nonempty` (a `lemma`, `@[simp]`)
+             `Finset.eq_empty_or_nonempty (s : Finset α) : s = ∅ ∨ s.Nonempty`
              `pow_le_pow_right₀ (ha : 1 ≤ a) (hmn : m ≤ n) : a ^ m ≤ a ^ n` (a `lemma`)
              `Finset.prod_const (b : M) : ∏ _x ∈ s, b = b ^ #s`, whose `to_additive`
                 is `Finset.sum_const`
              `smul_eq_mul {α : Type*} [Mul α] (a b : α) : a • b = a * b` (a `lemma`)
-           Also: Finset.sum_le_sum, Finset.filter_subset, pow_add,
+           Also: Finset.sum_le_sum, pow_add, pow_nonneg, mul_le_mul,
            Nat.sub_add_cancel, Nat.mul_le_mul_right, mul_le_mul_of_nonneg_left,
            Nat.zero_le, le_trans, omega.
 Module.    Stage3/WeilPowerClean.lean, namespace WeilPowerClean, importing
            Stage3.Statement only (this block touches no rung module); pins:
            blocked_card_le, exists_unblocked, exists_clean_shell,
            exists_clean_shell_of_count. Built under the relay (LOOP.md § 4b),
-           loop version 16.
+           at whatever `version:` line LOOP.md carries when the run starts.
 Open.      the leaf. 13i names `StmtShortCount` with its constant `c₁` and
            derives it from `ArgCrude.StmtSCrude`, then instantiates `B j` from
            13f and 13g so that `hB` is discharged rather than assumed.

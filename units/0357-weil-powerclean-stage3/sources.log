@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-09-07T23:00:48Z
+# unit: 0357-weil-powerclean-stage3
+# sources searched: 878
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:166893
+  Source: session transcript, 2026-09-07, the third module under the relay
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:166673
+  theorem blocked_card_le {a ρ lo hi d : ℝ} {W : ℕ} (B : Finset ℕ)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:166674
+  (hρ : 1 ≤ ρ) (hlo : 0 < lo) (hW : hi < lo * ρ ^ (W + 1))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:166675
+  (hB : ∀ k ∈ B, lo ≤ d * (a * ρ ^ k) ∧ d * (a * ρ ^ k) ≤ hi) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:166689
+  theorem exists_unblocked {ι : Type*} [DecidableEq ι] (S : Finset ι)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:166691
+  (hB : ∀ j ∈ S, (B j).card ≤ W) (hK : S.card * W < K) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:166849
+  ∃ k, k < K ∧ ∀ j ∈ S, k ∉ B j := by
+
+# 7 found, 0 missing
