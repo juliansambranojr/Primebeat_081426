@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-06 · block 13d, the geometric sum and the harmonic correction (Opus run)
+
+    DONE        WeilPowerGeom.lean committed by the agent with its unit: the
+                geometric sum bounded independently of the range length, the
+                correction sum bounded by a logarithm
+    ASSUMED     u is an abstract sequence with 13c's bracket as hypothesis
+                R6, so the module does not import WeilPowerSigma; Jordan's
+                inequality is Mathlib's Real.mul_le_sin; geom_sum_Ico is
+                absent on this Mathlib and the block says so
+    DEPENDS     nothing
+    OUT         reading z and Mab at the shell (13e); the on-line and
+                suppressed sums with the same weights (13e/f)
+
 ### 2026-09-06 · rung 5 from the worksheet, section 7 onward
 
     DONE        StmtDetect ε T L proved with L explicit, through the modules

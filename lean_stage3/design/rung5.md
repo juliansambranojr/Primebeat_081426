@@ -378,6 +378,58 @@ Open.      none; the next block (13d) is the geometric sum
            `|Σ_{m∈Ico a b} exp(z(m+½)/π²)| ≤ (|r|^a + |r|^b)/(e^{Re z/π²}|sin(Im z/π²)|)`
            and the harmonic bound on `Σ r(m)`.
 
+### 13d The geometric sum and the harmonic correction — SKETCH
+Objects.   `z ∈ ℂ` (in use `z = 2(ζ² − ε²)`, `ζ = ε' + iΔ`, so `Im z = 4ε'Δ`
+           and `|Re z| ≤ η`, both small); `ρ = exp(z/π²)`; a sequence
+           `u : ℕ → ℝ` within `[0, 1/(π²(4m+6))]` above `(m+½)/π²` (13c's
+           `u`); the two sums over `m ∈ Ico a b`:
+           `G = Σ exp(z(m+½)/π²) = exp(z/(2π²))·Σ ρ^m` and `U = Σ exp(z·u m)`.
+Sizes.     `‖G‖ ≤ (e^{Re z(a+½)/π²} + e^{Re z(b+½)/π²}) / ‖1 − ρ‖` and
+           `‖1 − ρ‖ ≥ |Im ρ| = e^{Re z/π²} sin(Im z/π²) ≥ e^{Re z/π²}·2 Im z/π³`
+           (Jordan, `Im z/π² ≤ π/2`): independent of `b − a`, size
+           `π³/(2·4ε'Δ)`, the averaging gain against the target's `b − a`.
+           `U − G = Σ exp(z(m+½)/π²)(exp(z r_m) − 1)`, `‖exp(z r_m) − 1‖ ≤ 2‖z‖ r_m`
+           when `‖z‖ r_m ≤ 1`, and `Σ_{Ico a b} r_m ≤ Σ 1/(π²(4m+6))
+           ≤ (log b − log a)/(4π²)`: logarithmic in the range. Lost factor:
+           none; the log is the price of `r = O(1/m)`.
+Regime.    R1 `0 < z.im`;  R2 `z.im ≤ π³/2` (so `z.im/π² ≤ π/2`);
+           R3 `1 ≤ a`;  R4 `a ≤ b`;  R5 `‖z‖ ≤ π²(4a+6)`;
+           R6 `∀ m, 0 ≤ u m − (m+½)/π² ∧ u m − (m+½)/π² ≤ 1/(π²(4m+6))`.
+Defs.      `Mab z a b = max (exp(z.re(a+½)/π²)) (exp(z.re(b+½)/π²))`;
+           `geomBound z a b = (exp(z.re(a+½)/π²) + exp(z.re(b+½)/π²)) · π³ / (2·exp(z.re/π²)·z.im)`.
+Theorems.  norm_one_sub_exp_ge — none — `exp(ζ.re)·|sin ζ.im| ≤ ‖1 − exp ζ‖`
+             (via `|Im(1 − exp ζ)| ≤ ‖1 − exp ζ‖`, `Complex.exp_im`).
+           sin_im_ge — R1, R2 — `2·z.im/π³ ≤ sin(z.im/π²)`  (`Real.mul_le_sin`).
+           rho_ne_one — R1, R2 — `exp(z/π²) ≠ 1`  (from the two above: `‖1 − ρ‖ > 0`).
+           exp_shift — none — `exp(z(m+½)/π²) = exp(z/(2π²)) · exp(z/π²)^m`
+             (`Complex.exp_nat_mul`, `Complex.exp_add`).
+           geom_Ico — `ρ ≠ 1`, R4 — `Σ_{Ico a b} ρ^m = (ρ^b − ρ^a)/(ρ − 1)`
+             (`geom_sum_eq` on `range b` and `range a`, `Finset.sum_Ico_eq_sub`).
+           norm_geom_le — R1, R2, R4 — `‖G‖ ≤ geomBound z a b`.
+           exp_lin_le_Mab — R4, `a ≤ m`, `m ≤ b` — `exp(z.re(m+½)/π²) ≤ Mab z a b`
+             (linear in `m`, so at an endpoint; case on the sign of `z.re`).
+           log_step — `1 ≤ m` — `1/((m:ℝ)+1) ≤ log(m+1) − log m`
+             (`Real.log_le_sub_one_of_pos` at `m/(m+1)`, `Real.log_div`).
+           log_telescope — R3, R4 — `Σ_{Ico a b} 1/((m:ℝ)+1) ≤ log b − log a`
+             (induction on `b` with `Finset.sum_Ico_succ_top`).
+           harmonic_quarter — R3, R4 — `Σ_{Ico a b} 1/(π²(4m+6)) ≤ (log b − log a)/(4π²)`.
+           norm_corr_le — R3, R5, R6, `a ≤ m` — `‖exp(z·u m) − exp(z(m+½)/π²)‖
+             ≤ exp(z.re(m+½)/π²) · 2‖z‖ · (u m − (m+½)/π²)`
+             (`exp(z u) = exp(z(m+½)/π²)·exp(z r)`, `Complex.norm_exp_sub_one_le`).
+           norm_sum_exp_u_le — R1–R6 — `‖U‖ ≤ geomBound z a b
+             + 2‖z‖ · Mab z a b · (log b − log a)/(4π²)`.
+Composes.  Complex.exp_im, Complex.abs_im_le_norm, Complex.norm_exp,
+           Complex.exp_nat_mul, Complex.exp_add, Real.mul_le_sin,
+           geom_sum_eq, Finset.sum_Ico_eq_sub, Finset.sum_Ico_succ_top,
+           Real.log_le_sub_one_of_pos, Real.log_div, Real.log_inv,
+           Complex.norm_exp_sub_one_le, norm_sum_le, Finset.sum_le_sum,
+           Nat.le_induction. (There is no `geom_sum_Ico` on this Mathlib.)
+Module.    Stage3/WeilPowerGeom.lean, namespace WeilPowerGeom; pins:
+           norm_one_sub_exp_ge, norm_geom_le, log_telescope, norm_sum_exp_u_le.
+Open.      none; the next block (13e) reads `z`, `Mab` and the regime at
+           the shell: `Im z = 4ε'Δ`, `|Re z| ≤ η`, `Mab ≤ e^{K'}`, and
+           traces `q ≤ 1/(N e^{K'})` to `h` and `λ`.
+
 (c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.
