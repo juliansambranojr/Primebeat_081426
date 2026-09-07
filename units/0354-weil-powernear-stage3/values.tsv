@@ -1,0 +1,44 @@
+key	value	source
+module_lines	236	wc -l lean_stage3/Stage3/WeilPowerNear.lean
+theorems_proved	9	grep -c ^theorem lean_stage3/Stage3/WeilPowerNear.lean
+defs	0	grep -c ^def lean_stage3/Stage3/WeilPowerNear.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerNear.lean
+pins	4	bracket_nonneg, term_nonneg, shellSum_nonneg, shellSum_nonneg_abs
+errors_first	5	first lake build Stage3.WeilPowerNear
+roots	1	the single root cause of the first build, the nlinarith in bracket_nonneg
+jobs_package	8762	lake build (full Stage3)
+jobs_module	8669	run/build.log, lake build Stage3.WeilPowerNear
+loop_version	16	lean_stage3/LOOP.md version line
+design	rung5.md#13g	the near members' sign
+rung	5	detection ladder rung
+slice	17	seventeenth module of the switched-window ladder
+section	13	worksheet section this module is built from
+traps_added	1	lean_stage3/TRAPS.md row 29
+row_new	29	lean_stage3/TRAPS.md row 29, the hint-fed nlinarith burying a linear certificate
+row_cascade	19	lean_stage3/TRAPS.md row 19, the #print axioms pins reading sorryAx
+sorries_first	1	the builder's report: one sorry at the first-pass stop, bracket_nonneg
+pins_cascade	4	the four pins reading sorryAx on the first build, TRAPS row 19
+foreman_edits	1	the foreman's pass: one edit to WeilPowerNear.lean, the key identity
+foreman_builds	1	the foreman's pass: one lake build, clean
+tokens_first	104519	harness usage line at the builder's first stop
+calls_first	22	harness usage line at the builder's first stop
+minutes_first	9	harness usage line at the builder's first stop, 522512 ms
+tokens_end	114479	harness usage line at the builder's second stop, cumulative
+calls_second	12	harness usage line at the builder's second stop
+minutes_second	2	harness usage line at the builder's second stop, 130243 ms
+tokens_13f	177604	units/0352-weil-powershell-stage3/values.tsv tokens_end
+theorems_13f	15	units/0352-weil-powershell-stage3/values.tsv theorems_proved
+tokens_13e	138681	units/0352-weil-powershell-stage3/values.tsv tokens_13e
+theorems_13e	9	units/0350-weil-powergeomgen-stage3/values.tsv theorems_proved
+per_13e	15.4	138681 / 9 / 1000
+per_13f	11.8	177604 / 15 / 1000
+per_13g	12.7	114479 / 9 / 1000
+saving_vs_13e	17	1 - 114479/138681 = 0.175, as percent
+words_old	1847	units/0353-loop-v16-commands-and-checks/values.tsv words_old
+words_new	840	units/0353-loop-v16-commands-and-checks/values.tsv words_new
+loop_next	17	lean_stage3/LOOP.md version after this run's retrospective
+unit_shell	0352	WeilPowerShell, block 13f
+unit_phase	0347	WeilPowerPhase, re_A_sq
+unit_ulam	0350	WeilPowerGeomGen, uLam_bracket
+unit_decision	0351	section 13 dies on size at the shell

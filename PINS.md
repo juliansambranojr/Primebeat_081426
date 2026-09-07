@@ -35,6 +35,8 @@ below with their outcome.
     OUT         sharp constants; the old-window modules; porting; anything
                 on the prime side beyond the probe already run
 
+## Archive
+
 ### 2026-09-07 · block 13g, WeilPowerNear, under the relay at loop v16
 
     DONE        the four pinned theorems of rung5.md#13g built and committed
@@ -47,8 +49,12 @@ below with their outcome.
     DEPENDS     nothing from Julian; 0351 stands
     OUT         the shell between 13g's boundary and 13f's; the tight count;
                 the assembly; any second attempt by the builder
+    OUTCOME     PROVED, unit 0354, commit with the module; one sorry at the
+                first stop (bracket_nonneg, linarith's atoms), closed by the
+                foreman in two edits, two builds; builder 104519 + 9960
+                tokens, 34 calls; the block's Lean statements were copied,
+                no shape reading
 
-## Archive
 
 ### 2026-09-06 · block 13f, WeilPowerShell, under the relay
 

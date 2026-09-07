@@ -615,7 +615,8 @@ Arithmetic checked here: `geomBoundGen = (E_a + E_b)π/(2e^{z.re α}·z.im·α)`
 = 2(ε'²+Δ²+ε²)M(log b − log a)/(λ³π²)`; `4ε'Δ ≤ 1` at `ε', Δ ≤ 1/2`;
 `(3/2)/(2π²) < 1/12 < 1`; `1/π² < 1/9 < 3/2 < π/2`.
 
-### 13g The near members' sign — SKETCH
+### 13g The near members' sign — PROVED (unit 0354: `WeilPowerNear.term_nonneg`,
+`shellSum_nonneg`, `shellSum_nonneg_abs`, `bracket_nonneg`)
 Objects.   A member at `ζ = ε' + iΔ` with `0 < Δ < ε'`, phase over the range
            under `π/2`. From unit 0352's objects, the weighted term's real part
            is `e^{z.re·u}/ε² · ((ε'² − Δ²) cos θ − 2ε'Δ sin θ)` with `θ = 4ε'Δ·u`

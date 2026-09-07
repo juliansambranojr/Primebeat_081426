@@ -1,6 +1,6 @@
 # The design loop
 
-version: 8
+version: 9
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -60,6 +60,11 @@ in angle brackets; delete a line only when it has nothing to say.
       multiplies pairs). A Composes entry is the name that resolves, without a
       `to_additive` aside when the additive name has its own `theorem` line
       (unit 0352: `Finset.sum_congr`).
+- [ ] A hint that ends in `linarith` or `nlinarith` on hypotheses carrying a
+      division names the `ring` identity that lines the atoms up: linarith
+      takes each product as one atom (unit 0354: the run's one `sorry`). A
+      step the hint states as a consequence ("`θ ≤ π/2` from N2") names the
+      inequality that clears the denominator.
 
 ## 3. The brief
 

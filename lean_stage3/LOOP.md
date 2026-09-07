@@ -1,6 +1,6 @@
 # The module loop
 
-version: 16
+version: 17
 
 One Stage-3 module, from block to commit. Commands in order. The checkers
 behind them refuse what is skipped (`utilities/check_lean_unit.py`, the
@@ -81,8 +81,9 @@ pin; where the block or this loop was unclear. Wait for the signal.
 
 Foreman: replace every `sorry`, build clean, signal "done, resume at § 5".
 
-Builder, same context: § 5 and the scaffold half of § 6 (`values.tsv`,
-`run/`). Stop with the unit path and the counts.
+Builder, same context: delete `Stage3/Scratch.lean`, then § 5 and the
+scaffold half of § 6 (`values.tsv`, `run/`). Stop with the unit path and
+the counts.
 
 Foreman: `unit.md`, `question.md`, the checkers, the commit, § 7.
 

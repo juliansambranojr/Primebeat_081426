@@ -1,0 +1,53 @@
+# check_prose_source.py  2026-09-07T08:00:04Z
+# unit: 0354-weil-powernear-stage3
+# sources searched: 876
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162706
+  Source: session transcript, 2026-09-07, the second module under the relay, the first at loop version...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162218
+  theorem bracket_nonneg {e' D θ : ℝ} (h1 : 0 < e') (h3 : 0 < D) (hD : D < e')
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162219
+  (hθ : θ * (2 * e' * D + 2 * (e' ^ 2 - D ^ 2) / Real.pi) ≤ e' ^ 2 - D ^ 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162672
+  0 ≤ (e' ^ 2 - D ^ 2) * Real.cos θ - 2 * e' * D * Real.sin θ := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162242
+  theorem term_nonneg {e' D e : ℝ} {lam h b : ℕ} (h1 : 0 < e') (h3 : 0 < D)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162243
+  (hD : D < e') (h5 : 0 < e) (hl : 1 ≤ lam) (hh : 1 ≤ h) (hhb : h ≤ b)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162244
+  (hN : 4 * e' * D * ((b : ℝ) / ((lam : ℝ) * Real.pi ^ 2))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162219
+  * (2 * e' * D + 2 * (e' ^ 2 - D ^ 2) / Real.pi) ≤ e' ^ 2 - D ^ 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162246
+  0 ≤ (WeilPowerShell.coef e' D e
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162227
+  * Complex.exp (WeilPowerShell.zOf e' D e
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162684
+  * ((WeilPowerGeomGen.uLam lam h : ℝ) : ℂ))).re := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162253
+  theorem shellSum_nonneg {e' D e : ℝ} {lam a b : ℕ} (h1 : 0 < e') (h3 : 0 < D)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162254
+  (hD : D < e') (h5 : 0 < e) (hl : 1 ≤ lam) (ha : 1 ≤ a)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162244
+  (hN : 4 * e' * D * ((b : ℝ) / ((lam : ℝ) * Real.pi ^ 2))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162219
+  * (2 * e' * D + 2 * (e' ^ 2 - D ^ 2) / Real.pi) ≤ e' ^ 2 - D ^ 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162677
+  0 ≤ WeilPowerShell.shellSum e' D e lam a b := by
+
+# 16 found, 0 missing

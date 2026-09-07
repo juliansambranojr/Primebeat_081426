@@ -5,7 +5,8 @@ that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 2026-09-06, units 0329–0335; rows 13–17 come from CLAUDE.md § Stage-3;
 rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, rows 22–23 by unit 0347, the
 orchestrator's own runs of the loop; row 24 by unit 0349; rows 25-28 by
-unit 0352, the first module built under the relay (LOOP.md 4b).
+unit 0352, the first module built under the relay (LOOP.md 4b); row 29 by
+unit 0354.
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -37,6 +38,7 @@ unit 0352, the first module built under the relay (LOOP.md 4b).
 | 26 | `Complex.re_sum f` reports a type mismatch whose actual type is `∀ (f : α → ℂ), …` | the `Finset` is a section `variable` and is the first explicit argument, though it appears only in the conclusion | write `Complex.re_sum s f`, or use it as a rewrite: `rw [Complex.re_sum]` |
 | 27 | `neg_le_of_abs_le h` rejects `h : |z.re| ≤ ‖z‖` "but is expected to have type `|‖z‖| ≤ z.re`" | the goal `-z.re ≤ ‖z‖` unified with the conclusion `-b ≤ a` the other way round (row 16's family, at a non-dotted lemma) | name the intermediate: `have h1 : -‖z‖ ≤ z.re := neg_le_of_abs_le (Complex.abs_re_le_norm z)`, then `linarith`/`nlinarith` |
 | 28 | `nlinarith` fails on `x * y * L ≤ X * Y * L` with `x ≤ X`, `y ≤ Y`, `0 ≤ L`, `0 ≤ x`, `0 < y` all in the hint list | the conclusion is a product of three bounded factors and `nlinarith` multiplies hypothesis pairs, not triples | chain it factorwise, `mul_le_mul` for `x*y ≤ X*Y` and then `mul_le_mul_of_nonneg_right … hlog` (unit 0352's one `sorry`, closed by the foreman with exactly this chain) |
+| 29 | `nlinarith [h1, h2]` reports `linarith failed to find a contradiction` on a goal whose certificate is the plain sum `h1 + h2 + h3` of hypotheses already in the context | row 14's family at the hint-fed form: the context also carries derived facts mixing `Real.pi` and `Real.pi⁻¹` monomials (here `hmul`, `hexp`, `hstep`, `hθpi` beside the three that matter), and the products `nlinarith` adds over them bury the linear certificate | `linarith [h1, h2, h3]` alone fails too, because linarith takes each product as one atom; name the rearrangement as its own identity, `have key : (e'^2 - D^2) * (1 - 2*θ/Real.pi) - 2*e'*D*θ = (e'^2 - D^2) - θ * (2*e'*D + 2*(e'^2 - D^2)/Real.pi) := by ring`, then `linarith [h1, h2, h3, key]` (unit 0354's one `sorry`, `WeilPowerNear.bracket_nonneg`, closed by the foreman with exactly this) |
 
 ## Bench and gate traps
 
