@@ -516,6 +516,104 @@ Open.      none; 13f reads `z = 2(ζ² − ε²)`, `α = 1/(λπ²)`, `c = 1/(2�
            `|Σ_h Re((ζ²/ε²) exp(z·uLam λ h))|` by explicit constants in
            `ε, ε', Δ, η, K', λ, a, b`.
 
+### 13f One shell member's weighted sum, explicit — SKETCH
+Objects.   The member at `ζ = ε' + iΔ`, the target at `ε`, the window
+           `m + 1 = λh`. Its weighted principal term at `h` is
+           `coef · exp(z · uLam λ h)` with `coef = ζ²/ε²`, `z = 2(ζ² − ε²)`
+           (unit 0347's `re_S_sq_ge` divided by the target's
+           `c²ε²h²e^{2ε²h²σ}`; `h²σ(λh−1) = uLam λ h`, unit 0350).
+           `z.re = 2(ε'² − Δ² − ε²)`, `z.im = 4ε'Δ`, `‖z‖ ≤ 2(ε'² + Δ² + ε²)`,
+           `‖coef‖ = (ε'² + Δ²)/ε²`. Block 13e's bound applies with
+           `α = 1/(λπ²)`, `β₀ = −1/(2λ²π²)`, `c = 1/(2λ³π²)`, `u = uLam λ`,
+           except that its G7 quantifies over every `k` including `0`,
+           where `uLam λ 0 = 0` and the bracket fails for `λ ≥ 2`; the sum
+           runs over `h ≥ a ≥ 1`, so `u` is patched at `0` to the affine
+           value (`uSh`) and the two sums agree termwise.
+Sizes.     With `ε', Δ, ε ≤ 1/2`: `‖z‖ ≤ 3/2`, `e^{‖z‖α} ≤ e^{3/(2π²)} < 1.17`,
+           the endpoint factor `MabGen ≤ M := e^{2ηb/(λπ²)}` (with
+           `ε'² − Δ² − ε² ≤ η`, and `≤ 1` when `z.re < 0`), so the geometric
+           part is at most `1.17·λπ³/(4ε'Δ)·M ≈ 9λM/(ε'Δ)` and the correction
+           at most `(3/2)·M·log(b/a)/(λ³π²)`, both times `(ε'²+Δ²)/ε²`.
+           Lost factor: none in `h` or `b`; the `1/Δ` is the geometric price,
+           and the shell below `Δ ≈ λ/(εX)` where this bound is useless is
+           unit 0351's finding, handled there by the tight count, never here.
+Regime.    R1 `0 < ε'`;  R2 `ε' ≤ 1/2`;  R3 `0 < Δ`;  R4 `Δ ≤ 1/2`;  R5 `0 < ε`;
+           R6 `ε ≤ 1/2`;  R7 `ε'² − Δ² − ε² ≤ η`;  R8 `0 ≤ η`;  L1 `1 ≤ λ` (ℕ);
+           G4 `1 ≤ a` (ℕ);  G5 `a ≤ b` (ℕ).
+Defs.      `zOf ε' Δ ε : ℂ = 2 * (((ε':ℂ) + I * Δ)^2 − (ε:ℂ)^2)`;
+           `coef ε' Δ ε : ℂ = ((ε':ℂ) + I * Δ)^2 / (ε:ℂ)^2`;
+           `uSh (λ k : ℕ) : ℝ = if k = 0 then −1/(2λ²π²) else WeilPowerGeomGen.uLam λ k`;
+           `shellSum ε' Δ ε λ a b : ℝ = Σ_{h ∈ Ico a b} (coef * exp(zOf * (uLam λ h : ℂ))).re`.
+Theorems.  zOf_re — none — `(zOf ε' Δ ε).re = 2(ε'² − Δ² − ε²)`  (`Complex.mul_re`, simp).
+           zOf_im — none — `(zOf ε' Δ ε).im = 4ε'Δ`.
+           norm_zOf_le — none — `‖zOf ε' Δ ε‖ ≤ 2(ε'² + Δ² + ε²)`
+             (`norm_mul`, `norm_sub_le`, `Complex.norm_pow`, `Complex.sq_norm` with
+             `Complex.normSq_apply` for `‖ε' + IΔ‖² = ε'² + Δ²`).
+           norm_coef — none — `‖coef ε' Δ ε‖ = (ε'² + Δ²)/ε²`  (`Complex.norm_div`, same square).
+           uSh_bracket — L1 — `∀ k, 0 ≤ uSh λ k − ((k:ℝ)/(λπ²) − 1/(2λ²π²))
+             ∧ uSh λ k − (…) ≤ 1/(2λ³π²)/((k:ℝ)+1)`
+             (`k = 0`: both sides by `simp`, positivity; `k ≥ 1`: `uLam_bracket`).
+           sum_uSh_eq — G4 — `Σ_{Ico a b} coef * exp(zOf * (uLam λ h:ℂ))
+             = Σ_{Ico a b} coef * exp(zOf * (uSh λ h:ℂ))`
+             (`Finset.sum_congr rfl`, `Finset.mem_Ico`, `h ≠ 0` from `1 ≤ a ≤ h`, `if_neg`).
+           im_alpha_le — R1, R2, R3, R4, L1 — `(zOf ε' Δ ε).im * (1/(λπ²)) ≤ π/2`
+             (`4ε'Δ ≤ 1`; `1/(λπ²) ≤ 1/π²`; `1/π² ≤ π/2` from `Real.pi_gt_three`).
+           norm_zOf_c_le — R1–R6, L1 — `∀ a : ℕ, ‖zOf ε' Δ ε‖ * (1/(2λ³π²)) ≤ (a:ℝ) + 1`
+             (`‖z‖ ≤ 3/2`, `1/(2λ³π²) ≤ 1/18`, product under `1`).
+           exp_end_le — R7, R8, L1, G4, `a ≤ h`, `h ≤ b` —
+             `exp((zOf).re * ((1/(λπ²)) * h + (−1/(2λ²π²)))) ≤ exp(2ηb/(λπ²))`
+             (cases on the sign of `z.re`: `z.re ≥ 0` uses `z.re ≤ 2η` from R7 and
+             `0 ≤ αh + β₀ ≤ αb` from `2λh ≥ 1` and `h ≤ b`; `z.re < 0` uses
+             `αh + β₀ ≥ 0` so the exponent is `≤ 0 ≤ 2ηb/(λπ²)`; `Real.exp_le_exp`).
+           MabGen_le — R7, R8, L1, G4, G5 —
+             `MabGen (zOf) (1/(λπ²)) (−1/(2λ²π²)) a b ≤ exp(2ηb/(λπ²))`  (`max_le`, exp_end_le twice).
+           inv_exp_le — none — `1 / exp((zOf).re * (1/(λπ²))) ≤ exp(2(ε'²+Δ²+ε²) * (1/(λπ²)))`
+             (`Real.exp_neg`, `Complex.abs_re_le_norm`, norm_zOf_le, `Real.exp_le_exp`;
+             `0 ≤ 1/(λπ²)` for any `λ : ℕ`).
+           geomBound_le — R1, R3, R7, R8, L1, G4, G5 —
+             `geomBoundGen (zOf) (1/(λπ²)) (−1/(2λ²π²)) a b
+              ≤ exp(2ηb/(λπ²)) * λ * π³ * exp(2(ε'²+Δ²+ε²) * (1/(λπ²))) / (4ε'Δ)`
+             (unfold; `zOf_im`; numerator `≤ 2Mπ` by exp_end_le at `a` and `b` with
+             `div_le_div_of_nonneg_right`, denominator `2e^{z.re α}·4ε'Δ/(λπ²) > 0` from
+             R1, R3, L1; then `2Mπ/(8ε'Δe^{z.re α}/(λπ²)) = Mλπ³·(1/e^{z.re α})/(4ε'Δ)` by
+             `field_simp`/`ring`, and inv_exp_le with `mul_le_mul_of_nonneg_left`).
+           shellSum_le — R1–R8, L1, G4, G5 —
+             `|shellSum ε' Δ ε λ a b| ≤ ((ε'²+Δ²)/ε²) * exp(2ηb/(λπ²))
+              * (λ * π³ * exp(2(ε'²+Δ²+ε²) * (1/(λπ²))) / (4ε'Δ)
+                 + 2(ε'²+Δ²+ε²) * (log b − log a) / (λ³π²))`
+             (`Complex.re_sum` backwards, `Complex.abs_re_le_norm`, `Finset.mul_sum`
+             backwards and `norm_mul`, norm_coef, sum_uSh_eq, then
+             `WeilPowerGeomGen.norm_sum_exp_u_le_gen` at `u = uSh λ` with `hα` from L1,
+             `hz1` from zOf_im with R1 R3, `hz3` = im_alpha_le, `hzc` = norm_zOf_c_le,
+             `hu` = uSh_bracket; then geomBound_le, MabGen_le, norm_zOf_le, and
+             `0 ≤ log b − log a` from `Real.log_le_log` with `0 < a ≤ b`).
+           shellSum_neg — none — `shellSum ε' (−Δ) ε λ a b = shellSum ε' Δ ε λ a b`
+             (termwise: `coef ε' (−Δ) ε = conj (coef ε' Δ ε)` and the same for `zOf`, by
+             `map_div₀`, `map_pow`, `map_sub`, `map_mul`, `Complex.conj_ofReal`,
+             `Complex.conj_I`; `Complex.exp_conj`; `Complex.conj_re`).
+           shellSum_le_abs — R1, R2, `Δ ≠ 0`, `|Δ| ≤ 1/2`, R5–R8, L1, G4, G5 — the bound of
+             shellSum_le with `|Δ|` in place of `Δ` (cases on the sign of `Δ`; the
+             negative case through shellSum_neg; the `abs` lemmas are the executor's
+             under LOOP.md § 2; R7 is even in `Δ`).
+Composes.  WeilPowerGeomGen.norm_sum_exp_u_le_gen, WeilPowerGeomGen.uLam_bracket,
+           WeilPowerGeomGen.uLam, WeilPowerGeomGen.MabGen, WeilPowerGeomGen.geomBoundGen,
+           Complex.re_sum, Complex.abs_re_le_norm, Complex.sq_norm, Complex.normSq_apply,
+           Complex.norm_div, Complex.norm_pow, Complex.norm_exp, Complex.exp_conj,
+           Complex.conj_re, Complex.conj_ofReal, Complex.conj_I, Finset.mul_sum (a `lemma`),
+           Finset.prod_congr (`sum_congr` by `to_additive`), Finset.mem_Ico,
+           Real.exp_le_exp, Real.exp_neg, Real.exp_pos, Real.log_le_log (a `lemma`),
+           Real.pi_gt_three, norm_sum_le, div_le_div_of_nonneg_right (a `lemma`).
+Module.    Stage3/WeilPowerShell.lean, namespace WeilPowerShell, importing
+           WeilPowerGeomGen; pins: shellSum_le, shellSum_le_abs, geomBound_le,
+           uSh_bracket. Built under the relay (LOOP.md § 4b), the first module so built.
+Open.      none in this block; the assembly's use of it needs the tight count
+           (unit 0351) for the members below `Δ ≈ λ/(εX)`.
+Arithmetic checked here: `geomBoundGen = (E_a + E_b)π/(2e^{z.re α}·z.im·α)` with
+`z.im·α = 4ε'Δ/(λπ²)`; `(2Mπ)·(λπ²)/(8ε'Δe^{z.re α}) = Mλπ³/(4ε'Δe^{z.re α})`;
+`2‖z‖·c·M·(log b − log a) ≤ 2·2(ε'²+Δ²+ε²)·M·(log b − log a)/(2λ³π²)
+= 2(ε'²+Δ²+ε²)M(log b − log a)/(λ³π²)`; `4ε'Δ ≤ 1` at `ε', Δ ≤ 1/2`;
+`(3/2)/(2π²) < 1/12 < 1`; `1/π² < 1/9 < 3/2 < π/2`.
+
 (c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.

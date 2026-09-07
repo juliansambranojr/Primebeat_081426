@@ -35,6 +35,21 @@ below with their outcome.
     OUT         sharp constants; the old-window modules; porting; anything
                 on the prime side beyond the probe already run
 
+### 2026-09-06 · block 13f, WeilPowerShell, under the relay
+
+    DONE        the four pinned theorems of rung5.md#13f built and committed
+                with unit 0352; Opus lays the module and stops at the first
+                build, I finish the sorrys, Opus resumes for counts and the
+                unit scaffold, I write the prose and commit
+    ASSUMED     13e's G7 at k = 0 is the only gap in composing
+                norm_sum_exp_u_le_gen, closed by uSh; the relay's two
+                reports carry errors_first and the counts; the run is the
+                measure of the relay against runs 13c–13e
+    DEPENDS     nothing from Julian; the finding of unit 0351 stands and
+                this block is the far-member bound any variant needs
+    OUT         the shell below Δ ≈ λ/(εX); the tight count leaf; the
+                assembly; any second attempt by the builder on a proof
+
 ## Archive
 
 ### 2026-09-06 · block 13e, the geometric bound with a free slope and uLam (Opus run)

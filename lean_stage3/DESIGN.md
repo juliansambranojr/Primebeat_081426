@@ -1,6 +1,6 @@
 # The design loop
 
-version: 5
+version: 6
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -80,6 +80,25 @@ Fixed text; fill the brackets. Nothing else goes in.
     block or the loop was unclear or wrong.
 
 The agent tier is Opus until a run says otherwise.
+
+Relay variant (LOOP.md § 4b, from unit 0352): the first paragraph of the
+brief ends with "under the relay of LOOP.md § 4b: stop after the first
+build with the report it names and wait for the signal; a proof that does
+not close on one try is a `sorry` with its goal in a comment, never a
+second attempt." The report paragraph is replaced by § 4b's two reports.
+The agent is spawned in the foreground and resumed with SendMessage, so
+its context survives between the two passes.
+
+## 3b. The foreman's pass
+
+Between the builder's two reports the orchestrator opens the module,
+replaces each `sorry` from the block's proof idea, builds with the § 4
+command until clean, and signals. Then writes `unit.md` and `question.md`
+(LOOP.md § 6), runs `check_prose_source.py`, `lab check` and
+`check_lean_unit.py` in one call, commits in a separate call, and does the
+retrospective from the two reports. The block's prose is the foreman's,
+the counts are the builder's: never retype a count the builder reported;
+read it from `values.tsv`.
 
 ## 4. The check, after the run
 

@@ -1,6 +1,6 @@
 # The module loop
 
-version: 13
+version: 14
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -141,6 +141,27 @@ inside it: a failed proof costs its own error and one more for every pin
 that reads it (`TRAPS.md` row 19). Warnings are not errors and the § 4
 filter does not remove them; an unused binder in a statement is
 `TRAPS.md` row 20 and is fixed before the counts are taken.
+
+## 4b. The relay: builder stops, foreman finishes, builder resumes
+
+When the brief says relay (unit 0352 onward), the module is a relay on
+one file. The builder does § 0 to § 4 once: header, statements from the
+block's Theorems lines, the scratch pass, the `field_simp` grep, one build.
+Each proof is tried once from the block's hint; one that does not close
+on that try becomes `sorry` with a one-line comment naming the goal state.
+No second attempt. Record `errors_first` from that build, run the § 4
+command once more so the file builds with its `sorry`s, and stop with a
+report: the file, the list of `sorry` lines with their goals, errors_first
+and its root causes, TRAPS rows hit. Then wait for the signal.
+
+The foreman (the orchestrator) replaces every `sorry`, builds, and sends
+the signal: "done, resume at § 5". The builder resumes in the same
+context, never a fresh spawn, and runs § 5 and the mechanical half of § 6:
+`lab new`, `run/run.sh`, `run/build.log`, `values.tsv` with the counts, the
+`design` and `loop_version` rows. It stops again with the unit path and the
+counts. The foreman writes `unit.md` and `question.md`, runs the three
+checkers, commits, and does § 7 from the builder's two reports. The
+builder never reads the block a second time and never checks its own work.
 
 ## 5. Import, full build, counts, log
 
