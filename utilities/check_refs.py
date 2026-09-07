@@ -70,7 +70,14 @@ for f in LEAN.glob("*.lean"):
     for m in re.finditer(r"^(?:theorem|def|noncomputable def)\s+([A-Za-z_][\w']*)", src, re.M):
         decls.add(f"{ns}.{m.group(1)}")
         decls.add(f"{f.stem}.{m.group(1)}")
-files = {p.name for p in ROOT.rglob("*") if p.is_file()}
+# The repo's own files, by bare name. Dot-directories are excluded: a
+# virtual environment's site-packages ships thousands of common module
+# names, and before this exclusion a prose citation to `operator.py`
+# resolved against `.venv/.../connes_cvs/operator.py` and
+# `.venv-torch/.../torch/_dynamo/polyfills/operator.py`, so a genuinely
+# absent script read as present (found 2026-09-07, unit 0356).
+files = {p.name for p in ROOT.rglob("*")
+         if p.is_file() and not any(part.startswith(".") for part in p.relative_to(ROOT).parts[:-1])}
 
 ALLOW = [l.strip() for l in (ROOT / "utilities/refs_allowlist.txt").read_text().splitlines()
          if l.strip() and not l.startswith("#")] if (ROOT / "utilities/refs_allowlist.txt").exists() else []

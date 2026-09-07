@@ -1,0 +1,19 @@
+# Entries of refs_baseline.txt that resolve in Julian's working tree and
+# break on a clean clone. The pre-commit subtracts these before printing
+# its "fixed, trim the baseline" notice, so the notice means a reference
+# that is genuinely repaired.
+#
+# These seven point at the three O24 result JSONs, each over 25 MB and
+# excluded from the repository by filename in /.gitignore. They are not
+# deleted; results/LOCAL-ONLY.md carries their sizes, sha256s and the
+# committed run logs that hold the headline numbers. Do not trim them
+# from refs_baseline.txt: on any other clone they break again.
+#
+# Sorted, because the pre-commit feeds it to comm. Unit 0356.
+BROKEN  NOTEPAD.md  ->  results/O24_gen_xmax3e9_results.json
+BROKEN  NOTEPAD.md  ->  results/O24_gen_xmax3e9_results.json
+BROKEN  The-Four-Prime-Peak.md  ->  results/O24_gen_xmax3e9_results.json
+BROKEN  lab_notebook.md  ->  results/O24_gen_xmax1e9_results.json
+BROKEN  lab_notebook.md  ->  results/O24_gen_xmax1e9_results.json
+BROKEN  lab_notebook.md  ->  results/O24_gen_xmax3e9_results.json
+BROKEN  lab_notebook.md  ->  results/O24_gen_xmax3e9_results.json
