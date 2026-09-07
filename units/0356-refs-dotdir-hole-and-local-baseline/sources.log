@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-09-07T22:41:05Z
+# unit: 0356-refs-dotdir-hole-and-local-baseline
+# sources searched: 877
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:166270
+  Source: session transcript, 2026-09-07, after the new repo was pushed
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:165774
+  was there something i needed to do regarding the pre-commit
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:165944
+  so what do you need me to approve please paste the command line and i will do that in terminal so we...
+
+FOUND  session/4d0caf67-f72a-4554-a9cc-a363251155d9.jsonl:84907
+  files = {p.name for p in ROOT.rglob("*") if p.is_file()}
+
+FOUND  notes/lab_notebook_2.md:4345
+  `check_refs.py` reports 9 broken references, every one pointing
+
+FOUND  notes/lab_notebook_2.md:4346
+  at a `results/O24_gen_*` or `operator.py` artifact excluded by
+
+FOUND  notes/lab_notebook_2.md:4347
+  `.gitignore` (see `results/LOCAL-ONLY.md`); they resolve on a full
+
+# 7 found, 0 missing

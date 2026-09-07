@@ -1,0 +1,16 @@
+{
+ "broken_before": 0,
+ "broken_after": 3,
+ "baseline_lines": 10,
+ "local_only_lines": 7,
+ "operator_py_in_repo": 0,
+ "operator_py_in_venvs": 5,
+ "files_under_dot_dirs": 34465,
+ "files_in_tree": 274922,
+ "new_breakage_introduced": 0,
+ "notice_printed_after_fix": 0,
+ "venv_created": ".venv-torch on 2026-09-07 for unit 0355",
+ "older_venv": ".venv from 2026-08-14 carrying connes_cvs",
+ "o24_size_floor_mb": 25,
+ "files_changed": 2
+}
