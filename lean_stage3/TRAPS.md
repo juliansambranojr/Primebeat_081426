@@ -4,7 +4,7 @@ Error pattern, cause, fix. One row per class. Appended after any build
 that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 2026-09-06, units 0329–0335; rows 13–17 come from CLAUDE.md § Stage-3;
 rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, rows 22–23 by unit 0347, the
-orchestrator's own runs of the loop.
+orchestrator's own runs of the loop; row 24 by unit 0349.
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -31,6 +31,7 @@ orchestrator's own runs of the loop.
 | 21 | `field_simp` leaves `(1 - (m+2) * 0)`-type residue and the goal is not closed | a literal `- 0` or `* 0` inside the expression (here from a `Tendsto` limit at `0`) | `rw [sub_zero]` / `simp only [mul_zero, sub_zero]` before `field_simp` |
 | 22 | `Unknown identifier pow_le_pow_left` (or another order lemma without a subscript) | the lemma was renamed with a `₀` suffix on this Mathlib (`pow_le_pow_left₀`, `div_le_div_iff₀`, `inv_le_comm₀`) | add `₀`; grep the name first (LOOP § 2) |
 | 23 | `dsimp made no progress` after `filter_upwards … with n` | the goal is already beta-reduced; `filter_upwards` did it | drop the `dsimp only` |
+| 24 | `Unknown identifier le_or_lt`, then `Tactic rcases failed: x is not an inductive datatype` on the next line | the case-split lemma is `le_or_gt` on this Mathlib (`lt_or_ge` for the other order); one root shows as two error lines, the unknown name and the `rcases` left with a metavariable | `rcases le_or_gt 0 x with h | h`; grep the name first (LOOP § 2) |
 
 ## Bench and gate traps
 
@@ -74,6 +75,15 @@ Verified on v4.32.2 with Mathlib at the pin, 2026-09-06:
 `Nat.factorial_le_pow`, `Real.pi_lt_d2`, `Real.pi_gt_three`,
 `inv_le_comm₀`, `div_le_div_iff₀`, `div_le_iff₀`, `le_div_iff₀`,
 `intervalIntegral.integral_mul_deriv_eq_deriv_mul`.
+
+Added by unit 0349, same toolchain and pin: `geom_sum_Ico` (a `lemma`, so a
+`theorem`-only grep misses it), `Complex.div_ofReal_re`,
+`Complex.div_ofReal_im`, `Complex.ofReal_pow`, `Complex.abs_im_le_norm`,
+`Complex.exp_nat_mul`, `Real.exp_nat_mul`, `Real.mul_le_sin`,
+`Real.log_le_sub_one_of_pos`, `Real.log_div`, `Real.norm_eq_abs`,
+`le_or_gt`, `lt_or_ge`, `Finset.sum_add_distrib`, `mul_div_assoc'`,
+`div_mul_div_comm`, `norm_sub_le`, `norm_sub_rev`, `norm_pow`,
+`norm_add_le`, `Complex.exp_im`, `Complex.sub_im`.
 
 Added by unit 0341, same toolchain and pin: `Complex.sq_norm` (protected,
 `‖z‖ ^ 2 = normSq z`), `Complex.normSq_apply`, `Complex.mul_re`,

@@ -1,6 +1,6 @@
 # The module loop
 
-version: 11
+version: 12
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -79,6 +79,15 @@ the multiplicative name.
 
 A guessed name is an error on the first build, every time. Names that
 resolve on this toolchain are listed in `TRAPS.md` § Names.
+
+When the statements carry coercions — `(z / (π:ℂ)^2).re`, `((u m : ℝ) : ℂ)`,
+`‖(r : ℝ) : ℂ‖` — one scratch pass comes before the module is written, not
+after the build: put each cast identity and each name-resolution one-liner
+in `Stage3/Scratch.lean` as an `example` and run it with the § 4 command,
+seconds per pass and no package rebuild. Unit 0349 ran two such passes and
+every cast in the module then compiled on the first build; what remained
+was a renamed lemma and a `ring` after `field_simp`. Delete the file before
+the commit.
 
 ## 3. Parameterize downstream, copy upstream
 

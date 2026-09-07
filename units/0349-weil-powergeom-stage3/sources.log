@@ -1,0 +1,71 @@
+# check_prose_source.py  2026-09-07T00:57:47Z
+# unit: 0349-weil-powergeom-stage3
+# sources searched: 873
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a21f1845ebd36ab11.jsonl:2010
+  Source: session transcript, 2026-09-06, the task given to this run
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1
+  Build one Lean module under the repo's module loop: block 13d of lean_stage3/design/rung5.md, module...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1657
+  def Mab (z : ℂ) (a b : ℕ) : ℝ :=
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1658
+  max (Real.exp (z.re * ((a : ℝ) + 1 / 2) / Real.pi ^ 2))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1659
+  (Real.exp (z.re * ((b : ℝ) + 1 / 2) / Real.pi ^ 2))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1664
+  def geomBound (z : ℂ) (a b : ℕ) : ℝ :=
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1658
+  (Real.exp (z.re * ((a : ℝ) + 1 / 2) / Real.pi ^ 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1666
+  + Real.exp (z.re * ((b : ℝ) + 1 / 2) / Real.pi ^ 2)) * Real.pi ^ 3
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1667
+  / (2 * Real.exp (z.re / Real.pi ^ 2) * z.im)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1670
+  theorem norm_one_sub_exp_ge (w : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1462
+  Real.exp w.re * |Real.sin w.im| ≤ ‖1 - Complex.exp w‖ := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1732
+  theorem norm_geom_le {z : ℂ} (hz1 : 0 < z.im) (hz2 : z.im ≤ Real.pi ^ 3 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1734
+  ‖∑ m ∈ Finset.Ico a b, Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2)‖
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1528
+  theorem log_telescope {a : ℕ} (ha : 1 ≤ a) : ∀ b : ℕ, a ≤ b →
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1529
+  ∑ m ∈ Finset.Ico a b, 1 / ((m : ℝ) + 1) ≤ Real.log b - Real.log a := by
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1932
+  theorem norm_sum_exp_u_le {z : ℂ} {u : ℕ → ℝ} {a b : ℕ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1933
+  (hz1 : 0 < z.im) (hz2 : z.im ≤ Real.pi ^ 3 / 2) (ha : 1 ≤ a) (hab : a ≤ b)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1882
+  (hz : ‖z‖ ≤ Real.pi ^ 2 * (4 * (a : ℝ) + 6))
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1883
+  (hu : ∀ k : ℕ, 0 ≤ u k - ((k : ℝ) + 1 / 2) / Real.pi ^ 2
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1936
+  ∧ u k - ((k : ℝ) + 1 / 2) / Real.pi ^ 2 ≤ 1 / (Real.pi ^ 2 * (4 * (k : ℝ) + 6))) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1937
+  ‖∑ m ∈ Finset.Ico a b, Complex.exp (z * (u m : ℂ))‖
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a/subagents/agent-a7100e2ad7c29be28.jsonl:1939
+  + 2 * ‖z‖ * Mab z a b * ((Real.log b - Real.log a) / (4 * Real.pi ^ 2)) := by
+
+# 22 found, 0 missing

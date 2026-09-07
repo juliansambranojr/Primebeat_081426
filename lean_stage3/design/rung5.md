@@ -378,7 +378,11 @@ Open.      none; the next block (13d) is the geometric sum
            `|Σ_{m∈Ico a b} exp(z(m+½)/π²)| ≤ (|r|^a + |r|^b)/(e^{Re z/π²}|sin(Im z/π²)|)`
            and the harmonic bound on `Σ r(m)`.
 
-### 13d The geometric sum and the harmonic correction — SKETCH
+### 13d The geometric sum and the harmonic correction — PROVED (unit 0349:
+`WeilPowerGeom.norm_one_sub_exp_ge`, `norm_geom_le`, `log_telescope`,
+`norm_sum_exp_u_le`; `sin_im_ge`, `rho_ne_one`, `exp_shift`, `geom_Ico`,
+`exp_lin_le_Mab`, `log_step`, `harmonic_quarter`, `norm_corr_le` beside them,
+and `Mab`, `geomBound` as the two defs)
 Objects.   `z ∈ ℂ` (in use `z = 2(ζ² − ε²)`, `ζ = ε' + iΔ`, so `Im z = 4ε'Δ`
            and `|Re z| ≤ η`, both small); `ρ = exp(z/π²)`; a sequence
            `u : ℕ → ℝ` within `[0, 1/(π²(4m+6))]` above `(m+½)/π²` (13c's
@@ -394,6 +398,9 @@ Sizes.     `‖G‖ ≤ (e^{Re z(a+½)/π²} + e^{Re z(b+½)/π²}) / ‖1 − �
            none; the log is the price of `r = O(1/m)`.
 Regime.    R1 `0 < z.im`;  R2 `z.im ≤ π³/2` (so `z.im/π² ≤ π/2`);
            R3 `1 ≤ a`;  R4 `a ≤ b`;  R5 `‖z‖ ≤ π²(4a+6)`;
+           (unit 0349 drops R4 from `exp_lin_le_Mab`, which has `a ≤ m ≤ b`,
+           and R3 from `norm_corr_le`, which gets `‖z‖·r ≤ 1` from R5 at `a`
+           and `a ≤ m`: an unused binder is a warning, TRAPS row 20.)
            R6 `∀ m, 0 ≤ u m − (m+½)/π² ∧ u m − (m+½)/π² ≤ 1/(π²(4m+6))`.
 Defs.      `Mab z a b = max (exp(z.re(a+½)/π²)) (exp(z.re(b+½)/π²))`;
            `geomBound z a b = (exp(z.re(a+½)/π²) + exp(z.re(b+½)/π²)) · π³ / (2·exp(z.re/π²)·z.im)`.
@@ -423,7 +430,10 @@ Composes.  Complex.exp_im, Complex.abs_im_le_norm, Complex.norm_exp,
            geom_sum_eq, Finset.sum_Ico_eq_sub, Finset.sum_Ico_succ_top,
            Real.log_le_sub_one_of_pos, Real.log_div, Real.log_inv,
            Complex.norm_exp_sub_one_le, norm_sum_le, Finset.sum_le_sum,
-           Nat.le_induction. (There is no `geom_sum_Ico` on this Mathlib.)
+           Nat.le_induction. (`geom_sum_Ico` IS on this Mathlib, in
+           `Algebra/Field/GeomSum.lean`, stated as a `lemma` in exactly this
+           block's shape, so a `theorem`-only grep misses it; unit 0349's
+           `geom_Ico` is that lemma.)
 Module.    Stage3/WeilPowerGeom.lean, namespace WeilPowerGeom; pins:
            norm_one_sub_exp_ge, norm_geom_le, log_telescope, norm_sum_exp_u_le.
 Open.      none; the next block (13e) reads `z`, `Mab` and the regime at

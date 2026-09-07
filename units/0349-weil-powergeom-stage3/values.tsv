@@ -1,0 +1,26 @@
+key	value	source
+module_lines	421	wc -l lean_stage3/Stage3/WeilPowerGeom.lean
+theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/WeilPowerGeom.lean
+defs	2	grep -c ^def lean_stage3/Stage3/WeilPowerGeom.lean
+pins_module	4	grep -c guard_msgs lean_stage3/Stage3/WeilPowerGeom.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerGeom.lean
+errors_first	5	first lake build: error: Stage3/WeilPowerGeom.lean lines 227, 246, 246, 410, 418
+roots	3	the three root causes of the first build
+pair_lines	2	first build, the two lines of the renamed-lemma root
+cascade_lines	2	first build, the two guard_msgs lines
+row_ring	1	lean_stage3/TRAPS.md row 1
+row_ringnf	12	lean_stage3/TRAPS.md row 12
+row_cascade	19	lean_stage3/TRAPS.md row 19
+row_unused	20	lean_stage3/TRAPS.md row 20
+row_new	24	lean_stage3/TRAPS.md row 24, added by this run
+jobs_module	8656	lake build Stage3.WeilPowerGeom
+jobs_package	8759	lake build (full Stage3)
+loop_version	11	lean_stage3/LOOP.md version line at the build
+loop_next	12	lean_stage3/LOOP.md version after this run's retrospective
+design	rung5.md#13d	the averaging route, block 13d
+rung	5	detection ladder rung
+slice	14	fourteenth module of the switched-window ladder
+thirteen	13	worksheet section 13
+unit_sigma	0348	WeilPowerSigma
+unit_phase	0347	WeilPowerPhase
