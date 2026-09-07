@@ -1,6 +1,6 @@
 # Prereg — the induction bump as a difference table across doublings (v1)
 
-STATUS: **DRAFT**
+STATUS: **LOCKED**
 
 ## Background
 
@@ -171,9 +171,9 @@ JSONs and never a retraining.
 
 ## Lock chain
 
-- `lock_written_at`: (fill at lock)
-- `pre_compute_sha256`: PENDING
+- `lock_written_at`: 2026-09-07T17:50:40Z
+- `pre_compute_sha256`: PENDING (the sidecar holds it)
 - `run_start_at`: (fill at run)
 - `run_end_at`: (fill at run)
 - `post_compute_sha256`: (fill after run; must equal pre-compute)
-- `locked_by`: (fill at lock)
+- `locked_by`: claude-on-julian-authorization ("Lock", 2026-09-07)
