@@ -1,0 +1,35 @@
+{
+ "runs": 12,
+ "steps": 32768,
+ "R": 15,
+ "layers": [
+  2,
+  1
+ ],
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6
+ ],
+ "seeds_per_layer": 6,
+ "run_start_at": "2026-09-07T17:51:46Z",
+ "run_end_at": "2026-09-07T19:31:50Z",
+ "minutes": 100,
+ "prereg": "preregs/induction_bump_difference_table_v1_20260907.md",
+ "sidecar_sha256": "d00b103f539908deff2db2a5060c867d325a96f36af6da6302be7beae3adb19a",
+ "post_compute_matches_sidecar": true,
+ "analyzer_rerun_agrees": true,
+ "plateau_rows": [
+  8,
+  9,
+  10,
+  11,
+  12
+ ],
+ "plateau_cells_depths_1_to_4": 18,
+ "power_trials": 200,
+ "raw_curves_gzipped": 12
+}

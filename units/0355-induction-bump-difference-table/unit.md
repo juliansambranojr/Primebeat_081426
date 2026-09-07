@@ -1,0 +1,25 @@
+---
+id: 0355
+date: 2026-09-07
+type: run
+title: "The induction bump as a dyadic difference table: locked run, mechanical output overlay_only"
+refs: [none]
+supersedes: []
+follows: 0354
+context: Julian's posit after reading a summary of Olsson et al. 2022: the smooth loss curve is an analytic overlay and the training dynamics are discrete arithmetic that the bench's dyadic difference table reads; the first prereg on the bench that trains models, and the first run whose raw artifacts live in a unit because the results trees are frozen
+sealed: false
+---
+
+**Question.** Does the dyadic difference table of a training loss carry fine structure that is the same in every seed, beyond what a smooth overlay plus SGD noise gives? The prereg `preregs/induction_bump_difference_table_v1_20260907.md` fixes the reading: small attention-only models on a random-token copy task, `summary.seeds_per_layer` 6 seeds at each of two layer counts, `summary.steps` 32768 steps each with the eval loss recorded at every step; the table `cell(r, 0) = L(2^r)`, `cell(r, d+1) = cell(r, d) − cell(r−1, d)`; on the plateau rows `induction_bump_table.args.plateau_lo` 8 to `r* − 2`, the count of cells at depths 1 to `induction_bump_table.args.dmax_rule` 4 where every seed's sign departs from the completely monotone `(−1)^d`, two-layer minus one-layer. The one-layer model, which never forms induction heads, is the control with the same data order seed for seed.
+
+**What ran.** The twelve trainings, two at a time on the CPU, from `summary.run_start_at` to `summary.run_end_at`, about `summary.minutes` 100 minutes; then the analyzer once at the locked defaults, unmodified since the lock. The raw per-step curves are `run/raw/*.json.gz`, gzipped so that the values pool does not take 1.5 million leaves from them; `run/run.sh` ungzips them into a temporary directory and reruns the analyzer, which is the `compromised` check's recomputation, and it reproduced the frozen output. The sidecar `d00b103f…` matches the committed locked text, so no parameter or rule moved between lock and compute.
+
+**What it shows.** The mechanical output of the rule is `overlay_only`: `induction_bump_table.detail.n2` 2 unanimous anomalies on the plateau for two layers against `induction_bump_table.detail.n1` 3 for one, `induction_bump_table.detail.excess` -1. The bump is in every two-layer seed at row `induction_bump_table.detail.rstar` 14, the copied-position loss falling from the unigram level to well under half of it between steps `2^13` and `2^14`, and in no one-layer seed. The plateau is rows `8` to `12`.
+
+The one cell that separates the two models is the depth-2 cell at row 12: a negative second difference in all six two-layer runs, `induction_bump_table.detail.N2.2` 1 such cell, and in none of the one-layer runs. The loss is concave at the doubling before the bump, in every run that forms induction heads. That is the paper's "only place the curve is not convex," read as a depth-2 sign anomaly and reproduced across seeds, and it is exactly the case the prereg's reading section names as consistent with a smooth shared precursor. Depths 3 and 4, the posit's distinctive prediction, show `induction_bump_table.detail.N2.4` 1 two-layer cell at row 8 against `induction_bump_table.detail.N1.3` 1 and `induction_bump_table.detail.N1.4` 2 one-layer cells at rows 8 and 9, so the excess there is negative. At this resolution, rows 8 to 12 and six seeds, the deep structure the posit predicts is not visible in excess of the control.
+
+Two secondaries frame it. The fit-based residual unanimity against a two-step smooth overlay is high in both models, `induction_bump_table.two_layer.U.1` 10 and `induction_bump_table.one_layer.U.1` 9 unanimous cells at depth 1, and nearly identical downward: a fitted family's misfit is shared across seeds whatever the architecture, which is why the rule was made fit-free. And the rule has power: on synthetic curves it fired `structure_beyond_overlay` in `induction_bump_power.firing.0.0.overlay_only` 192 of `summary.power_trials` 200 null trials never (the remaining `induction_bump_power.firing.0.0.ambiguous` 8 were ambiguous), in `induction_bump_power.firing.1.0.structure_beyond_overlay` 129 of 200 at a shared pattern the size of the noise, and in `induction_bump_power.firing.2.0.structure_beyond_overlay` 200 of 200 at twice it. A shared pattern at the noise scale on the plateau would have been seen two times in three; the data did not show one.
+
+The verdict line is Julian's. What the run leaves open is the resolution: a plateau of five rows is a small table, and the dyadic grid is the coarsest geometric grid. A √2 grid doubles the rows on the same runs without retraining, and the raw curves are in `run/raw/` for it; that would be a new prereg.
+
+What remains. The posit stands or falls on structure below depth 2 that no smooth curve shares; this run, at its resolution, saw the depth-2 concavity in every induction run and nothing deeper in excess of the control. The rung-5 work resumes at Julian's word.

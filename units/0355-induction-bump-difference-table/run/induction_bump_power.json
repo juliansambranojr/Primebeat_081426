@@ -1,0 +1,49 @@
+{
+  "mode": "power",
+  "args": {
+    "results": "/Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-07/results",
+    "seeds": "1,2,3,4,5,6",
+    "R": 15,
+    "dmax": 6,
+    "dmax_rule": 4,
+    "excess_fire": 2,
+    "excess_null": 0,
+    "plateau_lo": 8,
+    "plateau_gap": 2,
+    "power": true,
+    "power_trials": 200,
+    "power_amps": [
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "noise_sd": 0.003,
+    "S": 6,
+    "out": null
+  },
+  "run_start_at": "2026-09-07T19:33:30.189743+00:00",
+  "firing": {
+    "0.0": {
+      "overlay_only": 192,
+      "ambiguous": 8
+    },
+    "0.5": {
+      "overlay_only": 145,
+      "structure_beyond_overlay": 31,
+      "ambiguous": 24
+    },
+    "1.0": {
+      "structure_beyond_overlay": 129,
+      "overlay_only": 34,
+      "ambiguous": 37
+    },
+    "2.0": {
+      "structure_beyond_overlay": 200
+    },
+    "4.0": {
+      "structure_beyond_overlay": 200
+    }
+  },
+  "run_end_at": "2026-09-07T19:33:52.002788+00:00"
+}

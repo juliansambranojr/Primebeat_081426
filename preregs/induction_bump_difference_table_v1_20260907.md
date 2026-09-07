@@ -177,3 +177,42 @@ JSONs and never a retraining.
 - `run_end_at`: (fill at run)
 - `post_compute_sha256`: (fill after run; must equal pre-compute)
 - `locked_by`: claude-on-julian-authorization ("Lock", 2026-09-07)
+
+## Run record
+
+Appended after the run. The no-drift check is that `post_compute_sha256`
+below equals the sidecar, both taken of the text before this section
+existed.
+
+- `run_start_at`: 2026-09-07T17:51:46Z
+- `run_end_at`: 2026-09-07T19:31:50Z
+- `verdict`: (Julian's to write)
+- mechanical output of the decision rule: `overlay_only`, `excess = −1`
+  (`N(two layers) = 2`, `N(one layer) = 3`, plateau rows 8–12, bump row
+  14 in all six two-layer seeds, no bump in any one-layer seed)
+- `post_compute_sha256`: `d00b103f539908deff2db2a5060c867d325a96f36af6da6302be7beae3adb19a`
+- sidecar match: **yes**, identical to the sidecar written at the lock, so
+  no parameter, hypothesis or rule text moved between lock and compute.
+- `compromised` checks: twelve runs complete to step 32768, all finite;
+  copied-position loss under half its step-1 value in every two-layer
+  seed; plateau of five rows; the analyzer rerun on the committed JSONs
+  reproduces the mechanical output and every table.
+- analyzer: `analysis/2026-09-07/induction_bump_table.py`, one run at
+  locked defaults; power rerun into `induction_bump_power.json`
+- results: unit `units/0355-induction-bump-difference-table/`, its
+  `run/induction_bump_table.json`, `run/induction_bump_power.json`,
+  `run/summary.json` and the twelve raw curves
+  `run/raw/induction_bump_L{1,2}_seed{1..6}.json.gz` (the results trees
+  are frozen since the `lab` units; the pre-commit refused the path the
+  Compute section names, so the artifacts live in the unit, gzipped
+  because `lab values` flattens every list element of a `*.json`)
+- secondary 1, the unanimous anomalies per depth on the plateau:
+  two layers `{1: 0, 2: 1, 3: 0, 4: 1}` at cells (12, 2) and (8, 4);
+  one layer `{1: 0, 2: 0, 3: 1, 4: 2}` at (8, 3), (8, 4), (9, 4).
+  The cell (12, 2) is a negative second difference at row 12 in every
+  two-layer seed and in no one-layer seed: the loss is concave at the
+  doubling before the bump, in all six runs. Depths 3 and 4 show no
+  two-layer excess.
+- secondary 4, fit-based residual unanimity `U_d`, depths 1–6: two
+  layers `10, 9, 7, 6, 6, 6`; one layer `9, 8, 7, 6, 6, 6`. The smooth
+  family's misfit is shared across seeds in both, as expected of a fit.

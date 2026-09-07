@@ -1,0 +1,39 @@
+/Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-07/induction_bump_train.py:146: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  print(f"step {step:5d}  train {float(total):.4f}  eval {float(et):.4f}  "
+step     1  train 5.6972  eval 5.7077  copy 5.7190  noncopy 5.7042  0s
+step  1024  train 4.3205  eval 4.3279  copy 4.3422  noncopy 4.3233  20s
+step  2048  train 4.3225  eval 4.3283  copy 4.3417  noncopy 4.3239  40s
+step  3072  train 4.2904  eval 4.3278  copy 4.3414  noncopy 4.3235  60s
+step  4096  train 4.3337  eval 4.3271  copy 4.3408  noncopy 4.3227  80s
+step  5120  train 4.3428  eval 4.3278  copy 4.3414  noncopy 4.3234  100s
+step  6144  train 4.3382  eval 4.3266  copy 4.3393  noncopy 4.3226  120s
+step  7168  train 4.2972  eval 4.3269  copy 4.3402  noncopy 4.3227  140s
+step  8192  train 4.2852  eval 4.3265  copy 4.3399  noncopy 4.3223  160s
+step  9216  train 4.3267  eval 4.3270  copy 4.3395  noncopy 4.3230  180s
+step 10240  train 4.2882  eval 4.3266  copy 4.3397  noncopy 4.3224  200s
+step 11264  train 4.2490  eval 4.3266  copy 4.3390  noncopy 4.3226  220s
+step 12288  train 4.3484  eval 4.3260  copy 4.3388  noncopy 4.3220  240s
+step 13312  train 4.2873  eval 4.3257  copy 4.3346  noncopy 4.3228  260s
+step 14336  train 4.2977  eval 4.3232  copy 4.3208  noncopy 4.3240  280s
+step 15360  train 4.2993  eval 4.3211  copy 4.3106  noncopy 4.3245  300s
+step 16384  train 4.3071  eval 4.3206  copy 4.3063  noncopy 4.3252  320s
+step 17408  train 4.3096  eval 4.3178  copy 4.2954  noncopy 4.3250  340s
+step 18432  train 4.3336  eval 4.3159  copy 4.2874  noncopy 4.3250  360s
+step 19456  train 4.2887  eval 4.3148  copy 4.2742  noncopy 4.3278  379s
+step 20480  train 4.2772  eval 4.3131  copy 4.2676  noncopy 4.3276  399s
+step 21504  train 4.2719  eval 4.3110  copy 4.2575  noncopy 4.3280  419s
+step 22528  train 4.3144  eval 4.3094  copy 4.2496  noncopy 4.3286  439s
+step 23552  train 4.3194  eval 4.3088  copy 4.2434  noncopy 4.3298  459s
+step 24576  train 4.3021  eval 4.3092  copy 4.2395  noncopy 4.3314  479s
+step 25600  train 4.2516  eval 4.3084  copy 4.2322  noncopy 4.3328  499s
+step 26624  train 4.2709  eval 4.3050  copy 4.2277  noncopy 4.3298  519s
+step 27648  train 4.2882  eval 4.3050  copy 4.2271  noncopy 4.3299  539s
+step 28672  train 4.2847  eval 4.3045  copy 4.2183  noncopy 4.3320  559s
+step 29696  train 4.2840  eval 4.3018  copy 4.2098  noncopy 4.3312  579s
+step 30720  train 4.2921  eval 4.3014  copy 4.2112  noncopy 4.3302  599s
+step 31744  train 4.3065  eval 4.3017  copy 4.2043  noncopy 4.3329  618s
+step 32768  train 4.2724  eval 4.3005  copy 4.1999  noncopy 4.3327  638s
+
+  results written to /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-07/results/induction_bump_L1_seed1.json
+wrote /Users/juliansambrano/GitHub/Primebeat_081426/analysis/2026-09-07/results/induction_bump_L1_seed1.json

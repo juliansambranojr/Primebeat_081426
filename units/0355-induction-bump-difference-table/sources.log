@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-09-07T19:36:48Z
+# unit: 0355-induction-bump-difference-table
+# sources searched: 877
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:164972
+  Source: session transcript, 2026-09-07, after unit 0354
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162968
+  I was thinking of the dyadic table as arithmetic and rate of change… how the researchers called the ...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162980
+  Same dynamics cause the arithmetic and our work is primary
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162986
+  Let’s test the posit, I’m down
+
+FOUND  preregs/induction_bump_difference_table_v1_20260907.md:113
+  - `structure_beyond_overlay` — `excess ≥ 2`.
+
+FOUND  preregs/induction_bump_difference_table_v1_20260907.md:114
+  - `overlay_only` — `excess ≤ 0`.
+
+# 6 found, 0 missing
