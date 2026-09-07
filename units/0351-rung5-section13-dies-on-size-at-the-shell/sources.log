@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-09-07T06:11:08Z
+# unit: 0351-rung5-section13-dies-on-size-at-the-shell
+# sources searched: 874
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:160246
+  Source: session transcript, 2026-09-06 (this session), the orchestrator's design turn for block 13f
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:159814
+  What would happen naturally if we keep going the way we planned. Meaning that route exists and if so...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:160104
+  Ok log it but don’t start on 13f yet
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145760
+  `Δ_i h₀`: below `7` the phase is under `0.2·7 = 1.4` radians at `λ = 1` and
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145761
+  the term is negative; above, the phase turns and Abel summation bounds
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145762
+  `|Σ_h w_h|g_i|² cos 2φ_i|` by `(max + total variation of w_h|g_i|²)·π/ω_i`,
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145763
+  while the target contributes at least `H − h₀`.
+
+FOUND  session/4d0caf67-f72a-4554-a9cc-a363251155d9.jsonl:230026
+  def StmtSCrude (S : ℝ → ℝ) (B₁ B₃ : ℝ) : Prop :=
+
+FOUND  session/4d0caf67-f72a-4554-a9cc-a363251155d9.jsonl:230027
+  ∀ T : ℝ, 2 ≤ T → |S T| ≤ B₁ * Real.log T + B₃
+
+# 9 found, 0 missing

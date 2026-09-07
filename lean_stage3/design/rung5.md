@@ -293,7 +293,25 @@ the theorem trades sharpness for suppression.
 - Whether the tsum split needs the off-line part summable at all: yes, to
   write the form as a sum of three parts; the far bound gives it.
 
-## 13. The averaging route — SKETCH (unit 0345)
+## 13. The averaging route — SKETCH (unit 0345); dies on size at the intermediate shell (unit 0351)
+
+Priced before building block 13f, 2026-09-06 (unit 0351). The split below
+by `Δ_i h₀ < 7` holds at `h` near `h₀` only: over the range to `H` the phase
+`4ε'Δh/(π²λ)` of those members turns. A member with the target's real part
+and `Δ` below about `λ/(εX)` has relative amplitude at most `1` and no decay
+over `[X, 2X]`; at phase `π` it cancels the target. Zeros at heights in
+geometric progression of ratio `1.5` put two members in the hurting lobe at
+every `h`, so every range fails; the adversary needs one shell per factor
+`1.5` of range, and `JensenCount.zeta_local_zero_count` allows
+`15 log T' + 73` of them: `H/a ≤ T'^{15 ln 1.5}`, exponent above `6`, with
+`T' = T + H/(8K'π²λ)`. Section 9's circularity again. It closes under
+`ArgCrude.StmtSCrude S B₁ B₃` with `B₁ < 1/(2 ln 1.5) ≈ 1.23` (Backlund
+`0.137`, Trudgian `0.112`; the tree's crude chain gives about `7`): the
+shell is then a pigeonhole over the ratio-`1.5` shells with exponent
+`2B₁ ln 1.5 < 1`. The route continues as a conditional theorem with that
+leaf named; blocks 13f onward are on hold at Julian's word. The sketch
+below is kept as the record.
+
 
 Replace alignment by averaging. Take `h` over the integers of `[h₀, H]`
 with `m + 1 = λh`, weights `w_h = 1/(target lower bound at h)` so the

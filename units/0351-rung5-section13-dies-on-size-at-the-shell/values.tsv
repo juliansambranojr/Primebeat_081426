@@ -1,0 +1,22 @@
+key	value	source
+thirteen	13	rung5.md section 13
+split_dh	7	rung5.md section 13, the split Δ_i h₀ < 7
+phase_per	0.2	4ε'/(π²λ) at ε' = 1/2, λ = 1
+phase_h0	1.4	0.2 * 7
+shell_ratio	1.5	ratio of consecutive shells the adversary fills
+band_a	15	JensenCount.zeta_local_zero_count, 15 log T + 73
+band_b	73	JensenCount.zeta_local_zero_count, 15 log T + 73
+expo	6	15 * ln 1.5 = 6.08, rounded down
+c1_max	2.47	1 / ln 1.5 = 2.466
+b1_max	1.23	1 / (2 ln 1.5) = 1.233
+backlund	0.137	Backlund 1918 / Rosser 1941, RvMCrude.lean header
+trudgian	0.112	Trudgian 2014, |S(T)| ≤ 0.112 log T + 0.278 log log T + 2.51
+step_a	0.462	O77, ArgCrude.lean header: |S T| ≤ 0.462 cnt T + 0.508
+b1_crude	7	0.462 * 15 = 6.93, rounded
+budget	100	entry 130 budget, B₁ ≤ 100
+unit_prev	0345	section 9 dies on size
+unit_phase	0347	WeilPowerPhase, re_S_sq_ge
+unit_ulam	0350	WeilPowerGeomGen, uLam_bracket
+loop_ver	13	lean_stage3/LOOP.md version line
+design	rung5.md#13	the section priced
+walk_div	8	rung5.md section 8, target height T + H/(8K'π²λ)
