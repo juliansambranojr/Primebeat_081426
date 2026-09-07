@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-09-07T07:34:32Z
+# unit: 0353-loop-v16-commands-and-checks
+# sources searched: 875
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162064
+  Source: session transcript, 2026-09-07, after the report on unit 0352
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161614
+  But of the loop is forced then we don’t need 1800 lines
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161829
+  SORRY    the module contains no `sorry`
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161830
+  SCRATCH  lean_stage3/Stage3/Scratch.lean is not in the tree (LOOP.md § 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161831
+  RING     no bare `ring` on the line after a `field_simp` in the module
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161832
+  (LOOP.md § 4; TRAPS.md row 1); units at loop_version 16 and up
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161833
+  HEADER   the module's header comment, before its first `import`, names
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161834
+  the block: the part of `design` after `#` (LOOP.md § 1); 16 and up
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:161835
+  PINS     PINS.md names the module or the block (LOOP.md § 0b); 16 and up
+
+# 9 found, 0 missing

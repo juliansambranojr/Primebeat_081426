@@ -22,8 +22,16 @@ Checks, each a line of output, exit 1 if any fails:
            case, spaces to dashes, punctuation dropped) equals it or starts
            with it: `rung5.md#6` names section 6
   BUILD    run/build.log exists and ends with 'Build completed successfully'
+  SORRY    the module contains no `sorry`
+  SCRATCH  lean_stage3/Stage3/Scratch.lean is not in the tree (LOOP.md § 2)
+  RING     no bare `ring` on the line after a `field_simp` in the module
+           (LOOP.md § 4; TRAPS.md row 1); units at loop_version 16 and up
+  HEADER   the module's header comment, before its first `import`, names
+           the block: the part of `design` after `#` (LOOP.md § 1); 16 and up
+  PINS     PINS.md names the module or the block (LOOP.md § 0b); 16 and up
 
-Read-only over the tree.
+Read-only over the tree.  The four checks added at loop version 16 replace
+the paragraphs that carried those rules in LOOP.md as prose (unit 0353).
 """
 import argparse
 import os
@@ -179,6 +187,31 @@ def main():
         tail = read(log).rstrip().splitlines()[-1:] or [""]
         if "Build completed successfully" not in tail[0]:
             fails.append(f"BUILD    run/build.log last line: {tail[0][:80]!r}")
+
+    # SORRY / SCRATCH, every unit
+    if module and re.search(r"\bsorry\b", src):
+        fails.append("SORRY    the module contains a sorry")
+    if os.path.exists(os.path.join(repo, "lean_stage3", "Stage3", "Scratch.lean")):
+        fails.append("SCRATCH  lean_stage3/Stage3/Scratch.lean is in the tree; delete it before the commit")
+
+    # RING / HEADER / PINS, units built at loop version 16 and up
+    try:
+        gated = int(vals.get("loop_version")) >= 16
+    except (TypeError, ValueError):
+        gated = False
+    if gated and module:
+        for i in range(len(lines) - 1):
+            if "field_simp" in lines[i] and lines[i + 1].strip() == "ring":
+                fails.append(f"RING     bare `ring` after `field_simp` at line {i + 2}; write `try ring`")
+        head = src.split("\nimport ", 1)[0]
+        block = design.split("#", 1)[1] if design and "#" in design else ""
+        if block and block not in head:
+            fails.append(f"HEADER   the header before the first import does not name the block '{block}'")
+        pins_path = os.path.join(repo, "PINS.md")
+        modname = os.path.splitext(os.path.basename(module))[0]
+        pins_text = read(pins_path) if os.path.exists(pins_path) else ""
+        if modname not in pins_text and (not block or block not in pins_text):
+            fails.append(f"PINS     PINS.md names neither {modname} nor the block '{block}'")
 
     if fails:
         print(f"{name}: REFUSED")

@@ -1,0 +1,13 @@
+key	value	source
+v_old	15	lean_stage3/LOOP.md version line before this unit
+v_new	16	lean_stage3/LOOP.md version line after this unit
+lines_old	249	wc -l lean_stage3/LOOP.md at v15
+words_old	1847	wc -w lean_stage3/LOOP.md at v15
+code_old	24	lines inside code fences at v15
+lines_new	135	wc -l lean_stage3/LOOP.md at v16
+words_new	840	wc -w lean_stage3/LOOP.md at v16
+unit_first	0336	module-loop, refused on LINES/BUILD before and after
+unit_third	0338	loop-retrospective, refused on LINES/BUILD before and after
+tests_failing	19	python3 -m pytest tests -q, FAILED plus ERROR lines, same set with and without the change
+unit_sigma	0348	WeilPowerSigma, first of the DESIGN.md-format runs
+unit_shell	0352	WeilPowerShell, the relay run

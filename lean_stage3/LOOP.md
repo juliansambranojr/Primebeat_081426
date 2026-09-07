@@ -1,211 +1,117 @@
 # The module loop
 
-version: 15
+version: 16
 
-One Stage-3 module, from design to commit. Every step is a command or a
-file. An instance that has never seen this repo follows it top to bottom.
-The recipe is versioned; a unit built under it records `loop_version` in
-its `values.tsv`, and `utilities/check_lean_unit.py` refuses a unit whose
-version does not match the line above.
+One Stage-3 module, from block to commit. Commands in order. The checkers
+behind them refuse what is skipped (`utilities/check_lean_unit.py`, the
+pre-commit). The reason for every line is in the unit it cites; the error
+classes are in `TRAPS.md`; the block's shape and the brief are in
+`DESIGN.md`. A unit records the version it was built under in
+`values.tsv` as `loop_version`.
 
 ## 0. Orient
-
-From inside the repo, bare, nothing piped after it:
 
 ```sh
 python3 ~/.claude/hooks/orient_gate.py --orient
 ```
 
-Re-run it whenever the working directory has moved into
-`lean_stage3/.lake/packages/mathlib`: the gate refuses Bash from there.
+Bare, nothing piped. Again after any move into `lean_stage3/.lake/packages/mathlib`.
 
-## 0b. Pin the task
+## 0b. Pin
 
-Before any work on a task above trivial, write its four pins in
-`PINS.md` at the repo root (DONE, ASSUMED, DEPENDS, OUT), silently. When
-the work looks lazy, the pins are read before anything is said; a wrong
-pin goes into the misreads table there.
+Four lines in `PINS.md` § Current before the work: DONE, ASSUMED, DEPENDS,
+OUT. The checker refuses a unit whose module or block is not named in
+`PINS.md`.
 
-## 1. Freeze the design: the worksheet, then the header
+## 1. Header
 
-The derivation lives in a file, never only in the session. Each rung has
-a worksheet, `lean_stage3/design/<rung>.md`, with one section per piece
-of analysis, each marked PROVED (names the Lean theorem) or SKETCH (the
-numbers and the plan). Do the analysis there first: the quantities and
-their sizes, the regime conditions, the constants, the comparison, the
-open questions. Append as you go. Re-read it instead of re-deriving. A
-compaction loses nothing in it, and a fresh instance starts from it.
+The block is `DESIGN.md` § 1, the orchestrator's, written before the run.
+Write the module's header comment before any proof: the block's id, the
+theorem list with hypotheses copied from the block's Theorems lines, what
+the next slice needs. A hypothesis the block does not list is an ASSUMED
+pin and a line in the report, never a silent addition. A size that does not
+close: stop and report. Name the pinned theorems now. The checker refuses a
+header that does not name the block.
 
-The worksheet block is the orchestrator's and is written before the run
-in the shape `DESIGN.md` § 1 gives (Objects, Sizes, Regime, Theorems,
-Composes, Module, Open). Then write the module's header comment before any
-proof. Its theorem list is copied from the block's Theorems lines, with
-their hypotheses; a hypothesis the proof needs that the block does not
-list is an ASSUMED pin and a line in the report, never a silent addition.
-A size that does not close is the orchestrator's decision: stop and
-report. The header cites the block and ends with what the next slice
-needs. The header is the
-contract; the unit's prose paraphrases it. Name the pinned theorems now:
-the `#guard_msgs in #print axioms` lines are fixed targets.
-
-When the analysis changes the route, it is also a decision unit
-(`python3 -m lab new <slug> --type decision`), which carries the quote
-gate and the values rows. The worksheet is the scratch; the unit is the
-record. A numerical probe takes its predictions from the worksheet,
-written before the run.
-
-The unit's `values.tsv` names its section: `design	<rung>.md#<n>`, the
-section number (`rung5.md#7`); a slug of the heading in lower case with
-dashes also resolves, and so does a lettered sub-block of a section
-(`rung5.md#13c` for `### 13c`, unit 0348). The checker refuses a unit without it or with a
-section that does not exist. When the module lands, the section's mark
-changes from SKETCH to PROVED naming the theorem, in the same commit.
-
-## 2. Verify every name before writing
-
-One batched grep for every Mathlib lemma the file will use:
+## 2. Names and casts
 
 ```sh
 M=lean_stage3/.lake/packages/mathlib/Mathlib
-grep -rn 'theorem NAME1\b\|theorem NAME2\b' $M --include='*.lean' | sed "s|$M/||" | head
+grep -rn 'theorem NAME1\b\|theorem NAME2\b\|lemma NAME3\b' $M --include='*.lean' | sed "s|$M/||" | head
 ```
 
-By full path from the repo root, with no `cd`: the orient gate reads the
-whole command text and refuses one that mentions the library path beside a
-write anywhere in the tree (`TRAPS.md` B11); a command that only greps
-passes. A name made by `@[to_additive]` (`sum_*` from `prod_*`,
-`Tendsto.sub` from `Tendsto.div`) has no `theorem` line of its own; grep
-the multiplicative name.
-
-A guessed name is an error on the first build, every time. Names that
-resolve on this toolchain are listed in `TRAPS.md` § Names.
-
-When the statements carry coercions — `(z / (π:ℂ)^2).re`, `((u m : ℝ) : ℂ)`,
-`‖(r : ℝ) : ℂ‖` — one scratch pass comes before the module is written, not
-after the build: put each cast identity and each name-resolution one-liner
-in `Stage3/Scratch.lean` as an `example` and run it with the § 4 command,
-seconds per pass and no package rebuild. Unit 0349 ran two such passes and
-every cast in the module then compiled on the first build; what remained
-was a renamed lemma and a `ring` after `field_simp`. Delete the file before
-the commit.
+Full path, no `cd` (`TRAPS.md` B11). A `to_additive` name: grep the
+multiplicative one. Verified names are in `TRAPS.md` § Names. Then one
+scratch pass before the module is written: every cast identity and every
+name one-liner as an `example` in `Stage3/Scratch.lean`, run with
+`lake env lean Stage3/Scratch.lean` from `lean_stage3`. Delete the file
+before the commit; the checker refuses a tree that has it (unit 0349).
 
 ## 3. Parameterize downstream, copy upstream
 
-Anything downstream of the window takes the term as a parameter: a band,
-tile or series module is stated for `term : ℂ → ℝ` with the nonnegativity
-and the bounds as hypotheses, never for one window's test function.
-Units 0321–0324 were stated for one window and had to be copied in full
-when the window changed (units 0334–0335, six hundred lines).
+A module downstream of the window takes the term as a parameter with its
+bounds as hypotheses (units 0334–0335). A module that repeats an old one
+copies the old one in full with the names changed.
 
-When a module does repeat an old one, read the old module in full
-(`Read`, the whole file) and copy each proof with the names changed.
-Copied modules build with zero errors.
-
-## 4. Build, classify, fix
+## 4. Build
 
 ```sh
+grep -n -A1 'field_simp' lean_stage3/Stage3/<Module>.lean | grep 'ring$'
 cd lean_stage3 && lake build Stage3.<Module> 2>&1 \
   | grep -v 'Replayed\|push_cast.*nothing\|linter\|^$\|^trace' \
   | grep -B2 -A25 'error\|Built Stage3.<Module>'
 ```
 
-Classify every error against `TRAPS.md` before fixing any. Most fall
-into a row there. After a `field_simp`, write `try ring`, never a bare
-`ring`: whether `field_simp` closes the goal depends on the denominators
-it clears, and a bare `ring` on a goal already closed is `TRAPS.md` row 1,
-costing one error plus one more for every pin downstream (unit 0348's
-whole first build was that, in one of five `field_simp`s). Before the
-first build, list the candidates and change each one:
+Every `ring` the first command lists becomes `try ring` before the build;
+the checker refuses a bare one (`TRAPS.md` row 1). Classify every error
+against `TRAPS.md` before fixing any. `errors_first` is the count of lines
+`error: Stage3/<Module>.lean:<line>:<col>:` on the first build: a pin that
+fails because its proof did counts (row 19), a warning does not; fix a
+row-20 binder before counting. A stubborn lemma iterates in
+`Stage3/Scratch.lean`.
 
-```sh
-grep -n -A1 'field_simp' lean_stage3/Stage3/<Module>.lean | grep 'ring$'
-```
+## 4b. The relay
 
-Every bare `ring` it lists becomes `try ring`; the grep lists the needed
-ones too, and `try ring` is right for both. Unit 0350's whole first build
-was one line this grep prints, in a module whose other `field_simp` had
-the `try` already. A `linear_combination` residual is read, never
-recomputed. For one stubborn lemma, iterate in a scratch file at seconds
-per try:
+Builder: § 0 to § 4 once. One try per proof from the block's hint; a proof
+that does not close is `sorry` with its goal in a comment, never a second
+attempt. Build again; the pins of sorried theorems fail until the proof is
+closed, leave them. Stop with: the file; every `sorry` line with its goal;
+`errors_first` and its roots; `TRAPS.md` rows hit and added; every ASSUMED
+pin; where the block or this loop was unclear. Wait for the signal.
 
-```sh
-lake env lean Stage3/Scratch.lean      # delete the file before the commit
-```
+Foreman: replace every `sorry`, build clean, signal "done, resume at § 5".
 
-Record the first-build error count; it goes in `values.tsv` as
-`errors_first`. It is the count of lines matching
-`error: Stage3/<Module>.lean:<line>:<col>:`, so the two lines lake ends
-with (`Lean exited with code 1`, `build failed`) are outside it and the
-`#guard_msgs` pins that failed only because an earlier proof did are
-inside it: a failed proof costs its own error and one more for every pin
-that reads it (`TRAPS.md` row 19). Warnings are not errors and the § 4
-filter does not remove them; an unused binder in a statement is
-`TRAPS.md` row 20 and is fixed before the counts are taken.
+Builder, same context: § 5 and the scaffold half of § 6 (`values.tsv`,
+`run/`). Stop with the unit path and the counts.
 
-## 4b. The relay: builder stops, foreman finishes, builder resumes
+Foreman: `unit.md`, `question.md`, the checkers, the commit, § 7.
 
-When the brief says relay (unit 0352 onward), the module is a relay on
-one file. The builder does § 0 to § 4 once: header, statements from the
-block's Theorems lines, the scratch pass, the `field_simp` grep, one build.
-Each proof is tried once from the block's hint; one that does not close
-on that try becomes `sorry` with a one-line comment naming the goal state.
-No second attempt. Record `errors_first` from that build, run the § 4
-command once more so that the only errors left are the `#guard_msgs` pins
-of the sorried theorems (a pin reads `sorryAx` until its proof is closed;
-leave the pin lines as they are), and stop with a report: the file, the list of `sorry` lines with their goals, errors_first
-and its root causes, TRAPS rows hit. Then wait for the signal.
-
-The foreman (the orchestrator) replaces every `sorry`, builds, and sends
-the signal: "done, resume at § 5". The builder resumes in the same
-context, never a fresh spawn, and runs § 5 and the mechanical half of § 6:
-`lab new`, `run/run.sh`, `run/build.log`, `values.tsv` with the counts, the
-`design` and `loop_version` rows. It stops again with the unit path and the
-counts. The foreman writes `unit.md` and `question.md`, runs the three
-checkers, commits, and does § 7 from the builder's two reports. The
-builder never reads the block a second time and never checks its own work.
-
-## 5. Import, full build, counts, log
-
-Counts come after the last edit to the module, never from memory:
+## 5. Import, full build, counts, scaffold
 
 ```sh
 cd lean_stage3
 sed -i '' 's/^import Stage3.<Previous>$/import Stage3.<Previous>\nimport Stage3.<Module>/' Stage3.lean
 lake build 2>&1 | grep 'error\|completed'
-wc -l Stage3/<Module>.lean
-grep -c '^theorem' Stage3/<Module>.lean
-grep -c '^def' Stage3/<Module>.lean
-```
-
-Then the unit:
-
-```sh
+wc -l Stage3/<Module>.lean; grep -c '^theorem' Stage3/<Module>.lean; grep -c '^def' Stage3/<Module>.lean
 cd <repo>
 python3 -m lab new <slug> --type formalization --title "<Module>.lean: <one line>"
 rm -f units/<unit>/run/.gitkeep
 (cd lean_stage3 && lake build Stage3.<Module> 2>&1) > units/<unit>/run/build.log
 ```
 
-Outputs never go under `results/` or `analysis/**/results/`; the gate
-refuses them. The unit's `run/` is the place.
+Counts after the last edit, never from memory. Outputs go under the unit's
+`run/`, never `results/`.
 
 ## 6. The unit
 
-Six files: three written (`question.md`, `unit.md`, `values.tsv`), two
-left by the build (`run/run.sh`, `run/build.log`), one written by
-`check_prose_source.py` below (`sources.log`). `run/run.sh` is hand-written:
-three lines, `cd` to `lean_stage3` and the `lake build Stage3.<Module>`
-command whose output is `run/build.log` (copy unit 0341's and change the
-module name); `lab new` does not write it. `question.md` quotes the transcript
-verbatim and carries the statements as fenced blocks copied from the
-module; no boilerplate lines. Digits inside inline code spans are
-formula and are not checked; the measured digit sits outside the span,
-beside its backticked key. `values.tsv` has one row per number in the prose, including unit
-ids and numbers inside inline math, the row `loop_version`, and the row
-`design` naming the worksheet section. `unit.md`
-paraphrases the header, keys every number beside its backticked key, and
-ends with a paragraph beginning `What the next slice` or `What remains`:
-that paragraph is the next module's question.
+`run/run.sh`: three lines, `cd` to `lean_stage3` and the build command
+(copy unit 0341's, module name changed). `question.md`: the transcript
+verbatim and the pinned statements as fenced blocks copied from the
+module. `values.tsv`: one row per number in the prose, `loop_version`,
+`design <rung>.md#<section or sub-block>`, a source per row. `unit.md`:
+paraphrases the header, keys every number beside its backticked key
+(digits inside code spans are formula), ends with a paragraph beginning
+`What the next slice` or `What remains`.
 
 ```sh
 python3 utilities/check_prose_source.py units/<unit>
@@ -215,35 +121,15 @@ git add lean_stage3/Stage3/<Module>.lean lean_stage3/Stage3.lean units/<unit>
 git commit -q -m "<Module>.lean: <what>; unit <id> logged"
 ```
 
-The pre-commit runs `check_lean_unit.py` on every staged unit whose
-`values.tsv` carries `loop_version` (its step 9). Edits to
-`utilities/hooks/` need Julian's one-use approve flag, created from the
-repo root:
+Checkers in one call, the commit in another. The worksheet block's mark
+goes to PROVED naming the theorems in the same commit. A hook edit needs
+`touch .approve/pre-commit` from Julian.
 
-```sh
-touch .approve/pre-commit
-```
+## 7. Retrospective
 
-Steps that do not depend on each other run in one call: the scaffold
-while the build runs, the two files that need no counts before the counts
-arrive, both checkers together, the commit with the memory edit.
-
-## 7. Retrospective: one edit to the recipe
-
-After the commit, one step, every time:
-
-- Classify each first-build error. A class with no row in `TRAPS.md` gets
-  one: pattern, cause, fix.
-- A step that was reordered, batched, or skipped without loss gets the
-  checklist edited.
-- Any recipe edit bumps `version:` above and is committed with the unit
-  that caused it. The next units record the new `loop_version`. The
-  checker accepts a unit whose `loop_version` is at or below the line
-  above: a unit records the recipe it was built under (unit 0340).
-- Keep an edit when `errors_first` and the minutes per module trend down
-  over the following units; revert it when they do not. The evaluation is
-  fixed: the build passes with the pin, both checkers pass, the counts
-  match. The recipe is what moves.
-
-The learning curve is already in the bench: `errors_first` across the
-units, in order. Read it before editing the recipe.
+One edit, every time: a first-build error class with no row in `TRAPS.md`
+gets one; a step reordered or skipped without loss gets its line here
+edited; any edit bumps `version:` and is committed with the unit. Keep an
+edit when `errors_first` and the minutes trend down over the next units;
+revert it when they do not. Read `errors_first` across the units before
+editing.
