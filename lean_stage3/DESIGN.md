@@ -1,6 +1,6 @@
 # The design loop
 
-version: 2
+version: 3
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -39,7 +39,9 @@ in angle brackets; delete a line only when it has nothing to say.
 - [ ] Every theorem line has its hypotheses; none says "suitable".
 - [ ] Every constant is a number or the name of an existing theorem.
 - [ ] Sizes carries the lost-factor check, with the factor named or "none".
-- [ ] Every name under Composes exists: one grep, full path, no `cd`.
+- [ ] Every name under Composes exists: one grep, full path, no `cd`, the
+      pattern `theorem NAME\b\|lemma NAME\b` (unit 0349: `geom_sum_Ico` is a
+      `lemma`; a `theorem`-only grep declared it absent and the block said so).
 - [ ] The block's arithmetic was checked once by hand in the block itself,
       not in the session.
 - [ ] The brief names one block and one module.

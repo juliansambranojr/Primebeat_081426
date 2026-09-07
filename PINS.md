@@ -22,19 +22,6 @@ below with their outcome.
 
 ## Current
 
-### 2026-09-06 · block 13d, the geometric sum and the harmonic correction (Opus run)
-
-    DONE        WeilPowerGeom.lean committed by the agent with its unit: the
-                geometric sum bounded independently of the range length, the
-                correction sum bounded by a logarithm
-    ASSUMED     u is an abstract sequence with 13c's bracket as hypothesis
-                R6, so the module does not import WeilPowerSigma; Jordan's
-                inequality is Mathlib's Real.mul_le_sin; geom_sum_Ico is
-                absent on this Mathlib and the block says so
-    DEPENDS     nothing
-    OUT         reading z and Mab at the shell (13e); the on-line and
-                suppressed sums with the same weights (13e/f)
-
 ### 2026-09-06 · rung 5 from the worksheet, section 7 onward
 
     DONE        StmtDetect ε T L proved with L explicit, through the modules
@@ -49,6 +36,23 @@ below with their outcome.
                 on the prime side beyond the probe already run
 
 ## Archive
+
+### 2026-09-06 · block 13d, the geometric sum and the harmonic correction (Opus run)
+
+    DONE        WeilPowerGeom.lean committed by the agent with its unit: the
+                geometric sum bounded independently of the range length, the
+                correction sum bounded by a logarithm
+    ASSUMED     u is an abstract sequence with 13c's bracket as hypothesis
+                R6, so the module does not import WeilPowerSigma; Jordan's
+                inequality is Mathlib's Real.mul_le_sin; geom_sum_Ico is
+                absent on this Mathlib and the block says so
+    DEPENDS     nothing
+    OUT         reading z and Mab at the shell (13e); the on-line and
+                suppressed sums with the same weights (13e/f)
+    OUTCOME     built by the agent: WeilPowerGeom.lean, unit 0349, commit
+                13979b4, 14 minutes, errors_first 5 from three roots, no
+                ASSUMED pin; the ASSUMED line on geom_sum_Ico was wrong
+                (misreads table); LOOP.md v12 by the agent
 
 ### 2026-09-06 · block 13c, the tail sum to order 1/h (Opus run under DESIGN.md v1)
 
@@ -216,3 +220,4 @@ reads the pins and finds the misalignment.
 | 2026-09-06 | rung 5 pricing | ASSUMED | a rung costs a person's day | a rung costs 6–25 min of clock; price from the log |
 | 2026-09-06 | rung 5 route (unit 0325) | DONE | the isolated case, then a window family | the general case with explicit L; the window had to change |
 | 2026-09-06 | section 13 (b) (unit 0347) | (none written) | step 0b skipped: the orchestrator went from the worksheet to the module | pins are written before the module, every run; the checker cannot see this, the retrospective can |
+| 2026-09-06 | block 13d (unit 0349) | ASSUMED | `geom_sum_Ico` is absent on this Mathlib | it is present as a `lemma`; the checklist grep matched `theorem` only; DESIGN.md v3 fixes the pattern |
