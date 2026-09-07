@@ -1,6 +1,6 @@
 # The design loop
 
-version: 1
+version: 2
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -19,10 +19,16 @@ in angle brackets; delete a line only when it has nothing to say.
                 any factor that grows with m or h between an upper and a
                 lower bound is named here or the block is not done>
     Regime.    <every hypothesis as a one-line inequality, each named>
+    Defs.      <each definition the module introduces, name and body; the
+                checker counts `^def` and `^theorem` apart, so a def listed
+                as a theorem breaks the unit's counts (unit 0348)>
     Theorems.  <one line each: name — hypotheses by the names above —
-                conclusion in symbols. The executor copies these into the
-                module header; a hypothesis it needs that is not here is a
-                design gap, recorded as an ASSUMED pin and reported>
+                conclusion in symbols. Every lemma the proof will state is a
+                line, the telescoping identities included; a "via" clause is
+                a lemma without a name and the count will not reconcile. The
+                executor copies these into the module header; a hypothesis
+                it needs that is not here is a design gap, recorded as an
+                ASSUMED pin and reported>
     Composes.  <existing Lean theorems it uses, full names, grepped>
     Module.    <file, namespace, the pinned theorems (three or four)>
     Open.      <the one number that decides the next block, or "none">
