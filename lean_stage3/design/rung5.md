@@ -739,6 +739,122 @@ give `(ε'²−Δ²)cos θ − 2ε'Δ sin θ ≥ (ε'²−Δ²) − θ(2(ε'²�
 `uLam ≤ h/(λπ²)` because `1/(2λ³π²(h+1)) ≤ 1/(2λ²π²)` iff `λ(h+1) ≥ 1`;
 `coef = (ε'² − Δ² + 2iε'Δ)/ε²`.
 
+### 13h The clean shell: a sub-range no member blocks — SKETCH
+Objects.   The range `[a, b]` in `h` is cut into shells `[aρ^k, aρ^{k+1})`,
+           `k = 0 .. K-1`, at a ratio `ρ > 1`. A member at `ζ = ε' + iΔ` is
+           *blocked on shell k* when neither 13f nor 13g settles it there:
+           13g's sign needs `Δ · X_k` below `lo`, 13f's bound is smaller than
+           the shell's own length only when `Δ · X_k` is above `hi`, with
+           `X_k = aρ^k` the shell's left end. So the blocking set of one
+           member is `{k : lo ≤ Δ X_k ≤ hi}`, and because `X_k` climbs by the
+           fixed factor `ρ` while the window `[lo, hi]` does not move, that set
+           sits inside `W + 1` consecutive shells for any `W` with
+           `hi < lo · ρ^{W+1}`. With `N` members, `N(W+1)` shells can be
+           blocked; a `K` above that leaves one shell clean, and on a clean
+           shell every member is settled by 13f or 13g.
+Sizes.     `lo ≈ λπ³/(8ε')` from 13g's N2 at `Δ ≪ ε'`, and `hi ≈ Cλε'/ε²`
+           from 13f's geometric part falling under the shell length. Their
+           ratio `hi/lo ≈ 8Cε'²/(π³ε²)` carries no `λ`, no `h` and no `T`:
+           with the target selected so that `ε' ≈ ε` (§ 8) it is an absolute
+           constant, so `W` is one too. Range: `b/a = ρ^K` with `K > N(W+1)`,
+           so `log(b/a) > N(W+1) log ρ`, and with `N ≤ c₁ log T' + c₂` the
+           range is `T'` raised to `c₁(W+1) log ρ`. Letting `ρ → 1` with `W`
+           following it, `(W+1) log ρ → log(hi/lo)`, so the route needs
+           `c₁ · log(hi/lo) < 1`. That **corrects unit 0351's number**: its
+           `1/(2 ln 1.5) ≈ 1.23` priced one blocked shell per member, and the
+           window is wider than one shell. At a window ratio of `8` the
+           requirement is `c₁ < 0.481`; Trudgian's `0.112` still clears it and
+           the tree's crude chain at about `7` still does not, so the leaf
+           the route hangs on is unchanged, only its constant.
+           Lost factor: none. `W` is absolute, and the only quantity that
+           grows is `K`, which is what the range buys.
+Regime.    P1 `1 ≤ ρ`;  P2 `0 < lo`;  P3 `hi < lo · ρ^(W+1)`;
+           P4 `S.card * (W + 1) < K`.  Nothing here needs `a > 0`, `Δ > 0` or
+           an upper bound on `ρ`: the window hypothesis carries the work.
+Defs.      none. The shell scale is written out as `a * ρ ^ k` so that the
+           module states no definition and the checker counts `^def` as 0.
+Theorems.  Written as the Lean statements the module carries; the builder
+           copies them.
+           blocked_card_le — P1, P2, P3 —
+             `theorem blocked_card_le {a ρ lo hi d : ℝ} {W : ℕ} (B : Finset ℕ)
+                (hρ : 1 ≤ ρ) (hlo : 0 < lo) (hW : hi < lo * ρ ^ (W + 1))
+                (hB : ∀ k ∈ B, lo ≤ d * (a * ρ ^ k) ∧ d * (a * ρ ^ k) ≤ hi) :
+                B.card ≤ W + 1`
+             (`B` empty: `Nat.zero_le`. Otherwise `k₀ = B.min' hne`,
+             `k₁ = B.max' hne`; `B ⊆ Finset.Icc k₀ k₁` from `Finset.min'_le`
+             and `Finset.le_max'`, so `B.card ≤ k₁ + 1 - k₀` by
+             `Finset.card_le_card` and `Nat.card_Icc`. Then `k₁ ≤ k₀ + W`:
+             suppose `k₀ + W + 1 ≤ k₁`; write `ρ ^ k₁ = ρ ^ k₀ * ρ ^ (k₁ - k₀)`
+             by `pow_add` and `Nat.sub_add_cancel`, use `lo ≤ d * (a * ρ ^ k₀)`
+             from `hB` at `k₀` and `ρ ^ (W + 1) ≤ ρ ^ (k₁ - k₀)` from
+             `pow_le_pow_right₀ hρ`, giving
+             `lo * ρ ^ (W + 1) ≤ d * (a * ρ ^ k₁) ≤ hi`, against `hW`;
+             `nlinarith` is the wrong tool here, chain it with
+             `mul_le_mul_of_nonneg_left` and `le_trans`. Finish with `omega`.)
+           exists_unblocked — P4 —
+             `theorem exists_unblocked {ι : Type*} [DecidableEq ι] (S : Finset ι)
+                (B : ι → Finset ℕ) {K W : ℕ}
+                (hB : ∀ j ∈ S, (B j).card ≤ W) (hK : S.card * W < K) :
+                ∃ k, k < K ∧ ∀ j ∈ S, k ∉ B j`
+             (`(S.biUnion B).card ≤ ∑ j ∈ S, (B j).card` by `Finset.card_biUnion_le`,
+             `≤ ∑ j ∈ S, W` by `Finset.sum_le_sum`, `= S.card * W` by
+             `Finset.sum_const` and `smul_eq_mul`. So that card is under
+             `(Finset.range K).card`, hence `¬ (Finset.range K ⊆ S.biUnion B)`
+             by contraposing `Finset.card_le_card` with `Finset.card_range`
+             and `omega`; `Finset.not_subset` and `Finset.mem_biUnion` finish.)
+           exists_clean_shell — P1, P2, P3, P4 —
+             `theorem exists_clean_shell {ι : Type*} [DecidableEq ι] (S : Finset ι)
+                (B : ι → Finset ℕ) (d : ι → ℝ) {a ρ lo hi : ℝ} {W K : ℕ}
+                (hρ : 1 ≤ ρ) (hlo : 0 < lo) (hW : hi < lo * ρ ^ (W + 1))
+                (hB : ∀ j ∈ S, ∀ k ∈ B j,
+                   lo ≤ d j * (a * ρ ^ k) ∧ d j * (a * ρ ^ k) ≤ hi)
+                (hK : S.card * (W + 1) < K) :
+                ∃ k, k < K ∧ ∀ j ∈ S, k ∉ B j`
+             (blocked_card_le at each `j`, then exists_unblocked at `W + 1`.)
+           exists_clean_shell_of_count — P1, P2, P3 and the count —
+             `theorem exists_clean_shell_of_count {ι : Type*} [DecidableEq ι]
+                (S : Finset ι) (B : ι → Finset ℕ) (d : ι → ℝ)
+                {a ρ lo hi : ℝ} {W K N : ℕ}
+                (hρ : 1 ≤ ρ) (hlo : 0 < lo) (hW : hi < lo * ρ ^ (W + 1))
+                (hB : ∀ j ∈ S, ∀ k ∈ B j,
+                   lo ≤ d j * (a * ρ ^ k) ∧ d j * (a * ρ ^ k) ≤ hi)
+                (hN : S.card ≤ N) (hK : N * (W + 1) < K) :
+                ∃ k, k < K ∧ ∀ j ∈ S, k ∉ B j`
+             (`Nat.mul_le_mul_right` on `hN`, then exists_clean_shell.)
+Composes.  Exact statements, so the builder opens no other module:
+             `Finset.card_le_card : s ⊆ t → #s ≤ #t`
+             `Finset.card_range (n : ℕ) : #(range n) = n`
+             `Finset.mem_range : m ∈ range n ↔ m < n`
+             `Finset.not_subset : ¬s ⊆ t ↔ ∃ x ∈ s, x ∉ t`
+             `Finset.card_biUnion_le [DecidableEq M] {s : Finset ι} {t : ι → Finset M} :
+                #(s.biUnion t) ≤ ∑ a ∈ s, #(t a)`
+             `Finset.mem_biUnion {b : β} : b ∈ s.biUnion t ↔ ∃ a ∈ s, b ∈ t a` (a `lemma`)
+             `Finset.min'_mem : s.min' H ∈ s`
+             `Finset.min'_le (x) (H2 : x ∈ s) : s.min' ⟨x, H2⟩ ≤ x`
+             `Finset.max'_mem : s.max' H ∈ s`
+             `Finset.le_max' (x) (H2 : x ∈ s) : x ≤ s.max' ⟨x, H2⟩`
+             `Finset.mem_Icc : x ∈ Icc a b ↔ a ≤ x ∧ x ≤ b`
+             `Nat.card_Icc : #(Icc a b) = b + 1 - a` (a `lemma`, `@[simp]`)
+             `Finset.card_pos : 0 < #s ↔ s.Nonempty` (a `lemma`, `@[simp]`)
+             `pow_le_pow_right₀ (ha : 1 ≤ a) (hmn : m ≤ n) : a ^ m ≤ a ^ n` (a `lemma`)
+             `Finset.prod_const (b : M) : ∏ _x ∈ s, b = b ^ #s`, whose `to_additive`
+                is `Finset.sum_const`
+             `smul_eq_mul {α : Type*} [Mul α] (a b : α) : a • b = a * b` (a `lemma`)
+           Also: Finset.sum_le_sum, Finset.filter_subset, pow_add,
+           Nat.sub_add_cancel, Nat.mul_le_mul_right, mul_le_mul_of_nonneg_left,
+           Nat.zero_le, le_trans, omega.
+Module.    Stage3/WeilPowerClean.lean, namespace WeilPowerClean, importing
+           Stage3.Statement only (this block touches no rung module); pins:
+           blocked_card_le, exists_unblocked, exists_clean_shell,
+           exists_clean_shell_of_count. Built under the relay (LOOP.md § 4b),
+           loop version 16.
+Open.      the leaf. 13i names `StmtShortCount` with its constant `c₁` and
+           derives it from `ArgCrude.StmtSCrude`, then instantiates `B j` from
+           13f and 13g so that `hB` is discharged rather than assumed.
+Arithmetic checked here: `hi/lo ≈ (Cλε'/ε²)(8ε'/(λπ³)) = 8Cε'²/(π³ε²)`, no `λ`;
+`8/π³ = 0.258`; at ratio `8`, `1/ln 8 = 0.481`; unit 0351's `1/(2 ln 1.5) = 1.233`;
+`ρ^k₁ = ρ^k₀ · ρ^(k₁-k₀)` needs `k₀ ≤ k₁`, which `Finset.min'_le`/`le_max'` give.
+
 (c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.

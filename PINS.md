@@ -22,18 +22,34 @@ below with their outcome.
 
 ## Current
 
-### 2026-09-06 · rung 5 from the worksheet, section 7 onward
+### 2026-09-07 · rung 5, the averaging route after unit 0351
 
-    DONE        StmtDetect ε T L proved with L explicit, through the modules
-                the worksheet lists in §7–§10, each logged and committed
-    ASSUMED     the order is §7 comparison, §8 selection, §9 cluster, §10
-                assembly, with the test-function (C¹) proof and the tsum
-                split taken when the assembly needs them; λ = 1;
-                crude-explicit constants throughout; one unit per module
+    DONE        StmtDetect ε T L proved with L explicit and polynomial,
+                conditional on a short-interval zero count leaf; the route
+                is section 13, blocks 13c-13g proved (units 0348-0354),
+                13h the clean shell, 13i the leaf, then the assembly
+    ASSUMED     λ free and polynomial in the range (13e), never 1; the
+                member split is helping (13g), bounded (13f), blocked
+                (13h); crude-explicit constants; one unit per module; the
+                builder lays the module and the foreman closes what one
+                try does not, LOOP.md § 4b
     DEPENDS     nothing from Julian until a design choice changes the
                 route, which becomes a decision unit first
-    OUT         sharp constants; the old-window modules; porting; anything
-                on the prime side beyond the probe already run
+    OUT         section 9's alignment (dead, unit 0345); sharp constants
+                beyond the one leaf; the old-window modules; porting
+
+### 2026-09-07 · block 13h, WeilPowerClean, under the relay at loop v16
+
+    DONE        the four pinned theorems of rung5.md#13h built and committed
+                with unit 0357: a member blocks at most W+1 consecutive
+                shells, and more shells than the count leaves one clean
+    ASSUMED     the window ratio hi/lo is an absolute constant, so W is
+                one; the block corrects unit 0351's 1.23 to c₁·ln(hi/lo) < 1
+                and the leaf it names is unchanged; the module is pure
+                combinatorics and imports no rung module
+    DEPENDS     nothing from Julian; 0351's finding stands as corrected here
+    OUT         instantiating B from 13f and 13g (that is 13i); the leaf's
+                own proof; the assembly; any second attempt by the builder
 
 ## Archive
 
