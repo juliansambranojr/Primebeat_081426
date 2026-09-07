@@ -89,6 +89,24 @@ without naming the convention in force.
 schema in its `*_64bit_*.csv`) and remains readable in place. See
 CONTEXT.md § `imported/lattice_mapper/` and entry 46.
 
+### `/Users/juliansambrano/GitHub/non_convex_zero_crossing/`
+
+Split off from this bench on 2026-09-07, after unit 0355. It runs the
+dyadic difference-table recurrence on training loss curves instead of
+`pi(2^r)`: small attention-only models, a same-seed one-layer control,
+and the sign anomalies that survive across seeds. Read-only for
+orientation and no code shared in either direction; it copies this
+bench's `lab/` program, prereg format and notes format, and cites unit
+0355 as its founding measurement. Private on GitHub at
+`juliansambranojr/non_convex_zero_crossing`.
+
+The measurement it was founded on lives here, not there:
+`preregs/induction_bump_difference_table_v1_20260907.md`, verdict
+`overlay_only`, with the twelve raw loss curves gzipped in unit 0355's
+`run/raw/`. What it left open is the depth-2 cell two doublings before
+the induction transition, negative in all six two-layer seeds and no
+control.
+
 ## Packages and environment
 
 `.venv/` — Python 3.14.3 from `/opt/homebrew/opt/python@3.14`,
