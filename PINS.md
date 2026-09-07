@@ -35,6 +35,19 @@ below with their outcome.
     OUT         sharp constants; the old-window modules; porting; anything
                 on the prime side beyond the probe already run
 
+### 2026-09-07 · block 13g, WeilPowerNear, under the relay at loop v16
+
+    DONE        the four pinned theorems of rung5.md#13g built and committed
+                with unit 0354: the near members' terms are nonnegative at
+                every h in the range, so their sum helps the target
+    ASSUMED     the crude sign condition N2 (sin θ ≤ θ, cos θ ≥ 1 − 2θ/π)
+                is the one the assembly will use; the Lean statements in
+                the block are copied, so no shape reading is needed; the run
+                measures a 13e-sized block under the relay and v16
+    DEPENDS     nothing from Julian; 0351 stands
+    OUT         the shell between 13g's boundary and 13f's; the tight count;
+                the assembly; any second attempt by the builder
+
 ## Archive
 
 ### 2026-09-06 · block 13f, WeilPowerShell, under the relay

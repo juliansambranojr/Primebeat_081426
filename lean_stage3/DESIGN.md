@@ -1,6 +1,6 @@
 # The design loop
 
-version: 7
+version: 8
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -23,13 +23,18 @@ in angle brackets; delete a line only when it has nothing to say.
                 checker counts `^def` and `^theorem` apart, so a def listed
                 as a theorem breaks the unit's counts (unit 0348)>
     Theorems.  <one line each: name — hypotheses by the names above —
-                conclusion in symbols. Every lemma the proof will state is a
+                conclusion in symbols; from block 13g, the Lean statement
+                verbatim, which the builder copies (unit 0352: the three
+                shape readings it had to pin). Every lemma the proof will state is a
                 line, the telescoping identities included; a "via" clause is
                 a lemma without a name and the count will not reconcile. The
                 executor copies these into the module header; a hypothesis
                 it needs that is not here is a design gap, recorded as an
                 ASSUMED pin and reported>
-    Composes.  <existing Lean theorems it uses, full names, grepped>
+    Composes.  <existing Lean theorems it uses, full names, grepped; from
+                block 13g the exact statements are quoted here, so the
+                builder opens no other module (unit 0352: the 430-line read
+                of the composed module was the first pass's largest cost)>
     Module.    <file, namespace, the pinned theorems (three or four)>
     Open.      <the one number that decides the next block, or "none">
 
@@ -68,8 +73,9 @@ Fixed text; fill the brackets. Nothing else goes in.
 
     Read, in this order and nothing else first: lean_stage3/LOOP.md,
     lean_stage3/TRAPS.md, the block <id> of lean_stage3/design/<rung>.md
-    (the section heading and its lines, not the whole file), PINS.md
-    § Current, and the modules named under the block's Composes line. Then
+    (the section heading and its lines, not the whole file), and PINS.md
+    § Current. The statements the block composes are quoted under its
+    Composes line; open a module only where the block says so. Then
     follow LOOP.md top to bottom, including the retrospective. LOOP.md and
     TRAPS.md are yours: a recipe edit or a new trap row is committed with
     the unit.

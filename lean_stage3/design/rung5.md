@@ -615,6 +615,129 @@ Arithmetic checked here: `geomBoundGen = (E_a + E_b)π/(2e^{z.re α}·z.im·α)`
 = 2(ε'²+Δ²+ε²)M(log b − log a)/(λ³π²)`; `4ε'Δ ≤ 1` at `ε', Δ ≤ 1/2`;
 `(3/2)/(2π²) < 1/12 < 1`; `1/π² < 1/9 < 3/2 < π/2`.
 
+### 13g The near members' sign — SKETCH
+Objects.   A member at `ζ = ε' + iΔ` with `0 < Δ < ε'`, phase over the range
+           under `π/2`. From unit 0352's objects, the weighted term's real part
+           is `e^{z.re·u}/ε² · ((ε'² − Δ²) cos θ − 2ε'Δ sin θ)` with `θ = 4ε'Δ·u`
+           and `u = uLam λ h` (the bracket of unit 0347's `re_A_sq`, at the
+           shell). It is nonnegative when `tan θ ≤ (ε'² − Δ²)/(2ε'Δ)`; the crude
+           sufficient condition, from `sin θ ≤ θ` and `cos θ ≥ 1 − 2θ/π` on
+           `[0, π/2]`, is `θ·(2ε'Δ + 2(ε'² − Δ²)/π) ≤ ε'² − Δ²`. The phase at `h`
+           is at most its value at `b`, since `uLam λ h ≤ h/(λπ²)` (the upper
+           half of `uLam_bracket`, the correction `1/(2λ³π²(h+1))` being under
+           the intercept `1/(2λ²π²)`). So every term is nonnegative and the
+           shell sum is: these members help the target at every `h`.
+Sizes.     For `Δ ≪ ε'` the condition reads `4ε'Δb/(λπ²) ≲ π/2`, i.e.
+           `Δ ≲ λπ³/(8ε'b)`: exactly unit 0351's near boundary. Between it and
+           the far bound of 13f (`Δ ≳ λ/(εX)` for a bound under the range) sits
+           the shell 0351 prices. Lost factor: none; this block has no constant
+           to lose, its output is a sign.
+Regime.    R1 `0 < ε'`;  R3 `0 < Δ`;  N1 `Δ < ε'`;  R5 `0 < ε`;  L1 `1 ≤ λ` (ℕ);
+           G4 `1 ≤ a` (ℕ);
+           N2 `4ε'Δ·(b/(λπ²)) · (2ε'Δ + 2(ε'² − Δ²)/π) ≤ ε'² − Δ²`.
+Defs.      none.
+Theorems.  Written as the Lean statements the module carries; the builder
+           copies them.
+           uLam_nonneg — none —
+             `theorem uLam_nonneg (lam h : ℕ) : 0 ≤ WeilPowerGeomGen.uLam lam h`
+             (unfold; `mul_nonneg (sq_nonneg _)` and `WeilPowerPhase.sigma_ge` with
+             `1/(π²(m+2)) ≥ 0`).
+           uLam_le — L1, `1 ≤ h` —
+             `theorem uLam_le {lam h : ℕ} (hl : 1 ≤ lam) (hh : 1 ≤ h) :
+                WeilPowerGeomGen.uLam lam h ≤ (h : ℝ) / ((lam : ℝ) * Real.pi ^ 2)`
+             (`uLam_bracket`'s right half; then `1/(2λ³π²)/(h+1) ≤ 1/(2λ²π²)`
+             from `λ(h+1) ≥ 1`).
+           cos_ge_lin — `0 ≤ θ`, `θ ≤ π/2` —
+             `theorem cos_ge_lin {θ : ℝ} (h0 : 0 ≤ θ) (h1 : θ ≤ Real.pi / 2) :
+                1 - 2 * θ / Real.pi ≤ Real.cos θ`
+             (`Real.sin_pi_div_two_sub` backwards, `Real.mul_le_sin` at `π/2 − θ`).
+           bracket_nonneg — R1, R3, N1, `0 ≤ θ`, `θ·(2ε'Δ + 2(ε'²−Δ²)/π) ≤ ε'² − Δ²` —
+             `theorem bracket_nonneg {e' D θ : ℝ} (h1 : 0 < e') (h3 : 0 < D) (hD : D < e')
+                (h0 : 0 ≤ θ) (hθ : θ * (2 * e' * D + 2 * (e' ^ 2 - D ^ 2) / Real.pi) ≤ e' ^ 2 - D ^ 2) :
+                0 ≤ (e' ^ 2 - D ^ 2) * Real.cos θ - 2 * e' * D * Real.sin θ`
+             (`θ ≤ π/2` from `hθ`, since the coefficient is at least `2(ε'²−Δ²)/π`
+             and `ε'² − Δ² > 0`; then cos_ge_lin, `Real.sin_le h0`, and
+             `nlinarith [mul_nonneg …]` on `(ε'²−Δ²)(1 − 2θ/π) − 2ε'Δθ ≥ 0`, which is
+             `hθ` rearranged: a product of two bounded factors, pairs only).
+           re_term_eq — R5 as `e ≠ 0` —
+             `theorem re_term_eq (e' D e u : ℝ) (he : e ≠ 0) :
+                (WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zOf e' D e * (u : ℂ))).re
+                  = Real.exp (2 * (e' ^ 2 - D ^ 2 - e ^ 2) * u) / e ^ 2
+                    * ((e' ^ 2 - D ^ 2) * Real.cos (4 * e' * D * u) - 2 * e' * D * Real.sin (4 * e' * D * u))`
+             (`Complex.mul_re`, `Complex.exp_re`, `Complex.exp_im`; `coef.re = (ε'²−Δ²)/ε²`,
+             `coef.im = 2ε'Δ/ε²` by `Complex.ext_iff` on
+             `coef = ((ε'²−Δ²)/ε² : ℝ) + I·(2ε'Δ/ε² : ℝ)`, proved by `simp [coef]` then
+             `field_simp`, `try ring`; `(zOf·u).re = 2(ε'²−Δ²−ε²)u`, `(zOf·u).im = 4ε'Δu`
+             from `WeilPowerShell.zOf_re`, `zOf_im` and `Complex.mul_re`/`mul_im` with
+             `Complex.ofReal_re`, `ofReal_im`; then `field_simp`, `try ring`).
+           phase_le — R1, R3, L1, `1 ≤ h`, `h ≤ b` —
+             `theorem phase_le {e' D : ℝ} {lam h b : ℕ} (h1 : 0 < e') (h3 : 0 < D)
+                (hl : 1 ≤ lam) (hh : 1 ≤ h) (hhb : h ≤ b) :
+                4 * e' * D * WeilPowerGeomGen.uLam lam h
+                  ≤ 4 * e' * D * ((b : ℝ) / ((lam : ℝ) * Real.pi ^ 2))`
+             (uLam_le, `h ≤ b` cast, `div_le_div_of_nonneg_right`, `mul_le_mul_of_nonneg_left`).
+           term_nonneg — R1, R3, N1, R5, L1, `1 ≤ h`, `h ≤ b`, N2 —
+             `theorem term_nonneg {e' D e : ℝ} {lam h b : ℕ} (h1 : 0 < e') (h3 : 0 < D)
+                (hD : D < e') (h5 : 0 < e) (hl : 1 ≤ lam) (hh : 1 ≤ h) (hhb : h ≤ b)
+                (hN : 4 * e' * D * ((b : ℝ) / ((lam : ℝ) * Real.pi ^ 2))
+                        * (2 * e' * D + 2 * (e' ^ 2 - D ^ 2) / Real.pi) ≤ e' ^ 2 - D ^ 2) :
+                0 ≤ (WeilPowerShell.coef e' D e
+                      * Complex.exp (WeilPowerShell.zOf e' D e * ((WeilPowerGeomGen.uLam lam h : ℝ) : ℂ))).re`
+             (re_term_eq; `mul_nonneg` of `exp/ε² ≥ 0` and bracket_nonneg at
+             `θ = 4ε'Δ·uLam λ h`, whose `hθ` is N2 through phase_le and
+             `mul_le_mul_of_nonneg_right` with the coefficient nonnegative; `0 ≤ θ`
+             from uLam_nonneg).
+           shellSum_nonneg — R1, R3, N1, R5, L1, G4, N2 —
+             `theorem shellSum_nonneg {e' D e : ℝ} {lam a b : ℕ} (h1 : 0 < e') (h3 : 0 < D)
+                (hD : D < e') (h5 : 0 < e) (hl : 1 ≤ lam) (ha : 1 ≤ a)
+                (hN : 4 * e' * D * ((b : ℝ) / ((lam : ℝ) * Real.pi ^ 2))
+                        * (2 * e' * D + 2 * (e' ^ 2 - D ^ 2) / Real.pi) ≤ e' ^ 2 - D ^ 2) :
+                0 ≤ WeilPowerShell.shellSum e' D e lam a b`
+             (unfold `shellSum`; `Finset.sum_nonneg`; `Finset.mem_Ico` gives
+             `a ≤ h < b`, so `1 ≤ h` and `h ≤ b`; term_nonneg).
+           shellSum_nonneg_abs — R1, `Δ ≠ 0`, `|Δ| < ε'`, R5, L1, G4, N2 with `|Δ|` —
+             `theorem shellSum_nonneg_abs {e' D e : ℝ} {lam a b : ℕ} (h1 : 0 < e') (hD0 : D ≠ 0)
+                (hD : |D| < e') (h5 : 0 < e) (hl : 1 ≤ lam) (ha : 1 ≤ a)
+                (hN : 4 * e' * |D| * ((b : ℝ) / ((lam : ℝ) * Real.pi ^ 2))
+                        * (2 * e' * |D| + 2 * (e' ^ 2 - |D| ^ 2) / Real.pi) ≤ e' ^ 2 - |D| ^ 2) :
+                0 ≤ WeilPowerShell.shellSum e' D e lam a b`
+             (cases on the sign of `D`, `abs_of_pos`/`abs_of_neg`; the negative
+             case through `WeilPowerShell.shellSum_neg` at `-D`).
+Composes.  Exact statements the module uses, so the builder opens no other module:
+             `WeilPowerShell.shellSum_neg (e' D e : ℝ) (lam a b : ℕ) :
+                shellSum e' (-D) e lam a b = shellSum e' D e lam a b`
+             `WeilPowerShell.zOf_re (e' D e : ℝ) : (zOf e' D e).re = 2 * (e' ^ 2 - D ^ 2 - e ^ 2)`
+             `WeilPowerShell.zOf_im (e' D e : ℝ) : (zOf e' D e).im = 4 * e' * D`
+             `def WeilPowerShell.zOf (e' D e : ℝ) : ℂ := 2 * (((e' : ℂ) + Complex.I * (D : ℂ)) ^ 2 - (e : ℂ) ^ 2)`
+             `def WeilPowerShell.coef (e' D e : ℝ) : ℂ := ((e' : ℂ) + Complex.I * (D : ℂ)) ^ 2 / (e : ℂ) ^ 2`
+             `def WeilPowerShell.shellSum (e' D e : ℝ) (lam a b : ℕ) : ℝ :=
+                ∑ h ∈ Finset.Ico a b,
+                  (coef e' D e * Complex.exp (zOf e' D e * ((WeilPowerGeomGen.uLam lam h : ℝ) : ℂ))).re`
+             `def WeilPowerGeomGen.uLam (lam h : ℕ) : ℝ := ((h : ℝ)) ^ 2 * WeilPowerPhase.sigma (lam * h - 1)`
+             `WeilPowerGeomGen.uLam_bracket {lam h : ℕ} (hl : 1 ≤ lam) (hh : 1 ≤ h) :
+                0 ≤ uLam lam h - ((h : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - 1 / (2 * (lam : ℝ) ^ 2 * Real.pi ^ 2))
+                ∧ uLam lam h - ((h : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - 1 / (2 * (lam : ℝ) ^ 2 * Real.pi ^ 2))
+                    ≤ 1 / (2 * (lam : ℝ) ^ 3 * Real.pi ^ 2) / ((h : ℝ) + 1)`
+             `WeilPowerPhase.sigma_ge (m : ℕ) : 1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m`
+             (the `zOf_re`/`zOf_im` argument lists are as the 13f module declares
+             them; if they differ, the builder reads the two lines, nothing more).
+           Mathlib: Real.sin_pi_div_two_sub, Real.mul_le_sin, Real.sin_le (a `lemma`),
+           Complex.exp_re, Complex.exp_im, Complex.mul_re, Complex.mul_im,
+           Complex.ofReal_re, Complex.ofReal_im, Finset.mem_Ico,
+           div_le_div_of_nonneg_right (a `lemma`), mul_le_mul_of_nonneg_left,
+           mul_le_mul_of_nonneg_right, mul_nonneg, sq_nonneg, abs_of_pos,
+           abs_of_neg, Finset.sum_nonneg (`to_additive` of `one_le_prod'`, Algebra/Order/BigOperators/Group/Finset.lean).
+Module.    Stage3/WeilPowerNear.lean, namespace WeilPowerNear, importing
+           WeilPowerShell; pins: term_nonneg, shellSum_nonneg, shellSum_nonneg_abs,
+           bracket_nonneg. Built under the relay (LOOP.md § 4b), loop version 16.
+Open.      none in this block; with 13f and 13g the members split into helping
+           (this block), bounded (13f) and the shell between (unit 0351).
+Arithmetic checked here: with `θ ≤ π/2`, `cos θ ≥ 1 − 2θ/π` and `sin θ ≤ θ`
+give `(ε'²−Δ²)cos θ − 2ε'Δ sin θ ≥ (ε'²−Δ²) − θ(2(ε'²−Δ²)/π + 2ε'Δ) ≥ 0` by N2;
+`θ ≤ π/2` from N2 because `θ · 2(ε'²−Δ²)/π ≤ θ · (coefficient) ≤ ε'² − Δ²`;
+`uLam ≤ h/(λπ²)` because `1/(2λ³π²(h+1)) ≤ 1/(2λ²π²)` iff `λ(h+1) ≥ 1`;
+`coef = (ε'² − Δ² + 2iε'Δ)/ε²`.
+
 (c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.
