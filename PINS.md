@@ -22,20 +22,6 @@ below with their outcome.
 
 ## Current
 
-### 2026-09-06 · block 13e, the geometric bound with a free slope and uLam (Opus run)
-
-    DONE        WeilPowerGeomGen.lean committed by the agent with its unit:
-                13d restated with slope, intercept and correction scale free,
-                and the bracket for uLam λ h = h²σ(λh−1) at general λ
-    ASSUMED     λ is a positive integer and m + 1 = λh; the special case
-                α = 1/π², β₀ = ½/π², c = 1/(4π²) is 13d and need not be
-                re-derived; the casts around λh − 1 are the executor's;
-                sin_im_ge_gen takes G1 as well as G2 and G3, the block's
-                Theorems line naming only the latter two, G1 being in its
-                own Regime list (unit 0350)
-    DEPENDS     nothing
-    OUT         the shell reading (13f); the error term q at the shell
-
 ### 2026-09-06 · rung 5 from the worksheet, section 7 onward
 
     DONE        StmtDetect ε T L proved with L explicit, through the modules
@@ -50,6 +36,24 @@ below with their outcome.
                 on the prime side beyond the probe already run
 
 ## Archive
+
+### 2026-09-06 · block 13e, the geometric bound with a free slope and uLam (Opus run)
+
+    DONE        WeilPowerGeomGen.lean committed by the agent with its unit:
+                13d restated with slope, intercept and correction scale free,
+                and the bracket for uLam λ h = h²σ(λh−1) at general λ
+    ASSUMED     λ is a positive integer and m + 1 = λh; the special case
+                α = 1/π², β₀ = ½/π², c = 1/(4π²) is 13d and need not be
+                re-derived; the casts around λh − 1 are the executor's;
+                sin_im_ge_gen takes G1 as well as G2 and G3, the block's
+                Theorems line naming only the latter two, G1 being in its
+                own Regime list (unit 0350)
+    DEPENDS     nothing
+    OUT         the shell reading (13f); the error term q at the shell
+    OUTCOME     built by the agent: WeilPowerGeomGen.lean, unit 0350, commit
+                947ac9b, 11 minutes, errors_first 1, one ASSUMED pin (G1
+                uncited on one theorem line, DESIGN.md v5); LOOP.md v13 by
+                the agent
 
 ### 2026-09-06 · block 13d, the geometric sum and the harmonic correction (Opus run)
 

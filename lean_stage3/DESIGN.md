@@ -1,6 +1,6 @@
 # The design loop
 
-version: 4
+version: 5
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -36,7 +36,9 @@ in angle brackets; delete a line only when it has nothing to say.
 ## 2. The checklist, before the brief
 
 - [ ] Pins for the block in `PINS.md` § Current (DONE, ASSUMED, DEPENDS, OUT).
-- [ ] Every theorem line has its hypotheses; none says "suitable".
+- [ ] Every theorem line has its hypotheses; none says "suitable". A sign or
+      positivity the proof idea uses is cited on that line even when it is
+      already a Regime line (unit 0350: `sin_im_ge_gen` used G1 uncited).
 - [ ] Every constant is a number or the name of an existing theorem.
 - [ ] Sizes carries the lost-factor check, with the factor named or "none".
 - [ ] Every name under Composes exists: one grep, full path, no `cd`, the
