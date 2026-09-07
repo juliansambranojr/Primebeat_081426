@@ -440,7 +440,9 @@ Open.      none; the next block (13e) reads `z`, `Mab` and the regime at
            the shell: `Im z = 4ε'Δ`, `|Re z| ≤ η`, `Mab ≤ e^{K'}`, and
            traces `q ≤ 1/(N e^{K'})` to `h` and `λ`.
 
-### 13e The geometric bound with a free slope, and `u` at general `λ` — SKETCH
+### 13e The geometric bound with a free slope, and `u` at general `λ` — PROVED
+(unit 0350: `WeilPowerGeomGen.norm_geom_le_gen`, `norm_corr_le_gen`,
+`norm_sum_exp_u_le_gen`, `uLam_bracket`)
 Objects.   Blocks 13c–13d were stated at `λ = 1` (`h = m + 1`, slope `1/π²`,
            intercept `½/π²`). The shell needs `λ` free: the error term of
            unit 0347 is `q = ‖w‖⁴/(π⁴(m+1)³) = |ζ|⁴h/(π⁴λ³)` at `m+1 = λh`,

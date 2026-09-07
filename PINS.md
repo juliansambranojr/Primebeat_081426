@@ -29,7 +29,10 @@ below with their outcome.
                 and the bracket for uLam λ h = h²σ(λh−1) at general λ
     ASSUMED     λ is a positive integer and m + 1 = λh; the special case
                 α = 1/π², β₀ = ½/π², c = 1/(4π²) is 13d and need not be
-                re-derived; the casts around λh − 1 are the executor's
+                re-derived; the casts around λh − 1 are the executor's;
+                sin_im_ge_gen takes G1 as well as G2 and G3, the block's
+                Theorems line naming only the latter two, G1 being in its
+                own Regime list (unit 0350)
     DEPENDS     nothing
     OUT         the shell reading (13f); the error term q at the shell
 

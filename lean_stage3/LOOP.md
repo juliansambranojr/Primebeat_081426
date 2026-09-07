@@ -1,6 +1,6 @@
 # The module loop
 
-version: 12
+version: 13
 
 One Stage-3 module, from design to commit. Every step is a command or a
 file. An instance that has never seen this repo follows it top to bottom.
@@ -114,7 +114,17 @@ into a row there. After a `field_simp`, write `try ring`, never a bare
 `ring`: whether `field_simp` closes the goal depends on the denominators
 it clears, and a bare `ring` on a goal already closed is `TRAPS.md` row 1,
 costing one error plus one more for every pin downstream (unit 0348's
-whole first build was that, in one of five `field_simp`s). A `linear_combination` residual is read, never
+whole first build was that, in one of five `field_simp`s). Before the
+first build, list the candidates and change each one:
+
+```sh
+grep -n -A1 'field_simp' lean_stage3/Stage3/<Module>.lean | grep 'ring$'
+```
+
+Every bare `ring` it lists becomes `try ring`; the grep lists the needed
+ones too, and `try ring` is right for both. Unit 0350's whole first build
+was one line this grep prints, in a module whose other `field_simp` had
+the `try` already. A `linear_combination` residual is read, never
 recomputed. For one stubborn lemma, iterate in a scratch file at seconds
 per try:
 
