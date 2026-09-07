@@ -186,7 +186,7 @@ existed.
 
 - `run_start_at`: 2026-09-07T17:51:46Z
 - `run_end_at`: 2026-09-07T19:31:50Z
-- `verdict`: (Julian's to write)
+- `verdict`: `overlay_only` (Julian, 2026-09-07)
 - mechanical output of the decision rule: `overlay_only`, `excess = −1`
   (`N(two layers) = 2`, `N(one layer) = 3`, plateau rows 8–12, bump row
   14 in all six two-layer seeds, no bump in any one-layer seed)
