@@ -1036,6 +1036,138 @@ Arithmetic checked here: with `α = c₁(W+1)lρ` and `L = G/(1−α)`,
 `0.383 < 0.48`; `0.159 + 2(7) = 14.2`, outside. `b = e^L` is `T` to the `α/(1−α)`
 times a constant, since `L = αD/(1−α) + const` and `D = log(T + μ)`.
 
+### 13j The term at an actual zero: two sidebands, the far one bounded — SKETCH
+Objects.   Every module of blocks 13a–13i is about `S m w` for a free
+           complex `w`. The term of the zero form at a zero `ρ` is, from
+           `WeilPowerBackground.term_re_eq` and `WeilOddPower.what_eq`,
+           `termW h γ m ρ = −(h/2)² · Re((S m w₊ + S m w₋)²)` with
+           `w± = (ρ − 1/2 ± iγ)·h`: the window is a cosine at height `γ`
+           times an envelope, so a zero is read at two sidebands. Expanding,
+           `−(h/2)²[Re(S₋²) + 2Re(S₊S₋) + Re(S₊²)]`. Block 13b bounds `Re(S₋²)`
+           below (`re_S_sq_ge`); nothing bounds the other two. The far sideband
+           has `Im w₊ = (Im ρ + γ)h`, about `2γh`, and § 4's far bound
+           `WeilPowerBounds.norm_S_le_far` gives `‖S m w₊‖ ≤ cS m · cosh(Re w₊) ·
+           (2/Im w₊²)^{m+1}` once `2(Re w₊² + π²(m+1)²) ≤ Im w₊²`. This block
+           is the connection the ladder never made: it states the term at
+           `ρ : Kadiri.NontrivialZeros`, an actual nontrivial zero.
+Sizes.     `‖S m w₊‖ ≤ cS m · cosh(ε'h) · (2/((Im ρ + γ)h)²)^{m+1}`; with
+           `(Im ρ + γ)h ≥ 2γh − h/2` and `m + 1 = λh` this is
+           `cS m · e^{ε'h} · (1/(2γ²h²))^{λh}`, super-exponentially small in
+           `h` for `γ ≥ 2`, against `Re(S₋²) ~ c²ε'²h²e^{2ε'²h/(π²λ)}`. The cross
+           term is `2‖S₊‖‖S₋‖`, the same order times `‖S₋‖`. Lost factor: none;
+           the far sideband is the § 4 decay and it is the only new thing.
+Regime.    F1 `0 < h`;  F2 `2 · ((Re ρ − 1/2)² h² + π²(m+1)²) ≤ ((Im ρ + γ) h)²`,
+           the far condition at `w₊`, which is `(Im ρ + γ)² ≥ 2((Re ρ − 1/2)² + π²λ²)`;
+           and for the last theorem block 13b's regime at `w₋`:
+           F3 `QS m w₋ ≠ 0`;  F4 `‖w₋‖² ≤ π²(m+2)²/2`;  F5 `q m w₋ ≤ 1`.
+Defs.      `def wp (h γ : ℝ) (ρ : ℂ) : ℂ := (ρ - 1 / 2 + Complex.I * (γ : ℂ)) * (h : ℂ)`
+           `def wm (h γ : ℝ) (ρ : ℂ) : ℂ := (ρ - 1 / 2 - Complex.I * (γ : ℂ)) * (h : ℂ)`
+Theorems.  Written as the Lean statements the module carries; the builder
+           copies them.
+           im_sq_sub_re_sq — none —
+             `theorem im_sq_sub_re_sq (z : ℂ) : z.im ^ 2 - z.re ^ 2 = -(z ^ 2).re`
+             (`simp [pow_two, Complex.mul_re]` closes it; compiled in Scratch.lean
+             on 2026-09-07.)
+           term_eq_sidebands — F1 —
+             `theorem term_eq_sidebands {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : ℂ) :
+                WeilPowerBands.termW h γ m ρ
+                  = -((h / 2) ^ 2 * (((S m (wm h γ ρ)) ^ 2).re
+                      + 2 * (S m (wp h γ ρ) * S m (wm h γ ρ)).re
+                      + ((S m (wp h γ ρ)) ^ 2).re))`
+             (unfold `termW`; `rw [term_re_eq hh, what_eq hh, im_sq_sub_re_sq]`;
+             then `((h:ℂ)/2)^2 = (((h/2)^2 : ℝ) : ℂ)` by `push_cast; ring`,
+             `Complex.re_ofReal_mul`, `Complex.add_re`, `Complex.mul_re`, `ring`.
+             Both halves compiled in Scratch.lean; `wp`/`wm` are the two arguments
+             of `what_eq` with `z = ρ − 1/2`, which `ring` identifies.)
+           term_le_sidebands — F1 —
+             `theorem term_le_sidebands {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : ℂ) :
+                WeilPowerBands.termW h γ m ρ
+                  ≤ -((h / 2) ^ 2 * (((S m (wm h γ ρ)) ^ 2).re
+                      - 2 * ‖S m (wp h γ ρ)‖ * ‖S m (wm h γ ρ)‖
+                      - ‖S m (wp h γ ρ)‖ ^ 2))`
+             (term_eq_sidebands, then `Complex.re_le_norm` on the cross and far
+             products with `norm_mul` and `Complex.norm_pow`, and
+             `neg_le_neg`, `mul_le_mul_of_nonneg_left` with `0 ≤ (h/2)^2`;
+             the direction: a larger bracket makes the term more negative,
+             and `Re(S₊S₋) ≥ −‖S₊‖‖S₋‖`, `Re(S₊²) ≥ −‖S₊‖²`.)
+           wp_re, wp_im — none —
+             `theorem wp_re (h γ : ℝ) (ρ : ℂ) : (wp h γ ρ).re = (ρ.re - 1 / 2) * h`
+             `theorem wp_im (h γ : ℝ) (ρ : ℂ) : (wp h γ ρ).im = (ρ.im + γ) * h`
+             (`simp [wp, Complex.mul_re, Complex.mul_im]`; `ring` if left over.)
+           far_sideband_le — F2 —
+             `theorem far_sideband_le {h γ : ℝ} {m : ℕ} {ρ : ℂ}
+                (hfar : 2 * (((ρ.re - 1 / 2) * h) ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2)
+                          ≤ ((ρ.im + γ) * h) ^ 2) :
+                ‖S m (wp h γ ρ)‖
+                  ≤ cS m * Real.cosh ((ρ.re - 1 / 2) * h) * (2 / ((ρ.im + γ) * h) ^ 2) ^ (m + 1)`
+             (`WeilPowerBounds.norm_S_le_far` at `w = wp h γ ρ`, with `wp_re`, `wp_im`
+             rewritten into its hypothesis and conclusion.)
+           term_le_at_zero — F1, F2, F3, F4, F5 —
+             `theorem term_le_at_zero {h γ : ℝ} {m : ℕ} (hh : 0 < h) (ρ : Kadiri.NontrivialZeros)
+                (hfar : 2 * ((((ρ : ℂ).re - 1 / 2) * h) ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2)
+                          ≤ (((ρ : ℂ).im + γ) * h) ^ 2)
+                (hne : QS m (wm h γ (ρ : ℂ)) ≠ 0)
+                (hsmall : ‖wm h γ (ρ : ℂ)‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2)
+                (hq : q m (wm h γ (ρ : ℂ)) ≤ 1) :
+                WeilPowerBands.termW h γ m (ρ : ℂ)
+                  ≤ -((h / 2) ^ 2 *
+                      ((cS m / D m) ^ 2 * Real.exp (2 * ((wm h γ (ρ : ℂ)) ^ 2).re * sigma m)
+                          * (((wm h γ (ρ : ℂ)) ^ 2).re
+                              * Real.cos (2 * ((wm h γ (ρ : ℂ)) ^ 2).im * sigma m)
+                            - ((wm h γ (ρ : ℂ)) ^ 2).im
+                              * Real.sin (2 * ((wm h γ (ρ : ℂ)) ^ 2).im * sigma m))
+                        - (cS m / D m) ^ 2 * ‖wm h γ (ρ : ℂ)‖ ^ 2
+                          * Real.exp (2 * ((wm h γ (ρ : ℂ)) ^ 2).re * sigma m)
+                          * (4 * q m (wm h γ (ρ : ℂ)) + 4 * q m (wm h γ (ρ : ℂ)) ^ 2)
+                      - 2 * (cS m * Real.cosh (((ρ : ℂ).re - 1 / 2) * h)
+                              * (2 / (((ρ : ℂ).im + γ) * h) ^ 2) ^ (m + 1)) * ‖S m (wm h γ (ρ : ℂ))‖
+                      - (cS m * Real.cosh (((ρ : ℂ).re - 1 / 2) * h)
+                              * (2 / (((ρ : ℂ).im + γ) * h) ^ 2) ^ (m + 1)) ^ 2))`
+             (term_le_sidebands at `(ρ : ℂ)`; then `WeilPowerPhase.re_S_sq_ge hne hsmall hq`
+             for the first piece and far_sideband_le for `‖S m w₊‖` in the other two,
+             through `mul_le_mul` with the norms nonnegative and `pow_le_pow_left₀`;
+             chain with `neg_le_neg` and `mul_le_mul_of_nonneg_left`. The
+             statement is long because it is explicit; that is the point.)
+Composes.  Exact statements, so the builder opens no other module:
+             `WeilPowerBands.termW (h γ : ℝ) (m : ℕ) (ρ : ℂ) : ℝ :=
+                (laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).re`
+             `WeilPowerBackground.term_re_eq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : ℂ) :
+                (laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).re
+                  = (what h γ m (ρ - 1 / 2)).im ^ 2 - (what h γ m (ρ - 1 / 2)).re ^ 2`
+             `WeilOddPower.what_eq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (z : ℂ) :
+                what h γ m z = ((h : ℂ) / 2) *
+                  (S m ((z + Complex.I * (γ : ℂ)) * (h : ℂ)) + S m ((z - Complex.I * (γ : ℂ)) * (h : ℂ)))`
+             `WeilPowerBounds.norm_S_le_far {m : ℕ} {w : ℂ}
+                (hfar : 2 * (w.re ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2) ≤ w.im ^ 2) :
+                ‖S m w‖ ≤ cS m * Real.cosh w.re * (2 / w.im ^ 2) ^ (m + 1)`
+             `WeilPowerPhase.re_S_sq_ge {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
+                (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (hq : q m w ≤ 1) :
+                (cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m)
+                    * ((w ^ 2).re * Real.cos (2 * (w ^ 2).im * sigma m)
+                      - (w ^ 2).im * Real.sin (2 * (w ^ 2).im * sigma m))
+                  - (cS m / D m) ^ 2 * ‖w‖ ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m)
+                    * (4 * q m w + 4 * q m w ^ 2)
+                  ≤ ((S m w) ^ 2).re`
+             `Kadiri.NontrivialZeros` (a subtype of `ℂ`; `(ρ : ℂ)` is its coercion,
+             used exactly as `WeilPowerOnLine.weightedTermW_conjZ` uses it).
+           Mathlib: Complex.re_le_norm, Complex.abs_re_le_norm, norm_mul,
+           Complex.norm_pow, Complex.mul_re, Complex.mul_im, Complex.add_re,
+           Complex.re_ofReal_mul, neg_le_neg, mul_le_mul, mul_le_mul_of_nonneg_left,
+           pow_le_pow_left₀, norm_nonneg, sq_nonneg.
+Module.    Stage3/WeilPowerBridge.lean, namespace WeilPowerBridge, importing
+           Stage3.WeilPowerPhase, Stage3.WeilPowerBands and Stage3.WeilPowerBounds
+           (`WeilPowerBands` for `termW`, which imports `WeilPowerBackground`);
+           `open WeilOddPower WeilPowerBackground WeilPowerPhase WeilPowerBounds`
+           as those modules do; pins: term_eq_sidebands, term_le_sidebands,
+           far_sideband_le, term_le_at_zero. Built under the relay (LOOP.md § 4b).
+Open.      with this block every module of the ladder is attached to an actual
+           zero. The size question for the whole term, sidebands included, is
+           priced next on this statement rather than on `S` alone.
+Arithmetic checked here: `Im(X)² − Re(X)² = −Re(X²)`; `X = (h/2)(S₊ + S₋)` so
+`X² = (h/2)²(S₋² + 2S₊S₋ + S₊²)` and the real part distributes; `Re(z) ≥ −‖z‖`
+gives `Re(S₊S₋) ≥ −‖S₊‖‖S₋‖` and `Re(S₊²) ≥ −‖S₊‖²`; `(Im ρ + γ)h` at
+`Im ρ ≈ γ` is `2γh`; `(2/(2γh)²)^{λh} = (1/(2γ²h²))^{λh}`.
+
 (c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.
