@@ -270,7 +270,8 @@ the order, and the far bound), and the count of off-line zeros with
 `Re < 1/4` through that symmetry, since the count's window covers only
 `Re ≥ 1/4`.
 
-## 14. The window question — ANSWERED NO (unit 0360): boost and phase are one
+## 14. The window question — NO for one sideband (unit 0360); the term's two-sideband
+version unverified (audit 2026-09-07, unit 0361)
 
 Sections 9 and 13 died of one cause, twice. An off-line zero contributes
 `2 Re(S(w)²)` and the sign of that turns on a phase we do not control, so the
@@ -324,8 +325,24 @@ the theorem trades sharpness for suppression.
 - Whether the tsum split needs the off-line part summable at all: yes, to
   write the form as a sum of three parts; the far bound gives it.
 
-## 13. The averaging route — DEAD (unit 0359); the shell priced (unit 0351,
-corrected by 0357) and closed (units 0357-0358)
+## 13. The averaging route — uniform L DEAD, gap-dependent L OPEN (audit
+2026-09-07, unit 0361); the shell priced (unit 0351, corrected by 0357) and
+closed (units 0357-0358)
+
+Audit, 2026-09-07 (unit 0361). Unit 0359's headline ratio priced a worst case
+with every member at `Δ = lo/b`, and `Δ` cannot depend on `b`: the zeros are
+fixed before the range is chosen. For any fixed configuration the route
+closes, since each member's total cost is at most `λπ²/(2Δ²)` whatever the
+range, so a range past `h₀` plus the sum of those wins. What dies is
+uniformity: `L` explicit in `ε, T` alone must beat every configuration, so
+`b` comes from a finite explicit menu, each member blocks a `b`-interval
+`(lo/Δ, λπ²/(2Δ²))`, and `N` members block more than the menu holds. That
+is the argument that kills the rung as stated; 0359 did not write it. A
+gap-dependent `L(ε, T, δ)`, with `δ` the height distance to the nearest
+other off-line zero, is open and within reach of the modules plus block 13j.
+Both pricings were done on `Re(S(w)²)` for one `w`; the term has two
+sidebands (block 13j), and the far one is small by § 4, which is why the
+single-`w` pricing is expected to stand, and why it is not yet verified.
 
 Marked dead 2026-09-07, after unit 0359 and Julian's question about what
 relies on it staying open. Nothing does: `StmtDetect` appears in one theorem

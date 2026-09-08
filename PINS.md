@@ -39,6 +39,23 @@ below with their outcome.
                 averaging route; sharpening constants against a structural
                 obstruction
 
+### 2026-09-07 · block 13j, WeilPowerBridge, under the relay
+
+    DONE        the four pinned theorems of rung5.md#13j built and committed
+                with unit 0362: the zero form's term at an actual nontrivial
+                zero written in S at its two sidebands, the far sideband
+                bounded by section 4's decay, and 13b's lower bound applied
+                to the near one
+    ASSUMED     the bridge is term_re_eq + what_eq (compiled in Scratch.lean
+                2026-09-07); the far condition F2 is a hypothesis here and is
+                discharged by the assembly's choice of gamma; the statement
+                of term_le_at_zero is long because every constant is explicit
+    DEPENDS     nothing from Julian
+    OUT         pricing the size on the whole term (next decision unit);
+                any second attempt by the builder
+
+## Archive
+
 ### 2026-09-07 · block 13i, WeilPowerCount, under the relay
 
     DONE        the four pinned theorems of rung5.md#13i built and committed
