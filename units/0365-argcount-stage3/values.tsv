@@ -1,0 +1,62 @@
+key	value	source
+module_lines	364	wc -l lean_stage3/Stage3/ArgCount.lean
+theorems_proved	15	grep -c ^theorem lean_stage3/Stage3/ArgCount.lean
+defs	1	grep -c ^def lean_stage3/Stage3/ArgCount.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ArgCount.lean
+pins	6	argS_le_of_good, argS_le_gt_two, sCrude_holds, sCrude_holds_of_good_two, rvM_crude, rvM_crude_of_good_two
+zeta_refs	32	grep -c riemannZeta lean_stage3/Stage3/ArgCount.lean
+errors_first	7	the builder first stop, lines error: Stage3/ArgCount.lean:<line>:<col>:
+roots	2	the builder first stop: the multiplicative member of a to_additive pair at IsCompact.exists_bound_of_continuousOn' (1 line) and a linarith whose certificate needs a product of two sign facts absent from the context (1), beside the guard_msgs sorryAx cascade on the five pins the one sorry reached (5)
+warnings_first	0	the builder first stop, no warning on a Stage3/ArgCount.lean line
+sorries_first	1	the builder report at the first-pass stop, the right branch of phaseTheta_sub_le
+foreman_edits	1	the foreman signal: the one sorry closed with the sign product 0 <= (T0 - T) * log pi
+row_cascade	19	lean_stage3/TRAPS.md row 19, pins fail while their theorems hold sorries
+row_product	18	lean_stage3/TRAPS.md row 18, the product the certificate needs is not in the hint list
+assumed_pins	5	PINS.md Current, block H3: the to_additive partner of exists_bound_of_continuousOn', the two names div_le_iff and Real.one_lt_pi that this Mathlib does not carry, zeroes_rect membership needing a simp only before it projects, the Finset of exists_good_below introduced through its three properties, and argS_two_le unfolding argS instead of using stmtArgIdentity_holds
+jobs_package	8768	lake build, full Stage3 after the import line
+jobs_module	8720	run/build.log, lake build Stage3.ArgCount
+loop_version	19	lean_stage3/LOOP.md version line
+design	hnt.md#h3	the assembly: StmtSCrude argS, good heights by the identity, bad heights by a good one beside them
+sc_b1	15	sCrude_holds and sCrude_holds_of_good_two, the coefficient of log T
+sc_b3	75	sCrude_holds_of_good_two, the additive constant under good 2
+sc_b3_two	600	sCrude_holds, the additive constant carried by the single point T = 2
+good_bound	73	argS_le_of_good, the additive constant of H2's card_reZeros_le
+leg_cost	3/2	argS_le_of_good, the two-leg cost of H1's zetaArgContour_le
+phase_cost	1/2	argS_le_gt_two, the phase moving by at most pi/2, divided by pi
+stirling_a	97	Stage3.backlundPhase_holds, the Stirling half's coefficient of log T
+stirling_b3	98	Stage3.backlundPhase_holds, the Stirling half's additive constant
+band_a	112	rvM_crude and rvM_crude_of_good_two, 97 + 15
+band_b3	698	rvM_crude, 98 + 600
+band_b3_good	173	rvM_crude_of_good_two, 98 + 75
+budget	100	entry 130 census budget for B1, which the 112 misses
+main_term_bound	3	mainTerm_abs_le, the bound on Kadiri.zetaCountingMainTerm on the interval [2, 3]
+n_at_good	399.5	argS_two_le, the ceiling on N T' for a good T' in (2, 3): 15*2 + 74.5 + 3 + 97*2 + 98
+phase_at_two	198	argS_two_le, the bound on theta 2 / pi + 1: 3 + 97 + 98
+args_two	597.5	argS_two_le, 399.5 + 198, under the 600 the statement carries
+log_at_two	1	argS_two_le, Real.log 2 bounded by 2 - 1
+log_at_three	2	argS_two_le, Real.log T' bounded by T' - 1 for T' below 3
+segment_low	1/2	the left end of the open segment H2 counts on
+segment_high	2	the line Re s = 2 and the right end of that segment
+unit_h1	0363	unit ArgLegs, block H1, the two contour legs
+unit_h2	0364	unit ReZetaCount, block H2, the count
+unit_this	0365	this unit
+errors_h1	4	units/0363-arglegs-stage3/values.tsv errors_first
+errors_h2	12	units/0364-rezetacount-stage3/values.tsv errors_first
+mainterm_abs	3	mainTerm_abs_le, the bound on |zetaCountingMainTerm T| for 2 <= T <= 3
+band_b2	0	rvM_crude, the log log T coefficient
+over	12	112 - 100, the census miss
+count_a1	15	ReZetaCount.card_reZeros_le, the Jensen coefficient
+row_new	37	lean_stage3/TRAPS.md row 37, the multiplicative member of a to_additive pair that #check passes
+traps_added	1	lean_stage3/TRAPS.md, row 37
+cascade	5	the builder first stop: guard_msgs lines of the five pins downstream of the sorry, TRAPS row 19
+foreman_builds	1	the foreman pass: one build after the closure, clean
+loop_next	20	lean_stage3/LOOP.md version line after the retrospective
+tokens_first	138381	harness usage line at the builder first stop
+calls_first	26	harness usage line at the builder first stop
+minutes_first	11	harness usage line at the builder first stop, 667986 ms
+tokens_end	152653	harness usage line at the builder second stop, cumulative
+calls_second	11	harness usage line at the builder second stop
+minutes_second	2	harness usage line at the builder second stop, 130998 ms
+sorries_h1	2	units/0363-arglegs-stage3/values.tsv sorries_first
+sorries_h2	6	units/0364-rezetacount-stage3/values.tsv sorries_first

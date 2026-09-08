@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-09-08T10:55:49Z
+# unit: 0365-argcount-stage3
+# sources searched: 883
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:191094
+  Source: session transcript, 2026-09-08, the count-to-argument step, block H3
+
+FOUND  notes/NOTEPAD.md:25
+  the count-to-argument step
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:189239
+  theorem argS_le_gt_two {T : ℝ} (hT : 2 < T) : |Stage3.argS T| ≤ 15 * Real.log T + 75
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:189276
+  theorem sCrude_holds : Stage3.StmtSCrude Stage3.argS 15 600
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:189272
+  theorem sCrude_holds_of_good_two (h2 : good 2) : Stage3.StmtSCrude Stage3.argS 15 75
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:189285
+  theorem rvM_crude : riemannZeta.Riemann_vonMangoldt_bound 112 0 698
+
+# 6 found, 0 missing

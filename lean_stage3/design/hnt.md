@@ -405,7 +405,8 @@ with `π < 3.1416` (the first draft wrote `0.69` from `π < 3.15` and then divid
 `56T / 0.7 = 80T`; `log(80T)/log(15/14) ≤ 14.5 log T + 14.5·4.39 = 14.5 log T + 63.7 ≤ 15 log T + 73`
 for `T ≥ 2`; for real `x ∈ (1/2, 2)`, `(x − 2)/2 ∈ (−3/4, 0)`, inside the `7/8` disk.
 
-## H3 The assembly: StmtSCrude argS, good heights by the identity, bad heights by a good one beside them — SKETCH
+## H3 The assembly: StmtSCrude argS, good heights by the identity, bad heights by a good one beside them — PROVED (unit 0365:
+`ArgCount.argS_le_of_good`, `argS_le_gt_two`, `sCrude_holds`, `sCrude_holds_of_good_two`, `rvM_crude`, `rvM_crude_of_good_two`)
 Objects.   A height `T` is good when no zero of ζ with `0 < Re ρ` has `Im ρ = T`;
            that is the `hgood` of `argS_eq_zetaArgContour`. At a good `T ≥ 2`,
            `argS T = zetaArgContour T`, and H1's `zetaArgContour_le` with
@@ -494,7 +495,9 @@ Theorems.  Written as the Lean statements the module carries; the builder
            phasePoint_bound_near — none —
              `theorem phasePoint_bound_near (T₀ : ℝ) :
                 ∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Set.Icc (T₀ - 1) T₀, |Stage3.phasePoint t| ≤ M`
-             (`isCompact_Icc.exists_bound_of_continuousOn' Stage3.continuous_phasePoint.continuousOn`
+             (`isCompact_Icc.exists_bound_of_continuousOn Stage3.continuous_phasePoint.continuousOn`
+             (the additive partner; the primed name is the multiplicative member of the
+             `to_additive` pair and mismatches the instance path at `ℝ`, TRAPS row 37)
              gives `C`; take `max C 0`; `Real.norm_eq_abs`, `le_max_left`, `le_max_right`.)
            phaseTheta_sub_le — `T ≤ T₀ ≤ T + 1` —
              `theorem phaseTheta_sub_le {T T₀ M : ℝ} (hle : T ≤ T₀) (h1 : T₀ ≤ T + 1)
@@ -506,21 +509,24 @@ Theorems.  Written as the Lean statements the module carries; the builder
              `intervalIntegral.norm_integral_le_of_norm_le_const` with `‖phasePoint t‖ ≤ M`
              on `Ι T T₀ ⊆ Icc (T₀ − 1) T₀` (`Set.uIoc_of_le hle`, `Set.mem_Ioc`);
              the `log π` part is `(T₀ − T)/2 · log π` by `ring`; then `abs_sub_le_iff`/`abs_le`
-             on each piece and `nlinarith [abs_nonneg ...]`, or `abs_add` then `linarith`.)
+             on each piece; the atoms line up once `0 ≤ (T₀ − T) · log π` is in the context
+             (`mul_nonneg` of `0 ≤ T₀ − T` and `Real.log_nonneg` from `1 ≤ π`), then `nlinarith`.)
            argS_le_gt_two — `2 < T` —
              `theorem argS_le_gt_two {T : ℝ} (hT : 2 < T) : |Stage3.argS T| ≤ 15 * Real.log T + 75`
              (`obtain ⟨M, hM0, hM⟩ := phasePoint_bound_near T`;
              `δ := min 1 (Real.pi / (M + Real.log Real.pi + 1))`, positive by `Real.pi_pos`
              and `Real.log_pi_pos`-free reasoning: `0 < M + log π + 1` since `M ≥ 0` and
-             `0 < log π` (`Real.log_pos` with `Real.one_lt_pi`);
-             `obtain ⟨T', ha, hlt, hg, hno⟩ := exists_good_below (a := max 2 (T − δ)) (by positivity-free: `le_max_of_le_left`) (by max_lt ...)`;
+             `0 < log π` (`Real.log_pos` with `1 < π` by `linarith [Real.pi_gt_three]`; there is no `Real.one_lt_pi`);
+             `obtain ⟨T', ha, hlt, hg, hno⟩ := exists_good_below (a := max 2 (T − δ)) (le_max_of_le_left (by norm_num)) (max_lt hT (by linarith))`;
              `2 ≤ T'` from `lt_max_iff`/`le_max_left`; `T − T' < δ ≤ 1`;
              `N T' = N T` by `N_eq_of_no_zero_between hlt.le hno`;
              `argS T − argS T' = −(θ T − θ T')/π` by `unfold Stage3.argS; rw [hN]; ring`;
              `phaseTheta_sub_le hlt.le (by linarith) hM` gives `|θ T − θ T'| ≤ δ (M/2 + log π/2) ≤ π/2`
              since `δ ≤ π / (M + log π + 1)` and `(M/2 + log π/2)·π/(M + log π + 1) ≤ π/2`
-             (`div_le_iff`, `mul_le_mul` with `M + log π ≤ M + log π + 1`);
-             `|argS T| ≤ |argS T'| + 1/2` by `abs_sub_le_iff`/`abs_le` and `div_le_iff Real.pi_pos`;
+             (`div_le_iff₀`, `mul_le_mul` with `M + log π ≤ M + log π + 1`);
+             `|argS T| ≤ |argS T'| + 1/2` by `abs_sub_le_iff`/`abs_le` and `div_le_iff₀ Real.pi_pos`;
+             membership in `riemannZeta.zeroes_rect` does not project (a `def` over a set-builder):
+             open it with `simp only [riemannZeta.zeroes_rect, riemannZeta.zeroes, Set.mem_setOf_eq, Set.mem_Ioo, Set.mem_univ, true_and]` at every site;
              `argS_le_of_good hT'2 hg`; `Real.log_le_log (by linarith) hlt.le`; `linarith`.)
            mainTerm_abs_le — `2 ≤ T ≤ 3` —
              `theorem mainTerm_abs_le {T : ℝ} (h2 : 2 ≤ T) (h3 : T ≤ 3) :
@@ -605,14 +611,14 @@ Composes.  Exact statements, so the builder opens no other module:
            InfiniteSum/Basic.lean:530), Set.Finite.coe_toFinset (Set/Finite/Basic.lean:110),
            Set.Finite.toFinset_subset_toFinset (Basic.lean:149),
            Finset.sum_le_sum_of_subset_of_nonneg (Order/BigOperators/Group/Finset.lean:131),
-           IsCompact.exists_bound_of_continuousOn' (Normed/Group/Bounded.lean:97),
+           IsCompact.exists_bound_of_continuousOn (the additive partner, Normed/Group/Bounded.lean:96),
            intervalIntegral.norm_integral_le_of_norm_le_const (IntervalIntegral/Basic.lean:768),
            intervalIntegral.integral_interval_sub_left (Basic.lean:1120),
            Set.Ioo_subset_Icc_self, Finset.exists_max_image (Finset/Max.lean:528).
            Candidates the builder greps under LOOP.md § 2: Finset.max'_lt_iff, Finset.le_max',
            Finset.mem_image_of_mem, Set.Finite.mem_toFinset, Set.Ioo_subset_Ioo_right,
            Set.uIoc_of_le, Real.log_le_sub_one_of_pos, Real.log_nonpos, Real.log_inv,
-           Real.pi_gt_three, Real.one_lt_pi, Real.log_pos, abs_sub_le_iff, abs_le, div_le_iff.
+           Real.pi_gt_three, Real.log_pos, abs_sub_le_iff, abs_le, div_le_iff₀, le_div_iff₀.
 Module.    Stage3/ArgCount.lean, namespace ArgCount, importing Stage3.ArgLegs and
            Stage3.ReZetaCount; pins: argS_le_of_good, argS_le_gt_two, sCrude_holds,
            sCrude_holds_of_good_two, rvM_crude, rvM_crude_of_good_two.

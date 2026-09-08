@@ -39,6 +39,8 @@ below with their outcome.
                 averaging route; sharpening constants against a structural
                 obstruction
 
+## Archive
+
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks
 
     DONE        StmtSCrude argS 15 600 proved unconditionally and
@@ -53,6 +55,10 @@ below with their outcome.
                 half's 97 is not touched here; hnt.md prices, the tree defines
     DEPENDS     nothing from Julian; upstream's backlund_bound stays a watch
     OUT         sharp constants; the Stirling trim; the assembly of rung 5
+    OUTCOME     DONE over units 0363, 0364, 0365; StmtSCrude argS 15 600 and,
+                under good 2, 15 75; Riemann_vonMangoldt_bound 112 0 698 and
+                112 0 173; the census miss (112 vs 100) stands as recorded,
+                and the 698 is the single point T = 2, open as good 2
 
 ### 2026-09-08 · block H3, ArgCount, under the relay
 
@@ -72,8 +78,20 @@ below with their outcome.
     DEPENDS     H2's module built; nothing from Julian
     OUT         good 2 (no zero at height 2), which would make 600 a 75;
                 the Stirling trim; any constant sharper than crude
-
-## Archive
+                Added at the build, 2026-09-08: (a) the block's
+                `IsCompact.exists_bound_of_continuousOn'` is the multiplicative
+                member of a to_additive pair; the additive partner is used
+                (TRAPS row 37); (b) no `Real.one_lt_pi`; `div_le_iff` is
+                `div_le_iff₀`; (c) membership in `riemannZeta.zeroes_rect` is
+                opened by `simp only` at every site; (d) exists_good_below's
+                Finset packaged through one `obtain`; (e) argS_two_le reads N
+                from argS by `unfold; ring`, not through stmtArgIdentity_holds
+    OUTCOME     PROVED, unit 0365, module committed with it; 1 sorry at the
+                first stop (a missing sign product under linarith), closed by
+                the foreman in 1 edit and 1 build; 14 of 15 closed on the
+                builder's one try; 5 ASSUMED pins promoted into the block; the
+                band lands at (112, 0, 698) unconditionally and (112, 0, 173)
+                under good 2
 
 ### 2026-09-08 · block H2, ReZetaCount, under the relay
 

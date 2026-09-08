@@ -1,6 +1,6 @@
 # The module loop
 
-version: 19
+version: 20
 
 One Stage-3 module, from block to commit. Commands in order. The checkers
 behind them refuse what is skipped (`utilities/check_lean_unit.py`, the
@@ -43,7 +43,8 @@ grep -rn 'theorem NAME1\b\|theorem NAME2\b\|lemma NAME3\b' $M --include='*.lean'
 Full path, no `cd` (`TRAPS.md` B11). A `to_additive` name: grep the
 multiplicative one. Verified names are in `TRAPS.md` § Names. Then one
 scratch pass before the module is written: every cast identity and every
-name one-liner as an `example` in `Stage3/Scratch.lean`, run with
+name one-liner as an `example` at the module's own types, never a bare
+`#check` (row 37, unit 0365), in `Stage3/Scratch.lean`, run with
 `lake env lean Stage3/Scratch.lean` from `lean_stage3`. Delete the file
 before the commit; the checker refuses a tree that has it (unit 0349).
 
@@ -80,6 +81,9 @@ stubborn lemma there" is the foreman's, after the handoff (unit 0362). Build aga
 closed, leave them. Stop with: the file; every `sorry` line with its goal;
 `errors_first` and its roots; `TRAPS.md` rows hit and added; every ASSUMED
 pin; where the block or this loop was unclear. Wait for the signal.
+
+A name the block got wrong is § 2 work, fixed and reported as an ASSUMED
+pin; it is not the one try.
 
 Foreman: replace every `sorry`, build clean, signal "done, resume at § 5".
 
