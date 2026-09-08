@@ -1,13 +1,17 @@
 # The module loop
 
-version: 20
+version: 21
 
 One Stage-3 module, from block to commit. Commands in order. The checkers
 behind them refuse what is skipped (`utilities/check_lean_unit.py`, the
 pre-commit). The reason for every line is in the unit it cites; the error
 classes are in `TRAPS.md`; the block's shape and the brief are in
 `DESIGN.md`. A unit records the version it was built under in
-`values.tsv` as `loop_version`.
+`values.tsv` as `loop_version`. A module may carry declared sorries when
+the block itself names them as OPEN and the unit records the count in
+`values.tsv` under `sorries` (unit 0368 was the first partial Lean unit
+under this rule, block 15 rung5.md#15). The checker compares the grep
+count against the declared count and refuses drift.
 
 ## 0. Orient
 

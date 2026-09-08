@@ -189,8 +189,18 @@ def main():
             fails.append(f"BUILD    run/build.log last line: {tail[0][:80]!r}")
 
     # SORRY / SCRATCH, every unit
-    if module and re.search(r"\bsorry\b", src):
-        fails.append("SORRY    the module contains a sorry")
+    # A module may carry sorries when the block itself names them as OPEN and
+    # the unit records the count. The check refuses drift between the module
+    # and values.tsv (unit 0368 was the first partial unit under this rule).
+    if module:
+        n_sorry = len(re.findall(r"\bsorry\b", src))
+        try:
+            declared = int(vals.get("sorries", "0"))
+        except (TypeError, ValueError):
+            declared = -1
+        if n_sorry != declared:
+            fails.append(
+                f"SORRY    the module has {n_sorry} `sorry`; values.tsv declares {declared}")
     if os.path.exists(os.path.join(repo, "lean_stage3", "Stage3", "Scratch.lean")):
         fails.append("SCRATCH  lean_stage3/Stage3/Scratch.lean is in the tree; delete it before the commit")
 

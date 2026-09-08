@@ -1256,3 +1256,130 @@ Resolved in block 13e (2026-09-06): `λ` is a free integer parameter with
 `λ³ ≥ 4N e^{K'} |ζ|⁴ H/(π⁴ε²)`, polynomial in `N`, `e^{K'}`, `1/ε` and the
 range; blocks 13c–13d were stated at `λ = 1` and 13e restates the
 geometric bound with the slope free.
+
+## 15. The conditional theorem: detection under the gap hypothesis — SKETCH
+(the assembly promised by sections 6, 7, 8, 13g, 13j and 0367; unit 0368)
+
+Objects.   `OffLineBox ε T := riemannZeta.zeroes_rect (Icc (1/2 + ε) 1) (Icc (-T) T)`
+           (Stage3/WeilDetect.lean). `IsTest L G := (∀ u, (G u).im = 0) ∧ ContDiff ℝ 1 G ∧
+           HasCompactSupport G ∧ tsupport G ⊆ Icc (-L/2) (L/2)`. `zeroForm G :=
+           riemannZeta.zeroes_sum (Ioo 0 1) univ (fun ρ ↦ laplace G (-ρ) *
+           laplace G (-(1-ρ)))`. `phiWC h γ m u := ↑(phiW h γ m u)` with
+           `phiW = indicator (Icc (-h) h) (W h γ m · exp(-u/2))` and
+           `W h γ m u := q m (u/h) · cos(γ u)`, `q m x := sin(π x) · P(x)^m`,
+           `P(x) := cos²(π x/2)`. At `x = ±1`: `sin(π·±1) = 0` and `P(±1) = 0` to
+           order two each, so `q(m, ±1)` and its first `2m` derivatives vanish;
+           `phiWC` is `C^{2m}` on `ℝ`, so for `m ≥ 1` it is `IsTest (2h)`.
+           The zero form's term at `ρ`: `termW h γ m ρ = (laplace(phiWC)(-ρ) ·
+           laplace(phiWC)(-(1-ρ))).re`. `WeilPowerBridge.term_le_at_zero`
+           (block 13j, unit 0362) bounds `termW` above at `ρ : NontrivialZeros`
+           in terms of `S m w_-`, `w_- = (ρ − 1/2 − iγ)h`.
+
+Statement to earn.
+             `def StmtDetectGap (ε T δ L : ℝ) : Prop :=
+                (OffLineBox ε T).Nonempty →
+                (∃ ρ₀ ∈ OffLineBox ε T,
+                  ∀ ρ ∈ (OffLineBox ε T : Set ℂ), ρ ≠ ρ₀ →
+                    |ρ.im - ρ₀.im| ∉ Set.Ioo (Real.pi ^ 3 / (8 * ε * L / 2)) δ) →
+                ∃ G : ℝ → ℂ, IsTest L G ∧ (zeroForm G).re < 0`
+           and the existence
+             `theorem detect_gap_exists {ε T δ : ℝ}
+                (hε : 0 < ε) (hT : 2 ≤ T) (hδ : 0 < δ) (hδ1 : δ ≤ 1/2) :
+                ∃ L : ℝ, StmtDetectGap ε T δ L`.
+
+Assembly (existence via limits, not at an explicit numeric h).
+Fix `λ = 1` (block 13e's slope, sufficient for detection existence; the pricing
+of the cell determines the numeric `L`, but the theorem uses only the exponential
+gap). Set `m = ⌊λh⌋ - 1`, `L = 2h`. At `ρ₀` from `hgap` write
+`γ = ρ₀.im`, `s = ε' h` with `ε' = ρ₀.re − 1/2 ≥ ε`. Take h large; the pieces:
+
+  (a) TARGET. `-termW h γ m ρ₀ ≥ (h/2)²(S_lo(εh) − S_far)²` from term_le_at_zero
+      when `hfar`, `hne`, `hsmall`, `hq` all hold (F2-far, F3, F4, F5).
+      `S_lo(s) = (cS/D) · s · exp(s²/(π²(m+2)) - s⁴/(π⁴(m+1)³))` — this grows like
+      exp of a positive quadratic in h.
+  (b) ON-LINE. `Σ_{ρ.re = 1/2} termW h γ m ρ ≤ onLineBound_le` (unit 0334),
+      polynomial in `h, γ, m`; positive contribution to `zeroForm`.
+  (c) NEAR MEMBERS. Zeros with `|ρ.im − γ| ≤ lo/h`, `lo = λπ³/(8ε)`: by the gap
+      hypothesis these are exactly the zeros in `[γ − lo/h, γ + lo/h]`, block
+      13g's `WeilPowerNear.term_nonneg` says their weighted term is `≥ 0`, so
+      they help detection.
+  (d) FAR MEMBERS at moderate height: `|ρ.im − γ| ∈ [δ, 1/2]`, real part `≤ ε` by
+      section 8's target selection (or by trivial bound `≤ 1`). Count `≤ 15 log T + 73`
+      (JensenCount.zeta_local_zero_count); each `|termW| ≤ (h/2)² · U_mem(ε, δ)²` with
+      `U_mem = (cS/D) · h · exp(rate · h²)`, `rate = cE(m) · (ε² − δ²)` (subdominant
+      to target's rate).
+  (e) FAR MEMBERS at large height: `|ρ.im − γ| > 1/2`: `norm_S_le_far` gives a
+      super-exponentially small bound; count `≤ 15 log T + 698` (unit 0365).
+
+The exponential gap. Target rate `ε²/(π²(m+2)) ≈ ε²/(π²λh)` in the exponent of
+`S_lo(εh)²`, so `-termW ~ (h/2)² · exp(2 · ε² · h · /(π²λ))`. Every other piece is
+either polynomial in `h` (on-line, near) or has a strictly smaller exponent (far
+moderate: `(ε² − δ²)` against target's `ε²`, gap `δ²/(π²λ)` in the exponent per
+unit `h`; far large: super-exponentially small). So at `h ≥ h₀` for some `h₀`
+depending on `ε, T, δ, λ, m`, the target beats the sum.
+
+Theorems.  Written as the Lean statements the module carries; the builder copies them.
+           isTest_phiWC — `0 < h`, `1 ≤ m` (`m ≥ 1` for `C¹`) —
+             `theorem isTest_phiWC {h : ℝ} (hh : 0 < h) (γ : ℝ) {m : ℕ} (hm : 1 ≤ m) :
+                IsTest (2 * h) (WeilPowerBackground.phiWC h γ m)`
+             (four conjuncts: `phiWC_real`, `ContDiff` from q's `2m`-order zero at `±1`
+             glued with `Set.indicator` on `Icc (-h) h`, `HasCompactSupport` from
+             the indicator, `tsupport ⊆ Icc (-h) h = Icc (-(2h)/2) ((2h)/2)`.
+             ContDiff is the load-bearing piece; if the C¹ gluing needs a Mathlib
+             argument not present, the theorem is `sorry`'d with the goal in a
+             comment and reported as an OPEN row, which is the block's failure mode.)
+           target_lower — F1-F5 at `ρ` —
+             `theorem target_lower {ε γ h : ℝ} {m : ℕ} (hε : 0 < ε) (hh : 0 < h)
+                (ρ : Kadiri.NontrivialZeros) (hre : (ρ : ℂ).re = 1/2 + ε) (him : (ρ : ℂ).im = γ)
+                (hfar : ...) (hne : ...) (hsmall : ...) (hq : ...) :
+                (WeilPowerBackground.phiWC h γ m).laplace ... ≥ ...`
+             (term_le_at_zero at ρ, unfolding the RHS with `hre`, `him`.)
+           near_nonneg — under the gap hypothesis —
+             `theorem near_nonneg ... : 0 ≤ Σ_{near} termW`
+             (WeilPowerNear.term_nonneg iterated over the finite near set.)
+           far_moderate_le — the count bound —
+             `theorem far_moderate_le ... : |Σ_{far moderate}| ≤ N_c · U_mem²`
+             (JensenCount.zeta_local_zero_count for count; norm_S_le_c_pos/neg for U_mem.)
+           far_large_le — WeilPowerBounds.norm_S_le_far —
+             `theorem far_large_le ... : |Σ_{far large}| ≤ N_T · U_far²`
+             (unit 0365 for N_T; norm_S_le_far for U_far.)
+           on_line_le — WeilPowerOnLine.onLineBound_le —
+             `theorem on_line_le ... : Σ_{Re = 1/2} termW ≤ onLineBound h γ m`
+             (a wrap of onLineBound_le at the module's variables.)
+           detect_gap_exists — the assembly —
+             `theorem detect_gap_exists {ε T δ : ℝ}
+                (hε : 0 < ε) (hT : 2 ≤ T) (hδ : 0 < δ) (hδ1 : δ ≤ 1/2) :
+                ∃ L : ℝ, StmtDetectGap ε T δ L`
+             (Set λ = 1. The exponential gap gives `∃ h₀, ∀ h ≥ h₀, target_lower −
+             on_line_le − far_moderate_le − far_large_le > 0`, by
+             `Real.tendsto_exp_atTop` chained with polynomial-vs-exponential
+             comparisons; near_nonneg drops out of the RHS. Take `L = 2h₀`; on
+             `hne` pick `ρ₀` as the max-Re element of the finite `OffLineBox ε T`
+             (WeilPowerSelect's shape); on `hgap` unfold and conclude.)
+
+Composes.  Exact statements the block quotes:
+             `Stage3.WeilPowerBridge.term_le_at_zero {h γ : ℝ} {m : ℕ}
+                (hh : 0 < h) (ρ : Kadiri.NontrivialZeros) (hfar : ...) (hne : ...)
+                (hsmall : ...) (hq : ...) : WeilPowerBands.termW h γ m (ρ : ℂ) ≤ ...`
+             `Stage3.WeilPowerNear.term_nonneg {e' D e : ℝ} {lam h b : ℕ} ...`
+             `Stage3.WeilPowerOnLine.onLineBound_le {h γ : ℝ} (hγ : 11/10 ≤ γ) (m : ℕ) : ...`
+             `Stage3.WeilPowerBounds.norm_S_le_far {m : ℕ} {w : ℂ} (hfar : ...) : ...`
+             `Stage3.JensenCount.zeta_local_zero_count {T : ℝ} (hT : 2 ≤ T) : ...`
+             `Stage3.WeilPowerBackground.phiWC_real (h γ : ℝ) (m : ℕ) (u : ℝ) : (phiWC h γ m u).im = 0`
+             `Stage3.WeilDetect.zeroForm`, `IsTest`, `OffLineBox`, `laplace`.
+           Mathlib, grepped: Real.tendsto_exp_atTop, Real.tendsto_pow_atTop_of_le_one_of_lt_one_nhds,
+           Finset.sum_le_sum, Set.Finite.toFinset, contDiff_zero_iff_continuous, ContDiff.mul,
+           Real.continuous_sin, Real.continuous_cos, Set.indicator_of_mem, contDiff_indicator (or
+           equivalent — this is what may fail; if absent the ContDiff piece is a sorry).
+
+Module.    Stage3/WeilPowerAssembly.lean, namespace WeilPowerAssembly, importing
+           Stage3.WeilPowerBridge, Stage3.WeilPowerNear, Stage3.WeilPowerOnLine,
+           Stage3.WeilPowerCompare, Stage3.WeilPowerSharp, Stage3.JensenCount,
+           Stage3.WeilDetect; pins: detect_gap_exists. Built under the relay (LOOP § 4b).
+
+Open.      the module is a large assembly; the honest failure mode is a sorry on
+           IsTest's ContDiff piece if Mathlib lacks a `contDiff_indicator_of_zero_boundary`
+           shape lemma. That would be the block's OPEN row and its own follow-up.
+           Beyond that: the ε' vs ε refinement (section 8's target selection would
+           make `ε' ≥ ε` unconditional) and the near set's finiteness from the box
+           being finite in height.

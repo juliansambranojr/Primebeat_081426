@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-09-08T19:01:27Z
+# unit: 0368-weilpowerassembly-stage3
+# sources searched: 884
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194991
+  Source: session transcript, 2026-09-08, after units 0366 and 0367
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194433
+  Let's finish it and do 1. We might be surprised cause you won't know until you get there
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194598
+  def StmtDetectGap (ε T δ L : ℝ) : Prop :=
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194601
+  ∀ ρ ∈ (OffLineBox ε T : Set ℂ), ρ ≠ ρ₀ →
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194602
+  |ρ.im - ρ₀.im| ∉ Set.Ioo (Real.pi ^ 3 / (8 * ε * L / 2)) δ) →
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:368
+  ∃ G : ℝ → ℂ, IsTest L G ∧ (zeroForm G).re < 0
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194605
+  theorem detect_gap_exists {ε T δ : ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194926
+  (_hε : 0 < ε) (_hT : 2 ≤ T) (_hδ : 0 < δ) (_hδ1 : δ ≤ 1/2) :
+
+# 8 found, 0 missing

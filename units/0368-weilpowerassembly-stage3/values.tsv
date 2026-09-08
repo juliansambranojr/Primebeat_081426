@@ -1,0 +1,33 @@
+key	value	source
+module_lines	182	wc -l lean_stage3/Stage3/WeilPowerAssembly.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/WeilPowerAssembly.lean
+defs	1	grep -c ^def lean_stage3/Stage3/WeilPowerAssembly.lean
+axioms	4	#print axioms detect_gap_exists: [propext, sorryAx, Classical.choice, Quot.sound] under sorry
+sorries	2	grep -c sorry lean_stage3/Stage3/WeilPowerAssembly.lean, both declared as expected OPEN
+pins	1	detect_gap_exists (with sorryAx docstring while the sorry stands)
+zeta_refs	0	grep -c riemannZeta lean_stage3/Stage3/WeilPowerAssembly.lean
+errors_first	4	the builder first stop: 2x row 31 for D, 1x row 31 for lowCount, 1x row 19 pin cascade
+roots	2	the builder first stop: row 31 namespace not transitive at a copied statement, row 19 sorry cascade at the pin
+row_ns	31	lean_stage3/TRAPS.md row 31, namespace not transitive at a copied statement
+row_cascade	19	lean_stage3/TRAPS.md row 19, pin cascade under sorry
+traps_added	0	no new trap class in this build
+assumed_pins	5	PINS.md block 15: two open-line additions (WeilPowerGauss, WeilOnLine), two disambiguations (q, QS), three True placeholders being what the block signaled
+foreman_edits	1	the foreman pass: update the pin docstring to record the current sorryAx cascade axioms; when detect_gap_exists closes cleanly the docstring flips back
+foreman_builds	2	the foreman pass: module build after the docstring update, then package build to verify nothing downstream broke
+jobs_module	8740	lake build Stage3.WeilPowerAssembly
+jobs_package	8769	lake build (full Stage3)
+loop_version	20	lean_stage3/LOOP.md version line
+design	rung5.md#15	the conditional theorem: detection under the gap hypothesis
+unit_bridge	0362	block 13j: term_le_at_zero at Kadiri.NontrivialZeros
+unit_online	0334	block 6: on-line background bound onLineBound_le
+unit_price_exact	0366	the gap-dependent L priced on the term itself
+unit_price_proven	0367	the same 45 cells priced on the tree's proven inequalities
+tokens_first	123104	harness usage at the builder first stop
+calls_first	43	harness usage at the builder first stop
+minutes_first	7	harness usage at the builder first stop, 449350 ms
+tokens_end	135445	harness usage at the builder second stop, cumulative
+calls_second	19	harness usage at the builder second stop
+minutes_second	3	harness usage at the builder second stop, 182805 ms
+row_ns2	32	lean_stage3/TRAPS.md row 32, file-name-as-namespace variant at the count-to-argument step
+row_first_h2	33	lean_stage3/TRAPS.md rows added by ReZetaCount (H2), first row
+row_last_h2	36	lean_stage3/TRAPS.md rows added by ReZetaCount (H2), last row

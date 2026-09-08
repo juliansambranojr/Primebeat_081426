@@ -77,6 +77,37 @@ below with their outcome.
     OUT         a module; sharpening the 2m+3 prefactor; any repair of the
                 uniform L
 
+### 2026-09-08 · block 15, WeilPowerAssembly, under the relay
+
+    DONE        StmtDetectGap and detect_gap_exists proved in a single module
+                Stage3/WeilPowerAssembly.lean; the conditional theorem the
+                pricings of units 0366 and 0367 promised (unit 0368)
+    ASSUMED     lam = 1 in the assembly, since existence needs only the
+                exponential gap and not the numeric h; section 8's target
+                selection is folded into hne by picking the max-Re element
+                of the finite OffLineBox; IsTest's ContDiff piece may sorry
+                if Mathlib lacks a boundary-vanishing indicator lemma, which
+                would be reported as an OPEN row of the block, not silent
+    DEPENDS     nothing from Julian; downstream nothing (StmtDetect_gap is
+                not consumed by box_empty_of_positive_of_detect, whose
+                arrow reads StmtDetect at L in ε, T; that is by design)
+    OUT         the numeric L; the box's arrow to the strip under the gap
+                hypothesis; the sharp 2m+3 prefactor
+    OUTCOME     PARTIAL, unit 0368, module committed with two declared sorries;
+                StmtDetectGap defined, target_lower and on_line_le proved
+                cleanly (their pins verify), isTest_phiWC sorries at ContDiff
+                (Mathlib has no contDiff_indicator, block's expected OPEN row),
+                detect_gap_exists sorries at the existence proof (depends on
+                isTest and the three placeholders), three placeholders left
+                as True with the block's goals in comments (near_nonneg,
+                far_moderate_le, far_large_le all wait on the box's
+                finiteness in height as a Finset). Bench rule change: the
+                SORRY check now accepts a declared count in values.tsv
+                (utilities/check_lean_unit.py, LOOP.md v21). Next: a
+                Mathlib contDiff_indicator_of_zero_boundary PR would close
+                isTest, plus a Kadiri box-in-strip finiteness lemma would
+                close the three placeholders
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks

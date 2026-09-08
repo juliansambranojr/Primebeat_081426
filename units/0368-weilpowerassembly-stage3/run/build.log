@@ -1,0 +1,6 @@
+warning: Stage3/WeilBackground.lean:143:2: 'push_cast' tactic does nothing
+
+⚠ [8740/8740] Built Stage3.WeilPowerAssembly (2.6s)
+warning: Stage3/WeilPowerAssembly.lean:72:8: declaration uses `sorry`
+warning: Stage3/WeilPowerAssembly.lean:153:8: declaration uses `sorry`
+Build completed successfully (8740 jobs).
