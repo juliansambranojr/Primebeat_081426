@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-09-08T07:02:10Z
+# unit: 0361-rung5-audit-uniform-vs-fixed
+# sources searched: 880
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169735
+  Source: session transcript, 2026-09-07 to 2026-09-08, after the model switch
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169170
+  Hey, I just switched to Fable 5. I need to know if you can audit rung 5 after we created the repo. I...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169220
+  Ok do all three but I also need to know the loop is working as designed cause opus 5 was hedging a l...
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:367
+  def StmtDetect (ε T L : ℝ) : Prop :=
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:368
+  (OffLineBox ε T).Nonempty → ∃ G : ℝ → ℂ, IsTest L G ∧ (zeroForm G).re < 0
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167571
+  Requirement:  N * lam*pi^2/(2*(lo/b)^2)  <  b - h0  ~  b
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167572
+  =>  b  <  2*lo^2/(N*lam*pi^2)  =  lam*pi^4/(32*N*epsp^2)   =: b_max
+
+# 7 found, 0 missing
