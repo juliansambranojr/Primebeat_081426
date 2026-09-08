@@ -1,0 +1,18 @@
+{
+ "cells": 45,
+ "lowcount_used": 0,
+ "lam_menu": 13,
+ "lam_cap": 450,
+ "unit_audit": "0361",
+ "hmax": 1000000000000,
+ "max_lam_used": 32,
+ "f4_binds": 0,
+ "f5_binds": 0,
+ "f2_binds": 0,
+ "L_worst": 18649858,
+ "L_worst_exact": 523628,
+ "worst_ratio_int": 36,
+ "unit_bridge": "0362",
+ "unit_exact": "0366",
+ "unit_this": "0367"
+}

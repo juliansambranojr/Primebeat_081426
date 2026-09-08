@@ -58,6 +58,25 @@ below with their outcome.
                 ran, as § 13 (b)'s were, and that is recorded
     OUT         a module; any repair of the uniform L; touching unit 0360's text
 
+### 2026-09-08 · rung 5, term_le_at_zero priced on the tree — pin written after the run
+
+    DONE        the 45-cell table of unit 0366 rerun on the tree's own
+                inequalities (S_real_ge_sharp at the target, norm_S_le_c_pos/
+                _neg at the members, norm_S_le_far at the far zeros, F4/F5/
+                F2-far checked at each (h, lam, eps, delta)): every cell
+                closes; the lost factor in h is at most 36 in the tightest
+                delta = 0.01 cluster corner, 1 where the background binds;
+                the quantifier does not change (unit 0367)
+    ASSUMED     the lam menu is bounded above by the F2-far cap gamma*sqrt(2)/pi,
+                enough at every cell tried; block 13e's free lam is what
+                closes the cluster corner (at lam = 1 the tightest cells miss
+                the F5 cap); the lost factor lives in the 2m+3 prefactor of
+                compare_le, no size explodes
+    DEPENDS     Julian, on whether the conditional theorem now becomes a Lean
+                module — its price on the tree's inequalities is measured
+    OUT         a module; sharpening the 2m+3 prefactor; any repair of the
+                uniform L
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks

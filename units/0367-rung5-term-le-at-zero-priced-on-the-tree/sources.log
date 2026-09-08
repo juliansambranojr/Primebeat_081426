@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-09-08T18:25:02Z
+# unit: 0367-rung5-term-le-at-zero-priced-on-the-tree
+# sources searched: 883
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194270
+  Source: session transcript, 2026-09-08, rung 5 after unit 0366
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:193230
+  What about this? price the whole term on term_le_at_zero, the tree's object, naming the quantifier
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169327
+  theorem term_le_at_zero {h γ : ℝ} {m : ℕ} (hh : 0 < h) (ρ : Kadiri.NontrivialZeros)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169328
+  (hfar : 2 * ((((ρ : ℂ).re - 1 / 2) * h) ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169330
+  (hne : QS m (wm h γ (ρ : ℂ)) ≠ 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169331
+  (hsmall : ‖wm h γ (ρ : ℂ)‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169332
+  (hq : q m (wm h γ (ρ : ℂ)) ≤ 1) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194283
+  WeilPowerBands.termW h γ m (ρ : ℂ) ≤ ...
+
+# 8 found, 0 missing
