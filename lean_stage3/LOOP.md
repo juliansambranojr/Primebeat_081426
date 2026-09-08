@@ -1,6 +1,6 @@
 # The module loop
 
-version: 17
+version: 18
 
 One Stage-3 module, from block to commit. Commands in order. The checkers
 behind them refuse what is skipped (`utilities/check_lean_unit.py`, the
@@ -74,7 +74,8 @@ row-20 binder before counting. A stubborn lemma iterates in
 
 Builder: § 0 to § 4 once. One try per proof from the block's hint; a proof
 that does not close is `sorry` with its goal in a comment, never a second
-attempt. Build again; the pins of sorried theorems fail until the proof is
+attempt. `Scratch.lean` serves § 2's names and casts only; § 4's "iterate a
+stubborn lemma there" is the foreman's, after the handoff (unit 0362). Build again; the pins of sorried theorems fail until the proof is
 closed, leave them. Stop with: the file; every `sorry` line with its goal;
 `errors_first` and its roots; `TRAPS.md` rows hit and added; every ASSUMED
 pin; where the block or this loop was unclear. Wait for the signal.

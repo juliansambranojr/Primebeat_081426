@@ -1092,8 +1092,10 @@ Theorems.  Written as the Lean statements the module carries; the builder
                       + 2 * (S m (wp h γ ρ) * S m (wm h γ ρ)).re
                       + ((S m (wp h γ ρ)) ^ 2).re))`
              (unfold `termW`; `rw [term_re_eq hh, what_eq hh, im_sq_sub_re_sq]`;
-             then `((h:ℂ)/2)^2 = (((h/2)^2 : ℝ) : ℂ)` by `push_cast; ring`,
-             `Complex.re_ofReal_mul`, `Complex.add_re`, `Complex.mul_re`, `ring`.
+             then `mul_pow` to pull `((h:ℂ)/2)^2` out of the square,
+             `((h:ℂ)/2)^2 = (((h/2)^2 : ℝ) : ℂ)` by `push_cast; ring`,
+             `Complex.re_ofReal_mul`, and a `have` for `((a+b)^2).re` expanded
+             by `Complex.add_re`, `Complex.mul_re`, `ring`.
              Both halves compiled in Scratch.lean; `wp`/`wm` are the two arguments
              of `what_eq` with `z = ρ − 1/2`, which `ring` identifies.)
            term_le_sidebands — F1 —
@@ -1107,7 +1109,7 @@ Theorems.  Written as the Lean statements the module carries; the builder
              `neg_le_neg`, `mul_le_mul_of_nonneg_left` with `0 ≤ (h/2)^2`;
              the direction: a larger bracket makes the term more negative,
              and `Re(S₊S₋) ≥ −‖S₊‖‖S₋‖`, `Re(S₊²) ≥ −‖S₊‖²`.)
-           wp_re, wp_im — none —
+           wp_re and wp_im, two theorems on one line — none —
              `theorem wp_re (h γ : ℝ) (ρ : ℂ) : (wp h γ ρ).re = (ρ.re - 1 / 2) * h`
              `theorem wp_im (h γ : ℝ) (ρ : ℂ) : (wp h γ ρ).im = (ρ.im + γ) * h`
              (`simp [wp, Complex.mul_re, Complex.mul_im]`; `ring` if left over.)
@@ -1174,8 +1176,10 @@ Composes.  Exact statements, so the builder opens no other module:
 Module.    Stage3/WeilPowerBridge.lean, namespace WeilPowerBridge, importing
            Stage3.WeilPowerPhase, Stage3.WeilPowerBands and Stage3.WeilPowerBounds
            (`WeilPowerBands` for `termW`, which imports `WeilPowerBackground`);
-           `open WeilOddPower WeilPowerBackground WeilPowerPhase WeilPowerBounds`
-           as those modules do; pins: term_eq_sidebands, term_le_sidebands,
+           `open WeilOddPower WeilPowerBackground WeilPowerPhase WeilPowerBounds
+           WeilPowerGauss` (`D` lives in `WeilPowerGauss` and `open` is not
+           transitive: the builder's ASSUMED pin, unit 0362); pins:
+           term_eq_sidebands, term_le_sidebands,
            far_sideband_le, term_le_at_zero. Built under the relay (LOOP.md § 4b).
 Open.      with this block every module of the ladder is attached to an actual
            zero. The size question for the whole term, sidebands included, is
