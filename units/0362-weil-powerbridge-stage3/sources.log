@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-09-08T07:12:35Z
+# unit: 0362-weil-powerbridge-stage3
+# sources searched: 880
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169919
+  Source: session transcript, 2026-09-08, the audit's third action
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169220
+  Ok do all three but I also need to know the loop is working as designed cause opus 5 was hedging a l...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169327
+  theorem term_le_at_zero {h γ : ℝ} {m : ℕ} (hh : 0 < h) (ρ : Kadiri.NontrivialZeros)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169328
+  (hfar : 2 * ((((ρ : ℂ).re - 1 / 2) * h) ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2)
+
+# 4 found, 0 missing

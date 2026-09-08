@@ -1053,7 +1053,9 @@ Arithmetic checked here: with `α = c₁(W+1)lρ` and `L = G/(1−α)`,
 `0.383 < 0.48`; `0.159 + 2(7) = 14.2`, outside. `b = e^L` is `T` to the `α/(1−α)`
 times a constant, since `L = αD/(1−α) + const` and `D = log(T + μ)`.
 
-### 13j The term at an actual zero: two sidebands, the far one bounded — SKETCH
+### 13j The term at an actual zero: two sidebands, the far one bounded — PROVED
+(unit 0362: `WeilPowerBridge.term_eq_sidebands`, `term_le_sidebands`,
+`far_sideband_le`, `term_le_at_zero`)
 Objects.   Every module of blocks 13a–13i is about `S m w` for a free
            complex `w`. The term of the zero form at a zero `ρ` is, from
            `WeilPowerBackground.term_re_eq` and `WeilOddPower.what_eq`,

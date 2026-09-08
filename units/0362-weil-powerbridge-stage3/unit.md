@@ -1,0 +1,23 @@
+---
+id: 0362
+date: 2026-09-08
+type: formalization
+title: "WeilPowerBridge.lean: the zero form's term at an actual nontrivial zero, two sidebands, the far one bounded; the first module of the ladder that names a zero"
+refs: [lean_stage3/Stage3/WeilPowerBridge.lean::term_eq_sidebands, lean_stage3/Stage3/WeilPowerBridge.lean::term_le_sidebands, lean_stage3/Stage3/WeilPowerBridge.lean::far_sideband_le, lean_stage3/Stage3/WeilPowerBridge.lean::term_le_at_zero]
+supersedes: []
+follows: 0361
+context: the audit of unit 0361 found that every module of the session was about the transform at a free complex argument and none named a zero; this block is the connection, made from two lemmas already in the tree, and it exposes the term's two sidebands that the deaths of 0359 and 0360 never saw
+sealed: false
+---
+
+**Question.** Block `13j` of worksheet section `section` 13 (`rung5.md#13j`). The zero form's term at a zero `ρ` is `termW h γ m ρ`, the real part of a product of two Laplace transforms of the window. Blocks 13a to 13i bound `S m w`, the envelope's transform, at a free `w`. What is the term in `S`, at an actual `ρ : Kadiri.NontrivialZeros`, and what bounds the pieces that the single-argument modules do not?
+
+**What was proved.** `module_lines` 212 lines, `theorems_proved` 7 theorems, `defs` 2 definitions, `pins` 4 axiom pins each at `axioms` 3 axioms, `sorries` 0 sorries, and `zeta_refs` 3 references to `Kadiri.NontrivialZeros`, against 0 in every earlier module of the session. `wp` and `wm` are the two sidebands, `(ρ − 1/2 ± iγ)·h`. `term_eq_sidebands` is the bridge: by `WeilPowerBackground.term_re_eq` and `WeilOddPower.what_eq`, both already in the tree, the term equals minus `(h/2)²` times the real part of `S(w₋)² + 2·S(w₊)S(w₋) + S(w₊)²`. That is the object every earlier block was standing in for, and it has three pieces where they had one. `term_le_sidebands` bounds the term above by replacing the cross term and the far square with minus their norms. `wp_re` and `wp_im` read the far sideband's parts, `(Re ρ − 1/2)h` and `(Im ρ + γ)h`. `far_sideband_le` applies section `four` 4's `norm_S_le_far` to it: once `2((Re ρ − 1/2)²h² + π²(m+1)²) ≤ (Im ρ + γ)²h²`, the far sideband is at most `cS m · cosh((Re ρ − 1/2)h) · (2/((Im ρ + γ)h)²)^(m+1)`, which at a zero near height `γ` is `(1/(2γ²h²))` to the power `λh`, super-exponentially small in the support. `term_le_at_zero` is the pinned statement at an actual zero: the term is at most minus `(h/2)²` times block 13b's lower bound on `Re(S(w₋)²)` less twice the far bound times `‖S(w₋)‖` less the far bound squared, every constant explicit. The statement is long because it says everything; that is what it is for.
+
+**What it changes.** Units `unit_assembly` 0359 and `unit_window` 0360 priced their deaths on `Re(S(w)²)` at one `w`. This module says the term is that piece plus two more, and gives the bound that makes the two more small. The pricing of 0359, as corrected by the audit in unit `unit_audit` 0361, can now be redone on the tree's object rather than a stand-in, which `DESIGN.md` at version ten requires of any mark from here on.
+
+**The build, and the relay.** `errors_first` 0 errors from `roots` 0 root causes, `sorries_first` 0 sorries at the builder's stop, `foreman_edits` 0 edits, `assumed_pins` 1 pin: the block's `open` list lacked `WeilPowerGauss`, where `D` lives, and `open` is not transitive; the pin is promoted into the block. `traps_added` 1 row, `row_new` 31, records it. Module at `jobs_module` 8730 jobs, package at `jobs_package` 8765. Built under the loop at version `loop_version` 18, bumped during the run for one sentence in section 4b: the builder's scratch file serves names and casts, and iterating a proof there is the foreman's after the handoff. The builder found four things in the block and named each, the `open` list, one hint missing `mul_pow`, two theorems on one Theorems line, and the 4b sentence; all four are in the worksheet now.
+
+The measure. The builder's first pass read `tokens_first` 107000 tokens over `calls_first` 30 calls in `minutes_first` 10 minutes; the second ended at `tokens_end` 115721 tokens after `calls_second` 10 more calls in `minutes_second` 2 minutes. Third relay module in a row closed whole: first-build errors across the relay runs now read `errors_13f` 3, `errors_13g` 5, `errors_13h` 0, `errors_13i` 0 and 0.
+
+What remains. The size of the whole term at an actual zero, sidebands included, priced on `term_le_at_zero` and naming which quantifier it speaks to, uniform in the height or for a fixed configuration; that pricing is the next decision unit, under the gate of `DESIGN.md` v10. Rung `rung` 5, slice `slice` 20 of the switched-window ladder.

@@ -39,6 +39,8 @@ below with their outcome.
                 averaging route; sharpening constants against a structural
                 obstruction
 
+## Archive
+
 ### 2026-09-07 · block 13j, WeilPowerBridge, under the relay
 
     DONE        the four pinned theorems of rung5.md#13j built and committed
@@ -49,12 +51,19 @@ below with their outcome.
     ASSUMED     the bridge is term_re_eq + what_eq (compiled in Scratch.lean
                 2026-09-07); the far condition F2 is a hypothesis here and is
                 discharged by the assembly's choice of gamma; the statement
-                of term_le_at_zero is long because every constant is explicit
+                of term_le_at_zero is long because every constant is explicit;
+                the module's open line carries WeilPowerGauss beside the four
+                the block names, because D lives there and open is not
+                transitive (TRAPS row 31) — no theorem hypothesis was added,
+                all six statements are the block's verbatim
     DEPENDS     nothing from Julian
     OUT         pricing the size on the whole term (next decision unit);
                 any second attempt by the builder
+    OUTCOME     PROVED, unit 0362, module committed with it; third relay run
+                closed whole: 0 errors, 0 sorry, 0 foreman edits; 1 ASSUMED
+                pin (open WeilPowerGauss), promoted into the block; the first
+                module of the ladder to name Kadiri.NontrivialZeros
 
-## Archive
 
 ### 2026-09-07 · block 13i, WeilPowerCount, under the relay
 

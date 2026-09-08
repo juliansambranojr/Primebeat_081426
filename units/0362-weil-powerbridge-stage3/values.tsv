@@ -1,0 +1,37 @@
+key	value	source
+module_lines	212	wc -l lean_stage3/Stage3/WeilPowerBridge.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/WeilPowerBridge.lean
+defs	2	grep -c ^def lean_stage3/Stage3/WeilPowerBridge.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerBridge.lean
+pins	4	term_eq_sidebands, term_le_sidebands, far_sideband_le, term_le_at_zero
+zeta_refs	3	grep -c NontrivialZeros lean_stage3/Stage3/WeilPowerBridge.lean
+errors_first	0	first lake build Stage3.WeilPowerBridge, clean
+roots	0	no error on the first build, so no root cause
+warnings_first	0	no warning at Stage3/WeilPowerBridge.lean; run/build.log warnings are upstream, Stage3/WeilBackground.lean:143:2 and PrimeNumberTheoremAnd/StrongPNT.lean
+sorries_first	0	the builder's report at the first-pass stop
+foreman_edits	0	the foreman's pass: nothing was left to close
+traps_added	1	lean_stage3/TRAPS.md, one new row from the section 2 scratch pass
+row_new	31	lean_stage3/TRAPS.md row 31, open is not transitive at a copied statement
+assumed_pins	1	PINS.md Current, block 13j: open WeilPowerGauss for D
+jobs_package	8765	lake build (full Stage3)
+jobs_module	8730	run/build.log, lake build Stage3.WeilPowerBridge
+loop_version	18	lean_stage3/LOOP.md version line
+design	rung5.md#13j	the term at an actual zero: two sidebands, the far one bounded
+rung	5	detection ladder rung
+slice	20	twentieth module of the switched-window ladder
+section	13	worksheet section this module is built from
+tokens_first	107000	harness usage line at the builder's first stop
+calls_first	30	harness usage line at the builder's first stop
+minutes_first	10	harness usage line at the builder's first stop, 583503 ms
+tokens_end	115721	harness usage line at the builder's second stop, cumulative
+calls_second	10	harness usage line at the builder's second stop
+minutes_second	2	harness usage line at the builder's second stop, 730000 ms cumulative less the first
+errors_13f	3	units/0352-weil-powershell-stage3/values.tsv errors_first
+errors_13g	5	units/0354-weil-powernear-stage3/values.tsv errors_first
+errors_13h	0	units/0357-weil-powerclean-stage3/values.tsv errors_first
+errors_13i	0	units/0358-weil-powercount-stage3/values.tsv errors_first
+four	4	worksheet section 4, the crude far bound
+unit_assembly	0359	the assembly death, corrected by 0361
+unit_window	0360	the window death, one sideband
+unit_audit	0361	the audit
