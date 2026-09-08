@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-09-08  upstream probe: PNT+ pin 47fa486, HEAD a515467, 5 commits (Aug 30–31, Dusart/Buthe/TMEEMT fills, 3 files), none touches Kadiri.lean. Watched sorries unchanged at HEAD: backlund_bound 1, kadiri_thm_3_1_q1 2, identity_16_complex 1; SmoothExistence 0 sorry (pure existence, entry 232). Total 273→269. A pin bump discharges nothing we watch; upstream idle since Aug 31
 - [open]   2026-09-08  tests: DEFECT — python3 -m pytest tests -q gives 16 failed, 366 passed, 4 errors; the lab-phase records (units 0310–0314) said 382 passed. test_clean_fixture_exits_0_silently expects lab check silent on the clean fixture and it now prints two advisory question.md lines; the rest unclassified. 19 on 09-07 (unit 0353), 20 today. Nobody owns it
 - [open]   2026-09-08  unit 0362: WeilPowerBridge — the zero form's term at an actual NontrivialZeros, two sidebands, the far one bounded by norm_S_le_far; first module of the ladder that names a zero. 0 errors, 0 sorry. Next: price the whole term on term_le_at_zero, naming the quantifier
 - [open]   2026-09-08  OPEN 2026-09-08: the gap-dependent L(ε,T,δ) unpriced; section 14 unverified on the two-sideband term — unit 0361: audit of rung 5 after the split. 0359 priced a fixed configuration (which closes) and called it uniform; the uniform death is the greedy escalation, menu reaches h0^(2^N). 0360 one sideband only. Sections 13/14 re-marked; DESIGN.md v10 gates marks; worksheet rea…
