@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-09-08T04:52:22Z
+# unit: 0359-rung5-assembly-dies-on-the-range
+# sources searched: 879
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167664
+  Source: session transcript, 2026-09-07, after unit 0358 closed the circularity
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145752
+  Replace alignment by averaging. Take `h` over the integers of `[h₀, H]`
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145753
+  with `m + 1 = λh`, weights `w_h = 1/(target lower bound at h)` so the
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:145754
+  target's weighted term is at least `1` at every `h`, and consider
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162218
+  theorem bracket_nonneg {e' D θ : ℝ} (h1 : 0 < e') (h3 : 0 < D) (hD : D < e')
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162219
+  (hθ : θ * (2 * e' * D + 2 * (e' ^ 2 - D ^ 2) / Real.pi) ≤ e' ^ 2 - D ^ 2) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:162672
+  0 ≤ (e' ^ 2 - D ^ 2) * Real.cos θ - 2 * e' * D * Real.sin θ := by
+
+# 7 found, 0 missing

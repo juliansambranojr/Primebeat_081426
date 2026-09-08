@@ -1,0 +1,20 @@
+{
+ "ratio_const": 0.1542,
+ "ratio_N1_logP1": 0.1542,
+ "ratio_N100_logP10": 0.00015,
+ "shortfall_best": 6.48,
+ "lo_coeff": 8,
+ "decay_coeff": 2,
+ "band_a": 15,
+ "band_b": 73,
+ "blocks_proved": 7,
+ "modules_proved": 7,
+ "leaf_open": 1,
+ "bmax_denom": 32,
+ "ratio_denom": 64,
+ "nine": 9,
+ "thirteen": 13,
+ "eight": 8,
+ "twelve": 12,
+ "unit_shell": "0351"
+}

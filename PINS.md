@@ -22,23 +22,19 @@ below with their outcome.
 
 ## Current
 
-### 2026-09-07 · rung 5, the averaging route after unit 0351
+### 2026-09-07 · rung 5, after unit 0359
 
-    DONE        StmtDetect ε T L proved with L explicit and polynomial,
-                conditional on a short-interval zero count leaf; the route
-                is section 13, blocks 13c-13g proved (units 0348-0354),
-                13h the clean shell, 13i the leaf, then the assembly
-    ASSUMED     λ free and polynomial in the range (13e), never 1; the
-                member split is helping (13g), bounded (13f), blocked
-                (13h); crude-explicit constants; one unit per module; the
-                builder lays the module and the foreman closes what one
-                try does not, LOOP.md § 4b
-    DEPENDS     nothing from Julian until a design choice changes the
-                route, which becomes a decision unit first
-    OUT         section 9's alignment (dead, unit 0345); sharp constants
-                beyond the one leaf; the old-window modules; porting
-
-## Archive
+    DONE        nothing further on the averaging route: the assembly is
+                priced and dead (unit 0359). Nine modules stand, each a
+                statement about the switched window rather than the route
+    ASSUMED     the replacement is undecided; widening 13g's sign reach, a
+                window with better small-Delta decay, and a vehicle other
+                than detection-by-averaging are the three candidates, none
+                priced; pricing them is the next decision unit and comes
+                before any more Lean
+    DEPENDS     Julian, on which candidate to price first
+    OUT         building any module on the averaging route; sharpening
+                constants against a shortfall proportional to the band count
 
 ### 2026-09-07 · block 13i, WeilPowerCount, under the relay
 

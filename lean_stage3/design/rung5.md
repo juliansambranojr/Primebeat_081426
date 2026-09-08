@@ -293,7 +293,28 @@ the theorem trades sharpness for suppression.
 - Whether the tsum split needs the off-line part summable at all: yes, to
   write the form as a sum of three parts; the far bound gives it.
 
-## 13. The averaging route — SKETCH (unit 0345); dies on size at the intermediate shell (unit 0351)
+## 13. The averaging route — SKETCH (unit 0345); the shell priced (unit 0351,
+corrected by 0357) and closed (units 0357-0358); the assembly dies on the
+range (unit 0359)
+
+Priced before writing the assembly's block, 2026-09-07 (unit 0359). Section 8
+picks the target as a zero of largest real part, so every member decays like
+`exp(-2*Delta^2*u)` and its total over `h` is at most `lam*pi^2/(2*Delta^2)`.
+Block 13g frees the members with `Delta*b <= lo`, `lo = lam*pi^3/(8*eps')`.
+The worst case puts all `N` members just past that boundary, at
+`Delta = lo/b`, costing `N*lam*pi^2*b^2/(2*lo^2)` against the target's `b`:
+the range must satisfy `b < lam*pi^4/(32*N*eps'^2)`. It must also start above
+`h0 ~ 2*pi^2*lam*log(P)/eps^2` (section 12). Their ratio is
+`pi^2*eps^2/(64*N*eps'^2*log P)`, which is `0.154/(N log P)` at `eps' = eps`:
+`lam` cancels, `eps` cancels, and the ratio is under 1 at every setting. The
+range the members allow is shorter than the range the background demands.
+The gap is at the one point the two proved bounds meet: a member at
+`Delta = lo/b` is just past 13g's sign condition, its decay over the range is
+near 1, and 13f's geometric bound at that `Delta` is the range itself. Both
+bounds are tight; the member costs what the target earns. What replaces this
+is undecided and is the next decision unit. The blocks below stay: every one
+is a statement about the switched window, not about this route.
+
 
 Priced before building block 13f, 2026-09-06 (unit 0351). The split below
 by `Δ_i h₀ < 7` holds at `h` near `h₀` only: over the range to `H` the phase
