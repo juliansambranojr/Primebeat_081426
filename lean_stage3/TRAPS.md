@@ -6,7 +6,8 @@ that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, rows 22–23 by unit 0347, the
 orchestrator's own runs of the loop; row 24 by unit 0349; rows 25-28 by
 unit 0352, the first module built under the relay (LOOP.md 4b); row 29 by
-unit 0354; row 30 by unit 0357; row 31 by unit 0362; row 32 by unit 0363.
+unit 0354; row 30 by unit 0357; row 31 by unit 0362; row 32 by unit 0363; rows 33-36 by the ReZetaCount
+build, 2026-09-08.
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -42,6 +43,10 @@ unit 0354; row 30 by unit 0357; row 31 by unit 0362; row 32 by unit 0363.
 | 30 | warning `` `push_neg` has been deprecated. Prefer using `push Not` instead. `` with a macro suggestion in the message | Mathlib at the pin deprecated `push_neg` | it is a warning, so it does not count in `errors_first` and the build is clean; write `push Not at h`, or drop the tactic where the next step is `omega`, which reads a negated linear hypothesis `¬ x ≤ y` directly (unit 0357's `blocked_card_le`) |
 | 31 | `Unknown identifier D` at a statement copied verbatim from a design block, where every module the block's `open` line names is opened | the block's `open` line lists the modules whose theorems it composes; a constant that appears only inside a composed theorem's statement can live in a further namespace, reached in the source module through that module's own `open` and not through the import (`WeilPowerGauss.D` inside `WeilPowerPhase.re_S_sq_ge`), and `open` is not transitive | add the namespace to the module's `open` line and record the addition as an ASSUMED pin; catch it in the § 2 scratch pass by writing every constant of the copied statements as its own one-line `example`, which is where unit 0362 caught this one |
 | 32 | `Unknown identifier ArgIdentity.zetaArgContour` at a statement copied verbatim from a design block, where the block's Composes line quotes the declaration under that namespace | the block named the namespace after the file it read (`Stage3/ArgIdentity.lean`), and the file declares `namespace Stage3`; a Stage-3 module's namespace is not its file name, and the older modules put their theorems in `Stage3` | `grep -n '^namespace\|^end ' <file>` for the enclosing namespace of the declaring line and qualify from that (`Stage3.zetaArgContour`), then record the change as an ASSUMED pin; the § 2 scratch pass catches it as a `#check` of every composed name before the module is written, which is where unit 0363 caught this one |
+| 33 | `linarith [h0]` fails on a goal `∑' n, 1 / f n = c` whose hypothesis `h0` says exactly that, after a `norm_num at h0` | `norm_num` rewrote `1 / x` to `x⁻¹` inside `h0`'s `tsum` body and left the goal's `1 / x` alone, so the two sums are different atoms and `linarith` sees no relation between them | do not run `norm_num at h0` on a hypothesis carrying a `tsum`; peel the numeral term with a `show`-typed `tsum_congr` rewrite and clear the `n = 0` term with a targeted `simp only`, keeping `1 / x` on both sides |
+| 34 | `simp [Complex.ext_iff]` on a conjugation identity closes the real part and leaves `a - T = a + -T` | `Complex.sub_im` normalises the left side to a subtraction and the right side, coming through `starRingEnd`, to an addition of a negation | `simp [Complex.ext_iff, sub_eq_add_neg]` |
+| 35 | `rw [h]` reports `Did not find an occurrence of the pattern` and the goal prints as `‖(fun x => e x) x‖ ≤ c` | the function was passed explicitly to a lemma (`Finset.card_le_card_of_injOn (fun x => …)`), so `intro x hx` left the application unreduced; row 15's family at an explicit functional argument rather than a `set` | `beta_reduce` or `show` the reduced goal before the `rw`, or `simp only []` first |
+| 36 | `simp only [<def>, ENat.toNat_eq_zero]` reports the second lemma unused and leaves `(<expr>).toNat ≠ 0` | `Ne` is notation for `¬ (_ = _)` and `simp only` does not unfold it, so the `toNat _ = 0` pattern never appears | add `ne_eq` to the simp set |
 
 ## Bench and gate traps
 

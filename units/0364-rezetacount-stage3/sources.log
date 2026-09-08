@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-09-08T08:58:06Z
+# unit: 0364-rezetacount-stage3
+# sources searched: 882
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:172357
+  Source: session transcript, 2026-09-08, the count-to-argument step, block H2
+
+FOUND  notes/NOTEPAD.md:25
+  the count-to-argument step
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171693
+  theorem re_zeta_two_line_pos (t : ℝ) : 0 < (riemannZeta (2 + (t : ℂ) * Complex.I)).re
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171744
+  theorem F_count_le {T : ℝ} (hT : 2 ≤ T) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171745
+  ∑ ρ ∈ (finiteSetOfZeros_mono (by norm_num : (7:ℝ)/8 < 1) (F_zeros_finite hT)).toFinset,
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171746
+  (analyticOrderNatAt (F T) ρ : ℝ)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171765
+  theorem mem_reZeros {T : ℝ} (hT : 2 ≤ T) {x : ℝ} :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171671
+  x ∈ Set.Ioo (1/2 : ℝ) 2 ∧ (riemannZeta ((x : ℂ) + T * Complex.I)).re = 0
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171769
+  theorem card_reZeros_le {T : ℝ} (hT : 2 ≤ T) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171770
+  ((reZeros hT).card : ℝ) ≤ 15 * Real.log T + 73
+
+# 10 found, 0 missing

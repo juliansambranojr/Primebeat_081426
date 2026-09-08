@@ -68,6 +68,7 @@ import Stage3.WeilPowerClean
 import Stage3.WeilPowerCount
 import Stage3.WeilPowerBridge
 import Stage3.ArgLegs
+import Stage3.ReZetaCount
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

@@ -1,0 +1,7 @@
+ℹ [8678/8714] Replayed PrimeNumberTheoremAnd.MediumPNT
+info: PrimeNumberTheoremAnd/MediumPNT.lean:4282:0: 'MediumPNT' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8679/8714] Replayed PrimeNumberTheoremAnd.StrongPNT
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:2860:8: declaration uses `sorry`
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:3268:6: declaration uses `sorry`
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:3358:6: declaration uses `sorry`
+Build completed successfully (8714 jobs).

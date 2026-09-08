@@ -41,14 +41,39 @@ below with their outcome.
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks
 
-    DONE        StmtSCrude argS 15 66 proved, hence StmtBacklundArg and the
-                crude hNT band Riemann_vonMangoldt_bound 112 0 164, each
-                block a module through the relay: H1 legs, H2 count, H3 assembly
+    DONE        StmtSCrude argS 15 600 proved unconditionally and
+                StmtSCrude argS 15 75 under good 2, hence StmtBacklundArg and
+                the crude hNT bands Riemann_vonMangoldt_bound 112 0 698 and
+                112 0 173, each block a module through the relay: H1 legs,
+                H2 count, H3 assembly (the 66 and 164 first written here were
+                H2's planned 64 before the disk radius was priced, and the
+                600 is the single point T = 2, hnt.md § H3)
     ASSUMED     the band misses entry 130's census budget (97 + 15 = 112 > 100)
                 and that is recorded before the first module; the Stirling
                 half's 97 is not touched here; hnt.md prices, the tree defines
     DEPENDS     nothing from Julian; upstream's backlund_bound stays a watch
     OUT         sharp constants; the Stirling trim; the assembly of rung 5
+
+### 2026-09-08 · block H3, ArgCount, under the relay
+
+    DONE        the six pinned theorems of hnt.md#H3 built and committed
+                with unit 0365: at a good height the identity and H1 with
+                H2's Finset give |argS T| ≤ 15 log T + 73 + 3/2; at a bad
+                height above 2 a good height just below, with N equal and
+                phaseTheta moving by at most π/2; at T = 2 a good height
+                just above with N monotone and the Stirling phase bound,
+                600; then StmtSCrude argS 15 600, 15 75 under good 2, and
+                Riemann_vonMangoldt_bound 112 0 698 and 112 0 173
+    ASSUMED     the finite-sum form of N and the order ≥ 1 at a positive-
+                height zero are upstream's (KadiriZeroCounting); the
+                phasePoint bound on [T − 1, T] is existential, so δ is not
+                explicit and need not be; H2's three statements land in
+                the shape hnt.md § H2 gives them
+    DEPENDS     H2's module built; nothing from Julian
+    OUT         good 2 (no zero at height 2), which would make 600 a 75;
+                the Stirling trim; any constant sharper than crude
+
+## Archive
 
 ### 2026-09-08 · block H2, ReZetaCount, under the relay
 
@@ -60,11 +85,38 @@ below with their outcome.
     ASSUMED     the constants 15, 73 are reused from zeta_local_zero_count's
                 arithmetic since 80T < 84T; the tsum bookkeeping of the
                 Dirichlet bound and the order-at-a-zero step are where the
-                one-try rule is likeliest to leave a sorry
+                one-try rule is likeliest to leave a sorry.
+                Added at the build, 2026-09-08:
+                (a) JensenCount's declarations live in `namespace Stage3`, so
+                the composed name is `Stage3.zeta_disk_upper` and not the
+                `JensenCount.zeta_disk_upper` the block's Composes line writes
+                (TRAPS row 32, the same trap as H1's).
+                (b) F_bound's denominator bound `2(2 − π²/6) ≥ 7/10` does not
+                follow from the `Real.pi_lt_d2` the block names: `π < 3.15`
+                gives `4 − π²/3 > 0.69` and `56T/0.69 > 80T`. The module uses
+                `Real.pi_lt_d4` (`π < 3.1416`), which gives `4 − π²/3 > 0.710`
+                and carries the block's `56T/(7/10) = 80T`. re_zeta_two_line_pos
+                keeps `Real.pi_lt_d2`, which is enough for positivity alone.
+                (c) the block lists no lemma for the analyticity of F_T on a
+                ball, so F_zeros_finite and card_reZeros_le each rebuild it:
+                the first on the `11/10` ball (its accumulation point can sit
+                on the unit circle), the second on the open unit ball, from
+                F_analytic by `AnalyticOnNhd.mono`.
+                (d) the order-at-a-zero step reads `analyticOrderNatAt` as
+                `(analyticOrderAt _).toNat` and rules out `0` and `⊤`
+                separately through `ENat.toNat_eq_zero`, a name the block does
+                not list; `⊤` is refused by the identity principle on the unit
+                ball against F_T(0) = 1.
+                (e) the block's Theorems lines number fifteen theorems, not the
+                thirteen the brief states; the module carries all fifteen.
     DEPENDS     nothing from Julian
     OUT         the assembly at good and bad heights (H3)
-
-## Archive
+    OUTCOME     PROVED, unit 0364, module committed with it; 6 sorries at the
+                first stop, six one-line traps (four new rows, 33–36), closed by
+                the foreman on one rebuild, 7 edits and 4 builds; 9 of 15 closed
+                on the builder's one try; 5 ASSUMED pins promoted into the block,
+                one of them the block's own pi bound (0.69 under pi < 3.15,
+                fixed by pi < 3.1416)
 
 ### 2026-09-08 · block H1, ArgLegs, under the relay
 

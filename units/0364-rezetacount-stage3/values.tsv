@@ -1,0 +1,58 @@
+key	value	source
+module_lines	474	wc -l lean_stage3/Stage3/ReZetaCount.lean
+theorems_proved	15	grep -c ^theorem lean_stage3/Stage3/ReZetaCount.lean
+defs	4	grep -c ^def lean_stage3/Stage3/ReZetaCount.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ReZetaCount.lean
+pins	4	re_zeta_two_line_pos, F_count_le, mem_reZeros, card_reZeros_le
+zeta_refs	36	grep -c riemannZeta lean_stage3/Stage3/ReZetaCount.lean
+errors_first	12	the builder first stop, lines error: Stage3/ReZetaCount.lean:<line>:<col>:
+roots	6	the builder first stop: norm_num retyping 1/x as x-inverse inside a tsum hypothesis (2 lines), simp with Complex.ext_iff leaving a minus against a plus-neg (1), a reversed linarith hint list (3), Ne not unfolded by simp only (1), an unreduced beta application (1), and the guard_msgs sorryAx cascade on all four pins (4)
+warnings_first	2	the builder first stop, Stage3/ReZetaCount.lean:183:27 unused hT binder and 410:35 unused simp argument ENat.toNat_eq_zero
+sorries_first	6	the builder report at the first-pass stop, two in norm_zeta_sub_one_le and one each in F_bound, reZeroSet_finite and two in card_reZeros_le
+foreman_edits	7	the foreman signal: six sorries closed, plus dropping the unused hT binder from G_zero_ne and F_zero_eq_one with their call sites
+traps_added	4	lean_stage3/TRAPS.md, four new rows from the first build
+row_first	33	lean_stage3/TRAPS.md row 33, norm_num splits a tsum into a different linarith atom
+row_last	36	lean_stage3/TRAPS.md row 36, simp only does not unfold Ne without ne_eq
+assumed_pins	5	PINS.md Current, block H2: the Stage3 namespace, the pi budget, the two rebuilt ball analyticities, the ENat.toNat step, the theorem count
+jobs_package	8767	lake build (full Stage3)
+jobs_module	8714	run/build.log, lake build Stage3.ReZetaCount
+loop_version	18	lean_stage3/LOOP.md version line
+design	hnt.md#h2	the count: zeros of Re zeta on the segment, and Re zeta > 0 on the line Re s = 2
+count_a1	15	card_reZeros_le, the coefficient of log T
+count_a3	73	card_reZeros_le, the additive constant
+disk_bound	80	F_bound, the multiple of T bounding F_T on the 15/16 disk
+zeta_disk	28	Stage3.zeta_disk_upper, the multiple of T bounding zeta on the 15/8 disk
+numer_bound	56	the two zeta terms of G_T added, 28 + 28
+denom_bound	7/10	F_bound, the lower bound on the norm of G_T at 0
+denom_floor	0.71	4 - pi squared over 3 under Real.pi_lt_d4, which carries the 7/10
+pi_sharp	3.1416	Real.pi_lt_d4, the bound F_bound needs
+pi_crude	3.15	Real.pi_lt_d2, the bound the block named, enough for positivity alone
+jensen_r	7/8	ZerosBound inner radius
+jensen_big_r	15/16	ZerosBound outer radius
+ball_pole	11/10	the ball on which both arguments of G_T avoid the pole at 1
+local_count_b	84	Stage3.zeta_local_zero_count bound, larger than this module 80T
+log_bound	4.86	Real.log 80 bounded through Real.log 128 = 7 log 2
+log_ratio	15	1 over log(15/14), bounded above
+segment_low	1/2	reZeroSet, the left end of the open segment
+segment_high	2	reZeroSet, the right end of the open segment, and the line Re s = 2
+band_a	112	hnt.md head: 97 + 15
+budget	100	entry 130 census budget for B1
+errors_h1	4	units/0363-arglegs-stage3/values.tsv errors_first
+unit_h1	0363	ArgLegs, block H1, the two contour legs
+unit_this	0364	this unit
+foreman_builds	4	the foreman's pass: builds run to reach a clean Stage3.ReZetaCount, one per closure round, two binder drops, the header line
+tokens_first	182812	harness usage line at the builder's first stop
+calls_first	51	harness usage line at the builder's first stop
+minutes_first	18	harness usage line at the builder's first stop, 1067438 ms
+tokens_end	199006	harness usage line at the builder's second stop, cumulative
+calls_second	16	harness usage line at the builder's second stop
+minutes_second	3	harness usage line at the builder's second stop, 176442 ms
+row_binder	20	lean_stage3/TRAPS.md row 20, unused binder
+row_ns	32	lean_stage3/TRAPS.md row 32, a design block naming a namespace after the file it read
+row_cascade	19	lean_stage3/TRAPS.md row 19, pins fail while their theorems hold sorries
+pi_bound_crude	0.69	4 - pi squared over 3 under Real.pi_lt_d2, below the 7/10 F_bound needs
+sc_b3	75	hnt.md#h3, StmtSCrude argS 15 75 under good 2
+sc_b3_two	600	hnt.md#h3, StmtSCrude argS 15 600 unconditionally, from the point T = 2
+band_b3	698	hnt.md#h3, 98 + 600
+band_b3_good	173	hnt.md#h3, 98 + 75
