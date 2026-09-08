@@ -39,6 +39,30 @@ below with their outcome.
                 averaging route; sharpening constants against a structural
                 obstruction
 
+### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks
+
+    DONE        StmtSCrude argS 15 66 proved, hence StmtBacklundArg and the
+                crude hNT band Riemann_vonMangoldt_bound 112 0 164, each
+                block a module through the relay: H1 legs, H2 count, H3 assembly
+    ASSUMED     the band misses entry 130's census budget (97 + 15 = 112 > 100)
+                and that is recorded before the first module; the Stirling
+                half's 97 is not touched here; hnt.md prices, the tree defines
+    DEPENDS     nothing from Julian; upstream's backlund_bound stays a watch
+    OUT         sharp constants; the Stirling trim; the assembly of rung 5
+
+### 2026-09-08 · block H1, ArgLegs, under the relay
+
+    DONE        the four pinned theorems of hnt.md#H1 built and committed
+                with unit 0363: the imaginary part of ∫ g'/g on a segment
+                moves by at most π per zero of Re g, plus one, and the two
+                legs of zetaArgContour at ζ, |zetaArgContour T| ≤ q + 3/2
+    ASSUMED     the regime lines T2 (good height on the segment) and T3
+                (Re ζ(2+it) > 0) are hypotheses here, discharged in H2/H3;
+                the sign-constancy lemma is where the one-try rule is
+                likeliest to leave a sorry
+    DEPENDS     nothing from Julian
+    OUT         the count of the zeros of Re ζ (H2); bad heights (H3)
+
 ## Archive
 
 ### 2026-09-07 · block 13j, WeilPowerBridge, under the relay
