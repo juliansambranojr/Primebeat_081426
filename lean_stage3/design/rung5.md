@@ -762,7 +762,9 @@ Sizes.     `lo ≈ λπ³/(8ε')` from 13g's N2 at `Δ ≪ ε'`, and `hi ≈ Cλ
            so `log(b/a) > N(W+1) log ρ`, and with `N ≤ c₁ log T' + c₂` the
            range is `T'` raised to `c₁(W+1) log ρ`. Letting `ρ → 1` with `W`
            following it, `(W+1) log ρ → log(hi/lo)`, so the route needs
-           `c₁ · log(hi/lo) < 1`. That **corrects unit 0351's number**: its
+           `c₁ · log(hi/lo) < 1`, and block 13i closes the circularity under
+           exactly that condition (unit 0358: `exists_range_log`). That
+           **corrects unit 0351's number**: its
            `1/(2 ln 1.5) ≈ 1.23` priced one blocked shell per member, and the
            window is wider than one shell. At a window ratio of `8` the
            requirement is `c₁ < 0.481`; Trudgian's `0.112` still clears it and
@@ -857,7 +859,9 @@ Arithmetic checked here: `hi/lo ≈ (Cλε'/ε²)(8ε'/(λπ³)) = 8Cε'²/(π³
 `8/π³ = 0.258`; at ratio `8`, `1/ln 8 = 0.481`; unit 0351's `1/(2 ln 1.5) = 1.233`;
 `ρ^k₁ = ρ^k₀ · ρ^(k₁-k₀)` needs `k₀ ≤ k₁`, which `Finset.min'_le`/`le_max'` give.
 
-### 13i The short-interval count leaf, and the range that closes — SKETCH
+### 13i The short-interval count leaf, and the range that closes — PROVED
+(unit 0358: `WeilPowerCount.card_le_of_leaf`, `exists_range_log`,
+`count_lt_shells`, `exists_clean_shell_of_leaf`)
 Objects.   Unit 0351 killed the route on a circularity: the range `[a, b]`
            has to hold more shells than there are members, the member count
            grows with the target's height `T'`, and `T'` grows with `b`
