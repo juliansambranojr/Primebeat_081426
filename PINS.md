@@ -50,6 +50,20 @@ below with their outcome.
     DEPENDS     nothing from Julian; upstream's backlund_bound stays a watch
     OUT         sharp constants; the Stirling trim; the assembly of rung 5
 
+### 2026-09-08 · block H2, ReZetaCount, under the relay
+
+    DONE        the four pinned theorems of hnt.md#H2 built and committed
+                with unit 0364: Re ζ(2+it) ≥ 2 − π²/6 > 0 from the Dirichlet
+                series, and the zeros of Re ζ on the segment [1/2, 2] at
+                height T as a Finset with card ≤ 15 log T + 73, by Jensen on
+                G_T = ζ(2z+2+iT) + ζ(2z+2−iT), the local zero count's template
+    ASSUMED     the constants 15, 73 are reused from zeta_local_zero_count's
+                arithmetic since 80T < 84T; the tsum bookkeeping of the
+                Dirichlet bound and the order-at-a-zero step are where the
+                one-try rule is likeliest to leave a sorry
+    DEPENDS     nothing from Julian
+    OUT         the assembly at good and bad heights (H3)
+
 ## Archive
 
 ### 2026-09-08 · block H1, ArgLegs, under the relay
