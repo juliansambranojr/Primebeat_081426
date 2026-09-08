@@ -270,6 +270,37 @@ the order, and the far bound), and the count of off-line zeros with
 `Re < 1/4` through that symmetry, since the count's window covers only
 `Re ≥ 1/4`.
 
+## 14. The window question — ANSWERED NO (unit 0360): boost and phase are one
+
+Sections 9 and 13 died of one cause, twice. An off-line zero contributes
+`2 Re(S(w)²)` and the sign of that turns on a phase we do not control, so the
+other off-line candidates can cancel the target. Section 9 tried to align the
+phases and needed a range `Q^N`; section 13 tried to average them away and
+needed a range shorter than its own threshold.
+
+The question this section asks instead: is there a window for which the sign
+never turns — `Re(S(w)²) ≤ 0` at every `w` in the box — so that every off-line
+zero helps and none can cancel? The machinery to price a candidate is the one
+sections 5–13 built. Unit 0347 factors the transform as `S = c·w·exp(w²σ)(1+E)`
+with `‖E‖ ≤ 2q`, and the factorization comes from the window's product shape,
+so it holds for any window of that shape with its own `σ`. Units 0348 and 0350
+give `σ` to order `1/h` at any slope; 0349 and 0350 give the sums.
+
+Priced 2026-09-07, unit 0360. The answer is no, and the reason closes the
+method. The phase is `2 arg S = 2 arctan(Δ/ε') + 4ε'Δh²σ`. At `Δ → 0` it goes
+to `0` for every `σ` and every `h`, so a zero at the target's own height always
+hurts: no window makes the sign fixed. The bad set's first stripe does shrink
+like `1/(σh²)`, but the phase keeps turning past it, so the bad set is a union
+of stripes whose measure tends to half the box — finer stripes, not fewer.
+
+Why: `exp(w²σ)` carries both effects. Its modulus `exp((ε'²−Δ²)h²σ)` is the
+boost that lifts an off-line zero above the on-line background; its argument
+`2ε'Δh²σ` is the phase whose turning equidistributes the other zeros' signs.
+One `σ`, at the same rate in `h²σ`. Setting `σ = 0` removes the sweep and the
+boost together. That is why sections 9 and 13 both died fighting the sweep
+with the support: the sweep is what the support buys. Written up for
+`papers/What-Didnt-Work.md`, with unit 0360's numbers.
+
 ## 11. The probe — RUN (unit 0328, exploratory)
 
 Prime side against zero side of the quadratic form at the `m`-th power
@@ -293,9 +324,20 @@ the theorem trades sharpness for suppression.
 - Whether the tsum split needs the off-line part summable at all: yes, to
   write the form as a sum of three parts; the far bound gives it.
 
-## 13. The averaging route — SKETCH (unit 0345); the shell priced (unit 0351,
-corrected by 0357) and closed (units 0357-0358); the assembly dies on the
-range (unit 0359)
+## 13. The averaging route — DEAD (unit 0359); the shell priced (unit 0351,
+corrected by 0357) and closed (units 0357-0358)
+
+Marked dead 2026-09-07, after unit 0359 and Julian's question about what
+relies on it staying open. Nothing does: `StmtDetect` appears in one theorem
+of `WeilDetect.lean` as a hypothesis and nothing proves it, and the nine
+modules cite this section as provenance rather than depending on it. Unlike
+unit 0351, which closed under a literature theorem (Trudgian's bound on the
+argument), the factor that fails here is `N`, the count of off-line
+candidates near the target with comparable real part. A bound on that is a
+statement of the same strength as the rung's own conclusion, so it is not a
+leaf. Sections 9 and 13 are now both dead of one cause: about `log T`
+off-line candidates whose phase is uncontrolled, each able to cancel the
+target. What replaces them is section 14, the window question.
 
 Priced before writing the assembly's block, 2026-09-07 (unit 0359). Section 8
 picks the target as a zero of largest real part, so every member decays like

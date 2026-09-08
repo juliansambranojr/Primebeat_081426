@@ -1,0 +1,17 @@
+{
+ "bad_fraction_limit": 0.5,
+ "bad_fraction_X100": 0.5051,
+ "bad_fraction_X1e6": 0.5,
+ "stripe_width_X1e6": 1.57e-06,
+ "sections_dead": 2,
+ "deaths": 3,
+ "modules_standing": 9,
+ "eight": 8,
+ "nine": 9,
+ "thirteen": 13,
+ "fourteen": 14,
+ "unit_nine": "0345",
+ "unit_shell": "0351",
+ "unit_assembly": "0359",
+ "unit_phase": "0347"
+}

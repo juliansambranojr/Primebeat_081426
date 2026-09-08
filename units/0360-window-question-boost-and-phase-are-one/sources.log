@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-09-08T05:34:33Z
+# unit: 0360-window-question-boost-and-phase-are-one
+# sources searched: 879
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:168309
+  Source: session transcript, 2026-09-07, after unit 0359 and the question about what relies on the ro...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167879
+  If we mark it as dead, what is an open route that we didn’t have before?
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167893
+  Ok log it all in the notebook and then go
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146743
+  theorem norm_S_sub_le {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:146733
+  def P (m : ℕ) (w : ℂ) : ℂ := Complex.exp (w ^ 2 * ((sigma m : ℝ) : ℂ))
+
+# 5 found, 0 missing

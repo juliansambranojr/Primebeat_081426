@@ -22,19 +22,22 @@ below with their outcome.
 
 ## Current
 
-### 2026-09-07 · rung 5, after unit 0359
+### 2026-09-07 · rung 5, after unit 0360
 
-    DONE        nothing further on the averaging route: the assembly is
-                priced and dead (unit 0359). Nine modules stand, each a
-                statement about the switched window rather than the route
-    ASSUMED     the replacement is undecided; widening 13g's sign reach, a
-                window with better small-Delta decay, and a vehicle other
-                than detection-by-averaging are the three candidates, none
-                priced; pricing them is the next decision unit and comes
-                before any more Lean
-    DEPENDS     Julian, on which candidate to price first
-    OUT         building any module on the averaging route; sharpening
-                constants against a shortfall proportional to the band count
+    DONE        nothing further on the detection method as the worksheet
+                frames it. Sections 9, 13 and 14 are dead; the nine Lean
+                modules stand, each abstract in the member and the count
+    ASSUMED     the obstruction is structural, not a size: exp(w^2 sigma)
+                carries the boost in its modulus and the phase sweep in its
+                argument, so detection strength and sign control are one
+                parameter pulled two ways. A write-up for
+                papers/What-Didnt-Work.md is the next artifact
+    DEPENDS     Julian, on whether the next thing is that write-up, a fresh
+                motivation entry for a family-of-test-functions route, or
+                something off this rung entirely
+    OUT         repairing sections 9, 13 or 14; any further Lean on the
+                averaging route; sharpening constants against a structural
+                obstruction
 
 ### 2026-09-07 · block 13i, WeilPowerCount, under the relay
 

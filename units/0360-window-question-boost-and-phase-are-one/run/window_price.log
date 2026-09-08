@@ -1,0 +1,80 @@
+1. the sign at D -> 0, any window (s free), any h
+   sigma=0      h=1        cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 1.0, 0.999968]
+   sigma=0      h=100      cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 1.0, 0.999968]
+   sigma=0      h=10000    cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 1.0, 0.999968]
+   sigma=0.01   h=1        cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 1.0, 0.999968]
+   sigma=0.01   h=100      cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 1.0, 0.994174]
+   sigma=0.01   h=10000    cos(2A) at D=1e-9,1e-6,1e-3: [0.999999, 0.540296, 0.555746]
+   sigma=0.1    h=1        cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 1.0, 0.999967]
+   sigma=0.1    h=100      cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 0.999999, 0.533553]
+   sigma=0.1    h=10000    cos(2A) at D=1e-9,1e-6,1e-3: [0.99995, -0.839067, -0.94968]
+   sigma=1      h=1        cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 1.0, 0.99996]
+   sigma=1      h=100      cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 0.99995, -0.834693]
+   sigma=1      h=10000    cos(2A) at D=1e-9,1e-6,1e-3: [0.995004, 0.862323, -0.999615]
+   sigma=10     h=1        cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 1.0, 0.999838]
+   sigma=10     h=100      cos(2A) at D=1e-9,1e-6,1e-3: [1.0, 0.995003, 0.866342]
+   sigma=10     h=10000    cos(2A) at D=1e-9,1e-6,1e-3: [0.540302, 0.562372, 0.939522]
+   cos(2A) -> 1 as D -> 0 for every sigma and every h: no window fixes the sign.
+
+2. the bad set's width in D, at epsp = 1/2 (worst), as a function of sigma*h^2
+      sigma*h^2    D_bad_max                         note
+           0.01     0.495075               first A = pi/4
+            0.1      0.45633               first A = pi/4
+              1     0.277985               first A = pi/4
+             10    0.0655125               first A = pi/4
+            100       0.0077               first A = pi/4
+           1000     0.000785               first A = pi/4
+          10000        8e-05               first A = pi/4
+          1e+06      2.5e-06               first A = pi/4
+   the bad neighbourhood of D = 0 shrinks like 1/(sigma h^2): a window with a
+   larger sigma pushes it down, and sigma ~ 1/(pi^2 (m+1)) with m+1 = lam*h,
+   so sigma*h^2 = h/(lam pi^2) and the bad width is ~ lam pi^2/(4 epsp h).
+
+3. what the bad width has to beat: the height gap to the nearest other zero.
+   average gap at height T is 2 pi / log T. Setting lam pi^2/(4 epsp h) < 2 pi / log T
+   T=1000     lam=1     eps'=0.5   gap=0.9096  h > 5.425
+   T=1000     lam=1     eps'=0.1   gap=0.9096  h > 27.13
+   T=1000     lam=100   eps'=0.5   gap=0.9096  h > 542.5
+   T=1000     lam=100   eps'=0.1   gap=0.9096  h > 2713
+   T=1e+06    lam=1     eps'=0.5   gap=0.4548  h > 10.85
+   T=1e+06    lam=1     eps'=0.1   gap=0.4548  h > 54.25
+   T=1e+06    lam=100   eps'=0.5   gap=0.4548  h > 1085
+   T=1e+06    lam=100   eps'=0.1   gap=0.4548  h > 5425
+   T=1e+12    lam=1     eps'=0.5   gap=0.2274  h > 21.7
+   T=1e+12    lam=1     eps'=0.1   gap=0.2274  h > 108.5
+   T=1e+12    lam=100   eps'=0.5   gap=0.2274  h > 2170
+   T=1e+12    lam=100   eps'=0.1   gap=0.2274  h > 1.085e+04
+   h grows only linearly in lam and in log T: this is a threshold, not a barrier.
+
+4. CORRECTION to 2: the phase keeps turning, so the bad set is not a
+   neighbourhood of D = 0 but a union of stripes. Measure of the bad set
+   (cos(2A) > 0) over D in [0, 1/2], at eps' = 1/2:
+      sigma*h^2   bad measure  as fraction   stripe width
+           0.01      0.495073       0.9901            157
+              1      0.277984       0.5560           1.57
+            100      0.252574       0.5051         0.0157
+          10000      0.249962       0.4999       0.000157
+          1e+06      0.250001       0.5000       1.57e-06
+   the fraction tends to 1/2: half the box hurts, in stripes that get finer
+   as sigma*h^2 grows. Shrinking the stripes does not shrink the measure.
+
+5. so the window question answers NO in the strong form and NO in the
+   weak form: no window of this shape makes the off-line sign fixed, and
+   no choice of h confines the hurting zeros to a small set. The phase
+   turning IS the obstruction, and sigma only sets how fast it turns.
+
+6. WHY. The boost and the phase are the same object. For any window of
+   this shape the transform carries exp(w^2 * sigma), and
+      |exp(w^2 sigma)| = exp((eps'^2 - D^2) h^2 sigma)   <- the boost
+      arg exp(w^2 sigma) = 2 eps' D h^2 sigma             <- the phase
+   one sigma, both effects. Detection needs the boost at the target,
+   which forces the sweep at every other off-line zero.
+      sigma*h^2   log boost at D=0   phase per unit D
+              1               0.25                  1
+            100                 25                100
+          10000               2500              1e+04
+          1e+06            2.5e+05              1e+06
+   the boost is exp(eps'^2 X) and the sweep is 2 eps' X: making the boost
+   big makes the sweep fast, at the same rate in X. sigma = 0 removes the
+   sweep (sign becomes (eps'^2 - D^2)/(eps'^2 + D^2), fixed) and removes
+   the boost with it, so the target no longer beats the background.
