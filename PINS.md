@@ -47,7 +47,11 @@ below with their outcome.
     ASSUMED     the leaf's budget c1 <= 0.48 at window ratio 8, from 13h;
                 Trudgian's 0.112 gives c1 = 1/(2pi) + 2B1 = 0.383, inside it;
                 the module stays abstract in cnt, B and d, so the assembly
-                discharges hB rather than this block
+                discharges hB rather than this block; the leaf's body is
+                "for all T, 2 <= T -> cnt T <= c1 * log T + c2", forced by
+                card_le_of_leaf's hint since 13i's Defs line gives only the
+                signature; exists_range_log's "0 <= M" is unused by the
+                proof and kept because the block's statement lists it
     DEPENDS     nothing from Julian; 0351 stands as corrected by 0357
     OUT         proving the leaf; instantiating B from 13f and 13g; the
                 assembly; any second attempt by the builder

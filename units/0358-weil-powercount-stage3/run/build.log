@@ -1,0 +1,9 @@
+⚠ [8656/8657] Replayed Stage3.WeilPowerClean
+warning: Stage3/WeilPowerClean.lean:78:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+Build completed successfully (8657 jobs).

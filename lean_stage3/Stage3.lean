@@ -65,6 +65,7 @@ import Stage3.WeilPowerGeomGen
 import Stage3.WeilPowerShell
 import Stage3.WeilPowerNear
 import Stage3.WeilPowerClean
+import Stage3.WeilPowerCount
 import Stage3.RvMCrude
 import Stage3.Stirling
 import Stage3.ArgCrude

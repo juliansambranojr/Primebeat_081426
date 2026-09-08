@@ -881,7 +881,9 @@ Sizes.     `α < 1` is the whole condition, and `(W+1)lρ → log(hi/lo)` as the
            of the leaf's constant and is bounded once `α` is.
 Regime.    C1 `0 < lρ`;  C2 `0 ≤ c₁`;  C3 `0 ≤ c₂`;  C4 `0 ≤ D`;  C5 `0 ≤ E`;
            C6 `c₁·(W+1)·lρ < 1`, the closure condition;  and 13h's P1, P2, P3.
-Defs.      `StmtShortCount (cnt : ℝ → ℝ) (c₁ c₂ : ℝ) : Prop`, the leaf.
+Defs.      the leaf, body and all, since a block that names one states it:
+             `def StmtShortCount (cnt : ℝ → ℝ) (c₁ c₂ : ℝ) : Prop :=
+                ∀ T : ℝ, 2 ≤ T → cnt T ≤ c₁ * Real.log T + c₂`
            Budget: `c₁ ≤ 0.48` at a window ratio of `8`, from 13h's
            `c₁ log(hi/lo) < 1`; `c₂` unconstrained. Route: Backlund's
            decomposition of `N(T+1) − N(T)` into the phase increment over `π`
@@ -908,13 +910,15 @@ Theorems.  Written as the Lean statements the module carries; the builder
                 ∃ L : ℝ, 0 ≤ L ∧ ∀ M : ℝ, 0 ≤ M → M ≤ D + L →
                   (c₁ * M + c₂) * ((W : ℝ) + 1) * lρ + E ≤ L`
              (set `α = c₁ * ((W:ℝ)+1) * lρ`, `G = c₂ * ((W:ℝ)+1) * lρ + E + α * D`,
-             witness `L = G / (1 - α)`. `0 ≤ α` by `positivity`-style products,
+             witness `L = G / (1 - α)`. `0 ≤ α` by
+             `mul_nonneg (mul_nonneg hc₁ hW1) hlρ.le`, never `positivity`,
+             which cannot read `hc₁` and `hlρ` from the context,
              `0 < 1 - α` by `linarith`, so `0 ≤ L`. For the bound, `(1 - α) * L = G`
-             by `field_simp` with `sub_ne_zero` from `hα` (`div_mul_cancel₀`), then
+             by `field_simp` alone with `(1 - α) ≠ 0` in context, no `ring` after, then
              `(c₁ M + c₂)(W+1)lρ + E ≤ α*(D + L) + c₂(W+1)lρ + E = G + α*L = L`
-             by `nlinarith` on `M ≤ D + L` with `0 ≤ (W:ℝ)+1` and `hlρ`, or
-             `linarith` once the product `c₁ * M * ((W:ℝ)+1) * lρ ≤ α * (D + L)`
-             is a named `have` from `mul_le_mul_of_nonneg_right`.)
+             by naming the product `c₁ * M * ((W:ℝ)+1) * lρ ≤ α * (D + L)` as a
+             `have` from `mul_le_mul_of_nonneg_left`, then `linarith` on it;
+             `nlinarith` is not needed.)
            count_lt_shells — C1 —
              `theorem count_lt_shells {N K W : ℕ} {lρ : ℝ} (hlρ : 0 < lρ)
                 (h : ((N : ℝ) * ((W : ℝ) + 1) + 1) * lρ ≤ (K : ℝ) * lρ) :
@@ -954,6 +958,8 @@ Module.    Stage3/WeilPowerCount.lean, namespace WeilPowerCount, importing
            count_lt_shells, exists_clean_shell_of_leaf. Built under the relay
            (LOOP.md § 4b), at whatever `version:` line LOOP.md carries when
            the run starts.
+             The `0 ≤ M` hypothesis is unused by the proof and is kept, since
+             the assembly reads `M = log T'` and will have it to hand.
 Open.      the leaf itself, and the instantiation of `B` from 13f and 13g so
            that `hB` is discharged rather than assumed. Both are the assembly's,
            § 10.

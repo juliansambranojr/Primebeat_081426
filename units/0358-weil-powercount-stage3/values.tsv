@@ -1,0 +1,41 @@
+key	value	source
+module_lines	152	wc -l lean_stage3/Stage3/WeilPowerCount.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/WeilPowerCount.lean
+defs	1	grep -c ^def lean_stage3/Stage3/WeilPowerCount.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerCount.lean
+pins	4	card_le_of_leaf, exists_range_log, count_lt_shells, exists_clean_shell_of_leaf
+errors_first	0	first lake build Stage3.WeilPowerCount, clean
+roots	0	no error on the first build, so no root cause
+warnings_first	0	no warning at Stage3/WeilPowerCount.lean; run/build.log's one warning is upstream, Stage3/WeilPowerClean.lean:78:4, TRAPS row 30
+sorries_first	0	the builder's report at the first-pass stop
+foreman_edits	0	the foreman's pass: nothing was left to close
+traps_added	0	no first-build error class, so no lean_stage3/TRAPS.md row
+assumed_pins	2	PINS.md Current, block 13i: the leaf's body, and the unused 0 <= M
+jobs_package	8764	lake build (full Stage3)
+jobs_module	8657	run/build.log, lake build Stage3.WeilPowerCount
+loop_version	17	lean_stage3/LOOP.md version line
+design	rung5.md#13i	the short-interval count leaf, and the range that closes
+rung	5	detection ladder rung
+slice	19	nineteenth module of the switched-window ladder
+section	13	worksheet section this module is built from
+budget	0.48	block 13i, the leaf's crude-constant budget from unit 0357
+ratio	8	the worked window ratio (unit 0357)
+floor	0.159	1/(2 pi) = 0.15915, the count's floor at B1 = 0
+trudgian	0.112	Trudgian 2014, |S(T)| <= 0.112 log T + 0.278 log log T + 2.51
+c1_lit	0.383	0.159 + 2*0.112 = 0.383
+crude	7	0.462 * 15 = 6.93, the tree's crude chain (unit 0351)
+expo_old	6	unit 0351, 15 * ln 1.5 = 6.08 rounded down
+eight	8	worksheet section 8, the selection walk
+ten	10	worksheet section 10, the assembly
+tokens_first	78191	harness usage line at the builder's first stop
+calls_first	23	harness usage line at the builder's first stop
+minutes_first	6	harness usage line at the builder's first stop, 346688 ms
+tokens_end	84817	harness usage line at the builder's second stop, cumulative
+calls_second	10	harness usage line at the builder's second stop
+minutes_second	1	harness usage line at the builder's second stop, 81110 ms
+errors_13f	3	units/0352-weil-powershell-stage3/values.tsv errors_first
+errors_13g	5	units/0354-weil-powernear-stage3/values.tsv errors_first
+errors_13h	0	units/0357-weil-powerclean-stage3/values.tsv errors_first
+unit_decision	0351	section 13 dies on size at the shell
+unit_clean	0357	WeilPowerClean, block 13h

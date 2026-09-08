@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-09-08T04:41:29Z
+# unit: 0358-weil-powercount-stage3
+# sources searched: 879
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167343
+  Source: session transcript, 2026-09-07, the fourth module under the relay
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167272
+  def StmtShortCount (cnt : ℝ → ℝ) (c₁ c₂ : ℝ) : Prop :=
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167243
+  ∀ T : ℝ, 2 ≤ T → cnt T ≤ c₁ * Real.log T + c₂
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167119
+  theorem exists_range_log {c₁ c₂ lρ D E : ℝ} {W : ℕ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167120
+  (hlρ : 0 < lρ) (hc₁ : 0 ≤ c₁) (hc₂ : 0 ≤ c₂) (hD : 0 ≤ D) (hE : 0 ≤ E)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167121
+  (hα : c₁ * ((W : ℝ) + 1) * lρ < 1) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167122
+  ∃ L : ℝ, 0 ≤ L ∧ ∀ M : ℝ, 0 ≤ M → M ≤ D + L →
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:167291
+  (c₁ * M + c₂) * ((W : ℝ) + 1) * lρ + E ≤ L := by
+
+# 8 found, 0 missing
