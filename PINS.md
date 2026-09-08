@@ -38,6 +38,20 @@ below with their outcome.
     OUT         section 9's alignment (dead, unit 0345); sharp constants
                 beyond the one leaf; the old-window modules; porting
 
+### 2026-09-07 · block 13i, WeilPowerCount, under the relay
+
+    DONE        the four pinned theorems of rung5.md#13i built and committed
+                with unit 0358: the short-interval count named as a leaf with
+                its budget and route, and the range that closes unit 0351's
+                circularity at an explicit L linear in log T
+    ASSUMED     the leaf's budget c1 <= 0.48 at window ratio 8, from 13h;
+                Trudgian's 0.112 gives c1 = 1/(2pi) + 2B1 = 0.383, inside it;
+                the module stays abstract in cnt, B and d, so the assembly
+                discharges hB rather than this block
+    DEPENDS     nothing from Julian; 0351 stands as corrected by 0357
+    OUT         proving the leaf; instantiating B from 13f and 13g; the
+                assembly; any second attempt by the builder
+
 ## Archive
 
 ### 2026-09-07 · block 13h, WeilPowerClean, under the relay at loop v16

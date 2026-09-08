@@ -857,6 +857,112 @@ Arithmetic checked here: `hi/lo ≈ (Cλε'/ε²)(8ε'/(λπ³)) = 8Cε'²/(π³
 `8/π³ = 0.258`; at ratio `8`, `1/ln 8 = 0.481`; unit 0351's `1/(2 ln 1.5) = 1.233`;
 `ρ^k₁ = ρ^k₀ · ρ^(k₁-k₀)` needs `k₀ ≤ k₁`, which `Finset.min'_le`/`le_max'` give.
 
+### 13i The short-interval count leaf, and the range that closes — SKETCH
+Objects.   Unit 0351 killed the route on a circularity: the range `[a, b]`
+           has to hold more shells than there are members, the member count
+           grows with the target's height `T'`, and `T'` grows with `b`
+           through § 8's walk, `T' = T + μb` with `μ = 1/(8K'π²λ)`. At the
+           tree's count `15 log T' + 73` the range had to exceed `T'` to a
+           power above `6`. This block names the count as a leaf and proves
+           the closure: when the leaf's leading constant is small enough the
+           two demands meet at an explicit `b`, and the circularity is gone.
+           Write `L = log b`, `D = log(T + μ)`, so `log T' ≤ D + L` for
+           `b ≥ 1`; `lρ = log ρ`; `E` the constant shell overhead
+           (`log a + lρ`). The shells fit when
+           `(c₁ log T' + c₂)(W+1)lρ + E ≤ L`, and with `α = c₁(W+1)lρ < 1`
+           that is a linear inequality in `L`, solved at
+           `L = (c₂(W+1)lρ + E + αD)/(1 − α)`.
+Sizes.     `α < 1` is the whole condition, and `(W+1)lρ → log(hi/lo)` as the
+           shell ratio falls (13h), so the route needs `c₁ log(hi/lo) < 1`.
+           `L` is linear in `D = log(T + μ)`, so `b` is polynomial in `T`
+           with exponent `α/(1 − α)`: at `α = 1/2` the range is `T` squared,
+           at `α = 1/4` it is `T` to the one third. Everything else in `L` is
+           an additive constant. Lost factor: none; `1/(1 − α)` is the price
+           of the leaf's constant and is bounded once `α` is.
+Regime.    C1 `0 < lρ`;  C2 `0 ≤ c₁`;  C3 `0 ≤ c₂`;  C4 `0 ≤ D`;  C5 `0 ≤ E`;
+           C6 `c₁·(W+1)·lρ < 1`, the closure condition;  and 13h's P1, P2, P3.
+Defs.      `StmtShortCount (cnt : ℝ → ℝ) (c₁ c₂ : ℝ) : Prop`, the leaf.
+           Budget: `c₁ ≤ 0.48` at a window ratio of `8`, from 13h's
+           `c₁ log(hi/lo) < 1`; `c₂` unconstrained. Route: Backlund's
+           decomposition of `N(T+1) − N(T)` into the phase increment over `π`
+           and `S(T+1) − S(T)`, the increment `≈ (1/2) log T` from Stirling
+           and `|S| ≤ B₁ log T + B₃` from `ArgCrude.StmtSCrude`, giving
+           `c₁ = 1/(2π) + 2B₁ ≈ 0.159 + 2B₁`. Trudgian 2014 has `B₁ = 0.112`,
+           so `c₁ ≈ 0.383`, inside the budget; the tree's own crude chain has
+           `B₁ ≈ 7` and is not. The floor `1/(2π) ≈ 0.159` is there even at
+           `B₁ = 0`, so the budget is not vacuous. Citation shape: T. Trudgian,
+           "An improved upper bound for the argument of the Riemann
+           zeta-function on the critical line II", J. Number Theory 134 (2014).
+Theorems.  Written as the Lean statements the module carries; the builder
+           copies them.
+           card_le_of_leaf — the leaf, `2 ≤ T` —
+             `theorem card_le_of_leaf {ι : Type*} (S : Finset ι) {cnt : ℝ → ℝ}
+                {c₁ c₂ T : ℝ} (hleaf : StmtShortCount cnt c₁ c₂) (hT : 2 ≤ T)
+                (hS : (S.card : ℝ) ≤ cnt T) :
+                (S.card : ℝ) ≤ c₁ * Real.log T + c₂`
+             (unfold `StmtShortCount`; `le_trans hS (hleaf T hT)`.)
+           exists_range_log — C1 to C6 —
+             `theorem exists_range_log {c₁ c₂ lρ D E : ℝ} {W : ℕ}
+                (hlρ : 0 < lρ) (hc₁ : 0 ≤ c₁) (hc₂ : 0 ≤ c₂) (hD : 0 ≤ D) (hE : 0 ≤ E)
+                (hα : c₁ * ((W : ℝ) + 1) * lρ < 1) :
+                ∃ L : ℝ, 0 ≤ L ∧ ∀ M : ℝ, 0 ≤ M → M ≤ D + L →
+                  (c₁ * M + c₂) * ((W : ℝ) + 1) * lρ + E ≤ L`
+             (set `α = c₁ * ((W:ℝ)+1) * lρ`, `G = c₂ * ((W:ℝ)+1) * lρ + E + α * D`,
+             witness `L = G / (1 - α)`. `0 ≤ α` by `positivity`-style products,
+             `0 < 1 - α` by `linarith`, so `0 ≤ L`. For the bound, `(1 - α) * L = G`
+             by `field_simp` with `sub_ne_zero` from `hα` (`div_mul_cancel₀`), then
+             `(c₁ M + c₂)(W+1)lρ + E ≤ α*(D + L) + c₂(W+1)lρ + E = G + α*L = L`
+             by `nlinarith` on `M ≤ D + L` with `0 ≤ (W:ℝ)+1` and `hlρ`, or
+             `linarith` once the product `c₁ * M * ((W:ℝ)+1) * lρ ≤ α * (D + L)`
+             is a named `have` from `mul_le_mul_of_nonneg_right`.)
+           count_lt_shells — C1 —
+             `theorem count_lt_shells {N K W : ℕ} {lρ : ℝ} (hlρ : 0 < lρ)
+                (h : ((N : ℝ) * ((W : ℝ) + 1) + 1) * lρ ≤ (K : ℝ) * lρ) :
+                N * (W + 1) < K`
+             (`le_of_mul_le_mul_right` at `hlρ` gives `(N:ℝ)*((W:ℝ)+1) + 1 ≤ (K:ℝ)`;
+             `push_cast` and `Nat.cast_le` bring it to `ℕ`; `omega`.)
+           exists_clean_shell_of_leaf — the leaf, C1 to C6, 13h's P1 P2 P3 —
+             `theorem exists_clean_shell_of_leaf {ι : Type*} [DecidableEq ι]
+                (S : Finset ι) (B : ι → Finset ℕ) (d : ι → ℝ)
+                {cnt : ℝ → ℝ} {c₁ c₂ T a ρ lo hi : ℝ} {W K N : ℕ}
+                (hleaf : StmtShortCount cnt c₁ c₂) (hT : 2 ≤ T)
+                (hS : (S.card : ℝ) ≤ cnt T) (hN : c₁ * Real.log T + c₂ ≤ (N : ℝ))
+                (hρ : 1 ≤ ρ) (hlo : 0 < lo) (hW : hi < lo * ρ ^ (W + 1))
+                (hB : ∀ j ∈ S, ∀ k ∈ B j,
+                   lo ≤ d j * (a * ρ ^ k) ∧ d j * (a * ρ ^ k) ≤ hi)
+                (hK : N * (W + 1) < K) :
+                ∃ k, k < K ∧ ∀ j ∈ S, k ∉ B j`
+             (card_le_of_leaf then `hN` gives `(S.card : ℝ) ≤ (N : ℝ)`, so
+             `S.card ≤ N` by `Nat.cast_le`; then
+             `WeilPowerClean.exists_clean_shell_of_count`.)
+Composes.  Exact statements, so the builder opens no other module:
+             `WeilPowerClean.exists_clean_shell_of_count {ι : Type*} [DecidableEq ι]
+                (S : Finset ι) (B : ι → Finset ℕ) (d : ι → ℝ)
+                {a ρ lo hi : ℝ} {W K N : ℕ}
+                (hρ : 1 ≤ ρ) (hlo : 0 < lo) (hW : hi < lo * ρ ^ (W + 1))
+                (hB : ∀ j ∈ S, ∀ k ∈ B j,
+                   lo ≤ d j * (a * ρ ^ k) ∧ d j * (a * ρ ^ k) ≤ hi)
+                (hN : S.card ≤ N) (hK : N * (W + 1) < K) :
+                ∃ k, k < K ∧ ∀ j ∈ S, k ∉ B j`
+             `Nat.cast_le : (m : α) ≤ n ↔ m ≤ n`
+             `div_mul_cancel₀` (used inside `field_simp`; see
+                Algebra/Order/Field/Basic.lean, where it clears `x / c * c`)
+           Also: le_trans, mul_le_mul_of_nonneg_right, le_of_mul_le_mul_right,
+           sub_ne_zero, field_simp then `try ring`, push_cast, linarith, omega.
+Module.    Stage3/WeilPowerCount.lean, namespace WeilPowerCount, importing
+           Stage3.WeilPowerClean; pins: card_le_of_leaf, exists_range_log,
+           count_lt_shells, exists_clean_shell_of_leaf. Built under the relay
+           (LOOP.md § 4b), at whatever `version:` line LOOP.md carries when
+           the run starts.
+Open.      the leaf itself, and the instantiation of `B` from 13f and 13g so
+           that `hB` is discharged rather than assumed. Both are the assembly's,
+           § 10.
+Arithmetic checked here: with `α = c₁(W+1)lρ` and `L = G/(1−α)`,
+`(1−α)L = G` so `G + αL = L`; `(c₁M + c₂)(W+1)lρ + E ≤ (c₁(D+L) + c₂)(W+1)lρ + E
+= αD + αL + c₂(W+1)lρ + E = G + αL = L`. `1/(2π) = 0.159`; `0.159 + 2(0.112) = 0.383`;
+`0.383 < 0.48`; `0.159 + 2(7) = 14.2`, outside. `b = e^L` is `T` to the `α/(1−α)`
+times a constant, since `L = αD/(1−α) + const` and `D = log(T + μ)`.
+
 (c) The total variation of `w_h|g_i|²` over the range: log-linear in
 `h` up to the quartic terms, so at most a constant times its maximum.
 (d) § 8's selection at threshold `η = K'/H`, height growth `H/(8K'π²λ)`.
