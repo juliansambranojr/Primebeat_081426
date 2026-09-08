@@ -6,6 +6,12 @@ What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
 The executor never designs; the orchestrator never proves. Unit 0348.
 
+The worksheet prices; it never defines. Every object in it is a tree name
+with the lemma that connects it to the rung's statement, and the statement
+itself is copied from the tree to the worksheet's head and restated nowhere
+(unit 0361: the worksheet's own notation read a zero at one sideband, and
+eleven modules followed the paragraph instead of `termW`).
+
 ## 1. The block
 
 Every section or sub-section of `lean_stage3/design/<rung>.md` that an

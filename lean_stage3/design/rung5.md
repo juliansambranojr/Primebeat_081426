@@ -7,11 +7,25 @@ Lean theorem) or SKETCH (not yet in Lean; the numbers are the plan). A
 module's unit names the section it was built from in its `values.tsv` row
 `design`.
 
-Notation. `h` support, the window lives on `[−h, h]`. `γ` the tuning
-height. `m` the smoothing order, `λ = (m+1)/h`. A zero `ρ = 1/2 + ε' + iγ'`
-is read by the window at `w = (ε' + i(γ' − γ))h`, so `Re w = ε'h`,
-`Im w = Δh` with `Δ = γ' − γ`. The target is the zero the window is tuned
-to: `Δ = 0`, real part `1/2 + ε`, read at `w = s = εh` real.
+The statement this rung targets, copied from `Stage3/WeilDetect.lean` and
+restated nowhere else: `StmtDetect ε T L := (OffLineBox ε T).Nonempty →
+∃ G, IsTest L G ∧ (zeroForm G).re < 0`, to be earned as
+`∀ ε > 0, ∀ T, StmtDetect ε T (L ε T)` with `L` explicit in `ε` and `T`
+alone. A death on this rung names which of those quantifiers it kills.
+
+Objects are read at the tree, never defined here (audit 2026-09-08, unit
+0361; `DESIGN.md` v10). `h` support, the window lives on `[−h, h]`; `γ` the
+tuning height; `m` the smoothing order, `λ = (m+1)/h`. The term of the zero
+form at a zero `ρ` is `WeilPowerBands.termW h γ m ρ`, and by
+`WeilPowerBackground.term_re_eq` with `WeilOddPower.what_eq` it equals
+`−(h/2)² · Re((S m w₊ + S m w₋)²)` at the two sidebands
+`w± = (ρ − 1/2 ± iγ)h` (`WeilPowerBridge.term_eq_sidebands`, block 13j).
+Sections 4–13 below work with the near sideband alone, writing
+`w = w₋ = (ε' + iΔ)h` with `ε' = Re ρ − 1/2` and `Δ = Im ρ − γ`; that is an
+approximation, and what it drops, the far sideband and the cross term, is
+bounded in block 13j through `WeilPowerBounds.norm_S_le_far`. The target is
+the zero the window is tuned to: `Δ = 0`, real part `1/2 + ε`, near sideband
+`w = s = εh` real.
 
 ## 1. Sign structure — PROVED
 
