@@ -50,6 +50,8 @@ below with their outcome.
     DEPENDS     nothing from Julian; upstream's backlund_bound stays a watch
     OUT         sharp constants; the Stirling trim; the assembly of rung 5
 
+## Archive
+
 ### 2026-09-08 · block H1, ArgLegs, under the relay
 
     DONE        the four pinned theorems of hnt.md#H1 built and committed
@@ -59,11 +61,30 @@ below with their outcome.
     ASSUMED     the regime lines T2 (good height on the segment) and T3
                 (Re ζ(2+it) > 0) are hypotheses here, discharged in H2/H3;
                 the sign-constancy lemma is where the one-try rule is
-                likeliest to leave a sorry
+                likeliest to leave a sorry.
+                Added at the build, 2026-09-08:
+                (a) the two composed names live in `namespace Stage3`, not the
+                `ArgIdentity` namespace the block's Composes line writes, so
+                `zetaArgContour_le` is stated at `Stage3.zetaArgContour T` and
+                the continuity lemma is read as
+                `Stage3.logDeriv_zeta_continuousAt` (TRAPS row 32);
+                (b) `re_sign_const` is proved by the direct route — two points
+                of `Icc a b` with strictly opposite signs of `Re g` put a zero
+                strictly between them, hence inside `Ioo a b` — in place of the
+                block's `closure_Ioo` / `ContinuousOn.preimage_isClosed_of_isClosed`
+                route; its `hab` is then unused and the block's statement is
+                kept verbatim, so the module carries one unused-binder warning;
+                (c) `segment_im_integral_le` generalises `a` and `b` in the
+                induction, where the block says `a` alone: splitting at the
+                largest zero applies the hypothesis on `[a, z]`, so the upper
+                endpoint is the one that moves
     DEPENDS     nothing from Julian
     OUT         the count of the zeros of Re ζ (H2); bad heights (H3)
+    OUTCOME     PROVED, unit 0363, module committed with it; 2 sorries at the
+                first stop, one trap (row 16), closed by the foreman in 4 edits
+                and 3 builds; 8 of 10 closed on the builder's one try, the
+                segment induction among them; 3 ASSUMED pins promoted into the block
 
-## Archive
 
 ### 2026-09-07 · block 13j, WeilPowerBridge, under the relay
 

@@ -41,7 +41,8 @@ from the Dirichlet series. H3 the assembly: at good heights the identity,
 at bad heights the left limit through `N` left-continuous and `phaseTheta`
 continuous, then `StmtSCrude argS 15 66` and the band `(112, 0, 164)`.
 
-## H1 The two contour legs — SKETCH
+## H1 The two contour legs — PROVED (unit 0363: `ArgLegs.im_integral_le_pi_of_re_nonneg`,
+`segment_im_integral_le`, `horizontal_leg_le`, `zetaArgContour_le`)
 Objects.   `g : ℝ → ℂ` a path with `HasDerivAt g (g' x) x` on `[a, b]`, never
            `0` there. Where `0 ≤ Re g` on `[a, b]` the values sit in the slit
            plane (`0 < re ∨ im ≠ 0`, `Complex.slitPlane`), `log ∘ g` has

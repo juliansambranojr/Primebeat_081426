@@ -205,7 +205,9 @@ def main():
                 fails.append(f"RING     bare `ring` after `field_simp` at line {i + 2}; write `try ring`")
         head = src.split("\nimport ", 1)[0]
         block = design.split("#", 1)[1] if design and "#" in design else ""
-        if block and block not in head:
+        # the design slug is lower-cased by construction (`hnt.md#h1` for `## H1`),
+        # the header writes the block as the worksheet does; compare case-blind (unit 0363)
+        if block and block.lower() not in head.lower():
             fails.append(f"HEADER   the header before the first import does not name the block '{block}'")
         pins_path = os.path.join(repo, "PINS.md")
         modname = os.path.splitext(os.path.basename(module))[0]

@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-09-08T08:31:05Z
+# unit: 0363-arglegs-stage3
+# sources searched: 881
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:172079
+  Source: session transcript, 2026-09-08, the count-to-argument step, block H1
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:170905
+  the count-to-argument step
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171366
+  theorem segment_im_integral_le {g g' : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:171411
+  theorem zetaArgContour_le {T : ℝ} (hT : 2 ≤ T)
+
+# 4 found, 0 missing

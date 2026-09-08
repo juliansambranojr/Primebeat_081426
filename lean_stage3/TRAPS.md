@@ -6,7 +6,7 @@ that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, rows 22–23 by unit 0347, the
 orchestrator's own runs of the loop; row 24 by unit 0349; rows 25-28 by
 unit 0352, the first module built under the relay (LOOP.md 4b); row 29 by
-unit 0354; row 30 by unit 0357; row 31 by unit 0362.
+unit 0354; row 30 by unit 0357; row 31 by unit 0362; row 32 by unit 0363.
 
 | # | pattern in the build output | cause | fix |
 |---|---|---|---|
@@ -41,6 +41,7 @@ unit 0354; row 30 by unit 0357; row 31 by unit 0362.
 | 29 | `nlinarith [h1, h2]` reports `linarith failed to find a contradiction` on a goal whose certificate is the plain sum `h1 + h2 + h3` of hypotheses already in the context | row 14's family at the hint-fed form: the context also carries derived facts mixing `Real.pi` and `Real.pi⁻¹` monomials (here `hmul`, `hexp`, `hstep`, `hθpi` beside the three that matter), and the products `nlinarith` adds over them bury the linear certificate | `linarith [h1, h2, h3]` alone fails too, because linarith takes each product as one atom; name the rearrangement as its own identity, `have key : (e'^2 - D^2) * (1 - 2*θ/Real.pi) - 2*e'*D*θ = (e'^2 - D^2) - θ * (2*e'*D + 2*(e'^2 - D^2)/Real.pi) := by ring`, then `linarith [h1, h2, h3, key]` (unit 0354's one `sorry`, `WeilPowerNear.bracket_nonneg`, closed by the foreman with exactly this) |
 | 30 | warning `` `push_neg` has been deprecated. Prefer using `push Not` instead. `` with a macro suggestion in the message | Mathlib at the pin deprecated `push_neg` | it is a warning, so it does not count in `errors_first` and the build is clean; write `push Not at h`, or drop the tactic where the next step is `omega`, which reads a negated linear hypothesis `¬ x ≤ y` directly (unit 0357's `blocked_card_le`) |
 | 31 | `Unknown identifier D` at a statement copied verbatim from a design block, where every module the block's `open` line names is opened | the block's `open` line lists the modules whose theorems it composes; a constant that appears only inside a composed theorem's statement can live in a further namespace, reached in the source module through that module's own `open` and not through the import (`WeilPowerGauss.D` inside `WeilPowerPhase.re_S_sq_ge`), and `open` is not transitive | add the namespace to the module's `open` line and record the addition as an ASSUMED pin; catch it in the § 2 scratch pass by writing every constant of the copied statements as its own one-line `example`, which is where unit 0362 caught this one |
+| 32 | `Unknown identifier ArgIdentity.zetaArgContour` at a statement copied verbatim from a design block, where the block's Composes line quotes the declaration under that namespace | the block named the namespace after the file it read (`Stage3/ArgIdentity.lean`), and the file declares `namespace Stage3`; a Stage-3 module's namespace is not its file name, and the older modules put their theorems in `Stage3` | `grep -n '^namespace\|^end ' <file>` for the enclosing namespace of the declaring line and qualify from that (`Stage3.zetaArgContour`), then record the change as an ASSUMED pin; the § 2 scratch pass catches it as a `#check` of every composed name before the module is written, which is where unit 0363 caught this one |
 
 ## Bench and gate traps
 

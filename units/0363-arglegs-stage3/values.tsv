@@ -1,0 +1,32 @@
+key	value	source
+module_lines	393	wc -l lean_stage3/Stage3/ArgLegs.lean
+theorems_proved	10	grep -c ^theorem lean_stage3/Stage3/ArgLegs.lean
+defs	0	grep -c ^def lean_stage3/Stage3/ArgLegs.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ArgLegs.lean
+pins	4	im_integral_le_pi_of_re_nonneg, segment_im_integral_le, horizontal_leg_le, zetaArgContour_le
+zeta_refs	61	grep -c riemannZeta lean_stage3/Stage3/ArgLegs.lean
+errors_first	4	the builder's first stop, lines error: Stage3/ArgLegs.lean:<line>:<col>:
+roots	2	the builder's first stop: ContinuousAt.comp mis-unified its implicit f (twice, TRAPS row 16), and the two guard_msgs pins that diff in sorryAx (TRAPS row 19)
+warnings_first	1	the builder's first stop, Stage3/ArgLegs.lean:112:45 Variable name hab is not explicitly referenced
+sorries_first	2	the builder's first stop: the ContinuousOn hypothesis inside vertical_leg_le and inside horizontal_leg_le
+foreman_edits	4	the foreman's pass: the two row-16 closures, dropping hab from re_sign_const and its two call sites, the header sentence and the goal comments
+foreman_builds	3	the foreman's pass, builds run to reach a clean Stage3.ArgLegs
+jobs_package	8766	lake build (full Stage3)
+jobs_module	8718	run/build.log, lake build Stage3.ArgLegs
+traps_added	1	lean_stage3/TRAPS.md, one new row from the section 2 scratch pass
+row_new	32	lean_stage3/TRAPS.md row 32, a design block naming a namespace after the file it read
+assumed_pins	3	PINS.md Current, block H1: the Stage3 namespace, the direct re_sign_const route, the induction generalising both endpoints
+loop_version	18	lean_stage3/LOOP.md version line
+design	hnt.md#h1	the two contour legs: pi per zero of Re zeta on the segment plus one, pi/2 on the line Re s = 2
+tokens_first	149052	harness usage line at the builder's first stop
+calls_first	35	harness usage line at the builder's first stop
+minutes_first	15	harness usage line at the builder's first stop, 870043 ms
+tokens_end	160159	harness usage line at the builder's second stop, cumulative
+calls_second	12	harness usage line at the builder's second stop
+minutes_second	2	harness usage line at the builder's second stop, 138669 ms
+row_comp	16	lean_stage3/TRAPS.md row 16, dotted comp mis-unifies
+row_binder	20	lean_stage3/TRAPS.md row 20, unused binder
+band_a	112	hnt.md head: 97 + 15
+budget	100	entry 130's census budget for B1
+unit_identity	0274	StmtArgIdentity discharged, argS = the contour argument
