@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-09-08T18:09:27Z
+# unit: 0366-rung5-gap-dependent-l-priced-on-the-two-sideband-term
+# sources searched: 883
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:193056
+  Source: session transcript, 2026-09-08, rung 5 after the count-to-argument step
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:191417
+  Let's work on this - Rung 5: gap-dependent L(ε,T,δ) unpriced; section 14 unverified on the two-sideb...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169293
+  theorem term_eq_sidebands {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : ℂ) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169295
+  = -((h / 2) ^ 2 * (((S m (wm h γ ρ)) ^ 2).re
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:169296
+  + 2 * (S m (wp h γ ρ) * S m (wm h γ ρ)).re
+
+FOUND  session/3b5996ff-30b7-400e-a69c-1a6ed4862b95.jsonl:4094
+  theorem S_mul_QS (m : ℕ) (w : ℂ) : S m w * QS m w = (cS m : ℂ) * Complex.sinh w
+
+# 6 found, 0 missing

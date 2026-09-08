@@ -1,0 +1,11 @@
+{
+ "target_sign": -1,
+ "member_at_height_sign": -1,
+ "grid_points": 1176,
+ "disagree_max": 0.0,
+ "ratio_max": 6.3e-51,
+ "hurt_frac_h20": 0.7023809523809523,
+ "hurt_frac_h60": 0.6394557823129252,
+ "heights": 3,
+ "supports": 2
+}

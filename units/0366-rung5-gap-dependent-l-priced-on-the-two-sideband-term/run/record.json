@@ -1,0 +1,6 @@
+{"thirteen": 13, "fourteen": 14, "unit_window": "0360", "unit_audit": "0361", "unit_bridge": "0362", "unit_near": "0354",
+ "lam": 1, "eps_half": 0.5, "eps_quarter": 0.25, "eps_tenth": 0.1, "T_lo": 1000, "T_mid": 1000000, "T_hi": 1000000000000,
+ "delta_one": 1.0, "delta_third": 0.3, "delta_tenth": 0.1, "delta_003": 0.03, "delta_001": 0.01,
+ "L_e025_T6_d003": 62352, "L_e01_T12_d001": 612454, "L_e025_T6_d01": 11990,
+ "gamma_first": 14.1347, "gamma_100": 236.524, "gamma_600": 939.024, "h_lo": 20, "h_hi": 60,
+ "zeros_table": 600, "band_a": 112, "band_b3": 698, "count_a1": 15, "count_a3": 73, "lowcount_used": 0}

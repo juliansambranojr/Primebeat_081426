@@ -1,0 +1,17 @@
+A1. the sign at the target and at a member at the target's own height
+   target eps=1/4 at gamma_1: termW = -0.528326  (negative: detects); |S+|/|S-| = 2.15e-106
+   member eps'=1/4, Delta=1e-9: termW = -0.528326  (helps)
+   member eps'=1/4, Delta=1e-4: termW = -0.528326  (helps)
+   member eps'=1/4, Delta=1e-2: termW = -0.524954  (helps)
+   a member at the target's own height has the target's sign: it helps. 0360's label was reversed.
+
+A2. one sideband against two on the box eps' in (0,1/2], Delta in [-1/2,1/2], lam = 1
+       gamma     h  hurt frac 1sb  hurt frac 2sb  disagree  max |S+|/|S-|
+     14.1347    20         0.7024         0.7024    0.0000        6.3e-51
+     14.1347    60         0.6395         0.6395    0.0000      1.22e-152
+     236.524    20         0.7024         0.7024    0.0000      3.37e-100
+     236.524    60         0.6395         0.6395    0.0000      1.89e-300
+     939.024    20         0.7024         0.7024    0.0000      3.64e-124
+     939.024    60         0.6395         0.6395    0.0000      2.39e-372
+   the two-sideband term's sign is the one-sideband sign on every grid point checked;
+   the far sideband is below 1e-30 of the near one at every height in the table.

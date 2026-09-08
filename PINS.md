@@ -39,6 +39,25 @@ below with their outcome.
                 averaging route; sharpening constants against a structural
                 obstruction
 
+### 2026-09-08 · rung 5, the two open items of the audit — pins written after the run
+
+    DONE        section 14 checked on the two-sideband term (term_eq_sidebands,
+                S in closed form) and the gap-dependent L(ε, T, δ) priced on
+                the same object: a table of h₀ over ε, T, δ, the binding term
+                named per cell, the hypothesis it needs stated, the quantifier
+                it changes named; unit 0366, type decision, marks moved in
+                the worksheet on the script
+    ASSUMED     the far sideband is negligible (it is, under 1e-50); the worst
+                member sits at ε' = ε, Δ = δ (checked on a grid); lowCount = 0,
+                its true value, where the tree carries the symbol; the cluster
+                count is 15 log T + 73 per unit height; 0360's label was
+                reversed and its conclusions stand
+    DEPENDS     Julian, on whether the conditional theorem (detection under
+                the gap hypothesis, the dichotomy through the arrow) is worth
+                a Lean module; the pins here were written after the scripts
+                ran, as § 13 (b)'s were, and that is recorded
+    OUT         a module; any repair of the uniform L; touching unit 0360's text
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks

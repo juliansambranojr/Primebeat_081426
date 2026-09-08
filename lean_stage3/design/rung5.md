@@ -284,8 +284,21 @@ the order, and the far bound), and the count of off-line zeros with
 `Re < 1/4` through that symmetry, since the count's window covers only
 `Re ≥ 1/4`.
 
-## 14. The window question — NO for one sideband (unit 0360); the term's two-sideband
-version unverified (audit 2026-09-07, unit 0361)
+## 14. The window question — NO, verified on the two-sideband term (unit 0366);
+0360's sign label corrected
+
+Verified 2026-09-08 (unit 0366) on `term_eq_sidebands`'s object with `S` in
+closed form (`S_mul_QS`): at 1176 box points, three actual zero heights and
+two supports, the two-sideband term has the one-sideband sign everywhere and
+the far sideband is under `6.3e-51` of the near one. Unit 0360's label was
+reversed: on the tree's identity a member at the target's own height with the
+same real part has the target's sign and helps (block 13g's `term_nonneg` had
+this right), and at `σ = 0` the sign `(ε'² − Δ²)/(ε'² + Δ²)` is not fixed but
+turns at `Δ = ε'`. Both of 0360's conclusions stand, since the stripes
+alternate and the measure argument is symmetric: no window of this shape fixes
+the off-line sign, and the hurting set tends to half the box. The death is
+section 13's, uniformity over configurations. The paragraphs below are
+0360's text, kept as the record with the label as it wrote it.
 
 Sections 9 and 13 died of one cause, twice. An off-line zero contributes
 `2 Re(S(w)²)` and the sign of that turns on a phase we do not control, so the
@@ -339,9 +352,27 @@ the theorem trades sharpness for suppression.
 - Whether the tsum split needs the off-line part summable at all: yes, to
   write the form as a sum of three parts; the far bound gives it.
 
-## 13. The averaging route — uniform L DEAD, gap-dependent L OPEN (audit
-2026-09-07, unit 0361); the shell priced (unit 0351, corrected by 0357) and
-closed (units 0357-0358)
+## 13. The averaging route — uniform L DEAD, gap-dependent L PRICED, conditional
+(unit 0366); the shell priced (unit 0351, corrected by 0357) and closed (units
+0357-0358)
+
+Priced 2026-09-08 (unit 0366) on the two-sideband term with `S` exact. With
+the target at height `T`, real part `1/2 + ε`, `λ = 1`, the least `h` at which
+the target beats the on-line background (§ 6 with `lowCount = 0`), the cluster
+(`15 log T + 73` members with `ε' ≤ ε`, `δ ≤ |Δ| < 1/2`, each at its worst)
+and the far zeros (the hNT band's count at `|Δ| = 1/2`) exists at every one of
+45 cells over `ε ∈ {1/2, 1/4, 1/10}`, `T ∈ {10³, 10⁶, 10¹²}`, `δ ∈ {1, 0.3,
+0.1, 0.03, 0.01}`. The background binds at `δ ≳ 0.1` and the cluster below,
+where `h₀ ≈ 28/δ²`; the worst cell (`ε = 1/10`, `T = 10¹²`, `δ = 0.01`) is
+`h₀ = 306227`, `L = 612454`. So `L(ε, T, δ)` is polynomial in `log T`, `1/ε²`,
+`1/δ²`. The hypothesis it needs: no other off-line zero of the box at height
+distance in `(lo/b, δ)` from the target, `lo = λπ³/(8ε')` (members inside
+`lo/b` help, block 13g). That is the quantifier it changes: `∀ configurations`
+becomes `∀ configurations with no member in that window`; the uniform death
+stands. Nothing consumes it: `IsTest` is monotone in the support, so
+positivity at `L*` with this detection gives a dichotomy, box empty or two
+off-line zeros within `δ*` in height, where `L(ε, T, δ*) = L*`. Whether that
+is worth a module is Julian's call.
 
 Audit, 2026-09-07 (unit 0361). Unit 0359's headline ratio priced a worst case
 with every member at `Δ = lo/b`, and `Δ` cannot depend on `b`: the zeros are
