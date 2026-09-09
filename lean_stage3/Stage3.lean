@@ -39,6 +39,7 @@ import Stage3.PsiToPi
 import Stage3.ZeroSum
 import Stage3.Assembly
 import Stage3.WeilDetect
+import Stage3.BoxFinite
 import Stage3.WeilWindow
 import Stage3.WeilTransform
 import Stage3.WeilLobe

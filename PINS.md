@@ -108,6 +108,19 @@ below with their outcome.
                 isTest, plus a Kadiri box-in-strip finiteness lemma would
                 close the three placeholders
 
+### 2026-09-09 · block 15's first blocking lemma: OffLineBox.Finite — pin after the run
+
+    DONE        Stage3.offLineBox_finite proved in 41 lines (unit 0369),
+                a subset argument on Kadiri.zeroes_on_Compact_finite' with
+                the strip [1/2 + ε, 1] × [-T, T] as the compact set; the
+                first of two lemmas unit 0368 named as blocking block 15
+    ASSUMED     nothing; the proof is direct
+    DEPENDS     the second lemma, contDiff_one_indicator_Icc, is where the
+                work now sits; my first pass on it hit HasDerivWithinAt.congr
+                unification cascades at the boundary case and I left it for
+                its own unit rather than commit a broken module
+    OUT         the C1 indicator lemma; the placeholders in WeilPowerAssembly
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks

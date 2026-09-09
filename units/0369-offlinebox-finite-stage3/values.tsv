@@ -1,0 +1,15 @@
+key	value	source
+module_lines	41	wc -l lean_stage3/Stage3/BoxFinite.lean
+theorems_proved	1	grep -c ^theorem lean_stage3/Stage3/BoxFinite.lean
+defs	0	grep -c ^def lean_stage3/Stage3/BoxFinite.lean
+axioms	3	#print axioms offLineBox_finite: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/BoxFinite.lean
+pins	1	offLineBox_finite
+zeta_refs	6	grep -c riemannZeta lean_stage3/Stage3/BoxFinite.lean
+errors_first	0	lake build Stage3.BoxFinite clean on first try
+jobs_module	3666	lake build Stage3.BoxFinite
+jobs_package	8770	lake build (full Stage3)
+loop_version	21	lean_stage3/LOOP.md version line
+design	rung5.md#15	block 15's OPEN row, the box-in-strip finiteness lemma
+unit_partial	0368	WeilPowerAssembly, block 15 partial where BoxFinite was named as blocking
+lines_written	41	Stage3/BoxFinite.lean, one theorem plus imports and docstring

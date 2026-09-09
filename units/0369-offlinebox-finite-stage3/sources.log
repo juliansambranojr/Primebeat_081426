@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-09-09T07:01:26Z
+# unit: 0369-offlinebox-finite-stage3
+# sources searched: 884
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:196271
+  Source: session transcript, 2026-09-09, after unit 0368
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:195616
+  Then let's prove it locally
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:196278
+  theorem offLineBox_finite (ε T : ℝ) : (WeilDetect.OffLineBox ε T).Finite
+
+# 3 found, 0 missing
