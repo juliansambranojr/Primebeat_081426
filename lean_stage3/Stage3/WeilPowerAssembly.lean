@@ -15,11 +15,16 @@ units 0369 and 0370 land here as the finiteness of `OffLineBox`
 The theorems, hypotheses copied from the block's Theorems lines:
 
   isTest_phiWC        0 < h, 1 ≤ m       IsTest (2*h) (phiWC h γ m)
-                      (real/HasCompactSupport/tsupport closed on the pass;
-                      ContDiff conjunct sorried on one try — the boundary
-                      derivative-vanishing of q m (u/h)·cos(γu)·exp(-u/2)
-                      at u = ±h needs P(±1) = 0 with m ≥ 1 pushed through
-                      product/composition rules; one try per proof step)
+                      (all four conjuncts closed: real via phiWC_real,
+                       ContDiff via a new helper phiW_contDiff_one lifted
+                       through Complex.ofRealCLM, HasCompactSupport /
+                       tsupport on Icc (-h) h)
+  phiW_contDiff_one   0 < h, 1 ≤ m       ContDiff ℝ 1 (phiW h γ m)
+                      (indicator with boundary-vanishing hypotheses via
+                       contDiff_one_indicator_Icc, unit 0370; the four
+                       boundary values reduce to q(m, ±1) = 0 from
+                       sin(π·±1) = 0 and q'(m, ±1) = 0 for m ≥ 1 via
+                       P(±1) = cos²(±π/2) = 0)
   target_lower        F1-F5 at ρ         WeilPowerBridge.term_le_at_zero
                                           at the zero ρ with re = 1/2+ε
   near_nonneg         gap hypothesis     0 ≤ sum over near members;
@@ -47,25 +52,23 @@ The theorems, hypotheses copied from the block's Theorems lines:
                                           near/far/on-line sums is the
                                           block's hardest step)
 
-Pins: target_lower, on_line_le, isTest_phiWC, near_nonneg,
-far_moderate_le, far_large_le, detect_gap_exists.
+Pins: target_lower, on_line_le, phiW_contDiff_one, isTest_phiWC,
+near_nonneg, far_moderate_le, far_large_le, detect_gap_exists.
 
 Built under the relay (LOOP.md v21 § 4b, one try per proof step). Sorries
 carried on this pass are declared in `values.tsv` under `sorries` and each
 one keeps its goal as a comment beside the placeholder tactic.
 
-What the next slice needs: (i) the ContDiff conjunct of isTest_phiWC —
-either a boundary-derivative-vanishing computation on
-`W h γ m u · exp(-u/2)` at `u = ±h`, or an intermediate lemma stating
-q_deriv_vanishes_at_pm_one for m ≥ 1; (ii) the iterated
-`WeilPowerNear.term_nonneg` inside near_nonneg, per member of the near
-Finset; (iii) the exponential-vs-polynomial existence proof inside
-detect_gap_exists using `Real.tendsto_exp_atTop`.
+What the next slice needs: (i) the iterated `WeilPowerNear.term_nonneg`
+inside near_nonneg, per member of the near Finset; (ii) the
+exponential-vs-polynomial existence proof inside detect_gap_exists using
+`Real.tendsto_exp_atTop`.
 
-Axioms: `target_lower`, `on_line_le`, `far_moderate_le`, `far_large_le`
-close to `[propext, Classical.choice, Quot.sound]`. `isTest_phiWC`,
-`near_nonneg`, `detect_gap_exists` carry `sorryAx` by their declared
-sorries; the pin docstrings match.
+Axioms: `target_lower`, `on_line_le`, `far_moderate_le`, `far_large_le`,
+`phiW_contDiff_one`, `isTest_phiWC` all close to
+`[propext, Classical.choice, Quot.sound]`. `near_nonneg`,
+`detect_gap_exists` carry `sorryAx` by their declared sorries; the pin
+docstrings match.
 -/
 import Stage3.WeilPowerBridge
 import Stage3.WeilPowerNear
@@ -95,33 +98,172 @@ def StmtDetectGap (ε T δ L : ℝ) : Prop :=
       |ρ.im - ρ₀.im| ∉ Set.Ioo (Real.pi ^ 3 / (8 * ε * L / 2)) δ) →
   ∃ G : ℝ → ℂ, IsTest L G ∧ (zeroForm G).re < 0
 
+/-- **The switched real window is `C¹`.** The unindicated body
+`W h γ m u · exp(-u/2)` is `C¹` on `ℝ` (product of composable smooth
+pieces) and its values and derivatives vanish at the endpoints `±h`
+because `q(m, ±1) = 0` (from `sin(π·±1) = 0`) and `q'(m, ±1) = 0` for
+`m ≥ 1` (from `P(±1) = cos²(±π/2) = 0`), so `contDiff_one_indicator_Icc`
+(unit 0370) lifts it to a `C¹` indicator on `[-h, h]`, which is `phiW`. -/
+theorem phiW_contDiff_one {h γ : ℝ} (hh : 0 < h) {m : ℕ} (hm : 1 ≤ m) :
+    ContDiff ℝ 1 (WeilPowerBackground.phiW h γ m) := by
+  have hphi_eq : WeilPowerBackground.phiW h γ m
+      = Set.indicator (Set.Icc (-h) h)
+          (fun u : ℝ => WeilOddPower.W h γ m u * Real.exp (-u / 2)) := rfl
+  rw [hphi_eq]
+  have hm_ne : m ≠ 0 := by omega
+  have hP_neg_zero : WeilWindow.P (-1 : ℝ) = 0 := by
+    unfold WeilWindow.P
+    rw [show Real.pi * (-1 : ℝ) / 2 = -(Real.pi / 2) from by ring, Real.cos_neg,
+        Real.cos_pi_div_two]; ring
+  have hP_one_zero : WeilWindow.P (1 : ℝ) = 0 := by
+    unfold WeilWindow.P
+    rw [mul_one, Real.cos_pi_div_two]; ring
+  have hsin_neg_pi : Real.sin (Real.pi * (-1 : ℝ)) = 0 := by
+    rw [show Real.pi * (-1 : ℝ) = -Real.pi from by ring, Real.sin_neg, Real.sin_pi]; ring
+  have hsin_pi_one : Real.sin (Real.pi * (1 : ℝ)) = 0 := by
+    rw [mul_one, Real.sin_pi]
+  have hneg_div : (-h) / h = -1 := by rw [neg_div, div_self hh.ne']
+  have hpos_div : h / h = 1 := div_self hh.ne'
+  have hW_neg : WeilOddPower.W h γ m (-h) = 0 := by
+    unfold WeilOddPower.W WeilOddPower.q
+    rw [hneg_div, hsin_neg_pi, zero_mul, zero_mul]
+  have hW_pos : WeilOddPower.W h γ m h = 0 := by
+    unfold WeilOddPower.W WeilOddPower.q
+    rw [hpos_div, hsin_pi_one, zero_mul, zero_mul]
+  refine Stage3.contDiff_one_indicator_Icc (a := -h) (b := h) (by linarith) ?_ ?_ ?_ ?_ ?_
+  · -- ContDiff ℝ 1 (fun u => W h γ m u * exp(-u/2))
+    have hP_cd : ContDiff ℝ 1 WeilWindow.P := by
+      unfold WeilWindow.P
+      have hc_cd : ContDiff ℝ 1 (fun x : ℝ => Real.cos (Real.pi * x / 2)) :=
+        Real.contDiff_cos.comp ((contDiff_const.mul contDiff_id).div_const 2)
+      exact hc_cd.pow 2
+    have hq_cd : ContDiff ℝ 1 (WeilOddPower.q m) := by
+      show ContDiff ℝ 1 (fun x : ℝ => Real.sin (Real.pi * x) * WeilWindow.P x ^ m)
+      have hsin_cd : ContDiff ℝ 1 (fun x : ℝ => Real.sin (Real.pi * x)) :=
+        Real.contDiff_sin.comp (contDiff_const.mul contDiff_id)
+      exact hsin_cd.mul (hP_cd.pow m)
+    have hqh_cd : ContDiff ℝ 1 (fun u : ℝ => WeilOddPower.q m (u / h)) :=
+      hq_cd.comp (contDiff_id.div_const h)
+    have hcos_cd : ContDiff ℝ 1 (fun u : ℝ => Real.cos (γ * u)) :=
+      Real.contDiff_cos.comp (contDiff_const.mul contDiff_id)
+    have hW_cd : ContDiff ℝ 1 (WeilOddPower.W h γ m) := by
+      show ContDiff ℝ 1 (fun u : ℝ => WeilOddPower.q m (u / h) * Real.cos (γ * u))
+      exact hqh_cd.mul hcos_cd
+    have hexp_cd : ContDiff ℝ 1 (fun u : ℝ => Real.exp (-u / 2)) :=
+      Real.contDiff_exp.comp (contDiff_id.neg.div_const 2)
+    exact hW_cd.mul hexp_cd
+  · -- f(-h) = 0
+    show WeilOddPower.W h γ m (-h) * Real.exp (-(-h) / 2) = 0
+    rw [hW_neg]; ring
+  · -- f(h) = 0
+    show WeilOddPower.W h γ m h * Real.exp (-h / 2) = 0
+    rw [hW_pos]; ring
+  · -- deriv f (-h) = 0 via HasDerivAt.deriv on the product chain
+    have hasDerivAt_P_neg : HasDerivAt WeilWindow.P 0 (-1 : ℝ) := by
+      show HasDerivAt (fun x : ℝ => WeilPower.c x ^ 2) 0 (-1)
+      have hpow := (WeilPower.hasDerivAt_c (-1)).pow 2
+      exact hpow.congr_deriv (by rw [WeilPower.c_neg_one]; ring)
+    have hasDerivAt_Pm_neg : HasDerivAt (fun x : ℝ => WeilWindow.P x ^ m) 0 (-1 : ℝ) :=
+      (hasDerivAt_P_neg.pow m).congr_deriv (by ring)
+    have hasDerivAt_sinπ_neg : HasDerivAt (fun x : ℝ => Real.sin (Real.pi * x))
+        (Real.cos (Real.pi * (-1 : ℝ)) * Real.pi) (-1) :=
+      (Real.hasDerivAt_sin (Real.pi * (-1 : ℝ))).comp (-1) (hasDerivAt_const_mul Real.pi)
+    have hasDerivAt_q_neg : HasDerivAt (WeilOddPower.q m) 0 (-1 : ℝ) := by
+      show HasDerivAt (fun x : ℝ => Real.sin (Real.pi * x) * WeilWindow.P x ^ m) 0 (-1)
+      have hprod := hasDerivAt_sinπ_neg.mul hasDerivAt_Pm_neg
+      have hPm_val : WeilWindow.P (-1 : ℝ) ^ m = 0 := by
+        rw [hP_neg_zero]; exact zero_pow hm_ne
+      exact hprod.congr_deriv (by rw [hPm_val, hsin_neg_pi]; ring)
+    have hasDerivAt_qh_neg :
+        HasDerivAt (fun u : ℝ => WeilOddPower.q m (u / h)) 0 (-h) := by
+      have hin : HasDerivAt (fun u : ℝ => u / h) (1 / h) (-h) :=
+        (hasDerivAt_id (-h)).div_const h
+      have hqrw : HasDerivAt (WeilOddPower.q m) 0 ((fun u : ℝ => u / h) (-h)) := by
+        show HasDerivAt (WeilOddPower.q m) 0 ((-h) / h)
+        rw [hneg_div]; exact hasDerivAt_q_neg
+      have hcomp : HasDerivAt (WeilOddPower.q m ∘ fun u : ℝ => u / h)
+          (0 * (1 / h)) (-h) :=
+        HasDerivAt.comp (h₂ := WeilOddPower.q m) (h := fun u : ℝ => u / h)
+          (-h) hqrw hin
+      exact hcomp.congr_deriv (by ring)
+    have hasDerivAt_cosγ_neg : HasDerivAt (fun u : ℝ => Real.cos (γ * u))
+        (-Real.sin (γ * (-h)) * γ) (-h) :=
+      (Real.hasDerivAt_cos (γ * (-h))).comp (-h) (hasDerivAt_const_mul γ)
+    have hasDerivAt_W_neg : HasDerivAt (WeilOddPower.W h γ m) 0 (-h) := by
+      show HasDerivAt (fun u : ℝ => WeilOddPower.q m (u / h) * Real.cos (γ * u)) 0 (-h)
+      have hprod := hasDerivAt_qh_neg.mul hasDerivAt_cosγ_neg
+      have hqval : WeilOddPower.q m ((-h) / h) = 0 := by
+        rw [hneg_div]; unfold WeilOddPower.q; rw [hsin_neg_pi, zero_mul]
+      exact hprod.congr_deriv (by rw [hqval]; ring)
+    have hasDerivAt_exp_neg : HasDerivAt (fun u : ℝ => Real.exp (-u / 2))
+        (Real.exp (-(-h) / 2) * (-(1 : ℝ) / 2)) (-h) := by
+      have h1 : HasDerivAt (fun u : ℝ => -u) (-(1 : ℝ)) (-h) :=
+        (hasDerivAt_id (-h)).neg
+      exact (Real.hasDerivAt_exp _).comp (-h) (h1.div_const 2)
+    have hasDerivAt_f_neg : HasDerivAt
+        (fun u : ℝ => WeilOddPower.W h γ m u * Real.exp (-u / 2)) 0 (-h) := by
+      have hprod := hasDerivAt_W_neg.mul hasDerivAt_exp_neg
+      exact hprod.congr_deriv (by rw [hW_neg]; ring)
+    exact hasDerivAt_f_neg.deriv
+  · -- deriv f h = 0, mirror of the (-h) case
+    have hasDerivAt_P_pos : HasDerivAt WeilWindow.P 0 (1 : ℝ) := by
+      show HasDerivAt (fun x : ℝ => WeilPower.c x ^ 2) 0 1
+      have hpow := (WeilPower.hasDerivAt_c 1).pow 2
+      exact hpow.congr_deriv (by rw [WeilPower.c_one]; ring)
+    have hasDerivAt_Pm_pos : HasDerivAt (fun x : ℝ => WeilWindow.P x ^ m) 0 (1 : ℝ) :=
+      (hasDerivAt_P_pos.pow m).congr_deriv (by ring)
+    have hasDerivAt_sinπ_pos : HasDerivAt (fun x : ℝ => Real.sin (Real.pi * x))
+        (Real.cos (Real.pi * (1 : ℝ)) * Real.pi) 1 :=
+      (Real.hasDerivAt_sin (Real.pi * 1)).comp 1 (hasDerivAt_const_mul Real.pi)
+    have hasDerivAt_q_pos : HasDerivAt (WeilOddPower.q m) 0 (1 : ℝ) := by
+      show HasDerivAt (fun x : ℝ => Real.sin (Real.pi * x) * WeilWindow.P x ^ m) 0 1
+      have hprod := hasDerivAt_sinπ_pos.mul hasDerivAt_Pm_pos
+      have hPm_val : WeilWindow.P (1 : ℝ) ^ m = 0 := by
+        rw [hP_one_zero]; exact zero_pow hm_ne
+      exact hprod.congr_deriv (by rw [hPm_val, hsin_pi_one]; ring)
+    have hasDerivAt_qh_pos :
+        HasDerivAt (fun u : ℝ => WeilOddPower.q m (u / h)) 0 h := by
+      have hin : HasDerivAt (fun u : ℝ => u / h) (1 / h) h :=
+        (hasDerivAt_id h).div_const h
+      have hqrw : HasDerivAt (WeilOddPower.q m) 0 ((fun u : ℝ => u / h) h) := by
+        show HasDerivAt (WeilOddPower.q m) 0 (h / h)
+        rw [hpos_div]; exact hasDerivAt_q_pos
+      have hcomp : HasDerivAt (WeilOddPower.q m ∘ fun u : ℝ => u / h)
+          (0 * (1 / h)) h :=
+        HasDerivAt.comp (h₂ := WeilOddPower.q m) (h := fun u : ℝ => u / h)
+          h hqrw hin
+      exact hcomp.congr_deriv (by ring)
+    have hasDerivAt_cosγ_pos : HasDerivAt (fun u : ℝ => Real.cos (γ * u))
+        (-Real.sin (γ * h) * γ) h :=
+      (Real.hasDerivAt_cos (γ * h)).comp h (hasDerivAt_const_mul γ)
+    have hasDerivAt_W_pos : HasDerivAt (WeilOddPower.W h γ m) 0 h := by
+      show HasDerivAt (fun u : ℝ => WeilOddPower.q m (u / h) * Real.cos (γ * u)) 0 h
+      have hprod := hasDerivAt_qh_pos.mul hasDerivAt_cosγ_pos
+      have hqval : WeilOddPower.q m (h / h) = 0 := by
+        rw [hpos_div]; unfold WeilOddPower.q; rw [hsin_pi_one, zero_mul]
+      exact hprod.congr_deriv (by rw [hqval]; ring)
+    have hasDerivAt_exp_pos : HasDerivAt (fun u : ℝ => Real.exp (-u / 2))
+        (Real.exp (-h / 2) * (-(1 : ℝ) / 2)) h := by
+      have h1 : HasDerivAt (fun u : ℝ => -u) (-(1 : ℝ)) h := (hasDerivAt_id h).neg
+      exact (Real.hasDerivAt_exp _).comp h (h1.div_const 2)
+    have hasDerivAt_f_pos : HasDerivAt
+        (fun u : ℝ => WeilOddPower.W h γ m u * Real.exp (-u / 2)) 0 h := by
+      have hprod := hasDerivAt_W_pos.mul hasDerivAt_exp_pos
+      exact hprod.congr_deriv (by rw [hW_pos]; ring)
+    exact hasDerivAt_f_pos.deriv
+
 /-- The switched window `phiWC` is a `C¹` compactly supported real-valued
-test function on `[-h, h]`, hence in the class `IsTest (2*h)`. Three of
-the four conjuncts close on the relay pass (real-valuedness from
-`phiWC_real`, compact support from `HasCompactSupport.intro` on
-`Icc (-h) h`, tsupport ⊆ `Icc (-h) h` = `Icc (-(2h)/2) ((2h)/2)`). The
-`ContDiff` conjunct wants `contDiff_one_indicator_Icc` at
-`f u = W h γ m u · exp(-u/2)` on `Icc (-h) h`, whose boundary hypotheses
-`f(±h) = 0` and `deriv f(±h) = 0` follow from `P(±1) = 0` (m ≥ 1) but do
-not close on one try because the product-and-composition derivative of
-`q m (u/h)·cos(γu)·exp(-u/2)` needs its own auxiliary lemma. Sorried
-here with the goal in a comment per LOOP.md § 4b. -/
-theorem isTest_phiWC {h : ℝ} (hh : 0 < h) (γ : ℝ) {m : ℕ} (_hm : 1 ≤ m) :
+test function on `[-h, h]`, hence in the class `IsTest (2*h)`. Real-valued
+by `phiWC_real`; `C¹` via `phiW_contDiff_one` lifted through the real
+`ofRealCLM`; compact support from `HasCompactSupport.intro` on
+`Icc (-h) h`; tsupport contained in `Icc (-(2h)/2) ((2h)/2) = Icc (-h) h`. -/
+theorem isTest_phiWC {h : ℝ} (hh : 0 < h) (γ : ℝ) {m : ℕ} (hm : 1 ≤ m) :
     IsTest (2 * h) (WeilPowerBackground.phiWC h γ m) := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · -- goal: ∀ u, (WeilPowerBackground.phiWC h γ m u).im = 0
     exact WeilPowerBackground.phiWC_real h γ m
   · -- goal: ContDiff ℝ 1 (WeilPowerBackground.phiWC h γ m)
-    -- The route: `phiWC = Complex.ofRealCLM ∘ phiW`, so it suffices to
-    -- show `ContDiff ℝ 1 (phiW h γ m)`; and `phiW h γ m` is
-    -- `Set.indicator (Icc (-h) h) (fun u => W h γ m u * Real.exp (-u/2))`,
-    -- to which `contDiff_one_indicator_Icc` applies with the boundary-
-    -- vanishing hypotheses. Those hypotheses are `f(-h) = 0`, `f(h) = 0`,
-    -- `deriv f (-h) = 0`, `deriv f h = 0` for `f = W h γ m · exp(-·/2)`;
-    -- each needs its own product/composition-derivative lemma tied to
-    -- `q_neg_one_eq_zero`, `q_one_eq_zero`, `q'_neg_one_eq_zero`,
-    -- `q'_one_eq_zero`. LOOP.md v21 § 4b: one try per proof step.
-    sorry
+    exact Complex.ofRealCLM.contDiff.comp (phiW_contDiff_one hh hm)
   · -- goal: HasCompactSupport (WeilPowerBackground.phiWC h γ m)
     refine HasCompactSupport.intro (K := Set.Icc (-h) h) isCompact_Icc ?_
     intro x hx
@@ -315,7 +457,11 @@ theorem detect_gap_exists {ε T δ : ℝ}
 #guard_msgs in
 #print axioms near_nonneg
 
-/-- info: 'WeilPowerAssembly.isTest_phiWC' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound] -/
+/-- info: 'WeilPowerAssembly.phiW_contDiff_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms phiW_contDiff_one
+
+/-- info: 'WeilPowerAssembly.isTest_phiWC' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms isTest_phiWC
 

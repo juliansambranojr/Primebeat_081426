@@ -1,0 +1,13 @@
+ℹ [8708/8742] Replayed PrimeNumberTheoremAnd.MediumPNT
+info: PrimeNumberTheoremAnd/MediumPNT.lean:4282:0: 'MediumPNT' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8709/8742] Replayed PrimeNumberTheoremAnd.StrongPNT
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:2860:8: declaration uses `sorry`
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:3268:6: declaration uses `sorry`
+warning: PrimeNumberTheoremAnd/StrongPNT.lean:3358:6: declaration uses `sorry`
+⚠ [8723/8742] Replayed Stage3.WeilBackground
+warning: Stage3/WeilBackground.lean:143:2: 'push_cast' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [8742/8742] Replayed Stage3.WeilPowerAssembly
+warning: Stage3/WeilPowerAssembly.lean:417:8: declaration uses `sorry`
+Build completed successfully (8742 jobs).

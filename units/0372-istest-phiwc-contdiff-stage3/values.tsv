@@ -1,0 +1,31 @@
+key	value	source
+module_lines	474	wc -l lean_stage3/Stage3/WeilPowerAssembly.lean
+theorems_proved	8	grep -c ^theorem lean_stage3/Stage3/WeilPowerAssembly.lean
+defs	1	grep -c ^def lean_stage3/Stage3/WeilPowerAssembly.lean
+axioms	4	#print axioms for detect_gap_exists: propext, sorryAx, Classical.choice, Quot.sound
+sorries	1	grep -c '\bsorry\b' lean_stage3/Stage3/WeilPowerAssembly.lean (detect_gap_exists at line 438)
+pins	8	target_lower, on_line_le, far_moderate_le, far_large_le, near_nonneg, phiW_contDiff_one, isTest_phiWC, detect_gap_exists
+pins_clean	7	target_lower, on_line_le, far_moderate_le, far_large_le, near_nonneg, phiW_contDiff_one, isTest_phiWC all resolve to [propext, Classical.choice, Quot.sound]
+pins_sorry	1	detect_gap_exists resolves to [propext, sorryAx, Classical.choice, Quot.sound]
+errors_first	0	lake build Stage3.WeilPowerAssembly first pass: no error lines; only the one declared-sorry warning on the tactic sorry at line 438
+jobs_module	8742	lake build Stage3.WeilPowerAssembly
+jobs_package	8771	lake build (full Stage3)
+loop_version	21	lean_stage3/LOOP.md version line
+design	rung5.md#15	block 15 close-out of the ContDiff conjunct
+unit_prev	0371	the prior WeilPowerAssembly close-out relay pass; this unit closes its remaining isTest_phiWC ContDiff sorry
+unit_indic	0370	IndicatorContDiff.lean, contDiff_one_indicator_Icc, the boundary-vanishing indicator lifted through phiW_contDiff_one
+lines_written	146	the edit added roughly 146 lines net over unit 0371: phiW_contDiff_one and its four boundary-vanishing HasDerivAt chains, isTest_phiWC ContDiff conjunct via Complex.ofRealCLM.contDiff.comp, updated pin docstrings
+sorries_first	0	the builder first stop: no sorry inside phiW_contDiff_one or isTest_phiWC; the only remaining sorry is the pre-existing detect_gap_exists
+roots	0	the builder first stop: no error root; the one remaining sorry is on the block's other OPEN item, detect_gap_exists
+assumed_pins	0	no new ASSUMED pin; q(m, pm 1) = 0 from sin(pi times pm 1) = 0 and q'(m, pm 1) = 0 for m ge 1 from P(pm 1) = cos squared (pm pi over 2) = 0 both closed inline via HasDerivAt.pow, HasDerivAt.mul, HasDerivAt.comp
+traps_added	0	first build was clean, no new lean_stage3/TRAPS.md row
+foreman_edits	0	the foreman pass: no proofs to close; builder landed the ContDiff conjunct sorry-free
+foreman_builds	0	the foreman pass: no new builds needed beyond the scaffold
+sorries_before	2	unit 0371 stopped with two sorries (isTest_phiWC ContDiff conjunct and detect_gap_exists); this pass closes the first, one remains
+row_16	16	lean_stage3/TRAPS.md row 16, dotted comp mis-unifies; worked around in the positive-h HasDerivAt.comp by passing h2 and h named implicits so Lean picks fun u to u div h rather than HDiv.hDiv h
+tokens_first	72714	harness usage at the builder first stop
+calls_first	43	harness usage at the builder first stop
+minutes_first	9	harness usage at the builder first stop, 535209 ms
+zeta_refs	0	grep -c riemannZeta lean_stage3/Stage3/WeilPowerAssembly.lean
+row_comp	16	lean_stage3/TRAPS.md row 16, ContinuousAt.comp / HasDerivAt.comp mis-unifies; recurred and worked around in the builder pass
+unit_indicator	0370	IndicatorContDiff.lean, contDiff_one_indicator_Icc, the C¹ indicator lemma this proof uses

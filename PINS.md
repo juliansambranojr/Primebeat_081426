@@ -168,6 +168,27 @@ below with their outcome.
                 near_nonneg's h_pointwise carries block 13g per member,
                 far_*_le take U_mem / U_far as abstract parameters
 
+### 2026-09-09 · isTest_phiWC ContDiff conjunct, under the relay
+
+    DONE        isTest_phiWC ContDiff conjunct closed via a new helper
+                phiW_contDiff_one, using contDiff_one_indicator_Icc (unit 0370)
+                at f = W · exp(-u/2) with the four boundary hypotheses closed
+                by q(m, ±1) = 0 and q'(m, ±1) = 0 for m ≥ 1 (unit 0372)
+    ASSUMED     q(m, ±1) = 0 from sin(π · ±1) = 0; q'(m, ±1) = 0 for m ≥ 1
+                from P(±1) = cos²(±π/2) = 0 and cos(π) = -1; the product /
+                composition derivative computations use Mathlib names named
+                in the brief; any single boundary have that doesn't close on
+                one try sorrys with its goal per LOOP v21
+    DEPENDS     nothing from Julian
+    OUT         detect_gap_exists (the other remaining sorry, its own unit)
+    OUTCOME     PROVED, unit 0372, module committed with 1 sorry (only
+                detect_gap_exists remains); phiW_contDiff_one landed as a
+                new helper with a clean pin; isTest_phiWC's pin flipped from
+                sorryAx to clean; the whole chain closed on the relay's
+                first pass with 0 errors; row 16 recurred and was worked
+                around by named implicit arguments at the boundary
+                composition, no new TRAPS row
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks
