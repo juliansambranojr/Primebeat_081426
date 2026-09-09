@@ -1,0 +1,35 @@
+key	value	source
+module_lines	328	wc -l lean_stage3/Stage3/WeilPowerAssembly.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/WeilPowerAssembly.lean
+defs	1	grep -c ^def lean_stage3/Stage3/WeilPowerAssembly.lean
+axioms	4	#print axioms for isTest_phiWC and detect_gap_exists: propext, sorryAx, Classical.choice, Quot.sound
+sorries	2	grep -c '\bsorry\b' lean_stage3/Stage3/WeilPowerAssembly.lean (isTest_phiWC ContDiff conjunct at line 124, detect_gap_exists at line 296)
+pins	7	target_lower, on_line_le, far_moderate_le, far_large_le, near_nonneg, isTest_phiWC, detect_gap_exists
+pins_clean	5	target_lower, on_line_le, far_moderate_le, far_large_le, near_nonneg all resolve to [propext, Classical.choice, Quot.sound]
+pins_sorry	2	isTest_phiWC and detect_gap_exists resolve to [propext, sorryAx, Classical.choice, Quot.sound]
+errors_first	0	lake build Stage3.WeilPowerAssembly first pass: no error lines; only the two declared-sorry warnings on the tactic sorries at 124 and 296
+jobs_module	8742	lake build Stage3.WeilPowerAssembly
+jobs_package	8771	lake build (full Stage3)
+loop_version	21	lean_stage3/LOOP.md version line
+design	rung5.md#15	block 15, WeilPowerAssembly close-out under the relay
+unit_partial	0368	WeilPowerAssembly initial partial with three True placeholders
+unit_box	0369	BoxFinite.lean, offLineBox_finite (first of the two blocking lemmas)
+unit_indic	0370	IndicatorContDiff.lean, contDiff_one_indicator_Icc (second of the two blocking lemmas)
+lines_written	79	the close-out edit added roughly 79 lines net over unit 0368's 249: three placeholders promoted from True to real signatures with proofs, isTest_phiWC gained three closed conjuncts, imports for BoxFinite and IndicatorContDiff, updated pin docstrings
+zeta_refs	0	grep -c riemannZeta lean_stage3/Stage3/WeilPowerAssembly.lean
+sorries_first	2	the builder first stop: two sorries on the relay pass, the isTest_phiWC ContDiff conjunct and detect_gap_exists as expected by the block
+roots	2	the builder first stop: no error root, only the two declared sorries; isTest_phiWC's ContDiff conjunct wants a product/composition derivative computation on q(u/h)*cos(gamma u)*exp(-u/2) at u = pm h using P(pm 1) = 0 (m ge 1); detect_gap_exists wants the exponential-vs-polynomial closure via Real.tendsto_exp_atTop chained with polynomial-vs-exponential
+assumed_pins	3	near_nonneg signature attaches h_pointwise : forall rho in near_set, 0 le termW rho (packaging block 13g regime per member) rather than raw F1-F5, R1, R3, R5, L1, N1 witnesses; far_moderate_le and far_large_le take U_mem and U_far as abstract real parameters with a supplied pointwise bound h_bound instead of unfolding norm_S_le_c_pos/_neg and norm_S_le_far at the module
+traps_added	0	first build was clean, no new lean_stage3/TRAPS.md row
+foreman_edits	0	the foreman pass: no proofs to close beyond what the builder landed; two sorries stand by the block's OPEN row
+foreman_builds	0	the foreman pass: no new builds needed beyond the scaffold
+sorries_before	2	unit 0368 had 2 sorries too; this pass swapped them for narrower ones and lifted three True placeholders to real signatures with clean pins
+row_cascade	19	lean_stage3/TRAPS.md row 19, pin cascade cleared at the two docstrings that now record sorryAx
+unit_indicator	0370	IndicatorContDiff.lean, contDiff_one_indicator_Icc, the second blocking lemma
+card_a1	15	far_moderate_le count coefficient
+card_a3	73	far_moderate_le count additive constant, from JensenCount.zeta_local_zero_count
+far_a1	15	far_large_le count coefficient
+far_a3	698	far_large_le count additive constant, from unit 0365 (Riemann_vonMangoldt_bound)
+tokens_first	133586	harness usage at the builder first stop
+calls_first	56	harness usage at the builder first stop
+minutes_first	11	harness usage at the builder first stop, 631807 ms

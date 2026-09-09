@@ -143,6 +143,31 @@ below with their outcome.
                 self-corrected by the builder; TRAPS row 38 for the rcases-rfl
                 endpoint-substitution trap; both blocking lemmas landed
 
+### 2026-09-09 · block 15 close-out, under the relay — WeilPowerAssembly's remaining sorries
+
+    DONE        WeilPowerAssembly closed as far as one relay pass reaches:
+                isTest_phiWC by contDiff_one_indicator_Icc at phiW (unit 0370),
+                three placeholders by real signatures using offLineBox_finite
+                (unit 0369), detect_gap_exists by the exponential-vs-polynomial
+                existence via Real.tendsto_exp_atTop (unit 0371)
+    ASSUMED     the placeholder signatures may need adjustment on the first
+                try; per LOOP v21 any that don't close cleanly land as sorry
+                with the goal in a comment; a partial commit is expected
+                and the values.tsv row records what stands
+    DEPENDS     nothing from Julian
+    OUT         a follow-up unit for any placeholders or detect_gap_exists
+                that sorry on this pass; the numeric L (still Julian's call
+                whether to compute it explicitly)
+    OUTCOME     PARTIAL, unit 0371, module committed with 2 sorries (down from
+                0368's 2 but on different, narrower goals). Three placeholders
+                lifted to real signatures with clean pins (near_nonneg,
+                far_moderate_le, far_large_le); isTest_phiWC has three of four
+                conjuncts closed and only the ContDiff conjunct sorries;
+                detect_gap_exists still sorries at step (d), the
+                exponential-vs-polynomial existence. Assumed pins recorded:
+                near_nonneg's h_pointwise carries block 13g per member,
+                far_*_le take U_mem / U_far as abstract parameters
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks
