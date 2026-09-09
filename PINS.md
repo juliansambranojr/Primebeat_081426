@@ -189,6 +189,30 @@ below with their outcome.
                 around by named implicit arguments at the boundary
                 composition, no new TRAPS row
 
+### 2026-09-09 · detect_gap_exists, under the relay — the last sorry of block 15
+
+    DONE        detect_gap_exists closed as far as one relay pass reaches;
+                the value of this unit is naming precisely which sub-step of
+                the assembly (target vs on-line + cluster + far) blocks it
+                if it does not close (unit 0373)
+    ASSUMED     the exponential gap between target's rate ε²/(π²(m+2)) and
+                cluster rate (ε² − δ²)/(π²(m+2)) closes by Real.tendsto_exp_atTop
+                chained with polynomial-vs-exponential; if the tsum split of
+                zeroForm doesn't unfold cleanly, the whole proof sorrys with
+                the goal in a comment; expected outcome may be a large sorry
+                with the assembly structure named
+    DEPENDS     nothing from Julian
+    OUT         the numeric L (this is EXISTENCE only); any Mathlib PR needed
+                for the tendsto_exp_atTop assembly
+    OUTCOME     PARTIAL-BUT-REVERTED, unit 0373, module committed with 1 sorry
+                (same as unit 0372). The builder's structural fill committed
+                to L = 2 (h = 1) which made the sign step provably-false; the
+                foreman reverted to a whole-theorem sorry with the tendsto_exp
+                route named in a comment. The lesson: a structural fill that
+                boxes the sign into an unprovable case is worse than a whole-
+                theorem sorry. Block 15's last theorem stands open until a
+                real assembly pass writes the tendsto_exp chain
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks

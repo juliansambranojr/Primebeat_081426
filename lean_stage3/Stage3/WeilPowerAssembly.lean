@@ -417,24 +417,18 @@ one try. -/
 theorem detect_gap_exists {ε T δ : ℝ}
     (_hε : 0 < ε) (_hT : 2 ≤ T) (_hδ : 0 < δ) (_hδ1 : δ ≤ 1/2) :
     ∃ L : ℝ, StmtDetectGap ε T δ L := by
-  -- goal: ∃ L, StmtDetectGap ε T δ L. Chain (a)–(e) from the brief:
-  --   (a) pick ρ₀ ∈ OffLineBox ε T (Stage3.offLineBox_finite → Finset →
-  --       max-Re element via Finset.exists_max_image);
-  --   (b) unfold `L = 2h`; the gap hypothesis says other zeros are outside
-  --       `Ioo (π³/(8εh)) δ`;
-  --   (c) split the box (minus ρ₀) into near, far-moderate, far-large
-  --       Finsets;
-  --   (d) show `(h/2)² · S_lo² > BG + cluster + far` at large `h` via
-  --       `Real.tendsto_exp_atTop` for the target's `exp(2 wm² sigma)`,
-  --       polynomial bounds for BG and far-large, exponential-with-smaller-
-  --       rate for the cluster;
-  --   (e) take `G := phiWC h γ m`, apply `isTest_phiWC` and the sign chain
-  --       via `target_lower`, `near_nonneg`, `far_moderate_le`,
-  --       `far_large_le`, `on_line_le`.
-  -- Step (a) closes but (d) does not close on one try — it needs the
-  -- `Real.tendsto_exp_atTop` chained with polynomial-vs-exponential and
-  -- the free parameters (γ, m, h) rated at the split. LOOP.md v21 § 4b:
-  -- one try per LOOP.md v21 § 4b; the placeholder tactic follows.
+  -- Existence via the exponential gap: at some L = 2 h₀, the target's
+  -- `exp(2 · (wm ρ₀)² · σ_m)` (bounded below by `target_lower`) dominates
+  -- the polynomial `on_line_le` and the two `far_*_le` bounds, with
+  -- `near_nonneg` dropping out. h₀ is chosen via `Real.tendsto_exp_atTop`
+  -- chained with polynomial-vs-exponential; the tsum split of `zeroForm`
+  -- into on-line + target + near + far-moderate (empty by the gap
+  -- hypothesis) + far-large is what the assembly wires together.
+  --
+  -- A structural pass in unit 0373 committed to a concrete L = 2 (h = 1),
+  -- which makes the sign step provably-false because the target's exp
+  -- does not dominate at h = 1. That pass was reverted; the honest state
+  -- leaves this theorem sorried whole until the tendsto_exp assembly is written.
   sorry
 
 /-- info: 'WeilPowerAssembly.target_lower' depends on axioms: [propext, Classical.choice, Quot.sound] -/

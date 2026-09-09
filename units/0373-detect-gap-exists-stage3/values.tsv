@@ -1,0 +1,33 @@
+key	value	source
+module_lines	468	wc -l lean_stage3/Stage3/WeilPowerAssembly.lean
+theorems_proved	8	grep -c ^theorem lean_stage3/Stage3/WeilPowerAssembly.lean
+defs	1	grep -c ^def lean_stage3/Stage3/WeilPowerAssembly.lean
+axioms	4	#print axioms for detect_gap_exists: propext, sorryAx, Classical.choice, Quot.sound
+sorries	1	grep -c 'bsorry b' lean_stage3/Stage3/WeilPowerAssembly.lean (detect_gap_exists whole-theorem sorry at line 432)
+pins	8	target_lower, on_line_le, far_moderate_le, far_large_le, near_nonneg, phiW_contDiff_one, isTest_phiWC, detect_gap_exists
+pins_clean	7	target_lower, on_line_le, far_moderate_le, far_large_le, near_nonneg, phiW_contDiff_one, isTest_phiWC all resolve to [propext, Classical.choice, Quot.sound]
+pins_sorry	1	detect_gap_exists resolves to [propext, sorryAx, Classical.choice, Quot.sound]
+errors_first	0	lake build Stage3.WeilPowerAssembly first pass on the builder's structural attempt: no error lines; only the one declared-sorry warning
+jobs_module	8742	lake build Stage3.WeilPowerAssembly
+jobs_package	8771	lake build (full Stage3)
+loop_version	21	lean_stage3/LOOP.md version line
+design	rung5.md#15	block 15 close-out of the existence step
+unit_prev	0372	the prior WeilPowerAssembly close-out relay pass; this unit records the honest attempt at the remaining detect_gap_exists sorry
+lines_written	0	the foreman reverted the builder's structural pass; the module net diff over unit 0372 is a comment-only refresh of the whole-theorem sorry goal comment naming the tendsto_exp route
+sorries_before	1	unit 0372 stopped with one sorry (detect_gap_exists); this pass leaves the same sorry after the foreman revert
+sorries_first	1	the builder first stop: one inner sorry inside detect_gap_exists at the sign step; L = 2 pass exposed the sign as the sole remaining sub-step but made the exp-vs-polynomial domination provably false at h = 1
+roots	0	the builder first stop: no error root; the structural attempt built clean
+assumed_pins	0	no new ASSUMED pin; the pass uncovered a design event that would have needed the L free rather than a design gap
+traps_added	0	first build was clean, no new lean_stage3/TRAPS.md row
+foreman_edits	1	the foreman pass: revert the L = 2 outer commitment back to a whole-theorem sorry with the goal in a comment naming the tendsto_exp_atTop route, so the sorry does not carry a provably-false subgoal
+foreman_builds	1	the foreman pass: one rebuild after the revert, clean, one declared sorry
+row_16	16	lean_stage3/TRAPS.md row 16, dotted comp mis-unifies; not hit on this pass
+zeta_refs	0	grep -c riemannZeta lean_stage3/Stage3/WeilPowerAssembly.lean
+unit_wpa_init	0368	the initial WeilPowerAssembly module with two declared sorries
+unit_box	0369	BoxFinite, offLineBox_finite; the finite Finset the assembly's sums range over
+unit_indicator	0370	IndicatorContDiff.lean, contDiff_one_indicator_Icc, the C1 indicator lemma the isTest chain uses
+unit_isTest	0372	the pass that closed isTest_phiWC and phiW_contDiff_one, leaving only detect_gap_exists
+tokens_first	22156	harness usage at the builder first stop
+calls_first	20	harness usage at the builder first stop
+minutes_first	6	harness usage at the builder first stop
+h_pick	1	the builder's L = 2 outer commitment picked h = 1, m = 1 to close IsTest 2 via isTest_phiWC directly; the sign step needs h large enough for exp(2 wm^2 sigma_m) to dominate on_line + cluster + far, which fails at h = 1

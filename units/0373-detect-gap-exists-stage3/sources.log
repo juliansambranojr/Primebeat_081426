@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-09-09T08:37:27Z
+# unit: 0373-detect-gap-exists-stage3
+# sources searched: 888
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:197787
+  Source: session transcript, 2026-09-09, after unit 0372
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194605
+  theorem detect_gap_exists {ε T δ : ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:194926
+  (_hε : 0 < ε) (_hT : 2 ≤ T) (_hδ : 0 < δ) (_hδ1 : δ ≤ 1/2) :
+
+# 3 found, 0 missing
