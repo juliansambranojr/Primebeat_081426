@@ -121,6 +121,28 @@ below with their outcome.
                 its own unit rather than commit a broken module
     OUT         the C1 indicator lemma; the placeholders in WeilPowerAssembly
 
+### 2026-09-09 · block IndicatorContDiff, under the relay — the second of the two lemmas
+
+    DONE        contDiff_one_indicator_Icc proved (or sorry'd with the goal
+                named per LOOP v21) in Stage3/IndicatorContDiff.lean; the
+                second of the two lemmas unit 0368 named as blocking block
+                15's isTest_phiWC
+    ASSUMED     the assembly of contDiff_one_iff_deriv with pointwise
+                HasDerivAt at every x and continuity of the indicator
+                derivative; the boundary-case at x = a and x = b uses
+                either HasDerivWithinAt.union or direct hasDerivAt_iff_tendsto
+    DEPENDS     nothing from Julian
+    OUT         the follow-up: fill WeilPowerAssembly's three True
+                placeholders using offLineBox_finite (unit 0369) and this
+                lemma; close detect_gap_exists
+    OUTCOME     PROVED, unit 0370, module committed with 0 sorries; closed on
+                the relay's first pass in 249 lines; 10 first-build errors from
+                five roots (three HasDerivAt.congr_of_eventuallyEq over-.symm,
+                two EventuallyEq.continuousAt misuses, four Unknown identifier
+                a/b from rcases lt_trichotomy with rfl, one pin cascade), all
+                self-corrected by the builder; TRAPS row 38 for the rcases-rfl
+                endpoint-substitution trap; both blocking lemmas landed
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks

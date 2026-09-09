@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-09-09T07:28:19Z
+# unit: 0370-indicator-contdiff-stage3
+# sources searched: 885
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:196570
+  Source: session transcript, 2026-09-09, after unit 0369
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:196451
+  Just checking to make the builder didn't get stuck
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:196037
+  theorem contDiff_one_indicator_Icc {a b : ℝ} (hab : a ≤ b) {f : ℝ → ℝ}
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:196038
+  (hf : ContDiff ℝ 1 f) (ha : f a = 0) (hb : f b = 0)
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:196039
+  (hda : deriv f a = 0) (hdb : deriv f b = 0) :
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:196040
+  ContDiff ℝ 1 (Set.indicator (Set.Icc a b) f)
+
+# 6 found, 0 missing

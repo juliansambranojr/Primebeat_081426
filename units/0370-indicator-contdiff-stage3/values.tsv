@@ -1,0 +1,30 @@
+key	value	source
+module_lines	249	wc -l lean_stage3/Stage3/IndicatorContDiff.lean
+theorems_proved	1	grep -c ^theorem lean_stage3/Stage3/IndicatorContDiff.lean
+defs	0	grep -c ^def lean_stage3/Stage3/IndicatorContDiff.lean
+axioms	3	#print axioms contDiff_one_indicator_Icc: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/IndicatorContDiff.lean
+pins	1	contDiff_one_indicator_Icc
+errors_first	10	lake build Stage3.IndicatorContDiff first pass: three .symm direction mismatches (57, 64, 72), two Filter.EventuallyEq.continuousAt misuses (164, 233), four Unknown identifier from rcases rfl killing endpoint variable (169, 206), one #guard_msgs cascade (row 19)
+jobs_module	1987	lake build Stage3.IndicatorContDiff
+jobs_package	8771	lake build (full Stage3)
+loop_version	21	lean_stage3/LOOP.md version line
+design	rung5.md#15	block 15's OPEN row, the C1 indicator lemma blocking isTest_phiWC
+unit_partial	0368	WeilPowerAssembly, block 15 partial where the C1 indicator lemma was named as blocking
+lines_written	249	Stage3/IndicatorContDiff.lean, one theorem plus imports and docstring
+zeta_refs	0	grep -c riemannZeta lean_stage3/Stage3/IndicatorContDiff.lean
+roots	5	the builder first stop: three HasDerivAt.congr_of_eventuallyEq over-.symm, two Filter.EventuallyEq.continuousAt misuses on the constant-zero side, four Unknown identifier a/b from rcases rfl, one #guard_msgs pin cascade cleared once proofs closed
+sorries_first	0	the builder first stop: no sorry left after the first pass; all errors were unification-shape issues in tactic wiring, not proof-content gaps
+row_new	38	lean_stage3/TRAPS.md row 38, rcases lt_trichotomy x a with rfl runs subst on the endpoint variable
+row_cascade	19	lean_stage3/TRAPS.md row 19, pin cascade under sorry, cleared
+assumed_pins	3	block IndicatorContDiff, PINS.md: the a = b degenerate case (rcases eq_or_lt_of_le hab), the union-of-half-nbds boundary route over the hasDerivAt_iff_tendsto alternative, the nhdsLE_sup_nhdsGE glue at continuity
+traps_added	1	lean_stage3/TRAPS.md row 38
+foreman_edits	0	the foreman pass: no edits beyond scaffold; the builder closed the whole thing on one relay pass
+foreman_builds	0	the foreman pass: no builds needed
+unit_box	0369	BoxFinite.lean, the first of the two blocking lemmas
+tokens_first	157392	harness usage at the builder first stop
+calls_first	69	harness usage at the builder first stop
+minutes_first	19	harness usage at the builder first stop, 1122319 ms
+tokens_end	162289	harness usage at the builder second stop, cumulative
+calls_second	11	harness usage at the builder second stop, delta
+minutes_second	2	harness usage at the builder second stop, 130150 ms delta

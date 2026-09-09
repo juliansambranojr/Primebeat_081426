@@ -6,7 +6,7 @@ that shows a class with no row (LOOP.md § 7). Rows 1–12 were paid for on
 rows 18–20 were paid for by unit 0341; row 21 and B10–B11 by unit 0346, rows 22–23 by unit 0347, the
 orchestrator's own runs of the loop; row 24 by unit 0349; rows 25-28 by
 unit 0352, the first module built under the relay (LOOP.md 4b); row 29 by
-unit 0354; row 30 by unit 0357; row 31 by unit 0362; row 32 by unit 0363; row 37 by unit 0365; rows 33-36 by the ReZetaCount
+unit 0354; row 30 by unit 0357; row 31 by unit 0362; row 32 by unit 0363; row 37 by unit 0365; row 38 by unit 0370; rows 33-36 by the ReZetaCount
 build, 2026-09-08.
 
 | # | pattern in the build output | cause | fix |
@@ -48,6 +48,7 @@ build, 2026-09-08.
 | 35 | `rw [h]` reports `Did not find an occurrence of the pattern` and the goal prints as `‖(fun x => e x) x‖ ≤ c` | the function was passed explicitly to a lemma (`Finset.card_le_card_of_injOn (fun x => …)`), so `intro x hx` left the application unreduced; row 15's family at an explicit functional argument rather than a `set` | `beta_reduce` or `show` the reduced goal before the `rw`, or `simp only []` first |
 | 36 | `simp only [<def>, ENat.toNat_eq_zero]` reports the second lemma unused and leaves `(<expr>).toNat ≠ 0` | `Ne` is notation for `¬ (_ = _)` and `simp only` does not unfold it, so the `toNat _ = 0` pattern never appears | add `ne_eq` to the simp set |
 | 37 | `Application type mismatch` on a lemma the § 2 scratch pass `#check`ed clean, the two instance paths printed as `Real.pseudoMetricSpace` against `SeminormedGroup.toPseudoMetricSpace` | the name is the multiplicative member of a `to_additive` pair and the codomain is `ℝ`; a bare `#check` elaborates it against fresh metavariables and cannot see the mismatch | use the additive partner named in the `@[to_additive …]` attribute (`IsCompact.exists_bound_of_continuousOn'` → `IsCompact.exists_bound_of_continuousOn`); in § 2 write the name as an `example` at the module's own types, never a bare `#check` (unit 0365) |
+| 38 | `rcases lt_trichotomy x a with hxa | rfl | hxa` fails downstream with `Unknown identifier 'a'` at every later reference to the endpoint `a` | the middle `rfl` runs `subst` on `x = a` and eliminates the LOCAL variable `a`, not `x`; the body that keeps naming `a` sees it as an unknown | name the equation (`hxa_eq : x = a`) and `rw [hxa_eq]` where the body needs it, so `a` survives as a hypothesis (unit 0370) |
 
 ## Bench and gate traps
 
