@@ -1,0 +1,118 @@
+unit	object	kind	move	quote
+0351	section 13	section	dies	Section 13's head says SKETCH, dies on size at the shell, with this unit.
+0351	the averaging route	route	dies	It does not close as sketched.
+0351	the tight-count leaf	leaf	name	the tight bound a named leaf with Trudgian's citation and the Jensen-ratio discharge route
+0351	c1_max and b1_max	constant	price	A short-interval zero count with leading constant below `c1_max` 2.47, which is `1/ln 1.5`.
+0351	block 13f	block	hold	Block 13f, the far-member bound, is needed in that version too and is on hold at Julian's word.
+0352	block 13f	block	prove	Block 13f closes requirement (c) of section `section` 13 as far as far members go
+0352	shellSum_neg	theorem	prove	`shellSum_neg` says the sum is even in `Δ`, by conjugation termwise
+0352	the nlinarith step	theorem	close	The foreman closed it with the factorwise chain `mul_le_mul` then `mul_le_mul_of_nonneg_right`
+0352	TRAPS row 28	trap	record	now `TRAPS.md` row `row_triple` 28
+0352	the 13f bound's size	constant	price	No factor is lost in `h` or in `b`.
+0352	the next block	block	hold	both wait at Julian's word.
+0353	LOOP.md	rule	revise	What the builder reads on its first pass drops from `words_old` 1847 to `words_new` 840 words
+0353	SORRY SCRATCH RING HEADER	check	compile	Four of them became checks in `utilities/check_lean_unit.py`
+0354	block 13g	block	prove	the nine statements are the block's lines, copied.
+0354	bracket_nonneg	theorem	prove	`bracket_nonneg` is the sign
+0354	the nlinarith combination	theorem	close	That step became the run's one `sorry`, `sorries_first` 1, with its goal in a comment.
+0354	the near boundary	constant	price	which is unit `unit_decision` 0351's near boundary
+0354	the next block	block	hold	both wait at Julian's word.
+0355	the fine-structure posit	posit	measure	The mechanical output of the rule is `overlay_only`
+0355	the fine-structure posit	posit	hold	The verdict line is Julian's.
+0355	rung 5	route	hold	The rung-5 work resumes at Julian's word.
+0356	check_refs.py	check	correct	`check_refs.py` skips dot-directories when it collects filenames
+0356	refs_baseline.txt	file	keep	The baseline itself is untouched
+0356	the trim	claim	refuse	The trim was therefore never safe.
+0356	refs_baseline_local.txt	file	record	`utilities/refs_baseline_local.txt` holds the seven local-only entries
+0357	block 13h	block	prove	the first module in this ladder that the builder closed whole
+0357	blocked_card_le	theorem	prove	`blocked_card_le` is the window
+0357	c1_old	constant	correct	The window is wider than one shell.
+0357	block 13h's worksheet text	block	correct	All four are corrected in the worksheet in this commit.
+0357	TRAPS row 30	trap	record	now `TRAPS.md` row `row_new` 30
+0357	block 13i	block	name	Block `13i` names the leaf, derives a short-interval count from `ArgCrude.StmtSCrude`
+0358	block 13i	block	prove	the second run in a row the builder closed whole
+0358	StmtShortCount	leaf	name	`StmtShortCount cnt c₁ c₂` is the leaf
+0358	exists_range_log	theorem	prove	`exists_range_log` is the closure.
+0358	StmtShortCount	leaf	open	The leaf is open and is the only open thing on this route
+0358	the assumed pins	pin	record	`assumed_pins` 2 pins, both the builder's and both right to record.
+0358	block 13i's text	block	correct	The block is corrected on both
+0359	section 13's assembly	section	dies	The route fails, and the failure has no free parameter in it.
+0359	the seven modules	module	keep	They are not wasted
+0359	three candidates	route	name	Three candidates, none priced
+0359	the shortfall	constant	price	The shortfall at the most favourable parameters is a factor `shortfall_best` 6.48
+0360	section 14	section	dies	Sections 9, 13 and 14 are dead
+0360	boost and phase are one	finding	find	The boost and the phase are one object.
+0360	the nine modules	module	keep	The `modules_standing` 9 Lean modules stand and are not part of the loss.
+0360	What-Didnt-Work.md	file	record	That belongs in `papers/What-Didnt-Work.md`
+0360	a fresh start	route	hold	What remains is Julian's call and it is not a repair to this route.
+0361	blocks 13h and 13i	block	verify	Blocks 13h and 13i are correct Lean and correct abstractions.
+0361	unit 0359's headline	claim	correct	Unit 0359's headline is superseded by this unit.
+0361	section 13	section	open	Section `thirteen` 13 is re-marked from DEAD to uniform `L` dead and gap-dependent `L` open
+0361	section 14	section	open	Section `fourteen` 14 is re-marked from DEAD to no for one sideband and unverified for the term.
+0361	block 13j	block	name	Block `13j` is the next module
+0361	L(ε, T, δ)	theorem	name	a gap-dependent theorem, `L(ε, T, δ)` with `δ` the height distance
+0361	the loop	rule	verify	the builder's loop worked as designed
+0362	block 13j	block	prove	Third relay module in a row closed whole
+0362	term_eq_sidebands	theorem	prove	`term_eq_sidebands` is the bridge
+0362	the 0359 and 0360 pricing	claim	open	can now be redone on the tree's object rather than a stand-in
+0362	TRAPS row 31	trap	record	`traps_added` 1 row, `row_new` 31, records it.
+0362	LOOP.md	rule	revise	bumped during the run for one sentence in section 4b
+0362	the size of the whole term	constant	name	that pricing is the next decision unit
+0363	block H1	block	prove	The largest block of the relay so far and the first with two sorries, both of one class.
+0363	zetaArgContour_le	theorem	prove	`zetaArgContour_le` puts them together
+0363	the two sorries	theorem	close	The foreman closed both by naming the two functions explicitly
+0363	block H2	block	name	Block `H2`: `Re ζ(2+it) > 0` from the Dirichlet series
+0363	TRAPS row 16	trap	record	`TRAPS.md` row `row_comp` 16
+0364	block H2	block	prove	the six sorries were six different one-line traps, four of them new rows.
+0364	re_zeta_two_line_pos	theorem	prove	(`re_zeta_two_line_ge`, `re_zeta_two_line_pos`) at every real `t`
+0364	the six sorries	theorem	close	The foreman closed all six on one rebuild
+0364	pi_crude in the block	constant	correct	One was an arithmetic error in the block
+0364	the assumed pins	pin	record	`assumed_pins` 5 pins at the build, all now in the block.
+0364	block H3	block	name	Block `H3`, written and pinned
+0365	block H3	block	prove	`sCrude_holds` is `StmtSCrude argS 15 600`
+0365	sCrude_holds_of_good_two	theorem	prove	and `sCrude_holds_of_good_two` is `StmtSCrude argS 15 75` under `good 2`
+0365	the band against the budget	constant	price	the band's `band_a` 112 is over it by `over` 12
+0365	good 2	leaf	open	`good 2`, a single fact (no zero of `ζ` with `0 < Re ρ` on `Im s = 2`) that the tree does not hold
+0365	stirling_a	constant	name	it is the Stirling half's `stirling_a` 97 that would have to come down
+0365	TRAPS row 37	trap	record	proposed row `row_new` 37 of `TRAPS.md`, which is in.
+0365	the one sorry	theorem	close	The second root was the one sorry, the upper half of `phaseTheta_sub_le`
+0366	section 14	section	verify	Section 14's mark moves to NO, verified on the two-sideband term
+0366	L(ε, T, δ)	theorem	price	Section 13's gap-dependent `L` moves from OPEN to PRICED, conditional
+0366	unit 0360's sign label	claim	correct	with 0360's sign label corrected in its text
+0366	the gap hypothesis	hypothesis	name	no other off-line zero of the box has height distance from the target in `(lo/b, δ)`
+0366	the rung's quantifier	theorem	narrow	The rung's `∀ configurations` at `L(ε, T)` becomes `∀ configurations with no member in that window` at `L(ε, T, δ)`
+0366	the dichotomy module	module	hold	Whether that dichotomy is worth a Lean module is Julian's call
+0367	the pin after 0362	pin	close	is DONE by this unit
+0367	L(ε, T, δ) on the proven bound	theorem	price	Every cell closes.
+0367	the lost factor	constant	price	The lost factor is at most `record.worst_ratio_int` 36 in `h`
+0367	block 13e's free λ	block	verify	Block 13e's decision to make `λ` free is what makes these cells close
+0367	the conditional theorem's module	module	hold	Whether the conditional theorem on `L(ε, T, δ)` becomes a Lean module is still Julian's call
+0368	StmtDetectGap	theorem	name	`StmtDetectGap ε T δ L` unfolds to
+0368	target_lower and on_line_le	theorem	prove	These are the two pieces of the assembly that carry from the tree without new work.
+0368	the three placeholders	theorem	open	stated as `theorem _ : True := by trivial`
+0368	isTest_phiWC	theorem	open	sorries at the ContDiff conjunct
+0368	detect_gap_exists	theorem	open	`detect_gap_exists` sorries at the whole existence proof
+0368	the C¹ indicator lemma	leaf	name	(a) a Mathlib lemma for the C¹ regularity of `Set.indicator (Icc (-h) h) f`
+0368	the finiteness lemma	leaf	name	(b) enumeration of the `OffLineBox` as a `Finset`, which needs a finiteness lemma the tree does not carry
+0368	the Mathlib PR	route	hold	Julian's call whether to file the Mathlib PR or restrict the theorem's statement
+0369	offLineBox_finite	theorem	prove	`offLineBox_finite (ε T : ℝ) : (WeilDetect.OffLineBox ε T).Finite`
+0369	the finiteness lemma	leaf	close	and `riemannZeta.zeroes_on_Compact_finite'` finishes it.
+0369	the C¹ indicator lemma	leaf	open	my first pass hit cascading unification errors on the `congr` steps
+0369	the C¹ indicator lemma	leaf	hold	That work belongs in its own unit
+0370	contDiff_one_indicator_Icc	theorem	prove	The proof uses `contDiff_one_iff_deriv` to reduce to differentiability plus continuity of the derivative.
+0370	the C¹ indicator lemma	leaf	close	The two lemmas unit 0368 named as blocking block 15 are both now in our tree
+0370	TRAPS row 38	trap	record	`traps_added` 1 row, `row_new` 38
+0370	the relay lesson	finding	find	The relay closed it in one pass, on the first model, with zero sorries.
+0370	the follow-up unit	module	hold	Julian's call whether to attempt it in one relay pass or three.
+0371	the three placeholders	theorem	prove	Three placeholders lifted to real signatures with clean pins.
+0371	isTest_phiWC	theorem	narrow	`isTest_phiWC` narrowed.
+0371	detect_gap_exists	theorem	open	unchanged in status but the chain is now written out in comments as steps (a)–(e)
+0371	the assumed pins	pin	record	`assumed_pins` 3 pins the builder promoted into the header docstring for the foreman
+0371	the follow-up units	module	hold	Julian's call whether to run them next or leave block 15 at this shape.
+0372	phiW_contDiff_one	theorem	prove	New helper: `phiW_contDiff_one {h γ : ℝ} (hh : 0 < h) {m : ℕ} (hm : 1 ≤ m) : ContDiff ℝ 1 (phiW h γ m)`.
+0372	isTest_phiWC	theorem	close	Pin's `#print axioms` docstring flipped from `[propext, sorryAx, Classical.choice, Quot.sound]` to `[propext, Classical.choice, Quot.sound]`.
+0372	detect_gap_exists	theorem	open	One sorry, one goal, one route.
+0373	the structural fill	theorem	revert	I reverted `detect_gap_exists` to a whole-theorem sorry with a comment naming the tendsto_exp route.
+0373	detect_gap_exists	theorem	open	`detect_gap_exists` still sorries.
+0373	the fill lesson	finding	find	A structural fill that commits to a wrong outer choice is worse than a whole-theorem sorry
+0373	a further relay pass	module	hold	Whether to invest a further relay pass (or two or three) into the tendsto_exp assembly is Julian's call.

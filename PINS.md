@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-18 · unit 0374, the object-trajectory annotation of 0351 to 0373 — lab PLAN § R.1
+
+    DONE        one analysis unit; one row per object per unit over 0351 to
+                0373 in id order: object, kind, move, and the verbatim
+                prose line that carries the move; kinds and moves invented
+                as needed; after each unit the running counts of distinct
+                kinds and moves in values.tsv; the closing copies the R.2
+                outcome sentence the counts select
+    ASSUMED     the foreman annotates and Julian reads the count; a move
+                is named by what the unit's prose says happened to the
+                object, and two moves are one when the receipt would be
+                the same; the plateau rule is § R.2 as committed at lab
+                266a4da before this unit existed
+    DEPENDS     the 23 units' unit.md prose as sealed or drafted today;
+                lab PLAN § R.2's rule text
+    OUT         any code in lab; any change to the 23 units; the choice
+                between R.3 and R.4, which is Julian's after the count
+
 ### 2026-09-07 · rung 5, after unit 0360
 
     DONE        nothing further on the detection method as the worksheet

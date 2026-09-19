@@ -1,0 +1,26 @@
+---
+id: 0374
+date: 2026-09-18
+type: analysis
+title: Object trajectory: kinds and moves over units 0351 to 0373, annotated by hand
+refs: [none]
+supersedes: []
+follows: 0373
+sealed: false
+---
+
+**Question.** Lab PLAN § R asks whether the expensive version of the object trajectory, where each object carries a state and a unit is a move on it, has a small closed table of kinds and moves on this chain. The cheap test is a hand annotation of units `counts.u_0351` 0351 to `counts.u_0373` 0373 in id order, one row per object per unit, with kinds and moves invented as needed and the running counts read after each unit. The rule was committed in lab PLAN § R.2 (lab 266a4da) before this unit existed: over `counts.u_0364` 0364 to `counts.u_0373` 0373 the kind count and the move count each rise by at most `counts.rise_allowed` 1, and the outcome sentence the counts select is copied into the closing unchanged. The transcript bracket is in `question.md`.
+
+**What ran.** No script. The foreman read the prose of the `counts.units` 23 units and wrote `run/annotation.tsv`: `counts.rows` 117 rows of unit, object, kind, move, and the verbatim line of that unit's prose that carries the move, so every row has its source under the quote gate. `run/counts.json` holds the running counts after each unit, `kinds_after_NNNN` and `moves_after_NNNN`, computed from the table in id order; `lab values` generated `values.tsv` from it. A move was named by what the unit's prose says happened to the object, and two candidate moves were taken as one when the receipt a checker would test is the same: superseding a headline and correcting a block's arithmetic are both `correct`; fixing a checker is `correct`; a section re-marked from DEAD to open is `open`.
+
+**What it shows.** The kinds settle and the moves do not, by the rule as written.
+
+Kinds. `counts.kinds_total` 16 in all. Five appear at `counts.u_0351` 0351 (`counts.kinds_after_0351` 5): section, route, leaf, constant, block. Theorem and trap arrive at `counts.u_0352` 0352, rule and check at `counts.u_0353` 0353 (`counts.kinds_after_0353` 9), posit at `counts.u_0355` 0355 (`counts.kinds_after_0355` 10), file and claim at `counts.u_0356` 0356, pin at `counts.u_0358` 0358 (`counts.kinds_after_0358` 13), module at `counts.u_0359` 0359, finding at `counts.u_0360` 0360 (`counts.kinds_after_0360` 15). From `counts.u_0360` 0360 to `counts.u_0365` 0365 the count stays at `counts.kinds_after_0365` 15. Hypothesis arrives at `counts.u_0366` 0366 (`counts.kinds_after_0366` 16), the gap condition on `L(ε, T, δ)`, which is neither a leaf to prove nor a theorem, and nothing new appears from `counts.u_0367` 0367 to `counts.u_0373` 0373 (`counts.kinds_after_0373` 16). Over the window the kind count rose by `counts.kinds_rise_last10` 1, within the rule.
+
+Moves. `counts.moves_total` 18 in all. Four at `counts.u_0351` 0351 (`counts.moves_after_0351` 4): dies, name, price, hold. Prove, close, record at `counts.u_0352` 0352; revise and compile at `counts.u_0353` 0353 (`counts.moves_after_0353` 9); measure at `counts.u_0355` 0355 (`counts.moves_after_0355` 10); correct, keep, refuse at `counts.u_0356` 0356; open at `counts.u_0358` 0358 (`counts.moves_after_0358` 14); find at `counts.u_0360` 0360 (`counts.moves_after_0360` 15); verify at `counts.u_0361` 0361 (`counts.moves_after_0361` 16). The count holds at `counts.moves_after_0363` 16 through `counts.u_0365` 0365. Then narrow at `counts.u_0366` 0366 (`counts.moves_after_0366` 17): the rung's quantifier goes from every configuration to every configuration with no member in the window, an open thing made smaller without closing, and the same move recurs at `counts.u_0371` 0371 when three of four conjuncts of `isTest_phiWC` close. Then revert at `counts.u_0373` 0373 (`counts.moves_after_0373` 18): a structural fill that boxed the sign into a false inequality is undone to a whole-theorem sorry, which is neither a correction in place nor a close. Over the window the move count rose by `counts.moves_rise_last10` 2, one over the rule.
+
+What the two late moves have in common: both are what happens to an open object when the attempt changes its shape without closing it. Narrow makes the open part smaller; revert makes it larger again. The first `counts.first_units` 11 units never met either because their open objects were sections and leaves that died or were named, and the last ten are all one theorem being worked. So the growth is tied to the kind of work in the window, Lean assembly, and the rule's plateau test does not distinguish a taxonomy still open from a chain that changed its activity.
+
+The lesson from the merges is the other side of the same point. Kinds were easy to keep closed by asking what the receipt would be: a pin and a trap row are both things recorded, but the receipt differs, a docstring line against a TRAPS row, so they stay two kinds. Moves were harder because the receipt for narrow and for revert is a diff in a Lean file, the same receipt as prove and close, and only the direction of the diff separates them.
+
+**Decision.** By § R.2 as committed: The kind or move count was still rising over `counts.u_0364` 0364 to `counts.u_0373` 0373; the table is open on this chain, and the cheap version is built, with R.1's table kept as evidence and not as a schema.

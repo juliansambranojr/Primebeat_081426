@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-09-19T06:47:00Z
+# unit: 0374-object-trajectory-annotation-0351-0373
+# sources searched: 889
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:205801
+  Source: session transcript, 2026-09-18, after prose_parser PLAN A to F and lab PLAN N, O, P closed
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:205161
+  ok, the 23 way tie is converging on a size but the trajectory is different to the size. so its not t...
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:205167
+  if thats cheap what the expensive version
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:205181
+  so the expensive is only expensive in the construction of it but after it becomes cheap?
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:205211
+  ok, create the sub plan for the expensive cheap test and what happens if it passes or fails
+
+FOUND  session/e0529930-f9ed-407f-aa48-0dd5f402f85a.jsonl:205816
+  Plateau: over the last 10 units in id order (0364 to 0373), `moves_after` rises by at most 1 and `ki...
+
+# 6 found, 0 missing
