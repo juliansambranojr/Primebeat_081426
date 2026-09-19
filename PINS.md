@@ -213,6 +213,21 @@ below with their outcome.
                 theorem sorry. Block 15's last theorem stands open until a
                 real assembly pass writes the tendsto_exp chain
 
+### 2026-09-18 · lab as its own repo, pinned per project — six sections under the relay
+
+    DONE        ~/GitHub/lab exists with PLAN.md (sections A to F, each with
+                a Done-when line); A extract, B templates, C lab init, D the
+                pin, E convergence on a throwaway repo and the sibling, F
+                publish; a box is ticked by the foreman after running the
+                section's check
+    ASSUMED     per-repo unit numbering; lab installed by pip from a git
+                commit and pinned in requirements.txt and lab.pin; Primebeat
+                keeps its own copy until Julian decides otherwise
+    DEPENDS     Julian: the GitHub remote for F; the switch of Primebeat
+                itself, after E
+    OUT         changing what lab check enforces; a template repo separate
+                from lab init; touching Primebeat's pre-commit
+
 ## Archive
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks
