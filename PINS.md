@@ -227,6 +227,12 @@ below with their outcome.
                 itself, after E
     OUT         changing what lab check enforces; a template repo separate
                 from lab init; touching Primebeat's pre-commit
+    OUTCOME     DONE 2026-09-18, all six sections ticked after the foreman
+                re-ran each check; github.com/juliansambranojr/lab, first pin
+                d66e663; non_convex_zero_crossing switched to the pin. Two
+                things changed in what lab enforces, both named in PLAN.md:
+                a fresh unit checks clean, and lab seal refuses unreplaced
+                scaffold slots. Primebeat keeps its own copy, Julian's call
 
 ## Archive
 
