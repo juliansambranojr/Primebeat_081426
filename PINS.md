@@ -233,6 +233,19 @@ below with their outcome.
                 things changed in what lab enforces, both named in PLAN.md:
                 a fresh unit checks clean, and lab seal refuses unreplaced
                 scaffold slots. Primebeat keeps its own copy, Julian's call
+    OUTCOME 2   2026-09-18, later: sections G to K done under the same
+                relay. G: Clarkson et al. 2017 against its compendium,
+                all twenty claims refuse (35 absence, 11 disagreement,
+                1 derivation), the accumulation rate 4.1 is not the
+                paper's own 45 cm over 12.3 kyr. H: lab bench, the
+                checker's spec sheet on this corpus (catch 46/70 digit,
+                11/28 drop, 2/70 swap; swap is invisible by
+                construction). I: python -m lab exited 0 on a finding,
+                which had hidden this repo's own copy refusing unit-id
+                refs; fixed in lab, not here. J: lab story. K: the seal
+                names its commit. This repo's copy still has the exit
+                hole; its pre-commit reads the return value itself and
+                was never exposed
 
 ## Archive
 
