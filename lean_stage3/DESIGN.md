@@ -1,6 +1,6 @@
 # The design loop
 
-version: 10
+version: 11
 
 What LOOP.md is for the executor, this file is for the orchestrator. One
 worksheet block, from the sketch to a briefed agent to a checked unit.
@@ -11,6 +11,29 @@ with the lemma that connects it to the rung's statement, and the statement
 itself is copied from the tree to the worksheet's head and restated nowhere
 (unit 0361: the worksheet's own notation read a zero at one sideband, and
 eleven modules followed the paragraph instead of `termW`).
+
+## 0. Conventions of the tree
+
+Moved here from `CLAUDE.md` on 2026-09-18 so that the rules file carries
+rules and pointers only; this section is the pointer's target.
+
+Toolchain v4.32.2, PNT+ pinned at 47fa486; the bench's `lean/` stays on
+v4.28.0. Composition across the two is BY STATEMENT IDENTITY ONLY, gated
+by `utilities/check_weld.py`.
+
+- **Leaves.** Open analytic assumptions are named Props (Stmt*), each
+  with a citation shape, a crude-constant budget and a discharge route.
+  Never add a leaf without its budget and route; never call a leaf
+  discharged without a pinned theorem.
+- **Crude-explicit is the spec.** Constants are chosen for provability.
+  Chasing literature-sharp constants is scope creep.
+- **Upstream race.** Before building a leaf, probe upstream HEAD; a pin
+  bump may discharge it for free.
+- **Pins.** Parity per module, `#guard_msgs` on `#print axioms`,
+  attribute on its own line. Lean traps and verified names: `TRAPS.md`.
+- **Declared sorries.** A module may carry sorries when the block names
+  them as OPEN and the unit's `values.tsv` records the count
+  (`check_lean_unit.py`, LOOP v21).
 
 ## 1. The block
 

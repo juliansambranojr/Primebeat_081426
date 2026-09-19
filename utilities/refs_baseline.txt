@@ -7,6 +7,7 @@ BROKEN  lab_notebook.md  ->  results/O24_gen_xmax1e9_results.json
 BROKEN  lab_notebook.md  ->  results/O24_gen_xmax1e9_results.json
 BROKEN  lab_notebook.md  ->  results/O24_gen_xmax3e9_results.json
 BROKEN  lab_notebook.md  ->  results/O24_gen_xmax3e9_results.json
+BROKEN  lab_notebook_2.md  ->  CLAUDE.md § Stage-3 formalization conventions (lean_
 BROKEN  lab_notebook_2.md  ->  operator.py
 BROKEN  units/0356-refs-dotdir-hole-and-local-baseline/unit.md  ->  operator.py
 BROKEN  units/0356-refs-dotdir-hole-and-local-baseline/unit.md  ->  operator.py

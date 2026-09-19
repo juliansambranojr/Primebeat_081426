@@ -17,7 +17,7 @@ need orientation. `lab index` and `lab chain` generate the live indexes;
 - `lean/` — 14 modules, every theorem axiom-pinned by `#guard_msgs`;
   `lean/THEOREMS.md` is the generated index
 - `lean_stage3/` — Stage-3 formalization on v4.32.2; conventions in
-  CLAUDE.md § Stage-3 formalization conventions (lean_stage3/)
+  lean_stage3/DESIGN.md § 0. Conventions of the tree
   the module loop in `lean_stage3/LOOP.md`, traps in `lean_stage3/TRAPS.md`, derivations in
   `lean_stage3/design/`, task pins in `PINS.md`
 - `preregs/` — locked protocols; format in `preregs/FORMAT.md`

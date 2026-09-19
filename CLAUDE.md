@@ -1,38 +1,35 @@
 # Identity
 
-You are helping Julian with Primebeat_081426 — an adversarial follow-up
-testbed that runs numerical tests (the O-series, O3–O47, plus the
-`t`-series under `analysis/`) against claims made in the Prime Beat work
-and in the dyadic-table addendum series (DT-A5, DT-A6), and since
-2026-09-06 builds the rung-to-strip theorem in Lean under `lean_stage3/`.
+You are helping Julian with Primebeat_081426, a measurement bench and a
+Lean 4 formalization. What it measures and what is proved are in
+`README.md`. Nothing here is importable by `primebeat/` or
+`primebeat_lean/`, and nothing there imports from here.
 
-The folder is a working measurement bench, not a library. Nothing here
-is importable by `primebeat/` or `primebeat_lean/`, and nothing there
-imports from here. The dependence is one-way.
-
-The load-bearing deliverable is the **recorded verdict under a locked
-protocol** — a prereg written before the run, a decision rule that can
-fire in both directions, and a result JSON whose SHA matches the
-sidecar. Numbers produced outside that discipline are exploratory and
-must be labelled as such.
+The load-bearing deliverable is the recorded verdict under a locked
+protocol: a prereg written before the run, a decision rule that can fire
+in both directions, and a result whose hash matches the sidecar. Numbers
+produced outside that discipline are exploratory and are labelled so.
 
 ## Where the method lives
 
-Read these before the thing they govern; they hold the content, this
-file holds the rules.
+Each file holds its content; this file holds the rules. Read the file
+before the thing it governs.
 
 - `CONTEXT.md` — the blueprint, one entry per test. Read before any
   measurement work.
-- `lean_stage3/LOOP.md` — the module loop, versioned; one Lean module
-  from design to commit. `lean_stage3/TRAPS.md` — build error, cause,
-  fix; append a row for any new class.
-- `lean_stage3/design/<rung>.md` — the derivations, PROVED or SKETCH,
-  with the numbers. Read first after any compaction; never re-derive
-  what it holds.
+- `preregs/FORMAT.md` — how to write and lock a prereg.
+- `notes/notes_format.md` — the entry header and the seven types.
+- `lab/` — `python3 -m lab new <slug> --type <type>`, `lab values`,
+  `lab check`. Every number in a unit's prose sits beside its
+  `values.tsv` key; `lab check` refuses the rest.
+- `AGENT_CARD.md` § Permissions — the CAN and CANNOT list the write hook
+  and the pre-commit enforce.
 - `PINS.md` — four lines per task (DONE, ASSUMED, DEPENDS, OUT), written
-  silently before the work. When work looks lazy, read the pins first.
-- `utilities/check_lean_unit.py` — refuses a Lean unit whose record
-  disagrees with its module.
+  before the work. When work looks lazy, read the pins first.
+- `lean_stage3/DESIGN.md` § 0 — the Stage-3 conventions. `LOOP.md` the
+  module loop, versioned. `TRAPS.md` build error, cause, fix.
+  `design/<rung>.md` the derivations; read first after any compaction,
+  never re-derive what it holds.
 
 ## Rule — load, don't recall
 
@@ -112,34 +109,8 @@ Julian's to write. Which tests are preregistered is in `CONTEXT.md`
 § Current state of the world; how to write and lock one is
 `preregs/FORMAT.md`.
 
-## Stage-3 formalization conventions (lean_stage3/)
+## Julian's alone
 
-Toolchain v4.32.2, PNT+ pinned at 47fa486; the bench's `lean/` stays on
-v4.28.0. Composition across the two is BY STATEMENT IDENTITY ONLY, gated
-by `utilities/check_weld.py`.
-
-- **Leaves.** Open analytic assumptions are named Props (Stmt*), each
-  with a citation shape, a crude-constant budget and a discharge route.
-  Never add a leaf without its budget and route; never call a leaf
-  discharged without a pinned theorem.
-- **Crude-explicit is the spec.** Constants are chosen for provability.
-  Chasing literature-sharp constants is scope creep.
-- **Upstream race.** Before building a leaf, probe upstream HEAD; a pin
-  bump may discharge it for free.
-- **Pins.** Parity per module, `#guard_msgs` on `#print axioms`,
-  attribute on its own line. Lean traps and verified names:
-  `lean_stage3/TRAPS.md`.
-
-## Permissions and conventions
-
-Enforced, not recited: the write hook and the pre-commit hold the CAN
-and CANNOT list, and `utilities/check_naming.py` holds the O-series
-naming convention. The list is in `AGENT_CARD.md` § Permissions. Three
-things a gate cannot see are Julian's alone: status transitions in the
-NOTEPAD, outcome markings in the notebook, and the verdict line.
-
-## Lab notebook and NOTEPAD
-
-Format, entry header and the seven-type vocabulary: `notes/notes_format.md`.
-Agents append entries and `[open]` lines. Status transitions and outcome
-markings are Julian's.
+Three things no gate can see: status transitions in the NOTEPAD, outcome
+markings in the notebook, and the verdict line. Agents append entries and
+`[open]` lines; the transitions are Julian's.

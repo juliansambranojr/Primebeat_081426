@@ -79,7 +79,7 @@ no further renames without an `instrument-fix` entry) is held by
   A run without a locked prereg is exploratory and is labelled so.
 - Lean: `lean/` (v4.28) and `lean_stage3/` (v4.32, PNT+ pin 47fa486);
   conventions in
-  CLAUDE.md § Stage-3 formalization conventions (lean_stage3/)
+  lean_stage3/DESIGN.md § 0. Conventions of the tree
   The method for one module: `lean_stage3/LOOP.md` (the loop, versioned),
   `lean_stage3/TRAPS.md` (build error, cause, fix),
   `lean_stage3/design/<rung>.md` (the derivations; read first after a

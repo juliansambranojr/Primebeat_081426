@@ -3,7 +3,7 @@
 
 Denies an edit or write whose file_path, under this repo, is
   - CLAUDE.md, CONTEXT.md or REFERENCES.md, in any directory  (commitment
-    files: CLAUDE.md § Permissions, "Edit this file, CONTEXT.md, or
+    files: AGENT_CARD.md § Permissions, "Edit CLAUDE.md, CONTEXT.md, or
     REFERENCES.md without Julian's explicit approval")
   - anything under `files (2)/`                     (frozen evidence)
   - any `*.json` directly inside a `results/` dir   (run artifacts)
