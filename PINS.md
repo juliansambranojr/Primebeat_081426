@@ -22,6 +22,29 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-19 · lab R.5 and Q, the story after R.4 — lab PLAN § R.5, § Q
+
+    DONE        R.5: unit ids and bare numbers out of the neighbourhood
+                ranking; each component line marked thread or corridor
+                from whether its top object recurs; a line under the
+                neighbourhoods naming the joints that carried nothing
+                because the parent's closing names no object, 0368 to
+                0369 first among them. Q.1 to Q.4 as PLAN § Q reads
+                them: subrepos.tsv with a re-run of lab check at the
+                pinned sha in the pre-commit, name:0012 ids, lab index
+                --subrepos, lab find over named objects
+    ASSUMED     the story is final enough for Q: R.4 shipped and the
+                corridor-thread reading came out of the run on 0351 to
+                0373 without a declared rule; a component is a thread
+                when its top object sat on two or more joints, else a
+                corridor; Primebeat stays on its own lab copy
+    DEPENDS     lab main ee1e8b6; the 0351 to 0373 units as drafted;
+                the run of 2026-09-19 that gave six components and
+                three unattached
+    OUT         any change to the 23 units; sealing 0350 to 0374;
+                pushing prose_parser; R.3, which waits on Julian's
+                reading of narrow and revert as one move or two
+
 ### 2026-09-18 · unit 0374, the object-trajectory annotation of 0351 to 0373 — lab PLAN § R.1
 
     DONE        one analysis unit; one row per object per unit over 0351 to
