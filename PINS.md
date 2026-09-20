@@ -44,6 +44,17 @@ below with their outcome.
     OUT         any change to the 23 units; sealing 0350 to 0374;
                 pushing prose_parser; R.3, which waits on Julian's
                 reading of narrow and revert as one move or two
+    OUTCOME     DONE, 2026-09-19, lab b2100cf, 302 tests. R.5: the
+                0361 to 0368 component prints corridor, 0369 to 0373
+                thread; blind joints 0355 to 0356 and 0368 to 0369,
+                where the parent closing names only unit citations.
+                Q.1 lab subrepos and the pre-commit refusing a pin to
+                a failing sha; Q.2 name:0012 ids through chain, index,
+                story, check; Q.3 INDEX-subrepos.tsv with outcome as a
+                dash on every row, no unit carries the field; Q.4 lab
+                find, on this repo isTest_phiWC returns 0368 to 0372
+                and 0374, the tree untouched. Primebeat still runs its
+                own lab copy
 
 ### 2026-09-18 · unit 0374, the object-trajectory annotation of 0351 to 0373 — lab PLAN § R.1
 
