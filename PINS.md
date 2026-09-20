@@ -64,6 +64,17 @@ below with their outcome.
                 0356, 0359, 0360, 0373), two blind (0355, 0368), the
                 rest held. Derived lines are written to no unit; the
                 sweep is Julian's. lab main pushed
+    OUTCOME 3   2026-09-19, later: section T, the blueprint. keeps:,
+                sets-aside:, opens: generated at seal from the unit's
+                own prose, every reason a verbatim sentence, no free
+                slot (Julian: a script that runs, so there is no
+                choice); T.1b a unit whose closing hands nothing
+                forward does not seal; the story reads the fields at
+                every joint and ends in an audit. T.5 on a copy of
+                0351 to 0374 (Primebeat untouched): FAIL, no closing
+                asks a question, 22 of 23 joints hand forward in
+                statements ending in Julian's call or word; the fourth
+                field is next:. lab main pushed, 435 tests
 
 ### 2026-09-18 · unit 0374, the object-trajectory annotation of 0351 to 0373 — lab PLAN § R.1
 
