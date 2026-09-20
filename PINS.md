@@ -55,6 +55,15 @@ below with their outcome.
                 find, on this repo isTest_phiWC returns 0368 to 0372
                 and 0374, the tree untouched. Primebeat still runs its
                 own lab copy
+    OUTCOME 2   2026-09-19, later: section S, status in the unit. S.1
+                status: at birth, lab check nags until the reason is
+                written (Julian: a unit is a memory, it is not clean);
+                S.2 closes: links; S.3 lab status folds forward, the
+                NOTEPAD as a view; S.4 lab status --derive on 0351 to
+                0374: 0365 and 0374 open, six set-aside (0352, 0354,
+                0356, 0359, 0360, 0373), two blind (0355, 0368), the
+                rest held. Derived lines are written to no unit; the
+                sweep is Julian's. lab main pushed
 
 ### 2026-09-18 · unit 0374, the object-trajectory annotation of 0351 to 0373 — lab PLAN § R.1
 
