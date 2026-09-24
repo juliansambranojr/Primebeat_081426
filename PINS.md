@@ -22,6 +22,25 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-24 · the atlas's topography: Mathlib and PrimeNumberTheoremAnd
+
+    DONE        two new layers on `atlas/`, each switched on and off: the
+                Mathlib ground and the PrimeNumberTheoremAnd ground; the
+                extraction keeps each declaration's direct uses of those
+                libraries (proofs unchanged, read only); constants weighted
+                by rarity so ground every island shares is background;
+                drawn as terrain by library area under the islands, the
+                exact constants on hover; which islands share ground named
+                on the page; two runs byte-identical
+    ASSUMED     "topography" is area-level terrain with constants on hover;
+                direct uses only (transitive ones reach the same logic under
+                everything); lean/ and lean_stage3/ pin different Mathlib
+                versions, so shared ground across them is a name match and
+                is marked as such
+    DEPENDS     the atlas lift of 2026-09-24; no flag
+    OUT         changing any proof or project file; a layer for other
+                dependencies
+
 ### 2026-09-24 · the atlas, Primebeat's own map of its mathematics
 
     DONE        `atlas/`: a script that reads every declaration of every
