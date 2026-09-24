@@ -5,7 +5,8 @@ Extract.lean -- the atlas's reader of a built Lean project, run by Lean itself.
 
 EMIT are the modules whose declarations are written; PROJ are the module
 names (EMIT included) that count as the project when a reference is kept.
-Everything else (Mathlib, PNT+, core) is outside the atlas.
+Everything else (Mathlib, PNT+, core) is outside the atlas's territory; the
+Mathlib and PNT+ constants a declaration names directly are kept as its ground.
 
 A declaration is KEPT when its user name (private prefix removed) is not an
 internal detail (`Name.isInternalDetail`: `_`, `eq_n`, `match_n`,
@@ -17,7 +18,15 @@ Per kept declaration: name (user form), private flag, kind, module, line,
 end line, `sorry` (its type or value names `sorryAx`, looking through the
 project's own non-kept auxiliary constants such as `foo.proof_1`), `uses`
 (the kept project constants its type and value name, again looking through
-non-kept auxiliaries), and its type pretty-printed at width 100.
+non-kept auxiliaries), its type pretty-printed at width 100, and `lib`: the constants of Mathlib and
+of PrimeNumberTheoremAnd its type and value name DIRECTLY, each as
+[module, name], looking through the same non-kept project auxiliaries and
+never into a library constant or a kept project constant (no transitive
+cone). A library constant is one whose module's root is `Mathlib` or
+`PrimeNumberTheoremAnd` in the environment's module index; its name is
+written in user form with trailing internal-detail parts dropped
+(`foo.proof_1` and `foo.match_2` are written `foo`), its module the one
+the constant itself is declared in.
 
 No file is changed; the JSON is sorted by module, line, name.
 -/
@@ -83,6 +92,18 @@ def main (args : List String) : IO UInt32 := do
     match env.getModuleIdxFor? n with
     | some idx => projSet.contains modNames[idx.toNat]!
     | none => false
+  let libRoots : NameSet := ({} : NameSet).insert `Mathlib |>.insert `PrimeNumberTheoremAnd
+  let libMod? (n : Name) : Option Name :=
+    match env.getModuleIdxFor? n with
+    | some idx =>
+      let m := modNames[idx.toNat]!
+      if libRoots.contains m.getRoot && !projSet.contains m then some m else none
+    | none => none
+  let libName (n : Name) : Name := Id.run do
+    let mut u := userName n
+    while u.isInternalDetail && !u.getPrefix.isAnonymous do
+      u := u.getPrefix
+    return u
   let opts : Options := ({} : Options) |>.setBool `pp.fullNames false
   let ctx : Core.Context := { fileName := "<atlas>", fileMap := default, options := opts,
                               maxHeartbeats := 0 }
@@ -112,6 +133,7 @@ def main (args : List String) : IO UInt32 := do
       let some ci := env.find? n | continue
       -- uses and sorry, looking through non-kept project auxiliaries
       let mut uses : NameSet := {}
+      let mut lib : Std.HashSet (String × String) := {}
       let mut hasSorry := false
       let mut seen : NameSet := ({} : NameSet).insert n
       let mut work : Array Name := usedOf ci
@@ -121,6 +143,9 @@ def main (args : List String) : IO UInt32 := do
         if c == ``sorryAx then hasSorry := true; continue
         if seen.contains c then continue
         seen := seen.insert c
+        if let some lm := libMod? c then
+          lib := lib.insert (lm.toString, (libName c).toString)
+          continue
         unless isProj c do continue
         if kept.contains c then uses := uses.insert c
         else if let some cc := env.find? c then work := work ++ usedOf cc
@@ -134,6 +159,7 @@ def main (args : List String) : IO UInt32 := do
         | some j => modNames[j.toNat]!.toString
         | none => ""
       let usesArr := uses.toArray.qsort (fun a b => a.toString < b.toString)
+      let libArr := lib.toArray.qsort (fun a b => a.1 < b.1 || (a.1 == b.1 && a.2 < b.2))
       let j := Json.mkObj [
         ("name", Json.str (userName n).toString),
         ("private", Json.bool (isPrivateName n)),
@@ -144,7 +170,8 @@ def main (args : List String) : IO UInt32 := do
         ("sorry", Json.bool hasSorry),
         ("uses", Json.arr (usesArr.map fun c =>
             Json.arr #[Json.str (modOf c), Json.str (userName c).toString])),
-        ("type", Json.str tyStr)]
+        ("type", Json.str tyStr),
+        ("lib", Json.arr (libArr.map fun (m, c) => Json.arr #[Json.str m, Json.str c]))]
       rows := rows.push { name := userName n, mod := m, line := r.range.pos.line, json := j }
   let sorted := rows.qsort fun a b =>
     if a.mod != b.mod then a.mod.toString < b.mod.toString

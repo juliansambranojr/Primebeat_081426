@@ -160,7 +160,7 @@ PN.forEach(function(p){if(p.key==='margin'&&!layer.commentary)return;if(p.key===
 var x0=X(E[0]+10),x1=X(E[2]-10),y0=Y(p.y0),y1=Y(p.y1);if(y1<0||y0>H)return;
 if(p.key!=='strip'){ctx.fillStyle=C['--lane'];ctx.fillRect(x0,y0,x1-x0,y1-y0);}
 ctx.strokeStyle=C['--line'];ctx.lineWidth=1;ctx.strokeRect(x0+.5,y0+.5,x1-x0,y1-y0);});
-var sp=panel('strip');
+/*G:terrain*/var sp=panel('strip');
 if(layer.strip){var y0=Y(sp.y0),y1=Y(sp.y1);
 ctx.globalAlpha=parseFloat(C['--strip-a'])||.07;ctx.fillStyle=C['--stripfill'];ctx.fillRect(X(ST.x0),y0,X(ST.x1)-X(ST.x0),y1-y0);ctx.globalAlpha=1;
 ctx.strokeStyle=C['--muted'];ctx.lineWidth=1;[ST.x0,ST.x1].forEach(function(x){ctx.beginPath();ctx.moveTo(X(x)+.5,y0);ctx.lineTo(X(x)+.5,y1);ctx.stroke();});
@@ -239,9 +239,9 @@ if(lv>=1)P.forEach(function(p,i){if(vis(i)&&p.r)lab(i,false,false);});
 if(lv===2)P.forEach(function(p,i){if(vis(i)&&!p.r)lab(i,false,false);});}
 if(sel>=0&&selKind==='d'&&vis(sel)){var p=P[sel];ctx.strokeStyle=C['--sel'];ctx.lineWidth=2;ctx.beginPath();ctx.arc(X(p.x),Y(p.y),r+5,0,7);ctx.stroke();}
 if(lit)P.forEach(function(p,i){if(lit[i]&&vis(i)){ctx.strokeStyle=C['--sel'];ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(X(p.x),Y(p.y),r+3.5,0,7);ctx.stroke();}});
-mini();}
+/*G:labels*/mini();}
 var litC=null;
-function line(a,b,c){ctx.strokeStyle=c;ctx.globalAlpha=.85;var ax=X(a.x),ay=Y(a.y),bx=X(b.x),by=Y(b.y);ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.stroke();
+/*G:init*/function line(a,b,c){ctx.strokeStyle=c;ctx.globalAlpha=.85;var ax=X(a.x),ay=Y(a.y),bx=X(b.x),by=Y(b.y);ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.stroke();
 ctx.fillStyle=c;arrowHead(ax,ay,bx,by,pr()+1,7);ctx.globalAlpha=1;}
 function arrowHead(x0,y0,x1,y1,back,len){var a=Math.atan2(y1-y0,x1-x0),ex=x1-Math.cos(a)*back,ey=y1-Math.sin(a)*back;
 if(Math.hypot(x1-x0,y1-y0)<back+len)return;ctx.beginPath();ctx.moveTo(ex,ey);ctx.lineTo(ex-Math.cos(a-0.45)*len,ey-Math.sin(a-0.45)*len);
@@ -263,11 +263,11 @@ function hit(x,y){var r=pr(),best=null,bd=Math.max(8,r+4);
 if(layer.territory)P.forEach(function(p,i){if(!vis(i))return;var d=Math.hypot(X(p.x)-x,Y(p.y)-y);if(d<bd){bd=d;best=['d',i];}});
 if(layer.territory&&layer.units)U.forEach(function(u,i){if(u.x===null||!uvis(u))return;var d=Math.hypot(X(u.x)-x,Y(u.y)-y);if(d<bd){bd=d;best=['u',i];}});
 if(layer.commentary)CM.forEach(function(c,i){if(c.x===null||!cvis(c))return;var d=Math.hypot(X(c.x)-x,Y(c.y)-y);if(d<bd){bd=d;best=['c',i];}});
-return best;}
+/*G:hit*/return best;}
 function clo(c){return c>=1?'1':c.toFixed(3);}
 function placeText(p){if(!p.p)return 'lane: no bound on Re s';var q=p.p;var v=function(z){return z===null?'\u2013':(+z.toFixed(4)).toString();};
 return q[3]==='on'?'on Re s = '+v(q[0]):(q[3]==='between'?'Re s in ['+v(q[1])+', '+v(q[2])+'], drawn at '+v(q[0]):q[3]+': drawn at '+v(q[0])+' (bounds '+v(q[1])+', '+v(q[2])+')');}
-function tipLines(h){if(h[0]==='d'){var p=P[h[1]];return [p.n,p.k+'  \u00b7  '+D.files[p.f]+':'+p.l,'closure '+clo(p.c)+(p.s?'  \u00b7  sorry':'')+(p.r?'  \u00b7  root':'  \u00b7  depth '+p.dp),
+function tipLines(h){/*G:tip*/if(h[0]==='d'){var p=P[h[1]];return [p.n,p.k+'  \u00b7  '+D.files[p.f]+':'+p.l,'closure '+clo(p.c)+(p.s?'  \u00b7  sorry':'')+(p.r?'  \u00b7  root':'  \u00b7  depth '+p.dp),
 placeText(p),'first appears '+(D.days[p.d]||'?'),'uses '+p.u.length+'  \u00b7  used by '+p.ub.length+(p.un.length?'  \u00b7  units '+p.un.map(function(u){return U[u].id;}).join(', '):'')+(p.cm.length?'  \u00b7  commentary '+p.cm.length:''),'click to open its section'];}
 if(h[0]==='u'){var u=U[h[1]];return ['unit '+u.id+'  \u00b7  '+u.date+'  \u00b7  '+u.type,u.t,u.unres.length?'refs not found: '+u.unres.join(', '):'no Lean ref'];}
 var c=CM[h[1]];return [c.p,c.k+'  \u00b7  added '+(D.days[c.d]||'?'),'names no declaration, .lean file or unit'];}
@@ -294,7 +294,7 @@ detail.appendChild(list('uses (upstream)',p.u,dlink));detail.appendChild(list('u
 detail.appendChild(list('units pinned to it by refs:',p.un,function(ui){var s=el('span');s.appendChild(ulink(ui));s.appendChild(document.createTextNode('  '+U[ui].date+'  '+U[ui].t));return s;}));
 detail.appendChild(list('commentary naming it',p.cm,clink));
 var fc=D.file_cm[String(p.f)]||[];detail.appendChild(list('commentary naming its file '+D.files[p.f].split('/').pop(),fc,clink));
-if(center)focus(p.x,p.y);draw();}
+/*G:pick*/if(center)focus(p.x,p.y);draw();}
 function pickUnit(ui,center){var u=U[ui];sel=ui;selKind='u';nbr=null;litC=null;lit={};u.pins.forEach(function(i){lit[i]=1;});if(!u.pins.length)lit=null;
 detail.textContent='';detail.appendChild(el('h2','unit '+u.id+': '+u.t));
 detail.appendChild(kv([['date',u.date],['type',u.type],['directory','units/'+u.dir],['refs',u.refs.join(', ')||'none'],['refs not found',u.unres.join(', ')||'none']]));
@@ -328,7 +328,7 @@ if(pinch&&ids.length===2){var a=ptrs[ids[0]],b=ptrs[ids[1]],d=Math.hypot(a[0]-b[
 if(down&&ids.length===1){var dx=p[0]-down.x,dy=p[1]-down.y;if(Math.abs(dx)+Math.abs(dy)>4)moved=true;if(moved){tx=down.tx+dx;ty=down.ty+dy;hide();draw();return;}}
 if(!down){var h=hit(p[0],p[1]);var same=(h&&hov&&h[0]===hov[0]&&h[1]===hov[1])||(!h&&!hov);hov=h;if(!same)draw();cv.style.cursor=h?'pointer':'grab';if(h)show(tipLines(h),p[0],p[1]);else hide();}});
 function up(e){var p=pos(e);delete ptrs[e.pointerId];if(Object.keys(ptrs).length<2)pinch=null;
-if(down&&!moved){var h=hit(p[0],p[1]);if(h){if(h[0]==='d')pick(h[1],false);else if(h[0]==='u')pickUnit(h[1],false);else pickComm(h[1]);
+if(down&&!moved){var h=hit(p[0],p[1]);if(h){/*G:click*/if(h[0]==='d')pick(h[1],false);else if(h[0]==='u')pickUnit(h[1],false);else pickComm(h[1]);
 document.getElementById('detail').scrollIntoView({block:'nearest'});}}if(!Object.keys(ptrs).length)down=null;}
 cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
 cv.addEventListener('pointerleave',function(){if(!down){hide();if(hov){hov=null;draw();}}});
@@ -352,7 +352,7 @@ if(window.matchMedia){var mq=window.matchMedia('(prefers-color-scheme: dark)');i
 window.pbAtlas={search:search,pick:pick,pickUnit:pickUnit,pickComm:pickComm,level:level,layer:layer,sync:sync,draw:draw,
 view:function(k,cx,cy){s=Math.max(minS,Math.min(maxS,k));tx=W/2-s*cx;ty=H/2-s*cy;draw();},fitAll:fitAll,fitWidth:fitWidth,
 decls:P.length,roads:R.length,paintNow:function(){raf=0;paint();}};
-size();fitAll();setCut(D.days.length-1);
+/*G:api*/size();fitAll();setCut(D.days.length-1);
 // state from the address: #comm=1&terr=0&q=name&zoom=2.5&at=name&theme=dark
 (function(){var h=(location.hash||'').replace(/^#/,'');if(!h)return;var o={};h.split('&').forEach(function(kv){var i=kv.indexOf('=');if(i>0)o[kv.slice(0,i)]=decodeURIComponent(kv.slice(i+1));});
 if(o.theme)document.documentElement.setAttribute('data-theme',o.theme);
@@ -360,13 +360,146 @@ if(o.comm)layer.commentary=o.comm==='1';if(o.terr)layer.territory=o.terr!=='0';s
 if(o.q){document.getElementById('q').value=o.q;search(o.q);}
 if(o.at){var hits=[];P.forEach(function(p,i){if(p.n===o.at||short(p.n)===o.at)hits.push(i);});if(hits.length){pick(hits[0],true);if(o.zoom){s=+o.zoom;tx=W/2-s*P[hits[0]].x;ty=H/2-s*P[hits[0]].y;}}}
 else if(o.zoom){var z=+o.zoom;var cx=o.cx!==undefined?+o.cx:(E[0]+E[2])/2,cy=o.cy!==undefined?+o.cy:(E[1]+E[3])/2;s=z;tx=W/2-s*cx;ty=H/2-s*cy;}
-draw();})();
+/*G:hash*/draw();})();
 paint();
 })();
 """
 
 
-def _legend():
+GCSS = r"""
+:root{--mgr:#b07d2a;--pgr:#4a78b5;--mgt:#6e4a0e;--pgt:#234f8a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--mgr:#d6a24e;--pgr:#6f9be0;--mgt:#ecc27d;--pgt:#a7c3f2}}
+:root[data-theme="dark"]{--mgr:#d6a24e;--pgr:#6f9be0;--mgt:#ecc27d;--pgt:#a7c3f2}
+.sw-mg{width:28px;height:12px;border-radius:6px;background:var(--mgr);opacity:.5;box-shadow:inset 0 0 0 1.5px var(--mgt)}
+.sw-pg{width:28px;height:12px;border-radius:6px;background:var(--pgr);opacity:.5;box-shadow:inset 0 0 0 1.5px var(--pgt)}
+table.ground{border-collapse:collapse;font-size:12px;width:100%}
+table.ground td,table.ground th{border-top:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top;
+overflow-wrap:anywhere}
+table.ground a{color:var(--up);cursor:pointer;text-decoration:none}table.ground a:hover{text-decoration:underline}
+table.ground .n{white-space:nowrap}table.ground td.i{min-width:180px}
+.tscroll{overflow-x:auto}
+"""
+
+# The ground layers' JS, spliced at the markers of JS. With no ground data
+# every marker is removed and JS is the atlas's page script as it was.
+GJS = {
+    "init": r"""var G=D.ground,GL=['mground','pground'],GA=G.areas,GC=G.consts,GI=G.islands,terr=[null,null],GMAX=[0,0];
+layer.mground=false;layer.pground=false;
+GA.forEach(function(a){if(a.h>GMAX[a.l])GMAX[a.l]=a.h;});
+function gOn(l){return !!layer[GL[l]];}
+function stands(a,i){return a.bg.indexOf(P[i].sc)<0;}
+function aname(k){var n=GA[k].n;return n.slice(n.indexOf('.')+1);}
+function scname(si){return D.scopes[si].key+'/';}
+function ilabel(k){var t=GI[k];return 'island of '+short(P[t.top].n)+' ('+t.m.length+')';}
+function wOf(k,si){var n=GA[k].k[si],N=G.counts[D.scopes[si].key].islands;return n?Math.log(N/n):0;}
+function cIsl(c){return GC[c][2].reduce(function(x,y){return x+y;},0);}
+function bgText(mask){var o=[];D.scopes.forEach(function(sc,si){if(mask&(1<<si))o.push(scname(si));});return o.join(', ');}
+function pinsOf(k){var t=GI[k];return 'Mathlib '+(t.pin||'?')+(t.pnt?' · PrimeNumberTheoremAnd '+t.pnt:'')+' (the pins of '+t.host+'/)';}
+function field(l){var c=C[l?'--pgr':'--mgr'],key=cut+'|'+c,t=terr[l];if(t&&t.key===key)return t;
+var res=G.res,x0=E[0],y0=E[1],fw=Math.ceil((E[2]-E[0])/res)+1,fh=Math.ceil((E[3]-E[1])/res)+1,n=fw*fh;
+var f=new Float32Array(n),tmp=new Float32Array(n),stamp=new Int32Array(n).fill(-1),rad=G.rad/res,R=Math.ceil(rad);
+GA.forEach(function(a,ai){if(a.l!==l||!GMAX[l]||!a.h)return;var hgt=a.h/GMAX[l],touched=[];
+a.d.forEach(function(i){if(!vis(i)||!stands(a,i))return;var cx=(P[i].x-x0)/res,cy=(P[i].y-y0)/res;
+var ix0=Math.max(0,Math.floor(cx-R)),ix1=Math.min(fw-1,Math.ceil(cx+R)),iy0=Math.max(0,Math.floor(cy-R)),iy1=Math.min(fh-1,Math.ceil(cy+R));
+for(var yy=iy0;yy<=iy1;yy++)for(var xx=ix0;xx<=ix1;xx++){var dd=((xx-cx)*(xx-cx)+(yy-cy)*(yy-cy))/(rad*rad);if(dd>=1)continue;
+var v=(1-dd)*(1-dd),k=yy*fw+xx;if(stamp[k]!==ai){stamp[k]=ai;tmp[k]=v;touched.push(k);}else if(v>tmp[k])tmp[k]=v;}});
+touched.forEach(function(k){f[k]+=hgt*tmp[k];});});
+var tv=new Float32Array(n),rgb=hex(c),cv2=document.createElement('canvas');cv2.width=fw;cv2.height=fh;
+var g2=cv2.getContext('2d'),img=g2.createImageData(fw,fh),px=img.data;
+for(var k=0;k<n;k++){var tt=f[k]>0?1-Math.exp(-f[k]/G.f0[l]):0;tv[k]=tt;if(!tt)continue;var q=k*4;px[q]=rgb[0];px[q+1]=rgb[1];px[q+2]=rgb[2];px[q+3]=Math.round(255*Math.min(.5,tt*.55));}
+g2.putImageData(img,0,0);
+// contour lines by marching squares, one list of world segments per level
+var LV=[0.03,1/7,2/7,3/7,4/7,5/7,6/7],segs=LV.map(function(){return [];}),o=null;
+function sg(x1,y1,x2,y2){o.push(x0+x1*res,y0+y1*res,x0+x2*res,y0+y2*res);}
+for(var yy=0;yy<fh-1;yy++)for(var xx=0;xx<fw-1;xx++){var k=yy*fw+xx,a=tv[k],b=tv[k+1],cc=tv[k+fw+1],d=tv[k+fw];
+if(a===0&&b===0&&cc===0&&d===0)continue;var hi=Math.max(a,b,cc,d),lo=Math.min(a,b,cc,d);
+for(var li=0;li<LV.length;li++){var lev=LV[li];if(lev<=lo||lev>hi)continue;
+var m=(a>lev?8:0)|(b>lev?4:0)|(cc>lev?2:0)|(d>lev?1:0);if(m===0||m===15)continue;
+var Tx=xx+(lev-a)/(b-a),Ry=yy+(lev-b)/(cc-b),Bx=xx+(lev-d)/(cc-d),Ly=yy+(lev-a)/(d-a);o=segs[li];
+switch(m){case 1:case 14:sg(xx,Ly,Bx,yy+1);break;case 2:case 13:sg(Bx,yy+1,xx+1,Ry);break;
+case 3:case 12:sg(xx,Ly,xx+1,Ry);break;case 4:case 11:sg(Tx,yy,xx+1,Ry);break;
+case 5:sg(xx,Ly,Tx,yy);sg(Bx,yy+1,xx+1,Ry);break;case 6:case 9:sg(Tx,yy,Bx,yy+1);break;
+case 7:case 8:sg(xx,Ly,Tx,yy);break;case 10:sg(Tx,yy,xx+1,Ry);sg(xx,Ly,Bx,yy+1);break;}}}
+t={key:key,c:cv2,fw:fw,fh:fh,segs:segs};terr[l]=t;return t;}
+function gpaint(){C['--mgr']=col('--mgr');C['--pgr']=col('--pgr');C['--mgt']=col('--mgt');C['--pgt']=col('--pgt');
+[0,1].forEach(function(l){if(!gOn(l))return;var t=field(l);ctx.imageSmoothingEnabled=true;
+ctx.drawImage(t.c,X(E[0]-G.res/2),Y(E[1]-G.res/2),t.fw*G.res*s,t.fh*G.res*s);
+ctx.strokeStyle=C[l?'--pgt':'--mgt'];ctx.lineWidth=s<FAR?0.6:1;t.segs.forEach(function(sg,li){ctx.globalAlpha=Math.min(.75,.22+li*.08);ctx.beginPath();
+for(var j=0;j<sg.length;j+=4){var ax=X(sg[j]),ay=Y(sg[j+1]),bx=X(sg[j+2]),by=Y(sg[j+3]);if((ax<0&&bx<0)||(ax>W&&bx>W)||(ay<0&&by<0)||(ay>H&&by>H))continue;ctx.moveTo(ax,ay);ctx.lineTo(bx,by);}
+ctx.stroke();});ctx.globalAlpha=1;});
+[[sel>=0&&selKind==='a'?sel:-1,.22],[hov&&hov[0]==='a'?hov[1]:-1,.14]].forEach(function(q){var k=q[0];if(k<0||!gOn(GA[k].l))return;var a=GA[k];
+ctx.globalAlpha=q[1];ctx.fillStyle=C[a.l?'--pgt':'--mgt'];ctx.beginPath();a.d.forEach(function(i){if(!vis(i))return;var x=X(P[i].x),y=Y(P[i].y),rr=G.rad*0.8*s;
+if(x<-rr||x>W+rr||y<-rr||y>H+rr)return;ctx.moveTo(x+rr,y);ctx.arc(x,y,rr,0,7);});ctx.fill();ctx.globalAlpha=1;});}
+function glabels(lv){if(lv<1)return;[0,1].forEach(function(l){if(!gOn(l))return;
+var ks=[];GA.forEach(function(a,k){if(a.l===l&&a.at&&a.h)ks.push(k);});ks.sort(function(p,q){return GA[q].h-GA[p].h||p-q;});
+ks.forEach(function(k){var a=GA[k];if(!a.d.some(function(i){return vis(i)&&stands(a,i);}))return;
+text(aname(k)+' · '+a.h,X(a.at[0]),Y(a.at[1])-G.rad*0.8*s-3,'600 11px '+F,C[l?'--pgt':'--mgt'],{center:true,force:k===sel&&selKind==='a'});});});}
+function areasAt(x,y){var out=[],px_=wx(x),py_=wy(y),r2=G.rad*G.rad*0.64;
+GA.forEach(function(a,k){if(!gOn(a.l)||!a.h)return;for(var n=0;n<a.d.length;n++){var i=a.d[n];if(!vis(i)||!stands(a,i))continue;
+var dx=P[i].x-px_,dy=P[i].y-py_;if(dx*dx+dy*dy<r2){out.push(k);break;}}});
+out.sort(function(p,q){return GA[q].h-GA[p].h||p-q;});return out;}
+function areaHit(x,y){var o=areasAt(x,y);return o.length?['a',o[0],o]:null;}
+function byIsl(cs){return cs.slice().sort(function(p,q){return cIsl(q)-cIsl(p)||(GC[p][1]<GC[q][1]?-1:(GC[p][1]>GC[q][1]?1:0));});}
+function cText(c){var q=GC[c],n=cIsl(c);return q[1]+'  ('+n+' island'+(n===1?'':'s')+(q[3]?'; background in '+bgText(q[3]):'')+')';}
+function areaTip(k,also){var a=GA[k],cs=byIsl(a.c);
+var lines=[a.n,G.libs[a.l]+'  ·  rises with '+a.h+' island(s)'+(a.bg.length?'  ·  background in '+a.bg.map(scname).join(', '):''),
+'constants used from it ('+cs.length+'):'];cs.slice(0,12).forEach(function(c){lines.push('  '+cText(c));});
+if(cs.length>12)lines.push('  + '+(cs.length-12)+' more in its section');
+if(also&&also.length>1)lines.push('also under this point: '+also.slice(1,7).map(aname).join(', ')+(also.length>7?' …':''));
+lines.push('click to open its section');return lines;}
+function alink(k){var a=el('a',GA[k].n);a.onclick=function(){pickArea(k,true);};return a;}
+function ilink(k){var a=el('a',ilabel(k));a.title=D.scopes[GI[k].sc].label;a.onclick=function(){pickIsland(k,true);};return a;}
+function span(parts){var s2=el('span');parts.forEach(function(x){s2.appendChild(typeof x==='string'?document.createTextNode(x):x);});return s2;}
+function pickArea(k,center,also){var a=GA[k];if(!gOn(a.l)){layer[GL[a.l]]=true;sync();}sel=k;selKind='a';nbr=null;litC=null;lit={};a.d.forEach(function(i){lit[i]=1;});
+detail.textContent='';detail.appendChild(el('h2',a.n));
+detail.appendChild(kv([['library',G.libs[a.l]],['area','a module path cut to three components (four under PrimeNumberTheoremAnd.Mathlib)'],
+['islands holding it',D.scopes.map(function(sc,si){return scname(si)+' '+a.k[si]+' of '+G.counts[sc.key].islands;}).join('  ·  ')],
+['background in',a.bg.length?a.bg.map(scname).join(', ')+' (held by '+G.share+' of that project’s islands; no terrain there)':'no project'],
+['terrain height',a.h+' island(s) stand on it where it is not background'],
+['versions','lean/ and lean_stage3/ pin different Mathlib versions: across them this is the same area name, two versions']]));
+detail.appendChild(list('islands standing on it',a.i,function(k2){var on=GI[k2].m.filter(function(i){return lit[i];}),parts=[ilink(k2),'  '+scname(GI[k2].sc)+(a.bg.indexOf(GI[k2].sc)>=0?' (background there)':'')+' · '+on.length+' of its '+GI[k2].m.length+' declarations: '];
+on.slice(0,8).forEach(function(i,n){if(n)parts.push(', ');parts.push(dlink(i));});if(on.length>8)parts.push(', + '+(on.length-8)+' more below');return span(parts);}));
+if(also&&also.length>1)detail.appendChild(list('the other areas under the point clicked, highest first',also.slice(1),alink));
+detail.appendChild(list('constants used from it',byIsl(a.c),function(c){return el('code',cText(c));}));
+detail.appendChild(list('declarations standing on it',a.d,dlink));
+if(center){var hs=a.d.filter(vis);if(hs.length)fitHits(hs);}draw();}
+function pickIsland(k,center){var t=GI[k];sel=k;selKind='i';nbr=null;litC=null;lit={};t.m.forEach(function(i){lit[i]=1;});
+detail.textContent='';detail.appendChild(el('h2',ilabel(k)));
+detail.appendChild(kv([['project',D.scopes[t.sc].label],['declarations',String(t.m.length)],['named for',P[t.top].n+': the member whose cone holds most of the island'],['stands on',pinsOf(k)]]));
+[0,1].forEach(function(l){var ks=t.a.filter(function(a){return GA[a].l===l;});ks.sort(function(p,q){return wOf(q,t.sc)-wOf(p,t.sc)||p-q;});
+detail.appendChild(list(G.libs[l]+' ground, rarest first (rarity weight in '+scname(t.sc)+')',ks,function(a){return span([alink(a),'  '+wOf(a,t.sc).toFixed(2)+(GA[a].bg.indexOf(t.sc)>=0?' (background)':'')]);}));});
+detail.appendChild(list('islands sharing the most ground with it',t.pp,function(q){return span([ilink(q[0]),'  shared '+q[1].toFixed(2)+(q[2]?'  ·  a name match across Mathlib '+t.pin+' and '+GI[q[0]].pin:'')]);}));
+detail.appendChild(list('declarations',t.m,dlink));
+if(center){var hs=t.m.filter(vis);if(hs.length)fitHits(hs);}draw();}
+function groundLists(i){var k=G.di[i],box=el('div');box.appendChild(el('strong','island  '));box.appendChild(ilink(k));detail.appendChild(box);
+[0,1].forEach(function(l){var by={},n=0;G.dc[i].forEach(function(c){var q=GC[c];if(GA[q[0]].l!==l)return;(by[q[0]]=by[q[0]]||[]).push(q[1]);n++;});
+var ks=Object.keys(by).map(Number).sort(function(p,q){return p-q;});
+detail.appendChild(list(G.libs[l]+' ground: '+n+' constant'+(n===1?'':'s')+' named directly, by area',ks,function(a){
+return span([alink(a),GA[a].bg.indexOf(P[i].sc)>=0?' (background in '+scname(P[i].sc)+')':'',': ',el('code',by[a].join(', '))]);}));});}
+Array.prototype.forEach.call(document.querySelectorAll('[data-isl]'),function(b){b.onclick=function(){pickIsland(+b.getAttribute('data-isl'),true);stage.scrollIntoView({block:'nearest'});};});
+Array.prototype.forEach.call(document.querySelectorAll('[data-area]'),function(b){b.onclick=function(){pickArea(+b.getAttribute('data-area'),true);stage.scrollIntoView({block:'nearest'});};});
+""",
+    "terrain": "if(layer.mground||layer.pground)gpaint();",
+    "labels": "glabels(lv);",
+    "hit": "if(!best)best=areaHit(x,y);",
+    "tip": "if(h[0]==='a')return areaTip(h[1],h[2]);",
+    "pick": "groundLists(i);",
+    "click": "if(h[0]==='a')pickArea(h[1],false,h[2]);else ",
+    "api": "window.pbAtlas.pickArea=pickArea;window.pbAtlas.pickIsland=pickIsland;window.pbAtlas.ground=G;\n",
+    "hash": ("if(o.mg)layer.mground=o.mg==='1';if(o.pg)layer.pground=o.pg==='1';sync();"
+             "if(o.area)GA.forEach(function(a,k){if(a.n===o.area)pickArea(k,true);});"
+             "if(o.island)pickIsland(+o.island,true);"
+             "if(o.zoom&&(o.area||o.island)){s=+o.zoom;var cx=o.cx!==undefined?+o.cx:wx(W/2),cy=o.cy!==undefined?+o.cy:wy(H/2);tx=W/2-s*cx;ty=H/2-s*cy;}\n"),
+}
+
+
+def _script(G):
+    """JS with each marker spliced: the ground code when G, else nothing."""
+    import re
+    return re.sub(r"/\*G:(\w+)\*/", lambda m: GJS[m.group(1)] if G else "", JS)
+
+
+def _legend(G=None):
     rows = [
         ("sw sw-grad", "closure, the share of a declaration's cone free of direct sorry: 0 red, 0.5 amber, 1 green"),
         ("sw sw-dot", "a theorem (circle)"),
@@ -384,7 +517,66 @@ def _legend():
         ("sw sw-cm", "commentary naming it (Commentary on); size grows with the count"),
         ("sw sw-cmo", "commentary naming its .lean file, at the file's first declaration"),
     ]
+    if G:
+        rows += [
+            ("sw sw-mg", "Mathlib ground (toggle): terrain under the declarations naming a Mathlib area "
+             "directly; an area rises with the number of islands standing on it; contour lines "
+             "mark the levels; areas held by " + G["share"] + " of a project's islands are background "
+             "there and drawn nowhere"),
+            ("sw sw-pg", "PrimeNumberTheoremAnd ground (toggle): the same for PrimeNumberTheoremAnd"),
+        ]
     return "".join(f'<div><span class="{c}"></span><span>{_e(t)}</span></div>' for c, t in rows)
+
+
+def _ground_section(D):
+    """The table of the island pairs sharing the most ground."""
+    G = D["ground"]
+    P, I, A = D["decls"], G["islands"], G["areas"]
+
+    def isl(k):
+        t = I[k]
+        return (f'<a data-isl="{k}">island of {_e(P[t["top"]]["n"])}</a> '
+                f'<span class="muted">{_e(D["scopes"][t["sc"]]["key"])}/, {len(t["m"])}</span>')
+
+    rows = []
+    for n, pr in enumerate(G["pairs"], 1):
+        ia, ib = I[pr["a"]], I[pr["b"]]
+        pins = (f'name match: Mathlib {_e(ia["pin"])} / {_e(ib["pin"])}' if pr["x"]
+                else f'same Mathlib {_e(ia["pin"])}')
+        shown = pr["ar"][:6]
+        areas = ", ".join(f'<a data-area="{a}">{_e(A[a]["n"])}</a> {w:.2f}' for a, w in shown)
+        more = f' <span class="muted">+ {len(pr["ar"]) - len(shown)} more</span>' if len(pr["ar"]) > 6 else ""
+        rows.append(f'<tr><td class="n">{n}</td><td class="i">{isl(pr["a"])}</td><td class="i">{isl(pr["b"])}</td>'
+                    f'<td class="n">{pr["w"]:.2f}</td><td class="n">{len(pr["ar"])}</td><td>{pins}</td><td>{areas}{more}</td></tr>')
+    cnt = G["counts"]
+    per = " \u00b7 ".join(
+        f'{_e(k)}/ <b>{v["islands"]}</b> islands, Mathlib <b>{v["Mathlib"]["constants"]}</b> constants in '
+        f'<b>{v["Mathlib"]["areas"]}</b> areas ({v["Mathlib"]["background_areas"]} background), '
+        f'PrimeNumberTheoremAnd <b>{v["PrimeNumberTheoremAnd"]["constants"]}</b> in '
+        f'<b>{v["PrimeNumberTheoremAnd"]["areas"]}</b> ({v["PrimeNumberTheoremAnd"]["background_areas"]} background)'
+        for k, v in sorted(cnt.items()))
+    return ('<section class="card"><h2>Shared ground: the island pairs standing on the most rare ground</h2>'
+            f'<div class="counts">{per}</div>'
+            '<p class="note">An island is a connected component of a project\'s own uses graph. Two islands '
+            'share the Mathlib and PrimeNumberTheoremAnd areas both stand on, background in neither project, '
+            'each weighted ln(islands / islands holding it). A larger island stands on more ground. lean/ and '
+            'lean_stage3/ pin different Mathlib versions: ground shared across them is the same area name in '
+            'two versions, marked name match. Click an island or an area to light it on the map.</p>'
+            '<div class="tscroll"><table class="ground"><tr><th class="n">#</th><th>island</th><th>island</th>'
+            '<th class="n">shared</th><th class="n">areas</th><th>Mathlib</th><th>heaviest shared areas (weight)</th></tr>'
+            + "".join(rows) + '</table></div></section>\n')
+
+
+def _ground_read(G):
+    pins = "; ".join(f"{_e(k)}/: " + ", ".join(f"{_e(lib)} {_e(rev)}" for lib, rev in v.items())
+                     for k, v in G["pins"].items())
+    return ('<li>Ground: the Mathlib and PrimeNumberTheoremAnd constants a declaration\'s type and value '
+            'name directly (atlas/Extract.lean), by area: the module path cut to three components '
+            '(<code>Mathlib.NumberTheory.LSeries</code>), four under '
+            '<code>PrimeNumberTheoremAnd.Mathlib</code>. Rarity is counted over a project\'s islands; '
+            f'an area or constant held by {_e(G["share"])} of them is background there. '
+            f'Pins: {pins}; a scratch file stands on the pins of the project it was built in. '
+            'The rule is in atlas/model.py.</li>')
 
 
 def render(D):
@@ -411,11 +603,19 @@ def render(D):
                 'the first error line of each attempt is kept. Its declarations are not on the map.</p>'
                 f'<table class="gaps"><tr><th>file</th><th>first error</th></tr>{rows}</table></section>')
     scopes = "".join(f"<li>{_e(s['label'])}</li>" for s in D["scopes"])
+    G = D.get("ground")
+    style = CSS + (GCSS if G else "")
+    toggles = ('\n<span class="grp">ground</span>'
+               '\n<label><input type="checkbox" data-layer="mground"> Mathlib ground</label>'
+               '\n<label><input type="checkbox" data-layer="pground"> PrimeNumberTheoremAnd ground</label>'
+               if G else "")
+    gsection = _ground_section(D) if G else ""
+    gread = _ground_read(G) if G else ""
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Primebeat atlas</title>
-<style>{CSS}</style></head>
+<style>{style}</style></head>
 <body><main>
 <h1>Primebeat atlas</h1>
 <p class="note">Two maps on one ground. The territory: every Lean declaration, read by Lean, on the critical
@@ -431,7 +631,7 @@ An atlas relates; the time slider replays the order the territory was found.</p>
 <label><input type="checkbox" data-layer="closure" checked> closure</label>
 <label><input type="checkbox" data-layer="roads" checked> roads</label>
 <label><input type="checkbox" data-layer="units" checked> units</label>
-<label><input type="checkbox" data-layer="labels" checked> names</label></div>
+<label><input type="checkbox" data-layer="labels" checked> names</label>{toggles}</div>
 <form class="bar" id="find"><input type="text" id="q" placeholder="search a declaration name" aria-label="search a declaration name">
 <button type="submit">find</button><button type="button" id="qclear">clear</button><span id="found"></span></form>
 <div class="time"><button type="button" id="play" class="bar">replay</button>
@@ -443,8 +643,8 @@ An atlas relates; the time slider replays the order the territory was found.</p>
 <canvas id="minimap" aria-label="minimap"></canvas><div id="level"></div></div>
 <section class="card" id="detail"><h2>Pick a point</h2><p class="muted">Click a declaration, a unit flag or a
 margin square to open its section here.</p></section>
-<section class="card"><h2>Legend</h2><div class="legend">{_legend()}</div></section>
-{gaps}
+<section class="card"><h2>Legend</h2><div class="legend">{_legend(G)}</div></section>
+{gsection}{gaps}
 <section class="card"><h2>How it is read</h2><ul class="note">
 <li>Projects: <ul>{scopes}</ul></li>
 <li>Declarations: every constant of the project's own modules with a declaration range, not an internal detail,
@@ -455,9 +655,9 @@ auxiliary constants such as <code>foo.proof_1</code> (atlas/Extract.lean).</li>
 <li>Closure: the share of the cone (the declaration and all it reaches) free of direct sorry; 1 when none.</li>
 <li>First appearance: the oldest committed version of its file containing its last name part.</li>
 <li>Commentary: a text names a declaration by its full name or a distinctive unqualified part, a file by
-<code>Name.lean</code>, a unit by its four-digit id.</li></ul></section>
+<code>Name.lean</code>, a unit by its four-digit id.</li>{gread}</ul></section>
 </main>
 <script type="application/json" id="atlas-data">{_json_script(D)}</script>
-<script>{JS}</script>
+<script>{_script(G)}</script>
 </body></html>
 """
