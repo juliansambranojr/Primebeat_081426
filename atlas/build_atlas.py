@@ -18,7 +18,7 @@ WHAT IS READ, all at HEAD through git, nothing written outside
     lean/ (its lakefile globs, its toolchain) and lean_stage3/ (Stage3 and
         Stage3/*), each from its own `.lake` build, which must exist;
     every other committed `.lean` file (results/scratch_lean/, the root,
-        analysis/), compiled to a scratch `.olean` under `atlas/build/`
+        analysis/; the atlas's own Extract.lean excepted), compiled to a scratch `.olean` under `atlas/build/`
         with lean_stage3's toolchain, then lean's; a file that builds in
         neither is a GAP with the first error line from each;
     units/*/unit.md frontmatter: id, date, type, title, refs;
@@ -574,7 +574,8 @@ def main(argv=None):
     pkeys = {p: project_key(p, tree, None) for p in ("lean", "lean_stage3")}
     ex = {p: extract_project(p, mods[p], pkeys[p], a.fresh) for p in ("lean", "lean_stage3")}
     tool = {p: (ROOT / p / "lean-toolchain").read_text().strip() for p in ("lean", "lean_stage3")}
-    others = sorted(p for p in tree if p.endswith(".lean") and not p.startswith(("lean/", "lean_stage3/")))
+    others = sorted(p for p in tree if p.endswith(".lean")
+                    and not p.startswith(("lean/", "lean_stage3/", "atlas/")))
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
         sa = list(pool.map(lambda p: extract_standalone(p, tree, pkeys, mods, a.fresh), others))
 
