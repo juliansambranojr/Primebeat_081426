@@ -22,6 +22,31 @@ below with their outcome.
 
 ## Current
 
+### 2026-09-24 · the atlas, Primebeat's own map of its mathematics
+
+    DONE        `atlas/`: a script that reads every declaration of every
+                `.lean` file (lean/, lean_stage3/, results/, slice3.lean)
+                with the declarations its proof uses (Lean's own list), its
+                closure from 0 to 1 (share of its dependency tree free of
+                sorry), the bounds on `s.re` its statement names, and the
+                git day it first appeared; the units pinned by their
+                `refs:`; the scripts, notes, preregs and CONTEXT.md attached
+                by the names they mention; one self-contained page in an
+                ignored `atlas/build/`, two maps overlaid (territory:
+                mathematics and units; commentary: the why), with the strip
+                and closure overlays; two runs byte-identical
+    ASSUMED     an atlas relates and has no target; the roots are the
+                declarations that use nothing else in Primebeat; the
+                trajectory is the order of discovery; commentary attaches by
+                name only, and commentary naming nothing sits in a labelled
+                margin lane; lean/ and lean_stage3/ are read each under its
+                own toolchain; a statement with no literal bound on `s.re`
+                sits in a labelled lane
+    DEPENDS     Julian lifted read-only for this tool only (2026-09-24);
+                no flag, since `atlas/` is outside every guarded path
+    OUT         any unit, the lab copy, guarded paths; publishing the page;
+                roads for shared constants (a layer for later)
+
 ### 2026-09-19 · lab R.5 and Q, the story after R.4 — lab PLAN § R.5, § Q
 
     DONE        R.5: unit ids and bare numbers out of the neighbourhood
