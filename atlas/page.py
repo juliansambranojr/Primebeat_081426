@@ -367,9 +367,9 @@ paint();
 
 
 GCSS = r"""
-:root{--mgr:#b07d2a;--pgr:#4a78b5;--mgt:#6e4a0e;--pgt:#234f8a}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--mgr:#d6a24e;--pgr:#6f9be0;--mgt:#ecc27d;--pgt:#a7c3f2}}
-:root[data-theme="dark"]{--mgr:#d6a24e;--pgr:#6f9be0;--mgt:#ecc27d;--pgt:#a7c3f2}
+:root{--mgr:#b07d2a;--pgr:#00b8f0;--mgt:#6e4a0e;--pgt:#006e99}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--mgr:#d6a24e;--pgr:#2fd8ff;--mgt:#ecc27d;--pgt:#9eeeff}}
+:root[data-theme="dark"]{--mgr:#d6a24e;--pgr:#2fd8ff;--mgt:#ecc27d;--pgt:#9eeeff}
 .sw-mg{width:28px;height:12px;border-radius:6px;background:var(--mgr);opacity:.5;box-shadow:inset 0 0 0 1.5px var(--mgt)}
 .sw-pg{width:28px;height:12px;border-radius:6px;background:var(--pgr);opacity:.5;box-shadow:inset 0 0 0 1.5px var(--pgt)}
 table.ground{border-collapse:collapse;font-size:12px;width:100%}
@@ -406,7 +406,7 @@ var v=(1-dd)*(1-dd),k=yy*fw+xx;if(stamp[k]!==ai){stamp[k]=ai;tmp[k]=v;touched.pu
 touched.forEach(function(k){f[k]+=hgt*tmp[k];});});
 var tv=new Float32Array(n),rgb=hex(c),cv2=document.createElement('canvas');cv2.width=fw;cv2.height=fh;
 var g2=cv2.getContext('2d'),img=g2.createImageData(fw,fh),px=img.data;
-for(var k=0;k<n;k++){var tt=f[k]>0?1-Math.exp(-f[k]/G.f0[l]):0;tv[k]=tt;if(!tt)continue;var q=k*4;px[q]=rgb[0];px[q+1]=rgb[1];px[q+2]=rgb[2];px[q+3]=Math.round(255*Math.min(.5,tt*.55));}
+for(var k=0;k<n;k++){var tt=f[k]>0?1-Math.exp(-f[k]/G.f0[l]):0;tv[k]=tt;if(!tt)continue;var q=k*4;px[q]=rgb[0];px[q+1]=rgb[1];px[q+2]=rgb[2];px[q+3]=Math.round(255*(l?Math.min(.8,Math.sqrt(tt)*.95):Math.min(.5,tt*.55)));}
 g2.putImageData(img,0,0);
 // contour lines by marching squares, one list of world segments per level
 var LV=[0.03,1/7,2/7,3/7,4/7,5/7,6/7],segs=LV.map(function(){return [];}),o=null;
@@ -424,7 +424,7 @@ t={key:key,c:cv2,fw:fw,fh:fh,segs:segs};terr[l]=t;return t;}
 function gpaint(){C['--mgr']=col('--mgr');C['--pgr']=col('--pgr');C['--mgt']=col('--mgt');C['--pgt']=col('--pgt');
 [0,1].forEach(function(l){if(!gOn(l))return;var t=field(l);ctx.imageSmoothingEnabled=true;
 ctx.drawImage(t.c,X(E[0]-G.res/2),Y(E[1]-G.res/2),t.fw*G.res*s,t.fh*G.res*s);
-ctx.strokeStyle=C[l?'--pgt':'--mgt'];ctx.lineWidth=s<FAR?0.6:1;t.segs.forEach(function(sg,li){ctx.globalAlpha=Math.min(.75,.22+li*.08);ctx.beginPath();
+ctx.strokeStyle=C[l?'--pgt':'--mgt'];ctx.lineWidth=s<FAR?0.6:1;t.segs.forEach(function(sg,li){ctx.globalAlpha=l?Math.min(.95,.45+li*.08):Math.min(.75,.22+li*.08);ctx.beginPath();
 for(var j=0;j<sg.length;j+=4){var ax=X(sg[j]),ay=Y(sg[j+1]),bx=X(sg[j+2]),by=Y(sg[j+3]);if((ax<0&&bx<0)||(ax>W&&bx>W)||(ay<0&&by<0)||(ay>H&&by>H))continue;ctx.moveTo(ax,ay);ctx.lineTo(bx,by);}
 ctx.stroke();});ctx.globalAlpha=1;});
 [[sel>=0&&selKind==='a'?sel:-1,.22],[hov&&hov[0]==='a'?hov[1]:-1,.14]].forEach(function(q){var k=q[0];if(k<0||!gOn(GA[k].l))return;var a=GA[k];
