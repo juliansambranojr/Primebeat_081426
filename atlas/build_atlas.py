@@ -543,6 +543,145 @@ def layout(scopes, decls, uses, used_by, units, upins, comm_rows, added, gaps):
     return D
 
 
+def ground(scopes, decls, uses, D, pins, host, top=15, partners=5):
+    """Pure: the topography, `D["ground"]`, beside and apart from the maps.
+
+    decls/uses as `assemble` returns them, D as `layout` returns it (the
+    points' places), pins: {project: {library: rev}}, host: {scratch file:
+    the project it was built in}. Islands are counted per scope (lean/,
+    lean_stage3/, the scratch files); rarity per scope over its islands; a
+    scratch island stands on its host project's pins."""
+    L = model.LIBRARIES
+    cone = model.cones(uses)
+    didx = {d["id"]: i for i, d in enumerate(decls)}
+
+    def pin_of(d):
+        proj = scopes[d["scope"]]["key"]
+        proj = host.get(d["file"], proj) if proj == "scratch" else proj
+        return proj, pins.get(proj, {})
+
+    # every library constant and area named anywhere, in a fixed order
+    allc = sorted({(model.area(m), m, n) for d in decls for m, n in d["lib"]
+                   if model.library(m) is not None},
+                  key=lambda t: (model.library(t[1]), t[0], t[2], t[1]))
+    area_names = sorted({a for a, _m, _n in allc}, key=lambda a: (model.library(a), a))
+    aidx = {a: k for k, a in enumerate(area_names)}
+    cidx = {}
+    consts = []
+    for a, m, n in allc:
+        if (a, n) not in cidx:
+            cidx[(a, n)] = len(consts)
+            consts.append({"a": aidx[a], "n": n, "m": m})
+    d_consts = [sorted({cidx[(model.area(m), n)] for m, n in d["lib"]
+                        if model.library(m) is not None}) for d in decls]
+    d_areas = [sorted({consts[c]["a"] for c in cs}) for cs in d_consts]
+
+    # islands, per scope
+    isl = []
+    d_isl = [None] * len(decls)
+    rar_a, rar_c, n_isl = {}, {}, {}
+    for si, sc in enumerate(scopes):
+        mem = [d["id"] for d in decls if d["scope"] == si]
+        comps = model.islands(mem, uses)
+        n_isl[si] = len(comps)
+        start = len(isl)
+        for comp in comps:
+            ms = [didx[c] for c in comp]
+            inside = set(comp)
+            top_ = min(ms, key=lambda i: (-len(inside.intersection(cone[decls[i]["id"]])),
+                                          decls[i]["file"], decls[i]["line"], decls[i]["name"]))
+            proj, pn = pin_of(decls[ms[0]])
+            k = len(isl)
+            for i in ms:
+                d_isl[i] = k
+            isl.append({"sc": si, "m": sorted(ms), "top": top_, "host": proj,
+                        "pin": pn.get("Mathlib", ""), "pnt": pn.get("PrimeNumberTheoremAnd", ""),
+                        "areas": sorted({a for i in ms for a in d_areas[i]}),
+                        "consts": sorted({c for i in ms for c in d_consts[i]})})
+        mine = isl[start:]
+        rar_a[si] = model.rarity([set(x["areas"]) for x in mine])
+        rar_c[si] = model.rarity([set(x["consts"]) for x in mine])
+
+    # areas: who stands on them, how high they rise
+    A = []
+    for k, a in enumerate(area_names):
+        users = [i for i in range(len(decls)) if k in d_areas[i]]
+        held = {si: rar_a[si][k][0] for si in sorted(rar_a) if k in rar_a[si]}
+        bg = sorted(si for si in held if rar_a[si][k][1])
+        stand = [i for i in users if decls[i]["scope"] not in bg]
+        rises = sorted({d_isl[i] for i in stand})
+        # the label sits at the densest 40-unit cell of the standing points
+        cells = {}
+        for i in stand:
+            p = D["decls"][i]
+            cells.setdefault((int(p["y"] // 40), int(p["x"] // 40)), []).append(i)
+        anchor = None
+        if cells:
+            key = min(cells, key=lambda c: (-len(cells[c]), c))
+            xs = [D["decls"][i]["x"] for i in cells[key]]
+            ys = [D["decls"][i]["y"] for i in cells[key]]
+            anchor = [round(sum(xs) / len(xs), 2), round(sum(ys) / len(ys), 2)]
+        A.append({"n": a, "l": model.library(a), "d": users,
+                  "k": [held.get(si, 0) for si in range(len(scopes))], "bg": bg,
+                  "h": len(rises), "i": sorted({d_isl[i] for i in users}), "at": anchor,
+                  "c": [c for c in range(len(consts)) if consts[c]["a"] == k]})
+    C_out = []
+    for c, x in enumerate(consts):
+        held = [rar_c[si][c][0] if c in rar_c[si] else 0 for si in range(len(scopes))]
+        bgm = sum(1 << si for si in range(len(scopes)) if c in rar_c[si] and rar_c[si][c][1])
+        C_out.append([x["a"], x["n"], held, bgm])
+
+    # shared ground between islands
+    info = [{"project": x["sc"], "areas": [area_names[a] for a in x["areas"]], "pin": x["pin"]}
+            for x in isl]
+    rar_named = {si: {area_names[k]: v for k, v in r.items()} for si, r in rar_a.items()}
+    ranked = model.pair_ranking(info, rar_named, n_isl, None)
+    part = {k: [] for k in range(len(isl))}
+    for pr in ranked:
+        for me, other in ((pr["a"], pr["b"]), (pr["b"], pr["a"])):
+            if len(part[me]) < partners:
+                part[me].append([other, pr["w"], 1 if pr["cross"] else 0])
+
+    def pair_out(pr):
+        return {"a": pr["a"], "b": pr["b"], "w": pr["w"], "x": 1 if pr["cross"] else 0,
+                "ar": [[aidx[a], w] for a, w in pr["areas"]]}
+
+    # the terrain's scale: the median stacked height of a standing point, per library
+    f0 = []
+    for li in range(len(L)):
+        gmax = max([x["h"] for x in A if x["l"] == li] + [0])
+        stack = [0.0] * len(decls)
+        for x in A:
+            if x["l"] == li and x["h"]:
+                for i in x["d"]:
+                    if decls[i]["scope"] not in x["bg"]:
+                        stack[i] += x["h"] / gmax
+        nz = sorted(v for v in stack if v > 0)
+        f0.append(round(nz[(len(nz) - 1) // 2], 4) if nz else 1.0)
+
+    counts = {}
+    for si, sc in enumerate(scopes):
+        per = {}
+        for li, lib in enumerate(L):
+            cs = {c for x in isl if x["sc"] == si for c in x["consts"] if consts[c]["a"] in
+                  {k for k in range(len(A)) if A[k]["l"] == li}}
+            ar = {a for x in isl if x["sc"] == si for a in x["areas"] if A[a]["l"] == li}
+            per[lib] = {"constants": len(cs), "areas": len(ar),
+                        "background_areas": sum(1 for a in ar if si in A[a]["bg"])}
+        counts[sc["key"]] = {"islands": n_isl[si], **per}
+    return {
+        "libs": list(L), "share": model.BACKGROUND_TEXT,
+        "pins": {k: dict(sorted(v.items())) for k, v in sorted(pins.items())},
+        "areas": A, "consts": C_out,
+        "islands": [{"sc": x["sc"], "m": x["m"], "top": x["top"], "host": x["host"],
+                     "pin": x["pin"], "pnt": x["pnt"], "a": x["areas"], "pp": part[k]}
+                    for k, x in enumerate(isl)],
+        "di": d_isl, "dc": d_consts,
+        "pairs": [pair_out(p) for p in ranked[:top]],
+        "counts": counts, "res": 3, "rad": 24, "f0": f0,
+    }
+
+
 def counts(D):
     decls = D["decls"]
     per = {}
@@ -592,7 +731,8 @@ def main(argv=None):
                     u.append([mod_file(host or scope_key, um), un])
             out.append({"name": r["name"], "kind": r["kind"], "file": f, "line": r["line"],
                         "end_line": r["end_line"], "sorry": r["sorry"], "uses": u,
-                        "type": r["type"], "private": r["private"]})
+                        "type": r["type"], "private": r["private"],
+                        "lib": [list(x) for x in r.get("lib", [])]})
         return out
 
     scopes = [
@@ -646,11 +786,28 @@ def main(argv=None):
     D["sa_project"] = sa_proj
     C = counts(D)
     D["counts"] = C
+    pins = {}
+    for p in ("lean", "lean_stage3"):
+        man = json.loads(cat_blobs([tree[f"{p}/lake-manifest.json"]])[tree[f"{p}/lake-manifest.json"]])
+        pins[p] = {"Mathlib" if pk["name"] == "mathlib" else pk["name"]: pk["rev"][:10]
+                   for pk in man["packages"] if pk["name"] in ("mathlib", "PrimeNumberTheoremAnd")}
+    D["ground"] = ground(scopes, decls, uses, D, pins, {k: v for k, v in sa_proj.items() if v})
     html = page.render(D)
     out = pathlib.Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_bytes(html.encode("utf-8"))
     print(json.dumps(C, sort_keys=True, indent=1))
+    G = D["ground"]
+    print("ground:", json.dumps(G["counts"], sort_keys=True))
+    print("background: an area held by", G["share"], "of a project's islands;",
+          {sc["key"]: [A["n"] for A in G["areas"] if si in A["bg"]]
+           for si, sc in enumerate(D["scopes"])})
+    for pr in G["pairs"]:
+        ia, ib = G["islands"][pr["a"]], G["islands"][pr["b"]]
+        print(f"pair {pr['w']:8.3f} {'NAME-MATCH ' if pr['x'] else ''}"
+              f"{D['scopes'][ia['sc']]['key']}:{D['decls'][ia['top']]['n']}({len(ia['m'])}) ~ "
+              f"{D['scopes'][ib['sc']]['key']}:{D['decls'][ib['top']]['n']}({len(ib['m'])}) | "
+              + ", ".join(G["areas"][a]["n"] for a, _w in pr["ar"][:6]))
     for g in gaps:
         print("GAP", g["file"], "|", " || ".join(f"{e['project']}: {e['error']}" for e in g["errors"]))
     print("wrote", out.relative_to(ROOT) if out.is_relative_to(ROOT) else out, len(html.encode()), "bytes")

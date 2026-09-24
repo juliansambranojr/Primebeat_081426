@@ -56,9 +56,23 @@ ending in `.lean`, and four-digit unit ids standing alone. A token names
     a `.lean` file when the token's last path part equals its file name;
     a unit when it equals the unit's id (`0331`, or `units/0331-...`).
 A text naming none of these sits in the margin lane.
+
+GROUND, the topography. A declaration's ground is the Mathlib and
+PrimeNumberTheoremAnd constants its type and value name directly
+(Extract.lean). Its AREAS are those constants' modules cut by `area`: three
+components (`Mathlib.NumberTheory.LSeries`, `Mathlib.Analysis.Complex`), four
+under `PrimeNumberTheoremAnd.Mathlib`. An ISLAND is a connected component of a
+project's own uses graph (`islands`); its ground is the union of its
+declarations'. RARITY is counted over one project's islands: a constant or
+area held by more than one third of them is BACKGROUND; any other weighs
+ln(islands / islands holding it). Two islands SHARE the non-background areas
+both stand on, weighted by rarity (`shared_ground`). lean/ and lean_stage3/
+pin different Mathlib versions, so ground shared across them is a match of
+area names across two versions and is marked `cross`.
 """
 
 
+import math
 import re
 
 # ── placement ────────────────────────────────────────────────────────────
@@ -367,6 +381,120 @@ def date_x(day, days, x0, x1):
     return x0 + (x1 - x0) * (d - d0) / (d1 - d0)
 
 
+# ── ground: the libraries under the islands ─────────────────────────────
+
+LIBRARIES = ("Mathlib", "PrimeNumberTheoremAnd")
+BACKGROUND_SHARE = 1 / 3
+BACKGROUND_TEXT = "more than one third"
+
+
+def library(module):
+    """0 for a Mathlib module, 1 for a PrimeNumberTheoremAnd module, else None
+    (the root of the module path decides)."""
+    root = module.split(".", 1)[0]
+    return LIBRARIES.index(root) if root in LIBRARIES else None
+
+
+def area(module):
+    """The AREA of a library module: its path cut to three components.
+
+    `Mathlib.NumberTheory.LSeries.RiemannZeta` is in
+    `Mathlib.NumberTheory.LSeries`; `Mathlib.Order.Basic` is its own area; a
+    shorter path is its own area (`PrimeNumberTheoremAnd.ZetaBounds`).
+    PrimeNumberTheoremAnd's `Mathlib` subtree mirrors Mathlib's tree one level
+    down, so it is cut one component deeper, at four:
+    `PrimeNumberTheoremAnd.Mathlib.Analysis.Complex`."""
+    parts = module.split(".")
+    depth = 4 if parts[:2] == ["PrimeNumberTheoremAnd", "Mathlib"] else 3
+    return ".".join(parts[:depth])
+
+
+def islands(members, uses):
+    """The ISLANDS of a project: the connected components of its own uses
+    graph, edges taken undirected and only between two of `members`.
+
+    Returns sorted member lists, the largest first, ties by first member."""
+    mem = sorted(set(members))
+    parent = {m: m for m in mem}
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for m in mem:
+        for u in uses.get(m, ()):
+            if u in parent:
+                a, b = find(m), find(u)
+                if a != b:
+                    parent[max(a, b)] = min(a, b)
+    comps = {}
+    for m in mem:
+        comps.setdefault(find(m), []).append(m)
+    return sorted((sorted(c) for c in comps.values()), key=lambda c: (-len(c), c[0]))
+
+
+def rarity(sets, share=BACKGROUND_SHARE):
+    """{item: (islands holding it, background)} over one project's islands.
+
+    `sets` is one set of items (constants or areas) per island. An item held
+    by more than `share` of the islands is BACKGROUND: the ground nearly
+    everything stands on, left out of the terrain and of shared ground."""
+    n_isl = len(sets)
+    count = {}
+    for st in sets:
+        for it in st:
+            count[it] = count.get(it, 0) + 1
+    return {it: (n, n > share * n_isl) for it, n in sorted(count.items())}
+
+
+def weight(n, n_islands):
+    """The rarity weight of an item held by n of a project's n_islands:
+    ln(n_islands / n); an item every island holds weighs 0."""
+    return math.log(n_islands / n)
+
+
+def shared_ground(areas_a, areas_b, rar_a, rar_b, n_a, n_b):
+    """The ground two islands share: the areas both stand on that are
+    background in neither island's project, each weighted by rarity (the
+    mean of its weight in the two projects; one project, its weight there).
+
+    Returns (total rounded to 6 places, [(area, weight)] heaviest first)."""
+    out = []
+    for a in sorted(set(areas_a) & set(areas_b)):
+        ca, bga = rar_a[a]
+        cb, bgb = rar_b[a]
+        if bga or bgb:
+            continue
+        out.append((a, round((weight(ca, n_a) + weight(cb, n_b)) / 2, 6)))
+    out.sort(key=lambda t: (-t[1], t[0]))
+    return round(sum(w for _a, w in out), 6), out
+
+
+def pair_ranking(isl, rar, n_isl, top):
+    """The island pairs sharing the most ground.
+
+    isl: [{"project", "areas", "pin"}]; rar: {project: rarity of areas};
+    n_isl: {project: number of islands}. A pair whose two islands stand on
+    different Mathlib pins shares ground by NAME only (`cross`: the same
+    area path in two Mathlib versions). Pairs with no shared ground are
+    dropped; ties go to the lower island indices."""
+    pairs = []
+    for i in range(len(isl)):
+        for j in range(i + 1, len(isl)):
+            a, b = isl[i], isl[j]
+            tot, areas = shared_ground(a["areas"], b["areas"], rar[a["project"]],
+                                       rar[b["project"]], n_isl[a["project"]],
+                                       n_isl[b["project"]])
+            if tot > 0:
+                pairs.append({"a": i, "b": j, "w": tot, "areas": areas,
+                              "cross": a["pin"] != b["pin"]})
+    pairs.sort(key=lambda p: (-p["w"], p["a"], p["b"]))
+    return pairs[:top] if top is not None else pairs
+
+
 __all__ = ["bounds", "place", "place_t", "cones", "closure", "roots", "depths",
            "same_name", "distinctive", "NameIndex", "mentions", "first_day",
-           "date_x", "lit_value"]
+           "date_x", "lit_value", "library", "area", "islands", "rarity", "weight",
+           "shared_ground", "pair_ranking", "LIBRARIES", "BACKGROUND_SHARE"]
