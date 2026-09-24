@@ -279,7 +279,8 @@ def test_toggle_off_equality():
     stripped = (full.replace(page.GCSS, "", 1)
                 .replace('\n<span class="grp">ground</span>'
                          '\n<label><input type="checkbox" data-layer="mground"> Mathlib ground</label>'
-                         '\n<label><input type="checkbox" data-layer="pground"> PrimeNumberTheoremAnd ground</label>',
+                         '\n<label><input type="checkbox" data-layer="pground"> PrimeNumberTheoremAnd ground</label>'
+                         '\n<label><input type="checkbox" data-layer="bare"> neither library (Lean core only)</label>',
                          "", 1)
                 .replace(page._ground_section(D), "", 1).replace(page._ground_read(G), "", 1)
                 .replace(page._legend(G), page._legend(), 1)
@@ -287,9 +288,20 @@ def test_toggle_off_equality():
                 .replace(page._script(G), page._script(None), 1))
     assert stripped == old
     # every ground snippet in the script is gated: none paints while both layers are off
-    assert page.GJS["terrain"].startswith("if(layer.mground||layer.pground)")
+    assert page.GJS["terrain"].startswith("if(layer.mground||layer.pground||layer.bare)")
+    assert "if(layer.bare){" in page.GJS["init"]                      # the ring paints only with its toggle
     assert "if(lv<1)return;[0,1].forEach(function(l){if(!gOn(l))return;" in page.GJS["init"]
     assert "if(!gOn(a.l)||!a.h)return;" in page.GJS["init"]            # hover finds no area
+
+
+def test_neither_library_ring():
+    D = build_ground()
+    full = page.render(D)
+    assert full.count('data-layer="bare">') == 1 and 'data-layer="bare" checked' not in full
+    bare = [i for i, cs in enumerate(D["ground"]["dc"]) if not cs]
+    js = page.GJS["init"]
+    assert "G.dc.forEach(function(cs,i){if(!cs.length)BARE.push(i);});" in js
+    assert len(bare) == sum(1 for cs in D["ground"]["dc"] if len(cs) == 0)
 
 
 def test_ground_escaped_and_deterministic():

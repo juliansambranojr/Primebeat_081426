@@ -367,10 +367,11 @@ paint();
 
 
 GCSS = r"""
-:root{--mgr:#b07d2a;--pgr:#00b8f0;--mgt:#6e4a0e;--pgt:#006e99}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--mgr:#d6a24e;--pgr:#2fd8ff;--mgt:#ecc27d;--pgt:#9eeeff}}
-:root[data-theme="dark"]{--mgr:#d6a24e;--pgr:#2fd8ff;--mgt:#ecc27d;--pgt:#9eeeff}
+:root{--mgr:#b07d2a;--pgr:#00b8f0;--mgt:#6e4a0e;--pgt:#006e99;--bare:#6fbf00}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--mgr:#d6a24e;--pgr:#2fd8ff;--mgt:#ecc27d;--pgt:#9eeeff;--bare:#c6ff3d}}
+:root[data-theme="dark"]{--mgr:#d6a24e;--pgr:#2fd8ff;--mgt:#ecc27d;--pgt:#9eeeff;--bare:#c6ff3d}
 .sw-mg{width:28px;height:12px;border-radius:6px;background:var(--mgr);opacity:.5;box-shadow:inset 0 0 0 1.5px var(--mgt)}
+.sw-bare{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 2.5px var(--bare)}
 .sw-pg{width:28px;height:12px;border-radius:6px;background:var(--pgr);opacity:.5;box-shadow:inset 0 0 0 1.5px var(--pgt)}
 table.ground{border-collapse:collapse;font-size:12px;width:100%}
 table.ground td,table.ground th{border-top:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top;
@@ -384,7 +385,7 @@ table.ground .n{white-space:nowrap}table.ground td.i{min-width:180px}
 # every marker is removed and JS is the atlas's page script as it was.
 GJS = {
     "init": r"""var G=D.ground,GL=['mground','pground'],GA=G.areas,GC=G.consts,GI=G.islands,terr=[null,null],GMAX=[0,0];
-layer.mground=false;layer.pground=false;
+layer.mground=false;layer.pground=false;layer.bare=false;var BARE=[];G.dc.forEach(function(cs,i){if(!cs.length)BARE.push(i);});
 GA.forEach(function(a){if(a.h>GMAX[a.l])GMAX[a.l]=a.h;});
 function gOn(l){return !!layer[GL[l]];}
 function stands(a,i){return a.bg.indexOf(P[i].sc)<0;}
@@ -429,7 +430,8 @@ for(var j=0;j<sg.length;j+=4){var ax=X(sg[j]),ay=Y(sg[j+1]),bx=X(sg[j+2]),by=Y(s
 ctx.stroke();});ctx.globalAlpha=1;});
 [[sel>=0&&selKind==='a'?sel:-1,.22],[hov&&hov[0]==='a'?hov[1]:-1,.14]].forEach(function(q){var k=q[0];if(k<0||!gOn(GA[k].l))return;var a=GA[k];
 ctx.globalAlpha=q[1];ctx.fillStyle=C[a.l?'--pgt':'--mgt'];ctx.beginPath();a.d.forEach(function(i){if(!vis(i))return;var x=X(P[i].x),y=Y(P[i].y),rr=G.rad*0.8*s;
-if(x<-rr||x>W+rr||y<-rr||y>H+rr)return;ctx.moveTo(x+rr,y);ctx.arc(x,y,rr,0,7);});ctx.fill();ctx.globalAlpha=1;});}
+if(x<-rr||x>W+rr||y<-rr||y>H+rr)return;ctx.moveTo(x+rr,y);ctx.arc(x,y,rr,0,7);});ctx.fill();ctx.globalAlpha=1;});
+if(layer.bare){C['--bare']=col('--bare');ctx.strokeStyle=C['--bare'];ctx.lineWidth=2.5;ctx.globalAlpha=.95;ctx.beginPath();BARE.forEach(function(i){if(!vis(i))return;var x=X(P[i].x),y=Y(P[i].y),rr=Math.max(5,G.rad*0.35*s);if(x<-rr||x>W+rr||y<-rr||y>H+rr)return;ctx.moveTo(x+rr,y);ctx.arc(x,y,rr,0,7);});ctx.stroke();ctx.globalAlpha=1;ctx.lineWidth=1;}}
 function glabels(lv){if(lv<1)return;[0,1].forEach(function(l){if(!gOn(l))return;
 var ks=[];GA.forEach(function(a,k){if(a.l===l&&a.at&&a.h)ks.push(k);});ks.sort(function(p,q){return GA[q].h-GA[p].h||p-q;});
 ks.forEach(function(k){var a=GA[k];if(!a.d.some(function(i){return vis(i)&&stands(a,i);}))return;
@@ -479,14 +481,14 @@ return span([alink(a),GA[a].bg.indexOf(P[i].sc)>=0?' (background in '+scname(P[i
 Array.prototype.forEach.call(document.querySelectorAll('[data-isl]'),function(b){b.onclick=function(){pickIsland(+b.getAttribute('data-isl'),true);stage.scrollIntoView({block:'nearest'});};});
 Array.prototype.forEach.call(document.querySelectorAll('[data-area]'),function(b){b.onclick=function(){pickArea(+b.getAttribute('data-area'),true);stage.scrollIntoView({block:'nearest'});};});
 """,
-    "terrain": "if(layer.mground||layer.pground)gpaint();",
+    "terrain": "if(layer.mground||layer.pground||layer.bare)gpaint();",
     "labels": "glabels(lv);",
     "hit": "if(!best)best=areaHit(x,y);",
     "tip": "if(h[0]==='a')return areaTip(h[1],h[2]);",
     "pick": "groundLists(i);",
     "click": "if(h[0]==='a')pickArea(h[1],false,h[2]);else ",
     "api": "window.pbAtlas.pickArea=pickArea;window.pbAtlas.pickIsland=pickIsland;window.pbAtlas.ground=G;\n",
-    "hash": ("if(o.mg)layer.mground=o.mg==='1';if(o.pg)layer.pground=o.pg==='1';sync();"
+    "hash": ("if(o.mg)layer.mground=o.mg==='1';if(o.pg)layer.pground=o.pg==='1';if(o.bare)layer.bare=o.bare==='1';sync();"
              "if(o.area)GA.forEach(function(a,k){if(a.n===o.area)pickArea(k,true);});"
              "if(o.island)pickIsland(+o.island,true);"
              "if(o.zoom&&(o.area||o.island)){s=+o.zoom;var cx=o.cx!==undefined?+o.cx:wx(W/2),cy=o.cy!==undefined?+o.cy:wy(H/2);tx=W/2-s*cx;ty=H/2-s*cy;}\n"),
@@ -524,6 +526,7 @@ def _legend(G=None):
              "mark the levels; areas held by " + G["share"] + " of a project's islands are background "
              "there and drawn nowhere"),
             ("sw sw-pg", "PrimeNumberTheoremAnd ground (toggle): the same for PrimeNumberTheoremAnd"),
+            ("sw sw-bare", "neither library (toggle): a bright ring on each declaration that uses no Mathlib or PrimeNumberTheoremAnd constant, built on Lean's core alone"),
         ]
     return "".join(f'<div><span class="{c}"></span><span>{_e(t)}</span></div>' for c, t in rows)
 
@@ -608,6 +611,7 @@ def render(D):
     toggles = ('\n<span class="grp">ground</span>'
                '\n<label><input type="checkbox" data-layer="mground"> Mathlib ground</label>'
                '\n<label><input type="checkbox" data-layer="pground"> PrimeNumberTheoremAnd ground</label>'
+               '\n<label><input type="checkbox" data-layer="bare"> neither library (Lean core only)</label>'
                if G else "")
     gsection = _ground_section(D) if G else ""
     gread = _ground_read(G) if G else ""
