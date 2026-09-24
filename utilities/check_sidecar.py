@@ -89,7 +89,7 @@ def route(rel, want):
     if s is not None and _sha(s) == want:
         return "stripped"
 
-    if not os.path.isdir(os.path.join(ROOT, ".git")):
+    if not os.path.exists(os.path.join(ROOT, ".git")):   # a worktree has a .git file
         return None                      # no history here; cannot say more
     for rev in _git("log", "--format=%H", "--", rel).split():
         blob = _git("show", f"{rev}:{rel}")
