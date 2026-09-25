@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-09-24  atlas topography (80c7fdb, 010a5ea): Mathlib and PNT ground layers; 106 lean/ declarations stand on Lean core alone
 - [open]   2026-09-24  atlas/ shipped (626148d): 1529 Lean declarations mapped; one direct sorry, WeilPowerAssembly.detect_gap_exists, used by nothing
 - [open]   2026-09-19  lab R.4a to R.4d shipped (lab ee1e8b6). Six components on 0351 to 0373, two kinds: threads whose top objects recur on every joint (0363 to 0365 on H3, 0369 to 0373 on isTest_phiWC; formalization) and a corridor handing one object per joint (0361 to 0368: 13j, DESIGN.md, L, 2m; decisions). 0368 to 0369 carried nothing: no identifier in the closing. Unattached 0355, 0356, 0360
 - [open]   2026-09-19  labels resolve only on the right axis: three nulls on 0351 to 0373 (prose_parser genus vs next genus, genus vs out-degree, genus vs move: 33 of 117 against a marginal of 21, from house style); intent neighbourhoods fall out of O's shared objects without being declared (section 13 ids, H1 to H3, block 15 names); lab PLAN R.4 is the branch, Q after it
