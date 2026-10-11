@@ -114,3 +114,15 @@ Julian's to write. Which tests are preregistered is in `CONTEXT.md`
 Three things no gate can see: status transitions in the NOTEPAD, outcome
 markings in the notebook, and the verdict line. Agents append entries and
 `[open]` lines; the transitions are Julian's.
+
+## The mailbox
+
+**Read your mailbox first.** This repo has one, `mail/`: one file per
+message between this repo and the repos it works with, each open until a
+receipt names it (`mail/README.md` holds the rule). Lab is this repo's
+descendant (lab PLAN_v2 box 92) and asks it questions here. This repo's own
+`lab/` copy has no `mail` command and shadows lab main's from this
+directory, so run lab main's with the directory kept off the path (`-P`):
+`PYTHONPATH=~/GitHub/lab python3 -P -m lab mail read` prints the open mail
+addressed here; answer one with `PYTHONPATH=~/GitHub/lab python3 -P -m lab
+mail send <repo> <slug> --reply-to <its path>`.
