@@ -117,11 +117,47 @@ Statements only were read; hypotheses may still need adapting.
 So slice 3 is assembly, slice 5 is nearly free, and the new analysis is the
 ramp kernel of slice 2, the tail of slice 4 and the lemma of slice 6.
 
-### 2 The Mellin transform of the ramp sum — SKETCH
-For `Re s > 1`: `∫₁^∞ rampSum(y) y^(−s−1) dy = −ζ'/ζ(s)/(s(s−1))`. Termwise,
-`∫_n^∞ (y/n − 1) y^(−s−1) dy = n^(−s)/(s(s−1))`, and Mathlib has the L-series of
-`Λ` as `−ζ'/ζ`. The interchange is monotone convergence at real `s`, then
-domination. Then `∫₁^∞ G(y) y^(−s−1) dy = Φ(s)`.
+### 2 The Mellin transform of the ramp sum — PROVED (unit 0385: `LandauMellin.rampK_integrable`,
+`rampK_integral`, `rampK_integral_norm`, `rampSum_eq_tsum`, `mellin_rampSum`)
+Objects.   `rampK s n y = max(y/n − 1, 0)·y^(−s−1)`, the ramp kernel of one `n`;
+           its integral over `(1, ∞)` is `n^(−s)/(s(s−1))`, of modulus
+           `n^(−σ)/|s(s−1)|`, `σ = Re s`. `rampSum y = Σ_n Λ(n)·max(y/n − 1, 0)`
+           (`LandauWindow.rampSum`; the sum is finite, the terms with `n > y`
+           vanish).
+Sizes.     the interchange of sum and integral is by absolute summability:
+           `Σ_n Λ(n)·∫₁^∞ |rampK s n| = Σ_n Λ(n) n^(−σ) / (σ(σ−1))`, finite for
+           `σ > 1`. An identity, nothing bounded against anything. Lost
+           factor: none.
+Regime.    R1 `1 < Re s`.
+Defs.      `rampK (s : ℂ) (n : ℕ) (y : ℝ) : ℂ := ((max (y / n - 1) 0 : ℝ) : ℂ) * (y : ℂ) ^ (-s - 1)`. One.
+Theorems.  `theorem rampK_integrable {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
+               IntegrableOn (rampK s n) (Set.Ioi 1)`
+           `theorem rampK_integral {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
+               ∫ y in Set.Ioi (1 : ℝ), rampK s n y = (n : ℂ) ^ (-s) / (s * (s - 1))`
+             (on `(1, ∞)` the kernel is the indicator of `(n, ∞)` times
+             `y^(−s)/n − y^(−s−1)`; two power integrals; R1.)
+           `theorem rampK_integral_norm {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
+               ∫ y in Set.Ioi (1 : ℝ), ‖rampK s n y‖ = (n : ℝ) ^ (-s.re) / (s.re * (s.re - 1))`
+             (the norm is the kernel at the real point `σ`, for `y > 0`; R1.)
+           `theorem rampSum_eq_tsum (y : ℝ) :
+               rampSum y = ∑' n : ℕ, ArithmeticFunction.vonMangoldt n * max (y / n - 1) 0`
+           `theorem mellin_rampSum {s : ℂ} (hs : 1 < s.re) :
+               ∫ y in Set.Ioi (1 : ℝ), (rampSum y : ℂ) * (y : ℂ) ^ (-s - 1)
+                 = -deriv riemannZeta s / riemannZeta s / (s * (s - 1))`
+Composes.  Mathlib: `integral_Ioi_cpow_of_lt`, `integrableOn_Ioi_cpow_of_lt`,
+           `hasSum_integral_of_summable_integral_norm` (a `lemma`),
+           `LSeriesSummable_vonMangoldt` (a `lemma`),
+           `LSeries_vonMangoldt_eq_deriv_riemannZeta_div` (a `lemma`),
+           `LSeries.term_def₀` (a `lemma`). `LandauWindow.rampSum`.
+Module.    `Stage3/LandauMellin.lean`, namespace `LandauMellin`,
+           `import Stage3.LandauWindow`. Pinned: `rampK_integral`,
+           `rampK_integral_norm`, `mellin_rampSum`.
+Open.      block 2b.
+
+### 2b The Mellin transform of `G` — SKETCH
+For `Re s > 1`: `∫₁^∞ G(y) y^(−s−1) dy = Φ(s)`, from block 2,
+`∫₁^∞ log y · y^(−s) dy = 1/(s−1)²` and `∫₁^∞ y^(−s) dy = 1/(s−1)`, with the
+integrability of each piece.
 
 ### 3 The poles of `Φ` and its Taylor coefficients — SKETCH
 `Φ` analytic at `1`; meromorphic on `Re s > 0`; principal part

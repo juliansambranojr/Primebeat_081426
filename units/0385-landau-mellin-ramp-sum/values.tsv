@@ -1,0 +1,23 @@
+key	value	source
+module_lines	222	wc -l lean_stage3/Stage3/LandauMellin.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/LandauMellin.lean
+defs	1	grep -c ^def lean_stage3/Stage3/LandauMellin.lean
+private_lemmas	2	rampK_eq_indicator, two_powers_integrableOn
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauMellin.lean
+pins	3	rampK_integral, rampK_integral_norm, mellin_rampSum
+errors_first	3	first lake build Stage3.LandauMellin, lines error: Stage3/LandauMellin.lean
+roots	1	rw with integral_ofReal against a Complex.ofReal cast; integral_complex_ofReal closes it
+cascade	2	the pins of the two theorems downstream of the failed proof (TRAPS.md row 19)
+scratch_misses	1	the scratch pass: Complex.cpow_add_one does not exist; Complex.cpow_add and Complex.cpow_one do
+builds	2	the first build and the one after the fix
+traps_added	1	lean_stage3/TRAPS.md row 39
+trap_row	39	lean_stage3/TRAPS.md
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8775	lake build (full Stage3), Build completed successfully
+jobs_module	8656	run/build.log, lake build Stage3.LandauMellin
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#2	the Mellin transform of the ramp sum
+slices_proved	2	lean_stage3/design/landau.md, blocks 1 and 2
+unit_statement	0384	the unit that stated the criterion
+steps_skipped	1	LOOP.md section 0 (no orient hook in a cloud session)

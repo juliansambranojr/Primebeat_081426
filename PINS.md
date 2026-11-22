@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 2 of `design/landau.md`, `Stage3/LandauMellin.lean`
+
+    DONE        `Stage3/LandauMellin.lean` builds with no `sorry`: the ramp
+                kernel's integral, its norm's integral, `rampSum` as a
+                `tsum`, and `mellin_rampSum`, the Mellin transform of the
+                ramp sum on `Re s > 1`; a formalization unit; block 2 of
+                `lean_stage3/design/landau.md` marked PROVED
+    ASSUMED     the statements of block 2 as written in the worksheet; any
+                hypothesis the build adds is reported here
+    DEPENDS     Mathlib's L-series of `Λ` and its power integrals on `(c, ∞)`;
+                `Stage3/LandauWindow.lean` for `rampSum`
+    OUT         the transform of `G` itself (block 2b); blocks 3 to 7; no
+                claim about the window bound or about RH
+    OUTCOME     done as pinned, unit 0385: five theorems, no `sorry`, no
+                hypothesis added; `rampK_integrable` joined the block's list
+                before the build; TRAPS row 39 added
+
 ### 2026-09-24 · the atlas's topography: Mathlib and PrimeNumberTheoremAnd
 
     DONE        two new layers on `atlas/`, each switched on and off: the
