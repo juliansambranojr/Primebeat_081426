@@ -5,7 +5,7 @@ CellResidual — block T5 of `lean_stage3/design/joints.md`, second part. 2026-1
 15 theorems, 4 definitions, 500 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`PiToPsi`](../lean_stage3/PiToPsi.md), [`TableRoute`](../lean_stage3/TableRoute.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiZeros`](../lean_stage3/PiZeros.md)
 
 ## The picture
 
@@ -29,6 +29,7 @@ flowchart LR
   x0(["<b>Nonvanishing</b><br/>iter_bdiffZ_eq_stencilR<br/>stencilR_row<br/>stencilR_sub"]):::ext
   x1(["<b>PiToPsi</b><br/>RH_iff_schoenfeldWeak<br/>RH_of_schoenfeldWeak<br/>continuousOn_Li"]):::ext
   x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
+  x3(["<b>PiZeros</b><br/>table_cell_eq_zero_sum"]):::ext
   n0 --> n4
   n1 --> n6
   n10 --> n11
@@ -43,6 +44,7 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n9 --> n10
+  n13 -.-> x3
   x0 -.-> n1
   x0 -.-> n12
   x0 -.-> n13
@@ -73,7 +75,7 @@ The residual of the count on the rung `a·2^m`.
 
 - **Is:** `` resid (a : ℝ) (m : ℤ) : ℝ := (Nat.primeCounting ⌊a * (2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ) - Stage3.Li (a * (2 : ℝ) ^ (m : ℝ)) ``
 - **Built from:** [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li)
-- **Used by 8:** [`CellResidual.base_bound`](#CellResidual-base_bound), [`CellResidual.cellResid`](#CellResidual-cellResid), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.resid_le`](#CellResidual-resid_le), [`CellResidual.schoenfeldWeak_of_cells`](#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_eq`](#CellResidual-table_cell_eq)
+- **Used by 9:** [`CellResidual.base_bound`](#CellResidual-base_bound), [`CellResidual.cellResid`](#CellResidual-cellResid), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.resid_le`](#CellResidual-resid_le), [`CellResidual.schoenfeldWeak_of_cells`](#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_eq`](#CellResidual-table_cell_eq), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum)
 
 <a name="CellResidual-cellResid"></a>
 ### `CellResidual.cellResid`
@@ -84,7 +86,7 @@ The residual of the cell `(r, d)` on the ladder started at `a`.
 
 - **Is:** `` cellResid (a : ℝ) (r : ℤ) (d : ℕ) : ℝ := stencilR (d + 1) (resid a) r ``
 - **Built from:** [`Nonvanishing.stencilR`](../lean/Nonvanishing.md#Nonvanishing-stencilR), [`CellResidual.resid`](#CellResidual-resid)
-- **Used by 5:** [`CellResidual.CellsSqrt`](#CellResidual-CellsSqrt), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_eq`](#CellResidual-table_cell_eq), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid)
+- **Used by 6:** [`CellResidual.CellsSqrt`](#CellResidual-CellsSqrt), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_eq`](#CellResidual-table_cell_eq), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum)
 
 <a name="CellResidual-cellSize"></a>
 ### `CellResidual.cellSize`
@@ -537,9 +539,10 @@ line 447
 
 **Definitions its proof touches:** [`Nonvanishing.bdiffZ`](../lean/Nonvanishing.md#Nonvanishing-bdiffZ), [`CellResidual.resid`](#CellResidual-resid)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid) — `` ∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → |((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m … ``
+  - [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) (PiZeros) — `` ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑… ``
 
 <a name="CellResidual-table_cell_resid"></a>
 ### `CellResidual.table_cell_resid`

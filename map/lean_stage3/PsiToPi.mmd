@@ -11,12 +11,13 @@ flowchart LR
   n9["<b>one_add_log_four_le</b><br/>1 + Real.log 4 ≤ 5 * Real.log 2 ^ 2"]:::shp
   n10["<b>rpow_neg_half_mul</b><br/>t ^ (-(1 : ℝ) / 2) * (t * Real.log t ^ 2) = Real.sqrt t * Real.l…"]:::shp
   n11["<b>schoenfeldWeak_of_psiWeak</b><br/>StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x …"]:::shp
-  x0(["<b>ThetaPi</b><br/>schoenfeldWeakTheta_of_psiWeakTheta<br/>theta_err_of_psi_theta"]):::ext
-  x1(["<b>PiToPsi</b><br/>relRes_tail_le"]):::ext
-  x2(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x3(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x4(["<b>LineBound</b><br/>schoenfeldWeak_of_psiWeak_three"]):::ext
-  x5(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x0(["<b>PiZeros</b><br/>norm_tr_psiTheta_le<br/>pi_sub_Li_eq_tr<br/>wt_continuousOn"]):::ext
+  x1(["<b>ThetaPi</b><br/>schoenfeldWeakTheta_of_psiWeakTheta<br/>theta_err_of_psi_theta"]):::ext
+  x2(["<b>PiToPsi</b><br/>relRes_tail_le"]):::ext
+  x3(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x4(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x5(["<b>LineBound</b><br/>schoenfeldWeak_of_psiWeak_three"]):::ext
+  x6(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n4
   n1 --> n2
   n1 --> n3
@@ -29,16 +30,19 @@ flowchart LR
   n7 --> n11
   n8 --> n11
   n9 --> n11
-  n11 -.-> x2
+  n1 -.-> x0
   n11 -.-> x3
   n11 -.-> x4
   n11 -.-> x5
-  n3 -.-> x0
+  n11 -.-> x6
+  n3 -.-> x1
   n4 -.-> x0
-  n6 -.-> x1
-  n7 -.-> x0
-  n8 -.-> x0
-  n9 -.-> x0
+  n4 -.-> x1
+  n6 -.-> x0
+  n6 -.-> x2
+  n7 -.-> x1
+  n8 -.-> x1
+  n9 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

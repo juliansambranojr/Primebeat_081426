@@ -5,7 +5,7 @@ FiniteOffLine — block J10d of `lean_stage3/design/joints.md`. 2026-11-22. The 
 12 theorems, 3 definitions, 569 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md), [`CellModes`](../lean_stage3/CellModes.md), [`LadderMean`](../lean_stage3/LadderMean.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`RealSegment`](../lean_stage3/RealSegment.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellRows`](../lean_stage3/CellRows.md), [`PiZeros`](../lean_stage3/PiZeros.md)
 
 ## The picture
 
@@ -23,15 +23,17 @@ flowchart LR
   n9["<b>cell_zero_sum_finset</b><br/>‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : …"]:::thm
   n10["<b>err_le</b><br/>∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r …"]:::thm
   n11["<b>finite_off_line ■</b><br/>RiemannHypothesis"]:::thm
-  x0(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
-  x1(["<b>ArgCount</b><br/>rvM_crude"]):::ext
-  x2(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
-  x3(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
-  x4(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
-  x5(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
-  x6(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
-  x7(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x8(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x0(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
+  x1(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x2(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x3(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
+  x4(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
+  x5(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x6(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
+  x7(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
+  x8(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x9(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x10(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n11
   n0 --> n5
@@ -48,15 +50,18 @@ flowchart LR
   n7 --> n8
   n8 --> n11
   n9 --> n11
-  x0 -.-> n4
-  x1 -.-> n6
+  n1 -.-> x0
+  n10 -.-> x6
+  n9 -.-> x6
+  x1 -.-> n4
+  x10 -.-> n11
   x2 -.-> n6
   x3 -.-> n6
-  x4 -.-> n9
-  x5 -.-> n10
-  x6 -.-> n11
-  x7 -.-> n11
+  x4 -.-> n6
+  x5 -.-> n9
+  x7 -.-> n10
   x8 -.-> n11
+  x9 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -79,7 +84,7 @@ def · line 47
 The zeros below a height, as a finite set.
 
 - **Is:** `` ZF (T : ℝ) : Finset NontrivialZeros := (nontrivialZeros_abs_im_lt_finite T).toFinset ``
-- **Used by 5:** [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line), [`FiniteOffLine.mem_ZF`](#FiniteOffLine-mem_ZF), [`FiniteOffLine.sum_order_onLineInv_le`](#FiniteOffLine-sum_order_onLineInv_le), [`FiniteOffLine.tsum_sub_eq_sum`](#FiniteOffLine-tsum_sub_eq_sum)
+- **Used by 10:** [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line), [`FiniteOffLine.mem_ZF`](#FiniteOffLine-mem_ZF), [`FiniteOffLine.sum_order_onLineInv_le`](#FiniteOffLine-sum_order_onLineInv_le), [`FiniteOffLine.tsum_sub_eq_sum`](#FiniteOffLine-tsum_sub_eq_sum), [`PiZeros.pi_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum), [`PiZeros.zeroPartialSum_eq_sum`](../lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum)
 
 <a name="FiniteOffLine-onLineInv"></a>
 ### `FiniteOffLine.onLineInv`
@@ -99,7 +104,7 @@ def · line 218
 One zero's term in the cell `(r, d)` of the log-weighted count.
 
 - **Is:** `` term (d : ℕ) (r : ℤ) (ρ : NontrivialZeros) : ℂ := ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r * (1 - ((2:ℂ) ^ (ρ : ℂ))⁻¹) ^ d / (ρ : ℂ)) ``
-- **Used by 3:** [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line), [`FiniteOffLine.norm_term_le`](#FiniteOffLine-norm_term_le)
+- **Used by 5:** [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line), [`FiniteOffLine.norm_term_le`](#FiniteOffLine-norm_term_le)
 
 ## Theorems
 
@@ -152,10 +157,11 @@ line 53
 
   - [`FiniteOffLine.mem_ZF`](#FiniteOffLine-mem_ZF) — `` ρ ∈ ZF T ↔ |(ρ : ℂ).im| < T ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`FiniteOffLine.cell_zero_sum_finset`](#FiniteOffLine-cell_zero_sum_finset) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1),… ``
   - [`FiniteOffLine.sum_order_onLineInv_le`](#FiniteOffLine-sum_order_onLineInv_le) — `` ∑ ρ ∈ ZF ((2 : ℝ) ^ (K + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N ((2… ``
+  - [`PiZeros.zeroPartialSum_eq_sum`](../lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum) (PiZeros) — `` Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * ((t : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)) ``
 
 <a name="FiniteOffLine-order_nonneg"></a>
 ### `FiniteOffLine.order_nonneg`
@@ -384,8 +390,9 @@ line 251
   - [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum) (CellZeros) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
   - [`FiniteOffLine.tsum_sub_eq_sum`](#FiniteOffLine-tsum_sub_eq_sum) — `` ∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows) (CellRows) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF ((2:ℝ) ^ (K + 1)), term d… ``
   - [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line) — `` RiemannHypothesis ``
 
 <a name="FiniteOffLine-err_le"></a>
@@ -416,8 +423,9 @@ line 265
   - [`Glue.c3n_nonneg`](../lean_stage3/GlueNum.md#Glue-c3n_nonneg) (GlueNum) — `` 0 ≤ c3n ``
   - [`Glue.c4n_nonneg`](../lean_stage3/GlueNum.md#Glue-c4n_nonneg) (GlueNum) — `` 0 ≤ c4n ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows) (CellRows) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF ((2:ℝ) ^ (K + 1)), term d… ``
   - [`FiniteOffLine.finite_off_line`](#FiniteOffLine-finite_off_line) — `` RiemannHypothesis ``
 
 <a name="FiniteOffLine-finite_off_line"></a>

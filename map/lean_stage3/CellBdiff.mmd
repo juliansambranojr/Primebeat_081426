@@ -1,5 +1,5 @@
 flowchart LR
-  n0["<b>iter_bdZ_eq_fwdDiff</b><br/>(bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r"]:::cnt
+  n0["<b>iter_bdZ_eq_fwdDiff</b><br/>(bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r"]:::shp
   n1["<b>iter_bdZ_eq_stencil</b><br/>(bdZ^[n]) a r = CellZeros.stencil n a r"]:::shp
   n2["<b>bdiff_iter_eq_bdZ</b><br/>(Chain.bdiff^[d]) g (r : ℂ) = (bdZ^[d]) a r"]:::shp
   n3["<b>stencil_eq_bdiff_iter</b><br/>CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ)"]:::shp

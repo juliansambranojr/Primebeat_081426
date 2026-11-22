@@ -140,6 +140,8 @@ import Stage3.WobbleCount
 import Stage3.MirrorArea
 import Stage3.FiniteOffLine
 import Stage3.CellBdiff
+import Stage3.CellRows
+import Stage3.PiZeros
 
 namespace Stage3
 

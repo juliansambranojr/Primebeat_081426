@@ -22,6 +22,27 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joints T2 and T3: `Stage3/PiZeros.lean` (block T2) and `Stage3/CellRows.lean` (block T3a)
+
+    DONE        T2. `pi_eq_zero_sum`: for `x ≥ 2` and any height, the count
+                minus Li is minus the sum over the zeros below the height of
+                each zero's part `piMode`, plus the passage of the explicit
+                formula's remainder, minus the passage of `ψ − θ`; an
+                identity. `table_cell_eq_zero_sum`: the same for the table's
+                cell. `norm_tr_psiTheta_le`: the `ψ − θ` part is `≤ 8√x`.
+                T3a. `cell_eq_zero_sum_rows`, `cell_tail_tendsto`: with the
+                height `2^(r−d)` at row `r` the cell and its zero sum differ
+                by `≤ A_d·r²`, which over `√2^r` tends to zero; two units
+    ASSUMED     Julian, 2026-11-22: "go for all of it". The fourth of four.
+                T2 is given as an identity with its remainders named. T3 is
+                given along the rows; at a fixed row the height is capped at
+                the square of the row's doubling by `cell_eq_zero_sum`
+    DEPENDS     `Stage3.pi_sub_Li_eq`, `CellResidual.table_cell_eq`,
+                `FiniteOffLine.err_le`, `cell_zero_sum_finset`
+    OUT         a bound on the passage of the explicit formula's remainder;
+                the explicit formula above the square of `x`
+    OUTCOME     proved, units 0441 and 0442
+
 ### 2026-11-22 · joint T1 on the table tree's operator: `Stage3/CellBdiff.lean`, block T1b of `joints.md`
 
     DONE        `stencil_eq_bdiff_iter`: `CellZeros.stencil d` on a row is

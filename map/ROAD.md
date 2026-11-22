@@ -53,7 +53,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 1464.
+- **Theorems Lean has checked:** 1481.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 8. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 6.
@@ -168,11 +168,11 @@ From `SECTIONS.md`, open ones first.
 
 | section | joint | what it joins | status |
 |---|---|---|---|
-| One object | T2 | the same in the integer table: from the log-weighted count `ψ` to the count `π`, zero by zero | **OPEN** — today's `PsiToPi` carries bounds, not the sum |
-| One object | T3 | the height taken to infinity: the tail of the zero sum inside the error | **OPEN** — the error term is named, the limit is not taken |
 | One object | 10 | the zeros read back from the cells | **OPEN** — as below. First piece (unit 0429, `Stage3/AliasClass.alias_weight_ne_zero`): on the one ladder the zeros with the same `2^ρ` fold into one mode whose weight is never zero, so the ladder folds heights … |
 | The joints | 10 | the rows → all `x` | **OPEN** — for one ladder, and it is the obstruction in joint 9: on any ladder of fixed ratio the zeros' heights fold onto the whole circle. Every ladder at once is every `y` (`joints.md`, 9d): a bound on all ra… |
 | One object | T1 | the cell as a sum over the zeros: the stencil of `ψ(2^·)` is `2^(r−d)` minus `Σ m·(1 − 2^(−ρ))^d·2^(rρ)/ρ` over the zeros below a height, with a stated error | SEALED — no RH (units 0425, 0426): `Stage3/CellZeros.cell_eq_zero_sum`, and `CellModes.cell_eq_modeSum` in the table tree's `Sym`, `mode`, `modeSum`; unit 0440, `CellBdiff.cell_eq_modeSum_bdiff`: the same on t… |
+| One object | T2 | the same in the integer table: from the log-weighted count `ψ` to the count `π`, zero by zero | SEALED — as an identity (unit 0442): `Stage3/PiZeros.pi_eq_zero_sum`, `table_cell_eq_zero_sum`: the table's cell less the smooth cell is minus the sum over the zeros below any height of each zero's part under … |
+| One object | T3 | the height taken to infinity: the tail of the zero sum inside the error | SEALED — along the rows (unit 0441): `Stage3/CellRows.cell_eq_zero_sum_rows`, `cell_tail_tendsto`: with the height `2^(r−d)` at row `r` the cell and its zero sum differ by a constant times `r²`, which over `√2… |
 | One object | T4 | the stencil as a test function in Weil's form, joining section F | SEALED — (unit 0433): `Stage3/StencilWeil.zeroForm_stencilTest`: each zero enters the form on the stencil with the symbol at the zero times the symbol at its mirror point, to the depth; `restoringForce_eq`: th… |
 | One object | T5 | the Riemann hypothesis as the size of the cells: RH holds exactly when every cell's residual, on every dyadic ladder `a·2^r` with `1 ≤ a ≤ 2`, stays at square-root size | SEALED — (units 0427, 0428): `Stage3/CellResidual.RH_iff_cells`; on the table's own ladder the forward direction is `table_cell_resid`, and its converse there is joint 10 |
 | One object | W1 | why the number line has zeros: the prime content read at `N, N/2, N/3, …` adds to the logarithms of the integers, and a wobble `x^ρ` leaves that sum bounded, after its smooth term, exactly when `ζ(ρ) = 0` | SEALED — (unit 0434): `Stage3/WobbleCount.count_identity`, `invisible_iff`. It says which wobbles are possible; it does not place their real parts |

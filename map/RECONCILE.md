@@ -33,7 +33,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:104` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:139` |
 
-## Uses Lean records that the text does not show (470)
+## Uses Lean records that the text does not show (473)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -118,6 +118,8 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`Stage3.rvM_of_sFromLocal`](lean_stage3/ArgIdentity.md#Stage3-rvM_of_sFromLocal) | [`Stage3.phaseTheta`](lean_stage3/Stirling.md#Stage3-phaseTheta) | def |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | [`Stage3.StmtExplicitFormulaPoly`](lean_stage3/Assembly.md#Stage3-StmtExplicitFormulaPoly) | def |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | [`Stage3.StmtPsiWeak`](lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak) | def |
+| [`CellBdiff.stencil_eq_bdiff_iter`](lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter) | [`CellBdiff.bdZ`](lean_stage3/CellBdiff.md#CellBdiff-bdZ) | def |
+| [`CellBdiff.cell_eq_modeSum_bdiff`](lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff) | [`CellZeros.stencil`](lean_stage3/CellZeros.md#CellZeros-stencil) | def |
 | [`CellResidual.cellResid`](lean_stage3/CellResidual.md#CellResidual-cellResid) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
 | [`CellResidual.stencilR_abs_le`](lean_stage3/CellResidual.md#CellResidual-stencilR_abs_le) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
 | [`CellResidual.stencilR_one`](lean_stage3/CellResidual.md#CellResidual-stencilR_one) | [`Nonvanishing.bdiffZ`](lean/Nonvanishing.md#Nonvanishing-bdiffZ) | def |
@@ -249,6 +251,7 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`PiToPsi.RH_of_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | [`Stage3.StmtPsiWeak`](lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak) | def |
 | [`PiToPsi.RH_of_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | [`VonKoch.RH_iff_psiWeak`](lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | theorem |
 | [`PiToPsi.RH_iff_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) | [`Stage3.floorConstSplit`](lean_stage3/GlueFloor.md#Stage3-floorConstSplit) | def |
+| [`PiZeros.pi_eq_zero_sum`](lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum) | [`Stage3.zeroPartialSum`](lean_stage3/Assembly.md#Stage3-zeroPartialSum) | def |
 | [`ReZetaCount.F_zero_eq_one`](lean_stage3/ReZetaCount.md#ReZetaCount-F_zero_eq_one) | [`ReZetaCount.G`](lean_stage3/ReZetaCount.md#ReZetaCount-G) | def |
 | [`ReZetaCount.reZeros`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeros) | [`ReZetaCount.reZeroSet`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet) | def |
 | [`ReZetaCount.mem_reZeros`](lean_stage3/ReZetaCount.md#ReZetaCount-mem_reZeros) | [`ReZetaCount.reZeroSet_finite`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet_finite) | theorem |

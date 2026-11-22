@@ -1045,3 +1045,48 @@ operator `Chain.A4` and `Superposition.bdiff_sum` are stated on.
   `bdiff^[d] psiRow r` in the place of the stencil.
 
 **Not here.** `CellZeros.stencil` stays in the modules that use it.
+
+
+### T3a The height taken to infinity along the rows — PROVED (unit 0441: `CellRows.cell_eq_zero_sum_rows`, `cell_tail_tendsto`)
+
+`cell_eq_zero_sum` holds for `2 ≤ T ≤ (2^(r−d))²`. Take `T = 2^(r−d)`, the
+doubling of the cell's lowest row; it tends to infinity with the row. By
+`FiniteOffLine.err_le` the error is then `≤ 2^d·(4·2^d·c1n + c3n + c4n)·r²`.
+Over `√2^r` that tends to zero (`n²·q^n → 0`, `q = 1/√2`).
+
+- `cell_eq_zero_sum_rows (hr : r = d + K + 1) (hK : 3 ≤ K)`: the bound.
+- `cell_tail_tendsto d`: the difference over `√2^r` tends to `0`.
+
+**Not here.** The height to infinity at a fixed row. `cell_eq_zero_sum` asks
+`T ≤ x²`; above it the explicit formula is not in the tree.
+
+
+### T2 The integer table's cell as a sum over the zeros — PROVED as an identity (unit 0442: `PiZeros.pi_eq_zero_sum`, `table_cell_eq_zero_sum`, `norm_tr_psiTheta_le`); the bound on one remainder OPEN
+
+The passage from `ψ` to `π` is linear. Put
+`tr f x = f x / log x + ∫₂ˣ f t / (t·log²t) dt`. `Stage3.pi_sub_Li_eq` is
+`π(⌊x⌋) − Li x = tr (θ − id) x`. For any height `T`,
+
+    θ t − t = efRem T t − Σ_{|γ|<T} m(ρ)·t^ρ/ρ − (ψ t − θ t),
+
+`efRem T t = ψ t − t + zeroPartialSum t T`. Each piece is interval integrable
+on `[2, x]` (`ψ`, `θ` monotone; `t^ρ` continuous away from `0`; the sum
+finite), so `tr` passes through:
+
+    π(⌊x⌋) − Li x = −Σ_{|γ|<T} m(ρ)·piMode ρ x + tr (efRem T) x − tr (ψ − θ) x,
+
+`piMode ρ x = tr (t ↦ t^ρ/ρ) x = x^ρ/(ρ·log x) + ∫₂ˣ t^(ρ−1)/(ρ·log²t) dt`.
+
+`|ψ − θ| ≤ 2√t·log t` gives `‖tr (ψ − θ) x‖ ≤ 2√x + (4/log 2)·√x ≤ 8√x`.
+
+The cell: `CellResidual.table_cell_eq` writes the table's cell less the smooth
+cell as the stencil of order `d + 1` of `π − Li` at the doublings; the stencil
+is linear; for `d + 2 ≤ r` every row it reads has `2^m ≥ 2`.
+
+**Theorems** (`PiZeros`): `tr_sub`, `tr_const_mul`, `tr_sum`,
+`pi_sub_Li_eq_tr`, `pi_eq_zero_sum`, `norm_tr_psiTheta_le`,
+`table_cell_eq_zero_sum`.
+
+**Not here.** A bound on `tr (efRem T) x`. The explicit formula bounds
+`efRem T t` for `T ≤ t²` only, so `∫₂^{√T}` needs its own estimate. Also the
+closed form of `piMode` as a logarithmic integral of `x^ρ`.

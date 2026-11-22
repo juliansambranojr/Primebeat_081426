@@ -1,0 +1,16 @@
+key	value	source
+module_lines	85	wc -l lean_stage3/Stage3/CellRows.lean
+theorems_proved	2	grep -c ^theorem lean_stage3/Stage3/CellRows.lean
+defs	0	none
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/CellRows.lean
+pins	2	cell_eq_zero_sum_rows, cell_tail_tendsto
+errors_first	0	first lake build Stage3.CellRows
+builds	1	builds of the module until clean
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8835	lake build (full Stage3), Build completed successfully
+jobs_module	8748	run/build.log, lake build Stage3.CellRows
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#t3a	the height taken to infinity along the rows
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

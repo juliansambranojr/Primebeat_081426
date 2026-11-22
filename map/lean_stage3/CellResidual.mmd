@@ -17,6 +17,7 @@ flowchart LR
   x0(["<b>Nonvanishing</b><br/>iter_bdiffZ_eq_stencilR<br/>stencilR_row<br/>stencilR_sub"]):::ext
   x1(["<b>PiToPsi</b><br/>RH_iff_schoenfeldWeak<br/>RH_of_schoenfeldWeak<br/>continuousOn_Li"]):::ext
   x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
+  x3(["<b>PiZeros</b><br/>table_cell_eq_zero_sum"]):::ext
   n0 --> n4
   n1 --> n6
   n10 --> n11
@@ -31,6 +32,7 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n9 --> n10
+  n13 -.-> x3
   x0 -.-> n1
   x0 -.-> n12
   x0 -.-> n13

@@ -276,7 +276,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`CellZeros`](../lean_stage3/CellZeros.md) — 11
 
-- [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil) — *def*
+- ★ [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil) — *def*
 - [`CellZeros.stencil_add`](../lean_stage3/CellZeros.md#CellZeros-stencil_add) — `` stencil d (fun n => a n + b n) r = stencil d a r + stencil d b r ``
 - [`CellZeros.stencil_sub`](../lean_stage3/CellZeros.md#CellZeros-stencil_sub) — `` stencil d (fun n => a n - b n) r = stencil d a r - stencil d b r ``
 - [`CellZeros.stencil_const_mul`](../lean_stage3/CellZeros.md#CellZeros-stencil_const_mul) — `` stencil d (fun n => c * a n) r = c * stencil d a r ``

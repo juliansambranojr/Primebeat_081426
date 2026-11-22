@@ -1,10 +1,8 @@
 # `lean_stage3/Stage3/CellBdiff.lean`
 
-> **Read from the source text.** This file changed after the last `python3 utilities/lean_map.py --dump`, so the arrows on this page are names occurring in each proof and have not been confirmed by Lean.
-
 CellBdiff — block T1b of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 on the table tree's own operator. `CellZeros.stencil` is a second writing of `d` backward differences. The table tree's writing is `Chain.bdiff` iterated `d` times, the operator `Chain.A4` and `Superposition` are stated on. Here the two are shown equal on any row, and the cell theorem is restated with `bdiff^[d]`, `Sym`, `mode` and `modeSum`, all four from the table tree.
 
-6 theorems, 2 definitions, 125 lines. 
+6 theorems, 2 definitions, 125 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellModes`](../lean_stage3/CellModes.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -13,7 +11,7 @@ CellBdiff — block T1b of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 
 
 ```mermaid
 flowchart LR
-  n0["<b>iter_bdZ_eq_fwdDiff</b><br/>(bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r"]:::cnt
+  n0["<b>iter_bdZ_eq_fwdDiff</b><br/>(bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r"]:::shp
   n1["<b>iter_bdZ_eq_stencil</b><br/>(bdZ^[n]) a r = CellZeros.stencil n a r"]:::shp
   n2["<b>bdiff_iter_eq_bdZ</b><br/>(Chain.bdiff^[d]) g (r : ℂ) = (bdZ^[d]) a r"]:::shp
   n3["<b>stencil_eq_bdiff_iter</b><br/>CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ)"]:::shp
@@ -48,7 +46,7 @@ def · line 33
 One backward difference on a row indexed by the integers.
 
 - **Is:** `` bdZ (a : ℤ → ℂ) : ℤ → ℂ := fun x => a x - a (x - 1) ``
-- **Used by 3:** [`CellBdiff.bdiff_iter_eq_bdZ`](#CellBdiff-bdiff_iter_eq_bdZ), [`CellBdiff.iter_bdZ_eq_fwdDiff`](#CellBdiff-iter_bdZ_eq_fwdDiff), [`CellBdiff.iter_bdZ_eq_stencil`](#CellBdiff-iter_bdZ_eq_stencil)
+- **Used by 4:** [`CellBdiff.bdiff_iter_eq_bdZ`](#CellBdiff-bdiff_iter_eq_bdZ), [`CellBdiff.iter_bdZ_eq_fwdDiff`](#CellBdiff-iter_bdZ_eq_fwdDiff), [`CellBdiff.iter_bdZ_eq_stencil`](#CellBdiff-iter_bdZ_eq_stencil), [`CellBdiff.stencil_eq_bdiff_iter`](#CellBdiff-stencil_eq_bdiff_iter)
 
 <a name="CellBdiff-psiRow"></a>
 ### `CellBdiff.psiRow`
@@ -65,9 +63,9 @@ The row of the log-weighted prime count along the doublings, on `ℂ`.
 <a name="CellBdiff-iter_bdZ_eq_fwdDiff"></a>
 ### `CellBdiff.iter_bdZ_eq_fwdDiff`
 
-line 35 · arrows read from text
+line 35
 
-**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -81,9 +79,9 @@ line 35 · arrows read from text
   - `` r : ℤ ``
   - `` n : ℕ ``
 
-**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+**Stated with:** [`CellBdiff.bdZ`](#CellBdiff-bdZ)
 
-**Definitions its proof touches:** [`CellBdiff.bdZ`](#CellBdiff-bdZ)
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
 **Feeds** (1 that use it)
 
@@ -92,7 +90,7 @@ line 35 · arrows read from text
 <a name="CellBdiff-iter_bdZ_eq_stencil"></a>
 ### `CellBdiff.iter_bdZ_eq_stencil`
 
-line 49 · arrows read from text
+line 49
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -110,11 +108,11 @@ line 49 · arrows read from text
   - `` r : ℤ ``
   - `` n : ℕ ``
 
+**Stated with:** [`CellBdiff.bdZ`](#CellBdiff-bdZ), [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil)
+
 **Fed by** (1 theorem its proof uses)
 
   - [`CellBdiff.iter_bdZ_eq_fwdDiff`](#CellBdiff-iter_bdZ_eq_fwdDiff) — `` (bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r ``
-
-**Definitions its proof touches:** [`CellBdiff.bdZ`](#CellBdiff-bdZ), [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil)
 
 **Feeds** (1 that use it)
 
@@ -123,7 +121,7 @@ line 49 · arrows read from text
 <a name="CellBdiff-bdiff_iter_eq_bdZ"></a>
 ### `CellBdiff.bdiff_iter_eq_bdZ`
 
-line 66 · arrows read from text
+line 66
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -141,9 +139,9 @@ line 66 · arrows read from text
   - `` d : ℕ ``
   - `` r : ℤ ``
 
-**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+**Stated with:** [`Chain.bdiff`](../lean/Chain.md#Chain-bdiff), [`CellBdiff.bdZ`](#CellBdiff-bdZ)
 
-**Definitions its proof touches:** [`Chain.bdiff`](../lean/Chain.md#Chain-bdiff), [`CellBdiff.bdZ`](#CellBdiff-bdZ)
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
 **Feeds** (1 that use it)
 
@@ -152,7 +150,7 @@ line 66 · arrows read from text
 <a name="CellBdiff-stencil_eq_bdiff_iter"></a>
 ### `CellBdiff.stencil_eq_bdiff_iter`
 
-line 79 · arrows read from text
+line 79
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -170,12 +168,14 @@ CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ)
   - `` d : ℕ ``
   - `` r : ℤ ``
 
+**Stated with:** [`Chain.bdiff`](../lean/Chain.md#Chain-bdiff), [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil)
+
 **Fed by** (2 theorems its proof uses)
 
   - [`CellBdiff.bdiff_iter_eq_bdZ`](#CellBdiff-bdiff_iter_eq_bdZ) — `` (Chain.bdiff^[d]) g (r : ℂ) = (bdZ^[d]) a r ``
   - [`CellBdiff.iter_bdZ_eq_stencil`](#CellBdiff-iter_bdZ_eq_stencil) — `` (bdZ^[n]) a r = CellZeros.stencil n a r ``
 
-**Definitions its proof touches:** [`Chain.bdiff`](../lean/Chain.md#Chain-bdiff), [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil)
+**Definitions its proof touches:** [`CellBdiff.bdZ`](#CellBdiff-bdZ)
 
 **Feeds** (1 that use it)
 
@@ -184,7 +184,7 @@ CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ)
 <a name="CellBdiff-psiRow_int"></a>
 ### `CellBdiff.psiRow_int`
 
-line 86 · arrows read from text
+line 86
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -198,9 +198,9 @@ psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)
 
   - `` n : ℤ ``
 
-**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+**Stated with:** [`CellBdiff.psiRow`](#CellBdiff-psiRow)
 
-**Definitions its proof touches:** [`CellBdiff.psiRow`](#CellBdiff-psiRow)
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
 **Feeds** (1 that use it)
 
@@ -209,7 +209,7 @@ psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)
 <a name="CellBdiff-cell_eq_modeSum_bdiff"></a>
 ### `CellBdiff.cell_eq_modeSum_bdiff`
 
-line 93 · arrows read from text
+line 93
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -229,13 +229,15 @@ line 93 · arrows read from text
   - `` hT : 2 ≤ T ``
   - `` hTx : T ≤ ((2:ℝ) ^ (r - (d : ℤ))) ^ 2 ``
 
+**Stated with:** [`Chain.Sym`](../lean/Chain.md#Chain-Sym), [`Chain.bdiff`](../lean/Chain.md#Chain-bdiff), [`Chain.mode`](../lean/Chain.md#Chain-mode), [`Superposition.modeSum`](../lean/Superposition.md#Superposition-modeSum), [`CellBdiff.psiRow`](#CellBdiff-psiRow), [`Glue.c1n`](../lean_stage3/GlueNum.md#Glue-c1n), [`Glue.c3n`](../lean_stage3/GlueNum.md#Glue-c3n), [`Glue.c4n`](../lean_stage3/GlueNum.md#Glue-c4n)
+
 **Fed by** (3 theorems its proof uses)
 
   - [`CellBdiff.psiRow_int`](#CellBdiff-psiRow_int) — `` psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ) ``
   - [`CellBdiff.stencil_eq_bdiff_iter`](#CellBdiff-stencil_eq_bdiff_iter) — `` CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ) ``
   - [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum) (CellModes) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
 
-**Definitions its proof touches:** [`Chain.Sym`](../lean/Chain.md#Chain-Sym), [`Chain.bdiff`](../lean/Chain.md#Chain-bdiff), [`Chain.mode`](../lean/Chain.md#Chain-mode), [`Superposition.modeSum`](../lean/Superposition.md#Superposition-modeSum), [`CellBdiff.psiRow`](#CellBdiff-psiRow), [`Glue.c1n`](../lean_stage3/GlueNum.md#Glue-c1n), [`Glue.c3n`](../lean_stage3/GlueNum.md#Glue-c3n), [`Glue.c4n`](../lean_stage3/GlueNum.md#Glue-c4n)
+**Definitions its proof touches:** [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil)
 
 **Feeds:** nothing. It is an end.
 

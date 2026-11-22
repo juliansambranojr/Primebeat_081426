@@ -1647,6 +1647,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_eight",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_five",
@@ -7986,7 +7987,9 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
-     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -18804,7 +18807,10 @@
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.StmtExplicitFormulaSplit",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.psiWeak_floor_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
-     "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num"
+     "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
     ]
    },
    {
@@ -19706,7 +19712,7 @@
   ],
   "lines": 125,
   "copy_of": null,
-  "fresh": false,
+  "fresh": true,
   "imports_files": [
    "lean_stage3/Stage3/CellModes.lean"
   ],
@@ -19727,13 +19733,14 @@
     "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff",
-     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil"
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter"
     ]
    },
    {
@@ -19752,15 +19759,15 @@
     "proves": "(bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r",
     "file": "lean_stage3/Stage3/CellBdiff.lean",
     "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ"
     ],
-    "exact": false,
+    "proof": [],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ"
     ],
-    "layer": "count",
+    "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil"
     ]
@@ -19781,13 +19788,14 @@
     "proves": "(bdZ^[n]) a r = CellZeros.stencil n a r",
     "file": "lean_stage3/Stage3/CellBdiff.lean",
     "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ",
-     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
     ],
-    "exact": false,
+    "proof": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff"
+    ],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff",
@@ -19814,12 +19822,12 @@
     "proves": "(Chain.bdiff^[d]) g (r : ℂ) = (bdZ^[d]) a r",
     "file": "lean_stage3/Stage3/CellBdiff.lean",
     "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean/Chain.lean::Chain.bdiff",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ"
     ],
-    "exact": false,
+    "proof": [],
+    "exact": true,
     "uses": [
      "lean/Chain.lean::Chain.bdiff",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ"
@@ -19845,16 +19853,19 @@
     "proves": "CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ)",
     "file": "lean_stage3/Stage3/CellBdiff.lean",
     "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean/Chain.lean::Chain.bdiff",
-     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
-     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
     ],
-    "exact": false,
+    "proof": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil"
+    ],
+    "exact": true,
     "uses": [
      "lean/Chain.lean::Chain.bdiff",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
@@ -19878,9 +19889,9 @@
     "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int"
@@ -19900,11 +19911,11 @@
     "proves": "psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)",
     "file": "lean_stage3/Stage3/CellBdiff.lean",
     "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow"
     ],
-    "exact": false,
+    "proof": [],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow"
     ],
@@ -19931,21 +19942,23 @@
     "proves": "‖(Chain.bdiff^[d]) psiRow (r : ℂ) - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T} => ((ρ : Kadiri.NontrivialZeros) : ℂ)) (fun ρ => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ) / ((ρ : Kadiri.NontrivialZeros) : ℂ) * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d) Finset.univ (r : ℂ)‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + Glue.c4n * ((Real.log ((2:ℝ) ^ (r - (j : ℤ)))) ^ 2 * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4)))",
     "file": "lean_stage3/Stage3/CellBdiff.lean",
     "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean/Chain.lean::Chain.Sym",
      "lean/Chain.lean::Chain.bdiff",
      "lean/Chain.lean::Chain.mode",
      "lean/Superposition.lean::Superposition.modeSum",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow",
-     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int",
-     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
-     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
     ],
-    "exact": false,
+    "proof": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "exact": true,
     "uses": [
      "lean/Chain.lean::Chain.Sym",
      "lean/Chain.lean::Chain.bdiff",
@@ -19955,6 +19968,7 @@
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
@@ -20161,7 +20175,8 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid_le",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
-     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq"
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -20196,7 +20211,8 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
-     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -20759,7 +20775,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -20800,6 +20817,116 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
      "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CellRows.lean",
+  "module": "Stage3.CellRows",
+  "stem": "CellRows",
+  "header": "CellRows — block T3a of `lean_stage3/design/joints.md`. 2026-11-22. The height of the zero sum taken to infinity along the rows. At row `r` the height is the doubling of the cell's lowest row, `2^(r−d)`. The cell is then its main term minus the sum over the zeros below that height, within a constant times `r²`. Against square-root size that error tends to zero: the tail of the zero sum is inside the error.",
+  "imports": [
+   "Stage3.FiniteOffLine"
+  ],
+  "opens": [
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "Topology"
+  ],
+  "namespaces": [
+   "CellRows"
+  ],
+  "lines": 86,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/FiniteOffLine.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "cell_eq_zero_sum_rows",
+    "ns": "CellRows",
+    "full": "CellRows.cell_eq_zero_sum_rows",
+    "line": 28,
+    "why": "The cell at the row's own height.",
+    "sorry": false,
+    "needs": [
+     "d K r : ℕ",
+     "hr : r = d + K + 1",
+     "hK : 3 ≤ K"
+    ],
+    "proves": "‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF ((2:ℝ) ^ (K + 1)), term d (r : ℤ) ρ‖ ≤ 2 ^ d * ((4 * 2 ^ d * Glue.c1n + Glue.c3n + Glue.c4n) * (r : ℝ) ^ 2)",
+    "file": "lean_stage3/Stage3/CellRows.lean",
+    "id": "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+    "stmt": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cell_tail_tendsto",
+    "ns": "CellRows",
+    "full": "CellRows.cell_tail_tendsto",
+    "line": 44,
+    "why": "The tail of the zero sum is inside the error. With the height `2^(r−d)` at row `r`, the distance between the cell and its zero sum, over `√2^r`, tends to zero.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ"
+    ],
+    "proves": "Tendsto (fun r : ℕ => ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF ((2:ℝ) ^ (r - d)), term d (r : ℤ) ρ‖ / Real.sqrt 2 ^ r) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/CellRows.lean",
+    "id": "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
+    "stmt": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
     ],
     "layer": "zeta",
     "used_by": []
@@ -20850,9 +20977,12 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_add",
@@ -20862,7 +20992,11 @@
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
-     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_congr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_neg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -20891,7 +21025,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum"
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -20920,7 +21055,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum"
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -20950,7 +21086,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum"
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_neg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -20980,7 +21118,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum"
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
    {
@@ -23659,11 +23798,16 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
-     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum"
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
     ]
    },
    {
@@ -23722,7 +23866,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
-     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le"
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
     ]
    },
    {
@@ -23926,6 +24071,8 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le"
@@ -24031,6 +24178,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
     ]
    },
@@ -24070,6 +24218,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
     ]
    },
@@ -25316,6 +25465,8 @@
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
@@ -25350,6 +25501,8 @@
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
@@ -25388,6 +25541,8 @@
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
+     "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
@@ -34779,6 +34934,708 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/PiZeros.lean",
+  "module": "Stage3.PiZeros",
+  "stem": "PiZeros",
+  "header": "PiZeros — block T2 of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 in the integer table: the count of primes in place of the log-weighted count, zero by zero. The passage from one to the other is linear: `tr f x` is `f x / log x` plus the integral of `f` against `1/(t·log²t)` from `2`, and `Stage3.pi_sub_Li_eq` says the count minus its smooth part is `tr (θ − id)`. Write `θ − id` as the explicit formula's remainder at a height, minus the sum over the zeros below it, minus the higher prime powers `ψ − θ`. Th…",
+  "imports": [
+   "Stage3.FiniteOffLine",
+   "Stage3.CellResidual"
+  ],
+  "opens": [
+   "Chebyshev",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "PiZeros"
+  ],
+  "lines": 322,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/CellResidual.lean",
+   "lean_stage3/Stage3/FiniteOffLine.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "wt",
+    "ns": "PiZeros",
+    "full": "PiZeros.wt",
+    "line": 41,
+    "why": "The weight of the passage from the log-weighted count to the count.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_sub_Li_eq_tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_const_mul",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt_continuousOn"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tr",
+    "ns": "PiZeros",
+    "full": "PiZeros.tr",
+    "line": 45,
+    "why": "The passage from the log-weighted count to the count, applied to any function: its value over the logarithm, plus its integral against the weight.",
+    "sorry": false,
+    "needs": [
+     "f : ℝ → ℂ",
+     "x : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_sub_Li_eq_tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_const_mul",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wt_continuousOn",
+    "ns": "PiZeros",
+    "full": "PiZeros.wt_continuousOn",
+    "line": 48,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "ContinuousOn wt (Set.uIcc 2 x)",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt_continuousOn",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.continuousOn_inv_mul_log_sq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.continuousOn_inv_mul_log_sq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_mul_wt",
+    "ns": "PiZeros",
+    "full": "PiZeros.integrable_mul_wt",
+    "line": 51,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hf : IntervalIntegrable f volume 2 x"
+    ],
+    "proves": "IntervalIntegrable (fun t => f t * wt t) volume 2 x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt_continuousOn"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt_continuousOn"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tr_sub",
+    "ns": "PiZeros",
+    "full": "PiZeros.tr_sub",
+    "line": 56,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hf : IntervalIntegrable f volume 2 x",
+     "hg : IntervalIntegrable g volume 2 x"
+    ],
+    "proves": "tr (fun t => f t - g t) x = tr f x - tr g x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tr_const_mul",
+    "ns": "PiZeros",
+    "full": "PiZeros.tr_const_mul",
+    "line": 66,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "c : ℂ",
+     "f : ℝ → ℂ",
+     "x : ℝ"
+    ],
+    "proves": "tr (fun t => c * f t) x = c * tr f x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_const_mul",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tr_sum",
+    "ns": "PiZeros",
+    "full": "PiZeros.tr_sum",
+    "line": 75,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : Finset ι",
+     "f : ι → ℝ → ℂ",
+     "hx : 2 ≤ x",
+     "hf : ∀ i ∈ s, IntervalIntegrable (f i) volume 2 x"
+    ],
+    "proves": "tr (fun t => ∑ i ∈ s, f i t) x = ∑ i ∈ s, tr (f i) x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pi_sub_Li_eq_tr",
+    "ns": "PiZeros",
+    "full": "PiZeros.pi_sub_Li_eq_tr",
+    "line": 86,
+    "why": "The count minus its smooth part is the passage applied to `θ − id`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = tr (fun t => ((θ t - t : ℝ) : ℂ)) x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_sub_Li_eq_tr",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.pi_sub_Li_eq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.pi_sub_Li_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "piMode",
+    "ns": "PiZeros",
+    "full": "PiZeros.piMode",
+    "line": 102,
+    "why": "One zero's part of the count: the passage applied to `t^ρ/ρ`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ",
+     "x : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "efRem",
+    "ns": "PiZeros",
+    "full": "PiZeros.efRem",
+    "line": 105,
+    "why": "The remainder of the explicit formula at a height.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ",
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "psiTheta",
+    "ns": "PiZeros",
+    "full": "PiZeros.psiTheta",
+    "line": 108,
+    "why": "The prime powers above the first: `ψ − θ`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeroPartialSum_eq_sum",
+    "ns": "PiZeros",
+    "full": "PiZeros.zeroPartialSum_eq_sum",
+    "line": 110,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "t T : ℝ"
+    ],
+    "proves": "Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * ((t : ℂ) ^ (ρ : ℂ) / (ρ : ℂ))",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum",
+    "stmt": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_ofReal_of_monotone",
+    "ns": "PiZeros",
+    "full": "PiZeros.integrable_ofReal_of_monotone",
+    "line": 118,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hf : Monotone f",
+     "x : ℝ"
+    ],
+    "proves": "IntervalIntegrable (fun t => ((f t : ℝ) : ℂ)) volume 2 x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_cpow",
+    "ns": "PiZeros",
+    "full": "PiZeros.integrable_cpow",
+    "line": 123,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "ρ : ℂ"
+    ],
+    "proves": "IntervalIntegrable (fun t : ℝ => (t : ℂ) ^ ρ / ρ) volume 2 x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pi_eq_zero_sum",
+    "ns": "PiZeros",
+    "full": "PiZeros.pi_eq_zero_sum",
+    "line": 135,
+    "why": "The count as a sum over the zeros, exactly. For every `x ≥ 2` and every height `T`: the count minus its smooth part is minus the sum over the zeros below `T` of each zero's part, plus the passage of the explicit formula's remainder, minus the passage of the higher prime powers.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "T : ℝ"
+    ],
+    "proves": "(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr psiTheta x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_sub_Li_eq_tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_const_mul",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_sub_Li_eq_tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_const_mul",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tr_psiTheta_le",
+    "ns": "PiZeros",
+    "full": "PiZeros.norm_tr_psiTheta_le",
+    "line": 189,
+    "why": "The higher prime powers are of square-root size.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "‖tr psiTheta x‖ ≤ 8 * Real.sqrt x",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.integral_A_rpow_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.integral_A_rpow_le"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "stencil_congr",
+    "ns": "PiZeros",
+    "full": "PiZeros.stencil_congr",
+    "line": 250,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "h : ∀ j ∈ range (n + 1), a (r - j) = b (r - j)"
+    ],
+    "proves": "CellZeros.stencil n a r = CellZeros.stencil n b r",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_congr",
+    "stmt": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stencil_neg",
+    "ns": "PiZeros",
+    "full": "PiZeros.stencil_neg",
+    "line": 256,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "a : ℤ → ℂ",
+     "r : ℤ"
+    ],
+    "proves": "CellZeros.stencil n (fun m => -a m) r = -CellZeros.stencil n a r",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_neg",
+    "stmt": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_const_mul"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_const_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stencilR_cast",
+    "ns": "PiZeros",
+    "full": "PiZeros.stencilR_cast",
+    "line": 261,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "g : ℤ → ℝ",
+     "r : ℤ"
+    ],
+    "proves": "((Nonvanishing.stencilR n g r : ℝ) : ℂ) = CellZeros.stencil n (fun m => ((g m : ℝ) : ℂ)) r",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
+    "stmt": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "table_cell_eq_zero_sum",
+    "ns": "PiZeros",
+    "full": "PiZeros.table_cell_eq_zero_sum",
+    "line": 273,
+    "why": "The integer table's cell as a sum over the zeros, exactly. The cell `(r, d)` of the table of the prime count along the doublings, less the smooth cell, is minus the sum over the zeros below any height of each zero's part under the stencil, plus the stencil of the explicit formula's remainder passed to the count, minus the stencil of the higher prime powers.",
+    "sorry": false,
+    "needs": [
+     "r : ℤ",
+     "d : ℕ",
+     "hr : (d : ℤ) + 2 ≤ r",
+     "T : ℝ"
+    ],
+    "proves": "((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * CellZeros.stencil (d + 1) (fun m : ℤ => piMode (ρ : ℂ) ((2:ℝ) ^ (m : ℝ))) r + CellZeros.stencil (d + 1) (fun m : ℤ => tr (efRem T) ((2:ℝ) ^ (m : ℝ))) r - CellZeros.stencil (d + 1) (fun m : ℤ => tr psiTheta ((2:ℝ) ^ (m : ℝ))) r",
+    "file": "lean_stage3/Stage3/PiZeros.lean",
+    "id": "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
+    "stmt": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_add",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_const_mul",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sub",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_congr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_neg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_add",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_const_mul",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sub",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_congr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_neg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/PsiToPi.lean",
   "module": "Stage3.PsiToPi",
   "stem": "PsiToPi",
@@ -34847,6 +35704,9 @@
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_sub_Li_eq_tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.abs_pi_sub_Li_le",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.pi_sub_Li_eq",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.schoenfeldWeak_of_psiWeak",
@@ -34907,6 +35767,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt_continuousOn",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.integrable_err_term",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.integrable_theta_term"
     ]
@@ -34997,6 +35858,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_sub_Li_eq_tr",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.abs_pi_sub_Li_le",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.schoenfeldWeak_of_psiWeak",
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.schoenfeldWeakTheta_of_psiWeakTheta"
@@ -35055,6 +35917,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.schoenfeldWeak_of_psiWeak"
     ]
    },
@@ -41976,6 +42839,7 @@
     "used_by": [
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_eight",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_five",
@@ -63220,11 +64084,13 @@
    "Stage3.WobbleCount",
    "Stage3.MirrorArea",
    "Stage3.FiniteOffLine",
-   "Stage3.CellBdiff"
+   "Stage3.CellBdiff",
+   "Stage3.CellRows",
+   "Stage3.PiZeros"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 151,
+  "lines": 153,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -63241,6 +64107,7 @@
    "lean_stage3/Stage3/CellBdiff.lean",
    "lean_stage3/Stage3/CellModes.lean",
    "lean_stage3/Stage3/CellResidual.lean",
+   "lean_stage3/Stage3/CellRows.lean",
    "lean_stage3/Stage3/CellZeros.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/EdgeBound.lean",
@@ -63281,6 +64148,7 @@
    "lean_stage3/Stage3/MirrorArea.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PiToPsi.lean",
+   "lean_stage3/Stage3/PiZeros.lean",
    "lean_stage3/Stage3/PsiToPi.lean",
    "lean_stage3/Stage3/ReZetaCount.lean",
    "lean_stage3/Stage3/RealSegment.lean",
