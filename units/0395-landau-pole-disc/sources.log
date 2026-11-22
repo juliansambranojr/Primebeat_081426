@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-22T07:33:29Z
+# unit: 0395-landau-pole-disc
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23238
+  Source: session transcript, 2026-11-22, after unit 0394
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23024
+  theorem Phi_taylor_on_disc {c : ℂ} {R R₂ : ℝ} (hR : 0 < R) (hRR : R < R₂)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23025
+  (hpos : closedBall c R₂ ⊆ {s : ℂ | 0 < s.re}) (hc1 : c ≠ 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23028
+  (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ riemannZeta ρ = 0) ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23029
+  ∀ k : ℕ, ‖iteratedDeriv k LandauMellinG.Phi c
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23030
+  - ∑ ρ ∈ P, (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23031
+  * ((-1) ^ k * (k.factorial : ℂ) * (c - ρ) ^ (-1 - (k : ℤ)))‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22784
+  ≤ k.factorial * C / R ^ k := by
+
+# 8 found, 0 missing

@@ -378,13 +378,35 @@ Module.    `Stage3/LandauPoleSub.lean`, namespace `LandauPoleSub`, `import Mathl
            Pinned: all three.
 Open.      block 3b2.
 
-### 3b2 `Phi` on a disc — SKETCH
-For a centre `c` with `ζ(c) ≠ 0`, `c ≠ 1`, and radii `R < R₂` with
-`closedBall c R₂` inside `Re s > 0`: the zeros of `ζ` in the open disc of
-radius `R₂` are finitely many (`riemannZeta.zeroes_on_Compact_finite'`), and
-with them as `P` (and the point `1`, coefficient `0`) blocks 3a and 3b1 give
-`‖iteratedDeriv k Phi c − Σ_ρ m_ρ/(ρ(1−ρ))·(−1)^k·k!·(c − ρ)^(−1−k)‖ ≤ k!·C/R^k`.
-A real zero in `(0, 1)` is allowed (section 0).
+### 3b2 `Phi` on a disc — PROVED (unit 0395: `LandauPoleDisc.Phi_taylor_on_disc`)
+Objects.   centre `c`, radii `R < R₂`, `closedBall c R₂` inside `Re s > 0`.
+           `P`: the zeros of `ζ` in the open disc of radius `R₂`, other than
+           the point `1` (where Mathlib's `riemannZeta` takes a value that is
+           not asked to be nonzero here). Residue `m_ρ/(ρ(1−ρ))`,
+           `m_ρ = analyticOrderNatAt riemannZeta ρ`.
+Sizes.     `‖iteratedDeriv k Phi c − Σ_{ρ ∈ P} m_ρ/(ρ(1−ρ))·(−1)^k·k!·(c − ρ)^(−1−k)‖
+           ≤ k!·C/R^k`, `C` independent of `k`: block 3b1 applied to `Phi` with
+           poles `P ∪ {1}`, the coefficient at `1` being `0` (block 3a). Every
+           zero inside the disc of radius `R₂` is in the sum, so the remainder
+           has the rate of `R`, for any `R < R₂`. Lost factor: none.
+Regime.    D1 `0 < R`. D2 `R < R₂`. D3 `closedBall c R₂ ⊆ {s | 0 < s.re}`.
+           C1 `c ≠ 1`. C2 `ζ(c) ≠ 0`.
+Defs.      none.
+Theorems.  `theorem Phi_taylor_on_disc {c : ℂ} {R R₂ : ℝ} (hR : 0 < R) (hRR : R < R₂)
+               (hpos : closedBall c R₂ ⊆ {s : ℂ | 0 < s.re}) (hc1 : c ≠ 1)
+               (hcz : riemannZeta c ≠ 0) :
+               ∃ (P : Finset ℂ) (C : ℝ),
+                 (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ riemannZeta ρ = 0) ∧
+                 ∀ k : ℕ, ‖iteratedDeriv k LandauMellinG.Phi c
+                   - ∑ ρ ∈ P, (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ))
+                       * ((-1) ^ k * (k.factorial : ℂ) * (c - ρ) ^ (-1 - (k : ℤ)))‖
+                   ≤ k.factorial * C / R ^ k`
+Composes.  `LandauPoleLocal.differentiableAt_Phi`, `Phi_principal_part`,
+           `Phi_regular_at_one`; `LandauPoleSub.exists_differentiableOn_sub_poles`,
+           `taylor_coeff_sub_poles`; upstream `riemannZeta.zeroes_on_Compact_finite'`
+           (a `lemma`).
+Module.    `Stage3/LandauPoleDisc.lean`, namespace `LandauPoleDisc`. Pinned: the one.
+Open.      none.
 
 ### 4a The kernel's integral — PROVED (unit 0389: `LandauKernel.log_pow_le`, `log_pow_integrable`,
 `log_pow_integral`)

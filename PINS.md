@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 3b2 of `design/landau.md`, `Stage3/LandauPoleDisc.lean`
+
+    DONE        `Stage3/LandauPoleDisc.lean` builds with no `sorry`:
+                `Phi_taylor_on_disc`, the `k`-th derivative of `Phi` at a
+                regular centre equals the sum over the zeros in a disc of
+                their residues' contributions, up to `k!·C/R^k`; a
+                formalization unit; block 3b2 marked PROVED, which closes
+                block 3
+    ASSUMED     the statement of block 3b2 as written; any hypothesis the
+                build adds is reported here
+    DEPENDS     units 0393 and 0394; upstream's finiteness of zeros in a
+                compact set
+    OUT         block 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0395: one theorem, no `sorry`, clean on
+                the first build; block 3 is closed
+
 ### 2026-11-22 · the Landau window: block 3b1 of `design/landau.md`, `Stage3/LandauPoleSub.lean`
 
     DONE        block 3b split into 3b1 (no `ζ`) and 3b2 (`Phi` on a disc);
