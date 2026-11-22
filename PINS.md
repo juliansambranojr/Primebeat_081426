@@ -22,6 +22,17 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · block E9 of `joints.md`: the Lean gate, read and drafted
+
+    DONE        the gate's hypotheses read against the route's theorem; a
+                floor and a depth chosen; block E9 written as a DRAFT; a
+                NOTEPAD line
+    ASSUMED     the arithmetic is from a throwaway script, not a logged run
+    DEPENDS     units 0412, 0419
+    OUT         no Lean, no unit; the build waits for Julian
+    OUTCOME     done as pinned; at floor `2^36` the gate's inequality holds
+                at depth six from row 80, and fails at row 79
+
 ### 2026-11-22 · the gate priced from the proved ceilings (unit 0420)
 
     DONE        one script: O68's `R_of` on `routeConst` with `c1n`, `c3n`,

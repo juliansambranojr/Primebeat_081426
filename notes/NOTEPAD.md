@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  joints.md block E9 DRAFT (nothing built): the Lean gate against the route. Floor x0 = 2^36 (exact roots): routeConst <= 414; the gate's inequality at depth 6 holds from row 80 (0.1193 < 0.1599) and fails at 79, by a throwaway script. Would read: under RH no cell (r,6) is zero for r >= 80. Four theorems named, two trees
 - [open]   2026-11-22  unit 0420 EXPLORATORY: gate priced from the kernel-checked ceilings of unit 0419 (c1n, c3n, c4n). floorConstSplit <= 227.1 at psi floor 2^34, routeConst <= 694.3, depth 9, R6 = 76 of 93: the same rung unit 0410 found with floors. Outside the kernel still: RH, the script's gate, the weld
 - [open]   2026-11-22  unit 0419: EdgeNum, GlueNum, RouteNum (0 sorry; nine proofs copied with the existence step replaced). relErrWindow_route_num: under RH the route at the gate with routeConst a definition, no existential. Kernel-checked ceilings: Cen <= 1911393, c1n <= 88216610000, c3n <= 15, c4n <= 6468930000. The gate itself not yet run on them
 - [open]   2026-11-22  unit 0418: Stage3/LowEdge.lean (4 theorems, 0 sorry, first build clean). logDerivZeta_short_segment: |zeta'/zeta| <= 1620000 on Re = -1/4, |t| <= 2 (Mc), from the partial fraction at heights in [0,2]. Block E7 complete: CK <= 135, c_zeta >= 2/7, M0 <= 714, Mc <= 1620000, with K0 = log 2pi and W = 0 before. None wired into the route's constants yet

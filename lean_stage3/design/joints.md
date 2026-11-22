@@ -591,3 +591,54 @@ definition unfolding to that expression. No new mathematics.
 - **E8c** the route's theorem with the three constants named, and a numeral
   above each.
 
+### E9 The Lean gate evaluated — DRAFT for Julian, nothing built
+
+Read 2026-11-22: `lean/Interpolant.tableFrom_ne_zero_of_relErr_liRow` (its
+five hypotheses), `RouteNum.relErrWindow_route_num`, `Stage3.routeConst`,
+`floorConstSplit`. The arithmetic below is from a throwaway script, not a
+logged run.
+
+The gate, for a cell `(r, d)`:
+
+- `hrow`: the table's row is the difference of `f` along the doublings, on
+  the `d + 2` rows of the window;
+- `hS`: `StmtRelErrWindow f liRow r (d+1) ρ`;
+- `hbot`: `1 ≤ r − (d+1)`;  `hw`: `2d ≤ log 2·(r − (d+1))`;
+- `hρ`: `ρ < (log 2)^d / (2·r·3^(d+1))`.
+
+The route gives `hS` under RH with `ρ = routeConst x₀·(log 2·r)·2^(−(r−d−1)/2)`
+whenever `x₀² ≤ 2^(r−d−1)`.
+
+Choice of floor. `x₀ = 2^36`: then `√x₀ = 2^18` and `x₀^(1/4) = 2^9` are
+exact, `floorConstSplit ≤ 133.64` from the proved ceilings, and
+`routeConst (2^36) ≤ 414`. (At `2^34` the constant is larger and the fourth
+root is not a power of two; at `2^40` the floor costs more rows than the
+constant saves.)
+
+Depth six. `hρ` reads `414·2·3^7·r²·2^(−(r−7)/2) < (log 2)^5`. At `r = 80`
+the left side is about `0.1193` and the right side about `0.1599`. For
+`r ≥ 80`, `r² ≤ 6400·2^((r−80)/2)` (from `1 + x + x²/2 ≤ e^x`), so the left
+side does not grow. The floor needs `r − 7 ≥ 72`, which `r ≥ 80` gives; `hbot`
+and `hw` hold with room. By the same script the inequality fails at `r = 79`.
+
+Theorems.
+
+- Stage 3, `routeConst_le`: `routeConst (2^36) ≤ 414`.
+- Stage 3, `gate_ineq`: for real `r ≥ 80`,
+  `414·(log 2·r)·2^(−(r−7)/2) < (log 2)^6/(2·r·3^7)`.
+- Stage 3, `gate_hyp_of_RH`: under RH, for every integer `r ≥ 80` there is `ρ`
+  with `StmtRelErrWindow (rows of π) (main term) r 7 ρ` and
+  `ρ < (log 2)^6/(2·r·3^7)`.
+- Table tree, `cell_ne_zero_of_route`: from that conclusion as a hypothesis,
+  written in the same characters, and `hrow`: `tableFrom N r 6 ≠ 0` for
+  `r ≥ 80`. The main term is `liRow` at the rows by `liRow_eq`.
+
+What it would say, read across the weld: under RH, no cell at depth six is
+zero from row 80 on. The census computed in O43 covers the rows below. It
+would be a conditional statement about named cells, with RH as the
+hypothesis and the weld as the one step the kernel does not check.
+
+What it would not say: anything unconditional; anything about depths other
+than six (each depth has its own `r`, by the same two lemmas); anything in
+the direction from the table to the zeros.
+
