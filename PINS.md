@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 7 designed and split; block 7a, `Stage3/LandauPrimeSide.lean`
+
+    DONE        the design of block 7 written into `lean_stage3/design/landau.md`
+                before any of it is built: parameters, the two readings, the
+                four terms and their rates, split into 7a to 7d;
+                `Stage3/LandauPrimeSide.lean` builds with no `sorry`: `Ik`,
+                its integrability, `iteratedDeriv_Phi_eq_Ik`, and `Ik_le`, the
+                upper bound on the primes' reading from a window bound and
+                `G ≤ 8y`; a formalization unit; block 7a marked PROVED
+    ASSUMED     the design's arithmetic is checked on a numeric grid, proved
+                nowhere yet (block 7c); the rates differ from unit 0391's
+                hand check and supersede it
+    DEPENDS     units 0388, 0389, 0390, 0391
+    OUT         blocks 7b, 7c, 7d; `StmtLandauWindow` stays a leaf; no claim
+                about the window bound or RH
+
 ### 2026-11-22 · the Landau window: block 3b2 of `design/landau.md`, `Stage3/LandauPoleDisc.lean`
 
     DONE        `Stage3/LandauPoleDisc.lean` builds with no `sorry`:

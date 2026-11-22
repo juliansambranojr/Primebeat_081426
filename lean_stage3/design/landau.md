@@ -572,5 +572,78 @@ Module.    `Stage3/LandauTrig.lean`, namespace `LandauTrig`, `import Mathlib`.
            Pinned: `sum_block_ge`, `sum_sq_block_ge`, `exists_large_in_block`.
 Open.      none.
 
-### 7 The assembly — SKETCH
-`StmtLandauWindow` from slices 2 to 6.
+### 7 The assembly — split 2026-11-22 into 7a, 7b, 7c, 7d
+The design, written before any of it is built. Read this first after a
+compaction.
+
+Given `0 < θ < 1`, `δ > 0`, `C`, `WindowBound θ δ C`, and a zero `ρ₀ = β₀ + iγ₀`
+with `β₀ > θ`. Reductions: `β₀ < 1` (Mathlib: no zero on `Re s ≥ 1`); `δ ≤ 1`
+(a window `[Y, Y^(1+δ)]` with `Y ≥ 1` contains `[Y, Y²]`... so replace `δ` by
+`min δ 1`); `C ≥ 0` (replace `C` by `max C 0`).
+
+Parameters. `σ₀ > 1` real, `a = σ₀ − 1`, `r₀ = |σ₀ − ρ₀|`. Three conditions,
+each true for `σ₀` large:
+    S1  r₀ < σ₀ − θ       ⇐ σ₀ ≥ γ₀²/(β₀−θ) + 1
+    S2  r₀ < σ₀           ⇐ S1
+    S3  log(r₀/a) ≤ δ²/240 ⇐ a ≥ 240(1+|γ₀|)/δ², by r₀ ≤ a + 1 + |γ₀| and log x ≤ x − 1
+`r` = the least `|σ₀ − ρ|` over zeros `ρ`; `a < r ≤ r₀` (zeros have `Re < 1`).
+`P` = the zeros at distance exactly `r`; `R₂ > r` with no other zero in the
+open disc of radius `R₂`, `R₂ < σ₀`; `R = (r + R₂)/2`. `λ = log(r/a) ∈ (0, δ²/240]`.
+
+The two readings of `q_k := (−1)^k Φ^(k)(σ₀)/k!`, with `n = k + 1`:
+    zeros (unit 0395):   q_k = r^(−n)·T(n) + e_k,  |e_k| ≤ C₁/R^k,
+                         T(n) = Σ_{ρ ∈ P} A_ρ z_ρ^n,  z_ρ = r/(σ₀ − ρ),  A_ρ = m_ρ/(ρ(1−ρ))
+    primes (unit 0390):  q_k = I_k/k!,  I_k = ∫₁^∞ G(y)(log y)^k y^(−σ₀−1) dy   (real)
+`T(n)` is real: `P` is closed under conjugation (`σ₀` real, `riemannZeta_conj`,
+`ContourShift.zeta_order_conj`), `A_ρ̄ = conj A_ρ`, `z_ρ̄ = conj z_ρ`. The `z_ρ` are
+unimodular and distinct. `z_ρ = 1` only for a real zero `ρ = σ₀ − r ∈ (0, 1)`,
+where `A_ρ > 0`. So block 6 gives `τ > 0`, `N₀`: every `N₀` consecutive `n` hold
+one with `T(n) ≥ τ`.
+
+The primes, from above, for a window at `Y ≥ 1`, `Z = Y^(1+δ)`, any `b > 0`,
+`0 < b' < a` (the integrand's kernel is nonnegative, so only UPPER bounds on
+`G` are used: `G ≤ C·y^θ` on the window, `G ≤ 8y` off it, unit 0388):
+    I_k/k! ≤ C/(σ₀−θ)^n + 8·Y^b/(a+b)^n + 8·Z^(−b')/(a−b')^n
+So at an `n` with `T(n) ≥ τ`, multiplying by `r^n`:
+    τ ≤ C₁·R·(r/R)^n + C·(r/(σ₀−θ))^n + 8·Y^b·(r/(a+b))^n + 8·Z^(−b')·(r/(a−b'))^n
+        t1                t2                 t3                    t4
+`t1, t2 → 0` as `n → ∞` (`r < R`; `r ≤ r₀ < σ₀ − θ` by S1).
+With `U = log Y`, `b = a·δ/3`, `b' = a·δ/12`, and `n` in
+`[a(1+δ/3)·U, a(1+2δ/3)·U]`:
+    t3 = 8·exp(bU + n(λ − log(1+δ/3)))        the coefficient of n is negative
+       ≤ 8·exp(aU[δ/3 − (1+δ/3)(log(1+δ/3) − λ)]) ≤ 8·exp(aU[−δ²/27 + 4λ/3])
+       by log(1+t) ≥ t − t²/2
+    t4 = 8·exp(−b'(1+δ)U + n(λ − log(1−δ/12)))  the coefficient of n is positive
+       ≤ 8·exp(aU[−(δ/12)(1+δ) + (1+2δ/3)(λ − log(1−δ/12))]) ≤ 8·exp(aU[−δ²/72 + 5λ/3])
+       by −log(1−x) ≤ x/(1−x) ≤ x(1 + 6x/5) for x ≤ 1/6
+With `λ ≤ δ²/240`: the brackets are at most `−δ²(1/27 − 1/180)` and `−δ²/144`.
+Checked numerically on a grid of `δ` in `(0, 1]` at `λ = 0` and `λ = δ²/240`,
+2026-11-22. So `t3, t4 → 0` as `U → ∞`. The range of `n` has length `aδU/3`,
+which exceeds `N₀` for `U` large. Take `Y₀` so large that all four terms are
+below `τ/4` on the range and the range holds `N₀` integers; `WindowBound` gives
+a window at some `Y ≥ Y₀`; contradiction.
+THE LOST-FACTOR CHECK: four exponential rates in `n` or `U`, each strictly
+negative, and constants `C₁, C, 8, τ, N₀` that depend on `σ₀` and `ρ₀` only.
+The rates of unit 0391's hand check (`δ²/12`, `δ²/48`) were for a different
+choice of `b` and of the range; the ones above supersede them.
+
+### 7a The primes' reading, from above — SKETCH
+`Ik σ k := ∫ y in Ioi 1, G y · (log y)^k · y^(−σ−1)`. For `1 < σ`, `θ < σ`, `0 ≤ C`,
+`1 ≤ Y`, `0 ≤ δ`, `G y ≤ C·y^θ` on `Icc Y (Y^(1+δ))`, `0 < b`, `0 < b' < σ − 1`:
+`Ik σ k ≤ C·k!/(σ−θ)^(k+1) + 8·Y^b·k!/(σ−1+b)^(k+1) + 8·(Y^(1+δ))^(−b')·k!/(σ−1−b')^(k+1)`.
+And `iteratedDeriv k Phi σ = (−1)^k·Ik σ k`.
+
+### 7b The zeros' reading, from below — SKETCH
+For a zero `ρ₀` with `0 < Re ρ₀ < 1` and real `σ₀ > 1` with S2: there are
+`r, R, τ, C₁, N₀` with `σ₀ − 1 < r ≤ |σ₀ − ρ₀|`, `r < R`, `0 < τ`, such that every
+`N₀` consecutive `n ≥ 1` hold one with
+`τ·r^(−n) − C₁/R^(n−1) ≤ Re((−1)^(n−1)·iteratedDeriv (n−1) Phi σ₀)/(n−1)!`.
+
+### 7c The rates — SKETCH
+The scalar inequalities above: S1 to S3 for `σ₀` large; the two brackets; the
+four terms below `τ/4` for `U` large.
+
+### 7d `StmtLandauWindow` — SKETCH
+From 7a, 7b, 7c and `WindowBound`. With unit 0384's `rh_of_window`, the chain
+"a window bound at every `θ > 1/2` implies `RiemannHypothesis`" then has no
+leaf between its hypothesis and its conclusion.
