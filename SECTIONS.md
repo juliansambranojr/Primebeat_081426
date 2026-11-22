@@ -162,3 +162,9 @@ the last line of `Assembly.psiWeak_of_RH_EF_NT`: `assembly_arith` bounds
 depth 4 as built and depth 6 on the ceiling rung with the radii freed. The
 height `T` (taken just above `x`, allowed up to `x²`) is the lever not yet
 priced. Nothing is restated in Lean; the decision is Julian's.
+
+Unit 0406 priced the height (EXPLORATORY). With `T` just below `x²` the
+top-edge constant leaves the bound, and the zero side, unrounded, costs a few
+tens. As floors: depth 6 covered with 3 rungs to spare with the radii as
+built, 9 with them freed. What carries the constant then is the left edge of
+the contour, `c₂·log x`, and the floor squared between `ψ` and `π`.

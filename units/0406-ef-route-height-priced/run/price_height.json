@@ -1,0 +1,80 @@
+{
+ "exploratory": true,
+ "prereg": null,
+ "ceiling_rung": 93,
+ "A_floor": 16.55,
+ "as_built": {
+  "c1_floor": 81050000000.0,
+  "c2_floor": 582700000000.0,
+  "a1": {
+   "log2_psi_floor": 42.5,
+   "log2_pi_floor": 85.0,
+   "zero_part": 38.0,
+   "c1_part": 260000.0,
+   "c2_part": 7931.0,
+   "C_psi": 267960.4,
+   "depth_covered": 5,
+   "R6": 98,
+   "margin_rungs": -5
+  },
+  "a1p5": {
+   "log2_psi_floor": 40.0,
+   "log2_pi_floor": 80.0,
+   "zero_part": 58.1,
+   "c1_part": 0.921,
+   "c2_part": 20042.2,
+   "C_psi": 20101.3,
+   "depth_covered": 6,
+   "R6": 90,
+   "margin_rungs": 3
+  },
+  "a2": {
+   "log2_psi_floor": 40.0,
+   "log2_pi_floor": 80.0,
+   "zero_part": 76.0,
+   "c1_part": 1.27e-06,
+   "c2_part": 20042.2,
+   "C_psi": 20118.2,
+   "depth_covered": 6,
+   "R6": 90,
+   "margin_rungs": 3
+  }
+ },
+ "freed": {
+  "c1_floor": 5429000000.0,
+  "c2_floor": 39030000000.0,
+  "a1": {
+   "log2_psi_floor": 41.25,
+   "log2_pi_floor": 82.5,
+   "zero_part": 39.3,
+   "c1_part": 26900.0,
+   "c2_part": 844.1,
+   "C_psi": 27740.1,
+   "depth_covered": 6,
+   "R6": 91,
+   "margin_rungs": 2
+  },
+  "a1p5": {
+   "log2_psi_floor": 38.0,
+   "log2_pi_floor": 76.0,
+   "zero_part": 61.5,
+   "c1_part": 0.247,
+   "c2_part": 2826.2,
+   "C_psi": 2887.9,
+   "depth_covered": 7,
+   "R6": 84,
+   "margin_rungs": 9
+  },
+  "a2": {
+   "log2_psi_floor": 38.0,
+   "log2_pi_floor": 76.0,
+   "zero_part": 80.2,
+   "c1_part": 6.78e-07,
+   "c2_part": 2826.2,
+   "C_psi": 2906.4,
+   "depth_covered": 7,
+   "R6": 84,
+   "margin_rungs": 9
+  }
+ }
+}

@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the explicit-formula route priced over the height T (unit 0406)
+
+    DONE        a unit with one script: the constant as a function of the
+                floor and of `T = x^a`, from the two proved bounds before
+                their closing arithmetic; O68's `R_of` on the result; a
+                NOTEPAD line; a line in `SECTIONS.md`
+    ASSUMED     EXPLORATORY, no prereg; floors as in unit 0405; the model's
+                monotonicity in `x` argued in the docstring, checked by no
+                theorem
+    DEPENDS     unit 0405
+    OUT         no Lean in this unit; the restatement is the next one
+    OUTCOME     done as pinned; at `a = 2` depth 6 is covered with 3 rungs
+                to spare as built and 9 with the radii freed, as floors
+
 ### 2026-11-22 · the explicit-formula route: the radii, and a lost √x (unit 0405)
 
     DONE        a unit with one script: the Borel–Carathéodory factor with
