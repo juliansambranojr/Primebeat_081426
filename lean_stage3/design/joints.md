@@ -671,3 +671,56 @@ computed table.
   `tableFrom rowN r d ≠ 0` for integer `r ≥ r₀`.
 - `depth_one` … `depth_eight`: the instances.
 
+### T1 The cell as a sum over the zeros — DRAFT for Julian, nothing built
+
+`SECTIONS.md`, "One object", joint T1. Read 2026-11-22:
+`lean/Superposition.lean` and `lean/Chain.lean` (definitions `mode`, `Sym`,
+`bdiff`, `modeSum`; `tableFrom_eq_bdiff_iter`, `tableFrom_mode` and its note
+on vacuity, `tableFrom_eq_modeSum_reweighted`), `Stage3/Assembly.zeroPartialSum`,
+`Stage3/GlueFloor.StmtExplicitFormulaSplit`, `Glue.explicit_formula_split_num`.
+
+What is to be said. For the row `a(n) = ψ(2^n)`, the `d`-fold backward
+difference at `r` is
+
+    Σ_{j=0}^{d} (−1)^j·C(d,j)·a(r − j).
+
+The explicit formula at `x = 2^(r−j)` and a height `T` writes each `a(r − j)`
+as `2^(r−j) − Σ_{|γ|<T} m(ρ)·2^((r−j)ρ)/ρ` plus an error. The stencil is
+linear, and on a mode it is the symbol to the `d`:
+
+    Σ_j (−1)^j·C(d,j)·2^((r−j)ρ) = 2^(rρ)·(1 − 2^(−ρ))^d.
+
+At `ρ = 1` that is the main term, `2^r·(1/2)^d = 2^(r−d)`.
+
+Theorems.
+
+- `stencil_mode`: for `w : ℂ`, `Σ_{j ≤ d} (−1)^j·C(d,j)·w^(r−j) = w^r·(1 − w⁻¹)^d`
+  on integer `r` (binomial theorem). With `w = 2^ρ` this is `Chain.Sym 2 ρ ^ d`
+  times `Chain.mode 2 ρ r`.
+- `stencil_zeroPartialSum`: the stencil of `n ↦ zeroPartialSum (2^n) T` at `r`
+  is `Σ' over the zeros with |γ| < T of m(ρ)·(1 − 2^(−ρ))^d·2^(rρ)/ρ`. The
+  index set is finite, so the two sums exchange.
+- `cell_eq_zero_sum`: for `d`, `r`, `T` with `16 ≤ 2^(r−d)` and
+  `2 ≤ T ≤ (2^(r−d))²`,
+
+      ‖ Σ_j (−1)^j·C(d,j)·ψ(2^(r−j)) − 2^(r−d)
+          + Σ'_{|γ|<T} m(ρ)·(1 − 2^(−ρ))^d·2^(rρ)/ρ ‖
+        ≤ Σ_j C(d,j)·E(2^(r−j), T),
+
+  `E(x, T) = c1n·x·log²(xT)/T + c3n·log x + c4n·log²x·x^(−1/4)`, the right
+  side of `explicit_formula_split_num`. No RH.
+
+Where. Stage 3, where the explicit formula is. `Chain` and `Superposition`
+are in the table's tree; to state the result with `Chain.Sym` and
+`Chain.mode` they are ported to `Stage3/TablePort/` as the gate's modules
+were (unit 0423), under `utilities/check_port.py`.
+
+A point from `Chain.tableFrom_mode`'s own note. Asking an integer row to
+equal one mode at every `n` is vacuous. Nothing here asks that: the row is
+`ψ` at the doublings, real and not a mode sum, and the theorem bounds its
+distance from one.
+
+What it leaves to T2, T3, T4 and joint 10: the count `π` in place of `ψ`;
+the height to infinity; the stencil as a Weil test function; the zeros read
+back.
+

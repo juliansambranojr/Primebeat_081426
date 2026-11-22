@@ -22,6 +22,17 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `SECTIONS.md` "One object", and block T1 of `joints.md` as a draft
+
+    DONE        `SECTIONS.md` reorganised under Julian's statement that the
+                table and everything downstream are one object; four joints
+                named T1 to T4 beside joint 10; block T1 written as a DRAFT
+    ASSUMED     the statement of T1 is from the definitions read today; no
+                Lean was run for it
+    DEPENDS     units 0401, 0419
+    OUT         no Lean, no unit; the build waits for Julian
+    OUTCOME     done as pinned
+
 ### 2026-11-22 · `Stage3/TableDepths.lean` (block E11 of `joints.md`), and a drift checker for `TablePort`
 
     DONE        `cell_ne_zero_gen`: the gate on the route at any depth, from a
