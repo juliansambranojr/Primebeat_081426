@@ -473,3 +473,29 @@ the two trees and is not in this block.
   From Mathlib's `deriv_riemannZeta_zero` and `riemannZeta_zero`. This is the
   `K0` of `Glue.explicit_formula_poly` and `explicit_formula_split`.
 
+### E5 No zero on the real segment: `W = 0` — PROVED (unit 0414: `RealSegment.zeta_real_ne_zero`, `isEmpty_zeroHeight`, `weightedZeroHeightBucket_eq_zero`)
+
+`W = weightedZeroHeightBucket` is the count, with multiplicity, of zeros of ζ
+with `0 < Re < 1` and `Im = 0` (upstream `KadiriZeroCounting`). Upstream proves
+no zero on `(−1, 0]`; nothing covers `(0, 1)`.
+
+Route, from what the packages hold.
+
+- For `Re s > 0`, `s ≠ 1`: `ζ s = riemannZeta0 N s` (`Zeta0EqZeta`). At `N = 1`
+  and real `s = σ` in `(0, 1)`:
+  `ζ σ = 1/2 − 1/(1 − σ) + σ·∫_{x>1} (⌊x⌋ + 1/2 − x)/x^(σ+1) dx`.
+- `ZetaBnd_aux1b` bounds the integral by `1/σ`, so the last term has norm at
+  most `1`. If `ζ σ = 0` then `1/(1 − σ) − 1/2 ≤ 1`, that is `σ ≤ 1/3`.
+  So no zero on `(1/3, 1)`. (The bound `1/σ` uses `|⌊x⌋ + 1/2 − x| ≤ 1`; with
+  `1/2` the argument would cover all of `(0, 1)`, but that lemma is not there.)
+- For `σ` in `(0, 1/3]`: the functional equation `riemannZeta_one_sub` at
+  `w = 1 − σ` in `[2/3, 1)`. The factors `2^(1−w)`, `π^(−w)`, `Γ w`,
+  `cos (π w/2)` are nonzero and `ζ w ≠ 0` by the first case.
+
+Theorems.
+
+- `zeta_real_ne_zero_upper`: `1/3 < σ → σ < 1 → riemannZeta σ ≠ 0`.
+- `zeta_real_ne_zero`: `0 < σ → σ < 1 → riemannZeta σ ≠ 0`.
+- `isEmpty_zeroHeight`: `IsEmpty Kadiri.ZeroHeightNontrivialZeros`.
+- `weightedZeroHeightBucket_eq_zero`: `Kadiri.weightedZeroHeightBucket = 0`.
+

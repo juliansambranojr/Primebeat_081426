@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/RealSegment.lean`, block E5 of `joints.md`
+
+    DONE        ζ has no zero on the real segment `(0, 1)`; the bucket `W` of
+                real nontrivial zeros is empty and
+                `weightedZeroHeightBucket = 0`; a unit; the block PROVED
+    ASSUMED     Julian's "keep going on the stretch" read as: the next of
+                the four unnamed quantities, cheapest first
+    DEPENDS     upstream `Zeta0EqZeta`, `ZetaBnd_aux1b`; Mathlib
+                `riemannZeta_one_sub`
+    OUT         `M0`, `Mc`, the compact patch; nothing wired into the
+                route's theorems
+    OUTCOME     done as pinned; unit 0414; clean on the second build
+
 ### 2026-11-22 · `Stage3/RowLeaves.lean`, block E4 of `joints.md`
 
     DONE        `Li_two_rpow`: Stage 3's `Li` at `2^x` is

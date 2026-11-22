@@ -117,6 +117,7 @@ import Stage3.AssemblyFloor
 import Stage3.GlueFloor
 import Stage3.JointFloorGate
 import Stage3.RowLeaves
+import Stage3.RealSegment
 
 namespace Stage3
 
