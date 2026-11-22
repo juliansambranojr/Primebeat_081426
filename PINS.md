@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau worksheet: blocks 2b and 3 checked against the trees
+
+    DONE        `lean_stage3/design/landau.md` updated: section 0b lists the
+                pieces found for blocks 2b and 3, each name opened and its
+                statement read; block 3's sketch drops the real-zero line;
+                a new block 2c holds the step section 0 uses and no block
+                proved, the Taylor coefficients of the transform as
+                integrals against powers of `log y`
+    ASSUMED     statements only were read; hypotheses may still need adapting
+    DEPENDS     the names as they stand at the pinned Mathlib and upstream
+    OUT         no Lean, no unit, no block's mark changed
+    OUTCOME     done as pinned
+
 ### 2026-11-22 · the Landau window: block 2 of `design/landau.md`, `Stage3/LandauMellin.lean`
 
     DONE        `Stage3/LandauMellin.lean` builds with no `sorry`: the ramp

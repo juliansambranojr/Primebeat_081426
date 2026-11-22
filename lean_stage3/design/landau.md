@@ -34,7 +34,7 @@ principal part at a zero `ρ` of multiplicity `m` being `m/(ρ(1−ρ)) · 1/(s�
 
 Fix a real `σ₀ > 1`, large. Two readings of `(−1)^k Φ^(k)(σ₀)`:
 
-- from the primes: it is `∫₀^∞ G(e^u) u^k e^(−σ₀u) du`. On the window `G ≤ C e^(θu)`,
+- from the primes: it is `∫₀^∞ G(e^u) u^k e^(−σ₀u) du` (block 2c). On the window `G ≤ C e^(θu)`,
   so that part is at most `|C|·k!/(σ₀−θ)^(k+1)`. Outside the window a crude
   bound `|G(e^u)| ≤ A(u+1)e^u` leaves a tail, and for `k` with
   `(k+1)/(σ₀−1)` at the middle of the window the tail is at most
@@ -117,6 +117,37 @@ Statements only were read; hypotheses may still need adapting.
 So slice 3 is assembly, slice 5 is nearly free, and the new analysis is the
 ramp kernel of slice 2, the tail of slice 4 and the lemma of slice 6.
 
+Searched again 2026-11-22 for blocks 2b, 2c and 3, after block 2 was proved:
+
+    block 2b  have: `LandauMellin.mellin_rampSum`; Mathlib `integral_Ioi_cpow_of_lt`.
+              to build: `∫₁^∞ log y · y^(−s) dy = 1/(s−1)²`, in no tree, from
+              Mathlib `integral_Ioi_of_hasDerivAt_of_tendsto` and
+              `isLittleO_log_rpow_atTop`; the integrability of
+              `rampSum · y^(−s−1)`, which follows from the summability inside
+              the proof of `mellin_rampSum`
+    block 2c  Mathlib `mellin_hasDerivAt_of_isBigO_rpow` gives one derivative
+              of a Mellin transform; nothing gives all of them
+    block 3   near 1: Mathlib `riemannZeta₁` (entire, `(s−1)ζ(s)`),
+              `deriv_riemannZeta₁_one` (its derivative at 1 is `γ`),
+              `deriv_riemannZeta_eq_neg_inv_sub_sq_mul_add` (all `lemma`s);
+              upstream `riemannZetaLogDerivResidueBigO` bounds
+              `−ζ'/ζ − 1/(s−1)` near 1 and does not give the constant.
+              at a zero: upstream
+              `kadiri_logDeriv_analytic_zero_principal_part_remainder_bound`;
+              Stage 3 `ContourShift.zeta_order_ne_top`, `one_le_zeta_order`,
+              `order_bridge`.
+              finitely many: upstream `riemannZeta.zeroes_on_Compact_finite'`.
+              subtracting finitely many simple poles: the construction is
+              inside the proof of Stage 3 `ContourShift.residue_rectangle_of_local`,
+              for a rectangle, and is not exported; restate it for a disc.
+              the remainder: Mathlib `norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le`.
+
+Signs checked by hand the same day: the principal part of `Φ` at a zero `ρ`
+of multiplicity `m` is `m/(ρ(1−ρ))/(s−ρ)` and its Taylor coefficient at `σ₀`
+is `−m/(ρ(1−ρ))·(ρ−σ₀)^(−(k+1))`, as section 0 has them; at `s = 1`,
+`−ζ'/ζ(s)/(s(s−1)) = 1/(s−1)² − (1+γ)/(s−1) +` analytic, which is what `Φ`
+subtracts.
+
 ### 2 The Mellin transform of the ramp sum — PROVED (unit 0385: `LandauMellin.rampK_integrable`,
 `rampK_integral`, `rampK_integral_norm`, `rampSum_eq_tsum`, `mellin_rampSum`)
 Objects.   `rampK s n y = max(y/n − 1, 0)·y^(−s−1)`, the ramp kernel of one `n`;
@@ -159,12 +190,21 @@ For `Re s > 1`: `∫₁^∞ G(y) y^(−s−1) dy = Φ(s)`, from block 2,
 `∫₁^∞ log y · y^(−s) dy = 1/(s−1)²` and `∫₁^∞ y^(−s) dy = 1/(s−1)`, with the
 integrability of each piece.
 
+### 2c The Taylor coefficients of the transform, from the primes — SKETCH
+Section 0 reads `(−1)^k Φ^(k)(σ₀)` as `∫₁^∞ G(y)(log y)^k y^(−σ₀−1) dy`. Found
+missing on 2026-11-22: no block proved it. Route: for `|s − σ₀| < σ₀ − 1`
+expand `y^(−(s−σ₀)) = Σ_k (−log y)^k (s−σ₀)^k / k!`, change sum and integral
+by absolute convergence (the crude bound of block 5 on `G`), and read the
+coefficients off by uniqueness of the power series. Needs block 5 first.
+
 ### 3 The poles of `Φ` and its Taylor coefficients — SKETCH
 `Φ` analytic at `1`; meromorphic on `Re s > 0`; principal part
 `m/(ρ(1−ρ))/(s−ρ)` at a zero of multiplicity `m`; finitely many poles in a
-closed disc inside `Re s > 0`; no real zero of `ζ` in `(0, 1)`; the Taylor
+closed disc inside `Re s > 0`; the Taylor
 coefficient at `σ₀` as the nearest poles' sum plus a remainder of smaller
 rate, by Cauchy's estimate on a circle through no pole. The largest slice.
+A real zero in `(0, 1)` is allowed (section 0). The pieces are in section 0b;
+what is new is the disc form of the pole subtraction.
 
 ### 4 The kernel on and off the window — SKETCH
 `∫₀^∞ u^k e^(−au) du = k!/a^(k+1)`, and the two-sided tail of that integral
