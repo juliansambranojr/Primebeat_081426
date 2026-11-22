@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 3a of `design/landau.md`, `Stage3/LandauPoleLocal.lean`
+
+    DONE        block 3 split into 3a (local) and 3b (the disc and the Taylor
+                coefficients); `Stage3/LandauPoleLocal.lean` builds with no
+                `sorry`: `differentiableAt_Phi`, `Phi_principal_part` (at a
+                zero `ρ ≠ 0, 1` of order `m`, `Phi` is an analytic function
+                plus `m/(ρ(1−ρ))/(s−ρ)`), `Phi_regular_at_one`; a
+                formalization unit; block 3a marked PROVED
+    ASSUMED     the statements of block 3a as written; any hypothesis the
+                build adds is reported here
+    DEPENDS     `Stage3/ContourShift.lean` for the order of a zero; Mathlib's
+                `riemannZeta₁`; `Stage3/LandauMellinG.lean` for `Phi`
+    OUT         block 3b and block 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0393: three theorems, no `sorry`, no
+                hypothesis added
+
 ### 2026-11-22 · the Landau window: block 6 of `design/landau.md`, `Stage3/LandauTrig.lean`
 
     DONE        `Stage3/LandauTrig.lean` builds with no `sorry`:

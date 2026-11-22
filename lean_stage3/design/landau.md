@@ -296,14 +296,49 @@ Module.    `Stage3/LandauTaylor.lean`, namespace `LandauTaylor`. Pinned:
            `mellinLog_hasDerivAt`, `iteratedDeriv_Phi`, `mellinLog_real`.
 Open.      none.
 
-### 3 The poles of `Φ` and its Taylor coefficients — SKETCH
-`Φ` analytic at `1`; meromorphic on `Re s > 0`; principal part
-`m/(ρ(1−ρ))/(s−ρ)` at a zero of multiplicity `m`; finitely many poles in a
-closed disc inside `Re s > 0`; the Taylor
-coefficient at `σ₀` as the nearest poles' sum plus a remainder of smaller
-rate, by Cauchy's estimate on a circle through no pole. The largest slice.
-A real zero in `(0, 1)` is allowed (section 0). The pieces are in section 0b;
-what is new is the disc form of the pole subtraction.
+### 3 The poles of `Φ` and its Taylor coefficients — split 2026-11-22 into 3a and 3b
+
+### 3a `Phi` near a zero and near `1` — PROVED (unit 0393: `LandauPoleLocal.differentiableAt_Phi`,
+`Phi_principal_part`, `Phi_regular_at_one`)
+Objects.   `Phi` (`LandauMellinG.Phi`). At a zero `ρ ≠ 0, 1` of order `m`:
+           `ζ(s) = (s−ρ)^m·g(s)`, `g` analytic, `g(ρ) ≠ 0`, so
+           `−ζ'/ζ = −m/(s−ρ) − g'/g`. And
+           `1/(s(s−1)) − 1/(ρ(ρ−1)) = −(s−ρ)(s+ρ−1)/(s(s−1)ρ(ρ−1))`. Hence
+           `Phi s = A/(s−ρ) + h(s)`, `A = m/(ρ(1−ρ))`,
+           `h(s) = −(g'/g)/(s(s−1)) + m(s+ρ−1)/(s(s−1)ρ(ρ−1)) − 1/(s−1)² + (1+γ)/(s−1)`.
+           At `1`: `ζ(s) = ζ₁(s)/(s−1)` with `ζ₁` entire (`riemannZeta₁`),
+           `ζ₁(1) = 1`, `ζ₁'(1) = γ`; `−ζ'/ζ = 1/(s−1) − ζ₁'/ζ₁`, and
+           `Phi s = N(s)/(s(s−1))` with `N(s) = −1 − ζ₁'(s)/ζ₁(s) + (1+γ)s`,
+           `N(1) = 0`. So `Phi s = dslope N 1 s / s` off `1`.
+Sizes.     identities. Lost factor: none.
+Regime.    P0 `ρ ≠ 0`. P1 `ρ ≠ 1`. PZ `ζ(ρ) = 0`.
+Defs.      none.
+Theorems.  `theorem differentiableAt_Phi {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1)
+               (hz : riemannZeta s ≠ 0) : DifferentiableAt ℂ LandauMellinG.Phi s`
+           `theorem Phi_principal_part {ρ : ℂ} (h0 : ρ ≠ 0) (h1 : ρ ≠ 1) (hz : riemannZeta ρ = 0) :
+               ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s
+                 = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ)`
+           `theorem Phi_regular_at_one :
+               ∃ h : ℂ → ℂ, AnalyticAt ℂ h 1 ∧ ∀ᶠ s in 𝓝[≠] 1, LandauMellinG.Phi s = h s`
+Composes.  Stage 3 `ContourShift.zeta_analyticAt`, `zeta_order_ne_top`,
+           `one_le_zeta_order`. Mathlib: `AnalyticAt.analyticOrderAt_eq_natCast`
+           (a `lemma`), `Nat.cast_analyticOrderNatAt` (a `lemma`),
+           `riemannZeta_eq_inv_sub_mul` (a `lemma`),
+           `deriv_riemannZeta_eq_neg_inv_sub_sq_mul_add` (a `lemma`),
+           `deriv_riemannZeta₁_one`, `riemannZeta₁_one`,
+           `riemannZeta₁_ne_zero_of_near_one` (`lemma`s),
+           `Complex.differentiableOn_dslope`, `DifferentiableOn.analyticAt`.
+Module.    `Stage3/LandauPoleLocal.lean`, namespace `LandauPoleLocal`. Pinned: all three.
+Open.      block 3b.
+
+### 3b The poles subtracted on a disc, and the Taylor coefficients — SKETCH
+`Phi` minus the principal parts of its finitely many poles in a closed disc
+inside `Re s > 0` extends to an analytic function there (the construction of
+Stage 3 `ContourShift.residue_rectangle_of_local`, restated for a disc, with
+block 3a as its local input); finitely many zeros in the disc
+(`riemannZeta.zeroes_on_Compact_finite'`); the Taylor coefficient of `Phi` at
+`σ₀` as the poles' sum plus a remainder bounded by Cauchy's estimate on a
+circle through no pole. A real zero in `(0, 1)` is allowed (section 0).
 
 ### 4a The kernel's integral — PROVED (unit 0389: `LandauKernel.log_pow_le`, `log_pow_integrable`,
 `log_pow_integral`)
