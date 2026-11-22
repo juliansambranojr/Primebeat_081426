@@ -997,3 +997,33 @@ of `log (side / mirror side)`.
 to `restoringForce`.
 
 **Not here.** What forces equal sides. The area holds for every `ρ`.
+
+
+### J10d Finitely many zeros off the line: the one-ladder converse — PROVED (unit 0439: `FiniteOffLine.finite_off_line`, `sum_order_onLineInv_le`, `err_le`)
+
+Hypotheses: a finite set `F` holds every zero with `Re ρ ≠ 1/2`; at one depth
+`d`, from some row on, `|stencil d ψ(2^·) r − 2^r·(1/2)^d| ≤ C·r²·√2^r`.
+
+Suppose a zero has `Re > 1/2`. It is in `F`. Let `β` be the largest real part
+in `F` and `S` the zeros of `F` on that line. At row `r` take the height
+`T = 2^(r−d)` in `CellZeros.cell_eq_zero_sum` (`T ≤ x²` holds, and `F` is below
+`T` from some row on). Split the zeros below `T`:
+
+- `S`: the sum `LadderFading.line_not_fading` speaks of.
+- `F \ S`: finitely many, each `≤ c_ρ·2^(r·Re ρ)` with `Re ρ < β`.
+- the rest: on the line, each `≤ m/|ρ|·2^d·√2^r`. By the dyadic weights and the
+  zero count (`Kadiri.weighted_cumulative_count_le`, `Stage3.dyadic_abs_N_sum_le`
+  with `ArgCount.rvM_crude`, and no zero of height zero),
+  `Σ_{|γ| < 2^(K+1), Re = 1/2} m/|ρ| ≤ 6000·(K+2)²`.
+
+The error of `cell_eq_zero_sum` at this height is `≤ const·r²`: `x/T ≤ 2^d`,
+`log(xT) ≤ 2r`, `log x ≤ r`, `x^(−1/4) ≤ 1`.
+
+So the sum over `S` is `O(r²·√2^r + r² + Σ_{F\S} c_ρ·2^(r·Re ρ)) = o(2^(rβ))`,
+against `line_not_fading`. Hence no zero has `Re > 1/2`, and
+`LandauWindow.rh_of_zeroFree_half` gives RH.
+
+**Theorems** (`FiniteOffLine`): `sum_order_onLineInv_le`, `dyadic_count_le`,
+`norm_term_le`, `cell_zero_sum_finset`, `err_le`, `finite_off_line`.
+
+**Not here.** Infinitely many zeros off the line. The cells of `π`: that is T2.

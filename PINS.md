@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 10, the finite case assembled: `Stage3/FiniteOffLine.lean`, block J10d of `joints.md`
+
+    DONE        `finite_off_line`: a finite set holds every zero off the
+                line, and at one depth the cells of the log-weighted count on
+                the one ladder are within `C·r²·√2^r` of their main term;
+                then RH. With it `sum_order_onLineInv_le`, `dyadic_count_le`
+                (the zeros on the line, weighted by `1/|ρ|`, below a height),
+                `err_le`, `norm_term_le`; one unit
+    ASSUMED     Julian, 2026-11-22: "go for all of it". The first of four:
+                the finite-off-line conditional theorem. Stated on the cells
+                of `ψ`, as `CellZeros.cell_eq_zero_sum` is; the passage to the
+                cells of `π` is joint T2
+    DEPENDS     `CellZeros.cell_eq_zero_sum`, `LadderFading.line_not_fading`,
+                `ArgCount.rvM_crude`, `Stage3.dyadic_abs_N_sum_le`,
+                `LandauWindow.rh_of_zeroFree_half`
+    OUT         infinitely many zeros off the line (unit 0431)
+    OUTCOME     proved, unit 0439
+
 ### 2026-11-22 · the deep zero, inverted, and the band: `lean/DeepZeroBand.lean`
 
     DONE        `share`: a cell over its total. `share_add`, `share_mirror`:

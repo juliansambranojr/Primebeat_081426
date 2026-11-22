@@ -138,6 +138,7 @@ import Stage3.LadderMean
 import Stage3.StencilWeil
 import Stage3.WobbleCount
 import Stage3.MirrorArea
+import Stage3.FiniteOffLine
 
 namespace Stage3
 
