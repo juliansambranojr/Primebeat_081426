@@ -122,8 +122,21 @@ half-plane, is joint 10 and joint 9. Neither has a statement yet.
 `A` and `x₀` in the stretch from `G` to the gate are existential. The trace
 (unit 0403): the dial's constant is a sum with an explicit part and six
 quantities taken from existence statements, three in `Stage3/LineBound.lean`
-(about the smoothing bump) and three in the upstream package
-(`SmoothedChebyshevClose`, `I1Bound`, `I9Bound`); the bump itself is
-existential. A named row past which the gate closes needs those made
-explicit. Not started.
+and three in the upstream package (`SmoothedChebyshevClose`, `I1Bound`,
+`I9Bound`).
 
+This was already worked, before the Landau chain existed, and the answer is
+in the notes. Read 2026-11-22, after the trace above was written without it:
+- `Stage3/ExplicitBump.lean` (NOTEPAD entry 283, 2026-09-01) is a concrete
+  bump, `bump x = c·(max 0 ((x − 1/2)(2 − x)))²`, with `bump_le_numeral : bump x ≤
+  1.4757`, so `B ≤ 5.4271`. The dial's `bump_exists` does not use it.
+- The same entry records what carrying that numeral shows: the `B` terms
+  alone give `C_π ≥ 963,567`, against the ceiling `C_π = 2640.5` at which the
+  gate still covers depth 6 by row 92 (entry 233). The entry's words: the
+  `66600·e/π` of the contour bound "is where it dies", and upstream "is
+  irrelevant".
+So making the remaining five quantities explicit would give a number, and
+that number is already known to be too large by a factor of several hundred
+for the gate to close inside the computed table. The route that the notes
+record as clearing the ceiling is the explicit-formula one (entry 233,
+`C_π = 2604.6`, a paper propagation, not a Lean constant).

@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the dial's constants: a correction, and nothing built
+
+    DONE        `SECTIONS.md` "The constants", `joints.md` block 6 and unit
+                0403 corrected: a concrete bump has been in the tree since
+                NOTEPAD entry 283 (`Stage3/ExplicitBump.lean`), and that
+                entry already carries its numeral through to a constant far
+                above the gate's ceiling; a NOTEPAD line
+    ASSUMED     the figures are quoted from NOTEPAD entries 283 and 233 as
+                read; the notebook entries behind them were not opened
+    DEPENDS     unit 0403
+    OUT         no Lean. A new module written this session under the name
+                `Stage3/ExplicitBump.lean` overwrote the existing one before
+                a commit; it was restored from git and the new one discarded
+    OUTCOME     done as pinned
+
 ### 2026-11-22 · joint 6 and the constants: `lean/RelativeLi.lean`, and a trace
 
     DONE        the v4.28.0 toolchain fetched and `lean/` built in this

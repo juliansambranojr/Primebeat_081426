@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  CORRECTION to unit 0403's trace: the tree has had a concrete bump since entry 283 (ExplicitBump.lean, bump <= 1.4757) and entry 283 already carried it through: C_pi >= 963,567 vs the 2640.5 ceiling of entry 233. Explicit constants on the dial's route are known too large. No Lean changed
 - [open]   2026-11-22  unit 0403: lean/RelativeLi.lean (v4.28, 3 theorems): the shape-free gate with its main-term floor discharged; joint 6 sealed up to the interpolant G (hypothesis everywhere, constructed nowhere). Trace: the dial's constants rest on 6 existential quantities (3 Stage 3, 3 upstream) and an existential bump
 - [open]   2026-11-22  unit 0402: JointDialGate.lean, joints 3, 4, 5 of SECTIONS.md SEALED: a window bound on G at theta gives, for any theta' in (theta, 1], the gate's StmtRelErrWindow on the rows of pi and Li with relative error A·2^((r-n)(theta'-1)); StmtRelErrWindow welded (10 welds); A, x0 existential
 - [open]   2026-11-22  unit 0401: JointSymbol.lean, joint 9a SEALED on the transform side: the Mellin transform of the depth-d difference of G along the doublings is (1 - 2^(-s))^d · Phi, and each zero's pole is reweighted by the symbol to the power d; pointwise sum over zeros and the converse remain open

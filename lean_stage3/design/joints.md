@@ -312,4 +312,12 @@ Constants. `psi_weak_of_theta`: `C_ψ = Cclose + C1 + C9 + 66600·e·B/π + 2·9
            `A = C/(2(θ'−θ)/6)²`. A number needs an explicit bump and the six
            bounds reproved with constants.
 Open.      the interpolant as a theorem; the six constants.
+Corrected 2026-11-22, the same day. "The bump `ν` … existential" above is
+true of what the dial takes (`bump_exists`) and missed that
+`Stage3/ExplicitBump.lean` has held a concrete bump with `bump x ≤ 1.4757`
+since NOTEPAD entry 283, and that the entry carries the numeral through:
+`C_π ≥ 963,567` from the `B` terms alone, against a ceiling of `2640.5`
+(entry 233). The explicit constants on this route are known to be too large
+for the gate to close inside the computed table. See `SECTIONS.md`, "The
+constants".
 
