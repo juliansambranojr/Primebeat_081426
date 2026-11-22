@@ -101,3 +101,64 @@ What is not claimed.
   or a bound on long runs of rows only (the window form), is not derived.
 - The hypothesis of 9c is not proved. It is RH in the table's coordinates.
 
+#### Block 9, corrected before building — 2026-11-22
+Julian read the draft and said 9c is right, go. Working out the proof before
+writing any Lean found two faults in the draft. Both are the size of what the
+steps add up to, so this is design and the build stops here (CLAUDE.md, "a lost
+factor is a design failure").
+
+FAULT 1, in 9b. "The right side is meromorphic on `Re s > 0`" is false in
+general. The poles are at `ρ + 2πik/log 2` for every zero `ρ` and every
+integer `k`. The heights `γ·log 2` taken modulo `2π` are spread around the
+circle, so the aliases of the zeros on one vertical line are dense on that
+line. Poles that accumulate are not the poles of a meromorphic function. Under
+RH the line `Re s = 1/2` is a wall for `Z`. Off RH, any vertical line carrying
+infinitely many zeros is one.
+
+FAULT 2, in 9c. The proof "a pole at a zero right of `θ` contradicts
+analyticity" needs the pole to be an isolated singularity of the continued
+function, which fault 1 removes. What survives, with a different proof:
+
+9c′ (derived, by hand). Let `Θ` be the supremum of the real parts of the
+zeros. IF SOME ZERO HAS REAL PART EXACTLY `Θ`, then `G(2^r)` is not
+`o(2^(Θr))`; so a bound `|G(2^r)| ≤ C·2^(θr)` with `θ < Θ` is impossible.
+Proof: `G(2^r)·2^(−Θr) = Σ_{β = Θ} A_ρ·e^(iγ r log 2) + o(1)` (dominated
+convergence, `Σ|A_ρ| < ∞`). Group the zeros with `β = Θ` by `γ·log 2` modulo
+`2π`; each group's coefficient is a sum of numbers with positive real part,
+so it is not zero. An absolutely convergent sum of distinct unimodular powers
+with a nonzero coefficient has positive mean square (the argument of
+`LandauTrig.sum_sq_block_ge`, with a tail), so it does not tend to zero.
+
+WHAT IS LOST. Whether the supremum is attained is not known. If RH fails, the
+zeros' real parts could climb toward `Θ` without reaching it, and then no set
+of zeros dominates the row. The cancellation the general statement must rule
+out is among infinitely many modes of different sizes, seen only at the
+integers `r`. Soft analysis does not rule it out: a sum `Σ A_n/(w − a_n)` with
+`Σ|A_n| < ∞` and accumulating poles can continue analytically where it "has
+poles" (Wolff, Denjoy), and the interpolation theorems that would transfer a
+bound from the integers to the real line (Carlson, Cartwright) need
+exponential type below `π` across the direction of the aliases, and sampling
+once per doubling gives type exactly `π`. That is the aliasing, returning as
+the obstruction.
+
+So, as it stands:
+- RH ⇒ the table's row of `G` grows no faster than `2^(r/2)` up to logarithms:
+  proved (the dial, with joint 1).
+- the row's rate `≤ 2^(θr)` ⇒ no zero right of `θ`: derived only when the
+  largest real part is attained (for instance when finitely many zeros lie
+  right of `θ`). The general case is open, and it is the case RH needs.
+- today's criterion (`LandauCriterion.stmtLandauWindow`) has no such gap
+  because it takes the bound at every `y` of a window. The gap is exactly the
+  step from every `y` to the doublings: joint 10, which the draft claimed to
+  have dissolved and has not.
+
+Three ways on, for Julian to choose:
+(a) build 9c′ with its hypothesis stated (needs the identity for `G` as a
+    theorem first; the large piece);
+(b) change what is sampled: more than one base, or a ladder finer than
+    doubling, so that the type falls below `π`; then the transfer theorems
+    apply and the general statement may be provable;
+(c) leave joint 9 as the forward statement 9a (the table of `G` is the zero
+    sum reweighted by the symbol), which is true without any of this, and
+    state the converse as open.
+

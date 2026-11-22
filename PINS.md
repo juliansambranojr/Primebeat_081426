@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 9: the draft corrected before building
+
+    DONE        `lean_stage3/design/joints.md` block 9 correction: the
+                draft's 9b (meromorphy) is false in general and its 9c is
+                derived only when the largest real part of a zero is
+                attained; what is lost is named, with three ways on;
+                `SECTIONS.md` joints 9 and 10 restated; a NOTEPAD line
+    ASSUMED     the correction is a hand derivation too; the citations
+                (Wolff, Denjoy, Carlson, Cartwright) are from memory and
+                were not opened
+    DEPENDS     the draft of the same day
+    OUT         no Lean; the choice among (a), (b), (c) is Julian's
+    OUTCOME     done as pinned; the build of joint 9 did not start
+
 ### 2026-11-22 · joint 9 of `SECTIONS.md`: a statement, drafted
 
     DONE        `lean_stage3/design/joints.md` block 9, marked DRAFT: three
