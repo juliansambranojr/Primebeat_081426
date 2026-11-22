@@ -128,6 +128,8 @@ import Stage3.RouteNum
 import Stage3.GateEval
 import Stage3.TableRoute
 import Stage3.TableDepths
+import Stage3.CellZeros
+import Stage3.CellModes
 
 namespace Stage3
 

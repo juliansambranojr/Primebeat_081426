@@ -2,7 +2,8 @@
 """check_port — the copies in lean_stage3/Stage3/TablePort/ against lean/.
 
 Unit 0423 copied the ten modules of the table's tree that its gate depends on
-onto Stage 3's toolchain, so the route and the gate compose in one tree. A
+onto Stage 3's toolchain, so the route and the gate compose in one tree; unit
+0426 added the three mode modules (EulerFactorChain, Chain, Superposition). A
 copy is only worth what its original is: if either side is edited and the
 other is not, the two trees say different things under one name.
 
@@ -18,7 +19,8 @@ import difflib, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MODULES = ["Construction", "Zeros", "ZerosStencil", "Nonvanishing", "MainTerm",
-           "Expansion", "RelativeGate", "RelativeLi", "Interpolant", "RouteCell"]
+           "Expansion", "RelativeGate", "RelativeLi", "Interpolant", "RouteCell",
+           "EulerFactorChain", "Chain", "Superposition"]
 BASE = ROOT / "utilities" / "port_baseline"
 PAT = re.compile(r"^import (%s)$" % "|".join(MODULES), re.M)
 

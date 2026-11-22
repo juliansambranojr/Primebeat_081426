@@ -34,7 +34,8 @@ Nothing downstream is a different instrument.
 - `lean/Superposition.tableFrom_eq_modeSum_reweighted` is the same statement
   in the cells: a row that is a sum of modes `c·2^(nρ)` gives cells that are
   the same sum with each mode multiplied by the symbol at each depth. Its
-  hypothesis, that the row is a sum of modes, is discharged nowhere.
+  hypothesis, that the row is a sum of modes, was discharged nowhere until
+  unit 0426 met it, up to the explicit formula's error, for `ψ` at the doublings.
 - The truncated explicit formula (`Glue.explicit_formula_split_num`, unit
   0419, no RH) says the log-weighted count along the doublings is `2^n` minus
   a sum of exactly such modes, one for each zero of ζ below a height, up to a
@@ -45,7 +46,7 @@ would "not connect"; they are joints of the one object and are numbered here.
 
 | # | Joint | State |
 |---|---|---|
-| T1 | the cell as a sum over the zeros: the stencil of `ψ(2^·)` is `2^(r−d)` minus `Σ m·(1 − 2^(−ρ))^d·2^(rρ)/ρ` over the zeros below a height, with a stated error | OPEN; worksheet `joints.md` block T1; every input is proved |
+| T1 | the cell as a sum over the zeros: the stencil of `ψ(2^·)` is `2^(r−d)` minus `Σ m·(1 − 2^(−ρ))^d·2^(rρ)/ρ` over the zeros below a height, with a stated error | SEALED, no RH (units 0425, 0426): `Stage3/CellZeros.cell_eq_zero_sum`, and `CellModes.cell_eq_modeSum` in the table tree's `Sym`, `mode`, `modeSum` |
 | T2 | the same in the integer table: from the log-weighted count `ψ` to the count `π`, zero by zero | OPEN; today's `PsiToPi` carries bounds, not the sum |
 | T3 | the height taken to infinity: the tail of the zero sum inside the error | OPEN; the error term is named, the limit is not taken |
 | T4 | the stencil as a test function in Weil's form, joining section F | OPEN; `JointSymbol` is its transform |

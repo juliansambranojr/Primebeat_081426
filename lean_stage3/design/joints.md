@@ -671,7 +671,7 @@ computed table.
   `tableFrom rowN r d ≠ 0` for integer `r ≥ r₀`.
 - `depth_one` … `depth_eight`: the instances.
 
-### T1 The cell as a sum over the zeros — DRAFT for Julian, nothing built
+### T1 The cell as a sum over the zeros — PROVED (unit 0425: `CellZeros.cell_eq_zero_sum`, `stencil_mode`, `stencil_zeroPartialSum`; unit 0426: `CellModes.cell_eq_modeSum`)
 
 `SECTIONS.md`, "One object", joint T1. Read 2026-11-22:
 `lean/Superposition.lean` and `lean/Chain.lean` (definitions `mode`, `Sym`,

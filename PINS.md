@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/CellZeros.lean`, block T1 of `joints.md`
+
+    DONE        `stencil`, `stencil_mode`, `stencil_zeroPartialSum`,
+                `cell_eq_zero_sum`: the `d`-fold difference of `ψ(2^n)` at
+                `r` is `2^r·(1 − 1/2)^d` minus the sum over the zeros below
+                `T` of `m·(2^ρ)^r·(1 − 2^(−ρ))^d/ρ`, within the explicit
+                formula's error summed over the window; no RH; a unit; then
+                the join with `lean/Superposition` (Julian: "and then start
+                on this")
+    ASSUMED     the stencil is written on rows `ℤ → ℂ` with powers of two as
+                integer powers; `Chain.Sym` and `Chain.mode` come with the
+                port in the second step
+    DEPENDS     unit 0419
+    OUT         T2, T3, T4, joint 10
+    OUTCOME     done as pinned; units 0425 (`CellZeros`) and 0426
+                (`Stage3/CellModes.lean`, with `Chain`, `Superposition`,
+                `EulerFactorChain` ported); each clean on its second build
+
 ### 2026-11-22 · `SECTIONS.md` "One object", and block T1 of `joints.md` as a draft
 
     DONE        `SECTIONS.md` reorganised under Julian's statement that the
