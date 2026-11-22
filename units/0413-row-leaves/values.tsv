@@ -1,0 +1,18 @@
+key	value	source
+module_lines	160	wc -l lean_stage3/Stage3/RowLeaves.lean
+theorems_proved	7	grep -c ^theorem lean_stage3/Stage3/RowLeaves.lean
+defs	0	grep -c ^def lean_stage3/Stage3/RowLeaves.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/RowLeaves.lean
+pins	3	hasDerivAt_Li, Li_two_rpow, norm_logDerivZeta_zero
+errors_first	3	first lake build Stage3.RowLeaves: an implicit base, a membership form, and one pin above them
+builds	3	the third build is clean
+traps_added	1	lean_stage3/TRAPS.md, a line under Names
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8797	lake build (full Stage3), Build completed successfully
+jobs_module	8657	run/build.log, lake build Stage3.RowLeaves
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e4	two leaves
+unnamed_before	5	unit 0412's list: K0, W, M0, Mc, the compact patch
+unnamed_after	4	the same list without K0
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

@@ -145,3 +145,6 @@ other by proof irrelevance), `Finset.le_max'`, `Finset.mem_Icc`,
 explicit and first: `Nat.mul_le_mul_right k h`), `pow_nonneg`, `mul_le_mul`.
 `Real.rpow_le_rpow_of_nonpos` (a `lemma`: `0 < x → x ≤ y → z ≤ 0 → y ^ z ≤ x ^ z`;
 there is no `rpow_le_rpow_of_exponent_nonpos`, unit 0409).
+`HasDerivAt.const_rpow` wants the base named, `(a := (2 : ℝ))`, with
+`hasDerivAt_id'`; its derivative reads `Real.log a * f' * a ^ f x`, the
+factor `f'` in the middle (unit 0413).

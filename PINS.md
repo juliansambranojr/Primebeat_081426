@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/RowLeaves.lean`, block E4 of `joints.md`
+
+    DONE        `Li_two_rpow`: Stage 3's `Li` at `2^x` is
+                `2/log 2 + ∫₁ˣ e^(log 2·t)/t dt` for `x > 0`, the formula
+                `lean/Interpolant.liRow_eq` has from one half on;
+                `norm_logDerivZeta_zero`: `‖ζ′(0)/ζ(0)‖ = log 2π`; a unit;
+                the block PROVED
+    ASSUMED     the two statements meet the other tree by text; no weld is
+                added for a formula inside a theorem
+    DEPENDS     unit 0412; Mathlib `deriv_riemannZeta_zero`, `riemannZeta_zero`
+    OUT         `W`, `M0`, `Mc`, the compact patch; nothing wired into
+                `Glue.lean` or `GlueFloor.lean`
+    OUTCOME     done as pinned; unit 0413; clean on the third build
+
 ### 2026-11-22 · `lean/Interpolant.lean`, block C1 of `joints.md`
 
     DONE        `liRow`, a function smooth on the whole line with derivative

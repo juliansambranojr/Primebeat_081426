@@ -116,6 +116,7 @@ import Stage3.ContourShift
 import Stage3.AssemblyFloor
 import Stage3.GlueFloor
 import Stage3.JointFloorGate
+import Stage3.RowLeaves
 
 namespace Stage3
 

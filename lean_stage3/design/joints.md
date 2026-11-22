@@ -459,3 +459,17 @@ The constant `2/log 2` is the value at the row `m = 1` of `x/log x + ∫₂ˣ dt
 Stage 3's `Li`. That `liRow m = Li (2^m)` for `m ≥ 1` is a statement across
 the two trees and is not in this block.
 
+### E4 Two leaves: the main term at the rows, and `K0` — PROVED (unit 0413: `RowLeaves.hasDerivAt_Li`, `Li_two_rpow`, `norm_logDerivZeta_zero`)
+
+- `hasDerivAt_Li`: `1 < y → HasDerivAt Li (1 / Real.log y) y`. From the
+  definition `Li y = y/log y + ∫₂ʸ dt/log²t`: the quotient contributes
+  `(log y − 1)/log²y`, the integral `1/log²y`.
+- `Li_two_rpow`: `0 < x → Li (2^x) = 2/log 2 + ∫ t in 1..x, exp (log 2·t)/t`.
+  Both sides have derivative `exp (log 2·x)/x` on `x > 0` and agree at
+  `x = 1`, where `Li 2 = 2/log 2`. Hint: `IsOpen.eqOn_of_deriv_eq` on `Ioi 0`.
+  The right side is, character for character, what `lean/Interpolant.liRow_eq`
+  gives for `liRow x` when `x ≥ 1/2` (`Expansion.f2x` unfolded).
+- `norm_logDerivZeta_zero`: `‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2π)`.
+  From Mathlib's `deriv_riemannZeta_zero` and `riemannZeta_zero`. This is the
+  `K0` of `Glue.explicit_formula_poly` and `explicit_formula_split`.
+
