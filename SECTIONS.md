@@ -153,3 +153,12 @@ gap between the radii `23/25` and `22/25` in `EdgeBound.gz_partial_fraction`
 and a factor 3418.5 in `Glue.zeta_logderiv_good_bound`. Both are fixed
 constants of the proof as written, and the unit leaves open whether the
 radii can be freed as entry 233 freed one on the contour route.
+
+Unit 0405 (same day, EXPLORATORY) read those proofs. One radius is forced
+(`7/8`); freeing the other three gains a factor 15. The larger loss is in
+the last line of `Assembly.psiWeak_of_RH_EF_NT`: `assembly_arith` bounds
+`log²x` by `√x·log²x` on the term that holds the contour constants. With the
+`√x` kept the constant is `7404 + 4W + (9c₁ + c₂)/√x₀`; priced as a floor,
+depth 4 as built and depth 6 on the ceiling rung with the radii freed. The
+height `T` (taken just above `x`, allowed up to `x²`) is the lever not yet
+priced. Nothing is restated in Lean; the decision is Julian's.

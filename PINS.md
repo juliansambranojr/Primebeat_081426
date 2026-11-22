@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the explicit-formula route: the radii, and a lost √x (unit 0405)
+
+    DONE        a unit with one script: the Borel–Carathéodory factor with
+                the three free radii optimised; the bound inside
+                `Assembly.psiWeak_of_RH_EF_NT` before `assembly_arith`
+                priced with its `√x` kept, as built and with the radii
+                freed; a NOTEPAD line; a line in `SECTIONS.md`
+    ASSUMED     EXPLORATORY, no prereg; floors only, with four unnamed
+                quantities at zero and one value of ζ from mpmath
+    DEPENDS     unit 0404; O68_weak_bound_tolerance.py unchanged
+    OUT         no Lean. The restated assembly, the choice of `T`, and the
+                freed radii are a decision, written as one and left
+    OUTCOME     done as pinned; radii alone gain a factor 15; with the √x
+                kept the freed case lands on the ceiling rung, as a floor
+
 ### 2026-11-22 · the explicit-formula route, priced (unit 0404)
 
     DONE        a unit holding one script and its JSON: O68's `R_of` imported
