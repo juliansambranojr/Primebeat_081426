@@ -10,6 +10,7 @@ on:
     paths:
       - '**.lean'
       - 'utilities/lean_map.py'
+      - 'SECTIONS.md'
       - '.github/workflows/lean_map.yml'
 
 permissions:

@@ -825,8 +825,12 @@ def build():
         R.append(f"| {dlink(a, 'RECONCILE.md')} | {dlink(b, 'RECONCILE.md')} | {D[b]['kind']} |")
     files["RECONCILE.md"] = "\n".join(R) + "\n"
 
-    # index
     thms = [d for d in D.values() if is_thm(d)]
+    road, top = road_page(D, thms, chain_of)
+    files["ROAD.md"] = road
+    files["ROAD.mmd"] = top + "\n"
+
+    # index
     lone = sorted((d for d in thms if not d["uses"] and not d["used_by"]), key=lambda d: d["id"])
     ends = sorted((d for d in thms if d["uses"] and not d["used_by"]), key=lambda d: d["id"])
     sorries = sorted((d for d in D.values() if d["sorry"]), key=lambda d: d["id"])
@@ -842,6 +846,12 @@ def build():
          f"{len(lone)} theorems connect to nothing. {plural(len(sorries), 'declaration')} "
          f"contain{'s' if len(sorries) == 1 else ''} `sorry`. "
          f"{len(mods) - len(real)} files are copies under `TablePort/`.", "",
+         "## In five seconds", "",
+         "```mermaid", top, "```", "",
+         "Red: a statement nobody has proved, here or anywhere. Blue: a theorem Lean has checked. "
+         "Green: where a checked line arrives. Left of `RiemannHypothesis`: what would prove it. "
+         "Right of it: what it gives the table. Every box, with its statement and what is open: "
+         "[`ROAD.md`](./ROAD.md).", "",
          "## How to look something up", "",
          "- **Is it already here?** [`ALL.md`](./ALL.md): every declaration, one line, sorted by name.",
          "- **What does a file do?** The tables below, one row per file.",
@@ -913,6 +923,109 @@ def build():
     files["lean_map.json"] = json.dumps(slim, indent=1, ensure_ascii=False) + "\n"
     counts = (len(real), len(D), len(thms), len(ends), len(lone), len(sorries))
     return "\n".join(I) + "\n", files, counts, (mods, real, D, rec)
+
+
+RH = "RiemannHypothesis"
+
+
+def joints():
+    """rows of SECTIONS.md whose last column opens with a status word."""
+    f = ROOT / "SECTIONS.md"
+    out, head = [], ""
+    if not f.exists():
+        return out
+    for ln in f.read_text().splitlines():
+        if ln.startswith("## "):
+            head = ln[3:].strip()
+        m = re.match(r"^\|\s*([^|]+?)\s*\|\s*(.+?)\s*\|\s*(SEALED|OPEN|WELD|FORWARD)\b(.*?)\|?\s*$", ln)
+        if m:
+            out.append((head, m.group(1), m.group(2), m.group(3), m.group(4).strip(" ;,:.")))
+    return out
+
+
+def road_page(D, thms, chain_of):
+    def link(d):
+        return f"[`{d['full']}`](./{page_of(d['file'])}#{anchor(d)})"
+    into = [d for d in thms if d["proves"].strip() == RH]
+    iff = [d for d in thms if d["proves"].strip().startswith(RH + " ↔")]
+    outright = [d for d in into if not d["needs"]]
+    under = [d for d in thms if any(RH in n for n in d["needs"])]
+    under_ends = sorted((d for d in under if not any(D[u] in under for u in d["used_by"])),
+                        key=lambda d: (-len(closure(d, D)), d["id"]))
+    stmts = [d for d in D.values() if not is_thm(d) and re.match(r"^[Ss]tmt", d["name"])]
+
+    def status(sd):
+        pr = [D[u] for u in sd["used_by"] if is_thm(D[u]) and
+              re.match(r"^\(?@?([\w.]*\.)?%s\b" % re.escape(sd["name"]), D[u]["proves"].strip())
+              and "↔" not in D[u]["proves"]]
+        free = [p for p in pr if not p["needs"]]
+        return ("proved", free) if free else (("from a hypothesis", pr) if pr else ("open", []))
+
+    # the picture
+    G = ["flowchart LR", f'  rh{{{{"<b>{RH}</b><br/>not proved"}}}}:::bad']
+    by_name = {sd["name"]: sd for sd in stmts}
+
+    def is_open(n):                      # a hypothesis that is a proved named statement is closed
+        t = n.split(":", 1)[1].strip()
+        return not (t in by_name and status(by_name[t])[0] == "proved")
+    for k, d in enumerate(into):
+        hyp = "<br/>".join(esc(n.split(":", 1)[1], 58) for n in d["needs"] if is_open(n)) or "nothing"
+        G.append(f'  p{k}["{hyp}"]:::bad')
+        G.append(f'  t{k}["<b>{esc(d["name"])}</b>"]:::thm')
+        G.append(f"  p{k} --> t{k} --> rh")
+    for k, d in enumerate(under_ends[:6]):
+        G.append(f'  e{k}["<b>{esc(d["name"])}</b><br/>{esc(d["proves"], 58)}"]:::end_')
+        G.append(f"  rh --> e{k}")
+    if len(under_ends) > 6:
+        G.append(f'  more(["and {len(under_ends) - 6} more ends under RH"]):::end_')
+        G.append("  rh --> more")
+    G.append(CLASSDEFS)
+    top = "\n".join(G)
+
+    L = ["# The road", "",
+         "What is closed, what is open, and where `RiemannHypothesis` sits. Generated with the rest "
+         "of the map; the joints are read from `SECTIONS.md`, everything else from Lean.", "",
+         "```mermaid", top, "```", "",
+         f"- **Theorems Lean has checked:** {len(thms)}.",
+         f"- **Theorems that prove `{RH}` with no hypothesis:** {len(outright)}."
+         + (" " + ", ".join(link(d) for d in outright) if outright else " It is open."),
+         f"- **Theorems that prove it from a hypothesis:** {len(into)}. Each hypothesis is a red box: "
+         "prove one and the line closes.",
+         f"- **Theorems that restate it (`{RH} ↔ …`):** {len(iff)}.",
+         f"- **Theorems that assume it:** {len(under)}, arriving at {len(under_ends)} ends.", "",
+         f"## Into `{RH}`: what would prove it", "",
+         "| theorem | the hypothesis it needs (open) | why (its docstring) |", "|---|---|---|"]
+    for d in into:
+        L.append(f"| {link(d)} | {cell('; '.join(n for n in d['needs'] if is_open(n)), 400)} | {cell(d['why'], 300)} |")
+    L += ["", "## The same statement in other coordinates", "", "| theorem | says |", "|---|---|"]
+    for d in iff:
+        L.append(f"| {link(d)} | {cell(d['proves'], 300)} |")
+    L += ["", f"## Out of `{RH}`: what it gives", "",
+          "The ends among the theorems that assume it. \"Behind it\" links the whole line.", "",
+          "| theorem | proves | behind it |", "|---|---|---|"]
+    for d in under_ends:
+        n = len(closure(d, D))
+        nn = f"[{n}](./{chain_of[d['id']]})" if d["id"] in chain_of else str(n)
+        L.append(f"| {link(d)} | {cell(d['proves'], 200)} | {nn} |")
+    L += ["", "## Named statements", "",
+          "Every definition named `Stmt…`: a statement the repo set as a target. Open: no theorem "
+          "concludes it. From a hypothesis: a theorem concludes it, given something. Proved: a "
+          "theorem concludes it outright, at the parameters shown beside it.", "",
+          "| statement | status | by | used as a hypothesis in |", "|---|---|---|---|"]
+    rank = {"open": 0, "from a hypothesis": 1, "proved": 2}
+    for sd in sorted(stmts, key=lambda d: (rank[status(d)[0]], d["full"])):
+        st, by = status(sd)
+        hyp = sum(1 for u in sd["used_by"] if any(sd["name"] in n for n in D[u]["needs"]))
+        mark = {"open": "**OPEN**", "from a hypothesis": "from a hypothesis", "proved": "proved"}[st]
+        L.append(f"| {link(sd)} | {mark} | {'<br/>'.join(link(p) + ' ⊢ ' + cell(p['proves'], 90) for p in by[:4]) or '—'} | {hyp} |")
+    js = joints()
+    if js:
+        L += ["", "## Joints", "", "From `SECTIONS.md`, open ones first.", "",
+              "| section | joint | what it joins | status |", "|---|---|---|---|"]
+        for h, i, t, st, rest in sorted(js, key=lambda j: j[3] != "OPEN"):
+            L.append(f"| {cell(h, 60)} | {cell(i)} | {cell(t, 260)} | "
+                     f"{'**OPEN**' if st == 'OPEN' else st}{' — ' + cell(rest, 200) if rest else ''} |")
+    return "\n".join(L) + "\n", top
 
 
 def chain(name):
