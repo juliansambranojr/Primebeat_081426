@@ -35,6 +35,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Measured.agreement_rank_37a1`](./lean/Measured.md#Measured-agreement_rank_37a1) | theorem | `Measured` | \|measured_rank_37a1 - predicted_rank_37a1\| &lt; 0.3 |
 | [`Measured.agreement_rank_389a1`](./lean/Measured.md#Measured-agreement_rank_389a1) | theorem | `Measured` | \|measured_rank_389a1 - predicted_rank_389a1\| &lt; 0.01 |
 | [`Measured.agreement_weil_balance`](./lean/Measured.md#Measured-agreement_weil_balance) | theorem | `Measured` | \|measured_weil_arithmetic - measured_weil_spectral\| &lt; 1e-6 * measured_weil_arithmetic |
+| [`AliasClass.alias_weight`](./lean_stage3/AliasClass.md#AliasClass-alias_weight) | theorem | `AliasClass` | ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) = (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)) * (1 - z⁻¹) ^ d * z ^… |
+| [`AliasClass.alias_weight_ne_zero`](./lean_stage3/AliasClass.md#AliasClass-alias_weight_ne_zero) | theorem | `AliasClass` | ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) ≠ 0 |
 | [`Nyquist.Aliases`](./lean/Nyquist.md#Nyquist-Aliases) | def | `Nyquist` | Prop |
 | [`Nyquist.aliases_of_offset`](./lean/Nyquist.md#Nyquist-aliases_of_offset) | theorem | `Nyquist` | Aliases b γ (γ - 2 * π * k / Real.log b) |
 | [`ZeroCells.all_four_have_length_four`](./lean/ZeroCells.md#ZeroCells-all_four_have_length_four) | theorem | `ZeroCells` | Construction.measured_zeros.length = 4 ∧ SeedPerturbation.zero_cells.length = 4 ∧ PairIdentity.zero_cells.length = 4 ∧ Zeros.measured_zeros.length = 4 |
@@ -801,6 +803,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Nonvanishing.Mlow`](./lean/Nonvanishing.md#Nonvanishing-Mlow) | def | `Nonvanishing` | ℝ |
 | [`Chain.mode`](./lean/Chain.md#Chain-mode) | def | `Chain` | ℂ → ℂ |
 | [`Elephant.mode`](./lean/Elephant.md#Elephant-mode) | def | `Elephant` | ℤ → ℂ |
+| [`AliasClass.mode_eq_of_alias`](./lean_stage3/AliasClass.md#AliasClass-mode_eq_of_alias) | theorem | `AliasClass` | Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ) |
 | [`TransferOp.mode_hasEigenvector`](./lean/TransferOp.md#TransferOp-mode_hasEigenvector) | theorem | `TransferOp` | bdiffL.HasEigenvector (Sym b ρ) (mode b ρ) |
 | [`TransferOp.mode_ne_zero`](./lean/TransferOp.md#TransferOp-mode_ne_zero) | theorem | `TransferOp` | mode b ρ ≠ 0 |
 | [`TransferOp.mode_ne_zero'`](./lean/TransferOp.md#TransferOp-mode_ne_zero-) | theorem | `TransferOp` | mode b ρ r ≠ 0 |
@@ -1105,7 +1108,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.re_digamma_sub_log_le`](./lean_stage3/Stirling.md#Stage3-re_digamma_sub_log_le) | theorem | `Stirling` | \|phasePoint t - Real.log ‖zq t‖\| ≤ 96 / t |
 | [`Stage3.re_eq_half_of_RH`](./lean_stage3/Assembly.md#Stage3-re_eq_half_of_RH) | theorem | `Assembly` | (ρ : ℂ).re = 1 / 2 |
 | [`WeilDetect.re_eq_half_of_RH`](./lean_stage3/WeilDetect.md#WeilDetect-re_eq_half_of_RH) | theorem | `WeilDetect` | (ρ : ℂ).re = 1 / 2 |
+| [`AliasClass.re_inv_pos`](./lean_stage3/AliasClass.md#AliasClass-re_inv_pos) | theorem | `AliasClass` | 0 &lt; (ρ⁻¹).re |
 | [`LandauTrig.re_mul_geom_ge`](./lean_stage3/LandauTrig.md#LandauTrig-re_mul_geom_ge) | theorem | `LandauTrig` | -(‖c‖ * (2 / ‖w - 1‖)) ≤ (c * ∑ n ∈ Finset.Ico a (a + N), w ^ n).re |
+| [`AliasClass.re_order_div_pos`](./lean_stage3/AliasClass.md#AliasClass-re_order_div_pos) | theorem | `AliasClass` | 0 &lt; ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re |
 | [`WeilPowerPhase.re_S_sq_ge`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-re_S_sq_ge) | theorem | `WeilPowerPhase` | (cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) * ((w ^ 2).re * Real.cos (2 * (w ^ 2).im * sigma m) - (w ^ 2).im * Real.sin (2 * (w ^ 2).im * sigma m)) - (cS m / D m) ^ 2 * ‖w‖ ^ 2 * Real.exp (… |
 | [`ArgLegs.re_sign_const`](./lean_stage3/ArgLegs.md#ArgLegs-re_sign_const) | theorem | `ArgLegs` | (∀ x ∈ Set.Icc a b, 0 ≤ (g x).re) ∨ (∀ x ∈ Set.Icc a b, (g x).re ≤ 0) |
 | [`WeilPowerPhase.re_sq_ge`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-re_sq_ge) | theorem | `WeilPowerPhase` | ((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re - ‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2 * (4 * q m w + 4 * q m w ^ 2) ≤ ((S m w) ^ 2).re |
@@ -1372,6 +1377,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerOnLine.sum_onLine_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | theorem | `WeilPowerOnLine` | ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ onLineBound h γ m |
 | [`WeilOnLine.sum_onLine_subtype_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-sum_onLine_subtype_le) | theorem | `WeilOnLine` | ∑ ρ ∈ s, weightedTerm h γ ρ.1 ≤ onLineBound h γ |
 | [`WeilPowerOnLine.sum_onLine_subtype_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_subtype_le) | theorem | `WeilPowerOnLine` | ∑ ρ ∈ s, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m |
+| [`AliasClass.sum_order_div_ne_zero`](./lean_stage3/AliasClass.md#AliasClass-sum_order_div_ne_zero) | theorem | `AliasClass` | ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) ≠ 0 |
 | [`Elephant.sum_primeIndicator`](./lean/Elephant.md#Elephant-sum_primeIndicator) | theorem | `Elephant` | ∑ m ∈ Finset.range (x + 1), primeIndicator m = (Nat.primeCounting x : ℂ) |
 | [`Stage3.sum_range_add_one`](./lean_stage3/ZeroSum.md#Stage3-sum_range_add_one) | theorem | `ZeroSum` | (∑ j ∈ range n, ((j : ℝ) + 1)) = n * (n + 1) / 2 |
 | [`Elephant.sum_shift`](./lean/Elephant.md#Elephant-sum_shift) | theorem | `Elephant` | ∑ m ∈ Finset.range (x + 1), (if b ∣ m then a (m / b) else 0) = ∑ k ∈ Finset.range (x / b + 1), a k |
@@ -1393,6 +1399,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Chain.Sym`](./lean/Chain.md#Chain-Sym) | def | `Chain` | ℂ |
 | [`Elephant.Sym`](./lean/Elephant.md#Elephant-Sym) | def | `Elephant` | ℂ |
 | [`EulerFactorChain.sym`](./lean/EulerFactorChain.md#EulerFactorChain-sym) | def | `EulerFactorChain` | ℂ |
+| [`AliasClass.sym_eq_of_alias`](./lean_stage3/AliasClass.md#AliasClass-sym_eq_of_alias) | theorem | `AliasClass` | Chain.Sym 2 ρ = Chain.Sym 2 ρ' |
 | [`Chain.sym_eq_zero_iff`](./lean/Chain.md#Chain-sym_eq_zero_iff) | theorem | `Chain` | Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * I / Real.log b) |
 | [`Elephant.sym_eq_zero_iff`](./lean/Elephant.md#Elephant-sym_eq_zero_iff) | theorem | `Elephant` | Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * Complex.I / Real.log b) |
 | [`TransferOp.sym_hasEigenvalue`](./lean/TransferOp.md#TransferOp-sym_hasEigenvalue) | theorem | `TransferOp` | bdiffL.HasEigenvalue (Sym b ρ) |
@@ -1609,6 +1616,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Construction.zero_determined_by_row`](./lean/Construction.md#Construction-zero_determined_by_row) | theorem | `Construction` | tableFrom N r d = tableFrom M r d |
 | [`SeedPerturbation.zero_iff_of_seed_perturbation`](./lean/SeedPerturbation.md#SeedPerturbation-zero_iff_of_seed_perturbation) | theorem | `SeedPerturbation` | tableFrom (fun x =&gt; N x - e x) r d = 0 ↔ tableFrom N r d = 0 |
 | [`Zeros.zero_iff_repeat`](./lean/Zeros.md#Zeros-zero_iff_repeat) | theorem | `Zeros` | f r (d + 1) = 0 ↔ f r d = f (r - 1) d |
+| [`AliasClass.zero_re_pos`](./lean_stage3/AliasClass.md#AliasClass-zero_re_pos) | theorem | `AliasClass` | 0 &lt; (ρ : ℂ).re |
 | [`LandauZeroSide.zero_side`](./lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side) | theorem | `LandauZeroSide` | ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 &lt; r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r &lt; R ∧ 0 &lt; τ ∧ 0 ≤ C₁ ∧ ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N), τ / r ^ (k + 1) - C₁ / R ^ k ≤ LandauPrimeSide.Ik σ₀ k / k.factori… |
 | [`SeedPerturbation.zero_stable_of_seed_perturbation`](./lean/SeedPerturbation.md#SeedPerturbation-zero_stable_of_seed_perturbation) | theorem | `SeedPerturbation` | tableFrom (fun x =&gt; N x - e x) r d = 0 |
 | [`SeedPerturbation.zero_window_bottoms`](./lean/SeedPerturbation.md#SeedPerturbation-zero_window_bottoms) | def | `SeedPerturbation` | List ℤ |

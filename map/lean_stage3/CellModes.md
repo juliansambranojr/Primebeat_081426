@@ -5,7 +5,7 @@ CellModes — block T1 of `lean_stage3/design/joints.md`, second part. 2026-11-2
 3 theorems, 0 definitions, 100 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellZeros`](../lean_stage3/CellZeros.md), [`Superposition`](../lean_stage3/TablePort_Superposition.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AliasClass`](../lean_stage3/AliasClass.md)
 
 ## The picture
 
@@ -14,10 +14,13 @@ flowchart LR
   n0["<b>mode_two_int</b><br/>Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r"]:::thm
   n1["<b>sym_two</b><br/>Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹"]:::thm
   n2["<b>cell_eq_modeSum</b><br/>‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : …"]:::end_
-  x0(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x0(["<b>AliasClass</b><br/>alias_weight<br/>mode_eq_of_alias<br/>sym_eq_of_alias"]):::ext
+  x1(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
   n0 --> n2
   n1 --> n2
-  x0 -.-> n2
+  n0 -.-> x0
+  n1 -.-> x0
+  x1 -.-> n2
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -49,8 +52,10 @@ Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`AliasClass.alias_weight`](../lean_stage3/AliasClass.md#AliasClass-alias_weight) (AliasClass) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) = (∑ ρ ∈ S, (((riemannZeta.order (… ``
+  - [`AliasClass.mode_eq_of_alias`](../lean_stage3/AliasClass.md#AliasClass-mode_eq_of_alias) (AliasClass) — `` Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ) ``
   - [`CellModes.cell_eq_modeSum`](#CellModes-cell_eq_modeSum) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
 
 <a name="CellModes-sym_two"></a>
@@ -72,8 +77,10 @@ Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`AliasClass.alias_weight`](../lean_stage3/AliasClass.md#AliasClass-alias_weight) (AliasClass) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) = (∑ ρ ∈ S, (((riemannZeta.order (… ``
+  - [`AliasClass.sym_eq_of_alias`](../lean_stage3/AliasClass.md#AliasClass-sym_eq_of_alias) (AliasClass) — `` Chain.Sym 2 ρ = Chain.Sym 2 ρ' ``
   - [`CellModes.cell_eq_modeSum`](#CellModes-cell_eq_modeSum) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
 
 <a name="CellModes-cell_eq_modeSum"></a>

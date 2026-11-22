@@ -87,6 +87,9 @@
      "lean/Transform.lean::Transform.critical_circle_is_lattice_inversion_mean",
      "lean/Transform.lean::Transform.sym_zero_on_outer_circle",
      "lean/Transform.lean::Transform.sym_zero_partner_on_inner_circle",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sym_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two"
     ]
@@ -131,6 +134,9 @@
      "lean/TransferOp.lean::TransferOp.mode_ne_zero'",
      "lean/TransferOp.lean::TransferOp.mode_pow",
      "lean/TransferOp.lean::TransferOp.sym_hasEigenvalue",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int"
     ]
@@ -14392,6 +14398,254 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/AliasClass.lean",
+  "module": "Stage3.AliasClass",
+  "stem": "AliasClass",
+  "header": "AliasClass — block J10a of `lean_stage3/design/joints.md`. 2026-11-22. Joint 10 on the table's own ladder, first piece. On the ladder `2^r` a zero `ρ` of ζ enters only through `z = 2^ρ`: its mode at row `r` is `z^r` and its symbol is `1 − z⁻¹`. Zeros with the same `z` have the same real part and heights that differ by a multiple of `2π/log 2`; the ladder folds them together. This module proves that folding never cancels: the zeros sharing a `z` contribute to the cell one mode whose weight is not zero, at every dept…",
+  "imports": [
+   "Stage3.CellModes"
+  ],
+  "opens": [
+   "Finset"
+  ],
+  "namespaces": [
+   "AliasClass"
+  ],
+  "lines": 134,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/CellModes.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "re_inv_pos",
+    "ns": "AliasClass",
+    "full": "AliasClass.re_inv_pos",
+    "line": 36,
+    "why": "The reciprocal of a point right of the imaginary axis is right of it too.",
+    "sorry": false,
+    "needs": [
+     "h : 0 < ρ.re"
+    ],
+    "proves": "0 < (ρ⁻¹).re",
+    "file": "lean_stage3/Stage3/AliasClass.lean",
+    "id": "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_inv_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zero_re_pos",
+    "ns": "AliasClass",
+    "full": "AliasClass.zero_re_pos",
+    "line": 42,
+    "why": "A nontrivial zero of ζ has positive real part.",
+    "sorry": false,
+    "needs": [
+     "ρ : Kadiri.NontrivialZeros"
+    ],
+    "proves": "0 < (ρ : ℂ).re",
+    "file": "lean_stage3/Stage3/AliasClass.lean",
+    "id": "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_order_div_pos",
+    "ns": "AliasClass",
+    "full": "AliasClass.re_order_div_pos",
+    "line": 45,
+    "why": "The coefficient a zero carries in the cell, `m(ρ)/ρ`, has positive real part.",
+    "sorry": false,
+    "needs": [
+     "ρ : Kadiri.NontrivialZeros"
+    ],
+    "proves": "0 < ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re",
+    "file": "lean_stage3/Stage3/AliasClass.lean",
+    "id": "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_inv_pos",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_inv_pos",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_order_div_ne_zero",
+    "ns": "AliasClass",
+    "full": "AliasClass.sum_order_div_ne_zero",
+    "line": 59,
+    "why": "No set of zeros cancels. The coefficients `m(ρ)/ρ` of a nonempty finite set of zeros never add to zero: each has positive real part.",
+    "sorry": false,
+    "needs": [
+     "S : Finset Kadiri.NontrivialZeros",
+     "hS : S.Nonempty"
+    ],
+    "proves": "∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/AliasClass.lean",
+    "id": "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sym_eq_of_alias",
+    "ns": "AliasClass",
+    "full": "AliasClass.sym_eq_of_alias",
+    "line": 69,
+    "why": "Zeros the ladder folds together have the same symbol.",
+    "sorry": false,
+    "needs": [
+     "h : (2 : ℂ) ^ ρ = (2 : ℂ) ^ ρ'"
+    ],
+    "proves": "Chain.Sym 2 ρ = Chain.Sym 2 ρ'",
+    "file": "lean_stage3/Stage3/AliasClass.lean",
+    "id": "lean_stage3/Stage3/AliasClass.lean::AliasClass.sym_eq_of_alias",
+    "stmt": [],
+    "proof": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two"
+    ],
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "mode_eq_of_alias",
+    "ns": "AliasClass",
+    "full": "AliasClass.mode_eq_of_alias",
+    "line": 74,
+    "why": "Zeros the ladder folds together have the same mode at every row.",
+    "sorry": false,
+    "needs": [
+     "h : (2 : ℂ) ^ ρ = (2 : ℂ) ^ ρ'",
+     "r : ℤ"
+    ],
+    "proves": "Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ)",
+    "file": "lean_stage3/Stage3/AliasClass.lean",
+    "id": "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
+    "stmt": [],
+    "proof": [
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int"
+    ],
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "alias_weight",
+    "ns": "AliasClass",
+    "full": "AliasClass.alias_weight",
+    "line": 81,
+    "why": "A folded class is one mode. Zeros sharing `2^ρ = z` contribute to the cell `(r, d)` their coefficients added, times the symbol at `z` to the depth, times `z^r`.",
+    "sorry": false,
+    "needs": [
+     "S : Finset Kadiri.NontrivialZeros",
+     "hz : ∀ ρ ∈ S, (2 : ℂ) ^ (ρ : ℂ) = z",
+     "d : ℕ",
+     "r : ℤ"
+    ],
+    "proves": "∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) = (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)) * (1 - z⁻¹) ^ d * z ^ r",
+    "file": "lean_stage3/Stage3/AliasClass.lean",
+    "id": "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+    "stmt": [],
+    "proof": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "alias_weight_ne_zero",
+    "ns": "AliasClass",
+    "full": "AliasClass.alias_weight_ne_zero",
+    "line": 93,
+    "why": "Folding loses no zero. The mode a folded class contributes has weight not zero, at every depth and every row.",
+    "sorry": false,
+    "needs": [
+     "S : Finset Kadiri.NontrivialZeros",
+     "hS : S.Nonempty",
+     "hz : ∀ ρ ∈ S, (2 : ℂ) ^ (ρ : ℂ) = z",
+     "d : ℕ",
+     "r : ℤ"
+    ],
+    "proves": "∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/AliasClass.lean",
+    "id": "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos"
+    ],
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ArgCount.lean",
   "module": "Stage3.ArgCount",
   "stem": "ArgCount",
@@ -18315,6 +18569,8 @@
      "lean/Chain.lean::Chain.mode"
     ],
     "used_by": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum"
     ]
    },
@@ -18341,6 +18597,8 @@
      "lean/Chain.lean::Chain.Sym"
     ],
     "used_by": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sym_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum"
     ]
    },
@@ -58651,15 +58909,17 @@
    "Stage3.CellZeros",
    "Stage3.CellModes",
    "Stage3.PiToPsi",
-   "Stage3.CellResidual"
+   "Stage3.CellResidual",
+   "Stage3.AliasClass"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 143,
+  "lines": 144,
   "copy_of": null,
-  "fresh": true,
+  "fresh": false,
   "imports_files": [
    "lean_stage3/Stage3/Abscissa.lean",
+   "lean_stage3/Stage3/AliasClass.lean",
    "lean_stage3/Stage3/ArgCount.lean",
    "lean_stage3/Stage3/ArgCrude.lean",
    "lean_stage3/Stage3/ArgIdentity.lean",
