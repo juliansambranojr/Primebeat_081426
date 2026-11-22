@@ -30,6 +30,10 @@ When a .lean file changed after the last `--dump`, its declarations are read fro
 the source text instead (a name occurring as a token in the statement or proof) and
 its page says so in its first line. `--dump` after the next build confirms them.
 
+A commit that changes a .lean file and is pushed before the map is refreshed
+carries `[map pending]` in its message; the workflow then leaves the map for the
+`--dump` commit that follows.
+
 An arrow A --> B reads "A is used in the proof of B": premises flow into conclusions.
 """
 import hashlib, json, pathlib, re, subprocess, sys, tempfile
