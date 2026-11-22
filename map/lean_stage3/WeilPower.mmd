@@ -1,0 +1,70 @@
+flowchart LR
+  n0["<b>P_eq_c_sq</b><br/>P x = c x ^ 2"]:::thm
+  n1["<b>P_pow</b><br/>P x ^ m = c x ^ (2 * m)"]:::thm
+  n2["<b>c_one</b><br/>c 1 = 0"]:::thm
+  n3["<b>c_neg_one</b><br/>c (-1) = 0"]:::thm
+  n4["<b>continuous_c</b><br/>Continuous c"]:::thm
+  n5["<b>c_pow_one</b><br/>c 1 ^ n = 0"]:::thm
+  n6["<b>c_pow_neg_one</b><br/>c (-1) ^ n = 0"]:::thm
+  n7["<b>hasDerivAt_c</b><br/>HasDerivAt c (-(Real.pi / 2) * Real.sin (Real.pi * x / 2)) x"]:::thm
+  n8["<b>hasDerivAt_s</b><br/>HasDerivAt (fun y : ℝ =＞ Real.sin (Real.pi * y / 2)) (Real.pi / …"]:::thm
+  n9["<b>hasDerivAt_f</b><br/>HasDerivAt (fun y : ℝ =＞ c y ^ (k + 1)) (f1 k x) x"]:::thm
+  n10["<b>hasDerivAt_f1</b><br/>HasDerivAt (f1 (k + 1)) (f2 k x) x"]:::thm
+  n11["<b>continuous_f1</b><br/>Continuous (f1 k)"]:::thm
+  n12["<b>continuous_f2</b><br/>Continuous (f2 k)"]:::thm
+  n13["<b>f1_one</b><br/>f1 (k + 1) 1 = 0"]:::thm
+  n14["<b>f1_neg_one</b><br/>f1 (k + 1) (-1) = 0"]:::thm
+  n15["<b>hasDerivAt_E</b><br/>HasDerivAt (fun y : ℝ =＞ Complex.exp (w * (y : ℂ))) (w * Complex…"]:::thm
+  n16["<b>ibp_twice</b><br/>w ^ 2 * ∫ x in (-1 : ℝ)..1, ((c x ^ (k + 2) : ℝ) : ℂ) * Complex.…"]:::thm
+  n17["<b>K_succ</b><br/>K (m + 1) w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1) ^ 2) = …"]:::thm
+  n18["<b>Q_succ</b><br/>Q (m + 1) w = Q m w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1)…"]:::thm
+  n19["<b>cK_succ</b><br/>cK (m + 1) = ((m : ℝ) + 1) * (2 * (m : ℝ) + 1) * Real.pi ^ 2 / 2…"]:::thm
+  n20["<b>K_zero_mul</b><br/>K 0 w * w = 2 * Complex.sinh w"]:::thm
+  n21["<b>K_mul_Q</b><br/>K m w * Q m w = (cK m : ℂ) * Complex.sinh w"]:::thm
+  n22["<b>cK_one</b><br/>cK 1 = Real.pi ^ 2"]:::thm
+  n23["<b>K_one_mul</b><br/>K 1 w * (w * (w ^ 2 + (Real.pi : ℂ) ^ 2)) = (Real.pi : ℂ) ^ 2 * …"]:::end_
+  x0(["<b>WeilOddPower</b><br/>4 theorems"]):::ext
+  x1(["<b>WeilPowerAssembly</b><br/>phiW_contDiff_one"]):::ext
+  n0 --> n1
+  n1 --> n17
+  n10 --> n16
+  n11 --> n16
+  n12 --> n16
+  n13 --> n16
+  n14 --> n16
+  n15 --> n16
+  n16 --> n17
+  n17 --> n21
+  n18 --> n21
+  n19 --> n21
+  n2 --> n13
+  n2 --> n5
+  n20 --> n21
+  n21 --> n23
+  n22 --> n23
+  n3 --> n14
+  n3 --> n6
+  n4 --> n11
+  n4 --> n12
+  n4 --> n17
+  n5 --> n16
+  n6 --> n16
+  n7 --> n9
+  n8 --> n10
+  n9 --> n10
+  n9 --> n16
+  n1 -.-> x0
+  n11 -.-> x0
+  n15 -.-> x0
+  n2 -.-> x1
+  n21 -.-> x0
+  n3 -.-> x1
+  n5 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x1
+  n9 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

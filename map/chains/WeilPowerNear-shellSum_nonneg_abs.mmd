@@ -1,0 +1,17 @@
+flowchart LR
+  f0["<b>WeilPowerSharp</b><br/>2 used"]:::thm
+  f1["<b>WeilPowerPhase</b><br/>8 used"]:::thm
+  f2["<b>WeilPowerSigma</b><br/>10 used"]:::thm
+  f3["<b>WeilPowerGeomGen</b><br/>3 used"]:::thm
+  f4["<b>WeilPowerShell</b><br/>6 used"]:::thm
+  f5["<b>WeilPowerNear</b><br/>shellSum_nonneg_abs"]:::end_
+  f0 --> f1
+  f1 --> f2
+  f2 --> f3
+  f3 --> f4
+  f4 --> f5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

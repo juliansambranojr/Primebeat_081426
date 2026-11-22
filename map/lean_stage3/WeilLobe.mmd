@@ -1,0 +1,46 @@
+flowchart LR
+  n0["<b>P_eq</b><br/>P x = (1 + Real.cos (Real.pi * x)) / 2"]:::thm
+  n1["<b>q_eq</b><br/>x * P x = q x"]:::thm
+  n2["<b>hasDerivAt_cos_pi</b><br/>HasDerivAt (fun y : ℝ =＞ Real.cos (Real.pi * y)) (-Real.sin (Rea…"]:::thm
+  n3["<b>hasDerivAt_sin_pi</b><br/>HasDerivAt (fun y : ℝ =＞ Real.sin (Real.pi * y)) (Real.cos (Real…"]:::thm
+  n4["<b>hasDerivAt_q</b><br/>HasDerivAt q (q1 x) x"]:::thm
+  n5["<b>hasDerivAt_q1</b><br/>HasDerivAt q1 (q2 x) x"]:::thm
+  n6["<b>q_one</b><br/>q 1 = 0"]:::thm
+  n7["<b>q_neg_one</b><br/>q (-1) = 0"]:::thm
+  n8["<b>q1_one</b><br/>q1 1 = 0"]:::thm
+  n9["<b>q1_neg_one</b><br/>q1 (-1) = 0"]:::thm
+  n10["<b>continuous_q1</b><br/>Continuous q1"]:::thm
+  n11["<b>continuous_q2</b><br/>Continuous q2"]:::thm
+  n12["<b>q2_bound</b><br/>|q2 x| ≤ Real.pi + Real.pi ^ 2 / 2"]:::thm
+  n13["<b>norm_sinh_le</b><br/>‖Complex.sinh z‖ ≤ Real.cosh z.re"]:::thm
+  n14["<b>SigmaC_eq_ibp</b><br/>SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * …"]:::thm
+  n15["<b>SigmaC_bound</b><br/>‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ …"]:::thm
+  n16["<b>lobe_bound</b><br/>‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * …"]:::thm
+  x0(["<b>WeilPowerBounds</b><br/>norm_S_le'"]):::ext
+  x1(["<b>WeilBackground</b><br/>Psi_bound"]):::ext
+  x2(["<b>WeilOffLine</b><br/>offline_term_le_explicit"]):::ext
+  n0 --> n1
+  n1 --> n14
+  n10 --> n14
+  n11 --> n14
+  n12 --> n15
+  n13 --> n15
+  n14 --> n15
+  n15 --> n16
+  n2 --> n4
+  n2 --> n5
+  n3 --> n5
+  n4 --> n14
+  n5 --> n14
+  n6 --> n14
+  n7 --> n14
+  n8 --> n14
+  n9 --> n14
+  n13 -.-> x0
+  n15 -.-> x1
+  n16 -.-> x2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

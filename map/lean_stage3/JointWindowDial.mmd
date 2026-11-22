@@ -1,0 +1,19 @@
+flowchart LR
+  n0["<b>zeroFreeRight_of_window</b><br/>Stage3.StmtZeroFreeRight θ"]:::thm
+  n1["<b>psiWeakTheta_of_window</b><br/>∃ C' ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |Chebyshev.psi t - t| ≤ C'…"]:::end_
+  n2["<b>schoenfeldWeakTheta_of_window</b><br/>∃ C' ＞ 0, ∃ x₀ : ℝ, Stage3.StmtSchoenfeldWeakTheta θ C' 2 x₀ (fu…"]:::thm
+  x0(["<b>LandauCriterion</b><br/>stmtLandauWindow"]):::ext
+  x1(["<b>ThetaPsi</b><br/>psi_weak_of_theta"]):::ext
+  x2(["<b>ThetaPi</b><br/>schoenfeldWeakTheta_of_zeroFree"]):::ext
+  x3(["<b>JointDialGate</b><br/>relErrWindow_of_window"]):::ext
+  n0 --> n1
+  n0 --> n2
+  n2 -.-> x3
+  x0 -.-> n0
+  x1 -.-> n1
+  x2 -.-> n2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

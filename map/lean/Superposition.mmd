@@ -1,0 +1,16 @@
+flowchart LR
+  n0["<b>bdiff_sum</b><br/>bdiff (fun r =＞ ∑ i ∈ s, f i r) = fun r =＞ ∑ i ∈ s, bdiff (f i) …"]:::thm
+  n1["<b>A4_sum_of_A1</b><br/>∀ (N : ℕ) (r : ℂ), (bdiff^[N]) (modeSum b ρ c s) r = ∑ i ∈ s, c …"]:::thm
+  n2["<b>depth_reweights_each_mode</b><br/>(bdiff^[N]) (modeSum b ρ c s) r = modeSum b ρ (fun i =＞ c i * (S…"]:::thm
+  n3["<b>tableFrom_eq_modeSum_reweighted</b><br/>((Construction.tableFrom N r d : ℤ) : ℂ) = modeSum b ρ (fun i =＞…"]:::end_
+  x0(["<b>Chain</b><br/>bdiff_smul<br/>tableFrom_eq_bdiff_iter"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  x0 -.-> n1
+  x0 -.-> n3
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

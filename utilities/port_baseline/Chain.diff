@@ -1,0 +1,5 @@
+--- lean/Chain.lean
++++ TablePort/Chain.lean
+@@ -333 +333 @@
+-      simpa using h0
++      simpa [Construction.tableFrom] using h0

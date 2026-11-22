@@ -1,0 +1,71 @@
+flowchart LR
+  n0["<b>gammaR_eq_exp_mul</b><br/>Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Compl…"]:::thm
+  n1["<b>differentiableAt_gammaR</b><br/>DifferentiableAt ℂ Gammaℝ s"]:::thm
+  n2["<b>logDeriv_gammaR</b><br/>logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamm…"]:::thm
+  n3["<b>logDeriv_xi_split</b><br/>logDeriv xi s = 1 / s + 1 / (s - 1) + logDeriv Gammaℝ s + logDer…"]:::thm
+  n4["<b>intervalIntegral_re</b><br/>(∫ t in a..b, f t).re = ∫ t in a..b, (f t).re"]:::thm
+  n5["<b>intervalIntegral_im</b><br/>(∫ t in a..b, f t).im = ∫ t in a..b, (f t).im"]:::lone
+  n6["<b>logDeriv_gammaR_conj</b><br/>logDeriv Gammaℝ (conj s) = conj (logDeriv Gammaℝ s)"]:::thm
+  n7["<b>logDeriv_gammaR_im_eq_zero</b><br/>(logDeriv Gammaℝ ((x : ℝ) : ℂ)).im = 0"]:::thm
+  n8["<b>integral_inv_vertical</b><br/>(∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹) = -Complex.I * (C…"]:::thm
+  n9["<b>integral_inv_horizontal</b><br/>(∫ x in a..b, (((x : ℂ) - d) + T * Complex.I)⁻¹) = Complex.log (…"]:::thm
+  n10["<b>arg_sum_eq_pi</b><br/>Complex.arg ((1/2 : ℝ) + T * Complex.I) + Complex.arg ((-(1/2) :…"]:::thm
+  n11["<b>elem_fold_eq_pi</b><br/>(∫ t in (0:ℝ)..T, elemLD (2 + (t : ℂ) * Complex.I)).re - (∫ x in…"]:::thm
+  n12["<b>logDeriv_gammaR_analyticAt</b><br/>AnalyticAt ℂ (logDeriv Gammaℝ) z"]:::thm
+  n13["<b>logDeriv_gammaR_continuousAt</b><br/>ContinuousAt (logDeriv Gammaℝ) z"]:::thm
+  n14["<b>logDeriv_gammaR_holo</b><br/>HolomorphicOn (logDeriv Gammaℝ) {s : ℂ | 0 ＜ s.re}"]:::thm
+  n15["<b>logDeriv_gammaR_comp_continuous</b><br/>Continuous fun x : ℝ =＞ logDeriv Gammaℝ (g x)"]:::thm
+  n16["<b>gammaR_fold_eq_phaseTheta</b><br/>(∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re …"]:::thm
+  n17["<b>stmtArgIdentity_holds</b><br/>StmtArgIdentity phaseTheta argS"]:::thm
+  n18["<b>backlundArg_of_sFromLocal</b><br/>StmtBacklundArg phaseTheta (a * A₁) (a * A₃ + b)"]:::end_
+  n19["<b>rvM_of_sFromLocal</b><br/>riemannZeta.Riemann_vonMangoldt_bound (97 + a * 15) 0 (98 + (a *…"]:::end_
+  n20["<b>logDeriv_zeta_analyticAt</b><br/>AnalyticAt ℂ (logDeriv riemannZeta) z"]:::thm
+  n21["<b>logDeriv_zeta_continuousAt</b><br/>ContinuousAt (logDeriv riemannZeta) z"]:::thm
+  n22["<b>argS_eq_zetaArgContour</b><br/>argS T = zetaArgContour T"]:::thm
+  x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
+  x1(["<b>Stirling</b><br/>backlundPhase_holds<br/>intervalIntegrable_phasePoint<br/>phasePoint_eq"]):::ext
+  x2(["<b>ArgCount</b><br/>argS_le_of_good<br/>rvM_crude<br/>rvM_crude_of_good_two"]):::ext
+  x3(["<b>ArgCrude</b><br/>argCrude_of_pieces<br/>rvM_of_stirling_and_pieces"]):::ext
+  x4(["<b>JensenCount</b><br/>localCount_holds"]):::ext
+  x5(["<b>ArgLegs</b><br/>horizontal_leg_le<br/>vertical_leg_le"]):::ext
+  n0 --> n1
+  n0 --> n2
+  n1 --> n12
+  n1 --> n3
+  n10 --> n11
+  n11 --> n22
+  n12 --> n13
+  n12 --> n14
+  n13 --> n15
+  n13 --> n22
+  n14 --> n16
+  n15 --> n16
+  n15 --> n22
+  n16 --> n22
+  n17 --> n18
+  n17 --> n19
+  n2 --> n16
+  n20 --> n21
+  n21 --> n22
+  n3 --> n22
+  n4 --> n16
+  n6 --> n7
+  n7 --> n16
+  n8 --> n11
+  n9 --> n11
+  n17 -.-> x2
+  n21 -.-> x5
+  n22 -.-> x2
+  x0 -.-> n22
+  x0 -.-> n3
+  x0 -.-> n6
+  x1 -.-> n16
+  x1 -.-> n19
+  x3 -.-> n18
+  x3 -.-> n19
+  x4 -.-> n19
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

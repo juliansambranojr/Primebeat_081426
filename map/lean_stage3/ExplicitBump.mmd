@@ -1,0 +1,26 @@
+flowchart LR
+  n0["<b>sqPos_eq</b><br/>(max 0 u) ^ 2 = if u ≤ 0 then 0 else u ^ 2"]:::lone
+  n1["<b>hasDerivAt_sqPos</b><br/>HasDerivAt (fun t : ℝ =＞ (max 0 t) ^ 2) (2 * max 0 u) u"]:::thm
+  n2["<b>contDiff_sqPos</b><br/>ContDiff ℝ 1 (fun t : ℝ =＞ (max 0 t) ^ 2)"]:::thm
+  n3["<b>bumpP_nonpos_of_le</b><br/>bumpP x ≤ 0"]:::thm
+  n4["<b>bumpP_nonpos_of_ge</b><br/>bumpP x ≤ 0"]:::thm
+  n5["<b>bumpC_pos</b><br/>0 ＜ bumpC"]:::thm
+  n6["<b>bump_nonneg</b><br/>0 ≤ bump x"]:::end_
+  n7["<b>bump_support</b><br/>Function.support bump ⊆ Set.Icc (1/2 : ℝ) 2"]:::end_
+  n8["<b>bump_contDiff</b><br/>ContDiff ℝ 1 bump"]:::end_
+  n9["<b>bumpP_le</b><br/>bumpP x ≤ 9/16"]:::thm
+  n10["<b>bump_le</b><br/>bump x ≤ bumpC * (9/16) ^ 2"]:::thm
+  n11["<b>bump_le_numeral</b><br/>bump x ≤ 1.4757"]:::end_
+  n1 --> n2
+  n10 --> n11
+  n2 --> n8
+  n3 --> n7
+  n4 --> n7
+  n5 --> n10
+  n5 --> n6
+  n9 --> n10
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

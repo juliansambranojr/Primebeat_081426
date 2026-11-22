@@ -1,0 +1,11 @@
+flowchart LR
+  n0["<b>window_of_global</b><br/>Nonvanishing.StmtSchoenfeldWindow f L r n"]:::thm
+  n1["<b>tableFrom_ne_zero_of_schoenfeld</b><br/>Construction.tableFrom N r d ≠ 0"]:::end_
+  x0(["<b>Expansion</b><br/>tableFrom_ne_zero_of_li"]):::ext
+  n0 --> n1
+  x0 -.-> n1
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

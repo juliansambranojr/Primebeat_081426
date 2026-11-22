@@ -1,0 +1,50 @@
+flowchart LR
+  n0["<b>sym_on_imaginary_axis</b><br/>Chain.Sym b (γ * Complex.I) = 1 - Complex.exp (((-(γ * Real.log …"]:::thm
+  n1["<b>norm_sym_on_imaginary_axis</b><br/>‖Chain.Sym b (γ * Complex.I)‖ = 2 * |Real.sin (γ * Real.log b / …"]:::thm
+  n2["<b>gain_eq_norm_sym_pow</b><br/>gain d (γ * Real.log b) = ‖Chain.Sym b (γ * Complex.I)‖ ^ d"]:::thm
+  n3["<b>gain_pi</b><br/>gain d Real.pi = 2 ^ d"]:::thm
+  n4["<b>gain_zero_phase</b><br/>gain d 0 = 0"]:::end_
+  n5["<b>gain_hasDerivAt_pi</b><br/>HasDerivAt (gain d) 0 Real.pi"]:::thm
+  n6["<b>deriv_gain_pi</b><br/>deriv (gain d) Real.pi = 0"]:::end_
+  n7["<b>gain_le_gain_pi</b><br/>gain d θ ≤ gain d Real.pi"]:::thm
+  n8["<b>gain_lt_gain_pi</b><br/>gain d θ ＜ gain d Real.pi"]:::thm
+  n9["<b>depth_zero_vacuous</b><br/>gain 0 θ = 1"]:::end_
+  n10["<b>stationary_maximum</b><br/>HasDerivAt (gain d) 0 Real.pi ∧ (∀ θ : ℝ, gain d θ ≤ gain d Real…"]:::end_
+  n11["<b>boundaryBase_pos</b><br/>0 ＜ boundaryBase γ"]:::thm
+  n12["<b>one_lt_boundaryBase</b><br/>1 ＜ boundaryBase γ"]:::end_
+  n13["<b>phase_at_boundaryBase</b><br/>γ * Real.log (boundaryBase γ) = Real.pi"]:::thm
+  n14["<b>nyquist_boundaryBase</b><br/>Nyquist.nyquist (boundaryBase γ) = γ"]:::thm
+  n15["<b>norm_sym_pow_at_boundaryBase</b><br/>‖Chain.Sym (boundaryBase γ) (γ * Complex.I)‖ ^ d = 2 ^ d"]:::end_
+  n16["<b>gain_stationary_in_base</b><br/>HasDerivAt (fun b : ℝ =＞ gain d (γ * Real.log b)) 0 (boundaryBas…"]:::thm
+  n17["<b>gain_continuousAt_boundaryBase</b><br/>ContinuousAt (fun b : ℝ =＞ gain d (γ * Real.log b)) (boundaryBas…"]:::end_
+  n18["<b>gain_le_at_boundaryBase</b><br/>gain d (γ * Real.log b) ≤ gain d (γ * Real.log (boundaryBase γ))"]:::thm
+  n19["<b>boundary_is_smooth_stationary_maximum</b><br/>Nyquist.nyquist (boundaryBase γ) = γ ∧ HasDerivAt (fun b : ℝ =＞ …"]:::end_
+  n0 --> n1
+  n1 --> n2
+  n11 --> n15
+  n11 --> n16
+  n13 --> n15
+  n13 --> n16
+  n13 --> n18
+  n13 --> n19
+  n14 --> n19
+  n16 --> n17
+  n16 --> n19
+  n18 --> n19
+  n2 --> n15
+  n3 --> n15
+  n3 --> n19
+  n3 --> n7
+  n3 --> n8
+  n5 --> n10
+  n5 --> n16
+  n5 --> n6
+  n7 --> n10
+  n7 --> n18
+  n8 --> n10
+  n8 --> n19
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

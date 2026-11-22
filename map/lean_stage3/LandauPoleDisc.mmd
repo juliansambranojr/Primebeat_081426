@@ -1,0 +1,13 @@
+flowchart LR
+  n0["<b>Phi_taylor_on_disc</b><br/>∃ (P : Finset ℂ) (C : ℝ), (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ …"]:::thm
+  x0(["<b>LandauPoleLocal</b><br/>Phi_principal_part<br/>Phi_regular_at_one<br/>differentiableAt_Phi"]):::ext
+  x1(["<b>LandauPoleSub</b><br/>exists_differentiableOn_sub_poles<br/>taylor_coeff_sub_poles"]):::ext
+  x2(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
+  n0 -.-> x2
+  x0 -.-> n0
+  x1 -.-> n0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

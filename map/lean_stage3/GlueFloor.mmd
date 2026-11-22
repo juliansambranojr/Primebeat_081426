@@ -1,0 +1,43 @@
+flowchart LR
+  n0["<b>edge_left_sharp</b><br/>∃ D : ℝ, 0 ＜ D ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIn…"]:::thm
+  n1["<b>explicit_formula_split</b><br/>∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x T : ℝ, 16 ≤ x → 2…"]:::thm
+  n2["<b>stmtEF_split</b><br/>∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ StmtExplicitFormulaSp…"]:::thm
+  n3["<b>floorConstSplit_nonneg</b><br/>0 ≤ floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀"]:::thm
+  n4["<b>psiWeak_floor_split</b><br/>StmtPsiWeak (floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀) 2 x₀"]:::thm
+  n5["<b>schoenfeldWeak_floor_split_of_RH</b><br/>∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → S…"]:::thm
+  x0(["<b>ContourShift</b><br/>4 theorems"]):::ext
+  x1(["<b>EdgeBound</b><br/>4 theorems"]):::ext
+  x2(["<b>Glue</b><br/>edge_horizontal_bound<br/>zeroPartialSum_swap"]):::ext
+  x3(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
+  x4(["<b>AssemblyFloor</b><br/>4 theorems"]):::ext
+  x5(["<b>JointFloorGate</b><br/>relErrWindow_floor_of_RH"]):::ext
+  x6(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num"]):::ext
+  x7(["<b>Assembly</b><br/>norm_zeroPartialSum_le_logsq"]):::ext
+  x8(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x9(["<b>PsiToPi</b><br/>schoenfeldWeak_of_psiWeak"]):::ext
+  x10(["<b>PiToPsi</b><br/>RH_iff_schoenfeldWeak"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n2 --> n5
+  n3 --> n5
+  n4 --> n5
+  n3 -.-> x5
+  n3 -.-> x6
+  n4 -.-> x6
+  n5 -.-> x10
+  n5 -.-> x5
+  x0 -.-> n0
+  x0 -.-> n1
+  x1 -.-> n0
+  x2 -.-> n1
+  x3 -.-> n1
+  x4 -.-> n3
+  x4 -.-> n4
+  x7 -.-> n4
+  x8 -.-> n5
+  x9 -.-> n5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

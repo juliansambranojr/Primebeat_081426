@@ -1,0 +1,70 @@
+flowchart LR
+  n0["<b>inv_log_two_le</b><br/>1 / Real.log 2 ≤ 1.4428"]:::thm
+  n1["<b>C1n_le</b><br/>EdgeBound.C1n ≤ 1909224"]:::thm
+  n2["<b>C2n_le</b><br/>EdgeBound.C2n ≤ 2167"]:::thm
+  n3["<b>Cen_le</b><br/>EdgeBound.Cen ≤ 1911393"]:::thm
+  n4["<b>Cpn_le</b><br/>Glue.Cpn ≤ 6534550000"]:::thm
+  n5["<b>Chn_le</b><br/>Glue.Chn ≤ 44108300000"]:::thm
+  n6["<b>Csn_le</b><br/>Glue.Csn ≤ 1136"]:::thm
+  n7["<b>Dln_le</b><br/>Glue.Dln ≤ 89846200"]:::thm
+  n8["<b>c1n_le</b><br/>Glue.c1n ≤ 88216610000"]:::thm
+  n9["<b>c3n_le</b><br/>Glue.c3n ≤ 15"]:::thm
+  n10["<b>c4n_le</b><br/>Glue.c4n ≤ 6468930000"]:::thm
+  n11["<b>stmtEF_split_num</b><br/>StmtExplicitFormulaSplit Glue.c1n Glue.c3n Glue.c4n 16"]:::thm
+  n12["<b>schoenfeldWeak_route_num</b><br/>StmtSchoenfeldWeak (routeConst x₀) 1 (max (x₀ ^ 2) 9) (fun x =＞ …"]:::thm
+  n13["<b>relErrWindow_route_num</b><br/>JointDialGate.StmtRelErrWindow (fun m : ℤ =＞ (Nat.primeCounting …"]:::thm
+  x0(["<b>BoxBounds</b><br/>zeta_ratio_ge"]):::ext
+  x1(["<b>ContourShift</b><br/>zeta_zeros_rectangle_finite"]):::ext
+  x2(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x3(["<b>EdgeNum</b><br/>Cen_pos"]):::ext
+  x4(["<b>GateEval</b><br/>gate_hyp_of_RH<br/>routeConst_le"]):::ext
+  x5(["<b>RowLeaves</b><br/>Li_two_rpow<br/>norm_logDerivZeta_zero"]):::ext
+  x6(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x7(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x8(["<b>GlueFloor</b><br/>floorConstSplit_nonneg<br/>psiWeak_floor_split"]):::ext
+  x9(["<b>PsiToPi</b><br/>schoenfeldWeak_of_psiWeak"]):::ext
+  x10(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
+  x11(["<b>JointFloorGate</b><br/>weakWindow_relErr"]):::ext
+  x12(["<b>Statement</b><br/>weakWindow_of_global"]):::ext
+  x13(["<b>TableDepths</b><br/>cell_ne_zero_gen"]):::ext
+  n0 --> n2
+  n0 --> n3
+  n0 --> n4
+  n0 --> n6
+  n0 --> n7
+  n1 --> n3
+  n11 --> n12
+  n12 --> n13
+  n2 --> n3
+  n3 --> n4
+  n3 --> n7
+  n4 --> n5
+  n5 --> n8
+  n6 --> n8
+  n7 --> n10
+  n10 -.-> x4
+  n13 -.-> x13
+  n13 -.-> x4
+  n8 -.-> x4
+  n9 -.-> x4
+  x0 -.-> n1
+  x1 -.-> n2
+  x10 -.-> n12
+  x11 -.-> n13
+  x12 -.-> n13
+  x2 -.-> n2
+  x3 -.-> n4
+  x5 -.-> n13
+  x5 -.-> n9
+  x6 -.-> n11
+  x6 -.-> n12
+  x6 -.-> n13
+  x7 -.-> n12
+  x8 -.-> n12
+  x8 -.-> n13
+  x9 -.-> n12
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

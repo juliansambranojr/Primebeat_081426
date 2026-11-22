@@ -1,0 +1,82 @@
+flowchart LR
+  n0["<b>termW_nonneg</b><br/>0 ≤ termW h γ m ρ"]:::thm
+  n1["<b>weightedTermW_nonneg</b><br/>0 ≤ weightedTermW h γ m ρ"]:::thm
+  n2["<b>band_sum_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ M * (15 * Real.log T + 73)"]:::thm
+  n3["<b>sum_by_bands</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.N…"]:::thm
+  n4["<b>sum_le_bandSeries</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑' k : ℕ, M k * (15 * Real.log …"]:::thm
+  n5["<b>tsum_upper_le</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ ∑' k : ℕ, M k * (15 * Re…"]:::thm
+  n6["<b>one_le_r</b><br/>1 ≤ r h m"]:::thm
+  n7["<b>cFarM_nonneg</b><br/>0 ≤ cFarM m"]:::thm
+  n8["<b>factorial_odd_le</b><br/>(((2 * m + 1).factorial : ℕ) : ℝ) ≤ 2 * 4 ^ m * ((m : ℝ) + 1) ^ …"]:::thm
+  n9["<b>cS_le</b><br/>cS m ≤ 4 * Real.pi ^ (2 * m + 1) * ((m : ℝ) + 1) ^ (2 * m + 1)"]:::thm
+  n10["<b>cFarM_le</b><br/>cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2"]:::end_
+  n11["<b>M_nonneg</b><br/>0 ≤ M h γ m k"]:::thm
+  n12["<b>term_le_M</b><br/>termW h γ m ρ ≤ M h γ m (idx (ρ : ℂ).im)"]:::thm
+  n13["<b>four_h_add_nonneg</b><br/>0 ≤ 4 * h ^ 2 + cFarM m / h ^ 2"]:::thm
+  n14["<b>A_nonneg</b><br/>0 ≤ A h γ m"]:::thm
+  n15["<b>bandTerm_le_A</b><br/>M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m / ((k : ℝ)…"]:::thm
+  n16["<b>bandSeries_summable</b><br/>Summable (fun k : ℕ =＞ M h γ m k * (15 * Real.log (centre k) + 7…"]:::thm
+  n17["<b>bandSeries_le</b><br/>∑' k : ℕ, M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m …"]:::thm
+  n18["<b>tsum_upper_le_explicit</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ A h γ m * (Real.pi ^ 2 /…"]:::thm
+  n19["<b>A_le</b><br/>A h γ m ≤ 88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ …"]:::thm
+  n20["<b>tsum_upper_le_explicit'</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ 88 * (γ + r h m + 2) ^ 4…"]:::end_
+  x0(["<b>WeilPowerBackground</b><br/>online_term_le_far<br/>online_term_le_near<br/>online_term_nonneg"]):::ext
+  x1(["<b>WeilPowerOnLine</b><br/>4 theorems"]):::ext
+  x2(["<b>WeilBands</b><br/>band_count<br/>order_eq_analyticOrderNatAt"]):::ext
+  x3(["<b>WeilTiles</b><br/>bandSeries_nonneg<br/>idx_spec<br/>two_le_centre"]):::ext
+  x4(["<b>WeilPowerBounds</b><br/>cS_pos"]):::ext
+  x5(["<b>WeilSeries</b><br/>8 theorems"]):::ext
+  n0 --> n1
+  n1 --> n5
+  n11 --> n16
+  n11 --> n18
+  n12 --> n18
+  n13 --> n14
+  n13 --> n15
+  n13 --> n19
+  n14 --> n17
+  n15 --> n16
+  n15 --> n17
+  n16 --> n17
+  n16 --> n18
+  n17 --> n18
+  n18 --> n20
+  n19 --> n20
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n18
+  n6 --> n12
+  n6 --> n14
+  n6 --> n15
+  n6 --> n19
+  n7 --> n11
+  n7 --> n13
+  n7 --> n15
+  n8 --> n9
+  n9 --> n10
+  n1 -.-> x1
+  n11 -.-> x1
+  n12 -.-> x1
+  n16 -.-> x1
+  n17 -.-> x1
+  n19 -.-> x1
+  n4 -.-> x1
+  x0 -.-> n0
+  x0 -.-> n12
+  x2 -.-> n2
+  x3 -.-> n16
+  x3 -.-> n3
+  x3 -.-> n4
+  x4 -.-> n10
+  x4 -.-> n12
+  x5 -.-> n12
+  x5 -.-> n15
+  x5 -.-> n16
+  x5 -.-> n17
+  x5 -.-> n19
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

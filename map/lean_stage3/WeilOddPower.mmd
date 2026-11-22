@@ -1,0 +1,42 @@
+flowchart LR
+  n0["<b>q_odd</b><br/>q m (-x) = -q m x"]:::thm
+  n1["<b>continuous_q</b><br/>Continuous (q m)"]:::thm
+  n2["<b>sin_pi_mul</b><br/>Real.sin (Real.pi * x) = 2 * Real.sin (Real.pi * x / 2) * c x"]:::thm
+  n3["<b>q_eq</b><br/>q m x = -(2 / (((m : ℝ) + 1) * Real.pi)) * f1 (2 * m + 1) x"]:::thm
+  n4["<b>ibp_once</b><br/>(∫ x in (-1 : ℝ)..1, ((f1 (k + 1) x : ℝ) : ℂ) * Complex.exp (w *…"]:::thm
+  n5["<b>S_eq</b><br/>S m w = 2 * w * K (m + 1) w / (((m : ℂ) + 1) * (Real.pi : ℂ))"]:::thm
+  n6["<b>Q_succ_eq</b><br/>Q (m + 1) w = w * QS m w"]:::thm
+  n7["<b>cS_eq</b><br/>cS m * (((m : ℝ) + 1) * Real.pi) = 2 * cK (m + 1)"]:::thm
+  n8["<b>S_mul_QS</b><br/>S m w * QS m w = (cS m : ℂ) * Complex.sinh w"]:::thm
+  n9["<b>S_zero_mul</b><br/>S 0 w * (w ^ 2 + (Real.pi : ℂ) ^ 2) = 2 * (Real.pi : ℂ) * Comple…"]:::end_
+  n10["<b>what_eq</b><br/>what h γ m z = ((h : ℂ) / 2) * (S m ((z + Complex.I * (γ : ℂ)) *…"]:::thm
+  x0(["<b>WeilTransform</b><br/>P_even"]):::ext
+  x1(["<b>WeilPowerBackground</b><br/>S_eq_sinh<br/>what_I<br/>what_neg"]):::ext
+  x2(["<b>WeilWindow</b><br/>continuous_P"]):::ext
+  x3(["<b>WeilPower</b><br/>7 theorems"]):::ext
+  x4(["<b>WeilPowerBounds</b><br/>S_eq_div'<br/>S_real_eq"]):::ext
+  x5(["<b>WeilPowerBridge</b><br/>term_eq_sidebands"]):::ext
+  n1 --> n10
+  n2 --> n3
+  n3 --> n5
+  n4 --> n5
+  n5 --> n8
+  n6 --> n8
+  n7 --> n8
+  n8 --> n9
+  n0 -.-> x1
+  n1 -.-> x1
+  n10 -.-> x1
+  n10 -.-> x5
+  n8 -.-> x4
+  x0 -.-> n0
+  x2 -.-> n1
+  x3 -.-> n3
+  x3 -.-> n4
+  x3 -.-> n5
+  x3 -.-> n8
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

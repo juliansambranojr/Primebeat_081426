@@ -1,0 +1,28 @@
+flowchart LR
+  n0["<b>zeros_re_pos</b><br/>0 ＜ s.re"]:::thm
+  n1["<b>zeros_in_fundamental_annulus</b><br/>b ^ (-(1 : ℝ)) ＜ ‖(b : ℂ) ^ (-s)‖ ∧ ‖(b : ℂ) ^ (-s)‖ ＜ 1"]:::end_
+  n2["<b>riemannHypothesis_iff_zeros_on_middle_circle</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::end_
+  n3["<b>zmap_pair_product</b><br/>‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ))"]:::thm
+  n4["<b>pair_collapses_iff_critical</b><br/>‖(b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-(1 - s))‖ ↔ s.re = 1 / 2"]:::thm
+  n5["<b>riemannHypothesis_iff_pair_collapses</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::end_
+  n6["<b>sym_zero_on_outer_circle</b><br/>‖(b : ℂ) ^ (-s)‖ = 1"]:::thm
+  n7["<b>sym_zero_partner_on_inner_circle</b><br/>‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ))"]:::end_
+  n8["<b>critical_circle_is_lattice_inversion_mean</b><br/>‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = (b ^ (-(1 : ℝ) / 2))…"]:::end_
+  x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
+  x1(["<b>Chain</b><br/>sym_eq_zero_iff"]):::ext
+  n0 --> n1
+  n3 --> n7
+  n3 --> n8
+  n4 --> n5
+  n6 --> n7
+  x0 -.-> n1
+  x0 -.-> n2
+  x0 -.-> n3
+  x0 -.-> n4
+  x0 -.-> n6
+  x1 -.-> n6
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

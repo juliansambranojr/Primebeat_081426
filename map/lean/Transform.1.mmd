@@ -1,0 +1,61 @@
+flowchart LR
+  n0["<b>norm_zmap</b><br/>‖(b : ℂ) ^ (-s)‖ = b ^ (-s.re)"]:::thm
+  n1["<b>norm_zmap_critical</b><br/>‖(b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ = b ^ (-(1:ℝ)/2)"]:::end_
+  n2["<b>zmap_shift</b><br/>(b : ℂ) ^ (-(s + 1)) = (b : ℂ) ^ (-s) / (b : ℂ)"]:::lone
+  n3["<b>zmap_period</b><br/>(b : ℂ) ^ (-(s + 2 * Real.pi * I / Real.log b)) = (b : ℂ) ^ (-s)"]:::thm
+  n4["<b>zmap_functional_equation</b><br/>(b : ℂ) ^ (-((1 : ℂ) - s)) = (b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-…"]:::lone
+  n5["<b>annulus_modulus</b><br/>Real.log (b ^ (-(1:ℝ)/2) / b ^ (-(1:ℝ))) / (2 * Real.pi) = Real.…"]:::lone
+  n6["<b>zmap_period_tau</b><br/>(b : ℂ) ^ (-(s + (tau b : ℂ) * I)) = (b : ℂ) ^ (-s)"]:::end_
+  n7["<b>tau_pow</b><br/>tau (b ^ n) = tau b / n"]:::end_
+  n8["<b>tau_ratio_of_meet</b><br/>tau b / tau c = n / m"]:::end_
+  n9["<b>one_mem_periodLattice</b><br/>(1 : ℂ) ∈ periodLattice b"]:::thm
+  n10["<b>tauI_mem_periodLattice</b><br/>((tau b : ℂ) * I) ∈ periodLattice b"]:::thm
+  n11["<b>tau_pos</b><br/>0 ＜ tau b"]:::thm
+  n12["<b>generators_indep</b><br/>a = 0 ∧ c = 0"]:::end_
+  n13["<b>gens_linearIndependent</b><br/>LinearIndependent ℝ (gens b)"]:::thm
+  n14["<b>periodLattice_eq_span</b><br/>periodLattice b = (Submodule.span ℤ (Set.range (latticeBasis hb)…"]:::thm
+  n15["<b>periodLattice_discrete</b><br/>DiscreteTopology (periodLattice b)"]:::end_
+  n16["<b>torus_shift</b><br/>((s + 1 : ℂ) : Torus b) = (s : Torus b)"]:::end_
+  n17["<b>torus_period</b><br/>((s + (tau b : ℂ) * I : ℂ) : Torus b) = (s : Torus b)"]:::end_
+  n18["<b>zmap_period_zsmul</b><br/>(b : ℂ) ^ (-(s + (n : ℂ) * ((tau b : ℂ) * I))) = (b : ℂ) ^ (-s)"]:::end_
+  n19["<b>zmap_shift_modulus</b><br/>‖(b : ℂ) ^ (-(s + n))‖ = ‖(b : ℂ) ^ (-s)‖ / b ^ n"]:::lone
+  n20["<b>inversion_fixes_circle</b><br/>‖(b : ℂ) ^ (-(1 : ℂ)) / z‖ = ‖z‖ ↔ ‖z‖ = b ^ (-(1 : ℝ) / 2)"]:::thm
+  n21["<b>rpow_left_inj</b><br/>b ^ x = b ^ y ↔ x = y"]:::thm
+  n22["<b>zmap_ne_zero</b><br/>(b : ℂ) ^ (-s) ≠ 0"]:::thm
+  n23["<b>on_critical_line_iff_norm</b><br/>s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2)"]:::thm
+  n24["<b>on_critical_line_iff_inversion_fixed</b><br/>s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s)‖ = ‖(b : ℂ…"]:::thm
+  n25["<b>riemannHypothesis_iff_zeros_inversion_fixed</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::end_
+  n26["<b>norm_zmap_zero_line</b><br/>‖(b : ℂ) ^ (-s)‖ = 1"]:::thm
+  n27["<b>strip_is_fundamental_domain</b><br/>‖(b : ℂ) ^ (-s)‖ = 1 ∧ (s + 1).re = 1 ∧ ‖(b : ℂ) ^ (-(s + 1))‖ =…"]:::end_
+  n28["<b>zeros_re_lt_one</b><br/>s.re ＜ 1"]:::thm
+  n29["<b>zeros_outside_inner_circle</b><br/>b ^ (-(1 : ℝ)) ＜ ‖(b : ℂ) ^ (-s)‖"]:::thm
+  x0(["<b>diagram 2</b><br/>5 theorems"]):::ext
+  n0 --> n1
+  n0 --> n22
+  n0 --> n23
+  n0 --> n26
+  n0 --> n27
+  n0 --> n29
+  n10 --> n17
+  n11 --> n12
+  n11 --> n13
+  n13 --> n14
+  n14 --> n15
+  n20 --> n24
+  n21 --> n23
+  n22 --> n24
+  n23 --> n24
+  n24 --> n25
+  n26 --> n27
+  n28 --> n29
+  n3 --> n6
+  n9 --> n16
+  n0 -.-> x0
+  n21 -.-> x0
+  n23 -.-> x0
+  n29 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

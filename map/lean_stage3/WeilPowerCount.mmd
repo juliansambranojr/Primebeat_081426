@@ -1,0 +1,13 @@
+flowchart LR
+  n0["<b>card_le_of_leaf</b><br/>(S.card : ℝ) ≤ c₁ * Real.log T + c₂"]:::thm
+  n1["<b>exists_range_log</b><br/>∃ L : ℝ, 0 ≤ L ∧ ∀ M : ℝ, 0 ≤ M → M ≤ D + L → (c₁ * M + c₂) * ((…"]:::lone
+  n2["<b>count_lt_shells</b><br/>N * (W + 1) ＜ K"]:::lone
+  n3["<b>exists_clean_shell_of_leaf</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::end_
+  x0(["<b>WeilPowerClean</b><br/>exists_clean_shell_of_count"]):::ext
+  n0 --> n3
+  x0 -.-> n3
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

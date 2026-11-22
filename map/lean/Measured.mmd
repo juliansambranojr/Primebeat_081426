@@ -1,0 +1,13 @@
+flowchart LR
+  n0["<b>agreement_offsets_match</b><br/>|measured_offset_smooth - measured_offset_resid| ＜ 0.001"]:::end_
+  n1["<b>agreement_radius_smooth</b><br/>|measured_radius_smooth - 0.5 * (1 + measured_offset_smooth)| ＜ …"]:::end_
+  n2["<b>agreement_rank_11a1</b><br/>|measured_rank_11a1 - predicted_rank_11a1| ＜ 0.05"]:::end_
+  n3["<b>agreement_rank_389a1</b><br/>|measured_rank_389a1 - predicted_rank_389a1| ＜ 0.01"]:::end_
+  n4["<b>agreement_rank_37a1</b><br/>|measured_rank_37a1 - predicted_rank_37a1| ＜ 0.3"]:::end_
+  n5["<b>agreement_elliptic</b><br/>measured_elliptic_max_dev ＜ 1e-15"]:::end_
+  n6["<b>agreement_weil_balance</b><br/>|measured_weil_arithmetic - measured_weil_spectral| ＜ 1e-6 * mea…"]:::end_
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,0 +1,22 @@
+flowchart LR
+  n0["<b>contradiction</b><br/>False"]:::thm
+  n1["<b>stmtLandauWindow</b><br/>LandauWindow.StmtLandauWindow"]:::thm
+  n2["<b>rh_of_windows</b><br/>RiemannHypothesis"]:::end_
+  x0(["<b>LandauPrimeSide</b><br/>Ik_le"]):::ext
+  x1(["<b>LandauRates</b><br/>exists_centre<br/>exists_pow_small<br/>key_ineq"]):::ext
+  x2(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
+  x3(["<b>JointWindowDial</b><br/>zeroFreeRight_of_window"]):::ext
+  x4(["<b>LandauWindow</b><br/>rh_of_window"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n1 -.-> x3
+  x0 -.-> n0
+  x1 -.-> n0
+  x1 -.-> n1
+  x2 -.-> n1
+  x4 -.-> n2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

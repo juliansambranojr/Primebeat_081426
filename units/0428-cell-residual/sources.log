@@ -1,0 +1,77 @@
+# check_prose_source.py  2026-11-22T15:33:04Z
+# unit: 0428-cell-residual
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:58099
+  Source: session transcript, 2026-11-22, after the reading of `The-Four-Zeros.md`, `The-Fold.md` and ...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:55711
+  This please "The statement I can now write is: RH holds if and only if the residual in every cell st...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57468
+  def resid (a : ℝ) (m : ℤ) : ℝ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57469
+  (Nat.primeCounting ⌊a * (2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ) - Stage3.Li (a * (2 : ℝ) ^ (m : ℝ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57472
+  def cellResid (a : ℝ) (r : ℤ) (d : ℕ) : ℝ := stencilR (d + 1) (resid a) r
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57475
+  def cellSize (r : ℤ) (d : ℕ) : ℝ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57476
+  (1 + (2 : ℝ) ^ (-(1 : ℝ) / 2)) ^ (d + 1) * ((r : ℝ) + 1) * (2 : ℝ) ^ ((r : ℝ) / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57479
+  def CellsSqrt (C : ℝ) (r₀ : ℤ) : Prop :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57480
+  ∀ a ∈ Set.Icc (1 : ℝ) 2, ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57481
+  |cellResid a r d| ≤ C * cellSize r d
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57555
+  theorem cells_of_schoenfeldWeak {C x₀ : ℝ} {r₀ : ℤ} (hC : 0 ≤ C) (hr₀ : 1 ≤ r₀)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57556
+  (hx₀ : x₀ ≤ (2 : ℝ) ^ (r₀ : ℝ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57508
+  (h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57558
+  CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀ := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57727
+  theorem schoenfeldWeak_of_cells {C : ℝ} {r₀ : ℤ} (h : CellsSqrt C r₀) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57729
+  StmtSchoenfeldWeak C' 1 x₁ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57831
+  theorem RH_iff_cells : RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57855
+  theorem table_cell_eq (r : ℤ) (d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57856
+  ((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57857
+  - stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57875
+  theorem table_cell_resid (hRH : RiemannHypothesis) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57876
+  ∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57877
+  |((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57878
+  - stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r|
+
+# 24 found, 0 missing

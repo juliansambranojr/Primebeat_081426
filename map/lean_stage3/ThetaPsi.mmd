@@ -1,0 +1,66 @@
+flowchart LR
+  n0["<b>inv_log_le_theta</b><br/>1 / Real.log X ≤ (1 - θ) / 2"]:::thm
+  n1["<b>σθ_lt_one</b><br/>σθ θ X ＜ 1"]:::thm
+  n2["<b>lt_σθ</b><br/>θ ＜ σθ θ X"]:::thm
+  n3["<b>horiz_length_theta</b><br/>(1 + 1 / Real.log X) - σθ θ X = 1 - θ"]:::thm
+  n4["<b>holo_logDerivZeta_theta</b><br/>HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ…"]:::thm
+  n5["<b>pull_at_theta_abscissa</b><br/>SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ Smoo…"]:::thm
+  n6["<b>integrand_norm_le_horiz_theta</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (19…"]:::thm
+  n7["<b>integrand_norm_le_horiz_neg_theta</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) - (T : ℂ) * I)‖ ≤ (19…"]:::thm
+  n8["<b>I8_norm_le_theta</b><br/>‖I₈ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (1 - θ) * ((1996 *…"]:::thm
+  n9["<b>I2_norm_le_theta</b><br/>‖I₂ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (1 - θ) * ((1996 *…"]:::thm
+  n10["<b>mellin_vert_le_theta</b><br/>‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σθ θ X : ℂ) + I * (t : ℂ…"]:::thm
+  n11["<b>contour_at_instantiation_theta</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::thm
+  n12["<b>theta_instantiation_arithmetic</b><br/>c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) …"]:::thm
+  n13["<b>psi_weak_of_theta</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * t ^ θ * (Re…"]:::thm
+  n14["<b>psi_weak_of_RH_half</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t…"]:::thm
+  n15["<b>stmtPsiWeak_of_RH_half</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::end_
+  x0(["<b>Abscissa</b><br/>4 theorems"]):::ext
+  x1(["<b>ThetaPull</b><br/>I37_power_log3_theta<br/>four_le_log_of_theta"]):::ext
+  x2(["<b>LineBound</b><br/>10 theorems"]):::ext
+  x3(["<b>JointWindowDial</b><br/>psiWeakTheta_of_window"]):::ext
+  x4(["<b>ThetaConverse</b><br/>zeroFreeRight_iff_psiWeakTheta"]):::ext
+  x5(["<b>ThetaPi</b><br/>schoenfeldWeakTheta_of_zeroFree"]):::ext
+  n0 --> n1
+  n1 --> n10
+  n1 --> n5
+  n10 --> n13
+  n11 --> n13
+  n12 --> n13
+  n13 --> n14
+  n14 --> n15
+  n2 --> n10
+  n2 --> n13
+  n2 --> n5
+  n3 --> n8
+  n3 --> n9
+  n4 --> n5
+  n5 --> n11
+  n6 --> n8
+  n7 --> n9
+  n8 --> n11
+  n9 --> n11
+  n13 -.-> x3
+  n13 -.-> x4
+  n13 -.-> x5
+  x0 -.-> n10
+  x0 -.-> n14
+  x0 -.-> n4
+  x0 -.-> n6
+  x0 -.-> n7
+  x1 -.-> n10
+  x1 -.-> n11
+  x1 -.-> n13
+  x1 -.-> n5
+  x1 -.-> n6
+  x1 -.-> n7
+  x1 -.-> n8
+  x1 -.-> n9
+  x2 -.-> n10
+  x2 -.-> n13
+  x2 -.-> n7
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

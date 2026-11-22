@@ -1,0 +1,19 @@
+flowchart LR
+  n0["<b>schoenfeld_iff_weak</b><br/>StmtSchoenfeld pi li ↔ StmtSchoenfeldWeak (1 / (8 * Real.pi)) 1 …"]:::thm
+  n1["<b>weak_anti_x₀</b><br/>StmtSchoenfeldWeak C k x₀' pi li"]:::end_
+  n2["<b>weak_mono</b><br/>StmtSchoenfeldWeak C' k x₀ pi li"]:::end_
+  n3["<b>weakWindow_of_global</b><br/>StmtWeakWindow C k f L r n"]:::thm
+  n4["<b>weakWindow_at_schoenfeld</b><br/>StmtWeakWindow (1 / (8 * Real.pi)) 1 f L r n ↔ StmtSchoenfeldWin…"]:::thm
+  n5["<b>window_of_global</b><br/>StmtSchoenfeldWindow f L r n"]:::end_
+  x0(["<b>JointFloorGate</b><br/>relErrWindow_floor_of_RH"]):::ext
+  x1(["<b>RouteNum</b><br/>relErrWindow_route_num"]):::ext
+  n0 --> n5
+  n3 --> n5
+  n4 --> n5
+  n3 -.-> x0
+  n3 -.-> x1
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

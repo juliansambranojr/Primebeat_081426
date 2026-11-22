@@ -1,0 +1,15 @@
+flowchart LR
+  n0["<b>explicit_formula_perron</b><br/>‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t i…"]:::thm
+  x0(["<b>diagram 1</b><br/>perron_sum_eq_integral<br/>perron_to_psi"]):::ext
+  x1(["<b>Glue</b><br/>explicit_formula_poly"]):::ext
+  x2(["<b>GlueFloor</b><br/>explicit_formula_split"]):::ext
+  x3(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
+  n0 -.-> x1
+  n0 -.-> x2
+  n0 -.-> x3
+  x0 -.-> n0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,0 +1,22 @@
+flowchart LR
+  n0["<b>bdiffL_apply</b><br/>bdiffL f = bdiff f"]:::thm
+  n1["<b>mode_ne_zero'</b><br/>mode b ρ r ≠ 0"]:::thm
+  n2["<b>mode_ne_zero</b><br/>mode b ρ ≠ 0"]:::thm
+  n3["<b>mode_hasEigenvector</b><br/>bdiffL.HasEigenvector (Sym b ρ) (mode b ρ)"]:::thm
+  n4["<b>sym_hasEigenvalue</b><br/>bdiffL.HasEigenvalue (Sym b ρ)"]:::end_
+  n5["<b>mode_pow</b><br/>(bdiffL ^ N) (mode b ρ) = (Sym b ρ) ^ N • mode b ρ"]:::end_
+  n6["<b>eigenvalue_zero_iff_lattice</b><br/>bdiffL (mode b ρ) = 0 ↔ ∃ k : ℤ, ρ = (k : ℂ) * (2 * Real.pi * I …"]:::end_
+  x0(["<b>Chain</b><br/>A1<br/>sym_eq_zero_iff"]):::ext
+  n0 --> n6
+  n1 --> n2
+  n1 --> n6
+  n2 --> n3
+  n3 --> n4
+  n3 --> n5
+  x0 -.-> n3
+  x0 -.-> n6
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,0 +1,22 @@
+flowchart LR
+  n0["<b>log_two_pi_le</b><br/>Real.log (2 * Real.pi) ≤ 2"]:::thm
+  n1["<b>RvM_mono</b><br/>riemannZeta.RvM b₁ b₂ b₃ T ≤ riemannZeta.RvM b₁ b₂ b₃ T'"]:::thm
+  n2["<b>abs_mainterm_le</b><br/>|zetaCountingMainTerm T| ≤ T / (2 * Real.pi) * (Real.log T + 3) …"]:::thm
+  n3["<b>N_abs_le</b><br/>|riemannZeta.N T| ≤ T / (2 * Real.pi) * (Real.log T + 3) + riema…"]:::thm
+  n4["<b>sum_range_add_one</b><br/>(∑ j ∈ range n, ((j : ℝ) + 1)) = n * (n + 1) / 2"]:::thm
+  n5["<b>sum_inv_pow_two_le</b><br/>(∑ j ∈ range n, ((2 : ℝ) ^ j)⁻¹) ≤ 2"]:::thm
+  n6["<b>dyadic_abs_N_sum_le</b><br/>(∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * |riemannZeta.N ((2 : ℝ) …"]:::thm
+  x0(["<b>Assembly</b><br/>norm_zeroPartialSum_le_logsq"]):::ext
+  n0 --> n2
+  n1 --> n6
+  n2 --> n3
+  n3 --> n6
+  n4 --> n6
+  n5 --> n6
+  n5 -.-> x0
+  n6 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

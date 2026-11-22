@@ -1,0 +1,38 @@
+flowchart LR
+  n0["<b>two_le_centre</b><br/>2 ≤ centre k"]:::thm
+  n1["<b>idx_spec</b><br/>|t - centre (idx t)| ≤ 9 / 10"]:::thm
+  n2["<b>online_term_nonneg</b><br/>0 ≤ (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re"]:::thm
+  n3["<b>weightedTerm_nonneg</b><br/>0 ≤ weightedTerm h γ ρ"]:::thm
+  n4["<b>sum_by_bands</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.Nont…"]:::thm
+  n5["<b>bandSeries_nonneg</b><br/>0 ≤ M k * (15 * Real.log (centre k) + 73)"]:::thm
+  n6["<b>sum_le_bandSeries</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ ∑' k : ℕ, M k * (15 * Real.log (ce…"]:::thm
+  n7["<b>tsum_upper_le</b><br/>∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ ∑' k : ℕ, M k * (15 * Real.…"]:::thm
+  x0(["<b>WeilPowerBands</b><br/>bandSeries_summable<br/>sum_by_bands<br/>sum_le_bandSeries"]):::ext
+  x1(["<b>WeilSeries</b><br/>5 theorems"]):::ext
+  x2(["<b>WeilBackground</b><br/>online_term_eq"]):::ext
+  x3(["<b>WeilOnLine</b><br/>sum_upper_le<br/>summable_onLine<br/>tsum_onLine_le"]):::ext
+  x4(["<b>WeilBands</b><br/>band_sum_le"]):::ext
+  n0 --> n4
+  n0 --> n5
+  n1 --> n4
+  n2 --> n3
+  n3 --> n7
+  n4 --> n6
+  n5 --> n6
+  n6 --> n7
+  n0 -.-> x0
+  n0 -.-> x1
+  n1 -.-> x0
+  n1 -.-> x1
+  n3 -.-> x3
+  n5 -.-> x0
+  n5 -.-> x1
+  n6 -.-> x3
+  n7 -.-> x1
+  x2 -.-> n2
+  x4 -.-> n4
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

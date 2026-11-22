@@ -1,0 +1,38 @@
+flowchart LR
+  n0["<b>phiC_real</b><br/>(phiC h γ u).im = 0"]:::thm
+  n1["<b>laplace_phi</b><br/>laplace (phiC h γ) z = ghat h γ (-z - 1 / 2)"]:::thm
+  n2["<b>Psi_bound</b><br/>|WeilTransform.Psi s| ≤ (2 * Real.pi + Real.pi ^ 2) / s ^ 2"]:::thm
+  n3["<b>Psi_le_two</b><br/>|WeilTransform.Psi s| ≤ 2"]:::thm
+  n4["<b>online_term_eq</b><br/>laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = (((h /…"]:::thm
+  n5["<b>online_term_le_near</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re ≤ 4…"]:::thm
+  n6["<b>online_term_le_far</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re ≤ (…"]:::thm
+  x0(["<b>WeilOffLine</b><br/>term_eq_neg_sq"]):::ext
+  x1(["<b>WeilLobe</b><br/>SigmaC_bound"]):::ext
+  x2(["<b>WeilTransform</b><br/>SigmaC_I_mul<br/>ghat_ofReal_I"]):::ext
+  x3(["<b>WeilWindow</b><br/>P_le_one<br/>P_nonneg"]):::ext
+  x4(["<b>WeilDetect</b><br/>laplace_conj"]):::ext
+  x5(["<b>WeilOnLine</b><br/>sum_low_le<br/>term_conj"]):::ext
+  x6(["<b>WeilTiles</b><br/>online_term_nonneg"]):::ext
+  x7(["<b>WeilSeries</b><br/>term_le_M"]):::ext
+  n0 --> n4
+  n1 --> n4
+  n2 --> n6
+  n3 --> n5
+  n4 --> n5
+  n4 --> n6
+  n1 -.-> x0
+  n4 -.-> x5
+  n4 -.-> x6
+  n5 -.-> x5
+  n5 -.-> x7
+  n6 -.-> x7
+  x1 -.-> n2
+  x2 -.-> n2
+  x2 -.-> n4
+  x3 -.-> n3
+  x4 -.-> n4
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

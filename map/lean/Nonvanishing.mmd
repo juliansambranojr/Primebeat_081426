@@ -1,0 +1,32 @@
+flowchart LR
+  n0["<b>iter_bdiffZ_eq_fwdDiff</b><br/>(bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r"]:::thm
+  n1["<b>iter_bdiffZ_eq_stencilR</b><br/>(bdiffZ^[n]) g r = stencilR n g r"]:::thm
+  n2["<b>stencilR_row</b><br/>stencilR d (bdiffZ g) r = stencilR (d + 1) g r"]:::thm
+  n3["<b>stencilR_sub</b><br/>stencilR n (fun x =＞ f x - L x) r = stencilR n f r - stencilR n …"]:::thm
+  n4["<b>window_term_le</b><br/>(Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : …"]:::thm
+  n5["<b>error_bound</b><br/>|stencilR n (fun x =＞ f x - L x) r| ≤ Ehigh r n"]:::thm
+  n6["<b>nonvanishing_of</b><br/>stencilR (d + 1) f r ≠ 0"]:::thm
+  n7["<b>tableFrom_ne_zero_of</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  x0(["<b>CellResidual</b><br/>stencilR_one<br/>tableFrom_cast<br/>table_cell_eq"]):::ext
+  x1(["<b>RelativeGate</b><br/>nonvanishing_of_relErr<br/>tableFrom_ne_zero_of_relErr"]):::ext
+  x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
+  x3(["<b>MainTerm</b><br/>tableFrom_ne_zero_of_deriv"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n2 --> n7
+  n3 --> n6
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n1 -.-> x0
+  n2 -.-> x0
+  n2 -.-> x1
+  n3 -.-> x0
+  n3 -.-> x1
+  n7 -.-> x3
+  x2 -.-> n7
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

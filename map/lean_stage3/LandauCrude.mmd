@@ -1,0 +1,15 @@
+flowchart LR
+  n0["<b>rampSum_nonneg</b><br/>0 ≤ LandauWindow.rampSum y"]:::thm
+  n1["<b>sum_inv_le</b><br/>∑ n ∈ Finset.range (N + 1), ((n : ℝ))⁻¹ ≤ 1 + Real.log N"]:::thm
+  n2["<b>rampSum_le</b><br/>LandauWindow.rampSum y ≤ y * Real.log y * (1 + Real.log y)"]:::thm
+  n3["<b>abs_G_le</b><br/>|LandauWindow.G y| ≤ 2 * y * (1 + Real.log y) ^ 2"]:::end_
+  x0(["<b>LandauChebyshev</b><br/>neg_le_G"]):::ext
+  n0 --> n3
+  n1 --> n2
+  n2 --> n3
+  n0 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

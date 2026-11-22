@@ -1,0 +1,40 @@
+flowchart LR
+  f0["<b>Chain</b><br/>2 used"]:::ext
+  f1["<b>Superposition</b><br/>1 used"]:::ext
+  f2["<b>Assembly</b><br/>1 used"]:::thm
+  f3["<b>Glue</b><br/>1 used"]:::thm
+  f4["<b>JensenCount</b><br/>17 used"]:::thm
+  f5["<b>ContourShift</b><br/>29 used"]:::thm
+  f6["<b>PerronKernel</b><br/>33 used"]:::thm
+  f7["<b>ZetaGrowth</b><br/>20 used"]:::thm
+  f8["<b>BoxBounds</b><br/>6 used"]:::thm
+  f9["<b>EdgeBound</b><br/>14 used"]:::thm
+  f10["<b>EdgeNum</b><br/>9 used"]:::thm
+  f11["<b>LowCount</b><br/>1 used"]:::thm
+  f12["<b>LowEdge</b><br/>4 used"]:::thm
+  f13["<b>GlueNum</b><br/>17 used"]:::thm
+  f14["<b>CellZeros</b><br/>11 used"]:::thm
+  f15["<b>CellModes</b><br/>cell_eq_modeSum"]:::end_
+  f0 --> f1
+  f2 --> f5
+  f4 --> f5
+  f5 --> f7
+  f7 --> f8
+  f7 --> f9
+  f8 --> f10
+  f9 --> f10
+  f8 --> f11
+  f9 --> f11
+  f11 --> f12
+  f3 --> f13
+  f6 --> f13
+  f10 --> f13
+  f12 --> f13
+  f13 --> f14
+  f1 --> f15
+  f14 --> f15
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

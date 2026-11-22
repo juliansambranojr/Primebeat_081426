@@ -1,0 +1,16 @@
+flowchart LR
+  n0["<b>box_empty_of_positive_of_detect</b><br/>OffLineBox ε T = ∅"]:::end_
+  n1["<b>laplace_conj</b><br/>laplace G ((starRingEnd ℂ) z) = (starRingEnd ℂ) (laplace G z)"]:::thm
+  n2["<b>re_eq_half_of_RH</b><br/>(ρ : ℂ).re = 1 / 2"]:::thm
+  n3["<b>zeroForm_nonneg_of_RH</b><br/>0 ≤ (zeroForm G).re"]:::thm
+  n4["<b>weilPositive_of_RH</b><br/>StmtWeilPositive L"]:::end_
+  x0(["<b>WeilBackground</b><br/>online_term_eq"]):::ext
+  n1 --> n3
+  n2 --> n3
+  n3 --> n4
+  n1 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

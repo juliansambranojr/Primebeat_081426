@@ -1,0 +1,19 @@
+key	value	source
+module_lines	499	wc -l lean_stage3/Stage3/CellResidual.lean
+theorems_proved	15	grep -c ^theorem lean_stage3/Stage3/CellResidual.lean
+defs	4	grep -c ^def lean_stage3/Stage3/CellResidual.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/CellResidual.lean
+pins	5	cells_of_schoenfeldWeak, schoenfeldWeak_of_cells, RH_iff_cells, table_cell_eq, table_cell_resid
+errors_first	3	first lake build Stage3.CellResidual: one explicit argument, and two pins
+builds	2	the first build and the one after the fix
+traps_added	0	lean_stage3/TRAPS.md unchanged by this module
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8825	lake build (full Stage3), Build completed successfully
+jobs_module	8780	run/build.log, lake build Stage3.CellResidual
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#t5	RH as the size of the cells, second part
+depth_used	0	schoenfeldWeak_of_cells reads CellsSqrt at depth 0 only
+telescope_const	4	ladder_le
+joint_open	10	SECTIONS.md, the rows to all x on one ladder
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

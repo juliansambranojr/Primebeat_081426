@@ -1,0 +1,30 @@
+flowchart LR
+  n0["<b>norm_le_of_sq</b><br/>‖z‖ ≤ c"]:::thm
+  n1["<b>sq_zeta_box</b><br/>‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135"]:::thm
+  n2["<b>sq_zeta_band_explicit</b><br/>‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 * (2 + |s.im|) ^ 4"]:::thm
+  n3["<b>norm_zeta_three_halves_le</b><br/>‖riemannZeta (3 / 2)‖ ≤ 7 / 2"]:::thm
+  n4["<b>one_le_norm_zeta_three</b><br/>1 ≤ ‖riemannZeta 3‖"]:::thm
+  n5["<b>zeta_ratio_ge</b><br/>2 / 7 ≤ ‖riemannZeta 3 / riemannZeta (3 / 2)‖"]:::thm
+  x0(["<b>LowCount</b><br/>gz_c0_lower<br/>low_ball_count<br/>low_rect_count"]):::ext
+  x1(["<b>ZetaGrowth</b><br/>tail_norm_le<br/>zeta1_eq_zeta_strip<br/>zeta_growth_strip"]):::ext
+  x2(["<b>EdgeNum</b><br/>gz_partial_fraction_num"]):::ext
+  x3(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
+  x4(["<b>RouteNum</b><br/>C1n_le"]):::ext
+  n0 --> n1
+  n0 --> n2
+  n1 --> n2
+  n3 --> n5
+  n4 --> n5
+  n0 -.-> x0
+  n2 -.-> x0
+  n2 -.-> x2
+  n2 -.-> x3
+  n5 -.-> x0
+  n5 -.-> x4
+  x1 -.-> n1
+  x1 -.-> n2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

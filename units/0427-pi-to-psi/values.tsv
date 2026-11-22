@@ -1,0 +1,19 @@
+key	value	source
+module_lines	320	wc -l lean_stage3/Stage3/PiToPsi.lean
+theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/PiToPsi.lean
+defs	1	grep -c ^def lean_stage3/Stage3/PiToPsi.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/PiToPsi.lean
+pins	5	Li_mul_log_sub_integral, theta_sub_id_eq, psiWeak_of_schoenfeldWeak, RH_of_schoenfeldWeak, RH_iff_schoenfeldWeak
+errors_first	26	first lake build Stage3.PiToPsi: the name Li read two ways, one cast, and the pins
+builds	3	the first build, the one after the name, the one after two idle simp lines
+traps_added	1	lean_stage3/TRAPS.md row 48
+trap_row	48	lean_stage3/TRAPS.md
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8825	lake build (full Stage3), Build completed successfully
+jobs_module	8734	run/build.log, lake build Stage3.PiToPsi
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#t5	RH as the size of the cells, first part
+logs_added	2	psiWeak_of_schoenfeldWeak: exponent 1 on the count side, 3 on the psi side
+k_psi	3	StmtPsiWeak C' 3 x₁ in psiWeak_of_schoenfeldWeak
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

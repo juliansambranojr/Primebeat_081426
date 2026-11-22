@@ -1,0 +1,12 @@
+flowchart LR
+  n0["<b>joint_gain_periodic_of_commensurate</b><br/>Function.Periodic (fun γ : ℝ =＞ ‖Sym b₁ ((1 : ℂ)/2 + γ * I)‖ ^ 2…"]:::end_
+  n1["<b>second_ladder_winds_densely</b><br/>DenseRange (fun k : ℤ =＞ k • ((2 * Real.pi / Real.log b₂ : ℝ) : …"]:::thm
+  x0(["<b>diagram 1</b><br/>gain_sq_periodic"]):::ext
+  x1(["<b>JointLadder</b><br/>triadic_winds_densely_on_dyadic"]):::ext
+  n1 -.-> x1
+  x0 -.-> n0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

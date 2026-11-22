@@ -1,0 +1,80 @@
+flowchart LR
+  n0["<b>perronI_eq_VIntegral'</b><br/>perronI y c T = VIntegral' (fun s : ℂ ↦ (y : ℂ) ^ s / s) c (-T) …"]:::thm
+  n1["<b>kernel_holo</b><br/>HolomorphicOn (fun s : ℂ ↦ (y : ℂ) ^ s / s) {s : ℂ | 0 ＜ s.re}"]:::thm
+  n2["<b>rect_subset_right</b><br/>Rectangle ((c : ℂ) - Complex.I * T) ((X : ℂ) + Complex.I * T) ⊆ …"]:::thm
+  n3["<b>perron_kernel_coarse_lt</b><br/>‖perronI y c T - perronδ y‖ ≤ y ^ c"]:::thm
+  n4["<b>horiz_bound</b><br/>‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + (T' : ℂ) * Complex.I) / ((σ :…"]:::thm
+  n5["<b>perron_kernel_decay_lt</b><br/>‖perronI y c T - perronδ y‖ ≤ y ^ c / (T * |Real.log y|)"]:::thm
+  n6["<b>dslope_kernel_diff</b><br/>Differentiable ℂ (dslope (fun s : ℂ ↦ (y : ℂ) ^ s) 0)"]:::thm
+  n7["<b>rect_residue</b><br/>RectangleIntegral' (fun s : ℂ ↦ (y : ℂ) ^ s / s) (-(X:ℂ) - Compl…"]:::thm
+  n8["<b>perron_kernel_decay_gt</b><br/>‖perronI y c T - perronδ y‖ ≤ y ^ c / (T * |Real.log y|)"]:::thm
+  n9["<b>perron_kernel_decay</b><br/>‖perronI y c T - perronδ y‖ ≤ y ^ c / (T * |Real.log y|)"]:::thm
+  n10["<b>coarse_gt_ineq</b><br/>v * Real.exp u + Real.pi - Real.arctan (v / u) ≤ Real.pi * Real.…"]:::thm
+  n11["<b>seg_inv_integral</b><br/>(∫ t in (-T)..T, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I) = 2 * …"]:::thm
+  n12["<b>cpow_sub_one_bound</b><br/>‖(y : ℂ) ^ s - 1‖ ≤ ‖s‖ * Real.log y * y ^ s.re"]:::thm
+  n13["<b>perron_kernel_coarse_gt</b><br/>‖perronI y c T - perronδ y‖ ≤ y ^ c"]:::thm
+  n14["<b>perron_kernel_coarse</b><br/>‖perronI y c T - perronδ y‖ ≤ y ^ c"]:::thm
+  n15["<b>perron_kernel_truncated</b><br/>‖perronI y c T - perronδ y‖ ≤ y ^ c * min 1 (1 / (T * |Real.log …"]:::thm
+  n16["<b>one_sub_two_neg_rpow</b><br/>δ / 5 ≤ 1 - (2:ℝ) ^ (-δ)"]:::thm
+  n17["<b>vonMangoldt_rpow_partial</b><br/>∑ n ∈ s, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c) ≤ 2 *…"]:::thm
+  n18["<b>vonMangoldt_rpow_tsum</b><br/>∑' n : ℕ, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c) ≤ 2 …"]:::thm
+  n19["<b>vonMangoldt_rpow_summable</b><br/>Summable (fun n : ℕ ↦ ArithmeticFunction.vonMangoldt n * (n : ℝ)…"]:::thm
+  n20["<b>far_terms_sum</b><br/>(∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.v…"]:::thm
+  n21["<b>abs_sub_one_le_two_abs_log</b><br/>|t - 1| / 2 ≤ |Real.log t|"]:::thm
+  n22["<b>near_diagonal_sum</b><br/>(∑' n : ℕ, if 0 ＜ |Real.log (x / n)| ∧ |Real.log (x / n)| ＜ 1/2 …"]:::thm
+  n23["<b>perronI_one_norm</b><br/>‖perronI 1 c T‖ ≤ 1/2"]:::thm
+  n24["<b>kernel_sum_bound</b><br/>‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x…"]:::thm
+  n25["<b>delta_sum_close</b><br/>‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangol…"]:::thm
+  n26["<b>kernel_diff_summable</b><br/>Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (…"]:::thm
+  n27["<b>perron_to_psi</b><br/>‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangol…"]:::thm
+  n28["<b>tsum_vonMangoldt_div_cpow</b><br/>(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((x / n : ℝ)…"]:::thm
+  n29["<b>perron_sum_eq_integral</b><br/>(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n…"]:::thm
+  x0(["<b>diagram 2</b><br/>explicit_formula_perron"]):::ext
+  n0 --> n3
+  n0 --> n5
+  n0 --> n8
+  n1 --> n3
+  n1 --> n5
+  n10 --> n13
+  n11 --> n13
+  n11 --> n23
+  n12 --> n13
+  n13 --> n14
+  n14 --> n15
+  n15 --> n24
+  n15 --> n26
+  n16 --> n20
+  n17 --> n18
+  n17 --> n19
+  n18 --> n20
+  n19 --> n20
+  n19 --> n24
+  n19 --> n26
+  n19 --> n29
+  n2 --> n3
+  n2 --> n5
+  n20 --> n24
+  n21 --> n22
+  n22 --> n24
+  n23 --> n24
+  n23 --> n26
+  n24 --> n27
+  n25 --> n27
+  n26 --> n27
+  n28 --> n29
+  n3 --> n14
+  n4 --> n5
+  n4 --> n8
+  n5 --> n9
+  n6 --> n7
+  n7 --> n8
+  n8 --> n13
+  n8 --> n9
+  n9 --> n15
+  n27 -.-> x0
+  n29 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

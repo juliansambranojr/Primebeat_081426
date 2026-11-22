@@ -1,5 +1,9 @@
 # The sections and the joints
 
+Every theorem in every Lean file, with what it proves, needs, uses and is
+used by, is drawn in `map/` (start at `map/README.md`). It is generated from
+the files by `utilities/lean_map.py` and regenerated on every push.
+
 What is built in the three Lean trees, as sections with an exact statement at
 each end, and where each joins the next. Written 2026-11-22 for Julian, who
 put the sections together one decision at a time and asked for the build on
@@ -20,6 +24,48 @@ the build says about it and nothing more.
 
 The one `sorry` is `WeilPowerAssembly.detect_gap_exists`, declared in its
 block and pinned with `sorryAx`.
+
+## One object
+
+Julian's statement, 2026-11-22, which this page is organised by from here on:
+the table is the number line counted forward along the doublings, and
+everything else in the three trees is that table read one way or another.
+Nothing downstream is a different instrument.
+
+The order, Julian, 2026-11-22: the table is prior. It is pure counting of the
+number line, and once the row is fixed every cell is forced
+(`Construction.unique_of_isTableOf`, no axioms; `Construction` imports
+nothing). ζ is built from the same primes, and the Riemann hypothesis is a
+statement about ζ's zeros, so it is a reading of the table. Every theorem here
+is read in that order: the cells are the fact, and a statement about the zeros
+describes how the cells behave. `CellResidual.RH_iff_cells` (unit 0428) is
+that reading written out: the Riemann hypothesis is the name for the cells'
+residuals staying at square-root size.
+
+- A cell is the explicit formula applied to one test function, the binomial
+  stencil on the doublings. `JointSymbol` (unit 0401) is that statement on
+  the transform: differencing `d` times multiplies by `(1 − 2^(−s))^d`.
+- `lean/Superposition.tableFrom_eq_modeSum_reweighted` is the same statement
+  in the cells: a row that is a sum of modes `c·2^(nρ)` gives cells that are
+  the same sum with each mode multiplied by the symbol at each depth. Its
+  hypothesis, that the row is a sum of modes, was discharged nowhere until
+  unit 0426 met it, up to the explicit formula's error, for `ψ` at the doublings.
+- The truncated explicit formula (`Glue.explicit_formula_split_num`, unit
+  0419, no RH) says the log-weighted count along the doublings is `2^n` minus
+  a sum of exactly such modes, one for each zero of ζ below a height, up to a
+  bounded error.
+
+Four joins are not written. They were listed on 2026-11-22 as things this
+would "not connect"; they are joints of the one object and are numbered here.
+
+| # | Joint | State |
+|---|---|---|
+| T1 | the cell as a sum over the zeros: the stencil of `ψ(2^·)` is `2^(r−d)` minus `Σ m·(1 − 2^(−ρ))^d·2^(rρ)/ρ` over the zeros below a height, with a stated error | SEALED, no RH (units 0425, 0426): `Stage3/CellZeros.cell_eq_zero_sum`, and `CellModes.cell_eq_modeSum` in the table tree's `Sym`, `mode`, `modeSum` |
+| T2 | the same in the integer table: from the log-weighted count `ψ` to the count `π`, zero by zero | OPEN; today's `PsiToPi` carries bounds, not the sum |
+| T3 | the height taken to infinity: the tail of the zero sum inside the error | OPEN; the error term is named, the limit is not taken |
+| T4 | the stencil as a test function in Weil's form, joining section F | OPEN; `JointSymbol` is its transform |
+| T5 | the Riemann hypothesis as the size of the cells: RH holds exactly when every cell's residual, on every dyadic ladder `a·2^r` with `1 ≤ a ≤ 2`, stays at square-root size | SEALED (units 0427, 0428): `Stage3/CellResidual.RH_iff_cells`; on the table's own ladder the forward direction is `table_cell_resid`, and its converse there is joint 10 |
+| 10 | the zeros read back from the cells | OPEN, as below. First piece (unit 0429, `Stage3/AliasClass.alias_weight_ne_zero`): on the one ladder the zeros with the same `2^ρ` fold into one mode whose weight is never zero, so the ladder folds heights and loses no zero and no real part. Second piece (unit 0430, `Stage3/LadderFading.line_not_fading`): a finite set of zeros on one vertical line contributes to the cells a sum that is not `o(2^(rβ))`. Open: infinitely many zeros off the line (`joints.md` J10b) |
 
 ## The sections
 
@@ -213,6 +259,16 @@ Units 0421 and 0422 (block E9) evaluated the Lean gate on that route.
 gate's window statement and its gap hold at depth six. `lean/RouteCell.
 cell_ne_zero_of_route`: that statement, as a hypothesis in the same
 characters, makes `tableFrom N r 6 ≠ 0`. Read across the two trees: under RH,
-no cell at depth six is zero from row 80 on. The composition is checked by
-no kernel; `StmtRelErrWindow` is welded and the rest of the hypothesis is the
-same text in two files.
+no cell at depth six is zero from row 80 on.
+
+Unit 0423 closed that join. The ten table modules under the gate are copied
+to `lean_stage3/Stage3/TablePort/` and build on Stage 3's toolchain, and
+`Stage3/TableRoute.cell_ne_zero_of_RH` is the composition as one theorem:
+`RiemannHypothesis → 80 ≤ r → Construction.tableFrom rowN r 6 ≠ 0`, checked
+by the kernel. `utilities/check_weld.py` also now compares the route's
+conclusion with the gate's hypothesis between the two trees.
+
+Unit 0424 (`Stage3/TableDepths.lean`) is the same theorem at depths one to
+eight, from rows 74, 75, 76, 77, 78, 80, 85 and 91, each inside the census.
+`utilities/check_port.py` holds the ten copies in `TablePort` to their
+originals in `lean/`.

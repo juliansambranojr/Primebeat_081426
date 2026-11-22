@@ -1,0 +1,60 @@
+flowchart LR
+  f0["<b>Nonvanishing</b><br/>4 used"]:::ext
+  f1["<b>AssemblyFloor</b><br/>5 used"]:::thm
+  f2["<b>JensenCount</b><br/>17 used"]:::thm
+  f3["<b>PerronKernel</b><br/>33 used"]:::thm
+  f4["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f5["<b>RvMCrude</b><br/>3 used"]:::thm
+  f6["<b>ArgCrude</b><br/>3 used"]:::thm
+  f7["<b>Statement</b><br/>1 used"]:::thm
+  f8["<b>PsiToPi</b><br/>13 used"]:::thm
+  f9["<b>LineBound</b><br/>54 used"]:::thm
+  f10["<b>RowLeaves</b><br/>2 used"]:::thm
+  f11["<b>Stirling</b><br/>20 used"]:::thm
+  f12["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f13["<b>ArgLegs</b><br/>10 used"]:::thm
+  f14["<b>ArgCount</b><br/>14 used"]:::thm
+  f15["<b>VonKochScaffold</b><br/>24 used"]:::thm
+  f16["<b>ZeroSum</b><br/>7 used"]:::thm
+  f17["<b>Assembly</b><br/>8 used"]:::thm
+  f18["<b>ContourShift</b><br/>29 used"]:::thm
+  f19["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f20["<b>EdgeBound</b><br/>17 used"]:::thm
+  f21["<b>Glue</b><br/>5 used"]:::thm
+  f22["<b>GlueFloor</b><br/>8 used"]:::thm
+  f23["<b>PiToPsi</b><br/>13 used"]:::thm
+  f24["<b>CellResidual</b><br/>RH_iff_cells"]:::end_
+  f2 --> f4
+  f5 --> f6
+  f7 --> f8
+  f2 --> f9
+  f8 --> f9
+  f8 --> f10
+  f5 --> f11
+  f6 --> f12
+  f11 --> f12
+  f12 --> f13
+  f4 --> f14
+  f13 --> f14
+  f9 --> f15
+  f16 --> f17
+  f2 --> f18
+  f17 --> f18
+  f18 --> f19
+  f19 --> f20
+  f20 --> f21
+  f1 --> f22
+  f3 --> f22
+  f8 --> f22
+  f14 --> f22
+  f21 --> f22
+  f10 --> f23
+  f15 --> f23
+  f22 --> f23
+  f0 --> f24
+  f23 --> f24
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

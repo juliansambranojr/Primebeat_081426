@@ -1,0 +1,42 @@
+flowchart LR
+  rh{{"<b>RiemannHypothesis</b><br/>a reading of the table, not settled"}}:::bad
+  p0["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
+  t0["<b>rh_of_windows</b>"]:::thm
+  p0 --> t0 --> rh
+  p1["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
+  t1["<b>rh_of_zeroFree_half</b>"]:::thm
+  p1 --> t1 --> rh
+  p2["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
+  t2["<b>rh_of_window</b>"]:::thm
+  p2 --> t2 --> rh
+  p3["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
+  t3["<b>RH_of_schoenfeldWeak</b>"]:::thm
+  p3 --> t3 --> rh
+  p4["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
+  t4["<b>RH_of_psiWeakTheta_half</b>"]:::thm
+  p4 --> t4 --> rh
+  p5["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
+  t5["<b>RH_of_no_zero_right_of_half</b>"]:::thm
+  p5 --> t5 --> rh
+  p6["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
+  t6["<b>RH_of_psiWeak</b>"]:::thm
+  p6 --> t6 --> rh
+  e0["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
+  rh --> e0
+  e1["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_
+  rh --> e1
+  e2["<b>depth_eight</b><br/>Construction.tableFrom TableRoute.rowN r 8 ≠ 0"]:::end_
+  rh --> e2
+  e3["<b>depth_five</b><br/>Construction.tableFrom TableRoute.rowN r 5 ≠ 0"]:::end_
+  rh --> e3
+  e4["<b>depth_four</b><br/>Construction.tableFrom TableRoute.rowN r 4 ≠ 0"]:::end_
+  rh --> e4
+  e5["<b>depth_one</b><br/>Construction.tableFrom TableRoute.rowN r 1 ≠ 0"]:::end_
+  rh --> e5
+  more(["and 19 more ends under RH"]):::end_
+  rh --> more
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

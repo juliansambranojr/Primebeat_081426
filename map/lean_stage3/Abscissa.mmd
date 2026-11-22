@@ -1,0 +1,42 @@
+flowchart LR
+  n0["<b>σθ_half</b><br/>σθ (1/2) X = RHPull.σRH X"]:::end_
+  n1["<b>σθ_re</b><br/>((σθ θ X : ℂ) + I * (t : ℂ)).re = σθ θ X"]:::thm
+  n2["<b>zeta_ne_zero_right_of</b><br/>ζ s ≠ 0"]:::thm
+  n3["<b>zeroFreeRight_of_RH</b><br/>StmtZeroFreeRight (1/2)"]:::thm
+  n4["<b>zeroFreeRight_mono</b><br/>StmtZeroFreeRight θ'"]:::end_
+  n5["<b>rpow_σθ</b><br/>X ^ (σθ θ X) = Real.exp 1 * X ^ θ"]:::thm
+  n6["<b>rpow_σθ_half</b><br/>X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X"]:::end_
+  n7["<b>abscissa_gives_power</b><br/>K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ"]:::end_
+  n8["<b>zeroFreeRight_one</b><br/>StmtZeroFreeRight 1"]:::end_
+  n9["<b>logDerivZeta_crude_theta</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::thm
+  n10["<b>logDerivZeta_crude_half</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::end_
+  x0(["<b>ThetaPsi</b><br/>5 theorems"]):::ext
+  x1(["<b>ThetaPull</b><br/>4 theorems"]):::ext
+  x2(["<b>ThetaLine</b><br/>logDerivZeta_compact_theta<br/>logDerivZeta_line_half<br/>logDerivZeta_sq_at_X_theta"]):::ext
+  x3(["<b>LineBound</b><br/>zeta_ne_zero_of_RH<br/>finalBoundConst_le"]):::ext
+  x4(["<b>ThetaPi</b><br/>schoenfeldWeak_of_RH_half"]):::ext
+  x5(["<b>JensenCount</b><br/>6 theorems"]):::ext
+  n2 --> n9
+  n3 --> n10
+  n5 --> n6
+  n5 --> n7
+  n9 --> n10
+  n1 -.-> x0
+  n1 -.-> x1
+  n2 -.-> x0
+  n2 -.-> x2
+  n3 -.-> x0
+  n3 -.-> x1
+  n3 -.-> x2
+  n3 -.-> x4
+  n5 -.-> x1
+  n9 -.-> x0
+  n9 -.-> x2
+  x3 -.-> n3
+  x3 -.-> n9
+  x5 -.-> n9
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

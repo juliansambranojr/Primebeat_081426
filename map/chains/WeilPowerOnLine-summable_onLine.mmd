@@ -1,0 +1,36 @@
+flowchart LR
+  f0["<b>JensenCount</b><br/>17 used"]:::thm
+  f1["<b>WeilBands</b><br/>3 used"]:::thm
+  f2["<b>WeilDetect</b><br/>1 used"]:::thm
+  f3["<b>WeilLobe</b><br/>1 used"]:::thm
+  f4["<b>WeilOnLine</b><br/>10 used"]:::thm
+  f5["<b>WeilTiles</b><br/>5 used"]:::thm
+  f6["<b>WeilSeries</b><br/>7 used"]:::thm
+  f7["<b>WeilWindow</b><br/>4 used"]:::thm
+  f8["<b>WeilPower</b><br/>28 used"]:::thm
+  f9["<b>WeilTransform</b><br/>2 used"]:::thm
+  f10["<b>WeilOddPower</b><br/>16 used"]:::thm
+  f11["<b>WeilPowerBounds</b><br/>7 used"]:::thm
+  f12["<b>WeilPowerBackground</b><br/>17 used"]:::thm
+  f13["<b>WeilPowerBands</b><br/>20 used"]:::thm
+  f14["<b>WeilPowerOnLine</b><br/>summable_onLine"]:::end_
+  f0 --> f1
+  f5 --> f6
+  f7 --> f8
+  f7 --> f9
+  f8 --> f10
+  f9 --> f10
+  f3 --> f11
+  f10 --> f11
+  f2 --> f12
+  f11 --> f12
+  f1 --> f13
+  f6 --> f13
+  f12 --> f13
+  f4 --> f14
+  f13 --> f14
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

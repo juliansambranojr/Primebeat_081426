@@ -1,0 +1,31 @@
+flowchart LR
+  n0["<b>low_ball_count_wide</b><br/>(∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0 : ℝ) ≤ 46 / 25…"]:::thm
+  n1["<b>gz_partial_fraction_low</b><br/>‖deriv gz u / gz u - ∑ w ∈ (gz_zeros_ball_finite T' (by norm_num…"]:::thm
+  n2["<b>logDerivZeta_low_edge</b><br/>‖deriv riemannZeta u / riemannZeta u‖ ≤ 1620000"]:::thm
+  n3["<b>logDerivZeta_short_segment</b><br/>‖deriv riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I) / riemannZet…"]:::thm
+  x0(["<b>BoxBounds</b><br/>sq_zeta_band_explicit"]):::ext
+  x1(["<b>EdgeBound</b><br/>7 theorems"]):::ext
+  x2(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine"]):::ext
+  x3(["<b>LowCount</b><br/>gz_c0_lower"]):::ext
+  x4(["<b>ContourShift</b><br/>zeta_ne_zero_of_re_mem"]):::ext
+  x5(["<b>GlueNum</b><br/>edge_left_sharp_num"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n2 --> n3
+  n3 -.-> x5
+  x0 -.-> n0
+  x0 -.-> n1
+  x1 -.-> n0
+  x1 -.-> n1
+  x1 -.-> n2
+  x1 -.-> n3
+  x2 -.-> n0
+  x2 -.-> n1
+  x3 -.-> n0
+  x3 -.-> n1
+  x4 -.-> n2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

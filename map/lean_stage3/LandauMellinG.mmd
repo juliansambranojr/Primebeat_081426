@@ -1,0 +1,37 @@
+flowchart LR
+  n0["<b>LSeries_vonMangoldt_real_ne_zero</b><br/>L ↗Λ (σ : ℂ) ≠ 0"]:::thm
+  n1["<b>rampSum_mellin_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (LandauWindow.rampSum y : ℂ) * (y : ℂ…"]:::thm
+  n2["<b>hasDerivAt_logPrim</b><br/>HasDerivAt (logPrim s) ((Real.log y : ℂ) * (y : ℂ) ^ (-s)) y"]:::thm
+  n3["<b>log_cpow_norm_le</b><br/>‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖ ≤ y ^ ((s.re - 1) / 2 - s.re…"]:::thm
+  n4["<b>log_cpow_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (I…"]:::thm
+  n5["<b>tendsto_logPrim</b><br/>Tendsto (logPrim s) atTop (𝓝 0)"]:::thm
+  n6["<b>log_cpow_integral</b><br/>∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s -…"]:::thm
+  n7["<b>G_integrand_eq</b><br/>(LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = (LandauWindow.ramp…"]:::thm
+  n8["<b>G_mellin_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-…"]:::thm
+  n9["<b>mellin_G</b><br/>∫ y in Ioi (1 : ℝ), (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) …"]:::thm
+  x0(["<b>LandauMellin</b><br/>mellin_rampSum"]):::ext
+  x1(["<b>JointSymbol</b><br/>mellin_dd_iter"]):::ext
+  x2(["<b>LandauTaylor</b><br/>iteratedDeriv_Phi<br/>mellinLog_integrable"]):::ext
+  n0 --> n1
+  n1 --> n8
+  n1 --> n9
+  n2 --> n6
+  n3 --> n4
+  n4 --> n6
+  n4 --> n8
+  n4 --> n9
+  n5 --> n6
+  n6 --> n9
+  n7 --> n8
+  n7 --> n9
+  n8 -.-> x1
+  n8 -.-> x2
+  n9 -.-> x1
+  n9 -.-> x2
+  x0 -.-> n1
+  x0 -.-> n9
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

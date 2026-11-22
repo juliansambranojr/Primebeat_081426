@@ -126,6 +126,14 @@ import Stage3.EdgeNum
 import Stage3.GlueNum
 import Stage3.RouteNum
 import Stage3.GateEval
+import Stage3.TableRoute
+import Stage3.TableDepths
+import Stage3.CellZeros
+import Stage3.CellModes
+import Stage3.PiToPsi
+import Stage3.CellResidual
+import Stage3.AliasClass
+import Stage3.LadderFading
 
 namespace Stage3
 

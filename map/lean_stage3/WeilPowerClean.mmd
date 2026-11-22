@@ -1,0 +1,15 @@
+flowchart LR
+  n0["<b>blocked_card_le</b><br/>B.card ≤ W + 1"]:::thm
+  n1["<b>exists_unblocked</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::thm
+  n2["<b>exists_clean_shell</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::thm
+  n3["<b>exists_clean_shell_of_count</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::thm
+  x0(["<b>WeilPowerCount</b><br/>exists_clean_shell_of_leaf"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n2 --> n3
+  n3 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

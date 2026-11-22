@@ -22,6 +22,147 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 10 on one ladder, second piece: `Stage3/LadderFading.lean`, block J10b of `joints.md`
+
+    DONE        `not_tendsto_powerSum`: finitely many distinct modes of one
+                size, with a weight that is not zero on one of them, do not
+                fade: `Σ c_z·z^r / R^r` does not tend to zero along the rows.
+                `line_not_fading`: a nonempty finite set of zeros of ζ on one
+                vertical line contributes to the cell `(r, d)` a sum that is
+                not `o(2^(rβ))`; one unit
+    ASSUMED     Julian, 2026-11-22: "go on to the open step of joint 10". The
+                finite case is this piece. The sum over all the zeros is not
+                absolutely convergent and the largest real part need not be
+                attained; that case is named OPEN in the block and is not in
+                this piece. A literature search the same day found no
+                statement of the one-ladder converse
+    DEPENDS     unit 0429 (`AliasClass`)
+    OUT         infinitely many zeros off the line; the converse itself
+    OUTCOME     done as pinned; unit 0430, clean on its second build. The
+                infinite case is worked on paper in the block: it reduces,
+                given a zero-density estimate, to the case where the largest
+                real part is attained; the other sub-case has no argument
+
+### 2026-11-22 · joint 10 on one ladder, first piece: `Stage3/AliasClass.lean`, block J10a of `joints.md`
+
+    DONE        `AliasClass`: the reciprocal of a nontrivial zero has positive
+                real part; a nonempty finite set of zeros has
+                `Σ m(ρ)/ρ ≠ 0`; zeros with the same `2^ρ` have the same
+                symbol and the same mode on the ladder; so a nonempty finite
+                set of zeros sharing `2^ρ = z` contributes to the cell
+                `(Σ m/ρ)·(1 − z⁻¹)^d·z^r`, which is not zero; one unit
+    ASSUMED     Julian, 2026-11-22: "Go", after the question whether the table
+                continuing is every ladder or the one ladder, read as: work on
+                joint 10. The step from "every zero present with nonzero
+                weight" to "the cells cannot all stay small" is not in this
+                piece and is named in the block as open
+    DEPENDS     unit 0426 (`CellModes.sym_two`, `mode_two_int`)
+    OUT         the power-sum step; the converse itself
+    OUTCOME     done as pinned; unit 0429, clean on its first build
+
+### 2026-11-22 · RH as the size of the cells: `Stage3/PiToPsi.lean`, `Stage3/CellResidual.lean`, block T5 of `joints.md`
+
+    DONE        `PiToPsi`: the bound on `π − Li` at square-root size gives the
+                bound on `ψ`, hence `RiemannHypothesis`; with the route of
+                today, `RH ↔ ∃ C x₀, StmtSchoenfeldWeak C 1 x₀ π Li`.
+                `CellResidual`: for the dyadic ladder started at `a`, the
+                cell's residual is the stencil of `π − Li` on the ladder;
+                `CellsSqrt C r₀` says every cell of every ladder with
+                `1 ≤ a ≤ 2` has residual at most `C` times
+                `(1 + 2^(−1/2))^(d+1)·(r+1)·2^(r/2)`; the theorem
+                `RiemannHypothesis ↔ ∃ C r₀, CellsSqrt C r₀`; and for the
+                table itself (`a = 1`, `Construction.tableFrom rowN`) the
+                forward direction; two units
+    ASSUMED     Julian, 2026-11-22: "This please", on the sentence "RH holds
+                if and only if the residual in every cell stays at square-root
+                size as the table continues". The equivalence is stated over
+                every ladder `a·2^r`, `1 ≤ a ≤ 2`: on the single ladder
+                `a = 1` the converse is joint 10 and stays open, and the
+                module says so in its header
+    DEPENDS     units 0409, 0413 (`hasDerivAt_Li`), `VonKoch.RH_iff_psiWeak`,
+                upstream `Chebyshev.theta_eq_primeCounting_mul_log_sub_integral`
+    OUT         joint 10 (one ladder), T2, T3, T4; no constant is made small
+    OUTCOME     done as pinned; units 0427 (`PiToPsi`, clean on its third
+                build) and 0428 (`CellResidual`, clean on its second)
+
+### 2026-11-22 · the Lean map: `map/` (index `map/README.md`), `utilities/lean_map.py`
+
+    DONE        a generated map of every declaration in every Lean file of
+                the three trees: per file a Mermaid diagram and a table with,
+                for each theorem, what it proves, what it needs, why (its own
+                docstring), what it uses and what uses it; a diagram of the
+                files per tree; the lists of ends, of theorems that connect
+                to nothing, of `sorry`; a workflow that regenerates it on
+                every push that changes a `.lean` file
+    ASSUMED     Julian, 2026-11-22: every theorem in every file, visual, the
+                same for both readers every time, updating itself. "Uses" is
+                read from names in the source; the generator's docstring
+                states what that cannot see
+    DEPENDS     nothing
+    OUT         no Lean changed; `CLAUDE.md` not edited (it is Julian's)
+    OUTCOME     done as pinned; every diagram parses in Mermaid
+
+### 2026-11-22 · `Stage3/CellZeros.lean`, block T1 of `joints.md`
+
+    DONE        `stencil`, `stencil_mode`, `stencil_zeroPartialSum`,
+                `cell_eq_zero_sum`: the `d`-fold difference of `ψ(2^n)` at
+                `r` is `2^r·(1 − 1/2)^d` minus the sum over the zeros below
+                `T` of `m·(2^ρ)^r·(1 − 2^(−ρ))^d/ρ`, within the explicit
+                formula's error summed over the window; no RH; a unit; then
+                the join with `lean/Superposition` (Julian: "and then start
+                on this")
+    ASSUMED     the stencil is written on rows `ℤ → ℂ` with powers of two as
+                integer powers; `Chain.Sym` and `Chain.mode` come with the
+                port in the second step
+    DEPENDS     unit 0419
+    OUT         T2, T3, T4, joint 10
+    OUTCOME     done as pinned; units 0425 (`CellZeros`) and 0426
+                (`Stage3/CellModes.lean`, with `Chain`, `Superposition`,
+                `EulerFactorChain` ported); each clean on its second build
+
+### 2026-11-22 · `SECTIONS.md` "One object", and block T1 of `joints.md` as a draft
+
+    DONE        `SECTIONS.md` reorganised under Julian's statement that the
+                table and everything downstream are one object; four joints
+                named T1 to T4 beside joint 10; block T1 written as a DRAFT
+    ASSUMED     the statement of T1 is from the definitions read today; no
+                Lean was run for it
+    DEPENDS     units 0401, 0419
+    OUT         no Lean, no unit; the build waits for Julian
+    OUTCOME     done as pinned
+
+### 2026-11-22 · `Stage3/TableDepths.lean` (block E11 of `joints.md`), and a drift checker for `TablePort`
+
+    DONE        `cell_ne_zero_gen`: the gate on the route at any depth, from a
+                numeric check at one row; instances at depths one to eight
+                with rows 74, 75, 76, 77, 78, 80, 85, 91;
+                `utilities/check_port.py`, which diffs each `TablePort`
+                module against its original and fails on any difference not
+                in `utilities/port_baseline/`; a unit
+    ASSUMED     Julian's "Do both". Depth nine and beyond first hold past
+                row 92, outside the computed table, and are left out
+    DEPENDS     unit 0423
+    OUT         a different floor per depth; `lean/` untouched
+    OUTCOME     done as pinned; unit 0424; clean on the first build
+
+### 2026-11-22 · the join between the two trees: a checker, and the gate chain on one toolchain (`Stage3/TableRoute.lean`, block E10 of `joints.md`)
+
+    DONE        `utilities/check_weld.py` compares `gate_hyp_of_RH`'s
+                conclusion with `cell_ne_zero_of_route`'s hypothesis; the ten
+                modules of the table tree the gate depends on copied into
+                `lean_stage3/Stage3/TablePort/` and built on v4.32.2; one
+                Stage 3 theorem composing the route with the gate, checked by
+                the kernel; units; a NOTEPAD line; `SECTIONS.md`
+    ASSUMED     Julian, 2026-11-22: the caveats on the join are problems to
+                fix, and are fixed here. The copies are character copies with
+                only their `import` lines changed; any line a newer Mathlib
+                forces to change is listed in the unit
+    DEPENDS     units 0421, 0422
+    OUT         `lean/` itself: untouched, its pins as they are
+    OUTCOME     done as pinned; unit 0423. Eight modules copied unchanged,
+                two with proof steps rewritten; `cell_ne_zero_of_RH` clean
+                on its first build
+
 ### 2026-11-22 · block E9 built: `Stage3/GateEval.lean` and `lean/RouteCell.lean`
 
     DONE        Stage 3: `routeConst_le` (`routeConst (2^36) ≤ 414`),

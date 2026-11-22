@@ -1,0 +1,13 @@
+flowchart LR
+  n0["<b>iteratedDeriv_inv_sub</b><br/>iteratedDeriv k (fun s : ℂ =＞ (s - q)⁻¹) c = (-1) ^ k * (k.facto…"]:::thm
+  n1["<b>exists_differentiableOn_sub_poles</b><br/>∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ ∀ s, s ∉ P → g s = f s - ∑…"]:::thm
+  n2["<b>taylor_coeff_sub_poles</b><br/>∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ …"]:::thm
+  x0(["<b>LandauPoleDisc</b><br/>Phi_taylor_on_disc"]):::ext
+  n0 --> n2
+  n1 -.-> x0
+  n2 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

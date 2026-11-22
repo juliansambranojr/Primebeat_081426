@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-11-22T19:55:48Z
+# unit: 0430-ladder-fading
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10280
+  Source: session transcript, 2026-11-22, after unit 0429
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:9873
+  Yes and then go on to the open step of joint 10, from "every zero is present in the table's own cell...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10080
+  theorem sum_sub_shift (Z : Finset ℂ) (c : ℂ → ℂ) {z₀ : ℂ} (hz₀ : z₀ ∈ Z) (r : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10081
+  (∑ z ∈ Z, c z * z ^ (r + 1)) - z₀ * ∑ z ∈ Z, c z * z ^ r
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10082
+  = ∑ z ∈ Z.erase z₀, (c z * (z - z₀)) * z ^ r := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10091
+  theorem not_tendsto_powerSum {R : ℝ} (hR : 0 < R) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10092
+  ∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖ = R) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10094
+  ¬ Tendsto (fun r : ℕ => (∑ z ∈ Z, c z * z ^ r) / ((R : ℂ)) ^ r) atTop (𝓝 0) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10148
+  theorem line_not_fading (S : Finset Kadiri.NontrivialZeros) (hS : S.Nonempty) {β : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10149
+  (hβ : ∀ ρ ∈ S, (ρ : ℂ).re = β) (d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:9405
+  (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10152
+  * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10153
+  / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0) := by
+
+# 13 found, 0 missing

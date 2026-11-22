@@ -1,0 +1,29 @@
+flowchart LR
+  n0["<b>pasc_zero</b><br/>pasc n 0 = 1"]:::thm
+  n1["<b>pasc_succ</b><br/>pasc (n + 1) (k + 1) = pasc n k + pasc n (k + 1)"]:::thm
+  n2["<b>pasc_eq_zero</b><br/>pasc n k = 0"]:::thm
+  n3["<b>pasc_pos</b><br/>0 ＜ pasc n k"]:::thm
+  n4["<b>outside_cone_zero</b><br/>tableFrom (deltaRow s) r d = 0"]:::thm
+  n5["<b>propagator</b><br/>tableFrom (deltaRow s) (s + (k : ℤ)) d = (-1) ^ k * pasc d k"]:::thm
+  n6["<b>neg_one_pow</b><br/>((-1 : ℤ)) ^ m = 1 ∨ ((-1 : ℤ)) ^ m = -1"]:::thm
+  n7["<b>cone_filled</b><br/>tableFrom (deltaRow s) (s + (k : ℤ)) d ≠ 0"]:::end_
+  n8["<b>flux_form</b><br/>tableFrom N r (d + 1) + tableFrom N (r - 1) d = tableFrom N r d"]:::end_
+  x0(["<b>Construction</b><br/>zero_determined_by_row"]):::ext
+  x1(["<b>SeedPerturbation</b><br/>tableFrom_zero"]):::ext
+  n0 --> n5
+  n1 --> n2
+  n1 --> n3
+  n1 --> n5
+  n2 --> n3
+  n2 --> n5
+  n3 --> n7
+  n4 --> n5
+  n5 --> n7
+  n6 --> n7
+  x0 -.-> n4
+  x1 -.-> n4
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

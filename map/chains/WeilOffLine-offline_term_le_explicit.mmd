@@ -1,0 +1,18 @@
+flowchart LR
+  f0["<b>WeilDetect</b><br/>1 used"]:::thm
+  f1["<b>WeilWindow</b><br/>3 used"]:::thm
+  f2["<b>WeilTransform</b><br/>10 used"]:::thm
+  f3["<b>WeilBackground</b><br/>3 used"]:::thm
+  f4["<b>WeilLobe</b><br/>20 used"]:::thm
+  f5["<b>WeilOffLine</b><br/>offline_term_le_explicit"]:::end_
+  f1 --> f2
+  f0 --> f3
+  f2 --> f3
+  f2 --> f4
+  f3 --> f5
+  f4 --> f5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,0 +1,13 @@
+flowchart LR
+  n0["<b>order_eq_toNat</b><br/>riemannZeta.order ρ = (((analyticOrderAt riemannZeta ρ).toNat : …"]:::thm
+  n1["<b>zeroes_rect_strip</b><br/>riemannZeta.zeroes_rect (Set.Ioo 0 1) Set.univ = {ρ : ℂ | rieman…"]:::thm
+  n2["<b>zeroForm_eq_strip</b><br/>zeroForm G = ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 ＜ ρ.re ∧ ρ.re…"]:::thm
+  n3["<b>zeroForm_eq_primeSide</b><br/>zeroForm G = primeSideM (kOfM G)"]:::end_
+  n0 --> n2
+  n1 --> n2
+  n2 --> n3
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,0 +1,45 @@
+flowchart LR
+  n0["<b>regionθ_half</b><br/>regionθ (1/2) = VonKoch.region"]:::end_
+  n1["<b>isOpen_regionθ</b><br/>IsOpen (regionθ θ)"]:::thm
+  n2["<b>preconnected_regionθ</b><br/>IsPreconnected (regionθ θ)"]:::thm
+  n3["<b>zeta_analyticOnNhd_regionθ</b><br/>AnalyticOnNhd ℂ ζ (regionθ θ)"]:::thm
+  n4["<b>log_pow_isBigO_rpow</b><br/>(fun t : ℝ ↦ (Real.log t) ^ k) =O[Filter.atTop] (fun t : ℝ ↦ t ^…"]:::thm
+  n5["<b>F_differentiableAt_theta</b><br/>DifferentiableAt ℂ VonKoch.F s"]:::thm
+  n6["<b>F_analyticOnNhd_theta</b><br/>AnalyticOnNhd ℂ VonKoch.F (regionθ θ)"]:::thm
+  n7["<b>anchor_mem_regionθ</b><br/>((max θ 1 + 1 : ℝ) : ℂ) ∈ regionθ θ ∧ 1 ＜ ((max θ 1 + 1 : ℝ) : ℂ…"]:::thm
+  n8["<b>F_mul_zeta_add_deriv_eqOn_zero_theta</b><br/>Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ …"]:::thm
+  n9["<b>no_zero_right_of_theta</b><br/>ζ ρ ≠ 0"]:::thm
+  n10["<b>zeroFreeRight_of_psiWeakTheta</b><br/>StmtZeroFreeRight θ"]:::thm
+  n11["<b>zeroFreeRight_iff_psiWeakTheta</b><br/>StmtZeroFreeRight θ ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 …"]:::end_
+  n12["<b>RH_of_psiWeakTheta_half</b><br/>RiemannHypothesis"]:::end_
+  n13["<b>zeroFreeRight_one_of_chebyshev</b><br/>StmtZeroFreeRight 1"]:::end_
+  x0(["<b>VonKochScaffold</b><br/>5 theorems"]):::ext
+  x1(["<b>ThetaPsi</b><br/>psi_weak_of_theta"]):::ext
+  n1 --> n3
+  n1 --> n6
+  n1 --> n9
+  n10 --> n11
+  n10 --> n12
+  n10 --> n13
+  n2 --> n8
+  n2 --> n9
+  n3 --> n8
+  n3 --> n9
+  n4 --> n5
+  n5 --> n6
+  n5 --> n9
+  n6 --> n8
+  n7 --> n8
+  n7 --> n9
+  n8 --> n9
+  n9 --> n10
+  x0 -.-> n12
+  x0 -.-> n13
+  x0 -.-> n5
+  x0 -.-> n8
+  x1 -.-> n11
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

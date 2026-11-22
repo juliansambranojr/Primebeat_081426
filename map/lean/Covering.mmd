@@ -1,0 +1,13 @@
+flowchart LR
+  n0["<b>exists_near_lattice</b><br/>∃ n : ℤ, |u - n * L| ≤ L / 2"]:::thm
+  n1["<b>covered_of_half_spacing</b><br/>covered L eps u"]:::end_
+  n2["<b>covered_smul</b><br/>covered (c * L) (c * eps) (c * u)"]:::end_
+  n3["<b>covering_not_monotone</b><br/>∃ (L eps u v : ℝ), 0 ＜ L ∧ u ＜ v ∧ ¬ covered L eps u ∧ covered L…"]:::end_
+  n4["<b>bench_is_selective</b><br/>(0.2 : ℝ) ＜ 0.34657"]:::lone
+  n5["<b>bench_selects</b><br/>measured_contributing ＜ measured_in_support"]:::end_
+  n0 --> n1
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

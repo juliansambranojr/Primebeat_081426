@@ -1,0 +1,31 @@
+flowchart LR
+  n0["<b>f2x_contDiffOn</b><br/>ContDiffOn ℝ (⊤ : ℕ∞) Expansion.f2x (Ioi 0)"]:::thm
+  n1["<b>f2x_continuousOn</b><br/>ContinuousOn Expansion.f2x (Ioi 0)"]:::thm
+  n2["<b>F_hasDerivAt</b><br/>HasDerivAt F (Expansion.f2x x) x"]:::thm
+  n3["<b>F_contDiffOn</b><br/>ContDiffOn ℝ (⊤ : ℕ∞) F (Ioi 0)"]:::thm
+  n4["<b>liRow_contDiff</b><br/>ContDiff ℝ (⊤ : ℕ∞) liRow"]:::thm
+  n5["<b>liRow_eq</b><br/>liRow x = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t"]:::thm
+  n6["<b>liRow_hasDerivAt</b><br/>HasDerivAt liRow (Expansion.f2x x) x"]:::thm
+  n7["<b>tableFrom_ne_zero_of_relErr_liRow</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  x0(["<b>RouteCell</b><br/>cell_ne_zero_of_route"]):::ext
+  x1(["<b>TableDepths</b><br/>cell_ne_zero_gen"]):::ext
+  x2(["<b>RelativeLi</b><br/>tableFrom_ne_zero_of_relErr_li'"]):::ext
+  n0 --> n1
+  n0 --> n3
+  n1 --> n2
+  n2 --> n3
+  n2 --> n6
+  n3 --> n4
+  n4 --> n7
+  n5 --> n6
+  n6 --> n7
+  n5 -.-> x0
+  n5 -.-> x1
+  n7 -.-> x0
+  n7 -.-> x1
+  x2 -.-> n7
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

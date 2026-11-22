@@ -642,3 +642,232 @@ What it would not say: anything unconditional; anything about depths other
 than six (each depth has its own `r`, by the same two lemmas); anything in
 the direction from the table to the zeros.
 
+### E10 The join closed — PROVED (unit 0423: `TableRoute.cell_ne_zero_of_RH`)
+
+Block E9 left the two halves in two trees. Two repairs.
+
+- `utilities/check_weld.py` compares `gate_hyp_of_RH`'s conclusion with
+  `cell_ne_zero_of_route`'s hypothesis, with its substitutions declared.
+- The ten modules of the table's tree under its gate are copied to
+  `Stage3/TablePort/` and build on this toolchain: eight unchanged but for
+  imports, `MainTerm` and `Expansion` with three proof steps rewritten.
+
+Theorem. `cell_ne_zero_of_RH`: `RiemannHypothesis → 80 ≤ r →
+Construction.tableFrom rowN r 6 ≠ 0`, with `rowN m = π(2^m) − π(2^(m−1))`.
+
+### E11 The other depths — PROVED (unit 0424: `TableDepths.cell_ne_zero_gen`, `depth_one` to `depth_eight`)
+
+Same floor, `x₀ = 2^36`, same constant, `routeConst ≤ 414`. At depth `d` the
+gate asks `414·(log 2·r)·2^(−(r−d−1)/2) < (log 2)^d/(2·r·3^(d+1))` and the
+floor asks `r − d − 1 ≥ 72`. By a throwaway script the first rows are
+74, 75, 76, 77, 78 (the floor binds) for depths one to five, 80 for six,
+85 for seven, 91 for eight; depth nine first holds at row 96, past the
+computed table.
+
+- `sq_le_gen`: `6 ≤ r₀ ≤ r → r² ≤ r₀²·2^((r−r₀)/2)`.
+- `gate_ineq_gen`: from the inequality checked at `r₀` (as a numeral `a` with
+  `a·log 2 < (log 2)^d`), the inequality at every `r ≥ r₀`.
+- `cell_ne_zero_gen`: under RH, with the floor and `d ≤ 24`,
+  `tableFrom rowN r d ≠ 0` for integer `r ≥ r₀`.
+- `depth_one` … `depth_eight`: the instances.
+
+### T1 The cell as a sum over the zeros — PROVED (unit 0425: `CellZeros.cell_eq_zero_sum`, `stencil_mode`, `stencil_zeroPartialSum`; unit 0426: `CellModes.cell_eq_modeSum`)
+
+`SECTIONS.md`, "One object", joint T1. Read 2026-11-22:
+`lean/Superposition.lean` and `lean/Chain.lean` (definitions `mode`, `Sym`,
+`bdiff`, `modeSum`; `tableFrom_eq_bdiff_iter`, `tableFrom_mode` and its note
+on vacuity, `tableFrom_eq_modeSum_reweighted`), `Stage3/Assembly.zeroPartialSum`,
+`Stage3/GlueFloor.StmtExplicitFormulaSplit`, `Glue.explicit_formula_split_num`.
+
+What is to be said. For the row `a(n) = ψ(2^n)`, the `d`-fold backward
+difference at `r` is
+
+    Σ_{j=0}^{d} (−1)^j·C(d,j)·a(r − j).
+
+The explicit formula at `x = 2^(r−j)` and a height `T` writes each `a(r − j)`
+as `2^(r−j) − Σ_{|γ|<T} m(ρ)·2^((r−j)ρ)/ρ` plus an error. The stencil is
+linear, and on a mode it is the symbol to the `d`:
+
+    Σ_j (−1)^j·C(d,j)·2^((r−j)ρ) = 2^(rρ)·(1 − 2^(−ρ))^d.
+
+At `ρ = 1` that is the main term, `2^r·(1/2)^d = 2^(r−d)`.
+
+Theorems.
+
+- `stencil_mode`: for `w : ℂ`, `Σ_{j ≤ d} (−1)^j·C(d,j)·w^(r−j) = w^r·(1 − w⁻¹)^d`
+  on integer `r` (binomial theorem). With `w = 2^ρ` this is `Chain.Sym 2 ρ ^ d`
+  times `Chain.mode 2 ρ r`.
+- `stencil_zeroPartialSum`: the stencil of `n ↦ zeroPartialSum (2^n) T` at `r`
+  is `Σ' over the zeros with |γ| < T of m(ρ)·(1 − 2^(−ρ))^d·2^(rρ)/ρ`. The
+  index set is finite, so the two sums exchange.
+- `cell_eq_zero_sum`: for `d`, `r`, `T` with `16 ≤ 2^(r−d)` and
+  `2 ≤ T ≤ (2^(r−d))²`,
+
+      ‖ Σ_j (−1)^j·C(d,j)·ψ(2^(r−j)) − 2^(r−d)
+          + Σ'_{|γ|<T} m(ρ)·(1 − 2^(−ρ))^d·2^(rρ)/ρ ‖
+        ≤ Σ_j C(d,j)·E(2^(r−j), T),
+
+  `E(x, T) = c1n·x·log²(xT)/T + c3n·log x + c4n·log²x·x^(−1/4)`, the right
+  side of `explicit_formula_split_num`. No RH.
+
+Where. Stage 3, where the explicit formula is. `Chain` and `Superposition`
+are in the table's tree; to state the result with `Chain.Sym` and
+`Chain.mode` they are ported to `Stage3/TablePort/` as the gate's modules
+were (unit 0423), under `utilities/check_port.py`.
+
+A point from `Chain.tableFrom_mode`'s own note. Asking an integer row to
+equal one mode at every `n` is vacuous. Nothing here asks that: the row is
+`ψ` at the doublings, real and not a mode sum, and the theorem bounds its
+distance from one.
+
+What it leaves to T2, T3, T4 and joint 10: the count `π` in place of `ψ`;
+the height to infinity; the stencil as a Weil test function; the zeros read
+back.
+
+### T5 RH as the size of the cells — PROVED (unit 0427: `PiToPsi.psiWeak_of_schoenfeldWeak`, `RH_iff_schoenfeldWeak`; unit 0428: `CellResidual.RH_iff_cells`, `cells_of_schoenfeldWeak`, `schoenfeldWeak_of_cells`, `table_cell_resid`)
+
+The sentence: the Riemann hypothesis holds exactly when the residual in every
+cell stays at square-root size as the table continues.
+
+**Which cells.** The table is the ladder `2^r`. One ladder cannot see between
+its own rungs: `π` rises by about `2^r/r` between `2^r` and `2^(r+1)`, far more
+than `√(2^r)`, so a bound at the rungs alone bounds nothing between them
+(joint 10; `JointLadder.dyadic_alias_resolved_jointly` is the same fact on the
+frequency side). The equivalence is therefore stated over every dyadic ladder
+`a·2^r` with `1 ≤ a ≤ 2`, which together are every `x`. On the single ladder
+`a = 1` the forward direction is proved and the converse is joint 10.
+
+**Definitions.**
+`resid a m = π(⌊a·2^m⌋) − Li(a·2^m)`.
+`cellResid a r d = stencilR (d+1) (resid a) r`: the cell `(r, d)` of the
+ladder started at `a`, minus the same cell of the smooth row.
+`cellSize r d = (1 + 2^(−1/2))^(d+1) · (r+1) · 2^(r/2)`.
+`CellsSqrt C r₀`: for all `a ∈ [1,2]`, `d`, and `r ≥ r₀ + (d+1)`,
+`|cellResid a r d| ≤ C · cellSize r d`.
+
+**Theorems.**
+
+`PiToPsi` (namespace `Stage3`):
+
+- `Li_mul_log_sub_integral (hx : 2 ≤ x) : Li x * log x − ∫ t in 2..x, Li t / t = x`.
+  Hint: `G t = Li t · log t` has derivative `1 + Li t / t` (`hasDerivAt_Li`);
+  `intervalIntegral.integral_eq_sub_of_hasDerivAt`; `Li 2 · log 2 = 2`.
+- `theta_sub_id_eq (hx : 2 ≤ x) : θ x − x = (π⌊x⌋ − Li x) · log x − ∫ t in 2..x, (π⌊t⌋ − Li t) / t`.
+  Hint: upstream `Chebyshev.theta_eq_primeCounting_mul_log_sub_integral` minus the line above.
+- `psiWeak_of_schoenfeldWeak (hC : 0 ≤ C) (hx₀ : 2 ≤ x₀) (h : StmtSchoenfeldWeak C 1 x₀ π Li) : ∃ C' > 0, ∃ x₁, StmtPsiWeak C' 3 x₁`.
+  Sizes: with `B = ∫₂^{x₀} |π − Li|/t`, for `x ≥ max x₀ 3`:
+  `|θ − x| ≤ C√x·log²x + B + 2C√x·log x` (the tail by `integral_A_rpow_le`),
+  `|ψ − θ| ≤ 2√x·log x`, and `log x ≥ 1`, `√x ≥ 1` give `C' = 3C + B + 2`.
+- `RH_of_schoenfeldWeak`, `RH_iff_schoenfeldWeak : RiemannHypothesis ↔ ∃ C x₀, StmtSchoenfeldWeak C 1 x₀ π Li`.
+  Forward: `schoenfeldWeak_floor_split_of_RH` at `x₀ = 16`. Converse: `VonKoch.RH_iff_psiWeak`.
+
+`CellResidual` (namespace `CellResidual`):
+
+- `stencilR_abs_le`: `|g (r−k)| ≤ B·t^k` on the window gives `|stencilR n g r| ≤ B·(1+t)^n`
+  (the calc of `Nonvanishing.error_bound`, constants freed).
+- `cells_of_schoenfeldWeak`: `StmtSchoenfeldWeak C 1 x₀ π Li`, `x₀ ≤ 2^r₀`, `1 ≤ r₀`
+  ⊢ `CellsSqrt (C·√2·log 2) r₀`. Per term: `√(a·2^m) ≤ √2·2^(m/2)`, `log(a·2^m) ≤ (m+1)·log 2`.
+- `schoenfeldWeak_of_cells`: `CellsSqrt C r₀` ⊢ `∃ C' x₁, StmtSchoenfeldWeak C' 1 x₁ π Li`.
+  Depth `0` only: `|g(r) − g(r−1)| ≤ C₁·(r+1)·2^(r/2)`; summed from `r₀`, with
+  `4 + √2 ≤ 4√2`, `|g(r)| ≤ M + 4C₁·(r+1)·2^(r/2)`; `M` bounds the first rung over
+  `a ∈ [1,2]` (`Li` continuous on a compact); `x = a·2^r` with `r = Int.log 2 x`.
+- `RH_iff_cells : RiemannHypothesis ↔ ∃ C r₀, CellsSqrt C r₀`.
+- `table_cell_resid`: under RH, `|(tableFrom rowN r d : ℝ) − stencilR (d+1) (m ↦ Li(2^m)) r| ≤ C·cellSize r d`
+  for `r ≥ r₀ + (d+1)`: the forward direction on the table itself.
+
+**Lost factors.** None grows with the parameter: the telescoping costs the
+constant `4`, the transfer to `ψ` costs two logarithms, which
+`VonKoch.RH_of_psiWeak` already carries (`k = 3`).
+
+### J10a Folded zeros do not cancel — PROVED (unit 0429: `AliasClass.sum_order_div_ne_zero`, `alias_weight`, `alias_weight_ne_zero`); the step after it OPEN
+
+Joint 10 on the table's own ladder asks: does square-root size of the cells of
+the one ladder `2^r` give the Riemann hypothesis?
+
+**What the ladder folds.** On the ladder a zero `ρ` enters only through
+`z = 2^ρ`: its mode at row `r` is `z^r` (`CellModes.mode_two_int`) and its
+symbol is `1 − z⁻¹` (`CellModes.sym_two`). Two zeros with the same `z` differ
+by a multiple of `2πi/log 2`: same real part, heights folded. `|z| = 2^(Re ρ)`,
+so the real part is not folded.
+
+**Why folded zeros cannot cancel.** In `CellModes.cell_eq_modeSum` the zero `ρ`
+carries the coefficient `m(ρ)/ρ·(1 − 2^(−ρ))^d`. For zeros sharing `z` the
+symbol and the mode are common factors and the coefficients add to
+`(Σ m(ρ)/ρ)·(1 − z⁻¹)^d·z^r`. Each `1/ρ` has real part `Re ρ/|ρ|² > 0` and each
+`m(ρ) ≥ 1`, so the sum has positive real part. `|z| > 1` gives `1 − z⁻¹ ≠ 0`.
+
+**Theorems** (`AliasClass`):
+
+- `re_inv_pos (h : 0 < ρ.re) : 0 < (ρ⁻¹).re`.
+- `sum_order_div_ne_zero (S : Finset Kadiri.NontrivialZeros) (hS : S.Nonempty) : Σ ρ ∈ S, m(ρ)/ρ ≠ 0`.
+- `sym_eq_of_alias`, `mode_eq_of_alias`: `2^ρ = 2^ρ'` gives the same symbol and the same mode at integer rows.
+- `alias_weight`: for `S` with `2^ρ = z` on `S`, `Σ ρ ∈ S, m(ρ)/ρ·Sym 2 ρ^d·mode 2 ρ r = (Σ m/ρ)·(1 − z⁻¹)^d·z^r`.
+- `alias_weight_ne_zero`: that is not zero when `S` is nonempty.
+
+**OPEN, the step after this.** From "every folded class has nonzero weight" to
+"the cells of the one ladder cannot all be of square-root size when a zero has
+real part above one half". The sum over the zeros is not absolutely
+convergent, so this is a statement about power sums `Σ c_j z_j^r` at
+consecutive integers `r` (Turán's theory) or about the power series
+`Σ a_r z^r` and its singularities; neither is in the tree.
+
+### J10b A finite line of zeros does not fade — PROVED (unit 0430: `LadderFading.sum_sub_shift`, `not_tendsto_powerSum`, `line_not_fading`); the infinite case OPEN
+
+The step after J10a, in its finite case.
+
+**The mechanism is the table's own.** Let `g(r) = Σ_{z ∈ Z} c_z·z^r` with the
+`z` distinct and all of modulus `R`. One difference with symbol `z₀`,
+`g(r+1) − z₀·g(r) = Σ_{z ≠ z₀} c_z·(z − z₀)·z^r`, removes the mode `z₀` and
+multiplies every other weight by `z − z₀ ≠ 0`. If `g(r)/R^r → 0` then so does
+the differenced sum over `R^r`. Induction on the number of modes: either some
+other mode has nonzero weight, and the smaller sum contradicts the induction
+hypothesis, or only `z₀` is left and `|g(r)|/R^r = |c_{z₀}|` is a constant
+that is not zero.
+
+**Theorems** (`LadderFading`):
+
+- `sum_sub_shift`: the difference identity above.
+- `not_tendsto_powerSum (hR : 0 < R)`: for every finite `Z` with `‖z‖ = R` on
+  `Z` and `c z ≠ 0` for some `z ∈ Z`, `Σ_{z∈Z} c z·z^r / R^r` does not tend to `0`.
+- `line_not_fading`: for a nonempty finite set `S` of zeros with `Re ρ = β` on
+  `S`, and any depth `d`,
+  `Σ_{ρ∈S} m(ρ)/ρ·Sym 2 ρ^d·mode 2 ρ r / (2^β)^r` does not tend to `0`.
+  Grouped by `z = 2^ρ` (`Finset.sum_fiberwise_of_maps_to`), each class has weight
+  `(Σ m/ρ)·(1 − z⁻¹)^d ≠ 0` (`AliasClass`), and `‖z‖ = 2^β`.
+
+**OPEN after this.** The zeros off the line may be infinitely many, on
+infinitely many vertical lines, with no largest real part attained, and the sum
+over them converges only conditionally. The finite argument does not reach
+that. Two cases remain, in order: (i) finitely many zeros off the line, where
+the rest of the explicit formula is bounded by the zero count and this block
+closes the converse; (ii) the general case, which needs either the
+singularities of the row's generating function `Σ a_r z^r` or Turán's power-sum
+theorems with a kernel along the rows.
+
+**The infinite case, worked on paper 2026-11-22, not built.** Write
+`a_r = ψ(2^r) − 2^r`. The truncated explicit formula at height `T_r = 2^(λr)`
+gives `a_r = −Σ_{|γ| < T_r} m·2^(rρ)/ρ + O(2^(r(1−λ))·r²)`. Fix `β₁` with
+`1/2 < β₁`. The zeros with `β < β₁` contribute at most
+`2^(rβ₁)·Σ_{|γ|<T_r} m/|ρ| ≪ 2^(rβ₁)·r²` (the zero count, `ZeroSum`). For the
+zeros with `β ≥ β₁` a zero-density estimate with a power saving,
+`N(β₁, T) ≪ T^(1−δ)` (Carlson 1920), makes `Σ m/|ρ|` over them converge, so
+their part is an absolutely convergent sum of modes and its tail beyond `T_r`
+is small. Then a square-root bound on the one ladder forces
+`Σ_{β ≥ β₁} (m/ρ)·2^(rρ) = O(2^(rβ₁)·r²)`.
+
+- If the largest real part is attained, divide by `2^(rΘ)`: the lower lines
+  tend to zero, the top line is an absolutely convergent sum of distinct
+  rotations with nonzero class weights (J10a), and its mean square along the
+  rows is `Σ |C_j|² > 0`. This is `not_tendsto_powerSum` with infinitely many
+  modes; it needs the mean-square form, not the induction.
+- If the largest real part is not attained, no line dominates. The generating
+  function `Σ_r g(r)·w^r = Σ c_ρ/(1 − 2^ρ·w)` has absolutely summable weights
+  and poles that may accumulate; series of that kind can continue analytically
+  across accumulating poles, so the pole at one zero is not by itself a
+  contradiction. No argument is known here for this sub-case.
+
+Inputs not in the tree: a zero-density estimate with a power saving; the
+truncated explicit formula at heights above `x²` (`hTx : T ≤ x²` today). Not
+opened: upstream's `FioriKadiriSwidinsky` and `BKLNW_app`, which name zero
+density.
+

@@ -1,0 +1,15 @@
+flowchart LR
+  n0["<b>aliases_of_offset</b><br/>Aliases b γ (γ - 2 * π * k / Real.log b)"]:::thm
+  n1["<b>nyquist_no_go</b><br/>∃ γ', |γ'| ＜ |γ| ∧ Aliases b γ γ'"]:::thm
+  n2["<b>base_bound_of_resolvable</b><br/>b ≤ Real.exp (π / γ)"]:::end_
+  n3["<b>base_two_past_nyquist</b><br/>nyquist 2 ＜ γ"]:::end_
+  n4["<b>base_two_fails_by_three</b><br/>3 * nyquist 2 ＜ 14"]:::end_
+  x0(["<b>JointLadder</b><br/>exists_dyadic_alias_ne"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n0 -.-> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

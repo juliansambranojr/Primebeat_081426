@@ -1,0 +1,33 @@
+flowchart LR
+  f0["<b>WeilDetect</b><br/>1 used"]:::thm
+  f1["<b>WeilLobe</b><br/>1 used"]:::thm
+  f2["<b>WeilWindow</b><br/>2 used"]:::thm
+  f3["<b>WeilPower</b><br/>28 used"]:::thm
+  f4["<b>WeilTransform</b><br/>2 used"]:::thm
+  f5["<b>WeilOddPower</b><br/>16 used"]:::thm
+  f6["<b>WeilPowerBackground</b><br/>8 used"]:::thm
+  f7["<b>WeilPowerBands</b><br/>1 used"]:::thm
+  f8["<b>WeilPowerBounds</b><br/>7 used"]:::thm
+  f9["<b>WeilPowerGauss</b><br/>15 used"]:::thm
+  f10["<b>WeilPowerPhase</b><br/>25 used"]:::thm
+  f11["<b>WeilPowerBridge</b><br/>9 used"]:::thm
+  f12["<b>WeilPowerAssembly</b><br/>target_lower"]:::end_
+  f2 --> f3
+  f2 --> f4
+  f3 --> f5
+  f4 --> f5
+  f0 --> f6
+  f5 --> f6
+  f6 --> f7
+  f1 --> f8
+  f5 --> f8
+  f8 --> f9
+  f9 --> f10
+  f7 --> f11
+  f10 --> f11
+  f11 --> f12
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

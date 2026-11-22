@@ -1,0 +1,43 @@
+flowchart LR
+  n0["<b>half_lt_σθ</b><br/>(1:ℝ)/2 ＜ σθ θ X"]:::thm
+  n1["<b>four_le_log_of_theta</b><br/>(4:ℝ) ≤ Real.log X"]:::thm
+  n2["<b>kernel_le_theta</b><br/>((σθ θ X) ^ 2 + t ^ 2)⁻¹ ≤ 4 * (1 + t ^ 2)⁻¹"]:::thm
+  n3["<b>norm_line_ge_theta</b><br/>(1 + |t|) / 3 ≤ ‖((σθ θ X : ℂ)) + I * (t : ℂ)‖"]:::thm
+  n4["<b>integrand_norm_le_theta</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σθ θ X : ℂ) + I * (t : ℂ))‖ …"]:::thm
+  n5["<b>I37_norm_le_decay_theta</b><br/>‖I₃₇ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * Real.pi * (11100 …"]:::thm
+  n6["<b>I37_power_form_theta</b><br/>‖I₃₇ ν ε T X (σθ θ X)‖ ≤ (22200 * Real.exp 1 * C / ε) * X ^ θ * …"]:::end_
+  n7["<b>I37_norm_le_epsfree_theta</b><br/>‖I₃₇ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (6 * Real.log (1 …"]:::thm
+  n8["<b>I37_power_log3_theta</b><br/>‖I₃₇ ν ε T X (σθ θ X)‖ ≤ (66600 * Real.exp 1 * B / Real.pi) * X …"]:::thm
+  n9["<b>I37_sqrt_log3_half</b><br/>‖I₃₇ ν ε T X (RHPull.σRH X)‖ ≤ (66600 * Real.exp 1 * B / Real.pi…"]:::end_
+  x0(["<b>ThetaPsi</b><br/>8 theorems"]):::ext
+  x1(["<b>LineBound</b><br/>integral_abs_kernel<br/>integral_kernel_le<br/>norm_sq_line"]):::ext
+  x2(["<b>Abscissa</b><br/>rpow_σθ<br/>zeroFreeRight_of_RH<br/>σθ_re"]):::ext
+  x3(["<b>ThetaLine</b><br/>logDerivZeta_line_theta"]):::ext
+  n0 --> n2
+  n0 --> n3
+  n1 --> n5
+  n1 --> n6
+  n1 --> n7
+  n1 --> n8
+  n2 --> n5
+  n3 --> n7
+  n4 --> n5
+  n4 --> n7
+  n5 --> n6
+  n7 --> n8
+  n8 --> n9
+  n1 -.-> x0
+  n8 -.-> x0
+  x1 -.-> n3
+  x1 -.-> n5
+  x1 -.-> n7
+  x2 -.-> n4
+  x2 -.-> n6
+  x2 -.-> n8
+  x2 -.-> n9
+  x3 -.-> n4
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

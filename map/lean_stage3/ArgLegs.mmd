@@ -1,0 +1,33 @@
+flowchart LR
+  n0["<b>abs_arg_sub_le_pi</b><br/>|z.arg - w.arg| ≤ Real.pi"]:::thm
+  n1["<b>mem_slitPlane_of_re_nonneg</b><br/>z ∈ Complex.slitPlane"]:::thm
+  n2["<b>integral_logDeriv_eq_log_sub</b><br/>∫ x in a..b, g' x / g x = Complex.log (g b) - Complex.log (g a)"]:::thm
+  n3["<b>im_integral_le_pi_of_re_nonneg</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi"]:::thm
+  n4["<b>im_integral_le_pi_of_re_nonpos</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi"]:::thm
+  n5["<b>re_sign_const</b><br/>(∀ x ∈ Set.Icc a b, 0 ≤ (g x).re) ∨ (∀ x ∈ Set.Icc a b, (g x).re…"]:::thm
+  n6["<b>segment_im_integral_le</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi * ((Z.card : ℝ) + 1)"]:::thm
+  n7["<b>vertical_leg_le</b><br/>|(∫ t in (0:ℝ)..T, logDeriv riemannZeta (2 + (t : ℂ) * Complex.I…"]:::thm
+  n8["<b>horizontal_leg_le</b><br/>|(∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + T * Complex…"]:::thm
+  n9["<b>zetaArgContour_le</b><br/>|Stage3.zetaArgContour T| ≤ (Z.card : ℝ) + 3 / 2"]:::thm
+  x0(["<b>ArgIdentity</b><br/>logDeriv_zeta_continuousAt"]):::ext
+  x1(["<b>ArgCount</b><br/>argS_le_of_good"]):::ext
+  n0 --> n3
+  n1 --> n3
+  n1 --> n7
+  n2 --> n3
+  n2 --> n7
+  n3 --> n4
+  n3 --> n6
+  n4 --> n6
+  n5 --> n6
+  n6 --> n8
+  n7 --> n9
+  n8 --> n9
+  n9 -.-> x1
+  x0 -.-> n7
+  x0 -.-> n8
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

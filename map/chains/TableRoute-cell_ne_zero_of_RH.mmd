@@ -1,0 +1,95 @@
+flowchart LR
+  f0["<b>Construction</b><br/>1 used"]:::ext
+  f1["<b>Nonvanishing</b><br/>7 used"]:::ext
+  f2["<b>Expansion</b><br/>22 used"]:::ext
+  f3["<b>MainTerm</b><br/>10 used"]:::ext
+  f4["<b>ZerosStencil</b><br/>3 used"]:::ext
+  f5["<b>RelativeGate</b><br/>7 used"]:::ext
+  f6["<b>RelativeLi</b><br/>2 used"]:::ext
+  f7["<b>Interpolant</b><br/>10 used"]:::ext
+  f8["<b>RouteCell</b><br/>1 used"]:::ext
+  f9["<b>AssemblyFloor</b><br/>5 used"]:::thm
+  f10["<b>Glue</b><br/>1 used"]:::thm
+  f11["<b>JensenCount</b><br/>17 used"]:::thm
+  f12["<b>JointDialGate</b><br/>1 used"]:::thm
+  f13["<b>PerronKernel</b><br/>33 used"]:::thm
+  f14["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f15["<b>RealSegment</b><br/>4 used"]:::thm
+  f16["<b>RvMCrude</b><br/>3 used"]:::thm
+  f17["<b>ArgCrude</b><br/>3 used"]:::thm
+  f18["<b>Statement</b><br/>3 used"]:::thm
+  f19["<b>JointFloorGate</b><br/>1 used"]:::thm
+  f20["<b>PsiToPi</b><br/>13 used"]:::thm
+  f21["<b>RowLeaves</b><br/>7 used"]:::thm
+  f22["<b>Stirling</b><br/>20 used"]:::thm
+  f23["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f24["<b>ArgLegs</b><br/>10 used"]:::thm
+  f25["<b>ArgCount</b><br/>14 used"]:::thm
+  f26["<b>ZeroSum</b><br/>7 used"]:::thm
+  f27["<b>Assembly</b><br/>8 used"]:::thm
+  f28["<b>ContourShift</b><br/>29 used"]:::thm
+  f29["<b>GlueFloor</b><br/>4 used"]:::thm
+  f30["<b>ZetaGrowth</b><br/>20 used"]:::thm
+  f31["<b>BoxBounds</b><br/>6 used"]:::thm
+  f32["<b>EdgeBound</b><br/>14 used"]:::thm
+  f33["<b>EdgeNum</b><br/>9 used"]:::thm
+  f34["<b>LowCount</b><br/>3 used"]:::thm
+  f35["<b>LowEdge</b><br/>4 used"]:::thm
+  f36["<b>GlueNum</b><br/>20 used"]:::thm
+  f37["<b>RouteNum</b><br/>15 used"]:::thm
+  f38["<b>GateEval</b><br/>5 used"]:::thm
+  f39["<b>TableRoute</b><br/>cell_ne_zero_of_RH"]:::end_
+  f1 --> f2
+  f1 --> f3
+  f0 --> f4
+  f1 --> f5
+  f4 --> f5
+  f2 --> f6
+  f3 --> f6
+  f5 --> f6
+  f6 --> f7
+  f7 --> f8
+  f11 --> f14
+  f16 --> f17
+  f12 --> f19
+  f18 --> f19
+  f18 --> f20
+  f20 --> f21
+  f16 --> f22
+  f17 --> f23
+  f22 --> f23
+  f23 --> f24
+  f14 --> f25
+  f24 --> f25
+  f26 --> f27
+  f11 --> f28
+  f27 --> f28
+  f9 --> f29
+  f20 --> f29
+  f27 --> f29
+  f28 --> f30
+  f30 --> f31
+  f30 --> f32
+  f31 --> f33
+  f32 --> f33
+  f31 --> f34
+  f32 --> f34
+  f34 --> f35
+  f10 --> f36
+  f13 --> f36
+  f33 --> f36
+  f35 --> f36
+  f15 --> f37
+  f19 --> f37
+  f21 --> f37
+  f25 --> f37
+  f29 --> f37
+  f36 --> f37
+  f37 --> f38
+  f8 --> f39
+  f38 --> f39
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

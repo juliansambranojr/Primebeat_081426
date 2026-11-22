@@ -1,0 +1,22 @@
+flowchart LR
+  n0["<b>floor_bound</b><br/>3 * (4 + (16 + 16 * 112 + 16 * 0) / ℓ + (8 * 698 + 8 + 4 * 0) / …"]:::thm
+  n1["<b>routeConst_le</b><br/>Stage3.routeConst ((2:ℝ) ^ (36:ℕ)) ≤ 414"]:::thm
+  n2["<b>sq_le_two_rpow</b><br/>r ^ 2 ≤ 6400 * (2:ℝ) ^ ((r - 80) / 2)"]:::thm
+  n3["<b>gate_ineq</b><br/>414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - 7) / 2)) ＜ Real.log…"]:::thm
+  n4["<b>gate_hyp_of_RH</b><br/>∃ ρ : ℝ, JointDialGate.StmtRelErrWindow (fun m : ℤ =＞ (Nat.prime…"]:::thm
+  x0(["<b>RouteNum</b><br/>4 theorems"]):::ext
+  x1(["<b>TableDepths</b><br/>cell_ne_zero_gen"]):::ext
+  x2(["<b>TableRoute</b><br/>cell_ne_zero_of_RH"]):::ext
+  n0 --> n1
+  n1 --> n4
+  n2 --> n3
+  n3 --> n4
+  n1 -.-> x1
+  n4 -.-> x2
+  x0 -.-> n1
+  x0 -.-> n4
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

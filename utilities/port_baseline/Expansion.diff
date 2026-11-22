@@ -1,0 +1,25 @@
+--- lean/Expansion.lean
++++ TablePort/Expansion.lean
+@@ -116 +115,0 @@
+-    convert h2 using 1
+@@ -118,3 +117,7 @@
+-    rw [he]
+-    push_cast
+-    ring
++    rw [he] at h2
++    have hv : c d j * (((-(j + 1 : ℤ) : ℤ) : ℝ) * x ^ (-(j + 2 : ℤ)))
++        = c d j * (-(j : ℝ) - 1) * x ^ (-(j + 2 : ℤ)) := by
++      push_cast
++      ring
++    rw [hv] at h2
++    exact h2
+@@ -122,3 +125 @@
+-  convert HasDerivAt.sum h using 1
+-  ext y
+-  simp
++  exact HasDerivAt.fun_sum h
+@@ -135,2 +136,2 @@
+-    convert h2 using 1
+-    exact mul_comm _ _
++    rw [mul_comm] at h2
++    exact h2

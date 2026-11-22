@@ -1,0 +1,25 @@
+key	value	source
+module_lines	48	wc -l lean_stage3/Stage3/TableRoute.lean
+theorems_proved	1	grep -c ^theorem lean_stage3/Stage3/TableRoute.lean
+defs	1	grep -c ^def lean_stage3/Stage3/TableRoute.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/TableRoute.lean
+pins	1	cell_ne_zero_of_RH
+errors_first	0	first lake build Stage3.TableRoute
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8817	lake build (full Stage3), Build completed successfully
+jobs_module	8777	run/build.log, lake build Stage3.TableRoute
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e10	the join closed
+port_modules	10	lean_stage3/Stage3/TablePort/*.lean
+port_lines	2579	cat lean_stage3/Stage3/TablePort/*.lean | wc -l
+port_unchanged	8	modules whose only difference from lean/ is the import lines
+diff_mainterm	2	diff lines, lean/MainTerm.lean against the copy
+diff_expansion	19	diff lines, lean/Expansion.lean against the copy
+row_min	80	cell_ne_zero_of_RH
+depth	6	cell_ne_zero_of_RH
+welds	11	utilities/check_weld.py: ten definitions and one statement
+broken_welds	0	python3 utilities/check_weld.py
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

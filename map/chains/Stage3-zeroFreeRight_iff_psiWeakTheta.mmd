@@ -1,0 +1,23 @@
+flowchart LR
+  f0["<b>JensenCount</b><br/>12 used"]:::thm
+  f1["<b>LineBound</b><br/>25 used"]:::thm
+  f2["<b>Abscissa</b><br/>6 used"]:::thm
+  f3["<b>ThetaLine</b><br/>3 used"]:::thm
+  f4["<b>ThetaPi</b><br/>1 used"]:::thm
+  f5["<b>ThetaPull</b><br/>6 used"]:::thm
+  f6["<b>ThetaPsi</b><br/>14 used"]:::thm
+  f7["<b>VonKochScaffold</b><br/>13 used"]:::thm
+  f8["<b>ThetaConverse</b><br/>zeroFreeRight_iff_psiWeakTheta"]:::end_
+  f0 --> f2
+  f1 --> f2
+  f2 --> f3
+  f3 --> f5
+  f5 --> f6
+  f4 --> f8
+  f6 --> f8
+  f7 --> f8
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,0 +1,29 @@
+flowchart LR
+  n0["<b>im_sq_sub_re_sq</b><br/>z.im ^ 2 - z.re ^ 2 = -(z ^ 2).re"]:::thm
+  n1["<b>term_eq_sidebands</b><br/>WeilPowerBands.termW h γ m ρ = -((h / 2) ^ 2 * (((S m (wm h γ ρ)…"]:::thm
+  n2["<b>term_le_sidebands</b><br/>WeilPowerBands.termW h γ m ρ ≤ -((h / 2) ^ 2 * (((S m (wm h γ ρ)…"]:::thm
+  n3["<b>wp_re</b><br/>(wp h γ ρ).re = (ρ.re - 1 / 2) * h"]:::thm
+  n4["<b>wp_im</b><br/>(wp h γ ρ).im = (ρ.im + γ) * h"]:::thm
+  n5["<b>far_sideband_le</b><br/>‖S m (wp h γ ρ)‖ ≤ cS m * Real.cosh ((ρ.re - 1 / 2) * h) * (2 / …"]:::thm
+  n6["<b>term_le_at_zero</b><br/>WeilPowerBands.termW h γ m (ρ : ℂ) ≤ -((h / 2) ^ 2 * ((cS m / D …"]:::thm
+  x0(["<b>WeilOddPower</b><br/>what_eq"]):::ext
+  x1(["<b>WeilPowerBackground</b><br/>term_re_eq"]):::ext
+  x2(["<b>WeilPowerBounds</b><br/>norm_S_le_far"]):::ext
+  x3(["<b>WeilPowerPhase</b><br/>re_S_sq_ge"]):::ext
+  x4(["<b>WeilPowerAssembly</b><br/>target_lower"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n2 --> n6
+  n3 --> n5
+  n4 --> n5
+  n5 --> n6
+  n6 -.-> x4
+  x0 -.-> n1
+  x1 -.-> n1
+  x2 -.-> n5
+  x3 -.-> n6
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

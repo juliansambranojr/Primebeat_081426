@@ -1,0 +1,17 @@
+flowchart LR
+  f0["<b>Construction</b><br/>1 used"]:::thm
+  f1["<b>ZerosStencil</b><br/>3 used"]:::thm
+  f2["<b>Nonvanishing</b><br/>13 used"]:::thm
+  f3["<b>MainTerm</b><br/>11 used"]:::thm
+  f4["<b>Expansion</b><br/>23 used"]:::thm
+  f5["<b>Schoenfeld</b><br/>tableFrom_ne_zero_of_schoenfeld"]:::end_
+  f0 --> f1
+  f1 --> f2
+  f2 --> f3
+  f3 --> f4
+  f4 --> f5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

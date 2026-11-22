@@ -1,0 +1,5 @@
+--- lean/MainTerm.lean
++++ TablePort/MainTerm.lean
+@@ -111 +111 @@
+-    simpa using this
++    simpa [Function.comp_def] using this

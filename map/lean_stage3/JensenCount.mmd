@@ -1,0 +1,93 @@
+flowchart LR
+  n0["<b>zeta_centre_lower</b><br/>(1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖"]:::thm
+  n1["<b>zeta_disk_upper</b><br/>‖ζ w‖ ≤ 28 * T"]:::thm
+  n2["<b>zeta_centre_ne_zero</b><br/>ζ (2 + Complex.I * (T : ℂ)) ≠ 0"]:::thm
+  n3["<b>pole_away</b><br/>2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1"]:::thm
+  n4["<b>pole_away_centre</b><br/>v ≠ 1"]:::thm
+  n5["<b>zetaWindowTwo_finite</b><br/>{ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite"]:::thm
+  n6["<b>zetaWindow_finite</b><br/>(zetaWindow T).Finite"]:::thm
+  n7["<b>zeta_comp_analytic</b><br/>AnalyticAt ℂ (fun z : ℂ =＞ ζ (2 * z + (2 + Complex.I * (T : ℂ)))…"]:::thm
+  n8["<b>jensenF_analytic</b><br/>AnalyticOnNhd ℂ (jensenF T) (Metric.closedBall (0 : ℂ) 1)"]:::thm
+  n9["<b>jensenF_zero_eq_one</b><br/>jensenF T 0 = 1"]:::thm
+  n10["<b>jensenF_zeros_finite</b><br/>(SetOfZeros 1 (jensenF T)).Finite"]:::thm
+  n11["<b>jensenF_bound</b><br/>‖jensenF T z‖ ≤ 84 * T"]:::thm
+  n12["<b>analyticOrderNatAt_fun_comp_affine</b><br/>analyticOrderNatAt (fun w : ℂ =＞ g (a * w + b)) z = analyticOrde…"]:::thm
+  n13["<b>jensenF_order</b><br/>analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w +…"]:::thm
+  n14["<b>zeta_local_zero_count</b><br/>∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ :…"]:::thm
+  n15["<b>zetaLocalCount_eq</b><br/>zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analy…"]:::thm
+  n16["<b>localCount_holds</b><br/>StmtLocalCount zetaLocalCount 15 73"]:::thm
+  x0(["<b>LineBound</b><br/>logDerivZeta_crude<br/>logDerivZeta_compact"]):::ext
+  x1(["<b>ThetaLine</b><br/>logDerivZeta_compact_theta"]):::ext
+  x2(["<b>ReZetaCount</b><br/>F_bound"]):::ext
+  x3(["<b>Abscissa</b><br/>logDerivZeta_crude_theta"]):::ext
+  x4(["<b>ContourShift</b><br/>goodT_exists"]):::ext
+  x5(["<b>EdgeBound</b><br/>ball_order_sum_le<br/>gz_partial_fraction"]):::ext
+  x6(["<b>EdgeNum</b><br/>ball_order_sum_le_num<br/>gz_partial_fraction_num"]):::ext
+  x7(["<b>Glue</b><br/>band_order_sum_le"]):::ext
+  x8(["<b>GlueNum</b><br/>band_order_sum_le_num"]):::ext
+  x9(["<b>WeilBands</b><br/>band_count"]):::ext
+  x10(["<b>LowCount</b><br/>low_ball_count"]):::ext
+  x11(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
+  x12(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
+  n0 --> n11
+  n1 --> n11
+  n10 --> n14
+  n11 --> n14
+  n12 --> n13
+  n13 --> n14
+  n14 --> n16
+  n15 --> n16
+  n2 --> n10
+  n2 --> n13
+  n2 --> n14
+  n2 --> n5
+  n2 --> n9
+  n3 --> n7
+  n4 --> n5
+  n5 --> n10
+  n5 --> n6
+  n6 --> n14
+  n6 --> n15
+  n6 --> n16
+  n7 --> n13
+  n7 --> n8
+  n8 --> n14
+  n9 --> n14
+  n0 -.-> x0
+  n0 -.-> x1
+  n1 -.-> x2
+  n10 -.-> x0
+  n10 -.-> x3
+  n11 -.-> x0
+  n11 -.-> x3
+  n12 -.-> x10
+  n12 -.-> x11
+  n12 -.-> x5
+  n12 -.-> x6
+  n14 -.-> x4
+  n14 -.-> x5
+  n14 -.-> x6
+  n14 -.-> x7
+  n14 -.-> x8
+  n14 -.-> x9
+  n16 -.-> x12
+  n2 -.-> x0
+  n2 -.-> x1
+  n2 -.-> x3
+  n4 -.-> x0
+  n4 -.-> x3
+  n6 -.-> x4
+  n6 -.-> x5
+  n6 -.-> x6
+  n6 -.-> x7
+  n6 -.-> x8
+  n6 -.-> x9
+  n8 -.-> x0
+  n8 -.-> x3
+  n9 -.-> x0
+  n9 -.-> x3
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

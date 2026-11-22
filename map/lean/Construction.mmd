@@ -1,0 +1,24 @@
+flowchart LR
+  n0["<b>tableFrom_isTableOf</b><br/>IsTableOf N (tableFrom N)"]:::thm
+  n1["<b>unique_of_isTableOf</b><br/>∀ r d, f r d = tableFrom N r d"]:::thm
+  n2["<b>eq_of_same_row</b><br/>∀ r d, f r d = g r d"]:::end_
+  n3["<b>zero_determined_by_row</b><br/>tableFrom N r d = tableFrom M r d"]:::thm
+  n4["<b>tableFrom_add</b><br/>tableFrom (fun x =＞ N x + M x) r d = tableFrom N r d + tableFrom…"]:::thm
+  n5["<b>tableFrom_smul</b><br/>tableFrom (fun x =＞ c * N x) r d = c * tableFrom N r d"]:::thm
+  x0(["<b>Zeros</b><br/>tableFrom_isTable"]):::ext
+  x1(["<b>PairIdentity</b><br/>tableFrom_add_window"]):::ext
+  x2(["<b>Propagation</b><br/>outside_cone_zero"]):::ext
+  x3(["<b>SeedPerturbation</b><br/>tableFrom_eq_zero_of_vanishing_above<br/>tableFrom_sub"]):::ext
+  n1 --> n2
+  n0 -.-> x0
+  n3 -.-> x1
+  n3 -.-> x2
+  n3 -.-> x3
+  n4 -.-> x1
+  n4 -.-> x3
+  n5 -.-> x3
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

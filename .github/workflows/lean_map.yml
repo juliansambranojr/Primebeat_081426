@@ -1,0 +1,50 @@
+# The Lean map regenerates itself. On any push that changes a .lean file or
+# the generator, rebuild map/ from the files and commit them back
+# to the same branch if they changed. No Lean build: the generator reads the
+# source text with the standard library only.
+#
+# A push whose head commit message contains [map pending] is left alone: the
+# pusher is refreshing the map from Lean (python3 utilities/lean_map.py --dump,
+# which needs a built tree) and will push it as the next commit. Without the
+# marker the workflow steps in, so a push from anyone who did not run the
+# refresh still gets a map, with the changed files marked as read from text.
+name: lean-map
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - '**.lean'
+      - 'utilities/lean_map.py'
+      - 'SECTIONS.md'
+      - '.github/workflows/lean_map.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: "!contains(github.event.head_commit.message, '[map pending]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: regenerate the map
+        run: python3 utilities/lean_map.py
+
+      - name: commit it if it changed
+        run: |
+          if [ -n "$(git status --porcelain map)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add map
+            git commit -m "map/: regenerated from the .lean files"
+            # the branch may have moved while this ran; a newer push runs its own
+            git push || echo "branch moved; the newer push regenerates"
+          else
+            echo "map is current"
+          fi

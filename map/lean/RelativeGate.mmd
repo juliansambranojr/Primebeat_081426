@@ -1,0 +1,26 @@
+flowchart LR
+  n0["<b>relWindow_term_le</b><br/>ρ * (2 : ℝ) ^ ((r : ℝ) - k) = ρ * (2 : ℝ) ^ (r : ℝ) * ((2 : ℝ) ^…"]:::thm
+  n1["<b>relError_bound</b><br/>|stencilR n (fun x =＞ f x - L x) r| ≤ EhighRel r n ρ"]:::thm
+  n2["<b>relGate_iff</b><br/>EhighRel r (d + 1) ρ ＜ Mlow r d ↔ ρ ＜ Real.log 2 ^ d / (2 * r * …"]:::thm
+  n3["<b>relGate_eps</b><br/>Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) = ((1 / 2) * (Real.log 2 …"]:::lone
+  n4["<b>nonvanishing_of_relErr</b><br/>stencilR (d + 1) f r ≠ 0"]:::thm
+  n5["<b>tableFrom_ne_zero_of_relErr</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  n6["<b>schoenfeldWindow_relErr</b><br/>StmtRelErrWindow f L r n ((Real.log 2 * r / (8 * Real.pi)) * (2 …"]:::end_
+  n7["<b>powerSaving_relErr</b><br/>StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)…"]:::thm
+  x0(["<b>RelativeLi</b><br/>tableFrom_ne_zero_of_powerSaving<br/>tableFrom_ne_zero_of_relErr_li<br/>tableFrom_ne_zero_of_relErr_li'"]):::ext
+  x1(["<b>Nonvanishing</b><br/>stencilR_row<br/>stencilR_sub"]):::ext
+  x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
+  n0 --> n1
+  n1 --> n4
+  n4 --> n5
+  n2 -.-> x0
+  n5 -.-> x0
+  n7 -.-> x0
+  x1 -.-> n4
+  x1 -.-> n5
+  x2 -.-> n5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
