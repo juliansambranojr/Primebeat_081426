@@ -433,3 +433,29 @@ What the next slice needs: nothing on this side. The gate's theorem
 `RelativeLi.tableFrom_ne_zero_of_relErr_li'` is in the table's tree and takes
 this statement; the join is by text (joint 5).
 
+### C1 The interpolant of the main term — PROVED in `lean/` (unit 0412: `Interpolant.liRow_contDiff`, `liRow_hasDerivAt`, `liRow_eq`, `tableFrom_ne_zero_of_relErr_liRow`)
+
+Every gate theorem in the table's tree takes a function `G` with
+`ContDiff ℝ ⊤ G` and `HasDerivAt G (f2x x) x` for `x > 1/2`,
+`f2x x = e^(log 2·x)/x` (`Expansion.f2x`). No file constructs one (unit 0403).
+
+Construction. `F x = 2/log 2 + ∫ t in 1..x, f2x t`. On `x > 0`, `f2x` is
+continuous, so `F` has derivative `f2x` there, and is smooth there because
+its derivative is. `F` has no reason to be smooth at or below zero, so cut it
+off: `liRow x = smoothTransition (4x − 1) · F x`. The cutoff is zero for
+`x ≤ 1/4` and one for `x ≥ 1/2`.
+
+Theorems.
+
+- `F_hasDerivAt`: `0 < x → HasDerivAt F (f2x x) x`.
+- `liRow_contDiff`: `ContDiff ℝ ⊤ liRow`. Hint: at `x < 1/4` it is locally
+  zero; at `x > 0` a product of two smooth functions.
+- `liRow_hasDerivAt`: `1/2 < x → HasDerivAt liRow (f2x x) x`.
+- `liRow_eq`: `1/2 ≤ x → liRow x = 2/log 2 + ∫ t in 1..x, f2x t`.
+- `tableFrom_ne_zero_of_relErr_liRow`: `RelativeLi`'s gate theorem with
+  `G := liRow` and the two hypotheses gone.
+
+The constant `2/log 2` is the value at the row `m = 1` of `x/log x + ∫₂ˣ dt/log²t`,
+Stage 3's `Li`. That `liRow m = Li (2^m)` for `m ≥ 1` is a statement across
+the two trees and is not in this block.
+

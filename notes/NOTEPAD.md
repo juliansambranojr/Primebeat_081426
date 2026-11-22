@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0412: lean/Interpolant.lean (v4.28, 8 theorems, 0 sorry). liRow = smoothTransition(4x-1) * (2/log 2 + int_1^x 2^t/t): ContDiff top on R, derivative 2^x/x beyond 1/2. tableFrom_ne_zero_of_relErr_liRow: the gate with no hypothesis on the main term. NOT proved: liRow m = Stage 3's Li(2^m) (two trees, two formulas)
 - [open]   2026-11-22  unit 0411: Stage3/JointFloorGate.lean (2 theorems, 0 sorry, first build clean). relErrWindow_floor_of_RH: under RH, on windows above x0^2, StmtRelErrWindow on the rows of pi and Li with rho = (3 floorConstSplit + 13) (log 2 r) 2^(-(r-n)/2). The hEF route now runs RH -> the gate's hypothesis inside Stage 3; gate itself in lean/, by weld
 - [open]   2026-11-22  unit 0410 EXPLORATORY: gate priced from floorConstSplit (unit 0409). As built: 216.6 at psi floor 2^33.5, depth 9, R6=76 (17 rungs inside; was 3 in unit 0408). Radii freed R6=74 = the route's limit with no contour constant. Slack: as-built c1,c3,c4 times 49000 still covers depth 6. Floors, RH assumed, O68's gate not Lean's
 - [open]   2026-11-22  unit 0409: Stage3/GlueFloor.lean (6 theorems, 0 sorry). edge_left_sharp: left edge <= 72 D log^2 x * x^(-1/4); explicit_formula_split with that edge as its own term (c3 = 13 + K0/2); psiWeak_floor_split, schoenfeldWeak_floor_split_of_RH with floorConstSplit. Three copies, last lines changed; Glue.lean untouched. Not yet priced; constants existential

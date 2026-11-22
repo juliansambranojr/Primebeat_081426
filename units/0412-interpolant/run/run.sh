@@ -1,0 +1,3 @@
+#!/bin/sh
+# the run is the build; the record is its log
+cd ../../../lean && lake build Interpolant

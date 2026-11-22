@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `lean/Interpolant.lean`, block C1 of `joints.md`
+
+    DONE        `liRow`, a function smooth on the whole line with derivative
+                `2^x/x` beyond one half, equal to `2/log 2 + ∫₁ˣ 2^t/t dt`
+                from one half on; the gate theorems of `RelativeLi` with the
+                interpolant discharged; a unit; the block PROVED
+    ASSUMED     Julian's message naming the two open items read as: take
+                them up. That `liRow m` equals Stage 3's `Li (2^m)` is not
+                proved here (other tree, other definition of `Li`)
+    DEPENDS     unit 0403 (`lean/RelativeLi.lean`)
+    OUT         the route's constants as numerals: read and reported, not
+                built; nothing in `lean_stage3/`
+    OUTCOME     done as pinned; unit 0412; clean on the second build
+
 ### 2026-11-22 · `Stage3/JointFloorGate.lean`, block E3 of `joints.md`
 
     DONE        `weakWindow_relErr` (a weak window is the gate's relative

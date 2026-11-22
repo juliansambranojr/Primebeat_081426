@@ -1,0 +1,56 @@
+# check_prose_source.py  2026-11-22T11:39:24Z
+# unit: 0412-interpolant
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37850
+  Source: session transcript, 2026-11-22, after PR 6 merged
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37368
+  the route's constants as numerals, the smooth interpolant the gate theorems assume,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37617
+  /-- The antiderivative of `2^x/x` through the value `2/log 2` at `x = 1`. -/
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37618
+  def F (x : ℝ) : ℝ := 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37620
+  /-- The interpolant: `F` cut off smoothly below one half. -/
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37621
+  def liRow (x : ℝ) : ℝ := Real.smoothTransition (4 * x - 1) * F x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37655
+  theorem liRow_contDiff : ContDiff ℝ (⊤ : ℕ∞) liRow
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37679
+  theorem liRow_hasDerivAt {x : ℝ} (hx : x ∈ Ioi ((1 : ℝ) / 2)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37680
+  HasDerivAt liRow (Expansion.f2x x) x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37689
+  theorem tableFrom_ne_zero_of_relErr_liRow {N : ℤ → ℤ} {f : ℤ → ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37691
+  (hrow : ∀ k ∈ Finset.range (d + 2),
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26177
+  ((N (r - k) : ℤ) : ℝ) = Nonvanishing.bdiffZ f (r - k))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37693
+  (hS : RelativeGate.StmtRelErrWindow f (fun k : ℤ => liRow k) r (d + 1) ρ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26180
+  (hbot : (1 : ℝ) ≤ (r : ℝ) - (d + 1))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26181
+  (hw : 2 * (d : ℝ) ≤ Real.log 2 * ((r : ℝ) - (d + 1)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30249
+  (hρ : ρ < Real.log 2 ^ d / (2 * r * 3 ^ (d + 1))) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26481
+  Construction.tableFrom N r d ≠ 0
+
+# 17 found, 0 missing
