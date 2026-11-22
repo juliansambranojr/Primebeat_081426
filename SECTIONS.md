@@ -87,7 +87,7 @@ not in any tree; what it must say is written out.
 
 | # | From → to | Status |
 |---|---|---|
-| 1 | G → D: `WindowBound θ δ C → StmtZeroFreeRight θ` | OPEN, one line. Compiled in a scratch file 2026-11-22 from `stmtLandauWindow`; standard axioms. Not in the tree. |
+| 1 | G → D: `WindowBound θ δ C → StmtZeroFreeRight θ` | SEALED (unit 0400, `JointWindowDial.zeroFreeRight_of_window`; with it `schoenfeldWeakTheta_of_window`, the window bound carried to `|π − Li| ≤ C·x^θ·log²x`). |
 | 2 | D inside: zero-free at `θ` → `|π − Li| ≤ C·x^θ·log²x` | SEALED (`schoenfeldWeakTheta_of_zeroFree`). Joint 1 composes with it; checked the same day. |
 | 3 | D → the dyadic rows at exponent `θ` | OPEN. `weakWindow_of_global` does it for the `√x` family. Needed: `StmtSchoenfeldWeakTheta θ C k x₀ pi li` and `x₀ ≤ 2^(r−n)` give `|f(r−j) − L(r−j)| ≤ C·(2^(r−j))^θ·(log 2·(r−j))^k` on the window. The proof is `weakWindow_of_global`'s with `√` replaced by the power `θ`. |
 | 4 | the logarithm into the exponent | OPEN. `powerSaving_relErr` takes `A·(2^m)^θ` with no logarithm. Needed: for `θ < θ' ≤ 1`, `C·x^θ·(log x)^k ≤ A·x^θ'` for `x ≥ x₁`; or a version of `powerSaving_relErr` that carries `(log 2·m)^k`. |
@@ -98,7 +98,7 @@ not in any tree; what it must say is written out.
 | 9 | B → C or D: the symbol's action on a mode, as a bound on the residual | OPEN, and no statement for it is written anywhere. Section B says what each zero does to a cell; no theorem turns that into the residual bound C takes or D gives. |
 | 10 | the rows → all `x` | OPEN, the missing section. D's converse (`zeroFreeRight_of_psiWeakTheta`) needs the bound at every `t`. The table knows the residual at `2^m` only. Nothing carries a bound on the rows to a bound between them. |
 
-## What the tunnel carries once joints 1, 3, 4, 5 are in
+## What the tunnel carries once joints 3, 4, 5 are in (joint 1 is sealed)
 
     a window bound on G at θ          (hypothesis, proved nowhere)
       → no zero of ζ right of θ       G, proved

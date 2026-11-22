@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 1 of `SECTIONS.md`: `Stage3/JointWindowDial.lean`
+
+    DONE        `lean_stage3/design/joints.md` opened, block 1;
+                `Stage3/JointWindowDial.lean` builds with no `sorry`:
+                `zeroFreeRight_of_window`, `psiWeakTheta_of_window`,
+                `schoenfeldWeakTheta_of_window`, a window bound on `G` at `θ`
+                gives the dial's zero-free statement and its two bounds on
+                the prime residual; a formalization unit; `SECTIONS.md`
+                joint 1 marked SEALED
+    ASSUMED     the statements of block 1 as written
+    DEPENDS     units 0399 (the criterion) and the dial's `ThetaPsi`, `ThetaPi`
+    OUT         joints 3, 4, 5, 9, 10; the window bound itself, proved nowhere
+    OUTCOME     done as pinned, unit 0400: three theorems, no `sorry`, clean
+                on the first build
+
 ### 2026-11-22 · the sections and the joints: `SECTIONS.md`
 
     DONE        `SECTIONS.md` at the repository root: the three Lean trees as
