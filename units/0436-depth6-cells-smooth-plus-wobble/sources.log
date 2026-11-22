@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-22T21:34:35Z
+# unit: 0436-depth6-cells-smooth-plus-wobble
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:5995
+  Source: session transcript, 2026-11-22
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16230
+  Depth-6 cells of the table, rows 14..62, split as smooth cell plus wobble.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16232
+  cell(r,6) is the seventh difference of pi(2^r) along the rows (column 0 is the
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16233
+  first difference); the smooth cell is the same stencil applied to li(2^r); the
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16234
+  wobble is their difference, reported over 2^(r/2).
+
+# 5 found, 0 missing

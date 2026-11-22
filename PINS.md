@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · log the two exploratory measurements as run units
+
+    DONE        two run units, each with its script in `run/`, run through
+                `lab run`: the residual of the prime count against the
+                logarithmic integral at each doubling; the depth-6 cells as
+                smooth cell plus wobble
+    ASSUMED     Julian, 2026-11-22: "Yes log them". Both EXPLORATORY: no
+                prereg, no verdict. `pi2n_cache.json` is the count
+    DEPENDS     `pi2n_cache.json`, `mpmath`
+    OUT         any reading of the numbers as a verdict; any new measurement
+    OUTCOME     units 0435 and 0436 written and checked
+
 ### 2026-11-22 · why the number line has zeros: `Stage3/WobbleCount.lean`, block W1 of `joints.md`
 
     DONE        `count_identity`: the logarithms of the integers up to `N`
