@@ -45,6 +45,13 @@ below with their outcome.
     OUT         the proof of the window bound itself (that is the 17
                 million lines); Dirichlet characters; a prereg, since the
                 measurement tests nothing
+    OUTCOME     units 0383 and 0384. Measured: G within K sqrt(n) of
+                log 2pi - T at every integer to 1e8, the zeros reproduce
+                it. Built: slice 1 of 7, the statement and the reduction to
+                RiemannHypothesis; the criterion is a leaf with six slices
+                open. Two errors of mine caught by gates: the bound had
+                left out the trivial zeros' term, and a figure in the prose
+                was from the earlier run
 
 ### 2026-11-22 · C, the zero-set lemma: `Stage3/WeilBridgeLeaf.lean`, block 1 of `design/bridge.md`
 
