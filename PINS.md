@@ -22,6 +22,32 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · C, the third tree: `lean_bridge/`, the bridge proved against zeta23
+
+    DONE        a Lake project `lean_bridge/` on zeta23's toolchain that
+                requires `anthropics/formal-math` at a pinned commit
+                (subdirectory `zeta23`) and proves, kernel-checked against
+                `Zeta23.WeilEF.EF_lit_zetaZeroConfig`, the bridge of unit
+                0379: for a test function of the tree's class, the zero
+                side equals `literatureRHS` at `k = F ⋆ F⁻`; the tree's
+                `laplace` and `IsTest` copied by text and gated by
+                `check_weld.py`; axiom pins; one unit
+    ASSUMED     "Third tree it is" (Julian, 2026-11-22) chooses the second
+                option of unit 0379; the tree's conventions are Stage 3's
+                (pins by `#guard_msgs`, no sorry unless declared, one unit
+                per module) and `LOOP.md` is followed where it applies to
+                a tree that is not `lean_stage3`; the zero side is stated
+                over zeta23's own zero set, and the lemma identifying it
+                with upstream's `zeroes_sum` is Stage 3 work, out of this
+    DEPENDS     a second Lean toolchain and a second Mathlib cache fetched
+                into this session, from the hosts already allowed
+    OUT         the zero-set lemma in Stage 3; any use of the bridge
+                (positivity); Dirichlet L-functions
+    OUTCOME     built, unit 0381: `Bridge.weil_bridge`, 13 theorems, no
+                sorry, three axioms, against zeta23 at 16a5ce4; two welds
+                added to `check_weld.py`, whose pattern now accepts
+                `noncomputable def`. All pins stood
+
 ### 2026-11-22 · C, the bridge to primes: the statement comparison and its design
 
     DONE        one decision unit: (a) the three statements side by side,

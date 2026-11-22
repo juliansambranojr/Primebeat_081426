@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0381: lean_bridge/, the third tree (Lean v4.33.0-rc2, zeta23 as a Lake dependency). Bridge.weil_bridge proved against EF_lit_zetaZeroConfig: IsTest L G -> zero side = primeSide (kOf G); 13 theorems, 0 sorries, 3 axioms. laplace and IsTest welded by check_weld.py. Stage 3 still owes the zero-set lemma (zeroes_sum vs analyticOrderAt)
 - [open]   2026-11-22  unit 0380: WeilPowerTail.lean built, block 16a PROVED. norm_S_le_tail: for every w with QS m w != 0, |S m w| <= cS/D |w| exp(Re(w^2) sigma m + |w|^4/(6 pi^4 (m+1)^3)); 6 theorems, 0 sorries, first build clean, package 8772 jobs. Section 16's remaining lines T1-T11 open
 - [open]   2026-11-22  unit 0379: C, bridge to primes. zeroForm G = zeta23 literatureRHS at k = F*F-reflected, F = G e^(u/2); both sides agree to 3.5e-16 on the tree's window; C1 vs C2 gap closes in the convolution. Upstream PNT+ HEAD a4fb698 still has the two sorries. Three ways to compose priced (weld, third tree, port); choice is Julian's
 - [open]   2026-11-22  unit 0378: rung 5 section 16 priced on proved-form inequalities. Tree's bounds leave a hole (c_neg positive from tau 1.233, far starts 4.499); one new lemma N1 (tail bound, all w) fills it; 9/9 cells close within 1.022 of exact. Items (a), (c) closed. What remains is Lean, which this environment lacks

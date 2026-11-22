@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-22T04:32:08Z
+# unit: 0381-weil-bridge-third-tree
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12144
+  Source: session transcript, 2026-11-22, after unit 0380
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11933
+  theorem weil_bridge {L : ℝ} {G : ℝ → ℂ} (hG : IsTest L G) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11934
+  Summable (fun ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1} =>
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11935
+  (((analyticOrderAt riemannZeta (ρ : ℂ)).toNat : ℕ) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11936
+  * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ))))) ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11937
+  ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1},
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11935
+  (((analyticOrderAt riemannZeta (ρ : ℂ)).toNat : ℕ) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11936
+  * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ))))
+
+# 8 found, 0 missing
