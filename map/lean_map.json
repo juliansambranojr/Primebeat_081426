@@ -18411,7 +18411,7 @@
   "namespaces": [
    "CellResidual"
   ],
-  "lines": 493,
+  "lines": 500,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -18554,8 +18554,8 @@
     "name": "stencilR_abs_le",
     "ns": "CellResidual",
     "full": "CellResidual.stencilR_abs_le",
-    "line": 68,
-    "why": "",
+    "line": 69,
+    "why": "A cell is no larger than its window allows. If the values the stencil reads shrink by a factor `t` per step down the window, the cell is at most the top bound times `(1 + t)^n`.",
     "sorry": false,
     "needs": [
      "h : ∀ k ∈ range (n + 1), |g (r - k)| ≤ B * t ^ k"
@@ -18580,8 +18580,8 @@
     "name": "stencilR_one",
     "ns": "CellResidual",
     "full": "CellResidual.stencilR_one",
-    "line": 88,
-    "why": "",
+    "line": 90,
+    "why": "The stencil of order one is one backward difference.",
     "sorry": false,
     "needs": [
      "g : ℤ → ℝ",
@@ -18612,8 +18612,8 @@
     "name": "weak_nonneg",
     "ns": "CellResidual",
     "full": "CellResidual.weak_nonneg",
-    "line": 92,
-    "why": "",
+    "line": 95,
+    "why": "The square-root bound on the count may be taken with a constant that is not negative and a starting point of at least two.",
     "sorry": false,
     "needs": [
      "h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li"
@@ -18640,8 +18640,8 @@
     "name": "resid_le",
     "ns": "CellResidual",
     "full": "CellResidual.resid_le",
-    "line": 104,
-    "why": "",
+    "line": 108,
+    "why": "One rung. Under the square-root bound on the count, the residual on the rung `a·2^m` is at most a constant times `(m + 1)·2^(m/2)`.",
     "sorry": false,
     "needs": [
      "hC : 0 ≤ C",
@@ -18674,7 +18674,7 @@
     "name": "cells_of_schoenfeldWeak",
     "ns": "CellResidual",
     "full": "CellResidual.cells_of_schoenfeldWeak",
-    "line": 140,
+    "line": 144,
     "why": "Forward. The `π`-side bound gives every cell of every ladder.",
     "sorry": false,
     "needs": [
@@ -18720,8 +18720,8 @@
     "name": "cells_of_RH",
     "ns": "CellResidual",
     "full": "CellResidual.cells_of_RH",
-    "line": 181,
-    "why": "",
+    "line": 186,
+    "why": "Forward, from the Riemann hypothesis. Under it every cell of every dyadic ladder has its residual at square-root size.",
     "sorry": false,
     "needs": [
      "hRH : RiemannHypothesis"
@@ -18758,8 +18758,8 @@
     "name": "step_le",
     "ns": "CellResidual",
     "full": "CellResidual.step_le",
-    "line": 191,
-    "why": "",
+    "line": 197,
+    "why": "A depth-0 cell is the difference of two neighbouring rungs, so `CellsSqrt` bounds that difference.",
     "sorry": false,
     "needs": [
      "h : CellsSqrt C r₀",
@@ -18797,8 +18797,8 @@
     "name": "two_rpow_half_ge",
     "ns": "CellResidual",
     "full": "CellResidual.two_rpow_half_ge",
-    "line": 198,
-    "why": "",
+    "line": 205,
+    "why": "The square root of two is at least four thirds; the telescoping sum closes on this.",
     "sorry": false,
     "needs": [],
     "proves": "(4 : ℝ) / 3 ≤ (2 : ℝ) ^ ((1 : ℝ) / 2)",
@@ -18817,7 +18817,7 @@
     "name": "ladder_le",
     "ns": "CellResidual",
     "full": "CellResidual.ladder_le",
-    "line": 208,
+    "line": 215,
     "why": "The depth-0 cells, summed up one ladder.",
     "sorry": false,
     "needs": [
@@ -18856,7 +18856,7 @@
     "name": "base_bound",
     "ns": "CellResidual",
     "full": "CellResidual.base_bound",
-    "line": 280,
+    "line": 287,
     "why": "The first rung, bounded over the whole range of starting points.",
     "sorry": false,
     "needs": [
@@ -18888,7 +18888,7 @@
     "name": "schoenfeldWeak_of_cells",
     "ns": "CellResidual",
     "full": "CellResidual.schoenfeldWeak_of_cells",
-    "line": 312,
+    "line": 319,
     "why": "Converse. The cells at square-root size give the `π`-side bound.",
     "sorry": false,
     "needs": [
@@ -18925,7 +18925,7 @@
     "name": "RH_iff_cells",
     "ns": "CellResidual",
     "full": "CellResidual.RH_iff_cells",
-    "line": 416,
+    "line": 423,
     "why": "The Riemann hypothesis is the cells at square-root size, over every dyadic ladder.",
     "sorry": false,
     "needs": [],
@@ -18958,7 +18958,7 @@
     "name": "tableFrom_cast",
     "ns": "CellResidual",
     "full": "CellResidual.tableFrom_cast",
-    "line": 424,
+    "line": 431,
     "why": "The integer cell, cast, is the stencil of the count one order up.",
     "sorry": false,
     "needs": [
@@ -18995,7 +18995,7 @@
     "name": "table_cell_eq",
     "ns": "CellResidual",
     "full": "CellResidual.table_cell_eq",
-    "line": 440,
+    "line": 447,
     "why": "The table's cell minus the smooth cell is the residual on the ladder `a = 1`.",
     "sorry": false,
     "needs": [
@@ -19039,7 +19039,7 @@
     "name": "table_cell_resid",
     "ns": "CellResidual",
     "full": "CellResidual.table_cell_resid",
-    "line": 460,
+    "line": 467,
     "why": "On the table itself. Under the Riemann hypothesis every cell of the dyadic table stays within square-root size of the smooth cell.",
     "sorry": false,
     "needs": [
@@ -31173,7 +31173,7 @@
   "namespaces": [
    "PiToPsi"
   ],
-  "lines": 314,
+  "lines": 321,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -31187,8 +31187,8 @@
     "name": "Li_two",
     "ns": "PiToPsi",
     "full": "PiToPsi.Li_two",
-    "line": 43,
-    "why": "",
+    "line": 44,
+    "why": "At two the smooth count is `2 / log 2`: its integral part is empty there.",
     "sorry": false,
     "needs": [],
     "proves": "Stage3.Li 2 = 2 / Real.log 2",
@@ -31211,8 +31211,8 @@
     "name": "continuousOn_Li",
     "ns": "PiToPsi",
     "full": "PiToPsi.continuousOn_Li",
-    "line": 47,
-    "why": "",
+    "line": 49,
+    "why": "The smooth count `Li` is continuous past one, because it has a derivative there.",
     "sorry": false,
     "needs": [],
     "proves": "ContinuousOn Stage3.Li (Ioi 1)",
@@ -31239,8 +31239,8 @@
     "name": "uIcc_two_subset",
     "ns": "PiToPsi",
     "full": "PiToPsi.uIcc_two_subset",
-    "line": 50,
-    "why": "",
+    "line": 53,
+    "why": "Every point between two and `x` is past one, where `Li` and `log` behave.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x"
@@ -31263,8 +31263,8 @@
     "name": "intervalIntegrable_Li_div",
     "ns": "PiToPsi",
     "full": "PiToPsi.intervalIntegrable_Li_div",
-    "line": 55,
-    "why": "",
+    "line": 59,
+    "why": "`Li t / t` can be integrated from two to `x`.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x"
@@ -31296,8 +31296,8 @@
     "name": "intervalIntegrable_pi_div",
     "ns": "PiToPsi",
     "full": "PiToPsi.intervalIntegrable_pi_div",
-    "line": 63,
-    "why": "",
+    "line": 68,
+    "why": "The count over `t` can be integrated from two to `x`: the count only steps upward.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x"
@@ -31323,8 +31323,8 @@
     "name": "Li_mul_log_sub_integral",
     "ns": "PiToPsi",
     "full": "PiToPsi.Li_mul_log_sub_integral",
-    "line": 80,
-    "why": "",
+    "line": 86,
+    "why": "`Li` undone. `Li x · log x` minus the integral of `Li t / t` from two is exactly `x`. This is the smooth side of the passage from the count back to `θ`.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x"
@@ -31358,7 +31358,7 @@
     "name": "relRes",
     "ns": "PiToPsi",
     "full": "PiToPsi.relRes",
-    "line": 103,
+    "line": 109,
     "why": "The residual of the count against `Stage3.Li`, relative to `t`.",
     "sorry": false,
     "needs": [
@@ -31387,8 +31387,8 @@
     "name": "intervalIntegrable_relRes",
     "ns": "PiToPsi",
     "full": "PiToPsi.intervalIntegrable_relRes",
-    "line": 105,
-    "why": "",
+    "line": 112,
+    "why": "The relative residual can be integrated from two to `x`.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x"
@@ -31421,7 +31421,7 @@
     "name": "theta_sub_id_eq",
     "ns": "PiToPsi",
     "full": "PiToPsi.theta_sub_id_eq",
-    "line": 115,
+    "line": 122,
     "why": "`θ` from `π`, with `Stage3.Li` taken off both sides.",
     "sorry": false,
     "needs": [
@@ -31456,7 +31456,7 @@
     "name": "relRes_tail_le",
     "ns": "PiToPsi",
     "full": "PiToPsi.relRes_tail_le",
-    "line": 132,
+    "line": 139,
     "why": "The tail of `∫ |relRes|` under the `π`-side bound.",
     "sorry": false,
     "needs": [
@@ -31494,7 +31494,7 @@
     "name": "psiWeak_of_schoenfeldWeak",
     "ns": "PiToPsi",
     "full": "PiToPsi.psiWeak_of_schoenfeldWeak",
-    "line": 178,
+    "line": 185,
     "why": "From the count to `ψ`. The square-root bound on `π − Stage3.Li` gives the bound on `ψ` at two more logarithms.",
     "sorry": false,
     "needs": [
@@ -31535,7 +31535,7 @@
     "name": "RH_of_schoenfeldWeak",
     "ns": "PiToPsi",
     "full": "PiToPsi.RH_of_schoenfeldWeak",
-    "line": 264,
+    "line": 271,
     "why": "The square-root bound on the count gives the Riemann hypothesis.",
     "sorry": false,
     "needs": [
@@ -31571,7 +31571,7 @@
     "name": "RH_iff_schoenfeldWeak",
     "ns": "PiToPsi",
     "full": "PiToPsi.RH_iff_schoenfeldWeak",
-    "line": 281,
+    "line": 288,
     "why": "The Riemann hypothesis is the square-root bound on the count.",
     "sorry": false,
     "needs": [],

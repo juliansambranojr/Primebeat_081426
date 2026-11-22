@@ -12,7 +12,7 @@ sealed: false
 
 **Question.** Block T5 of `lean_stage3/design/joints.md`, second part. Is the Riemann hypothesis equivalent to every cell's residual staying at square-root size, and for which cells?
 
-**What was proved.** `lean_stage3/Stage3/CellResidual.lean`: `module_lines` 492 lines, `theorems_proved` 15 theorems, `defs` 4 definitions, `sorries` 0 sorries, `pins` 5 axiom pins at `axioms` 3 axioms. The first build had `errors_first` 3 error lines from one root; clean on build `builds` 2. The package builds at `jobs_package` 8825 jobs, the module at `jobs_module` 8780. Traps unchanged by this module, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
+**What was proved.** `lean_stage3/Stage3/CellResidual.lean`: `module_lines` 499 lines, `theorems_proved` 15 theorems, `defs` 4 definitions, `sorries` 0 sorries, `pins` 5 axiom pins at `axioms` 3 axioms. The first build had `errors_first` 3 error lines from one root; clean on build `builds` 2. The package builds at `jobs_package` 8825 jobs, the module at `jobs_module` 8780. Traps unchanged by this module, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
 
 The residual of a cell is the cell of the count minus the same cell of the smooth row `Li`, on the dyadic ladder started at `a`. `CellsSqrt` says every such residual, for every starting point between one and two, every depth and every row past a first one, is at most a constant times `cellSize`.
 

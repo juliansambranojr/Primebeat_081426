@@ -2,7 +2,7 @@
 
 CellResidual — block T5 of `lean_stage3/design/joints.md`, second part. 2026-11-22.
 
-15 theorems, 4 definitions, 493 lines. Arrows are Lean's own record of what each proof uses.
+15 theorems, 4 definitions, 500 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`PiToPsi`](../lean_stage3/PiToPsi.md), [`TableRoute`](../lean_stage3/TableRoute.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -109,7 +109,9 @@ Every cell of every dyadic ladder has its residual at square-root size.
 <a name="CellResidual-stencilR_abs_le"></a>
 ### `CellResidual.stencilR_abs_le`
 
-line 68
+line 69
+
+**Why.** A cell is no larger than its window allows. If the values the stencil reads shrink by a factor `t` per step down the window, the cell is at most the top bound times `(1 + t)^n`.
 
 **Proves**
 
@@ -132,7 +134,9 @@ line 68
 <a name="CellResidual-stencilR_one"></a>
 ### `CellResidual.stencilR_one`
 
-line 88
+line 90
+
+**Why.** The stencil of order one is one backward difference.
 
 **Proves**
 
@@ -160,7 +164,9 @@ stencilR 1 g r = g r - g (r - 1)
 <a name="CellResidual-weak_nonneg"></a>
 ### `CellResidual.weak_nonneg`
 
-line 92
+line 95
+
+**Why.** The square-root bound on the count may be taken with a constant that is not negative and a starting point of at least two.
 
 **Proves**
 
@@ -183,7 +189,9 @@ StmtSchoenfeldWeak (max C 0) 1 (max x₀ 2) (fun x => (Nat.primeCounting ⌊x⌋
 <a name="CellResidual-resid_le"></a>
 ### `CellResidual.resid_le`
 
-line 104
+line 108
+
+**Why.** One rung. Under the square-root bound on the count, the residual on the rung `a·2^m` is at most a constant times `(m + 1)·2^(m/2)`.
 
 **Proves**
 
@@ -210,7 +218,7 @@ line 104
 <a name="CellResidual-cells_of_schoenfeldWeak"></a>
 ### `CellResidual.cells_of_schoenfeldWeak`
 
-line 140
+line 144
 
 **Why.** Forward. The `π`-side bound gives every cell of every ladder.
 
@@ -243,7 +251,9 @@ CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀
 <a name="CellResidual-cells_of_RH"></a>
 ### `CellResidual.cells_of_RH`
 
-line 181
+line 186
+
+**Why.** Forward, from the Riemann hypothesis. Under it every cell of every dyadic ladder has its residual at square-root size.
 
 **Proves**
 
@@ -273,7 +283,9 @@ line 181
 <a name="CellResidual-step_le"></a>
 ### `CellResidual.step_le`
 
-line 191
+line 197
+
+**Why.** A depth-0 cell is the difference of two neighbouring rungs, so `CellsSqrt` bounds that difference.
 
 **Proves**
 
@@ -302,7 +314,9 @@ line 191
 <a name="CellResidual-two_rpow_half_ge"></a>
 ### `CellResidual.two_rpow_half_ge`
 
-line 198
+line 205
+
+**Why.** The square root of two is at least four thirds; the telescoping sum closes on this.
 
 **Proves**
 
@@ -319,7 +333,7 @@ line 198
 <a name="CellResidual-ladder_le"></a>
 ### `CellResidual.ladder_le`
 
-line 208
+line 215
 
 **Why.** The depth-0 cells, summed up one ladder.
 
@@ -353,7 +367,7 @@ line 208
 <a name="CellResidual-base_bound"></a>
 ### `CellResidual.base_bound`
 
-line 280
+line 287
 
 **Why.** The first rung, bounded over the whole range of starting points.
 
@@ -383,7 +397,7 @@ line 280
 <a name="CellResidual-schoenfeldWeak_of_cells"></a>
 ### `CellResidual.schoenfeldWeak_of_cells`
 
-line 312
+line 319
 
 **Why.** Converse. The cells at square-root size give the `π`-side bound.
 
@@ -413,7 +427,7 @@ line 312
 <a name="CellResidual-RH_iff_cells"></a>
 ### `CellResidual.RH_iff_cells`
 
-line 416
+line 423
 
 **Why.** The Riemann hypothesis is the cells at square-root size, over every dyadic ladder.
 
@@ -438,7 +452,7 @@ RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀
 <a name="CellResidual-tableFrom_cast"></a>
 ### `CellResidual.tableFrom_cast`
 
-line 424
+line 431
 
 **Why.** The integer cell, cast, is the stencil of the count one order up.
 
@@ -468,7 +482,7 @@ line 424
 <a name="CellResidual-table_cell_eq"></a>
 ### `CellResidual.table_cell_eq`
 
-line 440
+line 447
 
 **Why.** The table's cell minus the smooth cell is the residual on the ladder `a = 1`.
 
@@ -499,7 +513,7 @@ line 440
 <a name="CellResidual-table_cell_resid"></a>
 ### `CellResidual.table_cell_resid`
 
-line 460
+line 467
 
 **Why.** On the table itself. Under the Riemann hypothesis every cell of the dyadic table stays within square-root size of the smooth cell.
 

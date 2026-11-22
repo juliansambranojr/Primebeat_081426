@@ -1,5 +1,5 @@
 key	value	source
-module_lines	492	wc -l lean_stage3/Stage3/CellResidual.lean
+module_lines	499	wc -l lean_stage3/Stage3/CellResidual.lean
 theorems_proved	15	grep -c ^theorem lean_stage3/Stage3/CellResidual.lean
 defs	4	grep -c ^def lean_stage3/Stage3/CellResidual.lean
 axioms	3	#print axioms: propext, Classical.choice, Quot.sound

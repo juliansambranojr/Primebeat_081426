@@ -40,18 +40,22 @@ open scoped Chebyshev
 
 noncomputable section
 
+/-- At two the smooth count is `2 / log 2`: its integral part is empty there. -/
 theorem Li_two : Stage3.Li 2 = 2 / Real.log 2 := by
   unfold Stage3.Li
   simp
 
+/-- The smooth count `Li` is continuous past one, because it has a derivative there. -/
 theorem continuousOn_Li : ContinuousOn Stage3.Li (Ioi 1) := fun _ hy =>
   (hasDerivAt_Li hy).continuousAt.continuousWithinAt
 
+/-- Every point between two and `x` is past one, where `Li` and `log` behave. -/
 theorem uIcc_two_subset {x : ℝ} (hx : 2 ≤ x) : uIcc (2 : ℝ) x ⊆ Ioi 1 := by
   rw [uIcc_of_le hx]
   intro t ht
   exact lt_of_lt_of_le (by norm_num) ht.1
 
+/-- `Li t / t` can be integrated from two to `x`. -/
 theorem intervalIntegrable_Li_div {x : ℝ} (hx : 2 ≤ x) :
     IntervalIntegrable (fun t : ℝ => Stage3.Li t / t) volume 2 x := by
   refine ContinuousOn.intervalIntegrable ?_
@@ -60,6 +64,7 @@ theorem intervalIntegrable_Li_div {x : ℝ} (hx : 2 ≤ x) :
   have h1 : (1 : ℝ) < t := uIcc_two_subset hx ht
   linarith
 
+/-- The count over `t` can be integrated from two to `x`: the count only steps upward. -/
 theorem intervalIntegrable_pi_div {x : ℝ} (hx : 2 ≤ x) :
     IntervalIntegrable (fun t : ℝ => (Nat.primeCounting ⌊t⌋₊ : ℝ) / t) volume 2 x := by
   have hmono : Monotone (fun t : ℝ => (Nat.primeCounting ⌊t⌋₊ : ℝ)) := by
@@ -77,6 +82,7 @@ theorem intervalIntegrable_pi_div {x : ℝ} (hx : 2 ≤ x) :
   have h3 := h1.mul_continuousOn h2
   simpa [div_eq_mul_inv] using h3
 
+/-- **`Li` undone.** `Li x · log x` minus the integral of `Li t / t` from two is exactly `x`. This is the smooth side of the passage from the count back to `θ`. -/
 theorem Li_mul_log_sub_integral {x : ℝ} (hx : 2 ≤ x) :
     Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x := by
   have hderiv : ∀ t ∈ uIcc (2 : ℝ) x,
@@ -102,6 +108,7 @@ theorem Li_mul_log_sub_integral {x : ℝ} (hx : 2 ≤ x) :
 /-- The residual of the count against `Stage3.Li`, relative to `t`. -/
 def relRes (t : ℝ) : ℝ := ((Nat.primeCounting ⌊t⌋₊ : ℝ) - Stage3.Li t) / t
 
+/-- The relative residual can be integrated from two to `x`. -/
 theorem intervalIntegrable_relRes {x : ℝ} (hx : 2 ≤ x) :
     IntervalIntegrable relRes volume 2 x := by
   have h : relRes = fun t : ℝ => (Nat.primeCounting ⌊t⌋₊ : ℝ) / t - Stage3.Li t / t := by

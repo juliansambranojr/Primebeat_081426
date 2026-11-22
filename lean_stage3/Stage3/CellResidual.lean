@@ -65,6 +65,7 @@ def CellsSqrt (C : ℝ) (r₀ : ℤ) : Prop :=
   ∀ a ∈ Set.Icc (1 : ℝ) 2, ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r →
     |cellResid a r d| ≤ C * cellSize r d
 
+/-- **A cell is no larger than its window allows.** If the values the stencil reads shrink by a factor `t` per step down the window, the cell is at most the top bound times `(1 + t)^n`. -/
 theorem stencilR_abs_le {g : ℤ → ℝ} {r : ℤ} {n : ℕ} {B t : ℝ}
     (h : ∀ k ∈ range (n + 1), |g (r - k)| ≤ B * t ^ k) :
     |stencilR n g r| ≤ B * (1 + t) ^ n := by
@@ -85,10 +86,12 @@ theorem stencilR_abs_le {g : ℤ → ℝ} {r : ℤ} {n : ℕ} {B t : ℝ}
         exact Finset.sum_congr rfl fun k hk => by
           rw [one_pow, mul_one, mul_comm]
 
+/-- The stencil of order one is one backward difference. -/
 theorem stencilR_one (g : ℤ → ℝ) (r : ℤ) : stencilR 1 g r = g r - g (r - 1) := by
   rw [← iter_bdiffZ_eq_stencilR]
   rfl
 
+/-- The square-root bound on the count may be taken with a constant that is not negative and a starting point of at least two. -/
 theorem weak_nonneg {C x₀ : ℝ}
     (h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li) :
     StmtSchoenfeldWeak (max C 0) 1 (max x₀ 2)
@@ -101,6 +104,7 @@ theorem weak_nonneg {C x₀ : ℝ}
   exact mul_le_mul_of_nonneg_right
     (mul_le_mul_of_nonneg_right (le_max_left C 0) hs0) hL0
 
+/-- **One rung.** Under the square-root bound on the count, the residual on the rung `a·2^m` is at most a constant times `(m + 1)·2^(m/2)`. -/
 theorem resid_le {C x₀ a : ℝ} {m : ℤ} (hC : 0 ≤ C) (ha : a ∈ Set.Icc (1 : ℝ) 2)
     (hm : 1 ≤ m) (hx₀ : x₀ ≤ (2 : ℝ) ^ (m : ℝ))
     (h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li) :
@@ -178,6 +182,7 @@ theorem cells_of_schoenfeldWeak {C x₀ : ℝ} {r₀ : ℤ} (hC : 0 ≤ C) (hr�
   refine le_trans key (le_of_eq ?_)
   ring
 
+/-- **Forward, from the Riemann hypothesis.** Under it every cell of every dyadic ladder has its residual at square-root size. -/
 theorem cells_of_RH (hRH : RiemannHypothesis) : ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ := by
   obtain ⟨C, x₀, h⟩ := PiToPsi.RH_iff_schoenfeldWeak.mp hRH
   obtain ⟨n, hn⟩ := pow_unbounded_of_one_lt (max x₀ 2) (by norm_num : (1 : ℝ) < 2)
@@ -188,6 +193,7 @@ theorem cells_of_RH (hRH : RiemannHypothesis) : ∃ (C : ℝ) (r₀ : ℤ), Cell
     _ ≤ (2 : ℝ) ^ ((((n : ℤ) + 1 : ℤ)) : ℝ) :=
         Real.rpow_le_rpow_of_exponent_le (by norm_num) (by push_cast; linarith)
 
+/-- A depth-0 cell is the difference of two neighbouring rungs, so `CellsSqrt` bounds that difference. -/
 theorem step_le {C : ℝ} {r₀ : ℤ} (h : CellsSqrt C r₀) {a : ℝ} (ha : a ∈ Set.Icc (1 : ℝ) 2)
     {r : ℤ} (hr : r₀ + 1 ≤ r) :
     |resid a r - resid a (r - 1)| ≤ C * cellSize r 0 := by
@@ -195,6 +201,7 @@ theorem step_le {C : ℝ} {r₀ : ℤ} (h : CellsSqrt C r₀) {a : ℝ} (ha : a 
   unfold cellResid at h0
   rwa [stencilR_one] at h0
 
+/-- The square root of two is at least four thirds; the telescoping sum closes on this. -/
 theorem two_rpow_half_ge : (4 : ℝ) / 3 ≤ (2 : ℝ) ^ ((1 : ℝ) / 2) := by
   have hq : (0 : ℝ) < (2 : ℝ) ^ ((1 : ℝ) / 2) := Real.rpow_pos_of_pos (by norm_num) _
   have hq2 : (2 : ℝ) ^ ((1 : ℝ) / 2) * (2 : ℝ) ^ ((1 : ℝ) / 2) = 2 := by

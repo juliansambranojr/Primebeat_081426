@@ -1,6 +1,6 @@
 # What `CellResidual.table_cell_resid` rests on
 
-[`CellResidual.table_cell_resid`](../lean_stage3/CellResidual.md#CellResidual-table_cell_resid) in `lean_stage3/Stage3/CellResidual.lean`, line 460.
+[`CellResidual.table_cell_resid`](../lean_stage3/CellResidual.md#CellResidual-table_cell_resid) in `lean_stage3/Stage3/CellResidual.lean`, line 467.
 
 **Why.** On the table itself. Under the Riemann hypothesis every cell of the dyadic table stays within square-root size of the smooth cell.
 

@@ -1,6 +1,6 @@
 # What `CellResidual.RH_iff_cells` rests on
 
-[`CellResidual.RH_iff_cells`](../lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) in `lean_stage3/Stage3/CellResidual.lean`, line 416.
+[`CellResidual.RH_iff_cells`](../lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) in `lean_stage3/Stage3/CellResidual.lean`, line 423.
 
 **Why.** The Riemann hypothesis is the cells at square-root size, over every dyadic ladder.
 

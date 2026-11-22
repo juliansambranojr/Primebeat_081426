@@ -2,7 +2,7 @@
 
 PiToPsi — block T5 of `lean_stage3/design/joints.md`, first part. 2026-11-22. From the count `π` back to `ψ`. `PsiToPi` carries a bound on `ψ` to a bound on `π − Li`; this module carries it back, by upstream's Abel summation `Chebyshev.theta_eq_primeCounting_mul_log_sub_integral` and the matching identity for `Li`. With `VonKoch.RH_iff_psiWeak` the Riemann hypothesis is then equivalent to the square-root bound on `π − Li` itself.
 
-12 theorems, 1 definition, 314 lines. Arrows are Lean's own record of what each proof uses.
+12 theorems, 1 definition, 321 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`GlueFloor`](../lean_stage3/GlueFloor.md), [`RowLeaves`](../lean_stage3/RowLeaves.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellResidual`](../lean_stage3/CellResidual.md)
@@ -67,7 +67,7 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 <a name="PiToPsi-relRes"></a>
 ### `PiToPsi.relRes`
 
-def · line 103
+def · line 109
 
 The residual of the count against `Stage3.Li`, relative to `t`.
 
@@ -80,7 +80,9 @@ The residual of the count against `Stage3.Li`, relative to `t`.
 <a name="PiToPsi-Li_two"></a>
 ### `PiToPsi.Li_two`
 
-line 43
+line 44
+
+**Why.** At two the smooth count is `2 / log 2`: its integral part is empty there.
 
 **Proves**
 
@@ -99,7 +101,9 @@ Stage3.Li 2 = 2 / Real.log 2
 <a name="PiToPsi-continuousOn_Li"></a>
 ### `PiToPsi.continuousOn_Li`
 
-line 47
+line 49
+
+**Why.** The smooth count `Li` is continuous past one, because it has a derivative there.
 
 **Proves**
 
@@ -121,7 +125,9 @@ ContinuousOn Stage3.Li (Ioi 1)
 <a name="PiToPsi-uIcc_two_subset"></a>
 ### `PiToPsi.uIcc_two_subset`
 
-line 50
+line 53
+
+**Why.** Every point between two and `x` is past one, where `Li` and `log` behave.
 
 **Proves**
 
@@ -144,7 +150,9 @@ uIcc (2 : ℝ) x ⊆ Ioi 1
 <a name="PiToPsi-intervalIntegrable_Li_div"></a>
 ### `PiToPsi.intervalIntegrable_Li_div`
 
-line 55
+line 59
+
+**Why.** `Li t / t` can be integrated from two to `x`.
 
 **Proves**
 
@@ -172,7 +180,9 @@ IntervalIntegrable (fun t : ℝ => Stage3.Li t / t) volume 2 x
 <a name="PiToPsi-intervalIntegrable_pi_div"></a>
 ### `PiToPsi.intervalIntegrable_pi_div`
 
-line 63
+line 68
+
+**Why.** The count over `t` can be integrated from two to `x`: the count only steps upward.
 
 **Proves**
 
@@ -196,7 +206,9 @@ IntervalIntegrable (fun t : ℝ => (Nat.primeCounting ⌊t⌋₊ : ℝ) / t) vol
 <a name="PiToPsi-Li_mul_log_sub_integral"></a>
 ### `PiToPsi.Li_mul_log_sub_integral`
 
-line 80
+line 86
+
+**Why.** `Li` undone. `Li x · log x` minus the integral of `Li t / t` from two is exactly `x`. This is the smooth side of the passage from the count back to `θ`.
 
 **Proves**
 
@@ -224,7 +236,9 @@ Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x
 <a name="PiToPsi-intervalIntegrable_relRes"></a>
 ### `PiToPsi.intervalIntegrable_relRes`
 
-line 105
+line 112
+
+**Why.** The relative residual can be integrated from two to `x`.
 
 **Proves**
 
@@ -253,7 +267,7 @@ IntervalIntegrable relRes volume 2 x
 <a name="PiToPsi-theta_sub_id_eq"></a>
 ### `PiToPsi.theta_sub_id_eq`
 
-line 115
+line 122
 
 **Why.** `θ` from `π`, with `Stage3.Li` taken off both sides.
 
@@ -282,7 +296,7 @@ line 115
 <a name="PiToPsi-relRes_tail_le"></a>
 ### `PiToPsi.relRes_tail_le`
 
-line 132
+line 139
 
 **Why.** The tail of `∫ |relRes|` under the `π`-side bound.
 
@@ -313,7 +327,7 @@ line 132
 <a name="PiToPsi-psiWeak_of_schoenfeldWeak"></a>
 ### `PiToPsi.psiWeak_of_schoenfeldWeak`
 
-line 178
+line 185
 
 **Why.** From the count to `ψ`. The square-root bound on `π − Stage3.Li` gives the bound on `ψ` at two more logarithms.
 
@@ -346,7 +360,7 @@ line 178
 <a name="PiToPsi-RH_of_schoenfeldWeak"></a>
 ### `PiToPsi.RH_of_schoenfeldWeak`
 
-line 264
+line 271
 
 **Why.** The square-root bound on the count gives the Riemann hypothesis.
 
@@ -377,7 +391,7 @@ RiemannHypothesis
 <a name="PiToPsi-RH_iff_schoenfeldWeak"></a>
 ### `PiToPsi.RH_iff_schoenfeldWeak`
 
-line 281
+line 288
 
 **Why.** The Riemann hypothesis is the square-root bound on the count.
 
