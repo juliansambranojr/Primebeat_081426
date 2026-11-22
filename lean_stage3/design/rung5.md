@@ -1498,7 +1498,12 @@ Theorems.  In symbols; the Lean statements are owed before any brief.
               planted on the tree's term. Block 13g is not used: the comparison
               is with the target's own transform, so this is a continuity
               bound and carries no sign condition of its own.
-           T10 `S_mono_re` — `‖S m (x + iy)‖` nondecreasing in `|x|`.
+           T10 dropped (unit 0378): no monotonicity of `S` is used.
+           T12 `norm_S_le_tail` — no hypothesis on `w` —
+               `‖S m w‖ ≤ cS m / D m * ‖w‖ * exp((w²).re * sigma m + ‖w‖⁴/(6π⁴(m+1)³))`.
+               From `WeilPowerGauss.tendsto_S`, `|1 + z| ≤ exp(Re z + |z|²/2)`
+               and `Σ_{i ≥ m+2} i⁻⁴ ≤ 1/(3(m+1)³)`. Checked against the exact
+               `S` at `20000` points, `0` violations (unit 0378).
            T11 `detect_uniform` — everything above and R7 —
                `∀ ε T, 0 < ε → 2 ≤ T → StmtDetect ε T (2·h₀ ε T)`.
 Composes.  `Stage3.WeilPowerBackground.term_eq_neg_sq`, `what_I`, `PsiW_le_two`;
@@ -1510,27 +1515,26 @@ Composes.  `Stage3.WeilPowerBackground.term_eq_neg_sq`, `what_I`, `PsiW_le_two`;
            Section 8's selection is not used: with the cluster annihilated the
            target is any zero of the box and its height is at most `T`.
 Module.    none named. This block is priced and is not brief-ready.
-Open.      Four things, in the order they could kill it; (b) has since been
-           swept and is down to its Lean proof.
-           (a) The tree's bounds at `h₀`. The price is computed on the exact
-               `S` (Gamma closed form, checked against `S_mul_QS`). The tree's
-               comparison lemmas carry range conditions in `h`
-               (`WeilPowerCompare.compare_suppressed`'s `hq` is one), and `h₀`
-               here is `10⁷` to `10⁹`. Unit 0367 priced the tree's own
-               inequalities at unit 0366's cells; these supports are larger and
-               the multiplied window's far and on-line bounds are new (the
-               on-line series of section 6 decays like `|k|⁻⁴`, and the
-               multiplier grows like `|τ|^{4N}`, so section 6's bound does not
-               carry over as stated). Which proved bounds reach `h₀` is unpriced.
+Open.      Four things, in the order they could kill it. As of unit 0378 none
+           is open as a question: (a) answered, (b) swept, (c) closed, (d)
+           searched. What remains is the Lean: T1 to T12 and the assembly.
+           (a) The tree's bounds at `h₀`. ANSWERED 2026-11-22, unit 0378. The
+               tree's Gaussian bound `norm_S_le_c_neg` stops closing at height
+               distance `1.233` for real part offset `1/2`, its regime ends at
+               `2.164`, and `norm_S_le_far` starts at `4.499`: a hole. One new
+               lemma, T12 below, fills it. With `S_real_ge_sharp` at the
+               target, `online_term_le_near`, T12 and `norm_S_le_far`, all nine
+               cells close at `h₀` within a factor `1.022` of the exact price.
+               Section 6's on-line series is not used.
            (b) T9, the kept members. SWEPT 2026-11-22, unit 0376: the bound,
                the exact worst case at the nine cells, random ladders and
                planted ladders on the tree's term all hold with a factor `9.4`
                to spare. What remains of (b) is the Lean proof, which is four
                `arg(1 + z)` bounds and one bound on `S'/S` near the real axis.
-           (c) The far bound at real part offset `1/2`. The script takes the
-               worst case over real parts by monotonicity (T10) and over
-               heights cell by cell, with `0` violations of monotonicity in
-               the heights sampled; neither is a Lean bound.
+           (c) The far bound. CLOSED by construction, unit 0378: every bound
+               is now an explicit expression whose worst real part offset is
+               `1/2` by inspection and whose height dependence is read off the
+               formula. No monotonicity of `S` is used; T10 is dropped.
            (d) Prior art. SEARCHED 2026-11-22, unit 0377, from entry 296.
                The device is KNOWN: Zhu, arXiv:2608.24827v2 § 13.2, multiplies
                a window by an even polynomial vanishing at every zero up to a

@@ -22,6 +22,31 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · rung 5 section 16, open items (a) and (c): priced on proved inequalities
+
+    DONE        one unit whose `run/` re-prices unit 0375's nine cells
+                using only inequalities in the shape of Lean statements:
+                the tree's own where they reach, and each new one named,
+                stated, and checked against the exact `S` on a grid before
+                it is used; the table of `h₀` proved-form against exact,
+                the lost factor per cell, and which tree theorem or new
+                lemma carries each zero; items (a) and (c) of the block
+                rewritten; the list of new lemmas a module would need
+    ASSUMED     "Let's do A then C" (Julian, 2026-11-22): A is finishing
+                section 16 as mathematics, this pricing first and a module
+                after; a bound counts as the tree's only if its hypotheses
+                hold at the cell, checked in the script; `λ = 1` unless a
+                hypothesis forces otherwise, and then the block says which
+    DEPENDS     nothing to run it. A module after it needs Lean, which is
+                not installed in this environment; that is asked for when
+                the pricing says a module is feasible
+    OUT         the Lean module itself; C (the bridge to primes); auditing
+                units 0366 and 0367's pricing of the old window
+    OUTCOME     priced, unit 0378: 9 of 9 cells close on proved-form
+                bounds within a factor 1.022 of the exact price; one new
+                lemma (the tail bound); items (a) and (c) closed. The
+                ASSUMED pin on `λ = 1` stood
+
 ### 2026-11-22 · rung 5 section 16, open item (d): prior art for the explicit support
 
     DONE        one unit recording a literature search for section 16's
