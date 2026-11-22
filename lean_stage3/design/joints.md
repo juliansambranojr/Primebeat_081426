@@ -779,3 +779,35 @@ ladder started at `a`, minus the same cell of the smooth row.
 constant `4`, the transfer to `ψ` costs two logarithms, which
 `VonKoch.RH_of_psiWeak` already carries (`k = 3`).
 
+### J10a Folded zeros do not cancel — PROVED (unit 0429: `AliasClass.sum_order_div_ne_zero`, `alias_weight`, `alias_weight_ne_zero`); the step after it OPEN
+
+Joint 10 on the table's own ladder asks: does square-root size of the cells of
+the one ladder `2^r` give the Riemann hypothesis?
+
+**What the ladder folds.** On the ladder a zero `ρ` enters only through
+`z = 2^ρ`: its mode at row `r` is `z^r` (`CellModes.mode_two_int`) and its
+symbol is `1 − z⁻¹` (`CellModes.sym_two`). Two zeros with the same `z` differ
+by a multiple of `2πi/log 2`: same real part, heights folded. `|z| = 2^(Re ρ)`,
+so the real part is not folded.
+
+**Why folded zeros cannot cancel.** In `CellModes.cell_eq_modeSum` the zero `ρ`
+carries the coefficient `m(ρ)/ρ·(1 − 2^(−ρ))^d`. For zeros sharing `z` the
+symbol and the mode are common factors and the coefficients add to
+`(Σ m(ρ)/ρ)·(1 − z⁻¹)^d·z^r`. Each `1/ρ` has real part `Re ρ/|ρ|² > 0` and each
+`m(ρ) ≥ 1`, so the sum has positive real part. `|z| > 1` gives `1 − z⁻¹ ≠ 0`.
+
+**Theorems** (`AliasClass`):
+
+- `re_inv_pos (h : 0 < ρ.re) : 0 < (ρ⁻¹).re`.
+- `sum_order_div_ne_zero (S : Finset Kadiri.NontrivialZeros) (hS : S.Nonempty) : Σ ρ ∈ S, m(ρ)/ρ ≠ 0`.
+- `sym_eq_of_alias`, `mode_eq_of_alias`: `2^ρ = 2^ρ'` gives the same symbol and the same mode at integer rows.
+- `alias_weight`: for `S` with `2^ρ = z` on `S`, `Σ ρ ∈ S, m(ρ)/ρ·Sym 2 ρ^d·mode 2 ρ r = (Σ m/ρ)·(1 − z⁻¹)^d·z^r`.
+- `alias_weight_ne_zero`: that is not zero when `S` is nonempty.
+
+**OPEN, the step after this.** From "every folded class has nonzero weight" to
+"the cells of the one ladder cannot all be of square-root size when a zero has
+real part above one half". The sum over the zeros is not absolutely
+convergent, so this is a statement about power sums `Σ c_j z_j^r` at
+consecutive integers `r` (Turán's theory) or about the power series
+`Σ a_r z^r` and its singularities; neither is in the tree.
+

@@ -1,0 +1,17 @@
+key	value	source
+module_lines	133	wc -l lean_stage3/Stage3/AliasClass.lean
+theorems_proved	8	grep -c ^theorem lean_stage3/Stage3/AliasClass.lean
+defs	0	grep -c ^def lean_stage3/Stage3/AliasClass.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/AliasClass.lean
+pins	3	sum_order_div_ne_zero, alias_weight, alias_weight_ne_zero
+errors_first	0	first lake build Stage3.AliasClass, grep -c of its error lines
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8826	lake build (full Stage3), Build completed successfully
+jobs_module	8742	run/build.log, lake build Stage3.AliasClass
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#j10a	folded zeros do not cancel
+joint	10	SECTIONS.md, the rows to all x on one ladder
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

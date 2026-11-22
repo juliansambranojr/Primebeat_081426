@@ -55,7 +55,7 @@ would "not connect"; they are joints of the one object and are numbered here.
 | T3 | the height taken to infinity: the tail of the zero sum inside the error | OPEN; the error term is named, the limit is not taken |
 | T4 | the stencil as a test function in Weil's form, joining section F | OPEN; `JointSymbol` is its transform |
 | T5 | the Riemann hypothesis as the size of the cells: RH holds exactly when every cell's residual, on every dyadic ladder `a·2^r` with `1 ≤ a ≤ 2`, stays at square-root size | SEALED (units 0427, 0428): `Stage3/CellResidual.RH_iff_cells`; on the table's own ladder the forward direction is `table_cell_resid`, and its converse there is joint 10 |
-| 10 | the zeros read back from the cells | OPEN, as below |
+| 10 | the zeros read back from the cells | OPEN, as below. First piece (unit 0429, `Stage3/AliasClass.alias_weight_ne_zero`): on the one ladder the zeros with the same `2^ρ` fold into one mode whose weight is never zero, so the ladder folds heights and loses no zero and no real part |
 
 ## The sections
 

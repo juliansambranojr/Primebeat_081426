@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 10 on one ladder, first piece: `Stage3/AliasClass.lean`, block J10a of `joints.md`
+
+    DONE        `AliasClass`: the reciprocal of a nontrivial zero has positive
+                real part; a nonempty finite set of zeros has
+                `Σ m(ρ)/ρ ≠ 0`; zeros with the same `2^ρ` have the same
+                symbol and the same mode on the ladder; so a nonempty finite
+                set of zeros sharing `2^ρ = z` contributes to the cell
+                `(Σ m/ρ)·(1 − z⁻¹)^d·z^r`, which is not zero; one unit
+    ASSUMED     Julian, 2026-11-22: "Go", after the question whether the table
+                continuing is every ladder or the one ladder, read as: work on
+                joint 10. The step from "every zero present with nonzero
+                weight" to "the cells cannot all stay small" is not in this
+                piece and is named in the block as open
+    DEPENDS     unit 0426 (`CellModes.sym_two`, `mode_two_int`)
+    OUT         the power-sum step; the converse itself
+    OUTCOME     done as pinned; unit 0429, clean on its first build
+
 ### 2026-11-22 · RH as the size of the cells: `Stage3/PiToPsi.lean`, `Stage3/CellResidual.lean`, block T5 of `joints.md`
 
     DONE        `PiToPsi`: the bound on `π − Li` at square-root size gives the

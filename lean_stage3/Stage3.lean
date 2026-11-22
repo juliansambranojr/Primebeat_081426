@@ -132,6 +132,7 @@ import Stage3.CellZeros
 import Stage3.CellModes
 import Stage3.PiToPsi
 import Stage3.CellResidual
+import Stage3.AliasClass
 
 namespace Stage3
 
