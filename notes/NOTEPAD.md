@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0375: rung 5, annihilating multiplier priced (worksheet section 16, SKETCH, EXPLORATORY). 9/9 cells close with no gap hypothesis, h0 ~ pi^2 N^2 log(12N)/(2 eps^2); cluster radius must be 0.9. Four items open; StmtWeilPositive untouched. Module is Julian's call
 - [open]   2026-09-24  atlas topography (80c7fdb, 010a5ea): Mathlib and PNT ground layers; 106 lean/ declarations stand on Lean core alone
 - [open]   2026-09-24  atlas/ shipped (626148d): 1529 Lean declarations mapped; one direct sorry, WeilPowerAssembly.detect_gap_exists, used by nothing
 - [open]   2026-09-19  lab R.4a to R.4d shipped (lab ee1e8b6). Six components on 0351 to 0373, two kinds: threads whose top objects recur on every joint (0363 to 0365 on H3, 0369 to 0373 on isTest_phiWC; formalization) and a corridor handing one object per joint (0361 to 0368: 13j, DESIGN.md, L, 2m; decisions). 0368 to 0369 carried nothing: no identifier in the closing. Unattached 0355, 0356, 0360

@@ -1383,3 +1383,143 @@ Open.      the module is a large assembly; the honest failure mode is a sorry on
            Beyond that: the ε' vs ε refinement (section 8's target selection would
            make `ε' ≥ ε` unconditional) and the near set's finiteness from the box
            being finite in height.
+
+## 16. The annihilating multiplier — SKETCH, priced on the exact term (unit 0375)
+
+Written 2026-11-22. Sections 9 and 13 died of one cause: about `log T`
+off-line candidates near the target whose phase one window cannot control.
+This section changes the window's family instead of its shape. The members
+that hurt are removed from the form exactly, by a factor of the transform
+that vanishes at them; the price moves from the range of `h` (section 9:
+`Q^N` in the range) to the amplitude, where the target's exponential pays
+for it. The idea came from reading Alpöge–Furman (arXiv:2608.13637), which
+replaces termwise sign control by linear algebra over many test functions;
+the multiplier itself is in neither that paper nor this worksheet before
+today. Nothing here touches `StmtWeilPositive`.
+
+The statement targeted is the rung's own, copied from
+`Stage3/WeilDetect.lean`: `StmtDetect ε T L := (OffLineBox ε T).Nonempty →
+∃ G, IsTest L G ∧ (zeroForm G).re < 0`, with `L` explicit in `ε` and `T`
+alone. `G` may depend on the zeros; `L` may not.
+
+Objects.   `W h γ m`, `q m`, `S m`, `what h γ m` (`WeilOddPower`), `phiW`
+           (`WeilPowerBackground`), `termW` (`WeilPowerBands`). For an even
+           polynomial `p` with real coefficients and `D = d/du`, the new test
+           function is `G_p u = indicator (Icc (-h) h) ((p(D) W)(u) · e^{−u/2})`.
+           Its term at `ρ`, with `s = ρ − 1/2`:
+               `laplace G_p (−ρ) · laplace G_p (−(1−ρ)) = −p(s)² · what(s)²`.
+           The connecting lemmas: `term_eq_neg_sq` and `what_eq` for the
+           unmultiplied window, `term_eq_sidebands` for the two sidebands, and
+           one NEW lemma, integration by parts `deg p` times with the boundary
+           terms gone because `q m` vanishes to order `2m + 1` at `±1`. Unit
+           0375 part A checks the identity numerically on `W` itself (relative
+           error under `1e-38` at four points, `m = 6`, `deg p = 6`).
+           The multiplier: target `s₀ = ε₀ + iγ₀`, window tuned to `γ = γ₀`;
+           cluster = every other off-line zero within `0.9` in height of the
+           target, `a_j = ρ_j − 1/2`, `d_j = |s₀ − a_j|`; `N = ⌊15 log T + 73⌋`
+           bounds the cluster with multiplicity
+           (`JensenCount.zeta_local_zero_count`, whose disk covers height
+           distance `√13/4 = 0.9014` at every real part in `[1/2, 1]`).
+               `p(s) = (s² − c)² · ∏_{j ∈ A} (s² − a_j²)(s² − conj(a_j)²)`
+           `A` the annihilated members, `c` real (the rotator). Each factor is
+           even and real, so `p(it)` is real: on-line terms stay `≥ 0`.
+           The ladder that picks `A`: `θ_i = θ₀ ξ^{−i}`, `θ₀ = λπ³/(8h)`,
+           `ξ = 12N`, `i = 0..N`. `N` members, `N + 1` annuli `(θ_{i+1}, θ_i]`,
+           so one is empty; `i*` the first. `A = {j : d_j > θ_{i*}}`; the kept
+           members have `d_j ≤ θ_{i*}/ξ`.
+Sizes.     Gain: the target's term is `−|p(s₀)|²·(h/2)²·(S m (ε₀h) − far)²`, and
+           `log S m (εh)² = 2F(ε)·h` to leading order with
+           `F(u) = −Re[(1+z)log(1+z) + (1−z)log(1−z)]`, `z = iu/(πλ)`, times `λ`;
+           at `λ = 1`, `2F(ε) = 2ε²/π² − ε⁴/(3π⁴) + …`.
+           Loss: every other zero's term is multiplied by `|p(s)/p(s₀)|²`. For a
+           zero at height distance `τ` and any real part offset in `[0, 1/2]`:
+               per annihilated member `[(|τ|+1.4)(|τ|+1.9)/(d_j ε) · ((2γ₀+|τ|+1.9)/(2γ₀−0.9))²]²`
+               rotators `[1 + (|τ|+1/2)(2γ₀+|τ|+1)/(2εγ₀)]⁴`
+           THE LOST FACTOR is `∏_{j∈A} 1/d_j²`. It has no lower bound in `d_j`
+           alone: a member arbitrarily close to the target costs arbitrarily
+           much to annihilate. The ladder is what bounds it: annihilated members
+           have `d_j > θ₀ ξ^{−N}`, and the worst placement, one member just
+           inside each annulus, gives
+               `log ∏ 1/d_j² ≤ N(N+1)·log(12N) + 2N·log(8h/(λπ³))`.
+           The first term grows with `T` through `N` and not with `h` or `m`.
+           The second grows with `h`, as `h^{2N}`: polynomial against the gain's
+           exponential, named here so nobody finds it later. Neither grows with
+           `m` beyond `m + 1 = λh`.
+           Hand check at `T = 10⁶`, `ε = 1/4`: `N = ⌊207.2 + 73⌋ = 280`;
+           `N(N+1) log(12N) = 78680 · 8.1197 = 6.389·10⁵`; rate
+           `2ε²/π² = 0.012665`; quotient `5.04·10⁷`; the script's `h₀` is
+           `51379335`, the quotient times `1.019`.
+           Compare section 9: there `N` phases had to align and the RANGE of `h`
+           needed `Q^N`, exponent above `31` in `T`. Here `h₀` is
+           `≈ π²N²log(12N)/(2ε²)`: polynomial in `log T` and `1/ε²`.
+           Why `0.9` and not `1/2`: at `λ = 1` a zero at real part offset `1/2`
+           and height distance `1/2` has `2F = +8.55·10⁻⁴` (the quartic term;
+           `Re u² = 0` there), so it outgrows every target with `ε < 0.065`. At
+           height distance `0.9` the exponent is `−0.112`. The count is the
+           same, so the radius costs nothing. This is why `λ` stays at `1`: with
+           the radius at `0.9` no far zero grows and `λ` has nothing to buy.
+Regime.    R1 `0 < ε ≤ ε₀ ≤ 1/2`, `2 ≤ γ₀ ≤ T` (the target is a zero of the box).
+           R2 `m + 1 = λh`, `λ = 1`.
+           R3 `deg p = 4|A| + 4 ≤ 4N + 4 ≤ 2m − 1` (boundary terms vanish and
+              `p(D)W` glues `C¹` at the cut; `IsTest` asks `ContDiff ℝ 1`).
+           R4 `ξ = 12N`: the multiplier's phase drift over a kept member's
+              distance is under `π/4` (`N/ξ + N·d/ε + …`, each term `≤ 1/12`).
+           R5 `θ₀ = λπ³/(8h) ≤ lo/(2h)` for every `ε' ≤ 1/2`, `lo = λπ³/(8ε')`
+              (block 13g's boundary, halved for the margin R4 uses).
+           R6 the rotator: `arg(s₀² − c) = φ ∈ [π/4, 3π/4)` with `4φ ≡ −θ`
+              (mod `2π`), `θ = arg(p_A(s₀)²·what(s₀)²)`; then
+              `|Re(s₀² − c)| ≤ 2ε₀γ₀`, which is what the rotator bound uses.
+           R7 `h ≥ h₀(ε, T)`, the table of unit 0375.
+Defs.      `mulW (p) h γ m u` (the multiplied window), `phiP` (its test function),
+           `annih a s := (s² − a²)(s² − conj(a)²)`, `rot c s := s² − c`,
+           `ladder N h i := θ₀ ξ^{−i}`. Five definitions.
+Theorems.  In symbols; the Lean statements are owed before any brief.
+           T1 `laplace_phiP` — R3 — `laplace phiP z = p(−z − 1/2) · what(−z − 1/2)`.
+           T2 `termP_eq` — R3, `p` even — term `= −p(s)²·what(s)²`.
+           T3 `annih_real_on_line`, `rot_real_on_line` — `p(it) ∈ ℝ`.
+           T4 `online_termP_nonneg` — T2, T3, `what_I` — on-line terms `≥ 0`.
+           T5 `ladder_empty` — pigeonhole: `N` points, `N + 1` annuli.
+           T6 `prod_inv_dist_le` — T5 — `∏_{j∈A} 1/d_j ≤ θ₀^{−N} ξ^{N(N+1)/2}`.
+           T7 `mult_ratio_le` — R1 — the per-member and rotator bounds above.
+           T8 `rot_exists` — R6 — a real `c` with the stated argument.
+           T9 `kept_term_neg` — R4, R5, block 13g — a kept member's term has
+              the target's sign. NOT PROVED AND NOT PRICED beyond one planted
+              instance (unit 0375 part B).
+           T10 `S_mono_re` — `‖S m (x + iy)‖` nondecreasing in `|x|`.
+           T11 `detect_uniform` — everything above and R7 —
+               `∀ ε T, 0 < ε → 2 ≤ T → StmtDetect ε T (2·h₀ ε T)`.
+Composes.  `Stage3.WeilPowerBackground.term_eq_neg_sq`, `what_I`, `PsiW_le_two`;
+           `Stage3.WeilOddPower.what_eq`, `S_mul_QS`;
+           `Stage3.WeilPowerBridge.term_eq_sidebands`;
+           `Stage3.JensenCount.zeta_local_zero_count`;
+           `Stage3.WeilPowerNear.term_nonneg`;
+           `Stage3.WeilDetect.zeroForm`, `IsTest`, `OffLineBox`, `laplace`.
+           Section 8's selection is not used: with the cluster annihilated the
+           target is any zero of the box and its height is at most `T`.
+Module.    none named. This block is priced and is not brief-ready.
+Open.      Four things, in the order they could kill it.
+           (a) The tree's bounds at `h₀`. The price is computed on the exact
+               `S` (Gamma closed form, checked against `S_mul_QS`). The tree's
+               comparison lemmas carry range conditions in `h`
+               (`WeilPowerCompare.compare_suppressed`'s `hq` is one), and `h₀`
+               here is `10⁷` to `10⁹`. Unit 0367 priced the tree's own
+               inequalities at unit 0366's cells; these supports are larger and
+               the multiplied window's far and on-line bounds are new (the
+               on-line series of section 6 decays like `|k|⁻⁴`, and the
+               multiplier grows like `|τ|^{4N}`, so section 6's bound does not
+               carry over as stated). Which proved bounds reach `h₀` is unpriced.
+           (b) T9, the kept members. One planted instance is not a proof; the
+               phase budget R4 is arithmetic I did by hand and a script has
+               not swept it.
+           (c) The far bound at real part offset `1/2`. The script takes the
+               worst case over real parts by monotonicity (T10) and over
+               heights cell by cell, with `0` violations of monotonicity in
+               the heights sampled; neither is a Lean bound.
+           (d) Prior art. Bombieri's Theorem 10 gives negative eigenvalues
+               from finitely many off-line zeros with no formula for the
+               support. Whether an explicit support of this kind is already in
+               the literature has not been searched.
+           And what it would be if all four hold: an explicit, uniform Weil
+           criterion, `StmtWeilPositive (L ε T) → OffLineBox ε T = ∅` through
+           `box_empty_of_positive_of_detect`. The positivity half is untouched,
+           and it is where the Riemann hypothesis lives.

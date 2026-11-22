@@ -22,6 +22,41 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · rung 5, the annihilating multiplier priced (section 16)
+
+    DONE        one decision unit whose `run/` computes on the tree's
+                object (`term_eq_sidebands`, `S_mul_QS`): (a) the identity
+                that a constant-coefficient even real operator `p(D)` on
+                the window multiplies each zero's term by `p(ρ − 1/2)²`,
+                checked numerically; (b) a planted cluster where the
+                unmultiplied form has the wrong sign and the multiplied one
+                the right sign; (c) the least `h` at which the target beats
+                every other zero's worst case, as a table over `ε` and `T`
+                with `L` depending on `ε, T` alone; one SKETCH block,
+                section 16 of `lean_stage3/design/rung5.md`, in the
+                DESIGN.md block shape with the lost factor named
+    ASSUMED     "price idea 1 as a SKETCH block before any Lean" (Julian,
+                2026-11-22: "Yes") means the worksheet block and its unit,
+                no module; the cluster is every off-line zero within `1/2`
+                in height of the target, counted by
+                `JensenCount.zeta_local_zero_count`; with the cluster
+                annihilated the target is any zero of the box, so section
+                8's walk is not used and `T' = T`; `λ = 1`, `m + 1 = h` as
+                in unit 0366, stated in the block as a choice; the planted
+                zeros of (b) are controls and no claim about `ζ`
+    DEPENDS     nothing from Julian to run it; whether section 13's mark
+                moves, and whether a module follows, are his
+    OUT         any Lean; `StmtWeilPositive`, which this route does not
+                touch; moving the marks of sections 9, 13, 14; the
+                literature search for an explicit-support form of
+                Bombieri's Theorem 10 (named in the block as unchecked)
+    OUTCOME     priced, unit 0375: 9 of 9 cells close with no gap
+                hypothesis. One ASSUMED pin was wrong and the run found it:
+                the cluster radius. At `1/2` a zero at real part offset
+                `1/2` and height distance `1/2` grows on the exact term and
+                beats small `ε`; the radius is `0.9`, inside the same
+                count's disk. The other pins stood
+
 ### 2026-09-24 · the atlas's topography: Mathlib and PrimeNumberTheoremAnd
 
     DONE        two new layers on `atlas/`, each switched on and off: the
