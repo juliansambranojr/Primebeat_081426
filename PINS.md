@@ -22,6 +22,25 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · why the number line has zeros: `Stage3/WobbleCount.lean`, block W1 of `joints.md`
+
+    DONE        `count_identity`: the logarithms of the integers up to `N`
+                add to the prime content read at `N`, `N/2`, `N/3`, …
+                (`Σ log n = Σ_d Σ_{m ≤ N/d} Λ m`). `wobbleSum ρ N`: a wobble
+                `x^ρ` read at `N/1, …, N/N` and added. `wobbleSum_expansion`:
+                it is `ζ(ρ)·N^ρ + N/(1−ρ) + 1/2` up to a bounded term.
+                `invisible_iff`: after the smooth term `N/(1−ρ)` the sum
+                stays bounded in `N` exactly when `ζ(ρ) = 0`; one unit
+    ASSUMED     Julian, 2026-11-22: "build 'a wobble is invisible to the
+                integer count exactly when it sits at a zero'". "Invisible" is
+                made exact as: bounded after the smooth term. Stated for
+                `0 < Re ρ`, `ρ ≠ 1`, at integer `N`
+    DEPENDS     `ZetaGrowth.zeta1_eq_zeta`, `tail_norm_le`; upstream
+                `ArithmeticFunction.vonMangoldt_mul_zeta`,
+                `sum_Ioc_mul_eq_sum_sum`
+    OUT         the size of the wobbles; nothing here bounds a real part
+    OUTCOME     done as pinned; unit 0434, clean on its second build
+
 ### 2026-11-22 · joint T4, the stencil in Weil's form and the restoring force: `Stage3/StencilWeil.lean`, block T4 of `joints.md`
 
     DONE        `stencilTest d φ`: the table's depth-`d` stencil applied to a

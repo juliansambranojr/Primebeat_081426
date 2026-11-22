@@ -31,7 +31,7 @@
 "lean/ZerosStencil.lean": "fe84abe9e18e69769fdf6bc8adabcf3003e1873b26b2da5bcde050bb153810f3",
 "lean_bridge/Bridge.lean": "5115bb4cf26fa3669bd146e541a4b554d791c1436f491fe55ae016bb4f49b551",
 "lean_bridge/Bridge/WeilBridge.lean": "4e809bbcbdb8880799ba5dffd330b5099a2551afa7604b8072d6d2096583b5d4",
-"lean_stage3/Stage3.lean": "88769c445f8a33b1dfa6cd5faabca53422bbfc815883f908aa36715a0e99e941",
+"lean_stage3/Stage3.lean": "13becec10a6a4a5247939f0eb74a8a6c98dd144c7dcb5ff0f7683af38ea082a2",
 "lean_stage3/Stage3/Abscissa.lean": "a3fce278526f4b0c01a62b7b5985e704be4f9e34e2d395d461c901951d613d88",
 "lean_stage3/Stage3/AliasClass.lean": "eea0bed357b0d170bf39c540161a3e322d8b7008500a3a776e88ca2914069d59",
 "lean_stage3/Stage3/ArgCount.lean": "88da9ed2485e8912465d7a23d0d2615a7eec0d3678a16ab7432c23d0021acded",
@@ -145,6 +145,7 @@
 "lean_stage3/Stage3/WeilTiles.lean": "192abc03180d1d9ecc9126076905f0ce5170859a6f8635d277efdb694bf5542d",
 "lean_stage3/Stage3/WeilTransform.lean": "7d1cbbc1191bca22ca7868bcc174d44d2f2e30efe22a00c6381ab8c549e5c48d",
 "lean_stage3/Stage3/WeilWindow.lean": "8553f278b58e05f7e9047365b6f037d4d3a15975fd89d42cede10b39188935f4",
+"lean_stage3/Stage3/WobbleCount.lean": "982399400adc567deb19a16793745fe48a9de22a60163fa18ef5150e012bef39",
 "lean_stage3/Stage3/ZeroSum.lean": "73596e95cd58b167f048d6913203aa76758e5e4b8ea64178d26146ae7a3eb131",
 "lean_stage3/Stage3/ZetaGrowth.lean": "9a453200c648f47e74badd262de4146db17f3fcaedacd6dba5699868a4b6d7f6"
 }

@@ -17,9 +17,10 @@ flowchart LR
   n15["<b>zeta_growth_strip</b><br/>‖riemannZeta s‖ ≤ 15 * |s.im| ^ 2"]:::thm
   n16["<b>sq_mul_zeta_analytic</b><br/>AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s"]:::thm
   n17["<b>sq_zeta_band_bound</b><br/>∃ C : ℝ, 0 ＜ C ∧ ∀ s : ℂ, -1/2 ≤ s.re → s.re ≤ 4 → ‖(s - 1)^2 * …"]:::thm
-  x0(["<b>BoxBounds</b><br/>sq_zeta_band_explicit<br/>sq_zeta_box"]):::ext
-  x1(["<b>ContourShift</b><br/>sq_mul_zeta_analyticAt_one<br/>zeta_analyticAt"]):::ext
-  x2(["<b>EdgeBound</b><br/>gz_analytic<br/>gz_partial_fraction"]):::ext
+  x0(["<b>WobbleCount</b><br/>wobbleSum_expansion"]):::ext
+  x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit<br/>sq_zeta_box"]):::ext
+  x2(["<b>ContourShift</b><br/>sq_mul_zeta_analyticAt_one<br/>zeta_analyticAt"]):::ext
+  x3(["<b>EdgeBound</b><br/>gz_analytic<br/>gz_partial_fraction"]):::ext
   n0 --> n13
   n0 --> n4
   n0 --> n8
@@ -42,12 +43,14 @@ flowchart LR
   n8 --> n11
   n9 --> n11
   n9 --> n12
-  n12 -.-> x0
+  n12 -.-> x1
   n13 -.-> x0
-  n15 -.-> x0
-  n16 -.-> x2
-  n17 -.-> x2
-  x1 -.-> n16
+  n13 -.-> x1
+  n15 -.-> x1
+  n16 -.-> x3
+  n17 -.-> x3
+  n7 -.-> x0
+  x2 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

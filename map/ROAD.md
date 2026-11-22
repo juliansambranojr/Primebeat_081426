@@ -50,7 +50,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 1422.
+- **Theorems Lean has checked:** 1426.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 7. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 6.
@@ -171,6 +171,7 @@ From `SECTIONS.md`, open ones first.
 | One object | T1 | the cell as a sum over the zeros: the stencil of `ψ(2^·)` is `2^(r−d)` minus `Σ m·(1 − 2^(−ρ))^d·2^(rρ)/ρ` over the zeros below a height, with a stated error | SEALED — no RH (units 0425, 0426): `Stage3/CellZeros.cell_eq_zero_sum`, and `CellModes.cell_eq_modeSum` in the table tree's `Sym`, `mode`, `modeSum` |
 | One object | T4 | the stencil as a test function in Weil's form, joining section F | SEALED — (unit 0433): `Stage3/StencilWeil.zeroForm_stencilTest`: each zero enters the form on the stencil with the symbol at the zero times the symbol at its mirror point, to the depth; `restoringForce_eq`: th… |
 | One object | T5 | the Riemann hypothesis as the size of the cells: RH holds exactly when every cell's residual, on every dyadic ladder `a·2^r` with `1 ≤ a ≤ 2`, stays at square-root size | SEALED — (units 0427, 0428): `Stage3/CellResidual.RH_iff_cells`; on the table's own ladder the forward direction is `table_cell_resid`, and its converse there is joint 10 |
+| One object | W1 | why the number line has zeros: the prime content read at `N, N/2, N/3, …` adds to the logarithms of the integers, and a wobble `x^ρ` leaves that sum bounded, after its smooth term, exactly when `ζ(ρ) = 0` | SEALED — (unit 0434): `Stage3/WobbleCount.count_identity`, `invisible_iff`. It says which wobbles are possible; it does not place their real parts |
 | The joints | 1 | G → D: `WindowBound θ δ C → StmtZeroFreeRight θ` | SEALED — (unit 0400, `JointWindowDial.zeroFreeRight_of_window`; with it `schoenfeldWeakTheta_of_window`, the window bound carried to `\|π − Li\| ≤ C·x^θ·log²x`) |
 | The joints | 2 | D inside: zero-free at `θ` → `\|π − Li\| ≤ C·x^θ·log²x` | SEALED — (`schoenfeldWeakTheta_of_zeroFree`). Joint 1 composes with it; checked the same day |
 | The joints | 3 | D → the dyadic rows at exponent `θ` | SEALED — (unit 0402, `JointDialGate.thetaWindow_of_global`) |

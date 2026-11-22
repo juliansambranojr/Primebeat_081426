@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-22T21:27:41Z
+# unit: 0434-wobble-count
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15461
+  Source: session transcript, 2026-11-22, after unit 0433
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14928
+  build "a wobble is invisible to the integer count exactly when it sits at a zero"
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15277
+  def wobbleSum (ρ : ℂ) (N : ℕ) : ℂ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15278
+  ∑ n ∈ Finset.range N, (N : ℂ) ^ ρ / ((n : ℂ) + 1) ^ ρ
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15263
+  theorem count_identity (N : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15264
+  ∑ n ∈ Finset.Ioc 0 N, Real.log n
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15265
+  = ∑ d ∈ Finset.Ioc 0 N, ∑ m ∈ Finset.Ioc 0 (N / d), Λ m := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15287
+  theorem wobbleSum_expansion {N : ℕ} (hN : 0 < N) {ρ : ℂ} (hρ : 0 < ρ.re) (hρ1 : ρ ≠ 1) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15288
+  ∃ E : ℂ, ‖E‖ ≤ ‖ρ‖ * ‖ρ + 1‖ / 4 ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15289
+  wobbleSum ρ N = riemannZeta ρ * (N : ℂ) ^ ρ + (N : ℂ) / (1 - ρ) + 1 / 2 + E := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15339
+  theorem invisible_iff {ρ : ℂ} (hρ : 0 < ρ.re) (hρ1 : ρ ≠ 1) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:15340
+  (∃ C : ℝ, ∀ N : ℕ, 0 < N → ‖wobbleSum ρ N - (N : ℂ) / (1 - ρ)‖ ≤ C)
+
+# 12 found, 0 missing

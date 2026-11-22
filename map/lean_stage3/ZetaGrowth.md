@@ -5,7 +5,7 @@
 18 theorems, 3 definitions, 829 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ContourShift`](../lean_stage3/ContourShift.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BoxBounds`](../lean_stage3/BoxBounds.md), [`EdgeBound`](../lean_stage3/EdgeBound.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BoxBounds`](../lean_stage3/BoxBounds.md), [`EdgeBound`](../lean_stage3/EdgeBound.md), [`WobbleCount`](../lean_stage3/WobbleCount.md)
 
 ## The picture
 
@@ -29,9 +29,10 @@ flowchart LR
   n15["<b>zeta_growth_strip</b><br/>‖riemannZeta s‖ ≤ 15 * |s.im| ^ 2"]:::thm
   n16["<b>sq_mul_zeta_analytic</b><br/>AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s"]:::thm
   n17["<b>sq_zeta_band_bound</b><br/>∃ C : ℝ, 0 ＜ C ∧ ∀ s : ℂ, -1/2 ≤ s.re → s.re ≤ 4 → ‖(s - 1)^2 * …"]:::thm
-  x0(["<b>BoxBounds</b><br/>sq_zeta_band_explicit<br/>sq_zeta_box"]):::ext
-  x1(["<b>ContourShift</b><br/>sq_mul_zeta_analyticAt_one<br/>zeta_analyticAt"]):::ext
-  x2(["<b>EdgeBound</b><br/>gz_analytic<br/>gz_partial_fraction"]):::ext
+  x0(["<b>WobbleCount</b><br/>wobbleSum_expansion"]):::ext
+  x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit<br/>sq_zeta_box"]):::ext
+  x2(["<b>ContourShift</b><br/>sq_mul_zeta_analyticAt_one<br/>zeta_analyticAt"]):::ext
+  x3(["<b>EdgeBound</b><br/>gz_analytic<br/>gz_partial_fraction"]):::ext
   n0 --> n13
   n0 --> n4
   n0 --> n8
@@ -54,12 +55,14 @@ flowchart LR
   n8 --> n11
   n9 --> n11
   n9 --> n12
-  n12 -.-> x0
+  n12 -.-> x1
   n13 -.-> x0
-  n15 -.-> x0
-  n16 -.-> x2
-  n17 -.-> x2
-  x1 -.-> n16
+  n13 -.-> x1
+  n15 -.-> x1
+  n16 -.-> x3
+  n17 -.-> x3
+  n7 -.-> x0
+  x2 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -82,7 +85,7 @@ def · line 22
 The Euler–Maclaurin antiderivative: `({x} − {x}²)/2`.
 
 - **Is:** `` emA (x : ℝ) : ℝ := (Int.fract x - Int.fract x ^ 2) / 2 ``
-- **Used by 14:** [`BoxBounds.sq_zeta_box`](../lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_box), [`ZetaGrowth.emA_eq_poly`](#ZetaGrowth-emA_eq_poly), [`ZetaGrowth.emA_le`](#ZetaGrowth-emA_le), [`ZetaGrowth.emA_natCast`](#ZetaGrowth-emA_natCast), [`ZetaGrowth.emA_nonneg`](#ZetaGrowth-emA_nonneg), [`ZetaGrowth.integrable_emA_tail`](#ZetaGrowth-integrable_emA_tail), [`ZetaGrowth.interval_ibp`](#ZetaGrowth-interval_ibp), [`ZetaGrowth.tail_differentiableAt`](#ZetaGrowth-tail_differentiableAt), [`ZetaGrowth.tail_ibp`](#ZetaGrowth-tail_ibp), [`ZetaGrowth.tail_norm_le`](#ZetaGrowth-tail_norm_le), [`ZetaGrowth.zeta1`](#ZetaGrowth-zeta1), [`ZetaGrowth.zeta1_analyticOnNhd`](#ZetaGrowth-zeta1_analyticOnNhd), [`ZetaGrowth.zeta1_eq_zeta`](#ZetaGrowth-zeta1_eq_zeta), [`ZetaGrowth.zeta_growth_strip`](#ZetaGrowth-zeta_growth_strip)
+- **Used by 15:** [`BoxBounds.sq_zeta_box`](../lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_box), [`WobbleCount.wobbleSum_expansion`](../lean_stage3/WobbleCount.md#WobbleCount-wobbleSum_expansion), [`ZetaGrowth.emA_eq_poly`](#ZetaGrowth-emA_eq_poly), [`ZetaGrowth.emA_le`](#ZetaGrowth-emA_le), [`ZetaGrowth.emA_natCast`](#ZetaGrowth-emA_natCast), [`ZetaGrowth.emA_nonneg`](#ZetaGrowth-emA_nonneg), [`ZetaGrowth.integrable_emA_tail`](#ZetaGrowth-integrable_emA_tail), [`ZetaGrowth.interval_ibp`](#ZetaGrowth-interval_ibp), [`ZetaGrowth.tail_differentiableAt`](#ZetaGrowth-tail_differentiableAt), [`ZetaGrowth.tail_ibp`](#ZetaGrowth-tail_ibp), [`ZetaGrowth.tail_norm_le`](#ZetaGrowth-tail_norm_le), [`ZetaGrowth.zeta1`](#ZetaGrowth-zeta1), [`ZetaGrowth.zeta1_analyticOnNhd`](#ZetaGrowth-zeta1_analyticOnNhd), [`ZetaGrowth.zeta1_eq_zeta`](#ZetaGrowth-zeta1_eq_zeta), [`ZetaGrowth.zeta_growth_strip`](#ZetaGrowth-zeta_growth_strip)
 
 <a name="ZetaGrowth-zeta1"></a>
 ### `ZetaGrowth.zeta1`
@@ -93,7 +96,7 @@ The continued Euler–Maclaurin form: every piece converges absolutely on `re s 
 
 - **Is:** `` zeta1 (N : ℕ) (s : ℂ) : ℂ := (∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s) + (- (N:ℂ) ^ (1 - s)) / (1 - s) + (- (N:ℂ) ^ (-s)) / 2 + s * ((s+1) * ∫ x in Ioi (N:ℝ), (emA x : ℂ) * (x:ℂ) ^ (-(s+2))) ``
 - **Built from:** [`ZetaGrowth.emA`](#ZetaGrowth-emA)
-- **Used by 5:** [`BoxBounds.sq_zeta_box`](../lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_box), [`ZetaGrowth.zeta1_analyticOnNhd`](#ZetaGrowth-zeta1_analyticOnNhd), [`ZetaGrowth.zeta1_eq_zeta`](#ZetaGrowth-zeta1_eq_zeta), [`ZetaGrowth.zeta1_eq_zeta_strip`](#ZetaGrowth-zeta1_eq_zeta_strip), [`ZetaGrowth.zeta_growth_strip`](#ZetaGrowth-zeta_growth_strip)
+- **Used by 6:** [`BoxBounds.sq_zeta_box`](../lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_box), [`WobbleCount.wobbleSum_expansion`](../lean_stage3/WobbleCount.md#WobbleCount-wobbleSum_expansion), [`ZetaGrowth.zeta1_analyticOnNhd`](#ZetaGrowth-zeta1_analyticOnNhd), [`ZetaGrowth.zeta1_eq_zeta`](#ZetaGrowth-zeta1_eq_zeta), [`ZetaGrowth.zeta1_eq_zeta_strip`](#ZetaGrowth-zeta1_eq_zeta_strip), [`ZetaGrowth.zeta_growth_strip`](#ZetaGrowth-zeta_growth_strip)
 
 <a name="ZetaGrowth-stripRegion"></a>
 ### `ZetaGrowth.stripRegion`
@@ -337,8 +340,9 @@ zeta1 N s = riemannZeta s
 
 **Definitions its proof touches:** [`ZetaGrowth.emA`](#ZetaGrowth-emA)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`WobbleCount.wobbleSum_expansion`](../lean_stage3/WobbleCount.md#WobbleCount-wobbleSum_expansion) (WobbleCount) — `` ∃ E : ℂ, ‖E‖ ≤ ‖ρ‖ * ‖ρ + 1‖ / 4 ∧ wobbleSum ρ N = riemannZeta ρ * (N : ℂ) ^ ρ + (N : ℂ) / (1 - ρ) + 1 / 2 + E ``
   - [`ZetaGrowth.zeta1_eq_zeta_strip`](#ZetaGrowth-zeta1_eq_zeta_strip) — `` Set.EqOn (zeta1 N) riemannZeta stripRegion ``
 
 <a name="ZetaGrowth-tail_differentiableAt"></a>
@@ -507,9 +511,10 @@ line 519
   - [`ZetaGrowth.emA_le`](#ZetaGrowth-emA_le) — `` emA x ≤ 1/8 ``
   - [`ZetaGrowth.emA_nonneg`](#ZetaGrowth-emA_nonneg) — `` 0 ≤ emA x ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`BoxBounds.sq_zeta_box`](../lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_box) (BoxBounds) — `` ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 ``
+  - [`WobbleCount.wobbleSum_expansion`](../lean_stage3/WobbleCount.md#WobbleCount-wobbleSum_expansion) (WobbleCount) — `` ∃ E : ℂ, ‖E‖ ≤ ‖ρ‖ * ‖ρ + 1‖ / 4 ∧ wobbleSum ρ N = riemannZeta ρ * (N : ℂ) ^ ρ + (N : ℂ) / (1 - ρ) + 1 / 2 + E ``
   - [`ZetaGrowth.zeta_growth_strip`](#ZetaGrowth-zeta_growth_strip) — `` ‖riemannZeta s‖ ≤ 15 * |s.im| ^ 2 ``
 
 <a name="ZetaGrowth-sum_norm_le"></a>

@@ -940,3 +940,32 @@ Zero exactly on the line; proportional to the displacement; larger at larger
 **Not here.** That the form on the stencil is nonnegative without RH; that a
 zero off the line makes it negative for some `φ` and depth (`StmtDetect`).
 
+### W1 Why the number line has zeros — PROVED (unit 0434: `WobbleCount.count_identity`, `wobbleSum_expansion`, `invisible_iff`)
+
+Two facts about the integers, both counting: counted in steps they are evenly
+spaced, and each is built from primes in one way. The second, summed over the
+integers up to `N`, is `Σ_{n ≤ N} log n = Σ_{d ≤ N} ψ(N/d)`: the prime content
+`ψ` read at `N, N/2, N/3, …` adds to something as smooth as the integers
+(upstream `vonMangoldt_mul_zeta : Λ * ζ = log`, and `sum_Ioc_mul_eq_sum_sum`).
+
+So a wobble `c·x^ρ` in `ψ` contributes `c·Σ_{d ≤ N} (N/d)^ρ` to the left side.
+By the Euler–Maclaurin form the tree already has (`ZetaGrowth.zeta1_eq_zeta`,
+`tail_norm_le`), for `0 < Re ρ`, `ρ ≠ 1`:
+
+`Σ_{d ≤ N} (N/d)^ρ = ζ(ρ)·N^ρ + N/(1−ρ) + 1/2 + E`, `|E| ≤ |ρ|·|ρ+1|/4`.
+
+`N/(1−ρ)` is smooth. `|N^ρ| = N^(Re ρ)` is unbounded. So what is left after the
+smooth term is bounded in `N` exactly when `ζ(ρ) = 0`: the zeros are the
+wobbles the prime count can carry while the integers stay evenly spaced.
+
+**Theorems** (`WobbleCount`):
+
+- `count_identity (N)`: `Σ_{n ∈ Ioc 0 N} log n = Σ_{d ∈ Ioc 0 N} Σ_{m ∈ Ioc 0 (N/d)} Λ m`.
+- `wobbleSum_expansion (hN : 0 < N) (hρ : 0 < ρ.re) (hρ1 : ρ ≠ 1)`:
+  `∃ E, ‖E‖ ≤ ‖ρ‖·‖ρ+1‖/4 ∧ wobbleSum ρ N = ζ ρ·N^ρ + N/(1−ρ) + 1/2 + E`.
+- `invisible_iff (hρ) (hρ1)`:
+  `(∃ C, ∀ N, 0 < N → ‖wobbleSum ρ N − N/(1−ρ)‖ ≤ C) ↔ ζ ρ = 0`.
+
+**Not here.** Which real parts the zeros have. The identity is exact for every
+`N` whatever the zeros do, so it cannot place them.
+

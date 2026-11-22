@@ -2231,6 +2231,12 @@
 {"a":true,"k":"theorem","m":"Stage3.WeilWindow","n":"WeilWindow.m2_ge","pf":["WeilWindow.P","WeilWindow.P_ge_half","WeilWindow.P_nonneg","WeilWindow.continuous_x2P","WeilWindow.m2"],"ty":["WeilWindow.m2"],"z":false}
 {"a":true,"k":"theorem","m":"Stage3.WeilWindow","n":"WeilWindow.m2_le","pf":["WeilWindow.P","WeilWindow.P_le_one","WeilWindow.continuous_x2P","WeilWindow.m2"],"ty":["WeilWindow.m2"],"z":false}
 {"a":true,"k":"theorem","m":"Stage3.WeilWindow","n":"WeilWindow.mul_sinh_ge","pf":[],"ty":[],"z":false}
+{"a":true,"k":"theorem","m":"Stage3.WobbleCount","n":"WobbleCount.count_identity","pf":["WobbleCount.count_identity._proof_1_1"],"ty":[],"z":false}
+{"a":false,"k":"theorem","m":"Stage3.WobbleCount","n":"WobbleCount.count_identity._proof_1_1","pf":[],"ty":[],"z":false}
+{"a":true,"k":"theorem","m":"Stage3.WobbleCount","n":"WobbleCount.invisible_iff","pf":["WobbleCount.norm_natCast_cpow","WobbleCount.wobbleSum","WobbleCount.wobbleSum_expansion"],"ty":["WobbleCount.wobbleSum"],"z":true}
+{"a":true,"k":"theorem","m":"Stage3.WobbleCount","n":"WobbleCount.norm_natCast_cpow","pf":[],"ty":[],"z":false}
+{"a":true,"k":"def","m":"Stage3.WobbleCount","n":"WobbleCount.wobbleSum","pf":[],"ty":[],"z":false}
+{"a":true,"k":"theorem","m":"Stage3.WobbleCount","n":"WobbleCount.wobbleSum_expansion","pf":["WobbleCount.norm_natCast_cpow","WobbleCount.wobbleSum","ZetaGrowth.emA","ZetaGrowth.emA._proof_1","ZetaGrowth.tail_norm_le","ZetaGrowth.zeta1","ZetaGrowth.zeta1_eq_zeta"],"ty":["WobbleCount.wobbleSum"],"z":true}
 {"a":false,"k":"def","m":"Stage3.TablePort.Zeros","n":"Zeros.IsTable","pf":[],"ty":[],"z":false}
 {"a":false,"k":"def","m":"Stage3.TablePort.ZerosStencil","n":"Zeros.LaddersMeet","pf":[],"ty":[],"z":false}
 {"a":false,"k":"theorem","m":"Stage3.TablePort.ZerosStencil","n":"Zeros.base_of_meets_two","pf":[],"ty":[],"z":false}

@@ -243,6 +243,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauCriterion.contradiction`](./lean_stage3/LandauCriterion.md#LandauCriterion-contradiction) | theorem | reads ζ | `LandauCriterion` | False |
 | [`WeilPowerNear.cos_ge_lin`](./lean_stage3/WeilPowerNear.md#WeilPowerNear-cos_ge_lin) | theorem | shape | `WeilPowerNear` | 1 - 2 * θ / Real.pi ≤ Real.cos θ |
 | [`Crossover.count_does_not_determine_spread`](./lean/Crossover.md#Crossover-count_does_not_determine_spread) | theorem | shape | `Crossover` | (6.892378652639774e-07 : ℝ) &lt; 0.0736589 ∧ (0.0736589 : ℝ) / 6.892378652639774e-07 &gt; 100000 |
+| [`WobbleCount.count_identity`](./lean_stage3/WobbleCount.md#WobbleCount-count_identity) | theorem | shape | `WobbleCount` | ∑ n ∈ Finset.Ioc 0 N, Real.log n = ∑ d ∈ Finset.Ioc 0 N, ∑ m ∈ Finset.Ioc 0 (N / d), Λ m |
 | [`WeilPowerCount.count_lt_shells`](./lean_stage3/WeilPowerCount.md#WeilPowerCount-count_lt_shells) | theorem | shape | `WeilPowerCount` | N * (W + 1) &lt; K |
 | [`Elephant.coupling_coeff`](./lean/Elephant.md#Elephant-coupling_coeff) | theorem | shape | `Elephant` | ∑ k ∈ Finset.Icc 1 d, ((d.choose k : ℝ) * (-1) ^ k * vonMangoldt (b ^ k) * ((b : ℝ)⁻¹) ^ k) = -(vonMangoldt b) * (1 - (1 - (b : ℝ)⁻¹) ^ d) |
 | [`Covering.covered`](./lean/Covering.md#Covering-covered) | def | shape | `Covering` | Prop |
@@ -600,6 +601,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.inv_quadratic_tsum_le`](./lean_stage3/Stirling.md#Stage3-inv_quadratic_tsum_le) | theorem | reads ζ | `Stirling` | (∑' n : ℕ, (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) ≤ 12 / t |
 | [`RHPull.inv_sqrt_mul_self`](./lean_stage3/LineBound.md#RHPull-inv_sqrt_mul_self) | theorem | shape | `LineBound` | (Real.sqrt X)⁻¹ * X = Real.sqrt X |
 | [`Transform.inversion_fixes_circle`](./lean/Transform.md#Transform-inversion_fixes_circle) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-(1 : ℂ)) / z‖ = ‖z‖ ↔ ‖z‖ = b ^ (-(1 : ℝ) / 2) |
+| [`WobbleCount.invisible_iff`](./lean_stage3/WobbleCount.md#WobbleCount-invisible_iff) | theorem | reads ζ | `WobbleCount` | (∃ C : ℝ, ∀ N : ℕ, 0 &lt; N → ‖wobbleSum ρ N - (N : ℂ) / (1 - ρ)‖ ≤ C) ↔ riemannZeta ρ = 0 |
 | [`JointLadder.irrational_log_two_div_log_three`](./lean/JointLadder.md#JointLadder-irrational_log_two_div_log_three) | theorem | shape | `JointLadder` | Irrational (Real.log 2 / Real.log 3) |
 | [`Stage3.isEmpty_zeroHeight`](./lean_stage3/RealSegment.md#Stage3-isEmpty_zeroHeight) | theorem | reads ζ | `RealSegment` | IsEmpty Kadiri.ZeroHeightNontrivialZeros |
 | [`Elephant.IsModeRow`](./lean/Elephant.md#Elephant-IsModeRow) | def | shape | `Elephant` | Prop |
@@ -867,6 +869,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Slice5.norm_logDerivZeta_of_one_lt_re`](./lean_stage3/LineBound.md#Slice5-norm_logDerivZeta_of_one_lt_re) | theorem | reads ζ | `LineBound` | ‖deriv ζ s / ζ s‖ ≤ 2 / (s.re - 1) + 4 / (s.re - 1) ^ 2 |
 | [`Slice5.norm_logDerivZeta_sigma0`](./lean_stage3/LineBound.md#Slice5-norm_logDerivZeta_sigma0) | theorem | reads ζ | `LineBound` | ‖deriv ζ (((1 + 1 / L : ℝ) : ℂ) + I * (t : ℂ)) / ζ (((1 + 1 / L : ℝ) : ℂ) + I * (t : ℂ))‖ ≤ 2 * L + 4 * L ^ 2 |
 | [`Stage3.norm_logDerivZeta_zero`](./lean_stage3/RowLeaves.md#Stage3-norm_logDerivZeta_zero) | theorem | reads ζ | `RowLeaves` | ‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2 * Real.pi) |
+| [`WobbleCount.norm_natCast_cpow`](./lean_stage3/WobbleCount.md#WobbleCount-norm_natCast_cpow) | theorem | shape | `WobbleCount` | ‖(N : ℂ) ^ ρ‖ = (N : ℝ) ^ ρ.re |
 | [`WeilPowerGauss.norm_one_add_le`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-norm_one_add_le) | theorem | shape | `WeilPowerGauss` | ‖1 + x‖ ≤ Real.exp (x.re + ‖x‖ ^ 2) |
 | [`WeilPowerTail.norm_one_add_le`](./lean_stage3/WeilPowerTail.md#WeilPowerTail-norm_one_add_le) | theorem | shape | `WeilPowerTail` | ‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2) |
 | [`WeilPowerGeom.norm_one_sub_exp_ge`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-norm_one_sub_exp_ge) | theorem | shape | `WeilPowerGeom` | Real.exp w.re * \|Real.sin w.im\| ≤ ‖1 - Complex.exp w‖ |
@@ -1597,6 +1600,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.wingMinus`](./lean/ZerosStencil.md#Zeros-wingMinus) | def | counting | `ZerosStencil` | ℤ |
 | [`Zeros.wingPlus`](./lean/ZerosStencil.md#Zeros-wingPlus) | def | counting | `ZerosStencil` | ℤ |
 | [`WeilPowerBridge.wm`](./lean_stage3/WeilPowerBridge.md#WeilPowerBridge-wm) | def | shape | `WeilPowerBridge` | ℂ |
+| [`WobbleCount.wobbleSum`](./lean_stage3/WobbleCount.md#WobbleCount-wobbleSum) | def | shape | `WobbleCount` | ℂ |
+| [`WobbleCount.wobbleSum_expansion`](./lean_stage3/WobbleCount.md#WobbleCount-wobbleSum_expansion) | theorem | reads ζ | `WobbleCount` | ∃ E : ℂ, ‖E‖ ≤ ‖ρ‖ * ‖ρ + 1‖ / 4 ∧ wobbleSum ρ N = riemannZeta ρ * (N : ℂ) ^ ρ + (N : ℂ) / (1 - ρ) + 1 / 2 + E |
 | [`WeilPowerCompare.wOf`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-wOf) | def | shape | `WeilPowerCompare` | ℂ |
 | [`WeilPowerCompare.wOf_im`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-wOf_im) | theorem | shape | `WeilPowerCompare` | (wOf ε Δ h).im = Δ * h |
 | [`WeilPowerCompare.wOf_re`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-wOf_re) | theorem | shape | `WeilPowerCompare` | (wOf ε Δ h).re = ε * h |

@@ -60484,6 +60484,176 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/WobbleCount.lean",
+  "module": "Stage3.WobbleCount",
+  "stem": "WobbleCount",
+  "header": "WobbleCount — block W1 of `lean_stage3/design/joints.md`. 2026-11-22. Why the number line has zeros, as a statement about counting. Each integer is built from primes in one way; summed over the integers up to `N` that says the prime content read at `N`, `N/2`, `N/3`, … adds to the logarithms of the integers, which are as smooth as the integers are evenly spaced (`count_identity`). A wobble `x^ρ` in the prime content therefore enters that sum as `wobbleSum ρ N`: the wobble read at `N/1, …, N/N` and added. After its …",
+  "imports": [
+   "Stage3.ZetaGrowth"
+  ],
+  "opens": [
+   "ArithmeticFunction",
+   "Complex",
+   "Finset",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "WobbleCount"
+  ],
+  "lines": 191,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/ZetaGrowth.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "count_identity",
+    "ns": "WobbleCount",
+    "full": "WobbleCount.count_identity",
+    "line": 40,
+    "why": "The integers, counted through their primes. The logarithms of the integers up to `N` add to the prime content read at `N`, `N/2`, `N/3`, …",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "∑ n ∈ Finset.Ioc 0 N, Real.log n = ∑ d ∈ Finset.Ioc 0 N, ∑ m ∈ Finset.Ioc 0 (N / d), Λ m",
+    "file": "lean_stage3/Stage3/WobbleCount.lean",
+    "id": "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.count_identity",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "wobbleSum",
+    "ns": "WobbleCount",
+    "full": "WobbleCount.wobbleSum",
+    "line": 54,
+    "why": "A wobble `x^ρ` read at `N/1, N/2, …, N/N` and added.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ",
+     "N : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/WobbleCount.lean",
+    "id": "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.invisible_iff",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_natCast_cpow",
+    "ns": "WobbleCount",
+    "full": "WobbleCount.norm_natCast_cpow",
+    "line": 58,
+    "why": "The size of a power of a positive integer is the power of its real part.",
+    "sorry": false,
+    "needs": [
+     "hN : 0 < N",
+     "ρ : ℂ"
+    ],
+    "proves": "‖(N : ℂ) ^ ρ‖ = (N : ℝ) ^ ρ.re",
+    "file": "lean_stage3/Stage3/WobbleCount.lean",
+    "id": "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.norm_natCast_cpow",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.invisible_iff",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wobbleSum_expansion",
+    "ns": "WobbleCount",
+    "full": "WobbleCount.wobbleSum_expansion",
+    "line": 64,
+    "why": "The wobble sum, expanded. It is `ζ(ρ)·N^ρ`, plus a smooth term, plus one half, plus a term that stays bounded as `N` grows.",
+    "sorry": false,
+    "needs": [
+     "hN : 0 < N",
+     "hρ : 0 < ρ.re",
+     "hρ1 : ρ ≠ 1"
+    ],
+    "proves": "∃ E : ℂ, ‖E‖ ≤ ‖ρ‖ * ‖ρ + 1‖ / 4 ∧ wobbleSum ρ N = riemannZeta ρ * (N : ℂ) ^ ρ + (N : ℂ) / (1 - ρ) + 1 / 2 + E",
+    "file": "lean_stage3/Stage3/WobbleCount.lean",
+    "id": "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion",
+    "stmt": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.norm_natCast_cpow",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.emA",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.tail_norm_le",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta1",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta1_eq_zeta"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.norm_natCast_cpow",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.emA",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.tail_norm_le",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta1",
+     "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta1_eq_zeta"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.invisible_iff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "invisible_iff",
+    "ns": "WobbleCount",
+    "full": "WobbleCount.invisible_iff",
+    "line": 116,
+    "why": "A wobble is invisible to the integer count exactly at a zero. Read at `N/1, …, N/N` and added, with its smooth term taken off, a wobble `x^ρ` stays bounded as `N` grows if and only if `ζ(ρ) = 0`.",
+    "sorry": false,
+    "needs": [
+     "hρ : 0 < ρ.re",
+     "hρ1 : ρ ≠ 1"
+    ],
+    "proves": "(∃ C : ℝ, ∀ N : ℕ, 0 < N → ‖wobbleSum ρ N - (N : ℂ) / (1 - ρ)‖ ≤ C) ↔ riemannZeta ρ = 0",
+    "file": "lean_stage3/Stage3/WobbleCount.lean",
+    "id": "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.invisible_iff",
+    "stmt": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.norm_natCast_cpow",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.norm_natCast_cpow",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ZeroSum.lean",
   "module": "Stage3.ZeroSum",
   "stem": "ZeroSum",
@@ -60735,6 +60905,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/BoxBounds.lean::BoxBounds.sq_zeta_box",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.emA_eq_poly",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.emA_le",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.emA_natCast",
@@ -60989,6 +61160,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/BoxBounds.lean::BoxBounds.sq_zeta_box",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta1_analyticOnNhd",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta1_eq_zeta",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta1_eq_zeta_strip",
@@ -61026,6 +61198,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta1_eq_zeta_strip"
     ]
    },
@@ -61245,6 +61418,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/BoxBounds.lean::BoxBounds.sq_zeta_box",
+     "lean_stage3/Stage3/WobbleCount.lean::WobbleCount.wobbleSum_expansion",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.zeta_growth_strip"
     ]
    },
@@ -61479,11 +61653,12 @@
    "Stage3.AliasClass",
    "Stage3.LadderFading",
    "Stage3.LadderMean",
-   "Stage3.StencilWeil"
+   "Stage3.StencilWeil",
+   "Stage3.WobbleCount"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 147,
+  "lines": 148,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -61587,6 +61762,7 @@
    "lean_stage3/Stage3/WeilTiles.lean",
    "lean_stage3/Stage3/WeilTransform.lean",
    "lean_stage3/Stage3/WeilWindow.lean",
+   "lean_stage3/Stage3/WobbleCount.lean",
    "lean_stage3/Stage3/ZeroSum.lean",
    "lean_stage3/Stage3/ZetaGrowth.lean"
   ],
