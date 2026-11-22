@@ -22,6 +22,16 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · block E2 of `joints.md`: the left edge, read and drafted
+
+    DONE        `Glue.edge_left_bound` and its use in `explicit_formula_poly`
+                read in full; block E2 written as a DRAFT; a NOTEPAD line
+    ASSUMED     the rung figures in the block are an unlogged estimate
+    DEPENDS     units 0407, 0408
+    OUT         no Lean, no unit; the build waits for Julian
+    OUTCOME     done as pinned; the left edge is `72·D·log²x·x^(−1/4)` inside
+                the proof and `C·log x` in the statement
+
 ### 2026-11-22 · the gate priced from `floorConst` (unit 0408)
 
     DONE        one script: O68's `R_of` on the constant of

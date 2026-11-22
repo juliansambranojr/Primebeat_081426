@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  joints.md block E2 DRAFT: Glue.edge_left_bound proves the left edge <= 72 D log^2 x * x^(-1/4), then rounds to C log x (C = 72*256*D/2+1); that rounding is all of c2 in unit 0408. Restatement = three copies with a different last line (edge_left_sharp, explicit_formula_split, psiWeak_floor_split). Unlogged estimate: R6 near 76 as built. Not built
 - [open]   2026-11-22  unit 0408 EXPLORATORY: gate priced from the theorem's floorConst (unit 0407). As built 20118.7, depth 6, R6=90; radii freed 2906.9, depth 7, R6=84; c1=c2=0 gives 119.0 at psi floor 2^26.5, depth 9, R6=74. The left edge c2 is the whole cost: 16 of 19 rungs as built. Floors; c1, c2 not numerals in the tree
 - [open]   2026-11-22  unit 0407: Stage3/AssemblyFloor.lean (6 theorems, 0 sorry). psiWeak_floor: floor x0 a parameter, T just below x^2, constant 4 + (16+16b1+16b2)/log x0 + (8b3+8+4W)/log^2 x0 + 18c1/(x0 sqrt x0) + c2/(sqrt x0 log x0). schoenfeldWeak_floor_of_RH composes stmtEF_poly + rvM_crude + psi-to-pi. c1, c2 still existential
 - [open]   2026-11-22  unit 0406 EXPLORATORY: hEF route over T = x^a, sqrt kept, zero side unrounded (zeroinner_arith rounds a few tens up to 7404). a=1: depth 5 as built. a=2: top edge gone, C_psi 20118 as built (left edge c2 is all of it), depth 6 with R6=90; radii freed C_psi 2906, depth 7, R6=84. Floors. Next: the assembly restated in Lean

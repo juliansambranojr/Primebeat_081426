@@ -359,3 +359,55 @@ What the next slice needs: `c₁`, `c₂` as definitions with numerals, which
 needs the three compactness constants bounded; and the gate read on the
 `√x·log x` shape (`Statement.weakWindow_of_global`).
 
+### E2 The left edge at its own size — DRAFT for Julian, nothing built
+
+Read 2026-11-22: `Glue.edge_left_bound` (lines 557–949) and its use in
+`Glue.explicit_formula_poly` (the last `calc`, lines 1170–1192).
+
+What the proof holds. On the edge `Re s = −1/4` the integrand is bounded
+pointwise by `D·log T'·x^(−1/4)/(1/4 + |t|)`, with
+`D = 36·Ce + 9·(Mc + 1)/log 2`; `Ce` is `EdgeBound.edge_bound_core`'s
+constant, used at distance `1/4` from every zero, and `Mc` is the supremum of
+`|ζ′/ζ|` on the segment `|t| ≤ 2`, from compactness. The integral of
+`1/(1/4 + |t|)` over `[−T', T']` is at most `8·log T'`. So the proof reaches
+
+    ‖left edge‖ ≤ 72·D·(log x)²·x^(−1/4).
+
+Its last two steps then bound `(log x)²·x^(−1/4) ≤ 256` and `256 ≤ 128·log x`,
+to give the statement's shape `C·log x` with `C = 72·256·D/2 + 1`.
+
+The factor. The left edge is `O(x^(−1/4)·log²x)` and the statement records
+`O(log x)`. The quotient grows like `x^(1/4)/log x`. This is the third place
+on this route where a closing step rounds a term up to the shape of the
+statement (units 0405, 0406), and it is the one that carries the whole of
+`c₂` in unit 0408.
+
+What the restatement is. Three pieces, each a copy with a different last line
+(`LOOP.md` § 3), no new mathematics:
+
+- `edge_left_sharp`: the proof of `edge_left_bound` stopped at the line
+  `= 72 * D * ((Real.log x)^2 * x ^ (-(1:ℝ)/4))`. Statement:
+  `∃ D > 0, ∀ x T', 16 ≤ x → 2 ≤ T' → T' ≤ 2x² →
+   ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72·D·(log x)²·x^(−1/4)`.
+- `StmtExplicitFormulaSplit c₁ c₃ c₄ x₁`: for `x₁ ≤ x`, `2 ≤ T ≤ x²`,
+  `‖ψ x − x + Z(x,T)‖ ≤ c₁·x·log²(xT)/T + c₃·log x + c₄·(log x)²·x^(−1/4)`,
+  and `explicit_formula_split`: the proof of `explicit_formula_poly` with
+  `Cl·log x` replaced in its last `calc`; `c₃ = 13 + K0/2`, `c₄ = 72·D`.
+- `psiWeak_floor_split`: block E1's theorem on the new statement, constant
+  `4 + (16 + 16b₁ + 16b₂)/log x₀ + (8b₃ + 8 + 4W)/log²x₀ + 18c₁/(x₀·√x₀)
+   + c₃/(√x₀·log x₀) + c₄/x₀^(3/4)`.
+
+Size of the work: `edge_left_bound` is about 390 lines and
+`explicit_formula_poly` about 215, both under `maxHeartbeats 1600000`; the
+copies change a few lines each. `Glue.lean` itself stays untouched.
+
+An estimate of what it buys, not logged as a unit (same script shape as unit
+0408, `c₄` at its floor): with the radii as built, depth 6 closes near rung 76
+of 93; with them freed, near 74. The floor of the route with no contour
+constant at all is 74 (unit 0408). So with the left edge at its own size the
+radii stop mattering to the census.
+
+What stays unnamed after it: `Mc`, `K0` (classically `log 2π`), `W`
+(classically zero), `M0` (zeros below height six, classically none), and the
+compact-patch bound inside `ZetaGrowth.sq_zeta_band_bound`.
+
