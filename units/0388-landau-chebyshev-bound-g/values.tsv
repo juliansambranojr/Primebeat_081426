@@ -1,0 +1,19 @@
+key	value	source
+module_lines	117	wc -l lean_stage3/Stage3/LandauChebyshev.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/LandauChebyshev.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauChebyshev.lean
+private_lemmas	1	log_four_lt_two
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauChebyshev.lean
+pins	3	rampSum_le_log, G_le, abs_G_le_log
+bound_constant	8	the constant in G_le and abs_G_le_log
+errors_first	0	first lake build Stage3.LandauChebyshev, lines error: Stage3/LandauChebyshev.lean
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8779	lake build (full Stage3), Build completed successfully
+jobs_module	8670	run/build.log, lake build Stage3.LandauChebyshev
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#5b	the bound of Chebyshev's order
+unit_crude	0387	the unit with the cruder bound
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

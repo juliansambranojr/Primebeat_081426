@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 5b of `design/landau.md`, `Stage3/LandauChebyshev.lean`
+
+    DONE        `Stage3/LandauChebyshev.lean` builds with no `sorry`:
+                `rampSum_le_log`, `G_le` (`G y ≤ 8y`), `neg_le_G`, and
+                `abs_G_le_log`, `|G(y)| ≤ 8y(1 + log y)` for `y ≥ 1`; a
+                formalization unit; block 5b marked PROVED; section 0's tail
+                bound restated with it
+    ASSUMED     upstream's `Mertens.E₁Λ.le` as stated at the pinned revision
+    DEPENDS     `PrimeNumberTheoremAnd/IEANTN/Mertens.lean`, a new import for
+                Stage 3; `Stage3/LandauCrude.lean`
+    OUT         blocks 2c, 3, 4, 6, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0388: four theorems, no `sorry`, clean
+                on the first build
+
 ### 2026-11-22 · the Landau window: block 5 of `design/landau.md`, `Stage3/LandauCrude.lean`
 
     DONE        `Stage3/LandauCrude.lean` builds with no `sorry`:

@@ -36,7 +36,7 @@ Fix a real `σ₀ > 1`, large. Two readings of `(−1)^k Φ^(k)(σ₀)`:
 
 - from the primes: it is `∫₀^∞ G(e^u) u^k e^(−σ₀u) du` (block 2c). On the window `G ≤ C e^(θu)`,
   so that part is at most `|C|·k!/(σ₀−θ)^(k+1)`. Outside the window a crude
-  bound `|G(e^u)| ≤ 2(u+1)²e^u` (block 5) leaves a tail, and for `k` with
+  bound `|G(e^u)| ≤ 8(u+1)e^u` (block 5b) leaves a tail, and for `k` with
   `(k+1)/(σ₀−1)` at the middle of the window the tail is at most
   `k!/(σ₀−1)^(k+1) · e^(−cδ²k)` (slices 4, 5);
 - from the zeros: the Taylor coefficient of `Φ` at `σ₀` is the sum over the
@@ -229,7 +229,7 @@ Open.      none.
 Section 0 reads `(−1)^k Φ^(k)(σ₀)` as `∫₁^∞ G(y)(log y)^k y^(−σ₀−1) dy`. Found
 missing on 2026-11-22: no block proved it. Route: for `|s − σ₀| < σ₀ − 1`
 expand `y^(−(s−σ₀)) = Σ_k (−log y)^k (s−σ₀)^k / k!`, change sum and integral
-by absolute convergence (the crude bound of block 5 on `G`), and read the
+by absolute convergence (the bound of block 5b on `G`), and read the
 coefficients off by uniqueness of the power series. Needs block 5 first.
 
 ### 3 The poles of `Φ` and its Taylor coefficients — SKETCH
@@ -272,6 +272,36 @@ Composes.  Mathlib: `ArithmeticFunction.vonMangoldt_le_log`,
            `harmonic_eq_sum_Icc` (a `lemma`), `Nat.floor_le`.
 Module.    `Stage3/LandauCrude.lean`, namespace `LandauCrude`,
            `import Stage3.LandauWindow`. Pinned: all three.
+Open.      none.
+
+### 5b The bound of Chebyshev's order — PROVED (unit 0388: `LandauChebyshev.rampSum_le_log`, `G_le`,
+`neg_le_G`, `abs_G_le_log`)
+Asked for by Julian on 2026-11-22 after block 5: the bound without the extra
+factor `(1 + log y)`.
+Objects.   `rampSum`, `G` (`LandauWindow`). `E₁Λ x = Σ_{0 < d ≤ x} Λ(d)/d − log x`
+           (upstream, `Mertens.E₁Λ`, an `abbrev`), at most `log 4 + 4` for
+           `x ≥ 1` (`Mertens.E₁Λ.le`).
+Sizes.     each ramp is at most `y/n`, so `rampSum y ≤ y·Σ_{n ≤ y} Λ(n)/n
+           = y·(log y + E₁Λ y) ≤ y·(log y + log 4 + 4)`. Then
+           `G y ≤ y(log 4 + 4) + (1+γ)y ≤ 8y`, with `log 4 < 2` and `γ < 1`:
+           the `y·log y` cancels and the upper bound has no logarithm. From
+           below `G y ≥ −y·log y`, the ramp sum being nonnegative. So
+           `|G y| ≤ 8y(1 + log y)`. Lost factor: none; this is the order the
+           first sketch of block 5 asked for.
+Regime.    Y1 `1 ≤ y`.
+Defs.      none.
+Theorems.  `theorem rampSum_le_log {y : ℝ} (hy : 1 ≤ y) :
+               LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4))`
+           `theorem G_le {y : ℝ} (hy : 1 ≤ y) : LandauWindow.G y ≤ 8 * y`
+           `theorem neg_le_G {y : ℝ} (hy : 1 ≤ y) : -(y * Real.log y) ≤ LandauWindow.G y`
+           `theorem abs_G_le_log {y : ℝ} (hy : 1 ≤ y) :
+               |LandauWindow.G y| ≤ 8 * y * (1 + Real.log y)`
+Composes.  upstream `Mertens.E₁Λ.le` (`IEANTN/Mertens.lean`, not imported by
+           Stage 3 before this block); `LandauCrude.rampSum_nonneg`; Mathlib
+           `Real.log_two_lt_d9`, `Real.eulerMascheroniConstant_lt_two_thirds`.
+Module.    `Stage3/LandauChebyshev.lean`, namespace `LandauChebyshev`,
+           `import Stage3.LandauCrude`, `import PrimeNumberTheoremAnd.IEANTN.Mertens`.
+           Pinned: `rampSum_le_log`, `G_le`, `abs_G_le_log`.
 Open.      none.
 
 ### 6 A trigonometric polynomial with no constant term is positive somewhere in every long block — SKETCH
