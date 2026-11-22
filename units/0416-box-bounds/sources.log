@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-22T12:09:51Z
+# unit: 0416-box-bounds
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40071
+  Source: session transcript, 2026-11-22, after unit 0415
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39800
+  theorem sq_zeta_box {s : ℂ} (h1 : -1 / 2 ≤ s.re) (h2 : s.re ≤ 4) (ht : |s.im| ≤ 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39801
+  ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39850
+  theorem sq_zeta_band_explicit {s : ℂ} (hσ1 : -1 / 2 ≤ s.re) (hσ2 : s.re ≤ 4) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39851
+  ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 * (2 + |s.im|) ^ 4 := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39944
+  theorem zeta_ratio_ge : 2 / 7 ≤ ‖riemannZeta 3 / riemannZeta (3 / 2)‖ := by
+
+# 6 found, 0 missing

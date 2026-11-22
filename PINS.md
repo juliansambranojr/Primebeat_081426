@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/BoxBounds.lean`, blocks E7a and E7b of `joints.md`
+
+    DONE        `sq_zeta_box` (`‖(s−1)²ζ s‖ ≤ 135` on the box),
+                `sq_zeta_band_explicit` (the band bound with the numeral
+                135 and no compactness), `norm_zeta_three_halves_le`,
+                `one_le_norm_zeta_three`, `zeta_ratio_ge` (`2/7 ≤ ‖ζ 3/ζ(3/2)‖`);
+                a unit; the two sub-blocks PROVED
+    ASSUMED     Julian's "E7" read as: build block E7, short pieces first
+    DEPENDS     `ZetaGrowth.zeta1_eq_zeta_strip`, `tail_norm_le`,
+                `zeta_growth_strip`; upstream `Zeta0EqZeta`, `ZetaBnd_aux1b`
+    OUT         E7c (`M0`), E7d (`Mc`); nothing wired into `EdgeBound`
+    OUTCOME     done as pinned; unit 0416; clean on the second build
+
 ### 2026-11-22 · `Stage3/RouteGate.lean`, block E6 of `joints.md`
 
     DONE        `relErrWindow_route`: unit 0411's theorem with `W` put to

@@ -541,13 +541,13 @@ What the tree already has that makes these reachable.
 
 The blocks, in the order that makes each one's input a numeral.
 
-- **E7a `CK`.** `zeta1` at `N = 1` on the box: `ζ = 1/2 − 1/(1−s) + s(s+1)·tail`,
+- **E7a `CK`** — PROVED (unit 0416: `BoxBounds.sq_zeta_box`, `sq_zeta_band_explicit`; the proof's arithmetic reaches 132). `zeta1` at `N = 1` on the box: `ζ = 1/2 − 1/(1−s) + s(s+1)·tail`,
   so `(s−1)²ζ = (s−1)²·(1/2 + s(s+1)·tail) + (s−1)`, with `‖tail‖ ≤ 1/4`.
   On the box `‖s−1‖² ≤ 13`, `‖s‖·‖s+1‖ ≤ 24.1`, giving about `89` (hand
   arithmetic, not checked by any script). Below `135`, so `Cb = 136`.
   The one care: the identity is on `s ≠ 1`; both sides are continuous at `1`.
   Size: one theorem, no copy.
-- **E7b `cζ`.** A numeral below it: `ζ 3 ≥ 1` from the Dirichlet series,
+- **E7b `cζ`** — PROVED (unit 0416: `BoxBounds.zeta_ratio_ge`). A numeral below it: `ζ 3 ≥ 1` from the Dirichlet series,
   `‖ζ (3/2)‖ ≤ 7/2` from `Zeta0EqZeta` at `N = 1` as in block E5. Then
   `cζ ≥ 2/7`. Size: short.
 - **E7c `M0`.** Jensen's count on discs of radius 2 about `3/2 + ih`,
