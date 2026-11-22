@@ -1,0 +1,17 @@
+key	value	source
+module_lines	149	wc -l lean/Interpolant.lean
+theorems_proved	8	grep -c ^theorem lean/Interpolant.lean
+defs	2	grep -c ^def lean/Interpolant.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean/Interpolant.lean
+pins	8	one per theorem
+errors_first	4	first lake build Interpolant: one proof step, and the three pins then in the file
+builds	2	the first build and the one after the fix
+jobs_module	8034	run/build.log, lake build Interpolant
+jobs_tree	8055	lake build in lean/, Build completed successfully
+toolchain	4.28.0	lean/lean-toolchain
+modules_lean	29	lean/THEOREMS.md after utilities/theorem_index.py
+theorems_lean	344	lean/THEOREMS.md after utilities/theorem_index.py
+interpolant_hyps	4	unit 0403: gate theorems taking G as a hypothesis before this unit
+cut_lo	1/4	liRow: the cutoff is zero up to here
+cut_hi	1/2	liRow: the cutoff is one from here

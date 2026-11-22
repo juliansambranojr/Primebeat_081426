@@ -1,0 +1,22 @@
+key	value	source
+module_lines	210	wc -l lean_stage3/Stage3/BoxBounds.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/BoxBounds.lean
+defs	0	grep -c ^def lean_stage3/Stage3/BoxBounds.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/BoxBounds.lean
+pins	3	sq_zeta_box, sq_zeta_band_explicit, zeta_ratio_ge
+errors_first	2	first lake build Stage3.BoxBounds: one redundant tactic, and the pin above it
+builds	2	the first build and the one after the fix
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8800	lake build (full Stage3), Build completed successfully
+jobs_module	8721	run/build.log, lake build Stage3.BoxBounds
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e7	the bounds on zeta in a bounded region, sub-blocks E7a and E7b
+box_bound	135	sq_zeta_box
+proof_bound	132	sq_zeta_box, the last calc line before the numeral: 4^2 * (1/2 + 5*(6*(1/4))) + 4
+hand_estimate	89	block E7's hand arithmetic for the same quantity
+ratio_lo	2/7	zeta_ratio_ge
+unnamed_before	4	block E7's table
+unnamed_after	2	the same without CK and c_zeta
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

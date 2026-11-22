@@ -1,0 +1,19 @@
+{
+ "exploratory": true,
+ "prereg": null,
+ "ceiling_rung": 93,
+ "c1": 88216610000.0,
+ "c3": 15.0,
+ "c4": 6468930000.0,
+ "log2_psi_floor": 34.0,
+ "log2_pi_floor": 68.0,
+ "band_part": 90.8,
+ "top_part": 0.000705,
+ "log_part": 4.86e-06,
+ "left_part": 136.3,
+ "floorConstSplit": 227.1,
+ "routeConst": 694.3,
+ "depth_covered": 9,
+ "R6": 76,
+ "margin_rungs": 17
+}

@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-22T11:56:35Z
+# unit: 0414-real-segment
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39036
+  Source: session transcript, 2026-11-22, after unit 0413
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38499
+  Keep going on the stretch
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38884
+  theorem zeta_real_ne_zero {σ : ℝ} (h0 : 0 < σ) (h1 : σ < 1) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38934
+  theorem weightedZeroHeightBucket_eq_zero : Kadiri.weightedZeroHeightBucket = 0 := by
+
+# 4 found, 0 missing

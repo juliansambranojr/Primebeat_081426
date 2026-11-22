@@ -22,6 +22,155 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · block E9 built: `Stage3/GateEval.lean` and `lean/RouteCell.lean`
+
+    DONE        Stage 3: `routeConst_le` (`routeConst (2^36) ≤ 414`),
+                `gate_ineq` (the gate's gap for real `r ≥ 80` at depth six),
+                `gate_hyp_of_RH`; table tree: `cell_ne_zero_of_route`; two
+                units; block E9 PROVED
+    ASSUMED     Julian's "E9" is the go-ahead for the draft as written
+    DEPENDS     units 0412, 0419
+    OUT         other depths; any unconditional statement; a weld for the
+                hypothesis of `cell_ne_zero_of_route` (it is a statement
+                inside a theorem, and the weld checker compares definitions)
+    OUTCOME     done as pinned; units 0421 and 0422; each half clean on
+                its first build
+
+### 2026-11-22 · block E9 of `joints.md`: the Lean gate, read and drafted
+
+    DONE        the gate's hypotheses read against the route's theorem; a
+                floor and a depth chosen; block E9 written as a DRAFT; a
+                NOTEPAD line
+    ASSUMED     the arithmetic is from a throwaway script, not a logged run
+    DEPENDS     units 0412, 0419
+    OUT         no Lean, no unit; the build waits for Julian
+    OUTCOME     done as pinned; at floor `2^36` the gate's inequality holds
+                at depth six from row 80, and fails at row 79
+
+### 2026-11-22 · the gate priced from the proved ceilings (unit 0420)
+
+    DONE        one script: O68's `R_of` on `routeConst` with `c1n`, `c3n`,
+                `c4n` at the ceilings of `RouteNum`; a NOTEPAD line
+    ASSUMED     EXPLORATORY, no prereg; the gate is the script's
+    DEPENDS     unit 0419
+    OUT         no Lean
+    OUTCOME     done as pinned; depth 6 closes at rung 76
+
+### 2026-11-22 · `Stage3/EdgeNum.lean`, block E8a of `joints.md`
+
+    DONE        the three edge theorems of `EdgeBound.lean` with their
+                constants as definitions in place of "there exists":
+                `gz_partial_fraction_num` (`C1n`), `ball_order_sum_le_num`
+                (`C2n`), `edge_bound_core_num` (`Cen = C1n + C2n + 1/log 2`);
+                a unit
+    ASSUMED     Julian's "Go on that" is the restatement proposed after unit
+                0418. Each proof is the original with its existence step
+                replaced (`LOOP.md` § 3); the definitions are closed
+                expressions, bounded by numerals in a later block
+    DEPENDS     units 0416, 0417
+    OUT         `Glue`'s theorems (block E8b); `EdgeBound.lean` untouched
+    OUTCOME     done, and E8b and E8c with it in the same sitting:
+                `GlueNum.lean`, `RouteNum.lean`; unit 0419 covers the three
+
+### 2026-11-22 · `Stage3/LowEdge.lean`, block E7d of `joints.md`
+
+    DONE        `gz_partial_fraction_low` (the partial fraction at heights
+                in `[0, 2]`, with a numeral), `low_ball_count_wide` (at most
+                250 zeros of `gz` within `46/25` of the centre there),
+                `logDerivZeta_low_edge`, `logDerivZeta_short_segment`
+                (`‖ζ′/ζ‖ ≤ 1620000` on `Re = −1/4`, `|t| ≤ 2`: `Mc`); a unit;
+                E7d PROVED
+    ASSUMED     the radii are the ones `gz_partial_fraction` uses, so the
+                numeral is of the size of the existing edge constant
+    DEPENDS     units 0416, 0417; upstream `FinalBound`, `ZerosBound`
+    OUT         the explicit formula's constants as definitions; nothing
+                wired into `Glue.edge_left_bound`
+    OUTCOME     done as pinned; unit 0418; clean on the first build
+
+### 2026-11-22 · `Stage3/LowCount.lean`, block E7c of `joints.md`
+
+    DONE        `gz_c0_lower` (`1/14 ≤ ‖gz (c0 T′)‖` at every height),
+                `low_ball_count` (at most 119 zeros of `gz`, with
+                multiplicity, within `8/5` of `3/2 + iT′` for `0 ≤ T′ ≤ 6`),
+                `low_rect_count` (`M0 ≤ 714`); a unit; E7c PROVED
+    ASSUMED     the block's seven discs about `3/2 + ih` at radius `0.79`
+                became six about `3/2 + i(j + 1/2)` at radius `4/5`: the
+                same argument, one disc fewer, no reflection
+    DEPENDS     unit 0416; upstream `ZerosBound`, `ZetaFixedLowerBound`
+    OUT         E7d; nothing wired into `ball_order_sum_le`
+    OUTCOME     done as pinned; unit 0417; clean on the first build
+
+### 2026-11-22 · `Stage3/BoxBounds.lean`, blocks E7a and E7b of `joints.md`
+
+    DONE        `sq_zeta_box` (`‖(s−1)²ζ s‖ ≤ 135` on the box),
+                `sq_zeta_band_explicit` (the band bound with the numeral
+                135 and no compactness), `norm_zeta_three_halves_le`,
+                `one_le_norm_zeta_three`, `zeta_ratio_ge` (`2/7 ≤ ‖ζ 3/ζ(3/2)‖`);
+                a unit; the two sub-blocks PROVED
+    ASSUMED     Julian's "E7" read as: build block E7, short pieces first
+    DEPENDS     `ZetaGrowth.zeta1_eq_zeta_strip`, `tail_norm_le`,
+                `zeta_growth_strip`; upstream `Zeta0EqZeta`, `ZetaBnd_aux1b`
+    OUT         E7c (`M0`), E7d (`Mc`); nothing wired into `EdgeBound`
+    OUTCOME     done as pinned; unit 0416; clean on the second build
+
+### 2026-11-22 · `Stage3/RouteGate.lean`, block E6 of `joints.md`
+
+    DONE        `relErrWindow_route`: unit 0411's theorem with `W` put to
+                zero (unit 0414) and the main term written as the formula the
+                table tree's interpolant has (unit 0413); a unit; the block
+                PROVED; then a DRAFT block E7 for the three box bounds
+    ASSUMED     Julian's "Ok" read as: the recommendation just made, the
+                substitution now and the box bounds as a draft to read.
+                `K0` is not substituted: it sits inside an existential and
+                exposing it needs another copy of the explicit formula's
+                proof, for a term of size 1e-5 in unit 0410
+    DEPENDS     units 0411, 0413, 0414
+    OUT         no Lean for the box bounds
+    OUTCOME     `relErrWindow_route` done, unit 0415, clean on the first
+                build; block E7 written as a DRAFT, nothing built; a sixth
+                unnamed quantity found on the read, `‖ζ 3 / ζ (3/2)‖`
+
+### 2026-11-22 · `Stage3/RealSegment.lean`, block E5 of `joints.md`
+
+    DONE        ζ has no zero on the real segment `(0, 1)`; the bucket `W` of
+                real nontrivial zeros is empty and
+                `weightedZeroHeightBucket = 0`; a unit; the block PROVED
+    ASSUMED     Julian's "keep going on the stretch" read as: the next of
+                the four unnamed quantities, cheapest first
+    DEPENDS     upstream `Zeta0EqZeta`, `ZetaBnd_aux1b`; Mathlib
+                `riemannZeta_one_sub`
+    OUT         `M0`, `Mc`, the compact patch; nothing wired into the
+                route's theorems
+    OUTCOME     done as pinned; unit 0414; clean on the second build
+
+### 2026-11-22 · `Stage3/RowLeaves.lean`, block E4 of `joints.md`
+
+    DONE        `Li_two_rpow`: Stage 3's `Li` at `2^x` is
+                `2/log 2 + ∫₁ˣ e^(log 2·t)/t dt` for `x > 0`, the formula
+                `lean/Interpolant.liRow_eq` has from one half on;
+                `norm_logDerivZeta_zero`: `‖ζ′(0)/ζ(0)‖ = log 2π`; a unit;
+                the block PROVED
+    ASSUMED     the two statements meet the other tree by text; no weld is
+                added for a formula inside a theorem
+    DEPENDS     unit 0412; Mathlib `deriv_riemannZeta_zero`, `riemannZeta_zero`
+    OUT         `W`, `M0`, `Mc`, the compact patch; nothing wired into
+                `Glue.lean` or `GlueFloor.lean`
+    OUTCOME     done as pinned; unit 0413; clean on the third build
+
+### 2026-11-22 · `lean/Interpolant.lean`, block C1 of `joints.md`
+
+    DONE        `liRow`, a function smooth on the whole line with derivative
+                `2^x/x` beyond one half, equal to `2/log 2 + ∫₁ˣ 2^t/t dt`
+                from one half on; the gate theorems of `RelativeLi` with the
+                interpolant discharged; a unit; the block PROVED
+    ASSUMED     Julian's message naming the two open items read as: take
+                them up. That `liRow m` equals Stage 3's `Li (2^m)` is not
+                proved here (other tree, other definition of `Li`)
+    DEPENDS     unit 0403 (`lean/RelativeLi.lean`)
+    OUT         the route's constants as numerals: read and reported, not
+                built; nothing in `lean_stage3/`
+    OUTCOME     done as pinned; unit 0412; clean on the second build
+
 ### 2026-11-22 · `Stage3/JointFloorGate.lean`, block E3 of `joints.md`
 
     DONE        `weakWindow_relErr` (a weak window is the gate's relative

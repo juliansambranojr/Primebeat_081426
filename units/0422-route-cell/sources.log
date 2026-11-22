@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-22T12:57:16Z
+# unit: 0422-route-cell
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43716
+  Source: session transcript, 2026-11-22, after unit 0420
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43614
+  theorem cell_ne_zero_of_route {N : ℤ → ℤ} {f : ℤ → ℝ} {r : ℤ} (hr : 80 ≤ r)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43615
+  (hrow : ∀ k ∈ Finset.range (6 + 2),
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26177
+  ((N (r - k) : ℤ) : ℝ) = Nonvanishing.bdiffZ f (r - k))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43617
+  (hroute : ∃ ρ : ℝ, RelativeGate.StmtRelErrWindow f
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43519
+  + ∫ t in (1 : ℝ)..(m : ℝ), Real.exp (Real.log 2 * t) / t) r (6 + 1) ρ
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43620
+  ∧ ρ < Real.log 2 ^ 6 / (2 * r * 3 ^ (6 + 1))) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43621
+  Construction.tableFrom N r 6 ≠ 0 := by
+
+# 8 found, 0 missing

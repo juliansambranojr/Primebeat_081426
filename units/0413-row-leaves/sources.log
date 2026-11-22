@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-22T11:48:26Z
+# unit: 0413-row-leaves
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38427
+  Source: session transcript, 2026-11-22, after unit 0412
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38192
+  theorem hasDerivAt_Li {y : ℝ} (hy : 1 < y) : HasDerivAt Li (1 / Real.log y) y := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38265
+  theorem Li_two_rpow {x : ℝ} (hx : 0 < x) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38267
+  = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.log 2 * t) / t := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38286
+  theorem norm_logDerivZeta_zero :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:38287
+  ‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2 * Real.pi) := by
+
+# 6 found, 0 missing

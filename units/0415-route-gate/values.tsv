@@ -1,0 +1,19 @@
+key	value	source
+module_lines	69	wc -l lean_stage3/Stage3/RouteGate.lean
+theorems_proved	1	grep -c ^theorem lean_stage3/Stage3/RouteGate.lean
+defs	0	grep -c ^def lean_stage3/Stage3/RouteGate.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/RouteGate.lean
+pins	1	relErrWindow_route
+errors_first	0	first lake build Stage3.RouteGate
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8799	lake build (full Stage3), Build completed successfully
+jobs_module	8759	run/build.log, lake build Stage3.RouteGate
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e6	the route at the gate, substituted
+floor_min	16	relErrWindow_route, the hypothesis on x₀
+band_b1	112	ArgCount.rvM_crude, in the constant
+band_b3	698	ArgCount.rvM_crude, in the constant
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

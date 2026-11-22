@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-22T12:14:55Z
+# unit: 0417-low-count
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40071
+  Source: session transcript, 2026-11-22, after unit 0415
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40599
+  theorem gz_c0_lower (T' : ℝ) : 1 / 14 ≤ ‖gz (c0 T')‖ := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40621
+  theorem low_ball_count {T' : ℝ} (h0 : 0 ≤ T') (h6 : T' ≤ 6) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40622
+  (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0 : ℝ) ≤ 8 / 5)).toFinset,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40623
+  (analyticOrderNatAt gz w : ℝ)) ≤ 119 := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40760
+  (∑ ρ ∈ (ContourShift.zeta_zeros_rectangle_finite (0 : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40761
+  ((1 : ℝ) + Complex.I * (6 : ℝ))).toFinset,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40762
+  (analyticOrderNatAt riemannZeta ρ : ℝ)) ≤ 714 := by
+
+# 8 found, 0 missing

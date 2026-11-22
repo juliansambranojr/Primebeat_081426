@@ -1,0 +1,20 @@
+key	value	source
+module_lines	194	wc -l lean_stage3/Stage3/GateEval.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/GateEval.lean
+defs	0	grep -c ^def lean_stage3/Stage3/GateEval.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/GateEval.lean
+pins	3	routeConst_le, gate_ineq, gate_hyp_of_RH
+errors_first	0	first lake build Stage3.GateEval
+builds	1	the first build; a second after three unused hypotheses were removed
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8806	lake build (full Stage3), Build completed successfully
+jobs_module	8766	run/build.log, lake build Stage3.GateEval
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e9	the Lean gate evaluated
+floor_exp	36	routeConst_le: the floor is 2^36
+route_const	414	routeConst_le
+row_min	80	gate_ineq, gate_hyp_of_RH
+depth	6	gate_hyp_of_RH: the window is 6 + 1
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

@@ -14,7 +14,7 @@ statement only: everything else. A proof that was not read is marked by what
 the build says about it and nothing more.
 
     tree           toolchain   modules   theorems and lemmas   sorry
-    lean/          v4.28.0     28        337                   0
+    lean/          v4.28.0     30        346                   0
     lean_stage3/   v4.32.2     76        872                   1
     lean_bridge/   v4.33.0-rc2 1         17                    0
 
@@ -92,7 +92,7 @@ not in any tree; what it must say is written out.
 | 3 | D → the dyadic rows at exponent `θ` | SEALED (unit 0402, `JointDialGate.thetaWindow_of_global`). |
 | 4 | the logarithm into the exponent | SEALED (unit 0402, `JointDialGate.log_absorbed`): `C·x^θ·(log x)^k ≤ A·x^θ'` for any `θ' > θ`, `x ≥ 1`. |
 | 5 | D (v4.32) → C (v4.28): `StmtRelErrWindow` | WELD, in `check_weld.py` (ten welds); `powerSaving_relErr` reproved in Stage 3, and `relErrWindow_of_window` carries a window bound on `G` to the gate's statement on the rows of `π` and `Li` (unit 0402). |
-| 6 | C inside: `StmtRelErrWindow` and the gap → cell `≠ 0` | SEALED in `lean/`, with the main-term floor discharged (unit 0403, `RelativeLi.tableFrom_ne_zero_of_relErr_li`; `tableFrom_ne_zero_of_powerSaving` is the statement joint 5 reaches). Left as hypotheses: the smooth interpolant `G` of the main term, constructed in no file; the region `2d ≤ log 2·(r − d − 1)`. |
+| 6 | C inside: `StmtRelErrWindow` and the gap → cell `≠ 0` | SEALED in `lean/`, with the main-term floor discharged (unit 0403, `RelativeLi.tableFrom_ne_zero_of_relErr_li`; `tableFrom_ne_zero_of_powerSaving` is the statement joint 5 reaches). The smooth interpolant is constructed in unit 0412 (`lean/Interpolant.lean`, `liRow`; `tableFrom_ne_zero_of_relErr_liRow` takes no hypothesis on the main term). That `liRow` at a row is Stage 3's `Li` there: `Stage3/RowLeaves.Li_two_rpow` (unit 0413) and `Interpolant.liRow_eq` give the same formula, each in its tree. Left: the region `2d ≤ log 2·(r − d − 1)`. |
 | 7 | D ↔ C at the RH shape: `StmtSchoenfeldWindow`, `StmtSchoenfeld` | WELD, in `check_weld.py`; Stage 3 reproves `window_of_global` on its side. |
 | 8 | F → zeta23: `StmtWeilBridge` and five definitions | WELD, in `check_weld.py`; proved in `lean_bridge`. |
 | 9 | B ↔ D: the table of `G` and the zeros | FORWARD, on the transform: SEALED (unit 0401, `JointSymbol`): differencing `G` along the doublings `d` times multiplies its transform by the symbol `(1 − 2^(−s))^d`, and each zero's pole is reweighted by the symbol at that zero to the power `d`. Forward, pointwise (the cell as a sum over the zeros): OPEN, needs the explicit formula for `G`. CONVERSE (a bound on the cells forces a zero-free region): OPEN; derived only when the largest real part of a zero is attained (`lean_stage3/design/joints.md`, block 9 and its two corrections). |
@@ -186,3 +186,33 @@ Unit 0411 (`Stage3/JointFloorGate.lean`, `relErrWindow_floor_of_RH`) carries
 that route to `StmtRelErrWindow`, the gate's hypothesis. So section E now
 reaches section C the same way section D does: one line of theorems in
 Stage 3, then the weld of joint 5.
+
+Units 0412–0415 closed what stood between that route and a cell of the
+table: the interpolant is constructed (`lean/Interpolant.lean`), Stage 3's
+`Li` at the rows is that interpolant's formula (`RowLeaves.Li_two_rpow`),
+the real-zero bucket is zero (`RealSegment`), and `RouteGate.relErrWindow_route`
+states the route at the gate with both put in. Its conclusion is the
+hypothesis of `Interpolant.tableFrom_ne_zero_of_relErr_liRow`; the weld on
+`StmtRelErrWindow` is all that stands between them. Under RH, with three
+existential constants.
+
+Units 0416–0418 (block E7) proved a numeral for every quantity that route's
+constants took from compactness or left as a bare value: the compact patch
+(`BoxBounds.sq_zeta_box`, 135), the ratio `‖ζ 3/ζ (3/2)‖` (at least 2/7), the
+zeros below height six (`EdgeBound.low_rect_count`, 714), the logarithmic
+derivative on the short segment (`logDerivZeta_short_segment`, 1620000). With
+`K0 = log 2π` and `W = 0` from units 0413 and 0414, nothing under the
+constants is unnamed. Unit 0419 (block E8) substituted them: `EdgeNum`,
+`GlueNum` and `RouteNum` restate the chain with every constant a definition,
+`RouteNum.relErrWindow_route_num` is the route at the gate with no
+existential, and `c1n_le`, `c3n_le`, `c4n_le` put numerals above its three
+inputs. Still under RH.
+
+Units 0421 and 0422 (block E9) evaluated the Lean gate on that route.
+`Stage3/GateEval.gate_hyp_of_RH`: under RH, for every row `r ≥ 80`, the
+gate's window statement and its gap hold at depth six. `lean/RouteCell.
+cell_ne_zero_of_route`: that statement, as a hypothesis in the same
+characters, makes `tableFrom N r 6 ≠ 0`. Read across the two trees: under RH,
+no cell at depth six is zero from row 80 on. The composition is checked by
+no kernel; `StmtRelErrWindow` is welded and the rest of the hypothesis is the
+same text in two files.

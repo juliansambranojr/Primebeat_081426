@@ -1,0 +1,22 @@
+key	value	source
+module_lines	499	wc -l lean_stage3/Stage3/LowEdge.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/LowEdge.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LowEdge.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LowEdge.lean
+pins	3	low_ball_count_wide, gz_partial_fraction_low, logDerivZeta_short_segment
+errors_first	0	first lake build Stage3.LowEdge
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8802	lake build (full Stage3), Build completed successfully
+jobs_module	8724	run/build.log, lake build Stage3.LowEdge
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e7	the bounds on zeta in a bounded region, sub-block E7d
+wide_count	250	low_ball_count_wide
+pf_bound	1617537	gz_partial_fraction_low
+mc_bound	1620000	logDerivZeta_short_segment
+copies	2	gz_partial_fraction's body and low_ball_count, with the height bounded above and the numerals changed
+unnamed_before	1	unit 0417
+unnamed_after	0	block E7's table
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

@@ -433,3 +433,212 @@ What the next slice needs: nothing on this side. The gate's theorem
 `RelativeLi.tableFrom_ne_zero_of_relErr_li'` is in the table's tree and takes
 this statement; the join is by text (joint 5).
 
+### C1 The interpolant of the main term — PROVED in `lean/` (unit 0412: `Interpolant.liRow_contDiff`, `liRow_hasDerivAt`, `liRow_eq`, `tableFrom_ne_zero_of_relErr_liRow`)
+
+Every gate theorem in the table's tree takes a function `G` with
+`ContDiff ℝ ⊤ G` and `HasDerivAt G (f2x x) x` for `x > 1/2`,
+`f2x x = e^(log 2·x)/x` (`Expansion.f2x`). No file constructs one (unit 0403).
+
+Construction. `F x = 2/log 2 + ∫ t in 1..x, f2x t`. On `x > 0`, `f2x` is
+continuous, so `F` has derivative `f2x` there, and is smooth there because
+its derivative is. `F` has no reason to be smooth at or below zero, so cut it
+off: `liRow x = smoothTransition (4x − 1) · F x`. The cutoff is zero for
+`x ≤ 1/4` and one for `x ≥ 1/2`.
+
+Theorems.
+
+- `F_hasDerivAt`: `0 < x → HasDerivAt F (f2x x) x`.
+- `liRow_contDiff`: `ContDiff ℝ ⊤ liRow`. Hint: at `x < 1/4` it is locally
+  zero; at `x > 0` a product of two smooth functions.
+- `liRow_hasDerivAt`: `1/2 < x → HasDerivAt liRow (f2x x) x`.
+- `liRow_eq`: `1/2 ≤ x → liRow x = 2/log 2 + ∫ t in 1..x, f2x t`.
+- `tableFrom_ne_zero_of_relErr_liRow`: `RelativeLi`'s gate theorem with
+  `G := liRow` and the two hypotheses gone.
+
+The constant `2/log 2` is the value at the row `m = 1` of `x/log x + ∫₂ˣ dt/log²t`,
+Stage 3's `Li`. That `liRow m = Li (2^m)` for `m ≥ 1` is a statement across
+the two trees and is not in this block.
+
+### E4 Two leaves: the main term at the rows, and `K0` — PROVED (unit 0413: `RowLeaves.hasDerivAt_Li`, `Li_two_rpow`, `norm_logDerivZeta_zero`)
+
+- `hasDerivAt_Li`: `1 < y → HasDerivAt Li (1 / Real.log y) y`. From the
+  definition `Li y = y/log y + ∫₂ʸ dt/log²t`: the quotient contributes
+  `(log y − 1)/log²y`, the integral `1/log²y`.
+- `Li_two_rpow`: `0 < x → Li (2^x) = 2/log 2 + ∫ t in 1..x, exp (log 2·t)/t`.
+  Both sides have derivative `exp (log 2·x)/x` on `x > 0` and agree at
+  `x = 1`, where `Li 2 = 2/log 2`. Hint: `IsOpen.eqOn_of_deriv_eq` on `Ioi 0`.
+  The right side is, character for character, what `lean/Interpolant.liRow_eq`
+  gives for `liRow x` when `x ≥ 1/2` (`Expansion.f2x` unfolded).
+- `norm_logDerivZeta_zero`: `‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2π)`.
+  From Mathlib's `deriv_riemannZeta_zero` and `riemannZeta_zero`. This is the
+  `K0` of `Glue.explicit_formula_poly` and `explicit_formula_split`.
+
+### E5 No zero on the real segment: `W = 0` — PROVED (unit 0414: `RealSegment.zeta_real_ne_zero`, `isEmpty_zeroHeight`, `weightedZeroHeightBucket_eq_zero`)
+
+`W = weightedZeroHeightBucket` is the count, with multiplicity, of zeros of ζ
+with `0 < Re < 1` and `Im = 0` (upstream `KadiriZeroCounting`). Upstream proves
+no zero on `(−1, 0]`; nothing covers `(0, 1)`.
+
+Route, from what the packages hold.
+
+- For `Re s > 0`, `s ≠ 1`: `ζ s = riemannZeta0 N s` (`Zeta0EqZeta`). At `N = 1`
+  and real `s = σ` in `(0, 1)`:
+  `ζ σ = 1/2 − 1/(1 − σ) + σ·∫_{x>1} (⌊x⌋ + 1/2 − x)/x^(σ+1) dx`.
+- `ZetaBnd_aux1b` bounds the integral by `1/σ`, so the last term has norm at
+  most `1`. If `ζ σ = 0` then `1/(1 − σ) − 1/2 ≤ 1`, that is `σ ≤ 1/3`.
+  So no zero on `(1/3, 1)`. (The bound `1/σ` uses `|⌊x⌋ + 1/2 − x| ≤ 1`; with
+  `1/2` the argument would cover all of `(0, 1)`, but that lemma is not there.)
+- For `σ` in `(0, 1/3]`: the functional equation `riemannZeta_one_sub` at
+  `w = 1 − σ` in `[2/3, 1)`. The factors `2^(1−w)`, `π^(−w)`, `Γ w`,
+  `cos (π w/2)` are nonzero and `ζ w ≠ 0` by the first case.
+
+Theorems.
+
+- `zeta_real_ne_zero_upper`: `1/3 < σ → σ < 1 → riemannZeta σ ≠ 0`.
+- `zeta_real_ne_zero`: `0 < σ → σ < 1 → riemannZeta σ ≠ 0`.
+- `isEmpty_zeroHeight`: `IsEmpty Kadiri.ZeroHeightNontrivialZeros`.
+- `weightedZeroHeightBucket_eq_zero`: `Kadiri.weightedZeroHeightBucket = 0`.
+
+### E6 The route at the gate, substituted — PROVED (unit 0415: `RouteGate.relErrWindow_route`)
+
+- `relErrWindow_route`: under RH there are `c₁, c₃, c₄ ≥ 0` such that for
+  every `x₀ ≥ 16` and `r, n` with `x₀² ≤ 2^(r−n)`,
+  `StmtRelErrWindow` holds for the rows of `π` against
+  `m ↦ 2/log 2 + ∫ t in 1..m, exp (log 2·t)/t`, with
+  `ρ = (3·floorConstSplit c₁ c₃ c₄ 112 0 698 0 x₀ + 13)·(log 2·r)·2^(−(r−n)/2)`.
+  From `JointFloorGate.relErrWindow_floor_of_RH`, `weightedZeroHeightBucket_eq_zero`
+  and `Li_two_rpow`. The bottom row is positive because `x₀² ≥ 256`.
+
+`K0` stays inside `c₃`: `explicit_formula_split` hands its constants out under
+an existential, and naming `c₃` means a further copy of that proof. Its term
+is of size `1e-5` in unit 0410.
+
+### E7 The bounds on ζ in a bounded region — PROVED, all four sub-blocks (units 0416, 0417, 0418); the numerals are not yet wired into the route
+
+Read 2026-11-22: `Stage3/ZetaGrowth.lean` (statements, and the proof of
+`zeta_growth_strip`), `EdgeBound.gz_partial_fraction` and `ball_order_sum_le`
+(in full, units 0405 and 0409), `Glue.edge_left_bound` (in full, block E2),
+`JensenCount.zetaWindow`.
+
+What is unnamed, and where each enters.
+
+| name | what | enters |
+|---|---|---|
+| `CK` | sup of `‖(s−1)²ζ‖` on `[−1/2, 4] × [−2, 2]`, from compactness | `ZetaGrowth.sq_zeta_band_bound`, `Cb = max 135 CK + 1`; then `D0`, `A`, `C1` in `gz_partial_fraction` |
+| `cζ` | `‖ζ 3 / ζ (3/2)‖`, a positive real with no numeral | `D0 = Cb·81/(4cζ) + 2`. Not in unit 0412's list of five; found on this read |
+| `M0` | zeros with `0 ≤ Re ≤ 1`, `0 ≤ Im ≤ 6`, with multiplicity | `ball_order_sum_le`, `C2 = M0/log 2 + 8W0 + 1` |
+| `Mc` | sup of `‖ζ′/ζ‖` on `Re = −1/4`, `‖t‖ ≤ 2`, from compactness | `edge_left_bound`, `D = 36Ce + 9(Mc+1)/log 2` |
+
+What the tree already has that makes these reachable.
+
+- `ZetaGrowth.zeta1 N s`, the Euler–Maclaurin form continued to `Re s > −1`,
+  with `zeta1_eq_zeta_strip` (it is ζ on the strip region), `tail_norm_le`
+  (the tail integral is at most `(1/4)·N^(−σ−1)` for `σ ≥ −1/2`) and
+  `sum_norm_le`. `zeta_growth_strip` is these three at `N = ⌊‖t‖⌋`, which is
+  why it needs `‖t‖ ≥ 2`. Nothing in them needs `‖t‖ ≥ 2`.
+- Upstream `ZerosBound` (Jensen's count in a disc) and `FinalBound` (the
+  partial fraction), both already used at heights `≥ 2`.
+
+The blocks, in the order that makes each one's input a numeral.
+
+- **E7a `CK`** — PROVED (unit 0416: `BoxBounds.sq_zeta_box`, `sq_zeta_band_explicit`; the proof's arithmetic reaches 132). `zeta1` at `N = 1` on the box: `ζ = 1/2 − 1/(1−s) + s(s+1)·tail`,
+  so `(s−1)²ζ = (s−1)²·(1/2 + s(s+1)·tail) + (s−1)`, with `‖tail‖ ≤ 1/4`.
+  On the box `‖s−1‖² ≤ 13`, `‖s‖·‖s+1‖ ≤ 24.1`, giving about `89` (hand
+  arithmetic, not checked by any script). Below `135`, so `Cb = 136`.
+  The one care: the identity is on `s ≠ 1`; both sides are continuous at `1`.
+  Size: one theorem, no copy.
+- **E7b `cζ`** — PROVED (unit 0416: `BoxBounds.zeta_ratio_ge`). A numeral below it: `ζ 3 ≥ 1` from the Dirichlet series,
+  `‖ζ (3/2)‖ ≤ 7/2` from `Zeta0EqZeta` at `N = 1` as in block E5. Then
+  `cζ ≥ 2/7`. Size: short.
+- **E7c `M0`** — PROVED (unit 0417: `EdgeBound.low_rect_count`, `M0 ≤ 714`, on six discs about `3/2 + i(j + 1/2)` of radius `8/5`, `low_ball_count ≤ 119` each). As drafted: Jensen's count on discs of radius 2 about `3/2 + ih`,
+  `h = 0, …, 6`: each covers the part of the rectangle within height `1/2` of
+  `h` at scaled radius `0.79`, and needs `gz` bounded on the disc (E7a with
+  `zeta_growth_strip`) and bounded below at the centre (E7b, as `gz_lower`).
+  This is `ball_order_sum_le`'s own argument at seven fixed heights.
+  Size: a copy of that argument with the height fixed.
+- **E7d `Mc`** — PROVED (unit 0418: `EdgeBound.logDerivZeta_short_segment`, `Mc ≤ 1620000`, with `gz_partial_fraction_low` and `low_ball_count_wide`). As drafted: `gz_partial_fraction` and `edge_bound_core` are stated for
+  heights `≥ 2` because their bound is `C·log T′`. At heights in `[0, 2]` the
+  same proof gives a constant: `B = D0·16`. With it, on `Re = −1/4` every zero
+  and the pole are at distance at least `1/4`, so
+  `‖ζ′/ζ‖ ≤ C1′ + 4·(count from E7c) + 8/5`.
+  Size: the two long proofs copied with the height bounded above in place of
+  below, about 450 lines, a few tens changed.
+
+After E7a–E7d the constants of `explicit_formula_split` can be written as
+definitions with numerals, which is a last copy of that proof with its
+constants named in the statement.
+
+What decides whether this is worth doing. Unit 0410: the route covers depth
+six seventeen rungs inside the table with these quantities at zero, and has a
+factor 49,000 of slack. E7 would turn that pricing, which is of floors, into
+a number the kernel checked. It would still be a theorem under RH.
+
+### E8 The constants as definitions — PROVED (unit 0419: `EdgeNum`, `GlueNum`, `RouteNum.relErrWindow_route_num`, with `c1n_le`, `c3n_le`, `c4n_le`)
+
+Block E7 proved a numeral for every quantity under the route's constants.
+The theorems that produce the constants still say "there exists". E8 restates
+each with its constant a definition: the original proof, with every
+`obtain ⟨C, _, _⟩ := <existence theorem>` replaced by the named constant and
+its restated theorem, and the `refine ⟨<expression>, _, ?_⟩` replaced by the
+definition unfolding to that expression. No new mathematics.
+
+- **E8a** `Stage3/EdgeNum.lean`: `gz_partial_fraction_num` (`C1n`),
+  `ball_order_sum_le_num` (`C2n`), `edge_bound_core_num` (`Cen`).
+- **E8b** `Stage3/GlueNum.lean`: `zeta_logderiv_good_bound_num` (`Cpn`),
+  `edge_horizontal_bound_num` (`Chn`), `edge_left_sharp_num` (`Dln`, with
+  `logDerivZeta_short_segment` in place of compactness),
+  `zeroPartialSum_swap_num` (`Csn`), `explicit_formula_split_num`.
+- **E8c** the route's theorem with the three constants named, and a numeral
+  above each.
+
+### E9 The Lean gate evaluated — PROVED in both trees (unit 0421: `GateEval.routeConst_le`, `gate_ineq`, `gate_hyp_of_RH`; unit 0422: `lean/RouteCell.cell_ne_zero_of_route`)
+
+Read 2026-11-22: `lean/Interpolant.tableFrom_ne_zero_of_relErr_liRow` (its
+five hypotheses), `RouteNum.relErrWindow_route_num`, `Stage3.routeConst`,
+`floorConstSplit`. The arithmetic below is from a throwaway script, not a
+logged run.
+
+The gate, for a cell `(r, d)`:
+
+- `hrow`: the table's row is the difference of `f` along the doublings, on
+  the `d + 2` rows of the window;
+- `hS`: `StmtRelErrWindow f liRow r (d+1) ρ`;
+- `hbot`: `1 ≤ r − (d+1)`;  `hw`: `2d ≤ log 2·(r − (d+1))`;
+- `hρ`: `ρ < (log 2)^d / (2·r·3^(d+1))`.
+
+The route gives `hS` under RH with `ρ = routeConst x₀·(log 2·r)·2^(−(r−d−1)/2)`
+whenever `x₀² ≤ 2^(r−d−1)`.
+
+Choice of floor. `x₀ = 2^36`: then `√x₀ = 2^18` and `x₀^(1/4) = 2^9` are
+exact, `floorConstSplit ≤ 133.64` from the proved ceilings, and
+`routeConst (2^36) ≤ 414`. (At `2^34` the constant is larger and the fourth
+root is not a power of two; at `2^40` the floor costs more rows than the
+constant saves.)
+
+Depth six. `hρ` reads `414·2·3^7·r²·2^(−(r−7)/2) < (log 2)^5`. At `r = 80`
+the left side is about `0.1193` and the right side about `0.1599`. For
+`r ≥ 80`, `r² ≤ 6400·2^((r−80)/2)` (from `1 + x + x²/2 ≤ e^x`), so the left
+side does not grow. The floor needs `r − 7 ≥ 72`, which `r ≥ 80` gives; `hbot`
+and `hw` hold with room. By the same script the inequality fails at `r = 79`.
+
+Theorems.
+
+- Stage 3, `routeConst_le`: `routeConst (2^36) ≤ 414`.
+- Stage 3, `gate_ineq`: for real `r ≥ 80`,
+  `414·(log 2·r)·2^(−(r−7)/2) < (log 2)^6/(2·r·3^7)`.
+- Stage 3, `gate_hyp_of_RH`: under RH, for every integer `r ≥ 80` there is `ρ`
+  with `StmtRelErrWindow (rows of π) (main term) r 7 ρ` and
+  `ρ < (log 2)^6/(2·r·3^7)`.
+- Table tree, `cell_ne_zero_of_route`: from that conclusion as a hypothesis,
+  written in the same characters, and `hrow`: `tableFrom N r 6 ≠ 0` for
+  `r ≥ 80`. The main term is `liRow` at the rows by `liRow_eq`.
+
+What it would say, read across the weld: under RH, no cell at depth six is
+zero from row 80 on. The census computed in O43 covers the rows below. It
+would be a conditional statement about named cells, with RH as the
+hypothesis and the weld as the one step the kernel does not check.
+
+What it would not say: anything unconditional; anything about depths other
+than six (each depth has its own `r`, by the same two lemmas); anything in
+the direction from the table to the zeros.
+

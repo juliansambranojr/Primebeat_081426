@@ -116,6 +116,16 @@ import Stage3.ContourShift
 import Stage3.AssemblyFloor
 import Stage3.GlueFloor
 import Stage3.JointFloorGate
+import Stage3.RowLeaves
+import Stage3.RealSegment
+import Stage3.RouteGate
+import Stage3.BoxBounds
+import Stage3.LowCount
+import Stage3.LowEdge
+import Stage3.EdgeNum
+import Stage3.GlueNum
+import Stage3.RouteNum
+import Stage3.GateEval
 
 namespace Stage3
 
