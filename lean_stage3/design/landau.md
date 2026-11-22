@@ -256,12 +256,45 @@ Module.    `Stage3/LandauMellinG.lean`, namespace `LandauMellinG`,
            `log_cpow_integral`, `mellin_G`.
 Open.      none.
 
-### 2c The Taylor coefficients of the transform, from the primes — SKETCH
+### 2c The Taylor coefficients of the transform, from the primes — PROVED (unit 0390:
+`LandauTaylor.mellinLog_integrable`, `mellinLog_hasDerivAt`, `iteratedDeriv_Phi`, `mellinLog_real`)
 Section 0 reads `(−1)^k Φ^(k)(σ₀)` as `∫₁^∞ G(y)(log y)^k y^(−σ₀−1) dy`. Found
-missing on 2026-11-22: no block proved it. Route: for `|s − σ₀| < σ₀ − 1`
-expand `y^(−(s−σ₀)) = Σ_k (−log y)^k (s−σ₀)^k / k!`, change sum and integral
-by absolute convergence (the bound of block 5b on `G`), and read the
-coefficients off by uniqueness of the power series. Needs block 5 first.
+missing on 2026-11-22: no block proved it. The first sketch went through a
+power series and uniqueness of coefficients. The route built is shorter:
+differentiate under the integral once, with a domination uniform on a disc,
+and induct on `k`.
+Objects.   `mellinLog k s = ∫₁^∞ G(y)·(−log y)^k·y^(−s−1) dy`. `mellinLog 0 = Phi`
+           on `Re s > 1` (`LandauMellinG.mellin_G`). `L = log y`.
+Sizes.     for `Re s ≥ 1 + a`, `a > 0`, `y > 1`: the integrand of `mellinLog k`
+           has norm `|G|·L^k·y^(−σ−1) ≤ 8y(1+L)·L^k·y^(−σ−1)
+           ≤ 8(L^k + L^(k+1))·y^(−a−1)`, integrable by block 4a. A domination,
+           uniform in `s` on the half-plane; nothing is kept from it but
+           integrability. Lost factor: none.
+Regime.    R1 `1 < Re s`. The disc: centre `s`, radius `a = (Re s − 1)/2`, on
+           which `Re ≥ 1 + a`.
+Defs.      `mellinLog (k : ℕ) (s : ℂ) : ℂ := ∫ y in Ioi (1 : ℝ),
+               (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)`. One.
+Theorems.  `theorem mellinLog_integrable {s : ℂ} (hs : 1 < s.re) (k : ℕ) :
+               IntegrableOn (fun y : ℝ =>
+                 (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)) (Ioi 1)`
+           `theorem mellinLog_hasDerivAt {s : ℂ} (hs : 1 < s.re) (k : ℕ) :
+               HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s`
+           `theorem iteratedDeriv_Phi (k : ℕ) {s : ℂ} (hs : 1 < s.re) :
+               iteratedDeriv k LandauMellinG.Phi s = mellinLog k s`
+           `theorem mellinLog_real (σ : ℝ) (k : ℕ) :
+               mellinLog k (σ : ℂ) = (-1) ^ k *
+                 ((∫ y in Ioi (1 : ℝ), LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1) : ℝ) : ℂ)`
+             (no hypothesis on `σ`: the two integrands agree pointwise, so the
+             identity holds whether or not they are integrable. The first
+             writing asked for `1 < σ`; the build showed it unused.)
+Composes.  `LandauMellinG.mellin_G`, `G_mellin_integrable`;
+           `LandauChebyshev.abs_G_le_log`; `LandauKernel.log_pow_integrable`.
+           Mathlib: `hasDerivAt_integral_of_dominated_loc_of_deriv_le`,
+           `HasDerivAt.const_cpow`, `iteratedDeriv_succ`,
+           `Filter.EventuallyEq.deriv_eq`, `integral_complex_ofReal`.
+Module.    `Stage3/LandauTaylor.lean`, namespace `LandauTaylor`. Pinned:
+           `mellinLog_hasDerivAt`, `iteratedDeriv_Phi`, `mellinLog_real`.
+Open.      none.
 
 ### 3 The poles of `Φ` and its Taylor coefficients — SKETCH
 `Φ` analytic at `1`; meromorphic on `Re s > 0`; principal part

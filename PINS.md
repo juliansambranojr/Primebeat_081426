@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 2c of `design/landau.md`, `Stage3/LandauTaylor.lean`
+
+    DONE        `Stage3/LandauTaylor.lean` builds with no `sorry`: `mellinLog`,
+                its integrability, its derivative in `s`, `iteratedDeriv_Phi`
+                (the `k`-th derivative of `Phi` on `Re s > 1` is `mellinLog k`)
+                and its real form at a real point; a formalization unit;
+                block 2c marked PROVED
+    ASSUMED     the route is differentiation under the integral with
+                induction on `k`, in place of the sketch's power series; the
+                statements are the block's
+    DEPENDS     units 0386, 0388, 0389; Mathlib's parametric integral
+    OUT         blocks 3, 4b, 6, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0390: four theorems, no `sorry`, clean
+                first build; the hypothesis `1 < σ` on `mellinLog_real` was
+                unused and is dropped from the statement and the block
+
 ### 2026-11-22 · the Landau window: block 4a of `design/landau.md`, `Stage3/LandauKernel.lean`
 
     DONE        `Stage3/LandauKernel.lean` builds with no `sorry`:

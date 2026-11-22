@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0390: LandauTaylor.lean, block 2c of landau.md PROVED, the k-th derivative of `Phi` on Re s > 1 is the integral of G(y)(-log y)^k y^(-s-1); by differentiation under the integral and induction on k; next: 4b, 6, 3 (independent), then 7
 - [open]   2026-11-22  unit 0389: LandauKernel.lean, block 4a of landau.md PROVED, the integral of (log y)^k y^(-a-1) over (1, inf) is k!/a^(k+1) for a > 0; next: block 2c (now has all its pieces), then 4b (the tail), 6, 3, 7
 - [open]   2026-11-22  unit 0388: LandauChebyshev.lean, block 5b of landau.md PROVED, G(y) <= 8y and |G(y)| <= 8y(1 + log y) for y >= 1, via upstream Mertens.E₁Λ.le; the extra log of unit 0387 is gone; next: block 2c, block 3 (the poles), block 6
 - [open]   2026-11-22  unit 0387: LandauCrude.lean, block 5 of landau.md PROVED, |G(y)| <= 2y(1 + log y)^2 for y >= 1, one log factor above the sketch and named in the block; next: block 2c (needs this), block 3 (the poles) and block 6 are independent

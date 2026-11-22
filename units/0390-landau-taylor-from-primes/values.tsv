@@ -1,0 +1,20 @@
+key	value	source
+module_lines	181	wc -l lean_stage3/Stage3/LandauTaylor.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/LandauTaylor.lean
+defs	1	grep -c ^def lean_stage3/Stage3/LandauTaylor.lean
+private_lemmas	2	grep -c ^private: integrand_norm_le, bound_integrable
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauTaylor.lean
+pins	3	mellinLog_hasDerivAt, iteratedDeriv_Phi, mellinLog_real
+errors_first	0	first lake build Stage3.LandauTaylor, lines error: Stage3/LandauTaylor.lean
+warnings_first	1	an unused hypothesis on mellinLog_real; removed from the statement
+builds	2	the first build and the one after the hypothesis was dropped
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's; one of the block's was dropped
+hyps_dropped	1	1 < σ on mellinLog_real
+jobs_package	8781	lake build (full Stage3), Build completed successfully
+jobs_module	8674	run/build.log, lake build Stage3.LandauTaylor
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#2c	the Taylor coefficients of the transform, from the primes
+bound_constant	8	the constant of LandauChebyshev.abs_G_le_log used in the domination
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
