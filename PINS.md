@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/TableDepths.lean` (block E11 of `joints.md`), and a drift checker for `TablePort`
+
+    DONE        `cell_ne_zero_gen`: the gate on the route at any depth, from a
+                numeric check at one row; instances at depths one to eight
+                with rows 74, 75, 76, 77, 78, 80, 85, 91;
+                `utilities/check_port.py`, which diffs each `TablePort`
+                module against its original and fails on any difference not
+                in `utilities/port_baseline/`; a unit
+    ASSUMED     Julian's "Do both". Depth nine and beyond first hold past
+                row 92, outside the computed table, and are left out
+    DEPENDS     unit 0423
+    OUT         a different floor per depth; `lean/` untouched
+    OUTCOME     done as pinned; unit 0424; clean on the first build
+
 ### 2026-11-22 · the join between the two trees: a checker, and the gate chain on one toolchain (`Stage3/TableRoute.lean`, block E10 of `joints.md`)
 
     DONE        `utilities/check_weld.py` compares `gate_hyp_of_RH`'s

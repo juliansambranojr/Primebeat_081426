@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0424: Stage3/TableDepths.lean (14 theorems, first build clean). Under RH no cell of the table is zero at depth 1 from row 74, 2 from 75, 3 from 76, 4 from 77, 5 from 78, 6 from 80, 7 from 85, 8 from 91, each inside the census (row 92). Depth 9 would start at 96. utilities/check_port.py holds the ten TablePort copies to lean/
 - [open]   2026-11-22  unit 0423: the join closed. Stage3/TablePort/ = the ten table modules under the gate, on v4.32.2 (8 unchanged, MainTerm and Expansion with proof steps rewritten). TableRoute.cell_ne_zero_of_RH: RiemannHypothesis -> 80 <= r -> tableFrom rowN r 6 != 0, one kernel-checked theorem. check_weld.py now also compares a conclusion with a hypothesis across trees
 - [open]   2026-11-22  units 0421, 0422: block E9. Stage3/GateEval.gate_hyp_of_RH: under RH, for r >= 80, the gate's window statement and gap at depth 6 (routeConst(2^36) <= 414). lean/RouteCell.cell_ne_zero_of_route: that statement as hypothesis gives tableFrom N r 6 != 0. Read across the join: under RH no cell (r,6) is zero for r >= 80. The join is text; no kernel checks it
 - [open]   2026-11-22  joints.md block E9 DRAFT (nothing built): the Lean gate against the route. Floor x0 = 2^36 (exact roots): routeConst <= 414; the gate's inequality at depth 6 holds from row 80 (0.1193 < 0.1599) and fails at 79, by a throwaway script. Would read: under RH no cell (r,6) is zero for r >= 80. Four theorems named, two trees

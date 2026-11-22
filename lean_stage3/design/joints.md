@@ -655,3 +655,19 @@ Block E9 left the two halves in two trees. Two repairs.
 Theorem. `cell_ne_zero_of_RH`: `RiemannHypothesis → 80 ≤ r →
 Construction.tableFrom rowN r 6 ≠ 0`, with `rowN m = π(2^m) − π(2^(m−1))`.
 
+### E11 The other depths — PROVED (unit 0424: `TableDepths.cell_ne_zero_gen`, `depth_one` to `depth_eight`)
+
+Same floor, `x₀ = 2^36`, same constant, `routeConst ≤ 414`. At depth `d` the
+gate asks `414·(log 2·r)·2^(−(r−d−1)/2) < (log 2)^d/(2·r·3^(d+1))` and the
+floor asks `r − d − 1 ≥ 72`. By a throwaway script the first rows are
+74, 75, 76, 77, 78 (the floor binds) for depths one to five, 80 for six,
+85 for seven, 91 for eight; depth nine first holds at row 96, past the
+computed table.
+
+- `sq_le_gen`: `6 ≤ r₀ ≤ r → r² ≤ r₀²·2^((r−r₀)/2)`.
+- `gate_ineq_gen`: from the inequality checked at `r₀` (as a numeral `a` with
+  `a·log 2 < (log 2)^d`), the inequality at every `r ≥ r₀`.
+- `cell_ne_zero_gen`: under RH, with the floor and `d ≤ 24`,
+  `tableFrom rowN r d ≠ 0` for integer `r ≥ r₀`.
+- `depth_one` … `depth_eight`: the instances.
+

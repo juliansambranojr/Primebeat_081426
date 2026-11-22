@@ -221,3 +221,8 @@ to `lean_stage3/Stage3/TablePort/` and build on Stage 3's toolchain, and
 `RiemannHypothesis → 80 ≤ r → Construction.tableFrom rowN r 6 ≠ 0`, checked
 by the kernel. `utilities/check_weld.py` also now compares the route's
 conclusion with the gate's hypothesis between the two trees.
+
+Unit 0424 (`Stage3/TableDepths.lean`) is the same theorem at depths one to
+eight, from rows 74, 75, 76, 77, 78, 80, 85 and 91, each inside the census.
+`utilities/check_port.py` holds the ten copies in `TablePort` to their
+originals in `lean/`.

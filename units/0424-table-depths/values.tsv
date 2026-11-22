@@ -1,0 +1,29 @@
+key	value	source
+module_lines	312	wc -l lean_stage3/Stage3/TableDepths.lean
+theorems_proved	14	grep -c ^theorem lean_stage3/Stage3/TableDepths.lean
+defs	0	grep -c ^def lean_stage3/Stage3/TableDepths.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/TableDepths.lean
+pins	4	cell_ne_zero_gen, depth_one, depth_seven, depth_eight
+errors_first	0	first lake build Stage3.TableDepths
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8818	lake build (full Stage3), Build completed successfully
+jobs_module	8778	run/build.log, lake build Stage3.TableDepths
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e11	the other depths
+depths	8	depth_one to depth_eight
+row_d1	74	depth_one
+row_d2	75	depth_two
+row_d3	76	depth_three
+row_d4	77	depth_four
+row_d5	78	depth_five
+row_d6	80	depth_six
+row_d7	85	depth_seven
+row_d8	91	depth_eight
+row_d9_script	96	block E11's throwaway script: where depth nine would first hold
+table_extent	92	O43's census, the last computed row
+port_modules	10	utilities/check_port.py MODULES
+port_drift	0	python3 utilities/check_port.py
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

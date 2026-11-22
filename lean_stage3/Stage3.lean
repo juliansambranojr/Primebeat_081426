@@ -127,6 +127,7 @@ import Stage3.GlueNum
 import Stage3.RouteNum
 import Stage3.GateEval
 import Stage3.TableRoute
+import Stage3.TableDepths
 
 namespace Stage3
 
