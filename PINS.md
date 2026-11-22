@@ -22,6 +22,15 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the gate priced from the proved ceilings (unit 0420)
+
+    DONE        one script: O68's `R_of` on `routeConst` with `c1n`, `c3n`,
+                `c4n` at the ceilings of `RouteNum`; a NOTEPAD line
+    ASSUMED     EXPLORATORY, no prereg; the gate is the script's
+    DEPENDS     unit 0419
+    OUT         no Lean
+    OUTCOME     done as pinned; depth 6 closes at rung 76
+
 ### 2026-11-22 · `Stage3/EdgeNum.lean`, block E8a of `joints.md`
 
     DONE        the three edge theorems of `EdgeBound.lean` with their

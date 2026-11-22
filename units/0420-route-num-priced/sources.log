@@ -1,0 +1,38 @@
+# check_prose_source.py  2026-11-22T12:36:22Z
+# unit: 0420-route-num-priced
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42922
+  Source: session transcript, 2026-11-22, after unit 0418
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42954
+  EXPLORATORY, no prereg. The gate priced from the kernel-checked ceilings.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42956
+  RouteNum.relErrWindow_route_num (unit 0419): under RH, for x0 >= 16, the pi-side
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42957
+  constant is routeConst x0 = 3 floorConstSplit c1n c3n c4n 112 0 698 0 x0 + 13,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36670
+  floorConstSplit = 4 + (16 + 16 b1 + 16 b2)/log x0 + (8 b3 + 8 + 4 W)/log^2 x0
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36671
+  + 18 c1/(x0 sqrt x0) + c3/(sqrt x0 log x0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42961
+  on sqrt(x) log x, x >= x0^2. The three constants are taken at the ceilings
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42962
+  proved in RouteNum: c1n <= 88216610000, c3n <= 15, c4n <= 6468930000.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42963
+  floorConstSplit is increasing in each, so the result is an upper bound on the
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42964
+  theorem's constant. The gate is O68's R_of, imported unchanged, k = 1; it is a
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42965
+  script's gate and not the Lean gate.
+
+# 11 found, 0 missing
