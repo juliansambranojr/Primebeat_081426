@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 9 of `SECTIONS.md`: a statement, drafted
+
+    DONE        `lean_stage3/design/joints.md` block 9, marked DRAFT: three
+                statements for the table of `G` along the doublings, with the
+                hand derivation, what each would take to build and what is
+                not claimed; `SECTIONS.md` joints 9 and 10 updated to point
+                at it; a NOTEPAD line
+    ASSUMED     unit 0383's identity for `G` (derived there, checked
+                numerically there, not formalized); the derivation in the
+                block is by hand, not checked numerically or against the
+                literature
+    DEPENDS     `lean/Chain.lean`, `lean/Superposition.lean` as read
+    OUT         no Lean, no unit, no measurement; the statement is Julian's
+                to correct before anything is built
+    OUTCOME     done as pinned
+
 ### 2026-11-22 · joint 1 of `SECTIONS.md`: `Stage3/JointWindowDial.lean`
 
     DONE        `lean_stage3/design/joints.md` opened, block 1;

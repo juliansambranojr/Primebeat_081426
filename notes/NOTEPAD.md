@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  joint 9 DRAFTED (joints.md block 9), nothing built: the table of G along the doublings as the zero sum reweighted by Sym^d; its generating function has a pole at every zero and alias, uncancelled since Re(1/(rho(1-rho))) > 0; |G(2^r)| <= C 2^(theta r) => no zero right of theta. By hand, unchecked
 - [open]   2026-11-22  unit 0400: JointWindowDial.lean, joint 1 of SECTIONS.md SEALED: WindowBound theta -> StmtZeroFreeRight theta -> |psi - t| and |pi - Li| bounds at exponent theta, in one tree; constants existential; next: joint 3 (the bound on the dyadic rows at exponent theta)
 - [open]   2026-11-22  SECTIONS.md: the three Lean trees as seven sections and ten joints (SEALED / WELD / OPEN). The Landau chain joins the dial, which reaches the census gate once joints 1, 3, 4, 5 are built; joints 9 and 10 (table -> zeta) have no statement yet
 - [open]   2026-11-22  unit 0399: LandauCriterion.lean, block 7d PROVED, every block of landau.md is PROVED: `stmtLandauWindow` (the criterion is a theorem) and `rh_of_windows` (window bound at every theta in (1/2,1) -> RiemannHypothesis). THE PREMISE IS NOT PROVED; it is equivalent to RH. No RH claim.

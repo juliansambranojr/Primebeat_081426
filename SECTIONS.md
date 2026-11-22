@@ -95,8 +95,8 @@ not in any tree; what it must say is written out.
 | 6 | C inside: `StmtRelErrWindow` and the gap → cell `≠ 0` | SEALED in `lean/` (`tableFrom_ne_zero_of_relErr`, `relGate_iff`). It also asks `hM`, a lower bound on the main term's stencil, and `hrow`, that the row is the count. Whether `L = Li` at the dyadic points meets `hM` as stated was not checked. |
 | 7 | D ↔ C at the RH shape: `StmtSchoenfeldWindow`, `StmtSchoenfeld` | WELD, in `check_weld.py`; Stage 3 reproves `window_of_global` on its side. |
 | 8 | F → zeta23: `StmtWeilBridge` and five definitions | WELD, in `check_weld.py`; proved in `lean_bridge`. |
-| 9 | B → C or D: the symbol's action on a mode, as a bound on the residual | OPEN, and no statement for it is written anywhere. Section B says what each zero does to a cell; no theorem turns that into the residual bound C takes or D gives. |
-| 10 | the rows → all `x` | OPEN, the missing section. D's converse (`zeroFreeRight_of_psiWeakTheta`) needs the bound at every `t`. The table knows the residual at `2^m` only. Nothing carries a bound on the rows to a bound between them. |
+| 9 | B → D: the table's rows force the zero-free region | DRAFT, `lean_stage3/design/joints.md` block 9, for Julian to correct; nothing built. Three statements for the table of `G`: the cells as the zero sum reweighted by the symbol; the rows' generating function with a pole at every zero and every alias, the aliases not cancelling because `Re(1/(ρ(1−ρ))) > 0`; and the criterion `|G(2^r)| ≤ C·2^(θr)` for large `r` ⇒ no zero right of `θ`. Derived by hand, unchecked. |
+| 10 | the rows → all `x` | OPEN for a bound on `G` at every `y`. If joint 9's draft holds, the growth rate does not need it: 9c takes a bound on the rows alone. |
 
 ## What the tunnel carries once joints 3, 4, 5 are in (joint 1 is sealed)
 
