@@ -22,6 +22,33 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · rung 5 section 16, open item (b): the kept members' sign swept
+
+    DONE        one unit whose `run/` decides T9 of section 16 numerically:
+                (a) the phase of a kept member's term against the target's,
+                split into its parts, as a bound and as a worst case
+                computed exactly at the nine cells of unit 0375; (b) random
+                and adversarial ladder configurations at those cells;
+                (c) planted ladders on the tree's term at small scale with
+                the actual multiplier and rotator, counting kept terms of
+                the wrong sign; (d) the least ladder ratio at which the
+                sign can flip; the block's T9 and Open (b) rewritten to
+                what the run supports
+    ASSUMED     "Ok let's do it" (Julian, 2026-11-22) answers "which of the
+                four open items do you want first? My pick is the kept
+                members' sign"; the sign is decided by the phase of
+                `p(a)²·what(a)²` against `p(s₀)²·what(s₀)²`, which the
+                rotator makes positive real; `λ = 1`, `ξ = 12N`,
+                `θ₀ = π³/(8h)` as in unit 0375; planted zeros are controls
+    DEPENDS     nothing from Julian to run it
+    OUT         a Lean proof of T9; items (a), (c), (d) of the block;
+                re-pricing unit 0375's table at another ladder ratio (the
+                number is reported, the table is left)
+    OUTCOME     swept, unit 0376: the sign holds with a factor 9.4 to
+                spare; no pin was wrong. One error of mine inside the run:
+                the fail-case test first used a flip threshold of 4.49 for
+                eight members where it is 8.93, and the gate caught it
+
 ### 2026-11-22 · rung 5, the annihilating multiplier priced (section 16)
 
     DONE        one decision unit whose `run/` computes on the tree's

@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-22T02:56:04Z
+# unit: 0376-rung5-multiplier-kept-members-sign
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:7048
+  Source: session transcript, 2026-11-22, after unit 0375
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:5796
+  T9 `kept_term_neg` — R4, R5, block 13g — a kept member's term has
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:5797
+  the target's sign. NOT PROVED AND NOT PRICED beyond one planted
+
+# 3 found, 0 missing

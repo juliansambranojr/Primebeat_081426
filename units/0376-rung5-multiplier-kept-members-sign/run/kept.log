@@ -1,0 +1,58 @@
+A. the phase budget of a kept member, piece by piece (radians), at unit 0375's cells; pi/2 = 1.5708
+     eps      T    N          h0  annihilated     mirror    far pts    rotator       what    total pi/2 over total
+     0.5  1e+03  176     4845375     0.166667   2.67e-07   9.74e-09   3.14e-09   3.69e-04  0.16704            9.40
+     0.5  1e+06  280    12861999     0.166667   1.00e-07   3.67e-09   7.43e-10   2.32e-04  0.16690            9.41
+     0.5  1e+12  487    41225156     0.166667   3.13e-08   1.15e-09   1.33e-10   1.33e-04  0.16680            9.42
+    0.25  1e+03  176    19379077     0.166667   1.33e-07   2.44e-09   1.57e-09   1.86e-04  0.16685            9.41
+    0.25  1e+06  280    51379335     0.166667   5.03e-08   9.19e-10   3.72e-10   1.17e-04  0.16678            9.42
+    0.25  1e+12  487   164544792     0.166667   1.57e-08   2.87e-10   6.68e-11   6.71e-05  0.16673            9.42
+     0.1  1e+03  176   121493696     0.166667   5.32e-08   3.89e-10   6.26e-10   7.44e-05  0.16674            9.42
+     0.1  1e+06  280   321600562     0.166667   2.01e-08   1.47e-10   1.49e-10   4.67e-05  0.16671            9.42
+     0.1  1e+12  487  1028820822     0.166667   6.28e-09   4.59e-11   2.67e-11   2.69e-05  0.16669            9.42
+
+B. the worst case, exact: N-1 members annihilated at the least allowed distance theta_0, all in the worst direction; the kept member at theta_0/xi
+   eps=0.5   T=1e+03   exact worst |Phi| = 0.166089   bound 0.167036   exact/bound 0.9943
+   eps=0.5   T=1e+06   exact worst |Phi| = 0.166303   bound 0.166899   exact/bound 0.9964
+   eps=0.5   T=1e+12   exact worst |Phi| = 0.166458   bound 0.166800   exact/bound 0.9979
+   eps=0.25  T=1e+03   exact worst |Phi| = 0.165905   bound 0.166852   exact/bound 0.9943
+   eps=0.25  T=1e+06   exact worst |Phi| = 0.166188   bound 0.166783   exact/bound 0.9964
+   eps=0.25  T=1e+12   exact worst |Phi| = 0.166391   bound 0.166734   exact/bound 0.9979
+   eps=0.1   T=1e+03   exact worst |Phi| = 0.165794   bound 0.166741   exact/bound 0.9943
+   eps=0.1   T=1e+06   exact worst |Phi| = 0.166118   bound 0.166713   exact/bound 0.9964
+   eps=0.1   T=1e+12   exact worst |Phi| = 0.166351   bound 0.166694   exact/bound 0.9979
+
+C. random ladders: 20000 configurations per cell; the annihilated sum exact, the other pieces at their bounds
+   eps=0.5   T=1e+03   max |Phi| over the sample 0.050980
+   eps=0.5   T=1e+06   max |Phi| over the sample 0.056125
+   eps=0.5   T=1e+12   max |Phi| over the sample 0.055334
+   eps=0.25  T=1e+03   max |Phi| over the sample 0.061632
+   eps=0.25  T=1e+06   max |Phi| over the sample 0.050813
+   eps=0.25  T=1e+12   max |Phi| over the sample 0.055821
+   eps=0.1   T=1e+03   max |Phi| over the sample 0.053622
+   eps=0.1   T=1e+06   max |Phi| over the sample 0.051545
+   eps=0.1   T=1e+12   max |Phi| over the sample 0.051393
+
+D. planted ladders on the tree's term, h = 800, m = 799, target eps0 = 0.4 at g0 = 500: the actual p (rotator included) and the actual what
+   random: 300 ladders, 2 to 8 members, ratio 12n: 487 kept members, wrong sign 0, largest |Phi| 0.023657
+   adversarial, n = 2: |Phi| = 0.054169   annihilated piece alone 2(n-1) asin(1/(12n)) = 0.083357   wrong sign 0
+   adversarial, n = 3: |Phi| = 0.119465   annihilated piece alone 2(n-1) asin(1/(12n)) = 0.111125   wrong sign 0
+   adversarial, n = 4: |Phi| = 0.140217   annihilated piece alone 2(n-1) asin(1/(12n)) = 0.125009   wrong sign 0
+   adversarial, n = 5: |Phi| = 0.128191   annihilated piece alone 2(n-1) asin(1/(12n)) = 0.133340   wrong sign 0
+   adversarial, n = 6: |Phi| = 0.146343   annihilated piece alone 2(n-1) asin(1/(12n)) = 0.138893   wrong sign 0
+   adversarial, n = 7: |Phi| = 0.134056   annihilated piece alone 2(n-1) asin(1/(12n)) = 0.142861   wrong sign 0
+   adversarial, n = 8: |Phi| = 0.149031   annihilated piece alone 2(n-1) asin(1/(12n)) = 0.145836   wrong sign 0
+
+E. where the sign flips: the ladder ratio xi at which the worst-case phase reaches pi/2
+   eps=0.5   T=1e+03   N = 176: flips at xi = 224.14 = 1.2735 N   (the block uses 12 N)
+   eps=0.5   T=1e+06   N = 280: flips at xi = 356.56 = 1.2734 N   (the block uses 12 N)
+   eps=0.5   T=1e+12   N = 487: flips at xi = 620.12 = 1.2733 N   (the block uses 12 N)
+   eps=0.25  T=1e+03   N = 176: flips at xi = 224.12 = 1.2734 N   (the block uses 12 N)
+   eps=0.25  T=1e+06   N = 280: flips at xi = 356.53 = 1.2733 N   (the block uses 12 N)
+   eps=0.25  T=1e+12   N = 487: flips at xi = 620.09 = 1.2733 N   (the block uses 12 N)
+   eps=0.1   T=1e+03   N = 176: flips at xi = 224.10 = 1.2733 N   (the block uses 12 N)
+   eps=0.1   T=1e+06   N = 280: flips at xi = 356.52 = 1.2733 N   (the block uses 12 N)
+   eps=0.1   T=1e+12   N = 487: flips at xi = 620.08 = 1.2733 N   (the block uses 12 N)
+   planted, n = 8, adversarial: ratio 6 -> |Phi| = 2.2453, wrong sign 1;   ratio 12 -> |Phi| = 1.1783, wrong sign 0
+   at ratio 2N the ladder term N(N+1) log(xi) is smaller by 0.221 of itself at T = 1e6 (not re-priced)
+
+GATE (bound holds, no flip in any sample, the planted flip fires below the threshold): pass

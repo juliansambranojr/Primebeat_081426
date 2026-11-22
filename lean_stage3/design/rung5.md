@@ -1463,9 +1463,15 @@ Regime.    R1 `0 < ε ≤ ε₀ ≤ 1/2`, `2 ≤ γ₀ ≤ T` (the target is a z
            R3 `deg p = 4|A| + 4 ≤ 4N + 4 ≤ 2m − 1` (boundary terms vanish and
               `p(D)W` glues `C¹` at the cut; `IsTest` asks `ContDiff ℝ 1`).
            R4 `ξ = 12N`: the multiplier's phase drift over a kept member's
-              distance is under `π/4` (`N/ξ + N·d/ε + …`, each term `≤ 1/12`).
-           R5 `θ₀ = λπ³/(8h) ≤ lo/(2h)` for every `ε' ≤ 1/2`, `lo = λπ³/(8ε')`
-              (block 13g's boundary, halved for the margin R4 uses).
+              distance is `2N·arcsin(1/ξ) = 1/6` rad plus pieces under `10⁻⁶`.
+              The sign flips at `ξ = 1.273N` (unit 0376, which also plants a
+              flip below the threshold, so the check can fail). A ratio of
+              `2N` would shrink the ladder term by `0.22` of itself; unit
+              0375's table is at `12N` and is not re-priced.
+           R5 `θ₀ = λπ³/(8h)`. The `1/h` is what the `what` piece needs: its
+              phase is `2·|S'/S|·d·h` with `d ≤ θ₀/ξ`, so `d·h = λπ³/(8ξ)` stays
+              bounded (unit 0376: under `4·10⁻⁴` rad at unit 0375's cells,
+              up to `0.015` at `h = 800` with two to eight members).
            R6 the rotator: `arg(s₀² − c) = φ ∈ [π/4, 3π/4)` with `4φ ≡ −θ`
               (mod `2π`), `θ = arg(p_A(s₀)²·what(s₀)²)`; then
               `|Re(s₀² − c)| ≤ 2ε₀γ₀`, which is what the rotator bound uses.
@@ -1482,9 +1488,16 @@ Theorems.  In symbols; the Lean statements are owed before any brief.
            T6 `prod_inv_dist_le` — T5 — `∏_{j∈A} 1/d_j ≤ θ₀^{−N} ξ^{N(N+1)/2}`.
            T7 `mult_ratio_le` — R1 — the per-member and rotator bounds above.
            T8 `rot_exists` — R6 — a real `c` with the stated argument.
-           T9 `kept_term_neg` — R4, R5, block 13g — a kept member's term has
-              the target's sign. NOT PROVED AND NOT PRICED beyond one planted
-              instance (unit 0375 part B).
+           T9 `kept_term_neg` — R4, R5 — a kept member's term has the target's
+              sign: the phase of `p(a)²·what(a)²` against the target's is at
+              most `2N·arcsin(1/ξ)` from the annihilated zeros, plus the
+              mirror, far-point, rotator and `what` pieces. SWEPT, unit 0376,
+              not proved: at `ξ = 12N` the total is `0.167` rad against `π/2`,
+              a factor `9.4`; the exact worst case reaches `0.99` of the bound;
+              `0` flips in `180000` random ladders and in `487` kept members
+              planted on the tree's term. Block 13g is not used: the comparison
+              is with the target's own transform, so this is a continuity
+              bound and carries no sign condition of its own.
            T10 `S_mono_re` — `‖S m (x + iy)‖` nondecreasing in `|x|`.
            T11 `detect_uniform` — everything above and R7 —
                `∀ ε T, 0 < ε → 2 ≤ T → StmtDetect ε T (2·h₀ ε T)`.
@@ -1497,7 +1510,8 @@ Composes.  `Stage3.WeilPowerBackground.term_eq_neg_sq`, `what_I`, `PsiW_le_two`;
            Section 8's selection is not used: with the cluster annihilated the
            target is any zero of the box and its height is at most `T`.
 Module.    none named. This block is priced and is not brief-ready.
-Open.      Four things, in the order they could kill it.
+Open.      Four things, in the order they could kill it; (b) has since been
+           swept and is down to its Lean proof.
            (a) The tree's bounds at `h₀`. The price is computed on the exact
                `S` (Gamma closed form, checked against `S_mul_QS`). The tree's
                comparison lemmas carry range conditions in `h`
@@ -1508,9 +1522,11 @@ Open.      Four things, in the order they could kill it.
                on-line series of section 6 decays like `|k|⁻⁴`, and the
                multiplier grows like `|τ|^{4N}`, so section 6's bound does not
                carry over as stated). Which proved bounds reach `h₀` is unpriced.
-           (b) T9, the kept members. One planted instance is not a proof; the
-               phase budget R4 is arithmetic I did by hand and a script has
-               not swept it.
+           (b) T9, the kept members. SWEPT 2026-11-22, unit 0376: the bound,
+               the exact worst case at the nine cells, random ladders and
+               planted ladders on the tree's term all hold with a factor `9.4`
+               to spare. What remains of (b) is the Lean proof, which is four
+               `arg(1 + z)` bounds and one bound on `S'/S` near the real axis.
            (c) The far bound at real part offset `1/2`. The script takes the
                worst case over real parts by monotonicity (T10) and over
                heights cell by cell, with `0` violations of monotonicity in
