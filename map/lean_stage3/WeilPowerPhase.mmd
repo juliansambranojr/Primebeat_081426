@@ -1,169 +1,69 @@
 flowchart LR
-  n0["hterm<br/>(def)"]:::dfn
-  n1["sigmaN<br/>(def)"]:::dfn
-  n2["sigma<br/>(def)"]:::dfn
-  n3["summable_hterm<br/>⊢ Summable hterm"]:::thm
-  n4["summable_shift<br/>⊢ Summable (fun k : ℕ =＞ hterm (k + (m + 1)))"]:::thm
-  n5["sigmaN_eq<br/>⊢ sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ…"]:::thm
-  n6["sigmaN_tendsto<br/>⊢ Tendsto (fun n =＞ sigmaN m n) atTop (𝓝 (sigma m))"]:::thm
-  n7["sigma_le<br/>⊢ sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1))"]:::end_
-  n8["sigma_ge<br/>⊢ 1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m"]:::thm
-  n9["x<br/>(def)"]:::dfn
-  n10["g_eq<br/>⊢ g w j = 1 + x w j"]:::thm
-  n11["x_eq_mul<br/>⊢ x w j = w ^ 2 * ((hterm j : ℝ) : ℂ)"]:::thm
-  n12["g_ne_zero<br/>⊢ g w j ≠ 0"]:::thm
-  n13["T_eq_exp<br/>⊢ T m w n = Complex.exp (∑ j ∈ Finset.Ico (m + 1) n, Complex.log (g w j)…"]:::thm
-  n14["delta<br/>(def)"]:::dfn
-  n15["norm_log_sub_le<br/>⊢ ‖Complex.log (g w j) - x w j‖ ≤ ‖x w j‖ ^ 2"]:::thm
-  n16["q<br/>(def)"]:::dfn
-  n17["q_nonneg<br/>⊢ 0 ≤ q m w"]:::thm
-  n18["norm_delta_le<br/>⊢ ‖delta m w n‖ ≤ q m w"]:::thm
-  n19["T_eq_mul<br/>⊢ T m w n = Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ)) * Complex.exp (…"]:::thm
-  n20["norm_exp_delta_sub_one_le<br/>⊢ ‖Complex.exp (delta m w n) - 1‖ ≤ 2 * q m w"]:::thm
-  n21["P<br/>(def)"]:::dfn
-  n22["P_tendsto<br/>⊢ Tendsto (fun n =＞ Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) atTop …"]:::thm
-  n23["norm_S_sub_le<br/>⊢ ‖S m w - ((cS m / D m : ℝ) : ℂ) * w * P m w‖ ≤ 2 * q m w * ‖((cS m / D…"]:::thm
-  n24["norm_A_sq<br/>⊢ ‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2 = (cS m / D m) ^ 2 * ‖w‖ ^ 2 …"]:::thm
-  n25["re_A_sq<br/>⊢ ((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re = (cS m / D m) ^ 2 * Rea…"]:::thm
-  n26["re_sq_ge<br/>⊢ ((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re - ‖((cS m / D m : ℝ) : ℂ…"]:::thm
-  n27["re_S_sq_ge<br/>⊢ (cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) * ((w ^ 2).re *…"]:::thm
-  x0(["WeilOddPower · QS"]):::ext
-  x1(["WeilOddPower · S"]):::ext
-  x2(["WeilOddPower · cS"]):::ext
-  x3(["WeilPowerAssembly · isTest_phiWC"]):::ext
-  x4(["WeilPowerAssembly · phiW_contDiff_one"]):::ext
-  x5(["WeilPowerAssembly · target_lower"]):::ext
-  x6(["WeilPowerBridge · term_le_at_zero"]):::ext
-  x7(["WeilPowerGauss · D"]):::ext
-  x8(["WeilPowerGauss · T"]):::ext
-  x9(["WeilPowerGauss · cprime_pos"]):::ext
-  x10(["WeilPowerGauss · g"]):::ext
-  x11(["WeilPowerGauss · norm_x_le"]):::ext
-  x12(["WeilPowerGauss · sum_inv_pow4_le"]):::ext
-  x13(["WeilPowerGauss · sum_inv_sq_le"]):::ext
-  x14(["WeilPowerGauss · tendsto_S"]):::ext
-  x15(["WeilPowerGauss · x_norm"]):::ext
-  x16(["WeilPowerGeomGen · uLam"]):::ext
-  x17(["WeilPowerNear · uLam_nonneg"]):::ext
-  x18(["WeilPowerSharp · sum_inv_sq_ge_sharp"]):::ext
-  x19(["WeilPowerSigma · sigma_ge_amgm"]):::ext
-  x20(["WeilPowerSigma · sigma_le_half"]):::ext
-  x21(["WeilPowerSigma · u"]):::ext
-  x22(["WeilPowerSigma · u_def"]):::ext
+  n0["<b>summable_hterm</b><br/>Summable hterm"]:::thm
+  n1["<b>summable_shift</b><br/>Summable (fun k : ℕ =＞ hterm (k + (m + 1)))"]:::thm
+  n2["<b>sigmaN_eq</b><br/>sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / (…"]:::thm
+  n3["<b>sigmaN_tendsto</b><br/>Tendsto (fun n =＞ sigmaN m n) atTop (𝓝 (sigma m))"]:::thm
+  n4["<b>sigma_le</b><br/>sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1))"]:::end_
+  n5["<b>sigma_ge</b><br/>1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m"]:::thm
+  n6["<b>g_eq</b><br/>g w j = 1 + x w j"]:::thm
+  n7["<b>x_eq_mul</b><br/>x w j = w ^ 2 * ((hterm j : ℝ) : ℂ)"]:::thm
+  n8["<b>g_ne_zero</b><br/>g w j ≠ 0"]:::thm
+  n9["<b>T_eq_exp</b><br/>T m w n = Complex.exp (∑ j ∈ Finset.Ico (m + 1) n, Complex.log (…"]:::thm
+  n10["<b>norm_log_sub_le</b><br/>‖Complex.log (g w j) - x w j‖ ≤ ‖x w j‖ ^ 2"]:::thm
+  n11["<b>q_nonneg</b><br/>0 ≤ q m w"]:::thm
+  n12["<b>norm_delta_le</b><br/>‖delta m w n‖ ≤ q m w"]:::thm
+  n13["<b>T_eq_mul</b><br/>T m w n = Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ)) * Complex…"]:::thm
+  n14["<b>norm_exp_delta_sub_one_le</b><br/>‖Complex.exp (delta m w n) - 1‖ ≤ 2 * q m w"]:::thm
+  n15["<b>P_tendsto</b><br/>Tendsto (fun n =＞ Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) …"]:::thm
+  n16["<b>norm_S_sub_le</b><br/>‖S m w - ((cS m / D m : ℝ) : ℂ) * w * P m w‖ ≤ 2 * q m w * ‖((cS…"]:::thm
+  n17["<b>norm_A_sq</b><br/>‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2 = (cS m / D m) ^ 2 * ‖w…"]:::thm
+  n18["<b>re_A_sq</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re = (cS m / D m) ^ 2…"]:::thm
+  n19["<b>re_sq_ge</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re - ‖((cS m / D m : …"]:::thm
+  n20["<b>re_S_sq_ge</b><br/>(cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) * ((w ^ 2…"]:::thm
+  x0(["<b>WeilPowerSigma</b><br/>sigma_ge_amgm<br/>sigma_le_half"]):::ext
+  x1(["<b>WeilPowerTail</b><br/>norm_S_le_tail<br/>norm_g_le"]):::ext
+  x2(["<b>WeilPowerGauss</b><br/>6 theorems"]):::ext
+  x3(["<b>WeilPowerSharp</b><br/>sum_inv_sq_ge_sharp"]):::ext
+  x4(["<b>WeilPowerNear</b><br/>uLam_nonneg"]):::ext
+  x5(["<b>WeilPowerBridge</b><br/>term_le_at_zero"]):::ext
   n0 --> n1
-  n0 --> n11
-  n0 --> n19
-  n0 --> n2
-  n0 --> n3
-  n0 --> n4
-  n0 --> n5
-  n1 --> n19
-  n1 --> n22
-  n1 --> n23
-  n1 --> n5
-  n1 --> n6
+  n1 --> n3
   n10 --> n12
-  n10 --> n15
   n11 --> n19
-  n12 --> n13
-  n13 --> n19
-  n14 --> n18
-  n14 --> n19
-  n14 --> n20
-  n14 --> n23
-  n15 --> n18
-  n16 --> n17
-  n16 --> n18
-  n16 --> n20
-  n16 --> n23
-  n16 --> n26
-  n16 --> n27
-  n16 --> x5
-  n17 --> n26
+  n12 --> n14
+  n13 --> n16
+  n14 --> n16
+  n15 --> n16
+  n16 --> n19
+  n17 --> n20
   n18 --> n20
-  n19 --> n23
-  n2 --> n21
-  n2 --> n24
-  n2 --> n25
-  n2 --> n27
-  n2 --> n6
-  n2 --> n7
-  n2 --> n8
-  n2 --> x16
-  n2 --> x19
-  n2 --> x20
-  n2 --> x21
-  n2 --> x22
-  n2 --> x5
-  n2 --> x6
-  n20 --> n23
-  n21 --> n22
-  n21 --> n23
-  n21 --> n24
-  n21 --> n25
-  n21 --> n26
-  n22 --> n23
-  n23 --> n26
-  n24 --> n27
-  n25 --> n27
-  n26 --> n27
-  n27 --> x6
+  n19 --> n20
+  n2 --> n4
+  n2 --> n5
+  n3 --> n15
   n3 --> n4
-  n4 --> n6
-  n5 --> n7
-  n5 --> n8
-  n5 --> x19
-  n5 --> x20
-  n6 --> n22
-  n6 --> n7
+  n3 --> n5
+  n6 --> n10
   n6 --> n8
-  n6 --> x19
-  n6 --> x20
-  n8 --> x17
-  n9 --> n10
-  n9 --> n11
-  n9 --> n12
-  n9 --> n14
-  n9 --> n15
-  n9 --> n18
-  n9 --> n19
-  n9 --> x3
-  n9 --> x4
-  x0 --> n23
-  x0 --> n26
-  x0 --> n27
-  x1 --> n23
-  x1 --> n26
-  x1 --> n27
-  x10 --> n10
-  x10 --> n12
-  x10 --> n13
-  x10 --> n14
-  x10 --> n15
-  x10 --> n18
-  x11 --> n12
-  x11 --> n15
-  x12 --> n18
-  x13 --> n7
-  x14 --> n23
-  x15 --> n18
-  x18 --> n8
-  x2 --> n23
-  x2 --> n24
-  x2 --> n25
-  x2 --> n26
-  x2 --> n27
-  x7 --> n23
-  x7 --> n24
-  x7 --> n25
-  x7 --> n26
-  x7 --> n27
-  x8 --> n13
-  x8 --> n19
-  x9 --> n24
+  n7 --> n13
+  n8 --> n9
+  n9 --> n13
+  n2 -.-> x0
+  n20 -.-> x5
+  n3 -.-> x0
+  n3 -.-> x1
+  n5 -.-> x4
+  n6 -.-> x1
+  n7 -.-> x1
+  x2 -.-> n10
+  x2 -.-> n12
+  x2 -.-> n16
+  x2 -.-> n17
+  x2 -.-> n4
+  x2 -.-> n8
+  x3 -.-> n5
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

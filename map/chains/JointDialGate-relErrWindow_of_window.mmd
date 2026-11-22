@@ -1,0 +1,62 @@
+flowchart LR
+  f0["<b>ContourShift</b><br/>5 used"]:::thm
+  f1["<b>JensenCount</b><br/>12 used"]:::thm
+  f2["<b>LandauKernel</b><br/>6 used"]:::thm
+  f3["<b>LandauPoleSub</b><br/>3 used"]:::thm
+  f4["<b>LandauRates</b><br/>3 used"]:::thm
+  f5["<b>LandauTail</b><br/>3 used"]:::thm
+  f6["<b>LandauTrig</b><br/>6 used"]:::thm
+  f7["<b>LandauWindow</b><br/>4 used"]:::thm
+  f8["<b>LandauCrude</b><br/>1 used"]:::thm
+  f9["<b>LandauChebyshev</b><br/>5 used"]:::thm
+  f10["<b>LandauMellin</b><br/>8 used"]:::thm
+  f11["<b>LandauMellinG</b><br/>12 used"]:::thm
+  f12["<b>LandauPoleLocal</b><br/>3 used"]:::thm
+  f13["<b>LandauPoleDisc</b><br/>1 used"]:::thm
+  f14["<b>LandauTaylor</b><br/>7 used"]:::thm
+  f15["<b>LandauPrimeSide</b><br/>4 used"]:::thm
+  f16["<b>LandauZeroSide</b><br/>2 used"]:::thm
+  f17["<b>LandauCriterion</b><br/>2 used"]:::thm
+  f18["<b>LineBound</b><br/>25 used"]:::thm
+  f19["<b>Abscissa</b><br/>6 used"]:::thm
+  f20["<b>PsiToPi</b><br/>9 used"]:::thm
+  f21["<b>ThetaLine</b><br/>3 used"]:::thm
+  f22["<b>ThetaPull</b><br/>6 used"]:::thm
+  f23["<b>ThetaPsi</b><br/>14 used"]:::thm
+  f24["<b>ThetaPi</b><br/>8 used"]:::thm
+  f25["<b>JointWindowDial</b><br/>2 used"]:::thm
+  f26["<b>JointDialGate</b><br/>relErrWindow_of_window"]:::end_
+  f2 --> f5
+  f7 --> f8
+  f8 --> f9
+  f7 --> f10
+  f10 --> f11
+  f0 --> f12
+  f11 --> f12
+  f3 --> f13
+  f12 --> f13
+  f2 --> f14
+  f9 --> f14
+  f11 --> f14
+  f5 --> f15
+  f14 --> f15
+  f6 --> f16
+  f13 --> f16
+  f15 --> f16
+  f4 --> f17
+  f16 --> f17
+  f1 --> f19
+  f18 --> f19
+  f19 --> f21
+  f21 --> f22
+  f22 --> f23
+  f20 --> f24
+  f23 --> f24
+  f17 --> f25
+  f24 --> f25
+  f25 --> f26
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

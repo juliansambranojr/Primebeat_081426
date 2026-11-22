@@ -1,98 +1,504 @@
 # `lean/EulerFactorChain.lean`
 
-**What it does** (its own header): Euler Factor Chain — the algebraic core, formalised. Companion to papers/Euler-Factor-Chain.md (statements A1, A2, A3, B1, B2, B4, C1).
+Euler Factor Chain — the algebraic core, formalised. Companion to papers/Euler-Factor-Chain.md (statements A1, A2, A3, B1, B2, B4, C1).
 
-**Imports:** nothing in this tree.
-**Imported by:** [`Chain`](../lean/Chain.md), [`Transform`](../lean/Transform.md).
+16 theorems, 2 definitions, 313 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** nothing in this tree  
+**Imported by:** [`Chain`](../lean/Chain.md), [`Transform`](../lean/Transform.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["sym<br/>(def)"]:::dfn
-  n1["symbol_of_backward_difference<br/>⊢ (b : ℂ) ^ (r * ρ) - (b : ℂ) ^ ((r - 1) * ρ) = sym b ρ * (b : ℂ) ^ (r *…"]:::thm
-  n2["diagonal_gain<br/>⊢ (b : ℂ) ^ ρ * sym b ρ = (b : ℂ) ^ ρ - 1"]:::thm
-  n3["diagonal_cell<br/>⊢ (b : ℂ) ^ (((d : ℂ) + c) * ρ) * (sym b ρ) ^ d = (b : ℂ) ^ ((c : ℂ) * ρ…"]:::end_
-  n4["diagonal_over_column<br/>⊢ ((b : ℂ) ^ ρ - 1) / sym b ρ = (b : ℂ) ^ ρ"]:::end_
-  n5["diagonal_over_column_at_half<br/>⊢ (b : ℂ) ^ ((1 : ℂ) / 2) = (Real.sqrt b : ℂ)"]:::lone
-  n6["symbol_at_one<br/>⊢ (b : ℂ) ^ (r * 1) - (b : ℂ) ^ ((r - 1) * 1) = sym b 1 * (b : ℂ) ^ (r *…"]:::end_
-  n7["euler_product_riemannZeta<br/>⊢ ∏' p : Nat.Primes, (1 - (p : ℂ) ^ (-s))⁻¹ = riemannZeta s"]:::thm
-  n8["solely<br/>⊢ "]:::end_
-  n9["sym_natCast<br/>⊢ sym (n : ℝ) s = 1 - (n : ℂ) ^ (-s)"]:::thm
-  n10["euler_product_sym<br/>⊢ ∏' p : Nat.Primes, (sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s"]:::thm
-  n11["h<br/>(def)"]:::dfn
-  n12["h_functional_equation<br/>⊢ h b N (1 - s) = h b N s"]:::thm
-  n13["h_zero<br/>⊢ h b N 0 = 0"]:::thm
-  n14["h_one<br/>⊢ h b N 1 = 0"]:::end_
-  n15["conj_factor_on_critical_line<br/>⊢ (starRingEnd ℂ) (1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))) = 1 - (b : ℂ) ^…"]:::thm
-  n16["h_eq_gain_pow_on_critical_line<br/>⊢ h b N ((1 : ℂ)/2 + t * I) = ((‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))‖ :…"]:::thm
-  n17["cpow_rect_on_critical_line<br/>⊢ (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I)) = ((b ^ (-(1:ℝ)/2) * Real.cos (γ * Re…"]:::thm
-  n18["gain_sq_on_critical_line<br/>⊢ ‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ ^ 2 = 1 - 2 * b ^ (-(1:ℝ)/2) * …"]:::thm
-  x0(["Chain · A1"]):::ext
-  x1(["Chain · A2"]):::ext
-  x2(["Chain · A3"]):::ext
-  x3(["Chain · B4"]):::ext
-  x4(["Chain · C1"]):::ext
-  x5(["Chain · gain_sq_at_ceiling"]):::ext
-  x6(["Chain · gain_sq_at_floor"]):::ext
-  n0 --> n1
-  n0 --> n10
-  n0 --> n2
-  n0 --> n3
-  n0 --> n4
-  n0 --> n6
-  n0 --> n7
-  n0 --> n9
-  n1 --> n6
-  n1 --> x0
-  n10 --> n8
-  n10 --> x2
-  n11 --> n12
-  n11 --> n13
-  n11 --> n14
-  n11 --> n16
-  n12 --> n14
-  n13 --> n14
-  n15 --> n16
-  n16 --> x3
-  n17 --> n18
-  n18 --> x4
-  n18 --> x5
-  n18 --> x6
-  n2 --> n3
-  n2 --> n4
-  n7 --> n10
-  n7 --> x1
-  n9 --> n10
-  n9 --> x2
+  n0["<b>symbol_of_backward_difference</b><br/>(b : ℂ) ^ (r * ρ) - (b : ℂ) ^ ((r - 1) * ρ) = sym b ρ * (b : ℂ) …"]:::thm
+  n1["<b>diagonal_gain</b><br/>(b : ℂ) ^ ρ * sym b ρ = (b : ℂ) ^ ρ - 1"]:::thm
+  n2["<b>diagonal_cell</b><br/>(b : ℂ) ^ (((d : ℂ) + c) * ρ) * (sym b ρ) ^ d = (b : ℂ) ^ ((c : …"]:::end_
+  n3["<b>diagonal_over_column</b><br/>((b : ℂ) ^ ρ - 1) / sym b ρ = (b : ℂ) ^ ρ"]:::end_
+  n4["<b>diagonal_over_column_at_half</b><br/>(b : ℂ) ^ ((1 : ℂ) / 2) = (Real.sqrt b : ℂ)"]:::lone
+  n5["<b>symbol_at_one</b><br/>(b : ℂ) ^ (r * 1) - (b : ℂ) ^ ((r - 1) * 1) = sym b 1 * (b : ℂ) …"]:::end_
+  n6["<b>euler_product_riemannZeta</b><br/>∏' p : Nat.Primes, (1 - (p : ℂ) ^ (-s))⁻¹ = riemannZeta s"]:::thm
+  n7["<b>sym_natCast</b><br/>sym (n : ℝ) s = 1 - (n : ℂ) ^ (-s)"]:::thm
+  n8["<b>euler_product_sym</b><br/>∏' p : Nat.Primes, (sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s"]:::thm
+  n9["<b>h_functional_equation</b><br/>h b N (1 - s) = h b N s"]:::thm
+  n10["<b>h_zero</b><br/>h b N 0 = 0"]:::thm
+  n11["<b>h_one</b><br/>h b N 1 = 0"]:::end_
+  n12["<b>conj_factor_on_critical_line</b><br/>(starRingEnd ℂ) (1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))) = 1 - (b …"]:::thm
+  n13["<b>h_eq_gain_pow_on_critical_line</b><br/>h b N ((1 : ℂ)/2 + t * I) = ((‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * …"]:::thm
+  n14["<b>cpow_rect_on_critical_line</b><br/>(b : ℂ) ^ (-((1 : ℂ)/2 + γ * I)) = ((b ^ (-(1:ℝ)/2) * Real.cos (…"]:::thm
+  n15["<b>gain_sq_on_critical_line</b><br/>‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ ^ 2 = 1 - 2 * b ^ (-(1:ℝ)…"]:::thm
+  x0(["<b>Chain</b><br/>7 theorems"]):::ext
+  n0 --> n5
+  n1 --> n2
+  n1 --> n3
+  n10 --> n11
+  n12 --> n13
+  n14 --> n15
+  n6 --> n8
+  n7 --> n8
+  n9 --> n11
+  n0 -.-> x0
+  n13 -.-> x0
+  n15 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x0
+  n8 -.-> x0
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Definitions
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `EulerFactorChain.sym`<br/>def, line 40 | ℂ | b : ℝ; s : ℂ | The reciprocal Euler factor at `b`, as a function of `s`. | — | `EulerFactorChain.diagonal_cell`, `EulerFactorChain.diagonal_gain`, `EulerFactorChain.diagonal_over_column`, `EulerFactorChain.euler_product_riemannZeta`, `EulerFactorChain.euler_product_sym`, `EulerFactorChain.sym_natCast`, `EulerFactorChain.symbol_at_one`, `EulerFactorChain.symbol_of_backward_difference` |
-| `EulerFactorChain.symbol_of_backward_difference`<br/>theorem, line 45 | (b : ℂ) ^ (r * ρ) - (b : ℂ) ^ ((r - 1) * ρ) = sym b ρ * (b : ℂ) ^ (r * ρ) | b : ℝ; hb : b ≠ 0; ρ r : ℂ | A1. Backward differencing the mode `r ↦ b^(r*ρ)` on the ladder multiplies it by `1 - b^(-ρ)`. The symbol of `Δ` is the reciprocal Euler factor. | `EulerFactorChain.sym` | `Chain.A1`, `EulerFactorChain.symbol_at_one` |
-| `EulerFactorChain.diagonal_gain`<br/>theorem, line 69 | (b : ℂ) ^ ρ * sym b ρ = (b : ℂ) ^ ρ - 1 | b : ℝ; hb : b ≠ 0; ρ : ℂ | The diagonal gain. `b^ρ · sym b ρ = b^ρ − 1`. | `EulerFactorChain.sym` | `EulerFactorChain.diagonal_cell`, `EulerFactorChain.diagonal_over_column` |
-| `EulerFactorChain.diagonal_cell`<br/>theorem, line 78 | (b : ℂ) ^ (((d : ℂ) + c) * ρ) * (sym b ρ) ^ d = (b : ℂ) ^ ((c : ℂ) * ρ) * ((b : ℂ) ^ ρ - 1) ^ d | b : ℝ; hb : b ≠ 0; ρ : ℂ; c d : ℕ | The cell value along a diagonal in closed form: with `r = d + c`, the mode's `b^(rρ)·(sym b ρ)^d` collapses to `b^(cρ)·(b^ρ − 1)^d`. | `EulerFactorChain.diagonal_gain`, `EulerFactorChain.sym` | — |
-| `EulerFactorChain.diagonal_over_column`<br/>theorem, line 87 | ((b : ℂ) ^ ρ - 1) / sym b ρ = (b : ℂ) ^ ρ | b : ℝ; hb : b ≠ 0; ρ : ℂ; hs : sym b ρ ≠ 0 | dia/col = `b^ρ`. The ratio of the diagonal gain to the column gain. | `EulerFactorChain.diagonal_gain`, `EulerFactorChain.sym` | — |
-| `EulerFactorChain.diagonal_over_column_at_half`<br/>theorem, line 94 | (b : ℂ) ^ ((1 : ℂ) / 2) = (Real.sqrt b : ℂ) | hb : 0 ≤ b | At `ρ = 1/2` that ratio is `√b`. The critical line, read as the table's own geometry: moving along a diagonal outruns moving down a column by exactly `√b`, which at `b = 2` is 1.414214. | — | — |
-| `EulerFactorChain.symbol_at_one`<br/>theorem, line 104 | (b : ℂ) ^ (r * 1) - (b : ℂ) ^ ((r - 1) * 1) = sym b 1 * (b : ℂ) ^ (r * 1) | b : ℝ; hb : b ≠ 0; r : ℂ | A1 at `ρ = 1`. Moved here from `PairIdentity` when that module went Mathlib-free; it is the only ℂ-valued statement that file had. A1 at `ρ = 1`. `symbol_of_backward_difference` says backward differencing the mode `b^(rρ)` multiplies it by `1 − b^(−ρ)`. At `ρ = 1` the multiplier is `1 − b⁻¹`. Stated here only to name the instance the rest of this file uses; … | `EulerFactorChain.sym`, `EulerFactorChain.symbol_of_backward_difference` | — |
-| `EulerFactorChain.euler_product_riemannZeta`<br/>theorem, line 115 | ∏' p : Nat.Primes, (1 - (p : ℂ) ^ (-s))⁻¹ = riemannZeta s | hs : 1 &lt; s.re | A2. Euler's product, 1737, in the form Mathlib proves it: over *all* primes at once, and only in the half-plane where the product converges. The hypothesis `1 &lt; s.re` is not decoration — it is the honest content of the statement, and it excludes the whole `sym b s = 0` lattice on which the old `(sym s)⁻¹ * sym s = 1` reading of A2 was false. Cited from `riem… | `EulerFactorChain.sym` | `Chain.A2`, `EulerFactorChain.euler_product_sym` |
-| `EulerFactorChain.solely`<br/>theorem, line 122 | — | — | — | `EulerFactorChain.euler_product_sym` | — |
-| `EulerFactorChain.sym_natCast`<br/>theorem, line 124 | sym (n : ℝ) s = 1 - (n : ℂ) ^ (-s) | n : ℕ; s : ℂ | The chain's `sym` at a natural-number base, written the way the Euler product writes its factors. This is definitional: `sym` unfolds to `1 - b^(-s)` and the only work is the `ℕ → ℝ → ℂ` cast. It is stated as a lemma solely so that `euler_product_sym` below can be written in the chain's own vocabulary. | `EulerFactorChain.sym` | `Chain.A3`, `EulerFactorChain.euler_product_sym` |
-| `EulerFactorChain.euler_product_sym`<br/>theorem, line 136 | ∏' p : Nat.Primes, (sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s | hs : 1 &lt; s.re | A3, the single-base reading with the `b` index retained. For a prime `p`, `sym ↑p` is exactly the factor A2 inverts: substituting the chain's symbol into Euler's product leaves the product unchanged and still equal to `ζ s`. | `EulerFactorChain.euler_product_riemannZeta`, `EulerFactorChain.sym`, `EulerFactorChain.sym_natCast` | `Chain.A3`, `EulerFactorChain.solely` |
-| `EulerFactorChain.h`<br/>def, line 142 | ℂ | b : ℝ; N : ℕ; s : ℂ | The Weil test function built from an order-`N` stencil. | — | `EulerFactorChain.h_eq_gain_pow_on_critical_line`, `EulerFactorChain.h_functional_equation`, `EulerFactorChain.h_one`, `EulerFactorChain.h_zero` |
-| `EulerFactorChain.h_functional_equation`<br/>theorem, line 146 | h b N (1 - s) = h b N s | b : ℝ; N : ℕ; s : ℂ | B2a. `h` is symmetric under `s ↦ 1 - s`: the functional equation. | `EulerFactorChain.h` | `EulerFactorChain.h_one` |
-| `EulerFactorChain.h_zero`<br/>theorem, line 154 | h b N 0 = 0 | b : ℝ; hb : b ≠ 0; hN : N ≠ 0 | B2b. `h` vanishes at `s = 0`: the stencil annihilates constants. | `EulerFactorChain.h` | `EulerFactorChain.h_one` |
-| `EulerFactorChain.h_one`<br/>theorem, line 161 | h b N 1 = 0 | b : ℝ; hb : b ≠ 0; hN : N ≠ 0 | B2b. `h` vanishes at `s = 1`, so there is no pole contribution. | `EulerFactorChain.h`, `EulerFactorChain.h_functional_equation`, `EulerFactorChain.h_zero` | — |
-| `EulerFactorChain.conj_factor_on_critical_line`<br/>theorem, line 168 | (starRingEnd ℂ) (1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))) = 1 - (b : ℂ) ^ (((1 : ℂ)/2 + t * I) - 1) | hb : 0 &lt; b; t : ℝ | On the critical line the second factor is the conjugate of the first. | — | `EulerFactorChain.h_eq_gain_pow_on_critical_line` |
-| `EulerFactorChain.h_eq_gain_pow_on_critical_line`<br/>theorem, line 188 | h b N ((1 : ℂ)/2 + t * I) = ((‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))‖ : ℝ) ^ (2 * N) : ℝ) | hb : 0 &lt; b; N : ℕ; t : ℝ | B4. On the critical line, `h = ‖1 - b^(-s)‖^(2N)` — real, non-negative, and equal to the depth-transfer gain raised to the `2N`. | `EulerFactorChain.conj_factor_on_critical_line`, `EulerFactorChain.h` | `Chain.B4` |
-| `EulerFactorChain.cpow_rect_on_critical_line`<br/>theorem, line 201 | (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I)) = ((b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) : ℝ) : ℂ) + ((-(b ^ (-(1:ℝ)/2) * Real.sin (γ * Real.log b)) : ℝ) : ℂ) * I | hb : 0 &lt; b; γ : ℝ | Rectangular form of the Euler factor's reciprocal on the critical line. Writing `θ = γ · log b`, `b^(-(1/2 + γi)) = b^(-1/2)·(cos θ - i sin θ)`. | — | `EulerFactorChain.gain_sq_on_critical_line` |
-| `EulerFactorChain.gain_sq_on_critical_line`<br/>theorem, line 225 | ‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ ^ 2 = 1 - 2 * b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) + b ^ (-(1:ℝ)) | hb : 0 &lt; b; γ : ℝ | C1. On the critical line `s = 1/2 + γi`, the squared modulus of the reciprocal Euler factor expands as the law of cosines with sides `1` and `b^(-1/2)` and included angle `θ = γ · log b`: | `EulerFactorChain.cpow_rect_on_critical_line` | `Chain.C1`, `Chain.gain_sq_at_ceiling`, `Chain.gain_sq_at_floor` |
+<a name="EulerFactorChain-sym"></a>
+### `EulerFactorChain.sym`
+
+def · line 40
+
+The reciprocal Euler factor at `b`, as a function of `s`.
+
+- **Is:** `` sym (b : ℝ) (s : ℂ) : ℂ := 1 - (b : ℂ) ^ (-s) ``
+- **Used by 7:** [`EulerFactorChain.diagonal_cell`](#EulerFactorChain-diagonal_cell), [`EulerFactorChain.diagonal_gain`](#EulerFactorChain-diagonal_gain), [`EulerFactorChain.diagonal_over_column`](#EulerFactorChain-diagonal_over_column), [`EulerFactorChain.euler_product_sym`](#EulerFactorChain-euler_product_sym), [`EulerFactorChain.sym_natCast`](#EulerFactorChain-sym_natCast), [`EulerFactorChain.symbol_at_one`](#EulerFactorChain-symbol_at_one), [`EulerFactorChain.symbol_of_backward_difference`](#EulerFactorChain-symbol_of_backward_difference)
+
+<a name="EulerFactorChain-h"></a>
+### `EulerFactorChain.h`
+
+def · line 142
+
+The Weil test function built from an order-`N` stencil.
+
+- **Is:** `` h (b : ℝ) (N : ℕ) (s : ℂ) : ℂ := (1 - (b : ℂ) ^ (-s)) ^ N * (1 - (b : ℂ) ^ (s - 1)) ^ N ``
+- **Used by 4:** [`EulerFactorChain.h_eq_gain_pow_on_critical_line`](#EulerFactorChain-h_eq_gain_pow_on_critical_line), [`EulerFactorChain.h_functional_equation`](#EulerFactorChain-h_functional_equation), [`EulerFactorChain.h_one`](#EulerFactorChain-h_one), [`EulerFactorChain.h_zero`](#EulerFactorChain-h_zero)
+
+## Theorems
+
+<a name="EulerFactorChain-symbol_of_backward_difference"></a>
+### `EulerFactorChain.symbol_of_backward_difference`
+
+line 45
+
+**Why.** A1. Backward differencing the mode `r ↦ b^(r*ρ)` on the ladder multiplies it by `1 - b^(-ρ)`. The symbol of `Δ` is the reciprocal Euler factor.
+
+**Proves**
+
+```lean
+(b : ℂ) ^ (r * ρ) - (b : ℂ) ^ ((r - 1) * ρ) = sym b ρ * (b : ℂ) ^ (r * ρ)
+```
+
+**Needs** (its hypotheses)
+
+  - `` b : ℝ ``
+  - `` hb : b ≠ 0 ``
+  - `` ρ r : ℂ ``
+
+**Stated with:** [`EulerFactorChain.sym`](#EulerFactorChain-sym)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (2 that use it)
+
+  - [`Chain.A1`](../lean/Chain.md#Chain-A1) (Chain) — `` StmtA1 b ρ ``
+  - [`EulerFactorChain.symbol_at_one`](#EulerFactorChain-symbol_at_one) — `` (b : ℂ) ^ (r * 1) - (b : ℂ) ^ ((r - 1) * 1) = sym b 1 * (b : ℂ) ^ (r * 1) ``
+
+<a name="EulerFactorChain-diagonal_gain"></a>
+### `EulerFactorChain.diagonal_gain`
+
+line 69
+
+**Why.** The diagonal gain. `b^ρ · sym b ρ = b^ρ − 1`.
+
+**Proves**
+
+```lean
+(b : ℂ) ^ ρ * sym b ρ = (b : ℂ) ^ ρ - 1
+```
+
+**Needs** (its hypotheses)
+
+  - `` b : ℝ ``
+  - `` hb : b ≠ 0 ``
+  - `` ρ : ℂ ``
+
+**Stated with:** [`EulerFactorChain.sym`](#EulerFactorChain-sym)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (2 that use it)
+
+  - [`EulerFactorChain.diagonal_cell`](#EulerFactorChain-diagonal_cell) — `` (b : ℂ) ^ (((d : ℂ) + c) * ρ) * (sym b ρ) ^ d = (b : ℂ) ^ ((c : ℂ) * ρ) * ((b : ℂ) ^ ρ - 1) ^ d ``
+  - [`EulerFactorChain.diagonal_over_column`](#EulerFactorChain-diagonal_over_column) — `` ((b : ℂ) ^ ρ - 1) / sym b ρ = (b : ℂ) ^ ρ ``
+
+<a name="EulerFactorChain-diagonal_cell"></a>
+### `EulerFactorChain.diagonal_cell`
+
+line 78
+
+**Why.** The cell value along a diagonal in closed form: with `r = d + c`, the mode's `b^(rρ)·(sym b ρ)^d` collapses to `b^(cρ)·(b^ρ − 1)^d`.
+
+**Proves**
+
+```lean
+(b : ℂ) ^ (((d : ℂ) + c) * ρ) * (sym b ρ) ^ d = (b : ℂ) ^ ((c : ℂ) * ρ) * ((b : ℂ) ^ ρ - 1) ^ d
+```
+
+**Needs** (its hypotheses)
+
+  - `` b : ℝ ``
+  - `` hb : b ≠ 0 ``
+  - `` ρ : ℂ ``
+  - `` c d : ℕ ``
+
+**Stated with:** [`EulerFactorChain.sym`](#EulerFactorChain-sym)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`EulerFactorChain.diagonal_gain`](#EulerFactorChain-diagonal_gain) — `` (b : ℂ) ^ ρ * sym b ρ = (b : ℂ) ^ ρ - 1 ``
+
+**Feeds:** nothing. It is an end.
+
+<a name="EulerFactorChain-diagonal_over_column"></a>
+### `EulerFactorChain.diagonal_over_column`
+
+line 87
+
+**Why.** dia/col = `b^ρ`. The ratio of the diagonal gain to the column gain.
+
+**Proves**
+
+```lean
+((b : ℂ) ^ ρ - 1) / sym b ρ = (b : ℂ) ^ ρ
+```
+
+**Needs** (its hypotheses)
+
+  - `` b : ℝ ``
+  - `` hb : b ≠ 0 ``
+  - `` ρ : ℂ ``
+  - `` hs : sym b ρ ≠ 0 ``
+
+**Stated with:** [`EulerFactorChain.sym`](#EulerFactorChain-sym)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`EulerFactorChain.diagonal_gain`](#EulerFactorChain-diagonal_gain) — `` (b : ℂ) ^ ρ * sym b ρ = (b : ℂ) ^ ρ - 1 ``
+
+**Feeds:** nothing. It is an end.
+
+<a name="EulerFactorChain-diagonal_over_column_at_half"></a>
+### `EulerFactorChain.diagonal_over_column_at_half`
+
+line 94
+
+**Why.** At `ρ = 1/2` that ratio is `√b`. The critical line, read as the table's own geometry: moving along a diagonal outruns moving down a column by exactly `√b`, which at `b = 2` is 1.414214.
+
+**Proves**
+
+```lean
+(b : ℂ) ^ ((1 : ℂ) / 2) = (Real.sqrt b : ℂ)
+```
+
+**Needs** (its hypotheses)
+
+  - `` hb : 0 ≤ b ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds:** nothing. It connects to nothing.
+
+<a name="EulerFactorChain-symbol_at_one"></a>
+### `EulerFactorChain.symbol_at_one`
+
+line 104
+
+**Why.** A1 at `ρ = 1`. Moved here from `PairIdentity` when that module went Mathlib-free; it is the only ℂ-valued statement that file had. A1 at `ρ = 1`. `symbol_of_backward_difference` says backward differencing the mode `b^(rρ)` multiplies it by `1 − b^(−ρ)`. At `ρ = 1` the multiplier is `1 − b⁻¹`. Stated here only to name the instance the rest of this file uses; it carries no content of its own.
+
+**Proves**
+
+```lean
+(b : ℂ) ^ (r * 1) - (b : ℂ) ^ ((r - 1) * 1) = sym b 1 * (b : ℂ) ^ (r * 1)
+```
+
+**Needs** (its hypotheses)
+
+  - `` b : ℝ ``
+  - `` hb : b ≠ 0 ``
+  - `` r : ℂ ``
+
+**Stated with:** [`EulerFactorChain.sym`](#EulerFactorChain-sym)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`EulerFactorChain.symbol_of_backward_difference`](#EulerFactorChain-symbol_of_backward_difference) — `` (b : ℂ) ^ (r * ρ) - (b : ℂ) ^ ((r - 1) * ρ) = sym b ρ * (b : ℂ) ^ (r * ρ) ``
+
+**Feeds:** nothing. It is an end.
+
+<a name="EulerFactorChain-euler_product_riemannZeta"></a>
+### `EulerFactorChain.euler_product_riemannZeta`
+
+line 115
+
+**Why.** A2. Euler's product, 1737, in the form Mathlib proves it: over *all* primes at once, and only in the half-plane where the product converges. The hypothesis `1 < s.re` is not decoration — it is the honest content of the statement, and it excludes the whole `sym b s = 0` lattice on which the old `(sym s)⁻¹ * sym s = 1` reading of A2 was false. Cited from `riemannZeta_eulerProduct_tprod`, not reproved.
+
+**Proves**
+
+```lean
+∏' p : Nat.Primes, (1 - (p : ℂ) ^ (-s))⁻¹ = riemannZeta s
+```
+
+**Needs** (its hypotheses)
+
+  - `` hs : 1 < s.re ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (2 that use it)
+
+  - [`Chain.A2`](../lean/Chain.md#Chain-A2) (Chain) — `` StmtA2 ``
+  - [`EulerFactorChain.euler_product_sym`](#EulerFactorChain-euler_product_sym) — `` ∏' p : Nat.Primes, (sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s ``
+
+<a name="EulerFactorChain-sym_natCast"></a>
+### `EulerFactorChain.sym_natCast`
+
+line 124
+
+**Why.** The chain's `sym` at a natural-number base, written the way the Euler product writes its factors. This is definitional: `sym` unfolds to `1 - b^(-s)` and the only work is the `ℕ → ℝ → ℂ` cast. It is stated as a lemma solely so that `euler_product_sym` below can be written in the chain's own vocabulary.
+
+**Proves**
+
+```lean
+sym (n : ℝ) s = 1 - (n : ℂ) ^ (-s)
+```
+
+**Needs** (its hypotheses)
+
+  - `` n : ℕ ``
+  - `` s : ℂ ``
+
+**Stated with:** [`EulerFactorChain.sym`](#EulerFactorChain-sym)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (2 that use it)
+
+  - [`Chain.A3`](../lean/Chain.md#Chain-A3) (Chain) — `` StmtA3 ``
+  - [`EulerFactorChain.euler_product_sym`](#EulerFactorChain-euler_product_sym) — `` ∏' p : Nat.Primes, (sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s ``
+
+<a name="EulerFactorChain-euler_product_sym"></a>
+### `EulerFactorChain.euler_product_sym`
+
+line 136
+
+**Why.** A3, the single-base reading with the `b` index retained. For a prime `p`, `sym ↑p` is exactly the factor A2 inverts: substituting the chain's symbol into Euler's product leaves the product unchanged and still equal to `ζ s`.
+
+**Proves**
+
+```lean
+∏' p : Nat.Primes, (sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s
+```
+
+**Needs** (its hypotheses)
+
+  - `` hs : 1 < s.re ``
+
+**Stated with:** [`EulerFactorChain.sym`](#EulerFactorChain-sym)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`EulerFactorChain.euler_product_riemannZeta`](#EulerFactorChain-euler_product_riemannZeta) — `` ∏' p : Nat.Primes, (1 - (p : ℂ) ^ (-s))⁻¹ = riemannZeta s ``
+  - [`EulerFactorChain.sym_natCast`](#EulerFactorChain-sym_natCast) — `` sym (n : ℝ) s = 1 - (n : ℂ) ^ (-s) ``
+
+**Feeds** (1 that use it)
+
+  - [`Chain.A3`](../lean/Chain.md#Chain-A3) (Chain) — `` StmtA3 ``
+
+<a name="EulerFactorChain-h_functional_equation"></a>
+### `EulerFactorChain.h_functional_equation`
+
+line 146
+
+**Why.** B2a. `h` is symmetric under `s ↦ 1 - s`: the functional equation.
+
+**Proves**
+
+```lean
+h b N (1 - s) = h b N s
+```
+
+**Needs** (its hypotheses)
+
+  - `` b : ℝ ``
+  - `` N : ℕ ``
+  - `` s : ℂ ``
+
+**Stated with:** [`EulerFactorChain.h`](#EulerFactorChain-h)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`EulerFactorChain.h_one`](#EulerFactorChain-h_one) — `` h b N 1 = 0 ``
+
+<a name="EulerFactorChain-h_zero"></a>
+### `EulerFactorChain.h_zero`
+
+line 154
+
+**Why.** B2b. `h` vanishes at `s = 0`: the stencil annihilates constants.
+
+**Proves**
+
+```lean
+h b N 0 = 0
+```
+
+**Needs** (its hypotheses)
+
+  - `` b : ℝ ``
+  - `` hb : b ≠ 0 ``
+  - `` hN : N ≠ 0 ``
+
+**Stated with:** [`EulerFactorChain.h`](#EulerFactorChain-h)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`EulerFactorChain.h_one`](#EulerFactorChain-h_one) — `` h b N 1 = 0 ``
+
+<a name="EulerFactorChain-h_one"></a>
+### `EulerFactorChain.h_one`
+
+line 161
+
+**Why.** B2b. `h` vanishes at `s = 1`, so there is no pole contribution.
+
+**Proves**
+
+```lean
+h b N 1 = 0
+```
+
+**Needs** (its hypotheses)
+
+  - `` b : ℝ ``
+  - `` hb : b ≠ 0 ``
+  - `` hN : N ≠ 0 ``
+
+**Stated with:** [`EulerFactorChain.h`](#EulerFactorChain-h)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`EulerFactorChain.h_functional_equation`](#EulerFactorChain-h_functional_equation) — `` h b N (1 - s) = h b N s ``
+  - [`EulerFactorChain.h_zero`](#EulerFactorChain-h_zero) — `` h b N 0 = 0 ``
+
+**Feeds:** nothing. It is an end.
+
+<a name="EulerFactorChain-conj_factor_on_critical_line"></a>
+### `EulerFactorChain.conj_factor_on_critical_line`
+
+line 168
+
+**Why.** On the critical line the second factor is the conjugate of the first.
+
+**Proves**
+
+```lean
+(starRingEnd ℂ) (1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))) = 1 - (b : ℂ) ^ (((1 : ℂ)/2 + t * I) - 1)
+```
+
+**Needs** (its hypotheses)
+
+  - `` hb : 0 < b ``
+  - `` t : ℝ ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`EulerFactorChain.h_eq_gain_pow_on_critical_line`](#EulerFactorChain-h_eq_gain_pow_on_critical_line) — `` h b N ((1 : ℂ)/2 + t * I) = ((‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))‖ : ℝ) ^ (2 * N) : ℝ) ``
+
+<a name="EulerFactorChain-h_eq_gain_pow_on_critical_line"></a>
+### `EulerFactorChain.h_eq_gain_pow_on_critical_line`
+
+line 188
+
+**Why.** B4. On the critical line, `h = ‖1 - b^(-s)‖^(2N)` — real, non-negative, and equal to the depth-transfer gain raised to the `2N`.
+
+**Proves**
+
+```lean
+h b N ((1 : ℂ)/2 + t * I) = ((‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))‖ : ℝ) ^ (2 * N) : ℝ)
+```
+
+**Needs** (its hypotheses)
+
+  - `` hb : 0 < b ``
+  - `` N : ℕ ``
+  - `` t : ℝ ``
+
+**Stated with:** [`EulerFactorChain.h`](#EulerFactorChain-h)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`EulerFactorChain.conj_factor_on_critical_line`](#EulerFactorChain-conj_factor_on_critical_line) — `` (starRingEnd ℂ) (1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))) = 1 - (b : ℂ) ^ (((1 : ℂ)/2 + t * I) - 1) ``
+
+**Feeds** (1 that use it)
+
+  - [`Chain.B4`](../lean/Chain.md#Chain-B4) (Chain) — `` StmtB4 b N ``
+
+<a name="EulerFactorChain-cpow_rect_on_critical_line"></a>
+### `EulerFactorChain.cpow_rect_on_critical_line`
+
+line 201
+
+**Why.** Rectangular form of the Euler factor's reciprocal on the critical line. Writing `θ = γ · log b`, `b^(-(1/2 + γi)) = b^(-1/2)·(cos θ - i sin θ)`.
+
+**Proves**
+
+```lean
+(b : ℂ) ^ (-((1 : ℂ)/2 + γ * I)) = ((b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) : ℝ) : ℂ) + ((-(b ^ (-(1:ℝ)/2) * Real.sin (γ * Real.log b)) : ℝ) : ℂ) * I
+```
+
+**Needs** (its hypotheses)
+
+  - `` hb : 0 < b ``
+  - `` γ : ℝ ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`EulerFactorChain.gain_sq_on_critical_line`](#EulerFactorChain-gain_sq_on_critical_line) — `` ‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ ^ 2 = 1 - 2 * b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) + b ^ (-(1:ℝ)) ``
+
+<a name="EulerFactorChain-gain_sq_on_critical_line"></a>
+### `EulerFactorChain.gain_sq_on_critical_line`
+
+line 225
+
+**Why.** C1. On the critical line `s = 1/2 + γi`, the squared modulus of the reciprocal Euler factor expands as the law of cosines with sides `1` and `b^(-1/2)` and included angle `θ = γ · log b`:
+
+**Proves**
+
+```lean
+‖1 - (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ ^ 2 = 1 - 2 * b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) + b ^ (-(1:ℝ))
+```
+
+**Needs** (its hypotheses)
+
+  - `` hb : 0 < b ``
+  - `` γ : ℝ ``
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`EulerFactorChain.cpow_rect_on_critical_line`](#EulerFactorChain-cpow_rect_on_critical_line) — `` (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I)) = ((b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) : ℝ) : ℂ) + ((-(b ^ (-(1:ℝ)/2) * Real.sin (γ * Real.log b)) : ℝ) : ℂ) … ``
+
+**Feeds** (3 that use it)
+
+  - [`Chain.C1`](../lean/Chain.md#Chain-C1) (Chain) — `` StmtC1 b ``
+  - [`Chain.gain_sq_at_ceiling`](../lean/Chain.md#Chain-gain_sq_at_ceiling) (Chain) — `` ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2 ``
+  - [`Chain.gain_sq_at_floor`](../lean/Chain.md#Chain-gain_sq_at_floor) (Chain) — `` ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2 ``
+

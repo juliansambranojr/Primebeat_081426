@@ -1,53 +1,127 @@
 # `lean_stage3/Stage3/LandauCriterion.lean`
 
-**What it does** (its own header): LandauCriterion — the Landau window criterion, proved. Block 7d of `lean_stage3/design/landau.md`. 2026-11-22.
+LandauCriterion — the Landau window criterion, proved. Block 7d of `lean_stage3/design/landau.md`. 2026-11-22.
 
-**Imports:** [`LandauRates`](../lean_stage3/LandauRates.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md).
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointWindowDial`](../lean_stage3/JointWindowDial.md).
+3 theorems, 0 definitions, 239 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** [`LandauRates`](../lean_stage3/LandauRates.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)  
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointWindowDial`](../lean_stage3/JointWindowDial.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["contradiction<br/>⊢ False"]:::thm
-  n1["stmtLandauWindow<br/>⊢ LandauWindow.StmtLandauWindow"]:::thm
-  n2["rh_of_windows<br/>⊢ RiemannHypothesis"]:::end_
-  x0(["JointWindowDial · zeroFreeRight_of_window"]):::ext
-  x1(["LandauPrimeSide · Ik"]):::ext
-  x2(["LandauPrimeSide · Ik_le"]):::ext
-  x3(["LandauRates · exists_centre"]):::ext
-  x4(["LandauRates · exists_pow_small"]):::ext
-  x5(["LandauRates · key_ineq"]):::ext
-  x6(["LandauWindow · G"]):::ext
-  x7(["LandauWindow · StmtLandauWindow"]):::ext
-  x8(["LandauWindow · WindowBound"]):::ext
-  x9(["LandauWindow · rh_of_window"]):::ext
-  x10(["LandauZeroSide · zero_side"]):::ext
+  n0["<b>contradiction</b><br/>False"]:::thm
+  n1["<b>stmtLandauWindow</b><br/>LandauWindow.StmtLandauWindow"]:::thm
+  n2["<b>rh_of_windows</b><br/>RiemannHypothesis"]:::end_
+  x0(["<b>LandauPrimeSide</b><br/>Ik_le"]):::ext
+  x1(["<b>LandauRates</b><br/>exists_centre<br/>exists_pow_small<br/>key_ineq"]):::ext
+  x2(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
+  x3(["<b>JointWindowDial</b><br/>zeroFreeRight_of_window"]):::ext
+  x4(["<b>LandauWindow</b><br/>rh_of_window"]):::ext
   n0 --> n1
   n1 --> n2
-  n1 --> x0
-  x1 --> n0
-  x10 --> n1
-  x2 --> n0
-  x3 --> n1
-  x4 --> n0
-  x5 --> n0
-  x6 --> n0
-  x7 --> n1
-  x8 --> n2
-  x9 --> n2
+  n1 -.-> x3
+  x0 -.-> n0
+  x1 -.-> n0
+  x1 -.-> n1
+  x2 -.-> n1
+  x4 -.-> n2
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Theorems
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `LandauCriterion.contradiction`<br/>theorem, line 37 | False | hσ : 1 &lt; σ₀; hδ0 : 0 &lt; δ; hδ1 : δ ≤ 1; hC : 0 ≤ C; hra : σ₀ - 1 &lt; r; hr3 : r ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240); hrθ : r &lt; σ₀ - θ; hrR : r &lt; R; hτ : 0 &lt; τ; hzero : ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N), τ / r ^ (k + 1) - C₁ / R ^ k ≤ LandauPrimeSide.Ik σ₀ k / k.factorial; hwin : ∀ U₀ : ℝ, ∃ Y : ℝ, 1 ≤ Y ∧ U₀ ≤ Real.log Y ∧ ∀ y ∈ Icc Y (Y ^ (1 + δ)), LandauWindow.G y ≤ C * y ^ θ | — | `LandauPrimeSide.Ik`, `LandauPrimeSide.Ik_le`, `LandauRates.exists_pow_small`, `LandauRates.key_ineq`, `LandauWindow.G` | `LandauCriterion.stmtLandauWindow` |
-| `LandauCriterion.stmtLandauWindow`<br/>theorem, line 194 | LandauWindow.StmtLandauWindow | — | — | `LandauCriterion.contradiction`, `LandauRates.exists_centre`, `LandauWindow.StmtLandauWindow`, `LandauZeroSide.zero_side` | `JointWindowDial.zeroFreeRight_of_window`, `LandauCriterion.rh_of_windows` |
-| `LandauCriterion.rh_of_windows`<br/>theorem, line 219 | RiemannHypothesis | hW : ∀ θ : ℝ, 1 / 2 &lt; θ → θ &lt; 1 → ∃ δ C : ℝ, 0 &lt; δ ∧ LandauWindow.WindowBound θ δ C | — | `LandauCriterion.stmtLandauWindow`, `LandauWindow.WindowBound`, `LandauWindow.rh_of_window` | — |
+<a name="LandauCriterion-contradiction"></a>
+### `LandauCriterion.contradiction`
+
+line 37
+
+**Proves**
+
+```lean
+False
+```
+
+**Needs** (its hypotheses)
+
+  - `` hσ : 1 < σ₀ ``
+  - `` hδ0 : 0 < δ ``
+  - `` hδ1 : δ ≤ 1 ``
+  - `` hC : 0 ≤ C ``
+  - `` hra : σ₀ - 1 < r ``
+  - `` hr3 : r ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240) ``
+  - `` hrθ : r < σ₀ - θ ``
+  - `` hrR : r < R ``
+  - `` hτ : 0 < τ ``
+  - `` hzero : ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N), τ / r ^ (k + 1) - C₁ / R ^ k ≤ LandauPrimeSide.Ik σ₀ k / k.factorial ``
+  - `` hwin : ∀ U₀ : ℝ, ∃ Y : ℝ, 1 ≤ Y ∧ U₀ ≤ Real.log Y ∧ ∀ y ∈ Icc Y (Y ^ (1 + δ)), LandauWindow.G y ≤ C * y ^ θ ``
+
+**Stated with:** [`LandauPrimeSide.Ik`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik), [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G)
+
+**Fed by** (3 theorems its proof uses)
+
+  - [`LandauPrimeSide.Ik_le`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik_le) (LandauPrimeSide) — `` Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1)) + 8 * (Y ^ b * (k.factorial / (σ - 1 + b) ^ (k + 1))) + 8 * ((Y ^ (1 + δ)) ^ (-b') * (k.factorial / (σ … ``
+  - [`LandauRates.exists_pow_small`](../lean_stage3/LandauRates.md#LandauRates-exists_pow_small) (LandauRates) — `` ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k < ε ``
+  - [`LandauRates.key_ineq`](../lean_stage3/LandauRates.md#LandauRates-key_ineq) (LandauRates) — `` 4 * (lam - Real.log (1 - δ / 12)) < (1 + δ) * (Real.log (1 + δ / 3) - lam) ∧ 0 < Real.log (1 + δ / 3) - lam ∧ 0 < lam - Real.log (1 - δ / 12) ``
+
+**Feeds** (1 that use it)
+
+  - [`LandauCriterion.stmtLandauWindow`](#LandauCriterion-stmtLandauWindow) — `` LandauWindow.StmtLandauWindow ``
+
+<a name="LandauCriterion-stmtLandauWindow"></a>
+### `LandauCriterion.stmtLandauWindow`
+
+line 194
+
+**Proves**
+
+```lean
+LandauWindow.StmtLandauWindow
+```
+
+**Stated with:** [`LandauWindow.StmtLandauWindow`](../lean_stage3/LandauWindow.md#LandauWindow-StmtLandauWindow)
+
+**Fed by** (3 theorems its proof uses)
+
+  - [`LandauCriterion.contradiction`](#LandauCriterion-contradiction) — `` False ``
+  - [`LandauRates.exists_centre`](../lean_stage3/LandauRates.md#LandauRates-exists_centre) (LandauRates) — `` ∃ σ₀ : ℝ, 1 < σ₀ ∧ ‖(σ₀ : ℂ) - ρ₀‖ < σ₀ - θ ∧ ‖(σ₀ : ℂ) - ρ₀‖ ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240) ``
+  - [`LandauZeroSide.zero_side`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side) (LandauZeroSide) — `` ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 < r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r < R ∧ 0 < τ ∧ 0 ≤ C₁ ∧ ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N), τ / r ^ (k + 1) … ``
+
+**Definitions its proof touches:** [`LandauPrimeSide.Ik`](../lean_stage3/LandauPrimeSide.md#LandauPrimeSide-Ik), [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G), [`LandauWindow.WindowBound`](../lean_stage3/LandauWindow.md#LandauWindow-WindowBound)
+
+**Feeds** (2 that use it)
+
+  - [`JointWindowDial.zeroFreeRight_of_window`](../lean_stage3/JointWindowDial.md#JointWindowDial-zeroFreeRight_of_window) (JointWindowDial) — `` Stage3.StmtZeroFreeRight θ ``
+  - [`LandauCriterion.rh_of_windows`](#LandauCriterion-rh_of_windows) — `` RiemannHypothesis ``
+
+<a name="LandauCriterion-rh_of_windows"></a>
+### `LandauCriterion.rh_of_windows`
+
+line 219
+
+**Proves**
+
+```lean
+RiemannHypothesis
+```
+
+**Needs** (its hypotheses)
+
+  - `` hW : ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C ``
+
+**Stated with:** [`LandauWindow.WindowBound`](../lean_stage3/LandauWindow.md#LandauWindow-WindowBound)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`LandauCriterion.stmtLandauWindow`](#LandauCriterion-stmtLandauWindow) — `` LandauWindow.StmtLandauWindow ``
+  - [`LandauWindow.rh_of_window`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) (LandauWindow) — `` RiemannHypothesis ``
+
+**Feeds:** nothing. It is an end.
+

@@ -1,0 +1,13 @@
+flowchart LR
+  f0["<b>LandauWindow</b><br/>2 used"]:::thm
+  f1["<b>LandauMellin</b><br/>8 used"]:::thm
+  f2["<b>LandauMellinG</b><br/>12 used"]:::thm
+  f3["<b>JointSymbol</b><br/>mellin_dd_iter"]:::end_
+  f0 --> f1
+  f1 --> f2
+  f2 --> f3
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

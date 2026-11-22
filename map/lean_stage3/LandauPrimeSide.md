@@ -1,62 +1,148 @@
 # `lean_stage3/Stage3/LandauPrimeSide.lean`
 
-**What it does** (its own header): LandauPrimeSide — the primes' reading of the Taylor coefficients of `Phi`, bounded from above by a window bound on `G`. Block 7a of `lean_stage3/design/landau.md`. 2026-11-22.
+LandauPrimeSide — the primes' reading of the Taylor coefficients of `Phi`, bounded from above by a window bound on `G`. Block 7a of `lean_stage3/design/landau.md`. 2026-11-22.
 
-**Imports:** [`LandauTail`](../lean_stage3/LandauTail.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md).
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md).
+3 theorems, 1 definition, 184 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** [`LandauTail`](../lean_stage3/LandauTail.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md)  
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["Ik<br/>(def)"]:::dfn
-  n1["Ik_integrable<br/>⊢ IntegrableOn (fun y : ℝ =＞ LandauWindow.G y * Real.log y ^ k * y ^ (-σ…"]:::thm
-  n2["iteratedDeriv_Phi_eq_Ik<br/>⊢ iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k : ℝ) :…"]:::thm
-  n3["Ik_le<br/>⊢ Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1)) + 8 * (Y ^ b * (k.facto…"]:::thm
-  x0(["LandauChebyshev · G_le"]):::ext
-  x1(["LandauCriterion · contradiction"]):::ext
-  x2(["LandauKernel · log_pow_integrable"]):::ext
-  x3(["LandauKernel · log_pow_integral"]):::ext
-  x4(["LandauMellinG · Phi"]):::ext
-  x5(["LandauTail · lower_tail_le"]):::ext
-  x6(["LandauTail · upper_tail_le"]):::ext
-  x7(["LandauTaylor · iteratedDeriv_Phi"]):::ext
-  x8(["LandauTaylor · mellinLog_integrable"]):::ext
-  x9(["LandauTaylor · mellinLog_real"]):::ext
-  x10(["LandauWindow · G"]):::ext
-  x11(["LandauZeroSide · zero_side"]):::ext
+  n0["<b>Ik_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ LandauWindow.G y * Real.log y ^ k * y…"]:::thm
+  n1["<b>iteratedDeriv_Phi_eq_Ik</b><br/>iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k …"]:::thm
+  n2["<b>Ik_le</b><br/>Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1)) + 8 * (Y ^ b * (k…"]:::thm
+  x0(["<b>LandauTaylor</b><br/>iteratedDeriv_Phi<br/>mellinLog_integrable<br/>mellinLog_real"]):::ext
+  x1(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
+  x2(["<b>LandauChebyshev</b><br/>G_le"]):::ext
+  x3(["<b>LandauKernel</b><br/>log_pow_integrable<br/>log_pow_integral"]):::ext
+  x4(["<b>LandauTail</b><br/>lower_tail_le<br/>upper_tail_le"]):::ext
+  x5(["<b>LandauCriterion</b><br/>contradiction"]):::ext
   n0 --> n2
-  n0 --> n3
-  n0 --> x1
-  n0 --> x11
-  n1 --> n3
-  n2 --> x11
-  n3 --> x1
-  x0 --> n3
-  x10 --> n0
-  x10 --> n1
-  x10 --> n3
-  x2 --> n3
-  x3 --> n3
-  x4 --> n2
-  x5 --> n3
-  x6 --> n3
-  x7 --> n2
-  x8 --> n1
-  x9 --> n2
+  n1 -.-> x1
+  n2 -.-> x5
+  x0 -.-> n0
+  x0 -.-> n1
+  x2 -.-> n2
+  x3 -.-> n2
+  x4 -.-> n2
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Definitions
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `LandauPrimeSide.Ik`<br/>def, line 39 | ℝ | σ : ℝ; k : ℕ | `∫₁^∞ G(y)·(log y)^k·y^(−σ−1) dy`. | `LandauWindow.G` | `LandauCriterion.contradiction`, `LandauPrimeSide.Ik_le`, `LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`, `LandauZeroSide.zero_side` |
-| `LandauPrimeSide.Ik_integrable`<br/>theorem, line 42 | IntegrableOn (fun y : ℝ =&gt; LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)) (Ioi 1) | hσ : 1 &lt; σ; k : ℕ | — | `LandauTaylor.mellinLog_integrable`, `LandauWindow.G` | `LandauPrimeSide.Ik_le` |
-| `LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`<br/>theorem, line 60 | iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k : ℝ) : ℂ) | hσ : 1 &lt; σ; k : ℕ | — | `LandauMellinG.Phi`, `LandauPrimeSide.Ik`, `LandauTaylor.iteratedDeriv_Phi`, `LandauTaylor.mellinLog_real` | `LandauZeroSide.zero_side` |
-| `LandauPrimeSide.Ik_le`<br/>theorem, line 65 | Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1)) + 8 * (Y ^ b * (k.factorial / (σ - 1 + b) ^ (k + 1))) + 8 * ((Y ^ (1 + δ)) ^ (-b') * (k.factorial / (σ - 1 - b') ^ (k + 1))) | hσ : 1 &lt; σ; hθ : θ &lt; σ; hC : 0 ≤ C; hY : 1 ≤ Y; hδ : 0 ≤ δ; hwin : ∀ y ∈ Icc Y (Y ^ (1 + δ)), LandauWindow.G y ≤ C * y ^ θ; hb : 0 &lt; b; hb' : 0 &lt; b'; hb'a : b' &lt; σ - 1; k : ℕ | — | `LandauChebyshev.G_le`, `LandauKernel.log_pow_integrable`, `LandauKernel.log_pow_integral`, `LandauPrimeSide.Ik`, `LandauPrimeSide.Ik_integrable`, `LandauTail.lower_tail_le`, `LandauTail.upper_tail_le`, `LandauWindow.G` | `LandauCriterion.contradiction` |
+<a name="LandauPrimeSide-Ik"></a>
+### `LandauPrimeSide.Ik`
+
+def · line 39
+
+`∫₁^∞ G(y)·(log y)^k·y^(−σ−1) dy`.
+
+- **Is:** `` Ik (σ : ℝ) (k : ℕ) : ℝ := ∫ y in Ioi (1 : ℝ), LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1) ``
+- **Built from:** [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G)
+- **Used by 5:** [`LandauCriterion.contradiction`](../lean_stage3/LandauCriterion.md#LandauCriterion-contradiction), [`LandauCriterion.stmtLandauWindow`](../lean_stage3/LandauCriterion.md#LandauCriterion-stmtLandauWindow), [`LandauPrimeSide.Ik_le`](#LandauPrimeSide-Ik_le), [`LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`](#LandauPrimeSide-iteratedDeriv_Phi_eq_Ik), [`LandauZeroSide.zero_side`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side)
+
+## Theorems
+
+<a name="LandauPrimeSide-Ik_integrable"></a>
+### `LandauPrimeSide.Ik_integrable`
+
+line 42
+
+**Proves**
+
+```lean
+IntegrableOn (fun y : ℝ => LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)) (Ioi 1)
+```
+
+**Needs** (its hypotheses)
+
+  - `` hσ : 1 < σ ``
+  - `` k : ℕ ``
+
+**Stated with:** [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`LandauTaylor.mellinLog_integrable`](../lean_stage3/LandauTaylor.md#LandauTaylor-mellinLog_integrable) (LandauTaylor) — `` IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)) (Ioi 1) ``
+
+**Feeds** (1 that use it)
+
+  - [`LandauPrimeSide.Ik_le`](#LandauPrimeSide-Ik_le) — `` Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1)) + 8 * (Y ^ b * (k.factorial / (σ - 1 + b) ^ (k + 1))) + 8 * ((Y ^ (1 + δ)) ^ (-b') * (k.factorial / (σ … ``
+
+<a name="LandauPrimeSide-iteratedDeriv_Phi_eq_Ik"></a>
+### `LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`
+
+line 60
+
+**Proves**
+
+```lean
+iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k : ℝ) : ℂ)
+```
+
+**Needs** (its hypotheses)
+
+  - `` hσ : 1 < σ ``
+  - `` k : ℕ ``
+
+**Stated with:** [`LandauMellinG.Phi`](../lean_stage3/LandauMellinG.md#LandauMellinG-Phi), [`LandauPrimeSide.Ik`](#LandauPrimeSide-Ik)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`LandauTaylor.iteratedDeriv_Phi`](../lean_stage3/LandauTaylor.md#LandauTaylor-iteratedDeriv_Phi) (LandauTaylor) — `` iteratedDeriv k LandauMellinG.Phi s = mellinLog k s ``
+  - [`LandauTaylor.mellinLog_real`](../lean_stage3/LandauTaylor.md#LandauTaylor-mellinLog_real) (LandauTaylor) — `` mellinLog k (σ : ℂ) = (-1) ^ k * ((∫ y in Ioi (1 : ℝ), LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1) : ℝ) : ℂ) ``
+
+**Definitions its proof touches:** [`LandauTaylor.mellinLog`](../lean_stage3/LandauTaylor.md#LandauTaylor-mellinLog), [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G)
+
+**Feeds** (1 that use it)
+
+  - [`LandauZeroSide.zero_side`](../lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side) (LandauZeroSide) — `` ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 < r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r < R ∧ 0 < τ ∧ 0 ≤ C₁ ∧ ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N), τ / r ^ (k + 1) … ``
+
+<a name="LandauPrimeSide-Ik_le"></a>
+### `LandauPrimeSide.Ik_le`
+
+line 65
+
+**Proves**
+
+```lean
+Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1)) + 8 * (Y ^ b * (k.factorial / (σ - 1 + b) ^ (k + 1))) + 8 * ((Y ^ (1 + δ)) ^ (-b') * (k.factorial / (σ - 1 - b') ^ (k + 1)))
+```
+
+**Needs** (its hypotheses)
+
+  - `` hσ : 1 < σ ``
+  - `` hθ : θ < σ ``
+  - `` hC : 0 ≤ C ``
+  - `` hY : 1 ≤ Y ``
+  - `` hδ : 0 ≤ δ ``
+  - `` hwin : ∀ y ∈ Icc Y (Y ^ (1 + δ)), LandauWindow.G y ≤ C * y ^ θ ``
+  - `` hb : 0 < b ``
+  - `` hb' : 0 < b' ``
+  - `` hb'a : b' < σ - 1 ``
+  - `` k : ℕ ``
+
+**Stated with:** [`LandauPrimeSide.Ik`](#LandauPrimeSide-Ik), [`LandauWindow.G`](../lean_stage3/LandauWindow.md#LandauWindow-G)
+
+**Fed by** (6 theorems its proof uses)
+
+  - [`LandauChebyshev.G_le`](../lean_stage3/LandauChebyshev.md#LandauChebyshev-G_le) (LandauChebyshev) — `` LandauWindow.G y ≤ 8 * y ``
+  - [`LandauKernel.log_pow_integrable`](../lean_stage3/LandauKernel.md#LandauKernel-log_pow_integrable) (LandauKernel) — `` IntegrableOn (fun y : ℝ => Real.log y ^ n * y ^ (-a - 1)) (Ioi 1) ``
+  - [`LandauKernel.log_pow_integral`](../lean_stage3/LandauKernel.md#LandauKernel-log_pow_integral) (LandauKernel) — `` ∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial / a ^ (k + 1) ``
+  - [`LandauPrimeSide.Ik_integrable`](#LandauPrimeSide-Ik_integrable) — `` IntegrableOn (fun y : ℝ => LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)) (Ioi 1) ``
+  - [`LandauTail.lower_tail_le`](../lean_stage3/LandauTail.md#LandauTail-lower_tail_le) (LandauTail) — `` ∫ y in Ioc (1 : ℝ) Y, Real.log y ^ k * y ^ (-a - 1) ≤ Y ^ b * (k.factorial / (a + b) ^ (k + 1)) ``
+  - [`LandauTail.upper_tail_le`](../lean_stage3/LandauTail.md#LandauTail-upper_tail_le) (LandauTail) — `` ∫ y in Ioi Z, Real.log y ^ k * y ^ (-a - 1) ≤ Z ^ (-b) * (k.factorial / (a - b) ^ (k + 1)) ``
+
+**Feeds** (1 that use it)
+
+  - [`LandauCriterion.contradiction`](../lean_stage3/LandauCriterion.md#LandauCriterion-contradiction) (LandauCriterion) — `` False ``
+

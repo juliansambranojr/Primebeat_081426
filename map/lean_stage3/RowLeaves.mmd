@@ -1,27 +1,23 @@
 flowchart LR
-  n0["continuousOn_inv_log_sq_Ioi<br/>⊢ ContinuousOn (fun t : ℝ =＞ 1 / Real.log t ^ 2) (Ioi 1)"]:::lone
-  n1["hasDerivAt_Li<br/>⊢ HasDerivAt Li (1 / Real.log y) y"]:::thm
-  n2["hasDerivAt_Li_two_rpow<br/>⊢ HasDerivAt (fun u : ℝ =＞ Li ((2 : ℝ) ^ u)) (Real.exp (Real.log 2 * x) …"]:::thm
-  n3["continuousOn_exp_div<br/>⊢ ContinuousOn (fun t : ℝ =＞ Real.exp (Real.log 2 * t) / t) (Ioi 0)"]:::lone
-  n4["hasDerivAt_rowIntegral<br/>⊢ HasDerivAt (fun u : ℝ =＞ 2 / Real.log 2 + ∫ t in (1 : ℝ)..u, Real.exp …"]:::thm
-  n5["Li_two_rpow<br/>⊢ Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.…"]:::thm
-  n6["norm_logDerivZeta_zero<br/>⊢ ‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2 * Real.pi)"]:::thm
-  x0(["PsiToPi · Li"]):::ext
-  x1(["RouteGate · relErrWindow_route"]):::ext
-  x2(["RouteNum · c3n_le"]):::ext
-  x3(["RouteNum · relErrWindow_route_num"]):::ext
+  n0["<b>continuousOn_inv_log_sq_Ioi</b><br/>ContinuousOn (fun t : ℝ =＞ 1 / Real.log t ^ 2) (Ioi 1)"]:::thm
+  n1["<b>hasDerivAt_Li</b><br/>HasDerivAt Li (1 / Real.log y) y"]:::thm
+  n2["<b>hasDerivAt_Li_two_rpow</b><br/>HasDerivAt (fun u : ℝ =＞ Li ((2 : ℝ) ^ u)) (Real.exp (Real.log 2…"]:::thm
+  n3["<b>continuousOn_exp_div</b><br/>ContinuousOn (fun t : ℝ =＞ Real.exp (Real.log 2 * t) / t) (Ioi 0…"]:::thm
+  n4["<b>hasDerivAt_rowIntegral</b><br/>HasDerivAt (fun u : ℝ =＞ 2 / Real.log 2 + ∫ t in (1 : ℝ)..u, Rea…"]:::thm
+  n5["<b>Li_two_rpow</b><br/>Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp …"]:::thm
+  n6["<b>norm_logDerivZeta_zero</b><br/>‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2 * Real.pi)"]:::thm
+  x0(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
+  x1(["<b>RouteNum</b><br/>c3n_le<br/>relErrWindow_route_num"]):::ext
+  n0 --> n1
   n1 --> n2
   n2 --> n5
+  n3 --> n4
   n4 --> n5
-  n5 --> x1
-  n5 --> x3
-  n6 --> x2
-  x0 --> n1
-  x0 --> n2
-  x0 --> n5
+  n5 -.-> x0
+  n5 -.-> x1
+  n6 -.-> x1
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

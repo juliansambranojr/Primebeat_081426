@@ -1,51 +1,30 @@
 flowchart LR
-  n0["floorConst<br/>(def)"]:::dfn
-  n1["floorConst_nonneg<br/>⊢ 0 ≤ floorConst c₁ c₂ b₁ b₂ b₃ W x₀"]:::thm
-  n2["rem_floor<br/>⊢ c₁ * xx * G ^ 2 / TT ≤ 18 * c₁ * L ^ 2 / xx"]:::thm
-  n3["zeroinner_floor<br/>⊢ 2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK + 1) /…"]:::thm
-  n4["floor_arith<br/>⊢ A ≤ (4 + P / L₀ + Q / L₀ ^ 2 + 18 * c₁ / (x₀ * S₀) + c₂ / (S₀ * L₀)) *…"]:::thm
-  n5["psiWeak_floor<br/>⊢ StmtPsiWeak (floorConst c₁ c₂ b₁ b₂ b₃ W x₀) 2 x₀"]:::thm
-  n6["schoenfeldWeak_floor_of_RH<br/>⊢ ∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → StmtSchoenfeldWeak …"]:::end_
-  x0(["ArgCount · rvM_crude"]):::ext
-  x1(["Assembly · StmtExplicitFormulaPoly"]):::ext
-  x2(["Assembly · norm_zeroPartialSum_le_logsq"]):::ext
-  x3(["Assembly · zeroPartialSum"]):::ext
-  x4(["GateEval · routeConst_le"]):::ext
-  x5(["Glue · stmtEF_poly"]):::ext
-  x6(["GlueFloor · floorConstSplit"]):::ext
-  x7(["GlueFloor · floorConstSplit_nonneg"]):::ext
-  x8(["GlueFloor · psiWeak_floor_split"]):::ext
-  x9(["PsiToPi · Li"]):::ext
-  x10(["PsiToPi · StmtPsiWeak"]):::ext
-  x11(["PsiToPi · schoenfeldWeak_of_psiWeak"]):::ext
-  x12(["Statement · StmtSchoenfeldWeak"]):::ext
-  n0 --> n1
+  n0["<b>floorConst_nonneg</b><br/>0 ≤ floorConst c₁ c₂ b₁ b₂ b₃ W x₀"]:::thm
+  n1["<b>rem_floor</b><br/>c₁ * xx * G ^ 2 / TT ≤ 18 * c₁ * L ^ 2 / xx"]:::thm
+  n2["<b>zeroinner_floor</b><br/>2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK …"]:::thm
+  n3["<b>floor_arith</b><br/>A ≤ (4 + P / L₀ + Q / L₀ ^ 2 + 18 * c₁ / (x₀ * S₀) + c₂ / (S₀ * …"]:::thm
+  n4["<b>psiWeak_floor</b><br/>StmtPsiWeak (floorConst c₁ c₂ b₁ b₂ b₃ W x₀) 2 x₀"]:::thm
+  n5["<b>schoenfeldWeak_floor_of_RH</b><br/>∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → StmtSchoenfel…"]:::end_
+  x0(["<b>GlueFloor</b><br/>floorConstSplit_nonneg<br/>psiWeak_floor_split"]):::ext
+  x1(["<b>Assembly</b><br/>norm_zeroPartialSum_le_logsq"]):::ext
+  x2(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x3(["<b>Glue</b><br/>stmtEF_poly"]):::ext
+  x4(["<b>PsiToPi</b><br/>schoenfeldWeak_of_psiWeak"]):::ext
   n0 --> n5
-  n0 --> n6
-  n0 --> x4
-  n0 --> x6
-  n0 --> x8
-  n1 --> n6
-  n1 --> x7
-  n2 --> n5
-  n2 --> x8
-  n3 --> n5
-  n3 --> x8
+  n1 --> n4
+  n2 --> n4
+  n3 --> n4
   n4 --> n5
-  n4 --> x8
-  n5 --> n6
-  x0 --> n6
-  x1 --> n5
-  x10 --> n5
-  x11 --> n6
-  x12 --> n6
-  x2 --> n5
-  x3 --> n5
-  x5 --> n6
-  x9 --> n6
+  n0 -.-> x0
+  n1 -.-> x0
+  n2 -.-> x0
+  n3 -.-> x0
+  x1 -.-> n4
+  x2 -.-> n5
+  x3 -.-> n5
+  x4 -.-> n5
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,69 +1,24 @@
 flowchart LR
-  n0["tableFrom<br/>(def)"]:::dfn
-  n1["IsTableOf<br/>(def)"]:::dfn
-  n2["tableFrom_isTableOf<br/>⊢ IsTableOf N (tableFrom N)"]:::thm
-  n3["unique_of_isTableOf<br/>⊢ ∀ r d, f r d = tableFrom N r d"]:::thm
-  n4["eq_of_same_row<br/>⊢ ∀ r d, f r d = g r d"]:::end_
-  n5["zero_determined_by_row<br/>⊢ tableFrom N r d = tableFrom M r d"]:::thm
-  n6["tableFrom_add<br/>⊢ tableFrom (fun x =＞ N x + M x) r d = tableFrom N r d + tableFrom M r d"]:::thm
-  n7["tableFrom_smul<br/>⊢ tableFrom (fun x =＞ c * N x) r d = c * tableFrom N r d"]:::thm
-  n8["measured_zeros<br/>(def)"]:::dfn
-  x0(["Chain · 3 declarations"]):::ext
-  x1(["Expansion · 1 declarations"]):::ext
-  x2(["Interpolant · 1 declarations"]):::ext
-  x3(["MainTerm · 1 declarations"]):::ext
-  x4(["Nonvanishing · 1 declarations"]):::ext
-  x5(["PairIdentity · 5 declarations"]):::ext
-  x6(["Propagation · 4 declarations"]):::ext
-  x7(["RelativeGate · 1 declarations"]):::ext
-  x8(["RelativeLi · 3 declarations"]):::ext
-  x9(["RouteCell · 1 declarations"]):::ext
-  x10(["Schoenfeld · 1 declarations"]):::ext
-  x11(["SeedPerturbation · 14 declarations"]):::ext
-  x12(["Superposition · 1 declarations"]):::ext
-  x13(["ZeroCells · 4 declarations"]):::ext
-  x14(["Zeros · 11 declarations"]):::ext
-  x15(["ZerosStencil · 4 declarations"]):::ext
-  x16(["TableDepths · 9 declarations"]):::ext
-  x17(["TableRoute · 1 declarations"]):::ext
-  n0 --> n2
-  n0 --> n3
-  n0 --> n5
-  n0 --> n6
-  n0 --> n7
-  n0 --> x0
-  n0 --> x1
-  n0 --> x10
-  n0 --> x11
-  n0 --> x12
-  n0 --> x13
-  n0 --> x14
-  n0 --> x15
-  n0 --> x16
-  n0 --> x17
-  n0 --> x2
-  n0 --> x3
-  n0 --> x4
-  n0 --> x5
-  n0 --> x6
-  n0 --> x7
-  n0 --> x8
-  n0 --> x9
+  n0["<b>tableFrom_isTableOf</b><br/>IsTableOf N (tableFrom N)"]:::thm
+  n1["<b>unique_of_isTableOf</b><br/>∀ r d, f r d = tableFrom N r d"]:::thm
+  n2["<b>eq_of_same_row</b><br/>∀ r d, f r d = g r d"]:::end_
+  n3["<b>zero_determined_by_row</b><br/>tableFrom N r d = tableFrom M r d"]:::thm
+  n4["<b>tableFrom_add</b><br/>tableFrom (fun x =＞ N x + M x) r d = tableFrom N r d + tableFrom…"]:::thm
+  n5["<b>tableFrom_smul</b><br/>tableFrom (fun x =＞ c * N x) r d = c * tableFrom N r d"]:::thm
+  x0(["<b>Zeros</b><br/>tableFrom_isTable"]):::ext
+  x1(["<b>PairIdentity</b><br/>tableFrom_add_window"]):::ext
+  x2(["<b>Propagation</b><br/>outside_cone_zero"]):::ext
+  x3(["<b>SeedPerturbation</b><br/>tableFrom_eq_zero_of_vanishing_above<br/>tableFrom_sub"]):::ext
   n1 --> n2
-  n1 --> n3
-  n1 --> n4
-  n2 --> x14
-  n3 --> n4
-  n5 --> x11
-  n5 --> x5
-  n5 --> x6
-  n6 --> x11
-  n6 --> x5
-  n7 --> x11
-  n8 --> x13
+  n0 -.-> x0
+  n3 -.-> x1
+  n3 -.-> x2
+  n3 -.-> x3
+  n4 -.-> x1
+  n4 -.-> x3
+  n5 -.-> x3
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

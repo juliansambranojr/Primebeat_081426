@@ -1,96 +1,36 @@
 flowchart LR
-  n0["SigmaC<br/>(def)"]:::dfn
-  n1["Psi<br/>(def)"]:::dfn
-  n2["G<br/>(def)"]:::dfn
-  n3["ghat<br/>(def)"]:::dfn
-  n4["P_even<br/>⊢ P (-x) = P x"]:::thm
-  n5["xP_odd<br/>⊢ (-x) * P (-x) = -(x * P x)"]:::thm
-  n6["continuous_xP<br/>⊢ Continuous fun x : ℝ =＞ x * P x"]:::thm
-  n7["SigmaC_ofReal<br/>⊢ SigmaC (s : ℂ) = (WeilWindow.Sigma s : ℂ)"]:::thm
-  n8["SigmaC_I_mul<br/>⊢ SigmaC (Complex.I * (s : ℂ)) = Complex.I * (Psi s : ℂ)"]:::thm
-  n9["odd_integral_exp<br/>⊢ (∫ x in (-1 : ℝ)..1, ((q x : ℝ) : ℂ) * Complex.exp (w * (x : ℂ))) = ∫ …"]:::thm
-  n10["ghat_eq<br/>⊢ ghat h γ z = ((h : ℂ) / 2) * (SigmaC ((z + Complex.I * (γ : ℂ)) * (h :…"]:::thm
-  n11["ghat_ofReal_I<br/>⊢ ghat h γ (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((Psi (h …"]:::thm
-  n12["ghat_offline<br/>⊢ ghat h γ ((ε : ℂ) + Complex.I * (γ : ℂ)) = ((h : ℂ) / 2) * (SigmaC (((…"]:::thm
-  x0(["WeilBackground · Psi_bound"]):::ext
-  x1(["WeilBackground · Psi_le_two"]):::ext
-  x2(["WeilBackground · laplace_phi"]):::ext
-  x3(["WeilBackground · online_term_eq"]):::ext
-  x4(["WeilBackground · online_term_le_far"]):::ext
-  x5(["WeilBackground · online_term_le_near"]):::ext
-  x6(["WeilBackground · phi"]):::ext
-  x7(["WeilLobe · SigmaC_bound"]):::ext
-  x8(["WeilLobe · SigmaC_eq_ibp"]):::ext
-  x9(["WeilLobe · lobe_bound"]):::ext
-  x10(["WeilOddPower · q_odd"]):::ext
-  x11(["WeilOffLine · SigmaC_neg"]):::ext
-  x12(["WeilOffLine · ghat_neg"]):::ext
-  x13(["WeilOffLine · offline_term_le"]):::ext
-  x14(["WeilOffLine · offline_term_le_explicit"]):::ext
-  x15(["WeilOffLine · term_eq_neg_sq"]):::ext
-  x16(["WeilOffLine · term_re_eq"]):::ext
-  x17(["WeilOnLine · Psi_neg"]):::ext
-  x18(["WeilPowerBackground · S_eq_sinh"]):::ext
-  x19(["WeilWindow · P"]):::ext
-  x20(["WeilWindow · Sigma"]):::ext
-  x21(["WeilWindow · continuous_P"]):::ext
-  n0 --> n10
-  n0 --> n12
-  n0 --> n7
-  n0 --> n8
-  n0 --> x0
-  n0 --> x11
-  n0 --> x13
-  n0 --> x14
-  n0 --> x7
-  n0 --> x8
-  n0 --> x9
-  n1 --> n11
-  n1 --> n8
-  n1 --> x0
-  n1 --> x1
-  n1 --> x17
-  n1 --> x3
-  n1 --> x4
-  n1 --> x5
-  n10 --> n11
-  n10 --> n12
-  n10 --> x12
-  n11 --> x3
-  n12 --> x13
-  n2 --> n10
-  n2 --> n3
-  n2 --> x2
-  n2 --> x6
-  n3 --> n10
-  n3 --> n11
-  n3 --> n12
-  n3 --> x12
-  n3 --> x15
-  n3 --> x16
-  n3 --> x2
-  n4 --> n5
-  n4 --> x10
-  n5 --> n10
-  n6 --> n10
-  n7 --> n12
-  n8 --> n11
-  n8 --> x0
-  n9 --> n10
-  n9 --> x18
-  x19 --> n0
-  x19 --> n1
-  x19 --> n10
-  x19 --> n2
-  x19 --> n4
-  x19 --> n5
-  x19 --> n6
-  x20 --> n12
-  x20 --> n7
-  x21 --> n6
+  n0["<b>P_even</b><br/>P (-x) = P x"]:::thm
+  n1["<b>xP_odd</b><br/>(-x) * P (-x) = -(x * P x)"]:::thm
+  n2["<b>continuous_xP</b><br/>Continuous fun x : ℝ =＞ x * P x"]:::thm
+  n3["<b>SigmaC_ofReal</b><br/>SigmaC (s : ℂ) = (WeilWindow.Sigma s : ℂ)"]:::thm
+  n4["<b>SigmaC_I_mul</b><br/>SigmaC (Complex.I * (s : ℂ)) = Complex.I * (Psi s : ℂ)"]:::thm
+  n5["<b>odd_integral_exp</b><br/>(∫ x in (-1 : ℝ)..1, ((q x : ℝ) : ℂ) * Complex.exp (w * (x : ℂ))…"]:::thm
+  n6["<b>ghat_eq</b><br/>ghat h γ z = ((h : ℂ) / 2) * (SigmaC ((z + Complex.I * (γ : ℂ)) …"]:::thm
+  n7["<b>ghat_ofReal_I</b><br/>ghat h γ (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((P…"]:::thm
+  n8["<b>ghat_offline</b><br/>ghat h γ ((ε : ℂ) + Complex.I * (γ : ℂ)) = ((h : ℂ) / 2) * (Sigm…"]:::thm
+  x0(["<b>WeilOddPower</b><br/>q_odd"]):::ext
+  x1(["<b>WeilWindow</b><br/>continuous_P"]):::ext
+  x2(["<b>WeilBackground</b><br/>Psi_bound<br/>online_term_eq"]):::ext
+  x3(["<b>WeilPowerBackground</b><br/>S_eq_sinh"]):::ext
+  x4(["<b>WeilOffLine</b><br/>ghat_neg<br/>offline_term_le"]):::ext
+  n0 --> n1
+  n1 --> n6
+  n2 --> n6
+  n3 --> n8
+  n4 --> n7
+  n5 --> n6
+  n6 --> n7
+  n6 --> n8
+  n0 -.-> x0
+  n4 -.-> x2
+  n5 -.-> x3
+  n6 -.-> x4
+  n7 -.-> x2
+  n8 -.-> x4
+  x1 -.-> n2
+  x1 -.-> n6
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

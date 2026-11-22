@@ -1,126 +1,512 @@
 # `lean_stage3/Stage3/ArgCount.lean`
 
-**What it does** (its own header): ArgCount — block `hnt.md#H3` of `lean_stage3/design/hnt.md`, "The assembly: StmtSCrude argS, good heights by the identity, bad heights by a good one beside them".
+ArgCount — block `hnt.md#H3` of `lean_stage3/design/hnt.md`, "The assembly: StmtSCrude argS, good heights by the identity, bad heights by a good one beside them".
 
-**Imports:** [`ArgLegs`](../lean_stage3/ArgLegs.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md).
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md).
+15 theorems, 1 definition, 365 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** [`ArgLegs`](../lean_stage3/ArgLegs.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md)  
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["good<br/>(def)"]:::dfn
-  n1["argS_le_of_good<br/>⊢ |Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2"]:::thm
-  n2["N_eq_sum<br/>⊢ riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finit…"]:::thm
-  n3["N_nonneg<br/>⊢ 0 ≤ riemannZeta.N T"]:::thm
-  n4["N_mono<br/>⊢ riemannZeta.N T ≤ riemannZeta.N T'"]:::thm
-  n5["N_eq_of_no_zero_between<br/>⊢ riemannZeta.N T = riemannZeta.N T₀"]:::thm
-  n6["exists_good_below<br/>⊢ ∃ T : ℝ, a ＜ T ∧ T ＜ T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈…"]:::thm
-  n7["phasePoint_bound_near<br/>⊢ ∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Set.Icc (T₀ - 1) T₀, |Stage3.phasePoint t| ≤ M"]:::thm
-  n8["phaseTheta_sub_le<br/>⊢ |Stage3.phaseTheta T₀ - Stage3.phaseTheta T| ≤ (T₀ - T) * (M / 2 + Rea…"]:::thm
-  n9["argS_le_gt_two<br/>⊢ |Stage3.argS T| ≤ 15 * Real.log T + 75"]:::thm
-  n10["mainTerm_abs_le<br/>⊢ |Kadiri.zetaCountingMainTerm T| ≤ 3"]:::thm
-  n11["argS_two_le<br/>⊢ |Stage3.argS 2| ≤ 15 * Real.log 2 + 600"]:::thm
-  n12["sCrude_holds_of_good_two<br/>⊢ Stage3.StmtSCrude Stage3.argS 15 75"]:::thm
-  n13["sCrude_holds<br/>⊢ Stage3.StmtSCrude Stage3.argS 15 600"]:::thm
-  n14["rvM_crude_of_good_two<br/>⊢ riemannZeta.Riemann_vonMangoldt_bound 112 0 173"]:::end_
-  n15["rvM_crude<br/>⊢ riemannZeta.Riemann_vonMangoldt_bound 112 0 698"]:::thm
-  x0(["ArgCrude · StmtSCrude"]):::ext
-  x1(["ArgCrude · backlundArg_of_identity"]):::ext
-  x2(["ArgIdentity · argS"]):::ext
-  x3(["ArgIdentity · argS_eq_zetaArgContour"]):::ext
-  x4(["ArgIdentity · stmtArgIdentity_holds"]):::ext
-  x5(["ArgLegs · zetaArgContour_le"]):::ext
-  x6(["AssemblyFloor · schoenfeldWeak_floor_of_RH"]):::ext
-  x7(["GlueFloor · schoenfeldWeak_floor_split_of_RH"]):::ext
-  x8(["ReZetaCount · card_reZeros_le"]):::ext
-  x9(["ReZetaCount · mem_reZeros"]):::ext
-  x10(["ReZetaCount · reZeros"]):::ext
-  x11(["ReZetaCount · re_zeta_two_line_pos"]):::ext
-  x12(["RouteNum · schoenfeldWeak_route_num"]):::ext
-  x13(["RvMCrude · RvM_of_phase_arg"]):::ext
-  x14(["Stirling · backlundPhase_holds"]):::ext
-  x15(["Stirling · intervalIntegrable_phasePoint"]):::ext
-  x16(["Stirling · phasePoint"]):::ext
-  x17(["Stirling · phaseTheta"]):::ext
-  n0 --> n1
-  n0 --> n12
-  n0 --> n14
-  n0 --> n6
-  n1 --> n11
-  n1 --> n12
-  n1 --> n9
-  n10 --> n11
+  n0["<b>argS_le_of_good</b><br/>|Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2"]:::thm
+  n1["<b>N_eq_sum</b><br/>riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height…"]:::thm
+  n2["<b>N_nonneg</b><br/>0 ≤ riemannZeta.N T"]:::thm
+  n3["<b>N_mono</b><br/>riemannZeta.N T ≤ riemannZeta.N T'"]:::thm
+  n4["<b>N_eq_of_no_zero_between</b><br/>riemannZeta.N T = riemannZeta.N T₀"]:::thm
+  n5["<b>exists_good_below</b><br/>∃ T : ℝ, a ＜ T ∧ T ＜ T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → …"]:::thm
+  n6["<b>phasePoint_bound_near</b><br/>∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Set.Icc (T₀ - 1) T₀, |Stage3.phasePoint t…"]:::thm
+  n7["<b>phaseTheta_sub_le</b><br/>|Stage3.phaseTheta T₀ - Stage3.phaseTheta T| ≤ (T₀ - T) * (M / 2…"]:::thm
+  n8["<b>argS_le_gt_two</b><br/>|Stage3.argS T| ≤ 15 * Real.log T + 75"]:::thm
+  n9["<b>mainTerm_abs_le</b><br/>|Kadiri.zetaCountingMainTerm T| ≤ 3"]:::thm
+  n10["<b>argS_two_le</b><br/>|Stage3.argS 2| ≤ 15 * Real.log 2 + 600"]:::thm
+  n11["<b>sCrude_holds_of_good_two</b><br/>Stage3.StmtSCrude Stage3.argS 15 75"]:::thm
+  n12["<b>sCrude_holds</b><br/>Stage3.StmtSCrude Stage3.argS 15 600"]:::thm
+  n13["<b>rvM_crude_of_good_two</b><br/>riemannZeta.Riemann_vonMangoldt_bound 112 0 173"]:::end_
+  n14["<b>rvM_crude</b><br/>riemannZeta.Riemann_vonMangoldt_bound 112 0 698"]:::thm
+  x0(["<b>ArgIdentity</b><br/>argS_eq_zetaArgContour<br/>stmtArgIdentity_holds"]):::ext
+  x1(["<b>ArgLegs</b><br/>zetaArgContour_le"]):::ext
+  x2(["<b>ReZetaCount</b><br/>card_reZeros_le<br/>mem_reZeros<br/>re_zeta_two_line_pos"]):::ext
+  x3(["<b>Stirling</b><br/>backlundPhase_holds<br/>continuous_phasePoint<br/>intervalIntegrable_phasePoint"]):::ext
+  x4(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
+  x5(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
+  x6(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x7(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x8(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  n0 --> n10
+  n0 --> n11
+  n0 --> n8
+  n1 --> n2
+  n1 --> n3
+  n10 --> n12
   n11 --> n13
   n12 --> n14
-  n13 --> n15
-  n15 --> x12
-  n15 --> x6
-  n15 --> x7
-  n2 --> n3
-  n2 --> n4
-  n3 --> n11
-  n4 --> n11
-  n5 --> n9
-  n6 --> n11
-  n6 --> n9
-  n7 --> n9
-  n8 --> n9
-  n9 --> n12
-  n9 --> n13
-  x0 --> n12
-  x0 --> n13
-  x1 --> n14
-  x1 --> n15
-  x10 --> n1
-  x11 --> n1
-  x13 --> n14
-  x13 --> n15
-  x14 --> n11
-  x14 --> n14
-  x14 --> n15
-  x15 --> n8
-  x16 --> n7
-  x16 --> n8
-  x17 --> n11
-  x17 --> n8
-  x17 --> n9
-  x2 --> n1
-  x2 --> n11
-  x2 --> n12
-  x2 --> n13
-  x2 --> n9
-  x3 --> n1
-  x4 --> n14
-  x4 --> n15
-  x5 --> n1
-  x8 --> n1
-  x9 --> n1
+  n2 --> n10
+  n3 --> n10
+  n4 --> n8
+  n5 --> n10
+  n5 --> n8
+  n6 --> n8
+  n7 --> n8
+  n8 --> n11
+  n8 --> n12
+  n9 --> n10
+  n14 -.-> x6
+  n14 -.-> x7
+  n14 -.-> x8
+  x0 -.-> n0
+  x0 -.-> n13
+  x0 -.-> n14
+  x1 -.-> n0
+  x2 -.-> n0
+  x3 -.-> n10
+  x3 -.-> n13
+  x3 -.-> n14
+  x3 -.-> n6
+  x3 -.-> n7
+  x4 -.-> n13
+  x4 -.-> n14
+  x5 -.-> n13
+  x5 -.-> n14
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Definitions
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `ArgCount.good`<br/>def, line 67 | Prop | T : ℝ | A height with no zero of `ζ` of positive real part on it. | — | `ArgCount.argS_le_of_good`, `ArgCount.exists_good_below`, `ArgCount.rvM_crude_of_good_two`, `ArgCount.sCrude_holds_of_good_two` |
-| `ArgCount.argS_le_of_good`<br/>theorem, line 70 | \|Stage3.argS T\| ≤ 15 * Real.log T + 73 + 3 / 2 | hT : 2 ≤ T; hg : good T | The good heights. The identity plus H1's legs and H2's count. | `ArgCount.good`, `Stage3.argS`, `Stage3.argS_eq_zetaArgContour`, `ArgLegs.zetaArgContour_le`, `ReZetaCount.card_reZeros_le`, `ReZetaCount.mem_reZeros`, `ReZetaCount.reZeros`, `ReZetaCount.re_zeta_two_line_pos` | `ArgCount.argS_le_gt_two`, `ArgCount.argS_two_le`, `ArgCount.sCrude_holds_of_good_two` |
-| `ArgCount.N_eq_sum`<br/>theorem, line 84 | riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) | T : ℝ | `N T` as the finite sum of orders over the zero rectangle. | — | `ArgCount.N_mono`, `ArgCount.N_nonneg` |
-| `ArgCount.N_nonneg`<br/>theorem, line 93 | 0 ≤ riemannZeta.N T | T : ℝ | Every order is at least one, so the count is nonnegative. | `ArgCount.N_eq_sum` | `ArgCount.argS_two_le` |
-| `ArgCount.N_mono`<br/>theorem, line 103 | riemannZeta.N T ≤ riemannZeta.N T' | h : T ≤ T' | The count is monotone in the height. | `ArgCount.N_eq_sum` | `ArgCount.argS_two_le` |
-| `ArgCount.N_eq_of_no_zero_between`<br/>theorem, line 119 | riemannZeta.N T = riemannZeta.N T₀ | hle : T ≤ T₀; hno : ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False | No zero with imaginary part in `[T, T₀)` means the count does not move. | — | `ArgCount.argS_le_gt_two` |
-| `ArgCount.exists_good_below`<br/>theorem, line 139 | ∃ T : ℝ, a &lt; T ∧ T &lt; T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False | ha : 0 ≤ a; hlt : a &lt; T₀ | Below any height there is a good height with no zero between the two. | `ArgCount.good` | `ArgCount.argS_le_gt_two`, `ArgCount.argS_two_le` |
-| `ArgCount.phasePoint_bound_near`<br/>theorem, line 175 | ∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Set.Icc (T₀ - 1) T₀, \|Stage3.phasePoint t\| ≤ M | T₀ : ℝ | The phase integrand is bounded on the unit interval below any height. | `Stage3.phasePoint` | `ArgCount.argS_le_gt_two` |
-| `ArgCount.phaseTheta_sub_le`<br/>theorem, line 185 | \|Stage3.phaseTheta T₀ - Stage3.phaseTheta T\| ≤ (T₀ - T) * (M / 2 + Real.log Real.pi / 2) | hle : T ≤ T₀; h1 : T₀ ≤ T + 1; hM : ∀ t ∈ Set.Icc (T₀ - 1) T₀, \|Stage3.phasePoint t\| ≤ M | The phase moves by at most the length times the integrand bound. | `Stage3.intervalIntegrable_phasePoint`, `Stage3.phasePoint`, `Stage3.phaseTheta` | `ArgCount.argS_le_gt_two` |
-| `ArgCount.argS_le_gt_two`<br/>theorem, line 216 | \|Stage3.argS T\| ≤ 15 * Real.log T + 75 | hT : 2 &lt; T | The bad heights above 2. A good height just below, with the count equal and the phase moving by at most `π/2`. | `ArgCount.N_eq_of_no_zero_between`, `ArgCount.argS_le_of_good`, `ArgCount.exists_good_below`, `ArgCount.phasePoint_bound_near`, `ArgCount.phaseTheta_sub_le`, `Stage3.argS`, `Stage3.phaseTheta` | `ArgCount.sCrude_holds`, `ArgCount.sCrude_holds_of_good_two` |
-| `ArgCount.mainTerm_abs_le`<br/>theorem, line 258 | \|Kadiri.zetaCountingMainTerm T\| ≤ 3 | h2 : 2 ≤ T; h3 : T ≤ 3 | The RvM main term is small on `[2, 3]`. | — | `ArgCount.argS_two_le` |
-| `ArgCount.argS_two_le`<br/>theorem, line 278 | \|Stage3.argS 2\| ≤ 15 * Real.log 2 + 600 | — | The single point `T = 2`. A good height just above, with the count monotone and the Stirling phase bound. | `ArgCount.N_mono`, `ArgCount.N_nonneg`, `ArgCount.argS_le_of_good`, `ArgCount.exists_good_below`, `ArgCount.mainTerm_abs_le`, `Stage3.argS`, `Stage3.backlundPhase_holds`, `Stage3.phaseTheta` | `ArgCount.sCrude_holds` |
-| `ArgCount.sCrude_holds_of_good_two`<br/>theorem, line 307 | Stage3.StmtSCrude Stage3.argS 15 75 | h2 : good 2 | StmtSCrude under `good 2`: `\|argS T\| ≤ 15 log T + 75`. | `ArgCount.argS_le_gt_two`, `ArgCount.argS_le_of_good`, `ArgCount.good`, `Stage3.StmtSCrude`, `Stage3.argS` | `ArgCount.rvM_crude_of_good_two` |
-| `ArgCount.sCrude_holds`<br/>theorem, line 315 | Stage3.StmtSCrude Stage3.argS 15 600 | — | StmtSCrude unconditionally: `\|argS T\| ≤ 15 log T + 600`. | `ArgCount.argS_le_gt_two`, `ArgCount.argS_two_le`, `Stage3.StmtSCrude`, `Stage3.argS` | `ArgCount.rvM_crude` |
-| `ArgCount.rvM_crude_of_good_two`<br/>theorem, line 324 | riemannZeta.Riemann_vonMangoldt_bound 112 0 173 | h2 : good 2 | The crude hNT band under `good 2`. | `ArgCount.good`, `ArgCount.sCrude_holds_of_good_two`, `Stage3.backlundArg_of_identity`, `Stage3.stmtArgIdentity_holds`, `Stage3.RvM_of_phase_arg`, `Stage3.backlundPhase_holds` | — |
-| `ArgCount.rvM_crude`<br/>theorem, line 332 | riemannZeta.Riemann_vonMangoldt_bound 112 0 698 | — | The crude hNT band, unconditional. | `ArgCount.sCrude_holds`, `Stage3.backlundArg_of_identity`, `Stage3.stmtArgIdentity_holds`, `Stage3.RvM_of_phase_arg`, `Stage3.backlundPhase_holds` | `Stage3.schoenfeldWeak_floor_of_RH`, `Stage3.schoenfeldWeak_floor_split_of_RH`, `Stage3.schoenfeldWeak_route_num` |
+<a name="ArgCount-good"></a>
+### `ArgCount.good`
+
+def · line 67
+
+A height with no zero of `ζ` of positive real part on it.
+
+- **Is:** `` good (T : ℝ) : Prop := ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ρ.im ≠ T ``
+- **Used by 6:** [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two), [`ArgCount.argS_le_of_good`](#ArgCount-argS_le_of_good), [`ArgCount.argS_two_le`](#ArgCount-argS_two_le), [`ArgCount.exists_good_below`](#ArgCount-exists_good_below), [`ArgCount.rvM_crude_of_good_two`](#ArgCount-rvM_crude_of_good_two), [`ArgCount.sCrude_holds_of_good_two`](#ArgCount-sCrude_holds_of_good_two)
+
+## Theorems
+
+<a name="ArgCount-argS_le_of_good"></a>
+### `ArgCount.argS_le_of_good`
+
+line 70
+
+**Why.** The good heights. The identity plus H1's legs and H2's count.
+
+**Proves**
+
+```lean
+|Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2
+```
+
+**Needs** (its hypotheses)
+
+  - `` hT : 2 ≤ T ``
+  - `` hg : good T ``
+
+**Stated with:** [`ArgCount.good`](#ArgCount-good), [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS)
+
+**Fed by** (5 theorems its proof uses)
+
+  - [`Stage3.argS_eq_zetaArgContour`](../lean_stage3/ArgIdentity.md#Stage3-argS_eq_zetaArgContour) (ArgIdentity) — `` argS T = zetaArgContour T ``
+  - [`ArgLegs.zetaArgContour_le`](../lean_stage3/ArgLegs.md#ArgLegs-zetaArgContour_le) (ArgLegs) — `` |Stage3.zetaArgContour T| ≤ (Z.card : ℝ) + 3 / 2 ``
+  - [`ReZetaCount.card_reZeros_le`](../lean_stage3/ReZetaCount.md#ReZetaCount-card_reZeros_le) (ReZetaCount) — `` ((reZeros hT).card : ℝ) ≤ 15 * Real.log T + 73 ``
+  - [`ReZetaCount.mem_reZeros`](../lean_stage3/ReZetaCount.md#ReZetaCount-mem_reZeros) (ReZetaCount) — `` x ∈ reZeros hT ↔ x ∈ Set.Ioo (1/2 : ℝ) 2 ∧ (riemannZeta ((x : ℂ) + T * Complex.I)).re = 0 ``
+  - [`ReZetaCount.re_zeta_two_line_pos`](../lean_stage3/ReZetaCount.md#ReZetaCount-re_zeta_two_line_pos) (ReZetaCount) — `` 0 < (riemannZeta (2 + (t : ℂ) * Complex.I)).re ``
+
+**Definitions its proof touches:** [`Stage3.zetaArgContour`](../lean_stage3/ArgIdentity.md#Stage3-zetaArgContour), [`ReZetaCount.reZeros`](../lean_stage3/ReZetaCount.md#ReZetaCount-reZeros)
+
+**Feeds** (3 that use it)
+
+  - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
+  - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
+  - [`ArgCount.sCrude_holds_of_good_two`](#ArgCount-sCrude_holds_of_good_two) — `` Stage3.StmtSCrude Stage3.argS 15 75 ``
+
+<a name="ArgCount-N_eq_sum"></a>
+### `ArgCount.N_eq_sum`
+
+line 84
+
+**Why.** `N T` as the finite sum of orders over the zero rectangle.
+
+**Proves**
+
+```lean
+riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ)
+```
+
+**Needs** (its hypotheses)
+
+  - `` T : ℝ ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (2 that use it)
+
+  - [`ArgCount.N_mono`](#ArgCount-N_mono) — `` riemannZeta.N T ≤ riemannZeta.N T' ``
+  - [`ArgCount.N_nonneg`](#ArgCount-N_nonneg) — `` 0 ≤ riemannZeta.N T ``
+
+<a name="ArgCount-N_nonneg"></a>
+### `ArgCount.N_nonneg`
+
+line 93
+
+**Why.** Every order is at least one, so the count is nonnegative.
+
+**Proves**
+
+```lean
+0 ≤ riemannZeta.N T
+```
+
+**Needs** (its hypotheses)
+
+  - `` T : ℝ ``
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`ArgCount.N_eq_sum`](#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
+
+<a name="ArgCount-N_mono"></a>
+### `ArgCount.N_mono`
+
+line 103
+
+**Why.** The count is monotone in the height.
+
+**Proves**
+
+```lean
+riemannZeta.N T ≤ riemannZeta.N T'
+```
+
+**Needs** (its hypotheses)
+
+  - `` h : T ≤ T' ``
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`ArgCount.N_eq_sum`](#ArgCount-N_eq_sum) — `` riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).toFinset, (1 : ℝ) * (riemannZeta.order z : ℝ) ``
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
+
+<a name="ArgCount-N_eq_of_no_zero_between"></a>
+### `ArgCount.N_eq_of_no_zero_between`
+
+line 119
+
+**Why.** No zero with imaginary part in `[T, T₀)` means the count does not move.
+
+**Proves**
+
+```lean
+riemannZeta.N T = riemannZeta.N T₀
+```
+
+**Needs** (its hypotheses)
+
+  - `` hle : T ≤ T₀ ``
+  - `` hno : ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
+
+<a name="ArgCount-exists_good_below"></a>
+### `ArgCount.exists_good_below`
+
+line 139
+
+**Why.** Below any height there is a good height with no zero between the two.
+
+**Proves**
+
+```lean
+∃ T : ℝ, a < T ∧ T < T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False
+```
+
+**Needs** (its hypotheses)
+
+  - `` ha : 0 ≤ a ``
+  - `` hlt : a < T₀ ``
+
+**Stated with:** [`ArgCount.good`](#ArgCount-good)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (2 that use it)
+
+  - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
+  - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
+
+<a name="ArgCount-phasePoint_bound_near"></a>
+### `ArgCount.phasePoint_bound_near`
+
+line 175
+
+**Why.** The phase integrand is bounded on the unit interval below any height.
+
+**Proves**
+
+```lean
+∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Set.Icc (T₀ - 1) T₀, |Stage3.phasePoint t| ≤ M
+```
+
+**Needs** (its hypotheses)
+
+  - `` T₀ : ℝ ``
+
+**Stated with:** [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`Stage3.continuous_phasePoint`](../lean_stage3/Stirling.md#Stage3-continuous_phasePoint) (Stirling) — `` Continuous phasePoint ``
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
+
+<a name="ArgCount-phaseTheta_sub_le"></a>
+### `ArgCount.phaseTheta_sub_le`
+
+line 185
+
+**Why.** The phase moves by at most the length times the integrand bound.
+
+**Proves**
+
+```lean
+|Stage3.phaseTheta T₀ - Stage3.phaseTheta T| ≤ (T₀ - T) * (M / 2 + Real.log Real.pi / 2)
+```
+
+**Needs** (its hypotheses)
+
+  - `` hle : T ≤ T₀ ``
+  - `` h1 : T₀ ≤ T + 1 ``
+  - `` hM : ∀ t ∈ Set.Icc (T₀ - 1) T₀, |Stage3.phasePoint t| ≤ M ``
+
+**Stated with:** [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`Stage3.intervalIntegrable_phasePoint`](../lean_stage3/Stirling.md#Stage3-intervalIntegrable_phasePoint) (Stirling) — `` IntervalIntegrable phasePoint MeasureTheory.volume a b ``
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
+
+<a name="ArgCount-argS_le_gt_two"></a>
+### `ArgCount.argS_le_gt_two`
+
+line 216
+
+**Why.** The bad heights above 2. A good height just below, with the count equal and the phase moving by at most `π/2`.
+
+**Proves**
+
+```lean
+|Stage3.argS T| ≤ 15 * Real.log T + 75
+```
+
+**Needs** (its hypotheses)
+
+  - `` hT : 2 < T ``
+
+**Stated with:** [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS)
+
+**Fed by** (5 theorems its proof uses)
+
+  - [`ArgCount.N_eq_of_no_zero_between`](#ArgCount-N_eq_of_no_zero_between) — `` riemannZeta.N T = riemannZeta.N T₀ ``
+  - [`ArgCount.argS_le_of_good`](#ArgCount-argS_le_of_good) — `` |Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2 ``
+  - [`ArgCount.exists_good_below`](#ArgCount-exists_good_below) — `` ∃ T : ℝ, a < T ∧ T < T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False ``
+  - [`ArgCount.phasePoint_bound_near`](#ArgCount-phasePoint_bound_near) — `` ∃ M : ℝ, 0 ≤ M ∧ ∀ t ∈ Set.Icc (T₀ - 1) T₀, |Stage3.phasePoint t| ≤ M ``
+  - [`ArgCount.phaseTheta_sub_le`](#ArgCount-phaseTheta_sub_le) — `` |Stage3.phaseTheta T₀ - Stage3.phaseTheta T| ≤ (T₀ - T) * (M / 2 + Real.log Real.pi / 2) ``
+
+**Definitions its proof touches:** [`ArgCount.good`](#ArgCount-good), [`Stage3.phasePoint`](../lean_stage3/Stirling.md#Stage3-phasePoint), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
+
+**Feeds** (2 that use it)
+
+  - [`ArgCount.sCrude_holds`](#ArgCount-sCrude_holds) — `` Stage3.StmtSCrude Stage3.argS 15 600 ``
+  - [`ArgCount.sCrude_holds_of_good_two`](#ArgCount-sCrude_holds_of_good_two) — `` Stage3.StmtSCrude Stage3.argS 15 75 ``
+
+<a name="ArgCount-mainTerm_abs_le"></a>
+### `ArgCount.mainTerm_abs_le`
+
+line 258
+
+**Why.** The RvM main term is small on `[2, 3]`.
+
+**Proves**
+
+```lean
+|Kadiri.zetaCountingMainTerm T| ≤ 3
+```
+
+**Needs** (its hypotheses)
+
+  - `` h2 : 2 ≤ T ``
+  - `` h3 : T ≤ 3 ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
+
+<a name="ArgCount-argS_two_le"></a>
+### `ArgCount.argS_two_le`
+
+line 278
+
+**Why.** The single point `T = 2`. A good height just above, with the count monotone and the Stirling phase bound.
+
+**Proves**
+
+```lean
+|Stage3.argS 2| ≤ 15 * Real.log 2 + 600
+```
+
+**Stated with:** [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS)
+
+**Fed by** (6 theorems its proof uses)
+
+  - [`ArgCount.N_mono`](#ArgCount-N_mono) — `` riemannZeta.N T ≤ riemannZeta.N T' ``
+  - [`ArgCount.N_nonneg`](#ArgCount-N_nonneg) — `` 0 ≤ riemannZeta.N T ``
+  - [`ArgCount.argS_le_of_good`](#ArgCount-argS_le_of_good) — `` |Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2 ``
+  - [`ArgCount.exists_good_below`](#ArgCount-exists_good_below) — `` ∃ T : ℝ, a < T ∧ T < T₀ ∧ good T ∧ ∀ ρ : ℂ, riemannZeta ρ = 0 → ρ.im ∈ Set.Ico T T₀ → False ``
+  - [`ArgCount.mainTerm_abs_le`](#ArgCount-mainTerm_abs_le) — `` |Kadiri.zetaCountingMainTerm T| ≤ 3 ``
+  - [`Stage3.backlundPhase_holds`](../lean_stage3/Stirling.md#Stage3-backlundPhase_holds) (Stirling) — `` StmtBacklundPhase phaseTheta 97 98 ``
+
+**Definitions its proof touches:** [`ArgCount.good`](#ArgCount-good), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.sCrude_holds`](#ArgCount-sCrude_holds) — `` Stage3.StmtSCrude Stage3.argS 15 600 ``
+
+<a name="ArgCount-sCrude_holds_of_good_two"></a>
+### `ArgCount.sCrude_holds_of_good_two`
+
+line 307
+
+**Why.** StmtSCrude under `good 2`: `|argS T| ≤ 15 log T + 75`.
+
+**Proves**
+
+```lean
+Stage3.StmtSCrude Stage3.argS 15 75
+```
+
+**Needs** (its hypotheses)
+
+  - `` h2 : good 2 ``
+
+**Stated with:** [`ArgCount.good`](#ArgCount-good), [`Stage3.StmtSCrude`](../lean_stage3/ArgCrude.md#Stage3-StmtSCrude), [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
+  - [`ArgCount.argS_le_of_good`](#ArgCount-argS_le_of_good) — `` |Stage3.argS T| ≤ 15 * Real.log T + 73 + 3 / 2 ``
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.rvM_crude_of_good_two`](#ArgCount-rvM_crude_of_good_two) — `` riemannZeta.Riemann_vonMangoldt_bound 112 0 173 ``
+
+<a name="ArgCount-sCrude_holds"></a>
+### `ArgCount.sCrude_holds`
+
+line 315
+
+**Why.** StmtSCrude unconditionally: `|argS T| ≤ 15 log T + 600`.
+
+**Proves**
+
+```lean
+Stage3.StmtSCrude Stage3.argS 15 600
+```
+
+**Stated with:** [`Stage3.StmtSCrude`](../lean_stage3/ArgCrude.md#Stage3-StmtSCrude), [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`ArgCount.argS_le_gt_two`](#ArgCount-argS_le_gt_two) — `` |Stage3.argS T| ≤ 15 * Real.log T + 75 ``
+  - [`ArgCount.argS_two_le`](#ArgCount-argS_two_le) — `` |Stage3.argS 2| ≤ 15 * Real.log 2 + 600 ``
+
+**Feeds** (1 that use it)
+
+  - [`ArgCount.rvM_crude`](#ArgCount-rvM_crude) — `` riemannZeta.Riemann_vonMangoldt_bound 112 0 698 ``
+
+<a name="ArgCount-rvM_crude_of_good_two"></a>
+### `ArgCount.rvM_crude_of_good_two`
+
+line 324
+
+**Why.** The crude hNT band under `good 2`.
+
+**Proves**
+
+```lean
+riemannZeta.Riemann_vonMangoldt_bound 112 0 173
+```
+
+**Needs** (its hypotheses)
+
+  - `` h2 : good 2 ``
+
+**Stated with:** [`ArgCount.good`](#ArgCount-good)
+
+**Fed by** (5 theorems its proof uses)
+
+  - [`ArgCount.sCrude_holds_of_good_two`](#ArgCount-sCrude_holds_of_good_two) — `` Stage3.StmtSCrude Stage3.argS 15 75 ``
+  - [`Stage3.backlundArg_of_identity`](../lean_stage3/ArgCrude.md#Stage3-backlundArg_of_identity) (ArgCrude) — `` StmtBacklundArg θ B₁ B₃ ``
+  - [`Stage3.stmtArgIdentity_holds`](../lean_stage3/ArgIdentity.md#Stage3-stmtArgIdentity_holds) (ArgIdentity) — `` StmtArgIdentity phaseTheta argS ``
+  - [`Stage3.RvM_of_phase_arg`](../lean_stage3/RvMCrude.md#Stage3-RvM_of_phase_arg) (RvMCrude) — `` riemannZeta.Riemann_vonMangoldt_bound (B₁ + B₁') 0 (B₃ + B₃') ``
+  - [`Stage3.backlundPhase_holds`](../lean_stage3/Stirling.md#Stage3-backlundPhase_holds) (Stirling) — `` StmtBacklundPhase phaseTheta 97 98 ``
+
+**Definitions its proof touches:** [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
+
+**Feeds:** nothing. It is an end.
+
+<a name="ArgCount-rvM_crude"></a>
+### `ArgCount.rvM_crude`
+
+line 332
+
+**Why.** The crude hNT band, unconditional.
+
+**Proves**
+
+```lean
+riemannZeta.Riemann_vonMangoldt_bound 112 0 698
+```
+
+**Fed by** (5 theorems its proof uses)
+
+  - [`ArgCount.sCrude_holds`](#ArgCount-sCrude_holds) — `` Stage3.StmtSCrude Stage3.argS 15 600 ``
+  - [`Stage3.backlundArg_of_identity`](../lean_stage3/ArgCrude.md#Stage3-backlundArg_of_identity) (ArgCrude) — `` StmtBacklundArg θ B₁ B₃ ``
+  - [`Stage3.stmtArgIdentity_holds`](../lean_stage3/ArgIdentity.md#Stage3-stmtArgIdentity_holds) (ArgIdentity) — `` StmtArgIdentity phaseTheta argS ``
+  - [`Stage3.RvM_of_phase_arg`](../lean_stage3/RvMCrude.md#Stage3-RvM_of_phase_arg) (RvMCrude) — `` riemannZeta.Riemann_vonMangoldt_bound (B₁ + B₁') 0 (B₃ + B₃') ``
+  - [`Stage3.backlundPhase_holds`](../lean_stage3/Stirling.md#Stage3-backlundPhase_holds) (Stirling) — `` StmtBacklundPhase phaseTheta 97 98 ``
+
+**Definitions its proof touches:** [`Stage3.argS`](../lean_stage3/ArgIdentity.md#Stage3-argS), [`Stage3.phaseTheta`](../lean_stage3/Stirling.md#Stage3-phaseTheta)
+
+**Feeds** (3 that use it)
+
+  - [`Stage3.schoenfeldWeak_floor_of_RH`](../lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) (AssemblyFloor) — `` ∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → StmtSchoenfeldWeak (3 * floorConst c₁ c₂ 112 0 698 weightedZeroHeightBucket x₀ + 13) 1 (max (x₀ ^ 2… ``
+  - [`Stage3.schoenfeldWeak_floor_split_of_RH`](../lean_stage3/GlueFloor.md#Stage3-schoenfeldWeak_floor_split_of_RH) (GlueFloor) — `` ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → StmtSchoenfeldWeak (3 * floorConstSplit c₁ c₃ c₄ 112 0 698 weightedZeroHeightBucket x₀ … ``
+  - [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num) (RouteNum) — `` StmtSchoenfeldWeak (routeConst x₀) 1 (max (x₀ ^ 2) 9) (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Li ``
+

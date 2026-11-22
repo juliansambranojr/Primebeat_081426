@@ -1,69 +1,40 @@
 flowchart LR
-  n0["inv_log_two_le<br/>⊢ 1 / Real.log 2 ≤ 1.4428"]:::thm
-  n1["C1n_le<br/>⊢ EdgeBound.C1n ≤ 1909224"]:::thm
-  n2["C2n_le<br/>⊢ EdgeBound.C2n ≤ 2167"]:::thm
-  n3["Cen_le<br/>⊢ EdgeBound.Cen ≤ 1911393"]:::thm
-  n4["Cpn_le<br/>⊢ Glue.Cpn ≤ 6534550000"]:::thm
-  n5["Chn_le<br/>⊢ Glue.Chn ≤ 44108300000"]:::thm
-  n6["Csn_le<br/>⊢ Glue.Csn ≤ 1136"]:::thm
-  n7["Dln_le<br/>⊢ Glue.Dln ≤ 89846200"]:::thm
-  n8["c1n_le<br/>⊢ Glue.c1n ≤ 88216610000"]:::thm
-  n9["c3n_le<br/>⊢ Glue.c3n ≤ 15"]:::thm
-  n10["c4n_le<br/>⊢ Glue.c4n ≤ 6468930000"]:::thm
-  n11["stmtEF_split_num<br/>⊢ StmtExplicitFormulaSplit Glue.c1n Glue.c3n Glue.c4n 16"]:::thm
-  n12["routeConst<br/>(def)"]:::dfn
-  n13["schoenfeldWeak_route_num<br/>⊢ StmtSchoenfeldWeak (routeConst x₀) 1 (max (x₀ ^ 2) 9) (fun x =＞ (Nat.p…"]:::thm
-  n14["relErrWindow_route_num<br/>⊢ JointDialGate.StmtRelErrWindow (fun m : ℤ =＞ (Nat.primeCounting ⌊(2 : …"]:::thm
-  x0(["ArgCount · rvM_crude"]):::ext
-  x1(["BoxBounds · zeta_ratio_ge"]):::ext
-  x2(["ContourShift · zeta_zeros_rectangle_finite"]):::ext
-  x3(["EdgeNum · C1n"]):::ext
-  x4(["EdgeNum · C2n"]):::ext
-  x5(["EdgeNum · Cen"]):::ext
-  x6(["EdgeNum · Cen_pos"]):::ext
-  x7(["GateEval · gate_hyp_of_RH"]):::ext
-  x8(["GateEval · routeConst_le"]):::ext
-  x9(["GlueFloor · StmtExplicitFormulaSplit"]):::ext
-  x10(["GlueFloor · floorConstSplit"]):::ext
-  x11(["GlueFloor · floorConstSplit_nonneg"]):::ext
-  x12(["GlueFloor · psiWeak_floor_split"]):::ext
-  x13(["GlueNum · Chn"]):::ext
-  x14(["GlueNum · Cpn"]):::ext
-  x15(["GlueNum · Csn"]):::ext
-  x16(["GlueNum · Dln"]):::ext
-  x17(["GlueNum · c1n"]):::ext
-  x18(["GlueNum · c1n_nonneg"]):::ext
-  x19(["GlueNum · c3n"]):::ext
-  x20(["GlueNum · c3n_nonneg"]):::ext
-  x21(["GlueNum · c4n"]):::ext
-  x22(["GlueNum · c4n_nonneg"]):::ext
-  x23(["GlueNum · explicit_formula_split_num"]):::ext
-  x24(["JointDialGate · StmtRelErrWindow"]):::ext
-  x25(["JointFloorGate · weakWindow_relErr"]):::ext
-  x26(["LowCount · low_rect_count"]):::ext
-  x27(["PsiToPi · Li"]):::ext
-  x28(["PsiToPi · schoenfeldWeak_of_psiWeak"]):::ext
-  x29(["RowLeaves · Li_two_rpow"]):::ext
-  x30(["RowLeaves · norm_logDerivZeta_zero"]):::ext
-  x31(["Statement · StmtSchoenfeldWeak"]):::ext
-  x32(["Statement · weakWindow_of_global"]):::ext
-  x33(["TableDepths · cell_ne_zero_gen"]):::ext
+  n0["<b>inv_log_two_le</b><br/>1 / Real.log 2 ≤ 1.4428"]:::thm
+  n1["<b>C1n_le</b><br/>EdgeBound.C1n ≤ 1909224"]:::thm
+  n2["<b>C2n_le</b><br/>EdgeBound.C2n ≤ 2167"]:::thm
+  n3["<b>Cen_le</b><br/>EdgeBound.Cen ≤ 1911393"]:::thm
+  n4["<b>Cpn_le</b><br/>Glue.Cpn ≤ 6534550000"]:::thm
+  n5["<b>Chn_le</b><br/>Glue.Chn ≤ 44108300000"]:::thm
+  n6["<b>Csn_le</b><br/>Glue.Csn ≤ 1136"]:::thm
+  n7["<b>Dln_le</b><br/>Glue.Dln ≤ 89846200"]:::thm
+  n8["<b>c1n_le</b><br/>Glue.c1n ≤ 88216610000"]:::thm
+  n9["<b>c3n_le</b><br/>Glue.c3n ≤ 15"]:::thm
+  n10["<b>c4n_le</b><br/>Glue.c4n ≤ 6468930000"]:::thm
+  n11["<b>stmtEF_split_num</b><br/>StmtExplicitFormulaSplit Glue.c1n Glue.c3n Glue.c4n 16"]:::thm
+  n12["<b>schoenfeldWeak_route_num</b><br/>StmtSchoenfeldWeak (routeConst x₀) 1 (max (x₀ ^ 2) 9) (fun x =＞ …"]:::thm
+  n13["<b>relErrWindow_route_num</b><br/>JointDialGate.StmtRelErrWindow (fun m : ℤ =＞ (Nat.primeCounting …"]:::thm
+  x0(["<b>BoxBounds</b><br/>zeta_ratio_ge"]):::ext
+  x1(["<b>ContourShift</b><br/>zeta_zeros_rectangle_finite"]):::ext
+  x2(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x3(["<b>EdgeNum</b><br/>Cen_pos"]):::ext
+  x4(["<b>GateEval</b><br/>gate_hyp_of_RH<br/>routeConst_le"]):::ext
+  x5(["<b>RowLeaves</b><br/>Li_two_rpow<br/>norm_logDerivZeta_zero"]):::ext
+  x6(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x7(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x8(["<b>GlueFloor</b><br/>floorConstSplit_nonneg<br/>psiWeak_floor_split"]):::ext
+  x9(["<b>PsiToPi</b><br/>schoenfeldWeak_of_psiWeak"]):::ext
+  x10(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
+  x11(["<b>JointFloorGate</b><br/>weakWindow_relErr"]):::ext
+  x12(["<b>Statement</b><br/>weakWindow_of_global"]):::ext
+  x13(["<b>TableDepths</b><br/>cell_ne_zero_gen"]):::ext
   n0 --> n2
   n0 --> n3
   n0 --> n4
   n0 --> n6
   n0 --> n7
   n1 --> n3
-  n10 --> x8
-  n11 --> n13
+  n11 --> n12
   n12 --> n13
-  n12 --> n14
-  n12 --> x33
-  n12 --> x7
-  n12 --> x8
-  n13 --> n14
-  n14 --> x33
-  n14 --> x7
   n2 --> n3
   n3 --> n4
   n3 --> n7
@@ -71,54 +42,29 @@ flowchart LR
   n5 --> n8
   n6 --> n8
   n7 --> n10
-  n8 --> x8
-  n9 --> x8
-  x0 --> n13
-  x1 --> n1
-  x10 --> n12
-  x11 --> n13
-  x11 --> n14
-  x12 --> n13
-  x13 --> n5
-  x14 --> n4
-  x15 --> n6
-  x16 --> n7
-  x17 --> n11
-  x17 --> n12
-  x17 --> n8
-  x18 --> n13
-  x18 --> n14
-  x19 --> n11
-  x19 --> n12
-  x19 --> n9
-  x2 --> n2
-  x20 --> n13
-  x20 --> n14
-  x21 --> n10
-  x21 --> n11
-  x21 --> n12
-  x22 --> n13
-  x22 --> n14
-  x23 --> n11
-  x24 --> n14
-  x25 --> n14
-  x26 --> n2
-  x27 --> n13
-  x27 --> n14
-  x28 --> n13
-  x29 --> n14
-  x3 --> n1
-  x30 --> n9
-  x31 --> n13
-  x32 --> n14
-  x4 --> n2
-  x5 --> n3
-  x5 --> n4
-  x6 --> n4
-  x9 --> n11
+  n10 -.-> x4
+  n13 -.-> x13
+  n13 -.-> x4
+  n8 -.-> x4
+  n9 -.-> x4
+  x0 -.-> n1
+  x1 -.-> n2
+  x10 -.-> n12
+  x11 -.-> n13
+  x12 -.-> n13
+  x2 -.-> n2
+  x3 -.-> n4
+  x5 -.-> n13
+  x5 -.-> n9
+  x6 -.-> n11
+  x6 -.-> n12
+  x6 -.-> n13
+  x7 -.-> n12
+  x8 -.-> n12
+  x8 -.-> n13
+  x9 -.-> n12
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

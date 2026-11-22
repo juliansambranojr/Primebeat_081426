@@ -1,99 +1,47 @@
 flowchart LR
-  n0["phasePoint<br/>(def)"]:::dfn
-  n1["phaseTheta<br/>(def)"]:::dfn
-  n2["continuous_phasePoint<br/>⊢ Continuous phasePoint"]:::end_
-  n3["intervalIntegrable_phasePoint<br/>⊢ IntervalIntegrable phasePoint MeasureTheory.volume a b"]:::thm
-  n4["phaseTheta_zero<br/>⊢ phaseTheta 0 = 0"]:::end_
-  n5["integral_log_half<br/>⊢ (∫ t in (1 : ℝ)..T, Real.log (t / 2)) = T * Real.log (T / 2) - T + 1 +…"]:::thm
-  n6["StmtDigammaLog<br/>(def)"]:::dfn
-  n7["backlundPhase_of_digammaLog<br/>⊢ StmtBacklundPhase phaseTheta C (C + 1)"]:::thm
-  n8["digamma_term_norm_le<br/>⊢ ‖1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z)‖ ≤ 4 / ((n : ℝ) + 1) ^ 2"]:::thm
-  n9["phasePoint_compact_le<br/>⊢ ∀ t ∈ Set.Icc (0 : ℝ) 1, |phasePoint t| ≤ 8"]:::thm
-  n10["log_norm_z_le<br/>⊢ |Real.log ‖(1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I‖ - Real.log (t / 2)| …"]:::thm
-  n11["inv_quadratic_tsum_le<br/>⊢ (∑' n : ℕ, (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) ≤ 12 / t"]:::thm
-  n12["re_sub_log_norm_le<br/>⊢ |w.re - Real.log ‖1 + w‖| ≤ 8 * ‖w‖ ^ 2"]:::thm
-  n13["zq<br/>(def)"]:::dfn
-  n14["phasePoint_eq<br/>⊢ phasePoint t = (Complex.digamma (zq t)).re"]:::thm
-  n15["normSq_add_zq<br/>⊢ ‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2"]:::thm
-  n16["add_zq_ne_zero<br/>⊢ (n : ℂ) + zq t ≠ 0"]:::thm
-  n17["a_term_le<br/>⊢ |(((n : ℂ) + zq t)⁻¹).re - (Real.log ‖((n + 1 : ℕ) : ℂ) + zq t‖ - Real…"]:::thm
-  n18["re_digamma_sub_log_le<br/>⊢ |phasePoint t - Real.log ‖zq t‖| ≤ 96 / t"]:::thm
-  n19["stmtDigammaLog_holds<br/>⊢ StmtDigammaLog 97"]:::thm
-  n20["backlundPhase_holds<br/>⊢ StmtBacklundPhase phaseTheta 97 98"]:::thm
-  x0(["ArgCount · argS_le_gt_two"]):::ext
-  x1(["ArgCount · argS_two_le"]):::ext
-  x2(["ArgCount · phasePoint_bound_near"]):::ext
-  x3(["ArgCount · phaseTheta_sub_le"]):::ext
-  x4(["ArgCount · rvM_crude"]):::ext
-  x5(["ArgCount · rvM_crude_of_good_two"]):::ext
-  x6(["ArgIdentity · argS"]):::ext
-  x7(["ArgIdentity · argS_eq_zetaArgContour"]):::ext
-  x8(["ArgIdentity · backlundArg_of_sFromLocal"]):::ext
-  x9(["ArgIdentity · gammaR_fold_eq_phaseTheta"]):::ext
-  x10(["ArgIdentity · rvM_of_sFromLocal"]):::ext
-  x11(["ArgIdentity · stmtArgIdentity_holds"]):::ext
-  x12(["RvMCrude · StmtBacklundPhase"]):::ext
+  n0["<b>continuous_phasePoint</b><br/>Continuous phasePoint"]:::thm
+  n1["<b>intervalIntegrable_phasePoint</b><br/>IntervalIntegrable phasePoint MeasureTheory.volume a b"]:::thm
+  n2["<b>phaseTheta_zero</b><br/>phaseTheta 0 = 0"]:::end_
+  n3["<b>integral_log_half</b><br/>(∫ t in (1 : ℝ)..T, Real.log (t / 2)) = T * Real.log (T / 2) - T…"]:::thm
+  n4["<b>backlundPhase_of_digammaLog</b><br/>StmtBacklundPhase phaseTheta C (C + 1)"]:::thm
+  n5["<b>digamma_term_norm_le</b><br/>‖1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z)‖ ≤ 4 / ((n : ℝ) + 1) ^ 2"]:::thm
+  n6["<b>phasePoint_compact_le</b><br/>∀ t ∈ Set.Icc (0 : ℝ) 1, |phasePoint t| ≤ 8"]:::thm
+  n7["<b>log_norm_z_le</b><br/>|Real.log ‖(1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I‖ - Real.log (t …"]:::thm
+  n8["<b>inv_quadratic_tsum_le</b><br/>(∑' n : ℕ, (((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) ≤ 12 / t"]:::thm
+  n9["<b>re_sub_log_norm_le</b><br/>|w.re - Real.log ‖1 + w‖| ≤ 8 * ‖w‖ ^ 2"]:::thm
+  n10["<b>phasePoint_eq</b><br/>phasePoint t = (Complex.digamma (zq t)).re"]:::thm
+  n11["<b>normSq_add_zq</b><br/>‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2"]:::thm
+  n12["<b>add_zq_ne_zero</b><br/>(n : ℂ) + zq t ≠ 0"]:::thm
+  n13["<b>a_term_le</b><br/>|(((n : ℂ) + zq t)⁻¹).re - (Real.log ‖((n + 1 : ℕ) : ℂ) + zq t‖ …"]:::thm
+  n14["<b>re_digamma_sub_log_le</b><br/>|phasePoint t - Real.log ‖zq t‖| ≤ 96 / t"]:::thm
+  n15["<b>stmtDigammaLog_holds</b><br/>StmtDigammaLog 97"]:::thm
+  n16["<b>backlundPhase_holds</b><br/>StmtBacklundPhase phaseTheta 97 98"]:::thm
+  x0(["<b>ArgCount</b><br/>5 theorems"]):::ext
+  x1(["<b>ArgIdentity</b><br/>gammaR_fold_eq_phaseTheta<br/>rvM_of_sFromLocal"]):::ext
   n0 --> n1
-  n0 --> n14
-  n0 --> n18
-  n0 --> n19
-  n0 --> n2
-  n0 --> n3
-  n0 --> n6
-  n0 --> n7
-  n0 --> n9
-  n0 --> x2
-  n0 --> x3
-  n0 --> x9
-  n1 --> n19
-  n1 --> n20
   n1 --> n4
-  n1 --> n7
-  n1 --> x0
-  n1 --> x1
-  n1 --> x11
-  n1 --> x3
-  n1 --> x6
-  n1 --> x7
-  n1 --> x8
-  n1 --> x9
-  n10 --> n19
-  n11 --> n18
-  n12 --> n17
+  n10 --> n14
+  n11 --> n13
+  n12 --> n13
+  n12 --> n14
   n13 --> n14
-  n13 --> n15
-  n13 --> n16
-  n13 --> n17
-  n13 --> n18
-  n13 --> n19
-  n13 --> x9
-  n14 --> n18
-  n14 --> x9
-  n15 --> n17
-  n16 --> n17
-  n16 --> n18
-  n17 --> n18
-  n18 --> n19
-  n19 --> n20
-  n20 --> x1
-  n20 --> x10
-  n20 --> x4
-  n20 --> x5
-  n3 --> n7
-  n3 --> x3
-  n3 --> x9
-  n5 --> n7
-  n6 --> n19
-  n6 --> n7
-  n7 --> n20
-  n8 --> n9
-  n9 --> n19
-  x12 --> n19
-  x12 --> n20
-  x12 --> n7
+  n14 --> n15
+  n15 --> n16
+  n3 --> n4
+  n4 --> n16
+  n5 --> n6
+  n6 --> n15
+  n7 --> n15
+  n8 --> n14
+  n9 --> n13
+  n0 -.-> x0
+  n1 -.-> x0
+  n1 -.-> x1
+  n10 -.-> x1
+  n16 -.-> x0
+  n16 -.-> x1
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

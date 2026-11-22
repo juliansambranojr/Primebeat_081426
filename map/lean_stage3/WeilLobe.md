@@ -1,110 +1,503 @@
 # `lean_stage3/Stage3/WeilLobe.lean`
 
-**What it does** (its own header): WeilLobe — the 2γ lobe bounded above. Rung 4a of the detection ladder (units 0316–0318). 2026-09-06.
+WeilLobe — the 2γ lobe bounded above. Rung 4a of the detection ladder (units 0316–0318). 2026-09-06.
 
-**Imports:** [`WeilTransform`](../lean_stage3/WeilTransform.md).
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilBackground`](../lean_stage3/WeilBackground.md), [`WeilPower`](../lean_stage3/WeilPower.md).
+17 theorems, 3 definitions, 256 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** [`WeilTransform`](../lean_stage3/WeilTransform.md)  
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilBackground`](../lean_stage3/WeilBackground.md), [`WeilPower`](../lean_stage3/WeilPower.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["P_eq<br/>⊢ P x = (1 + Real.cos (Real.pi * x)) / 2"]:::thm
-  n1["q<br/>(def)"]:::dfn
-  n2["q1<br/>(def)"]:::dfn
-  n3["q2<br/>(def)"]:::dfn
-  n4["q_eq<br/>⊢ x * P x = q x"]:::thm
-  n5["hasDerivAt_cos_pi<br/>⊢ HasDerivAt (fun y : ℝ =＞ Real.cos (Real.pi * y)) (-Real.sin (Real.pi *…"]:::thm
-  n6["hasDerivAt_sin_pi<br/>⊢ HasDerivAt (fun y : ℝ =＞ Real.sin (Real.pi * y)) (Real.cos (Real.pi * …"]:::thm
-  n7["hasDerivAt_q<br/>⊢ HasDerivAt q (q1 x) x"]:::thm
-  n8["hasDerivAt_q1<br/>⊢ HasDerivAt q1 (q2 x) x"]:::thm
-  n9["q_one<br/>⊢ q 1 = 0"]:::thm
-  n10["q_neg_one<br/>⊢ q (-1) = 0"]:::thm
-  n11["q1_one<br/>⊢ q1 1 = 0"]:::thm
-  n12["q1_neg_one<br/>⊢ q1 (-1) = 0"]:::thm
-  n13["continuous_q1<br/>⊢ Continuous q1"]:::thm
-  n14["continuous_q2<br/>⊢ Continuous q2"]:::thm
-  n15["q2_bound<br/>⊢ |q2 x| ≤ Real.pi + Real.pi ^ 2 / 2"]:::thm
-  n16["norm_sinh_le<br/>⊢ ‖Complex.sinh z‖ ≤ Real.cosh z.re"]:::thm
-  n17["SigmaC_eq_ibp<br/>⊢ SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Comple…"]:::thm
-  n18["SigmaC_bound<br/>⊢ ‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2"]:::thm
-  n19["lobe_bound<br/>⊢ ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * Real.p…"]:::thm
-  x0(["WeilBackground · Psi_bound"]):::ext
-  x1(["WeilOffLine · offline_term_le_explicit"]):::ext
-  x2(["WeilPowerBounds · norm_S_le'"]):::ext
-  x3(["WeilTransform · SigmaC"]):::ext
-  x4(["WeilWindow · P"]):::ext
-  n0 --> n4
-  n1 --> n10
-  n1 --> n17
-  n1 --> n4
-  n1 --> n7
-  n1 --> n9
-  n10 --> n17
-  n11 --> n17
-  n12 --> n17
-  n13 --> n17
-  n14 --> n17
-  n15 --> n18
-  n16 --> n18
-  n16 --> x2
-  n17 --> n18
-  n18 --> n19
-  n18 --> x0
-  n19 --> x1
-  n2 --> n11
-  n2 --> n12
-  n2 --> n13
-  n2 --> n17
-  n2 --> n7
-  n2 --> n8
-  n3 --> n14
-  n3 --> n15
-  n3 --> n17
-  n3 --> n18
-  n3 --> n8
-  n4 --> n17
-  n5 --> n7
-  n5 --> n8
-  n6 --> n8
-  n7 --> n17
-  n8 --> n17
-  n9 --> n17
-  x3 --> n17
-  x3 --> n18
-  x3 --> n19
-  x4 --> n0
-  x4 --> n17
-  x4 --> n4
+  n0["<b>P_eq</b><br/>P x = (1 + Real.cos (Real.pi * x)) / 2"]:::thm
+  n1["<b>q_eq</b><br/>x * P x = q x"]:::thm
+  n2["<b>hasDerivAt_cos_pi</b><br/>HasDerivAt (fun y : ℝ =＞ Real.cos (Real.pi * y)) (-Real.sin (Rea…"]:::thm
+  n3["<b>hasDerivAt_sin_pi</b><br/>HasDerivAt (fun y : ℝ =＞ Real.sin (Real.pi * y)) (Real.cos (Real…"]:::thm
+  n4["<b>hasDerivAt_q</b><br/>HasDerivAt q (q1 x) x"]:::thm
+  n5["<b>hasDerivAt_q1</b><br/>HasDerivAt q1 (q2 x) x"]:::thm
+  n6["<b>q_one</b><br/>q 1 = 0"]:::thm
+  n7["<b>q_neg_one</b><br/>q (-1) = 0"]:::thm
+  n8["<b>q1_one</b><br/>q1 1 = 0"]:::thm
+  n9["<b>q1_neg_one</b><br/>q1 (-1) = 0"]:::thm
+  n10["<b>continuous_q1</b><br/>Continuous q1"]:::thm
+  n11["<b>continuous_q2</b><br/>Continuous q2"]:::thm
+  n12["<b>q2_bound</b><br/>|q2 x| ≤ Real.pi + Real.pi ^ 2 / 2"]:::thm
+  n13["<b>norm_sinh_le</b><br/>‖Complex.sinh z‖ ≤ Real.cosh z.re"]:::thm
+  n14["<b>SigmaC_eq_ibp</b><br/>SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * …"]:::thm
+  n15["<b>SigmaC_bound</b><br/>‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ …"]:::thm
+  n16["<b>lobe_bound</b><br/>‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * …"]:::thm
+  x0(["<b>WeilPowerBounds</b><br/>norm_S_le'"]):::ext
+  x1(["<b>WeilBackground</b><br/>Psi_bound"]):::ext
+  x2(["<b>WeilOffLine</b><br/>offline_term_le_explicit"]):::ext
+  n0 --> n1
+  n1 --> n14
+  n10 --> n14
+  n11 --> n14
+  n12 --> n15
+  n13 --> n15
+  n14 --> n15
+  n15 --> n16
+  n2 --> n4
+  n2 --> n5
+  n3 --> n5
+  n4 --> n14
+  n5 --> n14
+  n6 --> n14
+  n7 --> n14
+  n8 --> n14
+  n9 --> n14
+  n13 -.-> x0
+  n15 -.-> x1
+  n16 -.-> x2
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Definitions
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `WeilLobe.P_eq`<br/>theorem, line 43 | P x = (1 + Real.cos (Real.pi * x)) / 2 | x : ℝ | The half-angle form of the window. | `WeilWindow.P` | `WeilLobe.q_eq` |
-| `WeilLobe.q`<br/>def, line 50 | ℝ | x : ℝ | The envelope `q(x) = x·P(x)` in half-angle form. | — | `WeilLobe.SigmaC_eq_ibp`, `WeilLobe.hasDerivAt_q`, `WeilLobe.q_eq`, `WeilLobe.q_neg_one`, `WeilLobe.q_one` |
-| `WeilLobe.q1`<br/>def, line 53 | ℝ | x : ℝ | `q'`. | — | `WeilLobe.SigmaC_eq_ibp`, `WeilLobe.continuous_q1`, `WeilLobe.hasDerivAt_q`, `WeilLobe.hasDerivAt_q1`, `WeilLobe.q1_neg_one`, `WeilLobe.q1_one` |
-| `WeilLobe.q2`<br/>def, line 56 | ℝ | x : ℝ | `q''`. | — | `WeilLobe.SigmaC_bound`, `WeilLobe.SigmaC_eq_ibp`, `WeilLobe.continuous_q2`, `WeilLobe.hasDerivAt_q1`, `WeilLobe.q2_bound` |
-| `WeilLobe.q_eq`<br/>theorem, line 58 | x * P x = q x | x : ℝ | — | `WeilLobe.P_eq`, `WeilLobe.q`, `WeilWindow.P` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.hasDerivAt_cos_pi`<br/>theorem, line 61 | HasDerivAt (fun y : ℝ =&gt; Real.cos (Real.pi * y)) (-Real.sin (Real.pi * x) * Real.pi) x | x : ℝ | — | — | `WeilLobe.hasDerivAt_q`, `WeilLobe.hasDerivAt_q1` |
-| `WeilLobe.hasDerivAt_sin_pi`<br/>theorem, line 66 | HasDerivAt (fun y : ℝ =&gt; Real.sin (Real.pi * y)) (Real.cos (Real.pi * x) * Real.pi) x | x : ℝ | — | — | `WeilLobe.hasDerivAt_q1` |
-| `WeilLobe.hasDerivAt_q`<br/>theorem, line 71 | HasDerivAt q (q1 x) x | x : ℝ | — | `WeilLobe.hasDerivAt_cos_pi`, `WeilLobe.q`, `WeilLobe.q1` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.hasDerivAt_q1`<br/>theorem, line 77 | HasDerivAt q1 (q2 x) x | x : ℝ | — | `WeilLobe.hasDerivAt_cos_pi`, `WeilLobe.hasDerivAt_sin_pi`, `WeilLobe.q1`, `WeilLobe.q2` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.q_one`<br/>theorem, line 86 | q 1 = 0 | — | — | `WeilLobe.q` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.q_neg_one`<br/>theorem, line 89 | q (-1) = 0 | — | — | `WeilLobe.q` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.q1_one`<br/>theorem, line 92 | q1 1 = 0 | — | — | `WeilLobe.q1` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.q1_neg_one`<br/>theorem, line 95 | q1 (-1) = 0 | — | — | `WeilLobe.q1` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.continuous_q1`<br/>theorem, line 99 | Continuous q1 | — | — | `WeilLobe.q1` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.continuous_q2`<br/>theorem, line 103 | Continuous q2 | — | — | `WeilLobe.q2` | `WeilLobe.SigmaC_eq_ibp` |
-| `WeilLobe.q2_bound`<br/>theorem, line 107 | \|q2 x\| ≤ Real.pi + Real.pi ^ 2 / 2 | hx : \|x\| ≤ 1 | `\|q''(x)\| ≤ π + π²/2` on `[−1, 1]`. | `WeilLobe.q2` | `WeilLobe.SigmaC_bound` |
-| `WeilLobe.norm_sinh_le`<br/>theorem, line 126 | ‖Complex.sinh z‖ ≤ Real.cosh z.re | z : ℂ | `‖sinh z‖ ≤ cosh(Re z)`. | — | `WeilLobe.SigmaC_bound`, `WeilPowerBounds.norm_S_le'` |
-| `WeilLobe.SigmaC_eq_ibp`<br/>theorem, line 136 | SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) | w : ℂ; hw : w ≠ 0 | Integration by parts, twice: `Σc(w) = w⁻²·∫ q''·sinh(w·)`. | `WeilLobe.continuous_q1`, `WeilLobe.continuous_q2`, `WeilLobe.hasDerivAt_q`, `WeilLobe.hasDerivAt_q1`, `WeilLobe.q`, `WeilLobe.q1`, `WeilLobe.q1_neg_one`, `WeilLobe.q1_one`, `WeilLobe.q2`, `WeilLobe.q_eq`, `WeilLobe.q_neg_one`, `WeilLobe.q_one`, `WeilTransform.SigmaC`, `WeilWindow.P` | `WeilLobe.SigmaC_bound` |
-| `WeilLobe.SigmaC_bound`<br/>theorem, line 187 | ‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2 | w : ℂ; hw : w ≠ 0 | (†) `‖Σc(w)‖ ≤ (2π + π²)·cosh(Re w)/‖w‖²`. | `WeilLobe.SigmaC_eq_ibp`, `WeilLobe.norm_sinh_le`, `WeilLobe.q2`, `WeilLobe.q2_bound`, `WeilTransform.SigmaC` | `WeilBackground.Psi_bound`, `WeilLobe.lobe_bound` |
-| `WeilLobe.lobe_bound`<br/>theorem, line 219 | ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2 | hh : 0 &lt; h; hγ : 0 &lt; γ; ε : ℝ | The lobe at the off-line point: for `h, γ &gt; 0`, `‖Σc((ε + 2iγ)h)‖ ≤ (2π + π²)·cosh(εh)/(2γh)²`. | `WeilLobe.SigmaC_bound`, `WeilTransform.SigmaC` | `WeilOffLine.offline_term_le_explicit` |
+<a name="WeilLobe-q"></a>
+### `WeilLobe.q`
+
+def · line 50
+
+The envelope `q(x) = x·P(x)` in half-angle form.
+
+- **Is:** `` q (x : ℝ) : ℝ := x * (1 + Real.cos (Real.pi * x)) / 2 ``
+- **Used by 5:** [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp), [`WeilLobe.hasDerivAt_q`](#WeilLobe-hasDerivAt_q), [`WeilLobe.q_eq`](#WeilLobe-q_eq), [`WeilLobe.q_neg_one`](#WeilLobe-q_neg_one), [`WeilLobe.q_one`](#WeilLobe-q_one)
+
+<a name="WeilLobe-q1"></a>
+### `WeilLobe.q1`
+
+def · line 53
+
+`q'`.
+
+- **Is:** `` q1 (x : ℝ) : ℝ := 1 / 2 + Real.cos (Real.pi * x) / 2 - Real.pi * x / 2 * Real.sin (Real.pi * x) ``
+- **Used by 6:** [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp), [`WeilLobe.continuous_q1`](#WeilLobe-continuous_q1), [`WeilLobe.hasDerivAt_q`](#WeilLobe-hasDerivAt_q), [`WeilLobe.hasDerivAt_q1`](#WeilLobe-hasDerivAt_q1), [`WeilLobe.q1_neg_one`](#WeilLobe-q1_neg_one), [`WeilLobe.q1_one`](#WeilLobe-q1_one)
+
+<a name="WeilLobe-q2"></a>
+### `WeilLobe.q2`
+
+def · line 56
+
+`q''`.
+
+- **Is:** `` q2 (x : ℝ) : ℝ := -Real.pi * Real.sin (Real.pi * x) - Real.pi ^ 2 * x / 2 * Real.cos (Real.pi * x) ``
+- **Used by 5:** [`WeilLobe.SigmaC_bound`](#WeilLobe-SigmaC_bound), [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp), [`WeilLobe.continuous_q2`](#WeilLobe-continuous_q2), [`WeilLobe.hasDerivAt_q1`](#WeilLobe-hasDerivAt_q1), [`WeilLobe.q2_bound`](#WeilLobe-q2_bound)
+
+## Theorems
+
+<a name="WeilLobe-P_eq"></a>
+### `WeilLobe.P_eq`
+
+line 43
+
+**Why.** The half-angle form of the window.
+
+**Proves**
+
+```lean
+P x = (1 + Real.cos (Real.pi * x)) / 2
+```
+
+**Needs** (its hypotheses)
+
+  - `` x : ℝ ``
+
+**Stated with:** [`WeilWindow.P`](../lean_stage3/WeilWindow.md#WeilWindow-P)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.q_eq`](#WeilLobe-q_eq) — `` x * P x = q x ``
+
+<a name="WeilLobe-q_eq"></a>
+### `WeilLobe.q_eq`
+
+line 58
+
+**Proves**
+
+```lean
+x * P x = q x
+```
+
+**Needs** (its hypotheses)
+
+  - `` x : ℝ ``
+
+**Stated with:** [`WeilLobe.q`](#WeilLobe-q), [`WeilWindow.P`](../lean_stage3/WeilWindow.md#WeilWindow-P)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`WeilLobe.P_eq`](#WeilLobe-P_eq) — `` P x = (1 + Real.cos (Real.pi * x)) / 2 ``
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-hasDerivAt_cos_pi"></a>
+### `WeilLobe.hasDerivAt_cos_pi`
+
+line 61
+
+**Proves**
+
+```lean
+HasDerivAt (fun y : ℝ => Real.cos (Real.pi * y)) (-Real.sin (Real.pi * x) * Real.pi) x
+```
+
+**Needs** (its hypotheses)
+
+  - `` x : ℝ ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (2 that use it)
+
+  - [`WeilLobe.hasDerivAt_q`](#WeilLobe-hasDerivAt_q) — `` HasDerivAt q (q1 x) x ``
+  - [`WeilLobe.hasDerivAt_q1`](#WeilLobe-hasDerivAt_q1) — `` HasDerivAt q1 (q2 x) x ``
+
+<a name="WeilLobe-hasDerivAt_sin_pi"></a>
+### `WeilLobe.hasDerivAt_sin_pi`
+
+line 66
+
+**Proves**
+
+```lean
+HasDerivAt (fun y : ℝ => Real.sin (Real.pi * y)) (Real.cos (Real.pi * x) * Real.pi) x
+```
+
+**Needs** (its hypotheses)
+
+  - `` x : ℝ ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.hasDerivAt_q1`](#WeilLobe-hasDerivAt_q1) — `` HasDerivAt q1 (q2 x) x ``
+
+<a name="WeilLobe-hasDerivAt_q"></a>
+### `WeilLobe.hasDerivAt_q`
+
+line 71
+
+**Proves**
+
+```lean
+HasDerivAt q (q1 x) x
+```
+
+**Needs** (its hypotheses)
+
+  - `` x : ℝ ``
+
+**Stated with:** [`WeilLobe.q`](#WeilLobe-q), [`WeilLobe.q1`](#WeilLobe-q1)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`WeilLobe.hasDerivAt_cos_pi`](#WeilLobe-hasDerivAt_cos_pi) — `` HasDerivAt (fun y : ℝ => Real.cos (Real.pi * y)) (-Real.sin (Real.pi * x) * Real.pi) x ``
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-hasDerivAt_q1"></a>
+### `WeilLobe.hasDerivAt_q1`
+
+line 77
+
+**Proves**
+
+```lean
+HasDerivAt q1 (q2 x) x
+```
+
+**Needs** (its hypotheses)
+
+  - `` x : ℝ ``
+
+**Stated with:** [`WeilLobe.q1`](#WeilLobe-q1), [`WeilLobe.q2`](#WeilLobe-q2)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`WeilLobe.hasDerivAt_cos_pi`](#WeilLobe-hasDerivAt_cos_pi) — `` HasDerivAt (fun y : ℝ => Real.cos (Real.pi * y)) (-Real.sin (Real.pi * x) * Real.pi) x ``
+  - [`WeilLobe.hasDerivAt_sin_pi`](#WeilLobe-hasDerivAt_sin_pi) — `` HasDerivAt (fun y : ℝ => Real.sin (Real.pi * y)) (Real.cos (Real.pi * x) * Real.pi) x ``
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-q_one"></a>
+### `WeilLobe.q_one`
+
+line 86
+
+**Proves**
+
+```lean
+q 1 = 0
+```
+
+**Stated with:** [`WeilLobe.q`](#WeilLobe-q)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-q_neg_one"></a>
+### `WeilLobe.q_neg_one`
+
+line 89
+
+**Proves**
+
+```lean
+q (-1) = 0
+```
+
+**Stated with:** [`WeilLobe.q`](#WeilLobe-q)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-q1_one"></a>
+### `WeilLobe.q1_one`
+
+line 92
+
+**Proves**
+
+```lean
+q1 1 = 0
+```
+
+**Stated with:** [`WeilLobe.q1`](#WeilLobe-q1)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-q1_neg_one"></a>
+### `WeilLobe.q1_neg_one`
+
+line 95
+
+**Proves**
+
+```lean
+q1 (-1) = 0
+```
+
+**Stated with:** [`WeilLobe.q1`](#WeilLobe-q1)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-continuous_q1"></a>
+### `WeilLobe.continuous_q1`
+
+line 99
+
+**Proves**
+
+```lean
+Continuous q1
+```
+
+**Stated with:** [`WeilLobe.q1`](#WeilLobe-q1)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-continuous_q2"></a>
+### `WeilLobe.continuous_q2`
+
+line 103
+
+**Proves**
+
+```lean
+Continuous q2
+```
+
+**Stated with:** [`WeilLobe.q2`](#WeilLobe-q2)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+
+<a name="WeilLobe-q2_bound"></a>
+### `WeilLobe.q2_bound`
+
+line 107
+
+**Why.** `|q''(x)| ≤ π + π²/2` on `[−1, 1]`.
+
+**Proves**
+
+```lean
+|q2 x| ≤ Real.pi + Real.pi ^ 2 / 2
+```
+
+**Needs** (its hypotheses)
+
+  - `` hx : |x| ≤ 1 ``
+
+**Stated with:** [`WeilLobe.q2`](#WeilLobe-q2)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_bound`](#WeilLobe-SigmaC_bound) — `` ‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2 ``
+
+<a name="WeilLobe-norm_sinh_le"></a>
+### `WeilLobe.norm_sinh_le`
+
+line 126
+
+**Why.** `‖sinh z‖ ≤ cosh(Re z)`.
+
+**Proves**
+
+```lean
+‖Complex.sinh z‖ ≤ Real.cosh z.re
+```
+
+**Needs** (its hypotheses)
+
+  - `` z : ℂ ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (2 that use it)
+
+  - [`WeilLobe.SigmaC_bound`](#WeilLobe-SigmaC_bound) — `` ‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2 ``
+  - [`WeilPowerBounds.norm_S_le'`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-norm_S_le-) (WeilPowerBounds) — `` ‖S m w‖ ≤ cS m * Real.cosh w.re / ‖QS m w‖ ``
+
+<a name="WeilLobe-SigmaC_eq_ibp"></a>
+### `WeilLobe.SigmaC_eq_ibp`
+
+line 136
+
+**Why.** Integration by parts, twice: `Σc(w) = w⁻²·∫ q''·sinh(w·)`.
+
+**Proves**
+
+```lean
+SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ))
+```
+
+**Needs** (its hypotheses)
+
+  - `` w : ℂ ``
+  - `` hw : w ≠ 0 ``
+
+**Stated with:** [`WeilLobe.q2`](#WeilLobe-q2), [`WeilTransform.SigmaC`](../lean_stage3/WeilTransform.md#WeilTransform-SigmaC)
+
+**Fed by** (9 theorems its proof uses)
+
+  - [`WeilLobe.continuous_q1`](#WeilLobe-continuous_q1) — `` Continuous q1 ``
+  - [`WeilLobe.continuous_q2`](#WeilLobe-continuous_q2) — `` Continuous q2 ``
+  - [`WeilLobe.hasDerivAt_q`](#WeilLobe-hasDerivAt_q) — `` HasDerivAt q (q1 x) x ``
+  - [`WeilLobe.hasDerivAt_q1`](#WeilLobe-hasDerivAt_q1) — `` HasDerivAt q1 (q2 x) x ``
+  - [`WeilLobe.q1_neg_one`](#WeilLobe-q1_neg_one) — `` q1 (-1) = 0 ``
+  - [`WeilLobe.q1_one`](#WeilLobe-q1_one) — `` q1 1 = 0 ``
+  - [`WeilLobe.q_eq`](#WeilLobe-q_eq) — `` x * P x = q x ``
+  - [`WeilLobe.q_neg_one`](#WeilLobe-q_neg_one) — `` q (-1) = 0 ``
+  - [`WeilLobe.q_one`](#WeilLobe-q_one) — `` q 1 = 0 ``
+
+**Definitions its proof touches:** [`WeilLobe.q`](#WeilLobe-q), [`WeilLobe.q1`](#WeilLobe-q1), [`WeilWindow.P`](../lean_stage3/WeilWindow.md#WeilWindow-P)
+
+**Feeds** (1 that use it)
+
+  - [`WeilLobe.SigmaC_bound`](#WeilLobe-SigmaC_bound) — `` ‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2 ``
+
+<a name="WeilLobe-SigmaC_bound"></a>
+### `WeilLobe.SigmaC_bound`
+
+line 187
+
+**Why.** (†) `‖Σc(w)‖ ≤ (2π + π²)·cosh(Re w)/‖w‖²`.
+
+**Proves**
+
+```lean
+‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2
+```
+
+**Needs** (its hypotheses)
+
+  - `` w : ℂ ``
+  - `` hw : w ≠ 0 ``
+
+**Stated with:** [`WeilTransform.SigmaC`](../lean_stage3/WeilTransform.md#WeilTransform-SigmaC)
+
+**Fed by** (3 theorems its proof uses)
+
+  - [`WeilLobe.SigmaC_eq_ibp`](#WeilLobe-SigmaC_eq_ibp) — `` SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) ``
+  - [`WeilLobe.norm_sinh_le`](#WeilLobe-norm_sinh_le) — `` ‖Complex.sinh z‖ ≤ Real.cosh z.re ``
+  - [`WeilLobe.q2_bound`](#WeilLobe-q2_bound) — `` |q2 x| ≤ Real.pi + Real.pi ^ 2 / 2 ``
+
+**Definitions its proof touches:** [`WeilLobe.q2`](#WeilLobe-q2)
+
+**Feeds** (2 that use it)
+
+  - [`WeilBackground.Psi_bound`](../lean_stage3/WeilBackground.md#WeilBackground-Psi_bound) (WeilBackground) — `` |WeilTransform.Psi s| ≤ (2 * Real.pi + Real.pi ^ 2) / s ^ 2 ``
+  - [`WeilLobe.lobe_bound`](#WeilLobe-lobe_bound) — `` ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2 ``
+
+<a name="WeilLobe-lobe_bound"></a>
+### `WeilLobe.lobe_bound`
+
+line 219
+
+**Why.** The lobe at the off-line point: for `h, γ > 0`, `‖Σc((ε + 2iγ)h)‖ ≤ (2π + π²)·cosh(εh)/(2γh)²`.
+
+**Proves**
+
+```lean
+‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2
+```
+
+**Needs** (its hypotheses)
+
+  - `` hh : 0 < h ``
+  - `` hγ : 0 < γ ``
+  - `` ε : ℝ ``
+
+**Stated with:** [`WeilTransform.SigmaC`](../lean_stage3/WeilTransform.md#WeilTransform-SigmaC)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`WeilLobe.SigmaC_bound`](#WeilLobe-SigmaC_bound) — `` ‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ ^ 2 ``
+
+**Feeds** (1 that use it)
+
+  - [`WeilOffLine.offline_term_le_explicit`](../lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le_explicit) (WeilOffLine) — `` (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) -… ``
+

@@ -1,0 +1,43 @@
+flowchart LR
+  f0["<b>JensenCount</b><br/>17 used"]:::thm
+  f1["<b>PerronKernel</b><br/>33 used"]:::thm
+  f2["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f3["<b>RvMCrude</b><br/>3 used"]:::thm
+  f4["<b>ArgCrude</b><br/>3 used"]:::thm
+  f5["<b>Statement</b><br/>1 used"]:::thm
+  f6["<b>PsiToPi</b><br/>13 used"]:::thm
+  f7["<b>Stirling</b><br/>20 used"]:::thm
+  f8["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f9["<b>ArgLegs</b><br/>10 used"]:::thm
+  f10["<b>ArgCount</b><br/>14 used"]:::thm
+  f11["<b>ZeroSum</b><br/>7 used"]:::thm
+  f12["<b>Assembly</b><br/>9 used"]:::thm
+  f13["<b>ContourShift</b><br/>29 used"]:::thm
+  f14["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f15["<b>EdgeBound</b><br/>17 used"]:::thm
+  f16["<b>Glue</b><br/>8 used"]:::thm
+  f17["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]:::end_
+  f0 --> f2
+  f3 --> f4
+  f5 --> f6
+  f3 --> f7
+  f4 --> f8
+  f7 --> f8
+  f8 --> f9
+  f2 --> f10
+  f9 --> f10
+  f11 --> f12
+  f0 --> f13
+  f12 --> f13
+  f13 --> f14
+  f14 --> f15
+  f1 --> f16
+  f15 --> f16
+  f6 --> f17
+  f10 --> f17
+  f16 --> f17
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

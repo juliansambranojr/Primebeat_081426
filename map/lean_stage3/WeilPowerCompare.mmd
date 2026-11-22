@@ -1,125 +1,52 @@
 flowchart LR
-  n0["cP<br/>(def)"]:::dfn
-  n1["cE<br/>(def)"]:::dfn
-  n2["cQ<br/>(def)"]:::dfn
-  n3["cP_pos<br/>⊢ 0 ＜ cP m"]:::end_
-  n4["cE_pos<br/>⊢ 0 ＜ cE m"]:::thm
-  n5["cQ_pos<br/>⊢ 0 ＜ cQ m"]:::thm
-  n6["cE_le_cP<br/>⊢ cE m ≤ cP m"]:::end_
-  n7["Eup<br/>(def)"]:::dfn
-  n8["Elow<br/>(def)"]:::dfn
-  n9["norm_S_le_gauss<br/>⊢ ‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp (Eup m w)"]:::thm
-  n10["S_real_ge_low<br/>⊢ 4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp (Elow…"]:::thm
-  n11["S_real_pos<br/>⊢ 0 ＜ (S m (s : ℂ)).re"]:::thm
-  n12["compare_le<br/>⊢ ‖S m w‖ ≤ (2 * (m : ℝ) + 3) * (‖w‖ / s) * Real.exp (Eup m w - Elow m s…"]:::thm
-  n13["wOf<br/>(def)"]:::dfn
-  n14["wOf_re<br/>⊢ (wOf ε Δ h).re = ε * h"]:::thm
-  n15["wOf_im<br/>⊢ (wOf ε Δ h).im = Δ * h"]:::thm
-  n16["wOf_sq_re<br/>⊢ ((wOf ε Δ h) ^ 2).re = (ε ^ 2 - Δ ^ 2) * h ^ 2"]:::thm
-  n17["norm_wOf_sq<br/>⊢ ‖wOf ε Δ h‖ ^ 2 = (ε ^ 2 + Δ ^ 2) * h ^ 2"]:::thm
-  n18["norm_wOf_pow4<br/>⊢ ‖wOf ε Δ h‖ ^ 4 = ((ε ^ 2 + Δ ^ 2) * h ^ 2) ^ 2"]:::thm
-  n19["QS_ne_zero_wOf<br/>⊢ QS m (wOf ε Δ h) ≠ 0"]:::thm
-  n20["rate<br/>(def)"]:::dfn
-  n21["qerr<br/>(def)"]:::dfn
-  n22["exponent_eq<br/>⊢ Eup m (wOf ε' Δ h) - Elow m (ε * h) = rate m ε' Δ ε * h ^ 2 + qerr m ε…"]:::thm
-  n23["rate_eq_of_le<br/>⊢ rate m ε' Δ ε = -(cE m * (Δ ^ 2 + ε ^ 2 - ε' ^ 2))"]:::thm
-  n24["rate_neg_of_le<br/>⊢ rate m ε' Δ ε ＜ 0"]:::end_
-  n25["rate_neg_of_ge<br/>⊢ rate m ε' Δ ε ＜ 0"]:::end_
-  n26["qerr_pos<br/>⊢ 0 ＜ qerr m ε' Δ ε"]:::thm
-  n27["rate_neg_of_qerr<br/>⊢ rate m ε' Δ ε ＜ 0"]:::end_
-  n28["compare_suppressed<br/>⊢ ‖S m (wOf ε' Δ h)‖ ≤ (2 * (m : ℝ) + 3) * (‖wOf ε' Δ h‖ / (ε * h)) * Re…"]:::end_
-  x0(["WeilOddPower · QS"]):::ext
-  x1(["WeilOddPower · S"]):::ext
-  x2(["WeilPowerBounds · QS_ne_zero"]):::ext
-  x3(["WeilPowerGauss · S_real_ge_gauss"]):::ext
-  x4(["WeilPowerGauss · norm_S_le_gauss_neg"]):::ext
-  x5(["WeilPowerGauss · norm_S_le_gauss_pos"]):::ext
-  n0 --> n20
-  n0 --> n25
-  n0 --> n3
-  n0 --> n6
-  n0 --> n7
-  n0 --> n9
-  n1 --> n10
-  n1 --> n20
-  n1 --> n23
-  n1 --> n24
-  n1 --> n25
-  n1 --> n4
-  n1 --> n6
-  n1 --> n7
-  n1 --> n8
-  n1 --> n9
-  n10 --> n11
-  n10 --> n12
-  n11 --> n28
-  n12 --> n28
-  n13 --> n14
-  n13 --> n15
-  n13 --> n16
-  n13 --> n17
-  n13 --> n18
-  n13 --> n19
-  n13 --> n22
-  n13 --> n28
-  n14 --> n16
-  n14 --> n17
-  n14 --> n19
+  n0["<b>cP_pos</b><br/>0 ＜ cP m"]:::end_
+  n1["<b>cE_pos</b><br/>0 ＜ cE m"]:::thm
+  n2["<b>cQ_pos</b><br/>0 ＜ cQ m"]:::thm
+  n3["<b>cE_le_cP</b><br/>cE m ≤ cP m"]:::end_
+  n4["<b>norm_S_le_gauss</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp (Eup m …"]:::thm
+  n5["<b>S_real_ge_low</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp…"]:::thm
+  n6["<b>S_real_pos</b><br/>0 ＜ (S m (s : ℂ)).re"]:::thm
+  n7["<b>compare_le</b><br/>‖S m w‖ ≤ (2 * (m : ℝ) + 3) * (‖w‖ / s) * Real.exp (Eup m w - El…"]:::thm
+  n8["<b>wOf_re</b><br/>(wOf ε Δ h).re = ε * h"]:::thm
+  n9["<b>wOf_im</b><br/>(wOf ε Δ h).im = Δ * h"]:::thm
+  n10["<b>wOf_sq_re</b><br/>((wOf ε Δ h) ^ 2).re = (ε ^ 2 - Δ ^ 2) * h ^ 2"]:::thm
+  n11["<b>norm_wOf_sq</b><br/>‖wOf ε Δ h‖ ^ 2 = (ε ^ 2 + Δ ^ 2) * h ^ 2"]:::thm
+  n12["<b>norm_wOf_pow4</b><br/>‖wOf ε Δ h‖ ^ 4 = ((ε ^ 2 + Δ ^ 2) * h ^ 2) ^ 2"]:::thm
+  n13["<b>QS_ne_zero_wOf</b><br/>QS m (wOf ε Δ h) ≠ 0"]:::thm
+  n14["<b>exponent_eq</b><br/>Eup m (wOf ε' Δ h) - Elow m (ε * h) = rate m ε' Δ ε * h ^ 2 + qe…"]:::thm
+  n15["<b>rate_eq_of_le</b><br/>rate m ε' Δ ε = -(cE m * (Δ ^ 2 + ε ^ 2 - ε' ^ 2))"]:::thm
+  n16["<b>rate_neg_of_le</b><br/>rate m ε' Δ ε ＜ 0"]:::end_
+  n17["<b>rate_neg_of_ge</b><br/>rate m ε' Δ ε ＜ 0"]:::end_
+  n18["<b>qerr_pos</b><br/>0 ＜ qerr m ε' Δ ε"]:::thm
+  n19["<b>rate_neg_of_qerr</b><br/>rate m ε' Δ ε ＜ 0"]:::end_
+  n20["<b>compare_suppressed</b><br/>‖S m (wOf ε' Δ h)‖ ≤ (2 * (m : ℝ) + 3) * (‖wOf ε' Δ h‖ / (ε * h)…"]:::end_
+  x0(["<b>WeilPowerGauss</b><br/>S_real_ge_gauss<br/>norm_S_le_gauss_neg<br/>norm_S_le_gauss_pos"]):::ext
+  x1(["<b>WeilPowerBounds</b><br/>QS_ne_zero"]):::ext
+  n1 --> n16
+  n10 --> n14
+  n11 --> n12
+  n11 --> n20
+  n12 --> n14
+  n13 --> n20
+  n14 --> n20
   n15 --> n16
-  n15 --> n17
-  n16 --> n22
-  n17 --> n18
-  n17 --> n28
-  n18 --> n22
-  n19 --> n28
-  n2 --> n10
-  n2 --> n21
-  n2 --> n26
-  n2 --> n5
-  n2 --> n7
-  n2 --> n8
-  n2 --> n9
-  n20 --> n22
-  n20 --> n23
-  n20 --> n24
-  n20 --> n25
-  n20 --> n27
-  n20 --> n28
-  n21 --> n22
-  n21 --> n26
-  n21 --> n27
-  n21 --> n28
-  n22 --> n28
-  n23 --> n24
-  n26 --> n27
-  n4 --> n24
-  n5 --> n26
-  n7 --> n12
-  n7 --> n22
-  n7 --> n28
-  n7 --> n9
+  n18 --> n19
+  n2 --> n18
+  n4 --> n7
+  n5 --> n6
+  n5 --> n7
+  n6 --> n20
+  n7 --> n20
   n8 --> n10
   n8 --> n11
-  n8 --> n12
-  n8 --> n22
-  n8 --> n28
-  n9 --> n12
-  x0 --> n12
-  x0 --> n19
-  x0 --> n28
-  x0 --> n9
-  x1 --> n10
-  x1 --> n11
-  x1 --> n12
-  x1 --> n28
-  x1 --> n9
-  x2 --> n19
-  x3 --> n10
-  x4 --> n9
-  x5 --> n9
+  n8 --> n13
+  n9 --> n10
+  n9 --> n11
+  x0 -.-> n4
+  x0 -.-> n5
+  x1 -.-> n13
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,29 +1,17 @@
 flowchart LR
-  n0["weakWindow_relErr<br/>⊢ JointDialGate.StmtRelErrWindow f L r n (C * (Real.log 2 * r) ^ k * (2 …"]:::thm
-  n1["relErrWindow_floor_of_RH<br/>⊢ ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → ∀ (r : …"]:::thm
-  x0(["GlueFloor · floorConstSplit"]):::ext
-  x1(["GlueFloor · floorConstSplit_nonneg"]):::ext
-  x2(["GlueFloor · schoenfeldWeak_floor_split_of_RH"]):::ext
-  x3(["JointDialGate · StmtRelErrWindow"]):::ext
-  x4(["PsiToPi · Li"]):::ext
-  x5(["RouteGate · relErrWindow_route"]):::ext
-  x6(["RouteNum · relErrWindow_route_num"]):::ext
-  x7(["Statement · StmtWeakWindow"]):::ext
-  x8(["Statement · weakWindow_of_global"]):::ext
+  n0["<b>weakWindow_relErr</b><br/>JointDialGate.StmtRelErrWindow f L r n (C * (Real.log 2 * r) ^ k…"]:::thm
+  n1["<b>relErrWindow_floor_of_RH</b><br/>∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → ∀…"]:::thm
+  x0(["<b>RouteNum</b><br/>relErrWindow_route_num"]):::ext
+  x1(["<b>GlueFloor</b><br/>floorConstSplit_nonneg<br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x2(["<b>Statement</b><br/>weakWindow_of_global"]):::ext
+  x3(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
   n0 --> n1
-  n0 --> x6
-  n1 --> x5
-  x0 --> n1
-  x1 --> n1
-  x2 --> n1
-  x3 --> n0
-  x3 --> n1
-  x4 --> n1
-  x7 --> n0
-  x8 --> n1
+  n0 -.-> x0
+  n1 -.-> x3
+  x1 -.-> n1
+  x2 -.-> n1
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

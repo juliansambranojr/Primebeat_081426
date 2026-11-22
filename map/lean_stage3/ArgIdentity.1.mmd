@@ -1,128 +1,89 @@
 flowchart LR
-  n0["xi<br/>(def)"]:::dfn
-  n1["differentiable_xi<br/>⊢ Differentiable ℂ xi"]:::thm
-  n2["xi_zero<br/>⊢ xi 0 = 1"]:::thm
-  n3["xi_one<br/>⊢ xi 1 = 1"]:::thm
-  n4["xi_eq_completed<br/>⊢ xi s = s * (s - 1) * completedRiemannZeta s"]:::thm
-  n5["xi_one_sub<br/>⊢ xi (1 - s) = xi s"]:::thm
-  n6["gammaR_conj<br/>⊢ Gammaℝ (conj s) = conj (Gammaℝ s)"]:::thm
-  n7["completed_eq_gammaR_mul_zeta<br/>⊢ completedRiemannZeta s = Gammaℝ s * riemannZeta s"]:::thm
-  n8["completedZeta₀_conj<br/>⊢ completedRiemannZeta₀ (conj s) = conj (completedRiemannZeta₀ s)"]:::thm
-  n9["xi_conj<br/>⊢ xi (conj s) = conj (xi s)"]:::thm
-  n10["zeta_re_neg_of_real_mem_Ioo<br/>⊢ (riemannZeta (σ : ℂ)).re ＜ 0"]:::thm
-  n11["zeta_ne_zero_of_real_mem_Ioo<br/>⊢ riemannZeta (σ : ℂ) ≠ 0"]:::thm
-  n12["completed_eq_gammaR_mul_zeta'<br/>⊢ completedRiemannZeta s = Gammaℝ s * riemannZeta s"]:::thm
-  n13["xi_eq_prod<br/>⊢ xi s = s * (s - 1) * Gammaℝ s * riemannZeta s"]:::thm
-  n14["xi_ne_zero_of_one_le_re<br/>⊢ xi s ≠ 0"]:::thm
-  n15["xi_ne_zero_of_re_nonpos<br/>⊢ xi s ≠ 0"]:::thm
-  n16["xi_ne_zero_of_real<br/>⊢ xi (σ : ℂ) ≠ 0"]:::thm
-  n17["xi_eq_zero_iff<br/>⊢ xi s = 0 ↔ riemannZeta s = 0 ∧ 0 ＜ s.re ∧ s.re ＜ 1"]:::end_
-  n18["meromorphicOrderAt_xi_eq_zeta<br/>⊢ meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ"]:::thm
-  n19["xi_analyticAt<br/>⊢ AnalyticAt ℂ xi s"]:::thm
-  n20["xi_meromorphicOrderAt_ne_top<br/>⊢ meromorphicOrderAt xi p ≠ ⊤"]:::thm
-  n21["logDeriv_xi_meromorphicAt<br/>⊢ MeromorphicAt (logDeriv xi) s"]:::thm
-  n22["N_eq_sum<br/>⊢ riemannZeta.N T = ∑ ρ ∈ (Kadiri.zeroes_rect_univ_positive_height_finit…"]:::thm
-  n23["xi_divisor_support_eq<br/>⊢ (MeromorphicOn.divisor xi (Rectangle (-1 : ℂ) (2 + Complex.I * T))).su…"]:::thm
-  n24["rectangleIntegral_logDeriv_xi_eq_N<br/>⊢ RectangleIntegral' (logDeriv xi) (-1 : ℂ) (2 + Complex.I * T) = ((riem…"]:::thm
-  n25["logDeriv_xi_one_sub<br/>⊢ logDeriv xi (1 - s) = -logDeriv xi s"]:::thm
-  n26["logDeriv_xi_conj<br/>⊢ logDeriv xi (conj s) = conj (logDeriv xi s)"]:::thm
-  n27["logDeriv_xi_continuousAt<br/>⊢ ContinuousAt (logDeriv xi) p"]:::thm
-  n28["xi_ne_zero_on_good_top<br/>⊢ xi ((x : ℂ) + T * Complex.I) ≠ 0"]:::thm
-  n29["pi_mul_N_eq<br/>⊢ Real.pi * riemannZeta.N T = (∫ t in (0:ℝ)..T, logDeriv xi (2 + (t : ℂ)…"]:::thm
-  n30["logDeriv_congr_of_eventuallyEq<br/>⊢ logDeriv f x = logDeriv g x"]:::thm
-  n31["gammaR_eq_exp_mul<br/>⊢ Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Complex.Gam…"]:::thm
-  n32["differentiableAt_gammaR<br/>⊢ DifferentiableAt ℂ Gammaℝ s"]:::thm
-  n33["logDeriv_gammaR<br/>⊢ logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamma (s /…"]:::thm
-  n34["logDeriv_xi_split<br/>⊢ logDeriv xi s = 1 / s + 1 / (s - 1) + logDeriv Gammaℝ s + logDeriv rie…"]:::thm
-  n35["intervalIntegral_re<br/>⊢ (∫ t in a..b, f t).re = ∫ t in a..b, (f t).re"]:::thm
-  x0(["ArgIdentity · argS_eq_zetaArgContour"]):::ext
-  x1(["ArgIdentity · gammaR_fold_eq_phaseTheta"]):::ext
-  x2(["ArgIdentity · logDeriv_gammaR_analyticAt"]):::ext
-  x3(["ArgIdentity · logDeriv_gammaR_conj"]):::ext
-  n0 --> n1
-  n0 --> n13
-  n0 --> n14
-  n0 --> n15
-  n0 --> n16
+  n0["<b>differentiable_xi</b><br/>Differentiable ℂ xi"]:::thm
+  n1["<b>xi_zero</b><br/>xi 0 = 1"]:::thm
+  n2["<b>xi_one</b><br/>xi 1 = 1"]:::thm
+  n3["<b>xi_eq_completed</b><br/>xi s = s * (s - 1) * completedRiemannZeta s"]:::thm
+  n4["<b>xi_one_sub</b><br/>xi (1 - s) = xi s"]:::thm
+  n5["<b>gammaR_conj</b><br/>Gammaℝ (conj s) = conj (Gammaℝ s)"]:::thm
+  n6["<b>completed_eq_gammaR_mul_zeta</b><br/>completedRiemannZeta s = Gammaℝ s * riemannZeta s"]:::thm
+  n7["<b>completedZeta₀_conj</b><br/>completedRiemannZeta₀ (conj s) = conj (completedRiemannZeta₀ s)"]:::thm
+  n8["<b>xi_conj</b><br/>xi (conj s) = conj (xi s)"]:::thm
+  n9["<b>zeta_re_neg_of_real_mem_Ioo</b><br/>(riemannZeta (σ : ℂ)).re ＜ 0"]:::thm
+  n10["<b>zeta_ne_zero_of_real_mem_Ioo</b><br/>riemannZeta (σ : ℂ) ≠ 0"]:::thm
+  n11["<b>completed_eq_gammaR_mul_zeta'</b><br/>completedRiemannZeta s = Gammaℝ s * riemannZeta s"]:::thm
+  n12["<b>xi_eq_prod</b><br/>xi s = s * (s - 1) * Gammaℝ s * riemannZeta s"]:::thm
+  n13["<b>xi_ne_zero_of_one_le_re</b><br/>xi s ≠ 0"]:::thm
+  n14["<b>xi_ne_zero_of_re_nonpos</b><br/>xi s ≠ 0"]:::thm
+  n15["<b>xi_ne_zero_of_real</b><br/>xi (σ : ℂ) ≠ 0"]:::thm
+  n16["<b>xi_eq_zero_iff</b><br/>xi s = 0 ↔ riemannZeta s = 0 ∧ 0 ＜ s.re ∧ s.re ＜ 1"]:::thm
+  n17["<b>meromorphicOrderAt_xi_eq_zeta</b><br/>meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ"]:::thm
+  n18["<b>xi_analyticAt</b><br/>AnalyticAt ℂ xi s"]:::thm
+  n19["<b>xi_meromorphicOrderAt_ne_top</b><br/>meromorphicOrderAt xi p ≠ ⊤"]:::thm
+  n20["<b>logDeriv_xi_meromorphicAt</b><br/>MeromorphicAt (logDeriv xi) s"]:::thm
+  n21["<b>N_eq_sum</b><br/>riemannZeta.N T = ∑ ρ ∈ (Kadiri.zeroes_rect_univ_positive_height…"]:::thm
+  n22["<b>xi_divisor_support_eq</b><br/>(MeromorphicOn.divisor xi (Rectangle (-1 : ℂ) (2 + Complex.I * T…"]:::thm
+  n23["<b>rectangleIntegral_logDeriv_xi_eq_N</b><br/>RectangleIntegral' (logDeriv xi) (-1 : ℂ) (2 + Complex.I * T) = …"]:::thm
+  n24["<b>logDeriv_xi_one_sub</b><br/>logDeriv xi (1 - s) = -logDeriv xi s"]:::thm
+  n25["<b>logDeriv_xi_conj</b><br/>logDeriv xi (conj s) = conj (logDeriv xi s)"]:::thm
+  n26["<b>logDeriv_xi_continuousAt</b><br/>ContinuousAt (logDeriv xi) p"]:::thm
+  n27["<b>xi_ne_zero_on_good_top</b><br/>xi ((x : ℂ) + T * Complex.I) ≠ 0"]:::thm
+  n28["<b>pi_mul_N_eq</b><br/>Real.pi * riemannZeta.N T = (∫ t in (0:ℝ)..T, logDeriv xi (2 + (…"]:::thm
+  n29["<b>logDeriv_congr_of_eventuallyEq</b><br/>logDeriv f x = logDeriv g x"]:::thm
+  x0(["<b>diagram 2</b><br/>argS_eq_zetaArgContour<br/>logDeriv_gammaR_conj<br/>logDeriv_xi_split"]):::ext
   n0 --> n17
   n0 --> n18
   n0 --> n19
-  n0 --> n2
   n0 --> n20
-  n0 --> n21
-  n0 --> n23
   n0 --> n24
-  n0 --> n25
   n0 --> n26
-  n0 --> n27
-  n0 --> n28
-  n0 --> n29
-  n0 --> n3
-  n0 --> n34
-  n0 --> n4
-  n0 --> n5
-  n0 --> n9
-  n0 --> x0
-  n1 --> n18
   n1 --> n19
-  n1 --> n20
-  n1 --> n21
-  n1 --> n25
-  n1 --> n27
-  n10 --> n11
-  n11 --> n16
+  n10 --> n15
+  n11 --> n12
   n12 --> n13
+  n12 --> n15
+  n12 --> n16
+  n12 --> n17
   n13 --> n14
+  n13 --> n15
   n13 --> n16
-  n13 --> n17
-  n13 --> n18
-  n13 --> n34
   n14 --> n15
   n14 --> n16
-  n14 --> n17
-  n15 --> n16
-  n15 --> n17
-  n16 --> n23
-  n16 --> n29
+  n15 --> n22
+  n15 --> n28
+  n16 --> n22
+  n16 --> n27
+  n17 --> n22
+  n17 --> n23
+  n18 --> n19
+  n18 --> n20
+  n18 --> n22
   n18 --> n23
-  n18 --> n24
-  n19 --> n20
-  n19 --> n21
+  n18 --> n26
+  n19 --> n22
   n19 --> n23
-  n19 --> n24
-  n19 --> n27
-  n2 --> n20
+  n2 --> n13
   n20 --> n23
-  n20 --> n24
-  n21 --> n24
-  n22 --> n24
-  n23 --> n24
-  n24 --> n29
-  n25 --> n29
-  n26 --> n29
-  n27 --> n29
-  n28 --> n29
-  n29 --> x0
-  n3 --> n14
-  n30 --> n34
-  n31 --> n32
-  n31 --> n33
-  n32 --> n34
-  n32 --> x2
-  n33 --> x1
-  n34 --> x0
-  n35 --> x1
-  n4 --> n13
-  n5 --> n15
-  n5 --> n25
-  n6 --> n8
-  n6 --> x3
+  n21 --> n23
+  n22 --> n23
+  n23 --> n28
+  n24 --> n28
+  n25 --> n28
+  n26 --> n28
+  n27 --> n28
+  n3 --> n12
+  n4 --> n14
+  n4 --> n24
+  n5 --> n7
+  n6 --> n7
   n7 --> n8
-  n8 --> n9
-  n9 --> n26
+  n8 --> n25
+  n9 --> n10
+  n12 -.-> x0
+  n28 -.-> x0
+  n29 -.-> x0
+  n5 -.-> x0
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,219 +1,82 @@
 flowchart LR
-  n0["termW<br/>(def)"]:::dfn
-  n1["weightedTermW<br/>(def)"]:::dfn
-  n2["termW_nonneg<br/>⊢ 0 ≤ termW h γ m ρ"]:::thm
-  n3["weightedTermW_nonneg<br/>⊢ 0 ≤ weightedTermW h γ m ρ"]:::thm
-  n4["band_sum_le<br/>⊢ ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ M * (15 * Real.log T + 73)"]:::thm
-  n5["sum_by_bands<br/>⊢ ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.Nontriv…"]:::thm
-  n6["sum_le_bandSeries<br/>⊢ ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑' k : ℕ, M k * (15 * Real.log (centr…"]:::thm
-  n7["tsum_upper_le<br/>⊢ ∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ ∑' k : ℕ, M k * (15 * Real.log…"]:::thm
-  n8["r<br/>(def)"]:::dfn
-  n9["one_le_r<br/>⊢ 1 ≤ r h m"]:::thm
-  n10["cFarM<br/>(def)"]:::dfn
-  n11["cFarM_nonneg<br/>⊢ 0 ≤ cFarM m"]:::thm
-  n12["factorial_odd_le<br/>⊢ (((2 * m + 1).factorial : ℕ) : ℝ) ≤ 2 * 4 ^ m * ((m : ℝ) + 1) ^ (2 * m…"]:::thm
-  n13["cS_le<br/>⊢ cS m ≤ 4 * Real.pi ^ (2 * m + 1) * ((m : ℝ) + 1) ^ (2 * m + 1)"]:::thm
-  n14["cFarM_le<br/>⊢ cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2"]:::end_
-  n15["M<br/>(def)"]:::dfn
-  n16["M_nonneg<br/>⊢ 0 ≤ M h γ m k"]:::thm
-  n17["term_le_M<br/>⊢ termW h γ m ρ ≤ M h γ m (idx (ρ : ℂ).im)"]:::thm
-  n18["A<br/>(def)"]:::dfn
-  n19["four_h_add_nonneg<br/>⊢ 0 ≤ 4 * h ^ 2 + cFarM m / h ^ 2"]:::thm
-  n20["A_nonneg<br/>⊢ 0 ≤ A h γ m"]:::thm
-  n21["bandTerm_le_A<br/>⊢ M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m / ((k : ℝ) + 1) …"]:::thm
-  n22["bandSeries_summable<br/>⊢ Summable (fun k : ℕ =＞ M h γ m k * (15 * Real.log (centre k) + 73))"]:::thm
-  n23["bandSeries_le<br/>⊢ ∑' k : ℕ, M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m * (Rea…"]:::thm
-  n24["tsum_upper_le_explicit<br/>⊢ ∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ A h γ m * (Real.pi ^ 2 / 6)"]:::thm
-  n25["A_le<br/>⊢ A h γ m ≤ 88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ 2)"]:::thm
-  n26["tsum_upper_le_explicit'<br/>⊢ ∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ 88 * (γ + r h m + 2) ^ 4 * (4 …"]:::end_
-  x0(["WeilBands · band_count"]):::ext
-  x1(["WeilBands · order_eq_analyticOrderNatAt"]):::ext
-  x2(["WeilDetect · laplace"]):::ext
-  x3(["WeilOddPower · S"]):::ext
-  x4(["WeilOddPower · cS"]):::ext
-  x5(["WeilPowerAssembly · far_large_le"]):::ext
-  x6(["WeilPowerAssembly · far_moderate_le"]):::ext
-  x7(["WeilPowerAssembly · near_nonneg"]):::ext
-  x8(["WeilPowerAssembly · on_line_le"]):::ext
-  x9(["WeilPowerAssembly · target_lower"]):::ext
-  x10(["WeilPowerBounds · cS_pos"]):::ext
-  x11(["WeilPowerBridge · term_eq_sidebands"]):::ext
-  x12(["WeilPowerBridge · term_le_at_zero"]):::ext
-  x13(["WeilPowerBridge · term_le_sidebands"]):::ext
-  x14(["WeilPowerOnLine · B"]):::ext
-  x15(["WeilPowerOnLine · onLineBound_le"]):::ext
-  x16(["WeilPowerOnLine · sum_low_le"]):::ext
-  x17(["WeilPowerOnLine · sum_lower_le"]):::ext
-  x18(["WeilPowerOnLine · sum_onLine_le"]):::ext
-  x19(["WeilPowerOnLine · sum_onLine_subtype_le"]):::ext
-  x20(["WeilPowerOnLine · sum_upper_le"]):::ext
-  x21(["WeilPowerOnLine · summable_onLine"]):::ext
-  x22(["WeilPowerOnLine · term_conj"]):::ext
-  x23(["WeilPowerOnLine · tsum_onLine_le"]):::ext
-  x24(["WeilPowerOnLine · weightedTermW_conjZ"]):::ext
-  x25(["WeilSeries · dist_ge"]):::ext
-  x26(["WeilSeries · idx_le"]):::ext
-  x27(["WeilSeries · tsum_shift2"]):::ext
-  x28(["WeilSeries · two_le_of_one_lt"]):::ext
-  x29(["WeilSeries · weight_le"]):::ext
-  x30(["WeilSeries · weight_nonneg"]):::ext
-  x31(["WeilTiles · Upper"]):::ext
-  x32(["WeilTiles · bandSeries_nonneg"]):::ext
-  x33(["WeilTiles · centre"]):::ext
-  x34(["WeilTiles · idx"]):::ext
-  x35(["WeilTiles · idx_spec"]):::ext
-  x36(["WeilTiles · online_term_nonneg"]):::ext
-  x37(["WeilTiles · two_le_centre"]):::ext
+  n0["<b>termW_nonneg</b><br/>0 ≤ termW h γ m ρ"]:::thm
+  n1["<b>weightedTermW_nonneg</b><br/>0 ≤ weightedTermW h γ m ρ"]:::thm
+  n2["<b>band_sum_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ M * (15 * Real.log T + 73)"]:::thm
+  n3["<b>sum_by_bands</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.N…"]:::thm
+  n4["<b>sum_le_bandSeries</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑' k : ℕ, M k * (15 * Real.log …"]:::thm
+  n5["<b>tsum_upper_le</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ ∑' k : ℕ, M k * (15 * Re…"]:::thm
+  n6["<b>one_le_r</b><br/>1 ≤ r h m"]:::thm
+  n7["<b>cFarM_nonneg</b><br/>0 ≤ cFarM m"]:::thm
+  n8["<b>factorial_odd_le</b><br/>(((2 * m + 1).factorial : ℕ) : ℝ) ≤ 2 * 4 ^ m * ((m : ℝ) + 1) ^ …"]:::thm
+  n9["<b>cS_le</b><br/>cS m ≤ 4 * Real.pi ^ (2 * m + 1) * ((m : ℝ) + 1) ^ (2 * m + 1)"]:::thm
+  n10["<b>cFarM_le</b><br/>cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2"]:::end_
+  n11["<b>M_nonneg</b><br/>0 ≤ M h γ m k"]:::thm
+  n12["<b>term_le_M</b><br/>termW h γ m ρ ≤ M h γ m (idx (ρ : ℂ).im)"]:::thm
+  n13["<b>four_h_add_nonneg</b><br/>0 ≤ 4 * h ^ 2 + cFarM m / h ^ 2"]:::thm
+  n14["<b>A_nonneg</b><br/>0 ≤ A h γ m"]:::thm
+  n15["<b>bandTerm_le_A</b><br/>M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m / ((k : ℝ)…"]:::thm
+  n16["<b>bandSeries_summable</b><br/>Summable (fun k : ℕ =＞ M h γ m k * (15 * Real.log (centre k) + 7…"]:::thm
+  n17["<b>bandSeries_le</b><br/>∑' k : ℕ, M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m …"]:::thm
+  n18["<b>tsum_upper_le_explicit</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ A h γ m * (Real.pi ^ 2 /…"]:::thm
+  n19["<b>A_le</b><br/>A h γ m ≤ 88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ …"]:::thm
+  n20["<b>tsum_upper_le_explicit'</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ 88 * (γ + r h m + 2) ^ 4…"]:::end_
+  x0(["<b>WeilPowerBackground</b><br/>online_term_le_far<br/>online_term_le_near<br/>online_term_nonneg"]):::ext
+  x1(["<b>WeilPowerOnLine</b><br/>4 theorems"]):::ext
+  x2(["<b>WeilBands</b><br/>band_count<br/>order_eq_analyticOrderNatAt"]):::ext
+  x3(["<b>WeilTiles</b><br/>bandSeries_nonneg<br/>idx_spec<br/>two_le_centre"]):::ext
+  x4(["<b>WeilPowerBounds</b><br/>cS_pos"]):::ext
+  x5(["<b>WeilSeries</b><br/>8 theorems"]):::ext
   n0 --> n1
-  n0 --> n17
-  n0 --> n2
-  n0 --> n4
-  n0 --> n5
-  n0 --> n6
-  n0 --> n7
-  n0 --> x11
-  n0 --> x12
-  n0 --> x13
-  n0 --> x22
-  n0 --> x24
-  n0 --> x5
-  n0 --> x6
-  n0 --> x7
-  n0 --> x9
-  n1 --> n24
-  n1 --> n26
-  n1 --> n3
-  n1 --> n4
   n1 --> n5
-  n1 --> n6
-  n1 --> n7
-  n1 --> x16
-  n1 --> x17
-  n1 --> x18
-  n1 --> x19
-  n1 --> x20
-  n1 --> x21
-  n1 --> x23
-  n1 --> x24
-  n10 --> n11
-  n10 --> n14
-  n10 --> n15
-  n10 --> n17
-  n10 --> n18
-  n10 --> n19
-  n10 --> n21
-  n10 --> n25
-  n10 --> n26
-  n10 --> x15
-  n10 --> x8
   n11 --> n16
-  n11 --> n19
-  n11 --> n21
-  n12 --> n13
+  n11 --> n18
+  n12 --> n18
   n13 --> n14
+  n13 --> n15
+  n13 --> n19
+  n14 --> n17
   n15 --> n16
   n15 --> n17
-  n15 --> n21
-  n15 --> n22
-  n15 --> n23
-  n15 --> n24
-  n15 --> n4
-  n15 --> n5
-  n15 --> n6
-  n15 --> n7
-  n15 --> x20
-  n16 --> n22
-  n16 --> n24
-  n16 --> x20
-  n17 --> n24
-  n17 --> x20
+  n16 --> n17
+  n16 --> n18
+  n17 --> n18
   n18 --> n20
-  n18 --> n21
-  n18 --> n22
-  n18 --> n23
-  n18 --> n24
-  n18 --> n25
-  n18 --> x14
-  n18 --> x15
   n19 --> n20
-  n19 --> n21
-  n19 --> n25
   n2 --> n3
-  n20 --> n23
-  n21 --> n22
-  n21 --> n23
-  n22 --> n23
-  n22 --> n24
-  n22 --> x20
-  n23 --> n24
-  n23 --> x20
-  n24 --> n26
-  n25 --> n26
-  n25 --> x15
-  n3 --> n7
-  n3 --> x21
-  n3 --> x23
+  n3 --> n4
   n4 --> n5
-  n5 --> n6
-  n6 --> n7
-  n6 --> x20
-  n7 --> n24
-  n8 --> n15
-  n8 --> n18
-  n8 --> n21
-  n8 --> n25
-  n8 --> n26
+  n5 --> n18
+  n6 --> n12
+  n6 --> n14
+  n6 --> n15
+  n6 --> n19
+  n7 --> n11
+  n7 --> n13
+  n7 --> n15
   n8 --> n9
-  n8 --> x15
-  n8 --> x8
-  n9 --> n17
-  n9 --> n20
-  n9 --> n21
-  n9 --> n25
-  x0 --> n4
-  x1 --> n4
-  x10 --> n14
-  x10 --> n17
-  x2 --> n0
-  x25 --> n17
-  x26 --> n25
-  x27 --> n23
-  x28 --> n17
-  x28 --> n21
-  x29 --> n21
-  x3 --> n4
-  x3 --> n5
-  x3 --> n6
-  x30 --> n21
-  x31 --> n24
-  x31 --> n26
-  x31 --> n7
-  x32 --> n22
-  x32 --> n6
-  x33 --> n21
-  x33 --> n22
-  x33 --> n23
-  x33 --> n5
-  x33 --> n6
-  x33 --> n7
-  x34 --> n15
-  x34 --> n17
-  x34 --> n18
-  x34 --> n21
-  x34 --> n25
-  x34 --> n5
-  x34 --> n6
-  x34 --> n7
-  x35 --> n5
-  x36 --> n2
-  x37 --> n5
-  x4 --> n10
-  x4 --> n13
-  x4 --> n14
-  x4 --> n17
+  n9 --> n10
+  n1 -.-> x1
+  n11 -.-> x1
+  n12 -.-> x1
+  n16 -.-> x1
+  n17 -.-> x1
+  n19 -.-> x1
+  n4 -.-> x1
+  x0 -.-> n0
+  x0 -.-> n12
+  x2 -.-> n2
+  x3 -.-> n16
+  x3 -.-> n3
+  x3 -.-> n4
+  x4 -.-> n10
+  x4 -.-> n12
+  x5 -.-> n12
+  x5 -.-> n15
+  x5 -.-> n16
+  x5 -.-> n17
+  x5 -.-> n19
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

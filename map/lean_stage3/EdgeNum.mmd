@@ -1,103 +1,36 @@
 flowchart LR
-  n0["C1n<br/>(def)"]:::dfn
-  n1["C1n_pos<br/>⊢ 0 ＜ C1n"]:::thm
-  n2["gz_partial_fraction_num<br/>⊢ ∀ T' : ℝ, 2 ≤ T' → ∀ u : ℂ, u.im = T' → -1/4 ≤ u.re → u.re ≤ 2 → gz u …"]:::thm
-  n3["C2n<br/>(def)"]:::dfn
-  n4["C2n_pos<br/>⊢ 0 ＜ C2n"]:::thm
-  n5["ball_order_sum_le_num<br/>⊢ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ…"]:::thm
-  n6["Cen<br/>(def)"]:::dfn
-  n7["Cen_pos<br/>⊢ 0 ＜ Cen"]:::thm
-  n8["edge_bound_core_num<br/>⊢ ∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → riemannZ…"]:::thm
-  x0(["BoxBounds · sq_zeta_band_explicit"]):::ext
-  x1(["ContourShift · mem_zetaWindow"]):::ext
-  x2(["ContourShift · zeta_order_reflect"]):::ext
-  x3(["ContourShift · zeta_zeros_rectangle_finite"]):::ext
-  x4(["EdgeBound · ball_zero_shape"]):::ext
-  x5(["EdgeBound · c0"]):::ext
-  x6(["EdgeBound · c0_im"]):::ext
-  x7(["EdgeBound · c0_re"]):::ext
-  x8(["EdgeBound · gz"]):::ext
-  x9(["EdgeBound · gz_analytic"]):::ext
-  x10(["EdgeBound · gz_c0_ne"]):::ext
-  x11(["EdgeBound · gz_logderiv"]):::ext
-  x12(["EdgeBound · gz_lower"]):::ext
-  x13(["EdgeBound · gz_order_eq"]):::ext
-  x14(["EdgeBound · gz_zeros_ball_finite"]):::ext
-  x15(["EdgeBound · zeta_ratio_pos"]):::ext
-  x16(["GlueNum · Cpn"]):::ext
-  x17(["GlueNum · Cpn_pos"]):::ext
-  x18(["GlueNum · Dln"]):::ext
-  x19(["GlueNum · Dln_pos"]):::ext
-  x20(["GlueNum · edge_left_sharp_num"]):::ext
-  x21(["GlueNum · zeta_logderiv_good_bound_num"]):::ext
-  x22(["JensenCount · analyticOrderNatAt_fun_comp_affine"]):::ext
-  x23(["JensenCount · zetaWindow_finite"]):::ext
-  x24(["JensenCount · zeta_local_zero_count"]):::ext
-  x25(["RouteNum · C1n_le"]):::ext
-  x26(["RouteNum · C2n_le"]):::ext
-  x27(["RouteNum · Cen_le"]):::ext
-  x28(["RouteNum · Cpn_le"]):::ext
-  n0 --> n1
-  n0 --> n2
-  n0 --> n6
-  n0 --> n8
-  n0 --> x25
-  n1 --> n7
-  n1 --> n8
-  n2 --> n8
-  n3 --> n4
+  n0["<b>C1n_pos</b><br/>0 ＜ C1n"]:::thm
+  n1["<b>gz_partial_fraction_num</b><br/>∀ T' : ℝ, 2 ≤ T' → ∀ u : ℂ, u.im = T' → -1/4 ≤ u.re → u.re ≤ 2 →…"]:::thm
+  n2["<b>C2n_pos</b><br/>0 ＜ C2n"]:::thm
+  n3["<b>ball_order_sum_le_num</b><br/>∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num …"]:::thm
+  n4["<b>Cen_pos</b><br/>0 ＜ Cen"]:::thm
+  n5["<b>edge_bound_core_num</b><br/>∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → ri…"]:::thm
+  x0(["<b>EdgeBound</b><br/>10 theorems"]):::ext
+  x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit"]):::ext
+  x2(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x3(["<b>ContourShift</b><br/>mem_zetaWindow<br/>zeta_order_reflect<br/>zeta_zeros_rectangle_finite"]):::ext
+  x4(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x5(["<b>RouteNum</b><br/>Cpn_le"]):::ext
+  n0 --> n4
+  n0 --> n5
+  n1 --> n5
+  n2 --> n4
+  n2 --> n5
   n3 --> n5
-  n3 --> n6
-  n3 --> n8
-  n3 --> x26
-  n4 --> n7
-  n4 --> n8
-  n5 --> n8
-  n6 --> n7
-  n6 --> n8
-  n6 --> x16
-  n6 --> x18
-  n6 --> x20
-  n6 --> x21
-  n6 --> x27
-  n6 --> x28
-  n7 --> x17
-  n7 --> x19
-  n7 --> x20
-  n7 --> x21
-  n7 --> x28
-  n8 --> x20
-  n8 --> x21
-  x0 --> n2
-  x1 --> n5
-  x10 --> n2
-  x11 --> n8
-  x12 --> n2
-  x13 --> n5
-  x14 --> n2
-  x14 --> n5
-  x14 --> n8
-  x15 --> n1
-  x15 --> n2
-  x2 --> n5
-  x22 --> n2
-  x23 --> n5
-  x24 --> n5
-  x3 --> n3
-  x3 --> n4
-  x3 --> n5
-  x4 --> n5
-  x5 --> n2
-  x5 --> n5
-  x6 --> n2
-  x7 --> n2
-  x8 --> n2
-  x8 --> n5
-  x8 --> n8
-  x9 --> n2
+  n4 -.-> x4
+  n4 -.-> x5
+  n5 -.-> x4
+  x0 -.-> n0
+  x0 -.-> n1
+  x0 -.-> n3
+  x0 -.-> n5
+  x1 -.-> n1
+  x2 -.-> n1
+  x2 -.-> n3
+  x3 -.-> n2
+  x3 -.-> n3
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,54 +1,70 @@
 # `lean_stage3/Stage3/TableRoute.lean`
 
-**What it does** (its own header): TableRoute — block E10 of `lean_stage3/design/joints.md`: the join between the two trees, closed for the explicit-formula route. 2026-11-22.
+TableRoute — block E10 of `lean_stage3/design/joints.md`: the join between the two trees, closed for the explicit-formula route. 2026-11-22.
 
-**Imports:** [`GateEval`](../lean_stage3/GateEval.md), [`RouteCell`](../lean_stage3/TablePort_RouteCell.md).
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TableDepths`](../lean_stage3/TableDepths.md).
+1 theorem, 1 definition, 49 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** [`GateEval`](../lean_stage3/GateEval.md), [`RouteCell`](../lean_stage3/TablePort_RouteCell.md)  
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TableDepths`](../lean_stage3/TableDepths.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["rowN<br/>(def)"]:::dfn
-  n1["cell_ne_zero_of_RH<br/>⊢ Construction.tableFrom rowN r 6 ≠ 0"]:::end_
-  x0(["Construction · tableFrom"]):::ext
-  x1(["Nonvanishing · bdiffZ"]):::ext
-  x2(["RouteCell · cell_ne_zero_of_route"]):::ext
-  x3(["GateEval · gate_hyp_of_RH"]):::ext
-  x4(["TableDepths · cell_ne_zero_gen"]):::ext
-  x5(["TableDepths · depth_eight"]):::ext
-  x6(["TableDepths · depth_five"]):::ext
-  x7(["TableDepths · depth_four"]):::ext
-  x8(["TableDepths · depth_one"]):::ext
-  x9(["TableDepths · depth_seven"]):::ext
-  x10(["TableDepths · depth_six"]):::ext
-  x11(["TableDepths · depth_three"]):::ext
-  x12(["TableDepths · depth_two"]):::ext
-  n0 --> n1
-  n0 --> x10
-  n0 --> x11
-  n0 --> x12
-  n0 --> x4
-  n0 --> x5
-  n0 --> x6
-  n0 --> x7
-  n0 --> x8
-  n0 --> x9
-  x0 --> n1
-  x1 --> n1
-  x2 --> n1
-  x3 --> n1
+  n0["<b>cell_ne_zero_of_RH</b><br/>Construction.tableFrom rowN r 6 ≠ 0"]:::end_
+  x0(["<b>RouteCell</b><br/>cell_ne_zero_of_route"]):::ext
+  x1(["<b>GateEval</b><br/>gate_hyp_of_RH"]):::ext
+  x0 -.-> n0
+  x1 -.-> n0
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Definitions
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `TableRoute.rowN`<br/>def, line 27 | ℤ | m : ℤ | The table's row: the number of primes in the dyadic block `(2^(m−1), 2^m]`. | — | `TableDepths.cell_ne_zero_gen`, `TableDepths.depth_eight`, `TableDepths.depth_five`, `TableDepths.depth_four`, `TableDepths.depth_one`, `TableDepths.depth_seven`, `TableDepths.depth_six`, `TableDepths.depth_three`, `TableDepths.depth_two`, `TableRoute.cell_ne_zero_of_RH` |
-| `TableRoute.cell_ne_zero_of_RH`<br/>theorem, line 32 | Construction.tableFrom rowN r 6 ≠ 0 | hRH : RiemannHypothesis; hr : 80 ≤ r | Under RH, depth six has no zero from row 80 on. | `Construction.tableFrom`, `Nonvanishing.bdiffZ`, `RouteCell.cell_ne_zero_of_route`, `GateEval.gate_hyp_of_RH`, `TableRoute.rowN` | — |
+<a name="TableRoute-rowN"></a>
+### `TableRoute.rowN`
+
+def · line 27
+
+The table's row: the number of primes in the dyadic block `(2^(m−1), 2^m]`.
+
+- **Is:** `` rowN (m : ℤ) : ℤ := (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℤ) - (Nat.primeCounting ⌊(2 : ℝ) ^ ((m - 1 : ℤ) : ℝ)⌋₊ : ℤ) ``
+- **Used by 10:** [`TableDepths.cell_ne_zero_gen`](../lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen), [`TableDepths.depth_eight`](../lean_stage3/TableDepths.md#TableDepths-depth_eight), [`TableDepths.depth_five`](../lean_stage3/TableDepths.md#TableDepths-depth_five), [`TableDepths.depth_four`](../lean_stage3/TableDepths.md#TableDepths-depth_four), [`TableDepths.depth_one`](../lean_stage3/TableDepths.md#TableDepths-depth_one), [`TableDepths.depth_seven`](../lean_stage3/TableDepths.md#TableDepths-depth_seven), [`TableDepths.depth_six`](../lean_stage3/TableDepths.md#TableDepths-depth_six), [`TableDepths.depth_three`](../lean_stage3/TableDepths.md#TableDepths-depth_three), [`TableDepths.depth_two`](../lean_stage3/TableDepths.md#TableDepths-depth_two), [`TableRoute.cell_ne_zero_of_RH`](#TableRoute-cell_ne_zero_of_RH)
+
+## Theorems
+
+<a name="TableRoute-cell_ne_zero_of_RH"></a>
+### `TableRoute.cell_ne_zero_of_RH`
+
+line 32
+
+**Why.** Under RH, depth six has no zero from row 80 on.
+
+**Proves**
+
+```lean
+Construction.tableFrom rowN r 6 ≠ 0
+```
+
+**Needs** (its hypotheses)
+
+  - `` hRH : RiemannHypothesis ``
+  - `` hr : 80 ≤ r ``
+
+**Stated with:** [`Construction.tableFrom`](../lean/Construction.md#Construction-tableFrom), [`TableRoute.rowN`](#TableRoute-rowN)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`RouteCell.cell_ne_zero_of_route`](../lean/RouteCell.md#RouteCell-cell_ne_zero_of_route) (RouteCell) — `` Construction.tableFrom N r 6 ≠ 0 ``
+  - [`GateEval.gate_hyp_of_RH`](../lean_stage3/GateEval.md#GateEval-gate_hyp_of_RH) (GateEval) — `` ∃ ρ : ℝ, JointDialGate.StmtRelErrWindow (fun m : ℤ => (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ)) (fun m : ℤ => 2 / Real.log 2 + ∫ t in (1 : ℝ)..(m … ``
+
+**Definitions its proof touches:** [`Nonvanishing.bdiffZ`](../lean/Nonvanishing.md#Nonvanishing-bdiffZ), [`RelativeGate.StmtRelErrWindow`](../lean/RelativeGate.md#RelativeGate-StmtRelErrWindow), [`JointDialGate.StmtRelErrWindow`](../lean_stage3/JointDialGate.md#JointDialGate-StmtRelErrWindow)
+
+**Feeds:** nothing. It is an end.
+

@@ -1,22 +1,11 @@
 flowchart LR
-  n0["cell_ne_zero_of_route<br/>⊢ Construction.tableFrom N r 6 ≠ 0"]:::thm
-  x0(["Construction · tableFrom"]):::ext
-  x1(["Interpolant · liRow"]):::ext
-  x2(["Interpolant · liRow_eq"]):::ext
-  x3(["Interpolant · tableFrom_ne_zero_of_relErr_liRow"]):::ext
-  x4(["Nonvanishing · bdiffZ"]):::ext
-  x5(["RelativeGate · StmtRelErrWindow"]):::ext
-  x6(["TableRoute · cell_ne_zero_of_RH"]):::ext
-  n0 --> x6
-  x0 --> n0
-  x1 --> n0
-  x2 --> n0
-  x3 --> n0
-  x4 --> n0
-  x5 --> n0
+  n0["<b>cell_ne_zero_of_route</b><br/>Construction.tableFrom N r 6 ≠ 0"]:::thm
+  x0(["<b>Interpolant</b><br/>liRow_eq<br/>tableFrom_ne_zero_of_relErr_liRow"]):::ext
+  x1(["<b>TableRoute</b><br/>cell_ne_zero_of_RH"]):::ext
+  n0 -.-> x1
+  x0 -.-> n0
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

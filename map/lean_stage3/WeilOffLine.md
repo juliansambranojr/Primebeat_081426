@@ -1,77 +1,259 @@
 # `lean_stage3/Stage3/WeilOffLine.lean`
 
-**What it does** (its own header): WeilOffLine — every term of the zero form is minus a square, and the sign of an off-line zero's own term. Rung 5, first slice of the detection ladder (units 0316–0325). 2026-09-06.
+WeilOffLine — every term of the zero form is minus a square, and the sign of an off-line zero's own term. Rung 5, first slice of the detection ladder (units 0316–0325). 2026-09-06.
 
-**Imports:** [`WeilBackground`](../lean_stage3/WeilBackground.md).
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md).
+7 theorems, 1 definition, 152 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** [`WeilBackground`](../lean_stage3/WeilBackground.md)  
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["SigmaC_neg<br/>⊢ SigmaC (-w) = -SigmaC w"]:::thm
-  n1["ghat_neg<br/>⊢ ghat h γ (-z) = -ghat h γ z"]:::thm
-  n2["term_eq_neg_sq<br/>⊢ laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (…"]:::thm
-  n3["term_re_eq<br/>⊢ (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (ghat h…"]:::thm
-  n4["offPt<br/>(def)"]:::dfn
-  n5["offPt_sub_half<br/>⊢ offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)"]:::thm
-  n6["offline_term_le<br/>⊢ (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ…"]:::thm
-  n7["offline_term_le_explicit<br/>⊢ (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ…"]:::end_
-  x0(["WeilBackground · laplace_phi"]):::ext
-  x1(["WeilBackground · phiC"]):::ext
-  x2(["WeilDetect · laplace"]):::ext
-  x3(["WeilLobe · lobe_bound"]):::ext
-  x4(["WeilTransform · SigmaC"]):::ext
-  x5(["WeilTransform · ghat"]):::ext
-  x6(["WeilTransform · ghat_eq"]):::ext
-  x7(["WeilTransform · ghat_offline"]):::ext
-  x8(["WeilWindow · Sigma"]):::ext
+  n0["<b>SigmaC_neg</b><br/>SigmaC (-w) = -SigmaC w"]:::thm
+  n1["<b>ghat_neg</b><br/>ghat h γ (-z) = -ghat h γ z"]:::thm
+  n2["<b>term_eq_neg_sq</b><br/>laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat…"]:::thm
+  n3["<b>term_re_eq</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (…"]:::thm
+  n4["<b>offPt_sub_half</b><br/>offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)"]:::thm
+  n5["<b>offline_term_le</b><br/>(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - off…"]:::thm
+  n6["<b>offline_term_le_explicit</b><br/>(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - off…"]:::end_
+  x0(["<b>WeilTransform</b><br/>ghat_eq<br/>ghat_offline"]):::ext
+  x1(["<b>WeilBackground</b><br/>laplace_phi"]):::ext
+  x2(["<b>WeilLobe</b><br/>lobe_bound"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n3
-  n3 --> n6
+  n3 --> n5
   n4 --> n5
-  n4 --> n6
-  n4 --> n7
   n5 --> n6
-  n6 --> n7
-  x0 --> n2
-  x1 --> n2
-  x1 --> n3
-  x1 --> n6
-  x1 --> n7
-  x2 --> n2
-  x2 --> n3
-  x2 --> n6
-  x2 --> n7
-  x3 --> n7
-  x4 --> n0
-  x4 --> n6
-  x4 --> n7
-  x5 --> n1
-  x5 --> n2
-  x5 --> n3
-  x6 --> n1
-  x7 --> n6
-  x8 --> n6
-  x8 --> n7
+  x0 -.-> n1
+  x0 -.-> n5
+  x1 -.-> n2
+  x2 -.-> n6
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Definitions
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `WeilOffLine.SigmaC_neg`<br/>theorem, line 44 | SigmaC (-w) = -SigmaC w | w : ℂ | `Σc` is odd: `sinh` is odd. | `WeilTransform.SigmaC` | `WeilOffLine.ghat_neg` |
-| `WeilOffLine.ghat_neg`<br/>theorem, line 53 | ghat h γ (-z) = -ghat h γ z | hh : 0 &lt; h; γ : ℝ; z : ℂ | The window's transform is odd. | `WeilOffLine.SigmaC_neg`, `WeilTransform.ghat`, `WeilTransform.ghat_eq` | `WeilOffLine.term_eq_neg_sq` |
-| `WeilOffLine.term_eq_neg_sq`<br/>theorem, line 64 | laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2 | hh : 0 &lt; h; γ : ℝ; ρ : ℂ | Every term is minus a square. For any `ρ`, `laplace φ(−ρ)·laplace φ(−(1−ρ)) = −ghat h γ (ρ − 1/2)²`. | `WeilBackground.laplace_phi`, `WeilBackground.phiC`, `WeilDetect.laplace`, `WeilOffLine.ghat_neg`, `WeilTransform.ghat` | `WeilOffLine.term_re_eq` |
-| `WeilOffLine.term_re_eq`<br/>theorem, line 73 | (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (ghat h γ (ρ - 1 / 2)).im ^ 2 - (ghat h γ (ρ - 1 / 2)).re ^ 2 | hh : 0 &lt; h; γ : ℝ; ρ : ℂ | The real part of a term is `(Im g)² − (Re g)²` at `g = ghat h γ (ρ − 1/2)`. | `WeilBackground.phiC`, `WeilDetect.laplace`, `WeilOffLine.term_eq_neg_sq`, `WeilTransform.ghat` | `WeilOffLine.offline_term_le` |
-| `WeilOffLine.offPt`<br/>def, line 80 | ℂ | ε γ : ℝ | The off-line point the tuned window reads: `ρ = 1/2 + ε + iγ`. | — | `WeilOffLine.offPt_sub_half`, `WeilOffLine.offline_term_le`, `WeilOffLine.offline_term_le_explicit` |
-| `WeilOffLine.offPt_sub_half`<br/>theorem, line 82 | offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ) | ε γ : ℝ | — | `WeilOffLine.offPt` | `WeilOffLine.offline_term_le` |
-| `WeilOffLine.offline_term_le`<br/>theorem, line 88 | (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖))) | hh : 0 &lt; h; hs : ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ WeilWindow.Sigma (ε * h) | The off-line term is negative. With `g = (h/2)[lobe + Σ(εh)]` and the lobe at most the main term in norm, `term.re ≤ −(h/2)²·Σ(εh)·(Σ(εh) − 2‖lobe‖)`. | `WeilBackground.phiC`, `WeilDetect.laplace`, `WeilOffLine.offPt`, `WeilOffLine.offPt_sub_half`, `WeilOffLine.term_re_eq`, `WeilTransform.SigmaC`, `WeilTransform.ghat_offline`, `WeilWindow.Sigma` | `WeilOffLine.offline_term_le_explicit` |
-| `WeilOffLine.offline_term_le_explicit`<br/>theorem, line 119 | (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ((2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2)))) | hh : 0 &lt; h; hγ : 0 &lt; γ; hs : (2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2 ≤ WeilWindow.Sigma (ε * h) | The same with unit 0319's lobe bound in place of the lobe: for `γ &gt; 0`, if `(2π + π²)·cosh(εh)/(2γh)² ≤ Σ(εh)` then `term.re ≤ −(h/2)²·Σ(εh)·(Σ(εh) − 2(2π + π²)·cosh(εh)/(2γh)²)`. | `WeilBackground.phiC`, `WeilDetect.laplace`, `WeilLobe.lobe_bound`, `WeilOffLine.offPt`, `WeilOffLine.offline_term_le`, `WeilTransform.SigmaC`, `WeilWindow.Sigma` | — |
+<a name="WeilOffLine-offPt"></a>
+### `WeilOffLine.offPt`
+
+def · line 80
+
+The off-line point the tuned window reads: `ρ = 1/2 + ε + iγ`.
+
+- **Is:** `` offPt (ε γ : ℝ) : ℂ := 1 / 2 + (ε : ℂ) + Complex.I * (γ : ℂ) ``
+- **Used by 3:** [`WeilOffLine.offPt_sub_half`](#WeilOffLine-offPt_sub_half), [`WeilOffLine.offline_term_le`](#WeilOffLine-offline_term_le), [`WeilOffLine.offline_term_le_explicit`](#WeilOffLine-offline_term_le_explicit)
+
+## Theorems
+
+<a name="WeilOffLine-SigmaC_neg"></a>
+### `WeilOffLine.SigmaC_neg`
+
+line 44
+
+**Why.** `Σc` is odd: `sinh` is odd.
+
+**Proves**
+
+```lean
+SigmaC (-w) = -SigmaC w
+```
+
+**Needs** (its hypotheses)
+
+  - `` w : ℂ ``
+
+**Stated with:** [`WeilTransform.SigmaC`](../lean_stage3/WeilTransform.md#WeilTransform-SigmaC)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Definitions its proof touches:** [`WeilWindow.P`](../lean_stage3/WeilWindow.md#WeilWindow-P)
+
+**Feeds** (1 that use it)
+
+  - [`WeilOffLine.ghat_neg`](#WeilOffLine-ghat_neg) — `` ghat h γ (-z) = -ghat h γ z ``
+
+<a name="WeilOffLine-ghat_neg"></a>
+### `WeilOffLine.ghat_neg`
+
+line 53
+
+**Why.** The window's transform is odd.
+
+**Proves**
+
+```lean
+ghat h γ (-z) = -ghat h γ z
+```
+
+**Needs** (its hypotheses)
+
+  - `` hh : 0 < h ``
+  - `` γ : ℝ ``
+  - `` z : ℂ ``
+
+**Stated with:** [`WeilTransform.ghat`](../lean_stage3/WeilTransform.md#WeilTransform-ghat)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`WeilOffLine.SigmaC_neg`](#WeilOffLine-SigmaC_neg) — `` SigmaC (-w) = -SigmaC w ``
+  - [`WeilTransform.ghat_eq`](../lean_stage3/WeilTransform.md#WeilTransform-ghat_eq) (WeilTransform) — `` ghat h γ z = ((h : ℂ) / 2) * (SigmaC ((z + Complex.I * (γ : ℂ)) * (h : ℂ)) + SigmaC ((z - Complex.I * (γ : ℂ)) * (h : ℂ))) ``
+
+**Definitions its proof touches:** [`WeilTransform.SigmaC`](../lean_stage3/WeilTransform.md#WeilTransform-SigmaC)
+
+**Feeds** (1 that use it)
+
+  - [`WeilOffLine.term_eq_neg_sq`](#WeilOffLine-term_eq_neg_sq) — `` laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2 ``
+
+<a name="WeilOffLine-term_eq_neg_sq"></a>
+### `WeilOffLine.term_eq_neg_sq`
+
+line 64
+
+**Why.** Every term is minus a square. For any `ρ`, `laplace φ(−ρ)·laplace φ(−(1−ρ)) = −ghat h γ (ρ − 1/2)²`.
+
+**Proves**
+
+```lean
+laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2
+```
+
+**Needs** (its hypotheses)
+
+  - `` hh : 0 < h ``
+  - `` γ : ℝ ``
+  - `` ρ : ℂ ``
+
+**Stated with:** [`WeilBackground.phiC`](../lean_stage3/WeilBackground.md#WeilBackground-phiC), [`WeilDetect.laplace`](../lean_stage3/WeilDetect.md#WeilDetect-laplace), [`WeilTransform.ghat`](../lean_stage3/WeilTransform.md#WeilTransform-ghat)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`WeilBackground.laplace_phi`](../lean_stage3/WeilBackground.md#WeilBackground-laplace_phi) (WeilBackground) — `` laplace (phiC h γ) z = ghat h γ (-z - 1 / 2) ``
+  - [`WeilOffLine.ghat_neg`](#WeilOffLine-ghat_neg) — `` ghat h γ (-z) = -ghat h γ z ``
+
+**Feeds** (1 that use it)
+
+  - [`WeilOffLine.term_re_eq`](#WeilOffLine-term_re_eq) — `` (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (ghat h γ (ρ - 1 / 2)).im ^ 2 - (ghat h γ (ρ - 1 / 2)).re ^ 2 ``
+
+<a name="WeilOffLine-term_re_eq"></a>
+### `WeilOffLine.term_re_eq`
+
+line 73
+
+**Why.** The real part of a term is `(Im g)² − (Re g)²` at `g = ghat h γ (ρ − 1/2)`.
+
+**Proves**
+
+```lean
+(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (ghat h γ (ρ - 1 / 2)).im ^ 2 - (ghat h γ (ρ - 1 / 2)).re ^ 2
+```
+
+**Needs** (its hypotheses)
+
+  - `` hh : 0 < h ``
+  - `` γ : ℝ ``
+  - `` ρ : ℂ ``
+
+**Stated with:** [`WeilBackground.phiC`](../lean_stage3/WeilBackground.md#WeilBackground-phiC), [`WeilDetect.laplace`](../lean_stage3/WeilDetect.md#WeilDetect-laplace), [`WeilTransform.ghat`](../lean_stage3/WeilTransform.md#WeilTransform-ghat)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`WeilOffLine.term_eq_neg_sq`](#WeilOffLine-term_eq_neg_sq) — `` laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2 ``
+
+**Feeds** (1 that use it)
+
+  - [`WeilOffLine.offline_term_le`](#WeilOffLine-offline_term_le) — `` (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) -… ``
+
+<a name="WeilOffLine-offPt_sub_half"></a>
+### `WeilOffLine.offPt_sub_half`
+
+line 82
+
+**Proves**
+
+```lean
+offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)
+```
+
+**Needs** (its hypotheses)
+
+  - `` ε γ : ℝ ``
+
+**Stated with:** [`WeilOffLine.offPt`](#WeilOffLine-offPt)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`WeilOffLine.offline_term_le`](#WeilOffLine-offline_term_le) — `` (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) -… ``
+
+<a name="WeilOffLine-offline_term_le"></a>
+### `WeilOffLine.offline_term_le`
+
+line 88
+
+**Why.** The off-line term is negative. With `g = (h/2)[lobe + Σ(εh)]` and the lobe at most the main term in norm, `term.re ≤ −(h/2)²·Σ(εh)·(Σ(εh) − 2‖lobe‖)`.
+
+**Proves**
+
+```lean
+(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖)))
+```
+
+**Needs** (its hypotheses)
+
+  - `` hh : 0 < h ``
+  - `` hs : ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ WeilWindow.Sigma (ε * h) ``
+
+**Stated with:** [`WeilBackground.phiC`](../lean_stage3/WeilBackground.md#WeilBackground-phiC), [`WeilDetect.laplace`](../lean_stage3/WeilDetect.md#WeilDetect-laplace), [`WeilOffLine.offPt`](#WeilOffLine-offPt), [`WeilTransform.SigmaC`](../lean_stage3/WeilTransform.md#WeilTransform-SigmaC), [`WeilWindow.Sigma`](../lean_stage3/WeilWindow.md#WeilWindow-Sigma)
+
+**Fed by** (3 theorems its proof uses)
+
+  - [`WeilOffLine.offPt_sub_half`](#WeilOffLine-offPt_sub_half) — `` offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ) ``
+  - [`WeilOffLine.term_re_eq`](#WeilOffLine-term_re_eq) — `` (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (ghat h γ (ρ - 1 / 2)).im ^ 2 - (ghat h γ (ρ - 1 / 2)).re ^ 2 ``
+  - [`WeilTransform.ghat_offline`](../lean_stage3/WeilTransform.md#WeilTransform-ghat_offline) (WeilTransform) — `` ghat h γ ((ε : ℂ) + Complex.I * (γ : ℂ)) = ((h : ℂ) / 2) * (SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ)) + (WeilWindow.Sigma (ε * h) : ℂ)) ``
+
+**Definitions its proof touches:** [`WeilTransform.ghat`](../lean_stage3/WeilTransform.md#WeilTransform-ghat)
+
+**Feeds** (1 that use it)
+
+  - [`WeilOffLine.offline_term_le_explicit`](#WeilOffLine-offline_term_le_explicit) — `` (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) -… ``
+
+<a name="WeilOffLine-offline_term_le_explicit"></a>
+### `WeilOffLine.offline_term_le_explicit`
+
+line 119
+
+**Why.** The same with unit 0319's lobe bound in place of the lobe: for `γ > 0`, if `(2π + π²)·cosh(εh)/(2γh)² ≤ Σ(εh)` then `term.re ≤ −(h/2)²·Σ(εh)·(Σ(εh) − 2(2π + π²)·cosh(εh)/(2γh)²)`.
+
+**Proves**
+
+```lean
+(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ((2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2))))
+```
+
+**Needs** (its hypotheses)
+
+  - `` hh : 0 < h ``
+  - `` hγ : 0 < γ ``
+  - `` hs : (2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2 ≤ WeilWindow.Sigma (ε * h) ``
+
+**Stated with:** [`WeilBackground.phiC`](../lean_stage3/WeilBackground.md#WeilBackground-phiC), [`WeilDetect.laplace`](../lean_stage3/WeilDetect.md#WeilDetect-laplace), [`WeilOffLine.offPt`](#WeilOffLine-offPt), [`WeilWindow.Sigma`](../lean_stage3/WeilWindow.md#WeilWindow-Sigma)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`WeilLobe.lobe_bound`](../lean_stage3/WeilLobe.md#WeilLobe-lobe_bound) (WeilLobe) — `` ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε * h) / (2 * γ * h) ^ 2 ``
+  - [`WeilOffLine.offline_term_le`](#WeilOffLine-offline_term_le) — `` (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) -… ``
+
+**Definitions its proof touches:** [`WeilTransform.SigmaC`](../lean_stage3/WeilTransform.md#WeilTransform-SigmaC)
+
+**Feeds:** nothing. It is an end.
+

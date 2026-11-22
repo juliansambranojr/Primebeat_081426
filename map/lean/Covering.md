@@ -1,51 +1,211 @@
 # `lean/Covering.lean`
 
-**What it does** (its own header): Covering — why 25 of 36 primes contribute, and why the set skips 13. THE MEASUREMENT (results/O37_weil_form_on_stencil_run1.log): with b = 2, N = 7, W = 0.05, K = 2, the mollified Weil form has 36 primes inside its support and exactly 25 contribute:
+Covering — why 25 of 36 primes contribute, and why the set skips 13. THE MEASUREMENT (results/O37_weil_form_on_stencil_run1.log): with b = 2, N = 7, W = 0.05, K = 2, the mollified Weil form has 36 primes inside its support and exactly 25 contribute:
 
-**Imports:** nothing in this tree.
-**Imported by:** nothing.
+6 theorems, 5 definitions, 158 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** nothing in this tree  
+**Imported by:** nothing
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["covered<br/>(def)"]:::dfn
-  n1["exists_near_lattice<br/>⊢ ∃ n : ℤ, |u - n * L| ≤ L / 2"]:::thm
-  n2["covered_of_half_spacing<br/>⊢ covered L eps u"]:::end_
-  n3["covered_smul<br/>⊢ covered (c * L) (c * eps) (c * u)"]:::end_
-  n4["covering_not_monotone<br/>⊢ ∃ (L eps u v : ℝ), 0 ＜ L ∧ u ＜ v ∧ ¬ covered L eps u ∧ covered L eps v"]:::end_
-  n5["measured_eps<br/>(def)"]:::dfn
-  n6["measured_spacing<br/>(def)"]:::dfn
-  n7["measured_in_support<br/>(def)"]:::dfn
-  n8["measured_contributing<br/>(def)"]:::dfn
-  n9["bench_is_selective<br/>⊢ (0.2 : ℝ) ＜ 0.34657"]:::lone
-  n10["bench_selects<br/>⊢ measured_contributing ＜ measured_in_support"]:::end_
-  n0 --> n2
-  n0 --> n3
-  n0 --> n4
-  n1 --> n2
-  n7 --> n10
-  n8 --> n10
+  n0["<b>exists_near_lattice</b><br/>∃ n : ℤ, |u - n * L| ≤ L / 2"]:::thm
+  n1["<b>covered_of_half_spacing</b><br/>covered L eps u"]:::end_
+  n2["<b>covered_smul</b><br/>covered (c * L) (c * eps) (c * u)"]:::end_
+  n3["<b>covering_not_monotone</b><br/>∃ (L eps u v : ℝ), 0 ＜ L ∧ u ＜ v ∧ ¬ covered L eps u ∧ covered L…"]:::end_
+  n4["<b>bench_is_selective</b><br/>(0.2 : ℝ) ＜ 0.34657"]:::lone
+  n5["<b>bench_selects</b><br/>measured_contributing ＜ measured_in_support"]:::end_
+  n0 --> n1
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Definitions
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `Covering.covered`<br/>def, line 50 | Prop | L eps u : ℝ | `u` is covered by the lattice `n * L` at tolerance `eps`. This is the condition a prime power must satisfy to contribute to the mollified form. | — | `Covering.covered_of_half_spacing`, `Covering.covered_smul`, `Covering.covering_not_monotone` |
-| `Covering.exists_near_lattice`<br/>theorem, line 56 | ∃ n : ℤ, \|u - n * L\| ≤ L / 2 | hL : 0 &lt; L; u : ℝ | The covering lemma. No real is further than `L/2` from the lattice `n * L`. Take `n` to be the nearest integer to `u / L`. | — | `Covering.covered_of_half_spacing` |
-| `Covering.covered_of_half_spacing`<br/>theorem, line 68 | covered L eps u | hL : 0 &lt; L; heps : L / 2 &lt; eps; u : ℝ | Vacuity. Once the tolerance exceeds half the lattice spacing, EVERY point is covered — the condition selects nothing. | `Covering.covered`, `Covering.exists_near_lattice` | — |
-| `Covering.covered_smul`<br/>theorem, line 77 | covered (c * L) (c * eps) (c * u) | hc : 0 &lt; c; h : covered L eps u | Selectivity is a ratio. Covering is homogeneous: scaling the spacing, the tolerance and the point together changes nothing. So how much the form selects depends only on `eps / L` — never on the size of the point tested, and never on which prime it came from. | `Covering.covered` | — |
-| `Covering.covering_not_monotone`<br/>theorem, line 88 | ∃ (L eps u v : ℝ), 0 &lt; L ∧ u &lt; v ∧ ¬ covered L eps u ∧ covered L eps v | — | Non-monotone by construction. Covering is not inherited by smaller points: a point can fail while a larger one succeeds. This is exactly why the contributing set is not an initial segment — 13 fails where 17 passes. | `Covering.covered` | — |
-| `Covering.measured_eps`<br/>def, line 108 | ℝ | — | Kernel half-width: `eps = 2K*W` with `K = 2`, `W = 0.05`. | — | — |
-| `Covering.measured_spacing`<br/>def, line 111 | ℝ | — | Lattice spacing: `log 2`. | — | — |
-| `Covering.measured_in_support`<br/>def, line 114 | ℕ | — | Primes inside the support, and primes contributing. | — | `Covering.bench_selects` |
-| `Covering.measured_contributing`<br/>def, line 115 | ℕ | — | — | — | `Covering.bench_selects` |
-| `Covering.bench_is_selective`<br/>theorem, line 119 | (0.2 : ℝ) &lt; 0.34657 | — | The bench sits BELOW the vacuity threshold, so the form genuinely selects. `log 2 / 2 = 0.34657... &gt; 0.2 = eps`. | — | — |
-| `Covering.bench_selects`<br/>theorem, line 122 | measured_contributing &lt; measured_in_support | — | And it does select: 25 of 36, not all. | `Covering.measured_contributing`, `Covering.measured_in_support` | — |
+<a name="Covering-covered"></a>
+### `Covering.covered`
+
+def · line 50
+
+`u` is covered by the lattice `n * L` at tolerance `eps`. This is the condition a prime power must satisfy to contribute to the mollified form.
+
+- **Is:** `` covered (L eps u : ℝ) : Prop := ∃ n : ℤ, |u - n * L| < eps ``
+- **Used by 3:** [`Covering.covered_of_half_spacing`](#Covering-covered_of_half_spacing), [`Covering.covered_smul`](#Covering-covered_smul), [`Covering.covering_not_monotone`](#Covering-covering_not_monotone)
+
+<a name="Covering-measured_eps"></a>
+### `Covering.measured_eps`
+
+def · line 108
+
+Kernel half-width: `eps = 2K*W` with `K = 2`, `W = 0.05`.
+
+- **Is:** `` measured_eps : ℝ := 0.2 ``
+- **Used by 0:** nothing
+
+<a name="Covering-measured_spacing"></a>
+### `Covering.measured_spacing`
+
+def · line 111
+
+Lattice spacing: `log 2`.
+
+- **Is:** `` measured_spacing : ℝ := Real.log 2 ``
+- **Used by 0:** nothing
+
+<a name="Covering-measured_in_support"></a>
+### `Covering.measured_in_support`
+
+def · line 114
+
+Primes inside the support, and primes contributing.
+
+- **Is:** `` measured_in_support : ℕ := 36 ``
+- **Used by 1:** [`Covering.bench_selects`](#Covering-bench_selects)
+
+<a name="Covering-measured_contributing"></a>
+### `Covering.measured_contributing`
+
+def · line 115
+
+- **Is:** `` measured_contributing : ℕ := 25 ``
+- **Used by 1:** [`Covering.bench_selects`](#Covering-bench_selects)
+
+## Theorems
+
+<a name="Covering-exists_near_lattice"></a>
+### `Covering.exists_near_lattice`
+
+line 56
+
+**Why.** The covering lemma. No real is further than `L/2` from the lattice `n * L`. Take `n` to be the nearest integer to `u / L`.
+
+**Proves**
+
+```lean
+∃ n : ℤ, |u - n * L| ≤ L / 2
+```
+
+**Needs** (its hypotheses)
+
+  - `` hL : 0 < L ``
+  - `` u : ℝ ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`Covering.covered_of_half_spacing`](#Covering-covered_of_half_spacing) — `` covered L eps u ``
+
+<a name="Covering-covered_of_half_spacing"></a>
+### `Covering.covered_of_half_spacing`
+
+line 68
+
+**Why.** Vacuity. Once the tolerance exceeds half the lattice spacing, EVERY point is covered — the condition selects nothing.
+
+**Proves**
+
+```lean
+covered L eps u
+```
+
+**Needs** (its hypotheses)
+
+  - `` hL : 0 < L ``
+  - `` heps : L / 2 < eps ``
+  - `` u : ℝ ``
+
+**Stated with:** [`Covering.covered`](#Covering-covered)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`Covering.exists_near_lattice`](#Covering-exists_near_lattice) — `` ∃ n : ℤ, |u - n * L| ≤ L / 2 ``
+
+**Feeds:** nothing. It is an end.
+
+<a name="Covering-covered_smul"></a>
+### `Covering.covered_smul`
+
+line 77
+
+**Why.** Selectivity is a ratio. Covering is homogeneous: scaling the spacing, the tolerance and the point together changes nothing. So how much the form selects depends only on `eps / L` — never on the size of the point tested, and never on which prime it came from.
+
+**Proves**
+
+```lean
+covered (c * L) (c * eps) (c * u)
+```
+
+**Needs** (its hypotheses)
+
+  - `` hc : 0 < c ``
+  - `` h : covered L eps u ``
+
+**Stated with:** [`Covering.covered`](#Covering-covered)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds:** nothing. It is an end.
+
+<a name="Covering-covering_not_monotone"></a>
+### `Covering.covering_not_monotone`
+
+line 88
+
+**Why.** Non-monotone by construction. Covering is not inherited by smaller points: a point can fail while a larger one succeeds. This is exactly why the contributing set is not an initial segment — 13 fails where 17 passes.
+
+**Proves**
+
+```lean
+∃ (L eps u v : ℝ), 0 < L ∧ u < v ∧ ¬ covered L eps u ∧ covered L eps v
+```
+
+**Stated with:** [`Covering.covered`](#Covering-covered)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds:** nothing. It is an end.
+
+<a name="Covering-bench_is_selective"></a>
+### `Covering.bench_is_selective`
+
+line 119
+
+**Why.** The bench sits BELOW the vacuity threshold, so the form genuinely selects. `log 2 / 2 = 0.34657... > 0.2 = eps`.
+
+**Proves**
+
+```lean
+(0.2 : ℝ) < 0.34657
+```
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds:** nothing. It connects to nothing.
+
+<a name="Covering-bench_selects"></a>
+### `Covering.bench_selects`
+
+line 122
+
+**Why.** And it does select: 25 of 36, not all.
+
+**Proves**
+
+```lean
+measured_contributing < measured_in_support
+```
+
+**Stated with:** [`Covering.measured_contributing`](#Covering-measured_contributing), [`Covering.measured_in_support`](#Covering-measured_in_support)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds:** nothing. It is an end.
+

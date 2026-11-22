@@ -1,103 +1,65 @@
 flowchart LR
-  n0["factor_eq<br/>⊢ w ^ 2 + (a : ℂ) ^ 2 = (w - Complex.I * (a : ℂ)) * (w + Complex.I * (a …"]:::thm
-  n1["norm_factor_ge<br/>⊢ w.re ^ 2 ≤ ‖w ^ 2 + (a : ℂ) ^ 2‖"]:::thm
-  n2["QS_factor<br/>⊢ QS m w = ∏ j ∈ Finset.range (m + 1), (w ^ 2 + ((Real.pi * ((j : ℝ) + 1…"]:::thm
-  n3["norm_QS_ge<br/>⊢ (w.re ^ 2) ^ (m + 1) ≤ ‖QS m w‖"]:::thm
-  n4["QS_ne_zero<br/>⊢ QS m w ≠ 0"]:::thm
-  n5["cS_pos<br/>⊢ 0 ＜ cS m"]:::thm
-  n6["S_eq_div'<br/>⊢ S m w = (cS m : ℂ) * Complex.sinh w / QS m w"]:::thm
-  n7["S_eq_div<br/>⊢ S m w = (cS m : ℂ) * Complex.sinh w / QS m w"]:::end_
-  n8["norm_S_le'<br/>⊢ ‖S m w‖ ≤ cS m * Real.cosh w.re / ‖QS m w‖"]:::thm
-  n9["norm_S_le<br/>⊢ ‖S m w‖ ≤ cS m * Real.cosh w.re / ‖QS m w‖"]:::end_
-  n10["norm_factor_ge_far<br/>⊢ w.im ^ 2 / 2 ≤ ‖w ^ 2 + (a : ℂ) ^ 2‖"]:::thm
-  n11["norm_QS_ge_far<br/>⊢ (w.im ^ 2 / 2) ^ (m + 1) ≤ ‖QS m w‖"]:::thm
-  n12["norm_S_le_far<br/>⊢ ‖S m w‖ ≤ cS m * Real.cosh w.re * (2 / w.im ^ 2) ^ (m + 1)"]:::thm
-  n13["Ps<br/>(def)"]:::dfn
-  n14["Ps_pos<br/>⊢ 0 ＜ Ps m s"]:::thm
-  n15["QS_ofReal<br/>⊢ QS m (s : ℂ) = ((Ps m s : ℝ) : ℂ)"]:::thm
-  n16["S_real_eq<br/>⊢ S m (s : ℂ) = ((cS m * Real.sinh s / Ps m s : ℝ) : ℂ)"]:::thm
-  n17["Ps_le<br/>⊢ Ps m s ≤ (s ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2) ^ (m + 1)"]:::thm
-  n18["sinh_ge<br/>⊢ Real.exp s / 4 ≤ Real.sinh s"]:::thm
-  n19["S_real_ge<br/>⊢ cS m * Real.exp s / (4 * (s ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2) ^ (…"]:::end_
-  x0(["WeilLobe · norm_sinh_le"]):::ext
-  x1(["WeilOddPower · QS"]):::ext
-  x2(["WeilOddPower · S"]):::ext
-  x3(["WeilOddPower · S_mul_QS"]):::ext
-  x4(["WeilOddPower · cS"]):::ext
-  x5(["WeilPowerBackground · PsiW_le_far"]):::ext
-  x6(["WeilPowerBands · cFarM_le"]):::ext
-  x7(["WeilPowerBands · term_le_M"]):::ext
-  x8(["WeilPowerBridge · far_sideband_le"]):::ext
-  x9(["WeilPowerCompare · QS_ne_zero_wOf"]):::ext
-  x10(["WeilPowerGauss · S_real_ge_gauss"]):::ext
-  x11(["WeilPowerGauss · tendsto_S"]):::ext
-  x12(["WeilPowerSharp · S_real_ge_sharp"]):::ext
+  n0["<b>factor_eq</b><br/>w ^ 2 + (a : ℂ) ^ 2 = (w - Complex.I * (a : ℂ)) * (w + Complex.I…"]:::thm
+  n1["<b>norm_factor_ge</b><br/>w.re ^ 2 ≤ ‖w ^ 2 + (a : ℂ) ^ 2‖"]:::thm
+  n2["<b>QS_factor</b><br/>QS m w = ∏ j ∈ Finset.range (m + 1), (w ^ 2 + ((Real.pi * ((j : …"]:::thm
+  n3["<b>norm_QS_ge</b><br/>(w.re ^ 2) ^ (m + 1) ≤ ‖QS m w‖"]:::thm
+  n4["<b>QS_ne_zero</b><br/>QS m w ≠ 0"]:::thm
+  n5["<b>cS_pos</b><br/>0 ＜ cS m"]:::thm
+  n6["<b>S_eq_div'</b><br/>S m w = (cS m : ℂ) * Complex.sinh w / QS m w"]:::thm
+  n7["<b>S_eq_div</b><br/>S m w = (cS m : ℂ) * Complex.sinh w / QS m w"]:::end_
+  n8["<b>norm_S_le'</b><br/>‖S m w‖ ≤ cS m * Real.cosh w.re / ‖QS m w‖"]:::thm
+  n9["<b>norm_S_le</b><br/>‖S m w‖ ≤ cS m * Real.cosh w.re / ‖QS m w‖"]:::end_
+  n10["<b>norm_factor_ge_far</b><br/>w.im ^ 2 / 2 ≤ ‖w ^ 2 + (a : ℂ) ^ 2‖"]:::thm
+  n11["<b>norm_QS_ge_far</b><br/>(w.im ^ 2 / 2) ^ (m + 1) ≤ ‖QS m w‖"]:::thm
+  n12["<b>norm_S_le_far</b><br/>‖S m w‖ ≤ cS m * Real.cosh w.re * (2 / w.im ^ 2) ^ (m + 1)"]:::thm
+  n13["<b>Ps_pos</b><br/>0 ＜ Ps m s"]:::thm
+  n14["<b>QS_ofReal</b><br/>QS m (s : ℂ) = ((Ps m s : ℝ) : ℂ)"]:::thm
+  n15["<b>S_real_eq</b><br/>S m (s : ℂ) = ((cS m * Real.sinh s / Ps m s : ℝ) : ℂ)"]:::thm
+  n16["<b>Ps_le</b><br/>Ps m s ≤ (s ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ 2) ^ (m + 1)"]:::thm
+  n17["<b>sinh_ge</b><br/>Real.exp s / 4 ≤ Real.sinh s"]:::thm
+  n18["<b>S_real_ge</b><br/>cS m * Real.exp s / (4 * (s ^ 2 + Real.pi ^ 2 * ((m : ℝ) + 1) ^ …"]:::end_
+  x0(["<b>WeilPowerCompare</b><br/>QS_ne_zero_wOf"]):::ext
+  x1(["<b>WeilPowerGauss</b><br/>S_real_ge_gauss<br/>tendsto_S"]):::ext
+  x2(["<b>WeilPowerSharp</b><br/>S_real_ge_sharp"]):::ext
+  x3(["<b>WeilPowerBands</b><br/>cFarM_le<br/>term_le_M"]):::ext
+  x4(["<b>WeilOddPower</b><br/>S_mul_QS"]):::ext
+  x5(["<b>WeilLobe</b><br/>norm_sinh_le"]):::ext
+  x6(["<b>WeilPowerBackground</b><br/>PsiW_le_far"]):::ext
+  x7(["<b>WeilPowerBridge</b><br/>far_sideband_le"]):::ext
   n0 --> n1
   n1 --> n3
   n10 --> n11
   n11 --> n12
-  n12 --> x5
-  n12 --> x8
-  n13 --> n14
   n13 --> n15
-  n13 --> n16
-  n13 --> n17
-  n13 --> n19
-  n14 --> n16
-  n14 --> n19
-  n15 --> n16
-  n16 --> n19
-  n17 --> n19
-  n18 --> n19
+  n13 --> n18
+  n14 --> n15
+  n15 --> n18
+  n16 --> n18
+  n17 --> n18
   n2 --> n11
   n2 --> n3
   n3 --> n4
   n4 --> n7
   n4 --> n9
-  n4 --> x10
-  n4 --> x12
-  n4 --> x9
   n5 --> n12
-  n5 --> n19
+  n5 --> n18
   n5 --> n8
-  n5 --> x6
-  n5 --> x7
   n6 --> n7
   n6 --> n8
-  n6 --> x11
   n8 --> n12
   n8 --> n9
-  x0 --> n8
-  x1 --> n11
-  x1 --> n12
-  x1 --> n15
-  x1 --> n2
-  x1 --> n3
-  x1 --> n4
-  x1 --> n6
-  x1 --> n7
-  x1 --> n8
-  x1 --> n9
-  x2 --> n12
-  x2 --> n16
-  x2 --> n19
-  x2 --> n6
-  x2 --> n7
-  x2 --> n8
-  x2 --> n9
-  x3 --> n16
-  x3 --> n6
-  x4 --> n12
-  x4 --> n16
-  x4 --> n19
-  x4 --> n5
-  x4 --> n6
-  x4 --> n7
-  x4 --> n8
-  x4 --> n9
+  n12 -.-> x6
+  n12 -.-> x7
+  n4 -.-> x0
+  n4 -.-> x1
+  n4 -.-> x2
+  n5 -.-> x3
+  n6 -.-> x1
+  x4 -.-> n15
+  x4 -.-> n6
+  x5 -.-> n8
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

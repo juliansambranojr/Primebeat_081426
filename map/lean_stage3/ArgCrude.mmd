@@ -1,55 +1,20 @@
 flowchart LR
-  n0["StmtArgIdentity<br/>(def)"]:::dfn
-  n1["StmtSCrude<br/>(def)"]:::dfn
-  n2["StmtLocalCount<br/>(def)"]:::dfn
-  n3["StmtSFromLocal<br/>(def)"]:::dfn
-  n4["sCrude_of_local<br/>⊢ StmtSCrude S (a * A₁) (a * A₃ + b)"]:::thm
-  n5["backlundArg_of_identity<br/>⊢ StmtBacklundArg θ B₁ B₃"]:::thm
-  n6["argCrude_of_pieces<br/>⊢ StmtBacklundArg θ (a * A₁) (a * A₃ + b)"]:::thm
-  n7["rvM_of_stirling_and_pieces<br/>⊢ riemannZeta.Riemann_vonMangoldt_bound (B₁ + a * A₁) 0 (B₃ + (a * A₃ + …"]:::thm
-  x0(["ArgCount · rvM_crude"]):::ext
-  x1(["ArgCount · rvM_crude_of_good_two"]):::ext
-  x2(["ArgCount · sCrude_holds"]):::ext
-  x3(["ArgCount · sCrude_holds_of_good_two"]):::ext
-  x4(["ArgIdentity · backlundArg_of_sFromLocal"]):::ext
-  x5(["ArgIdentity · rvM_of_sFromLocal"]):::ext
-  x6(["ArgIdentity · stmtArgIdentity_holds"]):::ext
-  x7(["JensenCount · localCount_holds"]):::ext
-  x8(["RvMCrude · RvM_of_phase_arg"]):::ext
-  x9(["RvMCrude · StmtBacklundArg"]):::ext
-  x10(["RvMCrude · StmtBacklundPhase"]):::ext
-  n0 --> n5
-  n0 --> n6
-  n0 --> n7
-  n0 --> x6
-  n1 --> n4
-  n1 --> n5
-  n1 --> x2
-  n1 --> x3
-  n2 --> n4
-  n2 --> n6
-  n2 --> n7
-  n2 --> x4
-  n2 --> x7
-  n3 --> n4
-  n3 --> n6
-  n3 --> n7
-  n3 --> x4
-  n3 --> x5
-  n4 --> n6
-  n5 --> n6
-  n5 --> x0
-  n5 --> x1
-  n6 --> n7
-  n6 --> x4
-  n7 --> x5
-  x10 --> n7
-  x8 --> n7
-  x9 --> n5
-  x9 --> n6
+  n0["<b>sCrude_of_local</b><br/>StmtSCrude S (a * A₁) (a * A₃ + b)"]:::thm
+  n1["<b>backlundArg_of_identity</b><br/>StmtBacklundArg θ B₁ B₃"]:::thm
+  n2["<b>argCrude_of_pieces</b><br/>StmtBacklundArg θ (a * A₁) (a * A₃ + b)"]:::thm
+  n3["<b>rvM_of_stirling_and_pieces</b><br/>riemannZeta.Riemann_vonMangoldt_bound (B₁ + a * A₁) 0 (B₃ + (a *…"]:::thm
+  x0(["<b>ArgCount</b><br/>rvM_crude<br/>rvM_crude_of_good_two"]):::ext
+  x1(["<b>ArgIdentity</b><br/>backlundArg_of_sFromLocal<br/>rvM_of_sFromLocal"]):::ext
+  x2(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n2 --> n3
+  n1 -.-> x0
+  n2 -.-> x1
+  n3 -.-> x1
+  x2 -.-> n3
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

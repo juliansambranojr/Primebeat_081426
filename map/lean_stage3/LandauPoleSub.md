@@ -1,33 +1,103 @@
 # `lean_stage3/Stage3/LandauPoleSub.lean`
 
-**What it does** (its own header): LandauPoleSub — finitely many simple poles subtracted on an open set, and what that gives for the Taylor coefficients. Nothing here is about `ζ`. Block 3b1 of `lean_stage3/design/landau.md`. 2026-11-22.
+LandauPoleSub — finitely many simple poles subtracted on an open set, and what that gives for the Taylor coefficients. Nothing here is about `ζ`. Block 3b1 of `lean_stage3/design/landau.md`. 2026-11-22.
 
-**Imports:** nothing in this tree.
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md).
+3 theorems, 0 definitions, 158 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** nothing in this tree  
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["iteratedDeriv_inv_sub<br/>⊢ iteratedDeriv k (fun s : ℂ =＞ (s - q)⁻¹) c = (-1) ^ k * (k.factorial :…"]:::thm
-  n1["exists_differentiableOn_sub_poles<br/>⊢ ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ ∀ s, s ∉ P → g s = f s - ∑ q ∈ P…"]:::thm
-  n2["taylor_coeff_sub_poles<br/>⊢ ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ k * (k…"]:::thm
-  x0(["LandauPoleDisc · Phi_taylor_on_disc"]):::ext
+  n0["<b>iteratedDeriv_inv_sub</b><br/>iteratedDeriv k (fun s : ℂ =＞ (s - q)⁻¹) c = (-1) ^ k * (k.facto…"]:::thm
+  n1["<b>exists_differentiableOn_sub_poles</b><br/>∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ ∀ s, s ∉ P → g s = f s - ∑…"]:::thm
+  n2["<b>taylor_coeff_sub_poles</b><br/>∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ …"]:::thm
+  x0(["<b>LandauPoleDisc</b><br/>Phi_taylor_on_disc"]):::ext
   n0 --> n2
-  n1 --> x0
-  n2 --> x0
+  n1 -.-> x0
+  n2 -.-> x0
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Theorems
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `LandauPoleSub.iteratedDeriv_inv_sub`<br/>theorem, line 35 | iteratedDeriv k (fun s : ℂ =&gt; (s - q)⁻¹) c = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)) | k : ℕ; q c : ℂ | — | — | `LandauPoleSub.taylor_coeff_sub_poles` |
-| `LandauPoleSub.exists_differentiableOn_sub_poles`<br/>theorem, line 41 | ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q) | hf : ∀ s ∈ U, s ∉ P → DifferentiableAt ℂ f s; hloc : ∀ p ∈ P, ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in 𝓝[≠] p, f s = h s + A p / (s - p) | — | — | `LandauPoleDisc.Phi_taylor_on_disc` |
-| `LandauPoleSub.taylor_coeff_sub_poles`<br/>theorem, line 104 | ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖ ≤ k.factorial * C / R ^ k | hR : 0 &lt; R; hU : IsOpen U; hball : closedBall c R ⊆ U; hcP : c ∉ P; hg : DifferentiableOn ℂ g U; hgf : ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q) | — | `LandauPoleSub.iteratedDeriv_inv_sub` | `LandauPoleDisc.Phi_taylor_on_disc` |
+<a name="LandauPoleSub-iteratedDeriv_inv_sub"></a>
+### `LandauPoleSub.iteratedDeriv_inv_sub`
+
+line 35
+
+**Proves**
+
+```lean
+iteratedDeriv k (fun s : ℂ => (s - q)⁻¹) c = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ))
+```
+
+**Needs** (its hypotheses)
+
+  - `` k : ℕ ``
+  - `` q c : ℂ ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`LandauPoleSub.taylor_coeff_sub_poles`](#LandauPoleSub-taylor_coeff_sub_poles) — `` ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖ ≤ k.factorial * C / R ^ k ``
+
+<a name="LandauPoleSub-exists_differentiableOn_sub_poles"></a>
+### `LandauPoleSub.exists_differentiableOn_sub_poles`
+
+line 41
+
+**Proves**
+
+```lean
+∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q)
+```
+
+**Needs** (its hypotheses)
+
+  - `` hf : ∀ s ∈ U, s ∉ P → DifferentiableAt ℂ f s ``
+  - `` hloc : ∀ p ∈ P, ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in 𝓝[≠] p, f s = h s + A p / (s - p) ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`LandauPoleDisc.Phi_taylor_on_disc`](../lean_stage3/LandauPoleDisc.md#LandauPoleDisc-Phi_taylor_on_disc) (LandauPoleDisc) — `` ∃ (P : Finset ℂ) (C : ℝ), (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ riemannZeta ρ = 0) ∧ ∀ k : ℕ, ‖iteratedDeriv k LandauMellinG.Phi c - ∑ ρ ∈ P, (analyti… ``
+
+<a name="LandauPoleSub-taylor_coeff_sub_poles"></a>
+### `LandauPoleSub.taylor_coeff_sub_poles`
+
+line 104
+
+**Proves**
+
+```lean
+∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖ ≤ k.factorial * C / R ^ k
+```
+
+**Needs** (its hypotheses)
+
+  - `` hR : 0 < R ``
+  - `` hU : IsOpen U ``
+  - `` hball : closedBall c R ⊆ U ``
+  - `` hcP : c ∉ P ``
+  - `` hg : DifferentiableOn ℂ g U ``
+  - `` hgf : ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q) ``
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`LandauPoleSub.iteratedDeriv_inv_sub`](#LandauPoleSub-iteratedDeriv_inv_sub) — `` iteratedDeriv k (fun s : ℂ => (s - q)⁻¹) c = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)) ``
+
+**Feeds** (1 that use it)
+
+  - [`LandauPoleDisc.Phi_taylor_on_disc`](../lean_stage3/LandauPoleDisc.md#LandauPoleDisc-Phi_taylor_on_disc) (LandauPoleDisc) — `` ∃ (P : Finset ℂ) (C : ℝ), (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ riemannZeta ρ = 0) ∧ ∀ k : ℕ, ‖iteratedDeriv k LandauMellinG.Phi c - ∑ ρ ∈ P, (analyti… ``
+

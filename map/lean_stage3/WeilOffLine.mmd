@@ -1,53 +1,26 @@
 flowchart LR
-  n0["SigmaC_neg<br/>⊢ SigmaC (-w) = -SigmaC w"]:::thm
-  n1["ghat_neg<br/>⊢ ghat h γ (-z) = -ghat h γ z"]:::thm
-  n2["term_eq_neg_sq<br/>⊢ laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (…"]:::thm
-  n3["term_re_eq<br/>⊢ (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (ghat h…"]:::thm
-  n4["offPt<br/>(def)"]:::dfn
-  n5["offPt_sub_half<br/>⊢ offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)"]:::thm
-  n6["offline_term_le<br/>⊢ (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ…"]:::thm
-  n7["offline_term_le_explicit<br/>⊢ (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ…"]:::end_
-  x0(["WeilBackground · laplace_phi"]):::ext
-  x1(["WeilBackground · phiC"]):::ext
-  x2(["WeilDetect · laplace"]):::ext
-  x3(["WeilLobe · lobe_bound"]):::ext
-  x4(["WeilTransform · SigmaC"]):::ext
-  x5(["WeilTransform · ghat"]):::ext
-  x6(["WeilTransform · ghat_eq"]):::ext
-  x7(["WeilTransform · ghat_offline"]):::ext
-  x8(["WeilWindow · Sigma"]):::ext
+  n0["<b>SigmaC_neg</b><br/>SigmaC (-w) = -SigmaC w"]:::thm
+  n1["<b>ghat_neg</b><br/>ghat h γ (-z) = -ghat h γ z"]:::thm
+  n2["<b>term_eq_neg_sq</b><br/>laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat…"]:::thm
+  n3["<b>term_re_eq</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (…"]:::thm
+  n4["<b>offPt_sub_half</b><br/>offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)"]:::thm
+  n5["<b>offline_term_le</b><br/>(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - off…"]:::thm
+  n6["<b>offline_term_le_explicit</b><br/>(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - off…"]:::end_
+  x0(["<b>WeilTransform</b><br/>ghat_eq<br/>ghat_offline"]):::ext
+  x1(["<b>WeilBackground</b><br/>laplace_phi"]):::ext
+  x2(["<b>WeilLobe</b><br/>lobe_bound"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n3
-  n3 --> n6
+  n3 --> n5
   n4 --> n5
-  n4 --> n6
-  n4 --> n7
   n5 --> n6
-  n6 --> n7
-  x0 --> n2
-  x1 --> n2
-  x1 --> n3
-  x1 --> n6
-  x1 --> n7
-  x2 --> n2
-  x2 --> n3
-  x2 --> n6
-  x2 --> n7
-  x3 --> n7
-  x4 --> n0
-  x4 --> n6
-  x4 --> n7
-  x5 --> n1
-  x5 --> n2
-  x5 --> n3
-  x6 --> n1
-  x7 --> n6
-  x8 --> n6
-  x8 --> n7
+  x0 -.-> n1
+  x0 -.-> n5
+  x1 -.-> n2
+  x2 -.-> n6
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

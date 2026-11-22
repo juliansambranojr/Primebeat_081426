@@ -1,38 +1,12 @@
 flowchart LR
-  n0["period_vacuous_at_one<br/>⊢ Function.Periodic f (2 * Real.pi / Real.log 1)"]:::lone
-  n1["sq_rpow_half<br/>⊢ (b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ))"]:::thm
-  n2["gain_sq_at_floor<br/>⊢ ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2"]:::thm
-  n3["gain_sq_at_ceiling<br/>⊢ ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2"]:::thm
-  n4["C2_floor_attained<br/>⊢ ‖Sym b ((1 : ℂ)/2 + (0 : ℝ) * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2"]:::end_
-  n5["C2_ceiling_attained<br/>⊢ ∃ γ : ℝ, ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2"]:::end_
-  n6["ceiling_base<br/>⊢ ‖Sym (Real.exp (Real.pi * (2 * k + 1) / γ)) ((1 : ℂ)/2 + γ * I)‖ ^ 2 =…"]:::end_
-  n7["ceiling_dominates_floor<br/>⊢ (1 - b ^ (-(1:ℝ)/2)) ^ 2 ＜ (1 + b ^ (-(1:ℝ)/2)) ^ 2"]:::lone
-  n8["joint_gain_periodic_of_commensurate<br/>⊢ Function.Periodic (fun γ : ℝ =＞ ‖Sym b₁ ((1 : ℂ)/2 + γ * I)‖ ^ 2 * ‖Sy…"]:::end_
-  n9["second_ladder_winds_densely<br/>⊢ DenseRange (fun k : ℤ =＞ k • ((2 * Real.pi / Real.log b₂ : ℝ) : AddCir…"]:::thm
-  x0(["Chain · Sym"]):::ext
-  x1(["Chain · gain_sq_periodic"]):::ext
-  x2(["Chain · h"]):::ext
-  x3(["EulerFactorChain · gain_sq_on_critical_line"]):::ext
-  x4(["JointLadder · triadic_winds_densely_on_dyadic"]):::ext
-  n1 --> n2
-  n1 --> n3
-  n2 --> n4
-  n3 --> n5
-  n3 --> n6
-  n9 --> x4
-  x0 --> n2
-  x0 --> n3
-  x0 --> n4
-  x0 --> n5
-  x0 --> n6
-  x0 --> n8
-  x1 --> n8
-  x2 --> n6
-  x3 --> n2
-  x3 --> n3
+  n0["<b>joint_gain_periodic_of_commensurate</b><br/>Function.Periodic (fun γ : ℝ =＞ ‖Sym b₁ ((1 : ℂ)/2 + γ * I)‖ ^ 2…"]:::end_
+  n1["<b>second_ladder_winds_densely</b><br/>DenseRange (fun k : ℤ =＞ k • ((2 * Real.pi / Real.log b₂ : ℝ) : …"]:::thm
+  x0(["<b>diagram 1</b><br/>gain_sq_periodic"]):::ext
+  x1(["<b>JointLadder</b><br/>triadic_winds_densely_on_dyadic"]):::ext
+  n1 -.-> x1
+  x0 -.-> n0
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -1,29 +1,18 @@
 flowchart LR
-  n0["perBlock<br/>(def)"]:::dfn
-  n1["score<br/>(def)"]:::dfn
-  n2["score_eq<br/>⊢ score R P α β k = P ^ β * (R k) ^ (α - β)"]:::thm
-  n3["strictMono_of_lt<br/>⊢ StrictMono (score R P α β)"]:::thm
-  n4["strictAnti_of_lt<br/>⊢ StrictAnti (score R P α β)"]:::thm
-  n5["const_of_eq<br/>⊢ score R P α β i = score R P α β j"]:::thm
-  n6["no_interior_peak<br/>⊢ False"]:::end_
-  n7["measured<br/>(def)"]:::dfn
-  n8["measured_has_interior_peak<br/>⊢ (23.628706 : ℝ) ＜ 38.299307 ∧ (27.061132 : ℝ) ＜ 38.299307"]:::lone
+  n0["<b>score_eq</b><br/>score R P α β k = P ^ β * (R k) ^ (α - β)"]:::thm
+  n1["<b>strictMono_of_lt</b><br/>StrictMono (score R P α β)"]:::thm
+  n2["<b>strictAnti_of_lt</b><br/>StrictAnti (score R P α β)"]:::thm
+  n3["<b>const_of_eq</b><br/>score R P α β i = score R P α β j"]:::thm
+  n4["<b>no_interior_peak</b><br/>False"]:::end_
+  n5["<b>measured_has_interior_peak</b><br/>(23.628706 : ℝ) ＜ 38.299307 ∧ (27.061132 : ℝ) ＜ 38.299307"]:::lone
   n0 --> n1
   n0 --> n2
-  n1 --> n2
-  n1 --> n3
+  n0 --> n3
   n1 --> n4
-  n1 --> n5
-  n1 --> n6
-  n2 --> n3
   n2 --> n4
-  n2 --> n5
-  n3 --> n6
-  n4 --> n6
-  n5 --> n6
+  n3 --> n4
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

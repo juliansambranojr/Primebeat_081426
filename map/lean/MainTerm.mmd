@@ -1,54 +1,31 @@
 flowchart LR
-  n0["bdiffR<br/>(def)"]:::dfn
-  n1["iter_bdiffR_eq_fwdDiff<br/>⊢ (bdiffR^[n]) g x = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℝ))^[n] g x"]:::thm
-  n2["iter_bdiffR_eq_sum<br/>⊢ (bdiffR^[n]) g x = ∑ k ∈ range (n + 1), (-1 : ℝ) ^ k * (n.choose k) * …"]:::thm
-  n3["stencilR_eq_iter<br/>⊢ Nonvanishing.stencilR n (fun k : ℤ =＞ G k) r = (bdiffR^[n]) G r"]:::thm
-  n4["deriv_bdiffR<br/>⊢ deriv (bdiffR g) = bdiffR (deriv g)"]:::thm
-  n5["contDiff_bdiffR<br/>⊢ ContDiff ℝ (⊤ : ℕ∞) (bdiffR g)"]:::thm
-  n6["iteratedDeriv_bdiffR<br/>⊢ iteratedDeriv n (bdiffR g) = bdiffR (iteratedDeriv n g)"]:::thm
-  n7["bdiffR_lb<br/>⊢ m ≤ bdiffR g x"]:::thm
-  n8["iter_bdiffR_lb<br/>⊢ m ≤ (bdiffR^[n]) g x"]:::thm
-  n9["stencilR_ge_of<br/>⊢ c ≤ |Nonvanishing.stencilR (d + 1) (fun k : ℤ =＞ G k) r|"]:::thm
-  n10["tableFrom_ne_zero_of_deriv<br/>⊢ Construction.tableFrom N r d ≠ 0"]:::thm
-  x0(["Construction · tableFrom"]):::ext
-  x1(["Expansion · tableFrom_ne_zero_of_li"]):::ext
-  x2(["Nonvanishing · Ehigh"]):::ext
-  x3(["Nonvanishing · Mlow"]):::ext
-  x4(["Nonvanishing · StmtSchoenfeldWindow"]):::ext
-  x5(["Nonvanishing · bdiffZ"]):::ext
-  x6(["Nonvanishing · stencilR"]):::ext
-  x7(["Nonvanishing · tableFrom_ne_zero_of"]):::ext
-  x8(["RelativeLi · tableFrom_ne_zero_of_relErr_li"]):::ext
+  n0["<b>iter_bdiffR_eq_fwdDiff</b><br/>(bdiffR^[n]) g x = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℝ))^[n] g x"]:::thm
+  n1["<b>iter_bdiffR_eq_sum</b><br/>(bdiffR^[n]) g x = ∑ k ∈ range (n + 1), (-1 : ℝ) ^ k * (n.choose…"]:::thm
+  n2["<b>stencilR_eq_iter</b><br/>Nonvanishing.stencilR n (fun k : ℤ =＞ G k) r = (bdiffR^[n]) G r"]:::thm
+  n3["<b>deriv_bdiffR</b><br/>deriv (bdiffR g) = bdiffR (deriv g)"]:::thm
+  n4["<b>contDiff_bdiffR</b><br/>ContDiff ℝ (⊤ : ℕ∞) (bdiffR g)"]:::thm
+  n5["<b>iteratedDeriv_bdiffR</b><br/>iteratedDeriv n (bdiffR g) = bdiffR (iteratedDeriv n g)"]:::thm
+  n6["<b>bdiffR_lb</b><br/>m ≤ bdiffR g x"]:::thm
+  n7["<b>iter_bdiffR_lb</b><br/>m ≤ (bdiffR^[n]) g x"]:::thm
+  n8["<b>stencilR_ge_of</b><br/>c ≤ |Nonvanishing.stencilR (d + 1) (fun k : ℤ =＞ G k) r|"]:::thm
+  n9["<b>tableFrom_ne_zero_of_deriv</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  x0(["<b>RelativeLi</b><br/>tableFrom_ne_zero_of_relErr_li"]):::ext
+  x1(["<b>Nonvanishing</b><br/>tableFrom_ne_zero_of"]):::ext
+  x2(["<b>Expansion</b><br/>tableFrom_ne_zero_of_li"]):::ext
   n0 --> n1
-  n0 --> n2
-  n0 --> n3
-  n0 --> n4
-  n0 --> n5
-  n0 --> n6
-  n0 --> n7
-  n0 --> n8
   n1 --> n2
-  n10 --> x1
-  n2 --> n3
-  n3 --> n9
-  n4 --> n6
-  n5 --> n8
-  n6 --> n8
+  n2 --> n8
+  n3 --> n5
+  n4 --> n7
+  n5 --> n7
+  n6 --> n7
   n7 --> n8
   n8 --> n9
-  n9 --> n10
-  n9 --> x8
-  x0 --> n10
-  x2 --> n10
-  x3 --> n10
-  x4 --> n10
-  x5 --> n10
-  x6 --> n3
-  x6 --> n9
-  x7 --> n10
+  n8 -.-> x0
+  n9 -.-> x2
+  x1 -.-> n9
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

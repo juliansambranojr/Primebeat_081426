@@ -1,133 +1,331 @@
 # `lean/Nonvanishing.lean`
 
-**What it does** (its own header): Nonvanishing — the arrow of O67's conditional theorem, in the house pattern. `papers/The-Four-Zeros.md` § I states: under RH, `cell(r,d) ≠ 0` for every `r ≥ R(d)`, which with O43's census makes the four zeros complete at every depth `d ≤ 15`. The proof has two analytic inputs and one arithmetic gap condition; everything joining them is algebra. Following `Chain.lean`'s design — take the antecedents as HYPOTHESES, prove the arrows, let the kernel check that the "therefore" is real — this module proves the joins:
+Nonvanishing — the arrow of O67's conditional theorem, in the house pattern. `papers/The-Four-Zeros.md` § I states: under RH, `cell(r,d) ≠ 0` for every `r ≥ R(d)`, which with O43's census makes the four zeros complete at every depth `d ≤ 15`. The proof has two analytic inputs and one arithmetic gap condition; everything joining them is algebra. Following `Chain.lean`'s design — take the antecedents as HYPOTHESES, prove the arrows, let the kernel check that the "therefore" is real — this module proves the joins:
 
-**Imports:** [`Zeros`](../lean/Zeros.md), [`ZerosStencil`](../lean/ZerosStencil.md).
-**Imported by:** [`MainTerm`](../lean/MainTerm.md), [`RelativeGate`](../lean/RelativeGate.md).
+8 theorems, 5 definitions, 268 lines. Arrows are Lean's own record of what each proof uses.
+
+**Imports:** [`Zeros`](../lean/Zeros.md), [`ZerosStencil`](../lean/ZerosStencil.md)  
+**Imported by:** [`MainTerm`](../lean/MainTerm.md), [`RelativeGate`](../lean/RelativeGate.md)
+
+## The picture
 
 ```mermaid
 flowchart LR
-  n0["bdiffZ<br/>(def)"]:::dfn
-  n1["stencilR<br/>(def)"]:::dfn
-  n2["iter_bdiffZ_eq_fwdDiff<br/>⊢ (bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r"]:::thm
-  n3["iter_bdiffZ_eq_stencilR<br/>⊢ (bdiffZ^[n]) g r = stencilR n g r"]:::thm
-  n4["stencilR_row<br/>⊢ stencilR d (bdiffZ g) r = stencilR (d + 1) g r"]:::thm
-  n5["stencilR_sub<br/>⊢ stencilR n (fun x =＞ f x - L x) r = stencilR n f r - stencilR n L r"]:::thm
-  n6["Ehigh<br/>(def)"]:::dfn
-  n7["StmtSchoenfeldWindow<br/>(def)"]:::dfn
-  n8["window_term_le<br/>⊢ (Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : ℝ) - k…"]:::thm
-  n9["error_bound<br/>⊢ |stencilR n (fun x =＞ f x - L x) r| ≤ Ehigh r n"]:::thm
-  n10["Mlow<br/>(def)"]:::dfn
-  n11["nonvanishing_of<br/>⊢ stencilR (d + 1) f r ≠ 0"]:::thm
-  n12["tableFrom_ne_zero_of<br/>⊢ Construction.tableFrom N r d ≠ 0"]:::thm
-  x0(["Construction · tableFrom"]):::ext
-  x1(["Expansion · hD_of_window"]):::ext
-  x2(["Expansion · tableFrom_ne_zero_of_li"]):::ext
-  x3(["Interpolant · tableFrom_ne_zero_of_relErr_liRow"]):::ext
-  x4(["MainTerm · stencilR_eq_iter"]):::ext
-  x5(["MainTerm · stencilR_ge_of"]):::ext
-  x6(["MainTerm · tableFrom_ne_zero_of_deriv"]):::ext
-  x7(["RelativeGate · nonvanishing_of_relErr"]):::ext
-  x8(["RelativeGate · relError_bound"]):::ext
-  x9(["RelativeGate · relGate_iff"]):::ext
-  x10(["RelativeGate · schoenfeldWindow_relErr"]):::ext
-  x11(["RelativeGate · tableFrom_ne_zero_of_relErr"]):::ext
-  x12(["RelativeLi · tableFrom_ne_zero_of_powerSaving"]):::ext
-  x13(["RelativeLi · tableFrom_ne_zero_of_relErr_li"]):::ext
-  x14(["RelativeLi · tableFrom_ne_zero_of_relErr_li'"]):::ext
-  x15(["RouteCell · cell_ne_zero_of_route"]):::ext
-  x16(["Schoenfeld · tableFrom_ne_zero_of_schoenfeld"]):::ext
-  x17(["Schoenfeld · window_of_global"]):::ext
-  x18(["ZerosStencil · stencil"]):::ext
-  x19(["ZerosStencil · tableFrom_eq_stencil"]):::ext
-  x20(["TableDepths · cell_ne_zero_gen"]):::ext
-  x21(["TableRoute · cell_ne_zero_of_RH"]):::ext
-  n0 --> n12
-  n0 --> n2
-  n0 --> n3
-  n0 --> n4
-  n0 --> x11
-  n0 --> x12
-  n0 --> x13
-  n0 --> x14
-  n0 --> x15
-  n0 --> x16
-  n0 --> x2
-  n0 --> x20
-  n0 --> x21
-  n0 --> x3
-  n0 --> x6
-  n1 --> n11
-  n1 --> n12
-  n1 --> n3
-  n1 --> n4
-  n1 --> n5
-  n1 --> n9
-  n1 --> x11
-  n1 --> x4
-  n1 --> x5
-  n1 --> x7
-  n1 --> x8
-  n10 --> n11
-  n10 --> n12
-  n10 --> x1
-  n10 --> x11
-  n10 --> x13
-  n10 --> x16
-  n10 --> x2
-  n10 --> x6
-  n10 --> x7
-  n10 --> x9
-  n11 --> n12
-  n12 --> x6
-  n2 --> n3
-  n3 --> n4
-  n4 --> n12
-  n4 --> x11
-  n5 --> n11
-  n5 --> x7
-  n6 --> n11
-  n6 --> n12
-  n6 --> n9
-  n6 --> x16
-  n6 --> x2
-  n6 --> x6
-  n7 --> n11
-  n7 --> n12
-  n7 --> n9
-  n7 --> x10
-  n7 --> x17
-  n7 --> x2
-  n7 --> x6
-  n8 --> n9
-  n9 --> n11
-  x0 --> n12
-  x18 --> n12
-  x19 --> n12
+  n0["<b>iter_bdiffZ_eq_fwdDiff</b><br/>(bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r"]:::thm
+  n1["<b>iter_bdiffZ_eq_stencilR</b><br/>(bdiffZ^[n]) g r = stencilR n g r"]:::thm
+  n2["<b>stencilR_row</b><br/>stencilR d (bdiffZ g) r = stencilR (d + 1) g r"]:::thm
+  n3["<b>stencilR_sub</b><br/>stencilR n (fun x =＞ f x - L x) r = stencilR n f r - stencilR n …"]:::thm
+  n4["<b>window_term_le</b><br/>(Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : …"]:::thm
+  n5["<b>error_bound</b><br/>|stencilR n (fun x =＞ f x - L x) r| ≤ Ehigh r n"]:::thm
+  n6["<b>nonvanishing_of</b><br/>stencilR (d + 1) f r ≠ 0"]:::thm
+  n7["<b>tableFrom_ne_zero_of</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  x0(["<b>RelativeGate</b><br/>nonvanishing_of_relErr<br/>tableFrom_ne_zero_of_relErr"]):::ext
+  x1(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
+  x2(["<b>MainTerm</b><br/>tableFrom_ne_zero_of_deriv"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n2 --> n7
+  n3 --> n6
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n2 -.-> x0
+  n3 -.-> x0
+  n7 -.-> x2
+  x1 -.-> n7
   classDef thm fill:#eef4ff,stroke:#335,color:#111
-  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
-  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
-## Every declaration
+## Definitions
 
-| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
-|---|---|---|---|---|---|
-| `Nonvanishing.bdiffZ`<br/>def, line 52 | ℤ → ℝ | g : ℤ → ℝ | Backward differencing on ℤ-indexed real sequences — `Chain.bdiff`'s twin one level down (ℤ index, ℝ values). | — | `Expansion.tableFrom_ne_zero_of_li`, `Interpolant.tableFrom_ne_zero_of_relErr_liRow`, `MainTerm.tableFrom_ne_zero_of_deriv`, `Nonvanishing.iter_bdiffZ_eq_fwdDiff`, `Nonvanishing.iter_bdiffZ_eq_stencilR`, `Nonvanishing.stencilR_row`, `Nonvanishing.tableFrom_ne_zero_of`, `RelativeGate.tableFrom_ne_zero_of_relErr`, `RelativeLi.tableFrom_ne_zero_of_powerSaving`, `RelativeLi.tableFrom_ne_zero_of_relErr_li`, `RelativeLi.tableFrom_ne_zero_of_relErr_li'`, `RouteCell.cell_ne_zero_of_route`, `Schoenfeld.tableFrom_ne_zero_of_schoenfeld`, `TableDepths.cell_ne_zero_gen`, `TableRoute.cell_ne_zero_of_RH` |
-| `Nonvanishing.stencilR`<br/>def, line 56 | ℝ | n : ℕ; g : ℤ → ℝ; r : ℤ | The real alternating binomial stencil of order `n` on `g`, read at `r` downward. The ℝ twin of `Zeros.stencil`. | — | `MainTerm.stencilR_eq_iter`, `MainTerm.stencilR_ge_of`, `Nonvanishing.error_bound`, `Nonvanishing.iter_bdiffZ_eq_stencilR`, `Nonvanishing.nonvanishing_of`, `Nonvanishing.stencilR_row`, `Nonvanishing.stencilR_sub`, `Nonvanishing.tableFrom_ne_zero_of`, `RelativeGate.nonvanishing_of_relErr`, `RelativeGate.relError_bound`, `RelativeGate.tableFrom_ne_zero_of_relErr` |
-| `Nonvanishing.iter_bdiffZ_eq_fwdDiff`<br/>theorem, line 61 | (bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r | g : ℤ → ℝ; r : ℤ; n : ℕ | Backward differencing is `(−1)·fwdDiff` at step `−1` — the ℝ copy of `Zeros.tableFrom_eq_fwdDiff`'s bridge. | `Nonvanishing.bdiffZ` | `Nonvanishing.iter_bdiffZ_eq_stencilR` |
-| `Nonvanishing.iter_bdiffZ_eq_stencilR`<br/>theorem, line 77 | (bdiffZ^[n]) g r = stencilR n g r | g : ℤ → ℝ; r : ℤ; n : ℕ | `n` differences are the stencil. `Zeros.tableFrom_eq_stencil` transplanted to ℝ: Mathlib's `fwdDiff_iter_eq_sum_shift` does the binomial bookkeeping. | `Nonvanishing.bdiffZ`, `Nonvanishing.iter_bdiffZ_eq_fwdDiff`, `Nonvanishing.stencilR` | `Nonvanishing.stencilR_row` |
-| `Nonvanishing.stencilR_row`<br/>theorem, line 94 | stencilR d (bdiffZ g) r = stencilR (d + 1) g r | d : ℕ; g : ℤ → ℝ; r : ℤ | The Pascal step. The depth-`d` stencil on the row `x ↦ g(x) − g(x−1)` is the depth-`(d+1)` stencil on `g`. One more iterate, nothing else. | `Nonvanishing.bdiffZ`, `Nonvanishing.iter_bdiffZ_eq_stencilR`, `Nonvanishing.stencilR` | `Nonvanishing.tableFrom_ne_zero_of`, `RelativeGate.tableFrom_ne_zero_of_relErr` |
-| `Nonvanishing.stencilR_sub`<br/>theorem, line 100 | stencilR n (fun x =&gt; f x - L x) r = stencilR n f r - stencilR n L r | n : ℕ; f L : ℤ → ℝ; r : ℤ | Linearity. Splitting `π = li + (π − li)` under the stencil. | `Nonvanishing.stencilR` | `Nonvanishing.nonvanishing_of`, `RelativeGate.nonvanishing_of_relErr` |
-| `Nonvanishing.Ehigh`<br/>def, line 109 | ℝ | r : ℤ; n : ℕ | The error ceiling: `(log 2 · r / 8π) · 2^(r/2) · (1 + 2^(−1/2))^(n)`. | — | `Expansion.tableFrom_ne_zero_of_li`, `MainTerm.tableFrom_ne_zero_of_deriv`, `Nonvanishing.error_bound`, `Nonvanishing.nonvanishing_of`, `Nonvanishing.tableFrom_ne_zero_of`, `Schoenfeld.tableFrom_ne_zero_of_schoenfeld` |
-| `Nonvanishing.StmtSchoenfeldWindow`<br/>def, line 117 | Prop | f L : ℤ → ℝ; r : ℤ; n : ℕ | Schoenfeld on the window, as a statement: each of the `n+1` values the stencil reads obeys the RH bound at `x = 2^(r−k)`, where `√x = 2^((r−k)/2)` and `log x = (r−k)·log 2`. This is the hypothesis Schoenfeld's theorem would discharge; it is not discharged here. | — | `Expansion.tableFrom_ne_zero_of_li`, `MainTerm.tableFrom_ne_zero_of_deriv`, `Nonvanishing.error_bound`, `Nonvanishing.nonvanishing_of`, `Nonvanishing.tableFrom_ne_zero_of`, `RelativeGate.schoenfeldWindow_relErr`, `Schoenfeld.window_of_global` |
-| `Nonvanishing.window_term_le`<br/>theorem, line 125 | (Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : ℝ) - k) / 2) ≤ (Real.log 2 * r / (8 * Real.pi)) * (2 : ℝ) ^ ((r : ℝ) / 2) * ((2 : ℝ) ^ (-(1 : ℝ) / 2)) ^ k | hr : (n : ℤ) ≤ r; k : ℕ; hk : k ∈ range (n + 1) | Each windowed Schoenfeld bound is at most the top-of-window bound times `2^(−k/2)`: `(r−k) ≤ r` handles the linear factor and `rpow_add` splits the power. Needs `0 ≤ r − k` inside the window, supplied by `hr`. | — | `Nonvanishing.error_bound` |
-| `Nonvanishing.error_bound`<br/>theorem, line 152 | \|stencilR n (fun x =&gt; f x - L x) r\| ≤ Ehigh r n | hr : (n : ℤ) ≤ r; hS : StmtSchoenfeldWindow f L r n | The error bound. Triangle inequality, the per-term comparison, and the binomial theorem `Σ C(n,k) t^k = (1+t)^n` at `t = 2^(−1/2)`. | `Nonvanishing.Ehigh`, `Nonvanishing.StmtSchoenfeldWindow`, `Nonvanishing.stencilR`, `Nonvanishing.window_term_le` | `Nonvanishing.nonvanishing_of` |
-| `Nonvanishing.Mlow`<br/>def, line 178 | ℝ | r : ℤ; d : ℕ | The main-term floor `0.5 · 2^(r−d−1) · (log 2)^d / r`. O67's step 3. | — | `Expansion.hD_of_window`, `Expansion.tableFrom_ne_zero_of_li`, `MainTerm.tableFrom_ne_zero_of_deriv`, `Nonvanishing.nonvanishing_of`, `Nonvanishing.tableFrom_ne_zero_of`, `RelativeGate.nonvanishing_of_relErr`, `RelativeGate.relGate_iff`, `RelativeGate.tableFrom_ne_zero_of_relErr`, `RelativeLi.tableFrom_ne_zero_of_relErr_li`, `Schoenfeld.tableFrom_ne_zero_of_schoenfeld` |
-| `Nonvanishing.nonvanishing_of`<br/>theorem, line 185 | stencilR (d + 1) f r ≠ 0 | hr : ((d + 1 : ℕ) : ℤ) ≤ r; hS : StmtSchoenfeldWindow f L r (d + 1); hM : Mlow r d ≤ \|stencilR (d + 1) L r\|; hgap : Ehigh r (d + 1) &lt; Mlow r d | The arrow. If Schoenfeld holds on the window (`hS`), the smooth main term clears its floor (`hM` — stage 2's target), and the floor beats the error ceiling (`hgap` — O67's `r ≥ R(d)` table), then the depth-`(d+1)` stencil of the counting function does not vanish. | `Nonvanishing.Ehigh`, `Nonvanishing.Mlow`, `Nonvanishing.StmtSchoenfeldWindow`, `Nonvanishing.error_bound`, `Nonvanishing.stencilR`, `Nonvanishing.stencilR_sub` | `Nonvanishing.tableFrom_ne_zero_of` |
-| `Nonvanishing.tableFrom_ne_zero_of`<br/>theorem, line 201 | Construction.tableFrom N r d ≠ 0 | hrow : ∀ k ∈ range (d + 2), ((N (r - k) : ℤ) : ℝ) = bdiffZ f (r - k); hr : ((d + 1 : ℕ) : ℤ) ≤ r; hS : StmtSchoenfeldWindow f L r (d + 1); hM : Mlow r d ≤ \|stencilR (d + 1) L r\|; hgap : Ehigh r (d + 1) &lt; Mlow r d | Onto the integer table. If the integer row is the backward difference of a counting function `f` across the window a cell reads (cast to ℝ), then the cell's vanishing is the depth-`(d+1)` stencil of `f` vanishing — so the arrow above forbids it. The cast bridge is `Zeros.tableFrom_eq_stencil` plus `push_cast`. | `Construction.tableFrom`, `Nonvanishing.Ehigh`, `Nonvanishing.Mlow`, `Nonvanishing.StmtSchoenfeldWindow`, `Nonvanishing.bdiffZ`, `Nonvanishing.nonvanishing_of`, `Nonvanishing.stencilR`, `Nonvanishing.stencilR_row`, `Zeros.stencil`, `Zeros.tableFrom_eq_stencil` | `MainTerm.tableFrom_ne_zero_of_deriv` |
+<a name="Nonvanishing-bdiffZ"></a>
+### `Nonvanishing.bdiffZ`
+
+def · line 52
+
+Backward differencing on ℤ-indexed real sequences — `Chain.bdiff`'s twin one level down (ℤ index, ℝ values).
+
+- **Is:** `` bdiffZ (g : ℤ → ℝ) : ℤ → ℝ := fun x => g x - g (x - 1) ``
+- **Used by 15:** [`Expansion.tableFrom_ne_zero_of_li`](../lean/Expansion.md#Expansion-tableFrom_ne_zero_of_li), [`Interpolant.tableFrom_ne_zero_of_relErr_liRow`](../lean/Interpolant.md#Interpolant-tableFrom_ne_zero_of_relErr_liRow), [`MainTerm.tableFrom_ne_zero_of_deriv`](../lean/MainTerm.md#MainTerm-tableFrom_ne_zero_of_deriv), [`Nonvanishing.iter_bdiffZ_eq_fwdDiff`](#Nonvanishing-iter_bdiffZ_eq_fwdDiff), [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR), [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr), [`RelativeLi.tableFrom_ne_zero_of_powerSaving`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_powerSaving), [`RelativeLi.tableFrom_ne_zero_of_relErr_li`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_relErr_li), [`RelativeLi.tableFrom_ne_zero_of_relErr_li'`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_relErr_li-), [`RouteCell.cell_ne_zero_of_route`](../lean/RouteCell.md#RouteCell-cell_ne_zero_of_route), [`Schoenfeld.tableFrom_ne_zero_of_schoenfeld`](../lean/Schoenfeld.md#Schoenfeld-tableFrom_ne_zero_of_schoenfeld), [`TableDepths.cell_ne_zero_gen`](../lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen), [`TableRoute.cell_ne_zero_of_RH`](../lean_stage3/TableRoute.md#TableRoute-cell_ne_zero_of_RH)
+
+<a name="Nonvanishing-stencilR"></a>
+### `Nonvanishing.stencilR`
+
+def · line 56
+
+The real alternating binomial stencil of order `n` on `g`, read at `r` downward. The ℝ twin of `Zeros.stencil`.
+
+- **Is:** `` stencilR (n : ℕ) (g : ℤ → ℝ) (r : ℤ) : ℝ := ∑ k ∈ range (n + 1), (-1 : ℝ) ^ k * (n.choose k) * g (r - k) ``
+- **Used by 11:** [`MainTerm.stencilR_eq_iter`](../lean/MainTerm.md#MainTerm-stencilR_eq_iter), [`MainTerm.stencilR_ge_of`](../lean/MainTerm.md#MainTerm-stencilR_ge_of), [`Nonvanishing.error_bound`](#Nonvanishing-error_bound), [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR), [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of), [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row), [`Nonvanishing.stencilR_sub`](#Nonvanishing-stencilR_sub), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.nonvanishing_of_relErr`](../lean/RelativeGate.md#RelativeGate-nonvanishing_of_relErr), [`RelativeGate.relError_bound`](../lean/RelativeGate.md#RelativeGate-relError_bound), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr)
+
+<a name="Nonvanishing-Ehigh"></a>
+### `Nonvanishing.Ehigh`
+
+def · line 109
+
+The error ceiling: `(log 2 · r / 8π) · 2^(r/2) · (1 + 2^(−1/2))^(n)`.
+
+- **Is:** `` Ehigh (r : ℤ) (n : ℕ) : ℝ := (Real.log 2 * r / (8 * Real.pi)) * (2 : ℝ) ^ ((r : ℝ) / 2) * (1 + (2 : ℝ) ^ (-(1 : ℝ) / 2)) ^ n ``
+- **Used by 6:** [`Expansion.tableFrom_ne_zero_of_li`](../lean/Expansion.md#Expansion-tableFrom_ne_zero_of_li), [`MainTerm.tableFrom_ne_zero_of_deriv`](../lean/MainTerm.md#MainTerm-tableFrom_ne_zero_of_deriv), [`Nonvanishing.error_bound`](#Nonvanishing-error_bound), [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`Schoenfeld.tableFrom_ne_zero_of_schoenfeld`](../lean/Schoenfeld.md#Schoenfeld-tableFrom_ne_zero_of_schoenfeld)
+
+<a name="Nonvanishing-StmtSchoenfeldWindow"></a>
+### `Nonvanishing.StmtSchoenfeldWindow`
+
+def · line 117
+
+Schoenfeld on the window, as a statement: each of the `n+1` values the stencil reads obeys the RH bound at `x = 2^(r−k)`, where `√x = 2^((r−k)/2)` and `log x = (r−k)·log 2`. This is the hypothesis Schoenfeld's theorem would discharge; it is not discharged here.
+
+- **Is:** `` StmtSchoenfeldWindow (f L : ℤ → ℝ) (r : ℤ) (n : ℕ) : Prop := ∀ k ∈ range (n + 1), |f (r - k) - L (r - k)| ≤ (Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : ℝ) - k) / 2) ``
+- **Used by 7:** [`Expansion.tableFrom_ne_zero_of_li`](../lean/Expansion.md#Expansion-tableFrom_ne_zero_of_li), [`MainTerm.tableFrom_ne_zero_of_deriv`](../lean/MainTerm.md#MainTerm-tableFrom_ne_zero_of_deriv), [`Nonvanishing.error_bound`](#Nonvanishing-error_bound), [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.schoenfeldWindow_relErr`](../lean/RelativeGate.md#RelativeGate-schoenfeldWindow_relErr), [`Schoenfeld.window_of_global`](../lean/Schoenfeld.md#Schoenfeld-window_of_global)
+
+<a name="Nonvanishing-Mlow"></a>
+### `Nonvanishing.Mlow`
+
+def · line 178
+
+The main-term floor `0.5 · 2^(r−d−1) · (log 2)^d / r`. O67's step 3.
+
+- **Is:** `` Mlow (r : ℤ) (d : ℕ) : ℝ := (1 / 2) * (2 : ℝ) ^ ((r : ℝ) - d - 1) * Real.log 2 ^ d / r ``
+- **Used by 11:** [`Expansion.hD_of_window`](../lean/Expansion.md#Expansion-hD_of_window), [`Expansion.tableFrom_ne_zero_of_li`](../lean/Expansion.md#Expansion-tableFrom_ne_zero_of_li), [`MainTerm.tableFrom_ne_zero_of_deriv`](../lean/MainTerm.md#MainTerm-tableFrom_ne_zero_of_deriv), [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.nonvanishing_of_relErr`](../lean/RelativeGate.md#RelativeGate-nonvanishing_of_relErr), [`RelativeGate.relGate_iff`](../lean/RelativeGate.md#RelativeGate-relGate_iff), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr), [`RelativeLi.tableFrom_ne_zero_of_relErr_li`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_relErr_li), [`RelativeLi.tableFrom_ne_zero_of_relErr_li'`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_relErr_li-), [`Schoenfeld.tableFrom_ne_zero_of_schoenfeld`](../lean/Schoenfeld.md#Schoenfeld-tableFrom_ne_zero_of_schoenfeld)
+
+## Theorems
+
+<a name="Nonvanishing-iter_bdiffZ_eq_fwdDiff"></a>
+### `Nonvanishing.iter_bdiffZ_eq_fwdDiff`
+
+line 61
+
+**Why.** Backward differencing is `(−1)·fwdDiff` at step `−1` — the ℝ copy of `Zeros.tableFrom_eq_fwdDiff`'s bridge.
+
+**Proves**
+
+```lean
+(bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r
+```
+
+**Needs** (its hypotheses)
+
+  - `` g : ℤ → ℝ ``
+  - `` r : ℤ ``
+  - `` n : ℕ ``
+
+**Stated with:** [`Nonvanishing.bdiffZ`](#Nonvanishing-bdiffZ)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (1 that use it)
+
+  - [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR) — `` (bdiffZ^[n]) g r = stencilR n g r ``
+
+<a name="Nonvanishing-iter_bdiffZ_eq_stencilR"></a>
+### `Nonvanishing.iter_bdiffZ_eq_stencilR`
+
+line 77
+
+**Why.** `n` differences are the stencil. `Zeros.tableFrom_eq_stencil` transplanted to ℝ: Mathlib's `fwdDiff_iter_eq_sum_shift` does the binomial bookkeeping.
+
+**Proves**
+
+```lean
+(bdiffZ^[n]) g r = stencilR n g r
+```
+
+**Needs** (its hypotheses)
+
+  - `` g : ℤ → ℝ ``
+  - `` r : ℤ ``
+  - `` n : ℕ ``
+
+**Stated with:** [`Nonvanishing.bdiffZ`](#Nonvanishing-bdiffZ), [`Nonvanishing.stencilR`](#Nonvanishing-stencilR)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`Nonvanishing.iter_bdiffZ_eq_fwdDiff`](#Nonvanishing-iter_bdiffZ_eq_fwdDiff) — `` (bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r ``
+
+**Feeds** (1 that use it)
+
+  - [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row) — `` stencilR d (bdiffZ g) r = stencilR (d + 1) g r ``
+
+<a name="Nonvanishing-stencilR_row"></a>
+### `Nonvanishing.stencilR_row`
+
+line 94
+
+**Why.** The Pascal step. The depth-`d` stencil on the row `x ↦ g(x) − g(x−1)` is the depth-`(d+1)` stencil on `g`. One more iterate, nothing else.
+
+**Proves**
+
+```lean
+stencilR d (bdiffZ g) r = stencilR (d + 1) g r
+```
+
+**Needs** (its hypotheses)
+
+  - `` d : ℕ ``
+  - `` g : ℤ → ℝ ``
+  - `` r : ℤ ``
+
+**Stated with:** [`Nonvanishing.bdiffZ`](#Nonvanishing-bdiffZ), [`Nonvanishing.stencilR`](#Nonvanishing-stencilR)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR) — `` (bdiffZ^[n]) g r = stencilR n g r ``
+
+**Feeds** (2 that use it)
+
+  - [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of) — `` Construction.tableFrom N r d ≠ 0 ``
+  - [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr) (RelativeGate) — `` Construction.tableFrom N r d ≠ 0 ``
+
+<a name="Nonvanishing-stencilR_sub"></a>
+### `Nonvanishing.stencilR_sub`
+
+line 100
+
+**Why.** Linearity. Splitting `π = li + (π − li)` under the stencil.
+
+**Proves**
+
+```lean
+stencilR n (fun x => f x - L x) r = stencilR n f r - stencilR n L r
+```
+
+**Needs** (its hypotheses)
+
+  - `` n : ℕ ``
+  - `` f L : ℤ → ℝ ``
+  - `` r : ℤ ``
+
+**Stated with:** [`Nonvanishing.stencilR`](#Nonvanishing-stencilR)
+
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Feeds** (2 that use it)
+
+  - [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of) — `` stencilR (d + 1) f r ≠ 0 ``
+  - [`RelativeGate.nonvanishing_of_relErr`](../lean/RelativeGate.md#RelativeGate-nonvanishing_of_relErr) (RelativeGate) — `` stencilR (d + 1) f r ≠ 0 ``
+
+<a name="Nonvanishing-window_term_le"></a>
+### `Nonvanishing.window_term_le`
+
+line 125
+
+**Why.** Each windowed Schoenfeld bound is at most the top-of-window bound times `2^(−k/2)`: `(r−k) ≤ r` handles the linear factor and `rpow_add` splits the power. Needs `0 ≤ r − k` inside the window, supplied by `hr`.
+
+**Proves**
+
+```lean
+(Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : ℝ) - k) / 2) ≤ (Real.log 2 * r / (8 * Real.pi)) * (2 : ℝ) ^ ((r : ℝ) / 2) * ((2 : ℝ) ^ (-(1 : ℝ) / 2)) ^ k
+```
+
+**Needs** (its hypotheses)
+
+  - `` hr : (n : ℤ) ≤ r ``
+  - `` k : ℕ ``
+  - `` hk : k ∈ range (n + 1) ``
+
+**Fed by:** no theorem of this repo; it stands on Mathlib.
+
+**Feeds** (1 that use it)
+
+  - [`Nonvanishing.error_bound`](#Nonvanishing-error_bound) — `` |stencilR n (fun x => f x - L x) r| ≤ Ehigh r n ``
+
+<a name="Nonvanishing-error_bound"></a>
+### `Nonvanishing.error_bound`
+
+line 152
+
+**Why.** The error bound. Triangle inequality, the per-term comparison, and the binomial theorem `Σ C(n,k) t^k = (1+t)^n` at `t = 2^(−1/2)`.
+
+**Proves**
+
+```lean
+|stencilR n (fun x => f x - L x) r| ≤ Ehigh r n
+```
+
+**Needs** (its hypotheses)
+
+  - `` hr : (n : ℤ) ≤ r ``
+  - `` hS : StmtSchoenfeldWindow f L r n ``
+
+**Stated with:** [`Nonvanishing.Ehigh`](#Nonvanishing-Ehigh), [`Nonvanishing.StmtSchoenfeldWindow`](#Nonvanishing-StmtSchoenfeldWindow), [`Nonvanishing.stencilR`](#Nonvanishing-stencilR)
+
+**Fed by** (1 theorem its proof uses)
+
+  - [`Nonvanishing.window_term_le`](#Nonvanishing-window_term_le) — `` (Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : ℝ) - k) / 2) ≤ (Real.log 2 * r / (8 * Real.pi)) * (2 : ℝ) ^ ((r : ℝ) / 2) * ((2 : ℝ) ^… ``
+
+**Feeds** (1 that use it)
+
+  - [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of) — `` stencilR (d + 1) f r ≠ 0 ``
+
+<a name="Nonvanishing-nonvanishing_of"></a>
+### `Nonvanishing.nonvanishing_of`
+
+line 185
+
+**Why.** The arrow. If Schoenfeld holds on the window (`hS`), the smooth main term clears its floor (`hM` — stage 2's target), and the floor beats the error ceiling (`hgap` — O67's `r ≥ R(d)` table), then the depth-`(d+1)` stencil of the counting function does not vanish.
+
+**Proves**
+
+```lean
+stencilR (d + 1) f r ≠ 0
+```
+
+**Needs** (its hypotheses)
+
+  - `` hr : ((d + 1 : ℕ) : ℤ) ≤ r ``
+  - `` hS : StmtSchoenfeldWindow f L r (d + 1) ``
+  - `` hM : Mlow r d ≤ |stencilR (d + 1) L r| ``
+  - `` hgap : Ehigh r (d + 1) < Mlow r d ``
+
+**Stated with:** [`Nonvanishing.Ehigh`](#Nonvanishing-Ehigh), [`Nonvanishing.Mlow`](#Nonvanishing-Mlow), [`Nonvanishing.StmtSchoenfeldWindow`](#Nonvanishing-StmtSchoenfeldWindow), [`Nonvanishing.stencilR`](#Nonvanishing-stencilR)
+
+**Fed by** (2 theorems its proof uses)
+
+  - [`Nonvanishing.error_bound`](#Nonvanishing-error_bound) — `` |stencilR n (fun x => f x - L x) r| ≤ Ehigh r n ``
+  - [`Nonvanishing.stencilR_sub`](#Nonvanishing-stencilR_sub) — `` stencilR n (fun x => f x - L x) r = stencilR n f r - stencilR n L r ``
+
+**Feeds** (1 that use it)
+
+  - [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of) — `` Construction.tableFrom N r d ≠ 0 ``
+
+<a name="Nonvanishing-tableFrom_ne_zero_of"></a>
+### `Nonvanishing.tableFrom_ne_zero_of`
+
+line 201
+
+**Why.** Onto the integer table. If the integer row is the backward difference of a counting function `f` across the window a cell reads (cast to ℝ), then the cell's vanishing is the depth-`(d+1)` stencil of `f` vanishing — so the arrow above forbids it. The cast bridge is `Zeros.tableFrom_eq_stencil` plus `push_cast`.
+
+**Proves**
+
+```lean
+Construction.tableFrom N r d ≠ 0
+```
+
+**Needs** (its hypotheses)
+
+  - `` hrow : ∀ k ∈ range (d + 2), ((N (r - k) : ℤ) : ℝ) = bdiffZ f (r - k) ``
+  - `` hr : ((d + 1 : ℕ) : ℤ) ≤ r ``
+  - `` hS : StmtSchoenfeldWindow f L r (d + 1) ``
+  - `` hM : Mlow r d ≤ |stencilR (d + 1) L r| ``
+  - `` hgap : Ehigh r (d + 1) < Mlow r d ``
+
+**Stated with:** [`Construction.tableFrom`](../lean/Construction.md#Construction-tableFrom), [`Nonvanishing.Ehigh`](#Nonvanishing-Ehigh), [`Nonvanishing.Mlow`](#Nonvanishing-Mlow), [`Nonvanishing.StmtSchoenfeldWindow`](#Nonvanishing-StmtSchoenfeldWindow), [`Nonvanishing.bdiffZ`](#Nonvanishing-bdiffZ), [`Nonvanishing.stencilR`](#Nonvanishing-stencilR)
+
+**Fed by** (3 theorems its proof uses)
+
+  - [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of) — `` stencilR (d + 1) f r ≠ 0 ``
+  - [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row) — `` stencilR d (bdiffZ g) r = stencilR (d + 1) g r ``
+  - [`Zeros.tableFrom_eq_stencil`](../lean/ZerosStencil.md#Zeros-tableFrom_eq_stencil) (ZerosStencil) — `` Construction.tableFrom N r d = stencil d (fun k => N (r - k)) ``
+
+**Definitions its proof touches:** [`Zeros.stencil`](../lean/ZerosStencil.md#Zeros-stencil)
+
+**Feeds** (1 that use it)
+
+  - [`MainTerm.tableFrom_ne_zero_of_deriv`](../lean/MainTerm.md#MainTerm-tableFrom_ne_zero_of_deriv) (MainTerm) — `` Construction.tableFrom N r d ≠ 0 ``
+
