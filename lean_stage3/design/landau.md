@@ -36,7 +36,7 @@ Fix a real `σ₀ > 1`, large. Two readings of `(−1)^k Φ^(k)(σ₀)`:
 
 - from the primes: it is `∫₀^∞ G(e^u) u^k e^(−σ₀u) du` (block 2c). On the window `G ≤ C e^(θu)`,
   so that part is at most `|C|·k!/(σ₀−θ)^(k+1)`. Outside the window a crude
-  bound `|G(e^u)| ≤ A(u+1)e^u` leaves a tail, and for `k` with
+  bound `|G(e^u)| ≤ 2(u+1)²e^u` (block 5) leaves a tail, and for `k` with
   `(k+1)/(σ₀−1)` at the middle of the window the tail is at most
   `k!/(σ₀−1)^(k+1) · e^(−cδ²k)` (slices 4, 5);
 - from the zeros: the Taylor coefficient of `Φ` at `σ₀` is the sum over the
@@ -245,8 +245,34 @@ what is new is the disc form of the pole subtraction.
 `∫₀^∞ u^k e^(−au) du = k!/a^(k+1)`, and the two-sided tail of that integral
 away from `k/a`, as an explicit `e^(−cδ²k)`.
 
-### 5 A crude bound on `G` — SKETCH
-`|G(y)| ≤ A·y·(log y + 1)` for `y ≥ 1`, from Chebyshev; upstream may have it.
+### 5 A crude bound on `G` — PROVED (unit 0387: `LandauCrude.rampSum_nonneg`, `rampSum_le`, `abs_G_le`)
+Objects.   `rampSum`, `G` (`LandauWindow`). `L = log y`.
+Sizes.     `0 ≤ rampSum y ≤ y·L·(1+L)`: each `Λ(n) ≤ log n ≤ L`, each ramp
+           `≤ y/n`, and `Σ_{n ≤ y} 1/n ≤ 1 + L`. Then
+           `|G| ≤ y·L·(1+L) + y·L + 2y ≤ 2y(1+L)²`, since
+           `L² + 2L + 2 ≤ 2L² + 4L + 2`. THE LOST-FACTOR CHECK: the first
+           writing of this block asked for `A·y·(1+L)`, from Chebyshev; this
+           bound carries one more factor `(1+L)`. In the tail of block 4 that
+           is one more power of `u`, a factor polynomial in `k`, against a gap
+           between the tail's rate and the zeros' rate that is strict and
+           exponential in `k` (section 0). Named here; it does not move the
+           size comparison. The sharper bound costs a summation by parts or
+           `log N!` and buys nothing the plan uses.
+Regime.    Y1 `1 ≤ y`.
+Defs.      none.
+Theorems.  `theorem rampSum_nonneg (y : ℝ) : 0 ≤ LandauWindow.rampSum y`
+           `theorem rampSum_le {y : ℝ} (hy : 1 ≤ y) :
+               LandauWindow.rampSum y ≤ y * Real.log y * (1 + Real.log y)`
+           `theorem abs_G_le {y : ℝ} (hy : 1 ≤ y) :
+               |LandauWindow.G y| ≤ 2 * y * (1 + Real.log y) ^ 2`
+             (`γ ≤ 1`: `Real.eulerMascheroniConstant_lt_two_thirds`; `0 < γ`:
+             `Real.one_half_lt_eulerMascheroniConstant`; Y1.)
+Composes.  Mathlib: `ArithmeticFunction.vonMangoldt_le_log`,
+           `ArithmeticFunction.vonMangoldt_nonneg`, `harmonic_le_one_add_log`,
+           `harmonic_eq_sum_Icc` (a `lemma`), `Nat.floor_le`.
+Module.    `Stage3/LandauCrude.lean`, namespace `LandauCrude`,
+           `import Stage3.LandauWindow`. Pinned: all three.
+Open.      none.
 
 ### 6 A trigonometric polynomial with no constant term is positive somewhere in every long block — SKETCH
 Elementary and self-contained: mean zero, mean square positive, bounded.

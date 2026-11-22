@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 5 of `design/landau.md`, `Stage3/LandauCrude.lean`
+
+    DONE        `Stage3/LandauCrude.lean` builds with no `sorry`:
+                `rampSum_nonneg`, `rampSum_le`, and `abs_G_le`, the bound
+                `|G(y)| ≤ 2y(1 + log y)²` for `y ≥ 1`; a formalization unit;
+                block 5 marked PROVED
+    ASSUMED     the bound carries one more factor `(1 + log y)` than the
+                sketch asked for; the block's Sizes line names it and says
+                why the plan's size comparison does not move
+    DEPENDS     Mathlib's `vonMangoldt_le_log` and `harmonic_le_one_add_log`;
+                `Stage3/LandauWindow.lean`
+    OUT         blocks 2c, 3, 4, 6, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0387: three theorems, no `sorry`; the
+                block named one Mathlib lemma wrongly (`γ > 0`), corrected
+
 ### 2026-11-22 · the Landau window: block 2b of `design/landau.md`, `Stage3/LandauMellinG.lean`
 
     DONE        `Stage3/LandauMellinG.lean` builds with no `sorry`: `Phi`,

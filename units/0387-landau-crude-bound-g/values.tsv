@@ -1,0 +1,21 @@
+key	value	source
+module_lines	113	wc -l lean_stage3/Stage3/LandauCrude.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/LandauCrude.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauCrude.lean
+private_lemmas	1	sum_inv_le
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauCrude.lean
+pins	3	rampSum_nonneg, rampSum_le, abs_G_le
+bound_constant	2	the constant in abs_G_le
+bound_power	2	the power of (1 + log y) in abs_G_le
+errors_first	2	first lake build Stage3.LandauCrude, lines error: Stage3/LandauCrude.lean
+roots	1	Real.eulerMascheroniConstant_pos does not exist; Real.one_half_lt_eulerMascheroniConstant does
+cascade	1	the pin of abs_G_le (TRAPS.md row 19)
+builds	2	the first build and the one after the fix
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	1	a name the block got wrong, fixed in the block (LOOP.md section 4b)
+jobs_package	8777	lake build (full Stage3), Build completed successfully
+jobs_module	8656	run/build.log, lake build Stage3.LandauCrude
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#5	a crude bound on G
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
