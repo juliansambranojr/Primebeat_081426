@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-11-22T12:57:12Z
+# unit: 0421-gate-eval
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43716
+  Source: session transcript, 2026-11-22, after unit 0420
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43425
+  theorem routeConst_le : Stage3.routeConst ((2:ℝ) ^ (36:ℕ)) ≤ 414 := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43469
+  theorem gate_ineq {r : ℝ} (hr : 80 ≤ r) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43470
+  414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - 7) / 2))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43471
+  < Real.log 2 ^ 6 / (2 * r * 3 ^ 7) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43515
+  theorem gate_hyp_of_RH (hRH : RiemannHypothesis) {r : ℤ} (hr : 80 ≤ r) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43516
+  ∃ ρ : ℝ, JointDialGate.StmtRelErrWindow
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29437
+  (fun m : ℤ => (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43519
+  + ∫ t in (1 : ℝ)..(m : ℝ), Real.exp (Real.log 2 * t) / t) r (6 + 1) ρ
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43520
+  ∧ ρ < Real.log 2 ^ 6 / (2 * r * 3 ^ (6 + 1)) := by
+
+# 10 found, 0 missing

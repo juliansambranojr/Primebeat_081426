@@ -591,7 +591,7 @@ definition unfolding to that expression. No new mathematics.
 - **E8c** the route's theorem with the three constants named, and a numeral
   above each.
 
-### E9 The Lean gate evaluated — DRAFT for Julian, nothing built
+### E9 The Lean gate evaluated — PROVED in both trees (unit 0421: `GateEval.routeConst_le`, `gate_ineq`, `gate_hyp_of_RH`; unit 0422: `lean/RouteCell.cell_ne_zero_of_route`)
 
 Read 2026-11-22: `lean/Interpolant.tableFrom_ne_zero_of_relErr_liRow` (its
 five hypotheses), `RouteNum.relErrWindow_route_num`, `Stage3.routeConst`,

@@ -14,7 +14,7 @@ statement only: everything else. A proof that was not read is marked by what
 the build says about it and nothing more.
 
     tree           toolchain   modules   theorems and lemmas   sorry
-    lean/          v4.28.0     29        345                   0
+    lean/          v4.28.0     30        346                   0
     lean_stage3/   v4.32.2     76        872                   1
     lean_bridge/   v4.33.0-rc2 1         17                    0
 
@@ -207,3 +207,12 @@ constants is unnamed. Unit 0419 (block E8) substituted them: `EdgeNum`,
 `RouteNum.relErrWindow_route_num` is the route at the gate with no
 existential, and `c1n_le`, `c3n_le`, `c4n_le` put numerals above its three
 inputs. Still under RH.
+
+Units 0421 and 0422 (block E9) evaluated the Lean gate on that route.
+`Stage3/GateEval.gate_hyp_of_RH`: under RH, for every row `r ≥ 80`, the
+gate's window statement and its gap hold at depth six. `lean/RouteCell.
+cell_ne_zero_of_route`: that statement, as a hypothesis in the same
+characters, makes `tableFrom N r 6 ≠ 0`. Read across the two trees: under RH,
+no cell at depth six is zero from row 80 on. The composition is checked by
+no kernel; `StmtRelErrWindow` is welded and the rest of the hypothesis is the
+same text in two files.

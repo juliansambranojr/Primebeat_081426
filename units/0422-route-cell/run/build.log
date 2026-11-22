@@ -1,0 +1,10 @@
+⚠ [8028/8035] Replayed ZerosStencil
+warning: ZerosStencil.lean:298:13: This simp argument is unused:
+  Nat.mem_primeFactors_iff_mem_primeFactorsList
+
+Hint: Omit it from the simp argument list.
+  simp only [N̵a̵t̵.̵m̵e̵m̵_̵p̵r̵i̵m̵e̵F̵a̵c̵t̵o̵r̵s̵_̵i̵f̵f̵_̵m̵e̵m̵_̵p̵r̵i̵m̵e̵F̵a̵c̵t̵o̵r̵s̵L̵i̵s̵t̵,̵
+  ̵ ̵ ̵ ̵ ̵← Nat.support_factorization, Finsupp.mem_support_iff]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Build completed successfully (8035 jobs).

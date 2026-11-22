@@ -1,0 +1,17 @@
+key	value	source
+module_lines	61	wc -l lean/RouteCell.lean
+theorems_proved	1	grep -c ^theorem lean/RouteCell.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean/RouteCell.lean
+pins	1	cell_ne_zero_of_route
+errors_first	0	first lake build RouteCell in lean/
+builds	1	the first build
+jobs_module	8035	run/build.log, lake build RouteCell
+jobs_tree	8056	lake build in lean/, Build completed successfully
+toolchain	4.28.0	lean/lean-toolchain
+modules_lean	30	lean/THEOREMS.md after utilities/theorem_index.py
+theorems_lean	345	lean/THEOREMS.md after utilities/theorem_index.py
+row_min	80	cell_ne_zero_of_route, the hypothesis on r
+depth	6	cell_ne_zero_of_route, the cell's depth
+welds	10	utilities/check_weld.py, unchanged
+broken_welds	0	python3 utilities/check_weld.py

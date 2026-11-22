@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · block E9 built: `Stage3/GateEval.lean` and `lean/RouteCell.lean`
+
+    DONE        Stage 3: `routeConst_le` (`routeConst (2^36) ≤ 414`),
+                `gate_ineq` (the gate's gap for real `r ≥ 80` at depth six),
+                `gate_hyp_of_RH`; table tree: `cell_ne_zero_of_route`; two
+                units; block E9 PROVED
+    ASSUMED     Julian's "E9" is the go-ahead for the draft as written
+    DEPENDS     units 0412, 0419
+    OUT         other depths; any unconditional statement; a weld for the
+                hypothesis of `cell_ne_zero_of_route` (it is a statement
+                inside a theorem, and the weld checker compares definitions)
+    OUTCOME     done as pinned; units 0421 and 0422; each half clean on
+                its first build
+
 ### 2026-11-22 · block E9 of `joints.md`: the Lean gate, read and drafted
 
     DONE        the gate's hypotheses read against the route's theorem; a

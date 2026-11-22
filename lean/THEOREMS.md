@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-344 theorems across 29 modules. Every one carries a
+345 theorems across 30 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -217,7 +217,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `F_hasDerivAt` |  | ℂ floor | **UNTAGGED** |
 | `F_contDiffOn` |  | ℂ floor | **UNTAGGED** |
 | `liRow_contDiff` |  | ℂ floor | **UNTAGGED** |
-| `liRow_eq` |  | ℂ floor | **UNTAGGED** |
+| `liRow_eq` |  | ℂ floor | `NOTEPAD.md`, `PINS.md`, `SECTIONS.md` |
 | `liRow_hasDerivAt` |  | ℂ floor | **UNTAGGED** |
 | `tableFrom_ne_zero_of_relErr_liRow` | The gate with nothing assumed about the main term. | ℂ floor | `NOTEPAD.md`, `SECTIONS.md` |
 
@@ -381,6 +381,12 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `tableFrom_ne_zero_of_relErr_li` | The shape-free gate on the table, main term discharged. | ℂ floor | `SECTIONS.md` |
 | `tableFrom_ne_zero_of_relErr_li'` | The same with the gap reduced to a bound on `ρ` alone. | ℂ floor | **UNTAGGED** |
 | `tableFrom_ne_zero_of_powerSaving` | From a power bound on the rows. | ℂ floor | `SECTIONS.md` |
+
+## RouteCell (1)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `cell_ne_zero_of_route` |  | ℂ floor | `PINS.md` |
 
 ## Schoenfeld (2)
 
