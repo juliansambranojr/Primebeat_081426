@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/JointFloorGate.lean`, block E3 of `joints.md`
+
+    DONE        `weakWindow_relErr` (a weak window is the gate's relative
+                error with an explicit `ρ`), `relErrWindow_floor_of_RH` (the
+                route of unit 0409 carried to `StmtRelErrWindow` on the rows
+                of `π` and `Li`); a unit; the block PROVED
+    ASSUMED     Julian's "Go" after unit 0410 read as: continue on this
+                route; the joint to the gate was the next item listed
+    DEPENDS     units 0402 (`JointDialGate.StmtRelErrWindow`, welded), 0409
+    OUT         nothing in `lean/`; the gate's own theorem is on the other
+                toolchain and is reached by statement text, as joint 5
+    OUTCOME     done as pinned; unit 0411; clean on the first build
+
 ### 2026-11-22 · the gate priced from `floorConstSplit` (unit 0410)
 
     DONE        one script: O68's `R_of` on the constant of

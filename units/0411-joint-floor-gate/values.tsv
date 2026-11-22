@@ -1,0 +1,19 @@
+key	value	source
+module_lines	92	wc -l lean_stage3/Stage3/JointFloorGate.lean
+theorems_proved	2	grep -c ^theorem lean_stage3/Stage3/JointFloorGate.lean
+defs	0	grep -c ^def lean_stage3/Stage3/JointFloorGate.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/JointFloorGate.lean
+pins	2	weakWindow_relErr, relErrWindow_floor_of_RH
+errors_first	0	first lake build Stage3.JointFloorGate
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8796	lake build (full Stage3), Build completed successfully
+jobs_module	8756	run/build.log, lake build Stage3.JointFloorGate
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e3	the route onto the gate
+floor_min	16	relErrWindow_floor_of_RH, the hypothesis on x₀
+welds	10	utilities/check_weld.py, unchanged
+broken_welds	0	python3 utilities/check_weld.py
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

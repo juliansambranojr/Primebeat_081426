@@ -181,3 +181,8 @@ the left edge of the contour enters the explicit formula at its own size,
 `schoenfeldWeak_floor_split_of_RH`. Priced in unit 0410 (EXPLORATORY, floors):
 depth 6 closes at rung 76 of 93 with the radii as built, and the constants
 can grow by a factor 49,000 before depth 6 is lost.
+
+Unit 0411 (`Stage3/JointFloorGate.lean`, `relErrWindow_floor_of_RH`) carries
+that route to `StmtRelErrWindow`, the gate's hypothesis. So section E now
+reaches section C the same way section D does: one line of theorems in
+Stage 3, then the weld of joint 5.

@@ -411,3 +411,25 @@ What stays unnamed after it: `Mc`, `K0` (classically `log 2π`), `W`
 (classically zero), `M0` (zeros below height six, classically none), and the
 compact-patch bound inside `ZetaGrowth.sq_zeta_band_bound`.
 
+### E3 The route onto the gate — PROVED (unit 0411: `JointFloorGate.weakWindow_relErr`, `relErrWindow_floor_of_RH`)
+
+Unit 0409's theorem is a bound on `π − Li` for all `x` above a floor. The
+table's gate takes `StmtRelErrWindow f L r n ρ` (`JointDialGate`, welded to
+`lean/RelativeGate.lean`). Two steps, both already present in kind:
+`Statement.weakWindow_of_global` reads a weak bound at the rows, and a weak
+window is a relative error.
+
+Theorems.
+
+- `weakWindow_relErr`: `0 ≤ C`, `0 ≤ r − n`, `StmtWeakWindow C k f L r n` give
+  `StmtRelErrWindow f L r n (C·(log 2·r)^k·2^(−(r−n)/2))`.
+  Hint: `(r − j) ≤ r` for the logarithm, `j ≤ n` for the power of two.
+- `relErrWindow_floor_of_RH`: under RH there are `c₁, c₃, c₄ ≥ 0` such that for
+  every `x₀ ≥ 16` and every `r, n` with `x₀² ≤ 2^(r−n)` and `0 ≤ r − n`,
+  `StmtRelErrWindow` holds on the rows of `π` and `Li` with
+  `ρ = (3·floorConstSplit c₁ c₃ c₄ 112 0 698 W x₀ + 13)·(log 2·r)·2^(−(r−n)/2)`.
+
+What the next slice needs: nothing on this side. The gate's theorem
+`RelativeLi.tableFrom_ne_zero_of_relErr_li'` is in the table's tree and takes
+this statement; the join is by text (joint 5).
+
