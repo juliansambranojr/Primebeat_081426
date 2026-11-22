@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 6 and the constants: `lean/RelativeLi.lean`, and a trace
+
+    DONE        the v4.28.0 toolchain fetched and `lean/` built in this
+                session; `lean/RelativeLi.lean`, the shape-free gate with its
+                main-term floor discharged, three theorems, no `sorry`,
+                registered in `lean/lakefile.toml`, `lean/THEOREMS.md`
+                regenerated; the trace of the dial's constants to the six
+                existential quantities and the bump; a unit; `joints.md`
+                block 6 and `SECTIONS.md` updated
+    ASSUMED     the unit is a formalization unit outside the Stage-3 loop
+                (no `loop_version`), the module being in `lean/`
+    DEPENDS     `lean/RelativeGate.lean`, `Expansion.lean`, `MainTerm.lean`
+    OUT         the interpolant constructed; the constants made explicit;
+                README's module and theorem counts for `lean/`, which were
+                already behind the index
+    OUTCOME     done as pinned, unit 0403; clean first build
+
 ### 2026-11-22 · joints 3, 4, 5 of `SECTIONS.md`: `Stage3/JointDialGate.lean`
 
     DONE        `lean_stage3/design/joints.md` block 3;

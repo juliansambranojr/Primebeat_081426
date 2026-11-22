@@ -1,0 +1,21 @@
+key	value	source
+module_lines	106	wc -l lean/RelativeLi.lean
+theorems_proved	3	grep -c ^theorem lean/RelativeLi.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean/RelativeLi.lean
+pins	3	tableFrom_ne_zero_of_relErr_li, tableFrom_ne_zero_of_relErr_li', tableFrom_ne_zero_of_powerSaving
+errors_first	0	first lake build RelativeLi in lean/
+jobs_module	8033	run/build.log, lake build RelativeLi
+jobs_tree	8054	lake build in lean/, Build completed successfully
+toolchain	4.28.0	lean/lean-toolchain; fetched into this session for the unit
+modules_lean	28	lean/THEOREMS.md after utilities/theorem_index.py
+theorems_lean	336	lean/THEOREMS.md after utilities/theorem_index.py
+interpolant_hyps	4	grep -c "ContDiff ℝ (⊤ : ℕ∞) G" over lean/*.lean before this unit
+constants_existential	6	ThetaPsi.psi_weak_of_theta: Cclose, C1, C9, B, Cmain, ε₀
+constants_upstream	3	PrimeNumberTheoremAnd/MediumPNT.lean: SmoothedChebyshevClose, I1Bound, I9Bound
+constants_stage3	3	Stage3/LineBound.lean: mellin_bump_bounded (B), mellin_main_const (Cmain, ε₀)
+pi_factor	3	ThetaPi.schoenfeldWeakTheta_of_zeroFree: C = 3·C_ψ + 13
+pi_offset	13	ThetaPi.schoenfeldWeakTheta_of_zeroFree: C = 3·C_ψ + 13
+num_a	66600	ThetaPsi.psi_weak_of_theta, the explicit part of C_ψ
+num_b	900	ThetaPsi.psi_weak_of_theta, the explicit part of C_ψ
+joint	6	SECTIONS.md, joint 6

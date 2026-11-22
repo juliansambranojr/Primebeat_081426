@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-333 theorems across 27 modules. Every one carries a
+336 theorems across 28 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -92,7 +92,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
 | `tableFrom_isTableOf` | `tableFrom` satisfies its own recurrence. | **none** | support |
-| `unique_of_isTableOf` | Uniqueness. | **none** | `Formalization.md`, `README.md`, `The-Four-Zeros.md` |
+| `unique_of_isTableOf` | Uniqueness. | **none** | `Formalization.md`, `README.md`, `SECTIONS.md` +1 |
 | `eq_of_same_row` | Two tables over the same row agree everywhere. | **none** | `Formalization.md`, `The-Four-Zeros.md` |
 | `zero_determined_by_row` | A zero is determined by the row. | propext | `Formalization.md`, `lab_notebook_2.md` |
 | `tableFrom_add` | Differencing is linear, at every depth. | propext | `lab_notebook_2.md` |
@@ -195,7 +195,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `S_floor` | The floor on `S`: in the wedge, `S d x ≥ t₀/2 = (log 2)^d/(2x)`. | ℂ floor | `lab_notebook_2.md` |
 | `F_floor` | The full floor on the closed form: `F d x ≥ (1/2)·2^x·(log 2)^d/x`. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
 | `hD_of_window` | `hD` discharged. | ℂ floor | `The-Four-Zeros.md`, `lab_notebook_2.md` |
-| `tableFrom_ne_zero_of_li` | O67's conditional theorem, with the analysis discharged. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `tableFrom_ne_zero_of_li` | O67's conditional theorem, with the analysis discharged. | ℂ floor | `NOTEPAD.md`, `SECTIONS.md`, `The-Four-Zeros.md` +1 |
 
 ## GeneratorPeak (6)
 
@@ -323,7 +323,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `backward_difference_pow` | The same step inside ℤ, where the table lives: `(1 − b⁻¹)·b^(r) = (b−1)·b^(r−1)`. | propext | `lab_notebook_2.md` |
 | `tableFrom_of_geometric` | The collapse. | propext, Quot.sound | `lab_notebook_2.md` |
 | `tableFrom_add_window` | Linearity, localised. | propext | `lab_notebook_2.md` |
-| `pair_identity` | I1, the pair identity. | propext, Quot.sound | `CONTEXT.md`, `NOTEPAD.md`, `README.md` +4 |
+| `pair_identity` | I1, the pair identity. | propext, Quot.sound | `CONTEXT.md`, `NOTEPAD.md`, `README.md` +5 |
 | `composite_of_prime_zero` | I5, the pole. | propext, Quot.sound | `lab_notebook_2.md` |
 | `coeff_eq_one_iff_base_two` | The corollary. | propext, Quot.sound | `lab_notebook_2.md` |
 | `total_eq_pow_iff_base_two` | The corollary, in the identity's own terms. | propext, Quot.sound | `lab_notebook_2.md` |
@@ -352,20 +352,28 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `relWindow_term_le` | Each windowed relative bound is the top-of-window scale times `2^(−k)`. | ℂ floor | **UNTAGGED** |
-| `relError_bound` | The error bound, shape-free. | ℂ floor | **UNTAGGED** |
-| `relGate_iff` | THE GATE, REDUCED. | ℂ floor | **UNTAGGED** |
-| `relGate_eps` | The threshold as a single constant divided by `log x`: with `log x = r·log 2`, the gate reads `ρ < ε_d / log x` where `ε_d = 0.5·(log 2/3)^(d+1)`. | ℂ floor | **UNTAGGED** |
-| `nonvanishing_of_relErr` | The arrow, with no assumption on the error's shape. | ℂ floor | **UNTAGGED** |
-| `tableFrom_ne_zero_of_relErr` | Onto the integer table, shape-free. | ℂ floor | **UNTAGGED** |
-| `schoenfeldWindow_relErr` | The weld to the RH layer. | ℂ floor | **UNTAGGED** |
-| `powerSaving_relErr` | The power-saving instance. | ℂ floor | **UNTAGGED** |
+| `relWindow_term_le` | Each windowed relative bound is the top-of-window scale times `2^(−k)`. | ℂ floor | `lab_notebook_2.md` |
+| `relError_bound` | The error bound, shape-free. | ℂ floor | `lab_notebook_2.md` |
+| `relGate_iff` | THE GATE, REDUCED. | ℂ floor | `NOTEPAD.md`, `SECTIONS.md`, `lab_notebook_2.md` |
+| `relGate_eps` | The threshold as a single constant divided by `log x`: with `log x = r·log 2`, the gate reads `ρ < ε_d / log x` where `ε_d = 0.5·(log 2/3)^(d+1)`. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
+| `nonvanishing_of_relErr` | The arrow, with no assumption on the error's shape. | ℂ floor | `lab_notebook_2.md` |
+| `tableFrom_ne_zero_of_relErr` | Onto the integer table, shape-free. | ℂ floor | `SECTIONS.md`, `lab_notebook_2.md` |
+| `schoenfeldWindow_relErr` | The weld to the RH layer. | ℂ floor | `lab_notebook_2.md` |
+| `powerSaving_relErr` | The power-saving instance. | ℂ floor | `PINS.md`, `SECTIONS.md`, `lab_notebook_2.md` |
+
+## RelativeLi (3)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `tableFrom_ne_zero_of_relErr_li` | The shape-free gate on the table, main term discharged. | ℂ floor | **UNTAGGED** |
+| `tableFrom_ne_zero_of_relErr_li'` | The same with the gap reduced to a bound on `ρ` alone. | ℂ floor | **UNTAGGED** |
+| `tableFrom_ne_zero_of_powerSaving` | From a power bound on the rows. | ℂ floor | **UNTAGGED** |
 
 ## Schoenfeld (2)
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `window_of_global` | The bridge: the global sentence implies the bench-shaped window hypothesis whenever the window bottom clears `12`, since `2^12 = 4096 ≥ 2657`. | ℂ floor | `NOTEPAD.md`, `The-Four-Zeros.md`, `lab_notebook_2.md` |
+| `window_of_global` | The bridge: the global sentence implies the bench-shaped window hypothesis whenever the window bottom clears `12`, since `2^12 = 4096 ≥ 2657`. | ℂ floor | `NOTEPAD.md`, `SECTIONS.md`, `The-Four-Zeros.md` +1 |
 | `tableFrom_ne_zero_of_schoenfeld` | The arrow, with the literature sentence as its one analytic input. | ℂ floor | `CONTEXT.md`, `NOTEPAD.md`, `The-Four-Zeros.md` +1 |
 
 ## SeedPerturbation (20)
@@ -399,7 +407,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 |---|---|---|---|
 | `bdiff_sum` | `bdiff` distributes over a finite sum. | ℂ floor | `lab_notebook_2.md` |
 | `A4_sum_of_A1` | The licence. | ℂ floor | support |
-| `depth_reweights_each_mode` | Corollary — the falsifiable form. | ℂ floor | `lab_notebook_2.md` |
+| `depth_reweights_each_mode` | Corollary — the falsifiable form. | ℂ floor | `SECTIONS.md`, `lab_notebook_2.md` |
 | `tableFrom_eq_modeSum_reweighted` | The table is a superposition, reweighted by depth. | ℂ floor | `CONTEXT.md`, `NOTEPAD.md`, `lab_notebook_2.md` |
 
 ## TransferOp (7)
@@ -491,7 +499,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `zero_4_1` | `(4,1)` vanishes: `1·2 − 1·2 = 0`. | **none** | `lab_notebook_2.md` |
 | `zero_8_3` | `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`. | **none** | `lab_notebook_2.md` |
 | `zero_20_6` | `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning `2^13` to `2^20`. | **none** | `lab_notebook_2.md` |
-| `measured_zeros_all_vanish` | The list's own claim, as a theorem. | **none** | `CONTEXT.md`, `README.md`, `The-Four-Zeros.md` +1 |
+| `measured_zeros_all_vanish` | The list's own claim, as a theorem. | **none** | `CONTEXT.md`, `README.md`, `SECTIONS.md` +2 |
 | `nonzero_7_3` | A non-zero neighbour, so the check can fail. | **none** | `lab_notebook_2.md` |
 | `nonzero_19_6` | The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`. | **none** | `lab_notebook_2.md` |
 | `four_zeros_only` | Four zeros in 1953 cells. | **none** | support |

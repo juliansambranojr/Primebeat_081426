@@ -290,3 +290,26 @@ Module.    `Stage3/JointDialGate.lean`, namespace `JointDialGate`. Pinned:
 Open.      joint 6's side conditions in the table's tree (`hM`, `hgap`), and that
            `A`, `x₀` are not explicit.
 
+### 6 The gate's last hop, and the constants — PROVED in `lean/` (unit 0403: `RelativeLi.tableFrom_ne_zero_of_relErr_li`, `tableFrom_ne_zero_of_relErr_li'`, `tableFrom_ne_zero_of_powerSaving`)
+This block is the table tree's, on its own toolchain; it is recorded here
+because it closes the stretch block 3 opened.
+Built.     `lean/RelativeLi.lean`: `RelativeGate.tableFrom_ne_zero_of_relErr` with
+           its floor `hM` discharged by `MainTerm.stencilR_ge_of` and
+           `Expansion.hD_of_window`. The inlet `tableFrom_ne_zero_of_powerSaving`
+           is the statement block 3 reaches.
+Found.     (i) the interpolant `G` (smooth on the line, `G' = 2^x/x` beyond `1/2`)
+           is a hypothesis of every gate theorem and is constructed in no file;
+           (ii) Stage 3's `Li` is `x/log x + ∫₂^x 1/log²`, the right derivative
+           along the doublings, a constant off `∫ 1/log`;
+           (iii) the floor holds for `2d ≤ log 2·(r − d − 1)`.
+Constants. `psi_weak_of_theta`: `C_ψ = Cclose + C1 + C9 + 66600·e·B/π + 2·900·e·B/π
+           + Cmain + 1`, floor `max(exp(2/(1−θ)+6), 16, (1/ε₀)^(1/(1−θ)) + 1)`.
+           Existential: the bump `ν` (`LineBound.bump_exists`, from upstream's
+           `SmoothExistence`); `B` (`mellin_bump_bounded`, compactness); `Cmain`,
+           `ε₀` (`mellin_main_const`, from a big-O); `Cclose`, `C1`, `C9`
+           (upstream `SmoothedChebyshevClose`, `I1Bound`, `I9Bound`, each stated
+           "∃ C"). Then `C = 3·C_ψ + 13` on the `π` side and block 3's
+           `A = C/(2(θ'−θ)/6)²`. A number needs an explicit bump and the six
+           bounds reproved with constants.
+Open.      the interpolant as a theorem; the six constants.
+

@@ -14,7 +14,7 @@ statement only: everything else. A proof that was not read is marked by what
 the build says about it and nothing more.
 
     tree           toolchain   modules   theorems and lemmas   sorry
-    lean/          v4.28.0     27        334                   0
+    lean/          v4.28.0     28        337                   0
     lean_stage3/   v4.32.2     76        872                   1
     lean_bridge/   v4.33.0-rc2 1         17                    0
 
@@ -92,7 +92,7 @@ not in any tree; what it must say is written out.
 | 3 | D → the dyadic rows at exponent `θ` | SEALED (unit 0402, `JointDialGate.thetaWindow_of_global`). |
 | 4 | the logarithm into the exponent | SEALED (unit 0402, `JointDialGate.log_absorbed`): `C·x^θ·(log x)^k ≤ A·x^θ'` for any `θ' > θ`, `x ≥ 1`. |
 | 5 | D (v4.32) → C (v4.28): `StmtRelErrWindow` | WELD, in `check_weld.py` (ten welds); `powerSaving_relErr` reproved in Stage 3, and `relErrWindow_of_window` carries a window bound on `G` to the gate's statement on the rows of `π` and `Li` (unit 0402). |
-| 6 | C inside: `StmtRelErrWindow` and the gap → cell `≠ 0` | SEALED in `lean/` (`tableFrom_ne_zero_of_relErr`, `relGate_iff`). It also asks `hM`, a lower bound on the main term's stencil, and `hrow`, that the row is the count. Whether `L = Li` at the dyadic points meets `hM` as stated was not checked. |
+| 6 | C inside: `StmtRelErrWindow` and the gap → cell `≠ 0` | SEALED in `lean/`, with the main-term floor discharged (unit 0403, `RelativeLi.tableFrom_ne_zero_of_relErr_li`; `tableFrom_ne_zero_of_powerSaving` is the statement joint 5 reaches). Left as hypotheses: the smooth interpolant `G` of the main term, constructed in no file; the region `2d ≤ log 2·(r − d − 1)`. |
 | 7 | D ↔ C at the RH shape: `StmtSchoenfeldWindow`, `StmtSchoenfeld` | WELD, in `check_weld.py`; Stage 3 reproves `window_of_global` on its side. |
 | 8 | F → zeta23: `StmtWeilBridge` and five definitions | WELD, in `check_weld.py`; proved in `lean_bridge`. |
 | 9 | B ↔ D: the table of `G` and the zeros | FORWARD, on the transform: SEALED (unit 0401, `JointSymbol`): differencing `G` along the doublings `d` times multiplies its transform by the symbol `(1 − 2^(−s))^d`, and each zero's pole is reweighted by the symbol at that zero to the power `d`. Forward, pointwise (the cell as a sum over the zeros): OPEN, needs the explicit formula for `G`. CONVERSE (a bound on the cells forces a zero-free region): OPEN; derived only when the largest real part of a zero is attained (`lean_stage3/design/joints.md`, block 9 and its two corrections). |
@@ -116,3 +116,14 @@ Two things about that last line, both from the files:
 
 The direction from the table to ζ, a fact about cells that forces a zero-free
 half-plane, is joint 10 and joint 9. Neither has a statement yet.
+
+## The constants
+
+`A` and `x₀` in the stretch from `G` to the gate are existential. The trace
+(unit 0403): the dial's constant is a sum with an explicit part and six
+quantities taken from existence statements, three in `Stage3/LineBound.lean`
+(about the smoothing bump) and three in the upstream package
+(`SmoothedChebyshevClose`, `I1Bound`, `I9Bound`); the bump itself is
+existential. A named row past which the gate closes needs those made
+explicit. Not started.
+
