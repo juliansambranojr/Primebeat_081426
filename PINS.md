@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 4a of `design/landau.md`, `Stage3/LandauKernel.lean`
+
+    DONE        `Stage3/LandauKernel.lean` builds with no `sorry`:
+                `log_pow_le`, `log_pow_integrable`, and `log_pow_integral`,
+                `∫₁^∞ (log y)^k y^(−a−1) dy = k!/a^(k+1)` for `a > 0`; a
+                formalization unit; block 4a marked PROVED
+    ASSUMED     the statements of block 4a as written in the worksheet; any
+                hypothesis the build adds is reported here
+    DEPENDS     Mathlib's improper integrals and `Real.log_le_rpow_div`
+    OUT         block 4b (the tail); blocks 2c, 3, 6, 7; no claim about the
+                window bound or RH
+    OUTCOME     done as pinned, unit 0389: three theorems, no `sorry`, no
+                hypothesis added; TRAPS row 43 added
+
 ### 2026-11-22 · the Landau worksheet: blocks 2c, 4, 6, 7 checked against the trees
 
     DONE        `lean_stage3/design/landau.md` updated: section 0b lists the

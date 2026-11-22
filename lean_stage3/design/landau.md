@@ -272,13 +272,33 @@ rate, by Cauchy's estimate on a circle through no pole. The largest slice.
 A real zero in `(0, 1)` is allowed (section 0). The pieces are in section 0b;
 what is new is the disc form of the pole subtraction.
 
-### 4a The kernel's integral — SKETCH
-For `a > 0`: `∫₁^∞ (log y)^k y^(−a−1) dy = k!/a^(k+1)`, which is
-`∫₀^∞ u^k e^(−au) du` after `y = e^u`. Kept in the variable `y`, where blocks
-2b and 2c live, so that no change of variables is needed: induction on `k`,
-each step an integration by parts with the primitive method of
-`LandauMellinG.log_cpow_integral` (the case `k = 1`). With its integrability.
-Block 2c needs this one.
+### 4a The kernel's integral — PROVED (unit 0389: `LandauKernel.log_pow_le`, `log_pow_integrable`,
+`log_pow_integral`)
+Objects.   `L = log y`, `a > 0` real, `k` a natural number. The kernel
+           `L^k·y^(−a−1)` on `(1, ∞)`: it is `u^k e^(−au)` after `y = e^u`, kept
+           in the variable `y`, where blocks 2b and 2c live.
+Sizes.     an identity: `∫₁^∞ L^k y^(−a−1) dy = k!/a^(k+1)`. For integrability
+           and the limit at infinity, `L^n ≤ y^(a/2)/ε^n` with
+           `ε = a/(2(n+1))`, from `log y ≤ y^ε/ε`; the constant `ε^(−n)` grows
+           with `n` and is used for integrability and a limit only, never in
+           a bound that is kept. Lost factor: none.
+Regime.    A1 `0 < a`. Y1 `1 ≤ y` where a pointwise bound is stated.
+Defs.      none.
+Theorems.  `theorem log_pow_le {a : ℝ} (ha : 0 < a) (n : ℕ) {y : ℝ} (hy : 1 ≤ y) :
+               Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n`
+           `theorem log_pow_integrable {a : ℝ} (ha : 0 < a) (n : ℕ) :
+               IntegrableOn (fun y : ℝ => Real.log y ^ n * y ^ (-a - 1)) (Ioi 1)`
+           `theorem log_pow_integral {a : ℝ} (ha : 0 < a) (k : ℕ) :
+               ∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial / a ^ (k + 1)`
+             (induction on `k`: `F(y) = −L^(k+1) y^(−a)/a` has derivative
+             `L^(k+1) y^(−a−1) − ((k+1)/a)·L^k y^(−a−1)`, vanishes at `1` and
+             tends to `0`; A1.)
+Composes.  Mathlib: `Real.log_le_rpow_div` (a `lemma`), `integrableOn_Ioi_rpow_of_lt`,
+           `integral_Ioi_rpow_of_lt`, `integral_Ioi_of_hasDerivAt_of_tendsto'`,
+           `tendsto_rpow_neg_atTop`, `Real.hasDerivAt_rpow_const`, `Real.hasDerivAt_log`.
+Module.    `Stage3/LandauKernel.lean`, namespace `LandauKernel`, `import Mathlib`.
+           Pinned: all three.
+Open.      none.
 
 ### 4b The kernel off the window — SKETCH
 The two-sided tail of the same integral away from `log y = k/a`, as an
