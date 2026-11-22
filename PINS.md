@@ -22,6 +22,25 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the explicit-formula route, priced (unit 0404)
+
+    DONE        a unit holding one script and its JSON: O68's `R_of` imported
+                and run on the `√x·log x` shape that
+                `Assembly.psiWeak_of_RH_EF_NT` reaches through
+                `PsiToPi.schoenfeldWeak_of_psiWeak`; the ceiling for depth 6;
+                lower bounds for `Ch`, `Cs` read off `Stage3/EdgeBound.lean`
+                and `Stage3/Glue.lean`; `SECTIONS.md` "The constants"
+                corrected; a NOTEPAD line
+    ASSUMED     EXPLORATORY, no prereg. The lower bounds drop every term the
+                files prove non-negative and use `A > 5`; they bound the
+                constant the Lean proof produces, they say nothing about the
+                best constant
+    DEPENDS     O68_weak_bound_tolerance.py unchanged; unit 0365 (`rvM_crude`);
+                entry 271 (`stmtEF_poly`)
+    OUT         no Lean, no change to any proof, no verdict
+    OUTCOME     done as pinned; the route's fixed numerals fit under the
+                ceiling, its contour constant does not
+
 ### 2026-11-22 · the dial's constants: a correction, and nothing built
 
     DONE        `SECTIONS.md` "The constants", `joints.md` block 6 and unit

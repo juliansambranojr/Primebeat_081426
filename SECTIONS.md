@@ -137,6 +137,19 @@ in the notes. Read 2026-11-22, after the trace above was written without it:
   irrelevant".
 So making the remaining five quantities explicit would give a number, and
 that number is already known to be too large by a factor of several hundred
-for the gate to close inside the computed table. The route that the notes
-record as clearing the ceiling is the explicit-formula one (entry 233,
-`C_π = 2604.6`, a paper propagation, not a Lean constant).
+for the gate to close inside the computed table. Entry 233's `C_π = 2604.6`
+is a paper propagation of that same contour route, in
+`results/scratch_lean/constants.py`; entry 283 says the Lean chain is a
+different and lossier assembly.
+
+The other route is in section E and was priced on 2026-11-22 (unit 0404,
+EXPLORATORY). `Assembly.psiWeak_of_RH_EF_NT`, `Glue.stmtEF_poly`,
+`ArgCount.rvM_crude` and `PsiToPi.schoenfeldWeak_of_psiWeak` are four proved
+theorems that no theorem composes. Together they land on `√x·log x`, one
+logarithm fewer, and on that shape the ceiling for depth 6 is `C_π` about
+170,212. The numerals the route fixes come to 87,064 and fit. Its three
+unnamed constants do not: `Ch` is at least `1.2·10^10`, from the cube of the
+gap between the radii `23/25` and `22/25` in `EdgeBound.gz_partial_fraction`
+and a factor 3418.5 in `Glue.zeta_logderiv_good_bound`. Both are fixed
+constants of the proof as written, and the unit leaves open whether the
+radii can be freed as entry 233 freed one on the contour route.

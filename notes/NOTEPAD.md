@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0404 EXPLORATORY: the hEF route (psiWeak_of_RH_EF_NT + stmtEF_poly + rvM_crude, never composed) lands on sqrt(x) log x, where depth 6 holds to C_pi ~ 170,212; its fixed numerals give 87,064 and fit; Ch >= 1.2e10 does not (radii 23/25, 22/25 cubed in gz_partial_fraction, x3418.5 in zeta_logderiv_good_bound). Radii not yet tried freed
 - [open]   2026-11-22  CORRECTION to unit 0403's trace: the tree has had a concrete bump since entry 283 (ExplicitBump.lean, bump <= 1.4757) and entry 283 already carried it through: C_pi >= 963,567 vs the 2640.5 ceiling of entry 233. Explicit constants on the dial's route are known too large. No Lean changed
 - [open]   2026-11-22  unit 0403: lean/RelativeLi.lean (v4.28, 3 theorems): the shape-free gate with its main-term floor discharged; joint 6 sealed up to the interpolant G (hypothesis everywhere, constructed nowhere). Trace: the dial's constants rest on 6 existential quantities (3 Stage 3, 3 upstream) and an existential bump
 - [open]   2026-11-22  unit 0402: JointDialGate.lean, joints 3, 4, 5 of SECTIONS.md SEALED: a window bound on G at theta gives, for any theta' in (theta, 1], the gate's StmtRelErrWindow on the rows of pi and Li with relative error A·2^((r-n)(theta'-1)); StmtRelErrWindow welded (10 welds); A, x0 existential
