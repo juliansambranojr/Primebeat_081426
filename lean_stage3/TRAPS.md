@@ -54,6 +54,7 @@ build, 2026-09-08.
 | 41 | `convert h using 1` on a `HasDerivAt` built with `.mul`, `.sub` leaves a goal `addCommGroup = …toAddCommGroup` and the next `rw` finds no pattern | the built function is a `Pi` product and difference, and `convert` descends into instances before the derivative | restate: `have h2 : HasDerivAt <named fn> <the derivative as built> y := h`, then `h2.congr_deriv` and the algebra (unit 0386) |
 | 42 | `rw [integral_add (hA.sub hB) hC]` reports the pattern `∫ (f - g) a + …` not found | `Integrable.sub` is stated for the `Pi` difference `f - g`; the goal has `fun y => f y - g y` | pass the function: `integral_add (f := fun y => f y - g y) (hA.sub hB) hC` (unit 0386) |
 | 43 | after `HasDerivAt.pow` the algebra goal keeps `(Real.log ^ (1 + k)) y` beside `Real.log y ^ k` and `ring` does not close it | `.pow` builds the function as a `Pi` power `Real.log ^ n`; `ring` treats its application as an atom | `simp only [Pi.pow_apply]` before the algebra (unit 0389) |
+| 44 | a `have` whose statement is `∫ y in s, f y + c * ∫ y in s, g y` leaves `unsolved goals` with the right side printed as one integral | the integral binder extends to the end of the line: the statement parsed as `∫ y in s, (f y + c * ∫ …)` | parenthesize each integral: `(∫ y in s, f y) + c * (∫ y in s, g y)` (unit 0396) |
 
 ## Bench and gate traps
 

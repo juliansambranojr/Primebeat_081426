@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0396: block 7 of landau.md designed in the worksheet and split into 7a-7d; LandauPrimeSide.lean, block 7a PROVED: Ik (the primes' reading) <= window term + two tail terms, from G <= C y^theta on a window and G <= 8y; next: 7b (zeros' reading from below), 7c (rates), 7d
 - [open]   2026-11-22  unit 0395: LandauPoleDisc.lean, block 3b2 of landau.md PROVED, closing block 3: the k-th derivative of `Phi` at a regular centre = the sum over zeros in a disc of m/(rho(1-rho))·(-1)^k k! (c-rho)^(-1-k), up to k!·C/R^k; only block 7, the assembly, remains
 - [open]   2026-11-22  unit 0394: LandauPoleSub.lean, block 3b1 of landau.md PROVED (3b split into 3b1, 3b2): finitely many simple poles subtracted on an open set, Taylor coefficients = poles' sum up to k!·C/R^k; no zeta in it; next: 3b2 (`Phi` on a disc), then 7
 - [open]   2026-11-22  unit 0393: LandauPoleLocal.lean, block 3a of landau.md PROVED (block 3 split into 3a, 3b): `Phi` has a simple pole of residue m/(rho(1-rho)) at each zero rho != 0, 1 and is regular at 1; next: 3b (the disc and the Taylor coefficients), then 7

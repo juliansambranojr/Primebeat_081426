@@ -1,0 +1,22 @@
+key	value	source
+module_lines	183	wc -l lean_stage3/Stage3/LandauPrimeSide.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/LandauPrimeSide.lean
+defs	1	grep -c ^def lean_stage3/Stage3/LandauPrimeSide.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauPrimeSide.lean
+pins	3	Ik_integrable, iteratedDeriv_Phi_eq_Ik, Ik_le
+errors_first	8	first lake build Stage3.LandauPrimeSide, lines error: Stage3/LandauPrimeSide.lean
+roots	3	dot notation on an unfolded Integrable; IntegrableOn.integrable_indicator where Integrable.indicator was meant; unparenthesized integrals in a have
+cascade	5	the errors and pins downstream of the three roots
+builds	4	the first build, two after fixes, and one to read a goal
+traps_added	1	lean_stage3/TRAPS.md row 44
+trap_row	44	lean_stage3/TRAPS.md
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8787	lake build (full Stage3), Build completed successfully
+jobs_module	8676	run/build.log, lake build Stage3.LandauPrimeSide
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#7a	the primes' reading, from above
+bound_constant	8	the constant of LandauChebyshev.G_le
+terms	3	Ik_le: the window term and the two tails
+subblocks	4	landau.md#7: blocks 7a to 7d
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

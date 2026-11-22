@@ -627,7 +627,8 @@ negative, and constants `C₁, C, 8, τ, N₀` that depend on `σ₀` and `ρ₀
 The rates of unit 0391's hand check (`δ²/12`, `δ²/48`) were for a different
 choice of `b` and of the range; the ones above supersede them.
 
-### 7a The primes' reading, from above — SKETCH
+### 7a The primes' reading, from above — PROVED (unit 0396: `LandauPrimeSide.Ik_integrable`,
+`iteratedDeriv_Phi_eq_Ik`, `Ik_le`)
 `Ik σ k := ∫ y in Ioi 1, G y · (log y)^k · y^(−σ−1)`. For `1 < σ`, `θ < σ`, `0 ≤ C`,
 `1 ≤ Y`, `0 ≤ δ`, `G y ≤ C·y^θ` on `Icc Y (Y^(1+δ))`, `0 < b`, `0 < b' < σ − 1`:
 `Ik σ k ≤ C·k!/(σ−θ)^(k+1) + 8·Y^b·k!/(σ−1+b)^(k+1) + 8·(Y^(1+δ))^(−b')·k!/(σ−1−b')^(k+1)`.

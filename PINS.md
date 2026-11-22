@@ -37,6 +37,8 @@ below with their outcome.
     DEPENDS     units 0388, 0389, 0390, 0391
     OUT         blocks 7b, 7c, 7d; `StmtLandauWindow` stays a leaf; no claim
                 about the window bound or RH
+    OUTCOME     done as pinned, unit 0396: three theorems, no `sorry`, no
+                hypothesis added; TRAPS row 44 added
 
 ### 2026-11-22 · the Landau window: block 3b2 of `design/landau.md`, `Stage3/LandauPoleDisc.lean`
 
