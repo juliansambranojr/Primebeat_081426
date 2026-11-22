@@ -359,7 +359,7 @@ What the next slice needs: `c₁`, `c₂` as definitions with numerals, which
 needs the three compactness constants bounded; and the gate read on the
 `√x·log x` shape (`Statement.weakWindow_of_global`).
 
-### E2 The left edge at its own size — DRAFT for Julian, nothing built
+### E2 The left edge at its own size — PROVED (unit 0409: `GlueFloor.edge_left_sharp`, `explicit_formula_split`, `stmtEF_split`, `psiWeak_floor_split`, `schoenfeldWeak_floor_split_of_RH`)
 
 Read 2026-11-22: `Glue.edge_left_bound` (lines 557–949) and its use in
 `Glue.explicit_formula_poly` (the last `calc`, lines 1170–1192).

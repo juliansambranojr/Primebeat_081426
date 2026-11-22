@@ -143,3 +143,5 @@ other by proof irrelevance), `Finset.le_max'`, `Finset.mem_Icc`,
 `Finset.sum_const`, `smul_eq_mul` (a `lemma`, `Algebra/Group/Action/Defs`),
 `pow_add`, `Nat.sub_add_cancel`, `Nat.mul_le_mul_right` (the multiplier `k`
 explicit and first: `Nat.mul_le_mul_right k h`), `pow_nonneg`, `mul_le_mul`.
+`Real.rpow_le_rpow_of_nonpos` (a `lemma`: `0 < x → x ≤ y → z ≤ 0 → y ^ z ≤ x ^ z`;
+there is no `rpow_le_rpow_of_exponent_nonpos`, unit 0409).

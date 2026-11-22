@@ -114,6 +114,7 @@ import Stage3.VonKochScaffold
 import Stage3.ZetaGrowth
 import Stage3.ContourShift
 import Stage3.AssemblyFloor
+import Stage3.GlueFloor
 
 namespace Stage3
 

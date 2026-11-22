@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/GlueFloor.lean`, block E2 of `joints.md`
+
+    DONE        `edge_left_sharp`, `explicit_formula_split`,
+                `StmtExplicitFormulaSplit`, `stmtEF_split`,
+                `psiWeak_floor_split`, `schoenfeldWeak_floor_split_of_RH`;
+                a unit; the block PROVED
+    ASSUMED     three of the proofs are copies with the closing lines
+                changed; the constants stay existential
+    DEPENDS     units 0407, 0408; `Glue.edge_left_bound`,
+                `Glue.explicit_formula_poly`
+    OUT         `Glue.lean`, `Assembly.lean`, `AssemblyFloor.lean` untouched;
+                no pricing in this unit; no numeral
+    OUTCOME     done as pinned; unit 0409; clean on the second build
+
 ### 2026-11-22 · block E2 of `joints.md`: the left edge, read and drafted
 
     DONE        `Glue.edge_left_bound` and its use in `explicit_formula_poly`

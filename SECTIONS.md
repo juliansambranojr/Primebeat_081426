@@ -174,3 +174,8 @@ Unit 0407 built it: `Stage3/AssemblyFloor.lean`, `psiWeak_floor` and
 is now one theorem, with `C(x₀) = 3·floorConst + 13` an explicit function of
 the floor, of the band's numerals, and of the two explicit-formula constants,
 which remain existential.
+
+Unit 0409 (`Stage3/GlueFloor.lean`) removed the last of the three roundings:
+the left edge of the contour enters the explicit formula at its own size,
+`72·D·log²x·x^(−1/4)`, and the route's theorem is now
+`schoenfeldWeak_floor_split_of_RH`. Its pricing is not yet logged.
