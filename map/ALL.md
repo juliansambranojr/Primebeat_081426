@@ -72,6 +72,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`EdgeBound.ball_order_sum_le_num`](./lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num) | theorem | reads ζ | `EdgeNum` | ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C2n * Real.log T' |
 | [`EdgeBound.ball_zero_shape`](./lean_stage3/EdgeBound.md#EdgeBound-ball_zero_shape) | theorem | reads ζ | `EdgeBound` | riemannZeta w = 0 ∧ (0 &lt; w.re ∧ w.re &lt; 1) ∧ \|w.im - T'\| ≤ 46/25 |
 | [`WeilBands.band_count`](./lean_stage3/WeilBands.md#WeilBands-band_count) | theorem | reads ζ | `WeilBands` | ∑ ρ ∈ S, (analyticOrderNatAt riemannZeta ρ : ℝ) ≤ 15 * Real.log T + 73 |
+| [`DeepZeroBand.band_in_annulus`](./lean/DeepZeroBand.md#DeepZeroBand-band_in_annulus) | theorem | shape | `DeepZeroBand` | b ^ (-(1 : ℝ)) ≤ ‖(b : ℂ) ^ (-(x : ℂ))‖ ∧ ‖(b : ℂ) ^ (-(x : ℂ))‖ ≤ 1 |
 | [`Glue.band_order_sum_le`](./lean_stage3/Glue.md#Glue-band_order_sum_le) | theorem | reads ζ | `Glue` | ∃ C : ℝ, 0 &lt; C ∧ ∀ T : ℝ, 2 ≤ T → ∀ F : Finset ℂ, (∀ ρ ∈ F, riemannZeta ρ = 0 ∧ (0 &lt; ρ.re ∧ ρ.re &lt; 1) ∧ T ≤ \|ρ.im\| ∧ \|ρ.im\| ≤ T + 1) → (∑ ρ ∈ F, (analyticOrderNatAt riemannZeta ρ : ℝ)) ≤ C * Real.log … |
 | [`Glue.band_order_sum_le_num`](./lean_stage3/GlueNum.md#Glue-band_order_sum_le_num) | theorem | reads ζ | `GlueNum` | ∀ T : ℝ, 2 ≤ T → ∀ F : Finset ℂ, (∀ ρ ∈ F, riemannZeta ρ = 0 ∧ (0 &lt; ρ.re ∧ ρ.re &lt; 1) ∧ T ≤ \|ρ.im\| ∧ \|ρ.im\| ≤ T + 1) → (∑ ρ ∈ F, (analyticOrderNatAt riemannZeta ρ : ℝ)) ≤ Csn * Real.log T |
 | [`WeilBands.band_sum_le`](./lean_stage3/WeilBands.md#WeilBands-band_sum_le) | theorem | reads ζ | `WeilBands` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ M * (15 * Real.log T + 73) |
@@ -206,7 +207,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.completed_eq_gammaR_mul_zeta'`](./lean_stage3/ArgIdentity.md#Stage3-completed_eq_gammaR_mul_zeta-) | theorem | reads ζ | `ArgIdentity` | completedRiemannZeta s = Gammaℝ s * riemannZeta s |
 | [`Stage3.completedZeta₀_conj`](./lean_stage3/ArgIdentity.md#Stage3-completedZeta-_conj) | theorem | reads ζ | `ArgIdentity` | completedRiemannZeta₀ (conj s) = conj (completedRiemannZeta₀ s) |
 | [`PairIdentity.composite_at_zero_20_6`](./lean/PairIdentity.md#PairIdentity-composite_at_zero_20_6) | theorem | counting | `PairIdentity` | tableFrom C 20 6 = 8192 |
+| [`DeepZeroBand.composite_cell_20_6`](./lean/DeepZeroBand.md#DeepZeroBand-composite_cell_20_6) | theorem | counting | `DeepZeroBand` | tableFrom compRow 20 6 = 8192 |
 | [`PairIdentity.composite_of_prime_zero`](./lean/PairIdentity.md#PairIdentity-composite_of_prime_zero) | theorem | counting | `PairIdentity` | tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e |
+| [`DeepZeroBand.compRow`](./lean/DeepZeroBand.md#DeepZeroBand-compRow) | def | counting | `DeepZeroBand` | ℤ → ℤ |
 | [`Propagation.cone_filled`](./lean/Propagation.md#Propagation-cone_filled) | theorem | counting | `Propagation` | tableFrom (deltaRow s) (s + (k : ℤ)) d ≠ 0 |
 | [`EulerFactorChain.conj_factor_on_critical_line`](./lean/EulerFactorChain.md#EulerFactorChain-conj_factor_on_critical_line) | theorem | shape | `EulerFactorChain` | (starRingEnd ℂ) (1 - (b : ℂ) ^ (-((1 : ℂ)/2 + t * I))) = 1 - (b : ℂ) ^ (((1 : ℂ)/2 + t * I) - 1) |
 | [`WeilOnLine.conj_mem`](./lean_stage3/WeilOnLine.md#WeilOnLine-conj_mem) | theorem | reads ζ | `WeilOnLine` | (starRingEnd ℂ) (ρ : ℂ) ∈ Kadiri.NontrivialZeros |
@@ -287,6 +290,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGauss.D_pos`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-D_pos) | theorem | shape | `WeilPowerGauss` | 0 &lt; D m |
 | [`JointSymbol.dd`](./lean_stage3/JointSymbol.md#JointSymbol-dd) | def | shape | `JointSymbol` | ℝ → ℂ |
 | [`JointSymbol.dd_iter_rule`](./lean_stage3/JointSymbol.md#JointSymbol-dd_iter_rule) | theorem | shape | `JointSymbol` | (dd^[d + 1] f) y = (dd^[d] f) y - (dd^[d] f) (y / 2) |
+| [`DeepZeroBand.deep_cell_15_6`](./lean/DeepZeroBand.md#DeepZeroBand-deep_cell_15_6) | theorem | counting | `DeepZeroBand` | tableFrom Zeros.dyadicRow 15 6 = -112 |
+| [`DeepZeroBand.deep_zero_inverse_on_inner_circle`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_inverse_on_inner_circle) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-((share compRow 20 6 13 : ℝ) : ℂ))‖ = b ^ (-(1 : ℝ)) |
+| [`DeepZeroBand.deep_zero_inverse_share`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_inverse_share) | theorem | shape | `DeepZeroBand` | share compRow 20 6 13 = 1 |
+| [`DeepZeroBand.deep_zero_on_outer_circle`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_on_outer_circle) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-((share Zeros.dyadicRow 20 6 13 : ℝ) : ℂ))‖ = 1 |
+| [`DeepZeroBand.deep_zero_share`](./lean/DeepZeroBand.md#DeepZeroBand-deep_zero_share) | theorem | shape | `DeepZeroBand` | share Zeros.dyadicRow 20 6 13 = 0 |
 | [`WeilPowerPhase.delta`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-delta) | def | shape | `WeilPowerPhase` | ℂ |
 | [`PerronKernel.delta_sum_close`](./lean_stage3/PerronKernel.md#PerronKernel-delta_sum_close) | theorem | shape | `PerronKernel` | ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronδ (x / n)‖ ≤ Real.log x |
 | [`Propagation.deltaRow`](./lean/Propagation.md#Propagation-deltaRow) | def | counting | `Propagation` | ℤ → ℤ |
@@ -1252,6 +1260,14 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZeroCells.seedPerturbation_eq`](./lean/ZeroCells.md#ZeroCells-seedPerturbation_eq) | theorem | counting | `ZeroCells` | SeedPerturbation.zero_cells = Zeros.measured_zeros |
 | [`PerronKernel.seg_inv_integral`](./lean_stage3/PerronKernel.md#PerronKernel-seg_inv_integral) | theorem | shape | `PerronKernel` | (∫ t in (-T)..T, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I) = 2 * Real.arctan (T / c) * Complex.I |
 | [`ArgLegs.segment_im_integral_le`](./lean_stage3/ArgLegs.md#ArgLegs-segment_im_integral_le) | theorem | shape | `ArgLegs` | \|(∫ x in a..b, g' x / g x).im\| ≤ Real.pi * ((Z.card : ℝ) + 1) |
+| [`DeepZeroBand.share`](./lean/DeepZeroBand.md#DeepZeroBand-share) | def | shape | `DeepZeroBand` | ℝ |
+| [`DeepZeroBand.share_15_6_neg`](./lean/DeepZeroBand.md#DeepZeroBand-share_15_6_neg) | theorem | shape | `DeepZeroBand` | share Zeros.dyadicRow 15 6 8 &lt; 0 |
+| [`DeepZeroBand.share_add`](./lean/DeepZeroBand.md#DeepZeroBand-share_add) | theorem | shape | `DeepZeroBand` | share P r d e + share C r d e = 1 |
+| [`DeepZeroBand.share_eq_iff_half`](./lean/DeepZeroBand.md#DeepZeroBand-share_eq_iff_half) | theorem | shape | `DeepZeroBand` | share P r d e = share C r d e ↔ share P r d e = 1 / 2 |
+| [`DeepZeroBand.share_in_band`](./lean/DeepZeroBand.md#DeepZeroBand-share_in_band) | theorem | shape | `DeepZeroBand` | 0 ≤ (P : ℝ) / 2 ^ e ∧ (P : ℝ) / 2 ^ e ≤ 1 |
+| [`DeepZeroBand.share_mirror`](./lean/DeepZeroBand.md#DeepZeroBand-share_mirror) | theorem | shape | `DeepZeroBand` | share C r d e = 1 - share P r d e |
+| [`DeepZeroBand.share_on_middle_circle_iff`](./lean/DeepZeroBand.md#DeepZeroBand-share_on_middle_circle_iff) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-(x : ℂ))‖ = b ^ (-(1 : ℝ) / 2) ↔ x = 1 / 2 |
+| [`DeepZeroBand.share_pair_product`](./lean/DeepZeroBand.md#DeepZeroBand-share_pair_product) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-((share P r d e : ℝ) : ℂ))‖ * ‖(b : ℂ) ^ (-((share C r d e : ℝ) : ℂ))‖ = b ^ (-(1 : ℝ)) |
 | [`WeilPowerShell.shellSum`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-shellSum) | def | shape | `WeilPowerShell` | ℝ |
 | [`WeilPowerShell.shellSum_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-shellSum_le) | theorem | shape | `WeilPowerShell` | \|shellSum e' D e lam a b\| ≤ (e' ^ 2 + D ^ 2) / e ^ 2 * Real.exp (2 * eta * (b : ℝ) / ((lam : ℝ) * Real.pi ^ 2)) * ((lam : ℝ) * Real.pi ^ 3 * Real.exp (2 * (e' ^ 2 + D ^ 2 + e ^ 2) * (1 / ((lam : ℝ) * … |
 | [`WeilPowerShell.shellSum_le_abs`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-shellSum_le_abs) | theorem | shape | `WeilPowerShell` | \|shellSum e' D e lam a b\| ≤ (e' ^ 2 + \|D\| ^ 2) / e ^ 2 * Real.exp (2 * eta * (b : ℝ) / ((lam : ℝ) * Real.pi ^ 2)) * ((lam : ℝ) * Real.pi ^ 3 * Real.exp (2 * (e' ^ 2 + \|D\| ^ 2 + e ^ 2) * (1 / ((lam : ℝ… |

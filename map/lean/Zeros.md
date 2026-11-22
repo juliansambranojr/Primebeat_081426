@@ -5,7 +5,7 @@ Zeros — what is provable about the four exact zeros, and what is not. THE MEAS
 15 theorems, 7 definitions, 298 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Construction`](../lean/Construction.md)  
-**Imported by:** [`Isogeny`](../lean/Isogeny.md), [`Nonvanishing`](../lean/Nonvanishing.md), [`ZeroCells`](../lean/ZeroCells.md), [`ZerosStencil`](../lean/ZerosStencil.md)
+**Imported by:** [`DeepZeroBand`](../lean/DeepZeroBand.md), [`Isogeny`](../lean/Isogeny.md), [`Nonvanishing`](../lean/Nonvanishing.md), [`ZeroCells`](../lean/ZeroCells.md), [`ZerosStencil`](../lean/ZerosStencil.md)
 
 ## The picture
 
@@ -19,7 +19,7 @@ flowchart LR
   n5["<b>zero_2_1 ■</b><br/>Construction.tableFrom dyadicRow 2 1 = 0"]:::cnt
   n6["<b>zero_4_1 ■</b><br/>Construction.tableFrom dyadicRow 4 1 = 0"]:::cnt
   n7["<b>zero_8_3 ■</b><br/>Construction.tableFrom dyadicRow 8 3 = 0"]:::cnt
-  n8["<b>zero_20_6 ■</b><br/>Construction.tableFrom dyadicRow 20 6 = 0"]:::cnt
+  n8["<b>zero_20_6</b><br/>Construction.tableFrom dyadicRow 20 6 = 0"]:::cnt
   n9["<b>measured_zeros_all_vanish</b><br/>∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ)…"]:::cnt
   n10["<b>nonzero_7_3 ■</b><br/>Construction.tableFrom dyadicRow 7 3 = 5"]:::cnt
   n11["<b>nonzero_19_6 ■</b><br/>Construction.tableFrom dyadicRow 19 6 = 343"]:::cnt
@@ -28,14 +28,16 @@ flowchart LR
   n14["<b>zero_at_8_3_of_repeat ■</b><br/>Construction.tableFrom N 8 3 = 0"]:::cnt
   x0(["<b>Construction</b><br/>tableFrom_isTableOf"]):::ext
   x1(["<b>ZerosStencil</b><br/>repeat_iff_wings"]):::ext
-  x2(["<b>ZeroCells</b><br/>construction_all_vanish<br/>pairIdentity_all_vanish<br/>seedPerturbation_all_vanish"]):::ext
+  x2(["<b>DeepZeroBand</b><br/>deep_zero_share"]):::ext
+  x3(["<b>ZeroCells</b><br/>construction_all_vanish<br/>pairIdentity_all_vanish<br/>seedPerturbation_all_vanish"]):::ext
   n0 --> n13
   n0 --> n14
   n1 --> n13
   n1 --> n14
   n0 -.-> x1
   n1 -.-> x1
-  n9 -.-> x2
+  n8 -.-> x2
+  n9 -.-> x3
   x0 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -90,7 +92,7 @@ The depth-0 row `N(r) = π(2^r) − π(2^(r−1))`: the primes in `(2^(r−1), 2
 
 - **Is:** `` dyadicRow : ℤ → ℤ := fun r => if 1 ≤ r ∧ r ≤ 20 then pi2 r.toNat - pi2 (r - 1).toNat else 0 ``
 - **Built from:** [`Zeros.pi2`](#Zeros-pi2)
-- **Used by 11:** [`Isogeny.dyadicRow_eq_rowN`](../lean/Isogeny.md#Isogeny-dyadicRow_eq_rowN), [`ZeroCells.construction_all_vanish`](../lean/ZeroCells.md#ZeroCells-construction_all_vanish), [`ZeroCells.pairIdentity_all_vanish`](../lean/ZeroCells.md#ZeroCells-pairIdentity_all_vanish), [`ZeroCells.seedPerturbation_all_vanish`](../lean/ZeroCells.md#ZeroCells-seedPerturbation_all_vanish), [`Zeros.measured_zeros_all_vanish`](#Zeros-measured_zeros_all_vanish), [`Zeros.nonzero_19_6`](#Zeros-nonzero_19_6), [`Zeros.nonzero_7_3`](#Zeros-nonzero_7_3), [`Zeros.zero_20_6`](#Zeros-zero_20_6), [`Zeros.zero_2_1`](#Zeros-zero_2_1), [`Zeros.zero_4_1`](#Zeros-zero_4_1), [`Zeros.zero_8_3`](#Zeros-zero_8_3)
+- **Used by 16:** [`DeepZeroBand.compRow`](../lean/DeepZeroBand.md#DeepZeroBand-compRow), [`DeepZeroBand.deep_cell_15_6`](../lean/DeepZeroBand.md#DeepZeroBand-deep_cell_15_6), [`DeepZeroBand.deep_zero_on_outer_circle`](../lean/DeepZeroBand.md#DeepZeroBand-deep_zero_on_outer_circle), [`DeepZeroBand.deep_zero_share`](../lean/DeepZeroBand.md#DeepZeroBand-deep_zero_share), [`DeepZeroBand.share_15_6_neg`](../lean/DeepZeroBand.md#DeepZeroBand-share_15_6_neg), [`Isogeny.dyadicRow_eq_rowN`](../lean/Isogeny.md#Isogeny-dyadicRow_eq_rowN), [`ZeroCells.construction_all_vanish`](../lean/ZeroCells.md#ZeroCells-construction_all_vanish), [`ZeroCells.pairIdentity_all_vanish`](../lean/ZeroCells.md#ZeroCells-pairIdentity_all_vanish), [`ZeroCells.seedPerturbation_all_vanish`](../lean/ZeroCells.md#ZeroCells-seedPerturbation_all_vanish), [`Zeros.measured_zeros_all_vanish`](#Zeros-measured_zeros_all_vanish), [`Zeros.nonzero_19_6`](#Zeros-nonzero_19_6), [`Zeros.nonzero_7_3`](#Zeros-nonzero_7_3), [`Zeros.zero_20_6`](#Zeros-zero_20_6), [`Zeros.zero_2_1`](#Zeros-zero_2_1), [`Zeros.zero_4_1`](#Zeros-zero_4_1), [`Zeros.zero_8_3`](#Zeros-zero_8_3)
 
 <a name="Zeros-measured_repeat_20_6"></a>
 ### `Zeros.measured_repeat_20_6`
@@ -337,7 +339,9 @@ Construction.tableFrom dyadicRow 20 6 = 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`DeepZeroBand.deep_zero_share`](../lean/DeepZeroBand.md#DeepZeroBand-deep_zero_share) (DeepZeroBand) — `` share Zeros.dyadicRow 20 6 13 = 0 ``
 
 <a name="Zeros-measured_zeros_all_vanish"></a>
 ### `Zeros.measured_zeros_all_vanish`

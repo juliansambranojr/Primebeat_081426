@@ -33,7 +33,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:104` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:139` |
 
-## Uses Lean records that the text does not show (465)
+## Uses Lean records that the text does not show (468)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -52,6 +52,9 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`Chain.A1`](lean/Chain.md#Chain-A1) | [`Chain.bdiff`](lean/Chain.md#Chain-bdiff) | def |
 | [`Chain.A1`](lean/Chain.md#Chain-A1) | [`Chain.mode`](lean/Chain.md#Chain-mode) | def |
 | [`Construction.eq_of_same_row`](lean/Construction.md#Construction-eq_of_same_row) | [`Construction.tableFrom`](lean/Construction.md#Construction-tableFrom) | def |
+| [`DeepZeroBand.deep_zero_share`](lean/DeepZeroBand.md#DeepZeroBand-deep_zero_share) | [`Construction.tableFrom`](lean/Construction.md#Construction-tableFrom) | def |
+| [`DeepZeroBand.deep_zero_inverse_share`](lean/DeepZeroBand.md#DeepZeroBand-deep_zero_inverse_share) | [`Construction.tableFrom`](lean/Construction.md#Construction-tableFrom) | def |
+| [`DeepZeroBand.share_15_6_neg`](lean/DeepZeroBand.md#DeepZeroBand-share_15_6_neg) | [`Construction.tableFrom`](lean/Construction.md#Construction-tableFrom) | def |
 | [`Expansion.F_floor`](lean/Expansion.md#Expansion-F_floor) | [`Expansion.S`](lean/Expansion.md#Expansion-S) | def |
 | [`Expansion.hD_of_window`](lean/Expansion.md#Expansion-hD_of_window) | [`Expansion.F`](lean/Expansion.md#Expansion-F) | def |
 | [`Interpolant.f2x_continuousOn`](lean/Interpolant.md#Interpolant-f2x_continuousOn) | [`Interpolant.f2x_contDiffOn`](lean/Interpolant.md#Interpolant-f2x_contDiffOn) | theorem |

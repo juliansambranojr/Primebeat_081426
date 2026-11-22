@@ -13,11 +13,13 @@ flowchart LR
   n11["<b>measured_composite_matches_pair_identity ■</b><br/>zero_cells.map (fun c =＞ ((2 : ℤ) - 1) ^ (c.2 + 1) * 2 ^ (c.1 - …"]:::cnt
   n12["<b>composite_at_zero_20_6 ■</b><br/>tableFrom C 20 6 = 8192"]:::cnt
   x0(["<b>Construction</b><br/>tableFrom_add<br/>zero_determined_by_row"]):::ext
+  x1(["<b>DeepZeroBand</b><br/>share_add"]):::ext
   n1 --> n3
   n2 --> n3
   n3 --> n4
   n4 --> n12
   n5 --> n6
+  n3 -.-> x1
   x0 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111

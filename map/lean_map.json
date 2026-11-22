@@ -1578,6 +1578,13 @@
      "lean/Construction.lean::Construction.tableFrom_smul",
      "lean/Construction.lean::Construction.unique_of_isTableOf",
      "lean/Construction.lean::Construction.zero_determined_by_row",
+     "lean/DeepZeroBand.lean::DeepZeroBand.composite_cell_20_6",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_cell_15_6",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_15_6_neg",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_add",
      "lean/Expansion.lean::Expansion.tableFrom_ne_zero_of_li",
      "lean/Interpolant.lean::Interpolant.tableFrom_ne_zero_of_relErr_liRow",
      "lean/MainTerm.lean::MainTerm.tableFrom_ne_zero_of_deriv",
@@ -2435,6 +2442,523 @@
     "proof": [],
     "exact": true,
     "uses": [],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean",
+  "path": "lean/DeepZeroBand.lean",
+  "module": "DeepZeroBand",
+  "stem": "DeepZeroBand",
+  "header": "DeepZeroBand — the deep zero, inverted, and the band between the two. Joins three things already in this tree:",
+  "imports": [
+   "Zeros",
+   "PairIdentity",
+   "Transform"
+  ],
+  "opens": [
+   "Complex",
+   "Construction"
+  ],
+  "namespaces": [
+   "DeepZeroBand"
+  ],
+  "lines": 215,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean/PairIdentity.lean",
+   "lean/Transform.lean",
+   "lean/Zeros.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "compRow",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.compRow",
+    "line": 53,
+    "why": "The composites in the rung `(2^(r−1), 2^r]`: the integers it holds, less the primes it holds.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℤ → ℤ",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.compRow",
+    "stmt": [],
+    "proof": [
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.composite_cell_20_6",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_on_inner_circle",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_share"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "share",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.share",
+    "line": 56,
+    "why": "A cell over its total `2^e`, `e = r − 1 − d`.",
+    "sorry": false,
+    "needs": [
+     "P : ℤ → ℤ",
+     "r : ℤ",
+     "d e : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.share",
+    "stmt": [],
+    "proof": [
+     "lean/Construction.lean::Construction.tableFrom"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_on_inner_circle",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_on_outer_circle",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_15_6_neg",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_add",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_eq_iff_half",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_mirror",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_pair_product"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "composite_cell_20_6",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.composite_cell_20_6",
+    "line": 61,
+    "why": "The inverse of the deep zero. The composite cell at (20,6) is the whole total, `2^13`, computed.",
+    "sorry": false,
+    "needs": [],
+    "proves": "tableFrom compRow 20 6 = 8192",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.composite_cell_20_6",
+    "stmt": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/DeepZeroBand.lean::DeepZeroBand.compRow"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/DeepZeroBand.lean::DeepZeroBand.compRow"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_share"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "share_add",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.share_add",
+    "line": 65,
+    "why": "The two shares add to one, at every cell of any pair of rows that partition the rungs.",
+    "sorry": false,
+    "needs": [
+     "P C : ℤ → ℤ",
+     "r : ℤ",
+     "d e : ℕ",
+     "hr : r = (d : ℤ) + 1 + e",
+     "hpair : ∀ k : ℕ, k ≤ d → P (r - k) + C (r - k) = (2 - 1) * 2 ^ (e + (d - k))"
+    ],
+    "proves": "share P r d e + share C r d e = 1",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.share_add",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share"
+    ],
+    "proof": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/PairIdentity.lean::PairIdentity.pair_identity"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/PairIdentity.lean::PairIdentity.pair_identity"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_eq_iff_half",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_mirror"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "share_mirror",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.share_mirror",
+    "line": 76,
+    "why": "Passing to the composite table is `x ↦ 1 − x` on shares.",
+    "sorry": false,
+    "needs": [
+     "P C : ℤ → ℤ",
+     "r : ℤ",
+     "d e : ℕ",
+     "hr : r = (d : ℤ) + 1 + e",
+     "hpair : ∀ k : ℕ, k ≤ d → P (r - k) + C (r - k) = (2 - 1) * 2 ^ (e + (d - k))"
+    ],
+    "proves": "share C r d e = 1 - share P r d e",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.share_mirror",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share"
+    ],
+    "proof": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_add"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_add"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_pair_product"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "share_eq_iff_half",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.share_eq_iff_half",
+    "line": 82,
+    "why": "The two shares are equal exactly at one half.",
+    "sorry": false,
+    "needs": [
+     "P C : ℤ → ℤ",
+     "r : ℤ",
+     "d e : ℕ",
+     "hr : r = (d : ℤ) + 1 + e",
+     "hpair : ∀ k : ℕ, k ≤ d → P (r - k) + C (r - k) = (2 - 1) * 2 ^ (e + (d - k))"
+    ],
+    "proves": "share P r d e = share C r d e ↔ share P r d e = 1 / 2",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.share_eq_iff_half",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share"
+    ],
+    "proof": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_add"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_add"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "deep_zero_share",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.deep_zero_share",
+    "line": 89,
+    "why": "At the deep zero the prime share is zero.",
+    "sorry": false,
+    "needs": [],
+    "proves": "share Zeros.dyadicRow 20 6 13 = 0",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_share",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
+    "proof": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Zeros.lean::Zeros.zero_20_6"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/Zeros.lean::Zeros.dyadicRow",
+     "lean/Zeros.lean::Zeros.zero_20_6"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_on_outer_circle"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "deep_zero_inverse_share",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.deep_zero_inverse_share",
+    "line": 95,
+    "why": "At the deep zero the composite share is one.",
+    "sorry": false,
+    "needs": [],
+    "proves": "share compRow 20 6 13 = 1",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_share",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.compRow",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share"
+    ],
+    "proof": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/DeepZeroBand.lean::DeepZeroBand.composite_cell_20_6"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/DeepZeroBand.lean::DeepZeroBand.compRow",
+     "lean/DeepZeroBand.lean::DeepZeroBand.composite_cell_20_6",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_on_inner_circle"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "deep_zero_on_outer_circle",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.deep_zero_on_outer_circle",
+    "line": 102,
+    "why": "The deep zero is on the outer circle, where the zeros of the table's own symbol are.",
+    "sorry": false,
+    "needs": [
+     "b : ℝ"
+    ],
+    "proves": "‖(b : ℂ) ^ (-((share Zeros.dyadicRow 20 6 13 : ℝ) : ℂ))‖ = 1",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_on_outer_circle",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
+    "proof": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_share"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "deep_zero_inverse_on_inner_circle",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.deep_zero_inverse_on_inner_circle",
+    "line": 108,
+    "why": "Its inverse is on the inner circle.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b"
+    ],
+    "proves": "‖(b : ℂ) ^ (-((share compRow 20 6 13 : ℝ) : ℂ))‖ = b ^ (-(1 : ℝ))",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_on_inner_circle",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.compRow",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share"
+    ],
+    "proof": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_share",
+     "lean/Transform.lean::Transform.norm_zmap"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.compRow",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/Transform.lean::Transform.norm_zmap"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "share_pair_product",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.share_pair_product",
+    "line": 114,
+    "why": "At every cell the two images multiply to `b^(−1)`.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b",
+     "P C : ℤ → ℤ",
+     "r : ℤ",
+     "d e : ℕ",
+     "hr : r = (d : ℤ) + 1 + e",
+     "hpair : ∀ k : ℕ, k ≤ d → P (r - k) + C (r - k) = (2 - 1) * 2 ^ (e + (d - k))"
+    ],
+    "proves": "‖(b : ℂ) ^ (-((share P r d e : ℝ) : ℂ))‖ * ‖(b : ℂ) ^ (-((share C r d e : ℝ) : ℂ))‖ = b ^ (-(1 : ℝ))",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.share_pair_product",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share"
+    ],
+    "proof": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_mirror",
+     "lean/Transform.lean::Transform.zmap_pair_product"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_mirror",
+     "lean/Transform.lean::Transform.zmap_pair_product"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "share_on_middle_circle_iff",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.share_on_middle_circle_iff",
+    "line": 123,
+    "why": "The middle circle is share one half.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "x : ℝ"
+    ],
+    "proves": "‖(b : ℂ) ^ (-(x : ℂ))‖ = b ^ (-(1 : ℝ) / 2) ↔ x = 1 / 2",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.share_on_middle_circle_iff",
+    "stmt": [],
+    "proof": [
+     "lean/Transform.lean::Transform.on_critical_line_iff_norm"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Transform.lean::Transform.on_critical_line_iff_norm"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "share_in_band",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.share_in_band",
+    "line": 130,
+    "why": "The band of shares. A count and its complement, both nonnegative, have share between zero and one.",
+    "sorry": false,
+    "needs": [
+     "hP : 0 ≤ P",
+     "hC : 0 ≤ C",
+     "h : P + C = 2 ^ e"
+    ],
+    "proves": "0 ≤ (P : ℝ) / 2 ^ e ∧ (P : ℝ) / 2 ^ e ≤ 1",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.share_in_band",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "band_in_annulus",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.band_in_annulus",
+    "line": 139,
+    "why": "The band between the circles. A share between zero and one lands between the inner circle and the outer circle.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "h0 : 0 ≤ x",
+     "h1 : x ≤ 1"
+    ],
+    "proves": "b ^ (-(1 : ℝ)) ≤ ‖(b : ℂ) ^ (-(x : ℂ))‖ ∧ ‖(b : ℂ) ^ (-(x : ℂ))‖ ≤ 1",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.band_in_annulus",
+    "stmt": [],
+    "proof": [
+     "lean/Transform.lean::Transform.norm_zmap"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Transform.lean::Transform.norm_zmap"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "deep_cell_15_6",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.deep_cell_15_6",
+    "line": 149,
+    "why": "A differenced cell can be negative: (15,6) is `−112`, computed.",
+    "sorry": false,
+    "needs": [],
+    "proves": "tableFrom Zeros.dyadicRow 15 6 = -112",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.deep_cell_15_6",
+    "stmt": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_15_6_neg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "share_15_6_neg",
+    "ns": "DeepZeroBand",
+    "full": "DeepZeroBand.share_15_6_neg",
+    "line": 152,
+    "why": "So its share is below the band.",
+    "sorry": false,
+    "needs": [],
+    "proves": "share Zeros.dyadicRow 15 6 8 < 0",
+    "file": "lean/DeepZeroBand.lean",
+    "id": "lean/DeepZeroBand.lean::DeepZeroBand.share_15_6_neg",
+    "stmt": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
+    "proof": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_cell_15_6"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_cell_15_6",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share",
+     "lean/Zeros.lean::Zeros.dyadicRow"
+    ],
     "layer": "shape",
     "used_by": []
    }
@@ -8956,6 +9480,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_add",
      "lean/PairIdentity.lean::PairIdentity.composite_of_prime_zero"
     ]
    },
@@ -11652,6 +12177,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.band_in_annulus",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_inverse_on_inner_circle",
      "lean/Transform.lean::Transform.norm_zmap_critical",
      "lean/Transform.lean::Transform.norm_zmap_zero_line",
      "lean/Transform.lean::Transform.on_critical_line_iff_norm",
@@ -12474,6 +13001,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_on_middle_circle_iff",
      "lean/Transform.lean::Transform.on_critical_line_iff_inversion_fixed",
      "lean/Transform.lean::Transform.riemannHypothesis_iff_zeros_on_middle_circle"
     ]
@@ -12749,6 +13277,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_pair_product",
      "lean/Transform.lean::Transform.critical_circle_is_lattice_inversion_mean",
      "lean/Transform.lean::Transform.sym_zero_partner_on_inner_circle"
     ]
@@ -13486,6 +14015,11 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.compRow",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_cell_15_6",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_on_outer_circle",
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_share",
+     "lean/DeepZeroBand.lean::DeepZeroBand.share_15_6_neg",
      "lean/Isogeny.lean::Isogeny.dyadicRow_eq_rowN",
      "lean/ZeroCells.lean::ZeroCells.construction_all_vanish",
      "lean/ZeroCells.lean::ZeroCells.pairIdentity_all_vanish",
@@ -13597,7 +14131,9 @@
      "lean/Zeros.lean::Zeros.dyadicRow"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean/DeepZeroBand.lean::DeepZeroBand.deep_zero_share"
+    ]
    },
    {
     "kind": "theorem",
@@ -31728,7 +32264,7 @@
   ],
   "lines": 122,
   "copy_of": null,
-  "fresh": false,
+  "fresh": true,
   "imports_files": [
    "lean_stage3/Stage3/StencilWeil.lean"
   ],
@@ -31750,7 +32286,7 @@
     "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
     "layer": "shape",
     "used_by": [
@@ -31776,7 +32312,7 @@
     "proof": [
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area"
     ],
@@ -31800,7 +32336,7 @@
     "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
     "layer": "shape",
     "used_by": [
@@ -31826,7 +32362,7 @@
     "proof": [
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff"
     ],
@@ -31850,7 +32386,7 @@
     "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.long_side_of_off_line",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
     "layer": "shape",
     "used_by": []
@@ -31870,11 +32406,11 @@
     "proves": "restoringForce b ρ = |Real.log (‖(b : ℂ) ^ ρ‖ / ‖(b : ℂ) ^ (1 - ρ)‖)|",
     "file": "lean_stage3/Stage3/MirrorArea.lean",
     "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.restoringForce_eq_log_ratio",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
     ],
-    "exact": false,
+    "proof": [],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
     ],

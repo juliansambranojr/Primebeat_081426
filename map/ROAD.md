@@ -50,7 +50,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 1432.
+- **Theorems Lean has checked:** 1446.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
 - **Theorems that prove it from a hypothesis:** 7. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 6.
@@ -173,6 +173,7 @@ From `SECTIONS.md`, open ones first.
 | One object | T5 | the Riemann hypothesis as the size of the cells: RH holds exactly when every cell's residual, on every dyadic ladder `a·2^r` with `1 ≤ a ≤ 2`, stays at square-root size | SEALED — (units 0427, 0428): `Stage3/CellResidual.RH_iff_cells`; on the table's own ladder the forward direction is `table_cell_resid`, and its converse there is joint 10 |
 | One object | W1 | why the number line has zeros: the prime content read at `N, N/2, N/3, …` adds to the logarithms of the integers, and a wobble `x^ρ` leaves that sum bounded, after its smooth term, exactly when `ζ(ρ) = 0` | SEALED — (unit 0434): `Stage3/WobbleCount.count_identity`, `invisible_iff`. It says which wobbles are possible; it does not place their real parts |
 | One object | S1 | the mirror pair as a rectangle: a mode at base `b` and its mirror multiply to `b`, so one side gives the other at every scale; the square, both sides `√b`, is the line | SEALED — (unit 0437): `Stage3/MirrorArea.mirror_area`, `square_iff`, `long_side_of_off_line`, `restoringForce_eq_log_ratio`. The same rectangle is in `lean/Transform.zmap_pair_product` and `pair_collapses_iff_… |
+| One object | B1 | the deep zero, inverted, and the band: a cell over its total is its share; prime share and composite share add to one, so the composite table is `x ↦ 1 − x`; at (20,6) the shares are 0 and 1, the outer and inner circles of `Transform`'s band | SEALED — (unit 0438): `lean/DeepZeroBand.share_mirror`, `deep_zero_on_outer_circle`, `deep_zero_inverse_on_inner_circle`, `share_pair_product`, `share_on_middle_circle_iff`. A share is made from the table; its… |
 | The joints | 1 | G → D: `WindowBound θ δ C → StmtZeroFreeRight θ` | SEALED — (unit 0400, `JointWindowDial.zeroFreeRight_of_window`; with it `schoenfeldWeakTheta_of_window`, the window bound carried to `\|π − Li\| ≤ C·x^θ·log²x`) |
 | The joints | 2 | D inside: zero-free at `θ` → `\|π − Li\| ≤ C·x^θ·log²x` | SEALED — (`schoenfeldWeakTheta_of_zeroFree`). Joint 1 composes with it; checked the same day |
 | The joints | 3 | D → the dyadic rows at exponent `θ` | SEALED — (unit 0402, `JointDialGate.thetaWindow_of_global`) |

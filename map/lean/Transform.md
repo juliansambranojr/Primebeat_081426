@@ -5,7 +5,7 @@ Transform — block G's geometry: the strip, the annulus, and what closes it. `p
 39 theorems, 6 definitions, 799 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Chain`](../lean/Chain.md), [`EulerFactorChain`](../lean/EulerFactorChain.md)  
-**Imported by:** nothing
+**Imported by:** [`DeepZeroBand`](../lean/DeepZeroBand.md)
 
 ## The picture
 
@@ -43,7 +43,8 @@ flowchart LR
   n27["<b>strip_is_fundamental_domain ■</b><br/>‖(b : ℂ) ^ (-s)‖ = 1 ∧ (s + 1).re = 1 ∧ ‖(b : ℂ) ^ (-(s + 1))‖ =…"]:::shp
   n28["<b>zeros_re_lt_one</b><br/>s.re ＜ 1"]:::thm
   n29["<b>zeros_outside_inner_circle</b><br/>b ^ (-(1 : ℝ)) ＜ ‖(b : ℂ) ^ (-s)‖"]:::thm
-  x0(["<b>diagram 2</b><br/>5 theorems"]):::ext
+  x0(["<b>DeepZeroBand</b><br/>band_in_annulus<br/>deep_zero_inverse_on_inner_circle<br/>share_on_middle_circle_iff"]):::ext
+  x1(["<b>diagram 2</b><br/>5 theorems"]):::ext
   n0 --> n1
   n0 --> n22
   n0 --> n23
@@ -65,9 +66,11 @@ flowchart LR
   n3 --> n6
   n9 --> n16
   n0 -.-> x0
-  n21 -.-> x0
+  n0 -.-> x1
+  n21 -.-> x1
   n23 -.-> x0
-  n29 -.-> x0
+  n23 -.-> x1
+  n29 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -92,18 +95,20 @@ flowchart LR
   n7["<b>sym_zero_partner_on_inner_circle ■</b><br/>‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ))"]:::shp
   n8["<b>critical_circle_is_lattice_inversion_mean ■</b><br/>‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = (b ^ (-(1 : ℝ) / 2))…"]:::shp
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
-  x1(["<b>Chain</b><br/>sym_eq_zero_iff"]):::ext
+  x1(["<b>DeepZeroBand</b><br/>share_pair_product"]):::ext
+  x2(["<b>Chain</b><br/>sym_eq_zero_iff"]):::ext
   n0 --> n1
   n3 --> n7
   n3 --> n8
   n4 --> n5
   n6 --> n7
+  n3 -.-> x1
   x0 -.-> n1
   x0 -.-> n2
   x0 -.-> n3
   x0 -.-> n4
   x0 -.-> n6
-  x1 -.-> n6
+  x2 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -207,8 +212,10 @@ line 48
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (10 that use it)
+**Feeds** (12 that use it)
 
+  - [`DeepZeroBand.band_in_annulus`](../lean/DeepZeroBand.md#DeepZeroBand-band_in_annulus) (DeepZeroBand) — `` b ^ (-(1 : ℝ)) ≤ ‖(b : ℂ) ^ (-(x : ℂ))‖ ∧ ‖(b : ℂ) ^ (-(x : ℂ))‖ ≤ 1 ``
+  - [`DeepZeroBand.deep_zero_inverse_on_inner_circle`](../lean/DeepZeroBand.md#DeepZeroBand-deep_zero_inverse_on_inner_circle) (DeepZeroBand) — `` ‖(b : ℂ) ^ (-((share compRow 20 6 13 : ℝ) : ℂ))‖ = b ^ (-(1 : ℝ)) ``
   - [`Transform.norm_zmap_critical`](#Transform-norm_zmap_critical) — `` ‖(b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ = b ^ (-(1:ℝ)/2) ``
   - [`Transform.norm_zmap_zero_line`](#Transform-norm_zmap_zero_line) — `` ‖(b : ℂ) ^ (-s)‖ = 1 ``
   - [`Transform.on_critical_line_iff_norm`](#Transform-on_critical_line_iff_norm) — `` s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2) ``
@@ -848,8 +855,9 @@ s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2)
   - [`Transform.norm_zmap`](#Transform-norm_zmap) — `` ‖(b : ℂ) ^ (-s)‖ = b ^ (-s.re) ``
   - [`Transform.rpow_left_inj`](#Transform-rpow_left_inj) — `` b ^ x = b ^ y ↔ x = y ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DeepZeroBand.share_on_middle_circle_iff`](../lean/DeepZeroBand.md#DeepZeroBand-share_on_middle_circle_iff) (DeepZeroBand) — `` ‖(b : ℂ) ^ (-(x : ℂ))‖ = b ^ (-(1 : ℝ) / 2) ↔ x = 1 / 2 ``
   - [`Transform.on_critical_line_iff_inversion_fixed`](#Transform-on_critical_line_iff_inversion_fixed) — `` s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-s)‖ ``
   - [`Transform.riemannHypothesis_iff_zeros_on_middle_circle`](#Transform-riemannHypothesis_iff_zeros_on_middle_circle) — `` RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -2 * (n + 1)) → s ≠ 1 → ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2) ``
 
@@ -1121,8 +1129,9 @@ line 558
 
   - [`Transform.norm_zmap`](#Transform-norm_zmap) — `` ‖(b : ℂ) ^ (-s)‖ = b ^ (-s.re) ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`DeepZeroBand.share_pair_product`](../lean/DeepZeroBand.md#DeepZeroBand-share_pair_product) (DeepZeroBand) — `` ‖(b : ℂ) ^ (-((share P r d e : ℝ) : ℂ))‖ * ‖(b : ℂ) ^ (-((share C r d e : ℝ) : ℂ))‖ = b ^ (-(1 : ℝ)) ``
   - [`Transform.critical_circle_is_lattice_inversion_mean`](#Transform-critical_circle_is_lattice_inversion_mean) — `` ‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = (b ^ (-(1 : ℝ) / 2)) ^ 2 ``
   - [`Transform.sym_zero_partner_on_inner_circle`](#Transform-sym_zero_partner_on_inner_circle) — `` ‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ)) ``
 

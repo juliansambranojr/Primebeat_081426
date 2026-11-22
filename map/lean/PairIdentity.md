@@ -5,7 +5,7 @@ PairIdentity — the complementary pair, and why base two is singular. Encodes s
 13 theorems, 2 definitions, 405 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Construction`](../lean/Construction.md)  
-**Imported by:** [`ZeroCells`](../lean/ZeroCells.md)
+**Imported by:** [`DeepZeroBand`](../lean/DeepZeroBand.md), [`ZeroCells`](../lean/ZeroCells.md)
 
 ## The picture
 
@@ -25,11 +25,13 @@ flowchart LR
   n11["<b>measured_composite_matches_pair_identity ■</b><br/>zero_cells.map (fun c =＞ ((2 : ℤ) - 1) ^ (c.2 + 1) * 2 ^ (c.1 - …"]:::cnt
   n12["<b>composite_at_zero_20_6 ■</b><br/>tableFrom C 20 6 = 8192"]:::cnt
   x0(["<b>Construction</b><br/>tableFrom_add<br/>zero_determined_by_row"]):::ext
+  x1(["<b>DeepZeroBand</b><br/>share_add"]):::ext
   n1 --> n3
   n2 --> n3
   n3 --> n4
   n4 --> n12
   n5 --> n6
+  n3 -.-> x1
   x0 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -186,8 +188,9 @@ tableFrom P r d + tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e
   - [`PairIdentity.tableFrom_add_window`](#PairIdentity-tableFrom_add_window) — `` tableFrom P r d + tableFrom C r d = tableFrom T r d ``
   - [`PairIdentity.tableFrom_of_geometric`](#PairIdentity-tableFrom_of_geometric) — `` tableFrom G r d = (b - 1) ^ d * G (r - d) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`DeepZeroBand.share_add`](../lean/DeepZeroBand.md#DeepZeroBand-share_add) (DeepZeroBand) — `` share P r d e + share C r d e = 1 ``
   - [`PairIdentity.composite_of_prime_zero`](#PairIdentity-composite_of_prime_zero) — `` tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e ``
 
 <a name="PairIdentity-composite_of_prime_zero"></a>

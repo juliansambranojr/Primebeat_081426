@@ -7,76 +7,80 @@ flowchart LR
   subgraph count["THE TABLE: counting, integers only"]
     direction TB
     t1["<b>Construction</b><br/>6 counting"]:::cnt
-    t9["<b>Isogeny</b><br/>9 counting"]:::cnt
-    t16["<b>PairIdentity</b><br/>13 counting"]:::cnt
-    t17["<b>Propagation</b><br/>9 counting"]:::cnt
-    t22["<b>SeedPerturbation</b><br/>20 counting"]:::cnt
-    t26["<b>TwinLattice</b><br/>3 counting"]:::cnt
-    t27["<b>ZeroCells</b><br/>7 counting"]:::cnt
-    t28["<b>Zeros</b><br/>15 counting"]:::cnt
-    t29["<b>ZerosStencil</b><br/>16 counting"]:::cnt
+    t10["<b>Isogeny</b><br/>9 counting"]:::cnt
+    t17["<b>PairIdentity</b><br/>13 counting"]:::cnt
+    t18["<b>Propagation</b><br/>9 counting"]:::cnt
+    t23["<b>SeedPerturbation</b><br/>20 counting"]:::cnt
+    t27["<b>TwinLattice</b><br/>3 counting"]:::cnt
+    t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
+    t29["<b>Zeros</b><br/>15 counting"]:::cnt
+    t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
     lean_stage3_count(["<b>Stage 3</b><br/>1 theorems counting,<br/>in 1 file"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
     t2["<b>Covering</b><br/>1 counting · 5 shape"]:::shp
     t3["<b>Crossover</b><br/>6 shape"]:::shp
-    t6["<b>Expansion</b><br/>1 counting · 16 shape"]:::shp
-    t7["<b>GeneratorPeak</b><br/>6 shape"]:::shp
-    t8["<b>Interpolant</b><br/>8 shape"]:::shp
-    t10["<b>JointLadder</b><br/>1 counting · 13 shape"]:::shp
-    t11["<b>MainTerm</b><br/>10 shape"]:::shp
-    t12["<b>Measured</b><br/>7 shape"]:::shp
-    t13["<b>Nonvanishing</b><br/>8 shape"]:::shp
-    t14["<b>Nyquist</b><br/>5 shape"]:::shp
-    t15["<b>NyquistPeak</b><br/>20 shape"]:::shp
-    t18["<b>RelativeGate</b><br/>8 shape"]:::shp
-    t19["<b>RelativeLi</b><br/>3 shape"]:::shp
-    t20["<b>RouteCell</b><br/>1 shape"]:::shp
-    t21["<b>Schoenfeld</b><br/>2 shape"]:::shp
-    t23["<b>Superposition</b><br/>4 shape"]:::shp
-    t24["<b>TransferOp</b><br/>7 shape"]:::shp
+    t4["<b>DeepZeroBand</b><br/>2 counting · 12 shape"]:::shp
+    t7["<b>Expansion</b><br/>1 counting · 16 shape"]:::shp
+    t8["<b>GeneratorPeak</b><br/>6 shape"]:::shp
+    t9["<b>Interpolant</b><br/>8 shape"]:::shp
+    t11["<b>JointLadder</b><br/>1 counting · 13 shape"]:::shp
+    t12["<b>MainTerm</b><br/>10 shape"]:::shp
+    t13["<b>Measured</b><br/>7 shape"]:::shp
+    t14["<b>Nonvanishing</b><br/>8 shape"]:::shp
+    t15["<b>Nyquist</b><br/>5 shape"]:::shp
+    t16["<b>NyquistPeak</b><br/>20 shape"]:::shp
+    t19["<b>RelativeGate</b><br/>8 shape"]:::shp
+    t20["<b>RelativeLi</b><br/>3 shape"]:::shp
+    t21["<b>RouteCell</b><br/>1 shape"]:::shp
+    t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
+    t24["<b>Superposition</b><br/>4 shape"]:::shp
+    t25["<b>TransferOp</b><br/>7 shape"]:::shp
     lean_stage3_shape(["<b>Stage 3</b><br/>608 theorems shape,<br/>in 85 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
     direction TB
     t0["<b>Chain</b><br/>30 shape · 2 reads ζ"]:::thm
-    t4["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
-    t5["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
-    t25["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
+    t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
+    t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
+    t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
     lean_stage3_zeta(["<b>Stage 3</b><br/>461 theorems reads ζ,<br/>in 71 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
   t1 --> t0
-  t5 --> t0
-  t11 --> t6
-  t19 --> t8
-  t28 --> t9
-  t0 --> t10
-  t14 --> t10
-  t13 --> t11
-  t0 --> t12
-  t29 --> t13
-  t0 --> t15
-  t14 --> t15
-  t1 --> t16
-  t22 --> t17
-  t13 --> t18
-  t6 --> t19
-  t18 --> t19
-  t8 --> t20
-  t6 --> t21
-  t1 --> t22
-  t0 --> t23
+  t6 --> t0
+  t17 --> t4
+  t26 --> t4
+  t29 --> t4
+  t12 --> t7
+  t20 --> t9
+  t29 --> t10
+  t0 --> t11
+  t15 --> t11
+  t14 --> t12
+  t0 --> t13
+  t30 --> t14
+  t0 --> t16
+  t15 --> t16
+  t1 --> t17
+  t23 --> t18
+  t14 --> t19
+  t7 --> t20
+  t19 --> t20
+  t9 --> t21
+  t7 --> t22
+  t1 --> t23
   t0 --> t24
   t0 --> t25
-  t16 --> t27
-  t22 --> t27
-  t28 --> t27
-  t1 --> t28
-  t28 --> t29
+  t0 --> t26
+  t17 --> t28
+  t23 --> t28
+  t29 --> t28
+  t1 --> t29
+  t29 --> t30
   count --> shape --> zeta --> rh
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -90,15 +94,15 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 103 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 847 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Counting** (green), 105 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 859 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
 - **Reads ζ** (blue), 482 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
-| `lean/` | 102 | 225 | 19 |
+| `lean/` | 104 | 237 | 19 |
 | `lean_stage3/` | 1 | 608 | 461 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
@@ -122,6 +126,13 @@ Construction — the table has no free parameter, so the zeros were not placed. 
 Covering — why 25 of 36 primes contribute, and why the set skips 13. THE MEASUREMENT (results/O37_weil_form_on_stencil_run1.log): with b = 2, N = 7, W = 0.05, K = 2, the mollified Weil form has 36 primes inside its support and exactly 25 contribute:
 
 - [`Covering.bench_selects`](./lean/Covering.md#Covering-bench_selects) — `` measured_contributing < measured_in_support `` And it does select: 25 of 36, not all.
+
+### [`DeepZeroBand`](./lean/DeepZeroBand.md) — 2
+
+DeepZeroBand — the deep zero, inverted, and the band between the two. Joins three things already in this tree:
+
+- [`DeepZeroBand.composite_cell_20_6`](./lean/DeepZeroBand.md#DeepZeroBand-composite_cell_20_6) — `` tableFrom compRow 20 6 = 8192 `` The inverse of the deep zero. The composite cell at (20,6) is the whole total, `2^13`, computed.
+- [`DeepZeroBand.deep_cell_15_6`](./lean/DeepZeroBand.md#DeepZeroBand-deep_cell_15_6) — `` tableFrom Zeros.dyadicRow 15 6 = -112 `` A differenced cell can be negative: (15,6) is `−112`, computed.
 
 ### [`Elephant`](./lean/Elephant.md) — 1
 
