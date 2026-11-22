@@ -1,3 +1,11 @@
+{"k":"theorem","m":"Stage3.AliasClass","n":"AliasClass.alias_weight","pf":["CellModes.mode_two_int","CellModes.sym_two","Chain.Sym","Chain.mode"],"ty":["Chain.Sym","Chain.mode"]}
+{"k":"theorem","m":"Stage3.AliasClass","n":"AliasClass.alias_weight_ne_zero","pf":["AliasClass.alias_weight","AliasClass.sum_order_div_ne_zero","AliasClass.zero_re_pos","Chain.Sym","Chain.mode"],"ty":["Chain.Sym","Chain.mode"]}
+{"k":"theorem","m":"Stage3.AliasClass","n":"AliasClass.mode_eq_of_alias","pf":["CellModes.mode_two_int","Chain.mode"],"ty":["Chain.mode"]}
+{"k":"theorem","m":"Stage3.AliasClass","n":"AliasClass.re_inv_pos","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.AliasClass","n":"AliasClass.re_order_div_pos","pf":["AliasClass.re_inv_pos","AliasClass.zero_re_pos"],"ty":[]}
+{"k":"theorem","m":"Stage3.AliasClass","n":"AliasClass.sum_order_div_ne_zero","pf":["AliasClass.re_order_div_pos"],"ty":[]}
+{"k":"theorem","m":"Stage3.AliasClass","n":"AliasClass.sym_eq_of_alias","pf":["CellModes.sym_two","Chain.Sym"],"ty":["Chain.Sym"]}
+{"k":"theorem","m":"Stage3.AliasClass","n":"AliasClass.zero_re_pos","pf":[],"ty":[]}
 {"k":"theorem","m":"Stage3.ArgCount","n":"ArgCount.N_eq_of_no_zero_between","pf":["ArgCount.N_eq_of_no_zero_between._simp_1_1","ArgCount.N_eq_of_no_zero_between._simp_1_2"],"ty":[]}
 {"k":"theorem","m":"Stage3.ArgCount","n":"ArgCount.N_eq_of_no_zero_between._simp_1_1","pf":[],"ty":[]}
 {"k":"theorem","m":"Stage3.ArgCount","n":"ArgCount.N_eq_of_no_zero_between._simp_1_2","pf":[],"ty":[]}
