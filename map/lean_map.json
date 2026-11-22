@@ -35726,6 +35726,503 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/StencilWeil.lean",
+  "module": "Stage3.StencilWeil",
+  "stem": "StencilWeil",
+  "header": "StencilWeil — block T4 of `lean_stage3/design/joints.md`. 2026-11-22. The table's stencil inside Weil's form, and the restoring force read off a mode of the table. In the variable `u = log x` one doubling is the shift by `log 2`; `stencilTest d φ` is the depth-`d` stencil applied to a test function `φ` along the doublings. It is again a test function, its transform is the symbol to the depth times `φ`'s, and so each zero of ζ enters Weil's form on it with weight the symbol at the zero times the symbol at its mirror…",
+  "imports": [
+   "Stage3.WeilBridgeLeaf"
+  ],
+  "opens": [
+   "Complex",
+   "Finset",
+   "MeasureTheory",
+   "Set",
+   "WeilDetect"
+  ],
+  "namespaces": [
+   "StencilWeil"
+  ],
+  "lines": 300,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/WeilBridgeLeaf.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "stencilTest",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.stencilTest",
+    "line": 47,
+    "why": "The depth-`d` stencil applied to a test function along the doublings, in the variable `u = log x`.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "φ : ℝ → ℂ"
+    ],
+    "proves": "ℝ → ℂ",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.isTest_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest_zero_outside",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_nonneg_of_RH"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "restoringForce",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.restoringForce",
+    "line": 51,
+    "why": "The imbalance between a mode of the table and its mirror, in logarithms.",
+    "sorry": false,
+    "needs": [
+     "b : ℝ",
+     "ρ : ℂ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.handshake_iff",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_mono"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "laplace_shift",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.laplace_shift",
+    "line": 55,
+    "why": "Shifting a function multiplies its transform by an exponential.",
+    "sorry": false,
+    "needs": [
+     "φ : ℝ → ℂ",
+     "a : ℝ",
+     "z : ℂ"
+    ],
+    "proves": "laplace (fun u => φ (u + a)) z = Complex.exp (z * (a : ℂ)) * laplace φ z",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_shift",
+    "stmt": [
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.laplace"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.laplace"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_stencilTest"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_shift_term",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.integrable_shift_term",
+    "line": 79,
+    "why": "A shifted test function against the transform's kernel is integrable.",
+    "sorry": false,
+    "needs": [
+     "hφ : IsTest L φ",
+     "a : ℝ",
+     "z : ℂ"
+    ],
+    "proves": "Integrable (fun u : ℝ => φ (u + a) * Complex.exp (-(z * (u : ℂ))))",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.integrable_shift_term",
+    "stmt": [
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_stencilTest"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "laplace_stencilTest",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.laplace_stencilTest",
+    "line": 90,
+    "why": "The stencil's transform is the symbol to the depth.",
+    "sorry": false,
+    "needs": [
+     "hφ : IsTest L φ",
+     "d : ℕ",
+     "z : ℂ"
+    ],
+    "proves": "laplace (stencilTest d φ) z = (1 - (2 : ℂ) ^ z) ^ d * laplace φ z",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_stencilTest",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.laplace"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.integrable_shift_term",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_shift"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.integrable_shift_term",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_shift",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.laplace"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stencilTest_zero_outside",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.stencilTest_zero_outside",
+    "line": 134,
+    "why": "The stencil of a test function vanishes off the widened window.",
+    "sorry": false,
+    "needs": [
+     "hφ : IsTest L φ",
+     "d : ℕ",
+     "hu : u ∉ Set.Icc (-(L + 2 * (d * Real.log 2)) / 2) ((L + 2 * (d * Real.log 2)) / 2)"
+    ],
+    "proves": "stencilTest d φ u = 0",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest_zero_outside",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.isTest_stencilTest"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "isTest_stencilTest",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.isTest_stencilTest",
+    "line": 156,
+    "why": "The stencil of a test function is a test function, on a window wider by the stencil's reach.",
+    "sorry": false,
+    "needs": [
+     "hφ : IsTest L φ",
+     "d : ℕ"
+    ],
+    "proves": "IsTest (L + 2 * (d * Real.log 2)) (stencilTest d φ)",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.isTest_stencilTest",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest_zero_outside"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest_zero_outside",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_nonneg_of_RH"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeroForm_stencilTest",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.zeroForm_stencilTest",
+    "line": 172,
+    "why": "Weil's form on the stencil, zero by zero. Each zero enters with the symbol at the zero times the symbol at its mirror point, to the depth.",
+    "sorry": false,
+    "needs": [
+     "hφ : IsTest L φ",
+     "d : ℕ"
+    ],
+    "proves": "zeroForm (stencilTest d φ) = riemannZeta.zeroes_sum (Set.Ioo 0 1) (Set.univ : Set ℝ) (fun ρ => ((1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ)))) ^ d * (laplace φ (-ρ) * laplace φ (-(1 - ρ))))",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.laplace",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_stencilTest"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.laplace",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "mirror_symbol_on_line",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.mirror_symbol_on_line",
+    "line": 185,
+    "why": "On the line the handshake holds. The symbol at a zero times the symbol at its mirror point is the square of the symbol's size.",
+    "sorry": false,
+    "needs": [
+     "h : ρ.re = 1 / 2"
+    ],
+    "proves": "(1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ))) = ((‖1 - (2 : ℂ) ^ (-ρ)‖ ^ 2 : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.mirror_symbol_on_line",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "restoringForce_eq",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.restoringForce_eq",
+    "line": 203,
+    "why": "The restoring force, in closed form: twice the displacement from one half, times the logarithm of the base.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "restoringForce b ρ = 2 * |ρ.re - 1 / 2| * Real.log b",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_mono"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "restoringForce_eq_zero_iff",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.restoringForce_eq_zero_iff",
+    "line": 217,
+    "why": "The force is zero exactly on the line.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "restoringForce b ρ = 0 ↔ ρ.re = 1 / 2",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.handshake_iff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "handshake_iff",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.handshake_iff",
+    "line": 234,
+    "why": "The handshake. A mode of the table and its mirror have the same size exactly when the zero is on the line.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "‖(b : ℂ) ^ ρ‖ = ‖(b : ℂ) ^ (1 - ρ)‖ ↔ ρ.re = 1 / 2",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.handshake_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "restoringForce_mono",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.restoringForce_mono",
+    "line": 251,
+    "why": "Stiffer further out. At a larger base the same displacement gives a larger force.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "hbc : b ≤ c",
+     "ρ : ℂ"
+    ],
+    "proves": "restoringForce b ρ ≤ restoringForce c ρ",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_mono",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zeroForm_stencilTest_eq_primeSide",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.zeroForm_stencilTest_eq_primeSide",
+    "line": 258,
+    "why": "The form on the stencil is its prime side, given the bridge.",
+    "sorry": false,
+    "needs": [
+     "h : WeilBridgeLeaf.StmtWeilBridge",
+     "hφ : IsTest L φ",
+     "d : ℕ"
+    ],
+    "proves": "zeroForm (stencilTest d φ) = WeilBridgeLeaf.primeSideM (WeilBridgeLeaf.kOfM (stencilTest d φ))",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.StmtWeilBridge",
+     "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.kOfM",
+     "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.primeSideM",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.isTest_stencilTest",
+     "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.zeroForm_eq_primeSide"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.isTest_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.StmtWeilBridge",
+     "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.kOfM",
+     "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.primeSideM",
+     "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.zeroForm_eq_primeSide",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zeroForm_stencilTest_nonneg_of_RH",
+    "ns": "StencilWeil",
+    "full": "StencilWeil.zeroForm_stencilTest_nonneg_of_RH",
+    "line": 265,
+    "why": "Under the Riemann hypothesis the form on the stencil is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "hRH : RiemannHypothesis",
+     "hφ : IsTest L φ",
+     "d : ℕ"
+    ],
+    "proves": "0 ≤ (zeroForm (stencilTest d φ)).re",
+    "file": "lean_stage3/Stage3/StencilWeil.lean",
+    "id": "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_nonneg_of_RH",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.isTest_stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm_nonneg_of_RH"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.isTest_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm",
+     "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm_nonneg_of_RH"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/Stirling.lean",
   "module": "Stage3.Stirling",
   "stem": "Stirling",
@@ -43599,6 +44096,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.StmtWeilBridge",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.zeroForm_eq_primeSide"
     ]
@@ -43627,6 +44125,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.StmtWeilBridge",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.zeroForm_eq_primeSide"
     ]
@@ -43659,6 +44158,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.zeroForm_eq_primeSide"
     ]
    },
@@ -43777,7 +44277,9 @@
      "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide"
+    ]
    }
   ]
  },
@@ -43822,6 +44324,9 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_shift",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest",
      "lean_stage3/Stage3/WeilBackground.lean::WeilBackground.laplace_phi",
      "lean_stage3/Stage3/WeilBackground.lean::WeilBackground.online_term_eq",
      "lean_stage3/Stage3/WeilBackground.lean::WeilBackground.online_term_le_far",
@@ -43884,6 +44389,9 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_nonneg_of_RH",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.zeroForm_eq_primeSide",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.zeroForm_eq_strip",
      "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.StmtDetect",
@@ -43914,6 +44422,13 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.integrable_shift_term",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.isTest_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.laplace_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.stencilTest_zero_outside",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_eq_primeSide",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_nonneg_of_RH",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.StmtWeilBridge",
      "lean_stage3/Stage3/WeilBridgeLeaf.lean::WeilBridgeLeaf.zeroForm_eq_primeSide",
      "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.StmtDetect",
@@ -44135,6 +44650,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.zeroForm_stencilTest_nonneg_of_RH",
      "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.weilPositive_of_RH"
     ]
    },
@@ -60962,11 +61478,12 @@
    "Stage3.CellResidual",
    "Stage3.AliasClass",
    "Stage3.LadderFading",
-   "Stage3.LadderMean"
+   "Stage3.LadderMean",
+   "Stage3.StencilWeil"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 146,
+  "lines": 147,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -61028,6 +61545,7 @@
    "lean_stage3/Stage3/RowLeaves.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
    "lean_stage3/Stage3/Statement.lean",
+   "lean_stage3/Stage3/StencilWeil.lean",
    "lean_stage3/Stage3/Stirling.lean",
    "lean_stage3/Stage3/TableDepths.lean",
    "lean_stage3/Stage3/TableRoute.lean",

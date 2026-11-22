@@ -508,6 +508,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.half_le_norm_of_RH`](./lean_stage3/Assembly.md#Stage3-half_le_norm_of_RH) | theorem | reads ζ | `Assembly` | 1 / 2 ≤ ‖(ρ : ℂ)‖ |
 | [`RHPull.half_lt_σRH`](./lean_stage3/LineBound.md#RHPull-half_lt_-RH) | theorem | shape | `LineBound` | (1:ℝ)/2 &lt; σRH X |
 | [`Stage3.half_lt_σθ`](./lean_stage3/ThetaPull.md#Stage3-half_lt_--) | theorem | shape | `ThetaPull` | (1:ℝ)/2 &lt; σθ θ X |
+| [`StencilWeil.handshake_iff`](./lean_stage3/StencilWeil.md#StencilWeil-handshake_iff) | theorem | shape | `StencilWeil` | ‖(b : ℂ) ^ ρ‖ = ‖(b : ℂ) ^ (1 - ρ)‖ ↔ ρ.re = 1 / 2 |
 | [`WeilPowerGeom.harmonic_quarter`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-harmonic_quarter) | theorem | shape | `WeilPowerGeom` | ∑ m ∈ Finset.Ico a b, 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 6)) ≤ (Real.log b - Real.log a) / (4 * Real.pi ^ 2) |
 | [`Bridge.hasCompactSupport_kOf`](./lean_bridge/WeilBridge.md#Bridge-hasCompactSupport_kOf) | theorem | shape | `WeilBridge` | HasCompactSupport (kOf G) |
 | [`Bridge.hasCompactSupport_tiltF`](./lean_bridge/WeilBridge.md#Bridge-hasCompactSupport_tiltF) | theorem | shape | `WeilBridge` | HasCompactSupport (tiltF G) |
@@ -567,6 +568,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZetaGrowth.integrable_emA_tail`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-integrable_emA_tail) | theorem | shape | `ZetaGrowth` | IntegrableOn (fun x : ℝ ↦ (emA x : ℂ) * (x : ℂ) ^ (-(s+2))) (Ioi (N:ℝ)) |
 | [`Stage3.integrable_err_term`](./lean_stage3/PsiToPi.md#Stage3-integrable_err_term) | theorem | shape | `PsiToPi` | IntervalIntegrable (fun t =&gt; (θ t - t) / (t * Real.log t ^ 2)) volume a x |
 | [`VonKoch.integrable_psi_cpow`](./lean_stage3/VonKochScaffold.md#VonKoch-integrable_psi_cpow) | theorem | reads ζ | `VonKochScaffold` | IntegrableOn (fun t : ℝ ↦ ((ψ t : ℝ) : ℂ) * (t : ℂ) ^ (-(s + 1))) (Set.Ioi (1:ℝ)) |
+| [`StencilWeil.integrable_shift_term`](./lean_stage3/StencilWeil.md#StencilWeil-integrable_shift_term) | theorem | shape | `StencilWeil` | Integrable (fun u : ℝ =&gt; φ (u + a) * Complex.exp (-(z * (u : ℂ)))) |
 | [`Stage3.integrable_theta_term`](./lean_stage3/PsiToPi.md#Stage3-integrable_theta_term) | theorem | shape | `PsiToPi` | IntervalIntegrable (fun t =&gt; θ t / (t * Real.log t ^ 2)) volume a x |
 | [`Stage3.integral_A_rpow_le`](./lean_stage3/PsiToPi.md#Stage3-integral_A_rpow_le) | theorem | shape | `PsiToPi` | (∫ t in a..x, A * t ^ (-(1 : ℝ) / 2)) ≤ 2 * A * Real.sqrt x |
 | [`Stage3.integral_A_rpow_theta_le`](./lean_stage3/ThetaPi.md#Stage3-integral_A_rpow_theta_le) | theorem | shape | `ThetaPi` | (∫ t in a..x, A * t ^ (θ - 1)) ≤ 2 * A * x ^ θ |
@@ -609,6 +611,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.IsTest`](./lean_bridge/WeilBridge.md#Bridge-IsTest) | def | shape | `WeilBridge` | Prop |
 | [`WeilDetect.IsTest`](./lean_stage3/WeilDetect.md#WeilDetect-IsTest) | def | shape | `WeilDetect` | Prop |
 | [`WeilPowerAssembly.isTest_phiWC`](./lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-isTest_phiWC) | theorem | shape | `WeilPowerAssembly` | IsTest (2 * h) (WeilPowerBackground.phiWC h γ m) |
+| [`StencilWeil.isTest_stencilTest`](./lean_stage3/StencilWeil.md#StencilWeil-isTest_stencilTest) | theorem | shape | `StencilWeil` | IsTest (L + 2 * (d * Real.log 2)) (stencilTest d φ) |
 | [`MainTerm.iter_bdiffR_eq_fwdDiff`](./lean/MainTerm.md#MainTerm-iter_bdiffR_eq_fwdDiff) | theorem | shape | `MainTerm` | (bdiffR^[n]) g x = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℝ))^[n] g x |
 | [`MainTerm.iter_bdiffR_eq_sum`](./lean/MainTerm.md#MainTerm-iter_bdiffR_eq_sum) | theorem | shape | `MainTerm` | (bdiffR^[n]) g x = ∑ k ∈ range (n + 1), (-1 : ℝ) ^ k * (n.choose k) * g (x - k) |
 | [`MainTerm.iter_bdiffR_lb`](./lean/MainTerm.md#MainTerm-iter_bdiffR_lb) | theorem | shape | `MainTerm` | m ≤ (bdiffR^[n]) g x |
@@ -657,6 +660,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilBackground.laplace_phi`](./lean_stage3/WeilBackground.md#WeilBackground-laplace_phi) | theorem | shape | `WeilBackground` | laplace (phiC h γ) z = ghat h γ (-z - 1 / 2) |
 | [`WeilPowerBackground.laplace_phiW`](./lean_stage3/WeilPowerBackground.md#WeilPowerBackground-laplace_phiW) | theorem | shape | `WeilPowerBackground` | laplace (phiWC h γ m) z = what h γ m (-z - 1 / 2) |
 | [`Bridge.laplace_reflect_eq`](./lean_bridge/WeilBridge.md#Bridge-laplace_reflect_eq) | theorem | shape | `WeilBridge` | laplace G (-(1 - ρ)) = paperFT (tiltF G) (-gammaOf ρ) |
+| [`StencilWeil.laplace_shift`](./lean_stage3/StencilWeil.md#StencilWeil-laplace_shift) | theorem | shape | `StencilWeil` | laplace (fun u =&gt; φ (u + a)) z = Complex.exp (z * (a : ℂ)) * laplace φ z |
+| [`StencilWeil.laplace_stencilTest`](./lean_stage3/StencilWeil.md#StencilWeil-laplace_stencilTest) | theorem | shape | `StencilWeil` | laplace (stencilTest d φ) z = (1 - (2 : ℂ) ^ z) ^ d * laplace φ z |
 | [`Elephant.lattice_step`](./lean/Elephant.md#Elephant-lattice_step) | theorem | shape | `Elephant` | Sym b ((k : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ Sym b (((k + 1 : ℤ) : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ ((k + 1 : ℤ) : ℂ) * (2 * Real.pi * Complex.I / Real.log b) - (k … |
 | [`Transform.latticeBasis`](./lean/Transform.md#Transform-latticeBasis) | def | shape | `Transform` | Module.Basis (Fin 2) ℝ ℂ |
 | [`Stage3.Li`](./lean_stage3/PsiToPi.md#Stage3-Li) | def | shape | `PsiToPi` | ℝ |
@@ -806,6 +811,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ContourShift.mem_zetaWindow`](./lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow) | theorem | reads ζ | `ContourShift` | ρ ∈ Stage3.zetaWindow T₀ |
 | [`WeilBands.mem_zetaWindow_of_online`](./lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online) | theorem | reads ζ | `WeilBands` | ρ ∈ Stage3.zetaWindow T |
 | [`Stage3.meromorphicOrderAt_xi_eq_zeta`](./lean_stage3/ArgIdentity.md#Stage3-meromorphicOrderAt_xi_eq_zeta) | theorem | reads ζ | `ArgIdentity` | meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ |
+| [`StencilWeil.mirror_symbol_on_line`](./lean_stage3/StencilWeil.md#StencilWeil-mirror_symbol_on_line) | theorem | shape | `StencilWeil` | (1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ))) = ((‖1 - (2 : ℂ) ^ (-ρ)‖ ^ 2 : ℝ) : ℂ) |
 | [`Nonvanishing.Mlow`](./lean/Nonvanishing.md#Nonvanishing-Mlow) | def | shape | `Nonvanishing` | ℝ |
 | [`Chain.mode`](./lean/Chain.md#Chain-mode) | def | shape | `Chain` | ℂ → ℂ |
 | [`Elephant.mode`](./lean/Elephant.md#Elephant-mode) | def | shape | `Elephant` | ℤ → ℂ |
@@ -1152,6 +1158,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`ContourShift.residue_identity`](./lean_stage3/ContourShift.md#ContourShift-residue_identity) | theorem | reads ζ | `ContourShift` | RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * T') = (x : ℂ) - deriv riemannZe… |
 | [`ContourShift.residue_rectangle_multi`](./lean_stage3/ContourShift.md#ContourShift-residue_rectangle_multi) | theorem | reads ζ | `ContourShift` | RectangleIntegral' f z w = ∑ p ∈ P, A p |
 | [`ContourShift.residue_rectangle_of_local`](./lean_stage3/ContourShift.md#ContourShift-residue_rectangle_of_local) | theorem | reads ζ | `ContourShift` | RectangleIntegral' f z w = ∑ p ∈ P, A p |
+| [`StencilWeil.restoringForce`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce) | def | shape | `StencilWeil` | ℝ |
+| [`StencilWeil.restoringForce_eq`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce_eq) | theorem | shape | `StencilWeil` | restoringForce b ρ = 2 * \|ρ.re - 1 / 2\| * Real.log b |
+| [`StencilWeil.restoringForce_eq_zero_iff`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce_eq_zero_iff) | theorem | shape | `StencilWeil` | restoringForce b ρ = 0 ↔ ρ.re = 1 / 2 |
+| [`StencilWeil.restoringForce_mono`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce_mono) | theorem | shape | `StencilWeil` | restoringForce b ρ ≤ restoringForce c ρ |
 | [`ReZetaCount.reZeros`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeros) | def | reads ζ | `ReZetaCount` | Finset ℝ |
 | [`ReZetaCount.reZeroSet`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet) | def | reads ζ | `ReZetaCount` | Set ℝ |
 | [`ReZetaCount.reZeroSet_finite`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet_finite) | theorem | reads ζ | `ReZetaCount` | (reZeroSet T).Finite |
@@ -1306,6 +1316,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`CellResidual.stencilR_one`](./lean_stage3/CellResidual.md#CellResidual-stencilR_one) | theorem | shape | `CellResidual` | stencilR 1 g r = g r - g (r - 1) |
 | [`Nonvanishing.stencilR_row`](./lean/Nonvanishing.md#Nonvanishing-stencilR_row) | theorem | shape | `Nonvanishing` | stencilR d (bdiffZ g) r = stencilR (d + 1) g r |
 | [`Nonvanishing.stencilR_sub`](./lean/Nonvanishing.md#Nonvanishing-stencilR_sub) | theorem | shape | `Nonvanishing` | stencilR n (fun x =&gt; f x - L x) r = stencilR n f r - stencilR n L r |
+| [`StencilWeil.stencilTest`](./lean_stage3/StencilWeil.md#StencilWeil-stencilTest) | def | shape | `StencilWeil` | ℝ → ℂ |
+| [`StencilWeil.stencilTest_zero_outside`](./lean_stage3/StencilWeil.md#StencilWeil-stencilTest_zero_outside) | theorem | shape | `StencilWeil` | stencilTest d φ u = 0 |
 | [`CellResidual.step_le`](./lean_stage3/CellResidual.md#CellResidual-step_le) | theorem | shape | `CellResidual` | \|resid a r - resid a (r - 1)\| ≤ C * cellSize r 0 |
 | [`Chain.StmtA1`](./lean/Chain.md#Chain-StmtA1) | def | shape | `Chain` | Prop |
 | [`Chain.StmtA2`](./lean/Chain.md#Chain-StmtA2) | def | reads ζ | `Chain` | Prop |
@@ -1634,6 +1646,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilBridgeLeaf.zeroForm_eq_primeSide`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-zeroForm_eq_primeSide) | theorem | reads ζ | `WeilBridgeLeaf` | zeroForm G = primeSideM (kOfM G) |
 | [`WeilBridgeLeaf.zeroForm_eq_strip`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-zeroForm_eq_strip) | theorem | reads ζ | `WeilBridgeLeaf` | zeroForm G = ∑' ρ : {ρ : ℂ \| riemannZeta ρ = 0 ∧ 0 &lt; ρ.re ∧ ρ.re &lt; 1}, (((analyticOrderAt riemannZeta (ρ : ℂ)).toNat : ℕ) : ℂ) * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ)))) |
 | [`WeilDetect.zeroForm_nonneg_of_RH`](./lean_stage3/WeilDetect.md#WeilDetect-zeroForm_nonneg_of_RH) | theorem | reads ζ | `WeilDetect` | 0 ≤ (zeroForm G).re |
+| [`StencilWeil.zeroForm_stencilTest`](./lean_stage3/StencilWeil.md#StencilWeil-zeroForm_stencilTest) | theorem | reads ζ | `StencilWeil` | zeroForm (stencilTest d φ) = riemannZeta.zeroes_sum (Set.Ioo 0 1) (Set.univ : Set ℝ) (fun ρ =&gt; ((1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ)))) ^ d * (laplace φ (-ρ) * laplace φ (-(1 - ρ)))) |
+| [`StencilWeil.zeroForm_stencilTest_eq_primeSide`](./lean_stage3/StencilWeil.md#StencilWeil-zeroForm_stencilTest_eq_primeSide) | theorem | reads ζ | `StencilWeil` | zeroForm (stencilTest d φ) = WeilBridgeLeaf.primeSideM (WeilBridgeLeaf.kOfM (stencilTest d φ)) |
+| [`StencilWeil.zeroForm_stencilTest_nonneg_of_RH`](./lean_stage3/StencilWeil.md#StencilWeil-zeroForm_stencilTest_nonneg_of_RH) | theorem | reads ζ | `StencilWeil` | 0 ≤ (zeroForm (stencilTest d φ)).re |
 | [`LandauWindow.zeroFree_half_of_window`](./lean_stage3/LandauWindow.md#LandauWindow-zeroFree_half_of_window) | theorem | reads ζ | `LandauWindow` | ∀ s : ℂ, 1 / 2 &lt; s.re → riemannZeta s ≠ 0 |
 | [`Stage3.zeroFreeRight_iff_psiWeakTheta`](./lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_iff_psiWeakTheta) | theorem | reads ζ | `ThetaConverse` | StmtZeroFreeRight θ ↔ ∃ C &gt; 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀ |
 | [`Stage3.zeroFreeRight_mono`](./lean_stage3/Abscissa.md#Stage3-zeroFreeRight_mono) | theorem | reads ζ | `Abscissa` | StmtZeroFreeRight θ' |

@@ -898,3 +898,45 @@ class has weight `0`.
 **What this does not reach.** It needs one line to dominate. See the decision
 unit for the case with no largest real part.
 
+### T4 The stencil in Weil's form, and the restoring force — PROVED (unit 0433: `StencilWeil.laplace_stencilTest`, `isTest_stencilTest`, `zeroForm_stencilTest`, `mirror_symbol_on_line`, `restoringForce_eq`, `handshake_iff`, `zeroForm_stencilTest_eq_primeSide`)
+
+`papers/Connes-Measured.md` § E3 to E8 (O37, notebook entry 40): the difference
+stencil, mollified, is a test function for Weil's form, and the explicit
+formula balances on it numerically. `JointSymbol` has the transform of the
+differenced row. Not in Lean: the stencil inside `WeilDetect.zeroForm`.
+
+**The object.** In the variable `u = log x` one doubling is the shift by
+`log 2`. For a test function `φ`,
+`stencilTest d φ (u) = Σ_{k ≤ d} (−1)^k·C(d,k)·φ(u + k·log 2)`.
+
+**Its transform.** `laplace (φ(· + a)) z = e^(za)·laplace φ z`, so
+`laplace (stencilTest d φ) z = (1 − 2^z)^d·laplace φ z`. At `z = −ρ` the factor
+is the table's symbol `1 − 2^(−ρ)` to the depth; at `z = −(1−ρ)` it is the
+symbol at the mirror point.
+
+**In the form.** `zeroForm (stencilTest d φ)` is the sum over the zeros of
+`((1 − 2^(−ρ))·(1 − 2^(−(1−ρ))))^d·φ̂(−ρ)·φ̂(−(1−ρ))`, with multiplicity. On the
+line `1 − ρ` is the conjugate of `ρ` and the symbol pair is `|1 − 2^(−ρ)|²`.
+
+**The restoring force.** `lean_primebeat`'s closed-loop file has two locks: the
+handshake `p^(−σ) = p^(−(1−σ))`, and a restoring force `5·|σ − 1/2|`. Both are
+the imbalance between a weight and its mirror. Read off a mode of the table:
+`restoringForce b ρ = |log‖b^ρ‖ − log‖b^(1−ρ)‖| = 2·|Re ρ − 1/2|·log b`.
+Zero exactly on the line; proportional to the displacement; larger at larger
+`b`.
+
+**Theorems** (`StencilWeil`):
+
+- `laplace_shift`, `laplace_stencilTest (hφ : IsTest L φ)`.
+- `isTest_stencilTest (hφ : IsTest L φ) : IsTest (L + 2·(d·log 2)) (stencilTest d φ)`.
+- `zeroForm_stencilTest`: the form on the stencil, zero by zero.
+- `mirror_symbol_on_line (h : ρ.re = 1/2)`: the symbol pair is `‖1 − 2^(−ρ)‖²`.
+- `restoringForce_eq (hb : 1 < b)`, `restoringForce_eq_zero_iff`, `handshake_iff`,
+  `restoringForce_mono`.
+- `zeroForm_stencilTest_eq_primeSide (h : StmtWeilBridge)`: the form on the
+  stencil is its prime side.
+- `zeroForm_stencilTest_nonneg_of_RH`.
+
+**Not here.** That the form on the stencil is nonnegative without RH; that a
+zero off the line makes it negative for some `φ` and depth (`StmtDetect`).
+

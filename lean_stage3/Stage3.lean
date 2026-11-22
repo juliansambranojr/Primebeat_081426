@@ -135,6 +135,7 @@ import Stage3.CellResidual
 import Stage3.AliasClass
 import Stage3.LadderFading
 import Stage3.LadderMean
+import Stage3.StencilWeil
 
 namespace Stage3
 

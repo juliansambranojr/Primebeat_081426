@@ -22,6 +22,29 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint T4, the stencil in Weil's form and the restoring force: `Stage3/StencilWeil.lean`, block T4 of `joints.md`
+
+    DONE        `stencilTest d φ`: the table's depth-`d` stencil applied to a
+                test function along the doublings; it is again a test
+                function; its transform is the symbol to the depth times
+                `φ`'s; so each zero enters Weil's form with weight the symbol
+                at the zero times the symbol at its mirror, to the depth; on
+                the line that weight is a square; `restoringForce b ρ`, the
+                difference of the logarithms of a mode's size and its
+                mirror's, equals `2·|Re ρ − 1/2|·log b`, is zero exactly on
+                the line, and grows with `b`; with the bridge, the form on
+                the stencil equals its prime side; one unit
+    ASSUMED     Julian, 2026-11-22: "Yes", to building T4 as the restoring
+                force read off the table. The force is the mirror imbalance of
+                the mode, the quantity common to the handshake and the
+                restoring force of `lean_primebeat`'s closed-loop file, read
+                the same day. That it restores, in the sense that an off-line
+                zero is impossible, is not claimed and is not in this piece
+    DEPENDS     `WeilDetect`, `WeilBridgeLeaf`; `papers/Connes-Measured.md` § E
+                (the stencil as a test function, measured, O37)
+    OUT         positivity of the form without RH; `StmtDetect`
+    OUTCOME     done as pinned; unit 0433, clean on its second build
+
 ### 2026-11-22 · joint 10 on one ladder, the general case: a decision unit, and `Stage3/LadderMean.lean`, block J10c of `joints.md`
 
     DONE        a decision unit recording where the general case stops: the

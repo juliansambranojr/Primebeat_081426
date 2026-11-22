@@ -2,10 +2,12 @@ flowchart LR
   n0["<b>order_eq_toNat</b><br/>riemannZeta.order ρ = (((analyticOrderAt riemannZeta ρ).toNat : …"]:::thm
   n1["<b>zeroes_rect_strip</b><br/>riemannZeta.zeroes_rect (Set.Ioo 0 1) Set.univ = {ρ : ℂ | rieman…"]:::thm
   n2["<b>zeroForm_eq_strip</b><br/>zeroForm G = ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 ＜ ρ.re ∧ ρ.re…"]:::thm
-  n3["<b>zeroForm_eq_primeSide ■</b><br/>zeroForm G = primeSideM (kOfM G)"]:::thm
+  n3["<b>zeroForm_eq_primeSide</b><br/>zeroForm G = primeSideM (kOfM G)"]:::thm
+  x0(["<b>StencilWeil</b><br/>zeroForm_stencilTest_eq_primeSide"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n3
+  n3 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -1,0 +1,77 @@
+# check_prose_source.py  2026-11-22T21:17:49Z
+# unit: 0433-stencil-weil
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14787
+  Source: session transcript, 2026-11-22, after units 0431 and 0432
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12670
+  Also you want more search my repos for sextic guardrail and restoring force.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14478
+  def stencilTest (d : ℕ) (φ : ℝ → ℂ) : ℝ → ℂ := fun u =>
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14479
+  ∑ k ∈ range (d + 1), ((((-1 : ℝ) ^ k * (d.choose k : ℝ) : ℝ)) : ℂ) * φ (u + k * Real.log 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14482
+  def restoringForce (b : ℝ) (ρ : ℂ) : ℝ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14483
+  |Real.log ‖(b : ℂ) ^ ρ‖ - Real.log ‖(b : ℂ) ^ (1 - ρ)‖|
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14521
+  theorem laplace_stencilTest {L : ℝ} {φ : ℝ → ℂ} (hφ : IsTest L φ) (d : ℕ) (z : ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14522
+  laplace (stencilTest d φ) z = (1 - (2 : ℂ) ^ z) ^ d * laplace φ z := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14587
+  theorem isTest_stencilTest {L : ℝ} {φ : ℝ → ℂ} (hφ : IsTest L φ) (d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14588
+  IsTest (L + 2 * (d * Real.log 2)) (stencilTest d φ) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14603
+  theorem zeroForm_stencilTest {L : ℝ} {φ : ℝ → ℂ} (hφ : IsTest L φ) (d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14605
+  = riemannZeta.zeroes_sum (Set.Ioo 0 1) (Set.univ : Set ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14606
+  (fun ρ => ((1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ)))) ^ d
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14607
+  * (laplace φ (-ρ) * laplace φ (-(1 - ρ)))) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14616
+  theorem mirror_symbol_on_line {ρ : ℂ} (h : ρ.re = 1 / 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14606
+  (1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14618
+  = ((‖1 - (2 : ℂ) ^ (-ρ)‖ ^ 2 : ℝ) : ℂ) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14635
+  theorem restoringForce_eq {b : ℝ} (hb : 1 < b) (ρ : ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14636
+  restoringForce b ρ = 2 * |ρ.re - 1 / 2| * Real.log b := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14666
+  theorem handshake_iff {b : ℝ} (hb : 1 < b) (ρ : ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14667
+  ‖(b : ℂ) ^ ρ‖ = ‖(b : ℂ) ^ (1 - ρ)‖ ↔ ρ.re = 1 / 2 := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14690
+  theorem zeroForm_stencilTest_eq_primeSide (h : WeilBridgeLeaf.StmtWeilBridge) {L : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14587
+  {φ : ℝ → ℂ} (hφ : IsTest L φ) (d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14693
+  = WeilBridgeLeaf.primeSideM (WeilBridgeLeaf.kOfM (stencilTest d φ)) :=
+
+# 24 found, 0 missing

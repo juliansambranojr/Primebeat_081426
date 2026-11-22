@@ -36,7 +36,7 @@ flowchart LR
     t21["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t23["<b>Superposition</b><br/>4 shape"]:::shp
     t24["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>590 theorems shape,<br/>in 82 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>600 theorems shape,<br/>in 83 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -45,7 +45,7 @@ flowchart LR
     t4["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t5["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t25["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>456 theorems reads ζ,<br/>in 69 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>459 theorems reads ζ,<br/>in 70 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -91,15 +91,15 @@ flowchart LR
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
 - **Counting** (green), 103 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 829 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 477 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Shape** (violet), 839 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 480 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 102 | 225 | 19 |
-| `lean_stage3/` | 1 | 590 | 456 |
+| `lean_stage3/` | 1 | 600 | 459 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
