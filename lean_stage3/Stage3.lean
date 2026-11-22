@@ -46,6 +46,7 @@ import Stage3.LandauChebyshev
 import Stage3.LandauKernel
 import Stage3.LandauTaylor
 import Stage3.LandauTail
+import Stage3.LandauTrig
 import Stage3.WeilDetect
 import Stage3.WeilBridgeLeaf
 import Stage3.BoxFinite

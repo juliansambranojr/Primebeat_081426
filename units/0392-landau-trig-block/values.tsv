@@ -1,0 +1,21 @@
+key	value	source
+module_lines	228	wc -l lean_stage3/Stage3/LandauTrig.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/LandauTrig.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauTrig.lean
+private_lemmas	1	re_mul_geom_ge
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauTrig.lean
+pins	3	sum_block_ge, sum_sq_block_ge, exists_large_in_block
+errors_first	3	first lake build Stage3.LandauTrig, lines error: Stage3/LandauTrig.lean
+roots	1	a simp only that made no progress in the frequency-one case of sum_block_ge
+cascade	2	the pins of sum_block_ge and exists_large_in_block (TRAPS.md row 19)
+builds	2	the first build and the one after the fix
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8783	lake build (full Stage3), Build completed successfully
+jobs_module	8655	run/build.log, lake build Stage3.LandauTrig
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#6	a real exponential sum is large somewhere in every long block
+tau_denominator	4	exists_large_in_block: the witness is S/(4B)
+block_factor	2	exists_large_in_block: blocks longer than 2(E₂ + B·E₁)/S
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

@@ -1,0 +1,38 @@
+# check_prose_source.py  2026-11-22T07:18:45Z
+# unit: 0392-landau-trig-block
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21615
+  Source: session transcript, 2026-11-22, after unit 0391
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21361
+  theorem sum_block_ge (s : Finset ι) (c z : ι → ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21362
+  (hz : ∀ j ∈ s, ‖z j‖ = 1) (hconst : ∀ j ∈ s, z j = 1 → 0 ≤ (c j).re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21363
+  (T : ℕ → ℝ) (hT : ∀ n, (T n : ℂ) = ∑ j ∈ s, c j * z j ^ n) (a N : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21364
+  -(∑ j ∈ s, ‖c j‖ * (2 / ‖z j - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N), T n := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21458
+  theorem exists_large_in_block [DecidableEq ι] (s : Finset ι) (c z : ι → ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21267
+  (hz : ∀ j ∈ s, ‖z j‖ = 1) (hinj : Set.InjOn z s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21268
+  (hconst : ∀ j ∈ s, z j = 1 → 0 ≤ (c j).re) (hne : ∃ j ∈ s, c j ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21269
+  (T : ℕ → ℝ) (hT : ∀ n, (T n : ℂ) = ∑ j ∈ s, c j * z j ^ n) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21270
+  ∃ τ : ℝ, 0 < τ ∧ ∃ N₀ : ℕ, ∀ a N : ℕ, N₀ ≤ N →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21463
+  ∃ n ∈ Finset.Ico a (a + N), τ ≤ T n := by
+
+# 11 found, 0 missing

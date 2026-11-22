@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 6 of `design/landau.md`, `Stage3/LandauTrig.lean`
+
+    DONE        `Stage3/LandauTrig.lean` builds with no `sorry`:
+                `exists_large_in_block`, a real sum `Σ c_j z_j^n` over distinct
+                unimodular `z_j`, with nonnegative real part at the frequency
+                `1` and some `c_j ≠ 0`, is at least a fixed `τ > 0` somewhere
+                in every block of at least `N₀` consecutive `n`; with the
+                mean and mean-square bounds it rests on; a formalization
+                unit; block 6 marked PROVED
+    ASSUMED     the lemma is stated for distinct frequencies and a squared
+                modulus; the conjugate-pair note of the worksheet is replaced
+                by that statement
+    DEPENDS     Mathlib's geometric sums
+    OUT         blocks 3, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0392: five theorems, no `sorry`, no
+                hypothesis added
+
 ### 2026-11-22 · the Landau window: block 4b of `design/landau.md`, `Stage3/LandauTail.lean`
 
     DONE        `Stage3/LandauTail.lean` builds with no `sorry`:

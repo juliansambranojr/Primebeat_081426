@@ -425,20 +425,49 @@ Module.    `Stage3/LandauChebyshev.lean`, namespace `LandauChebyshev`,
            Pinned: `rampSum_le_log`, `G_le`, `abs_G_le_log`.
 Open.      none.
 
-### 6 A trigonometric polynomial with no constant term is positive somewhere in every long block — SKETCH
-Elementary and self-contained: mean at least zero, mean square positive,
-bounded. With mean `≥ 0`, mean square `≥ m² > 0` and `|T| ≤ B` over a block,
-the positive part has mean at least `m²/(2B)`, so some `k` in the block has
-`T(k) ≥ m²/(2B)`. Means over a block are geometric sums (section 0b).
-
-THE CONJUGATE PAIRS, found 2026-11-22. The zeros nearest `σ₀` come as `ρ` and
-`ρ̄`, with equal order, and their terms are complex conjugates: the
-frequencies are `+φ` and `−φ`. In the square of `T` the cross term of such a
-pair has frequency `φ − φ = 0` and does not average out. So the lemma is
-stated on the combined form: one real term `Re(a_j e^(ikφ_j))` per pair, the
-`φ_j` distinct in `(0, π]`, plus the constant term `≥ 0` from real poles.
-A frequency `φ_j = π` gives `a_j(−1)^k`, whose square has mean `a_j²` and not
-half of it; the bound below on the mean square holds either way.
+### 6 A real exponential sum is large somewhere in every long block — PROVED (unit 0392:
+`LandauTrig.norm_geom_Ico_le`, `sum_block_ge`, `sum_sq_block_ge`, `abs_le_sum_norm`, `exists_large_in_block`)
+Objects.   a finite index set `s`; `z_j` complex of modulus one, distinct;
+           `c_j` complex, some `c_j ≠ 0`; `T(n) = Σ_j c_j z_j^n`, real for every
+           `n`. `B = Σ|c_j|`, `S = Σ|c_j|²`. In block 7, `z_j = e^(−iφ_j)` with
+           `σ₀ − ρ_j = r·e^(iφ_j)` and `c_j = m_j/(ρ_j(1−ρ_j))`.
+Sizes.     over a block of `N` consecutive `n`:
+           the sum of `T` is at least `−E₁`, `E₁ = Σ_{z_j ≠ 1} 2|c_j|/|z_j − 1|`,
+           the frequency `1` contributing `N·Re c_j ≥ 0`;
+           the sum of `T²`, computed as `|T|²`, is at least `N·S − E₂`,
+           `E₂ = Σ_{j ≠ l} 2|c_j||c_l|/|z_j z̄_l − 1|`;
+           `|T| ≤ B`. If `T < τ` on the whole block then
+           `T² ≤ B·(2τ − T)` at each point, so `N·S − E₂ ≤ B·(2τN + E₁)`; with
+           `τ = S/(4B)` this is `N·S/2 ≤ E₂ + B·E₁`. So every block longer than
+           `2(E₂ + B·E₁)/S` holds an `n` with `T(n) ≥ S/(4B)`. THE LOST-FACTOR
+           CHECK: `τ` and the block length depend on the `c_j` and `z_j` only,
+           and on neither the block's position nor `n`. None.
+           THE CONJUGATE PAIRS. The note of 2026-11-22 squared `T` as `T·T`,
+           where the pair `z, z̄` gives a cross term of ratio `z·z̄ = 1`. As
+           `|T|² = T·T̄` the cross term of `j ≠ l` has ratio `z_j·z̄_l`, which
+           is `1` only when `z_j = z_l`. Distinct frequencies are all the
+           lemma needs; pairs are not combined.
+Regime.    Z1 `‖z_j‖ = 1`. Z2 `z` injective on `s`. C1 `0 ≤ Re c_j` when
+           `z_j = 1`. C2 some `c_j ≠ 0`. T1 `T n = Σ_j c_j z_j^n` as complex
+           numbers, `T` real-valued.
+Defs.      none.
+Theorems.  `theorem norm_geom_Ico_le {w : ℂ} (hw : ‖w‖ = 1) (hw1 : w ≠ 1) (a N : ℕ) :
+               ‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖`
+           `theorem sum_block_ge` — Z1, C1, T1 — `−E₁ ≤ Σ_{n ∈ block} T n`
+           `theorem sum_sq_block_ge` — Z1, Z2, T1 — `N·S − E₂ ≤ Σ_{n ∈ block} (T n)²`
+           `theorem abs_le_sum_norm` — Z1, T1 — `|T n| ≤ B`
+           `theorem exists_large_in_block {ι : Type*} [DecidableEq ι] (s : Finset ι) (c z : ι → ℂ)
+               (hz : ∀ j ∈ s, ‖z j‖ = 1) (hinj : Set.InjOn z s)
+               (hconst : ∀ j ∈ s, z j = 1 → 0 ≤ (c j).re) (hne : ∃ j ∈ s, c j ≠ 0)
+               (T : ℕ → ℝ) (hT : ∀ n, (T n : ℂ) = ∑ j ∈ s, c j * z j ^ n) :
+               ∃ τ : ℝ, 0 < τ ∧ ∃ N₀ : ℕ, ∀ a N : ℕ, N₀ ≤ N →
+                 ∃ n ∈ Finset.Ico a (a + N), τ ≤ T n`
+Composes.  Mathlib: `geom_sum_Ico` (a `lemma`), `Finset.sum_mul_sum` (a `lemma`),
+           `Complex.mul_conj'` (a `lemma`), `Complex.conj_ofReal`, `Complex.re_sum`,
+           `Finset.sum_comm`.
+Module.    `Stage3/LandauTrig.lean`, namespace `LandauTrig`, `import Mathlib`.
+           Pinned: `sum_block_ge`, `sum_sq_block_ge`, `exists_large_in_block`.
+Open.      none.
 
 ### 7 The assembly — SKETCH
 `StmtLandauWindow` from slices 2 to 6.
