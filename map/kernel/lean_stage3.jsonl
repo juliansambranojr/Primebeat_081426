@@ -628,6 +628,12 @@
 {"a":true,"k":"theorem","m":"Stage3.TablePort.MainTerm","n":"MainTerm.stencilR_ge_of","pf":["MainTerm.bdiffR","MainTerm.iter_bdiffR_lb","MainTerm.stencilR_eq_iter","Nonvanishing.stencilR"],"ty":["Nonvanishing.stencilR"],"z":false}
 {"a":true,"k":"theorem","m":"Stage3.TablePort.MainTerm","n":"MainTerm.tableFrom_ne_zero_of_deriv","pf":["MainTerm.stencilR_ge_of","Nonvanishing.Ehigh","Nonvanishing.Mlow","Nonvanishing.StmtSchoenfeldWindow","Nonvanishing.bdiffZ","Nonvanishing.tableFrom_ne_zero_of"],"ty":["Construction.tableFrom","Nonvanishing.Ehigh","Nonvanishing.Mlow","Nonvanishing.StmtSchoenfeldWindow","Nonvanishing.bdiffZ"],"z":false}
 {"a":true,"k":"theorem","m":"Stage3.LandauChebyshev","n":"Mertens.E₁Λ.eq_1","pf":[],"ty":[],"z":true}
+{"a":true,"k":"theorem","m":"Stage3.MirrorArea","n":"MirrorArea.long_side_of_off_line","pf":[],"ty":[],"z":false}
+{"a":true,"k":"theorem","m":"Stage3.MirrorArea","n":"MirrorArea.mirror_area","pf":[],"ty":[],"z":false}
+{"a":true,"k":"theorem","m":"Stage3.MirrorArea","n":"MirrorArea.mirror_side","pf":["MirrorArea.mirror_area"],"ty":[],"z":false}
+{"a":true,"k":"theorem","m":"Stage3.MirrorArea","n":"MirrorArea.restoringForce_eq_log_ratio","pf":["StencilWeil.restoringForce"],"ty":["StencilWeil.restoringForce"],"z":false}
+{"a":true,"k":"theorem","m":"Stage3.MirrorArea","n":"MirrorArea.side_eq_sqrt_iff","pf":[],"ty":[],"z":false}
+{"a":true,"k":"theorem","m":"Stage3.MirrorArea","n":"MirrorArea.square_iff","pf":["MirrorArea.side_eq_sqrt_iff"],"ty":[],"z":false}
 {"a":true,"k":"def","m":"Stage3.TablePort.Nonvanishing","n":"Nonvanishing.Ehigh","pf":["Nonvanishing.Ehigh._proof_1","Nonvanishing.Ehigh._proof_2"],"ty":[],"z":false}
 {"a":false,"k":"theorem","m":"Stage3.TablePort.Nonvanishing","n":"Nonvanishing.Ehigh._proof_1","pf":[],"ty":[],"z":false}
 {"a":false,"k":"theorem","m":"Stage3.TablePort.Nonvanishing","n":"Nonvanishing.Ehigh._proof_2","pf":[],"ty":[],"z":false}

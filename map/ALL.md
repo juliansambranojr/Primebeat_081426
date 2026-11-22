@@ -726,6 +726,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Slice3.logDerivZeta_sq_at_X`](./lean_stage3/LineBound.md#Slice3-logDerivZeta_sq_at_X) | theorem | reads ζ | `LineBound` | ‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ))‖ ≤ 11100 * (Real.log X) ^ 2 |
 | [`Stage3.logDerivZeta_sq_at_X_theta`](./lean_stage3/ThetaLine.md#Stage3-logDerivZeta_sq_at_X_theta) | theorem | reads ζ | `ThetaLine` | ‖deriv ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ))‖ ≤ 11100 * (Real.log X) ^ 2 |
 | [`LandauMellinG.logPrim`](./lean_stage3/LandauMellinG.md#LandauMellinG-logPrim) | def | shape | `LandauMellinG` | ℂ |
+| [`MirrorArea.long_side_of_off_line`](./lean_stage3/MirrorArea.md#MirrorArea-long_side_of_off_line) | theorem | shape | `MirrorArea` | Real.sqrt b &lt; max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖ |
 | [`EdgeBound.low_ball_count`](./lean_stage3/LowCount.md#EdgeBound-low_ball_count) | theorem | reads ζ | `LowCount` | (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0 : ℝ) ≤ 8 / 5)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ 119 |
 | [`EdgeBound.low_ball_count_wide`](./lean_stage3/LowEdge.md#EdgeBound-low_ball_count_wide) | theorem | reads ζ | `LowEdge` | (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0 : ℝ) ≤ 46 / 25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ 250 |
 | [`EdgeBound.low_rect_count`](./lean_stage3/LowCount.md#EdgeBound-low_rect_count) | theorem | reads ζ | `LowCount` | (∑ ρ ∈ (ContourShift.zeta_zeros_rectangle_finite (0 : ℂ) ((1 : ℝ) + Complex.I * (6 : ℝ))).toFinset, (analyticOrderNatAt riemannZeta ρ : ℝ)) ≤ 714 |
@@ -813,6 +814,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`ContourShift.mem_zetaWindow`](./lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow) | theorem | reads ζ | `ContourShift` | ρ ∈ Stage3.zetaWindow T₀ |
 | [`WeilBands.mem_zetaWindow_of_online`](./lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online) | theorem | reads ζ | `WeilBands` | ρ ∈ Stage3.zetaWindow T |
 | [`Stage3.meromorphicOrderAt_xi_eq_zeta`](./lean_stage3/ArgIdentity.md#Stage3-meromorphicOrderAt_xi_eq_zeta) | theorem | reads ζ | `ArgIdentity` | meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ |
+| [`MirrorArea.mirror_area`](./lean_stage3/MirrorArea.md#MirrorArea-mirror_area) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ ρ‖ * ‖(b : ℂ) ^ (1 - ρ)‖ = b |
+| [`MirrorArea.mirror_side`](./lean_stage3/MirrorArea.md#MirrorArea-mirror_side) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ (1 - ρ)‖ = b / ‖(b : ℂ) ^ ρ‖ |
 | [`StencilWeil.mirror_symbol_on_line`](./lean_stage3/StencilWeil.md#StencilWeil-mirror_symbol_on_line) | theorem | shape | `StencilWeil` | (1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ))) = ((‖1 - (2 : ℂ) ^ (-ρ)‖ ^ 2 : ℝ) : ℂ) |
 | [`Nonvanishing.Mlow`](./lean/Nonvanishing.md#Nonvanishing-Mlow) | def | shape | `Nonvanishing` | ℝ |
 | [`Chain.mode`](./lean/Chain.md#Chain-mode) | def | shape | `Chain` | ℂ → ℂ |
@@ -1163,6 +1166,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ContourShift.residue_rectangle_of_local`](./lean_stage3/ContourShift.md#ContourShift-residue_rectangle_of_local) | theorem | reads ζ | `ContourShift` | RectangleIntegral' f z w = ∑ p ∈ P, A p |
 | [`StencilWeil.restoringForce`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce) | def | shape | `StencilWeil` | ℝ |
 | [`StencilWeil.restoringForce_eq`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce_eq) | theorem | shape | `StencilWeil` | restoringForce b ρ = 2 * \|ρ.re - 1 / 2\| * Real.log b |
+| [`MirrorArea.restoringForce_eq_log_ratio`](./lean_stage3/MirrorArea.md#MirrorArea-restoringForce_eq_log_ratio) | theorem | shape | `MirrorArea` | restoringForce b ρ = \|Real.log (‖(b : ℂ) ^ ρ‖ / ‖(b : ℂ) ^ (1 - ρ)‖)\| |
 | [`StencilWeil.restoringForce_eq_zero_iff`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce_eq_zero_iff) | theorem | shape | `StencilWeil` | restoringForce b ρ = 0 ↔ ρ.re = 1 / 2 |
 | [`StencilWeil.restoringForce_mono`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce_mono) | theorem | shape | `StencilWeil` | restoringForce b ρ ≤ restoringForce c ρ |
 | [`ReZetaCount.reZeros`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeros) | def | reads ζ | `ReZetaCount` | Finset ℝ |
@@ -1254,6 +1258,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerShell.shellSum_neg`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-shellSum_neg) | theorem | shape | `WeilPowerShell` | shellSum e' (-D) e lam a b = shellSum e' D e lam a b |
 | [`WeilPowerNear.shellSum_nonneg`](./lean_stage3/WeilPowerNear.md#WeilPowerNear-shellSum_nonneg) | theorem | shape | `WeilPowerNear` | 0 ≤ WeilPowerShell.shellSum e' D e lam a b |
 | [`WeilPowerNear.shellSum_nonneg_abs`](./lean_stage3/WeilPowerNear.md#WeilPowerNear-shellSum_nonneg_abs) | theorem | shape | `WeilPowerNear` | 0 ≤ WeilPowerShell.shellSum e' D e lam a b |
+| [`MirrorArea.side_eq_sqrt_iff`](./lean_stage3/MirrorArea.md#MirrorArea-side_eq_sqrt_iff) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ ρ‖ = Real.sqrt b ↔ ρ.re = 1 / 2 |
 | [`WeilPowerPhase.sigma`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-sigma) | def | shape | `WeilPowerPhase` | ℝ |
 | [`WeilWindow.Sigma`](./lean_stage3/WeilWindow.md#WeilWindow-Sigma) | def | shape | `WeilWindow` | ℝ |
 | [`WeilPowerPhase.sigma_ge`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-sigma_ge) | theorem | shape | `WeilPowerPhase` | 1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m |
@@ -1295,6 +1300,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`BoxBounds.sq_zeta_box`](./lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_box) | theorem | reads ζ | `BoxBounds` | ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 |
 | [`Stage3.sqPos_eq`](./lean_stage3/ExplicitBump.md#Stage3-sqPos_eq) | theorem | shape | `ExplicitBump` | (max 0 u) ^ 2 = if u ≤ 0 then 0 else u ^ 2 |
 | [`Stage3.sqrt_le_rpow_theta`](./lean_stage3/ThetaPi.md#Stage3-sqrt_le_rpow_theta) | theorem | shape | `ThetaPi` | Real.sqrt x ≤ x ^ θ |
+| [`MirrorArea.square_iff`](./lean_stage3/MirrorArea.md#MirrorArea-square_iff) | theorem | shape | `MirrorArea` | (‖(b : ℂ) ^ ρ‖ = Real.sqrt b ∧ ‖(b : ℂ) ^ (1 - ρ)‖ = Real.sqrt b) ↔ ρ.re = 1 / 2 |
 | [`NyquistPeak.stationary_maximum`](./lean/NyquistPeak.md#NyquistPeak-stationary_maximum) | theorem | shape | `NyquistPeak` | HasDerivAt (gain d) 0 Real.pi ∧ (∀ θ : ℝ, gain d θ ≤ gain d Real.pi) ∧ (∀ θ : ℝ, \|Real.sin (θ / 2)\| ≠ 1 → gain d θ &lt; gain d Real.pi) |
 | [`CellZeros.stencil`](./lean_stage3/CellZeros.md#CellZeros-stencil) | def | shape | `CellZeros` | ℂ |
 | [`Zeros.stencil`](./lean/ZerosStencil.md#Zeros-stencil) | def | counting | `ZerosStencil` | ℤ |

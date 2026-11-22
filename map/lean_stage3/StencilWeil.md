@@ -5,7 +5,7 @@ StencilWeil — block T4 of `lean_stage3/design/joints.md`. 2026-11-22. The tabl
 13 theorems, 2 definitions, 300 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilBridgeLeaf`](../lean_stage3/WeilBridgeLeaf.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`MirrorArea`](../lean_stage3/MirrorArea.md)
 
 ## The picture
 
@@ -69,7 +69,7 @@ def · line 51
 The imbalance between a mode of the table and its mirror, in logarithms.
 
 - **Is:** `` restoringForce (b : ℝ) (ρ : ℂ) : ℝ := |Real.log ‖(b : ℂ) ^ ρ‖ - Real.log ‖(b : ℂ) ^ (1 - ρ)‖| ``
-- **Used by 4:** [`StencilWeil.handshake_iff`](#StencilWeil-handshake_iff), [`StencilWeil.restoringForce_eq`](#StencilWeil-restoringForce_eq), [`StencilWeil.restoringForce_eq_zero_iff`](#StencilWeil-restoringForce_eq_zero_iff), [`StencilWeil.restoringForce_mono`](#StencilWeil-restoringForce_mono)
+- **Used by 5:** [`MirrorArea.restoringForce_eq_log_ratio`](../lean_stage3/MirrorArea.md#MirrorArea-restoringForce_eq_log_ratio), [`StencilWeil.handshake_iff`](#StencilWeil-handshake_iff), [`StencilWeil.restoringForce_eq`](#StencilWeil-restoringForce_eq), [`StencilWeil.restoringForce_eq_zero_iff`](#StencilWeil-restoringForce_eq_zero_iff), [`StencilWeil.restoringForce_mono`](#StencilWeil-restoringForce_mono)
 
 ## Theorems
 

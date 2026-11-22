@@ -31712,6 +31712,179 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MirrorArea.lean",
+  "module": "Stage3.MirrorArea",
+  "stem": "MirrorArea",
+  "header": "MirrorArea — block S1 of `lean_stage3/design/joints.md`. 2026-11-22. A mode of the table at base `b` and its mirror, read as the two sides of a rectangle. The sides are `‖b^ρ‖` and `‖b^(1−ρ)‖`. Their product is `b` for every `ρ`: the area is fixed by the base and by nothing else. So one side gives the other at every scale. The rectangle is a square, each side `√b`, exactly when `ρ` is on the line; off the line one side is longer than `√b`. The restoring force of block T4 is the logarithm of the ratio of the sides.",
+  "imports": [
+   "Stage3.StencilWeil"
+  ],
+  "opens": [
+   "Complex",
+   "StencilWeil"
+  ],
+  "namespaces": [
+   "MirrorArea"
+  ],
+  "lines": 116,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/StencilWeil.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "mirror_area",
+    "ns": "MirrorArea",
+    "full": "MirrorArea.mirror_area",
+    "line": 32,
+    "why": "The area is fixed. A mode and its mirror multiply to the base.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "‖(b : ℂ) ^ ρ‖ * ‖(b : ℂ) ^ (1 - ρ)‖ = b",
+    "file": "lean_stage3/Stage3/MirrorArea.lean",
+    "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mirror_side",
+    "ns": "MirrorArea",
+    "full": "MirrorArea.mirror_side",
+    "line": 39,
+    "why": "One side gives the other, at every base.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "‖(b : ℂ) ^ (1 - ρ)‖ = b / ‖(b : ℂ) ^ ρ‖",
+    "file": "lean_stage3/Stage3/MirrorArea.lean",
+    "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "side_eq_sqrt_iff",
+    "ns": "MirrorArea",
+    "full": "MirrorArea.side_eq_sqrt_iff",
+    "line": 49,
+    "why": "A side is the square root of the base exactly on the line.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "‖(b : ℂ) ^ ρ‖ = Real.sqrt b ↔ ρ.re = 1 / 2",
+    "file": "lean_stage3/Stage3/MirrorArea.lean",
+    "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.square_iff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "square_iff",
+    "ns": "MirrorArea",
+    "full": "MirrorArea.square_iff",
+    "line": 63,
+    "why": "The square. Both sides are the square root of the base exactly on the line.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "(‖(b : ℂ) ^ ρ‖ = Real.sqrt b ∧ ‖(b : ℂ) ^ (1 - ρ)‖ = Real.sqrt b) ↔ ρ.re = 1 / 2",
+    "file": "lean_stage3/Stage3/MirrorArea.lean",
+    "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.square_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "long_side_of_off_line",
+    "ns": "MirrorArea",
+    "full": "MirrorArea.long_side_of_off_line",
+    "line": 75,
+    "why": "Off the line one side is long. A rectangle of the same area that is not the square has a side above the square's.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "h : ρ.re ≠ 1 / 2"
+    ],
+    "proves": "Real.sqrt b < max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖",
+    "file": "lean_stage3/Stage3/MirrorArea.lean",
+    "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.long_side_of_off_line",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "restoringForce_eq_log_ratio",
+    "ns": "MirrorArea",
+    "full": "MirrorArea.restoringForce_eq_log_ratio",
+    "line": 90,
+    "why": "The force is the shape. The restoring force is the logarithm of the ratio of the two sides.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "restoringForce b ρ = |Real.log (‖(b : ℂ) ^ ρ‖ / ‖(b : ℂ) ^ (1 - ρ)‖)|",
+    "file": "lean_stage3/Stage3/MirrorArea.lean",
+    "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.restoringForce_eq_log_ratio",
+    "stmt": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/PerronKernel.lean",
   "module": "Stage3.PerronKernel",
   "stem": "PerronKernel",
@@ -35800,6 +35973,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.restoringForce_eq_log_ratio",
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.handshake_iff",
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq",
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff",
@@ -61654,11 +61828,12 @@
    "Stage3.LadderFading",
    "Stage3.LadderMean",
    "Stage3.StencilWeil",
-   "Stage3.WobbleCount"
+   "Stage3.WobbleCount",
+   "Stage3.MirrorArea"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 148,
+  "lines": 149,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -61710,6 +61885,7 @@
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",
+   "lean_stage3/Stage3/MirrorArea.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PiToPsi.lean",
    "lean_stage3/Stage3/PsiToPi.lean",

@@ -36,7 +36,7 @@ flowchart LR
     t21["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t23["<b>Superposition</b><br/>4 shape"]:::shp
     t24["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>602 theorems shape,<br/>in 84 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>608 theorems shape,<br/>in 85 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -91,7 +91,7 @@ flowchart LR
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
 - **Counting** (green), 103 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 841 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Shape** (violet), 847 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
 - **Reads ζ** (blue), 482 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
@@ -99,7 +99,7 @@ A file sits in the highest layer any of its theorems reaches; its box says how m
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 102 | 225 | 19 |
-| `lean_stage3/` | 1 | 602 | 461 |
+| `lean_stage3/` | 1 | 608 | 461 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
