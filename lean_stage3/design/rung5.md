@@ -1552,3 +1552,71 @@ Open.      Four things, in the order they could kill it. As of unit 0378 none
            criterion, `StmtWeilPositive (L ε T) → OffLineBox ε T = ∅` through
            `box_empty_of_positive_of_detect`. The positivity half is untouched,
            and it is where the Riemann hypothesis lives.
+
+### 16a The tail bound — SKETCH (T12 of section 16; priced in unit 0378)
+
+Written 2026-11-22 as the first module of section 16, statements in Lean.
+Not built: the environment this was written in had the toolchain and the
+pinned packages and could not fetch Mathlib's cache.
+
+Objects.   `S m w` (`WeilOddPower`), `g w j`, `T m w n`, `D m`, `tendsto_S`
+           (`WeilPowerGauss`), `hterm`, `sigmaN`, `sigma`, `sigmaN_tendsto`,
+           `x w j`, `g_eq`, `x_eq_mul` (`WeilPowerPhase`). `g w j = 1 + x w j`
+           with `x w j = w² · hterm j`, `hterm j = 1/(π²(j+1)²)`. Size at the
+           working point `w = (ε' + iτ)h`, `m + 1 = λh`: the exponent is
+           `Re(w²)·sigma m + ‖w‖⁴/(6π⁴(m+1)³)`, per unit `h` at `λ = 1`
+           `(ε'² − τ²)/π² + (ε'² + τ²)²/(6π⁴)`.
+Sizes.     Against `WeilPowerSharp.norm_S_le_c_neg`: the factor on `Re(w²)` is
+           `sigma m ≥ 1/(π²(m+2))` where that lemma has `(m+2)/(π²(2m+3)²)`, a
+           factor near `4`; the quartic coefficient is `1/6` where it has `1`;
+           and there is no regime hypothesis. The `1/6` is needed and is not
+           decoration: with the tree's `sum_inv_pow4_le` (coefficient `1`, so
+           `1/2` here) the exponent at offset `1/2` turns positive at height
+           distance `4.44`, below `norm_S_le_far`'s `4.499`. Lost factor: none
+           that grows with `m` or `h`; the bound is the product's own first
+           two terms.
+Regime.    G1 `QS m w ≠ 0` (for `tendsto_S`; at an off-line zero it is
+              `WeilPowerBounds.QS_ne_zero`, `w.re ≠ 0`).
+Defs.      none.
+Theorems.  `theorem sum_inv_pow4_le_third (m : ℕ) : ∀ n : ℕ, m + 1 ≤ n →
+               ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4
+                 ≤ 1 / 3 * (1 / ((m : ℝ) + 1) ^ 3 - 1 / (n : ℝ) ^ 3)`
+             (induction as `WeilPowerSharp.sum_telescope`; the step is
+             `1/(j+1)⁴ ≤ (1/3)(1/j³ − 1/(j+1)³)` for `j ≥ 1`, which is
+             `3j³ ≤ (3j² + 3j + 1)(j + 1)` after clearing denominators).
+           `theorem sum_hterm_sq_le (m n : ℕ) :
+               ∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2
+                 ≤ 1 / (3 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)`
+             (cases on `m + 1 ≤ n`; the empty sum otherwise).
+           `theorem norm_one_add_le (z : ℂ) :
+               ‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2)`
+             (`‖1 + z‖² = 1 + 2·z.re + ‖z‖²` by `Complex.sq_norm`,
+             `Complex.normSq_apply`; `Real.add_one_le_exp (2·z.re + ‖z‖²)`;
+             `Real.exp (2a) = (Real.exp a)²`; then `abs_le_of_sq_le_sq`).
+           `theorem norm_g_le (w : ℂ) (j : ℕ) :
+               ‖g w j‖ ≤ Real.exp ((w ^ 2).re * hterm j + ‖w‖ ^ 4 * hterm j ^ 2 / 2)`
+           `theorem norm_T_le_tail (m : ℕ) (w : ℂ) (n : ℕ) :
+               ‖T m w n‖ ≤ Real.exp ((w ^ 2).re * sigmaN m n
+                 + ‖w‖ ^ 4 / (6 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3))`
+             (`norm_prod`, `Finset.prod_le_prod`, `Real.exp_sum`,
+             `Finset.sum_add_distrib`, `Finset.mul_sum`.)
+           `theorem norm_S_le_tail {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0) :
+               ‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * sigma m
+                 + ‖w‖ ^ 4 / (6 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3))`
+             (`le_of_tendsto_of_tendsto` with `(tendsto_S hne).norm` on the
+             left and `sigmaN_tendsto m` pushed through `Real.continuous_exp`
+             on the right, both sides moving, as `S_real_ge_sharp` does.)
+Composes.  `WeilPowerGauss.tendsto_S {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0) :
+               Tendsto (fun n : ℕ => ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTop (𝓝 (S m w))`
+           `WeilPowerPhase.sigmaN_tendsto (m : ℕ) :
+               Tendsto (fun n => sigmaN m n) atTop (𝓝 (sigma m))`
+           `WeilPowerPhase.g_eq`, `WeilPowerPhase.x_eq_mul`,
+           `WeilPowerGauss.cprime_pos`. Mathlib, grepped at the pin:
+           `Real.add_one_le_exp`, `Real.exp_sum`, `abs_le_of_sq_le_sq` (a
+           `lemma`), `norm_prod`, `Finset.prod_le_prod`,
+           `le_of_tendsto_of_tendsto`.
+Module.    `Stage3/WeilPowerTail.lean`, namespace `WeilPowerTail`, importing
+           `Stage3.WeilPowerPhase`; Mathlib only, no PrimeNumberTheoremAnd.
+           Pins: `sum_inv_pow4_le_third`, `norm_one_add_le`, `norm_T_le_tail`,
+           `norm_S_le_tail`.
+Open.      none in the mathematics. The build.

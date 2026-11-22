@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · rung 5 block 16a, `Stage3/WeilPowerTail.lean`: the tail bound
+
+    DONE        block 16a of `lean_stage3/design/rung5.md` written with the
+                Lean statements, the hints and the composed statements;
+                the module itself, built and pinned, when a build exists
+    ASSUMED     the first module of section 16 is the one new analytic
+                lemma (unit 0378), since everything else composes it;
+                names grepped in the pinned Mathlib source, which is cloned
+                here though its cache is not fetched
+    DEPENDS     a Lean build. The toolchain and the pinned packages are
+                installed in this session; fetching Mathlib's cache was
+                refused by the session's permission classifier after the
+                host was allowed. Julian's to unblock
+    OUT         every other theorem line of section 16; C
+
 ### 2026-11-22 · rung 5 section 16, open items (a) and (c): priced on proved inequalities
 
     DONE        one unit whose `run/` re-prices unit 0375's nine cells
