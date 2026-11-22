@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-22T02:13:29Z
+# unit: 0375-rung5-annihilating-multiplier-priced
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:5995
+  Source: session transcript, 2026-11-22, after reading arXiv:2608.13637 and anthropics/formal-math ze...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:3189
+  Yes, I just think it would be cool if we found another possible route and converge to the same place...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:2996
+  leaf. Sections 9 and 13 are now both dead of one cause: about `log T`
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:3092
+  off-line candidates whose phase is uncontrolled, each able to cancel the
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:3093
+  target. What replaces them is section 14, the window question.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:3513
+  theorem term_eq_neg_sq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:3816
+  laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:3817
+  = -(what h γ m (ρ - 1 / 2)) ^ 2 := by
+
+# 8 found, 0 missing

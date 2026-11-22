@@ -1,0 +1,20 @@
+A1. int (p(D)W) e^{su} du  against  p(s) * what(s)
+   s =       (0.3 + 0.7j)  rel err (1)  6.02e-41   (2)  1.05e-40   what vs closed form  2.55e-40
+   s =      (0.45 - 2.4j)  rel err (1)  1.06e-40   (2)  2.03e-40   what vs closed form  8.23e-41
+   s =      (0.1 + 2.55j)  rel err (1)  1.25e-40   (2)  2.23e-40   what vs closed form  9.91e-41
+   s =       (0.0 + 2.2j)  rel err (1)  1.31e-39   (2)  2.64e-39   what vs closed form   2.1e-40
+
+A3. p(it) on the line: imaginary part
+   max |Im p(it)| over t in [-10, 10]: 0.0
+
+A4. boundary: max over k <= deg + 1 of |D^k W(+-h)|, against max |D^k W| inside
+   boundary max 8.81e-258   interior max 4.83e+4   order of the zero of q at +-1: 13, deg p + 1 = 7
+
+A5. the Gamma closed form of S against the product form (S_mul_QS)
+   m =    6  w =     (0.9 + 7.5j)  rel err 2.36e-40
+   m =   40  w =    (12.0 + 3.0j)  rel err 3.15e-40
+   m =  200  w =   (80.0 - 40.0j)  rel err 1.02e-39
+   m =  200  w =   (0.0 + 700.0j)  rel err 4.5e-40
+   m =  800  w =  (320.0 + 18.0j)  rel err 3.88e-39
+
+GATE pass
