@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 4b of `design/landau.md`, `Stage3/LandauTail.lean`
+
+    DONE        `Stage3/LandauTail.lean` builds with no `sorry`:
+                `lower_tail_le` and `upper_tail_le`, the kernel's integral
+                over `(1, Y]` and over `(Z, ∞)` bounded by a shift of the
+                exponent with a free parameter `b`; a formalization unit;
+                block 4b marked PROVED
+    ASSUMED     the block proves the two bounds with `b` free; the choice of
+                `b` that gives `e^(−cδ²k)` is checked by hand in the block's
+                Sizes line and is left to block 7
+    DEPENDS     `Stage3/LandauKernel.lean` (unit 0389)
+    OUT         blocks 3, 6, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0391: two theorems, no `sorry`, no error
+                on the first build
+
 ### 2026-11-22 · the Landau window: block 2c of `design/landau.md`, `Stage3/LandauTaylor.lean`
 
     DONE        `Stage3/LandauTaylor.lean` builds with no `sorry`: `mellinLog`,

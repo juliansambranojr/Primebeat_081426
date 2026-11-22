@@ -333,11 +333,38 @@ Module.    `Stage3/LandauKernel.lean`, namespace `LandauKernel`, `import Mathlib
            Pinned: all three.
 Open.      none.
 
-### 4b The kernel off the window — SKETCH
-The two-sided tail of the same integral away from `log y = k/a`, as an
-explicit `e^(−cδ²k)` times `k!/a^(k+1)`. In no tree. The integrand
-`u^k e^(−au)` has its maximum at `u = k/a`; off `[(1−η)k/a, (1+η)k/a]` it is
-at most the maximum times `e^(−c(η)k)`.
+### 4b The kernel off the window — PROVED (unit 0391: `LandauTail.lower_tail_le`, `upper_tail_le`)
+Objects.   the kernel `L^k·y^(−a−1)` of block 4a, `L = log y`, total
+           `k!/a^(k+1)`. Two tails: `(1, Y]` and `(Z, ∞)`.
+Sizes.     a shift of the exponent, one free parameter `b` on each side.
+           Below `Y`: `y^(−a−1) = y^b·y^(−(a+b)−1) ≤ Y^b·y^(−(a+b)−1)`, so the
+           tail is at most `Y^b·k!/(a+b)^(k+1)`. Above `Z`:
+           `y^(−a−1) = y^(−b)·y^(−(a−b)−1) ≤ Z^(−b)·y^(−(a−b)−1)`, `0 < b < a`, so
+           the tail is at most `Z^(−b)·k!/(a−b)^(k+1)`. Against the total the
+           ratios are `e^(bU)·(a/(a+b))^(k+1)` and `e^(−bV)·(a/(a−b))^(k+1)`,
+           `U = log Y`, `V = log Z`.
+           THE LOST-FACTOR CHECK, by hand, with `k + 1 = a(1+δ/2)U` and
+           `V = (1+δ)U`, `δ ≤ 1`. Below, `b = a·δ/2`: the exponent is
+           `aU[t − (1+t)·log(1+t)]` at `t = δ/2`, and
+           `(1+t)·log(1+t) ≥ t + t²/3` on `[0, 1]`, so the ratio is at most
+           `e^(−aUδ²/12)`. Above, `b = a·δ/12`: with `−log(1−t) ≤ t + 2t²` for
+           `t ≤ 1/2` the exponent is at most `aU[−tδ/2 + 2t²(1+δ/2)] ≤ −aUδ²/48`.
+           Both ratios decay like `e^(−cδ²k)`: nothing grows with `k`. The
+           choice of `b` belongs to block 7, where `U` and `k` are tied; this
+           block proves the two bounds with `b` free.
+Regime.    A1 `0 < a`. B1 `0 < b`. B2 `b < a` (above only). Y1 `1 ≤ Y`, Z1 `1 ≤ Z`.
+Defs.      none.
+Theorems.  `theorem lower_tail_le {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (k : ℕ) {Y : ℝ} (hY : 1 ≤ Y) :
+               ∫ y in Ioc (1 : ℝ) Y, Real.log y ^ k * y ^ (-a - 1)
+                 ≤ Y ^ b * (k.factorial / (a + b) ^ (k + 1))`
+           `theorem upper_tail_le {a b : ℝ} (hb : 0 < b) (hba : b < a) (k : ℕ) {Z : ℝ} (hZ : 1 ≤ Z) :
+               ∫ y in Ioi Z, Real.log y ^ k * y ^ (-a - 1)
+                 ≤ Z ^ (-b) * (k.factorial / (a - b) ^ (k + 1))`
+Composes.  `LandauKernel.log_pow_integral`, `log_pow_integrable`. Mathlib:
+           `setIntegral_mono_on`, `setIntegral_mono_set`, `Real.rpow_le_rpow`.
+Module.    `Stage3/LandauTail.lean`, namespace `LandauTail`,
+           `import Stage3.LandauKernel`. Pinned: both.
+Open.      none.
 
 ### 5 A crude bound on `G` — PROVED (unit 0387: `LandauCrude.rampSum_nonneg`, `rampSum_le`, `abs_G_le`)
 Objects.   `rampSum`, `G` (`LandauWindow`). `L = log y`.
