@@ -1,0 +1,95 @@
+# check_prose_source.py  2026-11-22T11:12:42Z
+# unit: 0409-glue-floor
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36549
+  Source: session transcript, 2026-11-22, after unit 0408
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36304
+  def StmtExplicitFormulaSplit (c₁ c₃ c₄ x₁ : ℝ) : Prop :=
+
+FOUND  notes/lab_notebook_2.md:951
+  ∀ x T : ℝ, x₁ ≤ x → 2 ≤ T → T ≤ x^2 →
+
+FOUND  notes/lab_notebook_2.md:952
+  ‖((ψ x : ℝ) : ℂ) - (x : ℂ) + zeroPartialSum x T‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36307
+  ≤ c₁ * x * Real.log (x * T) ^ 2 / T + c₃ * Real.log x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36240
+  + c₄ * ((Real.log x)^2 * x ^ (-(1:ℝ)/4))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36315
+  def floorConstSplit (c₁ c₃ c₄ b₁ b₂ b₃ W x₀ : ℝ) : ℝ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36316
+  floorConst c₁ c₃ b₁ b₂ b₃ W x₀ + c₄ * x₀ ^ (-(1:ℝ)/4) / Real.sqrt x₀
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36224
+  ∃ D : ℝ, 0 < D ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32808
+  ‖VIntegral (Gf x) (-1/4) (-T') T'‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36226
+  ≤ 72 * D * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36235
+  theorem explicit_formula_split :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36236
+  ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32146
+  ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32147
+  ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36239
+  ≤ c₁ * x * Real.log (x*T)^2 / T + c₃ * Real.log x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36240
+  + c₄ * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36595
+  theorem psiWeak_floor_split (hRH : RiemannHypothesis)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36334
+  {c₁ c₃ c₄ x₁ b₁ b₂ b₃ W x₀ : ℝ} (hc₁ : 0 ≤ c₁) (hc₃ : 0 ≤ c₃) (hc₄ : 0 ≤ c₄)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31711
+  (hb₁ : 0 ≤ b₁) (hb₂ : 0 ≤ b₂) (hb₃ : 0 ≤ b₃)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31712
+  (hWeq : W = weightedZeroHeightBucket)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31713
+  (hRvM2 : 0 ≤ riemannZeta.RvM b₁ b₂ b₃ 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36335
+  (hEF : StmtExplicitFormulaSplit c₁ c₃ c₄ x₁)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31715
+  (hNT : riemannZeta.Riemann_vonMangoldt_bound b₁ b₂ b₃)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34900
+  (hx₀ : 16 ≤ x₀) (hx₁ : x₁ ≤ x₀) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36336
+  StmtPsiWeak (floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀) 2 x₀ := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36370
+  theorem schoenfeldWeak_floor_split_of_RH (hRH : RiemannHypothesis) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36371
+  ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:36373
+  (3 * floorConstSplit c₁ c₃ c₄ 112 0 698 weightedZeroHeightBucket x₀ + 13) 1
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35010
+  (max (x₀ ^ 2) 9) (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Li := by
+
+# 30 found, 0 missing

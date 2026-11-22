@@ -1,0 +1,68 @@
+# check_prose_source.py  2026-11-22T10:46:44Z
+# unit: 0406-ef-route-height-priced
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34545
+  Source: session transcript, 2026-11-22, after unit 0405
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34410
+  EXPLORATORY, no prereg. The explicit-formula route priced over the height T.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34412
+  Proved pieces, each read from its statement:
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34413
+  Glue.explicit_formula_poly  for 16 <= x, 2 <= T <= x^2:
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34414
+  |psi x - x + Z(x,T)| <= c1 x log^2(xT)/T + c2 log x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34415
+  Assembly.norm_zeroPartialSum_le_logsq  under RH, T = 2^(K+1):
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34416
+  |Z(x,T)| <= 2 sqrt(x) (2 [log2/(2 pi) (K+1)(K+2) + 3 (K+1)/pi
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34417
+  + 2 (b1 log T + b3 + 7/8)] + 2 W)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33079
+  ArgCount.rvM_crude  (b1, b2, b3) = (112, 0, 698)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34419
+  PsiToPi.schoenfeldWeak_of_psiWeak  C sqrt(t) log^2 t on [x0, oo) gives
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34420
+  (3 C + 13) sqrt(x) log x on [x0^2, oo)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34421
+  The model: T the power of two in (x^a/2, x^a], 1 <= a <= 2, so log T <= a L,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34422
+  x/T <= 2 x^(1-a), log(xT) <= (1+a) L, with L = log x. Dividing by sqrt(x) L^2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34423
+  every term is decreasing in x, so the constant on [x0, oo) is its value at x0:
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34424
+  C_psi(x0, a) = 4 [ a (a L0 + log 2) / (2 pi log 2 L0) + 3 a / (pi log 2 L0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34425
+  + 2 (b1 a / L0 + (b3 + 7/8) / L0^2) ]
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34426
+  + 2 c1 (1+a)^2 x0^(1/2 - a) + c2 / (sqrt(x0) L0)        (W = 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34427
+  Assembly.psiWeak_of_RH_EF_NT is the case a = 1 with each term then bounded by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34428
+  its L^2 multiple at L >= 1 and the last two by sqrt(x) L^2: 7404 + 9 c1 + c2.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34429
+  c1, c2 are floors, as in unit 0405: `as_built` and `freed` radii.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34430
+  The gate is O68's R_of, imported unchanged, k = 1, floor x0^2.
+
+# 21 found, 0 missing

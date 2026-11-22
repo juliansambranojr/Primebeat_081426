@@ -1,0 +1,19 @@
+key	value	source
+module_lines	65	wc -l lean_stage3/Stage3/JointWindowDial.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/JointWindowDial.lean
+defs	0	grep -c ^def lean_stage3/Stage3/JointWindowDial.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/JointWindowDial.lean
+pins	3	zeroFreeRight_of_window, psiWeakTheta_of_window, schoenfeldWeakTheta_of_window
+errors_first	0	first lake build Stage3.JointWindowDial, lines error: Stage3/JointWindowDial.lean
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8791	lake build (full Stage3), Build completed successfully
+jobs_module	8743	run/build.log, lake build Stage3.JointWindowDial
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#1	the Landau window onto the dial
+joint	1	SECTIONS.md, joint 1
+joints_total	10	SECTIONS.md, the table of joints
+unit_criterion	0399	the unit that proved the criterion
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

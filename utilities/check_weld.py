@@ -46,6 +46,10 @@ WELDS = [
     ("StmtWeilBridge",
      _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
      _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    # the gate's relative-error statement, joints 3 to 5 of SECTIONS.md, unit 0402
+    ("StmtRelErrWindow",
+     _HERE / "lean" / "RelativeGate.lean",
+     _HERE / "lean_stage3" / "Stage3" / "JointDialGate.lean"),
 ]
 
 

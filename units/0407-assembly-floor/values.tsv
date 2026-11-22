@@ -1,0 +1,22 @@
+key	value	source
+module_lines	269	wc -l lean_stage3/Stage3/AssemblyFloor.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/AssemblyFloor.lean
+defs	1	grep -c ^def lean_stage3/Stage3/AssemblyFloor.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/AssemblyFloor.lean
+pins	2	psiWeak_floor, schoenfeldWeak_floor_of_RH
+errors_first	3	first lake build Stage3.AssemblyFloor: one proof step, and the two pins of the theorems above it
+builds	2	the first build and the one after the fix
+traps_added	1	lean_stage3/TRAPS.md row 47
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8794	lake build (full Stage3), Build completed successfully
+jobs_module	8729	run/build.log, lake build Stage3.AssemblyFloor
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e1	the assembly with its floor
+floor_min	16	psiWeak_floor hypothesis hx₀
+lead	4	floorConst, the term that does not fall with the floor
+band_b1	112	ArgCount.rvM_crude
+band_b3	698	ArgCount.rvM_crude
+pi_factor	3	PsiToPi.schoenfeldWeak_of_psiWeak
+pi_offset	13	PsiToPi.schoenfeldWeak_of_psiWeak
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

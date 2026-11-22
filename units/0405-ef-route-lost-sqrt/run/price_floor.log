@@ -1,0 +1,35 @@
+{
+ "exploratory": true,
+ "prereg": null,
+ "ceiling_rung": 93,
+ "main_psi": 7404,
+ "A_floor": 16.55,
+ "as_built": {
+  "G": 212127.7,
+  "Ce_floor": 1756246.1,
+  "loose_floor": 1312000000000.0,
+  "best_log2_psi_floor": 43.5,
+  "best_log2_pi_floor": 87.0,
+  "C_psi_at_best": 379432.7,
+  "depth_covered": 4,
+  "R1": 90,
+  "R6": 99,
+  "R7": 104
+ },
+ "freed": {
+  "G": 14080.1,
+  "Ce_floor": 117634.1,
+  "loose_floor": 87890000000.0,
+  "best_log2_psi_floor": 41.75,
+  "best_log2_pi_floor": 83.5,
+  "C_psi_at_best": 53105.0,
+  "depth_covered": 6,
+  "R1": 87,
+  "R6": 93,
+  "R7": 98,
+  "r": 0.9847,
+  "Rp": 0.9851,
+  "R": 0.9996
+ },
+ "G_gain": 15.07
+}

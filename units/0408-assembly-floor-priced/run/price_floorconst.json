@@ -1,0 +1,41 @@
+{
+ "exploratory": true,
+ "prereg": null,
+ "ceiling_rung": 93,
+ "as_built": {
+  "log2_psi_floor": 40.0,
+  "log2_pi_floor": 80.0,
+  "band_part": 76.5,
+  "c1_part": 1.27e-06,
+  "c2_part": 20042.2,
+  "floorConst": 20118.7,
+  "C_pi": 60369.0,
+  "depth_covered": 6,
+  "R6": 90,
+  "margin_rungs": 3
+ },
+ "freed": {
+  "log2_psi_floor": 38.0,
+  "log2_pi_floor": 76.0,
+  "band_part": 80.7,
+  "c1_part": 6.78e-07,
+  "c2_part": 2826.2,
+  "floorConst": 2906.9,
+  "C_pi": 8733.7,
+  "depth_covered": 7,
+  "R6": 84,
+  "margin_rungs": 9
+ },
+ "c_zero": {
+  "log2_psi_floor": 26.5,
+  "log2_pi_floor": 53.0,
+  "band_part": 119.0,
+  "c1_part": 0.0,
+  "c2_part": 0.0,
+  "floorConst": 119.0,
+  "C_pi": 370.0,
+  "depth_covered": 9,
+  "R6": 74,
+  "margin_rungs": 19
+ }
+}

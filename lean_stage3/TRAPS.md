@@ -56,6 +56,8 @@ build, 2026-09-08.
 | 43 | after `HasDerivAt.pow` the algebra goal keeps `(Real.log ^ (1 + k)) y` beside `Real.log y ^ k` and `ring` does not close it | `.pow` builds the function as a `Pi` power `Real.log ^ n`; `ring` treats its application as an atom | `simp only [Pi.pow_apply]` before the algebra (unit 0389) |
 | 44 | a `have` whose statement is `∫ y in s, f y + c * ∫ y in s, g y` leaves `unsolved goals` with the right side printed as one integral | the integral binder extends to the end of the line: the statement parsed as `∫ y in s, (f y + c * ∫ …)` | parenthesize each integral: `(∫ y in s, f y) + c * (∫ y in s, g y)` (unit 0396) |
 | 45 | `(deterministic) timeout at …Linarith…`, and a second timeout at `whnf` reported at the declaration, in a proof with many hypotheses | `nlinarith` was called on a goal that is linear once one product is expanded; it multiplies pairs of the whole context | state the expansion as a `have e : (a - b) * U = a * U - b * U := by ring` and close with `linarith` (unit 0399) |
+| 46 | `(h.const_mul c).congr_fun …` on `h : IntegrableOn f s` reports `Invalid field congr_fun … And.congr_fun` | `Integrable.const_mul` returns an `Integrable`, which dot notation reads as its unfolded conjunction, so the `IntegrableOn` namespace is not searched | write `IntegrableOn.congr_fun (h.const_mul c) …` in full (units 0396, 0401) |
+| 47 | `rw [Real.log_pow] at h` then `linarith` fails; `h` reads `(↑K + 1) * log 2 ≤ log (x ^ 2)` | `h : log T ≤ log (x ^ 2)` came from a hypothesis stated before `set T := 2 ^ (K + 1)`, so its left side is still a power and `rw` took the first match | state the side you want as its own `have h2 : Real.log (x ^ 2) = 2 * L` and let `linarith` combine (unit 0407) |
 
 ## Bench and gate traps
 
@@ -141,3 +143,5 @@ other by proof irrelevance), `Finset.le_max'`, `Finset.mem_Icc`,
 `Finset.sum_const`, `smul_eq_mul` (a `lemma`, `Algebra/Group/Action/Defs`),
 `pow_add`, `Nat.sub_add_cancel`, `Nat.mul_le_mul_right` (the multiplier `k`
 explicit and first: `Nat.mul_le_mul_right k h`), `pow_nonneg`, `mul_le_mul`.
+`Real.rpow_le_rpow_of_nonpos` (a `lemma`: `0 < x → x ≤ y → z ≤ 0 → y ^ z ≤ x ^ z`;
+there is no `rpow_le_rpow_of_exponent_nonpos`, unit 0409).

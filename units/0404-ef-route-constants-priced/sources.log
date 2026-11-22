@@ -1,0 +1,56 @@
+# check_prose_source.py  2026-11-22T10:35:17Z
+# unit: 0404-ef-route-constants-priced
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33244
+  Source: session transcript, 2026-11-22, after unit 0403
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32490
+  Yes and yes, but where are we now? This is why I need the tunnel
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33073
+  EXPLORATORY, no prereg. Prices the explicit-formula route to the census.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33075
+  Imports O68_weak_bound_tolerance.py unchanged for R_of. The route:
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33076
+  Assembly.psiWeak_of_RH_EF_NT   |psi - x| <= C sqrt(x) log^2 x, x >= 16,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33077
+  C = 9 c1 + c2 + 28 + 16 b1 + 16 b2 + 8 b3 + 4 W
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33078
+  Glue.explicit_formula_poly     c1 = 2400 + 2 Ch + Cs, c2 = 13 + Cl + K0/2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33079
+  ArgCount.rvM_crude             (b1, b2, b3) = (112, 0, 698)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33080
+  PsiToPi.schoenfeldWeak_of_psiWeak   C_pi = 3 C + 13, k - 1, x0 = max(x0^2, 9)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33081
+  Lower bounds on the existentials, each read from the `refine` that builds it:
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33082
+  EdgeBound.gz_partial_fraction  C1 = G/2 * A, A = log D0/log 2 + 4, D0 > 2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33083
+  EdgeBound.ball_order_sum_le    C2 = M0/log 2 + 8 W0 + 1, M0 >= 0
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33084
+  EdgeBound.edge_bound_core      Ce = C1 + C2 + 1/log 2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33085
+  Glue.zeta_logderiv_good_bound  Cp = Ce * 2 * (180 + 1060/log 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33086
+  Glue.edge_horizontal_bound     Ch = Cp * 3 * (9/4)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33087
+  Glue.band_order_sum_le         Cs = 8 W0, W0 = 15 + 88/log 2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33088
+  Cl, K0, W are dropped (each is proved >= 0), so every figure is a floor.
+
+# 17 found, 0 missing

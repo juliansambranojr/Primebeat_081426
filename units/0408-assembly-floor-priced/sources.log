@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-11-22T10:58:41Z
+# unit: 0408-assembly-floor-priced
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35466
+  Source: session transcript, 2026-11-22, after unit 0407
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35359
+  EXPLORATORY, no prereg. The gate priced from the theorem's own constant.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35361
+  AssemblyFloor.schoenfeldWeak_floor_of_RH (unit 0407): under RH, for x0 >= 16,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35362
+  |pi x - Li x| <= (3 floorConst c1 c2 112 0 698 W x0 + 13) sqrt(x) log x,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35364
+  floorConst = 4 + (16 + 16 b1 + 16 b2)/log x0 + (8 b3 + 8 + 4 W)/log^2 x0
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35365
+  + 18 c1/(x0 sqrt x0) + c2/(sqrt x0 log x0).
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35366
+  c1, c2 are existential in the theorem. Here they are the floors of unit 0405
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35367
+  (`as_built`, `freed` radii; A at its floor, M0, Mc, K0 at zero), and W = 0.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35368
+  `c_zero` sets c1 = c2 = 0: what the route costs with no contour constant.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35369
+  The gate is O68's R_of, imported unchanged, k = 1.
+
+# 10 found, 0 missing

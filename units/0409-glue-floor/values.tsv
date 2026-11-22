@@ -1,0 +1,20 @@
+key	value	source
+module_lines	833	wc -l lean_stage3/Stage3/GlueFloor.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/GlueFloor.lean
+defs	2	grep -c ^def lean_stage3/Stage3/GlueFloor.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/GlueFloor.lean
+pins	4	edge_left_sharp, explicit_formula_split, psiWeak_floor_split, schoenfeldWeak_floor_split_of_RH
+errors_first	3	first lake build Stage3.GlueFloor: one unknown lemma name, and the two pins of the theorems above it
+builds	2	the first build and the one after the name was corrected
+traps_added	1	lean_stage3/TRAPS.md, a line under Names
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8795	lake build (full Stage3), Build completed successfully
+jobs_module	8730	run/build.log, lake build Stage3.GlueFloor
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e2	the left edge at its own size
+copies	3	edge_left_bound, explicit_formula_poly, psiWeak_floor, each with a different last line
+edge_factor	72	edge_left_sharp, the factor on D
+floor_min	16	psiWeak_floor_split hypothesis hx₀
+c3_num	13	explicit_formula_split: c₃ = 13 + K0/2
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

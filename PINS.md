@@ -22,6 +22,270 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/JointFloorGate.lean`, block E3 of `joints.md`
+
+    DONE        `weakWindow_relErr` (a weak window is the gate's relative
+                error with an explicit `ρ`), `relErrWindow_floor_of_RH` (the
+                route of unit 0409 carried to `StmtRelErrWindow` on the rows
+                of `π` and `Li`); a unit; the block PROVED
+    ASSUMED     Julian's "Go" after unit 0410 read as: continue on this
+                route; the joint to the gate was the next item listed
+    DEPENDS     units 0402 (`JointDialGate.StmtRelErrWindow`, welded), 0409
+    OUT         nothing in `lean/`; the gate's own theorem is on the other
+                toolchain and is reached by statement text, as joint 5
+    OUTCOME     done as pinned; unit 0411; clean on the first build
+
+### 2026-11-22 · the gate priced from `floorConstSplit` (unit 0410)
+
+    DONE        one script: O68's `R_of` on the constant of
+                `schoenfeldWeak_floor_split_of_RH`, four cases and a slack
+                factor; a NOTEPAD line; a line in `SECTIONS.md`
+    ASSUMED     EXPLORATORY, no prereg; floors; one case uses a guessed size
+                for a supremum, labelled in the script
+    DEPENDS     unit 0409
+    OUT         no Lean
+    OUTCOME     done as pinned; depth 6 closes at rung 76 as built
+
+### 2026-11-22 · `Stage3/GlueFloor.lean`, block E2 of `joints.md`
+
+    DONE        `edge_left_sharp`, `explicit_formula_split`,
+                `StmtExplicitFormulaSplit`, `stmtEF_split`,
+                `psiWeak_floor_split`, `schoenfeldWeak_floor_split_of_RH`;
+                a unit; the block PROVED
+    ASSUMED     three of the proofs are copies with the closing lines
+                changed; the constants stay existential
+    DEPENDS     units 0407, 0408; `Glue.edge_left_bound`,
+                `Glue.explicit_formula_poly`
+    OUT         `Glue.lean`, `Assembly.lean`, `AssemblyFloor.lean` untouched;
+                no pricing in this unit; no numeral
+    OUTCOME     done as pinned; unit 0409; clean on the second build
+
+### 2026-11-22 · block E2 of `joints.md`: the left edge, read and drafted
+
+    DONE        `Glue.edge_left_bound` and its use in `explicit_formula_poly`
+                read in full; block E2 written as a DRAFT; a NOTEPAD line
+    ASSUMED     the rung figures in the block are an unlogged estimate
+    DEPENDS     units 0407, 0408
+    OUT         no Lean, no unit; the build waits for Julian
+    OUTCOME     done as pinned; the left edge is `72·D·log²x·x^(−1/4)` inside
+                the proof and `C·log x` in the statement
+
+### 2026-11-22 · the gate priced from `floorConst` (unit 0408)
+
+    DONE        one script: O68's `R_of` on the constant of
+                `schoenfeldWeak_floor_of_RH`, with the two explicit-formula
+                constants at unit 0405's floors and at zero; a NOTEPAD line
+    ASSUMED     EXPLORATORY, no prereg; floors, as in units 0405 and 0406
+    DEPENDS     unit 0407
+    OUT         no Lean
+    OUTCOME     done as pinned; rungs as in unit 0406; 19 rungs of room with
+                the contour constants at zero
+
+### 2026-11-22 · `Stage3/AssemblyFloor.lean`, block E1 of `joints.md`
+
+    DONE        `psiWeak_floor`: the assembly of `psiWeak_of_RH_EF_NT` with
+                the floor `x₀` a parameter, `T` the power of two just below
+                `x²`, and the closing arithmetic keeping each term's shape;
+                `schoenfeldWeak_floor_of_RH` composing it with
+                `Glue.stmtEF_poly`, `ArgCount.rvM_crude` and
+                `PsiToPi.schoenfeldWeak_of_psiWeak`; a unit; the block PROVED
+    ASSUMED     the constants `c₁`, `c₂` stay existential in the composed
+                theorem (they are in `stmtEF_poly`); no numeral is claimed
+    DEPENDS     units 0405, 0406; `Assembly.norm_zeroPartialSum_le_logsq`
+    OUT         `Assembly.lean` untouched; the radii; the three compactness
+                constants; any statement about the gate or the table
+    OUTCOME     done as pinned; unit 0407; clean on the second build
+
+### 2026-11-22 · the explicit-formula route priced over the height T (unit 0406)
+
+    DONE        a unit with one script: the constant as a function of the
+                floor and of `T = x^a`, from the two proved bounds before
+                their closing arithmetic; O68's `R_of` on the result; a
+                NOTEPAD line; a line in `SECTIONS.md`
+    ASSUMED     EXPLORATORY, no prereg; floors as in unit 0405; the model's
+                monotonicity in `x` argued in the docstring, checked by no
+                theorem
+    DEPENDS     unit 0405
+    OUT         no Lean in this unit; the restatement is the next one
+    OUTCOME     done as pinned; at `a = 2` depth 6 is covered with 3 rungs
+                to spare as built and 9 with the radii freed, as floors
+
+### 2026-11-22 · the explicit-formula route: the radii, and a lost √x (unit 0405)
+
+    DONE        a unit with one script: the Borel–Carathéodory factor with
+                the three free radii optimised; the bound inside
+                `Assembly.psiWeak_of_RH_EF_NT` before `assembly_arith`
+                priced with its `√x` kept, as built and with the radii
+                freed; a NOTEPAD line; a line in `SECTIONS.md`
+    ASSUMED     EXPLORATORY, no prereg; floors only, with four unnamed
+                quantities at zero and one value of ζ from mpmath
+    DEPENDS     unit 0404; O68_weak_bound_tolerance.py unchanged
+    OUT         no Lean. The restated assembly, the choice of `T`, and the
+                freed radii are a decision, written as one and left
+    OUTCOME     done as pinned; radii alone gain a factor 15; with the √x
+                kept the freed case lands on the ceiling rung, as a floor
+
+### 2026-11-22 · the explicit-formula route, priced (unit 0404)
+
+    DONE        a unit holding one script and its JSON: O68's `R_of` imported
+                and run on the `√x·log x` shape that
+                `Assembly.psiWeak_of_RH_EF_NT` reaches through
+                `PsiToPi.schoenfeldWeak_of_psiWeak`; the ceiling for depth 6;
+                lower bounds for `Ch`, `Cs` read off `Stage3/EdgeBound.lean`
+                and `Stage3/Glue.lean`; `SECTIONS.md` "The constants"
+                corrected; a NOTEPAD line
+    ASSUMED     EXPLORATORY, no prereg. The lower bounds drop every term the
+                files prove non-negative and use `A > 5`; they bound the
+                constant the Lean proof produces, they say nothing about the
+                best constant
+    DEPENDS     O68_weak_bound_tolerance.py unchanged; unit 0365 (`rvM_crude`);
+                entry 271 (`stmtEF_poly`)
+    OUT         no Lean, no change to any proof, no verdict
+    OUTCOME     done as pinned; the route's fixed numerals fit under the
+                ceiling, its contour constant does not
+
+### 2026-11-22 · the dial's constants: a correction, and nothing built
+
+    DONE        `SECTIONS.md` "The constants", `joints.md` block 6 and unit
+                0403 corrected: a concrete bump has been in the tree since
+                NOTEPAD entry 283 (`Stage3/ExplicitBump.lean`), and that
+                entry already carries its numeral through to a constant far
+                above the gate's ceiling; a NOTEPAD line
+    ASSUMED     the figures are quoted from NOTEPAD entries 283 and 233 as
+                read; the notebook entries behind them were not opened
+    DEPENDS     unit 0403
+    OUT         no Lean. A new module written this session under the name
+                `Stage3/ExplicitBump.lean` overwrote the existing one before
+                a commit; it was restored from git and the new one discarded
+    OUTCOME     done as pinned
+
+### 2026-11-22 · joint 6 and the constants: `lean/RelativeLi.lean`, and a trace
+
+    DONE        the v4.28.0 toolchain fetched and `lean/` built in this
+                session; `lean/RelativeLi.lean`, the shape-free gate with its
+                main-term floor discharged, three theorems, no `sorry`,
+                registered in `lean/lakefile.toml`, `lean/THEOREMS.md`
+                regenerated; the trace of the dial's constants to the six
+                existential quantities and the bump; a unit; `joints.md`
+                block 6 and `SECTIONS.md` updated
+    ASSUMED     the unit is a formalization unit outside the Stage-3 loop
+                (no `loop_version`), the module being in `lean/`
+    DEPENDS     `lean/RelativeGate.lean`, `Expansion.lean`, `MainTerm.lean`
+    OUT         the interpolant constructed; the constants made explicit;
+                README's module and theorem counts for `lean/`, which were
+                already behind the index
+    OUTCOME     done as pinned, unit 0403; clean first build
+
+### 2026-11-22 · joints 3, 4, 5 of `SECTIONS.md`: `Stage3/JointDialGate.lean`
+
+    DONE        `lean_stage3/design/joints.md` block 3;
+                `Stage3/JointDialGate.lean` builds with no `sorry`:
+                `StmtRelErrWindow` (a copy of the table tree's, added to
+                `utilities/check_weld.py`), `thetaWindow_of_global`,
+                `log_absorbed`, `powerSaving_relErr`, `relErrWindow_of_theta`,
+                `relErrWindow_of_window`: a window bound on `G` at `θ` gives
+                the gate's relative-error statement on the table's rows; a
+                formalization unit; `SECTIONS.md` joints 3, 4, 5 marked
+    ASSUMED     the exponent moves from `θ` to any `θ' > θ` to absorb the
+                logarithm; named in the block
+    DEPENDS     units 0389, 0400; `lean/RelativeGate.lean` for the text of
+                the definition and of `powerSaving_relErr`
+    OUT         joint 6 and the gate's side conditions; the constants; the
+                converse; the window bound itself
+    OUTCOME     done as pinned, unit 0402: five theorems, no `sorry`, clean
+                on the first build; the weld gate holds ten welds, none broken
+
+### 2026-11-22 · joint 9a of `SECTIONS.md`: `Stage3/JointSymbol.lean`
+
+    DONE        `lean_stage3/design/joints.md` block 9a;
+                `Stage3/JointSymbol.lean` builds with no `sorry`: `dd`, `cutG`,
+                `mellin_shift`, `mellin_dd_iter` (the transform of the
+                depth-`d` difference of `G` along the doublings is the
+                symbol to the power `d` times `Phi`), `dd_iter_rule` (the
+                table's rule), `symPhi_principal_part` (at each zero the
+                principal part is reweighted by the symbol to the power
+                `d`); a formalization unit; block 9a marked PROVED
+    ASSUMED     the forward statement is built on the transform side, where
+                it needs no sum over the zeros; the pointwise form is left
+                open and said so
+    DEPENDS     units 0386 and 0393
+    OUT         the pointwise sum over zeros; the converse; joints 3, 4, 5
+    OUTCOME     done as pinned, unit 0401: four theorems, no `sorry`, no
+                hypothesis added; TRAPS row 46 added
+
+### 2026-11-22 · joint 9, way (b): checked before building
+
+    DONE        `lean_stage3/design/joints.md`: way (b) worked through; its
+                premise (a finer ladder brings the type below π) is wrong,
+                the heights of the zeros being unbounded; a second route by
+                convexity is closed; what is true, 9d (every rational base at
+                once gives `WindowBound`), is stated; `SECTIONS.md` joint 10
+                restated; a NOTEPAD line
+    ASSUMED     hand derivation; nothing built or measured
+    DEPENDS     the draft and its first correction, the same day
+    OUT         no Lean; whether to build 9d, 9c′ or the forward 9a is
+                Julian's
+    OUTCOME     done as pinned; nothing built
+
+### 2026-11-22 · joint 9: the draft corrected before building
+
+    DONE        `lean_stage3/design/joints.md` block 9 correction: the
+                draft's 9b (meromorphy) is false in general and its 9c is
+                derived only when the largest real part of a zero is
+                attained; what is lost is named, with three ways on;
+                `SECTIONS.md` joints 9 and 10 restated; a NOTEPAD line
+    ASSUMED     the correction is a hand derivation too; the citations
+                (Wolff, Denjoy, Carlson, Cartwright) are from memory and
+                were not opened
+    DEPENDS     the draft of the same day
+    OUT         no Lean; the choice among (a), (b), (c) is Julian's
+    OUTCOME     done as pinned; the build of joint 9 did not start
+
+### 2026-11-22 · joint 9 of `SECTIONS.md`: a statement, drafted
+
+    DONE        `lean_stage3/design/joints.md` block 9, marked DRAFT: three
+                statements for the table of `G` along the doublings, with the
+                hand derivation, what each would take to build and what is
+                not claimed; `SECTIONS.md` joints 9 and 10 updated to point
+                at it; a NOTEPAD line
+    ASSUMED     unit 0383's identity for `G` (derived there, checked
+                numerically there, not formalized); the derivation in the
+                block is by hand, not checked numerically or against the
+                literature
+    DEPENDS     `lean/Chain.lean`, `lean/Superposition.lean` as read
+    OUT         no Lean, no unit, no measurement; the statement is Julian's
+                to correct before anything is built
+    OUTCOME     done as pinned
+
+### 2026-11-22 · joint 1 of `SECTIONS.md`: `Stage3/JointWindowDial.lean`
+
+    DONE        `lean_stage3/design/joints.md` opened, block 1;
+                `Stage3/JointWindowDial.lean` builds with no `sorry`:
+                `zeroFreeRight_of_window`, `psiWeakTheta_of_window`,
+                `schoenfeldWeakTheta_of_window`, a window bound on `G` at `θ`
+                gives the dial's zero-free statement and its two bounds on
+                the prime residual; a formalization unit; `SECTIONS.md`
+                joint 1 marked SEALED
+    ASSUMED     the statements of block 1 as written
+    DEPENDS     units 0399 (the criterion) and the dial's `ThetaPsi`, `ThetaPi`
+    OUT         joints 3, 4, 5, 9, 10; the window bound itself, proved nowhere
+    OUTCOME     done as pinned, unit 0400: three theorems, no `sorry`, clean
+                on the first build
+
+### 2026-11-22 · the sections and the joints: `SECTIONS.md`
+
+    DONE        `SECTIONS.md` at the repository root: the three Lean trees as
+                seven sections with the statement at each end, ten joints
+                each marked SEALED, WELD or OPEN, and for each OPEN joint
+                what the missing lemma must say; a NOTEPAD line
+    ASSUMED     built from a script over theorem headers plus the files
+                read in full, which the page lists; proofs not read are not
+                vouched for
+    DEPENDS     the trees as merged on main at `355b725`
+    OUT         no Lean, no unit, no joint built; joint 1 was compiled in a
+                scratch file and is not in the tree
+    OUTCOME     done as pinned
+
 ### 2026-11-22 · the Landau window: block 7d of `design/landau.md`, `Stage3/LandauCriterion.lean`
 
     DONE        `Stage3/LandauCriterion.lean` builds with no `sorry`:

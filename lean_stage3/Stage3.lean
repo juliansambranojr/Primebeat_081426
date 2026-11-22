@@ -54,6 +54,9 @@ import Stage3.LandauPrimeSide
 import Stage3.LandauZeroSide
 import Stage3.LandauRates
 import Stage3.LandauCriterion
+import Stage3.JointWindowDial
+import Stage3.JointSymbol
+import Stage3.JointDialGate
 import Stage3.WeilDetect
 import Stage3.WeilBridgeLeaf
 import Stage3.BoxFinite
@@ -110,6 +113,9 @@ import Stage3.PerronKernel
 import Stage3.VonKochScaffold
 import Stage3.ZetaGrowth
 import Stage3.ContourShift
+import Stage3.AssemblyFloor
+import Stage3.GlueFloor
+import Stage3.JointFloorGate
 
 namespace Stage3
 

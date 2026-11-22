@@ -1,0 +1,22 @@
+key	value	source
+module_lines	202	wc -l lean_stage3/Stage3/JointSymbol.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/JointSymbol.lean
+defs	2	grep -c ^def lean_stage3/Stage3/JointSymbol.lean
+private_lemmas	2	mellin_dd, mellin_dd_iter_aux
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/JointSymbol.lean
+pins	3	mellin_dd_iter, dd_iter_rule, symPhi_principal_part
+errors_first	2	first lake build Stage3.JointSymbol, lines error: Stage3/JointSymbol.lean
+roots	1	dot notation on the result of Integrable.const_mul (TRAPS.md row 46)
+cascade	1	the pin of mellin_dd_iter (TRAPS.md row 19)
+builds	3	the first build, one after the fix, one after the checker asked for try ring
+traps_added	1	lean_stage3/TRAPS.md row 46
+trap_row	46	lean_stage3/TRAPS.md
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8792	lake build (full Stage3), Build completed successfully
+jobs_module	8724	run/build.log, lake build Stage3.JointSymbol
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#9a	the table of G and the symbol, on the transform side
+base	2	the ladder's base: one difference compares y with y/2
+corrections	2	joints.md: the two corrections to joint 9's draft made before this build
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

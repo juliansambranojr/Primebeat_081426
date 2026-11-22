@@ -1,0 +1,20 @@
+key	value	source
+module_lines	152	wc -l lean_stage3/Stage3/JointDialGate.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/JointDialGate.lean
+defs	1	grep -c ^def lean_stage3/Stage3/JointDialGate.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/JointDialGate.lean
+pins	3	thetaWindow_of_global, powerSaving_relErr, relErrWindow_of_window
+errors_first	0	first lake build Stage3.JointDialGate, lines error: Stage3/JointDialGate.lean
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8793	lake build (full Stage3), Build completed successfully
+jobs_module	8744	run/build.log, lake build Stage3.JointDialGate
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#3	the dial onto the gate
+joints_sealed	3	SECTIONS.md joints 3, 4 and 5
+welds	10	utilities/check_weld.py, WELDS after this unit
+broken_welds	0	python3 utilities/check_weld.py
+log_power	2	the power of the logarithm in the dial's bound on π − Li
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
