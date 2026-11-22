@@ -33,9 +33,11 @@ over the nontrivial zeros of Mathlib's `riemannZeta`.
 The first build compiles the part of zeta23 the explicit formula depends on
 (57 modules of its 316).
 
-## What Stage 3 still owes
+## How Stage 3 uses it
 
-The lemma that upstream's `riemannZeta.zeroes_sum` with `riemannZeta.order`
-is the sum over `{ρ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1}` with
-multiplicity `(analyticOrderAt riemannZeta ρ).toNat`. Until then the bridge
-is a theorem about the same form written over Mathlib's zero set.
+`Bridge.StmtWeilBridge` is the bridge as a statement in Mathlib-only
+vocabulary, and `Bridge.stmtWeilBridge_holds` proves it. Stage 3 has the same
+`def` (`lean_stage3/Stage3/WeilBridgeLeaf.lean`, welded), proves the zero-set
+lemma `zeroForm_eq_strip`, and concludes
+`zeroForm_eq_primeSide : StmtWeilBridge → IsTest L G → zeroForm G = primeSideM (kOfM G)`.
+The kernel checks each tree; the join is the text of the statement.

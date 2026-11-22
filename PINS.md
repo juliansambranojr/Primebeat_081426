@@ -22,6 +22,30 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · C, the zero-set lemma: `Stage3/WeilBridgeLeaf.lean`, block 1 of `design/bridge.md`
+
+    DONE        in Stage 3: `zeroForm G` rewritten as the sum over Mathlib's
+                zero set with `analyticOrderAt` (the zero-set lemma), and
+                `zeroForm G = primeSideM (kOfM G)` for `IsTest L G` from a
+                named leaf `StmtWeilBridge`; in `lean_bridge/`: the same
+                leaf as a `def`, in Mathlib-only vocabulary, and the
+                theorem that it holds; every shared definition copied by
+                text and gated by `check_weld.py`; a design block; one unit
+    ASSUMED     "The zero-set lemma in Stage 3 to finish C" (Julian,
+                2026-11-22); the leaf's discharge is `lean_bridge`'s
+                `stmtWeilBridge_holds`, by statement identity, the way
+                Stage 3 already composes with `lean/`; shared definitions
+                are written with fully qualified names so the text is the
+                same under either tree's `open` lines; the leaf has no
+                constant, so no budget line
+    DEPENDS     nothing from Julian
+    OUT         any use of the prime side (positivity); the Dirichlet case
+    OUTCOME     built, unit 0382: four theorems in Stage 3, three added in
+                the third tree, nine welds OK, both trees build. One pin
+                bent: the shared text could not say `Complex.digamma`,
+                which Stage 3 does not have in scope there, and says
+                `logDeriv Complex.Gamma` in both trees
+
 ### 2026-11-22 · C, the third tree: `lean_bridge/`, the bridge proved against zeta23
 
     DONE        a Lake project `lean_bridge/` on zeta23's toolchain that

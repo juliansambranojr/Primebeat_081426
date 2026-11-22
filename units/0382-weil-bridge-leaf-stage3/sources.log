@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-22T05:12:26Z
+# unit: 0382-weil-bridge-leaf-stage3
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12893
+  Source: session transcript, 2026-11-22, after unit 0381
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12327
+  The zero-set lemma isn Stage 3 to finish C
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12592
+  theorem zeroForm_eq_strip (G : ℝ → ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12593
+  zeroForm G = ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1},
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11935
+  (((analyticOrderAt riemannZeta (ρ : ℂ)).toNat : ℕ) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12711
+  * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ)))) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12729
+  theorem zeroForm_eq_primeSide (h : StmtWeilBridge) {L : ℝ} {G : ℝ → ℂ} (hG : IsTest L G) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:12730
+  zeroForm G = primeSideM (kOfM G) := by
+
+# 8 found, 0 missing

@@ -199,7 +199,55 @@ theorem weil_bridge {L : ℝ} {G : ℝ → ℂ} (hG : IsTest L G) :
   rw [primeSide_eq]
   exact hEF
 
+/-! ## The statement Stage 3 copies
+
+The same theorem with every definition written against Mathlib alone and every
+name fully qualified, so that the text below is the text in
+`lean_stage3/Stage3/WeilBridgeLeaf.lean`. `utilities/check_weld.py` compares them. -/
+
+/-- The transform `∫ k(u) e^{izu} du`; zeta23's `paperFT`. -/
+def ft (k : ℝ → ℂ) (z : ℂ) : ℂ :=
+  ∫ u : ℝ, k u * Complex.exp (Complex.I * z * (u : ℂ))
+
+/-- `k = F ⋆ F̃` in Mathlib's convolution; zeta23's `weilTest` at `F = tiltF G`. -/
+def kOfM (G : ℝ → ℂ) : ℝ → ℂ :=
+  MeasureTheory.convolution (tiltF G) (fun u => (starRingEnd ℂ) (tiltF G (-u)))
+    (ContinuousLinearMap.mul ℝ ℂ) MeasureTheory.volume
+
+/-- The prime side: the pole terms, minus the prime sum, plus the archimedean integral. -/
+def primeSideM (k : ℝ → ℂ) : ℂ :=
+  ft k (Complex.I / 2) + ft k (-Complex.I / 2)
+  - ∑' n : ℕ, ((ArithmeticFunction.vonMangoldt n / Real.sqrt n : ℝ) : ℂ)
+      * (k (Real.log n) + k (-Real.log n))
+  + (1 / (2 * Real.pi) : ℂ) * ∫ r : ℝ, ft k r
+      * (((logDeriv Complex.Gamma (1 / 4 + Complex.I * r / 2)).re - Real.log Real.pi : ℝ) : ℂ)
+
+/-- **The bridge, as a statement.** -/
+def StmtWeilBridge : Prop :=
+  ∀ (L : ℝ) (G : ℝ → ℂ), IsTest L G →
+    Summable (fun ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1} =>
+        (((analyticOrderAt riemannZeta (ρ : ℂ)).toNat : ℕ) : ℂ)
+          * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ))))) ∧
+      ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1},
+        (((analyticOrderAt riemannZeta (ρ : ℂ)).toNat : ℕ) : ℂ)
+          * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ))))
+        = primeSideM (kOfM G)
+
+theorem kOfM_eq (G : ℝ → ℂ) : kOfM G = kOf G := rfl
+
+theorem primeSideM_eq (k : ℝ → ℂ) : primeSideM k = primeSide k := rfl
+
+/-- **The bridge holds.** -/
+theorem stmtWeilBridge_holds : StmtWeilBridge := by
+  intro L G hG
+  rw [kOfM_eq, primeSideM_eq]
+  exact weil_bridge hG
+
 end
+
+/-- info: 'Bridge.stmtWeilBridge_holds' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms stmtWeilBridge_holds
 
 /-- info: 'Bridge.conj_paperFT_conj' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in

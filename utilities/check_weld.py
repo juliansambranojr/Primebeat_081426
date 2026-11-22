@@ -30,6 +30,22 @@ WELDS = [
     ("IsTest",
      _HERE / "lean_stage3" / "Stage3" / "WeilDetect.lean",
      _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    # the bridge leaf and what it is stated with, unit 0382
+    ("tiltF",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("ft",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("kOfM",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("primeSideM",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("StmtWeilBridge",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
 ]
 
 
