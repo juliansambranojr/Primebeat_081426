@@ -22,245 +22,6 @@ below with their outcome.
 
 ## Current
 
-### 2026-11-22 · the Landau window: block 1 of `design/landau.md`, and the bench's measurement of `G`
-
-    DONE        two things. (1) One exploratory unit measuring
-                `G(y) = Σ_{n≤y} Λ(n)(y/n − 1) − y log y + (1+γ)y` exactly
-                from a sieve, against the sum over the bench's zeros, with
-                the windows of the criterion read off; labelled
-                EXPLORATORY, no verdict. (2) A worksheet,
-                `lean_stage3/design/landau.md`: the criterion as Stage 3's
-                own statement for `ζ`, the proof planned from scratch in
-                slices with each slice's size, and its first slice built
-    ASSUMED     "Do 2 with 1 alongside" (Julian, 2026-11-22): 2 is
-                "formalize the criterion in Stage 3 from scratch, as your
-                own Landau-type theorem", 1 is "measure G on your bench";
-                the statement's shape is read from Alpöge's archive
-                (`zeroFree_of_rpow_window`) and cited; no code is copied
-                from it, since it carries no licence, and the proof is
-                planned independently; the whole criterion is several
-                modules, so this task is the plan and the first slice, and
-                the block says which slices remain
-    DEPENDS     nothing from Julian
-    OUT         the proof of the window bound itself (that is the 17
-                million lines); Dirichlet characters; a prereg, since the
-                measurement tests nothing
-    OUTCOME     units 0383 and 0384. Measured: G within K sqrt(n) of
-                log 2pi - T at every integer to 1e8, the zeros reproduce
-                it. Built: slice 1 of 7, the statement and the reduction to
-                RiemannHypothesis; the criterion is a leaf with six slices
-                open. Two errors of mine caught by gates: the bound had
-                left out the trivial zeros' term, and a figure in the prose
-                was from the earlier run
-
-### 2026-11-22 · C, the zero-set lemma: `Stage3/WeilBridgeLeaf.lean`, block 1 of `design/bridge.md`
-
-    DONE        in Stage 3: `zeroForm G` rewritten as the sum over Mathlib's
-                zero set with `analyticOrderAt` (the zero-set lemma), and
-                `zeroForm G = primeSideM (kOfM G)` for `IsTest L G` from a
-                named leaf `StmtWeilBridge`; in `lean_bridge/`: the same
-                leaf as a `def`, in Mathlib-only vocabulary, and the
-                theorem that it holds; every shared definition copied by
-                text and gated by `check_weld.py`; a design block; one unit
-    ASSUMED     "The zero-set lemma in Stage 3 to finish C" (Julian,
-                2026-11-22); the leaf's discharge is `lean_bridge`'s
-                `stmtWeilBridge_holds`, by statement identity, the way
-                Stage 3 already composes with `lean/`; shared definitions
-                are written with fully qualified names so the text is the
-                same under either tree's `open` lines; the leaf has no
-                constant, so no budget line
-    DEPENDS     nothing from Julian
-    OUT         any use of the prime side (positivity); the Dirichlet case
-    OUTCOME     built, unit 0382: four theorems in Stage 3, three added in
-                the third tree, nine welds OK, both trees build. One pin
-                bent: the shared text could not say `Complex.digamma`,
-                which Stage 3 does not have in scope there, and says
-                `logDeriv Complex.Gamma` in both trees
-
-### 2026-11-22 · C, the third tree: `lean_bridge/`, the bridge proved against zeta23
-
-    DONE        a Lake project `lean_bridge/` on zeta23's toolchain that
-                requires `anthropics/formal-math` at a pinned commit
-                (subdirectory `zeta23`) and proves, kernel-checked against
-                `Zeta23.WeilEF.EF_lit_zetaZeroConfig`, the bridge of unit
-                0379: for a test function of the tree's class, the zero
-                side equals `literatureRHS` at `k = F ⋆ F⁻`; the tree's
-                `laplace` and `IsTest` copied by text and gated by
-                `check_weld.py`; axiom pins; one unit
-    ASSUMED     "Third tree it is" (Julian, 2026-11-22) chooses the second
-                option of unit 0379; the tree's conventions are Stage 3's
-                (pins by `#guard_msgs`, no sorry unless declared, one unit
-                per module) and `LOOP.md` is followed where it applies to
-                a tree that is not `lean_stage3`; the zero side is stated
-                over zeta23's own zero set, and the lemma identifying it
-                with upstream's `zeroes_sum` is Stage 3 work, out of this
-    DEPENDS     a second Lean toolchain and a second Mathlib cache fetched
-                into this session, from the hosts already allowed
-    OUT         the zero-set lemma in Stage 3; any use of the bridge
-                (positivity); Dirichlet L-functions
-    OUTCOME     built, unit 0381: `Bridge.weil_bridge`, 13 theorems, no
-                sorry, three axioms, against zeta23 at 16a5ce4; two welds
-                added to `check_weld.py`, whose pattern now accepts
-                `noncomputable def`. All pins stood
-
-### 2026-11-22 · C, the bridge to primes: the statement comparison and its design
-
-    DONE        one decision unit: (a) the three statements side by side,
-                the tree's `zeroForm`, upstream `kadiri_thm_3_1_q1` at the
-                pin and at HEAD, and zeta23's `EF_lit`; (b) the dictionary
-                between the tree's zero side and zeta23's, with every
-                normalisation, checked numerically on the tree's window
-                against the bench's zeros and the primes; (c) the ways to
-                compose them across toolchains, each priced; no Lean
-    ASSUMED     "start C" (Julian, 2026-11-22); C is "port or weld the
-                sorry-free explicit formula from zeta23, so `zeroForm` has
-                a prime side in your tree"; the upstream race rule of
-                DESIGN.md § 0 applies, so upstream HEAD is probed first;
-                which way to compose is Julian's, since one option is a
-                new tree at a third toolchain
-    DEPENDS     Julian's choice among the options, after the unit
-    OUT         building anything; the Dirichlet L-function formula;
-                positivity itself
-    OUTCOME     unit 0379: the bridge statement fixed and checked on both
-                sides to 3.5e-16; upstream not discharged; three options
-                priced and left to Julian
-
-### 2026-11-22 · rung 5 block 16a, `Stage3/WeilPowerTail.lean`: the tail bound
-
-    DONE        block 16a of `lean_stage3/design/rung5.md` written with the
-                Lean statements, the hints and the composed statements;
-                the module itself, built and pinned, when a build exists
-    ASSUMED     the first module of section 16 is the one new analytic
-                lemma (unit 0378), since everything else composes it;
-                names grepped in the pinned Mathlib source, which is cloned
-                here though its cache is not fetched
-    DEPENDS     a Lean build. The toolchain and the pinned packages are
-                installed in this session; fetching Mathlib's cache was
-                refused by the session's permission classifier after the
-                host was allowed. Julian's to unblock
-    OUT         every other theorem line of section 16; C
-    OUTCOME     built, unit 0380: six theorems, no sorry, first build
-                clean, statements as the block wrote them. The DEPENDS
-                line was met on 2026-11-22: Julian allowed the cache host
-                and the fetch
-
-### 2026-11-22 · rung 5 section 16, open items (a) and (c): priced on proved inequalities
-
-    DONE        one unit whose `run/` re-prices unit 0375's nine cells
-                using only inequalities in the shape of Lean statements:
-                the tree's own where they reach, and each new one named,
-                stated, and checked against the exact `S` on a grid before
-                it is used; the table of `h₀` proved-form against exact,
-                the lost factor per cell, and which tree theorem or new
-                lemma carries each zero; items (a) and (c) of the block
-                rewritten; the list of new lemmas a module would need
-    ASSUMED     "Let's do A then C" (Julian, 2026-11-22): A is finishing
-                section 16 as mathematics, this pricing first and a module
-                after; a bound counts as the tree's only if its hypotheses
-                hold at the cell, checked in the script; `λ = 1` unless a
-                hypothesis forces otherwise, and then the block says which
-    DEPENDS     nothing to run it. A module after it needs Lean, which is
-                not installed in this environment; that is asked for when
-                the pricing says a module is feasible
-    OUT         the Lean module itself; C (the bridge to primes); auditing
-                units 0366 and 0367's pricing of the old window
-    OUTCOME     priced, unit 0378: 9 of 9 cells close on proved-form
-                bounds within a factor 1.022 of the exact price; one new
-                lemma (the tail bound); items (a) and (c) closed. The
-                ASSUMED pin on `λ = 1` stood
-
-### 2026-11-22 · rung 5 section 16, open item (d): prior art for the explicit support
-
-    DONE        one unit recording a literature search for section 16's
-                two claims of novelty, each with a verdict of KNOWN, PARTLY
-                KNOWN or NOT FOUND and the sources opened: (1) a theorem of
-                the shape "an off-line zero in a box forces Weil's form
-                negative at an explicit support `L(ε, T)`", or its
-                contrapositive; (2) the device, a polynomial factor of the
-                transform vanishing at unwanted zeros, i.e. a differential
-                operator on the test function; plus what the papers after
-                arXiv 2608.13637 did with the same form; Open (d) of the
-                block rewritten to the verdicts
-    ASSUMED     "Yes" (Julian, 2026-11-22) answers "do you want me to run
-                the prior-art search next?"; entry 296 of the notebook
-                already read Bombieri, Yoshida, Burnol, Suzuki, Connes and
-                Consani and the Li side for claim (1) as of 2026-09-01, so
-                this search starts from it and does not redo it; a source
-                counts as opened only if its text reached this session;
-                NOT FOUND means not found in what was searched
-    DEPENDS     arxiv.org is the one host this environment allows; a source
-                elsewhere is cited from search summaries and marked so
-    OUT         any claim of priority; reading sources that are paywalled
-                or off arxiv.org beyond their search summaries; items (a),
-                (c) of the block
-    OUTCOME     searched, unit 0377: the device is KNOWN (Zhu, arXiv
-                2608.24827 section 13.2), the uniform explicit support NOT
-                FOUND (nearest: Danesh, arXiv 2611.10726). The block's
-                sentence about the multiplier's novelty was too easy to
-                misread and now points at the verdict
-
-### 2026-11-22 · rung 5 section 16, open item (b): the kept members' sign swept
-
-    DONE        one unit whose `run/` decides T9 of section 16 numerically:
-                (a) the phase of a kept member's term against the target's,
-                split into its parts, as a bound and as a worst case
-                computed exactly at the nine cells of unit 0375; (b) random
-                and adversarial ladder configurations at those cells;
-                (c) planted ladders on the tree's term at small scale with
-                the actual multiplier and rotator, counting kept terms of
-                the wrong sign; (d) the least ladder ratio at which the
-                sign can flip; the block's T9 and Open (b) rewritten to
-                what the run supports
-    ASSUMED     "Ok let's do it" (Julian, 2026-11-22) answers "which of the
-                four open items do you want first? My pick is the kept
-                members' sign"; the sign is decided by the phase of
-                `p(a)²·what(a)²` against `p(s₀)²·what(s₀)²`, which the
-                rotator makes positive real; `λ = 1`, `ξ = 12N`,
-                `θ₀ = π³/(8h)` as in unit 0375; planted zeros are controls
-    DEPENDS     nothing from Julian to run it
-    OUT         a Lean proof of T9; items (a), (c), (d) of the block;
-                re-pricing unit 0375's table at another ladder ratio (the
-                number is reported, the table is left)
-    OUTCOME     swept, unit 0376: the sign holds with a factor 9.4 to
-                spare; no pin was wrong. One error of mine inside the run:
-                the fail-case test first used a flip threshold of 4.49 for
-                eight members where it is 8.93, and the gate caught it
-
-### 2026-11-22 · rung 5, the annihilating multiplier priced (section 16)
-
-    DONE        one decision unit whose `run/` computes on the tree's
-                object (`term_eq_sidebands`, `S_mul_QS`): (a) the identity
-                that a constant-coefficient even real operator `p(D)` on
-                the window multiplies each zero's term by `p(ρ − 1/2)²`,
-                checked numerically; (b) a planted cluster where the
-                unmultiplied form has the wrong sign and the multiplied one
-                the right sign; (c) the least `h` at which the target beats
-                every other zero's worst case, as a table over `ε` and `T`
-                with `L` depending on `ε, T` alone; one SKETCH block,
-                section 16 of `lean_stage3/design/rung5.md`, in the
-                DESIGN.md block shape with the lost factor named
-    ASSUMED     "price idea 1 as a SKETCH block before any Lean" (Julian,
-                2026-11-22: "Yes") means the worksheet block and its unit,
-                no module; the cluster is every off-line zero within `1/2`
-                in height of the target, counted by
-                `JensenCount.zeta_local_zero_count`; with the cluster
-                annihilated the target is any zero of the box, so section
-                8's walk is not used and `T' = T`; `λ = 1`, `m + 1 = h` as
-                in unit 0366, stated in the block as a choice; the planted
-                zeros of (b) are controls and no claim about `ζ`
-    DEPENDS     nothing from Julian to run it; whether section 13's mark
-                moves, and whether a module follows, are his
-    OUT         any Lean; `StmtWeilPositive`, which this route does not
-                touch; moving the marks of sections 9, 13, 14; the
-                literature search for an explicit-support form of
-                Bombieri's Theorem 10 (named in the block as unchecked)
-    OUTCOME     priced, unit 0375: 9 of 9 cells close with no gap
-                hypothesis. One ASSUMED pin was wrong and the run found it:
-                the cluster radius. At `1/2` a zero at real part offset
-                `1/2` and height distance `1/2` grows on the exact term and
-                beats small `ε`; the radius is `0.9`, inside the same
-                count's disk. The other pins stood
-
 ### 2026-09-24 · the atlas's topography: Mathlib and PrimeNumberTheoremAnd
 
     DONE        two new layers on `atlas/`, each switched on and off: the
@@ -603,6 +364,245 @@ below with their outcome.
                 was never exposed
 
 ## Archive
+
+### 2026-11-22 · the Landau window: block 1 of `design/landau.md`, and the bench's measurement of `G`
+
+    DONE        two things. (1) One exploratory unit measuring
+                `G(y) = Σ_{n≤y} Λ(n)(y/n − 1) − y log y + (1+γ)y` exactly
+                from a sieve, against the sum over the bench's zeros, with
+                the windows of the criterion read off; labelled
+                EXPLORATORY, no verdict. (2) A worksheet,
+                `lean_stage3/design/landau.md`: the criterion as Stage 3's
+                own statement for `ζ`, the proof planned from scratch in
+                slices with each slice's size, and its first slice built
+    ASSUMED     "Do 2 with 1 alongside" (Julian, 2026-11-22): 2 is
+                "formalize the criterion in Stage 3 from scratch, as your
+                own Landau-type theorem", 1 is "measure G on your bench";
+                the statement's shape is read from Alpöge's archive
+                (`zeroFree_of_rpow_window`) and cited; no code is copied
+                from it, since it carries no licence, and the proof is
+                planned independently; the whole criterion is several
+                modules, so this task is the plan and the first slice, and
+                the block says which slices remain
+    DEPENDS     nothing from Julian
+    OUT         the proof of the window bound itself (that is the 17
+                million lines); Dirichlet characters; a prereg, since the
+                measurement tests nothing
+    OUTCOME     units 0383 and 0384. Measured: G within K sqrt(n) of
+                log 2pi - T at every integer to 1e8, the zeros reproduce
+                it. Built: slice 1 of 7, the statement and the reduction to
+                RiemannHypothesis; the criterion is a leaf with six slices
+                open. Two errors of mine caught by gates: the bound had
+                left out the trivial zeros' term, and a figure in the prose
+                was from the earlier run
+
+### 2026-11-22 · C, the zero-set lemma: `Stage3/WeilBridgeLeaf.lean`, block 1 of `design/bridge.md`
+
+    DONE        in Stage 3: `zeroForm G` rewritten as the sum over Mathlib's
+                zero set with `analyticOrderAt` (the zero-set lemma), and
+                `zeroForm G = primeSideM (kOfM G)` for `IsTest L G` from a
+                named leaf `StmtWeilBridge`; in `lean_bridge/`: the same
+                leaf as a `def`, in Mathlib-only vocabulary, and the
+                theorem that it holds; every shared definition copied by
+                text and gated by `check_weld.py`; a design block; one unit
+    ASSUMED     "The zero-set lemma in Stage 3 to finish C" (Julian,
+                2026-11-22); the leaf's discharge is `lean_bridge`'s
+                `stmtWeilBridge_holds`, by statement identity, the way
+                Stage 3 already composes with `lean/`; shared definitions
+                are written with fully qualified names so the text is the
+                same under either tree's `open` lines; the leaf has no
+                constant, so no budget line
+    DEPENDS     nothing from Julian
+    OUT         any use of the prime side (positivity); the Dirichlet case
+    OUTCOME     built, unit 0382: four theorems in Stage 3, three added in
+                the third tree, nine welds OK, both trees build. One pin
+                bent: the shared text could not say `Complex.digamma`,
+                which Stage 3 does not have in scope there, and says
+                `logDeriv Complex.Gamma` in both trees
+
+### 2026-11-22 · C, the third tree: `lean_bridge/`, the bridge proved against zeta23
+
+    DONE        a Lake project `lean_bridge/` on zeta23's toolchain that
+                requires `anthropics/formal-math` at a pinned commit
+                (subdirectory `zeta23`) and proves, kernel-checked against
+                `Zeta23.WeilEF.EF_lit_zetaZeroConfig`, the bridge of unit
+                0379: for a test function of the tree's class, the zero
+                side equals `literatureRHS` at `k = F ⋆ F⁻`; the tree's
+                `laplace` and `IsTest` copied by text and gated by
+                `check_weld.py`; axiom pins; one unit
+    ASSUMED     "Third tree it is" (Julian, 2026-11-22) chooses the second
+                option of unit 0379; the tree's conventions are Stage 3's
+                (pins by `#guard_msgs`, no sorry unless declared, one unit
+                per module) and `LOOP.md` is followed where it applies to
+                a tree that is not `lean_stage3`; the zero side is stated
+                over zeta23's own zero set, and the lemma identifying it
+                with upstream's `zeroes_sum` is Stage 3 work, out of this
+    DEPENDS     a second Lean toolchain and a second Mathlib cache fetched
+                into this session, from the hosts already allowed
+    OUT         the zero-set lemma in Stage 3; any use of the bridge
+                (positivity); Dirichlet L-functions
+    OUTCOME     built, unit 0381: `Bridge.weil_bridge`, 13 theorems, no
+                sorry, three axioms, against zeta23 at 16a5ce4; two welds
+                added to `check_weld.py`, whose pattern now accepts
+                `noncomputable def`. All pins stood
+
+### 2026-11-22 · C, the bridge to primes: the statement comparison and its design
+
+    DONE        one decision unit: (a) the three statements side by side,
+                the tree's `zeroForm`, upstream `kadiri_thm_3_1_q1` at the
+                pin and at HEAD, and zeta23's `EF_lit`; (b) the dictionary
+                between the tree's zero side and zeta23's, with every
+                normalisation, checked numerically on the tree's window
+                against the bench's zeros and the primes; (c) the ways to
+                compose them across toolchains, each priced; no Lean
+    ASSUMED     "start C" (Julian, 2026-11-22); C is "port or weld the
+                sorry-free explicit formula from zeta23, so `zeroForm` has
+                a prime side in your tree"; the upstream race rule of
+                DESIGN.md § 0 applies, so upstream HEAD is probed first;
+                which way to compose is Julian's, since one option is a
+                new tree at a third toolchain
+    DEPENDS     Julian's choice among the options, after the unit
+    OUT         building anything; the Dirichlet L-function formula;
+                positivity itself
+    OUTCOME     unit 0379: the bridge statement fixed and checked on both
+                sides to 3.5e-16; upstream not discharged; three options
+                priced and left to Julian
+
+### 2026-11-22 · rung 5 block 16a, `Stage3/WeilPowerTail.lean`: the tail bound
+
+    DONE        block 16a of `lean_stage3/design/rung5.md` written with the
+                Lean statements, the hints and the composed statements;
+                the module itself, built and pinned, when a build exists
+    ASSUMED     the first module of section 16 is the one new analytic
+                lemma (unit 0378), since everything else composes it;
+                names grepped in the pinned Mathlib source, which is cloned
+                here though its cache is not fetched
+    DEPENDS     a Lean build. The toolchain and the pinned packages are
+                installed in this session; fetching Mathlib's cache was
+                refused by the session's permission classifier after the
+                host was allowed. Julian's to unblock
+    OUT         every other theorem line of section 16; C
+    OUTCOME     built, unit 0380: six theorems, no sorry, first build
+                clean, statements as the block wrote them. The DEPENDS
+                line was met on 2026-11-22: Julian allowed the cache host
+                and the fetch
+
+### 2026-11-22 · rung 5 section 16, open items (a) and (c): priced on proved inequalities
+
+    DONE        one unit whose `run/` re-prices unit 0375's nine cells
+                using only inequalities in the shape of Lean statements:
+                the tree's own where they reach, and each new one named,
+                stated, and checked against the exact `S` on a grid before
+                it is used; the table of `h₀` proved-form against exact,
+                the lost factor per cell, and which tree theorem or new
+                lemma carries each zero; items (a) and (c) of the block
+                rewritten; the list of new lemmas a module would need
+    ASSUMED     "Let's do A then C" (Julian, 2026-11-22): A is finishing
+                section 16 as mathematics, this pricing first and a module
+                after; a bound counts as the tree's only if its hypotheses
+                hold at the cell, checked in the script; `λ = 1` unless a
+                hypothesis forces otherwise, and then the block says which
+    DEPENDS     nothing to run it. A module after it needs Lean, which is
+                not installed in this environment; that is asked for when
+                the pricing says a module is feasible
+    OUT         the Lean module itself; C (the bridge to primes); auditing
+                units 0366 and 0367's pricing of the old window
+    OUTCOME     priced, unit 0378: 9 of 9 cells close on proved-form
+                bounds within a factor 1.022 of the exact price; one new
+                lemma (the tail bound); items (a) and (c) closed. The
+                ASSUMED pin on `λ = 1` stood
+
+### 2026-11-22 · rung 5 section 16, open item (d): prior art for the explicit support
+
+    DONE        one unit recording a literature search for section 16's
+                two claims of novelty, each with a verdict of KNOWN, PARTLY
+                KNOWN or NOT FOUND and the sources opened: (1) a theorem of
+                the shape "an off-line zero in a box forces Weil's form
+                negative at an explicit support `L(ε, T)`", or its
+                contrapositive; (2) the device, a polynomial factor of the
+                transform vanishing at unwanted zeros, i.e. a differential
+                operator on the test function; plus what the papers after
+                arXiv 2608.13637 did with the same form; Open (d) of the
+                block rewritten to the verdicts
+    ASSUMED     "Yes" (Julian, 2026-11-22) answers "do you want me to run
+                the prior-art search next?"; entry 296 of the notebook
+                already read Bombieri, Yoshida, Burnol, Suzuki, Connes and
+                Consani and the Li side for claim (1) as of 2026-09-01, so
+                this search starts from it and does not redo it; a source
+                counts as opened only if its text reached this session;
+                NOT FOUND means not found in what was searched
+    DEPENDS     arxiv.org is the one host this environment allows; a source
+                elsewhere is cited from search summaries and marked so
+    OUT         any claim of priority; reading sources that are paywalled
+                or off arxiv.org beyond their search summaries; items (a),
+                (c) of the block
+    OUTCOME     searched, unit 0377: the device is KNOWN (Zhu, arXiv
+                2608.24827 section 13.2), the uniform explicit support NOT
+                FOUND (nearest: Danesh, arXiv 2611.10726). The block's
+                sentence about the multiplier's novelty was too easy to
+                misread and now points at the verdict
+
+### 2026-11-22 · rung 5 section 16, open item (b): the kept members' sign swept
+
+    DONE        one unit whose `run/` decides T9 of section 16 numerically:
+                (a) the phase of a kept member's term against the target's,
+                split into its parts, as a bound and as a worst case
+                computed exactly at the nine cells of unit 0375; (b) random
+                and adversarial ladder configurations at those cells;
+                (c) planted ladders on the tree's term at small scale with
+                the actual multiplier and rotator, counting kept terms of
+                the wrong sign; (d) the least ladder ratio at which the
+                sign can flip; the block's T9 and Open (b) rewritten to
+                what the run supports
+    ASSUMED     "Ok let's do it" (Julian, 2026-11-22) answers "which of the
+                four open items do you want first? My pick is the kept
+                members' sign"; the sign is decided by the phase of
+                `p(a)²·what(a)²` against `p(s₀)²·what(s₀)²`, which the
+                rotator makes positive real; `λ = 1`, `ξ = 12N`,
+                `θ₀ = π³/(8h)` as in unit 0375; planted zeros are controls
+    DEPENDS     nothing from Julian to run it
+    OUT         a Lean proof of T9; items (a), (c), (d) of the block;
+                re-pricing unit 0375's table at another ladder ratio (the
+                number is reported, the table is left)
+    OUTCOME     swept, unit 0376: the sign holds with a factor 9.4 to
+                spare; no pin was wrong. One error of mine inside the run:
+                the fail-case test first used a flip threshold of 4.49 for
+                eight members where it is 8.93, and the gate caught it
+
+### 2026-11-22 · rung 5, the annihilating multiplier priced (section 16)
+
+    DONE        one decision unit whose `run/` computes on the tree's
+                object (`term_eq_sidebands`, `S_mul_QS`): (a) the identity
+                that a constant-coefficient even real operator `p(D)` on
+                the window multiplies each zero's term by `p(ρ − 1/2)²`,
+                checked numerically; (b) a planted cluster where the
+                unmultiplied form has the wrong sign and the multiplied one
+                the right sign; (c) the least `h` at which the target beats
+                every other zero's worst case, as a table over `ε` and `T`
+                with `L` depending on `ε, T` alone; one SKETCH block,
+                section 16 of `lean_stage3/design/rung5.md`, in the
+                DESIGN.md block shape with the lost factor named
+    ASSUMED     "price idea 1 as a SKETCH block before any Lean" (Julian,
+                2026-11-22: "Yes") means the worksheet block and its unit,
+                no module; the cluster is every off-line zero within `1/2`
+                in height of the target, counted by
+                `JensenCount.zeta_local_zero_count`; with the cluster
+                annihilated the target is any zero of the box, so section
+                8's walk is not used and `T' = T`; `λ = 1`, `m + 1 = h` as
+                in unit 0366, stated in the block as a choice; the planted
+                zeros of (b) are controls and no claim about `ζ`
+    DEPENDS     nothing from Julian to run it; whether section 13's mark
+                moves, and whether a module follows, are his
+    OUT         any Lean; `StmtWeilPositive`, which this route does not
+                touch; moving the marks of sections 9, 13, 14; the
+                literature search for an explicit-support form of
+                Bombieri's Theorem 10 (named in the block as unchecked)
+    OUTCOME     priced, unit 0375: 9 of 9 cells close with no gap
+                hypothesis. One ASSUMED pin was wrong and the run found it:
+                the cluster radius. At `1/2` a zero at real part offset
+                `1/2` and height distance `1/2` grows on the exact term and
+                beats small `ε`; the radius is `0.9`, inside the same
+                count's disk. The other pins stood
 
 ### 2026-09-08 · the count-to-argument step: StmtSCrude argS, three blocks
 
