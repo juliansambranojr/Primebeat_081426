@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  B1 SEALED (unit 0438, `lean/DeepZeroBand`): share = cell over its total; prime share + composite share = 1, so the composite table is x -> 1-x; at (20,6) shares are 0 and 1 = outer and inner circles of `Transform`'s band under z = b^(-x); middle circle = share 1/2. Open: tie a share to the real part of a zero.
 - [open]   2026-11-22  S1 SEALED (unit 0437, `MirrorArea`): a mode at base b and its mirror are the sides of a rectangle of area b (`mirror_area`), one side gives the other; the square, both sides sqrt b, is the line (`square_iff`); off the line one side is above sqrt b. T4 restoring force = log of the side ratio. Open: what forces equal sides.
 - [open]   2026-11-22  EXPLORATORY, logged: unit 0435, prime count minus li at each doubling to exponent 62, below the smooth count throughout, residual grew at 50 of 58 steps; unit 0436, depth-6 cells as smooth cell plus wobble, wobble at square-root size, (20,6) is where smooth +453.4 and wobble -453.4 cancel.
 - [open]   2026-11-22  W1 SEALED (unit 0434, `WobbleCount.invisible_iff`): why the number line has zeros. Sum of log n up to N = prime content read at N, N/2, N/3, ... (`count_identity`); a wobble x^rho read there and added stays bounded after its smooth term N/(1-rho) iff zeta(rho)=0. The zeros are the wobbles the primes can carry while the integers stay evenly spaced. Places no real part.

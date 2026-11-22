@@ -1,0 +1,19 @@
+key	value	source
+module_lines	214	wc -l lean/DeepZeroBand.lean
+theorems_proved	14	grep -c ^theorem lean/DeepZeroBand.lean
+defs	2	compRow, share
+sorries	0	grep -c sorry lean/DeepZeroBand.lean
+pins	14	grep -c "^#print axioms" lean/DeepZeroBand.lean
+errors_first	0	first lake build DeepZeroBand in lean/
+builds	1	the first build; a second added the checked pins
+jobs_module	8032	run/build.log, lake build DeepZeroBand
+jobs_tree	8057	lake build in lean/, Build completed successfully
+toolchain	4.28.0	lean/lean-toolchain
+modules_lean	31	lean/THEOREMS.md after utilities/theorem_index.py
+theorems_lean	359	lean/THEOREMS.md after utilities/theorem_index.py
+composite_total	8192	composite_cell_20_6
+out_row	15	deep_cell_15_6
+out_depth	6	deep_cell_15_6
+out_cell	-112	deep_cell_15_6
+welds	11	count of WELD OK lines, utilities/check_weld.py
+broken_welds	0	python3 utilities/check_weld.py

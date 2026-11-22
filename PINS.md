@@ -22,6 +22,27 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the deep zero, inverted, and the band: `lean/DeepZeroBand.lean`
+
+    DONE        `share`: a cell over its total. `share_add`, `share_mirror`:
+                the prime share and the composite share add to one, so the
+                composite table is `x ↦ 1 − x` on shares. `deep_zero_share`,
+                `deep_zero_inverse_share`: at (20,6) they are 0 and 1.
+                `deep_zero_on_outer_circle`,
+                `deep_zero_inverse_on_inner_circle`: under `z = b^(−x)` those
+                are the two edges of `Transform`'s band. `share_pair_product`,
+                `share_on_middle_circle_iff`, `share_in_band`,
+                `band_in_annulus`; one unit
+    ASSUMED     Julian, 2026-11-22: "Build the join". The band is read as
+                `Transform`'s annulus between the outer and inner circles;
+                the inverse of the deep zero as the composite cell, his
+                "the inverse of this table is the dyadic composite table"
+    DEPENDS     `Zeros.zero_20_6`, `PairIdentity.pair_identity`,
+                `Transform.zmap_pair_product`, `on_critical_line_iff_norm`
+    OUT         any identification of a cell's share with the real part of a
+                zero of zeta
+    OUTCOME     proved, unit 0438; clean on the first build
+
 ### 2026-11-22 · the mirror pair as a rectangle of fixed area: `Stage3/MirrorArea.lean`, block S1 of `joints.md`
 
     DONE        `mirror_area`: a mode at base `b` and its mirror multiply to

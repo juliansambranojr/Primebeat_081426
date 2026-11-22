@@ -1,0 +1,22 @@
+⚠ [8030/8032] Replayed Chain
+warning: Chain.lean:547:15: unused variable `hm`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Chain.lean:547:28: unused variable `hn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8031/8032] Replayed Transform
+warning: Transform.lean:608:58: This simp argument is unused:
+  hlog
+
+Hint: Omit it from the simp argument list.
+  simp [Complex.div_re, Complex.mul_re, Complex.mul_im,̵ ̵h̵l̵o̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Transform.lean:623:72: unused variable `hb1`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Transform.lean:624:13: unused variable `hs`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (8032 jobs).

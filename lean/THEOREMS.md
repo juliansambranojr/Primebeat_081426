@@ -3,7 +3,7 @@
 **GENERATED** by `utilities/theorem_index.py`. Do not edit by hand;
 re-run after any change to `lean/`.
 
-345 theorems across 30 modules. Every one carries a
+359 theorems across 31 modules. Every one carries a
 `#guard_msgs`-pinned `#print axioms`, so the axiom column is checked by
 `lake build` rather than asserted here.
 
@@ -18,6 +18,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `Construction` | `tableFrom_isTableOf` | `tableFrom` satisfies its own recurrence. |
 | `Construction` | `unique_of_isTableOf` | Uniqueness. |
 | `Construction` | `eq_of_same_row` | Two tables over the same row agree everywhere. |
+| `DeepZeroBand` | `deep_cell_15_6` | A differenced cell can be negative: (15,6) is `−112`, computed. |
 | `Isogeny` | `measured_row_four` | The measured base-4 row, from the 21 pinned values and nothing else. |
 | `Isogeny` | `measured_row_eight` | The measured base-8 row, same 21 values read at decimation 3. |
 | `PairIdentity` | `base_three_carries_factor` | Base three does carry the factor: the total at `(r,d)` is `2^(d+1)·3^(r−1−d)`, never a bare power of three. |
@@ -119,6 +120,25 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `no_crossover_of_single` | A single family has no crossover. | ℂ floor | support |
 | `count_does_not_determine_spread` | The coefficient-count account fails. | ℂ floor | `Formalization.md` |
 | `spread_is_non_monotone` | The spread is non-monotone. | ℂ floor | record |
+
+## DeepZeroBand (14)
+
+| theorem | claim | axioms | cited by |
+|---|---|---|---|
+| `composite_cell_20_6` | The inverse of the deep zero. | propext | **UNTAGGED** |
+| `share_add` | The two shares add to one, at every cell of any pair of rows that partition the rungs. | ℂ floor | **UNTAGGED** |
+| `share_mirror` | Passing to the composite table is `x ↦ 1 − x` on shares. | ℂ floor | **UNTAGGED** |
+| `share_eq_iff_half` | The two shares are equal exactly at one half. | ℂ floor | **UNTAGGED** |
+| `deep_zero_share` | At the deep zero the prime share is zero. | ℂ floor | **UNTAGGED** |
+| `deep_zero_inverse_share` | At the deep zero the composite share is one. | ℂ floor | **UNTAGGED** |
+| `deep_zero_on_outer_circle` | The deep zero is on the outer circle, where the zeros of the table's own symbol are. | ℂ floor | **UNTAGGED** |
+| `deep_zero_inverse_on_inner_circle` | Its inverse is on the inner circle. | ℂ floor | **UNTAGGED** |
+| `share_pair_product` | At every cell the two images multiply to `b^(−1)`. | ℂ floor | **UNTAGGED** |
+| `share_on_middle_circle_iff` | The middle circle is share one half. | ℂ floor | **UNTAGGED** |
+| `share_in_band` | The band of shares. | ℂ floor | **UNTAGGED** |
+| `band_in_annulus` | The band between the circles. | ℂ floor | **UNTAGGED** |
+| `deep_cell_15_6` | A differenced cell can be negative: (15,6) is `−112`, computed. | **none** | **UNTAGGED** |
+| `share_15_6_neg` | So its share is below the band. | ℂ floor | **UNTAGGED** |
 
 ## Elephant (29)
 
@@ -386,7 +406,7 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `cell_ne_zero_of_route` |  | ℂ floor | `PINS.md` |
+| `cell_ne_zero_of_route` |  | ℂ floor | `NOTEPAD.md`, `PINS.md`, `SECTIONS.md` |
 
 ## Schoenfeld (2)
 
@@ -424,10 +444,10 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 
 | theorem | claim | axioms | cited by |
 |---|---|---|---|
-| `bdiff_sum` | `bdiff` distributes over a finite sum. | ℂ floor | `lab_notebook_2.md` |
+| `bdiff_sum` | `bdiff` distributes over a finite sum. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `A4_sum_of_A1` | The licence. | ℂ floor | support |
 | `depth_reweights_each_mode` | Corollary — the falsifiable form. | ℂ floor | `SECTIONS.md`, `lab_notebook_2.md` |
-| `tableFrom_eq_modeSum_reweighted` | The table is a superposition, reweighted by depth. | ℂ floor | `CONTEXT.md`, `NOTEPAD.md`, `lab_notebook_2.md` |
+| `tableFrom_eq_modeSum_reweighted` | The table is a superposition, reweighted by depth. | ℂ floor | `CONTEXT.md`, `NOTEPAD.md`, `SECTIONS.md` +1 |
 
 ## TransferOp (7)
 
@@ -478,8 +498,8 @@ rows reading **none** are the tight ones: pure computation, nothing assumed.
 | `zeros_re_pos` | Every nontrivial zero has `0 < Re s`. | ℂ floor | `lab_notebook_2.md` |
 | `zeros_in_fundamental_annulus` | Every nontrivial zero lies in the open fundamental annulus. | ℂ floor | `NOTEPAD.md`, `README.md`, `lab_notebook_2.md` |
 | `riemannHypothesis_iff_zeros_on_middle_circle` | RH, as a statement about one annulus. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
-| `zmap_pair_product` | The pair identity. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
-| `pair_collapses_iff_critical` | The pair collapses exactly on the critical line. | ℂ floor | `lab_notebook_2.md` |
+| `zmap_pair_product` | The pair identity. | ℂ floor | `NOTEPAD.md`, `PINS.md`, `SECTIONS.md` +1 |
+| `pair_collapses_iff_critical` | The pair collapses exactly on the critical line. | ℂ floor | `PINS.md`, `SECTIONS.md`, `lab_notebook_2.md` |
 | `riemannHypothesis_iff_pair_collapses` | RH: the pair collapses at every zero. | ℂ floor | `NOTEPAD.md`, `lab_notebook_2.md` |
 | `sym_zero_on_outer_circle` | A zero of the table's symbol lands on `|z| = 1`. | ℂ floor | `lab_notebook_2.md` |
 | `sym_zero_partner_on_inner_circle` | Its inversion partner lands on `|z| = b^(−1)`. | ℂ floor | `lab_notebook_2.md` |
