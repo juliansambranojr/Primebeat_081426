@@ -31726,9 +31726,9 @@
   "namespaces": [
    "MirrorArea"
   ],
-  "lines": 116,
+  "lines": 122,
   "copy_of": null,
-  "fresh": true,
+  "fresh": false,
   "imports_files": [
    "lean_stage3/Stage3/StencilWeil.lean"
   ],
@@ -31738,7 +31738,7 @@
     "name": "mirror_area",
     "ns": "MirrorArea",
     "full": "MirrorArea.mirror_area",
-    "line": 32,
+    "line": 38,
     "why": "The area is fixed. A mode and its mirror multiply to the base.",
     "sorry": false,
     "needs": [
@@ -31750,7 +31750,7 @@
     "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area",
     "stmt": [],
     "proof": [],
-    "exact": true,
+    "exact": false,
     "uses": [],
     "layer": "shape",
     "used_by": [
@@ -31762,7 +31762,7 @@
     "name": "mirror_side",
     "ns": "MirrorArea",
     "full": "MirrorArea.mirror_side",
-    "line": 39,
+    "line": 45,
     "why": "One side gives the other, at every base.",
     "sorry": false,
     "needs": [
@@ -31776,7 +31776,7 @@
     "proof": [
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area"
     ],
-    "exact": true,
+    "exact": false,
     "uses": [
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.mirror_area"
     ],
@@ -31788,7 +31788,7 @@
     "name": "side_eq_sqrt_iff",
     "ns": "MirrorArea",
     "full": "MirrorArea.side_eq_sqrt_iff",
-    "line": 49,
+    "line": 55,
     "why": "A side is the square root of the base exactly on the line.",
     "sorry": false,
     "needs": [
@@ -31800,7 +31800,7 @@
     "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff",
     "stmt": [],
     "proof": [],
-    "exact": true,
+    "exact": false,
     "uses": [],
     "layer": "shape",
     "used_by": [
@@ -31812,7 +31812,7 @@
     "name": "square_iff",
     "ns": "MirrorArea",
     "full": "MirrorArea.square_iff",
-    "line": 63,
+    "line": 69,
     "why": "The square. Both sides are the square root of the base exactly on the line.",
     "sorry": false,
     "needs": [
@@ -31826,7 +31826,7 @@
     "proof": [
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff"
     ],
-    "exact": true,
+    "exact": false,
     "uses": [
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.side_eq_sqrt_iff"
     ],
@@ -31838,7 +31838,7 @@
     "name": "long_side_of_off_line",
     "ns": "MirrorArea",
     "full": "MirrorArea.long_side_of_off_line",
-    "line": 75,
+    "line": 81,
     "why": "Off the line one side is long. A rectangle of the same area that is not the square has a side above the square's.",
     "sorry": false,
     "needs": [
@@ -31850,7 +31850,7 @@
     "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.long_side_of_off_line",
     "stmt": [],
     "proof": [],
-    "exact": true,
+    "exact": false,
     "uses": [],
     "layer": "shape",
     "used_by": []
@@ -31860,7 +31860,7 @@
     "name": "restoringForce_eq_log_ratio",
     "ns": "MirrorArea",
     "full": "MirrorArea.restoringForce_eq_log_ratio",
-    "line": 90,
+    "line": 96,
     "why": "The force is the shape. The restoring force is the logarithm of the ratio of the two sides.",
     "sorry": false,
     "needs": [
@@ -31870,11 +31870,11 @@
     "proves": "restoringForce b ρ = |Real.log (‖(b : ℂ) ^ ρ‖ / ‖(b : ℂ) ^ (1 - ρ)‖)|",
     "file": "lean_stage3/Stage3/MirrorArea.lean",
     "id": "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.restoringForce_eq_log_ratio",
-    "stmt": [
+    "stmt": [],
+    "proof": [
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
     ],
-    "proof": [],
-    "exact": true,
+    "exact": false,
     "uses": [
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce"
     ],

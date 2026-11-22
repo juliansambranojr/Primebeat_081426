@@ -15,6 +15,12 @@ restoring force of block T4 is the logarithm of the ratio of the sides.
   long_side_of_off_line        1 < b, ρ.re ≠ 1/2 ⊢ √b < max of the two sides
   restoringForce_eq_log_ratio  0 < b ⊢ restoringForce b ρ = |log (side / mirror side)|
 
+Earlier in the tree: `lean/Transform.lean` proves the same rectangle in the
+variable `z = b^(−s)`: `zmap_pair_product` (the product is `b^(−1)`),
+`pair_collapses_iff_critical`, `riemannHypothesis_iff_pair_collapses`. This
+module restates it in Stage 3, in the sizes block T4 uses, and joins it to
+`restoringForce`. The two trees are separate packages, so nothing is imported.
+
 What the next slice needs: a statement that forces equal sides from the table;
 it is not here.
 

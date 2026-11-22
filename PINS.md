@@ -31,9 +31,10 @@ below with their outcome.
                 `restoringForce_eq_log_ratio`: block T4's force is the
                 logarithm of the ratio of the sides; one unit
     ASSUMED     Julian, 2026-11-22: "Yes but look at the lean theroems I feel
-                we chased a rectangle before. If not, let build". Searched the
-                Lean trees first: the area is in none of them; T4 has the
-                ratio of the sides. Sides are `‖b^ρ‖` and `‖b^(1−ρ)‖`
+                we chased a rectangle before. If not, let build". A first search
+                missed it: `lean/Transform.lean` has the rectangle as a pair
+                (`zmap_pair_product`, `pair_collapses_iff_critical`). This
+                module restates it in Stage 3 and joins it to T4's force. Sides are `‖b^ρ‖` and `‖b^(1−ρ)‖`
     DEPENDS     `StencilWeil.restoringForce`; Mathlib
     OUT         any statement that forces equal sides
     OUTCOME     proved, unit 0437; clean on the first build

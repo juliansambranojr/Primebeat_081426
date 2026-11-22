@@ -991,4 +991,9 @@ of `log (side / mirror side)`.
 - `long_side_of_off_line (hb : 1 < b) (h : ρ.re ≠ 1/2)`: `√b < max ‖b^ρ‖ ‖b^(1−ρ)‖`.
 - `restoringForce_eq_log_ratio (hb : 0 < b) ρ`: `restoringForce b ρ = |log (‖b^ρ‖ / ‖b^(1−ρ)‖)|`.
 
+**Earlier in the tree.** `lean/Transform.lean`, in `z = b^(−s)`:
+`zmap_pair_product`, `pair_collapses_iff_critical`,
+`riemannHypothesis_iff_pair_collapses`. S1 restates it in Stage 3 and joins it
+to `restoringForce`.
+
 **Not here.** What forces equal sides. The area holds for every `ρ`.

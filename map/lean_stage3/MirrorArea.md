@@ -1,8 +1,10 @@
 # `lean_stage3/Stage3/MirrorArea.lean`
 
+> **Read from the source text.** This file changed after the last `python3 utilities/lean_map.py --dump`, so the arrows on this page are names occurring in each proof and have not been confirmed by Lean.
+
 MirrorArea — block S1 of `lean_stage3/design/joints.md`. 2026-11-22. A mode of the table at base `b` and its mirror, read as the two sides of a rectangle. The sides are `‖b^ρ‖` and `‖b^(1−ρ)‖`. Their product is `b` for every `ρ`: the area is fixed by the base and by nothing else. So one side gives the other at every scale. The rectangle is a square, each side `√b`, exactly when `ρ` is on the line; off the line one side is longer than `√b`. The restoring force of block T4 is the logarithm of the ratio of the sides.
 
-6 theorems, 0 definitions, 116 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 0 definitions, 122 lines. 
 
 **Imports:** [`StencilWeil`](../lean_stage3/StencilWeil.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -36,7 +38,7 @@ An arrow A → B reads "A is used in the proof of B". Green: counting, integers 
 <a name="MirrorArea-mirror_area"></a>
 ### `MirrorArea.mirror_area`
 
-line 32
+line 38 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -62,7 +64,7 @@ line 32
 <a name="MirrorArea-mirror_side"></a>
 ### `MirrorArea.mirror_side`
 
-line 39
+line 45 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -88,7 +90,7 @@ line 39
 <a name="MirrorArea-side_eq_sqrt_iff"></a>
 ### `MirrorArea.side_eq_sqrt_iff`
 
-line 49
+line 55 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -114,7 +116,7 @@ line 49
 <a name="MirrorArea-square_iff"></a>
 ### `MirrorArea.square_iff`
 
-line 63
+line 69 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -140,7 +142,7 @@ line 63
 <a name="MirrorArea-long_side_of_off_line"></a>
 ### `MirrorArea.long_side_of_off_line`
 
-line 75
+line 81 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -164,7 +166,7 @@ Real.sqrt b < max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖
 <a name="MirrorArea-restoringForce_eq_log_ratio"></a>
 ### `MirrorArea.restoringForce_eq_log_ratio`
 
-line 90
+line 96 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -181,9 +183,9 @@ restoringForce b ρ = |Real.log (‖(b : ℂ) ^ ρ‖ / ‖(b : ℂ) ^ (1 - ρ)�
   - `` hb : 0 < b ``
   - `` ρ : ℂ ``
 
-**Stated with:** [`StencilWeil.restoringForce`](../lean_stage3/StencilWeil.md#StencilWeil-restoringForce)
-
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+
+**Definitions its proof touches:** [`StencilWeil.restoringForce`](../lean_stage3/StencilWeil.md#StencilWeil-restoringForce)
 
 **Feeds:** nothing. It is an end.
 
