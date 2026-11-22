@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/RouteGate.lean`, block E6 of `joints.md`
+
+    DONE        `relErrWindow_route`: unit 0411's theorem with `W` put to
+                zero (unit 0414) and the main term written as the formula the
+                table tree's interpolant has (unit 0413); a unit; the block
+                PROVED; then a DRAFT block E7 for the three box bounds
+    ASSUMED     Julian's "Ok" read as: the recommendation just made, the
+                substitution now and the box bounds as a draft to read.
+                `K0` is not substituted: it sits inside an existential and
+                exposing it needs another copy of the explicit formula's
+                proof, for a term of size 1e-5 in unit 0410
+    DEPENDS     units 0411, 0413, 0414
+    OUT         no Lean for the box bounds
+    OUTCOME     `relErrWindow_route` done, unit 0415, clean on the first
+                build; block E7 follows
+
 ### 2026-11-22 · `Stage3/RealSegment.lean`, block E5 of `joints.md`
 
     DONE        ζ has no zero on the real segment `(0, 1)`; the bucket `W` of

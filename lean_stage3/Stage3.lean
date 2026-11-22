@@ -118,6 +118,7 @@ import Stage3.GlueFloor
 import Stage3.JointFloorGate
 import Stage3.RowLeaves
 import Stage3.RealSegment
+import Stage3.RouteGate
 
 namespace Stage3
 

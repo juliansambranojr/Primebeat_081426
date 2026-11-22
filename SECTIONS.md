@@ -186,3 +186,12 @@ Unit 0411 (`Stage3/JointFloorGate.lean`, `relErrWindow_floor_of_RH`) carries
 that route to `StmtRelErrWindow`, the gate's hypothesis. So section E now
 reaches section C the same way section D does: one line of theorems in
 Stage 3, then the weld of joint 5.
+
+Units 0412–0415 closed what stood between that route and a cell of the
+table: the interpolant is constructed (`lean/Interpolant.lean`), Stage 3's
+`Li` at the rows is that interpolant's formula (`RowLeaves.Li_two_rpow`),
+the real-zero bucket is zero (`RealSegment`), and `RouteGate.relErrWindow_route`
+states the route at the gate with both put in. Its conclusion is the
+hypothesis of `Interpolant.tableFrom_ne_zero_of_relErr_liRow`; the weld on
+`StmtRelErrWindow` is all that stands between them. Under RH, with three
+existential constants.

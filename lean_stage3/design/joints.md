@@ -499,3 +499,17 @@ Theorems.
 - `isEmpty_zeroHeight`: `IsEmpty Kadiri.ZeroHeightNontrivialZeros`.
 - `weightedZeroHeightBucket_eq_zero`: `Kadiri.weightedZeroHeightBucket = 0`.
 
+### E6 The route at the gate, substituted — PROVED (unit 0415: `RouteGate.relErrWindow_route`)
+
+- `relErrWindow_route`: under RH there are `c₁, c₃, c₄ ≥ 0` such that for
+  every `x₀ ≥ 16` and `r, n` with `x₀² ≤ 2^(r−n)`,
+  `StmtRelErrWindow` holds for the rows of `π` against
+  `m ↦ 2/log 2 + ∫ t in 1..m, exp (log 2·t)/t`, with
+  `ρ = (3·floorConstSplit c₁ c₃ c₄ 112 0 698 0 x₀ + 13)·(log 2·r)·2^(−(r−n)/2)`.
+  From `JointFloorGate.relErrWindow_floor_of_RH`, `weightedZeroHeightBucket_eq_zero`
+  and `Li_two_rpow`. The bottom row is positive because `x₀² ≥ 256`.
+
+`K0` stays inside `c₃`: `explicit_formula_split` hands its constants out under
+an existential, and naming `c₃` means a further copy of that proof. Its term
+is of size `1e-5` in unit 0410.
+
