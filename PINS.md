@@ -22,6 +22,36 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · rung 5 section 16, open item (d): prior art for the explicit support
+
+    DONE        one unit recording a literature search for section 16's
+                two claims of novelty, each with a verdict of KNOWN, PARTLY
+                KNOWN or NOT FOUND and the sources opened: (1) a theorem of
+                the shape "an off-line zero in a box forces Weil's form
+                negative at an explicit support `L(ε, T)`", or its
+                contrapositive; (2) the device, a polynomial factor of the
+                transform vanishing at unwanted zeros, i.e. a differential
+                operator on the test function; plus what the papers after
+                arXiv 2608.13637 did with the same form; Open (d) of the
+                block rewritten to the verdicts
+    ASSUMED     "Yes" (Julian, 2026-11-22) answers "do you want me to run
+                the prior-art search next?"; entry 296 of the notebook
+                already read Bombieri, Yoshida, Burnol, Suzuki, Connes and
+                Consani and the Li side for claim (1) as of 2026-09-01, so
+                this search starts from it and does not redo it; a source
+                counts as opened only if its text reached this session;
+                NOT FOUND means not found in what was searched
+    DEPENDS     arxiv.org is the one host this environment allows; a source
+                elsewhere is cited from search summaries and marked so
+    OUT         any claim of priority; reading sources that are paywalled
+                or off arxiv.org beyond their search summaries; items (a),
+                (c) of the block
+    OUTCOME     searched, unit 0377: the device is KNOWN (Zhu, arXiv
+                2608.24827 section 13.2), the uniform explicit support NOT
+                FOUND (nearest: Danesh, arXiv 2611.10726). The block's
+                sentence about the multiplier's novelty was too easy to
+                misread and now points at the verdict
+
 ### 2026-11-22 · rung 5 section 16, open item (b): the kept members' sign swept
 
     DONE        one unit whose `run/` decides T9 of section 16 numerically:

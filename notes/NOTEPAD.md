@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0377: rung 5 section 16 item (d), prior art. Device KNOWN (Zhu arXiv 2608.24827 sec 13.2: window times polynomial vanishing at zeros, under RH, to make the form small). Uniform explicit L(eps,T) NOT FOUND; nearest Danesh arXiv 2611.10726. Zhu also prices positivity: margin under exp(-L e^L). No priority claimed
 - [open]   2026-11-22  unit 0376: rung 5 section 16 item (b), kept members' sign swept. Phase 0.167 rad against pi/2 (factor 9.4) at xi = 12N; exact worst case 0.99 of the bound; 0 flips in 180000 random ladders and 487 planted kept members; flips at xi = 1.273N, planted flip fires. T9 does not need block 13g. EXPLORATORY; Lean proof open
 - [open]   2026-11-22  unit 0375: rung 5, annihilating multiplier priced (worksheet section 16, SKETCH, EXPLORATORY). 9/9 cells close with no gap hypothesis, h0 ~ pi^2 N^2 log(12N)/(2 eps^2); cluster radius must be 0.9. Four items open; StmtWeilPositive untouched. Module is Julian's call
 - [open]   2026-09-24  atlas topography (80c7fdb, 010a5ea): Mathlib and PNT ground layers; 106 lean/ declarations stand on Lean core alone

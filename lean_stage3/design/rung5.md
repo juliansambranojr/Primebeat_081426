@@ -1395,7 +1395,7 @@ that vanishes at them; the price moves from the range of `h` (section 9:
 for it. The idea came from reading Alpöge–Furman (arXiv:2608.13637), which
 replaces termwise sign control by linear algebra over many test functions;
 the multiplier itself is in neither that paper nor this worksheet before
-today. Nothing here touches `StmtWeilPositive`.
+today. (It is in the literature: Open (d), unit 0377.) Nothing here touches `StmtWeilPositive`.
 
 The statement targeted is the rung's own, copied from
 `Stage3/WeilDetect.lean`: `StmtDetect ε T L := (OffLineBox ε T).Nonempty →
@@ -1531,10 +1531,19 @@ Open.      Four things, in the order they could kill it; (b) has since been
                worst case over real parts by monotonicity (T10) and over
                heights cell by cell, with `0` violations of monotonicity in
                the heights sampled; neither is a Lean bound.
-           (d) Prior art. Bombieri's Theorem 10 gives negative eigenvalues
-               from finitely many off-line zeros with no formula for the
-               support. Whether an explicit support of this kind is already in
-               the literature has not been searched.
+           (d) Prior art. SEARCHED 2026-11-22, unit 0377, from entry 296.
+               The device is KNOWN: Zhu, arXiv:2608.24827v2 § 13.2, multiplies
+               a window by an even polynomial vanishing at every zero up to a
+               height, to make the form small under RH. Its use here, against
+               off-line cluster members to make the form negative, was not
+               found. The statement, a support explicit in `ε` and `T` for
+               every configuration, was NOT FOUND; the near neighbour is
+               Danesh, arXiv:2611.10726v1, detection by a Weil cross term at
+               arbitrarily large separations, with a rate and no support
+               named. Not a claim of priority: no referee has looked.
+               The same Zhu paper prices the other half: under RH the form's
+               least normalized value on `[−L, L]` is at most `exp(−L·e^L)`,
+               so positivity at this block's supports is beyond computation.
            And what it would be if all four hold: an explicit, uniform Weil
            criterion, `StmtWeilPositive (L ε T) → OffLineBox ε T = ∅` through
            `box_empty_of_positive_of_detect`. The positivity half is untouched,

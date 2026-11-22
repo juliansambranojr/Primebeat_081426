@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-22T03:03:48Z
+# unit: 0377-rung5-multiplier-prior-art
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:8140
+  Source: session transcript, 2026-11-22, after unit 0376
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:7882
+  B is an even polynomial of degree 2N (T ) (exponential type 0) vanishing at every zero up to T ;
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:7952
+  the zeros up to T being annihilated by B.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:7603
+  forces the normalized cross term to exceed an exponential at arbitrarily large separations,
+
+# 4 found, 0 missing
