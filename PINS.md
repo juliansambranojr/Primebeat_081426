@@ -22,6 +22,25 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joints 3, 4, 5 of `SECTIONS.md`: `Stage3/JointDialGate.lean`
+
+    DONE        `lean_stage3/design/joints.md` block 3;
+                `Stage3/JointDialGate.lean` builds with no `sorry`:
+                `StmtRelErrWindow` (a copy of the table tree's, added to
+                `utilities/check_weld.py`), `thetaWindow_of_global`,
+                `log_absorbed`, `powerSaving_relErr`, `relErrWindow_of_theta`,
+                `relErrWindow_of_window`: a window bound on `G` at `θ` gives
+                the gate's relative-error statement on the table's rows; a
+                formalization unit; `SECTIONS.md` joints 3, 4, 5 marked
+    ASSUMED     the exponent moves from `θ` to any `θ' > θ` to absorb the
+                logarithm; named in the block
+    DEPENDS     units 0389, 0400; `lean/RelativeGate.lean` for the text of
+                the definition and of `powerSaving_relErr`
+    OUT         joint 6 and the gate's side conditions; the constants; the
+                converse; the window bound itself
+    OUTCOME     done as pinned, unit 0402: five theorems, no `sorry`, clean
+                on the first build; the weld gate holds ten welds, none broken
+
 ### 2026-11-22 · joint 9a of `SECTIONS.md`: `Stage3/JointSymbol.lean`
 
     DONE        `lean_stage3/design/joints.md` block 9a;

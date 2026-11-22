@@ -89,16 +89,16 @@ not in any tree; what it must say is written out.
 |---|---|---|
 | 1 | G → D: `WindowBound θ δ C → StmtZeroFreeRight θ` | SEALED (unit 0400, `JointWindowDial.zeroFreeRight_of_window`; with it `schoenfeldWeakTheta_of_window`, the window bound carried to `|π − Li| ≤ C·x^θ·log²x`). |
 | 2 | D inside: zero-free at `θ` → `|π − Li| ≤ C·x^θ·log²x` | SEALED (`schoenfeldWeakTheta_of_zeroFree`). Joint 1 composes with it; checked the same day. |
-| 3 | D → the dyadic rows at exponent `θ` | OPEN. `weakWindow_of_global` does it for the `√x` family. Needed: `StmtSchoenfeldWeakTheta θ C k x₀ pi li` and `x₀ ≤ 2^(r−n)` give `|f(r−j) − L(r−j)| ≤ C·(2^(r−j))^θ·(log 2·(r−j))^k` on the window. The proof is `weakWindow_of_global`'s with `√` replaced by the power `θ`. |
-| 4 | the logarithm into the exponent | OPEN. `powerSaving_relErr` takes `A·(2^m)^θ` with no logarithm. Needed: for `θ < θ' ≤ 1`, `C·x^θ·(log x)^k ≤ A·x^θ'` for `x ≥ x₁`; or a version of `powerSaving_relErr` that carries `(log 2·m)^k`. |
-| 5 | D (v4.32) → C (v4.28): `StmtRelErrWindow` | OPEN WELD. `check_weld.py` holds nine welds; `StmtRelErrWindow` is not among them. Needed: the definition copied into Stage 3 and one entry in `WELDS`. |
+| 3 | D → the dyadic rows at exponent `θ` | SEALED (unit 0402, `JointDialGate.thetaWindow_of_global`). |
+| 4 | the logarithm into the exponent | SEALED (unit 0402, `JointDialGate.log_absorbed`): `C·x^θ·(log x)^k ≤ A·x^θ'` for any `θ' > θ`, `x ≥ 1`. |
+| 5 | D (v4.32) → C (v4.28): `StmtRelErrWindow` | WELD, in `check_weld.py` (ten welds); `powerSaving_relErr` reproved in Stage 3, and `relErrWindow_of_window` carries a window bound on `G` to the gate's statement on the rows of `π` and `Li` (unit 0402). |
 | 6 | C inside: `StmtRelErrWindow` and the gap → cell `≠ 0` | SEALED in `lean/` (`tableFrom_ne_zero_of_relErr`, `relGate_iff`). It also asks `hM`, a lower bound on the main term's stencil, and `hrow`, that the row is the count. Whether `L = Li` at the dyadic points meets `hM` as stated was not checked. |
 | 7 | D ↔ C at the RH shape: `StmtSchoenfeldWindow`, `StmtSchoenfeld` | WELD, in `check_weld.py`; Stage 3 reproves `window_of_global` on its side. |
 | 8 | F → zeta23: `StmtWeilBridge` and five definitions | WELD, in `check_weld.py`; proved in `lean_bridge`. |
 | 9 | B ↔ D: the table of `G` and the zeros | FORWARD, on the transform: SEALED (unit 0401, `JointSymbol`): differencing `G` along the doublings `d` times multiplies its transform by the symbol `(1 − 2^(−s))^d`, and each zero's pole is reweighted by the symbol at that zero to the power `d`. Forward, pointwise (the cell as a sum over the zeros): OPEN, needs the explicit formula for `G`. CONVERSE (a bound on the cells forces a zero-free region): OPEN; derived only when the largest real part of a zero is attained (`lean_stage3/design/joints.md`, block 9 and its two corrections). |
 | 10 | the rows → all `x` | OPEN for one ladder, and it is the obstruction in joint 9: on any ladder of fixed ratio the zeros' heights fold onto the whole circle. Every ladder at once is every `y` (`joints.md`, 9d): a bound on all rational-base ladders in a window gives `WindowBound`, short and nearly without content. A finite set of bases: not known. |
 
-## What the tunnel carries once joints 3, 4, 5 are in (joint 1 is sealed)
+## What the tunnel carries (joints 1, 3, 4, 5 are in; joint 6 is in the table's tree)
 
     a window bound on G at θ          (hypothesis, proved nowhere)
       → no zero of ζ right of θ       G, proved

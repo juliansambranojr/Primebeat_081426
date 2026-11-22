@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0402: JointDialGate.lean, joints 3, 4, 5 of SECTIONS.md SEALED: a window bound on G at theta gives, for any theta' in (theta, 1], the gate's StmtRelErrWindow on the rows of pi and Li with relative error A·2^((r-n)(theta'-1)); StmtRelErrWindow welded (10 welds); A, x0 existential
 - [open]   2026-11-22  unit 0401: JointSymbol.lean, joint 9a SEALED on the transform side: the Mellin transform of the depth-d difference of G along the doublings is (1 - 2^(-s))^d · Phi, and each zero's pole is reweighted by the symbol to the power d; pointwise sum over zeros and the converse remain open
 - [open]   2026-11-22  joint 9 way (b) checked, not built: no fixed-ratio ladder (or finite set of them) escapes the aliasing, since the zeros' heights are unbounded; convexity route closed too. True and short: a bound on every rational-base ladder in a window gives WindowBound (9d). joints.md
 - [open]   2026-11-22  joint 9 draft CORRECTED before any build: 9b false in general (aliases of zeros dense on vertical lines), 9c derived only when the largest real part of a zero is attained; general converse open = joint 10 (every y -> the doublings). Three ways on in joints.md; Julian to choose

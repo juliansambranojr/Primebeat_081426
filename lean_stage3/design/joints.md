@@ -249,3 +249,44 @@ Module.    `Stage3/JointSymbol.lean`, namespace `JointSymbol`. Pinned:
 Open.      the pointwise form, the cell as the sum over the zeros (needs unit
            0383's identity as a theorem); the converse (block 9's corrections).
 
+### 3 The dial onto the gate (joints 3, 4, 5 of `SECTIONS.md`) — PROVED (unit 0402:
+`JointDialGate.thetaWindow_of_global`, `log_absorbed`, `powerSaving_relErr`, `relErrWindow_of_theta`,
+`relErrWindow_of_window`)
+Objects.   The dial's outlet: `Stage3.StmtSchoenfeldWeakTheta θ C k x₀ pi li`,
+           `|pi x − li x| ≤ C·x^θ·(log x)^k` for `x ≥ x₀`. The gate's inlet, in the
+           table's tree: `RelativeGate.StmtRelErrWindow f L r n ρ`,
+           `|f(r−j) − L(r−j)| ≤ ρ·2^(r−j)` for `j ≤ n`, with `f m = pi(2^m)`,
+           `L m = li(2^m)` the rows.
+Sizes.     Joint 3: read the bound at `x = 2^(r−j)`; valid when the window's
+           bottom clears the floor, `x₀ ≤ 2^(r−n)`.
+           Joint 4: `(log x)^k ≤ x^ε/(ε/(k+1))^k` for `x ≥ 1`
+           (`LandauKernel.log_pow_le` at `a = 2ε`), so with `θ' = θ + ε` the
+           bound is `A·x^θ'`, `A = C/(2ε/(2(k+1)))^k`. THE LOST-FACTOR CHECK: the
+           logarithm is traded for `x^ε`, any `ε > 0`; the exponent moves from
+           `θ` to `θ'`, named in the statement, and the gate needs only `θ' ≤ 1`
+           with relative error falling like `2^((r−n)(θ'−1))`, so any `θ' < 1`
+           still closes the gap for large rows. Nothing is hidden.
+           Joint 5: `A·(2^m)^θ'` is relative error `A·2^((r−n)(θ'−1))` on the
+           window, worst at its bottom (`powerSaving_relErr` of the table's
+           tree, reproved here as `window_of_global` was in `Statement.lean`).
+Regime.    `0 ≤ C`, `θ < θ' ≤ 1`, `x₀ ≤ 2^(r−n)`, `0 ≤ r − n`.
+Defs.      `StmtRelErrWindow`, a character-level copy of
+           `lean/RelativeGate.lean`'s, held by `utilities/check_weld.py`. One.
+Theorems.  `theorem thetaWindow_of_global` — the dial's bound, `hf`, `hL`, the floor —
+               `∀ j ∈ range (n + 1), |f (r - j) - L (r - j)|
+                  ≤ C * ((2 : ℝ) ^ ((r : ℝ) - j)) ^ θ * Real.log ((2 : ℝ) ^ ((r : ℝ) - j)) ^ k`
+           `theorem log_absorbed {θ θ' C : ℝ} {k : ℕ} (hC : 0 ≤ C) (hθ : θ < θ')
+               {x : ℝ} (hx : 1 ≤ x) :
+               C * x ^ θ * Real.log x ^ k
+                 ≤ C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) ^ k * x ^ θ'`
+           `theorem powerSaving_relErr` — statement identical to the table tree's.
+           `theorem relErrWindow_of_theta` — the three composed.
+           `theorem relErrWindow_of_window` — from `WindowBound θ δ C₀`, `1/2 ≤ θ < θ' ≤ 1`:
+               `∃ A x₀, 0 ≤ A ∧ ∀ r n, x₀ ≤ 2^(r−n) → 0 ≤ r − n →
+                  StmtRelErrWindow (π at 2^m) (Li at 2^m) r n (A·2^((r−n)(θ'−1)))`
+Composes.  `JointWindowDial.schoenfeldWeakTheta_of_window`; `LandauKernel.log_pow_le`.
+Module.    `Stage3/JointDialGate.lean`, namespace `JointDialGate`. Pinned:
+           `thetaWindow_of_global`, `powerSaving_relErr`, `relErrWindow_of_window`.
+Open.      joint 6's side conditions in the table's tree (`hM`, `hgap`), and that
+           `A`, `x₀` are not explicit.
+

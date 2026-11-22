@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-22T09:59:19Z
+# unit: 0402-joint-dial-gate
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29547
+  Source: session transcript, 2026-11-22, after unit 0401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26826
+  def StmtRelErrWindow (f L : ℤ → ℝ) (r : ℤ) (n : ℕ) (ρ : ℝ) : Prop :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26828
+  |f (r - k) - L (r - k)| ≤ ρ * (2 : ℝ) ^ ((r : ℝ) - k)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26854
+  theorem powerSaving_relErr {f L : ℤ → ℝ} {r : ℤ} {n : ℕ} {A θ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26857
+  |f (r - k) - L (r - k)| ≤ A * ((2 : ℝ) ^ ((r : ℝ) - k)) ^ θ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26858
+  StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1))) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29432
+  theorem relErrWindow_of_window {θ δ C₀ θ' : ℝ} (hθlo : 1 / 2 ≤ θ) (hθ1 : θ < 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29433
+  (hδ : 0 < δ) (hW : LandauWindow.WindowBound θ δ C₀) (hθ : θ < θ') (hθ' : θ' ≤ 1) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29434
+  ∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ (r : ℤ) (n : ℕ), x₀ ≤ (2 : ℝ) ^ ((r : ℝ) - n) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29437
+  (fun m : ℤ => (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29438
+  (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r n
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29439
+  (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ' - 1))) := by
+
+# 12 found, 0 missing
