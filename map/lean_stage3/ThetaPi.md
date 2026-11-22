@@ -11,16 +11,16 @@ ThetaPi — the ψ → π transfer at a general abscissa θ. `PsiToPi.schoenfeld
 
 ```mermaid
 flowchart LR
-  n0["<b>stmtPsiWeak_iff_theta_half</b><br/>StmtPsiWeak C k x₀ ↔ StmtPsiWeakTheta (1/2) C k x₀"]:::thm
-  n1["<b>stmtSchoenfeldWeak_iff_theta_half</b><br/>StmtSchoenfeldWeak C k x₀ pi li ↔ StmtSchoenfeldWeakTheta (1/2) …"]:::thm
-  n2["<b>sqrt_le_rpow_theta</b><br/>Real.sqrt x ≤ x ^ θ"]:::thm
-  n3["<b>integral_A_rpow_theta_le</b><br/>(∫ t in a..x, A * t ^ (θ - 1)) ≤ 2 * A * x ^ θ"]:::thm
-  n4["<b>theta_err_of_psi_theta</b><br/>|ϑ x - x| ≤ E + 2 * x ^ θ * Real.log x"]:::thm
-  n5["<b>rpow_theta_sub_one_mul</b><br/>t ^ (θ - 1) * (t * Real.log t ^ 2) = t ^ θ * Real.log t ^ 2"]:::thm
-  n6["<b>schoenfeldWeakTheta_of_psiWeakTheta</b><br/>StmtSchoenfeldWeakTheta θ (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) …"]:::thm
-  n7["<b>schoenfeldWeak_of_psiWeak_half</b><br/>StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x …"]:::end_
+  n0["<b>stmtPsiWeak_iff_theta_half</b><br/>StmtPsiWeak C k x₀ ↔ StmtPsiWeakTheta (1/2) C k x₀"]:::shp
+  n1["<b>stmtSchoenfeldWeak_iff_theta_half</b><br/>StmtSchoenfeldWeak C k x₀ pi li ↔ StmtSchoenfeldWeakTheta (1/2) …"]:::shp
+  n2["<b>sqrt_le_rpow_theta</b><br/>Real.sqrt x ≤ x ^ θ"]:::shp
+  n3["<b>integral_A_rpow_theta_le</b><br/>(∫ t in a..x, A * t ^ (θ - 1)) ≤ 2 * A * x ^ θ"]:::shp
+  n4["<b>theta_err_of_psi_theta</b><br/>|ϑ x - x| ≤ E + 2 * x ^ θ * Real.log x"]:::shp
+  n5["<b>rpow_theta_sub_one_mul</b><br/>t ^ (θ - 1) * (t * Real.log t ^ 2) = t ^ θ * Real.log t ^ 2"]:::shp
+  n6["<b>schoenfeldWeakTheta_of_psiWeakTheta</b><br/>StmtSchoenfeldWeakTheta θ (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) …"]:::shp
+  n7["<b>schoenfeldWeak_of_psiWeak_half ■</b><br/>StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x …"]:::shp
   n8["<b>schoenfeldWeakTheta_of_zeroFree</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, StmtSchoenfeldWeakTheta θ C 2 x₀ (fun x =＞ (N…"]:::thm
-  n9["<b>schoenfeldWeak_of_RH_half</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, StmtSchoenfeldWeak C 2 x₀ (fun x =＞ (Nat.prim…"]:::end_
+  n9["<b>schoenfeldWeak_of_RH_half ■</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, StmtSchoenfeldWeak C 2 x₀ (fun x =＞ (Nat.prim…"]:::thm
   x0(["<b>PsiToPi</b><br/>5 theorems"]):::ext
   x1(["<b>ThetaPsi</b><br/>psi_weak_of_theta"]):::ext
   x2(["<b>JointWindowDial</b><br/>schoenfeldWeakTheta_of_window"]):::ext
@@ -41,6 +41,9 @@ flowchart LR
   x0 -.-> n6
   x1 -.-> n8
   x3 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -48,7 +51,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -79,6 +82,8 @@ The π-side weak bound at exponent `θ`.
 
 line 50
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -97,6 +102,8 @@ StmtPsiWeak C k x₀ ↔ StmtPsiWeakTheta (1/2) C k x₀
 ### `Stage3.stmtSchoenfeldWeak_iff_theta_half`
 
 line 56
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -117,6 +124,8 @@ StmtSchoenfeldWeak C k x₀ pi li ↔ StmtSchoenfeldWeakTheta (1/2) C k x₀ pi 
 ### `Stage3.sqrt_le_rpow_theta`
 
 line 64
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `√x ≤ x^θ` for `x ≥ 1`, `θ ≥ 1/2`. This is where `1/2 ≤ θ` enters the transfer: Mathlib's `|ψ − ϑ| ≤ 2√x·log x` folds under the `x^θ` envelope.
 
@@ -143,6 +152,8 @@ Real.sqrt x ≤ x ^ θ
 
 line 71
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The envelope integral at `θ`: `∫ₐˣ A·t^(θ−1) dt ≤ 2A·x^θ`. The exact value is `A·(x^θ − a^θ)/θ`; `1/θ ≤ 2` keeps PsiToPi's constant.
 
 **Proves**
@@ -168,6 +179,8 @@ line 71
 ### `Stage3.theta_err_of_psi_theta`
 
 line 88
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `ϑ`-error from `ψ`-error at `θ`, by Mathlib's `|ψ − ϑ| ≤ 2√x·log x` and `√x ≤ x^θ`.
 
@@ -197,6 +210,8 @@ line 88
 
 line 101
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `t^(θ−1)` times the denominator is the `t^θ` envelope: `t^(θ−1)·(t·log²t) = t^θ·log²t` on `t > 0`.
 
 **Proves**
@@ -219,6 +234,8 @@ t ^ (θ - 1) * (t * Real.log t ^ 2) = t ^ θ * Real.log t ^ 2
 ### `Stage3.schoenfeldWeakTheta_of_psiWeakTheta`
 
 line 111
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The transfer at `θ`. A ψ-side weak bound `(C, k, x₀)` at exponent `θ ≥ 1/2` with `k ≥ 2, x₀ ≥ 2` delivers the π-side weak bound at the same exponent with `C′ = 3C + 13`, exponent `k − 1`, floor `max(x₀², 9)`. The proof is `PsiToPi.schoenfeldWeak_of_psiWeak` with `x^θ` for `√x`.
 
@@ -259,6 +276,8 @@ StmtSchoenfeldWeakTheta θ (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x => (Na
 
 line 266
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `PsiToPi.schoenfeldWeak_of_psiWeak` recovered through the dial.
 
 **Proves**
@@ -290,6 +309,8 @@ StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x => (Nat.primeC
 ### `Stage3.schoenfeldWeakTheta_of_zeroFree`
 
 line 280
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** From a zero-free half-plane to the π-side bound. `StmtZeroFreeRight θ` for `θ ∈ [1/2, 1)` gives `|π(⌊x⌋) − Li x| ≤ C·x^θ·(log x)²` beyond some `x₀`. Constant `3C_ψ + 13` with `C_ψ` from `psi_weak_of_theta`.
 
@@ -323,6 +344,8 @@ line 280
 ### `Stage3.schoenfeldWeak_of_RH_half`
 
 line 293
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The same under RH at `θ = 1/2`: `|π − Li| ≤ C·√x·(log x)²`.
 

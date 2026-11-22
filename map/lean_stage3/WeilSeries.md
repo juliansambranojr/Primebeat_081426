@@ -11,24 +11,24 @@ WeilSeries — the band series made explicit. Rung 4b, second half, slice B2 of 
 
 ```mermaid
 flowchart LR
-  n0["<b>cFar_nonneg</b><br/>0 ≤ cFar"]:::thm
-  n1["<b>M_nonneg</b><br/>0 ≤ M h γ k"]:::thm
-  n2["<b>two_le_of_one_lt</b><br/>2 ≤ |(k : ℝ) - (k0 : ℝ)|"]:::thm
-  n3["<b>dist_ge</b><br/>9 / 5 * |(idx t : ℝ) - (idx γ : ℝ)| - 9 / 5 ≤ |t - γ|"]:::thm
+  n0["<b>cFar_nonneg</b><br/>0 ≤ cFar"]:::shp
+  n1["<b>M_nonneg</b><br/>0 ≤ M h γ k"]:::shp
+  n2["<b>two_le_of_one_lt</b><br/>2 ≤ |(k : ℝ) - (k0 : ℝ)|"]:::shp
+  n3["<b>dist_ge</b><br/>9 / 5 * |(idx t : ℝ) - (idx γ : ℝ)| - 9 / 5 ≤ |t - γ|"]:::shp
   n4["<b>term_le_M</b><br/>(laplace (phiC h γ) (-(ρ : ℂ)) * laplace (phiC h γ) (-(1 - (ρ : …"]:::thm
-  n5["<b>four_h_add_nonneg</b><br/>0 ≤ 4 * h ^ 2 + cFar / h ^ 2"]:::thm
-  n6["<b>A_nonneg</b><br/>0 ≤ A h γ"]:::thm
-  n7["<b>weight_le</b><br/>15 * Real.log (centre k) + 73 ≤ 88 * ((k : ℝ) + 1)"]:::thm
-  n8["<b>weight_nonneg</b><br/>0 ≤ 15 * Real.log (centre k) + 73"]:::thm
-  n9["<b>bandTerm_le_A</b><br/>M h γ k * (15 * Real.log (centre k) + 73) ≤ A h γ / ((k : ℝ) + 1…"]:::thm
-  n10["<b>summable_shift3</b><br/>Summable (fun k : ℕ =＞ 1 / ((k : ℝ) + 1) ^ 3)"]:::thm
-  n11["<b>summable_shift2</b><br/>Summable (fun k : ℕ =＞ 1 / ((k : ℝ) + 1) ^ 2)"]:::thm
-  n12["<b>bandSeries_summable</b><br/>Summable (fun k : ℕ =＞ M h γ k * (15 * Real.log (centre k) + 73)…"]:::thm
+  n5["<b>four_h_add_nonneg</b><br/>0 ≤ 4 * h ^ 2 + cFar / h ^ 2"]:::shp
+  n6["<b>A_nonneg</b><br/>0 ≤ A h γ"]:::shp
+  n7["<b>weight_le</b><br/>15 * Real.log (centre k) + 73 ≤ 88 * ((k : ℝ) + 1)"]:::shp
+  n8["<b>weight_nonneg</b><br/>0 ≤ 15 * Real.log (centre k) + 73"]:::shp
+  n9["<b>bandTerm_le_A</b><br/>M h γ k * (15 * Real.log (centre k) + 73) ≤ A h γ / ((k : ℝ) + 1…"]:::shp
+  n10["<b>summable_shift3</b><br/>Summable (fun k : ℕ =＞ 1 / ((k : ℝ) + 1) ^ 3)"]:::shp
+  n11["<b>summable_shift2</b><br/>Summable (fun k : ℕ =＞ 1 / ((k : ℝ) + 1) ^ 2)"]:::shp
+  n12["<b>bandSeries_summable</b><br/>Summable (fun k : ℕ =＞ M h γ k * (15 * Real.log (centre k) + 73)…"]:::shp
   n13["<b>tsum_shift2</b><br/>∑' k : ℕ, 1 / ((k : ℝ) + 1) ^ 2 = Real.pi ^ 2 / 6"]:::thm
   n14["<b>bandSeries_le</b><br/>∑' k : ℕ, M h γ k * (15 * Real.log (centre k) + 73) ≤ A h γ * (R…"]:::thm
-  n15["<b>idx_le</b><br/>(idx γ : ℝ) ≤ γ"]:::thm
+  n15["<b>idx_le</b><br/>(idx γ : ℝ) ≤ γ"]:::shp
   n16["<b>tsum_upper_le_explicit</b><br/>∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ A h γ * (Real.pi ^ 2 / 6)"]:::thm
-  n17["<b>tsum_upper_le_explicit'</b><br/>∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ 88 * (γ + 3) ^ 4 * (4 * h ^…"]:::end_
+  n17["<b>tsum_upper_le_explicit' ■</b><br/>∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ 88 * (γ + 3) ^ 4 * (4 * h ^…"]:::thm
   x0(["<b>WeilOnLine</b><br/>A_le<br/>sum_upper_le"]):::ext
   x1(["<b>WeilPowerBands</b><br/>5 theorems"]):::ext
   x2(["<b>WeilTiles</b><br/>4 theorems"]):::ext
@@ -78,6 +78,9 @@ flowchart LR
   x2 -.-> n7
   x2 -.-> n8
   x3 -.-> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -85,7 +88,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -128,6 +131,8 @@ The crude constant: `M k·(15·log (centre k) + 73) ≤ A/(k+1)³`.
 
 line 46
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -148,6 +153,8 @@ line 46
 ### `WeilSeries.M_nonneg`
 
 line 55
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -179,6 +186,8 @@ line 55
 
 line 62
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A gap between naturals that exceeds `1` is at least `2`.
 
 **Proves**
@@ -204,6 +213,8 @@ line 62
 ### `WeilSeries.dist_ge`
 
 line 71
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The distance from a height to `γ`, read off the band gap.
 
@@ -235,6 +246,8 @@ line 71
 ### `WeilSeries.term_le_M`
 
 line 89
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Domination. Every on-line term of height `≥ 11/10` is at most `M` at its band index.
 
@@ -273,6 +286,8 @@ line 89
 
 line 143
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -301,6 +316,8 @@ line 143
 
 line 148
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -327,6 +344,8 @@ line 148
 ### `WeilSeries.weight_le`
 
 line 153
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The band weight, with `log x ≤ x − 1`.
 
@@ -356,6 +375,8 @@ line 153
 
 line 161
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -381,6 +402,8 @@ line 161
 ### `WeilSeries.bandTerm_le_A`
 
 line 166
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Comparison. Each band term is at most `A/(k+1)³`.
 
@@ -417,6 +440,8 @@ M h γ k * (15 * Real.log (centre k) + 73) ≤ A h γ / ((k : ℝ) + 1) ^ 3
 
 line 221
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -435,6 +460,8 @@ Summable (fun k : ℕ => 1 / ((k : ℝ) + 1) ^ 3)
 
 line 229
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -452,6 +479,8 @@ Summable (fun k : ℕ => 1 / ((k : ℝ) + 1) ^ 2)
 ### `WeilSeries.bandSeries_summable`
 
 line 238
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Summability of the band series, by comparison with `A/(k+1)³`.
 
@@ -487,6 +516,8 @@ Summable (fun k : ℕ => M h γ k * (15 * Real.log (centre k) + 73))
 
 line 247
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `Σ_{k≥0} 1/(k+1)² = π²/6`, from `hasSum_zeta_two`.
 
 **Proves**
@@ -506,6 +537,8 @@ line 247
 ### `WeilSeries.bandSeries_le`
 
 line 260
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The band series in closed form: at most `A·π²/6`.
 
@@ -539,6 +572,8 @@ line 260
 
 line 275
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The band index of `γ` is at most `γ`.
 
 **Proves**
@@ -565,6 +600,8 @@ line 275
 ### `WeilSeries.tsum_upper_le_explicit`
 
 line 285
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Upper on-line background. For `h > 0` and `γ ≥ 11/10`, the full weighted sum over on-line zeros of height `≥ 11/10` is at most `A·π²/6`.
 
@@ -599,6 +636,8 @@ line 285
 ### `WeilSeries.tsum_upper_le_explicit'`
 
 line 294
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Upper on-line background, in `γ` and `h` alone: `≤ 88·(γ+3)⁴·(4h² + cFar/h²)·π²/6`.
 

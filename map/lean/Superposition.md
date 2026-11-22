@@ -11,16 +11,19 @@ Superposition — the missing licence for building the residual from the zeros. 
 
 ```mermaid
 flowchart LR
-  n0["<b>bdiff_sum</b><br/>bdiff (fun r =＞ ∑ i ∈ s, f i r) = fun r =＞ ∑ i ∈ s, bdiff (f i) …"]:::thm
-  n1["<b>A4_sum_of_A1</b><br/>∀ (N : ℕ) (r : ℂ), (bdiff^[N]) (modeSum b ρ c s) r = ∑ i ∈ s, c …"]:::thm
-  n2["<b>depth_reweights_each_mode</b><br/>(bdiff^[N]) (modeSum b ρ c s) r = modeSum b ρ (fun i =＞ c i * (S…"]:::thm
-  n3["<b>tableFrom_eq_modeSum_reweighted</b><br/>((Construction.tableFrom N r d : ℤ) : ℂ) = modeSum b ρ (fun i =＞…"]:::end_
+  n0["<b>bdiff_sum</b><br/>bdiff (fun r =＞ ∑ i ∈ s, f i r) = fun r =＞ ∑ i ∈ s, bdiff (f i) …"]:::shp
+  n1["<b>A4_sum_of_A1</b><br/>∀ (N : ℕ) (r : ℂ), (bdiff^[N]) (modeSum b ρ c s) r = ∑ i ∈ s, c …"]:::shp
+  n2["<b>depth_reweights_each_mode</b><br/>(bdiff^[N]) (modeSum b ρ c s) r = modeSum b ρ (fun i =＞ c i * (S…"]:::shp
+  n3["<b>tableFrom_eq_modeSum_reweighted ■</b><br/>((Construction.tableFrom N r d : ℤ) : ℂ) = modeSum b ρ (fun i =＞…"]:::shp
   x0(["<b>Chain</b><br/>bdiff_smul<br/>tableFrom_eq_bdiff_iter"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n3
   x0 -.-> n1
   x0 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -28,7 +31,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -49,6 +52,8 @@ A finite superposition of ladder modes.
 ### `Superposition.bdiff_sum`
 
 line 25
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `bdiff` distributes over a finite sum.
 
@@ -75,6 +80,8 @@ bdiff (fun r => ∑ i ∈ s, f i r) = fun r => ∑ i ∈ s, bdiff (f i) r
 ### `Superposition.A4_sum_of_A1`
 
 line 33
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The licence. If A1 holds for every mode in the family, then `N` differences act on the superposition by acting on each mode separately. This is what permits applying the depth gain to a sum over zeros.
 
@@ -103,6 +110,8 @@ line 33
 ### `Superposition.depth_reweights_each_mode`
 
 line 60
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Corollary — the falsifiable form. Every mode is scaled by its own gain, so the depth-`N` superposition is the depth-0 one with each term reweighted by `(Sym b ρᵢ)^N`. The measured fractions in O34 test this model; they are not inputs to it.
 
@@ -134,6 +143,8 @@ line 60
 ### `Superposition.tableFrom_eq_modeSum_reweighted`
 
 line 90
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The table is a superposition, reweighted by depth. An integer row agreeing at every integer with a finite superposition of ladder modes: its cell at `(r,d)` is that superposition with each mode carrying its own `(Sym b ρᵢ)^d`.
 

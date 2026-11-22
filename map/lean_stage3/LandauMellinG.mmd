@@ -1,12 +1,12 @@
 flowchart LR
   n0["<b>LSeries_vonMangoldt_real_ne_zero</b><br/>L ↗Λ (σ : ℂ) ≠ 0"]:::thm
   n1["<b>rampSum_mellin_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (LandauWindow.rampSum y : ℂ) * (y : ℂ…"]:::thm
-  n2["<b>hasDerivAt_logPrim</b><br/>HasDerivAt (logPrim s) ((Real.log y : ℂ) * (y : ℂ) ^ (-s)) y"]:::thm
-  n3["<b>log_cpow_norm_le</b><br/>‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖ ≤ y ^ ((s.re - 1) / 2 - s.re…"]:::thm
-  n4["<b>log_cpow_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (I…"]:::thm
-  n5["<b>tendsto_logPrim</b><br/>Tendsto (logPrim s) atTop (𝓝 0)"]:::thm
-  n6["<b>log_cpow_integral</b><br/>∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s -…"]:::thm
-  n7["<b>G_integrand_eq</b><br/>(LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = (LandauWindow.ramp…"]:::thm
+  n2["<b>hasDerivAt_logPrim</b><br/>HasDerivAt (logPrim s) ((Real.log y : ℂ) * (y : ℂ) ^ (-s)) y"]:::shp
+  n3["<b>log_cpow_norm_le</b><br/>‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖ ≤ y ^ ((s.re - 1) / 2 - s.re…"]:::shp
+  n4["<b>log_cpow_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (I…"]:::shp
+  n5["<b>tendsto_logPrim</b><br/>Tendsto (logPrim s) atTop (𝓝 0)"]:::shp
+  n6["<b>log_cpow_integral</b><br/>∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s -…"]:::shp
+  n7["<b>G_integrand_eq</b><br/>(LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = (LandauWindow.ramp…"]:::shp
   n8["<b>G_mellin_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-…"]:::thm
   n9["<b>mellin_G</b><br/>∫ y in Ioi (1 : ℝ), (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) …"]:::thm
   x0(["<b>LandauMellin</b><br/>mellin_rampSum"]):::ext
@@ -30,6 +30,9 @@ flowchart LR
   n9 -.-> x2
   x0 -.-> n1
   x0 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

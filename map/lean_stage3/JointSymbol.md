@@ -11,12 +11,12 @@ JointSymbol — joint 9a of `SECTIONS.md`: the table of `G` along the doublings 
 
 ```mermaid
 flowchart LR
-  n0["<b>mellin_shift</b><br/>IntegrableOn (fun y : ℝ =＞ f (y / 2) * (y : ℂ) ^ (-s - 1)) (Ioi …"]:::thm
-  n1["<b>mellin_dd</b><br/>(∀ y : ℝ, y ≤ 1 → dd f y = 0) ∧ IntegrableOn (fun y : ℝ =＞ dd f …"]:::thm
-  n2["<b>mellin_dd_iter_aux</b><br/>(∀ y : ℝ, y ≤ 1 → (dd^[d] f) y = 0) ∧ IntegrableOn (fun y : ℝ =＞…"]:::thm
-  n3["<b>mellin_dd_iter</b><br/>∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1) = (1 - …"]:::end_
-  n4["<b>dd_iter_rule</b><br/>(dd^[d + 1] f) y = (dd^[d] f) y - (dd^[d] f) (y / 2)"]:::end_
-  n5["<b>symPhi_principal_part</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, (1 - (2 : ℂ) ^ (…"]:::end_
+  n0["<b>mellin_shift</b><br/>IntegrableOn (fun y : ℝ =＞ f (y / 2) * (y : ℂ) ^ (-s - 1)) (Ioi …"]:::shp
+  n1["<b>mellin_dd</b><br/>(∀ y : ℝ, y ≤ 1 → dd f y = 0) ∧ IntegrableOn (fun y : ℝ =＞ dd f …"]:::shp
+  n2["<b>mellin_dd_iter_aux</b><br/>(∀ y : ℝ, y ≤ 1 → (dd^[d] f) y = 0) ∧ IntegrableOn (fun y : ℝ =＞…"]:::shp
+  n3["<b>mellin_dd_iter ■</b><br/>∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1) = (1 - …"]:::thm
+  n4["<b>dd_iter_rule ■</b><br/>(dd^[d + 1] f) y = (dd^[d] f) y - (dd^[d] f) (y / 2)"]:::shp
+  n5["<b>symPhi_principal_part ■</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, (1 - (2 : ℂ) ^ (…"]:::thm
   x0(["<b>LandauMellinG</b><br/>G_mellin_integrable<br/>mellin_G"]):::ext
   x1(["<b>LandauPoleLocal</b><br/>Phi_principal_part"]):::ext
   n0 --> n1
@@ -24,6 +24,9 @@ flowchart LR
   n2 --> n3
   x0 -.-> n3
   x1 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -31,7 +34,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -63,6 +66,8 @@ def · line 45
 
 line 47
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -84,6 +89,8 @@ IntegrableOn (fun y : ℝ => f (y / 2) * (y : ℂ) ^ (-s - 1)) (Ioi 1) ∧ ∫ y
 ### `JointSymbol.mellin_dd`
 
 line 105
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `dd` keeps the two hypotheses and multiplies the transform by the symbol.
 
@@ -113,6 +120,8 @@ line 105
 
 line 120
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -139,6 +148,8 @@ line 120
 ### `JointSymbol.mellin_dd_iter`
 
 line 136
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -168,6 +179,8 @@ line 136
 
 line 153
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -190,6 +203,8 @@ line 153
 ### `JointSymbol.symPhi_principal_part`
 
 line 158
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 

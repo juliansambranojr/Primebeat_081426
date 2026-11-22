@@ -22,6 +22,14 @@ Nothing in map/ is written by hand. Where each thing comes from:
                        module, and every constant Lean holds must be a source
                        declaration or a helper of one. Any disagreement is printed
                        in map/README.md § Reconciliation.
+  counting or ζ        Lean. The dump marks a constant that uses ζ directly: the zeta
+                       function, its zeros, its L-series or Euler product, the Riemann
+                       hypothesis, or anything from a library module about them;
+                       and a constant that uses analysis directly: the real or
+                       complex numbers, limits, integrals (the lists are in
+                       Dump.lean). Three layers follow, each through everything a
+                       declaration rests on: "counting" (integers only), "shape"
+                       (analysis, no ζ), "reads ζ". The test errs upward.
   proves / needs       the declaration's own statement, copied from the source.
   why                  the first paragraph of its own docstring.
   what a file does     the first paragraph of the file's header comment.
@@ -445,6 +453,52 @@ def collect():
                     rec["copy_diff"].append(f"{m['path']} {d['full']}")
 
     D = {d["id"]: d for m in real for d in m["decls"]}
+    # three layers, from the dump's two marks, through helpers and through uses:
+    # count (integers only), shape (real or complex analysis, no ζ), zeta (reads ζ)
+    ZTOK = re.compile(r"riemannZeta|RiemannHypothesis|LSeries|Kadiri|ZetaTwoThree|zeroes")
+    ATOK = re.compile(r"^(Real|Complex)\.|^(ℝ|ℂ)$")
+    hmemo = {}
+
+    def helper_mark(tree, n, key, seen=()):
+        mk = (tree, n, key)
+        if mk in hmemo:
+            return hmemo[mk]
+        r = K[tree].get(n)
+        if r is None or n in seen:
+            return False
+        z = bool(r.get(key))
+        if not z:
+            for c in r["ty"] + r["pf"]:
+                if (tree, c) not in owner and helper_mark(tree, c, key, seen + (n,)):
+                    z = True
+                    break
+        hmemo[mk] = z
+        return z
+    marked = bool(K) and all("z" in r and "a" in r for k in K.values() for r in list(k.values())[:1])
+    rec["marked"] = marked
+    for m in real:
+        for d in m["decls"]:
+            if d["k"] and marked:
+                d["zdirect"] = helper_mark(m["tree"], d["k"], "z")
+                d["adirect"] = helper_mark(m["tree"], d["k"], "a")
+            else:
+                d["zdirect"] = any(ZTOK.search(t) for t in d["tokens"])
+                d["adirect"] = any(ATOK.search(t) for t in d["tokens"])
+    for key, out in (("zdirect", "zeta"), ("adirect", "analysis")):
+        memo = {}
+
+        def side(u, seen=()):
+            if u in memo:
+                return memo[u]
+            if u not in D or u in seen:
+                return False
+            z = D[u][key] or any(side(v, seen + (u,)) for v in D[u]["uses"])
+            memo[u] = z
+            return z
+        for u in D:
+            D[u][out] = side(u)
+    for d in D.values():
+        d["layer"] = "zeta" if d["zeta"] else ("shape" if d["analysis"] else "count")
     for d in D.values():
         d["used_by"] = []
         d["uses"] = [u for u in d["uses"] if u in D]
@@ -497,13 +551,24 @@ def anchor(d):
     return re.sub(r"[^A-Za-z0-9_]", "-", d["full"])
 
 
-CLASSDEFS = """  classDef thm fill:#eef4ff,stroke:#335,color:#111
+LAYER = {"count": "counting", "shape": "shape", "zeta": "reads ζ"}
+LAYER_LONG = {
+    "count": "**Counting.** Integers only: nothing in its statement or proof, or in anything it "
+             "rests on, uses analysis or ζ.",
+    "shape": "**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.",
+    "zeta": "**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the "
+            "Riemann hypothesis."}
+CLASSDEFS = """  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
   classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef ext fill:#fff8e1,stroke:#b80,color:#111"""
-LEGEND = ("An arrow A → B reads \"A is used in the proof of B\". Blue: theorem. Green: a theorem "
-          "nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. "
+LEGEND = ("An arrow A → B reads \"A is used in the proof of B\". Green: counting, integers only. "
+          "Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing "
+          "else uses it. Red: contains `sorry`. "
           "Yellow: theorems in another file, counted; a dotted arrow crosses files. "
           "Definitions are not drawn; they are listed below the diagram.")
 
@@ -519,11 +584,7 @@ def is_thm(d):
 def klass(d):
     if d["sorry"]:
         return "bad"
-    if not d["used_by"] and not d["uses"]:
-        return "lone"
-    if not d["used_by"]:
-        return "end_"
-    return "thm"
+    return {"count": "cnt", "shape": "shp", "zeta": "thm"}[d["layer"]]
 
 
 def diagram(chunk, D, where):
@@ -531,7 +592,8 @@ def diagram(chunk, D, where):
     ids = {d["id"]: f"n{k}" for k, d in enumerate(chunk)}
     L = ["flowchart LR"]
     for d in chunk:
-        L.append(f'  {ids[d["id"]]}["<b>{esc(d["name"])}</b><br/>{esc(d["proves"], 64)}"]:::{klass(d)}')
+        end = " ■" if (is_thm(d) and not d["used_by"]) else ""
+        L.append(f'  {ids[d["id"]]}["<b>{esc(d["name"])}{end}</b><br/>{esc(d["proves"], 64)}"]:::{klass(d)}')
     solid, dotted, stubs = set(), set(), {}
 
     def stub(u, direction):
@@ -711,6 +773,7 @@ def build():
             tag = "  ⚠ contains `sorry`" if d["sorry"] else ""
             L += [f"<a name=\"{anchor(d)}\"></a>", f"### `{d['full']}`{tag}", "",
                   f"line {d['line']}" + ("" if d["exact"] else " · arrows read from text"), ""]
+            L += [LAYER_LONG[d["layer"]], ""]
             if d["why"]:
                 L += [f"**Why.** {d['why']}", ""]
             L += ["**Proves**", "", "```lean", d["proves"] or "(statement not parsed; see the source line)", "```", ""]
@@ -806,9 +869,9 @@ def build():
     # the one-line-per-declaration list
     A = ["# Every declaration, one line each", "",
          "Sorted by name. Search this file before saying something is missing.", "",
-         "| name | kind | file | proves |", "|---|---|---|---|"]
+         "| name | kind | layer | file | proves |", "|---|---|---|---|---|"]
     for d in sorted(D.values(), key=lambda d: (d["name"].lower(), d["full"])):
-        A.append(f"| [`{d['full']}`](./{page_of(d['file'])}#{anchor(d)}) | {d['kind']} | "
+        A.append(f"| [`{d['full']}`](./{page_of(d['file'])}#{anchor(d)}) | {d['kind']} | {LAYER[d['layer']]} | "
                  f"`{pathlib.Path(d['file']).stem}` | {cell(d['proves'], 200)} |")
     files["ALL.md"] = "\n".join(A) + "\n"
 
@@ -833,6 +896,9 @@ def build():
     road, top = road_page(D, thms, chain_of)
     files["ROAD.md"] = road
     files["ROAD.mmd"] = top + "\n"
+    tpage, ttop, ttot = table_page(mods, real, D)
+    files["TABLE.md"] = tpage
+    files["TABLE.mmd"] = ttop + "\n"
 
     # index
     lone = sorted((d for d in thms if not d["uses"] and not d["used_by"]), key=lambda d: d["id"])
@@ -850,7 +916,14 @@ def build():
          f"{len(lone)} theorems connect to nothing. {plural(len(sorries), 'declaration')} "
          f"contain{'s' if len(sorries) == 1 else ''} `sorry`. "
          f"{len(mods) - len(real)} files are copies under `TablePort/`.", "",
-         "## In five seconds", "",
+         "## The table first", "",
+         "The table is the number line's own rate of change, counted at the doublings. It comes "
+         "before anything else here. Green: counting, integers only "
+         f"({ttot.get('count', 0)} theorems). Violet: its shape, by analysis with no ζ "
+         f"({ttot.get('shape', 0)}). Blue: read with ζ ({ttot.get('zeta', 0)}). Every counting "
+         "theorem is listed in [`TABLE.md`](./TABLE.md).", "",
+         "```mermaid", ttop, "```", "",
+         "## One reading of it: the Riemann hypothesis", "",
          "```mermaid", top, "```", "",
          "Red: a statement nobody has proved, here or anywhere. Blue: a theorem Lean has checked. "
          "Green: where a checked line arrives. The table is the source: it is counting, and every "
@@ -859,6 +932,7 @@ def build():
          "cells behave under it. Every box, with its statement and what is open: "
          "[`ROAD.md`](./ROAD.md).", "",
          "## How to look something up", "",
+         "- **What is proved by counting alone?** [`TABLE.md`](./TABLE.md).",
          "- **Is it already here?** [`ALL.md`](./ALL.md): every declaration, one line, sorted by name.",
          "- **What does a file do?** The tables below, one row per file.",
          "- **What does a theorem rest on, and what rests on it?** Its file's page: each theorem has "
@@ -922,7 +996,7 @@ def build():
     for d in sorries:
         I.append(f"| [`{d['full']}`](./{page_of(d['file'])}#{anchor(d)}) | `{pathlib.Path(d['file']).stem}` |")
     I.append("")
-    drop = ("tokens", "start", "k", "sig", "private")
+    drop = ("tokens", "start", "k", "sig", "private", "zdirect", "adirect", "zeta", "analysis")
     slim = [{k: v for k, v in m.items() if k not in ("decls", "sha")} |
             {"decls": [{k: v for k, v in d.items() if k not in drop} for d in m["decls"]]}
             for m in mods]
@@ -932,6 +1006,95 @@ def build():
 
 
 RH = "RiemannHypothesis"
+
+
+def table_page(mods, real, D):
+    """The table at the root: three layers, file by file; and every counting theorem."""
+    def link(d):
+        return f"[`{d['full']}`](./{page_of(d['file'])}#{anchor(d)})"
+    thms = [d for d in D.values() if is_thm(d)]
+    per = defaultdict(lambda: defaultdict(int))          # file -> layer -> theorems
+    for d in thms:
+        per[d["file"]][d["layer"]] += 1
+
+    def file_layer(f):
+        c = per[f]
+        return "zeta" if c["zeta"] else ("shape" if c["shape"] else "count")
+
+    def tally(c):
+        return " · ".join(f"{c[k]} {LAYER[k]}" for k in ("count", "shape", "zeta") if c[k]) or "definitions"
+    lean = [m for m in real if m["tree"] == "lean"]
+    ids = {m["path"]: f"t{k}" for k, m in enumerate(lean)}
+    red = reduce_edges([m["path"] for m in lean], {m["path"]: set(m["imports_files"]) for m in lean})
+    cls = {"count": "cnt", "shape": "shp", "zeta": "thm"}
+    names = {"count": "THE TABLE: counting, integers only",
+             "shape": "ITS SHAPE: analysis, no ζ",
+             "zeta": "READ WITH ζ"}
+    other = defaultdict(lambda: defaultdict(lambda: [0, set()]))   # tree -> layer -> [theorems, files]
+    for d in thms:
+        t = d["file"].split("/")[0]
+        if t != "lean":
+            other[t][d["layer"]][0] += 1
+            other[t][d["layer"]][1].add(d["file"])
+    G = ["flowchart LR"]
+    for lay in ("count", "shape", "zeta"):
+        G.append(f'  subgraph {lay}["{names[lay]}"]')
+        G.append("    direction TB")
+        for m in lean:
+            if file_layer(m["path"]) == lay:
+                G.append(f'    {ids[m["path"]]}["<b>{esc(m["stem"])}</b><br/>{tally(per[m["path"]])}"]:::{cls[lay]}')
+        for t, lab in (("lean_stage3", "Stage 3"), ("lean_bridge", "Bridge")):
+            n, fs = other[t][lay]
+            if n:
+                G.append(f'    {t}_{lay}(["<b>{lab}</b><br/>{n} theorems {LAYER[lay]},<br/>in {plural(len(fs), "file")}"]):::{cls[lay]}')
+        G.append("  end")
+    G.append(f'  rh{{{{"<b>{RH}</b><br/>one reading of the table"}}}}:::rh')
+    for m in lean:
+        for q in sorted(red[m["path"]]):
+            G.append(f"  {ids[q]} --> {ids[m['path']]}")
+    G.append("  count --> shape --> zeta --> rh")
+    G.append(CLASSDEFS)
+    top = "\n".join(G)
+    tot = defaultdict(int)
+    for d in thms:
+        tot[d["layer"]] += 1
+    L = ["# The table first", "",
+         "The table is the number line's own rate of change, counted at the doublings: how many "
+         "primes each doubling adds, how that changes from one doubling to the next, and the change "
+         "of the change. Nothing else goes in. Everything else in the three trees is built on it or "
+         "is a reading of it.", "",
+         "```mermaid", top, "```", "",
+         "Three layers, decided by Lean's record of each proof and everything beneath it "
+         "(`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):", "",
+         f"- **Counting** (green), {tot['count']} theorems. Integers only. No analysis and no ζ "
+         "anywhere in the statement, the proof, or anything they rest on.",
+         f"- **Shape** (violet), {tot['shape']} theorems. Real or complex analysis, with no ζ: the "
+         "symbol of the difference, the modes, the size of the smooth part.",
+         f"- **Reads ζ** (blue), {tot['zeta']} theorems. The zeta function, its zeros, or the Riemann "
+         "hypothesis enter, in it or beneath it.", "",
+         "A file sits in the highest layer any of its theorems reaches; its box says how many of "
+         "each it holds. Arrows between files are imports, indirect ones left out.", "",
+         "| tree | counting | shape | reads ζ |", "|---|---|---|---|"]
+    for tree, label in TREES:
+        c = defaultdict(int)
+        for d in thms:
+            if d["file"].split("/")[0] == tree:
+                c[d["layer"]] += 1
+        L.append(f"| `{tree}/` | {c['count']} | {c['shape']} | {c['zeta']} |")
+    L += ["", "## Every counting theorem", "",
+          "The ground floor: what is proved about the table with integers alone.", ""]
+    for m in real:
+        here = [d for d in m["decls"] if is_thm(d) and d["layer"] == "count"]
+        if not here:
+            continue
+        L += [f"### [`{m['stem']}`](./{page_of(m['path'])}) — {len(here)}", ""]
+        if m["header"]:
+            L += [m["header"], ""]
+        for d in here:
+            why = f" {d['why']}" if d["why"] else ""
+            L.append(f"- {link(d)} — {code(d['proves'], 150)}{why[:260]}")
+        L.append("")
+    return "\n".join(L) + "\n", top, dict(tot)
 
 
 def joints():

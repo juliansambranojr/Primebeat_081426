@@ -11,15 +11,15 @@ WeilPowerNear — the near members' sign. Rung 5, seventeenth slice; worksheet �
 
 ```mermaid
 flowchart LR
-  n0["<b>uLam_nonneg</b><br/>0 ≤ WeilPowerGeomGen.uLam lam h"]:::thm
-  n1["<b>uLam_le</b><br/>WeilPowerGeomGen.uLam lam h ≤ (h : ℝ) / ((lam : ℝ) * Real.pi ^ 2…"]:::thm
-  n2["<b>cos_ge_lin</b><br/>1 - 2 * θ / Real.pi ≤ Real.cos θ"]:::thm
-  n3["<b>bracket_nonneg</b><br/>0 ≤ (e' ^ 2 - D ^ 2) * Real.cos θ - 2 * e' * D * Real.sin θ"]:::thm
-  n4["<b>re_term_eq</b><br/>(WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zOf e'…"]:::thm
-  n5["<b>phase_le</b><br/>4 * e' * D * WeilPowerGeomGen.uLam lam h ≤ 4 * e' * D * ((b : ℝ)…"]:::thm
-  n6["<b>term_nonneg</b><br/>0 ≤ (WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zO…"]:::thm
-  n7["<b>shellSum_nonneg</b><br/>0 ≤ WeilPowerShell.shellSum e' D e lam a b"]:::thm
-  n8["<b>shellSum_nonneg_abs</b><br/>0 ≤ WeilPowerShell.shellSum e' D e lam a b"]:::end_
+  n0["<b>uLam_nonneg</b><br/>0 ≤ WeilPowerGeomGen.uLam lam h"]:::shp
+  n1["<b>uLam_le</b><br/>WeilPowerGeomGen.uLam lam h ≤ (h : ℝ) / ((lam : ℝ) * Real.pi ^ 2…"]:::shp
+  n2["<b>cos_ge_lin</b><br/>1 - 2 * θ / Real.pi ≤ Real.cos θ"]:::shp
+  n3["<b>bracket_nonneg</b><br/>0 ≤ (e' ^ 2 - D ^ 2) * Real.cos θ - 2 * e' * D * Real.sin θ"]:::shp
+  n4["<b>re_term_eq</b><br/>(WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zOf e'…"]:::shp
+  n5["<b>phase_le</b><br/>4 * e' * D * WeilPowerGeomGen.uLam lam h ≤ 4 * e' * D * ((b : ℝ)…"]:::shp
+  n6["<b>term_nonneg</b><br/>0 ≤ (WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zO…"]:::shp
+  n7["<b>shellSum_nonneg</b><br/>0 ≤ WeilPowerShell.shellSum e' D e lam a b"]:::shp
+  n8["<b>shellSum_nonneg_abs ■</b><br/>0 ≤ WeilPowerShell.shellSum e' D e lam a b"]:::shp
   x0(["<b>WeilPowerPhase</b><br/>sigma_ge"]):::ext
   x1(["<b>WeilPowerGeomGen</b><br/>uLam_bracket"]):::ext
   x2(["<b>WeilPowerShell</b><br/>shellSum_neg<br/>zOf_im<br/>zOf_re"]):::ext
@@ -35,6 +35,9 @@ flowchart LR
   x1 -.-> n1
   x2 -.-> n4
   x2 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -42,7 +45,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -50,6 +53,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `WeilPowerNear.uLam_nonneg`
 
 line 61
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The window's phase argument is nonnegative at every `h`.
 
@@ -80,6 +85,8 @@ line 61
 
 line 70
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The upper half of `uLam_bracket`, with the intercept absorbed: the correction `1/(2λ³π²(h+1))` is under `1/(2λ²π²)` exactly when `λ(h+1) ≥ 1`.
 
 **Proves**
@@ -108,6 +115,8 @@ WeilPowerGeomGen.uLam lam h ≤ (h : ℝ) / ((lam : ℝ) * Real.pi ^ 2)
 
 line 84
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `cos` above its chord on `[0, π/2]`: `Real.mul_le_sin` at `π/2 − θ`.
 
 **Proves**
@@ -131,6 +140,8 @@ line 84
 ### `WeilPowerNear.bracket_nonneg`
 
 line 96
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The bracket's sign under the crude condition N2.
 
@@ -161,6 +172,8 @@ line 96
 
 line 141
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The weighted term's real part, explicit.
 
 **Proves**
@@ -189,6 +202,8 @@ line 141
 ### `WeilPowerNear.phase_le`
 
 line 166
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The phase is largest at the top of the range.
 
@@ -220,6 +235,8 @@ line 166
 ### `WeilPowerNear.term_nonneg`
 
 line 177
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** One near member's term is nonnegative at every `h` in the range.
 
@@ -258,6 +275,8 @@ line 177
 
 line 196
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The near member's shell sum is nonnegative: it helps the target.
 
 **Proves**
@@ -292,6 +311,8 @@ line 196
 ### `WeilPowerNear.shellSum_nonneg_abs`
 
 line 208
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The same with `|Δ|`, the sign of `Δ` split off through `shellSum_neg`.
 

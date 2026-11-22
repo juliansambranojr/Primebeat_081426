@@ -11,13 +11,16 @@ Covering — why 25 of 36 primes contribute, and why the set skips 13. THE MEASU
 
 ```mermaid
 flowchart LR
-  n0["<b>exists_near_lattice</b><br/>∃ n : ℤ, |u - n * L| ≤ L / 2"]:::thm
-  n1["<b>covered_of_half_spacing</b><br/>covered L eps u"]:::end_
-  n2["<b>covered_smul</b><br/>covered (c * L) (c * eps) (c * u)"]:::end_
-  n3["<b>covering_not_monotone</b><br/>∃ (L eps u v : ℝ), 0 ＜ L ∧ u ＜ v ∧ ¬ covered L eps u ∧ covered L…"]:::end_
-  n4["<b>bench_is_selective</b><br/>(0.2 : ℝ) ＜ 0.34657"]:::lone
-  n5["<b>bench_selects</b><br/>measured_contributing ＜ measured_in_support"]:::end_
+  n0["<b>exists_near_lattice</b><br/>∃ n : ℤ, |u - n * L| ≤ L / 2"]:::shp
+  n1["<b>covered_of_half_spacing ■</b><br/>covered L eps u"]:::shp
+  n2["<b>covered_smul ■</b><br/>covered (c * L) (c * eps) (c * u)"]:::shp
+  n3["<b>covering_not_monotone ■</b><br/>∃ (L eps u v : ℝ), 0 ＜ L ∧ u ＜ v ∧ ¬ covered L eps u ∧ covered L…"]:::shp
+  n4["<b>bench_is_selective ■</b><br/>(0.2 : ℝ) ＜ 0.34657"]:::shp
+  n5["<b>bench_selects ■</b><br/>measured_contributing ＜ measured_in_support"]:::cnt
   n0 --> n1
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -25,7 +28,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -84,6 +87,8 @@ def · line 115
 
 line 56
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The covering lemma. No real is further than `L/2` from the lattice `n * L`. Take `n` to be the nearest integer to `u / L`.
 
 **Proves**
@@ -107,6 +112,8 @@ line 56
 ### `Covering.covered_of_half_spacing`
 
 line 68
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Vacuity. Once the tolerance exceeds half the lattice spacing, EVERY point is covered — the condition selects nothing.
 
@@ -135,6 +142,8 @@ covered L eps u
 
 line 77
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Selectivity is a ratio. Covering is homogeneous: scaling the spacing, the tolerance and the point together changes nothing. So how much the form selects depends only on `eps / L` — never on the size of the point tested, and never on which prime it came from.
 
 **Proves**
@@ -159,6 +168,8 @@ covered (c * L) (c * eps) (c * u)
 
 line 88
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Non-monotone by construction. Covering is not inherited by smaller points: a point can fail while a larger one succeeds. This is exactly why the contributing set is not an initial segment — 13 fails where 17 passes.
 
 **Proves**
@@ -178,6 +189,8 @@ line 88
 
 line 119
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The bench sits BELOW the vacuity threshold, so the form genuinely selects. `log 2 / 2 = 0.34657... > 0.2 = eps`.
 
 **Proves**
@@ -194,6 +207,8 @@ line 119
 ### `Covering.bench_selects`
 
 line 122
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** And it does select: 25 of 36, not all.
 

@@ -11,15 +11,15 @@ WeilPowerGeomGen — the geometric bound with a free slope, and `u` at general `
 
 ```mermaid
 flowchart LR
-  n0["<b>exp_shift_gen</b><br/>Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) : ℂ)) = Complex.exp (z …"]:::thm
-  n1["<b>sin_im_ge_gen</b><br/>2 * (z.im * α) / Real.pi ≤ Real.sin (z.im * α)"]:::thm
-  n2["<b>rho_ne_one_gen</b><br/>Complex.exp (z * ((α : ℝ) : ℂ)) ≠ 1"]:::thm
-  n3["<b>norm_geom_le_gen</b><br/>‖∑ h ∈ Finset.Ico a b, Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) …"]:::thm
-  n4["<b>exp_lin_le_MabGen</b><br/>Real.exp (z.re * (α * (h : ℝ) + β₀)) ≤ MabGen z α β₀ a b"]:::thm
-  n5["<b>norm_corr_le_gen</b><br/>‖Complex.exp (z * (u h : ℂ)) - Complex.exp (z * ((α * (h : ℝ) + …"]:::thm
-  n6["<b>norm_sum_exp_u_le_gen</b><br/>‖∑ h ∈ Finset.Ico a b, Complex.exp (z * (u h : ℂ))‖ ≤ geomBoundG…"]:::thm
-  n7["<b>uLam_eq</b><br/>uLam lam h = WeilPowerSigma.u (lam * h - 1) / (lam : ℝ) ^ 2"]:::thm
-  n8["<b>uLam_bracket</b><br/>0 ≤ uLam lam h - ((h : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - 1 / (2 *…"]:::thm
+  n0["<b>exp_shift_gen</b><br/>Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) : ℂ)) = Complex.exp (z …"]:::shp
+  n1["<b>sin_im_ge_gen</b><br/>2 * (z.im * α) / Real.pi ≤ Real.sin (z.im * α)"]:::shp
+  n2["<b>rho_ne_one_gen</b><br/>Complex.exp (z * ((α : ℝ) : ℂ)) ≠ 1"]:::shp
+  n3["<b>norm_geom_le_gen</b><br/>‖∑ h ∈ Finset.Ico a b, Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) …"]:::shp
+  n4["<b>exp_lin_le_MabGen</b><br/>Real.exp (z.re * (α * (h : ℝ) + β₀)) ≤ MabGen z α β₀ a b"]:::shp
+  n5["<b>norm_corr_le_gen</b><br/>‖Complex.exp (z * (u h : ℂ)) - Complex.exp (z * ((α * (h : ℝ) + …"]:::shp
+  n6["<b>norm_sum_exp_u_le_gen</b><br/>‖∑ h ∈ Finset.Ico a b, Complex.exp (z * (u h : ℂ))‖ ≤ geomBoundG…"]:::shp
+  n7["<b>uLam_eq</b><br/>uLam lam h = WeilPowerSigma.u (lam * h - 1) / (lam : ℝ) ^ 2"]:::shp
+  n8["<b>uLam_bracket</b><br/>0 ≤ uLam lam h - ((h : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - 1 / (2 *…"]:::shp
   x0(["<b>WeilPowerGeom</b><br/>geom_Ico<br/>log_telescope<br/>norm_one_sub_exp_ge"]):::ext
   x1(["<b>WeilPowerShell</b><br/>shellSum_le<br/>uSh_bracket"]):::ext
   x2(["<b>WeilPowerSigma</b><br/>r_le<br/>r_pos<br/>u_def"]):::ext
@@ -40,6 +40,9 @@ flowchart LR
   x0 -.-> n6
   x2 -.-> n7
   x2 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -47,7 +50,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -89,6 +92,8 @@ The normalized tail sum at general `λ`: `uLam λ h = h²·σ(λh − 1)`, which
 
 line 97
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The geometric factorization of the affine exponential.
 
 **Proves**
@@ -113,6 +118,8 @@ Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) : ℂ)) = Complex.exp (z * ((β
 ### `WeilPowerGeomGen.sin_im_ge_gen`
 
 line 106
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Jordan's inequality at the phase `z.im·α`, linear in `z.im·α`.
 
@@ -139,6 +146,8 @@ line 106
 ### `WeilPowerGeomGen.rho_ne_one_gen`
 
 line 118
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The ratio `ρ = exp(zα)` is not `1`: its distance to `1` is at least `exp(z.re α)·2 z.im α/π > 0`.
 
@@ -167,6 +176,8 @@ Complex.exp (z * ((α : ℝ) : ℂ)) ≠ 1
 ### `WeilPowerGeomGen.norm_geom_le_gen`
 
 line 139
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The geometric sum at a free slope is bounded independently of the range length.
 
@@ -202,6 +213,8 @@ line 139
 
 line 216
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The geometric factor at an interior `h` is at most its value at an endpoint: the exponent is affine and increasing in `h`, so the sign of `z.re` picks the end.
 
 **Proves**
@@ -229,6 +242,8 @@ Real.exp (z.re * (α * (h : ℝ) + β₀)) ≤ MabGen z α β₀ a b
 
 line 230
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** One term's correction at a free scale, `2‖z‖·c/(h+1)` times the geometric factor.
 
 **Proves**
@@ -253,6 +268,8 @@ line 230
 ### `WeilPowerGeomGen.norm_sum_exp_u_le_gen`
 
 line 278
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The averaged sum at a free slope: bounded by the range-free geometric bound plus a logarithm of the range.
 
@@ -290,6 +307,8 @@ line 278
 
 line 334
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `uLam` is `u` rescaled: `uLam λ h = u(λh − 1)/λ²`, the cast `((λh − 1 : ℕ) : ℝ) + 1 = λh` being the whole content.
 
 **Proves**
@@ -319,6 +338,8 @@ uLam lam h = WeilPowerSigma.u (lam * h - 1) / (lam : ℝ) ^ 2
 ### `WeilPowerGeomGen.uLam_bracket`
 
 line 348
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The bracket for `uLam` at general `λ`: slope `1/(λπ²)`, intercept `−1/(2λ²π²)`, correction scale `1/(2λ³π²)`.
 

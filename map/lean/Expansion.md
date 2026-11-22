@@ -11,23 +11,23 @@ Expansion — stage 2b: the derivative of 2^x/x, explicitly, and its floor. `Mai
 
 ```mermaid
 flowchart LR
-  n0["<b>exp_eq_rpow</b><br/>Real.exp (Real.log 2 * x) = (2 : ℝ) ^ x"]:::thm
-  n1["<b>F_zero</b><br/>F 0 x = f2x x"]:::thm
-  n2["<b>c_rec</b><br/>c (d + 1) j = Real.log 2 * c d j + (-(j : ℝ)) * c d (j - 1)"]:::thm
-  n3["<b>hasDerivAt_S</b><br/>HasDerivAt (S d) (∑ j ∈ range (d + 1), c d j * (-(j : ℝ) - 1) * …"]:::thm
-  n4["<b>hasDerivAt_F</b><br/>HasDerivAt (F d) (F (d + 1) x) x"]:::thm
-  n5["<b>iteratedDeriv_f2x</b><br/>∀ x ∈ Ioi (0 : ℝ), iteratedDeriv d f2x x = F d x"]:::thm
-  n6["<b>t_nonneg</b><br/>0 ≤ t d j x"]:::thm
-  n7["<b>S_eq_alt</b><br/>S d x = ∑ j ∈ range (d + 1), (-1 : ℝ) ^ j * t d j x"]:::thm
-  n8["<b>choose_factorial_step</b><br/>d.choose (j + 1) * (j + 1).factorial = d.choose j * j.factorial …"]:::thm
-  n9["<b>t_halves</b><br/>t d (j + 1) x ≤ t d j x / 2"]:::thm
-  n10["<b>B_peel</b><br/>B d x k = t d k x - B d x (k + 1)"]:::thm
-  n11["<b>B_bounds</b><br/>∀ m k, k + m = d → 0 ≤ B d x k ∧ B d x k ≤ t d k x"]:::thm
-  n12["<b>t_zero</b><br/>t d 0 x = Real.log 2 ^ d * x⁻¹"]:::thm
-  n13["<b>S_floor</b><br/>Real.log 2 ^ d / (2 * x) ≤ S d x"]:::thm
-  n14["<b>F_floor</b><br/>(2 : ℝ) ^ x * (Real.log 2 ^ d / (2 * x)) ≤ F d x"]:::thm
-  n15["<b>hD_of_window</b><br/>∀ y ∈ Icc ((r : ℝ) - (d + 1)) r, Nonvanishing.Mlow r d ≤ iterate…"]:::thm
-  n16["<b>tableFrom_ne_zero_of_li</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  n0["<b>exp_eq_rpow</b><br/>Real.exp (Real.log 2 * x) = (2 : ℝ) ^ x"]:::shp
+  n1["<b>F_zero</b><br/>F 0 x = f2x x"]:::shp
+  n2["<b>c_rec</b><br/>c (d + 1) j = Real.log 2 * c d j + (-(j : ℝ)) * c d (j - 1)"]:::shp
+  n3["<b>hasDerivAt_S</b><br/>HasDerivAt (S d) (∑ j ∈ range (d + 1), c d j * (-(j : ℝ) - 1) * …"]:::shp
+  n4["<b>hasDerivAt_F</b><br/>HasDerivAt (F d) (F (d + 1) x) x"]:::shp
+  n5["<b>iteratedDeriv_f2x</b><br/>∀ x ∈ Ioi (0 : ℝ), iteratedDeriv d f2x x = F d x"]:::shp
+  n6["<b>t_nonneg</b><br/>0 ≤ t d j x"]:::shp
+  n7["<b>S_eq_alt</b><br/>S d x = ∑ j ∈ range (d + 1), (-1 : ℝ) ^ j * t d j x"]:::shp
+  n8["<b>choose_factorial_step</b><br/>d.choose (j + 1) * (j + 1).factorial = d.choose j * j.factorial …"]:::cnt
+  n9["<b>t_halves</b><br/>t d (j + 1) x ≤ t d j x / 2"]:::shp
+  n10["<b>B_peel</b><br/>B d x k = t d k x - B d x (k + 1)"]:::shp
+  n11["<b>B_bounds</b><br/>∀ m k, k + m = d → 0 ≤ B d x k ∧ B d x k ≤ t d k x"]:::shp
+  n12["<b>t_zero</b><br/>t d 0 x = Real.log 2 ^ d * x⁻¹"]:::shp
+  n13["<b>S_floor</b><br/>Real.log 2 ^ d / (2 * x) ≤ S d x"]:::shp
+  n14["<b>F_floor</b><br/>(2 : ℝ) ^ x * (Real.log 2 ^ d / (2 * x)) ≤ F d x"]:::shp
+  n15["<b>hD_of_window</b><br/>∀ y ∈ Icc ((r : ℝ) - (d + 1)) r, Nonvanishing.Mlow r d ≤ iterate…"]:::shp
+  n16["<b>tableFrom_ne_zero_of_li</b><br/>Construction.tableFrom N r d ≠ 0"]:::shp
   x0(["<b>RelativeLi</b><br/>tableFrom_ne_zero_of_relErr_li"]):::ext
   x1(["<b>MainTerm</b><br/>tableFrom_ne_zero_of_deriv"]):::ext
   x2(["<b>Schoenfeld</b><br/>tableFrom_ne_zero_of_schoenfeld"]):::ext
@@ -53,6 +53,9 @@ flowchart LR
   n15 -.-> x0
   n16 -.-> x2
   x1 -.-> n16
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -60,7 +63,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -134,6 +137,8 @@ The downward tail `B k = Σ_{j<d+1−k} (−1)^j t(k+j)`.
 
 line 57
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `e^((log 2)·x) = 2^x`.
 
 **Proves**
@@ -156,6 +161,8 @@ Real.exp (Real.log 2 * x) = (2 : ℝ) ^ x
 ### `Expansion.F_zero`
 
 line 61
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `F 0` is the function itself.
 
@@ -184,6 +191,8 @@ F 0 x = f2x x
 
 line 67
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The coefficient recurrence — Pascal with the factorial absorbed; the `j = 0` edge dies against the `−j` factor.
 
 **Proves**
@@ -208,6 +217,8 @@ c (d + 1) j = Real.log 2 * c d j + (-(j : ℝ)) * c d (j - 1)
 ### `Expansion.hasDerivAt_S`
 
 line 107
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `S` differentiates term-by-term into the pre-recombination sum.
 
@@ -234,6 +245,8 @@ HasDerivAt (S d) (∑ j ∈ range (d + 1), c d j * (-(j : ℝ) - 1) * x ^ (-(j +
 ### `Expansion.hasDerivAt_F`
 
 line 128
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The expansion advances: `F d` has derivative `F (d+1)` at `x ≠ 0`. Product rule, the coefficient recurrence, and one `sum_range_succ'` reindex.
 
@@ -266,6 +279,8 @@ HasDerivAt (F d) (F (d + 1) x) x
 
 line 183
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `iteratedDeriv d` of `2^x/x` IS `F d`, on `(0,∞)`. Induction; the step replaces `iteratedDeriv d f2x` by `F d` through `EventuallyEq.deriv_eq` on the open half-line, then advances by `hasDerivAt_F`.
 
 **Proves**
@@ -294,6 +309,8 @@ line 183
 
 line 204
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Every unsigned term is nonnegative on `x > 0`.
 
 **Proves**
@@ -319,6 +336,8 @@ line 204
 ### `Expansion.S_eq_alt`
 
 line 212
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `S` is the alternating sum of the unsigned terms.
 
@@ -348,6 +367,8 @@ S d x = ∑ j ∈ range (d + 1), (-1 : ℝ) ^ j * t d j x
 
 line 219
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The choose-ratio identity, in ℕ where it is clean: `C(d,j+1)·(j+1)! = C(d,j)·j!·(d−j)`.
 
 **Proves**
@@ -370,6 +391,8 @@ d.choose (j + 1) * (j + 1).factorial = d.choose j * j.factorial * (d - j)
 ### `Expansion.t_halves`
 
 line 226
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The terms halve in the wedge `2d ≤ (log 2)·x`: `t (j+1) ≤ t j / 2`.
 
@@ -401,6 +424,8 @@ t d (j + 1) x ≤ t d j x / 2
 
 line 285
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Peeling the head of the tail: `B k = t k − B (k+1)` for `k ≤ d`.
 
 **Proves**
@@ -426,6 +451,8 @@ B d x k = t d k x - B d x (k + 1)
 ### `Expansion.B_bounds`
 
 line 304
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The tail bound `0 ≤ B k ≤ t k`, by downward induction on the tail length, using only that the terms halve.
 
@@ -457,6 +484,8 @@ line 304
 
 line 334
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The leading term: `t 0 = (log 2)^d / x`.
 
 **Proves**
@@ -482,6 +511,8 @@ t d 0 x = Real.log 2 ^ d * x⁻¹
 ### `Expansion.S_floor`
 
 line 339
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The floor on `S`: in the wedge, `S d x ≥ t₀/2 = (log 2)^d/(2x)`.
 
@@ -518,6 +549,8 @@ Real.log 2 ^ d / (2 * x) ≤ S d x
 
 line 365
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The full floor on the closed form: `F d x ≥ (1/2)·2^x·(log 2)^d/x`.
 
 **Proves**
@@ -548,6 +581,8 @@ line 365
 ### `Expansion.hD_of_window`
 
 line 376
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `hD` discharged. On the window `[r−(d+1), r]` with the window bottom positive and the wedge holding there, the `(d+1)`-th derivative of any smooth interpolant whose derivative is `2^x/x` on `(0,∞)` clears `Mlow`. The chain: `iteratedDeriv (d+1) G = iteratedDeriv d (2^x/x) = F d ≥ floor ≥ Mlow`.
 
@@ -581,6 +616,8 @@ line 376
 ### `Expansion.tableFrom_ne_zero_of_li`
 
 line 438
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** O67's conditional theorem, with the analysis discharged. The hypotheses are now exactly: the interpolant and its derivative structure (what "li" means here), Schoenfeld on the window (stage 3), the row agreement, the gap arithmetic, and the wedge/positivity arithmetic. The MVT, the alternating series, the expansion of `2^x/x` — all under the kernel.
 

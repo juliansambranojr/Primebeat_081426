@@ -11,18 +11,18 @@ PsiToPi — step 3: the transfer from ψ-error to π−Li error. The classical c
 
 ```mermaid
 flowchart LR
-  n0["<b>continuousOn_inv_log_sq</b><br/>ContinuousOn (fun t : ℝ =＞ 1 / Real.log t ^ 2) (Set.uIcc a x)"]:::thm
-  n1["<b>continuousOn_inv_mul_log_sq</b><br/>ContinuousOn (fun t : ℝ =＞ (t * Real.log t ^ 2)⁻¹) (Set.uIcc a x…"]:::thm
-  n2["<b>integrable_theta_term</b><br/>IntervalIntegrable (fun t =＞ θ t / (t * Real.log t ^ 2)) volume …"]:::thm
-  n3["<b>integrable_err_term</b><br/>IntervalIntegrable (fun t =＞ (θ t - t) / (t * Real.log t ^ 2)) v…"]:::thm
-  n4["<b>pi_sub_Li_eq</b><br/>(Nat.primeCounting ⌊x⌋₊ : ℝ) - Li x = (θ x - x) / Real.log x + ∫…"]:::thm
-  n5["<b>abs_pi_sub_Li_le</b><br/>|(Nat.primeCounting ⌊x⌋₊ : ℝ) - Li x| ≤ |θ x - x| / Real.log x +…"]:::end_
-  n6["<b>integral_A_rpow_le</b><br/>(∫ t in a..x, A * t ^ (-(1 : ℝ) / 2)) ≤ 2 * A * Real.sqrt x"]:::thm
-  n7["<b>theta_err_of_psi</b><br/>|θ x - x| ≤ E + 2 * Real.sqrt x * Real.log x"]:::thm
-  n8["<b>abs_theta_sub_le_linear</b><br/>|θ t - t| ≤ (1 + Real.log 4) * t"]:::thm
-  n9["<b>one_add_log_four_le</b><br/>1 + Real.log 4 ≤ 5 * Real.log 2 ^ 2"]:::thm
-  n10["<b>rpow_neg_half_mul</b><br/>t ^ (-(1 : ℝ) / 2) * (t * Real.log t ^ 2) = Real.sqrt t * Real.l…"]:::thm
-  n11["<b>schoenfeldWeak_of_psiWeak</b><br/>StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x …"]:::thm
+  n0["<b>continuousOn_inv_log_sq</b><br/>ContinuousOn (fun t : ℝ =＞ 1 / Real.log t ^ 2) (Set.uIcc a x)"]:::shp
+  n1["<b>continuousOn_inv_mul_log_sq</b><br/>ContinuousOn (fun t : ℝ =＞ (t * Real.log t ^ 2)⁻¹) (Set.uIcc a x…"]:::shp
+  n2["<b>integrable_theta_term</b><br/>IntervalIntegrable (fun t =＞ θ t / (t * Real.log t ^ 2)) volume …"]:::shp
+  n3["<b>integrable_err_term</b><br/>IntervalIntegrable (fun t =＞ (θ t - t) / (t * Real.log t ^ 2)) v…"]:::shp
+  n4["<b>pi_sub_Li_eq</b><br/>(Nat.primeCounting ⌊x⌋₊ : ℝ) - Li x = (θ x - x) / Real.log x + ∫…"]:::shp
+  n5["<b>abs_pi_sub_Li_le ■</b><br/>|(Nat.primeCounting ⌊x⌋₊ : ℝ) - Li x| ≤ |θ x - x| / Real.log x +…"]:::shp
+  n6["<b>integral_A_rpow_le</b><br/>(∫ t in a..x, A * t ^ (-(1 : ℝ) / 2)) ≤ 2 * A * Real.sqrt x"]:::shp
+  n7["<b>theta_err_of_psi</b><br/>|θ x - x| ≤ E + 2 * Real.sqrt x * Real.log x"]:::shp
+  n8["<b>abs_theta_sub_le_linear</b><br/>|θ t - t| ≤ (1 + Real.log 4) * t"]:::shp
+  n9["<b>one_add_log_four_le</b><br/>1 + Real.log 4 ≤ 5 * Real.log 2 ^ 2"]:::shp
+  n10["<b>rpow_neg_half_mul</b><br/>t ^ (-(1 : ℝ) / 2) * (t * Real.log t ^ 2) = Real.sqrt t * Real.l…"]:::shp
+  n11["<b>schoenfeldWeak_of_psiWeak</b><br/>StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x …"]:::shp
   x0(["<b>ThetaPi</b><br/>schoenfeldWeakTheta_of_psiWeakTheta<br/>theta_err_of_psi_theta"]):::ext
   x1(["<b>PiToPsi</b><br/>relRes_tail_le"]):::ext
   x2(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
@@ -51,6 +51,9 @@ flowchart LR
   n7 -.-> x0
   n8 -.-> x0
   n9 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -58,7 +61,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -89,6 +92,8 @@ The ψ-side of the weak family: what stage 5's assembly (hRH + hEF + hNT) delive
 
 line 46
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `1/log²t` is continuous on any interval right of `2`.
 
 **Proves**
@@ -112,6 +117,8 @@ ContinuousOn (fun t : ℝ => 1 / Real.log t ^ 2) (Set.uIcc a x)
 ### `Stage3.continuousOn_inv_mul_log_sq`
 
 line 57
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `(t·log²t)⁻¹` is continuous on any interval right of `2`.
 
@@ -137,6 +144,8 @@ ContinuousOn (fun t : ℝ => (t * Real.log t ^ 2)⁻¹) (Set.uIcc a x)
 ### `Stage3.integrable_theta_term`
 
 line 70
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `θ(t)/(t·log²t)` is interval integrable on `[2, x]`: `θ` is monotone, the cofactor is continuous.
 
@@ -164,6 +173,8 @@ IntervalIntegrable (fun t => θ t / (t * Real.log t ^ 2)) volume a x
 
 line 78
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `(θ(t) − t)/(t·log²t)` is interval integrable on `[2, x]`.
 
 **Proves**
@@ -190,6 +201,8 @@ IntervalIntegrable (fun t => (θ t - t) / (t * Real.log t ^ 2)) volume a x
 ### `Stage3.pi_sub_Li_eq`
 
 line 90
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The exact decomposition — an identity, from Mathlib's Abel-summation bridge and the definition of `Li`: `π(⌊x⌋) − Li x = (θx − x)/log x + ∫₂ˣ (θt − t)/(t·log²t) dt`.
 
@@ -221,6 +234,8 @@ line 90
 
 line 112
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The envelope transfer: a pointwise bound on `|θ − id|` becomes a bound on `|π − Li|`, top term plus envelope integral.
 
 **Proves**
@@ -248,6 +263,8 @@ line 112
 
 line 136
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The workhorse envelope integral: `∫₂ˣ A·t^(−1/2) dt ≤ 2A·√x`.
 
 **Proves**
@@ -274,6 +291,8 @@ line 136
 
 line 157
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `θ`-error from `ψ`-error, by Mathlib's `|ψ − θ| ≤ 2√x·log x`.
 
 **Proves**
@@ -299,6 +318,8 @@ line 157
 
 line 172
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Crude linear bound below the family floor: `|θ − id| ≤ (1 + log 4)·t`, from `0 ≤ θ t ≤ log 4 · t`.
 
 **Proves**
@@ -323,6 +344,8 @@ line 172
 
 line 182
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The numeric fact carrying the low-range constant: `1 + log 4 ≤ 5·log²2`, i.e. `(1 + log 4)/log²2 ≤ 5`.
 
 **Proves**
@@ -342,6 +365,8 @@ line 182
 ### `Stage3.rpow_neg_half_mul`
 
 line 193
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `t^(−1/2)` times the denominator is the √t envelope: `t^(−1/2)·(t·log²t) = √t·log²t` on `t > 0`.
 
@@ -365,6 +390,8 @@ t ^ (-(1 : ℝ) / 2) * (t * Real.log t ^ 2) = Real.sqrt t * Real.log t ^ 2
 ### `Stage3.schoenfeldWeak_of_psiWeak`
 
 line 207
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The capstone of step 3: the transfer. A ψ-side weak bound `(C, k, x₀)` with `k ≥ 2, x₀ ≥ 2` delivers the π-side weak bound with `C′ = 3C + 13`, exponent `k − 1`, floor `max(x₀², 9)` — one log dropped, the constant inflated explicitly — and the conclusion is literally `StmtSchoenfeldWeak`, so Statement.lean's window bridge applies to it.
 

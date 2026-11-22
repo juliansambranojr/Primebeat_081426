@@ -1,6 +1,6 @@
 flowchart LR
-  n0["<b>zeroGap_pos</b><br/>0 ＜ zeroGap T"]:::thm
-  n1["<b>zeroGap_le</b><br/>zeroGap T ≤ 9/10"]:::thm
+  n0["<b>zeroGap_pos</b><br/>0 ＜ zeroGap T"]:::shp
+  n1["<b>zeroGap_le</b><br/>zeroGap T ≤ 9/10"]:::shp
   n2["<b>zeta_analyticAt</b><br/>AnalyticAt ℂ riemannZeta ρ"]:::thm
   n3["<b>one_le_zeta_order</b><br/>1 ≤ analyticOrderNatAt riemannZeta ρ"]:::thm
   n4["<b>partner_zero</b><br/>∃ ρ' : ℂ, riemannZeta ρ' = 0 ∧ ρ'.im = ρ.im ∧ 1/2 ≤ ρ'.re ∧ ρ'.r…"]:::thm
@@ -10,8 +10,8 @@ flowchart LR
   n8["<b>rectangleIntegral_sum_poles</b><br/>RectangleIntegral' (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w = ∑ p ∈ …"]:::thm
   n9["<b>residue_rectangle_multi</b><br/>RectangleIntegral' f z w = ∑ p ∈ P, A p"]:::thm
   n10["<b>residue_rectangle_of_local</b><br/>RectangleIntegral' f z w = ∑ p ∈ P, A p"]:::thm
-  n11["<b>analyticAt_dslope</b><br/>AnalyticAt ℂ (dslope f p) p"]:::thm
-  n12["<b>div_sub_eq_dslope</b><br/>f s / (s - p) = f p / (s - p) + dslope f p s"]:::thm
+  n11["<b>analyticAt_dslope</b><br/>AnalyticAt ℂ (dslope f p) p"]:::shp
+  n12["<b>div_sub_eq_dslope</b><br/>f s / (s - p) = f p / (s - p) + dslope f p s"]:::shp
   n13["<b>zeta_local_data</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in nhdsWithin p {p}ᶜ, - der…"]:::thm
   n14["<b>zeta_order_ne_top</b><br/>analyticOrderAt riemannZeta ρ ≠ ⊤"]:::thm
   n15["<b>zeta_local_data_zero</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in nhdsWithin ρ {ρ}ᶜ, - der…"]:::thm
@@ -23,7 +23,7 @@ flowchart LR
   n21["<b>zeta_zeros_rectangle_finite</b><br/>{ρ : ℂ | riemannZeta ρ = 0 ∧ ρ ∈ Rectangle z w}.Finite"]:::thm
   n22["<b>order_bridge</b><br/>((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZe…"]:::thm
   n23["<b>zeroPartialSum_eq_sum</b><br/>Stage3.zeroPartialSum x T' = ∑ p ∈ ZF, ((analyticOrderNatAt riem…"]:::thm
-  n24["<b>analyticAt_conj_conj</b><br/>AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) (…"]:::thm
+  n24["<b>analyticAt_conj_conj</b><br/>AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) (…"]:::shp
   n25["<b>zeta_order_conj</b><br/>analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrd…"]:::thm
   n26["<b>zeta_order_reflect</b><br/>analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyti…"]:::thm
   n27["<b>residue_identity</b><br/>RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemann…"]:::thm
@@ -126,6 +126,9 @@ flowchart LR
   n6 -.-> x1
   n6 -.-> x3
   x8 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

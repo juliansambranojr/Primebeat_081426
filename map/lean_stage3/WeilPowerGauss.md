@@ -11,31 +11,31 @@ WeilPowerGauss — the odd transform in the Gaussian regime, through Euler's pro
 
 ```mermaid
 flowchart LR
-  n0["<b>euler_sinh</b><br/>Tendsto (fun n : ℕ =＞ w * ∏ j ∈ Finset.range n, g w j) atTop (𝓝 …"]:::thm
-  n1["<b>D_pos</b><br/>0 ＜ D m"]:::thm
-  n2["<b>D_eq</b><br/>D m = Real.pi ^ (2 * (m + 1)) * (((m + 1).factorial : ℕ) : ℝ) ^ …"]:::thm
-  n3["<b>QS_eq_D_mul</b><br/>QS m w = (D m : ℂ) * ∏ j ∈ Finset.range (m + 1), g w j"]:::thm
-  n4["<b>cprime_eq</b><br/>cS m / D m = ((Nat.centralBinom (m + 1) : ℕ) : ℝ) / (Real.pi * (…"]:::thm
-  n5["<b>cprime_le</b><br/>cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1))"]:::thm
-  n6["<b>cprime_ge</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) ≤ cS m / D m"]:::thm
-  n7["<b>cprime_pos</b><br/>0 ＜ cS m / D m"]:::thm
-  n8["<b>tendsto_S</b><br/>Tendsto (fun n : ℕ =＞ ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTo…"]:::thm
-  n9["<b>norm_one_add_le</b><br/>‖1 + x‖ ≤ Real.exp (x.re + ‖x‖ ^ 2)"]:::thm
-  n10["<b>exp_le_one_add</b><br/>Real.exp (x - x ^ 2) ≤ 1 + x"]:::thm
-  n11["<b>sum_inv_sq_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 ≤ 1 / ((m : ℝ)…"]:::thm
-  n12["<b>sum_inv_sq_ge</b><br/>((m : ℝ) + 2) / (2 * (m : ℝ) + 3) ^ 2 ≤ ∑ j ∈ Finset.Ico (m + 1)…"]:::thm
-  n13["<b>sum_inv_pow4_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / ((m : ℝ)…"]:::thm
-  n14["<b>norm_x_le</b><br/>‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ ≤ 1 / 2"]:::thm
-  n15["<b>x_re</b><br/>(w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)).re = (w ^ 2).r…"]:::thm
-  n16["<b>x_norm</b><br/>‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ = ‖w‖ ^ 2 / (R…"]:::thm
-  n17["<b>norm_T_le</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re / Real.pi ^ 2 * ∑ j ∈ Finset.Ic…"]:::thm
-  n18["<b>norm_T_le_pos</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re / (Real.pi ^ 2 * ((m : ℝ) + 1))…"]:::thm
-  n19["<b>norm_T_le_neg</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re * ((m : ℝ) + 2) / (Real.pi ^ 2 …"]:::thm
-  n20["<b>norm_S_le_gauss_pos</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2…"]:::thm
-  n21["<b>norm_S_le_gauss_neg</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2…"]:::thm
-  n22["<b>T_ofReal</b><br/>T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ)"]:::thm
-  n23["<b>Tr_ge</b><br/>Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + …"]:::thm
-  n24["<b>S_real_ge_gauss</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp…"]:::thm
+  n0["<b>euler_sinh</b><br/>Tendsto (fun n : ℕ =＞ w * ∏ j ∈ Finset.range n, g w j) atTop (𝓝 …"]:::shp
+  n1["<b>D_pos</b><br/>0 ＜ D m"]:::shp
+  n2["<b>D_eq</b><br/>D m = Real.pi ^ (2 * (m + 1)) * (((m + 1).factorial : ℕ) : ℝ) ^ …"]:::shp
+  n3["<b>QS_eq_D_mul</b><br/>QS m w = (D m : ℂ) * ∏ j ∈ Finset.range (m + 1), g w j"]:::shp
+  n4["<b>cprime_eq</b><br/>cS m / D m = ((Nat.centralBinom (m + 1) : ℕ) : ℝ) / (Real.pi * (…"]:::shp
+  n5["<b>cprime_le</b><br/>cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1))"]:::shp
+  n6["<b>cprime_ge</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) ≤ cS m / D m"]:::shp
+  n7["<b>cprime_pos</b><br/>0 ＜ cS m / D m"]:::shp
+  n8["<b>tendsto_S</b><br/>Tendsto (fun n : ℕ =＞ ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTo…"]:::shp
+  n9["<b>norm_one_add_le</b><br/>‖1 + x‖ ≤ Real.exp (x.re + ‖x‖ ^ 2)"]:::shp
+  n10["<b>exp_le_one_add</b><br/>Real.exp (x - x ^ 2) ≤ 1 + x"]:::shp
+  n11["<b>sum_inv_sq_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 ≤ 1 / ((m : ℝ)…"]:::shp
+  n12["<b>sum_inv_sq_ge</b><br/>((m : ℝ) + 2) / (2 * (m : ℝ) + 3) ^ 2 ≤ ∑ j ∈ Finset.Ico (m + 1)…"]:::shp
+  n13["<b>sum_inv_pow4_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / ((m : ℝ)…"]:::shp
+  n14["<b>norm_x_le</b><br/>‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ ≤ 1 / 2"]:::shp
+  n15["<b>x_re</b><br/>(w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)).re = (w ^ 2).r…"]:::shp
+  n16["<b>x_norm</b><br/>‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ = ‖w‖ ^ 2 / (R…"]:::shp
+  n17["<b>norm_T_le</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re / Real.pi ^ 2 * ∑ j ∈ Finset.Ic…"]:::shp
+  n18["<b>norm_T_le_pos</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re / (Real.pi ^ 2 * ((m : ℝ) + 1))…"]:::shp
+  n19["<b>norm_T_le_neg</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re * ((m : ℝ) + 2) / (Real.pi ^ 2 …"]:::shp
+  n20["<b>norm_S_le_gauss_pos</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2…"]:::shp
+  n21["<b>norm_S_le_gauss_neg</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2…"]:::shp
+  n22["<b>T_ofReal</b><br/>T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ)"]:::shp
+  n23["<b>Tr_ge</b><br/>Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + …"]:::shp
+  n24["<b>S_real_ge_gauss</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp…"]:::shp
   x0(["<b>WeilPowerPhase</b><br/>6 theorems"]):::ext
   x1(["<b>WeilPowerSharp</b><br/>5 theorems"]):::ext
   x2(["<b>WeilPowerTail</b><br/>norm_S_le_tail"]):::ext
@@ -95,6 +95,9 @@ flowchart LR
   n8 -.-> x2
   x3 -.-> n24
   x3 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -102,7 +105,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -154,6 +157,8 @@ The tail at real `s` is a real product.
 
 line 55
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Euler's product for `sinh`. `w·∏_{j<n}(1 + w²/(π²(j+1)²)) → sinh w`.
 
 **Proves**
@@ -179,6 +184,8 @@ Tendsto (fun n : ℕ => w * ∏ j ∈ Finset.range n, g w j) atTop (𝓝 (Comple
 
 line 86
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -202,6 +209,8 @@ line 86
 
 line 92
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -224,6 +233,8 @@ D m = Real.pi ^ (2 * (m + 1)) * (((m + 1).factorial : ℕ) : ℝ) ^ 2
 ### `WeilPowerGauss.QS_eq_D_mul`
 
 line 102
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The head of the closed form's product is `D m` times the head of Euler's product.
 
@@ -250,6 +261,8 @@ QS m w = (D m : ℂ) * ∏ j ∈ Finset.range (m + 1), g w j
 ### `WeilPowerGauss.cprime_eq`
 
 line 115
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `cS m / D m = centralBinom (m+1) / (π (m+1) 4^m)`.
 
@@ -279,6 +292,8 @@ cS m / D m = ((Nat.centralBinom (m + 1) : ℕ) : ℝ) / (Real.pi * ((m : ℝ) + 
 
 line 138
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -305,6 +320,8 @@ cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1))
 
 line 148
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -330,6 +347,8 @@ line 148
 ### `WeilPowerGauss.cprime_pos`
 
 line 160
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -363,6 +382,8 @@ line 160
 ### `WeilPowerGauss.tendsto_S`
 
 line 167
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The transform as a limit of tails.
 
@@ -403,6 +424,8 @@ Tendsto (fun n : ℕ => ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTop (𝓝 (S
 
 line 187
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `‖1 + x‖ ≤ exp(Re x + ‖x‖²)` for `‖x‖ ≤ 1/2`.
 
 **Proves**
@@ -425,6 +448,8 @@ line 187
 ### `WeilPowerGauss.exp_le_one_add`
 
 line 212
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `exp(x − x²) ≤ 1 + x` for real `0 ≤ x ≤ 1/2`.
 
@@ -451,6 +476,8 @@ Real.exp (x - x ^ 2) ≤ 1 + x
 
 line 237
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `Σ_{j ∈ Ico (m+1) n} 1/(j+1)² ≤ 1/(m+1)`.
 
 **Proves**
@@ -476,6 +503,8 @@ line 237
 
 line 266
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `(m+2)/(2m+3)² ≤ Σ_{j ∈ Ico (m+1) (2m+3)} 1/(j+1)²`.
 
 **Proves**
@@ -499,6 +528,8 @@ line 266
 ### `WeilPowerGauss.sum_inv_pow4_le`
 
 line 286
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `Σ_{j ∈ Ico (m+1) n} 1/(j+1)⁴ ≤ 1/(m+1)³`.
 
@@ -529,6 +560,8 @@ line 286
 
 line 312
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Each tail factor's argument is within `1/2` of `0` when `‖w‖² ≤ π²(m+2)²/2`.
 
 **Proves**
@@ -555,6 +588,8 @@ line 312
 
 line 327
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -576,6 +611,8 @@ line 327
 ### `WeilPowerGauss.x_norm`
 
 line 333
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -599,6 +636,8 @@ line 333
 ### `WeilPowerGauss.norm_T_le`
 
 line 340
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The tail's norm is at most the exponential of the tail sums.
 
@@ -635,6 +674,8 @@ line 340
 
 line 366
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -665,6 +706,8 @@ line 366
 
 line 382
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -694,6 +737,8 @@ line 382
 ### `WeilPowerGauss.norm_S_le_gauss_pos`
 
 line 411
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Upper bound, Gaussian regime, `Re(w²) ≥ 0`.
 
@@ -729,6 +774,8 @@ line 411
 
 line 427
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Upper bound, Gaussian regime, `Re(w²) ≤ 0`.
 
 **Proves**
@@ -763,6 +810,8 @@ line 427
 
 line 447
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -790,6 +839,8 @@ T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ)
 ### `WeilPowerGauss.Tr_ge`
 
 line 453
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The real tail is at least the exponential of the tail sums.
 
@@ -821,6 +872,8 @@ Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + 3) ^ 2) - s 
 ### `WeilPowerGauss.S_real_ge_gauss`
 
 line 515
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Lower bound at the target, Gaussian regime. For `0 < s`, `4/(π(m+1)(2m+3)) · s · exp(s²(m+2)/(π²(2m+3)²) − s⁴/(π⁴(m+1)³)) ≤ Re (S m s)`.
 

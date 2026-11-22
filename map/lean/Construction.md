@@ -11,12 +11,12 @@ Construction — the table has no free parameter, so the zeros were not placed. 
 
 ```mermaid
 flowchart LR
-  n0["<b>tableFrom_isTableOf</b><br/>IsTableOf N (tableFrom N)"]:::thm
-  n1["<b>unique_of_isTableOf</b><br/>∀ r d, f r d = tableFrom N r d"]:::thm
-  n2["<b>eq_of_same_row</b><br/>∀ r d, f r d = g r d"]:::end_
-  n3["<b>zero_determined_by_row</b><br/>tableFrom N r d = tableFrom M r d"]:::thm
-  n4["<b>tableFrom_add</b><br/>tableFrom (fun x =＞ N x + M x) r d = tableFrom N r d + tableFrom…"]:::thm
-  n5["<b>tableFrom_smul</b><br/>tableFrom (fun x =＞ c * N x) r d = c * tableFrom N r d"]:::thm
+  n0["<b>tableFrom_isTableOf</b><br/>IsTableOf N (tableFrom N)"]:::cnt
+  n1["<b>unique_of_isTableOf</b><br/>∀ r d, f r d = tableFrom N r d"]:::cnt
+  n2["<b>eq_of_same_row ■</b><br/>∀ r d, f r d = g r d"]:::cnt
+  n3["<b>zero_determined_by_row</b><br/>tableFrom N r d = tableFrom M r d"]:::cnt
+  n4["<b>tableFrom_add</b><br/>tableFrom (fun x =＞ N x + M x) r d = tableFrom N r d + tableFrom…"]:::cnt
+  n5["<b>tableFrom_smul</b><br/>tableFrom (fun x =＞ c * N x) r d = c * tableFrom N r d"]:::cnt
   x0(["<b>Zeros</b><br/>tableFrom_isTable"]):::ext
   x1(["<b>PairIdentity</b><br/>tableFrom_add_window"]):::ext
   x2(["<b>Propagation</b><br/>outside_cone_zero"]):::ext
@@ -29,6 +29,9 @@ flowchart LR
   n4 -.-> x1
   n4 -.-> x3
   n5 -.-> x3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -36,7 +39,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -77,6 +80,8 @@ The four exact zeros. Determined by pi through a parameter-free construction; lo
 
 line 58
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** `tableFrom` satisfies its own recurrence.
 
 **Proves**
@@ -102,6 +107,8 @@ IsTableOf N (tableFrom N)
 
 line 68
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Uniqueness. Any function satisfying the recurrence with the same depth-0 row IS the table. There is no choice at any cell — fix the row and the entire table, to every depth, is determined.
 
 **Proves**
@@ -126,6 +133,8 @@ line 68
 ### `Construction.eq_of_same_row`
 
 line 76
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Two tables over the same row agree everywhere.
 
@@ -154,6 +163,8 @@ line 76
 ### `Construction.zero_determined_by_row`
 
 line 84
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** A zero is determined by the row. If two counting functions agree on the window a cell reads, that cell is the same for both — in particular one vanishes exactly when the other does. Nothing outside the window can move it, and nothing inside the construction can either.
 
@@ -184,6 +195,8 @@ tableFrom N r d = tableFrom M r d
 
 line 112
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Differencing is linear, at every depth. The operator carries no parameter to tune — this is what forces Pascal's weights rather than selecting them.
 
 **Proves**
@@ -211,6 +224,8 @@ tableFrom (fun x => N x + M x) r d = tableFrom N r d + tableFrom M r d
 ### `Construction.tableFrom_smul`
 
 line 125
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Scalars pass through the table: the table of `c·N` is `c` times the table of `N`. The other half of linearity, beside `tableFrom_add`.
 

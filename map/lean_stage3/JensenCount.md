@@ -14,8 +14,8 @@ flowchart LR
   n0["<b>zeta_centre_lower</b><br/>(1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖"]:::thm
   n1["<b>zeta_disk_upper</b><br/>‖ζ w‖ ≤ 28 * T"]:::thm
   n2["<b>zeta_centre_ne_zero</b><br/>ζ (2 + Complex.I * (T : ℂ)) ≠ 0"]:::thm
-  n3["<b>pole_away</b><br/>2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1"]:::thm
-  n4["<b>pole_away_centre</b><br/>v ≠ 1"]:::thm
+  n3["<b>pole_away</b><br/>2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1"]:::shp
+  n4["<b>pole_away_centre</b><br/>v ≠ 1"]:::shp
   n5["<b>zetaWindowTwo_finite</b><br/>{ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite"]:::thm
   n6["<b>zetaWindow_finite</b><br/>(zetaWindow T).Finite"]:::thm
   n7["<b>zeta_comp_analytic</b><br/>AnalyticAt ℂ (fun z : ℂ =＞ ζ (2 * z + (2 + Complex.I * (T : ℂ)))…"]:::thm
@@ -23,7 +23,7 @@ flowchart LR
   n9["<b>jensenF_zero_eq_one</b><br/>jensenF T 0 = 1"]:::thm
   n10["<b>jensenF_zeros_finite</b><br/>(SetOfZeros 1 (jensenF T)).Finite"]:::thm
   n11["<b>jensenF_bound</b><br/>‖jensenF T z‖ ≤ 84 * T"]:::thm
-  n12["<b>analyticOrderNatAt_fun_comp_affine</b><br/>analyticOrderNatAt (fun w : ℂ =＞ g (a * w + b)) z = analyticOrde…"]:::thm
+  n12["<b>analyticOrderNatAt_fun_comp_affine</b><br/>analyticOrderNatAt (fun w : ℂ =＞ g (a * w + b)) z = analyticOrde…"]:::shp
   n13["<b>jensenF_order</b><br/>analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w +…"]:::thm
   n14["<b>zeta_local_zero_count</b><br/>∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ :…"]:::thm
   n15["<b>zetaLocalCount_eq</b><br/>zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analy…"]:::thm
@@ -98,6 +98,9 @@ flowchart LR
   n8 -.-> x3
   n9 -.-> x0
   n9 -.-> x3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -105,7 +108,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -147,6 +150,8 @@ The count function. Total zero order of `ζ` in `|s - (2+iT)| ≤ 7/4`.
 
 line 75
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -169,6 +174,8 @@ line 75
 ### `Stage3.zeta_disk_upper`
 
 line 123
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The majorant on the wide disk. `‖ζ w‖ ≤ 28 T` for `T ≥ 2` and `‖w - (2 + iT)‖ ≤ 15/8`; this is the `R = 15/16` radius of the Jensen step pulled back through `s = 2z + (2 + iT)`. On that disk `Re w ≥ 1/8 > 0` and `Im w ≥ T - 15/8 ≥ 1/8`, so the pole at `s = 1` is avoided with room.
 
@@ -194,6 +201,8 @@ line 123
 ### `Stage3.zeta_centre_ne_zero`
 
 line 197
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The centre `2 + iT` has real part `2`, hence `ζ` does not vanish there.
 
@@ -226,6 +235,8 @@ line 197
 
 line 205
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The pole stays outside the mapped ball. For `T ≥ 2` and `‖z‖ ≤ 11/10`, the point `2z + (2 + iT)` is never the pole `s = 1`.
 
 **Proves**
@@ -249,6 +260,8 @@ line 205
 ### `Stage3.pole_away_centre`
 
 line 218
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The pole stays outside the window. For `T ≥ 2`, every point within `11/5` of `2 + iT` differs from `1`.
 
@@ -276,6 +289,8 @@ v ≠ 1
 
 line 232
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `ζ` has finitely many zeros within `2` of the centre.
 
 **Proves**
@@ -302,6 +317,8 @@ line 232
 ### `Stage3.zetaWindow_finite`
 
 line 262
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -336,6 +353,8 @@ line 262
 
 line 272
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -360,6 +379,8 @@ AnalyticAt ℂ (fun z : ℂ => ζ (2 * z + (2 + Complex.I * (T : ℂ)))) w
 ### `Stage3.jensenF_analytic`
 
 line 277
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -388,6 +409,8 @@ AnalyticOnNhd ℂ (jensenF T) (Metric.closedBall (0 : ℂ) 1)
 
 line 284
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -414,6 +437,8 @@ jensenF T 0 = 1
 ### `Stage3.jensenF_zeros_finite`
 
 line 288
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -443,6 +468,8 @@ line 288
 
 line 306
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -471,6 +498,8 @@ line 306
 ### `Stage3.analyticOrderNatAt_fun_comp_affine`
 
 line 324
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The analytic order is unchanged by an invertible affine change of variable.
 
@@ -502,6 +531,8 @@ analyticOrderNatAt (fun w : ℂ => g (a * w + b)) z = analyticOrderNatAt g (a * 
 
 line 336
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -529,6 +560,8 @@ analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w + (2 + Complex.I
 ### `Stage3.zeta_local_zero_count`
 
 line 354
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE LOCAL ZERO COUNT. For every `T ≥ 2`, the total order of the zeros of `ζ` in the closed disk `|s - (2 + iT)| ≤ 7/4` — a disk which meets the critical line in the segment `|γ - T| ≤ √(13/16)` — is at most `15 log T + 73`.
 
@@ -570,6 +603,8 @@ line 354
 
 line 444
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -592,6 +627,8 @@ zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNat
 ### `Stage3.localCount_holds`
 
 line 455
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE LEAF, DISCHARGED. `StmtLocalCount` holds for the concrete zeta zero count with the explicit constants `A₁ = 15`, `A₃ = 73`. Entry 130's budget accepts `A₁ ≤ 100`, `A₃ ≤ 1000`, so these clear it with room; the widening from radius `3/2` to `7/4` cost roughly a factor of two in `A₁` and is paid out of that budget.
 

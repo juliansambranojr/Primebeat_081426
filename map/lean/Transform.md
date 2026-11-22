@@ -13,34 +13,34 @@ Transform — block G's geometry: the strip, the annulus, and what closes it. `p
 
 ```mermaid
 flowchart LR
-  n0["<b>norm_zmap</b><br/>‖(b : ℂ) ^ (-s)‖ = b ^ (-s.re)"]:::thm
-  n1["<b>norm_zmap_critical</b><br/>‖(b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ = b ^ (-(1:ℝ)/2)"]:::end_
-  n2["<b>zmap_shift</b><br/>(b : ℂ) ^ (-(s + 1)) = (b : ℂ) ^ (-s) / (b : ℂ)"]:::lone
-  n3["<b>zmap_period</b><br/>(b : ℂ) ^ (-(s + 2 * Real.pi * I / Real.log b)) = (b : ℂ) ^ (-s)"]:::thm
-  n4["<b>zmap_functional_equation</b><br/>(b : ℂ) ^ (-((1 : ℂ) - s)) = (b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-…"]:::lone
-  n5["<b>annulus_modulus</b><br/>Real.log (b ^ (-(1:ℝ)/2) / b ^ (-(1:ℝ))) / (2 * Real.pi) = Real.…"]:::lone
-  n6["<b>zmap_period_tau</b><br/>(b : ℂ) ^ (-(s + (tau b : ℂ) * I)) = (b : ℂ) ^ (-s)"]:::end_
-  n7["<b>tau_pow</b><br/>tau (b ^ n) = tau b / n"]:::end_
-  n8["<b>tau_ratio_of_meet</b><br/>tau b / tau c = n / m"]:::end_
-  n9["<b>one_mem_periodLattice</b><br/>(1 : ℂ) ∈ periodLattice b"]:::thm
-  n10["<b>tauI_mem_periodLattice</b><br/>((tau b : ℂ) * I) ∈ periodLattice b"]:::thm
-  n11["<b>tau_pos</b><br/>0 ＜ tau b"]:::thm
-  n12["<b>generators_indep</b><br/>a = 0 ∧ c = 0"]:::end_
-  n13["<b>gens_linearIndependent</b><br/>LinearIndependent ℝ (gens b)"]:::thm
-  n14["<b>periodLattice_eq_span</b><br/>periodLattice b = (Submodule.span ℤ (Set.range (latticeBasis hb)…"]:::thm
-  n15["<b>periodLattice_discrete</b><br/>DiscreteTopology (periodLattice b)"]:::end_
-  n16["<b>torus_shift</b><br/>((s + 1 : ℂ) : Torus b) = (s : Torus b)"]:::end_
-  n17["<b>torus_period</b><br/>((s + (tau b : ℂ) * I : ℂ) : Torus b) = (s : Torus b)"]:::end_
-  n18["<b>zmap_period_zsmul</b><br/>(b : ℂ) ^ (-(s + (n : ℂ) * ((tau b : ℂ) * I))) = (b : ℂ) ^ (-s)"]:::end_
-  n19["<b>zmap_shift_modulus</b><br/>‖(b : ℂ) ^ (-(s + n))‖ = ‖(b : ℂ) ^ (-s)‖ / b ^ n"]:::lone
-  n20["<b>inversion_fixes_circle</b><br/>‖(b : ℂ) ^ (-(1 : ℂ)) / z‖ = ‖z‖ ↔ ‖z‖ = b ^ (-(1 : ℝ) / 2)"]:::thm
-  n21["<b>rpow_left_inj</b><br/>b ^ x = b ^ y ↔ x = y"]:::thm
-  n22["<b>zmap_ne_zero</b><br/>(b : ℂ) ^ (-s) ≠ 0"]:::thm
-  n23["<b>on_critical_line_iff_norm</b><br/>s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2)"]:::thm
-  n24["<b>on_critical_line_iff_inversion_fixed</b><br/>s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s)‖ = ‖(b : ℂ…"]:::thm
-  n25["<b>riemannHypothesis_iff_zeros_inversion_fixed</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::end_
-  n26["<b>norm_zmap_zero_line</b><br/>‖(b : ℂ) ^ (-s)‖ = 1"]:::thm
-  n27["<b>strip_is_fundamental_domain</b><br/>‖(b : ℂ) ^ (-s)‖ = 1 ∧ (s + 1).re = 1 ∧ ‖(b : ℂ) ^ (-(s + 1))‖ =…"]:::end_
+  n0["<b>norm_zmap</b><br/>‖(b : ℂ) ^ (-s)‖ = b ^ (-s.re)"]:::shp
+  n1["<b>norm_zmap_critical ■</b><br/>‖(b : ℂ) ^ (-((1 : ℂ)/2 + γ * I))‖ = b ^ (-(1:ℝ)/2)"]:::shp
+  n2["<b>zmap_shift ■</b><br/>(b : ℂ) ^ (-(s + 1)) = (b : ℂ) ^ (-s) / (b : ℂ)"]:::shp
+  n3["<b>zmap_period</b><br/>(b : ℂ) ^ (-(s + 2 * Real.pi * I / Real.log b)) = (b : ℂ) ^ (-s)"]:::shp
+  n4["<b>zmap_functional_equation ■</b><br/>(b : ℂ) ^ (-((1 : ℂ) - s)) = (b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-…"]:::shp
+  n5["<b>annulus_modulus ■</b><br/>Real.log (b ^ (-(1:ℝ)/2) / b ^ (-(1:ℝ))) / (2 * Real.pi) = Real.…"]:::shp
+  n6["<b>zmap_period_tau ■</b><br/>(b : ℂ) ^ (-(s + (tau b : ℂ) * I)) = (b : ℂ) ^ (-s)"]:::shp
+  n7["<b>tau_pow ■</b><br/>tau (b ^ n) = tau b / n"]:::shp
+  n8["<b>tau_ratio_of_meet ■</b><br/>tau b / tau c = n / m"]:::shp
+  n9["<b>one_mem_periodLattice</b><br/>(1 : ℂ) ∈ periodLattice b"]:::shp
+  n10["<b>tauI_mem_periodLattice</b><br/>((tau b : ℂ) * I) ∈ periodLattice b"]:::shp
+  n11["<b>tau_pos</b><br/>0 ＜ tau b"]:::shp
+  n12["<b>generators_indep ■</b><br/>a = 0 ∧ c = 0"]:::shp
+  n13["<b>gens_linearIndependent</b><br/>LinearIndependent ℝ (gens b)"]:::shp
+  n14["<b>periodLattice_eq_span</b><br/>periodLattice b = (Submodule.span ℤ (Set.range (latticeBasis hb)…"]:::shp
+  n15["<b>periodLattice_discrete ■</b><br/>DiscreteTopology (periodLattice b)"]:::shp
+  n16["<b>torus_shift ■</b><br/>((s + 1 : ℂ) : Torus b) = (s : Torus b)"]:::shp
+  n17["<b>torus_period ■</b><br/>((s + (tau b : ℂ) * I : ℂ) : Torus b) = (s : Torus b)"]:::shp
+  n18["<b>zmap_period_zsmul ■</b><br/>(b : ℂ) ^ (-(s + (n : ℂ) * ((tau b : ℂ) * I))) = (b : ℂ) ^ (-s)"]:::shp
+  n19["<b>zmap_shift_modulus ■</b><br/>‖(b : ℂ) ^ (-(s + n))‖ = ‖(b : ℂ) ^ (-s)‖ / b ^ n"]:::shp
+  n20["<b>inversion_fixes_circle</b><br/>‖(b : ℂ) ^ (-(1 : ℂ)) / z‖ = ‖z‖ ↔ ‖z‖ = b ^ (-(1 : ℝ) / 2)"]:::shp
+  n21["<b>rpow_left_inj</b><br/>b ^ x = b ^ y ↔ x = y"]:::shp
+  n22["<b>zmap_ne_zero</b><br/>(b : ℂ) ^ (-s) ≠ 0"]:::shp
+  n23["<b>on_critical_line_iff_norm</b><br/>s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2)"]:::shp
+  n24["<b>on_critical_line_iff_inversion_fixed</b><br/>s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s)‖ = ‖(b : ℂ…"]:::shp
+  n25["<b>riemannHypothesis_iff_zeros_inversion_fixed ■</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::thm
+  n26["<b>norm_zmap_zero_line</b><br/>‖(b : ℂ) ^ (-s)‖ = 1"]:::shp
+  n27["<b>strip_is_fundamental_domain ■</b><br/>‖(b : ℂ) ^ (-s)‖ = 1 ∧ (s + 1).re = 1 ∧ ‖(b : ℂ) ^ (-(s + 1))‖ =…"]:::shp
   n28["<b>zeros_re_lt_one</b><br/>s.re ＜ 1"]:::thm
   n29["<b>zeros_outside_inner_circle</b><br/>b ^ (-(1 : ℝ)) ＜ ‖(b : ℂ) ^ (-s)‖"]:::thm
   x0(["<b>diagram 2</b><br/>5 theorems"]):::ext
@@ -68,6 +68,9 @@ flowchart LR
   n21 -.-> x0
   n23 -.-> x0
   n29 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -80,14 +83,14 @@ flowchart LR
 ```mermaid
 flowchart LR
   n0["<b>zeros_re_pos</b><br/>0 ＜ s.re"]:::thm
-  n1["<b>zeros_in_fundamental_annulus</b><br/>b ^ (-(1 : ℝ)) ＜ ‖(b : ℂ) ^ (-s)‖ ∧ ‖(b : ℂ) ^ (-s)‖ ＜ 1"]:::end_
-  n2["<b>riemannHypothesis_iff_zeros_on_middle_circle</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::end_
-  n3["<b>zmap_pair_product</b><br/>‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ))"]:::thm
-  n4["<b>pair_collapses_iff_critical</b><br/>‖(b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-(1 - s))‖ ↔ s.re = 1 / 2"]:::thm
-  n5["<b>riemannHypothesis_iff_pair_collapses</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::end_
-  n6["<b>sym_zero_on_outer_circle</b><br/>‖(b : ℂ) ^ (-s)‖ = 1"]:::thm
-  n7["<b>sym_zero_partner_on_inner_circle</b><br/>‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ))"]:::end_
-  n8["<b>critical_circle_is_lattice_inversion_mean</b><br/>‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = (b ^ (-(1 : ℝ) / 2))…"]:::end_
+  n1["<b>zeros_in_fundamental_annulus ■</b><br/>b ^ (-(1 : ℝ)) ＜ ‖(b : ℂ) ^ (-s)‖ ∧ ‖(b : ℂ) ^ (-s)‖ ＜ 1"]:::thm
+  n2["<b>riemannHypothesis_iff_zeros_on_middle_circle ■</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::thm
+  n3["<b>zmap_pair_product</b><br/>‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ))"]:::shp
+  n4["<b>pair_collapses_iff_critical</b><br/>‖(b : ℂ) ^ (-s)‖ = ‖(b : ℂ) ^ (-(1 - s))‖ ↔ s.re = 1 / 2"]:::shp
+  n5["<b>riemannHypothesis_iff_pair_collapses ■</b><br/>RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s …"]:::thm
+  n6["<b>sym_zero_on_outer_circle</b><br/>‖(b : ℂ) ^ (-s)‖ = 1"]:::shp
+  n7["<b>sym_zero_partner_on_inner_circle ■</b><br/>‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ))"]:::shp
+  n8["<b>critical_circle_is_lattice_inversion_mean ■</b><br/>‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = (b ^ (-(1 : ℝ) / 2))…"]:::shp
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
   x1(["<b>Chain</b><br/>sym_eq_zero_iff"]):::ext
   n0 --> n1
@@ -101,6 +104,9 @@ flowchart LR
   x0 -.-> n4
   x0 -.-> n6
   x1 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -108,7 +114,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -184,6 +190,8 @@ The lattice basis. `⟨1, τ(b)·i⟩` is an ℝ-basis of ℂ, so the subgroup i
 
 line 48
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The map. `z = b^(−s)` sends the vertical line `Re s = σ` to the circle `|z| = b^(−σ)`.
 
 **Proves**
@@ -217,6 +225,8 @@ line 48
 
 line 54
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The critical line lands on the circle of radius `b^(−1/2)`.
 
 **Proves**
@@ -241,6 +251,8 @@ line 54
 
 line 61
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The deck transformation. `s ↦ s + 1` becomes `z ↦ z / b`. This is the identification that closes the annulus into a torus: `ℂ* / b^ℤ`.
 
 **Proves**
@@ -262,6 +274,8 @@ line 61
 ### `Transform.zmap_period`
 
 line 69
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The other generator. `s ↦ s + 2πi/log b` leaves `z` fixed — that is the pole lattice, and it is why the strip maps to an annulus rather than a plane.
 
@@ -288,6 +302,8 @@ line 69
 
 line 83
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The functional equation, in `z`. `s ↦ 1 − s` becomes `z ↦ b^(−1)/z`, inversion in the circle `|z| = b^(−1/2)` — which is the critical line.
 
 **Proves**
@@ -310,6 +326,8 @@ line 83
 
 line 91
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** G7's modulus. The annulus between the two radii has conformal modulus `(log b)/4π`. Its ratio is `√b`, so it is half a fundamental domain of `ℂ* / b^ℤ`, whose modulus is `(log b)/2π`.
 
 **Proves**
@@ -330,6 +348,8 @@ Real.log (b ^ (-(1:ℝ)/2) / b ^ (-(1:ℝ))) / (2 * Real.pi) = Real.log b / (4 *
 ### `Transform.zmap_period_tau`
 
 line 127
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `τ` is exactly the period `zmap_period` uses.
 
@@ -358,6 +378,8 @@ line 127
 
 line 140
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The power chain. `τ(b^n) = τ(b)/n`. This is why `{2,4,8}` is one family: `τ₄ = τ₂/2` and `τ₈ = τ₂/3`.
 
 **Proves**
@@ -382,6 +404,8 @@ tau (b ^ n) = tau b / n
 ### `Transform.tau_ratio_of_meet`
 
 line 150
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Meeting ladders have rationally related `τ`, and the ratio is the meeting exponents. If `b^n = c^m` then `τ(b)/τ(c) = n/m`. `Zeros.primeFactors_eq_of_meets` records the arithmetic side: ladders meet only inside a prime-power chain.
 
@@ -408,6 +432,8 @@ tau b / tau c = n / m
 ### `Transform.one_mem_periodLattice`
 
 line 199
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The deck generator `1` is in the lattice.
 
@@ -436,6 +462,8 @@ line 199
 
 line 203
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The period generator `τ(b)·i` is in the lattice.
 
 **Proves**
@@ -460,6 +488,8 @@ line 203
 ### `Transform.tau_pos`
 
 line 207
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `τ(b) > 0` for `b > 1`, which is what makes the second generator nonzero.
 
@@ -487,6 +517,8 @@ line 207
 
 line 215
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The lattice has rank 2. The two generators are ℝ-linearly independent: one is real, the other purely imaginary and nonzero. This is what separates a torus from a cylinder, and it is the only place `b > 1` is needed.
 
 **Proves**
@@ -513,6 +545,8 @@ a = 0 ∧ c = 0
 ### `Transform.gens_linearIndependent`
 
 line 229
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `generators_indep` in the form Mathlib's basis constructor wants.
 
@@ -544,6 +578,8 @@ LinearIndependent ℝ (gens b)
 
 line 249
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The additive closure of the two generators is the ℤ-span of the basis — the bridge from `AddSubgroup.closure` to the `ZLattice` instance that `periodLattice_discrete` consumes.
 
 **Proves**
@@ -573,6 +609,8 @@ periodLattice b = (Submodule.span ℤ (Set.range (latticeBasis hb))).toAddSubgro
 
 line 262
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The lattice is discrete. This is what upgrades `ℂ ⧸ periodLattice b` from a quotient by a subgroup to a torus: a rank-2 ℤ-span of an ℝ-basis carries the discrete topology, so the quotient is Hausdorff and the fibres are isolated. The docstring above this section claimed this was left unproved; it is proved here.
 
 **Proves**
@@ -600,6 +638,8 @@ DiscreteTopology (periodLattice b)
 
 line 268
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The deck transformation is an identity in the torus.
 
 **Proves**
@@ -625,6 +665,8 @@ line 268
 ### `Transform.torus_period`
 
 line 274
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The period is an identity in the torus.
 
@@ -652,6 +694,8 @@ line 274
 
 line 281
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The `z`-map descends past the whole pole lattice, not just one period. `zmap_period` is the `n = 1` case.
 
 **Proves**
@@ -678,6 +722,8 @@ line 281
 
 line 297
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The deck transformation scales the modulus by `b^(−n)`. This is the `b^ℤ` in `ℂ*/b^ℤ`: at `b = 2` it identifies `|z| = … 0.5 ~ 1 ~ 2 ~ 4 …`, so every 2:1 annulus is a fundamental domain.
 
 **Proves**
@@ -700,6 +746,8 @@ line 297
 ### `Transform.inversion_fixes_circle`
 
 line 311
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The functional equation is inversion in the critical circle, as a theorem. `z ↦ b^(−1)/z` preserves modulus exactly on `|z| = b^(−1/2)` — the image of the critical line. The geometric reading in `zmap_functional_equation` was a docstring until here.
 
@@ -724,6 +772,8 @@ line 311
 ### `Transform.rpow_left_inj`
 
 line 349
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** For `b > 1` the real power is injective in the exponent.
 
@@ -750,6 +800,8 @@ b ^ x = b ^ y ↔ x = y
 
 line 360
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The image of `s` under the `z`-map is never zero.
 
 **Proves**
@@ -775,6 +827,8 @@ line 360
 ### `Transform.on_critical_line_iff_norm`
 
 line 367
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The critical line is exactly the fixed circle. `Re s = 1/2` iff the image `b^(−s)` lands on `|z| = b^(−1/2)`.
 
@@ -804,6 +858,8 @@ s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2)
 
 line 375
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** RH's condition, as a fixed point of the inversion. `Re s = 1/2` iff `b^(−s)` is fixed in modulus by `z ↦ b^(−1)/z`, which `zmap_functional_equation` identifies as `s ↦ 1 − s`.
 
 **Proves**
@@ -832,6 +888,8 @@ s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s)‖ = ‖(b : ℂ
 
 line 387
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The Riemann hypothesis, restated on the torus. Mathlib's `RiemannHypothesis` holds exactly when every nontrivial zero of `ζ` is carried by `z = b^(−s)` to a fixed point of the inversion `z ↦ b^(−1)/z`.
 
 **Proves**
@@ -854,6 +912,8 @@ RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -
 ### `Transform.norm_zmap_zero_line`
 
 line 415
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `Re s = 0` lands on the unit circle.
 
@@ -881,6 +941,8 @@ line 415
 
 line 423
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The critical strip is one fundamental domain of `ℂ*/b^ℤ`. Its left edge maps to `|z| = 1`, its right edge to `|z| = b^(−1)`, and the two are a single deck step apart — `s ↦ s + 1`, which `zmap_shift` sends to `z ↦ z/b`.
 
 **Proves**
@@ -906,6 +968,8 @@ line 423
 
 line 434
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Every zero of ζ has `Re s < 1`, from Mathlib's non-vanishing on the closed half-plane `1 ≤ Re s`.
 
 **Proves**
@@ -928,6 +992,8 @@ s.re < 1
 ### `Transform.zeros_outside_inner_circle`
 
 line 441
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Every zero lies strictly outside the inner circle. `Re s < 1` becomes `|z| > b^(−1)` — the zeros are inside the fundamental annulus, on the far side of the boundary the Euler product owns.
 
@@ -956,6 +1022,8 @@ b ^ (-(1 : ℝ)) < ‖(b : ℂ) ^ (-s)‖
 
 line 452
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Every nontrivial zero has `0 < Re s`. The functional equation reflects Mathlib's non-vanishing on `1 ≤ Re s` across to the left edge: at a zero with `Re s ≤ 0` every factor of `riemannZeta_one_sub` is nonzero except the cosine, and the cosine's zeros are exactly the trivial zeros together with `s = 0`, where `ζ(0) = −1/2`.
 
 **Proves**
@@ -979,6 +1047,8 @@ line 452
 ### `Transform.zeros_in_fundamental_annulus`
 
 line 514
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Every nontrivial zero lies in the open fundamental annulus. `b^(−1) < |z| < 1` — and `strip_is_fundamental_domain` says that annulus is exactly one fundamental domain of `ℂ*/b^ℤ`. So the zeros of ζ sit inside a single copy of the torus, for every base at once.
 
@@ -1007,6 +1077,8 @@ b ^ (-(1 : ℝ)) < ‖(b : ℂ) ^ (-s)‖ ∧ ‖(b : ℂ) ^ (-s)‖ < 1
 
 line 529
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** RH, as a statement about one annulus. Every nontrivial zero lies in the fundamental annulus `b^(−1) < |z| < 1`; RH says every one of them lies on its middle circle `|z| = b^(−1/2)`, which `inversion_fixes_circle` identifies as the fixed set of `z ↦ b^(−1)/z`. The middle circle is the geometric mean of the two boundaries, and the inversion swaps those boundaries.
 
 **Proves**
@@ -1029,6 +1101,8 @@ RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -
 ### `Transform.zmap_pair_product`
 
 line 558
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The pair identity. `‖z_s‖ · ‖z_{1−s}‖ = b^(−1)` for every `s`, so the geometric mean of a point and its inversion partner is always `b^(−1/2)`.
 
@@ -1057,6 +1131,8 @@ line 558
 
 line 567
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The pair collapses exactly on the critical line. `‖z_s‖ = ‖z_{1−s}‖` iff `Re s = 1/2` — the two are equal only at the geometric mean their product pins.
 
 **Proves**
@@ -1084,6 +1160,8 @@ line 567
 
 line 577
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** RH: the pair collapses at every zero. Mathlib's `RiemannHypothesis` holds exactly when each nontrivial zero has the same modulus as its inversion partner. Since `zmap_pair_product` pins their geometric mean at `b^(−1/2)` unconditionally, collapsing and landing on the middle circle are one event.
 
 **Proves**
@@ -1106,6 +1184,8 @@ RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -
 ### `Transform.sym_zero_on_outer_circle`
 
 line 602
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** A zero of the table's symbol lands on `|z| = 1`.
 
@@ -1137,6 +1217,8 @@ line 602
 
 line 613
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Its inversion partner lands on `|z| = b^(−1)`.
 
 **Proves**
@@ -1164,6 +1246,8 @@ line 613
 ### `Transform.critical_circle_is_lattice_inversion_mean`
 
 line 623
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The table's lattice, inverted, gives the critical circle. The zero comes from the table; the inversion puts it and its partner at `|z| = 1` and `|z| = b^(−1)`; their geometric mean is `b^(−1/2)`, which `on_critical_line_iff_norm` reads as `Re s = 1/2`.
 

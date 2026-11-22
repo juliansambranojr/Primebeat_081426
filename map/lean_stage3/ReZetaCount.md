@@ -18,7 +18,7 @@ flowchart LR
   n4["<b>G_real</b><br/>G T (x : ℂ) = ((2 * (riemannZeta (2 * (x : ℂ) + 2 + Complex.I * …"]:::thm
   n5["<b>G_zero_ne</b><br/>G T 0 ≠ 0"]:::thm
   n6["<b>F_zero_eq_one</b><br/>F T 0 = 1"]:::thm
-  n7["<b>arg_ne_one</b><br/>2 * z + 2 + Complex.I * (T : ℂ) ≠ 1 ∧ 2 * z + 2 - Complex.I * (T…"]:::thm
+  n7["<b>arg_ne_one</b><br/>2 * z + 2 + Complex.I * (T : ℂ) ≠ 1 ∧ 2 * z + 2 - Complex.I * (T…"]:::shp
   n8["<b>F_analytic</b><br/>AnalyticOnNhd ℂ (F T) (Metric.closedBall (0 : ℂ) 1)"]:::thm
   n9["<b>F_bound</b><br/>‖F T z‖ ≤ 80 * T"]:::thm
   n10["<b>F_zeros_finite</b><br/>(SetOfZeros 1 (F T)).Finite"]:::thm
@@ -55,6 +55,9 @@ flowchart LR
   n14 -.-> x0
   n2 -.-> x0
   x1 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -62,7 +65,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -115,6 +118,8 @@ The zeros of `Re ζ` on the segment, as a `Finset`.
 
 line 91
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The Dirichlet tail on `Re s = 2`. `‖ζ(s) − 1‖ ≤ π²/6 − 1 < 1`.
 
 **Proves**
@@ -137,6 +142,8 @@ line 91
 ### `ReZetaCount.re_zeta_two_line_ge`
 
 line 155
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The vertical leg's sign, quantitative. `Re ζ(2+it) ≥ 2 − π²/6`.
 
@@ -164,6 +171,8 @@ line 155
 
 line 166
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** T3, discharged. `Re ζ(2+it) > 0`.
 
 **Proves**
@@ -190,6 +199,8 @@ line 166
 
 line 171
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `G_T(0) = 2 Re ζ(2+iT)`, a real number.
 
 **Proves**
@@ -215,6 +226,8 @@ G T 0 = ((2 * (riemannZeta (2 + Complex.I * (T : ℂ))).re : ℝ) : ℂ)
 ### `ReZetaCount.G_real`
 
 line 178
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** On the real axis `G_T` is real: `G_T(x) = 2 Re ζ(2x+2+iT)`.
 
@@ -243,6 +256,8 @@ G T (x : ℂ) = ((2 * (riemannZeta (2 * (x : ℂ) + 2 + Complex.I * (T : ℂ))).
 
 line 186
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The centre value is nonzero, so the normalisation is legitimate.
 
 **Proves**
@@ -270,6 +285,8 @@ G T 0 ≠ 0
 ### `ReZetaCount.F_zero_eq_one`
 
 line 193
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -300,6 +317,8 @@ F T 0 = 1
 
 line 196
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The pole stays off both arguments.
 
 **Proves**
@@ -324,6 +343,8 @@ line 196
 ### `ReZetaCount.F_analytic`
 
 line 214
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -352,6 +373,8 @@ AnalyticOnNhd ℂ (F T) (Metric.closedBall (0 : ℂ) 1)
 ### `ReZetaCount.F_bound`
 
 line 233
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The disk bound. `‖F_T‖ ≤ 80T` on the `15/16` disk.
 
@@ -385,6 +408,8 @@ line 233
 
 line 274
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Finitely many zeros in the closed unit disk: the template of `Stage3.zetaWindowTwo_finite`.
 
 **Proves**
@@ -417,6 +442,8 @@ line 274
 
 line 312
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The Jensen count. The total order of the zeros of `F_T` in the `7/8` disk is at most `15 log T + 73`, the arithmetic of `Stage3.zeta_local_zero_count` run from `log(80T)` in place of `log(84T)`.
 
 **Proves**
@@ -445,6 +472,8 @@ line 312
 ### `ReZetaCount.reZeroSet_finite`
 
 line 350
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The zeros of `Re ζ` on the segment inject into the `7/8` zero set of `F_T`.
 
@@ -477,6 +506,8 @@ line 350
 
 line 380
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -504,6 +535,8 @@ x ∈ reZeros hT ↔ x ∈ Set.Ioo (1/2 : ℝ) 2 ∧ (riemannZeta ((x : ℂ) + T
 ### `ReZetaCount.card_reZeros_le`
 
 line 386
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Z2, with its bound. `q(T) ≤ 15 log T + 73`.
 

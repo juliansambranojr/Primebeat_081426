@@ -11,14 +11,14 @@ AliasClass — block J10a of `lean_stage3/design/joints.md`. 2026-11-22. Joint 1
 
 ```mermaid
 flowchart LR
-  n0["<b>re_inv_pos</b><br/>0 ＜ (ρ⁻¹).re"]:::thm
+  n0["<b>re_inv_pos</b><br/>0 ＜ (ρ⁻¹).re"]:::shp
   n1["<b>zero_re_pos</b><br/>0 ＜ (ρ : ℂ).re"]:::thm
   n2["<b>re_order_div_pos</b><br/>0 ＜ ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re"]:::thm
   n3["<b>sum_order_div_ne_zero</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) ≠ 0"]:::thm
-  n4["<b>sym_eq_of_alias</b><br/>Chain.Sym 2 ρ = Chain.Sym 2 ρ'"]:::end_
-  n5["<b>mode_eq_of_alias</b><br/>Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ)"]:::end_
+  n4["<b>sym_eq_of_alias ■</b><br/>Chain.Sym 2 ρ = Chain.Sym 2 ρ'"]:::shp
+  n5["<b>mode_eq_of_alias ■</b><br/>Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ)"]:::shp
   n6["<b>alias_weight</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Cha…"]:::thm
-  n7["<b>alias_weight_ne_zero</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Cha…"]:::end_
+  n7["<b>alias_weight_ne_zero ■</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Cha…"]:::thm
   x0(["<b>LadderFading</b><br/>line_not_fading"]):::ext
   x1(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
   x2(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
@@ -36,6 +36,9 @@ flowchart LR
   x2 -.-> n4
   x2 -.-> n5
   x2 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -43,7 +46,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -51,6 +54,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `AliasClass.re_inv_pos`
 
 line 36
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The reciprocal of a point right of the imaginary axis is right of it too.
 
@@ -74,6 +79,8 @@ line 36
 ### `AliasClass.zero_re_pos`
 
 line 42
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A nontrivial zero of ζ has positive real part.
 
@@ -100,6 +107,8 @@ line 42
 ### `AliasClass.re_order_div_pos`
 
 line 45
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The coefficient a zero carries in the cell, `m(ρ)/ρ`, has positive real part.
 
@@ -128,6 +137,8 @@ line 45
 
 line 59
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** No set of zeros cancels. The coefficients `m(ρ)/ρ` of a nonempty finite set of zeros never add to zero: each has positive real part.
 
 **Proves**
@@ -155,6 +166,8 @@ line 59
 
 line 69
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Zeros the ladder folds together have the same symbol.
 
 **Proves**
@@ -179,6 +192,8 @@ Chain.Sym 2 ρ = Chain.Sym 2 ρ'
 ### `AliasClass.mode_eq_of_alias`
 
 line 74
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Zeros the ladder folds together have the same mode at every row.
 
@@ -205,6 +220,8 @@ Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ)
 ### `AliasClass.alias_weight`
 
 line 81
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A folded class is one mode. Zeros sharing `2^ρ = z` contribute to the cell `(r, d)` their coefficients added, times the symbol at `z` to the depth, times `z^r`.
 
@@ -237,6 +254,8 @@ line 81
 ### `AliasClass.alias_weight_ne_zero`
 
 line 93
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Folding loses no zero. The mode a folded class contributes has weight not zero, at every depth and every row.
 

@@ -1,25 +1,25 @@
 flowchart LR
-  n0["<b>summable_hterm</b><br/>Summable hterm"]:::thm
-  n1["<b>summable_shift</b><br/>Summable (fun k : ℕ =＞ hterm (k + (m + 1)))"]:::thm
-  n2["<b>sigmaN_eq</b><br/>sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / (…"]:::thm
-  n3["<b>sigmaN_tendsto</b><br/>Tendsto (fun n =＞ sigmaN m n) atTop (𝓝 (sigma m))"]:::thm
-  n4["<b>sigma_le</b><br/>sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1))"]:::end_
-  n5["<b>sigma_ge</b><br/>1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m"]:::thm
-  n6["<b>g_eq</b><br/>g w j = 1 + x w j"]:::thm
-  n7["<b>x_eq_mul</b><br/>x w j = w ^ 2 * ((hterm j : ℝ) : ℂ)"]:::thm
-  n8["<b>g_ne_zero</b><br/>g w j ≠ 0"]:::thm
-  n9["<b>T_eq_exp</b><br/>T m w n = Complex.exp (∑ j ∈ Finset.Ico (m + 1) n, Complex.log (…"]:::thm
-  n10["<b>norm_log_sub_le</b><br/>‖Complex.log (g w j) - x w j‖ ≤ ‖x w j‖ ^ 2"]:::thm
-  n11["<b>q_nonneg</b><br/>0 ≤ q m w"]:::thm
-  n12["<b>norm_delta_le</b><br/>‖delta m w n‖ ≤ q m w"]:::thm
-  n13["<b>T_eq_mul</b><br/>T m w n = Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ)) * Complex…"]:::thm
-  n14["<b>norm_exp_delta_sub_one_le</b><br/>‖Complex.exp (delta m w n) - 1‖ ≤ 2 * q m w"]:::thm
-  n15["<b>P_tendsto</b><br/>Tendsto (fun n =＞ Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) …"]:::thm
-  n16["<b>norm_S_sub_le</b><br/>‖S m w - ((cS m / D m : ℝ) : ℂ) * w * P m w‖ ≤ 2 * q m w * ‖((cS…"]:::thm
-  n17["<b>norm_A_sq</b><br/>‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2 = (cS m / D m) ^ 2 * ‖w…"]:::thm
-  n18["<b>re_A_sq</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re = (cS m / D m) ^ 2…"]:::thm
-  n19["<b>re_sq_ge</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re - ‖((cS m / D m : …"]:::thm
-  n20["<b>re_S_sq_ge</b><br/>(cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) * ((w ^ 2…"]:::thm
+  n0["<b>summable_hterm</b><br/>Summable hterm"]:::shp
+  n1["<b>summable_shift</b><br/>Summable (fun k : ℕ =＞ hterm (k + (m + 1)))"]:::shp
+  n2["<b>sigmaN_eq</b><br/>sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / (…"]:::shp
+  n3["<b>sigmaN_tendsto</b><br/>Tendsto (fun n =＞ sigmaN m n) atTop (𝓝 (sigma m))"]:::shp
+  n4["<b>sigma_le ■</b><br/>sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1))"]:::shp
+  n5["<b>sigma_ge</b><br/>1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m"]:::shp
+  n6["<b>g_eq</b><br/>g w j = 1 + x w j"]:::shp
+  n7["<b>x_eq_mul</b><br/>x w j = w ^ 2 * ((hterm j : ℝ) : ℂ)"]:::shp
+  n8["<b>g_ne_zero</b><br/>g w j ≠ 0"]:::shp
+  n9["<b>T_eq_exp</b><br/>T m w n = Complex.exp (∑ j ∈ Finset.Ico (m + 1) n, Complex.log (…"]:::shp
+  n10["<b>norm_log_sub_le</b><br/>‖Complex.log (g w j) - x w j‖ ≤ ‖x w j‖ ^ 2"]:::shp
+  n11["<b>q_nonneg</b><br/>0 ≤ q m w"]:::shp
+  n12["<b>norm_delta_le</b><br/>‖delta m w n‖ ≤ q m w"]:::shp
+  n13["<b>T_eq_mul</b><br/>T m w n = Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ)) * Complex…"]:::shp
+  n14["<b>norm_exp_delta_sub_one_le</b><br/>‖Complex.exp (delta m w n) - 1‖ ≤ 2 * q m w"]:::shp
+  n15["<b>P_tendsto</b><br/>Tendsto (fun n =＞ Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) …"]:::shp
+  n16["<b>norm_S_sub_le</b><br/>‖S m w - ((cS m / D m : ℝ) : ℂ) * w * P m w‖ ≤ 2 * q m w * ‖((cS…"]:::shp
+  n17["<b>norm_A_sq</b><br/>‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2 = (cS m / D m) ^ 2 * ‖w…"]:::shp
+  n18["<b>re_A_sq</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re = (cS m / D m) ^ 2…"]:::shp
+  n19["<b>re_sq_ge</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re - ‖((cS m / D m : …"]:::shp
+  n20["<b>re_S_sq_ge</b><br/>(cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) * ((w ^ 2…"]:::shp
   x0(["<b>WeilPowerSigma</b><br/>sigma_ge_amgm<br/>sigma_le_half"]):::ext
   x1(["<b>WeilPowerTail</b><br/>norm_S_le_tail<br/>norm_g_le"]):::ext
   x2(["<b>WeilPowerGauss</b><br/>6 theorems"]):::ext
@@ -62,6 +62,9 @@ flowchart LR
   x2 -.-> n4
   x2 -.-> n8
   x3 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

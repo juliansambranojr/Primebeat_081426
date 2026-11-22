@@ -11,27 +11,27 @@ WeilPowerBands — the on-line background of the switched window over the upper 
 
 ```mermaid
 flowchart LR
-  n0["<b>termW_nonneg</b><br/>0 ≤ termW h γ m ρ"]:::thm
+  n0["<b>termW_nonneg</b><br/>0 ≤ termW h γ m ρ"]:::shp
   n1["<b>weightedTermW_nonneg</b><br/>0 ≤ weightedTermW h γ m ρ"]:::thm
   n2["<b>band_sum_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ M * (15 * Real.log T + 73)"]:::thm
   n3["<b>sum_by_bands</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.N…"]:::thm
   n4["<b>sum_le_bandSeries</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑' k : ℕ, M k * (15 * Real.log …"]:::thm
   n5["<b>tsum_upper_le</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ ∑' k : ℕ, M k * (15 * Re…"]:::thm
-  n6["<b>one_le_r</b><br/>1 ≤ r h m"]:::thm
-  n7["<b>cFarM_nonneg</b><br/>0 ≤ cFarM m"]:::thm
-  n8["<b>factorial_odd_le</b><br/>(((2 * m + 1).factorial : ℕ) : ℝ) ≤ 2 * 4 ^ m * ((m : ℝ) + 1) ^ …"]:::thm
-  n9["<b>cS_le</b><br/>cS m ≤ 4 * Real.pi ^ (2 * m + 1) * ((m : ℝ) + 1) ^ (2 * m + 1)"]:::thm
-  n10["<b>cFarM_le</b><br/>cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2"]:::end_
-  n11["<b>M_nonneg</b><br/>0 ≤ M h γ m k"]:::thm
+  n6["<b>one_le_r</b><br/>1 ≤ r h m"]:::shp
+  n7["<b>cFarM_nonneg</b><br/>0 ≤ cFarM m"]:::shp
+  n8["<b>factorial_odd_le</b><br/>(((2 * m + 1).factorial : ℕ) : ℝ) ≤ 2 * 4 ^ m * ((m : ℝ) + 1) ^ …"]:::shp
+  n9["<b>cS_le</b><br/>cS m ≤ 4 * Real.pi ^ (2 * m + 1) * ((m : ℝ) + 1) ^ (2 * m + 1)"]:::shp
+  n10["<b>cFarM_le ■</b><br/>cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2"]:::shp
+  n11["<b>M_nonneg</b><br/>0 ≤ M h γ m k"]:::shp
   n12["<b>term_le_M</b><br/>termW h γ m ρ ≤ M h γ m (idx (ρ : ℂ).im)"]:::thm
-  n13["<b>four_h_add_nonneg</b><br/>0 ≤ 4 * h ^ 2 + cFarM m / h ^ 2"]:::thm
-  n14["<b>A_nonneg</b><br/>0 ≤ A h γ m"]:::thm
-  n15["<b>bandTerm_le_A</b><br/>M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m / ((k : ℝ)…"]:::thm
-  n16["<b>bandSeries_summable</b><br/>Summable (fun k : ℕ =＞ M h γ m k * (15 * Real.log (centre k) + 7…"]:::thm
+  n13["<b>four_h_add_nonneg</b><br/>0 ≤ 4 * h ^ 2 + cFarM m / h ^ 2"]:::shp
+  n14["<b>A_nonneg</b><br/>0 ≤ A h γ m"]:::shp
+  n15["<b>bandTerm_le_A</b><br/>M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m / ((k : ℝ)…"]:::shp
+  n16["<b>bandSeries_summable</b><br/>Summable (fun k : ℕ =＞ M h γ m k * (15 * Real.log (centre k) + 7…"]:::shp
   n17["<b>bandSeries_le</b><br/>∑' k : ℕ, M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m …"]:::thm
   n18["<b>tsum_upper_le_explicit</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ A h γ m * (Real.pi ^ 2 /…"]:::thm
-  n19["<b>A_le</b><br/>A h γ m ≤ 88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ …"]:::thm
-  n20["<b>tsum_upper_le_explicit'</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ 88 * (γ + r h m + 2) ^ 4…"]:::end_
+  n19["<b>A_le</b><br/>A h γ m ≤ 88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ …"]:::shp
+  n20["<b>tsum_upper_le_explicit' ■</b><br/>∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ 88 * (γ + r h m + 2) ^ 4…"]:::thm
   x0(["<b>WeilPowerBackground</b><br/>online_term_le_far<br/>online_term_le_near<br/>online_term_nonneg"]):::ext
   x1(["<b>WeilPowerOnLine</b><br/>4 theorems"]):::ext
   x2(["<b>WeilBands</b><br/>band_count<br/>order_eq_analyticOrderNatAt"]):::ext
@@ -87,6 +87,9 @@ flowchart LR
   x5 -.-> n16
   x5 -.-> n17
   x5 -.-> n19
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -94,7 +97,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -170,6 +173,8 @@ The crude constant, with the wider near band.
 
 line 60
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -197,6 +202,8 @@ line 60
 ### `WeilPowerBands.weightedTermW_nonneg`
 
 line 64
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -231,6 +238,8 @@ line 64
 
 line 71
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Band sum. Unit 0321's, for the switched window.
 
 **Proves**
@@ -263,6 +272,8 @@ line 71
 ### `WeilPowerBands.sum_by_bands`
 
 line 111
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Sum by bands. Unit 0322's.
 
@@ -298,6 +309,8 @@ line 111
 
 line 137
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -330,6 +343,8 @@ line 137
 ### `WeilPowerBands.tsum_upper_le`
 
 line 147
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Upper on-line sum. Unit 0322's.
 
@@ -364,6 +379,8 @@ line 147
 
 line 172
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -390,6 +407,8 @@ line 172
 ### `WeilPowerBands.cFarM_nonneg`
 
 line 177
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -418,6 +437,8 @@ line 177
 
 line 182
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `(2m+1)! ≤ 2·4^m·(m+1)^{2m+1}`.
 
 **Proves**
@@ -440,6 +461,8 @@ line 182
 ### `WeilPowerBands.cS_le`
 
 line 198
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `cS m ≤ 4·π^{2m+1}·(m+1)^{2m+1}`.
 
@@ -468,6 +491,8 @@ cS m ≤ 4 * Real.pi ^ (2 * m + 1) * ((m : ℝ) + 1) ^ (2 * m + 1)
 
 line 209
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The far constant is polynomial in `m`: `cFarM m ≤ 1000·(m+1)²`.
 
 **Proves**
@@ -495,6 +520,8 @@ cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2
 ### `WeilPowerBands.M_nonneg`
 
 line 249
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -525,6 +552,8 @@ line 249
 ### `WeilPowerBands.term_le_M`
 
 line 257
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Domination. Every on-line term of height `≥ 11/10` is at most `M` at its band index.
 
@@ -566,6 +595,8 @@ termW h γ m ρ ≤ M h γ m (idx (ρ : ℂ).im)
 
 line 353
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -593,6 +624,8 @@ line 353
 ### `WeilPowerBands.A_nonneg`
 
 line 358
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -622,6 +655,8 @@ line 358
 ### `WeilPowerBands.bandTerm_le_A`
 
 line 364
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Comparison. Each band term is at most `A/(k+1)³`.
 
@@ -659,6 +694,8 @@ M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m / ((k : ℝ) + 1) ^ 3
 
 line 424
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Summability of the band series.
 
 **Proves**
@@ -694,6 +731,8 @@ Summable (fun k : ℕ => M h γ m k * (15 * Real.log (centre k) + 73))
 
 line 433
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The band series in closed form: at most `A·π²/6`.
 
 **Proves**
@@ -726,6 +765,8 @@ line 433
 ### `WeilPowerBands.tsum_upper_le_explicit`
 
 line 448
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Upper on-line background.
 
@@ -762,6 +803,8 @@ line 448
 
 line 455
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -792,6 +835,8 @@ A h γ m ≤ 88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ 2)
 ### `WeilPowerBands.tsum_upper_le_explicit'`
 
 line 468
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Upper on-line background, in `γ`, `h` and `m` alone: `≤ 88·(γ + r + 2)⁴·(4h² + cFarM m/h²)·π²/6`.
 

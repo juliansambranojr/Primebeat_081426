@@ -11,15 +11,18 @@ WeilPowerClean — the clean shell. Rung 5, eighteenth slice; worksheet § 13 bl
 
 ```mermaid
 flowchart LR
-  n0["<b>blocked_card_le</b><br/>B.card ≤ W + 1"]:::thm
-  n1["<b>exists_unblocked</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::thm
-  n2["<b>exists_clean_shell</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::thm
-  n3["<b>exists_clean_shell_of_count</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::thm
+  n0["<b>blocked_card_le</b><br/>B.card ≤ W + 1"]:::shp
+  n1["<b>exists_unblocked</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::cnt
+  n2["<b>exists_clean_shell</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::shp
+  n3["<b>exists_clean_shell_of_count</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::shp
   x0(["<b>WeilPowerCount</b><br/>exists_clean_shell_of_leaf"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n3
   n3 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -27,7 +30,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -35,6 +38,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `WeilPowerClean.blocked_card_le`
 
 line 62
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** One member's blocked shells sit inside `W + 1` consecutive shells: the shell scale `a * ρ ^ k` climbs by the factor `ρ`, while the window `[lo, hi]` does not move.
 
@@ -63,6 +68,8 @@ B.card ≤ W + 1
 
 line 95
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** More shells than the members can block leaves one shell in no member's blocking set.
 
 **Proves**
@@ -88,6 +95,8 @@ line 95
 ### `WeilPowerClean.exists_clean_shell`
 
 line 114
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The clean shell: `blocked_card_le` at each member, then `exists_unblocked` at `W + 1`.
 
@@ -121,6 +130,8 @@ line 114
 ### `WeilPowerClean.exists_clean_shell_of_count`
 
 line 124
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The same with the member count given by a bound `N`.
 

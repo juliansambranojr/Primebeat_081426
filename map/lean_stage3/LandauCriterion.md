@@ -13,7 +13,7 @@ LandauCriterion — the Landau window criterion, proved. Block 7d of `lean_stage
 flowchart LR
   n0["<b>contradiction</b><br/>False"]:::thm
   n1["<b>stmtLandauWindow</b><br/>LandauWindow.StmtLandauWindow"]:::thm
-  n2["<b>rh_of_windows</b><br/>RiemannHypothesis"]:::end_
+  n2["<b>rh_of_windows ■</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>LandauPrimeSide</b><br/>Ik_le"]):::ext
   x1(["<b>LandauRates</b><br/>exists_centre<br/>exists_pow_small<br/>key_ineq"]):::ext
   x2(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
@@ -27,6 +27,9 @@ flowchart LR
   x1 -.-> n1
   x2 -.-> n1
   x4 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -34,7 +37,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -42,6 +45,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `LandauCriterion.contradiction`
 
 line 37
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -80,6 +85,8 @@ False
 
 line 194
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -105,6 +112,8 @@ LandauWindow.StmtLandauWindow
 ### `LandauCriterion.rh_of_windows`
 
 line 219
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 

@@ -11,15 +11,15 @@ WeilTransform — the transform of the tuned window in closed form. Rung 3 of th
 
 ```mermaid
 flowchart LR
-  n0["<b>P_even</b><br/>P (-x) = P x"]:::thm
-  n1["<b>xP_odd</b><br/>(-x) * P (-x) = -(x * P x)"]:::thm
-  n2["<b>continuous_xP</b><br/>Continuous fun x : ℝ =＞ x * P x"]:::thm
-  n3["<b>SigmaC_ofReal</b><br/>SigmaC (s : ℂ) = (WeilWindow.Sigma s : ℂ)"]:::thm
-  n4["<b>SigmaC_I_mul</b><br/>SigmaC (Complex.I * (s : ℂ)) = Complex.I * (Psi s : ℂ)"]:::thm
-  n5["<b>odd_integral_exp</b><br/>(∫ x in (-1 : ℝ)..1, ((q x : ℝ) : ℂ) * Complex.exp (w * (x : ℂ))…"]:::thm
-  n6["<b>ghat_eq</b><br/>ghat h γ z = ((h : ℂ) / 2) * (SigmaC ((z + Complex.I * (γ : ℂ)) …"]:::thm
-  n7["<b>ghat_ofReal_I</b><br/>ghat h γ (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((P…"]:::thm
-  n8["<b>ghat_offline</b><br/>ghat h γ ((ε : ℂ) + Complex.I * (γ : ℂ)) = ((h : ℂ) / 2) * (Sigm…"]:::thm
+  n0["<b>P_even</b><br/>P (-x) = P x"]:::shp
+  n1["<b>xP_odd</b><br/>(-x) * P (-x) = -(x * P x)"]:::shp
+  n2["<b>continuous_xP</b><br/>Continuous fun x : ℝ =＞ x * P x"]:::shp
+  n3["<b>SigmaC_ofReal</b><br/>SigmaC (s : ℂ) = (WeilWindow.Sigma s : ℂ)"]:::shp
+  n4["<b>SigmaC_I_mul</b><br/>SigmaC (Complex.I * (s : ℂ)) = Complex.I * (Psi s : ℂ)"]:::shp
+  n5["<b>odd_integral_exp</b><br/>(∫ x in (-1 : ℝ)..1, ((q x : ℝ) : ℂ) * Complex.exp (w * (x : ℂ))…"]:::shp
+  n6["<b>ghat_eq</b><br/>ghat h γ z = ((h : ℂ) / 2) * (SigmaC ((z + Complex.I * (γ : ℂ)) …"]:::shp
+  n7["<b>ghat_ofReal_I</b><br/>ghat h γ (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((P…"]:::shp
+  n8["<b>ghat_offline</b><br/>ghat h γ ((ε : ℂ) + Complex.I * (γ : ℂ)) = ((h : ℂ) / 2) * (Sigm…"]:::shp
   x0(["<b>WeilOddPower</b><br/>q_odd"]):::ext
   x1(["<b>WeilWindow</b><br/>continuous_P"]):::ext
   x2(["<b>WeilBackground</b><br/>Psi_bound<br/>online_term_eq"]):::ext
@@ -41,6 +41,9 @@ flowchart LR
   n8 -.-> x4
   x1 -.-> n2
   x1 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -48,7 +51,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -103,6 +106,8 @@ Its transform, `∫₋ₕʰ G(u)·e^{zu} du`.
 
 line 61
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -126,6 +131,8 @@ P (-x) = P x
 ### `WeilTransform.xP_odd`
 
 line 65
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -152,6 +159,8 @@ line 65
 
 line 68
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -172,6 +181,8 @@ Continuous fun x : ℝ => x * P x
 ### `WeilTransform.SigmaC_ofReal`
 
 line 72
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `Σc` at a real argument is `Σ`.
 
@@ -199,6 +210,8 @@ SigmaC (s : ℂ) = (WeilWindow.Sigma s : ℂ)
 ### `WeilTransform.SigmaC_I_mul`
 
 line 80
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `Σc(i s) = i·Ψ(s)`: `sinh(iθ) = i·sin θ`.
 
@@ -228,6 +241,8 @@ SigmaC (Complex.I * (s : ℂ)) = Complex.I * (Psi s : ℂ)
 
 line 94
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The odd-part lemma. For odd continuous `q` on `[−1, 1]`, `∫ q·e^{w·} = ∫ q·sinh(w·)`: the `cosh` part of `e^{w·}` pairs with `q` into an odd function, whose integral over the symmetric interval vanishes.
 
 **Proves**
@@ -254,6 +269,8 @@ line 94
 ### `WeilTransform.ghat_eq`
 
 line 144
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** (★) The transform in closed form.
 
@@ -291,6 +308,8 @@ ghat h γ z = ((h : ℂ) / 2) * (SigmaC ((z + Complex.I * (γ : ℂ)) * (h : ℂ
 
 line 195
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** (★) on the real line: entry 302's `(ih/2)[Ψ(h(t+γ)) + Ψ(h(t−γ))]`.
 
 **Proves**
@@ -321,6 +340,8 @@ ghat h γ (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((Psi (h * (t 
 ### `WeilTransform.ghat_offline`
 
 line 208
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** (★) at the off-line point `z = ε + iγ`: the main term `Σ(εh)` of unit 0317 plus the `2γ` lobe `Σc((ε + 2iγ)h)`.
 

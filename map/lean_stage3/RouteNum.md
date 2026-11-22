@@ -11,13 +11,13 @@ RouteNum — block E8c of `lean_stage3/design/joints.md`. 2026-11-22. The explic
 
 ```mermaid
 flowchart LR
-  n0["<b>inv_log_two_le</b><br/>1 / Real.log 2 ≤ 1.4428"]:::thm
+  n0["<b>inv_log_two_le</b><br/>1 / Real.log 2 ≤ 1.4428"]:::shp
   n1["<b>C1n_le</b><br/>EdgeBound.C1n ≤ 1909224"]:::thm
   n2["<b>C2n_le</b><br/>EdgeBound.C2n ≤ 2167"]:::thm
   n3["<b>Cen_le</b><br/>EdgeBound.Cen ≤ 1911393"]:::thm
   n4["<b>Cpn_le</b><br/>Glue.Cpn ≤ 6534550000"]:::thm
   n5["<b>Chn_le</b><br/>Glue.Chn ≤ 44108300000"]:::thm
-  n6["<b>Csn_le</b><br/>Glue.Csn ≤ 1136"]:::thm
+  n6["<b>Csn_le</b><br/>Glue.Csn ≤ 1136"]:::shp
   n7["<b>Dln_le</b><br/>Glue.Dln ≤ 89846200"]:::thm
   n8["<b>c1n_le</b><br/>Glue.c1n ≤ 88216610000"]:::thm
   n9["<b>c3n_le</b><br/>Glue.c3n ≤ 15"]:::thm
@@ -75,6 +75,9 @@ flowchart LR
   x8 -.-> n12
   x8 -.-> n13
   x9 -.-> n12
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -82,7 +85,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -103,6 +106,8 @@ The route's constant on the `π` side, at floor `x₀`.
 ### `RouteNum.inv_log_two_le`
 
 line 33
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -125,6 +130,8 @@ line 33
 
 line 38
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -145,6 +152,8 @@ EdgeBound.C1n ≤ 1909224
 ### `RouteNum.C2n_le`
 
 line 95
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -168,6 +177,8 @@ EdgeBound.C2n ≤ 2167
 ### `RouteNum.Cen_le`
 
 line 115
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -195,6 +206,8 @@ EdgeBound.Cen ≤ 1911393
 
 line 123
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -220,6 +233,8 @@ Glue.Cpn ≤ 6534550000
 
 line 139
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -243,6 +258,8 @@ Glue.Chn ≤ 44108300000
 
 line 144
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -263,6 +280,8 @@ Glue.Csn ≤ 1136
 ### `RouteNum.Dln_le`
 
 line 153
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -288,6 +307,8 @@ Glue.Dln ≤ 89846200
 
 line 163
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -312,6 +333,8 @@ Glue.c1n ≤ 88216610000
 
 line 169
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -332,6 +355,8 @@ Glue.c3n ≤ 15
 ### `RouteNum.c4n_le`
 
 line 180
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -356,6 +381,8 @@ Glue.c4n ≤ 6468930000
 
 line 197
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The explicit formula with its constants named.
 
 **Proves**
@@ -378,6 +405,8 @@ StmtExplicitFormulaSplit Glue.c1n Glue.c3n Glue.c4n 16
 ### `Stage3.schoenfeldWeak_route_num`
 
 line 205
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** From RH to the `π` side, every constant named.
 
@@ -416,6 +445,8 @@ StmtSchoenfeldWeak (routeConst x₀) 1 (max (x₀ ^ 2) 9) (fun x => (Nat.primeCo
 ### `RouteNum.relErrWindow_route_num`
 
 line 230
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The route at the gate, every constant named.
 

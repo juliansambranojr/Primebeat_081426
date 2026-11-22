@@ -15,7 +15,7 @@ flowchart LR
   n1["<b>zeroPartialSum_swap</b><br/>∃ C : ℝ, 0 ＜ C ∧ ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T …"]:::thm
   n2["<b>zeta_logderiv_good_bound</b><br/>∃ C : ℝ, 0 ＜ C ∧ ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ…"]:::thm
   n3["<b>edge_horizontal_bound</b><br/>∃ C : ℝ, 0 ＜ C ∧ ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (…"]:::thm
-  n4["<b>Gf_norm_conj</b><br/>‖Gf x ((starRingEnd ℂ) u)‖ = ‖Gf x u‖"]:::end_
+  n4["<b>Gf_norm_conj ■</b><br/>‖Gf x ((starRingEnd ℂ) u)‖ = ‖Gf x u‖"]:::thm
   n5["<b>edge_left_bound</b><br/>∃ C : ℝ, 0 ＜ C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIn…"]:::thm
   n6["<b>explicit_formula_poly</b><br/>∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x…"]:::thm
   n7["<b>stmtEF_poly</b><br/>∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ Stage3.StmtExplicitFormulaPoly c₁…"]:::thm
@@ -44,6 +44,9 @@ flowchart LR
   x3 -.-> n4
   x3 -.-> n5
   x4 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -51,7 +54,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -71,6 +74,8 @@ The contour integrand of the explicit formula.
 ### `Glue.band_order_sum_le`
 
 line 19
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The band count: any finite set of strip zeros with `|im|` in `[T, T+1]` has total multiplicity `≤ C·log T` — two windows per sign, reflection for the left half, conjugation for the negative sign.
 
@@ -99,6 +104,8 @@ line 19
 
 line 242
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The swap: moving the zero sum from a height `T′ ∈ [T, T+1]` back to `T` costs `≤ C·x·log T / T`.
 
 **Proves**
@@ -125,6 +132,8 @@ line 242
 ### `Glue.zeta_logderiv_good_bound`
 
 line 351
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The pointwise good-height bound, both signs of the height.
 
@@ -157,6 +166,8 @@ line 351
 
 line 442
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The horizontal-edge integral bound at a good height, both signs: `≤ C·x·log²T/T`.
 
 **Proves**
@@ -180,6 +191,8 @@ line 442
 ### `Glue.Gf_norm_conj`
 
 line 535
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Conjugation symmetry of the integrand's norm.
 
@@ -206,6 +219,8 @@ line 535
 ### `Glue.edge_left_bound`
 
 line 557
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The left-edge integral bound: `≤ C·log x` for `T′ ≤ x²`.
 
@@ -237,6 +252,8 @@ line 557
 
 line 979
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** THE TRUNCATED EXPLICIT FORMULA — hEF's deliverable, in the `T ≤ x²` regime the consumer uses: constants exist with `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c₁·x·log²(xT)/T + c₂·log x`.
 
 **Proves**
@@ -266,6 +283,8 @@ line 979
 ### `Glue.stmtEF_poly`
 
 line 1195
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** hEF DISCHARGED: constants realizing the ledger's leaf.
 

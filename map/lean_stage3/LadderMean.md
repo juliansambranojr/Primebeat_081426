@@ -11,10 +11,10 @@ LadderMean — block J10c of `lean_stage3/design/joints.md`. 2026-11-22. Joint 1
 
 ```mermaid
 flowchart LR
-  n0["<b>geom_mean_norm_le</b><br/>‖((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r‖ ≤ 1"]:::thm
-  n1["<b>geom_mean_tendsto_zero</b><br/>Tendsto (fun N : ℕ =＞ ((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r) at…"]:::thm
-  n2["<b>mean_extract</b><br/>∑' i, (if w i = w k then C i else 0) = 0"]:::thm
-  n3["<b>line_not_fading_summable</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Ka…"]:::end_
+  n0["<b>geom_mean_norm_le</b><br/>‖((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r‖ ≤ 1"]:::shp
+  n1["<b>geom_mean_tendsto_zero</b><br/>Tendsto (fun N : ℕ =＞ ((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r) at…"]:::shp
+  n2["<b>mean_extract</b><br/>∑' i, (if w i = w k then C i else 0) = 0"]:::shp
+  n3["<b>line_not_fading_summable ■</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Ka…"]:::thm
   x0(["<b>AliasClass</b><br/>re_order_div_pos<br/>zero_re_pos"]):::ext
   x1(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
   x2(["<b>LadderFading</b><br/>one_sub_inv_ne_zero"]):::ext
@@ -24,6 +24,9 @@ flowchart LR
   x0 -.-> n3
   x1 -.-> n3
   x2 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -31,7 +34,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -62,6 +65,8 @@ The mode of a zero on the ladder: two to the zero.
 
 line 35
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The mean of the powers of a point on the unit circle is at most one in size.
 
 **Proves**
@@ -86,6 +91,8 @@ line 35
 
 line 50
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The mean of the powers of a point on the unit circle other than one tends to zero: a rotation that is not the identity averages out.
 
 **Proves**
@@ -109,6 +116,8 @@ Tendsto (fun N : ℕ => ((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r) at
 ### `LadderMean.mean_extract`
 
 line 68
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Averaging along the rows picks out one folded class. If an absolutely summable sum of rotations tends to zero along the rows, then for every mode the weights of all the modes equal to it add to zero.
 
@@ -139,6 +148,8 @@ line 68
 ### `LadderMean.line_not_fading_summable`
 
 line 132
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Infinitely many zeros on one line do not fade from the cells. Take any set of zeros of ζ with one real part `β`, with `Σ m(ρ)/|ρ|` finite over it, and one zero in it. Their contribution to the cell `(r, d)` of the table's own ladder, measured against `2^(rβ)`, does not tend to zero as the rows go on.
 

@@ -11,22 +11,22 @@ WeilBridge — the bridge to primes: the zero side of Weil's form at a test func
 
 ```mermaid
 flowchart LR
-  n0["<b>primeSide_eq</b><br/>primeSide k = literatureRHS k"]:::thm
-  n1["<b>tiltF_im</b><br/>(tiltF G u).im = 0"]:::thm
-  n2["<b>contDiff_tiltF</b><br/>ContDiff ℝ 1 (tiltF G)"]:::thm
-  n3["<b>hasCompactSupport_tiltF</b><br/>HasCompactSupport (tiltF G)"]:::thm
-  n4["<b>laplace_neg_eq</b><br/>laplace G (-ρ) = paperFT (tiltF G) (gammaOf ρ)"]:::thm
-  n5["<b>laplace_reflect_eq</b><br/>laplace G (-(1 - ρ)) = paperFT (tiltF G) (-gammaOf ρ)"]:::thm
-  n6["<b>conj_paperFT_conj</b><br/>conj (paperFT F (conj z)) = paperFT F (-z)"]:::thm
-  n7["<b>contDiff_two_convolution</b><br/>ContDiff ℝ 2 (f ⋆[ContinuousLinearMap.mul ℝ ℂ, volume] h)"]:::thm
-  n8["<b>contDiff_tilde</b><br/>ContDiff ℝ 1 (tilde g)"]:::thm
-  n9["<b>contDiff_kOf</b><br/>ContDiff ℝ 2 (kOf G)"]:::thm
-  n10["<b>hasCompactSupport_kOf</b><br/>HasCompactSupport (kOf G)"]:::thm
-  n11["<b>paperFT_kOf</b><br/>paperFT (kOf G) (gammaOf ρ) = laplace G (-ρ) * laplace G (-(1 - …"]:::thm
+  n0["<b>primeSide_eq</b><br/>primeSide k = literatureRHS k"]:::shp
+  n1["<b>tiltF_im</b><br/>(tiltF G u).im = 0"]:::shp
+  n2["<b>contDiff_tiltF</b><br/>ContDiff ℝ 1 (tiltF G)"]:::shp
+  n3["<b>hasCompactSupport_tiltF</b><br/>HasCompactSupport (tiltF G)"]:::shp
+  n4["<b>laplace_neg_eq</b><br/>laplace G (-ρ) = paperFT (tiltF G) (gammaOf ρ)"]:::shp
+  n5["<b>laplace_reflect_eq</b><br/>laplace G (-(1 - ρ)) = paperFT (tiltF G) (-gammaOf ρ)"]:::shp
+  n6["<b>conj_paperFT_conj</b><br/>conj (paperFT F (conj z)) = paperFT F (-z)"]:::shp
+  n7["<b>contDiff_two_convolution</b><br/>ContDiff ℝ 2 (f ⋆[ContinuousLinearMap.mul ℝ ℂ, volume] h)"]:::shp
+  n8["<b>contDiff_tilde</b><br/>ContDiff ℝ 1 (tilde g)"]:::shp
+  n9["<b>contDiff_kOf</b><br/>ContDiff ℝ 2 (kOf G)"]:::shp
+  n10["<b>hasCompactSupport_kOf</b><br/>HasCompactSupport (kOf G)"]:::shp
+  n11["<b>paperFT_kOf</b><br/>paperFT (kOf G) (gammaOf ρ) = laplace G (-ρ) * laplace G (-(1 - …"]:::shp
   n12["<b>weil_bridge</b><br/>Summable (fun ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 ＜ ρ.re ∧ ρ.re ＜…"]:::thm
-  n13["<b>kOfM_eq</b><br/>kOfM G = kOf G"]:::thm
-  n14["<b>primeSideM_eq</b><br/>primeSideM k = primeSide k"]:::thm
-  n15["<b>stmtWeilBridge_holds</b><br/>StmtWeilBridge"]:::end_
+  n13["<b>kOfM_eq</b><br/>kOfM G = kOf G"]:::shp
+  n14["<b>primeSideM_eq</b><br/>primeSideM k = primeSide k"]:::shp
+  n15["<b>stmtWeilBridge_holds ■</b><br/>StmtWeilBridge"]:::thm
   n0 --> n12
   n1 --> n11
   n10 --> n12
@@ -45,6 +45,9 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n12
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -52,7 +55,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -157,6 +160,8 @@ The bridge, as a statement.
 
 line 76
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -179,6 +184,8 @@ primeSide k = literatureRHS k
 ### `Bridge.tiltF_im`
 
 line 78
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -204,6 +211,8 @@ line 78
 
 line 83
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -227,6 +236,8 @@ ContDiff ℝ 1 (tiltF G)
 ### `Bridge.hasCompactSupport_tiltF`
 
 line 88
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -252,6 +263,8 @@ HasCompactSupport (tiltF G)
 ### `Bridge.laplace_neg_eq`
 
 line 95
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The transform at `−ρ`, in zeta23's variable.
 
@@ -279,6 +292,8 @@ laplace G (-ρ) = paperFT (tiltF G) (gammaOf ρ)
 
 line 108
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The transform at `−(1 − ρ)`, in zeta23's variable.
 
 **Proves**
@@ -305,6 +320,8 @@ laplace G (-(1 - ρ)) = paperFT (tiltF G) (-gammaOf ρ)
 
 line 121
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** For a real-valued `F`, the conjugate-reflected transform is the transform at `−z`.
 
 **Proves**
@@ -328,6 +345,8 @@ conj (paperFT F (conj z)) = paperFT F (-z)
 ### `Bridge.contDiff_two_convolution`
 
 line 138
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The convolution of two compactly supported `C¹` functions is `C²`.
 
@@ -355,6 +374,8 @@ ContDiff ℝ 2 (f ⋆[ContinuousLinearMap.mul ℝ ℂ, volume] h)
 
 line 159
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -375,6 +396,8 @@ ContDiff ℝ 1 (tilde g)
 ### `Bridge.contDiff_kOf`
 
 line 163
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -407,6 +430,8 @@ ContDiff ℝ 2 (kOf G)
 
 line 169
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -433,6 +458,8 @@ HasCompactSupport (kOf G)
 ### `Bridge.paperFT_kOf`
 
 line 174
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The term at a zero, in both languages.
 
@@ -471,6 +498,8 @@ paperFT (kOf G) (gammaOf ρ) = laplace G (-ρ) * laplace G (-(1 - ρ))
 
 line 185
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The bridge. For a test function of Stage 3's class, the zero side of Weil's form, over the nontrivial zeros of `riemannZeta` with multiplicity, is summable and equals the prime side at `k = F ⋆ F̃`.
 
 **Proves**
@@ -501,6 +530,8 @@ Summable (fun ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1} =
 
 line 236
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -524,6 +555,8 @@ kOfM G = kOf G
 
 line 238
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -546,6 +579,8 @@ primeSideM k = primeSide k
 ### `Bridge.stmtWeilBridge_holds`
 
 line 241
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The bridge holds.
 

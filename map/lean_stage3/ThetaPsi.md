@@ -11,10 +11,10 @@ ThetaPsi — `|ψ(X) − X| ≤ C·X^θ·log³X` from a zero-free half-plane `re
 
 ```mermaid
 flowchart LR
-  n0["<b>inv_log_le_theta</b><br/>1 / Real.log X ≤ (1 - θ) / 2"]:::thm
-  n1["<b>σθ_lt_one</b><br/>σθ θ X ＜ 1"]:::thm
-  n2["<b>lt_σθ</b><br/>θ ＜ σθ θ X"]:::thm
-  n3["<b>horiz_length_theta</b><br/>(1 + 1 / Real.log X) - σθ θ X = 1 - θ"]:::thm
+  n0["<b>inv_log_le_theta</b><br/>1 / Real.log X ≤ (1 - θ) / 2"]:::shp
+  n1["<b>σθ_lt_one</b><br/>σθ θ X ＜ 1"]:::shp
+  n2["<b>lt_σθ</b><br/>θ ＜ σθ θ X"]:::shp
+  n3["<b>horiz_length_theta</b><br/>(1 + 1 / Real.log X) - σθ θ X = 1 - θ"]:::shp
   n4["<b>holo_logDerivZeta_theta</b><br/>HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ…"]:::thm
   n5["<b>pull_at_theta_abscissa</b><br/>SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ Smoo…"]:::thm
   n6["<b>integrand_norm_le_horiz_theta</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (19…"]:::thm
@@ -23,10 +23,10 @@ flowchart LR
   n9["<b>I2_norm_le_theta</b><br/>‖I₂ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (1 - θ) * ((1996 *…"]:::thm
   n10["<b>mellin_vert_le_theta</b><br/>‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σθ θ X : ℂ) + I * (t : ℂ…"]:::thm
   n11["<b>contour_at_instantiation_theta</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::thm
-  n12["<b>theta_instantiation_arithmetic</b><br/>c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) …"]:::thm
+  n12["<b>theta_instantiation_arithmetic</b><br/>c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) …"]:::shp
   n13["<b>psi_weak_of_theta</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * t ^ θ * (Re…"]:::thm
   n14["<b>psi_weak_of_RH_half</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t…"]:::thm
-  n15["<b>stmtPsiWeak_of_RH_half</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::end_
+  n15["<b>stmtPsiWeak_of_RH_half ■</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::thm
   x0(["<b>Abscissa</b><br/>4 theorems"]):::ext
   x1(["<b>ThetaPull</b><br/>I37_power_log3_theta<br/>four_le_log_of_theta"]):::ext
   x2(["<b>LineBound</b><br/>10 theorems"]):::ext
@@ -71,6 +71,9 @@ flowchart LR
   x2 -.-> n10
   x2 -.-> n13
   x2 -.-> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -78,7 +81,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -86,6 +89,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `Stage3.inv_log_le_theta`
 
 line 62
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -108,6 +113,8 @@ line 62
 ### `Stage3.σθ_lt_one`
 
 line 72
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -136,6 +143,8 @@ line 72
 
 line 77
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -160,6 +169,8 @@ line 77
 ### `Stage3.horiz_length_theta`
 
 line 82
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The horizontal segment has length exactly `1 − θ`.
 
@@ -186,6 +197,8 @@ line 82
 ### `Stage3.holo_logDerivZeta_theta`
 
 line 88
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The holomorphy hypothesis is free right of a zero-free abscissa.
 
@@ -214,6 +227,8 @@ HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (
 ### `Stage3.pull_at_theta_abscissa`
 
 line 103
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The pull, instantiated at abscissa `θ`. `RHPull.pull_at_RH_abscissa` with `σθ θ X` for `σRH X`.
 
@@ -257,6 +272,8 @@ SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ SmoothingF ε 
 
 line 131
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Pointwise bound on the upper horizontal segment, from the crude bound at `θ`. Every numeral is `RHPull.integrand_norm_le_horiz`'s.
 
 **Proves**
@@ -292,6 +309,8 @@ line 131
 ### `Stage3.integrand_norm_le_horiz_neg_theta`
 
 line 178
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Pointwise bound on the lower horizontal segment, through the conjugate symmetry `Slice4b.logDerivZeta_norm_neg`.
 
@@ -330,6 +349,8 @@ line 178
 
 line 227
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** I₈ bounded at abscissa `θ` — the upper horizontal segment, length `1 − θ`.
 
 **Proves**
@@ -365,6 +386,8 @@ line 227
 
 line 282
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** I₂ bounded at abscissa `θ` — the lower horizontal segment, length `1 − θ`.
 
 **Proves**
@@ -399,6 +422,8 @@ line 282
 ### `Stage3.mellin_vert_le_theta`
 
 line 337
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -436,6 +461,8 @@ line 337
 ### `Stage3.contour_at_instantiation_theta`
 
 line 359
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Every contour piece summed at abscissa `θ`. `RHPull.contour_at_instantiation` with `X^θ` for `√X` on the vertical piece and `1 − θ` for `1/2` on the horizontal lengths.
 
@@ -486,6 +513,8 @@ line 359
 
 line 415
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The instantiation arithmetic at `θ`. With `ε = X^(θ−1)` and `T = X`, `ε·X = X^θ`, and every error piece lands under `c·X^θ·log³X`:
 
 **Proves**
@@ -512,6 +541,8 @@ c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c
 ### `Stage3.psi_weak_of_theta`
 
 line 454
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `|ψ X − X| ≤ C·X^θ·log³X` from a zero-free half-plane `re > θ`. `RHPull.psi_weak_of_RH` with `StmtZeroFreeRight θ` for RH, `ε = X^(θ−1)` for `X^(−1/2)`, `T = X` as before. Every constant is obtained: `B` from `mellin_bump_bounded`, `Cclose` from `SmoothedChebyshevClose`, `C₁`/`C₉` from `I1Bound`/`I9Bound`, `Cmain` from `MellinOfSmooth1c`.
 
@@ -559,6 +590,8 @@ line 454
 
 line 607
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `psi_weak_of_RH` recovered. At `θ = 1/2` under RH, the general bound is `RHPull.psi_weak_of_RH`'s statement, `√t` included.
 
 **Proves**
@@ -584,6 +617,8 @@ line 607
 ### `Stage3.stmtPsiWeak_of_RH_half`
 
 line 618
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `StmtPsiWeak` at `k = 3` from RH, through the `θ`-dial. Same statement as `RHPull.stmtPsiWeak_of_RH`.
 

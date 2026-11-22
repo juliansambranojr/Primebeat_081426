@@ -11,14 +11,14 @@ Nonvanishing — the arrow of O67's conditional theorem, in the house pattern. `
 
 ```mermaid
 flowchart LR
-  n0["<b>iter_bdiffZ_eq_fwdDiff</b><br/>(bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r"]:::thm
-  n1["<b>iter_bdiffZ_eq_stencilR</b><br/>(bdiffZ^[n]) g r = stencilR n g r"]:::thm
-  n2["<b>stencilR_row</b><br/>stencilR d (bdiffZ g) r = stencilR (d + 1) g r"]:::thm
-  n3["<b>stencilR_sub</b><br/>stencilR n (fun x =＞ f x - L x) r = stencilR n f r - stencilR n …"]:::thm
-  n4["<b>window_term_le</b><br/>(Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : …"]:::thm
-  n5["<b>error_bound</b><br/>|stencilR n (fun x =＞ f x - L x) r| ≤ Ehigh r n"]:::thm
-  n6["<b>nonvanishing_of</b><br/>stencilR (d + 1) f r ≠ 0"]:::thm
-  n7["<b>tableFrom_ne_zero_of</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  n0["<b>iter_bdiffZ_eq_fwdDiff</b><br/>(bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r"]:::shp
+  n1["<b>iter_bdiffZ_eq_stencilR</b><br/>(bdiffZ^[n]) g r = stencilR n g r"]:::shp
+  n2["<b>stencilR_row</b><br/>stencilR d (bdiffZ g) r = stencilR (d + 1) g r"]:::shp
+  n3["<b>stencilR_sub</b><br/>stencilR n (fun x =＞ f x - L x) r = stencilR n f r - stencilR n …"]:::shp
+  n4["<b>window_term_le</b><br/>(Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : …"]:::shp
+  n5["<b>error_bound</b><br/>|stencilR n (fun x =＞ f x - L x) r| ≤ Ehigh r n"]:::shp
+  n6["<b>nonvanishing_of</b><br/>stencilR (d + 1) f r ≠ 0"]:::shp
+  n7["<b>tableFrom_ne_zero_of</b><br/>Construction.tableFrom N r d ≠ 0"]:::shp
   x0(["<b>CellResidual</b><br/>stencilR_one<br/>tableFrom_cast<br/>table_cell_eq"]):::ext
   x1(["<b>RelativeGate</b><br/>nonvanishing_of_relErr<br/>tableFrom_ne_zero_of_relErr"]):::ext
   x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
@@ -37,6 +37,9 @@ flowchart LR
   n3 -.-> x1
   n7 -.-> x3
   x2 -.-> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -44,7 +47,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -105,6 +108,8 @@ The main-term floor `0.5 · 2^(r−d−1) · (log 2)^d / r`. O67's step 3.
 
 line 61
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Backward differencing is `(−1)·fwdDiff` at step `−1` — the ℝ copy of `Zeros.tableFrom_eq_fwdDiff`'s bridge.
 
 **Proves**
@@ -131,6 +136,8 @@ line 61
 ### `Nonvanishing.iter_bdiffZ_eq_stencilR`
 
 line 77
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `n` differences are the stencil. `Zeros.tableFrom_eq_stencil` transplanted to ℝ: Mathlib's `fwdDiff_iter_eq_sum_shift` does the binomial bookkeeping.
 
@@ -161,6 +168,8 @@ line 77
 ### `Nonvanishing.stencilR_row`
 
 line 94
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The Pascal step. The depth-`d` stencil on the row `x ↦ g(x) − g(x−1)` is the depth-`(d+1)` stencil on `g`. One more iterate, nothing else.
 
@@ -193,6 +202,8 @@ stencilR d (bdiffZ g) r = stencilR (d + 1) g r
 
 line 100
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Linearity. Splitting `π = li + (π − li)` under the stencil.
 
 **Proves**
@@ -222,6 +233,8 @@ stencilR n (fun x => f x - L x) r = stencilR n f r - stencilR n L r
 
 line 125
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Each windowed Schoenfeld bound is at most the top-of-window bound times `2^(−k/2)`: `(r−k) ≤ r` handles the linear factor and `rpow_add` splits the power. Needs `0 ≤ r − k` inside the window, supplied by `hr`.
 
 **Proves**
@@ -246,6 +259,8 @@ line 125
 ### `Nonvanishing.error_bound`
 
 line 152
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The error bound. Triangle inequality, the per-term comparison, and the binomial theorem `Σ C(n,k) t^k = (1+t)^n` at `t = 2^(−1/2)`.
 
@@ -274,6 +289,8 @@ line 152
 ### `Nonvanishing.nonvanishing_of`
 
 line 185
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The arrow. If Schoenfeld holds on the window (`hS`), the smooth main term clears its floor (`hM` — stage 2's target), and the floor beats the error ceiling (`hgap` — O67's `r ≥ R(d)` table), then the depth-`(d+1)` stencil of the counting function does not vanish.
 
@@ -305,6 +322,8 @@ stencilR (d + 1) f r ≠ 0
 ### `Nonvanishing.tableFrom_ne_zero_of`
 
 line 201
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Onto the integer table. If the integer row is the backward difference of a counting function `f` across the window a cell reads (cast to ℝ), then the cell's vanishing is the depth-`(d+1)` stencil of `f` vanishing — so the arrow above forbids it. The cast bridge is `Zeros.tableFrom_eq_stencil` plus `push_cast`.
 

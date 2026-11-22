@@ -1,29 +1,29 @@
 flowchart LR
-  n0["<b>euler_sinh</b><br/>Tendsto (fun n : ℕ =＞ w * ∏ j ∈ Finset.range n, g w j) atTop (𝓝 …"]:::thm
-  n1["<b>D_pos</b><br/>0 ＜ D m"]:::thm
-  n2["<b>D_eq</b><br/>D m = Real.pi ^ (2 * (m + 1)) * (((m + 1).factorial : ℕ) : ℝ) ^ …"]:::thm
-  n3["<b>QS_eq_D_mul</b><br/>QS m w = (D m : ℂ) * ∏ j ∈ Finset.range (m + 1), g w j"]:::thm
-  n4["<b>cprime_eq</b><br/>cS m / D m = ((Nat.centralBinom (m + 1) : ℕ) : ℝ) / (Real.pi * (…"]:::thm
-  n5["<b>cprime_le</b><br/>cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1))"]:::thm
-  n6["<b>cprime_ge</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) ≤ cS m / D m"]:::thm
-  n7["<b>cprime_pos</b><br/>0 ＜ cS m / D m"]:::thm
-  n8["<b>tendsto_S</b><br/>Tendsto (fun n : ℕ =＞ ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTo…"]:::thm
-  n9["<b>norm_one_add_le</b><br/>‖1 + x‖ ≤ Real.exp (x.re + ‖x‖ ^ 2)"]:::thm
-  n10["<b>exp_le_one_add</b><br/>Real.exp (x - x ^ 2) ≤ 1 + x"]:::thm
-  n11["<b>sum_inv_sq_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 ≤ 1 / ((m : ℝ)…"]:::thm
-  n12["<b>sum_inv_sq_ge</b><br/>((m : ℝ) + 2) / (2 * (m : ℝ) + 3) ^ 2 ≤ ∑ j ∈ Finset.Ico (m + 1)…"]:::thm
-  n13["<b>sum_inv_pow4_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / ((m : ℝ)…"]:::thm
-  n14["<b>norm_x_le</b><br/>‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ ≤ 1 / 2"]:::thm
-  n15["<b>x_re</b><br/>(w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)).re = (w ^ 2).r…"]:::thm
-  n16["<b>x_norm</b><br/>‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ = ‖w‖ ^ 2 / (R…"]:::thm
-  n17["<b>norm_T_le</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re / Real.pi ^ 2 * ∑ j ∈ Finset.Ic…"]:::thm
-  n18["<b>norm_T_le_pos</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re / (Real.pi ^ 2 * ((m : ℝ) + 1))…"]:::thm
-  n19["<b>norm_T_le_neg</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re * ((m : ℝ) + 2) / (Real.pi ^ 2 …"]:::thm
-  n20["<b>norm_S_le_gauss_pos</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2…"]:::thm
-  n21["<b>norm_S_le_gauss_neg</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2…"]:::thm
-  n22["<b>T_ofReal</b><br/>T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ)"]:::thm
-  n23["<b>Tr_ge</b><br/>Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + …"]:::thm
-  n24["<b>S_real_ge_gauss</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp…"]:::thm
+  n0["<b>euler_sinh</b><br/>Tendsto (fun n : ℕ =＞ w * ∏ j ∈ Finset.range n, g w j) atTop (𝓝 …"]:::shp
+  n1["<b>D_pos</b><br/>0 ＜ D m"]:::shp
+  n2["<b>D_eq</b><br/>D m = Real.pi ^ (2 * (m + 1)) * (((m + 1).factorial : ℕ) : ℝ) ^ …"]:::shp
+  n3["<b>QS_eq_D_mul</b><br/>QS m w = (D m : ℂ) * ∏ j ∈ Finset.range (m + 1), g w j"]:::shp
+  n4["<b>cprime_eq</b><br/>cS m / D m = ((Nat.centralBinom (m + 1) : ℕ) : ℝ) / (Real.pi * (…"]:::shp
+  n5["<b>cprime_le</b><br/>cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1))"]:::shp
+  n6["<b>cprime_ge</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) ≤ cS m / D m"]:::shp
+  n7["<b>cprime_pos</b><br/>0 ＜ cS m / D m"]:::shp
+  n8["<b>tendsto_S</b><br/>Tendsto (fun n : ℕ =＞ ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTo…"]:::shp
+  n9["<b>norm_one_add_le</b><br/>‖1 + x‖ ≤ Real.exp (x.re + ‖x‖ ^ 2)"]:::shp
+  n10["<b>exp_le_one_add</b><br/>Real.exp (x - x ^ 2) ≤ 1 + x"]:::shp
+  n11["<b>sum_inv_sq_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 ≤ 1 / ((m : ℝ)…"]:::shp
+  n12["<b>sum_inv_sq_ge</b><br/>((m : ℝ) + 2) / (2 * (m : ℝ) + 3) ^ 2 ≤ ∑ j ∈ Finset.Ico (m + 1)…"]:::shp
+  n13["<b>sum_inv_pow4_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / ((m : ℝ)…"]:::shp
+  n14["<b>norm_x_le</b><br/>‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ ≤ 1 / 2"]:::shp
+  n15["<b>x_re</b><br/>(w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)).re = (w ^ 2).r…"]:::shp
+  n16["<b>x_norm</b><br/>‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ = ‖w‖ ^ 2 / (R…"]:::shp
+  n17["<b>norm_T_le</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re / Real.pi ^ 2 * ∑ j ∈ Finset.Ic…"]:::shp
+  n18["<b>norm_T_le_pos</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re / (Real.pi ^ 2 * ((m : ℝ) + 1))…"]:::shp
+  n19["<b>norm_T_le_neg</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re * ((m : ℝ) + 2) / (Real.pi ^ 2 …"]:::shp
+  n20["<b>norm_S_le_gauss_pos</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2…"]:::shp
+  n21["<b>norm_S_le_gauss_neg</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2…"]:::shp
+  n22["<b>T_ofReal</b><br/>T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ)"]:::shp
+  n23["<b>Tr_ge</b><br/>Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + …"]:::shp
+  n24["<b>S_real_ge_gauss</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp…"]:::shp
   x0(["<b>WeilPowerPhase</b><br/>6 theorems"]):::ext
   x1(["<b>WeilPowerSharp</b><br/>5 theorems"]):::ext
   x2(["<b>WeilPowerTail</b><br/>norm_S_le_tail"]):::ext
@@ -83,6 +83,9 @@ flowchart LR
   n8 -.-> x2
   x3 -.-> n24
   x3 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

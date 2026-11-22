@@ -11,19 +11,19 @@ PairIdentity — the complementary pair, and why base two is singular. Encodes s
 
 ```mermaid
 flowchart LR
-  n0["<b>backward_difference_pow</b><br/>b ^ (r + 1) - b ^ r = (b - 1) * b ^ r"]:::lone
-  n1["<b>tableFrom_of_geometric</b><br/>tableFrom G r d = (b - 1) ^ d * G (r - d)"]:::thm
-  n2["<b>tableFrom_add_window</b><br/>tableFrom P r d + tableFrom C r d = tableFrom T r d"]:::thm
-  n3["<b>pair_identity</b><br/>tableFrom P r d + tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e"]:::thm
-  n4["<b>composite_of_prime_zero</b><br/>tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e"]:::thm
-  n5["<b>coeff_eq_one_iff_base_two</b><br/>(b - 1) ^ (d + 1) = 1 ↔ b = 2"]:::thm
-  n6["<b>total_eq_pow_iff_base_two</b><br/>(b - 1) ^ (d + 1) * b ^ e = b ^ e ↔ b = 2"]:::end_
-  n7["<b>base_three_carries_factor</b><br/>((3 : ℤ) - 1) ^ (d + 1) * 3 ^ e = 2 ^ (d + 1) * 3 ^ e"]:::lone
-  n8["<b>base_four_carries_factor</b><br/>((4 : ℤ) - 1) ^ (d + 1) * 4 ^ e = 3 ^ (d + 1) * 4 ^ e"]:::lone
-  n9["<b>exponent_const_on_diagonal</b><br/>e₁ = e₂"]:::lone
-  n10["<b>total_const_on_diagonal</b><br/>(∀ d₁ d₂ : ℕ, (b - 1) ^ (d₁ + 1) * b ^ e = (b - 1) ^ (d₂ + 1) * …"]:::lone
-  n11["<b>measured_composite_matches_pair_identity</b><br/>zero_cells.map (fun c =＞ ((2 : ℤ) - 1) ^ (c.2 + 1) * 2 ^ (c.1 - …"]:::end_
-  n12["<b>composite_at_zero_20_6</b><br/>tableFrom C 20 6 = 8192"]:::end_
+  n0["<b>backward_difference_pow ■</b><br/>b ^ (r + 1) - b ^ r = (b - 1) * b ^ r"]:::cnt
+  n1["<b>tableFrom_of_geometric</b><br/>tableFrom G r d = (b - 1) ^ d * G (r - d)"]:::cnt
+  n2["<b>tableFrom_add_window</b><br/>tableFrom P r d + tableFrom C r d = tableFrom T r d"]:::cnt
+  n3["<b>pair_identity</b><br/>tableFrom P r d + tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e"]:::cnt
+  n4["<b>composite_of_prime_zero</b><br/>tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e"]:::cnt
+  n5["<b>coeff_eq_one_iff_base_two</b><br/>(b - 1) ^ (d + 1) = 1 ↔ b = 2"]:::cnt
+  n6["<b>total_eq_pow_iff_base_two ■</b><br/>(b - 1) ^ (d + 1) * b ^ e = b ^ e ↔ b = 2"]:::cnt
+  n7["<b>base_three_carries_factor ■</b><br/>((3 : ℤ) - 1) ^ (d + 1) * 3 ^ e = 2 ^ (d + 1) * 3 ^ e"]:::cnt
+  n8["<b>base_four_carries_factor ■</b><br/>((4 : ℤ) - 1) ^ (d + 1) * 4 ^ e = 3 ^ (d + 1) * 4 ^ e"]:::cnt
+  n9["<b>exponent_const_on_diagonal ■</b><br/>e₁ = e₂"]:::cnt
+  n10["<b>total_const_on_diagonal ■</b><br/>(∀ d₁ d₂ : ℕ, (b - 1) ^ (d₁ + 1) * b ^ e = (b - 1) ^ (d₂ + 1) * …"]:::cnt
+  n11["<b>measured_composite_matches_pair_identity ■</b><br/>zero_cells.map (fun c =＞ ((2 : ℤ) - 1) ^ (c.2 + 1) * 2 ^ (c.1 - …"]:::cnt
+  n12["<b>composite_at_zero_20_6 ■</b><br/>tableFrom C 20 6 = 8192"]:::cnt
   x0(["<b>Construction</b><br/>tableFrom_add<br/>zero_determined_by_row"]):::ext
   n1 --> n3
   n2 --> n3
@@ -31,6 +31,9 @@ flowchart LR
   n4 --> n12
   n5 --> n6
   x0 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -38,7 +41,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -69,6 +72,8 @@ The composite arm at those four cells, read from `papers/The-Four-Zeros.md` § E
 
 line 70
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The same step inside ℤ, where the table lives: `(1 − b⁻¹)·b^(r) = (b−1)·b^(r−1)`. One backward difference of a geometric row multiplies it by `b − 1` and drops the exponent by one.
 
 **Proves**
@@ -90,6 +95,8 @@ b ^ (r + 1) - b ^ r = (b - 1) * b ^ r
 ### `PairIdentity.tableFrom_of_geometric`
 
 line 86
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The collapse. If the row steps by `b` across the window a cell reads, then `d` backward differences leave `(b−1)^d` times the bottom entry of that window. Iterating `backward_difference_pow`; the whole index difficulty is that each difference moves the window's bottom down by one.
 
@@ -119,6 +126,8 @@ tableFrom G r d = (b - 1) ^ d * G (r - d)
 ### `PairIdentity.tableFrom_add_window`
 
 line 121
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Linearity, localised. If two rows partition a third across the window a cell reads, the two tables sum to the third table at that cell. `Construction.tableFrom_add` gives that the table of a sum is the sum of tables; `Construction.zero_determined_by_row` gives that agreement on the window is all a cell can see.
 
@@ -150,6 +159,8 @@ tableFrom P r d + tableFrom C r d = tableFrom T r d
 ### `PairIdentity.pair_identity`
 
 line 140
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** I1, the pair identity. Let `P` and `C` be any two rows that partition each rung: at rung `r − k` the two counts sum to `(b−1)·b^(r−k−1)`, the number of integers the rung holds. Then at every cell the differenced arms sum to
 
@@ -184,6 +195,8 @@ tableFrom P r d + tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e
 
 line 172
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** I5, the pole. Where the prime arm vanishes the composite arm carries the whole total — it has nowhere else to go. This is the identity read at a zero, and it is the only sense in which a zero says anything about the composite side.
 
 **Proves**
@@ -217,6 +230,8 @@ tableFrom C r d = (b - 1) ^ (d + 1) * b ^ e
 
 line 189
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The corollary. For integer `b ≥ 2`, the coefficient `(b−1)^(d+1)` is `1` exactly when `b = 2`. Every other base carries a factor strictly greater than one, at every depth.
 
 **Proves**
@@ -240,6 +255,8 @@ line 189
 ### `PairIdentity.total_eq_pow_iff_base_two`
 
 line 221
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The corollary, in the identity's own terms. The cell total is a bare power of the base — no `(b−1)` factor anywhere — exactly in base two. So base two is the only grid on which a vanished prime arm leaves the composite arm sitting on a power of the base itself.
 
@@ -265,6 +282,8 @@ line 221
 
 line 235
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Base three does carry the factor: the total at `(r,d)` is `2^(d+1)·3^(r−1−d)`, never a bare power of three.
 
 **Proves**
@@ -286,6 +305,8 @@ line 235
 
 line 239
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Base four likewise: `3^(d+1)·4^(r−1−d)`.
 
 **Proves**
@@ -306,6 +327,8 @@ line 239
 ### `PairIdentity.exponent_const_on_diagonal`
 
 line 255
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Along a diagonal the pair identity's exponent is fixed. `hdiag` is `r − d` constant; `h₁` and `h₂` are the index convention, which pins `e = r − 1 − d`.
 
@@ -330,6 +353,8 @@ e₁ = e₂
 
 line 269
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The diagonal is the trend's own level set, and only at `b = 2`. Fix a diagonal — equivalently, fix `e` — and ask whether the cell total is the same at every depth along it. It is, exactly in base two.
 
 **Proves**
@@ -352,6 +377,8 @@ line 269
 
 line 315
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The falsifier. Evaluating `(b−1)^(d+1)·b^(r−1−d)` at `b = 2` and the four measured zero cells reproduces the measured composite arm exactly. The formula is derived above from the partition alone; the four values were measured. They agree.
 
 **Proves**
@@ -370,6 +397,8 @@ zero_cells.map (fun c => ((2 : ℤ) - 1) ^ (c.2 + 1) * 2 ^ (c.1 - 1 - c.2)) = me
 ### `PairIdentity.composite_at_zero_20_6`
 
 line 323
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The deep zero, stated through the identity rather than through arithmetic. Given that the prime arm vanishes at `(20,6)` — which is measured, not proved — the partition forces the composite arm to be `8192`, which is what § E2 records.
 

@@ -12,7 +12,7 @@ flowchart LR
   n10["<b>argS_two_le</b><br/>|Stage3.argS 2| ≤ 15 * Real.log 2 + 600"]:::thm
   n11["<b>sCrude_holds_of_good_two</b><br/>Stage3.StmtSCrude Stage3.argS 15 75"]:::thm
   n12["<b>sCrude_holds</b><br/>Stage3.StmtSCrude Stage3.argS 15 600"]:::thm
-  n13["<b>rvM_crude_of_good_two</b><br/>riemannZeta.Riemann_vonMangoldt_bound 112 0 173"]:::end_
+  n13["<b>rvM_crude_of_good_two ■</b><br/>riemannZeta.Riemann_vonMangoldt_bound 112 0 173"]:::thm
   n14["<b>rvM_crude</b><br/>riemannZeta.Riemann_vonMangoldt_bound 112 0 698"]:::thm
   x0(["<b>ArgIdentity</b><br/>argS_eq_zetaArgContour<br/>stmtArgIdentity_holds"]):::ext
   x1(["<b>ArgLegs</b><br/>zetaArgContour_le"]):::ext
@@ -58,6 +58,9 @@ flowchart LR
   x4 -.-> n14
   x5 -.-> n13
   x5 -.-> n14
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

@@ -4,7 +4,97 @@ Every declaration in every Lean file of this repo: what it proves, what it needs
 
 **134 files, 1724 declarations, 1409 theorems.** 238 theorems are ends (nothing in the repo uses them). 37 theorems connect to nothing. 1 declaration contains `sorry`. 13 files are copies under `TablePort/`.
 
-## In five seconds
+## The table first
+
+The table is the number line's own rate of change, counted at the doublings. It comes before anything else here. Green: counting, integers only (103 theorems). Violet: its shape, by analysis with no ζ (829). Blue: read with ζ (477). Every counting theorem is listed in [`TABLE.md`](./TABLE.md).
+
+```mermaid
+flowchart LR
+  subgraph count["THE TABLE: counting, integers only"]
+    direction TB
+    t1["<b>Construction</b><br/>6 counting"]:::cnt
+    t9["<b>Isogeny</b><br/>9 counting"]:::cnt
+    t16["<b>PairIdentity</b><br/>13 counting"]:::cnt
+    t17["<b>Propagation</b><br/>9 counting"]:::cnt
+    t22["<b>SeedPerturbation</b><br/>20 counting"]:::cnt
+    t26["<b>TwinLattice</b><br/>3 counting"]:::cnt
+    t27["<b>ZeroCells</b><br/>7 counting"]:::cnt
+    t28["<b>Zeros</b><br/>15 counting"]:::cnt
+    t29["<b>ZerosStencil</b><br/>16 counting"]:::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>1 theorems counting,<br/>in 1 file"]):::cnt
+  end
+  subgraph shape["ITS SHAPE: analysis, no ζ"]
+    direction TB
+    t2["<b>Covering</b><br/>1 counting · 5 shape"]:::shp
+    t3["<b>Crossover</b><br/>6 shape"]:::shp
+    t6["<b>Expansion</b><br/>1 counting · 16 shape"]:::shp
+    t7["<b>GeneratorPeak</b><br/>6 shape"]:::shp
+    t8["<b>Interpolant</b><br/>8 shape"]:::shp
+    t10["<b>JointLadder</b><br/>1 counting · 13 shape"]:::shp
+    t11["<b>MainTerm</b><br/>10 shape"]:::shp
+    t12["<b>Measured</b><br/>7 shape"]:::shp
+    t13["<b>Nonvanishing</b><br/>8 shape"]:::shp
+    t14["<b>Nyquist</b><br/>5 shape"]:::shp
+    t15["<b>NyquistPeak</b><br/>20 shape"]:::shp
+    t18["<b>RelativeGate</b><br/>8 shape"]:::shp
+    t19["<b>RelativeLi</b><br/>3 shape"]:::shp
+    t20["<b>RouteCell</b><br/>1 shape"]:::shp
+    t21["<b>Schoenfeld</b><br/>2 shape"]:::shp
+    t23["<b>Superposition</b><br/>4 shape"]:::shp
+    t24["<b>TransferOp</b><br/>7 shape"]:::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>590 theorems shape,<br/>in 82 files"]):::shp
+    lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
+  end
+  subgraph zeta["READ WITH ζ"]
+    direction TB
+    t0["<b>Chain</b><br/>30 shape · 2 reads ζ"]:::thm
+    t4["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
+    t5["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
+    t25["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>456 theorems reads ζ,<br/>in 69 files"]):::thm
+    lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
+  end
+  rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
+  t1 --> t0
+  t5 --> t0
+  t11 --> t6
+  t19 --> t8
+  t28 --> t9
+  t0 --> t10
+  t14 --> t10
+  t13 --> t11
+  t0 --> t12
+  t29 --> t13
+  t0 --> t15
+  t14 --> t15
+  t1 --> t16
+  t22 --> t17
+  t13 --> t18
+  t6 --> t19
+  t18 --> t19
+  t8 --> t20
+  t6 --> t21
+  t1 --> t22
+  t0 --> t23
+  t0 --> t24
+  t0 --> t25
+  t16 --> t27
+  t22 --> t27
+  t28 --> t27
+  t1 --> t28
+  t28 --> t29
+  count --> shape --> zeta --> rh
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111
+```
+
+## One reading of it: the Riemann hypothesis
 
 ```mermaid
 flowchart LR
@@ -44,6 +134,9 @@ flowchart LR
   rh --> e5
   more(["and 19 more ends under RH"]):::end_
   rh --> more
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -55,6 +148,7 @@ Red: a statement nobody has proved, here or anywhere. Blue: a theorem Lean has c
 
 ## How to look something up
 
+- **What is proved by counting alone?** [`TABLE.md`](./TABLE.md).
 - **Is it already here?** [`ALL.md`](./ALL.md): every declaration, one line, sorted by name.
 - **What does a file do?** The tables below, one row per file.
 - **What does a theorem rest on, and what rests on it?** Its file's page: each theorem has *Proves*, *Needs*, *Fed by*, *Feeds*, each feeder and consumer with its own statement.
@@ -142,6 +236,9 @@ flowchart LR
   f28 --> f27
   f1 --> f28
   f28 --> f29
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -457,6 +554,9 @@ flowchart LR
   f96 --> f114
   f103 --> f114
   f107 --> f114
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -591,6 +691,9 @@ flowchart LR
   f0["WeilBridge<br/>16 theorems"]:::thm
   f1["Bridge<br/>0 theorems"]:::thm
   f0 --> f1
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

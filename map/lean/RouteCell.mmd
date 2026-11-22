@@ -1,9 +1,12 @@
 flowchart LR
-  n0["<b>cell_ne_zero_of_route</b><br/>Construction.tableFrom N r 6 ≠ 0"]:::thm
+  n0["<b>cell_ne_zero_of_route</b><br/>Construction.tableFrom N r 6 ≠ 0"]:::shp
   x0(["<b>Interpolant</b><br/>liRow_eq<br/>tableFrom_ne_zero_of_relErr_liRow"]):::ext
   x1(["<b>TableRoute</b><br/>cell_ne_zero_of_RH"]):::ext
   n0 -.-> x1
   x0 -.-> n0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

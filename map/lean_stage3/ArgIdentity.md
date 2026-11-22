@@ -18,7 +18,7 @@ flowchart LR
   n2["<b>xi_one</b><br/>xi 1 = 1"]:::thm
   n3["<b>xi_eq_completed</b><br/>xi s = s * (s - 1) * completedRiemannZeta s"]:::thm
   n4["<b>xi_one_sub</b><br/>xi (1 - s) = xi s"]:::thm
-  n5["<b>gammaR_conj</b><br/>Gammaℝ (conj s) = conj (Gammaℝ s)"]:::thm
+  n5["<b>gammaR_conj</b><br/>Gammaℝ (conj s) = conj (Gammaℝ s)"]:::shp
   n6["<b>completed_eq_gammaR_mul_zeta</b><br/>completedRiemannZeta s = Gammaℝ s * riemannZeta s"]:::thm
   n7["<b>completedZeta₀_conj</b><br/>completedRiemannZeta₀ (conj s) = conj (completedRiemannZeta₀ s)"]:::thm
   n8["<b>xi_conj</b><br/>xi (conj s) = conj (xi s)"]:::thm
@@ -42,7 +42,7 @@ flowchart LR
   n26["<b>logDeriv_xi_continuousAt</b><br/>ContinuousAt (logDeriv xi) p"]:::thm
   n27["<b>xi_ne_zero_on_good_top</b><br/>xi ((x : ℂ) + T * Complex.I) ≠ 0"]:::thm
   n28["<b>pi_mul_N_eq</b><br/>Real.pi * riemannZeta.N T = (∫ t in (0:ℝ)..T, logDeriv xi (2 + (…"]:::thm
-  n29["<b>logDeriv_congr_of_eventuallyEq</b><br/>logDeriv f x = logDeriv g x"]:::thm
+  n29["<b>logDeriv_congr_of_eventuallyEq</b><br/>logDeriv f x = logDeriv g x"]:::shp
   x0(["<b>diagram 2</b><br/>argS_eq_zetaArgContour<br/>logDeriv_gammaR_conj<br/>logDeriv_xi_split"]):::ext
   n0 --> n17
   n0 --> n18
@@ -96,6 +96,9 @@ flowchart LR
   n28 -.-> x0
   n29 -.-> x0
   n5 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -107,26 +110,26 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  n0["<b>gammaR_eq_exp_mul</b><br/>Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Compl…"]:::thm
-  n1["<b>differentiableAt_gammaR</b><br/>DifferentiableAt ℂ Gammaℝ s"]:::thm
-  n2["<b>logDeriv_gammaR</b><br/>logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamm…"]:::thm
+  n0["<b>gammaR_eq_exp_mul</b><br/>Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Compl…"]:::shp
+  n1["<b>differentiableAt_gammaR</b><br/>DifferentiableAt ℂ Gammaℝ s"]:::shp
+  n2["<b>logDeriv_gammaR</b><br/>logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamm…"]:::shp
   n3["<b>logDeriv_xi_split</b><br/>logDeriv xi s = 1 / s + 1 / (s - 1) + logDeriv Gammaℝ s + logDer…"]:::thm
-  n4["<b>intervalIntegral_re</b><br/>(∫ t in a..b, f t).re = ∫ t in a..b, (f t).re"]:::thm
-  n5["<b>intervalIntegral_im</b><br/>(∫ t in a..b, f t).im = ∫ t in a..b, (f t).im"]:::lone
+  n4["<b>intervalIntegral_re</b><br/>(∫ t in a..b, f t).re = ∫ t in a..b, (f t).re"]:::shp
+  n5["<b>intervalIntegral_im ■</b><br/>(∫ t in a..b, f t).im = ∫ t in a..b, (f t).im"]:::shp
   n6["<b>logDeriv_gammaR_conj</b><br/>logDeriv Gammaℝ (conj s) = conj (logDeriv Gammaℝ s)"]:::thm
   n7["<b>logDeriv_gammaR_im_eq_zero</b><br/>(logDeriv Gammaℝ ((x : ℝ) : ℂ)).im = 0"]:::thm
-  n8["<b>integral_inv_vertical</b><br/>(∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹) = -Complex.I * (C…"]:::thm
-  n9["<b>integral_inv_horizontal</b><br/>(∫ x in a..b, (((x : ℂ) - d) + T * Complex.I)⁻¹) = Complex.log (…"]:::thm
-  n10["<b>arg_sum_eq_pi</b><br/>Complex.arg ((1/2 : ℝ) + T * Complex.I) + Complex.arg ((-(1/2) :…"]:::thm
-  n11["<b>elem_fold_eq_pi</b><br/>(∫ t in (0:ℝ)..T, elemLD (2 + (t : ℂ) * Complex.I)).re - (∫ x in…"]:::thm
-  n12["<b>logDeriv_gammaR_analyticAt</b><br/>AnalyticAt ℂ (logDeriv Gammaℝ) z"]:::thm
-  n13["<b>logDeriv_gammaR_continuousAt</b><br/>ContinuousAt (logDeriv Gammaℝ) z"]:::thm
+  n8["<b>integral_inv_vertical</b><br/>(∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹) = -Complex.I * (C…"]:::shp
+  n9["<b>integral_inv_horizontal</b><br/>(∫ x in a..b, (((x : ℂ) - d) + T * Complex.I)⁻¹) = Complex.log (…"]:::shp
+  n10["<b>arg_sum_eq_pi</b><br/>Complex.arg ((1/2 : ℝ) + T * Complex.I) + Complex.arg ((-(1/2) :…"]:::shp
+  n11["<b>elem_fold_eq_pi</b><br/>(∫ t in (0:ℝ)..T, elemLD (2 + (t : ℂ) * Complex.I)).re - (∫ x in…"]:::shp
+  n12["<b>logDeriv_gammaR_analyticAt</b><br/>AnalyticAt ℂ (logDeriv Gammaℝ) z"]:::shp
+  n13["<b>logDeriv_gammaR_continuousAt</b><br/>ContinuousAt (logDeriv Gammaℝ) z"]:::shp
   n14["<b>logDeriv_gammaR_holo</b><br/>HolomorphicOn (logDeriv Gammaℝ) {s : ℂ | 0 ＜ s.re}"]:::thm
-  n15["<b>logDeriv_gammaR_comp_continuous</b><br/>Continuous fun x : ℝ =＞ logDeriv Gammaℝ (g x)"]:::thm
+  n15["<b>logDeriv_gammaR_comp_continuous</b><br/>Continuous fun x : ℝ =＞ logDeriv Gammaℝ (g x)"]:::shp
   n16["<b>gammaR_fold_eq_phaseTheta</b><br/>(∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re …"]:::thm
   n17["<b>stmtArgIdentity_holds</b><br/>StmtArgIdentity phaseTheta argS"]:::thm
-  n18["<b>backlundArg_of_sFromLocal</b><br/>StmtBacklundArg phaseTheta (a * A₁) (a * A₃ + b)"]:::end_
-  n19["<b>rvM_of_sFromLocal</b><br/>riemannZeta.Riemann_vonMangoldt_bound (97 + a * 15) 0 (98 + (a *…"]:::end_
+  n18["<b>backlundArg_of_sFromLocal ■</b><br/>StmtBacklundArg phaseTheta (a * A₁) (a * A₃ + b)"]:::thm
+  n19["<b>rvM_of_sFromLocal ■</b><br/>riemannZeta.Riemann_vonMangoldt_bound (97 + a * 15) 0 (98 + (a *…"]:::thm
   n20["<b>logDeriv_zeta_analyticAt</b><br/>AnalyticAt ℂ (logDeriv riemannZeta) z"]:::thm
   n21["<b>logDeriv_zeta_continuousAt</b><br/>ContinuousAt (logDeriv riemannZeta) z"]:::thm
   n22["<b>argS_eq_zetaArgContour</b><br/>argS T = zetaArgContour T"]:::thm
@@ -172,6 +175,9 @@ flowchart LR
   x3 -.-> n18
   x3 -.-> n19
   x4 -.-> n19
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -179,7 +185,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -231,6 +237,8 @@ The `ζ`-part of the folded functional, normalised: the classical `S(T)` as an a
 
 line 106
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -255,6 +263,8 @@ Differentiable ℂ xi
 
 line 110
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -274,6 +284,8 @@ xi 0 = 1
 
 line 112
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -292,6 +304,8 @@ xi 1 = 1
 ### `Stage3.xi_eq_completed`
 
 line 115
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Off the two former poles, `xi` is the classical `s(s−1)Λ(s)`.
 
@@ -319,6 +333,8 @@ xi s = s * (s - 1) * completedRiemannZeta s
 
 line 123
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The functional equation on `xi`, from `Λ₀`'s: pure algebra.
 
 **Proves**
@@ -345,6 +361,8 @@ xi (1 - s) = xi s
 
 line 134
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `Γℝ` commutes with conjugation.
 
 **Proves**
@@ -369,6 +387,8 @@ Gammaℝ (conj s) = conj (Gammaℝ s)
 
 line 155
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** On `Re s > 1` the completed zeta factors as `Γℝ · ζ`.
 
 **Proves**
@@ -391,6 +411,8 @@ completedRiemannZeta s = Gammaℝ s * riemannZeta s
 ### `Stage3.completedZeta₀_conj`
 
 line 170
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `Λ₀` commutes with conjugation. Both sides are entire; they agree on the open half-plane `1 < Re s` through the Euler-product region's `ζ`-symmetry; the identity theorem does the rest.
 
@@ -417,6 +439,8 @@ completedRiemannZeta₀ (conj s) = conj (completedRiemannZeta₀ s)
 ### `Stage3.xi_conj`
 
 line 241
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The reflection symmetry on `xi`.
 
@@ -445,6 +469,8 @@ xi (conj s) = conj (xi s)
 
 line 251
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The real zeta is strictly negative on `(0,1)`. From `ZetaAltFormula`: `ζ(σ) = 1 + 1/(σ−1) − σ·J` with `J ≥ 0` real, and `1 + 1/(σ−1) = σ/(σ−1) < 0`.
 
 **Proves**
@@ -468,6 +494,8 @@ line 251
 ### `Stage3.zeta_ne_zero_of_real_mem_Ioo`
 
 line 297
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Hence `ζ` does not vanish on the real interval `(0,1)`.
 
@@ -495,6 +523,8 @@ riemannZeta (σ : ℂ) ≠ 0
 
 line 308
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `Λ = Γℝ · ζ` on the whole right half-plane `Re s > 0`.
 
 **Proves**
@@ -517,6 +547,8 @@ completedRiemannZeta s = Gammaℝ s * riemannZeta s
 ### `Stage3.xi_eq_prod`
 
 line 317
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The factorised form of `xi` on the right half-plane.
 
@@ -551,6 +583,8 @@ xi s = s * (s - 1) * Gammaℝ s * riemannZeta s
 
 line 325
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `xi` does not vanish on `Re s ≥ 1`.
 
 **Proves**
@@ -581,6 +615,8 @@ xi s ≠ 0
 
 line 335
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `xi` does not vanish on `Re s ≤ 0`, by the functional equation.
 
 **Proves**
@@ -609,6 +645,8 @@ xi s ≠ 0
 ### `Stage3.xi_ne_zero_of_real`
 
 line 344
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `xi` does not vanish anywhere on the real axis — the rectangle's bottom edge. The interval `(0,1)` is slice 2A's negativity; the rest is the two half-plane lemmas and the values at `0` and `1`.
 
@@ -641,6 +679,8 @@ xi (σ : ℂ) ≠ 0
 
 line 363
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The zero set. `xi` vanishes exactly at ζ's nontrivial zeros.
 
 **Proves**
@@ -666,6 +706,8 @@ xi s = 0 ↔ riemannZeta s = 0 ∧ 0 < s.re ∧ s.re < 1
 ### `Stage3.meromorphicOrderAt_xi_eq_zeta`
 
 line 392
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Orders match. At a strip point, `xi` and `ζ` have the same meromorphic order: `ζ = B · xi` near the point with `B` analytic and nonvanishing there.
 
@@ -697,6 +739,8 @@ meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ
 
 line 447
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -725,6 +769,8 @@ AnalyticAt ℂ xi s
 ### `Stage3.xi_meromorphicOrderAt_ne_top`
 
 line 452
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `xi` is nowhere locally zero: its order is finite everywhere, because `xi 0 = 1` and `ℂ` is connected.
 
@@ -756,6 +802,8 @@ meromorphicOrderAt xi p ≠ ⊤
 
 line 468
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -782,6 +830,8 @@ MeromorphicAt (logDeriv xi) s
 
 line 475
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `N` as a finite sum over the (finite) set of zeros with imaginary part in `(0, T)`.
 
 **Proves**
@@ -804,6 +854,8 @@ riemannZeta.N T = ∑ ρ ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).
 ### `Stage3.xi_divisor_support_eq`
 
 line 495
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The divisor support of `xi` on the rectangle is exactly the zeros counted by `N T`, at a good height.
 
@@ -838,6 +890,8 @@ line 495
 
 line 581
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** THE COUNT BRIDGE. At a good height, the normalised rectangle integral of `logDeriv xi` over `[−1,2] × [0,T]` is the zero count.
 
 **Proves**
@@ -871,6 +925,8 @@ RectangleIntegral' (logDeriv xi) (-1 : ℂ) (2 + Complex.I * T) = ((riemannZeta.
 
 line 669
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The functional equation on the logarithmic derivative. Holds everywhere — at zeros of `xi` both sides are matching junk.
 
 **Proves**
@@ -899,6 +955,8 @@ logDeriv xi (1 - s) = -logDeriv xi s
 
 line 685
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The reflection symmetry on the logarithmic derivative.
 
 **Proves**
@@ -925,6 +983,8 @@ logDeriv xi (conj s) = conj (logDeriv xi s)
 ### `Stage3.logDeriv_xi_continuousAt`
 
 line 696
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `logDeriv xi` is continuous wherever `xi` does not vanish.
 
@@ -954,6 +1014,8 @@ ContinuousAt (logDeriv xi) p
 
 line 704
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `xi` does not vanish anywhere on a good-height top edge.
 
 **Proves**
@@ -982,6 +1044,8 @@ xi ((x : ℂ) + T * Complex.I) ≠ 0
 ### `Stage3.pi_mul_N_eq`
 
 line 717
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE FOLD. At a good height, `π · N T = Re W − Im U`, where `W` is the right-edge integral and `U` the top-right-half integral of `logDeriv xi`. The bottom edge cancels itself around `1/2`; the left edge and the top-left half fold onto their right partners through the two symmetries.
 
@@ -1016,6 +1080,8 @@ Real.pi * riemannZeta.N T = (∫ t in (0:ℝ)..T, logDeriv xi (2 + (t : ℂ) * C
 
 line 880
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `logDeriv` only sees the germ.
 
 **Proves**
@@ -1038,6 +1104,8 @@ logDeriv f x = logDeriv g x
 ### `Stage3.gammaR_eq_exp_mul`
 
 line 885
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The exponential factor of `Γℝ`, as an explicit exponential.
 
@@ -1063,6 +1131,8 @@ Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Complex.Gamma (s 
 
 line 895
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -1086,6 +1156,8 @@ DifferentiableAt ℂ Gammaℝ s
 ### `Stage3.logDeriv_gammaR`
 
 line 915
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `logDeriv Γℝ` is the phase derivative: `−(log π)/2 + ψ(s/2)/2` on the right half-plane.
 
@@ -1111,6 +1183,8 @@ logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamma (s / 2) / 
 ### `Stage3.logDeriv_xi_split`
 
 line 974
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The four-term split of `logDeriv xi`, valid wherever `Re s > 0`, `s ≠ 1` and `ζ s ≠ 0` — both surviving contour edges qualify.
 
@@ -1143,6 +1217,8 @@ logDeriv xi s = 1 / s + 1 / (s - 1) + logDeriv Gammaℝ s + logDeriv riemannZeta
 
 line 1030
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Real part passes through the interval integral.
 
 **Proves**
@@ -1166,6 +1242,8 @@ line 1030
 
 line 1042
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Imaginary part passes through the interval integral.
 
 **Proves**
@@ -1186,6 +1264,8 @@ line 1042
 ### `Stage3.logDeriv_gammaR_conj`
 
 line 1055
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `Γℝ`'s logarithmic derivative reflects: needed for the bottom edge of the Cauchy sub-rectangle to be real.
 
@@ -1212,6 +1292,8 @@ logDeriv Gammaℝ (conj s) = conj (logDeriv Gammaℝ s)
 
 line 1067
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** On the positive real axis, `logDeriv Γℝ` is real.
 
 **Proves**
@@ -1237,6 +1319,8 @@ line 1067
 
 line 1076
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The vertical FTC: `∫₀ᵀ (c + ti)⁻¹ dt = −i·(log(c+iT) − log c)` for `c > 0`.
 
 **Proves**
@@ -1260,6 +1344,8 @@ line 1076
 ### `Stage3.integral_inv_horizontal`
 
 line 1125
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The horizontal FTC: `∫ₐᵇ ((x−d) + Ti)⁻¹ dx = log((b−d)+iT) − log((a−d)+iT)` for `T > 0`.
 
@@ -1285,6 +1371,8 @@ line 1125
 
 line 1166
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The two boundary arguments sum to `π`: the arcsines cancel.
 
 **Proves**
@@ -1307,6 +1395,8 @@ Complex.arg ((1/2 : ℝ) + T * Complex.I) + Complex.arg ((-(1/2) : ℝ) + T * Co
 ### `Stage3.elem_fold_eq_pi`
 
 line 1205
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The elementary term contributes exactly `π`. All four FTC log differences cancel except `arg(1/2+iT) + arg(−1/2+iT)`, which is `arg_sum_eq_pi`. This is where the `+1` of the identity comes from.
 
@@ -1337,6 +1427,8 @@ line 1205
 
 line 1296
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `logDeriv Γℝ` is analytic on the open right half-plane.
 
 **Proves**
@@ -1363,6 +1455,8 @@ AnalyticAt ℂ (logDeriv Gammaℝ) z
 
 line 1308
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -1387,6 +1481,8 @@ ContinuousAt (logDeriv Gammaℝ) z
 
 line 1312
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -1405,6 +1501,8 @@ HolomorphicOn (logDeriv Gammaℝ) {s : ℂ | 0 < s.re}
 ### `Stage3.logDeriv_gammaR_comp_continuous`
 
 line 1318
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Continuity of `logDeriv Γℝ` along a real-parametrised path staying in the right half-plane.
 
@@ -1432,6 +1530,8 @@ Continuous fun x : ℝ => logDeriv Gammaℝ (g x)
 ### `Stage3.gammaR_fold_eq_phaseTheta`
 
 line 1331
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The `Γℝ` term contributes exactly `phaseTheta T`. Cauchy moves the path onto the critical vertical: the bottom edge is real (`logDeriv_gammaR_im_eq_zero`) so contributes nothing to the imaginary part, and on `s = 1/2 + it` the digamma argument is `1/4 + it/2`, which is `Stirling.zq t`, so the real part is `−(log π)/2 + phasePoint t / 2` — `phaseTheta`'s integrand.
 
@@ -1468,6 +1568,8 @@ line 1331
 
 line 1441
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** THE IDENTITY, DISCHARGED. `StmtArgIdentity phaseTheta argS` holds — the rectangle identity in the shape `ArgCrude` consumes.
 
 **Proves**
@@ -1491,6 +1593,8 @@ StmtArgIdentity phaseTheta argS
 ### `Stage3.backlundArg_of_sFromLocal`
 
 line 1450
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The leaf, in the form `ArgCrude.argCrude_of_pieces` wants. Supplying `StmtSFromLocal argS zetaLocalCount a b` — the remaining analytic obligation — now yields `StmtBacklundArg` and hence, with entry 140's Stirling half, the full `Riemann_vonMangoldt_bound`.
 
@@ -1519,6 +1623,8 @@ StmtBacklundArg phaseTheta (a * A₁) (a * A₃ + b)
 ### `Stage3.rvM_of_sFromLocal`
 
 line 1461
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** hNT from one remaining bound. With the Stirling half already a theorem (`backlundPhase_holds : StmtBacklundPhase phaseTheta 97 98`, entry 140) and the Jensen count discharged (`localCount_holds : StmtLocalCount zetaLocalCount 15 73`, entry 156), the whole Riemann–von Mangoldt band follows from `StmtSFromLocal` alone.
 
@@ -1551,6 +1657,8 @@ riemannZeta.Riemann_vonMangoldt_bound (97 + a * 15) 0 (98 + (a * 73 + b))
 
 line 1476
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `logDeriv ζ` is analytic wherever `ζ` is analytic and nonzero.
 
 **Proves**
@@ -1574,6 +1682,8 @@ AnalyticAt ℂ (logDeriv riemannZeta) z
 ### `Stage3.logDeriv_zeta_continuousAt`
 
 line 1487
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -1600,6 +1710,8 @@ ContinuousAt (logDeriv riemannZeta) z
 ### `Stage3.argS_eq_zetaArgContour`
 
 line 1501
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `argS` is the contour argument variation, at every good height. The residual defined against the phase and the integral of `logDeriv ζ` along the right-half path are the same number — this is the argument principle, and it is what a bound on `S` will be proved about.
 

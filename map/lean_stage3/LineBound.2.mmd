@@ -1,34 +1,34 @@
 flowchart LR
   n0["<b>I37_norm_le</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (2 * T) * (11100 *…"]:::thm
   n1["<b>integrand_norm_le_horiz</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (19…"]:::thm
-  n2["<b>horiz_length</b><br/>(1 + 1 / Real.log X) - σRH X = 1 / 2"]:::thm
+  n2["<b>horiz_length</b><br/>(1 + 1 / Real.log X) - σRH X = 1 / 2"]:::shp
   n3["<b>I8_norm_le</b><br/>‖I₈ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * …"]:::thm
   n4["<b>integrand_norm_le_horiz_neg</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) - (T : ℂ) * I)‖ ≤ (19…"]:::thm
   n5["<b>I2_norm_le</b><br/>‖I₂ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * …"]:::thm
-  n6["<b>smoothedChebyshev_sub_main_norm_le</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::end_
-  n7["<b>norm_sq_line</b><br/>‖((σ : ℂ) + I * (t : ℂ))‖ ^ 2 = σ ^ 2 + t ^ 2"]:::thm
-  n8["<b>half_lt_σRH</b><br/>(1:ℝ)/2 ＜ σRH X"]:::thm
-  n9["<b>kernel_le</b><br/>((σRH X) ^ 2 + t ^ 2)⁻¹ ≤ 4 * (1 + t ^ 2)⁻¹"]:::thm
-  n10["<b>integral_kernel_le</b><br/>∫ t in (-T)..T, ((1:ℝ) + t ^ 2)⁻¹ ≤ Real.pi"]:::thm
+  n6["<b>smoothedChebyshev_sub_main_norm_le ■</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::thm
+  n7["<b>norm_sq_line</b><br/>‖((σ : ℂ) + I * (t : ℂ))‖ ^ 2 = σ ^ 2 + t ^ 2"]:::shp
+  n8["<b>half_lt_σRH</b><br/>(1:ℝ)/2 ＜ σRH X"]:::shp
+  n9["<b>kernel_le</b><br/>((σRH X) ^ 2 + t ^ 2)⁻¹ ≤ 4 * (1 + t ^ 2)⁻¹"]:::shp
+  n10["<b>integral_kernel_le</b><br/>∫ t in (-T)..T, ((1:ℝ) + t ^ 2)⁻¹ ≤ Real.pi"]:::shp
   n11["<b>I37_norm_le_decay</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * Real.pi * (11100 *…"]:::thm
-  n12["<b>rpow_σRH</b><br/>X ^ (σRH X) = Real.exp 1 * Real.sqrt X"]:::thm
+  n12["<b>rpow_σRH</b><br/>X ^ (σRH X) = Real.exp 1 * Real.sqrt X"]:::shp
   n13["<b>I37_sqrt_form</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (22200 * Real.exp 1 * C / ε) * Real.sqrt…"]:::thm
-  n14["<b>smoothedChebyshev_sqrt_bound</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::end_
-  n15["<b>kernel_modulus_le</b><br/>‖((x : ℂ)) ^ (w - 1)‖ ≤ 2"]:::thm
-  n16["<b>mellin_bump_bounded</b><br/>∃ B ＞ 0, ∀ w : ℂ, 0 ＜ w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : …"]:::thm
+  n14["<b>smoothedChebyshev_sqrt_bound ■</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::thm
+  n15["<b>kernel_modulus_le</b><br/>‖((x : ℂ)) ^ (w - 1)‖ ≤ 2"]:::shp
+  n16["<b>mellin_bump_bounded</b><br/>∃ B ＞ 0, ∀ w : ℂ, 0 ＜ w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : …"]:::shp
   n17["<b>mellin_smooth1_le</b><br/>‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) s‖ ≤ B * ‖s‖⁻¹"]:::thm
-  n18["<b>norm_line_ge</b><br/>(1 + |t|) / 3 ≤ ‖((σRH X : ℂ)) + I * (t : ℂ)‖"]:::thm
-  n19["<b>integral_shift_inv</b><br/>∫ t in (0:ℝ)..T, (1 + t)⁻¹ = Real.log (1 + T)"]:::thm
-  n20["<b>integral_abs_kernel</b><br/>∫ t in (-T)..T, (1 + |t|)⁻¹ = 2 * Real.log (1 + T)"]:::thm
+  n18["<b>norm_line_ge</b><br/>(1 + |t|) / 3 ≤ ‖((σRH X : ℂ)) + I * (t : ℂ)‖"]:::shp
+  n19["<b>integral_shift_inv</b><br/>∫ t in (0:ℝ)..T, (1 + t)⁻¹ = Real.log (1 + T)"]:::shp
+  n20["<b>integral_abs_kernel</b><br/>∫ t in (-T)..T, (1 + |t|)⁻¹ = 2 * Real.log (1 + T)"]:::shp
   n21["<b>I37_norm_le_epsfree</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (6 * Real.log (1 +…"]:::thm
   n22["<b>I37_sqrt_log3</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (66600 * Real.exp 1 * B / Real.pi) * Rea…"]:::thm
   n23["<b>psi_sub_self_le</b><br/>|ψ X - X| ≤ E₁ + E₂ + E₃"]:::thm
-  n24["<b>eps_choice_ok</b><br/>c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.l…"]:::lone
-  n25["<b>psi_weak_at</b><br/>|ψ X - X| ≤ (c₁ + c₂ + c₃) * Real.sqrt X * (Real.log X) ^ 3"]:::end_
+  n24["<b>eps_choice_ok ■</b><br/>c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.l…"]:::shp
+  n25["<b>psi_weak_at ■</b><br/>|ψ X - X| ≤ (c₁ + c₂ + c₃) * Real.sqrt X * (Real.log X) ^ 3"]:::thm
   n26["<b>bump_exists</b><br/>∃ ν : ℝ → ℝ, ContDiff ℝ 1 ν ∧ (∀ x ＞ 0, 0 ≤ ν x) ∧ ν.support ⊆ S…"]:::thm
-  n27["<b>norm_ge_height</b><br/>T ≤ ‖((σ : ℂ)) + I * (T : ℂ)‖"]:::thm
+  n27["<b>norm_ge_height</b><br/>T ≤ ‖((σ : ℂ)) + I * (T : ℂ)‖"]:::shp
   n28["<b>mellin_horiz_le</b><br/>‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) + I * (T : ℂ))‖ ≤…"]:::thm
-  n29["<b>inv_sqrt_mul_self</b><br/>(Real.sqrt X)⁻¹ * X = Real.sqrt X"]:::thm
+  n29["<b>inv_sqrt_mul_self</b><br/>(Real.sqrt X)⁻¹ * X = Real.sqrt X"]:::shp
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
   x1(["<b>diagram 3</b><br/>6 theorems"]):::ext
   x2(["<b>ThetaPull</b><br/>I37_norm_le_decay_theta<br/>I37_norm_le_epsfree_theta<br/>norm_line_ge_theta"]):::ext
@@ -86,6 +86,9 @@ flowchart LR
   x0 -.-> n21
   x0 -.-> n4
   x0 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

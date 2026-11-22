@@ -11,12 +11,12 @@ WeilPowerTail — the tail bound: an upper bound on `‖S m w‖` for every `w`,
 
 ```mermaid
 flowchart LR
-  n0["<b>sum_inv_pow4_le_third</b><br/>∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + …"]:::thm
-  n1["<b>sum_hterm_sq_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2 ≤ 1 / (3 * Real.pi ^ 4 *…"]:::thm
-  n2["<b>norm_one_add_le</b><br/>‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2)"]:::thm
-  n3["<b>norm_g_le</b><br/>‖g w j‖ ≤ Real.exp ((w ^ 2).re * hterm j + ‖w‖ ^ 4 * hterm j ^ 2…"]:::thm
-  n4["<b>norm_T_le_tail</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re * sigmaN m n + ‖w‖ ^ 4 / (6 * R…"]:::thm
-  n5["<b>norm_S_le_tail</b><br/>‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * sigma m + ‖w…"]:::end_
+  n0["<b>sum_inv_pow4_le_third</b><br/>∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + …"]:::shp
+  n1["<b>sum_hterm_sq_le</b><br/>∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2 ≤ 1 / (3 * Real.pi ^ 4 *…"]:::shp
+  n2["<b>norm_one_add_le</b><br/>‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2)"]:::shp
+  n3["<b>norm_g_le</b><br/>‖g w j‖ ≤ Real.exp ((w ^ 2).re * hterm j + ‖w‖ ^ 4 * hterm j ^ 2…"]:::shp
+  n4["<b>norm_T_le_tail</b><br/>‖T m w n‖ ≤ Real.exp ((w ^ 2).re * sigmaN m n + ‖w‖ ^ 4 / (6 * R…"]:::shp
+  n5["<b>norm_S_le_tail ■</b><br/>‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * sigma m + ‖w…"]:::shp
   x0(["<b>WeilPowerPhase</b><br/>g_eq<br/>sigmaN_tendsto<br/>x_eq_mul"]):::ext
   x1(["<b>WeilPowerGauss</b><br/>cprime_pos<br/>tendsto_S"]):::ext
   n0 --> n1
@@ -27,6 +27,9 @@ flowchart LR
   x0 -.-> n3
   x0 -.-> n5
   x1 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -34,7 +37,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -42,6 +45,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `WeilPowerTail.sum_inv_pow4_le_third`
 
 line 54
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The fourth-power tail, telescoped: `1/(k+1)⁴ ≤ (1/3)(1/k³ − 1/(k+1)³)`.
 
@@ -65,6 +70,8 @@ line 54
 ### `WeilPowerTail.sum_hterm_sq_le`
 
 line 77
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The squared tail weights sum to at most `1/(3π⁴(m+1)³)`.
 
@@ -93,6 +100,8 @@ line 77
 
 line 105
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `‖1 + z‖ ≤ exp(Re z + ‖z‖²/2)`, for every complex `z`.
 
 **Proves**
@@ -115,6 +124,8 @@ line 105
 ### `WeilPowerTail.norm_g_le`
 
 line 125
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** One factor of the tail product.
 
@@ -148,6 +159,8 @@ line 125
 
 line 139
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The tail product, bounded with the partial tail sum.
 
 **Proves**
@@ -179,6 +192,8 @@ line 139
 ### `WeilPowerTail.norm_S_le_tail`
 
 line 178
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The tail bound. For every `w` with `QS m w ≠ 0`, no regime: `‖S m w‖ ≤ (cS m/D m)·‖w‖·exp(Re(w²)·sigma m + ‖w‖⁴/(6π⁴(m+1)³))`.
 

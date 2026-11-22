@@ -11,14 +11,14 @@ RelativeGate — the census gate, stated without assuming an error shape. WHY TH
 
 ```mermaid
 flowchart LR
-  n0["<b>relWindow_term_le</b><br/>ρ * (2 : ℝ) ^ ((r : ℝ) - k) = ρ * (2 : ℝ) ^ (r : ℝ) * ((2 : ℝ) ^…"]:::thm
-  n1["<b>relError_bound</b><br/>|stencilR n (fun x =＞ f x - L x) r| ≤ EhighRel r n ρ"]:::thm
-  n2["<b>relGate_iff</b><br/>EhighRel r (d + 1) ρ ＜ Mlow r d ↔ ρ ＜ Real.log 2 ^ d / (2 * r * …"]:::thm
-  n3["<b>relGate_eps</b><br/>Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) = ((1 / 2) * (Real.log 2 …"]:::lone
-  n4["<b>nonvanishing_of_relErr</b><br/>stencilR (d + 1) f r ≠ 0"]:::thm
-  n5["<b>tableFrom_ne_zero_of_relErr</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
-  n6["<b>schoenfeldWindow_relErr</b><br/>StmtRelErrWindow f L r n ((Real.log 2 * r / (8 * Real.pi)) * (2 …"]:::end_
-  n7["<b>powerSaving_relErr</b><br/>StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)…"]:::thm
+  n0["<b>relWindow_term_le</b><br/>ρ * (2 : ℝ) ^ ((r : ℝ) - k) = ρ * (2 : ℝ) ^ (r : ℝ) * ((2 : ℝ) ^…"]:::shp
+  n1["<b>relError_bound</b><br/>|stencilR n (fun x =＞ f x - L x) r| ≤ EhighRel r n ρ"]:::shp
+  n2["<b>relGate_iff</b><br/>EhighRel r (d + 1) ρ ＜ Mlow r d ↔ ρ ＜ Real.log 2 ^ d / (2 * r * …"]:::shp
+  n3["<b>relGate_eps ■</b><br/>Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) = ((1 / 2) * (Real.log 2 …"]:::shp
+  n4["<b>nonvanishing_of_relErr</b><br/>stencilR (d + 1) f r ≠ 0"]:::shp
+  n5["<b>tableFrom_ne_zero_of_relErr</b><br/>Construction.tableFrom N r d ≠ 0"]:::shp
+  n6["<b>schoenfeldWindow_relErr ■</b><br/>StmtRelErrWindow f L r n ((Real.log 2 * r / (8 * Real.pi)) * (2 …"]:::shp
+  n7["<b>powerSaving_relErr</b><br/>StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)…"]:::shp
   x0(["<b>RelativeLi</b><br/>tableFrom_ne_zero_of_powerSaving<br/>tableFrom_ne_zero_of_relErr_li<br/>tableFrom_ne_zero_of_relErr_li'"]):::ext
   x1(["<b>Nonvanishing</b><br/>stencilR_row<br/>stencilR_sub"]):::ext
   x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
@@ -31,6 +31,9 @@ flowchart LR
   x1 -.-> n4
   x1 -.-> n5
   x2 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -38,7 +41,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -69,6 +72,8 @@ The accumulated ceiling under a relative-error hypothesis: `ρ·2^r·(3/2)^n`. T
 
 line 72
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Each windowed relative bound is the top-of-window scale times `2^(−k)`.
 
 **Proves**
@@ -91,6 +96,8 @@ line 72
 ### `RelativeGate.relError_bound`
 
 line 86
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The error bound, shape-free. Triangle inequality, the per-term scale, and the binomial theorem at `t = 1/2`.
 
@@ -119,6 +126,8 @@ line 86
 
 line 123
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** THE GATE, REDUCED. The census condition against a relative-error ceiling is a bound on `ρ` alone — the scale `2^r` appears on both sides and cancels. What survives is
 
 **Proves**
@@ -144,6 +153,8 @@ EhighRel r (d + 1) ρ < Mlow r d ↔ ρ < Real.log 2 ^ d / (2 * r * 3 ^ (d + 1))
 
 line 170
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The threshold as a single constant divided by `log x`: with `log x = r·log 2`, the gate reads `ρ < ε_d / log x` where `ε_d = 0.5·(log 2/3)^(d+1)`. The constant falls by `3/log 2 ≈ 4.33` per unit of depth.
 
 **Proves**
@@ -164,6 +175,8 @@ Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) = ((1 / 2) * (Real.log 2 / 3) ^ (d + 1)) 
 ### `RelativeGate.nonvanishing_of_relErr`
 
 line 182
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The arrow, with no assumption on the error's shape.
 
@@ -194,6 +207,8 @@ stencilR (d + 1) f r ≠ 0
 ### `RelativeGate.tableFrom_ne_zero_of_relErr`
 
 line 195
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Onto the integer table, shape-free. Mirrors `Nonvanishing.tableFrom_ne_zero_of` with the relative-error hypothesis in place of the Schoenfeld one.
 
@@ -229,6 +244,8 @@ Construction.tableFrom N r d ≠ 0
 
 line 227
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The weld to the RH layer. `Nonvanishing.StmtSchoenfeldWindow` is an instance of the shape-free hypothesis. The relative error is worst at the window BOTTOM — `√x/x = 2^(−m/2)` grows as `m` falls — so the witness is `ρ = (log 2·r/(8π))·2^(−(r−n)/2)`, not the top-of-window value. Both factors are then bounded termwise: `r−k ≤ r` for the linear one, `k ≤ n` for the exponential one.
 
 **Proves**
@@ -252,6 +269,8 @@ StmtRelErrWindow f L r n ((Real.log 2 * r / (8 * Real.pi)) * (2 : ℝ) ^ (-((r :
 ### `RelativeGate.powerSaving_relErr`
 
 line 273
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The power-saving instance. A bound `|f − L| ≤ A·x^θ` at `x = 2^m` gives relative error `A·2^(m(θ−1))`, worst at the window bottom when `θ ≤ 1`. So the witness is `ρ = A·2^((r−n)(θ−1))`, and the gate becomes a statement about the exponent `θ` alone.
 

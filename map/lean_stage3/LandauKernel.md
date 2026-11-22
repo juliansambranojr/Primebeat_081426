@@ -11,12 +11,12 @@ LandauKernel — the kernel's integral: for `a > 0`, `∫₁^∞ (log y)^k · y^
 
 ```mermaid
 flowchart LR
-  n0["<b>log_pow_le</b><br/>Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n"]:::thm
-  n1["<b>kernel_le</b><br/>Real.log y ^ n * y ^ (-a - 1) ≤ y ^ (-(a / 2) - 1) / (a / (2 * (…"]:::thm
-  n2["<b>log_pow_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ Real.log y ^ n * y ^ (-a - 1)) (Ioi 1…"]:::thm
-  n3["<b>tendsto_log_pow_mul</b><br/>Tendsto (fun y : ℝ =＞ Real.log y ^ n * y ^ (-a)) atTop (𝓝 0)"]:::thm
-  n4["<b>hasDerivAt_prim</b><br/>HasDerivAt (fun t : ℝ =＞ -(Real.log t ^ (k + 1) * t ^ (-a)) / a)…"]:::thm
-  n5["<b>log_pow_integral</b><br/>∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial …"]:::thm
+  n0["<b>log_pow_le</b><br/>Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n"]:::shp
+  n1["<b>kernel_le</b><br/>Real.log y ^ n * y ^ (-a - 1) ≤ y ^ (-(a / 2) - 1) / (a / (2 * (…"]:::shp
+  n2["<b>log_pow_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ Real.log y ^ n * y ^ (-a - 1)) (Ioi 1…"]:::shp
+  n3["<b>tendsto_log_pow_mul</b><br/>Tendsto (fun y : ℝ =＞ Real.log y ^ n * y ^ (-a)) atTop (𝓝 0)"]:::shp
+  n4["<b>hasDerivAt_prim</b><br/>HasDerivAt (fun t : ℝ =＞ -(Real.log t ^ (k + 1) * t ^ (-a)) / a)…"]:::shp
+  n5["<b>log_pow_integral</b><br/>∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial …"]:::shp
   x0(["<b>JointDialGate</b><br/>log_absorbed"]):::ext
   x1(["<b>LandauPrimeSide</b><br/>Ik_le"]):::ext
   x2(["<b>LandauTail</b><br/>lower_tail_le<br/>upper_tail_le"]):::ext
@@ -33,6 +33,9 @@ flowchart LR
   n2 -.-> x3
   n5 -.-> x1
   n5 -.-> x2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -40,7 +43,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -48,6 +51,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `LandauKernel.log_pow_le`
 
 line 33
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -73,6 +78,8 @@ Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n
 ### `LandauKernel.kernel_le`
 
 line 56
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The kernel is at most a power of `y` with exponent below `−1`.
 
@@ -100,6 +107,8 @@ Real.log y ^ n * y ^ (-a - 1) ≤ y ^ (-(a / 2) - 1) / (a / (2 * (n + 1))) ^ n
 ### `LandauKernel.log_pow_integrable`
 
 line 66
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -129,6 +138,8 @@ IntegrableOn (fun y : ℝ => Real.log y ^ n * y ^ (-a - 1)) (Ioi 1)
 
 line 84
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -153,6 +164,8 @@ Tendsto (fun y : ℝ => Real.log y ^ n * y ^ (-a)) atTop (𝓝 0)
 
 line 102
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -175,6 +188,8 @@ HasDerivAt (fun t : ℝ => -(Real.log t ^ (k + 1) * t ^ (-a)) / a) (Real.log y ^
 ### `LandauKernel.log_pow_integral`
 
 line 118
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 

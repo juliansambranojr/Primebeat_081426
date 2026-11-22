@@ -11,16 +11,19 @@ WeilDetect — the zero side of Weil's form on bounded support, and the bounded-
 
 ```mermaid
 flowchart LR
-  n0["<b>box_empty_of_positive_of_detect</b><br/>OffLineBox ε T = ∅"]:::end_
-  n1["<b>laplace_conj</b><br/>laplace G ((starRingEnd ℂ) z) = (starRingEnd ℂ) (laplace G z)"]:::thm
+  n0["<b>box_empty_of_positive_of_detect ■</b><br/>OffLineBox ε T = ∅"]:::thm
+  n1["<b>laplace_conj</b><br/>laplace G ((starRingEnd ℂ) z) = (starRingEnd ℂ) (laplace G z)"]:::shp
   n2["<b>re_eq_half_of_RH</b><br/>(ρ : ℂ).re = 1 / 2"]:::thm
   n3["<b>zeroForm_nonneg_of_RH</b><br/>0 ≤ (zeroForm G).re"]:::thm
-  n4["<b>weilPositive_of_RH</b><br/>StmtWeilPositive L"]:::end_
+  n4["<b>weilPositive_of_RH ■</b><br/>StmtWeilPositive L"]:::thm
   x0(["<b>WeilBackground</b><br/>online_term_eq"]):::ext
   n1 --> n3
   n2 --> n3
   n3 --> n4
   n1 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -28,7 +31,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -102,6 +105,8 @@ The bounded-height detection statement: a zero in the box forces the zero side n
 
 line 95
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The arrow. Detection plus positivity on the same support empties the box.
 
 **Proves**
@@ -127,6 +132,8 @@ OffLineBox ε T = ∅
 ### `WeilDetect.laplace_conj`
 
 line 103
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** For real-valued `G`, the transform commutes with conjugation.
 
@@ -156,6 +163,8 @@ laplace G ((starRingEnd ℂ) z) = (starRingEnd ℂ) (laplace G z)
 
 line 115
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Under RH a nontrivial zero has real part `1/2`.
 
 **Proves**
@@ -179,6 +188,8 @@ line 115
 ### `WeilDetect.zeroForm_nonneg_of_RH`
 
 line 130
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** RH ⇒ positivity on every support (the easy half of Weil's criterion, zero side). Each term is `|Ĝ(−ρ)|²·ord ρ` with `ord ρ ≥ 1`.
 
@@ -210,6 +221,8 @@ line 130
 ### `WeilDetect.weilPositive_of_RH`
 
 line 151
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 

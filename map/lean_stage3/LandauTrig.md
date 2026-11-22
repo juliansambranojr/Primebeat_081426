@@ -11,12 +11,12 @@ LandauTrig — a real exponential sum is large somewhere in every long block. Bl
 
 ```mermaid
 flowchart LR
-  n0["<b>norm_geom_Ico_le</b><br/>‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖"]:::thm
-  n1["<b>re_mul_geom_ge</b><br/>-(‖c‖ * (2 / ‖w - 1‖)) ≤ (c * ∑ n ∈ Finset.Ico a (a + N), w ^ n)…"]:::thm
-  n2["<b>sum_block_ge</b><br/>-(∑ j ∈ s, ‖c j‖ * (2 / ‖z j - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N)…"]:::thm
-  n3["<b>abs_le_sum_norm</b><br/>|T n| ≤ ∑ j ∈ s, ‖c j‖"]:::thm
-  n4["<b>sum_sq_block_ge</b><br/>(N : ℝ) * ∑ j ∈ s, ‖c j‖ ^ 2 - ∑ j ∈ s, ∑ l ∈ s, (if j = l then …"]:::thm
-  n5["<b>exists_large_in_block</b><br/>∃ τ : ℝ, 0 ＜ τ ∧ ∃ N₀ : ℕ, ∀ a N : ℕ, N₀ ≤ N → ∃ n ∈ Finset.Ico …"]:::thm
+  n0["<b>norm_geom_Ico_le</b><br/>‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖"]:::shp
+  n1["<b>re_mul_geom_ge</b><br/>-(‖c‖ * (2 / ‖w - 1‖)) ≤ (c * ∑ n ∈ Finset.Ico a (a + N), w ^ n)…"]:::shp
+  n2["<b>sum_block_ge</b><br/>-(∑ j ∈ s, ‖c j‖ * (2 / ‖z j - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N)…"]:::shp
+  n3["<b>abs_le_sum_norm</b><br/>|T n| ≤ ∑ j ∈ s, ‖c j‖"]:::shp
+  n4["<b>sum_sq_block_ge</b><br/>(N : ℝ) * ∑ j ∈ s, ‖c j‖ ^ 2 - ∑ j ∈ s, ∑ l ∈ s, (if j = l then …"]:::shp
+  n5["<b>exists_large_in_block</b><br/>∃ τ : ℝ, 0 ＜ τ ∧ ∃ N₀ : ℕ, ∀ a N : ℕ, N₀ ≤ N → ∃ n ∈ Finset.Ico …"]:::shp
   x0(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
   n0 --> n1
   n1 --> n2
@@ -25,6 +25,9 @@ flowchart LR
   n3 --> n5
   n4 --> n5
   n5 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -32,7 +35,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -40,6 +43,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `LandauTrig.norm_geom_Ico_le`
 
 line 42
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -63,6 +68,8 @@ line 42
 ### `LandauTrig.re_mul_geom_ge`
 
 line 51
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The real part of `c·Σ w^n` over a block, from below, when `w ≠ 1`.
 
@@ -93,6 +100,8 @@ line 51
 
 line 60
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -122,6 +131,8 @@ line 60
 
 line 83
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -147,6 +158,8 @@ line 83
 ### `LandauTrig.sum_sq_block_ge`
 
 line 91
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -176,6 +189,8 @@ line 91
 ### `LandauTrig.exists_large_in_block`
 
 line 158
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 

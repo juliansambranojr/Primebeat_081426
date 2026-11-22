@@ -29,6 +29,9 @@ flowchart LR
   n2 -.-> x1
   n3 -.-> x4
   x3 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -36,7 +39,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -57,6 +60,8 @@ The on-line term with its multiplicity, as WeilDetect's sum weights it.
 ### `WeilBands.order_eq_analyticOrderNatAt`
 
 line 43
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Upstream's multiplicity is the analytic order, at every nontrivial zero.
 
@@ -84,6 +89,8 @@ line 43
 
 line 55
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** An on-line zero within `9/10` of height `T` lies in the count's window.
 
 **Proves**
@@ -110,6 +117,8 @@ line 55
 ### `WeilBands.band_count`
 
 line 71
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Band count. A finite set of on-line zeros within `9/10` of a height `T ≥ 2` has total analytic multiplicity at most `15·log T + 73`.
 
@@ -142,6 +151,8 @@ line 71
 ### `WeilBands.band_sum_le`
 
 line 92
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Band sum. Over a finite set of on-line zeros within `9/10` of `T ≥ 2`, if every term is at most `M ≥ 0`, the weighted sum is at most `M·(15·log T + 73)`.
 

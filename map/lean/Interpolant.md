@@ -11,14 +11,14 @@ Interpolant — the smooth interpolant of the main term, constructed. Block C1 o
 
 ```mermaid
 flowchart LR
-  n0["<b>f2x_contDiffOn</b><br/>ContDiffOn ℝ (⊤ : ℕ∞) Expansion.f2x (Ioi 0)"]:::thm
-  n1["<b>f2x_continuousOn</b><br/>ContinuousOn Expansion.f2x (Ioi 0)"]:::thm
-  n2["<b>F_hasDerivAt</b><br/>HasDerivAt F (Expansion.f2x x) x"]:::thm
-  n3["<b>F_contDiffOn</b><br/>ContDiffOn ℝ (⊤ : ℕ∞) F (Ioi 0)"]:::thm
-  n4["<b>liRow_contDiff</b><br/>ContDiff ℝ (⊤ : ℕ∞) liRow"]:::thm
-  n5["<b>liRow_eq</b><br/>liRow x = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t"]:::thm
-  n6["<b>liRow_hasDerivAt</b><br/>HasDerivAt liRow (Expansion.f2x x) x"]:::thm
-  n7["<b>tableFrom_ne_zero_of_relErr_liRow</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  n0["<b>f2x_contDiffOn</b><br/>ContDiffOn ℝ (⊤ : ℕ∞) Expansion.f2x (Ioi 0)"]:::shp
+  n1["<b>f2x_continuousOn</b><br/>ContinuousOn Expansion.f2x (Ioi 0)"]:::shp
+  n2["<b>F_hasDerivAt</b><br/>HasDerivAt F (Expansion.f2x x) x"]:::shp
+  n3["<b>F_contDiffOn</b><br/>ContDiffOn ℝ (⊤ : ℕ∞) F (Ioi 0)"]:::shp
+  n4["<b>liRow_contDiff</b><br/>ContDiff ℝ (⊤ : ℕ∞) liRow"]:::shp
+  n5["<b>liRow_eq</b><br/>liRow x = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t"]:::shp
+  n6["<b>liRow_hasDerivAt</b><br/>HasDerivAt liRow (Expansion.f2x x) x"]:::shp
+  n7["<b>tableFrom_ne_zero_of_relErr_liRow</b><br/>Construction.tableFrom N r d ≠ 0"]:::shp
   x0(["<b>RouteCell</b><br/>cell_ne_zero_of_route"]):::ext
   x1(["<b>TableDepths</b><br/>cell_ne_zero_gen"]):::ext
   x2(["<b>RelativeLi</b><br/>tableFrom_ne_zero_of_relErr_li'"]):::ext
@@ -36,6 +36,9 @@ flowchart LR
   n7 -.-> x0
   n7 -.-> x1
   x2 -.-> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -43,7 +46,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -76,6 +79,8 @@ The interpolant: `F` cut off smoothly below one half.
 
 line 37
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -95,6 +100,8 @@ ContDiffOn ℝ (⊤ : ℕ∞) Expansion.f2x (Ioi 0)
 ### `Interpolant.f2x_continuousOn`
 
 line 45
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -116,6 +123,8 @@ ContinuousOn Expansion.f2x (Ioi 0)
 ### `Interpolant.F_hasDerivAt`
 
 line 48
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -143,6 +152,8 @@ HasDerivAt F (Expansion.f2x x) x
 
 line 64
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -167,6 +178,8 @@ ContDiffOn ℝ (⊤ : ℕ∞) F (Ioi 0)
 
 line 69
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -189,6 +202,8 @@ ContDiff ℝ (⊤ : ℕ∞) liRow
 ### `Interpolant.liRow_eq`
 
 line 87
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -217,6 +232,8 @@ liRow x = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t
 
 line 93
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -244,6 +261,8 @@ HasDerivAt liRow (Expansion.f2x x) x
 ### `Interpolant.tableFrom_ne_zero_of_relErr_liRow`
 
 line 103
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The gate with nothing assumed about the main term.
 

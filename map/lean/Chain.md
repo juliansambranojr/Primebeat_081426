@@ -13,36 +13,36 @@ The Euler Factor Chain, as a chain. Companion to papers/Euler-Factor-Chain.md.
 
 ```mermaid
 flowchart LR
-  n0["<b>bdiff_smul</b><br/>bdiff (fun r =＞ k * f r) = fun r =＞ k * bdiff f r"]:::thm
-  n1["<b>A4_of_A1</b><br/>StmtA4 b ρ"]:::thm
-  n2["<b>B5_of_A4_B4</b><br/>h b N ((1 : ℂ)/2 + γ * I) = ((‖(Sym b ((1 : ℂ)/2 + γ * I)) ^ N‖ …"]:::thm
-  n3["<b>C2_of_C1</b><br/>StmtC2 b"]:::thm
-  n4["<b>C3_of_A4_C2</b><br/>StmtC3 b"]:::thm
-  n5["<b>C3lower_of_A4_C2</b><br/>StmtC3lower b"]:::thm
-  n6["<b>A2</b><br/>StmtA2"]:::end_
-  n7["<b>A3</b><br/>StmtA3"]:::end_
-  n8["<b>C1</b><br/>StmtC1 b"]:::thm
-  n9["<b>C2</b><br/>StmtC2 b"]:::thm
-  n10["<b>A1</b><br/>StmtA1 b ρ"]:::thm
-  n11["<b>A4</b><br/>StmtA4 b ρ"]:::thm
-  n12["<b>B4</b><br/>StmtB4 b N"]:::thm
-  n13["<b>B5</b><br/>StmtB5 b N"]:::end_
-  n14["<b>C3</b><br/>StmtC3 b"]:::end_
-  n15["<b>C3lower</b><br/>StmtC3lower b"]:::end_
-  n16["<b>tableFrom_eq_bdiff_iter</b><br/>((Construction.tableFrom N r d : ℤ) : ℂ) = (bdiff^[d]) g (r : ℂ)"]:::thm
-  n17["<b>tableFrom_mode</b><br/>((Construction.tableFrom N r d : ℤ) : ℂ) = (Sym b ρ) ^ d * mode …"]:::thm
-  n18["<b>tableFrom_norm_on_critical_line</b><br/>‖((Construction.tableFrom N r d : ℤ) : ℂ)‖ = ‖Sym b ((1 : ℂ)/2 +…"]:::end_
-  n19["<b>sym_eq_zero_iff</b><br/>Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * I / Real.log…"]:::thm
-  n20["<b>sym_periodic</b><br/>Sym b (s + 2 * Real.pi * I / Real.log b) = Sym b s"]:::thm
-  n21["<b>gain_sq_periodic</b><br/>Function.Periodic (fun γ : ℝ =＞ ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2)…"]:::thm
-  n22["<b>period_vacuous_at_one</b><br/>Function.Periodic f (2 * Real.pi / Real.log 1)"]:::lone
-  n23["<b>sq_rpow_half</b><br/>(b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ))"]:::thm
-  n24["<b>gain_sq_at_floor</b><br/>‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2"]:::thm
-  n25["<b>gain_sq_at_ceiling</b><br/>‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2"]:::thm
-  n26["<b>C2_floor_attained</b><br/>‖Sym b ((1 : ℂ)/2 + (0 : ℝ) * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2"]:::end_
-  n27["<b>C2_ceiling_attained</b><br/>∃ γ : ℝ, ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) …"]:::end_
-  n28["<b>ceiling_base</b><br/>‖Sym (Real.exp (Real.pi * (2 * k + 1) / γ)) ((1 : ℂ)/2 + γ * I)‖…"]:::end_
-  n29["<b>ceiling_dominates_floor</b><br/>(1 - b ^ (-(1:ℝ)/2)) ^ 2 ＜ (1 + b ^ (-(1:ℝ)/2)) ^ 2"]:::lone
+  n0["<b>bdiff_smul</b><br/>bdiff (fun r =＞ k * f r) = fun r =＞ k * bdiff f r"]:::shp
+  n1["<b>A4_of_A1</b><br/>StmtA4 b ρ"]:::shp
+  n2["<b>B5_of_A4_B4</b><br/>h b N ((1 : ℂ)/2 + γ * I) = ((‖(Sym b ((1 : ℂ)/2 + γ * I)) ^ N‖ …"]:::shp
+  n3["<b>C2_of_C1</b><br/>StmtC2 b"]:::shp
+  n4["<b>C3_of_A4_C2</b><br/>StmtC3 b"]:::shp
+  n5["<b>C3lower_of_A4_C2</b><br/>StmtC3lower b"]:::shp
+  n6["<b>A2 ■</b><br/>StmtA2"]:::thm
+  n7["<b>A3 ■</b><br/>StmtA3"]:::thm
+  n8["<b>C1</b><br/>StmtC1 b"]:::shp
+  n9["<b>C2</b><br/>StmtC2 b"]:::shp
+  n10["<b>A1</b><br/>StmtA1 b ρ"]:::shp
+  n11["<b>A4</b><br/>StmtA4 b ρ"]:::shp
+  n12["<b>B4</b><br/>StmtB4 b N"]:::shp
+  n13["<b>B5 ■</b><br/>StmtB5 b N"]:::shp
+  n14["<b>C3 ■</b><br/>StmtC3 b"]:::shp
+  n15["<b>C3lower ■</b><br/>StmtC3lower b"]:::shp
+  n16["<b>tableFrom_eq_bdiff_iter</b><br/>((Construction.tableFrom N r d : ℤ) : ℂ) = (bdiff^[d]) g (r : ℂ)"]:::shp
+  n17["<b>tableFrom_mode</b><br/>((Construction.tableFrom N r d : ℤ) : ℂ) = (Sym b ρ) ^ d * mode …"]:::shp
+  n18["<b>tableFrom_norm_on_critical_line ■</b><br/>‖((Construction.tableFrom N r d : ℤ) : ℂ)‖ = ‖Sym b ((1 : ℂ)/2 +…"]:::shp
+  n19["<b>sym_eq_zero_iff</b><br/>Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * I / Real.log…"]:::shp
+  n20["<b>sym_periodic</b><br/>Sym b (s + 2 * Real.pi * I / Real.log b) = Sym b s"]:::shp
+  n21["<b>gain_sq_periodic</b><br/>Function.Periodic (fun γ : ℝ =＞ ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2)…"]:::shp
+  n22["<b>period_vacuous_at_one ■</b><br/>Function.Periodic f (2 * Real.pi / Real.log 1)"]:::shp
+  n23["<b>sq_rpow_half</b><br/>(b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ))"]:::shp
+  n24["<b>gain_sq_at_floor</b><br/>‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2"]:::shp
+  n25["<b>gain_sq_at_ceiling</b><br/>‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2"]:::shp
+  n26["<b>C2_floor_attained ■</b><br/>‖Sym b ((1 : ℂ)/2 + (0 : ℝ) * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2"]:::shp
+  n27["<b>C2_ceiling_attained ■</b><br/>∃ γ : ℝ, ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) …"]:::shp
+  n28["<b>ceiling_base ■</b><br/>‖Sym (Real.exp (Real.pi * (2 * k + 1) / γ)) ((1 : ℂ)/2 + γ * I)‖…"]:::shp
+  n29["<b>ceiling_dominates_floor ■</b><br/>(1 - b ^ (-(1:ℝ)/2)) ^ 2 ＜ (1 + b ^ (-(1:ℝ)/2)) ^ 2"]:::shp
   x0(["<b>Superposition</b><br/>A4_sum_of_A1<br/>tableFrom_eq_modeSum_reweighted"]):::ext
   x1(["<b>EulerFactorChain</b><br/>6 theorems"]):::ext
   x2(["<b>TransferOp</b><br/>eigenvalue_zero_iff_lattice<br/>mode_hasEigenvector"]):::ext
@@ -83,6 +83,9 @@ flowchart LR
   x1 -.-> n6
   x1 -.-> n7
   x1 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -94,12 +97,15 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  n0["<b>joint_gain_periodic_of_commensurate</b><br/>Function.Periodic (fun γ : ℝ =＞ ‖Sym b₁ ((1 : ℂ)/2 + γ * I)‖ ^ 2…"]:::end_
-  n1["<b>second_ladder_winds_densely</b><br/>DenseRange (fun k : ℤ =＞ k • ((2 * Real.pi / Real.log b₂ : ℝ) : …"]:::thm
+  n0["<b>joint_gain_periodic_of_commensurate ■</b><br/>Function.Periodic (fun γ : ℝ =＞ ‖Sym b₁ ((1 : ℂ)/2 + γ * I)‖ ^ 2…"]:::shp
+  n1["<b>second_ladder_winds_densely</b><br/>DenseRange (fun k : ℤ =＞ k • ((2 * Real.pi / Real.log b₂ : ℝ) : …"]:::shp
   x0(["<b>diagram 1</b><br/>gain_sq_periodic"]):::ext
   x1(["<b>JointLadder</b><br/>triadic_winds_densely_on_dyadic"]):::ext
   n1 -.-> x1
   x0 -.-> n0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -107,7 +113,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -267,6 +273,8 @@ C3, the other half. The paper's C3 reads "no mode grows *or decays* without boun
 
 line 126
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `bdiff` is homogeneous: scalars pass through.
 
 **Proves**
@@ -293,6 +301,8 @@ bdiff (fun r => k * f r) = fun r => k * bdiff f r
 ### `Chain.A4_of_A1`
 
 line 132
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** A1 → A4. The arrow that turns one difference into `N`, by induction. This is the paper's A3–A4 step and it uses A1 essentially.
 
@@ -323,6 +333,8 @@ StmtA4 b ρ
 
 line 157
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A4 ∧ B4 → B5. The payoff arrow: the depth gain *is* the Weil weight. Lean needs only `hB4`. The proof rewrites by it, then moves the exponent inside the norm — `‖Sym‖^(2N) = ‖Sym^N‖^2`, which is `norm_pow` and nothing else. `hA4` is carried to mirror the paper's stated dependency, not because the proof consumes it: the `have` binding it is inert, and it is instantiated at `r = 1`, which appears nowhere in the goal.
 
 **Proves**
@@ -351,6 +363,8 @@ h b N ((1 : ℂ)/2 + γ * I) = ((‖(Sym b ((1 : ℂ)/2 + γ * I)) ^ N‖ ^ 2 : 
 
 line 167
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** C1 → C2. The bound follows from the expansion and `|cos| ≤ 1`.
 
 **Proves**
@@ -378,6 +392,8 @@ StmtC2 b
 ### `Chain.C3_of_A4_C2`
 
 line 182
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** A4 ∧ C2 → C3. Depth cannot escape the bound. Uses A4 to name the depth-`N` multiplier and C2 to bound it.
 
@@ -408,6 +424,8 @@ StmtC3 b
 
 line 201
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A4 ∧ C2 → C3 (decay half). A strict mirror of `C3_of_A4_C2`, reading `(hC2 γ).1` where that reads `.2`.
 
 **Proves**
@@ -436,6 +454,8 @@ StmtC3lower b
 
 line 221
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** A2, proved rather than assumed, from `EulerFactorChain.euler_product_riemannZeta` (Mathlib's `riemannZeta_eulerProduct_tprod`). No base index, and the convergence hypothesis travels with it.
 
 **Proves**
@@ -456,6 +476,8 @@ StmtA2
 ### `Chain.A3`
 
 line 226
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A3, proved rather than assumed. The first conjunct is `EulerFactorChain.sym_natCast`, which is a cast lemma; the second is `EulerFactorChain.euler_product_sym`, i.e. A2 with `Sym` substituted in.
 
@@ -480,6 +502,8 @@ StmtA3
 ### `Chain.C1`
 
 line 239
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** C1, proved rather than assumed. The expansion is `EulerFactorChain.gain_sq_on_critical_line`, the law of cosines with sides `1` and `b^(-1/2)`. Needs only `0 < b`.
 
@@ -510,6 +534,8 @@ StmtC1 b
 
 line 246
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** C2, now unconditional. Same arrow as `C2_of_C1`, with its hypothesis supplied by `C1`; the implication is still the thing Lean checks.
 
 **Proves**
@@ -538,6 +564,8 @@ StmtC2 b
 ### `Chain.A1`
 
 line 257
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** A1, proved rather than assumed, from `EulerFactorChain.symbol_of_backward_difference`. Needs only `b ≠ 0`.
 
@@ -572,6 +600,8 @@ StmtA1 b ρ
 
 line 264
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A4, now unconditional. Same arrow as `A4_of_A1`, with its hypothesis supplied by `A1`.
 
 **Proves**
@@ -603,6 +633,8 @@ StmtA4 b ρ
 
 line 268
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** B4, proved rather than assumed, from `EulerFactorChain.h_eq_gain_pow_on_critical_line`. Needs only `0 < b`.
 
 **Proves**
@@ -630,6 +662,8 @@ StmtB4 b N
 ### `Chain.B5`
 
 line 275
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** B5, now unconditional. Same arrow as `B5_of_A4_B4`, with both hypotheses supplied. The depth gain *is* the Weil weight, with nothing assumed.
 
@@ -659,6 +693,8 @@ StmtB5 b N
 
 line 280
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** C3, now unconditional. Same arrow as `C3_of_A4_C2`, with `A4` and `C2` supplied. No mode's depth-`N` gain escapes the bound, with nothing assumed.
 
 **Proves**
@@ -685,6 +721,8 @@ StmtC3 b
 ### `Chain.C3lower`
 
 line 288
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** C3's decay half, unconditional. Same arrow as `C3lower_of_A4_C2` with both hypotheses supplied. With `C3` this is the paper's C3 in full: a mode's depth-`N` amplitude is trapped between `|1 − b^(−1/2)|^N` and `(1 + b^(−1/2))^N` times its undifferenced amplitude, at every rung and every `γ`.
 
@@ -713,6 +751,8 @@ StmtC3lower b
 
 line 303
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The weld. `Construction.tableFrom` and `bdiff` are the same operation on two domains. If `g : ℂ → ℂ` agrees with the integer row `N` at every integer, the table's cell at `(r,d)` IS `bdiff` iterated `d` times on `g` at `r`.
 
 **Proves**
@@ -739,6 +779,8 @@ line 303
 ### `Chain.tableFrom_mode`
 
 line 327
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The chain, welded. An integer row agreeing with a mode across the window a cell reads: the cell is the symbol to the `d`, times the mode.
 
@@ -771,6 +813,8 @@ line 327
 
 line 359
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The table on the critical line. The cell's modulus is `‖Sym‖^d` times the mode's — which is what `StmtC2` and `StmtC3` bound, and what the periodicity below makes an angle.
 
 **Proves**
@@ -800,6 +844,8 @@ line 359
 
 line 381
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The pole lattice. `Sym b s = 0` exactly on `s ∈ (2πi / log b)·ℤ`.
 
 **Proves**
@@ -828,6 +874,8 @@ Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * I / Real.log b)
 
 line 405
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The symbol is periodic with the lattice period. One step along the pole lattice returns `Sym` to itself, because `b^(−2πi/log b) = exp(−2πi) = 1`. This is the origin of the circle.
 
 **Proves**
@@ -854,6 +902,8 @@ Sym b (s + 2 * Real.pi * I / Real.log b) = Sym b s
 ### `Chain.gain_sq_periodic`
 
 line 429
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The circle. The gain on the critical line is periodic in `γ` with period `2π / log b`.
 
@@ -883,6 +933,8 @@ Function.Periodic (fun γ : ℝ => ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2) (2 * 
 
 line 444
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The trap `gain_sq_periodic`'s `b ≠ 1` closes: at `b = 1` the period is zero and the statement holds for any function whatsoever.
 
 **Proves**
@@ -903,6 +955,8 @@ Function.Periodic f (2 * Real.pi / Real.log 1)
 ### `Chain.sq_rpow_half`
 
 line 474
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -925,6 +979,8 @@ line 474
 ### `Chain.gain_sq_at_floor`
 
 line 480
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** D1, floor half. Where `cos(γ log b) = 1` the gain is the floor of C2.
 
@@ -955,6 +1011,8 @@ line 480
 ### `Chain.gain_sq_at_ceiling`
 
 line 488
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** D1, ceiling half. Where `cos(γ log b) = −1` the gain is the ceiling.
 
@@ -987,6 +1045,8 @@ line 488
 
 line 497
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** D2. The smooth term has `γ = 0`, so it sits exactly ON the floor. This is why differencing dissipates it fastest of anything in the band.
 
 **Proves**
@@ -1011,6 +1071,8 @@ line 497
 ### `Chain.C2_ceiling_attained`
 
 line 503
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** C2's upper bound is ATTAINED. `StmtC2` proves containment; this exhibits a `γ` that reaches the ceiling. Witness `γ = π / log b`.
 
@@ -1038,6 +1100,8 @@ line 503
 
 line 512
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** D4. The bases placing `γ` exactly at the ceiling are `exp(π(2k+1)/γ)`. For `γ₁` the paper lists `1.2489, 1.948, 3.039, 4.741, 7.395 …`; `1.2489` is the O45 locked family's `k = 2`.
 
 **Proves**
@@ -1064,6 +1128,8 @@ line 512
 
 line 523
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** D3. Differencing amplifies ceiling modes strictly more than floor modes. That is the power iteration, as an inequality — and it needs only `0 < b`, not `b ≠ 1`, because the proof does not consume one.
 
 **Proves**
@@ -1084,6 +1150,8 @@ line 523
 ### `Chain.joint_gain_periodic_of_commensurate`
 
 line 545
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The collapse. Each base contributes a circle of period `2π / log b`. If the two periods are commensurate — an integer multiple of one equals an integer multiple of the other — the joint gain is periodic in a SINGLE variable and the two circles are one.
 
@@ -1116,6 +1184,8 @@ Function.Periodic (fun γ : ℝ => ‖Sym b₁ ((1 : ℂ)/2 + γ * I)‖ ^ 2 * �
 ### `Chain.second_ladder_winds_densely`
 
 line 566
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The torus. Take the `b₁`-ladder's circle. The `b₂`-ladder steps around it by its own period. Those steps are DENSE — the second ladder winds forever without closing — exactly when `log b₁ / log b₂` is irrational. Rational, and the orbit is finite and the two circles collapse, which is the theorem above.
 

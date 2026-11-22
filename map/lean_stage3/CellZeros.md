@@ -11,14 +11,14 @@ CellZeros — block T1 of `lean_stage3/design/joints.md`. 2026-11-22. The cell a
 
 ```mermaid
 flowchart LR
-  n0["<b>stencil_add</b><br/>stencil d (fun n =＞ a n + b n) r = stencil d a r + stencil d b r"]:::thm
-  n1["<b>stencil_sub</b><br/>stencil d (fun n =＞ a n - b n) r = stencil d a r - stencil d b r"]:::thm
-  n2["<b>stencil_const_mul</b><br/>stencil d (fun n =＞ c * a n) r = c * stencil d a r"]:::thm
-  n3["<b>stencil_sum</b><br/>stencil d (fun n =＞ ∑ i ∈ s, f i n) r = ∑ i ∈ s, stencil d (f i)…"]:::thm
-  n4["<b>stencil_mode</b><br/>stencil d (fun n : ℤ =＞ w ^ n) r = w ^ r * (1 - w⁻¹) ^ d"]:::thm
-  n5["<b>norm_stencil_le</b><br/>‖stencil d a r‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * B j"]:::thm
-  n6["<b>cpow_two_zpow</b><br/>(((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n"]:::thm
-  n7["<b>two_cpow_ne_zero</b><br/>(2:ℂ) ^ ρ ≠ 0"]:::thm
+  n0["<b>stencil_add</b><br/>stencil d (fun n =＞ a n + b n) r = stencil d a r + stencil d b r"]:::shp
+  n1["<b>stencil_sub</b><br/>stencil d (fun n =＞ a n - b n) r = stencil d a r - stencil d b r"]:::shp
+  n2["<b>stencil_const_mul</b><br/>stencil d (fun n =＞ c * a n) r = c * stencil d a r"]:::shp
+  n3["<b>stencil_sum</b><br/>stencil d (fun n =＞ ∑ i ∈ s, f i n) r = ∑ i ∈ s, stencil d (f i)…"]:::shp
+  n4["<b>stencil_mode</b><br/>stencil d (fun n : ℤ =＞ w ^ n) r = w ^ r * (1 - w⁻¹) ^ d"]:::shp
+  n5["<b>norm_stencil_le</b><br/>‖stencil d a r‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * B j"]:::shp
+  n6["<b>cpow_two_zpow</b><br/>(((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n"]:::shp
+  n7["<b>two_cpow_ne_zero</b><br/>(2:ℂ) ^ ρ ≠ 0"]:::shp
   n8["<b>stencil_zeroPartialSum</b><br/>stencil d (fun n : ℤ =＞ Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r =…"]:::thm
   n9["<b>cell_eq_zero_sum</b><br/>‖stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2…"]:::thm
   x0(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
@@ -35,6 +35,9 @@ flowchart LR
   n8 --> n9
   n9 -.-> x1
   x0 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -42,7 +45,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -62,6 +65,8 @@ The `d`-fold backward difference of a row, read at `r`.
 ### `CellZeros.stencil_add`
 
 line 40
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -88,6 +93,8 @@ stencil d (fun n => a n + b n) r = stencil d a r + stencil d b r
 
 line 46
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -112,6 +119,8 @@ stencil d (fun n => a n - b n) r = stencil d a r - stencil d b r
 ### `CellZeros.stencil_const_mul`
 
 line 52
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -139,6 +148,8 @@ stencil d (fun n => c * a n) r = c * stencil d a r
 
 line 58
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -164,6 +175,8 @@ stencil d (fun n => ∑ i ∈ s, f i n) r = ∑ i ∈ s, stencil d (f i) r
 ### `CellZeros.stencil_mode`
 
 line 65
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** On a mode the stencil is the symbol to the `d`.
 
@@ -193,6 +206,8 @@ stencil d (fun n : ℤ => w ^ n) r = w ^ r * (1 - w⁻¹) ^ d
 
 line 78
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -220,6 +235,8 @@ line 78
 
 line 87
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -242,6 +259,8 @@ line 87
 
 line 100
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -262,6 +281,8 @@ line 100
 ### `CellZeros.stencil_zeroPartialSum`
 
 line 105
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The stencil passes through the sum over the zeros.
 
@@ -295,6 +316,8 @@ stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {
 ### `CellZeros.cell_eq_zero_sum`
 
 line 129
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The cell as a sum over the zeros.
 

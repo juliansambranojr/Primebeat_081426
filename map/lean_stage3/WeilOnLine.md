@@ -11,24 +11,24 @@ WeilOnLine — the on-line background, all heights. Rung 4b, second half, slice 
 
 ```mermaid
 flowchart LR
-  n0["<b>Psi_neg</b><br/>WeilTransform.Psi (-s) = -WeilTransform.Psi s"]:::thm
-  n1["<b>term_conj</b><br/>(laplace (phiC h γ) (-(starRingEnd ℂ) ρ) * laplace (phiC h γ) (-…"]:::thm
+  n0["<b>Psi_neg</b><br/>WeilTransform.Psi (-s) = -WeilTransform.Psi s"]:::shp
+  n1["<b>term_conj</b><br/>(laplace (phiC h γ) (-(starRingEnd ℂ) ρ) * laplace (phiC h γ) (-…"]:::shp
   n2["<b>conj_mem</b><br/>(starRingEnd ℂ) (ρ : ℂ) ∈ Kadiri.NontrivialZeros"]:::thm
   n3["<b>conjZ_injective</b><br/>Function.Injective conjZ"]:::thm
   n4["<b>weightedTerm_conjZ</b><br/>weightedTerm h γ (conjZ ρ) = weightedTerm h γ ρ"]:::thm
   n5["<b>sum_upper_le</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ B h γ"]:::thm
   n6["<b>sum_lower_le</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ B h γ"]:::thm
-  n7["<b>lowU_preconnected</b><br/>IsPreconnected lowU"]:::thm
+  n7["<b>lowU_preconnected</b><br/>IsPreconnected lowU"]:::shp
   n8["<b>lowU_analytic</b><br/>AnalyticOnNhd ℂ riemannZeta lowU"]:::thm
   n9["<b>lowSet_finite</b><br/>lowSet.Finite"]:::thm
-  n10["<b>lowCount_nonneg</b><br/>0 ≤ lowCount"]:::end_
+  n10["<b>lowCount_nonneg ■</b><br/>0 ≤ lowCount"]:::thm
   n11["<b>sum_low_le</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ 4 * h ^ 2 * lowCount"]:::thm
   n12["<b>sum_onLine_le</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ onLineBound h γ"]:::thm
   n13["<b>sum_onLine_subtype_le</b><br/>∑ ρ ∈ s, weightedTerm h γ ρ.1 ≤ onLineBound h γ"]:::thm
-  n14["<b>tsum_onLine_le</b><br/>∑' ρ : OnLine, weightedTerm h γ ρ.1 ≤ onLineBound h γ"]:::end_
-  n15["<b>summable_onLine</b><br/>Summable (fun ρ : OnLine =＞ weightedTerm h γ ρ.1)"]:::end_
-  n16["<b>A_le</b><br/>A h γ ≤ 88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2)"]:::thm
-  n17["<b>onLineBound_le</b><br/>onLineBound h γ ≤ 2 * (88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h …"]:::end_
+  n14["<b>tsum_onLine_le ■</b><br/>∑' ρ : OnLine, weightedTerm h γ ρ.1 ≤ onLineBound h γ"]:::thm
+  n15["<b>summable_onLine ■</b><br/>Summable (fun ρ : OnLine =＞ weightedTerm h γ ρ.1)"]:::thm
+  n16["<b>A_le</b><br/>A h γ ≤ 88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2)"]:::shp
+  n17["<b>onLineBound_le ■</b><br/>onLineBound h γ ≤ 2 * (88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h …"]:::thm
   x0(["<b>WeilBackground</b><br/>online_term_eq<br/>online_term_le_near"]):::ext
   x1(["<b>WeilPowerOnLine</b><br/>sum_low_le<br/>sum_lower_le"]):::ext
   x2(["<b>WeilSeries</b><br/>6 theorems"]):::ext
@@ -60,6 +60,9 @@ flowchart LR
   x3 -.-> n15
   x3 -.-> n5
   x4 -.-> n11
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -67,7 +70,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -152,6 +155,8 @@ On-line zeros.
 
 line 50
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `Ψ` is odd.
 
 **Proves**
@@ -178,6 +183,8 @@ WeilTransform.Psi (-s) = -WeilTransform.Psi s
 ### `WeilOnLine.term_conj`
 
 line 58
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The on-line term is invariant under conjugation of the zero.
 
@@ -211,6 +218,8 @@ line 58
 
 line 71
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Conjugates of nontrivial zeros are nontrivial zeros.
 
 **Proves**
@@ -234,6 +243,8 @@ line 71
 
 line 84
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -253,6 +264,8 @@ Function.Injective conjZ
 ### `WeilOnLine.weightedTerm_conjZ`
 
 line 89
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -283,6 +296,8 @@ weightedTerm h γ (conjZ ρ) = weightedTerm h γ ρ
 ### `WeilOnLine.sum_upper_le`
 
 line 106
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Finite on-line sums of height `≥ 11/10`.
 
@@ -321,6 +336,8 @@ line 106
 
 line 118
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Negative heights. Finite on-line sums of height `≤ −11/10`, by conjugation onto the upper range.
 
 **Proves**
@@ -355,6 +372,8 @@ line 118
 
 line 146
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -374,6 +393,8 @@ IsPreconnected lowU
 
 line 149
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -392,6 +413,8 @@ AnalyticOnNhd ℂ riemannZeta lowU
 ### `WeilOnLine.lowSet_finite`
 
 line 158
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The low band is finite.
 
@@ -422,6 +445,8 @@ lowSet.Finite
 
 line 189
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -442,6 +467,8 @@ line 189
 ### `WeilOnLine.sum_low_le`
 
 line 193
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The low band. Finite on-line sums of height `|t| ≤ 11/10`.
 
@@ -475,6 +502,8 @@ line 193
 ### `WeilOnLine.sum_onLine_le`
 
 line 228
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** All heights. Any finite on-line sum is at most `onLineBound`.
 
@@ -510,6 +539,8 @@ line 228
 
 line 265
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -538,6 +569,8 @@ line 265
 
 line 278
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The on-line background. For `h > 0` and `γ ≥ 11/10`, the full weighted sum over all on-line zeros is at most `onLineBound h γ`.
 
 **Proves**
@@ -564,6 +597,8 @@ line 278
 ### `WeilOnLine.summable_onLine`
 
 line 286
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The on-line series is summable.
 
@@ -594,6 +629,8 @@ Summable (fun ρ : OnLine => weightedTerm h γ ρ.1)
 
 line 293
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -621,6 +658,8 @@ A h γ ≤ 88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2)
 ### `WeilOnLine.onLineBound_le`
 
 line 304
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The on-line background, in `γ` and `h` alone.
 

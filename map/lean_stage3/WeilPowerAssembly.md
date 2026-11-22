@@ -11,14 +11,14 @@ WeilPowerAssembly — block `rung5.md#15` of `lean_stage3/design/rung5.md`, "The
 
 ```mermaid
 flowchart LR
-  n0["<b>phiW_contDiff_one</b><br/>ContDiff ℝ 1 (WeilPowerBackground.phiW h γ m)"]:::thm
-  n1["<b>isTest_phiWC</b><br/>IsTest (2 * h) (WeilPowerBackground.phiWC h γ m)"]:::end_
-  n2["<b>target_lower</b><br/>WeilPowerBands.termW h γ m (ρ : ℂ) ≤ -((h / 2) ^ 2 * ((cS m / D …"]:::end_
-  n3["<b>near_nonneg</b><br/>0 ≤ ∑ ρ ∈ near_set, WeilPowerBands.termW h γ m ρ"]:::end_
-  n4["<b>far_moderate_le</b><br/>|∑ ρ ∈ fm_set, WeilPowerBands.termW h γ m ρ| ≤ (15 * Real.log T …"]:::end_
-  n5["<b>far_large_le</b><br/>|∑ ρ ∈ fl_set, WeilPowerBands.termW h γ m ρ| ≤ (15 * Real.log T …"]:::end_
-  n6["<b>on_line_le</b><br/>WeilPowerOnLine.onLineBound h γ m ≤ 2 * (88 * (γ + WeilPowerBand…"]:::end_
-  n7["<b>detect_gap_exists</b><br/>∃ L : ℝ, StmtDetectGap ε T δ L"]:::bad
+  n0["<b>phiW_contDiff_one</b><br/>ContDiff ℝ 1 (WeilPowerBackground.phiW h γ m)"]:::shp
+  n1["<b>isTest_phiWC ■</b><br/>IsTest (2 * h) (WeilPowerBackground.phiWC h γ m)"]:::shp
+  n2["<b>target_lower ■</b><br/>WeilPowerBands.termW h γ m (ρ : ℂ) ≤ -((h / 2) ^ 2 * ((cS m / D …"]:::thm
+  n3["<b>near_nonneg ■</b><br/>0 ≤ ∑ ρ ∈ near_set, WeilPowerBands.termW h γ m ρ"]:::thm
+  n4["<b>far_moderate_le ■</b><br/>|∑ ρ ∈ fm_set, WeilPowerBands.termW h γ m ρ| ≤ (15 * Real.log T …"]:::thm
+  n5["<b>far_large_le ■</b><br/>|∑ ρ ∈ fl_set, WeilPowerBands.termW h γ m ρ| ≤ (15 * Real.log T …"]:::thm
+  n6["<b>on_line_le ■</b><br/>WeilPowerOnLine.onLineBound h γ m ≤ 2 * (88 * (γ + WeilPowerBand…"]:::thm
+  n7["<b>detect_gap_exists ■</b><br/>∃ L : ℝ, StmtDetectGap ε T δ L"]:::bad
   x0(["<b>IndicatorContDiff</b><br/>contDiff_one_indicator_Icc"]):::ext
   x1(["<b>WeilPower</b><br/>c_neg_one<br/>c_one<br/>hasDerivAt_c"]):::ext
   x2(["<b>WeilPowerBackground</b><br/>phiWC_real"]):::ext
@@ -30,6 +30,9 @@ flowchart LR
   x2 -.-> n1
   x3 -.-> n2
   x4 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -37,7 +40,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -58,6 +61,8 @@ The statement. Under the off-line box being nonempty and a detection gap around 
 ### `WeilPowerAssembly.phiW_contDiff_one`
 
 line 107
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The switched real window is `C¹`. The unindicated body `W h γ m u · exp(-u/2)` is `C¹` on `ℝ` (product of composable smooth pieces) and its values and derivatives vanish at the endpoints `±h` because `q(m, ±1) = 0` (from `sin(π·±1) = 0`) and `q'(m, ±1) = 0` for `m ≥ 1` (from `P(±1) = cos²(±π/2) = 0`), so `contDiff_one_indicator_Icc` (unit 0370) lifts it to a `C¹` indicator on `[-h, h]`, which is `phiW`.
 
@@ -92,6 +97,8 @@ ContDiff ℝ 1 (WeilPowerBackground.phiW h γ m)
 
 line 260
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The switched window `phiWC` is a `C¹` compactly supported real-valued test function on `[-h, h]`, hence in the class `IsTest (2*h)`. Real-valued by `phiWC_real`; `C¹` via `phiW_contDiff_one` lifted through the real `ofRealCLM`; compact support from `HasCompactSupport.intro` on `Icc (-h) h`; tsupport contained in `Icc (-(2h)/2) ((2h)/2) = Icc (-h) h`.
 
 **Proves**
@@ -121,6 +128,8 @@ IsTest (2 * h) (WeilPowerBackground.phiWC h γ m)
 ### `WeilPowerAssembly.target_lower`
 
 line 286
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Target lower. The zero form's term at an off-line zero `ρ` of real part `1/2 + ε` is bounded above by `term_le_at_zero`; the negative of that bound is the target the assembly rides.
 
@@ -155,6 +164,8 @@ WeilPowerBands.termW h γ m (ρ : ℂ) ≤ -((h / 2) ^ 2 * ((cS m / D m) ^ 2 * R
 
 line 319
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Near members. Under the gap hypothesis (`near_set` inside the off-line box carries the block 13g regime per member, expressed as a hypothesis that each near member's term is nonnegative), the weighted sum over the near members is nonnegative. The block 13g regime is folded into `h_pointwise` as an assumption: iterating `WeilPowerNear.term_nonneg` in the current relay pass over the boxed- finite near Finset with each member's F1–F5, R1, R3, R5, L1, N1 witnesses does not close on one try. Sorried with the goal in a comment per LOOP.md § 4b.
 
 **Proves**
@@ -183,6 +194,8 @@ line 319
 ### `WeilPowerAssembly.far_moderate_le`
 
 line 338
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Far moderate. For zeros with `|ρ.im − γ| ∈ [δ, 1/2]` the count is at most `15 log T + 73` (`JensenCount.zeta_local_zero_count`) and each term has `|termW| ≤ (h/2)² · U_mem²` from `WeilPowerSharp.norm_S_le_c_pos/neg`. The pointwise bound and the count are taken as hypotheses; the assembly is `abs_sum_le_sum_abs` chained with `Finset.sum_le_sum` and `Finset.sum_const`.
 
@@ -215,6 +228,8 @@ line 338
 
 line 370
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Far large. For zeros with `|ρ.im − γ| > 1/2` the count is at most `15 log T + 698` (unit 0365) and `WeilPowerBounds.norm_S_le_far` gives a super-exponentially small pointwise bound. Same shape as `far_moderate_le`.
 
 **Proves**
@@ -246,6 +261,8 @@ line 370
 
 line 401
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** On-line background. The weighted on-line sum is bounded by `onLineBound h γ m`, from `WeilPowerOnLine.onLineBound_le`.
 
 **Proves**
@@ -271,6 +288,8 @@ WeilPowerOnLine.onLineBound h γ m ≤ 2 * (88 * (γ + WeilPowerBands.r h m + 2)
 ### `WeilPowerAssembly.detect_gap_exists`  ⚠ contains `sorry`
 
 line 417
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The assembly. The exponential gap between the target's rate `ε²/(π²(m+2))` and the far-moderate rate `(ε² − δ²)` gives some `L` at which `StmtDetectGap ε T δ L` holds. The proof uses `Real.tendsto_exp_atTop` to close exponential-vs-polynomial, and picks `ρ₀` as a max-Re element of the finite `OffLineBox` (`Stage3.offLineBox_finite`). Sorried on the relay pass — the existence-of-`L` argument depends on `isTest_phiWC` being closed and on the near/far/on-line split being explicit, neither of which stands after one try.
 

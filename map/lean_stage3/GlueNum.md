@@ -11,7 +11,7 @@ GlueNum — block E8b of `lean_stage3/design/joints.md`. 2026-11-22. `Glue`'s th
 
 ```mermaid
 flowchart LR
-  n0["<b>Csn_pos</b><br/>0 ＜ Csn"]:::thm
+  n0["<b>Csn_pos</b><br/>0 ＜ Csn"]:::shp
   n1["<b>Cpn_pos</b><br/>0 ＜ Cpn"]:::thm
   n2["<b>Chn_pos</b><br/>0 ＜ Chn"]:::thm
   n3["<b>Dln_pos</b><br/>0 ＜ Dln"]:::thm
@@ -65,6 +65,9 @@ flowchart LR
   x4 -.-> n9
   x5 -.-> n11
   x6 -.-> n12
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -72,7 +75,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -154,6 +157,8 @@ def · line 70
 
 line 36
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -174,6 +179,8 @@ line 36
 ### `Glue.Cpn_pos`
 
 line 44
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -199,6 +206,8 @@ line 44
 
 line 53
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -223,6 +232,8 @@ line 53
 
 line 61
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -246,6 +257,8 @@ line 61
 ### `Glue.c1n_nonneg`
 
 line 72
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -272,6 +285,8 @@ line 72
 
 line 78
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -291,6 +306,8 @@ line 78
 ### `Glue.c4n_nonneg`
 
 line 82
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -315,6 +332,8 @@ line 82
 ### `Glue.band_order_sum_le_num`
 
 line 90
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The band count: any finite set of strip zeros with `|im|` in `[T, T+1]` has total multiplicity `≤ C·log T` — two windows per sign, reflection for the left half, conjugation for the negative sign.
 
@@ -345,6 +364,8 @@ line 90
 
 line 316
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The swap: moving the zero sum from a height `T′ ∈ [T, T+1]` back to `T` costs `≤ C·x·log T / T`.
 
 **Proves**
@@ -371,6 +392,8 @@ line 316
 ### `Glue.zeta_logderiv_good_bound_num`
 
 line 423
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The pointwise good-height bound, both signs of the height.
 
@@ -404,6 +427,8 @@ line 423
 
 line 520
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The horizontal-edge integral bound at a good height, both signs: `≤ C·x·log²T/T`.
 
 **Proves**
@@ -429,6 +454,8 @@ line 520
 ### `Glue.edge_left_sharp_num`
 
 line 621
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The left edge at its own size: `≤ 72·D·log²x·x^(−1/4)` for `T′ ≤ 2x²`. `Glue.edge_left_bound`'s proof, stopped before its last two steps.
 
@@ -461,6 +488,8 @@ line 621
 ### `Glue.explicit_formula_split_num`
 
 line 1004
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE TRUNCATED EXPLICIT FORMULA — hEF's deliverable, in the `T ≤ x²` regime the consumer uses: constants exist with `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c₁·x·log²(xT)/T + c₂·log x`.
 

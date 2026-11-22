@@ -11,23 +11,23 @@ WeilLobe — the 2γ lobe bounded above. Rung 4a of the detection ladder (units 
 
 ```mermaid
 flowchart LR
-  n0["<b>P_eq</b><br/>P x = (1 + Real.cos (Real.pi * x)) / 2"]:::thm
-  n1["<b>q_eq</b><br/>x * P x = q x"]:::thm
-  n2["<b>hasDerivAt_cos_pi</b><br/>HasDerivAt (fun y : ℝ =＞ Real.cos (Real.pi * y)) (-Real.sin (Rea…"]:::thm
-  n3["<b>hasDerivAt_sin_pi</b><br/>HasDerivAt (fun y : ℝ =＞ Real.sin (Real.pi * y)) (Real.cos (Real…"]:::thm
-  n4["<b>hasDerivAt_q</b><br/>HasDerivAt q (q1 x) x"]:::thm
-  n5["<b>hasDerivAt_q1</b><br/>HasDerivAt q1 (q2 x) x"]:::thm
-  n6["<b>q_one</b><br/>q 1 = 0"]:::thm
-  n7["<b>q_neg_one</b><br/>q (-1) = 0"]:::thm
-  n8["<b>q1_one</b><br/>q1 1 = 0"]:::thm
-  n9["<b>q1_neg_one</b><br/>q1 (-1) = 0"]:::thm
-  n10["<b>continuous_q1</b><br/>Continuous q1"]:::thm
-  n11["<b>continuous_q2</b><br/>Continuous q2"]:::thm
-  n12["<b>q2_bound</b><br/>|q2 x| ≤ Real.pi + Real.pi ^ 2 / 2"]:::thm
-  n13["<b>norm_sinh_le</b><br/>‖Complex.sinh z‖ ≤ Real.cosh z.re"]:::thm
-  n14["<b>SigmaC_eq_ibp</b><br/>SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * …"]:::thm
-  n15["<b>SigmaC_bound</b><br/>‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ …"]:::thm
-  n16["<b>lobe_bound</b><br/>‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * …"]:::thm
+  n0["<b>P_eq</b><br/>P x = (1 + Real.cos (Real.pi * x)) / 2"]:::shp
+  n1["<b>q_eq</b><br/>x * P x = q x"]:::shp
+  n2["<b>hasDerivAt_cos_pi</b><br/>HasDerivAt (fun y : ℝ =＞ Real.cos (Real.pi * y)) (-Real.sin (Rea…"]:::shp
+  n3["<b>hasDerivAt_sin_pi</b><br/>HasDerivAt (fun y : ℝ =＞ Real.sin (Real.pi * y)) (Real.cos (Real…"]:::shp
+  n4["<b>hasDerivAt_q</b><br/>HasDerivAt q (q1 x) x"]:::shp
+  n5["<b>hasDerivAt_q1</b><br/>HasDerivAt q1 (q2 x) x"]:::shp
+  n6["<b>q_one</b><br/>q 1 = 0"]:::shp
+  n7["<b>q_neg_one</b><br/>q (-1) = 0"]:::shp
+  n8["<b>q1_one</b><br/>q1 1 = 0"]:::shp
+  n9["<b>q1_neg_one</b><br/>q1 (-1) = 0"]:::shp
+  n10["<b>continuous_q1</b><br/>Continuous q1"]:::shp
+  n11["<b>continuous_q2</b><br/>Continuous q2"]:::shp
+  n12["<b>q2_bound</b><br/>|q2 x| ≤ Real.pi + Real.pi ^ 2 / 2"]:::shp
+  n13["<b>norm_sinh_le</b><br/>‖Complex.sinh z‖ ≤ Real.cosh z.re"]:::shp
+  n14["<b>SigmaC_eq_ibp</b><br/>SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * …"]:::shp
+  n15["<b>SigmaC_bound</b><br/>‖SigmaC w‖ ≤ (2 * Real.pi + Real.pi ^ 2) * Real.cosh w.re / ‖w‖ …"]:::shp
+  n16["<b>lobe_bound</b><br/>‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) * (h : ℂ))‖ ≤ (2 * …"]:::shp
   x0(["<b>WeilPowerBounds</b><br/>norm_S_le'"]):::ext
   x1(["<b>WeilBackground</b><br/>Psi_bound"]):::ext
   x2(["<b>WeilOffLine</b><br/>offline_term_le_explicit"]):::ext
@@ -51,6 +51,9 @@ flowchart LR
   n13 -.-> x0
   n15 -.-> x1
   n16 -.-> x2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -58,7 +61,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -99,6 +102,8 @@ def · line 56
 
 line 43
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The half-angle form of the window.
 
 **Proves**
@@ -123,6 +128,8 @@ P x = (1 + Real.cos (Real.pi * x)) / 2
 ### `WeilLobe.q_eq`
 
 line 58
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -149,6 +156,8 @@ x * P x = q x
 
 line 61
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -171,6 +180,8 @@ HasDerivAt (fun y : ℝ => Real.cos (Real.pi * y)) (-Real.sin (Real.pi * x) * Re
 
 line 66
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -191,6 +202,8 @@ HasDerivAt (fun y : ℝ => Real.sin (Real.pi * y)) (Real.cos (Real.pi * x) * Rea
 ### `WeilLobe.hasDerivAt_q`
 
 line 71
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -216,6 +229,8 @@ HasDerivAt q (q1 x) x
 ### `WeilLobe.hasDerivAt_q1`
 
 line 77
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -243,6 +258,8 @@ HasDerivAt q1 (q2 x) x
 
 line 86
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -261,6 +278,8 @@ q 1 = 0
 ### `WeilLobe.q_neg_one`
 
 line 89
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -281,6 +300,8 @@ q (-1) = 0
 
 line 92
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -299,6 +320,8 @@ q1 1 = 0
 ### `WeilLobe.q1_neg_one`
 
 line 95
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -319,6 +342,8 @@ q1 (-1) = 0
 
 line 99
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -338,6 +363,8 @@ Continuous q1
 
 line 103
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -356,6 +383,8 @@ Continuous q2
 ### `WeilLobe.q2_bound`
 
 line 107
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `|q''(x)| ≤ π + π²/2` on `[−1, 1]`.
 
@@ -382,6 +411,8 @@ line 107
 
 line 126
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `‖sinh z‖ ≤ cosh(Re z)`.
 
 **Proves**
@@ -405,6 +436,8 @@ line 126
 ### `WeilLobe.SigmaC_eq_ibp`
 
 line 136
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Integration by parts, twice: `Σc(w) = w⁻²·∫ q''·sinh(w·)`.
 
@@ -444,6 +477,8 @@ SigmaC w = (1 / w ^ 2) * ∫ x in (-1 : ℝ)..1, ((q2 x : ℝ) : ℂ) * Complex.
 
 line 187
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** (†) `‖Σc(w)‖ ≤ (2π + π²)·cosh(Re w)/‖w‖²`.
 
 **Proves**
@@ -476,6 +511,8 @@ line 187
 ### `WeilLobe.lobe_bound`
 
 line 219
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The lobe at the off-line point: for `h, γ > 0`, `‖Σc((ε + 2iγ)h)‖ ≤ (2π + π²)·cosh(εh)/(2γh)²`.
 

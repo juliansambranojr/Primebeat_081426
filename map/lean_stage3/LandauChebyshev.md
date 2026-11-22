@@ -12,9 +12,9 @@ LandauChebyshev — the bound on `G` of Chebyshev's order: `G y ≤ 8y` and `|G(
 ```mermaid
 flowchart LR
   n0["<b>rampSum_le_log</b><br/>LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4))"]:::thm
-  n1["<b>log_four_lt_two</b><br/>Real.log 4 ＜ 2"]:::thm
+  n1["<b>log_four_lt_two</b><br/>Real.log 4 ＜ 2"]:::shp
   n2["<b>G_le</b><br/>LandauWindow.G y ≤ 8 * y"]:::thm
-  n3["<b>neg_le_G</b><br/>-(y * Real.log y) ≤ LandauWindow.G y"]:::thm
+  n3["<b>neg_le_G</b><br/>-(y * Real.log y) ≤ LandauWindow.G y"]:::shp
   n4["<b>abs_G_le_log</b><br/>|LandauWindow.G y| ≤ 8 * y * (1 + Real.log y)"]:::thm
   x0(["<b>LandauPrimeSide</b><br/>Ik_le"]):::ext
   x1(["<b>LandauCrude</b><br/>rampSum_nonneg"]):::ext
@@ -26,6 +26,9 @@ flowchart LR
   n2 -.-> x0
   n4 -.-> x2
   x1 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -33,7 +36,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -41,6 +44,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `LandauChebyshev.rampSum_le_log`
 
 line 33
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -65,6 +70,8 @@ LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4))
 
 line 70
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -81,6 +88,8 @@ Real.log 4 < 2
 ### `LandauChebyshev.G_le`
 
 line 76
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -111,6 +120,8 @@ LandauWindow.G y ≤ 8 * y
 
 line 84
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -137,6 +148,8 @@ line 84
 ### `LandauChebyshev.abs_G_le_log`
 
 line 93
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 

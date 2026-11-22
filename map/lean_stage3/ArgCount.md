@@ -24,7 +24,7 @@ flowchart LR
   n10["<b>argS_two_le</b><br/>|Stage3.argS 2| ≤ 15 * Real.log 2 + 600"]:::thm
   n11["<b>sCrude_holds_of_good_two</b><br/>Stage3.StmtSCrude Stage3.argS 15 75"]:::thm
   n12["<b>sCrude_holds</b><br/>Stage3.StmtSCrude Stage3.argS 15 600"]:::thm
-  n13["<b>rvM_crude_of_good_two</b><br/>riemannZeta.Riemann_vonMangoldt_bound 112 0 173"]:::end_
+  n13["<b>rvM_crude_of_good_two ■</b><br/>riemannZeta.Riemann_vonMangoldt_bound 112 0 173"]:::thm
   n14["<b>rvM_crude</b><br/>riemannZeta.Riemann_vonMangoldt_bound 112 0 698"]:::thm
   x0(["<b>ArgIdentity</b><br/>argS_eq_zetaArgContour<br/>stmtArgIdentity_holds"]):::ext
   x1(["<b>ArgLegs</b><br/>zetaArgContour_le"]):::ext
@@ -70,6 +70,9 @@ flowchart LR
   x4 -.-> n14
   x5 -.-> n13
   x5 -.-> n14
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -77,7 +80,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -97,6 +100,8 @@ A height with no zero of `ζ` of positive real part on it.
 ### `ArgCount.argS_le_of_good`
 
 line 70
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The good heights. The identity plus H1's legs and H2's count.
 
@@ -134,6 +139,8 @@ line 70
 
 line 84
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `N T` as the finite sum of orders over the zero rectangle.
 
 **Proves**
@@ -157,6 +164,8 @@ riemannZeta.N T = ∑ z ∈ (Kadiri.zeroes_rect_univ_positive_height_finite T).t
 ### `ArgCount.N_nonneg`
 
 line 93
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Every order is at least one, so the count is nonnegative.
 
@@ -183,6 +192,8 @@ line 93
 
 line 103
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The count is monotone in the height.
 
 **Proves**
@@ -208,6 +219,8 @@ riemannZeta.N T ≤ riemannZeta.N T'
 
 line 119
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** No zero with imaginary part in `[T, T₀)` means the count does not move.
 
 **Proves**
@@ -231,6 +244,8 @@ riemannZeta.N T = riemannZeta.N T₀
 ### `ArgCount.exists_good_below`
 
 line 139
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Below any height there is a good height with no zero between the two.
 
@@ -259,6 +274,8 @@ line 139
 
 line 175
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The phase integrand is bounded on the unit interval below any height.
 
 **Proves**
@@ -285,6 +302,8 @@ line 175
 ### `ArgCount.phaseTheta_sub_le`
 
 line 185
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The phase moves by at most the length times the integrand bound.
 
@@ -314,6 +333,8 @@ line 185
 ### `ArgCount.argS_le_gt_two`
 
 line 216
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The bad heights above 2. A good height just below, with the count equal and the phase moving by at most `π/2`.
 
@@ -349,6 +370,8 @@ line 216
 
 line 258
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The RvM main term is small on `[2, 3]`.
 
 **Proves**
@@ -372,6 +395,8 @@ line 258
 ### `ArgCount.argS_two_le`
 
 line 278
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The single point `T = 2`. A good height just above, with the count monotone and the Stirling phase bound.
 
@@ -403,6 +428,8 @@ line 278
 
 line 307
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** StmtSCrude under `good 2`: `|argS T| ≤ 15 log T + 75`.
 
 **Proves**
@@ -431,6 +458,8 @@ Stage3.StmtSCrude Stage3.argS 15 75
 
 line 315
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** StmtSCrude unconditionally: `|argS T| ≤ 15 log T + 600`.
 
 **Proves**
@@ -454,6 +483,8 @@ Stage3.StmtSCrude Stage3.argS 15 600
 ### `ArgCount.rvM_crude_of_good_two`
 
 line 324
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The crude hNT band under `good 2`.
 
@@ -485,6 +516,8 @@ riemannZeta.Riemann_vonMangoldt_bound 112 0 173
 ### `ArgCount.rvM_crude`
 
 line 332
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The crude hNT band, unconditional.
 

@@ -2,8 +2,8 @@ flowchart LR
   n0["<b>zeta_centre_lower</b><br/>(1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖"]:::thm
   n1["<b>zeta_disk_upper</b><br/>‖ζ w‖ ≤ 28 * T"]:::thm
   n2["<b>zeta_centre_ne_zero</b><br/>ζ (2 + Complex.I * (T : ℂ)) ≠ 0"]:::thm
-  n3["<b>pole_away</b><br/>2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1"]:::thm
-  n4["<b>pole_away_centre</b><br/>v ≠ 1"]:::thm
+  n3["<b>pole_away</b><br/>2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1"]:::shp
+  n4["<b>pole_away_centre</b><br/>v ≠ 1"]:::shp
   n5["<b>zetaWindowTwo_finite</b><br/>{ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite"]:::thm
   n6["<b>zetaWindow_finite</b><br/>(zetaWindow T).Finite"]:::thm
   n7["<b>zeta_comp_analytic</b><br/>AnalyticAt ℂ (fun z : ℂ =＞ ζ (2 * z + (2 + Complex.I * (T : ℂ)))…"]:::thm
@@ -11,7 +11,7 @@ flowchart LR
   n9["<b>jensenF_zero_eq_one</b><br/>jensenF T 0 = 1"]:::thm
   n10["<b>jensenF_zeros_finite</b><br/>(SetOfZeros 1 (jensenF T)).Finite"]:::thm
   n11["<b>jensenF_bound</b><br/>‖jensenF T z‖ ≤ 84 * T"]:::thm
-  n12["<b>analyticOrderNatAt_fun_comp_affine</b><br/>analyticOrderNatAt (fun w : ℂ =＞ g (a * w + b)) z = analyticOrde…"]:::thm
+  n12["<b>analyticOrderNatAt_fun_comp_affine</b><br/>analyticOrderNatAt (fun w : ℂ =＞ g (a * w + b)) z = analyticOrde…"]:::shp
   n13["<b>jensenF_order</b><br/>analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w +…"]:::thm
   n14["<b>zeta_local_zero_count</b><br/>∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ :…"]:::thm
   n15["<b>zetaLocalCount_eq</b><br/>zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analy…"]:::thm
@@ -86,6 +86,9 @@ flowchart LR
   n8 -.-> x3
   n9 -.-> x0
   n9 -.-> x3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

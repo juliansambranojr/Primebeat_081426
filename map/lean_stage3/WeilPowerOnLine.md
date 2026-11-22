@@ -11,16 +11,16 @@ WeilPowerOnLine — the switched window's on-line background, all heights. Rung 
 
 ```mermaid
 flowchart LR
-  n0["<b>PsiW_neg</b><br/>PsiW m (-t) = -PsiW m t"]:::thm
-  n1["<b>term_conj</b><br/>termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ"]:::thm
+  n0["<b>PsiW_neg</b><br/>PsiW m (-t) = -PsiW m t"]:::shp
+  n1["<b>term_conj</b><br/>termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ"]:::shp
   n2["<b>weightedTermW_conjZ</b><br/>weightedTermW h γ m (conjZ ρ) = weightedTermW h γ m ρ"]:::thm
   n3["<b>sum_upper_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ B h γ m"]:::thm
   n4["<b>sum_lower_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ B h γ m"]:::thm
   n5["<b>sum_low_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ 4 * h ^ 2 * lowCount"]:::thm
   n6["<b>sum_onLine_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ onLineBound h γ m"]:::thm
   n7["<b>sum_onLine_subtype_le</b><br/>∑ ρ ∈ s, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m"]:::thm
-  n8["<b>tsum_onLine_le</b><br/>∑' ρ : OnLine, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m"]:::end_
-  n9["<b>summable_onLine</b><br/>Summable (fun ρ : OnLine =＞ weightedTermW h γ m ρ.1)"]:::end_
+  n8["<b>tsum_onLine_le ■</b><br/>∑' ρ : OnLine, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m"]:::thm
+  n9["<b>summable_onLine ■</b><br/>Summable (fun ρ : OnLine =＞ weightedTermW h γ m ρ.1)"]:::thm
   n10["<b>onLineBound_le</b><br/>onLineBound h γ m ≤ 2 * (88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 +…"]:::thm
   x0(["<b>WeilPowerBackground</b><br/>online_term_eq<br/>online_term_le_near"]):::ext
   x1(["<b>WeilPowerBands</b><br/>7 theorems"]):::ext
@@ -47,6 +47,9 @@ flowchart LR
   x2 -.-> n4
   x2 -.-> n5
   x3 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -54,7 +57,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -87,6 +90,8 @@ The on-line background bound: `2·B h γ m + 4h²·lowCount`.
 
 line 37
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `PsiW` is odd.
 
 **Proves**
@@ -114,6 +119,8 @@ PsiW m (-t) = -PsiW m t
 ### `WeilPowerOnLine.term_conj`
 
 line 45
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The on-line term is invariant under conjugation of the zero.
 
@@ -148,6 +155,8 @@ termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ
 
 line 56
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -178,6 +187,8 @@ weightedTermW h γ m (conjZ ρ) = weightedTermW h γ m ρ
 ### `WeilPowerOnLine.sum_upper_le`
 
 line 70
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Finite on-line sums of height `≥ 11/10`.
 
@@ -217,6 +228,8 @@ line 70
 
 line 81
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Negative heights.
 
 **Proves**
@@ -252,6 +265,8 @@ line 81
 
 line 104
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The low band. Finite on-line sums of height `|t| ≤ 11/10`.
 
 **Proves**
@@ -285,6 +300,8 @@ line 104
 ### `WeilPowerOnLine.sum_onLine_le`
 
 line 139
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** All heights.
 
@@ -321,6 +338,8 @@ line 139
 
 line 173
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -350,6 +369,8 @@ line 173
 
 line 186
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The on-line background of the switched window.
 
 **Proves**
@@ -377,6 +398,8 @@ line 186
 ### `WeilPowerOnLine.summable_onLine`
 
 line 194
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The on-line series is summable.
 
@@ -407,6 +430,8 @@ Summable (fun ρ : OnLine => weightedTermW h γ m ρ.1)
 ### `WeilPowerOnLine.onLineBound_le`
 
 line 202
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The on-line background, in `γ`, `h` and `m` alone.
 

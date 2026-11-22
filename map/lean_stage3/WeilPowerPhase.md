@@ -11,27 +11,27 @@ WeilPowerPhase — the phase of the tail product: `S m w` is its principal part 
 
 ```mermaid
 flowchart LR
-  n0["<b>summable_hterm</b><br/>Summable hterm"]:::thm
-  n1["<b>summable_shift</b><br/>Summable (fun k : ℕ =＞ hterm (k + (m + 1)))"]:::thm
-  n2["<b>sigmaN_eq</b><br/>sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / (…"]:::thm
-  n3["<b>sigmaN_tendsto</b><br/>Tendsto (fun n =＞ sigmaN m n) atTop (𝓝 (sigma m))"]:::thm
-  n4["<b>sigma_le</b><br/>sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1))"]:::end_
-  n5["<b>sigma_ge</b><br/>1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m"]:::thm
-  n6["<b>g_eq</b><br/>g w j = 1 + x w j"]:::thm
-  n7["<b>x_eq_mul</b><br/>x w j = w ^ 2 * ((hterm j : ℝ) : ℂ)"]:::thm
-  n8["<b>g_ne_zero</b><br/>g w j ≠ 0"]:::thm
-  n9["<b>T_eq_exp</b><br/>T m w n = Complex.exp (∑ j ∈ Finset.Ico (m + 1) n, Complex.log (…"]:::thm
-  n10["<b>norm_log_sub_le</b><br/>‖Complex.log (g w j) - x w j‖ ≤ ‖x w j‖ ^ 2"]:::thm
-  n11["<b>q_nonneg</b><br/>0 ≤ q m w"]:::thm
-  n12["<b>norm_delta_le</b><br/>‖delta m w n‖ ≤ q m w"]:::thm
-  n13["<b>T_eq_mul</b><br/>T m w n = Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ)) * Complex…"]:::thm
-  n14["<b>norm_exp_delta_sub_one_le</b><br/>‖Complex.exp (delta m w n) - 1‖ ≤ 2 * q m w"]:::thm
-  n15["<b>P_tendsto</b><br/>Tendsto (fun n =＞ Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) …"]:::thm
-  n16["<b>norm_S_sub_le</b><br/>‖S m w - ((cS m / D m : ℝ) : ℂ) * w * P m w‖ ≤ 2 * q m w * ‖((cS…"]:::thm
-  n17["<b>norm_A_sq</b><br/>‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2 = (cS m / D m) ^ 2 * ‖w…"]:::thm
-  n18["<b>re_A_sq</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re = (cS m / D m) ^ 2…"]:::thm
-  n19["<b>re_sq_ge</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re - ‖((cS m / D m : …"]:::thm
-  n20["<b>re_S_sq_ge</b><br/>(cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) * ((w ^ 2…"]:::thm
+  n0["<b>summable_hterm</b><br/>Summable hterm"]:::shp
+  n1["<b>summable_shift</b><br/>Summable (fun k : ℕ =＞ hterm (k + (m + 1)))"]:::shp
+  n2["<b>sigmaN_eq</b><br/>sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / (…"]:::shp
+  n3["<b>sigmaN_tendsto</b><br/>Tendsto (fun n =＞ sigmaN m n) atTop (𝓝 (sigma m))"]:::shp
+  n4["<b>sigma_le ■</b><br/>sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1))"]:::shp
+  n5["<b>sigma_ge</b><br/>1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) ≤ sigma m"]:::shp
+  n6["<b>g_eq</b><br/>g w j = 1 + x w j"]:::shp
+  n7["<b>x_eq_mul</b><br/>x w j = w ^ 2 * ((hterm j : ℝ) : ℂ)"]:::shp
+  n8["<b>g_ne_zero</b><br/>g w j ≠ 0"]:::shp
+  n9["<b>T_eq_exp</b><br/>T m w n = Complex.exp (∑ j ∈ Finset.Ico (m + 1) n, Complex.log (…"]:::shp
+  n10["<b>norm_log_sub_le</b><br/>‖Complex.log (g w j) - x w j‖ ≤ ‖x w j‖ ^ 2"]:::shp
+  n11["<b>q_nonneg</b><br/>0 ≤ q m w"]:::shp
+  n12["<b>norm_delta_le</b><br/>‖delta m w n‖ ≤ q m w"]:::shp
+  n13["<b>T_eq_mul</b><br/>T m w n = Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ)) * Complex…"]:::shp
+  n14["<b>norm_exp_delta_sub_one_le</b><br/>‖Complex.exp (delta m w n) - 1‖ ≤ 2 * q m w"]:::shp
+  n15["<b>P_tendsto</b><br/>Tendsto (fun n =＞ Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) …"]:::shp
+  n16["<b>norm_S_sub_le</b><br/>‖S m w - ((cS m / D m : ℝ) : ℂ) * w * P m w‖ ≤ 2 * q m w * ‖((cS…"]:::shp
+  n17["<b>norm_A_sq</b><br/>‖((cS m / D m : ℝ) : ℂ) * w * P m w‖ ^ 2 = (cS m / D m) ^ 2 * ‖w…"]:::shp
+  n18["<b>re_A_sq</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re = (cS m / D m) ^ 2…"]:::shp
+  n19["<b>re_sq_ge</b><br/>((((cS m / D m : ℝ) : ℂ) * w * P m w) ^ 2).re - ‖((cS m / D m : …"]:::shp
+  n20["<b>re_S_sq_ge</b><br/>(cS m / D m) ^ 2 * Real.exp (2 * (w ^ 2).re * sigma m) * ((w ^ 2…"]:::shp
   x0(["<b>WeilPowerSigma</b><br/>sigma_ge_amgm<br/>sigma_le_half"]):::ext
   x1(["<b>WeilPowerTail</b><br/>norm_S_le_tail<br/>norm_g_le"]):::ext
   x2(["<b>WeilPowerGauss</b><br/>6 theorems"]):::ext
@@ -74,6 +74,9 @@ flowchart LR
   x2 -.-> n4
   x2 -.-> n8
   x3 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -81,7 +84,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -166,6 +169,8 @@ The principal part `P = exp(w² σ)`.
 
 line 58
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -184,6 +189,8 @@ Summable hterm
 ### `WeilPowerPhase.summable_shift`
 
 line 68
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -209,6 +216,8 @@ Summable (fun k : ℕ => hterm (k + (m + 1)))
 ### `WeilPowerPhase.sigmaN_eq`
 
 line 71
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -237,6 +246,8 @@ sigmaN m n = 1 / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 
 ### `WeilPowerPhase.sigmaN_tendsto`
 
 line 79
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -270,6 +281,8 @@ Tendsto (fun n => sigmaN m n) atTop (𝓝 (sigma m))
 
 line 89
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -296,6 +309,8 @@ sigma m ≤ 1 / (Real.pi ^ 2 * ((m : ℝ) + 1))
 ### `WeilPowerPhase.sigma_ge`
 
 line 99
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -326,6 +341,8 @@ line 99
 
 line 116
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -352,6 +369,8 @@ g w j = 1 + x w j
 
 line 118
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -376,6 +395,8 @@ x w j = w ^ 2 * ((hterm j : ℝ) : ℂ)
 ### `WeilPowerPhase.g_ne_zero`
 
 line 123
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -406,6 +427,8 @@ g w j ≠ 0
 
 line 132
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -431,6 +454,8 @@ T m w n = Complex.exp (∑ j ∈ Finset.Ico (m + 1) n, Complex.log (g w j))
 ### `WeilPowerPhase.norm_log_sub_le`
 
 line 144
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -459,6 +484,8 @@ line 144
 
 line 163
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -482,6 +509,8 @@ line 163
 ### `WeilPowerPhase.norm_delta_le`
 
 line 167
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -512,6 +541,8 @@ line 167
 ### `WeilPowerPhase.T_eq_mul`
 
 line 193
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The split. `T m w n = exp(w² σ_n) · exp(δ_n)`.
 
@@ -544,6 +575,8 @@ T m w n = Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ)) * Complex.exp (delta 
 
 line 207
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -570,6 +603,8 @@ line 207
 ### `WeilPowerPhase.P_tendsto`
 
 line 217
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -598,6 +633,8 @@ Tendsto (fun n => Complex.exp (w ^ 2 * ((sigmaN m n : ℝ) : ℂ))) atTop (𝓝 
 ### `WeilPowerPhase.norm_S_sub_le`
 
 line 225
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The principal part carries `S` up to `2q`.
 
@@ -633,6 +670,8 @@ line 225
 
 line 245
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -659,6 +698,8 @@ line 245
 
 line 258
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The real part of the principal part squared, explicitly.
 
 **Proves**
@@ -684,6 +725,8 @@ line 258
 ### `WeilPowerPhase.re_sq_ge`
 
 line 285
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The lower bound on `Re (S m w)²`.
 
@@ -714,6 +757,8 @@ line 285
 ### `WeilPowerPhase.re_S_sq_ge`
 
 line 312
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The deliverable.
 

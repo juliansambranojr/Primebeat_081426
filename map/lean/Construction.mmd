@@ -1,10 +1,10 @@
 flowchart LR
-  n0["<b>tableFrom_isTableOf</b><br/>IsTableOf N (tableFrom N)"]:::thm
-  n1["<b>unique_of_isTableOf</b><br/>∀ r d, f r d = tableFrom N r d"]:::thm
-  n2["<b>eq_of_same_row</b><br/>∀ r d, f r d = g r d"]:::end_
-  n3["<b>zero_determined_by_row</b><br/>tableFrom N r d = tableFrom M r d"]:::thm
-  n4["<b>tableFrom_add</b><br/>tableFrom (fun x =＞ N x + M x) r d = tableFrom N r d + tableFrom…"]:::thm
-  n5["<b>tableFrom_smul</b><br/>tableFrom (fun x =＞ c * N x) r d = c * tableFrom N r d"]:::thm
+  n0["<b>tableFrom_isTableOf</b><br/>IsTableOf N (tableFrom N)"]:::cnt
+  n1["<b>unique_of_isTableOf</b><br/>∀ r d, f r d = tableFrom N r d"]:::cnt
+  n2["<b>eq_of_same_row ■</b><br/>∀ r d, f r d = g r d"]:::cnt
+  n3["<b>zero_determined_by_row</b><br/>tableFrom N r d = tableFrom M r d"]:::cnt
+  n4["<b>tableFrom_add</b><br/>tableFrom (fun x =＞ N x + M x) r d = tableFrom N r d + tableFrom…"]:::cnt
+  n5["<b>tableFrom_smul</b><br/>tableFrom (fun x =＞ c * N x) r d = c * tableFrom N r d"]:::cnt
   x0(["<b>Zeros</b><br/>tableFrom_isTable"]):::ext
   x1(["<b>PairIdentity</b><br/>tableFrom_add_window"]):::ext
   x2(["<b>Propagation</b><br/>outside_cone_zero"]):::ext
@@ -17,6 +17,9 @@ flowchart LR
   n4 -.-> x1
   n4 -.-> x3
   n5 -.-> x3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

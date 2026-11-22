@@ -11,18 +11,18 @@ WeilWindow — the raised-cosine window of entry 302, first two rungs of the det
 
 ```mermaid
 flowchart LR
-  n0["<b>P_nonneg</b><br/>0 ≤ P x"]:::thm
-  n1["<b>P_le_one</b><br/>P x ≤ 1"]:::thm
-  n2["<b>P_one</b><br/>P 1 = 0"]:::end_
-  n3["<b>P_neg_one</b><br/>P (-1) = 0"]:::end_
-  n4["<b>continuous_P</b><br/>Continuous P"]:::thm
-  n5["<b>continuous_x2P</b><br/>Continuous fun x : ℝ =＞ x ^ 2 * P x"]:::thm
-  n6["<b>P_ge_half</b><br/>1 / 2 ≤ P x"]:::thm
-  n7["<b>m2_le</b><br/>m2 ≤ 2 / 3"]:::end_
-  n8["<b>m2_ge</b><br/>1 / 24 ≤ m2"]:::thm
-  n9["<b>mul_sinh_ge</b><br/>s * x ^ 2 ≤ x * Real.sinh (s * x)"]:::thm
-  n10["<b>Sigma_ge_mul</b><br/>s * m2 ≤ Sigma s"]:::thm
-  n11["<b>Sigma_ge</b><br/>s / 24 ≤ Sigma s"]:::end_
+  n0["<b>P_nonneg</b><br/>0 ≤ P x"]:::shp
+  n1["<b>P_le_one</b><br/>P x ≤ 1"]:::shp
+  n2["<b>P_one ■</b><br/>P 1 = 0"]:::shp
+  n3["<b>P_neg_one ■</b><br/>P (-1) = 0"]:::shp
+  n4["<b>continuous_P</b><br/>Continuous P"]:::shp
+  n5["<b>continuous_x2P</b><br/>Continuous fun x : ℝ =＞ x ^ 2 * P x"]:::shp
+  n6["<b>P_ge_half</b><br/>1 / 2 ≤ P x"]:::shp
+  n7["<b>m2_le ■</b><br/>m2 ≤ 2 / 3"]:::shp
+  n8["<b>m2_ge</b><br/>1 / 24 ≤ m2"]:::shp
+  n9["<b>mul_sinh_ge</b><br/>s * x ^ 2 ≤ x * Real.sinh (s * x)"]:::shp
+  n10["<b>Sigma_ge_mul</b><br/>s * m2 ≤ Sigma s"]:::shp
+  n11["<b>Sigma_ge ■</b><br/>s / 24 ≤ Sigma s"]:::shp
   x0(["<b>WeilBackground</b><br/>Psi_le_two"]):::ext
   x1(["<b>WeilPowerBackground</b><br/>abs_q_le_one"]):::ext
   x2(["<b>WeilOddPower</b><br/>continuous_q"]):::ext
@@ -45,6 +45,9 @@ flowchart LR
   n1 -.-> x1
   n4 -.-> x2
   n4 -.-> x3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -52,7 +55,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -95,6 +98,8 @@ The odd-envelope integral `Σ(s) = ∫₋₁¹ x·P(x)·sinh(s x) dx`.
 
 line 52
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -121,6 +126,8 @@ line 52
 
 line 55
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -146,6 +153,8 @@ P x ≤ 1
 
 line 60
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -163,6 +172,8 @@ P 1 = 0
 
 line 65
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -179,6 +190,8 @@ P (-1) = 0
 ### `WeilWindow.continuous_P`
 
 line 71
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -203,6 +216,8 @@ Continuous P
 
 line 74
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -225,6 +240,8 @@ Continuous fun x : ℝ => x ^ 2 * P x
 ### `WeilWindow.P_ge_half`
 
 line 78
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** On `|x| ≤ 1/2` the window is at least `1/2`: `cos(πx/2) ≥ cos(π/4) = √2/2`.
 
@@ -251,6 +268,8 @@ line 78
 
 line 98
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -272,6 +291,8 @@ m2 ≤ 2 / 3
 ### `WeilWindow.m2_ge`
 
 line 111
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -298,6 +319,8 @@ line 111
 
 line 133
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `x·sinh(s x) ≥ s·x²` for every real `x`, when `s ≥ 0`.
 
 **Proves**
@@ -321,6 +344,8 @@ s * x ^ 2 ≤ x * Real.sinh (s * x)
 ### `WeilWindow.Sigma_ge_mul`
 
 line 140
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -351,6 +376,8 @@ s * m2 ≤ Sigma s
 ### `WeilWindow.Sigma_ge`
 
 line 152
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 

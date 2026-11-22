@@ -11,18 +11,21 @@ GeneratorPeak — why the block-size account cannot explain a peak at four. THE 
 
 ```mermaid
 flowchart LR
-  n0["<b>score_eq</b><br/>score R P α β k = P ^ β * (R k) ^ (α - β)"]:::thm
-  n1["<b>strictMono_of_lt</b><br/>StrictMono (score R P α β)"]:::thm
-  n2["<b>strictAnti_of_lt</b><br/>StrictAnti (score R P α β)"]:::thm
-  n3["<b>const_of_eq</b><br/>score R P α β i = score R P α β j"]:::thm
-  n4["<b>no_interior_peak</b><br/>False"]:::end_
-  n5["<b>measured_has_interior_peak</b><br/>(23.628706 : ℝ) ＜ 38.299307 ∧ (27.061132 : ℝ) ＜ 38.299307"]:::lone
+  n0["<b>score_eq</b><br/>score R P α β k = P ^ β * (R k) ^ (α - β)"]:::shp
+  n1["<b>strictMono_of_lt</b><br/>StrictMono (score R P α β)"]:::shp
+  n2["<b>strictAnti_of_lt</b><br/>StrictAnti (score R P α β)"]:::shp
+  n3["<b>const_of_eq</b><br/>score R P α β i = score R P α β j"]:::shp
+  n4["<b>no_interior_peak ■</b><br/>False"]:::shp
+  n5["<b>measured_has_interior_peak ■</b><br/>(23.628706 : ℝ) ＜ 38.299307 ∧ (27.061132 : ℝ) ＜ 38.299307"]:::shp
   n0 --> n1
   n0 --> n2
   n0 --> n3
   n1 --> n4
   n2 --> n4
   n3 --> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -30,7 +33,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -72,6 +75,8 @@ G1..G8 at xmax = 3e9.
 
 line 45
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The two terms are not independent. `n = P / R` collapses the product to a single power of `R`. This is the whole content: the tradeoff is not a tradeoff.
 
 **Proves**
@@ -103,6 +108,8 @@ score R P α β k = P ^ β * (R k) ^ (α - β)
 
 line 55
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** If resolution outweighs per-block signal, the score strictly increases with the generator count — more generators is always better, so no interior peak.
 
 **Proves**
@@ -132,6 +139,8 @@ StrictMono (score R P α β)
 ### `GeneratorPeak.strictAnti_of_lt`
 
 line 65
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** If per-block signal outweighs resolution, the score strictly decreases — fewer generators is always better, so again no interior peak.
 
@@ -163,6 +172,8 @@ StrictAnti (score R P α β)
 
 line 74
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** If the exponents match, the score does not depend on the generator count.
 
 **Proves**
@@ -192,6 +203,8 @@ score R P α β i = score R P α β j
 ### `GeneratorPeak.no_interior_peak`
 
 line 87
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** No power-law tradeoff of this form has an interior peak.
 
@@ -224,6 +237,8 @@ False
 ### `GeneratorPeak.measured_has_interior_peak`
 
 line 114
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The measurement is not monotone: G4 exceeds both G3 and G5.
 

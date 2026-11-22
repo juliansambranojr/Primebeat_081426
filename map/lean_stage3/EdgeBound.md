@@ -12,8 +12,8 @@
 ```mermaid
 flowchart LR
   n0["<b>gz_analytic</b><br/>AnalyticAt ℂ gz s"]:::thm
-  n1["<b>c0_im</b><br/>(c0 T').im = T'"]:::thm
-  n2["<b>c0_re</b><br/>(c0 T').re = 3/2"]:::thm
+  n1["<b>c0_im</b><br/>(c0 T').im = T'"]:::shp
+  n2["<b>c0_re</b><br/>(c0 T').re = 3/2"]:::shp
   n3["<b>gz_lower</b><br/>4 * ‖riemannZeta 3 / riemannZeta (3/2)‖ ≤ ‖gz (c0 T')‖"]:::thm
   n4["<b>zeta_ratio_pos</b><br/>(0:ℝ) ＜ ‖riemannZeta 3 / riemannZeta (3/2)‖"]:::thm
   n5["<b>gz_c0_ne</b><br/>gz (c0 T') ≠ 0"]:::thm
@@ -99,6 +99,9 @@ flowchart LR
   x4 -.-> n9
   x8 -.-> n11
   x8 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -106,7 +109,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -137,6 +140,8 @@ def · line 24
 
 line 26
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -165,6 +170,8 @@ AnalyticAt ℂ gz s
 ### `EdgeBound.c0_im`
 
 line 28
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -196,6 +203,8 @@ line 28
 ### `EdgeBound.c0_re`
 
 line 32
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -229,6 +238,8 @@ line 32
 
 line 37
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The explicit lower bound at the center.
 
 **Proves**
@@ -258,6 +269,8 @@ line 37
 
 line 61
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The lower-bound constant is positive.
 
 **Proves**
@@ -279,6 +292,8 @@ line 61
 ### `EdgeBound.gz_c0_ne`
 
 line 70
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The center's value is nonzero.
 
@@ -309,6 +324,8 @@ gz (c0 T') ≠ 0
 
 line 77
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** A `gz`-zero is `1` or a `ζ`-zero.
 
 **Proves**
@@ -335,6 +352,8 @@ w = 1 ∨ riemannZeta w = 0
 ### `EdgeBound.gz_zeros_ball_finite`
 
 line 87
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The `gz`-zeros in any ball around the center are finite.
 
@@ -382,6 +401,8 @@ line 87
 
 line 128
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The rescaled Landau partial fraction. At any height `T′ ≥ 2` and any `u` on the segment `re ∈ [−1/4, 2]` at that height that is not a `gz`-zero, the log-derivative of `gz` minus the simple-pole sum over `gz`-zeros within `46/25` of the center is `≤ C·log T′`. Transported from PNT+'s normalized `FinalBound` with radii `22/25 < 23/25 < 19/20 < 49/50`.
 
 **Proves**
@@ -412,6 +433,8 @@ line 128
 
 line 365
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Away from `1`, the order of `gz` is the order of `ζ` — the factor `(s−1)²` carries order zero there.
 
 **Proves**
@@ -440,6 +463,8 @@ analyticOrderNatAt gz w = analyticOrderNatAt riemannZeta w
 ### `EdgeBound.ball_zero_shape`
 
 line 386
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Every ball zero at heights `≥ 2` is a `ζ`-zero on the open strip, with ordinate within `46/25` of `T′`.
 
@@ -479,6 +504,8 @@ riemannZeta w = 0 ∧ (0 < w.re ∧ w.re < 1) ∧ |w.im - T'| ≤ 46/25
 
 line 417
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The ball order-count: the total multiplicity of `gz`-zeros in the `46/25`-ball at height `T′` is `≤ C·log T′` — four Jensen windows for `T′ ≥ 4` with the reflection charging left-zeros to partners, and a fixed-rectangle constant for `T′ < 4`.
 
 **Proves**
@@ -510,6 +537,8 @@ line 417
 
 line 680
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The log-derivative identity: `gz′/gz = 2/(s−1) + ζ′/ζ` away from the pole and the zeros.
 
 **Proves**
@@ -537,6 +566,8 @@ deriv gz u / gz u = 2/(u - 1) + deriv riemannZeta u / riemannZeta u
 ### `EdgeBound.deriv_zeta_conj`
 
 line 702
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Conjugation transfers the derivative of `ζ`.
 
@@ -566,6 +597,8 @@ deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s
 ### `EdgeBound.edge_bound_core`
 
 line 717
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The pointwise edge bound, unified. For `u` on the band `re ∈ [−1/4, 2]` at height `t ≥ 2`, with a lower bound `δ ≤ 1` on the distance from `u` to every ball zero: `‖ζ′/ζ(u)‖ ≤ C·(log t)/δ + C·log t`. Both edges specialize this: the left edge with `δ = 1/4`, the good horizontals with `δ = zeroGap T`.
 

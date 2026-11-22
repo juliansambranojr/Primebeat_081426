@@ -1,20 +1,20 @@
 flowchart LR
-  n0["<b>primeSide_eq</b><br/>primeSide k = literatureRHS k"]:::thm
-  n1["<b>tiltF_im</b><br/>(tiltF G u).im = 0"]:::thm
-  n2["<b>contDiff_tiltF</b><br/>ContDiff ℝ 1 (tiltF G)"]:::thm
-  n3["<b>hasCompactSupport_tiltF</b><br/>HasCompactSupport (tiltF G)"]:::thm
-  n4["<b>laplace_neg_eq</b><br/>laplace G (-ρ) = paperFT (tiltF G) (gammaOf ρ)"]:::thm
-  n5["<b>laplace_reflect_eq</b><br/>laplace G (-(1 - ρ)) = paperFT (tiltF G) (-gammaOf ρ)"]:::thm
-  n6["<b>conj_paperFT_conj</b><br/>conj (paperFT F (conj z)) = paperFT F (-z)"]:::thm
-  n7["<b>contDiff_two_convolution</b><br/>ContDiff ℝ 2 (f ⋆[ContinuousLinearMap.mul ℝ ℂ, volume] h)"]:::thm
-  n8["<b>contDiff_tilde</b><br/>ContDiff ℝ 1 (tilde g)"]:::thm
-  n9["<b>contDiff_kOf</b><br/>ContDiff ℝ 2 (kOf G)"]:::thm
-  n10["<b>hasCompactSupport_kOf</b><br/>HasCompactSupport (kOf G)"]:::thm
-  n11["<b>paperFT_kOf</b><br/>paperFT (kOf G) (gammaOf ρ) = laplace G (-ρ) * laplace G (-(1 - …"]:::thm
+  n0["<b>primeSide_eq</b><br/>primeSide k = literatureRHS k"]:::shp
+  n1["<b>tiltF_im</b><br/>(tiltF G u).im = 0"]:::shp
+  n2["<b>contDiff_tiltF</b><br/>ContDiff ℝ 1 (tiltF G)"]:::shp
+  n3["<b>hasCompactSupport_tiltF</b><br/>HasCompactSupport (tiltF G)"]:::shp
+  n4["<b>laplace_neg_eq</b><br/>laplace G (-ρ) = paperFT (tiltF G) (gammaOf ρ)"]:::shp
+  n5["<b>laplace_reflect_eq</b><br/>laplace G (-(1 - ρ)) = paperFT (tiltF G) (-gammaOf ρ)"]:::shp
+  n6["<b>conj_paperFT_conj</b><br/>conj (paperFT F (conj z)) = paperFT F (-z)"]:::shp
+  n7["<b>contDiff_two_convolution</b><br/>ContDiff ℝ 2 (f ⋆[ContinuousLinearMap.mul ℝ ℂ, volume] h)"]:::shp
+  n8["<b>contDiff_tilde</b><br/>ContDiff ℝ 1 (tilde g)"]:::shp
+  n9["<b>contDiff_kOf</b><br/>ContDiff ℝ 2 (kOf G)"]:::shp
+  n10["<b>hasCompactSupport_kOf</b><br/>HasCompactSupport (kOf G)"]:::shp
+  n11["<b>paperFT_kOf</b><br/>paperFT (kOf G) (gammaOf ρ) = laplace G (-ρ) * laplace G (-(1 - …"]:::shp
   n12["<b>weil_bridge</b><br/>Summable (fun ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 ＜ ρ.re ∧ ρ.re ＜…"]:::thm
-  n13["<b>kOfM_eq</b><br/>kOfM G = kOf G"]:::thm
-  n14["<b>primeSideM_eq</b><br/>primeSideM k = primeSide k"]:::thm
-  n15["<b>stmtWeilBridge_holds</b><br/>StmtWeilBridge"]:::end_
+  n13["<b>kOfM_eq</b><br/>kOfM G = kOf G"]:::shp
+  n14["<b>primeSideM_eq</b><br/>primeSideM k = primeSide k"]:::shp
+  n15["<b>stmtWeilBridge_holds ■</b><br/>StmtWeilBridge"]:::thm
   n0 --> n12
   n1 --> n11
   n10 --> n12
@@ -33,6 +33,9 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n12
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

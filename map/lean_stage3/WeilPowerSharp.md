@@ -11,13 +11,13 @@ WeilPowerSharp — the Gaussian bounds with the constant kept exact and the tail
 
 ```mermaid
 flowchart LR
-  n0["<b>sum_telescope</b><br/>∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / (((j : ℝ) +…"]:::thm
-  n1["<b>sum_inv_sq_ge_sharp</b><br/>1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1) ≤ ∑ j ∈ Finset.Ico (m + 1)…"]:::thm
-  n2["<b>Tr_ge_sharp</b><br/>Real.exp (s ^ 2 / Real.pi ^ 2 * (1 / ((m : ℝ) + 2) - 1 / ((n : ℝ…"]:::thm
-  n3["<b>S_real_ge_sharp</b><br/>cS m / D m * s * Real.exp (s ^ 2 / (Real.pi ^ 2 * ((m : ℝ) + 2))…"]:::thm
-  n4["<b>norm_S_le_c_pos</b><br/>‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re / (Real.pi ^ 2…"]:::thm
-  n5["<b>norm_S_le_c_neg</b><br/>‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * ((m : ℝ) + 2…"]:::end_
-  n6["<b>compare_sharp</b><br/>‖S m w‖ ≤ ‖w‖ / s * Real.exp (((w ^ 2).re - s ^ 2) / (Real.pi ^ …"]:::end_
+  n0["<b>sum_telescope</b><br/>∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / (((j : ℝ) +…"]:::shp
+  n1["<b>sum_inv_sq_ge_sharp</b><br/>1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1) ≤ ∑ j ∈ Finset.Ico (m + 1)…"]:::shp
+  n2["<b>Tr_ge_sharp</b><br/>Real.exp (s ^ 2 / Real.pi ^ 2 * (1 / ((m : ℝ) + 2) - 1 / ((n : ℝ…"]:::shp
+  n3["<b>S_real_ge_sharp</b><br/>cS m / D m * s * Real.exp (s ^ 2 / (Real.pi ^ 2 * ((m : ℝ) + 2))…"]:::shp
+  n4["<b>norm_S_le_c_pos</b><br/>‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re / (Real.pi ^ 2…"]:::shp
+  n5["<b>norm_S_le_c_neg ■</b><br/>‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * ((m : ℝ) + 2…"]:::shp
+  n6["<b>compare_sharp ■</b><br/>‖S m w‖ ≤ ‖w‖ / s * Real.exp (((w ^ 2).re - s ^ 2) / (Real.pi ^ …"]:::shp
   x0(["<b>WeilPowerPhase</b><br/>sigma_ge"]):::ext
   x1(["<b>WeilPowerGauss</b><br/>7 theorems"]):::ext
   x2(["<b>WeilPowerBounds</b><br/>QS_ne_zero"]):::ext
@@ -33,6 +33,9 @@ flowchart LR
   x1 -.-> n5
   x1 -.-> n6
   x2 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -40,7 +43,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -48,6 +51,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `WeilPowerSharp.sum_telescope`
 
 line 53
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Telescoping sum over the tail.
 
@@ -71,6 +76,8 @@ line 53
 ### `WeilPowerSharp.sum_inv_sq_ge_sharp`
 
 line 69
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The sharp lower bound for the tail sum: `1/(m+2) − 1/(n+1)`.
 
@@ -98,6 +105,8 @@ line 69
 ### `WeilPowerSharp.Tr_ge_sharp`
 
 line 80
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Tail product lower bound with the sharp sum.
 
@@ -128,6 +137,8 @@ Real.exp (s ^ 2 / Real.pi ^ 2 * (1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1)) - s 
 ### `WeilPowerSharp.S_real_ge_sharp`
 
 line 133
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Lower bound at the target, sharp. The constant is `cS m / D m` itself and the rate is `s²/(π²(m+2))`.
 
@@ -163,6 +174,8 @@ cS m / D m * s * Real.exp (s ^ 2 / (Real.pi ^ 2 * ((m : ℝ) + 2)) - s ^ 4 / (Re
 
 line 163
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Upper bound, `Re(w²) ≥ 0`, constant kept.
 
 **Proves**
@@ -196,6 +209,8 @@ line 163
 
 line 175
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Upper bound, `Re(w²) ≤ 0`, constant kept. The exponent is unit 0333's.
 
 **Proves**
@@ -226,6 +241,8 @@ line 175
 ### `WeilPowerSharp.compare_sharp`
 
 line 190
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The comparison with no lost factor. For `0 ≤ Re(w²)`, `0 < s`, both in the regime, `‖S m w‖ ≤ (‖w‖/s) · exp(E) · Re (S m s)` with `E = (Re(w²) − s²)/(π²(m+1)) + s²/(π²(m+1)(m+2)) + (‖w‖⁴ + s⁴)/(π⁴(m+1)³)`.
 

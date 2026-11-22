@@ -12,11 +12,11 @@ LandauTaylor — the derivatives of `Phi` on `Re s > 1`, from the primes: iterat
 ```mermaid
 flowchart LR
   n0["<b>integrand_norm_le</b><br/>‖(LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-…"]:::thm
-  n1["<b>bound_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ 8 * (Real.log y ^ k * y ^ (-a - 1) + …"]:::thm
+  n1["<b>bound_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ 8 * (Real.log y ^ k * y ^ (-a - 1) + …"]:::shp
   n2["<b>mellinLog_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (LandauWindow.G y : ℂ) * (-(Real.log …"]:::thm
   n3["<b>mellinLog_hasDerivAt</b><br/>HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s"]:::thm
   n4["<b>iteratedDeriv_Phi</b><br/>iteratedDeriv k LandauMellinG.Phi s = mellinLog k s"]:::thm
-  n5["<b>mellinLog_real</b><br/>mellinLog k (σ : ℂ) = (-1) ^ k * ((∫ y in Ioi (1 : ℝ), LandauWin…"]:::thm
+  n5["<b>mellinLog_real</b><br/>mellinLog k (σ : ℂ) = (-1) ^ k * ((∫ y in Ioi (1 : ℝ), LandauWin…"]:::shp
   x0(["<b>LandauChebyshev</b><br/>abs_G_le_log"]):::ext
   x1(["<b>LandauKernel</b><br/>log_pow_integrable"]):::ext
   x2(["<b>LandauMellinG</b><br/>G_mellin_integrable<br/>mellin_G"]):::ext
@@ -34,6 +34,9 @@ flowchart LR
   x1 -.-> n1
   x2 -.-> n2
   x2 -.-> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -41,7 +44,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -62,6 +65,8 @@ def · line 40
 ### `LandauTaylor.integrand_norm_le`
 
 line 45
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The domination: for `Re s ≥ 1 + a` the integrand is at most this.
 
@@ -93,6 +98,8 @@ line 45
 
 line 70
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -117,6 +124,8 @@ IntegrableOn (fun y : ℝ => 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (
 ### `LandauTaylor.mellinLog_integrable`
 
 line 76
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -146,6 +155,8 @@ IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ 
 ### `LandauTaylor.mellinLog_hasDerivAt`
 
 line 98
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Proves**
 
@@ -177,6 +188,8 @@ HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s
 
 line 140
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Proves**
 
 ```lean
@@ -205,6 +218,8 @@ iteratedDeriv k LandauMellinG.Phi s = mellinLog k s
 ### `LandauTaylor.mellinLog_real`
 
 line 155
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 

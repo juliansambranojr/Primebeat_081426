@@ -1,12 +1,12 @@
 flowchart LR
-  n0["<b>phiW_contDiff_one</b><br/>ContDiff ℝ 1 (WeilPowerBackground.phiW h γ m)"]:::thm
-  n1["<b>isTest_phiWC</b><br/>IsTest (2 * h) (WeilPowerBackground.phiWC h γ m)"]:::end_
-  n2["<b>target_lower</b><br/>WeilPowerBands.termW h γ m (ρ : ℂ) ≤ -((h / 2) ^ 2 * ((cS m / D …"]:::end_
-  n3["<b>near_nonneg</b><br/>0 ≤ ∑ ρ ∈ near_set, WeilPowerBands.termW h γ m ρ"]:::end_
-  n4["<b>far_moderate_le</b><br/>|∑ ρ ∈ fm_set, WeilPowerBands.termW h γ m ρ| ≤ (15 * Real.log T …"]:::end_
-  n5["<b>far_large_le</b><br/>|∑ ρ ∈ fl_set, WeilPowerBands.termW h γ m ρ| ≤ (15 * Real.log T …"]:::end_
-  n6["<b>on_line_le</b><br/>WeilPowerOnLine.onLineBound h γ m ≤ 2 * (88 * (γ + WeilPowerBand…"]:::end_
-  n7["<b>detect_gap_exists</b><br/>∃ L : ℝ, StmtDetectGap ε T δ L"]:::bad
+  n0["<b>phiW_contDiff_one</b><br/>ContDiff ℝ 1 (WeilPowerBackground.phiW h γ m)"]:::shp
+  n1["<b>isTest_phiWC ■</b><br/>IsTest (2 * h) (WeilPowerBackground.phiWC h γ m)"]:::shp
+  n2["<b>target_lower ■</b><br/>WeilPowerBands.termW h γ m (ρ : ℂ) ≤ -((h / 2) ^ 2 * ((cS m / D …"]:::thm
+  n3["<b>near_nonneg ■</b><br/>0 ≤ ∑ ρ ∈ near_set, WeilPowerBands.termW h γ m ρ"]:::thm
+  n4["<b>far_moderate_le ■</b><br/>|∑ ρ ∈ fm_set, WeilPowerBands.termW h γ m ρ| ≤ (15 * Real.log T …"]:::thm
+  n5["<b>far_large_le ■</b><br/>|∑ ρ ∈ fl_set, WeilPowerBands.termW h γ m ρ| ≤ (15 * Real.log T …"]:::thm
+  n6["<b>on_line_le ■</b><br/>WeilPowerOnLine.onLineBound h γ m ≤ 2 * (88 * (γ + WeilPowerBand…"]:::thm
+  n7["<b>detect_gap_exists ■</b><br/>∃ L : ℝ, StmtDetectGap ε T δ L"]:::bad
   x0(["<b>IndicatorContDiff</b><br/>contDiff_one_indicator_Icc"]):::ext
   x1(["<b>WeilPower</b><br/>c_neg_one<br/>c_one<br/>hasDerivAt_c"]):::ext
   x2(["<b>WeilPowerBackground</b><br/>phiWC_real"]):::ext
@@ -18,6 +18,9 @@ flowchart LR
   x2 -.-> n1
   x3 -.-> n2
   x4 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

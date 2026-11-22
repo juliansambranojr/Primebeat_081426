@@ -11,27 +11,27 @@ WeilPowerCompare — the comparison at another off-line zero. Rung 5, ninth slic
 
 ```mermaid
 flowchart LR
-  n0["<b>cP_pos</b><br/>0 ＜ cP m"]:::end_
-  n1["<b>cE_pos</b><br/>0 ＜ cE m"]:::thm
-  n2["<b>cQ_pos</b><br/>0 ＜ cQ m"]:::thm
-  n3["<b>cE_le_cP</b><br/>cE m ≤ cP m"]:::end_
-  n4["<b>norm_S_le_gauss</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp (Eup m …"]:::thm
-  n5["<b>S_real_ge_low</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp…"]:::thm
-  n6["<b>S_real_pos</b><br/>0 ＜ (S m (s : ℂ)).re"]:::thm
-  n7["<b>compare_le</b><br/>‖S m w‖ ≤ (2 * (m : ℝ) + 3) * (‖w‖ / s) * Real.exp (Eup m w - El…"]:::thm
-  n8["<b>wOf_re</b><br/>(wOf ε Δ h).re = ε * h"]:::thm
-  n9["<b>wOf_im</b><br/>(wOf ε Δ h).im = Δ * h"]:::thm
-  n10["<b>wOf_sq_re</b><br/>((wOf ε Δ h) ^ 2).re = (ε ^ 2 - Δ ^ 2) * h ^ 2"]:::thm
-  n11["<b>norm_wOf_sq</b><br/>‖wOf ε Δ h‖ ^ 2 = (ε ^ 2 + Δ ^ 2) * h ^ 2"]:::thm
-  n12["<b>norm_wOf_pow4</b><br/>‖wOf ε Δ h‖ ^ 4 = ((ε ^ 2 + Δ ^ 2) * h ^ 2) ^ 2"]:::thm
-  n13["<b>QS_ne_zero_wOf</b><br/>QS m (wOf ε Δ h) ≠ 0"]:::thm
-  n14["<b>exponent_eq</b><br/>Eup m (wOf ε' Δ h) - Elow m (ε * h) = rate m ε' Δ ε * h ^ 2 + qe…"]:::thm
-  n15["<b>rate_eq_of_le</b><br/>rate m ε' Δ ε = -(cE m * (Δ ^ 2 + ε ^ 2 - ε' ^ 2))"]:::thm
-  n16["<b>rate_neg_of_le</b><br/>rate m ε' Δ ε ＜ 0"]:::end_
-  n17["<b>rate_neg_of_ge</b><br/>rate m ε' Δ ε ＜ 0"]:::end_
-  n18["<b>qerr_pos</b><br/>0 ＜ qerr m ε' Δ ε"]:::thm
-  n19["<b>rate_neg_of_qerr</b><br/>rate m ε' Δ ε ＜ 0"]:::end_
-  n20["<b>compare_suppressed</b><br/>‖S m (wOf ε' Δ h)‖ ≤ (2 * (m : ℝ) + 3) * (‖wOf ε' Δ h‖ / (ε * h)…"]:::end_
+  n0["<b>cP_pos ■</b><br/>0 ＜ cP m"]:::shp
+  n1["<b>cE_pos</b><br/>0 ＜ cE m"]:::shp
+  n2["<b>cQ_pos</b><br/>0 ＜ cQ m"]:::shp
+  n3["<b>cE_le_cP ■</b><br/>cE m ≤ cP m"]:::shp
+  n4["<b>norm_S_le_gauss</b><br/>‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp (Eup m …"]:::shp
+  n5["<b>S_real_ge_low</b><br/>4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp…"]:::shp
+  n6["<b>S_real_pos</b><br/>0 ＜ (S m (s : ℂ)).re"]:::shp
+  n7["<b>compare_le</b><br/>‖S m w‖ ≤ (2 * (m : ℝ) + 3) * (‖w‖ / s) * Real.exp (Eup m w - El…"]:::shp
+  n8["<b>wOf_re</b><br/>(wOf ε Δ h).re = ε * h"]:::shp
+  n9["<b>wOf_im</b><br/>(wOf ε Δ h).im = Δ * h"]:::shp
+  n10["<b>wOf_sq_re</b><br/>((wOf ε Δ h) ^ 2).re = (ε ^ 2 - Δ ^ 2) * h ^ 2"]:::shp
+  n11["<b>norm_wOf_sq</b><br/>‖wOf ε Δ h‖ ^ 2 = (ε ^ 2 + Δ ^ 2) * h ^ 2"]:::shp
+  n12["<b>norm_wOf_pow4</b><br/>‖wOf ε Δ h‖ ^ 4 = ((ε ^ 2 + Δ ^ 2) * h ^ 2) ^ 2"]:::shp
+  n13["<b>QS_ne_zero_wOf</b><br/>QS m (wOf ε Δ h) ≠ 0"]:::shp
+  n14["<b>exponent_eq</b><br/>Eup m (wOf ε' Δ h) - Elow m (ε * h) = rate m ε' Δ ε * h ^ 2 + qe…"]:::shp
+  n15["<b>rate_eq_of_le</b><br/>rate m ε' Δ ε = -(cE m * (Δ ^ 2 + ε ^ 2 - ε' ^ 2))"]:::shp
+  n16["<b>rate_neg_of_le ■</b><br/>rate m ε' Δ ε ＜ 0"]:::shp
+  n17["<b>rate_neg_of_ge ■</b><br/>rate m ε' Δ ε ＜ 0"]:::shp
+  n18["<b>qerr_pos</b><br/>0 ＜ qerr m ε' Δ ε"]:::shp
+  n19["<b>rate_neg_of_qerr ■</b><br/>rate m ε' Δ ε ＜ 0"]:::shp
+  n20["<b>compare_suppressed ■</b><br/>‖S m (wOf ε' Δ h)‖ ≤ (2 * (m : ℝ) + 3) * (‖wOf ε' Δ h‖ / (ε * h)…"]:::shp
   x0(["<b>WeilPowerGauss</b><br/>S_real_ge_gauss<br/>norm_S_le_gauss_neg<br/>norm_S_le_gauss_pos"]):::ext
   x1(["<b>WeilPowerBounds</b><br/>QS_ne_zero"]):::ext
   n1 --> n16
@@ -57,6 +57,9 @@ flowchart LR
   x0 -.-> n4
   x0 -.-> n5
   x1 -.-> n13
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -64,7 +67,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -159,6 +162,8 @@ The quartic error of the exponent difference, per unit `h⁴`.
 
 line 90
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -179,6 +184,8 @@ line 90
 ### `WeilPowerCompare.cE_pos`
 
 line 95
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -203,6 +210,8 @@ line 95
 
 line 101
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -226,6 +235,8 @@ line 101
 
 line 107
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `(m+1)(m+2) ≤ (2m+3)²`, so the weak coefficient is at most the strong one.
 
 **Proves**
@@ -248,6 +259,8 @@ cE m ≤ cP m
 ### `WeilPowerCompare.norm_S_le_gauss`
 
 line 123
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The Gaussian upper bound, both signs in one exponent.
 
@@ -280,6 +293,8 @@ line 123
 
 line 150
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The Gaussian lower bound at the target, in the `Elow` form.
 
 **Proves**
@@ -311,6 +326,8 @@ line 150
 
 line 166
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The target's transform is positive on the real axis inside the regime.
 
 **Proves**
@@ -340,6 +357,8 @@ line 166
 ### `WeilPowerCompare.compare_le`
 
 line 179
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The comparison at another off-line zero. The transform at any point of the regime is at most `2m+3` times `‖w‖/s` times the exponential of the exponent difference, times the target's transform.
 
@@ -372,6 +391,8 @@ line 179
 
 line 208
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -397,6 +418,8 @@ line 208
 
 line 211
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -420,6 +443,8 @@ line 211
 ### `WeilPowerCompare.wOf_sq_re`
 
 line 214
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -446,6 +471,8 @@ line 214
 ### `WeilPowerCompare.norm_wOf_sq`
 
 line 218
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -474,6 +501,8 @@ line 218
 
 line 222
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Proves**
 
 ```lean
@@ -498,6 +527,8 @@ line 222
 ### `WeilPowerCompare.QS_ne_zero_wOf`
 
 line 225
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Proves**
 
@@ -525,6 +556,8 @@ QS m (wOf ε Δ h) ≠ 0
 ### `WeilPowerCompare.exponent_eq`
 
 line 240
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The exponent difference in the worksheet's variables, with no sign hypothesis: a quadratic rate against a quartic error.
 
@@ -557,6 +590,8 @@ Eup m (wOf ε' Δ h) - Elow m (ε * h) = rate m ε' Δ ε * h ^ 2 + qerr m ε' �
 
 line 253
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** At `Δ² ≥ ε'²` the rate is `−cE·(Δ² + ε² − ε'²)`.
 
 **Proves**
@@ -584,6 +619,8 @@ rate m ε' Δ ε = -(cE m * (Δ ^ 2 + ε ^ 2 - ε' ^ 2))
 ### `WeilPowerCompare.rate_neg_of_le`
 
 line 261
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** A zero above the target in height is suppressed at every real part. `Δ² ≥ ε'²` and `0 < ε` make the rate negative with no condition on `ε'`.
 
@@ -615,6 +652,8 @@ rate m ε' Δ ε < 0
 
 line 270
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A zero inside the target's height is suppressed when its real part does not exceed the target's by the constant `cE/cP`.
 
 **Proves**
@@ -639,6 +678,8 @@ rate m ε' Δ ε < 0
 ### `WeilPowerCompare.qerr_pos`
 
 line 277
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The quartic error is positive at any target with `0 < ε`.
 
@@ -670,6 +711,8 @@ line 277
 
 line 284
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The range condition on `h` already forces the rate negative.
 
 **Proves**
@@ -696,6 +739,8 @@ rate m ε' Δ ε < 0
 ### `WeilPowerCompare.compare_suppressed`
 
 line 294
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Suppression at another off-line zero. For `h` in the range where the quartic error is at most half the rate — which by `rate_neg_of_qerr` already makes the rate negative — the transform at the other zero is an exponentially small multiple of the target's.
 
