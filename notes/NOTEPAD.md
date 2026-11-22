@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0407: Stage3/AssemblyFloor.lean (6 theorems, 0 sorry). psiWeak_floor: floor x0 a parameter, T just below x^2, constant 4 + (16+16b1+16b2)/log x0 + (8b3+8+4W)/log^2 x0 + 18c1/(x0 sqrt x0) + c2/(sqrt x0 log x0). schoenfeldWeak_floor_of_RH composes stmtEF_poly + rvM_crude + psi-to-pi. c1, c2 still existential
 - [open]   2026-11-22  unit 0406 EXPLORATORY: hEF route over T = x^a, sqrt kept, zero side unrounded (zeroinner_arith rounds a few tens up to 7404). a=1: depth 5 as built. a=2: top edge gone, C_psi 20118 as built (left edge c2 is all of it), depth 6 with R6=90; radii freed C_psi 2906, depth 7, R6=84. Floors. Next: the assembly restated in Lean
 - [open]   2026-11-22  unit 0405 EXPLORATORY, DECISION: assembly_arith bounds L^2 by S*L^2, so psiWeak_of_RH_EF_NT gives away sqrt(x) on the term holding c1, c2. Kept: C = 7404 + 4W + (9c1+c2)/sqrt(x0). Floors: as built depth 4 (R6=99); radii freed (r'=7/8 forced, G 212128 -> 14080) depth 6 with R6=93, on the ceiling. Unpriced lever: T up to x^2
 - [open]   2026-11-22  unit 0404 EXPLORATORY: the hEF route (psiWeak_of_RH_EF_NT + stmtEF_poly + rvM_crude, never composed) lands on sqrt(x) log x, where depth 6 holds to C_pi ~ 170,212; its fixed numerals give 87,064 and fit; Ch >= 1.2e10 does not (radii 23/25, 22/25 cubed in gz_partial_fraction, x3418.5 in zeta_logderiv_good_bound). Radii not yet tried freed

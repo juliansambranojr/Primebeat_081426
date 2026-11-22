@@ -321,3 +321,41 @@ since NOTEPAD entry 283, and that the entry carries the numeral through:
 for the gate to close inside the computed table. See `SECTIONS.md`, "The
 constants".
 
+### E1 The assembly with its floor — PROVED (unit 0407: `AssemblyFloor.psiWeak_floor`, `schoenfeldWeak_floor_of_RH`, with `rem_floor`, `zeroinner_floor`, `floor_arith`, `floorConst_nonneg`)
+
+Section E of `SECTIONS.md`, the stretch to the census at the RH shape. Units
+0404–0406 priced it: `Assembly.psiWeak_of_RH_EF_NT` reaches, inside its proof,
+a bound whose contour constants sit on `log²x` with no `√x`, and whose zero
+side is a polynomial in `log T`; its two closing lemmas (`rem_arith`,
+`zeroinner_arith`, `assembly_arith`) round every term up to one multiple of
+`√x·log²x` valid from `x ≥ 16`. This block restates the assembly without the
+rounding. No new mathematics.
+
+Choice of height. `T = 2^(K+1)` with `x²/2 < T ≤ x²` (`K + 1 = Nat.log 2 ⌊x²⌋`),
+allowed by `StmtExplicitFormulaPoly` (`T ≤ x²`). Then `x/T < 2/x`,
+`log T ≤ 2L`, `log(xT) ≤ 3L`, `L = log x`.
+
+Theorems.
+
+- `rem_floor`: `0 ≤ c₁`, `0 < x`, `0 < T`, `x² ≤ 2T`, `0 ≤ G ≤ 3L` give
+  `c₁·x·G²/T ≤ 18·c₁·L²/x`.
+- `zeroinner_floor`: `(K+1)·log 2 ≤ 2L`, `0 ≤ K`, `1 ≤ L`, `R ≤ 2(b₁+b₂)L + b₃` give
+  `2((log 2/2π)(K+1)(K+2) + 3(K+1)/π + 2(R + 7/8)) + 2W
+   ≤ 2(L² + (4 + 4b₁ + 4b₂)L + 2b₃ + 2) + 2W`.
+  Hint: `(K+1) ≤ 2.9L` from `log 2 > 0.693`; `π > 3`.
+- `floor_arith`: with `0 < L₀ ≤ L`, `0 < S₀ ≤ S`, `0 < x₀ ≤ x`,
+  `A ≤ 18c₁L²/x + c₂L + S(4L² + PL + Q)` gives
+  `A ≤ (4 + P/L₀ + Q/L₀² + 18c₁/(x₀S₀) + c₂/(S₀L₀))·S·L²`.
+  Hint: each term times a ratio that is at least one.
+- `psiWeak_floor`: hypotheses of `psiWeak_of_RH_EF_NT`, and `16 ≤ x₀`,
+  `x₁ ≤ x₀`; conclusion `StmtPsiWeak (floorConst c₁ c₂ b₁ b₂ b₃ W x₀) 2 x₀`,
+  `floorConst = 4 + (16 + 16b₁ + 16b₂)/log x₀ + (8b₃ + 8 + 4W)/log²x₀
+   + 18c₁/(x₀·√x₀) + c₂/(√x₀·log x₀)`.
+- `schoenfeldWeak_floor_of_RH`: under RH there are `c₁, c₂ ≥ 0` with, for
+  every `x₀ ≥ 16`, `|π(x) − Li(x)| ≤ (3·floorConst c₁ c₂ 112 0 698 W x₀ + 13)·√x·log x`
+  for `x ≥ max (x₀²) 9`.
+
+What the next slice needs: `c₁`, `c₂` as definitions with numerals, which
+needs the three compactness constants bounded; and the gate read on the
+`√x·log x` shape (`Statement.weakWindow_of_global`).
+

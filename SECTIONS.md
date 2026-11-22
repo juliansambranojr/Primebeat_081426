@@ -168,3 +168,9 @@ top-edge constant leaves the bound, and the zero side, unrounded, costs a few
 tens. As floors: depth 6 covered with 3 rungs to spare with the radii as
 built, 9 with them freed. What carries the constant then is the left edge of
 the contour, `c₂·log x`, and the floor squared between `ψ` and `π`.
+
+Unit 0407 built it: `Stage3/AssemblyFloor.lean`, `psiWeak_floor` and
+`schoenfeldWeak_floor_of_RH`. The route from RH to `|π − Li| ≤ C(x₀)·√x·log x`
+is now one theorem, with `C(x₀) = 3·floorConst + 13` an explicit function of
+the floor, of the band's numerals, and of the two explicit-formula constants,
+which remain existential.

@@ -1,0 +1,59 @@
+# check_prose_source.py  2026-11-22T10:54:12Z
+# unit: 0407-assembly-floor
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34545
+  Source: session transcript, 2026-11-22, after unit 0405
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34806
+  def floorConst (c₁ c₂ b₁ b₂ b₃ W x₀ : ℝ) : ℝ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34807
+  4 + (16 + 16 * b₁ + 16 * b₂) / Real.log x₀
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34808
+  + (8 * b₃ + 8 + 4 * W) / Real.log x₀ ^ 2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34809
+  + 18 * c₁ / (x₀ * Real.sqrt x₀) + c₂ / (Real.sqrt x₀ * Real.log x₀)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34893
+  theorem psiWeak_floor (hRH : RiemannHypothesis)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34894
+  {c₁ c₂ x₁ b₁ b₂ b₃ W x₀ : ℝ} (hc₁ : 0 ≤ c₁) (hc₂ : 0 ≤ c₂)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31711
+  (hb₁ : 0 ≤ b₁) (hb₂ : 0 ≤ b₂) (hb₃ : 0 ≤ b₃)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31712
+  (hWeq : W = weightedZeroHeightBucket)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31713
+  (hRvM2 : 0 ≤ riemannZeta.RvM b₁ b₂ b₃ 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31714
+  (hEF : StmtExplicitFormulaPoly c₁ c₂ x₁)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31715
+  (hNT : riemannZeta.Riemann_vonMangoldt_bound b₁ b₂ b₃)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34900
+  (hx₀ : 16 ≤ x₀) (hx₁ : x₁ ≤ x₀) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34901
+  StmtPsiWeak (floorConst c₁ c₂ b₁ b₂ b₃ W x₀) 2 x₀ := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35006
+  theorem schoenfeldWeak_floor_of_RH (hRH : RiemannHypothesis) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35007
+  ∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35009
+  (3 * floorConst c₁ c₂ 112 0 698 weightedZeroHeightBucket x₀ + 13) 1
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:35010
+  (max (x₀ ^ 2) 9) (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Li := by
+
+# 18 found, 0 missing

@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/AssemblyFloor.lean`, block E1 of `joints.md`
+
+    DONE        `psiWeak_floor`: the assembly of `psiWeak_of_RH_EF_NT` with
+                the floor `x₀` a parameter, `T` the power of two just below
+                `x²`, and the closing arithmetic keeping each term's shape;
+                `schoenfeldWeak_floor_of_RH` composing it with
+                `Glue.stmtEF_poly`, `ArgCount.rvM_crude` and
+                `PsiToPi.schoenfeldWeak_of_psiWeak`; a unit; the block PROVED
+    ASSUMED     the constants `c₁`, `c₂` stay existential in the composed
+                theorem (they are in `stmtEF_poly`); no numeral is claimed
+    DEPENDS     units 0405, 0406; `Assembly.norm_zeroPartialSum_le_logsq`
+    OUT         `Assembly.lean` untouched; the radii; the three compactness
+                constants; any statement about the gate or the table
+    OUTCOME     done as pinned; unit 0407; clean on the second build
+
 ### 2026-11-22 · the explicit-formula route priced over the height T (unit 0406)
 
     DONE        a unit with one script: the constant as a function of the
