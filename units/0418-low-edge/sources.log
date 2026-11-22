@@ -1,0 +1,38 @@
+# check_prose_source.py  2026-11-22T12:22:50Z
+# unit: 0418-low-edge
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40071
+  Source: session transcript, 2026-11-22, after unit 0415
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41073
+  theorem low_ball_count_wide {T' : ℝ} (h0 : 0 ≤ T') (h6 : T' ≤ 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32701
+  (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0 : ℝ) ≤ 46 / 25)).toFinset,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41075
+  (analyticOrderNatAt gz w : ℝ)) ≤ 250 := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41147
+  theorem gz_partial_fraction_low {T' : ℝ} (h0T : 0 ≤ T') (h2T : T' ≤ 2) (u : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41148
+  (him : u.im = T') (hre1 : -1/4 ≤ u.re) (hre2 : u.re ≤ 2) (hune : gz u ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32670
+  - ∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32671
+  (analyticOrderNatAt gz w : ℂ) / (u - w)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41308
+  theorem logDerivZeta_short_segment {t : ℝ} (ht : |t| ≤ 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32814
+  ‖deriv riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41310
+  / riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I)‖ ≤ 1620000 := by
+
+# 11 found, 0 missing

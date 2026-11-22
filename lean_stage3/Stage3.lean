@@ -121,6 +121,7 @@ import Stage3.RealSegment
 import Stage3.RouteGate
 import Stage3.BoxBounds
 import Stage3.LowCount
+import Stage3.LowEdge
 
 namespace Stage3
 

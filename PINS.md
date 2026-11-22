@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/LowEdge.lean`, block E7d of `joints.md`
+
+    DONE        `gz_partial_fraction_low` (the partial fraction at heights
+                in `[0, 2]`, with a numeral), `low_ball_count_wide` (at most
+                250 zeros of `gz` within `46/25` of the centre there),
+                `logDerivZeta_low_edge`, `logDerivZeta_short_segment`
+                (`‖ζ′/ζ‖ ≤ 1620000` on `Re = −1/4`, `|t| ≤ 2`: `Mc`); a unit;
+                E7d PROVED
+    ASSUMED     the radii are the ones `gz_partial_fraction` uses, so the
+                numeral is of the size of the existing edge constant
+    DEPENDS     units 0416, 0417; upstream `FinalBound`, `ZerosBound`
+    OUT         the explicit formula's constants as definitions; nothing
+                wired into `Glue.edge_left_bound`
+    OUTCOME     done as pinned; unit 0418; clean on the first build
+
 ### 2026-11-22 · `Stage3/LowCount.lean`, block E7c of `joints.md`
 
     DONE        `gz_c0_lower` (`1/14 ≤ ‖gz (c0 T′)‖` at every height),

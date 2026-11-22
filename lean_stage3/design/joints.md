@@ -513,7 +513,7 @@ Theorems.
 an existential, and naming `c₃` means a further copy of that proof. Its term
 is of size `1e-5` in unit 0410.
 
-### E7 The bounds on ζ in a bounded region — DRAFT for Julian, nothing built
+### E7 The bounds on ζ in a bounded region — PROVED, all four sub-blocks (units 0416, 0417, 0418); the numerals are not yet wired into the route
 
 Read 2026-11-22: `Stage3/ZetaGrowth.lean` (statements, and the proof of
 `zeta_growth_strip`), `EdgeBound.gz_partial_fraction` and `ball_order_sum_le`
@@ -556,7 +556,7 @@ The blocks, in the order that makes each one's input a numeral.
   `zeta_growth_strip`) and bounded below at the centre (E7b, as `gz_lower`).
   This is `ball_order_sum_le`'s own argument at seven fixed heights.
   Size: a copy of that argument with the height fixed.
-- **E7d `Mc`.** `gz_partial_fraction` and `edge_bound_core` are stated for
+- **E7d `Mc`** — PROVED (unit 0418: `EdgeBound.logDerivZeta_short_segment`, `Mc ≤ 1620000`, with `gz_partial_fraction_low` and `low_ball_count_wide`). As drafted: `gz_partial_fraction` and `edge_bound_core` are stated for
   heights `≥ 2` because their bound is `C·log T′`. At heights in `[0, 2]` the
   same proof gives a constant: `B = D0·16`. With it, on `Re = −1/4` every zero
   and the pole are at distance at least `1/4`, so

@@ -195,3 +195,12 @@ states the route at the gate with both put in. Its conclusion is the
 hypothesis of `Interpolant.tableFrom_ne_zero_of_relErr_liRow`; the weld on
 `StmtRelErrWindow` is all that stands between them. Under RH, with three
 existential constants.
+
+Units 0416–0418 (block E7) proved a numeral for every quantity that route's
+constants took from compactness or left as a bare value: the compact patch
+(`BoxBounds.sq_zeta_box`, 135), the ratio `‖ζ 3/ζ (3/2)‖` (at least 2/7), the
+zeros below height six (`EdgeBound.low_rect_count`, 714), the logarithmic
+derivative on the short segment (`logDerivZeta_short_segment`, 1620000). With
+`K0 = log 2π` and `W = 0` from units 0413 and 0414, nothing under the
+constants is unnamed. They are not yet substituted: the route's theorem still
+says "there exist".
