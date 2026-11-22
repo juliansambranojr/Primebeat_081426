@@ -1,0 +1,20 @@
+key	value	source
+module_lines	220	wc -l lean_bridge/Bridge/WeilBridge.lean
+theorems_proved	13	grep -c ^theorem lean_bridge/Bridge/WeilBridge.lean
+defs	5	grep -c of lines starting def or noncomputable def, lean_bridge/Bridge/WeilBridge.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_bridge/Bridge/WeilBridge.lean
+pins	4	conj_paperFT_conj, contDiff_two_convolution, paperFT_kOf, weil_bridge
+errors_first	3	first lake build Bridge.WeilBridge, lines error: Bridge/WeilBridge.lean
+roots	1	fun_prop has no ContDiff lemma for Complex.ofReal; the other two lines are the pins of theorems downstream of it (TRAPS.md row 19)
+builds	2	the first build and the one after the fix
+welds	2	utilities/check_weld.py: laplace and IsTest, lean_stage3 against lean_bridge
+welds_total	4	utilities/check_weld.py, all OK
+jobs_package	3740	run/build.log, lake build in lean_bridge
+jobs_zeta23	3736	lake build Zeta23.WeilEF.Main Zeta23.Statement.SeamClosed, clean
+closure_modules	57	units/0379 values.tsv record.closure_modules
+unit_statement	0379	the unit that fixed the bridge statement and checked it numerically
+rel_diff	3.54e-16	units/0379 values.tsv bridge.rel_diff_max
+loop_ver	22	lean_stage3/LOOP.md version line; followed where it applies outside lean_stage3
+trees	3	lean, lean_stage3, lean_bridge
+upstream_sorries	2	units/0379 values.tsv record.upstream_sorries

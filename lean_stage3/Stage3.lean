@@ -38,7 +38,9 @@ import Stage3.Statement
 import Stage3.PsiToPi
 import Stage3.ZeroSum
 import Stage3.Assembly
+import Stage3.LandauWindow
 import Stage3.WeilDetect
+import Stage3.WeilBridgeLeaf
 import Stage3.BoxFinite
 import Stage3.IndicatorContDiff
 import Stage3.WeilWindow
@@ -61,6 +63,7 @@ import Stage3.WeilPowerCompare
 import Stage3.WeilPowerSelect
 import Stage3.WeilPowerSharp
 import Stage3.WeilPowerPhase
+import Stage3.WeilPowerTail
 import Stage3.WeilPowerSigma
 import Stage3.WeilPowerGeom
 import Stage3.WeilPowerGeomGen

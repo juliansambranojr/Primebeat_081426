@@ -1,0 +1,5 @@
+{"nine": 9, "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16, "eight": 8,
+ "unit_gap": "0366", "unit_cluster": "0345", "unit_near": "0354", "unit_detect": "0373", "unit_tree_price": "0367",
+ "lam": 1, "ladder_ratio_factor": 12, "count_a1": 15, "count_a3": 73,
+ "open_items": 4, "theorem_lines": 11, "defs": 5, "scripts": 3, "gates": 3,
+ "arxiv_paper": "2608.13637"}

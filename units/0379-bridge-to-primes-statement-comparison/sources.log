@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-11-22T04:05:23Z
+# unit: 0379-bridge-to-primes-statement-comparison
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10433
+  Source: session transcript, 2026-11-22, after unit 0378
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:9889
+  Go ahead with the cache fetch and start Cgo ahead
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:1372
+  noncomputable def zeroForm (G : ℝ → ℂ) : ℂ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:1373
+  riemannZeta.zeroes_sum (Set.Ioo 0 1) (Set.univ : Set ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:1374
+  (fun ρ ↦ laplace G (-ρ) * laplace G (-(1 - ρ)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10087
+  def EF_lit (Z : ZeroConfig) : Prop :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10099
+  ∀ k : ℝ → ℂ, ContDiff ℝ 2 k → HasCompactSupport k →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10100
+  Summable (fun ρ : Z.carrier => (Z.mult ρ : ℂ) * paperFT k (gammaOf ρ)) ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10101
+  ∑' ρ : Z.carrier, (Z.mult ρ : ℂ) * paperFT k (gammaOf ρ) = literatureRHS k
+
+# 9 found, 0 missing

@@ -23,6 +23,29 @@ WELDS = [
     ("StmtSchoenfeld",
      _HERE / "lean" / "Schoenfeld.lean",
      _HERE / "lean_stage3" / "Stage3" / "Statement.lean"),
+    # lean_stage3/ against lean_bridge/ (v4.33.0-rc2, zeta23 dependency), unit 0381
+    ("laplace",
+     _HERE / "lean_stage3" / "Stage3" / "WeilDetect.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("IsTest",
+     _HERE / "lean_stage3" / "Stage3" / "WeilDetect.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    # the bridge leaf and what it is stated with, unit 0382
+    ("tiltF",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("ft",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("kOfM",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("primeSideM",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
+    ("StmtWeilBridge",
+     _HERE / "lean_stage3" / "Stage3" / "WeilBridgeLeaf.lean",
+     _HERE / "lean_bridge" / "Bridge" / "WeilBridge.lean"),
 ]
 
 
@@ -30,7 +53,7 @@ def extract_def(path, name):
     text = path.read_text()
     lines = text.splitlines()
     starts = [i for i, ln in enumerate(lines)
-              if re.match(rf'^def {re.escape(name)}\b', ln)]
+              if re.match(rf'^(?:noncomputable )?def {re.escape(name)}\b', ln)]
     if len(starts) != 1:
         sys.exit(f"WELD ERROR: {path} has {len(starts)} defs named {name}")
     i = starts[0]

@@ -1,0 +1,19 @@
+{
+ "rel_diff_0": 3.54e-16,
+ "zero_side_0": 3.690175595e-17,
+ "rhs_0": 3.690175595e-17,
+ "prime_powers": 98,
+ "rel_diff_1": 2.1e-24,
+ "zero_side_1": 2.861784618e-06,
+ "rhs_1": 2.861784618e-06,
+ "rel_diff_2": 1.62e-24,
+ "zero_side_2": 0.01633853474,
+ "rhs_2": 0.01633853474,
+ "rel_diff_max": 3.54e-16,
+ "rel_diff_tree_max": 0.0,
+ "windows": 3,
+ "zeros": 600,
+ "h": 3,
+ "m": 6,
+ "gate_pass": 1
+}

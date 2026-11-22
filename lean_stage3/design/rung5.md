@@ -1383,3 +1383,241 @@ Open.      the module is a large assembly; the honest failure mode is a sorry on
            Beyond that: the ε' vs ε refinement (section 8's target selection would
            make `ε' ≥ ε` unconditional) and the near set's finiteness from the box
            being finite in height.
+
+## 16. The annihilating multiplier — SKETCH, priced on the exact term (unit 0375)
+
+Written 2026-11-22. Sections 9 and 13 died of one cause: about `log T`
+off-line candidates near the target whose phase one window cannot control.
+This section changes the window's family instead of its shape. The members
+that hurt are removed from the form exactly, by a factor of the transform
+that vanishes at them; the price moves from the range of `h` (section 9:
+`Q^N` in the range) to the amplitude, where the target's exponential pays
+for it. The idea came from reading Alpöge–Furman (arXiv:2608.13637), which
+replaces termwise sign control by linear algebra over many test functions;
+the multiplier itself is in neither that paper nor this worksheet before
+today. (It is in the literature: Open (d), unit 0377.) Nothing here touches `StmtWeilPositive`.
+
+The statement targeted is the rung's own, copied from
+`Stage3/WeilDetect.lean`: `StmtDetect ε T L := (OffLineBox ε T).Nonempty →
+∃ G, IsTest L G ∧ (zeroForm G).re < 0`, with `L` explicit in `ε` and `T`
+alone. `G` may depend on the zeros; `L` may not.
+
+Objects.   `W h γ m`, `q m`, `S m`, `what h γ m` (`WeilOddPower`), `phiW`
+           (`WeilPowerBackground`), `termW` (`WeilPowerBands`). For an even
+           polynomial `p` with real coefficients and `D = d/du`, the new test
+           function is `G_p u = indicator (Icc (-h) h) ((p(D) W)(u) · e^{−u/2})`.
+           Its term at `ρ`, with `s = ρ − 1/2`:
+               `laplace G_p (−ρ) · laplace G_p (−(1−ρ)) = −p(s)² · what(s)²`.
+           The connecting lemmas: `term_eq_neg_sq` and `what_eq` for the
+           unmultiplied window, `term_eq_sidebands` for the two sidebands, and
+           one NEW lemma, integration by parts `deg p` times with the boundary
+           terms gone because `q m` vanishes to order `2m + 1` at `±1`. Unit
+           0375 part A checks the identity numerically on `W` itself (relative
+           error under `1e-38` at four points, `m = 6`, `deg p = 6`).
+           The multiplier: target `s₀ = ε₀ + iγ₀`, window tuned to `γ = γ₀`;
+           cluster = every other off-line zero within `0.9` in height of the
+           target, `a_j = ρ_j − 1/2`, `d_j = |s₀ − a_j|`; `N = ⌊15 log T + 73⌋`
+           bounds the cluster with multiplicity
+           (`JensenCount.zeta_local_zero_count`, whose disk covers height
+           distance `√13/4 = 0.9014` at every real part in `[1/2, 1]`).
+               `p(s) = (s² − c)² · ∏_{j ∈ A} (s² − a_j²)(s² − conj(a_j)²)`
+           `A` the annihilated members, `c` real (the rotator). Each factor is
+           even and real, so `p(it)` is real: on-line terms stay `≥ 0`.
+           The ladder that picks `A`: `θ_i = θ₀ ξ^{−i}`, `θ₀ = λπ³/(8h)`,
+           `ξ = 12N`, `i = 0..N`. `N` members, `N + 1` annuli `(θ_{i+1}, θ_i]`,
+           so one is empty; `i*` the first. `A = {j : d_j > θ_{i*}}`; the kept
+           members have `d_j ≤ θ_{i*}/ξ`.
+Sizes.     Gain: the target's term is `−|p(s₀)|²·(h/2)²·(S m (ε₀h) − far)²`, and
+           `log S m (εh)² = 2F(ε)·h` to leading order with
+           `F(u) = −Re[(1+z)log(1+z) + (1−z)log(1−z)]`, `z = iu/(πλ)`, times `λ`;
+           at `λ = 1`, `2F(ε) = 2ε²/π² − ε⁴/(3π⁴) + …`.
+           Loss: every other zero's term is multiplied by `|p(s)/p(s₀)|²`. For a
+           zero at height distance `τ` and any real part offset in `[0, 1/2]`:
+               per annihilated member `[(|τ|+1.4)(|τ|+1.9)/(d_j ε) · ((2γ₀+|τ|+1.9)/(2γ₀−0.9))²]²`
+               rotators `[1 + (|τ|+1/2)(2γ₀+|τ|+1)/(2εγ₀)]⁴`
+           THE LOST FACTOR is `∏_{j∈A} 1/d_j²`. It has no lower bound in `d_j`
+           alone: a member arbitrarily close to the target costs arbitrarily
+           much to annihilate. The ladder is what bounds it: annihilated members
+           have `d_j > θ₀ ξ^{−N}`, and the worst placement, one member just
+           inside each annulus, gives
+               `log ∏ 1/d_j² ≤ N(N+1)·log(12N) + 2N·log(8h/(λπ³))`.
+           The first term grows with `T` through `N` and not with `h` or `m`.
+           The second grows with `h`, as `h^{2N}`: polynomial against the gain's
+           exponential, named here so nobody finds it later. Neither grows with
+           `m` beyond `m + 1 = λh`.
+           Hand check at `T = 10⁶`, `ε = 1/4`: `N = ⌊207.2 + 73⌋ = 280`;
+           `N(N+1) log(12N) = 78680 · 8.1197 = 6.389·10⁵`; rate
+           `2ε²/π² = 0.012665`; quotient `5.04·10⁷`; the script's `h₀` is
+           `51379335`, the quotient times `1.019`.
+           Compare section 9: there `N` phases had to align and the RANGE of `h`
+           needed `Q^N`, exponent above `31` in `T`. Here `h₀` is
+           `≈ π²N²log(12N)/(2ε²)`: polynomial in `log T` and `1/ε²`.
+           Why `0.9` and not `1/2`: at `λ = 1` a zero at real part offset `1/2`
+           and height distance `1/2` has `2F = +8.55·10⁻⁴` (the quartic term;
+           `Re u² = 0` there), so it outgrows every target with `ε < 0.065`. At
+           height distance `0.9` the exponent is `−0.112`. The count is the
+           same, so the radius costs nothing. This is why `λ` stays at `1`: with
+           the radius at `0.9` no far zero grows and `λ` has nothing to buy.
+Regime.    R1 `0 < ε ≤ ε₀ ≤ 1/2`, `2 ≤ γ₀ ≤ T` (the target is a zero of the box).
+           R2 `m + 1 = λh`, `λ = 1`.
+           R3 `deg p = 4|A| + 4 ≤ 4N + 4 ≤ 2m − 1` (boundary terms vanish and
+              `p(D)W` glues `C¹` at the cut; `IsTest` asks `ContDiff ℝ 1`).
+           R4 `ξ = 12N`: the multiplier's phase drift over a kept member's
+              distance is `2N·arcsin(1/ξ) = 1/6` rad plus pieces under `10⁻⁶`.
+              The sign flips at `ξ = 1.273N` (unit 0376, which also plants a
+              flip below the threshold, so the check can fail). A ratio of
+              `2N` would shrink the ladder term by `0.22` of itself; unit
+              0375's table is at `12N` and is not re-priced.
+           R5 `θ₀ = λπ³/(8h)`. The `1/h` is what the `what` piece needs: its
+              phase is `2·|S'/S|·d·h` with `d ≤ θ₀/ξ`, so `d·h = λπ³/(8ξ)` stays
+              bounded (unit 0376: under `4·10⁻⁴` rad at unit 0375's cells,
+              up to `0.015` at `h = 800` with two to eight members).
+           R6 the rotator: `arg(s₀² − c) = φ ∈ [π/4, 3π/4)` with `4φ ≡ −θ`
+              (mod `2π`), `θ = arg(p_A(s₀)²·what(s₀)²)`; then
+              `|Re(s₀² − c)| ≤ 2ε₀γ₀`, which is what the rotator bound uses.
+           R7 `h ≥ h₀(ε, T)`, the table of unit 0375.
+Defs.      `mulW (p) h γ m u` (the multiplied window), `phiP` (its test function),
+           `annih a s := (s² − a²)(s² − conj(a)²)`, `rot c s := s² − c`,
+           `ladder N h i := θ₀ ξ^{−i}`. Five definitions.
+Theorems.  In symbols; the Lean statements are owed before any brief.
+           T1 `laplace_phiP` — R3 — `laplace phiP z = p(−z − 1/2) · what(−z − 1/2)`.
+           T2 `termP_eq` — R3, `p` even — term `= −p(s)²·what(s)²`.
+           T3 `annih_real_on_line`, `rot_real_on_line` — `p(it) ∈ ℝ`.
+           T4 `online_termP_nonneg` — T2, T3, `what_I` — on-line terms `≥ 0`.
+           T5 `ladder_empty` — pigeonhole: `N` points, `N + 1` annuli.
+           T6 `prod_inv_dist_le` — T5 — `∏_{j∈A} 1/d_j ≤ θ₀^{−N} ξ^{N(N+1)/2}`.
+           T7 `mult_ratio_le` — R1 — the per-member and rotator bounds above.
+           T8 `rot_exists` — R6 — a real `c` with the stated argument.
+           T9 `kept_term_neg` — R4, R5 — a kept member's term has the target's
+              sign: the phase of `p(a)²·what(a)²` against the target's is at
+              most `2N·arcsin(1/ξ)` from the annihilated zeros, plus the
+              mirror, far-point, rotator and `what` pieces. SWEPT, unit 0376,
+              not proved: at `ξ = 12N` the total is `0.167` rad against `π/2`,
+              a factor `9.4`; the exact worst case reaches `0.99` of the bound;
+              `0` flips in `180000` random ladders and in `487` kept members
+              planted on the tree's term. Block 13g is not used: the comparison
+              is with the target's own transform, so this is a continuity
+              bound and carries no sign condition of its own.
+           T10 dropped (unit 0378): no monotonicity of `S` is used.
+           T12 `norm_S_le_tail` — no hypothesis on `w` —
+               `‖S m w‖ ≤ cS m / D m * ‖w‖ * exp((w²).re * sigma m + ‖w‖⁴/(6π⁴(m+1)³))`.
+               From `WeilPowerGauss.tendsto_S`, `|1 + z| ≤ exp(Re z + |z|²/2)`
+               and `Σ_{i ≥ m+2} i⁻⁴ ≤ 1/(3(m+1)³)`. Checked against the exact
+               `S` at `20000` points, `0` violations (unit 0378).
+           T11 `detect_uniform` — everything above and R7 —
+               `∀ ε T, 0 < ε → 2 ≤ T → StmtDetect ε T (2·h₀ ε T)`.
+Composes.  `Stage3.WeilPowerBackground.term_eq_neg_sq`, `what_I`, `PsiW_le_two`;
+           `Stage3.WeilOddPower.what_eq`, `S_mul_QS`;
+           `Stage3.WeilPowerBridge.term_eq_sidebands`;
+           `Stage3.JensenCount.zeta_local_zero_count`;
+           `Stage3.WeilPowerNear.term_nonneg`;
+           `Stage3.WeilDetect.zeroForm`, `IsTest`, `OffLineBox`, `laplace`.
+           Section 8's selection is not used: with the cluster annihilated the
+           target is any zero of the box and its height is at most `T`.
+Module.    none named. This block is priced and is not brief-ready.
+Open.      Four things, in the order they could kill it. As of unit 0378 none
+           is open as a question: (a) answered, (b) swept, (c) closed, (d)
+           searched. What remains is the Lean: T1 to T12 and the assembly.
+           (a) The tree's bounds at `h₀`. ANSWERED 2026-11-22, unit 0378. The
+               tree's Gaussian bound `norm_S_le_c_neg` stops closing at height
+               distance `1.233` for real part offset `1/2`, its regime ends at
+               `2.164`, and `norm_S_le_far` starts at `4.499`: a hole. One new
+               lemma, T12 below, fills it. With `S_real_ge_sharp` at the
+               target, `online_term_le_near`, T12 and `norm_S_le_far`, all nine
+               cells close at `h₀` within a factor `1.022` of the exact price.
+               Section 6's on-line series is not used.
+           (b) T9, the kept members. SWEPT 2026-11-22, unit 0376: the bound,
+               the exact worst case at the nine cells, random ladders and
+               planted ladders on the tree's term all hold with a factor `9.4`
+               to spare. What remains of (b) is the Lean proof, which is four
+               `arg(1 + z)` bounds and one bound on `S'/S` near the real axis.
+           (c) The far bound. CLOSED by construction, unit 0378: every bound
+               is now an explicit expression whose worst real part offset is
+               `1/2` by inspection and whose height dependence is read off the
+               formula. No monotonicity of `S` is used; T10 is dropped.
+           (d) Prior art. SEARCHED 2026-11-22, unit 0377, from entry 296.
+               The device is KNOWN: Zhu, arXiv:2608.24827v2 § 13.2, multiplies
+               a window by an even polynomial vanishing at every zero up to a
+               height, to make the form small under RH. Its use here, against
+               off-line cluster members to make the form negative, was not
+               found. The statement, a support explicit in `ε` and `T` for
+               every configuration, was NOT FOUND; the near neighbour is
+               Danesh, arXiv:2611.10726v1, detection by a Weil cross term at
+               arbitrarily large separations, with a rate and no support
+               named. Not a claim of priority: no referee has looked.
+               The same Zhu paper prices the other half: under RH the form's
+               least normalized value on `[−L, L]` is at most `exp(−L·e^L)`,
+               so positivity at this block's supports is beyond computation.
+           And what it would be if all four hold: an explicit, uniform Weil
+           criterion, `StmtWeilPositive (L ε T) → OffLineBox ε T = ∅` through
+           `box_empty_of_positive_of_detect`. The positivity half is untouched,
+           and it is where the Riemann hypothesis lives.
+
+### 16a The tail bound — PROVED (unit 0380: `WeilPowerTail.norm_S_le_tail`,
+`norm_T_le_tail`, `norm_one_add_le`, `sum_inv_pow4_le_third`)
+
+Written 2026-11-22 as the first module of section 16, statements in Lean,
+and built the same day once Mathlib's cache could be fetched. The six
+statements below are the module's, unchanged; no hypothesis was added.
+
+Objects.   `S m w` (`WeilOddPower`), `g w j`, `T m w n`, `D m`, `tendsto_S`
+           (`WeilPowerGauss`), `hterm`, `sigmaN`, `sigma`, `sigmaN_tendsto`,
+           `x w j`, `g_eq`, `x_eq_mul` (`WeilPowerPhase`). `g w j = 1 + x w j`
+           with `x w j = w² · hterm j`, `hterm j = 1/(π²(j+1)²)`. Size at the
+           working point `w = (ε' + iτ)h`, `m + 1 = λh`: the exponent is
+           `Re(w²)·sigma m + ‖w‖⁴/(6π⁴(m+1)³)`, per unit `h` at `λ = 1`
+           `(ε'² − τ²)/π² + (ε'² + τ²)²/(6π⁴)`.
+Sizes.     Against `WeilPowerSharp.norm_S_le_c_neg`: the factor on `Re(w²)` is
+           `sigma m ≥ 1/(π²(m+2))` where that lemma has `(m+2)/(π²(2m+3)²)`, a
+           factor near `4`; the quartic coefficient is `1/6` where it has `1`;
+           and there is no regime hypothesis. The `1/6` is needed and is not
+           decoration: with the tree's `sum_inv_pow4_le` (coefficient `1`, so
+           `1/2` here) the exponent at offset `1/2` turns positive at height
+           distance `4.44`, below `norm_S_le_far`'s `4.499`. Lost factor: none
+           that grows with `m` or `h`; the bound is the product's own first
+           two terms.
+Regime.    G1 `QS m w ≠ 0` (for `tendsto_S`; at an off-line zero it is
+              `WeilPowerBounds.QS_ne_zero`, `w.re ≠ 0`).
+Defs.      none.
+Theorems.  `theorem sum_inv_pow4_le_third (m : ℕ) : ∀ n : ℕ, m + 1 ≤ n →
+               ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4
+                 ≤ 1 / 3 * (1 / ((m : ℝ) + 1) ^ 3 - 1 / (n : ℝ) ^ 3)`
+             (induction as `WeilPowerSharp.sum_telescope`; the step is
+             `1/(j+1)⁴ ≤ (1/3)(1/j³ − 1/(j+1)³)` for `j ≥ 1`, which is
+             `3j³ ≤ (3j² + 3j + 1)(j + 1)` after clearing denominators).
+           `theorem sum_hterm_sq_le (m n : ℕ) :
+               ∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2
+                 ≤ 1 / (3 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)`
+             (cases on `m + 1 ≤ n`; the empty sum otherwise).
+           `theorem norm_one_add_le (z : ℂ) :
+               ‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2)`
+             (`‖1 + z‖² = 1 + 2·z.re + ‖z‖²` by `Complex.sq_norm`,
+             `Complex.normSq_apply`; `Real.add_one_le_exp (2·z.re + ‖z‖²)`;
+             `Real.exp (2a) = (Real.exp a)²`; then `abs_le_of_sq_le_sq`).
+           `theorem norm_g_le (w : ℂ) (j : ℕ) :
+               ‖g w j‖ ≤ Real.exp ((w ^ 2).re * hterm j + ‖w‖ ^ 4 * hterm j ^ 2 / 2)`
+           `theorem norm_T_le_tail (m : ℕ) (w : ℂ) (n : ℕ) :
+               ‖T m w n‖ ≤ Real.exp ((w ^ 2).re * sigmaN m n
+                 + ‖w‖ ^ 4 / (6 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3))`
+             (`norm_prod`, `Finset.prod_le_prod`, `Real.exp_sum`,
+             `Finset.sum_add_distrib`, `Finset.mul_sum`.)
+           `theorem norm_S_le_tail {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0) :
+               ‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * sigma m
+                 + ‖w‖ ^ 4 / (6 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3))`
+             (`le_of_tendsto_of_tendsto` with `(tendsto_S hne).norm` on the
+             left and `sigmaN_tendsto m` pushed through `Real.continuous_exp`
+             on the right, both sides moving, as `S_real_ge_sharp` does.)
+Composes.  `WeilPowerGauss.tendsto_S {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0) :
+               Tendsto (fun n : ℕ => ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTop (𝓝 (S m w))`
+           `WeilPowerPhase.sigmaN_tendsto (m : ℕ) :
+               Tendsto (fun n => sigmaN m n) atTop (𝓝 (sigma m))`
+           `WeilPowerPhase.g_eq`, `WeilPowerPhase.x_eq_mul`,
+           `WeilPowerGauss.cprime_pos`. Mathlib, grepped at the pin:
+           `Real.add_one_le_exp`, `Real.exp_sum`, `abs_le_of_sq_le_sq` (a
+           `lemma`), `norm_prod`, `Finset.prod_le_prod`,
+           `le_of_tendsto_of_tendsto`.
+Module.    `Stage3/WeilPowerTail.lean`, namespace `WeilPowerTail`, importing
+           `Stage3.WeilPowerPhase`; Mathlib only, no PrimeNumberTheoremAnd.
+           Pins: `sum_inv_pow4_le_third`, `norm_one_add_le`, `norm_T_le_tail`,
+           `norm_S_le_tail`.
+Open.      none.

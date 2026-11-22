@@ -1,0 +1,18 @@
+h = 800, m = 799, gamma0 = 500.0, eps0 = 0.4; hurting member eps1 = 0.42, D1 = 0.022; near member at distance 2.0e-5
+distance target-hurting |s0 - s1| = 0.029732;  rotator phi = 1.16812, residual phase after rotation 7.47e-59
+
+without the multiplier:
+   target   sign -1  log10|.|     13.047
+   hurting  sign +1  log10|.|     14.204
+   near     sign -1  log10|.|     13.048
+   on-line  sign +1  log10|.|     -5.438   (600 zeros, both signs of the height)
+   FORM     sign +1  log10|.|     14.139
+with the multiplier:
+   target   sign -1  log10|.|     32.375
+   hurting  sign +0  log10|.|       -inf
+   near     sign -1  log10|.|     32.375
+   on-line  sign +1  log10|.|     13.960   (600 zeros, both signs of the height)
+   FORM     sign -1  log10|.|     32.676
+the multiplier bound of price.py against the actual |p(s)/p(s0)|^2 at the 600 on-line zeros: violations 0, least slack 0.784 decades
+
+GATE (form positive without, negative with; kept member helps; on-line stays positive): pass

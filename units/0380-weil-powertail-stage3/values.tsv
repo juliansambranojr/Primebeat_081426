@@ -1,0 +1,26 @@
+key	value	source
+module_lines	211	wc -l lean_stage3/Stage3/WeilPowerTail.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/WeilPowerTail.lean
+defs	0	grep -c ^def lean_stage3/Stage3/WeilPowerTail.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilPowerTail.lean
+pins	4	sum_inv_pow4_le_third, norm_one_add_le, norm_T_le_tail, norm_S_le_tail
+errors_first	0	first lake build Stage3.WeilPowerTail, clean
+roots	0	no error on the first build, so no root cause
+warnings_first	0	no warning at Stage3/WeilPowerTail.lean on the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged: no first-build error class without a row
+assumed_pins	0	no hypothesis beyond block 16a's
+header_edits	1	one header line reflowed after the first build: it began with the word theorem and the count read 7
+jobs_package	8772	lake build (full Stage3), Build completed successfully
+jobs_module	8664	run/build.log, lake build Stage3.WeilPowerTail
+loop_version	22	lean_stage3/LOOP.md version line
+design	rung5.md#16a	the tail bound
+rung	5	detection ladder rung
+section	16	worksheet section this module is built from
+unit_price	0378	the unit that priced the lemma on the exact S
+grid_points	20000	units/0378 values.tsv proven.check_points_N1
+grid_violations	0	units/0378 values.tsv proven.check_violations_N1
+hole_from	1.233	units/0378 values.tsv proven.cneg_positive_from_tau
+hole_regime_end	2.164	units/0378 values.tsv proven.cneg_regime_end_tau
+far_from	4.499	units/0378 values.tsv proven.far_regime_from_tau
+steps_skipped	2	LOOP.md section 0 (the orient hook is not in a cloud session) and section 2's scratch pass (names grepped in the pinned source instead)

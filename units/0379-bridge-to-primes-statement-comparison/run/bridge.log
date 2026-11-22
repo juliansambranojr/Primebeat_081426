@@ -1,0 +1,21 @@
+window: h = 3, m = 6; zeros: 600, both signs of the height; prime powers below e^(2h)
+gamma = 2.5
+   zero side, zeta23's form  sum mult*paperFT k(gammaOf rho) = 3.69017559508479e-17
+   zero side, the tree's form  sum of -(what(rho - 1/2))^2    = 3.69017559508479e-17   relative difference 0.0
+   prime side, literatureRHS k                                = 3.69017559508479e-17
+       pole -0.004713382775   prime sum -0.0190921559 (98 prime powers)   archimedean -0.01437877313
+   relative difference of the two sides 3.54e-16;  last zero's term 3.21e-71
+gamma = 14.134725
+   zero side, zeta23's form  sum mult*paperFT k(gammaOf rho) = 2.86178461781605e-6
+   zero side, the tree's form  sum of -(what(rho - 1/2))^2    = 2.86178461781605e-6   relative difference 0.0
+   prime side, literatureRHS k                                = 2.86178461781605e-6
+       pole -3.125220058e-18   prime sum 0.05283893429 (98 prime powers)   archimedean 0.05284179608
+   relative difference of the two sides 2.1e-24;  last zero's term 6.24e-72
+gamma = 21.02204
+   zero side, zeta23's form  sum mult*paperFT k(gammaOf rho) = 0.01633853473607
+   zero side, the tree's form  sum of -(what(rho - 1/2))^2    = 0.01633853473607   relative difference 0.0
+   prime side, literatureRHS k                                = 0.01633853473607
+       pole -3.576936078e-23   prime sum 0.06342730066 (98 prime powers)   archimedean 0.0797658354
+   relative difference of the two sides 1.62e-24;  last zero's term 2.7e-70
+
+GATE (the two sides agree to 1e-9; the tree's form and zeta23's form of the zero side agree): pass

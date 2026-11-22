@@ -1,0 +1,16 @@
+name = "bridge"
+defaultTargets = ["Bridge"]
+
+[leanOptions]
+relaxedAutoImplicit = false
+
+# zeta23 (anthropics/formal-math, Apache-2.0), pinned. Mathlib comes with it,
+# at the revision zeta23's own lakefile names.
+[[require]]
+name = "Zeta23"
+git = "https://github.com/anthropics/formal-math"
+rev = "16a5ce41304fcdaea4e0be7c132e1c361dc26da5"
+subDir = "zeta23"
+
+[[lean_lib]]
+name = "Bridge"

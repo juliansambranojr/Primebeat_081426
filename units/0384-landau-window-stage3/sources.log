@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-22T05:45:08Z
+# unit: 0384-landau-window-stage3
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14803
+  Source: session transcript, 2026-11-22, after reading Alpöge's note and archive
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:13964
+  Do 2 with 1 alongside
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14473
+  ∀ θ δ C : ℝ, 0 < θ → θ < 1 → 0 < δ → WindowBound θ δ C →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14474
+  ∀ s : ℂ, θ < s.re → riemannZeta s ≠ 0
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14562
+  theorem rh_of_window (hL : StmtLandauWindow)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:14548
+  (hW : ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ WindowBound θ δ C) :
+
+# 6 found, 0 missing

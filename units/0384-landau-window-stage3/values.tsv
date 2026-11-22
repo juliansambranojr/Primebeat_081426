@@ -1,0 +1,24 @@
+key	value	source
+module_lines	175	wc -l lean_stage3/Stage3/LandauWindow.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/LandauWindow.lean
+defs	4	grep -c ^def lean_stage3/Stage3/LandauWindow.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauWindow.lean
+pins	4	zeta_neg_nat_ne_zero, rh_of_zeroFree_half, zeroFree_half_of_window, rh_of_window
+errors_first	4	first lake build Stage3.LandauWindow, lines error: Stage3/LandauWindow.lean
+roots	1	Complex.cos_nat_mul_pi does not exist; the real one does, through Complex.ofReal_cos
+cascade	3	the pins of the three theorems downstream of the failed proof (TRAPS.md row 19)
+warnings_first	2	a simpa that simp closes, and push_neg deprecated (TRAPS.md row 30); both removed
+builds	2	the first build and the one after the fix
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8774	lake build (full Stage3), Build completed successfully
+jobs_module	8655	run/build.log, lake build Stage3.LandauWindow
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#1	the statement and the reduction to RH
+slices_total	7	lean_stage3/design/landau.md, blocks 1 to 7
+slices_proved	1	lean_stage3/design/landau.md, block 1
+slices_open	6	lean_stage3/design/landau.md, blocks 2 to 7, SKETCH
+unit_measure	0383	the unit that measured G on the bench
+archive_steps	5	steps traced down from the archive's riemannHypothesis to its criterion
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

@@ -1,0 +1,27 @@
+P1. the new lemma N1 and the tree's bounds against the exact S (log bound minus log exact must be >= 0)
+   N1    :  20000 points inside its hypotheses, violations 0
+   far   :  11675 points inside its hypotheses, violations 0
+   sharp :   2000 points inside its hypotheses, violations 0
+   c_neg :   3616 points inside its hypotheses, violations 0
+
+P2. where each upper bound closes, lam = 1: its exponent per unit h at real part offset 1/2, against the target's at eps (S_real_ge_sharp)
+   tau             0.9       1.2       1.6       2.0       2.2       3.0       4.6
+   N1          -0.1096   -0.2314   -0.4411   -0.6981   -0.8415   -1.4803   -2.6687
+   c_neg       -0.0053   -0.0016    0.0451    0.1809    regime    regime    regime
+   target   eps = 0.5: 0.0494   eps = 0.1: 0.002024
+   the tree's c_neg exponent turns positive at tau = 1.233 and its regime ends at 2.164; the far bound starts at 4.499;
+   so off-line zeros at real part offset 1/2 and height distance between those have no closing bound in the tree. N1 is negative up to tau = 7.7.
+
+P3. h0 on proved-form inequalities against unit 0375's exact h0
+     eps      T    N  h0 proved-form     h0 exact  lost factor  binding  worst g0  closed at 2,10,100 h0
+     0.5  1e+03  176         4950676      4845375       1.0217     near     14.13                   True
+     0.5  1e+06  280        13141355     12861999       1.0217     near     14.13                   True
+     0.5  1e+12  487        42120186     41225156       1.0217     near     14.13                   True
+    0.25  1e+03  176        19482197     19379077       1.0053     near     14.13                   True
+    0.25  1e+06  280        51652574     51379335       1.0053     near     14.13                   True
+    0.25  1e+12  487       165419505    164544792       1.0053     near     14.13                   True
+     0.1  1e+03  176       121596539    121493696       1.0008     near     14.13                   True
+     0.1  1e+06  280       321872636    321600562       1.0008     near     14.13                   True
+     0.1  1e+12  487      1029690859   1028820822       1.0008     near     14.13                   True
+
+GATE (every bound holds against the exact S on the grid; every cell closes and stays closed): pass

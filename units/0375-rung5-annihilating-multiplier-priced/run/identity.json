@@ -1,0 +1,13 @@
+{
+ "rel_err_identity_max": 1.31e-39,
+ "rel_err_term_max": 2.64e-39,
+ "rel_err_what_closed_max": 2.55e-40,
+ "im_p_on_line_max": 0.0,
+ "boundary_max": 8.81e-258,
+ "zero_order_q": 13,
+ "deg_p": 6,
+ "rel_err_gamma_form_max": 3.88e-39,
+ "points": 4,
+ "m_small": 6,
+ "gate_pass": 1
+}

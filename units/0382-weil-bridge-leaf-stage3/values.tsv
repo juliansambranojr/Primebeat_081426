@@ -1,0 +1,28 @@
+key	value	source
+module_lines	140	wc -l lean_stage3/Stage3/WeilBridgeLeaf.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/WeilBridgeLeaf.lean
+defs	5	grep -c ^def lean_stage3/Stage3/WeilBridgeLeaf.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/WeilBridgeLeaf.lean
+pins	4	order_eq_toNat, zeroes_rect_strip, zeroForm_eq_strip, zeroForm_eq_primeSide
+errors_first	5	first lake build Stage3.WeilBridgeLeaf, lines error: Stage3/WeilBridgeLeaf.lean
+roots	2	Complex.digamma is not in scope from WeilDetect's imports; simp left WithTop.untopD 0 (n) = n in the finite case of the order
+cascade	3	the pins of the three theorems downstream of the failed proof (TRAPS.md row 19)
+builds	2	the first build and the one after the two fixes
+traps_added	0	lean_stage3/TRAPS.md unchanged: both roots are instances of existing rows (2 and 19)
+assumed_pins	0	no hypothesis beyond the block's
+welds_new	5	utilities/check_weld.py: tiltF, ft, kOfM, primeSideM, StmtWeilBridge
+welds_total	9	utilities/check_weld.py, all OK
+jobs_package	8773	lake build (full Stage3), Build completed successfully
+jobs_module	3666	run/build.log, lake build Stage3.WeilBridgeLeaf
+jobs_bridge	3740	lake build in lean_bridge after the edit, Build completed successfully
+bridge_lines	268	wc -l lean_bridge/Bridge/WeilBridge.lean
+bridge_theorems	16	grep -c ^theorem lean_bridge/Bridge/WeilBridge.lean
+bridge_defs	9	count of lines starting def or noncomputable def, lean_bridge/Bridge/WeilBridge.lean
+bridge_added	3	theorems added to the third tree: kOfM_eq, primeSideM_eq, stmtWeilBridge_holds
+loop_version	22	lean_stage3/LOOP.md version line
+design	bridge.md#1	the zero-set lemma and the bridge leaf
+unit_tree	0381	the unit that built the third tree
+unit_statement	0379	the unit that fixed the statement
+upstream_sorries	2	units/0379 values.tsv record.upstream_sorries
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass (names grepped in the pinned source)

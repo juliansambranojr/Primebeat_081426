@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-22T03:12:30Z
+# unit: 0378-rung5-multiplier-priced-on-proved-inequalities
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:9006
+  Source: session transcript, 2026-11-22, after unit 0377
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:8644
+  theorem norm_S_le_c_neg {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:8645
+  (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) (hre : (w ^ 2).re ≤ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:8616
+  theorem S_real_ge_sharp {m : ℕ} {s : ℝ} (hs : 0 < s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:8601
+  (hsmall : s ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2) :
+
+# 5 found, 0 missing

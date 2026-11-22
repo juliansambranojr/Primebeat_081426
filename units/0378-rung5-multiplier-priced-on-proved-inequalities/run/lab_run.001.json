@@ -1,0 +1,29 @@
+{
+  "schema_version": "v1.0",
+  "unit": "units/0378-rung5-multiplier-priced-on-proved-inequalities",
+  "runnable": "run/run.sh",
+  "command": "/bin/sh -e run.sh",
+  "argv": [
+    "/bin/sh",
+    "-e",
+    "run.sh"
+  ],
+  "cwd": "run",
+  "status": "completed",
+  "exit_code": 0,
+  "environment": {
+    "lab_python": "v3.13.18",
+    "path_python3": "v3.13.18",
+    "shell": "/bin/sh",
+    "os": "Linux v6.18.44-fc-v726 x86_64",
+    "virtual_env": null,
+    "git_head": "71eb18d7341af0a676e0310d41e19fa4cb3dbbb9",
+    "git_dirty": true
+  },
+  "meta": {
+    "runnable_sha256": "6a627728ac1ae1c4321b4cbecb4d18fc4bd49d357ceb4807145739b005cfb960",
+    "run_start": "2026-11-22T03:12:26Z",
+    "run_end": "2026-11-22T03:12:26Z",
+    "wall_s": 0.44545042000004287
+  }
+}

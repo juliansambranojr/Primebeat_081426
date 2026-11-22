@@ -1,0 +1,26 @@
+sieve to N = 1e+08: 5761455 primes, 5762859 prime powers; psi(N) = 99998242.796627, psi(N) - N = -1757.2034
+K = 2 + gamma - log(4 pi) = 0.0461914: the bound on |G(y) - log 2 pi| / sqrt(y) if every zero is on the line
+
+M1. G(n)/sqrt(n) over every integer 2 <= n <= N
+   max +1.250262 at n = 2;  min -0.019429 at n = 319439
+   integers with |G(n) - log 2 pi + T(n)| > K sqrt(n): 0   (without the trivial zeros' term T: 1, at n = 2)
+   10^1 < n <= 10^2:  max +0.537193  min +0.172169
+   10^2 < n <= 10^3:  max +0.180223  min +0.048412
+   10^3 < n <= 10^4:  max +0.064582  min +0.003061
+   10^4 < n <= 10^5:  max +0.034054  min -0.009703
+   10^5 < n <= 10^6:  max +0.022661  min -0.019429
+   10^6 < n <= 10^7:  max +0.019145  min -0.016829
+   10^7 < n <= 10^8:  max +0.025009  min -0.018213
+
+M2. against the bench's 600 zeros, at 3882 log-spaced integers from 100 to N
+   mass of the table sum 2/(1/4 + g^2) = 0.0441558 of K = 0.0461914; the rest, 0.0020356, bounds what the zeros above the table can add
+   max |G - prediction| / sqrt(n) = 0.0001640;  samples beyond that bound: 0;  correlation of G with the prediction 0.999994
+
+M3. the criterion's windows at delta = 1, [Y, Y^2]: the least C with G(y) <= C y^theta on the window
+             window   theta=0.50   theta=0.45   theta=0.40
+   [    10,     1e+02]      0.58844      0.66024      0.74080
+   [   100,     1e+04]      0.18022      0.22877      0.29048
+   [  1000,     1e+06]      0.06458      0.09186      0.13071
+   [ 10000,     1e+08]      0.03405      0.05954      0.14173
+
+GATE (G within K sqrt(n) of log 2 pi - T everywhere; the zeros reproduce it within the table's tail): pass
