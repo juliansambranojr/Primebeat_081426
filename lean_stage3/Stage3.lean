@@ -122,6 +122,9 @@ import Stage3.RouteGate
 import Stage3.BoxBounds
 import Stage3.LowCount
 import Stage3.LowEdge
+import Stage3.EdgeNum
+import Stage3.GlueNum
+import Stage3.RouteNum
 
 namespace Stage3
 

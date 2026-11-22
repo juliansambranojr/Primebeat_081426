@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0419: EdgeNum, GlueNum, RouteNum (0 sorry; nine proofs copied with the existence step replaced). relErrWindow_route_num: under RH the route at the gate with routeConst a definition, no existential. Kernel-checked ceilings: Cen <= 1911393, c1n <= 88216610000, c3n <= 15, c4n <= 6468930000. The gate itself not yet run on them
 - [open]   2026-11-22  unit 0418: Stage3/LowEdge.lean (4 theorems, 0 sorry, first build clean). logDerivZeta_short_segment: |zeta'/zeta| <= 1620000 on Re = -1/4, |t| <= 2 (Mc), from the partial fraction at heights in [0,2]. Block E7 complete: CK <= 135, c_zeta >= 2/7, M0 <= 714, Mc <= 1620000, with K0 = log 2pi and W = 0 before. None wired into the route's constants yet
 - [open]   2026-11-22  unit 0417: Stage3/LowCount.lean (3 theorems, 0 sorry, first build clean). low_rect_count: zeros of zeta in [0,1]x[0,6] number <= 714 with multiplicity (M0), by Jensen on six discs about 3/2 + i(j+1/2), radius 8/5, <= 119 each, pole cleared. E7c done. Left of E7: E7d, the sup of zeta'/zeta on Re = -1/4, |t| <= 2. Not wired into EdgeBound
 - [open]   2026-11-22  unit 0416: Stage3/BoxBounds.lean (6 theorems, 0 sorry). sq_zeta_box: |(s-1)^2 zeta| <= 135 on [-1/2,4]x[-2,2] (proof reaches 132; no compactness); sq_zeta_band_explicit: the band bound with constant 135; zeta_ratio_ge: 2/7 <= |zeta(3)/zeta(3/2)|. E7a, E7b done. Left: E7c (zeros below height 6), E7d (sup on the short segment). Not wired into EdgeBound

@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/EdgeNum.lean`, block E8a of `joints.md`
+
+    DONE        the three edge theorems of `EdgeBound.lean` with their
+                constants as definitions in place of "there exists":
+                `gz_partial_fraction_num` (`C1n`), `ball_order_sum_le_num`
+                (`C2n`), `edge_bound_core_num` (`Cen = C1n + C2n + 1/log 2`);
+                a unit
+    ASSUMED     Julian's "Go on that" is the restatement proposed after unit
+                0418. Each proof is the original with its existence step
+                replaced (`LOOP.md` § 3); the definitions are closed
+                expressions, bounded by numerals in a later block
+    DEPENDS     units 0416, 0417
+    OUT         `Glue`'s theorems (block E8b); `EdgeBound.lean` untouched
+    OUTCOME     done, and E8b and E8c with it in the same sitting:
+                `GlueNum.lean`, `RouteNum.lean`; unit 0419 covers the three
+
 ### 2026-11-22 · `Stage3/LowEdge.lean`, block E7d of `joints.md`
 
     DONE        `gz_partial_fraction_low` (the partial fraction at heights

@@ -202,5 +202,8 @@ constants took from compactness or left as a bare value: the compact patch
 zeros below height six (`EdgeBound.low_rect_count`, 714), the logarithmic
 derivative on the short segment (`logDerivZeta_short_segment`, 1620000). With
 `K0 = log 2π` and `W = 0` from units 0413 and 0414, nothing under the
-constants is unnamed. They are not yet substituted: the route's theorem still
-says "there exist".
+constants is unnamed. Unit 0419 (block E8) substituted them: `EdgeNum`,
+`GlueNum` and `RouteNum` restate the chain with every constant a definition,
+`RouteNum.relErrWindow_route_num` is the route at the gate with no
+existential, and `c1n_le`, `c3n_le`, `c4n_le` put numerals above its three
+inputs. Still under RH.

@@ -1,0 +1,30 @@
+key	value	source
+module_lines	285	wc -l lean_stage3/Stage3/RouteNum.lean
+theorems_proved	14	grep -c ^theorem lean_stage3/Stage3/RouteNum.lean
+defs	1	grep -c ^def lean_stage3/Stage3/RouteNum.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry over the three modules
+pins	4	relErrWindow_route_num, c1n_le, c3n_le, c4n_le
+errors_first	0	first lake build Stage3.RouteNum
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8805	lake build (full Stage3), Build completed successfully
+jobs_module	8765	run/build.log, lake build Stage3.RouteNum
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e8	the constants as definitions
+edge_lines	715	wc -l lean_stage3/Stage3/EdgeNum.lean
+edge_theorems	6	grep -c ^theorem lean_stage3/Stage3/EdgeNum.lean
+edge_pins	3	EdgeNum.lean, #print axioms lines
+edge_builds	2	EdgeNum: a copied block began inside a docstring; clean on the second
+glue_lines	1262	wc -l lean_stage3/Stage3/GlueNum.lean
+glue_theorems	13	grep -c ^theorem lean_stage3/Stage3/GlueNum.lean
+glue_pins	6	GlueNum.lean, #print axioms lines
+glue_builds	1	GlueNum: the first build
+copies	9	gz_partial_fraction, ball_order_sum_le, edge_bound_core, band_order_sum_le, zeroPartialSum_swap, zeta_logderiv_good_bound, edge_horizontal_bound, edge_left_sharp, explicit_formula_split
+c1n_le	88216610000	RouteNum.c1n_le
+c3n_le	15	RouteNum.c3n_le
+c4n_le	6468930000	RouteNum.c4n_le
+cen_le	1911393	RouteNum.Cen_le
+floor_min	16	relErrWindow_route_num, the hypothesis on x₀
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

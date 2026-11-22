@@ -573,3 +573,21 @@ six seventeen rungs inside the table with these quantities at zero, and has a
 factor 49,000 of slack. E7 would turn that pricing, which is of floors, into
 a number the kernel checked. It would still be a theorem under RH.
 
+### E8 The constants as definitions — PROVED (unit 0419: `EdgeNum`, `GlueNum`, `RouteNum.relErrWindow_route_num`, with `c1n_le`, `c3n_le`, `c4n_le`)
+
+Block E7 proved a numeral for every quantity under the route's constants.
+The theorems that produce the constants still say "there exists". E8 restates
+each with its constant a definition: the original proof, with every
+`obtain ⟨C, _, _⟩ := <existence theorem>` replaced by the named constant and
+its restated theorem, and the `refine ⟨<expression>, _, ?_⟩` replaced by the
+definition unfolding to that expression. No new mathematics.
+
+- **E8a** `Stage3/EdgeNum.lean`: `gz_partial_fraction_num` (`C1n`),
+  `ball_order_sum_le_num` (`C2n`), `edge_bound_core_num` (`Cen`).
+- **E8b** `Stage3/GlueNum.lean`: `zeta_logderiv_good_bound_num` (`Cpn`),
+  `edge_horizontal_bound_num` (`Chn`), `edge_left_sharp_num` (`Dln`, with
+  `logDerivZeta_short_segment` in place of compactness),
+  `zeroPartialSum_swap_num` (`Csn`), `explicit_formula_split_num`.
+- **E8c** the route's theorem with the three constants named, and a numeral
+  above each.
+
