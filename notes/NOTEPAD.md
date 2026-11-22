@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0417: Stage3/LowCount.lean (3 theorems, 0 sorry, first build clean). low_rect_count: zeros of zeta in [0,1]x[0,6] number <= 714 with multiplicity (M0), by Jensen on six discs about 3/2 + i(j+1/2), radius 8/5, <= 119 each, pole cleared. E7c done. Left of E7: E7d, the sup of zeta'/zeta on Re = -1/4, |t| <= 2. Not wired into EdgeBound
 - [open]   2026-11-22  unit 0416: Stage3/BoxBounds.lean (6 theorems, 0 sorry). sq_zeta_box: |(s-1)^2 zeta| <= 135 on [-1/2,4]x[-2,2] (proof reaches 132; no compactness); sq_zeta_band_explicit: the band bound with constant 135; zeta_ratio_ge: 2/7 <= |zeta(3)/zeta(3/2)|. E7a, E7b done. Left: E7c (zeros below height 6), E7d (sup on the short segment). Not wired into EdgeBound
 - [open]   2026-11-22  joints.md block E7 DRAFT (nothing built): the unnamed quantities are CK, c_zeta = |zeta(3)/zeta(3/2)| (a sixth, missed in unit 0412's list), M0, Mc. All reachable from what the tree has: ZetaGrowth.zeta1 at N=1 for CK (about 89 by hand, under 135), Jensen on seven discs for M0, the partial fraction at heights in [0,2] for Mc
 - [open]   2026-11-22  unit 0415: Stage3/RouteGate.lean, relErrWindow_route (first build clean): under RH, StmtRelErrWindow for the rows of pi against 2/log 2 + int_1^m e^(log 2 t)/t, W put to 0. Its conclusion is the hypothesis of lean/Interpolant.tableFrom_ne_zero_of_relErr_liRow; between them only the weld. Constants existential; K0 not substituted

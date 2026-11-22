@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · `Stage3/LowCount.lean`, block E7c of `joints.md`
+
+    DONE        `gz_c0_lower` (`1/14 ≤ ‖gz (c0 T′)‖` at every height),
+                `low_ball_count` (at most 119 zeros of `gz`, with
+                multiplicity, within `8/5` of `3/2 + iT′` for `0 ≤ T′ ≤ 6`),
+                `low_rect_count` (`M0 ≤ 714`); a unit; E7c PROVED
+    ASSUMED     the block's seven discs about `3/2 + ih` at radius `0.79`
+                became six about `3/2 + i(j + 1/2)` at radius `4/5`: the
+                same argument, one disc fewer, no reflection
+    DEPENDS     unit 0416; upstream `ZerosBound`, `ZetaFixedLowerBound`
+    OUT         E7d; nothing wired into `ball_order_sum_le`
+    OUTCOME     done as pinned; unit 0417; clean on the first build
+
 ### 2026-11-22 · `Stage3/BoxBounds.lean`, blocks E7a and E7b of `joints.md`
 
     DONE        `sq_zeta_box` (`‖(s−1)²ζ s‖ ≤ 135` on the box),

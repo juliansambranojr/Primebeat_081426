@@ -550,7 +550,7 @@ The blocks, in the order that makes each one's input a numeral.
 - **E7b `cζ`** — PROVED (unit 0416: `BoxBounds.zeta_ratio_ge`). A numeral below it: `ζ 3 ≥ 1` from the Dirichlet series,
   `‖ζ (3/2)‖ ≤ 7/2` from `Zeta0EqZeta` at `N = 1` as in block E5. Then
   `cζ ≥ 2/7`. Size: short.
-- **E7c `M0`.** Jensen's count on discs of radius 2 about `3/2 + ih`,
+- **E7c `M0`** — PROVED (unit 0417: `EdgeBound.low_rect_count`, `M0 ≤ 714`, on six discs about `3/2 + i(j + 1/2)` of radius `8/5`, `low_ball_count ≤ 119` each). As drafted: Jensen's count on discs of radius 2 about `3/2 + ih`,
   `h = 0, …, 6`: each covers the part of the rectangle within height `1/2` of
   `h` at scaled radius `0.79`, and needs `gz` bounded on the disc (E7a with
   `zeta_growth_strip`) and bounded below at the centre (E7b, as `gz_lower`).

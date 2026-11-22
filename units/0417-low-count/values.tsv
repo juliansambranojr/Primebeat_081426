@@ -1,0 +1,22 @@
+key	value	source
+module_lines	311	wc -l lean_stage3/Stage3/LowCount.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/LowCount.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LowCount.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LowCount.lean
+pins	3	gz_c0_lower, low_ball_count, low_rect_count
+errors_first	0	first lake build Stage3.LowCount
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8801	lake build (full Stage3), Build completed successfully
+jobs_module	8723	run/build.log, lake build Stage3.LowCount
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#e7	the bounds on zeta in a bounded region, sub-block E7c
+discs	6	low_rect_count: centres 3/2 + i(j + 1/2), j = 0..5
+per_disc	119	low_ball_count
+m0_bound	714	low_rect_count
+height	6	the rectangle of M0 in EdgeBound.ball_order_sum_le
+unnamed_before	2	unit 0416
+unnamed_after	1	the supremum on the short segment
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
