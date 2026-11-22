@@ -38,7 +38,7 @@ Fix a real `σ₀ > 1`, large. Two readings of `(−1)^k Φ^(k)(σ₀)`:
   so that part is at most `|C|·k!/(σ₀−θ)^(k+1)`. Outside the window a crude
   bound `|G(e^u)| ≤ 8(u+1)e^u` (block 5b) leaves a tail, and for `k` with
   `(k+1)/(σ₀−1)` at the middle of the window the tail is at most
-  `k!/(σ₀−1)^(k+1) · e^(−cδ²k)` (slices 4, 5);
+  `k!/(σ₀−1)^(k+1) · e^(−cδ²k)` (blocks 4b, 5b);
 - from the zeros: the Taylor coefficient of `Φ` at `σ₀` is the sum over the
   poles nearest `σ₀` of `−m/(ρ(1−ρ)) · (ρ−σ₀)^(−(k+1))`, up to a term with a
   smaller exponential rate. That sum is `r^(−(k+1))` times a real
@@ -148,6 +148,37 @@ is `−m/(ρ(1−ρ))·(ρ−σ₀)^(−(k+1))`, as section 0 has them; at `s = 
 `−ζ'/ζ(s)/(s(s−1)) = 1/(s−1)² − (1+γ)/(s−1) +` analytic, which is what `Φ`
 subtracts.
 
+Searched a third time 2026-11-22, after blocks 2b, 5 and 5b were proved, for
+blocks 2c, 4, 6 and 7. By name over `theorem` and `lemma` headers, in Mathlib,
+upstream, Stage 3, the bench's `lean/`, `lean_bridge/` and the zeta23 clone
+(`anthropics/formal-math`, another toolchain: nothing in it can be imported
+here). A piece stated under an unrelated name is not found by such a search.
+
+    block 2c  Mathlib `hasSum_integral_of_summable_integral_norm` (a `lemma`,
+              used in block 2), `hasSum_taylorSeries_on_ball` (a `lemma`),
+              `HasFPowerSeriesAt.eq_formalMultilinearSeries`; the bound
+              `LandauChebyshev.abs_G_le_log`. Missing: the exact integral of
+              block 4a, which the absolute convergence needs.
+    block 4a  Mathlib `integral_rpow_mul_exp_neg_mul_Ioi` (a `lemma`),
+              `Real.Gamma_nat_eq_factorial`, `intervalIntegral_pow_mul_exp_neg_le`
+              (a `lemma`). No lemma changes variables by `y = e^u`; the
+              general one is `integral_image_eq_integral_abs_deriv_smul`.
+    block 4b  in no tree. Near it: zeta23 `pow_mul_exp_neg_le`
+              (`Zeta23/Taper/Gevrey.lean`), `u^k e^(−u) ≤ (k/e)^k`, the
+              pointwise maximum of the integrand; to be re-proved here if used.
+    block 6   Stage 3 `WeilPowerGeom.geom_Ico`, `norm_geom_le`. Mathlib has
+              Dirichlet's approximation for one frequency only
+              (`exists_int_int_abs_mul_sub_le`), none for several at once.
+              The lemma itself is in no tree.
+    block 7   Mathlib `norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le`,
+              `riemannZeta_conj`; Stage 3 `ContourShift.zeta_order_conj`.
+    our own   Stage 3's `mellin_*` theorems (`LineBound.lean`) are about a
+              smoothing bump on vertical lines, another object; `lean/` and
+              `lean_bridge/` hold nothing for these blocks.
+
+The order the dependencies give: 4a, then 2c; 4b; 6; 3; 7 last. Block 3 is
+the largest. The new mathematics is 4b and 6.
+
 ### 2 The Mellin transform of the ramp sum — PROVED (unit 0385: `LandauMellin.rampK_integrable`,
 `rampK_integral`, `rampK_integral_norm`, `rampSum_eq_tsum`, `mellin_rampSum`)
 Objects.   `rampK s n y = max(y/n − 1, 0)·y^(−s−1)`, the ramp kernel of one `n`;
@@ -241,9 +272,39 @@ rate, by Cauchy's estimate on a circle through no pole. The largest slice.
 A real zero in `(0, 1)` is allowed (section 0). The pieces are in section 0b;
 what is new is the disc form of the pole subtraction.
 
-### 4 The kernel on and off the window — SKETCH
-`∫₀^∞ u^k e^(−au) du = k!/a^(k+1)`, and the two-sided tail of that integral
-away from `k/a`, as an explicit `e^(−cδ²k)`.
+### 4a The kernel's integral — PROVED (unit 0389: `LandauKernel.log_pow_le`, `log_pow_integrable`,
+`log_pow_integral`)
+Objects.   `L = log y`, `a > 0` real, `k` a natural number. The kernel
+           `L^k·y^(−a−1)` on `(1, ∞)`: it is `u^k e^(−au)` after `y = e^u`, kept
+           in the variable `y`, where blocks 2b and 2c live.
+Sizes.     an identity: `∫₁^∞ L^k y^(−a−1) dy = k!/a^(k+1)`. For integrability
+           and the limit at infinity, `L^n ≤ y^(a/2)/ε^n` with
+           `ε = a/(2(n+1))`, from `log y ≤ y^ε/ε`; the constant `ε^(−n)` grows
+           with `n` and is used for integrability and a limit only, never in
+           a bound that is kept. Lost factor: none.
+Regime.    A1 `0 < a`. Y1 `1 ≤ y` where a pointwise bound is stated.
+Defs.      none.
+Theorems.  `theorem log_pow_le {a : ℝ} (ha : 0 < a) (n : ℕ) {y : ℝ} (hy : 1 ≤ y) :
+               Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n`
+           `theorem log_pow_integrable {a : ℝ} (ha : 0 < a) (n : ℕ) :
+               IntegrableOn (fun y : ℝ => Real.log y ^ n * y ^ (-a - 1)) (Ioi 1)`
+           `theorem log_pow_integral {a : ℝ} (ha : 0 < a) (k : ℕ) :
+               ∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial / a ^ (k + 1)`
+             (induction on `k`: `F(y) = −L^(k+1) y^(−a)/a` has derivative
+             `L^(k+1) y^(−a−1) − ((k+1)/a)·L^k y^(−a−1)`, vanishes at `1` and
+             tends to `0`; A1.)
+Composes.  Mathlib: `Real.log_le_rpow_div` (a `lemma`), `integrableOn_Ioi_rpow_of_lt`,
+           `integral_Ioi_rpow_of_lt`, `integral_Ioi_of_hasDerivAt_of_tendsto'`,
+           `tendsto_rpow_neg_atTop`, `Real.hasDerivAt_rpow_const`, `Real.hasDerivAt_log`.
+Module.    `Stage3/LandauKernel.lean`, namespace `LandauKernel`, `import Mathlib`.
+           Pinned: all three.
+Open.      none.
+
+### 4b The kernel off the window — SKETCH
+The two-sided tail of the same integral away from `log y = k/a`, as an
+explicit `e^(−cδ²k)` times `k!/a^(k+1)`. In no tree. The integrand
+`u^k e^(−au)` has its maximum at `u = k/a`; off `[(1−η)k/a, (1+η)k/a]` it is
+at most the maximum times `e^(−c(η)k)`.
 
 ### 5 A crude bound on `G` — PROVED (unit 0387: `LandauCrude.rampSum_nonneg`, `rampSum_le`, `abs_G_le`)
 Objects.   `rampSum`, `G` (`LandauWindow`). `L = log y`.
@@ -305,7 +366,19 @@ Module.    `Stage3/LandauChebyshev.lean`, namespace `LandauChebyshev`,
 Open.      none.
 
 ### 6 A trigonometric polynomial with no constant term is positive somewhere in every long block — SKETCH
-Elementary and self-contained: mean zero, mean square positive, bounded.
+Elementary and self-contained: mean at least zero, mean square positive,
+bounded. With mean `≥ 0`, mean square `≥ m² > 0` and `|T| ≤ B` over a block,
+the positive part has mean at least `m²/(2B)`, so some `k` in the block has
+`T(k) ≥ m²/(2B)`. Means over a block are geometric sums (section 0b).
+
+THE CONJUGATE PAIRS, found 2026-11-22. The zeros nearest `σ₀` come as `ρ` and
+`ρ̄`, with equal order, and their terms are complex conjugates: the
+frequencies are `+φ` and `−φ`. In the square of `T` the cross term of such a
+pair has frequency `φ − φ = 0` and does not average out. So the lemma is
+stated on the combined form: one real term `Re(a_j e^(ikφ_j))` per pair, the
+`φ_j` distinct in `(0, π]`, plus the constant term `≥ 0` from real poles.
+A frequency `φ_j = π` gives `a_j(−1)^k`, whose square has mean `a_j²` and not
+half of it; the bound below on the mean square holds either way.
 
 ### 7 The assembly — SKETCH
 `StmtLandauWindow` from slices 2 to 6.

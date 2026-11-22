@@ -22,6 +22,34 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 4a of `design/landau.md`, `Stage3/LandauKernel.lean`
+
+    DONE        `Stage3/LandauKernel.lean` builds with no `sorry`:
+                `log_pow_le`, `log_pow_integrable`, and `log_pow_integral`,
+                `∫₁^∞ (log y)^k y^(−a−1) dy = k!/a^(k+1)` for `a > 0`; a
+                formalization unit; block 4a marked PROVED
+    ASSUMED     the statements of block 4a as written in the worksheet; any
+                hypothesis the build adds is reported here
+    DEPENDS     Mathlib's improper integrals and `Real.log_le_rpow_div`
+    OUT         block 4b (the tail); blocks 2c, 3, 6, 7; no claim about the
+                window bound or RH
+    OUTCOME     done as pinned, unit 0389: three theorems, no `sorry`, no
+                hypothesis added; TRAPS row 43 added
+
+### 2026-11-22 · the Landau worksheet: blocks 2c, 4, 6, 7 checked against the trees
+
+    DONE        `lean_stage3/design/landau.md` updated: section 0b lists the
+                pieces found for blocks 2c, 4, 6 and 7 and what no tree
+                holds; block 4 is split into 4a (the exact integral) and 4b
+                (the tail); block 6 carries the conjugate-pair note; the
+                build order the dependencies give is written down
+    ASSUMED     searches were by name over `theorem` and `lemma` headers in
+                Mathlib, upstream, Stage 3, `lean/`, `lean_bridge/` and the
+                zeta23 clone; a piece under an unrelated name is not found
+    DEPENDS     the names as they stand at the pinned revisions
+    OUT         no Lean, no unit, no block's mark changed
+    OUTCOME     done as pinned
+
 ### 2026-11-22 · the Landau window: block 5b of `design/landau.md`, `Stage3/LandauChebyshev.lean`
 
     DONE        `Stage3/LandauChebyshev.lean` builds with no `sorry`:

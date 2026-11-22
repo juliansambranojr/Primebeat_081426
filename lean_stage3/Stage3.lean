@@ -43,6 +43,7 @@ import Stage3.LandauMellin
 import Stage3.LandauMellinG
 import Stage3.LandauCrude
 import Stage3.LandauChebyshev
+import Stage3.LandauKernel
 import Stage3.WeilDetect
 import Stage3.WeilBridgeLeaf
 import Stage3.BoxFinite

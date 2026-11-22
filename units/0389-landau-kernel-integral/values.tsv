@@ -1,0 +1,21 @@
+key	value	source
+module_lines	165	wc -l lean_stage3/Stage3/LandauKernel.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/LandauKernel.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauKernel.lean
+private_lemmas	3	grep -c ^private: kernel_le, tendsto_log_pow_mul, hasDerivAt_prim
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauKernel.lean
+pins	3	log_pow_le, log_pow_integrable, log_pow_integral
+errors_first	3	first lake build Stage3.LandauKernel, lines error: Stage3/LandauKernel.lean
+roots	2	a Pi power left unapplied before ring; a field_simp after simp had closed the goal
+cascade	1	the pin of log_pow_integral (TRAPS.md row 19)
+builds	2	the first build and the one after the fixes
+traps_added	1	lean_stage3/TRAPS.md row 43
+trap_row	43	lean_stage3/TRAPS.md
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8780	lake build (full Stage3), Build completed successfully
+jobs_module	8655	run/build.log, lake build Stage3.LandauKernel
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#4a	the kernel's integral
+unit_log	0386	the unit with the first power of the logarithm
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
