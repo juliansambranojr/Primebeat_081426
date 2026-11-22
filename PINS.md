@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 9a of `SECTIONS.md`: `Stage3/JointSymbol.lean`
+
+    DONE        `lean_stage3/design/joints.md` block 9a;
+                `Stage3/JointSymbol.lean` builds with no `sorry`: `dd`, `cutG`,
+                `mellin_shift`, `mellin_dd_iter` (the transform of the
+                depth-`d` difference of `G` along the doublings is the
+                symbol to the power `d` times `Phi`), `dd_iter_rule` (the
+                table's rule), `symPhi_principal_part` (at each zero the
+                principal part is reweighted by the symbol to the power
+                `d`); a formalization unit; block 9a marked PROVED
+    ASSUMED     the forward statement is built on the transform side, where
+                it needs no sum over the zeros; the pointwise form is left
+                open and said so
+    DEPENDS     units 0386 and 0393
+    OUT         the pointwise sum over zeros; the converse; joints 3, 4, 5
+    OUTCOME     done as pinned, unit 0401: four theorems, no `sorry`, no
+                hypothesis added; TRAPS row 46 added
+
 ### 2026-11-22 · joint 9, way (b): checked before building
 
     DONE        `lean_stage3/design/joints.md`: way (b) worked through; its

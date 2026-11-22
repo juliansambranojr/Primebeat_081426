@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0401: JointSymbol.lean, joint 9a SEALED on the transform side: the Mellin transform of the depth-d difference of G along the doublings is (1 - 2^(-s))^d · Phi, and each zero's pole is reweighted by the symbol to the power d; pointwise sum over zeros and the converse remain open
 - [open]   2026-11-22  joint 9 way (b) checked, not built: no fixed-ratio ladder (or finite set of them) escapes the aliasing, since the zeros' heights are unbounded; convexity route closed too. True and short: a bound on every rational-base ladder in a window gives WindowBound (9d). joints.md
 - [open]   2026-11-22  joint 9 draft CORRECTED before any build: 9b false in general (aliases of zeros dense on vertical lines), 9c derived only when the largest real part of a zero is attained; general converse open = joint 10 (every y -> the doublings). Three ways on in joints.md; Julian to choose
 - [open]   2026-11-22  joint 9 DRAFTED (joints.md block 9), nothing built: the table of G along the doublings as the zero sum reweighted by Sym^d; its generating function has a pole at every zero and alias, uncancelled since Re(1/(rho(1-rho))) > 0; |G(2^r)| <= C 2^(theta r) => no zero right of theta. By hand, unchecked

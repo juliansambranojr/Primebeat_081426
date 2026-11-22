@@ -203,3 +203,49 @@ So the map stands corrected a third time:
 - a fixed finite set of bases: not known, and the general transfer theorems
   do not give it.
 
+### 9a The table of `G` and the symbol, on the transform side — PROVED (unit 0401:
+`JointSymbol.mellin_shift`, `mellin_dd_iter`, `dd_iter_rule`, `symPhi_principal_part`)
+Julian chose the forward statement. As drafted, 9a writes the cell as a sum
+over all the zeros and needs unit 0383's identity as a theorem first. The
+same content has an exact form that needs no sum over zeros: take the Mellin
+transform. There, one difference along the doublings is multiplication by
+the symbol, for every zero at once.
+Objects.   `cutG y = G y` for `y > 1` and `0` otherwise: the row starts at the
+           first regime. `dd f y = f y − f (y/2)`: one difference along the
+           doublings; `dd^[d]` is depth `d`. At `y = 2^r` the rule
+           `(dd^[d+1] f)(2^r) = (dd^[d] f)(2^r) − (dd^[d] f)(2^(r−1))` is the
+           table's rule `cell(r, d+1) = cell(r, d) − cell(r−1, d)`.
+           The symbol at base `2`: `1 − 2^(−s)`, which is `Chain.Sym 2 s` of
+           `lean/Chain.lean` (other toolchain; written out here).
+Sizes.     identities. `∫₁^∞ f(y/2)·y^(−s−1) dy = 2^(−s)·∫₁^∞ f(y)·y^(−s−1) dy` for `f`
+           vanishing on `y ≤ 1`, by `y = 2u`. So the transform of `dd f` is
+           `(1 − 2^(−s))` times that of `f`, and of `dd^[d] cutG` it is
+           `(1 − 2^(−s))^d·Phi s` (`LandauMellinG.mellin_G`). At a zero `ρ` of
+           order `m` the principal part of `Phi` is `A/(s−ρ)`, `A = m/(ρ(1−ρ))`
+           (`LandauPoleLocal.Phi_principal_part`); multiplying by an entire
+           function `f` gives principal part `f(ρ)·A/(s−ρ)`. Lost factor: none.
+Regime.    R1 `1 < Re s` for the transform. P0, P1, PZ of block 3a at a zero.
+Defs.      `dd (f : ℝ → ℂ) : ℝ → ℂ := fun y => f y - f (y / 2)`;
+           `cutG (y : ℝ) : ℂ := if 1 < y then (LandauWindow.G y : ℂ) else 0`. Two.
+Theorems.  `theorem mellin_shift` — `f = 0` on `y ≤ 1`, `f·y^(−s−1)` integrable on
+               `(1, ∞)` — the same for `f(·/2)`, and its transform is `2^(−s)` times.
+           `theorem mellin_dd_iter {s : ℂ} (hs : 1 < s.re) (d : ℕ) :
+               ∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1)
+                 = (1 - (2 : ℂ) ^ (-s)) ^ d * LandauMellinG.Phi s`
+           `theorem dd_iter_rule (f : ℝ → ℂ) (d : ℕ) (y : ℝ) :
+               (dd^[d + 1] f) y = (dd^[d] f) y - (dd^[d] f) (y / 2)`
+           `theorem symPhi_principal_part {ρ : ℂ} (h0 : ρ ≠ 0) (h1 : ρ ≠ 1)
+               (hz : riemannZeta ρ = 0) (d : ℕ) :
+               ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ,
+                 (1 - (2 : ℂ) ^ (-s)) ^ d * LandauMellinG.Phi s
+                   = h s + (1 - (2 : ℂ) ^ (-ρ)) ^ d
+                       * ((analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ))) / (s - ρ)`
+Composes.  `LandauMellinG.mellin_G`, `G_mellin_integrable`;
+           `LandauPoleLocal.Phi_principal_part`. Mathlib:
+           `integral_comp_mul_left_Ioi`, `integrableOn_Ioi_comp_mul_left_iff`,
+           `Complex.mul_cpow_ofReal_nonneg`, `Complex.differentiableOn_dslope`.
+Module.    `Stage3/JointSymbol.lean`, namespace `JointSymbol`. Pinned:
+           `mellin_dd_iter`, `dd_iter_rule`, `symPhi_principal_part`.
+Open.      the pointwise form, the cell as the sum over the zeros (needs unit
+           0383's identity as a theorem); the converse (block 9's corrections).
+

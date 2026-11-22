@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-11-22T09:48:55Z
+# unit: 0401-joint-symbol-transform
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29033
+  Source: session transcript, 2026-11-22, after the two corrections to joint 9's draft
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28782
+  def dd (f : ℝ → ℂ) : ℝ → ℂ := fun y => f y - f (y / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28698
+  theorem mellin_dd_iter {s : ℂ} (hs : 1 < s.re) (d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28699
+  ∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28878
+  = (1 - (2 : ℂ) ^ (-s)) ^ d * LandauMellinG.Phi s := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28701
+  theorem dd_iter_rule (f : ℝ → ℂ) (d : ℕ) (y : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28894
+  (dd^[d + 1] f) y = (dd^[d] f) y - (dd^[d] f) (y / 2) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28703
+  theorem symPhi_principal_part {ρ : ℂ} (h0 : ρ ≠ 0) (h1 : ρ ≠ 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28704
+  (hz : riemannZeta ρ = 0) (d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21891
+  ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28700
+  (1 - (2 : ℂ) ^ (-s)) ^ d * LandauMellinG.Phi s
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28707
+  = h s + (1 - (2 : ℂ) ^ (-ρ)) ^ d
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28903
+  * ((analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ))) / (s - ρ) := by
+
+# 13 found, 0 missing
