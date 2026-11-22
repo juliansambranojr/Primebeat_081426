@@ -22,6 +22,17 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the gate priced from `floorConst` (unit 0408)
+
+    DONE        one script: O68's `R_of` on the constant of
+                `schoenfeldWeak_floor_of_RH`, with the two explicit-formula
+                constants at unit 0405's floors and at zero; a NOTEPAD line
+    ASSUMED     EXPLORATORY, no prereg; floors, as in units 0405 and 0406
+    DEPENDS     unit 0407
+    OUT         no Lean
+    OUTCOME     done as pinned; rungs as in unit 0406; 19 rungs of room with
+                the contour constants at zero
+
 ### 2026-11-22 · `Stage3/AssemblyFloor.lean`, block E1 of `joints.md`
 
     DONE        `psiWeak_floor`: the assembly of `psiWeak_of_RH_EF_NT` with
