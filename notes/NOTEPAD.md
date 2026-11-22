@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0383: G(y) = sum Lambda(n)(y/n-1) - y log y + (1+gamma)y measured exactly to 1e8, EXPLORATORY. The function of the Landau window criterion in Alpoge's archive. |G - log 2pi + T| <= K sqrt(n) at every integer, K = 0.0461914; 600 zeros reproduce it, correlation 0.999994. Tests nothing; checks the instrument
 - [open]   2026-11-22  unit 0382: WeilBridgeLeaf.lean, C finished. zeroForm_eq_strip (upstream zeroes_sum with order = Mathlib strip set with analyticOrderAt) and zeroForm_eq_primeSide from leaf StmtWeilBridge, discharged in lean_bridge by stmtWeilBridge_holds; 9 welds OK. zeroForm has a prime side; nothing uses it yet
 - [open]   2026-11-22  unit 0381: lean_bridge/, the third tree (Lean v4.33.0-rc2, zeta23 as a Lake dependency). Bridge.weil_bridge proved against EF_lit_zetaZeroConfig: IsTest L G -> zero side = primeSide (kOf G); 13 theorems, 0 sorries, 3 axioms. laplace and IsTest welded by check_weld.py. Stage 3 still owes the zero-set lemma (zeroes_sum vs analyticOrderAt)
 - [open]   2026-11-22  unit 0380: WeilPowerTail.lean built, block 16a PROVED. norm_S_le_tail: for every w with QS m w != 0, |S m w| <= cS/D |w| exp(Re(w^2) sigma m + |w|^4/(6 pi^4 (m+1)^3)); 6 theorems, 0 sorries, first build clean, package 8772 jobs. Section 16's remaining lines T1-T11 open

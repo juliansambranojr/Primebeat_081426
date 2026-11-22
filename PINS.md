@@ -22,6 +22,30 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 1 of `design/landau.md`, and the bench's measurement of `G`
+
+    DONE        two things. (1) One exploratory unit measuring
+                `G(y) = Σ_{n≤y} Λ(n)(y/n − 1) − y log y + (1+γ)y` exactly
+                from a sieve, against the sum over the bench's zeros, with
+                the windows of the criterion read off; labelled
+                EXPLORATORY, no verdict. (2) A worksheet,
+                `lean_stage3/design/landau.md`: the criterion as Stage 3's
+                own statement for `ζ`, the proof planned from scratch in
+                slices with each slice's size, and its first slice built
+    ASSUMED     "Do 2 with 1 alongside" (Julian, 2026-11-22): 2 is
+                "formalize the criterion in Stage 3 from scratch, as your
+                own Landau-type theorem", 1 is "measure G on your bench";
+                the statement's shape is read from Alpöge's archive
+                (`zeroFree_of_rpow_window`) and cited; no code is copied
+                from it, since it carries no licence, and the proof is
+                planned independently; the whole criterion is several
+                modules, so this task is the plan and the first slice, and
+                the block says which slices remain
+    DEPENDS     nothing from Julian
+    OUT         the proof of the window bound itself (that is the 17
+                million lines); Dirichlet characters; a prereg, since the
+                measurement tests nothing
+
 ### 2026-11-22 · C, the zero-set lemma: `Stage3/WeilBridgeLeaf.lean`, block 1 of `design/bridge.md`
 
     DONE        in Stage 3: `zeroForm G` rewritten as the sum over Mathlib's
