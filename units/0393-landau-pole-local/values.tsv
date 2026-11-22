@@ -1,0 +1,18 @@
+key	value	source
+module_lines	166	wc -l lean_stage3/Stage3/LandauPoleLocal.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/LandauPoleLocal.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauPoleLocal.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauPoleLocal.lean
+pins	3	differentiableAt_Phi, Phi_principal_part, Phi_regular_at_one
+errors_first	3	first lake build Stage3.LandauPoleLocal, lines error: Stage3/LandauPoleLocal.lean
+roots	1	a HasDerivAt built with .pow and .mul, restated by simpa and by rw against the lambda form (TRAPS.md rows 41, 43)
+cascade	2	the second error in the same proof and the pin of Phi_principal_part
+builds	2	the first build and the one after the fix
+traps_added	0	lean_stage3/TRAPS.md unchanged; rows 41 and 43 cover the class
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8784	lake build (full Stage3), Build completed successfully
+jobs_module	8723	run/build.log, lake build Stage3.LandauPoleLocal
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#3a	Phi near a zero and near 1
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

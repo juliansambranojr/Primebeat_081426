@@ -22,6 +22,171 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 7d of `design/landau.md`, `Stage3/LandauCriterion.lean`
+
+    DONE        `Stage3/LandauCriterion.lean` builds with no `sorry`:
+                `stmtLandauWindow : LandauWindow.StmtLandauWindow`, the
+                criterion proved, and `rh_of_windows`, `RiemannHypothesis`
+                from a window bound at every `θ` in `(1/2, 1)`; a
+                formalization unit; block 7d marked PROVED; the leaf
+                `StmtLandauWindow` is discharged
+    ASSUMED     the range of indices is chosen from `key_ineq` with a margin
+                `μ`, in place of the design's fixed range
+    DEPENDS     units 0384, 0396, 0397, 0398
+    OUT         the hypothesis of `rh_of_windows`, a window bound on `G` at
+                every `θ > 1/2`, is not proved, approached or tested here;
+                nothing in this repository proves the Riemann hypothesis
+    OUTCOME     done as pinned, unit 0399: three theorems, no `sorry`;
+                `StmtLandauWindow` is a theorem; TRAPS row 45 added
+
+### 2026-11-22 · the Landau window: block 7c of `design/landau.md`, `Stage3/LandauRates.lean`
+
+    DONE        `Stage3/LandauRates.lean` builds with no `sorry`: `key_ineq`
+                (the one inequality between the two tail rates), `exists_centre`
+                (a real `σ₀` with S1 and S3 of the design), `exists_pow_small`;
+                a formalization unit; block 7c marked PROVED
+    ASSUMED     the design's two brackets are replaced by one inequality,
+                `4(λ − log(1−δ/12)) < (1+δ)(log(1+δ/3) − λ)`, which is what the
+                existence of a range of `k` needs; the range is then chosen
+                from it in block 7d, in place of the design's fixed range
+    DEPENDS     Mathlib `Real.log_le_sub_one_of_pos`
+    OUT         block 7d; `StmtLandauWindow` stays a leaf
+    OUTCOME     done as pinned, unit 0398: three theorems, no `sorry`, clean
+                on the first build
+
+### 2026-11-22 · the Landau window: block 7b of `design/landau.md`, `Stage3/LandauZeroSide.lean`
+
+    DONE        `Stage3/LandauZeroSide.lean` builds with no `sorry`:
+                `zero_side`, from a zero `ρ₀` with `0 < Re ρ₀` and a real
+                `σ₀ > 1` with `|σ₀ − ρ₀| < σ₀`, numbers `r, R, τ, C₁, N₀` with
+                `σ₀ − 1 < r ≤ |σ₀ − ρ₀|`, `r < R`, `τ > 0`, such that every `N₀`
+                consecutive `k` hold one with
+                `τ/r^(k+1) − C₁/R^k ≤ Ik σ₀ k / k!`; a formalization unit;
+                block 7b marked PROVED
+    ASSUMED     the statement indexes by `k` with exponent `k + 1`, where the
+                sketch indexed by `n = k + 1`; the hypothesis `Re ρ₀ < 1` of
+                the sketch is not needed (Mathlib has it for every zero)
+    DEPENDS     units 0392, 0395, 0396; `ContourShift.zeta_order_conj`;
+                Mathlib `riemannZeta_conj`
+    OUT         blocks 7c, 7d; `StmtLandauWindow` stays a leaf
+    OUTCOME     done as pinned, unit 0397: one theorem, no `sorry`; the
+                hypothesis `0 < Re ρ₀` was unused and is dropped
+
+### 2026-11-22 · the Landau window: block 7 designed and split; block 7a, `Stage3/LandauPrimeSide.lean`
+
+    DONE        the design of block 7 written into `lean_stage3/design/landau.md`
+                before any of it is built: parameters, the two readings, the
+                four terms and their rates, split into 7a to 7d;
+                `Stage3/LandauPrimeSide.lean` builds with no `sorry`: `Ik`,
+                its integrability, `iteratedDeriv_Phi_eq_Ik`, and `Ik_le`, the
+                upper bound on the primes' reading from a window bound and
+                `G ≤ 8y`; a formalization unit; block 7a marked PROVED
+    ASSUMED     the design's arithmetic is checked on a numeric grid, proved
+                nowhere yet (block 7c); the rates differ from unit 0391's
+                hand check and supersede it
+    DEPENDS     units 0388, 0389, 0390, 0391
+    OUT         blocks 7b, 7c, 7d; `StmtLandauWindow` stays a leaf; no claim
+                about the window bound or RH
+    OUTCOME     done as pinned, unit 0396: three theorems, no `sorry`, no
+                hypothesis added; TRAPS row 44 added
+
+### 2026-11-22 · the Landau window: block 3b2 of `design/landau.md`, `Stage3/LandauPoleDisc.lean`
+
+    DONE        `Stage3/LandauPoleDisc.lean` builds with no `sorry`:
+                `Phi_taylor_on_disc`, the `k`-th derivative of `Phi` at a
+                regular centre equals the sum over the zeros in a disc of
+                their residues' contributions, up to `k!·C/R^k`; a
+                formalization unit; block 3b2 marked PROVED, which closes
+                block 3
+    ASSUMED     the statement of block 3b2 as written; any hypothesis the
+                build adds is reported here
+    DEPENDS     units 0393 and 0394; upstream's finiteness of zeros in a
+                compact set
+    OUT         block 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0395: one theorem, no `sorry`, clean on
+                the first build; block 3 is closed
+
+### 2026-11-22 · the Landau window: block 3b1 of `design/landau.md`, `Stage3/LandauPoleSub.lean`
+
+    DONE        block 3b split into 3b1 (no `ζ`) and 3b2 (`Phi` on a disc);
+                `Stage3/LandauPoleSub.lean` builds with no `sorry`:
+                `iteratedDeriv_inv_sub`, `exists_differentiableOn_sub_poles`,
+                `taylor_coeff_sub_poles`; a formalization unit; block 3b1
+                marked PROVED
+    ASSUMED     the statements of block 3b1 as written; any hypothesis the
+                build adds is reported here
+    DEPENDS     Mathlib's iterated derivatives and Cauchy estimate; the
+                construction is copied from `ContourShift.residue_rectangle_of_local`
+    OUT         block 3b2 and block 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0394: three theorems, no `sorry`; the
+                openness of `U` in the gluing theorem was unused and is
+                dropped; the block named Cauchy's estimate without its
+                namespace, corrected
+
+### 2026-11-22 · the Landau window: block 3a of `design/landau.md`, `Stage3/LandauPoleLocal.lean`
+
+    DONE        block 3 split into 3a (local) and 3b (the disc and the Taylor
+                coefficients); `Stage3/LandauPoleLocal.lean` builds with no
+                `sorry`: `differentiableAt_Phi`, `Phi_principal_part` (at a
+                zero `ρ ≠ 0, 1` of order `m`, `Phi` is an analytic function
+                plus `m/(ρ(1−ρ))/(s−ρ)`), `Phi_regular_at_one`; a
+                formalization unit; block 3a marked PROVED
+    ASSUMED     the statements of block 3a as written; any hypothesis the
+                build adds is reported here
+    DEPENDS     `Stage3/ContourShift.lean` for the order of a zero; Mathlib's
+                `riemannZeta₁`; `Stage3/LandauMellinG.lean` for `Phi`
+    OUT         block 3b and block 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0393: three theorems, no `sorry`, no
+                hypothesis added
+
+### 2026-11-22 · the Landau window: block 6 of `design/landau.md`, `Stage3/LandauTrig.lean`
+
+    DONE        `Stage3/LandauTrig.lean` builds with no `sorry`:
+                `exists_large_in_block`, a real sum `Σ c_j z_j^n` over distinct
+                unimodular `z_j`, with nonnegative real part at the frequency
+                `1` and some `c_j ≠ 0`, is at least a fixed `τ > 0` somewhere
+                in every block of at least `N₀` consecutive `n`; with the
+                mean and mean-square bounds it rests on; a formalization
+                unit; block 6 marked PROVED
+    ASSUMED     the lemma is stated for distinct frequencies and a squared
+                modulus; the conjugate-pair note of the worksheet is replaced
+                by that statement
+    DEPENDS     Mathlib's geometric sums
+    OUT         blocks 3, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0392: five theorems, no `sorry`, no
+                hypothesis added
+
+### 2026-11-22 · the Landau window: block 4b of `design/landau.md`, `Stage3/LandauTail.lean`
+
+    DONE        `Stage3/LandauTail.lean` builds with no `sorry`:
+                `lower_tail_le` and `upper_tail_le`, the kernel's integral
+                over `(1, Y]` and over `(Z, ∞)` bounded by a shift of the
+                exponent with a free parameter `b`; a formalization unit;
+                block 4b marked PROVED
+    ASSUMED     the block proves the two bounds with `b` free; the choice of
+                `b` that gives `e^(−cδ²k)` is checked by hand in the block's
+                Sizes line and is left to block 7
+    DEPENDS     `Stage3/LandauKernel.lean` (unit 0389)
+    OUT         blocks 3, 6, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0391: two theorems, no `sorry`, no error
+                on the first build
+
+### 2026-11-22 · the Landau window: block 2c of `design/landau.md`, `Stage3/LandauTaylor.lean`
+
+    DONE        `Stage3/LandauTaylor.lean` builds with no `sorry`: `mellinLog`,
+                its integrability, its derivative in `s`, `iteratedDeriv_Phi`
+                (the `k`-th derivative of `Phi` on `Re s > 1` is `mellinLog k`)
+                and its real form at a real point; a formalization unit;
+                block 2c marked PROVED
+    ASSUMED     the route is differentiation under the integral with
+                induction on `k`, in place of the sketch's power series; the
+                statements are the block's
+    DEPENDS     units 0386, 0388, 0389; Mathlib's parametric integral
+    OUT         blocks 3, 4b, 6, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0390: four theorems, no `sorry`, clean
+                first build; the hypothesis `1 < σ` on `mellinLog_real` was
+                unused and is dropped from the statement and the block
+
 ### 2026-11-22 · the Landau window: block 4a of `design/landau.md`, `Stage3/LandauKernel.lean`
 
     DONE        `Stage3/LandauKernel.lean` builds with no `sorry`:

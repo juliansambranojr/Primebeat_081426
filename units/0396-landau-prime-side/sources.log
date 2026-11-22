@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-11-22T07:42:35Z
+# unit: 0396-landau-prime-side
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23892
+  Source: session transcript, 2026-11-22, after unit 0395
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20352
+  ∫ y in Ioi (1 : ℝ), LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23545
+  theorem iteratedDeriv_Phi_eq_Ik {σ : ℝ} (hσ : 1 < σ) (k : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23546
+  iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k : ℝ) : ℂ) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23550
+  theorem Ik_le {σ θ δ C Y b b' : ℝ} (hσ : 1 < σ) (hθ : θ < σ) (hC : 0 ≤ C) (hY : 1 ≤ Y)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23551
+  (hδ : 0 ≤ δ) (hwin : ∀ y ∈ Icc Y (Y ^ (1 + δ)), LandauWindow.G y ≤ C * y ^ θ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23552
+  (hb : 0 < b) (hb' : 0 < b') (hb'a : b' < σ - 1) (k : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23553
+  Ik σ k ≤ C * (k.factorial / (σ - θ) ^ (k + 1))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23554
+  + 8 * (Y ^ b * (k.factorial / (σ - 1 + b) ^ (k + 1)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23555
+  + 8 * ((Y ^ (1 + δ)) ^ (-b') * (k.factorial / (σ - 1 - b') ^ (k + 1))) := by
+
+# 10 found, 0 missing

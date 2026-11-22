@@ -256,21 +256,157 @@ Module.    `Stage3/LandauMellinG.lean`, namespace `LandauMellinG`,
            `log_cpow_integral`, `mellin_G`.
 Open.      none.
 
-### 2c The Taylor coefficients of the transform, from the primes — SKETCH
+### 2c The Taylor coefficients of the transform, from the primes — PROVED (unit 0390:
+`LandauTaylor.mellinLog_integrable`, `mellinLog_hasDerivAt`, `iteratedDeriv_Phi`, `mellinLog_real`)
 Section 0 reads `(−1)^k Φ^(k)(σ₀)` as `∫₁^∞ G(y)(log y)^k y^(−σ₀−1) dy`. Found
-missing on 2026-11-22: no block proved it. Route: for `|s − σ₀| < σ₀ − 1`
-expand `y^(−(s−σ₀)) = Σ_k (−log y)^k (s−σ₀)^k / k!`, change sum and integral
-by absolute convergence (the bound of block 5b on `G`), and read the
-coefficients off by uniqueness of the power series. Needs block 5 first.
+missing on 2026-11-22: no block proved it. The first sketch went through a
+power series and uniqueness of coefficients. The route built is shorter:
+differentiate under the integral once, with a domination uniform on a disc,
+and induct on `k`.
+Objects.   `mellinLog k s = ∫₁^∞ G(y)·(−log y)^k·y^(−s−1) dy`. `mellinLog 0 = Phi`
+           on `Re s > 1` (`LandauMellinG.mellin_G`). `L = log y`.
+Sizes.     for `Re s ≥ 1 + a`, `a > 0`, `y > 1`: the integrand of `mellinLog k`
+           has norm `|G|·L^k·y^(−σ−1) ≤ 8y(1+L)·L^k·y^(−σ−1)
+           ≤ 8(L^k + L^(k+1))·y^(−a−1)`, integrable by block 4a. A domination,
+           uniform in `s` on the half-plane; nothing is kept from it but
+           integrability. Lost factor: none.
+Regime.    R1 `1 < Re s`. The disc: centre `s`, radius `a = (Re s − 1)/2`, on
+           which `Re ≥ 1 + a`.
+Defs.      `mellinLog (k : ℕ) (s : ℂ) : ℂ := ∫ y in Ioi (1 : ℝ),
+               (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)`. One.
+Theorems.  `theorem mellinLog_integrable {s : ℂ} (hs : 1 < s.re) (k : ℕ) :
+               IntegrableOn (fun y : ℝ =>
+                 (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)) (Ioi 1)`
+           `theorem mellinLog_hasDerivAt {s : ℂ} (hs : 1 < s.re) (k : ℕ) :
+               HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s`
+           `theorem iteratedDeriv_Phi (k : ℕ) {s : ℂ} (hs : 1 < s.re) :
+               iteratedDeriv k LandauMellinG.Phi s = mellinLog k s`
+           `theorem mellinLog_real (σ : ℝ) (k : ℕ) :
+               mellinLog k (σ : ℂ) = (-1) ^ k *
+                 ((∫ y in Ioi (1 : ℝ), LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1) : ℝ) : ℂ)`
+             (no hypothesis on `σ`: the two integrands agree pointwise, so the
+             identity holds whether or not they are integrable. The first
+             writing asked for `1 < σ`; the build showed it unused.)
+Composes.  `LandauMellinG.mellin_G`, `G_mellin_integrable`;
+           `LandauChebyshev.abs_G_le_log`; `LandauKernel.log_pow_integrable`.
+           Mathlib: `hasDerivAt_integral_of_dominated_loc_of_deriv_le`,
+           `HasDerivAt.const_cpow`, `iteratedDeriv_succ`,
+           `Filter.EventuallyEq.deriv_eq`, `integral_complex_ofReal`.
+Module.    `Stage3/LandauTaylor.lean`, namespace `LandauTaylor`. Pinned:
+           `mellinLog_hasDerivAt`, `iteratedDeriv_Phi`, `mellinLog_real`.
+Open.      none.
 
-### 3 The poles of `Φ` and its Taylor coefficients — SKETCH
-`Φ` analytic at `1`; meromorphic on `Re s > 0`; principal part
-`m/(ρ(1−ρ))/(s−ρ)` at a zero of multiplicity `m`; finitely many poles in a
-closed disc inside `Re s > 0`; the Taylor
-coefficient at `σ₀` as the nearest poles' sum plus a remainder of smaller
-rate, by Cauchy's estimate on a circle through no pole. The largest slice.
-A real zero in `(0, 1)` is allowed (section 0). The pieces are in section 0b;
-what is new is the disc form of the pole subtraction.
+### 3 The poles of `Φ` and its Taylor coefficients — split 2026-11-22 into 3a and 3b
+
+### 3a `Phi` near a zero and near `1` — PROVED (unit 0393: `LandauPoleLocal.differentiableAt_Phi`,
+`Phi_principal_part`, `Phi_regular_at_one`)
+Objects.   `Phi` (`LandauMellinG.Phi`). At a zero `ρ ≠ 0, 1` of order `m`:
+           `ζ(s) = (s−ρ)^m·g(s)`, `g` analytic, `g(ρ) ≠ 0`, so
+           `−ζ'/ζ = −m/(s−ρ) − g'/g`. And
+           `1/(s(s−1)) − 1/(ρ(ρ−1)) = −(s−ρ)(s+ρ−1)/(s(s−1)ρ(ρ−1))`. Hence
+           `Phi s = A/(s−ρ) + h(s)`, `A = m/(ρ(1−ρ))`,
+           `h(s) = −(g'/g)/(s(s−1)) + m(s+ρ−1)/(s(s−1)ρ(ρ−1)) − 1/(s−1)² + (1+γ)/(s−1)`.
+           At `1`: `ζ(s) = ζ₁(s)/(s−1)` with `ζ₁` entire (`riemannZeta₁`),
+           `ζ₁(1) = 1`, `ζ₁'(1) = γ`; `−ζ'/ζ = 1/(s−1) − ζ₁'/ζ₁`, and
+           `Phi s = N(s)/(s(s−1))` with `N(s) = −1 − ζ₁'(s)/ζ₁(s) + (1+γ)s`,
+           `N(1) = 0`. So `Phi s = dslope N 1 s / s` off `1`.
+Sizes.     identities. Lost factor: none.
+Regime.    P0 `ρ ≠ 0`. P1 `ρ ≠ 1`. PZ `ζ(ρ) = 0`.
+Defs.      none.
+Theorems.  `theorem differentiableAt_Phi {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1)
+               (hz : riemannZeta s ≠ 0) : DifferentiableAt ℂ LandauMellinG.Phi s`
+           `theorem Phi_principal_part {ρ : ℂ} (h0 : ρ ≠ 0) (h1 : ρ ≠ 1) (hz : riemannZeta ρ = 0) :
+               ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s
+                 = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ)`
+           `theorem Phi_regular_at_one :
+               ∃ h : ℂ → ℂ, AnalyticAt ℂ h 1 ∧ ∀ᶠ s in 𝓝[≠] 1, LandauMellinG.Phi s = h s`
+Composes.  Stage 3 `ContourShift.zeta_analyticAt`, `zeta_order_ne_top`,
+           `one_le_zeta_order`. Mathlib: `AnalyticAt.analyticOrderAt_eq_natCast`
+           (a `lemma`), `Nat.cast_analyticOrderNatAt` (a `lemma`),
+           `riemannZeta_eq_inv_sub_mul` (a `lemma`),
+           `deriv_riemannZeta_eq_neg_inv_sub_sq_mul_add` (a `lemma`),
+           `deriv_riemannZeta₁_one`, `riemannZeta₁_one`,
+           `riemannZeta₁_ne_zero_of_near_one` (`lemma`s),
+           `Complex.differentiableOn_dslope`, `DifferentiableOn.analyticAt`.
+Module.    `Stage3/LandauPoleLocal.lean`, namespace `LandauPoleLocal`. Pinned: all three.
+Open.      block 3b.
+
+### 3b The poles subtracted, and the Taylor coefficients — split 2026-11-22 into 3b1 and 3b2
+
+### 3b1 Simple poles subtracted on an open set; the Taylor coefficients — PROVED (unit 0394:
+`LandauPoleSub.iteratedDeriv_inv_sub`, `exists_differentiableOn_sub_poles`, `taylor_coeff_sub_poles`)
+Nothing about `ζ`: a function `f`, an open set `U`, a finite set `P`, numbers `A p`.
+Objects.   `g = f − Σ_{q ∈ P} A q/(s − q)`, glued at the points of `P` (the
+           construction of Stage 3 `ContourShift.residue_rectangle_of_local`,
+           there on a rectangle). The `k`-th derivative of `(s − q)^(−1)` at `c`
+           is `(−1)^k·k!·(c − q)^(−1−k)`.
+Sizes.     `iteratedDeriv k f c − Σ_q A q·(−1)^k·k!·(c − q)^(−1−k)` is the `k`-th
+           derivative of `g` at `c`, at most `k!·C/R^k` with `C` a bound for
+           `g` on the circle of radius `R` (Cauchy). `C` does not depend on
+           `k`. Lost factor: none.
+Regime.    `f` differentiable at the points of `U` off `P` (the gluing needs no
+           openness of `U`: the first writing asked for it, the build showed it
+           unused; the coefficients do need `U` open); at each
+           `p ∈ P` a local form `f = h + A p/(s − p)`, `h` analytic at `p`;
+           for the coefficients, `closedBall c R ⊆ U`, `0 < R`, `c ∉ P`.
+Defs.      none.
+Theorems.  `theorem iteratedDeriv_inv_sub (k : ℕ) (q c : ℂ) :
+               iteratedDeriv k (fun s : ℂ => (s - q)⁻¹) c
+                 = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ))`
+           `theorem exists_differentiableOn_sub_poles {U : Set ℂ} {P : Finset ℂ}
+               {f A : ℂ → ℂ} (hf : ∀ s ∈ U, s ∉ P → DifferentiableAt ℂ f s)
+               (hloc : ∀ p ∈ P, ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧
+                 ∀ᶠ s in 𝓝[≠] p, f s = h s + A p / (s - p)) :
+               ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧
+                 ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q)`
+           `theorem taylor_coeff_sub_poles {c : ℂ} {R : ℝ} (hR : 0 < R) {U : Set ℂ} (hU : IsOpen U)
+               (hball : Metric.closedBall c R ⊆ U) {P : Finset ℂ} {f A g : ℂ → ℂ} (hcP : c ∉ P)
+               (hg : DifferentiableOn ℂ g U)
+               (hgf : ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q)) :
+               ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c
+                 - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖
+                   ≤ k.factorial * C / R ^ k`
+Composes.  Mathlib: `iter_deriv_inv`, `iteratedDeriv_comp_sub_const` (a `lemma`),
+           (the Cauchy estimate's full name is
+           `Complex.norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le`)
+           `iteratedDeriv_eq_iterate`, `iteratedDeriv_add` (a `lemma`),
+           `iteratedDeriv_fun_sum` (a `lemma`), `iteratedDeriv_const_mul_field`,
+           `Filter.EventuallyEq.iteratedDeriv_eq` (a `lemma`),
+           `norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le`,
+           `DifferentiableOn.diffContOnCl_ball`.
+Module.    `Stage3/LandauPoleSub.lean`, namespace `LandauPoleSub`, `import Mathlib`.
+           Pinned: all three.
+Open.      block 3b2.
+
+### 3b2 `Phi` on a disc — PROVED (unit 0395: `LandauPoleDisc.Phi_taylor_on_disc`)
+Objects.   centre `c`, radii `R < R₂`, `closedBall c R₂` inside `Re s > 0`.
+           `P`: the zeros of `ζ` in the open disc of radius `R₂`, other than
+           the point `1` (where Mathlib's `riemannZeta` takes a value that is
+           not asked to be nonzero here). Residue `m_ρ/(ρ(1−ρ))`,
+           `m_ρ = analyticOrderNatAt riemannZeta ρ`.
+Sizes.     `‖iteratedDeriv k Phi c − Σ_{ρ ∈ P} m_ρ/(ρ(1−ρ))·(−1)^k·k!·(c − ρ)^(−1−k)‖
+           ≤ k!·C/R^k`, `C` independent of `k`: block 3b1 applied to `Phi` with
+           poles `P ∪ {1}`, the coefficient at `1` being `0` (block 3a). Every
+           zero inside the disc of radius `R₂` is in the sum, so the remainder
+           has the rate of `R`, for any `R < R₂`. Lost factor: none.
+Regime.    D1 `0 < R`. D2 `R < R₂`. D3 `closedBall c R₂ ⊆ {s | 0 < s.re}`.
+           C1 `c ≠ 1`. C2 `ζ(c) ≠ 0`.
+Defs.      none.
+Theorems.  `theorem Phi_taylor_on_disc {c : ℂ} {R R₂ : ℝ} (hR : 0 < R) (hRR : R < R₂)
+               (hpos : closedBall c R₂ ⊆ {s : ℂ | 0 < s.re}) (hc1 : c ≠ 1)
+               (hcz : riemannZeta c ≠ 0) :
+               ∃ (P : Finset ℂ) (C : ℝ),
+                 (∀ ρ, ρ ∈ P ↔ ρ ∈ ball c R₂ ∧ ρ ≠ 1 ∧ riemannZeta ρ = 0) ∧
+                 ∀ k : ℕ, ‖iteratedDeriv k LandauMellinG.Phi c
+                   - ∑ ρ ∈ P, (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ))
+                       * ((-1) ^ k * (k.factorial : ℂ) * (c - ρ) ^ (-1 - (k : ℤ)))‖
+                   ≤ k.factorial * C / R ^ k`
+Composes.  `LandauPoleLocal.differentiableAt_Phi`, `Phi_principal_part`,
+           `Phi_regular_at_one`; `LandauPoleSub.exists_differentiableOn_sub_poles`,
+           `taylor_coeff_sub_poles`; upstream `riemannZeta.zeroes_on_Compact_finite'`
+           (a `lemma`).
+Module.    `Stage3/LandauPoleDisc.lean`, namespace `LandauPoleDisc`. Pinned: the one.
+Open.      none.
 
 ### 4a The kernel's integral — PROVED (unit 0389: `LandauKernel.log_pow_le`, `log_pow_integrable`,
 `log_pow_integral`)
@@ -300,11 +436,38 @@ Module.    `Stage3/LandauKernel.lean`, namespace `LandauKernel`, `import Mathlib
            Pinned: all three.
 Open.      none.
 
-### 4b The kernel off the window — SKETCH
-The two-sided tail of the same integral away from `log y = k/a`, as an
-explicit `e^(−cδ²k)` times `k!/a^(k+1)`. In no tree. The integrand
-`u^k e^(−au)` has its maximum at `u = k/a`; off `[(1−η)k/a, (1+η)k/a]` it is
-at most the maximum times `e^(−c(η)k)`.
+### 4b The kernel off the window — PROVED (unit 0391: `LandauTail.lower_tail_le`, `upper_tail_le`)
+Objects.   the kernel `L^k·y^(−a−1)` of block 4a, `L = log y`, total
+           `k!/a^(k+1)`. Two tails: `(1, Y]` and `(Z, ∞)`.
+Sizes.     a shift of the exponent, one free parameter `b` on each side.
+           Below `Y`: `y^(−a−1) = y^b·y^(−(a+b)−1) ≤ Y^b·y^(−(a+b)−1)`, so the
+           tail is at most `Y^b·k!/(a+b)^(k+1)`. Above `Z`:
+           `y^(−a−1) = y^(−b)·y^(−(a−b)−1) ≤ Z^(−b)·y^(−(a−b)−1)`, `0 < b < a`, so
+           the tail is at most `Z^(−b)·k!/(a−b)^(k+1)`. Against the total the
+           ratios are `e^(bU)·(a/(a+b))^(k+1)` and `e^(−bV)·(a/(a−b))^(k+1)`,
+           `U = log Y`, `V = log Z`.
+           THE LOST-FACTOR CHECK, by hand, with `k + 1 = a(1+δ/2)U` and
+           `V = (1+δ)U`, `δ ≤ 1`. Below, `b = a·δ/2`: the exponent is
+           `aU[t − (1+t)·log(1+t)]` at `t = δ/2`, and
+           `(1+t)·log(1+t) ≥ t + t²/3` on `[0, 1]`, so the ratio is at most
+           `e^(−aUδ²/12)`. Above, `b = a·δ/12`: with `−log(1−t) ≤ t + 2t²` for
+           `t ≤ 1/2` the exponent is at most `aU[−tδ/2 + 2t²(1+δ/2)] ≤ −aUδ²/48`.
+           Both ratios decay like `e^(−cδ²k)`: nothing grows with `k`. The
+           choice of `b` belongs to block 7, where `U` and `k` are tied; this
+           block proves the two bounds with `b` free.
+Regime.    A1 `0 < a`. B1 `0 < b`. B2 `b < a` (above only). Y1 `1 ≤ Y`, Z1 `1 ≤ Z`.
+Defs.      none.
+Theorems.  `theorem lower_tail_le {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (k : ℕ) {Y : ℝ} (hY : 1 ≤ Y) :
+               ∫ y in Ioc (1 : ℝ) Y, Real.log y ^ k * y ^ (-a - 1)
+                 ≤ Y ^ b * (k.factorial / (a + b) ^ (k + 1))`
+           `theorem upper_tail_le {a b : ℝ} (hb : 0 < b) (hba : b < a) (k : ℕ) {Z : ℝ} (hZ : 1 ≤ Z) :
+               ∫ y in Ioi Z, Real.log y ^ k * y ^ (-a - 1)
+                 ≤ Z ^ (-b) * (k.factorial / (a - b) ^ (k + 1))`
+Composes.  `LandauKernel.log_pow_integral`, `log_pow_integrable`. Mathlib:
+           `setIntegral_mono_on`, `setIntegral_mono_set`, `Real.rpow_le_rpow`.
+Module.    `Stage3/LandauTail.lean`, namespace `LandauTail`,
+           `import Stage3.LandauKernel`. Pinned: both.
+Open.      none.
 
 ### 5 A crude bound on `G` — PROVED (unit 0387: `LandauCrude.rampSum_nonneg`, `rampSum_le`, `abs_G_le`)
 Objects.   `rampSum`, `G` (`LandauWindow`). `L = log y`.
@@ -365,20 +528,183 @@ Module.    `Stage3/LandauChebyshev.lean`, namespace `LandauChebyshev`,
            Pinned: `rampSum_le_log`, `G_le`, `abs_G_le_log`.
 Open.      none.
 
-### 6 A trigonometric polynomial with no constant term is positive somewhere in every long block — SKETCH
-Elementary and self-contained: mean at least zero, mean square positive,
-bounded. With mean `≥ 0`, mean square `≥ m² > 0` and `|T| ≤ B` over a block,
-the positive part has mean at least `m²/(2B)`, so some `k` in the block has
-`T(k) ≥ m²/(2B)`. Means over a block are geometric sums (section 0b).
+### 6 A real exponential sum is large somewhere in every long block — PROVED (unit 0392:
+`LandauTrig.norm_geom_Ico_le`, `sum_block_ge`, `sum_sq_block_ge`, `abs_le_sum_norm`, `exists_large_in_block`)
+Objects.   a finite index set `s`; `z_j` complex of modulus one, distinct;
+           `c_j` complex, some `c_j ≠ 0`; `T(n) = Σ_j c_j z_j^n`, real for every
+           `n`. `B = Σ|c_j|`, `S = Σ|c_j|²`. In block 7, `z_j = e^(−iφ_j)` with
+           `σ₀ − ρ_j = r·e^(iφ_j)` and `c_j = m_j/(ρ_j(1−ρ_j))`.
+Sizes.     over a block of `N` consecutive `n`:
+           the sum of `T` is at least `−E₁`, `E₁ = Σ_{z_j ≠ 1} 2|c_j|/|z_j − 1|`,
+           the frequency `1` contributing `N·Re c_j ≥ 0`;
+           the sum of `T²`, computed as `|T|²`, is at least `N·S − E₂`,
+           `E₂ = Σ_{j ≠ l} 2|c_j||c_l|/|z_j z̄_l − 1|`;
+           `|T| ≤ B`. If `T < τ` on the whole block then
+           `T² ≤ B·(2τ − T)` at each point, so `N·S − E₂ ≤ B·(2τN + E₁)`; with
+           `τ = S/(4B)` this is `N·S/2 ≤ E₂ + B·E₁`. So every block longer than
+           `2(E₂ + B·E₁)/S` holds an `n` with `T(n) ≥ S/(4B)`. THE LOST-FACTOR
+           CHECK: `τ` and the block length depend on the `c_j` and `z_j` only,
+           and on neither the block's position nor `n`. None.
+           THE CONJUGATE PAIRS. The note of 2026-11-22 squared `T` as `T·T`,
+           where the pair `z, z̄` gives a cross term of ratio `z·z̄ = 1`. As
+           `|T|² = T·T̄` the cross term of `j ≠ l` has ratio `z_j·z̄_l`, which
+           is `1` only when `z_j = z_l`. Distinct frequencies are all the
+           lemma needs; pairs are not combined.
+Regime.    Z1 `‖z_j‖ = 1`. Z2 `z` injective on `s`. C1 `0 ≤ Re c_j` when
+           `z_j = 1`. C2 some `c_j ≠ 0`. T1 `T n = Σ_j c_j z_j^n` as complex
+           numbers, `T` real-valued.
+Defs.      none.
+Theorems.  `theorem norm_geom_Ico_le {w : ℂ} (hw : ‖w‖ = 1) (hw1 : w ≠ 1) (a N : ℕ) :
+               ‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖`
+           `theorem sum_block_ge` — Z1, C1, T1 — `−E₁ ≤ Σ_{n ∈ block} T n`
+           `theorem sum_sq_block_ge` — Z1, Z2, T1 — `N·S − E₂ ≤ Σ_{n ∈ block} (T n)²`
+           `theorem abs_le_sum_norm` — Z1, T1 — `|T n| ≤ B`
+           `theorem exists_large_in_block {ι : Type*} [DecidableEq ι] (s : Finset ι) (c z : ι → ℂ)
+               (hz : ∀ j ∈ s, ‖z j‖ = 1) (hinj : Set.InjOn z s)
+               (hconst : ∀ j ∈ s, z j = 1 → 0 ≤ (c j).re) (hne : ∃ j ∈ s, c j ≠ 0)
+               (T : ℕ → ℝ) (hT : ∀ n, (T n : ℂ) = ∑ j ∈ s, c j * z j ^ n) :
+               ∃ τ : ℝ, 0 < τ ∧ ∃ N₀ : ℕ, ∀ a N : ℕ, N₀ ≤ N →
+                 ∃ n ∈ Finset.Ico a (a + N), τ ≤ T n`
+Composes.  Mathlib: `geom_sum_Ico` (a `lemma`), `Finset.sum_mul_sum` (a `lemma`),
+           `Complex.mul_conj'` (a `lemma`), `Complex.conj_ofReal`, `Complex.re_sum`,
+           `Finset.sum_comm`.
+Module.    `Stage3/LandauTrig.lean`, namespace `LandauTrig`, `import Mathlib`.
+           Pinned: `sum_block_ge`, `sum_sq_block_ge`, `exists_large_in_block`.
+Open.      none.
 
-THE CONJUGATE PAIRS, found 2026-11-22. The zeros nearest `σ₀` come as `ρ` and
-`ρ̄`, with equal order, and their terms are complex conjugates: the
-frequencies are `+φ` and `−φ`. In the square of `T` the cross term of such a
-pair has frequency `φ − φ = 0` and does not average out. So the lemma is
-stated on the combined form: one real term `Re(a_j e^(ikφ_j))` per pair, the
-`φ_j` distinct in `(0, π]`, plus the constant term `≥ 0` from real poles.
-A frequency `φ_j = π` gives `a_j(−1)^k`, whose square has mean `a_j²` and not
-half of it; the bound below on the mean square holds either way.
+### 7 The assembly — split 2026-11-22 into 7a, 7b, 7c, 7d
+The design, written before any of it is built. Read this first after a
+compaction.
 
-### 7 The assembly — SKETCH
-`StmtLandauWindow` from slices 2 to 6.
+Given `0 < θ < 1`, `δ > 0`, `C`, `WindowBound θ δ C`, and a zero `ρ₀ = β₀ + iγ₀`
+with `β₀ > θ`. Reductions: `β₀ < 1` (Mathlib: no zero on `Re s ≥ 1`); `δ ≤ 1`
+(a window `[Y, Y^(1+δ)]` with `Y ≥ 1` contains `[Y, Y²]`... so replace `δ` by
+`min δ 1`); `C ≥ 0` (replace `C` by `max C 0`).
+
+Parameters. `σ₀ > 1` real, `a = σ₀ − 1`, `r₀ = |σ₀ − ρ₀|`. Three conditions,
+each true for `σ₀` large:
+    S1  r₀ < σ₀ − θ       ⇐ σ₀ ≥ γ₀²/(β₀−θ) + 1
+    S2  r₀ < σ₀           ⇐ S1
+    S3  log(r₀/a) ≤ δ²/240 ⇐ a ≥ 240(1+|γ₀|)/δ², by r₀ ≤ a + 1 + |γ₀| and log x ≤ x − 1
+`r` = the least `|σ₀ − ρ|` over zeros `ρ`; `a < r ≤ r₀` (zeros have `Re < 1`).
+`P` = the zeros at distance exactly `r`; `R₂ > r` with no other zero in the
+open disc of radius `R₂`, `R₂ < σ₀`; `R = (r + R₂)/2`. `λ = log(r/a) ∈ (0, δ²/240]`.
+
+The two readings of `q_k := (−1)^k Φ^(k)(σ₀)/k!`, with `n = k + 1`:
+    zeros (unit 0395):   q_k = r^(−n)·T(n) + e_k,  |e_k| ≤ C₁/R^k,
+                         T(n) = Σ_{ρ ∈ P} A_ρ z_ρ^n,  z_ρ = r/(σ₀ − ρ),  A_ρ = m_ρ/(ρ(1−ρ))
+    primes (unit 0390):  q_k = I_k/k!,  I_k = ∫₁^∞ G(y)(log y)^k y^(−σ₀−1) dy   (real)
+`T(n)` is real: `P` is closed under conjugation (`σ₀` real, `riemannZeta_conj`,
+`ContourShift.zeta_order_conj`), `A_ρ̄ = conj A_ρ`, `z_ρ̄ = conj z_ρ`. The `z_ρ` are
+unimodular and distinct. `z_ρ = 1` only for a real zero `ρ = σ₀ − r ∈ (0, 1)`,
+where `A_ρ > 0`. So block 6 gives `τ > 0`, `N₀`: every `N₀` consecutive `n` hold
+one with `T(n) ≥ τ`.
+
+The primes, from above, for a window at `Y ≥ 1`, `Z = Y^(1+δ)`, any `b > 0`,
+`0 < b' < a` (the integrand's kernel is nonnegative, so only UPPER bounds on
+`G` are used: `G ≤ C·y^θ` on the window, `G ≤ 8y` off it, unit 0388):
+    I_k/k! ≤ C/(σ₀−θ)^n + 8·Y^b/(a+b)^n + 8·Z^(−b')/(a−b')^n
+So at an `n` with `T(n) ≥ τ`, multiplying by `r^n`:
+    τ ≤ C₁·R·(r/R)^n + C·(r/(σ₀−θ))^n + 8·Y^b·(r/(a+b))^n + 8·Z^(−b')·(r/(a−b'))^n
+        t1                t2                 t3                    t4
+`t1, t2 → 0` as `n → ∞` (`r < R`; `r ≤ r₀ < σ₀ − θ` by S1).
+With `U = log Y`, `b = a·δ/3`, `b' = a·δ/12`, and `n` in
+`[a(1+δ/3)·U, a(1+2δ/3)·U]`:
+    t3 = 8·exp(bU + n(λ − log(1+δ/3)))        the coefficient of n is negative
+       ≤ 8·exp(aU[δ/3 − (1+δ/3)(log(1+δ/3) − λ)]) ≤ 8·exp(aU[−δ²/27 + 4λ/3])
+       by log(1+t) ≥ t − t²/2
+    t4 = 8·exp(−b'(1+δ)U + n(λ − log(1−δ/12)))  the coefficient of n is positive
+       ≤ 8·exp(aU[−(δ/12)(1+δ) + (1+2δ/3)(λ − log(1−δ/12))]) ≤ 8·exp(aU[−δ²/72 + 5λ/3])
+       by −log(1−x) ≤ x/(1−x) ≤ x(1 + 6x/5) for x ≤ 1/6
+With `λ ≤ δ²/240`: the brackets are at most `−δ²(1/27 − 1/180)` and `−δ²/144`.
+Checked numerically on a grid of `δ` in `(0, 1]` at `λ = 0` and `λ = δ²/240`,
+2026-11-22. So `t3, t4 → 0` as `U → ∞`. The range of `n` has length `aδU/3`,
+which exceeds `N₀` for `U` large. Take `Y₀` so large that all four terms are
+below `τ/4` on the range and the range holds `N₀` integers; `WindowBound` gives
+a window at some `Y ≥ Y₀`; contradiction.
+THE LOST-FACTOR CHECK: four exponential rates in `n` or `U`, each strictly
+negative, and constants `C₁, C, 8, τ, N₀` that depend on `σ₀` and `ρ₀` only.
+The rates of unit 0391's hand check (`δ²/12`, `δ²/48`) were for a different
+choice of `b` and of the range; the ones above supersede them.
+
+### 7a The primes' reading, from above — PROVED (unit 0396: `LandauPrimeSide.Ik_integrable`,
+`iteratedDeriv_Phi_eq_Ik`, `Ik_le`)
+`Ik σ k := ∫ y in Ioi 1, G y · (log y)^k · y^(−σ−1)`. For `1 < σ`, `θ < σ`, `0 ≤ C`,
+`1 ≤ Y`, `0 ≤ δ`, `G y ≤ C·y^θ` on `Icc Y (Y^(1+δ))`, `0 < b`, `0 < b' < σ − 1`:
+`Ik σ k ≤ C·k!/(σ−θ)^(k+1) + 8·Y^b·k!/(σ−1+b)^(k+1) + 8·(Y^(1+δ))^(−b')·k!/(σ−1−b')^(k+1)`.
+And `iteratedDeriv k Phi σ = (−1)^k·Ik σ k`.
+
+### 7b The zeros' reading, from below — PROVED (unit 0397: `LandauZeroSide.zero_side`)
+Objects.   `c = σ₀`, `R₃ = (|σ₀ − ρ₀| + σ₀)/2 < σ₀`, so the closed disc of radius
+           `R₃` lies in `Re s > 0`; `F` its zeros, finite, containing `ρ₀`;
+           `ρ₁ ∈ F` nearest to `σ₀`, `r = |σ₀ − ρ₁|`; `R₂ ∈ (r, R₃]` with every
+           zero in the open disc of radius `R₂` at distance at most `r`
+           (finiteness), hence exactly `r`; `R = (r + R₂)/2`. `P` and `C₀` from
+           unit 0395. `A ρ = m_ρ/(ρ(1−ρ))`, `z ρ = r/(σ₀ − ρ)`,
+           `S k = Σ_{ρ ∈ P} (A ρ·z ρ)·(z ρ)^k`.
+Sizes.     `(σ₀ − ρ)^(−1−k) = (z ρ)^(k+1)/r^(k+1)`, so unit 0395 reads
+           `|Φ^(k)(σ₀) − (−1)^k·k!/r^(k+1)·S k| ≤ k!·C₀/R^k`, and with
+           `Φ^(k)(σ₀) = (−1)^k·Ik` (unit 0396) and `S k` real:
+           `Ik/k! ≥ S k/r^(k+1) − C₀/R^k`. Block 6 on `S`, with coefficients
+           `A ρ·z ρ`: `S k ≥ τ` for some `k` in every `N₀` consecutive. Lost
+           factor: none; `τ, N₀, C₀` depend on `σ₀` and the zeros only.
+Regime.    Z0 `ζ(ρ₀) = 0`. H1 `1 < σ₀`. S2 `‖σ₀ − ρ₀‖ < σ₀` (which gives `0 < Re ρ₀`:
+           the first writing listed that as a hypothesis, the build showed it unused).
+Defs.      none.
+Theorems.  `theorem zero_side {ρ₀ : ℂ} (hz : riemannZeta ρ₀ = 0)
+               {σ₀ : ℝ} (hσ : 1 < σ₀) (hS2 : ‖(σ₀ : ℂ) - ρ₀‖ < σ₀) :
+               ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 < r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r < R ∧
+                 0 < τ ∧ 0 ≤ C₁ ∧ ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N),
+                   τ / r ^ (k + 1) - C₁ / R ^ k ≤ LandauPrimeSide.Ik σ₀ k / k.factorial`
+Composes.  `LandauPoleDisc.Phi_taylor_on_disc`, `LandauTrig.exists_large_in_block`,
+           `LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`; `ContourShift.zeta_order_conj`,
+           `one_le_zeta_order`; Mathlib `riemannZeta_conj`,
+           `riemannZeta_ne_zero_of_one_le_re` (a `lemma`),
+           `riemannZeta_ne_zero_of_one_lt_re` (a `lemma`), `Finset.exists_min_image`,
+           `Finset.sum_nbij'`; upstream `riemannZeta.zeroes_on_Compact_finite'`.
+Module.    `Stage3/LandauZeroSide.lean`, namespace `LandauZeroSide`. Pinned: the one.
+Open.      none.
+
+### 7c The rates — PROVED (unit 0398: `LandauRates.key_ineq`, `exists_centre`, `exists_pow_small`)
+The design above fixed the range of `n` and checked two brackets. What the
+existence of a range needs is one inequality. With `b = aδ/3`, `b' = aδ/12`,
+`L3 = log((a+b)/r) = log(1+δ/3) − λ` and `L4 = log(r/(a−b')) = λ − log(1−δ/12)`:
+`t3 = 8·exp(bU − n·L3)` and `t4 = 8·exp(−b'(1+δ)U + n·L4)`, and both are at most
+`8·exp(−μU)` for `n` between `(b+μ)U/L3` and `(b'(1+δ)−μ)U/L4`. That interval is
+nonempty for a small `μ > 0` exactly when `b·L4 < b'(1+δ)·L3`, which is
+    K   4(λ − log(1−δ/12)) < (1+δ)(log(1+δ/3) − λ).
+Proof of K, by hand: `log y ≤ y − 1` at `y = 1/(1−x)` and at `y = 1/(1+t)` gives
+`−log(1−x) ≤ x/(1−x) ≤ x + (12/11)x²` for `x ≤ 1/12` and
+`log(1+t) ≥ t/(1+t) ≥ t − t²`. With `x = δ/12`, `t = δ/3`: the left side is at
+most `4λ + δ/3 + δ²/33`, the right at least `δ/3 + δ²/9 − 2λ` (using `δ³ ≤ δ²`),
+and `6λ ≤ δ²/40 < δ²(1/9 − 1/33)`. Checked on a grid, 2026-11-22.
+Objects.   as above. Lost factor: none; these are the rates themselves.
+Regime.    `0 < δ ≤ 1`, `0 ≤ λ ≤ δ²/240`.
+Defs.      none.
+Theorems.  `theorem key_ineq {δ lam : ℝ} (hδ0 : 0 < δ) (hδ1 : δ ≤ 1) (hl0 : 0 ≤ lam)
+               (hl : lam ≤ δ ^ 2 / 240) :
+               4 * (lam - Real.log (1 - δ / 12)) < (1 + δ) * (Real.log (1 + δ / 3) - lam)
+                 ∧ 0 < Real.log (1 + δ / 3) - lam ∧ 0 < lam - Real.log (1 - δ / 12)`
+           `theorem exists_centre {ρ₀ : ℂ} {θ δ : ℝ} (hθ0 : 0 ≤ θ) (hθ : θ < ρ₀.re)
+               (h1 : ρ₀.re < 1) (hδ : 0 < δ) :
+               ∃ σ₀ : ℝ, 1 < σ₀ ∧ ‖(σ₀ : ℂ) - ρ₀‖ < σ₀ - θ
+                 ∧ ‖(σ₀ : ℂ) - ρ₀‖ ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240)`
+           `theorem exists_pow_small {q c ε : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (hε : 0 < ε) :
+               ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k < ε`
+Composes.  Mathlib `Real.log_le_sub_one_of_pos`, `Real.log_inv`,
+           `tendsto_pow_atTop_nhds_zero_of_lt_one`, `Complex.sq_norm`,
+           `Complex.norm_le_abs_re_add_abs_im`.
+Module.    `Stage3/LandauRates.lean`, namespace `LandauRates`, `import Mathlib`. Pinned: all three.
+Open.      none.
+
+### 7d `StmtLandauWindow` — PROVED (unit 0399: `LandauCriterion.contradiction`, `stmtLandauWindow`,
+`rh_of_windows`)
+From 7a, 7b, 7c and `WindowBound`. With unit 0384's `rh_of_window`, the chain
+"a window bound at every `θ > 1/2` implies `RiemannHypothesis`" then has no
+leaf between its hypothesis and its conclusion.
+
+Built as designed, with the range of indices taken from `LandauRates.key_ineq`
+and a margin `μ` (block 7c). Every block of this worksheet is PROVED. The
+premise of `rh_of_windows`, a window bound at every `θ` above one half, is
+proved nowhere: under the Riemann hypothesis `G(y) = O(√y)` gives it, so the
+criterion is a reformulation and its premise is as hard as its conclusion.

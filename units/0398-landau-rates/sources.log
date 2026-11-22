@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-11-22T07:58:02Z
+# unit: 0398-landau-rates
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24878
+  Source: session transcript, 2026-11-22, after unit 0397
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24689
+  theorem key_ineq {δ lam : ℝ} (hδ0 : 0 < δ) (hδ1 : δ ≤ 1) (hl0 : 0 ≤ lam)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24691
+  4 * (lam - Real.log (1 - δ / 12)) < (1 + δ) * (Real.log (1 + δ / 3) - lam)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24741
+  ∧ 0 < Real.log (1 + δ / 3) - lam ∧ 0 < lam - Real.log (1 - δ / 12) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24693
+  theorem exists_centre {ρ₀ : ℂ} {θ δ : ℝ} (hθ0 : 0 ≤ θ) (hθ : θ < ρ₀.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24694
+  (h1 : ρ₀.re < 1) (hδ : 0 < δ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24695
+  ∃ σ₀ : ℝ, 1 < σ₀ ∧ ‖(σ₀ : ℂ) - ρ₀‖ < σ₀ - θ
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24775
+  ∧ ‖(σ₀ : ℂ) - ρ₀‖ ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24697
+  theorem exists_pow_small {q c ε : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (hε : 0 < ε) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24802
+  ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k < ε := by
+
+# 10 found, 0 missing

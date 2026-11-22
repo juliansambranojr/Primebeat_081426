@@ -1,0 +1,21 @@
+key	value	source
+module_lines	125	wc -l lean_stage3/Stage3/LandauTail.lean
+theorems_proved	2	grep -c ^theorem lean_stage3/Stage3/LandauTail.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauTail.lean
+private_lemmas	1	kernel_nonneg
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauTail.lean
+pins	2	lower_tail_le, upper_tail_le
+errors_first	0	first lake build Stage3.LandauTail, lines error: Stage3/LandauTail.lean
+warnings_first	2	HasSubset.Subset.eventuallyLE deprecated, twice; replaced by LE.le.eventuallyLE
+builds	2	the first build and the one after the deprecated name was replaced
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8782	lake build (full Stage3), Build completed successfully
+jobs_module	8656	run/build.log, lake build Stage3.LandauTail
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#4b	the kernel off the window
+unit_total	0389	the unit with the whole integral
+rate_below	12	landau.md#4b Sizes, by hand: the ratio below the window is at most exp(-aUδ²/12)
+rate_above	48	landau.md#4b Sizes, by hand: the ratio above the window is at most exp(-aUδ²/48)
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

@@ -1,0 +1,24 @@
+key	value	source
+module_lines	238	wc -l lean_stage3/Stage3/LandauCriterion.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/LandauCriterion.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauCriterion.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauCriterion.lean
+pins	3	contradiction, stmtLandauWindow, rh_of_windows
+errors_first	6	first lake build Stage3.LandauCriterion, lines error: Stage3/LandauCriterion.lean
+roots	1	an nlinarith on a linear goal in a large context ran out of heartbeats
+cascade	5	the timeout at the declaration, the unknown constant downstream, and three pins
+builds	3	the first build, one after the arithmetic was made linear, one after an unused hypothesis was dropped
+hyps_dropped	1	0 ≤ C₁ on contradiction
+traps_added	1	lean_stage3/TRAPS.md row 45
+trap_row	45	lean_stage3/TRAPS.md
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8790	lake build (full Stage3), Build completed successfully
+jobs_module	8736	run/build.log, lake build Stage3.LandauCriterion
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#7d	StmtLandauWindow
+unit_statement	0384	the unit that stated the criterion as a leaf
+units_chain	15	units 0385 to 0399, the proof of the leaf
+modules_chain	15	LandauMellin, LandauMellinG, LandauCrude, LandauChebyshev, LandauKernel, LandauTaylor, LandauTail, LandauTrig, LandauPoleLocal, LandauPoleSub, LandauPoleDisc, LandauPrimeSide, LandauZeroSide, LandauRates, LandauCriterion
+g_measured_to	100000000	unit 0383: G measured to 10^8
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

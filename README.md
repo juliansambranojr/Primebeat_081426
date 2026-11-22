@@ -57,6 +57,26 @@ Highlights, with the axioms they cost:
 The axiom column is the point. `Construction` does not import Mathlib at all and
 its results depend on nothing; the four zeros are *computed*, not transcribed.
 
+A second tree, `lean_stage3/` (its own toolchain, with PrimeNumberTheoremAnd),
+holds among other things the Landau window criterion for ζ, proved in units
+0384–0399 from the worksheet `lean_stage3/design/landau.md`. Write
+`G(y) = Σ_{n ≤ y} Λ(n)·(y/n − 1) − y·log y + (1+γ)·y`.
+
+| Theorem | Says | Axioms |
+|---|---|---|
+| `LandauCriterion.stmtLandauWindow` | if for arbitrarily large `Y` one has `G(y) ≤ C·y^θ` on all of `[Y, Y^(1+δ)]`, then ζ has no zero with real part above `θ` | `propext, Classical.choice, Quot.sound` |
+| `LandauCriterion.rh_of_windows` | such a bound at every `θ` in `(1/2, 1)` implies Mathlib's `RiemannHypothesis` | `propext, Classical.choice, Quot.sound` |
+
+```bash
+cd lean_stage3 && lake exe cache get && lake build Stage3.LandauCriterion
+```
+
+The second theorem is an implication. Its premise is a statement about primes
+that is proved nowhere, here or elsewhere, and is as hard as its conclusion:
+under the Riemann hypothesis `G(y) = O(√y)` supplies every such window. The
+criterion's shape was read from the archive Levent Alpöge released on
+2026-11-20; no code was taken from it.
+
 ## What is measured
 
 Scripts `O11`–`O66` and `t*`, each writing a JSON artifact and a run log to
@@ -92,6 +112,11 @@ The Riemann hypothesis. The tree contains three theorems of the form
 `RiemannHypothesis ↔ <geometric condition>` and **no proof object of type
 `RiemannHypothesis`**. Those equivalences are coordinate changes; they move the
 statement and decide nothing.
+
+`lean_stage3/` adds one implication into `RiemannHypothesis`,
+`LandauCriterion.rh_of_windows`. Its premise, a one-sided bound on `G` on long
+windows at every exponent above one half, is open. It moves the statement to
+the primes and decides nothing either.
 
 Two dead arguments are recorded rather than deleted — see notes entries 99–100
 and `papers/What-Didnt-Work.md`. A repository that only records its successes is

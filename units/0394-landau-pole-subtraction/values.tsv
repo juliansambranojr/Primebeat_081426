@@ -1,0 +1,20 @@
+key	value	source
+module_lines	157	wc -l lean_stage3/Stage3/LandauPoleSub.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/LandauPoleSub.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauPoleSub.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauPoleSub.lean
+pins	3	iteratedDeriv_inv_sub, exists_differentiableOn_sub_poles, taylor_coeff_sub_poles
+errors_first	4	first lake build Stage3.LandauPoleSub, lines error: Stage3/LandauPoleSub.lean
+roots	2	a simp only [] that made no progress; the Cauchy estimate named without its Complex namespace
+cascade	2	the pins of iteratedDeriv_inv_sub and taylor_coeff_sub_poles (TRAPS.md row 19)
+warnings_first	1	hU unused in exists_differentiableOn_sub_poles; dropped from the statement
+hyps_dropped	1	IsOpen U on exists_differentiableOn_sub_poles
+builds	2	the first build and the one after the fixes
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	1	a name the block got wrong, fixed in the block (LOOP.md section 4b)
+jobs_package	8785	lake build (full Stage3), Build completed successfully
+jobs_module	8655	run/build.log, lake build Stage3.LandauPoleSub
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#3b1	simple poles subtracted on an open set; the Taylor coefficients
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

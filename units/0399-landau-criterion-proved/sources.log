@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-22T08:04:29Z
+# unit: 0399-landau-criterion-proved
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25340
+  Source: session transcript, 2026-11-22, after unit 0398
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25159
+  theorem stmtLandauWindow : LandauWindow.StmtLandauWindow := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25185
+  (hW : ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C) :
+
+# 3 found, 0 missing

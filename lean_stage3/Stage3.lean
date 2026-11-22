@@ -44,6 +44,16 @@ import Stage3.LandauMellinG
 import Stage3.LandauCrude
 import Stage3.LandauChebyshev
 import Stage3.LandauKernel
+import Stage3.LandauTaylor
+import Stage3.LandauTail
+import Stage3.LandauTrig
+import Stage3.LandauPoleLocal
+import Stage3.LandauPoleSub
+import Stage3.LandauPoleDisc
+import Stage3.LandauPrimeSide
+import Stage3.LandauZeroSide
+import Stage3.LandauRates
+import Stage3.LandauCriterion
 import Stage3.WeilDetect
 import Stage3.WeilBridgeLeaf
 import Stage3.BoxFinite

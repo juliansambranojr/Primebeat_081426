@@ -1,0 +1,20 @@
+key	value	source
+module_lines	113	wc -l lean_stage3/Stage3/LandauRates.lean
+theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/LandauRates.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauRates.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauRates.lean
+pins	3	key_ineq, exists_centre, exists_pow_small
+errors_first	0	first lake build Stage3.LandauRates, lines error: Stage3/LandauRates.lean
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8789	lake build (full Stage3), Build completed successfully
+jobs_module	8655	run/build.log, lake build Stage3.LandauRates
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#7c	the rates
+lam_bound	240	key_ineq and exists_centre: λ ≤ δ²/240
+shift_below	3	key_ineq: the shift below the window is a·δ/3
+shift_above	12	key_ineq: the shift above the window is a·δ/12
+unit_tails	0391	the unit whose hand rates this replaces
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

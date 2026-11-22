@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-11-22T07:13:02Z
+# unit: 0391-landau-kernel-tails
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21104
+  Source: session transcript, 2026-11-22, after unit 0390
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20871
+  theorem lower_tail_le {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (k : ℕ) {Y : ℝ} (hY : 1 ≤ Y) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20872
+  ∫ y in Ioc (1 : ℝ) Y, Real.log y ^ k * y ^ (-a - 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20941
+  ≤ Y ^ b * (k.factorial / (a + b) ^ (k + 1)) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20874
+  theorem upper_tail_le {a b : ℝ} (hb : 0 < b) (hba : b < a) (k : ℕ) {Z : ℝ} (hZ : 1 ≤ Z) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20875
+  ∫ y in Ioi Z, Real.log y ^ k * y ^ (-a - 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20976
+  ≤ Z ^ (-b) * (k.factorial / (a - b) ^ (k + 1)) := by
+
+# 7 found, 0 missing
