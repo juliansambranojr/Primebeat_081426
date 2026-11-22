@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0379: C, bridge to primes. zeroForm G = zeta23 literatureRHS at k = F*F-reflected, F = G e^(u/2); both sides agree to 3.5e-16 on the tree's window; C1 vs C2 gap closes in the convolution. Upstream PNT+ HEAD a4fb698 still has the two sorries. Three ways to compose priced (weld, third tree, port); choice is Julian's
 - [open]   2026-11-22  unit 0378: rung 5 section 16 priced on proved-form inequalities. Tree's bounds leave a hole (c_neg positive from tau 1.233, far starts 4.499); one new lemma N1 (tail bound, all w) fills it; 9/9 cells close within 1.022 of exact. Items (a), (c) closed. What remains is Lean, which this environment lacks
 - [open]   2026-11-22  unit 0377: rung 5 section 16 item (d), prior art. Device KNOWN (Zhu arXiv 2608.24827 sec 13.2: window times polynomial vanishing at zeros, under RH, to make the form small). Uniform explicit L(eps,T) NOT FOUND; nearest Danesh arXiv 2611.10726. Zhu also prices positivity: margin under exp(-L e^L). No priority claimed
 - [open]   2026-11-22  unit 0376: rung 5 section 16 item (b), kept members' sign swept. Phase 0.167 rad against pi/2 (factor 9.4) at xi = 12N; exact worst case 0.99 of the bound; 0 flips in 180000 random ladders and 487 planted kept members; flips at xi = 1.273N, planted flip fires. T9 does not need block 13g. EXPLORATORY; Lean proof open

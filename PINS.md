@@ -22,6 +22,28 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · C, the bridge to primes: the statement comparison and its design
+
+    DONE        one decision unit: (a) the three statements side by side,
+                the tree's `zeroForm`, upstream `kadiri_thm_3_1_q1` at the
+                pin and at HEAD, and zeta23's `EF_lit`; (b) the dictionary
+                between the tree's zero side and zeta23's, with every
+                normalisation, checked numerically on the tree's window
+                against the bench's zeros and the primes; (c) the ways to
+                compose them across toolchains, each priced; no Lean
+    ASSUMED     "start C" (Julian, 2026-11-22); C is "port or weld the
+                sorry-free explicit formula from zeta23, so `zeroForm` has
+                a prime side in your tree"; the upstream race rule of
+                DESIGN.md § 0 applies, so upstream HEAD is probed first;
+                which way to compose is Julian's, since one option is a
+                new tree at a third toolchain
+    DEPENDS     Julian's choice among the options, after the unit
+    OUT         building anything; the Dirichlet L-function formula;
+                positivity itself
+    OUTCOME     unit 0379: the bridge statement fixed and checked on both
+                sides to 3.5e-16; upstream not discharged; three options
+                priced and left to Julian
+
 ### 2026-11-22 · rung 5 block 16a, `Stage3/WeilPowerTail.lean`: the tail bound
 
     DONE        block 16a of `lean_stage3/design/rung5.md` written with the
