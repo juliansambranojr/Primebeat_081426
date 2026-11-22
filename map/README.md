@@ -73,16 +73,8 @@ The arrows are Lean's record of what each statement and proof uses (`python3 uti
 | Lean's helper constants, followed through to their owners | 2671 |
 | notation and macro constants | 125 |
 | declarations in `TablePort/` copies resting on different declarations than the original | 0 |
-| files changed since the last dump (arrows read from text) | 1 |
-| files never dumped | 1 |
-
-**Files changed since the last dump:**
-
-- `lean_stage3/Stage3.lean`
-
-**Files never dumped:**
-
-- `lean_stage3/Stage3/AliasClass.lean`
+| files changed since the last dump (arrows read from text) | 0 |
+| files never dumped | 0 |
 
 Reading names out of the source text instead, on the same declarations: 3783 arrows agree with Lean, 465 that Lean records are not visible in the text, 24 names occur in the text without Lean recording a use. That is the error a page carries when it says "read from the source text".
 
