@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0394: LandauPoleSub.lean, block 3b1 of landau.md PROVED (3b split into 3b1, 3b2): finitely many simple poles subtracted on an open set, Taylor coefficients = poles' sum up to k!·C/R^k; no zeta in it; next: 3b2 (`Phi` on a disc), then 7
 - [open]   2026-11-22  unit 0393: LandauPoleLocal.lean, block 3a of landau.md PROVED (block 3 split into 3a, 3b): `Phi` has a simple pole of residue m/(rho(1-rho)) at each zero rho != 0, 1 and is regular at 1; next: 3b (the disc and the Taylor coefficients), then 7
 - [open]   2026-11-22  unit 0392: LandauTrig.lean, block 6 of landau.md PROVED, a real sum of c_j z_j^n over distinct unimodular z_j is >= tau > 0 somewhere in every block of length >= N0; stated for a squared modulus, so conjugate pairs need no pairing; next: 3 (the poles), then 7
 - [open]   2026-11-22  unit 0391: LandauTail.lean, block 4b of landau.md PROVED, the kernel's integral over (1, Y] and (Z, inf) bounded by a shift of the exponent, `b` free; the rates exp(-c delta^2 k) are a hand check in the block, to be proved in block 7; next: 6, 3, then 7

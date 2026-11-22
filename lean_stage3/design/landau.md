@@ -331,14 +331,60 @@ Composes.  Stage 3 `ContourShift.zeta_analyticAt`, `zeta_order_ne_top`,
 Module.    `Stage3/LandauPoleLocal.lean`, namespace `LandauPoleLocal`. Pinned: all three.
 Open.      block 3b.
 
-### 3b The poles subtracted on a disc, and the Taylor coefficients — SKETCH
-`Phi` minus the principal parts of its finitely many poles in a closed disc
-inside `Re s > 0` extends to an analytic function there (the construction of
-Stage 3 `ContourShift.residue_rectangle_of_local`, restated for a disc, with
-block 3a as its local input); finitely many zeros in the disc
-(`riemannZeta.zeroes_on_Compact_finite'`); the Taylor coefficient of `Phi` at
-`σ₀` as the poles' sum plus a remainder bounded by Cauchy's estimate on a
-circle through no pole. A real zero in `(0, 1)` is allowed (section 0).
+### 3b The poles subtracted, and the Taylor coefficients — split 2026-11-22 into 3b1 and 3b2
+
+### 3b1 Simple poles subtracted on an open set; the Taylor coefficients — PROVED (unit 0394:
+`LandauPoleSub.iteratedDeriv_inv_sub`, `exists_differentiableOn_sub_poles`, `taylor_coeff_sub_poles`)
+Nothing about `ζ`: a function `f`, an open set `U`, a finite set `P`, numbers `A p`.
+Objects.   `g = f − Σ_{q ∈ P} A q/(s − q)`, glued at the points of `P` (the
+           construction of Stage 3 `ContourShift.residue_rectangle_of_local`,
+           there on a rectangle). The `k`-th derivative of `(s − q)^(−1)` at `c`
+           is `(−1)^k·k!·(c − q)^(−1−k)`.
+Sizes.     `iteratedDeriv k f c − Σ_q A q·(−1)^k·k!·(c − q)^(−1−k)` is the `k`-th
+           derivative of `g` at `c`, at most `k!·C/R^k` with `C` a bound for
+           `g` on the circle of radius `R` (Cauchy). `C` does not depend on
+           `k`. Lost factor: none.
+Regime.    `f` differentiable at the points of `U` off `P` (the gluing needs no
+           openness of `U`: the first writing asked for it, the build showed it
+           unused; the coefficients do need `U` open); at each
+           `p ∈ P` a local form `f = h + A p/(s − p)`, `h` analytic at `p`;
+           for the coefficients, `closedBall c R ⊆ U`, `0 < R`, `c ∉ P`.
+Defs.      none.
+Theorems.  `theorem iteratedDeriv_inv_sub (k : ℕ) (q c : ℂ) :
+               iteratedDeriv k (fun s : ℂ => (s - q)⁻¹) c
+                 = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ))`
+           `theorem exists_differentiableOn_sub_poles {U : Set ℂ} {P : Finset ℂ}
+               {f A : ℂ → ℂ} (hf : ∀ s ∈ U, s ∉ P → DifferentiableAt ℂ f s)
+               (hloc : ∀ p ∈ P, ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧
+                 ∀ᶠ s in 𝓝[≠] p, f s = h s + A p / (s - p)) :
+               ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧
+                 ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q)`
+           `theorem taylor_coeff_sub_poles {c : ℂ} {R : ℝ} (hR : 0 < R) {U : Set ℂ} (hU : IsOpen U)
+               (hball : Metric.closedBall c R ⊆ U) {P : Finset ℂ} {f A g : ℂ → ℂ} (hcP : c ∉ P)
+               (hg : DifferentiableOn ℂ g U)
+               (hgf : ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q)) :
+               ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c
+                 - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖
+                   ≤ k.factorial * C / R ^ k`
+Composes.  Mathlib: `iter_deriv_inv`, `iteratedDeriv_comp_sub_const` (a `lemma`),
+           (the Cauchy estimate's full name is
+           `Complex.norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le`)
+           `iteratedDeriv_eq_iterate`, `iteratedDeriv_add` (a `lemma`),
+           `iteratedDeriv_fun_sum` (a `lemma`), `iteratedDeriv_const_mul_field`,
+           `Filter.EventuallyEq.iteratedDeriv_eq` (a `lemma`),
+           `norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le`,
+           `DifferentiableOn.diffContOnCl_ball`.
+Module.    `Stage3/LandauPoleSub.lean`, namespace `LandauPoleSub`, `import Mathlib`.
+           Pinned: all three.
+Open.      block 3b2.
+
+### 3b2 `Phi` on a disc — SKETCH
+For a centre `c` with `ζ(c) ≠ 0`, `c ≠ 1`, and radii `R < R₂` with
+`closedBall c R₂` inside `Re s > 0`: the zeros of `ζ` in the open disc of
+radius `R₂` are finitely many (`riemannZeta.zeroes_on_Compact_finite'`), and
+with them as `P` (and the point `1`, coefficient `0`) blocks 3a and 3b1 give
+`‖iteratedDeriv k Phi c − Σ_ρ m_ρ/(ρ(1−ρ))·(−1)^k·k!·(c − ρ)^(−1−k)‖ ≤ k!·C/R^k`.
+A real zero in `(0, 1)` is allowed (section 0).
 
 ### 4a The kernel's integral — PROVED (unit 0389: `LandauKernel.log_pow_le`, `log_pow_integrable`,
 `log_pow_integral`)

@@ -1,0 +1,53 @@
+# check_prose_source.py  2026-11-22T07:30:53Z
+# unit: 0394-landau-pole-subtraction
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22926
+  Source: session transcript, 2026-11-22, after unit 0393
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22619
+  theorem iteratedDeriv_inv_sub (k : ℕ) (q c : ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22620
+  iteratedDeriv k (fun s : ℂ => (s - q)⁻¹) c
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22710
+  = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22856
+  theorem exists_differentiableOn_sub_poles {U : Set ℂ} {P : Finset ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22623
+  {f A : ℂ → ℂ} (hf : ∀ s ∈ U, s ∉ P → DifferentiableAt ℂ f s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:17718
+  (hloc : ∀ p ∈ P, ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22625
+  ∀ᶠ s in 𝓝[≠] p, f s = h s + A p / (s - p)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22626
+  ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22720
+  ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22628
+  theorem taylor_coeff_sub_poles {c : ℂ} {R : ℝ} (hR : 0 < R) {U : Set ℂ} (hU : IsOpen U)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22779
+  (hball : closedBall c R ⊆ U) {P : Finset ℂ} {f A g : ℂ → ℂ} (hcP : c ∉ P)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22631
+  (hgf : ∀ s, s ∉ P → g s = f s - ∑ q ∈ P, A q / (s - q)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22632
+  ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22633
+  - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:22784
+  ≤ k.factorial * C / R ^ k := by
+
+# 16 found, 0 missing

@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 3b1 of `design/landau.md`, `Stage3/LandauPoleSub.lean`
+
+    DONE        block 3b split into 3b1 (no `ζ`) and 3b2 (`Phi` on a disc);
+                `Stage3/LandauPoleSub.lean` builds with no `sorry`:
+                `iteratedDeriv_inv_sub`, `exists_differentiableOn_sub_poles`,
+                `taylor_coeff_sub_poles`; a formalization unit; block 3b1
+                marked PROVED
+    ASSUMED     the statements of block 3b1 as written; any hypothesis the
+                build adds is reported here
+    DEPENDS     Mathlib's iterated derivatives and Cauchy estimate; the
+                construction is copied from `ContourShift.residue_rectangle_of_local`
+    OUT         block 3b2 and block 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0394: three theorems, no `sorry`; the
+                openness of `U` in the gluing theorem was unused and is
+                dropped; the block named Cauchy's estimate without its
+                namespace, corrected
+
 ### 2026-11-22 · the Landau window: block 3a of `design/landau.md`, `Stage3/LandauPoleLocal.lean`
 
     DONE        block 3 split into 3a (local) and 3b (the disc and the Taylor
