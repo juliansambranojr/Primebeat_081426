@@ -1,0 +1,62 @@
+{
+ "exploratory": true,
+ "prereg": null,
+ "ceiling_rung": 93,
+ "as_built": {
+  "c4": 4552000000.0,
+  "log2_psi_floor": 33.5,
+  "log2_pi_floor": 67.0,
+  "band_part": 92.2,
+  "top_part": 0.00109,
+  "log_part": 5.08e-06,
+  "left_part": 124.4,
+  "floorConstSplit": 216.6,
+  "C_pi": 662.9,
+  "depth_covered": 9,
+  "R6": 76,
+  "margin_rungs": 17
+ },
+ "freed": {
+  "c4": 304900000.0,
+  "log2_psi_floor": 31.75,
+  "log2_pi_floor": 63.5,
+  "band_part": 97.7,
+  "top_part": 0.00045,
+  "log_part": 9.83e-06,
+  "left_part": 20.7,
+  "floorConstSplit": 118.4,
+  "C_pi": 368.2,
+  "depth_covered": 9,
+  "R6": 74,
+  "margin_rungs": 19
+ },
+ "classical": {
+  "c4": 4552000000.0,
+  "log2_psi_floor": 33.5,
+  "log2_pi_floor": 67.0,
+  "band_part": 92.2,
+  "top_part": 0.00109,
+  "log_part": 5.44e-06,
+  "left_part": 124.4,
+  "floorConstSplit": 216.6,
+  "C_pi": 662.9,
+  "depth_covered": 9,
+  "R6": 76,
+  "margin_rungs": 17
+ },
+ "c_zero": {
+  "c4": 0.0,
+  "log2_psi_floor": 26.5,
+  "log2_pi_floor": 53.0,
+  "band_part": 119.0,
+  "top_part": 0.0,
+  "log_part": 0.0,
+  "left_part": 0.0,
+  "floorConstSplit": 119.0,
+  "C_pi": 370.0,
+  "depth_covered": 9,
+  "R6": 74,
+  "margin_rungs": 19
+ },
+ "as_built_slack_factor": 49000.0
+}

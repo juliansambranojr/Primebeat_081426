@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0410 EXPLORATORY: gate priced from floorConstSplit (unit 0409). As built: 216.6 at psi floor 2^33.5, depth 9, R6=76 (17 rungs inside; was 3 in unit 0408). Radii freed R6=74 = the route's limit with no contour constant. Slack: as-built c1,c3,c4 times 49000 still covers depth 6. Floors, RH assumed, O68's gate not Lean's
 - [open]   2026-11-22  unit 0409: Stage3/GlueFloor.lean (6 theorems, 0 sorry). edge_left_sharp: left edge <= 72 D log^2 x * x^(-1/4); explicit_formula_split with that edge as its own term (c3 = 13 + K0/2); psiWeak_floor_split, schoenfeldWeak_floor_split_of_RH with floorConstSplit. Three copies, last lines changed; Glue.lean untouched. Not yet priced; constants existential
 - [open]   2026-11-22  joints.md block E2 DRAFT: Glue.edge_left_bound proves the left edge <= 72 D log^2 x * x^(-1/4), then rounds to C log x (C = 72*256*D/2+1); that rounding is all of c2 in unit 0408. Restatement = three copies with a different last line (edge_left_sharp, explicit_formula_split, psiWeak_floor_split). Unlogged estimate: R6 near 76 as built. Not built
 - [open]   2026-11-22  unit 0408 EXPLORATORY: gate priced from the theorem's floorConst (unit 0407). As built 20118.7, depth 6, R6=90; radii freed 2906.9, depth 7, R6=84; c1=c2=0 gives 119.0 at psi floor 2^26.5, depth 9, R6=74. The left edge c2 is the whole cost: 16 of 19 rungs as built. Floors; c1, c2 not numerals in the tree

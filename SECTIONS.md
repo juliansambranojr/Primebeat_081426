@@ -178,4 +178,6 @@ which remain existential.
 Unit 0409 (`Stage3/GlueFloor.lean`) removed the last of the three roundings:
 the left edge of the contour enters the explicit formula at its own size,
 `72·D·log²x·x^(−1/4)`, and the route's theorem is now
-`schoenfeldWeak_floor_split_of_RH`. Its pricing is not yet logged.
+`schoenfeldWeak_floor_split_of_RH`. Priced in unit 0410 (EXPLORATORY, floors):
+depth 6 closes at rung 76 of 93 with the radii as built, and the constants
+can grow by a factor 49,000 before depth 6 is lost.

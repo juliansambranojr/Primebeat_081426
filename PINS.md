@@ -22,6 +22,17 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the gate priced from `floorConstSplit` (unit 0410)
+
+    DONE        one script: O68's `R_of` on the constant of
+                `schoenfeldWeak_floor_split_of_RH`, four cases and a slack
+                factor; a NOTEPAD line; a line in `SECTIONS.md`
+    ASSUMED     EXPLORATORY, no prereg; floors; one case uses a guessed size
+                for a supremum, labelled in the script
+    DEPENDS     unit 0409
+    OUT         no Lean
+    OUTCOME     done as pinned; depth 6 closes at rung 76 as built
+
 ### 2026-11-22 · `Stage3/GlueFloor.lean`, block E2 of `joints.md`
 
     DONE        `edge_left_sharp`, `explicit_formula_split`,
