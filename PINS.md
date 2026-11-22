@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau worksheet: blocks 2c, 4, 6, 7 checked against the trees
+
+    DONE        `lean_stage3/design/landau.md` updated: section 0b lists the
+                pieces found for blocks 2c, 4, 6 and 7 and what no tree
+                holds; block 4 is split into 4a (the exact integral) and 4b
+                (the tail); block 6 carries the conjugate-pair note; the
+                build order the dependencies give is written down
+    ASSUMED     searches were by name over `theorem` and `lemma` headers in
+                Mathlib, upstream, Stage 3, `lean/`, `lean_bridge/` and the
+                zeta23 clone; a piece under an unrelated name is not found
+    DEPENDS     the names as they stand at the pinned revisions
+    OUT         no Lean, no unit, no block's mark changed
+    OUTCOME     done as pinned
+
 ### 2026-11-22 · the Landau window: block 5b of `design/landau.md`, `Stage3/LandauChebyshev.lean`
 
     DONE        `Stage3/LandauChebyshev.lean` builds with no `sorry`:
