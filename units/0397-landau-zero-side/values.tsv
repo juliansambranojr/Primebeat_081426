@@ -1,0 +1,23 @@
+key	value	source
+module_lines	300	wc -l lean_stage3/Stage3/LandauZeroSide.lean
+theorems_proved	1	grep -c ^theorem lean_stage3/Stage3/LandauZeroSide.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LandauZeroSide.lean
+private_lemmas	1	exists_gap
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauZeroSide.lean
+pins	1	zero_side
+errors_first	5	first lake build Stage3.LandauZeroSide, lines error: Stage3/LandauZeroSide.lean
+roots	4	a field_simp left one power identity; a linear_combination with the wrong sign, twice counted as one; an rfl across a cast; a hypothesis stated with the abbreviated centre
+cascade	1	the pin of zero_side (TRAPS.md row 19)
+builds	6	the first build, three after fixes, one to read goals, one after the unused hypothesis was dropped
+hyps_dropped	1	0 < ρ₀.re on zero_side: it follows from S2
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's; one of the block's was dropped
+jobs_package	8788	lake build (full Stage3), Build completed successfully
+jobs_module	8734	run/build.log, lake build Stage3.LandauZeroSide
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#7b	the zeros' reading, from below
+unit_disc	0395	the unit with the derivatives of Phi from the zeros in a disc
+unit_trig	0392	the unit with the lemma on exponential sums
+unit_primes	0396	the unit with the primes' integral
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

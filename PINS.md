@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 7b of `design/landau.md`, `Stage3/LandauZeroSide.lean`
+
+    DONE        `Stage3/LandauZeroSide.lean` builds with no `sorry`:
+                `zero_side`, from a zero `ρ₀` with `0 < Re ρ₀` and a real
+                `σ₀ > 1` with `|σ₀ − ρ₀| < σ₀`, numbers `r, R, τ, C₁, N₀` with
+                `σ₀ − 1 < r ≤ |σ₀ − ρ₀|`, `r < R`, `τ > 0`, such that every `N₀`
+                consecutive `k` hold one with
+                `τ/r^(k+1) − C₁/R^k ≤ Ik σ₀ k / k!`; a formalization unit;
+                block 7b marked PROVED
+    ASSUMED     the statement indexes by `k` with exponent `k + 1`, where the
+                sketch indexed by `n = k + 1`; the hypothesis `Re ρ₀ < 1` of
+                the sketch is not needed (Mathlib has it for every zero)
+    DEPENDS     units 0392, 0395, 0396; `ContourShift.zeta_order_conj`;
+                Mathlib `riemannZeta_conj`
+    OUT         blocks 7c, 7d; `StmtLandauWindow` stays a leaf
+    OUTCOME     done as pinned, unit 0397: one theorem, no `sorry`; the
+                hypothesis `0 < Re ρ₀` was unused and is dropped
+
 ### 2026-11-22 · the Landau window: block 7 designed and split; block 7a, `Stage3/LandauPrimeSide.lean`
 
     DONE        the design of block 7 written into `lean_stage3/design/landau.md`

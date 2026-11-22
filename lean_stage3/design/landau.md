@@ -634,11 +634,36 @@ choice of `b` and of the range; the ones above supersede them.
 `Ik σ k ≤ C·k!/(σ−θ)^(k+1) + 8·Y^b·k!/(σ−1+b)^(k+1) + 8·(Y^(1+δ))^(−b')·k!/(σ−1−b')^(k+1)`.
 And `iteratedDeriv k Phi σ = (−1)^k·Ik σ k`.
 
-### 7b The zeros' reading, from below — SKETCH
-For a zero `ρ₀` with `0 < Re ρ₀ < 1` and real `σ₀ > 1` with S2: there are
-`r, R, τ, C₁, N₀` with `σ₀ − 1 < r ≤ |σ₀ − ρ₀|`, `r < R`, `0 < τ`, such that every
-`N₀` consecutive `n ≥ 1` hold one with
-`τ·r^(−n) − C₁/R^(n−1) ≤ Re((−1)^(n−1)·iteratedDeriv (n−1) Phi σ₀)/(n−1)!`.
+### 7b The zeros' reading, from below — PROVED (unit 0397: `LandauZeroSide.zero_side`)
+Objects.   `c = σ₀`, `R₃ = (|σ₀ − ρ₀| + σ₀)/2 < σ₀`, so the closed disc of radius
+           `R₃` lies in `Re s > 0`; `F` its zeros, finite, containing `ρ₀`;
+           `ρ₁ ∈ F` nearest to `σ₀`, `r = |σ₀ − ρ₁|`; `R₂ ∈ (r, R₃]` with every
+           zero in the open disc of radius `R₂` at distance at most `r`
+           (finiteness), hence exactly `r`; `R = (r + R₂)/2`. `P` and `C₀` from
+           unit 0395. `A ρ = m_ρ/(ρ(1−ρ))`, `z ρ = r/(σ₀ − ρ)`,
+           `S k = Σ_{ρ ∈ P} (A ρ·z ρ)·(z ρ)^k`.
+Sizes.     `(σ₀ − ρ)^(−1−k) = (z ρ)^(k+1)/r^(k+1)`, so unit 0395 reads
+           `|Φ^(k)(σ₀) − (−1)^k·k!/r^(k+1)·S k| ≤ k!·C₀/R^k`, and with
+           `Φ^(k)(σ₀) = (−1)^k·Ik` (unit 0396) and `S k` real:
+           `Ik/k! ≥ S k/r^(k+1) − C₀/R^k`. Block 6 on `S`, with coefficients
+           `A ρ·z ρ`: `S k ≥ τ` for some `k` in every `N₀` consecutive. Lost
+           factor: none; `τ, N₀, C₀` depend on `σ₀` and the zeros only.
+Regime.    Z0 `ζ(ρ₀) = 0`. H1 `1 < σ₀`. S2 `‖σ₀ − ρ₀‖ < σ₀` (which gives `0 < Re ρ₀`:
+           the first writing listed that as a hypothesis, the build showed it unused).
+Defs.      none.
+Theorems.  `theorem zero_side {ρ₀ : ℂ} (hz : riemannZeta ρ₀ = 0)
+               {σ₀ : ℝ} (hσ : 1 < σ₀) (hS2 : ‖(σ₀ : ℂ) - ρ₀‖ < σ₀) :
+               ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 < r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r < R ∧
+                 0 < τ ∧ 0 ≤ C₁ ∧ ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N),
+                   τ / r ^ (k + 1) - C₁ / R ^ k ≤ LandauPrimeSide.Ik σ₀ k / k.factorial`
+Composes.  `LandauPoleDisc.Phi_taylor_on_disc`, `LandauTrig.exists_large_in_block`,
+           `LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`; `ContourShift.zeta_order_conj`,
+           `one_le_zeta_order`; Mathlib `riemannZeta_conj`,
+           `riemannZeta_ne_zero_of_one_le_re` (a `lemma`),
+           `riemannZeta_ne_zero_of_one_lt_re` (a `lemma`), `Finset.exists_min_image`,
+           `Finset.sum_nbij'`; upstream `riemannZeta.zeroes_on_Compact_finite'`.
+Module.    `Stage3/LandauZeroSide.lean`, namespace `LandauZeroSide`. Pinned: the one.
+Open.      none.
 
 ### 7c The rates — SKETCH
 The scalar inequalities above: S1 to S3 for `σ₀` large; the two brackets; the
