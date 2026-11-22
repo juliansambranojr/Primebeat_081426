@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the sections and the joints: `SECTIONS.md`
+
+    DONE        `SECTIONS.md` at the repository root: the three Lean trees as
+                seven sections with the statement at each end, ten joints
+                each marked SEALED, WELD or OPEN, and for each OPEN joint
+                what the missing lemma must say; a NOTEPAD line
+    ASSUMED     built from a script over theorem headers plus the files
+                read in full, which the page lists; proofs not read are not
+                vouched for
+    DEPENDS     the trees as merged on main at `355b725`
+    OUT         no Lean, no unit, no joint built; joint 1 was compiled in a
+                scratch file and is not in the tree
+    OUTCOME     done as pinned
+
 ### 2026-11-22 · the Landau window: block 7d of `design/landau.md`, `Stage3/LandauCriterion.lean`
 
     DONE        `Stage3/LandauCriterion.lean` builds with no `sorry`:

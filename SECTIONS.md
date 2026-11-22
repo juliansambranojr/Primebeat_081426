@@ -1,0 +1,118 @@
+# The sections and the joints
+
+What is built in the three Lean trees, as sections with an exact statement at
+each end, and where each joins the next. Written 2026-11-22 for Julian, who
+put the sections together one decision at a time and asked for the build on
+one page.
+
+How this page was made, so it can be remade (CLAUDE.md, "load, don't recall"):
+the module, theorem and statement counts and the list of joints come from a
+script over the `.lean` files (theorem headers that mention a `Stmt*`
+definition, `RiemannHypothesis`, or `tableFrom … ≠ 0`). Read in full by the
+agent: `Stage3/Statement.lean` and the sixteen `Stage3/Landau*.lean`. Read by
+statement only: everything else. A proof that was not read is marked by what
+the build says about it and nothing more.
+
+    tree           toolchain   modules   theorems and lemmas   sorry
+    lean/          v4.28.0     27        334                   0
+    lean_stage3/   v4.32.2     76        872                   1
+    lean_bridge/   v4.33.0-rc2 1         17                    0
+
+The one `sorry` is `WeilPowerAssembly.detect_gap_exists`, declared in its
+block and pinned with `sorryAx`.
+
+## The sections
+
+**A. The table.** `lean/Construction`, `Zeros`, `PairIdentity`.
+The difference table of the dyadic prime counts: its definition, that the row
+forces every cell (`unique_of_isTableOf`), the four exact zeros computed
+(`measured_zeros_all_vanish`), a zero as a repeat one depth up
+(`zero_iff_repeat`), and prime cell plus composite cell equal to
+`(b−1)^(d+1)·b^e` (`pair_identity`). Needs nothing. Everything else stands on it.
+
+**B. Modes and the symbol.** `lean/Chain`, `Superposition`, `Transform`.
+A mode `b^(ρr)` along the rows is multiplied by the symbol at each depth
+(`depth_reweights_each_mode`); the zeros of ζ sit in a fundamental annulus;
+three theorems `RiemannHypothesis ↔ <geometric condition>`. In: nothing.
+Out: how each zero of ζ acts on the table.
+
+**C. The census gate.** `lean/Nonvanishing`, `MainTerm`, `Expansion`,
+`Schoenfeld`, `RelativeGate`.
+A bound on the residual `π(2^m) − L(m)` across a window of rows makes the
+cell nonzero. Two inlets:
+- `StmtSchoenfeldWindow` (RH shape, constant `1/(8π)`) → `tableFrom_ne_zero_of_li`;
+- `StmtRelErrWindow f L r n ρ` (any relative error `ρ`) with the gap
+  `ρ < (log 2)^d / (2·r·3^(d+1))` (`relGate_iff`) → `tableFrom_ne_zero_of_relErr`.
+  `powerSaving_relErr` turns `|f(m) − L(m)| ≤ A·(2^m)^θ`, `θ ≤ 1`, into the
+  second inlet.
+Out: `Construction.tableFrom N r d ≠ 0`.
+
+**D. The dial.** `Stage3/Abscissa`, `LineBound`, `ThetaLine`, `ThetaPull`,
+`ThetaPsi`, `ThetaPi`, `ThetaConverse`, `PsiToPi`, `VonKochScaffold`, `Statement`.
+For `θ` in `[1/2, 1)`:
+- `StmtZeroFreeRight θ ↔ ∃ C x₀, |ψ(t) − t| ≤ C·t^θ·log³t` (`zeroFreeRight_iff_psiWeakTheta`);
+- `StmtZeroFreeRight θ → ∃ C x₀, |π(x) − Li(x)| ≤ C·x^θ·log²x` (`schoenfeldWeakTheta_of_zeroFree`);
+- `RiemannHypothesis ↔` the ψ bound at `θ = 1/2` (`RH_iff_psiWeak`);
+- the `√x` bound carried to the dyadic rows (`weakWindow_of_global`,
+  `weakWindow_at_schoenfeld`, `window_of_global`).
+In: a zero-free half-plane. Out: a bound on the prime residual, for all large `x`.
+
+**E. The count of zeros.** `Stage3/Assembly`, `Glue`, `ArgCrude`, `ArgCount`,
+`ArgIdentity`, `JensenCount`, `Stirling`, `RvMCrude`, `ZeroSum`, and others.
+Riemann–von Mangoldt with explicit constants from the argument of ζ, and the
+explicit formula under RH (`psiWeak_of_RH_EF_NT`). Named statements:
+`StmtSCrude`, `StmtLocalCount`, `StmtArgIdentity`, `StmtBacklundPhase` (each
+has a `_holds` theorem), `StmtSFromLocal`, `StmtExplicitFormulaPoly`. Not
+read; the status of each leaf is its own unit's to state.
+
+**F. The Weil ladder.** `Stage3/Weil*` (about thirty modules),
+`WeilBridgeLeaf`, `lean_bridge/`.
+Weil's form on a window, to detect a zero off the line:
+`box_empty_of_positive_of_detect` from `StmtWeilPositive` and `StmtDetect`;
+`zeroForm_eq_primeSide` from `StmtWeilBridge`, which `lean_bridge` proves
+against zeta23 (`stmtWeilBridge_holds`). Open inside it: `StmtDetectGap`
+(the `sorry`), `StmtShortCount`, `StmtWeilPositive`. Worksheet:
+`lean_stage3/design/rung5.md`.
+
+**G. The Landau window.** `Stage3/Landau*` (sixteen modules, units 0384–0399).
+`WindowBound θ δ C → ∀ s, θ < Re s → ζ(s) ≠ 0` (`stmtLandauWindow`), and
+`rh_of_windows`. In: a one-sided bound on `G` on long windows, proved
+nowhere. Out: a zero-free half-plane.
+
+## The joints
+
+SEALED = one tree, the kernel checks it. WELD = two trees, the statement is
+copied and `utilities/check_weld.py` compares the text. OPEN = the lemma is
+not in any tree; what it must say is written out.
+
+| # | From → to | Status |
+|---|---|---|
+| 1 | G → D: `WindowBound θ δ C → StmtZeroFreeRight θ` | OPEN, one line. Compiled in a scratch file 2026-11-22 from `stmtLandauWindow`; standard axioms. Not in the tree. |
+| 2 | D inside: zero-free at `θ` → `|π − Li| ≤ C·x^θ·log²x` | SEALED (`schoenfeldWeakTheta_of_zeroFree`). Joint 1 composes with it; checked the same day. |
+| 3 | D → the dyadic rows at exponent `θ` | OPEN. `weakWindow_of_global` does it for the `√x` family. Needed: `StmtSchoenfeldWeakTheta θ C k x₀ pi li` and `x₀ ≤ 2^(r−n)` give `|f(r−j) − L(r−j)| ≤ C·(2^(r−j))^θ·(log 2·(r−j))^k` on the window. The proof is `weakWindow_of_global`'s with `√` replaced by the power `θ`. |
+| 4 | the logarithm into the exponent | OPEN. `powerSaving_relErr` takes `A·(2^m)^θ` with no logarithm. Needed: for `θ < θ' ≤ 1`, `C·x^θ·(log x)^k ≤ A·x^θ'` for `x ≥ x₁`; or a version of `powerSaving_relErr` that carries `(log 2·m)^k`. |
+| 5 | D (v4.32) → C (v4.28): `StmtRelErrWindow` | OPEN WELD. `check_weld.py` holds nine welds; `StmtRelErrWindow` is not among them. Needed: the definition copied into Stage 3 and one entry in `WELDS`. |
+| 6 | C inside: `StmtRelErrWindow` and the gap → cell `≠ 0` | SEALED in `lean/` (`tableFrom_ne_zero_of_relErr`, `relGate_iff`). It also asks `hM`, a lower bound on the main term's stencil, and `hrow`, that the row is the count. Whether `L = Li` at the dyadic points meets `hM` as stated was not checked. |
+| 7 | D ↔ C at the RH shape: `StmtSchoenfeldWindow`, `StmtSchoenfeld` | WELD, in `check_weld.py`; Stage 3 reproves `window_of_global` on its side. |
+| 8 | F → zeta23: `StmtWeilBridge` and five definitions | WELD, in `check_weld.py`; proved in `lean_bridge`. |
+| 9 | B → C or D: the symbol's action on a mode, as a bound on the residual | OPEN, and no statement for it is written anywhere. Section B says what each zero does to a cell; no theorem turns that into the residual bound C takes or D gives. |
+| 10 | the rows → all `x` | OPEN, the missing section. D's converse (`zeroFreeRight_of_psiWeakTheta`) needs the bound at every `t`. The table knows the residual at `2^m` only. Nothing carries a bound on the rows to a bound between them. |
+
+## What the tunnel carries once joints 1, 3, 4, 5 are in
+
+    a window bound on G at θ          (hypothesis, proved nowhere)
+      → no zero of ζ right of θ       G, proved
+      → |π − Li| ≤ C·x^θ·log²x        D, proved
+      → the residual along the rows   joints 3, 4
+      → relative error ρ(r) on a window, decaying like 2^(r(θ'−1))   C
+      → at each depth d, cell (r, d) ≠ 0 for every r past some r₀(d) C
+
+Two things about that last line, both from the files:
+- `C` and `x₀` in section D are existential, so `r₀(d)` has no number.
+- `lean/RelativeGate.lean` says in its header that the prime number theorem
+  alone already gives the gate at every depth for some crossover rung. So
+  the conclusion "finitely many zeros at each depth" does not need the window
+  bound. What a bound at `θ < 1` adds is the rate at which the gap closes.
+
+The direction from the table to ζ, a fact about cells that forces a zero-free
+half-plane, is joint 10 and joint 9. Neither has a statement yet.
