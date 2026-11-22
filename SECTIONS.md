@@ -96,7 +96,7 @@ not in any tree; what it must say is written out.
 | 7 | D ↔ C at the RH shape: `StmtSchoenfeldWindow`, `StmtSchoenfeld` | WELD, in `check_weld.py`; Stage 3 reproves `window_of_global` on its side. |
 | 8 | F → zeta23: `StmtWeilBridge` and five definitions | WELD, in `check_weld.py`; proved in `lean_bridge`. |
 | 9 | B → D: the table's rows force the zero-free region | DRAFT, CORRECTED 2026-11-22 (`lean_stage3/design/joints.md` block 9 and its correction); nothing built. The forward statement holds: the table of `G` is the zero sum reweighted by the symbol. The converse, `|G(2^r)| ≤ C·2^(θr)` ⇒ no zero right of `θ`, is derived only when the largest real part of a zero is attained. In general the aliases of the zeros are dense on vertical lines and the argument fails; open. |
-| 10 | the rows → all `x` | OPEN, and it is the obstruction in joint 9: the step from a bound at every `y` to a bound at the doublings. Sampling once per doubling folds the zeros' heights modulo `2π/log 2`. |
+| 10 | the rows → all `x` | OPEN for one ladder, and it is the obstruction in joint 9: on any ladder of fixed ratio the zeros' heights fold onto the whole circle. Every ladder at once is every `y` (`joints.md`, 9d): a bound on all rational-base ladders in a window gives `WindowBound`, short and nearly without content. A finite set of bases: not known. |
 
 ## What the tunnel carries once joints 3, 4, 5 are in (joint 1 is sealed)
 

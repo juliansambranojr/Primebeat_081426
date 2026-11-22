@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 9, way (b): checked before building
+
+    DONE        `lean_stage3/design/joints.md`: way (b) worked through; its
+                premise (a finer ladder brings the type below π) is wrong,
+                the heights of the zeros being unbounded; a second route by
+                convexity is closed; what is true, 9d (every rational base at
+                once gives `WindowBound`), is stated; `SECTIONS.md` joint 10
+                restated; a NOTEPAD line
+    ASSUMED     hand derivation; nothing built or measured
+    DEPENDS     the draft and its first correction, the same day
+    OUT         no Lean; whether to build 9d, 9c′ or the forward 9a is
+                Julian's
+    OUTCOME     done as pinned; nothing built
+
 ### 2026-11-22 · joint 9: the draft corrected before building
 
     DONE        `lean_stage3/design/joints.md` block 9 correction: the

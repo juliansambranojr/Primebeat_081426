@@ -162,3 +162,44 @@ Three ways on, for Julian to choose:
     sum reweighted by the symbol), which is true without any of this, and
     state the converse as open.
 
+#### Way (b), checked before building — 2026-11-22
+Julian chose (b): change what is sampled so that the transfer theorems apply.
+Worked through before any Lean. The premise of (b) as written above is wrong.
+
+WHAT WAS WRONG. "A ladder finer than doubling brings the type below `π`."
+Along a ladder of ratio `b`, a zero at height `γ` has frequency `γ·log b`
+per step, seen modulo `2π`. A finer ladder shrinks each frequency, but the
+heights of the zeros are unbounded, so on every ladder the frequencies still
+fill the whole circle. The folded band is `(−π, π]` for every fixed ratio.
+No fixed-ratio ladder is fine enough, and the same holds for any finite set
+of ladders: the samples have finite density in `log y` and the signal has
+unbounded frequencies.
+
+A second route, also closed. `rampSum` is convex and increasing, so between
+two samples `G` lies under its chord up to the curvature of the main term
+`y·log y`, which is `η²y/8` across a step of ratio `1 + η`. For that to stay
+below `y^θ` the ratio must tighten like `1 + y^((θ−1)/2)` as `y` grows. No
+fixed ratio does.
+
+WHAT IS TRUE. Every ladder at once is every `y`: the points `b^r` over all
+bases `b` in `(1, 2]` and all `r` cover the half-line. `G` is continuous, so
+the rational bases suffice. Hence
+
+9d (derived; short). If `G(b^r) ≤ C·(b^r)^θ` for every rational base `b` in
+`(1, 2]` and every `r` with `b^r` in a window `[Y, Y^(1+δ)]`, for arbitrarily
+large `Y`, with one constant `C` for all bases, then `WindowBound θ δ C`, and
+`LandauCriterion.stmtLandauWindow` gives no zero right of `θ`.
+
+This is a true joint from the family of all base-`b` tables of `G` to the
+criterion, and it is nearly without content: it says a bound on every ladder
+is a bound everywhere. Its use is to say exactly what the tables must supply:
+one ladder is not known to be enough, every ladder is, and whether some
+countable family short of all of them is enough is open.
+
+So the map stands corrected a third time:
+- one base, all large rows, both sides: enough when the largest real part of
+  a zero is attained (9c′); open otherwise;
+- every base, a window, one side: enough (9d with today's criterion);
+- a fixed finite set of bases: not known, and the general transfer theorems
+  do not give it.
+
