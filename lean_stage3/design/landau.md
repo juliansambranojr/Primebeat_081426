@@ -665,9 +665,37 @@ Composes.  `LandauPoleDisc.Phi_taylor_on_disc`, `LandauTrig.exists_large_in_bloc
 Module.    `Stage3/LandauZeroSide.lean`, namespace `LandauZeroSide`. Pinned: the one.
 Open.      none.
 
-### 7c The rates — SKETCH
-The scalar inequalities above: S1 to S3 for `σ₀` large; the two brackets; the
-four terms below `τ/4` for `U` large.
+### 7c The rates — PROVED (unit 0398: `LandauRates.key_ineq`, `exists_centre`, `exists_pow_small`)
+The design above fixed the range of `n` and checked two brackets. What the
+existence of a range needs is one inequality. With `b = aδ/3`, `b' = aδ/12`,
+`L3 = log((a+b)/r) = log(1+δ/3) − λ` and `L4 = log(r/(a−b')) = λ − log(1−δ/12)`:
+`t3 = 8·exp(bU − n·L3)` and `t4 = 8·exp(−b'(1+δ)U + n·L4)`, and both are at most
+`8·exp(−μU)` for `n` between `(b+μ)U/L3` and `(b'(1+δ)−μ)U/L4`. That interval is
+nonempty for a small `μ > 0` exactly when `b·L4 < b'(1+δ)·L3`, which is
+    K   4(λ − log(1−δ/12)) < (1+δ)(log(1+δ/3) − λ).
+Proof of K, by hand: `log y ≤ y − 1` at `y = 1/(1−x)` and at `y = 1/(1+t)` gives
+`−log(1−x) ≤ x/(1−x) ≤ x + (12/11)x²` for `x ≤ 1/12` and
+`log(1+t) ≥ t/(1+t) ≥ t − t²`. With `x = δ/12`, `t = δ/3`: the left side is at
+most `4λ + δ/3 + δ²/33`, the right at least `δ/3 + δ²/9 − 2λ` (using `δ³ ≤ δ²`),
+and `6λ ≤ δ²/40 < δ²(1/9 − 1/33)`. Checked on a grid, 2026-11-22.
+Objects.   as above. Lost factor: none; these are the rates themselves.
+Regime.    `0 < δ ≤ 1`, `0 ≤ λ ≤ δ²/240`.
+Defs.      none.
+Theorems.  `theorem key_ineq {δ lam : ℝ} (hδ0 : 0 < δ) (hδ1 : δ ≤ 1) (hl0 : 0 ≤ lam)
+               (hl : lam ≤ δ ^ 2 / 240) :
+               4 * (lam - Real.log (1 - δ / 12)) < (1 + δ) * (Real.log (1 + δ / 3) - lam)
+                 ∧ 0 < Real.log (1 + δ / 3) - lam ∧ 0 < lam - Real.log (1 - δ / 12)`
+           `theorem exists_centre {ρ₀ : ℂ} {θ δ : ℝ} (hθ0 : 0 ≤ θ) (hθ : θ < ρ₀.re)
+               (h1 : ρ₀.re < 1) (hδ : 0 < δ) :
+               ∃ σ₀ : ℝ, 1 < σ₀ ∧ ‖(σ₀ : ℂ) - ρ₀‖ < σ₀ - θ
+                 ∧ ‖(σ₀ : ℂ) - ρ₀‖ ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240)`
+           `theorem exists_pow_small {q c ε : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (hε : 0 < ε) :
+               ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k < ε`
+Composes.  Mathlib `Real.log_le_sub_one_of_pos`, `Real.log_inv`,
+           `tendsto_pow_atTop_nhds_zero_of_lt_one`, `Complex.sq_norm`,
+           `Complex.norm_le_abs_re_add_abs_im`.
+Module.    `Stage3/LandauRates.lean`, namespace `LandauRates`, `import Mathlib`. Pinned: all three.
+Open.      none.
 
 ### 7d `StmtLandauWindow` — SKETCH
 From 7a, 7b, 7c and `WindowBound`. With unit 0384's `rh_of_window`, the chain

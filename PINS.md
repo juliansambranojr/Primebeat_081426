@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 7c of `design/landau.md`, `Stage3/LandauRates.lean`
+
+    DONE        `Stage3/LandauRates.lean` builds with no `sorry`: `key_ineq`
+                (the one inequality between the two tail rates), `exists_centre`
+                (a real `σ₀` with S1 and S3 of the design), `exists_pow_small`;
+                a formalization unit; block 7c marked PROVED
+    ASSUMED     the design's two brackets are replaced by one inequality,
+                `4(λ − log(1−δ/12)) < (1+δ)(log(1+δ/3) − λ)`, which is what the
+                existence of a range of `k` needs; the range is then chosen
+                from it in block 7d, in place of the design's fixed range
+    DEPENDS     Mathlib `Real.log_le_sub_one_of_pos`
+    OUT         block 7d; `StmtLandauWindow` stays a leaf
+    OUTCOME     done as pinned, unit 0398: three theorems, no `sorry`, clean
+                on the first build
+
 ### 2026-11-22 · the Landau window: block 7b of `design/landau.md`, `Stage3/LandauZeroSide.lean`
 
     DONE        `Stage3/LandauZeroSide.lean` builds with no `sorry`:

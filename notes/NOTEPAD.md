@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0398: LandauRates.lean, block 7c of landau.md PROVED: key_ineq (the two tail rates leave a common index range, for lambda <= delta^2/240), exists_centre, exists_pow_small; the hand rates of unit 0391 are not used; next: 7d, the criterion
 - [open]   2026-11-22  unit 0397: LandauZeroSide.lean, block 7b of landau.md PROVED: a zero rho0 and real sigma0 > 1 with |sigma0 - rho0| < sigma0 give r, R, tau, C1, N0 with tau/r^(k+1) - C1/R^k <= Ik/k! for some k in every N0 consecutive; next: 7c (rates), 7d (the criterion)
 - [open]   2026-11-22  unit 0396: block 7 of landau.md designed in the worksheet and split into 7a-7d; LandauPrimeSide.lean, block 7a PROVED: Ik (the primes' reading) <= window term + two tail terms, from G <= C y^theta on a window and G <= 8y; next: 7b (zeros' reading from below), 7c (rates), 7d
 - [open]   2026-11-22  unit 0395: LandauPoleDisc.lean, block 3b2 of landau.md PROVED, closing block 3: the k-th derivative of `Phi` at a regular centre = the sum over zeros in a disc of m/(rho(1-rho))·(-1)^k k! (c-rho)^(-1-k), up to k!·C/R^k; only block 7, the assembly, remains
