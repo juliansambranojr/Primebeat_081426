@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-22T20:07:14Z
+# unit: 0431-one-ladder-general-case-obstruction
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11113
+  Source: session transcript, 2026-11-22, after the merge of pull request 8
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10586
+  The harder general case
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10815
+  theorem mean_extract {ι : Type*} (w C : ι → ℂ) (hw : ∀ i, ‖w i‖ = 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10816
+  (hC : Summable fun i => ‖C i‖) (k : ι)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10817
+  (h : Tendsto (fun r : ℕ => ∑' i, C i * w i ^ r) atTop (𝓝 0)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10818
+  ∑' i, (if w i = w k then C i else 0) = 0 := by
+
+# 6 found, 0 missing

@@ -196,6 +196,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPower.cK_one`](./lean_stage3/WeilPower.md#WeilPower-cK_one) | theorem | `WeilPower` | cK 1 = Real.pi ^ 2 |
 | [`WeilPower.cK_succ`](./lean_stage3/WeilPower.md#WeilPower-cK_succ) | theorem | `WeilPower` | cK (m + 1) = ((m : ℝ) + 1) * (2 * (m : ℝ) + 1) * Real.pi ^ 2 / 2 * cK m |
 | [`PerronKernel.coarse_gt_ineq`](./lean_stage3/PerronKernel.md#PerronKernel-coarse_gt_ineq) | theorem | `PerronKernel` | v * Real.exp u + Real.pi - Real.arctan (v / u) ≤ Real.pi * Real.exp u |
+| [`LadderMean.coef`](./lean_stage3/LadderMean.md#LadderMean-coef) | def | `LadderMean` | ℂ |
 | [`WeilPowerShell.coef`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-coef) | def | `WeilPowerShell` | ℂ |
 | [`PairIdentity.coeff_eq_one_iff_base_two`](./lean/PairIdentity.md#PairIdentity-coeff_eq_one_iff_base_two) | theorem | `PairIdentity` | (b - 1) ^ (d + 1) = 1 ↔ b = 2 |
 | [`WeilPowerCompare.compare_le`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-compare_le) | theorem | `WeilPowerCompare` | ‖S m w‖ ≤ (2 * (m : ℝ) + 3) * (‖w‖ / s) * Real.exp (Eup m w - Elow m s) * (S m (s : ℂ)).re |
@@ -472,6 +473,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.gens`](./lean/Transform.md#Transform-gens) | def | `Transform` | Fin 2 → ℂ |
 | [`Transform.gens_linearIndependent`](./lean/Transform.md#Transform-gens_linearIndependent) | theorem | `Transform` | LinearIndependent ℝ (gens b) |
 | [`WeilPowerGeom.geom_Ico`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-geom_Ico) | theorem | `WeilPowerGeom` | ∑ m ∈ Finset.Ico a b, x ^ m = (x ^ b - x ^ a) / (x - 1) |
+| [`LadderMean.geom_mean_norm_le`](./lean_stage3/LadderMean.md#LadderMean-geom_mean_norm_le) | theorem | `LadderMean` | ‖((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r‖ ≤ 1 |
+| [`LadderMean.geom_mean_tendsto_zero`](./lean_stage3/LadderMean.md#LadderMean-geom_mean_tendsto_zero) | theorem | `LadderMean` | Tendsto (fun N : ℕ =&gt; ((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r) atTop (𝓝 0) |
 | [`WeilPowerGeom.geomBound`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-geomBound) | def | `WeilPowerGeom` | ℝ |
 | [`WeilPowerShell.geomBound_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-geomBound_le) | theorem | `WeilPowerShell` | WeilPowerGeomGen.geomBoundGen (zOf e' D e) (1 / ((lam : ℝ) * Real.pi ^ 2)) (-1 / (2 * (lam : ℝ) ^ 2 * Real.pi ^ 2)) a b ≤ Real.exp (2 * eta * (b : ℝ) / ((lam : ℝ) * Real.pi ^ 2)) * (lam : ℝ) * Real.pi… |
 | [`WeilPowerGeomGen.geomBoundGen`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-geomBoundGen) | def | `WeilPowerGeomGen` | ℝ |
@@ -661,6 +664,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiToPsi.Li_two`](./lean_stage3/PiToPsi.md#PiToPsi-Li_two) | theorem | `PiToPsi` | Stage3.Li 2 = 2 / Real.log 2 |
 | [`Stage3.Li_two_rpow`](./lean_stage3/RowLeaves.md#Stage3-Li_two_rpow) | theorem | `RowLeaves` | Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.log 2 * t) / t |
 | [`LadderFading.line_not_fading`](./lean_stage3/LadderFading.md#LadderFading-line_not_fading) | theorem | `LadderFading` | ¬ Tendsto (fun r : ℕ =&gt; (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0) |
+| [`LadderMean.line_not_fading_summable`](./lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) | theorem | `LadderMean` | ¬ Tendsto (fun r : ℕ =&gt; (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop… |
 | [`Interpolant.liRow`](./lean/Interpolant.md#Interpolant-liRow) | def | `Interpolant` | ℝ |
 | [`Interpolant.liRow_contDiff`](./lean/Interpolant.md#Interpolant-liRow_contDiff) | theorem | `Interpolant` | ContDiff ℝ (⊤ : ℕ∞) liRow |
 | [`Interpolant.liRow_eq`](./lean/Interpolant.md#Interpolant-liRow_eq) | theorem | `Interpolant` | liRow x = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t |
@@ -739,6 +743,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGeomGen.MabGen`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-MabGen) | def | `WeilPowerGeomGen` | ℝ |
 | [`WeilPowerShell.MabGen_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-MabGen_le) | theorem | `WeilPowerShell` | WeilPowerGeomGen.MabGen (zOf e' D e) (1 / ((lam : ℝ) * Real.pi ^ 2)) (-1 / (2 * (lam : ℝ) ^ 2 * Real.pi ^ 2)) a b ≤ Real.exp (2 * eta * (b : ℝ) / ((lam : ℝ) * Real.pi ^ 2)) |
 | [`ArgCount.mainTerm_abs_le`](./lean_stage3/ArgCount.md#ArgCount-mainTerm_abs_le) | theorem | `ArgCount` | \|Kadiri.zetaCountingMainTerm T\| ≤ 3 |
+| [`LadderMean.mean_extract`](./lean_stage3/LadderMean.md#LadderMean-mean_extract) | theorem | `LadderMean` | ∑' i, (if w i = w k then C i else 0) = 0 |
 | [`VonKoch.measurable_psi`](./lean_stage3/VonKochScaffold.md#VonKoch-measurable_psi) | theorem | `VonKochScaffold` | Measurable (fun t : ℝ ↦ ψ t) |
 | [`VonKoch.measurable_psi'`](./lean_stage3/VonKochScaffold.md#VonKoch-measurable_psi-) | theorem | `VonKochScaffold` | Measurable (fun t : ℝ ↦ ψ t) |
 | [`GeneratorPeak.measured`](./lean/GeneratorPeak.md#GeneratorPeak-measured) | def | `GeneratorPeak` | List ℝ |
@@ -1710,6 +1715,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.zmap_period_zsmul`](./lean/Transform.md#Transform-zmap_period_zsmul) | theorem | `Transform` | (b : ℂ) ^ (-(s + (n : ℂ) * ((tau b : ℂ) * I))) = (b : ℂ) ^ (-s) |
 | [`Transform.zmap_shift`](./lean/Transform.md#Transform-zmap_shift) | theorem | `Transform` | (b : ℂ) ^ (-(s + 1)) = (b : ℂ) ^ (-s) / (b : ℂ) |
 | [`Transform.zmap_shift_modulus`](./lean/Transform.md#Transform-zmap_shift_modulus) | theorem | `Transform` | ‖(b : ℂ) ^ (-(s + n))‖ = ‖(b : ℂ) ^ (-s)‖ / b ^ n |
+| [`LadderMean.zOf`](./lean_stage3/LadderMean.md#LadderMean-zOf) | def | `LadderMean` | ℂ |
 | [`WeilPowerShell.zOf`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-zOf) | def | `WeilPowerShell` | ℂ |
 | [`WeilPowerShell.zOf_im`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-zOf_im) | theorem | `WeilPowerShell` | (zOf e' D e).im = 4 * e' * D |
 | [`WeilPowerShell.zOf_re`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-zOf_re) | theorem | `WeilPowerShell` | (zOf e' D e).re = 2 * (e' ^ 2 - D ^ 2 - e ^ 2) |

@@ -5,7 +5,7 @@ LadderFading — block J10b of `lean_stage3/design/joints.md`. 2026-11-22. Joint
 4 theorems, 0 definitions, 162 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AliasClass`](../lean_stage3/AliasClass.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderMean`](../lean_stage3/LadderMean.md)
 
 ## The picture
 
@@ -15,11 +15,13 @@ flowchart LR
   n1["<b>not_tendsto_powerSum</b><br/>∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖…"]:::thm
   n2["<b>one_sub_inv_ne_zero</b><br/>(1 : ℂ) - z⁻¹ ≠ 0"]:::thm
   n3["<b>line_not_fading</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) :…"]:::end_
-  x0(["<b>AliasClass</b><br/>alias_weight<br/>sum_order_div_ne_zero<br/>zero_re_pos"]):::ext
+  x0(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
+  x1(["<b>AliasClass</b><br/>alias_weight<br/>sum_order_div_ne_zero<br/>zero_re_pos"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
-  x0 -.-> n3
+  n2 -.-> x0
+  x1 -.-> n3
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -101,9 +103,10 @@ line 92
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LadderFading.line_not_fading`](#LadderFading-line_not_fading) — `` ¬ Tendsto (fun r : ℕ => (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) … ``
+  - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 
 <a name="LadderFading-line_not_fading"></a>
 ### `LadderFading.line_not_fading`

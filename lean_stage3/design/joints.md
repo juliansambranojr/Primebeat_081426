@@ -871,3 +871,30 @@ truncated explicit formula at heights above `x²` (`hTx : T ≤ x²` today). Not
 opened: upstream's `FioriKadiriSwidinsky` and `BKLNW_app`, which name zero
 density.
 
+### J10c Infinitely many zeros on one line do not fade — PROVED (unit 0432: `LadderMean.mean_extract`, `line_not_fading_summable`), summability a hypothesis; the general case's stopping point is unit 0431
+
+J10b by induction reaches finitely many modes. For infinitely many on one
+circle, average along the rows.
+
+**The mechanism.** Let `h(r) = Σ_i C_i·w_i^r` with `|w_i| = 1` and
+`Σ |C_i| < ∞`. Fix `k`. The mean over `r < N` of `h(r)·w_k^(−r)` is
+`Σ_i C_i·A_N(w_i/w_k)`, where `A_N(ξ)` is the mean of `ξ^r`: it is `1` when
+`ξ = 1`, at most `2/(N·|ξ − 1|)` otherwise, and at most `1` always. By
+dominated convergence the mean tends to `Σ_{w_i = w_k} C_i`, the weight of the
+folded class of `k`. If `h(r) → 0` the mean tends to `0`. So every folded
+class has weight `0`.
+
+**Theorems** (`LadderMean`):
+
+- `geom_mean_norm_le`, `geom_mean_tendsto_zero`: the two facts about `A_N`.
+- `mean_extract`: `‖w i‖ = 1`, `Summable ‖C i‖`, `Σ' i, C i·w i^r → 0`
+  ⊢ `Σ' i, (if w i = w k then C i else 0) = 0`.
+- `line_not_fading_summable`: `S` a set of zeros with `Re ρ = β` on `S`,
+  `ρ₀ ∈ S`, `Summable ‖m(ρ)/ρ‖` over `S`, any depth `d`
+  ⊢ `Σ' ρ ∈ S, m(ρ)/ρ·Sym 2 ρ^d·mode 2 ρ r / (2^β)^r` does not tend to `0`.
+  The class of `ρ₀` has weight `(Σ m/ρ)·(1 − z₀⁻¹)^d`; the sum has positive
+  real part (J10a, now for infinitely many terms).
+
+**What this does not reach.** It needs one line to dominate. See the decision
+unit for the case with no largest real part.
+

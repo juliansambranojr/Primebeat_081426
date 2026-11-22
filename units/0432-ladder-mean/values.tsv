@@ -1,0 +1,16 @@
+key	value	source
+module_lines	229	wc -l lean_stage3/Stage3/LadderMean.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/LadderMean.lean
+defs	2	grep -c ^def lean_stage3/Stage3/LadderMean.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LadderMean.lean
+pins	2	mean_extract, line_not_fading_summable
+errors_first	0	first lake build Stage3.LadderMean, grep -c of its error lines
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	1	hsum, the summability of the coefficients over the set of zeros
+jobs_package	8828	lake build (full Stage3), Build completed successfully
+jobs_module	8744	run/build.log, lake build Stage3.LadderMean
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#j10c	infinitely many zeros on one line do not fade
+steps_skipped	1	LOOP.md section 0 (no orient hook in a cloud session); section 2's name pass was run in Scratch.lean and the file deleted

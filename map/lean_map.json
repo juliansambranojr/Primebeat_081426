@@ -92,7 +92,8 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.sym_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two",
-     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
    {
@@ -140,7 +141,8 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
-     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
    {
@@ -14463,7 +14465,8 @@
     "used_by": [
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
-     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
    {
@@ -14491,7 +14494,8 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos"
     ],
     "used_by": [
-     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero"
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
    {
@@ -18580,7 +18584,8 @@
     "used_by": [
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
-     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum"
+     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
    {
@@ -18608,7 +18613,8 @@
     "used_by": [
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.sym_eq_of_alias",
-     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum"
+     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
    {
@@ -25128,7 +25134,8 @@
     "exact": true,
     "uses": [],
     "used_by": [
-     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
    {
@@ -25168,6 +25175,202 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos",
      "lean_stage3/Stage3/LadderFading.lean::LadderFading.not_tendsto_powerSum",
      "lean_stage3/Stage3/LadderFading.lean::LadderFading.one_sub_inv_ne_zero"
+    ],
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LadderMean.lean",
+  "module": "Stage3.LadderMean",
+  "stem": "LadderMean",
+  "header": "LadderMean — block J10c of `lean_stage3/design/joints.md`. 2026-11-22. Joint 10 on the table's own ladder, third piece. `LadderFading` showed that finitely many modes of one size cannot fade. Here the modes may be infinitely many, with weights that are absolutely summable: averaging along the rows picks out the weight of one folded class, so a sum that fades has every folded class of weight zero. For the zeros of ζ on one vertical line the folded classes have weight with positive real part, so they cannot fade.",
+  "imports": [
+   "Stage3.LadderFading"
+  ],
+  "opens": [
+   "Filter",
+   "Finset",
+   "Topology"
+  ],
+  "namespaces": [
+   "LadderMean"
+  ],
+  "lines": 230,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/LadderFading.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "geom_mean_norm_le",
+    "ns": "LadderMean",
+    "full": "LadderMean.geom_mean_norm_le",
+    "line": 35,
+    "why": "The mean of the powers of a point on the unit circle is at most one in size.",
+    "sorry": false,
+    "needs": [
+     "hξ : ‖ξ‖ = 1",
+     "N : ℕ"
+    ],
+    "proves": "‖((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r‖ ≤ 1",
+    "file": "lean_stage3/Stage3/LadderMean.lean",
+    "id": "lean_stage3/Stage3/LadderMean.lean::LadderMean.geom_mean_norm_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.mean_extract"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "geom_mean_tendsto_zero",
+    "ns": "LadderMean",
+    "full": "LadderMean.geom_mean_tendsto_zero",
+    "line": 50,
+    "why": "The mean of the powers of a point on the unit circle other than one tends to zero: a rotation that is not the identity averages out.",
+    "sorry": false,
+    "needs": [
+     "hξ : ‖ξ‖ = 1",
+     "hne : ξ ≠ 1"
+    ],
+    "proves": "Tendsto (fun N : ℕ => ((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/LadderMean.lean",
+    "id": "lean_stage3/Stage3/LadderMean.lean::LadderMean.geom_mean_tendsto_zero",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.mean_extract"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mean_extract",
+    "ns": "LadderMean",
+    "full": "LadderMean.mean_extract",
+    "line": 68,
+    "why": "Averaging along the rows picks out one folded class. If an absolutely summable sum of rotations tends to zero along the rows, then for every mode the weights of all the modes equal to it add to zero.",
+    "sorry": false,
+    "needs": [
+     "w C : ι → ℂ",
+     "hw : ∀ i, ‖w i‖ = 1",
+     "hC : Summable fun i => ‖C i‖",
+     "k : ι",
+     "h : Tendsto (fun r : ℕ => ∑' i, C i * w i ^ r) atTop (𝓝 0)"
+    ],
+    "proves": "∑' i, (if w i = w k then C i else 0) = 0",
+    "file": "lean_stage3/Stage3/LadderMean.lean",
+    "id": "lean_stage3/Stage3/LadderMean.lean::LadderMean.mean_extract",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.geom_mean_norm_le",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.geom_mean_tendsto_zero"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.geom_mean_norm_le",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.geom_mean_tendsto_zero"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "coef",
+    "ns": "LadderMean",
+    "full": "LadderMean.coef",
+    "line": 122,
+    "why": "The coefficient a zero carries in the cell: its multiplicity over the zero.",
+    "sorry": false,
+    "needs": [
+     "ρ : Kadiri.NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LadderMean.lean",
+    "id": "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "zOf",
+    "ns": "LadderMean",
+    "full": "LadderMean.zOf",
+    "line": 126,
+    "why": "The mode of a zero on the ladder: two to the zero.",
+    "sorry": false,
+    "needs": [
+     "ρ : Kadiri.NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LadderMean.lean",
+    "id": "lean_stage3/Stage3/LadderMean.lean::LadderMean.zOf",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "line_not_fading_summable",
+    "ns": "LadderMean",
+    "full": "LadderMean.line_not_fading_summable",
+    "line": 132,
+    "why": "Infinitely many zeros on one line do not fade from the cells. Take any set of zeros of ζ with one real part `β`, with `Σ m(ρ)/|ρ|` finite over it, and one zero in it. Their contribution to the cell `(r, d)` of the table's own ladder, measured against `2^(rβ)`, does not tend to zero as the rows go on.",
+    "sorry": false,
+    "needs": [
+     "S : Set Kadiri.NontrivialZeros",
+     "hβ : ∀ ρ ∈ S, (ρ : ℂ).re = β",
+     "ρ₀ : Kadiri.NontrivialZeros",
+     "hρ₀ : ρ₀ ∈ S",
+     "hsum : Summable fun ρ : S => ‖coef ρ‖",
+     "d : ℕ"
+    ],
+    "proves": "¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/LadderMean.lean",
+    "id": "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable",
+    "stmt": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.one_sub_inv_ne_zero",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.mean_extract",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.zOf"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.one_sub_inv_ne_zero",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.mean_extract",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.zOf"
     ],
     "used_by": []
    }
@@ -59059,11 +59262,12 @@
    "Stage3.PiToPsi",
    "Stage3.CellResidual",
    "Stage3.AliasClass",
-   "Stage3.LadderFading"
+   "Stage3.LadderFading",
+   "Stage3.LadderMean"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 145,
+  "lines": 146,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -59095,6 +59299,7 @@
    "lean_stage3/Stage3/JointSymbol.lean",
    "lean_stage3/Stage3/JointWindowDial.lean",
    "lean_stage3/Stage3/LadderFading.lean",
+   "lean_stage3/Stage3/LadderMean.lean",
    "lean_stage3/Stage3/LandauChebyshev.lean",
    "lean_stage3/Stage3/LandauCriterion.lean",
    "lean_stage3/Stage3/LandauCrude.lean",

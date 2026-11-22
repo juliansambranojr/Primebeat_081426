@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  joint 10, general case (units 0431 decision, 0432 `LadderMean.line_not_fading_summable`): infinitely many zeros on one line cannot fade, given sum m/|rho| finite. STOPS at: largest real part off the line not attained; summable mode sums can vanish at every row when modes accumulate (Wolff, Denjoy). Missing inputs: zero density; explicit formula above height x^2.
 - [open]   2026-11-22  joint 10, second piece (unit 0430, `LadderFading.line_not_fading`): a finite line of zeros cannot fade from the one ladder's cells; proof is the table's own difference. OPEN: infinitely many off-line zeros. On paper (joints.md J10b): with a zero-density estimate it closes when the top real part is attained; no argument when it is not.
 - [open]   2026-11-22  joint 10, first piece (unit 0429, `AliasClass.alias_weight_ne_zero`): on the one ladder 2^r, zeros with the same 2^rho fold into one mode with nonzero weight at every depth; heights fold, real parts do not. OPEN next: from that to 'cells of one ladder cannot stay sqrt-size if a zero is off the line' (power sums at consecutive r).
 - [open]   2026-11-22  T5 SEALED (units 0427, 0428): RH <-> every cell's residual at square-root size, over every dyadic ladder a*2^r, 1<=a<=2 (`CellResidual.RH_iff_cells`); RH <-> sqrt bound on pi-Li (`PiToPsi.RH_iff_schoenfeldWeak`). On the table's own ladder: forward proved (`table_cell_resid`), converse is joint 10.

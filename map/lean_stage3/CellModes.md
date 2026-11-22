@@ -15,12 +15,15 @@ flowchart LR
   n1["<b>sym_two</b><br/>Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹"]:::thm
   n2["<b>cell_eq_modeSum</b><br/>‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : …"]:::end_
   x0(["<b>AliasClass</b><br/>alias_weight<br/>mode_eq_of_alias<br/>sym_eq_of_alias"]):::ext
-  x1(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x1(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
+  x2(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
   n0 --> n2
   n1 --> n2
   n0 -.-> x0
+  n0 -.-> x1
   n1 -.-> x0
-  x1 -.-> n2
+  n1 -.-> x1
+  x2 -.-> n2
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -52,11 +55,12 @@ Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`AliasClass.alias_weight`](../lean_stage3/AliasClass.md#AliasClass-alias_weight) (AliasClass) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) = (∑ ρ ∈ S, (((riemannZeta.order (… ``
   - [`AliasClass.mode_eq_of_alias`](../lean_stage3/AliasClass.md#AliasClass-mode_eq_of_alias) (AliasClass) — `` Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ) ``
   - [`CellModes.cell_eq_modeSum`](#CellModes-cell_eq_modeSum) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
+  - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 
 <a name="CellModes-sym_two"></a>
 ### `CellModes.sym_two`
@@ -77,11 +81,12 @@ Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`AliasClass.alias_weight`](../lean_stage3/AliasClass.md#AliasClass-alias_weight) (AliasClass) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) = (∑ ρ ∈ S, (((riemannZeta.order (… ``
   - [`AliasClass.sym_eq_of_alias`](../lean_stage3/AliasClass.md#AliasClass-sym_eq_of_alias) (AliasClass) — `` Chain.Sym 2 ρ = Chain.Sym 2 ρ' ``
   - [`CellModes.cell_eq_modeSum`](#CellModes-cell_eq_modeSum) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
+  - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 
 <a name="CellModes-cell_eq_modeSum"></a>
 ### `CellModes.cell_eq_modeSum`

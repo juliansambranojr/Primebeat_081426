@@ -22,6 +22,30 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 10 on one ladder, the general case: a decision unit, and `Stage3/LadderMean.lean`, block J10c of `joints.md`
+
+    DONE        a decision unit recording where the general case stops: the
+                reduction (zero density, then an absolutely summable sum of
+                modes), the obstruction (summable sums of modes can vanish at
+                every row when the modes accumulate; Wolff, Denjoy), the
+                sub-case that closes (largest real part attained) and the one
+                with no argument (not attained). `LadderMean`: an absolutely
+                summable sum of rotations that tends to zero has every folded
+                class summing to zero (`mean_extract`, by averaging along the
+                rows); so infinitely many zeros on one vertical line, with
+                `Σ m/|ρ|` finite, cannot fade from the cells
+                (`line_not_fading_summable`); one Lean unit
+    ASSUMED     Julian, 2026-11-22: "The harder general case". The general
+                case is not closed by this; the decision unit says where and
+                why. Summability of `Σ m/|ρ|` over the zeros off the line is a
+                hypothesis of the theorem; it follows from a zero-density
+                estimate that is not in the tree
+    DEPENDS     units 0429, 0430
+    OUT         the zero-density estimate; the sub-case with no largest real
+                part; the converse itself
+    OUTCOME     done as pinned; units 0431 (decision) and 0432 (`LadderMean`,
+                clean on its first build)
+
 ### 2026-11-22 · joint 10 on one ladder, second piece: `Stage3/LadderFading.lean`, block J10b of `joints.md`
 
     DONE        `not_tendsto_powerSum`: finitely many distinct modes of one

@@ -20,7 +20,8 @@ flowchart LR
   n6["<b>alias_weight</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Cha…"]:::thm
   n7["<b>alias_weight_ne_zero</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Cha…"]:::end_
   x0(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x1(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x1(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
+  x2(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n7
@@ -28,11 +29,13 @@ flowchart LR
   n3 --> n7
   n6 --> n7
   n1 -.-> x0
+  n1 -.-> x1
+  n2 -.-> x1
   n3 -.-> x0
   n6 -.-> x0
-  x1 -.-> n4
-  x1 -.-> n5
-  x1 -.-> n6
+  x2 -.-> n4
+  x2 -.-> n5
+  x2 -.-> n6
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -86,11 +89,12 @@ line 42
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`AliasClass.alias_weight_ne_zero`](#AliasClass-alias_weight_ne_zero) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) ≠ 0 ``
   - [`AliasClass.re_order_div_pos`](#AliasClass-re_order_div_pos) — `` 0 < ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re ``
   - [`LadderFading.line_not_fading`](../lean_stage3/LadderFading.md#LadderFading-line_not_fading) (LadderFading) — `` ¬ Tendsto (fun r : ℕ => (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) … ``
+  - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 
 <a name="AliasClass-re_order_div_pos"></a>
 ### `AliasClass.re_order_div_pos`
@@ -114,9 +118,10 @@ line 45
   - [`AliasClass.re_inv_pos`](#AliasClass-re_inv_pos) — `` 0 < (ρ⁻¹).re ``
   - [`AliasClass.zero_re_pos`](#AliasClass-zero_re_pos) — `` 0 < (ρ : ℂ).re ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`AliasClass.sum_order_div_ne_zero`](#AliasClass-sum_order_div_ne_zero) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) ≠ 0 ``
+  - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 
 <a name="AliasClass-sum_order_div_ne_zero"></a>
 ### `AliasClass.sum_order_div_ne_zero`
