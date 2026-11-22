@@ -1,0 +1,35 @@
+flowchart LR
+  n0["sample<br/>(def)"]:::dfn
+  n1["Aliases<br/>(def)"]:::dfn
+  n2["aliases_of_offset<br/>⊢ Aliases b γ (γ - 2 * π * k / Real.log b)"]:::thm
+  n3["nyquist<br/>(def)"]:::dfn
+  n4["nyquist_no_go<br/>⊢ ∃ γ', |γ'| ＜ |γ| ∧ Aliases b γ γ'"]:::thm
+  n5["base_bound_of_resolvable<br/>⊢ b ≤ Real.exp (π / γ)"]:::end_
+  n6["base_two_past_nyquist<br/>⊢ nyquist 2 ＜ γ"]:::end_
+  n7["base_two_fails_by_three<br/>⊢ 3 * nyquist 2 ＜ 14"]:::end_
+  x0(["JointLadder · dyadic_alias_resolved_jointly"]):::ext
+  x1(["JointLadder · exists_dyadic_alias_ne"]):::ext
+  x2(["NyquistPeak · boundary_is_smooth_stationary_maximum"]):::ext
+  x3(["NyquistPeak · nyquist_boundaryBase"]):::ext
+  n0 --> n1
+  n0 --> n2
+  n1 --> n2
+  n1 --> n4
+  n1 --> n5
+  n1 --> x0
+  n1 --> x1
+  n2 --> n4
+  n2 --> x1
+  n3 --> n4
+  n3 --> n5
+  n3 --> n6
+  n3 --> n7
+  n3 --> x2
+  n3 --> x3
+  n4 --> n5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

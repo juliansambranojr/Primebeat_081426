@@ -1,0 +1,15 @@
+flowchart LR
+  n0["key_ineq<br/>⊢ 4 * (lam - Real.log (1 - δ / 12)) ＜ (1 + δ) * (Real.log (1 + δ / 3) - …"]:::thm
+  n1["exists_centre<br/>⊢ ∃ σ₀ : ℝ, 1 ＜ σ₀ ∧ ‖(σ₀ : ℂ) - ρ₀‖ ＜ σ₀ - θ ∧ ‖(σ₀ : ℂ) - ρ₀‖ ≤ (σ₀ - …"]:::thm
+  n2["exists_pow_small<br/>⊢ ∃ K : ℕ, ∀ k : ℕ, K ≤ k → c * q ^ k ＜ ε"]:::thm
+  x0(["LandauCriterion · contradiction"]):::ext
+  x1(["LandauCriterion · stmtLandauWindow"]):::ext
+  n0 --> x0
+  n1 --> x1
+  n2 --> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

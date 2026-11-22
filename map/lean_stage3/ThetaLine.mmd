@@ -1,0 +1,46 @@
+flowchart LR
+  n0["logDerivZeta_compact_theta<br/>⊢ ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1453…"]:::thm
+  n1["logDerivZeta_sq_at_X_theta<br/>⊢ ‖deriv ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((θ + 1/Real.lo…"]:::thm
+  n2["logDerivZeta_line_theta<br/>⊢ ‖deriv ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((θ + 1/Real.lo…"]:::thm
+  n3["logDerivZeta_line_half<br/>⊢ ‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 + 1/Rea…"]:::end_
+  x0(["Abscissa · StmtZeroFreeRight"]):::ext
+  x1(["Abscissa · logDerivZeta_crude_theta"]):::ext
+  x2(["Abscissa · zeroFreeRight_of_RH"]):::ext
+  x3(["Abscissa · zeta_ne_zero_right_of"]):::ext
+  x4(["JensenCount · zeta_centre_lower"]):::ext
+  x5(["JensenCount · zeta_centre_ne_zero"]):::ext
+  x6(["LineBound · finalBoundConst_le"]):::ext
+  x7(["LineBound · logDeriv_zetaE"]):::ext
+  x8(["LineBound · log_1300_le"]):::ext
+  x9(["LineBound · zetaE"]):::ext
+  x10(["LineBound · zetaE_differentiable"]):::ext
+  x11(["LineBound · zetaE_disk_upper"]):::ext
+  x12(["LineBound · zetaE_eq"]):::ext
+  x13(["LineBound · logDerivZeta_norm_neg"]):::ext
+  x14(["ThetaPull · integrand_norm_le_theta"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n2 --> n3
+  n2 --> x14
+  x0 --> n0
+  x0 --> n1
+  x0 --> n2
+  x1 --> n1
+  x10 --> n0
+  x11 --> n0
+  x12 --> n0
+  x13 --> n2
+  x2 --> n3
+  x3 --> n0
+  x4 --> n0
+  x5 --> n0
+  x6 --> n0
+  x7 --> n0
+  x8 --> n0
+  x9 --> n0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

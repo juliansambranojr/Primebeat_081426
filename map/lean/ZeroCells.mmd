@@ -1,0 +1,42 @@
+flowchart LR
+  n0["construction_eq<br/>⊢ Construction.measured_zeros = Zeros.measured_zeros"]:::thm
+  n1["seedPerturbation_eq<br/>⊢ SeedPerturbation.zero_cells = Zeros.measured_zeros"]:::thm
+  n2["pairIdentity_eq<br/>⊢ PairIdentity.zero_cells = Zeros.measured_zeros"]:::thm
+  n3["construction_all_vanish<br/>⊢ ∀ c ∈ Construction.measured_zeros, Construction.tableFrom Zeros.dyadic…"]:::end_
+  n4["seedPerturbation_all_vanish<br/>⊢ ∀ c ∈ SeedPerturbation.zero_cells, Construction.tableFrom Zeros.dyadic…"]:::end_
+  n5["pairIdentity_all_vanish<br/>⊢ ∀ c ∈ PairIdentity.zero_cells, Construction.tableFrom Zeros.dyadicRow …"]:::end_
+  n6["all_four_have_length_four<br/>⊢ Construction.measured_zeros.length = 4 ∧ SeedPerturbation.zero_cells.l…"]:::lone
+  x0(["Construction · measured_zeros"]):::ext
+  x1(["Construction · tableFrom"]):::ext
+  x2(["PairIdentity · zero_cells"]):::ext
+  x3(["SeedPerturbation · zero_cells"]):::ext
+  x4(["Zeros · dyadicRow"]):::ext
+  x5(["Zeros · measured_zeros"]):::ext
+  x6(["Zeros · measured_zeros_all_vanish"]):::ext
+  n0 --> n3
+  n1 --> n4
+  n2 --> n5
+  x0 --> n0
+  x0 --> n3
+  x1 --> n3
+  x1 --> n4
+  x1 --> n5
+  x2 --> n2
+  x2 --> n5
+  x3 --> n1
+  x3 --> n4
+  x4 --> n3
+  x4 --> n4
+  x4 --> n5
+  x5 --> n0
+  x5 --> n1
+  x5 --> n2
+  x6 --> n3
+  x6 --> n4
+  x6 --> n5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

@@ -1,5 +1,9 @@
 # The sections and the joints
 
+Every theorem in every Lean file, with what it proves, needs, uses and is
+used by, is drawn in `map/` (start at `map/README.md`). It is generated from
+the files by `utilities/lean_map.py` and regenerated on every push.
+
 What is built in the three Lean trees, as sections with an exact statement at
 each end, and where each joins the next. Written 2026-11-22 for Julian, who
 put the sections together one decision at a time and asked for the build on

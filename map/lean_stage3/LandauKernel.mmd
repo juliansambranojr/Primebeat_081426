@@ -1,0 +1,32 @@
+flowchart LR
+  n0["log_pow_le<br/>⊢ Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n"]:::thm
+  n1["kernel_le<br/>⊢ Real.log y ^ n * y ^ (-a - 1) ≤ y ^ (-(a / 2) - 1) / (a / (2 * (n + 1)…"]:::thm
+  n2["log_pow_integrable<br/>⊢ IntegrableOn (fun y : ℝ =＞ Real.log y ^ n * y ^ (-a - 1)) (Ioi 1)"]:::thm
+  n3["tendsto_log_pow_mul<br/>⊢ Tendsto (fun y : ℝ =＞ Real.log y ^ n * y ^ (-a)) atTop (𝓝 0)"]:::thm
+  n4["hasDerivAt_prim<br/>⊢ HasDerivAt (fun t : ℝ =＞ -(Real.log t ^ (k + 1) * t ^ (-a)) / a) (Real…"]:::thm
+  n5["log_pow_integral<br/>⊢ ∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial / a ^ …"]:::thm
+  x0(["JointDialGate · log_absorbed"]):::ext
+  x1(["LandauPrimeSide · Ik_le"]):::ext
+  x2(["LandauTail · lower_tail_le"]):::ext
+  x3(["LandauTail · upper_tail_le"]):::ext
+  x4(["LandauTaylor · bound_integrable"]):::ext
+  n0 --> n1
+  n0 --> n3
+  n0 --> x0
+  n1 --> n2
+  n2 --> n5
+  n2 --> x1
+  n2 --> x2
+  n2 --> x3
+  n2 --> x4
+  n3 --> n5
+  n4 --> n5
+  n5 --> x1
+  n5 --> x2
+  n5 --> x3
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

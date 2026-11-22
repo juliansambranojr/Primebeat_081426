@@ -1,0 +1,49 @@
+flowchart LR
+  n0["predicted_radius_smooth<br/>(def)"]:::dfn
+  n1["predicted_radius_resid<br/>(def)"]:::dfn
+  n2["measured_radius_smooth<br/>(def)"]:::dfn
+  n3["measured_radius_resid<br/>(def)"]:::dfn
+  n4["measured_offset_smooth<br/>(def)"]:::dfn
+  n5["measured_offset_resid<br/>(def)"]:::dfn
+  n6["agreement_offsets_match<br/>⊢ |measured_offset_smooth - measured_offset_resid| ＜ 0.001"]:::end_
+  n7["agreement_radius_smooth<br/>⊢ |measured_radius_smooth - 0.5 * (1 + measured_offset_smooth)| ＜ 1e-9"]:::end_
+  n8["predicted_rank_11a1<br/>(def)"]:::dfn
+  n9["predicted_rank_37a1<br/>(def)"]:::dfn
+  n10["predicted_rank_389a1<br/>(def)"]:::dfn
+  n11["measured_rank_11a1<br/>(def)"]:::dfn
+  n12["measured_rank_37a1<br/>(def)"]:::dfn
+  n13["measured_rank_389a1<br/>(def)"]:::dfn
+  n14["agreement_rank_11a1<br/>⊢ |measured_rank_11a1 - predicted_rank_11a1| ＜ 0.05"]:::end_
+  n15["agreement_rank_389a1<br/>⊢ |measured_rank_389a1 - predicted_rank_389a1| ＜ 0.01"]:::end_
+  n16["agreement_rank_37a1<br/>⊢ |measured_rank_37a1 - predicted_rank_37a1| ＜ 0.3"]:::end_
+  n17["predicted_elliptic_re<br/>(def)"]:::dfn
+  n18["measured_elliptic_max_dev<br/>(def)"]:::dfn
+  n19["agreement_elliptic<br/>⊢ measured_elliptic_max_dev ＜ 1e-15"]:::end_
+  n20["measured_weil_arithmetic<br/>(def)"]:::dfn
+  n21["measured_weil_spectral<br/>(def)"]:::dfn
+  n22["agreement_weil_balance<br/>⊢ |measured_weil_arithmetic - measured_weil_spectral| ＜ 1e-6 * measured_…"]:::end_
+  n23["measured_exact_zeros<br/>(def)"]:::dfn
+  n24["measured_residual_from_zeros<br/>(def)"]:::dfn
+  n25["measured_breakdown_prime<br/>(def)"]:::dfn
+  n26["measured_breakdown_resid<br/>(def)"]:::dfn
+  n27["measured_G4_peak<br/>(def)"]:::dfn
+  n28["measured_contributing_primes<br/>(def)"]:::dfn
+  n10 --> n15
+  n11 --> n14
+  n12 --> n16
+  n13 --> n15
+  n18 --> n19
+  n2 --> n7
+  n20 --> n22
+  n21 --> n22
+  n4 --> n6
+  n4 --> n7
+  n5 --> n6
+  n8 --> n14
+  n9 --> n16
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

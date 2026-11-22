@@ -1,0 +1,63 @@
+flowchart LR
+  n0["order_eq_analyticOrderNatAt<br/>⊢ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) = (analyticOrderNatAt riemannZet…"]:::thm
+  n1["mem_zetaWindow_of_online<br/>⊢ ρ ∈ Stage3.zetaWindow T"]:::thm
+  n2["band_count<br/>⊢ ∑ ρ ∈ S, (analyticOrderNatAt riemannZeta ρ : ℝ) ≤ 15 * Real.log T + 73"]:::thm
+  n3["weightedTerm<br/>(def)"]:::dfn
+  n4["band_sum_le<br/>⊢ ∑ ρ ∈ S, weightedTerm h γ ρ ≤ M * (15 * Real.log T + 73)"]:::thm
+  x0(["JensenCount · zetaWindow"]):::ext
+  x1(["JensenCount · zetaWindow_finite"]):::ext
+  x2(["JensenCount · zeta_local_zero_count"]):::ext
+  x3(["WeilBackground · phiC"]):::ext
+  x4(["WeilDetect · laplace"]):::ext
+  x5(["WeilOnLine · sum_low_le"]):::ext
+  x6(["WeilOnLine · sum_lower_le"]):::ext
+  x7(["WeilOnLine · sum_onLine_le"]):::ext
+  x8(["WeilOnLine · sum_onLine_subtype_le"]):::ext
+  x9(["WeilOnLine · sum_upper_le"]):::ext
+  x10(["WeilOnLine · summable_onLine"]):::ext
+  x11(["WeilOnLine · tsum_onLine_le"]):::ext
+  x12(["WeilOnLine · weightedTerm_conjZ"]):::ext
+  x13(["WeilPowerBands · band_sum_le"]):::ext
+  x14(["WeilPowerOnLine · sum_low_le"]):::ext
+  x15(["WeilSeries · tsum_upper_le_explicit"]):::ext
+  x16(["WeilSeries · tsum_upper_le_explicit'"]):::ext
+  x17(["WeilTiles · sum_by_bands"]):::ext
+  x18(["WeilTiles · sum_le_bandSeries"]):::ext
+  x19(["WeilTiles · tsum_upper_le"]):::ext
+  x20(["WeilTiles · weightedTerm_nonneg"]):::ext
+  n0 --> n4
+  n0 --> x13
+  n0 --> x14
+  n0 --> x5
+  n1 --> n2
+  n2 --> n4
+  n2 --> x13
+  n3 --> n4
+  n3 --> x10
+  n3 --> x11
+  n3 --> x12
+  n3 --> x15
+  n3 --> x16
+  n3 --> x17
+  n3 --> x18
+  n3 --> x19
+  n3 --> x20
+  n3 --> x5
+  n3 --> x6
+  n3 --> x7
+  n3 --> x8
+  n3 --> x9
+  n4 --> x17
+  x0 --> n1
+  x1 --> n2
+  x2 --> n2
+  x3 --> n3
+  x3 --> n4
+  x4 --> n3
+  x4 --> n4
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

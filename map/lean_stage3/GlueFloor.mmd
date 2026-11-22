@@ -1,0 +1,94 @@
+flowchart LR
+  n0["edge_left_sharp<br/>⊢ ∃ D : ℝ, 0 ＜ D ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral…"]:::thm
+  n1["explicit_formula_split<br/>⊢ ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x T : ℝ, 16 ≤ x → 2 ≤ T →…"]:::thm
+  n2["StmtExplicitFormulaSplit<br/>(def)"]:::dfn
+  n3["stmtEF_split<br/>⊢ ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ StmtExplicitFormulaSplit c₁…"]:::thm
+  n4["floorConstSplit<br/>(def)"]:::dfn
+  n5["floorConstSplit_nonneg<br/>⊢ 0 ≤ floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀"]:::thm
+  n6["psiWeak_floor_split<br/>⊢ StmtPsiWeak (floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀) 2 x₀"]:::thm
+  n7["schoenfeldWeak_floor_split_of_RH<br/>⊢ ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → StmtSch…"]:::thm
+  x0(["ArgCount · rvM_crude"]):::ext
+  x1(["Assembly · norm_zeroPartialSum_le_logsq"]):::ext
+  x2(["Assembly · zeroPartialSum"]):::ext
+  x3(["AssemblyFloor · floorConst"]):::ext
+  x4(["AssemblyFloor · floorConst_nonneg"]):::ext
+  x5(["AssemblyFloor · floor_arith"]):::ext
+  x6(["AssemblyFloor · rem_floor"]):::ext
+  x7(["AssemblyFloor · zeroinner_floor"]):::ext
+  x8(["ContourShift · goodT_exists"]):::ext
+  x9(["ContourShift · residue_identity"]):::ext
+  x10(["ContourShift · zeta_analyticAt"]):::ext
+  x11(["ContourShift · zeta_ne_zero_of_re_mem"]):::ext
+  x12(["EdgeBound · ball_zero_shape"]):::ext
+  x13(["EdgeBound · deriv_zeta_conj"]):::ext
+  x14(["EdgeBound · edge_bound_core"]):::ext
+  x15(["EdgeBound · gz_zeros_ball_finite"]):::ext
+  x16(["GateEval · routeConst_le"]):::ext
+  x17(["Glue · Gf"]):::ext
+  x18(["Glue · edge_horizontal_bound"]):::ext
+  x19(["Glue · zeroPartialSum_swap"]):::ext
+  x20(["JointFloorGate · relErrWindow_floor_of_RH"]):::ext
+  x21(["PerronKernel · explicit_formula_perron"]):::ext
+  x22(["PsiToPi · Li"]):::ext
+  x23(["PsiToPi · StmtPsiWeak"]):::ext
+  x24(["PsiToPi · schoenfeldWeak_of_psiWeak"]):::ext
+  x25(["RouteGate · relErrWindow_route"]):::ext
+  x26(["RouteNum · relErrWindow_route_num"]):::ext
+  x27(["RouteNum · routeConst"]):::ext
+  x28(["RouteNum · schoenfeldWeak_route_num"]):::ext
+  x29(["RouteNum · stmtEF_split_num"]):::ext
+  x30(["Statement · StmtSchoenfeldWeak"]):::ext
+  n0 --> n1
+  n1 --> n3
+  n2 --> n3
+  n2 --> n6
+  n2 --> x29
+  n3 --> n7
+  n4 --> n5
+  n4 --> n6
+  n4 --> n7
+  n4 --> x16
+  n4 --> x20
+  n4 --> x25
+  n4 --> x27
+  n5 --> n7
+  n5 --> x20
+  n5 --> x26
+  n5 --> x28
+  n6 --> n7
+  n6 --> x28
+  n7 --> x20
+  x0 --> n7
+  x1 --> n6
+  x10 --> n0
+  x11 --> n0
+  x12 --> n0
+  x13 --> n0
+  x14 --> n0
+  x15 --> n0
+  x17 --> n0
+  x17 --> n1
+  x18 --> n1
+  x19 --> n1
+  x2 --> n1
+  x2 --> n2
+  x2 --> n6
+  x21 --> n1
+  x22 --> n7
+  x23 --> n6
+  x24 --> n7
+  x3 --> n4
+  x3 --> n6
+  x30 --> n7
+  x4 --> n5
+  x5 --> n6
+  x6 --> n6
+  x7 --> n6
+  x8 --> n1
+  x9 --> n1
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

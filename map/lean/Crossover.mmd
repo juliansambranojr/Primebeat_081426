@@ -1,0 +1,24 @@
+flowchart LR
+  n0["xterm<br/>(def)"]:::dfn
+  n1["yterm<br/>(def)"]:::dfn
+  n2["ratio<br/>(def)"]:::dfn
+  n3["ratio_strictMono<br/>⊢ StrictMono (ratio A B x y)"]:::thm
+  n4["at_most_one_crossover<br/>⊢ i = j"]:::end_
+  n5["dominance_flips<br/>⊢ ratio A B x y i ＜ 1 ∧ 1 ＜ ratio A B x y j"]:::end_
+  n6["no_crossover_of_single<br/>⊢ ratio A 0 x y j ≠ 1"]:::end_
+  n7["spread_prime<br/>(def)"]:::dfn
+  n8["spread_smooth<br/>(def)"]:::dfn
+  n9["count_does_not_determine_spread<br/>⊢ (6.892378652639774e-07 : ℝ) ＜ 0.0736589 ∧ (0.0736589 : ℝ) / 6.89237865…"]:::lone
+  n10["spread_is_non_monotone<br/>⊢ (0.0591885 : ℝ) ＜ 0.3026405 ∧ (0.0219312 : ℝ) ＜ 0.3026405"]:::lone
+  n2 --> n3
+  n2 --> n4
+  n2 --> n5
+  n2 --> n6
+  n3 --> n4
+  n3 --> n5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

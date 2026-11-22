@@ -1,0 +1,102 @@
+flowchart LR
+  n0["perronI<br/>(def)"]:::dfn
+  n1["perronδ<br/>(def)"]:::dfn
+  n2["perronI_eq_VIntegral'<br/>⊢ perronI y c T = VIntegral' (fun s : ℂ ↦ (y : ℂ) ^ s / s) c (-T) T"]:::thm
+  n3["kernel_holo<br/>⊢ HolomorphicOn (fun s : ℂ ↦ (y : ℂ) ^ s / s) {s : ℂ | 0 ＜ s.re}"]:::thm
+  n4["rect_subset_right<br/>⊢ Rectangle ((c : ℂ) - Complex.I * T) ((X : ℂ) + Complex.I * T) ⊆ {s : ℂ…"]:::thm
+  n5["perron_kernel_coarse_lt<br/>⊢ ‖perronI y c T - perronδ y‖ ≤ y ^ c"]:::thm
+  n6["horiz_bound<br/>⊢ ‖∫ σ in a..b, (y : ℂ) ^ ((σ : ℂ) + (T' : ℂ) * Complex.I) / ((σ : ℂ) + …"]:::thm
+  n7["perron_kernel_decay_lt<br/>⊢ ‖perronI y c T - perronδ y‖ ≤ y ^ c / (T * |Real.log y|)"]:::thm
+  n8["dslope_kernel_diff<br/>⊢ Differentiable ℂ (dslope (fun s : ℂ ↦ (y : ℂ) ^ s) 0)"]:::thm
+  n9["rect_residue<br/>⊢ RectangleIntegral' (fun s : ℂ ↦ (y : ℂ) ^ s / s) (-(X:ℂ) - Complex.I *…"]:::thm
+  n10["perron_kernel_decay_gt<br/>⊢ ‖perronI y c T - perronδ y‖ ≤ y ^ c / (T * |Real.log y|)"]:::thm
+  n11["perron_kernel_decay<br/>⊢ ‖perronI y c T - perronδ y‖ ≤ y ^ c / (T * |Real.log y|)"]:::thm
+  n12["coarse_gt_ineq<br/>⊢ v * Real.exp u + Real.pi - Real.arctan (v / u) ≤ Real.pi * Real.exp u"]:::thm
+  n13["seg_inv_integral<br/>⊢ (∫ t in (-T)..T, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I) = 2 * Real.a…"]:::thm
+  n14["cpow_sub_one_bound<br/>⊢ ‖(y : ℂ) ^ s - 1‖ ≤ ‖s‖ * Real.log y * y ^ s.re"]:::thm
+  n15["perron_kernel_coarse_gt<br/>⊢ ‖perronI y c T - perronδ y‖ ≤ y ^ c"]:::thm
+  n16["perron_kernel_coarse<br/>⊢ ‖perronI y c T - perronδ y‖ ≤ y ^ c"]:::thm
+  n17["perron_kernel_truncated<br/>⊢ ‖perronI y c T - perronδ y‖ ≤ y ^ c * min 1 (1 / (T * |Real.log y|))"]:::thm
+  n18["one_sub_two_neg_rpow<br/>⊢ δ / 5 ≤ 1 - (2:ℝ) ^ (-δ)"]:::thm
+  n19["vonMangoldt_rpow_partial<br/>⊢ ∑ n ∈ s, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c) ≤ 2 * (Real…"]:::thm
+  n20["vonMangoldt_rpow_tsum<br/>⊢ ∑' n : ℕ, ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c) ≤ 2 * (Rea…"]:::thm
+  n21["vonMangoldt_rpow_summable<br/>⊢ Summable (fun n : ℕ ↦ ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c…"]:::thm
+  n22["far_terms_sum<br/>⊢ (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMang…"]:::thm
+  n23["abs_sub_one_le_two_abs_log<br/>⊢ |t - 1| / 2 ≤ |Real.log t|"]:::thm
+  n24["near_diagonal_sum<br/>⊢ (∑' n : ℕ, if 0 ＜ |Real.log (x / n)| ∧ |Real.log (x / n)| ＜ 1/2 then A…"]:::thm
+  n25["perronI_one_norm<br/>⊢ ‖perronI 1 c T‖ ≤ 1/2"]:::thm
+  n26["kernel_sum_bound<br/>⊢ ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1…"]:::thm
+  n27["delta_sum_close<br/>⊢ ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n :…"]:::thm
+  n28["kernel_diff_summable<br/>⊢ Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perron…"]:::thm
+  n29["perron_to_psi<br/>⊢ ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n :…"]:::thm
+  n30["tsum_vonMangoldt_div_cpow<br/>⊢ (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * ((x / n : ℝ) : ℂ) …"]:::thm
+  n31["perron_sum_eq_integral<br/>⊢ (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 +…"]:::thm
+  n32["explicit_formula_perron<br/>⊢ ‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)…"]:::thm
+  x0(["Glue · explicit_formula_poly"]):::ext
+  x1(["GlueFloor · explicit_formula_split"]):::ext
+  x2(["GlueNum · explicit_formula_split_num"]):::ext
+  n0 --> n10
+  n0 --> n11
+  n0 --> n15
+  n0 --> n16
+  n0 --> n17
+  n0 --> n2
+  n0 --> n25
+  n0 --> n26
+  n0 --> n28
+  n0 --> n29
+  n0 --> n31
+  n0 --> n5
+  n0 --> n7
+  n10 --> n11
+  n10 --> n15
+  n11 --> n17
+  n12 --> n15
+  n13 --> n15
+  n13 --> n25
+  n14 --> n15
+  n15 --> n16
+  n16 --> n17
+  n17 --> n26
+  n17 --> n28
+  n18 --> n22
+  n19 --> n20
+  n19 --> n21
+  n2 --> n10
+  n2 --> n5
+  n2 --> n7
+  n20 --> n22
+  n21 --> n22
+  n21 --> n26
+  n21 --> n28
+  n21 --> n31
+  n22 --> n26
+  n23 --> n24
+  n24 --> n26
+  n25 --> n26
+  n25 --> n28
+  n26 --> n29
+  n27 --> n29
+  n28 --> n29
+  n29 --> n32
+  n3 --> n5
+  n3 --> n7
+  n30 --> n31
+  n31 --> n32
+  n32 --> x0
+  n32 --> x1
+  n32 --> x2
+  n4 --> n5
+  n4 --> n7
+  n5 --> n16
+  n6 --> n10
+  n6 --> n7
+  n7 --> n11
+  n8 --> n9
+  n9 --> n10
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

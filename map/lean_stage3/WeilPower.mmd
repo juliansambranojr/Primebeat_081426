@@ -1,0 +1,131 @@
+flowchart LR
+  n0["c<br/>(def)"]:::dfn
+  n1["P_eq_c_sq<br/>⊢ P x = c x ^ 2"]:::thm
+  n2["P_pow<br/>⊢ P x ^ m = c x ^ (2 * m)"]:::thm
+  n3["c_one<br/>⊢ c 1 = 0"]:::thm
+  n4["c_neg_one<br/>⊢ c (-1) = 0"]:::thm
+  n5["continuous_c<br/>⊢ Continuous c"]:::end_
+  n6["c_pow_one<br/>⊢ c 1 ^ n = 0"]:::thm
+  n7["c_pow_neg_one<br/>⊢ c (-1) ^ n = 0"]:::thm
+  n8["hasDerivAt_c<br/>⊢ HasDerivAt c (-(Real.pi / 2) * Real.sin (Real.pi * x / 2)) x"]:::thm
+  n9["hasDerivAt_s<br/>⊢ HasDerivAt (fun y : ℝ =＞ Real.sin (Real.pi * y / 2)) (Real.pi / 2 * c …"]:::thm
+  n10["f1<br/>(def)"]:::dfn
+  n11["f2<br/>(def)"]:::dfn
+  n12["hasDerivAt_f<br/>⊢ HasDerivAt (fun y : ℝ =＞ c y ^ (k + 1)) (f1 k x) x"]:::thm
+  n13["hasDerivAt_f1<br/>⊢ HasDerivAt (f1 (k + 1)) (f2 k x) x"]:::thm
+  n14["continuous_f1<br/>⊢ Continuous (f1 k)"]:::thm
+  n15["continuous_f2<br/>⊢ Continuous (f2 k)"]:::thm
+  n16["f1_one<br/>⊢ f1 (k + 1) 1 = 0"]:::thm
+  n17["f1_neg_one<br/>⊢ f1 (k + 1) (-1) = 0"]:::thm
+  n18["K<br/>(def)"]:::dfn
+  n19["hasDerivAt_E<br/>⊢ HasDerivAt (fun y : ℝ =＞ Complex.exp (w * (y : ℂ))) (w * Complex.exp (…"]:::thm
+  n20["ibp_twice<br/>⊢ w ^ 2 * ∫ x in (-1 : ℝ)..1, ((c x ^ (k + 2) : ℝ) : ℂ) * Complex.exp (w…"]:::thm
+  n21["K_succ<br/>⊢ K (m + 1) w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1) ^ 2) = ((m : …"]:::thm
+  n22["Q<br/>(def)"]:::dfn
+  n23["cK<br/>(def)"]:::dfn
+  n24["Q_succ<br/>⊢ Q (m + 1) w = Q m w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1) ^ 2)"]:::thm
+  n25["cK_succ<br/>⊢ cK (m + 1) = ((m : ℝ) + 1) * (2 * (m : ℝ) + 1) * Real.pi ^ 2 / 2 * cK …"]:::thm
+  n26["K_zero_mul<br/>⊢ K 0 w * w = 2 * Complex.sinh w"]:::thm
+  n27["K_mul_Q<br/>⊢ K m w * Q m w = (cK m : ℂ) * Complex.sinh w"]:::thm
+  n28["cK_one<br/>⊢ cK 1 = Real.pi ^ 2"]:::thm
+  n29["K_one_mul<br/>⊢ K 1 w * (w * (w ^ 2 + (Real.pi : ℂ) ^ 2)) = (Real.pi : ℂ) ^ 2 * Comple…"]:::end_
+  x0(["WeilOddPower · Q_succ_eq"]):::ext
+  x1(["WeilOddPower · S_eq"]):::ext
+  x2(["WeilOddPower · S_mul_QS"]):::ext
+  x3(["WeilOddPower · cS_eq"]):::ext
+  x4(["WeilOddPower · ibp_once"]):::ext
+  x5(["WeilOddPower · q_eq"]):::ext
+  x6(["WeilOddPower · sin_pi_mul"]):::ext
+  x7(["WeilPowerAssembly · phiW_contDiff_one"]):::ext
+  x8(["WeilWindow · P"]):::ext
+  n0 --> n1
+  n0 --> n10
+  n0 --> n11
+  n0 --> n12
+  n0 --> n13
+  n0 --> n2
+  n0 --> n20
+  n0 --> n21
+  n0 --> n3
+  n0 --> n4
+  n0 --> n5
+  n0 --> n6
+  n0 --> n7
+  n0 --> n8
+  n0 --> n9
+  n0 --> x1
+  n0 --> x4
+  n0 --> x6
+  n0 --> x7
+  n1 --> n2
+  n10 --> n12
+  n10 --> n13
+  n10 --> n14
+  n10 --> n16
+  n10 --> n17
+  n10 --> n20
+  n10 --> x1
+  n10 --> x4
+  n10 --> x5
+  n11 --> n13
+  n11 --> n15
+  n11 --> n20
+  n11 --> n21
+  n12 --> n13
+  n12 --> n20
+  n12 --> x4
+  n13 --> n20
+  n14 --> n20
+  n14 --> x4
+  n15 --> n20
+  n16 --> n20
+  n17 --> n20
+  n18 --> n21
+  n18 --> n26
+  n18 --> n27
+  n18 --> n29
+  n18 --> x1
+  n19 --> n20
+  n19 --> x4
+  n2 --> n21
+  n2 --> x1
+  n2 --> x5
+  n20 --> n21
+  n21 --> n27
+  n22 --> n24
+  n22 --> n27
+  n22 --> n29
+  n22 --> x0
+  n23 --> n25
+  n23 --> n27
+  n23 --> n28
+  n23 --> x2
+  n23 --> x3
+  n24 --> n27
+  n25 --> n27
+  n26 --> n27
+  n27 --> n29
+  n27 --> x2
+  n28 --> n29
+  n3 --> n16
+  n3 --> n6
+  n3 --> x7
+  n4 --> n17
+  n4 --> n7
+  n4 --> x7
+  n6 --> n20
+  n6 --> x4
+  n7 --> n20
+  n7 --> x4
+  n8 --> n12
+  n8 --> x7
+  n9 --> n13
+  x8 --> n1
+  x8 --> n18
+  x8 --> n2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

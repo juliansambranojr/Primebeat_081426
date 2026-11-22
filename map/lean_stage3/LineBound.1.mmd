@@ -1,0 +1,147 @@
+flowchart LR
+  n0["zeta_ne_zero_of_RH<br/>⊢ ζ s ≠ 0"]:::thm
+  n1["log_3029_ge<br/>⊢ (1:ℝ)/30 ≤ Real.log (30/29)"]:::lone
+  n2["finalBoundConst_le<br/>⊢ 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2…"]:::thm
+  n3["logDerivZeta_crude<br/>⊢ ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996…"]:::thm
+  n4["logDerivZeta_sq_at_t<br/>⊢ ‖deriv ζ (((1/2 + 1/Real.log t : ℝ)) + I * (t : ℂ)) / ζ (((1/2 + 1/Rea…"]:::end_
+  n5["logDerivZeta_sq_at_X<br/>⊢ ‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 + 1/Rea…"]:::thm
+  n6["zeta_ne_zero_of_RH<br/>⊢ ζ s ≠ 0"]:::lone
+  n7["zetaE<br/>(def)"]:::dfn
+  n8["zetaE_eq<br/>⊢ zetaE s = (s - 1) * ζ s"]:::thm
+  n9["zetaE_one<br/>⊢ zetaE 1 = 1"]:::thm
+  n10["zetaE_differentiableAt_of_ne<br/>⊢ DifferentiableAt ℂ zetaE s"]:::thm
+  n11["zetaE_differentiable<br/>⊢ Differentiable ℂ zetaE"]:::thm
+  n12["logDeriv_zetaE<br/>⊢ deriv zetaE s / zetaE s = 1 / (s - 1) + deriv ζ s / ζ s"]:::thm
+  n13["zetaE_ne_zero_of_RH<br/>⊢ zetaE s ≠ 0"]:::end_
+  n14["zetaE_disk_upper<br/>⊢ ‖zetaE w‖ ≤ 430"]:::thm
+  n15["log_1300_le<br/>⊢ Real.log 1300 ≤ 7.28"]:::thm
+  n16["finalBoundConst_le<br/>⊢ 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2…"]:::lone
+  n17["logDerivZeta_compact<br/>⊢ ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1453…"]:::thm
+  n18["logDerivZeta_norm_neg<br/>⊢ ‖deriv ζ ((σ : ℂ) + I * ((-t : ℝ) : ℂ)) / ζ ((σ : ℂ) + I * ((-t : ℝ) :…"]:::thm
+  n19["logDerivZeta_line<br/>⊢ ‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 + 1/Rea…"]:::thm
+  n20["schoenfeldWeak_of_psiWeak_three<br/>⊢ Stage3.StmtSchoenfeldWeak (3 * C + 13) 2 (max (x₀ ^ 2) 9) (fun x =＞ (N…"]:::end_
+  n21["pseries_tail_le<br/>⊢ ∑' (n : ℕ), ((n + 1 + 1 : ℕ) : ℝ) ^ (-1 - b) ≤ 1 / b"]:::thm
+  n22["pseries_le<br/>⊢ ∑' (n : ℕ), ((n : ℝ)) ^ (-1 - b) ≤ 1 + 1 / b"]:::thm
+  n23["vonMangoldt_term_le<br/>⊢ ‖LSeries.term (fun k : ℕ =＞ ((vonMangoldt k : ℝ) : ℂ)) ((1 + 2 * b : ℝ…"]:::thm
+  n24["norm_logDerivZeta_of_one_lt_re<br/>⊢ ‖deriv ζ s / ζ s‖ ≤ 2 / (s.re - 1) + 4 / (s.re - 1) ^ 2"]:::thm
+  n25["norm_logDerivZeta_sigma0<br/>⊢ ‖deriv ζ (((1 + 1 / L : ℝ) : ℂ) + I * (t : ℂ)) / ζ (((1 + 1 / L : ℝ) :…"]:::end_
+  n26["zeta_ne_zero_of_RH<br/>⊢ ζ s ≠ 0"]:::thm
+  n27["holo_logDerivZeta_of_RH<br/>⊢ HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.I…"]:::thm
+  n28["pull_at_RH_abscissa<br/>⊢ SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ SmoothingF…"]:::thm
+  n29["σRH<br/>(def)"]:::dfn
+  n30["σRH_re<br/>⊢ ((σRH X : ℂ) + I * (t : ℂ)).re = σRH X"]:::lone
+  n31["integrand_norm_le<br/>⊢ ‖SmoothedChebyshevIntegrand ν ε X ((σRH X : ℂ) + I * (t : ℂ))‖ ≤ 11100…"]:::thm
+  n32["I37_norm_le<br/>⊢ ‖I₃₇ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (2 * T) * (11100 * (Real…"]:::thm
+  n33["integrand_norm_le_horiz<br/>⊢ ‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (1996 * R…"]:::thm
+  n34["horiz_length<br/>⊢ (1 + 1 / Real.log X) - σRH X = 1 / 2"]:::thm
+  n35["I8_norm_le<br/>⊢ ‖I₈ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * Real.l…"]:::thm
+  x0(["Abscissa · logDerivZeta_crude_theta"]):::ext
+  x1(["Abscissa · zeroFreeRight_of_RH"]):::ext
+  x2(["Abscissa · zeta_ne_zero_right_of"]):::ext
+  x3(["JensenCount · jensenF"]):::ext
+  x4(["JensenCount · jensenF_analytic"]):::ext
+  x5(["JensenCount · jensenF_bound"]):::ext
+  x6(["JensenCount · jensenF_zero_eq_one"]):::ext
+  x7(["JensenCount · jensenF_zeros_finite"]):::ext
+  x8(["JensenCount · pole_away_centre"]):::ext
+  x9(["JensenCount · zeta_centre_lower"]):::ext
+  x10(["JensenCount · zeta_centre_ne_zero"]):::ext
+  x11(["LineBound · I2_norm_le"]):::ext
+  x12(["LineBound · I37_norm_le_decay"]):::ext
+  x13(["LineBound · I37_norm_le_epsfree"]):::ext
+  x14(["LineBound · contour_at_instantiation"]):::ext
+  x15(["LineBound · integrand_norm_le_horiz_neg"]):::ext
+  x16(["LineBound · smoothedChebyshev_sqrt_bound"]):::ext
+  x17(["LineBound · smoothedChebyshev_sub_main_norm_le"]):::ext
+  x18(["PsiToPi · Li"]):::ext
+  x19(["PsiToPi · StmtPsiWeak"]):::ext
+  x20(["PsiToPi · schoenfeldWeak_of_psiWeak"]):::ext
+  x21(["Statement · StmtSchoenfeldWeak"]):::ext
+  x22(["ThetaLine · logDerivZeta_compact_theta"]):::ext
+  x23(["ThetaLine · logDerivZeta_line_theta"]):::ext
+  x24(["ThetaPsi · integrand_norm_le_horiz_neg_theta"]):::ext
+  n0 --> n13
+  n0 --> n17
+  n0 --> n26
+  n0 --> n27
+  n0 --> n3
+  n10 --> n11
+  n11 --> n17
+  n11 --> x22
+  n12 --> n17
+  n12 --> x22
+  n14 --> n17
+  n14 --> x22
+  n15 --> n17
+  n15 --> x22
+  n17 --> n19
+  n18 --> n19
+  n18 --> x15
+  n18 --> x23
+  n18 --> x24
+  n19 --> n31
+  n2 --> n17
+  n2 --> n3
+  n2 --> x0
+  n2 --> x22
+  n21 --> n22
+  n22 --> n24
+  n23 --> n24
+  n24 --> n25
+  n26 --> x1
+  n26 --> x2
+  n27 --> n28
+  n28 --> x14
+  n28 --> x16
+  n28 --> x17
+  n3 --> n33
+  n3 --> n4
+  n3 --> n5
+  n3 --> x15
+  n31 --> n32
+  n31 --> x12
+  n31 --> x13
+  n32 --> x17
+  n33 --> n35
+  n34 --> n35
+  n34 --> x11
+  n35 --> x14
+  n35 --> x16
+  n35 --> x17
+  n5 --> n19
+  n7 --> n10
+  n7 --> n11
+  n7 --> n12
+  n7 --> n13
+  n7 --> n14
+  n7 --> n17
+  n7 --> n8
+  n7 --> n9
+  n7 --> x22
+  n8 --> n10
+  n8 --> n12
+  n8 --> n13
+  n8 --> n14
+  n8 --> n17
+  n8 --> x22
+  n9 --> n13
+  n9 --> n14
+  x10 --> n17
+  x10 --> n3
+  x18 --> n20
+  x19 --> n20
+  x20 --> n20
+  x21 --> n20
+  x3 --> n3
+  x4 --> n3
+  x5 --> n3
+  x6 --> n3
+  x7 --> n3
+  x8 --> n3
+  x9 --> n17
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

@@ -1,0 +1,86 @@
+flowchart LR
+  n0["IsTable<br/>(def)"]:::dfn
+  n1["tableFrom_isTable<br/>⊢ IsTable (Construction.tableFrom N)"]:::thm
+  n2["zero_iff_repeat<br/>⊢ f r (d + 1) = 0 ↔ f r d = f (r - 1) d"]:::thm
+  n3["neg_below_zero<br/>⊢ Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (r - 1)…"]:::end_
+  n4["pair_shares_diagonal<br/>⊢ (r - 1) - (d : ℤ) = r - ((d + 1 : ℕ) : ℤ)"]:::lone
+  n5["window_shared_of_composite_exponent<br/>⊢ (4 : ℕ) ^ 2 = 2 ^ 4"]:::lone
+  n6["measured_zeros<br/>(def)"]:::dfn
+  n7["pi2<br/>(def)"]:::dfn
+  n8["dyadicRow<br/>(def)"]:::dfn
+  n9["zero_2_1<br/>⊢ Construction.tableFrom dyadicRow 2 1 = 0"]:::end_
+  n10["zero_4_1<br/>⊢ Construction.tableFrom dyadicRow 4 1 = 0"]:::end_
+  n11["zero_8_3<br/>⊢ Construction.tableFrom dyadicRow 8 3 = 0"]:::end_
+  n12["zero_20_6<br/>⊢ Construction.tableFrom dyadicRow 20 6 = 0"]:::end_
+  n13["measured_zeros_all_vanish<br/>⊢ ∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ) c.2 =…"]:::thm
+  n14["nonzero_7_3<br/>⊢ Construction.tableFrom dyadicRow 7 3 = 5"]:::end_
+  n15["nonzero_19_6<br/>⊢ Construction.tableFrom dyadicRow 19 6 = 343"]:::end_
+  n16["measured_repeat_20_6<br/>(def)"]:::dfn
+  n17["measured_repeat_8_3<br/>(def)"]:::dfn
+  n18["measured_centered_zero_count<br/>(def)"]:::dfn
+  n19["four_zeros_only<br/>⊢ measured_zeros.length = 4"]:::end_
+  n20["zero_at_20_6_of_repeat<br/>⊢ Construction.tableFrom N 20 6 = 0"]:::end_
+  n21["zero_at_8_3_of_repeat<br/>⊢ Construction.tableFrom N 8 3 = 0"]:::end_
+  x0(["Construction · tableFrom"]):::ext
+  x1(["Construction · tableFrom_isTableOf"]):::ext
+  x2(["Isogeny · dyadicRow_eq_rowN"]):::ext
+  x3(["Isogeny · measured_row_eight"]):::ext
+  x4(["Isogeny · measured_row_four"]):::ext
+  x5(["ZeroCells · construction_all_vanish"]):::ext
+  x6(["ZeroCells · construction_eq"]):::ext
+  x7(["ZeroCells · pairIdentity_all_vanish"]):::ext
+  x8(["ZeroCells · pairIdentity_eq"]):::ext
+  x9(["ZeroCells · seedPerturbation_all_vanish"]):::ext
+  x10(["ZeroCells · seedPerturbation_eq"]):::ext
+  x11(["ZerosStencil · repeat_iff_wings"]):::ext
+  n0 --> n1
+  n0 --> n2
+  n1 --> n20
+  n1 --> n21
+  n1 --> x11
+  n13 --> x5
+  n13 --> x7
+  n13 --> x9
+  n16 --> n20
+  n17 --> n21
+  n2 --> n20
+  n2 --> n21
+  n2 --> x11
+  n6 --> n13
+  n6 --> n19
+  n6 --> x10
+  n6 --> x6
+  n6 --> x8
+  n7 --> n8
+  n7 --> x2
+  n7 --> x3
+  n7 --> x4
+  n8 --> n10
+  n8 --> n11
+  n8 --> n12
+  n8 --> n13
+  n8 --> n14
+  n8 --> n15
+  n8 --> n9
+  n8 --> x2
+  n8 --> x5
+  n8 --> x7
+  n8 --> x9
+  x0 --> n1
+  x0 --> n10
+  x0 --> n11
+  x0 --> n12
+  x0 --> n13
+  x0 --> n14
+  x0 --> n15
+  x0 --> n20
+  x0 --> n21
+  x0 --> n3
+  x0 --> n9
+  x1 --> n1
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

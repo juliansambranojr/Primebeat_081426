@@ -1,0 +1,27 @@
+flowchart LR
+  n0["StmtSchoenfeld<br/>(def)"]:::dfn
+  n1["window_of_global<br/>⊢ Nonvanishing.StmtSchoenfeldWindow f L r n"]:::thm
+  n2["tableFrom_ne_zero_of_schoenfeld<br/>⊢ Construction.tableFrom N r d ≠ 0"]:::end_
+  x0(["Construction · tableFrom"]):::ext
+  x1(["Expansion · f2x"]):::ext
+  x2(["Expansion · tableFrom_ne_zero_of_li"]):::ext
+  x3(["Nonvanishing · Ehigh"]):::ext
+  x4(["Nonvanishing · Mlow"]):::ext
+  x5(["Nonvanishing · StmtSchoenfeldWindow"]):::ext
+  x6(["Nonvanishing · bdiffZ"]):::ext
+  n0 --> n1
+  n0 --> n2
+  n1 --> n2
+  x0 --> n2
+  x1 --> n2
+  x2 --> n2
+  x3 --> n2
+  x4 --> n2
+  x5 --> n1
+  x6 --> n2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

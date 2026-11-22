@@ -1,0 +1,79 @@
+flowchart LR
+  n0["that<br/>⊢ every theorem pins to [propext, Classical.choice, Quot.sound]. -/ impo…"]:::lone
+  n1["laplace<br/>(def)"]:::dfn
+  n2["IsTest<br/>(def)"]:::dfn
+  n3["tiltF<br/>(def)"]:::dfn
+  n4["kOf<br/>(def)"]:::dfn
+  n5["primeSide<br/>(def)"]:::dfn
+  n6["primeSide_eq<br/>⊢ primeSide k = literatureRHS k"]:::thm
+  n7["tiltF_im<br/>⊢ (tiltF G u).im = 0"]:::thm
+  n8["contDiff_tiltF<br/>⊢ ContDiff ℝ 1 (tiltF G)"]:::thm
+  n9["hasCompactSupport_tiltF<br/>⊢ HasCompactSupport (tiltF G)"]:::thm
+  n10["laplace_neg_eq<br/>⊢ laplace G (-ρ) = paperFT (tiltF G) (gammaOf ρ)"]:::thm
+  n11["laplace_reflect_eq<br/>⊢ laplace G (-(1 - ρ)) = paperFT (tiltF G) (-gammaOf ρ)"]:::thm
+  n12["conj_paperFT_conj<br/>⊢ conj (paperFT F (conj z)) = paperFT F (-z)"]:::thm
+  n13["contDiff_two_convolution<br/>⊢ ContDiff ℝ 2 (f ⋆[ContinuousLinearMap.mul ℝ ℂ, volume] h)"]:::thm
+  n14["contDiff_tilde<br/>⊢ ContDiff ℝ 1 (tilde g)"]:::thm
+  n15["contDiff_kOf<br/>⊢ ContDiff ℝ 2 (kOf G)"]:::thm
+  n16["hasCompactSupport_kOf<br/>⊢ HasCompactSupport (kOf G)"]:::thm
+  n17["paperFT_kOf<br/>⊢ paperFT (kOf G) (gammaOf ρ) = laplace G (-ρ) * laplace G (-(1 - ρ))"]:::thm
+  n18["weil_bridge<br/>⊢ Summable (fun ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 ＜ ρ.re ∧ ρ.re ＜ 1} =＞…"]:::thm
+  n19["ft<br/>(def)"]:::dfn
+  n20["kOfM<br/>(def)"]:::dfn
+  n21["primeSideM<br/>(def)"]:::dfn
+  n22["StmtWeilBridge<br/>(def)"]:::dfn
+  n23["kOfM_eq<br/>⊢ kOfM G = kOf G"]:::thm
+  n24["primeSideM_eq<br/>⊢ primeSideM k = primeSide k"]:::thm
+  n25["stmtWeilBridge_holds<br/>⊢ StmtWeilBridge"]:::end_
+  n1 --> n10
+  n1 --> n11
+  n1 --> n17
+  n1 --> n18
+  n1 --> n22
+  n10 --> n17
+  n11 --> n17
+  n12 --> n17
+  n13 --> n15
+  n14 --> n15
+  n15 --> n18
+  n16 --> n18
+  n17 --> n18
+  n18 --> n25
+  n19 --> n21
+  n2 --> n18
+  n2 --> n22
+  n20 --> n22
+  n20 --> n23
+  n21 --> n22
+  n21 --> n24
+  n22 --> n25
+  n23 --> n25
+  n24 --> n25
+  n3 --> n10
+  n3 --> n11
+  n3 --> n20
+  n3 --> n4
+  n3 --> n7
+  n3 --> n8
+  n3 --> n9
+  n4 --> n15
+  n4 --> n16
+  n4 --> n17
+  n4 --> n18
+  n4 --> n23
+  n5 --> n18
+  n5 --> n24
+  n5 --> n6
+  n6 --> n18
+  n7 --> n17
+  n8 --> n15
+  n8 --> n17
+  n9 --> n15
+  n9 --> n16
+  n9 --> n17
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

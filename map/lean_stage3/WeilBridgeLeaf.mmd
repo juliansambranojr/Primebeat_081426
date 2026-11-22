@@ -1,0 +1,35 @@
+flowchart LR
+  n0["tiltF<br/>(def)"]:::dfn
+  n1["ft<br/>(def)"]:::dfn
+  n2["kOfM<br/>(def)"]:::dfn
+  n3["primeSideM<br/>(def)"]:::dfn
+  n4["StmtWeilBridge<br/>(def)"]:::dfn
+  n5["order_eq_toNat<br/>⊢ riemannZeta.order ρ = (((analyticOrderAt riemannZeta ρ).toNat : ℕ) : ℤ…"]:::thm
+  n6["zeroes_rect_strip<br/>⊢ riemannZeta.zeroes_rect (Set.Ioo 0 1) Set.univ = {ρ : ℂ | riemannZeta …"]:::thm
+  n7["zeroForm_eq_strip<br/>⊢ zeroForm G = ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 ＜ ρ.re ∧ ρ.re ＜ 1},…"]:::thm
+  n8["zeroForm_eq_primeSide<br/>⊢ zeroForm G = primeSideM (kOfM G)"]:::end_
+  x0(["WeilDetect · IsTest"]):::ext
+  x1(["WeilDetect · laplace"]):::ext
+  x2(["WeilDetect · zeroForm"]):::ext
+  n0 --> n2
+  n1 --> n3
+  n2 --> n4
+  n2 --> n8
+  n3 --> n4
+  n3 --> n8
+  n4 --> n8
+  n5 --> n7
+  n6 --> n7
+  n7 --> n8
+  x0 --> n4
+  x0 --> n8
+  x1 --> n4
+  x1 --> n7
+  x2 --> n7
+  x2 --> n8
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

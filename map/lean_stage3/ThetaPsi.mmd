@@ -1,0 +1,91 @@
+flowchart LR
+  n0["inv_log_le_theta<br/>⊢ 1 / Real.log X ≤ (1 - θ) / 2"]:::thm
+  n1["σθ_lt_one<br/>⊢ σθ θ X ＜ 1"]:::end_
+  n2["lt_σθ<br/>⊢ θ ＜ σθ θ X"]:::lone
+  n3["horiz_length_theta<br/>⊢ (1 + 1 / Real.log X) - σθ θ X = 1 - θ"]:::thm
+  n4["holo_logDerivZeta_theta<br/>⊢ HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.I…"]:::thm
+  n5["pull_at_theta_abscissa<br/>⊢ SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ SmoothingF…"]:::thm
+  n6["integrand_norm_le_horiz_theta<br/>⊢ ‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (1996 * R…"]:::thm
+  n7["integrand_norm_le_horiz_neg_theta<br/>⊢ ‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) - (T : ℂ) * I)‖ ≤ (1996 * R…"]:::thm
+  n8["I8_norm_le_theta<br/>⊢ ‖I₈ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (1 - θ) * ((1996 * Real.…"]:::thm
+  n9["I2_norm_le_theta<br/>⊢ ‖I₂ ν ε T X (σθ θ X)‖ ≤ (1 / (2 * Real.pi)) * (1 - θ) * ((1996 * Real.…"]:::thm
+  n10["mellin_vert_le_theta<br/>⊢ ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σθ θ X : ℂ) + I * (t : ℂ))‖ ≤ …"]:::thm
+  n11["contour_at_instantiation_theta<br/>⊢ ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖…"]:::thm
+  n12["theta_instantiation_arithmetic<br/>⊢ c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ …"]:::thm
+  n13["psi_weak_of_theta<br/>⊢ ∃ C ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * t ^ θ * (Real.log…"]:::thm
+  n14["psi_weak_of_RH_half<br/>⊢ ∃ C ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Re…"]:::thm
+  n15["stmtPsiWeak_of_RH_half<br/>⊢ ∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::end_
+  x0(["Abscissa · StmtZeroFreeRight"]):::ext
+  x1(["Abscissa · logDerivZeta_crude_theta"]):::ext
+  x2(["Abscissa · zeroFreeRight_of_RH"]):::ext
+  x3(["Abscissa · zeta_ne_zero_right_of"]):::ext
+  x4(["JointWindowDial · psiWeakTheta_of_window"]):::ext
+  x5(["LineBound · bump_exists"]):::ext
+  x6(["LineBound · horiz_small"]):::ext
+  x7(["LineBound · mellin_bump_bounded"]):::ext
+  x8(["LineBound · mellin_horiz_le"]):::ext
+  x9(["LineBound · mellin_horiz_le_neg"]):::ext
+  x10(["LineBound · mellin_main_const"]):::ext
+  x11(["LineBound · mellin_smooth1_le"]):::ext
+  x12(["LineBound · psi_sub_self_le"]):::ext
+  x13(["LineBound · rpow_one_add"]):::ext
+  x14(["LineBound · logDerivZeta_norm_neg"]):::ext
+  x15(["PsiToPi · StmtPsiWeak"]):::ext
+  x16(["ThetaConverse · zeroFreeRight_iff_psiWeakTheta"]):::ext
+  x17(["ThetaPi · schoenfeldWeakTheta_of_zeroFree"]):::ext
+  x18(["ThetaPull · I37_power_log3_theta"]):::ext
+  x19(["ThetaPull · four_le_log_of_theta"]):::ext
+  n0 --> n1
+  n10 --> n13
+  n11 --> n13
+  n12 --> n13
+  n13 --> n14
+  n13 --> x16
+  n13 --> x17
+  n13 --> x4
+  n14 --> n15
+  n3 --> n8
+  n3 --> n9
+  n4 --> n5
+  n5 --> n11
+  n6 --> n8
+  n7 --> n9
+  n8 --> n11
+  n9 --> n11
+  x0 --> n11
+  x0 --> n13
+  x0 --> n4
+  x0 --> n5
+  x0 --> n6
+  x0 --> n7
+  x0 --> n8
+  x0 --> n9
+  x1 --> n6
+  x1 --> n7
+  x10 --> n13
+  x11 --> n10
+  x12 --> n13
+  x13 --> n13
+  x14 --> n7
+  x15 --> n15
+  x18 --> n11
+  x19 --> n10
+  x19 --> n13
+  x19 --> n5
+  x19 --> n6
+  x19 --> n7
+  x19 --> n8
+  x19 --> n9
+  x2 --> n14
+  x3 --> n4
+  x5 --> n13
+  x6 --> n13
+  x7 --> n13
+  x8 --> n13
+  x9 --> n13
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

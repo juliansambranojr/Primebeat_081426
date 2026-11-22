@@ -1,0 +1,16 @@
+flowchart LR
+  n0["zeta_real_ne_zero_upper<br/>⊢ riemannZeta (σ : ℂ) ≠ 0"]:::thm
+  n1["zeta_real_ne_zero<br/>⊢ riemannZeta (σ : ℂ) ≠ 0"]:::thm
+  n2["isEmpty_zeroHeight<br/>⊢ IsEmpty Kadiri.ZeroHeightNontrivialZeros"]:::thm
+  n3["weightedZeroHeightBucket_eq_zero<br/>⊢ Kadiri.weightedZeroHeightBucket = 0"]:::thm
+  x0(["RouteGate · relErrWindow_route"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  n3 --> x0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

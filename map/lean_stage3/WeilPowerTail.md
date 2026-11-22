@@ -1,0 +1,57 @@
+# `lean_stage3/Stage3/WeilPowerTail.lean`
+
+**What it does** (its own header): WeilPowerTail — the tail bound: an upper bound on `‖S m w‖` for every `w`, with no regime. Block 16a of `lean_stage3/design/rung5.md` (section 16, its line T12). 2026-11-22. Priced in unit 0378.
+
+**Imports:** [`WeilPowerPhase`](../lean_stage3/WeilPowerPhase.md).
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md).
+
+```mermaid
+flowchart LR
+  n0["sum_inv_pow4_le_third<br/>⊢ ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4…"]:::thm
+  n1["sum_hterm_sq_le<br/>⊢ ∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2 ≤ 1 / (3 * Real.pi ^ 4 * ((m :…"]:::thm
+  n2["norm_one_add_le<br/>⊢ ‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2)"]:::thm
+  n3["norm_g_le<br/>⊢ ‖g w j‖ ≤ Real.exp ((w ^ 2).re * hterm j + ‖w‖ ^ 4 * hterm j ^ 2 / 2)"]:::thm
+  n4["norm_T_le_tail<br/>⊢ ‖T m w n‖ ≤ Real.exp ((w ^ 2).re * sigmaN m n + ‖w‖ ^ 4 / (6 * Real.pi…"]:::thm
+  n5["norm_S_le_tail<br/>⊢ ‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * sigma m + ‖w‖ ^ 4 …"]:::end_
+  x0(["WeilOddPower · QS"]):::ext
+  x1(["WeilOddPower · S"]):::ext
+  x2(["WeilOddPower · cS"]):::ext
+  x3(["WeilPowerGauss · D"]):::ext
+  x4(["WeilPowerGauss · T"]):::ext
+  x5(["WeilPowerGauss · cprime_pos"]):::ext
+  x6(["WeilPowerGauss · g"]):::ext
+  x7(["WeilPowerGauss · tendsto_S"]):::ext
+  n0 --> n1
+  n1 --> n4
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  x0 --> n5
+  x1 --> n5
+  x2 --> n5
+  x3 --> n5
+  x4 --> n4
+  x5 --> n5
+  x6 --> n3
+  x6 --> n4
+  x7 --> n5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
+```
+
+Blue: theorem. Green: a theorem nothing else uses (an end). Dashed white: connects to nothing. Grey: definition. Red: contains `sorry`. Yellow: in another file. An arrow A → B reads "A is used by B".
+
+## Every declaration
+
+| declaration | proves (output) | needs (input) | why (its own docstring) | uses | used by |
+|---|---|---|---|---|---|
+| `WeilPowerTail.sum_inv_pow4_le_third`<br/>theorem, line 54 | ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / 3 * (1 / ((m : ℝ) + 1) ^ 3 - 1 / (n : ℝ) ^ 3) | m : ℕ | The fourth-power tail, telescoped: `1/(k+1)⁴ ≤ (1/3)(1/k³ − 1/(k+1)³)`. | — | `WeilPowerTail.sum_hterm_sq_le` |
+| `WeilPowerTail.sum_hterm_sq_le`<br/>theorem, line 77 | ∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2 ≤ 1 / (3 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3) | m n : ℕ | The squared tail weights sum to at most `1/(3π⁴(m+1)³)`. | `WeilPowerTail.sum_inv_pow4_le_third` | `WeilPowerTail.norm_T_le_tail` |
+| `WeilPowerTail.norm_one_add_le`<br/>theorem, line 105 | ‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2) | z : ℂ | `‖1 + z‖ ≤ exp(Re z + ‖z‖²/2)`, for every complex `z`. | — | `WeilPowerTail.norm_g_le` |
+| `WeilPowerTail.norm_g_le`<br/>theorem, line 125 | ‖g w j‖ ≤ Real.exp ((w ^ 2).re * hterm j + ‖w‖ ^ 4 * hterm j ^ 2 / 2) | w : ℂ; j : ℕ | One factor of the tail product. | `WeilPowerGauss.g`, `WeilPowerTail.norm_one_add_le` | `WeilPowerTail.norm_T_le_tail` |
+| `WeilPowerTail.norm_T_le_tail`<br/>theorem, line 139 | ‖T m w n‖ ≤ Real.exp ((w ^ 2).re * sigmaN m n + ‖w‖ ^ 4 / (6 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) | m : ℕ; w : ℂ; n : ℕ | The tail product, bounded with the partial tail sum. | `WeilPowerGauss.T`, `WeilPowerGauss.g`, `WeilPowerTail.norm_g_le`, `WeilPowerTail.sum_hterm_sq_le` | `WeilPowerTail.norm_S_le_tail` |
+| `WeilPowerTail.norm_S_le_tail`<br/>theorem, line 178 | ‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * sigma m + ‖w‖ ^ 4 / (6 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) | hne : QS m w ≠ 0 | The tail bound. For every `w` with `QS m w ≠ 0`, no regime: `‖S m w‖ ≤ (cS m/D m)·‖w‖·exp(Re(w²)·sigma m + ‖w‖⁴/(6π⁴(m+1)³))`. | `WeilOddPower.QS`, `WeilOddPower.S`, `WeilOddPower.cS`, `WeilPowerGauss.D`, `WeilPowerGauss.cprime_pos`, `WeilPowerGauss.tendsto_S`, `WeilPowerTail.norm_T_le_tail` | — |

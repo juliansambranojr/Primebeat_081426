@@ -1,0 +1,104 @@
+flowchart LR
+  n0["bdiffZ<br/>(def)"]:::dfn
+  n1["stencilR<br/>(def)"]:::dfn
+  n2["iter_bdiffZ_eq_fwdDiff<br/>⊢ (bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r"]:::thm
+  n3["iter_bdiffZ_eq_stencilR<br/>⊢ (bdiffZ^[n]) g r = stencilR n g r"]:::thm
+  n4["stencilR_row<br/>⊢ stencilR d (bdiffZ g) r = stencilR (d + 1) g r"]:::thm
+  n5["stencilR_sub<br/>⊢ stencilR n (fun x =＞ f x - L x) r = stencilR n f r - stencilR n L r"]:::thm
+  n6["Ehigh<br/>(def)"]:::dfn
+  n7["StmtSchoenfeldWindow<br/>(def)"]:::dfn
+  n8["window_term_le<br/>⊢ (Real.log 2 * ((r : ℝ) - k) / (8 * Real.pi)) * (2 : ℝ) ^ (((r : ℝ) - k…"]:::thm
+  n9["error_bound<br/>⊢ |stencilR n (fun x =＞ f x - L x) r| ≤ Ehigh r n"]:::thm
+  n10["Mlow<br/>(def)"]:::dfn
+  n11["nonvanishing_of<br/>⊢ stencilR (d + 1) f r ≠ 0"]:::thm
+  n12["tableFrom_ne_zero_of<br/>⊢ Construction.tableFrom N r d ≠ 0"]:::thm
+  x0(["Construction · tableFrom"]):::ext
+  x1(["Expansion · hD_of_window"]):::ext
+  x2(["Expansion · tableFrom_ne_zero_of_li"]):::ext
+  x3(["Interpolant · tableFrom_ne_zero_of_relErr_liRow"]):::ext
+  x4(["MainTerm · stencilR_eq_iter"]):::ext
+  x5(["MainTerm · stencilR_ge_of"]):::ext
+  x6(["MainTerm · tableFrom_ne_zero_of_deriv"]):::ext
+  x7(["RelativeGate · nonvanishing_of_relErr"]):::ext
+  x8(["RelativeGate · relError_bound"]):::ext
+  x9(["RelativeGate · relGate_iff"]):::ext
+  x10(["RelativeGate · schoenfeldWindow_relErr"]):::ext
+  x11(["RelativeGate · tableFrom_ne_zero_of_relErr"]):::ext
+  x12(["RelativeLi · tableFrom_ne_zero_of_powerSaving"]):::ext
+  x13(["RelativeLi · tableFrom_ne_zero_of_relErr_li"]):::ext
+  x14(["RelativeLi · tableFrom_ne_zero_of_relErr_li'"]):::ext
+  x15(["RouteCell · cell_ne_zero_of_route"]):::ext
+  x16(["Schoenfeld · tableFrom_ne_zero_of_schoenfeld"]):::ext
+  x17(["Schoenfeld · window_of_global"]):::ext
+  x18(["ZerosStencil · stencil"]):::ext
+  x19(["ZerosStencil · tableFrom_eq_stencil"]):::ext
+  x20(["TableDepths · cell_ne_zero_gen"]):::ext
+  x21(["TableRoute · cell_ne_zero_of_RH"]):::ext
+  n0 --> n12
+  n0 --> n2
+  n0 --> n3
+  n0 --> n4
+  n0 --> x11
+  n0 --> x12
+  n0 --> x13
+  n0 --> x14
+  n0 --> x15
+  n0 --> x16
+  n0 --> x2
+  n0 --> x20
+  n0 --> x21
+  n0 --> x3
+  n0 --> x6
+  n1 --> n11
+  n1 --> n12
+  n1 --> n3
+  n1 --> n4
+  n1 --> n5
+  n1 --> n9
+  n1 --> x11
+  n1 --> x4
+  n1 --> x5
+  n1 --> x7
+  n1 --> x8
+  n10 --> n11
+  n10 --> n12
+  n10 --> x1
+  n10 --> x11
+  n10 --> x13
+  n10 --> x16
+  n10 --> x2
+  n10 --> x6
+  n10 --> x7
+  n10 --> x9
+  n11 --> n12
+  n12 --> x6
+  n2 --> n3
+  n3 --> n4
+  n4 --> n12
+  n4 --> x11
+  n5 --> n11
+  n5 --> x7
+  n6 --> n11
+  n6 --> n12
+  n6 --> n9
+  n6 --> x16
+  n6 --> x2
+  n6 --> x6
+  n7 --> n11
+  n7 --> n12
+  n7 --> n9
+  n7 --> x10
+  n7 --> x17
+  n7 --> x2
+  n7 --> x6
+  n8 --> n9
+  n9 --> n11
+  x0 --> n12
+  x18 --> n12
+  x19 --> n12
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

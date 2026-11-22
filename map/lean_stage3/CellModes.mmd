@@ -1,0 +1,30 @@
+flowchart LR
+  n0["mode_two_int<br/>⊢ Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r"]:::thm
+  n1["sym_two<br/>⊢ Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹"]:::thm
+  n2["cell_eq_modeSum<br/>⊢ ‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r …"]:::end_
+  x0(["Chain · Sym"]):::ext
+  x1(["Chain · mode"]):::ext
+  x2(["Superposition · modeSum"]):::ext
+  x3(["CellZeros · cell_eq_zero_sum"]):::ext
+  x4(["CellZeros · stencil"]):::ext
+  x5(["GlueNum · c1n"]):::ext
+  x6(["GlueNum · c3n"]):::ext
+  x7(["GlueNum · c4n"]):::ext
+  n0 --> n2
+  n1 --> n2
+  x0 --> n1
+  x0 --> n2
+  x1 --> n0
+  x1 --> n2
+  x2 --> n2
+  x3 --> n2
+  x4 --> n2
+  x5 --> n2
+  x6 --> n2
+  x7 --> n2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

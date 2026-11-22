@@ -1,0 +1,98 @@
+flowchart LR
+  n0["zOf<br/>(def)"]:::dfn
+  n1["coef<br/>(def)"]:::dfn
+  n2["uSh<br/>(def)"]:::dfn
+  n3["shellSum<br/>(def)"]:::dfn
+  n4["zOf_re<br/>⊢ (zOf e' D e).re = 2 * (e' ^ 2 - D ^ 2 - e ^ 2)"]:::thm
+  n5["zOf_im<br/>⊢ (zOf e' D e).im = 4 * e' * D"]:::thm
+  n6["norm_zOf_le<br/>⊢ ‖zOf e' D e‖ ≤ 2 * (e' ^ 2 + D ^ 2 + e ^ 2)"]:::thm
+  n7["norm_coef<br/>⊢ ‖coef e' D e‖ = (e' ^ 2 + D ^ 2) / e ^ 2"]:::thm
+  n8["uSh_bracket<br/>⊢ ∀ k : ℕ, 0 ≤ uSh lam k - ((k : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - 1 / (2…"]:::thm
+  n9["sum_uSh_eq<br/>⊢ ∑ h ∈ Finset.Ico a b, coef e' D e * Complex.exp (zOf e' D e * ((WeilPo…"]:::thm
+  n10["im_alpha_le<br/>⊢ (zOf e' D e).im * (1 / ((lam : ℝ) * Real.pi ^ 2)) ≤ Real.pi / 2"]:::thm
+  n11["norm_zOf_c_le<br/>⊢ ‖zOf e' D e‖ * (1 / (2 * (lam : ℝ) ^ 3 * Real.pi ^ 2)) ≤ (a : ℝ) + 1"]:::thm
+  n12["exp_end_le<br/>⊢ Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2) * (k : ℝ) +…"]:::thm
+  n13["MabGen_le<br/>⊢ WeilPowerGeomGen.MabGen (zOf e' D e) (1 / ((lam : ℝ) * Real.pi ^ 2)) (…"]:::thm
+  n14["inv_exp_le<br/>⊢ 1 / Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2))) ≤ Rea…"]:::thm
+  n15["geomBound_le<br/>⊢ WeilPowerGeomGen.geomBoundGen (zOf e' D e) (1 / ((lam : ℝ) * Real.pi ^…"]:::thm
+  n16["shellSum_le<br/>⊢ |shellSum e' D e lam a b| ≤ (e' ^ 2 + D ^ 2) / e ^ 2 * Real.exp (2 * e…"]:::thm
+  n17["shellSum_neg<br/>⊢ shellSum e' (-D) e lam a b = shellSum e' D e lam a b"]:::thm
+  n18["shellSum_le_abs<br/>⊢ |shellSum e' D e lam a b| ≤ (e' ^ 2 + |D| ^ 2) / e ^ 2 * Real.exp (2 *…"]:::end_
+  x0(["WeilPowerGeomGen · MabGen"]):::ext
+  x1(["WeilPowerGeomGen · geomBoundGen"]):::ext
+  x2(["WeilPowerGeomGen · norm_sum_exp_u_le_gen"]):::ext
+  x3(["WeilPowerGeomGen · uLam"]):::ext
+  x4(["WeilPowerGeomGen · uLam_bracket"]):::ext
+  x5(["WeilPowerNear · re_term_eq"]):::ext
+  x6(["WeilPowerNear · shellSum_nonneg"]):::ext
+  x7(["WeilPowerNear · shellSum_nonneg_abs"]):::ext
+  x8(["WeilPowerNear · term_nonneg"]):::ext
+  n0 --> n10
+  n0 --> n11
+  n0 --> n12
+  n0 --> n13
+  n0 --> n14
+  n0 --> n15
+  n0 --> n16
+  n0 --> n17
+  n0 --> n3
+  n0 --> n4
+  n0 --> n5
+  n0 --> n6
+  n0 --> n9
+  n0 --> x5
+  n0 --> x8
+  n1 --> n16
+  n1 --> n17
+  n1 --> n3
+  n1 --> n7
+  n1 --> n9
+  n1 --> x5
+  n1 --> x8
+  n10 --> n16
+  n11 --> n16
+  n12 --> n13
+  n12 --> n15
+  n13 --> n16
+  n14 --> n15
+  n15 --> n16
+  n16 --> n18
+  n17 --> n18
+  n17 --> x7
+  n2 --> n16
+  n2 --> n8
+  n2 --> n9
+  n3 --> n16
+  n3 --> n17
+  n3 --> n18
+  n3 --> x6
+  n3 --> x7
+  n4 --> n12
+  n4 --> x5
+  n5 --> n10
+  n5 --> n15
+  n5 --> n16
+  n5 --> x5
+  n6 --> n11
+  n6 --> n14
+  n6 --> n16
+  n7 --> n16
+  n8 --> n16
+  n9 --> n16
+  x0 --> n13
+  x0 --> n16
+  x1 --> n15
+  x1 --> n16
+  x2 --> n16
+  x3 --> n16
+  x3 --> n17
+  x3 --> n2
+  x3 --> n3
+  x3 --> n9
+  x4 --> n8
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

@@ -1,0 +1,66 @@
+flowchart LR
+  n0["StmtRelErrWindow<br/>(def)"]:::dfn
+  n1["EhighRel<br/>(def)"]:::dfn
+  n2["relWindow_term_le<br/>⊢ ρ * (2 : ℝ) ^ ((r : ℝ) - k) = ρ * (2 : ℝ) ^ (r : ℝ) * ((2 : ℝ) ^ (-(1 …"]:::thm
+  n3["relError_bound<br/>⊢ |stencilR n (fun x =＞ f x - L x) r| ≤ EhighRel r n ρ"]:::thm
+  n4["relGate_iff<br/>⊢ EhighRel r (d + 1) ρ ＜ Mlow r d ↔ ρ ＜ Real.log 2 ^ d / (2 * r * 3 ^ (d…"]:::thm
+  n5["relGate_eps<br/>⊢ Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) = ((1 / 2) * (Real.log 2 / 3) ^…"]:::lone
+  n6["nonvanishing_of_relErr<br/>⊢ stencilR (d + 1) f r ≠ 0"]:::thm
+  n7["tableFrom_ne_zero_of_relErr<br/>⊢ Construction.tableFrom N r d ≠ 0"]:::thm
+  n8["schoenfeldWindow_relErr<br/>⊢ StmtRelErrWindow f L r n ((Real.log 2 * r / (8 * Real.pi)) * (2 : ℝ) ^…"]:::end_
+  n9["powerSaving_relErr<br/>⊢ StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)))"]:::thm
+  x0(["Construction · tableFrom"]):::ext
+  x1(["Interpolant · tableFrom_ne_zero_of_relErr_liRow"]):::ext
+  x2(["Nonvanishing · Mlow"]):::ext
+  x3(["Nonvanishing · StmtSchoenfeldWindow"]):::ext
+  x4(["Nonvanishing · bdiffZ"]):::ext
+  x5(["Nonvanishing · stencilR"]):::ext
+  x6(["Nonvanishing · stencilR_row"]):::ext
+  x7(["Nonvanishing · stencilR_sub"]):::ext
+  x8(["RelativeLi · tableFrom_ne_zero_of_powerSaving"]):::ext
+  x9(["RelativeLi · tableFrom_ne_zero_of_relErr_li"]):::ext
+  x10(["RelativeLi · tableFrom_ne_zero_of_relErr_li'"]):::ext
+  x11(["RouteCell · cell_ne_zero_of_route"]):::ext
+  x12(["ZerosStencil · stencil"]):::ext
+  x13(["ZerosStencil · tableFrom_eq_stencil"]):::ext
+  x14(["TableDepths · cell_ne_zero_gen"]):::ext
+  n0 --> n3
+  n0 --> n6
+  n0 --> n7
+  n0 --> n8
+  n0 --> n9
+  n0 --> x1
+  n0 --> x10
+  n0 --> x11
+  n0 --> x14
+  n0 --> x9
+  n1 --> n3
+  n1 --> n4
+  n1 --> n6
+  n1 --> n7
+  n1 --> x9
+  n2 --> n3
+  n3 --> n6
+  n4 --> x10
+  n6 --> n7
+  n7 --> x9
+  n9 --> x8
+  x0 --> n7
+  x12 --> n7
+  x13 --> n7
+  x2 --> n4
+  x2 --> n6
+  x2 --> n7
+  x3 --> n8
+  x4 --> n7
+  x5 --> n3
+  x5 --> n6
+  x5 --> n7
+  x6 --> n7
+  x7 --> n6
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

@@ -1,0 +1,193 @@
+flowchart LR
+  n0["g<br/>(def)"]:::dfn
+  n1["euler_sinh<br/>⊢ Tendsto (fun n : ℕ =＞ w * ∏ j ∈ Finset.range n, g w j) atTop (𝓝 (Compl…"]:::thm
+  n2["D<br/>(def)"]:::dfn
+  n3["D_pos<br/>⊢ 0 ＜ D m"]:::thm
+  n4["D_eq<br/>⊢ D m = Real.pi ^ (2 * (m + 1)) * (((m + 1).factorial : ℕ) : ℝ) ^ 2"]:::thm
+  n5["QS_eq_D_mul<br/>⊢ QS m w = (D m : ℂ) * ∏ j ∈ Finset.range (m + 1), g w j"]:::thm
+  n6["cprime_eq<br/>⊢ cS m / D m = ((Nat.centralBinom (m + 1) : ℕ) : ℝ) / (Real.pi * ((m : ℝ…"]:::thm
+  n7["cprime_le<br/>⊢ cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1))"]:::thm
+  n8["cprime_ge<br/>⊢ 4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) ≤ cS m / D m"]:::thm
+  n9["cprime_pos<br/>⊢ 0 ＜ cS m / D m"]:::thm
+  n10["T<br/>(def)"]:::dfn
+  n11["tendsto_S<br/>⊢ Tendsto (fun n : ℕ =＞ ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTop (𝓝 (…"]:::thm
+  n12["norm_one_add_le<br/>⊢ ‖1 + x‖ ≤ Real.exp (x.re + ‖x‖ ^ 2)"]:::thm
+  n13["exp_le_one_add<br/>⊢ Real.exp (x - x ^ 2) ≤ 1 + x"]:::thm
+  n14["sum_inv_sq_le<br/>⊢ ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 ≤ 1 / ((m : ℝ) + 1)"]:::thm
+  n15["sum_inv_sq_ge<br/>⊢ ((m : ℝ) + 2) / (2 * (m : ℝ) + 3) ^ 2 ≤ ∑ j ∈ Finset.Ico (m + 1) (2 * …"]:::thm
+  n16["sum_inv_pow4_le<br/>⊢ ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / ((m : ℝ) + 1) …"]:::thm
+  n17["norm_x_le<br/>⊢ ‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ ≤ 1 / 2"]:::thm
+  n18["x_re<br/>⊢ (w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)).re = (w ^ 2).re / (R…"]:::thm
+  n19["x_norm<br/>⊢ ‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ = ‖w‖ ^ 2 / (Real.pi…"]:::thm
+  n20["norm_T_le<br/>⊢ ‖T m w n‖ ≤ Real.exp ((w ^ 2).re / Real.pi ^ 2 * ∑ j ∈ Finset.Ico (m +…"]:::thm
+  n21["norm_T_le_pos<br/>⊢ ‖T m w n‖ ≤ Real.exp ((w ^ 2).re / (Real.pi ^ 2 * ((m : ℝ) + 1)) + ‖w‖…"]:::thm
+  n22["norm_T_le_neg<br/>⊢ ‖T m w n‖ ≤ Real.exp ((w ^ 2).re * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 *…"]:::thm
+  n23["norm_S_le_gauss_pos<br/>⊢ ‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2).re /…"]:::thm
+  n24["norm_S_le_gauss_neg<br/>⊢ ‖S m w‖ ≤ 4 / (Real.pi * ((m : ℝ) + 1)) * ‖w‖ * Real.exp ((w ^ 2).re *…"]:::thm
+  n25["Tr<br/>(def)"]:::dfn
+  n26["T_ofReal<br/>⊢ T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ)"]:::thm
+  n27["Tr_ge<br/>⊢ Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + 3) ^ 2…"]:::thm
+  n28["S_real_ge_gauss<br/>⊢ 4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) * s * Real.exp (s ^ …"]:::thm
+  x0(["WeilOddPower · QS"]):::ext
+  x1(["WeilOddPower · S"]):::ext
+  x2(["WeilOddPower · cS"]):::ext
+  x3(["WeilPowerBounds · QS_ne_zero"]):::ext
+  x4(["WeilPowerBounds · S_eq_div'"]):::ext
+  x5(["WeilPowerBridge · term_le_at_zero"]):::ext
+  x6(["WeilPowerCompare · S_real_ge_low"]):::ext
+  x7(["WeilPowerCompare · norm_S_le_gauss"]):::ext
+  x8(["WeilPowerPhase · T_eq_exp"]):::ext
+  x9(["WeilPowerPhase · T_eq_mul"]):::ext
+  x10(["WeilPowerPhase · delta"]):::ext
+  x11(["WeilPowerPhase · g_eq"]):::ext
+  x12(["WeilPowerPhase · g_ne_zero"]):::ext
+  x13(["WeilPowerPhase · norm_A_sq"]):::ext
+  x14(["WeilPowerPhase · norm_S_sub_le"]):::ext
+  x15(["WeilPowerPhase · norm_delta_le"]):::ext
+  x16(["WeilPowerPhase · norm_log_sub_le"]):::ext
+  x17(["WeilPowerPhase · re_A_sq"]):::ext
+  x18(["WeilPowerPhase · re_S_sq_ge"]):::ext
+  x19(["WeilPowerPhase · re_sq_ge"]):::ext
+  x20(["WeilPowerPhase · sigma_le"]):::ext
+  x21(["WeilPowerSharp · S_real_ge_sharp"]):::ext
+  x22(["WeilPowerSharp · Tr_ge_sharp"]):::ext
+  x23(["WeilPowerSharp · compare_sharp"]):::ext
+  x24(["WeilPowerSharp · norm_S_le_c_neg"]):::ext
+  x25(["WeilPowerSharp · norm_S_le_c_pos"]):::ext
+  x26(["WeilPowerTail · norm_S_le_tail"]):::ext
+  x27(["WeilPowerTail · norm_T_le_tail"]):::ext
+  x28(["WeilPowerTail · norm_g_le"]):::ext
+  n0 --> n1
+  n0 --> n10
+  n0 --> n11
+  n0 --> n20
+  n0 --> n26
+  n0 --> n5
+  n0 --> x10
+  n0 --> x11
+  n0 --> x12
+  n0 --> x15
+  n0 --> x16
+  n0 --> x27
+  n0 --> x28
+  n0 --> x8
+  n1 --> n11
+  n10 --> n11
+  n10 --> n20
+  n10 --> n21
+  n10 --> n22
+  n10 --> n23
+  n10 --> n24
+  n10 --> n26
+  n10 --> x27
+  n10 --> x8
+  n10 --> x9
+  n11 --> n23
+  n11 --> n24
+  n11 --> n28
+  n11 --> x14
+  n11 --> x21
+  n11 --> x24
+  n11 --> x25
+  n11 --> x26
+  n12 --> n20
+  n13 --> n27
+  n13 --> x22
+  n14 --> n16
+  n14 --> n21
+  n14 --> x20
+  n15 --> n22
+  n15 --> n27
+  n16 --> n21
+  n16 --> n22
+  n16 --> n27
+  n16 --> x15
+  n16 --> x22
+  n17 --> n20
+  n17 --> x12
+  n17 --> x16
+  n18 --> n20
+  n19 --> n20
+  n19 --> x15
+  n2 --> n11
+  n2 --> n23
+  n2 --> n24
+  n2 --> n28
+  n2 --> n3
+  n2 --> n4
+  n2 --> n5
+  n2 --> n6
+  n2 --> n7
+  n2 --> n8
+  n2 --> n9
+  n2 --> x13
+  n2 --> x14
+  n2 --> x17
+  n2 --> x18
+  n2 --> x19
+  n2 --> x21
+  n2 --> x23
+  n2 --> x24
+  n2 --> x25
+  n2 --> x26
+  n2 --> x5
+  n20 --> n21
+  n20 --> n22
+  n21 --> n23
+  n21 --> x25
+  n22 --> n24
+  n22 --> x24
+  n23 --> x7
+  n24 --> x7
+  n25 --> n26
+  n25 --> n27
+  n25 --> n28
+  n25 --> x21
+  n25 --> x22
+  n26 --> n28
+  n26 --> x21
+  n27 --> n28
+  n28 --> x6
+  n3 --> n11
+  n4 --> n6
+  n5 --> n11
+  n6 --> n7
+  n6 --> n8
+  n7 --> n23
+  n7 --> n24
+  n8 --> n28
+  n8 --> n9
+  n9 --> n23
+  n9 --> n24
+  n9 --> n28
+  n9 --> x13
+  n9 --> x21
+  n9 --> x23
+  n9 --> x24
+  n9 --> x25
+  n9 --> x26
+  x0 --> n11
+  x0 --> n23
+  x0 --> n24
+  x0 --> n28
+  x0 --> n5
+  x1 --> n11
+  x1 --> n23
+  x1 --> n24
+  x1 --> n28
+  x2 --> n11
+  x2 --> n23
+  x2 --> n24
+  x2 --> n28
+  x2 --> n6
+  x2 --> n7
+  x2 --> n8
+  x2 --> n9
+  x3 --> n28
+  x4 --> n11
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

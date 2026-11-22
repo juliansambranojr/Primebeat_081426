@@ -1,0 +1,28 @@
+flowchart LR
+  n0["rampSum_le_log<br/>⊢ LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4))"]:::thm
+  n1["log_four_lt_two<br/>⊢ Real.log 4 ＜ 2"]:::thm
+  n2["G_le<br/>⊢ LandauWindow.G y ≤ 8 * y"]:::thm
+  n3["neg_le_G<br/>⊢ -(y * Real.log y) ≤ LandauWindow.G y"]:::thm
+  n4["abs_G_le_log<br/>⊢ |LandauWindow.G y| ≤ 8 * y * (1 + Real.log y)"]:::thm
+  x0(["LandauCrude · rampSum_nonneg"]):::ext
+  x1(["LandauPrimeSide · Ik_le"]):::ext
+  x2(["LandauTaylor · integrand_norm_le"]):::ext
+  x3(["LandauWindow · G"]):::ext
+  x4(["LandauWindow · rampSum"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n2 --> n4
+  n2 --> x1
+  n3 --> n4
+  n4 --> x2
+  x0 --> n3
+  x3 --> n2
+  x3 --> n3
+  x3 --> n4
+  x4 --> n0
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

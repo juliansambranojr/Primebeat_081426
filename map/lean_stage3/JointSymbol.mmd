@@ -1,0 +1,35 @@
+flowchart LR
+  n0["dd<br/>(def)"]:::dfn
+  n1["cutG<br/>(def)"]:::dfn
+  n2["mellin_shift<br/>⊢ IntegrableOn (fun y : ℝ =＞ f (y / 2) * (y : ℂ) ^ (-s - 1)) (Ioi 1) ∧ ∫…"]:::thm
+  n3["mellin_dd<br/>⊢ (∀ y : ℝ, y ≤ 1 → dd f y = 0) ∧ IntegrableOn (fun y : ℝ =＞ dd f y * (y…"]:::thm
+  n4["mellin_dd_iter_aux<br/>⊢ (∀ y : ℝ, y ≤ 1 → (dd^[d] f) y = 0) ∧ IntegrableOn (fun y : ℝ =＞ (dd^[…"]:::thm
+  n5["mellin_dd_iter<br/>⊢ ∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1) = (1 - (2 : ℂ…"]:::end_
+  n6["dd_iter_rule<br/>⊢ (dd^[d + 1] f) y = (dd^[d] f) y - (dd^[d] f) (y / 2)"]:::end_
+  n7["symPhi_principal_part<br/>⊢ ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, (1 - (2 : ℂ) ^ (-s)) ^…"]:::end_
+  x0(["LandauMellinG · G_mellin_integrable"]):::ext
+  x1(["LandauMellinG · Phi"]):::ext
+  x2(["LandauMellinG · mellin_G"]):::ext
+  x3(["LandauPoleLocal · Phi_principal_part"]):::ext
+  x4(["LandauWindow · G"]):::ext
+  n0 --> n3
+  n0 --> n4
+  n0 --> n5
+  n0 --> n6
+  n1 --> n5
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  x0 --> n5
+  x1 --> n5
+  x1 --> n7
+  x2 --> n5
+  x3 --> n7
+  x4 --> n1
+  x4 --> n5
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

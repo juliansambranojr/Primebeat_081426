@@ -1,0 +1,21 @@
+flowchart LR
+  n0["kernel_nonneg<br/>⊢ 0 ≤ᵐ[volume.restrict (Ioi (1 : ℝ))] fun y : ℝ =＞ Real.log y ^ k * y ^ …"]:::thm
+  n1["lower_tail_le<br/>⊢ ∫ y in Ioc (1 : ℝ) Y, Real.log y ^ k * y ^ (-a - 1) ≤ Y ^ b * (k.facto…"]:::thm
+  n2["upper_tail_le<br/>⊢ ∫ y in Ioi Z, Real.log y ^ k * y ^ (-a - 1) ≤ Z ^ (-b) * (k.factorial …"]:::thm
+  x0(["LandauKernel · log_pow_integrable"]):::ext
+  x1(["LandauKernel · log_pow_integral"]):::ext
+  x2(["LandauPrimeSide · Ik_le"]):::ext
+  n0 --> n1
+  n0 --> n2
+  n1 --> x2
+  n2 --> x2
+  x0 --> n1
+  x0 --> n2
+  x1 --> n1
+  x1 --> n2
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

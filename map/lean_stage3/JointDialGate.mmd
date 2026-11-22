@@ -1,0 +1,41 @@
+flowchart LR
+  n0["StmtRelErrWindow<br/>(def)"]:::dfn
+  n1["thetaWindow_of_global<br/>⊢ ∀ j ∈ range (n + 1), |f (r - j) - L (r - j)| ≤ C * ((2 : ℝ) ^ ((r : ℝ)…"]:::thm
+  n2["log_absorbed<br/>⊢ C * x ^ θ * Real.log x ^ k ≤ C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) …"]:::thm
+  n3["powerSaving_relErr<br/>⊢ StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1)))"]:::thm
+  n4["relErrWindow_of_theta<br/>⊢ StmtRelErrWindow f L r n (C / (2 * (θ' - θ) / (2 * ((k : ℝ) + 1))) ^ k…"]:::thm
+  n5["relErrWindow_of_window<br/>⊢ ∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ (r : ℤ) (n : ℕ), x₀ ≤ (2 : ℝ) ^ ((r : ℝ) - n) → …"]:::end_
+  x0(["GateEval · gate_hyp_of_RH"]):::ext
+  x1(["JointFloorGate · relErrWindow_floor_of_RH"]):::ext
+  x2(["JointFloorGate · weakWindow_relErr"]):::ext
+  x3(["JointWindowDial · schoenfeldWeakTheta_of_window"]):::ext
+  x4(["LandauKernel · log_pow_le"]):::ext
+  x5(["LandauWindow · WindowBound"]):::ext
+  x6(["PsiToPi · Li"]):::ext
+  x7(["RouteGate · relErrWindow_route"]):::ext
+  x8(["RouteNum · relErrWindow_route_num"]):::ext
+  x9(["ThetaPi · StmtSchoenfeldWeakTheta"]):::ext
+  n0 --> n3
+  n0 --> n4
+  n0 --> n5
+  n0 --> x0
+  n0 --> x1
+  n0 --> x2
+  n0 --> x7
+  n0 --> x8
+  n1 --> n4
+  n2 --> n4
+  n3 --> n4
+  n4 --> n5
+  x3 --> n5
+  x4 --> n2
+  x5 --> n5
+  x6 --> n5
+  x9 --> n1
+  x9 --> n4
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

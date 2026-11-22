@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Lean map: `map/` (index `map/README.md`), `utilities/lean_map.py`
+
+    DONE        a generated map of every declaration in every Lean file of
+                the three trees: per file a Mermaid diagram and a table with,
+                for each theorem, what it proves, what it needs, why (its own
+                docstring), what it uses and what uses it; a diagram of the
+                files per tree; the lists of ends, of theorems that connect
+                to nothing, of `sorry`; a workflow that regenerates it on
+                every push that changes a `.lean` file
+    ASSUMED     Julian, 2026-11-22: every theorem in every file, visual, the
+                same for both readers every time, updating itself. "Uses" is
+                read from names in the source; the generator's docstring
+                states what that cannot see
+    DEPENDS     nothing
+    OUT         no Lean changed; `CLAUDE.md` not edited (it is Julian's)
+    OUTCOME     done as pinned; every diagram parses in Mermaid
+
 ### 2026-11-22 · `Stage3/CellZeros.lean`, block T1 of `joints.md`
 
     DONE        `stencil`, `stencil_mode`, `stencil_zeroPartialSum`,

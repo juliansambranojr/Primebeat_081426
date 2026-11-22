@@ -1,0 +1,124 @@
+flowchart LR
+  n0["zeta_centre_lower<br/>⊢ (1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖"]:::thm
+  n1["zeta_disk_upper<br/>⊢ ‖ζ w‖ ≤ 28 * T"]:::thm
+  n2["zeta_centre_ne_zero<br/>⊢ ζ (2 + Complex.I * (T : ℂ)) ≠ 0"]:::thm
+  n3["pole_away<br/>⊢ 2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1"]:::thm
+  n4["pole_away_centre<br/>⊢ v ≠ 1"]:::thm
+  n5["zetaWindowTwo_finite<br/>⊢ {ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite"]:::thm
+  n6["zetaWindow<br/>(def)"]:::dfn
+  n7["zetaWindow_finite<br/>⊢ (zetaWindow T).Finite"]:::thm
+  n8["jensenF<br/>(def)"]:::dfn
+  n9["zeta_comp_analytic<br/>⊢ AnalyticAt ℂ (fun z : ℂ =＞ ζ (2 * z + (2 + Complex.I * (T : ℂ)))) w"]:::thm
+  n10["jensenF_analytic<br/>⊢ AnalyticOnNhd ℂ (jensenF T) (Metric.closedBall (0 : ℂ) 1)"]:::thm
+  n11["jensenF_zero_eq_one<br/>⊢ jensenF T 0 = 1"]:::thm
+  n12["jensenF_zeros_finite<br/>⊢ (SetOfZeros 1 (jensenF T)).Finite"]:::thm
+  n13["jensenF_bound<br/>⊢ ‖jensenF T z‖ ≤ 84 * T"]:::thm
+  n14["analyticOrderNatAt_fun_comp_affine<br/>⊢ analyticOrderNatAt (fun w : ℂ =＞ g (a * w + b)) z = analyticOrderNatAt…"]:::thm
+  n15["jensenF_order<br/>⊢ analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w + (2 + …"]:::thm
+  n16["zeta_local_zero_count<br/>⊢ ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ …"]:::thm
+  n17["zetaLocalCount<br/>(def)"]:::dfn
+  n18["zetaLocalCount_eq<br/>⊢ zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrd…"]:::thm
+  n19["localCount_holds<br/>⊢ StmtLocalCount zetaLocalCount 15 73"]:::thm
+  x0(["Abscissa · logDerivZeta_crude_theta"]):::ext
+  x1(["ArgCrude · StmtLocalCount"]):::ext
+  x2(["ArgIdentity · backlundArg_of_sFromLocal"]):::ext
+  x3(["ArgIdentity · rvM_of_sFromLocal"]):::ext
+  x4(["ContourShift · goodT_exists"]):::ext
+  x5(["ContourShift · mem_zetaWindow"]):::ext
+  x6(["EdgeBound · ball_order_sum_le"]):::ext
+  x7(["EdgeBound · gz_partial_fraction"]):::ext
+  x8(["EdgeNum · ball_order_sum_le_num"]):::ext
+  x9(["EdgeNum · gz_partial_fraction_num"]):::ext
+  x10(["Glue · band_order_sum_le"]):::ext
+  x11(["GlueNum · band_order_sum_le_num"]):::ext
+  x12(["LineBound · logDerivZeta_crude"]):::ext
+  x13(["LineBound · logDerivZeta_compact"]):::ext
+  x14(["LowCount · low_ball_count"]):::ext
+  x15(["LowEdge · gz_partial_fraction_low"]):::ext
+  x16(["LowEdge · low_ball_count_wide"]):::ext
+  x17(["ReZetaCount · F_bound"]):::ext
+  x18(["ThetaLine · logDerivZeta_compact_theta"]):::ext
+  x19(["WeilBands · band_count"]):::ext
+  x20(["WeilBands · mem_zetaWindow_of_online"]):::ext
+  n0 --> n13
+  n0 --> x13
+  n0 --> x18
+  n1 --> n13
+  n1 --> x17
+  n10 --> n16
+  n10 --> x0
+  n10 --> x12
+  n11 --> n16
+  n11 --> x0
+  n11 --> x12
+  n12 --> n16
+  n12 --> x0
+  n12 --> x12
+  n13 --> n16
+  n13 --> x0
+  n13 --> x12
+  n14 --> n15
+  n14 --> x14
+  n14 --> x15
+  n14 --> x16
+  n14 --> x7
+  n14 --> x9
+  n15 --> n16
+  n16 --> n19
+  n16 --> x10
+  n16 --> x11
+  n16 --> x19
+  n16 --> x4
+  n16 --> x6
+  n16 --> x8
+  n17 --> n18
+  n17 --> n19
+  n17 --> x2
+  n17 --> x3
+  n18 --> n19
+  n19 --> x3
+  n2 --> n11
+  n2 --> n12
+  n2 --> n15
+  n2 --> n16
+  n2 --> n5
+  n2 --> x0
+  n2 --> x12
+  n2 --> x13
+  n2 --> x18
+  n3 --> n9
+  n4 --> n5
+  n4 --> x0
+  n4 --> x12
+  n5 --> n12
+  n5 --> n7
+  n6 --> n16
+  n6 --> n17
+  n6 --> n7
+  n6 --> x20
+  n6 --> x5
+  n7 --> n16
+  n7 --> n18
+  n7 --> x10
+  n7 --> x11
+  n7 --> x19
+  n7 --> x4
+  n7 --> x6
+  n7 --> x8
+  n8 --> n10
+  n8 --> n11
+  n8 --> n12
+  n8 --> n13
+  n8 --> n15
+  n8 --> n16
+  n8 --> x0
+  n8 --> x12
+  n9 --> n10
+  n9 --> n15
+  x1 --> n19
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2

@@ -1,0 +1,217 @@
+flowchart LR
+  n0["Sym<br/>(def)"]:::dfn
+  n1["mode<br/>(def)"]:::dfn
+  n2["bdiff<br/>(def)"]:::dfn
+  n3["h<br/>(def)"]:::dfn
+  n4["StmtA1<br/>(def)"]:::dfn
+  n5["StmtA2<br/>(def)"]:::dfn
+  n6["StmtA3<br/>(def)"]:::dfn
+  n7["StmtA4<br/>(def)"]:::dfn
+  n8["StmtB4<br/>(def)"]:::dfn
+  n9["StmtB5<br/>(def)"]:::dfn
+  n10["StmtC1<br/>(def)"]:::dfn
+  n11["StmtC2<br/>(def)"]:::dfn
+  n12["StmtC3<br/>(def)"]:::dfn
+  n13["StmtC3lower<br/>(def)"]:::dfn
+  n14["bdiff_smul<br/>⊢ bdiff (fun r =＞ k * f r) = fun r =＞ k * bdiff f r"]:::thm
+  n15["A4_of_A1<br/>⊢ StmtA4 b ρ"]:::thm
+  n16["B5_of_A4_B4<br/>⊢ h b N ((1 : ℂ)/2 + γ * I) = ((‖(Sym b ((1 : ℂ)/2 + γ * I)) ^ N‖ ^ 2 : …"]:::thm
+  n17["C2_of_C1<br/>⊢ StmtC2 b"]:::thm
+  n18["C3_of_A4_C2<br/>⊢ StmtC3 b"]:::thm
+  n19["C3lower_of_A4_C2<br/>⊢ StmtC3lower b"]:::thm
+  n20["A2<br/>⊢ StmtA2"]:::end_
+  n21["A3<br/>⊢ StmtA3"]:::end_
+  n22["C1<br/>⊢ StmtC1 b"]:::thm
+  n23["C2<br/>⊢ StmtC2 b"]:::thm
+  n24["A1<br/>⊢ StmtA1 b ρ"]:::thm
+  n25["A4<br/>⊢ StmtA4 b ρ"]:::thm
+  n26["B4<br/>⊢ StmtB4 b N"]:::thm
+  n27["B5<br/>⊢ StmtB5 b N"]:::end_
+  n28["C3<br/>⊢ StmtC3 b"]:::end_
+  n29["C3lower<br/>⊢ StmtC3lower b"]:::end_
+  n30["tableFrom_eq_bdiff_iter<br/>⊢ ((Construction.tableFrom N r d : ℤ) : ℂ) = (bdiff^[d]) g (r : ℂ)"]:::thm
+  n31["tableFrom_mode<br/>⊢ ((Construction.tableFrom N r d : ℤ) : ℂ) = (Sym b ρ) ^ d * mode b ρ (r…"]:::thm
+  n32["tableFrom_norm_on_critical_line<br/>⊢ ‖((Construction.tableFrom N r d : ℤ) : ℂ)‖ = ‖Sym b ((1 : ℂ)/2 + γ * I…"]:::end_
+  n33["sym_eq_zero_iff<br/>⊢ Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * I / Real.log b)"]:::thm
+  n34["sym_periodic<br/>⊢ Sym b (s + 2 * Real.pi * I / Real.log b) = Sym b s"]:::thm
+  n35["gain_sq_periodic<br/>⊢ Function.Periodic (fun γ : ℝ =＞ ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2) (2 * …"]:::thm
+  x0(["Chain · C2_ceiling_attained"]):::ext
+  x1(["Chain · C2_floor_attained"]):::ext
+  x2(["Chain · ceiling_base"]):::ext
+  x3(["Chain · gain_sq_at_ceiling"]):::ext
+  x4(["Chain · gain_sq_at_floor"]):::ext
+  x5(["Chain · joint_gain_periodic_of_commensurate"]):::ext
+  x6(["Construction · tableFrom"]):::ext
+  x7(["EulerFactorChain · euler_product_riemannZeta"]):::ext
+  x8(["EulerFactorChain · euler_product_sym"]):::ext
+  x9(["EulerFactorChain · gain_sq_on_critical_line"]):::ext
+  x10(["EulerFactorChain · h_eq_gain_pow_on_critical_line"]):::ext
+  x11(["EulerFactorChain · sym_natCast"]):::ext
+  x12(["EulerFactorChain · symbol_of_backward_difference"]):::ext
+  x13(["JointLadder · d2_iter_jmode"]):::ext
+  x14(["JointLadder · d2_jmode"]):::ext
+  x15(["JointLadder · d3_iter_jmode"]):::ext
+  x16(["JointLadder · d3_jmode"]):::ext
+  x17(["NyquistPeak · gain_eq_norm_sym_pow"]):::ext
+  x18(["NyquistPeak · norm_sym_on_imaginary_axis"]):::ext
+  x19(["NyquistPeak · norm_sym_pow_at_boundaryBase"]):::ext
+  x20(["NyquistPeak · sym_on_imaginary_axis"]):::ext
+  x21(["Superposition · A4_sum_of_A1"]):::ext
+  x22(["Superposition · bdiff_sum"]):::ext
+  x23(["Superposition · depth_reweights_each_mode"]):::ext
+  x24(["Superposition · modeSum"]):::ext
+  x25(["Superposition · tableFrom_eq_modeSum_reweighted"]):::ext
+  x26(["TransferOp · bdiffL"]):::ext
+  x27(["TransferOp · bdiffL_apply"]):::ext
+  x28(["TransferOp · eigenvalue_zero_iff_lattice"]):::ext
+  x29(["TransferOp · mode_hasEigenvector"]):::ext
+  x30(["TransferOp · mode_ne_zero"]):::ext
+  x31(["TransferOp · mode_ne_zero'"]):::ext
+  x32(["TransferOp · mode_pow"]):::ext
+  x33(["TransferOp · sym_hasEigenvalue"]):::ext
+  x34(["Transform · critical_circle_is_lattice_inversion_mean"]):::ext
+  x35(["Transform · sym_zero_on_outer_circle"]):::ext
+  x36(["Transform · sym_zero_partner_on_inner_circle"]):::ext
+  x37(["CellModes · cell_eq_modeSum"]):::ext
+  x38(["CellModes · mode_two_int"]):::ext
+  x39(["CellModes · sym_two"]):::ext
+  n0 --> n10
+  n0 --> n11
+  n0 --> n15
+  n0 --> n16
+  n0 --> n18
+  n0 --> n19
+  n0 --> n31
+  n0 --> n32
+  n0 --> n33
+  n0 --> n34
+  n0 --> n35
+  n0 --> n4
+  n0 --> n6
+  n0 --> n7
+  n0 --> n8
+  n0 --> n9
+  n0 --> x0
+  n0 --> x1
+  n0 --> x13
+  n0 --> x14
+  n0 --> x15
+  n0 --> x16
+  n0 --> x17
+  n0 --> x18
+  n0 --> x19
+  n0 --> x2
+  n0 --> x20
+  n0 --> x21
+  n0 --> x23
+  n0 --> x25
+  n0 --> x29
+  n0 --> x3
+  n0 --> x32
+  n0 --> x33
+  n0 --> x34
+  n0 --> x35
+  n0 --> x36
+  n0 --> x37
+  n0 --> x39
+  n0 --> x4
+  n0 --> x5
+  n1 --> n12
+  n1 --> n13
+  n1 --> n15
+  n1 --> n31
+  n1 --> n32
+  n1 --> n4
+  n1 --> n7
+  n1 --> x21
+  n1 --> x24
+  n1 --> x28
+  n1 --> x29
+  n1 --> x30
+  n1 --> x31
+  n1 --> x32
+  n1 --> x37
+  n1 --> x38
+  n10 --> n17
+  n10 --> n22
+  n11 --> n17
+  n11 --> n18
+  n11 --> n19
+  n11 --> n23
+  n12 --> n18
+  n12 --> n28
+  n13 --> n19
+  n13 --> n29
+  n14 --> n15
+  n14 --> x21
+  n15 --> n25
+  n16 --> n27
+  n17 --> n23
+  n18 --> n28
+  n19 --> n29
+  n2 --> n12
+  n2 --> n13
+  n2 --> n14
+  n2 --> n15
+  n2 --> n30
+  n2 --> n4
+  n2 --> n7
+  n2 --> x21
+  n2 --> x22
+  n2 --> x23
+  n2 --> x26
+  n2 --> x27
+  n2 --> x29
+  n22 --> n23
+  n23 --> n28
+  n23 --> n29
+  n24 --> n25
+  n24 --> n31
+  n24 --> x28
+  n24 --> x29
+  n25 --> n27
+  n25 --> n28
+  n25 --> n29
+  n26 --> n27
+  n3 --> n16
+  n3 --> n8
+  n3 --> n9
+  n3 --> x2
+  n3 --> x28
+  n3 --> x30
+  n30 --> x25
+  n31 --> n32
+  n33 --> x28
+  n33 --> x35
+  n34 --> n35
+  n35 --> x5
+  n4 --> n15
+  n4 --> n24
+  n4 --> x21
+  n4 --> x23
+  n4 --> x25
+  n5 --> n20
+  n6 --> n21
+  n7 --> n15
+  n7 --> n16
+  n7 --> n18
+  n7 --> n19
+  n7 --> n25
+  n8 --> n16
+  n8 --> n26
+  n9 --> n27
+  x10 --> n26
+  x11 --> n21
+  x12 --> n24
+  x6 --> n30
+  x6 --> n31
+  x6 --> n32
+  x7 --> n20
+  x8 --> n21
+  x9 --> n22
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef dfn fill:#f2f2f2,stroke:#777,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111,stroke-dasharray:2 2
