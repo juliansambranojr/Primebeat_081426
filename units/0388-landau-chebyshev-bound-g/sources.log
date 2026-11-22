@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-22T06:50:30Z
+# unit: 0388-landau-chebyshev-bound-g
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:19284
+  Source: session transcript, 2026-11-22, after unit 0387
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:19065
+  theorem rampSum_le_log {y : ℝ} (hy : 1 ≤ y) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:19132
+  LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4)) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:19174
+  theorem G_le {y : ℝ} (hy : 1 ≤ y) : LandauWindow.G y ≤ 8 * y := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:19069
+  theorem abs_G_le_log {y : ℝ} (hy : 1 ≤ y) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:19192
+  |LandauWindow.G y| ≤ 8 * y * (1 + Real.log y) := by
+
+# 6 found, 0 missing

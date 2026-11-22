@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-22T06:45:42Z
+# unit: 0387-landau-crude-bound-g
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:18845
+  Source: session transcript, 2026-11-22, after unit 0386
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:18690
+  theorem rampSum_nonneg (y : ℝ) : 0 ≤ LandauWindow.rampSum y := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:18622
+  theorem rampSum_le {y : ℝ} (hy : 1 ≤ y) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:18707
+  LandauWindow.rampSum y ≤ y * Real.log y * (1 + Real.log y) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:18624
+  theorem abs_G_le {y : ℝ} (hy : 1 ≤ y) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:18743
+  |LandauWindow.G y| ≤ 2 * y * (1 + Real.log y) ^ 2 := by
+
+# 6 found, 0 missing

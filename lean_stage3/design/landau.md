@@ -34,9 +34,9 @@ principal part at a zero `ρ` of multiplicity `m` being `m/(ρ(1−ρ)) · 1/(s�
 
 Fix a real `σ₀ > 1`, large. Two readings of `(−1)^k Φ^(k)(σ₀)`:
 
-- from the primes: it is `∫₀^∞ G(e^u) u^k e^(−σ₀u) du`. On the window `G ≤ C e^(θu)`,
+- from the primes: it is `∫₀^∞ G(e^u) u^k e^(−σ₀u) du` (block 2c). On the window `G ≤ C e^(θu)`,
   so that part is at most `|C|·k!/(σ₀−θ)^(k+1)`. Outside the window a crude
-  bound `|G(e^u)| ≤ A(u+1)e^u` leaves a tail, and for `k` with
+  bound `|G(e^u)| ≤ 8(u+1)e^u` (block 5b) leaves a tail, and for `k` with
   `(k+1)/(σ₀−1)` at the middle of the window the tail is at most
   `k!/(σ₀−1)^(k+1) · e^(−cδ²k)` (slices 4, 5);
 - from the zeros: the Taylor coefficient of `Φ` at `σ₀` is the sum over the
@@ -117,25 +117,192 @@ Statements only were read; hypotheses may still need adapting.
 So slice 3 is assembly, slice 5 is nearly free, and the new analysis is the
 ramp kernel of slice 2, the tail of slice 4 and the lemma of slice 6.
 
-### 2 The Mellin transform of the ramp sum — SKETCH
-For `Re s > 1`: `∫₁^∞ rampSum(y) y^(−s−1) dy = −ζ'/ζ(s)/(s(s−1))`. Termwise,
-`∫_n^∞ (y/n − 1) y^(−s−1) dy = n^(−s)/(s(s−1))`, and Mathlib has the L-series of
-`Λ` as `−ζ'/ζ`. The interchange is monotone convergence at real `s`, then
-domination. Then `∫₁^∞ G(y) y^(−s−1) dy = Φ(s)`.
+Searched again 2026-11-22 for blocks 2b, 2c and 3, after block 2 was proved:
+
+    block 2b  have: `LandauMellin.mellin_rampSum`; Mathlib `integral_Ioi_cpow_of_lt`.
+              to build: `∫₁^∞ log y · y^(−s) dy = 1/(s−1)²`, in no tree, from
+              Mathlib `integral_Ioi_of_hasDerivAt_of_tendsto` and
+              `isLittleO_log_rpow_atTop`; the integrability of
+              `rampSum · y^(−s−1)`, which follows from the summability inside
+              the proof of `mellin_rampSum`
+    block 2c  Mathlib `mellin_hasDerivAt_of_isBigO_rpow` gives one derivative
+              of a Mellin transform; nothing gives all of them
+    block 3   near 1: Mathlib `riemannZeta₁` (entire, `(s−1)ζ(s)`),
+              `deriv_riemannZeta₁_one` (its derivative at 1 is `γ`),
+              `deriv_riemannZeta_eq_neg_inv_sub_sq_mul_add` (all `lemma`s);
+              upstream `riemannZetaLogDerivResidueBigO` bounds
+              `−ζ'/ζ − 1/(s−1)` near 1 and does not give the constant.
+              at a zero: upstream
+              `kadiri_logDeriv_analytic_zero_principal_part_remainder_bound`;
+              Stage 3 `ContourShift.zeta_order_ne_top`, `one_le_zeta_order`,
+              `order_bridge`.
+              finitely many: upstream `riemannZeta.zeroes_on_Compact_finite'`.
+              subtracting finitely many simple poles: the construction is
+              inside the proof of Stage 3 `ContourShift.residue_rectangle_of_local`,
+              for a rectangle, and is not exported; restate it for a disc.
+              the remainder: Mathlib `norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le`.
+
+Signs checked by hand the same day: the principal part of `Φ` at a zero `ρ`
+of multiplicity `m` is `m/(ρ(1−ρ))/(s−ρ)` and its Taylor coefficient at `σ₀`
+is `−m/(ρ(1−ρ))·(ρ−σ₀)^(−(k+1))`, as section 0 has them; at `s = 1`,
+`−ζ'/ζ(s)/(s(s−1)) = 1/(s−1)² − (1+γ)/(s−1) +` analytic, which is what `Φ`
+subtracts.
+
+### 2 The Mellin transform of the ramp sum — PROVED (unit 0385: `LandauMellin.rampK_integrable`,
+`rampK_integral`, `rampK_integral_norm`, `rampSum_eq_tsum`, `mellin_rampSum`)
+Objects.   `rampK s n y = max(y/n − 1, 0)·y^(−s−1)`, the ramp kernel of one `n`;
+           its integral over `(1, ∞)` is `n^(−s)/(s(s−1))`, of modulus
+           `n^(−σ)/|s(s−1)|`, `σ = Re s`. `rampSum y = Σ_n Λ(n)·max(y/n − 1, 0)`
+           (`LandauWindow.rampSum`; the sum is finite, the terms with `n > y`
+           vanish).
+Sizes.     the interchange of sum and integral is by absolute summability:
+           `Σ_n Λ(n)·∫₁^∞ |rampK s n| = Σ_n Λ(n) n^(−σ) / (σ(σ−1))`, finite for
+           `σ > 1`. An identity, nothing bounded against anything. Lost
+           factor: none.
+Regime.    R1 `1 < Re s`.
+Defs.      `rampK (s : ℂ) (n : ℕ) (y : ℝ) : ℂ := ((max (y / n - 1) 0 : ℝ) : ℂ) * (y : ℂ) ^ (-s - 1)`. One.
+Theorems.  `theorem rampK_integrable {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
+               IntegrableOn (rampK s n) (Set.Ioi 1)`
+           `theorem rampK_integral {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
+               ∫ y in Set.Ioi (1 : ℝ), rampK s n y = (n : ℂ) ^ (-s) / (s * (s - 1))`
+             (on `(1, ∞)` the kernel is the indicator of `(n, ∞)` times
+             `y^(−s)/n − y^(−s−1)`; two power integrals; R1.)
+           `theorem rampK_integral_norm {s : ℂ} (hs : 1 < s.re) {n : ℕ} (hn : 1 ≤ n) :
+               ∫ y in Set.Ioi (1 : ℝ), ‖rampK s n y‖ = (n : ℝ) ^ (-s.re) / (s.re * (s.re - 1))`
+             (the norm is the kernel at the real point `σ`, for `y > 0`; R1.)
+           `theorem rampSum_eq_tsum (y : ℝ) :
+               rampSum y = ∑' n : ℕ, ArithmeticFunction.vonMangoldt n * max (y / n - 1) 0`
+           `theorem mellin_rampSum {s : ℂ} (hs : 1 < s.re) :
+               ∫ y in Set.Ioi (1 : ℝ), (rampSum y : ℂ) * (y : ℂ) ^ (-s - 1)
+                 = -deriv riemannZeta s / riemannZeta s / (s * (s - 1))`
+Composes.  Mathlib: `integral_Ioi_cpow_of_lt`, `integrableOn_Ioi_cpow_of_lt`,
+           `hasSum_integral_of_summable_integral_norm` (a `lemma`),
+           `LSeriesSummable_vonMangoldt` (a `lemma`),
+           `LSeries_vonMangoldt_eq_deriv_riemannZeta_div` (a `lemma`),
+           `LSeries.term_def₀` (a `lemma`). `LandauWindow.rampSum`.
+Module.    `Stage3/LandauMellin.lean`, namespace `LandauMellin`,
+           `import Stage3.LandauWindow`. Pinned: `rampK_integral`,
+           `rampK_integral_norm`, `mellin_rampSum`.
+Open.      block 2b.
+
+### 2b The Mellin transform of `G` — PROVED (unit 0386: `LandauMellinG.LSeries_vonMangoldt_real_ne_zero`,
+`rampSum_mellin_integrable`, `log_cpow_integrable`, `log_cpow_integral`, `G_mellin_integrable`, `mellin_G`)
+Objects.   `Phi s = −ζ'/ζ(s)/(s(s−1)) − 1/(s−1)² + (1+γ)/(s−1)`, the `Φ` of
+           section 0. `G` is `LandauWindow.G`. The three pieces of
+           `G(y)·y^(−s−1)` on `(1, ∞)`: `rampSum(y)·y^(−s−1)` (block 2),
+           `log y · y^(−s)`, `y^(−s)`.
+Sizes.     identities and integrability; nothing is bounded against anything
+           that grows. `log y ≤ y^ε/ε` with `ε = (σ−1)/2` makes `log y · y^(−s)`
+           integrable for every `σ > 1`. Lost factor: none.
+Regime.    R1 `1 < Re s`.
+Defs.      `Phi (s : ℂ) : ℂ := -deriv riemannZeta s / riemannZeta s / (s * (s - 1))
+               - 1 / (s - 1) ^ 2 + (1 + (Real.eulerMascheroniConstant : ℂ)) / (s - 1)`. One.
+Theorems.  `theorem LSeries_vonMangoldt_real_ne_zero {σ : ℝ} (hσ : 1 < σ) : L ↗Λ (σ : ℂ) ≠ 0`
+             (its real part is a sum of nonnegative terms, the term at `2` positive.)
+           `theorem rampSum_mellin_integrable {s : ℂ} (hs : 1 < s.re) :
+               IntegrableOn (fun y : ℝ => (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1)`
+             (at the real point `σ` the integral is `L(Λ,σ)/(σ(σ−1)) ≠ 0` by block 2,
+             and a Bochner integral that is not zero is the integral of an
+             integrable function; for `s` the norm is the same and the function
+             is the one at `σ` times a continuous power.)
+           `theorem log_cpow_integrable {s : ℂ} (hs : 1 < s.re) :
+               IntegrableOn (fun y : ℝ => (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (Ioi 1)`
+           `theorem log_cpow_integral {s : ℂ} (hs : 1 < s.re) :
+               ∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s - 1) ^ 2`
+             (the primitive `P·log − P/(1−s)`, `P(y) = y^(1−s)/(1−s)`, is `1/(1−s)²`
+             below zero at `1` and tends to `0`.)
+           `theorem G_mellin_integrable {s : ℂ} (hs : 1 < s.re) :
+               IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1)`
+           `theorem mellin_G {s : ℂ} (hs : 1 < s.re) :
+               ∫ y in Ioi (1 : ℝ), (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = Phi s`
+Composes.  `LandauMellin.mellin_rampSum`. Mathlib: `integral_undef`,
+           `integral_Ioi_of_hasDerivAt_of_tendsto'`, `hasDerivAt_ofReal_cpow_const'`,
+           `Real.log_le_rpow_div` (a `lemma`), `isLittleO_log_rpow_atTop`,
+           `tendsto_rpow_neg_atTop`, `integral_Ioi_cpow_of_lt`,
+           `integrableOn_Ioi_rpow_of_lt`, `LSeries_vonMangoldt_eq_deriv_riemannZeta_div`.
+Module.    `Stage3/LandauMellinG.lean`, namespace `LandauMellinG`,
+           `import Stage3.LandauMellin`. Pinned: `rampSum_mellin_integrable`,
+           `log_cpow_integral`, `mellin_G`.
+Open.      none.
+
+### 2c The Taylor coefficients of the transform, from the primes — SKETCH
+Section 0 reads `(−1)^k Φ^(k)(σ₀)` as `∫₁^∞ G(y)(log y)^k y^(−σ₀−1) dy`. Found
+missing on 2026-11-22: no block proved it. Route: for `|s − σ₀| < σ₀ − 1`
+expand `y^(−(s−σ₀)) = Σ_k (−log y)^k (s−σ₀)^k / k!`, change sum and integral
+by absolute convergence (the bound of block 5b on `G`), and read the
+coefficients off by uniqueness of the power series. Needs block 5 first.
 
 ### 3 The poles of `Φ` and its Taylor coefficients — SKETCH
 `Φ` analytic at `1`; meromorphic on `Re s > 0`; principal part
 `m/(ρ(1−ρ))/(s−ρ)` at a zero of multiplicity `m`; finitely many poles in a
-closed disc inside `Re s > 0`; no real zero of `ζ` in `(0, 1)`; the Taylor
+closed disc inside `Re s > 0`; the Taylor
 coefficient at `σ₀` as the nearest poles' sum plus a remainder of smaller
 rate, by Cauchy's estimate on a circle through no pole. The largest slice.
+A real zero in `(0, 1)` is allowed (section 0). The pieces are in section 0b;
+what is new is the disc form of the pole subtraction.
 
 ### 4 The kernel on and off the window — SKETCH
 `∫₀^∞ u^k e^(−au) du = k!/a^(k+1)`, and the two-sided tail of that integral
 away from `k/a`, as an explicit `e^(−cδ²k)`.
 
-### 5 A crude bound on `G` — SKETCH
-`|G(y)| ≤ A·y·(log y + 1)` for `y ≥ 1`, from Chebyshev; upstream may have it.
+### 5 A crude bound on `G` — PROVED (unit 0387: `LandauCrude.rampSum_nonneg`, `rampSum_le`, `abs_G_le`)
+Objects.   `rampSum`, `G` (`LandauWindow`). `L = log y`.
+Sizes.     `0 ≤ rampSum y ≤ y·L·(1+L)`: each `Λ(n) ≤ log n ≤ L`, each ramp
+           `≤ y/n`, and `Σ_{n ≤ y} 1/n ≤ 1 + L`. Then
+           `|G| ≤ y·L·(1+L) + y·L + 2y ≤ 2y(1+L)²`, since
+           `L² + 2L + 2 ≤ 2L² + 4L + 2`. THE LOST-FACTOR CHECK: the first
+           writing of this block asked for `A·y·(1+L)`, from Chebyshev; this
+           bound carries one more factor `(1+L)`. In the tail of block 4 that
+           is one more power of `u`, a factor polynomial in `k`, against a gap
+           between the tail's rate and the zeros' rate that is strict and
+           exponential in `k` (section 0). Named here; it does not move the
+           size comparison. The sharper bound costs a summation by parts or
+           `log N!` and buys nothing the plan uses.
+Regime.    Y1 `1 ≤ y`.
+Defs.      none.
+Theorems.  `theorem rampSum_nonneg (y : ℝ) : 0 ≤ LandauWindow.rampSum y`
+           `theorem rampSum_le {y : ℝ} (hy : 1 ≤ y) :
+               LandauWindow.rampSum y ≤ y * Real.log y * (1 + Real.log y)`
+           `theorem abs_G_le {y : ℝ} (hy : 1 ≤ y) :
+               |LandauWindow.G y| ≤ 2 * y * (1 + Real.log y) ^ 2`
+             (`γ ≤ 1`: `Real.eulerMascheroniConstant_lt_two_thirds`; `0 < γ`:
+             `Real.one_half_lt_eulerMascheroniConstant`; Y1.)
+Composes.  Mathlib: `ArithmeticFunction.vonMangoldt_le_log`,
+           `ArithmeticFunction.vonMangoldt_nonneg`, `harmonic_le_one_add_log`,
+           `harmonic_eq_sum_Icc` (a `lemma`), `Nat.floor_le`.
+Module.    `Stage3/LandauCrude.lean`, namespace `LandauCrude`,
+           `import Stage3.LandauWindow`. Pinned: all three.
+Open.      none.
+
+### 5b The bound of Chebyshev's order — PROVED (unit 0388: `LandauChebyshev.rampSum_le_log`, `G_le`,
+`neg_le_G`, `abs_G_le_log`)
+Asked for by Julian on 2026-11-22 after block 5: the bound without the extra
+factor `(1 + log y)`.
+Objects.   `rampSum`, `G` (`LandauWindow`). `E₁Λ x = Σ_{0 < d ≤ x} Λ(d)/d − log x`
+           (upstream, `Mertens.E₁Λ`, an `abbrev`), at most `log 4 + 4` for
+           `x ≥ 1` (`Mertens.E₁Λ.le`).
+Sizes.     each ramp is at most `y/n`, so `rampSum y ≤ y·Σ_{n ≤ y} Λ(n)/n
+           = y·(log y + E₁Λ y) ≤ y·(log y + log 4 + 4)`. Then
+           `G y ≤ y(log 4 + 4) + (1+γ)y ≤ 8y`, with `log 4 < 2` and `γ < 1`:
+           the `y·log y` cancels and the upper bound has no logarithm. From
+           below `G y ≥ −y·log y`, the ramp sum being nonnegative. So
+           `|G y| ≤ 8y(1 + log y)`. Lost factor: none; this is the order the
+           first sketch of block 5 asked for.
+Regime.    Y1 `1 ≤ y`.
+Defs.      none.
+Theorems.  `theorem rampSum_le_log {y : ℝ} (hy : 1 ≤ y) :
+               LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4))`
+           `theorem G_le {y : ℝ} (hy : 1 ≤ y) : LandauWindow.G y ≤ 8 * y`
+           `theorem neg_le_G {y : ℝ} (hy : 1 ≤ y) : -(y * Real.log y) ≤ LandauWindow.G y`
+           `theorem abs_G_le_log {y : ℝ} (hy : 1 ≤ y) :
+               |LandauWindow.G y| ≤ 8 * y * (1 + Real.log y)`
+Composes.  upstream `Mertens.E₁Λ.le` (`IEANTN/Mertens.lean`, not imported by
+           Stage 3 before this block); `LandauCrude.rampSum_nonneg`; Mathlib
+           `Real.log_two_lt_d9`, `Real.eulerMascheroniConstant_lt_two_thirds`.
+Module.    `Stage3/LandauChebyshev.lean`, namespace `LandauChebyshev`,
+           `import Stage3.LandauCrude`, `import PrimeNumberTheoremAnd.IEANTN.Mertens`.
+           Pinned: `rampSum_le_log`, `G_le`, `abs_G_le_log`.
+Open.      none.
 
 ### 6 A trigonometric polynomial with no constant term is positive somewhere in every long block — SKETCH
 Elementary and self-contained: mean zero, mean square positive, bounded.

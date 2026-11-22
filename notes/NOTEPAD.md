@@ -17,6 +17,10 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0388: LandauChebyshev.lean, block 5b of landau.md PROVED, G(y) <= 8y and |G(y)| <= 8y(1 + log y) for y >= 1, via upstream Mertens.E₁Λ.le; the extra log of unit 0387 is gone; next: block 2c, block 3 (the poles), block 6
+- [open]   2026-11-22  unit 0387: LandauCrude.lean, block 5 of landau.md PROVED, |G(y)| <= 2y(1 + log y)^2 for y >= 1, one log factor above the sketch and named in the block; next: block 2c (needs this), block 3 (the poles) and block 6 are independent
+- [open]   2026-11-22  unit 0386: LandauMellinG.lean, block 2b of landau.md PROVED, the Mellin transform of `G` on Re s > 1 is `Phi`; next is block 5 (crude bound on `G`), which block 2c needs; block 3 (the poles) is independent
+- [open]   2026-11-22  unit 0385: LandauMellin.lean, block 2 of landau.md PROVED, the Mellin transform of the ramp sum on Re s > 1; next is block 2b, the transform of `G`, then block 3, the poles
 - [open]   2026-11-22  next step: slice 2 of `lean_stage3/design/landau.md`, the Mellin transform of the ramp sum; its inputs are listed in section 0b of that file; build it as a module under `lean_stage3/LOOP.md`
 - [open]   2026-11-22  unit 0384: LandauWindow.lean, slice 1 of 7 of design/landau.md. StmtLandauWindow (window bound on G at theta -> no zeta zero right of theta) is a named leaf; proved around it: rh_of_zeroFree_half, rh_of_window (leaf + window bounds for every theta in (1/2,1) -> RiemannHypothesis). Slices 2-7 SKETCH; no archive code copied
 - [open]   2026-11-22  unit 0383: G(y) = sum Lambda(n)(y/n-1) - y log y + (1+gamma)y measured exactly to 1e8, EXPLORATORY. The function of the Landau window criterion in Alpoge's archive. |G - log 2pi + T| <= K sqrt(n) at every integer, K = 0.0461914; 600 zeros reproduce it, correlation 0.999994. Tests nothing; checks the instrument

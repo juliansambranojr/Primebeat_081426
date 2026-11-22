@@ -22,6 +22,80 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 5b of `design/landau.md`, `Stage3/LandauChebyshev.lean`
+
+    DONE        `Stage3/LandauChebyshev.lean` builds with no `sorry`:
+                `rampSum_le_log`, `G_le` (`G y ≤ 8y`), `neg_le_G`, and
+                `abs_G_le_log`, `|G(y)| ≤ 8y(1 + log y)` for `y ≥ 1`; a
+                formalization unit; block 5b marked PROVED; section 0's tail
+                bound restated with it
+    ASSUMED     upstream's `Mertens.E₁Λ.le` as stated at the pinned revision
+    DEPENDS     `PrimeNumberTheoremAnd/IEANTN/Mertens.lean`, a new import for
+                Stage 3; `Stage3/LandauCrude.lean`
+    OUT         blocks 2c, 3, 4, 6, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0388: four theorems, no `sorry`, clean
+                on the first build
+
+### 2026-11-22 · the Landau window: block 5 of `design/landau.md`, `Stage3/LandauCrude.lean`
+
+    DONE        `Stage3/LandauCrude.lean` builds with no `sorry`:
+                `rampSum_nonneg`, `rampSum_le`, and `abs_G_le`, the bound
+                `|G(y)| ≤ 2y(1 + log y)²` for `y ≥ 1`; a formalization unit;
+                block 5 marked PROVED
+    ASSUMED     the bound carries one more factor `(1 + log y)` than the
+                sketch asked for; the block's Sizes line names it and says
+                why the plan's size comparison does not move
+    DEPENDS     Mathlib's `vonMangoldt_le_log` and `harmonic_le_one_add_log`;
+                `Stage3/LandauWindow.lean`
+    OUT         blocks 2c, 3, 4, 6, 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0387: three theorems, no `sorry`; the
+                block named one Mathlib lemma wrongly (`γ > 0`), corrected
+
+### 2026-11-22 · the Landau window: block 2b of `design/landau.md`, `Stage3/LandauMellinG.lean`
+
+    DONE        `Stage3/LandauMellinG.lean` builds with no `sorry`: `Phi`,
+                the integrability of the ramp sum's and of `G`'s Mellin
+                integrand, the integral of `log y · y^(−s)`, and `mellin_G`,
+                the Mellin transform of `G` on `Re s > 1` equal to `Phi s`;
+                a formalization unit; block 2b marked PROVED
+    ASSUMED     the statements of block 2b as written in the worksheet; any
+                hypothesis the build adds is reported here
+    DEPENDS     `Stage3/LandauMellin.lean` (unit 0385); Mathlib's improper
+                integrals and the L-series of `Λ`
+    OUT         blocks 2c and 3 to 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0386: six theorems, no `sorry`, no
+                hypothesis added; TRAPS rows 40 to 42 added
+
+### 2026-11-22 · the Landau worksheet: blocks 2b and 3 checked against the trees
+
+    DONE        `lean_stage3/design/landau.md` updated: section 0b lists the
+                pieces found for blocks 2b and 3, each name opened and its
+                statement read; block 3's sketch drops the real-zero line;
+                a new block 2c holds the step section 0 uses and no block
+                proved, the Taylor coefficients of the transform as
+                integrals against powers of `log y`
+    ASSUMED     statements only were read; hypotheses may still need adapting
+    DEPENDS     the names as they stand at the pinned Mathlib and upstream
+    OUT         no Lean, no unit, no block's mark changed
+    OUTCOME     done as pinned
+
+### 2026-11-22 · the Landau window: block 2 of `design/landau.md`, `Stage3/LandauMellin.lean`
+
+    DONE        `Stage3/LandauMellin.lean` builds with no `sorry`: the ramp
+                kernel's integral, its norm's integral, `rampSum` as a
+                `tsum`, and `mellin_rampSum`, the Mellin transform of the
+                ramp sum on `Re s > 1`; a formalization unit; block 2 of
+                `lean_stage3/design/landau.md` marked PROVED
+    ASSUMED     the statements of block 2 as written in the worksheet; any
+                hypothesis the build adds is reported here
+    DEPENDS     Mathlib's L-series of `Λ` and its power integrals on `(c, ∞)`;
+                `Stage3/LandauWindow.lean` for `rampSum`
+    OUT         the transform of `G` itself (block 2b); blocks 3 to 7; no
+                claim about the window bound or about RH
+    OUTCOME     done as pinned, unit 0385: five theorems, no `sorry`, no
+                hypothesis added; `rampK_integrable` joined the block's list
+                before the build; TRAPS row 39 added
+
 ### 2026-09-24 · the atlas's topography: Mathlib and PrimeNumberTheoremAnd
 
     DONE        two new layers on `atlas/`, each switched on and off: the
