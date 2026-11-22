@@ -59,10 +59,15 @@ strict. THE LOST-FACTOR CHECK: nothing here grows with `k` except through
 these three rates, and the zeros' rate is strictly the largest. The one
 place a factor could hide is the trigonometric polynomial, which has mean
 zero: it must be shown to be at least a positive constant for some `k` in
-every long block, with the sign `(−1)^k` folded in (slice 6). Its
-frequencies `arg(ρ − σ₀) + π` are never `0` modulo `2π`, because `Φ` has no
-real pole in `(0, 1)`... and that last clause needs `ζ` to have no real zero
-in `(0, 1)`, a fact the plan uses and slice 3 must supply.
+every long block, with the sign `(−1)^k` folded in (slice 6). After that
+sign its frequencies are `arg(ρ − σ₀) + π`, which is `0` modulo `2π` exactly
+for a real pole. A real zero of `ζ` to the right of `θ` would therefore add
+a constant term, and that term is positive (`m/(ρ(1−ρ)) > 0` for real `ρ` in
+`(0, 1)`): it helps. So slice 6 is stated for a constant term `≥ 0` plus
+oscillating terms, and the plan does not need `ζ` to be free of real zeros
+in `(0, 1)`. (The first writing of this paragraph said it did. Checked
+2026-11-22: the dependencies have that fact only on `(−1, 0]`, and the plan
+turned out not to use it.)
 
 Then for the window at `Y`, any block of admissible `k` near
 `σ₀(1 + δ/2)·log Y` holds a `k` where the zeros' reading exceeds the primes'
@@ -92,6 +97,25 @@ Composes.  Mathlib: `riemannZeta_one_sub`, `riemannZeta_zero`,
            `Complex.cpow_ne_zero_iff`, `Real.cos_nat_mul_pi`, `Complex.ofReal_cos`.
 Module.    `Stage3/LandauWindow.lean`, namespace `LandauWindow`, `import Mathlib`.
 Open.      the leaf `StmtLandauWindow` itself: slices 2 to 7.
+
+## 0b. What the trees already hold, searched 2026-11-22
+
+Statements only were read; hypotheses may still need adapting.
+
+    slice 2   Mathlib `LSeries_vonMangoldt_eq_deriv_riemannZeta_div` (a `lemma`);
+              models: `Stage3/PerronKernel.lean`, upstream `SmoothedChebyshevDirichlet`
+    slice 3   upstream `kadiri_logDeriv_analytic_zero_principal_part_remainder_bound`
+              (`IEANTN/KadiriEq12Foundations.lean`), `logDeriv_residue_eq_meromorphicOrderAt`
+              (`RectangleArgumentPrinciple.lean`, already imported by Stage 3),
+              `riemannZeta.zeroes_on_Compact_finite'`; Mathlib
+              `norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le`
+    slice 4   Mathlib `Real.Gamma_eq_integral`, `Real.Gamma_nat_eq_factorial`;
+              no tail bound in any tree
+    slice 5   Mathlib `Chebyshev.psi_le`; upstream `mertens_first_theorem`
+    slice 6   nothing; `Stage3/WeilPowerGeom.lean` has `geom_Ico`, `norm_geom_le`
+
+So slice 3 is assembly, slice 5 is nearly free, and the new analysis is the
+ramp kernel of slice 2, the tail of slice 4 and the lemma of slice 6.
 
 ### 2 The Mellin transform of the ramp sum — SKETCH
 For `Re s > 1`: `∫₁^∞ rampSum(y) y^(−s−1) dy = −ζ'/ζ(s)/(s(s−1))`. Termwise,
