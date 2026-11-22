@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-22T04:19:11Z
+# unit: 0380-weil-powertail-stage3
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11113
+  Source: session transcript, 2026-11-22, after unit 0379
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:9889
+  Go ahead with the cache fetch and start Cgo ahead
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:9763
+  theorem norm_S_le_tail {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:9764
+  ‖S m w‖ ≤ cS m / D m * ‖w‖ * Real.exp ((w ^ 2).re * sigma m
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10839
+  + ‖w‖ ^ 4 / (6 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10803
+  theorem norm_one_add_le (z : ℂ) : ‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2) := by
+
+# 6 found, 0 missing

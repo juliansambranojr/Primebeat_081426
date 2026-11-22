@@ -1,6 +1,6 @@
 # The module loop
 
-version: 21
+version: 22
 
 One Stage-3 module, from block to commit. Commands in order. The checkers
 behind them refuse what is skipped (`utilities/check_lean_unit.py`, the
@@ -20,6 +20,10 @@ python3 ~/.claude/hooks/orient_gate.py --orient
 ```
 
 Bare, nothing piped. Again after any move into `lean_stage3/.lake/packages/mathlib`.
+The hook lives on Julian's machine. In a session without it (a cloud
+container, unit 0380) the step has nothing to run: skip it and say so in the
+unit, and keep to the rule it guards, which is to stay out of
+`.lake/packages` except to read.
 
 ## 0b. Pin
 

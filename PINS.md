@@ -58,6 +58,10 @@ below with their outcome.
                 refused by the session's permission classifier after the
                 host was allowed. Julian's to unblock
     OUT         every other theorem line of section 16; C
+    OUTCOME     built, unit 0380: six theorems, no sorry, first build
+                clean, statements as the block wrote them. The DEPENDS
+                line was met on 2026-11-22: Julian allowed the cache host
+                and the fetch
 
 ### 2026-11-22 · rung 5 section 16, open items (a) and (c): priced on proved inequalities
 

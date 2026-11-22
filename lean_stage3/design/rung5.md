@@ -1553,11 +1553,12 @@ Open.      Four things, in the order they could kill it. As of unit 0378 none
            `box_empty_of_positive_of_detect`. The positivity half is untouched,
            and it is where the Riemann hypothesis lives.
 
-### 16a The tail bound — SKETCH (T12 of section 16; priced in unit 0378)
+### 16a The tail bound — PROVED (unit 0380: `WeilPowerTail.norm_S_le_tail`,
+`norm_T_le_tail`, `norm_one_add_le`, `sum_inv_pow4_le_third`)
 
-Written 2026-11-22 as the first module of section 16, statements in Lean.
-Not built: the environment this was written in had the toolchain and the
-pinned packages and could not fetch Mathlib's cache.
+Written 2026-11-22 as the first module of section 16, statements in Lean,
+and built the same day once Mathlib's cache could be fetched. The six
+statements below are the module's, unchanged; no hypothesis was added.
 
 Objects.   `S m w` (`WeilOddPower`), `g w j`, `T m w n`, `D m`, `tendsto_S`
            (`WeilPowerGauss`), `hterm`, `sigmaN`, `sigma`, `sigmaN_tendsto`,
@@ -1619,4 +1620,4 @@ Module.    `Stage3/WeilPowerTail.lean`, namespace `WeilPowerTail`, importing
            `Stage3.WeilPowerPhase`; Mathlib only, no PrimeNumberTheoremAnd.
            Pins: `sum_inv_pow4_le_third`, `norm_one_add_le`, `norm_T_le_tail`,
            `norm_S_le_tail`.
-Open.      none in the mathematics. The build.
+Open.      none.
