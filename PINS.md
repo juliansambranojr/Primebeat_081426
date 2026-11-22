@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the join between the two trees: a checker, and the gate chain on one toolchain (`Stage3/TableRoute.lean`, block E10 of `joints.md`)
+
+    DONE        `utilities/check_weld.py` compares `gate_hyp_of_RH`'s
+                conclusion with `cell_ne_zero_of_route`'s hypothesis; the ten
+                modules of the table tree the gate depends on copied into
+                `lean_stage3/Stage3/TablePort/` and built on v4.32.2; one
+                Stage 3 theorem composing the route with the gate, checked by
+                the kernel; units; a NOTEPAD line; `SECTIONS.md`
+    ASSUMED     Julian, 2026-11-22: the caveats on the join are problems to
+                fix, and are fixed here. The copies are character copies with
+                only their `import` lines changed; any line a newer Mathlib
+                forces to change is listed in the unit
+    DEPENDS     units 0421, 0422
+    OUT         `lean/` itself: untouched, its pins as they are
+    OUTCOME     done as pinned; unit 0423. Eight modules copied unchanged,
+                two with proof steps rewritten; `cell_ne_zero_of_RH` clean
+                on its first build
+
 ### 2026-11-22 · block E9 built: `Stage3/GateEval.lean` and `lean/RouteCell.lean`
 
     DONE        Stage 3: `routeConst_le` (`routeConst (2^36) ≤ 414`),

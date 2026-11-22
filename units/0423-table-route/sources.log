@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-22T13:11:58Z
+# unit: 0423-table-route
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:44559
+  Source: session transcript, 2026-11-22, after PR 7 merged
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43949
+  No your caveats are just fixes or problems you don't address
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:44464
+  /-- The table's row: the number of primes in the dyadic block `(2^(m−1), 2^m]`. -/
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:44466
+  (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℤ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:44467
+  - (Nat.primeCounting ⌊(2 : ℝ) ^ ((m - 1 : ℤ) : ℝ)⌋₊ : ℤ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:44469
+  /-- **Under RH, depth six has no zero from row 80 on.** -/
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:44470
+  theorem cell_ne_zero_of_RH (hRH : RiemannHypothesis) {r : ℤ} (hr : 80 ≤ r) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:44471
+  Construction.tableFrom rowN r 6 ≠ 0 := by
+
+# 8 found, 0 missing

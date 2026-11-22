@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  unit 0423: the join closed. Stage3/TablePort/ = the ten table modules under the gate, on v4.32.2 (8 unchanged, MainTerm and Expansion with proof steps rewritten). TableRoute.cell_ne_zero_of_RH: RiemannHypothesis -> 80 <= r -> tableFrom rowN r 6 != 0, one kernel-checked theorem. check_weld.py now also compares a conclusion with a hypothesis across trees
 - [open]   2026-11-22  units 0421, 0422: block E9. Stage3/GateEval.gate_hyp_of_RH: under RH, for r >= 80, the gate's window statement and gap at depth 6 (routeConst(2^36) <= 414). lean/RouteCell.cell_ne_zero_of_route: that statement as hypothesis gives tableFrom N r 6 != 0. Read across the join: under RH no cell (r,6) is zero for r >= 80. The join is text; no kernel checks it
 - [open]   2026-11-22  joints.md block E9 DRAFT (nothing built): the Lean gate against the route. Floor x0 = 2^36 (exact roots): routeConst <= 414; the gate's inequality at depth 6 holds from row 80 (0.1193 < 0.1599) and fails at 79, by a throwaway script. Would read: under RH no cell (r,6) is zero for r >= 80. Four theorems named, two trees
 - [open]   2026-11-22  unit 0420 EXPLORATORY: gate priced from the kernel-checked ceilings of unit 0419 (c1n, c3n, c4n). floorConstSplit <= 227.1 at psi floor 2^34, routeConst <= 694.3, depth 9, R6 = 76 of 93: the same rung unit 0410 found with floors. Outside the kernel still: RH, the script's gate, the weld

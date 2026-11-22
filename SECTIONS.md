@@ -213,6 +213,11 @@ Units 0421 and 0422 (block E9) evaluated the Lean gate on that route.
 gate's window statement and its gap hold at depth six. `lean/RouteCell.
 cell_ne_zero_of_route`: that statement, as a hypothesis in the same
 characters, makes `tableFrom N r 6 ≠ 0`. Read across the two trees: under RH,
-no cell at depth six is zero from row 80 on. The composition is checked by
-no kernel; `StmtRelErrWindow` is welded and the rest of the hypothesis is the
-same text in two files.
+no cell at depth six is zero from row 80 on.
+
+Unit 0423 closed that join. The ten table modules under the gate are copied
+to `lean_stage3/Stage3/TablePort/` and build on Stage 3's toolchain, and
+`Stage3/TableRoute.cell_ne_zero_of_RH` is the composition as one theorem:
+`RiemannHypothesis → 80 ≤ r → Construction.tableFrom rowN r 6 ≠ 0`, checked
+by the kernel. `utilities/check_weld.py` also now compares the route's
+conclusion with the gate's hypothesis between the two trees.

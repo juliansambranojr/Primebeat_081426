@@ -642,3 +642,16 @@ What it would not say: anything unconditional; anything about depths other
 than six (each depth has its own `r`, by the same two lemmas); anything in
 the direction from the table to the zeros.
 
+### E10 The join closed — PROVED (unit 0423: `TableRoute.cell_ne_zero_of_RH`)
+
+Block E9 left the two halves in two trees. Two repairs.
+
+- `utilities/check_weld.py` compares `gate_hyp_of_RH`'s conclusion with
+  `cell_ne_zero_of_route`'s hypothesis, with its substitutions declared.
+- The ten modules of the table's tree under its gate are copied to
+  `Stage3/TablePort/` and build on this toolchain: eight unchanged but for
+  imports, `MainTerm` and `Expansion` with three proof steps rewritten.
+
+Theorem. `cell_ne_zero_of_RH`: `RiemannHypothesis → 80 ≤ r →
+Construction.tableFrom rowN r 6 ≠ 0`, with `rowN m = π(2^m) − π(2^(m−1))`.
+
