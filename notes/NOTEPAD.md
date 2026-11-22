@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  joints.md block E7 DRAFT (nothing built): the unnamed quantities are CK, c_zeta = |zeta(3)/zeta(3/2)| (a sixth, missed in unit 0412's list), M0, Mc. All reachable from what the tree has: ZetaGrowth.zeta1 at N=1 for CK (about 89 by hand, under 135), Jensen on seven discs for M0, the partial fraction at heights in [0,2] for Mc
 - [open]   2026-11-22  unit 0415: Stage3/RouteGate.lean, relErrWindow_route (first build clean): under RH, StmtRelErrWindow for the rows of pi against 2/log 2 + int_1^m e^(log 2 t)/t, W put to 0. Its conclusion is the hypothesis of lean/Interpolant.tableFrom_ne_zero_of_relErr_liRow; between them only the weld. Constants existential; K0 not substituted
 - [open]   2026-11-22  unit 0414: Stage3/RealSegment.lean (4 theorems, 0 sorry). zeta_real_ne_zero: no zero of zeta on the real segment (0,1) (strip formula at N=1 above 1/3, functional equation below); weightedZeroHeightBucket_eq_zero: W = 0. Not yet substituted into the route's theorems. Unnamed still: M0, Mc, the compact patch, all needing bounds on zeta in a box
 - [open]   2026-11-22  unit 0413: Stage3/RowLeaves.lean (7 theorems, 0 sorry). Li_two_rpow: Li(2^x) = 2/log 2 + int_1^x e^(log 2 t)/t for x > 0, the same formula lean/Interpolant.liRow_eq has from 1/2 on: the main term is one function in both trees (join by text). norm_logDerivZeta_zero: K0 = log 2pi. Unnamed still: W, M0, Mc, the compact patch

@@ -513,3 +513,63 @@ Theorems.
 an existential, and naming `c₃` means a further copy of that proof. Its term
 is of size `1e-5` in unit 0410.
 
+### E7 The bounds on ζ in a bounded region — DRAFT for Julian, nothing built
+
+Read 2026-11-22: `Stage3/ZetaGrowth.lean` (statements, and the proof of
+`zeta_growth_strip`), `EdgeBound.gz_partial_fraction` and `ball_order_sum_le`
+(in full, units 0405 and 0409), `Glue.edge_left_bound` (in full, block E2),
+`JensenCount.zetaWindow`.
+
+What is unnamed, and where each enters.
+
+| name | what | enters |
+|---|---|---|
+| `CK` | sup of `‖(s−1)²ζ‖` on `[−1/2, 4] × [−2, 2]`, from compactness | `ZetaGrowth.sq_zeta_band_bound`, `Cb = max 135 CK + 1`; then `D0`, `A`, `C1` in `gz_partial_fraction` |
+| `cζ` | `‖ζ 3 / ζ (3/2)‖`, a positive real with no numeral | `D0 = Cb·81/(4cζ) + 2`. Not in unit 0412's list of five; found on this read |
+| `M0` | zeros with `0 ≤ Re ≤ 1`, `0 ≤ Im ≤ 6`, with multiplicity | `ball_order_sum_le`, `C2 = M0/log 2 + 8W0 + 1` |
+| `Mc` | sup of `‖ζ′/ζ‖` on `Re = −1/4`, `‖t‖ ≤ 2`, from compactness | `edge_left_bound`, `D = 36Ce + 9(Mc+1)/log 2` |
+
+What the tree already has that makes these reachable.
+
+- `ZetaGrowth.zeta1 N s`, the Euler–Maclaurin form continued to `Re s > −1`,
+  with `zeta1_eq_zeta_strip` (it is ζ on the strip region), `tail_norm_le`
+  (the tail integral is at most `(1/4)·N^(−σ−1)` for `σ ≥ −1/2`) and
+  `sum_norm_le`. `zeta_growth_strip` is these three at `N = ⌊‖t‖⌋`, which is
+  why it needs `‖t‖ ≥ 2`. Nothing in them needs `‖t‖ ≥ 2`.
+- Upstream `ZerosBound` (Jensen's count in a disc) and `FinalBound` (the
+  partial fraction), both already used at heights `≥ 2`.
+
+The blocks, in the order that makes each one's input a numeral.
+
+- **E7a `CK`.** `zeta1` at `N = 1` on the box: `ζ = 1/2 − 1/(1−s) + s(s+1)·tail`,
+  so `(s−1)²ζ = (s−1)²·(1/2 + s(s+1)·tail) + (s−1)`, with `‖tail‖ ≤ 1/4`.
+  On the box `‖s−1‖² ≤ 13`, `‖s‖·‖s+1‖ ≤ 24.1`, giving about `89` (hand
+  arithmetic, not checked by any script). Below `135`, so `Cb = 136`.
+  The one care: the identity is on `s ≠ 1`; both sides are continuous at `1`.
+  Size: one theorem, no copy.
+- **E7b `cζ`.** A numeral below it: `ζ 3 ≥ 1` from the Dirichlet series,
+  `‖ζ (3/2)‖ ≤ 7/2` from `Zeta0EqZeta` at `N = 1` as in block E5. Then
+  `cζ ≥ 2/7`. Size: short.
+- **E7c `M0`.** Jensen's count on discs of radius 2 about `3/2 + ih`,
+  `h = 0, …, 6`: each covers the part of the rectangle within height `1/2` of
+  `h` at scaled radius `0.79`, and needs `gz` bounded on the disc (E7a with
+  `zeta_growth_strip`) and bounded below at the centre (E7b, as `gz_lower`).
+  This is `ball_order_sum_le`'s own argument at seven fixed heights.
+  Size: a copy of that argument with the height fixed.
+- **E7d `Mc`.** `gz_partial_fraction` and `edge_bound_core` are stated for
+  heights `≥ 2` because their bound is `C·log T′`. At heights in `[0, 2]` the
+  same proof gives a constant: `B = D0·16`. With it, on `Re = −1/4` every zero
+  and the pole are at distance at least `1/4`, so
+  `‖ζ′/ζ‖ ≤ C1′ + 4·(count from E7c) + 8/5`.
+  Size: the two long proofs copied with the height bounded above in place of
+  below, about 450 lines, a few tens changed.
+
+After E7a–E7d the constants of `explicit_formula_split` can be written as
+definitions with numerals, which is a last copy of that proof with its
+constants named in the statement.
+
+What decides whether this is worth doing. Unit 0410: the route covers depth
+six seventeen rungs inside the table with these quantities at zero, and has a
+factor 49,000 of slack. E7 would turn that pricing, which is of floors, into
+a number the kernel checked. It would still be a theorem under RH.
+

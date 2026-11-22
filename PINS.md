@@ -36,7 +36,8 @@ below with their outcome.
     DEPENDS     units 0411, 0413, 0414
     OUT         no Lean for the box bounds
     OUTCOME     `relErrWindow_route` done, unit 0415, clean on the first
-                build; block E7 follows
+                build; block E7 written as a DRAFT, nothing built; a sixth
+                unnamed quantity found on the read, `‖ζ 3 / ζ (3/2)‖`
 
 ### 2026-11-22 · `Stage3/RealSegment.lean`, block E5 of `joints.md`
 
