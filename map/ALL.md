@@ -660,6 +660,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiToPsi.Li_mul_log_sub_integral`](./lean_stage3/PiToPsi.md#PiToPsi-Li_mul_log_sub_integral) | theorem | `PiToPsi` | Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x |
 | [`PiToPsi.Li_two`](./lean_stage3/PiToPsi.md#PiToPsi-Li_two) | theorem | `PiToPsi` | Stage3.Li 2 = 2 / Real.log 2 |
 | [`Stage3.Li_two_rpow`](./lean_stage3/RowLeaves.md#Stage3-Li_two_rpow) | theorem | `RowLeaves` | Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.log 2 * t) / t |
+| [`LadderFading.line_not_fading`](./lean_stage3/LadderFading.md#LadderFading-line_not_fading) | theorem | `LadderFading` | ¬ Tendsto (fun r : ℕ =&gt; (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0) |
 | [`Interpolant.liRow`](./lean/Interpolant.md#Interpolant-liRow) | def | `Interpolant` | ℝ |
 | [`Interpolant.liRow_contDiff`](./lean/Interpolant.md#Interpolant-liRow_contDiff) | theorem | `Interpolant` | ContDiff ℝ (⊤ : ℕ∞) liRow |
 | [`Interpolant.liRow_eq`](./lean/Interpolant.md#Interpolant-liRow_eq) | theorem | `Interpolant` | liRow x = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t |
@@ -899,6 +900,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerShell.norm_zOf_c_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-norm_zOf_c_le) | theorem | `WeilPowerShell` | ‖zOf e' D e‖ * (1 / (2 * (lam : ℝ) ^ 3 * Real.pi ^ 2)) ≤ (a : ℝ) + 1 |
 | [`WeilPowerShell.norm_zOf_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-norm_zOf_le) | theorem | `WeilPowerShell` | ‖zOf e' D e‖ ≤ 2 * (e' ^ 2 + D ^ 2 + e ^ 2) |
 | [`Stage3.normSq_add_zq`](./lean_stage3/Stirling.md#Stage3-normSq_add_zq) | theorem | `Stirling` | ‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 |
+| [`LadderFading.not_tendsto_powerSum`](./lean_stage3/LadderFading.md#LadderFading-not_tendsto_powerSum) | theorem | `LadderFading` | ∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖ = R) → (∃ z ∈ Z, c z ≠ 0) → ¬ Tendsto (fun r : ℕ =&gt; (∑ z ∈ Z, c z * z ^ r) / ((R : ℂ)) ^ r) atTop (𝓝 0) |
 | [`Nyquist.nyquist`](./lean/Nyquist.md#Nyquist-nyquist) | def | `Nyquist` | ℝ |
 | [`NyquistPeak.nyquist_boundaryBase`](./lean/NyquistPeak.md#NyquistPeak-nyquist_boundaryBase) | theorem | `NyquistPeak` | Nyquist.nyquist (boundaryBase γ) = γ |
 | [`Nyquist.nyquist_no_go`](./lean/Nyquist.md#Nyquist-nyquist_no_go) | theorem | `Nyquist` | ∃ γ', \|γ'\| &lt; \|γ\| ∧ Aliases b γ γ' |
@@ -919,6 +921,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ContourShift.one_le_zeta_order`](./lean_stage3/ContourShift.md#ContourShift-one_le_zeta_order) | theorem | `ContourShift` | 1 ≤ analyticOrderNatAt riemannZeta ρ |
 | [`NyquistPeak.one_lt_boundaryBase`](./lean/NyquistPeak.md#NyquistPeak-one_lt_boundaryBase) | theorem | `NyquistPeak` | 1 &lt; boundaryBase γ |
 | [`Transform.one_mem_periodLattice`](./lean/Transform.md#Transform-one_mem_periodLattice) | theorem | `Transform` | (1 : ℂ) ∈ periodLattice b |
+| [`LadderFading.one_sub_inv_ne_zero`](./lean_stage3/LadderFading.md#LadderFading-one_sub_inv_ne_zero) | theorem | `LadderFading` | (1 : ℂ) - z⁻¹ ≠ 0 |
 | [`PerronKernel.one_sub_two_neg_rpow`](./lean_stage3/PerronKernel.md#PerronKernel-one_sub_two_neg_rpow) | theorem | `PerronKernel` | δ / 5 ≤ 1 - (2:ℝ) ^ (-δ) |
 | [`WeilOnLine.OnLine`](./lean_stage3/WeilOnLine.md#WeilOnLine-OnLine) | abbrev | `WeilOnLine` | Type |
 | [`WeilBackground.online_term_eq`](./lean_stage3/WeilBackground.md#WeilBackground-online_term_eq) | theorem | `WeilBackground` | laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = (((h / 2) ^ 2 * (WeilTransform.Psi (h * (ρ.im + γ)) + WeilTransform.Psi (h * (ρ.im - γ))) ^ 2 : ℝ) : ℂ) |
@@ -1382,6 +1385,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.sum_range_add_one`](./lean_stage3/ZeroSum.md#Stage3-sum_range_add_one) | theorem | `ZeroSum` | (∑ j ∈ range n, ((j : ℝ) + 1)) = n * (n + 1) / 2 |
 | [`Elephant.sum_shift`](./lean/Elephant.md#Elephant-sum_shift) | theorem | `Elephant` | ∑ m ∈ Finset.range (x + 1), (if b ∣ m then a (m / b) else 0) = ∑ k ∈ Finset.range (x / b + 1), a k |
 | [`LandauTrig.sum_sq_block_ge`](./lean_stage3/LandauTrig.md#LandauTrig-sum_sq_block_ge) | theorem | `LandauTrig` | (N : ℝ) * ∑ j ∈ s, ‖c j‖ ^ 2 - ∑ j ∈ s, ∑ l ∈ s, (if j = l then 0 else ‖c j‖ * ‖c l‖ * (2 / ‖z j * conj (z l) - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N), T n ^ 2 |
+| [`LadderFading.sum_sub_shift`](./lean_stage3/LadderFading.md#LadderFading-sum_sub_shift) | theorem | `LadderFading` | (∑ z ∈ Z, c z * z ^ (r + 1)) - z₀ * ∑ z ∈ Z, c z * z ^ r = ∑ z ∈ Z.erase z₀, (c z * (z - z₀)) * z ^ r |
 | [`WeilPowerSharp.sum_telescope`](./lean_stage3/WeilPowerSharp.md#WeilPowerSharp-sum_telescope) | theorem | `WeilPowerSharp` | ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / (((j : ℝ) + 1) * ((j : ℝ) + 2)) = 1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1) |
 | [`WeilPowerSigma.sum_telescope_amgm`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-sum_telescope_amgm) | theorem | `WeilPowerSigma` | ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, ((1 / ((j : ℝ) + 1) - 1 / ((j : ℝ) + 2)) + (1 / (2 * ((j : ℝ) + 1) ^ 2) - 1 / (2 * ((j : ℝ) + 2) ^ 2))) = (1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1)) + (1 … |
 | [`WeilPowerSigma.sum_telescope_half`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-sum_telescope_half) | theorem | `WeilPowerSigma` | ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, (1 / ((j : ℝ) + 1 / 2) - 1 / ((j : ℝ) + 3 / 2)) = 1 / ((m : ℝ) + 3 / 2) - 1 / ((n : ℝ) + 1 / 2) |

@@ -1,0 +1,17 @@
+key	value	source
+module_lines	161	wc -l lean_stage3/Stage3/LadderFading.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/LadderFading.lean
+defs	0	grep -c ^def lean_stage3/Stage3/LadderFading.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LadderFading.lean
+pins	3	sum_sub_shift, not_tendsto_powerSum, line_not_fading
+errors_first	4	first lake build Stage3.LadderFading: an equation the wrong way round, a numeral with no type, and two pins
+builds	2	the first build and the one after the fix
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8827	lake build (full Stage3), Build completed successfully
+jobs_module	8743	run/build.log, lake build Stage3.LadderFading
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#j10b	a finite line of zeros does not fade
+joint	10	SECTIONS.md, the rows to all x on one ladder
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

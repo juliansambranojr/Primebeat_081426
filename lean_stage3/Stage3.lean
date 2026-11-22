@@ -133,6 +133,7 @@ import Stage3.CellModes
 import Stage3.PiToPsi
 import Stage3.CellResidual
 import Stage3.AliasClass
+import Stage3.LadderFading
 
 namespace Stage3
 

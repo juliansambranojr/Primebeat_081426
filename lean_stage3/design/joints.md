@@ -811,3 +811,63 @@ convergent, so this is a statement about power sums `Σ c_j z_j^r` at
 consecutive integers `r` (Turán's theory) or about the power series
 `Σ a_r z^r` and its singularities; neither is in the tree.
 
+### J10b A finite line of zeros does not fade — PROVED (unit 0430: `LadderFading.sum_sub_shift`, `not_tendsto_powerSum`, `line_not_fading`); the infinite case OPEN
+
+The step after J10a, in its finite case.
+
+**The mechanism is the table's own.** Let `g(r) = Σ_{z ∈ Z} c_z·z^r` with the
+`z` distinct and all of modulus `R`. One difference with symbol `z₀`,
+`g(r+1) − z₀·g(r) = Σ_{z ≠ z₀} c_z·(z − z₀)·z^r`, removes the mode `z₀` and
+multiplies every other weight by `z − z₀ ≠ 0`. If `g(r)/R^r → 0` then so does
+the differenced sum over `R^r`. Induction on the number of modes: either some
+other mode has nonzero weight, and the smaller sum contradicts the induction
+hypothesis, or only `z₀` is left and `|g(r)|/R^r = |c_{z₀}|` is a constant
+that is not zero.
+
+**Theorems** (`LadderFading`):
+
+- `sum_sub_shift`: the difference identity above.
+- `not_tendsto_powerSum (hR : 0 < R)`: for every finite `Z` with `‖z‖ = R` on
+  `Z` and `c z ≠ 0` for some `z ∈ Z`, `Σ_{z∈Z} c z·z^r / R^r` does not tend to `0`.
+- `line_not_fading`: for a nonempty finite set `S` of zeros with `Re ρ = β` on
+  `S`, and any depth `d`,
+  `Σ_{ρ∈S} m(ρ)/ρ·Sym 2 ρ^d·mode 2 ρ r / (2^β)^r` does not tend to `0`.
+  Grouped by `z = 2^ρ` (`Finset.sum_fiberwise_of_maps_to`), each class has weight
+  `(Σ m/ρ)·(1 − z⁻¹)^d ≠ 0` (`AliasClass`), and `‖z‖ = 2^β`.
+
+**OPEN after this.** The zeros off the line may be infinitely many, on
+infinitely many vertical lines, with no largest real part attained, and the sum
+over them converges only conditionally. The finite argument does not reach
+that. Two cases remain, in order: (i) finitely many zeros off the line, where
+the rest of the explicit formula is bounded by the zero count and this block
+closes the converse; (ii) the general case, which needs either the
+singularities of the row's generating function `Σ a_r z^r` or Turán's power-sum
+theorems with a kernel along the rows.
+
+**The infinite case, worked on paper 2026-11-22, not built.** Write
+`a_r = ψ(2^r) − 2^r`. The truncated explicit formula at height `T_r = 2^(λr)`
+gives `a_r = −Σ_{|γ| < T_r} m·2^(rρ)/ρ + O(2^(r(1−λ))·r²)`. Fix `β₁` with
+`1/2 < β₁`. The zeros with `β < β₁` contribute at most
+`2^(rβ₁)·Σ_{|γ|<T_r} m/|ρ| ≪ 2^(rβ₁)·r²` (the zero count, `ZeroSum`). For the
+zeros with `β ≥ β₁` a zero-density estimate with a power saving,
+`N(β₁, T) ≪ T^(1−δ)` (Carlson 1920), makes `Σ m/|ρ|` over them converge, so
+their part is an absolutely convergent sum of modes and its tail beyond `T_r`
+is small. Then a square-root bound on the one ladder forces
+`Σ_{β ≥ β₁} (m/ρ)·2^(rρ) = O(2^(rβ₁)·r²)`.
+
+- If the largest real part is attained, divide by `2^(rΘ)`: the lower lines
+  tend to zero, the top line is an absolutely convergent sum of distinct
+  rotations with nonzero class weights (J10a), and its mean square along the
+  rows is `Σ |C_j|² > 0`. This is `not_tendsto_powerSum` with infinitely many
+  modes; it needs the mean-square form, not the induction.
+- If the largest real part is not attained, no line dominates. The generating
+  function `Σ_r g(r)·w^r = Σ c_ρ/(1 − 2^ρ·w)` has absolutely summable weights
+  and poles that may accumulate; series of that kind can continue analytically
+  across accumulating poles, so the pole at one zero is not by itself a
+  contradiction. No argument is known here for this sub-case.
+
+Inputs not in the tree: a zero-density estimate with a power saving; the
+truncated explicit formula at heights above `x²` (`hTx : T ≤ x²` today). Not
+opened: upstream's `FioriKadiriSwidinsky` and `BKLNW_app`, which name zero
+density.
+

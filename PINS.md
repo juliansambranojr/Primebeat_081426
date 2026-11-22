@@ -22,6 +22,27 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint 10 on one ladder, second piece: `Stage3/LadderFading.lean`, block J10b of `joints.md`
+
+    DONE        `not_tendsto_powerSum`: finitely many distinct modes of one
+                size, with a weight that is not zero on one of them, do not
+                fade: `Σ c_z·z^r / R^r` does not tend to zero along the rows.
+                `line_not_fading`: a nonempty finite set of zeros of ζ on one
+                vertical line contributes to the cell `(r, d)` a sum that is
+                not `o(2^(rβ))`; one unit
+    ASSUMED     Julian, 2026-11-22: "go on to the open step of joint 10". The
+                finite case is this piece. The sum over all the zeros is not
+                absolutely convergent and the largest real part need not be
+                attained; that case is named OPEN in the block and is not in
+                this piece. A literature search the same day found no
+                statement of the one-ladder converse
+    DEPENDS     unit 0429 (`AliasClass`)
+    OUT         infinitely many zeros off the line; the converse itself
+    OUTCOME     done as pinned; unit 0430, clean on its second build. The
+                infinite case is worked on paper in the block: it reduces,
+                given a zero-density estimate, to the case where the largest
+                real part is attained; the other sub-case has no argument
+
 ### 2026-11-22 · joint 10 on one ladder, first piece: `Stage3/AliasClass.lean`, block J10a of `joints.md`
 
     DONE        `AliasClass`: the reciprocal of a nontrivial zero has positive

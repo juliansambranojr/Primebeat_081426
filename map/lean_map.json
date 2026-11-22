@@ -91,7 +91,8 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.sym_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
-     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two"
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
     ]
    },
    {
@@ -138,7 +139,8 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
-     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int"
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
     ]
    },
    {
@@ -14460,7 +14462,8 @@
     "uses": [],
     "used_by": [
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
-     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos"
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
     ]
    },
    {
@@ -14515,7 +14518,8 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos"
     ],
     "used_by": [
-     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero"
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
     ]
    },
    {
@@ -14606,7 +14610,8 @@
      "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two"
     ],
     "used_by": [
-     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero"
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
     ]
    },
    {
@@ -25026,6 +25031,145 @@
     "used_by": [
      "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.relErrWindow_of_window"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LadderFading.lean",
+  "module": "Stage3.LadderFading",
+  "stem": "LadderFading",
+  "header": "LadderFading — block J10b of `lean_stage3/design/joints.md`. 2026-11-22. Joint 10 on the table's own ladder, second piece. `AliasClass` showed that the zeros the ladder folds together contribute one mode with a weight that is not zero. This module shows that finitely many such modes of one size cannot fade: their sum along the rows is not small against that size. The proof is the table's own operation: one difference with the symbol of a mode removes that mode and keeps every other weight nonzero.",
+  "imports": [
+   "Stage3.AliasClass"
+  ],
+  "opens": [
+   "Filter",
+   "Finset",
+   "Topology"
+  ],
+  "namespaces": [
+   "LadderFading"
+  ],
+  "lines": 162,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/AliasClass.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "sum_sub_shift",
+    "ns": "LadderFading",
+    "full": "LadderFading.sum_sub_shift",
+    "line": 35,
+    "why": "One difference removes one mode. Differencing a sum of modes with the symbol of `z₀` deletes the mode `z₀` and multiplies each other weight by `z − z₀`.",
+    "sorry": false,
+    "needs": [
+     "Z : Finset ℂ",
+     "c : ℂ → ℂ",
+     "hz₀ : z₀ ∈ Z",
+     "r : ℕ"
+    ],
+    "proves": "(∑ z ∈ Z, c z * z ^ (r + 1)) - z₀ * ∑ z ∈ Z, c z * z ^ r = ∑ z ∈ Z.erase z₀, (c z * (z - z₀)) * z ^ r",
+    "file": "lean_stage3/Stage3/LadderFading.lean",
+    "id": "lean_stage3/Stage3/LadderFading.lean::LadderFading.sum_sub_shift",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.not_tendsto_powerSum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "not_tendsto_powerSum",
+    "ns": "LadderFading",
+    "full": "LadderFading.not_tendsto_powerSum",
+    "line": 46,
+    "why": "Finitely many modes of one size do not fade. If the modes `z ∈ Z` all have modulus `R` and at least one has a weight that is not zero, their sum along the rows, measured against `R^r`, does not tend to zero.",
+    "sorry": false,
+    "needs": [
+     "hR : 0 < R"
+    ],
+    "proves": "∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖ = R) → (∃ z ∈ Z, c z ≠ 0) → ¬ Tendsto (fun r : ℕ => (∑ z ∈ Z, c z * z ^ r) / ((R : ℂ)) ^ r) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/LadderFading.lean",
+    "id": "lean_stage3/Stage3/LadderFading.lean::LadderFading.not_tendsto_powerSum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.sum_sub_shift"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.sum_sub_shift"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_sub_inv_ne_zero",
+    "ns": "LadderFading",
+    "full": "LadderFading.one_sub_inv_ne_zero",
+    "line": 92,
+    "why": "Outside the unit circle the symbol `1 − z⁻¹` is not zero.",
+    "sorry": false,
+    "needs": [
+     "hz : 1 < ‖z‖"
+    ],
+    "proves": "(1 : ℂ) - z⁻¹ ≠ 0",
+    "file": "lean_stage3/Stage3/LadderFading.lean",
+    "id": "lean_stage3/Stage3/LadderFading.lean::LadderFading.one_sub_inv_ne_zero",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "line_not_fading",
+    "ns": "LadderFading",
+    "full": "LadderFading.line_not_fading",
+    "line": 103,
+    "why": "A finite line of zeros does not fade from the cells. Take any nonempty finite set of zeros of ζ with one real part `β`. Their contribution to the cell `(r, d)` of the table's own ladder, measured against `2^(rβ)`, does not tend to zero as the rows go on.",
+    "sorry": false,
+    "needs": [
+     "S : Finset Kadiri.NontrivialZeros",
+     "hS : S.Nonempty",
+     "hβ : ∀ ρ ∈ S, (ρ : ℂ).re = β",
+     "d : ℕ"
+    ],
+    "proves": "¬ Tendsto (fun r : ℕ => (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/LadderFading.lean",
+    "id": "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+    "stmt": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.not_tendsto_powerSum",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.one_sub_inv_ne_zero"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero",
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.zero_re_pos",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.not_tendsto_powerSum",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.one_sub_inv_ne_zero"
+    ],
+    "used_by": []
    }
   ]
  },
@@ -58914,11 +59058,12 @@
    "Stage3.CellModes",
    "Stage3.PiToPsi",
    "Stage3.CellResidual",
-   "Stage3.AliasClass"
+   "Stage3.AliasClass",
+   "Stage3.LadderFading"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 144,
+  "lines": 145,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -58949,6 +59094,7 @@
    "lean_stage3/Stage3/JointFloorGate.lean",
    "lean_stage3/Stage3/JointSymbol.lean",
    "lean_stage3/Stage3/JointWindowDial.lean",
+   "lean_stage3/Stage3/LadderFading.lean",
    "lean_stage3/Stage3/LandauChebyshev.lean",
    "lean_stage3/Stage3/LandauCriterion.lean",
    "lean_stage3/Stage3/LandauCrude.lean",

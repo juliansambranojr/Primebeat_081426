@@ -5,7 +5,7 @@ AliasClass — block J10a of `lean_stage3/design/joints.md`. 2026-11-22. Joint 1
 8 theorems, 0 definitions, 134 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellModes`](../lean_stage3/CellModes.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderFading`](../lean_stage3/LadderFading.md)
 
 ## The picture
 
@@ -19,16 +19,20 @@ flowchart LR
   n5["<b>mode_eq_of_alias</b><br/>Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ)"]:::end_
   n6["<b>alias_weight</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Cha…"]:::thm
   n7["<b>alias_weight_ne_zero</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Cha…"]:::end_
-  x0(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x0(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x1(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n7
   n2 --> n3
   n3 --> n7
   n6 --> n7
-  x0 -.-> n4
-  x0 -.-> n5
-  x0 -.-> n6
+  n1 -.-> x0
+  n3 -.-> x0
+  n6 -.-> x0
+  x1 -.-> n4
+  x1 -.-> n5
+  x1 -.-> n6
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -82,10 +86,11 @@ line 42
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`AliasClass.alias_weight_ne_zero`](#AliasClass-alias_weight_ne_zero) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) ≠ 0 ``
   - [`AliasClass.re_order_div_pos`](#AliasClass-re_order_div_pos) — `` 0 < ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re ``
+  - [`LadderFading.line_not_fading`](../lean_stage3/LadderFading.md#LadderFading-line_not_fading) (LadderFading) — `` ¬ Tendsto (fun r : ℕ => (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) … ``
 
 <a name="AliasClass-re_order_div_pos"></a>
 ### `AliasClass.re_order_div_pos`
@@ -135,9 +140,10 @@ line 59
 
   - [`AliasClass.re_order_div_pos`](#AliasClass-re_order_div_pos) — `` 0 < ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`AliasClass.alias_weight_ne_zero`](#AliasClass-alias_weight_ne_zero) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) ≠ 0 ``
+  - [`LadderFading.line_not_fading`](../lean_stage3/LadderFading.md#LadderFading-line_not_fading) (LadderFading) — `` ¬ Tendsto (fun r : ℕ => (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) … ``
 
 <a name="AliasClass-sym_eq_of_alias"></a>
 ### `AliasClass.sym_eq_of_alias`
@@ -217,9 +223,10 @@ line 81
   - [`CellModes.mode_two_int`](../lean_stage3/CellModes.md#CellModes-mode_two_int) (CellModes) — `` Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r ``
   - [`CellModes.sym_two`](../lean_stage3/CellModes.md#CellModes-sym_two) (CellModes) — `` Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`AliasClass.alias_weight_ne_zero`](#AliasClass-alias_weight_ne_zero) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) ≠ 0 ``
+  - [`LadderFading.line_not_fading`](../lean_stage3/LadderFading.md#LadderFading-line_not_fading) (LadderFading) — `` ¬ Tendsto (fun r : ℕ => (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) … ``
 
 <a name="AliasClass-alias_weight_ne_zero"></a>
 ### `AliasClass.alias_weight_ne_zero`

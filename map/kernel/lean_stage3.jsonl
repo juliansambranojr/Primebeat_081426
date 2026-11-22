@@ -465,6 +465,17 @@
 {"k":"theorem","m":"Stage3.JointWindowDial","n":"JointWindowDial.schoenfeldWeakTheta_of_window","pf":["JointWindowDial.zeroFreeRight_of_window","LandauWindow.WindowBound","Stage3.schoenfeldWeakTheta_of_zeroFree"],"ty":["LandauWindow.WindowBound","Stage3.Li","Stage3.StmtSchoenfeldWeakTheta"]}
 {"k":"theorem","m":"Stage3.JointWindowDial","n":"JointWindowDial.zeroFreeRight_of_window","pf":["LandauCriterion.stmtLandauWindow","LandauWindow.WindowBound"],"ty":["LandauWindow.WindowBound","Stage3.StmtZeroFreeRight"]}
 {"k":"theorem","m":"Stage3.ArgCount","n":"Kadiri.zetaCountingMainTerm.eq_1","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.line_not_fading","pf":["AliasClass.alias_weight","AliasClass.sum_order_div_ne_zero","AliasClass.zero_re_pos","Chain.Sym","Chain.mode","LadderFading.not_tendsto_powerSum","LadderFading.one_sub_inv_ne_zero"],"ty":["Chain.Sym","Chain.mode"]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.not_tendsto_powerSum","pf":["LadderFading.sum_sub_shift"],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.not_tendsto_powerSum._simp_1_1","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.not_tendsto_powerSum._simp_1_2","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.not_tendsto_powerSum._simp_1_3","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.not_tendsto_powerSum._simp_1_4","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.not_tendsto_powerSum._simp_1_5","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.not_tendsto_powerSum._simp_1_6","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.not_tendsto_powerSum._simp_1_7","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.one_sub_inv_ne_zero","pf":[],"ty":[]}
+{"k":"theorem","m":"Stage3.LadderFading","n":"LadderFading.sum_sub_shift","pf":[],"ty":[]}
 {"k":"theorem","m":"Stage3.LandauChebyshev","n":"LandauChebyshev.G_le","pf":["LandauChebyshev.rampSum_le_log","LandauWindow.G","LandauWindow.G.eq_1","LandauWindow.rampSum","_private.Stage3.LandauChebyshev.0.LandauChebyshev.log_four_lt_two"],"ty":["LandauWindow.G"]}
 {"k":"theorem","m":"Stage3.LandauChebyshev","n":"LandauChebyshev.abs_G_le_log","pf":["LandauChebyshev.G_le","LandauChebyshev.neg_le_G","LandauWindow.G"],"ty":["LandauWindow.G"]}
 {"k":"theorem","m":"Stage3.LandauChebyshev","n":"LandauChebyshev.neg_le_G","pf":["LandauCrude.rampSum_nonneg","LandauWindow.G","LandauWindow.G.eq_1","LandauWindow.rampSum"],"ty":["LandauWindow.G"]}
