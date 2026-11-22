@@ -1,0 +1,29 @@
+# check_prose_source.py  2026-11-22T21:40:44Z
+# unit: 0437-mirror-area
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:17174
+  Source: session transcript, 2026-11-22, after units 0435 and 0436
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16597
+  Yes but look at the lean theroems I feel we chased a rectangle before. If not, let build
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16907
+  theorem mirror_area {b : ℝ} (hb : 0 < b) (ρ : ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16908
+  ‖(b : ℂ) ^ ρ‖ * ‖(b : ℂ) ^ (1 - ρ)‖ = b := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16938
+  theorem square_iff {b : ℝ} (hb : 1 < b) (ρ : ℂ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16939
+  (‖(b : ℂ) ^ ρ‖ = Real.sqrt b ∧ ‖(b : ℂ) ^ (1 - ρ)‖ = Real.sqrt b) ↔ ρ.re = 1 / 2 := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16950
+  theorem long_side_of_off_line {b : ℝ} (hb : 1 < b) {ρ : ℂ} (h : ρ.re ≠ 1 / 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16951
+  Real.sqrt b < max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖ := by
+
+# 8 found, 0 missing

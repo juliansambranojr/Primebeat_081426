@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the mirror pair as a rectangle of fixed area: `Stage3/MirrorArea.lean`, block S1 of `joints.md`
+
+    DONE        `mirror_area`: a mode at base `b` and its mirror multiply to
+                `b`. `mirror_side`: one side gives the other. `square_iff`:
+                both sides are `√b` exactly on the line.
+                `long_side_of_off_line`: off the line one side is above `√b`.
+                `restoringForce_eq_log_ratio`: block T4's force is the
+                logarithm of the ratio of the sides; one unit
+    ASSUMED     Julian, 2026-11-22: "Yes but look at the lean theroems I feel
+                we chased a rectangle before. If not, let build". Searched the
+                Lean trees first: the area is in none of them; T4 has the
+                ratio of the sides. Sides are `‖b^ρ‖` and `‖b^(1−ρ)‖`
+    DEPENDS     `StencilWeil.restoringForce`; Mathlib
+    OUT         any statement that forces equal sides
+    OUTCOME     proved, unit 0437; clean on the first build
+
 ### 2026-11-22 · log the two exploratory measurements as run units
 
     DONE        two run units, each with its script in `run/`, run through

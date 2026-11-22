@@ -969,3 +969,26 @@ wobbles the prime count can carry while the integers stay evenly spaced.
 **Not here.** Which real parts the zeros have. The identity is exact for every
 `N` whatever the zeros do, so it cannot place them.
 
+
+### S1 The mirror pair as a rectangle of fixed area — PROVED (unit 0437: `MirrorArea.mirror_area`, `square_iff`, `long_side_of_off_line`)
+
+A mode of the table at base `b` has size `‖b^ρ‖ = b^(Re ρ)`. Its mirror has
+size `‖b^(1−ρ)‖ = b^(1 − Re ρ)`. Read them as the two sides of a rectangle.
+The exponents add to one, so the product is `b` whatever `ρ` is: the area is
+fixed by the base. One side gives the other, `b` over it, at every base.
+
+The square has both sides `√b`. A side is `√b` exactly when `Re ρ = 1/2`
+(take logarithms; `log b > 0`). Off the line one exponent is above one half,
+so one side is above `√b`. Block T4's `restoringForce` is the absolute value
+of `log (side / mirror side)`.
+
+**Theorems** (`MirrorArea`):
+
+- `mirror_area (hb : 0 < b) ρ`: `‖b^ρ‖ * ‖b^(1−ρ)‖ = b`.
+- `mirror_side (hb : 0 < b) ρ`: `‖b^(1−ρ)‖ = b / ‖b^ρ‖`.
+- `side_eq_sqrt_iff (hb : 1 < b) ρ`: `‖b^ρ‖ = √b ↔ ρ.re = 1/2`.
+- `square_iff (hb : 1 < b) ρ`: `(‖b^ρ‖ = √b ∧ ‖b^(1−ρ)‖ = √b) ↔ ρ.re = 1/2`.
+- `long_side_of_off_line (hb : 1 < b) (h : ρ.re ≠ 1/2)`: `√b < max ‖b^ρ‖ ‖b^(1−ρ)‖`.
+- `restoringForce_eq_log_ratio (hb : 0 < b) ρ`: `restoringForce b ρ = |log (‖b^ρ‖ / ‖b^(1−ρ)‖)|`.
+
+**Not here.** What forces equal sides. The area holds for every `ρ`.

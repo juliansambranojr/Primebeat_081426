@@ -137,6 +137,7 @@ import Stage3.LadderFading
 import Stage3.LadderMean
 import Stage3.StencilWeil
 import Stage3.WobbleCount
+import Stage3.MirrorArea
 
 namespace Stage3
 
