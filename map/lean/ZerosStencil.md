@@ -29,7 +29,8 @@ flowchart LR
   n15["<b>primeFactors_eq_of_meets</b><br/>b.primeFactors = c.primeFactors"]:::end_
   x0(["<b>Nonvanishing</b><br/>tableFrom_ne_zero_of"]):::ext
   x1(["<b>RelativeGate</b><br/>tableFrom_ne_zero_of_relErr"]):::ext
-  x2(["<b>Zeros</b><br/>tableFrom_isTable<br/>zero_iff_repeat"]):::ext
+  x2(["<b>CellResidual</b><br/>tableFrom_cast"]):::ext
+  x3(["<b>Zeros</b><br/>tableFrom_isTable<br/>zero_iff_repeat"]):::ext
   n0 --> n1
   n1 --> n7
   n14 --> n15
@@ -38,7 +39,8 @@ flowchart LR
   n7 --> n8
   n1 -.-> x0
   n1 -.-> x1
-  x2 -.-> n8
+  n1 -.-> x2
+  x3 -.-> n8
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -58,7 +60,7 @@ def · line 55
 The `N`-fold alternating binomial functional — the stencil that produces a cell at depth `N-1` from `N+1` values of the counting function.
 
 - **Is:** `` stencil (N : ℕ) (g : ℕ → ℤ) : ℤ := ∑ k ∈ Finset.range (N + 1), (-1 : ℤ) ^ k * (N.choose k) * g k ``
-- **Used by 9:** [`Nonvanishing.tableFrom_ne_zero_of`](../lean/Nonvanishing.md#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr), [`Zeros.stencil_add`](#Zeros-stencil_add), [`Zeros.stencil_annihilates_const`](#Zeros-stencil_annihilates_const), [`Zeros.stencil_eq_wings`](#Zeros-stencil_eq_wings), [`Zeros.stencil_eq_zero_iff_wings`](#Zeros-stencil_eq_zero_iff_wings), [`Zeros.stencil_smul`](#Zeros-stencil_smul), [`Zeros.tableFrom_eq_stencil`](#Zeros-tableFrom_eq_stencil), [`Zeros.tableFrom_eq_zero_iff_wings`](#Zeros-tableFrom_eq_zero_iff_wings)
+- **Used by 10:** [`Nonvanishing.tableFrom_ne_zero_of`](../lean/Nonvanishing.md#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr), [`Zeros.stencil_add`](#Zeros-stencil_add), [`Zeros.stencil_annihilates_const`](#Zeros-stencil_annihilates_const), [`Zeros.stencil_eq_wings`](#Zeros-stencil_eq_wings), [`Zeros.stencil_eq_zero_iff_wings`](#Zeros-stencil_eq_zero_iff_wings), [`Zeros.stencil_smul`](#Zeros-stencil_smul), [`Zeros.tableFrom_eq_stencil`](#Zeros-tableFrom_eq_stencil), [`Zeros.tableFrom_eq_zero_iff_wings`](#Zeros-tableFrom_eq_zero_iff_wings), [`CellResidual.tableFrom_cast`](../lean_stage3/CellResidual.md#CellResidual-tableFrom_cast)
 
 <a name="Zeros-wingPlus"></a>
 ### `Zeros.wingPlus`
@@ -144,11 +146,12 @@ Construction.tableFrom N r d = stencil d (fun k => N (r - k))
 
   - [`Zeros.tableFrom_eq_fwdDiff`](#Zeros-tableFrom_eq_fwdDiff) — `` Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))^[d] N r ``
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`Nonvanishing.tableFrom_ne_zero_of`](../lean/Nonvanishing.md#Nonvanishing-tableFrom_ne_zero_of) (Nonvanishing) — `` Construction.tableFrom N r d ≠ 0 ``
   - [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr) (RelativeGate) — `` Construction.tableFrom N r d ≠ 0 ``
   - [`Zeros.tableFrom_eq_zero_iff_wings`](#Zeros-tableFrom_eq_zero_iff_wings) — `` Construction.tableFrom N r d = 0 ↔ wingPlus d (fun k => N (r - k)) = wingMinus d (fun k => N (r - k)) ``
+  - [`CellResidual.tableFrom_cast`](../lean_stage3/CellResidual.md#CellResidual-tableFrom_cast) (CellResidual) — `` ((Construction.tableFrom N r d : ℤ) : ℝ) = stencilR (d + 1) f r ``
 
 <a name="Zeros-stencil_add"></a>
 ### `Zeros.stencil_add`

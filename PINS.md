@@ -22,6 +22,31 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · RH as the size of the cells: `Stage3/PiToPsi.lean`, `Stage3/CellResidual.lean`, block T5 of `joints.md`
+
+    DONE        `PiToPsi`: the bound on `π − Li` at square-root size gives the
+                bound on `ψ`, hence `RiemannHypothesis`; with the route of
+                today, `RH ↔ ∃ C x₀, StmtSchoenfeldWeak C 1 x₀ π Li`.
+                `CellResidual`: for the dyadic ladder started at `a`, the
+                cell's residual is the stencil of `π − Li` on the ladder;
+                `CellsSqrt C r₀` says every cell of every ladder with
+                `1 ≤ a ≤ 2` has residual at most `C` times
+                `(1 + 2^(−1/2))^(d+1)·(r+1)·2^(r/2)`; the theorem
+                `RiemannHypothesis ↔ ∃ C r₀, CellsSqrt C r₀`; and for the
+                table itself (`a = 1`, `Construction.tableFrom rowN`) the
+                forward direction; two units
+    ASSUMED     Julian, 2026-11-22: "This please", on the sentence "RH holds
+                if and only if the residual in every cell stays at square-root
+                size as the table continues". The equivalence is stated over
+                every ladder `a·2^r`, `1 ≤ a ≤ 2`: on the single ladder
+                `a = 1` the converse is joint 10 and stays open, and the
+                module says so in its header
+    DEPENDS     units 0409, 0413 (`hasDerivAt_Li`), `VonKoch.RH_iff_psiWeak`,
+                upstream `Chebyshev.theta_eq_primeCounting_mul_log_sub_integral`
+    OUT         joint 10 (one ladder), T2, T3, T4; no constant is made small
+    OUTCOME     done as pinned; units 0427 (`PiToPsi`, clean on its third
+                build) and 0428 (`CellResidual`, clean on its second)
+
 ### 2026-11-22 · the Lean map: `map/` (index `map/README.md`), `utilities/lean_map.py`
 
     DONE        a generated map of every declaration in every Lean file of

@@ -5,7 +5,7 @@
 21 theorems, 4 definitions, 654 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LineBound`](../lean_stage3/LineBound.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ThetaConverse`](../lean_stage3/ThetaConverse.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiToPsi`](../lean_stage3/PiToPsi.md), [`ThetaConverse`](../lean_stage3/ThetaConverse.md)
 
 ## The picture
 
@@ -31,9 +31,10 @@ flowchart LR
   n17["<b>no_zero_right_of_half</b><br/>riemannZeta ρ ≠ 0"]:::thm
   n18["<b>RH_of_no_zero_right_of_half</b><br/>RiemannHypothesis"]:::thm
   n19["<b>RH_of_psiWeak</b><br/>RiemannHypothesis"]:::thm
-  n20["<b>RH_iff_psiWeak</b><br/>RiemannHypothesis ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::end_
+  n20["<b>RH_iff_psiWeak</b><br/>RiemannHypothesis ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::thm
   x0(["<b>ThetaConverse</b><br/>4 theorems"]):::ext
   x1(["<b>LineBound</b><br/>stmtPsiWeak_of_RH"]):::ext
+  x2(["<b>PiToPsi</b><br/>RH_of_schoenfeldWeak"]):::ext
   n0 --> n1
   n1 --> n4
   n10 --> n15
@@ -62,6 +63,7 @@ flowchart LR
   n10 -.-> x0
   n18 -.-> x0
   n2 -.-> x0
+  n20 -.-> x2
   n3 -.-> x0
   n4 -.-> x0
   x1 -.-> n20
@@ -640,5 +642,7 @@ RiemannHypothesis ↔ ∃ C > 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀
   - [`RHPull.stmtPsiWeak_of_RH`](../lean_stage3/LineBound.md#RHPull-stmtPsiWeak_of_RH) (LineBound) — `` ∃ C > 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ ``
   - [`VonKoch.RH_of_psiWeak`](#VonKoch-RH_of_psiWeak) — `` RiemannHypothesis ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`PiToPsi.RH_of_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) (PiToPsi) — `` RiemannHypothesis ``
 

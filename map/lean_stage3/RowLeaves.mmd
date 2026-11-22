@@ -6,16 +6,18 @@ flowchart LR
   n4["<b>hasDerivAt_rowIntegral</b><br/>HasDerivAt (fun u : ℝ =＞ 2 / Real.log 2 + ∫ t in (1 : ℝ)..u, Rea…"]:::thm
   n5["<b>Li_two_rpow</b><br/>Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp …"]:::thm
   n6["<b>norm_logDerivZeta_zero</b><br/>‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2 * Real.pi)"]:::thm
-  x0(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
-  x1(["<b>RouteNum</b><br/>c3n_le<br/>relErrWindow_route_num"]):::ext
+  x0(["<b>PiToPsi</b><br/>Li_mul_log_sub_integral<br/>continuousOn_Li"]):::ext
+  x1(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
+  x2(["<b>RouteNum</b><br/>c3n_le<br/>relErrWindow_route_num"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
   n3 --> n4
   n4 --> n5
-  n5 -.-> x0
+  n1 -.-> x0
   n5 -.-> x1
-  n6 -.-> x1
+  n5 -.-> x2
+  n6 -.-> x2
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

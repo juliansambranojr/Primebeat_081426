@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-22  T5 SEALED (units 0427, 0428): RH <-> every cell's residual at square-root size, over every dyadic ladder a*2^r, 1<=a<=2 (`CellResidual.RH_iff_cells`); RH <-> sqrt bound on pi-Li (`PiToPsi.RH_iff_schoenfeldWeak`). On the table's own ladder: forward proved (`table_cell_resid`), converse is joint 10.
 - [open]   2026-11-22  map/README.md + map/ (utilities/lean_map.py, .github/workflows/lean_map.yml): generated Mermaid map of every Lean declaration in the three trees: proves, needs, why (own docstring), uses, used by. Regenerates on every push touching a .lean file. Read it before claiming a theorem is missing or new. To make that a rule, a line in CLAUDE.md is Julian's to add
 - [open]   2026-11-22  CHECK after units 0425/0426 (Julian): lab and lab3.0 hold no Lean; nothing there is rebuilt. Inside this repo CellZeros repeats the table tree: `stencil` is stencilR / ZerosStencil.stencil / bdiff^[d]; `stencil_mode` is Chain.A4; its linearity is Superposition.bdiff_sum. New in T1: the zero sum as a modeSum and the error bound. To restate on bdiff^[d]
 - [open]   2026-11-22  units 0425, 0426: joint T1 PROVED, no RH. CellZeros.cell_eq_zero_sum: the d-fold difference of psi(2^n) at r = 2^r (1/2)^d - sum over zeros below T of m (2^rho)^r (1 - 2^(-rho))^d / rho, within the explicit formula's error. CellModes.cell_eq_modeSum: the same with the table tree's Sym, mode, modeSum (ported). The residuals of the deltas are the zeros

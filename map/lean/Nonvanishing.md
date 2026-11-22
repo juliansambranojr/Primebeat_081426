@@ -19,9 +19,10 @@ flowchart LR
   n5["<b>error_bound</b><br/>|stencilR n (fun x =＞ f x - L x) r| ≤ Ehigh r n"]:::thm
   n6["<b>nonvanishing_of</b><br/>stencilR (d + 1) f r ≠ 0"]:::thm
   n7["<b>tableFrom_ne_zero_of</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
-  x0(["<b>RelativeGate</b><br/>nonvanishing_of_relErr<br/>tableFrom_ne_zero_of_relErr"]):::ext
-  x1(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
-  x2(["<b>MainTerm</b><br/>tableFrom_ne_zero_of_deriv"]):::ext
+  x0(["<b>CellResidual</b><br/>stencilR_one<br/>tableFrom_cast<br/>table_cell_eq"]):::ext
+  x1(["<b>RelativeGate</b><br/>nonvanishing_of_relErr<br/>tableFrom_ne_zero_of_relErr"]):::ext
+  x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
+  x3(["<b>MainTerm</b><br/>tableFrom_ne_zero_of_deriv"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n7
@@ -29,10 +30,13 @@ flowchart LR
   n4 --> n5
   n5 --> n6
   n6 --> n7
+  n1 -.-> x0
   n2 -.-> x0
+  n2 -.-> x1
   n3 -.-> x0
-  n7 -.-> x2
-  x1 -.-> n7
+  n3 -.-> x1
+  n7 -.-> x3
+  x2 -.-> n7
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -52,7 +56,7 @@ def · line 52
 Backward differencing on ℤ-indexed real sequences — `Chain.bdiff`'s twin one level down (ℤ index, ℝ values).
 
 - **Is:** `` bdiffZ (g : ℤ → ℝ) : ℤ → ℝ := fun x => g x - g (x - 1) ``
-- **Used by 15:** [`Expansion.tableFrom_ne_zero_of_li`](../lean/Expansion.md#Expansion-tableFrom_ne_zero_of_li), [`Interpolant.tableFrom_ne_zero_of_relErr_liRow`](../lean/Interpolant.md#Interpolant-tableFrom_ne_zero_of_relErr_liRow), [`MainTerm.tableFrom_ne_zero_of_deriv`](../lean/MainTerm.md#MainTerm-tableFrom_ne_zero_of_deriv), [`Nonvanishing.iter_bdiffZ_eq_fwdDiff`](#Nonvanishing-iter_bdiffZ_eq_fwdDiff), [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR), [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr), [`RelativeLi.tableFrom_ne_zero_of_powerSaving`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_powerSaving), [`RelativeLi.tableFrom_ne_zero_of_relErr_li`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_relErr_li), [`RelativeLi.tableFrom_ne_zero_of_relErr_li'`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_relErr_li-), [`RouteCell.cell_ne_zero_of_route`](../lean/RouteCell.md#RouteCell-cell_ne_zero_of_route), [`Schoenfeld.tableFrom_ne_zero_of_schoenfeld`](../lean/Schoenfeld.md#Schoenfeld-tableFrom_ne_zero_of_schoenfeld), [`TableDepths.cell_ne_zero_gen`](../lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen), [`TableRoute.cell_ne_zero_of_RH`](../lean_stage3/TableRoute.md#TableRoute-cell_ne_zero_of_RH)
+- **Used by 18:** [`Expansion.tableFrom_ne_zero_of_li`](../lean/Expansion.md#Expansion-tableFrom_ne_zero_of_li), [`Interpolant.tableFrom_ne_zero_of_relErr_liRow`](../lean/Interpolant.md#Interpolant-tableFrom_ne_zero_of_relErr_liRow), [`MainTerm.tableFrom_ne_zero_of_deriv`](../lean/MainTerm.md#MainTerm-tableFrom_ne_zero_of_deriv), [`Nonvanishing.iter_bdiffZ_eq_fwdDiff`](#Nonvanishing-iter_bdiffZ_eq_fwdDiff), [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR), [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr), [`RelativeLi.tableFrom_ne_zero_of_powerSaving`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_powerSaving), [`RelativeLi.tableFrom_ne_zero_of_relErr_li`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_relErr_li), [`RelativeLi.tableFrom_ne_zero_of_relErr_li'`](../lean/RelativeLi.md#RelativeLi-tableFrom_ne_zero_of_relErr_li-), [`RouteCell.cell_ne_zero_of_route`](../lean/RouteCell.md#RouteCell-cell_ne_zero_of_route), [`Schoenfeld.tableFrom_ne_zero_of_schoenfeld`](../lean/Schoenfeld.md#Schoenfeld-tableFrom_ne_zero_of_schoenfeld), [`CellResidual.stencilR_one`](../lean_stage3/CellResidual.md#CellResidual-stencilR_one), [`CellResidual.tableFrom_cast`](../lean_stage3/CellResidual.md#CellResidual-tableFrom_cast), [`CellResidual.table_cell_eq`](../lean_stage3/CellResidual.md#CellResidual-table_cell_eq), [`TableDepths.cell_ne_zero_gen`](../lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen), [`TableRoute.cell_ne_zero_of_RH`](../lean_stage3/TableRoute.md#TableRoute-cell_ne_zero_of_RH)
 
 <a name="Nonvanishing-stencilR"></a>
 ### `Nonvanishing.stencilR`
@@ -62,7 +66,7 @@ def · line 56
 The real alternating binomial stencil of order `n` on `g`, read at `r` downward. The ℝ twin of `Zeros.stencil`.
 
 - **Is:** `` stencilR (n : ℕ) (g : ℤ → ℝ) (r : ℤ) : ℝ := ∑ k ∈ range (n + 1), (-1 : ℝ) ^ k * (n.choose k) * g (r - k) ``
-- **Used by 11:** [`MainTerm.stencilR_eq_iter`](../lean/MainTerm.md#MainTerm-stencilR_eq_iter), [`MainTerm.stencilR_ge_of`](../lean/MainTerm.md#MainTerm-stencilR_ge_of), [`Nonvanishing.error_bound`](#Nonvanishing-error_bound), [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR), [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of), [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row), [`Nonvanishing.stencilR_sub`](#Nonvanishing-stencilR_sub), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.nonvanishing_of_relErr`](../lean/RelativeGate.md#RelativeGate-nonvanishing_of_relErr), [`RelativeGate.relError_bound`](../lean/RelativeGate.md#RelativeGate-relError_bound), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr)
+- **Used by 19:** [`MainTerm.stencilR_eq_iter`](../lean/MainTerm.md#MainTerm-stencilR_eq_iter), [`MainTerm.stencilR_ge_of`](../lean/MainTerm.md#MainTerm-stencilR_ge_of), [`Nonvanishing.error_bound`](#Nonvanishing-error_bound), [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR), [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of), [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row), [`Nonvanishing.stencilR_sub`](#Nonvanishing-stencilR_sub), [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of), [`RelativeGate.nonvanishing_of_relErr`](../lean/RelativeGate.md#RelativeGate-nonvanishing_of_relErr), [`RelativeGate.relError_bound`](../lean/RelativeGate.md#RelativeGate-relError_bound), [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr), [`CellResidual.cellResid`](../lean_stage3/CellResidual.md#CellResidual-cellResid), [`CellResidual.cells_of_schoenfeldWeak`](../lean_stage3/CellResidual.md#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.stencilR_abs_le`](../lean_stage3/CellResidual.md#CellResidual-stencilR_abs_le), [`CellResidual.stencilR_one`](../lean_stage3/CellResidual.md#CellResidual-stencilR_one), [`CellResidual.step_le`](../lean_stage3/CellResidual.md#CellResidual-step_le), [`CellResidual.tableFrom_cast`](../lean_stage3/CellResidual.md#CellResidual-tableFrom_cast), [`CellResidual.table_cell_eq`](../lean_stage3/CellResidual.md#CellResidual-table_cell_eq), [`CellResidual.table_cell_resid`](../lean_stage3/CellResidual.md#CellResidual-table_cell_resid)
 
 <a name="Nonvanishing-Ehigh"></a>
 ### `Nonvanishing.Ehigh`
@@ -148,9 +152,10 @@ line 77
 
   - [`Nonvanishing.iter_bdiffZ_eq_fwdDiff`](#Nonvanishing-iter_bdiffZ_eq_fwdDiff) — `` (bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Nonvanishing.stencilR_row`](#Nonvanishing-stencilR_row) — `` stencilR d (bdiffZ g) r = stencilR (d + 1) g r ``
+  - [`CellResidual.stencilR_one`](../lean_stage3/CellResidual.md#CellResidual-stencilR_one) (CellResidual) — `` stencilR 1 g r = g r - g (r - 1) ``
 
 <a name="Nonvanishing-stencilR_row"></a>
 ### `Nonvanishing.stencilR_row`
@@ -177,10 +182,11 @@ stencilR d (bdiffZ g) r = stencilR (d + 1) g r
 
   - [`Nonvanishing.iter_bdiffZ_eq_stencilR`](#Nonvanishing-iter_bdiffZ_eq_stencilR) — `` (bdiffZ^[n]) g r = stencilR n g r ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`Nonvanishing.tableFrom_ne_zero_of`](#Nonvanishing-tableFrom_ne_zero_of) — `` Construction.tableFrom N r d ≠ 0 ``
   - [`RelativeGate.tableFrom_ne_zero_of_relErr`](../lean/RelativeGate.md#RelativeGate-tableFrom_ne_zero_of_relErr) (RelativeGate) — `` Construction.tableFrom N r d ≠ 0 ``
+  - [`CellResidual.tableFrom_cast`](../lean_stage3/CellResidual.md#CellResidual-tableFrom_cast) (CellResidual) — `` ((Construction.tableFrom N r d : ℤ) : ℝ) = stencilR (d + 1) f r ``
 
 <a name="Nonvanishing-stencilR_sub"></a>
 ### `Nonvanishing.stencilR_sub`
@@ -205,10 +211,11 @@ stencilR n (fun x => f x - L x) r = stencilR n f r - stencilR n L r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`Nonvanishing.nonvanishing_of`](#Nonvanishing-nonvanishing_of) — `` stencilR (d + 1) f r ≠ 0 ``
   - [`RelativeGate.nonvanishing_of_relErr`](../lean/RelativeGate.md#RelativeGate-nonvanishing_of_relErr) (RelativeGate) — `` stencilR (d + 1) f r ≠ 0 ``
+  - [`CellResidual.table_cell_eq`](../lean_stage3/CellResidual.md#CellResidual-table_cell_eq) (CellResidual) — `` ((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r = cellResid 1 r d ``
 
 <a name="Nonvanishing-window_term_le"></a>
 ### `Nonvanishing.window_term_le`

@@ -1,0 +1,48 @@
+flowchart LR
+  n0["<b>Li_two</b><br/>Stage3.Li 2 = 2 / Real.log 2"]:::thm
+  n1["<b>continuousOn_Li</b><br/>ContinuousOn Stage3.Li (Ioi 1)"]:::thm
+  n2["<b>uIcc_two_subset</b><br/>uIcc (2 : ℝ) x ⊆ Ioi 1"]:::thm
+  n3["<b>intervalIntegrable_Li_div</b><br/>IntervalIntegrable (fun t : ℝ =＞ Stage3.Li t / t) volume 2 x"]:::thm
+  n4["<b>intervalIntegrable_pi_div</b><br/>IntervalIntegrable (fun t : ℝ =＞ (Nat.primeCounting ⌊t⌋₊ : ℝ) / …"]:::thm
+  n5["<b>Li_mul_log_sub_integral</b><br/>Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = …"]:::thm
+  n6["<b>intervalIntegrable_relRes</b><br/>IntervalIntegrable relRes volume 2 x"]:::thm
+  n7["<b>theta_sub_id_eq</b><br/>θ x - x = ((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x) * Real.lo…"]:::thm
+  n8["<b>relRes_tail_le</b><br/>(∫ t in x₀..x, |relRes t|) ≤ 2 * (C * Real.log x) * Real.sqrt x"]:::thm
+  n9["<b>psiWeak_of_schoenfeldWeak</b><br/>∃ C' ＞ 0, ∃ x₁ : ℝ, StmtPsiWeak C' 3 x₁"]:::thm
+  n10["<b>RH_of_schoenfeldWeak</b><br/>RiemannHypothesis"]:::thm
+  n11["<b>RH_iff_schoenfeldWeak</b><br/>RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x…"]:::thm
+  x0(["<b>RowLeaves</b><br/>hasDerivAt_Li"]):::ext
+  x1(["<b>CellResidual</b><br/>RH_iff_cells<br/>base_bound<br/>cells_of_RH"]):::ext
+  x2(["<b>PsiToPi</b><br/>integral_A_rpow_le"]):::ext
+  x3(["<b>VonKochScaffold</b><br/>RH_iff_psiWeak"]):::ext
+  x4(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  n0 --> n5
+  n1 --> n3
+  n10 --> n11
+  n2 --> n3
+  n2 --> n4
+  n2 --> n5
+  n3 --> n5
+  n3 --> n6
+  n3 --> n7
+  n4 --> n6
+  n4 --> n7
+  n5 --> n7
+  n6 --> n8
+  n6 --> n9
+  n7 --> n9
+  n8 --> n9
+  n9 --> n10
+  n1 -.-> x1
+  n10 -.-> x1
+  n11 -.-> x1
+  x0 -.-> n1
+  x0 -.-> n5
+  x2 -.-> n8
+  x3 -.-> n10
+  x4 -.-> n11
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

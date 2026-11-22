@@ -5,7 +5,7 @@ TableRoute — block E10 of `lean_stage3/design/joints.md`: the join between the
 1 theorem, 1 definition, 49 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`GateEval`](../lean_stage3/GateEval.md), [`RouteCell`](../lean_stage3/TablePort_RouteCell.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`TableDepths`](../lean_stage3/TableDepths.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellResidual`](../lean_stage3/CellResidual.md), [`TableDepths`](../lean_stage3/TableDepths.md)
 
 ## The picture
 
@@ -35,7 +35,7 @@ def · line 27
 The table's row: the number of primes in the dyadic block `(2^(m−1), 2^m]`.
 
 - **Is:** `` rowN (m : ℤ) : ℤ := (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℤ) - (Nat.primeCounting ⌊(2 : ℝ) ^ ((m - 1 : ℤ) : ℝ)⌋₊ : ℤ) ``
-- **Used by 10:** [`TableDepths.cell_ne_zero_gen`](../lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen), [`TableDepths.depth_eight`](../lean_stage3/TableDepths.md#TableDepths-depth_eight), [`TableDepths.depth_five`](../lean_stage3/TableDepths.md#TableDepths-depth_five), [`TableDepths.depth_four`](../lean_stage3/TableDepths.md#TableDepths-depth_four), [`TableDepths.depth_one`](../lean_stage3/TableDepths.md#TableDepths-depth_one), [`TableDepths.depth_seven`](../lean_stage3/TableDepths.md#TableDepths-depth_seven), [`TableDepths.depth_six`](../lean_stage3/TableDepths.md#TableDepths-depth_six), [`TableDepths.depth_three`](../lean_stage3/TableDepths.md#TableDepths-depth_three), [`TableDepths.depth_two`](../lean_stage3/TableDepths.md#TableDepths-depth_two), [`TableRoute.cell_ne_zero_of_RH`](#TableRoute-cell_ne_zero_of_RH)
+- **Used by 12:** [`CellResidual.table_cell_eq`](../lean_stage3/CellResidual.md#CellResidual-table_cell_eq), [`CellResidual.table_cell_resid`](../lean_stage3/CellResidual.md#CellResidual-table_cell_resid), [`TableDepths.cell_ne_zero_gen`](../lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen), [`TableDepths.depth_eight`](../lean_stage3/TableDepths.md#TableDepths-depth_eight), [`TableDepths.depth_five`](../lean_stage3/TableDepths.md#TableDepths-depth_five), [`TableDepths.depth_four`](../lean_stage3/TableDepths.md#TableDepths-depth_four), [`TableDepths.depth_one`](../lean_stage3/TableDepths.md#TableDepths-depth_one), [`TableDepths.depth_seven`](../lean_stage3/TableDepths.md#TableDepths-depth_seven), [`TableDepths.depth_six`](../lean_stage3/TableDepths.md#TableDepths-depth_six), [`TableDepths.depth_three`](../lean_stage3/TableDepths.md#TableDepths-depth_three), [`TableDepths.depth_two`](../lean_stage3/TableDepths.md#TableDepths-depth_two), [`TableRoute.cell_ne_zero_of_RH`](#TableRoute-cell_ne_zero_of_RH)
 
 ## Theorems
 

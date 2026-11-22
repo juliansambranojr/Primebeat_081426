@@ -81,6 +81,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilSeries.bandSeries_summable`](./lean_stage3/WeilSeries.md#WeilSeries-bandSeries_summable) | theorem | `WeilSeries` | Summable (fun k : ℕ =&gt; M h γ k * (15 * Real.log (centre k) + 73)) |
 | [`WeilPowerBands.bandTerm_le_A`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-bandTerm_le_A) | theorem | `WeilPowerBands` | M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m / ((k : ℝ) + 1) ^ 3 |
 | [`WeilSeries.bandTerm_le_A`](./lean_stage3/WeilSeries.md#WeilSeries-bandTerm_le_A) | theorem | `WeilSeries` | M h γ k * (15 * Real.log (centre k) + 73) ≤ A h γ / ((k : ℝ) + 1) ^ 3 |
+| [`CellResidual.base_bound`](./lean_stage3/CellResidual.md#CellResidual-base_bound) | theorem | `CellResidual` | ∃ M : ℝ, ∀ a ∈ Set.Icc (1 : ℝ) 2, \|resid a r₀\| ≤ M |
 | [`Nyquist.base_bound_of_resolvable`](./lean/Nyquist.md#Nyquist-base_bound_of_resolvable) | theorem | `Nyquist` | b ≤ Real.exp (π / γ) |
 | [`PairIdentity.base_four_carries_factor`](./lean/PairIdentity.md#PairIdentity-base_four_carries_factor) | theorem | `PairIdentity` | ((4 : ℤ) - 1) ^ (d + 1) * 4 ^ e = 3 ^ (d + 1) * 4 ^ e |
 | [`Zeros.base_of_meets_two`](./lean/ZerosStencil.md#Zeros-base_of_meets_two) | theorem | `ZerosStencil` | ∃ i, b = 2 ^ i |
@@ -171,6 +172,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`TableDepths.cell_ne_zero_gen`](./lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen) | theorem | `TableDepths` | Construction.tableFrom TableRoute.rowN r d ≠ 0 |
 | [`TableRoute.cell_ne_zero_of_RH`](./lean_stage3/TableRoute.md#TableRoute-cell_ne_zero_of_RH) | theorem | `TableRoute` | Construction.tableFrom rowN r 6 ≠ 0 |
 | [`RouteCell.cell_ne_zero_of_route`](./lean/RouteCell.md#RouteCell-cell_ne_zero_of_route) | theorem | `RouteCell` | Construction.tableFrom N r 6 ≠ 0 |
+| [`CellResidual.cellResid`](./lean_stage3/CellResidual.md#CellResidual-cellResid) | def | `CellResidual` | ℝ |
+| [`CellResidual.cells_of_RH`](./lean_stage3/CellResidual.md#CellResidual-cells_of_RH) | theorem | `CellResidual` | ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ |
+| [`CellResidual.cells_of_schoenfeldWeak`](./lean_stage3/CellResidual.md#CellResidual-cells_of_schoenfeldWeak) | theorem | `CellResidual` | CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀ |
+| [`CellResidual.cellSize`](./lean_stage3/CellResidual.md#CellResidual-cellSize) | def | `CellResidual` | ℝ |
+| [`CellResidual.CellsSqrt`](./lean_stage3/CellResidual.md#CellResidual-CellsSqrt) | def | `CellResidual` | Prop |
 | [`EdgeBound.Cen`](./lean_stage3/EdgeNum.md#EdgeBound-Cen) | def | `EdgeNum` | ℝ |
 | [`RouteNum.Cen_le`](./lean_stage3/RouteNum.md#RouteNum-Cen_le) | theorem | `RouteNum` | EdgeBound.Cen ≤ 1911393 |
 | [`EdgeBound.Cen_pos`](./lean_stage3/EdgeNum.md#EdgeBound-Cen_pos) | theorem | `EdgeNum` | 0 &lt; Cen |
@@ -228,6 +234,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.continuousOn_inv_log_sq`](./lean_stage3/PsiToPi.md#Stage3-continuousOn_inv_log_sq) | theorem | `PsiToPi` | ContinuousOn (fun t : ℝ =&gt; 1 / Real.log t ^ 2) (Set.uIcc a x) |
 | [`Stage3.continuousOn_inv_log_sq_Ioi`](./lean_stage3/RowLeaves.md#Stage3-continuousOn_inv_log_sq_Ioi) | theorem | `RowLeaves` | ContinuousOn (fun t : ℝ =&gt; 1 / Real.log t ^ 2) (Ioi 1) |
 | [`Stage3.continuousOn_inv_mul_log_sq`](./lean_stage3/PsiToPi.md#Stage3-continuousOn_inv_mul_log_sq) | theorem | `PsiToPi` | ContinuousOn (fun t : ℝ =&gt; (t * Real.log t ^ 2)⁻¹) (Set.uIcc a x) |
+| [`PiToPsi.continuousOn_Li`](./lean_stage3/PiToPsi.md#PiToPsi-continuousOn_Li) | theorem | `PiToPsi` | ContinuousOn Stage3.Li (Ioi 1) |
 | [`RHPull.contour_at_instantiation`](./lean_stage3/LineBound.md#RHPull-contour_at_instantiation) | theorem | `LineBound` | ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (66600 * Real.exp 1 * B / Real.pi) * Real.sqrt X * (Real.log X) ^ 3 + (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * Real.l… |
 | [`Stage3.contour_at_instantiation_theta`](./lean_stage3/ThetaPsi.md#Stage3-contour_at_instantiation_theta) | theorem | `ThetaPsi` | ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (66600 * Real.exp 1 * B / Real.pi) * X ^ θ * (Real.log X) ^ 3 + (1 / (2 * Real.pi)) * (1 - θ) * ((1996 * Real.log (84… |
 | [`LandauCriterion.contradiction`](./lean_stage3/LandauCriterion.md#LandauCriterion-contradiction) | theorem | `LandauCriterion` | False |
@@ -573,7 +580,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.integrand_norm_le_horiz_theta`](./lean_stage3/ThetaPsi.md#Stage3-integrand_norm_le_horiz_theta) | theorem | `ThetaPsi` | ‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (1996 * Real.log (84 * t) + (29 * Real.log t + 129) * Real.log X) * M * X ^ σ |
 | [`Stage3.integrand_norm_le_theta`](./lean_stage3/ThetaPull.md#Stage3-integrand_norm_le_theta) | theorem | `ThetaPull` | ‖SmoothedChebyshevIntegrand ν ε X ((σθ θ X : ℂ) + I * (t : ℂ))‖ ≤ 11100 * (Real.log X) ^ 2 * M * X ^ (σθ θ X) |
 | [`ZetaGrowth.interval_ibp`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-interval_ibp) | theorem | `ZetaGrowth` | ∫ x in (n:ℝ)..((n:ℝ)+1), ((⌊x⌋ : ℂ) + 1/2 - (x:ℂ)) * (x:ℂ) ^ (-(s+1)) = (s+1) * ∫ x in (n:ℝ)..((n:ℝ)+1), (emA x : ℂ) * (x:ℂ) ^ (-(s+2)) |
+| [`PiToPsi.intervalIntegrable_Li_div`](./lean_stage3/PiToPsi.md#PiToPsi-intervalIntegrable_Li_div) | theorem | `PiToPsi` | IntervalIntegrable (fun t : ℝ =&gt; Stage3.Li t / t) volume 2 x |
 | [`Stage3.intervalIntegrable_phasePoint`](./lean_stage3/Stirling.md#Stage3-intervalIntegrable_phasePoint) | theorem | `Stirling` | IntervalIntegrable phasePoint MeasureTheory.volume a b |
+| [`PiToPsi.intervalIntegrable_pi_div`](./lean_stage3/PiToPsi.md#PiToPsi-intervalIntegrable_pi_div) | theorem | `PiToPsi` | IntervalIntegrable (fun t : ℝ =&gt; (Nat.primeCounting ⌊t⌋₊ : ℝ) / t) volume 2 x |
+| [`PiToPsi.intervalIntegrable_relRes`](./lean_stage3/PiToPsi.md#PiToPsi-intervalIntegrable_relRes) | theorem | `PiToPsi` | IntervalIntegrable relRes volume 2 x |
 | [`Stage3.intervalIntegral_im`](./lean_stage3/ArgIdentity.md#Stage3-intervalIntegral_im) | theorem | `ArgIdentity` | (∫ t in a..b, f t).im = ∫ t in a..b, (f t).im |
 | [`Stage3.intervalIntegral_re`](./lean_stage3/ArgIdentity.md#Stage3-intervalIntegral_re) | theorem | `ArgIdentity` | (∫ t in a..b, f t).re = ∫ t in a..b, (f t).re |
 | [`WeilPowerShell.inv_exp_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-inv_exp_le) | theorem | `WeilPowerShell` | 1 / Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2))) ≤ Real.exp (2 * (e' ^ 2 + D ^ 2 + e ^ 2) * (1 / ((lam : ℝ) * Real.pi ^ 2))) |
@@ -633,6 +643,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.kOfM`](./lean_bridge/WeilBridge.md#Bridge-kOfM) | def | `WeilBridge` | ℝ → ℂ |
 | [`WeilBridgeLeaf.kOfM`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-kOfM) | def | `WeilBridgeLeaf` | ℝ → ℂ |
 | [`Bridge.kOfM_eq`](./lean_bridge/WeilBridge.md#Bridge-kOfM_eq) | theorem | `WeilBridge` | kOfM G = kOf G |
+| [`CellResidual.ladder_le`](./lean_stage3/CellResidual.md#CellResidual-ladder_le) | theorem | `CellResidual` | \|resid a (r₀ + (n : ℤ))\| ≤ M + 4 * (\|C\| * (1 + (2 : ℝ) ^ (-(1 : ℝ) / 2))) * ((r₀ : ℝ) + n + 1) * (2 : ℝ) ^ (((r₀ : ℝ) + n) / 2) |
 | [`Zeros.LaddersMeet`](./lean/ZerosStencil.md#Zeros-LaddersMeet) | def | `ZerosStencil` | Prop |
 | [`Bridge.laplace`](./lean_bridge/WeilBridge.md#Bridge-laplace) | def | `WeilBridge` | ℂ |
 | [`WeilDetect.laplace`](./lean_stage3/WeilDetect.md#WeilDetect-laplace) | def | `WeilDetect` | ℂ |
@@ -644,6 +655,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Elephant.lattice_step`](./lean/Elephant.md#Elephant-lattice_step) | theorem | `Elephant` | Sym b ((k : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ Sym b (((k + 1 : ℤ) : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ ((k + 1 : ℤ) : ℂ) * (2 * Real.pi * Complex.I / Real.log b) - (k … |
 | [`Transform.latticeBasis`](./lean/Transform.md#Transform-latticeBasis) | def | `Transform` | Module.Basis (Fin 2) ℝ ℂ |
 | [`Stage3.Li`](./lean_stage3/PsiToPi.md#Stage3-Li) | def | `PsiToPi` | ℝ |
+| [`PiToPsi.Li_mul_log_sub_integral`](./lean_stage3/PiToPsi.md#PiToPsi-Li_mul_log_sub_integral) | theorem | `PiToPsi` | Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x |
+| [`PiToPsi.Li_two`](./lean_stage3/PiToPsi.md#PiToPsi-Li_two) | theorem | `PiToPsi` | Stage3.Li 2 = 2 / Real.log 2 |
 | [`Stage3.Li_two_rpow`](./lean_stage3/RowLeaves.md#Stage3-Li_two_rpow) | theorem | `RowLeaves` | Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.log 2 * t) / t |
 | [`Interpolant.liRow`](./lean/Interpolant.md#Interpolant-liRow) | def | `Interpolant` | ℝ |
 | [`Interpolant.liRow_contDiff`](./lean/Interpolant.md#Interpolant-liRow_contDiff) | theorem | `Interpolant` | ContDiff ℝ (⊤ : ℕ∞) liRow |
@@ -1038,6 +1051,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.psiWeak_floor`](./lean_stage3/AssemblyFloor.md#Stage3-psiWeak_floor) | theorem | `AssemblyFloor` | StmtPsiWeak (floorConst c₁ c₂ b₁ b₂ b₃ W x₀) 2 x₀ |
 | [`Stage3.psiWeak_floor_split`](./lean_stage3/GlueFloor.md#Stage3-psiWeak_floor_split) | theorem | `GlueFloor` | StmtPsiWeak (floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀) 2 x₀ |
 | [`Stage3.psiWeak_of_RH_EF_NT`](./lean_stage3/Assembly.md#Stage3-psiWeak_of_RH_EF_NT) | theorem | `Assembly` | StmtPsiWeak (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 * W) 2 (max x₁ 16) |
+| [`PiToPsi.psiWeak_of_schoenfeldWeak`](./lean_stage3/PiToPsi.md#PiToPsi-psiWeak_of_schoenfeldWeak) | theorem | `PiToPsi` | ∃ C' &gt; 0, ∃ x₁ : ℝ, StmtPsiWeak C' 3 x₁ |
 | [`JointWindowDial.psiWeakTheta_of_window`](./lean_stage3/JointWindowDial.md#JointWindowDial-psiWeakTheta_of_window) | theorem | `JointWindowDial` | ∃ C' &gt; 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → \|Chebyshev.psi t - t\| ≤ C' * t ^ θ * Real.log t ^ 3 |
 | [`RHPull.pull_at_RH_abscissa`](./lean_stage3/LineBound.md#RHPull-pull_at_RH_abscissa) | theorem | `LineBound` | SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ SmoothingF ε T X (1 / 2 + 1 / Real.log X) + I₃₇ SmoothingF ε T X (1 / 2 + 1 / Real.log X) + I₈ SmoothingF ε T X (1 / 2 + 1 / Real.log X) + I… |
 | [`Stage3.pull_at_theta_abscissa`](./lean_stage3/ThetaPsi.md#Stage3-pull_at_theta_abscissa) | theorem | `ThetaPsi` | SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ SmoothingF ε T X (σθ θ X) + I₃₇ SmoothingF ε T X (σθ θ X) + I₈ SmoothingF ε T X (σθ θ X) + I₉ SmoothingF ε X T + mellin (fun x ↦ (Smooth1 Sm… |
@@ -1114,20 +1128,27 @@ Sorted by name. Search this file before saying something is missing.
 | [`RouteNum.relErrWindow_route_num`](./lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num) | theorem | `RouteNum` | JointDialGate.StmtRelErrWindow (fun m : ℤ =&gt; (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ)) (fun m : ℤ =&gt; 2 / Real.log 2 + ∫ t in (1 : ℝ)..(m : ℝ), Real.exp (Real.log 2 * t) / t) r n (Stage3.routeConst… |
 | [`RelativeGate.relGate_eps`](./lean/RelativeGate.md#RelativeGate-relGate_eps) | theorem | `RelativeGate` | Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) = ((1 / 2) * (Real.log 2 / 3) ^ (d + 1)) / ((r : ℝ) * Real.log 2) |
 | [`RelativeGate.relGate_iff`](./lean/RelativeGate.md#RelativeGate-relGate_iff) | theorem | `RelativeGate` | EhighRel r (d + 1) ρ &lt; Mlow r d ↔ ρ &lt; Real.log 2 ^ d / (2 * r * 3 ^ (d + 1)) |
+| [`PiToPsi.relRes`](./lean_stage3/PiToPsi.md#PiToPsi-relRes) | def | `PiToPsi` | ℝ |
+| [`PiToPsi.relRes_tail_le`](./lean_stage3/PiToPsi.md#PiToPsi-relRes_tail_le) | theorem | `PiToPsi` | (∫ t in x₀..x, \|relRes t\|) ≤ 2 * (C * Real.log x) * Real.sqrt x |
 | [`RelativeGate.relWindow_term_le`](./lean/RelativeGate.md#RelativeGate-relWindow_term_le) | theorem | `RelativeGate` | ρ * (2 : ℝ) ^ ((r : ℝ) - k) = ρ * (2 : ℝ) ^ (r : ℝ) * ((2 : ℝ) ^ (-(1 : ℝ))) ^ k |
 | [`Stage3.rem_arith`](./lean_stage3/Assembly.md#Stage3-rem_arith) | theorem | `Assembly` | c₁ * xx * G ^ 2 / TT + c₂ * L ≤ (9 * c₁ + c₂) * L ^ 2 |
 | [`Stage3.rem_floor`](./lean_stage3/AssemblyFloor.md#Stage3-rem_floor) | theorem | `AssemblyFloor` | c₁ * xx * G ^ 2 / TT ≤ 18 * c₁ * L ^ 2 / xx |
 | [`Zeros.repeat_iff_wings`](./lean/ZerosStencil.md#Zeros-repeat_iff_wings) | theorem | `ZerosStencil` | Construction.tableFrom N r d = Construction.tableFrom N (r - 1) d ↔ wingPlus (d + 1) (fun k =&gt; N (r - k)) = wingMinus (d + 1) (fun k =&gt; N (r - k)) |
+| [`CellResidual.resid`](./lean_stage3/CellResidual.md#CellResidual-resid) | def | `CellResidual` | ℝ |
+| [`CellResidual.resid_le`](./lean_stage3/CellResidual.md#CellResidual-resid_le) | theorem | `CellResidual` | \|resid a m\| ≤ (C * Real.sqrt 2 * Real.log 2) * (((m : ℝ) + 1) * (2 : ℝ) ^ ((m : ℝ) / 2)) |
 | [`ContourShift.residue_identity`](./lean_stage3/ContourShift.md#ContourShift-residue_identity) | theorem | `ContourShift` | RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * T') = (x : ℂ) - deriv riemannZe… |
 | [`ContourShift.residue_rectangle_multi`](./lean_stage3/ContourShift.md#ContourShift-residue_rectangle_multi) | theorem | `ContourShift` | RectangleIntegral' f z w = ∑ p ∈ P, A p |
 | [`ContourShift.residue_rectangle_of_local`](./lean_stage3/ContourShift.md#ContourShift-residue_rectangle_of_local) | theorem | `ContourShift` | RectangleIntegral' f z w = ∑ p ∈ P, A p |
 | [`ReZetaCount.reZeros`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeros) | def | `ReZetaCount` | Finset ℝ |
 | [`ReZetaCount.reZeroSet`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet) | def | `ReZetaCount` | Set ℝ |
 | [`ReZetaCount.reZeroSet_finite`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet_finite) | theorem | `ReZetaCount` | (reZeroSet T).Finite |
+| [`CellResidual.RH_iff_cells`](./lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) | theorem | `CellResidual` | RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ |
 | [`VonKoch.RH_iff_psiWeak`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | theorem | `VonKochScaffold` | RiemannHypothesis ↔ ∃ C &gt; 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ |
+| [`PiToPsi.RH_iff_schoenfeldWeak`](./lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) | theorem | `PiToPsi` | RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
 | [`VonKoch.RH_of_no_zero_right_of_half`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_of_no_zero_right_of_half) | theorem | `VonKochScaffold` | RiemannHypothesis |
 | [`VonKoch.RH_of_psiWeak`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_of_psiWeak) | theorem | `VonKochScaffold` | RiemannHypothesis |
 | [`Stage3.RH_of_psiWeakTheta_half`](./lean_stage3/ThetaConverse.md#Stage3-RH_of_psiWeakTheta_half) | theorem | `ThetaConverse` | RiemannHypothesis |
+| [`PiToPsi.RH_of_schoenfeldWeak`](./lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | theorem | `PiToPsi` | RiemannHypothesis |
 | [`LandauWindow.rh_of_window`](./lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) | theorem | `LandauWindow` | RiemannHypothesis |
 | [`LandauCriterion.rh_of_windows`](./lean_stage3/LandauCriterion.md#LandauCriterion-rh_of_windows) | theorem | `LandauCriterion` | RiemannHypothesis |
 | [`LandauWindow.rh_of_zeroFree_half`](./lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) | theorem | `LandauWindow` | RiemannHypothesis |
@@ -1181,6 +1202,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.schoenfeld_iff_weak`](./lean_stage3/Statement.md#Stage3-schoenfeld_iff_weak) | theorem | `Statement` | StmtSchoenfeld pi li ↔ StmtSchoenfeldWeak (1 / (8 * Real.pi)) 1 2657 pi li |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](./lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | theorem | `AssemblyFloor` | ∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → StmtSchoenfeldWeak (3 * floorConst c₁ c₂ 112 0 698 weightedZeroHeightBucket x₀ + 13) 1 (max (x₀ ^ 2) 9) (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Li |
 | [`Stage3.schoenfeldWeak_floor_split_of_RH`](./lean_stage3/GlueFloor.md#Stage3-schoenfeldWeak_floor_split_of_RH) | theorem | `GlueFloor` | ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → StmtSchoenfeldWeak (3 * floorConstSplit c₁ c₃ c₄ 112 0 698 weightedZeroHeightBucket x₀ + 13) 1 (max (x₀ ^ 2) 9) (fun x =&gt; (Nat.primeCount… |
+| [`CellResidual.schoenfeldWeak_of_cells`](./lean_stage3/CellResidual.md#CellResidual-schoenfeldWeak_of_cells) | theorem | `CellResidual` | ∃ C' x₁ : ℝ, StmtSchoenfeldWeak C' 1 x₁ (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
 | [`Stage3.schoenfeldWeak_of_psiWeak`](./lean_stage3/PsiToPi.md#Stage3-schoenfeldWeak_of_psiWeak) | theorem | `PsiToPi` | StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Li |
 | [`Stage3.schoenfeldWeak_of_psiWeak_half`](./lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_psiWeak_half) | theorem | `ThetaPi` | StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Li |
 | [`Slice8.schoenfeldWeak_of_psiWeak_three`](./lean_stage3/LineBound.md#Slice8-schoenfeldWeak_of_psiWeak_three) | theorem | `LineBound` | Stage3.StmtSchoenfeldWeak (3 * C + 13) 2 (max (x₀ ^ 2) 9) (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
@@ -1265,10 +1287,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.stencil_weights_antisymm`](./lean/ZerosStencil.md#Zeros-stencil_weights_antisymm) | theorem | `ZerosStencil` | ((-1 : ℤ)) ^ (N - k) * (N.choose (N - k)) = -(((-1 : ℤ)) ^ k * (N.choose k)) |
 | [`CellZeros.stencil_zeroPartialSum`](./lean_stage3/CellZeros.md#CellZeros-stencil_zeroPartialSum) | theorem | `CellZeros` | stencil d (fun n : ℤ =&gt; Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {ρ : Kadiri.NontrivialZeros // \|(ρ : ℂ).im\| &lt; T}, ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (… |
 | [`Nonvanishing.stencilR`](./lean/Nonvanishing.md#Nonvanishing-stencilR) | def | `Nonvanishing` | ℝ |
+| [`CellResidual.stencilR_abs_le`](./lean_stage3/CellResidual.md#CellResidual-stencilR_abs_le) | theorem | `CellResidual` | \|stencilR n g r\| ≤ B * (1 + t) ^ n |
 | [`MainTerm.stencilR_eq_iter`](./lean/MainTerm.md#MainTerm-stencilR_eq_iter) | theorem | `MainTerm` | Nonvanishing.stencilR n (fun k : ℤ =&gt; G k) r = (bdiffR^[n]) G r |
 | [`MainTerm.stencilR_ge_of`](./lean/MainTerm.md#MainTerm-stencilR_ge_of) | theorem | `MainTerm` | c ≤ \|Nonvanishing.stencilR (d + 1) (fun k : ℤ =&gt; G k) r\| |
+| [`CellResidual.stencilR_one`](./lean_stage3/CellResidual.md#CellResidual-stencilR_one) | theorem | `CellResidual` | stencilR 1 g r = g r - g (r - 1) |
 | [`Nonvanishing.stencilR_row`](./lean/Nonvanishing.md#Nonvanishing-stencilR_row) | theorem | `Nonvanishing` | stencilR d (bdiffZ g) r = stencilR (d + 1) g r |
 | [`Nonvanishing.stencilR_sub`](./lean/Nonvanishing.md#Nonvanishing-stencilR_sub) | theorem | `Nonvanishing` | stencilR n (fun x =&gt; f x - L x) r = stencilR n f r - stencilR n L r |
+| [`CellResidual.step_le`](./lean_stage3/CellResidual.md#CellResidual-step_le) | theorem | `CellResidual` | \|resid a r - resid a (r - 1)\| ≤ C * cellSize r 0 |
 | [`Chain.StmtA1`](./lean/Chain.md#Chain-StmtA1) | def | `Chain` | Prop |
 | [`Chain.StmtA2`](./lean/Chain.md#Chain-StmtA2) | def | `Chain` | Prop |
 | [`Chain.StmtA3`](./lean/Chain.md#Chain-StmtA3) | def | `Chain` | Prop |
@@ -1394,10 +1419,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`Expansion.t_nonneg`](./lean/Expansion.md#Expansion-t_nonneg) | theorem | `Expansion` | 0 ≤ t d j x |
 | [`WeilPowerGauss.T_ofReal`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-T_ofReal) | theorem | `WeilPowerGauss` | T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ) |
 | [`Expansion.t_zero`](./lean/Expansion.md#Expansion-t_zero) | theorem | `Expansion` | t d 0 x = Real.log 2 ^ d * x⁻¹ |
+| [`CellResidual.table_cell_eq`](./lean_stage3/CellResidual.md#CellResidual-table_cell_eq) | theorem | `CellResidual` | ((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ =&gt; Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r = cellResid 1 r d |
+| [`CellResidual.table_cell_resid`](./lean_stage3/CellResidual.md#CellResidual-table_cell_resid) | theorem | `CellResidual` | ∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → \|((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ =&gt; Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r\| ≤ C * cel… |
 | [`Construction.tableFrom`](./lean/Construction.md#Construction-tableFrom) | def | `Construction` | ℤ → ℕ → ℤ |
 | [`Construction.tableFrom_add`](./lean/Construction.md#Construction-tableFrom_add) | theorem | `Construction` | tableFrom (fun x =&gt; N x + M x) r d = tableFrom N r d + tableFrom M r d |
 | [`PairIdentity.tableFrom_add_window`](./lean/PairIdentity.md#PairIdentity-tableFrom_add_window) | theorem | `PairIdentity` | tableFrom P r d + tableFrom C r d = tableFrom T r d |
 | [`SeedPerturbation.tableFrom_at_boundary`](./lean/SeedPerturbation.md#SeedPerturbation-tableFrom_at_boundary) | theorem | `SeedPerturbation` | tableFrom e r d = (-1) ^ d * e R |
+| [`CellResidual.tableFrom_cast`](./lean_stage3/CellResidual.md#CellResidual-tableFrom_cast) | theorem | `CellResidual` | ((Construction.tableFrom N r d : ℤ) : ℝ) = stencilR (d + 1) f r |
 | [`Chain.tableFrom_eq_bdiff_iter`](./lean/Chain.md#Chain-tableFrom_eq_bdiff_iter) | theorem | `Chain` | ((Construction.tableFrom N r d : ℤ) : ℂ) = (bdiff^[d]) g (r : ℂ) |
 | [`Zeros.tableFrom_eq_fwdDiff`](./lean/ZerosStencil.md#Zeros-tableFrom_eq_fwdDiff) | theorem | `ZerosStencil` | Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))^[d] N r |
 | [`Superposition.tableFrom_eq_modeSum_reweighted`](./lean/Superposition.md#Superposition-tableFrom_eq_modeSum_reweighted) | theorem | `Superposition` | ((Construction.tableFrom N r d : ℤ) : ℂ) = modeSum b ρ (fun i =&gt; c i * (Sym b (ρ i)) ^ d) s (r : ℂ) |
@@ -1455,6 +1483,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.theta_err_of_psi`](./lean_stage3/PsiToPi.md#Stage3-theta_err_of_psi) | theorem | `PsiToPi` | \|θ x - x\| ≤ E + 2 * Real.sqrt x * Real.log x |
 | [`Stage3.theta_err_of_psi_theta`](./lean_stage3/ThetaPi.md#Stage3-theta_err_of_psi_theta) | theorem | `ThetaPi` | \|ϑ x - x\| ≤ E + 2 * x ^ θ * Real.log x |
 | [`Stage3.theta_instantiation_arithmetic`](./lean_stage3/ThetaPsi.md#Stage3-theta_instantiation_arithmetic) | theorem | `ThetaPsi` | c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c * X * Real.log X / ((X ^ (1 - θ))⁻¹ * X) ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c * ((X ^ (1 - θ))⁻¹ * X) ≤ c * X ^ θ * (Real.log X) ^… |
+| [`PiToPsi.theta_sub_id_eq`](./lean_stage3/PiToPsi.md#PiToPsi-theta_sub_id_eq) | theorem | `PiToPsi` | θ x - x = ((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x) * Real.log x - ∫ t in (2 : ℝ)..x, relRes t |
 | [`JointDialGate.thetaWindow_of_global`](./lean_stage3/JointDialGate.md#JointDialGate-thetaWindow_of_global) | theorem | `JointDialGate` | ∀ j ∈ range (n + 1), \|f (r - j) - L (r - j)\| ≤ C * ((2 : ℝ) ^ ((r : ℝ) - j)) ^ θ * Real.log ((2 : ℝ) ^ ((r : ℝ) - j)) ^ k |
 | [`TwinLattice.three_five_exceptional`](./lean/TwinLattice.md#TwinLattice-three_five_exceptional) | theorem | `TwinLattice` | (3 : ℕ).Prime ∧ (5 : ℕ).Prime ∧ (3 + 1) % 6 ≠ 0 |
 | [`Bridge.tiltF`](./lean_bridge/WeilBridge.md#Bridge-tiltF) | def | `WeilBridge` | ℝ → ℂ |
@@ -1486,11 +1515,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilSeries.two_le_of_one_lt`](./lean_stage3/WeilSeries.md#WeilSeries-two_le_of_one_lt) | theorem | `WeilSeries` | 2 ≤ \|(k : ℝ) - (k0 : ℝ)\| |
 | [`JointLadder.two_pow_ne_three_pow`](./lean/JointLadder.md#JointLadder-two_pow_ne_three_pow) | theorem | `JointLadder` | (2 : ℕ) ^ l ≠ 3 ^ k |
 | [`LandauMellin.two_powers_integrableOn`](./lean_stage3/LandauMellin.md#LandauMellin-two_powers_integrableOn) | theorem | `LandauMellin` | IntegrableOn (fun t : ℝ =&gt; (1 / (n : ℂ)) * (t : ℂ) ^ (-s) - (t : ℂ) ^ (-s - 1)) (Ioi (n : ℝ)) |
+| [`CellResidual.two_rpow_half_ge`](./lean_stage3/CellResidual.md#CellResidual-two_rpow_half_ge) | theorem | `CellResidual` | (4 : ℝ) / 3 ≤ (2 : ℝ) ^ ((1 : ℝ) / 2) |
 | [`TableDepths.two_rpow_neg_nat`](./lean_stage3/TableDepths.md#TableDepths-two_rpow_neg_nat) | theorem | `TableDepths` | (2:ℝ) ^ (-(n:ℝ)) = 1 / (2:ℝ) ^ n |
 | [`TableDepths.two_rpow_neg_nat_half`](./lean_stage3/TableDepths.md#TableDepths-two_rpow_neg_nat_half) | theorem | `TableDepths` | (2:ℝ) ^ (-(n:ℝ) + 1 / 2) ≤ 1.4143 / (2:ℝ) ^ n |
 | [`WeilPowerSigma.u`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-u) | def | `WeilPowerSigma` | ℝ |
 | [`WeilPowerSigma.u_def`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-u_def) | theorem | `WeilPowerSigma` | u m = ((m : ℝ) + 1) ^ 2 * sigma m |
 | [`WeilPowerSigma.u_mono`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-u_mono) | theorem | `WeilPowerSigma` | u m ≤ u (m + 1) |
+| [`PiToPsi.uIcc_two_subset`](./lean_stage3/PiToPsi.md#PiToPsi-uIcc_two_subset) | theorem | `PiToPsi` | uIcc (2 : ℝ) x ⊆ Ioi 1 |
 | [`WeilPowerGeomGen.uLam`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-uLam) | def | `WeilPowerGeomGen` | ℝ |
 | [`WeilPowerGeomGen.uLam_bracket`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-uLam_bracket) | theorem | `WeilPowerGeomGen` | 0 ≤ uLam lam h - ((h : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - 1 / (2 * (lam : ℝ) ^ 2 * Real.pi ^ 2)) ∧ uLam lam h - ((h : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - 1 / (2 * (lam : ℝ) ^ 2 * Real.pi ^ 2)) ≤ 1 / (2 * (… |
 | [`WeilPowerGeomGen.uLam_eq`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-uLam_eq) | theorem | `WeilPowerGeomGen` | uLam lam h = WeilPowerSigma.u (lam * h - 1) / (lam : ℝ) ^ 2 |
@@ -1509,6 +1540,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilOddPower.W`](./lean_stage3/WeilOddPower.md#WeilOddPower-W) | def | `WeilOddPower` | ℝ |
 | [`Stage3.weak_anti_x₀`](./lean_stage3/Statement.md#Stage3-weak_anti_x-) | theorem | `Statement` | StmtSchoenfeldWeak C k x₀' pi li |
 | [`Stage3.weak_mono`](./lean_stage3/Statement.md#Stage3-weak_mono) | theorem | `Statement` | StmtSchoenfeldWeak C' k x₀ pi li |
+| [`CellResidual.weak_nonneg`](./lean_stage3/CellResidual.md#CellResidual-weak_nonneg) | theorem | `CellResidual` | StmtSchoenfeldWeak (max C 0) 1 (max x₀ 2) (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
 | [`Stage3.weakWindow_at_schoenfeld`](./lean_stage3/Statement.md#Stage3-weakWindow_at_schoenfeld) | theorem | `Statement` | StmtWeakWindow (1 / (8 * Real.pi)) 1 f L r n ↔ StmtSchoenfeldWindow f L r n |
 | [`Stage3.weakWindow_of_global`](./lean_stage3/Statement.md#Stage3-weakWindow_of_global) | theorem | `Statement` | StmtWeakWindow C k f L r n |
 | [`JointFloorGate.weakWindow_relErr`](./lean_stage3/JointFloorGate.md#JointFloorGate-weakWindow_relErr) | theorem | `JointFloorGate` | JointDialGate.StmtRelErrWindow f L r n (C * (Real.log 2 * r) ^ k * (2 : ℝ) ^ (-(((r : ℝ) - n) / 2))) |

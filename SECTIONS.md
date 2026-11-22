@@ -54,6 +54,7 @@ would "not connect"; they are joints of the one object and are numbered here.
 | T2 | the same in the integer table: from the log-weighted count `ψ` to the count `π`, zero by zero | OPEN; today's `PsiToPi` carries bounds, not the sum |
 | T3 | the height taken to infinity: the tail of the zero sum inside the error | OPEN; the error term is named, the limit is not taken |
 | T4 | the stencil as a test function in Weil's form, joining section F | OPEN; `JointSymbol` is its transform |
+| T5 | the Riemann hypothesis as the size of the cells: RH holds exactly when every cell's residual, on every dyadic ladder `a·2^r` with `1 ≤ a ≤ 2`, stays at square-root size | SEALED (units 0427, 0428): `Stage3/CellResidual.RH_iff_cells`; on the table's own ladder the forward direction is `table_cell_resid`, and its converse there is joint 10 |
 | 10 | the zeros read back from the cells | OPEN, as below |
 
 ## The sections

@@ -5,7 +5,7 @@ GlueFloor — block E2 of `lean_stage3/design/joints.md`. 2026-11-22. `Glue.edge
 6 theorems, 2 definitions, 834 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`GlueNum`](../lean_stage3/GlueNum.md), [`JointFloorGate`](../lean_stage3/JointFloorGate.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`GlueNum`](../lean_stage3/GlueNum.md), [`JointFloorGate`](../lean_stage3/JointFloorGate.md), [`PiToPsi`](../lean_stage3/PiToPsi.md)
 
 ## The picture
 
@@ -27,6 +27,7 @@ flowchart LR
   x7(["<b>Assembly</b><br/>norm_zeroPartialSum_le_logsq"]):::ext
   x8(["<b>ArgCount</b><br/>rvM_crude"]):::ext
   x9(["<b>PsiToPi</b><br/>schoenfeldWeak_of_psiWeak"]):::ext
+  x10(["<b>PiToPsi</b><br/>RH_iff_schoenfeldWeak"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
@@ -35,6 +36,7 @@ flowchart LR
   n3 -.-> x5
   n3 -.-> x6
   n4 -.-> x6
+  n5 -.-> x10
   n5 -.-> x5
   x0 -.-> n0
   x0 -.-> n1
@@ -77,7 +79,7 @@ The constant of the assembly at floor `x₀`, left edge at its own size.
 
 - **Is:** `` floorConstSplit (c₁ c₃ c₄ b₁ b₂ b₃ W x₀ : ℝ) : ℝ := floorConst c₁ c₃ b₁ b₂ b₃ W x₀ + c₄ * x₀ ^ (-(1:ℝ)/4) / Real.sqrt x₀ ``
 - **Built from:** [`Stage3.floorConst`](../lean_stage3/AssemblyFloor.md#Stage3-floorConst)
-- **Used by 9:** [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Stage3.floorConstSplit_nonneg`](#Stage3-floorConstSplit_nonneg), [`Stage3.psiWeak_floor_split`](#Stage3-psiWeak_floor_split), [`Stage3.schoenfeldWeak_floor_split_of_RH`](#Stage3-schoenfeldWeak_floor_split_of_RH), [`JointFloorGate.relErrWindow_floor_of_RH`](../lean_stage3/JointFloorGate.md#JointFloorGate-relErrWindow_floor_of_RH), [`RouteGate.relErrWindow_route`](../lean_stage3/RouteGate.md#RouteGate-relErrWindow_route), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num)
+- **Used by 10:** [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Stage3.floorConstSplit_nonneg`](#Stage3-floorConstSplit_nonneg), [`Stage3.psiWeak_floor_split`](#Stage3-psiWeak_floor_split), [`Stage3.schoenfeldWeak_floor_split_of_RH`](#Stage3-schoenfeldWeak_floor_split_of_RH), [`JointFloorGate.relErrWindow_floor_of_RH`](../lean_stage3/JointFloorGate.md#JointFloorGate-relErrWindow_floor_of_RH), [`PiToPsi.RH_iff_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak), [`RouteGate.relErrWindow_route`](../lean_stage3/RouteGate.md#RouteGate-relErrWindow_route), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num)
 
 ## Theorems
 
@@ -273,7 +275,8 @@ line 806
 
 **Definitions its proof touches:** [`Stage3.StmtExplicitFormulaSplit`](#Stage3-StmtExplicitFormulaSplit), [`Stage3.StmtPsiWeak`](../lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`JointFloorGate.relErrWindow_floor_of_RH`](../lean_stage3/JointFloorGate.md#JointFloorGate-relErrWindow_floor_of_RH) (JointFloorGate) — `` ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → ∀ (r : ℤ) (n : ℕ), x₀ ^ 2 ≤ (2 : ℝ) ^ ((r : ℝ) - n) → 0 ≤ (r : ℝ) - n → JointDialGate.S… ``
+  - [`PiToPsi.RH_iff_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) (PiToPsi) — `` RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li ``
 

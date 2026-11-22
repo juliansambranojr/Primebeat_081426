@@ -1573,6 +1573,9 @@
      "lean/ZerosStencil.lean::Zeros.tableFrom_eq_fwdDiff",
      "lean/ZerosStencil.lean::Zeros.tableFrom_eq_stencil",
      "lean/ZerosStencil.lean::Zeros.tableFrom_eq_zero_iff_wings",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_eight",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_five",
@@ -7151,6 +7154,9 @@
      "lean/RelativeLi.lean::RelativeLi.tableFrom_ne_zero_of_relErr_li'",
      "lean/RouteCell.lean::RouteCell.cell_ne_zero_of_route",
      "lean/Schoenfeld.lean::Schoenfeld.tableFrom_ne_zero_of_schoenfeld",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_one",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableRoute.lean::TableRoute.cell_ne_zero_of_RH"
     ]
@@ -7186,7 +7192,15 @@
      "lean/Nonvanishing.lean::Nonvanishing.tableFrom_ne_zero_of",
      "lean/RelativeGate.lean::RelativeGate.nonvanishing_of_relErr",
      "lean/RelativeGate.lean::RelativeGate.relError_bound",
-     "lean/RelativeGate.lean::RelativeGate.tableFrom_ne_zero_of_relErr"
+     "lean/RelativeGate.lean::RelativeGate.tableFrom_ne_zero_of_relErr",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_abs_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_one",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
     ]
    },
    {
@@ -7247,7 +7261,8 @@
      "lean/Nonvanishing.lean::Nonvanishing.stencilR"
     ],
     "used_by": [
-     "lean/Nonvanishing.lean::Nonvanishing.stencilR_row"
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR_row",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_one"
     ]
    },
    {
@@ -7281,7 +7296,8 @@
     ],
     "used_by": [
      "lean/Nonvanishing.lean::Nonvanishing.tableFrom_ne_zero_of",
-     "lean/RelativeGate.lean::RelativeGate.tableFrom_ne_zero_of_relErr"
+     "lean/RelativeGate.lean::RelativeGate.tableFrom_ne_zero_of_relErr",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast"
     ]
    },
    {
@@ -7310,7 +7326,8 @@
     ],
     "used_by": [
      "lean/Nonvanishing.lean::Nonvanishing.nonvanishing_of",
-     "lean/RelativeGate.lean::RelativeGate.nonvanishing_of_relErr"
+     "lean/RelativeGate.lean::RelativeGate.nonvanishing_of_relErr",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq"
     ]
    },
    {
@@ -13438,7 +13455,8 @@
      "lean/ZerosStencil.lean::Zeros.stencil_eq_zero_iff_wings",
      "lean/ZerosStencil.lean::Zeros.stencil_smul",
      "lean/ZerosStencil.lean::Zeros.tableFrom_eq_stencil",
-     "lean/ZerosStencil.lean::Zeros.tableFrom_eq_zero_iff_wings"
+     "lean/ZerosStencil.lean::Zeros.tableFrom_eq_zero_iff_wings",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast"
     ]
    },
    {
@@ -13473,7 +13491,8 @@
     "used_by": [
      "lean/Nonvanishing.lean::Nonvanishing.tableFrom_ne_zero_of",
      "lean/RelativeGate.lean::RelativeGate.tableFrom_ne_zero_of_relErr",
-     "lean/ZerosStencil.lean::Zeros.tableFrom_eq_zero_iff_wings"
+     "lean/ZerosStencil.lean::Zeros.tableFrom_eq_zero_iff_wings",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast"
     ]
    },
    {
@@ -18376,6 +18395,690 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CellResidual.lean",
+  "module": "Stage3.CellResidual",
+  "stem": "CellResidual",
+  "header": "CellResidual — block T5 of `lean_stage3/design/joints.md`, second part. 2026-11-22.",
+  "imports": [
+   "Stage3.PiToPsi",
+   "Stage3.TableRoute"
+  ],
+  "opens": [
+   "Finset",
+   "Nonvanishing",
+   "Stage3"
+  ],
+  "namespaces": [
+   "CellResidual"
+  ],
+  "lines": 493,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/PiToPsi.lean",
+   "lean_stage3/Stage3/TableRoute.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "resid",
+    "ns": "CellResidual",
+    "full": "CellResidual.resid",
+    "line": 53,
+    "why": "The residual of the count on the rung `a·2^m`.",
+    "sorry": false,
+    "needs": [
+     "a : ℝ",
+     "m : ℤ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.base_bound",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "cellResid",
+    "ns": "CellResidual",
+    "full": "CellResidual.cellResid",
+    "line": 57,
+    "why": "The residual of the cell `(r, d)` on the ladder started at `a`.",
+    "sorry": false,
+    "needs": [
+     "a : ℝ",
+     "r : ℤ",
+     "d : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+    "stmt": [],
+    "proof": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "cellSize",
+    "ns": "CellResidual",
+    "full": "CellResidual.cellSize",
+    "line": 60,
+    "why": "Square-root size at the cell `(r, d)`.",
+    "sorry": false,
+    "needs": [
+     "r : ℤ",
+     "d : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "CellsSqrt",
+    "ns": "CellResidual",
+    "full": "CellResidual.CellsSqrt",
+    "line": 64,
+    "why": "Every cell of every dyadic ladder has its residual at square-root size.",
+    "sorry": false,
+    "needs": [
+     "C : ℝ",
+     "r₀ : ℤ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stencilR_abs_le",
+    "ns": "CellResidual",
+    "full": "CellResidual.stencilR_abs_le",
+    "line": 68,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : ∀ k ∈ range (n + 1), |g (r - k)| ≤ B * t ^ k"
+    ],
+    "proves": "|stencilR n g r| ≤ B * (1 + t) ^ n",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_abs_le",
+    "stmt": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stencilR_one",
+    "ns": "CellResidual",
+    "full": "CellResidual.stencilR_one",
+    "line": 88,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "g : ℤ → ℝ",
+     "r : ℤ"
+    ],
+    "proves": "stencilR 1 g r = g r - g (r - 1)",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_one",
+    "stmt": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR"
+    ],
+    "proof": [
+     "lean/Nonvanishing.lean::Nonvanishing.bdiffZ",
+     "lean/Nonvanishing.lean::Nonvanishing.iter_bdiffZ_eq_stencilR"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Nonvanishing.lean::Nonvanishing.bdiffZ",
+     "lean/Nonvanishing.lean::Nonvanishing.iter_bdiffZ_eq_stencilR",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "weak_nonneg",
+    "ns": "CellResidual",
+    "full": "CellResidual.weak_nonneg",
+    "line": 92,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li"
+    ],
+    "proves": "StmtSchoenfeldWeak (max C 0) 1 (max x₀ 2) (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resid_le",
+    "ns": "CellResidual",
+    "full": "CellResidual.resid_le",
+    "line": 104,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hC : 0 ≤ C",
+     "ha : a ∈ Set.Icc (1 : ℝ) 2",
+     "hm : 1 ≤ m",
+     "hx₀ : x₀ ≤ (2 : ℝ) ^ (m : ℝ)",
+     "h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li"
+    ],
+    "proves": "|resid a m| ≤ (C * Real.sqrt 2 * Real.log 2) * (((m : ℝ) + 1) * (2 : ℝ) ^ ((m : ℝ) / 2))",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid_le",
+    "stmt": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cells_of_schoenfeldWeak",
+    "ns": "CellResidual",
+    "full": "CellResidual.cells_of_schoenfeldWeak",
+    "line": 140,
+    "why": "Forward. The `π`-side bound gives every cell of every ladder.",
+    "sorry": false,
+    "needs": [
+     "hC : 0 ≤ C",
+     "hr₀ : 1 ≤ r₀",
+     "hx₀ : x₀ ≤ (2 : ℝ) ^ (r₀ : ℝ)",
+     "h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li"
+    ],
+    "proves": "CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+    "stmt": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "proof": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_abs_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_abs_le",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cells_of_RH",
+    "ns": "CellResidual",
+    "full": "CellResidual.cells_of_RH",
+    "line": 181,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hRH : RiemannHypothesis"
+    ],
+    "proves": "∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH",
+    "stmt": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "step_le",
+    "ns": "CellResidual",
+    "full": "CellResidual.step_le",
+    "line": 191,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : CellsSqrt C r₀",
+     "ha : a ∈ Set.Icc (1 : ℝ) 2",
+     "hr : r₀ + 1 ≤ r"
+    ],
+    "proves": "|resid a r - resid a (r - 1)| ≤ C * cellSize r 0",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
+    "stmt": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid"
+    ],
+    "proof": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_one"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.stencilR_one"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "two_rpow_half_ge",
+    "ns": "CellResidual",
+    "full": "CellResidual.two_rpow_half_ge",
+    "line": 198,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "(4 : ℝ) / 3 ≤ (2 : ℝ) ^ ((1 : ℝ) / 2)",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.two_rpow_half_ge",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ladder_le",
+    "ns": "CellResidual",
+    "full": "CellResidual.ladder_le",
+    "line": 208,
+    "why": "The depth-0 cells, summed up one ladder.",
+    "sorry": false,
+    "needs": [
+     "hr₀ : 0 ≤ r₀",
+     "h : CellsSqrt C r₀",
+     "ha : a ∈ Set.Icc (1 : ℝ) 2",
+     "hM : |resid a r₀| ≤ M",
+     "n : ℕ"
+    ],
+    "proves": "|resid a (r₀ + (n : ℤ))| ≤ M + 4 * (|C| * (1 + (2 : ℝ) ^ (-(1 : ℝ) / 2))) * ((r₀ : ℝ) + n + 1) * (2 : ℝ) ^ (((r₀ : ℝ) + n) / 2)",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le",
+    "stmt": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.two_rpow_half_ge"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.two_rpow_half_ge"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "base_bound",
+    "ns": "CellResidual",
+    "full": "CellResidual.base_bound",
+    "line": 280,
+    "why": "The first rung, bounded over the whole range of starting points.",
+    "sorry": false,
+    "needs": [
+     "r₀ : ℤ",
+     "hr₀ : 1 ≤ r₀"
+    ],
+    "proves": "∃ M : ℝ, ∀ a ∈ Set.Icc (1 : ℝ) 2, |resid a r₀| ≤ M",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.base_bound",
+    "stmt": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.continuousOn_Li",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.continuousOn_Li",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "schoenfeldWeak_of_cells",
+    "ns": "CellResidual",
+    "full": "CellResidual.schoenfeldWeak_of_cells",
+    "line": 312,
+    "why": "Converse. The cells at square-root size give the `π`-side bound.",
+    "sorry": false,
+    "needs": [
+     "h : CellsSqrt C r₀"
+    ],
+    "proves": "∃ C' x₁ : ℝ, StmtSchoenfeldWeak C' 1 x₁ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
+    "stmt": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.base_bound",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.base_bound",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "RH_iff_cells",
+    "ns": "CellResidual",
+    "full": "CellResidual.RH_iff_cells",
+    "line": 416,
+    "why": "The Riemann hypothesis is the cells at square-root size, over every dyadic ladder.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+    "stmt": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "tableFrom_cast",
+    "ns": "CellResidual",
+    "full": "CellResidual.tableFrom_cast",
+    "line": 424,
+    "why": "The integer cell, cast, is the stencil of the count one order up.",
+    "sorry": false,
+    "needs": [
+     "hrow : ∀ k ∈ range (d + 1), ((N (r - k) : ℤ) : ℝ) = bdiffZ f (r - k)"
+    ],
+    "proves": "((Construction.tableFrom N r d : ℤ) : ℝ) = stencilR (d + 1) f r",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
+    "stmt": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.bdiffZ",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR"
+    ],
+    "proof": [
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR_row",
+     "lean/ZerosStencil.lean::Zeros.stencil",
+     "lean/ZerosStencil.lean::Zeros.tableFrom_eq_stencil"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.bdiffZ",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR_row",
+     "lean/ZerosStencil.lean::Zeros.stencil",
+     "lean/ZerosStencil.lean::Zeros.tableFrom_eq_stencil"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "table_cell_eq",
+    "ns": "CellResidual",
+    "full": "CellResidual.table_cell_eq",
+    "line": 440,
+    "why": "The table's cell minus the smooth cell is the residual on the ladder `a = 1`.",
+    "sorry": false,
+    "needs": [
+     "r : ℤ",
+     "d : ℕ"
+    ],
+    "proves": "((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r = cellResid 1 r d",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+    "stmt": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "proof": [
+     "lean/Nonvanishing.lean::Nonvanishing.bdiffZ",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR_sub",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.bdiffZ",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR_sub",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "table_cell_resid",
+    "ns": "CellResidual",
+    "full": "CellResidual.table_cell_resid",
+    "line": 460,
+    "why": "On the table itself. Under the Riemann hypothesis every cell of the dyadic table stays within square-root size of the smooth cell.",
+    "sorry": false,
+    "needs": [
+     "hRH : RiemannHypothesis"
+    ],
+    "proves": "∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → |((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r| ≤ C * cellSize r d",
+    "file": "lean_stage3/Stage3/CellResidual.lean",
+    "id": "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+    "stmt": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellResid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/CellZeros.lean",
   "module": "Stage3.CellZeros",
   "stem": "CellZeros",
@@ -21792,6 +22495,7 @@
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.psiWeak_floor_split",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
      "lean_stage3/Stage3/RouteGate.lean::RouteGate.relErrWindow_route",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.routeConst",
@@ -21937,7 +22641,8 @@
      "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
     ],
     "used_by": [
-     "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH"
+     "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak"
     ]
    }
   ]
@@ -30450,6 +31155,454 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/PiToPsi.lean",
+  "module": "Stage3.PiToPsi",
+  "stem": "PiToPsi",
+  "header": "PiToPsi — block T5 of `lean_stage3/design/joints.md`, first part. 2026-11-22. From the count `π` back to `ψ`. `PsiToPi` carries a bound on `ψ` to a bound on `π − Li`; this module carries it back, by upstream's Abel summation `Chebyshev.theta_eq_primeCounting_mul_log_sub_integral` and the matching identity for `Li`. With `VonKoch.RH_iff_psiWeak` the Riemann hypothesis is then equivalent to the square-root bound on `π − Li` itself.",
+  "imports": [
+   "Stage3.GlueFloor",
+   "Stage3.RowLeaves",
+   "Stage3.VonKochScaffold"
+  ],
+  "opens": [
+   "Chebyshev",
+   "MeasureTheory",
+   "Set",
+   "Stage3"
+  ],
+  "namespaces": [
+   "PiToPsi"
+  ],
+  "lines": 314,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/GlueFloor.lean",
+   "lean_stage3/Stage3/RowLeaves.lean",
+   "lean_stage3/Stage3/VonKochScaffold.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "Li_two",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.Li_two",
+    "line": 43,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "Stage3.Li 2 = 2 / Real.log 2",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_two",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_Li",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.continuousOn_Li",
+    "line": 47,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ContinuousOn Stage3.Li (Ioi 1)",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.continuousOn_Li",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.base_bound",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "uIcc_two_subset",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.uIcc_two_subset",
+    "line": 50,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "uIcc (2 : ℝ) x ⊆ Ioi 1",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.uIcc_two_subset",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_pi_div"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_Li_div",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.intervalIntegrable_Li_div",
+    "line": 55,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "IntervalIntegrable (fun t : ℝ => Stage3.Li t / t) volume 2 x",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.continuousOn_Li",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.uIcc_two_subset"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.continuousOn_Li",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.uIcc_two_subset",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_pi_div",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.intervalIntegrable_pi_div",
+    "line": 63,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "IntervalIntegrable (fun t : ℝ => (Nat.primeCounting ⌊t⌋₊ : ℝ) / t) volume 2 x",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_pi_div",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.uIcc_two_subset"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.uIcc_two_subset"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Li_mul_log_sub_integral",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.Li_mul_log_sub_integral",
+    "line": 80,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_two",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.uIcc_two_subset",
+     "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_two",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.uIcc_two_subset",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "relRes",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.relRes",
+    "line": 103,
+    "why": "The residual of the count against `Stage3.Li`, relative to `t`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "intervalIntegrable_relRes",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.intervalIntegrable_relRes",
+    "line": 105,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "IntervalIntegrable relRes volume 2 x",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+    "stmt": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_pi_div",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_pi_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "theta_sub_id_eq",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.theta_sub_id_eq",
+    "line": 115,
+    "why": "`θ` from `π`, with `Stage3.Li` taken off both sides.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "θ x - x = ((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x) * Real.log x - ∫ t in (2 : ℝ)..x, relRes t",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq",
+    "stmt": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_pi_div"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_pi_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "relRes_tail_le",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.relRes_tail_le",
+    "line": 132,
+    "why": "The tail of `∫ |relRes|` under the `π`-side bound.",
+    "sorry": false,
+    "needs": [
+     "hC : 0 ≤ C",
+     "hx₀ : 2 ≤ x₀",
+     "hx : x₀ ≤ x",
+     "h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li"
+    ],
+    "proves": "(∫ t in x₀..x, |relRes t|) ≤ 2 * (C * Real.log x) * Real.sqrt x",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
+    "stmt": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.integral_A_rpow_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.integral_A_rpow_le",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psiWeak_of_schoenfeldWeak",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.psiWeak_of_schoenfeldWeak",
+    "line": 178,
+    "why": "From the count to `ψ`. The square-root bound on `π − Stage3.Li` gives the bound on `ψ` at two more logarithms.",
+    "sorry": false,
+    "needs": [
+     "hC : 0 ≤ C",
+     "hx₀ : 2 ≤ x₀",
+     "h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li"
+    ],
+    "proves": "∃ C' > 0, ∃ x₁ : ℝ, StmtPsiWeak C' 3 x₁",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.StmtPsiWeak",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.StmtPsiWeak",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "RH_of_schoenfeldWeak",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.RH_of_schoenfeldWeak",
+    "line": 264,
+    "why": "The square-root bound on the count gives the Riemann hypothesis.",
+    "sorry": false,
+    "needs": [
+     "h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li"
+    ],
+    "proves": "RiemannHypothesis",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.StmtPsiWeak",
+     "lean_stage3/Stage3/VonKochScaffold.lean::VonKoch.RH_iff_psiWeak"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.StmtPsiWeak",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak",
+     "lean_stage3/Stage3/VonKochScaffold.lean::VonKoch.RH_iff_psiWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "RH_iff_schoenfeldWeak",
+    "ns": "PiToPsi",
+    "full": "PiToPsi.RH_iff_schoenfeldWeak",
+    "line": 281,
+    "why": "The Riemann hypothesis is the square-root bound on the count.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li",
+    "file": "lean_stage3/Stage3/PiToPsi.lean",
+    "id": "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/GlueFloor.lean::Stage3.floorConstSplit",
+     "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/GlueFloor.lean::Stage3.floorConstSplit",
+     "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/PsiToPi.lean",
   "module": "Stage3.PsiToPi",
   "stem": "PsiToPi",
@@ -30491,11 +31644,32 @@
     "uses": [],
     "used_by": [
      "lean_stage3/Stage3/AssemblyFloor.lean::Stage3.schoenfeldWeak_floor_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.base_bound",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
      "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.relErrWindow_of_window",
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
      "lean_stage3/Stage3/JointWindowDial.lean::JointWindowDial.schoenfeldWeakTheta_of_window",
      "lean_stage3/Stage3/LineBound.lean::Slice8.schoenfeldWeak_of_psiWeak_three",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_two",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.continuousOn_Li",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_Li_div",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.intervalIntegrable_relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.theta_sub_id_eq",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.abs_pi_sub_Li_le",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.pi_sub_Li_eq",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.schoenfeldWeak_of_psiWeak",
@@ -30696,6 +31870,7 @@
     "exact": true,
     "uses": [],
     "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.schoenfeldWeak_of_psiWeak"
     ]
    },
@@ -30751,6 +31926,8 @@
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
      "lean_stage3/Stage3/LineBound.lean::RHPull.stmtPsiWeak_of_RH",
      "lean_stage3/Stage3/LineBound.lean::Slice8.schoenfeldWeak_of_psiWeak_three",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.schoenfeldWeak_of_psiWeak",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num",
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.schoenfeldWeak_of_psiWeak_half",
@@ -32295,6 +33472,8 @@
      "lean_stage3/Stage3/RowLeaves.lean::Stage3.continuousOn_inv_log_sq_Ioi"
     ],
     "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.continuousOn_Li",
      "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li_two_rpow"
     ]
    },
@@ -32623,9 +33802,19 @@
     "uses": [],
     "used_by": [
      "lean_stage3/Stage3/AssemblyFloor.lean::Stage3.schoenfeldWeak_floor_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_RH",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.resid_le",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
      "lean_stage3/Stage3/LineBound.lean::Slice8.schoenfeldWeak_of_psiWeak_three",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.psiWeak_of_schoenfeldWeak",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.relRes_tail_le",
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.schoenfeldWeak_of_psiWeak",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num",
@@ -37001,6 +38190,8 @@
     "exact": true,
     "uses": [],
     "used_by": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_eight",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_five",
@@ -39925,7 +41116,9 @@
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.StmtPsiWeak",
      "lean_stage3/Stage3/VonKochScaffold.lean::VonKoch.RH_of_psiWeak"
     ],
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak"
+    ]
    }
   ]
  },
@@ -57456,11 +58649,13 @@
    "Stage3.TableRoute",
    "Stage3.TableDepths",
    "Stage3.CellZeros",
-   "Stage3.CellModes"
+   "Stage3.CellModes",
+   "Stage3.PiToPsi",
+   "Stage3.CellResidual"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 141,
+  "lines": 143,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -57474,6 +58669,7 @@
    "lean_stage3/Stage3/BoxBounds.lean",
    "lean_stage3/Stage3/BoxFinite.lean",
    "lean_stage3/Stage3/CellModes.lean",
+   "lean_stage3/Stage3/CellResidual.lean",
    "lean_stage3/Stage3/CellZeros.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/EdgeBound.lean",
@@ -57509,6 +58705,7 @@
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
+   "lean_stage3/Stage3/PiToPsi.lean",
    "lean_stage3/Stage3/PsiToPi.lean",
    "lean_stage3/Stage3/ReZetaCount.lean",
    "lean_stage3/Stage3/RealSegment.lean",

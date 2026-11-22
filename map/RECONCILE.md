@@ -33,7 +33,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:104` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:139` |
 
-## Uses Lean records that the text does not show (438)
+## Uses Lean records that the text does not show (465)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -115,6 +115,29 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`Stage3.rvM_of_sFromLocal`](lean_stage3/ArgIdentity.md#Stage3-rvM_of_sFromLocal) | [`Stage3.phaseTheta`](lean_stage3/Stirling.md#Stage3-phaseTheta) | def |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | [`Stage3.StmtExplicitFormulaPoly`](lean_stage3/Assembly.md#Stage3-StmtExplicitFormulaPoly) | def |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | [`Stage3.StmtPsiWeak`](lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak) | def |
+| [`CellResidual.cellResid`](lean_stage3/CellResidual.md#CellResidual-cellResid) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
+| [`CellResidual.stencilR_abs_le`](lean_stage3/CellResidual.md#CellResidual-stencilR_abs_le) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
+| [`CellResidual.stencilR_one`](lean_stage3/CellResidual.md#CellResidual-stencilR_one) | [`Nonvanishing.bdiffZ`](lean/Nonvanishing.md#Nonvanishing-bdiffZ) | def |
+| [`CellResidual.stencilR_one`](lean_stage3/CellResidual.md#CellResidual-stencilR_one) | [`Nonvanishing.iter_bdiffZ_eq_stencilR`](lean/Nonvanishing.md#Nonvanishing-iter_bdiffZ_eq_stencilR) | theorem |
+| [`CellResidual.stencilR_one`](lean_stage3/CellResidual.md#CellResidual-stencilR_one) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
+| [`CellResidual.cells_of_schoenfeldWeak`](lean_stage3/CellResidual.md#CellResidual-cells_of_schoenfeldWeak) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
+| [`CellResidual.cells_of_RH`](lean_stage3/CellResidual.md#CellResidual-cells_of_RH) | [`PiToPsi.RH_iff_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) | theorem |
+| [`CellResidual.cells_of_RH`](lean_stage3/CellResidual.md#CellResidual-cells_of_RH) | [`Stage3.Li`](lean_stage3/PsiToPi.md#Stage3-Li) | def |
+| [`CellResidual.cells_of_RH`](lean_stage3/CellResidual.md#CellResidual-cells_of_RH) | [`Stage3.StmtSchoenfeldWeak`](lean_stage3/Statement.md#Stage3-StmtSchoenfeldWeak) | def |
+| [`CellResidual.step_le`](lean_stage3/CellResidual.md#CellResidual-step_le) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
+| [`CellResidual.base_bound`](lean_stage3/CellResidual.md#CellResidual-base_bound) | [`PiToPsi.continuousOn_Li`](lean_stage3/PiToPsi.md#PiToPsi-continuousOn_Li) | theorem |
+| [`CellResidual.base_bound`](lean_stage3/CellResidual.md#CellResidual-base_bound) | [`Stage3.Li`](lean_stage3/PsiToPi.md#Stage3-Li) | def |
+| [`CellResidual.RH_iff_cells`](lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) | [`Stage3.Li`](lean_stage3/PsiToPi.md#Stage3-Li) | def |
+| [`CellResidual.RH_iff_cells`](lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) | [`Stage3.StmtSchoenfeldWeak`](lean_stage3/Statement.md#Stage3-StmtSchoenfeldWeak) | def |
+| [`CellResidual.tableFrom_cast`](lean_stage3/CellResidual.md#CellResidual-tableFrom_cast) | [`Nonvanishing.bdiffZ`](lean/Nonvanishing.md#Nonvanishing-bdiffZ) | def |
+| [`CellResidual.tableFrom_cast`](lean_stage3/CellResidual.md#CellResidual-tableFrom_cast) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
+| [`CellResidual.tableFrom_cast`](lean_stage3/CellResidual.md#CellResidual-tableFrom_cast) | [`Nonvanishing.stencilR_row`](lean/Nonvanishing.md#Nonvanishing-stencilR_row) | theorem |
+| [`CellResidual.table_cell_eq`](lean_stage3/CellResidual.md#CellResidual-table_cell_eq) | [`Nonvanishing.bdiffZ`](lean/Nonvanishing.md#Nonvanishing-bdiffZ) | def |
+| [`CellResidual.table_cell_eq`](lean_stage3/CellResidual.md#CellResidual-table_cell_eq) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
+| [`CellResidual.table_cell_eq`](lean_stage3/CellResidual.md#CellResidual-table_cell_eq) | [`Nonvanishing.stencilR_sub`](lean/Nonvanishing.md#Nonvanishing-stencilR_sub) | theorem |
+| [`CellResidual.table_cell_resid`](lean_stage3/CellResidual.md#CellResidual-table_cell_resid) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
+| [`CellResidual.table_cell_resid`](lean_stage3/CellResidual.md#CellResidual-table_cell_resid) | [`CellResidual.CellsSqrt`](lean_stage3/CellResidual.md#CellResidual-CellsSqrt) | def |
+| [`CellResidual.table_cell_resid`](lean_stage3/CellResidual.md#CellResidual-table_cell_resid) | [`CellResidual.cellResid`](lean_stage3/CellResidual.md#CellResidual-cellResid) | def |
 | [`ContourShift.goodT_exists`](lean_stage3/ContourShift.md#ContourShift-goodT_exists) | [`Stage3.zetaWindow`](lean_stage3/JensenCount.md#Stage3-zetaWindow) | def |
 | [`EdgeBound.ball_order_sum_le`](lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le) | [`Stage3.zetaWindow`](lean_stage3/JensenCount.md#Stage3-zetaWindow) | def |
 | [`EdgeBound.edge_bound_core`](lean_stage3/EdgeBound.md#EdgeBound-edge_bound_core) | [`EdgeBound.c0`](lean_stage3/EdgeBound.md#EdgeBound-c0) | def |
@@ -217,6 +240,10 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`PerronKernel.kernel_diff_summable`](lean_stage3/PerronKernel.md#PerronKernel-kernel_diff_summable) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_to_psi`](lean_stage3/PerronKernel.md#PerronKernel-perron_to_psi) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.explicit_formula_perron`](lean_stage3/PerronKernel.md#PerronKernel-explicit_formula_perron) | [`PerronKernel.perronI`](lean_stage3/PerronKernel.md#PerronKernel-perronI) | def |
+| [`PiToPsi.intervalIntegrable_Li_div`](lean_stage3/PiToPsi.md#PiToPsi-intervalIntegrable_Li_div) | [`PiToPsi.continuousOn_Li`](lean_stage3/PiToPsi.md#PiToPsi-continuousOn_Li) | theorem |
+| [`PiToPsi.RH_of_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | [`Stage3.StmtPsiWeak`](lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak) | def |
+| [`PiToPsi.RH_of_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | [`VonKoch.RH_iff_psiWeak`](lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | theorem |
+| [`PiToPsi.RH_iff_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) | [`Stage3.floorConstSplit`](lean_stage3/GlueFloor.md#Stage3-floorConstSplit) | def |
 | [`ReZetaCount.F_zero_eq_one`](lean_stage3/ReZetaCount.md#ReZetaCount-F_zero_eq_one) | [`ReZetaCount.G`](lean_stage3/ReZetaCount.md#ReZetaCount-G) | def |
 | [`ReZetaCount.reZeros`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeros) | [`ReZetaCount.reZeroSet`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet) | def |
 | [`ReZetaCount.mem_reZeros`](lean_stage3/ReZetaCount.md#ReZetaCount-mem_reZeros) | [`ReZetaCount.reZeroSet_finite`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet_finite) | theorem |

@@ -12,10 +12,11 @@ flowchart LR
   n10["<b>rpow_neg_half_mul</b><br/>t ^ (-(1 : ℝ) / 2) * (t * Real.log t ^ 2) = Real.sqrt t * Real.l…"]:::thm
   n11["<b>schoenfeldWeak_of_psiWeak</b><br/>StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x …"]:::thm
   x0(["<b>ThetaPi</b><br/>schoenfeldWeakTheta_of_psiWeakTheta<br/>theta_err_of_psi_theta"]):::ext
-  x1(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x2(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x3(["<b>LineBound</b><br/>schoenfeldWeak_of_psiWeak_three"]):::ext
-  x4(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x1(["<b>PiToPsi</b><br/>relRes_tail_le"]):::ext
+  x2(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x3(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x4(["<b>LineBound</b><br/>schoenfeldWeak_of_psiWeak_three"]):::ext
+  x5(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n4
   n1 --> n2
   n1 --> n3
@@ -28,12 +29,13 @@ flowchart LR
   n7 --> n11
   n8 --> n11
   n9 --> n11
-  n11 -.-> x1
   n11 -.-> x2
   n11 -.-> x3
   n11 -.-> x4
+  n11 -.-> x5
   n3 -.-> x0
   n4 -.-> x0
+  n6 -.-> x1
   n7 -.-> x0
   n8 -.-> x0
   n9 -.-> x0

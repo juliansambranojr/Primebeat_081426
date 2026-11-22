@@ -1,0 +1,50 @@
+# check_prose_source.py  2026-11-22T15:27:02Z
+# unit: 0427-pi-to-psi
+# sources searched: 401
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:58099
+  Source: session transcript, 2026-11-22, after the reading of `The-Four-Zeros.md`, `The-Fold.md` and ...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:55711
+  This please "The statement I can now write is: RH holds if and only if the residual in every cell st...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:56971
+  theorem Li_mul_log_sub_integral {x : ℝ} (hx : 2 ≤ x) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:58246
+  Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57007
+  theorem theta_sub_id_eq {x : ℝ} (hx : 2 ≤ x) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57008
+  θ x - x = ((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x) * Real.log x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57009
+  - ∫ t in (2 : ℝ)..x, relRes t := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57070
+  theorem psiWeak_of_schoenfeldWeak {C x₀ : ℝ} (hC : 0 ≤ C) (hx₀ : 2 ≤ x₀)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57508
+  (h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57072
+  ∃ C' > 0, ∃ x₁ : ℝ, StmtPsiWeak C' 3 x₁ := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57156
+  theorem RH_of_schoenfeldWeak {C x₀ : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57508
+  (h : StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57173
+  theorem RH_iff_schoenfeldWeak :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57174
+  RiemannHypothesis ↔ ∃ C x₀ : ℝ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:57025
+  StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li := by
+
+# 15 found, 0 missing

@@ -130,6 +130,8 @@ import Stage3.TableRoute
 import Stage3.TableDepths
 import Stage3.CellZeros
 import Stage3.CellModes
+import Stage3.PiToPsi
+import Stage3.CellResidual
 
 namespace Stage3
 

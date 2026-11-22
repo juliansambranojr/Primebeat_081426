@@ -24,10 +24,11 @@ flowchart LR
   n10["<b>rpow_neg_half_mul</b><br/>t ^ (-(1 : ℝ) / 2) * (t * Real.log t ^ 2) = Real.sqrt t * Real.l…"]:::thm
   n11["<b>schoenfeldWeak_of_psiWeak</b><br/>StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x …"]:::thm
   x0(["<b>ThetaPi</b><br/>schoenfeldWeakTheta_of_psiWeakTheta<br/>theta_err_of_psi_theta"]):::ext
-  x1(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x2(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x3(["<b>LineBound</b><br/>schoenfeldWeak_of_psiWeak_three"]):::ext
-  x4(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x1(["<b>PiToPsi</b><br/>relRes_tail_le"]):::ext
+  x2(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
+  x3(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x4(["<b>LineBound</b><br/>schoenfeldWeak_of_psiWeak_three"]):::ext
+  x5(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n4
   n1 --> n2
   n1 --> n3
@@ -40,12 +41,13 @@ flowchart LR
   n7 --> n11
   n8 --> n11
   n9 --> n11
-  n11 -.-> x1
   n11 -.-> x2
   n11 -.-> x3
   n11 -.-> x4
+  n11 -.-> x5
   n3 -.-> x0
   n4 -.-> x0
+  n6 -.-> x1
   n7 -.-> x0
   n8 -.-> x0
   n9 -.-> x0
@@ -68,7 +70,7 @@ def · line 43
 The offset logarithmic integral: `Li x = x/log x + ∫₂ˣ dt/log²t`. Differs from the literature's `li` by the constant `2/log 2 − li(2) ≈ 1.840`.
 
 - **Is:** `` Li (x : ℝ) : ℝ := x / Real.log x + ∫ t in (2 : ℝ)..x, 1 / Real.log t ^ 2 ``
-- **Used by 19:** [`Stage3.schoenfeldWeak_floor_of_RH`](../lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH), [`Stage3.schoenfeldWeak_floor_split_of_RH`](../lean_stage3/GlueFloor.md#Stage3-schoenfeldWeak_floor_split_of_RH), [`JointDialGate.relErrWindow_of_window`](../lean_stage3/JointDialGate.md#JointDialGate-relErrWindow_of_window), [`JointFloorGate.relErrWindow_floor_of_RH`](../lean_stage3/JointFloorGate.md#JointFloorGate-relErrWindow_floor_of_RH), [`JointWindowDial.schoenfeldWeakTheta_of_window`](../lean_stage3/JointWindowDial.md#JointWindowDial-schoenfeldWeakTheta_of_window), [`Slice8.schoenfeldWeak_of_psiWeak_three`](../lean_stage3/LineBound.md#Slice8-schoenfeldWeak_of_psiWeak_three), [`Stage3.abs_pi_sub_Li_le`](#Stage3-abs_pi_sub_Li_le), [`Stage3.pi_sub_Li_eq`](#Stage3-pi_sub_Li_eq), [`Stage3.schoenfeldWeak_of_psiWeak`](#Stage3-schoenfeldWeak_of_psiWeak), [`RouteGate.relErrWindow_route`](../lean_stage3/RouteGate.md#RouteGate-relErrWindow_route), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.Li_two_rpow`](../lean_stage3/RowLeaves.md#Stage3-Li_two_rpow), [`Stage3.hasDerivAt_Li`](../lean_stage3/RowLeaves.md#Stage3-hasDerivAt_Li), [`Stage3.hasDerivAt_Li_two_rpow`](../lean_stage3/RowLeaves.md#Stage3-hasDerivAt_Li_two_rpow), [`Stage3.schoenfeldWeakTheta_of_psiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeakTheta_of_psiWeakTheta), [`Stage3.schoenfeldWeakTheta_of_zeroFree`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeakTheta_of_zeroFree), [`Stage3.schoenfeldWeak_of_RH_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_RH_half), [`Stage3.schoenfeldWeak_of_psiWeak_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_psiWeak_half)
+- **Used by 40:** [`Stage3.schoenfeldWeak_floor_of_RH`](../lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH), [`CellResidual.RH_iff_cells`](../lean_stage3/CellResidual.md#CellResidual-RH_iff_cells), [`CellResidual.base_bound`](../lean_stage3/CellResidual.md#CellResidual-base_bound), [`CellResidual.cells_of_RH`](../lean_stage3/CellResidual.md#CellResidual-cells_of_RH), [`CellResidual.cells_of_schoenfeldWeak`](../lean_stage3/CellResidual.md#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.resid`](../lean_stage3/CellResidual.md#CellResidual-resid), [`CellResidual.resid_le`](../lean_stage3/CellResidual.md#CellResidual-resid_le), [`CellResidual.schoenfeldWeak_of_cells`](../lean_stage3/CellResidual.md#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.table_cell_eq`](../lean_stage3/CellResidual.md#CellResidual-table_cell_eq), [`CellResidual.table_cell_resid`](../lean_stage3/CellResidual.md#CellResidual-table_cell_resid), [`CellResidual.weak_nonneg`](../lean_stage3/CellResidual.md#CellResidual-weak_nonneg), [`Stage3.schoenfeldWeak_floor_split_of_RH`](../lean_stage3/GlueFloor.md#Stage3-schoenfeldWeak_floor_split_of_RH), [`JointDialGate.relErrWindow_of_window`](../lean_stage3/JointDialGate.md#JointDialGate-relErrWindow_of_window), [`JointFloorGate.relErrWindow_floor_of_RH`](../lean_stage3/JointFloorGate.md#JointFloorGate-relErrWindow_floor_of_RH), [`JointWindowDial.schoenfeldWeakTheta_of_window`](../lean_stage3/JointWindowDial.md#JointWindowDial-schoenfeldWeakTheta_of_window), [`Slice8.schoenfeldWeak_of_psiWeak_three`](../lean_stage3/LineBound.md#Slice8-schoenfeldWeak_of_psiWeak_three), [`PiToPsi.Li_mul_log_sub_integral`](../lean_stage3/PiToPsi.md#PiToPsi-Li_mul_log_sub_integral), [`PiToPsi.Li_two`](../lean_stage3/PiToPsi.md#PiToPsi-Li_two), [`PiToPsi.RH_iff_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak), [`PiToPsi.RH_of_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak), [`PiToPsi.continuousOn_Li`](../lean_stage3/PiToPsi.md#PiToPsi-continuousOn_Li), [`PiToPsi.intervalIntegrable_Li_div`](../lean_stage3/PiToPsi.md#PiToPsi-intervalIntegrable_Li_div), [`PiToPsi.intervalIntegrable_relRes`](../lean_stage3/PiToPsi.md#PiToPsi-intervalIntegrable_relRes), [`PiToPsi.psiWeak_of_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-psiWeak_of_schoenfeldWeak), [`PiToPsi.relRes`](../lean_stage3/PiToPsi.md#PiToPsi-relRes), [`PiToPsi.relRes_tail_le`](../lean_stage3/PiToPsi.md#PiToPsi-relRes_tail_le), [`PiToPsi.theta_sub_id_eq`](../lean_stage3/PiToPsi.md#PiToPsi-theta_sub_id_eq), [`Stage3.abs_pi_sub_Li_le`](#Stage3-abs_pi_sub_Li_le), [`Stage3.pi_sub_Li_eq`](#Stage3-pi_sub_Li_eq), [`Stage3.schoenfeldWeak_of_psiWeak`](#Stage3-schoenfeldWeak_of_psiWeak), [`RouteGate.relErrWindow_route`](../lean_stage3/RouteGate.md#RouteGate-relErrWindow_route), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.Li_two_rpow`](../lean_stage3/RowLeaves.md#Stage3-Li_two_rpow), [`Stage3.hasDerivAt_Li`](../lean_stage3/RowLeaves.md#Stage3-hasDerivAt_Li), [`Stage3.hasDerivAt_Li_two_rpow`](../lean_stage3/RowLeaves.md#Stage3-hasDerivAt_Li_two_rpow), [`Stage3.schoenfeldWeakTheta_of_psiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeakTheta_of_psiWeakTheta), [`Stage3.schoenfeldWeakTheta_of_zeroFree`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeakTheta_of_zeroFree), [`Stage3.schoenfeldWeak_of_RH_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_RH_half), [`Stage3.schoenfeldWeak_of_psiWeak_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_psiWeak_half)
 
 <a name="Stage3-StmtPsiWeak"></a>
 ### `Stage3.StmtPsiWeak`
@@ -78,7 +80,7 @@ def · line 167
 The ψ-side of the weak family: what stage 5's assembly (hRH + hEF + hNT) delivers. `ψ` is Mathlib's Chebyshev function.
 
 - **Is:** `` StmtPsiWeak (C : ℝ) (k : ℕ) (x₀ : ℝ) : Prop := ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * Real.log t ^ k ``
-- **Used by 13:** [`Stage3.psiWeak_of_RH_EF_NT`](../lean_stage3/Assembly.md#Stage3-psiWeak_of_RH_EF_NT), [`Stage3.psiWeak_floor`](../lean_stage3/AssemblyFloor.md#Stage3-psiWeak_floor), [`Stage3.schoenfeldWeak_floor_of_RH`](../lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH), [`Stage3.psiWeak_floor_split`](../lean_stage3/GlueFloor.md#Stage3-psiWeak_floor_split), [`Stage3.schoenfeldWeak_floor_split_of_RH`](../lean_stage3/GlueFloor.md#Stage3-schoenfeldWeak_floor_split_of_RH), [`RHPull.stmtPsiWeak_of_RH`](../lean_stage3/LineBound.md#RHPull-stmtPsiWeak_of_RH), [`Slice8.schoenfeldWeak_of_psiWeak_three`](../lean_stage3/LineBound.md#Slice8-schoenfeldWeak_of_psiWeak_three), [`Stage3.schoenfeldWeak_of_psiWeak`](#Stage3-schoenfeldWeak_of_psiWeak), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.schoenfeldWeak_of_psiWeak_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_psiWeak_half), [`Stage3.stmtPsiWeak_iff_theta_half`](../lean_stage3/ThetaPi.md#Stage3-stmtPsiWeak_iff_theta_half), [`Stage3.stmtPsiWeak_of_RH_half`](../lean_stage3/ThetaPsi.md#Stage3-stmtPsiWeak_of_RH_half), [`VonKoch.RH_iff_psiWeak`](../lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak)
+- **Used by 15:** [`Stage3.psiWeak_of_RH_EF_NT`](../lean_stage3/Assembly.md#Stage3-psiWeak_of_RH_EF_NT), [`Stage3.psiWeak_floor`](../lean_stage3/AssemblyFloor.md#Stage3-psiWeak_floor), [`Stage3.schoenfeldWeak_floor_of_RH`](../lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH), [`Stage3.psiWeak_floor_split`](../lean_stage3/GlueFloor.md#Stage3-psiWeak_floor_split), [`Stage3.schoenfeldWeak_floor_split_of_RH`](../lean_stage3/GlueFloor.md#Stage3-schoenfeldWeak_floor_split_of_RH), [`RHPull.stmtPsiWeak_of_RH`](../lean_stage3/LineBound.md#RHPull-stmtPsiWeak_of_RH), [`Slice8.schoenfeldWeak_of_psiWeak_three`](../lean_stage3/LineBound.md#Slice8-schoenfeldWeak_of_psiWeak_three), [`PiToPsi.RH_of_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak), [`PiToPsi.psiWeak_of_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-psiWeak_of_schoenfeldWeak), [`Stage3.schoenfeldWeak_of_psiWeak`](#Stage3-schoenfeldWeak_of_psiWeak), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.schoenfeldWeak_of_psiWeak_half`](../lean_stage3/ThetaPi.md#Stage3-schoenfeldWeak_of_psiWeak_half), [`Stage3.stmtPsiWeak_iff_theta_half`](../lean_stage3/ThetaPi.md#Stage3-stmtPsiWeak_iff_theta_half), [`Stage3.stmtPsiWeak_of_RH_half`](../lean_stage3/ThetaPsi.md#Stage3-stmtPsiWeak_of_RH_half), [`VonKoch.RH_iff_psiWeak`](../lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak)
 
 ## Theorems
 
@@ -262,8 +264,9 @@ line 136
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`PiToPsi.relRes_tail_le`](../lean_stage3/PiToPsi.md#PiToPsi-relRes_tail_le) (PiToPsi) — `` (∫ t in x₀..x, |relRes t|) ≤ 2 * (C * Real.log x) * Real.sqrt x ``
   - [`Stage3.schoenfeldWeak_of_psiWeak`](#Stage3-schoenfeldWeak_of_psiWeak) — `` StmtSchoenfeldWeak (3 * C + 13) (k - 1) (max (x₀ ^ 2) 9) (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Li ``
 
 <a name="Stage3-theta_err_of_psi"></a>

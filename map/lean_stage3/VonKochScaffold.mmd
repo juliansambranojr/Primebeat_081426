@@ -19,9 +19,10 @@ flowchart LR
   n17["<b>no_zero_right_of_half</b><br/>riemannZeta ρ ≠ 0"]:::thm
   n18["<b>RH_of_no_zero_right_of_half</b><br/>RiemannHypothesis"]:::thm
   n19["<b>RH_of_psiWeak</b><br/>RiemannHypothesis"]:::thm
-  n20["<b>RH_iff_psiWeak</b><br/>RiemannHypothesis ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::end_
+  n20["<b>RH_iff_psiWeak</b><br/>RiemannHypothesis ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::thm
   x0(["<b>ThetaConverse</b><br/>4 theorems"]):::ext
   x1(["<b>LineBound</b><br/>stmtPsiWeak_of_RH"]):::ext
+  x2(["<b>PiToPsi</b><br/>RH_of_schoenfeldWeak"]):::ext
   n0 --> n1
   n1 --> n4
   n10 --> n15
@@ -50,6 +51,7 @@ flowchart LR
   n10 -.-> x0
   n18 -.-> x0
   n2 -.-> x0
+  n20 -.-> x2
   n3 -.-> x0
   n4 -.-> x0
   x1 -.-> n20

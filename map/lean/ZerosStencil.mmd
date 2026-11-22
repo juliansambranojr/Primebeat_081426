@@ -17,7 +17,8 @@ flowchart LR
   n15["<b>primeFactors_eq_of_meets</b><br/>b.primeFactors = c.primeFactors"]:::end_
   x0(["<b>Nonvanishing</b><br/>tableFrom_ne_zero_of"]):::ext
   x1(["<b>RelativeGate</b><br/>tableFrom_ne_zero_of_relErr"]):::ext
-  x2(["<b>Zeros</b><br/>tableFrom_isTable<br/>zero_iff_repeat"]):::ext
+  x2(["<b>CellResidual</b><br/>tableFrom_cast"]):::ext
+  x3(["<b>Zeros</b><br/>tableFrom_isTable<br/>zero_iff_repeat"]):::ext
   n0 --> n1
   n1 --> n7
   n14 --> n15
@@ -26,7 +27,8 @@ flowchart LR
   n7 --> n8
   n1 -.-> x0
   n1 -.-> x1
-  x2 -.-> n8
+  n1 -.-> x2
+  x3 -.-> n8
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

@@ -724,3 +724,58 @@ What it leaves to T2, T3, T4 and joint 10: the count `π` in place of `ψ`;
 the height to infinity; the stencil as a Weil test function; the zeros read
 back.
 
+### T5 RH as the size of the cells — PROVED (unit 0427: `PiToPsi.psiWeak_of_schoenfeldWeak`, `RH_iff_schoenfeldWeak`; unit 0428: `CellResidual.RH_iff_cells`, `cells_of_schoenfeldWeak`, `schoenfeldWeak_of_cells`, `table_cell_resid`)
+
+The sentence: the Riemann hypothesis holds exactly when the residual in every
+cell stays at square-root size as the table continues.
+
+**Which cells.** The table is the ladder `2^r`. One ladder cannot see between
+its own rungs: `π` rises by about `2^r/r` between `2^r` and `2^(r+1)`, far more
+than `√(2^r)`, so a bound at the rungs alone bounds nothing between them
+(joint 10; `JointLadder.dyadic_alias_resolved_jointly` is the same fact on the
+frequency side). The equivalence is therefore stated over every dyadic ladder
+`a·2^r` with `1 ≤ a ≤ 2`, which together are every `x`. On the single ladder
+`a = 1` the forward direction is proved and the converse is joint 10.
+
+**Definitions.**
+`resid a m = π(⌊a·2^m⌋) − Li(a·2^m)`.
+`cellResid a r d = stencilR (d+1) (resid a) r`: the cell `(r, d)` of the
+ladder started at `a`, minus the same cell of the smooth row.
+`cellSize r d = (1 + 2^(−1/2))^(d+1) · (r+1) · 2^(r/2)`.
+`CellsSqrt C r₀`: for all `a ∈ [1,2]`, `d`, and `r ≥ r₀ + (d+1)`,
+`|cellResid a r d| ≤ C · cellSize r d`.
+
+**Theorems.**
+
+`PiToPsi` (namespace `Stage3`):
+
+- `Li_mul_log_sub_integral (hx : 2 ≤ x) : Li x * log x − ∫ t in 2..x, Li t / t = x`.
+  Hint: `G t = Li t · log t` has derivative `1 + Li t / t` (`hasDerivAt_Li`);
+  `intervalIntegral.integral_eq_sub_of_hasDerivAt`; `Li 2 · log 2 = 2`.
+- `theta_sub_id_eq (hx : 2 ≤ x) : θ x − x = (π⌊x⌋ − Li x) · log x − ∫ t in 2..x, (π⌊t⌋ − Li t) / t`.
+  Hint: upstream `Chebyshev.theta_eq_primeCounting_mul_log_sub_integral` minus the line above.
+- `psiWeak_of_schoenfeldWeak (hC : 0 ≤ C) (hx₀ : 2 ≤ x₀) (h : StmtSchoenfeldWeak C 1 x₀ π Li) : ∃ C' > 0, ∃ x₁, StmtPsiWeak C' 3 x₁`.
+  Sizes: with `B = ∫₂^{x₀} |π − Li|/t`, for `x ≥ max x₀ 3`:
+  `|θ − x| ≤ C√x·log²x + B + 2C√x·log x` (the tail by `integral_A_rpow_le`),
+  `|ψ − θ| ≤ 2√x·log x`, and `log x ≥ 1`, `√x ≥ 1` give `C' = 3C + B + 2`.
+- `RH_of_schoenfeldWeak`, `RH_iff_schoenfeldWeak : RiemannHypothesis ↔ ∃ C x₀, StmtSchoenfeldWeak C 1 x₀ π Li`.
+  Forward: `schoenfeldWeak_floor_split_of_RH` at `x₀ = 16`. Converse: `VonKoch.RH_iff_psiWeak`.
+
+`CellResidual` (namespace `CellResidual`):
+
+- `stencilR_abs_le`: `|g (r−k)| ≤ B·t^k` on the window gives `|stencilR n g r| ≤ B·(1+t)^n`
+  (the calc of `Nonvanishing.error_bound`, constants freed).
+- `cells_of_schoenfeldWeak`: `StmtSchoenfeldWeak C 1 x₀ π Li`, `x₀ ≤ 2^r₀`, `1 ≤ r₀`
+  ⊢ `CellsSqrt (C·√2·log 2) r₀`. Per term: `√(a·2^m) ≤ √2·2^(m/2)`, `log(a·2^m) ≤ (m+1)·log 2`.
+- `schoenfeldWeak_of_cells`: `CellsSqrt C r₀` ⊢ `∃ C' x₁, StmtSchoenfeldWeak C' 1 x₁ π Li`.
+  Depth `0` only: `|g(r) − g(r−1)| ≤ C₁·(r+1)·2^(r/2)`; summed from `r₀`, with
+  `4 + √2 ≤ 4√2`, `|g(r)| ≤ M + 4C₁·(r+1)·2^(r/2)`; `M` bounds the first rung over
+  `a ∈ [1,2]` (`Li` continuous on a compact); `x = a·2^r` with `r = Int.log 2 x`.
+- `RH_iff_cells : RiemannHypothesis ↔ ∃ C r₀, CellsSqrt C r₀`.
+- `table_cell_resid`: under RH, `|(tableFrom rowN r d : ℝ) − stencilR (d+1) (m ↦ Li(2^m)) r| ≤ C·cellSize r d`
+  for `r ≥ r₀ + (d+1)`: the forward direction on the table itself.
+
+**Lost factors.** None grows with the parameter: the telescoping costs the
+constant `4`, the transfer to `ψ` costs two logarithms, which
+`VonKoch.RH_of_psiWeak` already carries (`k = 3`).
+
