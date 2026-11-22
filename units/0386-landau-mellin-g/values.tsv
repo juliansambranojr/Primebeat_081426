@@ -1,0 +1,22 @@
+key	value	source
+module_lines	264	wc -l lean_stage3/Stage3/LandauMellinG.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/LandauMellinG.lean
+defs	1	grep -c ^def lean_stage3/Stage3/LandauMellinG.lean
+private_decls	5	grep -c ^private: logPrim and four lemmas
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LandauMellinG.lean
+pins	3	rampSum_mellin_integrable, log_cpow_integral, mellin_G
+errors_first	6	first lake build Stage3.LandauMellinG, lines error: Stage3/LandauMellinG.lean
+roots	3	IntegrableOn.mono by dot notation; convert on a built HasDerivAt; integral_add against a Pi difference
+cascade	3	the three pins downstream of the failed proofs (TRAPS.md row 19)
+builds	2	the first build and the one after the fixes
+traps_added	3	lean_stage3/TRAPS.md rows 40, 41, 42
+trap_first	40	lean_stage3/TRAPS.md
+trap_last	42	lean_stage3/TRAPS.md
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8776	lake build (full Stage3), Build completed successfully
+jobs_module	8657	run/build.log, lake build Stage3.LandauMellinG
+loop_version	22	lean_stage3/LOOP.md version line
+design	landau.md#2b	the Mellin transform of G
+unit_ramp	0385	the unit that proved the ramp sum's transform
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

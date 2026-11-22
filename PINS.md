@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 2b of `design/landau.md`, `Stage3/LandauMellinG.lean`
+
+    DONE        `Stage3/LandauMellinG.lean` builds with no `sorry`: `Phi`,
+                the integrability of the ramp sum's and of `G`'s Mellin
+                integrand, the integral of `log y · y^(−s)`, and `mellin_G`,
+                the Mellin transform of `G` on `Re s > 1` equal to `Phi s`;
+                a formalization unit; block 2b marked PROVED
+    ASSUMED     the statements of block 2b as written in the worksheet; any
+                hypothesis the build adds is reported here
+    DEPENDS     `Stage3/LandauMellin.lean` (unit 0385); Mathlib's improper
+                integrals and the L-series of `Λ`
+    OUT         blocks 2c and 3 to 7; no claim about the window bound or RH
+    OUTCOME     done as pinned, unit 0386: six theorems, no `sorry`, no
+                hypothesis added; TRAPS rows 40 to 42 added
+
 ### 2026-11-22 · the Landau worksheet: blocks 2b and 3 checked against the trees
 
     DONE        `lean_stage3/design/landau.md` updated: section 0b lists the

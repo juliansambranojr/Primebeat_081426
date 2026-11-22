@@ -185,10 +185,45 @@ Module.    `Stage3/LandauMellin.lean`, namespace `LandauMellin`,
            `rampK_integral_norm`, `mellin_rampSum`.
 Open.      block 2b.
 
-### 2b The Mellin transform of `G` — SKETCH
-For `Re s > 1`: `∫₁^∞ G(y) y^(−s−1) dy = Φ(s)`, from block 2,
-`∫₁^∞ log y · y^(−s) dy = 1/(s−1)²` and `∫₁^∞ y^(−s) dy = 1/(s−1)`, with the
-integrability of each piece.
+### 2b The Mellin transform of `G` — PROVED (unit 0386: `LandauMellinG.LSeries_vonMangoldt_real_ne_zero`,
+`rampSum_mellin_integrable`, `log_cpow_integrable`, `log_cpow_integral`, `G_mellin_integrable`, `mellin_G`)
+Objects.   `Phi s = −ζ'/ζ(s)/(s(s−1)) − 1/(s−1)² + (1+γ)/(s−1)`, the `Φ` of
+           section 0. `G` is `LandauWindow.G`. The three pieces of
+           `G(y)·y^(−s−1)` on `(1, ∞)`: `rampSum(y)·y^(−s−1)` (block 2),
+           `log y · y^(−s)`, `y^(−s)`.
+Sizes.     identities and integrability; nothing is bounded against anything
+           that grows. `log y ≤ y^ε/ε` with `ε = (σ−1)/2` makes `log y · y^(−s)`
+           integrable for every `σ > 1`. Lost factor: none.
+Regime.    R1 `1 < Re s`.
+Defs.      `Phi (s : ℂ) : ℂ := -deriv riemannZeta s / riemannZeta s / (s * (s - 1))
+               - 1 / (s - 1) ^ 2 + (1 + (Real.eulerMascheroniConstant : ℂ)) / (s - 1)`. One.
+Theorems.  `theorem LSeries_vonMangoldt_real_ne_zero {σ : ℝ} (hσ : 1 < σ) : L ↗Λ (σ : ℂ) ≠ 0`
+             (its real part is a sum of nonnegative terms, the term at `2` positive.)
+           `theorem rampSum_mellin_integrable {s : ℂ} (hs : 1 < s.re) :
+               IntegrableOn (fun y : ℝ => (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1)`
+             (at the real point `σ` the integral is `L(Λ,σ)/(σ(σ−1)) ≠ 0` by block 2,
+             and a Bochner integral that is not zero is the integral of an
+             integrable function; for `s` the norm is the same and the function
+             is the one at `σ` times a continuous power.)
+           `theorem log_cpow_integrable {s : ℂ} (hs : 1 < s.re) :
+               IntegrableOn (fun y : ℝ => (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (Ioi 1)`
+           `theorem log_cpow_integral {s : ℂ} (hs : 1 < s.re) :
+               ∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s - 1) ^ 2`
+             (the primitive `P·log − P/(1−s)`, `P(y) = y^(1−s)/(1−s)`, is `1/(1−s)²`
+             below zero at `1` and tends to `0`.)
+           `theorem G_mellin_integrable {s : ℂ} (hs : 1 < s.re) :
+               IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1)`
+           `theorem mellin_G {s : ℂ} (hs : 1 < s.re) :
+               ∫ y in Ioi (1 : ℝ), (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = Phi s`
+Composes.  `LandauMellin.mellin_rampSum`. Mathlib: `integral_undef`,
+           `integral_Ioi_of_hasDerivAt_of_tendsto'`, `hasDerivAt_ofReal_cpow_const'`,
+           `Real.log_le_rpow_div` (a `lemma`), `isLittleO_log_rpow_atTop`,
+           `tendsto_rpow_neg_atTop`, `integral_Ioi_cpow_of_lt`,
+           `integrableOn_Ioi_rpow_of_lt`, `LSeries_vonMangoldt_eq_deriv_riemannZeta_div`.
+Module.    `Stage3/LandauMellinG.lean`, namespace `LandauMellinG`,
+           `import Stage3.LandauMellin`. Pinned: `rampSum_mellin_integrable`,
+           `log_cpow_integral`, `mellin_G`.
+Open.      none.
 
 ### 2c The Taylor coefficients of the transform, from the primes — SKETCH
 Section 0 reads `(−1)^k Φ^(k)(σ₀)` as `∫₁^∞ G(y)(log y)^k y^(−σ₀−1) dy`. Found
