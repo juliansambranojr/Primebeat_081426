@@ -1,10 +1,10 @@
 # The road
 
-What is closed, what is open, and where `RiemannHypothesis` sits. Generated with the rest of the map; the joints are read from `SECTIONS.md`, everything else from Lean.
+The table is the source: pure counting of the number line, every cell forced once the row is fixed. `RiemannHypothesis` is a reading of it. This page shows what is closed, what is open, and where that reading sits. Generated with the rest of the map; the joints are read from `SECTIONS.md`, everything else from Lean.
 
 ```mermaid
 flowchart LR
-  rh{{"<b>RiemannHypothesis</b><br/>not proved"}}:::bad
+  rh{{"<b>RiemannHypothesis</b><br/>a reading of the table, not settled"}}:::bad
   p0["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
   t0["<b>rh_of_windows</b>"]:::thm
   p0 --> t0 --> rh
@@ -53,7 +53,7 @@ flowchart LR
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 6.
 - **Theorems that assume it:** 66, arriving at 25 ends.
 
-## Into `RiemannHypothesis`: what would prove it
+## Statements about the count that settle `RiemannHypothesis`
 
 | theorem | the hypothesis it needs (open) | why (its docstring) |
 |---|---|---|
@@ -76,7 +76,7 @@ flowchart LR
 | [`PiToPsi.RH_iff_schoenfeldWeak`](./lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) | RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
 | [`VonKoch.RH_iff_psiWeak`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | RiemannHypothesis ↔ ∃ C &gt; 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ |
 
-## Out of `RiemannHypothesis`: what it gives
+## How the table's cells behave under `RiemannHypothesis`
 
 The ends among the theorems that assume it. "Behind it" links the whole line.
 

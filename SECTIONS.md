@@ -32,6 +32,16 @@ the table is the number line counted forward along the doublings, and
 everything else in the three trees is that table read one way or another.
 Nothing downstream is a different instrument.
 
+The order, Julian, 2026-11-22: the table is prior. It is pure counting of the
+number line, and once the row is fixed every cell is forced
+(`Construction.unique_of_isTableOf`, no axioms; `Construction` imports
+nothing). ζ is built from the same primes, and the Riemann hypothesis is a
+statement about ζ's zeros, so it is a reading of the table. Every theorem here
+is read in that order: the cells are the fact, and a statement about the zeros
+describes how the cells behave. `CellResidual.RH_iff_cells` (unit 0428) is
+that reading written out: the Riemann hypothesis is the name for the cells'
+residuals staying at square-root size.
+
 - A cell is the explicit formula applied to one test function, the binomial
   stencil on the doublings. `JointSymbol` (unit 0401) is that statement on
   the transform: differencing `d` times multiplies by `(1 − 2^(−s))^d`.

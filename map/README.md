@@ -8,7 +8,7 @@ Every declaration in every Lean file of this repo: what it proves, what it needs
 
 ```mermaid
 flowchart LR
-  rh{{"<b>RiemannHypothesis</b><br/>not proved"}}:::bad
+  rh{{"<b>RiemannHypothesis</b><br/>a reading of the table, not settled"}}:::bad
   p0["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
   t0["<b>rh_of_windows</b>"]:::thm
   p0 --> t0 --> rh
@@ -51,7 +51,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-Red: a statement nobody has proved, here or anywhere. Blue: a theorem Lean has checked. Green: where a checked line arrives. Left of `RiemannHypothesis`: what would prove it. Right of it: what it gives the table. Every box, with its statement and what is open: [`ROAD.md`](./ROAD.md).
+Red: a statement nobody has proved, here or anywhere. Blue: a theorem Lean has checked. Green: where a checked line arrives. The table is the source: it is counting, and every box is a statement about the count. `RiemannHypothesis` is one reading of it. Left of it: statements about the count that settle the reading. Right of it: how the table's cells behave under it. Every box, with its statement and what is open: [`ROAD.md`](./ROAD.md).
 
 ## How to look something up
 

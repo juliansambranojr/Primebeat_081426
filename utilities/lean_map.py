@@ -853,8 +853,10 @@ def build():
          "## In five seconds", "",
          "```mermaid", top, "```", "",
          "Red: a statement nobody has proved, here or anywhere. Blue: a theorem Lean has checked. "
-         "Green: where a checked line arrives. Left of `RiemannHypothesis`: what would prove it. "
-         "Right of it: what it gives the table. Every box, with its statement and what is open: "
+         "Green: where a checked line arrives. The table is the source: it is counting, and every "
+         "box is a statement about the count. `RiemannHypothesis` is one reading of it. Left of "
+         "it: statements about the count that settle the reading. Right of it: how the table's "
+         "cells behave under it. Every box, with its statement and what is open: "
          "[`ROAD.md`](./ROAD.md).", "",
          "## How to look something up", "",
          "- **Is it already here?** [`ALL.md`](./ALL.md): every declaration, one line, sorted by name.",
@@ -966,7 +968,7 @@ def road_page(D, thms, chain_of):
         return ("proved", free) if free else (("from a hypothesis", pr) if pr else ("open", []))
 
     # the picture
-    G = ["flowchart LR", f'  rh{{{{"<b>{RH}</b><br/>not proved"}}}}:::bad']
+    G = ["flowchart LR", f'  rh{{{{"<b>{RH}</b><br/>a reading of the table, not settled"}}}}:::bad']
     by_name = {sd["name"]: sd for sd in stmts}
 
     def is_open(n):                      # a hypothesis that is a proved named statement is closed
@@ -987,7 +989,9 @@ def road_page(D, thms, chain_of):
     top = "\n".join(G)
 
     L = ["# The road", "",
-         "What is closed, what is open, and where `RiemannHypothesis` sits. Generated with the rest "
+         "The table is the source: pure counting of the number line, every cell forced once the "
+         "row is fixed. `RiemannHypothesis` is a reading of it. This page shows what is closed, "
+         "what is open, and where that reading sits. Generated with the rest "
          "of the map; the joints are read from `SECTIONS.md`, everything else from Lean.", "",
          "```mermaid", top, "```", "",
          f"- **Theorems Lean has checked:** {len(thms)}.",
@@ -997,14 +1001,14 @@ def road_page(D, thms, chain_of):
          "prove one and the line closes.",
          f"- **Theorems that restate it (`{RH} ↔ …`):** {len(iff)}.",
          f"- **Theorems that assume it:** {len(under)}, arriving at {len(under_ends)} ends.", "",
-         f"## Into `{RH}`: what would prove it", "",
+         f"## Statements about the count that settle `{RH}`", "",
          "| theorem | the hypothesis it needs (open) | why (its docstring) |", "|---|---|---|"]
     for d in into:
         L.append(f"| {link(d)} | {cell('; '.join(n for n in d['needs'] if is_open(n)), 400)} | {cell(d['why'], 300)} |")
     L += ["", "## The same statement in other coordinates", "", "| theorem | says |", "|---|---|"]
     for d in iff:
         L.append(f"| {link(d)} | {cell(d['proves'], 300)} |")
-    L += ["", f"## Out of `{RH}`: what it gives", "",
+    L += ["", f"## How the table's cells behave under `{RH}`", "",
           "The ends among the theorems that assume it. \"Behind it\" links the whole line.", "",
           "| theorem | proves | behind it |", "|---|---|---|"]
     for d in under_ends:
