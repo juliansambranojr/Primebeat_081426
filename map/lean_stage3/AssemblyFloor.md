@@ -5,7 +5,7 @@ AssemblyFloor — block E1 of `lean_stage3/design/joints.md`. 2026-11-22. `Assem
 6 theorems, 1 definition, 270 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ArgCount`](../lean_stage3/ArgCount.md), [`Glue`](../lean_stage3/Glue.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`GlueFloor`](../lean_stage3/GlueFloor.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`GlueFloor`](../lean_stage3/GlueFloor.md)
 
 ## The picture
 

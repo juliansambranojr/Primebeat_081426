@@ -44,7 +44,7 @@ A finite superposition of ladder modes.
 
 - **Is:** `` modeSum (b : ℝ) (ρ : ι → ℂ) (c : ι → ℂ) (s : Finset ι) : ℂ → ℂ := fun r => ∑ i ∈ s, c i * mode b (ρ i) r ``
 - **Built from:** [`Chain.mode`](../lean/Chain.md#Chain-mode)
-- **Used by 4:** [`Superposition.A4_sum_of_A1`](#Superposition-A4_sum_of_A1), [`Superposition.depth_reweights_each_mode`](#Superposition-depth_reweights_each_mode), [`Superposition.tableFrom_eq_modeSum_reweighted`](#Superposition-tableFrom_eq_modeSum_reweighted), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum)
+- **Used by 5:** [`Superposition.A4_sum_of_A1`](#Superposition-A4_sum_of_A1), [`Superposition.depth_reweights_each_mode`](#Superposition-depth_reweights_each_mode), [`Superposition.tableFrom_eq_modeSum_reweighted`](#Superposition-tableFrom_eq_modeSum_reweighted), [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum)
 
 ## Theorems
 

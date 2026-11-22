@@ -5,7 +5,7 @@ CellModes — block T1 of `lean_stage3/design/joints.md`, second part. 2026-11-2
 3 theorems, 0 definitions, 100 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellZeros`](../lean_stage3/CellZeros.md), [`Superposition`](../lean_stage3/TablePort_Superposition.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AliasClass`](../lean_stage3/AliasClass.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AliasClass`](../lean_stage3/AliasClass.md), [`CellBdiff`](../lean_stage3/CellBdiff.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)
 
 ## The picture
 
@@ -13,17 +13,22 @@ CellModes — block T1 of `lean_stage3/design/joints.md`, second part. 2026-11-2
 flowchart LR
   n0["<b>mode_two_int</b><br/>Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r"]:::shp
   n1["<b>sym_two</b><br/>Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹"]:::shp
-  n2["<b>cell_eq_modeSum ■</b><br/>‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : …"]:::thm
+  n2["<b>cell_eq_modeSum</b><br/>‖CellZeros.stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : …"]:::thm
   x0(["<b>AliasClass</b><br/>alias_weight<br/>mode_eq_of_alias<br/>sym_eq_of_alias"]):::ext
-  x1(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
-  x2(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x1(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
+  x2(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
+  x3(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x4(["<b>CellBdiff</b><br/>cell_eq_modeSum_bdiff"]):::ext
   n0 --> n2
   n1 --> n2
   n0 -.-> x0
   n0 -.-> x1
+  n0 -.-> x2
   n1 -.-> x0
   n1 -.-> x1
-  x2 -.-> n2
+  n1 -.-> x2
+  n2 -.-> x4
+  x3 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -60,11 +65,12 @@ Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`AliasClass.alias_weight`](../lean_stage3/AliasClass.md#AliasClass-alias_weight) (AliasClass) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) = (∑ ρ ∈ S, (((riemannZeta.order (… ``
   - [`AliasClass.mode_eq_of_alias`](../lean_stage3/AliasClass.md#AliasClass-mode_eq_of_alias) (AliasClass) — `` Chain.mode 2 ρ (r : ℂ) = Chain.mode 2 ρ' (r : ℂ) ``
   - [`CellModes.cell_eq_modeSum`](#CellModes-cell_eq_modeSum) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
+  - [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) (FiniteOffLine) — `` RiemannHypothesis ``
   - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 
 <a name="CellModes-sym_two"></a>
@@ -88,11 +94,12 @@ Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`AliasClass.alias_weight`](../lean_stage3/AliasClass.md#AliasClass-alias_weight) (AliasClass) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (r : ℂ) = (∑ ρ ∈ S, (((riemannZeta.order (… ``
   - [`AliasClass.sym_eq_of_alias`](../lean_stage3/AliasClass.md#AliasClass-sym_eq_of_alias) (AliasClass) — `` Chain.Sym 2 ρ = Chain.Sym 2 ρ' ``
   - [`CellModes.cell_eq_modeSum`](#CellModes-cell_eq_modeSum) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
+  - [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) (FiniteOffLine) — `` RiemannHypothesis ``
   - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 
 <a name="CellModes-cell_eq_modeSum"></a>
@@ -126,5 +133,7 @@ line 48
   - [`CellModes.sym_two`](#CellModes-sym_two) — `` Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹ ``
   - [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum) (CellZeros) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff) (CellBdiff) — `` ‖(Chain.bdiff^[d]) psiRow (r : ℂ) - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // |(ρ :… ``
 

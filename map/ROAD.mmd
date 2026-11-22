@@ -1,26 +1,29 @@
 flowchart LR
   rh{{"<b>RiemannHypothesis</b><br/>a reading of the table, not settled"}}:::bad
-  p0["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
-  t0["<b>rh_of_windows</b>"]:::thm
+  p0["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℕ<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ =＞ (Che…"]:::bad
+  t0["<b>finite_off_line</b>"]:::thm
   p0 --> t0 --> rh
-  p1["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
-  t1["<b>rh_of_zeroFree_half</b>"]:::thm
+  p1["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
+  t1["<b>rh_of_windows</b>"]:::thm
   p1 --> t1 --> rh
-  p2["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
-  t2["<b>rh_of_window</b>"]:::thm
+  p2["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
+  t2["<b>rh_of_zeroFree_half</b>"]:::thm
   p2 --> t2 --> rh
-  p3["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
-  t3["<b>RH_of_schoenfeldWeak</b>"]:::thm
+  p3["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
+  t3["<b>rh_of_window</b>"]:::thm
   p3 --> t3 --> rh
-  p4["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
-  t4["<b>RH_of_psiWeakTheta_half</b>"]:::thm
+  p4["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
+  t4["<b>RH_of_schoenfeldWeak</b>"]:::thm
   p4 --> t4 --> rh
-  p5["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
-  t5["<b>RH_of_no_zero_right_of_half</b>"]:::thm
+  p5["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
+  t5["<b>RH_of_psiWeakTheta_half</b>"]:::thm
   p5 --> t5 --> rh
-  p6["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
-  t6["<b>RH_of_psiWeak</b>"]:::thm
+  p6["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
+  t6["<b>RH_of_no_zero_right_of_half</b>"]:::thm
   p6 --> t6 --> rh
+  p7["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
+  t7["<b>RH_of_psiWeak</b>"]:::thm
+  p7 --> t7 --> rh
   e0["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
   rh --> e0
   e1["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_

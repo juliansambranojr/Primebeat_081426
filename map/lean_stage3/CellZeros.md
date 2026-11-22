@@ -23,6 +23,7 @@ flowchart LR
   n9["<b>cell_eq_zero_sum</b><br/>‖stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2…"]:::thm
   x0(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
   x1(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
+  x2(["<b>FiniteOffLine</b><br/>cell_zero_sum_finset"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n8
@@ -34,6 +35,7 @@ flowchart LR
   n7 --> n8
   n8 --> n9
   n9 -.-> x1
+  n9 -.-> x2
   x0 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -57,7 +59,7 @@ def · line 37
 The `d`-fold backward difference of a row, read at `r`.
 
 - **Is:** `` stencil (d : ℕ) (a : ℤ → ℂ) (r : ℤ) : ℂ := ∑ j ∈ range (d + 1), (-1 : ℂ) ^ j * (d.choose j : ℂ) * a (r - j) ``
-- **Used by 9:** [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum), [`CellZeros.norm_stencil_le`](#CellZeros-norm_stencil_le), [`CellZeros.stencil_add`](#CellZeros-stencil_add), [`CellZeros.stencil_const_mul`](#CellZeros-stencil_const_mul), [`CellZeros.stencil_mode`](#CellZeros-stencil_mode), [`CellZeros.stencil_sub`](#CellZeros-stencil_sub), [`CellZeros.stencil_sum`](#CellZeros-stencil_sum), [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum)
+- **Used by 13:** [`CellBdiff.iter_bdZ_eq_stencil`](../lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_stencil), [`CellBdiff.stencil_eq_bdiff_iter`](../lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum), [`CellZeros.norm_stencil_le`](#CellZeros-norm_stencil_le), [`CellZeros.stencil_add`](#CellZeros-stencil_add), [`CellZeros.stencil_const_mul`](#CellZeros-stencil_const_mul), [`CellZeros.stencil_mode`](#CellZeros-stencil_mode), [`CellZeros.stencil_sub`](#CellZeros-stencil_sub), [`CellZeros.stencil_sum`](#CellZeros-stencil_sum), [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line)
 
 ## Theorems
 
@@ -348,7 +350,8 @@ line 129
 
 **Definitions its proof touches:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum) (CellModes) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
+  - [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset) (FiniteOffLine) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1),… ``
 

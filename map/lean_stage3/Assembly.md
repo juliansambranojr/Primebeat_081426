@@ -24,9 +24,10 @@ flowchart LR
   n10["<b>zeroinner_arith</b><br/>2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK …"]:::shp
   n11["<b>assembly_arith</b><br/>A ≤ (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 * W) * S …"]:::shp
   n12["<b>psiWeak_of_RH_EF_NT ■</b><br/>StmtPsiWeak (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 *…"]:::thm
-  x0(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le<br/>sum_inv_pow_two_le"]):::ext
-  x1(["<b>AssemblyFloor</b><br/>psiWeak_floor"]):::ext
-  x2(["<b>GlueFloor</b><br/>psiWeak_floor_split"]):::ext
+  x0(["<b>FiniteOffLine</b><br/>onLineInv_le_dyadic"]):::ext
+  x1(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le<br/>sum_inv_pow_two_le"]):::ext
+  x2(["<b>AssemblyFloor</b><br/>psiWeak_floor"]):::ext
+  x3(["<b>GlueFloor</b><br/>psiWeak_floor_split"]):::ext
   n0 --> n1
   n0 --> n2
   n1 --> n3
@@ -41,9 +42,10 @@ flowchart LR
   n7 --> n8
   n8 --> n12
   n9 --> n12
-  n8 -.-> x1
+  n5 -.-> x0
   n8 -.-> x2
-  x0 -.-> n8
+  n8 -.-> x3
+  x1 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -258,9 +260,10 @@ line 163
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Stage3.norm_term_le_dyadic`](#Stage3-norm_term_le_dyadic) — `` ‖(x : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)‖ ≤ 2 * Real.sqrt x * ∑ j ∈ Finset.range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0) ``
+  - [`FiniteOffLine.onLineInv_le_dyadic`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-onLineInv_le_dyadic) (FiniteOffLine) — `` onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0) ``
 
 <a name="Stage3-norm_term_le_dyadic"></a>
 ### `Stage3.norm_term_le_dyadic`

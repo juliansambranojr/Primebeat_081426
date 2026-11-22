@@ -91,8 +91,10 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.sym_eq_of_alias",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
@@ -141,8 +143,10 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight_ne_zero",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
@@ -185,7 +189,10 @@
      "lean/TransferOp.lean::TransferOp.bdiffL",
      "lean/TransferOp.lean::TransferOp.bdiffL_apply",
      "lean/TransferOp.lean::TransferOp.eigenvalue_zero_iff_lattice",
-     "lean/TransferOp.lean::TransferOp.mode_hasEigenvector"
+     "lean/TransferOp.lean::TransferOp.mode_hasEigenvector",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter"
     ]
    },
    {
@@ -11685,6 +11692,7 @@
      "lean/Superposition.lean::Superposition.A4_sum_of_A1",
      "lean/Superposition.lean::Superposition.depth_reweights_each_mode",
      "lean/Superposition.lean::Superposition.tableFrom_eq_modeSum_reweighted",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum"
     ]
    },
@@ -16227,6 +16235,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AssemblyFloor.lean::Stage3.schoenfeldWeak_floor_of_RH",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num"
     ]
@@ -18903,7 +18912,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/Assembly.lean::Stage3.norm_term_le_dyadic"
+     "lean_stage3/Stage3/Assembly.lean::Stage3.norm_term_le_dyadic",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_le_dyadic"
     ]
    },
    {
@@ -19681,6 +19691,281 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CellBdiff.lean",
+  "module": "Stage3.CellBdiff",
+  "stem": "CellBdiff",
+  "header": "CellBdiff — block T1b of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 on the table tree's own operator. `CellZeros.stencil` is a second writing of `d` backward differences. The table tree's writing is `Chain.bdiff` iterated `d` times, the operator `Chain.A4` and `Superposition` are stated on. Here the two are shown equal on any row, and the cell theorem is restated with `bdiff^[d]`, `Sym`, `mode` and `modeSum`, all four from the table tree.",
+  "imports": [
+   "Stage3.CellModes"
+  ],
+  "opens": [
+   "Finset"
+  ],
+  "namespaces": [
+   "CellBdiff"
+  ],
+  "lines": 125,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/CellModes.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "bdZ",
+    "ns": "CellBdiff",
+    "full": "CellBdiff.bdZ",
+    "line": 33,
+    "why": "One backward difference on a row indexed by the integers.",
+    "sorry": false,
+    "needs": [
+     "a : ℤ → ℂ"
+    ],
+    "proves": "ℤ → ℂ",
+    "file": "lean_stage3/Stage3/CellBdiff.lean",
+    "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iter_bdZ_eq_fwdDiff",
+    "ns": "CellBdiff",
+    "full": "CellBdiff.iter_bdZ_eq_fwdDiff",
+    "line": 35,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "a : ℤ → ℂ",
+     "r : ℤ",
+     "n : ℕ"
+    ],
+    "proves": "(bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r",
+    "file": "lean_stage3/Stage3/CellBdiff.lean",
+    "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "iter_bdZ_eq_stencil",
+    "ns": "CellBdiff",
+    "full": "CellBdiff.iter_bdZ_eq_stencil",
+    "line": 49,
+    "why": "`n` backward differences are the stencil.",
+    "sorry": false,
+    "needs": [
+     "a : ℤ → ℂ",
+     "r : ℤ",
+     "n : ℕ"
+    ],
+    "proves": "(bdZ^[n]) a r = CellZeros.stencil n a r",
+    "file": "lean_stage3/Stage3/CellBdiff.lean",
+    "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_fwdDiff",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bdiff_iter_eq_bdZ",
+    "ns": "CellBdiff",
+    "full": "CellBdiff.bdiff_iter_eq_bdZ",
+    "line": 66,
+    "why": "The table tree's operator on a function of `ℂ` agrees with the row's on the integers.",
+    "sorry": false,
+    "needs": [
+     "hag : ∀ n : ℤ, g (n : ℂ) = a n",
+     "d : ℕ",
+     "r : ℤ"
+    ],
+    "proves": "(Chain.bdiff^[d]) g (r : ℂ) = (bdZ^[d]) a r",
+    "file": "lean_stage3/Stage3/CellBdiff.lean",
+    "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
+    "stmt": [],
+    "proof": [
+     "lean/Chain.lean::Chain.bdiff",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Chain.lean::Chain.bdiff",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdZ"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stencil_eq_bdiff_iter",
+    "ns": "CellBdiff",
+    "full": "CellBdiff.stencil_eq_bdiff_iter",
+    "line": 79,
+    "why": "The stencil is the table tree's operator, iterated.",
+    "sorry": false,
+    "needs": [
+     "hag : ∀ n : ℤ, g (n : ℂ) = a n",
+     "d : ℕ",
+     "r : ℤ"
+    ],
+    "proves": "CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ)",
+    "file": "lean_stage3/Stage3/CellBdiff.lean",
+    "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
+    "stmt": [],
+    "proof": [
+     "lean/Chain.lean::Chain.bdiff",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Chain.lean::Chain.bdiff",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.bdiff_iter_eq_bdZ",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "psiRow",
+    "ns": "CellBdiff",
+    "full": "CellBdiff.psiRow",
+    "line": 84,
+    "why": "The row of the log-weighted prime count along the doublings, on `ℂ`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ → ℂ",
+    "file": "lean_stage3/Stage3/CellBdiff.lean",
+    "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psiRow_int",
+    "ns": "CellBdiff",
+    "full": "CellBdiff.psiRow_int",
+    "line": 86,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℤ"
+    ],
+    "proves": "psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)",
+    "file": "lean_stage3/Stage3/CellBdiff.lean",
+    "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cell_eq_modeSum_bdiff",
+    "ns": "CellBdiff",
+    "full": "CellBdiff.cell_eq_modeSum_bdiff",
+    "line": 93,
+    "why": "The cell on the table tree's operators. `d` backward differences of the row, with `Chain.bdiff`, are the main mode minus the reweighted sum of the zeros' modes, within the stated error.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℤ",
+     "h16 : 16 ≤ (2:ℝ) ^ (r - (d : ℤ))",
+     "hT : 2 ≤ T",
+     "hTx : T ≤ ((2:ℝ) ^ (r - (d : ℤ))) ^ 2"
+    ],
+    "proves": "‖(Chain.bdiff^[d]) psiRow (r : ℂ) - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T} => ((ρ : Kadiri.NontrivialZeros) : ℂ)) (fun ρ => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ) / ((ρ : Kadiri.NontrivialZeros) : ℂ) * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d) Finset.univ (r : ℂ)‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + Glue.c4n * ((Real.log ((2:ℝ) ^ (r - (j : ℤ)))) ^ 2 * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4)))",
+    "file": "lean_stage3/Stage3/CellBdiff.lean",
+    "id": "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
+    "stmt": [],
+    "proof": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.bdiff",
+     "lean/Chain.lean::Chain.mode",
+     "lean/Superposition.lean::Superposition.modeSum",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.bdiff",
+     "lean/Chain.lean::Chain.mode",
+     "lean/Superposition.lean::Superposition.modeSum",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.psiRow_int",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/CellModes.lean",
   "module": "Stage3.CellModes",
   "stem": "CellModes",
@@ -19731,6 +20016,7 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
@@ -19761,6 +20047,7 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.alias_weight",
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.sym_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
@@ -19810,7 +20097,9 @@
      "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff"
+    ]
    }
   ]
  },
@@ -20561,6 +20850,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
@@ -20569,7 +20860,9 @@
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_mode",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sub",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sum",
-     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum"
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
     ]
    },
    {
@@ -20889,7 +21182,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum"
+     "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset"
     ]
    }
   ]
@@ -23314,6 +23608,545 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FiniteOffLine.lean",
+  "module": "Stage3.FiniteOffLine",
+  "stem": "FiniteOffLine",
+  "header": "FiniteOffLine — block J10d of `lean_stage3/design/joints.md`. 2026-11-22. The one-ladder converse, in the case of finitely many zeros off the line. Let a finite set hold every zero of ζ off the line. If at one depth the cells of the log-weighted prime count on the table's own ladder stay within `C·r²·√2^r` of their main term, then no zero is off the line.",
+  "imports": [
+   "Stage3.LadderMean",
+   "Stage3.CellModes",
+   "Stage3.AssemblyFloor",
+   "Stage3.RealSegment",
+   "Stage3.LandauWindow"
+  ],
+  "opens": [
+   "Filter",
+   "Finset",
+   "Kadiri",
+   "Topology"
+  ],
+  "namespaces": [
+   "FiniteOffLine"
+  ],
+  "lines": 569,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/AssemblyFloor.lean",
+   "lean_stage3/Stage3/CellModes.lean",
+   "lean_stage3/Stage3/LadderMean.lean",
+   "lean_stage3/Stage3/LandauWindow.lean",
+   "lean_stage3/Stage3/RealSegment.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "ZF",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.ZF",
+    "line": 47,
+    "why": "The zeros below a height, as a finite set.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "Finset NontrivialZeros",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mem_ZF",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.mem_ZF",
+    "line": 49,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "ρ ∈ ZF T ↔ |(ρ : ℂ).im| < T",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tsum_sub_eq_sum",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.tsum_sub_eq_sum",
+    "line": 53,
+    "why": "A sum over the zeros below a height, read over the finite set.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ",
+     "f : NontrivialZeros → E"
+    ],
+    "proves": "∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "order_nonneg",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.order_nonneg",
+    "line": 62,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "(0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ)",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "onLineInv",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.onLineInv",
+    "line": 66,
+    "why": "The reciprocal size of a zero on the line; zero off the line.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_le_dyadic",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "onLineInv_nonneg",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.onLineInv_nonneg",
+    "line": 68,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "0 ≤ onLineInv ρ",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_nonneg",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "onLineInv_le_dyadic",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.onLineInv_le_dyadic",
+    "line": 75,
+    "why": "A zero on the line, below `2^(K+1)`, is dominated by the dyadic weights.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "K : ℕ",
+     "him : |(ρ : ℂ).im| < 2 ^ (K + 1)"
+    ],
+    "proves": "onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0)",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_le_dyadic",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.inv_le_dyadic_sum"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.inv_le_dyadic_sum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_order_onLineInv_le",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.sum_order_onLineInv_le",
+    "line": 119,
+    "why": "The zeros on the line, weighted by reciprocal size, below a height.",
+    "sorry": false,
+    "needs": [
+     "K : ℕ"
+    ],
+    "proves": "∑ ρ ∈ ZF ((2 : ℝ) ^ (K + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N ((2 : ℝ) ^ (j + 1))| + weightedZeroHeightBucket)",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_le_dyadic",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_le_dyadic",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dyadic_count_le",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.dyadic_count_le",
+    "line": 174,
+    "why": "The dyadic count, as a square of the number of levels.",
+    "sorry": false,
+    "needs": [
+     "K : ℕ"
+    ],
+    "proves": "∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N ((2 : ℝ) ^ (j + 1))| + weightedZeroHeightBucket) ≤ 3000 * ((K : ℝ) + 2) ^ 2",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.rvM_crude",
+     "lean_stage3/Stage3/RealSegment.lean::Stage3.weightedZeroHeightBucket_eq_zero",
+     "lean_stage3/Stage3/ZeroSum.lean::Stage3.dyadic_abs_N_sum_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ArgCount.lean::ArgCount.rvM_crude",
+     "lean_stage3/Stage3/RealSegment.lean::Stage3.weightedZeroHeightBucket_eq_zero",
+     "lean_stage3/Stage3/ZeroSum.lean::Stage3.dyadic_abs_N_sum_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "term",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.term",
+    "line": 218,
+    "why": "One zero's term in the cell `(r, d)` of the log-weighted count.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℤ",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_two_cpow",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.norm_two_cpow",
+    "line": 222,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "‖(2:ℂ) ^ ρ‖ = (2:ℝ) ^ ρ.re",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_term_le",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.norm_term_le",
+    "line": 227,
+    "why": "The size of one zero's term: its order over its size, times the mode's size.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℕ",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖term d (r : ℤ) ρ‖ ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (2 ^ d * ((2:ℝ) ^ (ρ : ℂ).re) ^ r * ‖(ρ : ℂ)‖⁻¹)",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cell_zero_sum_finset",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.cell_zero_sum_finset",
+    "line": 251,
+    "why": "The cell as a sum over the zeros below a height, read over the finite set.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℤ",
+     "h16 : 16 ≤ (2:ℝ) ^ (r - (d : ℤ))",
+     "hT : 2 ≤ T",
+     "hTx : T ≤ ((2:ℝ) ^ (r - (d : ℤ))) ^ 2"
+    ],
+    "proves": "‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + Glue.c4n * ((Real.log ((2:ℝ) ^ (r - (j : ℤ)))) ^ 2 * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4)))",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+    "stmt": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "err_le",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.err_le",
+    "line": 265,
+    "why": "The error of the cell's zero sum at height `2^(K+1)`, `r = d + K + 1`: at most a constant times `r²`.",
+    "sorry": false,
+    "needs": [
+     "d K r : ℕ",
+     "hr : r = d + K + 1"
+    ],
+    "proves": "∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * (2:ℝ) ^ (K + 1)) ^ 2 / (2:ℝ) ^ (K + 1) + Glue.c3n * Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ))) + Glue.c4n * ((Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ)))) ^ 2 * ((2:ℝ) ^ ((r : ℤ) - (j : ℤ))) ^ (-(1:ℝ) / 4))) ≤ 2 ^ d * ((4 * 2 ^ d * Glue.c1n + Glue.c3n + Glue.c4n) * (r : ℝ) ^ 2)",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+    "stmt": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "finite_off_line",
+    "ns": "FiniteOffLine",
+    "full": "FiniteOffLine.finite_off_line",
+    "line": 352,
+    "why": "Finitely many zeros off the line, and cells of square-root size on the one ladder: then no zero is off the line. Let a finite set hold every zero of ζ off the line. If at one depth the cells of the log-weighted prime count on the table's own ladder stay within `C·r²·√2^r` of their main term, the Riemann hypothesis holds.",
+    "sorry": false,
+    "needs": [
+     "F : Finset NontrivialZeros",
+     "hF : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F",
+     "d : ℕ",
+     "C : ℝ",
+     "hcells : ∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d‖ ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r"
+    ],
+    "proves": "RiemannHypothesis",
+    "file": "lean_stage3/Stage3/FiniteOffLine.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+    "stmt": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil"
+    ],
+    "proof": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.onLineInv_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c4n",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/GateEval.lean",
   "module": "Stage3.GateEval",
   "stem": "GateEval",
@@ -24481,8 +25314,12 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/GateEval.lean::GateEval.routeConst_le",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
@@ -24511,8 +25348,12 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/GateEval.lean::GateEval.routeConst_le",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
@@ -24545,8 +25386,12 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/GateEval.lean::GateEval.routeConst_le",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c4n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
@@ -24588,6 +25433,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num"
     ]
@@ -24614,6 +25460,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num"
     ]
@@ -24645,6 +25492,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num"
     ]
@@ -26510,7 +27358,9 @@
      "lean_stage3/Stage3/LadderFading.lean::LadderFading.one_sub_inv_ne_zero"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+    ]
    }
   ]
  },
@@ -29409,6 +30259,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_window"
     ]
    },
@@ -35147,6 +35998,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
      "lean_stage3/Stage3/RouteGate.lean::RouteGate.relErrWindow_route",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.schoenfeldWeak_route_num"
     ]
@@ -61564,7 +62416,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/Assembly.lean::Stage3.norm_zeroPartialSum_le_logsq"
+     "lean_stage3/Stage3/Assembly.lean::Stage3.norm_zeroPartialSum_le_logsq",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le"
     ]
    }
   ]
@@ -62365,11 +63218,13 @@
    "Stage3.LadderMean",
    "Stage3.StencilWeil",
    "Stage3.WobbleCount",
-   "Stage3.MirrorArea"
+   "Stage3.MirrorArea",
+   "Stage3.FiniteOffLine",
+   "Stage3.CellBdiff"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 149,
+  "lines": 151,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -62383,6 +63238,7 @@
    "lean_stage3/Stage3/AssemblyFloor.lean",
    "lean_stage3/Stage3/BoxBounds.lean",
    "lean_stage3/Stage3/BoxFinite.lean",
+   "lean_stage3/Stage3/CellBdiff.lean",
    "lean_stage3/Stage3/CellModes.lean",
    "lean_stage3/Stage3/CellResidual.lean",
    "lean_stage3/Stage3/CellZeros.lean",
@@ -62390,6 +63246,7 @@
    "lean_stage3/Stage3/EdgeBound.lean",
    "lean_stage3/Stage3/EdgeNum.lean",
    "lean_stage3/Stage3/ExplicitBump.lean",
+   "lean_stage3/Stage3/FiniteOffLine.lean",
    "lean_stage3/Stage3/GateEval.lean",
    "lean_stage3/Stage3/Glue.lean",
    "lean_stage3/Stage3/GlueFloor.lean",

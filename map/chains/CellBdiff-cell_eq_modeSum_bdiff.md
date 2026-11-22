@@ -1,13 +1,13 @@
-# What `CellModes.cell_eq_modeSum` rests on
+# What `CellBdiff.cell_eq_modeSum_bdiff` rests on
 
-[`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum) in `lean_stage3/Stage3/CellModes.lean`, line 48.
+[`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff) in `lean_stage3/Stage3/CellBdiff.lean`, line 93.
 
-**Why.** The cell as a reweighted sum of modes, one for each zero.
+**Why.** The cell on the table tree's operators. `d` backward differences of the row, with `Chain.bdiff`, are the main mode minus the reweighted sum of the zeros' modes, within the stated error.
 
 **Proves**
 
 ```lean
-‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T} => ((ρ : Kadiri.NontrivialZeros) : ℂ)) (fun ρ => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ) / ((ρ : Kadiri.NontrivialZeros) : ℂ) * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d) Finset.univ (r : ℂ)‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + Glue.c4n * ((Real.log ((2:ℝ) ^ (r - (j : ℤ)))) ^ 2 * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4)))
+‖(Chain.bdiff^[d]) psiRow (r : ℂ) - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T} => ((ρ : Kadiri.NontrivialZeros) : ℂ)) (fun ρ => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ) / ((ρ : Kadiri.NontrivialZeros) : ℂ) * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d) Finset.univ (r : ℂ)‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + Glue.c4n * ((Real.log ((2:ℝ) ^ (r - (j : ℤ)))) ^ 2 * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4)))
 ```
 
 **Needs** (its hypotheses)
@@ -18,13 +18,13 @@
   - `` hT : 2 ≤ T ``
   - `` hTx : T ≤ ((2:ℝ) ^ (r - (d : ℤ))) ^ 2 ``
 
-Behind it: 142 theorems and 26 definitions in 16 files. Every one is listed below; Lean recorded each step.
+Behind it: 148 theorems and 29 definitions in 17 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
-  f0["<b>Chain</b><br/>2 used"]:::ext
+  f0["<b>Chain</b><br/>3 used"]:::ext
   f1["<b>Superposition</b><br/>1 used"]:::ext
   f2["<b>Assembly</b><br/>1 used"]:::thm
   f3["<b>Glue</b><br/>1 used"]:::thm
@@ -39,7 +39,8 @@ flowchart LR
   f12["<b>LowEdge</b><br/>4 used"]:::thm
   f13["<b>GlueNum</b><br/>17 used"]:::thm
   f14["<b>CellZeros</b><br/>11 used"]:::thm
-  f15["<b>CellModes</b><br/>cell_eq_modeSum"]:::end_
+  f15["<b>CellModes</b><br/>3 used"]:::thm
+  f16["<b>CellBdiff</b><br/>cell_eq_modeSum_bdiff"]:::end_
   f0 --> f1
   f2 --> f5
   f4 --> f5
@@ -58,6 +59,7 @@ flowchart LR
   f13 --> f14
   f1 --> f15
   f14 --> f15
+  f15 --> f16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -74,10 +76,11 @@ An arrow A → B reads "B uses something proved or defined in A"; indirect arrow
 
 Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
-### [`Chain`](../lean/Chain.md) — 2
+### [`Chain`](../lean/Chain.md) — 3
 
 - ★ [`Chain.Sym`](../lean/Chain.md#Chain-Sym) — *def*
 - ★ [`Chain.mode`](../lean/Chain.md#Chain-mode) — *def*
+- ★ [`Chain.bdiff`](../lean/Chain.md#Chain-bdiff) — *def*
 
 ### [`Superposition`](../lean/Superposition.md) — 1
 
@@ -273,7 +276,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`CellZeros`](../lean_stage3/CellZeros.md) — 11
 
-- ★ [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil) — *def*
+- [`CellZeros.stencil`](../lean_stage3/CellZeros.md#CellZeros-stencil) — *def*
 - [`CellZeros.stencil_add`](../lean_stage3/CellZeros.md#CellZeros-stencil_add) — `` stencil d (fun n => a n + b n) r = stencil d a r + stencil d b r ``
 - [`CellZeros.stencil_sub`](../lean_stage3/CellZeros.md#CellZeros-stencil_sub) — `` stencil d (fun n => a n - b n) r = stencil d a r - stencil d b r ``
 - [`CellZeros.stencil_const_mul`](../lean_stage3/CellZeros.md#CellZeros-stencil_const_mul) — `` stencil d (fun n => c * a n) r = c * stencil d a r ``
@@ -283,10 +286,21 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`CellZeros.cpow_two_zpow`](../lean_stage3/CellZeros.md#CellZeros-cpow_two_zpow) — `` (((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n ``
 - [`CellZeros.two_cpow_ne_zero`](../lean_stage3/CellZeros.md#CellZeros-two_cpow_ne_zero) — `` (2:ℂ) ^ ρ ≠ 0 ``
 - [`CellZeros.stencil_zeroPartialSum`](../lean_stage3/CellZeros.md#CellZeros-stencil_zeroPartialSum) — `` stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Kadiri.Nontr… ``
-- ★ [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemann… ``
+- [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemann… ``
 
-### [`CellModes`](../lean_stage3/CellModes.md) — 2
+### [`CellModes`](../lean_stage3/CellModes.md) — 3
 
-- ★ [`CellModes.mode_two_int`](../lean_stage3/CellModes.md#CellModes-mode_two_int) — `` Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r ``
-- ★ [`CellModes.sym_two`](../lean_stage3/CellModes.md#CellModes-sym_two) — `` Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹ ``
+- [`CellModes.mode_two_int`](../lean_stage3/CellModes.md#CellModes-mode_two_int) — `` Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r ``
+- [`CellModes.sym_two`](../lean_stage3/CellModes.md#CellModes-sym_two) — `` Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹ ``
+- ★ [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadir… ``
+
+### [`CellBdiff`](../lean_stage3/CellBdiff.md) — 7
+
+- [`CellBdiff.bdZ`](../lean_stage3/CellBdiff.md#CellBdiff-bdZ) — *def*
+- [`CellBdiff.iter_bdZ_eq_fwdDiff`](../lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_fwdDiff) — `` (bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r ``
+- [`CellBdiff.iter_bdZ_eq_stencil`](../lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_stencil) — `` (bdZ^[n]) a r = CellZeros.stencil n a r ``
+- [`CellBdiff.bdiff_iter_eq_bdZ`](../lean_stage3/CellBdiff.md#CellBdiff-bdiff_iter_eq_bdZ) — `` (Chain.bdiff^[d]) g (r : ℂ) = (bdZ^[d]) a r ``
+- ★ [`CellBdiff.stencil_eq_bdiff_iter`](../lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter) — `` CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ) ``
+- ★ [`CellBdiff.psiRow`](../lean_stage3/CellBdiff.md#CellBdiff-psiRow) — *def*
+- ★ [`CellBdiff.psiRow_int`](../lean_stage3/CellBdiff.md#CellBdiff-psiRow_int) — `` psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ) ``
 

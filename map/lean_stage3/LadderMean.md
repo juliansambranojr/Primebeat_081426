@@ -5,7 +5,7 @@ LadderMean — block J10c of `lean_stage3/design/joints.md`. 2026-11-22. Joint 1
 4 theorems, 2 definitions, 230 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LadderFading`](../lean_stage3/LadderFading.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)
 
 ## The picture
 

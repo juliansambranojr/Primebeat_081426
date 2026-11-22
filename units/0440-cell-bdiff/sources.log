@@ -1,0 +1,65 @@
+# check_prose_source.py  2026-11-22T22:16:14Z
+# unit: 0440-cell-bdiff
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21433
+  Source: session transcript, 2026-11-22, after unit 0439
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:18710
+  go for all of it, i feel like we are aligned
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20994
+  theorem stencil_eq_bdiff_iter {a : ℤ → ℂ} {g : ℂ → ℂ} (hag : ∀ n : ℤ, g (n : ℂ) = a n)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20995
+  (d : ℕ) (r : ℤ) : CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ) := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21008
+  theorem cell_eq_modeSum_bdiff (d : ℕ) (r : ℤ) {T : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46204
+  [Fintype {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}]
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46002
+  (h16 : 16 ≤ (2:ℝ) ^ (r - (d : ℤ)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46003
+  (hT : 2 ≤ T) (hTx : T ≤ ((2:ℝ) ^ (r - (d : ℤ))) ^ 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:21012
+  ‖(Chain.bdiff^[d]) psiRow (r : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46208
+  - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46210
+  (fun ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T} =>
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45982
+  ((ρ : Kadiri.NontrivialZeros) : ℂ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46212
+  (fun ρ => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45984
+  / ((ρ : Kadiri.NontrivialZeros) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46214
+  * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45953
+  ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46012
+  * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46013
+  + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46014
+  + Glue.c4n * ((Real.log ((2:ℝ) ^ (r - (j : ℤ)))) ^ 2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46015
+  * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4))) := by
+
+# 20 found, 0 missing

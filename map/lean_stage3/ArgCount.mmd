@@ -21,8 +21,9 @@ flowchart LR
   x4(["<b>ArgCrude</b><br/>backlundArg_of_identity"]):::ext
   x5(["<b>RvMCrude</b><br/>RvM_of_phase_arg"]):::ext
   x6(["<b>AssemblyFloor</b><br/>schoenfeldWeak_floor_of_RH"]):::ext
-  x7(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
-  x8(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x7(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
+  x8(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x9(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n8
@@ -44,6 +45,7 @@ flowchart LR
   n14 -.-> x6
   n14 -.-> x7
   n14 -.-> x8
+  n14 -.-> x9
   x0 -.-> n0
   x0 -.-> n13
   x0 -.-> n14

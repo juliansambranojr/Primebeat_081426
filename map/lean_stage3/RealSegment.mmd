@@ -3,13 +3,15 @@ flowchart LR
   n1["<b>zeta_real_ne_zero</b><br/>riemannZeta (σ : ℂ) ≠ 0"]:::thm
   n2["<b>isEmpty_zeroHeight</b><br/>IsEmpty Kadiri.ZeroHeightNontrivialZeros"]:::thm
   n3["<b>weightedZeroHeightBucket_eq_zero</b><br/>Kadiri.weightedZeroHeightBucket = 0"]:::thm
-  x0(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
-  x1(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
+  x0(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
+  x1(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
+  x2(["<b>RouteNum</b><br/>schoenfeldWeak_route_num"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n3
   n3 -.-> x0
   n3 -.-> x1
+  n3 -.-> x2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

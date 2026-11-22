@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · joint T1 on the table tree's operator: `Stage3/CellBdiff.lean`, block T1b of `joints.md`
+
+    DONE        `stencil_eq_bdiff_iter`: `CellZeros.stencil d` on a row is
+                `Chain.bdiff` iterated `d` times on any function of `ℂ` that
+                agrees with the row on the integers. `cell_eq_modeSum_bdiff`:
+                the cell theorem with `bdiff^[d]`, `Sym`, `mode`, `modeSum`,
+                all four the table tree's; one unit
+    ASSUMED     Julian, 2026-11-22: "go for all of it". The third of four:
+                the NOTEPAD line of the same day says `CellZeros` repeats the
+                table tree's operator. `CellZeros` is sealed and stays; the
+                equality is proved beside it
+    DEPENDS     `CellModes.cell_eq_modeSum`, `Chain.bdiff`,
+                Mathlib `fwdDiff_iter_eq_sum_shift`
+    OUT         retiring `CellZeros.stencil` from the modules after it
+    OUTCOME     proved, unit 0440; clean on the first build
+
 ### 2026-11-22 · joint 10, the finite case assembled: `Stage3/FiniteOffLine.lean`, block J10d of `joints.md`
 
     DONE        `finite_off_line`: a finite set holds every zero off the

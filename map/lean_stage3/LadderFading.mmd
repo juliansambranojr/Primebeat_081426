@@ -2,13 +2,15 @@ flowchart LR
   n0["<b>sum_sub_shift</b><br/>(∑ z ∈ Z, c z * z ^ (r + 1)) - z₀ * ∑ z ∈ Z, c z * z ^ r = ∑ z ∈…"]:::shp
   n1["<b>not_tendsto_powerSum</b><br/>∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖…"]:::shp
   n2["<b>one_sub_inv_ne_zero</b><br/>(1 : ℂ) - z⁻¹ ≠ 0"]:::shp
-  n3["<b>line_not_fading ■</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) :…"]:::thm
+  n3["<b>line_not_fading</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) :…"]:::thm
   x0(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
   x1(["<b>AliasClass</b><br/>alias_weight<br/>sum_order_div_ne_zero<br/>zero_re_pos"]):::ext
+  x2(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
   n2 -.-> x0
+  n3 -.-> x2
   x1 -.-> n3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111

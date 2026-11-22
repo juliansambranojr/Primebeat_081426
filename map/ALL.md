@@ -93,6 +93,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Nyquist.base_two_past_nyquist`](./lean/Nyquist.md#Nyquist-base_two_past_nyquist) | theorem | shape | `Nyquist` | nyquist 2 &lt; γ |
 | [`Chain.bdiff`](./lean/Chain.md#Chain-bdiff) | def | shape | `Chain` | ℂ → ℂ |
 | [`Elephant.bdiff`](./lean/Elephant.md#Elephant-bdiff) | def | shape | `Elephant` | ℤ → ℂ |
+| [`CellBdiff.bdiff_iter_eq_bdZ`](./lean_stage3/CellBdiff.md#CellBdiff-bdiff_iter_eq_bdZ) | theorem | shape | `CellBdiff` | (Chain.bdiff^[d]) g (r : ℂ) = (bdZ^[d]) a r |
 | [`Elephant.bdiff_iter_mode`](./lean/Elephant.md#Elephant-bdiff_iter_mode) | theorem | shape | `Elephant` | (bdiff^[d]) (mode b ρ) r = (Sym b ρ) ^ d * mode b ρ r |
 | [`Elephant.bdiff_iter_modeSum`](./lean/Elephant.md#Elephant-bdiff_iter_modeSum) | theorem | shape | `Elephant` | (bdiff^[d]) (fun r =&gt; ∑ i ∈ s, c i * mode b (ρ i) r) r = ∑ i ∈ s, c i * (Sym b (ρ i)) ^ d * mode b (ρ i) r |
 | [`Elephant.bdiff_mode`](./lean/Elephant.md#Elephant-bdiff_mode) | theorem | shape | `Elephant` | bdiff (mode b ρ) r = Sym b ρ * mode b ρ r |
@@ -103,6 +104,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`MainTerm.bdiffR`](./lean/MainTerm.md#MainTerm-bdiffR) | def | shape | `MainTerm` | ℝ → ℝ |
 | [`MainTerm.bdiffR_lb`](./lean/MainTerm.md#MainTerm-bdiffR_lb) | theorem | shape | `MainTerm` | m ≤ bdiffR g x |
 | [`Nonvanishing.bdiffZ`](./lean/Nonvanishing.md#Nonvanishing-bdiffZ) | def | shape | `Nonvanishing` | ℤ → ℝ |
+| [`CellBdiff.bdZ`](./lean_stage3/CellBdiff.md#CellBdiff-bdZ) | def | counting | `CellBdiff` | ℤ → ℂ |
 | [`Covering.bench_is_selective`](./lean/Covering.md#Covering-bench_is_selective) | theorem | shape | `Covering` | (0.2 : ℝ) &lt; 0.34657 |
 | [`Covering.bench_selects`](./lean/Covering.md#Covering-bench_selects) | theorem | counting | `Covering` | measured_contributing &lt; measured_in_support |
 | [`WeilPowerClean.blocked_card_le`](./lean_stage3/WeilPowerClean.md#WeilPowerClean-blocked_card_le) | theorem | shape | `WeilPowerClean` | B.card ≤ W + 1 |
@@ -169,12 +171,14 @@ Sorted by name. Search this file before saying something is missing.
 | [`Chain.ceiling_base`](./lean/Chain.md#Chain-ceiling_base) | theorem | shape | `Chain` | ‖Sym (Real.exp (Real.pi * (2 * k + 1) / γ)) ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + (Real.exp (Real.pi * (2 * k + 1) / γ)) ^ (-(1:ℝ)/2)) ^ 2 |
 | [`Chain.ceiling_dominates_floor`](./lean/Chain.md#Chain-ceiling_dominates_floor) | theorem | shape | `Chain` | (1 - b ^ (-(1:ℝ)/2)) ^ 2 &lt; (1 + b ^ (-(1:ℝ)/2)) ^ 2 |
 | [`CellModes.cell_eq_modeSum`](./lean_stage3/CellModes.md#CellModes-cell_eq_modeSum) | theorem | reads ζ | `CellModes` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // \|(ρ : ℂ).im\| &lt; T} =… |
+| [`CellBdiff.cell_eq_modeSum_bdiff`](./lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff) | theorem | reads ζ | `CellBdiff` | ‖(Chain.bdiff^[d]) psiRow (r : ℂ) - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // \|(ρ : ℂ).im\| &lt; T} =&gt; ((ρ : Kadiri.NontrivialZeros) : ℂ)… |
 | [`SeedPerturbation.cell_eq_of_seed_perturbation`](./lean/SeedPerturbation.md#SeedPerturbation-cell_eq_of_seed_perturbation) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - e x) r d = tableFrom N r d |
 | [`CellZeros.cell_eq_zero_sum`](./lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum) | theorem | reads ζ | `CellZeros` | ‖stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // \|(ρ : ℂ).im\| &lt; T}, ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros)… |
 | [`SeedPerturbation.cell_ne_at_boundary`](./lean/SeedPerturbation.md#SeedPerturbation-cell_ne_at_boundary) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - e x) r d ≠ tableFrom N r d |
 | [`TableDepths.cell_ne_zero_gen`](./lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen) | theorem | reads ζ | `TableDepths` | Construction.tableFrom TableRoute.rowN r d ≠ 0 |
 | [`TableRoute.cell_ne_zero_of_RH`](./lean_stage3/TableRoute.md#TableRoute-cell_ne_zero_of_RH) | theorem | reads ζ | `TableRoute` | Construction.tableFrom rowN r 6 ≠ 0 |
 | [`RouteCell.cell_ne_zero_of_route`](./lean/RouteCell.md#RouteCell-cell_ne_zero_of_route) | theorem | shape | `RouteCell` | Construction.tableFrom N r 6 ≠ 0 |
+| [`FiniteOffLine.cell_zero_sum_finset`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset) | theorem | reads ζ | `FiniteOffLine` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : … |
 | [`CellResidual.cellResid`](./lean_stage3/CellResidual.md#CellResidual-cellResid) | def | shape | `CellResidual` | ℝ |
 | [`CellResidual.cells_of_RH`](./lean_stage3/CellResidual.md#CellResidual-cells_of_RH) | theorem | reads ζ | `CellResidual` | ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ |
 | [`CellResidual.cells_of_schoenfeldWeak`](./lean_stage3/CellResidual.md#CellResidual-cells_of_schoenfeldWeak) | theorem | shape | `CellResidual` | CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀ |
@@ -329,6 +333,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PerronKernel.dslope_kernel_diff`](./lean_stage3/PerronKernel.md#PerronKernel-dslope_kernel_diff) | theorem | shape | `PerronKernel` | Differentiable ℂ (dslope (fun s : ℂ ↦ (y : ℂ) ^ s) 0) |
 | [`Stage3.dyadic_abs_N_sum_le`](./lean_stage3/ZeroSum.md#Stage3-dyadic_abs_N_sum_le) | theorem | reads ζ | `ZeroSum` | (∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * \|riemannZeta.N ((2 : ℝ) ^ (j + 1))\|) ≤ Real.log 2 / (2 * Real.pi) * (K + 1) * (K + 2) + 3 * (K + 1) / Real.pi + 2 * (riemannZeta.RvM b₁ b₂ b₃ ((2 : ℝ) ^ (K + 1)… |
 | [`JointLadder.dyadic_alias_resolved_jointly`](./lean/JointLadder.md#JointLadder-dyadic_alias_resolved_jointly) | theorem | shape | `JointLadder` | ∃ γ' : ℝ, γ' ≠ γ ∧ Nyquist.Aliases 2 γ γ' ∧ ¬ JointAliases γ γ' |
+| [`FiniteOffLine.dyadic_count_le`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-dyadic_count_le) | theorem | reads ζ | `FiniteOffLine` | ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * \|riemannZeta.N ((2 : ℝ) ^ (j + 1))\| + weightedZeroHeightBucket) ≤ 3000 * ((K : ℝ) + 2) ^ 2 |
 | [`Zeros.dyadicRow`](./lean/Zeros.md#Zeros-dyadicRow) | def | counting | `Zeros` | ℤ → ℤ |
 | [`Isogeny.dyadicRow_eq_rowN`](./lean/Isogeny.md#Isogeny-dyadicRow_eq_rowN) | theorem | counting | `Isogeny` | Zeros.dyadicRow ((r : ℤ) + 1) = rowN Zeros.pi2 1 r |
 | [`VonKoch.E`](./lean_stage3/VonKochScaffold.md#VonKoch-E) | def | reads ζ | `VonKochScaffold` | ℝ |
@@ -357,6 +362,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`SeedPerturbation.emptied_vanishes_above_two`](./lean/SeedPerturbation.md#SeedPerturbation-emptied_vanishes_above_two) | theorem | counting | `SeedPerturbation` | ∀ s : ℤ, 2 &lt; s → emptied_excess s = 0 |
 | [`RHPull.eps_choice_ok`](./lean_stage3/LineBound.md#RHPull-eps_choice_ok) | theorem | shape | `LineBound` | c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.log X) ^ 3 |
 | [`Construction.eq_of_same_row`](./lean/Construction.md#Construction-eq_of_same_row) | theorem | counting | `Construction` | ∀ r d, f r d = g r d |
+| [`FiniteOffLine.err_le`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le) | theorem | reads ζ | `FiniteOffLine` | ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * (2:ℝ) ^ (K + 1)) ^ 2 / (2:ℝ) ^ (K + 1) + Glue.c3n * Real.log ((2:ℝ) ^ ((r : ℤ)… |
 | [`Nonvanishing.error_bound`](./lean/Nonvanishing.md#Nonvanishing-error_bound) | theorem | shape | `Nonvanishing` | \|stencilR n (fun x =&gt; f x - L x) r\| ≤ Ehigh r n |
 | [`VonKoch.Etr`](./lean_stage3/VonKochScaffold.md#VonKoch-Etr) | def | reads ζ | `VonKochScaffold` | ℝ → ℂ |
 | [`VonKoch.Etr_locallyIntegrable`](./lean_stage3/VonKochScaffold.md#VonKoch-Etr_locallyIntegrable) | theorem | reads ζ | `VonKochScaffold` | MeasureTheory.LocallyIntegrableOn Etr (Set.Ioi 0) |
@@ -433,6 +439,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Elephant.filter_ne_zero_at_zeta_zero`](./lean/Elephant.md#Elephant-filter_ne_zero_at_zeta_zero) | theorem | reads ζ | `Elephant` | (Sym b ρ) ^ d ≠ 0 |
 | [`Slice3.finalBoundConst_le`](./lean_stage3/LineBound.md#Slice3-finalBoundConst_le) | theorem | shape | `LineBound` | 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2 / (29/32) - 29/32) * Real.log ((15/16)/(29/32))) ≤ 3991 |
 | [`Slice4.finalBoundConst_le`](./lean_stage3/LineBound.md#Slice4-finalBoundConst_le) | theorem | shape | `LineBound` | 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2 / (29/32) - 29/32) * Real.log ((15/16)/(29/32))) ≤ 3991 |
+| [`FiniteOffLine.finite_off_line`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) | theorem | reads ζ | `FiniteOffLine` | RiemannHypothesis |
 | [`Stage3.floor_arith`](./lean_stage3/AssemblyFloor.md#Stage3-floor_arith) | theorem | shape | `AssemblyFloor` | A ≤ (4 + P / L₀ + Q / L₀ ^ 2 + 18 * c₁ / (x₀ * S₀) + c₂ / (S₀ * L₀)) * S * L ^ 2 |
 | [`GateEval.floor_bound`](./lean_stage3/GateEval.md#GateEval-floor_bound) | theorem | shape | `GateEval` | 3 * (4 + (16 + 16 * 112 + 16 * 0) / ℓ + (8 * 698 + 8 + 4 * 0) / ℓ ^ 2 + 18 * c1 / ((2:ℝ) ^ (36:ℕ) * (2:ℝ) ^ (18:ℕ)) + c3 / ((2:ℝ) ^ (18:ℕ) * ℓ) + c4 * (1 / (2:ℝ) ^ (9:ℕ)) / (2:ℝ) ^ (18:ℕ)) + 13 ≤ 414 |
 | [`Stage3.floorConst`](./lean_stage3/AssemblyFloor.md#Stage3-floorConst) | def | shape | `AssemblyFloor` | ℝ |
@@ -627,6 +634,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`MainTerm.iter_bdiffR_lb`](./lean/MainTerm.md#MainTerm-iter_bdiffR_lb) | theorem | shape | `MainTerm` | m ≤ (bdiffR^[n]) g x |
 | [`Nonvanishing.iter_bdiffZ_eq_fwdDiff`](./lean/Nonvanishing.md#Nonvanishing-iter_bdiffZ_eq_fwdDiff) | theorem | shape | `Nonvanishing` | (bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r |
 | [`Nonvanishing.iter_bdiffZ_eq_stencilR`](./lean/Nonvanishing.md#Nonvanishing-iter_bdiffZ_eq_stencilR) | theorem | shape | `Nonvanishing` | (bdiffZ^[n]) g r = stencilR n g r |
+| [`CellBdiff.iter_bdZ_eq_fwdDiff`](./lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_fwdDiff) | theorem | counting | `CellBdiff` | (bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r |
+| [`CellBdiff.iter_bdZ_eq_stencil`](./lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_stencil) | theorem | shape | `CellBdiff` | (bdZ^[n]) a r = CellZeros.stencil n a r |
 | [`MainTerm.iteratedDeriv_bdiffR`](./lean/MainTerm.md#MainTerm-iteratedDeriv_bdiffR) | theorem | shape | `MainTerm` | iteratedDeriv n (bdiffR g) = bdiffR (iteratedDeriv n g) |
 | [`Expansion.iteratedDeriv_f2x`](./lean/Expansion.md#Expansion-iteratedDeriv_f2x) | theorem | shape | `Expansion` | ∀ x ∈ Ioi (0 : ℝ), iteratedDeriv d f2x x = F d x |
 | [`LandauPoleSub.iteratedDeriv_inv_sub`](./lean_stage3/LandauPoleSub.md#LandauPoleSub-iteratedDeriv_inv_sub) | theorem | shape | `LandauPoleSub` | iteratedDeriv k (fun s : ℂ =&gt; (s - q)⁻¹) c = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)) |
@@ -821,6 +830,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ArgLegs.mem_slitPlane_of_re_nonneg`](./lean_stage3/ArgLegs.md#ArgLegs-mem_slitPlane_of_re_nonneg) | theorem | shape | `ArgLegs` | z ∈ Complex.slitPlane |
 | [`ContourShift.mem_zetaWindow`](./lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow) | theorem | reads ζ | `ContourShift` | ρ ∈ Stage3.zetaWindow T₀ |
 | [`WeilBands.mem_zetaWindow_of_online`](./lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online) | theorem | reads ζ | `WeilBands` | ρ ∈ Stage3.zetaWindow T |
+| [`FiniteOffLine.mem_ZF`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) | theorem | reads ζ | `FiniteOffLine` | ρ ∈ ZF T ↔ \|(ρ : ℂ).im\| &lt; T |
 | [`Stage3.meromorphicOrderAt_xi_eq_zeta`](./lean_stage3/ArgIdentity.md#Stage3-meromorphicOrderAt_xi_eq_zeta) | theorem | reads ζ | `ArgIdentity` | meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ |
 | [`MirrorArea.mirror_area`](./lean_stage3/MirrorArea.md#MirrorArea-mirror_area) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ ρ‖ * ‖(b : ℂ) ^ (1 - ρ)‖ = b |
 | [`MirrorArea.mirror_side`](./lean_stage3/MirrorArea.md#MirrorArea-mirror_side) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ (1 - ρ)‖ = b / ‖(b : ℂ) ^ ρ‖ |
@@ -909,8 +919,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGauss.norm_T_le_neg`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-norm_T_le_neg) | theorem | shape | `WeilPowerGauss` | ‖T m w n‖ ≤ Real.exp ((w ^ 2).re * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + 3) ^ 2) + ‖w‖ ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) |
 | [`WeilPowerGauss.norm_T_le_pos`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-norm_T_le_pos) | theorem | shape | `WeilPowerGauss` | ‖T m w n‖ ≤ Real.exp ((w ^ 2).re / (Real.pi ^ 2 * ((m : ℝ) + 1)) + ‖w‖ ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) |
 | [`WeilPowerTail.norm_T_le_tail`](./lean_stage3/WeilPowerTail.md#WeilPowerTail-norm_T_le_tail) | theorem | shape | `WeilPowerTail` | ‖T m w n‖ ≤ Real.exp ((w ^ 2).re * sigmaN m n + ‖w‖ ^ 4 / (6 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) |
+| [`FiniteOffLine.norm_term_le`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-norm_term_le) | theorem | reads ζ | `FiniteOffLine` | ‖term d (r : ℤ) ρ‖ ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (2 ^ d * ((2:ℝ) ^ (ρ : ℂ).re) ^ r * ‖(ρ : ℂ)‖⁻¹) |
 | [`Stage3.norm_term_le_dyadic`](./lean_stage3/Assembly.md#Stage3-norm_term_le_dyadic) | theorem | reads ζ | `Assembly` | ‖(x : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)‖ ≤ 2 * Real.sqrt x * ∑ j ∈ Finset.range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if \|(ρ : ℂ).im\| &lt; 2 ^ (j + 1) then 1 else 0) |
 | [`Stage3.norm_term_le_of_RH`](./lean_stage3/Assembly.md#Stage3-norm_term_le_of_RH) | theorem | reads ζ | `Assembly` | ‖(x : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)‖ ≤ 2 * Real.sqrt x |
+| [`FiniteOffLine.norm_two_cpow`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-norm_two_cpow) | theorem | shape | `FiniteOffLine` | ‖(2:ℂ) ^ ρ‖ = (2:ℝ) ^ ρ.re |
 | [`WeilPowerCompare.norm_wOf_pow4`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-norm_wOf_pow4) | theorem | shape | `WeilPowerCompare` | ‖wOf ε Δ h‖ ^ 4 = ((ε ^ 2 + Δ ^ 2) * h ^ 2) ^ 2 |
 | [`WeilPowerCompare.norm_wOf_sq`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-norm_wOf_sq) | theorem | shape | `WeilPowerCompare` | ‖wOf ε Δ h‖ ^ 2 = (ε ^ 2 + Δ ^ 2) * h ^ 2 |
 | [`WeilPowerGauss.norm_x_le`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-norm_x_le) | theorem | shape | `WeilPowerGauss` | ‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ ≤ 1 / 2 |
@@ -961,9 +973,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerOnLine.onLineBound`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-onLineBound) | def | reads ζ | `WeilPowerOnLine` | ℝ |
 | [`WeilOnLine.onLineBound_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-onLineBound_le) | theorem | reads ζ | `WeilOnLine` | onLineBound h γ ≤ 2 * (88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2) * (Real.pi ^ 2 / 6)) + 4 * h ^ 2 * lowCount |
 | [`WeilPowerOnLine.onLineBound_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-onLineBound_le) | theorem | reads ζ | `WeilPowerOnLine` | onLineBound h γ m ≤ 2 * (88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ 2) * (Real.pi ^ 2 / 6)) + 4 * h ^ 2 * lowCount |
+| [`FiniteOffLine.onLineInv`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-onLineInv) | def | reads ζ | `FiniteOffLine` | ℝ |
+| [`FiniteOffLine.onLineInv_le_dyadic`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-onLineInv_le_dyadic) | theorem | reads ζ | `FiniteOffLine` | onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if \|(ρ : ℂ).im\| &lt; 2 ^ (j + 1) then 1 else 0) |
+| [`FiniteOffLine.onLineInv_nonneg`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-onLineInv_nonneg) | theorem | reads ζ | `FiniteOffLine` | 0 ≤ onLineInv ρ |
 | [`ContourShift.order_bridge`](./lean_stage3/ContourShift.md#ContourShift-order_bridge) | theorem | reads ζ | `ContourShift` | ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) |
 | [`WeilBands.order_eq_analyticOrderNatAt`](./lean_stage3/WeilBands.md#WeilBands-order_eq_analyticOrderNatAt) | theorem | reads ζ | `WeilBands` | ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) = (analyticOrderNatAt riemannZeta (ρ : ℂ) : ℝ) |
 | [`WeilBridgeLeaf.order_eq_toNat`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-order_eq_toNat) | theorem | reads ζ | `WeilBridgeLeaf` | riemannZeta.order ρ = (((analyticOrderAt riemannZeta ρ).toNat : ℕ) : ℤ) |
+| [`FiniteOffLine.order_nonneg`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) | theorem | reads ζ | `FiniteOffLine` | (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) |
 | [`Propagation.outside_cone_zero`](./lean/Propagation.md#Propagation-outside_cone_zero) | theorem | counting | `Propagation` | tableFrom (deltaRow s) r d = 0 |
 | [`WeilPowerPhase.P`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-P) | def | shape | `WeilPowerPhase` | ℂ |
 | [`WeilWindow.P`](./lean_stage3/WeilWindow.md#WeilWindow-P) | def | shape | `WeilWindow` | ℝ |
@@ -1075,6 +1091,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`RHPull.psi_weak_of_RH`](./lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) | theorem | reads ζ | `LineBound` | ∃ C &gt; 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → \|ψ t - t\| ≤ C * Real.sqrt t * (Real.log t) ^ 3 |
 | [`Stage3.psi_weak_of_RH_half`](./lean_stage3/ThetaPsi.md#Stage3-psi_weak_of_RH_half) | theorem | reads ζ | `ThetaPsi` | ∃ C &gt; 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → \|ψ t - t\| ≤ C * Real.sqrt t * (Real.log t) ^ 3 |
 | [`Stage3.psi_weak_of_theta`](./lean_stage3/ThetaPsi.md#Stage3-psi_weak_of_theta) | theorem | reads ζ | `ThetaPsi` | ∃ C &gt; 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → \|ψ t - t\| ≤ C * t ^ θ * (Real.log t) ^ 3 |
+| [`CellBdiff.psiRow`](./lean_stage3/CellBdiff.md#CellBdiff-psiRow) | def | counting | `CellBdiff` | ℂ → ℂ |
+| [`CellBdiff.psiRow_int`](./lean_stage3/CellBdiff.md#CellBdiff-psiRow_int) | theorem | shape | `CellBdiff` | psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ) |
 | [`WeilPowerBackground.PsiW`](./lean_stage3/WeilPowerBackground.md#WeilPowerBackground-PsiW) | def | shape | `WeilPowerBackground` | ℝ |
 | [`WeilPowerBackground.PsiW_le_far`](./lean_stage3/WeilPowerBackground.md#WeilPowerBackground-PsiW_le_far) | theorem | shape | `WeilPowerBackground` | \|PsiW m t\| ≤ cS m * (2 / t ^ 2) ^ (m + 1) |
 | [`WeilPowerBackground.PsiW_le_two`](./lean_stage3/WeilPowerBackground.md#WeilPowerBackground-PsiW_le_two) | theorem | shape | `WeilPowerBackground` | \|PsiW m t\| ≤ 2 |
@@ -1326,6 +1344,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.stencil_arm_doubled`](./lean/ZerosStencil.md#Zeros-stencil_arm_doubled) | theorem | counting | `ZerosStencil` | (∑ k ∈ Finset.range (N + 1), (1 + (-1 : ℤ) ^ k) * (N.choose k)) = 2 ^ N |
 | [`Zeros.stencil_arms_eq`](./lean/ZerosStencil.md#Zeros-stencil_arms_eq) | theorem | counting | `ZerosStencil` | (∑ k ∈ Finset.range (N + 1), (1 + (-1 : ℤ) ^ k) * (N.choose k)) = ∑ k ∈ Finset.range (N + 1), (1 - (-1 : ℤ) ^ k) * (N.choose k) |
 | [`CellZeros.stencil_const_mul`](./lean_stage3/CellZeros.md#CellZeros-stencil_const_mul) | theorem | shape | `CellZeros` | stencil d (fun n =&gt; c * a n) r = c * stencil d a r |
+| [`CellBdiff.stencil_eq_bdiff_iter`](./lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter) | theorem | shape | `CellBdiff` | CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ) |
 | [`Zeros.stencil_eq_wings`](./lean/ZerosStencil.md#Zeros-stencil_eq_wings) | theorem | counting | `ZerosStencil` | stencil N g = wingPlus N g - wingMinus N g |
 | [`Zeros.stencil_eq_zero_iff_wings`](./lean/ZerosStencil.md#Zeros-stencil_eq_zero_iff_wings) | theorem | counting | `ZerosStencil` | stencil N g = 0 ↔ wingPlus N g = wingMinus N g |
 | [`CellZeros.stencil_mode`](./lean_stage3/CellZeros.md#CellZeros-stencil_mode) | theorem | shape | `CellZeros` | stencil d (fun n : ℤ =&gt; w ^ n) r = w ^ r * (1 - w⁻¹) ^ d |
@@ -1423,6 +1442,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilOnLine.sum_onLine_subtype_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-sum_onLine_subtype_le) | theorem | reads ζ | `WeilOnLine` | ∑ ρ ∈ s, weightedTerm h γ ρ.1 ≤ onLineBound h γ |
 | [`WeilPowerOnLine.sum_onLine_subtype_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_subtype_le) | theorem | reads ζ | `WeilPowerOnLine` | ∑ ρ ∈ s, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m |
 | [`AliasClass.sum_order_div_ne_zero`](./lean_stage3/AliasClass.md#AliasClass-sum_order_div_ne_zero) | theorem | reads ζ | `AliasClass` | ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) ≠ 0 |
+| [`FiniteOffLine.sum_order_onLineInv_le`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-sum_order_onLineInv_le) | theorem | reads ζ | `FiniteOffLine` | ∑ ρ ∈ ZF ((2 : ℝ) ^ (K + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * \|riemannZeta.N ((2 : ℝ) ^ (j + 1))\| + weightedZeroHeightBucket) |
 | [`Elephant.sum_primeIndicator`](./lean/Elephant.md#Elephant-sum_primeIndicator) | theorem | shape | `Elephant` | ∑ m ∈ Finset.range (x + 1), primeIndicator m = (Nat.primeCounting x : ℂ) |
 | [`Stage3.sum_range_add_one`](./lean_stage3/ZeroSum.md#Stage3-sum_range_add_one) | theorem | shape | `ZeroSum` | (∑ j ∈ range n, ((j : ℝ) + 1)) = n * (n + 1) / 2 |
 | [`Elephant.sum_shift`](./lean/Elephant.md#Elephant-sum_shift) | theorem | shape | `Elephant` | ∑ m ∈ Finset.range (x + 1), (if b ∣ m then a (m / b) else 0) = ∑ k ∈ Finset.range (x / b + 1), a k |
@@ -1519,6 +1539,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauKernel.tendsto_log_pow_mul`](./lean_stage3/LandauKernel.md#LandauKernel-tendsto_log_pow_mul) | theorem | shape | `LandauKernel` | Tendsto (fun y : ℝ =&gt; Real.log y ^ n * y ^ (-a)) atTop (𝓝 0) |
 | [`LandauMellinG.tendsto_logPrim`](./lean_stage3/LandauMellinG.md#LandauMellinG-tendsto_logPrim) | theorem | shape | `LandauMellinG` | Tendsto (logPrim s) atTop (𝓝 0) |
 | [`WeilPowerGauss.tendsto_S`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-tendsto_S) | theorem | shape | `WeilPowerGauss` | Tendsto (fun n : ℕ =&gt; ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTop (𝓝 (S m w)) |
+| [`FiniteOffLine.term`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-term) | def | reads ζ | `FiniteOffLine` | ℂ |
 | [`WeilOnLine.term_conj`](./lean_stage3/WeilOnLine.md#WeilOnLine-term_conj) | theorem | shape | `WeilOnLine` | (laplace (phiC h γ) (-(starRingEnd ℂ) ρ) * laplace (phiC h γ) (-(1 - (starRingEnd ℂ) ρ))).re = (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re |
 | [`WeilPowerOnLine.term_conj`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-term_conj) | theorem | shape | `WeilPowerOnLine` | termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ |
 | [`WeilOffLine.term_eq_neg_sq`](./lean_stage3/WeilOffLine.md#WeilOffLine-term_eq_neg_sq) | theorem | shape | `WeilOffLine` | laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2 |
@@ -1554,6 +1575,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilOnLine.tsum_onLine_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-tsum_onLine_le) | theorem | reads ζ | `WeilOnLine` | ∑' ρ : OnLine, weightedTerm h γ ρ.1 ≤ onLineBound h γ |
 | [`WeilPowerOnLine.tsum_onLine_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-tsum_onLine_le) | theorem | reads ζ | `WeilPowerOnLine` | ∑' ρ : OnLine, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m |
 | [`WeilSeries.tsum_shift2`](./lean_stage3/WeilSeries.md#WeilSeries-tsum_shift2) | theorem | reads ζ | `WeilSeries` | ∑' k : ℕ, 1 / ((k : ℝ) + 1) ^ 2 = Real.pi ^ 2 / 6 |
+| [`FiniteOffLine.tsum_sub_eq_sum`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-tsum_sub_eq_sum) | theorem | reads ζ | `FiniteOffLine` | ∑' σ : {ρ : NontrivialZeros // \|(ρ : ℂ).im\| &lt; T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ |
 | [`WeilPowerBands.tsum_upper_le`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-tsum_upper_le) | theorem | reads ζ | `WeilPowerBands` | ∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ ∑' k : ℕ, M k * (15 * Real.log (centre k) + 73) |
 | [`WeilTiles.tsum_upper_le`](./lean_stage3/WeilTiles.md#WeilTiles-tsum_upper_le) | theorem | reads ζ | `WeilTiles` | ∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ ∑' k : ℕ, M k * (15 * Real.log (centre k) + 73) |
 | [`WeilPowerBands.tsum_upper_le_explicit`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-tsum_upper_le_explicit) | theorem | reads ζ | `WeilPowerBands` | ∑' ρ : Upper, weightedTermW h γ m ρ.1 ≤ A h γ m * (Real.pi ^ 2 / 6) |
@@ -1749,6 +1771,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.zetaWindow`](./lean_stage3/JensenCount.md#Stage3-zetaWindow) | def | reads ζ | `JensenCount` | Set ℂ |
 | [`Stage3.zetaWindow_finite`](./lean_stage3/JensenCount.md#Stage3-zetaWindow_finite) | theorem | reads ζ | `JensenCount` | (zetaWindow T).Finite |
 | [`Stage3.zetaWindowTwo_finite`](./lean_stage3/JensenCount.md#Stage3-zetaWindowTwo_finite) | theorem | reads ζ | `JensenCount` | {ρ : ℂ \| ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite |
+| [`FiniteOffLine.ZF`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) | def | reads ζ | `FiniteOffLine` | Finset NontrivialZeros |
 | [`Transform.zmap_functional_equation`](./lean/Transform.md#Transform-zmap_functional_equation) | theorem | shape | `Transform` | (b : ℂ) ^ (-((1 : ℂ) - s)) = (b : ℂ) ^ (-(1 : ℂ)) / (b : ℂ) ^ (-s) |
 | [`Transform.zmap_ne_zero`](./lean/Transform.md#Transform-zmap_ne_zero) | theorem | shape | `Transform` | (b : ℂ) ^ (-s) ≠ 0 |
 | [`Transform.zmap_pair_product`](./lean/Transform.md#Transform-zmap_pair_product) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-s)‖ * ‖(b : ℂ) ^ (-(1 - s))‖ = b ^ (-(1 : ℝ)) |

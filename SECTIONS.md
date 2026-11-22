@@ -60,7 +60,7 @@ would "not connect"; they are joints of the one object and are numbered here.
 
 | # | Joint | State |
 |---|---|---|
-| T1 | the cell as a sum over the zeros: the stencil of `ψ(2^·)` is `2^(r−d)` minus `Σ m·(1 − 2^(−ρ))^d·2^(rρ)/ρ` over the zeros below a height, with a stated error | SEALED, no RH (units 0425, 0426): `Stage3/CellZeros.cell_eq_zero_sum`, and `CellModes.cell_eq_modeSum` in the table tree's `Sym`, `mode`, `modeSum` |
+| T1 | the cell as a sum over the zeros: the stencil of `ψ(2^·)` is `2^(r−d)` minus `Σ m·(1 − 2^(−ρ))^d·2^(rρ)/ρ` over the zeros below a height, with a stated error | SEALED, no RH (units 0425, 0426): `Stage3/CellZeros.cell_eq_zero_sum`, and `CellModes.cell_eq_modeSum` in the table tree's `Sym`, `mode`, `modeSum`; unit 0440, `CellBdiff.cell_eq_modeSum_bdiff`: the same on the table tree's operator `bdiff^[d]`, with `stencil_eq_bdiff_iter` |
 | T2 | the same in the integer table: from the log-weighted count `ψ` to the count `π`, zero by zero | OPEN; today's `PsiToPi` carries bounds, not the sum |
 | T3 | the height taken to infinity: the tail of the zero sum inside the error | OPEN; the error term is named, the limit is not taken |
 | T4 | the stencil as a test function in Weil's form, joining section F | SEALED (unit 0433): `Stage3/StencilWeil.zeroForm_stencilTest`: each zero enters the form on the stencil with the symbol at the zero times the symbol at its mirror point, to the depth; `restoringForce_eq`: the mirror imbalance of a mode is `2·|Re ρ − 1/2|·log b`, zero exactly on the line. Open inside section F as before: positivity without RH, and detection |

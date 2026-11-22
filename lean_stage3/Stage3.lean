@@ -139,6 +139,7 @@ import Stage3.StencilWeil
 import Stage3.WobbleCount
 import Stage3.MirrorArea
 import Stage3.FiniteOffLine
+import Stage3.CellBdiff
 
 namespace Stage3
 

@@ -19,6 +19,7 @@ flowchart LR
   n5["<b>sum_inv_pow_two_le</b><br/>(∑ j ∈ range n, ((2 : ℝ) ^ j)⁻¹) ≤ 2"]:::shp
   n6["<b>dyadic_abs_N_sum_le</b><br/>(∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * |riemannZeta.N ((2 : ℝ) …"]:::thm
   x0(["<b>Assembly</b><br/>norm_zeroPartialSum_le_logsq"]):::ext
+  x1(["<b>FiniteOffLine</b><br/>dyadic_count_le"]):::ext
   n0 --> n2
   n1 --> n6
   n2 --> n3
@@ -27,6 +28,7 @@ flowchart LR
   n5 --> n6
   n5 -.-> x0
   n6 -.-> x0
+  n6 -.-> x1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -226,7 +228,8 @@ line 160
   - [`Stage3.sum_inv_pow_two_le`](#Stage3-sum_inv_pow_two_le) — `` (∑ j ∈ range n, ((2 : ℝ) ^ j)⁻¹) ≤ 2 ``
   - [`Stage3.sum_range_add_one`](#Stage3-sum_range_add_one) — `` (∑ j ∈ range n, ((j : ℝ) + 1)) = n * (n + 1) / 2 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Stage3.norm_zeroPartialSum_le_logsq`](../lean_stage3/Assembly.md#Stage3-norm_zeroPartialSum_le_logsq) (Assembly) — `` ‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖ ≤ 2 * Real.sqrt x * (2 * (Real.log 2 / (2 * Real.pi) * (K + 1) * (K + 2) + 3 * (K + 1) / Real.pi + 2 * (riemann… ``
+  - [`FiniteOffLine.dyadic_count_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-dyadic_count_le) (FiniteOffLine) — `` ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N ((2 : ℝ) ^ (j + 1))| + weightedZeroHeightBucket) ≤ 3000 * ((K : ℝ) + 2) ^ 2 ``
 

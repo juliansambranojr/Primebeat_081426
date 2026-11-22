@@ -1027,3 +1027,21 @@ against `line_not_fading`. Hence no zero has `Re > 1/2`, and
 `norm_term_le`, `cell_zero_sum_finset`, `err_le`, `finite_off_line`.
 
 **Not here.** Infinitely many zeros off the line. The cells of `π`: that is T2.
+
+
+### T1b Joint T1 on the table tree's operator — PROVED (unit 0440: `CellBdiff.stencil_eq_bdiff_iter`, `cell_eq_modeSum_bdiff`)
+
+`CellZeros.stencil d a r = Σ_{j ≤ d} (−1)^j·C(d,j)·a(r − j)` is `d` backward
+differences written out. The table tree writes them as `Chain.bdiff^[d]`, the
+operator `Chain.A4` and `Superposition.bdiff_sum` are stated on.
+
+- `bdZ a x = a x − a (x − 1)` on rows `ℤ → ℂ`; `bdZ^[n] a r = stencil n a r`
+  by Mathlib's `fwdDiff_iter_eq_sum_shift` at step `−1`, as
+  `TablePort/Nonvanishing.iter_bdiffZ_eq_stencilR` does over `ℝ`.
+- if `g : ℂ → ℂ` agrees with `a` on the integers, `bdiff^[d] g r = bdZ^[d] a r`
+  (induction on `d`).
+- `psiRow z = ψ(2^(Re z))`; `psiRow n = ψ(2^n)`.
+- `cell_eq_modeSum_bdiff`: `CellModes.cell_eq_modeSum` with
+  `bdiff^[d] psiRow r` in the place of the stencil.
+
+**Not here.** `CellZeros.stencil` stays in the modules that use it.
