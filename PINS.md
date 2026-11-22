@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-22 · the Landau window: block 7d of `design/landau.md`, `Stage3/LandauCriterion.lean`
+
+    DONE        `Stage3/LandauCriterion.lean` builds with no `sorry`:
+                `stmtLandauWindow : LandauWindow.StmtLandauWindow`, the
+                criterion proved, and `rh_of_windows`, `RiemannHypothesis`
+                from a window bound at every `θ` in `(1/2, 1)`; a
+                formalization unit; block 7d marked PROVED; the leaf
+                `StmtLandauWindow` is discharged
+    ASSUMED     the range of indices is chosen from `key_ineq` with a margin
+                `μ`, in place of the design's fixed range
+    DEPENDS     units 0384, 0396, 0397, 0398
+    OUT         the hypothesis of `rh_of_windows`, a window bound on `G` at
+                every `θ > 1/2`, is not proved, approached or tested here;
+                nothing in this repository proves the Riemann hypothesis
+    OUTCOME     done as pinned, unit 0399: three theorems, no `sorry`;
+                `StmtLandauWindow` is a theorem; TRAPS row 45 added
+
 ### 2026-11-22 · the Landau window: block 7c of `design/landau.md`, `Stage3/LandauRates.lean`
 
     DONE        `Stage3/LandauRates.lean` builds with no `sorry`: `key_ineq`

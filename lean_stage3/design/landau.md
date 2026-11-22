@@ -697,7 +697,14 @@ Composes.  Mathlib `Real.log_le_sub_one_of_pos`, `Real.log_inv`,
 Module.    `Stage3/LandauRates.lean`, namespace `LandauRates`, `import Mathlib`. Pinned: all three.
 Open.      none.
 
-### 7d `StmtLandauWindow` — SKETCH
+### 7d `StmtLandauWindow` — PROVED (unit 0399: `LandauCriterion.contradiction`, `stmtLandauWindow`,
+`rh_of_windows`)
 From 7a, 7b, 7c and `WindowBound`. With unit 0384's `rh_of_window`, the chain
 "a window bound at every `θ > 1/2` implies `RiemannHypothesis`" then has no
 leaf between its hypothesis and its conclusion.
+
+Built as designed, with the range of indices taken from `LandauRates.key_ineq`
+and a margin `μ` (block 7c). Every block of this worksheet is PROVED. The
+premise of `rh_of_windows`, a window bound at every `θ` above one half, is
+proved nowhere: under the Riemann hypothesis `G(y) = O(√y)` gives it, so the
+criterion is a reformulation and its premise is as hard as its conclusion.
