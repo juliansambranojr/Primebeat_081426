@@ -187,6 +187,7 @@ import Stage3.Compression
 import Stage3.StepsBelow
 import Stage3.ShareLink
 import Stage3.Saddle
+import Stage3.WholeChain
 
 namespace Stage3
 

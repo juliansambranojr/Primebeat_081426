@@ -20431,7 +20431,8 @@
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.share_pair",
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image",
-     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff"
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -20775,7 +20776,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },
@@ -21838,7 +21841,8 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
-     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells"
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -24032,7 +24036,8 @@
     "used_by": [
      "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.card_least_prime",
      "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composite_part",
-     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs"
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -24207,7 +24212,9 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
    }
   ]
  },
@@ -24255,7 +24262,8 @@
     "uses": [],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/Compression.lean::Compression.compression"
+     "lean_stage3/Stage3/Compression.lean::Compression.compression",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -24279,7 +24287,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/Compression.lean::Compression.compression",
-     "lean_stage3/Stage3/Compression.lean::Compression.nonSmooth_eq_biUnion"
+     "lean_stage3/Stage3/Compression.lean::Compression.nonSmooth_eq_biUnion",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -24370,7 +24379,9 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
    }
   ]
  },
@@ -37708,7 +37719,8 @@
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_all",
-     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink"
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -37837,7 +37849,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },
@@ -53622,7 +53636,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away"
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
     ]
    }
   ]
@@ -55296,7 +55311,9 @@
      "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.two_cpow"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
+    ]
    },
    {
     "kind": "theorem",
@@ -55606,7 +55623,8 @@
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
-     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq"
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -55799,7 +55817,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
-     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway"
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -55865,7 +55884,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    },
    {
     "kind": "theorem",
@@ -55896,7 +55917,9 @@
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.zeroFreeRight_iff_psiWeakTheta"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },
@@ -56026,7 +56049,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound_resid"
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound_resid",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -56298,7 +56322,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    }
   ]
  },
@@ -56362,7 +56388,8 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq",
      "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.cast_netRounding",
-     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet"
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -56630,7 +56657,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/SieveExact.lean::SieveExact.row_by_sieve"
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.row_by_sieve",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side"
     ]
    },
    {
@@ -57280,7 +57308,8 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_pair_area",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
-     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -57480,7 +57509,8 @@
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
-     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -57503,7 +57533,8 @@
     "used_by": [
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height",
-     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    },
    {
@@ -60403,7 +60434,9 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
+    ]
    }
   ]
  },
@@ -60538,7 +60571,8 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
-     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
     ]
    },
    {
@@ -60589,7 +60623,8 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
      "lean_stage3/Stage3/StepsRate.lean::StepsRate.norm_K_le_pow",
-     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper",
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
     ]
    },
    {
@@ -61350,7 +61385,9 @@
      "lean_stage3/Stage3/StepsPole.lean::StepsPole.order_pos"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side"
+    ]
    },
    {
     "kind": "theorem",
@@ -85762,6 +85799,157 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/WholeChain.lean",
+  "module": "Stage3.WholeChain",
+  "stem": "WholeChain",
+  "header": "WholeChain — block J8 of `lean_stage3/design/closedloop.md`. 2026-11-23. The closing theorem. `OneChain.one_chain` was written before the later blocks of the day. This file names them, so that every branch of the tree ends in one place.",
+  "imports": [
+   "Stage3.Saddle",
+   "Stage3.Compression",
+   "Stage3.SelfBound",
+   "Stage3.StepsBelow",
+   "Stage3.RunTheorems"
+  ],
+  "opens": [
+   "Classical",
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "WholeChain"
+  ],
+  "lines": 94,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/Compression.lean",
+   "lean_stage3/Stage3/RunTheorems.lean",
+   "lean_stage3/Stage3/Saddle.lean",
+   "lean_stage3/Stage3/SelfBound.lean",
+   "lean_stage3/Stage3/StepsBelow.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "whole_chain",
+    "ns": "WholeChain",
+    "full": "WholeChain.whole_chain",
+    "line": 32,
+    "why": "The whole chain. The spiral link, and every face of it compiled in the tree, are one statement.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway)",
+    "file": "lean_stage3/Stage3/WholeChain.lean",
+    "id": "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "table_side",
+    "ns": "WholeChain",
+    "full": "WholeChain.table_side",
+    "line": 50,
+    "why": "The table's side. What is proved of the table at every `N`, with no zero in the statement.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(∀ N : ℕ, 2 ≤ N → (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (SieveExact.smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ)) ∧ (∀ N : ℕ, ((Finset.Icc 2 N).filter (fun n => ¬ n.Prime)).card + (SieveExact.smallPrimes N).card = ∑ p ∈ SieveExact.smallPrimes N, CompositeSplit.rough N p) ∧ (∀ N : ℕ, N = Compression.smooth N + ∑ p ∈ Compression.newPrimes N, N / p) ∧ (∀ N : ℕ, ∑ k ∈ Finset.Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Finset.Icc 1 N, Real.log (n : ℝ)) ∧ (∀ (ρ : ℂ) (k : ℤ), (2 : ℂ) ^ (ρ + 2 * Real.pi * Complex.I * (k : ℂ) / (Real.log 2 : ℂ)) = (2 : ℂ) ^ ρ)",
+    "file": "lean_stage3/Stage3/WholeChain.lean",
+    "id": "lean_stage3/Stage3/WholeChain.lean::WholeChain.table_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+     "lean_stage3/Stage3/Compression.lean::Compression.compression",
+     "lean_stage3/Stage3/Compression.lean::Compression.newPrimes",
+     "lean_stage3/Stage3/Compression.lean::Compression.smooth",
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_fold",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.composites_no_signs",
+     "lean_stage3/Stage3/CompositeSplit.lean::CompositeSplit.rough",
+     "lean_stage3/Stage3/Compression.lean::Compression.compression",
+     "lean_stage3/Stage3/Compression.lean::Compression.newPrimes",
+     "lean_stage3/Stage3/Compression.lean::Compression.smooth",
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_fold",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "steps_side",
+    "ns": "WholeChain",
+    "full": "WholeChain.steps_side",
+    "line": 69,
+    "why": "The steps' side. What a zero does: it carries weight that is not zero, it makes the staircase leave every bound below its rate, and it makes the turned steps to a cutoff do the same.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(∀ ρ : NontrivialZeros, -(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0) ∧ (∀ (ρ₀ : NontrivialZeros) (θ : ℝ), θ < (ρ₀ : ℂ).re → ∀ (C : ℝ) (k : ℕ) (x₀ : ℝ), ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x|) ∧ (∀ (ρ₀ : NontrivialZeros) (s : ℂ), 0 < s.re → (ρ₀ : ℂ) ≠ s → ∀ δ : ℝ, 0 ≤ δ → δ < (ρ₀ : ℂ).re - s.re → ∀ (C : ℝ) (N₀ : ℕ), ∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ < ‖StepsPeak.S N s - StepsPeak.K N s 1‖)",
+    "file": "lean_stage3/Stage3/WholeChain.lean",
+    "id": "lean_stage3/Stage3/WholeChain.lean::WholeChain.steps_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.rain_steps",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_pole_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.rain_steps",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_pole_ne_zero"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/WobbleCount.lean",
   "module": "Stage3.WobbleCount",
   "stem": "WobbleCount",
@@ -89460,11 +89648,12 @@
    "Stage3.Compression",
    "Stage3.StepsBelow",
    "Stage3.ShareLink",
-   "Stage3.Saddle"
+   "Stage3.Saddle",
+   "Stage3.WholeChain"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 198,
+  "lines": 199,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -89614,6 +89803,7 @@
    "lean_stage3/Stage3/WeilTiles.lean",
    "lean_stage3/Stage3/WeilTransform.lean",
    "lean_stage3/Stage3/WeilWindow.lean",
+   "lean_stage3/Stage3/WholeChain.lean",
    "lean_stage3/Stage3/WobbleCount.lean",
    "lean_stage3/Stage3/ZeroDensity.lean",
    "lean_stage3/Stage3/ZeroSquares.lean",

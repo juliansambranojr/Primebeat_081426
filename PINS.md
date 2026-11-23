@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J8 of `design/closedloop.md`: `Stage3/WholeChain.lean`
+
+    DONE        `whole_chain`: the spiral link with every compiled face.
+                `table_side`: the table's exact statements, no zero in them.
+                `steps_side`: what a zero does to the staircase and the
+                turned steps; one unit
+    ASSUMED     Julian, 2026-11-23: today's work was the table and must not
+                end somewhere else. Conjunctions of proved theorems. Written
+                and built here
+    DEPENDS     `OneChain.one_chain`, `Saddle`, `ShareLink`, `BandJoin`,
+                `HalfSieve`, `Compression`, `CompositeSplit`, `SelfBound`,
+                `SieveExact`, `RunTheorems`, `StepsBelow`, `RateBelow`
+    OUT         a proof of the link
+    OUTCOME     proved, unit 0496
+
 ### 2026-11-23 · block J7 of `design/closedloop.md`: `Stage3/Saddle.lean`
 
     DONE        `fold_rounding`, `fold_mirror`: one row down is the baker's

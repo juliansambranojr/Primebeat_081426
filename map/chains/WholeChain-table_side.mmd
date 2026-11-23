@@ -1,9 +1,17 @@
 flowchart LR
-  f0["<b>StepsPeak</b><br/>7 used"]:::thm
-  f1["<b>StepsPole</b><br/>1 used"]:::thm
-  f2["<b>StepsBelow</b><br/>rain_steps"]:::end_
-  f0 --> f2
+  f0["<b>RunTheorems</b><br/>2 used"]:::thm
+  f1["<b>SieveExact</b><br/>10 used"]:::thm
+  f2["<b>CompositeSplit</b><br/>7 used"]:::thm
+  f3["<b>Compression</b><br/>5 used"]:::thm
+  f4["<b>SelfBound</b><br/>4 used"]:::thm
+  f5["<b>WholeChain</b><br/>table_side"]:::end_
   f1 --> f2
+  f1 --> f3
+  f1 --> f4
+  f0 --> f5
+  f2 --> f5
+  f3 --> f5
+  f4 --> f5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

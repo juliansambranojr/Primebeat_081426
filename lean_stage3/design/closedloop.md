@@ -170,4 +170,21 @@ same statement as the link. It has no proof of (3): `SelfBound.self_bound`
 ties the scales exactly, and unit 0492 measured that a bound at one scale does
 not follow from it by adding sizes.
 
+## J8 The whole chain — `Stage3/WholeChain.lean`
+
+`OneChain.one_chain` (J4) was written before J5 to J7 and the blocks R2 to R11
+of `design/runs.md`. The closing theorems name them, so every branch of the
+tree ends in one file.
+
+- `whole_chain`: `SpiralLink` with each compiled face: the Riemann hypothesis,
+  `OneAtEachHeight`, the cells, `HalfSieve.WobbleSqrt`, the middle circle, the
+  pair meeting, every zero a centre, `Saddle.NoRunaway`.
+- `table_side`: the statements with no zero in them, at every `N`: the sieve's
+  sum, the composites without signs, the compression, the tie across the
+  scales, the fold of a mode.
+- `steps_side`: a zero's weight is not zero; the staircase and the turned
+  steps leave every bound below its rate.
+
+These are conjunctions of theorems already proved. Nothing new is proved here.
+
 **Not here.** `SpiralLink` with no hypothesis.

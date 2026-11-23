@@ -7,7 +7,7 @@ Compression — block R11 of `lean_stage3/design/runs.md`. 2026-11-23. The prime
 3 theorems, 2 definitions, 85 lines. 
 
 **Imports:** [`CompositeSplit`](../lean_stage3/CompositeSplit.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
@@ -15,10 +15,12 @@ Compression — block R11 of `lean_stage3/design/runs.md`. 2026-11-23. The prime
 flowchart LR
   n0["<b>unique_new_prime</b><br/>p = q"]:::cnt
   n1["<b>nonSmooth_eq_biUnion</b><br/>(Icc 1 N).filter (fun n =＞ ¬ ∀ p : ℕ, p.Prime → p ∣ n → p ≤ Nat.…"]:::cnt
-  n2["<b>compression ■</b><br/>N = smooth N + ∑ p ∈ newPrimes N, N / p"]:::cnt
+  n2["<b>compression</b><br/>N = smooth N + ∑ p ∈ newPrimes N, N / p"]:::cnt
   x0(["<b>SieveExact</b><br/>card_multiples"]):::ext
+  x1(["<b>WholeChain</b><br/>table_side"]):::ext
   n0 --> n2
   n1 --> n2
+  n2 -.-> x1
   x0 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -42,7 +44,7 @@ def · line 25
 The numbers from `1` to `N` that are combinations of the primes up to `√N`: every prime dividing them is at most `√N`.
 
 - **Is:** `` smooth (N : ℕ) : ℕ := ((Icc 1 N).filter (fun n => ∀ p : ℕ, p.Prime → p ∣ n → p ≤ Nat.sqrt N)).card ``
-- **Used by 1:** [`Compression.compression`](#Compression-compression)
+- **Used by 2:** [`Compression.compression`](#Compression-compression), [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side)
 
 <a name="Compression-newPrimes"></a>
 ### `Compression.newPrimes`
@@ -52,7 +54,7 @@ def · line 29
 The new primes: those above `√N`, up to `N`.
 
 - **Is:** `` newPrimes (N : ℕ) : Finset ℕ := (Icc 1 N).filter (fun p => p.Prime ∧ Nat.sqrt N < p) ``
-- **Used by 2:** [`Compression.compression`](#Compression-compression), [`Compression.nonSmooth_eq_biUnion`](#Compression-nonSmooth_eq_biUnion)
+- **Used by 3:** [`Compression.compression`](#Compression-compression), [`Compression.nonSmooth_eq_biUnion`](#Compression-nonSmooth_eq_biUnion), [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side)
 
 ## Theorems
 
@@ -142,5 +144,7 @@ N = smooth N + ∑ p ∈ newPrimes N, N / p
 
 **Definitions its proof touches:** [`Compression.newPrimes`](#Compression-newPrimes), [`Compression.smooth`](#Compression-smooth)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side) (WholeChain) — `` (∀ N : ℕ, 2 ≤ N → (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (SieveExact.smallPrimes N).powerset, (-1 : ℤ) ^ T.card … ``
 

@@ -16,12 +16,14 @@ flowchart LR
   n0["<b>steps_sum</b><br/>LSeries (fun n =＞ (ArithmeticFunction.vonMangoldt n : ℂ)) s = - …"]:::thm
   n1["<b>order_pos</b><br/>0 ＜ analyticOrderNatAt riemannZeta (ρ : ℂ)"]:::thm
   n2["<b>steps_pole ■</b><br/>Tendsto (fun s : ℂ =＞ (s - (ρ : ℂ)) * (- deriv riemannZeta s / r…"]:::thm
-  n3["<b>steps_pole_ne_zero ■</b><br/>-(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0"]:::thm
+  n3["<b>steps_pole_ne_zero</b><br/>-(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0"]:::thm
   n4["<b>steps_regular ■</b><br/>AnalyticAt ℂ (fun t : ℂ =＞ deriv riemannZeta t / riemannZeta t) …"]:::thm
   x0(["<b>StepsBelow</b><br/>mellin_identity"]):::ext
   x1(["<b>ContourShift</b><br/>zeta_analyticAt<br/>zeta_local_data_zero<br/>zeta_order_ne_top"]):::ext
+  x2(["<b>WholeChain</b><br/>steps_side"]):::ext
   n1 --> n3
   n0 -.-> x0
+  n3 -.-> x2
   x1 -.-> n1
   x1 -.-> n2
   x1 -.-> n4
@@ -140,7 +142,9 @@ line 81 · arrows read from text
 
   - [`StepsPole.order_pos`](#StepsPole-order_pos) — `` 0 < analyticOrderNatAt riemannZeta (ρ : ℂ) ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.steps_side`](../lean_stage3/WholeChain.md#WholeChain-steps_side) (WholeChain) — `` (∀ ρ : NontrivialZeros, -(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0) ∧ (∀ (ρ₀ : NontrivialZeros) (θ : ℝ), θ < (ρ₀ : ℂ).re → ∀ (C : ℝ) … ``
 
 <a name="StepsPole-steps_regular"></a>
 ### `StepsPole.steps_regular`

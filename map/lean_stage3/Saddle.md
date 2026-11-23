@@ -7,7 +7,7 @@ Saddle — block J7 of `lean_stage3/design/closedloop.md`. 2026-11-23. The table
 11 theorems, 2 definitions, 199 lines. 
 
 **Imports:** [`RateBelow`](../lean_stage3/RateBelow.md), [`ShareLink`](../lean_stage3/ShareLink.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
@@ -22,13 +22,14 @@ flowchart LR
   n6["<b>saddle_of_off_line ■</b><br/>(1 ＜ stretch ρ ∧ stretch (mirrorZ ρ) ＜ 1) ∨ (stretch ρ ＜ 1 ∧ 1 ＜…"]:::thm
   n7["<b>saddle_runs_away</b><br/>∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k ＜ |Cheb…"]:::thm
   n8["<b>centre_of_noRunaway</b><br/>stretch ρ = 1"]:::thm
-  n9["<b>spiralLink_iff_centres ■</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1"]:::thm
-  n10["<b>spiralLink_iff_noRunaway ■</b><br/>SpiralLink.SpiralLink ↔ NoRunaway"]:::thm
+  n9["<b>spiralLink_iff_centres</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1"]:::thm
+  n10["<b>spiralLink_iff_noRunaway</b><br/>SpiralLink.SpiralLink ↔ NoRunaway"]:::thm
   x0(["<b>ShareLink</b><br/>mode_size"]):::ext
   x1(["<b>SpiralLink</b><br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
   x2(["<b>RateBelow</b><br/>rain_psi"]):::ext
   x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
-  x4(["<b>ThetaConverse</b><br/>zeroFreeRight_iff_psiWeakTheta"]):::ext
+  x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
+  x5(["<b>ThetaConverse</b><br/>zeroFreeRight_iff_psiWeakTheta"]):::ext
   n0 --> n1
   n3 --> n4
   n3 --> n5
@@ -37,6 +38,8 @@ flowchart LR
   n5 --> n9
   n7 --> n8
   n8 --> n10
+  n10 -.-> x4
+  n9 -.-> x4
   x0 -.-> n3
   x1 -.-> n4
   x1 -.-> n6
@@ -44,7 +47,7 @@ flowchart LR
   x1 -.-> n9
   x2 -.-> n7
   x3 -.-> n9
-  x4 -.-> n10
+  x5 -.-> n10
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -67,7 +70,7 @@ def · line 78
 The factor one doubling puts on a zero's mode, against the square root of the total.
 
 - **Is:** `` stretch (ρ : NontrivialZeros) : ℝ := ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ / Real.sqrt 2 ``
-- **Used by 6:** [`Saddle.centre_iff`](#Saddle-centre_iff), [`Saddle.centre_of_noRunaway`](#Saddle-centre_of_noRunaway), [`Saddle.saddle_area`](#Saddle-saddle_area), [`Saddle.saddle_of_off_line`](#Saddle-saddle_of_off_line), [`Saddle.spiralLink_iff_centres`](#Saddle-spiralLink_iff_centres), [`Saddle.stretch_eq`](#Saddle-stretch_eq)
+- **Used by 7:** [`Saddle.centre_iff`](#Saddle-centre_iff), [`Saddle.centre_of_noRunaway`](#Saddle-centre_of_noRunaway), [`Saddle.saddle_area`](#Saddle-saddle_area), [`Saddle.saddle_of_off_line`](#Saddle-saddle_of_off_line), [`Saddle.spiralLink_iff_centres`](#Saddle-spiralLink_iff_centres), [`Saddle.stretch_eq`](#Saddle-stretch_eq), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
 
 <a name="Saddle-NoRunaway"></a>
 ### `Saddle.NoRunaway`
@@ -78,7 +81,7 @@ The staircase does not run away in the square-root frame: from some point on it 
 
 - **Is:** `` NoRunaway : Prop := ∃ (C : ℝ) (k : ℕ) (x₀ : ℝ), Stage3.StmtPsiWeakTheta (1 / 2) C k x₀ ``
 - **Built from:** [`Stage3.StmtPsiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta)
-- **Used by 2:** [`Saddle.centre_of_noRunaway`](#Saddle-centre_of_noRunaway), [`Saddle.spiralLink_iff_noRunaway`](#Saddle-spiralLink_iff_noRunaway)
+- **Used by 3:** [`Saddle.centre_of_noRunaway`](#Saddle-centre_of_noRunaway), [`Saddle.spiralLink_iff_noRunaway`](#Saddle-spiralLink_iff_noRunaway), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
 
 ## Theorems
 
@@ -362,7 +365,9 @@ SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1
 
 **Definitions its proof touches:** [`Saddle.stretch`](#Saddle-stretch), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 
 <a name="Saddle-spiralLink_iff_noRunaway"></a>
 ### `Saddle.spiralLink_iff_noRunaway`
@@ -386,5 +391,7 @@ SpiralLink.SpiralLink ↔ NoRunaway
 
 **Definitions its proof touches:** [`Stage3.StmtZeroFreeRight`](../lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight), [`Saddle.NoRunaway`](#Saddle-NoRunaway), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 

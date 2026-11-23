@@ -24,9 +24,10 @@ flowchart LR
   n8["<b>zero_in_band ■</b><br/>1 / 2 ＜ ‖(2:ℂ) ^ (-(ρ:ℂ))‖ ∧ ‖(2:ℂ) ^ (-(ρ:ℂ))‖ ＜ 1"]:::shp
   n9["<b>zero_pair ■</b><br/>‖(2:ℂ) ^ (-(ρ:ℂ))‖ * ‖(2:ℂ) ^ (-((SpiralLink.mirrorZ ρ : Nontriv…"]:::thm
   n10["<b>zero_middle_iff</b><br/>‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ↔ (ρ:ℂ).re = 1 / 2"]:::shp
-  n11["<b>spiralLink_iff_middle ■</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))…"]:::thm
+  n11["<b>spiralLink_iff_middle</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))…"]:::thm
   x0(["<b>SpiralLink</b><br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
   x1(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x2(["<b>WholeChain</b><br/>whole_chain"]):::ext
   n0 --> n4
   n0 --> n8
   n1 --> n4
@@ -39,6 +40,7 @@ flowchart LR
   n7 --> n10
   n7 --> n8
   n7 --> n9
+  n11 -.-> x2
   x0 -.-> n11
   x0 -.-> n9
   x1 -.-> n11
@@ -64,7 +66,7 @@ def · line 36
 The band's map at base `2`: a share, or a real part, `x` goes to `2^(−x)`.
 
 - **Is:** `` bandR (x : ℝ) : ℝ := (2:ℝ) ^ (-x) ``
-- **Used by 10:** [`BandJoin.bandR_in_band`](#BandJoin-bandR_in_band), [`BandJoin.bandR_middle_iff`](#BandJoin-bandR_middle_iff), [`BandJoin.bandR_mirror`](#BandJoin-bandR_mirror), [`BandJoin.bandR_one`](#BandJoin-bandR_one), [`BandJoin.bandR_strictAnti`](#BandJoin-bandR_strictAnti), [`BandJoin.bandR_zero`](#BandJoin-bandR_zero), [`BandJoin.share_pair`](#BandJoin-share_pair), [`BandJoin.spiralLink_iff_middle`](#BandJoin-spiralLink_iff_middle), [`BandJoin.zero_image`](#BandJoin-zero_image), [`BandJoin.zero_middle_iff`](#BandJoin-zero_middle_iff)
+- **Used by 11:** [`BandJoin.bandR_in_band`](#BandJoin-bandR_in_band), [`BandJoin.bandR_middle_iff`](#BandJoin-bandR_middle_iff), [`BandJoin.bandR_mirror`](#BandJoin-bandR_mirror), [`BandJoin.bandR_one`](#BandJoin-bandR_one), [`BandJoin.bandR_strictAnti`](#BandJoin-bandR_strictAnti), [`BandJoin.bandR_zero`](#BandJoin-bandR_zero), [`BandJoin.share_pair`](#BandJoin-share_pair), [`BandJoin.spiralLink_iff_middle`](#BandJoin-spiralLink_iff_middle), [`BandJoin.zero_image`](#BandJoin-zero_image), [`BandJoin.zero_middle_iff`](#BandJoin-zero_middle_iff), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
 
 ## Theorems
 
@@ -390,5 +392,7 @@ SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ 
 
 **Definitions its proof touches:** [`BandJoin.bandR`](#BandJoin-bandR), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 

@@ -9,9 +9,10 @@ flowchart LR
   n7["<b>eqOn_zero_of_agree</b><br/>Set.EqOn (fun z : ℂ ↦ F z * ζ z + deriv ζ z) 0 (Stage3.regionθ θ…"]:::thm
   n8["<b>zeta_ne_zero_of_agree</b><br/>ζ ρ ≠ 0"]:::thm
   n9["<b>zeta_ne_zero_of_steps_bound</b><br/>ζ ρ ≠ 0"]:::thm
-  n10["<b>rain_steps ■</b><br/>∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ ＜ ‖StepsPeak.S N s - S…"]:::thm
+  n10["<b>rain_steps</b><br/>∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ ＜ ‖StepsPeak.S N s - S…"]:::thm
   x0(["<b>diagram 1</b><br/>9 theorems"]):::ext
   x1(["<b>StepsPole</b><br/>steps_sum"]):::ext
+  x2(["<b>WholeChain</b><br/>steps_side"]):::ext
   n0 --> n3
   n1 --> n3
   n2 --> n3
@@ -23,6 +24,7 @@ flowchart LR
   n7 --> n8
   n8 --> n9
   n9 --> n10
+  n10 -.-> x2
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n3

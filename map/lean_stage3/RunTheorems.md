@@ -7,20 +7,22 @@ RunTheorems — block R1 of `lean_stage3/design/runs.md`. 2026-11-23. The explor
 5 theorems, 0 definitions, 108 lines. 
 
 **Imports:** [`OneChain`](../lean_stage3/OneChain.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
   n0["<b>two_cpow</b><br/>(2:ℂ) ^ ρ = Complex.exp (ρ * (Real.log 2 : ℂ))"]:::shp
-  n1["<b>mode_fold ■</b><br/>(2:ℂ) ^ (ρ + 2 * Real.pi * Complex.I * (k : ℂ) / (Real.log 2 : ℂ…"]:::shp
+  n1["<b>mode_fold</b><br/>(2:ℂ) ^ (ρ + 2 * Real.pi * Complex.I * (k : ℂ) / (Real.log 2 : ℂ…"]:::shp
   n2["<b>mode_cross</b><br/>(2:ℂ) ^ ρ₁ * (starRingEnd ℂ) ((2:ℂ) ^ ρ₂) = Complex.exp ((((ρ₁.r…"]:::shp
   n3["<b>two_mode_beat ■</b><br/>‖c₁ * z₁ ^ k + c₂ * z₂ ^ k‖ ^ 2 = ‖c₁ * z₁ ^ k‖ ^ 2 + ‖c₂ * z₂ ^…"]:::shp
   n4["<b>zero_pair_beat ■</b><br/>(c₁ * (starRingEnd ℂ) c₂ * ((2:ℂ) ^ ρ₁ * (starRingEnd ℂ) ((2:ℂ) …"]:::shp
+  x0(["<b>WholeChain</b><br/>table_side"]):::ext
   n0 --> n1
   n0 --> n2
   n2 --> n4
+  n1 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -85,7 +87,9 @@ line 37 · arrows read from text
 
   - [`RunTheorems.two_cpow`](#RunTheorems-two_cpow) — `` (2:ℂ) ^ ρ = Complex.exp (ρ * (Real.log 2 : ℂ)) ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side) (WholeChain) — `` (∀ N : ℕ, 2 ≤ N → (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (SieveExact.smallPrimes N).powerset, (-1 : ℤ) ^ T.card … ``
 
 <a name="RunTheorems-mode_cross"></a>
 ### `RunTheorems.mode_cross`

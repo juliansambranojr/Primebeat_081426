@@ -20,10 +20,11 @@ flowchart LR
   n4["<b>meet_iff</b><br/>‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) …"]:::thm
   n5["<b>meet_sqrt_iff ■</b><br/>‖(T : ℂ) ^ (ρ : ℂ)‖ = Real.sqrt T ↔ (ρ : ℂ).re = 1 / 2"]:::shp
   n6["<b>swap_flips_residual ■</b><br/>C = (T - S) - R"]:::cnt
-  n7["<b>spiralLink_iff_meet ■</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ …"]:::thm
+  n7["<b>spiralLink_iff_meet</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ …"]:::thm
   x0(["<b>Saddle</b><br/>stretch_eq"]):::ext
   x1(["<b>SpiralLink</b><br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
   x2(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x3(["<b>WholeChain</b><br/>whole_chain"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
@@ -31,6 +32,7 @@ flowchart LR
   n1 --> n4
   n4 --> n7
   n0 -.-> x0
+  n7 -.-> x3
   x1 -.-> n2
   x1 -.-> n4
   x1 -.-> n7
@@ -265,5 +267,7 @@ SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ :
 
 **Definitions its proof touches:** [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink), [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 
