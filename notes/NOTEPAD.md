@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  G1 PROVED (unit 0463, `PerronTwo.explicit_formula_perron_two`): Perron's truncated formula for x >= 2, T >= 2, error 700 x log^2(xT)/T + 18 log x. The floor of 16 was the abscissa c = 1 + 1/log x <= 2; from 2 it is <= 5/2. PerronKernel unchanged. Opus worker, built and read here. Next: G2, the contour from 2 (being built).
 - [open]   2026-11-23  F4 PROVED (unit 0462, `PiFixedRow.pi_fixed_row`, `table_cell_fixed_row`): T3 at a fixed row on the integer table. x >= 16 held, height to infinity: pi - Li plus the zeros below the height plus tr(psi-theta) is eventually <= Api log x + eps. Second lost factor (zeros on [2,16] in absolute value) repaired by parts. Opus worker, built and read here.
 - [open]   2026-11-23  F3 PROVED (unit 0461, `CellFixedRow.cell_fixed_row`): T3 at a fixed row. Row r >= d+4 held, height to infinity: the psi-cell less its main term plus the zeros below the height is eventually <= 2^d (c3n log2 r + Bleft) + eps. No cap at x^2 anywhere. Opus worker, built and read here. Open: the same for the integer count.
 - [open]   2026-11-23  F2 PROVED (unit 0460, `LeftSmooth.left_edge_bound`, `explicit_formula_all`): the left edge <= Bleft x^(-1/4) at every height; the explicit formula for all T >= 2 with error c1n x log^2(xT)/T + c3n log x + Bleft x^(-1/4). Unit 0457's lost factor is gone. Opus worker, built and read here. Next: F3, the cell at a fixed row (being built).

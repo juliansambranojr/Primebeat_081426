@@ -159,6 +159,7 @@ import Stage3.LeftKernel
 import Stage3.LeftSmooth
 import Stage3.CellFixedRow
 import Stage3.PiFixedRow
+import Stage3.PerronTwo
 
 namespace Stage3
 

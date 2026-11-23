@@ -1,0 +1,68 @@
+# check_prose_source.py  2026-11-23T05:05:27Z
+# unit: 0463-perron-two
+# sources searched: 428
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28984
+  The explicit formula below x = 16 is still not in the tree
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29336
+  theorem far_terms_sum_two {x T : ℝ} (hx : 2 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29337
+  (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29338
+  ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a30b59b2b1a4f3df6.jsonl:466
+  ≤ 300 * x * Real.log (x * T) ^ 2 / T :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29341
+  theorem near_diagonal_sum_two {x T : ℝ} (hx : 2 ≤ x) (hT : 1 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29342
+  (∑' n : ℕ, if 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2 then
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29343
+  ArithmeticFunction.vonMangoldt n * min 1 (1/(T * |Real.log (x / n)|))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a30b59b2b1a4f3df6.jsonl:628
+  ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29345
+  theorem kernel_sum_bound_two {x T : ℝ} (hx : 2 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29346
+  ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29347
+  * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a30b59b2b1a4f3df6.jsonl:2215
+  ≤ 700 * x * Real.log (x * T) ^ 2 / T + 17 * Real.log x :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29361
+  theorem explicit_formula_perron_two {x T : ℝ} (hx : 2 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28995
+  - (2 * (Real.pi:ℂ) * Complex.I)⁻¹
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26861
+  (- deriv riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26862
+  / riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26863
+  * ((x:ℝ):ℂ) ^ (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29000
+  / (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) * Complex.I‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29414
+  ≤ 700 * x * Real.log (x * T) ^ 2 / T + 18 * Real.log x :=
+
+# 21 found, 0 missing

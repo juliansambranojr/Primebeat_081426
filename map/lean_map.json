@@ -39127,7 +39127,11 @@
      "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_kernel_decay_lt",
      "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_kernel_truncated",
      "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_sum_eq_integral",
-     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_to_psi"
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_to_psi",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_diff_summable_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_sum_eq_integral_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_to_psi_two"
     ]
    },
    {
@@ -39662,7 +39666,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.kernel_diff_summable",
-     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.kernel_sum_bound"
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.kernel_sum_bound",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_diff_summable_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two"
     ]
    },
    {
@@ -39686,7 +39692,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.far_terms_sum"
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.far_terms_sum",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.one_sub_two_neg_rpow'"
     ]
    },
    {
@@ -39738,7 +39745,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.far_terms_sum"
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.far_terms_sum",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.far_terms_sum_two"
     ]
    },
    {
@@ -39768,7 +39776,11 @@
      "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.far_terms_sum",
      "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.kernel_diff_summable",
      "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.kernel_sum_bound",
-     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_sum_eq_integral"
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_sum_eq_integral",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.far_terms_sum_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_diff_summable_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_sum_eq_integral_two"
     ]
    },
    {
@@ -39824,7 +39836,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.near_diagonal_sum"
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.near_diagonal_sum",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.near_diagonal_sum_two"
     ]
    },
    {
@@ -39883,7 +39896,9 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.kernel_diff_summable",
-     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.kernel_sum_bound"
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.kernel_sum_bound",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_diff_summable_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two"
     ]
    },
    {
@@ -40049,7 +40064,8 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_sum_eq_integral"
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_sum_eq_integral",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_sum_eq_integral_two"
     ]
    },
    {
@@ -40119,6 +40135,337 @@
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/PerronTwo.lean",
+  "module": "Stage3.PerronTwo",
+  "stem": "PerronTwo",
+  "header": "PerronTwo — block G1 of `lean_stage3/design/floor.md`. 2026-11-23. `PerronKernel.explicit_formula_perron` with the floor lowered from `16 ≤ x` to `2 ≤ x`. Every `x`-free helper of `PerronKernel` is reused unchanged; the lemmas below are copies of the originals with the lines that used the floor rewritten. `PerronKernel.lean` is untouched.",
+  "imports": [
+   "Stage3.PerronKernel"
+  ],
+  "opens": [
+   "Complex",
+   "PerronKernel",
+   "Topology"
+  ],
+  "namespaces": [
+   "PerronTwo"
+  ],
+  "lines": 1158,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/PerronKernel.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "one_sub_two_neg_rpow'",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.one_sub_two_neg_rpow'",
+    "line": 36,
+    "why": "Geometric-denominator bound on the wider range: `δ/5 ≤ 1 − 2^(−δ)` for `0 < δ ≤ 5/2`. Below `1` it is `PerronKernel.one_sub_two_neg_rpow`; above, `2^(−δ) ≤ 1/2`.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 < δ",
+     "h1 : δ ≤ 5/2"
+    ],
+    "proves": "δ / 5 ≤ 1 - (2:ℝ) ^ (-δ)",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.one_sub_two_neg_rpow'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.one_sub_two_neg_rpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.one_sub_two_neg_rpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.far_terms_sum_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inv_log_le_of_two_le",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.inv_log_le_of_two_le",
+    "line": 50,
+    "why": "`1/log x ≤ 3/2` from `x ≥ 2` (`1/log 2 < 3/2`): the abscissa `c = 1 + 1/log x` sits at most `5/2`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x"
+    ],
+    "proves": "1 / Real.log x ≤ 3/2",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.inv_log_le_of_two_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.far_terms_sum_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "far_terms_sum_two",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.far_terms_sum_two",
+    "line": 59,
+    "why": "Slice 1b from `x = 2` — the far-terms sum. The terms with `|log(x/n)| ≥ 1/2` sum to at most `300·x·log(xT)²/T`, for `x ≥ 2`, `T ≥ 2`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "(∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * |Real.log (x / n)|) else 0) ≤ 300 * x * Real.log (x * T) ^ 2 / T",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.far_terms_sum_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_summable",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_tsum",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.inv_log_le_of_two_le",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.one_sub_two_neg_rpow'"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_summable",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_tsum",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.inv_log_le_of_two_le",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.one_sub_two_neg_rpow'"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "near_diagonal_sum_two",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.near_diagonal_sum_two",
+    "line": 185,
+    "why": "Slice 1c from `x = 2` — the near-diagonal sum. The terms with `0 < |log(x/n)| < 1/2`, each weighted by `min(1, 1/(T·|log(x/n)|))`, sum to at most `100·x·log(xT)²/T + 4·log x`, for `x ≥ 2`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 1 ≤ T"
+    ],
+    "proves": "(∑' n : ℕ, if 0 < |Real.log (x / n)| ∧ |Real.log (x / n)| < 1/2 then ArithmeticFunction.vonMangoldt n * min 1 (1/(T * |Real.log (x / n)|)) else 0) ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.near_diagonal_sum_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.abs_sub_one_le_two_abs_log"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.abs_sub_one_le_two_abs_log"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kernel_sum_bound_two",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.kernel_sum_bound_two",
+    "line": 478,
+    "why": "Slice 1's analytic composition from `x = 2`. The summed kernel error `‖Σ Λ(n)·(perronI(x/n) − δ(x/n))‖` is at most `700·x·log(xT)²/T + 17·log x`, for `x ≥ 2`, `T ≥ 2`. The near-diagonal factor is `(x/n)^c ≤ e^(5/4) ≤ 4`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 17 * Real.log x",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI_one_norm",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_kernel_truncated",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_summable",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.far_terms_sum_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.inv_log_le_of_two_le",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.near_diagonal_sum_two"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI_one_norm",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_kernel_truncated",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_summable",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.far_terms_sum_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.inv_log_le_of_two_le",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.near_diagonal_sum_two"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_to_psi_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "delta_sum_close_two",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.delta_sum_close_two",
+    "line": 761,
+    "why": "The δ-side of the composition from `x > 1`: the indicator sum is `ψ` up to one von Mangoldt value at the possible integer point.",
+    "sorry": false,
+    "needs": [
+     "hx : 1 < x"
+    ],
+    "proves": "‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronδ (x / n)‖ ≤ Real.log x",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.delta_sum_close_two",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_to_psi_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kernel_diff_summable_two",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.kernel_diff_summable_two",
+    "line": 875,
+    "why": "Summability of the kernel differences from `x > 1`, via the crude majorant `Λ(n)·(x/n)^c` — sharp enough for convergence, everywhere.",
+    "sorry": false,
+    "needs": [
+     "hx : 1 < x",
+     "hT : 1 ≤ T"
+    ],
+    "proves": "Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_diff_summable_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI_one_norm",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_kernel_truncated",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_summable"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI_one_norm",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perron_kernel_truncated",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_summable"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_to_psi_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "perron_to_psi_two",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.perron_to_psi_two",
+    "line": 930,
+    "why": "Slice 1 from `x = 2` — the Perron-to-ψ bound. The truncated Perron sum of the von Mangoldt function misses `ψ` by at most `700·x·log(xT)²/T + 18·log x`, for `x ≥ 2`, `T ≥ 2`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 18 * Real.log x",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_to_psi_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.delta_sum_close_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_diff_summable_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.delta_sum_close_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_diff_summable_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.explicit_formula_perron_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "perron_sum_eq_integral_two",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.perron_sum_eq_integral_two",
+    "line": 976,
+    "why": "The Fubini from `x > 1`. The kernel sum is the truncated `−ζ′/ζ` contour integral on the line `re s = 1 + 1/log x`.",
+    "sorry": false,
+    "needs": [
+     "hx : 1 < x",
+     "hT : 1 ≤ T"
+    ],
+    "proves": "(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) / riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)) * ((x:ℝ):ℂ) ^ (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) / (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) * Complex.I",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_sum_eq_integral_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.tsum_vonMangoldt_div_cpow",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_summable"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.perronI",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.tsum_vonMangoldt_div_cpow",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.vonMangoldt_rpow_summable"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.explicit_formula_perron_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "explicit_formula_perron_two",
+    "ns": "PerronTwo",
+    "full": "PerronTwo.explicit_formula_perron_two",
+    "line": 1141,
+    "why": "hEF, Perron form from `x = 2` — the truncated explicit formula at the line `re = c`, `c = 1 + 1/log x`. For `x ≥ 2`, `T ≥ 2`, `ψ` misses the truncated `−ζ′/ζ` integral by at most `700·x·log(xT)²/T + 18·log x`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) / riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t)) * ((x:ℝ):ℂ) ^ (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) / (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) * Complex.I‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 18 * Real.log x",
+    "file": "lean_stage3/Stage3/PerronTwo.lean",
+    "id": "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.explicit_formula_perron_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_sum_eq_integral_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_to_psi_two"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_sum_eq_integral_two",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_to_psi_two"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -74200,11 +74547,12 @@
    "Stage3.LeftKernel",
    "Stage3.LeftSmooth",
    "Stage3.CellFixedRow",
-   "Stage3.PiFixedRow"
+   "Stage3.PiFixedRow",
+   "Stage3.PerronTwo"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 170,
+  "lines": 171,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -74271,6 +74619,7 @@
    "lean_stage3/Stage3/Mollified.lean",
    "lean_stage3/Stage3/MollifiedMean.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
+   "lean_stage3/Stage3/PerronTwo.lean",
    "lean_stage3/Stage3/PiFixedRow.lean",
    "lean_stage3/Stage3/PiRemainder.lean",
    "lean_stage3/Stage3/PiToPsi.lean",

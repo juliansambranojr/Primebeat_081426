@@ -33,7 +33,7 @@ proved file is edited; no existing constant changes (`RouteNum`, `GateEval`
 pin `c1n`, `c3n`). The new constants are larger than the old, so the new
 theorem stands beside the old one.
 
-## G1 Perron's formula from 2 — `Stage3/PerronTwo.lean`
+## G1 Perron's formula from 2 — PROVED (unit 0463: `PerronTwo.explicit_formula_perron_two`, constants 700 and 18 as below; the bound behind `c ≤ 5/2` is `1/log x ≤ 3/2`; `near_diagonal_sum` also uses the floor in `Λ(n) ≤ 2·log x`, which holds from 2)
 
     explicit_formula_perron_two (hx : 2 ≤ x) (hT : 2 ≤ T) :
       ‖ψ x − (2πi)⁻¹·∫_{-T}^{T} (−ζ'/ζ)(c+it)·x^(c+it)/(c+it)·i dt‖
