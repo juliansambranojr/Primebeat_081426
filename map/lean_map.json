@@ -30714,7 +30714,8 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
-     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height"
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
     ]
    },
    {
@@ -33069,6 +33070,7 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -33178,6 +33180,7 @@
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_nonneg",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_order",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
@@ -57192,7 +57195,8 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
-     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
     ]
    },
    {
@@ -57226,7 +57230,9 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
-     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.norm_K_le_pow",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
     ]
    },
    {
@@ -57479,7 +57485,8 @@
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
-     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height"
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
     ]
    },
    {
@@ -57615,7 +57622,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero"
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
     ]
    },
    {
@@ -57672,7 +57680,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le"
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.norm_K_le_pow"
     ]
    },
    {
@@ -57805,7 +57814,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height"
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
     ]
    },
    {
@@ -58003,6 +58013,111 @@
     "exact": false,
     "uses": [
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/StepsRate.lean",
+  "module": "Stage3.StepsRate",
+  "stem": "StepsRate",
+  "header": "StepsRate — block R8 of `lean_stage3/design/runs.md`. 2026-11-23. The second size of unit 0472: the size rate. Away from the zeros the turned steps to a cutoff `N`, less their smooth term, grow no faster than `N` to the power of the largest real part of a zero below the height less the real part of the point.",
+  "imports": [
+   "Stage3.StepsPeak"
+  ],
+  "opens": [
+   "Kadiri",
+   "StepsPeak"
+  ],
+  "namespaces": [
+   "StepsRate"
+  ],
+  "lines": 141,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/StepsPeak.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "norm_K_le_pow",
+    "ns": "StepsRate",
+    "full": "StepsRate.norm_K_le_pow",
+    "line": 24,
+    "why": "A zero's kernel grows at most as the cutoff to the gap of the real parts.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "h1 : a ≠ s",
+     "h2 : a ≠ s - 1",
+     "hδ : 0 ≤ δ",
+     "hre : a.re - s.re ≤ δ"
+    ],
+    "proves": "‖K N s a‖ ≤ (‖s‖ / ‖a - s‖ + ‖s - 1‖ / ‖a - s + 1‖) * 2 * (N : ℝ) ^ δ",
+    "file": "lean_stage3/Stage3/StepsRate.lean",
+    "id": "lean_stage3/Stage3/StepsRate.lean::StepsRate.norm_K_le_pow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rate_upper",
+    "ns": "StepsRate",
+    "full": "StepsRate.rate_upper",
+    "line": 85,
+    "why": "The size rate, from above. At a point `s` with `0 < Re s ≤ 1` that is not a zero, if every zero below the height `T` has real part at most `Θ` and `Re s ≤ Θ`, the turned steps to the cutoff `N` less their smooth term are at most a sum over the zeros below `T`, free of `N`, times `N^(Θ − Re s)`, plus the error of `peak_formula`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "hs : 0 < s.re",
+     "hs1 : s.re ≤ 1",
+     "hT : 2 ≤ T",
+     "hsΘ : s.re ≤ Θ",
+     "hΘ : ∀ ρ ∈ FiniteOffLine.ZF T, (ρ : ℂ).re ≤ Θ",
+     "hne : ∀ ρ ∈ FiniteOffLine.ZF T, (ρ : ℂ) ≠ s"
+    ],
+    "proves": "‖S N s - K N s 1‖ ≤ (∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) / ‖(ρ : ℂ)‖ * ((‖s‖ / ‖(ρ : ℂ) - s‖ + ‖s - 1‖ / ‖(ρ : ℂ) - s + 1‖) * 2)) * (N : ℝ) ^ (Θ - s.re) + (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 s.re)",
+    "file": "lean_stage3/Stage3/StepsRate.lean",
+    "id": "lean_stage3/Stage3/StepsRate.lean::StepsRate.rate_upper",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_order",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.norm_K_le_pow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_order",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
+     "lean_stage3/Stage3/StepsRate.lean::StepsRate.norm_K_le_pow"
     ],
     "layer": "zeta",
     "used_by": []
@@ -85971,11 +86086,12 @@
    "Stage3.StepsPole",
    "Stage3.StepsPeak",
    "Stage3.HalfSieve",
-   "Stage3.SelfBound"
+   "Stage3.SelfBound",
+   "Stage3.StepsRate"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 190,
+  "lines": 191,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -86076,6 +86192,7 @@
    "lean_stage3/Stage3/StencilWeil.lean",
    "lean_stage3/Stage3/StepsPeak.lean",
    "lean_stage3/Stage3/StepsPole.lean",
+   "lean_stage3/Stage3/StepsRate.lean",
    "lean_stage3/Stage3/Stirling.lean",
    "lean_stage3/Stage3/TableDepths.lean",
    "lean_stage3/Stage3/TableRoute.lean",

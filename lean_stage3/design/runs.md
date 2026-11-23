@@ -137,3 +137,22 @@ from the tie takes the Möbius signs, `ψ(N) = Σ_k μ(k)·T(N/k)`,
 the Möbius signs. The same step as `HalfSieve.WobbleSqrt`: the Pascal signs
 cancel the half of each rounding exactly (R6), and the part of each rounding
 away from the half is weighed by the same signs.
+
+## R8 The size rate, from above — `Stage3/StepsRate.lean`
+
+The second size of unit 0472. From `StepsPeak.K_eq`, for `a ≠ s`, `a ≠ s − 1`
+and `Re a − Re s ≤ δ`, `δ ≥ 0`: `‖N^(a−s)‖ ≤ N^δ`, `‖2^(a−s)‖ ≤ N^δ`, and the
+second pair at most `N^δ·N`, so
+
+    ‖K(a)‖ ≤ (‖s‖/‖a−s‖ + ‖s−1‖/‖a−s+1‖)·2·N^δ.
+
+With `peak_formula`, at `s` not a zero, `0 < Re s ≤ 1`, every zero below `T`
+of real part at most `Θ ≥ Re s`:
+
+    ‖S − K(1)‖ ≤ (Σ_{|γ|<T} (m/‖ρ‖)·(‖s‖/‖ρ−s‖ + ‖s−1‖/‖ρ−s+1‖)·2)·N^(Θ − Re s) + error.
+
+- `norm_K_le_pow`, `rate_upper`.
+
+The rate the run read is at most the largest real part less the weight tried.
+That it is no less is the lower half: some zero of the largest real part must
+be seen in the sum and not cancelled by the others. Not stated here.

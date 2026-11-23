@@ -23,18 +23,19 @@ flowchart LR
   x9(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
   x10(["<b>FilterLadder</b><br/>filtered_modes_small_sq"]):::ext
   x11(["<b>StepsPeak</b><br/>norm_order<br/>peak_height"]):::ext
-  x12(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
-  x13(["<b>ArgCount</b><br/>rvM_crude"]):::ext
-  x14(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
-  x15(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
-  x16(["<b>CountEuler</b><br/>core<br/>term_other"]):::ext
-  x17(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
-  x18(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
-  x19(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
-  x20(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
-  x21(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
-  x22(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x23(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x12(["<b>StepsRate</b><br/>rate_upper"]):::ext
+  x13(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x14(["<b>ArgCount</b><br/>rvM_crude"]):::ext
+  x15(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
+  x16(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
+  x17(["<b>CountEuler</b><br/>core<br/>term_other"]):::ext
+  x18(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
+  x19(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x20(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
+  x21(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
+  x22(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x23(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x24(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n11
   n0 --> n5
@@ -62,9 +63,10 @@ flowchart LR
   n1 -.-> x7
   n1 -.-> x8
   n1 -.-> x9
-  n10 -.-> x19
+  n10 -.-> x20
   n2 -.-> x10
   n2 -.-> x11
+  n2 -.-> x12
   n2 -.-> x3
   n2 -.-> x4
   n2 -.-> x5
@@ -72,19 +74,19 @@ flowchart LR
   n6 -.-> x4
   n6 -.-> x5
   n7 -.-> x10
-  n7 -.-> x16
   n7 -.-> x17
+  n7 -.-> x18
   n7 -.-> x2
-  n9 -.-> x19
-  x12 -.-> n4
-  x13 -.-> n6
+  n9 -.-> x20
+  x13 -.-> n4
   x14 -.-> n6
   x15 -.-> n6
-  x18 -.-> n9
-  x20 -.-> n10
-  x21 -.-> n11
+  x16 -.-> n6
+  x19 -.-> n9
+  x21 -.-> n10
   x22 -.-> n11
   x23 -.-> n11
+  x24 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

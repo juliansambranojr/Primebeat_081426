@@ -1199,6 +1199,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`CountModes.norm_J_doubling_le`](./lean_stage3/CountModes.md#CountModes-norm_J_doubling_le) | theorem | reads ζ | `CountModes` | ‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (\|(ρ:ℂ).im\| * Real.log 2)) |
 | [`CountModes.norm_J_le`](./lean_stage3/CountModes.md#CountModes-norm_J_le) | theorem | shape | `CountModes` | ‖J k w‖ ≤ Real.exp (k * w.re) / (k * \|w.im\|) |
 | [`StepsPeak.norm_K_le`](./lean_stage3/StepsPeak.md#StepsPeak-norm_K_le) | theorem | shape | `StepsPeak` | ‖K N s a‖ ≤ (‖s‖ / ‖a - s‖ + ‖s - 1‖ / ‖a - s + 1‖) * 2 |
+| [`StepsRate.norm_K_le_pow`](./lean_stage3/StepsRate.md#StepsRate-norm_K_le_pow) | theorem | shape | `StepsRate` | ‖K N s a‖ ≤ (‖s‖ / ‖a - s‖ + ‖s - 1‖ / ‖a - s + 1‖) * 2 * (N : ℝ) ^ δ |
 | [`PiFixedRow.norm_le_norm_add_one`](./lean_stage3/PiFixedRow.md#PiFixedRow-norm_le_norm_add_one) | theorem | shape | `PiFixedRow` | ‖ρ‖ ≤ ‖ρ + 1‖ |
 | [`BoxBounds.norm_le_of_sq`](./lean_stage3/BoxBounds.md#BoxBounds-norm_le_of_sq) | theorem | shape | `BoxBounds` | ‖z‖ ≤ c |
 | [`RHPull.norm_line_ge`](./lean_stage3/LineBound.md#RHPull-norm_line_ge) | theorem | shape | `LineBound` | (1 + \|t\|) / 3 ≤ ‖((σRH X : ℂ)) + I * (t : ℂ)‖ |
@@ -1565,6 +1566,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerCompare.rate_neg_of_ge`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-rate_neg_of_ge) | theorem | shape | `WeilPowerCompare` | rate m ε' Δ ε &lt; 0 |
 | [`WeilPowerCompare.rate_neg_of_le`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-rate_neg_of_le) | theorem | shape | `WeilPowerCompare` | rate m ε' Δ ε &lt; 0 |
 | [`WeilPowerCompare.rate_neg_of_qerr`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-rate_neg_of_qerr) | theorem | shape | `WeilPowerCompare` | rate m ε' Δ ε &lt; 0 |
+| [`StepsRate.rate_upper`](./lean_stage3/StepsRate.md#StepsRate-rate_upper) | theorem | reads ζ | `StepsRate` | ‖S N s - K N s 1‖ ≤ (∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) / ‖(ρ : ℂ)‖ * ((‖s‖ / ‖(ρ : ℂ) - s‖ + ‖s - 1‖ / ‖(ρ : ℂ) - s + 1‖) * 2)) * (N : ℝ) ^ (Θ - s.re) + (‖s‖ + ‖s - 1‖) *… |
 | [`Crossover.ratio`](./lean/Crossover.md#Crossover-ratio) | def | shape | `Crossover` | ℝ |
 | [`FilterAttained.ratio`](./lean_stage3/FilterAttained.md#FilterAttained-ratio) | def | reads ζ | `FilterAttained` | ℂ |
 | [`CountReduction.ratio_pow`](./lean_stage3/CountReduction.md#CountReduction-ratio_pow) | theorem | shape | `CountReduction` | ((2:ℝ) ^ θ' / 2) ^ k = (2:ℝ) ^ (-(k:ℝ) * (1 - θ')) |

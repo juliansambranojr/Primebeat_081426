@@ -179,6 +179,7 @@ import Stage3.StepsPole
 import Stage3.StepsPeak
 import Stage3.HalfSieve
 import Stage3.SelfBound
+import Stage3.StepsRate
 
 namespace Stage3
 

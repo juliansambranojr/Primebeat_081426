@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R8 of `design/runs.md`: `Stage3/StepsRate.lean`
+
+    DONE        `norm_K_le_pow`: a zero's kernel is at most the cutoff to the
+                gap of the real parts. `rate_upper`: away from the zeros the
+                turned steps less their smooth term grow at most as the
+                cutoff to the largest real part below the height less the
+                real part of the point; one unit
+    ASSUMED     Julian, 2026-11-23: "are you going to fix 1, 2, 3 and 4 on
+                the list". The second size of item 3, its upper half.
+                Written and built here
+    DEPENDS     `StepsPeak.peak_formula`, `StepsPeak.K_eq`
+    OUT         the lower half of the rate
+    OUTCOME     proved, unit 0487
+
 ### 2026-11-23 · block R7 of `design/runs.md`: `Stage3/SelfBound.lean`
 
     DONE        `self_bound`: the staircase read at `N`, `N/2`, …, `N/N` adds
