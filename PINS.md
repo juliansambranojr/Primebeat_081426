@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R5 of `design/runs.md`: `Stage3/StepsPeak.lean`
+
+    DONE        `peak_formula`: the turned steps to a cutoff `N` with the ramp,
+                written through the zeros below `T`, with the error bound.
+                `peak_at_zero`: at a zero of order `m` the term `−m·log N`.
+                `peak_height`: the other zeros' part when none lies to the
+                right; one unit
+    ASSUMED     Julian, 2026-11-23: "are you going to fix 1, 2, 3 and 4 on
+                the list". The first size left in item 3. An Opus worker
+                writes it; read and built here
+    DEPENDS     `ExplicitTwo.explicit_formula_all_two`, Mathlib partial
+                summation
+    OUT         the size rate; summability over all zeros if the tree lacks it
+
 ### 2026-11-23 · block R4 of `design/runs.md`: `Stage3/StepsPole.lean`
 
     DONE        `steps_sum`: the turned steps are `−ζ'/ζ` for `Re s > 1`.

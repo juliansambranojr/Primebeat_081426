@@ -51,3 +51,69 @@ is analytic. From `ContourShift.zeta_local_data_zero` at `x = 1`.
 
 The weight of the pole, `m/ρ`, is the weight the zero carries in the table's
 residual (`FilterLadder.wz`).
+
+## R5 The height of a finite peak — `Stage3/StepsPeak.lean`
+
+The first size of unit 0472: the turned steps up to a cutoff `N`, with the ramp
+`1 − n/N`, stand at height `m·log N` at a zero of order `m`.
+
+`f(u) = u^(−s)·(1 − u/N)`, `S(N,s) = Σ_{n≤N} Λ(n)·f(n)`. `f(N) = 0`, so by
+partial summation `S(N,s) = ∫_1^N ψ(u)·g(u) du` with
+`g(u) = −f'(u) = s·u^(−s−1) − (s−1)·u^(−s)/N`. `ψ = 0` on `[1,2)`.
+
+For a power `u^a` on `[2,N]`:
+
+    K(a) = ∫_2^N u^a·g(u) du
+         = s·(N^(a−s) − 2^(a−s))/(a−s) − (s−1)·(N^(a−s+1) − 2^(a−s+1))/((a−s+1)·N)   (a ≠ s, s−1)
+    K(s) = s·(log N − log 2) − (s−1)·(N−2)/N.
+
+`ExplicitTwo.explicit_formula_all_two` on `[2,N]`:
+`ψ(u) = u − Σ_{|γ|<T} m·u^ρ/ρ + E(u,T)`,
+`‖E‖ ≤ c1t·u·log²(uT)/T + c3t·log u + Bleft2·u^(−1/4)`. So
+
+    S(N,s) = K(1) − Σ_{|γ|<T} (m/ρ)·K(ρ) + ∫_2^N E·g.
+
+With `σ = Re s > 0` and `u ≤ N`: `‖g(u)‖ ≤ (‖s‖ + ‖s−1‖)·u^(−σ−1)`, so
+
+    ‖∫_2^N E·g‖ ≤ (‖s‖+‖s−1‖)·(c1t·N·log²(NT)/T + c3t·A₁(σ) + Bleft2·A₂(σ)),
+
+`A₁(σ) = ∫_2^∞ log u·u^(−σ−1) du`, `A₂(σ) = ∫_2^∞ u^(−σ−5/4) du`, both finite.
+
+At `s = ρ₀`, a zero of order `m₀` below height `T`: its own term is
+`−(m₀/ρ₀)·K(ρ₀) = −m₀·log N + m₀·log 2 + m₀·(ρ₀−1)·(N−2)/(ρ₀·N)`. Every other
+zero carries `N^(ρ−ρ₀)`, of size `N^(β−β₀)`.
+
+- `peak_formula`: the identity above with the error bound, every `N ≥ 2`,
+  `T ≥ 2`, `s` with `Re s > 0`.
+- `peak_at_zero`: at `s = ρ₀`, the `−m₀·log N` term split out.
+- `peak_height` : if no zero below `T` lies right of `ρ₀`, the other zeros'
+  terms are at most `Σ m/(‖ρ‖)·(‖ρ₀‖/‖ρ−ρ₀‖ + ‖ρ₀−1‖/‖ρ−ρ₀+1‖)·2`, free of `N`.
+  The peak is `m₀·log N` plus the smooth term `K(1)` plus a part bounded by the
+  sum over zeros to height `T` and the error.
+
+## R6 The half in the sieve — `Stage3/HalfSieve.lean`
+
+Julian's reason for the open link: the offset of one half at every doubling.
+Three exact facts carry it into the sieve.
+
+1. `Midpoint n − (2^n − 1) = 1/2 = −ζ(0)` (`riemannZeta_zero`).
+2. Each rounding is a fractional part. The signs over the sieve's terms are
+   the alternating sum of a Pascal row and add to `0` once `2` is among the
+   primes (`N ≥ 4`). So `netRounding N = Σ_T (−1)^|T|·(fract(N/d_T) − 1/2)`:
+   the half of every rounding cancels identically.
+3. `resid N = resid √N − wobble N`, with `wobble = netRounding − smoothNet`
+   (`SieveResidual.net_wobble`).
+
+Induction down the square roots. With `|wobble N| ≤ C·√N·log N` for `N ≥ 2`
+and `K = 2C + 2M`, `M = |resid 1| + |resid 2| + |resid 3|`: for `s = √N ≥ 4`,
+`4s ≤ s² ≤ N` gives `2√s ≤ √N`, so `K·√s·log s ≤ (K/2)·√N·log N`, and
+`(K/2) + C ≤ K`. For `s ≤ 3` the residual at `s` is at most `M ≤ 2M·√N·log N`.
+No factor is lost at a step: the constant is the same at every `N`.
+
+- `resid_of_wobble`, `schoenfeld_of_wobble` (integers to reals by `Li' = 1/log`).
+- `spiralLink_iff_wobble`: `SpiralLink ↔ WobbleSqrt`, through
+  `PiToPsi.RH_iff_schoenfeldWeak`.
+
+What this leaves: `WobbleSqrt` itself. It is a statement about the fractional
+parts of `N/d` over the squarefree `d` built from the primes up to `√N`,
+measured from one half, less `smoothNet`.
