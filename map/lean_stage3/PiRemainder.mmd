@@ -15,13 +15,14 @@ flowchart LR
   n13["<b>norm_tr_efRem_le_of</b><br/>‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2"]:::thm
   n14["<b>norm_tr_efRem_le ■</b><br/>∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ x : ℝ, x₀ ≤ x → ‖PiZeros.tr (PiZeros.efRem…"]:::thm
   x0(["<b>AttainedPi</b><br/>fin_bound"]):::ext
-  x1(["<b>FilterLadder</b><br/>filtered_modes_small<br/>filtered_modes_small_sq"]):::ext
-  x2(["<b>FiniteOffLinePi</b><br/>row_bound"]):::ext
-  x3(["<b>PiFixedRow</b><br/>4 theorems"]):::ext
-  x4(["<b>FiniteOffLine</b><br/>4 theorems"]):::ext
-  x5(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
-  x6(["<b>PiZeros</b><br/>4 theorems"]):::ext
-  x7(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x1(["<b>CountReduction</b><br/>count_modes_small"]):::ext
+  x2(["<b>FilterLadder</b><br/>filtered_modes_small<br/>filtered_modes_small_sq"]):::ext
+  x3(["<b>FiniteOffLinePi</b><br/>row_bound"]):::ext
+  x4(["<b>PiFixedRow</b><br/>4 theorems"]):::ext
+  x5(["<b>FiniteOffLine</b><br/>4 theorems"]):::ext
+  x6(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x7(["<b>PiZeros</b><br/>4 theorems"]):::ext
+  x8(["<b>GlueNum</b><br/>4 theorems"]):::ext
   n0 --> n12
   n0 --> n13
   n0 --> n2
@@ -45,28 +46,30 @@ flowchart LR
   n0 -.-> x1
   n0 -.-> x2
   n0 -.-> x3
-  n11 -.-> x3
+  n0 -.-> x4
+  n11 -.-> x4
   n12 -.-> x0
-  n12 -.-> x2
+  n12 -.-> x3
   n13 -.-> x0
-  n13 -.-> x2
-  n2 -.-> x3
-  n3 -.-> x3
+  n13 -.-> x3
+  n2 -.-> x4
+  n3 -.-> x4
   n5 -.-> x0
   n5 -.-> x1
   n5 -.-> x2
-  n7 -.-> x3
-  x4 -.-> n1
-  x4 -.-> n3
-  x4 -.-> n4
-  x4 -.-> n5
-  x4 -.-> n6
-  x5 -.-> n2
-  x6 -.-> n11
-  x6 -.-> n13
-  x6 -.-> n6
-  x7 -.-> n10
-  x7 -.-> n9
+  n5 -.-> x3
+  n7 -.-> x4
+  x5 -.-> n1
+  x5 -.-> n3
+  x5 -.-> n4
+  x5 -.-> n5
+  x5 -.-> n6
+  x6 -.-> n2
+  x7 -.-> n11
+  x7 -.-> n13
+  x7 -.-> n6
+  x8 -.-> n10
+  x8 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

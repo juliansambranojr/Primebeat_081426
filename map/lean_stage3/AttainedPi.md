@@ -5,7 +5,7 @@ AttainedPi — block C7 of `lean_stage3/design/carlson.md`. 2026-11-23. The one-
 17 theorems, 5 definitions, 887 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md), [`LadderMean`](../lean_stage3/LadderMean.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md)
 
 ## The picture
 
@@ -30,12 +30,13 @@ flowchart LR
   n16["<b>attained_off_line_pi ■</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>FiniteOffLinePi</b><br/>7 theorems"]):::ext
   x1(["<b>PiZeros</b><br/>4 theorems"]):::ext
-  x2(["<b>PiRemainder</b><br/>4 theorems"]):::ext
-  x3(["<b>ZeroSummable</b><br/>sum_le_const<br/>summable_norm_coef<br/>summable_order_div"]):::ext
-  x4(["<b>FiniteOffLine</b><br/>mem_ZF"]):::ext
-  x5(["<b>CellModes</b><br/>mode_two_int"]):::ext
-  x6(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
-  x7(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x2(["<b>CountReduction</b><br/>count_modes_small"]):::ext
+  x3(["<b>PiRemainder</b><br/>4 theorems"]):::ext
+  x4(["<b>ZeroSummable</b><br/>sum_le_const<br/>summable_norm_coef<br/>summable_order_div"]):::ext
+  x5(["<b>FiniteOffLine</b><br/>mem_ZF"]):::ext
+  x6(["<b>CellModes</b><br/>mode_two_int"]):::ext
+  x7(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
+  x8(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n3
@@ -61,20 +62,22 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n16
+  n1 -.-> x2
+  n4 -.-> x2
   x0 -.-> n0
   x0 -.-> n3
   x0 -.-> n7
   x1 -.-> n0
   x1 -.-> n7
-  x2 -.-> n7
-  x3 -.-> n13
-  x3 -.-> n16
-  x3 -.-> n8
-  x3 -.-> n9
-  x4 -.-> n15
-  x5 -.-> n16
+  x3 -.-> n7
+  x4 -.-> n13
+  x4 -.-> n16
+  x4 -.-> n8
+  x4 -.-> n9
+  x5 -.-> n15
   x6 -.-> n16
   x7 -.-> n16
+  x8 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -202,11 +205,12 @@ line 181
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`AttainedPi.norm_log_ipart_le`](#AttainedPi-norm_log_ipart_le) — `` Real.log x * ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * (Real.sqrt x * Real.log x) + 8 * (x ^ max ρ.re (1 / 2) / Real.log x)) ``
   - [`AttainedPi.norm_log_piMode_le`](#AttainedPi-norm_log_piMode_le) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (x ^ ρ.re + 3 * (Real.sqrt x * Real.log x) + 8 * (x ^ max ρ.re (1 / 2) / Real.log x)) ``
   - [`AttainedPi.norm_log_piMode_low`](#AttainedPi-norm_log_piMode_low) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (9 * x ^ θ₁ + 3 * (Real.sqrt x * Real.log x)) ``
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
 
 <a name="AttainedPi-norm_log_ipart_le"></a>
 ### `AttainedPi.norm_log_ipart_le`
@@ -307,9 +311,10 @@ Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (9 * x ^ θ₁ + 3 * (Real.sq
   - [`AttainedPi.norm_log_piMode_le`](#AttainedPi-norm_log_piMode_le) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (x ^ ρ.re + 3 * (Real.sqrt x * Real.log x) + 8 * (x ^ max ρ.re (1 / 2) / Real.log x)) ``
   - [`AttainedPi.one_le_log`](#AttainedPi-one_le_log) — `` 1 ≤ Real.log x ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`AttainedPi.fin_bound`](#AttainedPi-fin_bound) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
 
 <a name="AttainedPi-norm_log_piMode_band"></a>
 ### `AttainedPi.norm_log_piMode_band`

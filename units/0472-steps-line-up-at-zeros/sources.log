@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-23T08:02:19Z
+# unit: 0472-steps-line-up-at-zeros
+# sources searched: 437
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31977
+  My posit is that a non trivial zero is a cluster of steps that equate to a curve when seen together.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31995
+  I take this as in agreement of what I'm saying when you have a pair they don't come from no where ju...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32796
+  "You put the square-root weight by hand" so why would that be? You did it but had a reason that did ...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32813
+  Yes run it and log it
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32462
+  A_N(gamma) = | sum_{n<=N} (Lambda(n) - 1) * n^(-1/2 - i*gamma) * (1 - n/N) |
+
+# 6 found, 0 missing

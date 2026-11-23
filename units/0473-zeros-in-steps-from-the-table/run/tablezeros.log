@@ -1,0 +1,16 @@
+peaks {'rank': 1, 'height': 14.14, 'folded_angle': 2.7653, 'weight_2_over_height': 0.1414, 'nearest_table_max': 2.7265, 'angle_gap': 0.0388, 'table_amplitude_there': 0.0922}
+peaks {'rank': 2, 'height': 21.015, 'folded_angle': 2.0001, 'weight_2_over_height': 0.0952, 'nearest_table_max': 2.0085, 'angle_gap': 0.0084, 'table_amplitude_there': 0.1042}
+peaks {'rank': 3, 'height': 25.015, 'folded_angle': 1.5105, 'weight_2_over_height': 0.08, 'nearest_table_max': 1.443, 'angle_gap': 0.0675, 'table_amplitude_there': 0.1411}
+peaks {'rank': 4, 'height': 30.425, 'folded_angle': 2.2394, 'weight_2_over_height': 0.0657, 'nearest_table_max': 2.2805, 'angle_gap': 0.0411, 'table_amplitude_there': 0.1342}
+peaks {'rank': 5, 'height': 32.935, 'folded_angle': 2.3039, 'weight_2_over_height': 0.0607, 'nearest_table_max': 2.2805, 'angle_gap': 0.0234, 'table_amplitude_there': 0.1342}
+peaks {'rank': 6, 'height': 37.58, 'folded_angle': 0.9157, 'weight_2_over_height': 0.0532, 'nearest_table_max': 0.9275, 'angle_gap': 0.0118, 'table_amplitude_there': 0.0974}
+spectrum_top {'rank': 1, 'angle': 1.443, 'amplitude': 0.1411, 'nearest_peak_height': 43.335, 'nearest_peak_rank': 8, 'angle_gap': 0.0646}
+spectrum_top {'rank': 2, 'angle': 2.2805, 'amplitude': 0.1342, 'nearest_peak_height': 32.935, 'nearest_peak_rank': 5, 'angle_gap': 0.0234}
+spectrum_top {'rank': 3, 'angle': 2.0085, 'amplitude': 0.1042, 'nearest_peak_height': 21.015, 'nearest_peak_rank': 2, 'angle_gap': 0.0084}
+spectrum_top {'rank': 4, 'angle': 0.9275, 'amplitude': 0.0974, 'nearest_peak_height': 37.58, 'nearest_peak_rank': 6, 'angle_gap': 0.0118}
+spectrum_top {'rank': 5, 'angle': 2.7265, 'amplitude': 0.0922, 'nearest_peak_height': 14.14, 'nearest_peak_rank': 1, 'angle_gap': 0.0388}
+explained {'peaks_used': 1, 'share': 0.1304, 'random_mean': 0.0357, 'random_p95': 0.1199, 'random_max': 0.1312}
+explained {'peaks_used': 2, 'share': 0.255, 'random_mean': 0.0782, 'random_p95': 0.1696, 'random_max': 0.2766}
+explained {'peaks_used': 3, 'share': 0.3384, 'random_mean': 0.1135, 'random_p95': 0.2268, 'random_max': 0.3301}
+explained {'peaks_used': 5, 'share': 0.516, 'random_mean': 0.1898, 'random_p95': 0.3273, 'random_max': 0.4547}
+{'N': 100000, 'gamma_lo': 10.0, 'gamma_hi': 45.0, 'staircase_peaks': 8, 'rows_used': 53, 'row_lo': 10, 'row_hi': 62, 'period_in_height': 9.0647, 'level': -0.8018, 'resolution_angle': 0.2371}

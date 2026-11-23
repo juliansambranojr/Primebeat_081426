@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-11-23T07:08:36Z
+# unit: 0469-count-modes
+# sources searched: 436
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a76793d0f51e7b1ca.jsonl:1243
+  theorem im_ne_zero (ρ : NontrivialZeros) : (ρ : ℂ).im ≠ 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31707
+  theorem J_sub {k : ℕ} (hk : 1 ≤ k) {w : ℂ} (hw : w.im ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a76793d0f51e7b1ca.jsonl:1508
+  J k w - J 1 w = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * w) / (v:ℂ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:31736
+  theorem piMode_doubling (ρ : NontrivialZeros) {k : ℕ} (hk : 1 ≤ k) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a76793d0f51e7b1ca.jsonl:1772
+  PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst ρ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a76793d0f51e7b1ca.jsonl:1811
+  theorem norm_cst_le (ρ : NontrivialZeros) : ‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2) :=
+
+# 7 found, 0 missing

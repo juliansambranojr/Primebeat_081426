@@ -22,6 +22,53 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · blocks N2, N3-E of `design/countmodes.md`: `Stage3/CountReduction.lean`, `Stage3/CountEuler.lean`
+
+    DONE        `CountReduction.count_modes_small`: under the ladder bound on
+                `π`, `1/2 < σ < Θ ≤ 1`, `β ≤ Θ`: there is `E`, `σ ≤ E < Θ`,
+                with `‖Σ'_{β≥σ} m·J_k‖ ≤ A·k²·2^(kE)` for `k ≥ 2`;
+                `tail_rate`, `summable_J`; one unit.
+                `CountEuler.euler_exposed_false`: no zero with `β > E` has
+                its mode strictly outside a disc, centred on the ray
+                opposite to it, that holds every other mode right of `σ`;
+                one unit
+    ASSUMED     Julian, 2026-11-23: "Merge then the count". The design as
+                corrected by an independent review; N3-E is the reviewer's
+                derivation and the build is its first check. Written by Opus
+                workers; read and built here
+    DEPENDS     `CountModes.piMode_doubling`, `PiZeros.pi_eq_zero_sum`,
+                `FixedRowTwo.norm_tr_efRem_le_height_two`,
+                `ZeroDensity.zero_density`, `ZeroSummable.shell_sum_le`,
+                `AliasClass.re_order_div_pos`
+    OUT         the forms with slits; modes stacked along one ray
+    OUTCOME     proved: `CountReduction` unit 0470, `CountEuler` unit 0471
+
+### 2026-11-23 · block N1 of `design/countmodes.md`: `Stage3/CountModes.lean`
+
+    DONE        `piMode_doubling`: for a zero `ρ`, `k ≥ 1`,
+                `piMode ρ (2^k) = J_k(ρ·log 2) + c_ρ`, `J_k` the integral of
+                the radial segment of modes; `norm_J_le`, `norm_c_le`;
+                `im_ne_zero`: no nontrivial zero is real; one unit
+    ASSUMED     Julian, 2026-11-23: "Merge then the count". The design as
+                corrected by an independent review. Written by an Opus
+                worker; read and built here
+    DEPENDS     `PiZeros.piMode`, `FiniteOffLinePi.piMode_eq`, PNT+
+                `Zeta0EqZeta`
+    OUT         blocks N2, N3-E; the forms with slits
+    OUTCOME     proved, unit 0469
+
+### 2026-11-23 · design `design/countmodes.md`, blocks N1 to N3: joint 10 on the count's ladder
+
+    DONE        the design reviewed by an independent worker asked to break
+                it; no Lean yet
+    ASSUMED     Julian, 2026-11-23: "Merge then the count". On the count's
+                ladder a zero is a radial segment of modes; the filters of
+                units 0466 to 0468 do not remove a segment; the route is the
+                generating function with slits
+    DEPENDS     `PiZeros.pi_eq_zero_sum`, `ZeroDensity.zero_density`,
+                `PiRemainder.zinv_le_log`, `FixedRowTwo.tr_efRem_fixed_two`
+    OUT         the Lean of N1 to N3 until the review is in
+
 ### 2026-11-23 · blocks S2, S3 of `design/stencil.md`: `Stage3/FilterAttained.lean`, `Stage3/FilterAccum.lean`
 
     DONE        `FilterAttained.filter_attained_false`: under the ladder bound

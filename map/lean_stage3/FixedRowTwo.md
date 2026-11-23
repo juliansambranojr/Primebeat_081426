@@ -7,7 +7,7 @@ FixedRowTwo — block G3 of `lean_stage3/design/floor.md`. 2026-11-23. The fixed
 13 theorems, 1 definition, 495 lines. 
 
 **Imports:** [`ExplicitTwo`](../lean_stage3/ExplicitTwo.md), [`PiFixedRow`](../lean_stage3/PiFixedRow.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FilterLadder`](../lean_stage3/FilterLadder.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md), [`FilterLadder`](../lean_stage3/FilterLadder.md)
 
 ## The picture
 
@@ -28,12 +28,13 @@ flowchart LR
   n12["<b>table_cell_fixed_row_two ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tab…"]:::thm
   x0(["<b>ExplicitTwo</b><br/>Cht_pos<br/>explicit_formula_all_two"]):::ext
   x1(["<b>GlueNum</b><br/>Csn_pos"]):::ext
-  x2(["<b>FilterLadder</b><br/>Kf_nonneg<br/>formula_row"]):::ext
-  x3(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>tendsto_log_sq_div"]):::ext
-  x4(["<b>CellZeros</b><br/>5 theorems"]):::ext
-  x5(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
-  x6(["<b>PerronTwo</b><br/>inv_log_le_of_two_le"]):::ext
-  x7(["<b>PiZeros</b><br/>pi_eq_zero_sum<br/>table_cell_eq_zero_sum"]):::ext
+  x2(["<b>CountReduction</b><br/>count_modes_small"]):::ext
+  x3(["<b>FilterLadder</b><br/>Kf_nonneg<br/>formula_row"]):::ext
+  x4(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>tendsto_log_sq_div"]):::ext
+  x5(["<b>CellZeros</b><br/>5 theorems"]):::ext
+  x6(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
+  x7(["<b>PerronTwo</b><br/>inv_log_le_of_two_le"]):::ext
+  x8(["<b>PiZeros</b><br/>pi_eq_zero_sum<br/>table_cell_eq_zero_sum"]):::ext
   n0 --> n7
   n0 --> n9
   n1 --> n5
@@ -54,23 +55,26 @@ flowchart LR
   n8 --> n9
   n9 --> n10
   n0 -.-> x2
-  n1 -.-> x2
-  n2 -.-> x2
+  n0 -.-> x3
+  n1 -.-> x3
+  n2 -.-> x3
+  n6 -.-> x2
+  n9 -.-> x2
   x0 -.-> n0
   x0 -.-> n3
   x0 -.-> n7
   x0 -.-> n9
   x1 -.-> n0
-  x3 -.-> n10
-  x3 -.-> n2
-  x3 -.-> n5
-  x4 -.-> n12
-  x4 -.-> n3
-  x5 -.-> n4
-  x6 -.-> n7
-  x6 -.-> n9
-  x7 -.-> n11
-  x7 -.-> n12
+  x4 -.-> n10
+  x4 -.-> n2
+  x4 -.-> n5
+  x5 -.-> n12
+  x5 -.-> n3
+  x6 -.-> n4
+  x7 -.-> n7
+  x7 -.-> n9
+  x8 -.-> n11
+  x8 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -94,7 +98,7 @@ The constant of the count at a fixed row from `x = 2`: `(3/2)·c3t + (9/4)·Blef
 
 - **Is:** `` Api2 : ℝ := 3 / 2 * ExplicitTwo.c3t + 9 / 4 * ExplicitTwo.Bleft2 ``
 - **Built from:** [`ExplicitTwo.Bleft2`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Bleft2), [`ExplicitTwo.c3t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c3t)
-- **Used by 7:** [`FixedRowTwo.Api2_nonneg`](#FixedRowTwo-Api2_nonneg), [`FixedRowTwo.norm_integral_two_le`](#FixedRowTwo-norm_integral_two_le), [`FixedRowTwo.norm_integrand_two_le`](#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.pi_fixed_row_two`](#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](#FixedRowTwo-table_cell_fixed_row_two), [`FixedRowTwo.tr_efRem_fixed_two`](#FixedRowTwo-tr_efRem_fixed_two)
+- **Used by 8:** [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FixedRowTwo.Api2_nonneg`](#FixedRowTwo-Api2_nonneg), [`FixedRowTwo.norm_integral_two_le`](#FixedRowTwo-norm_integral_two_le), [`FixedRowTwo.norm_integrand_two_le`](#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.pi_fixed_row_two`](#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](#FixedRowTwo-table_cell_fixed_row_two), [`FixedRowTwo.tr_efRem_fixed_two`](#FixedRowTwo-tr_efRem_fixed_two)
 
 ## Theorems
 
@@ -120,8 +124,9 @@ line 44 · arrows read from text
 
 **Definitions its proof touches:** [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`FilterLadder.Kf_nonneg`](../lean_stage3/FilterLadder.md#FilterLadder-Kf_nonneg) (FilterLadder) — `` 0 ≤ Kf ``
   - [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) (FilterLadder) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
   - [`FixedRowTwo.norm_integrand_two_le`](#FixedRowTwo-norm_integrand_two_le) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
@@ -309,8 +314,9 @@ line 219 · arrows read from text
 
 **Definitions its proof touches:** [`FixedRowTwo.Api2`](#FixedRowTwo-Api2)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`FixedRowTwo.norm_tr_efRem_le_height_two`](#FixedRowTwo-norm_tr_efRem_le_height_two) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
   - [`FixedRowTwo.table_cell_fixed_row_two`](#FixedRowTwo-table_cell_fixed_row_two) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tableFrom TableRoute.rowN (r : ℤ) d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ … ``
 
@@ -411,8 +417,9 @@ line 332 · arrows read from text
 
 **Definitions its proof touches:** [`ExplicitTwo.Bleft2`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Bleft2), [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t), [`ExplicitTwo.c3t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c3t), [`FixedRowTwo.Api2`](#FixedRowTwo-Api2), [`PiZeros.efRem`](../lean_stage3/PiZeros.md#PiZeros-efRem), [`PiZeros.tr`](../lean_stage3/PiZeros.md#PiZeros-tr), [`PiZeros.wt`](../lean_stage3/PiZeros.md#PiZeros-wt)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`FixedRowTwo.tr_efRem_fixed_two`](#FixedRowTwo-tr_efRem_fixed_two) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖PiZeros.tr (PiZeros.efRem T) x‖ ≤ Api2 * (1 + Real.log x) + ε ``
 
 <a name="FixedRowTwo-tr_efRem_fixed_two"></a>

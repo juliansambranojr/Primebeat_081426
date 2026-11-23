@@ -1,0 +1,88 @@
+flowchart LR
+  n0["<b>binom_shift</b><br/>∑ j ∈ Finset.range (m + 1), (m.choose j : ℂ) * (-c) ^ (m - j) * …"]:::cnt
+  n1["<b>zeta_pow</b><br/>zeta w s ^ k / (w - s) = Complex.exp ((k:ℂ) * (w - s)) / (w - s)"]:::shp
+  n2["<b>J_eq_zeta</b><br/>CountModes.J k w = ∫ s in Set.Ioi (0:ℝ), zeta w s ^ k / (w - s)"]:::shp
+  n3["<b>integrable_zeta_pow</b><br/>IntegrableOn (fun s : ℝ =＞ zeta w s ^ k / (w - s)) (Set.Ioi 0)"]:::shp
+  n4["<b>seg_sum</b><br/>seg w c m s = ∑ j ∈ Finset.range (m + 1), coefE c m j * (zeta w …"]:::shp
+  n5["<b>transform_eq</b><br/>∑ j ∈ Finset.range (m + 1), coefE c m j * CountModes.J (j + 1) w…"]:::shp
+  n6["<b>transform_le</b><br/>‖∑ j ∈ Finset.range (m + 1), coefE c m j * a (j + 1)‖ ≤ A * ((m:…"]:::shp
+  n7["<b>seg_in_ball</b><br/>‖z * (t:ℂ) - c‖ ≤ r"]:::shp
+  n8["<b>others_le</b><br/>‖F w c m‖ ≤ ‖Complex.exp w‖ * r ^ m / |w.im|"]:::shp
+  n9["<b>lor_nonneg</b><br/>0 ≤ lor w s"]:::cnt
+  n10["<b>lor_eq</b><br/>lor w s = Real.pi / |w.im| * ProbabilityTheory.cauchyPDFReal w.r…"]:::shp
+  n11["<b>integrable_lor</b><br/>Integrable (lor w)"]:::shp
+  n12["<b>integral_lor</b><br/>∫ s, lor w s = Real.pi / |w.im|"]:::shp
+  n13["<b>setIntegral_lor_le</b><br/>∫ s in Set.Ioi (0:ℝ), lor w s ≤ Real.pi / |w.im|"]:::shp
+  n14["<b>norm_sub_sq</b><br/>‖(w - (s:ℂ)) ^ 2‖ = (s - w.re) ^ 2 + w.im ^ 2"]:::shp
+  n15["<b>gf_nonneg</b><br/>0 ≤ gf p κ s"]:::shp
+  n16["<b>gf_le</b><br/>gf p κ s ≤ p + κ"]:::shp
+  n17["<b>gf_lt</b><br/>gf p κ s ＜ p + κ"]:::shp
+  n18["<b>gf_zero</b><br/>gf p κ 0 = p + κ"]:::shp
+  n19["<b>hasDerivAt_gf</b><br/>HasDerivAt (gf p κ) (p * (Real.exp (-s) * -1)) s"]:::shp
+  n20["<b>integrable_Pc</b><br/>IntegrableOn (Pc w p κ m) (Set.Ioi 0)"]:::shp
+  n21["<b>norm_Qc_le</b><br/>‖Qc w p κ n s‖ ≤ (p + κ) ^ n * lor w s"]:::shp
+  n22["<b>integrable_Qc</b><br/>IntegrableOn (Qc w p κ n) (Set.Ioi 0)"]:::shp
+  n23["<b>hasDerivAt_Gc</b><br/>HasDerivAt (Gc w p κ (m + 1)) (Pc w p κ m s - Qc w p κ (m + 1) s…"]:::shp
+  n24["<b>tendsto_Gc</b><br/>Tendsto (Gc w p κ (m + 1)) atTop (𝓝 0)"]:::shp
+  n25["<b>class_main</b><br/>∫ s in Set.Ioi (0:ℝ), Pc w p κ m s = (((p + κ) ^ (m + 1) : ℝ) : …"]:::shp
+  n26["<b>seg_class</b><br/>seg w (-(κ:ℂ) * u) m s = u ^ (m + 1) * Pc w p κ m s"]:::shp
+  n27["<b>F_class</b><br/>F w (-(κ:ℂ) * u) m = u ^ (m + 1) * ∫ s in Set.Ioi (0:ℝ), Pc w p …"]:::shp
+  n28["<b>norm_Nn</b><br/>‖Nn u R m‖ = R ^ (m + 1) / ((m + 1 : ℕ) : ℝ)"]:::shp
+  n29["<b>norm_Qn_le</b><br/>‖Qn w p κ n s‖ ≤ lor w s"]:::shp
+  x0(["<b>CountModes</b><br/>integrable_J<br/>integral_exp_neg_mul<br/>sub_ofReal_ne_zero"]):::ext
+  x1(["<b>diagram 2</b><br/>6 theorems"]):::ext
+  n0 --> n4
+  n1 --> n2
+  n1 --> n3
+  n10 --> n11
+  n10 --> n12
+  n11 --> n13
+  n11 --> n22
+  n12 --> n13
+  n14 --> n21
+  n14 --> n29
+  n15 --> n20
+  n15 --> n21
+  n15 --> n24
+  n15 --> n29
+  n16 --> n20
+  n16 --> n21
+  n16 --> n24
+  n16 --> n29
+  n18 --> n25
+  n19 --> n23
+  n2 --> n5
+  n20 --> n25
+  n21 --> n22
+  n22 --> n25
+  n23 --> n25
+  n24 --> n25
+  n26 --> n27
+  n3 --> n5
+  n4 --> n5
+  n7 --> n8
+  n9 --> n13
+  n11 -.-> x1
+  n13 -.-> x1
+  n15 -.-> x1
+  n17 -.-> x1
+  n25 -.-> x1
+  n27 -.-> x1
+  n28 -.-> x1
+  n29 -.-> x1
+  n5 -.-> x1
+  n6 -.-> x1
+  n8 -.-> x1
+  x0 -.-> n20
+  x0 -.-> n22
+  x0 -.-> n23
+  x0 -.-> n3
+  x0 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

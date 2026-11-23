@@ -5,7 +5,7 @@ AliasClass — block J10a of `lean_stage3/design/joints.md`. 2026-11-22. Joint 1
 8 theorems, 0 definitions, 134 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellModes`](../lean_stage3/CellModes.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderFading`](../lean_stage3/LadderFading.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountEuler`](../lean_stage3/CountEuler.md), [`LadderFading`](../lean_stage3/LadderFading.md)
 
 ## The picture
 
@@ -21,8 +21,9 @@ flowchart LR
   n7["<b>alias_weight_ne_zero ■</b><br/>∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Cha…"]:::thm
   x0(["<b>LadderFading</b><br/>line_not_fading"]):::ext
   x1(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
-  x2(["<b>FilterAttained</b><br/>filter_attained_false"]):::ext
-  x3(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x2(["<b>CountEuler</b><br/>re_ord_div_w_pos"]):::ext
+  x3(["<b>FilterAttained</b><br/>filter_attained_false"]):::ext
+  x4(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n7
@@ -33,11 +34,12 @@ flowchart LR
   n1 -.-> x1
   n2 -.-> x1
   n2 -.-> x2
+  n2 -.-> x3
   n3 -.-> x0
   n6 -.-> x0
-  x3 -.-> n4
-  x3 -.-> n5
-  x3 -.-> n6
+  x4 -.-> n4
+  x4 -.-> n5
+  x4 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -129,9 +131,10 @@ line 45
   - [`AliasClass.re_inv_pos`](#AliasClass-re_inv_pos) — `` 0 < (ρ⁻¹).re ``
   - [`AliasClass.zero_re_pos`](#AliasClass-zero_re_pos) — `` 0 < (ρ : ℂ).re ``
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`AliasClass.sum_order_div_ne_zero`](#AliasClass-sum_order_div_ne_zero) — `` ∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) ≠ 0 ``
+  - [`CountEuler.re_ord_div_w_pos`](../lean_stage3/CountEuler.md#CountEuler-re_ord_div_w_pos) (CountEuler) — `` 0 < (ordC ρ * (1 / wz ρ)).re ``
   - [`FilterAttained.filter_attained_false`](../lean_stage3/FilterAttained.md#FilterAttained-filter_attained_false) (FilterAttained) — `` False ``
   - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 

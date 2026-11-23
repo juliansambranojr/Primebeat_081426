@@ -1,0 +1,20 @@
+key	value	source
+module_lines	912	wc -l lean_stage3/Stage3/CountEuler.lean
+theorems_proved	46	grep -c ^theorem lean_stage3/Stage3/CountEuler.lean
+defs	14	zeta, coefE, seg, F, gf, Pc, Qc, Gc, Qn, lor, Nn, ordC, wz, aSum
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/CountEuler.lean
+pins	3	transform_eq, class_main, euler_exposed_false
+errors_first	6	the worker's report: about this many errors across the first builds of its chunks
+builds	12	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8861	lake build (full Stage3), Build completed successfully
+jobs_module	8823	run/build.log, lake build Stage3.CountEuler
+loop_version	22	lean_stage3/LOOP.md version line
+design	countmodes.md#n3-e	no mode outside a disc holding the others
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_cases	431	unit 0431, the cases of the one-ladder converse
+unit_attained	456	unit 0456, the largest real part attained, on the count
+unit_psi	468	unit 0468, finitely many accumulation points, on the ladder of psi
+unit_reduction	470	unit 0470

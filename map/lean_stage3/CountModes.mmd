@@ -1,0 +1,83 @@
+flowchart LR
+  n0["<b>norm_tail_le</b><br/>‖∫ x in Set.Ioi ((1 : ℕ) : ℝ), ((⌊x⌋ : ℂ) + 1 / 2 - (x : ℂ)) / (…"]:::shp
+  n1["<b>riemannZeta_ne_zero_of_Ioo</b><br/>riemannZeta (b : ℂ) ≠ 0"]:::thm
+  n2["<b>im_ne_zero</b><br/>(ρ : ℂ).im ≠ 0"]:::thm
+  n3["<b>sub_ofReal_ne_zero</b><br/>w - (s : ℂ) ≠ 0"]:::shp
+  n4["<b>continuous_integrand</b><br/>Continuous (fun s : ℝ =＞ Complex.exp ((k:ℂ) * (w - s)) / (w - s)…"]:::shp
+  n5["<b>norm_integrand_le</b><br/>‖Complex.exp ((k:ℂ) * (w - s)) / (w - s)‖ ≤ Real.exp (k * w.re) …"]:::shp
+  n6["<b>integral_exp_neg_mul</b><br/>∫ s in Set.Ioi (0:ℝ), Real.exp (-k * s) = 1 / k"]:::shp
+  n7["<b>integrable_J</b><br/>IntegrableOn (fun s : ℝ =＞ Complex.exp ((k:ℂ) * (w - s)) / (w - …"]:::shp
+  n8["<b>norm_J_le</b><br/>‖J k w‖ ≤ Real.exp (k * w.re) / (k * |w.im|)"]:::shp
+  n9["<b>integrand_sub</b><br/>Complex.exp ((k:ℂ) * (w - s)) / (w - s) - Complex.exp (((1:ℕ):ℂ)…"]:::shp
+  n10["<b>integral_inner</b><br/>∫ s in Set.Ioi (0:ℝ), Complex.exp ((w - s) * v) = Complex.exp ((…"]:::shp
+  n11["<b>integrable_prod</b><br/>Integrable (Function.uncurry fun (s v : ℝ) =＞ Complex.exp ((w - …"]:::shp
+  n12["<b>J_sub</b><br/>J k w - J 1 w = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * w) / (…"]:::shp
+  n13["<b>cpow_two_rpow</b><br/>(((2:ℝ) ^ v : ℝ) : ℂ) ^ ρ = Complex.exp ((v:ℂ) * (ρ * (Real.log …"]:::shp
+  n14["<b>term1_eq</b><br/>(((2:ℝ) ^ v : ℝ) : ℂ) ^ ρ / ρ / (Real.log ((2:ℝ) ^ v) : ℂ) = Com…"]:::shp
+  n15["<b>continuousOn_integrand</b><br/>ContinuousOn (fun t : ℝ =＞ (t : ℂ) ^ ρ / ρ * PiZeros.wt t) (Set.…"]:::shp
+  n16["<b>hasDerivAt_ipart</b><br/>HasDerivAt (fun u =＞ ∫ t in (2:ℝ)..u, (t : ℂ) ^ ρ / ρ * PiZeros.…"]:::shp
+  n17["<b>hasDerivAt_term1</b><br/>HasDerivAt (fun u : ℝ =＞ Complex.exp ((u:ℂ) * w) / ((u:ℂ) * w)) …"]:::shp
+  n18["<b>hasDerivAt_piMode_two_rpow</b><br/>HasDerivAt (fun u : ℝ =＞ PiZeros.piMode ρ ((2:ℝ) ^ u)) (Complex.…"]:::shp
+  n19["<b>piMode_doubling_sub_of</b><br/>PiZeros.piMode ρ ((2:ℝ) ^ k) - PiZeros.piMode ρ 2 = ∫ v in (1:ℝ)…"]:::shp
+  n20["<b>piMode_doubling_sub</b><br/>PiZeros.piMode (ρ:ℂ) ((2:ℝ) ^ k) - PiZeros.piMode (ρ:ℂ) 2 = ∫ v …"]:::shp
+  n21["<b>im_w</b><br/>(ρ * (Real.log 2 : ℂ)).im = ρ.im * Real.log 2"]:::shp
+  n22["<b>re_w</b><br/>(ρ * (Real.log 2 : ℂ)).re = ρ.re * Real.log 2"]:::shp
+  n23["<b>w_im_ne_zero</b><br/>((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0"]:::thm
+  n24["<b>piMode_doubling</b><br/>PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst …"]:::thm
+  n25["<b>norm_J_doubling_le</b><br/>‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(…"]:::thm
+  n26["<b>norm_piMode_two_le</b><br/>‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
+  n27["<b>norm_cst_le</b><br/>‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
+  n28["<b>J_eq_segment ■</b><br/>J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ …"]:::shp
+  x0(["<b>CountEuler</b><br/>10 theorems"]):::ext
+  x1(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>norm_term_le"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n10 --> n12
+  n11 --> n12
+  n12 --> n24
+  n13 --> n14
+  n13 --> n18
+  n14 --> n18
+  n15 --> n16
+  n16 --> n18
+  n17 --> n18
+  n18 --> n19
+  n19 --> n20
+  n2 --> n23
+  n2 --> n26
+  n2 --> n27
+  n20 --> n24
+  n21 --> n23
+  n21 --> n25
+  n22 --> n25
+  n23 --> n24
+  n23 --> n25
+  n25 --> n27
+  n26 --> n27
+  n3 --> n4
+  n3 --> n9
+  n4 --> n7
+  n5 --> n7
+  n5 --> n8
+  n6 --> n8
+  n7 --> n12
+  n8 --> n25
+  n9 --> n12
+  n2 -.-> x0
+  n2 -.-> x1
+  n21 -.-> x0
+  n23 -.-> x0
+  n24 -.-> x1
+  n25 -.-> x1
+  n27 -.-> x1
+  n3 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

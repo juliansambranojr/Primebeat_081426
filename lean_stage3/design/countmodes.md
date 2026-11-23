@@ -1,0 +1,158 @@
+# Joint 10 on the count's own ladder — modes with a tail
+
+Read first after any compaction. Blocks N1 to N3. 2026-11-23. A paper
+derivation of one sitting, not yet checked by anyone else.
+
+## What the count's ladder is made of
+
+`p_k = π(2^k) − Li(2^k)`. `PiZeros.pi_eq_zero_sum` writes it with
+`piMode ρ x = x^ρ/(ρ·log x) + (1/ρ)·∫₂ˣ t^(ρ−1)/log²t dt`. Its derivative in
+`x` is `x^(ρ−1)/log x`. With `w = ρ·log 2`, `z = 2^ρ = e^w`, `t = 2^v`:
+
+    piMode ρ (2^k) = piMode ρ 2 + ∫₁ᵏ e^(vw)/v dv.
+
+For `Im w ≠ 0` put `J_k(w) = ∫₀^∞ e^(k(w−s))/(w − s) ds`, `k ≥ 1`. Its
+derivative in `k` is `e^(kw)/k`, so `J_k(w) − J_1(w) = ∫₁ᵏ e^(vw)/v dv`:
+
+    piMode ρ (2^k) = J_k(w_ρ) + c_ρ,    c_ρ = piMode ρ 2 − J_1(w_ρ),
+
+    J_k(w) = ∫₀^∞ (z·e^(−s))^k · ds/(w − s).
+
+So on the count's ladder one zero is a whole radial segment of pure modes
+`z·e^(−s)`, `s ≥ 0`, from `z_ρ` in to the origin, with density `1/(w − s)`.
+On the ladder of `ψ` it is the single mode `z_ρ`. `|J_k(w)| ≤ 2^(kβ)/(k·|γ|·log 2)`.
+
+## Why the filters of `design/stencil.md` do not carry over
+
+A filter `q` multiplies the mode `ζ` by `q(1/ζ)`. The filter of block S3
+vanishes at an accumulation point `p`. For a zero whose mode is near `p`, the
+filtered tail is `∫ ζ_s^n·q(1/ζ_s)^m ds/(w − s)` and its size is governed by
+`V(ζ) = |ζ|^b·|ζ − p|^a`, which has one saddle, at `ζ = b·p/(a + b)`, on the
+ray of `p`, of height `|p|^b·b^b·a^a/(a+b)^(a+b)` up to the normalisation.
+Every path from a mode near `p` to the origin crosses that pass. With `a = 1`
+and `b` large the pass is `≈ |p|^b/(e·b)`: the pile at `p`, which the filter
+removes on the ladder of `ψ`, comes back through the tails at almost its full
+rate. A filter with a zero at a point cannot remove a segment.
+
+## The route: the generating function, with slits
+
+In `u = 1/ζ` the tail of `ρ` is the radial slit `{t·u_ρ : t ≥ 1}`,
+`u_ρ = 2^(−ρ)`. Put
+
+    E_ρ(u) = Σ_{k≥1} J_k(w_ρ)·u^k = ∫₀^∞ (z_ρ e^(−s) u)/(1 − z_ρ e^(−s) u) · ds/(w_ρ − s),
+
+analytic off the slit; near `u_ρ` it is `−(1/w_ρ)·log(1 − z_ρ u)` plus a
+bounded term: a logarithm where `ψ` has a pole.
+
+- **N1.** `piMode ρ (2^k) = J_k(w_ρ) + c_ρ`; `|J_k| ≤ 2^(kβ)/(k·|γ|·log 2)`;
+  `|c_ρ| ≤ C/|γ|`.
+- **N2, the reduction with a power saving.** Under
+  `H_π : |p_k| ≤ C·k²·√2^k`, for `σ > 1/2`, with `θ < 1` the exponent of
+  `ZeroDensity.zero_density` at `σ` and `Θ` an upper bound for the real
+  parts: `p_k + Σ'_{β≥σ} m(ρ)·(J_k(w_ρ) + c_ρ) = O(k^c·2^(kE))`,
+  `E = max(σ, Θ − (1 − θ)) < Θ`. The zeros left of `σ` below height `2^k` by
+  `zinv`; the zeros right of `σ` above height `2^k` by the density bound:
+  their weights `m/|γ|` sum to `O(2^(−k(1−θ)))`.
+- **N3, an exposed mode.** `M(u) = Σ_k u^k·Σ'_{β≥σ} m(ρ)·J_k(w_ρ)` converges
+  for `|u| < 2^(−Θ)` and, by N2 and `H_π`, its power series has radius
+  `≥ 2^(−E)`. On `|u| < 2^(−Θ)`, `M = Σ' m(ρ)·E_ρ` (Fubini). Call a zero
+  `ρ_1`, `β_1 > E`, *exposed* if for some `ε > 0` no other mode value of a
+  zero right of `σ` lies in `{ζ : |arg(ζ/z_1)| < ε, |ζ| > |z_1| − ε}`. Then on
+  the sector `Ω = {|arg(u/u_1)| < ε, |u| < |u_1| + ε'}` less the slit of
+  `u_1` every other slit is at distance `≥ c > 0`, `Σ' m·E_ρ` converges
+  locally uniformly, `Ω ∪ {|u| < 2^(−Θ)}` is connected, and the identity
+  theorem gives `M = Σ' m·E_ρ` on `Ω`. Along `u = t·u_1`, `t ↑ 1`, the class
+  of `ρ_1` contributes `−(Σ_class m/w)·log(1 − t) → ∞` (the class weight has
+  positive real part), every other term stays bounded, and `M` is analytic at
+  `u_1`. Contradiction.
+
+Statement: under `H_π`, for every `σ > 1/2` there is `E < Θ` such that no
+zero with `β > E` is exposed.
+
+## What it covers and what it does not
+
+Covers: the largest real part attained at a mode isolated in angle; modes
+right of `E` that are locally outermost in their own direction, which
+includes arrangements where the real parts climb to `Θ` without reaching it
+along different directions.
+
+Does not cover: every mode right of `E` having other modes further out in
+every thin sector around it. The single-ray arrangement
+`ρ_n = Θ − c/n + i(γ* + 2πn²/log 2)` is of that kind; there the slits of the
+outer modes run through each inner mode. The function is still singular at
+each mode when approached from the side, so a sharper form of N3 should
+reach it; it is not derived here.
+
+## After the independent check (2026-11-23)
+
+An Opus reviewer was asked to break this design and size it. Its own
+additions are paper work nobody else has checked.
+
+**N1 holds.** `|c_ρ| ≤ 4/(|γ|·log 2)`. `J_k(w) = ∫₀^z ζ^(k−1)/L(ζ) dζ` along the
+radius. One gap: `J_k` needs `Im ρ ≠ 0` for every nontrivial zero, and the
+tree has no lemma for `ζ(x) ≠ 0` on real `0 < x < 1`. PNT+
+`ZetaBounds.Zeta0EqZeta` at `N = 1` gives it. Prefer Fubini to
+differentiating under the integral for `J_k − J_1 = ∫₁ᵏ e^(vw)/v dv`.
+
+**N2 holds, corrected.** `zero_density` counts distinct zeros; multiplicity
+enters through `ZeroSummable.order_le_shell`. The tail is
+`Σ_{|γ|≥2^k, β≥σ} m/|γ| ≤ C·k·2^(−k(1−θ'))`, `θ' = max θ 0`, a new rate lemma
+(`sum_le_const` gives a constant only). Needs `1/2 < σ < Θ ≤ 1`.
+
+    N2. H_π, 1/2 < σ < Θ ≤ 1, β ≤ Θ for all ρ, E = max(σ, Θ − (1 − θ')).
+        a_k := Σ'_{β≥σ} m(ρ)·J_k(w_ρ) satisfies |a_k| ≤ A·k²·2^(kE), k ≥ 1.
+
+**The section on filters is too broad, and its exponent is wrong.** The
+normalised rate is `|ζ|^(b−a)·|ζ − p|^a/|p|^a`; the saddle is at
+`ζ = (b−a)·p/b`, height `|p|^(b−a)·(b−a)^(b−a)·a^a/b^b`. The saddle is
+genuine and the block-S3 filter does fail on the count. A different filter
+works: `q(u) = λ + βu` applied `m = n − 1` times, the Euler transform. Its
+rate on a mode is `|λ|·|ζ − c|`, `c = −β/λ`, which is convex along a radial
+segment, so its maximum is at an end and there is no pass.
+
+    N3-E. Under N2, let ρ_1 have β_1 > E, z_1 = 2^(ρ_1), ẑ_1 = z_1/|z_1|,
+          κ ≥ 0, c = −κ·ẑ_1, and r_0 < |z_1| + κ with |2^ρ − c| ≤ r_0 for
+          every zero with β ≥ σ and 2^ρ ≠ z_1. Then False.
+
+Proof. `b_n = Σ_{k=1}^n C(n−1,k−1)·(−c)^(n−k)·a_k`. By the binomial theorem
+`b_n = Σ' m ∫₀^∞ ζ_s·(ζ_s − c)^(n−1) ds/(w − s)`. From N2,
+`|b_n| ≤ A·n²·2^E·(2^E + κ)^(n−1)`. For the other modes
+`|ζ_s − c| ≤ max(κ, r_0)` on the whole segment, so each is
+`≤ 2·max(κ,r_0)^(n−1)/(|γ|·log 2)`. For the class of `ρ_1` the main part is
+exactly `ẑ_1^n·((|z_1|+κ)^n − κ^n)/(n·w)`, the rest `o((|z_1|+κ)^n/n)` by
+dominated convergence. Dividing by `ẑ_1^n·(|z_1|+κ)^n/n`, the class weight
+`Σ_class m/w` is zero; it has positive real part.
+
+In words: a mode that lies strictly outside a disc, centred on the ray
+opposite to it, which holds every other mode right of `σ`. `κ = 0` is the
+largest modulus attained with a gap. `κ → ∞` is a mode strictly beyond every
+other in its own direction.
+
+**N3 with slits holds, tightened** (thickened segment as domain; hypothesis
+in metric form), and a sharper form `N3′` covers the single ray. Coverage:
+Euler-exposed ⊂ sector-exposed ⊂ N3′. The Euler form is elementary: no
+complex analysis.
+
+**Order of building.** N1, N2, N3-E.
+
+## N1 The count's ladder in modes — PROVED (unit 0469: `CountModes.piMode_doubling`, `J_sub`, `J_eq_segment`, `norm_J_doubling_le`, `norm_cst_le`, `im_ne_zero`)
+
+The statement is the corrected N1 above. `im_ne_zero` is by PNT+
+`Zeta0EqZeta` at `N = 1` and a bound `1/(2b)` on its tail integral.
+`piMode_doubling_sub` is by differentiating `v ↦ piMode ρ (2^v)`; it needs
+only `ρ ≠ 0`.
+
+## N2 The reduction with a power saving — PROVED (unit 0470: `CountReduction.count_modes_small`, `tail_rate`, `summable_J`; factor `k²`, rows `k ≥ 2`; the tail is `O(2^(k(Θ−(1−θ'))))`, the `1/k` of `‖J_k‖` cancelling the `k` of the rate; `cim`, `inv_abs_im_le` give `1/|γ| ≤ cim/‖ρ‖`)
+
+The corrected N2 above: `tail_rate`, `summable_J`, `count_modes_small`.
+
+## N3-E No mode outside a disc holding the others — PROVED (unit 0471: `CountEuler.euler_exposed_false`, `transform_eq`, `class_main`)
+
+The statement N3-E above.
+
+As built: the class's error is not by dominated convergence with a fixed
+dominator, since the normalised integrand piles up at `s = 0`. Integrate by
+parts first, `G = −g^(m+1)/((m+1)(w − s))`: `F/N_m = 1/w + ∫₀^∞ (g/R)^(m+1)/(w − s)² ds`
+exactly, and the last integral tends to zero under the dominator
+`1/|w − s|²`, whose integral is `π/|Im w|`. The limit over the zeros is by
+dominated convergence with `K·m(ρ)/|Im w_ρ|`.

@@ -15533,6 +15533,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.sum_order_div_ne_zero",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.re_ord_div_w_pos",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
@@ -19566,7 +19567,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_ipart_le",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_le",
-     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low"
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
     ]
    },
    {
@@ -19676,7 +19678,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound"
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
     ]
    },
    {
@@ -23466,6 +23469,3568 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CountEuler.lean",
+  "module": "Stage3.CountEuler",
+  "stem": "CountEuler",
+  "header": "CountEuler — block N3-E of `lean_stage3/design/countmodes.md`, from its section \"After the independent check\". 2026-11-23.",
+  "imports": [
+   "Stage3.CountReduction",
+   "Stage3.AliasClass"
+  ],
+  "opens": [
+   "Filter",
+   "Finset",
+   "Kadiri",
+   "MeasureTheory",
+   "Topology"
+  ],
+  "namespaces": [
+   "CountEuler"
+  ],
+  "lines": 913,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/AliasClass.lean",
+   "lean_stage3/Stage3/CountReduction.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "binom_shift",
+    "ns": "CountEuler",
+    "full": "CountEuler.binom_shift",
+    "line": 60,
+    "why": "The binomial identity of the transform. For any `ζ`, `c` and `m`, `Σ_{j≤m} C(m,j)·(−c)^(m−j)·ζ^(j+1) = ζ·(ζ − c)^m`.",
+    "sorry": false,
+    "needs": [
+     "ζ c : ℂ",
+     "m : ℕ"
+    ],
+    "proves": "∑ j ∈ Finset.range (m + 1), (m.choose j : ℂ) * (-c) ^ (m - j) * ζ ^ (j + 1) = ζ * (ζ - c) ^ m",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.binom_shift",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_sum"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "zeta",
+    "ns": "CountEuler",
+    "full": "CountEuler.zeta",
+    "line": 70,
+    "why": "The point of the segment of a mode at depth `s`: `ζ_s = e^w·e^(−s)`.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "s : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.J_eq_zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_zeta_pow",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_sum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta_pow"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "coefE",
+    "ns": "CountEuler",
+    "full": "CountEuler.coefE",
+    "line": 73,
+    "why": "The coefficient of the Euler transform: `C(m,j)·(−c)^(m−j)`.",
+    "sorry": false,
+    "needs": [
+     "c : ℂ",
+     "m j : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_sum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "seg",
+    "ns": "CountEuler",
+    "full": "CountEuler.seg",
+    "line": 76,
+    "why": "The transformed integrand: `ζ_s·(ζ_s − c)^m/(w − s)`.",
+    "sorry": false,
+    "needs": [
+     "w c : ℂ",
+     "m : ℕ",
+     "s : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_sum"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "F",
+    "ns": "CountEuler",
+    "full": "CountEuler.F",
+    "line": 79,
+    "why": "The transformed segment integral: `∫₀^∞ ζ_s·(ζ_s − c)^m/(w − s) ds`.",
+    "sorry": false,
+    "needs": [
+     "w c : ℂ",
+     "m : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_bound",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_tendsto",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_ratio_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_pow",
+    "ns": "CountEuler",
+    "full": "CountEuler.zeta_pow",
+    "line": 83,
+    "why": "The power of the point of the segment is the integrand of `J`: `ζ_s^k/(w − s) = e^(k(w−s))/(w − s)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "w : ℂ",
+     "s : ℝ"
+    ],
+    "proves": "zeta w s ^ k / (w - s) = Complex.exp ((k:ℂ) * (w - s)) / (w - s)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta_pow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.J_eq_zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_zeta_pow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "J_eq_zeta",
+    "ns": "CountEuler",
+    "full": "CountEuler.J_eq_zeta",
+    "line": 92,
+    "why": "`J k w` written with the point of the segment.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "CountModes.J k w = ∫ s in Set.Ioi (0:ℝ), zeta w s ^ k / (w - s)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.J_eq_zeta",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta_pow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta_pow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_zeta_pow",
+    "ns": "CountEuler",
+    "full": "CountEuler.integrable_zeta_pow",
+    "line": 100,
+    "why": "For `1 ≤ k` and `Im w ≠ 0`, `ζ_s^k/(w − s)` is integrable on `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "IntegrableOn (fun s : ℝ => zeta w s ^ k / (w - s)) (Set.Ioi 0)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_zeta_pow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta_pow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta_pow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "seg_sum",
+    "ns": "CountEuler",
+    "full": "CountEuler.seg_sum",
+    "line": 106,
+    "why": "The transformed integrand is the transform of the powers.",
+    "sorry": false,
+    "needs": [
+     "w c : ℂ",
+     "m : ℕ",
+     "s : ℝ"
+    ],
+    "proves": "seg w c m s = ∑ j ∈ Finset.range (m + 1), coefE c m j * (zeta w s ^ (j + 1) / (w - s))",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.binom_shift",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.binom_shift",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "transform_eq",
+    "ns": "CountEuler",
+    "full": "CountEuler.transform_eq",
+    "line": 115,
+    "why": "The transform of the segment integrals. For `Im w ≠ 0`, `Σ_{j≤m} C(m,j)·(−c)^(m−j)·J_{j+1}(w) = ∫₀^∞ ζ_s·(ζ_s − c)^m/(w − s) ds`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "c : ℂ",
+     "m : ℕ"
+    ],
+    "proves": "∑ j ∈ Finset.range (m + 1), coefE c m j * CountModes.J (j + 1) w = F w c m",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.J_eq_zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_zeta_pow",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_sum",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.J_eq_zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_zeta_pow",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_sum",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "transform_le",
+    "ns": "CountEuler",
+    "full": "CountEuler.transform_le",
+    "line": 131,
+    "why": "The size of the transform. If `‖a_k‖ ≤ A·k²·X^k` for every `k ≥ 1`, with `A, X ≥ 0`, then `‖Σ_{j≤m} C(m,j)·(−c)^(m−j)·a_{j+1}‖ ≤ A·(m+1)²·X·(X + ‖c‖)^m`.",
+    "sorry": false,
+    "needs": [
+     "a : ℕ → ℂ",
+     "hA : 0 ≤ A",
+     "hX : 0 ≤ X",
+     "ha : ∀ k : ℕ, 1 ≤ k → ‖a k‖ ≤ A * (k:ℝ) ^ 2 * X ^ k",
+     "c : ℂ",
+     "m : ℕ"
+    ],
+    "proves": "‖∑ j ∈ Finset.range (m + 1), coefE c m j * a (j + 1)‖ ≤ A * ((m:ℝ) + 1) ^ 2 * X * (X + ‖c‖) ^ m",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "seg_in_ball",
+    "ns": "CountEuler",
+    "full": "CountEuler.seg_in_ball",
+    "line": 157,
+    "why": "The segment stays in the ball. If `‖c‖ ≤ r` and `‖z − c‖ ≤ r`, then `‖z·t − c‖ ≤ r` for `0 ≤ t ≤ 1`: `z·t − c = t·(z − c) + (1 − t)·(−c)`.",
+    "sorry": false,
+    "needs": [
+     "ht0 : 0 ≤ t",
+     "ht1 : t ≤ 1",
+     "hc : ‖c‖ ≤ r",
+     "hz : ‖z - c‖ ≤ r"
+    ],
+    "proves": "‖z * (t:ℂ) - c‖ ≤ r",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_in_ball",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "others_le",
+    "ns": "CountEuler",
+    "full": "CountEuler.others_le",
+    "line": 173,
+    "why": "One other mode. For `Im w ≠ 0`, `‖c‖ ≤ r` and `‖e^w − c‖ ≤ r`, the transformed segment integral is at most `‖e^w‖·r^m/|Im w|`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hc : ‖c‖ ≤ r",
+     "hz : ‖Complex.exp w - c‖ ≤ r",
+     "m : ℕ"
+    ],
+    "proves": "‖F w c m‖ ≤ ‖Complex.exp w‖ * r ^ m / |w.im|",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_in_ball",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_exp_neg_mul"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_in_ball",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_exp_neg_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_ratio_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "lor",
+    "ns": "CountEuler",
+    "full": "CountEuler.lor",
+    "line": 207,
+    "why": "The Cauchy weight of `w`: `((s − Re w)² + (Im w)²)⁻¹ = 1/|w − s|²`.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "s : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integral_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qc_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.setIntegral_lor_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lor_nonneg",
+    "ns": "CountEuler",
+    "full": "CountEuler.lor_nonneg",
+    "line": 210,
+    "why": "The Cauchy weight is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "s : ℝ"
+    ],
+    "proves": "0 ≤ lor w s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.setIntegral_lor_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lor_eq",
+    "ns": "CountEuler",
+    "full": "CountEuler.lor_eq",
+    "line": 215,
+    "why": "The Cauchy weight is `π/|Im w|` times the Cauchy density at `Re w` of scale `|Im w|`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "s : ℝ"
+    ],
+    "proves": "lor w s = Real.pi / |w.im| * ProbabilityTheory.cauchyPDFReal w.re ‖w.im‖₊ s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integral_lor"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_lor",
+    "ns": "CountEuler",
+    "full": "CountEuler.integrable_lor",
+    "line": 226,
+    "why": "For `Im w ≠ 0` the Cauchy weight is integrable on the line.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "Integrable (lor w)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_int_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.setIntegral_lor_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_lor",
+    "ns": "CountEuler",
+    "full": "CountEuler.integral_lor",
+    "line": 231,
+    "why": "For `Im w ≠ 0` the Cauchy weight integrates to `π/|Im w|` over the line.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "∫ s, lor w s = Real.pi / |w.im|",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.integral_lor",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.setIntegral_lor_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "setIntegral_lor_le",
+    "ns": "CountEuler",
+    "full": "CountEuler.setIntegral_lor_le",
+    "line": 237,
+    "why": "For `Im w ≠ 0` the Cauchy weight integrates to at most `π/|Im w|` over `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "∫ s in Set.Ioi (0:ℝ), lor w s ≤ Real.pi / |w.im|",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.setIntegral_lor_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integral_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integral_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_int_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_sub_sq",
+    "ns": "CountEuler",
+    "full": "CountEuler.norm_sub_sq",
+    "line": 243,
+    "why": "`‖(w − s)²‖ = (s − Re w)² + (Im w)²`.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "s : ℝ"
+    ],
+    "proves": "‖(w - (s:ℂ)) ^ 2‖ = (s - w.re) ^ 2 + w.im ^ 2",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_sub_sq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qc_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "gf",
+    "ns": "CountEuler",
+    "full": "CountEuler.gf",
+    "line": 251,
+    "why": "The real profile of the class: `g(s) = p·e^(−s) + κ`.",
+    "sorry": false,
+    "needs": [
+     "p κ s : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.continuous_Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_lt",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_zero",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_class"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gf_nonneg",
+    "ns": "CountEuler",
+    "full": "CountEuler.gf_nonneg",
+    "line": 254,
+    "why": "The profile is nonnegative for `p, κ ≥ 0`.",
+    "sorry": false,
+    "needs": [
+     "hp : 0 ≤ p",
+     "hκ : 0 ≤ κ",
+     "s : ℝ"
+    ],
+    "proves": "0 ≤ gf p κ s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qc_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tendsto_Gc"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gf_le",
+    "ns": "CountEuler",
+    "full": "CountEuler.gf_le",
+    "line": 259,
+    "why": "For `s ≥ 0` the profile is at most `p + κ`.",
+    "sorry": false,
+    "needs": [
+     "hp : 0 ≤ p",
+     "hs : 0 ≤ s"
+    ],
+    "proves": "gf p κ s ≤ p + κ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qc_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tendsto_Gc"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gf_lt",
+    "ns": "CountEuler",
+    "full": "CountEuler.gf_lt",
+    "line": 266,
+    "why": "For `s > 0` and `p > 0` the profile is below `p + κ`.",
+    "sorry": false,
+    "needs": [
+     "hp : 0 < p",
+     "hs : 0 < s"
+    ],
+    "proves": "gf p κ s < p + κ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_lt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "gf_zero",
+    "ns": "CountEuler",
+    "full": "CountEuler.gf_zero",
+    "line": 273,
+    "why": "At `s = 0` the profile is `p + κ`.",
+    "sorry": false,
+    "needs": [
+     "p κ : ℝ"
+    ],
+    "proves": "gf p κ 0 = p + κ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_gf",
+    "ns": "CountEuler",
+    "full": "CountEuler.hasDerivAt_gf",
+    "line": 278,
+    "why": "The derivative of the profile: `−p·e^(−s)`.",
+    "sorry": false,
+    "needs": [
+     "p κ s : ℝ"
+    ],
+    "proves": "HasDerivAt (gf p κ) (p * (Real.exp (-s) * -1)) s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_gf",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_Gc"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Pc",
+    "ns": "CountEuler",
+    "full": "CountEuler.Pc",
+    "line": 282,
+    "why": "The class integrand: `p·e^(−s)·g(s)^m/(w − s)`.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "p κ : ℝ",
+     "m : ℕ",
+     "s : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_class"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Qc",
+    "ns": "CountEuler",
+    "full": "CountEuler.Qc",
+    "line": 286,
+    "why": "The correction integrand: `g(s)^n/(w − s)²`.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "p κ : ℝ",
+     "n : ℕ",
+     "s : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qc_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Gc",
+    "ns": "CountEuler",
+    "full": "CountEuler.Gc",
+    "line": 289,
+    "why": "The antiderivative: `−g(s)^n/(n·(w − s))`.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "p κ : ℝ",
+     "n : ℕ",
+     "s : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.Gc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tendsto_Gc"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_Pc",
+    "ns": "CountEuler",
+    "full": "CountEuler.integrable_Pc",
+    "line": 293,
+    "why": "For `Im w ≠ 0`, `p, κ ≥ 0` the class integrand is integrable on `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hp : 0 ≤ p",
+     "hκ : 0 ≤ κ",
+     "m : ℕ"
+    ],
+    "proves": "IntegrableOn (Pc w p κ m) (Set.Ioi 0)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Pc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Qc_le",
+    "ns": "CountEuler",
+    "full": "CountEuler.norm_Qc_le",
+    "line": 322,
+    "why": "For `s ≥ 0` the correction integrand is at most `(p + κ)^n` times the Cauchy weight.",
+    "sorry": false,
+    "needs": [
+     "hp : 0 ≤ p",
+     "hκ : 0 ≤ κ",
+     "hs : 0 ≤ s",
+     "n : ℕ"
+    ],
+    "proves": "‖Qc w p κ n s‖ ≤ (p + κ) ^ n * lor w s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qc_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_sub_sq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_sub_sq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Qc"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_Qc",
+    "ns": "CountEuler",
+    "full": "CountEuler.integrable_Qc",
+    "line": 333,
+    "why": "For `Im w ≠ 0`, `p, κ ≥ 0` the correction integrand is integrable on `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hp : 0 ≤ p",
+     "hκ : 0 ≤ κ",
+     "n : ℕ"
+    ],
+    "proves": "IntegrableOn (Qc w p κ n) (Set.Ioi 0)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Qc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qc_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qc_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_Gc",
+    "ns": "CountEuler",
+    "full": "CountEuler.hasDerivAt_Gc",
+    "line": 345,
+    "why": "The derivative of the antiderivative: `G' = P − Q/(m + 1)`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "p κ : ℝ",
+     "m : ℕ",
+     "s : ℝ"
+    ],
+    "proves": "HasDerivAt (Gc w p κ (m + 1)) (Pc w p κ m s - Qc w p κ (m + 1) s / ((m + 1 : ℕ) : ℂ)) s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_Gc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_gf",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_gf",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tendsto_Gc",
+    "ns": "CountEuler",
+    "full": "CountEuler.tendsto_Gc",
+    "line": 366,
+    "why": "The antiderivative tends to zero at infinity.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "hp : 0 ≤ p",
+     "hκ : 0 ≤ κ",
+     "m : ℕ"
+    ],
+    "proves": "Tendsto (Gc w p κ (m + 1)) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.tendsto_Gc",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "class_main",
+    "ns": "CountEuler",
+    "full": "CountEuler.class_main",
+    "line": 395,
+    "why": "The class integral, exactly. For `Im w ≠ 0`, `p, κ ≥ 0`, `R = p + κ`: `∫₀^∞ p·e^(−s)·g(s)^m/(w − s) ds = R^(m+1)/((m+1)·w) + (∫₀^∞ g(s)^(m+1)/(w − s)² ds)/(m+1)`. The antiderivative is `−g^(m+1)/((m+1)(w − s))`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hp : 0 ≤ p",
+     "hκ : 0 ≤ κ",
+     "m : ℕ"
+    ],
+    "proves": "∫ s in Set.Ioi (0:ℝ), Pc w p κ m s = (((p + κ) ^ (m + 1) : ℝ) : ℂ) / (((m + 1 : ℕ) : ℂ) * w) + (∫ s in Set.Ioi (0:ℝ), Qc w p κ (m + 1) s) / ((m + 1 : ℕ) : ℂ)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_zero",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tendsto_Gc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_zero",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tendsto_Gc"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "seg_class",
+    "ns": "CountEuler",
+    "full": "CountEuler.seg_class",
+    "line": 418,
+    "why": "On the class, `ζ_s·(ζ_s − c)^m/(w − s) = u^(m+1)·p·e^(−s)·g(s)^m/(w − s)`, for `e^w = p·u` and `c = −κ·u`.",
+    "sorry": false,
+    "needs": [
+     "hz : Complex.exp w = (p:ℂ) * u",
+     "κ : ℝ",
+     "m : ℕ",
+     "s : ℝ"
+    ],
+    "proves": "seg w (-(κ:ℂ) * u) m s = u ^ (m + 1) * Pc w p κ m s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_class",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.zeta"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F_class"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "F_class",
+    "ns": "CountEuler",
+    "full": "CountEuler.F_class",
+    "line": 431,
+    "why": "On the class, the transformed segment integral is `u^(m+1)·∫₀^∞ P`.",
+    "sorry": false,
+    "needs": [
+     "hz : Complex.exp w = (p:ℂ) * u",
+     "κ : ℝ",
+     "m : ℕ"
+    ],
+    "proves": "F w (-(κ:ℂ) * u) m = u ^ (m + 1) * ∫ s in Set.Ioi (0:ℝ), Pc w p κ m s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.F_class",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_class"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.seg_class"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Nn",
+    "ns": "CountEuler",
+    "full": "CountEuler.Nn",
+    "line": 438,
+    "why": "The normaliser: `N_m = u^(m+1)·R^(m+1)/(m+1)`.",
+    "sorry": false,
+    "needs": [
+     "u : ℂ",
+     "R : ℝ",
+     "m : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_bound",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_tendsto",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_ratio_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Nn",
+    "ns": "CountEuler",
+    "full": "CountEuler.norm_Nn",
+    "line": 441,
+    "why": "For `‖u‖ = 1` and `R ≥ 0`, `‖N_m‖ = R^(m+1)/(m+1)`.",
+    "sorry": false,
+    "needs": [
+     "hu : ‖u‖ = 1",
+     "hR : 0 ≤ R",
+     "m : ℕ"
+    ],
+    "proves": "‖Nn u R m‖ = R ^ (m + 1) / ((m + 1 : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Nn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_ratio_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Qn",
+    "ns": "CountEuler",
+    "full": "CountEuler.Qn",
+    "line": 448,
+    "why": "The normalised correction integrand: `(g(s)/(p + κ))^n/(w − s)²`.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ",
+     "p κ : ℝ",
+     "n : ℕ",
+     "s : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_bound",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.continuous_Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_int_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Qn_le",
+    "ns": "CountEuler",
+    "full": "CountEuler.norm_Qn_le",
+    "line": 453,
+    "why": "For `s ≥ 0`, `p > 0`, `κ ≥ 0`, the normalised correction integrand is at most the Cauchy weight.",
+    "sorry": false,
+    "needs": [
+     "hp : 0 < p",
+     "hκ : 0 ≤ κ",
+     "hs : 0 ≤ s",
+     "n : ℕ"
+    ],
+    "proves": "‖Qn w p κ n s‖ ≤ lor w s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_sub_sq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_sub_sq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_int_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_Qn",
+    "ns": "CountEuler",
+    "full": "CountEuler.continuous_Qn",
+    "line": 465,
+    "why": "For `Im w ≠ 0` the normalised correction integrand is continuous.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "p κ : ℝ",
+     "n : ℕ"
+    ],
+    "proves": "Continuous (Qn w p κ n)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.continuous_Qn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "class_ratio",
+    "ns": "CountEuler",
+    "full": "CountEuler.class_ratio",
+    "line": 472,
+    "why": "The class over the normaliser. For `Im w ≠ 0`, `p > 0`, `κ ≥ 0`, `‖u‖ = 1` and `e^w = p·u`: `F w (−κu) m / N_m = 1/w + ∫₀^∞ (g/R)^(m+1)/(w − s)² ds`, `R = p + κ`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hp : 0 < p",
+     "hκ : 0 ≤ κ",
+     "hu : ‖u‖ = 1",
+     "hz : Complex.exp w = (p:ℂ) * u",
+     "m : ℕ"
+    ],
+    "proves": "F w (-(κ:ℂ) * u) m / Nn u (p + κ) m = 1 / w + ∫ s in Set.Ioi (0:ℝ), Qn w p κ (m + 1) s",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_main"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_bound",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "class_lim",
+    "ns": "CountEuler",
+    "full": "CountEuler.class_lim",
+    "line": 499,
+    "why": "The class correction fades. For `Im w ≠ 0`, `p > 0`, `κ ≥ 0`: `∫₀^∞ (g/R)^(m+1)/(w − s)² ds → 0`, by dominated convergence under the Cauchy weight; `g(s) < R` for `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hp : 0 < p",
+     "hκ : 0 ≤ κ"
+    ],
+    "proves": "Tendsto (fun m : ℕ => ∫ s in Set.Ioi (0:ℝ), Qn w p κ (m + 1) s) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.continuous_Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_lt",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.continuous_Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_lt",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.gf_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_tendsto"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_Qn_int_le",
+    "ns": "CountEuler",
+    "full": "CountEuler.norm_Qn_int_le",
+    "line": 519,
+    "why": "For `Im w ≠ 0`, `p > 0`, `κ ≥ 0`, the class correction is at most `π/|Im w|`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hp : 0 < p",
+     "hκ : 0 ≤ κ",
+     "n : ℕ"
+    ],
+    "proves": "‖∫ s in Set.Ioi (0:ℝ), Qn w p κ n s‖ ≤ Real.pi / |w.im|",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_int_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.setIntegral_lor_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_lor",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.setIntegral_lor_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "class_tendsto",
+    "ns": "CountEuler",
+    "full": "CountEuler.class_tendsto",
+    "line": 528,
+    "why": "The class tends to its weight. Under the hypotheses of `class_ratio`, `F w (−κu) m / N_m → 1/w`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hp : 0 < p",
+     "hκ : 0 ≤ κ",
+     "hu : ‖u‖ = 1",
+     "hz : Complex.exp w = (p:ℂ) * u"
+    ],
+    "proves": "Tendsto (fun m : ℕ => F w (-(κ:ℂ) * u) m / Nn u (p + κ) m) atTop (𝓝 (1 / w))",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_tendsto",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_lim",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "class_bound",
+    "ns": "CountEuler",
+    "full": "CountEuler.class_bound",
+    "line": 537,
+    "why": "The class stays bounded. Under the hypotheses of `class_ratio`, `‖F w (−κu) m / N_m‖ ≤ (1 + π)/|Im w|`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hp : 0 < p",
+     "hκ : 0 ≤ κ",
+     "hu : ‖u‖ = 1",
+     "hz : Complex.exp w = (p:ℂ) * u",
+     "m : ℕ"
+    ],
+    "proves": "‖F w (-(κ:ℂ) * u) m / Nn u (p + κ) m‖ ≤ (1 + Real.pi) / |w.im|",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_int_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_ratio",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Qn_int_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "others_ratio_le",
+    "ns": "CountEuler",
+    "full": "CountEuler.others_ratio_le",
+    "line": 554,
+    "why": "One other mode over the normaliser. For `Im w ≠ 0`, `‖c‖ ≤ r`, `‖e^w − c‖ ≤ r`, `0 < r`, `0 < R` and `‖u‖ = 1`: `‖F w c m / N_m‖ ≤ ‖e^w‖/(r·|Im w|)·((m+1)·(r/R)^(m+1))`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "hc : ‖c‖ ≤ r",
+     "hz : ‖Complex.exp w - c‖ ≤ r",
+     "hr : 0 < r",
+     "hR : 0 < R",
+     "hu : ‖u‖ = 1",
+     "m : ℕ"
+    ],
+    "proves": "‖F w c m / Nn u R m‖ ≤ ‖Complex.exp w‖ / (r * |w.im|) * (((m + 1 : ℕ) : ℝ) * (r / R) ^ (m + 1))",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_ratio_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "ordC",
+    "ns": "CountEuler",
+    "full": "CountEuler.ordC",
+    "line": 569,
+    "why": "The order of a zero, as a complex number.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.aSum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_ordC_mul",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.re_ord_div_w_pos",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "wz",
+    "ns": "CountEuler",
+    "full": "CountEuler.wz",
+    "line": 572,
+    "why": "The exponent of a zero's mode: `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.aSum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.re_ord_div_w_pos",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "aSum",
+    "ns": "CountEuler",
+    "full": "CountEuler.aSum",
+    "line": 575,
+    "why": "The segment sum of block N2: `a_k = Σ'_{β≥σ} m(ρ)·J_k(ρ·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ",
+     "k : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.aSum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "two_cpow_eq",
+    "ns": "CountEuler",
+    "full": "CountEuler.two_cpow_eq",
+    "line": 579,
+    "why": "`2^ρ = e^(ρ·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "(2:ℂ) ^ ρ = Complex.exp (ρ * Real.log 2)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.two_cpow_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_ordC_mul",
+    "ns": "CountEuler",
+    "full": "CountEuler.norm_ordC_mul",
+    "line": 584,
+    "why": "The order of a zero, as a factor, multiplies the size by the order.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "x : ℂ"
+    ],
+    "proves": "‖ordC ρ * x‖ = FiniteOffLinePi.ordR ρ * ‖x‖",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_ordC_mul",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_ord_div_w_pos",
+    "ns": "CountEuler",
+    "full": "CountEuler.re_ord_div_w_pos",
+    "line": 589,
+    "why": "The weight of a zero's class has positive real part: `Re(m(ρ)/(ρ·log 2)) > 0`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "0 < (ordC ρ * (1 / wz ρ)).re",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.re_ord_div_w_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/AliasClass.lean::AliasClass.re_order_div_pos",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_ord_im",
+    "ns": "CountEuler",
+    "full": "CountEuler.summable_ord_im",
+    "line": 606,
+    "why": "For `σ > 1/2` the weights `m(ρ)/|Im w_ρ|` of the zeros right of `σ` are summable: `1/|γ| ≤ cim/|ρ|` (`CountReduction.inv_abs_im_le`) and `ZeroSummable.summable_order_div`.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1/2 < σ"
+    ],
+    "proves": "Summable fun ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re} => FiniteOffLinePi.ordR ρ.1 / |(wz ρ.1).im|",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tsum_transform",
+    "ns": "CountEuler",
+    "full": "CountEuler.tsum_transform",
+    "line": 634,
+    "why": "The transform as a sum over the zeros. For `σ > 1/2`: `Σ_{j≤m} C(m,j)·(−c)^(m−j)·a_{j+1} = Σ'_{β≥σ} m(ρ)·F(w_ρ, c, m)`. The finite sum over `j` passes through the sum over the zeros, each `j` summable by `summable_J`.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1/2 < σ",
+     "c : ℂ",
+     "m : ℕ"
+    ],
+    "proves": "∑ j ∈ Finset.range (m + 1), coefE c m j * aSum σ (j + 1) = ∑' ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re}, ordC ρ.1 * F (wz ρ.1) c m",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.aSum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.aSum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term_class",
+    "ns": "CountEuler",
+    "full": "CountEuler.term_class",
+    "line": 652,
+    "why": "A zero of the class. If `e^(w_ρ) = p·u`, `p > 0`, `‖u‖ = 1`, `c = −κu`, `R = p + κ`, then `m(ρ)·F/N_m → m(ρ)/w_ρ`, and every term is at most `K₃·m(ρ)/|Im w_ρ|` for `K₃ ≥ 1 + π`.",
+    "sorry": false,
+    "needs": [
+     "hp : 0 < p",
+     "hκ : 0 ≤ κ",
+     "hu : ‖u‖ = 1",
+     "hz : Complex.exp (wz ρ) = (p:ℂ) * u",
+     "hc : c = -(κ:ℂ) * u",
+     "hR : R = p + κ",
+     "hK₃ : 1 + Real.pi ≤ K₃"
+    ],
+    "proves": "Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 (ordC ρ * (1 / wz ρ))) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLinePi.ordR ρ / |(wz ρ).im|)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_bound",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_tendsto",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_ordC_mul",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_bound",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.class_tendsto",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_ordC_mul",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term_other",
+    "ns": "CountEuler",
+    "full": "CountEuler.term_other",
+    "line": 674,
+    "why": "A zero off the class. If `‖c‖ ≤ r`, `‖e^(w_ρ) − c‖ ≤ r`, `0 < r < R`, `‖u‖ = 1` and `(m+1)·(r/R)^(m+1) ≤ K` for every `m`, then `m(ρ)·F/N_m → 0`, and every term is at most `K₃·m(ρ)/|Im w_ρ|` for `K₃ ≥ 2K/r`.",
+    "sorry": false,
+    "needs": [
+     "hc : ‖c‖ ≤ r",
+     "hz : ‖Complex.exp (wz ρ) - c‖ ≤ r",
+     "hr : 0 < r",
+     "hR : 0 < R",
+     "hrR : r < R",
+     "hu : ‖u‖ = 1",
+     "hK : ∀ m : ℕ, ((m + 1 : ℕ) : ℝ) * (r / R) ^ (m + 1) ≤ K",
+     "hK₃ : 2 * K / r ≤ K₃"
+    ],
+    "proves": "Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 0) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLinePi.ordR ρ / |(wz ρ).im|)",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_ordC_mul",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_ratio_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.two_cpow_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_ordC_mul",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_ratio_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.two_cpow_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "core",
+    "ns": "CountEuler",
+    "full": "CountEuler.core",
+    "line": 722,
+    "why": "The core of block N3-E. Let `σ > 1/2`, `σ ≤ E`, and let the segment sums satisfy `‖a_k‖ ≤ A·k²·2^(kE)` for `k ≥ 2`. Let `ρ₁` have `β₁ > E`, `z₁ = 2^ρ₁`, `u = z₁/|z₁|`, `κ ≥ 0`, and let every other mode of a zero right of `σ` lie within `r₀ < |z₁| + κ` of `−κu`. Then contradiction.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1/2 < σ",
+     "hσE : σ ≤ E",
+     "hA : ∀ k : ℕ, 2 ≤ k → ‖aSum σ k‖ ≤ A * (k:ℝ)^2 * (2:ℝ)^((k:ℝ) * E)",
+     "ρ₁ : NontrivialZeros",
+     "hρ₁ : E < (ρ₁:ℂ).re",
+     "hκ : 0 ≤ κ",
+     "hr₀ : r₀ < ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ",
+     "hball : ∀ ρ : NontrivialZeros, σ ≤ (ρ:ℂ).re → (2:ℂ)^(ρ:ℂ) ≠ (2:ℂ)^(ρ₁:ℂ) → ‖(2:ℂ)^(ρ:ℂ) + (κ:ℂ) * ((2:ℂ)^(ρ₁:ℂ) / ‖(2:ℂ)^(ρ₁:ℂ)‖)‖ ≤ r₀"
+    ],
+    "proves": "False",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.aSum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.re_ord_div_w_pos",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.two_cpow_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.F",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.aSum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.coefE",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_Nn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.ordC",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.re_ord_div_w_pos",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_le",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.two_cpow_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.wz",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.euler_exposed_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "euler_exposed_false",
+    "ns": "CountEuler",
+    "full": "CountEuler.euler_exposed_false",
+    "line": 893,
+    "why": "No mode outside a disc holding the others (block N3-E). Let the count of primes at the doublings stay within `C·k²·√2^k` of `Li`, let `1/2 < σ < Θ ≤ 1`, and let every zero have real part at most `Θ`. Then there is `E` with `σ ≤ E < Θ` such that no zero `ρ₁` with real part above `E` has its mode `z₁ = 2^ρ₁` strictly outside a disc, centred at `−κ·z₁/|z₁|` (`κ ≥ 0`) on the ray opposite to it, of radius `r₀ < |z₁| + κ`, which holds every other mode of the zeros right of `σ`.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → |(Nat.primeCounting ⌊(2:ℝ)^k⌋₊ : ℝ) - Stage3.Li ((2:ℝ)^k)| ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ : 1/2 < σ",
+     "hσΘ : σ < Θ",
+     "hΘ1 : Θ ≤ 1",
+     "hΘ : ∀ ρ : Kadiri.NontrivialZeros, (ρ:ℂ).re ≤ Θ"
+    ],
+    "proves": "∃ E : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ (ρ₁ : Kadiri.NontrivialZeros), E < (ρ₁:ℂ).re → ∀ κ r₀ : ℝ, 0 ≤ κ → r₀ < ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ → (∀ ρ : Kadiri.NontrivialZeros, σ ≤ (ρ:ℂ).re → (2:ℂ)^(ρ:ℂ) ≠ (2:ℂ)^(ρ₁:ℂ) → ‖(2:ℂ)^(ρ:ℂ) + (κ:ℂ) * ((2:ℂ)^(ρ₁:ℂ) / ‖(2:ℂ)^(ρ₁:ℂ)‖)‖ ≤ r₀) → False",
+    "file": "lean_stage3/Stage3/CountEuler.lean",
+    "id": "lean_stage3/Stage3/CountEuler.lean::CountEuler.euler_exposed_false",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CountModes.lean",
+  "module": "Stage3.CountModes",
+  "stem": "CountModes",
+  "header": "CountModes — block N1 of `lean_stage3/design/countmodes.md`, as corrected in its section \"After the independent check\". 2026-11-23.",
+  "imports": [
+   "Stage3.FiniteOffLinePi"
+  ],
+  "opens": [
+   "Kadiri",
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "CountModes"
+  ],
+  "lines": 513,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FiniteOffLinePi.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "norm_tail_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_tail_le",
+    "line": 39,
+    "why": "On the real interval `(0, 1)` the Euler–Maclaurin tail of `ζ` at `N = 1` is at most `1/(2b)` in size.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b"
+    ],
+    "proves": "‖∫ x in Set.Ioi ((1 : ℕ) : ℝ), ((⌊x⌋ : ℂ) + 1 / 2 - (x : ℂ)) / (x : ℂ) ^ ((b : ℂ) + 1)‖ ≤ 1 / (2 * b)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_tail_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.riemannZeta_ne_zero_of_Ioo"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "riemannZeta_ne_zero_of_Ioo",
+    "ns": "CountModes",
+    "full": "CountModes.riemannZeta_ne_zero_of_Ioo",
+    "line": 85,
+    "why": "`ζ` has no zero on the real interval `(0, 1)`. By the Euler–Maclaurin form at `N = 1`, `ζ(b) = 1/2 − 1/(1 − b) + b·I` with `|b·I| ≤ 1/2`, while `|1/2 − 1/(1 − b)| > 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hb0 : 0 < b",
+     "hb1 : b < 1"
+    ],
+    "proves": "riemannZeta (b : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.riemannZeta_ne_zero_of_Ioo",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_tail_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_tail_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_ne_zero",
+    "ns": "CountModes",
+    "full": "CountModes.im_ne_zero",
+    "line": 125,
+    "why": "No nontrivial zero of ζ is real. A zero with imaginary part `0` would be a zero of `ζ` on the real interval `(0, 1)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "(ρ : ℂ).im ≠ 0",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.riemannZeta_ne_zero_of_Ioo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.riemannZeta_ne_zero_of_Ioo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "J",
+    "ns": "CountModes",
+    "full": "CountModes.J",
+    "line": 140,
+    "why": "The segment integral of one zero on the count's ladder: `J_k(w) = ∫₀^∞ e^(k(w−s))/(w − s) ds`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.J_eq_zeta",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.aSum",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.transform_eq",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_eq_segment",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sub_ofReal_ne_zero",
+    "ns": "CountModes",
+    "full": "CountModes.sub_ofReal_ne_zero",
+    "line": 144,
+    "why": "For `Im w ≠ 0`, the point `w − s` is never zero for real `s`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "s : ℝ"
+    ],
+    "proves": "w - (s : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.continuous_Qn",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.hasDerivAt_Gc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Pc",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_Qc",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuous_integrand",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrand_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_integrand",
+    "ns": "CountModes",
+    "full": "CountModes.continuous_integrand",
+    "line": 151,
+    "why": "For `Im w ≠ 0`, the integrand of `J k w` is continuous in `s`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "Continuous (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.continuous_integrand",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_integrand_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_integrand_le",
+    "line": 156,
+    "why": "The size of the integrand of `J k w`: at most `e^(k·Re w)/|Im w|·e^(−ks)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hw : w.im ≠ 0",
+     "s : ℝ"
+    ],
+    "proves": "‖Complex.exp ((k:ℂ) * (w - s)) / (w - s)‖ ≤ Real.exp (k * w.re) / |w.im| * Real.exp (-k * s)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_exp_neg_mul",
+    "ns": "CountModes",
+    "full": "CountModes.integral_exp_neg_mul",
+    "line": 173,
+    "why": "The real exponential `e^(−ks)` integrates to `1/k` over `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hk : 0 < k"
+    ],
+    "proves": "∫ s in Set.Ioi (0:ℝ), Real.exp (-k * s) = 1 / k",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integral_exp_neg_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.others_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_J",
+    "ns": "CountModes",
+    "full": "CountModes.integrable_J",
+    "line": 179,
+    "why": "For `1 ≤ k` and `Im w ≠ 0` the integrand of `J k w` is integrable on `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "IntegrableOn (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s)) (Set.Ioi 0)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuous_integrand",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuous_integrand",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.integrable_zeta_pow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_J_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_J_le",
+    "line": 189,
+    "why": "The size of the segment integral. For `1 ≤ k` and `Im w ≠ 0`, `‖J k w‖ ≤ e^(k·Re w)/(k·|Im w|)`.",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "‖J k w‖ ≤ Real.exp (k * w.re) / (k * |w.im|)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_exp_neg_mul",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_exp_neg_mul",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrand_sub",
+    "ns": "CountModes",
+    "full": "CountModes.integrand_sub",
+    "line": 204,
+    "why": "For `s` real and `Im w ≠ 0`, the difference of the integrands of `J k w` and `J 1 w` at `s` is `∫₁ᵏ e^((w−s)v) dv`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hw : w.im ≠ 0",
+     "s : ℝ"
+    ],
+    "proves": "Complex.exp ((k:ℂ) * (w - s)) / (w - s) - Complex.exp (((1:ℕ):ℂ) * (w - s)) / (w - s) = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((w - s) * v)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integrand_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_inner",
+    "ns": "CountModes",
+    "full": "CountModes.integral_inner",
+    "line": 211,
+    "why": "For `v > 0`, `∫₀^∞ e^((w−s)v) ds = e^(vw)/v`.",
+    "sorry": false,
+    "needs": [
+     "hv : 0 < v"
+    ],
+    "proves": "∫ s in Set.Ioi (0:ℝ), Complex.exp ((w - s) * v) = Complex.exp ((v:ℂ) * w) / (v:ℂ)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integral_inner",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_prod",
+    "ns": "CountModes",
+    "full": "CountModes.integrable_prod",
+    "line": 227,
+    "why": "For `1 ≤ k`, the function `(s, v) ↦ e^((w−s)v)` is integrable on `(0, ∞) × (1, k]`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "Integrable (Function.uncurry fun (s v : ℝ) => Complex.exp ((w - s) * v)) ((volume.restrict (Set.Ioi (0:ℝ))).prod (volume.restrict (Set.Ioc (1:ℝ) k)))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_prod",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "J_sub",
+    "ns": "CountModes",
+    "full": "CountModes.J_sub",
+    "line": 261,
+    "why": "The difference of two segment integrals. For `1 ≤ k` and `Im w ≠ 0`, `J k w − J 1 w = ∫₁ᵏ e^(vw)/v dv`. By Fubini: the difference of the integrands is `∫₁ᵏ e^((w−s)v) dv`, and `∫₀^∞ e^((w−s)v) ds = e^(vw)/v`.",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "J k w - J 1 w = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * w) / (v:ℂ)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_prod",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_inner",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrand_sub"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_prod",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_inner",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrand_sub"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cpow_two_rpow",
+    "ns": "CountModes",
+    "full": "CountModes.cpow_two_rpow",
+    "line": 279,
+    "why": "The complex power `ρ` of the real `2^v` is `e^(v·ρ·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "v : ℝ",
+     "ρ : ℂ"
+    ],
+    "proves": "(((2:ℝ) ^ v : ℝ) : ℂ) ^ ρ = Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ)))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.term1_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term1_eq",
+    "ns": "CountModes",
+    "full": "CountModes.term1_eq",
+    "line": 290,
+    "why": "The first term of `piMode ρ (2^v)` is `e^(vw)/(vw)`, with `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "v : ℝ",
+     "ρ : ℂ"
+    ],
+    "proves": "(((2:ℝ) ^ v : ℝ) : ℂ) ^ ρ / ρ / (Real.log ((2:ℝ) ^ v) : ℂ) = Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ))) / ((v:ℂ) * (ρ * (Real.log 2 : ℂ)))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.term1_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_integrand",
+    "ns": "CountModes",
+    "full": "CountModes.continuousOn_integrand",
+    "line": 299,
+    "why": "The integrand of `piMode` is continuous on `t > 1`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "ContinuousOn (fun t : ℝ => (t : ℂ) ^ ρ / ρ * PiZeros.wt t) (Set.Ioi 1)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.continuousOn_integrand",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_ipart",
+    "ns": "CountModes",
+    "full": "CountModes.hasDerivAt_ipart",
+    "line": 313,
+    "why": "The derivative of the integral part of `piMode ρ` at `y > 1` is the integrand.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ",
+     "hy : 1 < y"
+    ],
+    "proves": "HasDerivAt (fun u => ∫ t in (2:ℝ)..u, (t : ℂ) ^ ρ / ρ * PiZeros.wt t) ((y : ℂ) ^ ρ / ρ * PiZeros.wt y) y",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuousOn_integrand",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuousOn_integrand",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_term1",
+    "ns": "CountModes",
+    "full": "CountModes.hasDerivAt_term1",
+    "line": 328,
+    "why": "The derivative of `e^(uw)/(uw)` at `u ≠ 0`, for `w ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hw : w ≠ 0",
+     "hv : v ≠ 0"
+    ],
+    "proves": "HasDerivAt (fun u : ℝ => Complex.exp ((u:ℂ) * w) / ((u:ℂ) * w)) ((Complex.exp ((v:ℂ) * w) * w * ((v:ℂ) * w) - Complex.exp ((v:ℂ) * w) * w) / ((v:ℂ) * w) ^ 2) v",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_term1",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_piMode_two_rpow",
+    "ns": "CountModes",
+    "full": "CountModes.hasDerivAt_piMode_two_rpow",
+    "line": 342,
+    "why": "The derivative of one zero's part along the doublings. For `v > 0` and `ρ ≠ 0`, `v ↦ piMode ρ (2^v)` has derivative `e^(vw)/v`, `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "hρ : ρ ≠ 0",
+     "hv : 0 < v"
+    ],
+    "proves": "HasDerivAt (fun u : ℝ => PiZeros.piMode ρ ((2:ℝ) ^ u)) (Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ))) / (v:ℂ)) v",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_term1",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.term1_eq",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_term1",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.term1_eq",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "piMode_doubling_sub_of",
+    "ns": "CountModes",
+    "full": "CountModes.piMode_doubling_sub_of",
+    "line": 378,
+    "why": "One zero's part of the count between two doublings. For `ρ ≠ 0` and `1 ≤ k`, `piMode ρ (2^k) − piMode ρ 2 = ∫₁ᵏ e^(vw)/v dv`, `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "hρ : ρ ≠ 0",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "PiZeros.piMode ρ ((2:ℝ) ^ k) - PiZeros.piMode ρ 2 = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * (ρ * Real.log 2)) / (v:ℂ)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "piMode_doubling_sub",
+    "ns": "CountModes",
+    "full": "CountModes.piMode_doubling_sub",
+    "line": 401,
+    "why": "One zero's part of the count between two doublings, for a nontrivial zero: `piMode ρ (2^k) − piMode ρ 2 = ∫₁ᵏ e^(vw)/v dv`, `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "k : ℕ",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "PiZeros.piMode (ρ:ℂ) ((2:ℝ) ^ k) - PiZeros.piMode (ρ:ℂ) 2 = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * ((ρ:ℂ) * Real.log 2)) / (v:ℂ)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_w",
+    "ns": "CountModes",
+    "full": "CountModes.im_w",
+    "line": 414,
+    "why": "The imaginary part of `w = ρ·log 2` is `γ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "(ρ * (Real.log 2 : ℂ)).im = ρ.im * Real.log 2",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.im_w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_w",
+    "ns": "CountModes",
+    "full": "CountModes.re_w",
+    "line": 419,
+    "why": "The real part of `w = ρ·log 2` is `β·log 2`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "(ρ * (Real.log 2 : ℂ)).re = ρ.re * Real.log 2",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.re_w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_im_ne_zero",
+    "ns": "CountModes",
+    "full": "CountModes.w_im_ne_zero",
+    "line": 424,
+    "why": "For a nontrivial zero, `w = ρ·log 2` is not real.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "cst",
+    "ns": "CountModes",
+    "full": "CountModes.cst",
+    "line": 429,
+    "why": "The constant of one zero's part on the count's ladder: `piMode ρ 2 − J_1(w)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "piMode_doubling",
+    "ns": "CountModes",
+    "full": "CountModes.piMode_doubling",
+    "line": 433,
+    "why": "One zero's part on the count's ladder is a segment plus a constant. For a nontrivial zero and `1 ≤ k`, `piMode ρ (2^k) = J_k(ρ·log 2) + cst ρ`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst ρ",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_J_doubling_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_J_doubling_le",
+    "line": 446,
+    "why": "The size of a zero's segment on the count's ladder. For `1 ≤ k`, `‖J_k(ρ·log 2)‖ ≤ 2^(kβ)/(k·|γ|·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(ρ:ℂ).im| * Real.log 2))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.re_w",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.re_w",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_piMode_two_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_piMode_two_le",
+    "line": 457,
+    "why": "The value of one zero's part at `2`: `‖piMode ρ 2‖ ≤ 2/(|γ|·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_cst_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_cst_le",
+    "line": 473,
+    "why": "The size of the constant. `‖cst ρ‖ ≤ 4/(|γ|·log 2)`: each of `piMode ρ 2` and `J_1(ρ·log 2)` is at most `2^β/(|γ|·log 2) ≤ 2/(|γ|·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "J_eq_segment",
+    "ns": "CountModes",
+    "full": "CountModes.J_eq_segment",
+    "line": 500,
+    "why": "The segment form. `J_k(w) = ∫₀^∞ (e^w·e^(−s))^k/(w − s) ds`: the integrand is the pure mode `z·e^(−s)`, `z = e^w`, raised to the `k`-th power, with density `1/(w − s)`. It holds for every `k` and `w`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ k / (w - s)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.J_eq_segment",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CountReduction.lean",
+  "module": "Stage3.CountReduction",
+  "stem": "CountReduction",
+  "header": "CountReduction — block N2 of `lean_stage3/design/countmodes.md`, as corrected in its section \"After the independent check\". 2026-11-23.",
+  "imports": [
+   "Stage3.CountModes",
+   "Stage3.ZeroSummable",
+   "Stage3.AttainedPi",
+   "Stage3.FixedRowTwo"
+  ],
+  "opens": [
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "MeasureTheory",
+   "PiRemainder",
+   "PiZeros",
+   "Topology"
+  ],
+  "namespaces": [
+   "CountReduction"
+  ],
+  "lines": 601,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/AttainedPi.lean",
+   "lean_stage3/Stage3/CountModes.lean",
+   "lean_stage3/Stage3/FixedRowTwo.lean",
+   "lean_stage3/Stage3/ZeroSummable.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "cim",
+    "ns": "CountReduction",
+    "full": "CountReduction.cim",
+    "line": 40,
+    "why": "A constant bounding `|ρ|/|γ|` over every nontrivial zero: `2` plus the sum of `|ρ|/|γ|` over the finitely many zeros of height below one.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "two_le_cim",
+    "ns": "CountReduction",
+    "full": "CountReduction.two_le_cim",
+    "line": 43,
+    "why": "The constant `cim` is at least `2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "2 ≤ cim",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inv_abs_im_le",
+    "ns": "CountReduction",
+    "full": "CountReduction.inv_abs_im_le",
+    "line": 52,
+    "why": "The height of a zero against its size. For every nontrivial zero, `1/|γ| ≤ cim/|ρ|`. Above height one `|ρ| ≤ 1 + |γ| ≤ 2|γ|`; below it there are finitely many zeros.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "|(ρ : ℂ).im|⁻¹ ≤ cim * ‖(ρ : ℂ)‖⁻¹",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ratio_pow",
+    "ns": "CountReduction",
+    "full": "CountReduction.ratio_pow",
+    "line": 79,
+    "why": "The shell ratio as a power: `(2^θ'/2)^k = 2^(−k(1−θ'))`.",
+    "sorry": false,
+    "needs": [
+     "θ' : ℝ",
+     "k : ℕ"
+    ],
+    "proves": "((2:ℝ) ^ θ' / 2) ^ k = (2:ℝ) ^ (-(k:ℝ) * (1 - θ'))",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.ratio_pow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_tail_le",
+    "ns": "CountReduction",
+    "full": "CountReduction.sum_tail_le",
+    "line": 89,
+    "why": "For `0 ≤ r < 1`, a finite sum of `(j + 1)·r^j` over indices `j ≥ k` is at most `(k + 1)·r^k·S`, with `S = Σ' (i + 1)·r^i`: shift every index down by `k`.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 ≤ r",
+     "h1 : r < 1",
+     "k : ℕ",
+     "s : Finset ℕ",
+     "hs : ∀ j ∈ s, k ≤ j"
+    ],
+    "proves": "∑ j ∈ s, ((j:ℝ) + 1) * r ^ j ≤ ((k:ℝ) + 1) * r ^ k * ∑' i : ℕ, ((i:ℝ) + 1) * r ^ i",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.sum_tail_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_shell"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_shell"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tail_rate",
+    "ns": "CountReduction",
+    "full": "CountReduction.tail_rate",
+    "line": 125,
+    "why": "The rate of the tail. For `1/2 < σ ≤ 1` there are `0 ≤ θ' < 1` and `Ct ≥ 0` such that, for every `k ≥ 1`, the weights `m(ρ)/|ρ|` over any finite set of zeros with `Re ρ ≥ σ` and `|Im ρ| ≥ 2^k` sum to at most `Ct·k·2^(−k(1−θ'))`. The shells `j ≥ k` weigh `K·(j+1)·2^(−j(1−θ'))` each (`ZeroSummable.shell_sum_le`), a geometric tail; below the first shell the density bound reads, one constant does.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1/2 < σ",
+     "hσ1 : σ ≤ 1"
+    ],
+    "proves": "∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈ v, ((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ) / ‖(ρ:ℂ)‖ ≤ Ct * k * (2:ℝ)^(-(k:ℝ) * (1 - θ'))",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.ratio_pow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sum_tail_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.dyadic_index",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_bound_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.ratio_pow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sum_tail_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.dyadic_index",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_bound_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_term_le",
+    "ns": "CountReduction",
+    "full": "CountReduction.norm_term_le",
+    "line": 238,
+    "why": "One segment term against its weight. For `1 ≤ k` and a real part `β ≤ b`, `‖m(ρ)·J_k(ρ·log 2)‖ ≤ cim·2^(kb)/(k·log 2)·m(ρ)/|ρ|`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "hk : 1 ≤ k",
+     "hb : (ρ : ℂ).re ≤ b"
+    ],
+    "proves": "‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ) / ‖(ρ:ℂ)‖)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_J",
+    "ns": "CountReduction",
+    "full": "CountReduction.summable_J",
+    "line": 271,
+    "why": "The segment terms right of a line are absolutely summable. For `σ > 1/2` and `k ≥ 1`, `‖m(ρ)·J_k(ρ·log 2)‖ ≤ cim·2^k/(k·log 2)·m(ρ)/|ρ|`, and these weights are summable (`ZeroSummable.summable_order_div`).",
+    "sorry": false,
+    "needs": [
+     "hσ : 1/2 < σ",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} => ‖((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.NontrivialZeros):ℂ) * Real.log 2)‖",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.tsum_transform",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pow_rpow",
+    "ns": "CountReduction",
+    "full": "CountReduction.pow_rpow",
+    "line": 286,
+    "why": "`(2^k)^b = 2^(k·b)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "b : ℝ"
+    ],
+    "proves": "((2:ℝ) ^ k) ^ b = (2:ℝ) ^ ((k:ℝ) * b)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_mono",
+    "ns": "CountReduction",
+    "full": "CountReduction.rpow_mono",
+    "line": 290,
+    "why": "`2^(k·a) ≤ 2^(k·b)` for `a ≤ b`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "h : a ≤ b"
+    ],
+    "proves": "(2:ℝ) ^ ((k:ℝ) * a) ≤ (2:ℝ) ^ ((k:ℝ) * b)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sqrt_pow_le",
+    "ns": "CountReduction",
+    "full": "CountReduction.sqrt_pow_le",
+    "line": 294,
+    "why": "`√2^k ≤ 2^(k·e)` for `e ≥ 1/2`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "he : 1/2 ≤ e"
+    ],
+    "proves": "Real.sqrt 2 ^ k ≤ (2:ℝ) ^ ((k:ℝ) * e)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_le_rpow_two",
+    "ns": "CountReduction",
+    "full": "CountReduction.one_le_rpow_two",
+    "line": 299,
+    "why": "`1 ≤ 2^(k·e)` for `e ≥ 0`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "he : 0 ≤ e"
+    ],
+    "proves": "1 ≤ (2:ℝ) ^ ((k:ℝ) * e)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.one_le_rpow_two",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "count_modes_small",
+    "ns": "CountReduction",
+    "full": "CountReduction.count_modes_small",
+    "line": 312,
+    "why": "The reduction with a power saving (block N2). Let the count of primes at the doublings stay within `C·k²·√2^k` of `Li`, let `1/2 < σ < Θ ≤ 1`, and let every zero have real part at most `Θ`. Then there are `E` with `σ ≤ E < Θ` and `A` such that, for every `k ≥ 2`, the segment sum `Σ'_{β≥σ} m(ρ)·J_k(ρ·log 2)` is at most `A·k²·2^(kE)`. At `x = T = 2^k` the identity of `PiZeros.pi_eq_zero_sum` writes the zeros right of `σ` below `2^k` as the count, the zeros left of `σ` (`zinv`), the remainders and the constants `cst ρ`; the zeros right of `σ` above `2^k` are the tail of `tail_rate`. `E = max σ (Θ…",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → |(Nat.primeCounting ⌊(2:ℝ)^k⌋₊ : ℝ) - Stage3.Li ((2:ℝ)^k)| ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ : 1/2 < σ",
+     "hσΘ : σ < Θ",
+     "hΘ1 : Θ ≤ 1",
+     "hΘ : ∀ ρ : Kadiri.NontrivialZeros, (ρ:ℂ).re ≤ Θ"
+    ],
+    "proves": "∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.NontrivialZeros):ℂ) * Real.log 2)‖ ≤ A * (k:ℝ)^2 * (2:ℝ)^((k:ℝ) * E)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low",
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.one_le_log",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.one_le_rpow_two",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low",
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.one_le_log",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.one_le_rpow_two",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.euler_exposed_false"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/DirichletMean.lean",
   "module": "Stage3.DirichletMean",
   "stem": "DirichletMean",
@@ -26052,6 +29617,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
@@ -28363,6 +31929,10 @@
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.finite_part_le",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tailT",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
@@ -28425,6 +31995,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.tendsto_tail",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_tailT",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
@@ -28719,6 +32290,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
      "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
      "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
      "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode",
@@ -29261,6 +32834,11 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.band_small",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_eventually",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.core",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_ordC_mul",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
@@ -29297,6 +32875,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_class",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.term_other",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
     ]
@@ -29330,6 +32911,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.norm_ordC_mul",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
     ]
    },
@@ -29601,6 +33183,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
@@ -29832,6 +33415,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integral_two_le",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
@@ -29867,6 +33451,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.table_cell_fixed_row_two"
     ]
@@ -30007,6 +33592,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.tr_efRem_fixed_two"
     ]
    },
@@ -44810,6 +48396,7 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.slack",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.slack_isLittleO",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
@@ -44854,6 +48441,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
@@ -45001,6 +48589,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
@@ -45082,6 +48671,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of"
@@ -46019,6 +49609,9 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_ipart_le_of_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuousOn_integrand",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_integrand",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
@@ -46068,6 +49661,9 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
@@ -46320,6 +49916,14 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_band",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_le",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_half",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
@@ -46358,6 +49962,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integral_two_le",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
@@ -46399,6 +50004,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.table_cell_fixed_row_two",
@@ -46552,6 +50158,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
@@ -46590,6 +50197,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
     ]
    },
@@ -46815,6 +50423,8 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.euler_exposed_false",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
@@ -74775,6 +78385,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    }
@@ -75743,6 +79354,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_eventually",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
@@ -75979,6 +79592,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -76003,6 +79617,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -76028,6 +79643,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sum_tail_le",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -76051,6 +79667,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -76097,6 +79714,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_eventually",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
     ]
@@ -76129,7 +79748,9 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.band_small"
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.band_small",
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.summable_ord_im",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J"
     ]
    },
    {
@@ -77898,11 +81519,14 @@
    "Stage3.FixedRowTwo",
    "Stage3.FilterLadder",
    "Stage3.FilterAttained",
-   "Stage3.FilterAccum"
+   "Stage3.FilterAccum",
+   "Stage3.CountModes",
+   "Stage3.CountReduction",
+   "Stage3.CountEuler"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 176,
+  "lines": 179,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -77924,6 +81548,9 @@
    "lean_stage3/Stage3/CellRows.lean",
    "lean_stage3/Stage3/CellZeros.lean",
    "lean_stage3/Stage3/ContourShift.lean",
+   "lean_stage3/Stage3/CountEuler.lean",
+   "lean_stage3/Stage3/CountModes.lean",
+   "lean_stage3/Stage3/CountReduction.lean",
    "lean_stage3/Stage3/DirichletMean.lean",
    "lean_stage3/Stage3/DirichletMeanW.lean",
    "lean_stage3/Stage3/EdgeBound.lean",
