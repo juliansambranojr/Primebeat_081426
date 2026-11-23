@@ -1,0 +1,14 @@
+{'where': 'at_zeros', 'sigma': 0.3, 'beta_mean': 0.5285, 'beta_min': 0.4408, 'beta_max': 0.7327}
+{'where': 'at_zeros', 'sigma': 0.4, 'beta_mean': 0.5253, 'beta_min': 0.4461, 'beta_max': 0.7057}
+{'where': 'at_zeros', 'sigma': 0.5, 'beta_mean': 0.5221, 'beta_min': 0.452, 'beta_max': 0.6789}
+{'where': 'at_zeros', 'sigma': 0.6, 'beta_mean': 0.5191, 'beta_min': 0.4583, 'beta_max': 0.6528}
+{'where': 'at_zeros', 'sigma': 0.7, 'beta_mean': 0.5162, 'beta_min': 0.4646, 'beta_max': 0.6278}
+{'where': 'at_zeros', 'sigma': 0.8, 'beta_mean': 0.5135, 'beta_min': 0.4682, 'beta_max': 0.6041}
+at_zeros 0.5208 0.4408 0.7327
+{'where': 'at_midpoints', 'sigma': 0.3, 'beta_mean': 0.6192, 'beta_min': -0.1136, 'beta_max': 1.5002}
+{'where': 'at_midpoints', 'sigma': 0.4, 'beta_mean': 0.5837, 'beta_min': -0.4423, 'beta_max': 1.3891}
+{'where': 'at_midpoints', 'sigma': 0.5, 'beta_mean': 0.5551, 'beta_min': 0.0701, 'beta_max': 1.401}
+{'where': 'at_midpoints', 'sigma': 0.6, 'beta_mean': 0.551, 'beta_min': 0.0283, 'beta_max': 1.4665}
+{'where': 'at_midpoints', 'sigma': 0.7, 'beta_mean': 0.6025, 'beta_min': -0.1632, 'beta_max': 1.4442}
+{'where': 'at_midpoints', 'sigma': 0.8, 'beta_mean': 0.5996, 'beta_min': -0.7744, 'beta_max': 1.8807}
+at_midpoints 0.5852 -0.7744 1.8807

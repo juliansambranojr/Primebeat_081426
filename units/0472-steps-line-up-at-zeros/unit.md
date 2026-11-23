@@ -2,7 +2,7 @@
 id: 0472
 date: 2026-11-23
 type: run
-title: "The first N steps of the staircase, turned and added, line up at the heights of the zeros; EXPLORATORY"
+title: "The first N steps of the staircase, turned and added, line up at the heights of the zeros, and report their size rate near one half; EXPLORATORY"
 refs: [lean_stage3/Stage3/CountModes.lean::im_ne_zero, lean_stage3/Stage3/FixedRowTwo.lean::table_cell_fixed_row_two]
 supersedes: []
 follows: 0471
@@ -24,4 +24,12 @@ Tall maxima away from every zero on file, further than `lineup.near` 0.5: `lineu
 
 **What it is.** A measurement of the direction the tree does not prove: from the steps to the zeros. On this range the turned steps cancel at a general height and add up at the heights of the zeros, the peak rising about as fast as the logarithm of the cutoff while the level between peaks stays put. Every step up to the cutoff enters each peak. The mathematics expects this: the sum is a truncation of the logarithmic derivative of zeta, which has a pole at each zero.
 
-**What it is not.** It reads heights only; the square-root weight was put in by hand, so the run says nothing about the real parts. The range is the first zeros and four cutoffs. It is not a theorem and it does not test the Riemann hypothesis.
+**The weight, no longer put in by hand.** Julian asked why the square-root weight was there. It was the real part of the zeros, taken from outside. `run/sizerate.py` tries the weight at several exponents and asks the steps for the size rate. As the cutoff grows the sum changes by terms whose size is the cutoff to the power of the zeros' real part less the exponent tried. With the cutoffs `sizerate.cutoffs[0]` 100000, `sizerate.cutoffs[1]` 1000000 and `sizerate.cutoffs[2]` 10000000, the ratio of the two successive changes gives an estimate of the real part: the exponent tried plus the base-ten logarithm of the ratio. EXPLORATORY: no prereg, no decision rule, no verdict.
+
+At the heights of the `sizerate.zeros_used` 12 zeros the mean estimate was `sizerate.rows[0].beta_mean` 0.5285 with the exponent `sizerate.rows[0].sigma` 0.3, `sizerate.rows[1].beta_mean` 0.5253 with `sizerate.rows[1].sigma` 0.4, `sizerate.rows[2].beta_mean` 0.5221 with `sizerate.rows[2].sigma` 0.5, `sizerate.rows[3].beta_mean` 0.5191 with `sizerate.rows[3].sigma` 0.6, `sizerate.rows[4].beta_mean` 0.5162 with `sizerate.rows[4].sigma` 0.7, and `sizerate.rows[5].beta_mean` 0.5135 with `sizerate.rows[5].sigma` 0.8. Over all exponents and zeros the mean was `sizerate.at_zeros_overall_mean` 0.5208, the smallest single estimate `sizerate.at_zeros_overall_min` 0.4408 and the largest `sizerate.at_zeros_overall_max` 0.7327.
+
+At the `sizerate.midpoints_used` 11 heights midway between neighbouring zeros the same estimate scattered: mean `sizerate.at_midpoints_overall_mean` 0.5852, from `sizerate.at_midpoints_overall_min` -0.7744 to `sizerate.at_midpoints_overall_max` 1.8807.
+
+**What the second run is.** Whatever exponent was tried, the steps at a zero's height answered with nearly the same number, a little above one half, and the answer moved toward one half as the exponent rose. So the weight that the first run was handed is one the steps give back. The single estimates spread by about a tenth to either side, with one as far as two tenths above. Between the zeros no one term leads and the neighbours' turnings interfere, so the estimate there carries little. It is a rough reading from three cutoffs. It is not a measurement of the real parts to any precision and it does not test the Riemann hypothesis.
+
+**What it is not.** The first run reads heights only, with the square-root weight put in by hand. The range is the first zeros and a few cutoffs. It is not a theorem and it does not test the Riemann hypothesis.

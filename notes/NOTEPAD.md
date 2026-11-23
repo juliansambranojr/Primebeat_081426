@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0472, second run (EXPLORATORY): the weight no longer put in by hand. At the 12 zeros' heights, the growth of the turned sum between N = 1e5, 1e6, 1e7 gives a size-rate estimate of mean 0.52 whatever exponent 0.3 to 0.8 is tried; single estimates 0.44 to 0.73. Between zeros it scatters. Rough; no test of RH.
 - [open]   2026-11-23  Julian's posit, logged with unit 0472 (EXPLORATORY): a nontrivial zero is the steps of the staircase seen together. Run: the first N integers' steps, turned and added, peak at all 12 zeros between 11 and 59 for N = 100 to 100000; peak height tracks log N, background level. The tree proves staircase-through-zeros only; this direction has no theorem.
 - [open]   2026-11-23  N3-E PROVED (unit 0471, `CountEuler.euler_exposed_false`): on the count's ladder, under |pi(2^k) - Li(2^k)| <= C k^2 sqrt2^k, no zero right of E has its mode strictly outside a disc (centred on the opposite ray) holding every other mode right of sigma. Reaches the case not attained on the table's own ladder. Elementary: the Euler transform. Open: modes with no such disc.
 - [open]   2026-11-23  N2 PROVED (unit 0470, `CountReduction.count_modes_small`, `tail_rate`): under |pi(2^k) - Li(2^k)| <= C k^2 sqrt2^k, for 1/2 < sigma < Theta there is E < Theta with |sum over beta >= sigma of m J_k| <= A k^2 2^(kE). The tail above height 2^k has a rate, new in the tree. Opus worker, built and read here. Next: N3-E (being built).

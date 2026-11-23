@@ -17,13 +17,13 @@
     "shell": "/bin/sh",
     "os": "Linux v6.18.44-fc-v726 x86_64",
     "virtual_env": null,
-    "git_head": "eebaf493e8507f4a537058cac3c009ac4cfa56e0",
+    "git_head": "ab75debcc44647420829c2a4b2aa4e1fbe0d0fb3",
     "git_dirty": true
   },
   "meta": {
-    "runnable_sha256": "a8eb5639bff0a4cfb0790d2af20c4f810c3b3784a681565a54a25a04b23e58f4",
-    "run_start": "2026-11-23T07:49:19Z",
-    "run_end": "2026-11-23T07:49:52Z",
-    "wall_s": 33.46513688599953
+    "runnable_sha256": "141ebd4e4cb48224ec75d70066782576b286f6edcfe20a6d71e1aa409c370b59",
+    "run_start": "2026-11-23T08:00:49Z",
+    "run_end": "2026-11-23T08:01:55Z",
+    "wall_s": 65.72674623900002
   }
 }

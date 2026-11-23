@@ -4,6 +4,10 @@
 
 > I take this as in agreement of what I'm saying when you have a pair they don't come from no where just cause you look at a part built from primes it is still part of the whole number line eg the steps it took to make the pair before and after where you are looking
 
+> "You put the square-root weight by hand" so why would that be? You did it but had a reason that did not come from no where
+
+> Yes run it and log it
+
 The script's own statement of what it measures, from `run/lineup.py`:
 
 ```
