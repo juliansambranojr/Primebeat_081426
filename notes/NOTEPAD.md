@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0475 (EXPLORATORY), Julian: the half carries the row. The sieve builds pi(2^r) exactly from the primes up to 2^(r/2), r = 10..24, as a Pascal-shaped alternating sum. At r = 24 its roundings (each < 1) have mass 1.17 million, above the count; net 2.7% of mass; pi - li is 0.03% of mass. Neighbouring levels cancel. No proof that they must.
 - [open]   2026-11-23  Unit 0474 (EXPLORATORY), Julian: the residual of a zero against the next. Each zero's peak sways as steps are added at a rate equal to the distance to its closer neighbour (corr 0.984 over 12 zeros, 11 within resolution); neighbours sway oppositely (11 of 11 pairs negative, closest pairs -0.95, -0.87); the twelve nearly cancel. A beat between neighbouring zeros.
 - [open]   2026-11-23  Unit 0473 (EXPLORATORY), Julian: the zeros from the table's residuals, no file of zeros. The staircase's own peaks, folded to the ladder (period 9.0647 in height), against the spectrum of pi(2^r) - li(2^r), r = 10..62. With the lowest 3 or 5 peaks the staircase's angles account for 34% and 52% of the table's residual, above all 500 random draws. Coarse: 53 rows.
 - [open]   2026-11-23  Unit 0472, second run (EXPLORATORY): the weight no longer put in by hand. At the 12 zeros' heights, the growth of the turned sum between N = 1e5, 1e6, 1e7 gives a size-rate estimate of mean 0.52 whatever exponent 0.3 to 0.8 is tried; single estimates 0.44 to 0.73. Between zeros it scatters. Rough; no test of RH.
