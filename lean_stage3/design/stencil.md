@@ -88,3 +88,54 @@ it. That is the arrangement of Wolff and Denjoy, and nothing here excludes it.
 
 The count `π` in place of `ψ`: a filter acts on `z^n/n` with a factor that
 does not tend to one. S1 to S3 are for the ladder of `ψ`.
+
+## After the independent check (2026-11-23)
+
+An Opus reviewer was asked to break S1 to S3. What it found, in its words
+condensed; its own additions are paper work that nobody else has checked.
+
+**S1 holds.** The factor comes out as `n²`; `n⁴` is slack. `A` is free of
+`q`, `m`, `n`, `σ`. By Cauchy's estimate `‖P‖_W ≤ (deg P + 1)·max_{|u|=2^(−1/2)}|P|`,
+so the threshold can be stated with `μ_q = max_{|u|=2^(−1/2)}|q(u)|` in
+place of `‖q‖_W`.
+
+**S2 corrected.** There need be no gap below an attained supremum, and none
+is needed: every term with `V < M` has `|w_ρ|·(V/M)^k → 0`, dominated by the
+summable `|w_ρ|`. The tail needs only summability. The survivors are the
+zeros with `|ξ_ρ| = M`, `ξ_ρ = 2^(bρ)·q(2^(−ρ))^a`, possibly infinitely many,
+and distinct zeros can share one `ξ`. Each fibre's weight has positive real
+part, since every `m/ρ` has. The tool is `LadderMean.mean_extract` (unit
+rotations, summable weights, sum tending to zero ⊢ every fibre's weight is
+zero). `LadderFading.not_tendsto_powerSum` and
+`LadderMean.line_not_fading_summable` do not fit when `q ≠ 1`.
+
+    S2. q, a ≥ 0, b ≥ 1 with a·deg q < b, σ ∈ (1/2, 1], M = sup_{β≥σ}|ξ_ρ|.
+        If some zero with β ≥ σ attains M and M > 2^(σb)·‖q‖_W^a, then H fails.
+
+**S3 corrected.** "Finitely many zeros" should read "finitely many mode
+points"; one point can carry an infinite alias class. The statement needs a
+zero with `β > σ` whose mode is not an accumulation point, automatic when
+`Θ > σ` is not attained.
+
+    S3. K_σ = {2^ρ : β ≥ σ} with finite derived set A', and a zero with
+        β > σ and 2^ρ ∉ A'. Then H fails (q = Π(u − 1/p_i), a = 1, b large).
+
+A hypothetical arrangement it covers: `ρ_n = Θ − (Θ−σ)/n + i·(γ* + 2πn²/log 2)`.
+
+**A residue route covers more than S3, with no filter.** Take
+`Θ − 5δ² < σ < Θ`. S1 at `q = 1` plus the density rate for the tail give
+`P_k = Σ'_{β≥σ} w_ρ·z_ρ^k = O(k⁴·2^(kσ))`, so `G(u) = Σ_k P_k·u^k` is analytic
+in `|u| < 2^(−σ)`. On `|u| < 2^(−Θ)`, `G(u) = Σ' w_ρ·u/(u_ρ − u)`, analytic
+off `K = closure{u_ρ}`. If some `u_1`, `β_1 > σ`, is isolated in `K` and on
+the boundary of the component of `ℂ∖K` containing `0`, `G` has a pole there
+with residue `−u_1·Σ_fibre w_ρ ≠ 0`. Contradiction. This covers every
+countable `A'` and every `A'` that does not separate the modes from `0`.
+The filters still add the cases where the maximiser is not isolated, of
+which the attained `Θ` is the main one.
+
+**The potential-theory paragraph.** The harmonic-measure condition is
+necessary for a filter to exist. Sufficiency is not established: the
+constraint `a·deg q < b` caps the mass of the potential below one.
+
+**Where both routes stop.** An accumulation set that separates the modes
+from `0`.
