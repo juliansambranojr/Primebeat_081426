@@ -1090,3 +1090,26 @@ is linear; for `d + 2 ≤ r` every row it reads has `2^m ≥ 2`.
 **Not here.** A bound on `tr (efRem T) x`. The explicit formula bounds
 `efRem T t` for `T ≤ t²` only, so `∫₂^{√T}` needs its own estimate. Also the
 closed form of `piMode` as a logarithmic integral of `x^ρ`.
+
+
+### T2b The remainder of T2 at square-root size — PROVED (unit 0444: `PiRemainder.norm_tr_efRem_le`, `norm_tr_efRem_le_of`, `zinv_le_log`)
+
+`tr (efRem x) x`, the height equal to `x`, for `x ≥ 256`. Split `∫₂ˣ` at `√x`.
+
+- `t ≥ √x`: then `x ≤ t²` and `Glue.explicit_formula_split_num` bounds
+  `efRem x t`; against the weight the integrand is `≤ 4·Chigh/√x`, the piece
+  `≤ 4·Chigh·√x`, `Chigh = 4·c1n + c3n + c4n`.
+- `t < √x`: `|ψ t − t| ≤ 7t`-type bound and `‖zeroPartialSum t x‖ ≤ t·zinv x`,
+  `zinv T = Σ_{|γ|<T} m(ρ)/|ρ|` over all zeros. The zeros of height below one
+  are finitely many, `Mlow = 2 + Σ 1/|ρ|` over them; the rest go under the
+  dyadic count: `zinv x ≤ Mlow·39000·log²x`. The piece is `≤ 3·(7 + zinv x)·√x`.
+- the endpoint `efRem x x / log x ≤ Chigh·log x`.
+
+`Arem = 5·Chigh + 21 + 3·Mlow·39000`.
+
+With `PiZeros.pi_eq_zero_sum` and `norm_tr_psiTheta_le`: for `x ≥ 256`,
+`π(⌊x⌋) − Li x = −Σ_{|γ|<x} m(ρ)·piMode ρ x + O(√x·log²x)`. The corollary is
+not written.
+
+**Not here.** A general height. The cells: the finite off-line theorem on the
+count.

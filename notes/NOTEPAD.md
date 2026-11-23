@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  T2b PROVED (unit 0444, `PiRemainder.norm_tr_efRem_le`): the explicit formula's remainder passed to the count, at height x, is <= A sqrt x log^2 x for x >= 256, no hypothesis on the zeros. With unit 0442: pi - Li = minus the zero sum below x, within O(sqrt x log^2 x). Written by an Opus worker, built and read here. Open: the finite off-line theorem on the count.
 - [open]   2026-11-23  Descriptions: a docstring added above each of the 325 theorems the map listed with none (463 lines, no existing line changed), ported copies mirrored. Three trees build; index reads 0 without a docstring claim; welds, ports and map clean. Module line counts recorded in earlier units predate these lines.
 - [open]   2026-11-22  T2 PROVED as an identity (unit 0442, `PiZeros.pi_eq_zero_sum`, `table_cell_eq_zero_sum`): the integer table's cell less the smooth cell = minus the sum over zeros below any height of each zero's part, plus tr of the explicit formula's remainder, minus tr(psi-theta), the last <= 8 sqrt x. Open: a bound on tr of the remainder (the formula holds for T <= t^2 only).
 - [open]   2026-11-22  T3a PROVED (unit 0441, `CellRows.cell_tail_tendsto`): with height 2^(r-d) at row r the cell of psi and its zero sum differ by <= A_d r^2, and over sqrt2^r that tends to 0. Open: the height to infinity at a fixed row, which needs the explicit formula above x^2.

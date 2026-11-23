@@ -14,13 +14,14 @@ flowchart LR
   n12["<b>explicit_formula_split_num</b><br/>∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (…"]:::thm
   x0(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
   x1(["<b>FiniteOffLine</b><br/>err_le"]):::ext
-  x2(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
-  x3(["<b>ContourShift</b><br/>11 theorems"]):::ext
-  x4(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x5(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
-  x6(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
-  x7(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
-  x8(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x2(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
+  x3(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
+  x4(["<b>ContourShift</b><br/>11 theorems"]):::ext
+  x5(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x6(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
+  x7(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
+  x8(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
+  x9(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
   n0 --> n12
   n0 --> n4
   n0 --> n8
@@ -36,27 +37,31 @@ flowchart LR
   n8 --> n12
   n9 --> n10
   n12 -.-> x2
-  n12 -.-> x8
+  n12 -.-> x3
+  n12 -.-> x9
   n4 -.-> x1
   n4 -.-> x2
+  n4 -.-> x3
   n5 -.-> x1
   n5 -.-> x2
+  n5 -.-> x3
   n6 -.-> x1
   n6 -.-> x2
+  n6 -.-> x3
   x0 -.-> n1
   x0 -.-> n11
   x0 -.-> n3
   x0 -.-> n9
-  x3 -.-> n11
-  x3 -.-> n12
-  x3 -.-> n7
-  x3 -.-> n8
-  x3 -.-> n9
+  x4 -.-> n11
+  x4 -.-> n12
   x4 -.-> n7
-  x5 -.-> n11
-  x5 -.-> n9
+  x4 -.-> n8
+  x4 -.-> n9
+  x5 -.-> n7
   x6 -.-> n11
-  x7 -.-> n12
+  x6 -.-> n9
+  x7 -.-> n11
+  x8 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

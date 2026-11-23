@@ -33,7 +33,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (473)
+## Uses Lean records that the text does not show (483)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -247,6 +247,16 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`PerronKernel.kernel_diff_summable`](lean_stage3/PerronKernel.md#PerronKernel-kernel_diff_summable) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_to_psi`](lean_stage3/PerronKernel.md#PerronKernel-perron_to_psi) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.explicit_formula_perron`](lean_stage3/PerronKernel.md#PerronKernel-explicit_formula_perron) | [`PerronKernel.perronI`](lean_stage3/PerronKernel.md#PerronKernel-perronI) | def |
+| [`PiRemainder.inv_norm_le_Mlow`](lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_Mlow) | [`FiniteOffLine.mem_ZF`](lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) | theorem |
+| [`PiRemainder.zinv_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-zinv_nonneg) | [`FiniteOffLine.ZF`](lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) | def |
+| [`PiRemainder.norm_zeroPartialSum_le`](lean_stage3/PiRemainder.md#PiRemainder-norm_zeroPartialSum_le) | [`FiniteOffLine.ZF`](lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) | def |
+| [`PiRemainder.Chigh_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) | [`Glue.c1n`](lean_stage3/GlueNum.md#Glue-c1n) | def |
+| [`PiRemainder.Chigh_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) | [`Glue.c3n`](lean_stage3/GlueNum.md#Glue-c3n) | def |
+| [`PiRemainder.Chigh_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) | [`Glue.c4n`](lean_stage3/GlueNum.md#Glue-c4n) | def |
+| [`PiRemainder.norm_efRem_le_high`](lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high) | [`Stage3.zeroPartialSum`](lean_stage3/Assembly.md#Stage3-zeroPartialSum) | def |
+| [`PiRemainder.integrable_efRem`](lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem) | [`Stage3.zeroPartialSum`](lean_stage3/Assembly.md#Stage3-zeroPartialSum) | def |
+| [`PiRemainder.Arem_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Arem_nonneg) | [`PiRemainder.Chigh`](lean_stage3/PiRemainder.md#PiRemainder-Chigh) | def |
+| [`PiRemainder.Arem_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Arem_nonneg) | [`PiRemainder.Mlow`](lean_stage3/PiRemainder.md#PiRemainder-Mlow) | def |
 | [`PiToPsi.intervalIntegrable_Li_div`](lean_stage3/PiToPsi.md#PiToPsi-intervalIntegrable_Li_div) | [`PiToPsi.continuousOn_Li`](lean_stage3/PiToPsi.md#PiToPsi-continuousOn_Li) | theorem |
 | [`PiToPsi.RH_of_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | [`Stage3.StmtPsiWeak`](lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak) | def |
 | [`PiToPsi.RH_of_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | [`VonKoch.RH_iff_psiWeak`](lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | theorem |

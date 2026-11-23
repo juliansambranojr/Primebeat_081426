@@ -1,0 +1,58 @@
+flowchart LR
+  n0["<b>two_le_Mlow</b><br/>2 ≤ Mlow"]:::thm
+  n1["<b>inv_norm_le_Mlow</b><br/>‖(ρ : ℂ)‖⁻¹ ≤ Mlow"]:::thm
+  n2["<b>inv_norm_le_dyadic</b><br/>‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if …"]:::thm
+  n3["<b>sum_order_inv_le</b><br/>∑ ρ ∈ ZF ((2 : ℝ) ^ (K + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) :…"]:::thm
+  n4["<b>zinv_nonneg</b><br/>0 ≤ zinv T"]:::thm
+  n5["<b>zinv_le_log</b><br/>zinv x ≤ Mlow * 39000 * Real.log x ^ 2"]:::thm
+  n6["<b>norm_zeroPartialSum_le</b><br/>‖Stage3.zeroPartialSum t T‖ ≤ t * zinv T"]:::thm
+  n7["<b>norm_psi_sub_le</b><br/>‖((ψ t : ℝ) : ℂ) - (t : ℂ)‖ ≤ 7 * t"]:::shp
+  n8["<b>norm_efRem_le_low</b><br/>‖efRem T t‖ ≤ (7 + zinv T) * t"]:::thm
+  n9["<b>Chigh_nonneg</b><br/>0 ≤ Chigh"]:::thm
+  n10["<b>norm_efRem_le_high</b><br/>‖efRem x t‖ ≤ Chigh * Real.log x ^ 2"]:::thm
+  n11["<b>integrable_efRem</b><br/>IntervalIntegrable (efRem T) volume 2 x"]:::thm
+  n12["<b>Arem_nonneg</b><br/>0 ≤ Arem"]:::thm
+  n13["<b>norm_tr_efRem_le_of</b><br/>‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2"]:::thm
+  n14["<b>norm_tr_efRem_le ■</b><br/>∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ x : ℝ, x₀ ≤ x → ‖PiZeros.tr (PiZeros.efRem…"]:::thm
+  x0(["<b>FiniteOffLine</b><br/>4 theorems"]):::ext
+  x1(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x2(["<b>PiZeros</b><br/>4 theorems"]):::ext
+  x3(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  n0 --> n12
+  n0 --> n13
+  n0 --> n2
+  n0 --> n3
+  n0 --> n5
+  n1 --> n2
+  n10 --> n13
+  n11 --> n13
+  n12 --> n14
+  n13 --> n14
+  n2 --> n3
+  n3 --> n5
+  n4 --> n13
+  n5 --> n13
+  n6 --> n8
+  n7 --> n8
+  n8 --> n13
+  n9 --> n12
+  n9 --> n13
+  x0 -.-> n1
+  x0 -.-> n3
+  x0 -.-> n4
+  x0 -.-> n5
+  x0 -.-> n6
+  x1 -.-> n2
+  x2 -.-> n11
+  x2 -.-> n13
+  x2 -.-> n6
+  x3 -.-> n10
+  x3 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

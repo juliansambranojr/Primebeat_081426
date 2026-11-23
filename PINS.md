@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · the open bound of joint T2: `Stage3/PiRemainder.lean`, block T2b of `joints.md`
+
+    DONE        `norm_tr_efRem_le`: constants `A`, `x₀` with
+                `‖tr (efRem x) x‖ ≤ A·√x·log²x` for `x ≥ x₀`, the height
+                equal to `x`, no hypothesis on the zeros.
+                `norm_tr_efRem_le_of` with `A = Arem`, `x₀ = 256`.
+                `zinv_le_log`: the zeros below a height, all of them,
+                weighted by order over size, add to at most a constant times
+                the square of the logarithm; one unit
+    ASSUMED     Julian, 2026-11-23: "work on the open inside these". Written
+                by an Opus worker from a brief, as he asked for the limits;
+                the file was read for shortcuts and built here
+    DEPENDS     `Glue.explicit_formula_split_num`, `PiZeros`,
+                `FiniteOffLine.dyadic_count_le`
+    OUT         a general height; the finite off-line theorem on the cells
+                of the count
+    OUTCOME     proved, unit 0444
+
 ### 2026-11-22 · a description on every theorem that had none
 
     DONE        a docstring above each of the 325 theorems the map listed

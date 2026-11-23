@@ -13,9 +13,10 @@ flowchart LR
   n11["<b>assembly_arith</b><br/>A ≤ (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 * W) * S …"]:::shp
   n12["<b>psiWeak_of_RH_EF_NT ■</b><br/>StmtPsiWeak (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 *…"]:::thm
   x0(["<b>FiniteOffLine</b><br/>onLineInv_le_dyadic"]):::ext
-  x1(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le<br/>sum_inv_pow_two_le"]):::ext
-  x2(["<b>AssemblyFloor</b><br/>psiWeak_floor"]):::ext
-  x3(["<b>GlueFloor</b><br/>psiWeak_floor_split"]):::ext
+  x1(["<b>PiRemainder</b><br/>inv_norm_le_dyadic"]):::ext
+  x2(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le<br/>sum_inv_pow_two_le"]):::ext
+  x3(["<b>AssemblyFloor</b><br/>psiWeak_floor"]):::ext
+  x4(["<b>GlueFloor</b><br/>psiWeak_floor_split"]):::ext
   n0 --> n1
   n0 --> n2
   n1 --> n3
@@ -31,9 +32,10 @@ flowchart LR
   n8 --> n12
   n9 --> n12
   n5 -.-> x0
-  n8 -.-> x2
+  n5 -.-> x1
   n8 -.-> x3
-  x1 -.-> n8
+  n8 -.-> x4
+  x2 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

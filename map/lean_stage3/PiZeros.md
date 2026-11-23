@@ -5,7 +5,7 @@ PiZeros — block T2 of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 in 
 15 theorems, 5 definitions, 333 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellResidual`](../lean_stage3/CellResidual.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiRemainder`](../lean_stage3/PiRemainder.md)
 
 ## The picture
 
@@ -27,9 +27,10 @@ flowchart LR
   n13["<b>stencilR_cast</b><br/>((Nonvanishing.stencilR n g r : ℝ) : ℂ) = CellZeros.stencil n (f…"]:::shp
   n14["<b>table_cell_eq_zero_sum ■</b><br/>((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonva…"]:::thm
   x0(["<b>PsiToPi</b><br/>continuousOn_inv_mul_log_sq<br/>integral_A_rpow_le<br/>pi_sub_Li_eq"]):::ext
-  x1(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
-  x2(["<b>CellZeros</b><br/>4 theorems"]):::ext
-  x3(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
+  x1(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
+  x2(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
+  x3(["<b>CellZeros</b><br/>4 theorems"]):::ext
+  x4(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n4
@@ -44,13 +45,17 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n14
+  n1 -.-> x1
+  n6 -.-> x1
+  n7 -.-> x1
+  n8 -.-> x1
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n5
-  x1 -.-> n6
-  x2 -.-> n12
-  x2 -.-> n14
+  x2 -.-> n6
+  x3 -.-> n12
   x3 -.-> n14
+  x4 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -73,7 +78,7 @@ def · line 41
 The weight of the passage from the log-weighted count to the count.
 
 - **Is:** `` wt (t : ℝ) : ℂ := (((t * Real.log t ^ 2)⁻¹ : ℝ) : ℂ) ``
-- **Used by 8:** [`PiZeros.integrable_mul_wt`](#PiZeros-integrable_mul_wt), [`PiZeros.norm_tr_psiTheta_le`](#PiZeros-norm_tr_psiTheta_le), [`PiZeros.pi_sub_Li_eq_tr`](#PiZeros-pi_sub_Li_eq_tr), [`PiZeros.tr`](#PiZeros-tr), [`PiZeros.tr_const_mul`](#PiZeros-tr_const_mul), [`PiZeros.tr_sub`](#PiZeros-tr_sub), [`PiZeros.tr_sum`](#PiZeros-tr_sum), [`PiZeros.wt_continuousOn`](#PiZeros-wt_continuousOn)
+- **Used by 9:** [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.integrable_mul_wt`](#PiZeros-integrable_mul_wt), [`PiZeros.norm_tr_psiTheta_le`](#PiZeros-norm_tr_psiTheta_le), [`PiZeros.pi_sub_Li_eq_tr`](#PiZeros-pi_sub_Li_eq_tr), [`PiZeros.tr`](#PiZeros-tr), [`PiZeros.tr_const_mul`](#PiZeros-tr_const_mul), [`PiZeros.tr_sub`](#PiZeros-tr_sub), [`PiZeros.tr_sum`](#PiZeros-tr_sum), [`PiZeros.wt_continuousOn`](#PiZeros-wt_continuousOn)
 
 <a name="PiZeros-tr"></a>
 ### `PiZeros.tr`
@@ -84,7 +89,7 @@ The passage from the log-weighted count to the count, applied to any function: i
 
 - **Is:** `` tr (f : ℝ → ℂ) (x : ℝ) : ℂ := f x / (Real.log x : ℂ) + ∫ t in (2:ℝ)..x, f t * wt t ``
 - **Built from:** [`PiZeros.wt`](#PiZeros-wt)
-- **Used by 8:** [`PiZeros.norm_tr_psiTheta_le`](#PiZeros-norm_tr_psiTheta_le), [`PiZeros.piMode`](#PiZeros-piMode), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.pi_sub_Li_eq_tr`](#PiZeros-pi_sub_Li_eq_tr), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum), [`PiZeros.tr_const_mul`](#PiZeros-tr_const_mul), [`PiZeros.tr_sub`](#PiZeros-tr_sub), [`PiZeros.tr_sum`](#PiZeros-tr_sum)
+- **Used by 10:** [`PiRemainder.norm_tr_efRem_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le), [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.norm_tr_psiTheta_le`](#PiZeros-norm_tr_psiTheta_le), [`PiZeros.piMode`](#PiZeros-piMode), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.pi_sub_Li_eq_tr`](#PiZeros-pi_sub_Li_eq_tr), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum), [`PiZeros.tr_const_mul`](#PiZeros-tr_const_mul), [`PiZeros.tr_sub`](#PiZeros-tr_sub), [`PiZeros.tr_sum`](#PiZeros-tr_sum)
 
 <a name="PiZeros-piMode"></a>
 ### `PiZeros.piMode`
@@ -106,7 +111,7 @@ The remainder of the explicit formula at a height.
 
 - **Is:** `` efRem (T : ℝ) (t : ℝ) : ℂ := ((ψ t : ℝ) : ℂ) - (t : ℂ) + Stage3.zeroPartialSum t T ``
 - **Built from:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum)
-- **Used by 2:** [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
+- **Used by 7:** [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`PiRemainder.norm_efRem_le_low`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_low), [`PiRemainder.norm_tr_efRem_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le), [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
 
 <a name="PiZeros-psiTheta"></a>
 ### `PiZeros.psiTheta`
@@ -175,8 +180,9 @@ IntervalIntegrable (fun t => f t * wt t) volume 2 x
 
   - [`PiZeros.wt_continuousOn`](#PiZeros-wt_continuousOn) — `` ContinuousOn wt (Set.uIcc 2 x) ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of) (PiRemainder) — `` ‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2 ``
   - [`PiZeros.tr_sub`](#PiZeros-tr_sub) — `` tr (fun t => f t - g t) x = tr f x - tr g x ``
   - [`PiZeros.tr_sum`](#PiZeros-tr_sum) — `` tr (fun t => ∑ i ∈ s, f i t) x = ∑ i ∈ s, tr (f i) x ``
 
@@ -334,8 +340,10 @@ Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : �
 
   - [`FiniteOffLine.tsum_sub_eq_sum`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-tsum_sub_eq_sum) (FiniteOffLine) — `` ∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ ``
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem) (PiRemainder) — `` IntervalIntegrable (efRem T) volume 2 x ``
+  - [`PiRemainder.norm_zeroPartialSum_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_zeroPartialSum_le) (PiRemainder) — `` ‖Stage3.zeroPartialSum t T‖ ≤ t * zinv T ``
   - [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr p… ``
 
 <a name="PiZeros-integrable_ofReal_of_monotone"></a>
@@ -360,8 +368,9 @@ IntervalIntegrable (fun t => ((f t : ℝ) : ℂ)) volume 2 x
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem) (PiRemainder) — `` IntervalIntegrable (efRem T) volume 2 x ``
   - [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr p… ``
 
 <a name="PiZeros-integrable_cpow"></a>
@@ -386,8 +395,9 @@ IntervalIntegrable (fun t : ℝ => (t : ℂ) ^ ρ / ρ) volume 2 x
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem) (PiRemainder) — `` IntervalIntegrable (efRem T) volume 2 x ``
   - [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr p… ``
 
 <a name="PiZeros-pi_eq_zero_sum"></a>
