@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · design `design/countmodes.md`, blocks N1 to N3: joint 10 on the count's ladder
+
+    DONE        the design reviewed by an independent worker asked to break
+                it; no Lean yet
+    ASSUMED     Julian, 2026-11-23: "Merge then the count". On the count's
+                ladder a zero is a radial segment of modes; the filters of
+                units 0466 to 0468 do not remove a segment; the route is the
+                generating function with slits
+    DEPENDS     `PiZeros.pi_eq_zero_sum`, `ZeroDensity.zero_density`,
+                `PiRemainder.zinv_le_log`, `FixedRowTwo.tr_efRem_fixed_two`
+    OUT         the Lean of N1 to N3 until the review is in
+
 ### 2026-11-23 · blocks S2, S3 of `design/stencil.md`: `Stage3/FilterAttained.lean`, `Stage3/FilterAccum.lean`
 
     DONE        `FilterAttained.filter_attained_false`: under the ladder bound
