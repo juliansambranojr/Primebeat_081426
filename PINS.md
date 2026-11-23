@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block F1 of `design/leftedge.md`: `Stage3/ExplicitLeft.lean`
+
+    DONE        `explicit_formula_left`: for `16 ≤ x`, `2 ≤ T` the explicit
+                formula with no cap on the height and the left edge kept as a
+                term. `edge_left_any`: that edge `≤ A·log²T'·x^(−1/4)` at
+                every height. `explicit_formula_any`: the two joined; one unit
+    ASSUMED     Julian, 2026-11-23: "T3 at a fixed row (the explicit formula
+                above x²)." The cap enters `explicit_formula_split_num` once,
+                at the left edge. Written by an Opus worker; read and built
+                here
+    DEPENDS     `PerronKernel.explicit_formula_perron`,
+                `ContourShift.residue_identity`,
+                `Glue.edge_horizontal_bound_num`,
+                `Glue.zeroPartialSum_swap_num`,
+                `EdgeBound.edge_bound_core_num`
+    OUT         the left edge bounded free of the height (block F2); the cell
+                at a fixed row (block F3)
+
 ### 2026-11-23 · block C7 of `design/carlson.md`: `Stage3/AttainedPi.lean`
 
     DONE        `attained_off_line_pi`: one zero has the largest real part,
