@@ -146,6 +146,13 @@ only `ρ ≠ 0`.
 
 The corrected N2 above: `tail_rate`, `summable_J`, `count_modes_small`.
 
-## N3-E No mode outside a disc holding the others — `Stage3/CountEuler.lean`
+## N3-E No mode outside a disc holding the others — PROVED (unit 0471: `CountEuler.euler_exposed_false`, `transform_eq`, `class_main`)
 
 The statement N3-E above.
+
+As built: the class's error is not by dominated convergence with a fixed
+dominator, since the normalised integrand piles up at `s = 0`. Integrate by
+parts first, `G = −g^(m+1)/((m+1)(w − s))`: `F/N_m = 1/w + ∫₀^∞ (g/R)^(m+1)/(w − s)² ds`
+exactly, and the last integral tends to zero under the dominator
+`1/|w − s|²`, whose integral is `π/|Im w|`. The limit over the zeros is by
+dominated convergence with `K·m(ρ)/|Im w_ρ|`.

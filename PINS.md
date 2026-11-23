@@ -41,7 +41,7 @@ below with their outcome.
                 `ZeroDensity.zero_density`, `ZeroSummable.shell_sum_le`,
                 `AliasClass.re_order_div_pos`
     OUT         the forms with slits; modes stacked along one ray
-    OUTCOME     `CountReduction` proved, unit 0470; `CountEuler` being built
+    OUTCOME     proved: `CountReduction` unit 0470, `CountEuler` unit 0471
 
 ### 2026-11-23 · block N1 of `design/countmodes.md`: `Stage3/CountModes.lean`
 

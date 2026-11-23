@@ -42,7 +42,8 @@ flowchart LR
   n26["<b>norm_piMode_two_le</b><br/>‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
   n27["<b>norm_cst_le</b><br/>‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
   n28["<b>J_eq_segment ■</b><br/>J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ …"]:::shp
-  x0(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>norm_term_le"]):::ext
+  x0(["<b>CountEuler</b><br/>10 theorems"]):::ext
+  x1(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>norm_term_le"]):::ext
   n0 --> n1
   n1 --> n2
   n10 --> n12
@@ -77,9 +78,15 @@ flowchart LR
   n8 --> n25
   n9 --> n12
   n2 -.-> x0
-  n24 -.-> x0
-  n25 -.-> x0
-  n27 -.-> x0
+  n2 -.-> x1
+  n21 -.-> x0
+  n23 -.-> x0
+  n24 -.-> x1
+  n25 -.-> x1
+  n27 -.-> x1
+  n3 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -102,7 +109,7 @@ def · line 140
 The segment integral of one zero on the count's ladder: `J_k(w) = ∫₀^∞ e^(k(w−s))/(w − s) ds`.
 
 - **Is:** `` J (k : ℕ) (w : ℂ) : ℂ := ∫ s in Set.Ioi (0:ℝ), Complex.exp ((k:ℂ) * (w - s)) / (w - s) ``
-- **Used by 10:** [`CountModes.J_eq_segment`](#CountModes-J_eq_segment), [`CountModes.J_sub`](#CountModes-J_sub), [`CountModes.cst`](#CountModes-cst), [`CountModes.norm_J_doubling_le`](#CountModes-norm_J_doubling_le), [`CountModes.norm_J_le`](#CountModes-norm_J_le), [`CountModes.norm_cst_le`](#CountModes-norm_cst_le), [`CountModes.piMode_doubling`](#CountModes-piMode_doubling), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le), [`CountReduction.summable_J`](../lean_stage3/CountReduction.md#CountReduction-summable_J)
+- **Used by 14:** [`CountEuler.J_eq_zeta`](../lean_stage3/CountEuler.md#CountEuler-J_eq_zeta), [`CountEuler.aSum`](../lean_stage3/CountEuler.md#CountEuler-aSum), [`CountEuler.transform_eq`](../lean_stage3/CountEuler.md#CountEuler-transform_eq), [`CountEuler.tsum_transform`](../lean_stage3/CountEuler.md#CountEuler-tsum_transform), [`CountModes.J_eq_segment`](#CountModes-J_eq_segment), [`CountModes.J_sub`](#CountModes-J_sub), [`CountModes.cst`](#CountModes-cst), [`CountModes.norm_J_doubling_le`](#CountModes-norm_J_doubling_le), [`CountModes.norm_J_le`](#CountModes-norm_J_le), [`CountModes.norm_cst_le`](#CountModes-norm_cst_le), [`CountModes.piMode_doubling`](#CountModes-piMode_doubling), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le), [`CountReduction.summable_J`](../lean_stage3/CountReduction.md#CountReduction-summable_J)
 
 <a name="CountModes-cst"></a>
 ### `CountModes.cst`
@@ -193,8 +200,9 @@ line 125 · arrows read from text
 
   - [`CountModes.riemannZeta_ne_zero_of_Ioo`](#CountModes-riemannZeta_ne_zero_of_Ioo) — `` riemannZeta (b : ℂ) ≠ 0 ``
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
+  - [`CountEuler.summable_ord_im`](../lean_stage3/CountEuler.md#CountEuler-summable_ord_im) (CountEuler) — `` Summable fun ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re} => FiniteOffLinePi.ordR ρ.1 / |(wz ρ.1).im| ``
   - [`CountModes.norm_cst_le`](#CountModes-norm_cst_le) — `` ‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2) ``
   - [`CountModes.norm_piMode_two_le`](#CountModes-norm_piMode_two_le) — `` ‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2) ``
   - [`CountModes.w_im_ne_zero`](#CountModes-w_im_ne_zero) — `` ((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0 ``
@@ -224,8 +232,12 @@ w - (s : ℂ) ≠ 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (6 that use it)
 
+  - [`CountEuler.continuous_Qn`](../lean_stage3/CountEuler.md#CountEuler-continuous_Qn) (CountEuler) — `` Continuous (Qn w p κ n) ``
+  - [`CountEuler.hasDerivAt_Gc`](../lean_stage3/CountEuler.md#CountEuler-hasDerivAt_Gc) (CountEuler) — `` HasDerivAt (Gc w p κ (m + 1)) (Pc w p κ m s - Qc w p κ (m + 1) s / ((m + 1 : ℕ) : ℂ)) s ``
+  - [`CountEuler.integrable_Pc`](../lean_stage3/CountEuler.md#CountEuler-integrable_Pc) (CountEuler) — `` IntegrableOn (Pc w p κ m) (Set.Ioi 0) ``
+  - [`CountEuler.integrable_Qc`](../lean_stage3/CountEuler.md#CountEuler-integrable_Qc) (CountEuler) — `` IntegrableOn (Qc w p κ n) (Set.Ioi 0) ``
   - [`CountModes.continuous_integrand`](#CountModes-continuous_integrand) — `` Continuous (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s)) ``
   - [`CountModes.integrand_sub`](#CountModes-integrand_sub) — `` Complex.exp ((k:ℂ) * (w - s)) / (w - s) - Complex.exp (((1:ℕ):ℂ) * (w - s)) / (w - s) = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((w - s) * v) ``
 
@@ -306,8 +318,9 @@ line 173 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountEuler.others_le`](../lean_stage3/CountEuler.md#CountEuler-others_le) (CountEuler) — `` ‖F w c m‖ ≤ ‖Complex.exp w‖ * r ^ m / |w.im| ``
   - [`CountModes.norm_J_le`](#CountModes-norm_J_le) — `` ‖J k w‖ ≤ Real.exp (k * w.re) / (k * |w.im|) ``
 
 <a name="CountModes-integrable_J"></a>
@@ -335,8 +348,9 @@ IntegrableOn (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s)) (Set.Ioi
   - [`CountModes.continuous_integrand`](#CountModes-continuous_integrand) — `` Continuous (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s)) ``
   - [`CountModes.norm_integrand_le`](#CountModes-norm_integrand_le) — `` ‖Complex.exp ((k:ℂ) * (w - s)) / (w - s)‖ ≤ Real.exp (k * w.re) / |w.im| * Real.exp (-k * s) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountEuler.integrable_zeta_pow`](../lean_stage3/CountEuler.md#CountEuler-integrable_zeta_pow) (CountEuler) — `` IntegrableOn (fun s : ℝ => zeta w s ^ k / (w - s)) (Set.Ioi 0) ``
   - [`CountModes.J_sub`](#CountModes-J_sub) — `` J k w - J 1 w = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * w) / (v:ℂ) ``
 
 <a name="CountModes-norm_J_le"></a>
@@ -736,8 +750,9 @@ line 414 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`CountEuler.summable_ord_im`](../lean_stage3/CountEuler.md#CountEuler-summable_ord_im) (CountEuler) — `` Summable fun ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re} => FiniteOffLinePi.ordR ρ.1 / |(wz ρ.1).im| ``
   - [`CountModes.norm_J_doubling_le`](#CountModes-norm_J_doubling_le) — `` ‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(ρ:ℂ).im| * Real.log 2)) ``
   - [`CountModes.w_im_ne_zero`](#CountModes-w_im_ne_zero) — `` ((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0 ``
 
@@ -790,8 +805,11 @@ line 424 · arrows read from text
   - [`CountModes.im_ne_zero`](#CountModes-im_ne_zero) — `` (ρ : ℂ).im ≠ 0 ``
   - [`CountModes.im_w`](#CountModes-im_w) — `` (ρ * (Real.log 2 : ℂ)).im = ρ.im * Real.log 2 ``
 
-**Feeds** (2 that use it)
+**Feeds** (5 that use it)
 
+  - [`CountEuler.term_class`](../lean_stage3/CountEuler.md#CountEuler-term_class) (CountEuler) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 (ordC ρ * (1 / wz ρ))) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (Fini… ``
+  - [`CountEuler.term_other`](../lean_stage3/CountEuler.md#CountEuler-term_other) (CountEuler) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 0) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLinePi.ordR ρ /… ``
+  - [`CountEuler.tsum_transform`](../lean_stage3/CountEuler.md#CountEuler-tsum_transform) (CountEuler) — `` ∑ j ∈ Finset.range (m + 1), coefE c m j * aSum σ (j + 1) = ∑' ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re}, ordC ρ.1 * F (wz ρ.1) c m ``
   - [`CountModes.norm_J_doubling_le`](#CountModes-norm_J_doubling_le) — `` ‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(ρ:ℂ).im| * Real.log 2)) ``
   - [`CountModes.piMode_doubling`](#CountModes-piMode_doubling) — `` PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst ρ ``
 

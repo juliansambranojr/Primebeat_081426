@@ -33,7 +33,8 @@ flowchart LR
   x5(["<b>CountReduction</b><br/>4 theorems"]):::ext
   x6(["<b>ZeroDensity</b><br/>zero_density"]):::ext
   x7(["<b>AttainedPi</b><br/>4 theorems"]):::ext
-  x8(["<b>FilterAttained</b><br/>summable_S"]):::ext
+  x8(["<b>CountEuler</b><br/>summable_ord_im"]):::ext
+  x9(["<b>FilterAttained</b><br/>summable_S"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n13
@@ -54,8 +55,9 @@ flowchart LR
   n10 -.-> x7
   n11 -.-> x5
   n11 -.-> x7
+  n11 -.-> x8
   n13 -.-> x7
-  n13 -.-> x8
+  n13 -.-> x9
   n6 -.-> x5
   n7 -.-> x5
   n8 -.-> x5
@@ -469,9 +471,10 @@ Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.Nontrivia
 
 **Definitions its proof touches:** [`ZeroSummable.w`](#ZeroSummable-w)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`AttainedPi.band_small`](../lean_stage3/AttainedPi.md#AttainedPi-band_small) (AttainedPi) — `` ∃ η : ℝ, 0 < η ∧ η ≤ (Θ - 1 / 2) / 2 ∧ ∀ F : Finset NontrivialZeros, (∀ ρ ∈ F, Θ - η < (ρ : ℂ).re ∧ (ρ : ℂ).re < Θ) → ∑ ρ ∈ F, ordR ρ * ‖(ρ : ℂ)‖⁻¹ ≤ … ``
+  - [`CountEuler.summable_ord_im`](../lean_stage3/CountEuler.md#CountEuler-summable_ord_im) (CountEuler) — `` Summable fun ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re} => FiniteOffLinePi.ordR ρ.1 / |(wz ρ.1).im| ``
   - [`CountReduction.summable_J`](../lean_stage3/CountReduction.md#CountReduction-summable_J) (CountReduction) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} => ‖((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:K… ``
 
 <a name="ZeroSummable-norm_coef"></a>

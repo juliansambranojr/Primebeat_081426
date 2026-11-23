@@ -38,13 +38,14 @@ flowchart LR
   x12(["<b>ArgCount</b><br/>rvM_crude"]):::ext
   x13(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
   x14(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
-  x15(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
-  x16(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
-  x17(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
-  x18(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
-  x19(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
-  x20(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x21(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x15(["<b>CountEuler</b><br/>core<br/>term_other"]):::ext
+  x16(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
+  x17(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x18(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
+  x19(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
+  x20(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x21(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x22(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n11
   n0 --> n5
@@ -72,7 +73,7 @@ flowchart LR
   n1 -.-> x7
   n1 -.-> x8
   n1 -.-> x9
-  n10 -.-> x17
+  n10 -.-> x18
   n2 -.-> x10
   n2 -.-> x3
   n2 -.-> x4
@@ -82,17 +83,18 @@ flowchart LR
   n6 -.-> x5
   n7 -.-> x10
   n7 -.-> x15
+  n7 -.-> x16
   n7 -.-> x2
-  n9 -.-> x17
+  n9 -.-> x18
   x11 -.-> n4
   x12 -.-> n6
   x13 -.-> n6
   x14 -.-> n6
-  x16 -.-> n9
-  x18 -.-> n10
-  x19 -.-> n11
+  x17 -.-> n9
+  x19 -.-> n10
   x20 -.-> n11
   x21 -.-> n11
+  x22 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -389,8 +391,10 @@ line 226
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (6 that use it)
+**Feeds** (8 that use it)
 
+  - [`CountEuler.core`](../lean_stage3/CountEuler.md#CountEuler-core) (CountEuler) — `` False ``
+  - [`CountEuler.term_other`](../lean_stage3/CountEuler.md#CountEuler-term_other) (CountEuler) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 0) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLinePi.ordR ρ /… ``
   - [`FilterAccum.finite_accumulation_false`](../lean_stage3/FilterAccum.md#FilterAccum-finite_accumulation_false) (FilterAccum) — `` False ``
   - [`FilterAccum.norm_mode_le_two`](../lean_stage3/FilterAccum.md#FilterAccum-norm_mode_le_two) (FilterAccum) — `` ‖(2:ℂ) ^ (ρ : ℂ)‖ ≤ 2 ``
   - [`FilterAccum.one_le_norm_mode`](../lean_stage3/FilterAccum.md#FilterAccum-one_le_norm_mode) (FilterAccum) — `` 1 ≤ ‖(2:ℂ) ^ (ρ : ℂ)‖ ``

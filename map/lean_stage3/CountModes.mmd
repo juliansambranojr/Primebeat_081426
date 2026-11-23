@@ -28,7 +28,8 @@ flowchart LR
   n26["<b>norm_piMode_two_le</b><br/>‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
   n27["<b>norm_cst_le</b><br/>‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
   n28["<b>J_eq_segment ■</b><br/>J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ …"]:::shp
-  x0(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>norm_term_le"]):::ext
+  x0(["<b>CountEuler</b><br/>10 theorems"]):::ext
+  x1(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>norm_term_le"]):::ext
   n0 --> n1
   n1 --> n2
   n10 --> n12
@@ -63,9 +64,15 @@ flowchart LR
   n8 --> n25
   n9 --> n12
   n2 -.-> x0
-  n24 -.-> x0
-  n25 -.-> x0
-  n27 -.-> x0
+  n2 -.-> x1
+  n21 -.-> x0
+  n23 -.-> x0
+  n24 -.-> x1
+  n25 -.-> x1
+  n27 -.-> x1
+  n3 -.-> x0
+  n6 -.-> x0
+  n7 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

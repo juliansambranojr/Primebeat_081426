@@ -1,13 +1,13 @@
-# What `CountReduction.count_modes_small` rests on
+# What `CountEuler.euler_exposed_false` rests on
 
-[`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) in `lean_stage3/Stage3/CountReduction.lean`, line 312.
+[`CountEuler.euler_exposed_false`](../lean_stage3/CountEuler.md#CountEuler-euler_exposed_false) in `lean_stage3/Stage3/CountEuler.lean`, line 893.
 
-**Why.** The reduction with a power saving (block N2). Let the count of primes at the doublings stay within `C·k²·√2^k` of `Li`, let `1/2 < σ < Θ ≤ 1`, and let every zero have real part at most `Θ`. Then there are `E` with `σ ≤ E < Θ` and `A` such that, for every `k ≥ 2`, the segment sum `Σ'_{β≥σ} m(ρ)·J_k(ρ·log 2)` is at most `A·k²·2^(kE)`. At `x = T = 2^k` the identity of `PiZeros.pi_eq_zero_sum` writes the zeros right of `σ` below `2^k` as the count, the zeros left of `σ` (`zinv`), the remainders and the constants `cst ρ`; the zeros right of `σ` above `2^k` are the tail of `tail_rate`. `E = max σ (Θ…
+**Why.** No mode outside a disc holding the others (block N3-E). Let the count of primes at the doublings stay within `C·k²·√2^k` of `Li`, let `1/2 < σ < Θ ≤ 1`, and let every zero have real part at most `Θ`. Then there is `E` with `σ ≤ E < Θ` such that no zero `ρ₁` with real part above `E` has its mode `z₁ = 2^ρ₁` strictly outside a disc, centred at `−κ·z₁/|z₁|` (`κ ≥ 0`) on the ray opposite to it, of radius `r₀ < |z₁| + κ`, which holds every other mode of the zeros right of `σ`.
 
 **Proves**
 
 ```lean
-∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.NontrivialZeros):ℂ) * Real.log 2)‖ ≤ A * (k:ℝ)^2 * (2:ℝ)^((k:ℝ) * E)
+∃ E : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ (ρ₁ : Kadiri.NontrivialZeros), E < (ρ₁:ℂ).re → ∀ κ r₀ : ℝ, 0 ≤ κ → r₀ < ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ → (∀ ρ : Kadiri.NontrivialZeros, σ ≤ (ρ:ℂ).re → (2:ℂ)^(ρ:ℂ) ≠ (2:ℂ)^(ρ₁:ℂ) → ‖(2:ℂ)^(ρ:ℂ) + (κ:ℂ) * ((2:ℂ)^(ρ₁:ℂ) / ‖(2:ℂ)^(ρ₁:ℂ)‖)‖ ≤ r₀) → False
 ```
 
 **Needs** (its hypotheses)
@@ -18,113 +18,117 @@
   - `` hΘ1 : Θ ≤ 1 ``
   - `` hΘ : ∀ ρ : Kadiri.NontrivialZeros, (ρ:ℂ).re ≤ Θ ``
 
-Behind it: 476 theorems and 83 definitions in 45 files. Every one is listed below; Lean recorded each step.
+Behind it: 528 theorems and 98 definitions in 47 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
-  f0["<b>Assembly</b><br/>2 used"]:::thm
-  f1["<b>DirichletMean</b><br/>7 used"]:::thm
-  f2["<b>DirichletMeanW</b><br/>5 used"]:::thm
-  f3["<b>Glue</b><br/>1 used"]:::thm
-  f4["<b>JensenCount</b><br/>17 used"]:::thm
-  f5["<b>ContourShift</b><br/>28 used"]:::thm
-  f6["<b>LeftKernel</b><br/>9 used"]:::thm
-  f7["<b>LeftSmooth</b><br/>47 used"]:::thm
-  f8["<b>CellFixedRow</b><br/>1 used"]:::thm
-  f9["<b>LineBound</b><br/>4 used"]:::thm
-  f10["<b>Mollified</b><br/>15 used"]:::thm
-  f11["<b>PerronKernel</b><br/>25 used"]:::thm
-  f12["<b>PerronTwo</b><br/>10 used"]:::thm
-  f13["<b>PsiToPi</b><br/>6 used"]:::thm
-  f14["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f15["<b>RealSegment</b><br/>4 used"]:::thm
-  f16["<b>RvMCrude</b><br/>3 used"]:::thm
-  f17["<b>ArgCrude</b><br/>3 used"]:::thm
-  f18["<b>SquareMean</b><br/>6 used"]:::thm
-  f19["<b>Stirling</b><br/>20 used"]:::thm
-  f20["<b>ArgIdentity</b><br/>54 used"]:::thm
-  f21["<b>ArgLegs</b><br/>10 used"]:::thm
-  f22["<b>ArgCount</b><br/>14 used"]:::thm
-  f23["<b>WeilBands</b><br/>1 used"]:::thm
-  f24["<b>WeilOnLine</b><br/>3 used"]:::thm
-  f25["<b>ZeroSum</b><br/>7 used"]:::thm
-  f26["<b>FiniteOffLine</b><br/>5 used"]:::thm
-  f27["<b>PiRemainder</b><br/>7 used"]:::thm
-  f28["<b>PiZeros</b><br/>16 used"]:::thm
-  f29["<b>CountModes</b><br/>30 used"]:::thm
-  f30["<b>FiniteOffLinePi</b><br/>3 used"]:::thm
-  f31["<b>AttainedPi</b><br/>5 used"]:::thm
-  f32["<b>ZetaEM</b><br/>26 used"]:::thm
-  f33["<b>MollifiedMean</b><br/>15 used"]:::thm
-  f34["<b>ZeroSquares</b><br/>19 used"]:::thm
-  f35["<b>ZeroDensity</b><br/>11 used"]:::thm
-  f36["<b>ZeroSummable</b><br/>13 used"]:::thm
-  f37["<b>ZetaGrowth</b><br/>20 used"]:::thm
-  f38["<b>BoxBounds</b><br/>3 used"]:::thm
-  f39["<b>EdgeBound</b><br/>14 used"]:::thm
-  f40["<b>EdgeNum</b><br/>9 used"]:::thm
-  f41["<b>GlueNum</b><br/>6 used"]:::thm
-  f42["<b>ExplicitTwo</b><br/>16 used"]:::thm
-  f43["<b>FixedRowTwo</b><br/>8 used"]:::thm
-  f44["<b>CountReduction</b><br/>count_modes_small"]:::end_
-  f1 --> f2
-  f0 --> f5
-  f4 --> f5
-  f3 --> f7
-  f5 --> f7
-  f6 --> f7
+  f0["<b>AliasClass</b><br/>3 used"]:::thm
+  f1["<b>Assembly</b><br/>2 used"]:::thm
+  f2["<b>DirichletMean</b><br/>7 used"]:::thm
+  f3["<b>DirichletMeanW</b><br/>5 used"]:::thm
+  f4["<b>Glue</b><br/>1 used"]:::thm
+  f5["<b>JensenCount</b><br/>17 used"]:::thm
+  f6["<b>ContourShift</b><br/>28 used"]:::thm
+  f7["<b>LeftKernel</b><br/>9 used"]:::thm
+  f8["<b>LeftSmooth</b><br/>47 used"]:::thm
+  f9["<b>CellFixedRow</b><br/>1 used"]:::thm
+  f10["<b>LineBound</b><br/>4 used"]:::thm
+  f11["<b>Mollified</b><br/>15 used"]:::thm
+  f12["<b>PerronKernel</b><br/>25 used"]:::thm
+  f13["<b>PerronTwo</b><br/>10 used"]:::thm
+  f14["<b>PsiToPi</b><br/>6 used"]:::thm
+  f15["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f16["<b>RealSegment</b><br/>4 used"]:::thm
+  f17["<b>RvMCrude</b><br/>3 used"]:::thm
+  f18["<b>ArgCrude</b><br/>3 used"]:::thm
+  f19["<b>SquareMean</b><br/>6 used"]:::thm
+  f20["<b>Stirling</b><br/>20 used"]:::thm
+  f21["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f22["<b>ArgLegs</b><br/>10 used"]:::thm
+  f23["<b>ArgCount</b><br/>14 used"]:::thm
+  f24["<b>WeilBands</b><br/>1 used"]:::thm
+  f25["<b>WeilOnLine</b><br/>3 used"]:::thm
+  f26["<b>ZeroSum</b><br/>7 used"]:::thm
+  f27["<b>FiniteOffLine</b><br/>6 used"]:::thm
+  f28["<b>PiRemainder</b><br/>7 used"]:::thm
+  f29["<b>PiZeros</b><br/>16 used"]:::thm
+  f30["<b>CountModes</b><br/>30 used"]:::thm
+  f31["<b>FiniteOffLinePi</b><br/>6 used"]:::thm
+  f32["<b>AttainedPi</b><br/>5 used"]:::thm
+  f33["<b>ZetaEM</b><br/>26 used"]:::thm
+  f34["<b>MollifiedMean</b><br/>15 used"]:::thm
+  f35["<b>ZeroSquares</b><br/>19 used"]:::thm
+  f36["<b>ZeroDensity</b><br/>11 used"]:::thm
+  f37["<b>ZeroSummable</b><br/>13 used"]:::thm
+  f38["<b>ZetaGrowth</b><br/>20 used"]:::thm
+  f39["<b>BoxBounds</b><br/>3 used"]:::thm
+  f40["<b>EdgeBound</b><br/>14 used"]:::thm
+  f41["<b>EdgeNum</b><br/>9 used"]:::thm
+  f42["<b>GlueNum</b><br/>6 used"]:::thm
+  f43["<b>ExplicitTwo</b><br/>16 used"]:::thm
+  f44["<b>FixedRowTwo</b><br/>8 used"]:::thm
+  f45["<b>CountReduction</b><br/>13 used"]:::thm
+  f46["<b>CountEuler</b><br/>euler_exposed_false"]:::end_
+  f2 --> f3
+  f1 --> f6
+  f5 --> f6
+  f4 --> f8
+  f6 --> f8
   f7 --> f8
-  f11 --> f12
-  f4 --> f14
-  f16 --> f17
-  f16 --> f19
+  f8 --> f9
+  f12 --> f13
+  f5 --> f15
+  f17 --> f18
   f17 --> f20
-  f19 --> f20
+  f18 --> f21
   f20 --> f21
-  f14 --> f22
   f21 --> f22
-  f15 --> f26
-  f22 --> f26
-  f25 --> f26
-  f0 --> f27
+  f15 --> f23
+  f22 --> f23
+  f16 --> f27
+  f23 --> f27
   f26 --> f27
-  f0 --> f28
-  f13 --> f28
-  f26 --> f28
-  f28 --> f29
-  f28 --> f30
-  f30 --> f31
-  f2 --> f33
-  f10 --> f33
-  f32 --> f33
-  f4 --> f34
-  f18 --> f34
+  f1 --> f28
+  f27 --> f28
+  f1 --> f29
+  f14 --> f29
+  f27 --> f29
+  f29 --> f30
+  f29 --> f31
+  f31 --> f32
+  f3 --> f34
+  f11 --> f34
   f33 --> f34
+  f5 --> f35
+  f19 --> f35
   f34 --> f35
-  f23 --> f36
-  f24 --> f36
-  f26 --> f36
   f35 --> f36
-  f5 --> f37
-  f37 --> f38
-  f37 --> f39
+  f24 --> f37
+  f25 --> f37
+  f27 --> f37
+  f36 --> f37
+  f6 --> f38
+  f38 --> f39
   f38 --> f40
-  f39 --> f40
+  f39 --> f41
   f40 --> f41
-  f7 --> f42
-  f9 --> f42
-  f12 --> f42
   f41 --> f42
   f8 --> f43
-  f28 --> f43
+  f10 --> f43
+  f13 --> f43
   f42 --> f43
-  f27 --> f44
+  f9 --> f44
   f29 --> f44
-  f31 --> f44
-  f36 --> f44
   f43 --> f44
+  f28 --> f45
+  f30 --> f45
+  f32 --> f45
+  f37 --> f45
+  f44 --> f45
+  f0 --> f46
+  f45 --> f46
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -140,6 +144,12 @@ An arrow A → B reads "B uses something proved or defined in A"; indirect arrow
 ## Every declaration on the way
 
 Files in dependency order. ★ marks what the theorem's own proof uses directly.
+
+### [`AliasClass`](../lean_stage3/AliasClass.md) — 3
+
+- [`AliasClass.re_inv_pos`](../lean_stage3/AliasClass.md#AliasClass-re_inv_pos) — `` 0 < (ρ⁻¹).re ``
+- [`AliasClass.zero_re_pos`](../lean_stage3/AliasClass.md#AliasClass-zero_re_pos) — `` 0 < (ρ : ℂ).re ``
+- [`AliasClass.re_order_div_pos`](../lean_stage3/AliasClass.md#AliasClass-re_order_div_pos) — `` 0 < ((((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ)).re ``
 
 ### [`Assembly`](../lean_stage3/Assembly.md) — 2
 
@@ -540,49 +550,50 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.sum_inv_pow_two_le`](../lean_stage3/ZeroSum.md#Stage3-sum_inv_pow_two_le) — `` (∑ j ∈ range n, ((2 : ℝ) ^ j)⁻¹) ≤ 2 ``
 - [`Stage3.dyadic_abs_N_sum_le`](../lean_stage3/ZeroSum.md#Stage3-dyadic_abs_N_sum_le) — `` (∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * |riemannZeta.N ((2 : ℝ) ^ (j + 1))|) ≤ Real.log 2 / (2 * Real.pi) * (K + 1) * (K + 2) + 3 * (K + 1) / Real.pi + 2 * (rie… ``
 
-### [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md) — 5
+### [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md) — 6
 
-- ★ [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) — *def*
-- ★ [`FiniteOffLine.mem_ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) — `` ρ ∈ ZF T ↔ |(ρ : ℂ).im| < T ``
+- [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) — *def*
+- [`FiniteOffLine.mem_ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) — `` ρ ∈ ZF T ↔ |(ρ : ℂ).im| < T ``
 - [`FiniteOffLine.tsum_sub_eq_sum`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-tsum_sub_eq_sum) — `` ∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ ``
 - [`FiniteOffLine.order_nonneg`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) — `` (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ``
 - [`FiniteOffLine.dyadic_count_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-dyadic_count_le) — `` ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N ((2 : ℝ) ^ (j + 1))| + weightedZeroHeightBucket) ≤ 3000 * ((K : ℝ) + 2) ^ 2 ``
+- [`FiniteOffLine.norm_two_cpow`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-norm_two_cpow) — `` ‖(2:ℂ) ^ ρ‖ = (2:ℝ) ^ ρ.re ``
 
 ### [`PiRemainder`](../lean_stage3/PiRemainder.md) — 7
 
-- ★ [`PiRemainder.Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-Mlow) — *def*
-- ★ [`PiRemainder.two_le_Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-two_le_Mlow) — `` 2 ≤ Mlow ``
+- [`PiRemainder.Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-Mlow) — *def*
+- [`PiRemainder.two_le_Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-two_le_Mlow) — `` 2 ≤ Mlow ``
 - [`PiRemainder.inv_norm_le_Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_Mlow) — `` ‖(ρ : ℂ)‖⁻¹ ≤ Mlow ``
 - [`PiRemainder.inv_norm_le_dyadic`](../lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_dyadic) — `` ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0) ``
 - [`PiRemainder.sum_order_inv_le`](../lean_stage3/PiRemainder.md#PiRemainder-sum_order_inv_le) — `` ∑ ρ ∈ ZF ((2 : ℝ) ^ (K + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N ((2 : ℝ) ^… ``
-- ★ [`PiRemainder.zinv`](../lean_stage3/PiRemainder.md#PiRemainder-zinv) — *def*
-- ★ [`PiRemainder.zinv_le_log`](../lean_stage3/PiRemainder.md#PiRemainder-zinv_le_log) — `` zinv x ≤ Mlow * 39000 * Real.log x ^ 2 ``
+- [`PiRemainder.zinv`](../lean_stage3/PiRemainder.md#PiRemainder-zinv) — *def*
+- [`PiRemainder.zinv_le_log`](../lean_stage3/PiRemainder.md#PiRemainder-zinv_le_log) — `` zinv x ≤ Mlow * 39000 * Real.log x ^ 2 ``
 
 ### [`PiZeros`](../lean_stage3/PiZeros.md) — 16
 
 - [`PiZeros.wt`](../lean_stage3/PiZeros.md#PiZeros-wt) — *def*
-- ★ [`PiZeros.tr`](../lean_stage3/PiZeros.md#PiZeros-tr) — *def*
+- [`PiZeros.tr`](../lean_stage3/PiZeros.md#PiZeros-tr) — *def*
 - [`PiZeros.wt_continuousOn`](../lean_stage3/PiZeros.md#PiZeros-wt_continuousOn) — `` ContinuousOn wt (Set.uIcc 2 x) ``
 - [`PiZeros.integrable_mul_wt`](../lean_stage3/PiZeros.md#PiZeros-integrable_mul_wt) — `` IntervalIntegrable (fun t => f t * wt t) volume 2 x ``
 - [`PiZeros.tr_sub`](../lean_stage3/PiZeros.md#PiZeros-tr_sub) — `` tr (fun t => f t - g t) x = tr f x - tr g x ``
 - [`PiZeros.tr_const_mul`](../lean_stage3/PiZeros.md#PiZeros-tr_const_mul) — `` tr (fun t => c * f t) x = c * tr f x ``
 - [`PiZeros.tr_sum`](../lean_stage3/PiZeros.md#PiZeros-tr_sum) — `` tr (fun t => ∑ i ∈ s, f i t) x = ∑ i ∈ s, tr (f i) x ``
 - [`PiZeros.pi_sub_Li_eq_tr`](../lean_stage3/PiZeros.md#PiZeros-pi_sub_Li_eq_tr) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = tr (fun t => ((θ t - t : ℝ) : ℂ)) x ``
-- ★ [`PiZeros.piMode`](../lean_stage3/PiZeros.md#PiZeros-piMode) — *def*
-- ★ [`PiZeros.efRem`](../lean_stage3/PiZeros.md#PiZeros-efRem) — *def*
-- ★ [`PiZeros.psiTheta`](../lean_stage3/PiZeros.md#PiZeros-psiTheta) — *def*
+- [`PiZeros.piMode`](../lean_stage3/PiZeros.md#PiZeros-piMode) — *def*
+- [`PiZeros.efRem`](../lean_stage3/PiZeros.md#PiZeros-efRem) — *def*
+- [`PiZeros.psiTheta`](../lean_stage3/PiZeros.md#PiZeros-psiTheta) — *def*
 - [`PiZeros.zeroPartialSum_eq_sum`](../lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum) — `` Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * ((t : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)) ``
 - [`PiZeros.integrable_ofReal_of_monotone`](../lean_stage3/PiZeros.md#PiZeros-integrable_ofReal_of_monotone) — `` IntervalIntegrable (fun t => ((f t : ℝ) : ℂ)) volume 2 x ``
 - [`PiZeros.integrable_cpow`](../lean_stage3/PiZeros.md#PiZeros-integrable_cpow) — `` IntervalIntegrable (fun t : ℝ => (t : ℂ) ^ ρ / ρ) volume 2 x ``
-- ★ [`PiZeros.pi_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr psiTheta x ``
-- ★ [`PiZeros.norm_tr_psiTheta_le`](../lean_stage3/PiZeros.md#PiZeros-norm_tr_psiTheta_le) — `` ‖tr psiTheta x‖ ≤ 8 * Real.sqrt x ``
+- [`PiZeros.pi_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr psiTheta x ``
+- [`PiZeros.norm_tr_psiTheta_le`](../lean_stage3/PiZeros.md#PiZeros-norm_tr_psiTheta_le) — `` ‖tr psiTheta x‖ ≤ 8 * Real.sqrt x ``
 
 ### [`CountModes`](../lean_stage3/CountModes.md) — 30
 
 - [`CountModes.norm_tail_le`](../lean_stage3/CountModes.md#CountModes-norm_tail_le) — `` ‖∫ x in Set.Ioi ((1 : ℕ) : ℝ), ((⌊x⌋ : ℂ) + 1 / 2 - (x : ℂ)) / (x : ℂ) ^ ((b : ℂ) + 1)‖ ≤ 1 / (2 * b) ``
 - [`CountModes.riemannZeta_ne_zero_of_Ioo`](../lean_stage3/CountModes.md#CountModes-riemannZeta_ne_zero_of_Ioo) — `` riemannZeta (b : ℂ) ≠ 0 ``
-- ★ [`CountModes.im_ne_zero`](../lean_stage3/CountModes.md#CountModes-im_ne_zero) — `` (ρ : ℂ).im ≠ 0 ``
-- ★ [`CountModes.J`](../lean_stage3/CountModes.md#CountModes-J) — *def*
+- [`CountModes.im_ne_zero`](../lean_stage3/CountModes.md#CountModes-im_ne_zero) — `` (ρ : ℂ).im ≠ 0 ``
+- [`CountModes.J`](../lean_stage3/CountModes.md#CountModes-J) — *def*
 - [`CountModes.sub_ofReal_ne_zero`](../lean_stage3/CountModes.md#CountModes-sub_ofReal_ne_zero) — `` w - (s : ℂ) ≠ 0 ``
 - [`CountModes.continuous_integrand`](../lean_stage3/CountModes.md#CountModes-continuous_integrand) — `` Continuous (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s)) ``
 - [`CountModes.norm_integrand_le`](../lean_stage3/CountModes.md#CountModes-norm_integrand_le) — `` ‖Complex.exp ((k:ℂ) * (w - s)) / (w - s)‖ ≤ Real.exp (k * w.re) / |w.im| * Real.exp (-k * s) ``
@@ -604,25 +615,28 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`CountModes.im_w`](../lean_stage3/CountModes.md#CountModes-im_w) — `` (ρ * (Real.log 2 : ℂ)).im = ρ.im * Real.log 2 ``
 - [`CountModes.re_w`](../lean_stage3/CountModes.md#CountModes-re_w) — `` (ρ * (Real.log 2 : ℂ)).re = ρ.re * Real.log 2 ``
 - [`CountModes.w_im_ne_zero`](../lean_stage3/CountModes.md#CountModes-w_im_ne_zero) — `` ((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0 ``
-- ★ [`CountModes.cst`](../lean_stage3/CountModes.md#CountModes-cst) — *def*
-- ★ [`CountModes.piMode_doubling`](../lean_stage3/CountModes.md#CountModes-piMode_doubling) — `` PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst ρ ``
+- [`CountModes.cst`](../lean_stage3/CountModes.md#CountModes-cst) — *def*
+- [`CountModes.piMode_doubling`](../lean_stage3/CountModes.md#CountModes-piMode_doubling) — `` PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst ρ ``
 - [`CountModes.norm_J_doubling_le`](../lean_stage3/CountModes.md#CountModes-norm_J_doubling_le) — `` ‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(ρ:ℂ).im| * Real.log 2)) ``
 - [`CountModes.norm_piMode_two_le`](../lean_stage3/CountModes.md#CountModes-norm_piMode_two_le) — `` ‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2) ``
-- ★ [`CountModes.norm_cst_le`](../lean_stage3/CountModes.md#CountModes-norm_cst_le) — `` ‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2) ``
+- [`CountModes.norm_cst_le`](../lean_stage3/CountModes.md#CountModes-norm_cst_le) — `` ‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2) ``
 
-### [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md) — 3
+### [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md) — 6
 
 - [`FiniteOffLinePi.ipart`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) — *def*
 - [`FiniteOffLinePi.piMode_eq`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq) — `` piMode ρ x = (x : ℂ) ^ ρ / ρ / (Real.log x : ℂ) + ipart ρ x ``
 - [`FiniteOffLinePi.norm_integrand`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_integrand) — `` ‖(t : ℂ) ^ ρ / ρ * wt t‖ = ‖ρ‖⁻¹ * (t ^ ρ.re * (t * Real.log t ^ 2)⁻¹) ``
+- [`FiniteOffLinePi.ordR`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) — *def*
+- [`FiniteOffLinePi.ordR_nonneg`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR_nonneg) — `` 0 ≤ ordR ρ ``
+- [`FiniteOffLinePi.norm_order_mul`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_order_mul) — `` ‖((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * w‖ = ordR ρ * ‖w‖ ``
 
 ### [`AttainedPi`](../lean_stage3/AttainedPi.md) — 5
 
 - [`AttainedPi.norm_ipart_le_of_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le) — `` ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ c / (c * Real.log x ^ 2)) ``
-- ★ [`AttainedPi.one_le_log`](../lean_stage3/AttainedPi.md#AttainedPi-one_le_log) — `` 1 ≤ Real.log x ``
+- [`AttainedPi.one_le_log`](../lean_stage3/AttainedPi.md#AttainedPi-one_le_log) — `` 1 ≤ Real.log x ``
 - [`AttainedPi.norm_log_ipart_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_ipart_le) — `` Real.log x * ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * (Real.sqrt x * Real.log x) + 8 * (x ^ max ρ.re (1 / 2) / Real.log x)) ``
 - [`AttainedPi.norm_log_piMode_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (x ^ ρ.re + 3 * (Real.sqrt x * Real.log x) + 8 * (x ^ max ρ.re (1 / 2) / Real.log x)) ``
-- ★ [`AttainedPi.norm_log_piMode_low`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_low) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (9 * x ^ θ₁ + 3 * (Real.sqrt x * Real.log x)) ``
+- [`AttainedPi.norm_log_piMode_low`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_low) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (9 * x ^ θ₁ + 3 * (Real.sqrt x * Real.log x)) ``
 
 ### [`ZetaEM`](../lean_stage3/ZetaEM.md) — 26
 
@@ -709,7 +723,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`ZeroSummable`](../lean_stage3/ZeroSummable.md) — 13
 
-- ★ [`ZeroSummable.w`](../lean_stage3/ZeroSummable.md#ZeroSummable-w) — *def*
+- [`ZeroSummable.w`](../lean_stage3/ZeroSummable.md#ZeroSummable-w) — *def*
 - [`ZeroSummable.w_nonneg`](../lean_stage3/ZeroSummable.md#ZeroSummable-w_nonneg) — `` 0 ≤ w ρ ``
 - [`ZeroSummable.mem_nt`](../lean_stage3/ZeroSummable.md#ZeroSummable-mem_nt) — `` riemannZeta (ρ : ℂ) = 0 ∧ 0 < (ρ : ℂ).re ∧ (ρ : ℂ).re < 1 ``
 - [`ZeroSummable.order_le_log_pos`](../lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos) — `` ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log ((ρ : ℂ).im + 1) + 73 ``
@@ -720,7 +734,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ZeroSummable.shell_bound_le`](../lean_stage3/ZeroSummable.md#ZeroSummable-shell_bound_le) — `` 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) * (103 * ((j : ℝ) + 1) / 2 ^ j) ≤ 206 * C * (4 : ℝ) ^ (max θ 0) * (((j : ℝ) + 1) * ((2 : ℝ) ^ (max θ 0) / 2) ^ j) ``
 - [`ZeroSummable.summable_shell`](../lean_stage3/ZeroSummable.md#ZeroSummable-summable_shell) — `` Summable fun j : ℕ => K * (((j : ℝ) + 1) * r ^ j) ``
 - [`ZeroSummable.dyadic_index`](../lean_stage3/ZeroSummable.md#ZeroSummable-dyadic_index) — `` (2 : ℝ) ^ (Nat.log 2 ⌊x⌋₊) ≤ x ∧ x < 2 ^ (Nat.log 2 ⌊x⌋₊ + 1) ``
-- ★ [`ZeroSummable.sum_le_const`](../lean_stage3/ZeroSummable.md#ZeroSummable-sum_le_const) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
+- [`ZeroSummable.sum_le_const`](../lean_stage3/ZeroSummable.md#ZeroSummable-sum_le_const) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
 - [`ZeroSummable.summable_order_div`](../lean_stage3/ZeroSummable.md#ZeroSummable-summable_order_div) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.NontrivialZeros) : ℂ).re} => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℝ) /… ``
 
 ### [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md) — 20
@@ -800,7 +814,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ExplicitTwo.Cht`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cht) — *def*
 - [`ExplicitTwo.Cht_pos`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cht_pos) — `` 0 < Cht ``
 - [`ExplicitTwo.edge_horizontal_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-edge_horizontal_bound_two) — `` ∀ x T T' : ℝ, 2 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ y : ℝ, |y| = T' → ‖HInte… ``
-- ★ [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t) — *def*
+- [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t) — *def*
 - [`ExplicitTwo.c3t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c3t) — *def*
 - [`ExplicitTwo.explicit_formula_left_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_left_two) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + ‖VIntegral (Gl… ``
 - [`ExplicitTwo.series_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) … ``
@@ -811,27 +825,90 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md) — 8
 
-- ★ [`FixedRowTwo.c1t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg) — `` 0 ≤ ExplicitTwo.c1t ``
+- [`FixedRowTwo.c1t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg) — `` 0 ≤ ExplicitTwo.c1t ``
 - [`FixedRowTwo.c3t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c3t_nonneg) — `` 0 ≤ ExplicitTwo.c3t ``
 - [`FixedRowTwo.Bleft2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Bleft2_nonneg) — `` 0 ≤ ExplicitTwo.Bleft2 ``
-- ★ [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2) — *def*
-- ★ [`FixedRowTwo.Api2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2_nonneg) — `` 0 ≤ Api2 ``
+- [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2) — *def*
+- [`FixedRowTwo.Api2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2_nonneg) — `` 0 ≤ Api2 ``
 - [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
 - [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le) — `` ‖∫ t in (2:ℝ)..x, efRem T t * wt t‖ ≤ (x - 2) * (9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T) + Api2 * Real.log (x / 2) ``
-- ★ [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
+- [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
 
-### [`CountReduction`](../lean_stage3/CountReduction.md) — 12
+### [`CountReduction`](../lean_stage3/CountReduction.md) — 13
 
-- ★ [`CountReduction.cim`](../lean_stage3/CountReduction.md#CountReduction-cim) — *def*
-- ★ [`CountReduction.two_le_cim`](../lean_stage3/CountReduction.md#CountReduction-two_le_cim) — `` 2 ≤ cim ``
-- ★ [`CountReduction.inv_abs_im_le`](../lean_stage3/CountReduction.md#CountReduction-inv_abs_im_le) — `` |(ρ : ℂ).im|⁻¹ ≤ cim * ‖(ρ : ℂ)‖⁻¹ ``
+- [`CountReduction.cim`](../lean_stage3/CountReduction.md#CountReduction-cim) — *def*
+- [`CountReduction.two_le_cim`](../lean_stage3/CountReduction.md#CountReduction-two_le_cim) — `` 2 ≤ cim ``
+- [`CountReduction.inv_abs_im_le`](../lean_stage3/CountReduction.md#CountReduction-inv_abs_im_le) — `` |(ρ : ℂ).im|⁻¹ ≤ cim * ‖(ρ : ℂ)‖⁻¹ ``
 - [`CountReduction.ratio_pow`](../lean_stage3/CountReduction.md#CountReduction-ratio_pow) — `` ((2:ℝ) ^ θ' / 2) ^ k = (2:ℝ) ^ (-(k:ℝ) * (1 - θ')) ``
 - [`CountReduction.sum_tail_le`](../lean_stage3/CountReduction.md#CountReduction-sum_tail_le) — `` ∑ j ∈ s, ((j:ℝ) + 1) * r ^ j ≤ ((k:ℝ) + 1) * r ^ k * ∑' i : ℕ, ((i:ℝ) + 1) * r ^ i ``
-- ★ [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate) — `` ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈ v, ((riem… ``
-- ★ [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le) — `` ‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ… ``
-- ★ [`CountReduction.summable_J`](../lean_stage3/CountReduction.md#CountReduction-summable_J) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} => ‖((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.Nont… ``
-- ★ [`CountReduction.pow_rpow`](../lean_stage3/CountReduction.md#CountReduction-pow_rpow) — `` ((2:ℝ) ^ k) ^ b = (2:ℝ) ^ ((k:ℝ) * b) ``
-- ★ [`CountReduction.rpow_mono`](../lean_stage3/CountReduction.md#CountReduction-rpow_mono) — `` (2:ℝ) ^ ((k:ℝ) * a) ≤ (2:ℝ) ^ ((k:ℝ) * b) ``
-- ★ [`CountReduction.sqrt_pow_le`](../lean_stage3/CountReduction.md#CountReduction-sqrt_pow_le) — `` Real.sqrt 2 ^ k ≤ (2:ℝ) ^ ((k:ℝ) * e) ``
-- ★ [`CountReduction.one_le_rpow_two`](../lean_stage3/CountReduction.md#CountReduction-one_le_rpow_two) — `` 1 ≤ (2:ℝ) ^ ((k:ℝ) * e) ``
+- [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate) — `` ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈ v, ((riem… ``
+- [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le) — `` ‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ… ``
+- [`CountReduction.summable_J`](../lean_stage3/CountReduction.md#CountReduction-summable_J) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} => ‖((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.Nont… ``
+- [`CountReduction.pow_rpow`](../lean_stage3/CountReduction.md#CountReduction-pow_rpow) — `` ((2:ℝ) ^ k) ^ b = (2:ℝ) ^ ((k:ℝ) * b) ``
+- [`CountReduction.rpow_mono`](../lean_stage3/CountReduction.md#CountReduction-rpow_mono) — `` (2:ℝ) ^ ((k:ℝ) * a) ≤ (2:ℝ) ^ ((k:ℝ) * b) ``
+- [`CountReduction.sqrt_pow_le`](../lean_stage3/CountReduction.md#CountReduction-sqrt_pow_le) — `` Real.sqrt 2 ^ k ≤ (2:ℝ) ^ ((k:ℝ) * e) ``
+- [`CountReduction.one_le_rpow_two`](../lean_stage3/CountReduction.md#CountReduction-one_le_rpow_two) — `` 1 ≤ (2:ℝ) ^ ((k:ℝ) * e) ``
+- ★ [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) *… ``
+
+### [`CountEuler`](../lean_stage3/CountEuler.md) — 59
+
+- [`CountEuler.binom_shift`](../lean_stage3/CountEuler.md#CountEuler-binom_shift) — `` ∑ j ∈ Finset.range (m + 1), (m.choose j : ℂ) * (-c) ^ (m - j) * ζ ^ (j + 1) = ζ * (ζ - c) ^ m ``
+- [`CountEuler.zeta`](../lean_stage3/CountEuler.md#CountEuler-zeta) — *def*
+- [`CountEuler.coefE`](../lean_stage3/CountEuler.md#CountEuler-coefE) — *def*
+- [`CountEuler.seg`](../lean_stage3/CountEuler.md#CountEuler-seg) — *def*
+- [`CountEuler.F`](../lean_stage3/CountEuler.md#CountEuler-F) — *def*
+- [`CountEuler.zeta_pow`](../lean_stage3/CountEuler.md#CountEuler-zeta_pow) — `` zeta w s ^ k / (w - s) = Complex.exp ((k:ℂ) * (w - s)) / (w - s) ``
+- [`CountEuler.J_eq_zeta`](../lean_stage3/CountEuler.md#CountEuler-J_eq_zeta) — `` CountModes.J k w = ∫ s in Set.Ioi (0:ℝ), zeta w s ^ k / (w - s) ``
+- [`CountEuler.integrable_zeta_pow`](../lean_stage3/CountEuler.md#CountEuler-integrable_zeta_pow) — `` IntegrableOn (fun s : ℝ => zeta w s ^ k / (w - s)) (Set.Ioi 0) ``
+- [`CountEuler.seg_sum`](../lean_stage3/CountEuler.md#CountEuler-seg_sum) — `` seg w c m s = ∑ j ∈ Finset.range (m + 1), coefE c m j * (zeta w s ^ (j + 1) / (w - s)) ``
+- [`CountEuler.transform_eq`](../lean_stage3/CountEuler.md#CountEuler-transform_eq) — `` ∑ j ∈ Finset.range (m + 1), coefE c m j * CountModes.J (j + 1) w = F w c m ``
+- [`CountEuler.transform_le`](../lean_stage3/CountEuler.md#CountEuler-transform_le) — `` ‖∑ j ∈ Finset.range (m + 1), coefE c m j * a (j + 1)‖ ≤ A * ((m:ℝ) + 1) ^ 2 * X * (X + ‖c‖) ^ m ``
+- [`CountEuler.seg_in_ball`](../lean_stage3/CountEuler.md#CountEuler-seg_in_ball) — `` ‖z * (t:ℂ) - c‖ ≤ r ``
+- [`CountEuler.others_le`](../lean_stage3/CountEuler.md#CountEuler-others_le) — `` ‖F w c m‖ ≤ ‖Complex.exp w‖ * r ^ m / |w.im| ``
+- [`CountEuler.lor`](../lean_stage3/CountEuler.md#CountEuler-lor) — *def*
+- [`CountEuler.lor_nonneg`](../lean_stage3/CountEuler.md#CountEuler-lor_nonneg) — `` 0 ≤ lor w s ``
+- [`CountEuler.lor_eq`](../lean_stage3/CountEuler.md#CountEuler-lor_eq) — `` lor w s = Real.pi / |w.im| * ProbabilityTheory.cauchyPDFReal w.re ‖w.im‖₊ s ``
+- [`CountEuler.integrable_lor`](../lean_stage3/CountEuler.md#CountEuler-integrable_lor) — `` Integrable (lor w) ``
+- [`CountEuler.integral_lor`](../lean_stage3/CountEuler.md#CountEuler-integral_lor) — `` ∫ s, lor w s = Real.pi / |w.im| ``
+- [`CountEuler.setIntegral_lor_le`](../lean_stage3/CountEuler.md#CountEuler-setIntegral_lor_le) — `` ∫ s in Set.Ioi (0:ℝ), lor w s ≤ Real.pi / |w.im| ``
+- [`CountEuler.norm_sub_sq`](../lean_stage3/CountEuler.md#CountEuler-norm_sub_sq) — `` ‖(w - (s:ℂ)) ^ 2‖ = (s - w.re) ^ 2 + w.im ^ 2 ``
+- [`CountEuler.gf`](../lean_stage3/CountEuler.md#CountEuler-gf) — *def*
+- [`CountEuler.gf_nonneg`](../lean_stage3/CountEuler.md#CountEuler-gf_nonneg) — `` 0 ≤ gf p κ s ``
+- [`CountEuler.gf_le`](../lean_stage3/CountEuler.md#CountEuler-gf_le) — `` gf p κ s ≤ p + κ ``
+- [`CountEuler.gf_lt`](../lean_stage3/CountEuler.md#CountEuler-gf_lt) — `` gf p κ s < p + κ ``
+- [`CountEuler.gf_zero`](../lean_stage3/CountEuler.md#CountEuler-gf_zero) — `` gf p κ 0 = p + κ ``
+- [`CountEuler.hasDerivAt_gf`](../lean_stage3/CountEuler.md#CountEuler-hasDerivAt_gf) — `` HasDerivAt (gf p κ) (p * (Real.exp (-s) * -1)) s ``
+- [`CountEuler.Pc`](../lean_stage3/CountEuler.md#CountEuler-Pc) — *def*
+- [`CountEuler.Qc`](../lean_stage3/CountEuler.md#CountEuler-Qc) — *def*
+- [`CountEuler.Gc`](../lean_stage3/CountEuler.md#CountEuler-Gc) — *def*
+- [`CountEuler.integrable_Pc`](../lean_stage3/CountEuler.md#CountEuler-integrable_Pc) — `` IntegrableOn (Pc w p κ m) (Set.Ioi 0) ``
+- [`CountEuler.norm_Qc_le`](../lean_stage3/CountEuler.md#CountEuler-norm_Qc_le) — `` ‖Qc w p κ n s‖ ≤ (p + κ) ^ n * lor w s ``
+- [`CountEuler.integrable_Qc`](../lean_stage3/CountEuler.md#CountEuler-integrable_Qc) — `` IntegrableOn (Qc w p κ n) (Set.Ioi 0) ``
+- [`CountEuler.hasDerivAt_Gc`](../lean_stage3/CountEuler.md#CountEuler-hasDerivAt_Gc) — `` HasDerivAt (Gc w p κ (m + 1)) (Pc w p κ m s - Qc w p κ (m + 1) s / ((m + 1 : ℕ) : ℂ)) s ``
+- [`CountEuler.tendsto_Gc`](../lean_stage3/CountEuler.md#CountEuler-tendsto_Gc) — `` Tendsto (Gc w p κ (m + 1)) atTop (𝓝 0) ``
+- [`CountEuler.class_main`](../lean_stage3/CountEuler.md#CountEuler-class_main) — `` ∫ s in Set.Ioi (0:ℝ), Pc w p κ m s = (((p + κ) ^ (m + 1) : ℝ) : ℂ) / (((m + 1 : ℕ) : ℂ) * w) + (∫ s in Set.Ioi (0:ℝ), Qc w p κ (m + 1) s) / ((m + 1 : ℕ) : ℂ) ``
+- [`CountEuler.seg_class`](../lean_stage3/CountEuler.md#CountEuler-seg_class) — `` seg w (-(κ:ℂ) * u) m s = u ^ (m + 1) * Pc w p κ m s ``
+- [`CountEuler.F_class`](../lean_stage3/CountEuler.md#CountEuler-F_class) — `` F w (-(κ:ℂ) * u) m = u ^ (m + 1) * ∫ s in Set.Ioi (0:ℝ), Pc w p κ m s ``
+- [`CountEuler.Nn`](../lean_stage3/CountEuler.md#CountEuler-Nn) — *def*
+- [`CountEuler.norm_Nn`](../lean_stage3/CountEuler.md#CountEuler-norm_Nn) — `` ‖Nn u R m‖ = R ^ (m + 1) / ((m + 1 : ℕ) : ℝ) ``
+- [`CountEuler.Qn`](../lean_stage3/CountEuler.md#CountEuler-Qn) — *def*
+- [`CountEuler.norm_Qn_le`](../lean_stage3/CountEuler.md#CountEuler-norm_Qn_le) — `` ‖Qn w p κ n s‖ ≤ lor w s ``
+- [`CountEuler.continuous_Qn`](../lean_stage3/CountEuler.md#CountEuler-continuous_Qn) — `` Continuous (Qn w p κ n) ``
+- [`CountEuler.class_ratio`](../lean_stage3/CountEuler.md#CountEuler-class_ratio) — `` F w (-(κ:ℂ) * u) m / Nn u (p + κ) m = 1 / w + ∫ s in Set.Ioi (0:ℝ), Qn w p κ (m + 1) s ``
+- [`CountEuler.class_lim`](../lean_stage3/CountEuler.md#CountEuler-class_lim) — `` Tendsto (fun m : ℕ => ∫ s in Set.Ioi (0:ℝ), Qn w p κ (m + 1) s) atTop (𝓝 0) ``
+- [`CountEuler.norm_Qn_int_le`](../lean_stage3/CountEuler.md#CountEuler-norm_Qn_int_le) — `` ‖∫ s in Set.Ioi (0:ℝ), Qn w p κ n s‖ ≤ Real.pi / |w.im| ``
+- [`CountEuler.class_tendsto`](../lean_stage3/CountEuler.md#CountEuler-class_tendsto) — `` Tendsto (fun m : ℕ => F w (-(κ:ℂ) * u) m / Nn u (p + κ) m) atTop (𝓝 (1 / w)) ``
+- [`CountEuler.class_bound`](../lean_stage3/CountEuler.md#CountEuler-class_bound) — `` ‖F w (-(κ:ℂ) * u) m / Nn u (p + κ) m‖ ≤ (1 + Real.pi) / |w.im| ``
+- [`CountEuler.others_ratio_le`](../lean_stage3/CountEuler.md#CountEuler-others_ratio_le) — `` ‖F w c m / Nn u R m‖ ≤ ‖Complex.exp w‖ / (r * |w.im|) * (((m + 1 : ℕ) : ℝ) * (r / R) ^ (m + 1)) ``
+- [`CountEuler.ordC`](../lean_stage3/CountEuler.md#CountEuler-ordC) — *def*
+- [`CountEuler.wz`](../lean_stage3/CountEuler.md#CountEuler-wz) — *def*
+- [`CountEuler.aSum`](../lean_stage3/CountEuler.md#CountEuler-aSum) — *def*
+- [`CountEuler.two_cpow_eq`](../lean_stage3/CountEuler.md#CountEuler-two_cpow_eq) — `` (2:ℂ) ^ ρ = Complex.exp (ρ * Real.log 2) ``
+- [`CountEuler.norm_ordC_mul`](../lean_stage3/CountEuler.md#CountEuler-norm_ordC_mul) — `` ‖ordC ρ * x‖ = FiniteOffLinePi.ordR ρ * ‖x‖ ``
+- [`CountEuler.re_ord_div_w_pos`](../lean_stage3/CountEuler.md#CountEuler-re_ord_div_w_pos) — `` 0 < (ordC ρ * (1 / wz ρ)).re ``
+- [`CountEuler.summable_ord_im`](../lean_stage3/CountEuler.md#CountEuler-summable_ord_im) — `` Summable fun ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re} => FiniteOffLinePi.ordR ρ.1 / |(wz ρ.1).im| ``
+- [`CountEuler.tsum_transform`](../lean_stage3/CountEuler.md#CountEuler-tsum_transform) — `` ∑ j ∈ Finset.range (m + 1), coefE c m j * aSum σ (j + 1) = ∑' ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re}, ordC ρ.1 * F (wz ρ.1) c m ``
+- [`CountEuler.term_class`](../lean_stage3/CountEuler.md#CountEuler-term_class) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 (ordC ρ * (1 / wz ρ))) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLineP… ``
+- [`CountEuler.term_other`](../lean_stage3/CountEuler.md#CountEuler-term_other) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 0) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLinePi.ordR ρ / |(wz ρ).i… ``
+- ★ [`CountEuler.core`](../lean_stage3/CountEuler.md#CountEuler-core) — `` False ``
 

@@ -167,6 +167,7 @@ import Stage3.FilterAttained
 import Stage3.FilterAccum
 import Stage3.CountModes
 import Stage3.CountReduction
+import Stage3.CountEuler
 
 namespace Stage3
 

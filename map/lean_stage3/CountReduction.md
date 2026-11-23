@@ -7,7 +7,7 @@ CountReduction — block N2 of `lean_stage3/design/countmodes.md`, as corrected 
 12 theorems, 1 definition, 601 lines. 
 
 **Imports:** [`AttainedPi`](../lean_stage3/AttainedPi.md), [`CountModes`](../lean_stage3/CountModes.md), [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountEuler`](../lean_stage3/CountEuler.md)
 
 ## The picture
 
@@ -24,15 +24,16 @@ flowchart LR
   n8["<b>rpow_mono</b><br/>(2:ℝ) ^ ((k:ℝ) * a) ≤ (2:ℝ) ^ ((k:ℝ) * b)"]:::shp
   n9["<b>sqrt_pow_le</b><br/>Real.sqrt 2 ^ k ≤ (2:ℝ) ^ ((k:ℝ) * e)"]:::shp
   n10["<b>one_le_rpow_two</b><br/>1 ≤ (2:ℝ) ^ ((k:ℝ) * e)"]:::shp
-  n11["<b>count_modes_small ■</b><br/>∃ E A : ℝ, σ ≤ E ∧ E ＜ Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.…"]:::thm
+  n11["<b>count_modes_small</b><br/>∃ E A : ℝ, σ ≤ E ∧ E ＜ Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.…"]:::thm
   x0(["<b>CountModes</b><br/>4 theorems"]):::ext
-  x1(["<b>ZeroSummable</b><br/>6 theorems"]):::ext
-  x2(["<b>ZeroDensity</b><br/>zero_density"]):::ext
-  x3(["<b>AttainedPi</b><br/>norm_log_piMode_low<br/>one_le_log"]):::ext
-  x4(["<b>FiniteOffLine</b><br/>mem_ZF"]):::ext
-  x5(["<b>FixedRowTwo</b><br/>Api2_nonneg<br/>c1t_nonneg<br/>norm_tr_efRem_le_height_two"]):::ext
-  x6(["<b>PiRemainder</b><br/>two_le_Mlow<br/>zinv_le_log"]):::ext
-  x7(["<b>PiZeros</b><br/>norm_tr_psiTheta_le<br/>pi_eq_zero_sum"]):::ext
+  x1(["<b>CountEuler</b><br/>euler_exposed_false<br/>summable_ord_im<br/>tsum_transform"]):::ext
+  x2(["<b>ZeroSummable</b><br/>6 theorems"]):::ext
+  x3(["<b>ZeroDensity</b><br/>zero_density"]):::ext
+  x4(["<b>AttainedPi</b><br/>norm_log_piMode_low<br/>one_le_log"]):::ext
+  x5(["<b>FiniteOffLine</b><br/>mem_ZF"]):::ext
+  x6(["<b>FixedRowTwo</b><br/>Api2_nonneg<br/>c1t_nonneg<br/>norm_tr_efRem_le_height_two"]):::ext
+  x7(["<b>PiRemainder</b><br/>two_le_Mlow<br/>zinv_le_log"]):::ext
+  x8(["<b>PiZeros</b><br/>norm_tr_psiTheta_le<br/>pi_eq_zero_sum"]):::ext
   n0 --> n1
   n0 --> n11
   n1 --> n11
@@ -49,19 +50,22 @@ flowchart LR
   n8 --> n11
   n8 --> n9
   n9 --> n11
+  n1 -.-> x1
+  n11 -.-> x1
+  n6 -.-> x1
   x0 -.-> n1
   x0 -.-> n11
   x0 -.-> n5
-  x1 -.-> n11
-  x1 -.-> n3
-  x1 -.-> n4
-  x1 -.-> n6
+  x2 -.-> n11
+  x2 -.-> n3
   x2 -.-> n4
-  x3 -.-> n11
+  x2 -.-> n6
+  x3 -.-> n4
   x4 -.-> n11
   x5 -.-> n11
   x6 -.-> n11
   x7 -.-> n11
+  x8 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -85,7 +89,7 @@ A constant bounding `|ρ|/|γ|` over every nontrivial zero: `2` plus the sum of 
 
 - **Is:** `` cim : ℝ := 2 + ∑ ρ ∈ ZF (1 : ℝ), ‖(ρ : ℂ)‖ / |(ρ : ℂ).im| ``
 - **Built from:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
-- **Used by 4:** [`CountReduction.count_modes_small`](#CountReduction-count_modes_small), [`CountReduction.inv_abs_im_le`](#CountReduction-inv_abs_im_le), [`CountReduction.norm_term_le`](#CountReduction-norm_term_le), [`CountReduction.two_le_cim`](#CountReduction-two_le_cim)
+- **Used by 5:** [`CountEuler.summable_ord_im`](../lean_stage3/CountEuler.md#CountEuler-summable_ord_im), [`CountReduction.count_modes_small`](#CountReduction-count_modes_small), [`CountReduction.inv_abs_im_le`](#CountReduction-inv_abs_im_le), [`CountReduction.norm_term_le`](#CountReduction-norm_term_le), [`CountReduction.two_le_cim`](#CountReduction-two_le_cim)
 
 ## Theorems
 
@@ -139,8 +143,9 @@ line 52 · arrows read from text
 
 **Definitions its proof touches:** [`CountReduction.cim`](#CountReduction-cim), [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`CountEuler.summable_ord_im`](../lean_stage3/CountEuler.md#CountEuler-summable_ord_im) (CountEuler) — `` Summable fun ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re} => FiniteOffLinePi.ordR ρ.1 / |(wz ρ.1).im| ``
   - [`CountReduction.count_modes_small`](#CountReduction-count_modes_small) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`CountReduction.norm_term_le`](#CountReduction-norm_term_le) — `` ‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ… ``
 
@@ -298,8 +303,9 @@ Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} => ‖((ri
 
 **Definitions its proof touches:** [`CountModes.J`](../lean_stage3/CountModes.md#CountModes-J)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountEuler.tsum_transform`](../lean_stage3/CountEuler.md#CountEuler-tsum_transform) (CountEuler) — `` ∑ j ∈ Finset.range (m + 1), coefE c m j * aSum σ (j + 1) = ∑' ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re}, ordC ρ.1 * F (wz ρ.1) c m ``
   - [`CountReduction.count_modes_small`](#CountReduction-count_modes_small) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
 
 <a name="CountReduction-pow_rpow"></a>
@@ -462,5 +468,7 @@ line 312 · arrows read from text
 
 **Definitions its proof touches:** [`CountModes.J`](../lean_stage3/CountModes.md#CountModes-J), [`CountModes.cst`](../lean_stage3/CountModes.md#CountModes-cst), [`CountReduction.cim`](#CountReduction-cim), [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t), [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF), [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2), [`PiRemainder.Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-Mlow), [`PiRemainder.zinv`](../lean_stage3/PiRemainder.md#PiRemainder-zinv), [`PiZeros.efRem`](../lean_stage3/PiZeros.md#PiZeros-efRem), [`PiZeros.piMode`](../lean_stage3/PiZeros.md#PiZeros-piMode), [`PiZeros.psiTheta`](../lean_stage3/PiZeros.md#PiZeros-psiTheta), [`PiZeros.tr`](../lean_stage3/PiZeros.md#PiZeros-tr), [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li), [`ZeroSummable.w`](../lean_stage3/ZeroSummable.md#ZeroSummable-w)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`CountEuler.euler_exposed_false`](../lean_stage3/CountEuler.md#CountEuler-euler_exposed_false) (CountEuler) — `` ∃ E : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ (ρ₁ : Kadiri.NontrivialZeros), E < (ρ₁:ℂ).re → ∀ κ r₀ : ℝ, 0 ≤ κ → r₀ < ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ → (∀ ρ : Kadiri.NontrivialZeros,… ``
 
