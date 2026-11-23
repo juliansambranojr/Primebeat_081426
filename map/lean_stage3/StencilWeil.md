@@ -24,8 +24,9 @@ flowchart LR
   n10["<b>restoringForce_mono ■</b><br/>restoringForce b ρ ≤ restoringForce c ρ"]:::shp
   n11["<b>zeroForm_stencilTest_eq_primeSide ■</b><br/>zeroForm (stencilTest d φ) = WeilBridgeLeaf.primeSideM (WeilBrid…"]:::thm
   n12["<b>zeroForm_stencilTest_nonneg_of_RH ■</b><br/>0 ≤ (zeroForm (stencilTest d φ)).re"]:::thm
-  x0(["<b>WeilBridgeLeaf</b><br/>zeroForm_eq_primeSide"]):::ext
-  x1(["<b>WeilDetect</b><br/>zeroForm_nonneg_of_RH"]):::ext
+  x0(["<b>ClosedLoopJoin</b><br/>force_join<br/>off_line_zero"]):::ext
+  x1(["<b>WeilBridgeLeaf</b><br/>zeroForm_eq_primeSide"]):::ext
+  x2(["<b>WeilDetect</b><br/>zeroForm_nonneg_of_RH"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n5
@@ -35,8 +36,10 @@ flowchart LR
   n7 --> n10
   n7 --> n8
   n8 --> n9
-  x0 -.-> n11
-  x1 -.-> n12
+  n7 -.-> x0
+  n8 -.-> x0
+  x1 -.-> n11
+  x2 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -69,7 +72,7 @@ def · line 51
 The imbalance between a mode of the table and its mirror, in logarithms.
 
 - **Is:** `` restoringForce (b : ℝ) (ρ : ℂ) : ℝ := |Real.log ‖(b : ℂ) ^ ρ‖ - Real.log ‖(b : ℂ) ^ (1 - ρ)‖| ``
-- **Used by 5:** [`MirrorArea.restoringForce_eq_log_ratio`](../lean_stage3/MirrorArea.md#MirrorArea-restoringForce_eq_log_ratio), [`StencilWeil.handshake_iff`](#StencilWeil-handshake_iff), [`StencilWeil.restoringForce_eq`](#StencilWeil-restoringForce_eq), [`StencilWeil.restoringForce_eq_zero_iff`](#StencilWeil-restoringForce_eq_zero_iff), [`StencilWeil.restoringForce_mono`](#StencilWeil-restoringForce_mono)
+- **Used by 7:** [`ClosedLoopJoin.force_join`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_join), [`ClosedLoopJoin.off_line_zero`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-off_line_zero), [`MirrorArea.restoringForce_eq_log_ratio`](../lean_stage3/MirrorArea.md#MirrorArea-restoringForce_eq_log_ratio), [`StencilWeil.handshake_iff`](#StencilWeil-handshake_iff), [`StencilWeil.restoringForce_eq`](#StencilWeil-restoringForce_eq), [`StencilWeil.restoringForce_eq_zero_iff`](#StencilWeil-restoringForce_eq_zero_iff), [`StencilWeil.restoringForce_mono`](#StencilWeil-restoringForce_mono)
 
 ## Theorems
 
@@ -298,8 +301,9 @@ restoringForce b ρ = 2 * |ρ.re - 1 / 2| * Real.log b
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ClosedLoopJoin.force_join`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_join) (ClosedLoopJoin) — `` StencilWeil.restoringForce b ρ = 2 * Real.log b / 5 * restoringForce ρ.re ``
   - [`StencilWeil.restoringForce_eq_zero_iff`](#StencilWeil-restoringForce_eq_zero_iff) — `` restoringForce b ρ = 0 ↔ ρ.re = 1 / 2 ``
   - [`StencilWeil.restoringForce_mono`](#StencilWeil-restoringForce_mono) — `` restoringForce b ρ ≤ restoringForce c ρ ``
 
@@ -329,8 +333,9 @@ restoringForce b ρ = 0 ↔ ρ.re = 1 / 2
 
   - [`StencilWeil.restoringForce_eq`](#StencilWeil-restoringForce_eq) — `` restoringForce b ρ = 2 * |ρ.re - 1 / 2| * Real.log b ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ClosedLoopJoin.off_line_zero`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-off_line_zero) (ClosedLoopJoin) — `` restoringForce (ρ : ℂ).re ≠ 0 ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ∀ b : ℝ, 1 < b → StencilWeil.restoringForce b (ρ : ℂ) ≠ 0 ∧ Real.sqrt b < max ‖(b … ``
   - [`StencilWeil.handshake_iff`](#StencilWeil-handshake_iff) — `` ‖(b : ℂ) ^ ρ‖ = ‖(b : ℂ) ^ (1 - ρ)‖ ↔ ρ.re = 1 / 2 ``
 
 <a name="StencilWeil-handshake_iff"></a>

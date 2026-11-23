@@ -22503,6 +22503,477 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+  "module": "Stage3.ClosedLoopJoin",
+  "stem": "ClosedLoopJoin",
+  "header": "ClosedLoopJoin — block J1 of `lean_stage3/design/closedloop.md`: the join between `lean_primebeat` and Stage 3. 2026-11-23.",
+  "imports": [
+   "Stage3.MirrorArea",
+   "Stage3.LandauWindow",
+   "Stage3.FiniteOffLine"
+  ],
+  "opens": [
+   "Kadiri"
+  ],
+  "namespaces": [
+   "ClosedLoopJoin"
+  ],
+  "lines": 220,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FiniteOffLine.lean",
+   "lean_stage3/Stage3/LandauWindow.lean",
+   "lean_stage3/Stage3/MirrorArea.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "epsilon",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.epsilon",
+    "line": 47,
+    "why": "The displacement from one half. Restated from the closed loop, Part VII.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "restoringForce",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.restoringForce",
+    "line": 50,
+    "why": "The closed loop's restoring force. Restated from Part VII.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_join",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "primeWeight",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.primeWeight",
+    "line": 54,
+    "why": "The scaling weight of a prime. Restated from Part VIII.",
+    "sorry": false,
+    "needs": [
+     "p : ℕ",
+     "σ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_sides",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight_eq_inv_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "isHermitianHandshake",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.isHermitianHandshake",
+    "line": 58,
+    "why": "The Hermitian handshake. Restated from Part VIII.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_sides",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "force_eq",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.force_eq",
+    "line": 62,
+    "why": "The closed loop's force is five times the distance from one half.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "restoringForce σ = 5 * |σ - 1 / 2|",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_join"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "force_join",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.force_join",
+    "line": 73,
+    "why": "The two forces are one. For a base above one, the mirror imbalance of a mode of the table is the closed loop's restoring force at the mode's real part, times a constant that depends on the base alone.",
+    "sorry": false,
+    "needs": [
+     "hb : 1 < b",
+     "ρ : ℂ"
+    ],
+    "proves": "StencilWeil.restoringForce b ρ = 2 * Real.log b / 5 * restoringForce ρ.re",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_join",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "force_eq_zero_iff",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.force_eq_zero_iff",
+    "line": 79,
+    "why": "The closed loop's force is zero exactly at one half.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "restoringForce σ = 0 ↔ σ = 1 / 2",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "primeWeight_eq_inv_side",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.primeWeight_eq_inv_side",
+    "line": 92,
+    "why": "A prime's weight at the real part of a point is the reciprocal of the size of the prime's mode there.",
+    "sorry": false,
+    "needs": [
+     "hp : 0 < p",
+     "ρ : ℂ"
+    ],
+    "proves": "primeWeight p ρ.re = (‖((p : ℝ) : ℂ) ^ ρ‖)⁻¹",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight_eq_inv_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_sides"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "handshake_iff_sides",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.handshake_iff_sides",
+    "line": 101,
+    "why": "The handshake is the two sides agreeing. The Hermitian handshake at the real part of a point holds exactly when, at every prime above three, the mode and its mirror have the same size.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "isHermitianHandshake ρ.re ↔ ∀ p : ℕ, Nat.Prime p → p > 3 → ‖((p : ℝ) : ℂ) ^ ρ‖ = ‖((p : ℝ) : ℂ) ^ (1 - ρ)‖",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_sides",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight_eq_inv_side"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight_eq_inv_side"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "handshake_iff_half",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.handshake_iff_half",
+    "line": 118,
+    "why": "The handshake holds exactly at one half.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "isHermitianHandshake σ ↔ σ = 1 / 2",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.primeWeight"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "structural_contradiction",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.structural_contradiction",
+    "line": 135,
+    "why": "The structural contradiction, the closed loop's main theorem (Part XI): away from one half the restoring force is nonzero and the handshake fails.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ",
+     "hσ : σ ≠ 1 / 2"
+    ],
+    "proves": "restoringForce σ ≠ 0 ∧ ¬ isHermitianHandshake σ",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "off_line_zero",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.off_line_zero",
+    "line": 143,
+    "why": "The structural contradiction at a zero of zeta. If a nontrivial zero is off the line, then the closed loop's force there is nonzero, the handshake fails, the mirror imbalance of its mode is nonzero at every base above one, and one of the mode's two sides is longer than the square root of the base.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re ≠ 1 / 2"
+    ],
+    "proves": "restoringForce (ρ : ℂ).re ≠ 0 ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ∀ b : ℝ, 1 < b → StencilWeil.restoringForce b (ρ : ℂ) ≠ 0 ∧ Real.sqrt b < max ‖(b : ℂ) ^ (ρ : ℂ)‖ ‖(b : ℂ) ^ (1 - (ρ : ℂ))‖",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction",
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.long_side_of_off_line",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction",
+     "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.long_side_of_off_line",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce",
+     "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_iff_re_half",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.rh_iff_re_half",
+    "line": 153,
+    "why": "The Riemann hypothesis is every nontrivial zero having real part one half.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_iff_force_zero",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.rh_iff_force_zero",
+    "line": 183,
+    "why": "The Riemann hypothesis is the force at rest. RH holds exactly when the closed loop's restoring force is zero at every nontrivial zero of zeta.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq_zero_iff",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_iff_handshake",
+    "ns": "ClosedLoopJoin",
+    "full": "ClosedLoopJoin.rh_iff_handshake",
+    "line": 190,
+    "why": "The Riemann hypothesis is the handshake. RH holds exactly when the Hermitian handshake holds at every nontrivial zero of zeta.",
+    "sorry": false,
+    "needs": [],
+    "proves": "RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re",
+    "file": "lean_stage3/Stage3/ClosedLoopJoin.lean",
+    "id": "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.handshake_iff_half",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.isHermitianHandshake",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ContourShift.lean",
   "module": "Stage3.ContourShift",
   "stem": "ContourShift",
@@ -39949,6 +40420,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.attained_off_line_pi",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
      "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.rh_of_finite_accumulation",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
@@ -44959,7 +45431,9 @@
     "exact": true,
     "uses": [],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero"
+    ]
    },
    {
     "kind": "theorem",
@@ -53151,6 +53625,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_join",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
      "lean_stage3/Stage3/MirrorArea.lean::MirrorArea.restoringForce_eq_log_ratio",
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.handshake_iff",
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq",
@@ -53400,6 +53876,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_join",
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_eq_zero_iff",
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.restoringForce_mono"
     ]
@@ -53432,6 +53909,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
      "lean_stage3/Stage3/StencilWeil.lean::StencilWeil.handshake_iff"
     ]
    },
@@ -81522,11 +82000,12 @@
    "Stage3.FilterAccum",
    "Stage3.CountModes",
    "Stage3.CountReduction",
-   "Stage3.CountEuler"
+   "Stage3.CountEuler",
+   "Stage3.ClosedLoopJoin"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 179,
+  "lines": 180,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -81547,6 +82026,7 @@
    "lean_stage3/Stage3/CellResidual.lean",
    "lean_stage3/Stage3/CellRows.lean",
    "lean_stage3/Stage3/CellZeros.lean",
+   "lean_stage3/Stage3/ClosedLoopJoin.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/CountEuler.lean",
    "lean_stage3/Stage3/CountModes.lean",

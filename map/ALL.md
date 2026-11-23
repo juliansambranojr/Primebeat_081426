@@ -482,6 +482,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZetaEM.emRem_step`](./lean_stage3/ZetaEM.md#ZetaEM-emRem_step) | theorem | reads ζ | `ZetaEM` | emRem k N s = emTerm k N s + emRem (k+1) N s |
 | [`ZetaEM.emTerm`](./lean_stage3/ZetaEM.md#ZetaEM-emTerm) | def | reads ζ | `ZetaEM` | ℂ |
 | [`RHPull.eps_choice_ok`](./lean_stage3/LineBound.md#RHPull-eps_choice_ok) | theorem | shape | `LineBound` | c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.log X) ^ 3 |
+| [`ClosedLoopJoin.epsilon`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-epsilon) | def | counting | `ClosedLoopJoin` | ℝ |
 | [`Construction.eq_of_same_row`](./lean/Construction.md#Construction-eq_of_same_row) | theorem | counting | `Construction` | ∀ r d, f r d = g r d |
 | [`FiniteOffLine.err_le`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le) | theorem | reads ζ | `FiniteOffLine` | ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * (2:ℝ) ^ (K + 1)) ^ 2 / (2:ℝ) ^ (K + 1) + Glue.c3n * Real.log ((2:ℝ) ^ ((r : ℤ)… |
 | [`Nonvanishing.error_bound`](./lean/Nonvanishing.md#Nonvanishing-error_bound) | theorem | shape | `Nonvanishing` | \|stencilR n (fun x =&gt; f x - L x) r\| ≤ Ehigh r n |
@@ -593,6 +594,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.floorConstSplit`](./lean_stage3/GlueFloor.md#Stage3-floorConstSplit) | def | shape | `GlueFloor` | ℝ |
 | [`Stage3.floorConstSplit_nonneg`](./lean_stage3/GlueFloor.md#Stage3-floorConstSplit_nonneg) | theorem | shape | `GlueFloor` | 0 ≤ floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀ |
 | [`Propagation.flux_form`](./lean/Propagation.md#Propagation-flux_form) | theorem | counting | `Propagation` | tableFrom N r (d + 1) + tableFrom N (r - 1) d = tableFrom N r d |
+| [`ClosedLoopJoin.force_eq`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_eq) | theorem | counting | `ClosedLoopJoin` | restoringForce σ = 5 * \|σ - 1 / 2\| |
+| [`ClosedLoopJoin.force_eq_zero_iff`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_eq_zero_iff) | theorem | counting | `ClosedLoopJoin` | restoringForce σ = 0 ↔ σ = 1 / 2 |
+| [`ClosedLoopJoin.force_join`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_join) | theorem | shape | `ClosedLoopJoin` | StencilWeil.restoringForce b ρ = 2 * Real.log b / 5 * restoringForce ρ.re |
 | [`FilterLadder.formula_row`](./lean_stage3/FilterLadder.md#FilterLadder-formula_row) | theorem | reads ζ | `FilterLadder` | ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 |
 | [`WeilPowerBands.four_h_add_nonneg`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-four_h_add_nonneg) | theorem | shape | `WeilPowerBands` | 0 ≤ 4 * h ^ 2 + cFarM m / h ^ 2 |
 | [`WeilSeries.four_h_add_nonneg`](./lean_stage3/WeilSeries.md#WeilSeries-four_h_add_nonneg) | theorem | shape | `WeilSeries` | 0 ≤ 4 * h ^ 2 + cFar / h ^ 2 |
@@ -679,6 +683,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`RHPull.half_lt_σRH`](./lean_stage3/LineBound.md#RHPull-half_lt_-RH) | theorem | shape | `LineBound` | (1:ℝ)/2 &lt; σRH X |
 | [`Stage3.half_lt_σθ`](./lean_stage3/ThetaPull.md#Stage3-half_lt_--) | theorem | shape | `ThetaPull` | (1:ℝ)/2 &lt; σθ θ X |
 | [`StencilWeil.handshake_iff`](./lean_stage3/StencilWeil.md#StencilWeil-handshake_iff) | theorem | shape | `StencilWeil` | ‖(b : ℂ) ^ ρ‖ = ‖(b : ℂ) ^ (1 - ρ)‖ ↔ ρ.re = 1 / 2 |
+| [`ClosedLoopJoin.handshake_iff_half`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-handshake_iff_half) | theorem | shape | `ClosedLoopJoin` | isHermitianHandshake σ ↔ σ = 1 / 2 |
+| [`ClosedLoopJoin.handshake_iff_sides`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-handshake_iff_sides) | theorem | shape | `ClosedLoopJoin` | isHermitianHandshake ρ.re ↔ ∀ p : ℕ, Nat.Prime p → p &gt; 3 → ‖((p : ℝ) : ℂ) ^ ρ‖ = ‖((p : ℝ) : ℂ) ^ (1 - ρ)‖ |
 | [`WeilPowerGeom.harmonic_quarter`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-harmonic_quarter) | theorem | shape | `WeilPowerGeom` | ∑ m ∈ Finset.Ico a b, 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 6)) ≤ (Real.log b - Real.log a) / (4 * Real.pi ^ 2) |
 | [`Bridge.hasCompactSupport_kOf`](./lean_bridge/WeilBridge.md#Bridge-hasCompactSupport_kOf) | theorem | shape | `WeilBridge` | HasCompactSupport (kOf G) |
 | [`Bridge.hasCompactSupport_tiltF`](./lean_bridge/WeilBridge.md#Bridge-hasCompactSupport_tiltF) | theorem | shape | `WeilBridge` | HasCompactSupport (tiltF G) |
@@ -815,6 +821,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`FiniteOffLinePi.ipart`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def | shape | `FiniteOffLinePi` | ℂ |
 | [`JointLadder.irrational_log_two_div_log_three`](./lean/JointLadder.md#JointLadder-irrational_log_two_div_log_three) | theorem | shape | `JointLadder` | Irrational (Real.log 2 / Real.log 3) |
 | [`Stage3.isEmpty_zeroHeight`](./lean_stage3/RealSegment.md#Stage3-isEmpty_zeroHeight) | theorem | reads ζ | `RealSegment` | IsEmpty Kadiri.ZeroHeightNontrivialZeros |
+| [`ClosedLoopJoin.isHermitianHandshake`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-isHermitianHandshake) | def | counting | `ClosedLoopJoin` | Prop |
 | [`Elephant.IsModeRow`](./lean/Elephant.md#Elephant-IsModeRow) | def | shape | `Elephant` | Prop |
 | [`VonKoch.isOpen_region`](./lean_stage3/VonKochScaffold.md#VonKoch-isOpen_region) | theorem | shape | `VonKochScaffold` | IsOpen region |
 | [`Stage3.isOpen_regionθ`](./lean_stage3/ThetaConverse.md#Stage3-isOpen_region-) | theorem | shape | `ThetaConverse` | IsOpen (regionθ θ) |
@@ -1241,6 +1248,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`NyquistPeak.nyquist_boundaryBase`](./lean/NyquistPeak.md#NyquistPeak-nyquist_boundaryBase) | theorem | shape | `NyquistPeak` | Nyquist.nyquist (boundaryBase γ) = γ |
 | [`Nyquist.nyquist_no_go`](./lean/Nyquist.md#Nyquist-nyquist_no_go) | theorem | shape | `Nyquist` | ∃ γ', \|γ'\| &lt; \|γ\| ∧ Aliases b γ γ' |
 | [`WeilTransform.odd_integral_exp`](./lean_stage3/WeilTransform.md#WeilTransform-odd_integral_exp) | theorem | shape | `WeilTransform` | (∫ x in (-1 : ℝ)..1, ((q x : ℝ) : ℂ) * Complex.exp (w * (x : ℂ))) = ∫ x in (-1 : ℝ)..1, ((q x : ℝ) : ℂ) * Complex.sinh (w * (x : ℂ)) |
+| [`ClosedLoopJoin.off_line_zero`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-off_line_zero) | theorem | shape | `ClosedLoopJoin` | restoringForce (ρ : ℂ).re ≠ 0 ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ∀ b : ℝ, 1 &lt; b → StencilWeil.restoringForce b (ρ : ℂ) ≠ 0 ∧ Real.sqrt b &lt; max ‖(b : ℂ) ^ (ρ : ℂ)‖ ‖(b : ℂ) ^ (1 - (ρ : ℂ))‖ |
 | [`WeilOffLine.offline_term_le`](./lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le) | theorem | shape | `WeilOffLine` | (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ‖SigmaC (((ε : ℂ) + 2 * Complex.I * (γ : ℂ)) … |
 | [`WeilOffLine.offline_term_le_explicit`](./lean_stage3/WeilOffLine.md#WeilOffLine-offline_term_le_explicit) | theorem | shape | `WeilOffLine` | (laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - offPt ε γ))).re ≤ -((h / 2) ^ 2 * (WeilWindow.Sigma (ε * h) * (WeilWindow.Sigma (ε * h) - 2 * ((2 * Real.pi + Real.pi ^ 2) * Real.cosh (ε *… |
 | [`WeilDetect.OffLineBox`](./lean_stage3/WeilDetect.md#WeilDetect-OffLineBox) | def | reads ζ | `WeilDetect` | Set ℂ |
@@ -1404,6 +1412,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.primeSideM_eq`](./lean_bridge/WeilBridge.md#Bridge-primeSideM_eq) | theorem | shape | `WeilBridge` | primeSideM k = primeSide k |
 | [`Elephant.primeTable_eq_stencil`](./lean/Elephant.md#Elephant-primeTable_eq_stencil) | theorem | counting | `Elephant` | ((fwdDiff (1 : ℕ))^[d] (primeRow b)) r = ∑ k ∈ Finset.range (d + 1), ((-1 : ℤ) ^ (d - k) * d.choose k) • primeRow b (r + k • 1) |
 | [`Elephant.primeTable_eq_sym_weighted`](./lean/Elephant.md#Elephant-primeTable_eq_sym_weighted) | theorem | shape | `Elephant` | (bdiff^[d]) (primeRowZ b) r = ∑ i ∈ s, c i * (Sym (b : ℝ) (ρ i)) ^ d * mode (b : ℝ) (ρ i) r |
+| [`ClosedLoopJoin.primeWeight`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-primeWeight) | def | counting | `ClosedLoopJoin` | ℝ |
+| [`ClosedLoopJoin.primeWeight_eq_inv_side`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-primeWeight_eq_inv_side) | theorem | shape | `ClosedLoopJoin` | primeWeight p ρ.re = (‖((p : ℝ) : ℂ) ^ ρ‖)⁻¹ |
 | [`Mollified.prod_eq_sum`](./lean_stage3/Mollified.md#Mollified-prod_eq_sum) | theorem | shape | `Mollified` | (∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * (∑ d ∈ Ico 1 X, (ArithmeticFunction.moebius d : ℂ) * (d : ℂ) ^ (-s)) = ∑ n ∈ Icc 1 (N * X), (coef X N n : ℂ) * (n : ℂ) ^ (-s) |
 | [`ZetaEM.prod_norm_le`](./lean_stage3/ZetaEM.md#ZetaEM-prod_norm_le) | theorem | shape | `ZetaEM` | ∏ i ∈ Finset.range j, ‖s + i‖ ≤ (‖s‖ + k) ^ j |
 | [`Propagation.propagator`](./lean/Propagation.md#Propagation-propagator) | theorem | counting | `Propagation` | tableFrom (deltaRow s) (s + (k : ℤ)) d = (-1) ^ k * pasc d k |
@@ -1532,6 +1542,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ExplicitTwo.residue_identity_two`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) | theorem | reads ζ | `ExplicitTwo` | RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * T') = (x : ℂ) - deriv riemannZe… |
 | [`ContourShift.residue_rectangle_multi`](./lean_stage3/ContourShift.md#ContourShift-residue_rectangle_multi) | theorem | reads ζ | `ContourShift` | RectangleIntegral' f z w = ∑ p ∈ P, A p |
 | [`ContourShift.residue_rectangle_of_local`](./lean_stage3/ContourShift.md#ContourShift-residue_rectangle_of_local) | theorem | reads ζ | `ContourShift` | RectangleIntegral' f z w = ∑ p ∈ P, A p |
+| [`ClosedLoopJoin.restoringForce`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-restoringForce) | def | counting | `ClosedLoopJoin` | ℝ |
 | [`StencilWeil.restoringForce`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce) | def | shape | `StencilWeil` | ℝ |
 | [`StencilWeil.restoringForce_eq`](./lean_stage3/StencilWeil.md#StencilWeil-restoringForce_eq) | theorem | shape | `StencilWeil` | restoringForce b ρ = 2 * \|ρ.re - 1 / 2\| * Real.log b |
 | [`MirrorArea.restoringForce_eq_log_ratio`](./lean_stage3/MirrorArea.md#MirrorArea-restoringForce_eq_log_ratio) | theorem | shape | `MirrorArea` | restoringForce b ρ = \|Real.log (‖(b : ℂ) ^ ρ‖ / ‖(b : ℂ) ^ (1 - ρ)‖)\| |
@@ -1541,7 +1552,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`ReZetaCount.reZeroSet`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet) | def | reads ζ | `ReZetaCount` | Set ℝ |
 | [`ReZetaCount.reZeroSet_finite`](./lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet_finite) | theorem | reads ζ | `ReZetaCount` | (reZeroSet T).Finite |
 | [`CellResidual.RH_iff_cells`](./lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) | theorem | reads ζ | `CellResidual` | RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ |
+| [`ClosedLoopJoin.rh_iff_force_zero`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_force_zero) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 |
+| [`ClosedLoopJoin.rh_iff_handshake`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_handshake) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re |
 | [`VonKoch.RH_iff_psiWeak`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | theorem | reads ζ | `VonKochScaffold` | RiemannHypothesis ↔ ∃ C &gt; 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ |
+| [`ClosedLoopJoin.rh_iff_re_half`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_re_half) | theorem | reads ζ | `ClosedLoopJoin` | RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2 |
 | [`PiToPsi.RH_iff_schoenfeldWeak`](./lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) | theorem | reads ζ | `PiToPsi` | RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
 | [`FilterAccum.rh_of_finite_accumulation`](./lean_stage3/FilterAccum.md#FilterAccum-rh_of_finite_accumulation) | theorem | reads ζ | `FilterAccum` | RiemannHypothesis |
 | [`VonKoch.RH_of_no_zero_right_of_half`](./lean_stage3/VonKochScaffold.md#VonKoch-RH_of_no_zero_right_of_half) | theorem | reads ζ | `VonKochScaffold` | RiemannHypothesis |
@@ -1799,6 +1813,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.strip_is_fundamental_domain`](./lean/Transform.md#Transform-strip_is_fundamental_domain) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-s)‖ = 1 ∧ (s + 1).re = 1 ∧ ‖(b : ℂ) ^ (-(s + 1))‖ = b ^ (-(1 : ℝ)) |
 | [`ZetaGrowth.stripRegion`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-stripRegion) | def | shape | `ZetaGrowth` | Set ℂ |
 | [`ZeroSquares.strips_le`](./lean_stage3/ZeroSquares.md#ZeroSquares-strips_le) | theorem | reads ζ | `ZeroSquares` | ∑ n ∈ Finset.range L, innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u ≤ 3 * innerI X 1 T u |
+| [`ClosedLoopJoin.structural_contradiction`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-structural_contradiction) | theorem | shape | `ClosedLoopJoin` | restoringForce σ ≠ 0 ∧ ¬ isHermitianHandshake σ |
 | [`CountModes.sub_ofReal_ne_zero`](./lean_stage3/CountModes.md#CountModes-sub_ofReal_ne_zero) | theorem | shape | `CountModes` | w - (s : ℂ) ≠ 0 |
 | [`MollifiedMean.sum_b_sq_eq`](./lean_stage3/MollifiedMean.md#MollifiedMean-sum_b_sq_eq) | theorem | shape | `MollifiedMean` | ∑ n ∈ Icc 1 Y, b X N n ^ 2 * w n = ∑ n ∈ Icc X Y, (Mollified.coef X N n : ℝ) ^ 2 * w n |
 | [`LandauTrig.sum_block_ge`](./lean_stage3/LandauTrig.md#LandauTrig-sum_block_ge) | theorem | shape | `LandauTrig` | -(∑ j ∈ s, ‖c j‖ * (2 / ‖z j - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N), T n |

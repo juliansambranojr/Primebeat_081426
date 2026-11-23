@@ -22,6 +22,26 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J1 of `design/closedloop.md`: `Stage3/ClosedLoopJoin.lean`
+
+    DONE        `force_join`: the closed loop's restoring force and the
+                tree's mirror imbalance are one, up to `2·log b/5`.
+                `handshake_iff_sides`: the handshake is the mode and its
+                mirror agreeing in size at every prime above three.
+                `structural_contradiction`, `off_line_zero`: the closed
+                loop's theorem, and the same on a zero of zeta.
+                `rh_iff_force_zero`, `rh_iff_handshake`; one unit
+    ASSUMED     Julian, 2026-11-23: "I'm pretty sure the restarting force and
+                a contradiction proof is in there". They are, in
+                `lean_primebeat/PrimeBeat/primebeat_closed_loop.lean`. The
+                four definitions restated word for word; written and built
+                here
+    DEPENDS     `StencilWeil.restoringForce_eq`,
+                `MirrorArea.long_side_of_off_line`,
+                `LandauWindow.rh_of_zeroFree_half`
+    OUT         a statement that the force is zero at a zero of zeta; the map
+    OUTCOME     proved, unit 0476
+
 ### 2026-11-23 · blocks N2, N3-E of `design/countmodes.md`: `Stage3/CountReduction.lean`, `Stage3/CountEuler.lean`
 
     DONE        `CountReduction.count_modes_small`: under the ladder bound on

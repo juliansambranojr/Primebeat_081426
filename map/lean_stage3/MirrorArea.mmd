@@ -3,10 +3,12 @@ flowchart LR
   n1["<b>mirror_side ■</b><br/>‖(b : ℂ) ^ (1 - ρ)‖ = b / ‖(b : ℂ) ^ ρ‖"]:::shp
   n2["<b>side_eq_sqrt_iff</b><br/>‖(b : ℂ) ^ ρ‖ = Real.sqrt b ↔ ρ.re = 1 / 2"]:::shp
   n3["<b>square_iff ■</b><br/>(‖(b : ℂ) ^ ρ‖ = Real.sqrt b ∧ ‖(b : ℂ) ^ (1 - ρ)‖ = Real.sqrt b…"]:::shp
-  n4["<b>long_side_of_off_line ■</b><br/>Real.sqrt b ＜ max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖"]:::shp
+  n4["<b>long_side_of_off_line</b><br/>Real.sqrt b ＜ max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖"]:::shp
   n5["<b>restoringForce_eq_log_ratio ■</b><br/>restoringForce b ρ = |Real.log (‖(b : ℂ) ^ ρ‖ / ‖(b : ℂ) ^ (1 - …"]:::shp
+  x0(["<b>ClosedLoopJoin</b><br/>off_line_zero"]):::ext
   n0 --> n1
   n2 --> n3
+  n4 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

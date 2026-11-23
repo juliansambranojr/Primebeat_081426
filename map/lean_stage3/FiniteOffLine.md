@@ -5,7 +5,7 @@ FiniteOffLine — block J10d of `lean_stage3/design/joints.md`. 2026-11-22. The 
 12 theorems, 3 definitions, 573 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md), [`CellModes`](../lean_stage3/CellModes.md), [`LadderMean`](../lean_stage3/LadderMean.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`RealSegment`](../lean_stage3/RealSegment.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellRows`](../lean_stage3/CellRows.md), [`PiZeros`](../lean_stage3/PiZeros.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellRows`](../lean_stage3/CellRows.md), [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md), [`PiZeros`](../lean_stage3/PiZeros.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)
 
 ## The picture
 

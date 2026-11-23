@@ -5,7 +5,7 @@ MirrorArea — block S1 of `lean_stage3/design/joints.md`. 2026-11-22. A mode of
 6 theorems, 0 definitions, 122 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`StencilWeil`](../lean_stage3/StencilWeil.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md)
 
 ## The picture
 
@@ -15,10 +15,12 @@ flowchart LR
   n1["<b>mirror_side ■</b><br/>‖(b : ℂ) ^ (1 - ρ)‖ = b / ‖(b : ℂ) ^ ρ‖"]:::shp
   n2["<b>side_eq_sqrt_iff</b><br/>‖(b : ℂ) ^ ρ‖ = Real.sqrt b ↔ ρ.re = 1 / 2"]:::shp
   n3["<b>square_iff ■</b><br/>(‖(b : ℂ) ^ ρ‖ = Real.sqrt b ∧ ‖(b : ℂ) ^ (1 - ρ)‖ = Real.sqrt b…"]:::shp
-  n4["<b>long_side_of_off_line ■</b><br/>Real.sqrt b ＜ max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖"]:::shp
+  n4["<b>long_side_of_off_line</b><br/>Real.sqrt b ＜ max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖"]:::shp
   n5["<b>restoringForce_eq_log_ratio ■</b><br/>restoringForce b ρ = |Real.log (‖(b : ℂ) ^ ρ‖ / ‖(b : ℂ) ^ (1 - …"]:::shp
+  x0(["<b>ClosedLoopJoin</b><br/>off_line_zero"]):::ext
   n0 --> n1
   n2 --> n3
+  n4 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -159,7 +161,9 @@ Real.sqrt b < max ‖(b : ℂ) ^ ρ‖ ‖(b : ℂ) ^ (1 - ρ)‖
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds:** nothing. It connects to nothing.
+**Feeds** (1 that use it)
+
+  - [`ClosedLoopJoin.off_line_zero`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-off_line_zero) (ClosedLoopJoin) — `` restoringForce (ρ : ℂ).re ≠ 0 ∧ ¬ isHermitianHandshake (ρ : ℂ).re ∧ ∀ b : ℝ, 1 < b → StencilWeil.restoringForce b (ρ : ℂ) ≠ 0 ∧ Real.sqrt b < max ‖(b … ``
 
 <a name="MirrorArea-restoringForce_eq_log_ratio"></a>
 ### `MirrorArea.restoringForce_eq_log_ratio`
