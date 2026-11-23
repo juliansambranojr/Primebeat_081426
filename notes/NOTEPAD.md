@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  S2 PROVED (unit 0467, `FilterAttained.filter_attained_false`, `attained_psi`): under the ladder bound on psi, no polynomial filter has its largest rate |z^b q(1/z)^a| attained by a zero above the threshold; with no filter, the largest real part attained gives RH on the psi ladder. Opus worker, built and read here. Next: S3, finitely many accumulation points (being built).
 - [open]   2026-11-23  S1 PROVED (unit 0466, `FilterLadder.filtered_modes_small_sq`): if |psi(2^k) - 2^k| <= C k^2 sqrt2^k, then for any polynomial q, sigma >= 1/2, m deg q < n: the modes right of sigma below height 2^n, weighted by q(2^-rho)^m, sum to <= Afl n^2 2^(sigma n) Wn(q)^m. Filters in place of depth. Opus worker, built and read here. Next: S2 (being built).
 - [open]   2026-11-23  G3 PROVED (unit 0465, `FixedRowTwo.table_cell_fixed_row_two`, `pi_fixed_row_two`, `cell_fixed_row_two`): T3 at a fixed row at every row: table cell for r >= d+2 (the identity's own hypothesis), count for x >= 2, psi-cell for r >= d+1. The row margins of units 0461, 0462 are gone. Opus worker, built and read here.
 - [open]   2026-11-23  G2 PROVED (unit 0464, `ExplicitTwo.explicit_formula_all_two`): the explicit formula for every x >= 2 and every T >= 2, error c1t x log^2(xT)/T + c3t log x + Bleft2 x^(-1/4). A parallel chain; no proved file edited, c1n and c3n unchanged. Opus worker, built and read here. Open: restate the lowest rows and the count's passage on it.

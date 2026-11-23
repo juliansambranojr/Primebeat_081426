@@ -47,7 +47,7 @@ Result, for `1/2 < σ`:
 
 `A` does not depend on `q`.
 
-## S2 An attained rate under some filter closes the case
+## S2 An attained rate under some filter closes the case — PROVED in the corrected form below (unit 0467: `FilterAttained.filter_attained_false`, `attained_psi`; `σ ≤ 1` is not needed)
 
 Fix `q`, integers `a ≥ 0`, `b ≥ 1` with `a·deg q < b`, and `σ > 1/2`. Read
 S1 along `n = b·k`, `m = a·k`. The rate of a zero is

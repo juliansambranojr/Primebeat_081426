@@ -1,0 +1,18 @@
+key	value	source
+module_lines	383	wc -l lean_stage3/Stage3/FilterAttained.lean
+theorems_proved	9	grep -c ^theorem lean_stage3/Stage3/FilterAttained.lean
+defs	4	xi, S, ratio, tailT
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FilterAttained.lean
+pins	2	filter_attained_false, attained_psi
+errors_first	1	the worker's first failed round, as it reported
+builds	5	the worker's edit-and-build rounds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8857	lake build (full Stage3), Build completed successfully
+jobs_module	8821	run/build.log, lake build Stage3.FilterAttained
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s2	an attained rate under some filter closes the case
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_attained_pi	456	unit 0456, the largest real part attained, on the count
+unit_filter	466	unit 0466, the filtered ladder

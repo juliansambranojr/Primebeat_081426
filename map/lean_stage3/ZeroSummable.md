@@ -5,7 +5,7 @@ ZeroSummable — block C6b of `lean_stage3/design/carlson.md`. 2026-11-23. The z
 14 theorems, 1 definition, 402 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilOnLine`](../lean_stage3/WeilOnLine.md), [`ZeroDensity`](../lean_stage3/ZeroDensity.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md), [`FilterAttained`](../lean_stage3/FilterAttained.md)
 
 ## The picture
 
@@ -32,6 +32,7 @@ flowchart LR
   x4(["<b>WeilOnLine</b><br/>conjZ_injective"]):::ext
   x5(["<b>ZeroDensity</b><br/>zero_density"]):::ext
   x6(["<b>AttainedPi</b><br/>4 theorems"]):::ext
+  x7(["<b>FilterAttained</b><br/>summable_S"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n13
@@ -51,6 +52,7 @@ flowchart LR
   n10 -.-> x6
   n11 -.-> x6
   n13 -.-> x6
+  n13 -.-> x7
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n12
@@ -518,8 +520,9 @@ Summable fun ρ : S => ‖LadderMean.coef ρ‖
 
 **Definitions its proof touches:** [`ZeroSummable.w`](#ZeroSummable-w)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`AttainedPi.attained_off_line_pi`](../lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) (AttainedPi) — `` RiemannHypothesis ``
   - [`AttainedPi.summable_line`](../lean_stage3/AttainedPi.md#AttainedPi-summable_line) (AttainedPi) — `` Summable ((lineSet Θ).indicator fun ρ => ‖LadderMean.coef ρ‖) ``
+  - [`FilterAttained.summable_S`](../lean_stage3/FilterAttained.md#FilterAttained-summable_S) (FilterAttained) — `` Summable ((S σ).indicator fun ρ => ‖LadderMean.coef ρ‖) ``
 

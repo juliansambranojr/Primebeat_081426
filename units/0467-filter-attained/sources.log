@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-23T06:22:00Z
+# unit: 0467-filter-attained
+# sources searched: 433
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30264
+  So try, it's possible
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30893
+  theorem filter_attained_false {C : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30713
+  (hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30714
+  ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30896
+  (q : Polynomial ℂ) {a b : ℕ} (hb : 1 ≤ b) (hab : a * q.natDegree < b)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30897
+  {σ : ℝ} (hσ : 1/2 < σ) (ρ₀ : Kadiri.NontrivialZeros) (hρ₀ : σ ≤ (ρ₀ : ℂ).re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30898
+  (hmax : ∀ ρ : Kadiri.NontrivialZeros, σ ≤ (ρ : ℂ).re → ‖xi q a b ρ‖ ≤ ‖xi q a b ρ₀‖)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0ca5648ba1e9c127.jsonl:434
+  (hthr : (2:ℝ) ^ (σ * b) * FilterLadder.Wn q ^ a < ‖xi q a b ρ₀‖) : False :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30713
+  (hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:30714
+  ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0ca5648ba1e9c127.jsonl:553
+  (hmax : ∀ ρ : Kadiri.NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re) : RiemannHypothesis :=
+
+# 12 found, 0 missing

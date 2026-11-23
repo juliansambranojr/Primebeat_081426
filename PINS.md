@@ -22,6 +22,26 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · blocks S2, S3 of `design/stencil.md`: `Stage3/FilterAttained.lean`, `Stage3/FilterAccum.lean`
+
+    DONE        `FilterAttained.filter_attained_false`: under the ladder bound
+                on `ψ`, no filter `q`, `a·deg q < b`, and line `σ > 1/2` has
+                its largest rate `|z^b·q(1/z)^a|` attained by a zero above
+                `2^(σb)·‖q‖_W^a`. `attained_psi`: the largest real part
+                attained, on the ladder of `ψ`; one unit.
+                `FilterAccum.finite_accumulation_false`: the modes right of
+                `σ` accumulating at finitely many points, with a zero right
+                of `σ` off those points, contradict the bound; one unit
+    ASSUMED     Julian, 2026-11-23: "So try, it's possible". The design as
+                corrected by an independent review. Written by Opus workers;
+                read and built here
+    DEPENDS     `FilterLadder.filtered_modes_small_sq`,
+                `LadderMean.mean_extract`, `ZeroSummable.summable_order_div`,
+                `AliasClass.re_order_div_pos`
+    OUT         the accumulation set that separates the modes from the
+                origin; the residue route; the count in place of `ψ`
+    OUTCOME     `FilterAttained` proved, unit 0467; `FilterAccum` being built
+
 ### 2026-11-23 · block S1 of `design/stencil.md`: `Stage3/FilterLadder.lean`
 
     DONE        `filtered_modes_small`: if `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for

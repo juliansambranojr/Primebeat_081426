@@ -163,6 +163,7 @@ import Stage3.PerronTwo
 import Stage3.ExplicitTwo
 import Stage3.FixedRowTwo
 import Stage3.FilterLadder
+import Stage3.FilterAttained
 
 namespace Stage3
 
