@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block S1 of `design/stencil.md`: `Stage3/FilterLadder.lean`
+
+    DONE        `filtered_modes_small`: if `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for
+                `k ≥ 1`, then for every polynomial `q`, every `σ > 1/2`, and
+                `m·deg q < n`, the zeros with `Re ρ ≥ σ` below height `2^n`,
+                each weighted by `q(2^(−ρ))^m`, sum to at most
+                `A·n⁴·2^(nσ)·‖q‖_W^m`; one unit
+    ASSUMED     Julian, 2026-11-23: "So try, it's possible". A paper
+                derivation of one sitting; the build is its first check.
+                Written by an Opus worker; read and built here
+    DEPENDS     `ExplicitTwo.explicit_formula_all_two`,
+                `PiRemainder.zinv_le_log`, `PiZeros.zeroPartialSum_eq_sum`
+    OUT         blocks S2, S3; the count in place of `ψ`; the screening
+                arrangement
+
 ### 2026-11-23 · block G3 of `design/floor.md`: `Stage3/FixedRowTwo.lean`
 
     DONE        `cell_fixed_row_two` for `r ≥ d + 1`, `pi_fixed_row_two` for
