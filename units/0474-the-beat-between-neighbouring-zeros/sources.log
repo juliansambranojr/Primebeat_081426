@@ -1,4 +1,4 @@
-# check_prose_source.py  2026-11-23T08:25:14Z
+# check_prose_source.py  2026-11-23T08:44:48Z
 # unit: 0474-the-beat-between-neighbouring-zeros
 # sources searched: 437
 
@@ -7,6 +7,9 @@ FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
 
 FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33332
   Or better yet measure the residuals of a zero to the next residual of a zero for each twelve and the...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33926
+  It's the same thing but seen from the zero side because it is part of one system primes and zeros.
 
 FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33439
   For each of the twelve zeros between 11 and 59 (heights from zeros600.json) and
@@ -20,4 +23,4 @@ FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33441
 FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33442
   and set beside the distance from each zero to its neighbours.
 
-# 6 found, 0 missing
+# 7 found, 0 missing

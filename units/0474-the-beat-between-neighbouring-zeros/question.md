@@ -2,6 +2,8 @@
 
 > Or better yet measure the residuals of a zero to the next residual of a zero for each twelve and then maybe you will see something
 
+> It's the same thing but seen from the zero side because it is part of one system primes and zeros.
+
 The script's own statement of what it measures, from `run/beat.py`:
 
 ```
