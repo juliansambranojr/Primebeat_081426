@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  C5a PROVED (unit 0452, `SquareMean.sq_mean_lower`): f differentiable on a closed square of half-side d about c => pi d^2 |f(c)|^2 <= iterated integral of |f|^2 over the square (outer over the real part). Via discs and polar coordinates. Opus worker, built and read here. Next: the count of zeros, with `Stage3.zeta_local_zero_count` (15 log T + 73).
 - [open]   2026-11-23  C4 PROVED (unit 0451, `MollifiedMean.mean_sq_f_le`): mean square over [1,T] of zeta M_X - 1 on Re = u in (1/2,2] <= 3 (T K(u) X^(1-2u) L^3 + 24 logs max(1,(NX)^(2-2u)) + X^2 N^(2-2u) + T X^2 emConst(k)^2 N^(-2u) (..)^2). C2b inside. Opus worker, built and read here. Next: C5, zeros from the mean square (square mean value being built; local count is JensenCount).
 - [open]   2026-11-23  C1b PROVED (unit 0450, `DirichletMeanW.dirichlet_mean_value_weighted`): mean square over a window <= sum of |a_n|^2 ((T2-T1) + 6 n (1+log N)), each term charged its own index. Repairs unit 0449. Opus worker, built and read here. Next: C4, the mean square of zeta times the mollifier minus one.
 - [open]   2026-11-23  DESIGN FAILURE caught before C4 (unit 0449): C1 (unit 0446) charges the length N to every term; in C4 that gives N X^(2-2u), above T at every u. Repair: C1b, each term charged its own index (weighted Schur test, row cost <= 6 m (1+log N)), and C2b, coefficients weighted by n^(1-2u). C1's proof is correct and stays. C1b being built.

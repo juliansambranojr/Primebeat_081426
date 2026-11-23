@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block C5 of `design/carlson.md`, first half: `Stage3/SquareMean.lean`
+
+    DONE        `sq_mean_lower`: for `f` differentiable on a set containing
+                the closed square of half-side `δ` about `c`,
+                `π·δ²·‖f c‖² ≤` the iterated integral of `‖f‖²` over the
+                square; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". Block
+                C5a. Written by an Opus worker; read and built here
+    DEPENDS     Mathlib: circle averages, polar coordinates, Fubini
+    OUT         the count of zeros; blocks C6, C7
+    OUTCOME     proved, unit 0452
+
 ### 2026-11-23 · blocks C2 to C4 of `design/carlson.md`: `Mollified`, `ZetaEM`, `MollifiedMean`
 
     DONE        C2 `Mollified.prod_eq_sum`, `sum_coef_sq_weighted_le`; C3

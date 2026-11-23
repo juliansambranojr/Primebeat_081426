@@ -75,6 +75,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PairIdentity.backward_difference_pow`](./lean/PairIdentity.md#PairIdentity-backward_difference_pow) | theorem | counting | `PairIdentity` | b ^ (r + 1) - b ^ r = (b - 1) * b ^ r |
 | [`EdgeBound.ball_order_sum_le`](./lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le) | theorem | reads ζ | `EdgeBound` | ∃ C : ℝ, 0 &lt; C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real.log T' |
 | [`EdgeBound.ball_order_sum_le_num`](./lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num) | theorem | reads ζ | `EdgeNum` | ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C2n * Real.log T' |
+| [`SquareMean.ball_subset_sq`](./lean_stage3/SquareMean.md#SquareMean-ball_subset_sq) | theorem | shape | `SquareMean` | closedBall c δ ⊆ (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)) |
 | [`EdgeBound.ball_zero_shape`](./lean_stage3/EdgeBound.md#EdgeBound-ball_zero_shape) | theorem | reads ζ | `EdgeBound` | riemannZeta w = 0 ∧ (0 &lt; w.re ∧ w.re &lt; 1) ∧ \|w.im - T'\| ≤ 46/25 |
 | [`WeilBands.band_count`](./lean_stage3/WeilBands.md#WeilBands-band_count) | theorem | reads ζ | `WeilBands` | ∑ ρ ∈ S, (analyticOrderNatAt riemannZeta ρ : ℝ) ≤ 15 * Real.log T + 73 |
 | [`DeepZeroBand.band_in_annulus`](./lean/DeepZeroBand.md#DeepZeroBand-band_in_annulus) | theorem | shape | `DeepZeroBand` | b ^ (-(1 : ℝ)) ≤ ‖(b : ℂ) ^ (-(x : ℂ))‖ ∧ ‖(b : ℂ) ^ (-(x : ℂ))‖ ≤ 1 |
@@ -209,6 +210,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`RouteNum.Chn_le`](./lean_stage3/RouteNum.md#RouteNum-Chn_le) | theorem | reads ζ | `RouteNum` | Glue.Chn ≤ 44108300000 |
 | [`Glue.Chn_pos`](./lean_stage3/GlueNum.md#Glue-Chn_pos) | theorem | reads ζ | `GlueNum` | 0 &lt; Chn |
 | [`Expansion.choose_factorial_step`](./lean/Expansion.md#Expansion-choose_factorial_step) | theorem | counting | `Expansion` | d.choose (j + 1) * (j + 1).factorial = d.choose j * j.factorial * (d - j) |
+| [`SquareMean.circle_sq_mean`](./lean_stage3/SquareMean.md#SquareMean-circle_sq_mean) | theorem | shape | `SquareMean` | 2 * π * ‖f c‖ ^ 2 ≤ ∫ θ in Ioo (-π) π, ‖f (c + (r : ℂ) * ((Real.cos θ : ℂ) + (Real.sin θ : ℂ) * Complex.I))‖ ^ 2 |
 | [`WeilPower.cK`](./lean_stage3/WeilPower.md#WeilPower-cK) | def | shape | `WeilPower` | ℝ |
 | [`WeilPower.cK_one`](./lean_stage3/WeilPower.md#WeilPower-cK_one) | theorem | shape | `WeilPower` | cK 1 = Real.pi ^ 2 |
 | [`WeilPower.cK_succ`](./lean_stage3/WeilPower.md#WeilPower-cK_succ) | theorem | shape | `WeilPower` | cK (m + 1) = ((m : ℝ) + 1) * (2 * (m : ℝ) + 1) * Real.pi ^ 2 / 2 * cK m |
@@ -347,6 +349,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`DirichletMeanW.dirichlet_mean_value_weighted`](./lean_stage3/DirichletMeanW.md#DirichletMeanW-dirichlet_mean_value_weighted) | theorem | shape | `DirichletMeanW` | ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * ((T₂ - T₁) + 6 * n * (1 + Real.log N)) |
 | [`DirichletMeanW.dirichlet_mean_value_weighted_sigma`](./lean_stage3/DirichletMeanW.md#DirichletMeanW-dirichlet_mean_value_weighted_sigma) | theorem | shape | `DirichletMeanW` | ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-((σ : ℂ) + Complex.I * (t : ℂ)))‖ ^ 2 ≤ ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * (n : ℝ) ^ (-2 * σ) * ((T₂ - T₁) + 6 * n * (1 + Real.log N)) |
 | [`DirichletMean.dirichlet_mean_value_window`](./lean_stage3/DirichletMean.md#DirichletMean-dirichlet_mean_value_window) | theorem | shape | `DirichletMean` | ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T₂ - T₁ + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 |
+| [`SquareMean.disc_sq_mean`](./lean_stage3/SquareMean.md#SquareMean-disc_sq_mean) | theorem | shape | `SquareMean` | π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ z, (ball c δ).indicator (fun z =&gt; ‖f z‖ ^ 2) z |
 | [`WeilSeries.dist_ge`](./lean_stage3/WeilSeries.md#WeilSeries-dist_ge) | theorem | shape | `WeilSeries` | 9 / 5 * \|(idx t : ℝ) - (idx γ : ℝ)\| - 9 / 5 ≤ \|t - γ\| |
 | [`ContourShift.div_sub_eq_dslope`](./lean_stage3/ContourShift.md#ContourShift-div_sub_eq_dslope) | theorem | shape | `ContourShift` | f s / (s - p) = f p / (s - p) + dslope f p s |
 | [`Glue.Dln`](./lean_stage3/GlueNum.md#Glue-Dln) | def | reads ζ | `GlueNum` | ℝ |
@@ -963,6 +966,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`FiniteOffLinePi.norm_order_mul`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_order_mul) | theorem | reads ζ | `FiniteOffLinePi` | ‖((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * w‖ = ordR ρ * ‖w‖ |
 | [`FiniteOffLinePi.norm_piMode_half`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_piMode_half) | theorem | shape | `FiniteOffLinePi` | ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (12 * Real.sqrt x) |
 | [`FiniteOffLinePi.norm_piMode_le`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_piMode_le) | theorem | shape | `FiniteOffLinePi` | ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * ((1 + 4 / ρ.re) * x ^ ρ.re + 3 * Real.sqrt x) |
+| [`SquareMean.norm_polar`](./lean_stage3/SquareMean.md#SquareMean-norm_polar) | theorem | shape | `SquareMean` | ‖(r : ℂ) * ((Real.cos θ : ℂ) + (Real.sin θ : ℂ) * Complex.I)‖ = \|r\| |
 | [`PiRemainder.norm_psi_sub_le`](./lean_stage3/PiRemainder.md#PiRemainder-norm_psi_sub_le) | theorem | shape | `PiRemainder` | ‖((ψ t : ℝ) : ℂ) - (t : ℂ)‖ ≤ 7 * t |
 | [`WeilPowerBounds.norm_QS_ge`](./lean_stage3/WeilPowerBounds.md#WeilPowerBounds-norm_QS_ge) | theorem | shape | `WeilPowerBounds` | (w.re ^ 2) ^ (m + 1) ≤ ‖QS m w‖ |
 | [`WeilPowerBounds.norm_QS_ge_far`](./lean_stage3/WeilPowerBounds.md#WeilPowerBounds-norm_QS_ge_far) | theorem | shape | `WeilPowerBounds` | (w.im ^ 2 / 2) ^ (m + 1) ≤ ‖QS m w‖ |
@@ -1419,10 +1423,12 @@ Sorted by name. Search this file before saying something is missing.
 | [`Crossover.spread_smooth`](./lean/Crossover.md#Crossover-spread_smooth) | def | shape | `Crossover` | List ℝ |
 | [`TableDepths.sq_le_gen`](./lean_stage3/TableDepths.md#TableDepths-sq_le_gen) | theorem | shape | `TableDepths` | r ^ 2 ≤ r₀ ^ 2 * (2:ℝ) ^ ((r - r₀) / 2) |
 | [`GateEval.sq_le_two_rpow`](./lean_stage3/GateEval.md#GateEval-sq_le_two_rpow) | theorem | shape | `GateEval` | r ^ 2 ≤ 6400 * (2:ℝ) ^ ((r - 80) / 2) |
+| [`SquareMean.sq_mean_lower`](./lean_stage3/SquareMean.md#SquareMean-sq_mean_lower) | theorem | shape | `SquareMean` | π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c.im - δ)..(c.im + δ), ‖f ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 |
 | [`ZetaGrowth.sq_mul_zeta_analytic`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-sq_mul_zeta_analytic) | theorem | reads ζ | `ZetaGrowth` | AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s |
 | [`ContourShift.sq_mul_zeta_analyticAt_one`](./lean_stage3/ContourShift.md#ContourShift-sq_mul_zeta_analyticAt_one) | theorem | reads ζ | `ContourShift` | AnalyticAt ℂ (fun s ↦ (s - 1)^2 * riemannZeta s) 1 |
 | [`DirichletMean.sq_norm_sum_eq`](./lean_stage3/DirichletMean.md#DirichletMean-sq_norm_sum_eq) | theorem | shape | `DirichletMean` | ((‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 : ℝ) : ℂ) = ∑ m ∈ Icc 1 N, ∑ n ∈ Icc 1 N, a m * (starRingEnd ℂ) (a n) * Complex.exp (Complex.I * ((Real.log n - Real.log m : ℝ) : ℂ) * t… |
 | [`Chain.sq_rpow_half`](./lean/Chain.md#Chain-sq_rpow_half) | theorem | shape | `Chain` | (b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ)) |
+| [`SquareMean.sq_set_integral`](./lean_stage3/SquareMean.md#SquareMean-sq_set_integral) | theorem | shape | `SquareMean` | ∫ z in (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)), F z = ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c.im - δ)..(c.im + δ), F ((u : ℂ) + Complex.I * (t : ℂ)) |
 | [`ZetaGrowth.sq_zeta_band_bound`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-sq_zeta_band_bound) | theorem | reads ζ | `ZetaGrowth` | ∃ C : ℝ, 0 &lt; C ∧ ∀ s : ℂ, -1/2 ≤ s.re → s.re ≤ 4 → ‖(s - 1)^2 * riemannZeta s‖ ≤ C * (2 + \|s.im\|) ^ 4 |
 | [`BoxBounds.sq_zeta_band_explicit`](./lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_band_explicit) | theorem | reads ζ | `BoxBounds` | ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 * (2 + \|s.im\|) ^ 4 |
 | [`BoxBounds.sq_zeta_box`](./lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_box) | theorem | reads ζ | `BoxBounds` | ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 |

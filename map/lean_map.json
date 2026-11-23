@@ -40758,6 +40758,188 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SquareMean.lean",
+  "module": "Stage3.SquareMean",
+  "stem": "SquareMean",
+  "header": "SquareMean — block C5a of `lean_stage3/design/carlson.md`. 2026-11-23. An analytic function cannot be small in mean square on a square around a point where it has size one. For `f` complex differentiable on an open set containing the closed square of half-side `δ` about `c`, the iterated integral of `‖f‖²` over the square is at least `π·δ²·‖f c‖²`. The proof takes the mean value property of `f²` on each circle of radius `r < δ`, which gives `2π‖f c‖² ≤ ∫ ‖f‖²` over the circle; multiplies by `r` and integrates in po…",
+  "imports": [],
+  "opens": [
+   "MeasureTheory",
+   "Metric",
+   "Real",
+   "Set"
+  ],
+  "namespaces": [
+   "SquareMean"
+  ],
+  "lines": 247,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "circle_sq_mean",
+    "ns": "SquareMean",
+    "full": "SquareMean.circle_sq_mean",
+    "line": 36,
+    "why": "If `f` is complex differentiable on `U` and the closed disc of radius `r > 0` about `c` lies in `U`, then `2π‖f c‖²` is at most the integral of `‖f‖²` over the circle of radius `r`, parametrized by the angle in `(−π, π)`.",
+    "sorry": false,
+    "needs": [
+     "hr : 0 < r",
+     "hsub : closedBall c r ⊆ U",
+     "hf : DifferentiableOn ℂ f U"
+    ],
+    "proves": "2 * π * ‖f c‖ ^ 2 ≤ ∫ θ in Ioo (-π) π, ‖f (c + (r : ℂ) * ((Real.cos θ : ℂ) + (Real.sin θ : ℂ) * Complex.I))‖ ^ 2",
+    "file": "lean_stage3/Stage3/SquareMean.lean",
+    "id": "lean_stage3/Stage3/SquareMean.lean::SquareMean.circle_sq_mean",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.disc_sq_mean"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ball_subset_sq",
+    "ns": "SquareMean",
+    "full": "SquareMean.ball_subset_sq",
+    "line": 76,
+    "why": "The closed disc of radius `δ` about `c` lies in the closed square of half-side `δ` about `c`.",
+    "sorry": false,
+    "needs": [
+     "c : ℂ",
+     "δ : ℝ"
+    ],
+    "proves": "closedBall c δ ⊆ (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ))",
+    "file": "lean_stage3/Stage3/SquareMean.lean",
+    "id": "lean_stage3/Stage3/SquareMean.lean::SquareMean.ball_subset_sq",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_mean_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_polar",
+    "ns": "SquareMean",
+    "full": "SquareMean.norm_polar",
+    "line": 88,
+    "why": "The norm of `r(cos θ + i sin θ)` is `|r|`.",
+    "sorry": false,
+    "needs": [
+     "r θ : ℝ"
+    ],
+    "proves": "‖(r : ℂ) * ((Real.cos θ : ℂ) + (Real.sin θ : ℂ) * Complex.I)‖ = |r|",
+    "file": "lean_stage3/Stage3/SquareMean.lean",
+    "id": "lean_stage3/Stage3/SquareMean.lean::SquareMean.norm_polar",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.disc_sq_mean"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "disc_sq_mean",
+    "ns": "SquareMean",
+    "full": "SquareMean.disc_sq_mean",
+    "line": 96,
+    "why": "If `f` is complex differentiable on an open `U` containing the closed disc of radius `δ` about `c`, then `π δ² ‖f c‖²` is at most the integral over `ℂ` of `‖f‖²` cut off to the open disc.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hsub : closedBall c δ ⊆ U",
+     "hf : DifferentiableOn ℂ f U"
+    ],
+    "proves": "π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ z, (ball c δ).indicator (fun z => ‖f z‖ ^ 2) z",
+    "file": "lean_stage3/Stage3/SquareMean.lean",
+    "id": "lean_stage3/Stage3/SquareMean.lean::SquareMean.disc_sq_mean",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.circle_sq_mean",
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.norm_polar"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.circle_sq_mean",
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.norm_polar"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_mean_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sq_set_integral",
+    "ns": "SquareMean",
+    "full": "SquareMean.sq_set_integral",
+    "line": 171,
+    "why": "For `F` continuous on the closed square of half-side `δ` about `c`, the area integral of `F` over the square equals the iterated integral, outer over the real part and inner over the imaginary part.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hF : ContinuousOn F ((Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)))"
+    ],
+    "proves": "∫ z in (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)), F z = ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c.im - δ)..(c.im + δ), F ((u : ℂ) + Complex.I * (t : ℂ))",
+    "file": "lean_stage3/Stage3/SquareMean.lean",
+    "id": "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_set_integral",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_mean_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sq_mean_lower",
+    "ns": "SquareMean",
+    "full": "SquareMean.sq_mean_lower",
+    "line": 214,
+    "why": "An analytic function is not small in mean square on a square about a point where it is large: for `f` complex differentiable on an open set containing the closed square of half-side `δ` about `c`, the iterated integral of `‖f‖²` over the square is at least `π δ² ‖f c‖²`.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hU : IsOpen U",
+     "hsub : (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)) ⊆ U",
+     "hf : DifferentiableOn ℂ f U"
+    ],
+    "proves": "π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c.im - δ)..(c.im + δ), ‖f ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2",
+    "file": "lean_stage3/Stage3/SquareMean.lean",
+    "id": "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_mean_lower",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.ball_subset_sq",
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.disc_sq_mean",
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_set_integral"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.ball_subset_sq",
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.disc_sq_mean",
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_set_integral"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/Statement.lean",
   "module": "Stage3.Statement",
   "stem": "Statement",
@@ -67899,11 +68081,12 @@
    "Stage3.Mollified",
    "Stage3.ZetaEM",
    "Stage3.DirichletMeanW",
-   "Stage3.MollifiedMean"
+   "Stage3.MollifiedMean",
+   "Stage3.SquareMean"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 160,
+  "lines": 161,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -67975,6 +68158,7 @@
    "lean_stage3/Stage3/RouteNum.lean",
    "lean_stage3/Stage3/RowLeaves.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
+   "lean_stage3/Stage3/SquareMean.lean",
    "lean_stage3/Stage3/Statement.lean",
    "lean_stage3/Stage3/StencilWeil.lean",
    "lean_stage3/Stage3/Stirling.lean",

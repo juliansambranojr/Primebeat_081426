@@ -149,6 +149,7 @@ import Stage3.Mollified
 import Stage3.ZetaEM
 import Stage3.DirichletMeanW
 import Stage3.MollifiedMean
+import Stage3.SquareMean
 
 namespace Stage3
 

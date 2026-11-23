@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-11-23T01:34:40Z
+# unit: 0452-square-mean
+# sources searched: 417
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23612
+  Prove Carlson's bound ourselves, which is a large project
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25219
+  theorem sq_mean_lower {f : ℂ → ℂ} {c : ℂ} {δ : ℝ} (hδ : 0 < δ) {U : Set ℂ} (hU : IsOpen U)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25220
+  (hsub : (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)) ⊆ U)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25221
+  (hf : DifferentiableOn ℂ f U) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25223
+  ≤ ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c.im - δ)..(c.im + δ),
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a1713beb39fca169f.jsonl:986
+  ‖f ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 :=
+
+# 7 found, 0 missing

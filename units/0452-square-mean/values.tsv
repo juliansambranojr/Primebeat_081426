@@ -1,0 +1,16 @@
+key	value	source
+module_lines	246	wc -l lean_stage3/Stage3/SquareMean.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/SquareMean.lean
+defs	0	none
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/SquareMean.lean
+pins	1	sq_mean_lower
+errors_first	4	the worker's first lake build Stage3.SquareMean, as it reported
+builds	4	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8843	lake build (full Stage3), Build completed successfully
+jobs_module	8655	run/build.log, lake build Stage3.SquareMean
+loop_version	22	lean_stage3/LOOP.md version line
+design	carlson.md#c5	zeros from the mean square
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
