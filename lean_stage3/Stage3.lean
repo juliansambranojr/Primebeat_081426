@@ -172,6 +172,7 @@ import Stage3.ClosedLoopJoin
 import Stage3.SpiralLink
 import Stage3.ClosedLoopChain
 import Stage3.OneChain
+import Stage3.RunTheorems
 
 namespace Stage3
 

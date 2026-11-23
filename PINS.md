@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R1 of `design/runs.md`: `Stage3/RunTheorems.lean`
+
+    DONE        `mode_fold`: a height shows on the ladder only up to
+                `2π/log 2`. `two_mode_beat`, `mode_cross`, `zero_pair_beat`:
+                two modes together carry a term turning at the difference of
+                their heights, at every row; one unit
+    ASSUMED     Julian, 2026-11-23: "The runs should be theorems." The exact
+                cores of units 0473 and 0474. Written and built here
+    DEPENDS     Mathlib `Complex.normSq_add`, `Complex.exp_int_mul_two_pi_mul_I`
+    OUT         the sieve's exact sum (block R2); the runs' sizes
+    OUTCOME     proved, unit 0480
+
 ### 2026-11-23 · block J4 of `design/closedloop.md`: `Stage3/OneChain.lean`
 
     DONE        `one_chain`: RH, `SpiralLink`, `OneAtEachHeight`, the force at

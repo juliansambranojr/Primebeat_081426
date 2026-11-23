@@ -53827,6 +53827,155 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/RunTheorems.lean",
+  "module": "Stage3.RunTheorems",
+  "stem": "RunTheorems",
+  "header": "RunTheorems — block R1 of `lean_stage3/design/runs.md`. 2026-11-23. The exploratory runs of units 0473 and 0474 measured two patterns on a stretch of rows. Each has an exact core that holds at every row, with nothing computed.",
+  "imports": [
+   "Stage3.OneChain"
+  ],
+  "opens": [
+   "Complex"
+  ],
+  "namespaces": [
+   "RunTheorems"
+  ],
+  "lines": 108,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/OneChain.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "two_cpow",
+    "ns": "RunTheorems",
+    "full": "RunTheorems.two_cpow",
+    "line": 30,
+    "why": "A mode of the base two, written with the exponential.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "(2:ℂ) ^ ρ = Complex.exp (ρ * (Real.log 2 : ℂ))",
+    "file": "lean_stage3/Stage3/RunTheorems.lean",
+    "id": "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.two_cpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_cross",
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_fold"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mode_fold",
+    "ns": "RunTheorems",
+    "full": "RunTheorems.mode_fold",
+    "line": 37,
+    "why": "The fold. On the ladder of base two, raising the height of a point by a whole number of periods `2π/log 2` leaves its mode unchanged.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ",
+     "k : ℤ"
+    ],
+    "proves": "(2:ℂ) ^ (ρ + 2 * Real.pi * Complex.I * (k : ℂ) / (Real.log 2 : ℂ)) = (2:ℂ) ^ ρ",
+    "file": "lean_stage3/Stage3/RunTheorems.lean",
+    "id": "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_fold",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.two_cpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.two_cpow"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "mode_cross",
+    "ns": "RunTheorems",
+    "full": "RunTheorems.mode_cross",
+    "line": 51,
+    "why": "The cross term of two modes. A mode times the conjugate of another is the exponential of the sum of the real parts and the difference of the heights, each times `log 2`.",
+    "sorry": false,
+    "needs": [
+     "ρ₁ ρ₂ : ℂ"
+    ],
+    "proves": "(2:ℂ) ^ ρ₁ * (starRingEnd ℂ) ((2:ℂ) ^ ρ₂) = Complex.exp ((((ρ₁.re + ρ₂.re) * Real.log 2 : ℝ) : ℂ) + (((ρ₁.im - ρ₂.im) * Real.log 2 : ℝ) : ℂ) * Complex.I)",
+    "file": "lean_stage3/Stage3/RunTheorems.lean",
+    "id": "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_cross",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.two_cpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.two_cpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.zero_pair_beat"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "two_mode_beat",
+    "ns": "RunTheorems",
+    "full": "RunTheorems.two_mode_beat",
+    "line": 67,
+    "why": "Two modes together, at every row. The squared size of the sum of two modes is the sum of their squared sizes plus twice the real part of a term that turns with the row.",
+    "sorry": false,
+    "needs": [
+     "c₁ c₂ z₁ z₂ : ℂ",
+     "k : ℕ"
+    ],
+    "proves": "‖c₁ * z₁ ^ k + c₂ * z₂ ^ k‖ ^ 2 = ‖c₁ * z₁ ^ k‖ ^ 2 + ‖c₂ * z₂ ^ k‖ ^ 2 + 2 * (c₁ * (starRingEnd ℂ) c₂ * (z₁ * (starRingEnd ℂ) z₂) ^ k).re",
+    "file": "lean_stage3/Stage3/RunTheorems.lean",
+    "id": "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.two_mode_beat",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zero_pair_beat",
+    "ns": "RunTheorems",
+    "full": "RunTheorems.zero_pair_beat",
+    "line": 79,
+    "why": "The beat between two zeros. For two points, the term that turns in `two_mode_beat` is the row's power of `2^(β₁+β₂)` times a rotation by the row times the difference of the two heights times `log 2`.",
+    "sorry": false,
+    "needs": [
+     "c₁ c₂ ρ₁ ρ₂ : ℂ",
+     "k : ℕ"
+    ],
+    "proves": "(c₁ * (starRingEnd ℂ) c₂ * ((2:ℂ) ^ ρ₁ * (starRingEnd ℂ) ((2:ℂ) ^ ρ₂)) ^ k) = c₁ * (starRingEnd ℂ) c₂ * ((((2:ℝ) ^ ((ρ₁.re + ρ₂.re) * (k:ℝ)) : ℝ) : ℂ) * Complex.exp ((((k:ℝ) * ((ρ₁.im - ρ₂.im) * Real.log 2) : ℝ) : ℂ) * Complex.I))",
+    "file": "lean_stage3/Stage3/RunTheorems.lean",
+    "id": "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.zero_pair_beat",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_cross"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/RunTheorems.lean::RunTheorems.mode_cross"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/RvMCrude.lean",
   "module": "Stage3.RvMCrude",
   "stem": "RvMCrude",
@@ -83293,11 +83442,12 @@
    "Stage3.ClosedLoopJoin",
    "Stage3.SpiralLink",
    "Stage3.ClosedLoopChain",
-   "Stage3.OneChain"
+   "Stage3.OneChain",
+   "Stage3.RunTheorems"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 183,
+  "lines": 184,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -83386,6 +83536,7 @@
    "lean_stage3/Stage3/RouteGate.lean",
    "lean_stage3/Stage3/RouteNum.lean",
    "lean_stage3/Stage3/RowLeaves.lean",
+   "lean_stage3/Stage3/RunTheorems.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
    "lean_stage3/Stage3/SpiralLink.lean",
    "lean_stage3/Stage3/SquareMean.lean",

@@ -7,7 +7,7 @@ OneChain — block J4 of `lean_stage3/design/closedloop.md`. 2026-11-23. The cap
 8 theorems, 0 definitions, 154 lines. 
 
 **Imports:** [`AttainedPi`](../lean_stage3/AttainedPi.md), [`CellResidual`](../lean_stage3/CellResidual.md), [`ClosedLoopChain`](../lean_stage3/ClosedLoopChain.md), [`CountEuler`](../lean_stage3/CountEuler.md), [`FilterAccum`](../lean_stage3/FilterAccum.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`RunTheorems`](../lean_stage3/RunTheorems.md)
 
 ## The picture
 
