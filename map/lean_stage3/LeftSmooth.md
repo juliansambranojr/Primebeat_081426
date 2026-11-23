@@ -7,7 +7,7 @@ LeftSmooth — blocks F2c, F2 and F3 of `lean_stage3/design/leftedge.md`. 2026-1
 40 theorems, 11 definitions, 913 lines. 
 
 **Imports:** [`LeftKernel`](../lean_stage3/LeftKernel.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellFixedRow`](../lean_stage3/CellFixedRow.md)
 
 ## The picture
 
@@ -126,11 +126,12 @@ flowchart LR
   n6["<b>sL_ne_one</b><br/>sL t ≠ 1"]:::shp
   n7["<b>wL_ne_one</b><br/>wL t ≠ 1"]:::shp
   n8["<b>left_edge_bound</b><br/>‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4)"]:::thm
-  n9["<b>explicit_formula_all ■</b><br/>‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Gl…"]:::thm
+  n9["<b>explicit_formula_all</b><br/>‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Gl…"]:::thm
   x0(["<b>diagram 1</b><br/>13 theorems"]):::ext
   x1(["<b>LeftKernel</b><br/>kernel_bound<br/>series_side"]):::ext
   x2(["<b>ContourShift</b><br/>zeta_analyticAt"]):::ext
-  x3(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
+  x3(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>cell_eq_zero_sum_all"]):::ext
+  x4(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n8
@@ -140,6 +141,8 @@ flowchart LR
   n6 --> n8
   n7 --> n8
   n8 --> n9
+  n8 -.-> x3
+  n9 -.-> x3
   x0 -.-> n1
   x0 -.-> n2
   x0 -.-> n4
@@ -149,7 +152,7 @@ flowchart LR
   x1 -.-> n2
   x1 -.-> n8
   x2 -.-> n3
-  x3 -.-> n9
+  x4 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -277,7 +280,7 @@ The left-edge constant `Bleft = Bsm + Bser`.
 
 - **Is:** `` Bleft : ℝ := Bsm + LeftKernel.Bser ``
 - **Built from:** [`LeftKernel.Bser`](../lean_stage3/LeftKernel.md#LeftKernel-Bser), [`LeftSmooth.Bsm`](#LeftSmooth-Bsm)
-- **Used by 2:** [`LeftSmooth.explicit_formula_all`](#LeftSmooth-explicit_formula_all), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound)
+- **Used by 6:** [`CellFixedRow.Bleft_nonneg`](../lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`LeftSmooth.explicit_formula_all`](#LeftSmooth-explicit_formula_all), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound)
 
 ## Theorems
 
@@ -1417,8 +1420,9 @@ line 855 · arrows read from text
 
 **Definitions its proof touches:** [`Glue.Gf`](../lean_stage3/Glue.md#Glue-Gf), [`LeftKernel.Bser`](../lean_stage3/LeftKernel.md#LeftKernel-Bser), [`LeftSmooth.Bleft`](#LeftSmooth-Bleft), [`LeftSmooth.Bsm`](#LeftSmooth-Bsm), [`LeftSmooth.sL`](#LeftSmooth-sL), [`LeftSmooth.wL`](#LeftSmooth-wL)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CellFixedRow.Bleft_nonneg`](../lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg) (CellFixedRow) — `` 0 ≤ LeftSmooth.Bleft ``
   - [`LeftSmooth.explicit_formula_all`](#LeftSmooth-explicit_formula_all) — `` ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + Bleft * x ^ (-(1:ℝ)/4) ``
 
 <a name="LeftSmooth-explicit_formula_all"></a>
@@ -1448,5 +1452,7 @@ line 900 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum), [`Glue.c1n`](../lean_stage3/GlueNum.md#Glue-c1n), [`Glue.c3n`](../lean_stage3/GlueNum.md#Glue-c3n), [`LeftSmooth.Bleft`](#LeftSmooth-Bleft)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all) (CellFixedRow) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ)… ``
 

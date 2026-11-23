@@ -18801,6 +18801,7 @@
      "lean_stage3/Stage3/Assembly.lean::Stage3.norm_zeroPartialSum_le_sharp",
      "lean_stage3/Stage3/Assembly.lean::Stage3.psiWeak_of_RH_EF_NT",
      "lean_stage3/Stage3/AssemblyFloor.lean::Stage3.psiWeak_floor",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
@@ -20890,6 +20891,226 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CellFixedRow.lean",
+  "module": "Stage3.CellFixedRow",
+  "stem": "CellFixedRow",
+  "header": "CellFixedRow — block F3 of `lean_stage3/design/leftedge.md`. 2026-11-23. The cell at a fixed row with the height of the zero sum taken to infinity. `LeftSmooth.explicit_formula_all` holds at every height `T ≥ 2`, with no cap `T ≤ x²`. Through the stencil, the cell at row `r`, depth `d`, and its zero sum to any height differ by the stencil of that bound. As `T → ∞` at the fixed row the first term of the bound tends to zero, and what stays is free of the height.",
+  "imports": [
+   "Stage3.LeftSmooth",
+   "Stage3.CellRows"
+  ],
+  "opens": [
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "Topology"
+  ],
+  "namespaces": [
+   "CellFixedRow"
+  ],
+  "lines": 207,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/CellRows.lean",
+   "lean_stage3/Stage3/LeftSmooth.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "cell_eq_zero_sum_all",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.cell_eq_zero_sum_all",
+    "line": 33,
+    "why": "The cell as a sum over the zeros, at every height. For `16 ≤ 2^(r−d)` and any `T ≥ 2`, the cell at row `r`, depth `d`, minus its main term, plus the sum over the zeros below `T`, has norm at most the stencil of the explicit formula's error at every height, read on the `d + 1` rows the stencil touches.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℤ",
+     "h16 : 16 ≤ (2:ℝ) ^ (r - (d : ℤ))",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ ((ρ : Kadiri.NontrivialZeros) : ℂ)) ^ r * (1 - ((2:ℂ) ^ ((ρ : Kadiri.NontrivialZeros) : ℂ))⁻¹) ^ d / ((ρ : Kadiri.NontrivialZeros) : ℂ))‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + LeftSmooth.Bleft * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4))",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_add",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_mode",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sub",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_add",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_mode",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sub",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cell_zero_sum_finset_all",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.cell_zero_sum_finset_all",
+    "line": 73,
+    "why": "The same, over the finite set of zeros below the height.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℤ",
+     "h16 : 16 ≤ (2:ℝ) ^ (r - (d : ℤ))",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + LeftSmooth.Bleft * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4))",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Bleft_nonneg",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.Bleft_nonneg",
+    "line": 85,
+    "why": "The left-edge constant is nonnegative: it bounds a norm at `x = 16`, `T = 2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ LeftSmooth.Bleft",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tendsto_log_sq_div",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.tendsto_log_sq_div",
+    "line": 95,
+    "why": "For a fixed constant `c > 0`, `log²(c·T)/T` times `a` tends to zero as `T → ∞`.",
+    "sorry": false,
+    "needs": [
+     "a c : ℝ",
+     "hc : 0 < c"
+    ],
+    "proves": "Tendsto (fun T : ℝ => a * c * Real.log (c * T) ^ 2 / T) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cell_fixed_row",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.cell_fixed_row",
+    "line": 111,
+    "why": "The cell at a fixed row, the height to infinity. For `d + 4 ≤ r` and every `ε > 0`, for all large heights `T` the cell at row `r`, depth `d`, minus its main term, plus its sum over the zeros below `T`, has norm at most `2^d·(c3n·log 2·r + Bleft) + ε`. The bound left is free of the height.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℕ",
+     "hr : d + 4 ≤ r"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d (r : ℤ) ρ‖ ≤ 2 ^ d * (Glue.c3n * Real.log 2 * r + LeftSmooth.Bleft) + ε",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/CellModes.lean",
   "module": "Stage3.CellModes",
   "stem": "CellModes",
@@ -21892,6 +22113,9 @@
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
@@ -21937,6 +22161,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -21967,6 +22192,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -22060,6 +22286,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum"
     ]
@@ -22092,6 +22319,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum"
     ]
    },
@@ -22182,6 +22410,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum"
     ]
    },
@@ -25507,6 +25736,8 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.tendsto_tail",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.topRow",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.tsum_split",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
@@ -25592,6 +25823,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
@@ -25809,6 +26041,8 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
@@ -27832,6 +28066,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
@@ -27874,6 +28111,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
@@ -28000,6 +28240,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
@@ -34872,6 +35113,10 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
@@ -34931,6 +35176,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
     ]
    },
@@ -34968,7 +35214,9 @@
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all"
+    ]
    }
   ]
  },
@@ -72905,11 +73153,12 @@
    "Stage3.AttainedPi",
    "Stage3.ExplicitLeft",
    "Stage3.LeftKernel",
-   "Stage3.LeftSmooth"
+   "Stage3.LeftSmooth",
+   "Stage3.CellFixedRow"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 168,
+  "lines": 169,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -72925,6 +73174,7 @@
    "lean_stage3/Stage3/BoxBounds.lean",
    "lean_stage3/Stage3/BoxFinite.lean",
    "lean_stage3/Stage3/CellBdiff.lean",
+   "lean_stage3/Stage3/CellFixedRow.lean",
    "lean_stage3/Stage3/CellModes.lean",
    "lean_stage3/Stage3/CellResidual.lean",
    "lean_stage3/Stage3/CellRows.lean",

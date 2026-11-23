@@ -76,7 +76,7 @@ exchange and each term is a kernel bounded by `(2+π)/(c·log y)`
 derivative is `≤ 1/(κ²+t²)` from `|cos(a+ib)|² ≥ cos²a + b²`. No derivative of
 digamma and no growth bound on it is used.
 
-## F3 T3 at a fixed row
+## F3 T3 at a fixed row — PROVED (unit 0461: `CellFixedRow.cell_eq_zero_sum_all`, `cell_zero_sum_finset_all`, `cell_fixed_row`; what stays is `2^d·(c3n·log 2·r + Bleft)`)
 
 F1 + F2: for `16 ≤ x`, every `T ≥ 2`,
 

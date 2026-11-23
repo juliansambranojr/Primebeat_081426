@@ -9,11 +9,12 @@ flowchart LR
   n7["<b>two_cpow_ne_zero</b><br/>(2:ℂ) ^ ρ ≠ 0"]:::shp
   n8["<b>stencil_zeroPartialSum</b><br/>stencil d (fun n : ℤ =＞ Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r =…"]:::thm
   n9["<b>cell_eq_zero_sum</b><br/>‖stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2…"]:::thm
-  x0(["<b>PiZeros</b><br/>stencil_neg<br/>table_cell_eq_zero_sum"]):::ext
-  x1(["<b>FiniteOffLinePi</b><br/>cpow_doubling"]):::ext
-  x2(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
-  x3(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
-  x4(["<b>FiniteOffLine</b><br/>cell_zero_sum_finset"]):::ext
+  x0(["<b>CellFixedRow</b><br/>cell_eq_zero_sum_all"]):::ext
+  x1(["<b>PiZeros</b><br/>stencil_neg<br/>table_cell_eq_zero_sum"]):::ext
+  x2(["<b>FiniteOffLinePi</b><br/>cpow_doubling"]):::ext
+  x3(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
+  x4(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
+  x5(["<b>FiniteOffLine</b><br/>cell_zero_sum_finset"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n8
@@ -25,13 +26,18 @@ flowchart LR
   n7 --> n8
   n8 --> n9
   n0 -.-> x0
+  n0 -.-> x1
   n1 -.-> x0
-  n2 -.-> x0
-  n3 -.-> x0
-  n6 -.-> x1
-  n9 -.-> x3
+  n1 -.-> x1
+  n2 -.-> x1
+  n3 -.-> x1
+  n4 -.-> x0
+  n5 -.-> x0
+  n6 -.-> x2
+  n8 -.-> x0
   n9 -.-> x4
-  x2 -.-> n9
+  n9 -.-> x5
+  x3 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -8,11 +8,12 @@ flowchart LR
   n6["<b>sL_ne_one</b><br/>sL t ≠ 1"]:::shp
   n7["<b>wL_ne_one</b><br/>wL t ≠ 1"]:::shp
   n8["<b>left_edge_bound</b><br/>‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4)"]:::thm
-  n9["<b>explicit_formula_all ■</b><br/>‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Gl…"]:::thm
+  n9["<b>explicit_formula_all</b><br/>‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Gl…"]:::thm
   x0(["<b>diagram 1</b><br/>13 theorems"]):::ext
   x1(["<b>LeftKernel</b><br/>kernel_bound<br/>series_side"]):::ext
   x2(["<b>ContourShift</b><br/>zeta_analyticAt"]):::ext
-  x3(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
+  x3(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>cell_eq_zero_sum_all"]):::ext
+  x4(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n8
@@ -22,6 +23,8 @@ flowchart LR
   n6 --> n8
   n7 --> n8
   n8 --> n9
+  n8 -.-> x3
+  n9 -.-> x3
   x0 -.-> n1
   x0 -.-> n2
   x0 -.-> n4
@@ -31,7 +34,7 @@ flowchart LR
   x1 -.-> n2
   x1 -.-> n8
   x2 -.-> n3
-  x3 -.-> n9
+  x4 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

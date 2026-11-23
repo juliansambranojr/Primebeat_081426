@@ -29,12 +29,13 @@ flowchart LR
   x2(["<b>FiniteOffLine</b><br/>err_le"]):::ext
   x3(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
   x4(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
-  x5(["<b>ContourShift</b><br/>11 theorems"]):::ext
-  x6(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x7(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
-  x8(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
-  x9(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
-  x10(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x5(["<b>CellFixedRow</b><br/>cell_fixed_row"]):::ext
+  x6(["<b>ContourShift</b><br/>11 theorems"]):::ext
+  x7(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x8(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
+  x9(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
+  x10(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
+  x11(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
   n0 --> n12
   n0 --> n4
   n0 --> n8
@@ -51,7 +52,7 @@ flowchart LR
   n9 --> n10
   n0 -.-> x0
   n10 -.-> x0
-  n12 -.-> x10
+  n12 -.-> x11
   n12 -.-> x3
   n12 -.-> x4
   n2 -.-> x0
@@ -62,6 +63,7 @@ flowchart LR
   n5 -.-> x2
   n5 -.-> x3
   n5 -.-> x4
+  n5 -.-> x5
   n6 -.-> x2
   n6 -.-> x3
   n6 -.-> x4
@@ -70,16 +72,16 @@ flowchart LR
   x1 -.-> n11
   x1 -.-> n3
   x1 -.-> n9
-  x5 -.-> n11
-  x5 -.-> n12
-  x5 -.-> n7
-  x5 -.-> n8
-  x5 -.-> n9
+  x10 -.-> n12
+  x6 -.-> n11
+  x6 -.-> n12
   x6 -.-> n7
-  x7 -.-> n11
-  x7 -.-> n9
+  x6 -.-> n8
+  x6 -.-> n9
+  x7 -.-> n7
   x8 -.-> n11
-  x9 -.-> n12
+  x8 -.-> n9
+  x9 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -146,7 +148,7 @@ The explicit formula's three constants.
 
 - **Is:** `` c1n : ℝ := 2400 + 2 * Chn + Csn ``
 - **Built from:** [`Glue.Chn`](#Glue-Chn), [`Glue.Csn`](#Glue-Csn)
-- **Used by 22:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`ExplicitLeft.explicit_formula_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_any), [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`LeftSmooth.explicit_formula_all`](../lean_stage3/LeftSmooth.md#LeftSmooth-explicit_formula_all), [`PiRemainder.Chigh`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh), [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
+- **Used by 25:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`ExplicitLeft.explicit_formula_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_any), [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`LeftSmooth.explicit_formula_all`](../lean_stage3/LeftSmooth.md#LeftSmooth-explicit_formula_all), [`PiRemainder.Chigh`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh), [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
 
 <a name="Glue-c3n"></a>
 ### `Glue.c3n`
@@ -154,7 +156,7 @@ The explicit formula's three constants.
 def · line 73
 
 - **Is:** `` c3n : ℝ := 13 + ‖deriv riemannZeta 0 / riemannZeta 0‖ / 2 ``
-- **Used by 22:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`ExplicitLeft.explicit_formula_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_any), [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c3n_nonneg`](#Glue-c3n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`LeftSmooth.explicit_formula_all`](../lean_stage3/LeftSmooth.md#LeftSmooth-explicit_formula_all), [`PiRemainder.Chigh`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh), [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`RouteNum.c3n_le`](../lean_stage3/RouteNum.md#RouteNum-c3n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
+- **Used by 25:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`ExplicitLeft.explicit_formula_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_any), [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c3n_nonneg`](#Glue-c3n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`LeftSmooth.explicit_formula_all`](../lean_stage3/LeftSmooth.md#LeftSmooth-explicit_formula_all), [`PiRemainder.Chigh`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh), [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`RouteNum.c3n_le`](../lean_stage3/RouteNum.md#RouteNum-c3n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
 
 <a name="Glue-c4n"></a>
 ### `Glue.c4n`
@@ -330,8 +332,9 @@ line 84
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
+  - [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row) (CellFixedRow) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻… ``
   - [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le) (FiniteOffLine) — `` ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * (2:ℝ) ^ (K + 1)) ^ 2 / (2:ℝ)… ``
   - [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) (PiRemainder) — `` 0 ≤ Chigh ``
   - [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high) (PiRemainder) — `` ‖efRem x t‖ ≤ Chigh * Real.log x ^ 2 ``

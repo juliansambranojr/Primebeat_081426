@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block F3 of `design/leftedge.md`: `Stage3/CellFixedRow.lean`
+
+    DONE        `cell_fixed_row`: at a fixed row `r ≥ d + 4`, for every
+                tolerance, from some height on the cell of `ψ`, less its main
+                term, plus the zeros below the height is
+                `≤ 2^d·(c3n·log 2·r + Bleft) + ε`. `cell_eq_zero_sum_all`,
+                `cell_zero_sum_finset_all`: the cell formula at every height;
+                one unit
+    ASSUMED     Julian, 2026-11-23: "T3 at a fixed row (the explicit formula
+                above x²)." Written by an Opus worker; read and built here
+    DEPENDS     `LeftSmooth.explicit_formula_all`,
+                `CellZeros.stencil`, `FiniteOffLine.tsum_sub_eq_sum`
+    OUT         the same passage for the integer count
+    OUTCOME     proved, unit 0461
+
 ### 2026-11-23 · block F2 of `design/leftedge.md`: `Stage3/LeftKernel.lean`, `Stage3/LeftSmooth.lean`
 
     DONE        `LeftKernel.osc_by_parts`, `kernel_bound`, `series_side`: the
