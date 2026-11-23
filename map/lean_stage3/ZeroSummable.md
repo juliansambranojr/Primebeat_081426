@@ -5,7 +5,7 @@ ZeroSummable — block C6b of `lean_stage3/design/carlson.md`. 2026-11-23. The z
 14 theorems, 1 definition, 402 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilOnLine`](../lean_stage3/WeilOnLine.md), [`ZeroDensity`](../lean_stage3/ZeroDensity.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md), [`FilterAttained`](../lean_stage3/FilterAttained.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md), [`CountReduction`](../lean_stage3/CountReduction.md), [`FilterAttained`](../lean_stage3/FilterAttained.md)
 
 ## The picture
 
@@ -30,9 +30,10 @@ flowchart LR
   x2(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
   x3(["<b>ZeroSquares</b><br/>window_mem"]):::ext
   x4(["<b>WeilOnLine</b><br/>conjZ_injective"]):::ext
-  x5(["<b>ZeroDensity</b><br/>zero_density"]):::ext
-  x6(["<b>AttainedPi</b><br/>4 theorems"]):::ext
-  x7(["<b>FilterAttained</b><br/>summable_S"]):::ext
+  x5(["<b>CountReduction</b><br/>4 theorems"]):::ext
+  x6(["<b>ZeroDensity</b><br/>zero_density"]):::ext
+  x7(["<b>AttainedPi</b><br/>4 theorems"]):::ext
+  x8(["<b>FilterAttained</b><br/>summable_S"]):::ext
   n0 --> n10
   n0 --> n11
   n0 --> n13
@@ -49,10 +50,16 @@ flowchart LR
   n7 --> n10
   n8 --> n10
   n9 --> n10
-  n10 -.-> x6
-  n11 -.-> x6
-  n13 -.-> x6
+  n10 -.-> x5
+  n10 -.-> x7
+  n11 -.-> x5
+  n11 -.-> x7
   n13 -.-> x7
+  n13 -.-> x8
+  n6 -.-> x5
+  n7 -.-> x5
+  n8 -.-> x5
+  n9 -.-> x5
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n12
@@ -61,7 +68,7 @@ flowchart LR
   x2 -.-> n2
   x3 -.-> n2
   x4 -.-> n5
-  x5 -.-> n10
+  x6 -.-> n10
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -84,7 +91,7 @@ def · line 48
 The weight of a nontrivial zero: its order over its modulus.
 
 - **Is:** `` w (ρ : NontrivialZeros) : ℝ := ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) / ‖(ρ : ℂ)‖ ``
-- **Used by 8:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`ZeroSummable.norm_coef`](#ZeroSummable-norm_coef), [`ZeroSummable.shell_sum_le`](#ZeroSummable-shell_sum_le), [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const), [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef), [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div), [`ZeroSummable.w_nonneg`](#ZeroSummable-w_nonneg)
+- **Used by 10:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate), [`ZeroSummable.norm_coef`](#ZeroSummable-norm_coef), [`ZeroSummable.shell_sum_le`](#ZeroSummable-shell_sum_le), [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const), [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef), [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div), [`ZeroSummable.w_nonneg`](#ZeroSummable-w_nonneg)
 
 ## Theorems
 
@@ -308,8 +315,9 @@ line 194
   - [`ZeroSummable.card_shell_le`](#ZeroSummable-card_shell_le) — `` (F.card : ℝ) ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) ``
   - [`ZeroSummable.order_le_shell`](#ZeroSummable-order_le_shell) — `` ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 103 * ((j : ℝ) + 1) ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate) (CountReduction) — `` ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈… ``
   - [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
 
 <a name="ZeroSummable-shell_bound_le"></a>
@@ -334,8 +342,9 @@ line 219
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate) (CountReduction) — `` ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈… ``
   - [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
 
 <a name="ZeroSummable-summable_shell"></a>
@@ -361,8 +370,9 @@ Summable fun j : ℕ => K * (((j : ℝ) + 1) * r ^ j)
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountReduction.sum_tail_le`](../lean_stage3/CountReduction.md#CountReduction-sum_tail_le) (CountReduction) — `` ∑ j ∈ s, ((j:ℝ) + 1) * r ^ j ≤ ((k:ℝ) + 1) * r ^ k * ∑' i : ℕ, ((i:ℝ) + 1) * r ^ i ``
   - [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
 
 <a name="ZeroSummable-dyadic_index"></a>
@@ -386,8 +396,9 @@ line 261
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate) (CountReduction) — `` ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈… ``
   - [`ZeroSummable.sum_le_const`](#ZeroSummable-sum_le_const) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
 
 <a name="ZeroSummable-sum_le_const"></a>
@@ -424,9 +435,11 @@ line 278
 
 **Definitions its proof touches:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
 
-**Feeds** (3 that use it)
+**Feeds** (5 that use it)
 
   - [`AttainedPi.fin_eventually`](../lean_stage3/AttainedPi.md#AttainedPi-fin_eventually) (AttainedPi) — `` ∀ᶠ r : ℕ in atTop, ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
+  - [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate) (CountReduction) — `` ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈… ``
   - [`ZeroSummable.summable_norm_coef`](#ZeroSummable-summable_norm_coef) — `` Summable fun ρ : S => ‖LadderMean.coef ρ‖ ``
   - [`ZeroSummable.summable_order_div`](#ZeroSummable-summable_order_div) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.NontrivialZeros) : ℂ).re} => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) :… ``
 
@@ -456,9 +469,10 @@ Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.Nontrivia
 
 **Definitions its proof touches:** [`ZeroSummable.w`](#ZeroSummable-w)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`AttainedPi.band_small`](../lean_stage3/AttainedPi.md#AttainedPi-band_small) (AttainedPi) — `` ∃ η : ℝ, 0 < η ∧ η ≤ (Θ - 1 / 2) / 2 ∧ ∀ F : Finset NontrivialZeros, (∀ ρ ∈ F, Θ - η < (ρ : ℂ).re ∧ (ρ : ℂ).re < Θ) → ∑ ρ ∈ F, ordR ρ * ‖(ρ : ℂ)‖⁻¹ ≤ … ``
+  - [`CountReduction.summable_J`](../lean_stage3/CountReduction.md#CountReduction-summable_J) (CountReduction) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} => ‖((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:K… ``
 
 <a name="ZeroSummable-norm_coef"></a>
 ### `ZeroSummable.norm_coef`

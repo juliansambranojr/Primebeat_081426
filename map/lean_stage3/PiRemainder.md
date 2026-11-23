@@ -27,13 +27,14 @@ flowchart LR
   n13["<b>norm_tr_efRem_le_of</b><br/>‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2"]:::thm
   n14["<b>norm_tr_efRem_le ■</b><br/>∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ x : ℝ, x₀ ≤ x → ‖PiZeros.tr (PiZeros.efRem…"]:::thm
   x0(["<b>AttainedPi</b><br/>fin_bound"]):::ext
-  x1(["<b>FilterLadder</b><br/>filtered_modes_small<br/>filtered_modes_small_sq"]):::ext
-  x2(["<b>FiniteOffLinePi</b><br/>row_bound"]):::ext
-  x3(["<b>PiFixedRow</b><br/>4 theorems"]):::ext
-  x4(["<b>FiniteOffLine</b><br/>4 theorems"]):::ext
-  x5(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
-  x6(["<b>PiZeros</b><br/>4 theorems"]):::ext
-  x7(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x1(["<b>CountReduction</b><br/>count_modes_small"]):::ext
+  x2(["<b>FilterLadder</b><br/>filtered_modes_small<br/>filtered_modes_small_sq"]):::ext
+  x3(["<b>FiniteOffLinePi</b><br/>row_bound"]):::ext
+  x4(["<b>PiFixedRow</b><br/>4 theorems"]):::ext
+  x5(["<b>FiniteOffLine</b><br/>4 theorems"]):::ext
+  x6(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x7(["<b>PiZeros</b><br/>4 theorems"]):::ext
+  x8(["<b>GlueNum</b><br/>4 theorems"]):::ext
   n0 --> n12
   n0 --> n13
   n0 --> n2
@@ -57,28 +58,30 @@ flowchart LR
   n0 -.-> x1
   n0 -.-> x2
   n0 -.-> x3
-  n11 -.-> x3
+  n0 -.-> x4
+  n11 -.-> x4
   n12 -.-> x0
-  n12 -.-> x2
+  n12 -.-> x3
   n13 -.-> x0
-  n13 -.-> x2
-  n2 -.-> x3
-  n3 -.-> x3
+  n13 -.-> x3
+  n2 -.-> x4
+  n3 -.-> x4
   n5 -.-> x0
   n5 -.-> x1
   n5 -.-> x2
-  n7 -.-> x3
-  x4 -.-> n1
-  x4 -.-> n3
-  x4 -.-> n4
-  x4 -.-> n5
-  x4 -.-> n6
-  x5 -.-> n2
-  x6 -.-> n11
-  x6 -.-> n13
-  x6 -.-> n6
-  x7 -.-> n10
-  x7 -.-> n9
+  n5 -.-> x3
+  n7 -.-> x4
+  x5 -.-> n1
+  x5 -.-> n3
+  x5 -.-> n4
+  x5 -.-> n5
+  x5 -.-> n6
+  x6 -.-> n2
+  x7 -.-> n11
+  x7 -.-> n13
+  x7 -.-> n6
+  x8 -.-> n10
+  x8 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -102,7 +105,7 @@ A constant that is at least `2` and at least the reciprocal size of every zero o
 
 - **Is:** `` Mlow : ℝ := 2 + ∑ ρ ∈ ZF (1 : ℝ), ‖(ρ : ℂ)‖⁻¹ ``
 - **Built from:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
-- **Used by 19:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.slack`](../lean_stage3/AttainedPi.md#AttainedPi-slack), [`AttainedPi.slack_isLittleO`](../lean_stage3/AttainedPi.md#AttainedPi-slack_isLittleO), [`FilterLadder.Afl`](../lean_stage3/FilterLadder.md#FilterLadder-Afl), [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq), [`FiniteOffLinePi.rowBound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound), [`FiniteOffLinePi.rowBound_isLittleO`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`PiFixedRow.Z2`](../lean_stage3/PiFixedRow.md#PiFixedRow-Z2), [`PiFixedRow.sum_order_inv_sq_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-sum_order_inv_sq_le), [`PiFixedRow.zinv_dyadic_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-zinv_dyadic_le), [`PiRemainder.Arem`](#PiRemainder-Arem), [`PiRemainder.Arem_nonneg`](#PiRemainder-Arem_nonneg), [`PiRemainder.inv_norm_le_Mlow`](#PiRemainder-inv_norm_le_Mlow), [`PiRemainder.inv_norm_le_dyadic`](#PiRemainder-inv_norm_le_dyadic), [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of), [`PiRemainder.sum_order_inv_le`](#PiRemainder-sum_order_inv_le), [`PiRemainder.two_le_Mlow`](#PiRemainder-two_le_Mlow), [`PiRemainder.zinv_le_log`](#PiRemainder-zinv_le_log)
+- **Used by 20:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.slack`](../lean_stage3/AttainedPi.md#AttainedPi-slack), [`AttainedPi.slack_isLittleO`](../lean_stage3/AttainedPi.md#AttainedPi-slack_isLittleO), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FilterLadder.Afl`](../lean_stage3/FilterLadder.md#FilterLadder-Afl), [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq), [`FiniteOffLinePi.rowBound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound), [`FiniteOffLinePi.rowBound_isLittleO`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`PiFixedRow.Z2`](../lean_stage3/PiFixedRow.md#PiFixedRow-Z2), [`PiFixedRow.sum_order_inv_sq_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-sum_order_inv_sq_le), [`PiFixedRow.zinv_dyadic_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-zinv_dyadic_le), [`PiRemainder.Arem`](#PiRemainder-Arem), [`PiRemainder.Arem_nonneg`](#PiRemainder-Arem_nonneg), [`PiRemainder.inv_norm_le_Mlow`](#PiRemainder-inv_norm_le_Mlow), [`PiRemainder.inv_norm_le_dyadic`](#PiRemainder-inv_norm_le_dyadic), [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of), [`PiRemainder.sum_order_inv_le`](#PiRemainder-sum_order_inv_le), [`PiRemainder.two_le_Mlow`](#PiRemainder-two_le_Mlow), [`PiRemainder.zinv_le_log`](#PiRemainder-zinv_le_log)
 
 <a name="PiRemainder-zinv"></a>
 ### `PiRemainder.zinv`
@@ -113,7 +116,7 @@ The sum of `m(ρ)/|ρ|` over the zeros below a height.
 
 - **Is:** `` zinv (T : ℝ) : ℝ := ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * ‖(ρ : ℂ)‖⁻¹ ``
 - **Built from:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
-- **Used by 8:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`PiRemainder.norm_efRem_le_low`](#PiRemainder-norm_efRem_le_low), [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of), [`PiRemainder.norm_zeroPartialSum_le`](#PiRemainder-norm_zeroPartialSum_le), [`PiRemainder.zinv_le_log`](#PiRemainder-zinv_le_log), [`PiRemainder.zinv_nonneg`](#PiRemainder-zinv_nonneg)
+- **Used by 9:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`PiRemainder.norm_efRem_le_low`](#PiRemainder-norm_efRem_le_low), [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of), [`PiRemainder.norm_zeroPartialSum_le`](#PiRemainder-norm_zeroPartialSum_le), [`PiRemainder.zinv_le_log`](#PiRemainder-zinv_le_log), [`PiRemainder.zinv_nonneg`](#PiRemainder-zinv_nonneg)
 
 <a name="PiRemainder-Chigh"></a>
 ### `PiRemainder.Chigh`
@@ -160,9 +163,10 @@ line 47
 
 **Definitions its proof touches:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
 
-**Feeds** (11 that use it)
+**Feeds** (12 that use it)
 
   - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`FilterLadder.filtered_modes_small`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small) (FilterLadder) — `` ∃ A : ℝ, ∀ (q : Polynomial ℂ) (n m : ℕ), 2 ≤ n → m * q.natDegree < n → ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ :… ``
   - [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) (FilterLadder) — `` ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2… ``
   - [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound) (FiniteOffLinePi) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
@@ -335,9 +339,10 @@ zinv x ≤ Mlow * 39000 * Real.log x ^ 2
 
 **Definitions its proof touches:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) (FilterLadder) — `` ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2… ``
   - [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound) (FiniteOffLinePi) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
   - [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of) — `` ‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2 ``

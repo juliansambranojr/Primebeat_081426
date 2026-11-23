@@ -33,9 +33,10 @@ flowchart LR
   x4(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
   x5(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
   x6(["<b>FilterLadder</b><br/>formula_row"]):::ext
-  x7(["<b>FixedRowTwo</b><br/>pi_fixed_row_two<br/>table_cell_fixed_row_two"]):::ext
-  x8(["<b>CellZeros</b><br/>4 theorems"]):::ext
-  x9(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
+  x7(["<b>CountReduction</b><br/>count_modes_small"]):::ext
+  x8(["<b>FixedRowTwo</b><br/>pi_fixed_row_two<br/>table_cell_fixed_row_two"]):::ext
+  x9(["<b>CellZeros</b><br/>4 theorems"]):::ext
+  x10(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n4
@@ -56,8 +57,9 @@ flowchart LR
   n1 -.-> x4
   n10 -.-> x1
   n10 -.-> x2
+  n10 -.-> x7
   n14 -.-> x3
-  n14 -.-> x7
+  n14 -.-> x8
   n6 -.-> x3
   n6 -.-> x4
   n6 -.-> x6
@@ -71,12 +73,13 @@ flowchart LR
   n9 -.-> x2
   n9 -.-> x3
   n9 -.-> x7
+  n9 -.-> x8
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n5
+  x10 -.-> n14
   x5 -.-> n6
-  x8 -.-> n12
-  x8 -.-> n14
+  x9 -.-> n12
   x9 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -111,7 +114,7 @@ The passage from the log-weighted count to the count, applied to any function: i
 
 - **Is:** `` tr (f : ℝ → ℂ) (x : ℝ) : ℂ := f x / (Real.log x : ℂ) + ∫ t in (2:ℝ)..x, f t * wt t ``
 - **Built from:** [`PiZeros.wt`](#PiZeros-wt)
-- **Used by 22:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`CountModes.hasDerivAt_piMode_two_rpow`](../lean_stage3/CountModes.md#CountModes-hasDerivAt_piMode_two_rpow), [`CountModes.norm_piMode_two_le`](../lean_stage3/CountModes.md#CountModes-norm_piMode_two_le), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height), [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiFixedRow.tr_efRem_fixed`](../lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed), [`PiRemainder.norm_tr_efRem_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le), [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.norm_tr_psiTheta_le`](#PiZeros-norm_tr_psiTheta_le), [`PiZeros.piMode`](#PiZeros-piMode), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.pi_sub_Li_eq_tr`](#PiZeros-pi_sub_Li_eq_tr), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum), [`PiZeros.tr_const_mul`](#PiZeros-tr_const_mul), [`PiZeros.tr_sub`](#PiZeros-tr_sub), [`PiZeros.tr_sum`](#PiZeros-tr_sum)
+- **Used by 23:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`CountModes.hasDerivAt_piMode_two_rpow`](../lean_stage3/CountModes.md#CountModes-hasDerivAt_piMode_two_rpow), [`CountModes.norm_piMode_two_le`](../lean_stage3/CountModes.md#CountModes-norm_piMode_two_le), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height), [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiFixedRow.tr_efRem_fixed`](../lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed), [`PiRemainder.norm_tr_efRem_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le), [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.norm_tr_psiTheta_le`](#PiZeros-norm_tr_psiTheta_le), [`PiZeros.piMode`](#PiZeros-piMode), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.pi_sub_Li_eq_tr`](#PiZeros-pi_sub_Li_eq_tr), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum), [`PiZeros.tr_const_mul`](#PiZeros-tr_const_mul), [`PiZeros.tr_sub`](#PiZeros-tr_sub), [`PiZeros.tr_sum`](#PiZeros-tr_sum)
 
 <a name="PiZeros-piMode"></a>
 ### `PiZeros.piMode`
@@ -122,7 +125,7 @@ One zero's part of the count: the passage applied to `t^ρ/ρ`.
 
 - **Is:** `` piMode (ρ : ℂ) (x : ℝ) : ℂ := tr (fun t => (t : ℂ) ^ ρ / ρ) x ``
 - **Built from:** [`PiZeros.tr`](#PiZeros-tr)
-- **Used by 21:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.norm_log_piMode_band`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_band), [`AttainedPi.norm_log_piMode_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le), [`AttainedPi.norm_log_piMode_low`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_low), [`CountModes.cst`](../lean_stage3/CountModes.md#CountModes-cst), [`CountModes.hasDerivAt_piMode_two_rpow`](../lean_stage3/CountModes.md#CountModes-hasDerivAt_piMode_two_rpow), [`CountModes.norm_cst_le`](../lean_stage3/CountModes.md#CountModes-norm_cst_le), [`CountModes.norm_piMode_two_le`](../lean_stage3/CountModes.md#CountModes-norm_piMode_two_le), [`CountModes.piMode_doubling`](../lean_stage3/CountModes.md#CountModes-piMode_doubling), [`CountModes.piMode_doubling_sub`](../lean_stage3/CountModes.md#CountModes-piMode_doubling_sub), [`CountModes.piMode_doubling_sub_of`](../lean_stage3/CountModes.md#CountModes-piMode_doubling_sub_of), [`FiniteOffLinePi.norm_piMode_half`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_piMode_half), [`FiniteOffLinePi.norm_piMode_le`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_piMode_le), [`FiniteOffLinePi.piMode_eq`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
+- **Used by 22:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.norm_log_piMode_band`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_band), [`AttainedPi.norm_log_piMode_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le), [`AttainedPi.norm_log_piMode_low`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_low), [`CountModes.cst`](../lean_stage3/CountModes.md#CountModes-cst), [`CountModes.hasDerivAt_piMode_two_rpow`](../lean_stage3/CountModes.md#CountModes-hasDerivAt_piMode_two_rpow), [`CountModes.norm_cst_le`](../lean_stage3/CountModes.md#CountModes-norm_cst_le), [`CountModes.norm_piMode_two_le`](../lean_stage3/CountModes.md#CountModes-norm_piMode_two_le), [`CountModes.piMode_doubling`](../lean_stage3/CountModes.md#CountModes-piMode_doubling), [`CountModes.piMode_doubling_sub`](../lean_stage3/CountModes.md#CountModes-piMode_doubling_sub), [`CountModes.piMode_doubling_sub_of`](../lean_stage3/CountModes.md#CountModes-piMode_doubling_sub_of), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FiniteOffLinePi.norm_piMode_half`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_piMode_half), [`FiniteOffLinePi.norm_piMode_le`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_piMode_le), [`FiniteOffLinePi.piMode_eq`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
 
 <a name="PiZeros-efRem"></a>
 ### `PiZeros.efRem`
@@ -133,7 +136,7 @@ The remainder of the explicit formula at a height.
 
 - **Is:** `` efRem (T : ℝ) (t : ℝ) : ℂ := ((ψ t : ℝ) : ℂ) - (t : ℂ) + Stage3.zeroPartialSum t T ``
 - **Built from:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum)
-- **Used by 19:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiFixedRow.tr_efRem_fixed`](../lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`PiRemainder.norm_efRem_le_low`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_low), [`PiRemainder.norm_tr_efRem_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le), [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
+- **Used by 20:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiFixedRow.tr_efRem_fixed`](../lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`PiRemainder.norm_efRem_le_low`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_low), [`PiRemainder.norm_tr_efRem_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le), [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
 
 <a name="PiZeros-psiTheta"></a>
 ### `PiZeros.psiTheta`
@@ -143,7 +146,7 @@ def · line 113
 The prime powers above the first: `ψ − θ`.
 
 - **Is:** `` psiTheta (t : ℝ) : ℂ := ((ψ t - θ t : ℝ) : ℂ) ``
-- **Used by 9:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiZeros.norm_tr_psiTheta_le`](#PiZeros-norm_tr_psiTheta_le), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
+- **Used by 10:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiZeros.norm_tr_psiTheta_le`](#PiZeros-norm_tr_psiTheta_le), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
 
 ## Theorems
 
@@ -466,9 +469,10 @@ line 143
 
 **Definitions its proof touches:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum)
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound) (FiniteOffLinePi) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
   - [`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two) (FixedRowTwo) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)… ``
   - [`PiFixedRow.pi_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row) (PiFixedRow) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)… ``
@@ -501,9 +505,10 @@ line 197
 
 **Definitions its proof touches:** [`PiZeros.wt`](#PiZeros-wt)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound) (FiniteOffLinePi) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
 
 <a name="PiZeros-stencil_congr"></a>

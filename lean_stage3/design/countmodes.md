@@ -142,7 +142,7 @@ The statement is the corrected N1 above. `im_ne_zero` is by PNT+
 `piMode_doubling_sub` is by differentiating `v ↦ piMode ρ (2^v)`; it needs
 only `ρ ≠ 0`.
 
-## N2 The reduction with a power saving — `Stage3/CountReduction.lean`
+## N2 The reduction with a power saving — PROVED (unit 0470: `CountReduction.count_modes_small`, `tail_rate`, `summable_J`; factor `k²`, rows `k ≥ 2`; the tail is `O(2^(k(Θ−(1−θ'))))`, the `1/k` of `‖J_k‖` cancelling the `k` of the rate; `cim`, `inv_abs_im_le` give `1/|γ| ≤ cim/‖ρ‖`)
 
 The corrected N2 above: `tail_rate`, `summable_J`, `count_modes_small`.
 

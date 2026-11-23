@@ -1,0 +1,19 @@
+key	value	source
+module_lines	600	wc -l lean_stage3/Stage3/CountReduction.lean
+theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/CountReduction.lean
+defs	1	cim
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/CountReduction.lean
+pins	3	tail_rate, summable_J, count_modes_small
+errors_first	8	the worker's report: about this many errors across the first builds of its pieces
+builds	14	the worker's builds, as it reported, about this many
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8860	lake build (full Stage3), Build completed successfully
+jobs_module	8822	run/build.log, lake build Stage3.CountReduction
+loop_version	22	lean_stage3/LOOP.md version line
+design	countmodes.md#n2	the reduction with a power saving
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+row_power	2	count_modes_small: the factor (k:ℝ)^2
+first_row	2	count_modes_small: the hypothesis 2 ≤ k
+unit_segments	469	unit 0469

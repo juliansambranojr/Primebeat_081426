@@ -22,6 +22,27 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · blocks N2, N3-E of `design/countmodes.md`: `Stage3/CountReduction.lean`, `Stage3/CountEuler.lean`
+
+    DONE        `CountReduction.count_modes_small`: under the ladder bound on
+                `π`, `1/2 < σ < Θ ≤ 1`, `β ≤ Θ`: there is `E`, `σ ≤ E < Θ`,
+                with `‖Σ'_{β≥σ} m·J_k‖ ≤ A·k²·2^(kE)` for `k ≥ 2`;
+                `tail_rate`, `summable_J`; one unit.
+                `CountEuler.euler_exposed_false`: no zero with `β > E` has
+                its mode strictly outside a disc, centred on the ray
+                opposite to it, that holds every other mode right of `σ`;
+                one unit
+    ASSUMED     Julian, 2026-11-23: "Merge then the count". The design as
+                corrected by an independent review; N3-E is the reviewer's
+                derivation and the build is its first check. Written by Opus
+                workers; read and built here
+    DEPENDS     `CountModes.piMode_doubling`, `PiZeros.pi_eq_zero_sum`,
+                `FixedRowTwo.norm_tr_efRem_le_height_two`,
+                `ZeroDensity.zero_density`, `ZeroSummable.shell_sum_le`,
+                `AliasClass.re_order_div_pos`
+    OUT         the forms with slits; modes stacked along one ray
+    OUTCOME     `CountReduction` proved, unit 0470; `CountEuler` being built
+
 ### 2026-11-23 · block N1 of `design/countmodes.md`: `Stage3/CountModes.lean`
 
     DONE        `piMode_doubling`: for a zero `ρ`, `k ≥ 1`,

@@ -19566,7 +19566,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_ipart_le",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_le",
-     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low"
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
     ]
    },
    {
@@ -19676,7 +19677,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound"
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
     ]
    },
    {
@@ -23564,7 +23566,10 @@
     "used_by": [
      "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
      "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
-     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero"
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le"
     ]
    },
    {
@@ -23594,7 +23599,10 @@
      "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
      "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
      "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
-     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J"
     ]
    },
    {
@@ -24212,7 +24220,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
-     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
     ]
    },
    {
@@ -24249,7 +24258,9 @@
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
    },
    {
     "kind": "theorem",
@@ -24284,7 +24295,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le"
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le"
     ]
    },
    {
@@ -24351,7 +24363,9 @@
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
    },
    {
     "kind": "theorem",
@@ -24377,6 +24391,505 @@
      "lean_stage3/Stage3/CountModes.lean::CountModes.J"
     ],
     "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CountReduction.lean",
+  "module": "Stage3.CountReduction",
+  "stem": "CountReduction",
+  "header": "CountReduction — block N2 of `lean_stage3/design/countmodes.md`, as corrected in its section \"After the independent check\". 2026-11-23.",
+  "imports": [
+   "Stage3.CountModes",
+   "Stage3.ZeroSummable",
+   "Stage3.AttainedPi",
+   "Stage3.FixedRowTwo"
+  ],
+  "opens": [
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "MeasureTheory",
+   "PiRemainder",
+   "PiZeros",
+   "Topology"
+  ],
+  "namespaces": [
+   "CountReduction"
+  ],
+  "lines": 601,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/AttainedPi.lean",
+   "lean_stage3/Stage3/CountModes.lean",
+   "lean_stage3/Stage3/FixedRowTwo.lean",
+   "lean_stage3/Stage3/ZeroSummable.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "cim",
+    "ns": "CountReduction",
+    "full": "CountReduction.cim",
+    "line": 40,
+    "why": "A constant bounding `|ρ|/|γ|` over every nontrivial zero: `2` plus the sum of `|ρ|/|γ|` over the finitely many zeros of height below one.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "two_le_cim",
+    "ns": "CountReduction",
+    "full": "CountReduction.two_le_cim",
+    "line": 43,
+    "why": "The constant `cim` is at least `2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "2 ≤ cim",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inv_abs_im_le",
+    "ns": "CountReduction",
+    "full": "CountReduction.inv_abs_im_le",
+    "line": 52,
+    "why": "The height of a zero against its size. For every nontrivial zero, `1/|γ| ≤ cim/|ρ|`. Above height one `|ρ| ≤ 1 + |γ| ≤ 2|γ|`; below it there are finitely many zeros.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "|(ρ : ℂ).im|⁻¹ ≤ cim * ‖(ρ : ℂ)‖⁻¹",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ratio_pow",
+    "ns": "CountReduction",
+    "full": "CountReduction.ratio_pow",
+    "line": 79,
+    "why": "The shell ratio as a power: `(2^θ'/2)^k = 2^(−k(1−θ'))`.",
+    "sorry": false,
+    "needs": [
+     "θ' : ℝ",
+     "k : ℕ"
+    ],
+    "proves": "((2:ℝ) ^ θ' / 2) ^ k = (2:ℝ) ^ (-(k:ℝ) * (1 - θ'))",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.ratio_pow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_tail_le",
+    "ns": "CountReduction",
+    "full": "CountReduction.sum_tail_le",
+    "line": 89,
+    "why": "For `0 ≤ r < 1`, a finite sum of `(j + 1)·r^j` over indices `j ≥ k` is at most `(k + 1)·r^k·S`, with `S = Σ' (i + 1)·r^i`: shift every index down by `k`.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 ≤ r",
+     "h1 : r < 1",
+     "k : ℕ",
+     "s : Finset ℕ",
+     "hs : ∀ j ∈ s, k ≤ j"
+    ],
+    "proves": "∑ j ∈ s, ((j:ℝ) + 1) * r ^ j ≤ ((k:ℝ) + 1) * r ^ k * ∑' i : ℕ, ((i:ℝ) + 1) * r ^ i",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.sum_tail_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_shell"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_shell"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tail_rate",
+    "ns": "CountReduction",
+    "full": "CountReduction.tail_rate",
+    "line": 125,
+    "why": "The rate of the tail. For `1/2 < σ ≤ 1` there are `0 ≤ θ' < 1` and `Ct ≥ 0` such that, for every `k ≥ 1`, the weights `m(ρ)/|ρ|` over any finite set of zeros with `Re ρ ≥ σ` and `|Im ρ| ≥ 2^k` sum to at most `Ct·k·2^(−k(1−θ'))`. The shells `j ≥ k` weigh `K·(j+1)·2^(−j(1−θ'))` each (`ZeroSummable.shell_sum_le`), a geometric tail; below the first shell the density bound reads, one constant does.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1/2 < σ",
+     "hσ1 : σ ≤ 1"
+    ],
+    "proves": "∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈ v, ((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ) / ‖(ρ:ℂ)‖ ≤ Ct * k * (2:ℝ)^(-(k:ℝ) * (1 - θ'))",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.ratio_pow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sum_tail_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.dyadic_index",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_bound_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.ratio_pow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sum_tail_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.dyadic_index",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_bound_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_term_le",
+    "ns": "CountReduction",
+    "full": "CountReduction.norm_term_le",
+    "line": 238,
+    "why": "One segment term against its weight. For `1 ≤ k` and a real part `β ≤ b`, `‖m(ρ)·J_k(ρ·log 2)‖ ≤ cim·2^(kb)/(k·log 2)·m(ρ)/|ρ|`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "hk : 1 ≤ k",
+     "hb : (ρ : ℂ).re ≤ b"
+    ],
+    "proves": "‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ) / ‖(ρ:ℂ)‖)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_J",
+    "ns": "CountReduction",
+    "full": "CountReduction.summable_J",
+    "line": 271,
+    "why": "The segment terms right of a line are absolutely summable. For `σ > 1/2` and `k ≥ 1`, `‖m(ρ)·J_k(ρ·log 2)‖ ≤ cim·2^k/(k·log 2)·m(ρ)/|ρ|`, and these weights are summable (`ZeroSummable.summable_order_div`).",
+    "sorry": false,
+    "needs": [
+     "hσ : 1/2 < σ",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} => ‖((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.NontrivialZeros):ℂ) * Real.log 2)‖",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pow_rpow",
+    "ns": "CountReduction",
+    "full": "CountReduction.pow_rpow",
+    "line": 286,
+    "why": "`(2^k)^b = 2^(k·b)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "b : ℝ"
+    ],
+    "proves": "((2:ℝ) ^ k) ^ b = (2:ℝ) ^ ((k:ℝ) * b)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_mono",
+    "ns": "CountReduction",
+    "full": "CountReduction.rpow_mono",
+    "line": 290,
+    "why": "`2^(k·a) ≤ 2^(k·b)` for `a ≤ b`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "h : a ≤ b"
+    ],
+    "proves": "(2:ℝ) ^ ((k:ℝ) * a) ≤ (2:ℝ) ^ ((k:ℝ) * b)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sqrt_pow_le",
+    "ns": "CountReduction",
+    "full": "CountReduction.sqrt_pow_le",
+    "line": 294,
+    "why": "`√2^k ≤ 2^(k·e)` for `e ≥ 1/2`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "he : 1/2 ≤ e"
+    ],
+    "proves": "Real.sqrt 2 ^ k ≤ (2:ℝ) ^ ((k:ℝ) * e)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_le_rpow_two",
+    "ns": "CountReduction",
+    "full": "CountReduction.one_le_rpow_two",
+    "line": 299,
+    "why": "`1 ≤ 2^(k·e)` for `e ≥ 0`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "he : 0 ≤ e"
+    ],
+    "proves": "1 ≤ (2:ℝ) ^ ((k:ℝ) * e)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.one_le_rpow_two",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "count_modes_small",
+    "ns": "CountReduction",
+    "full": "CountReduction.count_modes_small",
+    "line": 312,
+    "why": "The reduction with a power saving (block N2). Let the count of primes at the doublings stay within `C·k²·√2^k` of `Li`, let `1/2 < σ < Θ ≤ 1`, and let every zero have real part at most `Θ`. Then there are `E` with `σ ≤ E < Θ` and `A` such that, for every `k ≥ 2`, the segment sum `Σ'_{β≥σ} m(ρ)·J_k(ρ·log 2)` is at most `A·k²·2^(kE)`. At `x = T = 2^k` the identity of `PiZeros.pi_eq_zero_sum` writes the zeros right of `σ` below `2^k` as the count, the zeros left of `σ` (`zinv`), the remainders and the constants `cst ρ`; the zeros right of `σ` above `2^k` are the tail of `tail_rate`. `E = max σ (Θ…",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → |(Nat.primeCounting ⌊(2:ℝ)^k⌋₊ : ℝ) - Stage3.Li ((2:ℝ)^k)| ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ : 1/2 < σ",
+     "hσΘ : σ < Θ",
+     "hΘ1 : Θ ≤ 1",
+     "hΘ : ∀ ρ : Kadiri.NontrivialZeros, (ρ:ℂ).re ≤ Θ"
+    ],
+    "proves": "∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.NontrivialZeros):ℂ) * Real.log 2)‖ ≤ A * (k:ℝ)^2 * (2:ℝ)^((k:ℝ) * E)",
+    "file": "lean_stage3/Stage3/CountReduction.lean",
+    "id": "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low",
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.one_le_log",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.one_le_rpow_two",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low",
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.one_le_log",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.norm_term_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.one_le_rpow_two",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.pow_rpow",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.rpow_mono",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sqrt_pow_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "layer": "zeta",
     "used_by": []
    }
   ]
@@ -26969,6 +27482,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
@@ -29280,6 +29794,10 @@
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.cim",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.inv_abs_im_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.two_le_cim",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.finite_part_le",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tailT",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
@@ -29342,6 +29860,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.tendsto_tail",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_tailT",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
@@ -30518,6 +31037,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
@@ -30749,6 +31269,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integral_two_le",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
@@ -30784,6 +31305,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.table_cell_fixed_row_two"
     ]
@@ -30924,6 +31446,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.tr_efRem_fixed_two"
     ]
    },
@@ -45727,6 +46250,7 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.slack",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.slack_isLittleO",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
@@ -45771,6 +46295,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
@@ -45918,6 +46443,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
@@ -45999,6 +46525,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of"
@@ -46990,6 +47517,7 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
      "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
@@ -47249,6 +47777,7 @@
      "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
      "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
      "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_half",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
@@ -47287,6 +47816,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integral_two_le",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
@@ -47328,6 +47858,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.table_cell_fixed_row_two",
@@ -47481,6 +48012,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
@@ -47519,6 +48051,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
     ]
    },
@@ -47744,6 +48277,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
@@ -75704,6 +76238,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    }
@@ -76672,6 +77207,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_eventually",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
@@ -76908,6 +77445,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -76932,6 +77470,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -76957,6 +77496,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.sum_tail_le",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -76980,6 +77520,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -77026,6 +77567,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_eventually",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.count_modes_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.tail_rate",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
     ]
@@ -77058,7 +77601,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.band_small"
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.band_small",
+     "lean_stage3/Stage3/CountReduction.lean::CountReduction.summable_J"
     ]
    },
    {
@@ -78828,11 +79372,12 @@
    "Stage3.FilterLadder",
    "Stage3.FilterAttained",
    "Stage3.FilterAccum",
-   "Stage3.CountModes"
+   "Stage3.CountModes",
+   "Stage3.CountReduction"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 177,
+  "lines": 178,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -78855,6 +79400,7 @@
    "lean_stage3/Stage3/CellZeros.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/CountModes.lean",
+   "lean_stage3/Stage3/CountReduction.lean",
    "lean_stage3/Stage3/DirichletMean.lean",
    "lean_stage3/Stage3/DirichletMeanW.lean",
    "lean_stage3/Stage3/EdgeBound.lean",

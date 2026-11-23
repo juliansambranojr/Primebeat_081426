@@ -23,11 +23,12 @@ flowchart LR
   n21["<b>im_w</b><br/>(ρ * (Real.log 2 : ℂ)).im = ρ.im * Real.log 2"]:::shp
   n22["<b>re_w</b><br/>(ρ * (Real.log 2 : ℂ)).re = ρ.re * Real.log 2"]:::shp
   n23["<b>w_im_ne_zero</b><br/>((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0"]:::thm
-  n24["<b>piMode_doubling ■</b><br/>PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst …"]:::thm
+  n24["<b>piMode_doubling</b><br/>PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst …"]:::thm
   n25["<b>norm_J_doubling_le</b><br/>‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(…"]:::thm
   n26["<b>norm_piMode_two_le</b><br/>‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
-  n27["<b>norm_cst_le ■</b><br/>‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
+  n27["<b>norm_cst_le</b><br/>‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
   n28["<b>J_eq_segment ■</b><br/>J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ …"]:::shp
+  x0(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>norm_term_le"]):::ext
   n0 --> n1
   n1 --> n2
   n10 --> n12
@@ -61,6 +62,10 @@ flowchart LR
   n7 --> n12
   n8 --> n25
   n9 --> n12
+  n2 -.-> x0
+  n24 -.-> x0
+  n25 -.-> x0
+  n27 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

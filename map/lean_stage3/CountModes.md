@@ -7,7 +7,7 @@ CountModes — block N1 of `lean_stage3/design/countmodes.md`, as corrected in i
 29 theorems, 2 definitions, 513 lines. 
 
 **Imports:** [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md)
 
 ## The picture
 
@@ -37,11 +37,12 @@ flowchart LR
   n21["<b>im_w</b><br/>(ρ * (Real.log 2 : ℂ)).im = ρ.im * Real.log 2"]:::shp
   n22["<b>re_w</b><br/>(ρ * (Real.log 2 : ℂ)).re = ρ.re * Real.log 2"]:::shp
   n23["<b>w_im_ne_zero</b><br/>((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0"]:::thm
-  n24["<b>piMode_doubling ■</b><br/>PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst …"]:::thm
+  n24["<b>piMode_doubling</b><br/>PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst …"]:::thm
   n25["<b>norm_J_doubling_le</b><br/>‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(…"]:::thm
   n26["<b>norm_piMode_two_le</b><br/>‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
-  n27["<b>norm_cst_le ■</b><br/>‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
+  n27["<b>norm_cst_le</b><br/>‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)"]:::thm
   n28["<b>J_eq_segment ■</b><br/>J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ …"]:::shp
+  x0(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>norm_term_le"]):::ext
   n0 --> n1
   n1 --> n2
   n10 --> n12
@@ -75,6 +76,10 @@ flowchart LR
   n7 --> n12
   n8 --> n25
   n9 --> n12
+  n2 -.-> x0
+  n24 -.-> x0
+  n25 -.-> x0
+  n27 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -97,7 +102,7 @@ def · line 140
 The segment integral of one zero on the count's ladder: `J_k(w) = ∫₀^∞ e^(k(w−s))/(w − s) ds`.
 
 - **Is:** `` J (k : ℕ) (w : ℂ) : ℂ := ∫ s in Set.Ioi (0:ℝ), Complex.exp ((k:ℂ) * (w - s)) / (w - s) ``
-- **Used by 7:** [`CountModes.J_eq_segment`](#CountModes-J_eq_segment), [`CountModes.J_sub`](#CountModes-J_sub), [`CountModes.cst`](#CountModes-cst), [`CountModes.norm_J_doubling_le`](#CountModes-norm_J_doubling_le), [`CountModes.norm_J_le`](#CountModes-norm_J_le), [`CountModes.norm_cst_le`](#CountModes-norm_cst_le), [`CountModes.piMode_doubling`](#CountModes-piMode_doubling)
+- **Used by 10:** [`CountModes.J_eq_segment`](#CountModes-J_eq_segment), [`CountModes.J_sub`](#CountModes-J_sub), [`CountModes.cst`](#CountModes-cst), [`CountModes.norm_J_doubling_le`](#CountModes-norm_J_doubling_le), [`CountModes.norm_J_le`](#CountModes-norm_J_le), [`CountModes.norm_cst_le`](#CountModes-norm_cst_le), [`CountModes.piMode_doubling`](#CountModes-piMode_doubling), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le), [`CountReduction.summable_J`](../lean_stage3/CountReduction.md#CountReduction-summable_J)
 
 <a name="CountModes-cst"></a>
 ### `CountModes.cst`
@@ -108,7 +113,7 @@ The constant of one zero's part on the count's ladder: `piMode ρ 2 − J_1(w)`.
 
 - **Is:** `` cst (ρ : NontrivialZeros) : ℂ := PiZeros.piMode (ρ:ℂ) 2 - J 1 ((ρ:ℂ) * Real.log 2) ``
 - **Built from:** [`CountModes.J`](#CountModes-J), [`PiZeros.piMode`](../lean_stage3/PiZeros.md#PiZeros-piMode)
-- **Used by 2:** [`CountModes.norm_cst_le`](#CountModes-norm_cst_le), [`CountModes.piMode_doubling`](#CountModes-piMode_doubling)
+- **Used by 3:** [`CountModes.norm_cst_le`](#CountModes-norm_cst_le), [`CountModes.piMode_doubling`](#CountModes-piMode_doubling), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small)
 
 ## Theorems
 
@@ -188,11 +193,14 @@ line 125 · arrows read from text
 
   - [`CountModes.riemannZeta_ne_zero_of_Ioo`](#CountModes-riemannZeta_ne_zero_of_Ioo) — `` riemannZeta (b : ℂ) ≠ 0 ``
 
-**Feeds** (3 that use it)
+**Feeds** (6 that use it)
 
   - [`CountModes.norm_cst_le`](#CountModes-norm_cst_le) — `` ‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2) ``
   - [`CountModes.norm_piMode_two_le`](#CountModes-norm_piMode_two_le) — `` ‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2) ``
   - [`CountModes.w_im_ne_zero`](#CountModes-w_im_ne_zero) — `` ((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0 ``
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
+  - [`CountReduction.inv_abs_im_le`](../lean_stage3/CountReduction.md#CountReduction-inv_abs_im_le) (CountReduction) — `` |(ρ : ℂ).im|⁻¹ ≤ cim * ‖(ρ : ℂ)‖⁻¹ ``
+  - [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le) (CountReduction) — `` ‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ… ``
 
 <a name="CountModes-sub_ofReal_ne_zero"></a>
 ### `CountModes.sub_ofReal_ne_zero`
@@ -815,7 +823,9 @@ PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst ρ
 
 **Definitions its proof touches:** [`CountModes.J`](#CountModes-J), [`CountModes.cst`](#CountModes-cst), [`PiZeros.piMode`](../lean_stage3/PiZeros.md#PiZeros-piMode)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
 
 <a name="CountModes-norm_J_doubling_le"></a>
 ### `CountModes.norm_J_doubling_le`
@@ -846,9 +856,10 @@ line 446 · arrows read from text
 
 **Definitions its proof touches:** [`CountModes.J`](#CountModes-J)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CountModes.norm_cst_le`](#CountModes-norm_cst_le) — `` ‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2) ``
+  - [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le) (CountReduction) — `` ‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ… ``
 
 <a name="CountModes-norm_piMode_two_le"></a>
 ### `CountModes.norm_piMode_two_le`
@@ -906,7 +917,9 @@ line 473 · arrows read from text
 
 **Definitions its proof touches:** [`CountModes.J`](#CountModes-J), [`CountModes.cst`](#CountModes-cst), [`PiZeros.piMode`](../lean_stage3/PiZeros.md#PiZeros-piMode)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
 
 <a name="CountModes-J_eq_segment"></a>
 ### `CountModes.J_eq_segment`

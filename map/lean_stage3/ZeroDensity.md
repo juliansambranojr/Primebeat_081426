@@ -23,7 +23,8 @@ flowchart LR
   n9["<b>zero_density</b><br/>∃ θ C T₀ : ℝ, θ ＜ 1 ∧ 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, …"]:::thm
   x0(["<b>MollifiedMean</b><br/>mean_sq_f_le"]):::ext
   x1(["<b>ZeroSquares</b><br/>card_zeros_le"]):::ext
-  x2(["<b>ZeroSummable</b><br/>sum_le_const"]):::ext
+  x2(["<b>CountReduction</b><br/>tail_rate"]):::ext
+  x3(["<b>ZeroSummable</b><br/>sum_le_const"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n5
@@ -35,6 +36,7 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 -.-> x2
+  n9 -.-> x3
   x0 -.-> n8
   x1 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -380,7 +382,8 @@ line 361
 
 **Definitions its proof touches:** [`MollifiedMean.f`](../lean_stage3/MollifiedMean.md#MollifiedMean-f), [`ZeroDensity.bConst`](#ZeroDensity-bConst)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate) (CountReduction) — `` ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈… ``
   - [`ZeroSummable.sum_le_const`](../lean_stage3/ZeroSummable.md#ZeroSummable-sum_le_const) (ZeroSummable) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
 
