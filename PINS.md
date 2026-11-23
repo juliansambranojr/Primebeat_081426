@@ -39,6 +39,7 @@ below with their outcome.
                 `EdgeBound.edge_bound_core_num`
     OUT         the left edge bounded free of the height (block F2); the cell
                 at a fixed row (block F3)
+    OUTCOME     proved, unit 0458; the lost factor named in unit 0457
 
 ### 2026-11-23 · block C7 of `design/carlson.md`: `Stage3/AttainedPi.lean`
 

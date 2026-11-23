@@ -154,6 +154,7 @@ import Stage3.ZeroSquares
 import Stage3.ZeroDensity
 import Stage3.ZeroSummable
 import Stage3.AttainedPi
+import Stage3.ExplicitLeft
 
 namespace Stage3
 

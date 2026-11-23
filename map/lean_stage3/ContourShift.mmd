@@ -30,15 +30,16 @@ flowchart LR
   x0(["<b>Glue</b><br/>5 theorems"]):::ext
   x1(["<b>GlueNum</b><br/>5 theorems"]):::ext
   x2(["<b>EdgeBound</b><br/>4 theorems"]):::ext
-  x3(["<b>GlueFloor</b><br/>edge_left_sharp<br/>explicit_formula_split"]):::ext
-  x4(["<b>LandauPoleLocal</b><br/>Phi_principal_part<br/>differentiableAt_Phi"]):::ext
-  x5(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic"]):::ext
-  x6(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
-  x7(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
-  x8(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x9(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
-  x10(["<b>LowCount</b><br/>low_rect_count"]):::ext
-  x11(["<b>RouteNum</b><br/>C2n_le"]):::ext
+  x3(["<b>ExplicitLeft</b><br/>edge_left_any<br/>explicit_formula_left"]):::ext
+  x4(["<b>GlueFloor</b><br/>edge_left_sharp<br/>explicit_formula_split"]):::ext
+  x5(["<b>LandauPoleLocal</b><br/>Phi_principal_part<br/>differentiableAt_Phi"]):::ext
+  x6(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic"]):::ext
+  x7(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
+  x8(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
+  x9(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x10(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
+  x11(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x12(["<b>RouteNum</b><br/>C2n_le"]):::ext
   n0 --> n27
   n1 --> n6
   n10 --> n27
@@ -85,47 +86,51 @@ flowchart LR
   n0 -.-> x1
   n1 -.-> x0
   n1 -.-> x1
-  n14 -.-> x4
+  n14 -.-> x5
   n18 -.-> x0
   n18 -.-> x1
+  n18 -.-> x10
   n18 -.-> x2
   n18 -.-> x3
-  n18 -.-> x9
-  n19 -.-> x5
+  n18 -.-> x4
+  n19 -.-> x6
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
   n2 -.-> x4
   n2 -.-> x5
+  n2 -.-> x6
   n21 -.-> x0
   n21 -.-> x1
-  n21 -.-> x10
   n21 -.-> x11
+  n21 -.-> x12
   n21 -.-> x2
-  n21 -.-> x7
+  n21 -.-> x8
   n23 -.-> x0
   n23 -.-> x1
   n25 -.-> x0
   n25 -.-> x1
-  n25 -.-> x6
+  n25 -.-> x7
   n26 -.-> x0
   n26 -.-> x1
   n26 -.-> x2
-  n26 -.-> x7
+  n26 -.-> x8
   n27 -.-> x0
   n27 -.-> x1
   n27 -.-> x3
-  n3 -.-> x4
-  n3 -.-> x6
+  n27 -.-> x4
+  n3 -.-> x5
+  n3 -.-> x7
   n5 -.-> x0
   n5 -.-> x1
   n5 -.-> x2
-  n5 -.-> x7
+  n5 -.-> x8
   n6 -.-> x0
   n6 -.-> x1
   n6 -.-> x3
-  x8 -.-> n6
+  n6 -.-> x4
+  x9 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

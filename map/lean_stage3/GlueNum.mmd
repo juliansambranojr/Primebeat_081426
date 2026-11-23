@@ -12,16 +12,17 @@ flowchart LR
   n10["<b>edge_horizontal_bound_num</b><br/>∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, …"]:::thm
   n11["<b>edge_left_sharp_num</b><br/>∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1…"]:::thm
   n12["<b>explicit_formula_split_num</b><br/>∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (…"]:::thm
-  x0(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
-  x1(["<b>FiniteOffLine</b><br/>err_le"]):::ext
-  x2(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
-  x3(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
-  x4(["<b>ContourShift</b><br/>11 theorems"]):::ext
-  x5(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x6(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
-  x7(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
-  x8(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
-  x9(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x0(["<b>ExplicitLeft</b><br/>Aleft_pos<br/>explicit_formula_left"]):::ext
+  x1(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
+  x2(["<b>FiniteOffLine</b><br/>err_le"]):::ext
+  x3(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
+  x4(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
+  x5(["<b>ContourShift</b><br/>11 theorems"]):::ext
+  x6(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x7(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
+  x8(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
+  x9(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
+  x10(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
   n0 --> n12
   n0 --> n4
   n0 --> n8
@@ -36,32 +37,37 @@ flowchart LR
   n7 --> n8
   n8 --> n12
   n9 --> n10
-  n12 -.-> x2
+  n0 -.-> x0
+  n10 -.-> x0
+  n12 -.-> x10
   n12 -.-> x3
-  n12 -.-> x9
-  n4 -.-> x1
+  n12 -.-> x4
+  n2 -.-> x0
+  n3 -.-> x0
   n4 -.-> x2
   n4 -.-> x3
-  n5 -.-> x1
+  n4 -.-> x4
   n5 -.-> x2
   n5 -.-> x3
-  n6 -.-> x1
+  n5 -.-> x4
   n6 -.-> x2
   n6 -.-> x3
-  x0 -.-> n1
-  x0 -.-> n11
-  x0 -.-> n3
-  x0 -.-> n9
-  x4 -.-> n11
-  x4 -.-> n12
-  x4 -.-> n7
-  x4 -.-> n8
-  x4 -.-> n9
+  n6 -.-> x4
+  n8 -.-> x0
+  x1 -.-> n1
+  x1 -.-> n11
+  x1 -.-> n3
+  x1 -.-> n9
+  x5 -.-> n11
+  x5 -.-> n12
   x5 -.-> n7
-  x6 -.-> n11
-  x6 -.-> n9
+  x5 -.-> n8
+  x5 -.-> n9
+  x6 -.-> n7
   x7 -.-> n11
-  x8 -.-> n12
+  x7 -.-> n9
+  x8 -.-> n11
+  x9 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

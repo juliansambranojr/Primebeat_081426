@@ -22,7 +22,7 @@ of size `log T'`. The bound is `C·log²T'·x^(−1/4)`. It grows with the heigh
 The proof is right; an absolute value on that line loses `log²T'`. The
 integral itself stays bounded: `x^(it)` turns.
 
-## F1 The formula with the left edge kept — `Stage3/ExplicitLeft.lean`
+## F1 The formula with the left edge kept — PROVED (unit 0458: `ExplicitLeft.explicit_formula_left`, `edge_left_any`, `explicit_formula_any`; `Aleft = 8·Dln`)
 
     explicit_formula_left (hx : 16 ≤ x) (hT : 2 ≤ T) :
       ∃ T', T ≤ T' ∧ T' ≤ T + 1 ∧
@@ -34,7 +34,8 @@ integral itself stays bounded: `x^(it)` turns.
     edge_left_any (hx : 16 ≤ x) (hT' : 2 ≤ T') :
       ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ A·log²T'·x^(−1/4)
 
-`edge_left_sharp_num`'s proof stopped before `hlogT'x`. Together: the formula
+`edge_left_sharp_num`'s proof with `hlogT'x` deleted and its last calc steps
+ended at `8·D·log²T'·x^(−1/4)`. Together: the formula
 at every height with `A·log²(T+1)·x^(−1/4)` in the error. The lost factor,
 stated.
 

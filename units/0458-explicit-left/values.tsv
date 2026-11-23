@@ -1,0 +1,19 @@
+key	value	source
+module_lines	669	wc -l lean_stage3/Stage3/ExplicitLeft.lean
+theorems_proved	4	grep -c ^theorem lean_stage3/Stage3/ExplicitLeft.lean
+defs	0	grep -c ^def; the constant Aleft is a noncomputable def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ExplicitLeft.lean
+pins	3	explicit_formula_left, edge_left_any, explicit_formula_any
+errors_first	0	the worker reported no failed build
+builds	1	the worker's report names a single build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8848	lake build (full Stage3), Build completed successfully
+jobs_module	8736	run/build.log, lake build Stage3.ExplicitLeft
+loop_version	22	lean_stage3/LOOP.md version line
+design	leftedge.md#f1	the formula with the left edge kept
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+edge_const	8	Aleft = 8 * Glue.Dln, Stage3/ExplicitLeft.lean
+floor_x	16	the hypothesis 16 ≤ x
+floor_T	2	the hypothesis 2 ≤ T
