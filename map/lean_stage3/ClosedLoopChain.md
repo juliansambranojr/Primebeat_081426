@@ -30,12 +30,14 @@ flowchart LR
   n14["<b>generalized_weight ■</b><br/>(p : ℝ) ^ (-σ) = primeWeight p σ"]:::cnt
   n15["<b>generalized_at_half ■</b><br/>generalizedPrimeBeat N (1 / 2) t = primeBeat N t"]:::shp
   x0(["<b>ClosedLoopJoin</b><br/>force_eq"]):::ext
+  x1(["<b>HalfSieve</b><br/>ignition_is_zeta_zero"]):::ext
   n0 --> n1
   n0 --> n5
   n1 --> n5
   n6 --> n7
   n6 --> n8
   n8 --> n9
+  n6 -.-> x1
   x0 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -69,7 +71,7 @@ def · line 80
 The midpoint of each doubling. Restated from the closed loop, Part III.
 
 - **Is:** `` Midpoint : ℕ → ℚ | 0 => 1 / 2 | (n + 1) => 2 * Midpoint n + 1 / 2 ``
-- **Used by 4:** [`ClosedLoopChain.floor_midpoint`](#ClosedLoopChain-floor_midpoint), [`ClosedLoopChain.ignition_energy_is_half`](#ClosedLoopChain-ignition_energy_is_half), [`ClosedLoopChain.row_at_midpoint`](#ClosedLoopChain-row_at_midpoint), [`ClosedLoopChain.structural_ignition`](#ClosedLoopChain-structural_ignition)
+- **Used by 5:** [`ClosedLoopChain.floor_midpoint`](#ClosedLoopChain-floor_midpoint), [`ClosedLoopChain.ignition_energy_is_half`](#ClosedLoopChain-ignition_energy_is_half), [`ClosedLoopChain.row_at_midpoint`](#ClosedLoopChain-row_at_midpoint), [`ClosedLoopChain.structural_ignition`](#ClosedLoopChain-structural_ignition), [`HalfSieve.ignition_is_zeta_zero`](../lean_stage3/HalfSieve.md#HalfSieve-ignition_is_zeta_zero)
 
 <a name="ClosedLoopChain-primeBeatTerm"></a>
 ### `ClosedLoopChain.primeBeatTerm`
@@ -289,10 +291,11 @@ Midpoint n = (2 ^ n : ℚ) - 1 / 2
 
 **Definitions its proof touches:** [`ClosedLoopChain.Midpoint`](#ClosedLoopChain-Midpoint)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ClosedLoopChain.floor_midpoint`](#ClosedLoopChain-floor_midpoint) — `` ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = 2 ^ n - 1 ``
   - [`ClosedLoopChain.ignition_energy_is_half`](#ClosedLoopChain-ignition_energy_is_half) — `` Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2 ``
+  - [`HalfSieve.ignition_is_zeta_zero`](../lean_stage3/HalfSieve.md#HalfSieve-ignition_is_zeta_zero) (HalfSieve) — `` ((ClosedLoopChain.Midpoint n : ℚ) : ℂ) - ((2 : ℂ) ^ n - 1) = - riemannZeta 0 ``
 
 <a name="ClosedLoopChain-ignition_energy_is_half"></a>
 ### `ClosedLoopChain.ignition_energy_is_half`

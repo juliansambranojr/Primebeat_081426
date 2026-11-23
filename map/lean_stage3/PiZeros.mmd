@@ -21,10 +21,11 @@ flowchart LR
   x4(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
   x5(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
   x6(["<b>FilterLadder</b><br/>formula_row"]):::ext
-  x7(["<b>CountReduction</b><br/>count_modes_small"]):::ext
-  x8(["<b>FixedRowTwo</b><br/>pi_fixed_row_two<br/>table_cell_fixed_row_two"]):::ext
-  x9(["<b>CellZeros</b><br/>4 theorems"]):::ext
-  x10(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
+  x7(["<b>StepsPeak</b><br/>peak_identity"]):::ext
+  x8(["<b>CountReduction</b><br/>count_modes_small"]):::ext
+  x9(["<b>FixedRowTwo</b><br/>pi_fixed_row_two<br/>table_cell_fixed_row_two"]):::ext
+  x10(["<b>CellZeros</b><br/>4 theorems"]):::ext
+  x11(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n4
@@ -45,14 +46,16 @@ flowchart LR
   n1 -.-> x4
   n10 -.-> x1
   n10 -.-> x2
-  n10 -.-> x7
+  n10 -.-> x8
   n14 -.-> x3
-  n14 -.-> x8
+  n14 -.-> x9
   n6 -.-> x3
   n6 -.-> x4
   n6 -.-> x6
+  n6 -.-> x7
   n7 -.-> x3
   n7 -.-> x4
+  n7 -.-> x7
   n8 -.-> x1
   n8 -.-> x2
   n8 -.-> x3
@@ -60,15 +63,15 @@ flowchart LR
   n9 -.-> x1
   n9 -.-> x2
   n9 -.-> x3
-  n9 -.-> x7
   n9 -.-> x8
+  n9 -.-> x9
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n5
+  x10 -.-> n12
   x10 -.-> n14
+  x11 -.-> n14
   x5 -.-> n6
-  x9 -.-> n12
-  x9 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

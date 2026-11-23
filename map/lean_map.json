@@ -22747,7 +22747,8 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.floor_midpoint",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.row_at_midpoint",
-     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.ignition_is_zeta_zero"
     ]
    },
    {
@@ -22775,7 +22776,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.floor_midpoint",
-     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half"
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.ignition_is_zeta_zero"
     ]
    },
    {
@@ -30707,7 +30709,12 @@
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integral_two_le",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
-     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.tr_efRem_fixed_two"
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.tr_efRem_fixed_two",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height"
     ]
    },
    {
@@ -30738,7 +30745,10 @@
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_zero_sum_finset_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
-     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two"
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le"
     ]
    },
    {
@@ -30933,7 +30943,10 @@
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_zero_sum_finset_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
-     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two"
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le"
     ]
    },
    {
@@ -31034,7 +31047,8 @@
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_eq_zero_sum_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
-     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two"
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le"
     ]
    }
   ]
@@ -33051,6 +33065,10 @@
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
@@ -33158,6 +33176,8 @@
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_nonneg",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_order",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
@@ -34271,7 +34291,9 @@
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
-     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two"
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le"
     ]
    },
    {
@@ -34301,7 +34323,9 @@
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
-     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two"
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le"
     ]
    },
    {
@@ -34333,7 +34357,9 @@
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
-     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two"
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le"
     ]
    },
    {
@@ -36513,6 +36539,503 @@
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/RouteNum.lean::Stage3.stmtEF_split_num"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/HalfSieve.lean",
+  "module": "Stage3.HalfSieve",
+  "stem": "HalfSieve",
+  "header": "HalfSieve — block R6 of `lean_stage3/design/runs.md`. 2026-11-23. The half of the closed loop, carried into the sieve.",
+  "imports": [
+   "Stage3.StepsPole",
+   "Stage3.OneChain",
+   "Stage3.PiToPsi",
+   "Stage3.RowLeaves"
+  ],
+  "opens": [
+   "SieveExact",
+   "SieveResidual",
+   "Stage3"
+  ],
+  "namespaces": [
+   "HalfSieve"
+  ],
+  "lines": 350,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/OneChain.lean",
+   "lean_stage3/Stage3/PiToPsi.lean",
+   "lean_stage3/Stage3/RowLeaves.lean",
+   "lean_stage3/Stage3/StepsPole.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "ignition_is_zeta_zero",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.ignition_is_zeta_zero",
+    "line": 37,
+    "why": "The half is zeta at zero. The offset of the midpoint of the `n`-th doubling above `2^n − 1` is minus the value of zeta at zero, at every `n`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "((ClosedLoopChain.Midpoint n : ℚ) : ℂ) - ((2 : ℂ) ^ n - 1) = - riemannZeta 0",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.ignition_is_zeta_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "two_mem_smallPrimes",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.two_mem_smallPrimes",
+    "line": 44,
+    "why": "From `N = 4` on the prime `2` is among the sieve's primes.",
+    "sorry": false,
+    "needs": [
+     "hN : 4 ≤ N"
+    ],
+    "proves": "2 ∈ smallPrimes N",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.two_mem_smallPrimes",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.half_cancels"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "half_cancels",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.half_cancels",
+    "line": 53,
+    "why": "The signs of the sieve add to nothing. Over all the sieve's terms the signs `(−1)^|T|` sum to zero: the alternating sum of a Pascal row.",
+    "sorry": false,
+    "needs": [
+     "hN : 4 ≤ N"
+    ],
+    "proves": "∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card = 0",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.half_cancels",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.two_mem_smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.two_mem_smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.netRounding_centered"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "netRounding_centered",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.netRounding_centered",
+    "line": 64,
+    "why": "The roundings measured from one half. The half of every rounding cancels identically in the sieve's sum.",
+    "sorry": false,
+    "needs": [
+     "hN : 4 ≤ N"
+    ],
+    "proves": "netRounding N = ∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card * (Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) - 1 / 2)",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.netRounding_centered",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.half_cancels",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.half_cancels",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "wobble",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.wobble",
+    "line": 73,
+    "why": "The wobble of the sieve at `N`: its net rounding less its smooth part.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.smoothNet"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_step",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_all",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "resid",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.resid",
+    "line": 76,
+    "why": "The residual of the count at `N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_step",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resid_step",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.resid_step",
+    "line": 79,
+    "why": "The residual, one square root down.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N"
+    ],
+    "proves": "resid N = resid (Nat.sqrt N) - wobble N",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_step",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
+     "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "resid_of_wobble",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.resid_of_wobble",
+    "line": 86,
+    "why": "The wobble carries the residual. If the wobble is at square-root size at every `N ≥ 2`, so is the residual of the count.",
+    "sorry": false,
+    "needs": [
+     "hC : 0 ≤ C",
+     "h : ∀ N : ℕ, 2 ≤ N → |wobble N| ≤ C * Real.sqrt (N : ℝ) * Real.log (N : ℝ)"
+    ],
+    "proves": "∃ K : ℝ, 0 ≤ K ∧ ∀ N : ℕ, 2 ≤ N → |resid N| ≤ K * Real.sqrt (N : ℝ) * Real.log (N : ℝ)",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_of_wobble",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_step",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_step",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Li_floor_close",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.Li_floor_close",
+    "line": 163,
+    "why": "Li moves by at most `2` between an integer `n ≥ 2` and a real `x` in `[n, n+1)`.",
+    "sorry": false,
+    "needs": [
+     "hn : 2 ≤ n",
+     "hnx : (n : ℝ) ≤ x",
+     "hx : x < (n : ℝ) + 1"
+    ],
+    "proves": "|Stage3.Li x - Stage3.Li (n : ℝ)| ≤ 2",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.Li_floor_close",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "schoenfeld_of_wobble",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.schoenfeld_of_wobble",
+    "line": 186,
+    "why": "The wobble gives the square-root bound on the count.",
+    "sorry": false,
+    "needs": [
+     "hC : 0 ≤ C",
+     "h : ∀ N : ℕ, 2 ≤ N → |wobble N| ≤ C * Real.sqrt (N : ℝ) * Real.log (N : ℝ)"
+    ],
+    "proves": "∃ K : ℝ, StmtSchoenfeldWeak K 1 2 (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.Li_floor_close",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.Li_floor_close",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "WobbleSqrt",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.WobbleSqrt",
+    "line": 226,
+    "why": "The wobble of the sieve stays at square-root size from some `N₀` on.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_all",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wobble_all",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.wobble_all",
+    "line": 231,
+    "why": "A bound from some `N₀` on is a bound from `2` on, with a larger constant.",
+    "sorry": false,
+    "needs": [
+     "h : WobbleSqrt"
+    ],
+    "proves": "∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 2 ≤ N → |wobble N| ≤ C * Real.sqrt (N : ℝ) * Real.log (N : ℝ)",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_all",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_of_wobble",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.spiralLink_of_wobble",
+    "line": 271,
+    "why": "From the wobble to the loop. If the sieve's wobble stays at square-root size, the spiral link holds.",
+    "sorry": false,
+    "needs": [
+     "h : WobbleSqrt"
+    ],
+    "proves": "SpiralLink.SpiralLink",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_all",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_all",
+     "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_of_schoenfeldWeak",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wobble_of_spiralLink",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.wobble_of_spiralLink",
+    "line": 278,
+    "why": "From the loop to the wobble. If the spiral link holds, the sieve's wobble stays at square-root size.",
+    "sorry": false,
+    "needs": [
+     "h : SpiralLink.SpiralLink"
+    ],
+    "proves": "WobbleSqrt",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_step",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_step",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_wobble",
+    "ns": "HalfSieve",
+    "full": "HalfSieve.spiralLink_iff_wobble",
+    "line": 330,
+    "why": "The loop is the sieve's wobble. The spiral link holds exactly when the sieve's roundings, measured from one half and less their smooth part, stay at square-root size.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ WobbleSqrt",
+    "file": "lean_stage3/Stage3/HalfSieve.lean",
+    "id": "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -50897,6 +51420,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak"
     ]
    },
@@ -51356,7 +51880,10 @@
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
-     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
     ]
    },
    {
@@ -51424,7 +51951,8 @@
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
-     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
     ]
    },
    {
@@ -51450,7 +51978,8 @@
     "used_by": [
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
-     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
     ]
    },
    {
@@ -51806,6 +52335,9 @@
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.table_cell_fixed_row_two",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.Li_floor_close",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble",
      "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.relErrWindow_of_window",
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
      "lean_stage3/Stage3/JointWindowDial.lean::JointWindowDial.schoenfeldWeakTheta_of_window",
@@ -53693,6 +54225,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.Li_floor_close",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.continuousOn_Li",
      "lean_stage3/Stage3/RowLeaves.lean::Stage3.hasDerivAt_Li_two_rpow"
@@ -54129,6 +54662,9 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.half_cancels",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.netRounding_centered",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.two_mem_smallPrimes",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.level_card",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
@@ -54573,6 +55109,8 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.netRounding_centered",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.abs_netRounding_le",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
@@ -54840,6 +55378,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble",
      "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble",
      "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble_rows"
     ]
@@ -54907,6 +55446,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.resid_step",
      "lean_stage3/Stage3/SieveResidual.lean::SieveResidual.net_wobble_rows"
     ]
    },
@@ -55229,6 +55769,9 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained",
@@ -55637,6 +56180,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.schoenfeld_of_wobble",
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
      "lean_stage3/Stage3/LineBound.lean::Slice8.schoenfeldWeak_of_psiWeak_three",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
@@ -56366,6 +56910,788 @@
      "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.IsTest",
      "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm",
      "lean_stage3/Stage3/WeilDetect.lean::WeilDetect.zeroForm_nonneg_of_RH"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/StepsPeak.lean",
+  "module": "Stage3.StepsPeak",
+  "stem": "StepsPeak",
+  "header": "StepsPeak — block R5 of `lean_stage3/design/runs.md`. 2026-11-23. The first size of unit 0472: the turned steps up to a cutoff `N`, with the ramp `1 − n/N`, stand at height `m·log N` at a zero of order `m`.",
+  "imports": [
+   "Stage3.StepsPole",
+   "Stage3.ExplicitTwo",
+   "Stage3.FixedRowTwo"
+  ],
+  "opens": [
+   "Chebyshev",
+   "Finset",
+   "Kadiri",
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "StepsPeak"
+  ],
+  "lines": 635,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ExplicitTwo.lean",
+   "lean_stage3/Stage3/FixedRowTwo.lean",
+   "lean_stage3/Stage3/StepsPole.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "ramp",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.ramp",
+    "line": 44,
+    "why": "The ramp `f(u) = u^(−s)·(1 − u/N)`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "s : ℂ",
+     "u : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.hasDerivAt_ramp"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "slope",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.slope",
+    "line": 47,
+    "why": "Minus its slope, `g(u) = s·u^(−s−1) − (s−1)·u^(−s)/N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "s : ℂ",
+     "u : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_self",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_slope",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.hasDerivAt_ramp",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_slope_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "S",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.S",
+    "line": 52,
+    "why": "The turned steps to the cutoff `N`, with the ramp: `S(N,s) = Σ_{n ≤ N} Λ(n)·n^(−s)·(1 − n/N)`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "K",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.K",
+    "line": 56,
+    "why": "The kernel of a power, `K(a) = ∫_2^N u^a·g(u) du`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "s a : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_self",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_ramp",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.hasDerivAt_ramp",
+    "line": 58,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hs : s ≠ 0",
+     "hu : 0 < u"
+    ],
+    "proves": "HasDerivAt (ramp N s) (-slope N s u) u",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.hasDerivAt_ramp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cont_cpow",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.cont_cpow",
+    "line": 76,
+    "why": "A power is continuous right of `0`.",
+    "sorry": false,
+    "needs": [
+     "c : ℂ"
+    ],
+    "proves": "ContinuousOn (fun y : ℝ => (y : ℂ) ^ c) (Set.Ioi 0)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_cpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_slope",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cont_slope",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.cont_slope",
+    "line": 80,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "ContinuousOn (slope N s) (Set.Ioi 0)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_slope",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_cpow",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_cpow",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "uIcc_sub",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.uIcc_sub",
+    "line": 85,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N"
+    ],
+    "proves": "Set.uIcc (2:ℝ) N ⊆ Set.Ioi 0",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.uIcc_sub",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "S_eq_integral",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.S_eq_integral",
+    "line": 92,
+    "why": "Partial summation. `f(N) = 0`, so `S(N,s) = ∫_2^N g·ψ`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "hs : 0 < s.re"
+    ],
+    "proves": "S N s = ∫ u in (2:ℝ)..(N:ℝ), slope N s u * ((ψ u : ℝ) : ℂ)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_slope",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.hasDerivAt_ramp",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_slope",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.hasDerivAt_ramp",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "peak_identity",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.peak_identity",
+    "line": 127,
+    "why": "The identity. With `E(u,T) = ψ(u) − u + Σ_{|γ|<T} m·u^ρ/ρ` the remainder of the explicit formula, `S(N,s) = K(1) − Σ_{|γ|<T} (m/ρ)·K(ρ) + ∫_2^N E·g`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "hs : 0 < s.re",
+     "T : ℝ"
+    ],
+    "proves": "S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * K N s (ρ : ℂ) = ∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZeros.efRem T u",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_cpow",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_slope",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.uIcc_sub"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_cpow",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.cont_slope",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.uIcc_sub"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_slope_le",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.norm_slope_le",
+    "line": 167,
+    "why": "The size of `g` on `[1, N]`: `‖g(u)‖ ≤ (‖s‖ + ‖s−1‖)·u^(−σ−1)`.",
+    "sorry": false,
+    "needs": [
+     "hu : 1 ≤ u",
+     "huN : u ≤ N"
+    ],
+    "proves": "‖slope N s u‖ ≤ (‖s‖ + ‖s - 1‖) * u ^ (-s.re - 1)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_slope_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "C1",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.C1",
+    "line": 188,
+    "why": "The constant of the error, a function of `σ = Re s` alone: `C₁(σ) = (c3t·(2/σ) + Bleft2)·(2/σ)`.",
+    "sorry": false,
+    "needs": [
+     "σ : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_integrand_le",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.norm_integrand_le",
+    "line": 191,
+    "why": "The integrand of the error, pointwise on `[2, N]`.",
+    "sorry": false,
+    "needs": [
+     "hs : 0 < s.re",
+     "hT : 2 ≤ T",
+     "hu : 2 ≤ u",
+     "huN : u ≤ N"
+    ],
+    "proves": "‖slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * Real.log ((N:ℝ) * T) ^ 2 / T + (ExplicitTwo.c3t * (2 / s.re) + ExplicitTwo.Bleft2) * u ^ (-s.re / 2 - 1))",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_slope_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_slope_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_error_le",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.norm_error_le",
+    "line": 277,
+    "why": "The error. `‖∫_2^N E·g‖ ≤ (‖s‖+‖s−1‖)·(c1t·N·log²(NT)/T + C₁(σ))`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "hs : 0 < s.re",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 s.re)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_integrand_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "peak_formula",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.peak_formula",
+    "line": 338,
+    "why": "The height of the peak, as a formula. For `Re s > 0`, `N ≥ 2`, `T ≥ 2`: `‖S(N,s) − K(1) + Σ_{|γ|<T} (m/ρ)·K(ρ)‖ ≤ (‖s‖+‖s−1‖)·(c1t·N·log²(NT)/T + C₁(Re s))`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "hs : 0 < s.re",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * K N s (ρ : ℂ)‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 s.re)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_error_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_identity"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "h0_not_mem",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.h0_not_mem",
+    "line": 350,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N"
+    ],
+    "proves": "(0:ℝ) ∉ Set.uIcc (2:ℝ) N",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.h0_not_mem",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_self"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "K_eq",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.K_eq",
+    "line": 357,
+    "why": "The kernel in closed form, for `a ≠ s` and `a ≠ s − 1`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "h1 : a ≠ s",
+     "h2 : a ≠ s - 1"
+    ],
+    "proves": "K N s a = s * ((N:ℂ) ^ (a - s) - 2 ^ (a - s)) / (a - s) - (s - 1) * ((N:ℂ) ^ (a - s + 1) - 2 ^ (a - s + 1)) / ((a - s + 1) * N)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.h0_not_mem",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.h0_not_mem",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "K_self",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.K_self",
+    "line": 395,
+    "why": "The kernel at `a = s`: `K(s) = s·(log N − log 2) − (s−1)·(N−2)/N`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "s : ℂ"
+    ],
+    "proves": "K N s s = s * ((Real.log N - Real.log 2 : ℝ) : ℂ) - (s - 1) * ((N:ℂ) - 2) / N",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_self",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.h0_not_mem",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.h0_not_mem",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.slope"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "peak_at_zero",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.peak_at_zero",
+    "line": 440,
+    "why": "The peak at a zero. At `s = ρ₀`, a nontrivial zero of order `m₀` below the height `T`, its own term is `−m₀·log N + m₀·log 2 + m₀·(ρ₀−1)·(N−2)/(ρ₀·N)` and the sum runs over the other zeros below `T`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "ρ₀ : NontrivialZeros",
+     "hT : 2 ≤ T",
+     "hρ₀ : |(ρ₀ : ℂ).im| < T"
+    ],
+    "proves": "‖S N ρ₀ - K N ρ₀ 1 - (-((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * (Real.log N : ℂ) + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * (Real.log 2 : ℂ) + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * ((ρ₀ : ℂ) - 1) * ((N : ℂ) - 2) / ((ρ₀ : ℂ) * N)) + ∑ ρ ∈ (FiniteOffLine.ZF T).erase ρ₀, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * K N ρ₀ (ρ : ℂ)‖ ≤ (‖(ρ₀ : ℂ)‖ + ‖(ρ₀ : ℂ) - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 (ρ₀ : ℂ).re)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_self",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_self",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_K_le",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.norm_K_le",
+    "line": 483,
+    "why": "Another zero's kernel, free of `N`. For `a ≠ s`, `a ≠ s − 1` and `Re a ≤ Re s`: `‖K(a)‖ ≤ (‖s‖/‖a−s‖ + ‖s−1‖/‖a−s+1‖)·2`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "h1 : a ≠ s",
+     "h2 : a ≠ s - 1",
+     "hre : a.re ≤ s.re"
+    ],
+    "proves": "‖K N s a‖ ≤ (‖s‖ / ‖a - s‖ + ‖s - 1‖ / ‖a - s + 1‖) * 2",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_order",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.norm_order",
+    "line": 532,
+    "why": "The norm of a zero's order, read in `ℂ`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)‖ = ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_order",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "peak_height",
+    "ns": "StepsPeak",
+    "full": "StepsPeak.peak_height",
+    "line": 540,
+    "why": "The height of the peak. If no zero below `T` lies right of `ρ₀`, then `S(N,ρ₀) − K(1)` stands at `−m₀·log N`, up to `m₀·log 2 + m₀·‖ρ₀−1‖/‖ρ₀‖`, a sum over the other zeros below `T` free of `N`, and the error of `peak_formula`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "ρ₀ : NontrivialZeros",
+     "hT : 2 ≤ T",
+     "hρ₀ : |(ρ₀ : ℂ).im| < T",
+     "hright : ∀ ρ ∈ FiniteOffLine.ZF T, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re"
+    ],
+    "proves": "‖S N ρ₀ - K N ρ₀ 1 + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * (Real.log N : ℂ)‖ ≤ ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℝ) * Real.log 2 + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℝ) * ‖(ρ₀ : ℂ) - 1‖ / ‖(ρ₀ : ℂ)‖ + ∑ ρ ∈ (FiniteOffLine.ZF T).erase ρ₀, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) / ‖(ρ : ℂ)‖ * ((‖(ρ₀ : ℂ)‖ / ‖(ρ : ℂ) - ρ₀‖ + ‖(ρ₀ : ℂ) - 1‖ / ‖(ρ : ℂ) - ρ₀ + 1‖) * 2) + (‖(ρ₀ : ℂ)‖ + ‖(ρ₀ : ℂ) - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 (ρ₀ : ℂ).re)",
+    "file": "lean_stage3/Stage3/StepsPeak.lean",
+    "id": "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_height",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_order",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.C1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_order",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero"
     ],
     "layer": "zeta",
     "used_by": []
@@ -84485,11 +85811,13 @@
    "Stage3.RunTheorems",
    "Stage3.SieveExact",
    "Stage3.SieveResidual",
-   "Stage3.StepsPole"
+   "Stage3.StepsPole",
+   "Stage3.StepsPeak",
+   "Stage3.HalfSieve"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 187,
+  "lines": 189,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -84533,6 +85861,7 @@
    "lean_stage3/Stage3/Glue.lean",
    "lean_stage3/Stage3/GlueFloor.lean",
    "lean_stage3/Stage3/GlueNum.lean",
+   "lean_stage3/Stage3/HalfSieve.lean",
    "lean_stage3/Stage3/IndicatorContDiff.lean",
    "lean_stage3/Stage3/JensenCount.lean",
    "lean_stage3/Stage3/JointDialGate.lean",
@@ -84586,6 +85915,7 @@
    "lean_stage3/Stage3/SquareMean.lean",
    "lean_stage3/Stage3/Statement.lean",
    "lean_stage3/Stage3/StencilWeil.lean",
+   "lean_stage3/Stage3/StepsPeak.lean",
    "lean_stage3/Stage3/StepsPole.lean",
    "lean_stage3/Stage3/Stirling.lean",
    "lean_stage3/Stage3/TableDepths.lean",

@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0485: the half of every doubling is minus zeta at zero; it cancels in the sieve by Pascal; the spiral link holds exactly when the sieve's wobble stays at square-root size (`HalfSieve.spiralLink_iff_wobble`). The wobble's size is open.
+- [open]   2026-11-23  Unit 0484: at a zero the turned steps to a cutoff stand at the order times the logarithm of the cutoff (`StepsPeak.peak_height`), when no zero below the height lies to its right. The size rate is not stated.
 - [open]   2026-11-23  R4 PROVED (unit 0483, `StepsPole.steps_pole`): the exact core of run 0472. The sum of the turned steps is -zeta'/zeta; at every nontrivial zero rho of order m it has a pole of weight m/rho, the weight the zero carries in the table's residual; away from the zeros and 1 it is analytic. Open: the height of a finite peak, the size rate.
 - [open]   2026-11-23  R3 PROVED (unit 0482, `SieveResidual.net_wobble`, `net_wobble_rows`): the sieve's net rounding less its smooth part is exactly minus (the residual of the count at N less the residual at sqrt N); on the ladder, the table's residual at row 2m less at row m. The roundings' wobble and the table's residual are one wobble, read at the row and at its half.
 - [open]   2026-11-23  Correction to unit 0475: against the count itself the sieve's net rounding does not shrink. From `SieveExact.netRounding_eq` (unit 0481): 2.2% of the count at row 18, 5.6% at 26, 8.1% at 40, 9.0% at 50; 89,287 times sqrt(N) at row 50. The roundings are a part of the count, of its own order. The falling share in 0475 was of the mass, on the cut-off sum.

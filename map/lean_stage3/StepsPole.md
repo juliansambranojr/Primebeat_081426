@@ -7,7 +7,7 @@ StepsPole — block R4 of `lean_stage3/design/runs.md`. 2026-11-23. Unit 0472 tu
 5 theorems, 0 definitions, 111 lines. 
 
 **Imports:** [`ContourShift`](../lean_stage3/ContourShift.md), [`SieveResidual`](../lean_stage3/SieveResidual.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`HalfSieve`](../lean_stage3/HalfSieve.md), [`StepsPeak`](../lean_stage3/StepsPeak.md)
 
 ## The picture
 

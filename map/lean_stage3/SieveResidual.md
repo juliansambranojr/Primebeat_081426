@@ -18,9 +18,11 @@ flowchart LR
   n2["<b>sqrt_two_pow</b><br/>Nat.sqrt (2 ^ (2 * m)) = 2 ^ m"]:::cnt
   n3["<b>net_wobble_rows ■</b><br/>((netRounding (2 ^ (2 * m)) : ℚ) : ℝ) - smoothNet (2 ^ (2 * m)) …"]:::shp
   x0(["<b>SieveExact</b><br/>netRounding_eq"]):::ext
+  x1(["<b>HalfSieve</b><br/>resid_step"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
+  n1 -.-> x1
   x0 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -45,7 +47,7 @@ The smooth part of the net rounding: the closed product, less the unit, less the
 
 - **Is:** `` smoothNet (N : ℕ) : ℝ := (N : ℝ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℝ)) - 1 - Stage3.Li (N : ℝ) + Stage3.Li ((Nat.sqrt N : ℕ) : ℝ) ``
 - **Built from:** [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li), [`SieveExact.smallPrimes`](../lean_stage3/SieveExact.md#SieveExact-smallPrimes)
-- **Used by 2:** [`SieveResidual.net_wobble`](#SieveResidual-net_wobble), [`SieveResidual.net_wobble_rows`](#SieveResidual-net_wobble_rows)
+- **Used by 3:** [`HalfSieve.wobble`](../lean_stage3/HalfSieve.md#HalfSieve-wobble), [`SieveResidual.net_wobble`](#SieveResidual-net_wobble), [`SieveResidual.net_wobble_rows`](#SieveResidual-net_wobble_rows)
 
 ## Theorems
 
@@ -105,8 +107,9 @@ line 50 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li), [`SieveExact.netRounding`](../lean_stage3/SieveExact.md#SieveExact-netRounding), [`SieveResidual.smoothNet`](#SieveResidual-smoothNet)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`HalfSieve.resid_step`](../lean_stage3/HalfSieve.md#HalfSieve-resid_step) (HalfSieve) — `` resid N = resid (Nat.sqrt N) - wobble N ``
   - [`SieveResidual.net_wobble_rows`](#SieveResidual-net_wobble_rows) — `` ((netRounding (2 ^ (2 * m)) : ℚ) : ℝ) - smoothNet (2 ^ (2 * m)) = -(((Nat.primeCounting (2 ^ (2 * m)) : ℝ) - Stage3.Li (((2 ^ (2 * m) : ℕ) : ℝ))) - ((… ``
 
 <a name="SieveResidual-sqrt_two_pow"></a>

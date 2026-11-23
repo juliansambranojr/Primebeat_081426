@@ -1,0 +1,19 @@
+key	value	source
+module_lines	634	wc -l lean_stage3/Stage3/StepsPeak.lean
+theorems_proved	17	grep -c ^theorem lean_stage3/Stage3/StepsPeak.lean
+defs	5	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/StepsPeak.lean
+pins	4	peak_formula, K_self, peak_at_zero, peak_height
+errors_first	0	the worker's report gives no count of failed builds; the build here was clean
+builds	1	lake build Stage3.StepsPeak here, after the worker's
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8871	lake build (full Stage3), Build completed successfully
+jobs_module	8804	run/build.log, lake build Stage3.StepsPeak
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r5	the height of a finite peak
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_run	472	unit 0472
+unit_pole	483	unit 0483
+floor_x	2	peak_formula: 2 ≤ N, 2 ≤ T

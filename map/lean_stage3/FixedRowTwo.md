@@ -7,7 +7,7 @@ FixedRowTwo — block G3 of `lean_stage3/design/floor.md`. 2026-11-23. The fixed
 13 theorems, 1 definition, 495 lines. 
 
 **Imports:** [`ExplicitTwo`](../lean_stage3/ExplicitTwo.md), [`PiFixedRow`](../lean_stage3/PiFixedRow.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md), [`FilterLadder`](../lean_stage3/FilterLadder.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md), [`FilterLadder`](../lean_stage3/FilterLadder.md), [`StepsPeak`](../lean_stage3/StepsPeak.md)
 
 ## The picture
 
@@ -30,11 +30,12 @@ flowchart LR
   x1(["<b>GlueNum</b><br/>Csn_pos"]):::ext
   x2(["<b>CountReduction</b><br/>count_modes_small"]):::ext
   x3(["<b>FilterLadder</b><br/>Kf_nonneg<br/>formula_row"]):::ext
-  x4(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>tendsto_log_sq_div"]):::ext
-  x5(["<b>CellZeros</b><br/>5 theorems"]):::ext
-  x6(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
-  x7(["<b>PerronTwo</b><br/>inv_log_le_of_two_le"]):::ext
-  x8(["<b>PiZeros</b><br/>pi_eq_zero_sum<br/>table_cell_eq_zero_sum"]):::ext
+  x4(["<b>StepsPeak</b><br/>norm_error_le<br/>norm_integrand_le"]):::ext
+  x5(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>tendsto_log_sq_div"]):::ext
+  x6(["<b>CellZeros</b><br/>5 theorems"]):::ext
+  x7(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
+  x8(["<b>PerronTwo</b><br/>inv_log_le_of_two_le"]):::ext
+  x9(["<b>PiZeros</b><br/>pi_eq_zero_sum<br/>table_cell_eq_zero_sum"]):::ext
   n0 --> n7
   n0 --> n9
   n1 --> n5
@@ -56,8 +57,11 @@ flowchart LR
   n9 --> n10
   n0 -.-> x2
   n0 -.-> x3
+  n0 -.-> x4
   n1 -.-> x3
+  n1 -.-> x4
   n2 -.-> x3
+  n2 -.-> x4
   n6 -.-> x2
   n9 -.-> x2
   x0 -.-> n0
@@ -65,16 +69,16 @@ flowchart LR
   x0 -.-> n7
   x0 -.-> n9
   x1 -.-> n0
-  x4 -.-> n10
-  x4 -.-> n2
-  x4 -.-> n5
-  x5 -.-> n12
-  x5 -.-> n3
-  x6 -.-> n4
-  x7 -.-> n7
-  x7 -.-> n9
-  x8 -.-> n11
-  x8 -.-> n12
+  x5 -.-> n10
+  x5 -.-> n2
+  x5 -.-> n5
+  x6 -.-> n12
+  x6 -.-> n3
+  x7 -.-> n4
+  x8 -.-> n7
+  x8 -.-> n9
+  x9 -.-> n11
+  x9 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -124,13 +128,15 @@ line 44 · arrows read from text
 
 **Definitions its proof touches:** [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t)
 
-**Feeds** (5 that use it)
+**Feeds** (7 that use it)
 
   - [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) (CountReduction) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) :… ``
   - [`FilterLadder.Kf_nonneg`](../lean_stage3/FilterLadder.md#FilterLadder-Kf_nonneg) (FilterLadder) — `` 0 ≤ Kf ``
   - [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) (FilterLadder) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
   - [`FixedRowTwo.norm_integrand_two_le`](#FixedRowTwo-norm_integrand_two_le) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
   - [`FixedRowTwo.norm_tr_efRem_le_height_two`](#FixedRowTwo-norm_tr_efRem_le_height_two) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
+  - [`StepsPeak.norm_error_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_error_le) (StepsPeak) — `` ‖∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 s.re) ``
+  - [`StepsPeak.norm_integrand_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_integrand_le) (StepsPeak) — `` ‖slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * Real.log ((N:ℝ) * T) ^ 2 / T + (ExplicitTwo.c3t * (2 / s.re) + ExplicitTwo.Bl… ``
 
 <a name="FixedRowTwo-c3t_nonneg"></a>
 ### `FixedRowTwo.c3t_nonneg`
@@ -151,7 +157,7 @@ line 51 · arrows read from text
 
 **Definitions its proof touches:** [`ExplicitTwo.c3t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c3t)
 
-**Feeds** (6 that use it)
+**Feeds** (8 that use it)
 
   - [`FilterLadder.Kf_nonneg`](../lean_stage3/FilterLadder.md#FilterLadder-Kf_nonneg) (FilterLadder) — `` 0 ≤ Kf ``
   - [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) (FilterLadder) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
@@ -159,6 +165,8 @@ line 51 · arrows read from text
   - [`FixedRowTwo.cell_fixed_row_two`](#FixedRowTwo-cell_fixed_row_two) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻… ``
   - [`FixedRowTwo.norm_integrand_two_le`](#FixedRowTwo-norm_integrand_two_le) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
   - [`FixedRowTwo.norm_tr_efRem_le_height_two`](#FixedRowTwo-norm_tr_efRem_le_height_two) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
+  - [`StepsPeak.norm_error_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_error_le) (StepsPeak) — `` ‖∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 s.re) ``
+  - [`StepsPeak.norm_integrand_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_integrand_le) (StepsPeak) — `` ‖slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * Real.log ((N:ℝ) * T) ^ 2 / T + (ExplicitTwo.c3t * (2 / s.re) + ExplicitTwo.Bl… ``
 
 <a name="FixedRowTwo-Bleft2_nonneg"></a>
 ### `FixedRowTwo.Bleft2_nonneg`
@@ -181,7 +189,7 @@ line 58 · arrows read from text
 
 **Definitions its proof touches:** [`ExplicitTwo.Bleft2`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Bleft2)
 
-**Feeds** (6 that use it)
+**Feeds** (8 that use it)
 
   - [`FilterLadder.Kf_nonneg`](../lean_stage3/FilterLadder.md#FilterLadder-Kf_nonneg) (FilterLadder) — `` 0 ≤ Kf ``
   - [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) (FilterLadder) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
@@ -189,6 +197,8 @@ line 58 · arrows read from text
   - [`FixedRowTwo.cell_fixed_row_two`](#FixedRowTwo-cell_fixed_row_two) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻… ``
   - [`FixedRowTwo.norm_integrand_two_le`](#FixedRowTwo-norm_integrand_two_le) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
   - [`FixedRowTwo.norm_tr_efRem_le_height_two`](#FixedRowTwo-norm_tr_efRem_le_height_two) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
+  - [`StepsPeak.norm_error_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_error_le) (StepsPeak) — `` ‖∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 s.re) ``
+  - [`StepsPeak.norm_integrand_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_integrand_le) (StepsPeak) — `` ‖slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * Real.log ((N:ℝ) * T) ^ 2 / T + (ExplicitTwo.c3t * (2 / s.re) + ExplicitTwo.Bl… ``
 
 <a name="FixedRowTwo-cell_eq_zero_sum_two"></a>
 ### `FixedRowTwo.cell_eq_zero_sum_two`

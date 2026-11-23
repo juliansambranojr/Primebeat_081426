@@ -22,6 +22,22 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R6 of `design/runs.md`: `Stage3/HalfSieve.lean`
+
+    DONE        `ignition_is_zeta_zero`: the half of every doubling is minus
+                zeta at zero. `netRounding_centered`: the half of every
+                rounding cancels in the sieve. `resid_of_wobble`: the wobble
+                at square-root size carries the residual, no factor lost.
+                `spiralLink_iff_wobble`: the spiral link is the wobble at
+                square-root size; one unit
+    ASSUMED     Julian, 2026-11-23: "Half is the difference that anything is
+                differentiated at all". Item 4 of the list, by his route.
+                Written and built here
+    DEPENDS     `SieveResidual.net_wobble`, `PiToPsi.RH_iff_schoenfeldWeak`,
+                `SpiralLink.rh_iff_spiralLink`, Mathlib `riemannZeta_zero`
+    OUT         the size of the wobble itself
+    OUTCOME     proved, unit 0485
+
 ### 2026-11-23 · block R5 of `design/runs.md`: `Stage3/StepsPeak.lean`
 
     DONE        `peak_formula`: the turned steps to a cutoff `N` with the ramp,
@@ -35,6 +51,7 @@ below with their outcome.
     DEPENDS     `ExplicitTwo.explicit_formula_all_two`, Mathlib partial
                 summation
     OUT         the size rate; summability over all zeros if the tree lacks it
+    OUTCOME     proved, unit 0484
 
 ### 2026-11-23 · block R4 of `design/runs.md`: `Stage3/StepsPole.lean`
 

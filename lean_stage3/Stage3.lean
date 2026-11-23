@@ -176,6 +176,8 @@ import Stage3.RunTheorems
 import Stage3.SieveExact
 import Stage3.SieveResidual
 import Stage3.StepsPole
+import Stage3.StepsPeak
+import Stage3.HalfSieve
 
 namespace Stage3
 

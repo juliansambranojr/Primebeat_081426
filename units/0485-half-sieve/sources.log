@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-23T11:29:13Z
+# unit: 0485-half-sieve
+# sources searched: 440
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34208
+  Half is the difference that anything is differentiated at all
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39360
+  theorem ignition_is_zeta_zero (n : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39361
+  ((ClosedLoopChain.Midpoint n : ℚ) : ℂ) - ((2 : ℂ) ^ n - 1) = - riemannZeta 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39387
+  theorem netRounding_centered {N : ℕ} (hN : 4 ≤ N) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39388
+  netRounding N = ∑ T ∈ (smallPrimes N).powerset,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39389
+  (-1 : ℚ) ^ T.card * (Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) - 1 / 2) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39409
+  theorem resid_of_wobble {C : ℝ} (hC : 0 ≤ C)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39410
+  (h : ∀ N : ℕ, 2 ≤ N → |wobble N| ≤ C * Real.sqrt (N : ℝ) * Real.log (N : ℝ)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39411
+  ∃ K : ℝ, 0 ≤ K ∧ ∀ N : ℕ, 2 ≤ N →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39412
+  |resid N| ≤ K * Real.sqrt (N : ℝ) * Real.log (N : ℝ) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39653
+  theorem spiralLink_iff_wobble : SpiralLink.SpiralLink ↔ WobbleSqrt :=
+
+# 12 found, 0 missing

@@ -4,9 +4,11 @@ flowchart LR
   n2["<b>sqrt_two_pow</b><br/>Nat.sqrt (2 ^ (2 * m)) = 2 ^ m"]:::cnt
   n3["<b>net_wobble_rows ■</b><br/>((netRounding (2 ^ (2 * m)) : ℚ) : ℝ) - smoothNet (2 ^ (2 * m)) …"]:::shp
   x0(["<b>SieveExact</b><br/>netRounding_eq"]):::ext
+  x1(["<b>HalfSieve</b><br/>resid_step"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
+  n1 -.-> x1
   x0 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
