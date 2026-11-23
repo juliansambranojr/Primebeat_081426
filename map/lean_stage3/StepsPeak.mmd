@@ -20,8 +20,7 @@ flowchart LR
   x1(["<b>ExplicitTwo</b><br/>explicit_formula_all_two"]):::ext
   x2(["<b>FixedRowTwo</b><br/>Bleft2_nonneg<br/>c1t_nonneg<br/>c3t_nonneg"]):::ext
   x3(["<b>StepsRate</b><br/>norm_K_le_pow<br/>rate_upper"]):::ext
-  x4(["<b>StepsBelow</b><br/>K_one"]):::ext
-  x5(["<b>FiniteOffLine</b><br/>order_nonneg"]):::ext
+  x4(["<b>FiniteOffLine</b><br/>order_nonneg"]):::ext
   n0 --> n4
   n1 --> n2
   n1 --> n5
@@ -42,15 +41,14 @@ flowchart LR
   n8 --> n9
   n9 --> n13
   n11 -.-> x3
-  n11 -.-> x4
   n15 -.-> x3
   n9 -.-> x3
   x0 -.-> n5
   x1 -.-> n7
   x2 -.-> n7
   x2 -.-> n8
-  x5 -.-> n15
-  x5 -.-> n16
+  x4 -.-> n15
+  x4 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
