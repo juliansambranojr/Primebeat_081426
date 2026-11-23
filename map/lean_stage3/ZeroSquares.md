@@ -29,8 +29,9 @@ flowchart LR
   n15["<b>strips_le</b><br/>∑ n ∈ Finset.range L, innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 /…"]:::thm
   n16["<b>card_zeros_le</b><br/>Real.pi * δ ^ 2 * (Z.card : ℝ) ≤ 3 * (15 * Real.log T + 73) * ∫ …"]:::thm
   x0(["<b>SquareMean</b><br/>sq_mean_lower"]):::ext
-  x1(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x2(["<b>ZeroDensity</b><br/>zero_density"]):::ext
+  x1(["<b>ZeroSummable</b><br/>order_le_log_pos"]):::ext
+  x2(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x3(["<b>ZeroDensity</b><br/>zero_density"]):::ext
   n0 --> n13
   n1 --> n2
   n10 --> n11
@@ -56,9 +57,10 @@ flowchart LR
   n8 --> n16
   n9 --> n11
   n9 --> n15
-  n16 -.-> x2
+  n12 -.-> x1
+  n16 -.-> x3
   x0 -.-> n11
-  x1 -.-> n13
+  x2 -.-> n13
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -517,9 +519,10 @@ line 203
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ZeroSquares.card_fiber_le`](#ZeroSquares-card_fiber_le) — `` (W.card : ℝ) ≤ 15 * Real.log T + 73 ``
+  - [`ZeroSummable.order_le_log_pos`](../lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos) (ZeroSummable) — `` ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log ((ρ : ℂ).im + 1) + 73 ``
 
 <a name="ZeroSquares-card_fiber_le"></a>
 ### `ZeroSquares.card_fiber_le`

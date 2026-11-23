@@ -5,7 +5,7 @@ WeilBands — the on-line zeros counted by band. Rung 4b, second half, slice A o
 4 theorems, 1 definition, 147 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`JensenCount`](../lean_stage3/JensenCount.md), [`WeilBackground`](../lean_stage3/WeilBackground.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilTiles`](../lean_stage3/WeilTiles.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilTiles`](../lean_stage3/WeilTiles.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)
 
 ## The picture
 
@@ -18,17 +18,19 @@ flowchart LR
   x0(["<b>WeilOnLine</b><br/>sum_low_le"]):::ext
   x1(["<b>WeilPowerBands</b><br/>band_sum_le"]):::ext
   x2(["<b>WeilPowerOnLine</b><br/>sum_low_le"]):::ext
-  x3(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x4(["<b>WeilTiles</b><br/>sum_by_bands"]):::ext
+  x3(["<b>ZeroSummable</b><br/>order_le_log_pos"]):::ext
+  x4(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x5(["<b>WeilTiles</b><br/>sum_by_bands"]):::ext
   n0 --> n3
   n1 --> n2
   n2 --> n3
   n0 -.-> x0
   n0 -.-> x1
   n0 -.-> x2
+  n0 -.-> x3
   n2 -.-> x1
-  n3 -.-> x4
-  x3 -.-> n2
+  n3 -.-> x5
+  x4 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -77,12 +79,13 @@ line 43
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`WeilBands.band_sum_le`](#WeilBands-band_sum_le) — `` ∑ ρ ∈ S, weightedTerm h γ ρ ≤ M * (15 * Real.log T + 73) ``
   - [`WeilOnLine.sum_low_le`](../lean_stage3/WeilOnLine.md#WeilOnLine-sum_low_le) (WeilOnLine) — `` ∑ ρ ∈ S, weightedTerm h γ ρ ≤ 4 * h ^ 2 * lowCount ``
   - [`WeilPowerBands.band_sum_le`](../lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) (WeilPowerBands) — `` ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ M * (15 * Real.log T + 73) ``
   - [`WeilPowerOnLine.sum_low_le`](../lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) (WeilPowerOnLine) — `` ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ 4 * h ^ 2 * lowCount ``
+  - [`ZeroSummable.order_le_log_pos`](../lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos) (ZeroSummable) — `` ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log ((ρ : ℂ).im + 1) + 73 ``
 
 <a name="WeilBands-mem_zetaWindow_of_online"></a>
 ### `WeilBands.mem_zetaWindow_of_online`

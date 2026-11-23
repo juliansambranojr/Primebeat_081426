@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block C6b of `design/carlson.md`: `Stage3/ZeroSummable.lean`
+
+    DONE        `summable_order_div`: for `σ > 1/2` the order over the size is
+                summable over the zeros with `Re ρ ≥ σ`. `summable_norm_coef`:
+                the hypothesis of `LadderMean.line_not_fading_summable`, for
+                any set of zeros with real parts `≥ σ`; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". Written
+                by an Opus worker; read and built here
+    DEPENDS     `ZeroDensity.zero_density`, `Stage3.zeta_local_zero_count`,
+                `WeilOnLine.conjZ`, `WeilBands.order_eq_analyticOrderNatAt`
+    OUT         block C7
+    OUTCOME     proved, unit 0455
+
 ### 2026-11-23 · block C6 of `design/carlson.md`: `Stage3/ZeroDensity.lean`
 
     DONE        `zero_density`: for `1/2 < σ ≤ 1` there are `θ < 1`, `C`, `T₀`

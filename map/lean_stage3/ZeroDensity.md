@@ -5,7 +5,7 @@ ZeroDensity — block C6 of `lean_stage3/design/carlson.md`. 2026-11-23. The zer
 10 theorems, 1 definition, 490 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ZeroSquares`](../lean_stage3/ZeroSquares.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)
 
 ## The picture
 
@@ -20,9 +20,10 @@ flowchart LR
   n6["<b>term4_le</b><br/>T * (X:ℝ) ^ 2 * E ^ 2 * (N:ℝ) ^ (-2 * u) * (1 + (T + 2 + k) ^ k …"]:::shp
   n7["<b>bConst_nonneg</b><br/>0 ≤ bConst δ k"]:::thm
   n8["<b>inner_le</b><br/>∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : …"]:::thm
-  n9["<b>zero_density ■</b><br/>∃ θ C T₀ : ℝ, θ ＜ 1 ∧ 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, …"]:::thm
+  n9["<b>zero_density</b><br/>∃ θ C T₀ : ℝ, θ ＜ 1 ∧ 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, …"]:::thm
   x0(["<b>MollifiedMean</b><br/>mean_sq_f_le"]):::ext
   x1(["<b>ZeroSquares</b><br/>card_zeros_le"]):::ext
+  x2(["<b>ZeroSummable</b><br/>sum_le_const"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n5
@@ -33,6 +34,7 @@ flowchart LR
   n6 --> n8
   n7 --> n9
   n8 --> n9
+  n9 -.-> x2
   x0 -.-> n8
   x1 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -378,5 +380,7 @@ line 361
 
 **Definitions its proof touches:** [`MollifiedMean.f`](../lean_stage3/MollifiedMean.md#MollifiedMean-f), [`ZeroDensity.bConst`](#ZeroDensity-bConst)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`ZeroSummable.sum_le_const`](../lean_stage3/ZeroSummable.md#ZeroSummable-sum_le_const) (ZeroSummable) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
 

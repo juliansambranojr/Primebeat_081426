@@ -34,7 +34,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (501)
+## Uses Lean records that the text does not show (504)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -526,6 +526,9 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`ZeroSquares.innerI_nonneg`](lean_stage3/ZeroSquares.md#ZeroSquares-innerI_nonneg) | [`ZeroSquares.sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG) | def |
 | [`ZeroSquares.innerI_mono`](lean_stage3/ZeroSquares.md#ZeroSquares-innerI_mono) | [`ZeroSquares.sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG) | def |
 | [`ZeroSquares.card_fiber_le`](lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le) | [`Stage3.zetaWindow`](lean_stage3/JensenCount.md#Stage3-zetaWindow) | def |
+| [`ZeroSummable.order_le_log_pos`](lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos) | [`Stage3.zetaWindow`](lean_stage3/JensenCount.md#Stage3-zetaWindow) | def |
+| [`ZeroSummable.summable_order_div`](lean_stage3/ZeroSummable.md#ZeroSummable-summable_order_div) | [`ZeroSummable.w`](lean_stage3/ZeroSummable.md#ZeroSummable-w) | def |
+| [`ZeroSummable.summable_norm_coef`](lean_stage3/ZeroSummable.md#ZeroSummable-summable_norm_coef) | [`ZeroSummable.w`](lean_stage3/ZeroSummable.md#ZeroSummable-w) | def |
 | [`ZetaEM.zeta_eq_em`](lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | [`ZetaEM.emInt`](lean_stage3/ZetaEM.md#ZetaEM-emInt) | def |
 | [`ZetaEM.zeta_eq_em`](lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | [`ZetaEM.emTerm`](lean_stage3/ZetaEM.md#ZetaEM-emTerm) | def |
 | [`ZetaEM.norm_remainder_le`](lean_stage3/ZetaEM.md#ZetaEM-norm_remainder_le) | [`ZetaEM.emInt`](lean_stage3/ZetaEM.md#ZetaEM-emInt) | def |

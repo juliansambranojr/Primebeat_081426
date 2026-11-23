@@ -46,7 +46,7 @@ def · line 122
 The coefficient a zero carries in the cell: its multiplicity over the zero.
 
 - **Is:** `` coef (ρ : Kadiri.NontrivialZeros) : ℂ := (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) ``
-- **Used by 1:** [`LadderMean.line_not_fading_summable`](#LadderMean-line_not_fading_summable)
+- **Used by 3:** [`LadderMean.line_not_fading_summable`](#LadderMean-line_not_fading_summable), [`ZeroSummable.norm_coef`](../lean_stage3/ZeroSummable.md#ZeroSummable-norm_coef), [`ZeroSummable.summable_norm_coef`](../lean_stage3/ZeroSummable.md#ZeroSummable-summable_norm_coef)
 
 <a name="LadderMean-zOf"></a>
 ### `LadderMean.zOf`

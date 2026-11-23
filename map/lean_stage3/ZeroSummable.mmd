@@ -1,0 +1,54 @@
+flowchart LR
+  n0["<b>w_nonneg</b><br/>0 ≤ w ρ"]:::thm
+  n1["<b>mem_nt</b><br/>riemannZeta (ρ : ℂ) = 0 ∧ 0 ＜ (ρ : ℂ).re ∧ (ρ : ℂ).re ＜ 1"]:::thm
+  n2["<b>order_le_log_pos</b><br/>((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log ((ρ : ℂ).i…"]:::thm
+  n3["<b>order_le_log</b><br/>((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log (|(ρ : ℂ).…"]:::thm
+  n4["<b>order_le_shell</b><br/>((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 103 * ((j : ℝ) + 1)"]:::thm
+  n5["<b>card_shell_le</b><br/>(F.card : ℝ) ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ)"]:::thm
+  n6["<b>shell_sum_le</b><br/>∑ ρ ∈ F, w ρ ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) * (103 * ((…"]:::thm
+  n7["<b>shell_bound_le</b><br/>2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) * (103 * ((j : ℝ) + 1) / 2…"]:::shp
+  n8["<b>summable_shell</b><br/>Summable fun j : ℕ =＞ K * (((j : ℝ) + 1) * r ^ j)"]:::shp
+  n9["<b>dyadic_index</b><br/>(2 : ℝ) ^ (Nat.log 2 ⌊x⌋₊) ≤ x ∧ x ＜ 2 ^ (Nat.log 2 ⌊x⌋₊ + 1)"]:::shp
+  n10["<b>sum_le_const</b><br/>∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re)…"]:::thm
+  n11["<b>summable_order_div ■</b><br/>Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri…"]:::thm
+  n12["<b>norm_coef</b><br/>‖LadderMean.coef ρ‖ = w ρ"]:::thm
+  n13["<b>summable_norm_coef ■</b><br/>Summable fun ρ : S =＞ ‖LadderMean.coef ρ‖"]:::thm
+  x0(["<b>FiniteOffLine</b><br/>mem_ZF<br/>order_nonneg"]):::ext
+  x1(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x2(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
+  x3(["<b>ZeroSquares</b><br/>window_mem"]):::ext
+  x4(["<b>WeilOnLine</b><br/>conjZ_injective"]):::ext
+  x5(["<b>ZeroDensity</b><br/>zero_density"]):::ext
+  n0 --> n10
+  n0 --> n11
+  n0 --> n13
+  n1 --> n2
+  n1 --> n5
+  n10 --> n11
+  n10 --> n13
+  n12 --> n13
+  n2 --> n3
+  n3 --> n4
+  n4 --> n6
+  n5 --> n6
+  n6 --> n10
+  n7 --> n10
+  n8 --> n10
+  n9 --> n10
+  x0 -.-> n0
+  x0 -.-> n10
+  x0 -.-> n12
+  x0 -.-> n6
+  x1 -.-> n2
+  x2 -.-> n2
+  x3 -.-> n2
+  x4 -.-> n5
+  x5 -.-> n10
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

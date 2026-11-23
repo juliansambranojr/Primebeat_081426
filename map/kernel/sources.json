@@ -32,7 +32,7 @@
 "lean/ZerosStencil.lean": "fe84abe9e18e69769fdf6bc8adabcf3003e1873b26b2da5bcde050bb153810f3",
 "lean_bridge/Bridge.lean": "5115bb4cf26fa3669bd146e541a4b554d791c1436f491fe55ae016bb4f49b551",
 "lean_bridge/Bridge/WeilBridge.lean": "a13029ef866e746156cbdaadc6bc7bb39062579135000ae851a38fcb1b21abbd",
-"lean_stage3/Stage3.lean": "345637012428ff47cd3f1d1e4c595ec8af8788232e4b4918f2c00e26e8af8893",
+"lean_stage3/Stage3.lean": "e1f9a11b43303c67af87da9c6c05bbd682ebd1b3b06f946c56328933e6d6e12c",
 "lean_stage3/Stage3/Abscissa.lean": "b1138cd0c53500900807af210484e236041b02a19ca843e4c045344a21347402",
 "lean_stage3/Stage3/AliasClass.lean": "eea0bed357b0d170bf39c540161a3e322d8b7008500a3a776e88ca2914069d59",
 "lean_stage3/Stage3/ArgCount.lean": "88da9ed2485e8912465d7a23d0d2615a7eec0d3678a16ab7432c23d0021acded",
@@ -162,6 +162,7 @@
 "lean_stage3/Stage3/ZeroDensity.lean": "d938cb4c87cd6961f0814b0b4bde906923e34c4d81a37397e82ec699c7f404fd",
 "lean_stage3/Stage3/ZeroSquares.lean": "90b63f5210b337a4c8533f9afdf37a2f431615e9f2ad0d41998528da6b52a39c",
 "lean_stage3/Stage3/ZeroSum.lean": "73596e95cd58b167f048d6913203aa76758e5e4b8ea64178d26146ae7a3eb131",
+"lean_stage3/Stage3/ZeroSummable.lean": "196eb668fb558fe9f2530dbd8858e5a60042b774794ed93e4aceb6614fc5fa28",
 "lean_stage3/Stage3/ZetaEM.lean": "fd85e334fce36d9a8fac6963aa0182b9529d73c1af9952e97145a252ed933088",
 "lean_stage3/Stage3/ZetaGrowth.lean": "2488e3337e5ef2f506bd249c654aabb61155979ad0f5f818a3764e03fce01430"
 }

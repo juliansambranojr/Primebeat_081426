@@ -5,7 +5,7 @@ WeilOnLine — the on-line background, all heights. Rung 4b, second half, slice 
 18 theorems, 7 definitions, 340 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilSeries`](../lean_stage3/WeilSeries.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerOnLine`](../lean_stage3/WeilPowerOnLine.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerOnLine`](../lean_stage3/WeilPowerOnLine.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)
 
 ## The picture
 
@@ -31,9 +31,10 @@ flowchart LR
   n17["<b>onLineBound_le ■</b><br/>onLineBound h γ ≤ 2 * (88 * (γ + 3) ^ 4 * (4 * h ^ 2 + cFar / h …"]:::thm
   x0(["<b>WeilBackground</b><br/>online_term_eq<br/>online_term_le_near"]):::ext
   x1(["<b>WeilPowerOnLine</b><br/>sum_low_le<br/>sum_lower_le"]):::ext
-  x2(["<b>WeilSeries</b><br/>6 theorems"]):::ext
-  x3(["<b>WeilTiles</b><br/>sum_le_bandSeries<br/>weightedTerm_nonneg"]):::ext
-  x4(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
+  x2(["<b>ZeroSummable</b><br/>card_shell_le"]):::ext
+  x3(["<b>WeilSeries</b><br/>6 theorems"]):::ext
+  x4(["<b>WeilTiles</b><br/>sum_le_bandSeries<br/>weightedTerm_nonneg"]):::ext
+  x5(["<b>WeilBands</b><br/>order_eq_analyticOrderNatAt"]):::ext
   n0 --> n1
   n1 --> n4
   n11 --> n12
@@ -51,15 +52,16 @@ flowchart LR
   n9 --> n10
   n9 --> n11
   n3 -.-> x1
+  n3 -.-> x2
   n9 -.-> x1
   x0 -.-> n1
   x0 -.-> n11
-  x2 -.-> n16
-  x2 -.-> n5
-  x3 -.-> n14
-  x3 -.-> n15
+  x3 -.-> n16
   x3 -.-> n5
-  x4 -.-> n11
+  x4 -.-> n14
+  x4 -.-> n15
+  x4 -.-> n5
+  x5 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -83,7 +85,7 @@ The conjugate, as a nontrivial zero.
 
 - **Is:** `` conjZ (ρ : Kadiri.NontrivialZeros) : Kadiri.NontrivialZeros := ⟨(starRingEnd ℂ) (ρ : ℂ), conj_mem ρ⟩ ``
 - **Built from:** [`WeilOnLine.conj_mem`](#WeilOnLine-conj_mem)
-- **Used by 5:** [`WeilOnLine.conjZ_injective`](#WeilOnLine-conjZ_injective), [`WeilOnLine.sum_lower_le`](#WeilOnLine-sum_lower_le), [`WeilOnLine.weightedTerm_conjZ`](#WeilOnLine-weightedTerm_conjZ), [`WeilPowerOnLine.sum_lower_le`](../lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le), [`WeilPowerOnLine.weightedTermW_conjZ`](../lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-weightedTermW_conjZ)
+- **Used by 7:** [`WeilOnLine.conjZ_injective`](#WeilOnLine-conjZ_injective), [`WeilOnLine.sum_lower_le`](#WeilOnLine-sum_lower_le), [`WeilOnLine.weightedTerm_conjZ`](#WeilOnLine-weightedTerm_conjZ), [`WeilPowerOnLine.sum_lower_le`](../lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le), [`WeilPowerOnLine.weightedTermW_conjZ`](../lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-weightedTermW_conjZ), [`ZeroSummable.card_shell_le`](../lean_stage3/ZeroSummable.md#ZeroSummable-card_shell_le), [`ZeroSummable.order_le_log`](../lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log)
 
 <a name="WeilOnLine-B"></a>
 ### `WeilOnLine.B`
@@ -257,10 +259,11 @@ Function.Injective conjZ
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`WeilOnLine.sum_lower_le`](#WeilOnLine-sum_lower_le) — `` ∑ ρ ∈ S, weightedTerm h γ ρ ≤ B h γ ``
   - [`WeilPowerOnLine.sum_lower_le`](../lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le) (WeilPowerOnLine) — `` ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ B h γ m ``
+  - [`ZeroSummable.card_shell_le`](../lean_stage3/ZeroSummable.md#ZeroSummable-card_shell_le) (ZeroSummable) — `` (F.card : ℝ) ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) ``
 
 <a name="WeilOnLine-weightedTerm_conjZ"></a>
 ### `WeilOnLine.weightedTerm_conjZ`

@@ -24389,7 +24389,8 @@
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_nonneg",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
-     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
    {
@@ -24420,7 +24421,8 @@
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
-     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log"
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
     ]
    },
    {
@@ -24485,7 +24487,10 @@
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
-     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_nonneg"
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_nonneg",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
     ]
    },
    {
@@ -27413,7 +27418,8 @@
      "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_count",
      "lean_stage3/Stage3/WeilBands.lean::WeilBands.mem_zetaWindow_of_online",
      "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le",
-     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.window_mem"
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.window_mem",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos"
     ]
    },
    {
@@ -27452,7 +27458,8 @@
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaLocalCount_eq",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_count",
-     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le"
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos"
     ]
    },
    {
@@ -27760,7 +27767,8 @@
      "lean_stage3/Stage3/GlueNum.lean::Glue.band_order_sum_le_num",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.localCount_holds",
      "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_count",
-     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le"
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos"
     ]
    },
    {
@@ -28864,7 +28872,9 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef"
     ]
    },
    {
@@ -49415,7 +49425,8 @@
      "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_sum_le",
      "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.sum_low_le",
      "lean_stage3/Stage3/WeilPowerBands.lean::WeilPowerBands.band_sum_le",
-     "lean_stage3/Stage3/WeilPowerOnLine.lean::WeilPowerOnLine.sum_low_le"
+     "lean_stage3/Stage3/WeilPowerOnLine.lean::WeilPowerOnLine.sum_low_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos"
     ]
    },
    {
@@ -52041,7 +52052,9 @@
      "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.sum_lower_le",
      "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.weightedTerm_conjZ",
      "lean_stage3/Stage3/WeilPowerOnLine.lean::WeilPowerOnLine.sum_lower_le",
-     "lean_stage3/Stage3/WeilPowerOnLine.lean::WeilPowerOnLine.weightedTermW_conjZ"
+     "lean_stage3/Stage3/WeilPowerOnLine.lean::WeilPowerOnLine.weightedTermW_conjZ",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.card_shell_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log"
     ]
    },
    {
@@ -52067,7 +52080,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.sum_lower_le",
-     "lean_stage3/Stage3/WeilPowerOnLine.lean::WeilPowerOnLine.sum_lower_le"
+     "lean_stage3/Stage3/WeilPowerOnLine.lean::WeilPowerOnLine.sum_lower_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.card_shell_le"
     ]
    },
    {
@@ -66594,7 +66608,9 @@
      "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
+    ]
    }
   ]
  },
@@ -67136,7 +67152,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le"
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos"
     ]
    },
    {
@@ -67507,6 +67524,510 @@
      "lean_stage3/Stage3/Assembly.lean::Stage3.norm_zeroPartialSum_le_logsq",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ZeroSummable.lean",
+  "module": "Stage3.ZeroSummable",
+  "stem": "ZeroSummable",
+  "header": "ZeroSummable — block C6b of `lean_stage3/design/carlson.md`. 2026-11-23. The zeros of ζ to the right of a line `Re s = σ > 1/2` have summable weights `m(ρ)/|ρ|`. A zero in the shell `2^j ≤ |Im ρ| < 2^(j+1)` has order at most `103·(j + 1)` (the local count of `Stage3.zeta_local_zero_count`, with conjugation for the lower half plane) and modulus at least `2^j`. `ZeroDensity.zero_density` at height `2^(j+1) + 2`, applied to the upper half and to the conjugates of the lower half, bounds the number of zeros in the shell…",
+  "imports": [
+   "Stage3.ZeroDensity",
+   "Stage3.FiniteOffLine",
+   "Stage3.WeilOnLine",
+   "Stage3.WeilBands"
+  ],
+  "opens": [
+   "Kadiri"
+  ],
+  "namespaces": [
+   "ZeroSummable"
+  ],
+  "lines": 402,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/FiniteOffLine.lean",
+   "lean_stage3/Stage3/WeilBands.lean",
+   "lean_stage3/Stage3/WeilOnLine.lean",
+   "lean_stage3/Stage3/ZeroDensity.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "w",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.w",
+    "line": 48,
+    "why": "The weight of a nontrivial zero: its order over its modulus.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_nonneg",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.w_nonneg",
+    "line": 52,
+    "why": "The weight `w ρ` of a nontrivial zero is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "0 ≤ w ρ",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mem_nt",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.mem_nt",
+    "line": 56,
+    "why": "A nontrivial zero is a zero of ζ with real part strictly between zero and one.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "riemannZeta (ρ : ℂ) = 0 ∧ 0 < (ρ : ℂ).re ∧ (ρ : ℂ).re < 1",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.mem_nt",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.card_shell_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "order_le_log_pos",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.order_le_log_pos",
+    "line": 66,
+    "why": "A nontrivial zero with real part above `1/2` and imaginary part at least two has order at most `15·log(Im ρ + 1) + 73`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h1 : 1 / 2 < (ρ : ℂ).re",
+     "h2 : 2 ≤ (ρ : ℂ).im"
+    ],
+    "proves": "((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log ((ρ : ℂ).im + 1) + 73",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow_finite",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
+     "lean_stage3/Stage3/WeilBands.lean::WeilBands.order_eq_analyticOrderNatAt",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.window_mem",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.mem_nt"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow_finite",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
+     "lean_stage3/Stage3/WeilBands.lean::WeilBands.order_eq_analyticOrderNatAt",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.window_mem",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.mem_nt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "order_le_log",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.order_le_log",
+    "line": 90,
+    "why": "A nontrivial zero with real part above `1/2` and `|Im ρ| ≥ 2` has order at most `15·log(|Im ρ| + 1) + 73`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h1 : 1 / 2 < (ρ : ℂ).re",
+     "h2 : 2 ≤ |(ρ : ℂ).im|"
+    ],
+    "proves": "((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log (|(ρ : ℂ).im| + 1) + 73",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conjZ",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conjZ",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log_pos"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_shell"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "order_le_shell",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.order_le_shell",
+    "line": 113,
+    "why": "A nontrivial zero with real part above `1/2` in the shell `2^j ≤ |Im ρ| < 2^(j+1)`, `j ≥ 1`, has order at most `103·(j + 1)`.",
+    "sorry": false,
+    "needs": [
+     "hj : 1 ≤ j",
+     "ρ : NontrivialZeros",
+     "h1 : 1 / 2 < (ρ : ℂ).re",
+     "hlo : (2 : ℝ) ^ j ≤ |(ρ : ℂ).im|",
+     "hhi : |(ρ : ℂ).im| < 2 ^ (j + 1)"
+    ],
+    "proves": "((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 103 * ((j : ℝ) + 1)",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_shell",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_log"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_shell_le",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.card_shell_le",
+    "line": 138,
+    "why": "Given the zero-density bound at all heights from `T₀`, a finite set of nontrivial zeros with `Re ρ ≥ σ` in the shell `2^j ≤ |Im ρ| < 2^(j+1)`, `j ≥ 1`, `2^(j+1) + 2 ≥ T₀`, has at most `2·C·(2^(j+1) + 2)^θ` elements.",
+    "sorry": false,
+    "needs": [
+     "hd : ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, (∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re < 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2) → (Z.card : ℝ) ≤ C * T ^ θ",
+     "hj : 1 ≤ j",
+     "hT : T₀ ≤ (2 : ℝ) ^ (j + 1) + 2",
+     "F : Finset NontrivialZeros",
+     "hF : ∀ ρ ∈ F, σ ≤ (ρ : ℂ).re ∧ (2 : ℝ) ^ j ≤ |(ρ : ℂ).im| ∧ |(ρ : ℂ).im| < 2 ^ (j + 1)"
+    ],
+    "proves": "(F.card : ℝ) ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ)",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.card_shell_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conjZ",
+     "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conjZ_injective",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.mem_nt"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conjZ",
+     "lean_stage3/Stage3/WeilOnLine.lean::WeilOnLine.conjZ_injective",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.mem_nt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "shell_sum_le",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.shell_sum_le",
+    "line": 194,
+    "why": "Under the same hypotheses, with `σ > 1/2`, the weights over a finite set of zeros in the shell `2^j ≤ |Im ρ| < 2^(j+1)` sum to at most `2·C·(2^(j+1) + 2)^θ·103·(j + 1)/2^j`.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 / 2 < σ",
+     "hd : ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, (∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re < 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2) → (Z.card : ℝ) ≤ C * T ^ θ",
+     "hj : 1 ≤ j",
+     "hT : T₀ ≤ (2 : ℝ) ^ (j + 1) + 2",
+     "F : Finset NontrivialZeros",
+     "hF : ∀ ρ ∈ F, σ ≤ (ρ : ℂ).re ∧ (2 : ℝ) ^ j ≤ |(ρ : ℂ).im| ∧ |(ρ : ℂ).im| < 2 ^ (j + 1)"
+    ],
+    "proves": "∑ ρ ∈ F, w ρ ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) * (103 * ((j : ℝ) + 1) / 2 ^ j)",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.card_shell_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_shell"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.card_shell_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.order_le_shell",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "shell_bound_le",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.shell_bound_le",
+    "line": 219,
+    "why": "For `C ≥ 0` the shell bound `2·C·(2^(j+1) + 2)^θ·103·(j + 1)/2^j` is at most `206·C·4^θ'·(j + 1)·(2^θ'/2)^j` with `θ' = max θ 0`.",
+    "sorry": false,
+    "needs": [
+     "hC : 0 ≤ C",
+     "j : ℕ"
+    ],
+    "proves": "2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) * (103 * ((j : ℝ) + 1) / 2 ^ j) ≤ 206 * C * (4 : ℝ) ^ (max θ 0) * (((j : ℝ) + 1) * ((2 : ℝ) ^ (max θ 0) / 2) ^ j)",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_bound_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_shell",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.summable_shell",
+    "line": 250,
+    "why": "For `0 ≤ r < 1` and any constant `K`, the series `Σ_j K·(j + 1)·r^j` converges.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 ≤ r",
+     "h1 : r < 1",
+     "K : ℝ"
+    ],
+    "proves": "Summable fun j : ℕ => K * (((j : ℝ) + 1) * r ^ j)",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_shell",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dyadic_index",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.dyadic_index",
+    "line": 261,
+    "why": "For `x ≥ 1` the index `k = Nat.log 2 ⌊x⌋₊` satisfies `2^k ≤ x < 2^(k+1)`.",
+    "sorry": false,
+    "needs": [
+     "hx : 1 ≤ x"
+    ],
+    "proves": "(2 : ℝ) ^ (Nat.log 2 ⌊x⌋₊) ≤ x ∧ x < 2 ^ (Nat.log 2 ⌊x⌋₊ + 1)",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.dyadic_index",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_le_const",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.sum_le_const",
+    "line": 278,
+    "why": "For `1/2 < σ ≤ 1` there is one constant bounding the sum of the weights `m(ρ)/|ρ|` over every finite set of nontrivial zeros with `Re ρ ≥ σ`.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 / 2 < σ",
+     "hσ1 : σ ≤ 1"
+    ],
+    "proves": "∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.dyadic_index",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_bound_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_shell",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.dyadic_index",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_bound_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.shell_sum_le",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_shell",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_order_div",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.summable_order_div",
+    "line": 348,
+    "why": "The zeros right of a line have summable weights. For `σ > 1/2` the weights `m(ρ)/|ρ|` of the nontrivial zeros of ζ with `Re ρ ≥ σ` form a summable family.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 / 2 < σ"
+    ],
+    "proves": "Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.NontrivialZeros) : ℂ).re} => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℝ) / ‖((ρ : Kadiri.NontrivialZeros) : ℂ)‖",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_order_div",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_coef",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.norm_coef",
+    "line": 363,
+    "why": "The norm of the cell coefficient `LadderMean.coef ρ` is the weight `m(ρ)/|ρ|`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖LadderMean.coef ρ‖ = w ρ",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
+    "stmt": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "summable_norm_coef",
+    "ns": "ZeroSummable",
+    "full": "ZeroSummable.summable_norm_coef",
+    "line": 372,
+    "why": "For `σ > 1/2` and any set `S` of nontrivial zeros all with `Re ρ ≥ σ`, the norms of the cell coefficients `‖LadderMean.coef ρ‖` are summable over `S`.",
+    "sorry": false,
+    "needs": [
+     "S : Set NontrivialZeros",
+     "hσ : 1 / 2 < σ",
+     "hS : ∀ ρ ∈ S, σ ≤ (ρ : ℂ).re"
+    ],
+    "proves": "Summable fun ρ : S => ‖LadderMean.coef ρ‖",
+    "file": "lean_stage3/Stage3/ZeroSummable.lean",
+    "id": "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef",
+    "stmt": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/LadderMean.lean::LadderMean.coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.norm_coef",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.sum_le_const",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w",
+     "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.w_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -69189,11 +69710,12 @@
    "Stage3.MollifiedMean",
    "Stage3.SquareMean",
    "Stage3.ZeroSquares",
-   "Stage3.ZeroDensity"
+   "Stage3.ZeroDensity",
+   "Stage3.ZeroSummable"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 163,
+  "lines": 164,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -69313,6 +69835,7 @@
    "lean_stage3/Stage3/ZeroDensity.lean",
    "lean_stage3/Stage3/ZeroSquares.lean",
    "lean_stage3/Stage3/ZeroSum.lean",
+   "lean_stage3/Stage3/ZeroSummable.lean",
    "lean_stage3/Stage3/ZetaEM.lean",
    "lean_stage3/Stage3/ZetaGrowth.lean"
   ],
