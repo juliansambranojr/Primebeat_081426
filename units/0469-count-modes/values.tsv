@@ -1,0 +1,20 @@
+key	value	source
+module_lines	512	wc -l lean_stage3/Stage3/CountModes.lean
+theorems_proved	29	grep -c ^theorem lean_stage3/Stage3/CountModes.lean
+defs	2	J, cst
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/CountModes.lean
+pins	4	im_ne_zero, J_sub, piMode_doubling, norm_cst_le
+errors_first	7	the worker's report: about this many errors across the first builds of its parts
+builds	9	the worker's real compiles, as it reported, about this many
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8859	lake build (full Stage3), Build completed successfully
+jobs_module	8793	run/build.log, lake build Stage3.CountModes
+loop_version	22	lean_stage3/LOOP.md version line
+design	countmodes.md#n1	the count's ladder in modes
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+cst_numeral	4	norm_cst_le
+first_row	1	the hypothesis 1 ≤ k
+unit_filters_first	466	unit 0466
+unit_filters_last	468	unit 0468

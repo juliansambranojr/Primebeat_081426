@@ -34,6 +34,7 @@ below with their outcome.
     DEPENDS     `PiZeros.piMode`, `FiniteOffLinePi.piMode_eq`, PNT+
                 `Zeta0EqZeta`
     OUT         blocks N2, N3-E; the forms with slits
+    OUTCOME     proved, unit 0469
 
 ### 2026-11-23 · design `design/countmodes.md`, blocks N1 to N3: joint 10 on the count's ladder
 

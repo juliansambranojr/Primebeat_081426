@@ -5,7 +5,7 @@ FiniteOffLinePi — block J10e of `lean_stage3/design/joints.md`. 2026-11-23. Th
 13 theorems, 3 definitions, 631 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellModes`](../lean_stage3/CellModes.md), [`LadderFading`](../lean_stage3/LadderFading.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`PiRemainder`](../lean_stage3/PiRemainder.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md), [`FilterLadder`](../lean_stage3/FilterLadder.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`AttainedPi`](../lean_stage3/AttainedPi.md), [`CountModes`](../lean_stage3/CountModes.md), [`FilterLadder`](../lean_stage3/FilterLadder.md)
 
 ## The picture
 

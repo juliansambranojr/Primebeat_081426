@@ -165,6 +165,7 @@ import Stage3.FixedRowTwo
 import Stage3.FilterLadder
 import Stage3.FilterAttained
 import Stage3.FilterAccum
+import Stage3.CountModes
 
 namespace Stage3
 

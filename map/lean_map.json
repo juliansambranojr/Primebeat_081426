@@ -23466,6 +23466,923 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CountModes.lean",
+  "module": "Stage3.CountModes",
+  "stem": "CountModes",
+  "header": "CountModes — block N1 of `lean_stage3/design/countmodes.md`, as corrected in its section \"After the independent check\". 2026-11-23.",
+  "imports": [
+   "Stage3.FiniteOffLinePi"
+  ],
+  "opens": [
+   "Kadiri",
+   "MeasureTheory"
+  ],
+  "namespaces": [
+   "CountModes"
+  ],
+  "lines": 513,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FiniteOffLinePi.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "norm_tail_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_tail_le",
+    "line": 39,
+    "why": "On the real interval `(0, 1)` the Euler–Maclaurin tail of `ζ` at `N = 1` is at most `1/(2b)` in size.",
+    "sorry": false,
+    "needs": [
+     "hb : 0 < b"
+    ],
+    "proves": "‖∫ x in Set.Ioi ((1 : ℕ) : ℝ), ((⌊x⌋ : ℂ) + 1 / 2 - (x : ℂ)) / (x : ℂ) ^ ((b : ℂ) + 1)‖ ≤ 1 / (2 * b)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_tail_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.riemannZeta_ne_zero_of_Ioo"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "riemannZeta_ne_zero_of_Ioo",
+    "ns": "CountModes",
+    "full": "CountModes.riemannZeta_ne_zero_of_Ioo",
+    "line": 85,
+    "why": "`ζ` has no zero on the real interval `(0, 1)`. By the Euler–Maclaurin form at `N = 1`, `ζ(b) = 1/2 − 1/(1 − b) + b·I` with `|b·I| ≤ 1/2`, while `|1/2 − 1/(1 − b)| > 1/2`.",
+    "sorry": false,
+    "needs": [
+     "hb0 : 0 < b",
+     "hb1 : b < 1"
+    ],
+    "proves": "riemannZeta (b : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.riemannZeta_ne_zero_of_Ioo",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_tail_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_tail_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_ne_zero",
+    "ns": "CountModes",
+    "full": "CountModes.im_ne_zero",
+    "line": 125,
+    "why": "No nontrivial zero of ζ is real. A zero with imaginary part `0` would be a zero of `ζ` on the real interval `(0, 1)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "(ρ : ℂ).im ≠ 0",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.riemannZeta_ne_zero_of_Ioo"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.riemannZeta_ne_zero_of_Ioo"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "J",
+    "ns": "CountModes",
+    "full": "CountModes.J",
+    "line": 140,
+    "why": "The segment integral of one zero on the count's ladder: `J_k(w) = ∫₀^∞ e^(k(w−s))/(w − s) ds`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_eq_segment",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sub_ofReal_ne_zero",
+    "ns": "CountModes",
+    "full": "CountModes.sub_ofReal_ne_zero",
+    "line": 144,
+    "why": "For `Im w ≠ 0`, the point `w − s` is never zero for real `s`.",
+    "sorry": false,
+    "needs": [
+     "hw : w.im ≠ 0",
+     "s : ℝ"
+    ],
+    "proves": "w - (s : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuous_integrand",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrand_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_integrand",
+    "ns": "CountModes",
+    "full": "CountModes.continuous_integrand",
+    "line": 151,
+    "why": "For `Im w ≠ 0`, the integrand of `J k w` is continuous in `s`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "Continuous (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.continuous_integrand",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_integrand_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_integrand_le",
+    "line": 156,
+    "why": "The size of the integrand of `J k w`: at most `e^(k·Re w)/|Im w|·e^(−ks)`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hw : w.im ≠ 0",
+     "s : ℝ"
+    ],
+    "proves": "‖Complex.exp ((k:ℂ) * (w - s)) / (w - s)‖ ≤ Real.exp (k * w.re) / |w.im| * Real.exp (-k * s)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_exp_neg_mul",
+    "ns": "CountModes",
+    "full": "CountModes.integral_exp_neg_mul",
+    "line": 173,
+    "why": "The real exponential `e^(−ks)` integrates to `1/k` over `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hk : 0 < k"
+    ],
+    "proves": "∫ s in Set.Ioi (0:ℝ), Real.exp (-k * s) = 1 / k",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integral_exp_neg_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_J",
+    "ns": "CountModes",
+    "full": "CountModes.integrable_J",
+    "line": 179,
+    "why": "For `1 ≤ k` and `Im w ≠ 0` the integrand of `J k w` is integrable on `s > 0`.",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "IntegrableOn (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s)) (Set.Ioi 0)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuous_integrand",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuous_integrand",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_J_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_J_le",
+    "line": 189,
+    "why": "The size of the segment integral. For `1 ≤ k` and `Im w ≠ 0`, `‖J k w‖ ≤ e^(k·Re w)/(k·|Im w|)`.",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "‖J k w‖ ≤ Real.exp (k * w.re) / (k * |w.im|)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_exp_neg_mul",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_exp_neg_mul",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_integrand_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrand_sub",
+    "ns": "CountModes",
+    "full": "CountModes.integrand_sub",
+    "line": 204,
+    "why": "For `s` real and `Im w ≠ 0`, the difference of the integrands of `J k w` and `J 1 w` at `s` is `∫₁ᵏ e^((w−s)v) dv`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hw : w.im ≠ 0",
+     "s : ℝ"
+    ],
+    "proves": "Complex.exp ((k:ℂ) * (w - s)) / (w - s) - Complex.exp (((1:ℕ):ℂ) * (w - s)) / (w - s) = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((w - s) * v)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integrand_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.sub_ofReal_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_inner",
+    "ns": "CountModes",
+    "full": "CountModes.integral_inner",
+    "line": 211,
+    "why": "For `v > 0`, `∫₀^∞ e^((w−s)v) ds = e^(vw)/v`.",
+    "sorry": false,
+    "needs": [
+     "hv : 0 < v"
+    ],
+    "proves": "∫ s in Set.Ioi (0:ℝ), Complex.exp ((w - s) * v) = Complex.exp ((v:ℂ) * w) / (v:ℂ)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integral_inner",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integrable_prod",
+    "ns": "CountModes",
+    "full": "CountModes.integrable_prod",
+    "line": 227,
+    "why": "For `1 ≤ k`, the function `(s, v) ↦ e^((w−s)v)` is integrable on `(0, ∞) × (1, k]`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "Integrable (Function.uncurry fun (s v : ℝ) => Complex.exp ((w - s) * v)) ((volume.restrict (Set.Ioi (0:ℝ))).prod (volume.restrict (Set.Ioc (1:ℝ) k)))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_prod",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "J_sub",
+    "ns": "CountModes",
+    "full": "CountModes.J_sub",
+    "line": 261,
+    "why": "The difference of two segment integrals. For `1 ≤ k` and `Im w ≠ 0`, `J k w − J 1 w = ∫₁ᵏ e^(vw)/v dv`. By Fubini: the difference of the integrands is `∫₁ᵏ e^((w−s)v) dv`, and `∫₀^∞ e^((w−s)v) ds = e^(vw)/v`.",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k",
+     "hw : w.im ≠ 0"
+    ],
+    "proves": "J k w - J 1 w = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * w) / (v:ℂ)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_prod",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_inner",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrand_sub"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrable_prod",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integral_inner",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.integrand_sub"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cpow_two_rpow",
+    "ns": "CountModes",
+    "full": "CountModes.cpow_two_rpow",
+    "line": 279,
+    "why": "The complex power `ρ` of the real `2^v` is `e^(v·ρ·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "v : ℝ",
+     "ρ : ℂ"
+    ],
+    "proves": "(((2:ℝ) ^ v : ℝ) : ℂ) ^ ρ = Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ)))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.term1_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term1_eq",
+    "ns": "CountModes",
+    "full": "CountModes.term1_eq",
+    "line": 290,
+    "why": "The first term of `piMode ρ (2^v)` is `e^(vw)/(vw)`, with `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "v : ℝ",
+     "ρ : ℂ"
+    ],
+    "proves": "(((2:ℝ) ^ v : ℝ) : ℂ) ^ ρ / ρ / (Real.log ((2:ℝ) ^ v) : ℂ) = Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ))) / ((v:ℂ) * (ρ * (Real.log 2 : ℂ)))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.term1_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_integrand",
+    "ns": "CountModes",
+    "full": "CountModes.continuousOn_integrand",
+    "line": 299,
+    "why": "The integrand of `piMode` is continuous on `t > 1`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "ContinuousOn (fun t : ℝ => (t : ℂ) ^ ρ / ρ * PiZeros.wt t) (Set.Ioi 1)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.continuousOn_integrand",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_ipart",
+    "ns": "CountModes",
+    "full": "CountModes.hasDerivAt_ipart",
+    "line": 313,
+    "why": "The derivative of the integral part of `piMode ρ` at `y > 1` is the integrand.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ",
+     "hy : 1 < y"
+    ],
+    "proves": "HasDerivAt (fun u => ∫ t in (2:ℝ)..u, (t : ℂ) ^ ρ / ρ * PiZeros.wt t) ((y : ℂ) ^ ρ / ρ * PiZeros.wt y) y",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuousOn_integrand",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuousOn_integrand",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_term1",
+    "ns": "CountModes",
+    "full": "CountModes.hasDerivAt_term1",
+    "line": 328,
+    "why": "The derivative of `e^(uw)/(uw)` at `u ≠ 0`, for `w ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hw : w ≠ 0",
+     "hv : v ≠ 0"
+    ],
+    "proves": "HasDerivAt (fun u : ℝ => Complex.exp ((u:ℂ) * w) / ((u:ℂ) * w)) ((Complex.exp ((v:ℂ) * w) * w * ((v:ℂ) * w) - Complex.exp ((v:ℂ) * w) * w) / ((v:ℂ) * w) ^ 2) v",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_term1",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_piMode_two_rpow",
+    "ns": "CountModes",
+    "full": "CountModes.hasDerivAt_piMode_two_rpow",
+    "line": 342,
+    "why": "The derivative of one zero's part along the doublings. For `v > 0` and `ρ ≠ 0`, `v ↦ piMode ρ (2^v)` has derivative `e^(vw)/v`, `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "hρ : ρ ≠ 0",
+     "hv : 0 < v"
+    ],
+    "proves": "HasDerivAt (fun u : ℝ => PiZeros.piMode ρ ((2:ℝ) ^ u)) (Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ))) / (v:ℂ)) v",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_term1",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.term1_eq",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cpow_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_term1",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.term1_eq",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "piMode_doubling_sub_of",
+    "ns": "CountModes",
+    "full": "CountModes.piMode_doubling_sub_of",
+    "line": 378,
+    "why": "One zero's part of the count between two doublings. For `ρ ≠ 0` and `1 ≤ k`, `piMode ρ (2^k) − piMode ρ 2 = ∫₁ᵏ e^(vw)/v dv`, `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "hρ : ρ ≠ 0",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "PiZeros.piMode ρ ((2:ℝ) ^ k) - PiZeros.piMode ρ 2 = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * (ρ * Real.log 2)) / (v:ℂ)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "piMode_doubling_sub",
+    "ns": "CountModes",
+    "full": "CountModes.piMode_doubling_sub",
+    "line": 401,
+    "why": "One zero's part of the count between two doublings, for a nontrivial zero: `piMode ρ (2^k) − piMode ρ 2 = ∫₁ᵏ e^(vw)/v dv`, `w = ρ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "k : ℕ",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "PiZeros.piMode (ρ:ℂ) ((2:ℝ) ^ k) - PiZeros.piMode (ρ:ℂ) 2 = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * ((ρ:ℂ) * Real.log 2)) / (v:ℂ)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "im_w",
+    "ns": "CountModes",
+    "full": "CountModes.im_w",
+    "line": 414,
+    "why": "The imaginary part of `w = ρ·log 2` is `γ·log 2`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "(ρ * (Real.log 2 : ℂ)).im = ρ.im * Real.log 2",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.im_w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "re_w",
+    "ns": "CountModes",
+    "full": "CountModes.re_w",
+    "line": 419,
+    "why": "The real part of `w = ρ·log 2` is `β·log 2`.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ"
+    ],
+    "proves": "(ρ * (Real.log 2 : ℂ)).re = ρ.re * Real.log 2",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.re_w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_im_ne_zero",
+    "ns": "CountModes",
+    "full": "CountModes.w_im_ne_zero",
+    "line": 424,
+    "why": "For a nontrivial zero, `w = ρ·log 2` is not real.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "cst",
+    "ns": "CountModes",
+    "full": "CountModes.cst",
+    "line": 429,
+    "why": "The constant of one zero's part on the count's ladder: `piMode ρ 2 − J_1(w)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "piMode_doubling",
+    "ns": "CountModes",
+    "full": "CountModes.piMode_doubling",
+    "line": 433,
+    "why": "One zero's part on the count's ladder is a segment plus a constant. For a nontrivial zero and `1 ≤ k`, `piMode ρ (2^k) = J_k(ρ·log 2) + cst ρ`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst ρ",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_J_doubling_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_J_doubling_le",
+    "line": 446,
+    "why": "The size of a zero's segment on the count's ladder. For `1 ≤ k`, `‖J_k(ρ·log 2)‖ ≤ 2^(kβ)/(k·|γ|·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(ρ:ℂ).im| * Real.log 2))",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.re_w",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_w",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.re_w",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.w_im_ne_zero"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_piMode_two_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_piMode_two_le",
+    "line": 457,
+    "why": "The value of one zero's part at `2`: `‖piMode ρ 2‖ ≤ 2/(|γ|·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_cst_le",
+    "ns": "CountModes",
+    "full": "CountModes.norm_cst_le",
+    "line": 473,
+    "why": "The size of the constant. `‖cst ρ‖ ≤ 4/(|γ|·log 2)`: each of `piMode ρ 2` and `J_1(ρ·log 2)` is at most `2^β/(|γ|·log 2) ≤ 2/(|γ|·log 2)`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.im_ne_zero",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_J_doubling_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "J_eq_segment",
+    "ns": "CountModes",
+    "full": "CountModes.J_eq_segment",
+    "line": 500,
+    "why": "The segment form. `J_k(w) = ∫₀^∞ (e^w·e^(−s))^k/(w − s) ds`: the integrand is the pure mode `z·e^(−s)`, `z = e^w`, raised to the `k`-th power, with density `1/(w − s)`. It holds for every `k` and `w`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "w : ℂ"
+    ],
+    "proves": "J k w = ∫ s in Set.Ioi (0:ℝ), (Complex.exp w * Real.exp (-s)) ^ k / (w - s)",
+    "file": "lean_stage3/Stage3/CountModes.lean",
+    "id": "lean_stage3/Stage3/CountModes.lean::CountModes.J_eq_segment",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountModes.lean::CountModes.J"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/DirichletMean.lean",
   "module": "Stage3.DirichletMean",
   "stem": "DirichletMean",
@@ -46019,6 +46936,9 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_ipart_le_of_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.continuousOn_integrand",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_ipart",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_integrand",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
@@ -46068,6 +46988,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.pi_fixed_row_two",
@@ -46320,6 +47242,13 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_band",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_le",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_log_piMode_low",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.cst",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.hasDerivAt_piMode_two_rpow",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_cst_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.norm_piMode_two_le",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub",
+     "lean_stage3/Stage3/CountModes.lean::CountModes.piMode_doubling_sub_of",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_half",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
@@ -77898,11 +78827,12 @@
    "Stage3.FixedRowTwo",
    "Stage3.FilterLadder",
    "Stage3.FilterAttained",
-   "Stage3.FilterAccum"
+   "Stage3.FilterAccum",
+   "Stage3.CountModes"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 176,
+  "lines": 177,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -77924,6 +78854,7 @@
    "lean_stage3/Stage3/CellRows.lean",
    "lean_stage3/Stage3/CellZeros.lean",
    "lean_stage3/Stage3/ContourShift.lean",
+   "lean_stage3/Stage3/CountModes.lean",
    "lean_stage3/Stage3/DirichletMean.lean",
    "lean_stage3/Stage3/DirichletMeanW.lean",
    "lean_stage3/Stage3/EdgeBound.lean",

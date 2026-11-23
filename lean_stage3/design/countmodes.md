@@ -134,3 +134,18 @@ Euler-exposed ⊂ sector-exposed ⊂ N3′. The Euler form is elementary: no
 complex analysis.
 
 **Order of building.** N1, N2, N3-E.
+
+## N1 The count's ladder in modes — PROVED (unit 0469: `CountModes.piMode_doubling`, `J_sub`, `J_eq_segment`, `norm_J_doubling_le`, `norm_cst_le`, `im_ne_zero`)
+
+The statement is the corrected N1 above. `im_ne_zero` is by PNT+
+`Zeta0EqZeta` at `N = 1` and a bound `1/(2b)` on its tail integral.
+`piMode_doubling_sub` is by differentiating `v ↦ piMode ρ (2^v)`; it needs
+only `ρ ≠ 0`.
+
+## N2 The reduction with a power saving — `Stage3/CountReduction.lean`
+
+The corrected N2 above: `tail_rate`, `summable_J`, `count_modes_small`.
+
+## N3-E No mode outside a disc holding the others — `Stage3/CountEuler.lean`
+
+The statement N3-E above.
