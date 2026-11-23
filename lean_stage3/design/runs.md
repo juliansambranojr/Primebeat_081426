@@ -117,3 +117,23 @@ No factor is lost at a step: the constant is the same at every `N`.
 What this leaves: `WobbleSqrt` itself. It is a statement about the fractional
 parts of `N/d` over the squarefree `d` built from the primes up to `√N`,
 measured from one half, less `smoothNet`.
+
+## R7 The number line bounded by itself — `Stage3/SelfBound.lean`
+
+Julian: the table holds because it is bounded by itself. The exact form.
+`log n = Σ_{d | n} Λ(d)` (`ArithmeticFunction.vonMangoldt_sum`). Summed over
+`n ≤ N`, each step `Λ(d)` is counted `⌊N/d⌋` times, and
+`Σ_{d≤N} Λ(d)·⌊N/d⌋ = Σ_{k≤N} ψ(N/k)`. So at every `N`
+
+    Σ_{k≤N} ψ(N/k) = Σ_{n≤N} log n,
+    Σ_{k≤N} (ψ(N/k) − N/k) = Σ_{n≤N} log n − N·Σ_{k≤N} 1/k.
+
+The right side has no prime in it. The residuals at the scales `N, N/2, N/3, …`
+are tied: an excess at one is paid back at the others.
+
+What it does not give alone: a bound at one scale. Solving for `ψ(N) − N`
+from the tie takes the Möbius signs, `ψ(N) = Σ_k μ(k)·T(N/k)`,
+`T(y) = Σ_{n≤y} log n`, and the size of that sum is the size of the sums of
+the Möbius signs. The same step as `HalfSieve.WobbleSqrt`: the Pascal signs
+cancel the half of each rounding exactly (R6), and the part of each rounding
+away from the half is weighed by the same signs.

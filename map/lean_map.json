@@ -54626,6 +54626,162 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SelfBound.lean",
+  "module": "Stage3.SelfBound",
+  "stem": "SelfBound",
+  "header": "SelfBound — block R7 of `lean_stage3/design/runs.md`. 2026-11-23. The number line bounded by itself. Every integer's logarithm is the sum of the steps at its divisors, so the staircase of the steps, read at `N`, `N/2`, `N/3`, …, adds up to the logarithms of the integers up to `N`, exactly, at every `N`. An excess of the staircase at one of these scales is paid back at the others.",
+  "imports": [
+   "Stage3.HalfSieve"
+  ],
+  "opens": [
+   "ArithmeticFunction",
+   "Finset"
+  ],
+  "namespaces": [
+   "SelfBound"
+  ],
+  "lines": 118,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/HalfSieve.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "log_sum_eq",
+    "ns": "SelfBound",
+    "full": "SelfBound.log_sum_eq",
+    "line": 25,
+    "why": "Every logarithm is the steps at its divisors. Summed up to `N`, each step `Λ(d)` is counted once for every multiple of `d` up to `N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "∑ n ∈ Icc 1 N, Real.log (n : ℝ) = ∑ d ∈ Icc 1 N, vonMangoldt d * ((N / d : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/SelfBound.lean",
+    "id": "lean_stage3/Stage3/SelfBound.lean::SelfBound.log_sum_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "psi_scale",
+    "ns": "SelfBound",
+    "full": "SelfBound.psi_scale",
+    "line": 46,
+    "why": "The staircase at the scale `N/k`, as a sum over the steps up to `N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hk : 1 ≤ k"
+    ],
+    "proves": "Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ d ∈ Icc 1 N, if d * k ≤ N then vonMangoldt d else 0",
+    "file": "lean_stage3/Stage3/SelfBound.lean",
+    "id": "lean_stage3/Stage3/SelfBound.lean::SelfBound.psi_scale",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_scales",
+    "ns": "SelfBound",
+    "full": "SelfBound.card_scales",
+    "line": 63,
+    "why": "The number of `k` from `1` to `N` with `d·k ≤ N` is `⌊N/d⌋`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hd : 1 ≤ d"
+    ],
+    "proves": "((Icc 1 N).filter fun k => d * k ≤ N).card = N / d",
+    "file": "lean_stage3/Stage3/SelfBound.lean",
+    "id": "lean_stage3/Stage3/SelfBound.lean::SelfBound.card_scales",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "self_bound",
+    "ns": "SelfBound",
+    "full": "SelfBound.self_bound",
+    "line": 82,
+    "why": "The number line bounded by itself. The staircase of the steps read at `N`, `N/2`, …, `N/N` adds up to the logarithms of the integers up to `N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "∑ k ∈ Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log (n : ℝ)",
+    "file": "lean_stage3/Stage3/SelfBound.lean",
+    "id": "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.card_scales",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.log_sum_eq",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.psi_scale"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.card_scales",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.log_sum_eq",
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.psi_scale"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound_resid"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "self_bound_resid",
+    "ns": "SelfBound",
+    "full": "SelfBound.self_bound_resid",
+    "line": 97,
+    "why": "The residuals across the scales. The residuals of the staircase at `N`, `N/2`, …, `N/N` add up to the logarithms of the integers up to `N` less `N` times the harmonic sum: a quantity with no prime in it.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "∑ k ∈ Icc 1 N, (Chebyshev.psi ((N : ℝ) / (k : ℝ)) - (N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log (n : ℝ) - (N : ℝ) * ∑ k ∈ Icc 1 N, 1 / (k : ℝ)",
+    "file": "lean_stage3/Stage3/SelfBound.lean",
+    "id": "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound_resid",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.self_bound"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/SieveExact.lean",
   "module": "Stage3.SieveExact",
   "stem": "SieveExact",
@@ -54816,6 +54972,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/SelfBound.lean::SelfBound.log_sum_eq",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum"
     ]
    },
@@ -85813,11 +85970,12 @@
    "Stage3.SieveResidual",
    "Stage3.StepsPole",
    "Stage3.StepsPeak",
-   "Stage3.HalfSieve"
+   "Stage3.HalfSieve",
+   "Stage3.SelfBound"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 189,
+  "lines": 190,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -85909,6 +86067,7 @@
    "lean_stage3/Stage3/RowLeaves.lean",
    "lean_stage3/Stage3/RunTheorems.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
+   "lean_stage3/Stage3/SelfBound.lean",
    "lean_stage3/Stage3/SieveExact.lean",
    "lean_stage3/Stage3/SieveResidual.lean",
    "lean_stage3/Stage3/SpiralLink.lean",

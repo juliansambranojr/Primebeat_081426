@@ -208,6 +208,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerCount.card_le_of_leaf`](./lean_stage3/WeilPowerCount.md#WeilPowerCount-card_le_of_leaf) | theorem | shape | `WeilPowerCount` | (S.card : ℝ) ≤ c₁ * Real.log T + c₂ |
 | [`SieveExact.card_multiples`](./lean_stage3/SieveExact.md#SieveExact-card_multiples) | theorem | counting | `SieveExact` | ((Finset.Icc 1 N).filter (fun n =&gt; d ∣ n)).card = N / d |
 | [`ReZetaCount.card_reZeros_le`](./lean_stage3/ReZetaCount.md#ReZetaCount-card_reZeros_le) | theorem | reads ζ | `ReZetaCount` | ((reZeros hT).card : ℝ) ≤ 15 * Real.log T + 73 |
+| [`SelfBound.card_scales`](./lean_stage3/SelfBound.md#SelfBound-card_scales) | theorem | counting | `SelfBound` | ((Icc 1 N).filter fun k =&gt; d * k ≤ N).card = N / d |
 | [`ZeroSummable.card_shell_le`](./lean_stage3/ZeroSummable.md#ZeroSummable-card_shell_le) | theorem | reads ζ | `ZeroSummable` | (F.card : ℝ) ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) |
 | [`SieveExact.card_survivors`](./lean_stage3/SieveExact.md#SieveExact-card_survivors) | theorem | counting | `SieveExact` | (survivors N).card + Nat.primeCounting (Nat.sqrt N) = 1 + Nat.primeCounting N |
 | [`ZeroSquares.card_zeros_le`](./lean_stage3/ZeroSquares.md#ZeroSquares-card_zeros_le) | theorem | reads ζ | `ZeroSquares` | Real.pi * δ ^ 2 * (Z.card : ℝ) ≤ 3 * (15 * Real.log T + 73) * ∫ u in (σ - δ)..(1 + δ), ∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 |
@@ -963,6 +964,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.log_pow_isBigO_rpow`](./lean_stage3/ThetaConverse.md#Stage3-log_pow_isBigO_rpow) | theorem | shape | `ThetaConverse` | (fun t : ℝ ↦ (Real.log t) ^ k) =O[Filter.atTop] (fun t : ℝ ↦ t ^ δ) |
 | [`LandauKernel.log_pow_le`](./lean_stage3/LandauKernel.md#LandauKernel-log_pow_le) | theorem | shape | `LandauKernel` | Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n |
 | [`WeilPowerGeom.log_step`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-log_step) | theorem | shape | `WeilPowerGeom` | 1 / ((m : ℝ) + 1) ≤ Real.log ((m : ℝ) + 1) - Real.log m |
+| [`SelfBound.log_sum_eq`](./lean_stage3/SelfBound.md#SelfBound-log_sum_eq) | theorem | shape | `SelfBound` | ∑ n ∈ Icc 1 N, Real.log (n : ℝ) = ∑ d ∈ Icc 1 N, vonMangoldt d * ((N / d : ℕ) : ℝ) |
 | [`WeilPowerGeom.log_telescope`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-log_telescope) | theorem | shape | `WeilPowerGeom` | ∀ b : ℕ, a ≤ b → ∑ m ∈ Finset.Ico a b, 1 / ((m : ℝ) + 1) ≤ Real.log b - Real.log a |
 | [`Stage3.log_two_pi_le`](./lean_stage3/ZeroSum.md#Stage3-log_two_pi_le) | theorem | shape | `ZeroSum` | Real.log (2 * Real.pi) ≤ 2 |
 | [`Stage3.logDeriv_congr_of_eventuallyEq`](./lean_stage3/ArgIdentity.md#Stage3-logDeriv_congr_of_eventuallyEq) | theorem | shape | `ArgIdentity` | logDeriv f x = logDeriv g x |
@@ -1495,6 +1497,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilBackground.Psi_le_two`](./lean_stage3/WeilBackground.md#WeilBackground-Psi_le_two) | theorem | shape | `WeilBackground` | \|WeilTransform.Psi s\| ≤ 2 |
 | [`WeilOnLine.Psi_neg`](./lean_stage3/WeilOnLine.md#WeilOnLine-Psi_neg) | theorem | shape | `WeilOnLine` | WeilTransform.Psi (-s) = -WeilTransform.Psi s |
 | [`VonKoch.psi_partial_bigO`](./lean_stage3/VonKochScaffold.md#VonKoch-psi_partial_bigO) | theorem | reads ζ | `VonKochScaffold` | (fun n : ℕ ↦ ∑ k ∈ Finset.Icc 1 n, ArithmeticFunction.vonMangoldt k) =O[Filter.atTop] fun n : ℕ ↦ (n : ℝ) ^ (1:ℝ) |
+| [`SelfBound.psi_scale`](./lean_stage3/SelfBound.md#SelfBound-psi_scale) | theorem | counting | `SelfBound` | Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ d ∈ Icc 1 N, if d * k ≤ N then vonMangoldt d else 0 |
 | [`RHPull.psi_sub_self_le`](./lean_stage3/LineBound.md#RHPull-psi_sub_self_le) | theorem | reads ζ | `LineBound` | \|ψ X - X\| ≤ E₁ + E₂ + E₃ |
 | [`RHPull.psi_weak_at`](./lean_stage3/LineBound.md#RHPull-psi_weak_at) | theorem | reads ζ | `LineBound` | \|ψ X - X\| ≤ (c₁ + c₂ + c₃) * Real.sqrt X * (Real.log X) ^ 3 |
 | [`RHPull.psi_weak_of_RH`](./lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) | theorem | reads ζ | `LineBound` | ∃ C &gt; 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → \|ψ t - t\| ≤ C * Real.sqrt t * (Real.log t) ^ 3 |
@@ -1727,6 +1730,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`PerronKernel.seg_inv_integral`](./lean_stage3/PerronKernel.md#PerronKernel-seg_inv_integral) | theorem | shape | `PerronKernel` | (∫ t in (-T)..T, ((c : ℂ) + Complex.I * t)⁻¹ * Complex.I) = 2 * Real.arctan (T / c) * Complex.I |
 | [`CountEuler.seg_sum`](./lean_stage3/CountEuler.md#CountEuler-seg_sum) | theorem | shape | `CountEuler` | seg w c m s = ∑ j ∈ Finset.range (m + 1), coefE c m j * (zeta w s ^ (j + 1) / (w - s)) |
 | [`ArgLegs.segment_im_integral_le`](./lean_stage3/ArgLegs.md#ArgLegs-segment_im_integral_le) | theorem | shape | `ArgLegs` | \|(∫ x in a..b, g' x / g x).im\| ≤ Real.pi * ((Z.card : ℝ) + 1) |
+| [`SelfBound.self_bound`](./lean_stage3/SelfBound.md#SelfBound-self_bound) | theorem | shape | `SelfBound` | ∑ k ∈ Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log (n : ℝ) |
+| [`SelfBound.self_bound_resid`](./lean_stage3/SelfBound.md#SelfBound-self_bound_resid) | theorem | shape | `SelfBound` | ∑ k ∈ Icc 1 N, (Chebyshev.psi ((N : ℝ) / (k : ℝ)) - (N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log (n : ℝ) - (N : ℝ) * ∑ k ∈ Icc 1 N, 1 / (k : ℝ) |
 | [`LeftKernel.series_side`](./lean_stage3/LeftKernel.md#LeftKernel-series_side) | theorem | reads ζ | `LeftKernel` | ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ … |
 | [`ExplicitTwo.series_side_two`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two) | theorem | reads ζ | `ExplicitTwo` | ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ … |
 | [`CountEuler.setIntegral_lor_le`](./lean_stage3/CountEuler.md#CountEuler-setIntegral_lor_le) | theorem | shape | `CountEuler` | ∫ s in Set.Ioi (0:ℝ), lor w s ≤ Real.pi / \|w.im\| |

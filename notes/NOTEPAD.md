@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0486: the staircase read at N, N/2, …, N/N adds up to the logarithms of the integers up to N, at every N (`SelfBound.self_bound`); the residuals across the scales are tied by a quantity with no prime in it. A bound at one scale needs the Möbius signs.
 - [open]   2026-11-23  Unit 0485: the half of every doubling is minus zeta at zero; it cancels in the sieve by Pascal; the spiral link holds exactly when the sieve's wobble stays at square-root size (`HalfSieve.spiralLink_iff_wobble`). The wobble's size is open.
 - [open]   2026-11-23  Unit 0484: at a zero the turned steps to a cutoff stand at the order times the logarithm of the cutoff (`StepsPeak.peak_height`), when no zero below the height lies to its right. The size rate is not stated.
 - [open]   2026-11-23  R4 PROVED (unit 0483, `StepsPole.steps_pole`): the exact core of run 0472. The sum of the turned steps is -zeta'/zeta; at every nontrivial zero rho of order m it has a pole of weight m/rho, the weight the zero carries in the table's residual; away from the zeros and 1 it is analytic. Open: the height of a finite peak, the size rate.

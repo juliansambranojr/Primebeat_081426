@@ -7,7 +7,7 @@ HalfSieve — block R6 of `lean_stage3/design/runs.md`. 2026-11-23. The half of 
 12 theorems, 3 definitions, 350 lines. 
 
 **Imports:** [`OneChain`](../lean_stage3/OneChain.md), [`PiToPsi`](../lean_stage3/PiToPsi.md), [`RowLeaves`](../lean_stage3/RowLeaves.md), [`StepsPole`](../lean_stage3/StepsPole.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`SelfBound`](../lean_stage3/SelfBound.md)
 
 ## The picture
 

@@ -31,7 +31,8 @@ flowchart LR
   n15["<b>abs_netRounding_le ■</b><br/>|netRounding N| ≤ roundingMass N"]:::cnt
   n16["<b>roundingMass_nonneg ■</b><br/>0 ≤ roundingMass N"]:::cnt
   n17["<b>netRounding_eq</b><br/>netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))…"]:::cnt
-  x0(["<b>SieveResidual</b><br/>cast_netRounding"]):::ext
+  x0(["<b>SelfBound</b><br/>log_sum_eq"]):::ext
+  x1(["<b>SieveResidual</b><br/>cast_netRounding"]):::ext
   n0 --> n4
   n1 --> n2
   n12 --> n13
@@ -46,7 +47,8 @@ flowchart LR
   n6 --> n7
   n7 --> n8
   n9 --> n10
-  n17 -.-> x0
+  n17 -.-> x1
+  n3 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -220,8 +222,9 @@ line 75 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SelfBound.log_sum_eq`](../lean_stage3/SelfBound.md#SelfBound-log_sum_eq) (SelfBound) — `` ∑ n ∈ Icc 1 N, Real.log (n : ℝ) = ∑ d ∈ Icc 1 N, vonMangoldt d * ((N / d : ℕ) : ℝ) ``
   - [`SieveExact.sieve_sum`](#SieveExact-sieve_sum) — `` ((survivors N).card : ℤ) = ∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ) ``
 
 <a name="SieveExact-sieve_sum"></a>

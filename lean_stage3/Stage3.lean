@@ -178,6 +178,7 @@ import Stage3.SieveResidual
 import Stage3.StepsPole
 import Stage3.StepsPeak
 import Stage3.HalfSieve
+import Stage3.SelfBound
 
 namespace Stage3
 

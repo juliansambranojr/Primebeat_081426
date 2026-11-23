@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R7 of `design/runs.md`: `Stage3/SelfBound.lean`
+
+    DONE        `self_bound`: the staircase read at `N`, `N/2`, …, `N/N` adds
+                up to the logarithms of the integers up to `N`, at every `N`.
+                `self_bound_resid`: the residuals across those scales add up
+                to a quantity with no prime in it; one unit
+    ASSUMED     Julian, 2026-11-23: "It holds because it is bounded by itself
+                and never more or that wouldn't be the same number line."
+                Written and built here
+    DEPENDS     Mathlib `ArithmeticFunction.vonMangoldt_sum`,
+                `SieveExact.card_multiples`
+    OUT         a bound at one scale; the Möbius inversion
+    OUTCOME     proved, unit 0486
+
 ### 2026-11-23 · block R6 of `design/runs.md`: `Stage3/HalfSieve.lean`
 
     DONE        `ignition_is_zeta_zero`: the half of every doubling is minus
