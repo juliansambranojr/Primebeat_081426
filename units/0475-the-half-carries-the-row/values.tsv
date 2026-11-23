@@ -2,7 +2,8 @@
 # run/ and regenerate. Every key carries its source file's stem, so two
 # result files in one unit cannot collide.
 # source run/half.json sha256 cbd8c4616104a359601bfd10204df8af0c19001edc27a4b005439ebfdb3d4407
-# source run/lab_run.001.json sha256 ea3b2a2dadae91b4b9767f1ee21e1ab1b4ba256eeb6e8c9893521977de4a8fd7
+# source run/lab_run.001.json sha256 e6abe9eada2ba3e1d7525d6a859ed479087b1d50ee3642736ab24ff9bd0df0fd
+# source run/net.json sha256 9cbcebdb3d938b4a7677a6279e1cbe60d3c47eecb4f9785828039652e25fd935
 half.row_lo	10
 half.row_hi	24
 half.rows[0].r	10
@@ -265,9 +266,57 @@ lab_run.001.environment.path_python3	"v3.13.18"
 lab_run.001.environment.shell	"/bin/sh"
 lab_run.001.environment.os	"Linux v6.18.44-fc-v726 x86_64"
 lab_run.001.environment.virtual_env	null
-lab_run.001.environment.git_head	"aa4930066a8737209fe52cd73ac4b6ff12344f36"
+lab_run.001.environment.git_head	"391f3aec58a3c4cf4943cae58c9c69dc6b37f92c"
 lab_run.001.environment.git_dirty	true
-meta.lab_run.001.meta.runnable_sha256	"d1bd4983be5168cdb12a63aaafa3fd1ca83b84a03dcc15930b104cf9069d91f6"
-meta.lab_run.001.meta.run_start	"2026-11-23T09:12:57Z"
-meta.lab_run.001.meta.run_end	"2026-11-23T09:12:58Z"
-meta.lab_run.001.meta.wall_s	1.3429525710002963
+meta.lab_run.001.meta.runnable_sha256	"5b63e09cbe00d48dec694bdb7640e22ce5d36f3057803bed914328f7e8f5d649"
+meta.lab_run.001.meta.run_start	"2026-11-23T10:57:20Z"
+meta.lab_run.001.meta.run_end	"2026-11-23T10:57:22Z"
+meta.lab_run.001.meta.wall_s	1.99712891199988
+net.rows[0].r	10
+net.rows[0].count	162
+net.rows[0].product_part	156.5
+net.rows[0].net_rounding	-5.5
+net.rows[0].net_over_count	-0.0338
+net.rows[0].net_over_sqrt	-0.17
+net.rows[1].r	14
+net.rows[1].count	1870
+net.rows[1].product_part	1865.6
+net.rows[1].net_rounding	-4.4
+net.rows[1].net_over_count	-0.0024
+net.rows[1].net_over_sqrt	-0.03
+net.rows[2].r	18
+net.rows[2].count	22904
+net.rows[2].product_part	23397.9
+net.rows[2].net_rounding	493.9
+net.rows[2].net_over_count	0.0216
+net.rows[2].net_over_sqrt	0.96
+net.rows[3].r	22
+net.rows[3].count	295639
+net.rows[3].product_part	308084.9
+net.rows[3].net_rounding	12445.9
+net.rows[3].net_over_count	0.0421
+net.rows[3].net_over_sqrt	6.08
+net.rows[4].r	26
+net.rows[4].count	3956782
+net.rows[4].product_part	4177525.1
+net.rows[4].net_rounding	220743.1
+net.rows[4].net_over_count	0.0558
+net.rows[4].net_over_sqrt	26.95
+net.rows[5].r	30
+net.rows[5].count	54396517
+net.rows[5].product_part	57961044.3
+net.rows[5].net_rounding	3564527.3
+net.rows[5].net_over_count	0.0655
+net.rows[5].net_over_sqrt	108.78
+net.rows[6].r	40
+net.rows[6].count	41203006772
+net.rows[6].product_part	44528528697.2
+net.rows[6].net_rounding	3325521925.2
+net.rows[6].net_over_count	0.0807
+net.rows[6].net_over_sqrt	3171.46
+net.rows[7].r	50
+net.rows[7].count	33483377539719
+net.rows[7].product_part	36479349784719.7
+net.rows[7].net_rounding	2995972245000.7
+net.rows[7].net_over_count	0.0895
+net.rows[7].net_over_sqrt	89286.93

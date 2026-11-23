@@ -1,6 +1,6 @@
-# check_prose_source.py  2026-11-23T09:13:33Z
+# check_prose_source.py  2026-11-23T10:57:41Z
 # unit: 0475-the-half-carries-the-row
-# sources searched: 437
+# sources searched: 439
 
 FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
   Source: session transcript, 2026-11-23
