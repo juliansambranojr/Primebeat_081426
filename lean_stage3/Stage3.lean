@@ -164,6 +164,7 @@ import Stage3.ExplicitTwo
 import Stage3.FixedRowTwo
 import Stage3.FilterLadder
 import Stage3.FilterAttained
+import Stage3.FilterAccum
 
 namespace Stage3
 

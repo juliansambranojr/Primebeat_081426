@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  S3 PROVED (unit 0468, `FilterAccum.finite_accumulation_false`): under the ladder bound on psi, if the modes 2^rho right of sigma accumulate at finitely many points, no zero right of sigma has a mode off those points. First theorem inside joint 10's case not attained (unit 0431). Open: infinite accumulation sets; the count. Opus worker, built and read here.
 - [open]   2026-11-23  S2 PROVED (unit 0467, `FilterAttained.filter_attained_false`, `attained_psi`): under the ladder bound on psi, no polynomial filter has its largest rate |z^b q(1/z)^a| attained by a zero above the threshold; with no filter, the largest real part attained gives RH on the psi ladder. Opus worker, built and read here. Next: S3, finitely many accumulation points (being built).
 - [open]   2026-11-23  S1 PROVED (unit 0466, `FilterLadder.filtered_modes_small_sq`): if |psi(2^k) - 2^k| <= C k^2 sqrt2^k, then for any polynomial q, sigma >= 1/2, m deg q < n: the modes right of sigma below height 2^n, weighted by q(2^-rho)^m, sum to <= Afl n^2 2^(sigma n) Wn(q)^m. Filters in place of depth. Opus worker, built and read here. Next: S2 (being built).
 - [open]   2026-11-23  G3 PROVED (unit 0465, `FixedRowTwo.table_cell_fixed_row_two`, `pi_fixed_row_two`, `cell_fixed_row_two`): T3 at a fixed row at every row: table cell for r >= d+2 (the identity's own hypothesis), count for x >= 2, psi-cell for r >= d+1. The row margins of units 0461, 0462 are gone. Opus worker, built and read here.

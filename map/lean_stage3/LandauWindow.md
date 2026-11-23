@@ -16,10 +16,11 @@ flowchart LR
   n2["<b>zeroFree_half_of_window</b><br/>∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::thm
   n3["<b>rh_of_window</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>AttainedPi</b><br/>attained_off_line_pi"]):::ext
-  x1(["<b>FilterAttained</b><br/>attained_psi"]):::ext
-  x2(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
-  x3(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
-  x4(["<b>LandauCriterion</b><br/>rh_of_windows"]):::ext
+  x1(["<b>FilterAccum</b><br/>rh_of_finite_accumulation"]):::ext
+  x2(["<b>FilterAttained</b><br/>attained_psi"]):::ext
+  x3(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
+  x4(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
+  x5(["<b>LandauCriterion</b><br/>rh_of_windows"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
@@ -27,7 +28,8 @@ flowchart LR
   n1 -.-> x1
   n1 -.-> x2
   n1 -.-> x3
-  n3 -.-> x4
+  n1 -.-> x4
+  n3 -.-> x5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -136,9 +138,10 @@ RiemannHypothesis
 
   - [`LandauWindow.zeta_neg_nat_ne_zero`](#LandauWindow-zeta_neg_nat_ne_zero) — `` riemannZeta (-(n : ℂ)) ≠ 0 ``
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`AttainedPi.attained_off_line_pi`](../lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) (AttainedPi) — `` RiemannHypothesis ``
+  - [`FilterAccum.rh_of_finite_accumulation`](../lean_stage3/FilterAccum.md#FilterAccum-rh_of_finite_accumulation) (FilterAccum) — `` RiemannHypothesis ``
   - [`FilterAttained.attained_psi`](../lean_stage3/FilterAttained.md#FilterAttained-attained_psi) (FilterAttained) — `` RiemannHypothesis ``
   - [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) (FiniteOffLine) — `` RiemannHypothesis ``
   - [`FiniteOffLinePi.finite_off_line_pi`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) (FiniteOffLinePi) — `` RiemannHypothesis ``

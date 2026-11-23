@@ -34,13 +34,14 @@ flowchart LR
   n18["<b>sqrt_split</b><br/>Real.sqrt 2 ^ n * (Real.sqrt 2)⁻¹ ^ j = Real.sqrt 2 ^ (n - j)"]:::shp
   n19["<b>filtered_modes_small_sq</b><br/>‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZe…"]:::thm
   n20["<b>filtered_modes_small ■</b><br/>∃ A : ℝ, ∀ (q : Polynomial ℂ) (n m : ℕ), 2 ≤ n → m * q.natDegree…"]:::thm
-  x0(["<b>FilterAttained</b><br/>filter_attained_false<br/>finite_part_le<br/>tendsto_full"]):::ext
-  x1(["<b>FixedRowTwo</b><br/>Bleft2_nonneg<br/>c1t_nonneg<br/>c3t_nonneg"]):::ext
-  x2(["<b>ExplicitTwo</b><br/>explicit_formula_all_two"]):::ext
-  x3(["<b>FiniteOffLinePi</b><br/>cpow_doubling<br/>ordR_nonneg"]):::ext
-  x4(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
-  x5(["<b>FiniteOffLine</b><br/>norm_two_cpow<br/>order_nonneg"]):::ext
-  x6(["<b>PiRemainder</b><br/>two_le_Mlow<br/>zinv_le_log"]):::ext
+  x0(["<b>FilterAccum</b><br/>finite_accumulation_false"]):::ext
+  x1(["<b>FilterAttained</b><br/>filter_attained_false<br/>finite_part_le<br/>tendsto_full"]):::ext
+  x2(["<b>FixedRowTwo</b><br/>Bleft2_nonneg<br/>c1t_nonneg<br/>c3t_nonneg"]):::ext
+  x3(["<b>ExplicitTwo</b><br/>explicit_formula_all_two"]):::ext
+  x4(["<b>FiniteOffLinePi</b><br/>cpow_doubling<br/>ordR_nonneg"]):::ext
+  x5(["<b>PiZeros</b><br/>zeroPartialSum_eq_sum"]):::ext
+  x6(["<b>FiniteOffLine</b><br/>norm_two_cpow<br/>order_nonneg"]):::ext
+  x7(["<b>PiRemainder</b><br/>two_le_Mlow<br/>zinv_le_log"]):::ext
   n0 --> n1
   n1 --> n11
   n1 --> n14
@@ -68,17 +69,18 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n9 --> n10
-  n19 -.-> x0
+  n19 -.-> x1
   n4 -.-> x0
-  x1 -.-> n16
-  x1 -.-> n17
+  n4 -.-> x1
+  x2 -.-> n16
   x2 -.-> n17
   x3 -.-> n17
-  x3 -.-> n19
   x4 -.-> n17
-  x5 -.-> n19
+  x4 -.-> n19
+  x5 -.-> n17
   x6 -.-> n19
-  x6 -.-> n20
+  x7 -.-> n19
+  x7 -.-> n20
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -111,7 +113,7 @@ def · line 45
 The weighted norm of the design: the `j`-th coefficient's size times `2^(−j/2)`.
 
 - **Is:** `` Wn (q : Polynomial ℂ) : ℝ := ∑ j ∈ range (q.natDegree + 1), ‖q.coeff j‖ * (2:ℝ) ^ (-(j:ℝ) / 2) ``
-- **Used by 10:** [`FilterAttained.attained_psi`](../lean_stage3/FilterAttained.md#FilterAttained-attained_psi), [`FilterAttained.filter_attained_false`](../lean_stage3/FilterAttained.md#FilterAttained-filter_attained_false), [`FilterAttained.finite_part_le`](../lean_stage3/FilterAttained.md#FilterAttained-finite_part_le), [`FilterAttained.tendsto_full`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_full), [`FilterLadder.Wn_eq_Wb`](#FilterLadder-Wn_eq_Wb), [`FilterLadder.Wn_nonneg`](#FilterLadder-Wn_nonneg), [`FilterLadder.Wn_pow_le`](#FilterLadder-Wn_pow_le), [`FilterLadder.filtered_modes_small`](#FilterLadder-filtered_modes_small), [`FilterLadder.filtered_modes_small_sq`](#FilterLadder-filtered_modes_small_sq), [`FilterLadder.norm_eval_le_Wn`](#FilterLadder-norm_eval_le_Wn)
+- **Used by 11:** [`FilterAccum.finite_accumulation_false`](../lean_stage3/FilterAccum.md#FilterAccum-finite_accumulation_false), [`FilterAttained.attained_psi`](../lean_stage3/FilterAttained.md#FilterAttained-attained_psi), [`FilterAttained.filter_attained_false`](../lean_stage3/FilterAttained.md#FilterAttained-filter_attained_false), [`FilterAttained.finite_part_le`](../lean_stage3/FilterAttained.md#FilterAttained-finite_part_le), [`FilterAttained.tendsto_full`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_full), [`FilterLadder.Wn_eq_Wb`](#FilterLadder-Wn_eq_Wb), [`FilterLadder.Wn_nonneg`](#FilterLadder-Wn_nonneg), [`FilterLadder.Wn_pow_le`](#FilterLadder-Wn_pow_le), [`FilterLadder.filtered_modes_small`](#FilterLadder-filtered_modes_small), [`FilterLadder.filtered_modes_small_sq`](#FilterLadder-filtered_modes_small_sq), [`FilterLadder.norm_eval_le_Wn`](#FilterLadder-norm_eval_le_Wn)
 
 <a name="FilterLadder-posPoly"></a>
 ### `FilterLadder.posPoly`
@@ -310,8 +312,9 @@ line 78 · arrows read from text
 
 **Definitions its proof touches:** [`FilterLadder.Wn`](#FilterLadder-Wn)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`FilterAccum.finite_accumulation_false`](../lean_stage3/FilterAccum.md#FilterAccum-finite_accumulation_false) (FilterAccum) — `` False ``
   - [`FilterAttained.filter_attained_false`](../lean_stage3/FilterAttained.md#FilterAttained-filter_attained_false) (FilterAttained) — `` False ``
   - [`FilterAttained.tendsto_full`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_full) (FilterAttained) — `` Tendsto (fun k : ℕ => ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ) atTop (𝓝 0) ``
   - [`FilterLadder.filtered_modes_small`](#FilterLadder-filtered_modes_small) — `` ∃ A : ℝ, ∀ (q : Polynomial ℂ) (n m : ℕ), 2 ≤ n → m * q.natDegree < n → ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ :… ``

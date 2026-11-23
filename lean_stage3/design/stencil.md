@@ -66,7 +66,7 @@ classes, and exceeds the threshold, then dividing S1 by `sup V^k`:
 
 `q = 1` is unit 0456, the largest real part attained.
 
-## S3 Finitely many accumulation points
+## S3 Finitely many accumulation points — PROVED in the corrected form below (unit 0468: `FilterAccum.finite_accumulation_false`, `rh_of_finite_accumulation`; `a = 1`, `b` large; the points of `P` are taken nonzero, which Lean needs since `0⁻¹ = 0`)
 
 If for some `σ` the modes `{2^ρ : Re ρ ≥ σ}` are non-empty and accumulate at
 finitely many points `p_1, …, p_s` only, take `q(u) = Π (u − 1/p_i)` and

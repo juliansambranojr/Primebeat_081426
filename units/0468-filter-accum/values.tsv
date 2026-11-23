@@ -1,0 +1,19 @@
+key	value	source
+module_lines	245	wc -l lean_stage3/Stage3/FilterAccum.lean
+theorems_proved	10	grep -c ^theorem lean_stage3/Stage3/FilterAccum.lean
+defs	3	qP, L, xiz
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FilterAccum.lean
+pins	2	finite_accumulation_false, rh_of_finite_accumulation
+errors_first	1	the worker's first build of the main theorem, as it reported
+builds	5	the worker's builds that compiled new content, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8858	lake build (full Stage3), Build completed successfully
+jobs_module	8822	run/build.log, lake build Stage3.FilterAccum
+loop_version	22	lean_stage3/LOOP.md version line
+design	stencil.md#s3	finitely many accumulation points
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_cases	431	unit 0431, the cases of the one-ladder converse
+unit_filter_attained	467	unit 0467, a rate attained under a filter
+applications	1	finite_accumulation_false uses a = 1

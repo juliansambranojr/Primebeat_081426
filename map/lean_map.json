@@ -26397,6 +26397,433 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FilterAccum.lean",
+  "module": "Stage3.FilterAccum",
+  "stem": "FilterAccum",
+  "header": "FilterAccum — block S3 of `lean_stage3/design/stencil.md`, in its corrected form (the section \"After the independent check\"). 2026-11-23.",
+  "imports": [
+   "Stage3.FilterAttained"
+  ],
+  "opens": [
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "Polynomial"
+  ],
+  "namespaces": [
+   "FilterAccum"
+  ],
+  "lines": 246,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FilterAttained.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "qP",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.qP",
+    "line": 41,
+    "why": "The filter that vanishes at the inverses of the points of `P`: `q(u) = Π_{p ∈ P} (u − 1/p)`.",
+    "sorry": false,
+    "needs": [
+     "P : Finset ℂ"
+    ],
+    "proves": "Polynomial ℂ",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP_ne_zero",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_xiz_near_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "eval_qP",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.eval_qP",
+    "line": 44,
+    "why": "The filter's value at `w` is the product of `w − 1/p` over the points of `P`.",
+    "sorry": false,
+    "needs": [
+     "P : Finset ℂ",
+     "w : ℂ"
+    ],
+    "proves": "(qP P).eval w = ∏ p ∈ P, (w - p⁻¹)",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP_ne_zero",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_xiz_near_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "L",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.L",
+    "line": 50,
+    "why": "The bound `Π_{p ∈ P} (1 + |1/p|)` on the product of the factors of the filter.",
+    "sorry": false,
+    "needs": [
+     "P : Finset ℂ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L_pos",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_xiz_near_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "L_pos",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.L_pos",
+    "line": 53,
+    "why": "The bound `L` is positive.",
+    "sorry": false,
+    "needs": [
+     "P : Finset ℂ"
+    ],
+    "proves": "0 < L P",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "xiz",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.xiz",
+    "line": 57,
+    "why": "The rate with `a = 1`, as a function of the mode `z`: `z^b·q(1/z)`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ",
+     "b : ℕ",
+     "z : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xiz",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_xiz_near_le",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xi_eq_xiz"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "xi_eq_xiz",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.xi_eq_xiz",
+    "line": 60,
+    "why": "With `a = 1` the rate of a zero depends on the zero only through its mode.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ",
+     "b : ℕ",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "FilterAttained.xi q 1 b ρ = xiz q b ((2:ℂ) ^ (ρ : ℂ))",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xi_eq_xiz",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xiz",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.xi"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xiz",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.xi"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_le_norm_mode",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.one_le_norm_mode",
+    "line": 66,
+    "why": "The mode of a zero has size at least one.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "1 ≤ ‖(2:ℂ) ^ (ρ : ℂ)‖",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_mode_le_two",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.norm_mode_le_two",
+    "line": 71,
+    "why": "The mode of a zero has size at most two.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(2:ℂ) ^ (ρ : ℂ)‖ ≤ 2",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_xiz_near_le",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.norm_xiz_near_le",
+    "line": 80,
+    "why": "A mode near a point of `P` has a small rate. For a mode `z` with `1 ≤ |z| ≤ 2` and a point `p₀` of `P` with `|z − p₀| ≤ ε`, the rate under the filter of `P` is at most `2^b·(ε·L)`.",
+    "sorry": false,
+    "needs": [
+     "hP0 : ∀ p ∈ P, p ≠ 0",
+     "b : ℕ",
+     "hz1 : 1 ≤ ‖z‖",
+     "hz2 : ‖z‖ ≤ 2",
+     "hp₀ : p₀ ∈ P",
+     "hε : ‖z - p₀‖ ≤ ε"
+    ],
+    "proves": "‖xiz (qP P) b z‖ ≤ 2 ^ b * (ε * L P)",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_xiz_near_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xiz"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xiz"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "eval_qP_ne_zero",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.eval_qP_ne_zero",
+    "line": 114,
+    "why": "A mode outside `P` is not a zero of the filter. For `z` outside `P`, `q(1/z) ≠ 0`.",
+    "sorry": false,
+    "needs": [
+     "hzP : z ∉ P"
+    ],
+    "proves": "(qP P).eval z⁻¹ ≠ 0",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "exists_b",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.exists_b",
+    "line": 123,
+    "why": "A large enough `b`. For `c > 0` and `r > 1` there is `b` above the degree of `q` with `W < c·r^b`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ",
+     "W : ℝ",
+     "hc : 0 < c",
+     "hr : 1 < r"
+    ],
+    "proves": "∃ b : ℕ, q.natDegree < b ∧ W < c * r ^ b",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.exists_b",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "finite_accumulation_false",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.finite_accumulation_false",
+    "line": 137,
+    "why": "Finitely many accumulation points, and a zero right of `σ` off them: the ladder bound fails. Let `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1` and `σ > 1/2`. Let `P` be a finite set of nonzero points such that, for every `ε > 0`, the mode values `2^ρ` of the zeros with real part at least `σ` that lie at distance at least `ε` from every point of `P` form a finite set. Then no zero with real part above `σ` has its mode outside `P`.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ : 1/2 < σ",
+     "P : Finset ℂ",
+     "hP0 : ∀ p ∈ P, p ≠ 0",
+     "hacc : ∀ ε : ℝ, 0 < ε → {z : ℂ | ∃ ρ : Kadiri.NontrivialZeros, σ ≤ (ρ : ℂ).re ∧ (2:ℂ) ^ (ρ : ℂ) = z ∧ ∀ p ∈ P, ε ≤ ‖z - p‖}.Finite",
+     "ρ₁ : Kadiri.NontrivialZeros",
+     "hρ₁ : σ < (ρ₁ : ℂ).re",
+     "hρ₁P : (2:ℂ) ^ (ρ₁ : ℂ) ∉ P"
+    ],
+    "proves": "False",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L_pos",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP_ne_zero",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.exists_b",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_xiz_near_le",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xi_eq_xiz",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xiz",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.L_pos",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.eval_qP_ne_zero",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.exists_b",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_xiz_near_le",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.qP",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xi_eq_xiz",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xiz",
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_nonneg",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.rh_of_finite_accumulation"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rh_of_finite_accumulation",
+    "ns": "FilterAccum",
+    "full": "FilterAccum.rh_of_finite_accumulation",
+    "line": 218,
+    "why": "Finitely many accumulation points on every line right of `1/2`, and the ladder of `ψ` of square-root size: then the Riemann hypothesis holds. Let `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for every `k ≥ 1`. Suppose that for every `σ > 1/2` the modes `2^ρ` of the zeros with real part at least `σ` accumulate only at the points of a finite set `P` of nonzero points (for every `ε > 0` the mode values at distance at least `ε` from all of `P` are finitely many), none of which is the mode of a zero with real part above `σ`. Then the Riemann hypothesis holds.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hfin : ∀ σ : ℝ, 1/2 < σ → ∃ P : Finset ℂ, (∀ p ∈ P, p ≠ 0) ∧ (∀ ε : ℝ, 0 < ε → {z : ℂ | ∃ ρ : Kadiri.NontrivialZeros, σ ≤ (ρ : ℂ).re ∧ (2:ℂ) ^ (ρ : ℂ) = z ∧ ∀ p ∈ P, ε ≤ ‖z - p‖}.Finite) ∧ (∀ ρ : Kadiri.NontrivialZeros, σ < (ρ : ℂ).re → (2:ℂ) ^ (ρ : ℂ) ∉ P)"
+    ],
+    "proves": "RiemannHypothesis",
+    "file": "lean_stage3/Stage3/FilterAccum.lean",
+    "id": "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.rh_of_finite_accumulation",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/FilterAttained.lean",
   "module": "Stage3.FilterAttained",
   "stem": "FilterAttained",
@@ -26447,6 +26874,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.xi_eq_xiz",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.ratio",
@@ -26889,6 +27317,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi"
     ]
    },
@@ -27011,6 +27440,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.finite_part_le",
@@ -27168,6 +27598,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.filter_attained_false",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.tendsto_full",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small"
@@ -28288,6 +28719,9 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.finite_accumulation_false",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.norm_mode_le_two",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.one_le_norm_mode",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
      "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le"
@@ -35929,6 +36363,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.attained_off_line_pi",
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.rh_of_finite_accumulation",
      "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
@@ -77462,11 +77897,12 @@
    "Stage3.ExplicitTwo",
    "Stage3.FixedRowTwo",
    "Stage3.FilterLadder",
-   "Stage3.FilterAttained"
+   "Stage3.FilterAttained",
+   "Stage3.FilterAccum"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 175,
+  "lines": 176,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -77495,6 +77931,7 @@
    "lean_stage3/Stage3/ExplicitBump.lean",
    "lean_stage3/Stage3/ExplicitLeft.lean",
    "lean_stage3/Stage3/ExplicitTwo.lean",
+   "lean_stage3/Stage3/FilterAccum.lean",
    "lean_stage3/Stage3/FilterAttained.lean",
    "lean_stage3/Stage3/FilterLadder.lean",
    "lean_stage3/Stage3/FiniteOffLine.lean",

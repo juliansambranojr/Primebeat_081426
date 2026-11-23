@@ -7,7 +7,7 @@ FilterAttained — block S2 of `lean_stage3/design/stencil.md`, in its corrected
 9 theorems, 4 definitions, 384 lines. 
 
 **Imports:** [`FilterLadder`](../lean_stage3/FilterLadder.md), [`LadderMean`](../lean_stage3/LadderMean.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FilterAccum`](../lean_stage3/FilterAccum.md)
 
 ## The picture
 
@@ -27,7 +27,8 @@ flowchart LR
   x2(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
   x3(["<b>AliasClass</b><br/>re_order_div_pos"]):::ext
   x4(["<b>LadderMean</b><br/>mean_extract"]):::ext
-  x5(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x5(["<b>FilterAccum</b><br/>finite_accumulation_false"]):::ext
+  x6(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n2
   n1 --> n4
   n1 --> n5
@@ -39,6 +40,7 @@ flowchart LR
   n5 --> n6
   n6 --> n7
   n7 --> n8
+  n7 -.-> x5
   x0 -.-> n1
   x1 -.-> n2
   x1 -.-> n6
@@ -47,7 +49,7 @@ flowchart LR
   x2 -.-> n8
   x3 -.-> n7
   x4 -.-> n7
-  x5 -.-> n8
+  x6 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -70,7 +72,7 @@ def · line 42
 the rate of a zero under the filter
 
 - **Is:** `` xi (q : Polynomial ℂ) (a b : ℕ) (ρ : Kadiri.NontrivialZeros) : ℂ := ((2:ℂ) ^ (ρ : ℂ)) ^ b * (q.eval (((2:ℂ) ^ (ρ : ℂ))⁻¹)) ^ a ``
-- **Used by 4:** [`FilterAttained.attained_psi`](#FilterAttained-attained_psi), [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false), [`FilterAttained.ratio`](#FilterAttained-ratio), [`FilterAttained.xi_pow`](#FilterAttained-xi_pow)
+- **Used by 5:** [`FilterAccum.xi_eq_xiz`](../lean_stage3/FilterAccum.md#FilterAccum-xi_eq_xiz), [`FilterAttained.attained_psi`](#FilterAttained-attained_psi), [`FilterAttained.filter_attained_false`](#FilterAttained-filter_attained_false), [`FilterAttained.ratio`](#FilterAttained-ratio), [`FilterAttained.xi_pow`](#FilterAttained-xi_pow)
 
 <a name="FilterAttained-S"></a>
 ### `FilterAttained.S`
@@ -378,8 +380,9 @@ False
 
 **Definitions its proof touches:** [`FilterAttained.S`](#FilterAttained-S), [`FilterAttained.ratio`](#FilterAttained-ratio), [`FilterAttained.xi`](#FilterAttained-xi), [`FilterLadder.Wn`](../lean_stage3/FilterLadder.md#FilterLadder-Wn), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`FilterAccum.finite_accumulation_false`](../lean_stage3/FilterAccum.md#FilterAccum-finite_accumulation_false) (FilterAccum) — `` False ``
   - [`FilterAttained.attained_psi`](#FilterAttained-attained_psi) — `` RiemannHypothesis ``
 
 <a name="FilterAttained-attained_psi"></a>

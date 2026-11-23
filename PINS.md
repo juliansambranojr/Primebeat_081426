@@ -40,7 +40,7 @@ below with their outcome.
                 `AliasClass.re_order_div_pos`
     OUT         the accumulation set that separates the modes from the
                 origin; the residue route; the count in place of `ψ`
-    OUTCOME     `FilterAttained` proved, unit 0467; `FilterAccum` being built
+    OUTCOME     proved: `FilterAttained` unit 0467, `FilterAccum` unit 0468
 
 ### 2026-11-23 · block S1 of `design/stencil.md`: `Stage3/FilterLadder.lean`
 

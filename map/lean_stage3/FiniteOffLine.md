@@ -37,12 +37,13 @@ flowchart LR
   x11(["<b>ArgCount</b><br/>rvM_crude"]):::ext
   x12(["<b>RealSegment</b><br/>weightedZeroHeightBucket_eq_zero"]):::ext
   x13(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le"]):::ext
-  x14(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
-  x15(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
-  x16(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
-  x17(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
-  x18(["<b>LadderFading</b><br/>line_not_fading"]):::ext
-  x19(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x14(["<b>FilterAccum</b><br/>finite_accumulation_false<br/>norm_mode_le_two<br/>one_le_norm_mode"]):::ext
+  x15(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x16(["<b>CellRows</b><br/>cell_eq_zero_sum_rows"]):::ext
+  x17(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg<br/>c4n_nonneg"]):::ext
+  x18(["<b>CellModes</b><br/>mode_two_int<br/>sym_two"]):::ext
+  x19(["<b>LadderFading</b><br/>line_not_fading"]):::ext
+  x20(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   n0 --> n1
   n0 --> n11
   n0 --> n5
@@ -69,7 +70,7 @@ flowchart LR
   n1 -.-> x6
   n1 -.-> x7
   n1 -.-> x8
-  n10 -.-> x15
+  n10 -.-> x16
   n2 -.-> x2
   n2 -.-> x3
   n2 -.-> x4
@@ -78,17 +79,18 @@ flowchart LR
   n6 -.-> x3
   n6 -.-> x4
   n7 -.-> x1
+  n7 -.-> x14
   n7 -.-> x9
-  n9 -.-> x15
+  n9 -.-> x16
   x10 -.-> n4
   x11 -.-> n6
   x12 -.-> n6
   x13 -.-> n6
-  x14 -.-> n9
-  x16 -.-> n10
-  x17 -.-> n11
+  x15 -.-> n9
+  x17 -.-> n10
   x18 -.-> n11
   x19 -.-> n11
+  x20 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -384,8 +386,11 @@ line 226
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (6 that use it)
 
+  - [`FilterAccum.finite_accumulation_false`](../lean_stage3/FilterAccum.md#FilterAccum-finite_accumulation_false) (FilterAccum) — `` False ``
+  - [`FilterAccum.norm_mode_le_two`](../lean_stage3/FilterAccum.md#FilterAccum-norm_mode_le_two) (FilterAccum) — `` ‖(2:ℂ) ^ (ρ : ℂ)‖ ≤ 2 ``
+  - [`FilterAccum.one_le_norm_mode`](../lean_stage3/FilterAccum.md#FilterAccum-one_le_norm_mode) (FilterAccum) — `` 1 ≤ ‖(2:ℂ) ^ (ρ : ℂ)‖ ``
   - [`FilterAttained.attained_psi`](../lean_stage3/FilterAttained.md#FilterAttained-attained_psi) (FilterAttained) — `` RiemannHypothesis ``
   - [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) (FilterLadder) — `` ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2… ``
   - [`FiniteOffLine.norm_term_le`](#FiniteOffLine-norm_term_le) — `` ‖term d (r : ℤ) ρ‖ ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (2 ^ d * ((2:ℝ) ^ (ρ : ℂ).re) ^ r * ‖(ρ : ℂ)‖⁻¹) ``
