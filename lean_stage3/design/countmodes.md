@@ -82,3 +82,55 @@ every thin sector around it. The single-ray arrangement
 outer modes run through each inner mode. The function is still singular at
 each mode when approached from the side, so a sharper form of N3 should
 reach it; it is not derived here.
+
+## After the independent check (2026-11-23)
+
+An Opus reviewer was asked to break this design and size it. Its own
+additions are paper work nobody else has checked.
+
+**N1 holds.** `|c_ρ| ≤ 4/(|γ|·log 2)`. `J_k(w) = ∫₀^z ζ^(k−1)/L(ζ) dζ` along the
+radius. One gap: `J_k` needs `Im ρ ≠ 0` for every nontrivial zero, and the
+tree has no lemma for `ζ(x) ≠ 0` on real `0 < x < 1`. PNT+
+`ZetaBounds.Zeta0EqZeta` at `N = 1` gives it. Prefer Fubini to
+differentiating under the integral for `J_k − J_1 = ∫₁ᵏ e^(vw)/v dv`.
+
+**N2 holds, corrected.** `zero_density` counts distinct zeros; multiplicity
+enters through `ZeroSummable.order_le_shell`. The tail is
+`Σ_{|γ|≥2^k, β≥σ} m/|γ| ≤ C·k·2^(−k(1−θ'))`, `θ' = max θ 0`, a new rate lemma
+(`sum_le_const` gives a constant only). Needs `1/2 < σ < Θ ≤ 1`.
+
+    N2. H_π, 1/2 < σ < Θ ≤ 1, β ≤ Θ for all ρ, E = max(σ, Θ − (1 − θ')).
+        a_k := Σ'_{β≥σ} m(ρ)·J_k(w_ρ) satisfies |a_k| ≤ A·k²·2^(kE), k ≥ 1.
+
+**The section on filters is too broad, and its exponent is wrong.** The
+normalised rate is `|ζ|^(b−a)·|ζ − p|^a/|p|^a`; the saddle is at
+`ζ = (b−a)·p/b`, height `|p|^(b−a)·(b−a)^(b−a)·a^a/b^b`. The saddle is
+genuine and the block-S3 filter does fail on the count. A different filter
+works: `q(u) = λ + βu` applied `m = n − 1` times, the Euler transform. Its
+rate on a mode is `|λ|·|ζ − c|`, `c = −β/λ`, which is convex along a radial
+segment, so its maximum is at an end and there is no pass.
+
+    N3-E. Under N2, let ρ_1 have β_1 > E, z_1 = 2^(ρ_1), ẑ_1 = z_1/|z_1|,
+          κ ≥ 0, c = −κ·ẑ_1, and r_0 < |z_1| + κ with |2^ρ − c| ≤ r_0 for
+          every zero with β ≥ σ and 2^ρ ≠ z_1. Then False.
+
+Proof. `b_n = Σ_{k=1}^n C(n−1,k−1)·(−c)^(n−k)·a_k`. By the binomial theorem
+`b_n = Σ' m ∫₀^∞ ζ_s·(ζ_s − c)^(n−1) ds/(w − s)`. From N2,
+`|b_n| ≤ A·n²·2^E·(2^E + κ)^(n−1)`. For the other modes
+`|ζ_s − c| ≤ max(κ, r_0)` on the whole segment, so each is
+`≤ 2·max(κ,r_0)^(n−1)/(|γ|·log 2)`. For the class of `ρ_1` the main part is
+exactly `ẑ_1^n·((|z_1|+κ)^n − κ^n)/(n·w)`, the rest `o((|z_1|+κ)^n/n)` by
+dominated convergence. Dividing by `ẑ_1^n·(|z_1|+κ)^n/n`, the class weight
+`Σ_class m/w` is zero; it has positive real part.
+
+In words: a mode that lies strictly outside a disc, centred on the ray
+opposite to it, which holds every other mode right of `σ`. `κ = 0` is the
+largest modulus attained with a gap. `κ → ∞` is a mode strictly beyond every
+other in its own direction.
+
+**N3 with slits holds, tightened** (thickened segment as domain; hypothesis
+in metric form), and a sharper form `N3′` covers the single ray. Coverage:
+Euler-exposed ⊂ sector-exposed ⊂ N3′. The Euler form is elementary: no
+complex analysis.
+
+**Order of building.** N1, N2, N3-E.

@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block N1 of `design/countmodes.md`: `Stage3/CountModes.lean`
+
+    DONE        `piMode_doubling`: for a zero `ρ`, `k ≥ 1`,
+                `piMode ρ (2^k) = J_k(ρ·log 2) + c_ρ`, `J_k` the integral of
+                the radial segment of modes; `norm_J_le`, `norm_c_le`;
+                `im_ne_zero`: no nontrivial zero is real; one unit
+    ASSUMED     Julian, 2026-11-23: "Merge then the count". The design as
+                corrected by an independent review. Written by an Opus
+                worker; read and built here
+    DEPENDS     `PiZeros.piMode`, `FiniteOffLinePi.piMode_eq`, PNT+
+                `Zeta0EqZeta`
+    OUT         blocks N2, N3-E; the forms with slits
+
 ### 2026-11-23 · design `design/countmodes.md`, blocks N1 to N3: joint 10 on the count's ladder
 
     DONE        the design reviewed by an independent worker asked to break
