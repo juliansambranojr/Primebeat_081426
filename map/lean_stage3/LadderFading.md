@@ -5,7 +5,7 @@ LadderFading — block J10b of `lean_stage3/design/joints.md`. 2026-11-22. Joint
 4 theorems, 0 definitions, 162 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AliasClass`](../lean_stage3/AliasClass.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LadderMean`](../lean_stage3/LadderMean.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md), [`LadderMean`](../lean_stage3/LadderMean.md)
 
 ## The picture
 
@@ -18,11 +18,13 @@ flowchart LR
   x0(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
   x1(["<b>AliasClass</b><br/>alias_weight<br/>sum_order_div_ne_zero<br/>zero_re_pos"]):::ext
   x2(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
+  x3(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
   n2 -.-> x0
   n3 -.-> x2
+  n3 -.-> x3
   x1 -.-> n3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -151,7 +153,8 @@ line 103
   - [`LadderFading.not_tendsto_powerSum`](#LadderFading-not_tendsto_powerSum) — `` ∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖ = R) → (∃ z ∈ Z, c z ≠ 0) → ¬ Tendsto (fun r : ℕ => (∑ z ∈ Z, c z * z ^ r) / ((R : ℂ)… ``
   - [`LadderFading.one_sub_inv_ne_zero`](#LadderFading-one_sub_inv_ne_zero) — `` (1 : ℂ) - z⁻¹ ≠ 0 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) (FiniteOffLine) — `` RiemannHypothesis ``
+  - [`FiniteOffLinePi.finite_off_line_pi`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) (FiniteOffLinePi) — `` RiemannHypothesis ``
 

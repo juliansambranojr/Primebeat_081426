@@ -8,27 +8,30 @@ flowchart LR
   p0["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℕ<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ =＞ (Che…"]:::bad
   t0["<b>finite_off_line</b>"]:::thm
   p0 --> t0 --> rh
-  p1["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
-  t1["<b>rh_of_windows</b>"]:::thm
+  p1["Finset NontrivialZeros<br/>∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F<br/>ℝ<br/>∀ᶠ r : ℕ in atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) -…"]:::bad
+  t1["<b>finite_off_line_pi</b>"]:::thm
   p1 --> t1 --> rh
-  p2["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
-  t2["<b>rh_of_zeroFree_half</b>"]:::thm
+  p2["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ LandauWind…"]:::bad
+  t2["<b>rh_of_windows</b>"]:::thm
   p2 --> t2 --> rh
-  p3["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
-  t3["<b>rh_of_window</b>"]:::thm
+  p3["∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::bad
+  t3["<b>rh_of_zeroFree_half</b>"]:::thm
   p3 --> t3 --> rh
-  p4["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
-  t4["<b>RH_of_schoenfeldWeak</b>"]:::thm
+  p4["∀ θ : ℝ, 1 / 2 ＜ θ → θ ＜ 1 → ∃ δ C : ℝ, 0 ＜ δ ∧ WindowBoun…"]:::bad
+  t4["<b>rh_of_window</b>"]:::thm
   p4 --> t4 --> rh
-  p5["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
-  t5["<b>RH_of_psiWeakTheta_half</b>"]:::thm
+  p5["StmtSchoenfeldWeak C 1 x₀ (fun x =＞ (Nat.primeCounting ⌊x⌋…"]:::bad
+  t5["<b>RH_of_schoenfeldWeak</b>"]:::thm
   p5 --> t5 --> rh
-  p6["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
-  t6["<b>RH_of_no_zero_right_of_half</b>"]:::thm
+  p6["StmtPsiWeakTheta (1/2) C k x₀"]:::bad
+  t6["<b>RH_of_psiWeakTheta_half</b>"]:::thm
   p6 --> t6 --> rh
-  p7["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
-  t7["<b>RH_of_psiWeak</b>"]:::thm
+  p7["∀ ρ : ℂ, 1/2 ＜ ρ.re → ρ ≠ 1 → riemannZeta ρ ≠ 0"]:::bad
+  t7["<b>RH_of_no_zero_right_of_half</b>"]:::thm
   p7 --> t7 --> rh
+  p8["∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log …"]:::bad
+  t8["<b>RH_of_psiWeak</b>"]:::thm
+  p8 --> t8 --> rh
   e0["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
   rh --> e0
   e1["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_
@@ -53,9 +56,9 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-- **Theorems Lean has checked:** 1496.
+- **Theorems Lean has checked:** 1509.
 - **Theorems that prove `RiemannHypothesis` with no hypothesis:** 0. It is open.
-- **Theorems that prove it from a hypothesis:** 8. Each hypothesis is a red box: prove one and the line closes.
+- **Theorems that prove it from a hypothesis:** 9. Each hypothesis is a red box: prove one and the line closes.
 - **Theorems that restate it (`RiemannHypothesis ↔ …`):** 6.
 - **Theorems that assume it:** 67, arriving at 26 ends.
 
@@ -64,6 +67,7 @@ flowchart LR
 | theorem | the hypothesis it needs (open) | why (its docstring) |
 |---|---|---|
 | [`FiniteOffLine.finite_off_line`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) | F : Finset NontrivialZeros; hF : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F; d : ℕ; C : ℝ; hcells : ∀ᶠ r : ℕ in atTop, ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d‖ ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r | Finitely many zeros off the line, and cells of square-root size on the one ladder: then no zero is off the line. Let a finite set hold every zero of ζ off the line. If at one depth the cells of the log-weighted prime count on the table's own ladder stay within `C·r²·√2^r` of their main term, the Rie… |
+| [`FiniteOffLinePi.finite_off_line_pi`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) | F : Finset NontrivialZeros; hF : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F; C : ℝ; hrows : ∀ᶠ r : ℕ in atTop, \|(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) - Stage3.Li ((2:ℝ) ^ r)\| ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r | Finitely many zeros off the line, and the count of primes of square-root size at the doublings: then no zero is off the line. Let a finite set hold every zero of ζ off the line. If the count of primes at `2^r` stays within `C·r²·√2^r` of `Li` from some row on, the Riemann hypothesis holds. |
 | [`LandauCriterion.rh_of_windows`](./lean_stage3/LandauCriterion.md#LandauCriterion-rh_of_windows) | hW : ∀ θ : ℝ, 1 / 2 &lt; θ → θ &lt; 1 → ∃ δ C : ℝ, 0 &lt; δ ∧ LandauWindow.WindowBound θ δ C | Conditional: if for every `θ` in `(1/2, 1)` there are `δ &gt; 0` and `C` with the window bound `WindowBound θ δ C`, then `RiemannHypothesis` holds. The window bound is a hypothesis of this statement. |
 | [`LandauWindow.rh_of_zeroFree_half`](./lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) | h : ∀ s : ℂ, 1 / 2 &lt; s.re → riemannZeta s ≠ 0 | From a zero-free half-plane to the Riemann hypothesis. |
 | [`LandauWindow.rh_of_window`](./lean_stage3/LandauWindow.md#LandauWindow-rh_of_window) | hW : ∀ θ : ℝ, 1 / 2 &lt; θ → θ &lt; 1 → ∃ δ C : ℝ, 0 &lt; δ ∧ WindowBound θ δ C | The window bound gives the Riemann hypothesis, given the criterion. |

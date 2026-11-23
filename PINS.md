@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · joint 10, the finite case on the count: `Stage3/FiniteOffLinePi.lean`, block J10e of `joints.md`
+
+    DONE        `finite_off_line_pi`: a finite set holds every zero off the
+                line, and the prime count at the doublings is within
+                `C·r²·√2^r` of `Li`; then RH. With it `norm_ipart_le`,
+                `norm_piMode_le`, `norm_piMode_half` (the size of one zero's
+                part of the count) and `row_bound`; one unit
+    ASSUMED     Julian, 2026-11-23: "work on the open inside these". Written
+                by an Opus worker from a brief with the statement and the
+                route; read for shortcuts and built here
+    DEPENDS     `PiZeros.pi_eq_zero_sum`, `PiRemainder.norm_tr_efRem_le_of`,
+                `zinv_le_log`, `LadderFading.line_not_fading`
+    OUT         infinitely many zeros off the line; the cells at depth
+    OUTCOME     proved, unit 0445; clean on the worker's first build
+
 ### 2026-11-23 · the open bound of joint T2: `Stage3/PiRemainder.lean`, block T2b of `joints.md`
 
     DONE        `norm_tr_efRem_le`: constants `A`, `x₀` with

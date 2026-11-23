@@ -33,7 +33,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (483)
+## Uses Lean records that the text does not show (487)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -159,6 +159,10 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`Stage3.bump_le`](lean_stage3/ExplicitBump.md#Stage3-bump_le) | [`Stage3.bumpC_pos`](lean_stage3/ExplicitBump.md#Stage3-bumpC_pos) | theorem |
 | [`FiniteOffLine.finite_off_line`](lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) | [`Chain.Sym`](lean/Chain.md#Chain-Sym) | def |
 | [`FiniteOffLine.finite_off_line`](lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) | [`Chain.mode`](lean/Chain.md#Chain-mode) | def |
+| [`FiniteOffLinePi.rowBound_isLittleO`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO) | [`PiRemainder.Arem`](lean_stage3/PiRemainder.md#PiRemainder-Arem) | def |
+| [`FiniteOffLinePi.rowBound_isLittleO`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO) | [`PiRemainder.Mlow`](lean_stage3/PiRemainder.md#PiRemainder-Mlow) | def |
+| [`FiniteOffLinePi.finite_off_line_pi`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) | [`Chain.Sym`](lean/Chain.md#Chain-Sym) | def |
+| [`FiniteOffLinePi.finite_off_line_pi`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) | [`Chain.mode`](lean/Chain.md#Chain-mode) | def |
 | [`GateEval.routeConst_le`](lean_stage3/GateEval.md#GateEval-routeConst_le) | [`Glue.c1n`](lean_stage3/GlueNum.md#Glue-c1n) | def |
 | [`GateEval.routeConst_le`](lean_stage3/GateEval.md#GateEval-routeConst_le) | [`Glue.c3n`](lean_stage3/GlueNum.md#Glue-c3n) | def |
 | [`GateEval.routeConst_le`](lean_stage3/GateEval.md#GateEval-routeConst_le) | [`Glue.c4n`](lean_stage3/GlueNum.md#Glue-c4n) | def |

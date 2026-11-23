@@ -5,7 +5,7 @@ LandauWindow — the Landau window criterion as a statement, and what it gives: 
 4 theorems, 4 definitions, 176 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`LandauCrude`](../lean_stage3/LandauCrude.md), [`LandauMellin`](../lean_stage3/LandauMellin.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md), [`LandauCrude`](../lean_stage3/LandauCrude.md), [`LandauMellin`](../lean_stage3/LandauMellin.md)
 
 ## The picture
 
@@ -16,12 +16,14 @@ flowchart LR
   n2["<b>zeroFree_half_of_window</b><br/>∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::thm
   n3["<b>rh_of_window</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
-  x1(["<b>LandauCriterion</b><br/>rh_of_windows"]):::ext
+  x1(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
+  x2(["<b>LandauCriterion</b><br/>rh_of_windows"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
   n1 -.-> x0
-  n3 -.-> x1
+  n1 -.-> x1
+  n3 -.-> x2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -130,9 +132,10 @@ RiemannHypothesis
 
   - [`LandauWindow.zeta_neg_nat_ne_zero`](#LandauWindow-zeta_neg_nat_ne_zero) — `` riemannZeta (-(n : ℂ)) ≠ 0 ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) (FiniteOffLine) — `` RiemannHypothesis ``
+  - [`FiniteOffLinePi.finite_off_line_pi`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) (FiniteOffLinePi) — `` RiemannHypothesis ``
   - [`LandauWindow.rh_of_window`](#LandauWindow-rh_of_window) — `` RiemannHypothesis ``
 
 <a name="LandauWindow-zeroFree_half_of_window"></a>

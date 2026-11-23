@@ -95,6 +95,7 @@
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellModes.lean::CellModes.sym_two",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
@@ -147,6 +148,7 @@
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
@@ -20036,6 +20038,7 @@
      "lean_stage3/Stage3/AliasClass.lean::AliasClass.mode_eq_of_alias",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/LadderMean.lean::LadderMean.line_not_fading_summable"
     ]
    },
@@ -21209,7 +21212,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum"
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.cpow_doubling"
     ]
    },
    {
@@ -23810,6 +23814,8 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
@@ -23849,6 +23855,7 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log"
@@ -23911,6 +23918,8 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
@@ -24311,6 +24320,611 @@
      "lean_stage3/Stage3/GlueNum.lean::Glue.c4n",
      "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+  "module": "Stage3.FiniteOffLinePi",
+  "stem": "FiniteOffLinePi",
+  "header": "FiniteOffLinePi — block J10e of `lean_stage3/design/joints.md`. 2026-11-23. The one-ladder converse for the count of primes, in the case of finitely many zeros off the line. Let a finite set hold every zero of ζ off the line. If the count of primes at the doublings `2^r` stays within `C·r²·√2^r` of `Li`, then no zero is off the line.",
+  "imports": [
+   "Stage3.PiRemainder",
+   "Stage3.LadderFading",
+   "Stage3.CellModes",
+   "Stage3.LandauWindow"
+  ],
+  "opens": [
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "MeasureTheory",
+   "PiRemainder",
+   "PiZeros",
+   "Topology"
+  ],
+  "namespaces": [
+   "FiniteOffLinePi"
+  ],
+  "lines": 631,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/CellModes.lean",
+   "lean_stage3/Stage3/LadderFading.lean",
+   "lean_stage3/Stage3/LandauWindow.lean",
+   "lean_stage3/Stage3/PiRemainder.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "ipart",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.ipart",
+    "line": 50,
+    "why": "The integral in one zero's part of the count.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ",
+     "x : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "piMode_eq",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.piMode_eq",
+    "line": 53,
+    "why": "One zero's part of the count is `x^ρ/ρ` over `log x`, plus the integral.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ",
+     "x : ℝ"
+    ],
+    "proves": "piMode ρ x = (x : ℂ) ^ ρ / ρ / (Real.log x : ℂ) + ipart ρ x",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_integrand",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.norm_integrand",
+    "line": 57,
+    "why": "For `t ≥ 2` the integrand has size `t^b/(|ρ|·t·log²t)`, with `b` the real part.",
+    "sorry": false,
+    "needs": [
+     "ρ : ℂ",
+     "ht : 2 ≤ t"
+    ],
+    "proves": "‖(t : ℂ) ^ ρ / ρ * wt t‖ = ‖ρ‖⁻¹ * (t ^ ρ.re * (t * Real.log t ^ 2)⁻¹)",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_integrand",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_ipart_le",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.norm_ipart_le",
+    "line": 69,
+    "why": "The integral in one zero's part. For a real part `b` in `(0, 1]` and `x ≥ 4`, the integral is at most `(3√x + 4x^b/(b·log²x))/|ρ|`.",
+    "sorry": false,
+    "needs": [
+     "hb0 : 0 < ρ.re",
+     "hb1 : ρ.re ≤ 1",
+     "hx : 4 ≤ x"
+    ],
+    "proves": "‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ ρ.re / (ρ.re * Real.log x ^ 2))",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_integrand",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_integrand",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_piMode_le",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.norm_piMode_le",
+    "line": 187,
+    "why": "One zero's part of the count. For a real part `b` in `(0, 1]` and `x ≥ 4`, the part is at most `((1 + 4/b)·x^b + 3√x)/|ρ|`.",
+    "sorry": false,
+    "needs": [
+     "hb0 : 0 < ρ.re",
+     "hb1 : ρ.re ≤ 1",
+     "hx : 4 ≤ x"
+    ],
+    "proves": "‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * ((1 + 4 / ρ.re) * x ^ ρ.re + 3 * Real.sqrt x)",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_half",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_piMode_half",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.norm_piMode_half",
+    "line": 224,
+    "why": "One zero on the line. For real part `1/2` and `x ≥ 4`, the zero's part of the count is at most `12√x/|ρ|`.",
+    "sorry": false,
+    "needs": [
+     "hre : ρ.re = 1 / 2",
+     "hx : 4 ≤ x"
+    ],
+    "proves": "‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (12 * Real.sqrt x)",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_half",
+    "stmt": [
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sqrt_doubling",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.sqrt_doubling",
+    "line": 232,
+    "why": "The square root of `2^r` is `√2^r`.",
+    "sorry": false,
+    "needs": [
+     "r : ℕ"
+    ],
+    "proves": "Real.sqrt ((2:ℝ) ^ r) = Real.sqrt 2 ^ r",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.sqrt_doubling",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_doubling",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.rpow_doubling",
+    "line": 238,
+    "why": "The real power `b` of `2^r` is `(2^b)^r`.",
+    "sorry": false,
+    "needs": [
+     "r : ℕ",
+     "b : ℝ"
+    ],
+    "proves": "((2:ℝ) ^ r) ^ b = ((2:ℝ) ^ b) ^ r",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rpow_doubling",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cpow_doubling",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.cpow_doubling",
+    "line": 244,
+    "why": "The complex power `ρ` of `2^r` is `(2^ρ)^r`.",
+    "sorry": false,
+    "needs": [
+     "r : ℕ",
+     "ρ : ℂ"
+    ],
+    "proves": "(((2:ℝ) ^ r : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ r",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.cpow_doubling",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cpow_two_zpow"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cpow_two_zpow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "ordR",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.ordR",
+    "line": 250,
+    "why": "The order of a zero, as a real number.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "ordR_nonneg",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.ordR_nonneg",
+    "line": 253,
+    "why": "The order of a zero is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "0 ≤ ordR ρ",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_order_mul",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.norm_order_mul",
+    "line": 256,
+    "why": "The order of a zero, as a factor, multiplies the size by the order.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "w : ℂ"
+    ],
+    "proves": "‖((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * w‖ = ordR ρ * ‖w‖",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "rowBound",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.rowBound",
+    "line": 262,
+    "why": "The bound on the top line's sum at row `r`.",
+    "sorry": false,
+    "needs": [
+     "F S : Finset NontrivialZeros",
+     "β C : ℝ",
+     "r : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rowBound_isLittleO",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.rowBound_isLittleO",
+    "line": 272,
+    "why": "The row's bound is small against the top line. If `β > 1/2` and every zero of `F \\ S` has real part below `β`, the bound is `o((2^β)^r)`.",
+    "sorry": false,
+    "needs": [
+     "F S : Finset NontrivialZeros",
+     "hβ : 1 / 2 < β",
+     "hlt : ∀ ρ ∈ F \\ S, (ρ : ℂ).re < β",
+     "C : ℝ"
+    ],
+    "proves": "(fun r : ℕ => rowBound F S β C r) =o[atTop] fun r : ℕ => ((2:ℝ) ^ β) ^ r",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "row_bound",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.row_bound",
+    "line": 312,
+    "why": "The top line's sum at one row. Let `S ⊆ F` have real part `β`, let `F` hold every zero off the line and lie below `2^r`, with `r ≥ 8`. If the count of primes at `2^r` is within `C·r²·√2^r` of `Li`, the sum `Σ_{ρ∈S} m(ρ)·(2^ρ)^r/ρ` is at most `rowBound F S β C r`.",
+    "sorry": false,
+    "needs": [
+     "F S : Finset NontrivialZeros",
+     "hSF : S ⊆ F",
+     "hSβ : ∀ ρ ∈ S, (ρ : ℂ).re = β",
+     "hF : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F",
+     "C : ℝ",
+     "hr : 8 ≤ r",
+     "hFr : F ⊆ ZF ((2:ℝ) ^ r)",
+     "hrow : |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) - Stage3.Li ((2:ℝ) ^ r)| ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r"
+    ],
+    "proves": "‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+    "stmt": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.cpow_doubling",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_half",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rpow_doubling",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.sqrt_doubling",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.cpow_doubling",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_half",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rpow_doubling",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.sqrt_doubling",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "finite_off_line_pi",
+    "ns": "FiniteOffLinePi",
+    "full": "FiniteOffLinePi.finite_off_line_pi",
+    "line": 543,
+    "why": "Finitely many zeros off the line, and the count of primes of square-root size at the doublings: then no zero is off the line. Let a finite set hold every zero of ζ off the line. If the count of primes at `2^r` stays within `C·r²·√2^r` of `Li` from some row on, the Riemann hypothesis holds.",
+    "sorry": false,
+    "needs": [
+     "F : Finset NontrivialZeros",
+     "hF : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F",
+     "C : ℝ",
+     "hrows : ∀ᶠ r : ℕ in atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) - Stage3.Li ((2:ℝ) ^ r)| ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r"
+    ],
+    "proves": "RiemannHypothesis",
+    "file": "lean_stage3/Stage3/FiniteOffLinePi.lean",
+    "id": "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
+    "stmt": [
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "proof": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
+    ],
+    "exact": true,
+    "uses": [
+     "lean/Chain.lean::Chain.Sym",
+     "lean/Chain.lean::Chain.mode",
+     "lean_stage3/Stage3/CellModes.lean::CellModes.mode_two_int",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/LadderFading.lean::LadderFading.line_not_fading",
+     "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
     ],
     "layer": "zeta",
     "used_by": []
@@ -27553,7 +28167,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line"
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi"
     ]
    }
   ]
@@ -30454,6 +31069,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_window"
     ]
    },
@@ -34559,6 +35175,9 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
@@ -34594,6 +35213,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_dyadic",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
@@ -34733,6 +35353,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
@@ -34811,6 +35432,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of"
     ]
    },
@@ -35095,6 +35717,9 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of"
@@ -35131,6 +35756,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le"
     ]
    },
@@ -35187,6 +35813,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le"
     ]
    },
@@ -35733,6 +36360,9 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_integrand",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
@@ -35769,6 +36399,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
@@ -35839,6 +36470,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum"
@@ -36004,6 +36636,10 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_half",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -36033,6 +36669,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
@@ -36062,6 +36699,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
@@ -36147,6 +36785,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
     ]
@@ -36203,6 +36842,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
@@ -36236,7 +36876,9 @@
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.integral_A_rpow_le"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
+    ]
    },
    {
     "kind": "theorem",
@@ -36454,6 +37096,8 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.weak_nonneg",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.schoenfeldWeak_floor_split_of_RH",
      "lean_stage3/Stage3/JointDialGate.lean::JointDialGate.relErrWindow_of_window",
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
@@ -64853,11 +65497,12 @@
    "Stage3.CellBdiff",
    "Stage3.CellRows",
    "Stage3.PiZeros",
-   "Stage3.PiRemainder"
+   "Stage3.PiRemainder",
+   "Stage3.FiniteOffLinePi"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 154,
+  "lines": 155,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -64881,6 +65526,7 @@
    "lean_stage3/Stage3/EdgeNum.lean",
    "lean_stage3/Stage3/ExplicitBump.lean",
    "lean_stage3/Stage3/FiniteOffLine.lean",
+   "lean_stage3/Stage3/FiniteOffLinePi.lean",
    "lean_stage3/Stage3/GateEval.lean",
    "lean_stage3/Stage3/Glue.lean",
    "lean_stage3/Stage3/GlueFloor.lean",

@@ -143,6 +143,7 @@ import Stage3.CellBdiff
 import Stage3.CellRows
 import Stage3.PiZeros
 import Stage3.PiRemainder
+import Stage3.FiniteOffLinePi
 
 namespace Stage3
 

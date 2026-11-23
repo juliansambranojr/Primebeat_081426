@@ -22,9 +22,10 @@ flowchart LR
   n8["<b>stencil_zeroPartialSum</b><br/>stencil d (fun n : ℤ =＞ Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r =…"]:::thm
   n9["<b>cell_eq_zero_sum</b><br/>‖stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2…"]:::thm
   x0(["<b>PiZeros</b><br/>stencil_neg<br/>table_cell_eq_zero_sum"]):::ext
-  x1(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
-  x2(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
-  x3(["<b>FiniteOffLine</b><br/>cell_zero_sum_finset"]):::ext
+  x1(["<b>FiniteOffLinePi</b><br/>cpow_doubling"]):::ext
+  x2(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
+  x3(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
+  x4(["<b>FiniteOffLine</b><br/>cell_zero_sum_finset"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n8
@@ -39,9 +40,10 @@ flowchart LR
   n1 -.-> x0
   n2 -.-> x0
   n3 -.-> x0
-  n9 -.-> x2
+  n6 -.-> x1
   n9 -.-> x3
-  x1 -.-> n9
+  n9 -.-> x4
+  x2 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -274,9 +276,10 @@ line 94
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum) — `` stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Ka… ``
+  - [`FiniteOffLinePi.cpow_doubling`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-cpow_doubling) (FiniteOffLinePi) — `` (((2:ℝ) ^ r : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ r ``
 
 <a name="CellZeros-two_cpow_ne_zero"></a>
 ### `CellZeros.two_cpow_ne_zero`

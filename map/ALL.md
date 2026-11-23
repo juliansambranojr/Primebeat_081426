@@ -268,6 +268,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Glue.Cpn`](./lean_stage3/GlueNum.md#Glue-Cpn) | def | reads ζ | `GlueNum` | ℝ |
 | [`RouteNum.Cpn_le`](./lean_stage3/RouteNum.md#RouteNum-Cpn_le) | theorem | reads ζ | `RouteNum` | Glue.Cpn ≤ 6534550000 |
 | [`Glue.Cpn_pos`](./lean_stage3/GlueNum.md#Glue-Cpn_pos) | theorem | reads ζ | `GlueNum` | 0 &lt; Cpn |
+| [`FiniteOffLinePi.cpow_doubling`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-cpow_doubling) | theorem | shape | `FiniteOffLinePi` | (((2:ℝ) ^ r : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ r |
 | [`Elephant.cpow_neg_mul_lseries`](./lean/Elephant.md#Elephant-cpow_neg_mul_lseries) | theorem | reads ζ | `Elephant` | (b : ℂ) ^ (-s) * LSeries a s = LSeries (fun m =&gt; if b ∣ m then a (m / b) else 0) s |
 | [`Elephant.cpow_neg_pow`](./lean/Elephant.md#Elephant-cpow_neg_pow) | theorem | shape | `Elephant` | ((b : ℂ) ^ (-ρ)) ^ k = (b : ℂ) ^ (-((k : ℂ) * ρ)) |
 | [`EulerFactorChain.cpow_rect_on_critical_line`](./lean/EulerFactorChain.md#EulerFactorChain-cpow_rect_on_critical_line) | theorem | shape | `EulerFactorChain` | (b : ℂ) ^ (-((1 : ℂ)/2 + γ * I)) = ((b ^ (-(1:ℝ)/2) * Real.cos (γ * Real.log b) : ℝ) : ℂ) + ((-(b ^ (-(1:ℝ)/2) * Real.sin (γ * Real.log b)) : ℝ) : ℂ) * I |
@@ -447,6 +448,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Slice3.finalBoundConst_le`](./lean_stage3/LineBound.md#Slice3-finalBoundConst_le) | theorem | shape | `LineBound` | 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2 / (29/32) - 29/32) * Real.log ((15/16)/(29/32))) ≤ 3991 |
 | [`Slice4.finalBoundConst_le`](./lean_stage3/LineBound.md#Slice4-finalBoundConst_le) | theorem | shape | `LineBound` | 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2 / (29/32) - 29/32) * Real.log ((15/16)/(29/32))) ≤ 3991 |
 | [`FiniteOffLine.finite_off_line`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) | theorem | reads ζ | `FiniteOffLine` | RiemannHypothesis |
+| [`FiniteOffLinePi.finite_off_line_pi`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) | theorem | reads ζ | `FiniteOffLinePi` | RiemannHypothesis |
 | [`Stage3.floor_arith`](./lean_stage3/AssemblyFloor.md#Stage3-floor_arith) | theorem | shape | `AssemblyFloor` | A ≤ (4 + P / L₀ + Q / L₀ ^ 2 + 18 * c₁ / (x₀ * S₀) + c₂ / (S₀ * L₀)) * S * L ^ 2 |
 | [`GateEval.floor_bound`](./lean_stage3/GateEval.md#GateEval-floor_bound) | theorem | shape | `GateEval` | 3 * (4 + (16 + 16 * 112 + 16 * 0) / ℓ + (8 * 698 + 8 + 4 * 0) / ℓ ^ 2 + 18 * c1 / ((2:ℝ) ^ (36:ℕ) * (2:ℝ) ^ (18:ℕ)) + c3 / ((2:ℝ) ^ (18:ℕ) * ℓ) + c4 * (1 / (2:ℝ) ^ (9:ℕ)) / (2:ℝ) ^ (18:ℕ)) + 13 ≤ 414 |
 | [`Stage3.floorConst`](./lean_stage3/AssemblyFloor.md#Stage3-floorConst) | def | shape | `AssemblyFloor` | ℝ |
@@ -630,6 +632,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`RHPull.inv_sqrt_mul_self`](./lean_stage3/LineBound.md#RHPull-inv_sqrt_mul_self) | theorem | shape | `LineBound` | (Real.sqrt X)⁻¹ * X = Real.sqrt X |
 | [`Transform.inversion_fixes_circle`](./lean/Transform.md#Transform-inversion_fixes_circle) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-(1 : ℂ)) / z‖ = ‖z‖ ↔ ‖z‖ = b ^ (-(1 : ℝ) / 2) |
 | [`WobbleCount.invisible_iff`](./lean_stage3/WobbleCount.md#WobbleCount-invisible_iff) | theorem | reads ζ | `WobbleCount` | (∃ C : ℝ, ∀ N : ℕ, 0 &lt; N → ‖wobbleSum ρ N - (N : ℂ) / (1 - ρ)‖ ≤ C) ↔ riemannZeta ρ = 0 |
+| [`FiniteOffLinePi.ipart`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def | shape | `FiniteOffLinePi` | ℂ |
 | [`JointLadder.irrational_log_two_div_log_three`](./lean/JointLadder.md#JointLadder-irrational_log_two_div_log_three) | theorem | shape | `JointLadder` | Irrational (Real.log 2 / Real.log 3) |
 | [`Stage3.isEmpty_zeroHeight`](./lean_stage3/RealSegment.md#Stage3-isEmpty_zeroHeight) | theorem | reads ζ | `RealSegment` | IsEmpty Kadiri.ZeroHeightNontrivialZeros |
 | [`Elephant.IsModeRow`](./lean/Elephant.md#Elephant-IsModeRow) | def | shape | `Elephant` | Prop |
@@ -899,6 +902,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauTrig.norm_geom_Ico_le`](./lean_stage3/LandauTrig.md#LandauTrig-norm_geom_Ico_le) | theorem | shape | `LandauTrig` | ‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖ |
 | [`WeilPowerGeom.norm_geom_le`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-norm_geom_le) | theorem | shape | `WeilPowerGeom` | ‖∑ m ∈ Finset.Ico a b, Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2)‖ ≤ geomBound z a b |
 | [`WeilPowerGeomGen.norm_geom_le_gen`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-norm_geom_le_gen) | theorem | shape | `WeilPowerGeomGen` | ‖∑ h ∈ Finset.Ico a b, Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) : ℂ))‖ ≤ geomBoundGen z α β₀ a b |
+| [`FiniteOffLinePi.norm_integrand`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_integrand) | theorem | shape | `FiniteOffLinePi` | ‖(t : ℂ) ^ ρ / ρ * wt t‖ = ‖ρ‖⁻¹ * (t ^ ρ.re * (t * Real.log t ^ 2)⁻¹) |
+| [`FiniteOffLinePi.norm_ipart_le`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_ipart_le) | theorem | shape | `FiniteOffLinePi` | ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ ρ.re / (ρ.re * Real.log x ^ 2)) |
 | [`BoxBounds.norm_le_of_sq`](./lean_stage3/BoxBounds.md#BoxBounds-norm_le_of_sq) | theorem | shape | `BoxBounds` | ‖z‖ ≤ c |
 | [`RHPull.norm_line_ge`](./lean_stage3/LineBound.md#RHPull-norm_line_ge) | theorem | shape | `LineBound` | (1 + \|t\|) / 3 ≤ ‖((σRH X : ℂ)) + I * (t : ℂ)‖ |
 | [`Stage3.norm_line_ge_theta`](./lean_stage3/ThetaPull.md#Stage3-norm_line_ge_theta) | theorem | shape | `ThetaPull` | (1 + \|t\|) / 3 ≤ ‖((σθ θ X : ℂ)) + I * (t : ℂ)‖ |
@@ -910,6 +915,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGauss.norm_one_add_le`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-norm_one_add_le) | theorem | shape | `WeilPowerGauss` | ‖1 + x‖ ≤ Real.exp (x.re + ‖x‖ ^ 2) |
 | [`WeilPowerTail.norm_one_add_le`](./lean_stage3/WeilPowerTail.md#WeilPowerTail-norm_one_add_le) | theorem | shape | `WeilPowerTail` | ‖1 + z‖ ≤ Real.exp (z.re + ‖z‖ ^ 2 / 2) |
 | [`WeilPowerGeom.norm_one_sub_exp_ge`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-norm_one_sub_exp_ge) | theorem | shape | `WeilPowerGeom` | Real.exp w.re * \|Real.sin w.im\| ≤ ‖1 - Complex.exp w‖ |
+| [`FiniteOffLinePi.norm_order_mul`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_order_mul) | theorem | reads ζ | `FiniteOffLinePi` | ‖((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * w‖ = ordR ρ * ‖w‖ |
+| [`FiniteOffLinePi.norm_piMode_half`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_piMode_half) | theorem | shape | `FiniteOffLinePi` | ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (12 * Real.sqrt x) |
+| [`FiniteOffLinePi.norm_piMode_le`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_piMode_le) | theorem | shape | `FiniteOffLinePi` | ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * ((1 + 4 / ρ.re) * x ^ ρ.re + 3 * Real.sqrt x) |
 | [`PiRemainder.norm_psi_sub_le`](./lean_stage3/PiRemainder.md#PiRemainder-norm_psi_sub_le) | theorem | shape | `PiRemainder` | ‖((ψ t : ℝ) : ℂ) - (t : ℂ)‖ ≤ 7 * t |
 | [`WeilPowerBounds.norm_QS_ge`](./lean_stage3/WeilPowerBounds.md#WeilPowerBounds-norm_QS_ge) | theorem | shape | `WeilPowerBounds` | (w.re ^ 2) ^ (m + 1) ≤ ‖QS m w‖ |
 | [`WeilPowerBounds.norm_QS_ge_far`](./lean_stage3/WeilPowerBounds.md#WeilPowerBounds-norm_QS_ge_far) | theorem | shape | `WeilPowerBounds` | (w.im ^ 2 / 2) ^ (m + 1) ≤ ‖QS m w‖ |
@@ -1001,6 +1009,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilBands.order_eq_analyticOrderNatAt`](./lean_stage3/WeilBands.md#WeilBands-order_eq_analyticOrderNatAt) | theorem | reads ζ | `WeilBands` | ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) = (analyticOrderNatAt riemannZeta (ρ : ℂ) : ℝ) |
 | [`WeilBridgeLeaf.order_eq_toNat`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-order_eq_toNat) | theorem | reads ζ | `WeilBridgeLeaf` | riemannZeta.order ρ = (((analyticOrderAt riemannZeta ρ).toNat : ℕ) : ℤ) |
 | [`FiniteOffLine.order_nonneg`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) | theorem | reads ζ | `FiniteOffLine` | (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) |
+| [`FiniteOffLinePi.ordR`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) | def | reads ζ | `FiniteOffLinePi` | ℝ |
+| [`FiniteOffLinePi.ordR_nonneg`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR_nonneg) | theorem | reads ζ | `FiniteOffLinePi` | 0 ≤ ordR ρ |
 | [`Propagation.outside_cone_zero`](./lean/Propagation.md#Propagation-outside_cone_zero) | theorem | counting | `Propagation` | tableFrom (deltaRow s) r d = 0 |
 | [`WeilPowerPhase.P`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-P) | def | shape | `WeilPowerPhase` | ℂ |
 | [`WeilWindow.P`](./lean_stage3/WeilWindow.md#WeilWindow-P) | def | shape | `WeilWindow` | ℝ |
@@ -1070,6 +1080,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.pi_sub_Li_eq`](./lean_stage3/PsiToPi.md#Stage3-pi_sub_Li_eq) | theorem | shape | `PsiToPi` | (Nat.primeCounting ⌊x⌋₊ : ℝ) - Li x = (θ x - x) / Real.log x + ∫ t in (2 : ℝ)..x, (θ t - t) / (t * Real.log t ^ 2) |
 | [`PiZeros.pi_sub_Li_eq_tr`](./lean_stage3/PiZeros.md#PiZeros-pi_sub_Li_eq_tr) | theorem | shape | `PiZeros` | (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = tr (fun t =&gt; ((θ t - t : ℝ) : ℂ)) x |
 | [`PiZeros.piMode`](./lean_stage3/PiZeros.md#PiZeros-piMode) | def | shape | `PiZeros` | ℂ |
+| [`FiniteOffLinePi.piMode_eq`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq) | theorem | shape | `FiniteOffLinePi` | piMode ρ x = (x : ℂ) ^ ρ / ρ / (Real.log x : ℂ) + ipart ρ x |
 | [`Stage3.pole_away`](./lean_stage3/JensenCount.md#Stage3-pole_away) | theorem | shape | `JensenCount` | 2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1 |
 | [`Stage3.pole_away_centre`](./lean_stage3/JensenCount.md#Stage3-pole_away_centre) | theorem | shape | `JensenCount` | v ≠ 1 |
 | [`Transform.poleLattice`](./lean/Transform.md#Transform-poleLattice) | def | shape | `Transform` | AddSubgroup ℂ |
@@ -1240,14 +1251,18 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.riemannHypothesis_iff_zeros_on_middle_circle`](./lean/Transform.md#Transform-riemannHypothesis_iff_zeros_on_middle_circle) | theorem | reads ζ | `Transform` | RiemannHypothesis ↔ ∀ (s : ℂ), riemannZeta s = 0 → ¬(∃ n : ℕ, s = -2 * (n + 1)) → s ≠ 1 → ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2) |
 | [`Stage3.routeConst`](./lean_stage3/RouteNum.md#Stage3-routeConst) | def | reads ζ | `RouteNum` | ℝ |
 | [`GateEval.routeConst_le`](./lean_stage3/GateEval.md#GateEval-routeConst_le) | theorem | reads ζ | `GateEval` | Stage3.routeConst ((2:ℝ) ^ (36:ℕ)) ≤ 414 |
+| [`FiniteOffLinePi.row_bound`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound) | theorem | reads ζ | `FiniteOffLinePi` | ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r |
 | [`Isogeny.row_three_eq_triple`](./lean/Isogeny.md#Isogeny-row_three_eq_triple) | theorem | counting | `Isogeny` | rowN Q 3 r = rowN Q 1 (3 * r) + rowN Q 1 (3 * r + 1) + rowN Q 1 (3 * r + 2) |
 | [`Isogeny.row_two_eq_pair`](./lean/Isogeny.md#Isogeny-row_two_eq_pair) | theorem | counting | `Isogeny` | rowN Q 2 r = rowN Q 1 (2 * r) + rowN Q 1 (2 * r + 1) |
+| [`FiniteOffLinePi.rowBound`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound) | def | reads ζ | `FiniteOffLinePi` | ℝ |
+| [`FiniteOffLinePi.rowBound_isLittleO`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO) | theorem | reads ζ | `FiniteOffLinePi` | (fun r : ℕ =&gt; rowBound F S β C r) =o[atTop] fun r : ℕ =&gt; ((2:ℝ) ^ β) ^ r |
 | [`Isogeny.rowN`](./lean/Isogeny.md#Isogeny-rowN) | def | counting | `Isogeny` | ℤ |
 | [`TableRoute.rowN`](./lean_stage3/TableRoute.md#TableRoute-rowN) | def | shape | `TableRoute` | ℤ |
 | [`Isogeny.rowN_comp`](./lean/Isogeny.md#Isogeny-rowN_comp) | theorem | counting | `Isogeny` | rowN Q (k * l) r = rowN (fun n =&gt; Q (k * n)) l r |
 | [`Isogeny.rowN_eq_blockSum`](./lean/Isogeny.md#Isogeny-rowN_eq_blockSum) | theorem | counting | `Isogeny` | rowN Q k r = ∑ j ∈ range k, rowN Q 1 (k * r + j) |
 | [`Isogeny.rowOf`](./lean/Isogeny.md#Isogeny-rowOf) | def | counting | `Isogeny` | ℤ |
 | [`Isogeny.rowOf_eq_rowN`](./lean/Isogeny.md#Isogeny-rowOf_eq_rowN) | theorem | counting | `Isogeny` | rowOf P b r = rowN (fun n =&gt; P (b ^ n)) 1 r |
+| [`FiniteOffLinePi.rpow_doubling`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rpow_doubling) | theorem | shape | `FiniteOffLinePi` | ((2:ℝ) ^ r) ^ b = ((2:ℝ) ^ b) ^ r |
 | [`Transform.rpow_left_inj`](./lean/Transform.md#Transform-rpow_left_inj) | theorem | shape | `Transform` | b ^ x = b ^ y ↔ x = y |
 | [`Stage3.rpow_neg_half_mul`](./lean_stage3/PsiToPi.md#Stage3-rpow_neg_half_mul) | theorem | shape | `PsiToPi` | t ^ (-(1 : ℝ) / 2) * (t * Real.log t ^ 2) = Real.sqrt t * Real.log t ^ 2 |
 | [`RHPull.rpow_one_add`](./lean_stage3/LineBound.md#RHPull-rpow_one_add) | theorem | shape | `LineBound` | X ^ (1 + 1 / Real.log X) = Real.exp 1 * X |
@@ -1358,6 +1373,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`BoxBounds.sq_zeta_band_explicit`](./lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_band_explicit) | theorem | reads ζ | `BoxBounds` | ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 * (2 + \|s.im\|) ^ 4 |
 | [`BoxBounds.sq_zeta_box`](./lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_box) | theorem | reads ζ | `BoxBounds` | ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 |
 | [`Stage3.sqPos_eq`](./lean_stage3/ExplicitBump.md#Stage3-sqPos_eq) | theorem | shape | `ExplicitBump` | (max 0 u) ^ 2 = if u ≤ 0 then 0 else u ^ 2 |
+| [`FiniteOffLinePi.sqrt_doubling`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-sqrt_doubling) | theorem | shape | `FiniteOffLinePi` | Real.sqrt ((2:ℝ) ^ r) = Real.sqrt 2 ^ r |
 | [`Stage3.sqrt_le_rpow_theta`](./lean_stage3/ThetaPi.md#Stage3-sqrt_le_rpow_theta) | theorem | shape | `ThetaPi` | Real.sqrt x ≤ x ^ θ |
 | [`MirrorArea.square_iff`](./lean_stage3/MirrorArea.md#MirrorArea-square_iff) | theorem | shape | `MirrorArea` | (‖(b : ℂ) ^ ρ‖ = Real.sqrt b ∧ ‖(b : ℂ) ^ (1 - ρ)‖ = Real.sqrt b) ↔ ρ.re = 1 / 2 |
 | [`NyquistPeak.stationary_maximum`](./lean/NyquistPeak.md#NyquistPeak-stationary_maximum) | theorem | shape | `NyquistPeak` | HasDerivAt (gain d) 0 Real.pi ∧ (∀ θ : ℝ, gain d θ ≤ gain d Real.pi) ∧ (∀ θ : ℝ, \|Real.sin (θ / 2)\| ≠ 1 → gain d θ &lt; gain d Real.pi) |

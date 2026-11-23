@@ -6,11 +6,13 @@ flowchart LR
   x0(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
   x1(["<b>AliasClass</b><br/>alias_weight<br/>sum_order_div_ne_zero<br/>zero_re_pos"]):::ext
   x2(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
+  x3(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
   n2 -.-> x0
   n3 -.-> x2
+  n3 -.-> x3
   x1 -.-> n3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111

@@ -1113,3 +1113,29 @@ not written.
 
 **Not here.** A general height. The cells: the finite off-line theorem on the
 count.
+
+
+### J10e Finitely many zeros off the line, on the count — PROVED (unit 0445: `FiniteOffLinePi.finite_off_line_pi`, `norm_ipart_le`, `row_bound`)
+
+J10d with the prime count in the place of `ψ`. Hypotheses: a finite `F` holds
+every zero with `Re ρ ≠ 1/2`; from some row on,
+`|π(2^r) − Li(2^r)| ≤ C·r²·√2^r`.
+
+At `x = 2^r` and height `x`, units 0442 and 0444 give
+`π − Li = −Σ_{|γ|<x} m(ρ)·piMode ρ x + O(√x·log²x)`. One zero's part:
+
+    piMode ρ x = x^ρ/(ρ·log x) + ∫₂ˣ (t^ρ/ρ)/(t·log²t) dt.
+
+`norm_ipart_le`: for `Re ρ = b ∈ (0,1]`, `x ≥ 4`, the integral is
+`≤ (1/|ρ|)·(3√x + 4x^b/(b·log²x))`: a constant bound on `[2, √x]`; on
+`[√x, x]` the comparison `1/log²t ≤ 4/log²x` and `∫ t^(b−1) dt`. A constant
+bound on the upper piece would lose `x^((1−b)/2)`.
+
+So on the line `|piMode ρ x| ≤ 12√x/|ρ|`, summed by `zinv_le_log`; on the top
+line `β`, `log x·piMode ρ x = x^ρ/ρ + O(x^β/log x)`; below it in `F`, a crude
+`x^(Re ρ)`. Multiplying the identity by `log x = r·log 2`, the top-line sum
+`Σ_S (m/ρ)·(2^ρ)^r` is `o(2^(rβ))` (`rowBound_isLittleO`), against
+`LadderFading.line_not_fading` at depth `0`.
+
+**Not here.** The cells at depth `d` of the integer table; infinitely many
+zeros off the line.

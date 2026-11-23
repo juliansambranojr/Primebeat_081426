@@ -9,16 +9,17 @@ flowchart LR
   n7["<b>integrable_ofReal_of_monotone</b><br/>IntervalIntegrable (fun t =＞ ((f t : ℝ) : ℂ)) volume 2 x"]:::shp
   n8["<b>integrable_cpow</b><br/>IntervalIntegrable (fun t : ℝ =＞ (t : ℂ) ^ ρ / ρ) volume 2 x"]:::shp
   n9["<b>pi_eq_zero_sum</b><br/>(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ …"]:::thm
-  n10["<b>norm_tr_psiTheta_le ■</b><br/>‖tr psiTheta x‖ ≤ 8 * Real.sqrt x"]:::shp
+  n10["<b>norm_tr_psiTheta_le</b><br/>‖tr psiTheta x‖ ≤ 8 * Real.sqrt x"]:::shp
   n11["<b>stencil_congr</b><br/>CellZeros.stencil n a r = CellZeros.stencil n b r"]:::shp
   n12["<b>stencil_neg</b><br/>CellZeros.stencil n (fun m =＞ -a m) r = -CellZeros.stencil n a r"]:::shp
   n13["<b>stencilR_cast</b><br/>((Nonvanishing.stencilR n g r : ℝ) : ℂ) = CellZeros.stencil n (f…"]:::shp
   n14["<b>table_cell_eq_zero_sum ■</b><br/>((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonva…"]:::thm
   x0(["<b>PsiToPi</b><br/>continuousOn_inv_mul_log_sq<br/>integral_A_rpow_le<br/>pi_sub_Li_eq"]):::ext
-  x1(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
-  x2(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
-  x3(["<b>CellZeros</b><br/>4 theorems"]):::ext
-  x4(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
+  x1(["<b>FiniteOffLinePi</b><br/>norm_ipart_le<br/>row_bound"]):::ext
+  x2(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
+  x3(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
+  x4(["<b>CellZeros</b><br/>4 theorems"]):::ext
+  x5(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n4
@@ -34,16 +35,20 @@ flowchart LR
   n8 --> n9
   n9 --> n14
   n1 -.-> x1
-  n6 -.-> x1
-  n7 -.-> x1
+  n1 -.-> x2
+  n10 -.-> x1
+  n6 -.-> x2
+  n7 -.-> x2
   n8 -.-> x1
+  n8 -.-> x2
+  n9 -.-> x1
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n5
-  x2 -.-> n6
-  x3 -.-> n12
-  x3 -.-> n14
+  x3 -.-> n6
+  x4 -.-> n12
   x4 -.-> n14
+  x5 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
