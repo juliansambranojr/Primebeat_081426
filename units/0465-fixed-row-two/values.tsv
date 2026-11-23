@@ -1,0 +1,22 @@
+key	value	source
+module_lines	494	wc -l lean_stage3/Stage3/FixedRowTwo.lean
+theorems_proved	13	grep -c ^theorem lean_stage3/Stage3/FixedRowTwo.lean
+defs	1	Api2
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FixedRowTwo.lean
+pins	5	cell_eq_zero_sum_two, cell_fixed_row_two, tr_efRem_fixed_two, pi_fixed_row_two, table_cell_fixed_row_two
+errors_first	1	the worker's first build, as it reported
+builds	2	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8855	lake build (full Stage3), Build completed successfully
+jobs_module	8800	run/build.log, lake build Stage3.FixedRowTwo
+loop_version	22	lean_stage3/LOOP.md version line
+design	floor.md#g3	the fixed row at every row
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+cell_margin	1	cell_fixed_row_two, d + 1 ≤ r
+cell_margin_old	4	CellFixedRow.cell_fixed_row, d + 4 ≤ r
+table_margin	2	table_cell_fixed_row_two, d + 2 ≤ r
+table_margin_old	6	PiFixedRow.table_cell_fixed_row, d + 6 ≤ r
+floor_new	2	pi_fixed_row_two, 2 ≤ x
+floor_old	16	PiFixedRow.pi_fixed_row, 16 ≤ x

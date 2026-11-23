@@ -25,6 +25,7 @@ flowchart LR
   n9["<b>explicit_formula_perron_two</b><br/>‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t i…"]:::thm
   x0(["<b>PerronKernel</b><br/>7 theorems"]):::ext
   x1(["<b>ExplicitTwo</b><br/>edge_horizontal_bound_two<br/>explicit_formula_left_two"]):::ext
+  x2(["<b>FixedRowTwo</b><br/>norm_integrand_two_le<br/>norm_tr_efRem_le_height_two"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n4
@@ -36,6 +37,7 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n1 -.-> x1
+  n1 -.-> x2
   n9 -.-> x1
   x0 -.-> n0
   x0 -.-> n2
@@ -106,9 +108,11 @@ line 50 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (5 that use it)
 
   - [`ExplicitTwo.edge_horizontal_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-edge_horizontal_bound_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 2 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ y : ℝ, |y| = T… ``
+  - [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le) (FixedRowTwo) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
+  - [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two) (FixedRowTwo) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
   - [`PerronTwo.far_terms_sum_two`](#PerronTwo-far_terms_sum_two) — `` (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * |Real.log (x / n)|) else 0) ≤ 300 *… ``
   - [`PerronTwo.kernel_sum_bound_two`](#PerronTwo-kernel_sum_bound_two) — `` ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 17 … ``
 

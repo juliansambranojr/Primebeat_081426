@@ -7,7 +7,7 @@ PiFixedRow — block F4 of `lean_stage3/design/leftedge.md`. 2026-11-23. The int
 23 theorems, 5 definitions, 717 lines. 
 
 **Imports:** [`CellFixedRow`](../lean_stage3/CellFixedRow.md), [`PiRemainder`](../lean_stage3/PiRemainder.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md)
 
 ## The picture
 

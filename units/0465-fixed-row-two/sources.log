@@ -1,0 +1,113 @@
+# check_prose_source.py  2026-11-23T05:46:39Z
+# unit: 0465-fixed-row-two
+# sources searched: 429
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6f8887ce4324948f.jsonl:1320
+  theorem cell_eq_zero_sum_two (d : ℕ) (r : ℤ) {T : ℝ} (h2 : 2 ≤ (2:ℝ) ^ (r - (d : ℤ)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46207
+  ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46005
+  - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46006
+  + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45981
+  ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45982
+  * (((2:ℂ) ^ ((ρ : Kadiri.NontrivialZeros) : ℂ)) ^ r
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45983
+  * (1 - ((2:ℂ) ^ ((ρ : Kadiri.NontrivialZeros) : ℂ))⁻¹) ^ d
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46010
+  / ((ρ : Kadiri.NontrivialZeros) : ℂ))‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:45953
+  ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29923
+  * (ExplicitTwo.c1t * (2:ℝ) ^ (r - (j : ℤ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:46012
+  * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29923
+  + ExplicitTwo.c3t * Real.log ((2:ℝ) ^ (r - (j : ℤ)))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6f8887ce4324948f.jsonl:1333
+  + ExplicitTwo.Bleft2 * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6f8887ce4324948f.jsonl:1381
+  theorem cell_fixed_row_two (d : ℕ) (r : ℕ) (hr : d + 1 ≤ r) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28280
+  ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20227
+  ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:20228
+  - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29925
+  + ∑ ρ ∈ FiniteOffLine.ZF T, FiniteOffLine.term d (r : ℤ) ρ‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6f8887ce4324948f.jsonl:1386
+  ≤ 2 ^ d * (ExplicitTwo.c3t * Real.log 2 * r + ExplicitTwo.Bleft2) + ε :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6f8887ce4324948f.jsonl:1654
+  theorem tr_efRem_fixed_two {x : ℝ} (hx : 2 ≤ x) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28280
+  ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6f8887ce4324948f.jsonl:1656
+  ‖PiZeros.tr (PiZeros.efRem T) x‖ ≤ Api2 * (1 + Real.log x) + ε :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6f8887ce4324948f.jsonl:1672
+  theorem pi_fixed_row_two {x : ℝ} (hx : 2 ≤ x) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28280
+  ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28820
+  ‖(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28821
+  + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a6f8887ce4324948f.jsonl:1676
+  + tr psiTheta x‖ ≤ Api2 * (1 + Real.log x) + ε :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29947
+  theorem table_cell_fixed_row_two (r : ℕ) (d : ℕ) (hr : d + 2 ≤ r) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28280
+  ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28829
+  ‖((((Construction.tableFrom TableRoute.rowN (r : ℤ) d : ℤ) : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28830
+  - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) (r : ℤ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28821
+  + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28833
+  * CellZeros.stencil (d + 1) (fun m : ℤ => piMode (ρ : ℂ) ((2:ℝ) ^ (m : ℝ))) (r : ℤ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28834
+  + CellZeros.stencil (d + 1) (fun m : ℤ => tr psiTheta ((2:ℝ) ^ (m : ℝ))) (r : ℤ)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:29955
+  ≤ 2 ^ (d + 1) * (Api2 * (1 + Real.log 2 * r)) + ε :=
+
+# 36 found, 0 missing

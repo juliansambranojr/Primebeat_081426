@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  G3 PROVED (unit 0465, `FixedRowTwo.table_cell_fixed_row_two`, `pi_fixed_row_two`, `cell_fixed_row_two`): T3 at a fixed row at every row: table cell for r >= d+2 (the identity's own hypothesis), count for x >= 2, psi-cell for r >= d+1. The row margins of units 0461, 0462 are gone. Opus worker, built and read here.
 - [open]   2026-11-23  G2 PROVED (unit 0464, `ExplicitTwo.explicit_formula_all_two`): the explicit formula for every x >= 2 and every T >= 2, error c1t x log^2(xT)/T + c3t log x + Bleft2 x^(-1/4). A parallel chain; no proved file edited, c1n and c3n unchanged. Opus worker, built and read here. Open: restate the lowest rows and the count's passage on it.
 - [open]   2026-11-23  G1 PROVED (unit 0463, `PerronTwo.explicit_formula_perron_two`): Perron's truncated formula for x >= 2, T >= 2, error 700 x log^2(xT)/T + 18 log x. The floor of 16 was the abscissa c = 1 + 1/log x <= 2; from 2 it is <= 5/2. PerronKernel unchanged. Opus worker, built and read here. Next: G2, the contour from 2 (being built).
 - [open]   2026-11-23  F4 PROVED (unit 0462, `PiFixedRow.pi_fixed_row`, `table_cell_fixed_row`): T3 at a fixed row on the integer table. x >= 16 held, height to infinity: pi - Li plus the zeros below the height plus tr(psi-theta) is eventually <= Api log x + eps. Second lost factor (zeros on [2,16] in absolute value) repaired by parts. Opus worker, built and read here.

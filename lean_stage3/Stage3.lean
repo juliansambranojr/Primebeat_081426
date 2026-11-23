@@ -161,6 +161,7 @@ import Stage3.CellFixedRow
 import Stage3.PiFixedRow
 import Stage3.PerronTwo
 import Stage3.ExplicitTwo
+import Stage3.FixedRowTwo
 
 namespace Stage3
 

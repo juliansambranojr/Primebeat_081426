@@ -35,6 +35,7 @@ below with their outcome.
                 `CellFixedRow.tendsto_log_sq_div`, `PiZeros.pi_eq_zero_sum`,
                 `table_cell_eq_zero_sum`, `PiRemainder.integrable_efRem`
     OUT         joint 10; numerals above the constants
+    OUTCOME     proved, unit 0465
 
 ### 2026-11-23 · blocks G1, G2 of `design/floor.md`: `Stage3/PerronTwo.lean`, `Stage3/ExplicitTwo.lean`
 

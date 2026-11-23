@@ -1,57 +1,68 @@
-# What `ExplicitTwo.explicit_formula_all_two` rests on
+# What `FixedRowTwo.pi_fixed_row_two` rests on
 
-[`ExplicitTwo.explicit_formula_all_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_all_two) in `lean_stage3/Stage3/ExplicitTwo.lean`, line 1125.
+[`FixedRowTwo.pi_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two) in `lean_stage3/Stage3/FixedRowTwo.lean`, line 419.
 
-**Why.** The explicit formula at every height, from `x = 2`. For `2 ≤ x` and `2 ≤ T`: `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c1t·x·log²(xT)/T + c3t·log x + Bleft2·x^(−1/4)`, with no cap on `T` and the left edge bounded free of the height.
+**Why.** The count at a fixed row, the height to infinity, from `x = 2`. For `2 ≤ x` and every `ε > 0`, for all large heights `T`, the count minus `Li`, plus each zero's part below `T`, plus the higher prime powers, is at most `Api2·(1 + log x) + ε`.
 
 **Proves**
 
 ```lean
-‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + Bleft2 * x ^ (-(1:ℝ)/4)
+∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr psiTheta x‖ ≤ Api2 * (1 + Real.log x) + ε
 ```
 
 **Needs** (its hypotheses)
 
   - `` hx : 2 ≤ x ``
-  - `` hT : 2 ≤ T ``
 
-Behind it: 172 theorems and 34 definitions in 15 files. Every one is listed below; Lean recorded each step.
+Behind it: 202 theorems and 42 definitions in 20 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
   f0["<b>Assembly</b><br/>1 used"]:::thm
-  f1["<b>Glue</b><br/>1 used"]:::thm
-  f2["<b>JensenCount</b><br/>17 used"]:::thm
-  f3["<b>ContourShift</b><br/>28 used"]:::thm
-  f4["<b>LeftKernel</b><br/>8 used"]:::thm
-  f5["<b>LeftSmooth</b><br/>45 used"]:::thm
-  f6["<b>LineBound</b><br/>4 used"]:::thm
-  f7["<b>PerronKernel</b><br/>25 used"]:::thm
-  f8["<b>PerronTwo</b><br/>10 used"]:::thm
-  f9["<b>ZetaGrowth</b><br/>20 used"]:::thm
-  f10["<b>BoxBounds</b><br/>3 used"]:::thm
-  f11["<b>EdgeBound</b><br/>14 used"]:::thm
-  f12["<b>EdgeNum</b><br/>9 used"]:::thm
-  f13["<b>GlueNum</b><br/>6 used"]:::thm
-  f14["<b>ExplicitTwo</b><br/>explicit_formula_all_two"]:::end_
-  f0 --> f3
-  f2 --> f3
-  f3 --> f5
-  f4 --> f5
-  f7 --> f8
-  f3 --> f9
+  f1["<b>FiniteOffLine</b><br/>3 used"]:::thm
+  f2["<b>Glue</b><br/>1 used"]:::thm
+  f3["<b>JensenCount</b><br/>17 used"]:::thm
+  f4["<b>ContourShift</b><br/>28 used"]:::thm
+  f5["<b>LeftKernel</b><br/>9 used"]:::thm
+  f6["<b>LeftSmooth</b><br/>47 used"]:::thm
+  f7["<b>CellFixedRow</b><br/>2 used"]:::thm
+  f8["<b>LineBound</b><br/>4 used"]:::thm
+  f9["<b>PerronKernel</b><br/>25 used"]:::thm
+  f10["<b>PerronTwo</b><br/>10 used"]:::thm
+  f11["<b>PsiToPi</b><br/>5 used"]:::thm
+  f12["<b>PiZeros</b><br/>15 used"]:::thm
+  f13["<b>ZetaGrowth</b><br/>20 used"]:::thm
+  f14["<b>BoxBounds</b><br/>3 used"]:::thm
+  f15["<b>EdgeBound</b><br/>14 used"]:::thm
+  f16["<b>EdgeNum</b><br/>9 used"]:::thm
+  f17["<b>GlueNum</b><br/>6 used"]:::thm
+  f18["<b>ExplicitTwo</b><br/>16 used"]:::thm
+  f19["<b>FixedRowTwo</b><br/>pi_fixed_row_two"]:::end_
+  f0 --> f4
+  f3 --> f4
+  f2 --> f6
+  f4 --> f6
+  f5 --> f6
+  f6 --> f7
   f9 --> f10
-  f9 --> f11
-  f10 --> f12
+  f0 --> f12
+  f1 --> f12
   f11 --> f12
-  f12 --> f13
-  f1 --> f14
-  f5 --> f14
-  f6 --> f14
-  f8 --> f14
+  f4 --> f13
   f13 --> f14
+  f13 --> f15
+  f14 --> f16
+  f15 --> f16
+  f16 --> f17
+  f6 --> f18
+  f8 --> f18
+  f10 --> f18
+  f17 --> f18
+  f7 --> f19
+  f12 --> f19
+  f18 --> f19
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -70,7 +81,13 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`Assembly`](../lean_stage3/Assembly.md) — 1
 
-- ★ [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum) — *def*
+- [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum) — *def*
+
+### [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md) — 3
+
+- ★ [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) — *def*
+- [`FiniteOffLine.mem_ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) — `` ρ ∈ ZF T ↔ |(ρ : ℂ).im| < T ``
+- [`FiniteOffLine.tsum_sub_eq_sum`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-tsum_sub_eq_sum) — `` ∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ ``
 
 ### [`Glue`](../lean_stage3/Glue.md) — 1
 
@@ -127,7 +144,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ContourShift.zeta_order_conj`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_conj) — `` analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
 - [`ContourShift.zeta_order_reflect`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_reflect) — `` analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
 
-### [`LeftKernel`](../lean_stage3/LeftKernel.md) — 8
+### [`LeftKernel`](../lean_stage3/LeftKernel.md) — 9
 
 - [`LeftKernel.cpow_tI`](../lean_stage3/LeftKernel.md#LeftKernel-cpow_tI) — `` (y:ℂ) ^ ((t:ℂ) * Complex.I) = Complex.exp ((Real.log y : ℂ) * ((t:ℂ) * Complex.I)) ``
 - [`LeftKernel.norm_exp_tI`](../lean_stage3/LeftKernel.md#LeftKernel-norm_exp_tI) — `` ‖Complex.exp ((L:ℂ) * ((t:ℂ) * Complex.I))‖ = 1 ``
@@ -137,8 +154,9 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`LeftKernel.vmTerm`](../lean_stage3/LeftKernel.md#LeftKernel-vmTerm) — *def*
 - [`LeftKernel.vmTerm_nonneg`](../lean_stage3/LeftKernel.md#LeftKernel-vmTerm_nonneg) — `` 0 ≤ vmTerm n ``
 - [`LeftKernel.Bser`](../lean_stage3/LeftKernel.md#LeftKernel-Bser) — *def*
+- [`LeftKernel.series_side`](../lean_stage3/LeftKernel.md#LeftKernel-series_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) … ``
 
-### [`LeftSmooth`](../lean_stage3/LeftSmooth.md) — 45
+### [`LeftSmooth`](../lean_stage3/LeftSmooth.md) — 47
 
 - [`LeftSmooth.arctan_int_le`](../lean_stage3/LeftSmooth.md#LeftSmooth-arctan_int_le) — `` (∫ t in (-T)..T, 1 / (a ^ 2 + t ^ 2)) ≤ Real.pi / a ``
 - [`LeftSmooth.kernel_conj`](../lean_stage3/LeftSmooth.md#LeftSmooth-kernel_conj) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((c:ℂ) - (t:ℂ) * Complex.I)⁻¹‖ ≤ (2 + Real.pi) / (c * Real.log y) ``
@@ -179,12 +197,19 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`LeftSmooth.Nsm`](../lean_stage3/LeftSmooth.md#LeftSmooth-Nsm) — *def*
 - [`LeftSmooth.Nsm_nonneg`](../lean_stage3/LeftSmooth.md#LeftSmooth-Nsm_nonneg) — `` 0 ≤ Nsm ``
 - [`LeftSmooth.Bsm`](../lean_stage3/LeftSmooth.md#LeftSmooth-Bsm) — *def*
+- [`LeftSmooth.smooth_side`](../lean_stage3/LeftSmooth.md#LeftSmooth-smooth_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:ℂ) - (t:ℂ)… ``
 - [`LeftSmooth.continuous_logDeriv_path`](../lean_stage3/LeftSmooth.md#LeftSmooth-continuous_logDeriv_path) — `` Continuous fun t => deriv riemannZeta (p t) / riemannZeta (p t) ``
 - [`LeftSmooth.zeta_sL_ne`](../lean_stage3/LeftSmooth.md#LeftSmooth-zeta_sL_ne) — `` riemannZeta (sL t) ≠ 0 ``
 - [`LeftSmooth.zeta_wL_ne`](../lean_stage3/LeftSmooth.md#LeftSmooth-zeta_wL_ne) — `` riemannZeta (wL t) ≠ 0 ``
 - [`LeftSmooth.sL_ne_one`](../lean_stage3/LeftSmooth.md#LeftSmooth-sL_ne_one) — `` sL t ≠ 1 ``
 - [`LeftSmooth.wL_ne_one`](../lean_stage3/LeftSmooth.md#LeftSmooth-wL_ne_one) — `` wL t ≠ 1 ``
 - [`LeftSmooth.Bleft`](../lean_stage3/LeftSmooth.md#LeftSmooth-Bleft) — *def*
+- [`LeftSmooth.left_edge_bound`](../lean_stage3/LeftSmooth.md#LeftSmooth-left_edge_bound) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
+
+### [`CellFixedRow`](../lean_stage3/CellFixedRow.md) — 2
+
+- [`CellFixedRow.Bleft_nonneg`](../lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg) — `` 0 ≤ LeftSmooth.Bleft ``
+- [`CellFixedRow.tendsto_log_sq_div`](../lean_stage3/CellFixedRow.md#CellFixedRow-tendsto_log_sq_div) — `` Tendsto (fun T : ℝ => a * c * Real.log (c * T) ^ 2 / T) atTop (𝓝 0) ``
 
 ### [`LineBound`](../lean_stage3/LineBound.md) — 4
 
@@ -233,6 +258,32 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`PerronTwo.perron_to_psi_two`](../lean_stage3/PerronTwo.md#PerronTwo-perron_to_psi_two) — `` ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 18 * Real… ``
 - [`PerronTwo.perron_sum_eq_integral_two`](../lean_stage3/PerronTwo.md#PerronTwo-perron_sum_eq_integral_two) — `` (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv riemannZeta… ``
 - [`PerronTwo.explicit_formula_perron_two`](../lean_stage3/PerronTwo.md#PerronTwo-explicit_formula_perron_two) — `` ‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) / riemannZeta (((1 … ``
+
+### [`PsiToPi`](../lean_stage3/PsiToPi.md) — 5
+
+- ★ [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li) — *def*
+- [`Stage3.continuousOn_inv_log_sq`](../lean_stage3/PsiToPi.md#Stage3-continuousOn_inv_log_sq) — `` ContinuousOn (fun t : ℝ => 1 / Real.log t ^ 2) (Set.uIcc a x) ``
+- [`Stage3.continuousOn_inv_mul_log_sq`](../lean_stage3/PsiToPi.md#Stage3-continuousOn_inv_mul_log_sq) — `` ContinuousOn (fun t : ℝ => (t * Real.log t ^ 2)⁻¹) (Set.uIcc a x) ``
+- [`Stage3.integrable_theta_term`](../lean_stage3/PsiToPi.md#Stage3-integrable_theta_term) — `` IntervalIntegrable (fun t => θ t / (t * Real.log t ^ 2)) volume a x ``
+- [`Stage3.pi_sub_Li_eq`](../lean_stage3/PsiToPi.md#Stage3-pi_sub_Li_eq) — `` (Nat.primeCounting ⌊x⌋₊ : ℝ) - Li x = (θ x - x) / Real.log x + ∫ t in (2 : ℝ)..x, (θ t - t) / (t * Real.log t ^ 2) ``
+
+### [`PiZeros`](../lean_stage3/PiZeros.md) — 15
+
+- [`PiZeros.wt`](../lean_stage3/PiZeros.md#PiZeros-wt) — *def*
+- ★ [`PiZeros.tr`](../lean_stage3/PiZeros.md#PiZeros-tr) — *def*
+- [`PiZeros.wt_continuousOn`](../lean_stage3/PiZeros.md#PiZeros-wt_continuousOn) — `` ContinuousOn wt (Set.uIcc 2 x) ``
+- [`PiZeros.integrable_mul_wt`](../lean_stage3/PiZeros.md#PiZeros-integrable_mul_wt) — `` IntervalIntegrable (fun t => f t * wt t) volume 2 x ``
+- [`PiZeros.tr_sub`](../lean_stage3/PiZeros.md#PiZeros-tr_sub) — `` tr (fun t => f t - g t) x = tr f x - tr g x ``
+- [`PiZeros.tr_const_mul`](../lean_stage3/PiZeros.md#PiZeros-tr_const_mul) — `` tr (fun t => c * f t) x = c * tr f x ``
+- [`PiZeros.tr_sum`](../lean_stage3/PiZeros.md#PiZeros-tr_sum) — `` tr (fun t => ∑ i ∈ s, f i t) x = ∑ i ∈ s, tr (f i) x ``
+- [`PiZeros.pi_sub_Li_eq_tr`](../lean_stage3/PiZeros.md#PiZeros-pi_sub_Li_eq_tr) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = tr (fun t => ((θ t - t : ℝ) : ℂ)) x ``
+- ★ [`PiZeros.piMode`](../lean_stage3/PiZeros.md#PiZeros-piMode) — *def*
+- [`PiZeros.efRem`](../lean_stage3/PiZeros.md#PiZeros-efRem) — *def*
+- ★ [`PiZeros.psiTheta`](../lean_stage3/PiZeros.md#PiZeros-psiTheta) — *def*
+- [`PiZeros.zeroPartialSum_eq_sum`](../lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum) — `` Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * ((t : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)) ``
+- [`PiZeros.integrable_ofReal_of_monotone`](../lean_stage3/PiZeros.md#PiZeros-integrable_ofReal_of_monotone) — `` IntervalIntegrable (fun t => ((f t : ℝ) : ℂ)) volume 2 x ``
+- [`PiZeros.integrable_cpow`](../lean_stage3/PiZeros.md#PiZeros-integrable_cpow) — `` IntervalIntegrable (fun t : ℝ => (t : ℂ) ^ ρ / ρ) volume 2 x ``
+- ★ [`PiZeros.pi_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr psiTheta x ``
 
 ### [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md) — 20
 
@@ -301,7 +352,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Glue.band_order_sum_le_num`](../lean_stage3/GlueNum.md#Glue-band_order_sum_le_num) — `` ∀ T : ℝ, 2 ≤ T → ∀ F : Finset ℂ, (∀ ρ ∈ F, riemannZeta ρ = 0 ∧ (0 < ρ.re ∧ ρ.re < 1) ∧ T ≤ |ρ.im| ∧ |ρ.im| ≤ T + 1) → (∑ ρ ∈ F, (analyticOrderNatAt riemannZeta … ``
 - [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num) — `` ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, |u.im| = T' → -1/4 ≤ u.re →… ``
 
-### [`ExplicitTwo`](../lean_stage3/ExplicitTwo.md) — 15
+### [`ExplicitTwo`](../lean_stage3/ExplicitTwo.md) — 16
 
 - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Com… ``
 - [`ExplicitTwo.zeroPartialSum_swap_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-zeroPartialSum_swap_two) — `` ∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Glue.Csn * x * Real.log T / T ``
@@ -311,11 +362,24 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ExplicitTwo.Cht`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cht) — *def*
 - [`ExplicitTwo.Cht_pos`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Cht_pos) — `` 0 < Cht ``
 - [`ExplicitTwo.edge_horizontal_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-edge_horizontal_bound_two) — `` ∀ x T T' : ℝ, 2 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ y : ℝ, |y| = T' → ‖HInte… ``
-- ★ [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t) — *def*
-- ★ [`ExplicitTwo.c3t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c3t) — *def*
-- ★ [`ExplicitTwo.explicit_formula_left_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_left_two) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + ‖VIntegral (Gl… ``
+- [`ExplicitTwo.c1t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t) — *def*
+- [`ExplicitTwo.c3t`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-c3t) — *def*
+- [`ExplicitTwo.explicit_formula_left_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_left_two) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + ‖VIntegral (Gl… ``
 - [`ExplicitTwo.series_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-series_side_two) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) … ``
 - [`ExplicitTwo.smooth_side_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-smooth_side_two) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:ℂ) - (t:ℂ)… ``
-- ★ [`ExplicitTwo.Bleft2`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Bleft2) — *def*
-- ★ [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
+- [`ExplicitTwo.Bleft2`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-Bleft2) — *def*
+- [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
+- [`ExplicitTwo.explicit_formula_all_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_all_two) — `` ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + Bleft2 * x ^ (-(1:ℝ)/4) ``
+
+### [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md) — 9
+
+- [`FixedRowTwo.c1t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg) — `` 0 ≤ ExplicitTwo.c1t ``
+- [`FixedRowTwo.c3t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c3t_nonneg) — `` 0 ≤ ExplicitTwo.c3t ``
+- [`FixedRowTwo.Bleft2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Bleft2_nonneg) — `` 0 ≤ ExplicitTwo.Bleft2 ``
+- ★ [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2) — *def*
+- [`FixedRowTwo.Api2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2_nonneg) — `` 0 ≤ Api2 ``
+- [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
+- [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le) — `` ‖∫ t in (2:ℝ)..x, efRem T t * wt t‖ ≤ (x - 2) * (9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T) + Api2 * Real.log (x / 2) ``
+- [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
+- ★ [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖PiZeros.tr (PiZeros.efRem T) x‖ ≤ Api2 * (1 + Real.log x) + ε ``
 

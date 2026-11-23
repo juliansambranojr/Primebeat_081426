@@ -51,6 +51,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.anchor_mem_regionθ`](./lean_stage3/ThetaConverse.md#Stage3-anchor_mem_region-) | theorem | shape | `ThetaConverse` | ((max θ 1 + 1 : ℝ) : ℂ) ∈ regionθ θ ∧ 1 &lt; ((max θ 1 + 1 : ℝ) : ℂ).re |
 | [`Transform.annulus_modulus`](./lean/Transform.md#Transform-annulus_modulus) | theorem | shape | `Transform` | Real.log (b ^ (-(1:ℝ)/2) / b ^ (-(1:ℝ))) / (2 * Real.pi) = Real.log b / (4 * Real.pi) |
 | [`PiFixedRow.Api`](./lean_stage3/PiFixedRow.md#PiFixedRow-Api) | def | reads ζ | `PiFixedRow` | ℝ |
+| [`FixedRowTwo.Api2`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2) | def | reads ζ | `FixedRowTwo` | ℝ |
+| [`FixedRowTwo.Api2_nonneg`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2_nonneg) | theorem | reads ζ | `FixedRowTwo` | 0 ≤ Api2 |
 | [`PiFixedRow.Api_nonneg`](./lean_stage3/PiFixedRow.md#PiFixedRow-Api_nonneg) | theorem | reads ζ | `PiFixedRow` | 0 ≤ Api |
 | [`LeftSmooth.arctan_int_le`](./lean_stage3/LeftSmooth.md#LeftSmooth-arctan_int_le) | theorem | shape | `LeftSmooth` | (∫ t in (-T)..T, 1 / (a ^ 2 + t ^ 2)) ≤ Real.pi / a |
 | [`PiRemainder.Arem`](./lean_stage3/PiRemainder.md#PiRemainder-Arem) | def | reads ζ | `PiRemainder` | ℝ |
@@ -128,6 +130,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZetaEM.bernBound_nonneg`](./lean_stage3/ZetaEM.md#ZetaEM-bernBound_nonneg) | theorem | reads ζ | `ZetaEM` | 0 ≤ bernBound k |
 | [`LeftSmooth.Bleft`](./lean_stage3/LeftSmooth.md#LeftSmooth-Bleft) | def | shape | `LeftSmooth` | ℝ |
 | [`ExplicitTwo.Bleft2`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-Bleft2) | def | shape | `ExplicitTwo` | ℝ |
+| [`FixedRowTwo.Bleft2_nonneg`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-Bleft2_nonneg) | theorem | reads ζ | `FixedRowTwo` | 0 ≤ ExplicitTwo.Bleft2 |
 | [`CellFixedRow.Bleft_nonneg`](./lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg) | theorem | reads ζ | `CellFixedRow` | 0 ≤ LeftSmooth.Bleft |
 | [`WeilPowerClean.blocked_card_le`](./lean_stage3/WeilPowerClean.md#WeilPowerClean-blocked_card_le) | theorem | shape | `WeilPowerClean` | B.card ≤ W + 1 |
 | [`ContourShift.borderIntegrable_sum_poles`](./lean_stage3/ContourShift.md#ContourShift-borderIntegrable_sum_poles) | theorem | reads ζ | `ContourShift` | RectangleBorderIntegrable (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w |
@@ -167,6 +170,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Glue.c1n_nonneg`](./lean_stage3/GlueNum.md#Glue-c1n_nonneg) | theorem | reads ζ | `GlueNum` | 0 ≤ c1n |
 | [`EdgeBound.C1n_pos`](./lean_stage3/EdgeNum.md#EdgeBound-C1n_pos) | theorem | reads ζ | `EdgeNum` | 0 &lt; C1n |
 | [`ExplicitTwo.c1t`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-c1t) | def | reads ζ | `ExplicitTwo` | ℝ |
+| [`FixedRowTwo.c1t_nonneg`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg) | theorem | reads ζ | `FixedRowTwo` | 0 ≤ ExplicitTwo.c1t |
 | [`Chain.C2`](./lean/Chain.md#Chain-C2) | theorem | shape | `Chain` | StmtC2 b |
 | [`Chain.C2_ceiling_attained`](./lean/Chain.md#Chain-C2_ceiling_attained) | theorem | shape | `Chain` | ∃ γ : ℝ, ‖Sym b ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + b ^ (-(1:ℝ)/2)) ^ 2 |
 | [`Chain.C2_floor_attained`](./lean/Chain.md#Chain-C2_floor_attained) | theorem | shape | `Chain` | ‖Sym b ((1 : ℂ)/2 + (0 : ℝ) * I)‖ ^ 2 = (1 - b ^ (-(1:ℝ)/2)) ^ 2 |
@@ -182,6 +186,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`RouteNum.c3n_le`](./lean_stage3/RouteNum.md#RouteNum-c3n_le) | theorem | reads ζ | `RouteNum` | Glue.c3n ≤ 15 |
 | [`Glue.c3n_nonneg`](./lean_stage3/GlueNum.md#Glue-c3n_nonneg) | theorem | reads ζ | `GlueNum` | 0 ≤ c3n |
 | [`ExplicitTwo.c3t`](./lean_stage3/ExplicitTwo.md#ExplicitTwo-c3t) | def | reads ζ | `ExplicitTwo` | ℝ |
+| [`FixedRowTwo.c3t_nonneg`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-c3t_nonneg) | theorem | reads ζ | `FixedRowTwo` | 0 ≤ ExplicitTwo.c3t |
 | [`Glue.c4n`](./lean_stage3/GlueNum.md#Glue-c4n) | def | reads ζ | `GlueNum` | ℝ |
 | [`RouteNum.c4n_le`](./lean_stage3/RouteNum.md#RouteNum-c4n_le) | theorem | reads ζ | `RouteNum` | Glue.c4n ≤ 6468930000 |
 | [`Glue.c4n_nonneg`](./lean_stage3/GlueNum.md#Glue-c4n_nonneg) | theorem | reads ζ | `GlueNum` | 0 ≤ c4n |
@@ -208,7 +213,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`CellZeros.cell_eq_zero_sum`](./lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum) | theorem | reads ζ | `CellZeros` | ‖stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // \|(ρ : ℂ).im\| &lt; T}, ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros)… |
 | [`CellFixedRow.cell_eq_zero_sum_all`](./lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all) | theorem | reads ζ | `CellFixedRow` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // \|(ρ : ℂ).im\| &lt; T}, ((riemannZeta.order ((ρ : Kadiri.Nontri… |
 | [`CellRows.cell_eq_zero_sum_rows`](./lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows) | theorem | reads ζ | `CellRows` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF ((2:ℝ) ^ (K + 1)), term d (r : ℤ) ρ‖ ≤ 2 ^ d * ((4 * 2 ^ d * Glue.c1n + Glu… |
+| [`FixedRowTwo.cell_eq_zero_sum_two`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_eq_zero_sum_two) | theorem | reads ζ | `FixedRowTwo` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // \|(ρ : ℂ).im\| &lt; T}, ((riemannZeta.order ((ρ : Kadiri.Nontri… |
 | [`CellFixedRow.cell_fixed_row`](./lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row) | theorem | reads ζ | `CellFixedRow` | ∀ ε : ℝ, 0 &lt; ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d (r : ℤ) ρ‖ ≤ 2 ^ d * (… |
+| [`FixedRowTwo.cell_fixed_row_two`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two) | theorem | reads ζ | `FixedRowTwo` | ∀ ε : ℝ, 0 &lt; ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ FiniteOffLine.ZF T, FiniteOffLine.t… |
 | [`SeedPerturbation.cell_ne_at_boundary`](./lean/SeedPerturbation.md#SeedPerturbation-cell_ne_at_boundary) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - e x) r d ≠ tableFrom N r d |
 | [`TableDepths.cell_ne_zero_gen`](./lean_stage3/TableDepths.md#TableDepths-cell_ne_zero_gen) | theorem | reads ζ | `TableDepths` | Construction.tableFrom TableRoute.rowN r d ≠ 0 |
 | [`TableRoute.cell_ne_zero_of_RH`](./lean_stage3/TableRoute.md#TableRoute-cell_ne_zero_of_RH) | theorem | reads ζ | `TableRoute` | Construction.tableFrom rowN r 6 ≠ 0 |
@@ -216,6 +223,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`CellRows.cell_tail_tendsto`](./lean_stage3/CellRows.md#CellRows-cell_tail_tendsto) | theorem | reads ζ | `CellRows` | Tendsto (fun r : ℕ =&gt; ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF ((2:ℝ) ^ (r - d)), term d (r : ℤ) ρ‖ / Real.sqrt 2 ^ … |
 | [`FiniteOffLine.cell_zero_sum_finset`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset) | theorem | reads ζ | `FiniteOffLine` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : … |
 | [`CellFixedRow.cell_zero_sum_finset_all`](./lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all) | theorem | reads ζ | `CellFixedRow` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : … |
+| [`FixedRowTwo.cell_zero_sum_finset_two`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two) | theorem | reads ζ | `FixedRowTwo` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (ExplicitTwo.c1t * (2:ℝ) ^ (r … |
 | [`CellResidual.cellResid`](./lean_stage3/CellResidual.md#CellResidual-cellResid) | def | shape | `CellResidual` | ℝ |
 | [`CellResidual.cells_of_RH`](./lean_stage3/CellResidual.md#CellResidual-cells_of_RH) | theorem | reads ζ | `CellResidual` | ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ |
 | [`CellResidual.cells_of_schoenfeldWeak`](./lean_stage3/CellResidual.md#CellResidual-cells_of_schoenfeldWeak) | theorem | shape | `CellResidual` | CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀ |
@@ -1050,7 +1058,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZetaEM.norm_integral_bern_cpow_le`](./lean_stage3/ZetaEM.md#ZetaEM-norm_integral_bern_cpow_le) | theorem | reads ζ | `ZetaEM` | ‖∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) ^ w‖ ≤ bernBound k * (-a ^ (w.re + 1) / (w.re + 1)) |
 | [`PiFixedRow.norm_integral_cpow_wt_le`](./lean_stage3/PiFixedRow.md#PiFixedRow-norm_integral_cpow_wt_le) | theorem | shape | `PiFixedRow` | ‖∫ t in (2:ℝ)..16, wt t * (t : ℂ) ^ ρ‖ ≤ 15360 * ‖ρ + 1‖⁻¹ |
 | [`DirichletMean.norm_integral_exp_le`](./lean_stage3/DirichletMean.md#DirichletMean-norm_integral_exp_le) | theorem | shape | `DirichletMean` | ‖∫ t in T₁..T₂, Complex.exp (Complex.I * (θ : ℂ) * t)‖ ≤ 2 / \|θ\| |
+| [`FixedRowTwo.norm_integral_two_le`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le) | theorem | reads ζ | `FixedRowTwo` | ‖∫ t in (2:ℝ)..x, efRem T t * wt t‖ ≤ (x - 2) * (9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T) + Api2 * Real.log (x / 2) |
 | [`FiniteOffLinePi.norm_integrand`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_integrand) | theorem | shape | `FiniteOffLinePi` | ‖(t : ℂ) ^ ρ / ρ * wt t‖ = ‖ρ‖⁻¹ * (t ^ ρ.re * (t * Real.log t ^ 2)⁻¹) |
+| [`FixedRowTwo.norm_integrand_two_le`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le) | theorem | reads ζ | `FixedRowTwo` | ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ |
 | [`FiniteOffLinePi.norm_ipart_le`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_ipart_le) | theorem | shape | `FiniteOffLinePi` | ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ ρ.re / (ρ.re * Real.log x ^ 2)) |
 | [`AttainedPi.norm_ipart_le_of_le`](./lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le) | theorem | shape | `AttainedPi` | ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ c / (c * Real.log x ^ 2)) |
 | [`PiFixedRow.norm_le_norm_add_one`](./lean_stage3/PiFixedRow.md#PiFixedRow-norm_le_norm_add_one) | theorem | shape | `PiFixedRow` | ‖ρ‖ ≤ ‖ρ + 1‖ |
@@ -1115,6 +1125,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.norm_term_le_of_RH`](./lean_stage3/Assembly.md#Stage3-norm_term_le_of_RH) | theorem | reads ζ | `Assembly` | ‖(x : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)‖ ≤ 2 * Real.sqrt x |
 | [`PiRemainder.norm_tr_efRem_le`](./lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le) | theorem | reads ζ | `PiRemainder` | ∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ x : ℝ, x₀ ≤ x → ‖PiZeros.tr (PiZeros.efRem x) x‖ ≤ A * Real.sqrt x * Real.log x ^ 2 |
 | [`PiFixedRow.norm_tr_efRem_le_height`](./lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height) | theorem | reads ζ | `PiFixedRow` | ‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.log (x * T) ^ 2 / T |
+| [`FixedRowTwo.norm_tr_efRem_le_height_two`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two) | theorem | reads ζ | `FixedRowTwo` | ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T |
 | [`PiRemainder.norm_tr_efRem_le_of`](./lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of) | theorem | reads ζ | `PiRemainder` | ‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2 |
 | [`PiZeros.norm_tr_psiTheta_le`](./lean_stage3/PiZeros.md#PiZeros-norm_tr_psiTheta_le) | theorem | shape | `PiZeros` | ‖tr psiTheta x‖ ≤ 8 * Real.sqrt x |
 | [`FiniteOffLine.norm_two_cpow`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-norm_two_cpow) | theorem | shape | `FiniteOffLine` | ‖(2:ℂ) ^ ρ‖ = (2:ℝ) ^ ρ.re |
@@ -1260,6 +1271,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.pi2`](./lean/Zeros.md#Zeros-pi2) | def | counting | `Zeros` | ℕ → ℤ |
 | [`PiZeros.pi_eq_zero_sum`](./lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum) | theorem | reads ζ | `PiZeros` | (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr psiTheta x |
 | [`PiFixedRow.pi_fixed_row`](./lean_stage3/PiFixedRow.md#PiFixedRow-pi_fixed_row) | theorem | reads ζ | `PiFixedRow` | ∀ ε : ℝ, 0 &lt; ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr psiTheta x‖ ≤ Api * Real.… |
+| [`FixedRowTwo.pi_fixed_row_two`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-pi_fixed_row_two) | theorem | reads ζ | `FixedRowTwo` | ∀ ε : ℝ, 0 &lt; ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr psiTheta x‖ ≤ Api2 * (1 +… |
 | [`Stage3.pi_mul_N_eq`](./lean_stage3/ArgIdentity.md#Stage3-pi_mul_N_eq) | theorem | reads ζ | `ArgIdentity` | Real.pi * riemannZeta.N T = (∫ t in (0:ℝ)..T, logDeriv xi (2 + (t : ℂ) * Complex.I)).re - (∫ x in (1/2:ℝ)..2, logDeriv xi ((x : ℂ) + T * Complex.I)).im |
 | [`Stage3.pi_sub_Li_eq`](./lean_stage3/PsiToPi.md#Stage3-pi_sub_Li_eq) | theorem | shape | `PsiToPi` | (Nat.primeCounting ⌊x⌋₊ : ℝ) - Li x = (θ x - x) / Real.log x + ∫ t in (2 : ℝ)..x, (θ t - t) / (t * Real.log t ^ 2) |
 | [`PiZeros.pi_sub_Li_eq_tr`](./lean_stage3/PiZeros.md#PiZeros-pi_sub_Li_eq_tr) | theorem | shape | `PiZeros` | (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = tr (fun t =&gt; ((θ t - t : ℝ) : ℂ)) x |
@@ -1771,6 +1783,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`CellResidual.table_cell_eq`](./lean_stage3/CellResidual.md#CellResidual-table_cell_eq) | theorem | shape | `CellResidual` | ((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ =&gt; Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r = cellResid 1 r d |
 | [`PiZeros.table_cell_eq_zero_sum`](./lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) | theorem | reads ζ | `PiZeros` | ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ =&gt; Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) *… |
 | [`PiFixedRow.table_cell_fixed_row`](./lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row) | theorem | reads ζ | `PiFixedRow` | ∀ ε : ℝ, 0 &lt; ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tableFrom TableRoute.rowN (r : ℤ) d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ =&gt; Stage3.Li ((2 : ℝ) ^ (m : ℝ))) (r : ℤ) : ℝ) : ℂ… |
+| [`FixedRowTwo.table_cell_fixed_row_two`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two) | theorem | reads ζ | `FixedRowTwo` | ∀ ε : ℝ, 0 &lt; ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tableFrom TableRoute.rowN (r : ℤ) d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ =&gt; Stage3.Li ((2 : ℝ) ^ (m : ℝ))) (r : ℤ) : ℝ) : ℂ… |
 | [`CellResidual.table_cell_resid`](./lean_stage3/CellResidual.md#CellResidual-table_cell_resid) | theorem | reads ζ | `CellResidual` | ∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → \|((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ =&gt; Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r\| ≤ C * cel… |
 | [`Construction.tableFrom`](./lean/Construction.md#Construction-tableFrom) | def | counting | `Construction` | ℤ → ℕ → ℤ |
 | [`Construction.tableFrom_add`](./lean/Construction.md#Construction-tableFrom_add) | theorem | counting | `Construction` | tableFrom (fun x =&gt; N x + M x) r d = tableFrom N r d + tableFrom M r d |
@@ -1865,6 +1878,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerGauss.Tr`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-Tr) | def | shape | `WeilPowerGauss` | ℝ |
 | [`PiZeros.tr_const_mul`](./lean_stage3/PiZeros.md#PiZeros-tr_const_mul) | theorem | shape | `PiZeros` | tr (fun t =&gt; c * f t) x = c * tr f x |
 | [`PiFixedRow.tr_efRem_fixed`](./lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed) | theorem | reads ζ | `PiFixedRow` | ∀ ε : ℝ, 0 &lt; ε → ∀ᶠ T : ℝ in Filter.atTop, ‖tr (efRem T) x‖ ≤ Api * Real.log x + ε |
+| [`FixedRowTwo.tr_efRem_fixed_two`](./lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two) | theorem | reads ζ | `FixedRowTwo` | ∀ ε : ℝ, 0 &lt; ε → ∀ᶠ T : ℝ in Filter.atTop, ‖PiZeros.tr (PiZeros.efRem T) x‖ ≤ Api2 * (1 + Real.log x) + ε |
 | [`WeilPowerGauss.Tr_ge`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-Tr_ge) | theorem | shape | `WeilPowerGauss` | Real.exp (s ^ 2 * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + 3) ^ 2) - s ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) ≤ Tr m s n |
 | [`WeilPowerSharp.Tr_ge_sharp`](./lean_stage3/WeilPowerSharp.md#WeilPowerSharp-Tr_ge_sharp) | theorem | shape | `WeilPowerSharp` | Real.exp (s ^ 2 / Real.pi ^ 2 * (1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1)) - s ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) ≤ Tr m s n |
 | [`PiZeros.tr_sub`](./lean_stage3/PiZeros.md#PiZeros-tr_sub) | theorem | shape | `PiZeros` | tr (fun t =&gt; f t - g t) x = tr f x - tr g x |

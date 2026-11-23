@@ -26,18 +26,19 @@ flowchart LR
   n12["<b>explicit_formula_split_num</b><br/>∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (…"]:::thm
   x0(["<b>ExplicitLeft</b><br/>Aleft_pos<br/>explicit_formula_left"]):::ext
   x1(["<b>ExplicitTwo</b><br/>5 theorems"]):::ext
-  x2(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
-  x3(["<b>FiniteOffLine</b><br/>err_le"]):::ext
-  x4(["<b>PiFixedRow</b><br/>Api_nonneg<br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
-  x5(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
-  x6(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
-  x7(["<b>CellFixedRow</b><br/>cell_fixed_row"]):::ext
-  x8(["<b>ContourShift</b><br/>11 theorems"]):::ext
-  x9(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x10(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
-  x11(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
-  x12(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
-  x13(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x2(["<b>FixedRowTwo</b><br/>c1t_nonneg"]):::ext
+  x3(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
+  x4(["<b>FiniteOffLine</b><br/>err_le"]):::ext
+  x5(["<b>PiFixedRow</b><br/>Api_nonneg<br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
+  x6(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
+  x7(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
+  x8(["<b>CellFixedRow</b><br/>cell_fixed_row"]):::ext
+  x9(["<b>ContourShift</b><br/>11 theorems"]):::ext
+  x10(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x11(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
+  x12(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
+  x13(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
+  x14(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
   n0 --> n12
   n0 --> n4
   n0 --> n8
@@ -54,42 +55,43 @@ flowchart LR
   n9 --> n10
   n0 -.-> x0
   n0 -.-> x1
+  n0 -.-> x2
   n1 -.-> x1
   n10 -.-> x0
-  n12 -.-> x13
-  n12 -.-> x5
+  n12 -.-> x14
   n12 -.-> x6
+  n12 -.-> x7
   n2 -.-> x0
   n3 -.-> x0
-  n4 -.-> x3
   n4 -.-> x4
   n4 -.-> x5
   n4 -.-> x6
-  n5 -.-> x3
+  n4 -.-> x7
   n5 -.-> x4
   n5 -.-> x5
   n5 -.-> x6
   n5 -.-> x7
-  n6 -.-> x3
-  n6 -.-> x5
+  n5 -.-> x8
+  n6 -.-> x4
   n6 -.-> x6
+  n6 -.-> x7
   n7 -.-> x1
   n8 -.-> x0
   n9 -.-> x1
-  x10 -.-> n11
-  x10 -.-> n9
+  x10 -.-> n7
   x11 -.-> n11
-  x12 -.-> n12
-  x2 -.-> n1
-  x2 -.-> n11
-  x2 -.-> n3
-  x2 -.-> n9
-  x8 -.-> n11
-  x8 -.-> n12
-  x8 -.-> n7
-  x8 -.-> n8
-  x8 -.-> n9
+  x11 -.-> n9
+  x12 -.-> n11
+  x13 -.-> n12
+  x3 -.-> n1
+  x3 -.-> n11
+  x3 -.-> n3
+  x3 -.-> n9
+  x9 -.-> n11
+  x9 -.-> n12
   x9 -.-> n7
+  x9 -.-> n8
+  x9 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -196,11 +198,12 @@ line 37
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
   - [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left) (ExplicitLeft) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.lo… ``
   - [`ExplicitTwo.explicit_formula_left_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_left_two) (ExplicitTwo) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + ‖VIn… ``
   - [`ExplicitTwo.zeroPartialSum_swap_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-zeroPartialSum_swap_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Glue.Csn * x * Real.log T / T ``
+  - [`FixedRowTwo.c1t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg) (FixedRowTwo) — `` 0 ≤ ExplicitTwo.c1t ``
   - [`Glue.c1n_nonneg`](#Glue-c1n_nonneg) — `` 0 ≤ c1n ``
   - [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``
   - [`Glue.zeroPartialSum_swap_num`](#Glue-zeroPartialSum_swap_num) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Csn * x * Real.log T / T ``

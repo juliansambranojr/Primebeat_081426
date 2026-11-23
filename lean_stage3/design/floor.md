@@ -63,7 +63,7 @@ theorem stands beside the old one.
 - `series_side_two`, `smooth_side_two`, `left_edge_bound_two`:
   `Bleft2 = 4·Bleft`.
 
-## G3 The fixed row at every row — `Stage3/FixedRowTwo.lean`
+## G3 The fixed row at every row — PROVED (unit 0465: `FixedRowTwo.cell_fixed_row_two`, `pi_fixed_row_two`, `table_cell_fixed_row_two`; `Api2 = (3/2)·c3t + (9/4)·Bleft2`, the count's bound is `Api2·(1 + log x)`, the table cell's `2^(d+1)·Api2·(1 + log 2·r)`)
 
 `CellFixedRow` and `PiFixedRow` read `LeftSmooth.explicit_formula_all` and
 carry its floor: `r ≥ d + 4`, `r ≥ d + 6`, `x ≥ 16`. On
