@@ -38,6 +38,7 @@ below with their outcome.
                 `Slice5.norm_logDerivZeta_of_one_lt_re`,
                 `LeftKernel.kernel_bound`, `LeftSmooth.logDeriv_sum`
     OUT         numerals above `c1t`, `c3t`; the cells at the lowest rows
+    OUTCOME     proved: `PerronTwo` unit 0463, `ExplicitTwo` unit 0464
 
 ### 2026-11-23 · block F4 of `design/leftedge.md`: `Stage3/PiFixedRow.lean`
 

@@ -7,7 +7,7 @@ PerronTwo — block G1 of `lean_stage3/design/floor.md`. 2026-11-23. `PerronKern
 10 theorems, 0 definitions, 1158 lines. 
 
 **Imports:** [`PerronKernel`](../lean_stage3/PerronKernel.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ExplicitTwo`](../lean_stage3/ExplicitTwo.md)
 
 ## The picture
 
@@ -22,8 +22,9 @@ flowchart LR
   n6["<b>kernel_diff_summable_two</b><br/>Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (…"]:::thm
   n7["<b>perron_to_psi_two</b><br/>‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangol…"]:::thm
   n8["<b>perron_sum_eq_integral_two</b><br/>(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n…"]:::thm
-  n9["<b>explicit_formula_perron_two ■</b><br/>‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t i…"]:::thm
+  n9["<b>explicit_formula_perron_two</b><br/>‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t i…"]:::thm
   x0(["<b>PerronKernel</b><br/>7 theorems"]):::ext
+  x1(["<b>ExplicitTwo</b><br/>edge_horizontal_bound_two<br/>explicit_formula_left_two"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n4
@@ -34,6 +35,8 @@ flowchart LR
   n6 --> n7
   n7 --> n9
   n8 --> n9
+  n1 -.-> x1
+  n9 -.-> x1
   x0 -.-> n0
   x0 -.-> n2
   x0 -.-> n3
@@ -103,8 +106,9 @@ line 50 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ExplicitTwo.edge_horizontal_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-edge_horizontal_bound_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 2 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ y : ℝ, |y| = T… ``
   - [`PerronTwo.far_terms_sum_two`](#PerronTwo-far_terms_sum_two) — `` (∑' n : ℕ, if 1/2 ≤ |Real.log (x / n)| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * |Real.log (x / n)|) else 0) ≤ 300 *… ``
   - [`PerronTwo.kernel_sum_bound_two`](#PerronTwo-kernel_sum_bound_two) — `` ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 17 … ``
 
@@ -347,5 +351,7 @@ line 1141 · arrows read from text
   - [`PerronTwo.perron_sum_eq_integral_two`](#PerronTwo-perron_sum_eq_integral_two) — `` (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv r… ``
   - [`PerronTwo.perron_to_psi_two`](#PerronTwo-perron_to_psi_two) — `` ‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T +… ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`ExplicitTwo.explicit_formula_left_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_left_two) (ExplicitTwo) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + ‖VIn… ``
 

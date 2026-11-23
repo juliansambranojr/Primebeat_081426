@@ -18810,6 +18810,10 @@
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroPartialSum_eq_sum",
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any",
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
      "lean_stage3/Stage3/Glue.lean::Glue.explicit_formula_poly",
      "lean_stage3/Stage3/Glue.lean::Glue.zeroPartialSum_swap",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
@@ -22528,6 +22532,9 @@
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap_le",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap_pos",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_good_ext",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_horizontal_bound",
      "lean_stage3/Stage3/Glue.lean::Glue.explicit_formula_poly",
      "lean_stage3/Stage3/Glue.lean::Glue.zeta_logderiv_good_bound",
@@ -22562,6 +22569,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
      "lean_stage3/Stage3/Glue.lean::Glue.zeta_logderiv_good_bound",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeta_logderiv_good_bound_num"
     ]
@@ -22627,6 +22635,7 @@
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_zeros_rectangle_finite",
      "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.gz_order_eq",
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.edge_left_sharp",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_left_sharp_num",
@@ -22765,6 +22774,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
      "lean_stage3/Stage3/Glue.lean::Glue.explicit_formula_poly",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
@@ -22884,7 +22894,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity"
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two"
     ]
    },
    {
@@ -23032,7 +23043,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity"
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two"
     ]
    },
    {
@@ -23059,7 +23071,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity"
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two"
     ]
    },
    {
@@ -23090,7 +23103,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity"
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two"
     ]
    },
    {
@@ -23117,6 +23131,8 @@
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
      "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.ball_zero_shape",
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
      "lean_stage3/Stage3/Glue.lean::Glue.zeroPartialSum_swap",
      "lean_stage3/Stage3/Glue.lean::Glue.zeta_logderiv_good_bound",
@@ -23212,6 +23228,8 @@
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.C2n",
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.C2n_pos",
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.ball_order_sum_le_num",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
      "lean_stage3/Stage3/Glue.lean::Glue.zeroPartialSum_swap",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num",
      "lean_stage3/Stage3/LowCount.lean::EdgeBound.low_rect_count",
@@ -23275,6 +23293,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
      "lean_stage3/Stage3/Glue.lean::Glue.zeroPartialSum_swap",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num"
     ]
@@ -24735,7 +24755,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen_pos",
-     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num"
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cpn_ge"
     ]
    },
    {
@@ -24843,7 +24864,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen_pos",
-     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num"
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cpn_ge"
     ]
    },
    {
@@ -24921,6 +24943,7 @@
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen_pos",
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num",
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cpn_ge",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Dln",
@@ -25679,6 +25702,642 @@
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c3n"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ExplicitTwo.lean",
+  "module": "Stage3.ExplicitTwo",
+  "stem": "ExplicitTwo",
+  "header": "ExplicitTwo — block G2 of `lean_stage3/design/floor.md`. 2026-11-23. `LeftSmooth.explicit_formula_all` with the floor lowered from `16 ≤ x` to `2 ≤ x`, as a parallel chain. Perron's formula comes from block G1 (`PerronTwo.explicit_formula_perron_two`). Every `x`-free lemma is reused unchanged; the lemmas below are copies of the originals with the lines that used the floor rewritten. No proved file is edited.",
+  "imports": [
+   "Stage3.LeftSmooth",
+   "Stage3.PerronTwo",
+   "Stage3.LineBound"
+  ],
+  "opens": [
+   "Complex",
+   "ContourShift",
+   "LeftKernel",
+   "LeftSmooth",
+   "MeasureTheory",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "ExplicitTwo"
+  ],
+  "lines": 1138,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LeftSmooth.lean",
+   "lean_stage3/Stage3/LineBound.lean",
+   "lean_stage3/Stage3/PerronTwo.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "residue_identity_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.residue_identity_two",
+    "line": 51,
+    "why": "The residue identity from `x > 1`. `ContourShift.residue_identity` with the hypothesis `16 ≤ x` lowered to `1 < x`: on the good rectangle from `−1/4 − iT′` to `1 + 1/log x + iT′`, the normalized contour integral of `−ζ′/ζ(s)·x^s/s` is `x − ζ′/ζ(0) − Σ_{|γ|<T′} m·x^ρ/ρ`. The proof is the original's; only the derivations of `0 < x` and `0 < log x` change.",
+    "sorry": false,
+    "needs": [
+     "hx : 1 < x",
+     "hT : 2 ≤ T",
+     "hT' : T' ∈ Set.Icc T (T+1)",
+     "hgood : ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → zeroGap T ≤ |ρ.im - T'|"
+    ],
+    "proves": "RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * T') = (x : ℂ) - deriv riemannZeta 0 / riemannZeta 0 - Stage3.zeroPartialSum x T'",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_rectangle_of_local",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap_pos",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_one",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_origin",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_zero",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_ne_zero_of_re_mem",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_zeros_rectangle_finite"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_rectangle_of_local",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap_pos",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_one",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_origin",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_zero",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_ne_zero_of_re_mem",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_zeros_rectangle_finite"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeroPartialSum_swap_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.zeroPartialSum_swap_two",
+    "line": 264,
+    "why": "The swap from `x ≥ 1`. `Glue.zeroPartialSum_swap_num` with `16 ≤ x` lowered to `1 ≤ x`: moving the zero sum from a height `T′ ∈ [T, T+1]` back to `T` costs at most `Csn·x·log T/T`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Glue.Csn * x * Real.log T / T",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_ne_zero_of_re_mem",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_zeros_rectangle_finite",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn_pos",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.band_order_sum_le_num"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_ne_zero_of_re_mem",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_zeros_rectangle_finite",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn_pos",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.band_order_sum_le_num"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logDeriv_re_ge_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.logDeriv_re_ge_two",
+    "line": 375,
+    "why": "The absolute bound right of `Re = 2`. For `2 ≤ Re u`, `‖ζ′/ζ(u)‖ ≤ 6`, from `Slice5.norm_logDerivZeta_of_one_lt_re` (`≤ 2/(σ−1) + 4/(σ−1)²`, RH-free).",
+    "sorry": false,
+    "needs": [
+     "hu : 2 ≤ u.re"
+    ],
+    "proves": "‖deriv riemannZeta u / riemannZeta u‖ ≤ 6",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_re_ge_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LineBound.lean::Slice5.norm_logDerivZeta_of_one_lt_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LineBound.lean::Slice5.norm_logDerivZeta_of_one_lt_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_good_ext"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Cpn_ge",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.Cpn_ge",
+    "line": 389,
+    "why": "The good-height constant is at least `360`: `Cpn = Cen·2·(180 + 1060/log 2)` with `Cen = C1n + C2n + 1/log 2 ≥ 1`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(360:ℝ) ≤ Glue.Cpn",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cpn_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.C1n_pos",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.C2n_pos",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.C1n_pos",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.C2n_pos",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_good_ext"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logDeriv_good_ext",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.logDeriv_good_ext",
+    "line": 409,
+    "why": "The good-height bound on the wider band. `Glue.zeta_logderiv_good_bound_num` extended from `−1/4 ≤ Re u ≤ 2` to `−1/4 ≤ Re u ≤ 5/2`, same constant `Cpn`: below `Re u = 2` it is the original; above, `‖ζ′/ζ(u)‖ ≤ 6 ≤ 360·log²2 ≤ Cpn·log²T`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, |u.im| = T' → -1/4 ≤ u.re → u.re ≤ 5/2 → ‖deriv riemannZeta u / riemannZeta u‖ ≤ Glue.Cpn * Real.log T ^ 2",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_good_ext",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cpn_ge",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_re_ge_two",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.zeta_logderiv_good_bound_num"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cpn_ge",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_re_ge_two",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.zeta_logderiv_good_bound_num"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Cht",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.Cht",
+    "line": 427,
+    "why": "The horizontal-edge constant from `x = 2`: `Cpn·3·(11/4)`. The edge runs from `−1/4` to `c ≤ 5/2`, length at most `11/4`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht_pos",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Cht_pos",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.Cht_pos",
+    "line": 430,
+    "why": "The horizontal-edge constant `Cht` is positive.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 < Cht",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn_pos"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "edge_horizontal_bound_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.edge_horizontal_bound_two",
+    "line": 440,
+    "why": "The horizontal-edge integral bound from `x = 2`. `Glue.edge_horizontal_bound_num` for `2 ≤ x`: at a good height, both signs, the integral of `−ζ′/ζ(s)·x^s/s` along `Im s = y`, `|y| = T′`, from `−1/4` to `1 + 1/log x`, has norm at most `Cht·x·log²T/T`. The abscissa is now `≤ 5/2`, the good bound is `logDeriv_good_ext`, and the edge length is `≤ 11/4`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "∀ x T T' : ℝ, 2 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ y : ℝ, |y| = T' → ‖HIntegral (Glue.Gf x) (-1/4) (1 + 1/Real.log x) y‖ ≤ Cht * x * Real.log T ^ 2 / T",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_good_ext",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn_pos",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.inv_log_le_of_two_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroGap",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_good_ext",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn_pos",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.inv_log_le_of_two_le"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c1t",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.c1t",
+    "line": 533,
+    "why": "The explicit formula's first constant from `x = 2`: `2800 + 2·Cht + Csn`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c3t",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.c3t",
+    "line": 536,
+    "why": "The explicit formula's log-constant from `x = 2`: `18 + ‖ζ′(0)/ζ(0)‖/log 2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "explicit_formula_left_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.explicit_formula_left_two",
+    "line": 544,
+    "why": "The explicit formula with the left edge kept, from `x = 2`. For `2 ≤ x` and `2 ≤ T` there is a height `T′` in `[T, T+1]` with `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c1t·x·log²(xT)/T + c3t·log x + ‖left edge at T′‖`. `ExplicitLeft.explicit_formula_left`'s proof on the chain from `x = 2`: Perron from `PerronTwo`, the residue identity, the horizontal edges and the swap from this file.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.goodT_exists",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht_pos",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn_pos",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.explicit_formula_perron_two"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.goodT_exists",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht_pos",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn_pos",
+     "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.explicit_formula_perron_two"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "series_side_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.series_side_two",
+    "line": 778,
+    "why": "The series side from `x = 2`. `LeftKernel.series_side` for `2 ≤ x`: the Dirichlet-series half of the left edge, `∫_{−T}^{T} ζ'/ζ(5/4 − it)·x^(−1/4+it)/(−1/4+it) dt`, has norm at most `4·Bser·x^(−1/4)`. The kernel's `1/log(x·n)` is now bounded by `1/log 2 = 4/log 16`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ ≤ 4 * Bser * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "smooth_side_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.smooth_side_two",
+    "line": 951,
+    "why": "The smooth side from `x = 2`. `LeftSmooth.smooth_side` for `2 ≤ x`: with `s = −1/4 + it` and `w = 5/4 − it`, the integral of `(ζ′/ζ(s) + ζ′/ζ(w))·x^s/s` over `[−T, T]` has norm at most `4·Bsm·x^(−1/4)`. The three pieces are bounded by `Nsm/log x` as before; the last step uses `log 2 ≤ log x`, and `Nsm/log 2 = 4·Bsm`.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ ≤ 4 * Bsm * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Bleft2",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.Bleft2",
+    "line": 1072,
+    "why": "The left-edge constant from `x = 2`: four times `LeftSmooth.Bleft`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "left_edge_bound_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.left_edge_bound_two",
+    "line": 1078,
+    "why": "The left edge from `x = 2`. For `2 ≤ x` and `2 ≤ T`, the integral of `−ζ′/ζ(s)·x^s/s` up `Re s = −1/4` from `−T` to `T` has norm at most `Bleft2·x^(−1/4)`, with `Bleft2` free of `x` and `T`: the smooth side plus the series side.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "explicit_formula_all_two",
+    "ns": "ExplicitTwo",
+    "full": "ExplicitTwo.explicit_formula_all_two",
+    "line": 1125,
+    "why": "The explicit formula at every height, from `x = 2`. For `2 ≤ x` and `2 ≤ T`: `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c1t·x·log²(xT)/T + c3t·log x + Bleft2·x^(−1/4)`, with no cap on `T` and the left edge bounded free of the height.",
+    "sorry": false,
+    "needs": [
+     "hx : 2 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + Bleft2 * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/ExplicitTwo.lean",
+    "id": "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two"
     ],
     "layer": "zeta",
     "used_by": []
@@ -27201,6 +27860,9 @@
     "used_by": [
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/Glue.lean::Glue.Gf_norm_conj",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_horizontal_bound",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
@@ -27829,6 +28491,9 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Csn_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.band_order_sum_le_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
@@ -27862,6 +28527,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num"
@@ -27889,6 +28556,10 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cpn_ge",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_good_ext",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Chn",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Chn_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn_pos",
@@ -27925,6 +28596,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Cht_pos",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Chn_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_horizontal_bound_num"
     ]
@@ -28345,6 +29018,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.zeroPartialSum_swap_two",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num"
     ]
    },
@@ -28434,6 +29108,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_good_ext",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_horizontal_bound_num"
     ]
    },
@@ -33316,6 +33991,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
@@ -33372,6 +34048,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece"
     ]
@@ -33436,6 +34113,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
@@ -33460,6 +34139,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg",
@@ -33490,6 +34170,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
     ]
    },
@@ -33538,6 +34219,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.series_side_two",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
@@ -33728,6 +34411,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
@@ -33757,6 +34441,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
     ]
@@ -33781,6 +34466,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
@@ -33819,6 +34506,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_digamma_wL",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
@@ -33869,6 +34558,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
@@ -33898,6 +34588,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_digamma_wL",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
@@ -33991,6 +34682,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
@@ -34044,6 +34737,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
@@ -34075,6 +34769,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
@@ -34145,6 +34840,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
@@ -34268,6 +34964,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
@@ -34293,6 +34990,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
@@ -34323,6 +35021,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
@@ -34549,6 +35248,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
    },
@@ -34572,6 +35272,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
@@ -34680,6 +35381,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
@@ -34727,6 +35429,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
    },
@@ -34754,6 +35457,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
    },
@@ -34782,6 +35486,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
    },
@@ -34803,6 +35508,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
@@ -34833,6 +35539,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
@@ -34866,6 +35573,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
    },
@@ -34891,6 +35599,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.smooth_side_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
@@ -34992,6 +35702,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
@@ -35029,6 +35740,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
@@ -35058,6 +35770,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
@@ -35085,6 +35798,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
@@ -35114,6 +35828,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
@@ -35145,6 +35860,8 @@
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
@@ -36016,6 +36733,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.logDeriv_re_ge_two",
      "lean_stage3/Stage3/LineBound.lean::Slice5.norm_logDerivZeta_sigma0"
     ]
    },
@@ -40210,6 +40928,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.edge_horizontal_bound_two",
      "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.far_terms_sum_two",
      "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.kernel_sum_bound_two"
     ]
@@ -40465,7 +41184,9 @@
      "lean_stage3/Stage3/PerronTwo.lean::PerronTwo.perron_to_psi_two"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two"
+    ]
    }
   ]
  },
@@ -74548,11 +75269,12 @@
    "Stage3.LeftSmooth",
    "Stage3.CellFixedRow",
    "Stage3.PiFixedRow",
-   "Stage3.PerronTwo"
+   "Stage3.PerronTwo",
+   "Stage3.ExplicitTwo"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 171,
+  "lines": 172,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -74580,6 +75302,7 @@
    "lean_stage3/Stage3/EdgeNum.lean",
    "lean_stage3/Stage3/ExplicitBump.lean",
    "lean_stage3/Stage3/ExplicitLeft.lean",
+   "lean_stage3/Stage3/ExplicitTwo.lean",
    "lean_stage3/Stage3/FiniteOffLine.lean",
    "lean_stage3/Stage3/FiniteOffLinePi.lean",
    "lean_stage3/Stage3/GateEval.lean",

@@ -8,8 +8,9 @@ flowchart LR
   n6["<b>kernel_diff_summable_two</b><br/>Summable (fun n : ℕ ↦ (ArithmeticFunction.vonMangoldt n : ℂ) * (…"]:::thm
   n7["<b>perron_to_psi_two</b><br/>‖(Chebyshev.psi x : ℂ) - ∑' n : ℕ, (ArithmeticFunction.vonMangol…"]:::thm
   n8["<b>perron_sum_eq_integral_two</b><br/>(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n…"]:::thm
-  n9["<b>explicit_formula_perron_two ■</b><br/>‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t i…"]:::thm
+  n9["<b>explicit_formula_perron_two</b><br/>‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t i…"]:::thm
   x0(["<b>PerronKernel</b><br/>7 theorems"]):::ext
+  x1(["<b>ExplicitTwo</b><br/>edge_horizontal_bound_two<br/>explicit_formula_left_two"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n4
@@ -20,6 +21,8 @@ flowchart LR
   n6 --> n7
   n7 --> n9
   n8 --> n9
+  n1 -.-> x1
+  n9 -.-> x1
   x0 -.-> n0
   x0 -.-> n2
   x0 -.-> n3

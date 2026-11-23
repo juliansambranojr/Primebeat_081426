@@ -39,20 +39,21 @@ flowchart LR
   n25["<b>zeta_order_conj</b><br/>analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrd…"]:::thm
   n26["<b>zeta_order_reflect</b><br/>analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyti…"]:::thm
   n27["<b>residue_identity</b><br/>RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemann…"]:::thm
-  x0(["<b>Glue</b><br/>5 theorems"]):::ext
-  x1(["<b>GlueNum</b><br/>5 theorems"]):::ext
-  x2(["<b>EdgeBound</b><br/>4 theorems"]):::ext
-  x3(["<b>ExplicitLeft</b><br/>edge_left_any<br/>explicit_formula_left"]):::ext
-  x4(["<b>GlueFloor</b><br/>edge_left_sharp<br/>explicit_formula_split"]):::ext
-  x5(["<b>LandauPoleLocal</b><br/>Phi_principal_part<br/>differentiableAt_Phi"]):::ext
-  x6(["<b>LeftSmooth</b><br/>continuous_logDeriv_path"]):::ext
-  x7(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic"]):::ext
-  x8(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
-  x9(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
-  x10(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x11(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
-  x12(["<b>LowCount</b><br/>low_rect_count"]):::ext
-  x13(["<b>RouteNum</b><br/>C2n_le"]):::ext
+  x0(["<b>ExplicitTwo</b><br/>explicit_formula_left_two<br/>residue_identity_two<br/>zeroPartialSum_swap_two"]):::ext
+  x1(["<b>Glue</b><br/>5 theorems"]):::ext
+  x2(["<b>GlueNum</b><br/>5 theorems"]):::ext
+  x3(["<b>EdgeBound</b><br/>4 theorems"]):::ext
+  x4(["<b>ExplicitLeft</b><br/>edge_left_any<br/>explicit_formula_left"]):::ext
+  x5(["<b>GlueFloor</b><br/>edge_left_sharp<br/>explicit_formula_split"]):::ext
+  x6(["<b>LandauPoleLocal</b><br/>Phi_principal_part<br/>differentiableAt_Phi"]):::ext
+  x7(["<b>LeftSmooth</b><br/>continuous_logDeriv_path"]):::ext
+  x8(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic"]):::ext
+  x9(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
+  x10(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
+  x11(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x12(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
+  x13(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x14(["<b>RouteNum</b><br/>C2n_le"]):::ext
   n0 --> n27
   n1 --> n6
   n10 --> n27
@@ -97,16 +98,22 @@ flowchart LR
   n9 --> n10
   n0 -.-> x0
   n0 -.-> x1
-  n1 -.-> x0
+  n0 -.-> x2
   n1 -.-> x1
-  n14 -.-> x5
+  n1 -.-> x2
+  n10 -.-> x0
+  n14 -.-> x6
+  n15 -.-> x0
+  n16 -.-> x0
+  n17 -.-> x0
   n18 -.-> x0
   n18 -.-> x1
-  n18 -.-> x11
+  n18 -.-> x12
   n18 -.-> x2
   n18 -.-> x3
   n18 -.-> x4
-  n19 -.-> x7
+  n18 -.-> x5
+  n19 -.-> x8
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
@@ -115,36 +122,40 @@ flowchart LR
   n2 -.-> x5
   n2 -.-> x6
   n2 -.-> x7
+  n2 -.-> x8
   n21 -.-> x0
   n21 -.-> x1
-  n21 -.-> x12
+  n21 -.-> x10
   n21 -.-> x13
+  n21 -.-> x14
   n21 -.-> x2
-  n21 -.-> x9
+  n21 -.-> x3
   n23 -.-> x0
   n23 -.-> x1
-  n25 -.-> x0
+  n23 -.-> x2
   n25 -.-> x1
-  n25 -.-> x8
-  n26 -.-> x0
+  n25 -.-> x2
+  n25 -.-> x9
   n26 -.-> x1
+  n26 -.-> x10
   n26 -.-> x2
-  n26 -.-> x9
-  n27 -.-> x0
+  n26 -.-> x3
   n27 -.-> x1
-  n27 -.-> x3
+  n27 -.-> x2
   n27 -.-> x4
-  n3 -.-> x5
-  n3 -.-> x8
-  n5 -.-> x0
+  n27 -.-> x5
+  n3 -.-> x6
+  n3 -.-> x9
   n5 -.-> x1
+  n5 -.-> x10
   n5 -.-> x2
-  n5 -.-> x9
+  n5 -.-> x3
   n6 -.-> x0
   n6 -.-> x1
-  n6 -.-> x3
+  n6 -.-> x2
   n6 -.-> x4
-  x10 -.-> n6
+  n6 -.-> x5
+  x11 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -167,7 +178,7 @@ def · line 43
 The ordinate gap the pigeonhole delivers: crude-explicit, `1/(180·log T + 1060)`.
 
 - **Is:** `` zeroGap (T : ℝ) : ℝ := 1 / (180 * Real.log T + 1060) ``
-- **Used by 11:** [`ContourShift.goodT_exists`](#ContourShift-goodT_exists), [`ContourShift.residue_identity`](#ContourShift-residue_identity), [`ContourShift.zeroGap_le`](#ContourShift-zeroGap_le), [`ContourShift.zeroGap_pos`](#ContourShift-zeroGap_pos), [`Glue.edge_horizontal_bound`](../lean_stage3/Glue.md#Glue-edge_horizontal_bound), [`Glue.explicit_formula_poly`](../lean_stage3/Glue.md#Glue-explicit_formula_poly), [`Glue.zeta_logderiv_good_bound`](../lean_stage3/Glue.md#Glue-zeta_logderiv_good_bound), [`Glue.explicit_formula_split`](../lean_stage3/GlueFloor.md#Glue-explicit_formula_split), [`Glue.edge_horizontal_bound_num`](../lean_stage3/GlueNum.md#Glue-edge_horizontal_bound_num), [`Glue.explicit_formula_split_num`](../lean_stage3/GlueNum.md#Glue-explicit_formula_split_num), [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num)
+- **Used by 14:** [`ContourShift.goodT_exists`](#ContourShift-goodT_exists), [`ContourShift.residue_identity`](#ContourShift-residue_identity), [`ContourShift.zeroGap_le`](#ContourShift-zeroGap_le), [`ContourShift.zeroGap_pos`](#ContourShift-zeroGap_pos), [`ExplicitTwo.edge_horizontal_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-edge_horizontal_bound_two), [`ExplicitTwo.logDeriv_good_ext`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-logDeriv_good_ext), [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two), [`Glue.edge_horizontal_bound`](../lean_stage3/Glue.md#Glue-edge_horizontal_bound), [`Glue.explicit_formula_poly`](../lean_stage3/Glue.md#Glue-explicit_formula_poly), [`Glue.zeta_logderiv_good_bound`](../lean_stage3/Glue.md#Glue-zeta_logderiv_good_bound), [`Glue.explicit_formula_split`](../lean_stage3/GlueFloor.md#Glue-explicit_formula_split), [`Glue.edge_horizontal_bound_num`](../lean_stage3/GlueNum.md#Glue-edge_horizontal_bound_num), [`Glue.explicit_formula_split_num`](../lean_stage3/GlueNum.md#Glue-explicit_formula_split_num), [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num)
 
 ## Theorems
 
@@ -194,9 +205,10 @@ line 46
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
   - [`Glue.zeta_logderiv_good_bound`](../lean_stage3/Glue.md#Glue-zeta_logderiv_good_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, … ``
   - [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num) (GlueNum) — `` ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, |u.im| = T' → -1/… ``
 
@@ -250,7 +262,7 @@ AnalyticAt ℂ riemannZeta ρ
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (19 that use it)
+**Feeds** (20 that use it)
 
   - [`ContourShift.one_le_zeta_order`](#ContourShift-one_le_zeta_order) — `` 1 ≤ analyticOrderNatAt riemannZeta ρ ``
   - [`ContourShift.order_bridge`](#ContourShift-order_bridge) — `` ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) ``
@@ -264,6 +276,7 @@ AnalyticAt ℂ riemannZeta ρ
   - [`ContourShift.zeta_zeros_rectangle_finite`](#ContourShift-zeta_zeros_rectangle_finite) — `` {ρ : ℂ | riemannZeta ρ = 0 ∧ ρ ∈ Rectangle z w}.Finite ``
   - [`EdgeBound.gz_order_eq`](../lean_stage3/EdgeBound.md#EdgeBound-gz_order_eq) (EdgeBound) — `` analyticOrderNatAt gz w = analyticOrderNatAt riemannZeta w ``
   - [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any) (ExplicitLeft) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
   - [`Glue.edge_left_bound`](../lean_stage3/Glue.md#Glue-edge_left_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ C * Real.log x ``
   - [`Glue.edge_left_sharp`](../lean_stage3/GlueFloor.md#Glue-edge_left_sharp) (GlueFloor) — `` ∃ D : ℝ, 0 < D ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72 * D * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) ``
   - [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num) (GlueNum) — `` ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72 * Dln * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) ``
@@ -395,9 +408,10 @@ line 153
 
 **Definitions its proof touches:** [`Stage3.zetaWindow`](../lean_stage3/JensenCount.md#Stage3-zetaWindow)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left) (ExplicitLeft) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.lo… ``
+  - [`ExplicitTwo.explicit_formula_left_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_left_two) (ExplicitTwo) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + ‖VIn… ``
   - [`Glue.explicit_formula_poly`](../lean_stage3/Glue.md#Glue-explicit_formula_poly) (Glue) — `` ∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c₁ * x * Real.log (… ``
   - [`Glue.explicit_formula_split`](../lean_stage3/GlueFloor.md#Glue-explicit_formula_split) (GlueFloor) — `` ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c₁ * x … ``
   - [`Glue.explicit_formula_split_num`](../lean_stage3/GlueNum.md#Glue-explicit_formula_split_num) (GlueNum) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``
@@ -516,9 +530,10 @@ RectangleIntegral' f z w = ∑ p ∈ P, A p
 
   - [`ContourShift.residue_rectangle_multi`](#ContourShift-residue_rectangle_multi) — `` RectangleIntegral' f z w = ∑ p ∈ P, A p ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
 
 <a name="ContourShift-analyticAt_dslope"></a>
 ### `ContourShift.analyticAt_dslope`
@@ -665,9 +680,10 @@ line 616
   - [`ContourShift.zeta_local_data`](#ContourShift-zeta_local_data) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in nhdsWithin p {p}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (-(n:ℂ) * ((x:ℝ):ℂ) ^ p /… ``
   - [`ContourShift.zeta_order_ne_top`](#ContourShift-zeta_order_ne_top) — `` analyticOrderAt riemannZeta ρ ≠ ⊤ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
 
 <a name="ContourShift-zeta_local_data_one"></a>
 ### `ContourShift.zeta_local_data_one`
@@ -692,9 +708,10 @@ line 641
 
   - [`ContourShift.zeta_local_data`](#ContourShift-zeta_local_data) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in nhdsWithin p {p}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (-(n:ℂ) * ((x:ℝ):ℂ) ^ p /… ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
 
 <a name="ContourShift-zeta_local_data_origin"></a>
 ### `ContourShift.zeta_local_data_origin`
@@ -721,9 +738,10 @@ line 714
   - [`ContourShift.div_sub_eq_dslope`](#ContourShift-div_sub_eq_dslope) — `` f s / (s - p) = f p / (s - p) + dslope f p s ``
   - [`ContourShift.zeta_analyticAt`](#ContourShift-zeta_analyticAt) — `` AnalyticAt ℂ riemannZeta ρ ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
 
 <a name="ContourShift-zeta_ne_zero_of_re_mem"></a>
 ### `ContourShift.zeta_ne_zero_of_re_mem`
@@ -747,11 +765,13 @@ riemannZeta w ≠ 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (11 that use it)
+**Feeds** (13 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
   - [`EdgeBound.ball_zero_shape`](../lean_stage3/EdgeBound.md#EdgeBound-ball_zero_shape) (EdgeBound) — `` riemannZeta w = 0 ∧ (0 < w.re ∧ w.re < 1) ∧ |w.im - T'| ≤ 46/25 ``
   - [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any) (ExplicitLeft) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.zeroPartialSum_swap_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-zeroPartialSum_swap_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Glue.Csn * x * Real.log T / T ``
   - [`Glue.edge_left_bound`](../lean_stage3/Glue.md#Glue-edge_left_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ C * Real.log x ``
   - [`Glue.zeroPartialSum_swap`](../lean_stage3/Glue.md#Glue-zeroPartialSum_swap) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ C * x * Real.log T / … ``
   - [`Glue.zeta_logderiv_good_bound`](../lean_stage3/Glue.md#Glue-zeta_logderiv_good_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, … ``
@@ -836,7 +856,7 @@ line 866
   - [`ContourShift.zeta_meromorphicOn`](#ContourShift-zeta_meromorphicOn) — `` MeromorphicOn riemannZeta U ``
   - [`ContourShift.zeta_order_ne_top`](#ContourShift-zeta_order_ne_top) — `` analyticOrderAt riemannZeta ρ ≠ ⊤ ``
 
-**Feeds** (10 that use it)
+**Feeds** (12 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
   - [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le) (EdgeBound) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real… ``
@@ -844,6 +864,8 @@ line 866
   - [`EdgeBound.C2n`](../lean_stage3/EdgeNum.md#EdgeBound-C2n) (EdgeNum) — def
   - [`EdgeBound.C2n_pos`](../lean_stage3/EdgeNum.md#EdgeBound-C2n_pos) (EdgeNum) — `` 0 < C2n ``
   - [`EdgeBound.ball_order_sum_le_num`](../lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num) (EdgeNum) — `` ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C2n * Real.log T' ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.zeroPartialSum_swap_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-zeroPartialSum_swap_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Glue.Csn * x * Real.log T / T ``
   - [`Glue.zeroPartialSum_swap`](../lean_stage3/Glue.md#Glue-zeroPartialSum_swap) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ C * x * Real.log T / … ``
   - [`Glue.zeroPartialSum_swap_num`](../lean_stage3/GlueNum.md#Glue-zeroPartialSum_swap_num) (GlueNum) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Csn * x * Real.log T / T ``
   - [`EdgeBound.low_rect_count`](../lean_stage3/LowCount.md#EdgeBound-low_rect_count) (LowCount) — `` (∑ ρ ∈ (ContourShift.zeta_zeros_rectangle_finite (0 : ℂ) ((1 : ℝ) + Complex.I * (6 : ℝ))).toFinset, (analyticOrderNatAt riemannZeta ρ : ℝ)) ≤ 714 ``
@@ -902,9 +924,11 @@ Stage3.zeroPartialSum x T' = ∑ p ∈ ZF, ((analyticOrderNatAt riemannZeta p : 
 
   - [`ContourShift.order_bridge`](#ContourShift-order_bridge) — `` ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) ``
 
-**Feeds** (3 that use it)
+**Feeds** (5 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`ExplicitTwo.zeroPartialSum_swap_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-zeroPartialSum_swap_two) (ExplicitTwo) — `` ∀ x T T' : ℝ, 1 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Glue.Csn * x * Real.log T / T ``
   - [`Glue.zeroPartialSum_swap`](../lean_stage3/Glue.md#Glue-zeroPartialSum_swap) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ C * x * Real.log T / … ``
   - [`Glue.zeroPartialSum_swap_num`](../lean_stage3/GlueNum.md#Glue-zeroPartialSum_swap_num) (GlueNum) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Csn * x * Real.log T / T ``
 

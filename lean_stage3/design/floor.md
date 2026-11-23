@@ -47,7 +47,7 @@ theorem stands beside the old one.
 - copies at `1 < x` of `delta_sum_close`, `kernel_diff_summable`,
   `perron_sum_eq_integral`; then `perron_to_psi_two`.
 
-## G2 The contour from 2 — `Stage3/ExplicitTwo.lean`
+## G2 The contour from 2 — PROVED (unit 0464: `ExplicitTwo.explicit_formula_all_two`, constants as below; `Cpn_ge : 360 ≤ Cpn` puts the bound 6 under `Cpn·log²T`, so the good bound keeps its constant)
 
     explicit_formula_all_two (hx : 2 ≤ x) (hT : 2 ≤ T) :
       ‖ψ x − x + zeroPartialSum x T‖
