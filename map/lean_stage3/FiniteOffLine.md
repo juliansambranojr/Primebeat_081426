@@ -2,7 +2,7 @@
 
 FiniteOffLine — block J10d of `lean_stage3/design/joints.md`. 2026-11-22. The one-ladder converse, in the case of finitely many zeros off the line. Let a finite set hold every zero of ζ off the line. If at one depth the cells of the log-weighted prime count on the table's own ladder stay within `C·r²·√2^r` of their main term, then no zero is off the line.
 
-12 theorems, 3 definitions, 569 lines. Arrows are Lean's own record of what each proof uses.
+12 theorems, 3 definitions, 573 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md), [`CellModes`](../lean_stage3/CellModes.md), [`LadderMean`](../lean_stage3/LadderMean.md), [`LandauWindow`](../lean_stage3/LandauWindow.md), [`RealSegment`](../lean_stage3/RealSegment.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellRows`](../lean_stage3/CellRows.md), [`PiZeros`](../lean_stage3/PiZeros.md)
@@ -89,7 +89,7 @@ The zeros below a height, as a finite set.
 <a name="FiniteOffLine-onLineInv"></a>
 ### `FiniteOffLine.onLineInv`
 
-def · line 66
+def · line 68
 
 The reciprocal size of a zero on the line; zero off the line.
 
@@ -99,7 +99,7 @@ The reciprocal size of a zero on the line; zero off the line.
 <a name="FiniteOffLine-term"></a>
 ### `FiniteOffLine.term`
 
-def · line 218
+def · line 221
 
 One zero's term in the cell `(r, d)` of the log-weighted count.
 
@@ -111,9 +111,11 @@ One zero's term in the cell `(r, d)` of the log-weighted count.
 <a name="FiniteOffLine-mem_ZF"></a>
 ### `FiniteOffLine.mem_ZF`
 
-line 49
+line 50
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** A zero is in the finite set exactly when its height is below `T`.
 
 **Proves**
 
@@ -134,7 +136,7 @@ line 49
 <a name="FiniteOffLine-tsum_sub_eq_sum"></a>
 ### `FiniteOffLine.tsum_sub_eq_sum`
 
-line 53
+line 54
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -166,9 +168,11 @@ line 53
 <a name="FiniteOffLine-order_nonneg"></a>
 ### `FiniteOffLine.order_nonneg`
 
-line 62
+line 64
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The order of a zero is nonnegative.
 
 **Proves**
 
@@ -191,9 +195,11 @@ line 62
 <a name="FiniteOffLine-onLineInv_nonneg"></a>
 ### `FiniteOffLine.onLineInv_nonneg`
 
-line 68
+line 71
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The reciprocal size of a zero on the line, and zero off it, is nonnegative.
 
 **Proves**
 
@@ -216,7 +222,7 @@ line 68
 <a name="FiniteOffLine-onLineInv_le_dyadic"></a>
 ### `FiniteOffLine.onLineInv_le_dyadic`
 
-line 75
+line 78
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -247,7 +253,7 @@ onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : 
 <a name="FiniteOffLine-sum_order_onLineInv_le"></a>
 ### `FiniteOffLine.sum_order_onLineInv_le`
 
-line 119
+line 122
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -279,7 +285,7 @@ line 119
 <a name="FiniteOffLine-dyadic_count_le"></a>
 ### `FiniteOffLine.dyadic_count_le`
 
-line 174
+line 177
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -308,9 +314,11 @@ line 174
 <a name="FiniteOffLine-norm_two_cpow"></a>
 ### `FiniteOffLine.norm_two_cpow`
 
-line 222
+line 226
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The size of `2^ρ` is `2` to the real part of `ρ`.
 
 **Proves**
 
@@ -331,7 +339,7 @@ line 222
 <a name="FiniteOffLine-norm_term_le"></a>
 ### `FiniteOffLine.norm_term_le`
 
-line 227
+line 231
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -363,7 +371,7 @@ line 227
 <a name="FiniteOffLine-cell_zero_sum_finset"></a>
 ### `FiniteOffLine.cell_zero_sum_finset`
 
-line 251
+line 255
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -398,7 +406,7 @@ line 251
 <a name="FiniteOffLine-err_le"></a>
 ### `FiniteOffLine.err_le`
 
-line 265
+line 269
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -431,7 +439,7 @@ line 265
 <a name="FiniteOffLine-finite_off_line"></a>
 ### `FiniteOffLine.finite_off_line`
 
-line 352
+line 356
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

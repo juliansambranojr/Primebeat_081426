@@ -46,6 +46,7 @@ noncomputable section
 /-- The zeros below a height, as a finite set. -/
 def ZF (T : ℝ) : Finset NontrivialZeros := (nontrivialZeros_abs_im_lt_finite T).toFinset
 
+/-- A zero is in the finite set exactly when its height is below `T`. -/
 theorem mem_ZF {T : ℝ} {ρ : NontrivialZeros} : ρ ∈ ZF T ↔ |(ρ : ℂ).im| < T := by
   simp [ZF]
 
@@ -59,12 +60,14 @@ theorem tsum_sub_eq_sum {E : Type*} [AddCommMonoid E] [TopologicalSpace E] (T : 
   rw [tsum_fintype]
   exact (Finset.sum_subtype (ZF T) (fun x => mem_ZF) f).symm
 
+/-- The order of a zero is nonnegative. -/
 theorem order_nonneg (ρ : NontrivialZeros) : (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) := by
   exact_mod_cast riemannZeta_order_nonneg (nontrivialZero_ne_one ρ)
 
 /-- The reciprocal size of a zero on the line; zero off the line. -/
 def onLineInv (ρ : NontrivialZeros) : ℝ := if (ρ : ℂ).re = 1 / 2 then ‖(ρ : ℂ)‖⁻¹ else 0
 
+/-- The reciprocal size of a zero on the line, and zero off it, is nonnegative. -/
 theorem onLineInv_nonneg (ρ : NontrivialZeros) : 0 ≤ onLineInv ρ := by
   unfold onLineInv
   split_ifs
@@ -219,6 +222,7 @@ def term (d : ℕ) (r : ℤ) (ρ : NontrivialZeros) : ℂ :=
   ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)
     * (((2:ℂ) ^ (ρ : ℂ)) ^ r * (1 - ((2:ℂ) ^ (ρ : ℂ))⁻¹) ^ d / (ρ : ℂ))
 
+/-- The size of `2^ρ` is `2` to the real part of `ρ`. -/
 theorem norm_two_cpow (ρ : ℂ) : ‖(2:ℂ) ^ ρ‖ = (2:ℝ) ^ ρ.re := by
   have h2 : ((2 : ℂ)) = ((2 : ℝ) : ℂ) := by norm_num
   rw [h2, Complex.norm_cpow_eq_rpow_re_of_pos (by norm_num)]

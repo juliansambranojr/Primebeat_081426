@@ -12,7 +12,7 @@ sealed: false
 
 **Question.** Block J10d of `lean_stage3/design/joints.md`. If only finitely many zeros of zeta are off the line, do cells of square-root size on the table's own ladder force them all onto it?
 
-**What was proved.** `lean_stage3/Stage3/FiniteOffLine.lean`: `module_lines` 568 lines, `theorems_proved` 12 theorems, `defs` 3 definitions, `sorries` 0 sorries, `pins` 3 axiom pins at `axioms` 3 axioms. The first build had `errors_first` 4 error lines; clean on build `builds` 5. The package builds at `jobs_package` 8832 jobs, the module at `jobs_module` 8747. Traps unchanged, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
+**What was proved.** `lean_stage3/Stage3/FiniteOffLine.lean`: `module_lines` 572 lines, `theorems_proved` 12 theorems, `defs` 3 definitions, `sorries` 0 sorries, `pins` 3 axiom pins at `axioms` 3 axioms. The first build had `errors_first` 4 error lines; clean on build `builds` 5. The package builds at `jobs_package` 8832 jobs, the module at `jobs_module` 8747. Traps unchanged, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
 
 `finite_off_line`: let a finite set hold every zero off the line. Suppose that at one depth, from some row on, the cell of the log-weighted prime count on the one ladder is within a constant times the square of the row times the square root of the doubling of its main term. Then the Riemann hypothesis holds.
 

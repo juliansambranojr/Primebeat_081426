@@ -1,6 +1,6 @@
 # What `FiniteOffLine.finite_off_line` rests on
 
-[`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) in `lean_stage3/Stage3/FiniteOffLine.lean`, line 352.
+[`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) in `lean_stage3/Stage3/FiniteOffLine.lean`, line 356.
 
 **Why.** Finitely many zeros off the line, and cells of square-root size on the one ladder: then no zero is off the line. Let a finite set hold every zero of ζ off the line. If at one depth the cells of the log-weighted prime count on the table's own ladder stay within `C·r²·√2^r` of their main term, the Riemann hypothesis holds.
 

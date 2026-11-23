@@ -1,6 +1,6 @@
 # What `CellBdiff.cell_eq_modeSum_bdiff` rests on
 
-[`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff) in `lean_stage3/Stage3/CellBdiff.lean`, line 93.
+[`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff) in `lean_stage3/Stage3/CellBdiff.lean`, line 95.
 
 **Why.** The cell on the table tree's operators. `d` backward differences of the row, with `Chain.bdiff`, are the main mode minus the reweighted sum of the zeros' modes, within the stated error.
 

@@ -32,6 +32,7 @@ noncomputable section
 /-- One backward difference on a row indexed by the integers. -/
 def bdZ (a : ℤ → ℂ) : ℤ → ℂ := fun x => a x - a (x - 1)
 
+/-- `n` backward differences of a row are `(−1)^n` times its `n`-th forward difference at step `−1`. -/
 theorem iter_bdZ_eq_fwdDiff (a : ℤ → ℂ) (r : ℤ) (n : ℕ) :
     (bdZ^[n]) a r = (-1 : ℂ) ^ n * (fwdDiff (-1 : ℤ))^[n] a r := by
   induction n generalizing r with
@@ -83,6 +84,7 @@ theorem stencil_eq_bdiff_iter {a : ℤ → ℂ} {g : ℂ → ℂ} (hag : ∀ n :
 /-- The row of the log-weighted prime count along the doublings, on `ℂ`. -/
 def psiRow : ℂ → ℂ := fun z => (Chebyshev.psi ((2:ℝ) ^ z.re) : ℂ)
 
+/-- On an integer the row is the log-weighted prime count at that doubling. -/
 theorem psiRow_int (n : ℤ) : psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ) := by
   unfold psiRow
   rw [Complex.intCast_re, Real.rpow_intCast]

@@ -12,7 +12,7 @@ sealed: false
 
 **Question.** Block T2 of `lean_stage3/design/joints.md`. What is the cell of the integer table, the table of the prime count along the doublings, as a sum over the zeros?
 
-**What was proved.** `lean_stage3/Stage3/PiZeros.lean`: `module_lines` 321 lines, `theorems_proved` 15 theorems, `defs` 5 definitions, `sorries` 0 sorries, `pins` 3 axiom pins at `axioms` 3 axioms. The first build had `errors_first` 5 error lines; clean on build `builds` 5. The package builds at `jobs_package` 8835 jobs, the module at `jobs_module` 8790. Traps unchanged, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
+**What was proved.** `lean_stage3/Stage3/PiZeros.lean`: `module_lines` 332 lines, `theorems_proved` 15 theorems, `defs` 5 definitions, `sorries` 0 sorries, `pins` 3 axiom pins at `axioms` 3 axioms. The first build had `errors_first` 5 error lines; clean on build `builds` 5. The package builds at `jobs_package` 8835 jobs, the module at `jobs_module` 8790. Traps unchanged, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
 
 The passage. Going from the log-weighted count to the count is linear: the value over the logarithm, plus an integral against a fixed weight. `tr_sub`, `tr_const_mul`, `tr_sum` say so. `pi_sub_Li_eq_tr`: the count minus its smooth part is that passage applied to the first Chebyshev function less the identity, which is the identity of the tree's older module.
 

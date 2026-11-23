@@ -2,7 +2,7 @@
 
 PiZeros — block T2 of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 in the integer table: the count of primes in place of the log-weighted count, zero by zero. The passage from one to the other is linear: `tr f x` is `f x / log x` plus the integral of `f` against `1/(t·log²t)` from `2`, and `Stage3.pi_sub_Li_eq` says the count minus its smooth part is `tr (θ − id)`. Write `θ − id` as the explicit formula's remainder at a height, minus the sum over the zeros below it, minus the higher prime powers `ψ − θ`. Th…
 
-15 theorems, 5 definitions, 322 lines. Arrows are Lean's own record of what each proof uses.
+15 theorems, 5 definitions, 333 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellResidual`](../lean_stage3/CellResidual.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -89,7 +89,7 @@ The passage from the log-weighted count to the count, applied to any function: i
 <a name="PiZeros-piMode"></a>
 ### `PiZeros.piMode`
 
-def · line 102
+def · line 107
 
 One zero's part of the count: the passage applied to `t^ρ/ρ`.
 
@@ -100,7 +100,7 @@ One zero's part of the count: the passage applied to `t^ρ/ρ`.
 <a name="PiZeros-efRem"></a>
 ### `PiZeros.efRem`
 
-def · line 105
+def · line 110
 
 The remainder of the explicit formula at a height.
 
@@ -111,7 +111,7 @@ The remainder of the explicit formula at a height.
 <a name="PiZeros-psiTheta"></a>
 ### `PiZeros.psiTheta`
 
-def · line 108
+def · line 113
 
 The prime powers above the first: `ψ − θ`.
 
@@ -123,9 +123,11 @@ The prime powers above the first: `ψ − θ`.
 <a name="PiZeros-wt_continuousOn"></a>
 ### `PiZeros.wt_continuousOn`
 
-line 48
+line 49
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `x ≥ 2` the weight is continuous on `[2, x]`.
 
 **Proves**
 
@@ -150,9 +152,11 @@ ContinuousOn wt (Set.uIcc 2 x)
 <a name="PiZeros-integrable_mul_wt"></a>
 ### `PiZeros.integrable_mul_wt`
 
-line 51
+line 53
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `x ≥ 2`, a function integrable on `[2, x]` stays integrable when multiplied by the weight.
 
 **Proves**
 
@@ -179,9 +183,11 @@ IntervalIntegrable (fun t => f t * wt t) volume 2 x
 <a name="PiZeros-tr_sub"></a>
 ### `PiZeros.tr_sub`
 
-line 56
+line 59
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The passage of a difference of two integrable functions is the difference of their passages.
 
 **Proves**
 
@@ -210,9 +216,11 @@ tr (fun t => f t - g t) x = tr f x - tr g x
 <a name="PiZeros-tr_const_mul"></a>
 ### `PiZeros.tr_const_mul`
 
-line 66
+line 70
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** A constant factor passes through the passage.
 
 **Proves**
 
@@ -239,9 +247,11 @@ tr (fun t => c * f t) x = c * tr f x
 <a name="PiZeros-tr_sum"></a>
 ### `PiZeros.tr_sum`
 
-line 75
+line 80
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The passage of a finite sum of integrable functions is the sum of their passages.
 
 **Proves**
 
@@ -271,7 +281,7 @@ tr (fun t => ∑ i ∈ s, f i t) x = ∑ i ∈ s, tr (f i) x
 <a name="PiZeros-pi_sub_Li_eq_tr"></a>
 ### `PiZeros.pi_sub_Li_eq_tr`
 
-line 86
+line 91
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -302,9 +312,11 @@ line 86
 <a name="PiZeros-zeroPartialSum_eq_sum"></a>
 ### `PiZeros.zeroPartialSum_eq_sum`
 
-line 110
+line 116
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The zero sum below a height, written as a sum over the finite set of zeros below it.
 
 **Proves**
 
@@ -329,9 +341,11 @@ Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : �
 <a name="PiZeros-integrable_ofReal_of_monotone"></a>
 ### `PiZeros.integrable_ofReal_of_monotone`
 
-line 118
+line 125
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** A monotone real function, read as complex, is integrable on `[2, x]`.
 
 **Proves**
 
@@ -353,9 +367,11 @@ IntervalIntegrable (fun t => ((f t : ℝ) : ℂ)) volume 2 x
 <a name="PiZeros-integrable_cpow"></a>
 ### `PiZeros.integrable_cpow`
 
-line 123
+line 131
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `x ≥ 2` the function `t ↦ t^ρ/ρ` is integrable on `[2, x]`.
 
 **Proves**
 
@@ -377,7 +393,7 @@ IntervalIntegrable (fun t : ℝ => (t : ℂ) ^ ρ / ρ) volume 2 x
 <a name="PiZeros-pi_eq_zero_sum"></a>
 ### `PiZeros.pi_eq_zero_sum`
 
-line 135
+line 143
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -415,7 +431,7 @@ line 135
 <a name="PiZeros-norm_tr_psiTheta_le"></a>
 ### `PiZeros.norm_tr_psiTheta_le`
 
-line 189
+line 197
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -444,9 +460,11 @@ line 189
 <a name="PiZeros-stencil_congr"></a>
 ### `PiZeros.stencil_congr`
 
-line 250
+line 259
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Two rows that agree on the entries a stencil reads have the same stencil.
 
 **Proves**
 
@@ -470,9 +488,11 @@ CellZeros.stencil n a r = CellZeros.stencil n b r
 <a name="PiZeros-stencil_neg"></a>
 ### `PiZeros.stencil_neg`
 
-line 256
+line 266
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The stencil of the negative of a row is the negative of its stencil.
 
 **Proves**
 
@@ -499,9 +519,11 @@ CellZeros.stencil n (fun m => -a m) r = -CellZeros.stencil n a r
 <a name="PiZeros-stencilR_cast"></a>
 ### `PiZeros.stencilR_cast`
 
-line 261
+line 272
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The real stencil of a row, read as complex, is the complex stencil of the row read as complex.
 
 **Proves**
 
@@ -526,7 +548,7 @@ line 261
 <a name="PiZeros-table_cell_eq_zero_sum"></a>
 ### `PiZeros.table_cell_eq_zero_sum`
 
-line 273
+line 284
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

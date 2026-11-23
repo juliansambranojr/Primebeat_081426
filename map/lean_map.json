@@ -19710,7 +19710,7 @@
   "namespaces": [
    "CellBdiff"
   ],
-  "lines": 125,
+  "lines": 127,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -19748,8 +19748,8 @@
     "name": "iter_bdZ_eq_fwdDiff",
     "ns": "CellBdiff",
     "full": "CellBdiff.iter_bdZ_eq_fwdDiff",
-    "line": 35,
-    "why": "",
+    "line": 36,
+    "why": "`n` backward differences of a row are `(−1)^n` times its `n`-th forward difference at step `−1`.",
     "sorry": false,
     "needs": [
      "a : ℤ → ℂ",
@@ -19777,7 +19777,7 @@
     "name": "iter_bdZ_eq_stencil",
     "ns": "CellBdiff",
     "full": "CellBdiff.iter_bdZ_eq_stencil",
-    "line": 49,
+    "line": 50,
     "why": "`n` backward differences are the stencil.",
     "sorry": false,
     "needs": [
@@ -19811,7 +19811,7 @@
     "name": "bdiff_iter_eq_bdZ",
     "ns": "CellBdiff",
     "full": "CellBdiff.bdiff_iter_eq_bdZ",
-    "line": 66,
+    "line": 67,
     "why": "The table tree's operator on a function of `ℂ` agrees with the row's on the integers.",
     "sorry": false,
     "needs": [
@@ -19842,7 +19842,7 @@
     "name": "stencil_eq_bdiff_iter",
     "ns": "CellBdiff",
     "full": "CellBdiff.stencil_eq_bdiff_iter",
-    "line": 79,
+    "line": 80,
     "why": "The stencil is the table tree's operator, iterated.",
     "sorry": false,
     "needs": [
@@ -19880,7 +19880,7 @@
     "name": "psiRow",
     "ns": "CellBdiff",
     "full": "CellBdiff.psiRow",
-    "line": 84,
+    "line": 85,
     "why": "The row of the log-weighted prime count along the doublings, on `ℂ`.",
     "sorry": false,
     "needs": [],
@@ -19902,8 +19902,8 @@
     "name": "psiRow_int",
     "ns": "CellBdiff",
     "full": "CellBdiff.psiRow_int",
-    "line": 86,
-    "why": "",
+    "line": 88,
+    "why": "On an integer the row is the log-weighted prime count at that doubling.",
     "sorry": false,
     "needs": [
      "n : ℤ"
@@ -19929,7 +19929,7 @@
     "name": "cell_eq_modeSum_bdiff",
     "ns": "CellBdiff",
     "full": "CellBdiff.cell_eq_modeSum_bdiff",
-    "line": 93,
+    "line": 95,
     "why": "The cell on the table tree's operators. `d` backward differences of the row, with `Chain.bdiff`, are the main mode minus the reweighted sum of the zeros' modes, within the stated error.",
     "sorry": false,
     "needs": [
@@ -23767,7 +23767,7 @@
   "namespaces": [
    "FiniteOffLine"
   ],
-  "lines": 569,
+  "lines": 573,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -23815,8 +23815,8 @@
     "name": "mem_ZF",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.mem_ZF",
-    "line": 49,
-    "why": "",
+    "line": 50,
+    "why": "A zero is in the finite set exactly when its height is below `T`.",
     "sorry": false,
     "needs": [],
     "proves": "ρ ∈ ZF T ↔ |(ρ : ℂ).im| < T",
@@ -23842,7 +23842,7 @@
     "name": "tsum_sub_eq_sum",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.tsum_sub_eq_sum",
-    "line": 53,
+    "line": 54,
     "why": "A sum over the zeros below a height, read over the finite set.",
     "sorry": false,
     "needs": [
@@ -23875,8 +23875,8 @@
     "name": "order_nonneg",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.order_nonneg",
-    "line": 62,
-    "why": "",
+    "line": 64,
+    "why": "The order of a zero is nonnegative.",
     "sorry": false,
     "needs": [
      "ρ : NontrivialZeros"
@@ -23900,7 +23900,7 @@
     "name": "onLineInv",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.onLineInv",
-    "line": 66,
+    "line": 68,
     "why": "The reciprocal size of a zero on the line; zero off the line.",
     "sorry": false,
     "needs": [
@@ -23926,8 +23926,8 @@
     "name": "onLineInv_nonneg",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.onLineInv_nonneg",
-    "line": 68,
-    "why": "",
+    "line": 71,
+    "why": "The reciprocal size of a zero on the line, and zero off it, is nonnegative.",
     "sorry": false,
     "needs": [
      "ρ : NontrivialZeros"
@@ -23953,7 +23953,7 @@
     "name": "onLineInv_le_dyadic",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.onLineInv_le_dyadic",
-    "line": 75,
+    "line": 78,
     "why": "A zero on the line, below `2^(K+1)`, is dominated by the dyadic weights.",
     "sorry": false,
     "needs": [
@@ -23985,7 +23985,7 @@
     "name": "sum_order_onLineInv_le",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.sum_order_onLineInv_le",
-    "line": 119,
+    "line": 122,
     "why": "The zeros on the line, weighted by reciprocal size, below a height.",
     "sorry": false,
     "needs": [
@@ -24023,7 +24023,7 @@
     "name": "dyadic_count_le",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.dyadic_count_le",
-    "line": 174,
+    "line": 177,
     "why": "The dyadic count, as a square of the number of levels.",
     "sorry": false,
     "needs": [
@@ -24054,7 +24054,7 @@
     "name": "term",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.term",
-    "line": 218,
+    "line": 221,
     "why": "One zero's term in the cell `(r, d)` of the log-weighted count.",
     "sorry": false,
     "needs": [
@@ -24083,8 +24083,8 @@
     "name": "norm_two_cpow",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.norm_two_cpow",
-    "line": 222,
-    "why": "",
+    "line": 226,
+    "why": "The size of `2^ρ` is `2` to the real part of `ρ`.",
     "sorry": false,
     "needs": [
      "ρ : ℂ"
@@ -24106,7 +24106,7 @@
     "name": "norm_term_le",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.norm_term_le",
-    "line": 227,
+    "line": 231,
     "why": "The size of one zero's term: its order over its size, times the mode's size.",
     "sorry": false,
     "needs": [
@@ -24140,7 +24140,7 @@
     "name": "cell_zero_sum_finset",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.cell_zero_sum_finset",
-    "line": 251,
+    "line": 255,
     "why": "The cell as a sum over the zeros below a height, read over the finite set.",
     "sorry": false,
     "needs": [
@@ -24187,7 +24187,7 @@
     "name": "err_le",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.err_le",
-    "line": 265,
+    "line": 269,
     "why": "The error of the cell's zero sum at height `2^(K+1)`, `r = d + K + 1`: at most a constant times `r²`.",
     "sorry": false,
     "needs": [
@@ -24227,7 +24227,7 @@
     "name": "finite_off_line",
     "ns": "FiniteOffLine",
     "full": "FiniteOffLine.finite_off_line",
-    "line": 352,
+    "line": 356,
     "why": "Finitely many zeros off the line, and cells of square-root size on the one ladder: then no zero is off the line. Let a finite set hold every zero of ζ off the line. If at one depth the cells of the log-weighted prime count on the table's own ladder stay within `C·r²·√2^r` of their main term, the Riemann hypothesis holds.",
     "sorry": false,
     "needs": [
@@ -34952,7 +34952,7 @@
   "namespaces": [
    "PiZeros"
   ],
-  "lines": 322,
+  "lines": 333,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -35030,8 +35030,8 @@
     "name": "wt_continuousOn",
     "ns": "PiZeros",
     "full": "PiZeros.wt_continuousOn",
-    "line": 48,
-    "why": "",
+    "line": 49,
+    "why": "For `x ≥ 2` the weight is continuous on `[2, x]`.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x"
@@ -35060,8 +35060,8 @@
     "name": "integrable_mul_wt",
     "ns": "PiZeros",
     "full": "PiZeros.integrable_mul_wt",
-    "line": 51,
-    "why": "",
+    "line": 53,
+    "why": "For `x ≥ 2`, a function integrable on `[2, x]` stays integrable when multiplied by the weight.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x",
@@ -35092,8 +35092,8 @@
     "name": "tr_sub",
     "ns": "PiZeros",
     "full": "PiZeros.tr_sub",
-    "line": 56,
-    "why": "",
+    "line": 59,
+    "why": "The passage of a difference of two integrable functions is the difference of their passages.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x",
@@ -35126,8 +35126,8 @@
     "name": "tr_const_mul",
     "ns": "PiZeros",
     "full": "PiZeros.tr_const_mul",
-    "line": 66,
-    "why": "",
+    "line": 70,
+    "why": "A constant factor passes through the passage.",
     "sorry": false,
     "needs": [
      "c : ℂ",
@@ -35158,8 +35158,8 @@
     "name": "tr_sum",
     "ns": "PiZeros",
     "full": "PiZeros.tr_sum",
-    "line": 75,
-    "why": "",
+    "line": 80,
+    "why": "The passage of a finite sum of integrable functions is the sum of their passages.",
     "sorry": false,
     "needs": [
      "s : Finset ι",
@@ -35193,7 +35193,7 @@
     "name": "pi_sub_Li_eq_tr",
     "ns": "PiZeros",
     "full": "PiZeros.pi_sub_Li_eq_tr",
-    "line": 86,
+    "line": 91,
     "why": "The count minus its smooth part is the passage applied to `θ − id`.",
     "sorry": false,
     "needs": [
@@ -35227,7 +35227,7 @@
     "name": "piMode",
     "ns": "PiZeros",
     "full": "PiZeros.piMode",
-    "line": 102,
+    "line": 107,
     "why": "One zero's part of the count: the passage applied to `t^ρ/ρ`.",
     "sorry": false,
     "needs": [
@@ -35256,7 +35256,7 @@
     "name": "efRem",
     "ns": "PiZeros",
     "full": "PiZeros.efRem",
-    "line": 105,
+    "line": 110,
     "why": "The remainder of the explicit formula at a height.",
     "sorry": false,
     "needs": [
@@ -35285,7 +35285,7 @@
     "name": "psiTheta",
     "ns": "PiZeros",
     "full": "PiZeros.psiTheta",
-    "line": 108,
+    "line": 113,
     "why": "The prime powers above the first: `ψ − θ`.",
     "sorry": false,
     "needs": [
@@ -35310,8 +35310,8 @@
     "name": "zeroPartialSum_eq_sum",
     "ns": "PiZeros",
     "full": "PiZeros.zeroPartialSum_eq_sum",
-    "line": 110,
-    "why": "",
+    "line": 116,
+    "why": "The zero sum below a height, written as a sum over the finite set of zeros below it.",
     "sorry": false,
     "needs": [
      "t T : ℝ"
@@ -35342,8 +35342,8 @@
     "name": "integrable_ofReal_of_monotone",
     "ns": "PiZeros",
     "full": "PiZeros.integrable_ofReal_of_monotone",
-    "line": 118,
-    "why": "",
+    "line": 125,
+    "why": "A monotone real function, read as complex, is integrable on `[2, x]`.",
     "sorry": false,
     "needs": [
      "hf : Monotone f",
@@ -35366,8 +35366,8 @@
     "name": "integrable_cpow",
     "ns": "PiZeros",
     "full": "PiZeros.integrable_cpow",
-    "line": 123,
-    "why": "",
+    "line": 131,
+    "why": "For `x ≥ 2` the function `t ↦ t^ρ/ρ` is integrable on `[2, x]`.",
     "sorry": false,
     "needs": [
      "hx : 2 ≤ x",
@@ -35390,7 +35390,7 @@
     "name": "pi_eq_zero_sum",
     "ns": "PiZeros",
     "full": "PiZeros.pi_eq_zero_sum",
-    "line": 135,
+    "line": 143,
     "why": "The count as a sum over the zeros, exactly. For every `x ≥ 2` and every height `T`: the count minus its smooth part is minus the sum over the zeros below `T` of each zero's part, plus the passage of the explicit formula's remainder, minus the passage of the higher prime powers.",
     "sorry": false,
     "needs": [
@@ -35445,7 +35445,7 @@
     "name": "norm_tr_psiTheta_le",
     "ns": "PiZeros",
     "full": "PiZeros.norm_tr_psiTheta_le",
-    "line": 189,
+    "line": 197,
     "why": "The higher prime powers are of square-root size.",
     "sorry": false,
     "needs": [
@@ -35477,8 +35477,8 @@
     "name": "stencil_congr",
     "ns": "PiZeros",
     "full": "PiZeros.stencil_congr",
-    "line": 250,
-    "why": "",
+    "line": 259,
+    "why": "Two rows that agree on the entries a stencil reads have the same stencil.",
     "sorry": false,
     "needs": [
      "n : ℕ",
@@ -35505,8 +35505,8 @@
     "name": "stencil_neg",
     "ns": "PiZeros",
     "full": "PiZeros.stencil_neg",
-    "line": 256,
-    "why": "",
+    "line": 266,
+    "why": "The stencil of the negative of a row is the negative of its stencil.",
     "sorry": false,
     "needs": [
      "n : ℕ",
@@ -35537,8 +35537,8 @@
     "name": "stencilR_cast",
     "ns": "PiZeros",
     "full": "PiZeros.stencilR_cast",
-    "line": 261,
-    "why": "",
+    "line": 272,
+    "why": "The real stencil of a row, read as complex, is the complex stencil of the row read as complex.",
     "sorry": false,
     "needs": [
      "n : ℕ",
@@ -35568,7 +35568,7 @@
     "name": "table_cell_eq_zero_sum",
     "ns": "PiZeros",
     "full": "PiZeros.table_cell_eq_zero_sum",
-    "line": 273,
+    "line": 284,
     "why": "The integer table's cell as a sum over the zeros, exactly. The cell `(r, d)` of the table of the prime count along the doublings, less the smooth cell, is minus the sum over the zeros below any height of each zero's part under the stencil, plus the stencil of the explicit formula's remainder passed to the count, minus the stencil of the higher prime powers.",
     "sorry": false,
     "needs": [

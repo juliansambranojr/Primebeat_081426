@@ -1,6 +1,6 @@
 # What `PiZeros.table_cell_eq_zero_sum` rests on
 
-[`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) in `lean_stage3/Stage3/PiZeros.lean`, line 273.
+[`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) in `lean_stage3/Stage3/PiZeros.lean`, line 284.
 
 **Why.** The integer table's cell as a sum over the zeros, exactly. The cell `(r, d)` of the table of the prime count along the doublings, less the smooth cell, is minus the sum over the zeros below any height of each zero's part under the stencil, plus the stencil of the explicit formula's remainder passed to the count, minus the stencil of the higher prime powers.
 

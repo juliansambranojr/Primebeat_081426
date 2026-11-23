@@ -2,7 +2,7 @@
 
 CellBdiff — block T1b of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 on the table tree's own operator. `CellZeros.stencil` is a second writing of `d` backward differences. The table tree's writing is `Chain.bdiff` iterated `d` times, the operator `Chain.A4` and `Superposition` are stated on. Here the two are shown equal on any row, and the cell theorem is restated with `bdiff^[d]`, `Sym`, `mode` and `modeSum`, all four from the table tree.
 
-6 theorems, 2 definitions, 125 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 2 definitions, 127 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellModes`](../lean_stage3/CellModes.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -51,7 +51,7 @@ One backward difference on a row indexed by the integers.
 <a name="CellBdiff-psiRow"></a>
 ### `CellBdiff.psiRow`
 
-def · line 84
+def · line 85
 
 The row of the log-weighted prime count along the doublings, on `ℂ`.
 
@@ -63,9 +63,11 @@ The row of the log-weighted prime count along the doublings, on `ℂ`.
 <a name="CellBdiff-iter_bdZ_eq_fwdDiff"></a>
 ### `CellBdiff.iter_bdZ_eq_fwdDiff`
 
-line 35
+line 36
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** `n` backward differences of a row are `(−1)^n` times its `n`-th forward difference at step `−1`.
 
 **Proves**
 
@@ -90,7 +92,7 @@ line 35
 <a name="CellBdiff-iter_bdZ_eq_stencil"></a>
 ### `CellBdiff.iter_bdZ_eq_stencil`
 
-line 49
+line 50
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -121,7 +123,7 @@ line 49
 <a name="CellBdiff-bdiff_iter_eq_bdZ"></a>
 ### `CellBdiff.bdiff_iter_eq_bdZ`
 
-line 66
+line 67
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -150,7 +152,7 @@ line 66
 <a name="CellBdiff-stencil_eq_bdiff_iter"></a>
 ### `CellBdiff.stencil_eq_bdiff_iter`
 
-line 79
+line 80
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -184,9 +186,11 @@ CellZeros.stencil d a r = (Chain.bdiff^[d]) g (r : ℂ)
 <a name="CellBdiff-psiRow_int"></a>
 ### `CellBdiff.psiRow_int`
 
-line 86
+line 88
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** On an integer the row is the log-weighted prime count at that doubling.
 
 **Proves**
 
@@ -209,7 +213,7 @@ psiRow (n : ℂ) = (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)
 <a name="CellBdiff-cell_eq_modeSum_bdiff"></a>
 ### `CellBdiff.cell_eq_modeSum_bdiff`
 
-line 93
+line 95
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

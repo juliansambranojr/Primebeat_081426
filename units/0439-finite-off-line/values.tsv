@@ -1,5 +1,5 @@
 key	value	source
-module_lines	568	wc -l lean_stage3/Stage3/FiniteOffLine.lean
+module_lines	572	wc -l lean_stage3/Stage3/FiniteOffLine.lean
 theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/FiniteOffLine.lean
 defs	3	ZF, onLineInv, term
 axioms	3	#print axioms: propext, Classical.choice, Quot.sound

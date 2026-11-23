@@ -45,14 +45,17 @@ function: its value over the logarithm, plus its integral against the weight. -/
 def tr (f : ℝ → ℂ) (x : ℝ) : ℂ :=
   f x / (Real.log x : ℂ) + ∫ t in (2:ℝ)..x, f t * wt t
 
+/-- For `x ≥ 2` the weight is continuous on `[2, x]`. -/
 theorem wt_continuousOn {x : ℝ} (hx : 2 ≤ x) : ContinuousOn wt (Set.uIcc 2 x) :=
   Complex.continuous_ofReal.comp_continuousOn (Stage3.continuousOn_inv_mul_log_sq le_rfl hx)
 
+/-- For `x ≥ 2`, a function integrable on `[2, x]` stays integrable when multiplied by the weight. -/
 theorem integrable_mul_wt {f : ℝ → ℂ} {x : ℝ} (hx : 2 ≤ x)
     (hf : IntervalIntegrable f volume 2 x) :
     IntervalIntegrable (fun t => f t * wt t) volume 2 x :=
   hf.mul_continuousOn (wt_continuousOn hx)
 
+/-- The passage of a difference of two integrable functions is the difference of their passages. -/
 theorem tr_sub {f g : ℝ → ℂ} {x : ℝ} (hx : 2 ≤ x) (hf : IntervalIntegrable f volume 2 x)
     (hg : IntervalIntegrable g volume 2 x) :
     tr (fun t => f t - g t) x = tr f x - tr g x := by
@@ -63,6 +66,7 @@ theorem tr_sub {f g : ℝ → ℂ} {x : ℝ} (hx : 2 ≤ x) (hf : IntervalIntegr
   rw [h, intervalIntegral.integral_sub (integrable_mul_wt hx hf) (integrable_mul_wt hx hg)]
   ring
 
+/-- A constant factor passes through the passage. -/
 theorem tr_const_mul (c : ℂ) (f : ℝ → ℂ) (x : ℝ) :
     tr (fun t => c * f t) x = c * tr f x := by
   unfold tr
@@ -72,6 +76,7 @@ theorem tr_const_mul (c : ℂ) (f : ℝ → ℂ) (x : ℝ) :
   rw [h, intervalIntegral.integral_const_mul]
   ring
 
+/-- The passage of a finite sum of integrable functions is the sum of their passages. -/
 theorem tr_sum {ι : Type*} (s : Finset ι) (f : ι → ℝ → ℂ) {x : ℝ} (hx : 2 ≤ x)
     (hf : ∀ i ∈ s, IntervalIntegrable (f i) volume 2 x) :
     tr (fun t => ∑ i ∈ s, f i t) x = ∑ i ∈ s, tr (f i) x := by
@@ -107,6 +112,7 @@ def efRem (T : ℝ) (t : ℝ) : ℂ := ((ψ t : ℝ) : ℂ) - (t : ℂ) + Stage3
 /-- The prime powers above the first: `ψ − θ`. -/
 def psiTheta (t : ℝ) : ℂ := ((ψ t - θ t : ℝ) : ℂ)
 
+/-- The zero sum below a height, written as a sum over the finite set of zeros below it. -/
 theorem zeroPartialSum_eq_sum (t T : ℝ) :
     Stage3.zeroPartialSum t T
       = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * ((t : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)) := by
@@ -115,11 +121,13 @@ theorem zeroPartialSum_eq_sum (t T : ℝ) :
     (fun ρ : NontrivialZeros => ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)
       * ((t : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)))
 
+/-- A monotone real function, read as complex, is integrable on `[2, x]`. -/
 theorem integrable_ofReal_of_monotone {f : ℝ → ℝ} (hf : Monotone f) (x : ℝ) :
     IntervalIntegrable (fun t => ((f t : ℝ) : ℂ)) volume 2 x := by
   have h : IntervalIntegrable f volume 2 x := (hf.monotoneOn _).intervalIntegrable
   exact ⟨h.1.ofReal, h.2.ofReal⟩
 
+/-- For `x ≥ 2` the function `t ↦ t^ρ/ρ` is integrable on `[2, x]`. -/
 theorem integrable_cpow {x : ℝ} (hx : 2 ≤ x) (ρ : ℂ) :
     IntervalIntegrable (fun t : ℝ => (t : ℂ) ^ ρ / ρ) volume 2 x := by
   apply ContinuousOn.intervalIntegrable
@@ -247,17 +255,20 @@ theorem norm_tr_psiTheta_le {x : ℝ} (hx : 2 ≤ x) : ‖tr psiTheta x‖ ≤ 8
     _ ≤ 2 * Real.sqrt x + 2 * (2 / Real.log 2) * Real.sqrt x := by linarith
     _ ≤ 8 * Real.sqrt x := by nlinarith
 
+/-- Two rows that agree on the entries a stencil reads have the same stencil. -/
 theorem stencil_congr (n : ℕ) {a b : ℤ → ℂ} {r : ℤ}
     (h : ∀ j ∈ range (n + 1), a (r - j) = b (r - j)) :
     CellZeros.stencil n a r = CellZeros.stencil n b r := by
   unfold CellZeros.stencil
   exact Finset.sum_congr rfl fun j hj => by rw [h j hj]
 
+/-- The stencil of the negative of a row is the negative of its stencil. -/
 theorem stencil_neg (n : ℕ) (a : ℤ → ℂ) (r : ℤ) :
     CellZeros.stencil n (fun m => -a m) r = -CellZeros.stencil n a r := by
   have h := CellZeros.stencil_const_mul n (-1) a r
   simpa using h
 
+/-- The real stencil of a row, read as complex, is the complex stencil of the row read as complex. -/
 theorem stencilR_cast (n : ℕ) (g : ℤ → ℝ) (r : ℤ) :
     ((Nonvanishing.stencilR n g r : ℝ) : ℂ)
       = CellZeros.stencil n (fun m => ((g m : ℝ) : ℂ)) r := by
