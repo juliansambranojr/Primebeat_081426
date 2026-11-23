@@ -97,6 +97,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`PairIdentity.base_three_carries_factor`](./lean/PairIdentity.md#PairIdentity-base_three_carries_factor) | theorem | counting | `PairIdentity` | ((3 : ℤ) - 1) ^ (d + 1) * 3 ^ e = 2 ^ (d + 1) * 3 ^ e |
 | [`Nyquist.base_two_fails_by_three`](./lean/Nyquist.md#Nyquist-base_two_fails_by_three) | theorem | shape | `Nyquist` | 3 * nyquist 2 &lt; 14 |
 | [`Nyquist.base_two_past_nyquist`](./lean/Nyquist.md#Nyquist-base_two_past_nyquist) | theorem | shape | `Nyquist` | nyquist 2 &lt; γ |
+| [`ZeroDensity.bConst`](./lean_stage3/ZeroDensity.md#ZeroDensity-bConst) | def | reads ζ | `ZeroDensity` | ℝ |
+| [`ZeroDensity.bConst_nonneg`](./lean_stage3/ZeroDensity.md#ZeroDensity-bConst_nonneg) | theorem | reads ζ | `ZeroDensity` | 0 ≤ bConst δ k |
 | [`Chain.bdiff`](./lean/Chain.md#Chain-bdiff) | def | shape | `Chain` | ℂ → ℂ |
 | [`Elephant.bdiff`](./lean/Elephant.md#Elephant-bdiff) | def | shape | `Elephant` | ℤ → ℂ |
 | [`CellBdiff.bdiff_iter_eq_bdZ`](./lean_stage3/CellBdiff.md#CellBdiff-bdiff_iter_eq_bdZ) | theorem | shape | `CellBdiff` | (Chain.bdiff^[d]) g (r : ℂ) = (bdZ^[d]) a r |
@@ -179,6 +181,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerCompare.cE`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cE) | def | shape | `WeilPowerCompare` | ℝ |
 | [`WeilPowerCompare.cE_le_cP`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cE_le_cP) | theorem | shape | `WeilPowerCompare` | cE m ≤ cP m |
 | [`WeilPowerCompare.cE_pos`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cE_pos) | theorem | shape | `WeilPowerCompare` | 0 &lt; cE m |
+| [`ZeroDensity.ceil_bounds`](./lean_stage3/ZeroDensity.md#ZeroDensity-ceil_bounds) | theorem | shape | `ZeroDensity` | y ≤ (⌈y⌉₊ : ℝ) ∧ (⌈y⌉₊ : ℝ) ≤ 2 * y |
 | [`Chain.ceiling_base`](./lean/Chain.md#Chain-ceiling_base) | theorem | shape | `Chain` | ‖Sym (Real.exp (Real.pi * (2 * k + 1) / γ)) ((1 : ℂ)/2 + γ * I)‖ ^ 2 = (1 + (Real.exp (Real.pi * (2 * k + 1) / γ)) ^ (-(1:ℝ)/2)) ^ 2 |
 | [`Chain.ceiling_dominates_floor`](./lean/Chain.md#Chain-ceiling_dominates_floor) | theorem | shape | `Chain` | (1 - b ^ (-(1:ℝ)/2)) ^ 2 &lt; (1 + b ^ (-(1:ℝ)/2)) ^ 2 |
 | [`CellModes.cell_eq_modeSum`](./lean_stage3/CellModes.md#CellModes-cell_eq_modeSum) | theorem | reads ζ | `CellModes` | ‖CellZeros.stencil d (fun n : ℤ =&gt; (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // \|(ρ : ℂ).im\| &lt; T} =… |
@@ -628,6 +631,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ArgLegs.im_integral_le_pi_of_re_nonneg`](./lean_stage3/ArgLegs.md#ArgLegs-im_integral_le_pi_of_re_nonneg) | theorem | shape | `ArgLegs` | \|(∫ x in a..b, g' x / g x).im\| ≤ Real.pi |
 | [`ArgLegs.im_integral_le_pi_of_re_nonpos`](./lean_stage3/ArgLegs.md#ArgLegs-im_integral_le_pi_of_re_nonpos) | theorem | shape | `ArgLegs` | \|(∫ x in a..b, g' x / g x).im\| ≤ Real.pi |
 | [`WeilPowerBridge.im_sq_sub_re_sq`](./lean_stage3/WeilPowerBridge.md#WeilPowerBridge-im_sq_sub_re_sq) | theorem | shape | `WeilPowerBridge` | z.im ^ 2 - z.re ^ 2 = -(z ^ 2).re |
+| [`ZeroDensity.inner_le`](./lean_stage3/ZeroDensity.md#ZeroDensity-inner_le) | theorem | reads ζ | `ZeroDensity` | ∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ bConst δ k * T ^ (1 - 6 * δ ^ 2) * (1 + Real.log T) ^ 5 |
 | [`ZeroSquares.innerI`](./lean_stage3/ZeroSquares.md#ZeroSquares-innerI) | def | reads ζ | `ZeroSquares` | ℝ |
 | [`ZeroSquares.innerI_eq`](./lean_stage3/ZeroSquares.md#ZeroSquares-innerI_eq) | theorem | reads ζ | `ZeroSquares` | innerI X a b u = ∫ t in a..b, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 |
 | [`ZeroSquares.innerI_mono`](./lean_stage3/ZeroSquares.md#ZeroSquares-innerI_mono) | theorem | reads ζ | `ZeroSquares` | innerI X a b u ≤ innerI X c d u |
@@ -1047,6 +1051,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.on_critical_line_iff_norm`](./lean/Transform.md#Transform-on_critical_line_iff_norm) | theorem | shape | `Transform` | s.re = 1 / 2 ↔ ‖(b : ℂ) ^ (-s)‖ = b ^ (-(1 : ℝ) / 2) |
 | [`WeilPowerAssembly.on_line_le`](./lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-on_line_le) | theorem | reads ζ | `WeilPowerAssembly` | WeilPowerOnLine.onLineBound h γ m ≤ 2 * (88 * (γ + WeilPowerBands.r h m + 2) ^ 4 * (4 * h ^ 2 + WeilPowerBands.cFarM m / h ^ 2) * (Real.pi ^ 2 / 6)) + 4 * h ^ 2 * WeilOnLine.lowCount |
 | [`Stage3.one_add_log_four_le`](./lean_stage3/PsiToPi.md#Stage3-one_add_log_four_le) | theorem | shape | `PsiToPi` | 1 + Real.log 4 ≤ 5 * Real.log 2 ^ 2 |
+| [`ZeroDensity.one_add_log_le`](./lean_stage3/ZeroDensity.md#ZeroDensity-one_add_log_le) | theorem | shape | `ZeroDensity` | 1 + Real.log T ≤ (1 + 1 / ε) * T ^ ε |
 | [`BoxBounds.one_le_norm_zeta_three`](./lean_stage3/BoxBounds.md#BoxBounds-one_le_norm_zeta_three) | theorem | reads ζ | `BoxBounds` | 1 ≤ ‖riemannZeta 3‖ |
 | [`WeilPowerBands.one_le_r`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-one_le_r) | theorem | shape | `WeilPowerBands` | 1 ≤ r h m |
 | [`ContourShift.one_le_zeta_order`](./lean_stage3/ContourShift.md#ContourShift-one_le_zeta_order) | theorem | reads ζ | `ContourShift` | 1 ≤ analyticOrderNatAt riemannZeta ρ |
@@ -1441,6 +1446,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ContourShift.sq_mul_zeta_analyticAt_one`](./lean_stage3/ContourShift.md#ContourShift-sq_mul_zeta_analyticAt_one) | theorem | reads ζ | `ContourShift` | AnalyticAt ℂ (fun s ↦ (s - 1)^2 * riemannZeta s) 1 |
 | [`DirichletMean.sq_norm_sum_eq`](./lean_stage3/DirichletMean.md#DirichletMean-sq_norm_sum_eq) | theorem | shape | `DirichletMean` | ((‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 : ℝ) : ℂ) = ∑ m ∈ Icc 1 N, ∑ n ∈ Icc 1 N, a m * (starRingEnd ℂ) (a n) * Complex.exp (Complex.I * ((Real.log n - Real.log m : ℝ) : ℂ) * t… |
 | [`Chain.sq_rpow_half`](./lean/Chain.md#Chain-sq_rpow_half) | theorem | shape | `Chain` | (b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ)) |
+| [`ZeroDensity.sq_rpow_le`](./lean_stage3/ZeroDensity.md#ZeroDensity-sq_rpow_le) | theorem | shape | `ZeroDensity` | (X:ℝ) ^ 2 ≤ 4 * T ^ (2 * δ) |
 | [`SquareMean.sq_set_integral`](./lean_stage3/SquareMean.md#SquareMean-sq_set_integral) | theorem | shape | `SquareMean` | ∫ z in (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)), F z = ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c.im - δ)..(c.im + δ), F ((u : ℂ) + Complex.I * (t : ℂ)) |
 | [`ZetaGrowth.sq_zeta_band_bound`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-sq_zeta_band_bound) | theorem | reads ζ | `ZetaGrowth` | ∃ C : ℝ, 0 &lt; C ∧ ∀ s : ℂ, -1/2 ≤ s.re → s.re ≤ 4 → ‖(s - 1)^2 * riemannZeta s‖ ≤ C * (2 + \|s.im\|) ^ 4 |
 | [`BoxBounds.sq_zeta_band_explicit`](./lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_band_explicit) | theorem | reads ζ | `BoxBounds` | ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 * (2 + \|s.im\|) ^ 4 |
@@ -1681,6 +1687,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauMellinG.tendsto_logPrim`](./lean_stage3/LandauMellinG.md#LandauMellinG-tendsto_logPrim) | theorem | shape | `LandauMellinG` | Tendsto (logPrim s) atTop (𝓝 0) |
 | [`WeilPowerGauss.tendsto_S`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-tendsto_S) | theorem | shape | `WeilPowerGauss` | Tendsto (fun n : ℕ =&gt; ((cS m / D m : ℝ) : ℂ) * w * T m w n) atTop (𝓝 (S m w)) |
 | [`FiniteOffLine.term`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-term) | def | reads ζ | `FiniteOffLine` | ℂ |
+| [`ZeroDensity.term1_le`](./lean_stage3/ZeroDensity.md#ZeroDensity-term1_le) | theorem | shape | `ZeroDensity` | T * (2 / (1 - (2:ℝ) ^ (1 - 2 * u))) * (X:ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3 ≤ T * (2 / (1 - (2:ℝ) ^ (-(6 * δ)))) * T ^ (-(6 * δ ^ 2)) * L ^ 3 |
+| [`ZeroDensity.term2_le`](./lean_stage3/ZeroDensity.md#ZeroDensity-term2_le) | theorem | shape | `ZeroDensity` | 24 * (1 + Real.log ((N * X : ℕ) : ℝ)) ^ 2 * (1 + Real.log X) ^ 3 * max 1 (((N * X : ℕ) : ℝ) ^ (2 - 2 * u)) ≤ 24 * (4 * L) ^ 2 * (2 * L) ^ 3 * (4 * T ^ (1 - 4 * δ)) |
+| [`ZeroDensity.term3_le`](./lean_stage3/ZeroDensity.md#ZeroDensity-term3_le) | theorem | shape | `ZeroDensity` | (X:ℝ) ^ 2 * (N:ℝ) ^ (2 - 2 * u) ≤ 8 * T ^ (1 - 3 * δ) |
+| [`ZeroDensity.term4_le`](./lean_stage3/ZeroDensity.md#ZeroDensity-term4_le) | theorem | shape | `ZeroDensity` | T * (X:ℝ) ^ 2 * E ^ 2 * (N:ℝ) ^ (-2 * u) * (1 + (T + 2 + k) ^ k * (N:ℝ) ^ (1 - (k:ℝ))) ^ 2 ≤ 4 * E ^ 2 * (1 + 2 ^ k) ^ 2 * T ^ δ |
 | [`WeilOnLine.term_conj`](./lean_stage3/WeilOnLine.md#WeilOnLine-term_conj) | theorem | shape | `WeilOnLine` | (laplace (phiC h γ) (-(starRingEnd ℂ) ρ) * laplace (phiC h γ) (-(1 - (starRingEnd ℂ) ρ))).re = (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re |
 | [`WeilPowerOnLine.term_conj`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-term_conj) | theorem | shape | `WeilPowerOnLine` | termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ |
 | [`WeilOffLine.term_eq_neg_sq`](./lean_stage3/WeilOffLine.md#WeilOffLine-term_eq_neg_sq) | theorem | shape | `WeilOffLine` | laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 1 / 2)) ^ 2 |
@@ -1834,6 +1844,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.zero_at_8_3_of_repeat`](./lean/Zeros.md#Zeros-zero_at_8_3_of_repeat) | theorem | counting | `Zeros` | Construction.tableFrom N 8 3 = 0 |
 | [`PairIdentity.zero_cells`](./lean/PairIdentity.md#PairIdentity-zero_cells) | def | counting | `PairIdentity` | List (ℕ × ℕ) |
 | [`SeedPerturbation.zero_cells`](./lean/SeedPerturbation.md#SeedPerturbation-zero_cells) | def | counting | `SeedPerturbation` | List (ℕ × ℕ) |
+| [`ZeroDensity.zero_density`](./lean_stage3/ZeroDensity.md#ZeroDensity-zero_density) | theorem | reads ζ | `ZeroDensity` | ∃ θ C T₀ : ℝ, θ &lt; 1 ∧ 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, (∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re &lt; 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2) → (Z.card : ℝ) ≤ C * T ^ θ |
 | [`Construction.zero_determined_by_row`](./lean/Construction.md#Construction-zero_determined_by_row) | theorem | counting | `Construction` | tableFrom N r d = tableFrom M r d |
 | [`SeedPerturbation.zero_iff_of_seed_perturbation`](./lean/SeedPerturbation.md#SeedPerturbation-zero_iff_of_seed_perturbation) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - e x) r d = 0 ↔ tableFrom N r d = 0 |
 | [`Zeros.zero_iff_repeat`](./lean/Zeros.md#Zeros-zero_iff_repeat) | theorem | counting | `Zeros` | f r (d + 1) = 0 ↔ f r d = f (r - 1) d |

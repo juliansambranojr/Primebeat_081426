@@ -10,10 +10,11 @@ flowchart LR
   n8["<b>sum_coef_sq_up_le</b><br/>∑ n ∈ Icc 1 Y, (Mollified.coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (1 - 2…"]:::shp
   n9["<b>integral_inv_sq_le</b><br/>∫ t in (1:ℝ)..T, (t ^ 2)⁻¹ ≤ 1"]:::shp
   n10["<b>mean_sq_main_le</b><br/>∫ t in (1:ℝ)..T, ‖∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^…"]:::shp
-  n11["<b>mean_sq_f_le ■</b><br/>∫ t in (1:ℝ)..T, ‖f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ 3 *…"]:::thm
+  n11["<b>mean_sq_f_le</b><br/>∫ t in (1:ℝ)..T, ‖f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ 3 *…"]:::thm
   x0(["<b>ZetaEM</b><br/>bernBound_nonneg<br/>norm_zeta_sub_partial_le"]):::ext
   x1(["<b>Mollified</b><br/>6 theorems"]):::ext
   x2(["<b>DirichletMeanW</b><br/>dirichlet_mean_value_weighted_sigma"]):::ext
+  x3(["<b>ZeroDensity</b><br/>inner_le"]):::ext
   n0 --> n11
   n1 --> n11
   n10 --> n11
@@ -25,6 +26,7 @@ flowchart LR
   n7 --> n10
   n8 --> n10
   n9 --> n11
+  n11 -.-> x3
   x0 -.-> n0
   x0 -.-> n11
   x1 -.-> n10

@@ -22,10 +22,11 @@ flowchart LR
   n8["<b>sum_coef_sq_up_le</b><br/>∑ n ∈ Icc 1 Y, (Mollified.coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (1 - 2…"]:::shp
   n9["<b>integral_inv_sq_le</b><br/>∫ t in (1:ℝ)..T, (t ^ 2)⁻¹ ≤ 1"]:::shp
   n10["<b>mean_sq_main_le</b><br/>∫ t in (1:ℝ)..T, ‖∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^…"]:::shp
-  n11["<b>mean_sq_f_le ■</b><br/>∫ t in (1:ℝ)..T, ‖f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ 3 *…"]:::thm
+  n11["<b>mean_sq_f_le</b><br/>∫ t in (1:ℝ)..T, ‖f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ 3 *…"]:::thm
   x0(["<b>ZetaEM</b><br/>bernBound_nonneg<br/>norm_zeta_sub_partial_le"]):::ext
   x1(["<b>Mollified</b><br/>6 theorems"]):::ext
   x2(["<b>DirichletMeanW</b><br/>dirichlet_mean_value_weighted_sigma"]):::ext
+  x3(["<b>ZeroDensity</b><br/>inner_le"]):::ext
   n0 --> n11
   n1 --> n11
   n10 --> n11
@@ -37,6 +38,7 @@ flowchart LR
   n7 --> n10
   n8 --> n10
   n9 --> n11
+  n11 -.-> x3
   x0 -.-> n0
   x0 -.-> n11
   x1 -.-> n10
@@ -76,7 +78,7 @@ The mollified function `f_X(s) = ζ(s)·M_X(s) − 1`.
 
 - **Is:** `` f f (X : ℕ) (s : ℂ) : ℂ := riemannZeta s * M X s - 1 ``
 - **Built from:** [`MollifiedMean.M`](#MollifiedMean-M)
-- **Used by 10:** [`MollifiedMean.f_eq`](#MollifiedMean-f_eq), [`MollifiedMean.mean_sq_f_le`](#MollifiedMean-mean_sq_f_le), [`ZeroSquares.card_zeros_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_zeros_le), [`ZeroSquares.continuous_sqG`](../lean_stage3/ZeroSquares.md#ZeroSquares-continuous_sqG), [`ZeroSquares.differentiableOn_f`](../lean_stage3/ZeroSquares.md#ZeroSquares-differentiableOn_f), [`ZeroSquares.f_at_zero`](../lean_stage3/ZeroSquares.md#ZeroSquares-f_at_zero), [`ZeroSquares.innerI_eq`](../lean_stage3/ZeroSquares.md#ZeroSquares-innerI_eq), [`ZeroSquares.sqG`](../lean_stage3/ZeroSquares.md#ZeroSquares-sqG), [`ZeroSquares.sqG_nonneg`](../lean_stage3/ZeroSquares.md#ZeroSquares-sqG_nonneg), [`ZeroSquares.square_lower`](../lean_stage3/ZeroSquares.md#ZeroSquares-square_lower)
+- **Used by 12:** [`MollifiedMean.f_eq`](#MollifiedMean-f_eq), [`MollifiedMean.mean_sq_f_le`](#MollifiedMean-mean_sq_f_le), [`ZeroDensity.inner_le`](../lean_stage3/ZeroDensity.md#ZeroDensity-inner_le), [`ZeroDensity.zero_density`](../lean_stage3/ZeroDensity.md#ZeroDensity-zero_density), [`ZeroSquares.card_zeros_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_zeros_le), [`ZeroSquares.continuous_sqG`](../lean_stage3/ZeroSquares.md#ZeroSquares-continuous_sqG), [`ZeroSquares.differentiableOn_f`](../lean_stage3/ZeroSquares.md#ZeroSquares-differentiableOn_f), [`ZeroSquares.f_at_zero`](../lean_stage3/ZeroSquares.md#ZeroSquares-f_at_zero), [`ZeroSquares.innerI_eq`](../lean_stage3/ZeroSquares.md#ZeroSquares-innerI_eq), [`ZeroSquares.sqG`](../lean_stage3/ZeroSquares.md#ZeroSquares-sqG), [`ZeroSquares.sqG_nonneg`](../lean_stage3/ZeroSquares.md#ZeroSquares-sqG_nonneg), [`ZeroSquares.square_lower`](../lean_stage3/ZeroSquares.md#ZeroSquares-square_lower)
 
 <a name="MollifiedMean-b"></a>
 ### `MollifiedMean.b`
@@ -458,5 +460,7 @@ line 338
 
 **Definitions its proof touches:** [`MollifiedMean.M`](#MollifiedMean-M), [`MollifiedMean.b`](#MollifiedMean-b)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`ZeroDensity.inner_le`](../lean_stage3/ZeroDensity.md#ZeroDensity-inner_le) (ZeroDensity) — `` ∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ bConst δ k * T ^ (1 - 6 * δ ^ 2) * (1 + Real.log T) ^ 5 ``
 

@@ -88,7 +88,7 @@ zeros in a box of height two, from the zero count). So
 
 This stands in for Littlewood's lemma; no logarithm of `f` appears.
 
-### C6 The bound, and summability
+### C6 The bound, and summability — the bound PROVED (unit 0454: `ZeroDensity.zero_density`, `θ = 1 − 5δ²`, `δ = (σ − 1/2)/4`, `X = ⌈T^δ⌉`, `N = ⌈T^(1+δ)⌉`, `k = ⌈1/δ⌉ + 1`); summability being built
 
 `X = T^a`, `N = T^(1+ε)`, `r = (σ − 1/2)/2`: both `1 − a(2u−1)` and
 `(1 + ε + a)(2 − 2u)` are below one on `u ≥ σ − r` for small `a`, `ε`. Then

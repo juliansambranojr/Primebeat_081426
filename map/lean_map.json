@@ -35189,6 +35189,8 @@
     "used_by": [
      "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
      "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density",
      "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le",
      "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG",
      "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f",
@@ -35621,7 +35623,9 @@
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le"
+    ]
    }
   ]
  },
@@ -66219,6 +66223,383 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ZeroDensity.lean",
+  "module": "Stage3.ZeroDensity",
+  "stem": "ZeroDensity",
+  "header": "ZeroDensity — block C6 of `lean_stage3/design/carlson.md`. 2026-11-23. The zero-density bound with a power saving. Fix `σ > 1/2` and put `δ = (σ − 1/2)/4`. For a height `T` take `X = ⌈T^δ⌉₊`, `N = ⌈T^(1+δ)⌉₊` and the order `k = ⌈1/δ⌉₊ + 1`. On every line `u ∈ (σ − δ, 1 + δ]` the four terms of `MollifiedMean.mean_sq_f_le` are each at most a constant times `T^(1 − 6δ²)·(1 + log T)^5`. Integrating over `u` and feeding the result to `ZeroSquares.card_zeros_le` bounds the number of zeros by a constant times `T^(1 − 6δ²)…",
+  "imports": [
+   "Stage3.ZeroSquares"
+  ],
+  "opens": [
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "ZeroDensity"
+  ],
+  "lines": 490,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/ZeroSquares.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "ceil_bounds",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.ceil_bounds",
+    "line": 40,
+    "why": "For `y ≥ 1` the ceiling `⌈y⌉₊` lies between `y` and `2y`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 ≤ y"
+    ],
+    "proves": "y ≤ (⌈y⌉₊ : ℝ) ∧ (⌈y⌉₊ : ℝ) ≤ 2 * y",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.ceil_bounds",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_add_log_le",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.one_add_log_le",
+    "line": 46,
+    "why": "For `T ≥ 1` and `ε > 0`, the quantity `1 + log T` is at most `(1 + 1/ε)·T^ε`.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 ≤ T",
+     "hε : 0 < ε"
+    ],
+    "proves": "1 + Real.log T ≤ (1 + 1 / ε) * T ^ ε",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.one_add_log_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sq_rpow_le",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.sq_rpow_le",
+    "line": 56,
+    "why": "For `T > 0`, the bound `X ≤ 2·T^δ` gives `X² ≤ 4·T^(2δ)`.",
+    "sorry": false,
+    "needs": [
+     "hT0 : 0 < T",
+     "hX2 : (X:ℝ) ≤ 2 * T ^ δ"
+    ],
+    "proves": "(X:ℝ) ^ 2 ≤ 4 * T ^ (2 * δ)",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.sq_rpow_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term3_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term4_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term1_le",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.term1_le",
+    "line": 71,
+    "why": "The diagonal term of `MollifiedMean.mean_sq_f_le` on a line with `2u − 1 ≥ 6δ`, when `X ≥ T^δ`, is at most `T·(2/(1 − 2^(−6δ)))·T^(−6δ²)·L³`, where `L` bounds `1 + log X`.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hT : 1 ≤ T",
+     "hu : 6 * δ ≤ 2 * u - 1",
+     "hX : T ^ δ ≤ X",
+     "hL : 1 + Real.log X ≤ L"
+    ],
+    "proves": "T * (2 / (1 - (2:ℝ) ^ (1 - 2 * u))) * (X:ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3 ≤ T * (2 / (1 - (2:ℝ) ^ (-(6 * δ)))) * T ^ (-(6 * δ ^ 2)) * L ^ 3",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term1_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term2_le",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.term2_le",
+    "line": 106,
+    "why": "The off-diagonal term of `MollifiedMean.mean_sq_f_le` on a line with `2u − 1 ≥ 6δ`, when `N·X ≤ 4·T^(1+2δ)`, is at most `24·(4L)²·(2L)³·4·T^(1−4δ)`.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hδ8 : δ ≤ 1 / 8",
+     "hT : 1 ≤ T",
+     "hu : 6 * δ ≤ 2 * u - 1",
+     "hX1 : 1 ≤ X",
+     "hN1 : 1 ≤ N",
+     "hNX : ((N * X : ℕ) : ℝ) ≤ 4 * T ^ (1 + 2 * δ)",
+     "hL1 : 1 + Real.log X ≤ 2 * L",
+     "hL2 : 1 + Real.log ((N * X : ℕ) : ℝ) ≤ 4 * L",
+     "hL0 : 0 ≤ L"
+    ],
+    "proves": "24 * (1 + Real.log ((N * X : ℕ) : ℝ)) ^ 2 * (1 + Real.log X) ^ 3 * max 1 (((N * X : ℕ) : ℝ) ^ (2 - 2 * u)) ≤ 24 * (4 * L) ^ 2 * (2 * L) ^ 3 * (4 * T ^ (1 - 4 * δ))",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term2_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term3_le",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.term3_le",
+    "line": 147,
+    "why": "The term `X²·N^(2−2u)` of `MollifiedMean.mean_sq_f_le` on a line with `2u − 1 ≥ 6δ`, when `X ≤ 2·T^δ` and `N ≤ 2·T^(1+δ)`, is at most `8·T^(1−3δ)`.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hδ8 : δ ≤ 1 / 8",
+     "hT : 1 ≤ T",
+     "hu : 6 * δ ≤ 2 * u - 1",
+     "hX2 : (X:ℝ) ≤ 2 * T ^ δ",
+     "hN1 : (1:ℝ) ≤ N",
+     "hN2 : (N:ℝ) ≤ 2 * T ^ (1 + δ)"
+    ],
+    "proves": "(X:ℝ) ^ 2 * (N:ℝ) ^ (2 - 2 * u) ≤ 8 * T ^ (1 - 3 * δ)",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term3_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.sq_rpow_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.sq_rpow_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "term4_le",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.term4_le",
+    "line": 176,
+    "why": "The Euler–Maclaurin remainder term of `MollifiedMean.mean_sq_f_le`, when `δ·(k − 1) ≥ 1`, `X ≤ 2·T^δ`, `N ≥ T^(1+δ)` and `T + 2 + k ≤ 2T`, is at most `4·E²·(1 + 2^k)²·T^δ`.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hT : 1 ≤ T",
+     "hk : 1 ≤ δ * ((k:ℝ) - 1)",
+     "hTk : T + 2 + k ≤ 2 * T",
+     "hu : 1 / 2 ≤ u",
+     "hX2 : (X:ℝ) ≤ 2 * T ^ δ",
+     "hN : T ^ (1 + δ) ≤ N"
+    ],
+    "proves": "T * (X:ℝ) ^ 2 * E ^ 2 * (N:ℝ) ^ (-2 * u) * (1 + (T + 2 + k) ^ k * (N:ℝ) ^ (1 - (k:ℝ))) ^ 2 ≤ 4 * E ^ 2 * (1 + 2 ^ k) ^ 2 * T ^ δ",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term4_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.sq_rpow_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.sq_rpow_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "bConst",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.bConst",
+    "line": 241,
+    "why": "The constant `B(δ, k)` of the mean-square bound `inner_le`.",
+    "sorry": false,
+    "needs": [
+     "δ : ℝ",
+     "k : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst_nonneg",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bConst_nonneg",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.bConst_nonneg",
+    "line": 246,
+    "why": "For `δ > 0` the constant `B(δ, k)` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "k : ℕ"
+    ],
+    "proves": "0 ≤ bConst δ k",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst_nonneg",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inner_le",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.inner_le",
+    "line": 257,
+    "why": "On a line `u` with `2u − 1 ≥ 6δ` and `u ≤ 2`, with `X` and `N` within a factor two of `T^δ` and `T^(1+δ)`, the mean square `∫_1^T ‖f X (u + i t)‖²` is at most `B(δ, k)·T^(1−6δ²)·(1 + log T)^5`.",
+    "sorry": false,
+    "needs": [
+     "hδ : 0 < δ",
+     "hδ8 : δ ≤ 1 / 8",
+     "hk2 : 2 ≤ k",
+     "hk : 1 ≤ δ * ((k:ℝ) - 1)",
+     "hT2 : 2 ≤ T",
+     "hTk : (k:ℝ) + 2 ≤ T",
+     "hX : T ^ δ ≤ X",
+     "hX2 : (X:ℝ) ≤ 2 * T ^ δ",
+     "hN : T ^ (1 + δ) ≤ N",
+     "hN2 : (N:ℝ) ≤ 2 * T ^ (1 + δ)",
+     "hX2' : 2 ≤ X",
+     "hXN : X ≤ N",
+     "hTN : T + 3 + k ≤ N",
+     "hu : 6 * δ ≤ 2 * u - 1",
+     "hu2 : u ≤ 2"
+    ],
+    "proves": "∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ bConst δ k * T ^ (1 - 6 * δ ^ 2) * (1 + Real.log T) ^ 5",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term1_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term2_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term3_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term4_le",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term1_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term2_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term3_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.term4_le",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zero_density",
+    "ns": "ZeroDensity",
+    "full": "ZeroDensity.zero_density",
+    "line": 361,
+    "why": "Zero density with a power saving. For `1/2 < σ ≤ 1` there are `θ < 1`, `C ≥ 0` and `T₀` such that for `T ≥ T₀` every finite set of zeros of ζ with `σ ≤ Re ρ < 1` and `2 ≤ Im ρ ≤ T − 2` has at most `C·T^θ` elements; here `θ = 1 − 5δ²`, `δ = (σ − 1/2)/4`.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 / 2 < σ",
+     "hσ1 : σ ≤ 1"
+    ],
+    "proves": "∃ θ C T₀ : ℝ, θ < 1 ∧ 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, (∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re < 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2) → (Z.card : ℝ) ≤ C * T ^ θ",
+    "file": "lean_stage3/Stage3/ZeroDensity.lean",
+    "id": "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst_nonneg",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.ceil_bounds",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.one_add_log_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst_nonneg",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.ceil_bounds",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.one_add_log_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ZeroSquares.lean",
   "module": "Stage3.ZeroSquares",
   "stem": "ZeroSquares",
@@ -66915,7 +67296,9 @@
      "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.zero_density"
+    ]
    }
   ]
  },
@@ -67937,6 +68320,9 @@
     "used_by": [
      "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.emConst_nonneg",
      "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.bConst_nonneg",
+     "lean_stage3/Stage3/ZeroDensity.lean::ZeroDensity.inner_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
     ]
    },
@@ -68802,11 +69188,12 @@
    "Stage3.DirichletMeanW",
    "Stage3.MollifiedMean",
    "Stage3.SquareMean",
-   "Stage3.ZeroSquares"
+   "Stage3.ZeroSquares",
+   "Stage3.ZeroDensity"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 162,
+  "lines": 163,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -68923,6 +69310,7 @@
    "lean_stage3/Stage3/WeilTransform.lean",
    "lean_stage3/Stage3/WeilWindow.lean",
    "lean_stage3/Stage3/WobbleCount.lean",
+   "lean_stage3/Stage3/ZeroDensity.lean",
    "lean_stage3/Stage3/ZeroSquares.lean",
    "lean_stage3/Stage3/ZeroSum.lean",
    "lean_stage3/Stage3/ZetaEM.lean",

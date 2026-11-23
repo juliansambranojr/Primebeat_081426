@@ -141,7 +141,7 @@ The constant of the corollary: `1/2 + Σ_{1 ≤ j < k} |B_{j+1}(0)|/(j+1)! + ber
 
 - **Is:** `` emConst (k : ℕ) : ℝ := 1 / 2 + (∑ j ∈ Finset.Ico 1 k, |bernoulliFun (j+1) 0| / (j+1).factorial) + bernBound k / k.factorial ``
 - **Built from:** [`ZetaEM.bernBound`](#ZetaEM-bernBound)
-- **Used by 3:** [`MollifiedMean.emConst_nonneg`](../lean_stage3/MollifiedMean.md#MollifiedMean-emConst_nonneg), [`MollifiedMean.mean_sq_f_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-mean_sq_f_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le)
+- **Used by 6:** [`MollifiedMean.emConst_nonneg`](../lean_stage3/MollifiedMean.md#MollifiedMean-emConst_nonneg), [`MollifiedMean.mean_sq_f_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-mean_sq_f_le), [`ZeroDensity.bConst`](../lean_stage3/ZeroDensity.md#ZeroDensity-bConst), [`ZeroDensity.bConst_nonneg`](../lean_stage3/ZeroDensity.md#ZeroDensity-bConst_nonneg), [`ZeroDensity.inner_le`](../lean_stage3/ZeroDensity.md#ZeroDensity-inner_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le)
 
 ## Theorems
 

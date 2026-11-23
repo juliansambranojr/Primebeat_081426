@@ -5,7 +5,7 @@ ZeroSquares — block C5 of `lean_stage3/design/carlson.md`. 2026-11-23. The num
 17 theorems, 2 definitions, 402 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`JensenCount`](../lean_stage3/JensenCount.md), [`MollifiedMean`](../lean_stage3/MollifiedMean.md), [`SquareMean`](../lean_stage3/SquareMean.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ZeroDensity`](../lean_stage3/ZeroDensity.md)
 
 ## The picture
 
@@ -27,9 +27,10 @@ flowchart LR
   n13["<b>card_fiber_le</b><br/>(W.card : ℝ) ≤ 15 * Real.log T + 73"]:::thm
   n14["<b>sum_unit_strips</b><br/>∑ n ∈ Finset.range L, innerI X ((n : ℝ) + c) ((n : ℝ) + 1 + c) u…"]:::thm
   n15["<b>strips_le</b><br/>∑ n ∈ Finset.range L, innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 /…"]:::thm
-  n16["<b>card_zeros_le ■</b><br/>Real.pi * δ ^ 2 * (Z.card : ℝ) ≤ 3 * (15 * Real.log T + 73) * ∫ …"]:::thm
+  n16["<b>card_zeros_le</b><br/>Real.pi * δ ^ 2 * (Z.card : ℝ) ≤ 3 * (15 * Real.log T + 73) * ∫ …"]:::thm
   x0(["<b>SquareMean</b><br/>sq_mean_lower"]):::ext
   x1(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x2(["<b>ZeroDensity</b><br/>zero_density"]):::ext
   n0 --> n13
   n1 --> n2
   n10 --> n11
@@ -55,6 +56,7 @@ flowchart LR
   n8 --> n16
   n9 --> n11
   n9 --> n15
+  n16 -.-> x2
   x0 -.-> n11
   x1 -.-> n13
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
@@ -663,5 +665,7 @@ Real.pi * δ ^ 2 * (Z.card : ℝ) ≤ 3 * (15 * Real.log T + 73) * ∫ u in (σ 
 
 **Definitions its proof touches:** [`ZeroSquares.innerI`](#ZeroSquares-innerI)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`ZeroDensity.zero_density`](../lean_stage3/ZeroDensity.md#ZeroDensity-zero_density) (ZeroDensity) — `` ∃ θ C T₀ : ℝ, θ < 1 ∧ 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, (∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re < 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2) → (Z.card… ``
 

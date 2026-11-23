@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block C6 of `design/carlson.md`: `Stage3/ZeroDensity.lean`
+
+    DONE        `zero_density`: for `1/2 < σ ≤ 1` there are `θ < 1`, `C`, `T₀`
+                with `#Z ≤ C·T^θ` for every finite set `Z` of zeros with
+                `σ ≤ Re ρ < 1`, `2 ≤ Im ρ ≤ T − 2`, `T ≥ T₀`;
+                `θ = 1 − 5δ²`, `δ = (σ − 1/2)/4`; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". A
+                saving at every `σ > 1/2`; Carlson's exponent is not claimed.
+                Written by an Opus worker; read and built here
+    DEPENDS     `ZeroSquares.card_zeros_le`, `MollifiedMean.mean_sq_f_le`
+    OUT         summability of `m(ρ)/|ρ|`; block C7
+    OUTCOME     proved, unit 0454
+
 ### 2026-11-23 · block C5 of `design/carlson.md`, second half: `Stage3/ZeroSquares.lean`
 
     DONE        `card_zeros_le`: for a finite set `Z` of zeros with

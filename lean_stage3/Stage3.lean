@@ -151,6 +151,7 @@ import Stage3.DirichletMeanW
 import Stage3.MollifiedMean
 import Stage3.SquareMean
 import Stage3.ZeroSquares
+import Stage3.ZeroDensity
 
 namespace Stage3
 
