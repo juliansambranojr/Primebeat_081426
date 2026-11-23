@@ -1,10 +1,10 @@
 key	value	source
-module_lines	269	wc -l lean_stage3/Stage3/SieveExact.lean
-theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/SieveExact.lean
+module_lines	286	wc -l lean_stage3/Stage3/SieveExact.lean
+theorems_proved	13	grep -c ^theorem lean_stage3/Stage3/SieveExact.lean
 defs	5	smallPrimes, survivors, smoothPart, netRounding, roundingMass
 axioms	3	#print axioms: propext, Classical.choice, Quot.sound
 sorries	0	grep -c sorry lean_stage3/Stage3/SieveExact.lean
-pins	6	sieve_sum, pi_by_sieve, row_by_sieve, level_card, sieve_split, smoothPart_eq_prod
+pins	7	sieve_sum, pi_by_sieve, row_by_sieve, level_card, sieve_split, smoothPart_eq_prod, netRounding_eq
 errors_first	3	the worker's first three builds, which failed, as it reported
 builds	4	the worker's builds, as it reported
 traps_added	0	lean_stage3/TRAPS.md unchanged

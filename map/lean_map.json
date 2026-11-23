@@ -54097,7 +54097,7 @@
   "namespaces": [
    "SieveExact"
   ],
-  "lines": 270,
+  "lines": 287,
   "copy_of": null,
   "fresh": false,
   "imports_files": [],
@@ -54124,6 +54124,7 @@
     "used_by": [
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.level_card",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.prime_of_mem_smallPrimes",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass",
@@ -54163,6 +54164,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum",
@@ -54365,6 +54367,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve"
     ]
    },
@@ -54562,6 +54565,7 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.abs_netRounding_le",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split"
     ]
    },
@@ -54649,7 +54653,9 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq"
+    ]
    },
    {
     "kind": "theorem",
@@ -54676,7 +54682,9 @@
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq"
+    ]
    },
    {
     "kind": "theorem",
@@ -54726,6 +54734,42 @@
     "exact": false,
     "uses": [
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "netRounding_eq",
+    "ns": "SieveExact",
+    "full": "SieveExact.netRounding_eq",
+    "line": 272,
+    "why": "The net of the roundings, exactly. For `N ≥ 2` the net rounding is the closed product less the count the sieve produces: `N·Π(1 − 1/p)` over the primes up to `√N`, less `1 + π(N) − π(√N)`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 2 ≤ N"
+    ],
+    "proves": "netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ))",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart_eq_prod",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart_eq_prod",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
     ],
     "layer": "count",
     "used_by": []

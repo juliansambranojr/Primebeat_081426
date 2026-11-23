@@ -4,7 +4,7 @@
 
 # Stage3.SieveExact — the sieve of Legendre, exactly Block R2 of `lean_stage3/design/runs.md` ("The sieve, exactly"). An exploratory run (unit 0475) checked on rows 10..24 that the number of primes up to `2^r` is given exactly by the sieve of Legendre from the primes up to `2^(r/2)`. This module proves that identity for every `N`, with nothing computed.
 
-17 theorems, 5 definitions, 270 lines. 
+18 theorems, 5 definitions, 287 lines. 
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -26,18 +26,22 @@ flowchart LR
   n10["<b>sieve_by_level_sign ■</b><br/>∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ …"]:::cnt
   n11["<b>level_card ■</b><br/>((smallPrimes N).powersetCard k).card = ((smallPrimes N).card).c…"]:::cnt
   n12["<b>natDiv_eq_sub_fract</b><br/>((n / d : ℕ) : ℚ) = (n : ℚ) / (d : ℚ) - Int.fract ((n : ℚ) / (d …"]:::cnt
-  n13["<b>sieve_split ■</b><br/>((survivors N).card : ℚ) = smoothPart N - netRounding N"]:::cnt
-  n14["<b>smoothPart_eq_prod ■</b><br/>smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))"]:::cnt
+  n13["<b>sieve_split</b><br/>((survivors N).card : ℚ) = smoothPart N - netRounding N"]:::cnt
+  n14["<b>smoothPart_eq_prod</b><br/>smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))"]:::cnt
   n15["<b>abs_netRounding_le ■</b><br/>|netRounding N| ≤ roundingMass N"]:::cnt
   n16["<b>roundingMass_nonneg ■</b><br/>0 ≤ roundingMass N"]:::cnt
+  n17["<b>netRounding_eq ■</b><br/>netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))…"]:::cnt
   n0 --> n4
   n1 --> n2
   n12 --> n13
+  n13 --> n17
+  n14 --> n17
   n2 --> n4
   n3 --> n4
   n4 --> n13
   n4 --> n7
   n5 --> n6
+  n6 --> n17
   n6 --> n7
   n7 --> n8
   n9 --> n10
@@ -63,7 +67,7 @@ def · line 30
 The primes up to the square root of `N`.
 
 - **Is:** `` smallPrimes (N : ℕ) : Finset ℕ := (Finset.range (Nat.sqrt N + 1)).filter Nat.Prime ``
-- **Used by 14:** [`SieveExact.level_card`](#SieveExact-level_card), [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve), [`SieveExact.prime_of_mem_smallPrimes`](#SieveExact-prime_of_mem_smallPrimes), [`SieveExact.roundingMass`](#SieveExact-roundingMass), [`SieveExact.row_by_sieve`](#SieveExact-row_by_sieve), [`SieveExact.sieve_by_level`](#SieveExact-sieve_by_level), [`SieveExact.sieve_by_level_sign`](#SieveExact-sieve_by_level_sign), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveExact.sieve_sum`](#SieveExact-sieve_sum), [`SieveExact.smoothPart`](#SieveExact-smoothPart), [`SieveExact.smoothPart_eq_prod`](#SieveExact-smoothPart_eq_prod), [`SieveExact.survivors`](#SieveExact-survivors), [`SieveExact.survivors_eq`](#SieveExact-survivors_eq)
+- **Used by 15:** [`SieveExact.level_card`](#SieveExact-level_card), [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve), [`SieveExact.prime_of_mem_smallPrimes`](#SieveExact-prime_of_mem_smallPrimes), [`SieveExact.roundingMass`](#SieveExact-roundingMass), [`SieveExact.row_by_sieve`](#SieveExact-row_by_sieve), [`SieveExact.sieve_by_level`](#SieveExact-sieve_by_level), [`SieveExact.sieve_by_level_sign`](#SieveExact-sieve_by_level_sign), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveExact.sieve_sum`](#SieveExact-sieve_sum), [`SieveExact.smoothPart`](#SieveExact-smoothPart), [`SieveExact.smoothPart_eq_prod`](#SieveExact-smoothPart_eq_prod), [`SieveExact.survivors`](#SieveExact-survivors), [`SieveExact.survivors_eq`](#SieveExact-survivors_eq)
 
 <a name="SieveExact-survivors"></a>
 ### `SieveExact.survivors`
@@ -74,7 +78,7 @@ The integers from 1 to `N` that no prime up to `√N` divides.
 
 - **Is:** `` survivors (N : ℕ) : Finset ℕ := (Finset.Icc 1 N).filter (fun n => ∀ p ∈ smallPrimes N, ¬ p ∣ n) ``
 - **Built from:** [`SieveExact.smallPrimes`](#SieveExact-smallPrimes)
-- **Used by 5:** [`SieveExact.card_survivors`](#SieveExact-card_survivors), [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveExact.sieve_sum`](#SieveExact-sieve_sum), [`SieveExact.survivors_eq`](#SieveExact-survivors_eq)
+- **Used by 6:** [`SieveExact.card_survivors`](#SieveExact-card_survivors), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve), [`SieveExact.sieve_split`](#SieveExact-sieve_split), [`SieveExact.sieve_sum`](#SieveExact-sieve_sum), [`SieveExact.survivors_eq`](#SieveExact-survivors_eq)
 
 <a name="SieveExact-smoothPart"></a>
 ### `SieveExact.smoothPart`
@@ -96,7 +100,7 @@ The net of the roundings, with their signs.
 
 - **Is:** `` netRounding (N : ℕ) : ℚ := ∑ T ∈ (smallPrimes N).powerset, (-1 : ℚ) ^ T.card * Int.fract ((N : ℚ) / ((∏ p ∈ T, p : ℕ) : ℚ)) ``
 - **Built from:** [`SieveExact.smallPrimes`](#SieveExact-smallPrimes)
-- **Used by 2:** [`SieveExact.abs_netRounding_le`](#SieveExact-abs_netRounding_le), [`SieveExact.sieve_split`](#SieveExact-sieve_split)
+- **Used by 3:** [`SieveExact.abs_netRounding_le`](#SieveExact-abs_netRounding_le), [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq), [`SieveExact.sieve_split`](#SieveExact-sieve_split)
 
 <a name="SieveExact-roundingMass"></a>
 ### `SieveExact.roundingMass`
@@ -304,8 +308,9 @@ line 127 · arrows read from text
 
 **Definitions its proof touches:** [`SieveExact.survivors`](#SieveExact-survivors)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq) — `` netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) ``
   - [`SieveExact.pi_by_sieve`](#SieveExact-pi_by_sieve) — `` (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ) ``
 
 <a name="SieveExact-pi_by_sieve"></a>
@@ -497,7 +502,9 @@ line 229 · arrows read from text
 
 **Definitions its proof touches:** [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.smallPrimes`](#SieveExact-smallPrimes), [`SieveExact.smoothPart`](#SieveExact-smoothPart), [`SieveExact.survivors`](#SieveExact-survivors)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq) — `` netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) ``
 
 <a name="SieveExact-smoothPart_eq_prod"></a>
 ### `SieveExact.smoothPart_eq_prod`
@@ -522,7 +529,9 @@ smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))
 
 **Definitions its proof touches:** [`SieveExact.smallPrimes`](#SieveExact-smallPrimes), [`SieveExact.smoothPart`](#SieveExact-smoothPart)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`SieveExact.netRounding_eq`](#SieveExact-netRounding_eq) — `` netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) ``
 
 <a name="SieveExact-abs_netRounding_le"></a>
 ### `SieveExact.abs_netRounding_le`
@@ -571,6 +580,36 @@ line 266 · arrows read from text
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
 **Definitions its proof touches:** [`SieveExact.roundingMass`](#SieveExact-roundingMass)
+
+**Feeds:** nothing. It is an end.
+
+<a name="SieveExact-netRounding_eq"></a>
+### `SieveExact.netRounding_eq`
+
+line 272 · arrows read from text
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
+**Why.** The net of the roundings, exactly. For `N ≥ 2` the net rounding is the closed product less the count the sieve produces: `N·Π(1 − 1/p)` over the primes up to `√N`, less `1 + π(N) − π(√N)`.
+
+**Proves**
+
+```lean
+netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ))
+```
+
+**Needs** (its hypotheses)
+
+  - `` N : ℕ ``
+  - `` hN : 2 ≤ N ``
+
+**Fed by** (3 theorems its proof uses)
+
+  - [`SieveExact.card_survivors`](#SieveExact-card_survivors) — `` (survivors N).card + Nat.primeCounting (Nat.sqrt N) = 1 + Nat.primeCounting N ``
+  - [`SieveExact.sieve_split`](#SieveExact-sieve_split) — `` ((survivors N).card : ℚ) = smoothPart N - netRounding N ``
+  - [`SieveExact.smoothPart_eq_prod`](#SieveExact-smoothPart_eq_prod) — `` smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) ``
+
+**Definitions its proof touches:** [`SieveExact.netRounding`](#SieveExact-netRounding), [`SieveExact.smallPrimes`](#SieveExact-smallPrimes), [`SieveExact.survivors`](#SieveExact-survivors)
 
 **Feeds:** nothing. It is an end.
 

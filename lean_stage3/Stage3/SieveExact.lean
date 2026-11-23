@@ -266,4 +266,21 @@ theorem abs_netRounding_le (N : ℕ) : |netRounding N| ≤ roundingMass N := by
 theorem roundingMass_nonneg (N : ℕ) : 0 ≤ roundingMass N :=
   Finset.sum_nonneg fun _ _ => Int.fract_nonneg _
 
+/-- **The net of the roundings, exactly.** For `N ≥ 2` the net rounding is the
+closed product less the count the sieve produces: `N·Π(1 − 1/p)` over the
+primes up to `√N`, less `1 + π(N) − π(√N)`. -/
+theorem netRounding_eq (N : ℕ) (hN : 2 ≤ N) :
+    netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))
+      - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) := by
+  have h1 := sieve_split N
+  have h2 := card_survivors N hN
+  have h3 : ((survivors N).card : ℚ) + (Nat.primeCounting (Nat.sqrt N) : ℚ)
+      = 1 + (Nat.primeCounting N : ℚ) := by exact_mod_cast h2
+  rw [smoothPart_eq_prod] at h1
+  linarith
+
+/-- info: 'SieveExact.netRounding_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms netRounding_eq
+
 end SieveExact

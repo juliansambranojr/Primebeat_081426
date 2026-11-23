@@ -12,7 +12,7 @@ sealed: false
 
 **Question.** Block R2 of `lean_stage3/design/runs.md`. Is the count of primes up to any number given exactly by the sieve from the primes up to its square root, level by level, and how does that sum split into exact fractions and roundings?
 
-**What was proved.** `lean_stage3/Stage3/SieveExact.lean`: `module_lines` 269 lines, `theorems_proved` 12 theorems, `defs` 5 definitions, `sorries` 0 sorries, `pins` 6 axiom pins. The first build had `errors_first` 3 error lines; clean on build `builds` 4. The package builds at `jobs_package` 8867 jobs, the module at `jobs_module` 8655. Traps unchanged, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
+**What was proved.** `lean_stage3/Stage3/SieveExact.lean`: `module_lines` 286 lines, `theorems_proved` 13 theorems, `defs` 5 definitions, `sorries` 0 sorries, `pins` 7 axiom pins. The first build had `errors_first` 3 error lines; clean on build `builds` 4. The package builds at `jobs_package` 8867 jobs, the module at `jobs_module` 8655. Traps unchanged, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
 
 `pi_by_sieve`: for every number at least `floor_N` 2, the count of primes up to it is the count of primes up to its square root, less the unit, plus an alternating sum over the sets of primes up to the square root: each set contributes, with the sign of its size, the number of times the product of its primes goes into the number. Only the primes up to the square root enter. `row_by_sieve`: the same at every doubling from row `first_row` 1: the table's row is built from the primes up to half the row.
 
@@ -20,7 +20,7 @@ sealed: false
 
 `sieve_by_level`, `level_card`: the sum taken level by level, the level being the number of primes in the set, and the number of sets at a level is a binomial coefficient. The sieve's sum has the shape of a row of Pascal, with alternating signs.
 
-`sieve_split`: the count is the exact-fraction part less the net of the roundings. `smoothPart_eq_prod`: the exact-fraction part is the number times the product, over the primes up to the square root, of the unit less the reciprocal of the prime. `abs_netRounding_le`: the net of the roundings is at most their mass.
+`sieve_split`: the count is the exact-fraction part less the net of the roundings. `smoothPart_eq_prod`: the exact-fraction part is the number times the product, over the primes up to the square root, of the unit less the reciprocal of the prime. `abs_netRounding_le`: the net of the roundings is at most their mass. `netRounding_eq`: the net of the roundings is exactly that product less the count the sieve produces.
 
 How. Inclusion and exclusion over the primes up to the square root, proved by expanding each number's indicator as a product and exchanging the sums. A number that no prime up to the square root divides has no proper factor. A whole-number quotient is the fraction less its fractional part.
 

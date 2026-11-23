@@ -37,5 +37,5 @@ theorem sieve_split (N : ℕ) : ((survivors N).card : ℚ) = smoothPart N - netR
 ```
 theorem smoothPart_eq_prod (N : ℕ) :
     smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) :=
+#print axioms netRounding_eq
 ```
-

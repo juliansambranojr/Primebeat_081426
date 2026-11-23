@@ -1129,6 +1129,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauChebyshev.neg_le_G`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-neg_le_G) | theorem | shape | `LandauChebyshev` | -(y * Real.log y) ≤ LandauWindow.G y |
 | [`Propagation.neg_one_pow`](./lean/Propagation.md#Propagation-neg_one_pow) | theorem | counting | `Propagation` | ((-1 : ℤ)) ^ m = 1 ∨ ((-1 : ℤ)) ^ m = -1 |
 | [`SieveExact.netRounding`](./lean_stage3/SieveExact.md#SieveExact-netRounding) | def | counting | `SieveExact` | ℚ |
+| [`SieveExact.netRounding_eq`](./lean_stage3/SieveExact.md#SieveExact-netRounding_eq) | theorem | counting | `SieveExact` | netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) |
 | [`CountEuler.Nn`](./lean_stage3/CountEuler.md#CountEuler-Nn) | def | counting | `CountEuler` | ℂ |
 | [`Crossover.no_crossover_of_single`](./lean/Crossover.md#Crossover-no_crossover_of_single) | theorem | shape | `Crossover` | ratio A 0 x y j ≠ 1 |
 | [`OneChain.no_exposed_zero`](./lean_stage3/OneChain.md#OneChain-no_exposed_zero) | theorem | reads ζ | `OneChain` | ∃ E : ℝ, σ ≤ E ∧ E &lt; Θ ∧ ∀ (ρ₁ : NontrivialZeros), E &lt; (ρ₁:ℂ).re → ∀ κ r₀ : ℝ, 0 ≤ κ → r₀ &lt; ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ → (∀ ρ : NontrivialZeros, σ ≤ (ρ:ℂ).re → (2:ℂ)^(ρ:ℂ) ≠ (2:ℂ)^(ρ₁:ℂ) → ‖(2:ℂ)^(ρ:ℂ) + (κ:ℂ… |

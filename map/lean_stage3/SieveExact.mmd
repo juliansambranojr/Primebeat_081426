@@ -12,18 +12,22 @@ flowchart LR
   n10["<b>sieve_by_level_sign ■</b><br/>∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ …"]:::cnt
   n11["<b>level_card ■</b><br/>((smallPrimes N).powersetCard k).card = ((smallPrimes N).card).c…"]:::cnt
   n12["<b>natDiv_eq_sub_fract</b><br/>((n / d : ℕ) : ℚ) = (n : ℚ) / (d : ℚ) - Int.fract ((n : ℚ) / (d …"]:::cnt
-  n13["<b>sieve_split ■</b><br/>((survivors N).card : ℚ) = smoothPart N - netRounding N"]:::cnt
-  n14["<b>smoothPart_eq_prod ■</b><br/>smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))"]:::cnt
+  n13["<b>sieve_split</b><br/>((survivors N).card : ℚ) = smoothPart N - netRounding N"]:::cnt
+  n14["<b>smoothPart_eq_prod</b><br/>smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))"]:::cnt
   n15["<b>abs_netRounding_le ■</b><br/>|netRounding N| ≤ roundingMass N"]:::cnt
   n16["<b>roundingMass_nonneg ■</b><br/>0 ≤ roundingMass N"]:::cnt
+  n17["<b>netRounding_eq ■</b><br/>netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))…"]:::cnt
   n0 --> n4
   n1 --> n2
   n12 --> n13
+  n13 --> n17
+  n14 --> n17
   n2 --> n4
   n3 --> n4
   n4 --> n13
   n4 --> n7
   n5 --> n6
+  n6 --> n17
   n6 --> n7
   n7 --> n8
   n9 --> n10

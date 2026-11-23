@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>59 theorems counting,<br/>in 10 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>60 theorems counting,<br/>in 10 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -94,7 +94,7 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 163 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Counting** (green), 164 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
 - **Shape** (violet), 1085 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
 - **Reads ζ** (blue), 695 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
@@ -103,7 +103,7 @@ A file sits in the highest layer any of its theorems reaches; its box says how m
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 59 | 834 | 674 |
+| `lean_stage3/` | 60 | 834 | 674 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -365,7 +365,7 @@ PiFixedRow — block F4 of `lean_stage3/design/leftedge.md`. 2026-11-23. The int
 - [`PiFixedRow.sum_sq_div_pow_eq`](./lean_stage3/PiFixedRow.md#PiFixedRow-sum_sq_div_pow_eq) — `` ∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 + (2 * (n:ℝ) ^ 2 + 12 * n + 22) * ((2:ℝ) ^ n)⁻¹ = 22 `` The closed form behind `Σ_j (j+2)²/2^j ≤ 22`: the partial sum plus a vanishing tail is exactly `22`.
 - [`PiFixedRow.sum_sq_div_pow_le`](./lean_stage3/PiFixedRow.md#PiFixedRow-sum_sq_div_pow_le) — `` ∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 ≤ 22 `` The partial sums of `(j+2)²/2^j` are at most `22`.
 
-### [`SieveExact`](./lean_stage3/SieveExact.md) — 17
+### [`SieveExact`](./lean_stage3/SieveExact.md) — 18
 
 # Stage3.SieveExact — the sieve of Legendre, exactly Block R2 of `lean_stage3/design/runs.md` ("The sieve, exactly"). An exploratory run (unit 0475) checked on rows 10..24 that the number of primes up to `2^r` is given exactly by the sieve of Legendre from the primes up to `2^(r/2)`. This module proves that identity for every `N`, with nothing computed.
 
@@ -386,6 +386,7 @@ PiFixedRow — block F4 of `lean_stage3/design/leftedge.md`. 2026-11-23. The int
 - [`SieveExact.smoothPart_eq_prod`](./lean_stage3/SieveExact.md#SieveExact-smoothPart_eq_prod) — `` smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) `` The exact-fraction part is `N` times the product of `1 - 1/p` over the primes up to `√N`.
 - [`SieveExact.abs_netRounding_le`](./lean_stage3/SieveExact.md#SieveExact-abs_netRounding_le) — `` |netRounding N| ≤ roundingMass N `` The net of the roundings is at most their mass in size.
 - [`SieveExact.roundingMass_nonneg`](./lean_stage3/SieveExact.md#SieveExact-roundingMass_nonneg) — `` 0 ≤ roundingMass N `` The rounding mass is nonnegative.
+- [`SieveExact.netRounding_eq`](./lean_stage3/SieveExact.md#SieveExact-netRounding_eq) — `` netRounding N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) - (1 + (Nat.primeCounting N : ℚ) - (Nat.primeCounting (Nat.sqrt N) : ℚ)) `` The net of the roundings, exactly. For `N ≥ 2` the net rounding is the closed product less the count the sieve produces: `N·Π(1 − 1/p)` over the primes up to `√N`, less `1 + π(N) − π(√N)`.
 
 ### [`WeilPowerClean`](./lean_stage3/WeilPowerClean.md) — 1
 
