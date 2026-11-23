@@ -22,6 +22,24 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block F4 of `design/leftedge.md`: `Stage3/PiFixedRow.lean`
+
+    DONE        `pi_fixed_row`: for `16 ≤ x`, every tolerance, from some
+                height on, `π(⌊x⌋) − Li x` plus the zeros below the height
+                (each through `piMode`) plus `tr psiTheta x` is
+                `≤ Api·log x + ε`. `table_cell_fixed_row`: the same under the
+                stencil for the integer table's cell. `sum_order_inv_sq_le`,
+                `norm_low_integral_le`, `tr_efRem_fixed`: the pieces; one unit
+    ASSUMED     Julian, 2026-11-23: "Start". The count in place of `ψ` at a
+                fixed row. Below `16` the explicit formula is not in the
+                tree; there the zeros are integrated by parts in `t`. Written
+                by an Opus worker; read and built here
+    DEPENDS     `PiZeros.pi_eq_zero_sum`, `table_cell_eq_zero_sum`,
+                `LeftSmooth.explicit_formula_all`,
+                `PiRemainder.sum_order_inv_le`, `integrable_efRem`
+    OUT         the limit of the zero sum as a number; the explicit formula
+                below `16`
+
 ### 2026-11-23 · block F3 of `design/leftedge.md`: `Stage3/CellFixedRow.lean`
 
     DONE        `cell_fixed_row`: at a fixed row `r ≥ d + 4`, for every

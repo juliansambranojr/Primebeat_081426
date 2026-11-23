@@ -85,3 +85,39 @@ F1 + F2: for `16 ≤ x`, every `T ≥ 2`,
 Through `CellZeros`: the cell at row `r`, depth `d`, and its zero sum to any
 height `T ≥ 2` differ by the stencil of that bound; as `T → ∞` at the fixed
 row the first term tends to zero and what stays is `≤ A_d·r`.
+
+## F4 The count at a fixed row — `Stage3/PiFixedRow.lean`
+
+`PiZeros.pi_eq_zero_sum` holds at every height:
+
+    π(⌊x⌋) − Li x = −Σ_{|γ|<T} m(ρ)·piMode ρ x + tr (efRem T) x − tr psiTheta x.
+
+`tr psiTheta x` is the higher prime powers, of size `√x`
+(`norm_tr_psiTheta_le`); it stays in the statement. To bound is
+`tr (efRem T) x = efRem T x / log x + ∫₂ˣ efRem T t·wt t dt`, free of `T`.
+
+**On `[16, x]`.** `LeftSmooth.explicit_formula_all`:
+`‖efRem T t‖ ≤ c1n·t·log²(tT)/T + c3n·log t + Bleft·t^(−1/4)`. Against
+`wt t = 1/(t·log²t)` the last two integrate to a constant plus
+`c3n·log log x`. The first tends to zero as `T → ∞` with `x` held.
+
+**On `[2, 16]`: a second lost factor, and its repair.** The explicit formula
+asks `16 ≤ t`. `PiRemainder.norm_efRem_le_low` bounds the remainder there by
+`(7 + zinv T)·t`, and `zinv T = Σ_{|γ|<T} m/|ρ|` grows like `log²T`. An
+absolute value on each zero again. The integral does not grow:
+
+    ∫₂¹⁶ t^ρ·wt t dt = [t^(ρ+1)/(ρ+1)·wt]₂¹⁶ − ∫₂¹⁶ t^(ρ+1)/(ρ+1)·wt' t dt,
+
+of size `≤ C/|ρ+1|`, so the zero `ρ` contributes `≤ C·m/(|ρ|·|ρ+1|)`, and
+`Σ m(ρ)/|ρ|²` over all zeros converges: on the dyadic block `2^k ≤ |γ| < 2^(k+1)`
+it is `≤ 2^(−k)·Σ m/|ρ|`, and `PiRemainder.sum_order_inv_le` bounds the
+latter by a polynomial in `k`.
+
+- `sum_order_inv_sq_le`: `Σ_{ρ ∈ ZF T} m(ρ)/|ρ|² ≤ Z2` for every `T`.
+- `norm_low_integral_le`: `‖∫₂¹⁶ efRem T t·wt t dt‖ ≤ Clow` for every `T`.
+- `tr_efRem_fixed`: for `16 ≤ x`, every `ε > 0`, eventually in `T`,
+  `‖tr (efRem T) x‖ ≤ Api·log x + ε`.
+- `pi_fixed_row`: the count: eventually in `T`,
+  `‖π(⌊x⌋) − Li x + Σ_{ZF T} m·piMode ρ x + tr psiTheta x‖ ≤ Api·log x + ε`.
+- `table_cell_fixed_row`: the same under the stencil, from
+  `PiZeros.table_cell_eq_zero_sum`, for `r ≥ d + 6`.
