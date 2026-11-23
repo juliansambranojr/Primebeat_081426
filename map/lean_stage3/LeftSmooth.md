@@ -132,6 +132,7 @@ flowchart LR
   x2(["<b>ContourShift</b><br/>zeta_analyticAt"]):::ext
   x3(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>cell_eq_zero_sum_all"]):::ext
   x4(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
+  x5(["<b>PiFixedRow</b><br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n8
@@ -143,6 +144,7 @@ flowchart LR
   n8 --> n9
   n8 -.-> x3
   n9 -.-> x3
+  n9 -.-> x5
   x0 -.-> n1
   x0 -.-> n2
   x0 -.-> n4
@@ -280,7 +282,7 @@ The left-edge constant `Bleft = Bsm + Bser`.
 
 - **Is:** `` Bleft : ℝ := Bsm + LeftKernel.Bser ``
 - **Built from:** [`LeftKernel.Bser`](../lean_stage3/LeftKernel.md#LeftKernel-Bser), [`LeftSmooth.Bsm`](#LeftSmooth-Bsm)
-- **Used by 6:** [`CellFixedRow.Bleft_nonneg`](../lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`LeftSmooth.explicit_formula_all`](#LeftSmooth-explicit_formula_all), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound)
+- **Used by 9:** [`CellFixedRow.Bleft_nonneg`](../lean_stage3/CellFixedRow.md#CellFixedRow-Bleft_nonneg), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`LeftSmooth.explicit_formula_all`](#LeftSmooth-explicit_formula_all), [`LeftSmooth.left_edge_bound`](#LeftSmooth-left_edge_bound), [`PiFixedRow.Api`](../lean_stage3/PiFixedRow.md#PiFixedRow-Api), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height)
 
 ## Theorems
 
@@ -1452,7 +1454,9 @@ line 900 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum), [`Glue.c1n`](../lean_stage3/GlueNum.md#Glue-c1n), [`Glue.c3n`](../lean_stage3/GlueNum.md#Glue-c3n), [`LeftSmooth.Bleft`](#LeftSmooth-Bleft)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all) (CellFixedRow) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ)… ``
+  - [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le) (PiFixedRow) — `` ‖∫ t in (16:ℝ)..x, efRem T t * wt t‖ ≤ (x - 16) * (Glue.c1n * Real.log (x * T) ^ 2 / T) + (Glue.c3n + LeftSmooth.Bleft) * Real.log (x / 16) ``
+  - [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height) (PiFixedRow) — `` ‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.log (x * T) ^ 2 / T ``
 

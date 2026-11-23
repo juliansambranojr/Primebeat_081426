@@ -5,7 +5,7 @@ PiRemainder — block T2b of `lean_stage3/design/joints.md`. 2026-11-23. The pas
 15 theorems, 4 definitions, 522 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`PiZeros`](../lean_stage3/PiZeros.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md), [`PiFixedRow`](../lean_stage3/PiFixedRow.md)
 
 ## The picture
 
@@ -28,10 +28,11 @@ flowchart LR
   n14["<b>norm_tr_efRem_le ■</b><br/>∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ x : ℝ, x₀ ≤ x → ‖PiZeros.tr (PiZeros.efRem…"]:::thm
   x0(["<b>AttainedPi</b><br/>fin_bound"]):::ext
   x1(["<b>FiniteOffLinePi</b><br/>row_bound"]):::ext
-  x2(["<b>FiniteOffLine</b><br/>4 theorems"]):::ext
-  x3(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
-  x4(["<b>PiZeros</b><br/>4 theorems"]):::ext
-  x5(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x2(["<b>PiFixedRow</b><br/>4 theorems"]):::ext
+  x3(["<b>FiniteOffLine</b><br/>4 theorems"]):::ext
+  x4(["<b>Assembly</b><br/>inv_le_dyadic_sum"]):::ext
+  x5(["<b>PiZeros</b><br/>4 theorems"]):::ext
+  x6(["<b>GlueNum</b><br/>4 theorems"]):::ext
   n0 --> n12
   n0 --> n13
   n0 --> n2
@@ -53,23 +54,28 @@ flowchart LR
   n9 --> n13
   n0 -.-> x0
   n0 -.-> x1
+  n0 -.-> x2
+  n11 -.-> x2
   n12 -.-> x0
   n12 -.-> x1
   n13 -.-> x0
   n13 -.-> x1
+  n2 -.-> x2
+  n3 -.-> x2
   n5 -.-> x0
   n5 -.-> x1
-  x2 -.-> n1
-  x2 -.-> n3
-  x2 -.-> n4
-  x2 -.-> n5
-  x2 -.-> n6
-  x3 -.-> n2
-  x4 -.-> n11
-  x4 -.-> n13
-  x4 -.-> n6
-  x5 -.-> n10
-  x5 -.-> n9
+  n7 -.-> x2
+  x3 -.-> n1
+  x3 -.-> n3
+  x3 -.-> n4
+  x3 -.-> n5
+  x3 -.-> n6
+  x4 -.-> n2
+  x5 -.-> n11
+  x5 -.-> n13
+  x5 -.-> n6
+  x6 -.-> n10
+  x6 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -93,7 +99,7 @@ A constant that is at least `2` and at least the reciprocal size of every zero o
 
 - **Is:** `` Mlow : ℝ := 2 + ∑ ρ ∈ ZF (1 : ℝ), ‖(ρ : ℂ)‖⁻¹ ``
 - **Built from:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
-- **Used by 14:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.slack`](../lean_stage3/AttainedPi.md#AttainedPi-slack), [`AttainedPi.slack_isLittleO`](../lean_stage3/AttainedPi.md#AttainedPi-slack_isLittleO), [`FiniteOffLinePi.rowBound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound), [`FiniteOffLinePi.rowBound_isLittleO`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`PiRemainder.Arem`](#PiRemainder-Arem), [`PiRemainder.Arem_nonneg`](#PiRemainder-Arem_nonneg), [`PiRemainder.inv_norm_le_Mlow`](#PiRemainder-inv_norm_le_Mlow), [`PiRemainder.inv_norm_le_dyadic`](#PiRemainder-inv_norm_le_dyadic), [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of), [`PiRemainder.sum_order_inv_le`](#PiRemainder-sum_order_inv_le), [`PiRemainder.two_le_Mlow`](#PiRemainder-two_le_Mlow), [`PiRemainder.zinv_le_log`](#PiRemainder-zinv_le_log)
+- **Used by 17:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`AttainedPi.slack`](../lean_stage3/AttainedPi.md#AttainedPi-slack), [`AttainedPi.slack_isLittleO`](../lean_stage3/AttainedPi.md#AttainedPi-slack_isLittleO), [`FiniteOffLinePi.rowBound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound), [`FiniteOffLinePi.rowBound_isLittleO`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`PiFixedRow.Z2`](../lean_stage3/PiFixedRow.md#PiFixedRow-Z2), [`PiFixedRow.sum_order_inv_sq_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-sum_order_inv_sq_le), [`PiFixedRow.zinv_dyadic_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-zinv_dyadic_le), [`PiRemainder.Arem`](#PiRemainder-Arem), [`PiRemainder.Arem_nonneg`](#PiRemainder-Arem_nonneg), [`PiRemainder.inv_norm_le_Mlow`](#PiRemainder-inv_norm_le_Mlow), [`PiRemainder.inv_norm_le_dyadic`](#PiRemainder-inv_norm_le_dyadic), [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of), [`PiRemainder.sum_order_inv_le`](#PiRemainder-sum_order_inv_le), [`PiRemainder.two_le_Mlow`](#PiRemainder-two_le_Mlow), [`PiRemainder.zinv_le_log`](#PiRemainder-zinv_le_log)
 
 <a name="PiRemainder-zinv"></a>
 ### `PiRemainder.zinv`
@@ -151,10 +157,12 @@ line 47
 
 **Definitions its proof touches:** [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
 
-**Feeds** (7 that use it)
+**Feeds** (9 that use it)
 
   - [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound) (AttainedPi) — `` ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r ``
   - [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound) (FiniteOffLinePi) — `` ‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ : ℂ)) ^ r / (ρ : ℂ))‖ ≤ rowBound F S β C r ``
+  - [`PiFixedRow.sum_order_inv_sq_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-sum_order_inv_sq_le) (PiFixedRow) — `` ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (‖(ρ : ℂ)‖⁻¹) ^ 2 ≤ Z2 ``
+  - [`PiFixedRow.zinv_dyadic_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-zinv_dyadic_le) (PiFixedRow) — `` ∑ ρ ∈ ZF ((2 : ℝ) ^ (j + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * (3000 * ((j : ℝ) + 2) ^ 2) ``
   - [`PiRemainder.Arem_nonneg`](#PiRemainder-Arem_nonneg) — `` 0 ≤ Arem ``
   - [`PiRemainder.inv_norm_le_dyadic`](#PiRemainder-inv_norm_le_dyadic) — `` ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0) ``
   - [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of) — `` ‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2 ``
@@ -221,8 +229,9 @@ line 63
   - [`PiRemainder.inv_norm_le_Mlow`](#PiRemainder-inv_norm_le_Mlow) — `` ‖(ρ : ℂ)‖⁻¹ ≤ Mlow ``
   - [`PiRemainder.two_le_Mlow`](#PiRemainder-two_le_Mlow) — `` 2 ≤ Mlow ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`PiFixedRow.sum_order_inv_sq_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-sum_order_inv_sq_le) (PiFixedRow) — `` ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (‖(ρ : ℂ)‖⁻¹) ^ 2 ≤ Z2 ``
   - [`PiRemainder.sum_order_inv_le`](#PiRemainder-sum_order_inv_le) — `` ∑ ρ ∈ ZF ((2 : ℝ) ^ (K + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N … ``
 
 <a name="PiRemainder-sum_order_inv_le"></a>
@@ -254,8 +263,9 @@ line 109
   - [`PiRemainder.inv_norm_le_dyadic`](#PiRemainder-inv_norm_le_dyadic) — `` ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0) ``
   - [`PiRemainder.two_le_Mlow`](#PiRemainder-two_le_Mlow) — `` 2 ≤ Mlow ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`PiFixedRow.zinv_dyadic_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-zinv_dyadic_le) (PiFixedRow) — `` ∑ ρ ∈ ZF ((2 : ℝ) ^ (j + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * (3000 * ((j : ℝ) + 2) ^ 2) ``
   - [`PiRemainder.zinv_le_log`](#PiRemainder-zinv_le_log) — `` zinv x ≤ Mlow * 39000 * Real.log x ^ 2 ``
 
 <a name="PiRemainder-zinv_nonneg"></a>
@@ -380,8 +390,9 @@ line 245
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le) (PiFixedRow) — `` ‖∫ t in (2:ℝ)..16, efRem T t * wt t‖ ≤ Clow ``
   - [`PiRemainder.norm_efRem_le_low`](#PiRemainder-norm_efRem_le_low) — `` ‖efRem T t‖ ≤ (7 + zinv T) * t ``
 
 <a name="PiRemainder-norm_efRem_le_low"></a>
@@ -514,8 +525,9 @@ IntervalIntegrable (efRem T) volume 2 x
 
 **Definitions its proof touches:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum), [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height) (PiFixedRow) — `` ‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.log (x * T) ^ 2 / T ``
   - [`PiRemainder.norm_tr_efRem_le_of`](#PiRemainder-norm_tr_efRem_le_of) — `` ‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2 ``
 
 <a name="PiRemainder-Arem_nonneg"></a>

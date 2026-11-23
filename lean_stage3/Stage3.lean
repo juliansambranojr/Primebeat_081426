@@ -158,6 +158,7 @@ import Stage3.ExplicitLeft
 import Stage3.LeftKernel
 import Stage3.LeftSmooth
 import Stage3.CellFixedRow
+import Stage3.PiFixedRow
 
 namespace Stage3
 

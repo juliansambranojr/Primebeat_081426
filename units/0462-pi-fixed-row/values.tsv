@@ -1,0 +1,20 @@
+key	value	source
+module_lines	716	wc -l lean_stage3/Stage3/PiFixedRow.lean
+theorems_proved	23	grep -c ^theorem lean_stage3/Stage3/PiFixedRow.lean
+defs	5	Z2, Clow, Api, w, wd
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/PiFixedRow.lean
+pins	5	sum_order_inv_sq_le, norm_low_integral_le, tr_efRem_fixed, pi_fixed_row, table_cell_fixed_row
+errors_first	4	the worker's report: about this many errors across the first builds of its chunks
+builds	12	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8852	lake build (full Stage3), Build completed successfully
+jobs_module	8797	run/build.log, lake build Stage3.PiFixedRow
+loop_version	22	lean_stage3/LOOP.md version line
+design	leftedge.md#f4	the count at a fixed row
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+floor_x	16	the hypothesis 16 ≤ x
+row_margin	6	the hypothesis d + 6 ≤ r
+low_end	2	the lower end of the stretch below the formula's floor
+lost_factors	2	the left edge (unit 0457) and the stretch below the formula's floor

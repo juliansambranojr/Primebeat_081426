@@ -1,0 +1,85 @@
+flowchart LR
+  n0["<b>sum_sq_div_pow_eq</b><br/>∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 + (2 * (n:ℝ) ^ 2 …"]:::cnt
+  n1["<b>sum_sq_div_pow_le</b><br/>∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 ≤ 22"]:::cnt
+  n2["<b>zinv_dyadic_le</b><br/>∑ ρ ∈ ZF ((2 : ℝ) ^ (j + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) :…"]:::thm
+  n3["<b>Z2_nonneg</b><br/>0 ≤ Z2"]:::thm
+  n4["<b>sum_order_inv_sq_le</b><br/>∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (‖(ρ : ℂ)‖⁻¹…"]:::thm
+  n5["<b>hasDerivAt_w</b><br/>HasDerivAt w (wd t) t"]:::shp
+  n6["<b>hasDerivAt_wt</b><br/>HasDerivAt wt ((wd t : ℝ) : ℂ) t"]:::shp
+  n7["<b>continuousOn_wd</b><br/>ContinuousOn wd (Set.uIcc 2 16)"]:::shp
+  n8["<b>w_le_two</b><br/>w t ≤ 2"]:::shp
+  n9["<b>w_pos</b><br/>0 ＜ w t"]:::shp
+  n10["<b>abs_wd_le</b><br/>|wd t| ≤ 4"]:::shp
+  n11["<b>norm_le_norm_add_one</b><br/>‖ρ‖ ≤ ‖ρ + 1‖"]:::shp
+  n12["<b>norm_integral_cpow_wt_le</b><br/>‖∫ t in (2:ℝ)..16, wt t * (t : ℂ) ^ ρ‖ ≤ 15360 * ‖ρ + 1‖⁻¹"]:::shp
+  n13["<b>norm_zero_term_le</b><br/>‖∫ t in (2:ℝ)..16, (t : ℂ) ^ ρ / ρ * wt t‖ ≤ 15360 * (‖ρ‖⁻¹) ^ 2"]:::shp
+  n14["<b>Clow_nonneg</b><br/>0 ≤ Clow"]:::thm
+  n15["<b>norm_low_integral_le</b><br/>‖∫ t in (2:ℝ)..16, efRem T t * wt t‖ ≤ Clow"]:::thm
+  n16["<b>Api_nonneg</b><br/>0 ≤ Api"]:::thm
+  n17["<b>one_le_log_of_16</b><br/>1 ≤ Real.log x"]:::shp
+  n18["<b>norm_high_integral_le</b><br/>‖∫ t in (16:ℝ)..x, efRem T t * wt t‖ ≤ (x - 16) * (Glue.c1n * Re…"]:::thm
+  n19["<b>norm_tr_efRem_le_height</b><br/>‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.lo…"]:::thm
+  n20["<b>tr_efRem_fixed</b><br/>∀ ε : ℝ, 0 ＜ ε → ∀ᶠ T : ℝ in Filter.atTop, ‖tr (efRem T) x‖ ≤ Ap…"]:::thm
+  n21["<b>pi_fixed_row ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting…"]:::thm
+  n22["<b>table_cell_fixed_row ■</b><br/>∀ ε : ℝ, 0 ＜ ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tab…"]:::thm
+  x0(["<b>FiniteOffLine</b><br/>dyadic_count_le<br/>mem_ZF<br/>order_nonneg"]):::ext
+  x1(["<b>PiRemainder</b><br/>5 theorems"]):::ext
+  x2(["<b>PiZeros</b><br/>6 theorems"]):::ext
+  x3(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>tendsto_log_sq_div"]):::ext
+  x4(["<b>GlueNum</b><br/>c1n_nonneg<br/>c3n_nonneg"]):::ext
+  x5(["<b>LeftSmooth</b><br/>explicit_formula_all"]):::ext
+  x6(["<b>CellZeros</b><br/>norm_stencil_le"]):::ext
+  n0 --> n1
+  n1 --> n4
+  n10 --> n12
+  n11 --> n13
+  n12 --> n13
+  n13 --> n15
+  n14 --> n16
+  n14 --> n19
+  n15 --> n19
+  n16 --> n22
+  n17 --> n18
+  n17 --> n19
+  n18 --> n19
+  n19 --> n20
+  n2 --> n4
+  n20 --> n21
+  n20 --> n22
+  n3 --> n14
+  n4 --> n15
+  n5 --> n6
+  n6 --> n12
+  n7 --> n12
+  n8 --> n12
+  n9 --> n12
+  n9 --> n18
+  x0 -.-> n15
+  x0 -.-> n2
+  x0 -.-> n4
+  x1 -.-> n15
+  x1 -.-> n19
+  x1 -.-> n2
+  x1 -.-> n4
+  x2 -.-> n15
+  x2 -.-> n19
+  x2 -.-> n21
+  x2 -.-> n22
+  x3 -.-> n16
+  x3 -.-> n18
+  x3 -.-> n19
+  x3 -.-> n20
+  x4 -.-> n16
+  x4 -.-> n18
+  x4 -.-> n19
+  x5 -.-> n18
+  x5 -.-> n19
+  x6 -.-> n22
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

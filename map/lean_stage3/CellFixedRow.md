@@ -7,7 +7,7 @@ CellFixedRow — block F3 of `lean_stage3/design/leftedge.md`. 2026-11-23. The c
 5 theorems, 0 definitions, 207 lines. 
 
 **Imports:** [`CellRows`](../lean_stage3/CellRows.md), [`LeftSmooth`](../lean_stage3/LeftSmooth.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiFixedRow`](../lean_stage3/PiFixedRow.md)
 
 ## The picture
 
@@ -21,16 +21,19 @@ flowchart LR
   x0(["<b>CellZeros</b><br/>5 theorems"]):::ext
   x1(["<b>LeftSmooth</b><br/>explicit_formula_all<br/>left_edge_bound"]):::ext
   x2(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
-  x3(["<b>GlueNum</b><br/>c3n_nonneg"]):::ext
+  x3(["<b>PiFixedRow</b><br/>4 theorems"]):::ext
+  x4(["<b>GlueNum</b><br/>c3n_nonneg"]):::ext
   n0 --> n1
   n1 --> n4
   n2 --> n4
   n3 --> n4
+  n2 -.-> x3
+  n3 -.-> x3
   x0 -.-> n0
   x1 -.-> n0
   x1 -.-> n2
   x2 -.-> n1
-  x3 -.-> n4
+  x4 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -136,9 +139,12 @@ line 85 · arrows read from text
 
 **Definitions its proof touches:** [`LeftSmooth.Bleft`](../lean_stage3/LeftSmooth.md#LeftSmooth-Bleft)
 
-**Feeds** (1 that use it)
+**Feeds** (4 that use it)
 
   - [`CellFixedRow.cell_fixed_row`](#CellFixedRow-cell_fixed_row) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻… ``
+  - [`PiFixedRow.Api_nonneg`](../lean_stage3/PiFixedRow.md#PiFixedRow-Api_nonneg) (PiFixedRow) — `` 0 ≤ Api ``
+  - [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le) (PiFixedRow) — `` ‖∫ t in (16:ℝ)..x, efRem T t * wt t‖ ≤ (x - 16) * (Glue.c1n * Real.log (x * T) ^ 2 / T) + (Glue.c3n + LeftSmooth.Bleft) * Real.log (x / 16) ``
+  - [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height) (PiFixedRow) — `` ‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.log (x * T) ^ 2 / T ``
 
 <a name="CellFixedRow-tendsto_log_sq_div"></a>
 ### `CellFixedRow.tendsto_log_sq_div`
@@ -162,9 +168,10 @@ Tendsto (fun T : ℝ => a * c * Real.log (c * T) ^ 2 / T) atTop (𝓝 0)
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellFixedRow.cell_fixed_row`](#CellFixedRow-cell_fixed_row) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻… ``
+  - [`PiFixedRow.tr_efRem_fixed`](../lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed) (PiFixedRow) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖tr (efRem T) x‖ ≤ Api * Real.log x + ε ``
 
 <a name="CellFixedRow-cell_fixed_row"></a>
 ### `CellFixedRow.cell_fixed_row`

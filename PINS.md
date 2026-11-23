@@ -39,6 +39,7 @@ below with their outcome.
                 `PiRemainder.sum_order_inv_le`, `integrable_efRem`
     OUT         the limit of the zero sum as a number; the explicit formula
                 below `16`
+    OUTCOME     proved, unit 0462
 
 ### 2026-11-23 · block F3 of `design/leftedge.md`: `Stage3/CellFixedRow.lean`
 

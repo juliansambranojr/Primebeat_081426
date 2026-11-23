@@ -1651,6 +1651,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_eight",
@@ -7992,6 +7993,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -21035,7 +21037,10 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row"
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
     ]
    },
    {
@@ -21059,7 +21064,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row"
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed"
     ]
    },
    {
@@ -22129,6 +22135,7 @@
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_congr",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_neg",
@@ -22320,7 +22327,8 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
-     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum"
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row"
     ]
    },
    {
@@ -25747,6 +25755,11 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
@@ -25789,6 +25802,7 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
@@ -25855,6 +25869,8 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
@@ -26016,6 +26032,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log"
     ]
    },
@@ -28082,6 +28099,9 @@
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
@@ -28127,6 +28147,9 @@
      "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
@@ -28212,6 +28235,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
@@ -28242,6 +28267,9 @@
     "used_by": [
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
@@ -35118,7 +35146,10 @@
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
-     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
     ]
    },
    {
@@ -35215,7 +35246,9 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all"
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
     ]
    }
   ]
@@ -40091,6 +40124,979 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/PiFixedRow.lean",
+  "module": "Stage3.PiFixedRow",
+  "stem": "PiFixedRow",
+  "header": "PiFixedRow — block F4 of `lean_stage3/design/leftedge.md`. 2026-11-23. The integer count at a fixed `x` with the height of the zero sum taken to infinity. `PiZeros.pi_eq_zero_sum` is an identity at every height; what has to be bounded free of the height is `tr (efRem T) x`, the passage of the explicit formula's remainder. Above `16` the explicit formula at every height does it. On `[2, 16]` each zero is integrated by parts in `t`, which gains a factor `1/|ρ+1|`, and the zeros weighted by `m/|ρ|²` have a sum bounded…",
+  "imports": [
+   "Stage3.PiRemainder",
+   "Stage3.CellFixedRow"
+  ],
+  "opens": [
+   "Chebyshev",
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "MeasureTheory",
+   "PiRemainder",
+   "PiZeros",
+   "Topology"
+  ],
+  "namespaces": [
+   "PiFixedRow"
+  ],
+  "lines": 717,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/CellFixedRow.lean",
+   "lean_stage3/Stage3/PiRemainder.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "sum_sq_div_pow_eq",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.sum_sq_div_pow_eq",
+    "line": 31,
+    "why": "The closed form behind `Σ_j (j+2)²/2^j ≤ 22`: the partial sum plus a vanishing tail is exactly `22`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 + (2 * (n:ℝ) ^ 2 + 12 * n + 22) * ((2:ℝ) ^ n)⁻¹ = 22",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_sq_div_pow_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.sum_sq_div_pow_le",
+    "line": 45,
+    "why": "The partial sums of `(j+2)²/2^j` are at most `22`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 ≤ 22",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_eq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zinv_dyadic_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.zinv_dyadic_le",
+    "line": 52,
+    "why": "The sum of `m(ρ)/|ρ|` over the zeros below `2^(j+1)` is at most `Mlow·3000·(j+2)²`.",
+    "sorry": false,
+    "needs": [
+     "j : ℕ"
+    ],
+    "proves": "∑ ρ ∈ ZF ((2 : ℝ) ^ (j + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * (3000 * ((j : ℝ) + 2) ^ 2)",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Z2",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Z2",
+    "line": 59,
+    "why": "The constant bounding the zeros weighted by `m/|ρ|²`: `66000·Mlow²`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Z2_nonneg",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Z2_nonneg",
+    "line": 62,
+    "why": "The constant `Z2` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Z2",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_order_inv_sq_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.sum_order_inv_sq_le",
+    "line": 66,
+    "why": "The zeros weighted by `m/|ρ|²` are bounded free of the height. For every `T`, the sum over the zeros below `T` of `m(ρ)·(1/|ρ|)²` is at most `Z2`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (‖(ρ : ℂ)‖⁻¹) ^ 2 ≤ Z2",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_dyadic",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_dyadic",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "w",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.w",
+    "line": 147,
+    "why": "The weight `1/(t·log²t)` as a real function.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_le_two",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "wd",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.wd",
+    "line": 150,
+    "why": "The derivative of the real weight: `−(log t + 2)/(t²·log³t)`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.abs_wd_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.continuousOn_wd",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_w",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.hasDerivAt_w",
+    "line": 153,
+    "why": "For `t > 1` the real weight has derivative `wd t`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 < t"
+    ],
+    "proves": "HasDerivAt w (wd t) t",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_wt",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.hasDerivAt_wt",
+    "line": 171,
+    "why": "For `t > 1` the weight, read as complex, has derivative `wd t`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 < t"
+    ],
+    "proves": "HasDerivAt wt ((wd t : ℝ) : ℂ) t",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_wd",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.continuousOn_wd",
+    "line": 175,
+    "why": "On `[2, 16]` the derivative of the weight is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ContinuousOn wd (Set.uIcc 2 16)",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.continuousOn_wd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_le_two",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.w_le_two",
+    "line": 191,
+    "why": "For `t ≥ 2` the weight is at most `2`.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "w t ≤ 2",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_le_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_pos",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.w_pos",
+    "line": 203,
+    "why": "For `t ≥ 2` the weight is positive.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "0 < w t",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "abs_wd_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.abs_wd_le",
+    "line": 210,
+    "why": "On `[2, 16]` the derivative of the weight is at most `4` in size.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t",
+     "ht' : t ≤ 16"
+    ],
+    "proves": "|wd t| ≤ 4",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.abs_wd_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_le_norm_add_one",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_le_norm_add_one",
+    "line": 233,
+    "why": "For `ρ` with `0 < Re ρ`, `|ρ| ≤ |ρ + 1|`.",
+    "sorry": false,
+    "needs": [
+     "h : 0 < ρ.re"
+    ],
+    "proves": "‖ρ‖ ≤ ‖ρ + 1‖",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_le_norm_add_one",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_integral_cpow_wt_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_integral_cpow_wt_le",
+    "line": 242,
+    "why": "One zero on `[2, 16]`, integrated by parts. For `0 < Re ρ < 1`, the integral of `t^ρ` against the weight over `[2, 16]` is at most `15360/|ρ + 1|`.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 < ρ.re",
+     "h1 : ρ.re < 1"
+    ],
+    "proves": "‖∫ t in (2:ℝ)..16, wt t * (t : ℂ) ^ ρ‖ ≤ 15360 * ‖ρ + 1‖⁻¹",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.abs_wd_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.continuousOn_wd",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_le_two",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.abs_wd_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.continuousOn_wd",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_le_two",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_zero_term_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_zero_term_le",
+    "line": 313,
+    "why": "One zero's term on `[2, 16]`: for `0 < Re ρ < 1`, the integral of `t^ρ/ρ` against the weight is at most `15360/|ρ|²`.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 < ρ.re",
+     "h1 : ρ.re < 1"
+    ],
+    "proves": "‖∫ t in (2:ℝ)..16, (t : ℂ) ^ ρ / ρ * wt t‖ ≤ 15360 * (‖ρ‖⁻¹) ^ 2",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_le_norm_add_one",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_le_norm_add_one",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Clow",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Clow",
+    "line": 334,
+    "why": "The constant bounding the low integral: `294 + 15360·Z2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Clow_nonneg",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Clow_nonneg",
+    "line": 337,
+    "why": "The constant `Clow` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Clow",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_low_integral_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_low_integral_le",
+    "line": 345,
+    "why": "The low integral is bounded free of the height. For every `T`, the integral of the explicit formula's remainder against the weight over `[2, 16]` is at most `Clow`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "‖∫ t in (2:ℝ)..16, efRem T t * wt t‖ ≤ Clow",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_psi_sub_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_psi_sub_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Api",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Api",
+    "line": 435,
+    "why": "The constant of the count at a fixed row: `2·(c3n + Bleft) + Clow`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Api_nonneg",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Api_nonneg",
+    "line": 438,
+    "why": "The constant `Api` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Api",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_le_log_of_16",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.one_le_log_of_16",
+    "line": 446,
+    "why": "For `x ≥ 16`, `log x ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x"
+    ],
+    "proves": "1 ≤ Real.log x",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_high_integral_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_high_integral_le",
+    "line": 460,
+    "why": "The high integral at a fixed height. For `16 ≤ x` and `T ≥ 2`, the integral of the remainder against the weight over `[16, x]` is at most `c1n·(x − 16)·log²(xT)/T + (c3n + Bleft)·log(x/16)`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ t in (16:ℝ)..x, efRem T t * wt t‖ ≤ (x - 16) * (Glue.c1n * Real.log (x * T) ^ 2 / T) + (Glue.c3n + LeftSmooth.Bleft) * Real.log (x / 16)",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tr_efRem_le_height",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_tr_efRem_le_height",
+    "line": 552,
+    "why": "The passage of the remainder at a fixed row and a finite height. For `16 ≤ x` and `T ≥ 2`, `‖tr (efRem T) x‖ ≤ Api·log x + 2·c1n·x·log²(xT)/T`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.log (x * T) ^ 2 / T",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tr_efRem_fixed",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.tr_efRem_fixed",
+    "line": 624,
+    "why": "The passage of the remainder at a fixed row, the height to infinity. For `16 ≤ x` and every `ε > 0`, for all large heights `T`, `‖tr (efRem T) x‖ ≤ Api·log x + ε`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖tr (efRem T) x‖ ≤ Api * Real.log x + ε",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pi_fixed_row",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.pi_fixed_row",
+    "line": 641,
+    "why": "The count at a fixed row, the height to infinity. For `16 ≤ x` and every `ε > 0`, for all large heights `T`, the count minus `Li`, plus each zero's part below `T`, plus the higher prime powers, is at most `Api·log x + ε`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr psiTheta x‖ ≤ Api * Real.log x + ε",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "table_cell_fixed_row",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.table_cell_fixed_row",
+    "line": 662,
+    "why": "The integer table's cell at a fixed row, the height to infinity. For `d + 6 ≤ r` and every `ε > 0`, for all large heights `T`, the cell `(r, d)` of the table of the prime count along the doublings, less the smooth cell, plus each zero's part below `T` under the stencil, plus the stencil of the higher prime powers, is at most `2^(d+1)·(Api·log 2·r) + ε`.",
+    "sorry": false,
+    "needs": [
+     "r : ℕ",
+     "d : ℕ",
+     "hr : d + 6 ≤ r"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tableFrom TableRoute.rowN (r : ℤ) d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) (r : ℤ) : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * CellZeros.stencil (d + 1) (fun m : ℤ => piMode (ρ : ℂ) ((2:ℝ) ^ (m : ℝ))) (r : ℤ) + CellZeros.stencil (d + 1) (fun m : ℤ => tr psiTheta ((2:ℝ) ^ (m : ℝ))) (r : ℤ)‖ ≤ 2 ^ (d + 1) * (Api * Real.log 2 * r) + ε",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+    "stmt": [],
+    "proof": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/PiRemainder.lean",
   "module": "Stage3.PiRemainder",
   "stem": "PiRemainder",
@@ -40144,6 +41150,9 @@
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
@@ -40181,6 +41190,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_dyadic",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
@@ -40253,6 +41264,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le"
     ]
    },
@@ -40293,6 +41305,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log"
     ]
    },
@@ -40462,6 +41475,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low"
     ]
    },
@@ -40659,6 +41673,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of"
     ]
    },
@@ -41338,6 +42353,12 @@
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_integrand",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
@@ -41376,6 +42397,10 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
@@ -41448,6 +42473,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_ipart_le_of_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum"
@@ -41621,6 +42648,8 @@
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -41652,6 +42681,11 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
@@ -41683,6 +42717,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
@@ -41717,6 +42753,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
@@ -41743,6 +42780,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
     ]
@@ -41770,6 +42808,7 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_ipart_le_of_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
     ]
@@ -41828,6 +42867,7 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
@@ -42024,7 +43064,9 @@
      "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row"
+    ]
    }
   ]
  },
@@ -42092,6 +43134,8 @@
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
      "lean_stage3/Stage3/JointWindowDial.lean::JointWindowDial.schoenfeldWeakTheta_of_window",
      "lean_stage3/Stage3/LineBound.lean::Slice8.schoenfeldWeak_of_psiWeak_three",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_two",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
@@ -49422,6 +50466,7 @@
     "used_by": [
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_eight",
@@ -73154,11 +74199,12 @@
    "Stage3.ExplicitLeft",
    "Stage3.LeftKernel",
    "Stage3.LeftSmooth",
-   "Stage3.CellFixedRow"
+   "Stage3.CellFixedRow",
+   "Stage3.PiFixedRow"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 169,
+  "lines": 170,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -73225,6 +74271,7 @@
    "lean_stage3/Stage3/Mollified.lean",
    "lean_stage3/Stage3/MollifiedMean.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
+   "lean_stage3/Stage3/PiFixedRow.lean",
    "lean_stage3/Stage3/PiRemainder.lean",
    "lean_stage3/Stage3/PiToPsi.lean",
    "lean_stage3/Stage3/PiZeros.lean",

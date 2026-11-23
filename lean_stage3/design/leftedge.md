@@ -86,7 +86,7 @@ Through `CellZeros`: the cell at row `r`, depth `d`, and its zero sum to any
 height `T ≥ 2` differ by the stencil of that bound; as `T → ∞` at the fixed
 row the first term tends to zero and what stays is `≤ A_d·r`.
 
-## F4 The count at a fixed row — `Stage3/PiFixedRow.lean`
+## F4 The count at a fixed row — PROVED (unit 0462: `PiFixedRow.pi_fixed_row`, `table_cell_fixed_row`, `tr_efRem_fixed`, `norm_low_integral_le`, `sum_order_inv_sq_le`; `Z2 = 66000·Mlow²`, `Clow = 294 + 15360·Z2`, `Api = 2·(c3n + Bleft) + Clow`)
 
 `PiZeros.pi_eq_zero_sum` holds at every height:
 

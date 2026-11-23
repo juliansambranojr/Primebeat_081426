@@ -14,6 +14,7 @@ flowchart LR
   x2(["<b>ContourShift</b><br/>zeta_analyticAt"]):::ext
   x3(["<b>CellFixedRow</b><br/>Bleft_nonneg<br/>cell_eq_zero_sum_all"]):::ext
   x4(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
+  x5(["<b>PiFixedRow</b><br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n8
@@ -25,6 +26,7 @@ flowchart LR
   n8 --> n9
   n8 -.-> x3
   n9 -.-> x3
+  n9 -.-> x5
   x0 -.-> n1
   x0 -.-> n2
   x0 -.-> n4
