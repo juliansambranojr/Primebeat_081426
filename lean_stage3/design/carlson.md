@@ -31,7 +31,7 @@ Diagonal `T·Σ|a_n|²`. Off the diagonal `|∫ e^(−itθ)| ≤ 2/|θ|`,
 `|log m − log n| ≥ |m − n|/N`, harmonic sum. Elementary; the sharper form
 without the logarithm is not needed.
 
-### C2 The mollified finite sum
+### C2 The mollified finite sum — PROVED (unit 0447: `Mollified.prod_eq_sum`, `coef_eq_zero`, `sum_coef_sq_le`, `sum_coef_sq_weighted_le`)
 
 `P_N(s) = Σ_{n ≤ N} n^(−s)`. `P_N·M_X = Σ_n c_n·n^(−s)`,
 `c_n = Σ_{d | n, d < X, n/d ≤ N} μ(d)`. For `n < X` and `n ≤ N` every divisor

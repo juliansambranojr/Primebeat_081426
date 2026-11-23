@@ -34463,6 +34463,450 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Mollified.lean",
+  "module": "Stage3.Mollified",
+  "stem": "Mollified",
+  "header": "Mollified — block C2 of `lean_stage3/design/carlson.md`. 2026-11-23. The product of the finite sum `P_N(s) = Σ_{n ≤ N} n^{-s}` with the short Möbius sum `M_X(s) = Σ_{d < X} μ(d)·d^{-s}` is a finite Dirichlet sum `Σ_n c_n·n^{-s}` with `c_n = Σ_{d | n, d < X, n/d ≤ N} μ(d)`. For `1 < n < X`, `n ≤ N` the coefficient vanishes and `c_1 = 1`. Each `|c_n|` is at most the number of divisors of `n` below `X`. The square of that count is at most the number of triples `(g, a, b)` below `X` with `g·a·b | n` (send a pair of div…",
+  "imports": [],
+  "opens": [
+   "Finset"
+  ],
+  "namespaces": [
+   "Mollified"
+  ],
+  "lines": 312,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "tauBelow",
+    "ns": "Mollified",
+    "full": "Mollified.tauBelow",
+    "line": 43,
+    "why": "The number of divisors of `n` below `X`.",
+    "sorry": false,
+    "needs": [
+     "X n : ℕ"
+    ],
+    "proves": "ℕ",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.abs_coef_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_tauBelow_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow_sq_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "coef",
+    "ns": "Mollified",
+    "full": "Mollified.coef",
+    "line": 46,
+    "why": "The coefficient of `n^(−s)` in the product of `Σ_{m ≤ N} m^(−s)` and `Σ_{d < X} μ(d)d^(−s)`.",
+    "sorry": false,
+    "needs": [
+     "X N n : ℕ"
+    ],
+    "proves": "ℤ",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.abs_coef_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_eq_zero",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_one",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.prod_eq_sum",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "prod_eq_sum",
+    "ns": "Mollified",
+    "full": "Mollified.prod_eq_sum",
+    "line": 51,
+    "why": "The product of the finite zeta sum up to `N` and the Möbius sum below `X` is the Dirichlet sum over `n ≤ N·X` with coefficients `coef X N n`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "N X : ℕ"
+    ],
+    "proves": "(∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * (∑ d ∈ Ico 1 X, (ArithmeticFunction.moebius d : ℂ) * (d : ℂ) ^ (-s)) = ∑ n ∈ Icc 1 (N * X), (coef X N n : ℂ) * (n : ℂ) ^ (-s)",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.prod_eq_sum",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "coef_one",
+    "ns": "Mollified",
+    "full": "Mollified.coef_one",
+    "line": 86,
+    "why": "The coefficient of `1^(−s)` is `1` once `1 < X` and `1 ≤ N`.",
+    "sorry": false,
+    "needs": [
+     "X N : ℕ",
+     "hX : 1 < X",
+     "hN : 1 ≤ N"
+    ],
+    "proves": "coef X N 1 = 1",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.coef_one",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "coef_eq_zero",
+    "ns": "Mollified",
+    "full": "Mollified.coef_eq_zero",
+    "line": 92,
+    "why": "For `1 < n < X` with `n ≤ N` every divisor of `n` is allowed, so the coefficient is the full Möbius divisor sum, which is `0`.",
+    "sorry": false,
+    "needs": [
+     "X N n : ℕ",
+     "h1 : 1 < n",
+     "hX : n < X",
+     "hN : n ≤ N"
+    ],
+    "proves": "coef X N n = 0",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.coef_eq_zero",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "abs_coef_le",
+    "ns": "Mollified",
+    "full": "Mollified.abs_coef_le",
+    "line": 104,
+    "why": "The coefficient is at most the number of divisors of `n` below `X` in absolute value.",
+    "sorry": false,
+    "needs": [
+     "X N n : ℕ"
+    ],
+    "proves": "|coef X N n| ≤ tauBelow X n",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.abs_coef_le",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_Icc_dvd",
+    "ns": "Mollified",
+    "full": "Mollified.card_Icc_dvd",
+    "line": 119,
+    "why": "Exactly `Y / k` of the naturals in `[1, Y]` are multiples of `k`.",
+    "sorry": false,
+    "needs": [
+     "Y k : ℕ"
+    ],
+    "proves": "((Icc 1 Y).filter (k ∣ ·)).card = Y / k",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.card_Icc_dvd",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_tauBelow_sq_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "triples",
+    "ns": "Mollified",
+    "full": "Mollified.triples",
+    "line": 128,
+    "why": "The triples of naturals in `[1, X)`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ"
+    ],
+    "proves": "Finset (ℕ × ℕ × ℕ)",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.triples",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_tauBelow_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tauBelow_sq_le",
+    "ns": "Mollified",
+    "full": "Mollified.tauBelow_sq_le",
+    "line": 132,
+    "why": "The square of the number of divisors of `n` below `X` is at most the number of triples `(g, a, b)` in `[1, X)³` with `g·a·b` dividing `n`.",
+    "sorry": false,
+    "needs": [
+     "X n : ℕ"
+    ],
+    "proves": "tauBelow X n ^ 2 ≤ ((triples X).filter (fun t => t.1 * t.2.1 * t.2.2 ∣ n)).card",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow_sq_le",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.triples"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.triples"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_tauBelow_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_inv_Ico_le",
+    "ns": "Mollified",
+    "full": "Mollified.sum_inv_Ico_le",
+    "line": 168,
+    "why": "The harmonic sum over `[1, X)` is at most `1 + log X`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ"
+    ],
+    "proves": "∑ k ∈ Ico 1 X, ((k : ℝ))⁻¹ ≤ 1 + Real.log X",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.sum_inv_Ico_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_tauBelow_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_tauBelow_sq_le",
+    "ns": "Mollified",
+    "full": "Mollified.sum_tauBelow_sq_le",
+    "line": 176,
+    "why": "The sum over `n ≤ Y` of the squared count of divisors of `n` below `X` is at most `Y·(1 + log X)³`.",
+    "sorry": false,
+    "needs": [
+     "X Y : ℕ"
+    ],
+    "proves": "∑ n ∈ Icc 1 Y, (tauBelow X n : ℝ) ^ 2 ≤ Y * (1 + Real.log X) ^ 3",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.sum_tauBelow_sq_le",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.card_Icc_dvd",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_inv_Ico_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.triples"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.card_Icc_dvd",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_inv_Ico_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.triples"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "coef_sq_le",
+    "ns": "Mollified",
+    "full": "Mollified.coef_sq_le",
+    "line": 205,
+    "why": "The square of the coefficient is at most the square of the divisor count below `X`.",
+    "sorry": false,
+    "needs": [
+     "X N n : ℕ"
+    ],
+    "proves": "(coef X N n : ℝ) ^ 2 ≤ (tauBelow X n : ℝ) ^ 2",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.coef_sq_le",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.abs_coef_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.abs_coef_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_coef_sq_le",
+    "ns": "Mollified",
+    "full": "Mollified.sum_coef_sq_le",
+    "line": 211,
+    "why": "The sum over `n ≤ Y` of the squared coefficients is at most `Y·(1 + log X)³`.",
+    "sorry": false,
+    "needs": [
+     "X N Y : ℕ"
+    ],
+    "proves": "∑ n ∈ Icc 1 Y, (coef X N n : ℝ) ^ 2 ≤ Y * (1 + Real.log X) ^ 3",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_tauBelow_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_tauBelow_sq_le",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.tauBelow"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_Ico_dyadic",
+    "ns": "Mollified",
+    "full": "Mollified.sum_Ico_dyadic",
+    "line": 216,
+    "why": "A sum over `[X, 2^J·X)` is the sum of its `J` dyadic blocks `[2^j·X, 2^(j+1)·X)`.",
+    "sorry": false,
+    "needs": [
+     "f : ℕ → ℝ",
+     "X J : ℕ"
+    ],
+    "proves": "∑ n ∈ Ico X (2 ^ J * X), f n = ∑ j ∈ range J, ∑ n ∈ Ico (2 ^ j * X) (2 ^ (j + 1) * X), f n",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.sum_Ico_dyadic",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_coef_sq_weighted_le",
+    "ns": "Mollified",
+    "full": "Mollified.sum_coef_sq_weighted_le",
+    "line": 228,
+    "why": "For `u > 1/2` and `1 ≤ X`, the squared coefficients weighted by `n^(−2u)` over `[X, Y]` sum to at most `2/(1 − 2^(1−2u))·X^(1−2u)·(1 + log X)³`, for every `Y`.",
+    "sorry": false,
+    "needs": [
+     "u : ℝ",
+     "hu : 1 / 2 < u",
+     "X N Y : ℕ",
+     "hX : 1 ≤ X"
+    ],
+    "proves": "∑ n ∈ Icc X Y, (coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (-2 * u) ≤ 2 / (1 - (2 : ℝ) ^ (1 - 2 * u)) * (X : ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3",
+    "file": "lean_stage3/Stage3/Mollified.lean",
+    "id": "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_Ico_dyadic",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_Ico_dyadic",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/PerronKernel.lean",
   "module": "Stage3.PerronKernel",
   "stem": "PerronKernel",
@@ -65880,11 +66324,12 @@
    "Stage3.PiZeros",
    "Stage3.PiRemainder",
    "Stage3.FiniteOffLinePi",
-   "Stage3.DirichletMean"
+   "Stage3.DirichletMean",
+   "Stage3.Mollified"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 156,
+  "lines": 157,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -65942,6 +66387,7 @@
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",
    "lean_stage3/Stage3/MirrorArea.lean",
+   "lean_stage3/Stage3/Mollified.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PiRemainder.lean",
    "lean_stage3/Stage3/PiToPsi.lean",

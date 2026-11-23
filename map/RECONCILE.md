@@ -33,7 +33,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (487)
+## Uses Lean records that the text does not show (488)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -239,6 +239,7 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`RHPull.mellin_vert_le`](lean_stage3/LineBound.md#RHPull-mellin_vert_le) | [`RHPull.σRH_re`](lean_stage3/LineBound.md#RHPull--RH_re) | theorem |
 | [`RHPull.psi_weak_of_RH`](lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) | [`RHPull.half_lt_σRH`](lean_stage3/LineBound.md#RHPull-half_lt_-RH) | theorem |
 | [`RHPull.psi_weak_of_RH`](lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) | [`RHPull.σRH`](lean_stage3/LineBound.md#RHPull--RH) | def |
+| [`Mollified.sum_coef_sq_le`](lean_stage3/Mollified.md#Mollified-sum_coef_sq_le) | [`Mollified.tauBelow`](lean_stage3/Mollified.md#Mollified-tauBelow) | def |
 | [`PerronKernel.perron_kernel_coarse_lt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_coarse_lt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_kernel_decay_lt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_decay_lt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_kernel_decay_gt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_decay_gt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |

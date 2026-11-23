@@ -18,6 +18,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilSeries.A_nonneg`](./lean_stage3/WeilSeries.md#WeilSeries-A_nonneg) | theorem | shape | `WeilSeries` | 0 ≤ A h γ |
 | [`Stage3.a_term_le`](./lean_stage3/Stirling.md#Stage3-a_term_le) | theorem | shape | `Stirling` | \|(((n : ℂ) + zq t)⁻¹).re - (Real.log ‖((n + 1 : ℕ) : ℂ) + zq t‖ - Real.log ‖(n : ℂ) + zq t‖)\| ≤ 8 * ((((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2)⁻¹) |
 | [`ArgLegs.abs_arg_sub_le_pi`](./lean_stage3/ArgLegs.md#ArgLegs-abs_arg_sub_le_pi) | theorem | shape | `ArgLegs` | \|z.arg - w.arg\| ≤ Real.pi |
+| [`Mollified.abs_coef_le`](./lean_stage3/Mollified.md#Mollified-abs_coef_le) | theorem | counting | `Mollified` | \|coef X N n\| ≤ tauBelow X n |
 | [`LandauCrude.abs_G_le`](./lean_stage3/LandauCrude.md#LandauCrude-abs_G_le) | theorem | shape | `LandauCrude` | \|LandauWindow.G y\| ≤ 2 * y * (1 + Real.log y) ^ 2 |
 | [`LandauChebyshev.abs_G_le_log`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-abs_G_le_log) | theorem | reads ζ | `LandauChebyshev` | \|LandauWindow.G y\| ≤ 8 * y * (1 + Real.log y) |
 | [`LandauTrig.abs_le_sum_norm`](./lean_stage3/LandauTrig.md#LandauTrig-abs_le_sum_norm) | theorem | shape | `LandauTrig` | \|T n\| ≤ ∑ j ∈ s, ‖c j‖ |
@@ -165,6 +166,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPower.c_pow_neg_one`](./lean_stage3/WeilPower.md#WeilPower-c_pow_neg_one) | theorem | shape | `WeilPower` | c (-1) ^ n = 0 |
 | [`WeilPower.c_pow_one`](./lean_stage3/WeilPower.md#WeilPower-c_pow_one) | theorem | shape | `WeilPower` | c 1 ^ n = 0 |
 | [`Expansion.c_rec`](./lean/Expansion.md#Expansion-c_rec) | theorem | shape | `Expansion` | c (d + 1) j = Real.log 2 * c d j + (-(j : ℝ)) * c d (j - 1) |
+| [`Mollified.card_Icc_dvd`](./lean_stage3/Mollified.md#Mollified-card_Icc_dvd) | theorem | counting | `Mollified` | ((Icc 1 Y).filter (k ∣ ·)).card = Y / k |
 | [`WeilPowerCount.card_le_of_leaf`](./lean_stage3/WeilPowerCount.md#WeilPowerCount-card_le_of_leaf) | theorem | shape | `WeilPowerCount` | (S.card : ℝ) ≤ c₁ * Real.log T + c₂ |
 | [`ReZetaCount.card_reZeros_le`](./lean_stage3/ReZetaCount.md#ReZetaCount-card_reZeros_le) | theorem | reads ζ | `ReZetaCount` | ((reZeros hT).card : ℝ) ≤ 15 * Real.log T + 73 |
 | [`WeilPowerCompare.cE`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-cE) | def | shape | `WeilPowerCompare` | ℝ |
@@ -208,7 +210,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPower.cK_succ`](./lean_stage3/WeilPower.md#WeilPower-cK_succ) | theorem | shape | `WeilPower` | cK (m + 1) = ((m : ℝ) + 1) * (2 * (m : ℝ) + 1) * Real.pi ^ 2 / 2 * cK m |
 | [`PerronKernel.coarse_gt_ineq`](./lean_stage3/PerronKernel.md#PerronKernel-coarse_gt_ineq) | theorem | shape | `PerronKernel` | v * Real.exp u + Real.pi - Real.arctan (v / u) ≤ Real.pi * Real.exp u |
 | [`LadderMean.coef`](./lean_stage3/LadderMean.md#LadderMean-coef) | def | reads ζ | `LadderMean` | ℂ |
+| [`Mollified.coef`](./lean_stage3/Mollified.md#Mollified-coef) | def | counting | `Mollified` | ℤ |
 | [`WeilPowerShell.coef`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-coef) | def | shape | `WeilPowerShell` | ℂ |
+| [`Mollified.coef_eq_zero`](./lean_stage3/Mollified.md#Mollified-coef_eq_zero) | theorem | counting | `Mollified` | coef X N n = 0 |
+| [`Mollified.coef_one`](./lean_stage3/Mollified.md#Mollified-coef_one) | theorem | counting | `Mollified` | coef X N 1 = 1 |
+| [`Mollified.coef_sq_le`](./lean_stage3/Mollified.md#Mollified-coef_sq_le) | theorem | shape | `Mollified` | (coef X N n : ℝ) ^ 2 ≤ (tauBelow X n : ℝ) ^ 2 |
 | [`PairIdentity.coeff_eq_one_iff_base_two`](./lean/PairIdentity.md#PairIdentity-coeff_eq_one_iff_base_two) | theorem | counting | `PairIdentity` | (b - 1) ^ (d + 1) = 1 ↔ b = 2 |
 | [`WeilPowerCompare.compare_le`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-compare_le) | theorem | shape | `WeilPowerCompare` | ‖S m w‖ ≤ (2 * (m : ℝ) + 3) * (‖w‖ / s) * Real.exp (Eup m w - Elow m s) * (S m (s : ℂ)).re |
 | [`WeilPowerSharp.compare_sharp`](./lean_stage3/WeilPowerSharp.md#WeilPowerSharp-compare_sharp) | theorem | shape | `WeilPowerSharp` | ‖S m w‖ ≤ ‖w‖ / s * Real.exp (((w ^ 2).re - s ^ 2) / (Real.pi ^ 2 * ((m : ℝ) + 1)) + s ^ 2 / (Real.pi ^ 2 * ((m : ℝ) + 1) * ((m : ℝ) + 2)) + (‖w‖ ^ 4 + s ^ 4) / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) * (S… |
@@ -1116,6 +1122,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.primeSideM_eq`](./lean_bridge/WeilBridge.md#Bridge-primeSideM_eq) | theorem | shape | `WeilBridge` | primeSideM k = primeSide k |
 | [`Elephant.primeTable_eq_stencil`](./lean/Elephant.md#Elephant-primeTable_eq_stencil) | theorem | counting | `Elephant` | ((fwdDiff (1 : ℕ))^[d] (primeRow b)) r = ∑ k ∈ Finset.range (d + 1), ((-1 : ℤ) ^ (d - k) * d.choose k) • primeRow b (r + k • 1) |
 | [`Elephant.primeTable_eq_sym_weighted`](./lean/Elephant.md#Elephant-primeTable_eq_sym_weighted) | theorem | shape | `Elephant` | (bdiff^[d]) (primeRowZ b) r = ∑ i ∈ s, c i * (Sym (b : ℝ) (ρ i)) ^ d * mode (b : ℝ) (ρ i) r |
+| [`Mollified.prod_eq_sum`](./lean_stage3/Mollified.md#Mollified-prod_eq_sum) | theorem | shape | `Mollified` | (∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * (∑ d ∈ Ico 1 X, (ArithmeticFunction.moebius d : ℂ) * (d : ℂ) ^ (-s)) = ∑ n ∈ Icc 1 (N * X), (coef X N n : ℂ) * (n : ℂ) ^ (-s) |
 | [`Propagation.propagator`](./lean/Propagation.md#Propagation-propagator) | theorem | counting | `Propagation` | tableFrom (deltaRow s) (s + (k : ℤ)) d = (-1) ^ k * pasc d k |
 | [`SeedPerturbation.protected_at_R_three`](./lean/SeedPerturbation.md#SeedPerturbation-protected_at_R_three) | theorem | counting | `SeedPerturbation` | zero_cells.map (fun c =&gt; decide (3 &lt; (c.1 : ℤ) - (c.2 : ℤ))) = [false, false, true, true] |
 | [`SeedPerturbation.protected_at_R_two`](./lean/SeedPerturbation.md#SeedPerturbation-protected_at_R_two) | theorem | counting | `SeedPerturbation` | zero_cells.map (fun c =&gt; decide (2 &lt; (c.1 : ℤ) - (c.2 : ℤ))) = [false, true, true, true] |
@@ -1473,10 +1480,14 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauTrig.sum_block_ge`](./lean_stage3/LandauTrig.md#LandauTrig-sum_block_ge) | theorem | shape | `LandauTrig` | -(∑ j ∈ s, ‖c j‖ * (2 / ‖z j - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N), T n |
 | [`WeilPowerBands.sum_by_bands`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | theorem | reads ζ | `WeilPowerBands` | ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.NontrivialZeros =&gt; idx (ρ : ℂ).im), M k * (15 * Real.log (centre k) + 73) |
 | [`WeilTiles.sum_by_bands`](./lean_stage3/WeilTiles.md#WeilTiles-sum_by_bands) | theorem | reads ζ | `WeilTiles` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.NontrivialZeros =&gt; idx (ρ : ℂ).im), M k * (15 * Real.log (centre k) + 73) |
+| [`Mollified.sum_coef_sq_le`](./lean_stage3/Mollified.md#Mollified-sum_coef_sq_le) | theorem | shape | `Mollified` | ∑ n ∈ Icc 1 Y, (coef X N n : ℝ) ^ 2 ≤ Y * (1 + Real.log X) ^ 3 |
+| [`Mollified.sum_coef_sq_weighted_le`](./lean_stage3/Mollified.md#Mollified-sum_coef_sq_weighted_le) | theorem | shape | `Mollified` | ∑ n ∈ Icc X Y, (coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (-2 * u) ≤ 2 / (1 - (2 : ℝ) ^ (1 - 2 * u)) * (X : ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3 |
 | [`WeilPowerTail.sum_hterm_sq_le`](./lean_stage3/WeilPowerTail.md#WeilPowerTail-sum_hterm_sq_le) | theorem | shape | `WeilPowerTail` | ∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2 ≤ 1 / (3 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3) |
 | [`VonKoch.sum_Icc_vonMangoldt`](./lean_stage3/VonKochScaffold.md#VonKoch-sum_Icc_vonMangoldt) | theorem | reads ζ | `VonKochScaffold` | ∑ k ∈ Finset.Icc 1 n, ArithmeticFunction.vonMangoldt k = ψ n |
+| [`Mollified.sum_Ico_dyadic`](./lean_stage3/Mollified.md#Mollified-sum_Ico_dyadic) | theorem | shape | `Mollified` | ∑ n ∈ Ico X (2 ^ J * X), f n = ∑ j ∈ range J, ∑ n ∈ Ico (2 ^ j * X) (2 ^ (j + 1) * X), f n |
 | [`DirichletMean.sum_inv_dist_le`](./lean_stage3/DirichletMean.md#DirichletMean-sum_inv_dist_le) | theorem | shape | `DirichletMean` | ∑ n ∈ Icc 1 N, (if m = n then 0 else \|(m : ℝ) - n\|⁻¹) ≤ 2 * (1 + Real.log N) |
 | [`DirichletMean.sum_inv_Icc_le`](./lean_stage3/DirichletMean.md#DirichletMean-sum_inv_Icc_le) | theorem | shape | `DirichletMean` | ∑ k ∈ Icc 1 N, (k : ℝ)⁻¹ ≤ 1 + Real.log N |
+| [`Mollified.sum_inv_Ico_le`](./lean_stage3/Mollified.md#Mollified-sum_inv_Ico_le) | theorem | shape | `Mollified` | ∑ k ∈ Ico 1 X, ((k : ℝ))⁻¹ ≤ 1 + Real.log X |
 | [`LandauCrude.sum_inv_le`](./lean_stage3/LandauCrude.md#LandauCrude-sum_inv_le) | theorem | shape | `LandauCrude` | ∑ n ∈ Finset.range (N + 1), ((n : ℝ))⁻¹ ≤ 1 + Real.log N |
 | [`DirichletMean.sum_inv_le_harmonic`](./lean_stage3/DirichletMean.md#DirichletMean-sum_inv_le_harmonic) | theorem | shape | `DirichletMean` | ∑ n ∈ s, ((g n : ℕ) : ℝ)⁻¹ ≤ ∑ k ∈ Icc 1 N, (k : ℝ)⁻¹ |
 | [`WeilPowerGauss.sum_inv_pow4_le`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-sum_inv_pow4_le) | theorem | shape | `WeilPowerGauss` | ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / ((m : ℝ) + 1) ^ 3 |
@@ -1506,6 +1517,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Elephant.sum_shift`](./lean/Elephant.md#Elephant-sum_shift) | theorem | shape | `Elephant` | ∑ m ∈ Finset.range (x + 1), (if b ∣ m then a (m / b) else 0) = ∑ k ∈ Finset.range (x / b + 1), a k |
 | [`LandauTrig.sum_sq_block_ge`](./lean_stage3/LandauTrig.md#LandauTrig-sum_sq_block_ge) | theorem | shape | `LandauTrig` | (N : ℝ) * ∑ j ∈ s, ‖c j‖ ^ 2 - ∑ j ∈ s, ∑ l ∈ s, (if j = l then 0 else ‖c j‖ * ‖c l‖ * (2 / ‖z j * conj (z l) - 1‖)) ≤ ∑ n ∈ Finset.Ico a (a + N), T n ^ 2 |
 | [`LadderFading.sum_sub_shift`](./lean_stage3/LadderFading.md#LadderFading-sum_sub_shift) | theorem | shape | `LadderFading` | (∑ z ∈ Z, c z * z ^ (r + 1)) - z₀ * ∑ z ∈ Z, c z * z ^ r = ∑ z ∈ Z.erase z₀, (c z * (z - z₀)) * z ^ r |
+| [`Mollified.sum_tauBelow_sq_le`](./lean_stage3/Mollified.md#Mollified-sum_tauBelow_sq_le) | theorem | shape | `Mollified` | ∑ n ∈ Icc 1 Y, (tauBelow X n : ℝ) ^ 2 ≤ Y * (1 + Real.log X) ^ 3 |
 | [`WeilPowerSharp.sum_telescope`](./lean_stage3/WeilPowerSharp.md#WeilPowerSharp-sum_telescope) | theorem | shape | `WeilPowerSharp` | ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / (((j : ℝ) + 1) * ((j : ℝ) + 2)) = 1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1) |
 | [`WeilPowerSigma.sum_telescope_amgm`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-sum_telescope_amgm) | theorem | shape | `WeilPowerSigma` | ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, ((1 / ((j : ℝ) + 1) - 1 / ((j : ℝ) + 2)) + (1 / (2 * ((j : ℝ) + 1) ^ 2) - 1 / (2 * ((j : ℝ) + 2) ^ 2))) = (1 / ((m : ℝ) + 2) - 1 / ((n : ℝ) + 1)) + (1 … |
 | [`WeilPowerSigma.sum_telescope_half`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-sum_telescope_half) | theorem | shape | `WeilPowerSigma` | ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, (1 / ((j : ℝ) + 1 / 2) - 1 / ((j : ℝ) + 3 / 2)) = 1 / ((m : ℝ) + 3 / 2) - 1 / ((n : ℝ) + 1 / 2) |
@@ -1592,6 +1604,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Transform.tau_pos`](./lean/Transform.md#Transform-tau_pos) | theorem | shape | `Transform` | 0 &lt; tau b |
 | [`Transform.tau_pow`](./lean/Transform.md#Transform-tau_pow) | theorem | shape | `Transform` | tau (b ^ n) = tau b / n |
 | [`Transform.tau_ratio_of_meet`](./lean/Transform.md#Transform-tau_ratio_of_meet) | theorem | shape | `Transform` | tau b / tau c = n / m |
+| [`Mollified.tauBelow`](./lean_stage3/Mollified.md#Mollified-tauBelow) | def | counting | `Mollified` | ℕ |
+| [`Mollified.tauBelow_sq_le`](./lean_stage3/Mollified.md#Mollified-tauBelow_sq_le) | theorem | counting | `Mollified` | tauBelow X n ^ 2 ≤ ((triples X).filter (fun t =&gt; t.1 * t.2.1 * t.2.2 ∣ n)).card |
 | [`Transform.tauI_mem_periodLattice`](./lean/Transform.md#Transform-tauI_mem_periodLattice) | theorem | shape | `Transform` | ((tau b : ℂ) * I) ∈ periodLattice b |
 | [`LandauPoleSub.taylor_coeff_sub_poles`](./lean_stage3/LandauPoleSub.md#LandauPoleSub-taylor_coeff_sub_poles) | theorem | shape | `LandauPoleSub` | ∃ C : ℝ, ∀ k : ℕ, ‖iteratedDeriv k f c - ∑ q ∈ P, A q * ((-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)))‖ ≤ k.factorial * C / R ^ k |
 | [`Isogeny.telescope`](./lean/Isogeny.md#Isogeny-telescope) | theorem | counting | `Isogeny` | ∑ j ∈ range k, (g (m + j + 1) - g (m + j)) = g (m + k) - g m |
@@ -1635,6 +1649,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiZeros.tr_sub`](./lean_stage3/PiZeros.md#PiZeros-tr_sub) | theorem | shape | `PiZeros` | tr (fun t =&gt; f t - g t) x = tr f x - tr g x |
 | [`PiZeros.tr_sum`](./lean_stage3/PiZeros.md#PiZeros-tr_sum) | theorem | shape | `PiZeros` | tr (fun t =&gt; ∑ i ∈ s, f i t) x = ∑ i ∈ s, tr (f i) x |
 | [`JointLadder.triadic_winds_densely_on_dyadic`](./lean/JointLadder.md#JointLadder-triadic_winds_densely_on_dyadic) | theorem | shape | `JointLadder` | DenseRange (fun k : ℤ =&gt; k • ((2 * Real.pi / Real.log 3 : ℝ) : AddCircle (2 * Real.pi / Real.log 2))) |
+| [`Mollified.triples`](./lean_stage3/Mollified.md#Mollified-triples) | def | counting | `Mollified` | Finset (ℕ × ℕ × ℕ) |
 | [`WeilOnLine.tsum_onLine_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-tsum_onLine_le) | theorem | reads ζ | `WeilOnLine` | ∑' ρ : OnLine, weightedTerm h γ ρ.1 ≤ onLineBound h γ |
 | [`WeilPowerOnLine.tsum_onLine_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-tsum_onLine_le) | theorem | reads ζ | `WeilPowerOnLine` | ∑' ρ : OnLine, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m |
 | [`WeilSeries.tsum_shift2`](./lean_stage3/WeilSeries.md#WeilSeries-tsum_shift2) | theorem | reads ζ | `WeilSeries` | ∑' k : ℕ, 1 / ((k : ℝ) + 1) ^ 2 = Real.pi ^ 2 / 6 |

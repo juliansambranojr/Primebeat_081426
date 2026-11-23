@@ -145,6 +145,7 @@ import Stage3.PiZeros
 import Stage3.PiRemainder
 import Stage3.FiniteOffLinePi
 import Stage3.DirichletMean
+import Stage3.Mollified
 
 namespace Stage3
 
