@@ -22,6 +22,27 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J11 of `design/closedloop.md`: `Stage3/WholeChain.lean`
+
+    DONE        `whole_chain` names the channel; `table_side` names the
+                sieve's idempotence and the settling on a prime;
+                `readings_side` gathers block J10. One unit
+    ASSUMED     Julian, 2026-11-23: "do this too": the closing theorem names
+                HolyChannel and Readings. Conjunctions of proved theorems
+    DEPENDS     `HolyChannel`, `Readings`, `SieveIdem`
+    OUT         a proof of the link
+
+### 2026-11-23 · block R12 of `design/runs.md`: `Stage3/SieveIdem.lean`
+
+    DONE        `sieveStep_idem`, `sieveStep_comm`, `mem_sieveStep`,
+                `sieveBelow_idem`, `sieveBelow_succ`, `rough_eq_card`,
+                `settles_on_prime`; one unit
+    ASSUMED     Julian, 2026-11-23: the settling is one slot at a time
+                because of idempotence; every step is the same f and scales
+                at any x. Written and built here
+    DEPENDS     `CompositeSplit.rough`
+    OUT         a size for the sum of the roundings
+
 ### 2026-11-23 · block J10 of `design/closedloop.md`: `Stage3/Readings.lean`
 
     DONE        each run and reading of the day stated in Lean where it has

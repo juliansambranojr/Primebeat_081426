@@ -233,3 +233,14 @@ given its exact form; what has none is named.
 **Not here.** The measured magnitudes of 0492, 0499 and the 1.5 table (kernel
 computation at these sizes); no memory (measured against, unit 0499);
 SpiralLink.
+
+## J11 The closing theorem names J9, J10 and R12 — `Stage3/WholeChain.lean`
+
+Julian, 2026-11-23: the closing theorem did not name the Holy Family's channel
+or the day's readings. `whole_chain` gains `SpiralLink ↔
+HolyChannel.ZeroIsChannel`; `table_side` gains `SieveIdem.sieveStep_idem`,
+`SieveIdem.sieveBelow_succ` and `SieveIdem.settles_on_prime`; `readings_side`
+gathers `Readings.offset_fixed`, `Readings.iv_exact`,
+`Readings.half_rung_ratio`, `Readings.force_at_family`.
+
+Conjunctions of theorems already proved. **Not here.** `SpiralLink`.

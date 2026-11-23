@@ -1,16 +1,16 @@
 # What `WholeChain.whole_chain` rests on
 
-[`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) in `lean_stage3/Stage3/WholeChain.lean`, line 32.
+[`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) in `lean_stage3/Stage3/WholeChain.lean`, line 41.
 
 **Why.** The whole chain. The spiral link, and every face of it compiled in the tree, are one statement.
 
 **Proves**
 
 ```lean
-(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway)
+(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) ∧ (SpiralLink.SpiralLink ↔ HolyChannel.ZeroIsChannel)
 ```
 
-Behind it: 444 theorems and 70 definitions in 44 files. Every one is listed below; Lean recorded each step.
+Behind it: 447 theorems and 73 definitions in 46 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -18,103 +18,108 @@ Behind it: 444 theorems and 70 definitions in 44 files. Every one is listed belo
 flowchart LR
   f0["<b>Nonvanishing</b><br/>4 used"]:::ext
   f1["<b>AssemblyFloor</b><br/>5 used"]:::thm
-  f2["<b>JensenCount</b><br/>17 used"]:::thm
-  f3["<b>LandauWindow</b><br/>2 used"]:::thm
-  f4["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
-  f5["<b>PerronKernel</b><br/>33 used"]:::thm
-  f6["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f7["<b>RvMCrude</b><br/>3 used"]:::thm
-  f8["<b>ArgCrude</b><br/>3 used"]:::thm
-  f9["<b>SieveExact</b><br/>15 used"]:::thm
-  f10["<b>Statement</b><br/>1 used"]:::thm
-  f11["<b>PsiToPi</b><br/>13 used"]:::thm
-  f12["<b>LineBound</b><br/>54 used"]:::thm
-  f13["<b>Abscissa</b><br/>6 used"]:::thm
-  f14["<b>RowLeaves</b><br/>2 used"]:::thm
-  f15["<b>SieveResidual</b><br/>3 used"]:::thm
-  f16["<b>Stirling</b><br/>20 used"]:::thm
-  f17["<b>ArgIdentity</b><br/>54 used"]:::thm
-  f18["<b>ArgLegs</b><br/>10 used"]:::thm
-  f19["<b>ArgCount</b><br/>14 used"]:::thm
-  f20["<b>ThetaLine</b><br/>3 used"]:::thm
-  f21["<b>ThetaPi</b><br/>1 used"]:::thm
-  f22["<b>ThetaPull</b><br/>6 used"]:::thm
-  f23["<b>ThetaPsi</b><br/>14 used"]:::thm
-  f24["<b>VonKochScaffold</b><br/>24 used"]:::thm
-  f25["<b>ThetaConverse</b><br/>12 used"]:::thm
-  f26["<b>RateBelow</b><br/>1 used"]:::thm
-  f27["<b>WeilOnLine</b><br/>1 used"]:::thm
-  f28["<b>SpiralLink</b><br/>10 used"]:::thm
-  f29["<b>BandJoin</b><br/>5 used"]:::thm
-  f30["<b>ShareLink</b><br/>4 used"]:::thm
-  f31["<b>Saddle</b><br/>8 used"]:::thm
-  f32["<b>ZeroSum</b><br/>7 used"]:::thm
-  f33["<b>Assembly</b><br/>8 used"]:::thm
-  f34["<b>ContourShift</b><br/>29 used"]:::thm
-  f35["<b>ZetaGrowth</b><br/>21 used"]:::thm
-  f36["<b>EdgeBound</b><br/>17 used"]:::thm
-  f37["<b>Glue</b><br/>5 used"]:::thm
-  f38["<b>GlueFloor</b><br/>8 used"]:::thm
-  f39["<b>PiToPsi</b><br/>13 used"]:::thm
-  f40["<b>CellResidual</b><br/>16 used"]:::thm
-  f41["<b>HalfSieve</b><br/>11 used"]:::thm
-  f42["<b>OneChain</b><br/>2 used"]:::thm
-  f43["<b>WholeChain</b><br/>whole_chain"]:::end_
-  f3 --> f4
-  f2 --> f6
-  f7 --> f8
-  f10 --> f11
-  f2 --> f12
+  f2["<b>ClosedLoopChain</b><br/>2 used"]:::thm
+  f3["<b>JensenCount</b><br/>17 used"]:::thm
+  f4["<b>LandauWindow</b><br/>2 used"]:::thm
+  f5["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
+  f6["<b>PerronKernel</b><br/>33 used"]:::thm
+  f7["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f8["<b>RvMCrude</b><br/>3 used"]:::thm
+  f9["<b>ArgCrude</b><br/>3 used"]:::thm
+  f10["<b>SieveExact</b><br/>15 used"]:::thm
+  f11["<b>Statement</b><br/>1 used"]:::thm
+  f12["<b>PsiToPi</b><br/>13 used"]:::thm
+  f13["<b>LineBound</b><br/>54 used"]:::thm
+  f14["<b>Abscissa</b><br/>6 used"]:::thm
+  f15["<b>RowLeaves</b><br/>2 used"]:::thm
+  f16["<b>SieveResidual</b><br/>3 used"]:::thm
+  f17["<b>Stirling</b><br/>20 used"]:::thm
+  f18["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f19["<b>ArgLegs</b><br/>10 used"]:::thm
+  f20["<b>ArgCount</b><br/>14 used"]:::thm
+  f21["<b>ThetaLine</b><br/>3 used"]:::thm
+  f22["<b>ThetaPi</b><br/>1 used"]:::thm
+  f23["<b>ThetaPull</b><br/>6 used"]:::thm
+  f24["<b>ThetaPsi</b><br/>14 used"]:::thm
+  f25["<b>VonKochScaffold</b><br/>24 used"]:::thm
+  f26["<b>ThetaConverse</b><br/>12 used"]:::thm
+  f27["<b>RateBelow</b><br/>1 used"]:::thm
+  f28["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f29["<b>SpiralLink</b><br/>10 used"]:::thm
+  f30["<b>BandJoin</b><br/>5 used"]:::thm
+  f31["<b>HolyChannel</b><br/>4 used"]:::thm
+  f32["<b>ShareLink</b><br/>4 used"]:::thm
+  f33["<b>Saddle</b><br/>8 used"]:::thm
+  f34["<b>ZeroSum</b><br/>7 used"]:::thm
+  f35["<b>Assembly</b><br/>8 used"]:::thm
+  f36["<b>ContourShift</b><br/>29 used"]:::thm
+  f37["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f38["<b>EdgeBound</b><br/>17 used"]:::thm
+  f39["<b>Glue</b><br/>5 used"]:::thm
+  f40["<b>GlueFloor</b><br/>8 used"]:::thm
+  f41["<b>PiToPsi</b><br/>13 used"]:::thm
+  f42["<b>CellResidual</b><br/>16 used"]:::thm
+  f43["<b>HalfSieve</b><br/>11 used"]:::thm
+  f44["<b>OneChain</b><br/>2 used"]:::thm
+  f45["<b>WholeChain</b><br/>whole_chain"]:::end_
+  f4 --> f5
+  f3 --> f7
+  f8 --> f9
   f11 --> f12
+  f3 --> f13
   f12 --> f13
-  f11 --> f14
-  f9 --> f15
-  f11 --> f15
-  f7 --> f16
+  f13 --> f14
+  f12 --> f15
+  f10 --> f16
+  f12 --> f16
   f8 --> f17
-  f16 --> f17
+  f9 --> f18
   f17 --> f18
-  f6 --> f19
   f18 --> f19
-  f13 --> f20
-  f20 --> f22
-  f22 --> f23
-  f12 --> f24
-  f21 --> f25
-  f23 --> f25
-  f24 --> f25
+  f7 --> f20
+  f19 --> f20
+  f14 --> f21
+  f21 --> f23
+  f23 --> f24
+  f13 --> f25
+  f22 --> f26
+  f24 --> f26
   f25 --> f26
-  f4 --> f28
-  f27 --> f28
+  f26 --> f27
+  f5 --> f29
   f28 --> f29
-  f28 --> f30
-  f26 --> f31
-  f30 --> f31
+  f29 --> f30
+  f2 --> f31
+  f29 --> f31
+  f29 --> f32
+  f27 --> f33
   f32 --> f33
-  f2 --> f34
-  f33 --> f34
   f34 --> f35
+  f3 --> f36
   f35 --> f36
   f36 --> f37
-  f1 --> f38
-  f5 --> f38
-  f11 --> f38
-  f19 --> f38
   f37 --> f38
-  f14 --> f39
-  f24 --> f39
   f38 --> f39
-  f0 --> f40
+  f1 --> f40
+  f6 --> f40
+  f12 --> f40
+  f20 --> f40
   f39 --> f40
   f15 --> f41
-  f28 --> f41
-  f39 --> f41
-  f28 --> f42
-  f40 --> f42
+  f25 --> f41
+  f40 --> f41
+  f0 --> f42
+  f41 --> f42
+  f16 --> f43
   f29 --> f43
-  f31 --> f43
   f41 --> f43
-  f42 --> f43
+  f29 --> f44
+  f42 --> f44
+  f30 --> f45
+  f31 --> f45
+  f33 --> f45
+  f43 --> f45
+  f44 --> f45
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -145,6 +150,11 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.rem_floor`](../lean_stage3/AssemblyFloor.md#Stage3-rem_floor) — `` c₁ * xx * G ^ 2 / TT ≤ 18 * c₁ * L ^ 2 / xx ``
 - [`Stage3.zeroinner_floor`](../lean_stage3/AssemblyFloor.md#Stage3-zeroinner_floor) — `` 2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK + 1) / Real.pi + 2 * (R + 7 / 8)) + 2 * W ≤ 2 * (L ^ 2 + (4 + 4 * b₁ + 4 * b₂) * L + 2 * b₃ + 2)… ``
 - [`Stage3.floor_arith`](../lean_stage3/AssemblyFloor.md#Stage3-floor_arith) — `` A ≤ (4 + P / L₀ + Q / L₀ ^ 2 + 18 * c₁ / (x₀ * S₀) + c₂ / (S₀ * L₀)) * S * L ^ 2 ``
+
+### [`ClosedLoopChain`](../lean_stage3/ClosedLoopChain.md) — 2
+
+- [`ClosedLoopChain.HolyFamily`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-HolyFamily) — *structure*
+- [`ClosedLoopChain.derive_critical_line`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-derive_critical_line) — `` (hf.J + hf.M) / 2 = 1 / 2 ``
 
 ### [`JensenCount`](../lean_stage3/JensenCount.md) — 17
 
@@ -585,6 +595,13 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`BandJoin.zero_image`](../lean_stage3/BandJoin.md#BandJoin-zero_image) — `` ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (ρ:ℂ).re ``
 - [`BandJoin.zero_middle_iff`](../lean_stage3/BandJoin.md#BandJoin-zero_middle_iff) — `` ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ↔ (ρ:ℂ).re = 1 / 2 ``
 - ★ [`BandJoin.spiralLink_iff_middle`](../lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ``
+
+### [`HolyChannel`](../lean_stage3/HolyChannel.md) — 4
+
+- [`HolyChannel.holy`](../lean_stage3/HolyChannel.md#HolyChannel-holy) — *def*
+- [`HolyChannel.midpoint_half`](../lean_stage3/HolyChannel.md#HolyChannel-midpoint_half) — `` (hf.J + hf.M) / 2 = 1 / 2 ``
+- ★ [`HolyChannel.ZeroIsChannel`](../lean_stage3/HolyChannel.md#HolyChannel-ZeroIsChannel) — *def*
+- ★ [`HolyChannel.spiralLink_iff_channel`](../lean_stage3/HolyChannel.md#HolyChannel-spiralLink_iff_channel) — `` SpiralLink.SpiralLink ↔ ZeroIsChannel ``
 
 ### [`ShareLink`](../lean_stage3/ShareLink.md) — 4
 

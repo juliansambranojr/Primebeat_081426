@@ -7,31 +7,36 @@ Readings — block J10 of `lean_stage3/design/closedloop.md`. 2026-11-23. The ru
 14 theorems, 1 definition, 169 lines. 
 
 **Imports:** [`ClosedLoopChain`](../lean_stage3/ClosedLoopChain.md), [`Saddle`](../lean_stage3/Saddle.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>half_rung_ratio ■</b><br/>((2 : ℝ) ^ (k / 2) - 2 ^ ((k - 1) / 2)) / 2 ^ (k / 2) = 1 - 1 / …"]:::shp
+  n0["<b>half_rung_ratio</b><br/>((2 : ℝ) ^ (k / 2) - 2 ^ ((k - 1) / 2)) / 2 ^ (k / 2) = 1 - 1 / …"]:::shp
   n1["<b>half_regime_shares ■</b><br/>(Real.sqrt 2 * 2 ^ n - 2 ^ n) / 2 ^ n = Real.sqrt 2 - 1 ∧ (2 ^ (…"]:::shp
   n2["<b>net_is_sum_of_steps ■</b><br/>∑ d ∈ D, f d = ∑ p ∈ P, ∑ d ∈ D.filter (fun d =＞ g d = p), f d"]:::cnt
   n3["<b>five_sixths_midpoint ■</b><br/>((2 : ℝ) / 3 + 1) / 2 = 5 / 6"]:::cnt
   n4["<b>five_sixths_step ■</b><br/>(5 : ℝ) / 6 - 2 / 3 = 1 / 6 ∧ 1 - (5 : ℝ) / 6 = 1 / 6"]:::cnt
-  n5["<b>force_at_family ■</b><br/>restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6"]:::cnt
+  n5["<b>force_at_family</b><br/>restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6"]:::cnt
   n6["<b>paper_lemma_zero ■</b><br/>|(2.5 : ℝ) - (6 * ε + 0.5)| = 0 ↔ ε = 1 / 3"]:::cnt
   n7["<b>lattice_opens ■</b><br/>Nat.Prime 5 ∧ 5 % 6 = 5 ∧ Nat.Prime 7 ∧ 7 % 6 = 1"]:::cnt
   n8["<b>paper_mid_rec ■</b><br/>paperMid (k + 1) = 2 * paperMid k + 1 / 2"]:::cnt
   n9["<b>paper_mid_values ■</b><br/>paperMid 1 = 5 / 2 ∧ paperMid 2 = 11 / 2"]:::cnt
   n10["<b>paper_first_mid ■</b><br/>2 * (1 / 2 : ℚ) + 1 / 2 ≠ paperMid 1"]:::cnt
-  n11["<b>offset_fixed ■</b><br/>Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2"]:::cnt
-  n12["<b>iv_exact ■</b><br/>¬ Saddle.NoRunaway"]:::shp
+  n11["<b>offset_fixed</b><br/>Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2"]:::cnt
+  n12["<b>iv_exact</b><br/>¬ Saddle.NoRunaway"]:::shp
   n13["<b>wire_holds_iff ■</b><br/>SpiralLink.SpiralLink ↔ Saddle.NoRunaway"]:::thm
-  x0(["<b>ClosedLoopChain</b><br/>holyFamily_force<br/>ignition_energy_is_half"]):::ext
-  x1(["<b>Saddle</b><br/>spiralLink_iff_noRunaway"]):::ext
-  x0 -.-> n11
-  x0 -.-> n5
-  x1 -.-> n13
+  x0(["<b>WholeChain</b><br/>readings_side"]):::ext
+  x1(["<b>ClosedLoopChain</b><br/>holyFamily_force<br/>ignition_energy_is_half"]):::ext
+  x2(["<b>Saddle</b><br/>spiralLink_iff_noRunaway"]):::ext
+  n0 -.-> x0
+  n11 -.-> x0
+  n12 -.-> x0
+  n5 -.-> x0
+  x1 -.-> n11
+  x1 -.-> n5
+  x2 -.-> n13
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -79,7 +84,9 @@ line 33 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds:** nothing. It connects to nothing.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.readings_side`](../lean_stage3/WholeChain.md#WholeChain-readings_side) (WholeChain) — `` (∀ n : ℕ, ClosedLoopChain.Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2) ∧ (∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ¬ Saddle.NoRunaway) ∧ (∀ k : ℝ, ((2 :… ``
 
 <a name="Readings-half_regime_shares"></a>
 ### `Readings.half_regime_shares`
@@ -192,7 +199,9 @@ restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6
 
 **Definitions its proof touches:** [`ClosedLoopChain.HolyFamily`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-HolyFamily), [`ClosedLoopJoin.restoringForce`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-restoringForce)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.readings_side`](../lean_stage3/WholeChain.md#WholeChain-readings_side) (WholeChain) — `` (∀ n : ℕ, ClosedLoopChain.Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2) ∧ (∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ¬ Saddle.NoRunaway) ∧ (∀ k : ℝ, ((2 :… ``
 
 <a name="Readings-paper_lemma_zero"></a>
 ### `Readings.paper_lemma_zero`
@@ -328,7 +337,9 @@ Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2
 
 **Definitions its proof touches:** [`ClosedLoopChain.Midpoint`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-Midpoint)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.readings_side`](../lean_stage3/WholeChain.md#WholeChain-readings_side) (WholeChain) — `` (∀ n : ℕ, ClosedLoopChain.Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2) ∧ (∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ¬ Saddle.NoRunaway) ∧ (∀ k : ℝ, ((2 :… ``
 
 <a name="Readings-iv_exact"></a>
 ### `Readings.iv_exact`
@@ -354,7 +365,9 @@ line 126 · arrows read from text
 
 **Definitions its proof touches:** [`Saddle.NoRunaway`](../lean_stage3/Saddle.md#Saddle-NoRunaway)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.readings_side`](../lean_stage3/WholeChain.md#WholeChain-readings_side) (WholeChain) — `` (∀ n : ℕ, ClosedLoopChain.Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2) ∧ (∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ¬ Saddle.NoRunaway) ∧ (∀ k : ℝ, ((2 :… ``
 
 <a name="Readings-wire_holds_iff"></a>
 ### `Readings.wire_holds_iff`

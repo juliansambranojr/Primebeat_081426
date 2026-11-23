@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-23T23:00:18Z
+# unit: 0501-sieve-idempotent
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49271
+  the reason the settling happens one slot at a time is idempotence. All the steps become f and scales...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49464
+  theorem sieveStep_idem (p : ℕ) (A : Finset ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49465
+  sieveStep p (sieveStep p A) = sieveStep p A :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49471
+  theorem sieveStep_comm (p q : ℕ) (A : Finset ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49472
+  sieveStep p (sieveStep q A) = sieveStep q (sieveStep p A) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49499
+  theorem sieveBelow_succ {p : ℕ} (hp : p.Prime) (A : Finset ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49500
+  sieveBelow (p + 1) A = sieveStep p (sieveBelow p A) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49529
+  theorem rough_eq_card (N p : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49530
+  CompositeSplit.rough N p = (sieveBelow p (Icc 1 (N / p))).card :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49534
+  theorem settles_on_prime {m : ℕ} (hm : 2 ≤ m)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:49535
+  (h : ∀ q : ℕ, q.Prime → q < m → ¬ q ∣ m) : m.Prime :=
+
+# 12 found, 0 missing

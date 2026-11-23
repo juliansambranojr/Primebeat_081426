@@ -1,0 +1,18 @@
+key	value	source
+module_lines	140	wc -l lean_stage3/Stage3/SieveIdem.lean
+theorems_proved	8	grep -c ^theorem lean_stage3/Stage3/SieveIdem.lean
+defs	2	grep -c ^def (sieveStep, sieveBelow)
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/SieveIdem.lean
+pins	5	sieveStep_idem, sieveStep_comm, sieveBelow_succ, rough_eq_card, settles_on_prime
+errors_first	0	the first lake build Stage3.SieveIdem here
+builds	1	the build here before the definitions were split over two lines
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8884	lake build (full Stage3), Build completed successfully
+jobs_module	8807	run/build.log, lake build Stage3.SieveIdem
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r12	the sieve's step is idempotent
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_split	490	unit 0490
+unit_memory	499	unit 0499

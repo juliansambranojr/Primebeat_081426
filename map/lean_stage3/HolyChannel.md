@@ -7,7 +7,7 @@ HolyChannel — block J9 of `lean_stage3/design/closedloop.md`. 2026-11-23. Juli
 6 theorems, 2 definitions, 102 lines. 
 
 **Imports:** [`ClosedLoopChain`](../lean_stage3/ClosedLoopChain.md), [`ShareLink`](../lean_stage3/ShareLink.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
@@ -18,14 +18,16 @@ flowchart LR
   n2["<b>member_is_two ■</b><br/>mirrorZ ρ ≠ ρ ∧ ‖(T : ℂ) ^ (ρ : ℂ)‖ ≠ ‖(T : ℂ) ^ ((mirrorZ ρ : N…"]:::thm
   n3["<b>meet_iff_channel ■</b><br/>‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) …"]:::thm
   n4["<b>channel_iff_self_mirror ■</b><br/>(ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ"]:::thm
-  n5["<b>spiralLink_iff_channel ■</b><br/>SpiralLink.SpiralLink ↔ ZeroIsChannel"]:::thm
+  n5["<b>spiralLink_iff_channel</b><br/>SpiralLink.SpiralLink ↔ ZeroIsChannel"]:::thm
   x0(["<b>ClosedLoopChain</b><br/>4 theorems"]):::ext
   x1(["<b>SpiralLink</b><br/>mirrorZ_eq_iff<br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
   x2(["<b>ShareLink</b><br/>meet_iff"]):::ext
   x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
   n0 --> n3
   n0 --> n4
   n0 --> n5
+  n5 -.-> x4
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n2
@@ -67,7 +69,7 @@ def · line 71
 Every zero sits at the midpoint of the Holy Family: the channel.
 
 - **Is:** `` ZeroIsChannel : Prop := ∀ ρ : NontrivialZeros, (ρ : ℂ).re = (holy.J + holy.M) / 2 ``
-- **Used by 1:** [`HolyChannel.spiralLink_iff_channel`](#HolyChannel-spiralLink_iff_channel)
+- **Used by 2:** [`HolyChannel.spiralLink_iff_channel`](#HolyChannel-spiralLink_iff_channel), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
 
 ## Theorems
 
@@ -247,5 +249,7 @@ SpiralLink.SpiralLink ↔ ZeroIsChannel
 
 **Definitions its proof touches:** [`HolyChannel.ZeroIsChannel`](#HolyChannel-ZeroIsChannel), [`HolyChannel.holy`](#HolyChannel-holy), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 

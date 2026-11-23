@@ -190,6 +190,7 @@ import Stage3.Saddle
 import Stage3.WholeChain
 import Stage3.HolyChannel
 import Stage3.Readings
+import Stage3.SieveIdem
 
 namespace Stage3
 

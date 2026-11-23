@@ -17,6 +17,8 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  J11 (unit 0502, `WholeChain`): the closing theorem names the day. `whole_chain` adds every zero the Holy Family's channel; `table_side` adds the sieve's idempotence, one prime at a time, the first open slot a prime; `readings_side` gathers unit 0500. Nothing new proved; the link has no proof.
+- [open]   2026-11-23  R12 PROVED (unit 0501, `SieveIdem`): Julian's idempotence. A prime's step is idempotent and order-free with no size in its rule; the sieve grows one prime at a time; a number no smaller prime divides is prime. Not derived: a size for the roundings.
 - [open]   2026-11-23  Julian's reading beside unit 0499: the composite weight pushes the prime out and holds it back; the prime moves into slots the 2 and 3 scaffold already shapes; the slot it fills is the one that does not repel it, like jazz. The settling is one slot at a time because of idempotence: every step is the same f, and it scales at any x.
 - [open]   2026-11-23  J10 PROVED (unit 0500, `Readings`): the day's runs and readings in exact form. Half-regime ratios exact (1 - 1/sqrt 2, sqrt 2 - 1, 2 - sqrt 2); five sixths is the force at 1/3 and 2/3; the paper's (iv) exact: the offset stays 1/2, an off-line zero shows as the runaway. Not proved: measured sizes (kernel), no memory (measured against), the wire at every N.
 - [open]   2026-11-23  Unit 0499 (run, EXPLORATORY): a prime's sieve rounding remembers the primes before it. Neighbouring steps correlate 0.998 at 2^24 (0.952 with the smooth trend removed); the net rounding reaches 7.75 sqrt(x), against 0.63 for random signs. The table's residual narrows collectively, where the smooth part meets the roundings.

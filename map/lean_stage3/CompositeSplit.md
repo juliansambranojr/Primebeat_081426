@@ -7,7 +7,7 @@ CompositeSplit — block R10 of `lean_stage3/design/runs.md`. 2026-11-23. The co
 6 theorems, 1 definition, 152 lines. 
 
 **Imports:** [`SieveExact`](../lean_stage3/SieveExact.md), [`StepsRate`](../lean_stage3/StepsRate.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Compression`](../lean_stage3/Compression.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Compression`](../lean_stage3/Compression.md), [`SieveIdem`](../lean_stage3/SieveIdem.md)
 
 ## The picture
 
@@ -48,7 +48,7 @@ def · line 32
 The numbers from `1` to `N/p` that no prime below `p` divides: the table at the scale `N/p`, sieved by the primes below `p`.
 
 - **Is:** `` rough (N p : ℕ) : ℕ := ((Icc 1 (N / p)).filter (fun m => ∀ q : ℕ, q.Prime → q < p → ¬ q ∣ m)).card ``
-- **Used by 4:** [`CompositeSplit.card_least_prime`](#CompositeSplit-card_least_prime), [`CompositeSplit.composite_part`](#CompositeSplit-composite_part), [`CompositeSplit.composites_no_signs`](#CompositeSplit-composites_no_signs), [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side)
+- **Used by 5:** [`CompositeSplit.card_least_prime`](#CompositeSplit-card_least_prime), [`CompositeSplit.composite_part`](#CompositeSplit-composite_part), [`CompositeSplit.composites_no_signs`](#CompositeSplit-composites_no_signs), [`SieveIdem.rough_eq_card`](../lean_stage3/SieveIdem.md#SieveIdem-rough_eq_card), [`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side)
 
 ## Theorems
 

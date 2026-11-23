@@ -230,3 +230,21 @@ right-hand sum is minus the residual of `smooth N`.
 - `unique_new_prime`, `nonSmooth_eq_biUnion`, `compression`.
 
 Not derived: a size for the residual of `smooth N`.
+
+## R12 The sieve's step is idempotent — `Stage3/SieveIdem.lean`
+
+Julian, 2026-11-23: the settling happens one slot at a time because of
+idempotence; every step is the same `f`, and it scales at any `x`.
+
+A prime's step `f_p` removes its multiples. `f_p ∘ f_p = f_p`; `f_p ∘ f_q =
+f_q ∘ f_p`; membership reads `m ∈ A ∧ ¬ p ∣ m`, with no size in it. The sieve
+below `p` grows by one prime's step past each prime and is unchanged past each
+number that is not prime. Its counts on `[1, N/p]` are `CompositeSplit.rough`.
+The first number no earlier prime divides is prime.
+
+- `sieveStep_idem`, `sieveStep_comm`, `mem_sieveStep`, `sieveBelow_idem`,
+  `sieveBelow_succ`, `sieveBelow_succ_of_not_prime`, `rough_eq_card`,
+  `settles_on_prime`.
+
+Not derived: idempotence fixes which numbers are left; it gives no size for
+the roundings `⌊N/p⌋` the counts carry.

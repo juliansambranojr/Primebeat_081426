@@ -4,14 +4,16 @@ flowchart LR
   n2["<b>member_is_two ■</b><br/>mirrorZ ρ ≠ ρ ∧ ‖(T : ℂ) ^ (ρ : ℂ)‖ ≠ ‖(T : ℂ) ^ ((mirrorZ ρ : N…"]:::thm
   n3["<b>meet_iff_channel ■</b><br/>‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) …"]:::thm
   n4["<b>channel_iff_self_mirror ■</b><br/>(ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ"]:::thm
-  n5["<b>spiralLink_iff_channel ■</b><br/>SpiralLink.SpiralLink ↔ ZeroIsChannel"]:::thm
+  n5["<b>spiralLink_iff_channel</b><br/>SpiralLink.SpiralLink ↔ ZeroIsChannel"]:::thm
   x0(["<b>ClosedLoopChain</b><br/>4 theorems"]):::ext
   x1(["<b>SpiralLink</b><br/>mirrorZ_eq_iff<br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
   x2(["<b>ShareLink</b><br/>meet_iff"]):::ext
   x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
   n0 --> n3
   n0 --> n4
   n0 --> n5
+  n5 -.-> x4
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n2

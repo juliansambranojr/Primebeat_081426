@@ -1,16 +1,16 @@
 # What `WholeChain.table_side` rests on
 
-[`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side) in `lean_stage3/Stage3/WholeChain.lean`, line 51.
+[`WholeChain.table_side`](../lean_stage3/WholeChain.md#WholeChain-table_side) in `lean_stage3/Stage3/WholeChain.lean`, line 61.
 
 **Why.** The table's side. What is proved of the table at every `N`, with no zero in the statement.
 
 **Proves**
 
 ```lean
-(∀ N : ℕ, 2 ≤ N → (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (SieveExact.smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ)) ∧ (∀ N : ℕ, ((Finset.Icc 2 N).filter (fun n => ¬ n.Prime)).card + (SieveExact.smallPrimes N).card = ∑ p ∈ SieveExact.smallPrimes N, CompositeSplit.rough N p) ∧ (∀ N : ℕ, N = Compression.smooth N + ∑ p ∈ Compression.newPrimes N, N / p) ∧ (∀ N : ℕ, ∑ k ∈ Finset.Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Finset.Icc 1 N, Real.log (n : ℝ)) ∧ (∀ (ρ : ℂ) (k : ℤ), (2 : ℂ) ^ (ρ + 2 * Real.pi * Complex.I * (k : ℂ) / (Real.log 2 : ℂ)) = (2 : ℂ) ^ ρ)
+(∀ N : ℕ, 2 ≤ N → (Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (SieveExact.smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ)) ∧ (∀ N : ℕ, ((Finset.Icc 2 N).filter (fun n => ¬ n.Prime)).card + (SieveExact.smallPrimes N).card = ∑ p ∈ SieveExact.smallPrimes N, CompositeSplit.rough N p) ∧ (∀ N : ℕ, N = Compression.smooth N + ∑ p ∈ Compression.newPrimes N, N / p) ∧ (∀ N : ℕ, ∑ k ∈ Finset.Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Finset.Icc 1 N, Real.log (n : ℝ)) ∧ (∀ (ρ : ℂ) (k : ℤ), (2 : ℂ) ^ (ρ + 2 * Real.pi * Complex.I * (k : ℂ) / (Real.log 2 : ℂ)) = (2 : ℂ) ^ ρ) ∧ (∀ (p : ℕ) (A : Finset ℕ), SieveIdem.sieveStep p (SieveIdem.sieveStep p A) = SieveIdem.sieveStep p A) ∧ (∀ (p : ℕ), p.Prime → ∀ A : Finset ℕ, SieveIdem.sieveBelow (p + 1) A = SieveIdem.sieveStep p (SieveIdem.sieveBelow p A)) ∧ (∀ m : ℕ, 2 ≤ m → (∀ q : ℕ, q.Prime → q < m → ¬ q ∣ m) → m.Prime)
 ```
 
-Behind it: 23 theorems and 5 definitions in 6 files. Every one is listed below; Lean recorded each step.
+Behind it: 26 theorems and 7 definitions in 7 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -21,14 +21,16 @@ flowchart LR
   f2["<b>CompositeSplit</b><br/>7 used"]:::thm
   f3["<b>Compression</b><br/>5 used"]:::thm
   f4["<b>SelfBound</b><br/>4 used"]:::thm
-  f5["<b>WholeChain</b><br/>table_side"]:::end_
+  f5["<b>SieveIdem</b><br/>5 used"]:::thm
+  f6["<b>WholeChain</b><br/>table_side"]:::end_
   f1 --> f2
   f1 --> f3
   f1 --> f4
-  f0 --> f5
-  f2 --> f5
-  f3 --> f5
-  f4 --> f5
+  f0 --> f6
+  f2 --> f6
+  f3 --> f6
+  f4 --> f6
+  f5 --> f6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -87,4 +89,12 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`SelfBound.psi_scale`](../lean_stage3/SelfBound.md#SelfBound-psi_scale) — `` Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ d ∈ Icc 1 N, if d * k ≤ N then vonMangoldt d else 0 ``
 - [`SelfBound.card_scales`](../lean_stage3/SelfBound.md#SelfBound-card_scales) — `` ((Icc 1 N).filter fun k => d * k ≤ N).card = N / d ``
 - ★ [`SelfBound.self_bound`](../lean_stage3/SelfBound.md#SelfBound-self_bound) — `` ∑ k ∈ Icc 1 N, Chebyshev.psi ((N : ℝ) / (k : ℝ)) = ∑ n ∈ Icc 1 N, Real.log (n : ℝ) ``
+
+### [`SieveIdem`](../lean_stage3/SieveIdem.md) — 5
+
+- ★ [`SieveIdem.sieveStep`](../lean_stage3/SieveIdem.md#SieveIdem-sieveStep) — *def*
+- ★ [`SieveIdem.sieveStep_idem`](../lean_stage3/SieveIdem.md#SieveIdem-sieveStep_idem) — `` sieveStep p (sieveStep p A) = sieveStep p A ``
+- ★ [`SieveIdem.sieveBelow`](../lean_stage3/SieveIdem.md#SieveIdem-sieveBelow) — *def*
+- ★ [`SieveIdem.sieveBelow_succ`](../lean_stage3/SieveIdem.md#SieveIdem-sieveBelow_succ) — `` sieveBelow (p + 1) A = sieveStep p (sieveBelow p A) ``
+- ★ [`SieveIdem.settles_on_prime`](../lean_stage3/SieveIdem.md#SieveIdem-settles_on_prime) — `` m.Prime ``
 
