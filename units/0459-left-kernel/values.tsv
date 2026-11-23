@@ -1,0 +1,19 @@
+key	value	source
+module_lines	365	wc -l lean_stage3/Stage3/LeftKernel.lean
+theorems_proved	8	grep -c ^theorem lean_stage3/Stage3/LeftKernel.lean
+defs	0	grep -c ^def; vmTerm and Bser are noncomputable defs
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LeftKernel.lean
+pins	3	osc_by_parts, kernel_bound, series_side
+errors_first	15	the worker's first failed build, as it reported
+builds	9	the worker's builds, as it reported; the fifth was the first clean one
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8849	lake build (full Stage3), Build completed successfully
+jobs_module	8737	run/build.log, lake build Stage3.LeftKernel
+loop_version	22	lean_stage3/LOOP.md version line
+design	leftedge.md#f2	the left edge bounded at every height
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+floor_x	16	the hypothesis 16 ≤ x
+floor_T	2	the hypothesis 2 ≤ T
+noncomputable_defs	2	vmTerm, Bser

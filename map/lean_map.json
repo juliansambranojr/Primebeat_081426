@@ -32998,6 +32998,310 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LeftKernel.lean",
+  "module": "Stage3.LeftKernel",
+  "stem": "LeftKernel",
+  "header": "LeftKernel — blocks F2a and F2b of `lean_stage3/design/leftedge.md`. 2026-11-23.",
+  "imports": [
+   "Stage3.ExplicitLeft"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "LeftKernel"
+  ],
+  "lines": 366,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ExplicitLeft.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "cpow_tI",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.cpow_tI",
+    "line": 28,
+    "why": "For `y > 0`, the turning factor `y^(it)` is the exponential `exp(log y · it)`.",
+    "sorry": false,
+    "needs": [
+     "hy : 0 < y",
+     "t : ℝ"
+    ],
+    "proves": "(y:ℂ) ^ ((t:ℂ) * Complex.I) = Complex.exp ((Real.log y : ℂ) * ((t:ℂ) * Complex.I))",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_exp_tI",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.norm_exp_tI",
+    "line": 33,
+    "why": "The exponential `exp(L · it)` of a purely imaginary number has norm one.",
+    "sorry": false,
+    "needs": [
+     "L t : ℝ"
+    ],
+    "proves": "‖Complex.exp ((L:ℂ) * ((t:ℂ) * Complex.I))‖ = 1",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_cpow_tI",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.norm_cpow_tI",
+    "line": 38,
+    "why": "For `y > 0`, the turning factor `y^(it)` has norm one.",
+    "sorry": false,
+    "needs": [
+     "hy : 0 < y",
+     "t : ℝ"
+    ],
+    "proves": "‖(y:ℂ) ^ ((t:ℂ) * Complex.I)‖ = 1",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "osc_by_parts",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.osc_by_parts",
+    "line": 45,
+    "why": "Integration by parts against the turning factor. For `y > 1`, `a ≤ b`, and `h` with derivative `h′` on `[a,b]`, `h′` integrable: `‖∫_a^b y^(it)·h(t) dt‖ ≤ (‖h a‖ + ‖h b‖ + ∫_a^b ‖h′‖)/log y`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hab : a ≤ b",
+     "hd : ∀ t ∈ Set.uIcc a b, HasDerivAt h (h' t) t",
+     "hi : IntervalIntegrable h' volume a b"
+    ],
+    "proves": "‖∫ t in a..b, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * h t‖ ≤ (‖h a‖ + ‖h b‖ + ∫ t in a..b, ‖h' t‖) / Real.log y",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kernel_bound",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.kernel_bound",
+    "line": 101,
+    "why": "F2a, the kernel. For `y > 1`, `T > 0` and real `a ≠ 0`: `‖∫_{−T}^{T} y^(it)/(a+it) dt‖ ≤ (2/T + π/|a|)/log y`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hT : 0 < T",
+     "ha : a ≠ 0"
+    ],
+    "proves": "‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) / ((a:ℂ) + (t:ℂ) * Complex.I)‖ ≤ (2 / T + Real.pi / |a|) / Real.log y",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "vmTerm",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.vmTerm",
+    "line": 177,
+    "why": "The `n`-th term of the von Mangoldt series at `5/4`: `Λ(n)·n^(−5/4)`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_summable"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vmTerm_nonneg",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.vmTerm_nonneg",
+    "line": 181,
+    "why": "Each term `Λ(n)·n^(−5/4)` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "0 ≤ vmTerm n",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vmTerm_summable",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.vmTerm_summable",
+    "line": 185,
+    "why": "The series `Σ Λ(n)·n^(−5/4)` converges.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Summable vmTerm",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_summable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "Bser",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.Bser",
+    "line": 198,
+    "why": "The series-side constant: `((1 + 4π)/log 16)·Σ' n, Λ(n)·n^(−5/4)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "series_side",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.series_side",
+    "line": 205,
+    "why": "F2b, the series side. For `16 ≤ x` and `2 ≤ T`, the Dirichlet-series half of the left edge, `∫_{−T}^{T} ζ'/ζ(5/4 − it)·x^(−1/4+it)/(−1/4+it) dt`, has norm at most `Bser·x^(−1/4)`, with `Bser` free of `x` and `T`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ ≤ Bser * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/LineBound.lean",
   "module": "Stage3.LineBound",
   "stem": "LineBound",
@@ -70927,11 +71231,12 @@
    "Stage3.ZeroDensity",
    "Stage3.ZeroSummable",
    "Stage3.AttainedPi",
-   "Stage3.ExplicitLeft"
+   "Stage3.ExplicitLeft",
+   "Stage3.LeftKernel"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 166,
+  "lines": 167,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -70988,6 +71293,7 @@
    "lean_stage3/Stage3/LandauTrig.lean",
    "lean_stage3/Stage3/LandauWindow.lean",
    "lean_stage3/Stage3/LandauZeroSide.lean",
+   "lean_stage3/Stage3/LeftKernel.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",

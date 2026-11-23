@@ -7,7 +7,7 @@ ExplicitLeft — block F1 of `lean_stage3/design/leftedge.md`. 2026-11-23. The t
 4 theorems, 1 definition, 670 lines. 
 
 **Imports:** [`GlueNum`](../lean_stage3/GlueNum.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LeftKernel`](../lean_stage3/LeftKernel.md)
 
 ## The picture
 

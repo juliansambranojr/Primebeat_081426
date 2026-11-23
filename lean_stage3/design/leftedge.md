@@ -50,6 +50,10 @@ Logarithmic derivative in `s`:
 
     ζ'/ζ(s) = G(s) − ζ'/ζ(w),   G(s) = log 2π − Γ'/Γ(w) + (π/2)·tan(πw/2).
 
+F2a and F2b are PROVED (unit 0459: `LeftKernel.osc_by_parts`,
+`kernel_bound`, `series_side`, `Bser`). The exchange of sum and integral is by
+dominated convergence.
+
 - **F2a, the kernel.** For `y > 1`, `a ≠ 0` real:
   `|∫_{-T}^{T} y^(it)/(a+it) dt| ≤ (2/T + π/|a|)/log y`. By parts once.
 - **F2b, the series side.** `−ζ'/ζ(w) = Σ Λ(n)·n^(−w)`, absolutely

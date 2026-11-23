@@ -1,0 +1,26 @@
+flowchart LR
+  n0["<b>cpow_tI</b><br/>(y:ℂ) ^ ((t:ℂ) * Complex.I) = Complex.exp ((Real.log y : ℂ) * ((…"]:::shp
+  n1["<b>norm_exp_tI</b><br/>‖Complex.exp ((L:ℂ) * ((t:ℂ) * Complex.I))‖ = 1"]:::shp
+  n2["<b>norm_cpow_tI</b><br/>‖(y:ℂ) ^ ((t:ℂ) * Complex.I)‖ = 1"]:::shp
+  n3["<b>osc_by_parts</b><br/>‖∫ t in a..b, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * h t‖ ≤ (‖h a‖ + ‖h…"]:::shp
+  n4["<b>kernel_bound</b><br/>‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) / ((a:ℂ) + (t:ℂ) …"]:::shp
+  n5["<b>vmTerm_nonneg</b><br/>0 ≤ vmTerm n"]:::shp
+  n6["<b>vmTerm_summable ■</b><br/>Summable vmTerm"]:::thm
+  n7["<b>series_side ■</b><br/>‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I…"]:::thm
+  n0 --> n2
+  n0 --> n3
+  n0 --> n7
+  n1 --> n2
+  n1 --> n3
+  n2 --> n7
+  n3 --> n4
+  n4 --> n7
+  n5 --> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

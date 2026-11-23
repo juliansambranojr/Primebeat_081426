@@ -22,6 +22,25 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block F2 of `design/leftedge.md`: `Stage3/LeftKernel.lean`, `Stage3/LeftSmooth.lean`
+
+    DONE        `LeftKernel.osc_by_parts`, `kernel_bound`, `series_side`: the
+                turning factor integrated by parts; the Dirichlet-series half
+                of the left edge `≤ Bser·x^(−1/4)` at every height; one unit.
+                `LeftSmooth.smooth_side`, `left_edge_bound`,
+                `explicit_formula_all`: the gamma-factor half, the edge
+                `≤ Bleft·x^(−1/4)`, the formula at every height with no
+                logarithm of the height in the last term; one unit
+    ASSUMED     Julian, 2026-11-23: "T3 at a fixed row (the explicit formula
+                above x²)." Unit 0457's repair. Written by Opus workers; read
+                and built here
+    DEPENDS     `ExplicitLeft.explicit_formula_left`, Mathlib
+                `riemannZeta_one_sub`,
+                `LSeries_vonMangoldt_eq_deriv_riemannZeta_div`, PNT+
+                `Complex.hasSum_digamma`
+    OUT         the cell at a fixed row (block F3)
+    OUTCOME     `LeftKernel` proved, unit 0459; `LeftSmooth` being built
+
 ### 2026-11-23 · block F1 of `design/leftedge.md`: `Stage3/ExplicitLeft.lean`
 
     DONE        `explicit_formula_left`: for `16 ≤ x`, `2 ≤ T` the explicit

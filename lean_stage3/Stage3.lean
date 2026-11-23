@@ -155,6 +155,7 @@ import Stage3.ZeroDensity
 import Stage3.ZeroSummable
 import Stage3.AttainedPi
 import Stage3.ExplicitLeft
+import Stage3.LeftKernel
 
 namespace Stage3
 
