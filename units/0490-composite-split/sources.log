@@ -1,0 +1,35 @@
+# check_prose_source.py  2026-11-23T11:53:50Z
+# unit: 0490-composite-split
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41554
+  Have you looked at the composite table for the answer?
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41928
+  theorem card_least_prime (N : ℕ) {p : ℕ} (hp : p.Prime) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41929
+  ((Icc 2 N).filter (fun n => n.minFac = p)).card = rough N p :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41944
+  theorem composites_by_least_prime (N : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41945
+  ((Icc 2 N).filter (fun n => ¬ n.Prime)).card
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41947
+  ((Icc 2 N).filter (fun n => ¬ n.Prime ∧ n.minFac = p)).card :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41983
+  theorem composites_no_signs (N : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41984
+  ((Icc 2 N).filter (fun n => ¬ n.Prime)).card + (smallPrimes N).card
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41985
+  = ∑ p ∈ smallPrimes N, rough N p :=
+
+# 10 found, 0 missing

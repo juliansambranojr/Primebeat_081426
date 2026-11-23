@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-23T11:36:37Z
+# unit: 0487-steps-rate
+# sources searched: 440
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:37224
+  Yes and are you going to fix 1, 2, 3 and 4 on the list you just named too?
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40546
+  theorem norm_K_le_pow {N : ℕ} (hN : 2 ≤ N) {s a : ℂ} (h1 : a ≠ s) (h2 : a ≠ s - 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40547
+  {δ : ℝ} (hδ : 0 ≤ δ) (hre : a.re - s.re ≤ δ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40548
+  ‖K N s a‖ ≤ (‖s‖ / ‖a - s‖ + ‖s - 1‖ / ‖a - s + 1‖) * 2 * (N : ℝ) ^ δ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40607
+  theorem rate_upper {N : ℕ} (hN : 2 ≤ N) {s : ℂ} (hs : 0 < s.re) (hs1 : s.re ≤ 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40608
+  {T : ℝ} (hT : 2 ≤ T) {Θ : ℝ} (hsΘ : s.re ≤ Θ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40609
+  (hΘ : ∀ ρ ∈ FiniteOffLine.ZF T, (ρ : ℂ).re ≤ Θ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40610
+  (hne : ∀ ρ ∈ FiniteOffLine.ZF T, (ρ : ℂ) ≠ s) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:39812
+  ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) / ‖(ρ : ℂ)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40614
+  * ((‖s‖ / ‖(ρ : ℂ) - s‖ + ‖s - 1‖ / ‖(ρ : ℂ) - s + 1‖) * 2))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:40616
+  + (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * N * Real.log ((N:ℝ) * T) ^ 2 / T + C1 s.re) :=
+
+# 12 found, 0 missing

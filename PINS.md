@@ -22,6 +22,271 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J7 of `design/closedloop.md`: `Stage3/Saddle.lean`
+
+    DONE        `fold_rounding`, `fold_mirror`: one row down is the baker's
+                fold on every rounding, and it commutes with the mirror.
+                `saddle_area`, `saddle_of_off_line`, `centre_iff`: off the
+                line a saddle, on the line a centre. `saddle_runs_away`.
+                `spiralLink_iff_noRunaway`, `spiralLink_iff_centres`; one unit
+    ASSUMED     Julian, 2026-11-23: "Go for sequence 1-3 and saddle". Written
+                and built here
+    DEPENDS     `RateBelow.rain_psi`, `ShareLink.mode_size`,
+                `Stage3.zeroFreeRight_iff_psiWeakTheta`
+    OUT         a proof that the staircase does not run away
+    OUTCOME     proved, unit 0495; step (3) stated, unproved
+
+### 2026-11-23 · block J6 of `design/closedloop.md`: `Stage3/ShareLink.lean`
+
+    DONE        `share_is_re`: the real part of a zero is the share of the
+                total its mode takes, on the multiplying scale.
+                `pair_shares_add`: a zero's share and its mirror's add to
+                one. `meet_sqrt_iff`: the mode is the square root of the
+                total exactly at one half. `swap_flips_residual`,
+                `spiralLink_iff_meet`; one unit
+    ASSUMED     Julian, 2026-11-23: "flip the table inside out and it becomes
+                a line". Written and built here
+    DEPENDS     `SpiralLink.mirrorZ_re`, `ClosedLoopJoin.rh_iff_re_half`
+    OUT         that the zeros' mirror is the table's swap
+    OUTCOME     proved, unit 0494
+
+### 2026-11-23 · block R11 of `design/runs.md`: `Stage3/Compression.lean`
+
+    DONE        `unique_new_prime`: a number up to `N` has at most one prime
+                above `√N`. `compression`: the numbers up to `N` are the
+                combinations of the primes up to `√N` and the multiples of
+                the new primes, nothing counted twice; one unit
+    ASSUMED     Julian, 2026-11-23: "Primes are compression of the composites
+                up to that step". Written and built here
+    DEPENDS     `SieveExact.card_multiples`, Mathlib `Finset.card_biUnion`
+    OUT         the size of the residual of the combinations' count
+    OUTCOME     proved, unit 0491
+
+### 2026-11-23 · block R10 of `design/runs.md`: `Stage3/CompositeSplit.lean`
+
+    DONE        `composites_by_least_prime`: every composite up to `N` once,
+                under its least prime, no signs. `card_least_prime`: a
+                prime's part is the table's count at the scale `N/p`.
+                `composites_no_signs`: the composites as a sum of counts; one
+                unit
+    ASSUMED     Julian, 2026-11-23: "Have you looked at the composite table
+                for the answer?" Written and built here
+    DEPENDS     `SieveExact.smallPrimes`, Mathlib `Nat.minFac`
+    OUT         a bound on the residual from the tie across the scales
+    OUTCOME     proved, unit 0490
+
+### 2026-11-23 · block R9 of `design/runs.md`: `Stage3/RateBelow.lean`, `Stage3/StepsBelow.lean`
+
+    DONE        `rain_psi`: at a zero, for every exponent below its real
+                part, the staircase leaves the bound at points beyond any
+                start. `rain_steps`: the same for the turned steps to a
+                cutoff; one unit each
+    ASSUMED     Julian, 2026-11-23: "at some point  you can see the rain is
+                coming". The staircase from `no_zero_right_of_theta`, written
+                and built here. The turned steps by an Opus worker
+    DEPENDS     `Stage3.no_zero_right_of_theta`, `StepsPole.steps_pole`,
+                `StepsPeak.S`
+    OUT         where the rise happens
+    OUTCOME     `rain_psi` proved, unit 0489; `rain_steps` proved, unit 0493
+
+### 2026-11-23 · block J5 of `design/closedloop.md`: `Stage3/BandJoin.lean`
+
+    DONE        `zero_image`, `zero_in_band`: every zero lands strictly inside
+                the band of the deep zero. `zero_pair`: a zero and its mirror
+                multiply to one half, as a cell's two shares do
+                (`share_pair`). `spiralLink_iff_middle`: the link is every
+                zero on the middle circle; one unit
+    ASSUMED     Julian, 2026-11-23: "the inversion of the deep zero flips the
+                table into a band". `lean/DeepZeroBand.lean` restated at base
+                two, composed by statement. Written and built here
+    DEPENDS     `SpiralLink.mirrorZ_re`, `ClosedLoopJoin.rh_iff_re_half`
+    OUT         an identification of a cell's share with a zero's real part
+    OUTCOME     proved, unit 0488
+
+### 2026-11-23 · block R8 of `design/runs.md`: `Stage3/StepsRate.lean`
+
+    DONE        `norm_K_le_pow`: a zero's kernel is at most the cutoff to the
+                gap of the real parts. `rate_upper`: away from the zeros the
+                turned steps less their smooth term grow at most as the
+                cutoff to the largest real part below the height less the
+                real part of the point; one unit
+    ASSUMED     Julian, 2026-11-23: "are you going to fix 1, 2, 3 and 4 on
+                the list". The second size of item 3, its upper half.
+                Written and built here
+    DEPENDS     `StepsPeak.peak_formula`, `StepsPeak.K_eq`
+    OUT         the lower half of the rate
+    OUTCOME     proved, unit 0487
+
+### 2026-11-23 · block R7 of `design/runs.md`: `Stage3/SelfBound.lean`
+
+    DONE        `self_bound`: the staircase read at `N`, `N/2`, …, `N/N` adds
+                up to the logarithms of the integers up to `N`, at every `N`.
+                `self_bound_resid`: the residuals across those scales add up
+                to a quantity with no prime in it; one unit
+    ASSUMED     Julian, 2026-11-23: "It holds because it is bounded by itself
+                and never more or that wouldn't be the same number line."
+                Written and built here
+    DEPENDS     Mathlib `ArithmeticFunction.vonMangoldt_sum`,
+                `SieveExact.card_multiples`
+    OUT         a bound at one scale; the Möbius inversion
+    OUTCOME     proved, unit 0486
+
+### 2026-11-23 · block R6 of `design/runs.md`: `Stage3/HalfSieve.lean`
+
+    DONE        `ignition_is_zeta_zero`: the half of every doubling is minus
+                zeta at zero. `netRounding_centered`: the half of every
+                rounding cancels in the sieve. `resid_of_wobble`: the wobble
+                at square-root size carries the residual, no factor lost.
+                `spiralLink_iff_wobble`: the spiral link is the wobble at
+                square-root size; one unit
+    ASSUMED     Julian, 2026-11-23: "Half is the difference that anything is
+                differentiated at all". Item 4 of the list, by his route.
+                Written and built here
+    DEPENDS     `SieveResidual.net_wobble`, `PiToPsi.RH_iff_schoenfeldWeak`,
+                `SpiralLink.rh_iff_spiralLink`, Mathlib `riemannZeta_zero`
+    OUT         the size of the wobble itself
+    OUTCOME     proved, unit 0485
+
+### 2026-11-23 · block R5 of `design/runs.md`: `Stage3/StepsPeak.lean`
+
+    DONE        `peak_formula`: the turned steps to a cutoff `N` with the ramp,
+                written through the zeros below `T`, with the error bound.
+                `peak_at_zero`: at a zero of order `m` the term `−m·log N`.
+                `peak_height`: the other zeros' part when none lies to the
+                right; one unit
+    ASSUMED     Julian, 2026-11-23: "are you going to fix 1, 2, 3 and 4 on
+                the list". The first size left in item 3. An Opus worker
+                writes it; read and built here
+    DEPENDS     `ExplicitTwo.explicit_formula_all_two`, Mathlib partial
+                summation
+    OUT         the size rate; summability over all zeros if the tree lacks it
+    OUTCOME     proved, unit 0484
+
+### 2026-11-23 · block R4 of `design/runs.md`: `Stage3/StepsPole.lean`
+
+    DONE        `steps_sum`: the turned steps are `−ζ'/ζ` for `Re s > 1`.
+                `steps_pole`, `steps_pole_ne_zero`: a pole at every nontrivial
+                zero, of weight `m/ρ`. `steps_regular`: none elsewhere; one
+                unit
+    ASSUMED     Julian, 2026-11-23: "The runs should be theorems." The exact
+                core of unit 0472. Written and built here
+    DEPENDS     `ContourShift.zeta_local_data_zero`, Mathlib
+                `LSeries_vonMangoldt_eq_deriv_riemannZeta_div`
+    OUT         the height of a finite peak; the size rate
+    OUTCOME     proved, unit 0483
+
+### 2026-11-23 · block R3 of `design/runs.md`: `Stage3/SieveResidual.lean`
+
+    DONE        `net_wobble`: for `N ≥ 2`, the sieve's net rounding less its
+                smooth part is minus the residual of the count at `N` less
+                the residual at `√N`. `net_wobble_rows`: at row `2m`, the
+                table's residual at row `2m` less at row `m`; one unit
+    ASSUMED     Julian, 2026-11-23: "are you going to fix 1, 2, 3 and 4 on
+                the list". Item 2 in the form the numbers allow: the net
+                rounding is of the order of the count (unit 0475, corrected);
+                its wobble is the table's residual. Written and built here
+    DEPENDS     `SieveExact.netRounding_eq`, `Stage3.Li`
+    OUT         the size of the residual at the two rows
+    OUTCOME     proved, unit 0482
+
+### 2026-11-23 · block R2 of `design/runs.md`: `Stage3/SieveExact.lean`
+
+    DONE        `pi_by_sieve`, `row_by_sieve`: the count of primes up to `N`
+                from the primes up to `√N`, exactly, for every `N ≥ 2`.
+                `sieve_by_level`, `level_card`: by levels, each level a
+                binomial coefficient of terms. `sieve_split`,
+                `smoothPart_eq_prod`: the count is `N·Π(1 − 1/p)` less the
+                net of the roundings; one unit
+    ASSUMED     Julian, 2026-11-23: "The runs should be theorems." The exact
+                core of unit 0475. Written by an Opus worker; read and built
+                here
+    DEPENDS     Mathlib
+    OUT         the size of the net rounding
+    OUTCOME     proved, unit 0481
+
+### 2026-11-23 · block R1 of `design/runs.md`: `Stage3/RunTheorems.lean`
+
+    DONE        `mode_fold`: a height shows on the ladder only up to
+                `2π/log 2`. `two_mode_beat`, `mode_cross`, `zero_pair_beat`:
+                two modes together carry a term turning at the difference of
+                their heights, at every row; one unit
+    ASSUMED     Julian, 2026-11-23: "The runs should be theorems." The exact
+                cores of units 0473 and 0474. Written and built here
+    DEPENDS     Mathlib `Complex.normSq_add`, `Complex.exp_int_mul_two_pi_mul_I`
+    OUT         the sieve's exact sum (block R2); the runs' sizes
+    OUTCOME     proved, unit 0480
+
+### 2026-11-23 · block J4 of `design/closedloop.md`: `Stage3/OneChain.lean`
+
+    DONE        `one_chain`: RH, `SpiralLink`, `OneAtEachHeight`, the force at
+                rest at every zero, and every cell of every dyadic ladder at
+                square-root size are one statement. `table_of_spiralLink`;
+                `spiralLink_of_finite`, `spiralLink_of_attained`,
+                `spiralLink_of_attained_psi`,
+                `spiralLink_of_finite_accumulation`; `no_exposed_zero`; one
+                unit
+    ASSUMED     Julian, 2026-11-23: "Is the loop compiled by itself or does
+                it connect to every theorem in the tree". The capstone that
+                ties the loop to the tree's main theorems. Written and built
+                here
+    DEPENDS     `SpiralLink.rh_iff_spiralLink`, `CellResidual.RH_iff_cells`,
+                `table_cell_resid`, `AttainedPi.attained_off_line_pi`,
+                `FiniteOffLinePi.finite_off_line_pi`,
+                `FilterAccum.rh_of_finite_accumulation`,
+                `CountEuler.euler_exposed_false`
+    OUT         `SpiralLink` with no hypothesis; the map
+    OUTCOME     proved, unit 0479
+
+### 2026-11-23 · block J3 of `design/closedloop.md`: `Stage3/ClosedLoopChain.lean`
+
+    DONE        the closed loop's Parts I, III, IV, V, VI restated and joined:
+                `holyFamily_is_mirror_pair`, `holyFamily_pair_area`,
+                `holyFamily_force`; `row_at_midpoint`: the table's row read at
+                the doubling's midpoint; `primeBeatTerm_eq_im`: the Beat is
+                the imaginary part of the walk; one unit
+    ASSUMED     Julian, 2026-11-23: "Join the part to the tree." "The point of
+                the lean files is to show that all the theorems connect to
+                each other." Written and built here
+    DEPENDS     `ClosedLoopJoin.force_eq`, `ClosedLoopJoin.primeWeight`
+    OUT         a proof of `SpiralLink.SpiralLink`; the map
+    OUTCOME     proved, unit 0478
+
+### 2026-11-23 · block J2 of `design/closedloop.md`: `Stage3/SpiralLink.lean`
+
+    DONE        `SpiralLink`: the handshake at every zero, the paper's "the
+                spiral can only converge at σ = 1/2", as a Lean proposition.
+                `OneAtEachHeight`: no two zeros share a height. `mirrorZ`,
+                `mirrorZ_eq_iff`, `off_line_is_two`: an off-line zero is two
+                zeros at one height. `rh_iff_spiralLink`,
+                `rh_iff_one_at_each_height`, `spiralLink_iff_one`; one unit
+    ASSUMED     Julian, 2026-11-23: "State that link in lean". Stated, and
+                shown equal to "there is just one zero" and to RH. Written
+                and built here
+    DEPENDS     `ClosedLoopJoin.rh_iff_handshake`, `WeilOnLine.conj_mem`,
+                Mathlib `riemannZeta_one_sub`
+    OUT         a proof of either proposition; the map
+    OUTCOME     proved as stated, unit 0477
+
+### 2026-11-23 · block J1 of `design/closedloop.md`: `Stage3/ClosedLoopJoin.lean`
+
+    DONE        `force_join`: the closed loop's restoring force and the
+                tree's mirror imbalance are one, up to `2·log b/5`.
+                `handshake_iff_sides`: the handshake is the mode and its
+                mirror agreeing in size at every prime above three.
+                `structural_contradiction`, `off_line_zero`: the closed
+                loop's theorem, and the same on a zero of zeta.
+                `rh_iff_force_zero`, `rh_iff_handshake`; one unit
+    ASSUMED     Julian, 2026-11-23: "I'm pretty sure the restarting force and
+                a contradiction proof is in there". They are, in
+                `lean_primebeat/PrimeBeat/primebeat_closed_loop.lean`. The
+                four definitions restated word for word; written and built
+                here
+    DEPENDS     `StencilWeil.restoringForce_eq`,
+                `MirrorArea.long_side_of_off_line`,
+                `LandauWindow.rh_of_zeroFree_half`
+    OUT         a statement that the force is zero at a zero of zeta; the map
+    OUTCOME     proved, unit 0476
+
 ### 2026-11-23 · blocks N2, N3-E of `design/countmodes.md`: `Stage3/CountReduction.lean`, `Stage3/CountEuler.lean`
 
     DONE        `CountReduction.count_modes_small`: under the ladder bound on

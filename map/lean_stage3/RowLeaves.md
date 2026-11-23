@@ -5,7 +5,7 @@ RowLeaves — block E4 of `lean_stage3/design/joints.md`. 2026-11-22. Two leaves
 7 theorems, 0 definitions, 165 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`PsiToPi`](../lean_stage3/PsiToPi.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiToPsi`](../lean_stage3/PiToPsi.md), [`RouteGate`](../lean_stage3/RouteGate.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`HalfSieve`](../lean_stage3/HalfSieve.md), [`PiToPsi`](../lean_stage3/PiToPsi.md), [`RouteGate`](../lean_stage3/RouteGate.md)
 
 ## The picture
 
@@ -18,18 +18,20 @@ flowchart LR
   n4["<b>hasDerivAt_rowIntegral</b><br/>HasDerivAt (fun u : ℝ =＞ 2 / Real.log 2 + ∫ t in (1 : ℝ)..u, Rea…"]:::shp
   n5["<b>Li_two_rpow</b><br/>Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp …"]:::shp
   n6["<b>norm_logDerivZeta_zero</b><br/>‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2 * Real.pi)"]:::thm
-  x0(["<b>PiToPsi</b><br/>Li_mul_log_sub_integral<br/>continuousOn_Li"]):::ext
-  x1(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
-  x2(["<b>RouteNum</b><br/>c3n_le<br/>relErrWindow_route_num"]):::ext
+  x0(["<b>HalfSieve</b><br/>Li_floor_close"]):::ext
+  x1(["<b>PiToPsi</b><br/>Li_mul_log_sub_integral<br/>continuousOn_Li"]):::ext
+  x2(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
+  x3(["<b>RouteNum</b><br/>c3n_le<br/>relErrWindow_route_num"]):::ext
   n0 --> n1
   n1 --> n2
   n2 --> n5
   n3 --> n4
   n4 --> n5
   n1 -.-> x0
-  n5 -.-> x1
+  n1 -.-> x1
   n5 -.-> x2
-  n6 -.-> x2
+  n5 -.-> x3
+  n6 -.-> x3
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -90,8 +92,9 @@ HasDerivAt Li (1 / Real.log y) y
 
   - [`Stage3.continuousOn_inv_log_sq_Ioi`](#Stage3-continuousOn_inv_log_sq_Ioi) — `` ContinuousOn (fun t : ℝ => 1 / Real.log t ^ 2) (Ioi 1) ``
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`HalfSieve.Li_floor_close`](../lean_stage3/HalfSieve.md#HalfSieve-Li_floor_close) (HalfSieve) — `` |Stage3.Li x - Stage3.Li (n : ℝ)| ≤ 2 ``
   - [`PiToPsi.Li_mul_log_sub_integral`](../lean_stage3/PiToPsi.md#PiToPsi-Li_mul_log_sub_integral) (PiToPsi) — `` Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x ``
   - [`PiToPsi.continuousOn_Li`](../lean_stage3/PiToPsi.md#PiToPsi-continuousOn_Li) (PiToPsi) — `` ContinuousOn Stage3.Li (Ioi 1) ``
   - [`Stage3.hasDerivAt_Li_two_rpow`](#Stage3-hasDerivAt_Li_two_rpow) — `` HasDerivAt (fun u : ℝ => Li ((2 : ℝ) ^ u)) (Real.exp (Real.log 2 * x) / x) x ``

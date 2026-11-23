@@ -5,7 +5,7 @@ LandauWindow — the Landau window criterion as a statement, and what it gives: 
 4 theorems, 4 definitions, 176 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md), [`LandauCrude`](../lean_stage3/LandauCrude.md), [`LandauMellin`](../lean_stage3/LandauMellin.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md), [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md), [`LandauCrude`](../lean_stage3/LandauCrude.md), [`LandauMellin`](../lean_stage3/LandauMellin.md)
 
 ## The picture
 
@@ -16,11 +16,12 @@ flowchart LR
   n2["<b>zeroFree_half_of_window</b><br/>∀ s : ℂ, 1 / 2 ＜ s.re → riemannZeta s ≠ 0"]:::thm
   n3["<b>rh_of_window</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>AttainedPi</b><br/>attained_off_line_pi"]):::ext
-  x1(["<b>FilterAccum</b><br/>rh_of_finite_accumulation"]):::ext
-  x2(["<b>FilterAttained</b><br/>attained_psi"]):::ext
-  x3(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
-  x4(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
-  x5(["<b>LandauCriterion</b><br/>rh_of_windows"]):::ext
+  x1(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x2(["<b>FilterAccum</b><br/>rh_of_finite_accumulation"]):::ext
+  x3(["<b>FilterAttained</b><br/>attained_psi"]):::ext
+  x4(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
+  x5(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
+  x6(["<b>LandauCriterion</b><br/>rh_of_windows"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
@@ -29,7 +30,8 @@ flowchart LR
   n1 -.-> x2
   n1 -.-> x3
   n1 -.-> x4
-  n3 -.-> x5
+  n1 -.-> x5
+  n3 -.-> x6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -138,9 +140,10 @@ RiemannHypothesis
 
   - [`LandauWindow.zeta_neg_nat_ne_zero`](#LandauWindow-zeta_neg_nat_ne_zero) — `` riemannZeta (-(n : ℂ)) ≠ 0 ``
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
   - [`AttainedPi.attained_off_line_pi`](../lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) (AttainedPi) — `` RiemannHypothesis ``
+  - [`ClosedLoopJoin.rh_iff_re_half`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_re_half) (ClosedLoopJoin) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2 ``
   - [`FilterAccum.rh_of_finite_accumulation`](../lean_stage3/FilterAccum.md#FilterAccum-rh_of_finite_accumulation) (FilterAccum) — `` RiemannHypothesis ``
   - [`FilterAttained.attained_psi`](../lean_stage3/FilterAttained.md#FilterAttained-attained_psi) (FilterAttained) — `` RiemannHypothesis ``
   - [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) (FiniteOffLine) — `` RiemannHypothesis ``

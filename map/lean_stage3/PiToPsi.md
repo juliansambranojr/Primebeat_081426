@@ -5,7 +5,7 @@ PiToPsi — block T5 of `lean_stage3/design/joints.md`, first part. 2026-11-22. 
 12 theorems, 1 definition, 321 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`GlueFloor`](../lean_stage3/GlueFloor.md), [`RowLeaves`](../lean_stage3/RowLeaves.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellResidual`](../lean_stage3/CellResidual.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellResidual`](../lean_stage3/CellResidual.md), [`HalfSieve`](../lean_stage3/HalfSieve.md)
 
 ## The picture
 
@@ -27,7 +27,8 @@ flowchart LR
   x1(["<b>CellResidual</b><br/>RH_iff_cells<br/>base_bound<br/>cells_of_RH"]):::ext
   x2(["<b>PsiToPi</b><br/>integral_A_rpow_le"]):::ext
   x3(["<b>VonKochScaffold</b><br/>RH_iff_psiWeak"]):::ext
-  x4(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
+  x4(["<b>HalfSieve</b><br/>spiralLink_of_wobble"]):::ext
+  x5(["<b>GlueFloor</b><br/>schoenfeldWeak_floor_split_of_RH"]):::ext
   n0 --> n5
   n1 --> n3
   n10 --> n11
@@ -47,12 +48,13 @@ flowchart LR
   n9 --> n10
   n1 -.-> x1
   n10 -.-> x1
+  n10 -.-> x4
   n11 -.-> x1
   x0 -.-> n1
   x0 -.-> n5
   x2 -.-> n8
   x3 -.-> n10
-  x4 -.-> n11
+  x5 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -408,9 +410,10 @@ RiemannHypothesis
 
 **Definitions its proof touches:** [`Stage3.StmtPsiWeak`](../lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`CellResidual.RH_iff_cells`](../lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) (CellResidual) — `` RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ ``
+  - [`HalfSieve.spiralLink_of_wobble`](../lean_stage3/HalfSieve.md#HalfSieve-spiralLink_of_wobble) (HalfSieve) — `` SpiralLink.SpiralLink ``
   - [`PiToPsi.RH_iff_schoenfeldWeak`](#PiToPsi-RH_iff_schoenfeldWeak) — `` RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li ``
 
 <a name="PiToPsi-RH_iff_schoenfeldWeak"></a>

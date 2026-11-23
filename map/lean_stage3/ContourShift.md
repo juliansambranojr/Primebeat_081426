@@ -5,7 +5,7 @@
 28 theorems, 1 definition, 1432 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Assembly`](../lean_stage3/Assembly.md), [`JensenCount`](../lean_stage3/JensenCount.md), [`PerronKernel`](../lean_stage3/PerronKernel.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`StepsPole`](../lean_stage3/StepsPole.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)
 
 ## The picture
 
@@ -47,13 +47,14 @@ flowchart LR
   x5(["<b>GlueFloor</b><br/>edge_left_sharp<br/>explicit_formula_split"]):::ext
   x6(["<b>LandauPoleLocal</b><br/>Phi_principal_part<br/>differentiableAt_Phi"]):::ext
   x7(["<b>LeftSmooth</b><br/>continuous_logDeriv_path"]):::ext
-  x8(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic"]):::ext
-  x9(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
-  x10(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
-  x11(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x12(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
-  x13(["<b>LowCount</b><br/>low_rect_count"]):::ext
-  x14(["<b>RouteNum</b><br/>C2n_le"]):::ext
+  x8(["<b>StepsPole</b><br/>order_pos<br/>steps_pole<br/>steps_regular"]):::ext
+  x9(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic"]):::ext
+  x10(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
+  x11(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
+  x12(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x13(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
+  x14(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x15(["<b>RouteNum</b><br/>C2n_le"]):::ext
   n0 --> n27
   n1 --> n6
   n10 --> n27
@@ -103,17 +104,19 @@ flowchart LR
   n1 -.-> x2
   n10 -.-> x0
   n14 -.-> x6
+  n14 -.-> x8
   n15 -.-> x0
+  n15 -.-> x8
   n16 -.-> x0
   n17 -.-> x0
   n18 -.-> x0
   n18 -.-> x1
-  n18 -.-> x12
+  n18 -.-> x13
   n18 -.-> x2
   n18 -.-> x3
   n18 -.-> x4
   n18 -.-> x5
-  n19 -.-> x8
+  n19 -.-> x9
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
@@ -123,31 +126,32 @@ flowchart LR
   n2 -.-> x6
   n2 -.-> x7
   n2 -.-> x8
+  n2 -.-> x9
   n21 -.-> x0
   n21 -.-> x1
-  n21 -.-> x10
-  n21 -.-> x13
+  n21 -.-> x11
   n21 -.-> x14
+  n21 -.-> x15
   n21 -.-> x2
   n21 -.-> x3
   n23 -.-> x0
   n23 -.-> x1
   n23 -.-> x2
   n25 -.-> x1
+  n25 -.-> x10
   n25 -.-> x2
-  n25 -.-> x9
   n26 -.-> x1
-  n26 -.-> x10
+  n26 -.-> x11
   n26 -.-> x2
   n26 -.-> x3
   n27 -.-> x1
   n27 -.-> x2
   n27 -.-> x4
   n27 -.-> x5
+  n3 -.-> x10
   n3 -.-> x6
-  n3 -.-> x9
   n5 -.-> x1
-  n5 -.-> x10
+  n5 -.-> x11
   n5 -.-> x2
   n5 -.-> x3
   n6 -.-> x0
@@ -155,7 +159,7 @@ flowchart LR
   n6 -.-> x2
   n6 -.-> x4
   n6 -.-> x5
-  x11 -.-> n6
+  x12 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -262,7 +266,7 @@ AnalyticAt ℂ riemannZeta ρ
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (20 that use it)
+**Feeds** (22 that use it)
 
   - [`ContourShift.one_le_zeta_order`](#ContourShift-one_le_zeta_order) — `` 1 ≤ analyticOrderNatAt riemannZeta ρ ``
   - [`ContourShift.order_bridge`](#ContourShift-order_bridge) — `` ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) ``
@@ -283,6 +287,8 @@ AnalyticAt ℂ riemannZeta ρ
   - [`LandauPoleLocal.Phi_principal_part`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_principal_part) (LandauPoleLocal) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ) ``
   - [`LandauPoleLocal.differentiableAt_Phi`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-differentiableAt_Phi) (LandauPoleLocal) — `` DifferentiableAt ℂ LandauMellinG.Phi s ``
   - [`LeftSmooth.continuous_logDeriv_path`](../lean_stage3/LeftSmooth.md#LeftSmooth-continuous_logDeriv_path) (LeftSmooth) — `` Continuous fun t => deriv riemannZeta (p t) / riemannZeta (p t) ``
+  - [`StepsPole.order_pos`](../lean_stage3/StepsPole.md#StepsPole-order_pos) (StepsPole) — `` 0 < analyticOrderNatAt riemannZeta (ρ : ℂ) ``
+  - [`StepsPole.steps_regular`](../lean_stage3/StepsPole.md#StepsPole-steps_regular) (StepsPole) — `` AnalyticAt ℂ (fun t : ℂ => deriv riemannZeta t / riemannZeta t) s ``
   - [`ZetaGrowth.sq_mul_zeta_analytic`](../lean_stage3/ZetaGrowth.md#ZetaGrowth-sq_mul_zeta_analytic) (ZetaGrowth) — `` AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s ``
 
 <a name="ContourShift-one_le_zeta_order"></a>
@@ -643,7 +649,7 @@ analyticOrderAt riemannZeta ρ ≠ ⊤
 
   - [`ContourShift.zeta_analyticAt`](#ContourShift-zeta_analyticAt) — `` AnalyticAt ℂ riemannZeta ρ ``
 
-**Feeds** (6 that use it)
+**Feeds** (7 that use it)
 
   - [`ContourShift.order_bridge`](#ContourShift-order_bridge) — `` ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) ``
   - [`ContourShift.zeta_local_data_zero`](#ContourShift-zeta_local_data_zero) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in nhdsWithin ρ {ρ}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (-(analyticOrderNatAt rie… ``
@@ -651,6 +657,7 @@ analyticOrderAt riemannZeta ρ ≠ ⊤
   - [`ContourShift.zeta_order_reflect`](#ContourShift-zeta_order_reflect) — `` analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
   - [`ContourShift.zeta_zeros_rectangle_finite`](#ContourShift-zeta_zeros_rectangle_finite) — `` {ρ : ℂ | riemannZeta ρ = 0 ∧ ρ ∈ Rectangle z w}.Finite ``
   - [`LandauPoleLocal.Phi_principal_part`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_principal_part) (LandauPoleLocal) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ) ``
+  - [`StepsPole.order_pos`](../lean_stage3/StepsPole.md#StepsPole-order_pos) (StepsPole) — `` 0 < analyticOrderNatAt riemannZeta (ρ : ℂ) ``
 
 <a name="ContourShift-zeta_local_data_zero"></a>
 ### `ContourShift.zeta_local_data_zero`
@@ -680,10 +687,11 @@ line 616
   - [`ContourShift.zeta_local_data`](#ContourShift-zeta_local_data) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in nhdsWithin p {p}ᶜ, - deriv riemannZeta s / riemannZeta s * ((x:ℝ):ℂ) ^ s / s = h s + (-(n:ℂ) * ((x:ℝ):ℂ) ^ p /… ``
   - [`ContourShift.zeta_order_ne_top`](#ContourShift-zeta_order_ne_top) — `` analyticOrderAt riemannZeta ρ ≠ ⊤ ``
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
   - [`ContourShift.residue_identity`](#ContourShift-residue_identity) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
   - [`ExplicitTwo.residue_identity_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-residue_identity_two) (ExplicitTwo) — `` RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemannZeta s) * ((x:ℝ):ℂ) ^ s / s) (((-1/4 : ℝ):ℂ) - Complex.I * T') (((1 + 1/Real.log x : ℝ… ``
+  - [`StepsPole.steps_pole`](../lean_stage3/StepsPole.md#StepsPole-steps_pole) (StepsPole) — `` Tendsto (fun s : ℂ => (s - (ρ : ℂ)) * (- deriv riemannZeta s / riemannZeta s / s)) (𝓝[≠] (ρ : ℂ)) (𝓝 (-(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / … ``
 
 <a name="ContourShift-zeta_local_data_one"></a>
 ### `ContourShift.zeta_local_data_one`

@@ -1,0 +1,45 @@
+flowchart LR
+  n0["<b>mirror_mem</b><br/>(1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros"]:::thm
+  n1["<b>mirrorZ_im</b><br/>((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im"]:::thm
+  n2["<b>mirrorZ_re</b><br/>((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re"]:::thm
+  n3["<b>mirrorZ_eq_iff</b><br/>mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2"]:::thm
+  n4["<b>mirror_pair_area ■</b><br/>‖(b : ℂ) ^ (ρ : ℂ)‖ * ‖(b : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) …"]:::thm
+  n5["<b>off_line_is_two ■</b><br/>mirrorZ ρ ≠ ρ ∧ ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ)…"]:::thm
+  n6["<b>rh_iff_spiralLink</b><br/>RiemannHypothesis ↔ SpiralLink"]:::thm
+  n7["<b>rh_iff_one_at_each_height</b><br/>RiemannHypothesis ↔ OneAtEachHeight"]:::thm
+  n8["<b>spiralLink_iff_one</b><br/>SpiralLink ↔ OneAtEachHeight"]:::thm
+  x0(["<b>WeilOnLine</b><br/>conj_mem"]):::ext
+  x1(["<b>BandJoin</b><br/>spiralLink_iff_middle<br/>zero_pair"]):::ext
+  x2(["<b>Saddle</b><br/>4 theorems"]):::ext
+  x3(["<b>ShareLink</b><br/>meet_iff<br/>pair_shares_add<br/>spiralLink_iff_meet"]):::ext
+  x4(["<b>ClosedLoopJoin</b><br/>handshake_iff_half<br/>rh_iff_handshake<br/>rh_iff_re_half"]):::ext
+  x5(["<b>OneChain</b><br/>one_chain"]):::ext
+  n1 --> n3
+  n1 --> n5
+  n1 --> n7
+  n2 --> n3
+  n2 --> n4
+  n2 --> n5
+  n3 --> n5
+  n3 --> n7
+  n7 --> n8
+  n2 -.-> x1
+  n2 -.-> x2
+  n2 -.-> x3
+  n6 -.-> x1
+  n6 -.-> x2
+  n6 -.-> x3
+  n6 -.-> x5
+  n8 -.-> x5
+  x0 -.-> n0
+  x4 -.-> n5
+  x4 -.-> n6
+  x4 -.-> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

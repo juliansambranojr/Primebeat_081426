@@ -1,0 +1,20 @@
+key	value	source
+module_lines	219	wc -l lean_stage3/Stage3/ClosedLoopJoin.lean
+theorems_proved	11	grep -c ^theorem lean_stage3/Stage3/ClosedLoopJoin.lean
+defs	1	isHermitianHandshake; epsilon, restoringForce and primeWeight are noncomputable defs
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ClosedLoopJoin.lean
+pins	6	force_join, handshake_iff_sides, structural_contradiction, off_line_zero, rh_iff_force_zero, rh_iff_handshake
+errors_first	1	the first lake build Stage3.ClosedLoopJoin here: an unknown lemma name
+builds	2	the builds here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8862	lake build (full Stage3), Build completed successfully
+jobs_module	8752	run/build.log, lake build Stage3.ClosedLoopJoin
+loop_version	22	lean_stage3/LOOP.md version line
+design	closedloop.md#j1	the join
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+force_factor	5	force_eq: restoringForce σ = 5 * |σ - 1/2|
+prime_floor	3	isHermitianHandshake: primes p > 3
+restated_defs	4	epsilon, restoringForce, primeWeight, isHermitianHandshake
+closed_loop_sorries	0	grep -c sorry lean_primebeat/PrimeBeat/primebeat_closed_loop.lean

@@ -1,0 +1,41 @@
+flowchart LR
+  n0["<b>fold_fract</b><br/>Int.fract (2 * x) = if Int.fract x ＜ 1 / 2 then 2 * Int.fract x …"]:::cnt
+  n1["<b>fold_rounding ■</b><br/>Int.fract (2 * (N : ℝ) / (d : ℝ)) = if Int.fract ((N : ℝ) / (d :…"]:::cnt
+  n2["<b>fold_mirror ■</b><br/>Int.fract (2 * (1 - x)) = 1 - Int.fract (2 * x)"]:::cnt
+  n3["<b>stretch_eq</b><br/>stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re"]:::shp
+  n4["<b>saddle_area ■</b><br/>stretch ρ * stretch (mirrorZ ρ) = 1"]:::thm
+  n5["<b>centre_iff</b><br/>stretch ρ = 1 ↔ (ρ : ℂ).re = 1 / 2"]:::shp
+  n6["<b>saddle_of_off_line ■</b><br/>(1 ＜ stretch ρ ∧ stretch (mirrorZ ρ) ＜ 1) ∨ (stretch ρ ＜ 1 ∧ 1 ＜…"]:::thm
+  n7["<b>saddle_runs_away</b><br/>∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k ＜ |Cheb…"]:::thm
+  n8["<b>centre_of_noRunaway</b><br/>stretch ρ = 1"]:::thm
+  n9["<b>spiralLink_iff_centres ■</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1"]:::thm
+  n10["<b>spiralLink_iff_noRunaway ■</b><br/>SpiralLink.SpiralLink ↔ NoRunaway"]:::thm
+  x0(["<b>ShareLink</b><br/>mode_size"]):::ext
+  x1(["<b>SpiralLink</b><br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
+  x2(["<b>RateBelow</b><br/>rain_psi"]):::ext
+  x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x4(["<b>ThetaConverse</b><br/>zeroFreeRight_iff_psiWeakTheta"]):::ext
+  n0 --> n1
+  n3 --> n4
+  n3 --> n5
+  n3 --> n6
+  n5 --> n8
+  n5 --> n9
+  n7 --> n8
+  n8 --> n10
+  x0 -.-> n3
+  x1 -.-> n4
+  x1 -.-> n6
+  x1 -.-> n7
+  x1 -.-> n9
+  x2 -.-> n7
+  x3 -.-> n9
+  x4 -.-> n10
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

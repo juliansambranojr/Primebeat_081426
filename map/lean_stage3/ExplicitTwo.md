@@ -7,7 +7,7 @@ ExplicitTwo — block G2 of `lean_stage3/design/floor.md`. 2026-11-23. `LeftSmoo
 12 theorems, 4 definitions, 1138 lines. 
 
 **Imports:** [`LeftSmooth`](../lean_stage3/LeftSmooth.md), [`LineBound`](../lean_stage3/LineBound.md), [`PerronTwo`](../lean_stage3/PerronTwo.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md), [`StepsPeak`](../lean_stage3/StepsPeak.md)
 
 ## The picture
 
@@ -34,6 +34,7 @@ flowchart LR
   x6(["<b>LeftKernel</b><br/>4 theorems"]):::ext
   x7(["<b>LeftSmooth</b><br/>19 theorems"]):::ext
   x8(["<b>FilterLadder</b><br/>formula_row"]):::ext
+  x9(["<b>StepsPeak</b><br/>norm_integrand_le"]):::ext
   n0 --> n7
   n1 --> n7
   n10 --> n11
@@ -47,6 +48,7 @@ flowchart LR
   n9 --> n10
   n11 -.-> x4
   n11 -.-> x8
+  n11 -.-> x9
   n5 -.-> x4
   x0 -.-> n0
   x0 -.-> n1
@@ -98,7 +100,7 @@ The explicit formula's first constant from `x = 2`: `2800 + 2·Cht + Csn`.
 
 - **Is:** `` c1t : ℝ := 2800 + 2 * Cht + Glue.Csn ``
 - **Built from:** [`ExplicitTwo.Cht`](#ExplicitTwo-Cht), [`Glue.Csn`](../lean_stage3/GlueNum.md#Glue-Csn)
-- **Used by 13:** [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`ExplicitTwo.explicit_formula_all_two`](#ExplicitTwo-explicit_formula_all_two), [`ExplicitTwo.explicit_formula_left_two`](#ExplicitTwo-explicit_formula_left_two), [`FilterLadder.Kf`](../lean_stage3/FilterLadder.md#FilterLadder-Kf), [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row), [`FixedRowTwo.c1t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg), [`FixedRowTwo.cell_eq_zero_sum_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_eq_zero_sum_two), [`FixedRowTwo.cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two), [`FixedRowTwo.cell_zero_sum_finset_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two), [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two)
+- **Used by 19:** [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`ExplicitTwo.explicit_formula_all_two`](#ExplicitTwo-explicit_formula_all_two), [`ExplicitTwo.explicit_formula_left_two`](#ExplicitTwo-explicit_formula_left_two), [`FilterLadder.Kf`](../lean_stage3/FilterLadder.md#FilterLadder-Kf), [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row), [`FixedRowTwo.c1t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg), [`FixedRowTwo.cell_eq_zero_sum_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_eq_zero_sum_two), [`FixedRowTwo.cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two), [`FixedRowTwo.cell_zero_sum_finset_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two), [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two), [`StepsPeak.norm_error_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_error_le), [`StepsPeak.norm_integrand_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_integrand_le), [`StepsPeak.peak_at_zero`](../lean_stage3/StepsPeak.md#StepsPeak-peak_at_zero), [`StepsPeak.peak_formula`](../lean_stage3/StepsPeak.md#StepsPeak-peak_formula), [`StepsPeak.peak_height`](../lean_stage3/StepsPeak.md#StepsPeak-peak_height), [`StepsRate.rate_upper`](../lean_stage3/StepsRate.md#StepsRate-rate_upper)
 
 <a name="ExplicitTwo-c3t"></a>
 ### `ExplicitTwo.c3t`
@@ -108,7 +110,7 @@ def · line 536
 The explicit formula's log-constant from `x = 2`: `18 + ‖ζ′(0)/ζ(0)‖/log 2`.
 
 - **Is:** `` c3t : ℝ := 18 + ‖deriv riemannZeta 0 / riemannZeta 0‖ / Real.log 2 ``
-- **Used by 11:** [`ExplicitTwo.explicit_formula_all_two`](#ExplicitTwo-explicit_formula_all_two), [`ExplicitTwo.explicit_formula_left_two`](#ExplicitTwo-explicit_formula_left_two), [`FilterLadder.Kf`](../lean_stage3/FilterLadder.md#FilterLadder-Kf), [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row), [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2), [`FixedRowTwo.c3t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c3t_nonneg), [`FixedRowTwo.cell_eq_zero_sum_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_eq_zero_sum_two), [`FixedRowTwo.cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two), [`FixedRowTwo.cell_zero_sum_finset_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two)
+- **Used by 14:** [`ExplicitTwo.explicit_formula_all_two`](#ExplicitTwo-explicit_formula_all_two), [`ExplicitTwo.explicit_formula_left_two`](#ExplicitTwo-explicit_formula_left_two), [`FilterLadder.Kf`](../lean_stage3/FilterLadder.md#FilterLadder-Kf), [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row), [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2), [`FixedRowTwo.c3t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c3t_nonneg), [`FixedRowTwo.cell_eq_zero_sum_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_eq_zero_sum_two), [`FixedRowTwo.cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two), [`FixedRowTwo.cell_zero_sum_finset_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`StepsPeak.C1`](../lean_stage3/StepsPeak.md#StepsPeak-C1), [`StepsPeak.norm_error_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_error_le), [`StepsPeak.norm_integrand_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_integrand_le)
 
 <a name="ExplicitTwo-Bleft2"></a>
 ### `ExplicitTwo.Bleft2`
@@ -119,7 +121,7 @@ The left-edge constant from `x = 2`: four times `LeftSmooth.Bleft`.
 
 - **Is:** `` Bleft2 : ℝ := 4 * Bleft ``
 - **Built from:** [`LeftSmooth.Bleft`](../lean_stage3/LeftSmooth.md#LeftSmooth-Bleft)
-- **Used by 11:** [`ExplicitTwo.explicit_formula_all_two`](#ExplicitTwo-explicit_formula_all_two), [`ExplicitTwo.left_edge_bound_two`](#ExplicitTwo-left_edge_bound_two), [`FilterLadder.Kf`](../lean_stage3/FilterLadder.md#FilterLadder-Kf), [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row), [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2), [`FixedRowTwo.Bleft2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Bleft2_nonneg), [`FixedRowTwo.cell_eq_zero_sum_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_eq_zero_sum_two), [`FixedRowTwo.cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two), [`FixedRowTwo.cell_zero_sum_finset_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two)
+- **Used by 14:** [`ExplicitTwo.explicit_formula_all_two`](#ExplicitTwo-explicit_formula_all_two), [`ExplicitTwo.left_edge_bound_two`](#ExplicitTwo-left_edge_bound_two), [`FilterLadder.Kf`](../lean_stage3/FilterLadder.md#FilterLadder-Kf), [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row), [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2), [`FixedRowTwo.Bleft2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Bleft2_nonneg), [`FixedRowTwo.cell_eq_zero_sum_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_eq_zero_sum_two), [`FixedRowTwo.cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_fixed_row_two), [`FixedRowTwo.cell_zero_sum_finset_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_zero_sum_finset_two), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`StepsPeak.C1`](../lean_stage3/StepsPeak.md#StepsPeak-C1), [`StepsPeak.norm_error_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_error_le), [`StepsPeak.norm_integrand_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_integrand_le)
 
 ## Theorems
 
@@ -502,10 +504,11 @@ line 1125 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum), [`ExplicitTwo.Bleft2`](#ExplicitTwo-Bleft2), [`ExplicitTwo.c1t`](#ExplicitTwo-c1t), [`ExplicitTwo.c3t`](#ExplicitTwo-c3t)
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
   - [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) (FilterLadder) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
   - [`FixedRowTwo.cell_eq_zero_sum_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-cell_eq_zero_sum_two) (FixedRowTwo) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ)… ``
   - [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le) (FixedRowTwo) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
   - [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two) (FixedRowTwo) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
+  - [`StepsPeak.norm_integrand_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_integrand_le) (StepsPeak) — `` ‖slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitTwo.c1t * Real.log ((N:ℝ) * T) ^ 2 / T + (ExplicitTwo.c3t * (2 / s.re) + ExplicitTwo.Bl… ``
 

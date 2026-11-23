@@ -15,7 +15,7 @@ flowchart LR
   n13["<b>summable_line</b><br/>Summable ((lineSet Θ).indicator fun ρ =＞ ‖LadderMean.coef ρ‖)"]:::thm
   n14["<b>tsum_split</b><br/>∑' ρ : lineSet Θ, term Θ r ρ = (∑ ρ ∈ topRow Θ r, LadderMean.coe…"]:::thm
   n15["<b>tendsto_tail</b><br/>Tendsto (fun r : ℕ =＞ ∑' ρ, tailTerm Θ r ρ) atTop (𝓝 0)"]:::thm
-  n16["<b>attained_off_line_pi ■</b><br/>RiemannHypothesis"]:::thm
+  n16["<b>attained_off_line_pi</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>FiniteOffLinePi</b><br/>7 theorems"]):::ext
   x1(["<b>PiZeros</b><br/>4 theorems"]):::ext
   x2(["<b>CountReduction</b><br/>count_modes_small"]):::ext
@@ -25,6 +25,7 @@ flowchart LR
   x6(["<b>CellModes</b><br/>mode_two_int"]):::ext
   x7(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
   x8(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x9(["<b>OneChain</b><br/>spiralLink_of_attained"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n3
@@ -51,6 +52,7 @@ flowchart LR
   n8 --> n9
   n9 --> n16
   n1 -.-> x2
+  n16 -.-> x9
   n4 -.-> x2
   x0 -.-> n0
   x0 -.-> n3

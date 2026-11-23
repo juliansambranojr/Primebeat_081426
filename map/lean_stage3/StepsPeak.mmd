@@ -1,0 +1,62 @@
+flowchart LR
+  n0["<b>hasDerivAt_ramp</b><br/>HasDerivAt (ramp N s) (-slope N s u) u"]:::shp
+  n1["<b>cont_cpow</b><br/>ContinuousOn (fun y : ℝ =＞ (y : ℂ) ^ c) (Set.Ioi 0)"]:::shp
+  n2["<b>cont_slope</b><br/>ContinuousOn (slope N s) (Set.Ioi 0)"]:::shp
+  n3["<b>uIcc_sub</b><br/>Set.uIcc (2:ℝ) N ⊆ Set.Ioi 0"]:::cnt
+  n4["<b>S_eq_integral</b><br/>S N s = ∫ u in (2:ℝ)..(N:ℝ), slope N s u * ((ψ u : ℝ) : ℂ)"]:::shp
+  n5["<b>peak_identity</b><br/>S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order …"]:::thm
+  n6["<b>norm_slope_le</b><br/>‖slope N s u‖ ≤ (‖s‖ + ‖s - 1‖) * u ^ (-s.re - 1)"]:::shp
+  n7["<b>norm_integrand_le</b><br/>‖slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + ‖s - 1‖) * (ExplicitT…"]:::thm
+  n8["<b>norm_error_le</b><br/>‖∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZeros.efRem T u‖ ≤ (‖s‖ + …"]:::thm
+  n9["<b>peak_formula</b><br/>‖S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order…"]:::thm
+  n10["<b>h0_not_mem</b><br/>(0:ℝ) ∉ Set.uIcc (2:ℝ) N"]:::cnt
+  n11["<b>K_eq</b><br/>K N s a = s * ((N:ℂ) ^ (a - s) - 2 ^ (a - s)) / (a - s) - (s - 1…"]:::shp
+  n12["<b>K_self</b><br/>K N s s = s * ((Real.log N - Real.log 2 : ℝ) : ℂ) - (s - 1) * ((…"]:::shp
+  n13["<b>peak_at_zero</b><br/>‖S N ρ₀ - K N ρ₀ 1 - (-((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * …"]:::thm
+  n14["<b>norm_K_le</b><br/>‖K N s a‖ ≤ (‖s‖ / ‖a - s‖ + ‖s - 1‖ / ‖a - s + 1‖) * 2"]:::shp
+  n15["<b>norm_order</b><br/>‖((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)‖ = ((riemannZeta.order (ρ…"]:::thm
+  n16["<b>peak_height ■</b><br/>‖S N ρ₀ - K N ρ₀ 1 + ((riemannZeta.order (ρ₀ : ℂ) : ℤ) : ℂ) * (R…"]:::thm
+  x0(["<b>StepsBelow</b><br/>D_continuousOn<br/>K_one"]):::ext
+  x1(["<b>PiZeros</b><br/>integrable_ofReal_of_monotone<br/>zeroPartialSum_eq_sum"]):::ext
+  x2(["<b>ExplicitTwo</b><br/>explicit_formula_all_two"]):::ext
+  x3(["<b>FixedRowTwo</b><br/>Bleft2_nonneg<br/>c1t_nonneg<br/>c3t_nonneg"]):::ext
+  x4(["<b>StepsRate</b><br/>norm_K_le_pow<br/>rate_upper"]):::ext
+  x5(["<b>FiniteOffLine</b><br/>order_nonneg"]):::ext
+  n0 --> n4
+  n1 --> n2
+  n1 --> n5
+  n10 --> n11
+  n10 --> n12
+  n11 --> n14
+  n12 --> n13
+  n13 --> n16
+  n14 --> n16
+  n15 --> n16
+  n2 --> n4
+  n2 --> n5
+  n3 --> n5
+  n4 --> n5
+  n5 --> n9
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
+  n9 --> n13
+  n1 -.-> x0
+  n11 -.-> x0
+  n11 -.-> x4
+  n15 -.-> x4
+  n9 -.-> x4
+  x1 -.-> n5
+  x2 -.-> n7
+  x3 -.-> n7
+  x3 -.-> n8
+  x5 -.-> n15
+  x5 -.-> n16
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

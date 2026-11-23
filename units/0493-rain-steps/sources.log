@@ -1,0 +1,32 @@
+# check_prose_source.py  2026-11-23T12:10:48Z
+# unit: 0493-rain-steps
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:41556
+  You don't know when exactly but at some point  you can see the rain is coming
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ac424207f0e26d672.jsonl:2639
+  theorem zeta_ne_zero_of_steps_bound {s : ℂ} (hs : 0 < s.re) (hs1 : s ≠ 1) (hs2 : s ≠ 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ac424207f0e26d672.jsonl:2640
+  {δ : ℝ} (hδ : 0 ≤ δ) {C : ℝ} {N₁ : ℕ} (hN₁ : 2 ≤ N₁)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ac424207f0e26d672.jsonl:2125
+  (H : ∀ N : ℕ, N₁ ≤ N → ‖S N s - K N s 1‖ ≤ C * (N:ℝ) ^ δ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ac424207f0e26d672.jsonl:2642
+  {ρ : ℂ} (hρ : s.re + δ < ρ.re) (hρ1 : ρ ≠ 1) : ζ ρ ≠ 0 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42620
+  theorem rain_steps (ρ₀ : Kadiri.NontrivialZeros) {s : ℂ} (hs : 0 < s.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42621
+  (hne : (ρ₀ : ℂ) ≠ s) {δ : ℝ} (hδ0 : 0 ≤ δ) (hδ : δ < (ρ₀ : ℂ).re - s.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42623
+  ∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ < ‖StepsPeak.S N s - StepsPeak.K N s 1‖ :=
+
+# 9 found, 0 missing

@@ -1,0 +1,18 @@
+key	value	source
+module_lines	110	wc -l lean_stage3/Stage3/StepsPole.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/StepsPole.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/StepsPole.lean
+pins	3	steps_pole, steps_pole_ne_zero, steps_regular
+errors_first	0	the first lake build Stage3.StepsPole here
+builds	1	the build here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8869	lake build (full Stage3), Build completed successfully
+jobs_module	8793	run/build.log, lake build Stage3.StepsPole
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r4	the steps' pole at a zero
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_run	472	unit 0472
+abscissa	1	steps_sum: 1 < Re s

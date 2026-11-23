@@ -12,8 +12,9 @@ flowchart LR
   n10["<b>restoringForce_mono ■</b><br/>restoringForce b ρ ≤ restoringForce c ρ"]:::shp
   n11["<b>zeroForm_stencilTest_eq_primeSide ■</b><br/>zeroForm (stencilTest d φ) = WeilBridgeLeaf.primeSideM (WeilBrid…"]:::thm
   n12["<b>zeroForm_stencilTest_nonneg_of_RH ■</b><br/>0 ≤ (zeroForm (stencilTest d φ)).re"]:::thm
-  x0(["<b>WeilBridgeLeaf</b><br/>zeroForm_eq_primeSide"]):::ext
-  x1(["<b>WeilDetect</b><br/>zeroForm_nonneg_of_RH"]):::ext
+  x0(["<b>ClosedLoopJoin</b><br/>force_join<br/>off_line_zero"]):::ext
+  x1(["<b>WeilBridgeLeaf</b><br/>zeroForm_eq_primeSide"]):::ext
+  x2(["<b>WeilDetect</b><br/>zeroForm_nonneg_of_RH"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n5
@@ -23,8 +24,10 @@ flowchart LR
   n7 --> n10
   n7 --> n8
   n8 --> n9
-  x0 -.-> n11
-  x1 -.-> n12
+  n7 -.-> x0
+  n8 -.-> x0
+  x1 -.-> n11
+  x2 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

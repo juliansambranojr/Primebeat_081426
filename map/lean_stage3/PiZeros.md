@@ -5,7 +5,7 @@ PiZeros — block T2 of `lean_stage3/design/joints.md`. 2026-11-22. Joint T1 in 
 15 theorems, 5 definitions, 333 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`CellResidual`](../lean_stage3/CellResidual.md), [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiRemainder`](../lean_stage3/PiRemainder.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiRemainder`](../lean_stage3/PiRemainder.md), [`SieveResidual`](../lean_stage3/SieveResidual.md)
 
 ## The picture
 
@@ -33,10 +33,11 @@ flowchart LR
   x4(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
   x5(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
   x6(["<b>FilterLadder</b><br/>formula_row"]):::ext
-  x7(["<b>CountReduction</b><br/>count_modes_small"]):::ext
-  x8(["<b>FixedRowTwo</b><br/>pi_fixed_row_two<br/>table_cell_fixed_row_two"]):::ext
-  x9(["<b>CellZeros</b><br/>4 theorems"]):::ext
-  x10(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
+  x7(["<b>StepsPeak</b><br/>peak_identity"]):::ext
+  x8(["<b>CountReduction</b><br/>count_modes_small"]):::ext
+  x9(["<b>FixedRowTwo</b><br/>pi_fixed_row_two<br/>table_cell_fixed_row_two"]):::ext
+  x10(["<b>CellZeros</b><br/>4 theorems"]):::ext
+  x11(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n4
@@ -57,14 +58,16 @@ flowchart LR
   n1 -.-> x4
   n10 -.-> x1
   n10 -.-> x2
-  n10 -.-> x7
+  n10 -.-> x8
   n14 -.-> x3
-  n14 -.-> x8
+  n14 -.-> x9
   n6 -.-> x3
   n6 -.-> x4
   n6 -.-> x6
+  n6 -.-> x7
   n7 -.-> x3
   n7 -.-> x4
+  n7 -.-> x7
   n8 -.-> x1
   n8 -.-> x2
   n8 -.-> x3
@@ -72,15 +75,15 @@ flowchart LR
   n9 -.-> x1
   n9 -.-> x2
   n9 -.-> x3
-  n9 -.-> x7
   n9 -.-> x8
+  n9 -.-> x9
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n5
+  x10 -.-> n12
   x10 -.-> n14
+  x11 -.-> n14
   x5 -.-> n6
-  x9 -.-> n12
-  x9 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -136,7 +139,7 @@ The remainder of the explicit formula at a height.
 
 - **Is:** `` efRem (T : ℝ) (t : ℝ) : ℂ := ((ψ t : ℝ) : ℂ) - (t : ℂ) + Stage3.zeroPartialSum t T ``
 - **Built from:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum)
-- **Used by 20:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiFixedRow.tr_efRem_fixed`](../lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`PiRemainder.norm_efRem_le_low`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_low), [`PiRemainder.norm_tr_efRem_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le), [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum)
+- **Used by 23:** [`AttainedPi.fin_bound`](../lean_stage3/AttainedPi.md#AttainedPi-fin_bound), [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small), [`FiniteOffLinePi.row_bound`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-row_bound), [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le), [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le), [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two), [`FixedRowTwo.table_cell_fixed_row_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-table_cell_fixed_row_two), [`FixedRowTwo.tr_efRem_fixed_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-tr_efRem_fixed_two), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiFixedRow.tr_efRem_fixed`](../lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`PiRemainder.norm_efRem_le_low`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_low), [`PiRemainder.norm_tr_efRem_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le), [`PiRemainder.norm_tr_efRem_le_of`](../lean_stage3/PiRemainder.md#PiRemainder-norm_tr_efRem_le_of), [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum), [`PiZeros.table_cell_eq_zero_sum`](#PiZeros-table_cell_eq_zero_sum), [`StepsPeak.norm_error_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_error_le), [`StepsPeak.norm_integrand_le`](../lean_stage3/StepsPeak.md#StepsPeak-norm_integrand_le), [`StepsPeak.peak_identity`](../lean_stage3/StepsPeak.md#StepsPeak-peak_identity)
 
 <a name="PiZeros-psiTheta"></a>
 ### `PiZeros.psiTheta`
@@ -369,13 +372,14 @@ Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : �
 
   - [`FiniteOffLine.tsum_sub_eq_sum`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-tsum_sub_eq_sum) (FiniteOffLine) — `` ∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ ``
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) (FilterLadder) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
   - [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le) (PiFixedRow) — `` ‖∫ t in (2:ℝ)..16, efRem T t * wt t‖ ≤ Clow ``
   - [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem) (PiRemainder) — `` IntervalIntegrable (efRem T) volume 2 x ``
   - [`PiRemainder.norm_zeroPartialSum_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_zeroPartialSum_le) (PiRemainder) — `` ‖Stage3.zeroPartialSum t T‖ ≤ t * zinv T ``
   - [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr p… ``
+  - [`StepsPeak.peak_identity`](../lean_stage3/StepsPeak.md#StepsPeak-peak_identity) (StepsPeak) — `` S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * K N s (ρ : ℂ) = ∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZer… ``
 
 <a name="PiZeros-integrable_ofReal_of_monotone"></a>
 ### `PiZeros.integrable_ofReal_of_monotone`
@@ -399,11 +403,12 @@ IntervalIntegrable (fun t => ((f t : ℝ) : ℂ)) volume 2 x
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
   - [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le) (PiFixedRow) — `` ‖∫ t in (2:ℝ)..16, efRem T t * wt t‖ ≤ Clow ``
   - [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem) (PiRemainder) — `` IntervalIntegrable (efRem T) volume 2 x ``
   - [`PiZeros.pi_eq_zero_sum`](#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr p… ``
+  - [`StepsPeak.peak_identity`](../lean_stage3/StepsPeak.md#StepsPeak-peak_identity) (StepsPeak) — `` S N s - K N s 1 + ∑ ρ ∈ FiniteOffLine.ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * K N s (ρ : ℂ) = ∫ u in (2:ℝ)..(N:ℝ), slope N s u * PiZer… ``
 
 <a name="PiZeros-integrable_cpow"></a>
 ### `PiZeros.integrable_cpow`

@@ -1,0 +1,19 @@
+key	value	source
+module_lines	153	wc -l lean_stage3/Stage3/OneChain.lean
+theorems_proved	8	grep -c ^theorem lean_stage3/Stage3/OneChain.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/OneChain.lean
+pins	6	one_chain, table_of_spiralLink, spiralLink_of_finite, spiralLink_of_attained, spiralLink_of_finite_accumulation, no_exposed_zero
+errors_first	0	the first lake build Stage3.OneChain here
+builds	1	the build here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8865	lake build (full Stage3), Build completed successfully
+jobs_module	8833	run/build.log, lake build Stage3.OneChain
+loop_version	22	lean_stage3/LOOP.md version line
+design	closedloop.md#j4	one chain
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+statements_equal	5	one_chain: RH, SpiralLink, OneAtEachHeight, force at rest, cells at square-root size
+unit_first	476	unit 0476
+unit_last	478	unit 0478

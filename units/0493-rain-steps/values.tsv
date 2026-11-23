@@ -1,0 +1,19 @@
+key	value	source
+module_lines	781	wc -l lean_stage3/Stage3/StepsBelow.lean
+theorems_proved	41	grep -c ^theorem lean_stage3/Stage3/StepsBelow.lean
+defs	10	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/StepsBelow.lean
+pins	2	zeta_ne_zero_of_steps_bound, rain_steps
+errors_first	0	the worker's report gives no count of failed builds; the build here was clean
+builds	1	lake build Stage3.StepsBelow here, after the worker's
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8878	lake build (full Stage3), Build completed successfully
+jobs_module	8807	run/build.log, lake build Stage3.StepsBelow
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r9	the rain comes
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_run	472	unit 0472
+unit_upper	487	unit 0487
+unit_psi	489	unit 0489

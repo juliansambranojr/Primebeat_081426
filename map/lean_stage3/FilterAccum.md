@@ -7,7 +7,7 @@ FilterAccum — block S3 of `lean_stage3/design/stencil.md`, in its corrected fo
 10 theorems, 3 definitions, 246 lines. 
 
 **Imports:** [`FilterAttained`](../lean_stage3/FilterAttained.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`OneChain`](../lean_stage3/OneChain.md)
 
 ## The picture
 
@@ -22,11 +22,12 @@ flowchart LR
   n6["<b>eval_qP_ne_zero</b><br/>(qP P).eval z⁻¹ ≠ 0"]:::cnt
   n7["<b>exists_b</b><br/>∃ b : ℕ, q.natDegree ＜ b ∧ W ＜ c * r ^ b"]:::cnt
   n8["<b>finite_accumulation_false</b><br/>False"]:::thm
-  n9["<b>rh_of_finite_accumulation ■</b><br/>RiemannHypothesis"]:::thm
+  n9["<b>rh_of_finite_accumulation</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>FiniteOffLine</b><br/>norm_two_cpow"]):::ext
   x1(["<b>FilterAttained</b><br/>filter_attained_false"]):::ext
   x2(["<b>FilterLadder</b><br/>Wn_nonneg"]):::ext
   x3(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x4(["<b>OneChain</b><br/>spiralLink_of_finite_accumulation"]):::ext
   n0 --> n5
   n0 --> n6
   n1 --> n8
@@ -37,6 +38,7 @@ flowchart LR
   n6 --> n8
   n7 --> n8
   n8 --> n9
+  n9 -.-> x4
   x0 -.-> n3
   x0 -.-> n4
   x0 -.-> n8
@@ -389,5 +391,7 @@ RiemannHypothesis
   - [`FilterAccum.finite_accumulation_false`](#FilterAccum-finite_accumulation_false) — `` False ``
   - [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) (LandauWindow) — `` RiemannHypothesis ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.spiralLink_of_finite_accumulation`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_finite_accumulation) (OneChain) — `` SpiralLink.SpiralLink ``
 

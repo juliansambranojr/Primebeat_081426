@@ -1,0 +1,18 @@
+key	value	source
+module_lines	151	wc -l lean_stage3/Stage3/CompositeSplit.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/CompositeSplit.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/CompositeSplit.lean
+pins	3	card_least_prime, composites_by_least_prime, composites_no_signs
+errors_first	7	the first lake build Stage3.CompositeSplit here: decidability of the filter and one closed goal
+builds	2	the builds here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8876	lake build (full Stage3), Build completed successfully
+jobs_module	8806	run/build.log, lake build Stage3.CompositeSplit
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r10	the composite table has no signs
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_half	485	unit 0485
+floor_n	2	the numbers counted start at 2

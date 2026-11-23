@@ -5,7 +5,7 @@ AttainedPi — block C7 of `lean_stage3/design/carlson.md`. 2026-11-23. The one-
 17 theorems, 5 definitions, 887 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md), [`LadderMean`](../lean_stage3/LadderMean.md), [`ZeroSummable`](../lean_stage3/ZeroSummable.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CountReduction`](../lean_stage3/CountReduction.md), [`OneChain`](../lean_stage3/OneChain.md)
 
 ## The picture
 
@@ -27,7 +27,7 @@ flowchart LR
   n13["<b>summable_line</b><br/>Summable ((lineSet Θ).indicator fun ρ =＞ ‖LadderMean.coef ρ‖)"]:::thm
   n14["<b>tsum_split</b><br/>∑' ρ : lineSet Θ, term Θ r ρ = (∑ ρ ∈ topRow Θ r, LadderMean.coe…"]:::thm
   n15["<b>tendsto_tail</b><br/>Tendsto (fun r : ℕ =＞ ∑' ρ, tailTerm Θ r ρ) atTop (𝓝 0)"]:::thm
-  n16["<b>attained_off_line_pi ■</b><br/>RiemannHypothesis"]:::thm
+  n16["<b>attained_off_line_pi</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>FiniteOffLinePi</b><br/>7 theorems"]):::ext
   x1(["<b>PiZeros</b><br/>4 theorems"]):::ext
   x2(["<b>CountReduction</b><br/>count_modes_small"]):::ext
@@ -37,6 +37,7 @@ flowchart LR
   x6(["<b>CellModes</b><br/>mode_two_int"]):::ext
   x7(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
   x8(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x9(["<b>OneChain</b><br/>spiralLink_of_attained"]):::ext
   n0 --> n2
   n1 --> n2
   n1 --> n3
@@ -63,6 +64,7 @@ flowchart LR
   n8 --> n9
   n9 --> n16
   n1 -.-> x2
+  n16 -.-> x9
   n4 -.-> x2
   x0 -.-> n0
   x0 -.-> n3
@@ -724,5 +726,7 @@ RiemannHypothesis
 
 **Definitions its proof touches:** [`Chain.Sym`](../lean/Chain.md#Chain-Sym), [`Chain.mode`](../lean/Chain.md#Chain-mode), [`AttainedPi.lineSet`](#AttainedPi-lineSet), [`AttainedPi.tailTerm`](#AttainedPi-tailTerm), [`AttainedPi.term`](#AttainedPi-term), [`AttainedPi.topRow`](#AttainedPi-topRow), [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.spiralLink_of_attained`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_attained) (OneChain) — `` SpiralLink.SpiralLink ``
 

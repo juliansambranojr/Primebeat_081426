@@ -5,7 +5,7 @@ ThetaConverse — the Landau converse of the θ-dial. 2026-09-01. `ThetaPsi.psi_
 14 theorems, 1 definition, 451 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ThetaPi`](../lean_stage3/ThetaPi.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`RateBelow`](../lean_stage3/RateBelow.md), [`StepsBelow`](../lean_stage3/StepsBelow.md)
 
 ## The picture
 
@@ -22,11 +22,13 @@ flowchart LR
   n8["<b>F_mul_zeta_add_deriv_eqOn_zero_theta</b><br/>Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ …"]:::thm
   n9["<b>no_zero_right_of_theta</b><br/>ζ ρ ≠ 0"]:::thm
   n10["<b>zeroFreeRight_of_psiWeakTheta</b><br/>StmtZeroFreeRight θ"]:::thm
-  n11["<b>zeroFreeRight_iff_psiWeakTheta ■</b><br/>StmtZeroFreeRight θ ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 …"]:::thm
+  n11["<b>zeroFreeRight_iff_psiWeakTheta</b><br/>StmtZeroFreeRight θ ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 …"]:::thm
   n12["<b>RH_of_psiWeakTheta_half ■</b><br/>RiemannHypothesis"]:::thm
   n13["<b>zeroFreeRight_one_of_chebyshev ■</b><br/>StmtZeroFreeRight 1"]:::thm
   x0(["<b>VonKochScaffold</b><br/>5 theorems"]):::ext
-  x1(["<b>ThetaPsi</b><br/>psi_weak_of_theta"]):::ext
+  x1(["<b>RateBelow</b><br/>rain_psi"]):::ext
+  x2(["<b>ThetaPsi</b><br/>psi_weak_of_theta"]):::ext
+  x3(["<b>Saddle</b><br/>spiralLink_iff_noRunaway"]):::ext
   n1 --> n3
   n1 --> n6
   n1 --> n9
@@ -45,11 +47,13 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n10
+  n11 -.-> x3
+  n9 -.-> x1
   x0 -.-> n12
   x0 -.-> n13
   x0 -.-> n5
   x0 -.-> n8
-  x1 -.-> n11
+  x2 -.-> n11
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -371,8 +375,9 @@ line 285
 
 **Definitions its proof touches:** [`Stage3.regionθ`](#Stage3-region-), [`VonKoch.F`](../lean_stage3/VonKochScaffold.md#VonKoch-F)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`RateBelow.rain_psi`](../lean_stage3/RateBelow.md#RateBelow-rain_psi) (RateBelow) — `` ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x| ``
   - [`Stage3.zeroFreeRight_of_psiWeakTheta`](#Stage3-zeroFreeRight_of_psiWeakTheta) — `` StmtZeroFreeRight θ ``
 
 <a name="Stage3-zeroFreeRight_of_psiWeakTheta"></a>
@@ -433,7 +438,9 @@ StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀
   - [`Stage3.zeroFreeRight_of_psiWeakTheta`](#Stage3-zeroFreeRight_of_psiWeakTheta) — `` StmtZeroFreeRight θ ``
   - [`Stage3.psi_weak_of_theta`](../lean_stage3/ThetaPsi.md#Stage3-psi_weak_of_theta) (ThetaPsi) — `` ∃ C > 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * t ^ θ * (Real.log t) ^ 3 ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Saddle.spiralLink_iff_noRunaway`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) (Saddle) — `` SpiralLink.SpiralLink ↔ NoRunaway ``
 
 <a name="Stage3-RH_of_psiWeakTheta_half"></a>
 ### `Stage3.RH_of_psiWeakTheta_half`

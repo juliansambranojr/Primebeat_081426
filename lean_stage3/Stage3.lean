@@ -168,6 +168,25 @@ import Stage3.FilterAccum
 import Stage3.CountModes
 import Stage3.CountReduction
 import Stage3.CountEuler
+import Stage3.ClosedLoopJoin
+import Stage3.SpiralLink
+import Stage3.ClosedLoopChain
+import Stage3.OneChain
+import Stage3.RunTheorems
+import Stage3.SieveExact
+import Stage3.SieveResidual
+import Stage3.StepsPole
+import Stage3.StepsPeak
+import Stage3.HalfSieve
+import Stage3.SelfBound
+import Stage3.StepsRate
+import Stage3.BandJoin
+import Stage3.RateBelow
+import Stage3.CompositeSplit
+import Stage3.Compression
+import Stage3.StepsBelow
+import Stage3.ShareLink
+import Stage3.Saddle
 
 namespace Stage3
 

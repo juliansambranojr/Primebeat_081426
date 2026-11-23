@@ -24,4 +24,6 @@ sealed: false
 
 The mathematics expects it: near one zero the truncated sum is that zero's own term plus its neighbours' terms, and a neighbour's term turns, as the cutoff grows, by the difference of the two heights times the logarithm of the cutoff.
 
+**The word.** The repo's Prime Beat is the primes sounding together, each at the rate of its own logarithm with the reciprocal of its square root for weight, the sum dipping at the zeros (`notes/lab_notebook.md`, entry 21). This unit first used the word for the sway between two zeros without that definition having been opened. Julian's reading, given after: it is the same thing seen from the zero side, since primes and zeros are one system. In the Prime Beat the tones are the primes and the variable is the height. Here the tones are the zeros, the variable is the logarithm of the cutoff, and what is heard between two neighbouring zeros is their difference.
+
 **What it is not.** The heights are read from the file; the run measures the peaks against them and does not find the zeros unaided. Twelve zeros, one weight, cutoffs to three million. The pair correlations are strong for close pairs and weak for some distant ones, down to `beat.pairs[5].correlation` -0.037. No test of the Riemann hypothesis is made.

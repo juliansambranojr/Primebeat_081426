@@ -1,0 +1,20 @@
+# check_prose_source.py  2026-11-23T12:01:27Z
+# unit: 0491-compression
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42229
+  Primes are compression of the composites up to that step
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42263
+  theorem unique_new_prime {N n p q : ℕ} (hn1 : 1 ≤ n) (hn : n ≤ N) (hp : p.Prime) (hq : q.Prime)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42264
+  (hpN : Nat.sqrt N < p) (hqN : Nat.sqrt N < q) (hpn : p ∣ n) (hqn : q ∣ n) : p = q :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42289
+  theorem compression (N : ℕ) : N = smooth N + ∑ p ∈ newPrimes N, N / p :=
+
+# 5 found, 0 missing

@@ -1,0 +1,47 @@
+# check_prose_source.py  2026-11-23T12:43:22Z
+# unit: 0495-saddle
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43398
+  Go for sequence 1-3 and saddle
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43507
+  theorem fold_rounding (N d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43508
+  Int.fract (2 * (N : ℝ) / (d : ℝ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43509
+  = if Int.fract ((N : ℝ) / (d : ℝ)) < 1 / 2 then 2 * Int.fract ((N : ℝ) / (d : ℝ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43510
+  else 2 * Int.fract ((N : ℝ) / (d : ℝ)) - 1 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43516
+  theorem fold_mirror (x : ℝ) (h : Int.fract (2 * x) ≠ 0) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43517
+  Int.fract (2 * (1 - x)) = 1 - Int.fract (2 * x) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43536
+  theorem saddle_area (ρ : NontrivialZeros) : stretch ρ * stretch (mirrorZ ρ) = 1 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43558
+  theorem saddle_of_off_line (ρ : NontrivialZeros) (h : (ρ : ℂ).re ≠ 1 / 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43559
+  (1 < stretch ρ ∧ stretch (mirrorZ ρ) < 1) ∨ (stretch ρ < 1 ∧ 1 < stretch (mirrorZ ρ)) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43573
+  theorem saddle_runs_away (ρ : NontrivialZeros) (h : (ρ : ℂ).re ≠ 1 / 2)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43575
+  ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k < |Chebyshev.psi x - x| :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:43604
+  theorem spiralLink_iff_noRunaway : SpiralLink.SpiralLink ↔ NoRunaway :=
+
+# 14 found, 0 missing

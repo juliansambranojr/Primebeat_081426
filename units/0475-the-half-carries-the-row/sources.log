@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-23T10:57:41Z
+# unit: 0475-the-half-carries-the-row
+# sources searched: 439
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34178
+  Ok remember it's pascal all the way down. So can a pascal ever not be square root based in the regim...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34222
+  what happens when there is a tiny error that scales in something that is precise? What is the restor...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:34230
+  pi(x) - pi(sqrt x) + 1  =  sum_d  mu(d) * floor(x/d)
+
+# 4 found, 0 missing
