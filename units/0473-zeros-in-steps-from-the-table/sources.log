@@ -1,0 +1,23 @@
+# check_prose_source.py  2026-11-23T08:08:11Z
+# unit: 0473-zeros-in-steps-from-the-table
+# sources searched: 437
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33019
+  Ok then use the zeros form the tables residuals. A zeta zero is an averaged sum on infinity and what...
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33069
+  (2) The table's residuals. a_r = (pi(2^r) - li(2^r)) / (sqrt(2^r)/log 2^r) along
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33070
+  the doublings, from the repo's cache of pi(2^n). On the ladder a height
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33071
+  gamma can only show as the angle  gamma*log 2  taken mod 2*pi  and folded
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:33072
+  to [0, pi]: heights that differ by 2*pi/log 2 look the same.
+
+# 6 found, 0 missing
