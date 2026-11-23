@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0492 (decision, EXPLORATORY): bounding the residual at N by adding sizes across the scales N/m loses a factor that grows with N; the pieces share a sign and the residual at N is a small difference of large pieces. That route is closed; a proof has to take the scales together.
 - [open]   2026-11-23  Unit 0491: the numbers up to N are the combinations of the primes up to √N plus, for each new prime, its multiples, with nothing counted twice (`Compression.compression`). The size of the residual of the combinations' count is not derived.
 - [open]   2026-11-23  Unit 0490: the composite table has no signs: every composite up to N counted once under its least prime, each part the table's count at the scale N/p (`CompositeSplit.composites_no_signs`). No bound is derived from it.
 - [open]   2026-11-23  Unit 0489: at a zero, for every exponent below its real part, the staircase leaves the bound at points beyond any start (`RateBelow.rain_psi`); the proof does not say where.

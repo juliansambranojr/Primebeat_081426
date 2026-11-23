@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-23T12:06:09Z
+# unit: 0492-scales-lose-a-factor
+# sources searched: 441
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42442
+  "I have not derived that size." Try
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:42449
+  comb     = own + others - root   = minus the residual of the count of combinations (Compression.comp...
+
+# 3 found, 0 missing
