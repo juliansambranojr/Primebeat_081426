@@ -1,0 +1,20 @@
+{
+ "listed": 325,
+ "added_later": 17,
+ "total": 342,
+ "lines_first": 463,
+ "lines_changed": 0,
+ "trees": 3,
+ "files_listed": 70,
+ "workers": 4,
+ "restarted": 2,
+ "spaces_restored": 27,
+ "ported_copies": 3,
+ "jobs_stage3": 8835,
+ "jobs_table": 8057,
+ "jobs_bridge": 3740,
+ "index_without": 0,
+ "map_without": 0,
+ "commit_first": "71ebe61",
+ "commit_second": "b7cd8ce"
+}

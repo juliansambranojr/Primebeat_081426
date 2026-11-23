@@ -1,0 +1,14 @@
+# check_prose_source.py  2026-11-23T00:19:28Z
+# unit: 0443-theorem-descriptions
+# sources searched: 409
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23156
+  Yes to the units then work on the open inside these
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23208
+  What the docstring must say: one to three short plain sentences stating what the theorem says, hypot...
+
+# 3 found, 0 missing
