@@ -1,0 +1,55 @@
+flowchart LR
+  n0["<b>one_le_zeta_order</b><br/>1 ≤ analyticOrderNatAt riemannZeta ρ"]:::thm
+  n1["<b>differentiable_M</b><br/>Differentiable ℂ (MollifiedMean.M X)"]:::shp
+  n2["<b>differentiableOn_f</b><br/>DifferentiableOn ℂ (MollifiedMean.f X) ({(1:ℂ)}ᶜ : Set ℂ)"]:::thm
+  n3["<b>f_at_zero</b><br/>MollifiedMean.f X ρ = -1"]:::thm
+  n4["<b>continuous_sqG</b><br/>Continuous (Function.uncurry (sqG X))"]:::thm
+  n5["<b>sqG_nonneg</b><br/>0 ≤ sqG X u t"]:::thm
+  n6["<b>continuous_sqG_slice</b><br/>Continuous (sqG X u)"]:::thm
+  n7["<b>continuous_innerI</b><br/>Continuous (innerI X a b)"]:::thm
+  n8["<b>innerI_nonneg</b><br/>0 ≤ innerI X a b u"]:::thm
+  n9["<b>innerI_mono</b><br/>innerI X a b u ≤ innerI X c d u"]:::thm
+  n10["<b>innerI_eq</b><br/>innerI X a b u = ∫ t in a..b, ‖MollifiedMean.f X ((u : ℂ) + Comp…"]:::thm
+  n11["<b>square_lower</b><br/>Real.pi * δ ^ 2 ≤ ∫ u in (σ - δ)..(1 + δ), innerI X ((n : ℝ) + 7…"]:::thm
+  n12["<b>window_mem</b><br/>ρ ∈ Stage3.zetaWindow ((n : ℝ) + 5 / 2)"]:::thm
+  n13["<b>card_fiber_le</b><br/>(W.card : ℝ) ≤ 15 * Real.log T + 73"]:::thm
+  n14["<b>sum_unit_strips</b><br/>∑ n ∈ Finset.range L, innerI X ((n : ℝ) + c) ((n : ℝ) + 1 + c) u…"]:::thm
+  n15["<b>strips_le</b><br/>∑ n ∈ Finset.range L, innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 /…"]:::thm
+  n16["<b>card_zeros_le ■</b><br/>Real.pi * δ ^ 2 * (Z.card : ℝ) ≤ 3 * (15 * Real.log T + 73) * ∫ …"]:::thm
+  x0(["<b>SquareMean</b><br/>sq_mean_lower"]):::ext
+  x1(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  n0 --> n13
+  n1 --> n2
+  n10 --> n11
+  n10 --> n16
+  n11 --> n16
+  n12 --> n13
+  n13 --> n16
+  n14 --> n15
+  n15 --> n16
+  n2 --> n11
+  n2 --> n4
+  n3 --> n11
+  n4 --> n6
+  n4 --> n7
+  n5 --> n8
+  n5 --> n9
+  n6 --> n14
+  n6 --> n15
+  n6 --> n9
+  n7 --> n11
+  n7 --> n16
+  n8 --> n11
+  n8 --> n16
+  n9 --> n11
+  n9 --> n15
+  x0 -.-> n11
+  x1 -.-> n13
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

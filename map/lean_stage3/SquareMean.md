@@ -5,7 +5,7 @@ SquareMean — block C5a of `lean_stage3/design/carlson.md`. 2026-11-23. An anal
 6 theorems, 0 definitions, 247 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ZeroSquares`](../lean_stage3/ZeroSquares.md)
 
 ## The picture
 
@@ -16,12 +16,14 @@ flowchart LR
   n2["<b>norm_polar</b><br/>‖(r : ℂ) * ((Real.cos θ : ℂ) + (Real.sin θ : ℂ) * Complex.I)‖ = …"]:::shp
   n3["<b>disc_sq_mean</b><br/>π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ z, (ball c δ).indicator (fun z =＞ ‖f z…"]:::shp
   n4["<b>sq_set_integral</b><br/>∫ z in (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)…"]:::shp
-  n5["<b>sq_mean_lower ■</b><br/>π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c…"]:::shp
+  n5["<b>sq_mean_lower</b><br/>π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c…"]:::shp
+  x0(["<b>ZeroSquares</b><br/>square_lower"]):::ext
   n0 --> n3
   n1 --> n5
   n2 --> n3
   n3 --> n5
   n4 --> n5
+  n5 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -198,5 +200,7 @@ line 214
   - [`SquareMean.disc_sq_mean`](#SquareMean-disc_sq_mean) — `` π * δ ^ 2 * ‖f c‖ ^ 2 ≤ ∫ z, (ball c δ).indicator (fun z => ‖f z‖ ^ 2) z ``
   - [`SquareMean.sq_set_integral`](#SquareMean-sq_set_integral) — `` ∫ z in (Icc (c.re - δ) (c.re + δ)) ×ℂ (Icc (c.im - δ) (c.im + δ)), F z = ∫ u in (c.re - δ)..(c.re + δ), ∫ t in (c.im - δ)..(c.im + δ), F ((u : ℂ) + Co… ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`ZeroSquares.square_lower`](../lean_stage3/ZeroSquares.md#ZeroSquares-square_lower) (ZeroSquares) — `` Real.pi * δ ^ 2 ≤ ∫ u in (σ - δ)..(1 + δ), innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u ``
 

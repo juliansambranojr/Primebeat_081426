@@ -27411,7 +27411,9 @@
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow_finite",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
      "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_count",
-     "lean_stage3/Stage3/WeilBands.lean::WeilBands.mem_zetaWindow_of_online"
+     "lean_stage3/Stage3/WeilBands.lean::WeilBands.mem_zetaWindow_of_online",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.window_mem"
     ]
    },
    {
@@ -27449,7 +27451,8 @@
      "lean_stage3/Stage3/JensenCount.lean::Stage3.localCount_holds",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaLocalCount_eq",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
-     "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_count"
+     "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_count",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le"
     ]
    },
    {
@@ -27756,7 +27759,8 @@
      "lean_stage3/Stage3/Glue.lean::Glue.band_order_sum_le",
      "lean_stage3/Stage3/GlueNum.lean::Glue.band_order_sum_le_num",
      "lean_stage3/Stage3/JensenCount.lean::Stage3.localCount_holds",
-     "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_count"
+     "lean_stage3/Stage3/WeilBands.lean::WeilBands.band_count",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le"
     ]
    },
    {
@@ -35152,7 +35156,10 @@
      "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
      "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
      "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
-     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_M_le"
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_M_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiable_M",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.f_at_zero"
     ]
    },
    {
@@ -35181,7 +35188,15 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
-     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.f_at_zero",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_eq",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG_nonneg",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower"
     ]
    },
    {
@@ -40934,7 +40949,9 @@
      "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_set_integral"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower"
+    ]
    }
   ]
  },
@@ -66202,6 +66219,708 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ZeroSquares.lean",
+  "module": "Stage3.ZeroSquares",
+  "stem": "ZeroSquares",
+  "header": "ZeroSquares — block C5 of `lean_stage3/design/carlson.md`. 2026-11-23. The number of zeros of ζ to the right of a line is bounded by the mean square of the mollified function `f X s = ζ(s)·M X s − 1` over a strip. At a zero `ρ` the function `f X` takes the value `−1`, so the mean-square lower bound of `SquareMean.sq_mean_lower` on the square of half-side `δ` about `ρ` gives `π δ² ≤` the integral of `‖f X‖²` over that square. The square sits in the strip `[σ − δ, 1 + δ] × [j − 1/4, j + 5/4]` with `j = ⌊Im ρ⌋₊`. The …",
+  "imports": [
+   "Stage3.MollifiedMean",
+   "Stage3.SquareMean",
+   "Stage3.JensenCount"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "ZeroSquares"
+  ],
+  "lines": 402,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/JensenCount.lean",
+   "lean_stage3/Stage3/MollifiedMean.lean",
+   "lean_stage3/Stage3/SquareMean.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "one_le_zeta_order",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.one_le_zeta_order",
+    "line": 48,
+    "why": "At a zero `ρ ≠ 1` of ζ, the analytic order of ζ at `ρ` is at least one.",
+    "sorry": false,
+    "needs": [
+     "hρ1 : ρ ≠ 1",
+     "hz : riemannZeta ρ = 0"
+    ],
+    "proves": "1 ≤ analyticOrderNatAt riemannZeta ρ",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.one_le_zeta_order",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiable_M",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.differentiable_M",
+    "line": 86,
+    "why": "The Möbius sum `M X` is complex differentiable on the whole plane.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ"
+    ],
+    "proves": "Differentiable ℂ (MollifiedMean.M X)",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiable_M",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "differentiableOn_f",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.differentiableOn_f",
+    "line": 98,
+    "why": "The mollified function `f X` is complex differentiable on the plane with the point `1` removed.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ"
+    ],
+    "proves": "DifferentiableOn ℂ (MollifiedMean.f X) ({(1:ℂ)}ᶜ : Set ℂ)",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiable_M"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiable_M"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "f_at_zero",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.f_at_zero",
+    "line": 106,
+    "why": "At a zero of ζ the mollified function takes the value `−1`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "hz : riemannZeta ρ = 0"
+    ],
+    "proves": "MollifiedMean.f X ρ = -1",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.f_at_zero",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "sqG",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.sqG",
+    "line": 111,
+    "why": "The integrand `‖f X (u + i·max t 1)‖²`; it agrees with `‖f X (u + i t)‖²` for `t ≥ 1` and is continuous on the whole plane.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "u t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_eq",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_nonneg",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG_nonneg",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sum_unit_strips"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_sqG",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.continuous_sqG",
+    "line": 115,
+    "why": "The integrand `sqG X` is jointly continuous in `(u, t)`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ"
+    ],
+    "proves": "Continuous (Function.uncurry (sqG X))",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sqG_nonneg",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.sqG_nonneg",
+    "line": 131,
+    "why": "For fixed `u`, the integrand `sqG X u` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "u t : ℝ"
+    ],
+    "proves": "0 ≤ sqG X u t",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG_nonneg",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_nonneg"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "innerI",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.innerI",
+    "line": 135,
+    "why": "The inner integral `∫_a^b sqG X u t dt`, as a function of `u`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "a b u : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_eq",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_nonneg",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sum_unit_strips"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_sqG_slice",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.continuous_sqG_slice",
+    "line": 138,
+    "why": "For fixed `u`, the integrand `t ↦ sqG X u t` is continuous.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "u : ℝ"
+    ],
+    "proves": "Continuous (sqG X u)",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sum_unit_strips"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_innerI",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.continuous_innerI",
+    "line": 142,
+    "why": "The inner integral `innerI X a b` is continuous in `u`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "a b : ℝ"
+    ],
+    "proves": "Continuous (innerI X a b)",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_innerI",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "innerI_nonneg",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.innerI_nonneg",
+    "line": 146,
+    "why": "The inner integral over an interval `a ≤ b` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "hab : a ≤ b",
+     "u : ℝ"
+    ],
+    "proves": "0 ≤ innerI X a b u",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_nonneg",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "innerI_mono",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.innerI_mono",
+    "line": 150,
+    "why": "The inner integral over `[a, b]` is at most the one over a larger interval `[c, d]`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "hca : c ≤ a",
+     "hab : a ≤ b",
+     "hbd : b ≤ d",
+     "u : ℝ"
+    ],
+    "proves": "innerI X a b u ≤ innerI X c d u",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "innerI_eq",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.innerI_eq",
+    "line": 157,
+    "why": "For `1 ≤ a ≤ b`, the inner integral is the integral of `‖f X (u + i t)‖²` over `[a, b]`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "ha : 1 ≤ a",
+     "hab : a ≤ b",
+     "u : ℝ"
+    ],
+    "proves": "innerI X a b u = ∫ t in a..b, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_eq",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "square_lower",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.square_lower",
+    "line": 167,
+    "why": "One zero `ρ` with `σ ≤ Re ρ < 1` and `n + 2 ≤ Im ρ < n + 3` gives `π δ² ≤ ∫_{σ−δ}^{1+δ} ∫_{n+7/4}^{n+13/4} sqG X u t dt du`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "hδ : 0 < δ",
+     "hδ4 : δ ≤ 1 / 4",
+     "hz : riemannZeta ρ = 0",
+     "hσρ : σ ≤ ρ.re",
+     "hρ1 : ρ.re < 1",
+     "n : ℕ",
+     "hn1 : (n : ℝ) + 2 ≤ ρ.im",
+     "hn2 : ρ.im < (n : ℝ) + 3"
+    ],
+    "proves": "Real.pi * δ ^ 2 ≤ ∫ u in (σ - δ)..(1 + δ), innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_mean_lower",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.f_at_zero",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_eq",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/SquareMean.lean::SquareMean.sq_mean_lower",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.differentiableOn_f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.f_at_zero",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_eq",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "window_mem",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.window_mem",
+    "line": 203,
+    "why": "A zero `ρ` of ζ with `1/2 < Re ρ < 1` and `n + 2 ≤ Im ρ < n + 3` lies in the Jensen window `Stage3.zetaWindow (n + 5/2)`.",
+    "sorry": false,
+    "needs": [
+     "hz : riemannZeta ρ = 0",
+     "h1 : 1 / 2 < ρ.re",
+     "h2 : ρ.re < 1",
+     "n : ℕ",
+     "hn1 : (n : ℝ) + 2 ≤ ρ.im",
+     "hn2 : ρ.im < (n : ℝ) + 3"
+    ],
+    "proves": "ρ ∈ Stage3.zetaWindow ((n : ℝ) + 5 / 2)",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.window_mem",
+    "stmt": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_fiber_le",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.card_fiber_le",
+    "line": 220,
+    "why": "If every point of `W` is a zero of ζ with `1/2 < Re ρ < 1` and `n + 2 ≤ Im ρ < n + 3`, and `n + 5/2 ≤ T`, then `W` has at most `15 log T + 73` elements.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "hnT : (n : ℝ) + 5 / 2 ≤ T",
+     "W : Finset ℂ",
+     "hW : ∀ ρ ∈ W, riemannZeta ρ = 0 ∧ 1 / 2 < ρ.re ∧ ρ.re < 1 ∧ (n : ℝ) + 2 ≤ ρ.im ∧ ρ.im < (n : ℝ) + 3"
+    ],
+    "proves": "(W.card : ℝ) ≤ 15 * Real.log T + 73",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow_finite",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.one_le_zeta_order",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.window_mem"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zetaWindow_finite",
+     "lean_stage3/Stage3/JensenCount.lean::Stage3.zeta_local_zero_count",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.one_le_zeta_order",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.window_mem"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_unit_strips",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.sum_unit_strips",
+    "line": 249,
+    "why": "The unit strips `[n + c, n + 1 + c]`, `n < L`, tile `[c, L + c]`: the sum of the inner integrals over them is the inner integral over `[c, L + c]`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "c : ℝ",
+     "L : ℕ",
+     "u : ℝ"
+    ],
+    "proves": "∑ n ∈ Finset.range L, innerI X ((n : ℝ) + c) ((n : ℝ) + 1 + c) u = innerI X c ((L : ℝ) + c) u",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sum_unit_strips",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "strips_le",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.strips_le",
+    "line": 261,
+    "why": "If `L + 3 ≤ T`, the strips `[n + 7/4, n + 13/4]`, `n < L`, cover each height in `[1, T]` at most three times: the sum of their inner integrals is at most `3·∫_1^T sqG X u t dt`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "L : ℕ",
+     "hLT : (L : ℝ) + 3 ≤ T",
+     "u : ℝ"
+    ],
+    "proves": "∑ n ∈ Finset.range L, innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u ≤ 3 * innerI X 1 T u",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le",
+    "stmt": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sum_unit_strips"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_sqG_slice",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_mono",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sqG",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.sum_unit_strips"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_zeros_le",
+    "ns": "ZeroSquares",
+    "full": "ZeroSquares.card_zeros_le",
+    "line": 306,
+    "why": "For a finite set `Z` of zeros of ζ with `σ ≤ Re ρ < 1` and `2 ≤ Im ρ ≤ T − 2`, where `1/2 < σ − δ`, `0 < δ ≤ 1/4`, `σ ≤ 1` and `T ≥ 5`, the count of `Z` times `π δ²` is at most `3 (15 log T + 73)` times the integral of `‖f X‖²` over the strip `[σ − δ, 1 + δ] × [1, T]`.",
+    "sorry": false,
+    "needs": [
+     "hσ : 1 / 2 < σ - δ",
+     "hσ1 : σ ≤ 1",
+     "hδ : 0 < δ",
+     "hδ4 : δ ≤ 1 / 4",
+     "hT : 5 ≤ T",
+     "X : ℕ",
+     "Z : Finset ℂ",
+     "hZ : ∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re < 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2"
+    ],
+    "proves": "Real.pi * δ ^ 2 * (Z.card : ℝ) ≤ 3 * (15 * Real.log T + 73) * ∫ u in (σ - δ)..(1 + δ), ∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2",
+    "file": "lean_stage3/Stage3/ZeroSquares.lean",
+    "id": "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_zeros_le",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_eq",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_nonneg",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.card_fiber_le",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.continuous_innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_eq",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.innerI_nonneg",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.square_lower",
+     "lean_stage3/Stage3/ZeroSquares.lean::ZeroSquares.strips_le"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ZeroSum.lean",
   "module": "Stage3.ZeroSum",
   "stem": "ZeroSum",
@@ -68082,11 +68801,12 @@
    "Stage3.ZetaEM",
    "Stage3.DirichletMeanW",
    "Stage3.MollifiedMean",
-   "Stage3.SquareMean"
+   "Stage3.SquareMean",
+   "Stage3.ZeroSquares"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 161,
+  "lines": 162,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -68203,6 +68923,7 @@
    "lean_stage3/Stage3/WeilTransform.lean",
    "lean_stage3/Stage3/WeilWindow.lean",
    "lean_stage3/Stage3/WobbleCount.lean",
+   "lean_stage3/Stage3/ZeroSquares.lean",
    "lean_stage3/Stage3/ZeroSum.lean",
    "lean_stage3/Stage3/ZetaEM.lean",
    "lean_stage3/Stage3/ZetaGrowth.lean"

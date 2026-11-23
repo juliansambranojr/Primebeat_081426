@@ -34,7 +34,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (493)
+## Uses Lean records that the text does not show (501)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -518,6 +518,14 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`WeilWindow.m2_ge`](lean_stage3/WeilWindow.md#WeilWindow-m2_ge) | [`WeilWindow.continuous_x2P`](lean_stage3/WeilWindow.md#WeilWindow-continuous_x2P) | theorem |
 | [`WeilWindow.Sigma_ge_mul`](lean_stage3/WeilWindow.md#WeilWindow-Sigma_ge_mul) | [`WeilWindow.P`](lean_stage3/WeilWindow.md#WeilWindow-P) | def |
 | [`WeilWindow.Sigma_ge`](lean_stage3/WeilWindow.md#WeilWindow-Sigma_ge) | [`WeilWindow.m2`](lean_stage3/WeilWindow.md#WeilWindow-m2) | def |
+| [`ZeroSquares.differentiableOn_f`](lean_stage3/ZeroSquares.md#ZeroSquares-differentiableOn_f) | [`MollifiedMean.M`](lean_stage3/MollifiedMean.md#MollifiedMean-M) | def |
+| [`ZeroSquares.f_at_zero`](lean_stage3/ZeroSquares.md#ZeroSquares-f_at_zero) | [`MollifiedMean.M`](lean_stage3/MollifiedMean.md#MollifiedMean-M) | def |
+| [`ZeroSquares.continuous_sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-continuous_sqG) | [`MollifiedMean.f`](lean_stage3/MollifiedMean.md#MollifiedMean-f) | def |
+| [`ZeroSquares.sqG_nonneg`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG_nonneg) | [`MollifiedMean.f`](lean_stage3/MollifiedMean.md#MollifiedMean-f) | def |
+| [`ZeroSquares.continuous_innerI`](lean_stage3/ZeroSquares.md#ZeroSquares-continuous_innerI) | [`ZeroSquares.sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG) | def |
+| [`ZeroSquares.innerI_nonneg`](lean_stage3/ZeroSquares.md#ZeroSquares-innerI_nonneg) | [`ZeroSquares.sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG) | def |
+| [`ZeroSquares.innerI_mono`](lean_stage3/ZeroSquares.md#ZeroSquares-innerI_mono) | [`ZeroSquares.sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG) | def |
+| [`ZeroSquares.card_fiber_le`](lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le) | [`Stage3.zetaWindow`](lean_stage3/JensenCount.md#Stage3-zetaWindow) | def |
 | [`ZetaEM.zeta_eq_em`](lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | [`ZetaEM.emInt`](lean_stage3/ZetaEM.md#ZetaEM-emInt) | def |
 | [`ZetaEM.zeta_eq_em`](lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | [`ZetaEM.emTerm`](lean_stage3/ZetaEM.md#ZetaEM-emTerm) | def |
 | [`ZetaEM.norm_remainder_le`](lean_stage3/ZetaEM.md#ZetaEM-norm_remainder_le) | [`ZetaEM.emInt`](lean_stage3/ZetaEM.md#ZetaEM-emInt) | def |

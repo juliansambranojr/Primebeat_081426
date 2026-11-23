@@ -5,7 +5,7 @@ JensenCount — `StmtLocalCount` discharged: the Backlund-style local zero count
 17 theorems, 3 definitions, 552 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ArgCrude`](../lean_stage3/ArgCrude.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgIdentity`](../lean_stage3/ArgIdentity.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`LineBound`](../lean_stage3/LineBound.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgIdentity`](../lean_stage3/ArgIdentity.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`LineBound`](../lean_stage3/LineBound.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md), [`ZeroSquares`](../lean_stage3/ZeroSquares.md)
 
 ## The picture
 
@@ -38,9 +38,10 @@ flowchart LR
   x7(["<b>Glue</b><br/>band_order_sum_le"]):::ext
   x8(["<b>GlueNum</b><br/>band_order_sum_le_num"]):::ext
   x9(["<b>WeilBands</b><br/>band_count"]):::ext
-  x10(["<b>LowCount</b><br/>low_ball_count"]):::ext
-  x11(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
-  x12(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
+  x10(["<b>ZeroSquares</b><br/>card_fiber_le"]):::ext
+  x11(["<b>LowCount</b><br/>low_ball_count"]):::ext
+  x12(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
+  x13(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
   n0 --> n11
   n1 --> n11
   n10 --> n14
@@ -72,22 +73,24 @@ flowchart LR
   n10 -.-> x3
   n11 -.-> x0
   n11 -.-> x3
-  n12 -.-> x10
   n12 -.-> x11
+  n12 -.-> x12
   n12 -.-> x5
   n12 -.-> x6
+  n14 -.-> x10
   n14 -.-> x4
   n14 -.-> x5
   n14 -.-> x6
   n14 -.-> x7
   n14 -.-> x8
   n14 -.-> x9
-  n16 -.-> x12
+  n16 -.-> x13
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x3
   n4 -.-> x0
   n4 -.-> x3
+  n6 -.-> x10
   n6 -.-> x4
   n6 -.-> x5
   n6 -.-> x6
@@ -120,7 +123,7 @@ def · line 260
 The window. `ζ`'s zeros in the closed disk of radius `7/4` about `2 + iT`. On the critical line this disk covers `|γ - T| ≤ √(13/16)` ≈ `0.901`, an interval of positive length — which is what radius `3/2` fails to do, being tangent to the line and so catching only `γ = T`.
 
 - **Is:** `` zetaWindow (T : ℝ) : Set ℂ := {ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 7 / 4} ``
-- **Used by 13:** [`ContourShift.goodT_exists`](../lean_stage3/ContourShift.md#ContourShift-goodT_exists), [`ContourShift.mem_zetaWindow`](../lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow), [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le), [`EdgeBound.ball_order_sum_le_num`](../lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num), [`Glue.band_order_sum_le`](../lean_stage3/Glue.md#Glue-band_order_sum_le), [`Glue.band_order_sum_le_num`](../lean_stage3/GlueNum.md#Glue-band_order_sum_le_num), [`Stage3.localCount_holds`](#Stage3-localCount_holds), [`Stage3.zetaLocalCount`](#Stage3-zetaLocalCount), [`Stage3.zetaLocalCount_eq`](#Stage3-zetaLocalCount_eq), [`Stage3.zetaWindow_finite`](#Stage3-zetaWindow_finite), [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count), [`WeilBands.band_count`](../lean_stage3/WeilBands.md#WeilBands-band_count), [`WeilBands.mem_zetaWindow_of_online`](../lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online)
+- **Used by 15:** [`ContourShift.goodT_exists`](../lean_stage3/ContourShift.md#ContourShift-goodT_exists), [`ContourShift.mem_zetaWindow`](../lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow), [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le), [`EdgeBound.ball_order_sum_le_num`](../lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num), [`Glue.band_order_sum_le`](../lean_stage3/Glue.md#Glue-band_order_sum_le), [`Glue.band_order_sum_le_num`](../lean_stage3/GlueNum.md#Glue-band_order_sum_le_num), [`Stage3.localCount_holds`](#Stage3-localCount_holds), [`Stage3.zetaLocalCount`](#Stage3-zetaLocalCount), [`Stage3.zetaLocalCount_eq`](#Stage3-zetaLocalCount_eq), [`Stage3.zetaWindow_finite`](#Stage3-zetaWindow_finite), [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count), [`WeilBands.band_count`](../lean_stage3/WeilBands.md#WeilBands-band_count), [`WeilBands.mem_zetaWindow_of_online`](../lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online), [`ZeroSquares.card_fiber_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le), [`ZeroSquares.window_mem`](../lean_stage3/ZeroSquares.md#ZeroSquares-window_mem)
 
 <a name="Stage3-jensenF"></a>
 ### `Stage3.jensenF`
@@ -340,7 +343,7 @@ line 264
 
   - [`Stage3.zetaWindowTwo_finite`](#Stage3-zetaWindowTwo_finite) — `` {ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite ``
 
-**Feeds** (9 that use it)
+**Feeds** (10 that use it)
 
   - [`ContourShift.goodT_exists`](../lean_stage3/ContourShift.md#ContourShift-goodT_exists) (ContourShift) — `` ∃ T' ∈ Set.Icc T (T+1), ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → zeroGap T ≤ |ρ.im - T'| ``
   - [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le) (EdgeBound) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real… ``
@@ -351,6 +354,7 @@ line 264
   - [`Stage3.zetaLocalCount_eq`](#Stage3-zetaLocalCount_eq) — `` zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ``
   - [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count) — `` ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ 15 * Real.log T + 73 ``
   - [`WeilBands.band_count`](../lean_stage3/WeilBands.md#WeilBands-band_count) (WeilBands) — `` ∑ ρ ∈ S, (analyticOrderNatAt riemannZeta ρ : ℝ) ≤ 15 * Real.log T + 73 ``
+  - [`ZeroSquares.card_fiber_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le) (ZeroSquares) — `` (W.card : ℝ) ≤ 15 * Real.log T + 73 ``
 
 <a name="Stage3-zeta_comp_analytic"></a>
 ### `Stage3.zeta_comp_analytic`
@@ -604,7 +608,7 @@ line 366
 
 **Definitions its proof touches:** [`Stage3.jensenF`](#Stage3-jensenF)
 
-**Feeds** (7 that use it)
+**Feeds** (8 that use it)
 
   - [`ContourShift.goodT_exists`](../lean_stage3/ContourShift.md#ContourShift-goodT_exists) (ContourShift) — `` ∃ T' ∈ Set.Icc T (T+1), ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → zeroGap T ≤ |ρ.im - T'| ``
   - [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le) (EdgeBound) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real… ``
@@ -613,6 +617,7 @@ line 366
   - [`Glue.band_order_sum_le_num`](../lean_stage3/GlueNum.md#Glue-band_order_sum_le_num) (GlueNum) — `` ∀ T : ℝ, 2 ≤ T → ∀ F : Finset ℂ, (∀ ρ ∈ F, riemannZeta ρ = 0 ∧ (0 < ρ.re ∧ ρ.re < 1) ∧ T ≤ |ρ.im| ∧ |ρ.im| ≤ T + 1) → (∑ ρ ∈ F, (analyticOrderNatAt ri… ``
   - [`Stage3.localCount_holds`](#Stage3-localCount_holds) — `` StmtLocalCount zetaLocalCount 15 73 ``
   - [`WeilBands.band_count`](../lean_stage3/WeilBands.md#WeilBands-band_count) (WeilBands) — `` ∑ ρ ∈ S, (analyticOrderNatAt riemannZeta ρ : ℝ) ≤ 15 * Real.log T + 73 ``
+  - [`ZeroSquares.card_fiber_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le) (ZeroSquares) — `` (W.card : ℝ) ≤ 15 * Real.log T + 73 ``
 
 <a name="Stage3-zetaLocalCount_eq"></a>
 ### `Stage3.zetaLocalCount_eq`

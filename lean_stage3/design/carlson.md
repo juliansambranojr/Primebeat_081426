@@ -77,7 +77,7 @@ For `1/2 < u ≤ 2`, from C1–C3 with `N = T^(1+ε)`:
 
     ∫₀ᵀ |f(u + it)|² dt ≪ (T + N·X·log)·X^(1−2u)·log³ + (small).
 
-### C5 Zeros from the mean square — first half PROVED (unit 0452: `SquareMean.sq_mean_lower`, constant `π`, on squares in iterated form); the count being built
+### C5 Zeros from the mean square — PROVED (unit 0452: `SquareMean.sq_mean_lower`; unit 0453: `ZeroSquares.card_zeros_le`, `π·δ²·#Z ≤ 3·(15 log T + 73)·∬`, squares in the place of discs)
 
 `|f|²` is subharmonic, so `1 = |f(ρ)|² ≤` the mean of `|f|²` over a disc of
 radius `r` about `ρ`. Summing over the zeros with `Re ρ ≥ σ`, `|Im ρ| < T`:

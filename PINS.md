@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block C5 of `design/carlson.md`, second half: `Stage3/ZeroSquares.lean`
+
+    DONE        `card_zeros_le`: for a finite set `Z` of zeros with
+                `σ ≤ Re ρ < 1`, `2 ≤ Im ρ ≤ T − 2`,
+                `π·δ²·#Z ≤ 3·(15 log T + 73)·` the integral of `‖f X‖²` over
+                `[σ − δ, 1 + δ] × [1, T]`; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". Written
+                by an Opus worker; read and built here. `σ ≤ 1` was added by
+                the worker: the statement fails without it on the empty set
+    DEPENDS     `SquareMean.sq_mean_lower`, `Stage3.zeta_local_zero_count`,
+                `MollifiedMean.f`
+    OUT         blocks C6, C7
+    OUTCOME     proved, unit 0453
+
 ### 2026-11-23 · block C5 of `design/carlson.md`, first half: `Stage3/SquareMean.lean`
 
     DONE        `sq_mean_lower`: for `f` differentiable on a set containing

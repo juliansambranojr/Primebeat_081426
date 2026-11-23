@@ -5,7 +5,7 @@ MollifiedMean — block C4 of `lean_stage3/design/carlson.md`. 2026-11-23. The m
 12 theorems, 3 definitions, 486 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`DirichletMeanW`](../lean_stage3/DirichletMeanW.md), [`Mollified`](../lean_stage3/Mollified.md), [`ZetaEM`](../lean_stage3/ZetaEM.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ZeroSquares`](../lean_stage3/ZeroSquares.md)
 
 ## The picture
 
@@ -65,7 +65,7 @@ def · line 45
 The Möbius sum `M_X(s) = Σ_{1 ≤ d < X} μ(d)·d^(−s)`.
 
 - **Is:** `` M (X : ℕ) (s : ℂ) : ℂ := ∑ d ∈ Ico 1 X, (ArithmeticFunction.moebius d : ℂ) * (d : ℂ) ^ (-s) ``
-- **Used by 5:** [`MollifiedMean.PM_sub_one_eq`](#MollifiedMean-PM_sub_one_eq), [`MollifiedMean.f`](#MollifiedMean-f), [`MollifiedMean.f_eq`](#MollifiedMean-f_eq), [`MollifiedMean.mean_sq_f_le`](#MollifiedMean-mean_sq_f_le), [`MollifiedMean.norm_M_le`](#MollifiedMean-norm_M_le)
+- **Used by 8:** [`MollifiedMean.PM_sub_one_eq`](#MollifiedMean-PM_sub_one_eq), [`MollifiedMean.f`](#MollifiedMean-f), [`MollifiedMean.f_eq`](#MollifiedMean-f_eq), [`MollifiedMean.mean_sq_f_le`](#MollifiedMean-mean_sq_f_le), [`MollifiedMean.norm_M_le`](#MollifiedMean-norm_M_le), [`ZeroSquares.differentiableOn_f`](../lean_stage3/ZeroSquares.md#ZeroSquares-differentiableOn_f), [`ZeroSquares.differentiable_M`](../lean_stage3/ZeroSquares.md#ZeroSquares-differentiable_M), [`ZeroSquares.f_at_zero`](../lean_stage3/ZeroSquares.md#ZeroSquares-f_at_zero)
 
 <a name="MollifiedMean-f"></a>
 ### `MollifiedMean.f`
@@ -76,7 +76,7 @@ The mollified function `f_X(s) = ζ(s)·M_X(s) − 1`.
 
 - **Is:** `` f f (X : ℕ) (s : ℂ) : ℂ := riemannZeta s * M X s - 1 ``
 - **Built from:** [`MollifiedMean.M`](#MollifiedMean-M)
-- **Used by 2:** [`MollifiedMean.f_eq`](#MollifiedMean-f_eq), [`MollifiedMean.mean_sq_f_le`](#MollifiedMean-mean_sq_f_le)
+- **Used by 10:** [`MollifiedMean.f_eq`](#MollifiedMean-f_eq), [`MollifiedMean.mean_sq_f_le`](#MollifiedMean-mean_sq_f_le), [`ZeroSquares.card_zeros_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_zeros_le), [`ZeroSquares.continuous_sqG`](../lean_stage3/ZeroSquares.md#ZeroSquares-continuous_sqG), [`ZeroSquares.differentiableOn_f`](../lean_stage3/ZeroSquares.md#ZeroSquares-differentiableOn_f), [`ZeroSquares.f_at_zero`](../lean_stage3/ZeroSquares.md#ZeroSquares-f_at_zero), [`ZeroSquares.innerI_eq`](../lean_stage3/ZeroSquares.md#ZeroSquares-innerI_eq), [`ZeroSquares.sqG`](../lean_stage3/ZeroSquares.md#ZeroSquares-sqG), [`ZeroSquares.sqG_nonneg`](../lean_stage3/ZeroSquares.md#ZeroSquares-sqG_nonneg), [`ZeroSquares.square_lower`](../lean_stage3/ZeroSquares.md#ZeroSquares-square_lower)
 
 <a name="MollifiedMean-b"></a>
 ### `MollifiedMean.b`
