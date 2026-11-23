@@ -1,0 +1,47 @@
+# check_prose_source.py  2026-11-23T04:00:21Z
+# unit: 0458-explicit-left
+# sources searched: 421
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26151
+  T3 at a fixed row (the explicit formula above x²).
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27472
+  theorem explicit_formula_left {x T : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27473
+  ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32147
+  ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27475
+  ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad64e8bd782cf2e54.jsonl:1103
+  + ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27478
+  theorem edge_left_any {x T' : ℝ} (hx : 16 ≤ x) (hT'2 : 2 ≤ T') :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27476
+  ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad64e8bd782cf2e54.jsonl:1116
+  ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27482
+  theorem explicit_formula_any {x T : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32147
+  ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27475
+  ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-ad64e8bd782cf2e54.jsonl:1129
+  + Aleft * (Real.log (T+1))^2 * x ^ (-(1:ℝ)/4) :=
+
+# 14 found, 0 missing

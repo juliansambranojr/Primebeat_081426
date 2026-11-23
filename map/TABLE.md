@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>6 theorems counting,<br/>in 2 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>9 theorems counting,<br/>in 4 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>694 theorems shape,<br/>in 100 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>743 theorems shape,<br/>in 104 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>559 theorems reads ζ,<br/>in 83 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>587 theorems reads ζ,<br/>in 88 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 110 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 945 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 580 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 113 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 994 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 608 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 6 | 694 | 559 |
+| `lean_stage3/` | 9 | 743 | 587 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -284,6 +284,12 @@ ZerosStencil — the Mathlib-dependent half of `Zeros.lean`. Split out of `Zeros
 - [`Zeros.factorization_proportional`](./lean/ZerosStencil.md#Zeros-factorization_proportional) — `` n * b.factorization p = m * c.factorization p `` Two ladders that meet have proportional exponents. If some power of `b` equals some power of `c`, then at every prime the two exponents stand in the ratio `m : n`. This is the "shared lineage" of `Commensurate-Ladders.md` § A2 in exact form -- not that `b` an
 - [`Zeros.primeFactors_eq_of_meets`](./lean/ZerosStencil.md#Zeros-primeFactors_eq_of_meets) — `` b.primeFactors = c.primeFactors `` And they are built from the same primes. Proportionality with both exponents nonzero forces the supports to agree, so ladders that meet are made of one prime set. Bases 2 and 3 meet nowhere above `x = 1` for exactly this reason -- there is no common ancestor 
 
+### [`LeftSmooth`](./lean_stage3/LeftSmooth.md) — 1
+
+LeftSmooth — blocks F2c, F2 and F3 of `lean_stage3/design/leftedge.md`. 2026-11-23.
+
+- [`LeftSmooth.dgTerm_nonneg`](./lean_stage3/LeftSmooth.md#LeftSmooth-dgTerm_nonneg) — `` 0 ≤ dgTerm n `` Each weight `1/((n+1)(n+5/4))` is nonnegative.
+
 ### [`Mollified`](./lean_stage3/Mollified.md) — 5
 
 Mollified — block C2 of `lean_stage3/design/carlson.md`. 2026-11-23. The product of the finite sum `P_N(s) = Σ_{n ≤ N} n^{-s}` with the short Möbius sum `M_X(s) = Σ_{d < X} μ(d)·d^{-s}` is a finite Dirichlet sum `Σ_n c_n·n^{-s}` with `c_n = Σ_{d | n, d < X, n/d ≤ N} μ(d)`. For `1 < n < X`, `n ≤ N` the coefficient vanishes and `c_1 = 1`. Each `|c_n|` is at most the number of divisors of `n` below `X`. The square of that count is at most the number of triples `(g, a, b)` below `X` with `g·a·b | n` (send a pair of div…
@@ -293,6 +299,13 @@ Mollified — block C2 of `lean_stage3/design/carlson.md`. 2026-11-23. The produ
 - [`Mollified.abs_coef_le`](./lean_stage3/Mollified.md#Mollified-abs_coef_le) — `` |coef X N n| ≤ tauBelow X n `` The coefficient is at most the number of divisors of `n` below `X` in absolute value.
 - [`Mollified.card_Icc_dvd`](./lean_stage3/Mollified.md#Mollified-card_Icc_dvd) — `` ((Icc 1 Y).filter (k ∣ ·)).card = Y / k `` Exactly `Y / k` of the naturals in `[1, Y]` are multiples of `k`.
 - [`Mollified.tauBelow_sq_le`](./lean_stage3/Mollified.md#Mollified-tauBelow_sq_le) — `` tauBelow X n ^ 2 ≤ ((triples X).filter (fun t => t.1 * t.2.1 * t.2.2 ∣ n)).card `` The square of the number of divisors of `n` below `X` is at most the number of triples `(g, a, b)` in `[1, X)³` with `g·a·b` dividing `n`.
+
+### [`PiFixedRow`](./lean_stage3/PiFixedRow.md) — 2
+
+PiFixedRow — block F4 of `lean_stage3/design/leftedge.md`. 2026-11-23. The integer count at a fixed `x` with the height of the zero sum taken to infinity. `PiZeros.pi_eq_zero_sum` is an identity at every height; what has to be bounded free of the height is `tr (efRem T) x`, the passage of the explicit formula's remainder. Above `16` the explicit formula at every height does it. On `[2, 16]` each zero is integrated by parts in `t`, which gains a factor `1/|ρ+1|`, and the zeros weighted by `m/|ρ|²` have a sum bounded…
+
+- [`PiFixedRow.sum_sq_div_pow_eq`](./lean_stage3/PiFixedRow.md#PiFixedRow-sum_sq_div_pow_eq) — `` ∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 + (2 * (n:ℝ) ^ 2 + 12 * n + 22) * ((2:ℝ) ^ n)⁻¹ = 22 `` The closed form behind `Σ_j (j+2)²/2^j ≤ 22`: the partial sum plus a vanishing tail is exactly `22`.
+- [`PiFixedRow.sum_sq_div_pow_le`](./lean_stage3/PiFixedRow.md#PiFixedRow-sum_sq_div_pow_le) — `` ∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 ≤ 22 `` The partial sums of `(j+2)²/2^j` are at most `22`.
 
 ### [`WeilPowerClean`](./lean_stage3/WeilPowerClean.md) — 1
 

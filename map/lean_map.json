@@ -1651,6 +1651,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_eight",
@@ -7992,6 +7993,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.tableFrom_cast",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -18801,10 +18803,13 @@
      "lean_stage3/Stage3/Assembly.lean::Stage3.norm_zeroPartialSum_le_sharp",
      "lean_stage3/Stage3/Assembly.lean::Stage3.psiWeak_of_RH_EF_NT",
      "lean_stage3/Stage3/AssemblyFloor.lean::Stage3.psiWeak_floor",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeroPartialSum_eq_sum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/Glue.lean::Glue.explicit_formula_poly",
      "lean_stage3/Stage3/Glue.lean::Glue.zeroPartialSum_swap",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
@@ -18812,6 +18817,7 @@
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.psiWeak_floor_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
@@ -20887,6 +20893,230 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/CellFixedRow.lean",
+  "module": "Stage3.CellFixedRow",
+  "stem": "CellFixedRow",
+  "header": "CellFixedRow — block F3 of `lean_stage3/design/leftedge.md`. 2026-11-23. The cell at a fixed row with the height of the zero sum taken to infinity. `LeftSmooth.explicit_formula_all` holds at every height `T ≥ 2`, with no cap `T ≤ x²`. Through the stencil, the cell at row `r`, depth `d`, and its zero sum to any height differ by the stencil of that bound. As `T → ∞` at the fixed row the first term of the bound tends to zero, and what stays is free of the height.",
+  "imports": [
+   "Stage3.LeftSmooth",
+   "Stage3.CellRows"
+  ],
+  "opens": [
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "Topology"
+  ],
+  "namespaces": [
+   "CellFixedRow"
+  ],
+  "lines": 207,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/CellRows.lean",
+   "lean_stage3/Stage3/LeftSmooth.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "cell_eq_zero_sum_all",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.cell_eq_zero_sum_all",
+    "line": 33,
+    "why": "The cell as a sum over the zeros, at every height. For `16 ≤ 2^(r−d)` and any `T ≥ 2`, the cell at row `r`, depth `d`, minus its main term, plus the sum over the zeros below `T`, has norm at most the stencil of the explicit formula's error at every height, read on the `d + 1` rows the stencil touches.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℤ",
+     "h16 : 16 ≤ (2:ℝ) ^ (r - (d : ℤ))",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ ((ρ : Kadiri.NontrivialZeros) : ℂ)) ^ r * (1 - ((2:ℂ) ^ ((ρ : Kadiri.NontrivialZeros) : ℂ))⁻¹) ^ d / ((ρ : Kadiri.NontrivialZeros) : ℂ))‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + LeftSmooth.Bleft * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4))",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_add",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_mode",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sub",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_add",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_mode",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_sub",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cell_zero_sum_finset_all",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.cell_zero_sum_finset_all",
+    "line": 73,
+    "why": "The same, over the finite set of zeros below the height.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℤ",
+     "h16 : 16 ≤ (2:ℝ) ^ (r - (d : ℤ))",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + LeftSmooth.Bleft * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4))",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Bleft_nonneg",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.Bleft_nonneg",
+    "line": 85,
+    "why": "The left-edge constant is nonnegative: it bounds a norm at `x = 16`, `T = 2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ LeftSmooth.Bleft",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tendsto_log_sq_div",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.tendsto_log_sq_div",
+    "line": 95,
+    "why": "For a fixed constant `c > 0`, `log²(c·T)/T` times `a` tends to zero as `T → ∞`.",
+    "sorry": false,
+    "needs": [
+     "a c : ℝ",
+     "hc : 0 < c"
+    ],
+    "proves": "Tendsto (fun T : ℝ => a * c * Real.log (c * T) ^ 2 / T) atTop (𝓝 0)",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cell_fixed_row",
+    "ns": "CellFixedRow",
+    "full": "CellFixedRow.cell_fixed_row",
+    "line": 111,
+    "why": "The cell at a fixed row, the height to infinity. For `d + 4 ≤ r` and every `ε > 0`, for all large heights `T` the cell at row `r`, depth `d`, minus its main term, plus its sum over the zeros below `T`, has norm at most `2^d·(c3n·log 2·r + Bleft) + ε`. The bound left is free of the height.",
+    "sorry": false,
+    "needs": [
+     "d : ℕ",
+     "r : ℕ",
+     "hr : d + 4 ≤ r"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d (r : ℤ) ρ‖ ≤ 2 ^ d * (Glue.c3n * Real.log 2 * r + LeftSmooth.Bleft) + ε",
+    "file": "lean_stage3/Stage3/CellFixedRow.lean",
+    "id": "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.term",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/CellModes.lean",
   "module": "Stage3.CellModes",
   "stem": "CellModes",
@@ -21889,6 +22119,9 @@
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.iter_bdZ_eq_stencil",
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.stencil_eq_bdiff_iter",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
@@ -21902,6 +22135,7 @@
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_congr",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencil_neg",
@@ -21934,6 +22168,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -21964,6 +22199,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -22057,6 +22293,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil_zeroPartialSum"
     ]
@@ -22089,7 +22326,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum"
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row"
     ]
    },
    {
@@ -22179,6 +22418,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum"
     ]
    },
@@ -22386,11 +22626,13 @@
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_reflect",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_zeros_rectangle_finite",
      "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.gz_order_eq",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.edge_left_sharp",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_left_sharp_num",
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_principal_part",
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.differentiableAt_Phi",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_mul_zeta_analytic"
     ]
    },
@@ -22522,6 +22764,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/Glue.lean::Glue.explicit_formula_poly",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
@@ -22873,6 +23116,7 @@
     "used_by": [
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
      "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.ball_zero_shape",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
      "lean_stage3/Stage3/Glue.lean::Glue.zeroPartialSum_swap",
      "lean_stage3/Stage3/Glue.lean::Glue.zeta_logderiv_good_bound",
@@ -23175,6 +23419,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/Glue.lean::Glue.explicit_formula_poly",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
@@ -24129,6 +24374,7 @@
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.ball_order_sum_le_num",
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num",
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.gz_partial_fraction_num",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
      "lean_stage3/Stage3/Glue.lean::Glue.zeta_logderiv_good_bound",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.edge_left_sharp",
@@ -24258,6 +24504,7 @@
     "used_by": [
      "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.ball_order_sum_le",
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.ball_order_sum_le_num",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
      "lean_stage3/Stage3/Glue.lean::Glue.zeta_logderiv_good_bound",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.edge_left_sharp",
@@ -24361,6 +24608,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/Glue.lean::Glue.Gf_norm_conj",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
      "lean_stage3/Stage3/Glue.lean::Glue.zeta_logderiv_good_bound",
@@ -24672,6 +24920,7 @@
     "used_by": [
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen_pos",
      "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Dln",
@@ -24714,6 +24963,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Cpn_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Dln_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_left_sharp_num",
@@ -24764,6 +25014,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_left_sharp_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeta_logderiv_good_bound_num"
     ]
@@ -25219,6 +25470,223 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/ExplicitLeft.lean",
+  "module": "Stage3.ExplicitLeft",
+  "stem": "ExplicitLeft",
+  "header": "ExplicitLeft — block F1 of `lean_stage3/design/leftedge.md`. 2026-11-23. The truncated explicit formula at every height `T ≥ 2`, with no cap `T ≤ x²`. `Glue.explicit_formula_split_num` used the cap once, to bound the left edge `VIntegral (Gf x) (-1/4) (-T') T'` by `log²x`. Here the left edge is kept as a term, and bounded separately by `log²T'`. The bound grows with the height: an absolute value on the line `Re s = −1/4` loses `log²T'` (the lost factor of the design note). Block F2 removes it.",
+  "imports": [
+   "Stage3.GlueNum"
+  ],
+  "opens": [
+   "Complex",
+   "Set",
+   "Topology"
+  ],
+  "namespaces": [
+   "ExplicitLeft"
+  ],
+  "lines": 670,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/GlueNum.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Aleft",
+    "ns": "ExplicitLeft",
+    "full": "ExplicitLeft.Aleft",
+    "line": 28,
+    "why": "The left-edge constant at every height: eight times `Glue.Dln`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/ExplicitLeft.lean",
+    "id": "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Dln"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Dln"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft_pos",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Aleft_pos",
+    "ns": "ExplicitLeft",
+    "full": "ExplicitLeft.Aleft_pos",
+    "line": 31,
+    "why": "The left-edge constant `Aleft` is positive.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 < Aleft",
+    "file": "lean_stage3/Stage3/ExplicitLeft.lean",
+    "id": "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Dln_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Dln_pos"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "explicit_formula_left",
+    "ns": "ExplicitLeft",
+    "full": "ExplicitLeft.explicit_formula_left",
+    "line": 42,
+    "why": "The explicit formula with the left edge kept. For `16 ≤ x` and `2 ≤ T` there is a height `T′` in `[T, T+1]` with `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c1n·x·log²(xT)/T + c3n·log x + ‖left edge at T′‖`. `Glue.explicit_formula_split_num`'s proof with the left edge left unbounded; no cap on `T`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖",
+    "file": "lean_stage3/Stage3/ExplicitLeft.lean",
+    "id": "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.goodT_exists",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Chn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Chn_pos",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn_pos",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.edge_horizontal_bound_num",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.explicit_formula_perron"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.goodT_exists",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Chn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Chn_pos",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Csn_pos",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.edge_horizontal_bound_num",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num",
+     "lean_stage3/Stage3/PerronKernel.lean::PerronKernel.explicit_formula_perron"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "edge_left_any",
+    "ns": "ExplicitLeft",
+    "full": "ExplicitLeft.edge_left_any",
+    "line": 274,
+    "why": "The left edge at any height. For `16 ≤ x` and `2 ≤ T′`, the integral of `−ζ′/ζ(s)·x^s/s` up `Re s = −1/4` from `−T′` to `T′` has norm at most `Aleft·log²T′·x^(−1/4)`. `Glue.edge_left_sharp_num`'s proof with `log T′` kept.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT'2 : 2 ≤ T'"
+    ],
+    "proves": "‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/ExplicitLeft.lean",
+    "id": "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_ne_zero_of_re_mem",
+     "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.ball_zero_shape",
+     "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.deriv_zeta_conj",
+     "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.gz_zeros_ball_finite",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen_pos",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Dln",
+     "lean_stage3/Stage3/LowEdge.lean::EdgeBound.logDerivZeta_short_segment"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_ne_zero_of_re_mem",
+     "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.ball_zero_shape",
+     "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.deriv_zeta_conj",
+     "lean_stage3/Stage3/EdgeBound.lean::EdgeBound.gz_zeros_ball_finite",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.Cen_pos",
+     "lean_stage3/Stage3/EdgeNum.lean::EdgeBound.edge_bound_core_num",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft",
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.Dln",
+     "lean_stage3/Stage3/LowEdge.lean::EdgeBound.logDerivZeta_short_segment"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "explicit_formula_any",
+    "ns": "ExplicitLeft",
+    "full": "ExplicitLeft.explicit_formula_any",
+    "line": 647,
+    "why": "The truncated explicit formula at every height. For `16 ≤ x` and `2 ≤ T`, `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c1n·x·log²(xT)/T + c3n·log x + Aleft·log²(T+1)·x^(−1/4)`. No cap on `T`; the last term grows with `T`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + Aleft * (Real.log (T+1))^2 * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/ExplicitLeft.lean",
+    "id": "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/FiniteOffLine.lean",
   "module": "Stage3.FiniteOffLine",
   "stem": "FiniteOffLine",
@@ -25276,6 +25744,8 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.tendsto_tail",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.topRow",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.tsum_split",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
@@ -25285,6 +25755,11 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
@@ -25327,6 +25802,7 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.tsum_sub_eq_sum",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
@@ -25361,6 +25837,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
@@ -25392,6 +25869,8 @@
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log",
@@ -25553,6 +26032,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log"
     ]
    },
@@ -25578,6 +26058,8 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
@@ -26717,6 +27199,8 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/Glue.lean::Glue.Gf_norm_conj",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_horizontal_bound",
      "lean_stage3/Stage3/Glue.lean::Glue.edge_left_bound",
@@ -26725,7 +27209,8 @@
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_horizontal_bound_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_left_sharp_num",
-     "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
+     "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
    {
@@ -27343,6 +27828,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Csn_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.band_order_sum_le_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
@@ -27375,6 +27861,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num"
@@ -27464,6 +27951,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Chn_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
@@ -27500,6 +27988,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
     ]
@@ -27526,6 +28015,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/GlueNum.lean::Glue.Dln_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c4n",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c4n_nonneg",
@@ -27562,6 +28053,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.Aleft_pos",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c4n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
     ]
@@ -27591,16 +28083,25 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/GateEval.lean::GateEval.routeConst_le",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
@@ -27630,16 +28131,25 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/CellBdiff.lean::CellBdiff.cell_eq_modeSum_bdiff",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellModes.lean::CellModes.cell_eq_modeSum",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
      "lean_stage3/Stage3/CellZeros.lean::CellZeros.cell_eq_zero_sum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/GateEval.lean::GateEval.routeConst_le",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
@@ -27725,6 +28235,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
@@ -27753,7 +28265,11 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.err_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/RouteNum.lean::RouteNum.relErrWindow_route_num",
@@ -27867,6 +28383,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
     ]
    },
@@ -27953,6 +28470,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
     ]
    },
@@ -32755,6 +33273,1988 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LeftKernel.lean",
+  "module": "Stage3.LeftKernel",
+  "stem": "LeftKernel",
+  "header": "LeftKernel — blocks F2a and F2b of `lean_stage3/design/leftedge.md`. 2026-11-23.",
+  "imports": [
+   "Stage3.ExplicitLeft"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "LeftKernel"
+  ],
+  "lines": 366,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ExplicitLeft.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "cpow_tI",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.cpow_tI",
+    "line": 28,
+    "why": "For `y > 0`, the turning factor `y^(it)` is the exponential `exp(log y · it)`.",
+    "sorry": false,
+    "needs": [
+     "hy : 0 < y",
+     "t : ℝ"
+    ],
+    "proves": "(y:ℂ) ^ ((t:ℂ) * Complex.I) = Complex.exp ((Real.log y : ℂ) * ((t:ℂ) * Complex.I))",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_exp_tI",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.norm_exp_tI",
+    "line": 33,
+    "why": "The exponential `exp(L · it)` of a purely imaginary number has norm one.",
+    "sorry": false,
+    "needs": [
+     "L t : ℝ"
+    ],
+    "proves": "‖Complex.exp ((L:ℂ) * ((t:ℂ) * Complex.I))‖ = 1",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_cpow_tI",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.norm_cpow_tI",
+    "line": 38,
+    "why": "For `y > 0`, the turning factor `y^(it)` has norm one.",
+    "sorry": false,
+    "needs": [
+     "hy : 0 < y",
+     "t : ℝ"
+    ],
+    "proves": "‖(y:ℂ) ^ ((t:ℂ) * Complex.I)‖ = 1",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "osc_by_parts",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.osc_by_parts",
+    "line": 45,
+    "why": "Integration by parts against the turning factor. For `y > 1`, `a ≤ b`, and `h` with derivative `h′` on `[a,b]`, `h′` integrable: `‖∫_a^b y^(it)·h(t) dt‖ ≤ (‖h a‖ + ‖h b‖ + ∫_a^b ‖h′‖)/log y`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hab : a ≤ b",
+     "hd : ∀ t ∈ Set.uIcc a b, HasDerivAt h (h' t) t",
+     "hi : IntervalIntegrable h' volume a b"
+    ],
+    "proves": "‖∫ t in a..b, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * h t‖ ≤ (‖h a‖ + ‖h b‖ + ∫ t in a..b, ‖h' t‖) / Real.log y",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_exp_tI"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kernel_bound",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.kernel_bound",
+    "line": 101,
+    "why": "F2a, the kernel. For `y > 1`, `T > 0` and real `a ≠ 0`: `‖∫_{−T}^{T} y^(it)/(a+it) dt‖ ≤ (2/T + π/|a|)/log y`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hT : 0 < T",
+     "ha : a ≠ 0"
+    ],
+    "proves": "‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) / ((a:ℂ) + (t:ℂ) * Complex.I)‖ ≤ (2 / T + Real.pi / |a|) / Real.log y",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "vmTerm",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.vmTerm",
+    "line": 177,
+    "why": "The `n`-th term of the von Mangoldt series at `5/4`: `Λ(n)·n^(−5/4)`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_summable"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vmTerm_nonneg",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.vmTerm_nonneg",
+    "line": 181,
+    "why": "Each term `Λ(n)·n^(−5/4)` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "0 ≤ vmTerm n",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "vmTerm_summable",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.vmTerm_summable",
+    "line": 185,
+    "why": "The series `Σ Λ(n)·n^(−5/4)` converges.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Summable vmTerm",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_summable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "Bser",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.Bser",
+    "line": 198,
+    "why": "The series-side constant: `((1 + 4π)/log 16)·Σ' n, Λ(n)·n^(−5/4)`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "series_side",
+    "ns": "LeftKernel",
+    "full": "LeftKernel.series_side",
+    "line": 205,
+    "why": "F2b, the series side. For `16 ≤ x` and `2 ≤ T`, the Dirichlet-series half of the left edge, `∫_{−T}^{T} ζ'/ζ(5/4 − it)·x^(−1/4+it)/(−1/4+it) dt`, has norm at most `Bser·x^(−1/4)`, with `Bser` free of `x` and `T`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ ≤ Bser * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/LeftKernel.lean",
+    "id": "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LeftSmooth.lean",
+  "module": "Stage3.LeftSmooth",
+  "stem": "LeftSmooth",
+  "header": "LeftSmooth — blocks F2c, F2 and F3 of `lean_stage3/design/leftedge.md`. 2026-11-23.",
+  "imports": [
+   "Stage3.LeftKernel"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "LeftSmooth"
+  ],
+  "lines": 913,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LeftKernel.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "arctan_int_le",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.arctan_int_le",
+    "line": 35,
+    "why": "The arctan integral: for `a > 0`, `∫_{−T}^{T} dt/(a²+t²) ≤ π/a`.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 < a"
+    ],
+    "proves": "(∫ t in (-T)..T, 1 / (a ^ 2 + t ^ 2)) ≤ Real.pi / a",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kernel_conj",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.kernel_conj",
+    "line": 62,
+    "why": "The conjugate kernel. For `y > 1`, `T ≥ 0`, `c > 0`: `‖∫_{−T}^{T} y^(it)/(c − it) dt‖ ≤ (2 + π)/(c·log y)`; the endpoint terms are bounded by `1/c`, so the bound does not see `T`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hT : 0 ≤ T",
+     "hc : 0 < c"
+    ],
+    "proves": "‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((c:ℂ) - (t:ℂ) * Complex.I)⁻¹‖ ≤ (2 + Real.pi) / (c * Real.log y)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cos_sq_le_norm_cos",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.cos_sq_le_norm_cos",
+    "line": 116,
+    "why": "The squared norm of `cos(a + ib)` is at least `cos²a + b²` (it equals `cos²a + sinh²b`).",
+    "sorry": false,
+    "needs": [
+     "a b : ℝ"
+    ],
+    "proves": "Real.cos a ^ 2 + b ^ 2 ≤ ‖Complex.cos ((a:ℂ) + (b:ℂ) * Complex.I)‖ ^ 2",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_le_norm_cos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cos_sq_mul_norm_sin_le",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.cos_sq_mul_norm_sin_le",
+    "line": 137,
+    "why": "`cos²a·‖sin(a + ib)‖² ≤ ‖cos(a + ib)‖²`; so `‖tan(a+ib)‖ ≤ 1/|cos a|`.",
+    "sorry": false,
+    "needs": [
+     "a b : ℝ"
+    ],
+    "proves": "Real.cos a ^ 2 * ‖Complex.sin ((a:ℂ) + (b:ℂ) * Complex.I)‖ ^ 2 ≤ ‖Complex.cos ((a:ℂ) + (b:ℂ) * Complex.I)‖ ^ 2",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_mul_norm_sin_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Gs",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Gs",
+    "line": 173,
+    "why": "The smooth factor of the functional equation, as a function of `w = 1 − s`: `G(w) = log 2π − ψ(w) + (π/2)·tan(πw/2)`, with `ψ` the digamma function.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logDeriv_sum",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.logDeriv_sum",
+    "line": 179,
+    "why": "The logarithmic derivative of the functional equation. For `Re w > 1` with `cos(πw/2) ≠ 0`: `ζ(1−w) ≠ 0` and `ζ′/ζ(1−w) + ζ′/ζ(w) = G(w)`.",
+    "sorry": false,
+    "needs": [
+     "hw : 1 < w.re",
+     "hcos : Complex.cos ((Real.pi:ℂ) * w / 2) ≠ 0"
+    ],
+    "proves": "riemannZeta (1 - w) ≠ 0 ∧ deriv riemannZeta (1 - w) / riemannZeta (1 - w) + deriv riemannZeta w / riemannZeta w = Gs w",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "sL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.sL",
+    "line": 260,
+    "why": "The point `s = −1/4 + it` of the left line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.wL",
+    "line": 263,
+    "why": "The reflected point `w = 5/4 − it = 1 − s`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_digamma_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_sub_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.one_sub_wL",
+    "line": 266,
+    "why": "`1 − w = s` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "1 - wL t = sL t",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wL_re",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.wL_re",
+    "line": 272,
+    "why": "`Re w = 5/4`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(wL t).re = 5/4",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_digamma_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_sL_sq",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_sL_sq",
+    "line": 277,
+    "why": "`‖s‖² = 1/16 + t²` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "‖sL t‖ ^ 2 = 1/16 + t ^ 2",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_sL_ge",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_sL_ge",
+    "line": 283,
+    "why": "`‖s‖ ≥ 1/4` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "1/4 ≤ ‖sL t‖",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sL_ne",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.sL_ne",
+    "line": 289,
+    "why": "`s ≠ 0` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "sL t ≠ 0",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "arg_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.arg_wL",
+    "line": 296,
+    "why": "The tangent's argument on the line: `πw/2 = 5π/8 − i·πt/2`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(Real.pi:ℂ) * wL t / 2 = ((5 * Real.pi / 8 : ℝ):ℂ) + ((-(Real.pi * t / 2)) : ℝ) * Complex.I",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "kc",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.kc",
+    "line": 303,
+    "why": "The cosine constant `κ = |cos(5π/8)|`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kc_pos",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.kc_pos",
+    "line": 306,
+    "why": "`κ > 0`: `cos(5π/8) < 0`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 < kc",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_cos_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_cos_wL",
+    "line": 314,
+    "why": "`‖cos(πw/2)‖² ≥ κ² + t²` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "kc ^ 2 + t ^ 2 ≤ ‖Complex.cos ((Real.pi:ℂ) * wL t / 2)‖ ^ 2",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_le_norm_cos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_le_norm_cos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cos_wL_ne",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.cos_wL_ne",
+    "line": 328,
+    "why": "`cos(πw/2) ≠ 0` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "Complex.cos ((Real.pi:ℂ) * wL t / 2) ≠ 0",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tan_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_tan_wL",
+    "line": 336,
+    "why": "`‖tan(πw/2)‖ ≤ 1/κ` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "‖Complex.tan ((Real.pi:ℂ) * wL t / 2)‖ ≤ 1 / kc",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_mul_norm_sin_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_mul_norm_sin_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.hasDerivAt_wL",
+    "line": 350,
+    "why": "`t ↦ w(t)` has derivative `−i`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt wL (-Complex.I) t",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_sL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.hasDerivAt_sL",
+    "line": 356,
+    "why": "`t ↦ s(t)` has derivative `i`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt sL Complex.I t",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_sL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_sL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_sL",
+    "line": 362,
+    "why": "`t ↦ s(t)` is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous sL",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_wL",
+    "line": 367,
+    "why": "`t ↦ w(t)` is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous wL",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tanPiece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.tanPiece",
+    "line": 372,
+    "why": "The tangent piece `tan(πw/2)/s` along the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tanPiece'",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.tanPiece'",
+    "line": 376,
+    "why": "The derivative of the tangent piece.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_tanPiece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.hasDerivAt_tanPiece",
+    "line": 381,
+    "why": "The tangent piece has derivative `tanPiece'`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt tanPiece (tanPiece' t) t",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_tan_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_tan_wL",
+    "line": 390,
+    "why": "The tangent along the line is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous fun t : ℝ => Complex.tan ((Real.pi:ℂ) * wL t / 2)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_tanPiece'",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_tanPiece'",
+    "line": 399,
+    "why": "The derivative of the tangent piece is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous tanPiece'",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tanPiece'_le",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_tanPiece'_le",
+    "line": 413,
+    "why": "The pointwise bound on the derivative of the tangent piece: `‖h′(t)‖ ≤ 2π/(κ²+t²) + (1/κ)/((1/4)²+t²)`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "‖tanPiece' t‖ ≤ 2 * Real.pi * (1 / (kc ^ 2 + t ^ 2)) + (1 / kc) * (1 / ((1/4:ℝ) ^ 2 + t ^ 2))",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tan_piece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.tan_piece",
+    "line": 451,
+    "why": "The tangent piece by parts. For `y > 1` and `T ≥ 0`: `‖∫_{−T}^{T} y^(it)·tan(πw/2)/s dt‖ ≤ (8 + 2π² + 4π)/(κ·log y)`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hT : 0 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * tanPiece t‖ ≤ (8 + 2 * Real.pi ^ 2 + 4 * Real.pi) / (kc * Real.log y)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "dgTerm",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.dgTerm",
+    "line": 519,
+    "why": "The digamma-series weight `1/((n+1)(n+5/4))`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dgTerm_nonneg",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.dgTerm_nonneg",
+    "line": 522,
+    "why": "Each weight `1/((n+1)(n+5/4))` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "0 ≤ dgTerm n",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dgTerm_summable",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.dgTerm_summable",
+    "line": 527,
+    "why": "The weights `1/((n+1)(n+5/4))` are summable.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Summable dgTerm",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_digamma_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_digamma_wL",
+    "line": 536,
+    "why": "The digamma function along `w = 5/4 − it` is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous fun t : ℝ => Complex.digamma (wL t)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_digamma_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_cpow_tI",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_cpow_tI",
+    "line": 543,
+    "why": "`y^(it)` is continuous in `t` for `y > 0`.",
+    "sorry": false,
+    "needs": [
+     "hy : 0 < y"
+    ],
+    "proves": "Continuous fun t : ℝ => (y:ℂ) ^ ((t:ℂ) * Complex.I)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "digamma_piece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.digamma_piece",
+    "line": 553,
+    "why": "The digamma piece by the series. For `y > 1` and `T ≥ 0`: `‖∫_{−T}^{T} y^(it)·(−ψ(w) − γ)/s dt‖ ≤ (Σ' 1/((n+1)(n+5/4)))·(2+π)/log y`. Termwise, `(−ψ(w) − γ)/s = Σ 1/((n+1)(n+w))` since `w − 1 = −s`, and each term is the conjugate kernel.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hT : 0 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * ((2 + Real.pi) / Real.log y)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_tanPiece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_tanPiece",
+    "line": 660,
+    "why": "The tangent piece is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous tanPiece",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cpow_sL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.cpow_sL",
+    "line": 665,
+    "why": "On the line, `x^s = x^(−1/4)·x^(it)` for `x > 0`.",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "t : ℝ"
+    ],
+    "proves": "(x:ℂ) ^ (sL t) = ((x ^ (-(1:ℝ)/4) : ℝ):ℂ) * (x:ℂ) ^ ((t:ℂ) * Complex.I)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c0",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.c0",
+    "line": 672,
+    "why": "The constant of the smooth factor's flat part: `log 2π + γ`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Nsm",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Nsm",
+    "line": 676,
+    "why": "The numerator of the smooth-side constant: `‖log 2π + γ‖·(1+4π) + (Σ' 1/((n+1)(n+5/4)))·(2+π) + (π/2)·(8+2π²+4π)/κ`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Nsm_nonneg",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Nsm_nonneg",
+    "line": 681,
+    "why": "The numerator `Nsm` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Nsm",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Bsm",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Bsm",
+    "line": 689,
+    "why": "The smooth-side constant `Bsm = Nsm / log 16`, free of `x` and `T`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "smooth_side",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.smooth_side",
+    "line": 697,
+    "why": "F2c, the smooth side. For `16 ≤ x` and `2 ≤ T`, with `s = −1/4 + it` and `w = 5/4 − it`, the integral of `(ζ′/ζ(s) + ζ′/ζ(w))·x^s/s` over `[−T, T]` has norm at most `Bsm·x^(−1/4)`. Inside, the sum of the two logarithmic derivatives is `log 2π − ψ(w) + (π/2)·tan(πw/2)`, and each of its three parts is integrated by parts against `x^(it)` (the digamma part termwise through its series).",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ ≤ Bsm * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_logDeriv_path",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_logDeriv_path",
+    "line": 814,
+    "why": "Along a continuous path that avoids `1` and the zeros of `ζ`, the logarithmic derivative `ζ′/ζ` is continuous.",
+    "sorry": false,
+    "needs": [
+     "hp : Continuous p",
+     "h1 : ∀ t, p t ≠ 1",
+     "h0 : ∀ t, riemannZeta (p t) ≠ 0"
+    ],
+    "proves": "Continuous fun t => deriv riemannZeta (p t) / riemannZeta (p t)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_sL_ne",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.zeta_sL_ne",
+    "line": 824,
+    "why": "`ζ(s) ≠ 0` on the line `Re s = −1/4`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "riemannZeta (sL t) ≠ 0",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_wL_ne",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.zeta_wL_ne",
+    "line": 830,
+    "why": "`ζ(w) ≠ 0` on the line `Re w = 5/4`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "riemannZeta (wL t) ≠ 0",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sL_ne_one",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.sL_ne_one",
+    "line": 834,
+    "why": "`s ≠ 1` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "sL t ≠ 1",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wL_ne_one",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.wL_ne_one",
+    "line": 841,
+    "why": "`w ≠ 1` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "wL t ≠ 1",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Bleft",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Bleft",
+    "line": 849,
+    "why": "The left-edge constant `Bleft = Bsm + Bser`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_fixed_row",
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "left_edge_bound",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.left_edge_bound",
+    "line": 855,
+    "why": "F2, the left edge at every height. For `16 ≤ x` and `2 ≤ T`, the integral of `−ζ′/ζ(s)·x^s/s` up `Re s = −1/4` from `−T` to `T` has norm at most `Bleft·x^(−1/4)`, with `Bleft` free of `x` and `T`: the smooth side plus the series side.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "explicit_formula_all",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.explicit_formula_all",
+    "line": 900,
+    "why": "F3, the explicit formula at every height. For `16 ≤ x` and every `T ≥ 2`: `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c1n·x·log²(xT)/T + c3n·log x + Bleft·x^(−1/4)`, with no cap on `T` and the left edge bounded free of the height.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + Bleft * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_eq_zero_sum_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/LineBound.lean",
   "module": "Stage3.LineBound",
   "stem": "LineBound",
@@ -35413,6 +37913,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.edge_left_any",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_left_sharp_num"
     ]
    }
@@ -37613,10 +40114,984 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
      "lean_stage3/Stage3/Glue.lean::Glue.explicit_formula_poly",
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/PiFixedRow.lean",
+  "module": "Stage3.PiFixedRow",
+  "stem": "PiFixedRow",
+  "header": "PiFixedRow — block F4 of `lean_stage3/design/leftedge.md`. 2026-11-23. The integer count at a fixed `x` with the height of the zero sum taken to infinity. `PiZeros.pi_eq_zero_sum` is an identity at every height; what has to be bounded free of the height is `tr (efRem T) x`, the passage of the explicit formula's remainder. Above `16` the explicit formula at every height does it. On `[2, 16]` each zero is integrated by parts in `t`, which gains a factor `1/|ρ+1|`, and the zeros weighted by `m/|ρ|²` have a sum bounded…",
+  "imports": [
+   "Stage3.PiRemainder",
+   "Stage3.CellFixedRow"
+  ],
+  "opens": [
+   "Chebyshev",
+   "Filter",
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "MeasureTheory",
+   "PiRemainder",
+   "PiZeros",
+   "Topology"
+  ],
+  "namespaces": [
+   "PiFixedRow"
+  ],
+  "lines": 717,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/CellFixedRow.lean",
+   "lean_stage3/Stage3/PiRemainder.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "sum_sq_div_pow_eq",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.sum_sq_div_pow_eq",
+    "line": 31,
+    "why": "The closed form behind `Σ_j (j+2)²/2^j ≤ 22`: the partial sum plus a vanishing tail is exactly `22`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 + (2 * (n:ℝ) ^ 2 + 12 * n + 22) * ((2:ℝ) ^ n)⁻¹ = 22",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_sq_div_pow_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.sum_sq_div_pow_le",
+    "line": 45,
+    "why": "The partial sums of `(j+2)²/2^j` are at most `22`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 ≤ 22",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_eq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zinv_dyadic_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.zinv_dyadic_le",
+    "line": 52,
+    "why": "The sum of `m(ρ)/|ρ|` over the zeros below `2^(j+1)` is at most `Mlow·3000·(j+2)²`.",
+    "sorry": false,
+    "needs": [
+     "j : ℕ"
+    ],
+    "proves": "∑ ρ ∈ ZF ((2 : ℝ) ^ (j + 1)), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * (3000 * ((j : ℝ) + 2) ^ 2)",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.dyadic_count_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Z2",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Z2",
+    "line": 59,
+    "why": "The constant bounding the zeros weighted by `m/|ρ|²`: `66000·Mlow²`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Z2_nonneg",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Z2_nonneg",
+    "line": 62,
+    "why": "The constant `Z2` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Z2",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_order_inv_sq_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.sum_order_inv_sq_le",
+    "line": 66,
+    "why": "The zeros weighted by `m/|ρ|²` are bounded free of the height. For every `T`, the sum over the zeros below `T` of `m(ρ)·(1/|ρ|)²` is at most `Z2`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) * (‖(ρ : ℂ)‖⁻¹) ^ 2 ≤ Z2",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_dyadic",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_sq_div_pow_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_dyadic",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "w",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.w",
+    "line": 147,
+    "why": "The weight `1/(t·log²t)` as a real function.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_le_two",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "wd",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.wd",
+    "line": 150,
+    "why": "The derivative of the real weight: `−(log t + 2)/(t²·log³t)`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.abs_wd_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.continuousOn_wd",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_w",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.hasDerivAt_w",
+    "line": 153,
+    "why": "For `t > 1` the real weight has derivative `wd t`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 < t"
+    ],
+    "proves": "HasDerivAt w (wd t) t",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_wt",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.hasDerivAt_wt",
+    "line": 171,
+    "why": "For `t > 1` the weight, read as complex, has derivative `wd t`.",
+    "sorry": false,
+    "needs": [
+     "ht : 1 < t"
+    ],
+    "proves": "HasDerivAt wt ((wd t : ℝ) : ℂ) t",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuousOn_wd",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.continuousOn_wd",
+    "line": 175,
+    "why": "On `[2, 16]` the derivative of the weight is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ContinuousOn wd (Set.uIcc 2 16)",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.continuousOn_wd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_le_two",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.w_le_two",
+    "line": 191,
+    "why": "For `t ≥ 2` the weight is at most `2`.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "w t ≤ 2",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_le_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "w_pos",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.w_pos",
+    "line": 203,
+    "why": "For `t ≥ 2` the weight is positive.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t"
+    ],
+    "proves": "0 < w t",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "abs_wd_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.abs_wd_le",
+    "line": 210,
+    "why": "On `[2, 16]` the derivative of the weight is at most `4` in size.",
+    "sorry": false,
+    "needs": [
+     "ht : 2 ≤ t",
+     "ht' : t ≤ 16"
+    ],
+    "proves": "|wd t| ≤ 4",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.abs_wd_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_le_norm_add_one",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_le_norm_add_one",
+    "line": 233,
+    "why": "For `ρ` with `0 < Re ρ`, `|ρ| ≤ |ρ + 1|`.",
+    "sorry": false,
+    "needs": [
+     "h : 0 < ρ.re"
+    ],
+    "proves": "‖ρ‖ ≤ ‖ρ + 1‖",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_le_norm_add_one",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_integral_cpow_wt_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_integral_cpow_wt_le",
+    "line": 242,
+    "why": "One zero on `[2, 16]`, integrated by parts. For `0 < Re ρ < 1`, the integral of `t^ρ` against the weight over `[2, 16]` is at most `15360/|ρ + 1|`.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 < ρ.re",
+     "h1 : ρ.re < 1"
+    ],
+    "proves": "‖∫ t in (2:ℝ)..16, wt t * (t : ℂ) ^ ρ‖ ≤ 15360 * ‖ρ + 1‖⁻¹",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.abs_wd_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.continuousOn_wd",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_le_two",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.abs_wd_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.continuousOn_wd",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_le_two",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.wd",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_zero_term_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_zero_term_le",
+    "line": 313,
+    "why": "One zero's term on `[2, 16]`: for `0 < Re ρ < 1`, the integral of `t^ρ/ρ` against the weight is at most `15360/|ρ|²`.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 < ρ.re",
+     "h1 : ρ.re < 1"
+    ],
+    "proves": "‖∫ t in (2:ℝ)..16, (t : ℂ) ^ ρ / ρ * wt t‖ ≤ 15360 * (‖ρ‖⁻¹) ^ 2",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_le_norm_add_one",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_le_norm_add_one",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Clow",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Clow",
+    "line": 334,
+    "why": "The constant bounding the low integral: `294 + 15360·Z2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Clow_nonneg",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Clow_nonneg",
+    "line": 337,
+    "why": "The constant `Clow` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Clow",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_low_integral_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_low_integral_le",
+    "line": 345,
+    "why": "The low integral is bounded free of the height. For every `T`, the integral of the explicit formula's remainder against the weight over `[2, 16]` is at most `Clow`.",
+    "sorry": false,
+    "needs": [
+     "T : ℝ"
+    ],
+    "proves": "‖∫ t in (2:ℝ)..16, efRem T t * wt t‖ ≤ Clow",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_psi_sub_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_psi_sub_le",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_cpow",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_ofReal_of_monotone",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Api",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Api",
+    "line": 435,
+    "why": "The constant of the count at a fixed row: `2·(c3n + Bleft) + Clow`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Api_nonneg",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.Api_nonneg",
+    "line": 438,
+    "why": "The constant `Api` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Api",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_le_log_of_16",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.one_le_log_of_16",
+    "line": 446,
+    "why": "For `x ≥ 16`, `log x ≥ 1`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x"
+    ],
+    "proves": "1 ≤ Real.log x",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_high_integral_le",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_high_integral_le",
+    "line": 460,
+    "why": "The high integral at a fixed height. For `16 ≤ x` and `T ≥ 2`, the integral of the remainder against the weight over `[16, x]` is at most `c1n·(x − 16)·log²(xT)/T + (c3n + Bleft)·log(x/16)`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ t in (16:ℝ)..x, efRem T t * wt t‖ ≤ (x - 16) * (Glue.c1n * Real.log (x * T) ^ 2 / T) + (Glue.c3n + LeftSmooth.Bleft) * Real.log (x / 16)",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.w_pos",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tr_efRem_le_height",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.norm_tr_efRem_le_height",
+    "line": 552,
+    "why": "The passage of the remainder at a fixed row and a finite height. For `16 ≤ x` and `T ≥ 2`, `‖tr (efRem T) x‖ ≤ Api·log x + 2·c1n·x·log²(xT)/T`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.log (x * T) ^ 2 / T",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.Bleft_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Clow_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.one_le_log_of_16",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.wt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tr_efRem_fixed",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.tr_efRem_fixed",
+    "line": 624,
+    "why": "The passage of the remainder at a fixed row, the height to infinity. For `16 ≤ x` and every `ε > 0`, for all large heights `T`, `‖tr (efRem T) x‖ ≤ Api·log x + ε`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖tr (efRem T) x‖ ≤ Api * Real.log x + ε",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.tendsto_log_sq_div",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pi_fixed_row",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.pi_fixed_row",
+    "line": 641,
+    "why": "The count at a fixed row, the height to infinity. For `16 ≤ x` and every `ε > 0`, for all large heights `T`, the count minus `Li`, plus each zero's part below `T`, plus the higher prime powers, is at most `Api·log x + ε`.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖(((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr psiTheta x‖ ≤ Api * Real.log x + ε",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "table_cell_fixed_row",
+    "ns": "PiFixedRow",
+    "full": "PiFixedRow.table_cell_fixed_row",
+    "line": 662,
+    "why": "The integer table's cell at a fixed row, the height to infinity. For `d + 6 ≤ r` and every `ε > 0`, for all large heights `T`, the cell `(r, d)` of the table of the prime count along the doublings, less the smooth cell, plus each zero's part below `T` under the stencil, plus the stencil of the higher prime powers, is at most `2^(d+1)·(Api·log 2·r) + ε`.",
+    "sorry": false,
+    "needs": [
+     "r : ℕ",
+     "d : ℕ",
+     "hr : d + 6 ≤ r"
+    ],
+    "proves": "∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tableFrom TableRoute.rowN (r : ℤ) d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) (r : ℤ) : ℝ) : ℂ) + ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * CellZeros.stencil (d + 1) (fun m : ℤ => piMode (ρ : ℂ) ((2:ℝ) ^ (m : ℝ))) (r : ℤ) + CellZeros.stencil (d + 1) (fun m : ℤ => tr psiTheta ((2:ℝ) ^ (m : ℝ))) (r : ℤ)‖ ≤ 2 ^ (d + 1) * (Api * Real.log 2 * r) + ε",
+    "file": "lean_stage3/Stage3/PiFixedRow.lean",
+    "id": "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+    "stmt": [],
+    "proof": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.norm_stencil_le",
+     "lean_stage3/Stage3/CellZeros.lean::CellZeros.stencil",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Api_nonneg",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.efRem",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.piMode",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.psiTheta",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -37675,6 +41150,9 @@
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.Z2",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_Mlow",
@@ -37712,6 +41190,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Arem_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.inv_norm_le_dyadic",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
@@ -37784,6 +41264,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.sum_order_inv_le"
     ]
    },
@@ -37824,6 +41305,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log"
     ]
    },
@@ -37993,6 +41475,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low"
     ]
    },
@@ -38190,6 +41673,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of"
     ]
    },
@@ -38869,6 +42353,12 @@
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ipart",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_integrand",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.hasDerivAt_wt",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_integral_cpow_wt_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_zero_term_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.integrable_mul_wt",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
@@ -38907,6 +42397,10 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
@@ -38979,6 +42473,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_ipart_le_of_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sub",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.tr_sum"
@@ -39152,6 +42648,8 @@
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_piMode_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.piMode_eq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
@@ -39183,6 +42681,11 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_high_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_tr_efRem_le_height",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.tr_efRem_fixed",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
@@ -39214,6 +42717,8 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.norm_tr_psiTheta_le",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
@@ -39248,6 +42753,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
@@ -39274,6 +42780,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
     ]
@@ -39301,6 +42808,7 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.norm_ipart_le_of_le",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_ipart_le",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.pi_eq_zero_sum"
     ]
@@ -39359,6 +42867,7 @@
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
     ]
    },
@@ -39555,7 +43064,9 @@
      "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row"
+    ]
    }
   ]
  },
@@ -39623,6 +43134,8 @@
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
      "lean_stage3/Stage3/JointWindowDial.lean::JointWindowDial.schoenfeldWeakTheta_of_window",
      "lean_stage3/Stage3/LineBound.lean::Slice8.schoenfeldWeak_of_psiWeak_three",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_two",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.RH_iff_schoenfeldWeak",
@@ -46953,6 +50466,7 @@
     "used_by": [
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.depth_eight",
@@ -70681,13 +74195,18 @@
    "Stage3.ZeroSquares",
    "Stage3.ZeroDensity",
    "Stage3.ZeroSummable",
-   "Stage3.AttainedPi"
+   "Stage3.AttainedPi",
+   "Stage3.ExplicitLeft",
+   "Stage3.LeftKernel",
+   "Stage3.LeftSmooth",
+   "Stage3.CellFixedRow",
+   "Stage3.PiFixedRow"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 165,
+  "lines": 170,
   "copy_of": null,
-  "fresh": true,
+  "fresh": false,
   "imports_files": [
    "lean_stage3/Stage3/Abscissa.lean",
    "lean_stage3/Stage3/AliasClass.lean",
@@ -70701,6 +74220,7 @@
    "lean_stage3/Stage3/BoxBounds.lean",
    "lean_stage3/Stage3/BoxFinite.lean",
    "lean_stage3/Stage3/CellBdiff.lean",
+   "lean_stage3/Stage3/CellFixedRow.lean",
    "lean_stage3/Stage3/CellModes.lean",
    "lean_stage3/Stage3/CellResidual.lean",
    "lean_stage3/Stage3/CellRows.lean",
@@ -70711,6 +74231,7 @@
    "lean_stage3/Stage3/EdgeBound.lean",
    "lean_stage3/Stage3/EdgeNum.lean",
    "lean_stage3/Stage3/ExplicitBump.lean",
+   "lean_stage3/Stage3/ExplicitLeft.lean",
    "lean_stage3/Stage3/FiniteOffLine.lean",
    "lean_stage3/Stage3/FiniteOffLinePi.lean",
    "lean_stage3/Stage3/GateEval.lean",
@@ -70741,6 +74262,8 @@
    "lean_stage3/Stage3/LandauTrig.lean",
    "lean_stage3/Stage3/LandauWindow.lean",
    "lean_stage3/Stage3/LandauZeroSide.lean",
+   "lean_stage3/Stage3/LeftKernel.lean",
+   "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",
@@ -70748,6 +74271,7 @@
    "lean_stage3/Stage3/Mollified.lean",
    "lean_stage3/Stage3/MollifiedMean.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
+   "lean_stage3/Stage3/PiFixedRow.lean",
    "lean_stage3/Stage3/PiRemainder.lean",
    "lean_stage3/Stage3/PiToPsi.lean",
    "lean_stage3/Stage3/PiZeros.lean",

@@ -20,11 +20,13 @@ flowchart LR
   x2(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine"]):::ext
   x3(["<b>LowCount</b><br/>gz_c0_lower"]):::ext
   x4(["<b>ContourShift</b><br/>zeta_ne_zero_of_re_mem"]):::ext
-  x5(["<b>GlueNum</b><br/>edge_left_sharp_num"]):::ext
+  x5(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
+  x6(["<b>GlueNum</b><br/>edge_left_sharp_num"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n3
   n3 -.-> x5
+  n3 -.-> x6
   x0 -.-> n0
   x0 -.-> n1
   x1 -.-> n0
@@ -187,7 +189,8 @@ line 459
   - [`EdgeBound.deriv_zeta_conj`](../lean_stage3/EdgeBound.md#EdgeBound-deriv_zeta_conj) (EdgeBound) — `` deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s) ``
   - [`EdgeBound.logDerivZeta_low_edge`](#EdgeBound-logDerivZeta_low_edge) — `` ‖deriv riemannZeta u / riemannZeta u‖ ≤ 1620000 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any) (ExplicitLeft) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) ``
   - [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num) (GlueNum) — `` ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72 * Dln * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) ``
 

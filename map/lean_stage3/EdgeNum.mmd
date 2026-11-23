@@ -9,8 +9,9 @@ flowchart LR
   x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit"]):::ext
   x2(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
   x3(["<b>ContourShift</b><br/>mem_zetaWindow<br/>zeta_order_reflect<br/>zeta_zeros_rectangle_finite"]):::ext
-  x4(["<b>GlueNum</b><br/>4 theorems"]):::ext
-  x5(["<b>RouteNum</b><br/>Cpn_le"]):::ext
+  x4(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
+  x5(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x6(["<b>RouteNum</b><br/>Cpn_le"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
@@ -19,7 +20,9 @@ flowchart LR
   n3 --> n5
   n4 -.-> x4
   n4 -.-> x5
+  n4 -.-> x6
   n5 -.-> x4
+  n5 -.-> x5
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n3

@@ -103,12 +103,14 @@ flowchart LR
 flowchart LR
   n0["<b>explicit_formula_perron</b><br/>‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t i…"]:::thm
   x0(["<b>diagram 1</b><br/>perron_sum_eq_integral<br/>perron_to_psi"]):::ext
-  x1(["<b>Glue</b><br/>explicit_formula_poly"]):::ext
-  x2(["<b>GlueFloor</b><br/>explicit_formula_split"]):::ext
-  x3(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
+  x1(["<b>ExplicitLeft</b><br/>explicit_formula_left"]):::ext
+  x2(["<b>Glue</b><br/>explicit_formula_poly"]):::ext
+  x3(["<b>GlueFloor</b><br/>explicit_formula_split"]):::ext
+  x4(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
   n0 -.-> x1
   n0 -.-> x2
   n0 -.-> x3
+  n0 -.-> x4
   x0 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -1063,8 +1065,9 @@ line 2341
 
 **Definitions its proof touches:** [`PerronKernel.perronI`](#PerronKernel-perronI)
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left) (ExplicitLeft) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.lo… ``
   - [`Glue.explicit_formula_poly`](../lean_stage3/Glue.md#Glue-explicit_formula_poly) (Glue) — `` ∃ c₁ c₂ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₂ ∧ ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c₁ * x * Real.log (… ``
   - [`Glue.explicit_formula_split`](../lean_stage3/GlueFloor.md#Glue-explicit_formula_split) (GlueFloor) — `` ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c₁ * x … ``
   - [`Glue.explicit_formula_split_num`](../lean_stage3/GlueNum.md#Glue-explicit_formula_split_num) (GlueNum) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``

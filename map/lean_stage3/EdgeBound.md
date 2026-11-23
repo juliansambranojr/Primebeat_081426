@@ -31,10 +31,11 @@ flowchart LR
   x2(["<b>LowCount</b><br/>gz_c0_lower<br/>low_ball_count<br/>low_rect_count"]):::ext
   x3(["<b>LowEdge</b><br/>4 theorems"]):::ext
   x4(["<b>ContourShift</b><br/>5 theorems"]):::ext
-  x5(["<b>Glue</b><br/>Gf_norm_conj<br/>edge_left_bound<br/>zeta_logderiv_good_bound"]):::ext
-  x6(["<b>GlueFloor</b><br/>edge_left_sharp"]):::ext
-  x7(["<b>GlueNum</b><br/>edge_left_sharp_num<br/>zeta_logderiv_good_bound_num"]):::ext
-  x8(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x5(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
+  x6(["<b>Glue</b><br/>Gf_norm_conj<br/>edge_left_bound<br/>zeta_logderiv_good_bound"]):::ext
+  x7(["<b>GlueFloor</b><br/>edge_left_sharp"]):::ext
+  x8(["<b>GlueNum</b><br/>edge_left_sharp_num<br/>zeta_logderiv_good_bound_num"]):::ext
+  x9(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
   n0 --> n8
   n1 --> n10
   n1 --> n3
@@ -68,14 +69,16 @@ flowchart LR
   n10 -.-> x5
   n10 -.-> x6
   n10 -.-> x7
+  n10 -.-> x8
   n12 -.-> x1
   n12 -.-> x3
   n13 -.-> x3
   n13 -.-> x5
   n13 -.-> x6
   n13 -.-> x7
-  n14 -.-> x5
+  n13 -.-> x8
   n14 -.-> x6
+  n14 -.-> x7
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
@@ -89,6 +92,7 @@ flowchart LR
   n7 -.-> x5
   n7 -.-> x6
   n7 -.-> x7
+  n7 -.-> x8
   n9 -.-> x1
   n9 -.-> x2
   x0 -.-> n0
@@ -97,8 +101,8 @@ flowchart LR
   x4 -.-> n11
   x4 -.-> n7
   x4 -.-> n9
-  x8 -.-> n11
-  x8 -.-> n8
+  x9 -.-> n11
+  x9 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -383,7 +387,7 @@ line 90
   - [`EdgeBound.c0_re`](#EdgeBound-c0_re) — `` (c0 T').re = 3/2 ``
   - [`EdgeBound.gz_zero_cases`](#EdgeBound-gz_zero_cases) — `` w = 1 ∨ riemannZeta w = 0 ``
 
-**Feeds** (16 that use it)
+**Feeds** (17 that use it)
 
   - [`EdgeBound.ball_order_sum_le`](#EdgeBound-ball_order_sum_le) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real… ``
   - [`EdgeBound.edge_bound_core`](#EdgeBound-edge_bound_core) — `` ∃ C : ℝ, 0 < C ∧ ∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → riemannZeta u ≠ 0 → ∀ δ : ℝ, 0 < δ → δ ≤ 1 → (∀ w ∈ (gz_zeros_ball_fini… ``
@@ -391,6 +395,7 @@ line 90
   - [`EdgeBound.ball_order_sum_le_num`](../lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num) (EdgeNum) — `` ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C2n * Real.log T' ``
   - [`EdgeBound.edge_bound_core_num`](../lean_stage3/EdgeNum.md#EdgeBound-edge_bound_core_num) (EdgeNum) — `` ∀ t : ℝ, 2 ≤ t → ∀ u : ℂ, u.im = t → -1/4 ≤ u.re → u.re ≤ 2 → riemannZeta u ≠ 0 → ∀ δ : ℝ, 0 < δ → δ ≤ 1 → (∀ w ∈ (gz_zeros_ball_finite t (by norm_num… ``
   - [`EdgeBound.gz_partial_fraction_num`](../lean_stage3/EdgeNum.md#EdgeBound-gz_partial_fraction_num) (EdgeNum) — `` ∀ T' : ℝ, 2 ≤ T' → ∀ u : ℂ, u.im = T' → -1/4 ≤ u.re → u.re ≤ 2 → gz u ≠ 0 → ‖deriv gz u / gz u - ∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤… ``
+  - [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any) (ExplicitLeft) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) ``
   - [`Glue.edge_left_bound`](../lean_stage3/Glue.md#Glue-edge_left_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ C * Real.log x ``
   - [`Glue.zeta_logderiv_good_bound`](../lean_stage3/Glue.md#Glue-zeta_logderiv_good_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, … ``
   - [`Glue.edge_left_sharp`](../lean_stage3/GlueFloor.md#Glue-edge_left_sharp) (GlueFloor) — `` ∃ D : ℝ, 0 < D ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72 * D * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) ``
@@ -495,10 +500,11 @@ riemannZeta w = 0 ∧ (0 < w.re ∧ w.re < 1) ∧ |w.im - T'| ≤ 46/25
   - [`EdgeBound.c0_re`](#EdgeBound-c0_re) — `` (c0 T').re = 3/2 ``
   - [`EdgeBound.gz_zero_cases`](#EdgeBound-gz_zero_cases) — `` w = 1 ∨ riemannZeta w = 0 ``
 
-**Feeds** (7 that use it)
+**Feeds** (8 that use it)
 
   - [`EdgeBound.ball_order_sum_le`](#EdgeBound-ball_order_sum_le) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real… ``
   - [`EdgeBound.ball_order_sum_le_num`](../lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num) (EdgeNum) — `` ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C2n * Real.log T' ``
+  - [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any) (ExplicitLeft) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) ``
   - [`Glue.edge_left_bound`](../lean_stage3/Glue.md#Glue-edge_left_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ C * Real.log x ``
   - [`Glue.zeta_logderiv_good_bound`](../lean_stage3/Glue.md#Glue-zeta_logderiv_good_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, … ``
   - [`Glue.edge_left_sharp`](../lean_stage3/GlueFloor.md#Glue-edge_left_sharp) (GlueFloor) — `` ∃ D : ℝ, 0 < D ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72 * D * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) ``
@@ -589,8 +595,9 @@ deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (7 that use it)
+**Feeds** (8 that use it)
 
+  - [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any) (ExplicitLeft) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) ``
   - [`Glue.Gf_norm_conj`](../lean_stage3/Glue.md#Glue-Gf_norm_conj) (Glue) — `` ‖Gf x ((starRingEnd ℂ) u)‖ = ‖Gf x u‖ ``
   - [`Glue.edge_left_bound`](../lean_stage3/Glue.md#Glue-edge_left_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ C * Real.log x ``
   - [`Glue.zeta_logderiv_good_bound`](../lean_stage3/Glue.md#Glue-zeta_logderiv_good_bound) (Glue) — `` ∃ C : ℝ, 0 < C ∧ ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, … ``

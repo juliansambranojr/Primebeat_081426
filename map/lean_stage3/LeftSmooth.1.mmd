@@ -1,0 +1,97 @@
+flowchart LR
+  n0["<b>arctan_int_le</b><br/>(∫ t in (-T)..T, 1 / (a ^ 2 + t ^ 2)) ≤ Real.pi / a"]:::shp
+  n1["<b>kernel_conj</b><br/>‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((c:ℂ) - (t:ℂ) …"]:::shp
+  n2["<b>cos_sq_le_norm_cos</b><br/>Real.cos a ^ 2 + b ^ 2 ≤ ‖Complex.cos ((a:ℂ) + (b:ℂ) * Complex.I…"]:::shp
+  n3["<b>cos_sq_mul_norm_sin_le</b><br/>Real.cos a ^ 2 * ‖Complex.sin ((a:ℂ) + (b:ℂ) * Complex.I)‖ ^ 2 ≤…"]:::shp
+  n4["<b>logDeriv_sum</b><br/>riemannZeta (1 - w) ≠ 0 ∧ deriv riemannZeta (1 - w) / riemannZet…"]:::thm
+  n5["<b>one_sub_wL</b><br/>1 - wL t = sL t"]:::shp
+  n6["<b>wL_re</b><br/>(wL t).re = 5/4"]:::shp
+  n7["<b>norm_sL_sq</b><br/>‖sL t‖ ^ 2 = 1/16 + t ^ 2"]:::shp
+  n8["<b>norm_sL_ge</b><br/>1/4 ≤ ‖sL t‖"]:::shp
+  n9["<b>sL_ne</b><br/>sL t ≠ 0"]:::shp
+  n10["<b>arg_wL</b><br/>(Real.pi:ℂ) * wL t / 2 = ((5 * Real.pi / 8 : ℝ):ℂ) + ((-(Real.pi…"]:::shp
+  n11["<b>kc_pos</b><br/>0 ＜ kc"]:::shp
+  n12["<b>norm_cos_wL</b><br/>kc ^ 2 + t ^ 2 ≤ ‖Complex.cos ((Real.pi:ℂ) * wL t / 2)‖ ^ 2"]:::shp
+  n13["<b>cos_wL_ne</b><br/>Complex.cos ((Real.pi:ℂ) * wL t / 2) ≠ 0"]:::shp
+  n14["<b>norm_tan_wL</b><br/>‖Complex.tan ((Real.pi:ℂ) * wL t / 2)‖ ≤ 1 / kc"]:::shp
+  n15["<b>hasDerivAt_wL</b><br/>HasDerivAt wL (-Complex.I) t"]:::shp
+  n16["<b>hasDerivAt_sL</b><br/>HasDerivAt sL Complex.I t"]:::shp
+  n17["<b>continuous_sL</b><br/>Continuous sL"]:::shp
+  n18["<b>continuous_wL</b><br/>Continuous wL"]:::shp
+  n19["<b>hasDerivAt_tanPiece</b><br/>HasDerivAt tanPiece (tanPiece' t) t"]:::shp
+  n20["<b>continuous_tan_wL ■</b><br/>Continuous fun t : ℝ =＞ Complex.tan ((Real.pi:ℂ) * wL t / 2)"]:::shp
+  n21["<b>continuous_tanPiece' ■</b><br/>Continuous tanPiece'"]:::shp
+  n22["<b>norm_tanPiece'_le</b><br/>‖tanPiece' t‖ ≤ 2 * Real.pi * (1 / (kc ^ 2 + t ^ 2)) + (1 / kc) …"]:::shp
+  n23["<b>tan_piece</b><br/>‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * tanPiece t‖ ≤ (…"]:::shp
+  n24["<b>dgTerm_nonneg</b><br/>0 ≤ dgTerm n"]:::cnt
+  n25["<b>dgTerm_summable</b><br/>Summable dgTerm"]:::shp
+  n26["<b>continuous_digamma_wL ■</b><br/>Continuous fun t : ℝ =＞ Complex.digamma (wL t)"]:::shp
+  n27["<b>continuous_cpow_tI</b><br/>Continuous fun t : ℝ =＞ (y:ℂ) ^ ((t:ℂ) * Complex.I)"]:::shp
+  n28["<b>digamma_piece</b><br/>‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.diga…"]:::shp
+  n29["<b>continuous_tanPiece</b><br/>Continuous tanPiece"]:::shp
+  x0(["<b>LeftKernel</b><br/>norm_cpow_tI<br/>osc_by_parts"]):::ext
+  x1(["<b>diagram 2</b><br/>6 theorems"]):::ext
+  n0 --> n1
+  n0 --> n23
+  n1 --> n28
+  n10 --> n12
+  n10 --> n14
+  n11 --> n13
+  n11 --> n14
+  n11 --> n22
+  n11 --> n23
+  n12 --> n13
+  n12 --> n22
+  n13 --> n14
+  n13 --> n19
+  n13 --> n20
+  n13 --> n21
+  n14 --> n22
+  n14 --> n23
+  n15 --> n19
+  n15 --> n20
+  n16 --> n19
+  n18 --> n21
+  n19 --> n23
+  n19 --> n29
+  n2 --> n12
+  n22 --> n23
+  n24 --> n25
+  n25 --> n28
+  n27 --> n28
+  n3 --> n14
+  n5 --> n28
+  n6 --> n26
+  n6 --> n28
+  n7 --> n22
+  n7 --> n8
+  n8 --> n22
+  n8 --> n23
+  n8 --> n9
+  n9 --> n19
+  n9 --> n21
+  n9 --> n28
+  n11 -.-> x1
+  n13 -.-> x1
+  n17 -.-> x1
+  n18 -.-> x1
+  n23 -.-> x1
+  n24 -.-> x1
+  n27 -.-> x1
+  n28 -.-> x1
+  n29 -.-> x1
+  n4 -.-> x1
+  n5 -.-> x1
+  n6 -.-> x1
+  n9 -.-> x1
+  x0 -.-> n1
+  x0 -.-> n23
+  x0 -.-> n28
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

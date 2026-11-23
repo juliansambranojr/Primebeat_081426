@@ -5,7 +5,7 @@ CellRows — block T3a of `lean_stage3/design/joints.md`. 2026-11-22. The height
 2 theorems, 0 definitions, 86 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellFixedRow`](../lean_stage3/CellFixedRow.md)
 
 ## The picture
 

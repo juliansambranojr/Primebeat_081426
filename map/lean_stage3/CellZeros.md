@@ -21,11 +21,13 @@ flowchart LR
   n7["<b>two_cpow_ne_zero</b><br/>(2:ℂ) ^ ρ ≠ 0"]:::shp
   n8["<b>stencil_zeroPartialSum</b><br/>stencil d (fun n : ℤ =＞ Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r =…"]:::thm
   n9["<b>cell_eq_zero_sum</b><br/>‖stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2…"]:::thm
-  x0(["<b>PiZeros</b><br/>stencil_neg<br/>table_cell_eq_zero_sum"]):::ext
-  x1(["<b>FiniteOffLinePi</b><br/>cpow_doubling"]):::ext
-  x2(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
-  x3(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
-  x4(["<b>FiniteOffLine</b><br/>cell_zero_sum_finset"]):::ext
+  x0(["<b>CellFixedRow</b><br/>cell_eq_zero_sum_all"]):::ext
+  x1(["<b>PiZeros</b><br/>stencil_neg<br/>table_cell_eq_zero_sum"]):::ext
+  x2(["<b>PiFixedRow</b><br/>table_cell_fixed_row"]):::ext
+  x3(["<b>FiniteOffLinePi</b><br/>cpow_doubling"]):::ext
+  x4(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
+  x5(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
+  x6(["<b>FiniteOffLine</b><br/>cell_zero_sum_finset"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n8
@@ -37,13 +39,19 @@ flowchart LR
   n7 --> n8
   n8 --> n9
   n0 -.-> x0
+  n0 -.-> x1
   n1 -.-> x0
-  n2 -.-> x0
-  n3 -.-> x0
-  n6 -.-> x1
-  n9 -.-> x3
-  n9 -.-> x4
-  x2 -.-> n9
+  n1 -.-> x1
+  n2 -.-> x1
+  n3 -.-> x1
+  n4 -.-> x0
+  n5 -.-> x0
+  n5 -.-> x2
+  n6 -.-> x3
+  n8 -.-> x0
+  n9 -.-> x5
+  n9 -.-> x6
+  x4 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -66,7 +74,7 @@ def · line 37
 The `d`-fold backward difference of a row, read at `r`.
 
 - **Is:** `` stencil (d : ℕ) (a : ℤ → ℂ) (r : ℤ) : ℂ := ∑ j ∈ range (d + 1), (-1 : ℂ) ^ j * (d.choose j : ℂ) * a (r - j) ``
-- **Used by 20:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellBdiff.iter_bdZ_eq_stencil`](../lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_stencil), [`CellBdiff.stencil_eq_bdiff_iter`](../lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum), [`CellZeros.norm_stencil_le`](#CellZeros-norm_stencil_le), [`CellZeros.stencil_add`](#CellZeros-stencil_add), [`CellZeros.stencil_const_mul`](#CellZeros-stencil_const_mul), [`CellZeros.stencil_mode`](#CellZeros-stencil_mode), [`CellZeros.stencil_sub`](#CellZeros-stencil_sub), [`CellZeros.stencil_sum`](#CellZeros-stencil_sum), [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`PiZeros.stencilR_cast`](../lean_stage3/PiZeros.md#PiZeros-stencilR_cast), [`PiZeros.stencil_congr`](../lean_stage3/PiZeros.md#PiZeros-stencil_congr), [`PiZeros.stencil_neg`](../lean_stage3/PiZeros.md#PiZeros-stencil_neg), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum)
+- **Used by 24:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellBdiff.iter_bdZ_eq_stencil`](../lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_stencil), [`CellBdiff.stencil_eq_bdiff_iter`](../lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum), [`CellZeros.norm_stencil_le`](#CellZeros-norm_stencil_le), [`CellZeros.stencil_add`](#CellZeros-stencil_add), [`CellZeros.stencil_const_mul`](#CellZeros-stencil_const_mul), [`CellZeros.stencil_mode`](#CellZeros-stencil_mode), [`CellZeros.stencil_sub`](#CellZeros-stencil_sub), [`CellZeros.stencil_sum`](#CellZeros-stencil_sum), [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row), [`PiZeros.stencilR_cast`](../lean_stage3/PiZeros.md#PiZeros-stencilR_cast), [`PiZeros.stencil_congr`](../lean_stage3/PiZeros.md#PiZeros-stencil_congr), [`PiZeros.stencil_neg`](../lean_stage3/PiZeros.md#PiZeros-stencil_neg), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum)
 
 ## Theorems
 
@@ -95,8 +103,9 @@ stencil d (fun n => a n + b n) r = stencil d a r + stencil d b r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all) (CellFixedRow) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ)… ``
   - [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
   - [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) (PiZeros) — `` ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑… ``
 
@@ -125,8 +134,9 @@ stencil d (fun n => a n - b n) r = stencil d a r - stencil d b r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all) (CellFixedRow) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ)… ``
   - [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
   - [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) (PiZeros) — `` ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑… ``
 
@@ -218,8 +228,9 @@ stencil d (fun n : ℤ => w ^ n) r = w ^ r * (1 - w⁻¹) ^ d
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all) (CellFixedRow) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ)… ``
   - [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
   - [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum) — `` stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Ka… ``
 
@@ -250,9 +261,11 @@ line 84
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all) (CellFixedRow) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ)… ``
   - [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
+  - [`PiFixedRow.table_cell_fixed_row`](../lean_stage3/PiFixedRow.md#PiFixedRow-table_cell_fixed_row) (PiFixedRow) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖((((Construction.tableFrom TableRoute.rowN (r : ℤ) d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ … ``
 
 <a name="CellZeros-cpow_two_zpow"></a>
 ### `CellZeros.cpow_two_zpow`
@@ -337,8 +350,9 @@ stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {
   - [`CellZeros.stencil_sum`](#CellZeros-stencil_sum) — `` stencil d (fun n => ∑ i ∈ s, f i n) r = ∑ i ∈ s, stencil d (f i) r ``
   - [`CellZeros.two_cpow_ne_zero`](#CellZeros-two_cpow_ne_zero) — `` (2:ℂ) ^ ρ ≠ 0 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all) (CellFixedRow) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ)… ``
   - [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
 
 <a name="CellZeros-cell_eq_zero_sum"></a>

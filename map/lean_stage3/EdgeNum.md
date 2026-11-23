@@ -21,8 +21,9 @@ flowchart LR
   x1(["<b>BoxBounds</b><br/>sq_zeta_band_explicit"]):::ext
   x2(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
   x3(["<b>ContourShift</b><br/>mem_zetaWindow<br/>zeta_order_reflect<br/>zeta_zeros_rectangle_finite"]):::ext
-  x4(["<b>GlueNum</b><br/>4 theorems"]):::ext
-  x5(["<b>RouteNum</b><br/>Cpn_le"]):::ext
+  x4(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
+  x5(["<b>GlueNum</b><br/>4 theorems"]):::ext
+  x6(["<b>RouteNum</b><br/>Cpn_le"]):::ext
   n0 --> n4
   n0 --> n5
   n1 --> n5
@@ -31,7 +32,9 @@ flowchart LR
   n3 --> n5
   n4 -.-> x4
   n4 -.-> x5
+  n4 -.-> x6
   n5 -.-> x4
+  n5 -.-> x5
   x0 -.-> n0
   x0 -.-> n1
   x0 -.-> n3
@@ -85,7 +88,7 @@ The edge constant.
 
 - **Is:** `` Cen : ℝ := C1n + C2n + 1 / Real.log 2 ``
 - **Built from:** [`EdgeBound.C1n`](#EdgeBound-C1n), [`EdgeBound.C2n`](#EdgeBound-C2n)
-- **Used by 11:** [`EdgeBound.Cen_pos`](#EdgeBound-Cen_pos), [`EdgeBound.edge_bound_core_num`](#EdgeBound-edge_bound_core_num), [`Glue.Cpn`](../lean_stage3/GlueNum.md#Glue-Cpn), [`Glue.Cpn_pos`](../lean_stage3/GlueNum.md#Glue-Cpn_pos), [`Glue.Dln`](../lean_stage3/GlueNum.md#Glue-Dln), [`Glue.Dln_pos`](../lean_stage3/GlueNum.md#Glue-Dln_pos), [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num), [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num), [`RouteNum.Cen_le`](../lean_stage3/RouteNum.md#RouteNum-Cen_le), [`RouteNum.Cpn_le`](../lean_stage3/RouteNum.md#RouteNum-Cpn_le), [`RouteNum.Dln_le`](../lean_stage3/RouteNum.md#RouteNum-Dln_le)
+- **Used by 12:** [`EdgeBound.Cen_pos`](#EdgeBound-Cen_pos), [`EdgeBound.edge_bound_core_num`](#EdgeBound-edge_bound_core_num), [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any), [`Glue.Cpn`](../lean_stage3/GlueNum.md#Glue-Cpn), [`Glue.Cpn_pos`](../lean_stage3/GlueNum.md#Glue-Cpn_pos), [`Glue.Dln`](../lean_stage3/GlueNum.md#Glue-Dln), [`Glue.Dln_pos`](../lean_stage3/GlueNum.md#Glue-Dln_pos), [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num), [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num), [`RouteNum.Cen_le`](../lean_stage3/RouteNum.md#RouteNum-Cen_le), [`RouteNum.Cpn_le`](../lean_stage3/RouteNum.md#RouteNum-Cpn_le), [`RouteNum.Dln_le`](../lean_stage3/RouteNum.md#RouteNum-Dln_le)
 
 ## Theorems
 
@@ -230,8 +233,9 @@ line 588
 
 **Definitions its proof touches:** [`EdgeBound.C1n`](#EdgeBound-C1n), [`EdgeBound.C2n`](#EdgeBound-C2n)
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
+  - [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any) (ExplicitLeft) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) ``
   - [`Glue.Cpn_pos`](../lean_stage3/GlueNum.md#Glue-Cpn_pos) (GlueNum) — `` 0 < Cpn ``
   - [`Glue.Dln_pos`](../lean_stage3/GlueNum.md#Glue-Dln_pos) (GlueNum) — `` 0 < Dln ``
   - [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num) (GlueNum) — `` ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72 * Dln * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) ``
@@ -265,8 +269,9 @@ line 600
 
 **Definitions its proof touches:** [`EdgeBound.C1n`](#EdgeBound-C1n), [`EdgeBound.C2n`](#EdgeBound-C2n)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any) (ExplicitLeft) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T') T'‖ ≤ Aleft * (Real.log T')^2 * x ^ (-(1:ℝ)/4) ``
   - [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num) (GlueNum) — `` ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72 * Dln * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) ``
   - [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num) (GlueNum) — `` ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, |u.im| = T' → -1/… ``
 

@@ -22,6 +22,78 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block F4 of `design/leftedge.md`: `Stage3/PiFixedRow.lean`
+
+    DONE        `pi_fixed_row`: for `16 ≤ x`, every tolerance, from some
+                height on, `π(⌊x⌋) − Li x` plus the zeros below the height
+                (each through `piMode`) plus `tr psiTheta x` is
+                `≤ Api·log x + ε`. `table_cell_fixed_row`: the same under the
+                stencil for the integer table's cell. `sum_order_inv_sq_le`,
+                `norm_low_integral_le`, `tr_efRem_fixed`: the pieces; one unit
+    ASSUMED     Julian, 2026-11-23: "Start". The count in place of `ψ` at a
+                fixed row. Below `16` the explicit formula is not in the
+                tree; there the zeros are integrated by parts in `t`. Written
+                by an Opus worker; read and built here
+    DEPENDS     `PiZeros.pi_eq_zero_sum`, `table_cell_eq_zero_sum`,
+                `LeftSmooth.explicit_formula_all`,
+                `PiRemainder.sum_order_inv_le`, `integrable_efRem`
+    OUT         the limit of the zero sum as a number; the explicit formula
+                below `16`
+    OUTCOME     proved, unit 0462
+
+### 2026-11-23 · block F3 of `design/leftedge.md`: `Stage3/CellFixedRow.lean`
+
+    DONE        `cell_fixed_row`: at a fixed row `r ≥ d + 4`, for every
+                tolerance, from some height on the cell of `ψ`, less its main
+                term, plus the zeros below the height is
+                `≤ 2^d·(c3n·log 2·r + Bleft) + ε`. `cell_eq_zero_sum_all`,
+                `cell_zero_sum_finset_all`: the cell formula at every height;
+                one unit
+    ASSUMED     Julian, 2026-11-23: "T3 at a fixed row (the explicit formula
+                above x²)." Written by an Opus worker; read and built here
+    DEPENDS     `LeftSmooth.explicit_formula_all`,
+                `CellZeros.stencil`, `FiniteOffLine.tsum_sub_eq_sum`
+    OUT         the same passage for the integer count
+    OUTCOME     proved, unit 0461
+
+### 2026-11-23 · block F2 of `design/leftedge.md`: `Stage3/LeftKernel.lean`, `Stage3/LeftSmooth.lean`
+
+    DONE        `LeftKernel.osc_by_parts`, `kernel_bound`, `series_side`: the
+                turning factor integrated by parts; the Dirichlet-series half
+                of the left edge `≤ Bser·x^(−1/4)` at every height; one unit.
+                `LeftSmooth.smooth_side`, `left_edge_bound`,
+                `explicit_formula_all`: the gamma-factor half, the edge
+                `≤ Bleft·x^(−1/4)`, the formula at every height with no
+                logarithm of the height in the last term; one unit
+    ASSUMED     Julian, 2026-11-23: "T3 at a fixed row (the explicit formula
+                above x²)." Unit 0457's repair. Written by Opus workers; read
+                and built here
+    DEPENDS     `ExplicitLeft.explicit_formula_left`, Mathlib
+                `riemannZeta_one_sub`,
+                `LSeries_vonMangoldt_eq_deriv_riemannZeta_div`, PNT+
+                `Complex.hasSum_digamma`
+    OUT         the cell at a fixed row (block F3)
+    OUTCOME     proved: `LeftKernel` unit 0459, `LeftSmooth` unit 0460
+
+### 2026-11-23 · block F1 of `design/leftedge.md`: `Stage3/ExplicitLeft.lean`
+
+    DONE        `explicit_formula_left`: for `16 ≤ x`, `2 ≤ T` the explicit
+                formula with no cap on the height and the left edge kept as a
+                term. `edge_left_any`: that edge `≤ A·log²T'·x^(−1/4)` at
+                every height. `explicit_formula_any`: the two joined; one unit
+    ASSUMED     Julian, 2026-11-23: "T3 at a fixed row (the explicit formula
+                above x²)." The cap enters `explicit_formula_split_num` once,
+                at the left edge. Written by an Opus worker; read and built
+                here
+    DEPENDS     `PerronKernel.explicit_formula_perron`,
+                `ContourShift.residue_identity`,
+                `Glue.edge_horizontal_bound_num`,
+                `Glue.zeroPartialSum_swap_num`,
+                `EdgeBound.edge_bound_core_num`
+    OUT         the left edge bounded free of the height (block F2); the cell
+                at a fixed row (block F3)
+    OUTCOME     proved, unit 0458; the lost factor named in unit 0457
+
 ### 2026-11-23 · block C7 of `design/carlson.md`: `Stage3/AttainedPi.lean`
 
     DONE        `attained_off_line_pi`: one zero has the largest real part,

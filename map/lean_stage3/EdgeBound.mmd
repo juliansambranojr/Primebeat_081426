@@ -19,10 +19,11 @@ flowchart LR
   x2(["<b>LowCount</b><br/>gz_c0_lower<br/>low_ball_count<br/>low_rect_count"]):::ext
   x3(["<b>LowEdge</b><br/>4 theorems"]):::ext
   x4(["<b>ContourShift</b><br/>5 theorems"]):::ext
-  x5(["<b>Glue</b><br/>Gf_norm_conj<br/>edge_left_bound<br/>zeta_logderiv_good_bound"]):::ext
-  x6(["<b>GlueFloor</b><br/>edge_left_sharp"]):::ext
-  x7(["<b>GlueNum</b><br/>edge_left_sharp_num<br/>zeta_logderiv_good_bound_num"]):::ext
-  x8(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x5(["<b>ExplicitLeft</b><br/>edge_left_any"]):::ext
+  x6(["<b>Glue</b><br/>Gf_norm_conj<br/>edge_left_bound<br/>zeta_logderiv_good_bound"]):::ext
+  x7(["<b>GlueFloor</b><br/>edge_left_sharp"]):::ext
+  x8(["<b>GlueNum</b><br/>edge_left_sharp_num<br/>zeta_logderiv_good_bound_num"]):::ext
+  x9(["<b>JensenCount</b><br/>analyticOrderNatAt_fun_comp_affine<br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
   n0 --> n8
   n1 --> n10
   n1 --> n3
@@ -56,14 +57,16 @@ flowchart LR
   n10 -.-> x5
   n10 -.-> x6
   n10 -.-> x7
+  n10 -.-> x8
   n12 -.-> x1
   n12 -.-> x3
   n13 -.-> x3
   n13 -.-> x5
   n13 -.-> x6
   n13 -.-> x7
-  n14 -.-> x5
+  n13 -.-> x8
   n14 -.-> x6
+  n14 -.-> x7
   n2 -.-> x1
   n2 -.-> x2
   n2 -.-> x3
@@ -77,6 +80,7 @@ flowchart LR
   n7 -.-> x5
   n7 -.-> x6
   n7 -.-> x7
+  n7 -.-> x8
   n9 -.-> x1
   n9 -.-> x2
   x0 -.-> n0
@@ -85,8 +89,8 @@ flowchart LR
   x4 -.-> n11
   x4 -.-> n7
   x4 -.-> n9
-  x8 -.-> n11
-  x8 -.-> n8
+  x9 -.-> n11
+  x9 -.-> n8
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

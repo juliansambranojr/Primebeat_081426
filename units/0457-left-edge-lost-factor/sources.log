@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-23T03:59:57Z
+# unit: 0457-left-edge-lost-factor
+# sources searched: 421
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26151
+  T3 at a fixed row (the explicit formula above x²).
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24672
+  **When a bound loses a factor that grows with the parameter, the proof
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24673
+  is right and the design is wrong. Stop, name the factor, write a
+
+# 4 found, 0 missing

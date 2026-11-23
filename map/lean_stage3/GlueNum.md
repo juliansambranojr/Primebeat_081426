@@ -5,7 +5,7 @@ GlueNum — block E8b of `lean_stage3/design/joints.md`. 2026-11-22. `Glue`'s th
 13 theorems, 7 definitions, 1270 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`EdgeNum`](../lean_stage3/EdgeNum.md), [`GlueFloor`](../lean_stage3/GlueFloor.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellZeros`](../lean_stage3/CellZeros.md), [`RouteNum`](../lean_stage3/RouteNum.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellZeros`](../lean_stage3/CellZeros.md), [`ExplicitLeft`](../lean_stage3/ExplicitLeft.md), [`RouteNum`](../lean_stage3/RouteNum.md)
 
 ## The picture
 
@@ -24,16 +24,19 @@ flowchart LR
   n10["<b>edge_horizontal_bound_num</b><br/>∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, …"]:::thm
   n11["<b>edge_left_sharp_num</b><br/>∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1…"]:::thm
   n12["<b>explicit_formula_split_num</b><br/>∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (…"]:::thm
-  x0(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
-  x1(["<b>FiniteOffLine</b><br/>err_le"]):::ext
-  x2(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
-  x3(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
-  x4(["<b>ContourShift</b><br/>11 theorems"]):::ext
-  x5(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x6(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
-  x7(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
-  x8(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
-  x9(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
+  x0(["<b>ExplicitLeft</b><br/>Aleft_pos<br/>explicit_formula_left"]):::ext
+  x1(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
+  x2(["<b>FiniteOffLine</b><br/>err_le"]):::ext
+  x3(["<b>PiFixedRow</b><br/>Api_nonneg<br/>norm_high_integral_le<br/>norm_tr_efRem_le_height"]):::ext
+  x4(["<b>PiRemainder</b><br/>Chigh_nonneg<br/>norm_efRem_le_high"]):::ext
+  x5(["<b>RouteNum</b><br/>relErrWindow_route_num<br/>schoenfeldWeak_route_num<br/>stmtEF_split_num"]):::ext
+  x6(["<b>CellFixedRow</b><br/>cell_fixed_row"]):::ext
+  x7(["<b>ContourShift</b><br/>11 theorems"]):::ext
+  x8(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x9(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
+  x10(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
+  x11(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
+  x12(["<b>CellZeros</b><br/>cell_eq_zero_sum"]):::ext
   n0 --> n12
   n0 --> n4
   n0 --> n8
@@ -48,32 +51,40 @@ flowchart LR
   n7 --> n8
   n8 --> n12
   n9 --> n10
-  n12 -.-> x2
-  n12 -.-> x3
-  n12 -.-> x9
-  n4 -.-> x1
+  n0 -.-> x0
+  n10 -.-> x0
+  n12 -.-> x12
+  n12 -.-> x4
+  n12 -.-> x5
+  n2 -.-> x0
+  n3 -.-> x0
   n4 -.-> x2
   n4 -.-> x3
-  n5 -.-> x1
+  n4 -.-> x4
+  n4 -.-> x5
   n5 -.-> x2
   n5 -.-> x3
-  n6 -.-> x1
+  n5 -.-> x4
+  n5 -.-> x5
+  n5 -.-> x6
   n6 -.-> x2
-  n6 -.-> x3
-  x0 -.-> n1
-  x0 -.-> n11
-  x0 -.-> n3
-  x0 -.-> n9
-  x4 -.-> n11
-  x4 -.-> n12
-  x4 -.-> n7
-  x4 -.-> n8
-  x4 -.-> n9
-  x5 -.-> n7
-  x6 -.-> n11
-  x6 -.-> n9
+  n6 -.-> x4
+  n6 -.-> x5
+  n8 -.-> x0
+  x1 -.-> n1
+  x1 -.-> n11
+  x1 -.-> n3
+  x1 -.-> n9
+  x10 -.-> n11
+  x11 -.-> n12
   x7 -.-> n11
-  x8 -.-> n12
+  x7 -.-> n12
+  x7 -.-> n7
+  x7 -.-> n8
+  x7 -.-> n9
+  x8 -.-> n7
+  x9 -.-> n11
+  x9 -.-> n9
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -96,7 +107,7 @@ def · line 34
 The band count's constant.
 
 - **Is:** `` Csn : ℝ := 8 * (15 + 88 / Real.log 2) ``
-- **Used by 8:** [`Glue.Csn_pos`](#Glue-Csn_pos), [`Glue.band_order_sum_le_num`](#Glue-band_order_sum_le_num), [`Glue.c1n`](#Glue-c1n), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`Glue.zeroPartialSum_swap_num`](#Glue-zeroPartialSum_swap_num), [`RouteNum.Csn_le`](../lean_stage3/RouteNum.md#RouteNum-Csn_le), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le)
+- **Used by 9:** [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`Glue.Csn_pos`](#Glue-Csn_pos), [`Glue.band_order_sum_le_num`](#Glue-band_order_sum_le_num), [`Glue.c1n`](#Glue-c1n), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`Glue.zeroPartialSum_swap_num`](#Glue-zeroPartialSum_swap_num), [`RouteNum.Csn_le`](../lean_stage3/RouteNum.md#RouteNum-Csn_le), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le)
 
 <a name="Glue-Cpn"></a>
 ### `Glue.Cpn`
@@ -118,7 +129,7 @@ The horizontal-edge constant.
 
 - **Is:** `` Chn : ℝ := Cpn * 3 * (9/4) ``
 - **Built from:** [`Glue.Cpn`](#Glue-Cpn)
-- **Used by 7:** [`Glue.Chn_pos`](#Glue-Chn_pos), [`Glue.c1n`](#Glue-c1n), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.edge_horizontal_bound_num`](#Glue-edge_horizontal_bound_num), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`RouteNum.Chn_le`](../lean_stage3/RouteNum.md#RouteNum-Chn_le), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le)
+- **Used by 8:** [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`Glue.Chn_pos`](#Glue-Chn_pos), [`Glue.c1n`](#Glue-c1n), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.edge_horizontal_bound_num`](#Glue-edge_horizontal_bound_num), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`RouteNum.Chn_le`](../lean_stage3/RouteNum.md#RouteNum-Chn_le), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le)
 
 <a name="Glue-Dln"></a>
 ### `Glue.Dln`
@@ -129,7 +140,7 @@ The left-edge constant.
 
 - **Is:** `` Dln : ℝ := 36 * EdgeBound.Cen + 9 * (1620000 + 1) / Real.log 2 ``
 - **Built from:** [`EdgeBound.Cen`](../lean_stage3/EdgeNum.md#EdgeBound-Cen)
-- **Used by 7:** [`Glue.Dln_pos`](#Glue-Dln_pos), [`Glue.c4n`](#Glue-c4n), [`Glue.c4n_nonneg`](#Glue-c4n_nonneg), [`Glue.edge_left_sharp_num`](#Glue-edge_left_sharp_num), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`RouteNum.Dln_le`](../lean_stage3/RouteNum.md#RouteNum-Dln_le), [`RouteNum.c4n_le`](../lean_stage3/RouteNum.md#RouteNum-c4n_le)
+- **Used by 9:** [`ExplicitLeft.Aleft`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-Aleft), [`ExplicitLeft.edge_left_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-edge_left_any), [`Glue.Dln_pos`](#Glue-Dln_pos), [`Glue.c4n`](#Glue-c4n), [`Glue.c4n_nonneg`](#Glue-c4n_nonneg), [`Glue.edge_left_sharp_num`](#Glue-edge_left_sharp_num), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`RouteNum.Dln_le`](../lean_stage3/RouteNum.md#RouteNum-Dln_le), [`RouteNum.c4n_le`](../lean_stage3/RouteNum.md#RouteNum-c4n_le)
 
 <a name="Glue-c1n"></a>
 ### `Glue.c1n`
@@ -140,7 +151,7 @@ The explicit formula's three constants.
 
 - **Is:** `` c1n : ℝ := 2400 + 2 * Chn + Csn ``
 - **Built from:** [`Glue.Chn`](#Glue-Chn), [`Glue.Csn`](#Glue-Csn)
-- **Used by 19:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`PiRemainder.Chigh`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh), [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
+- **Used by 28:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`ExplicitLeft.explicit_formula_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_any), [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c1n_nonneg`](#Glue-c1n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`LeftSmooth.explicit_formula_all`](../lean_stage3/LeftSmooth.md#LeftSmooth-explicit_formula_all), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height), [`PiFixedRow.tr_efRem_fixed`](../lean_stage3/PiFixedRow.md#PiFixedRow-tr_efRem_fixed), [`PiRemainder.Chigh`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh), [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`RouteNum.c1n_le`](../lean_stage3/RouteNum.md#RouteNum-c1n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
 
 <a name="Glue-c3n"></a>
 ### `Glue.c3n`
@@ -148,7 +159,7 @@ The explicit formula's three constants.
 def · line 73
 
 - **Is:** `` c3n : ℝ := 13 + ‖deriv riemannZeta 0 / riemannZeta 0‖ / 2 ``
-- **Used by 19:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c3n_nonneg`](#Glue-c3n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`PiRemainder.Chigh`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh), [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`RouteNum.c3n_le`](../lean_stage3/RouteNum.md#RouteNum-c3n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
+- **Used by 28:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellFixedRow.cell_eq_zero_sum_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_eq_zero_sum_all), [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row), [`CellFixedRow.cell_zero_sum_finset_all`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_zero_sum_finset_all), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`ExplicitLeft.explicit_formula_any`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_any), [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`GateEval.routeConst_le`](../lean_stage3/GateEval.md#GateEval-routeConst_le), [`Glue.c3n_nonneg`](#Glue-c3n_nonneg), [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num), [`LeftSmooth.explicit_formula_all`](../lean_stage3/LeftSmooth.md#LeftSmooth-explicit_formula_all), [`PiFixedRow.Api`](../lean_stage3/PiFixedRow.md#PiFixedRow-Api), [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le), [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height), [`PiRemainder.Chigh`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh), [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`RouteNum.c3n_le`](../lean_stage3/RouteNum.md#RouteNum-c3n_le), [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num), [`Stage3.routeConst`](../lean_stage3/RouteNum.md#Stage3-routeConst), [`Stage3.schoenfeldWeak_route_num`](../lean_stage3/RouteNum.md#Stage3-schoenfeldWeak_route_num), [`Stage3.stmtEF_split_num`](../lean_stage3/RouteNum.md#Stage3-stmtEF_split_num)
 
 <a name="Glue-c4n"></a>
 ### `Glue.c4n`
@@ -180,8 +191,9 @@ line 37
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left) (ExplicitLeft) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.lo… ``
   - [`Glue.c1n_nonneg`](#Glue-c1n_nonneg) — `` 0 ≤ c1n ``
   - [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``
   - [`Glue.zeroPartialSum_swap_num`](#Glue-zeroPartialSum_swap_num) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Csn * x * Real.log T / T ``
@@ -237,8 +249,9 @@ line 56
 
 **Definitions its proof touches:** [`Glue.Cpn`](#Glue-Cpn)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left) (ExplicitLeft) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.lo… ``
   - [`Glue.c1n_nonneg`](#Glue-c1n_nonneg) — `` 0 ≤ c1n ``
   - [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``
 
@@ -265,8 +278,9 @@ line 65
 
 **Definitions its proof touches:** [`EdgeBound.Cen`](../lean_stage3/EdgeNum.md#EdgeBound-Cen)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`ExplicitLeft.Aleft_pos`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-Aleft_pos) (ExplicitLeft) — `` 0 < Aleft ``
   - [`Glue.c4n_nonneg`](#Glue-c4n_nonneg) — `` 0 ≤ c4n ``
   - [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``
 
@@ -294,9 +308,11 @@ line 77
 
 **Definitions its proof touches:** [`Glue.Chn`](#Glue-Chn), [`Glue.Csn`](#Glue-Csn)
 
-**Feeds** (5 that use it)
+**Feeds** (7 that use it)
 
   - [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le) (FiniteOffLine) — `` ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * (2:ℝ) ^ (K + 1)) ^ 2 / (2:ℝ)… ``
+  - [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le) (PiFixedRow) — `` ‖∫ t in (16:ℝ)..x, efRem T t * wt t‖ ≤ (x - 16) * (Glue.c1n * Real.log (x * T) ^ 2 / T) + (Glue.c3n + LeftSmooth.Bleft) * Real.log (x / 16) ``
+  - [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height) (PiFixedRow) — `` ‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.log (x * T) ^ 2 / T ``
   - [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) (PiRemainder) — `` 0 ≤ Chigh ``
   - [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high) (PiRemainder) — `` ‖efRem x t‖ ≤ Chigh * Real.log x ^ 2 ``
   - [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num) (RouteNum) — `` JointDialGate.StmtRelErrWindow (fun m : ℤ => (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ)) (fun m : ℤ => 2 / Real.log 2 + ∫ t in (1 : ℝ)..(m : ℝ), Rea… ``
@@ -321,9 +337,13 @@ line 84
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (5 that use it)
+**Feeds** (9 that use it)
 
+  - [`CellFixedRow.cell_fixed_row`](../lean_stage3/CellFixedRow.md#CellFixedRow-cell_fixed_row) (CellFixedRow) — `` ∀ ε : ℝ, 0 < ε → ∀ᶠ T : ℝ in Filter.atTop, ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻… ``
   - [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le) (FiniteOffLine) — `` ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * (2:ℝ) ^ (K + 1)) ^ 2 / (2:ℝ)… ``
+  - [`PiFixedRow.Api_nonneg`](../lean_stage3/PiFixedRow.md#PiFixedRow-Api_nonneg) (PiFixedRow) — `` 0 ≤ Api ``
+  - [`PiFixedRow.norm_high_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_high_integral_le) (PiFixedRow) — `` ‖∫ t in (16:ℝ)..x, efRem T t * wt t‖ ≤ (x - 16) * (Glue.c1n * Real.log (x * T) ^ 2 / T) + (Glue.c3n + LeftSmooth.Bleft) * Real.log (x / 16) ``
+  - [`PiFixedRow.norm_tr_efRem_le_height`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_tr_efRem_le_height) (PiFixedRow) — `` ‖tr (efRem T) x‖ ≤ Api * Real.log x + 2 * Glue.c1n * x * Real.log (x * T) ^ 2 / T ``
   - [`PiRemainder.Chigh_nonneg`](../lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) (PiRemainder) — `` 0 ≤ Chigh ``
   - [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high) (PiRemainder) — `` ‖efRem x t‖ ≤ Chigh * Real.log x ^ 2 ``
   - [`RouteNum.relErrWindow_route_num`](../lean_stage3/RouteNum.md#RouteNum-relErrWindow_route_num) (RouteNum) — `` JointDialGate.StmtRelErrWindow (fun m : ℤ => (Nat.primeCounting ⌊(2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ)) (fun m : ℤ => 2 / Real.log 2 + ∫ t in (1 : ℝ)..(m : ℝ), Rea… ``
@@ -416,8 +436,9 @@ line 323
   - [`Glue.Csn_pos`](#Glue-Csn_pos) — `` 0 < Csn ``
   - [`Glue.band_order_sum_le_num`](#Glue-band_order_sum_le_num) — `` ∀ T : ℝ, 2 ≤ T → ∀ F : Finset ℂ, (∀ ρ ∈ F, riemannZeta ρ = 0 ∧ (0 < ρ.re ∧ ρ.re < 1) ∧ T ≤ |ρ.im| ∧ |ρ.im| ≤ T + 1) → (∑ ρ ∈ F, (analyticOrderNatAt ri… ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left) (ExplicitLeft) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.lo… ``
   - [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``
 
 <a name="Glue-zeta_logderiv_good_bound_num"></a>
@@ -478,8 +499,9 @@ line 527
 
 **Definitions its proof touches:** [`Glue.Cpn`](#Glue-Cpn)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`ExplicitLeft.explicit_formula_left`](../lean_stage3/ExplicitLeft.md#ExplicitLeft-explicit_formula_left) (ExplicitLeft) — `` ∃ T' : ℝ, T ≤ T' ∧ T' ≤ T + 1 ∧ ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.lo… ``
   - [`Glue.explicit_formula_split_num`](#Glue-explicit_formula_split_num) — `` ∀ x T : ℝ, 16 ≤ x → 2 ≤ T → T ≤ x^2 → ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1n * x * Real.log (x*T)^2 / T + c3n * Real.log x … ``
 
 <a name="Glue-edge_left_sharp_num"></a>

@@ -1,0 +1,19 @@
+key	value	source
+module_lines	912	wc -l lean_stage3/Stage3/LeftSmooth.lean
+theorems_proved	40	grep -c ^theorem lean_stage3/Stage3/LeftSmooth.lean
+defs	0	grep -c ^def; the module's definitions are noncomputable
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/LeftSmooth.lean
+pins	3	smooth_side, left_edge_bound, explicit_formula_all
+errors_first	8	the worker's report: about this many errors across the first builds of its chunks
+builds	11	the worker's builds, as it reported, about this many
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8850	lake build (full Stage3), Build completed successfully
+jobs_module	8738	run/build.log, lake build Stage3.LeftSmooth
+loop_version	22	lean_stage3/LOOP.md version line
+design	leftedge.md#f2	the left edge bounded at every height
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+floor_x	16	the hypothesis 16 ≤ x
+floor_T	2	the hypothesis 2 ≤ T
+pieces	3	the constant, digamma and tangent pieces of the smooth half

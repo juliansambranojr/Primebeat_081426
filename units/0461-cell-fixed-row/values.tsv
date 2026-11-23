@@ -1,0 +1,19 @@
+key	value	source
+module_lines	206	wc -l lean_stage3/Stage3/CellFixedRow.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/CellFixedRow.lean
+defs	0	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/CellFixedRow.lean
+pins	3	cell_eq_zero_sum_all, cell_zero_sum_finset_all, cell_fixed_row
+errors_first	1	the worker's first build, as it reported
+builds	2	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8851	lake build (full Stage3), Build completed successfully
+jobs_module	8752	run/build.log, lake build Stage3.CellFixedRow
+loop_version	22	lean_stage3/LOOP.md version line
+design	leftedge.md#f3	T3 at a fixed row
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+floor_T	2	the hypothesis 2 ≤ T
+row_margin	4	the hypothesis d + 4 ≤ r
+unit_rows	0441	the unit that sealed T3 along the rows
