@@ -32,7 +32,7 @@
 "lean/ZerosStencil.lean": "fe84abe9e18e69769fdf6bc8adabcf3003e1873b26b2da5bcde050bb153810f3",
 "lean_bridge/Bridge.lean": "5115bb4cf26fa3669bd146e541a4b554d791c1436f491fe55ae016bb4f49b551",
 "lean_bridge/Bridge/WeilBridge.lean": "a13029ef866e746156cbdaadc6bc7bb39062579135000ae851a38fcb1b21abbd",
-"lean_stage3/Stage3.lean": "cb16c48d9414c470639269fd598d0c75a966e5d76e2e3c6cda1e3635d181ade5",
+"lean_stage3/Stage3.lean": "4ff7d56c2358612fa6a44d4b33838b3afed05794dbf9c4d7f90c880d74033e40",
 "lean_stage3/Stage3/Abscissa.lean": "b1138cd0c53500900807af210484e236041b02a19ca843e4c045344a21347402",
 "lean_stage3/Stage3/AliasClass.lean": "eea0bed357b0d170bf39c540161a3e322d8b7008500a3a776e88ca2914069d59",
 "lean_stage3/Stage3/ArgCount.lean": "88da9ed2485e8912465d7a23d0d2615a7eec0d3678a16ab7432c23d0021acded",
@@ -50,6 +50,7 @@
 "lean_stage3/Stage3/CellZeros.lean": "8fb5a1286a5262b0779b5eb10d8797e221905fb7d94b9b5309f8fefa5c50c933",
 "lean_stage3/Stage3/ContourShift.lean": "54d38b980bbbcccc095923297afd095fc919a7832b2d7eed2248ed62c7a341ee",
 "lean_stage3/Stage3/DirichletMean.lean": "446426ee8805ceedfed7cf2eb554ca4164bfada585e9143e934a37f8bd4c035a",
+"lean_stage3/Stage3/DirichletMeanW.lean": "56e830dca5a01c2a0a8f108f93e6fcb39011fa079bc1629f9cf06360260006a0",
 "lean_stage3/Stage3/EdgeBound.lean": "dcbc1a719762a2433948e26889674b005fe9737d4c71b31c256ecb14b37b1886",
 "lean_stage3/Stage3/EdgeNum.lean": "99827d3b44747257a58091a4886ca697afb60717ab8aa0eda293d177d348c251",
 "lean_stage3/Stage3/ExplicitBump.lean": "63429f55ff391649876b2e5c1f6afddbffece4d78fb9f0675940c5ed2a28f886",
@@ -157,6 +158,6 @@
 "lean_stage3/Stage3/WeilWindow.lean": "d4beacaf5650f1668aca4f26d526343b751ee68cba45ac9cbe4ffc67d0a7dcfd",
 "lean_stage3/Stage3/WobbleCount.lean": "982399400adc567deb19a16793745fe48a9de22a60163fa18ef5150e012bef39",
 "lean_stage3/Stage3/ZeroSum.lean": "73596e95cd58b167f048d6913203aa76758e5e4b8ea64178d26146ae7a3eb131",
-"lean_stage3/Stage3/ZetaEM.lean": "fda4c2d608cc87c80ce2154aa91a08839cb995c36d3327ccf8e37b8a5fc1467d",
+"lean_stage3/Stage3/ZetaEM.lean": "fd85e334fce36d9a8fac6963aa0182b9529d73c1af9952e97145a252ed933088",
 "lean_stage3/Stage3/ZetaGrowth.lean": "2488e3337e5ef2f506bd249c654aabb61155979ad0f5f818a3764e03fce01430"
 }

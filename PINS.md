@@ -22,6 +22,17 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · the repair of block C1: `Stage3/DirichletMeanW.lean`, block C1b of `design/carlson.md`
+
+    DONE        `dirichlet_mean_value_weighted`, `_sigma`: the mean square of
+                a finite Dirichlet sum over a window is at most the sum of
+                `|a_n|²·((T₂ − T₁) + 6n(1 + log N))`; one unit
+    ASSUMED     unit 0449: block C1 charges `N` to every term and block C4
+                then loses the saving. Written by an Opus worker from a brief
+    DEPENDS     `DirichletMean.integral_sq_norm_eq`, `norm_integral_exp_le`
+    OUT         block C4
+    OUTCOME     proved, unit 0450
+
 ### 2026-11-23 · a zero-density bound with a power saving, built here: `lean_stage3/design/carlson.md`
 
     DONE        nothing yet. Seven blocks C1 to C7 in `design/carlson.md`:

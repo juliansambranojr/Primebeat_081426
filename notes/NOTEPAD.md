@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  C1b PROVED (unit 0450, `DirichletMeanW.dirichlet_mean_value_weighted`): mean square over a window <= sum of |a_n|^2 ((T2-T1) + 6 n (1+log N)), each term charged its own index. Repairs unit 0449. Opus worker, built and read here. Next: C4, the mean square of zeta times the mollifier minus one.
 - [open]   2026-11-23  DESIGN FAILURE caught before C4 (unit 0449): C1 (unit 0446) charges the length N to every term; in C4 that gives N X^(2-2u), above T at every u. Repair: C1b, each term charged its own index (weighted Schur test, row cost <= 6 m (1+log N)), and C2b, coefficients weighted by n^(1-2u). C1's proof is correct and stays. C1b being built.
 - [open]   2026-11-23  C3 PROVED (unit 0448, `ZetaEM.zeta_eq_em`): Euler-Maclaurin for zeta at every order, by induction; `norm_zeta_sub_partial_le`: zeta minus its finite sum plus the smooth term <= emConst k N^(-sigma) (1 + (|s|+k)^k N^(1-k)) when |s|+k <= N. Opus worker, built and read here. The constant is a supremum, not computed.
 - [open]   2026-11-23  C2 PROVED (unit 0447, `Mollified`): zeta's finite sum times a short Moebius sum is 1 plus a tail from X on (`prod_eq_sum`, `coef_eq_zero`); squared coefficients sum to <= Y (1+log X)^3, and weighted by n^(-2u), u > 1/2, to <= 2/(1-2^(1-2u)) X^(1-2u) (1+log X)^3. Opus worker, built and read here. Next: C3, zeta as a finite sum to any order.

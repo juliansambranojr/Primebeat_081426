@@ -1,10 +1,8 @@
 # `lean_stage3/Stage3/ZetaEM.lean`
 
-> **Read from the source text.** This file changed after the last `python3 utilities/lean_map.py --dump`, so the arrows on this page are names occurring in each proof and have not been confirmed by Lean.
-
 ZetaEM — block C3 of `lean_stage3/design/carlson.md`. 2026-11-23. Euler–Maclaurin for the Riemann zeta function to any order `k ≥ 1` on `Re s > 0`, with the remainder bounded. The periodic Bernoulli function `P_k(x) = B_k({x})` has right derivative `k·P_{k-1}` everywhere and is continuous for `k ≠ 1`, so one integration by parts on `[a, b]` needs no splitting at the integers. Passing `b → ∞` gives the step `(k+1)·I_k = −B_{k+1}({a})·a^{−s−k} + (s+k)·I_{k+1}` for the tail integrals `I_k(a, s) = ∫_{x>a} P_k(x)·x^{−s−…
 
-20 theorems, 7 definitions, 516 lines. 
+20 theorems, 7 definitions, 516 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -13,24 +11,24 @@ ZetaEM — block C3 of `lean_stage3/design/carlson.md`. 2026-11-23. Euler–Macl
 
 ```mermaid
 flowchart LR
-  n0["<b>hasDerivWithinAt_fract</b><br/>HasDerivWithinAt Int.fract 1 (Ioi x) x"]:::cnt
-  n1["<b>continuous_bernoulliFun_fract</b><br/>Continuous (fun x : ℝ ↦ bernoulliFun k (Int.fract x))"]:::cnt
-  n2["<b>abs_bernoulliFun_fract_le</b><br/>|bernoulliFun k (Int.fract x)| ≤ bernBound k"]:::cnt
-  n3["<b>bernBound_nonneg</b><br/>0 ≤ bernBound k"]:::cnt
-  n4["<b>measurable_bern</b><br/>Measurable (fun x : ℝ ↦ bernoulliFun k (Int.fract x))"]:::cnt
-  n5["<b>integrableOn_bern_cpow</b><br/>IntegrableOn (fun x : ℝ ↦ ((bernoulliFun k (Int.fract x) : ℝ) : …"]:::shp
-  n6["<b>norm_integral_bern_cpow_le</b><br/>‖∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) …"]:::shp
-  n7["<b>interval_ibp</b><br/>((k:ℂ) + 1) * ∫ x in a..b, ((bernoulliFun k (Int.fract x) : ℝ) :…"]:::shp
-  n8["<b>tail_ibp</b><br/>((k:ℂ) + 1) * ∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) …"]:::shp
-  n9["<b>emInt_step</b><br/>((k:ℂ) + 1) * emInt k N s = -((bernoulliFun (k+1) 0 : ℂ) * (N:ℂ)…"]:::shp
-  n10["<b>emRem_step</b><br/>emRem k N s = emTerm k N s + emRem (k+1) N s"]:::shp
-  n11["<b>sum_range_succ_eq_sum_Icc</b><br/>∑ n ∈ Finset.range (N + 1), 1 / (n : ℂ) ^ s = ∑ n ∈ Finset.Icc 1…"]:::shp
-  n12["<b>sum_range_eq_sum_Icc ■</b><br/>∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s = ∑ n ∈ Finset.Icc 1 N…"]:::cnt
+  n0["<b>hasDerivWithinAt_fract</b><br/>HasDerivWithinAt Int.fract 1 (Ioi x) x"]:::shp
+  n1["<b>continuous_bernoulliFun_fract</b><br/>Continuous (fun x : ℝ ↦ bernoulliFun k (Int.fract x))"]:::thm
+  n2["<b>abs_bernoulliFun_fract_le</b><br/>|bernoulliFun k (Int.fract x)| ≤ bernBound k"]:::thm
+  n3["<b>bernBound_nonneg</b><br/>0 ≤ bernBound k"]:::thm
+  n4["<b>measurable_bern</b><br/>Measurable (fun x : ℝ ↦ bernoulliFun k (Int.fract x))"]:::thm
+  n5["<b>integrableOn_bern_cpow</b><br/>IntegrableOn (fun x : ℝ ↦ ((bernoulliFun k (Int.fract x) : ℝ) : …"]:::thm
+  n6["<b>norm_integral_bern_cpow_le</b><br/>‖∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) …"]:::thm
+  n7["<b>interval_ibp</b><br/>((k:ℂ) + 1) * ∫ x in a..b, ((bernoulliFun k (Int.fract x) : ℝ) :…"]:::thm
+  n8["<b>tail_ibp</b><br/>((k:ℂ) + 1) * ∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) …"]:::thm
+  n9["<b>emInt_step</b><br/>((k:ℂ) + 1) * emInt k N s = -((bernoulliFun (k+1) 0 : ℂ) * (N:ℂ)…"]:::thm
+  n10["<b>emRem_step</b><br/>emRem k N s = emTerm k N s + emRem (k+1) N s"]:::thm
+  n11["<b>sum_range_succ_eq_sum_Icc</b><br/>∑ n ∈ Finset.range (N + 1), 1 / (n : ℂ) ^ s = ∑ n ∈ Finset.Icc 1…"]:::thm
+  n12["<b>sum_range_eq_sum_Icc ■</b><br/>∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s = ∑ n ∈ Finset.Icc 1 N…"]:::thm
   n13["<b>zeta_eq_em_one</b><br/>riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (…"]:::thm
   n14["<b>zeta_eq_em</b><br/>riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (…"]:::thm
-  n15["<b>norm_emInt_le</b><br/>‖emInt k N s‖ ≤ bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + …"]:::shp
-  n16["<b>norm_remainder_le</b><br/>‖emRem k N s‖ ≤ (∏ i ∈ Finset.range k, ‖s + i‖) / k.factorial * …"]:::shp
-  n17["<b>norm_emTerm</b><br/>‖emTerm j N s‖ = (∏ i ∈ Finset.range j, ‖s + i‖) * |bernoulliFun…"]:::shp
+  n15["<b>norm_emInt_le</b><br/>‖emInt k N s‖ ≤ bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + …"]:::thm
+  n16["<b>norm_remainder_le</b><br/>‖emRem k N s‖ ≤ (∏ i ∈ Finset.range k, ‖s + i‖) / k.factorial * …"]:::thm
+  n17["<b>norm_emTerm</b><br/>‖emTerm j N s‖ = (∏ i ∈ Finset.range j, ‖s + i‖) * |bernoulliFun…"]:::thm
   n18["<b>prod_norm_le</b><br/>∏ i ∈ Finset.range j, ‖s + i‖ ≤ (‖s‖ + k) ^ j"]:::shp
   n19["<b>norm_zeta_sub_partial_le ■</b><br/>‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) …"]:::thm
   n0 --> n7
@@ -77,7 +75,7 @@ def · line 54
 The order-`k` tail integral `∫_{x>N} B_k({x})·x^{−(s+k)}`.
 
 - **Is:** `` emInt (k N : ℕ) (s : ℂ) : ℂ := ∫ x in Ioi (N:ℝ), ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) ^ (-(s + k)) ``
-- **Used by 5:** [`ZetaEM.emInt_step`](#ZetaEM-emInt_step), [`ZetaEM.emRem`](#ZetaEM-emRem), [`ZetaEM.emRem_step`](#ZetaEM-emRem_step), [`ZetaEM.norm_emInt_le`](#ZetaEM-norm_emInt_le), [`ZetaEM.zeta_eq_em_one`](#ZetaEM-zeta_eq_em_one)
+- **Used by 7:** [`ZetaEM.emInt_step`](#ZetaEM-emInt_step), [`ZetaEM.emRem`](#ZetaEM-emRem), [`ZetaEM.emRem_step`](#ZetaEM-emRem_step), [`ZetaEM.norm_emInt_le`](#ZetaEM-norm_emInt_le), [`ZetaEM.norm_remainder_le`](#ZetaEM-norm_remainder_le), [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em), [`ZetaEM.zeta_eq_em_one`](#ZetaEM-zeta_eq_em_one)
 
 <a name="ZetaEM-emCoef"></a>
 ### `ZetaEM.emCoef`
@@ -97,7 +95,7 @@ def · line 62
 The boundary term `s(s+1)⋯(s+j−1)·B_{j+1}(0)/(j+1)!·N^{−(s+j)}`.
 
 - **Is:** `` emTerm (j N : ℕ) (s : ℂ) : ℂ := (∏ i ∈ Finset.range j, (s + i)) * (bernoulliFun (j+1) 0 : ℂ) / ((j+1).factorial : ℂ) * (N:ℂ) ^ (-(s + j)) ``
-- **Used by 3:** [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emRem_step`](#ZetaEM-emRem_step), [`ZetaEM.norm_emTerm`](#ZetaEM-norm_emTerm)
+- **Used by 5:** [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emRem_step`](#ZetaEM-emRem_step), [`ZetaEM.norm_emTerm`](#ZetaEM-norm_emTerm), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em)
 
 <a name="ZetaEM-emBoundary"></a>
 ### `ZetaEM.emBoundary`
@@ -147,9 +145,9 @@ The constant of the corollary: `1/2 + Σ_{1 ≤ j < k} |B_{j+1}(0)|/(j+1)! + ber
 <a name="ZetaEM-hasDerivWithinAt_fract"></a>
 ### `ZetaEM.hasDerivWithinAt_fract`
 
-line 79 · arrows read from text
+line 79
 
-**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The fractional part has right derivative `1` at every real `x`.
 
@@ -172,9 +170,9 @@ HasDerivWithinAt Int.fract 1 (Ioi x) x
 <a name="ZetaEM-continuous_bernoulliFun_fract"></a>
 ### `ZetaEM.continuous_bernoulliFun_fract`
 
-line 91 · arrows read from text
+line 91
 
-**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** For `k ≠ 1` the periodic Bernoulli function `x ↦ B_k({x})` is continuous.
 
@@ -197,9 +195,9 @@ Continuous (fun x : ℝ ↦ bernoulliFun k (Int.fract x))
 <a name="ZetaEM-abs_bernoulliFun_fract_le"></a>
 ### `ZetaEM.abs_bernoulliFun_fract_le`
 
-line 97 · arrows read from text
+line 97
 
-**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The periodic Bernoulli function is bounded in absolute value by `bernBound k`.
 
@@ -214,9 +212,9 @@ line 97 · arrows read from text
   - `` k : ℕ ``
   - `` x : ℝ ``
 
-**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+**Stated with:** [`ZetaEM.bernBound`](#ZetaEM-bernBound)
 
-**Definitions its proof touches:** [`ZetaEM.bernBound`](#ZetaEM-bernBound)
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
 **Feeds** (4 that use it)
 
@@ -228,9 +226,9 @@ line 97 · arrows read from text
 <a name="ZetaEM-bernBound_nonneg"></a>
 ### `ZetaEM.bernBound_nonneg`
 
-line 104 · arrows read from text
+line 104
 
-**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The bound `bernBound k` is nonnegative.
 
@@ -244,11 +242,11 @@ line 104 · arrows read from text
 
   - `` k : ℕ ``
 
+**Stated with:** [`ZetaEM.bernBound`](#ZetaEM-bernBound)
+
 **Fed by** (1 theorem its proof uses)
 
   - [`ZetaEM.abs_bernoulliFun_fract_le`](#ZetaEM-abs_bernoulliFun_fract_le) — `` |bernoulliFun k (Int.fract x)| ≤ bernBound k ``
-
-**Definitions its proof touches:** [`ZetaEM.bernBound`](#ZetaEM-bernBound)
 
 **Feeds** (1 that use it)
 
@@ -257,9 +255,9 @@ line 104 · arrows read from text
 <a name="ZetaEM-measurable_bern"></a>
 ### `ZetaEM.measurable_bern`
 
-line 108 · arrows read from text
+line 108
 
-**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The periodic Bernoulli function is measurable.
 
@@ -282,9 +280,9 @@ Measurable (fun x : ℝ ↦ bernoulliFun k (Int.fract x))
 <a name="ZetaEM-integrableOn_bern_cpow"></a>
 ### `ZetaEM.integrableOn_bern_cpow`
 
-line 112 · arrows read from text
+line 112
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** For `Re w < −1` and `0 < a`, the function `B_k({x})·x^w` is integrable on `(a, ∞)`.
 
@@ -315,9 +313,9 @@ IntegrableOn (fun x : ℝ ↦ ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:
 <a name="ZetaEM-norm_integral_bern_cpow_le"></a>
 ### `ZetaEM.norm_integral_bern_cpow_le`
 
-line 137 · arrows read from text
+line 137
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** For `Re w < −1` and `0 < a`, the integral of `B_k({x})·x^w` over `(a, ∞)` has norm at most `bernBound k · a^{Re w + 1}/(−(Re w + 1))`.
 
@@ -333,11 +331,11 @@ line 137 · arrows read from text
   - `` ha : 0 < a ``
   - `` hw : w.re < -1 ``
 
+**Stated with:** [`ZetaEM.bernBound`](#ZetaEM-bernBound)
+
 **Fed by** (1 theorem its proof uses)
 
   - [`ZetaEM.abs_bernoulliFun_fract_le`](#ZetaEM-abs_bernoulliFun_fract_le) — `` |bernoulliFun k (Int.fract x)| ≤ bernBound k ``
-
-**Definitions its proof touches:** [`ZetaEM.bernBound`](#ZetaEM-bernBound)
 
 **Feeds** (1 that use it)
 
@@ -346,9 +344,9 @@ line 137 · arrows read from text
 <a name="ZetaEM-interval_ibp"></a>
 ### `ZetaEM.interval_ibp`
 
-line 163 · arrows read from text
+line 163
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** One integration by parts on `[a, b]`: for `k ≥ 1`, `0 < a ≤ b` and `Re s + k > 1`, `(k+1)·∫_a^b P_k x^{−(s+k)}` is the boundary term of `P_{k+1} x^{−(s+k)}` plus `(s+k)·∫_a^b P_{k+1} x^{−(s+k+1)}`.
 
@@ -378,9 +376,9 @@ line 163 · arrows read from text
 <a name="ZetaEM-tail_ibp"></a>
 ### `ZetaEM.tail_ibp`
 
-line 223 · arrows read from text
+line 223
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The step on the tail: for `k ≥ 1`, `0 < a` and `Re s + k > 1`, `(k+1)·I_k(a) = −B_{k+1}({a})·a^{−(s+k)} + (s+k)·I_{k+1}(a)`.
 
@@ -411,9 +409,9 @@ line 223 · arrows read from text
 <a name="ZetaEM-emInt_step"></a>
 ### `ZetaEM.emInt_step`
 
-line 263 · arrows read from text
+line 263
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The recursion for the tail integrals: for `k ≥ 1`, `0 < N` and `Re s + k > 1`, `(k+1)·I_k(N, s) = −B_{k+1}(0)·N^{−(s+k)} + (s+k)·I_{k+1}(N, s)`.
 
@@ -429,11 +427,11 @@ line 263 · arrows read from text
   - `` hN : 0 < N ``
   - `` hs : 1 < s.re + k ``
 
+**Stated with:** [`ZetaEM.emInt`](#ZetaEM-emInt)
+
 **Fed by** (1 theorem its proof uses)
 
   - [`ZetaEM.tail_ibp`](#ZetaEM-tail_ibp) — `` ((k:ℂ) + 1) * ∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) ^ (-(s + k)) = -(((bernoulliFun (k+1) (Int.fract a) : ℝ) : ℂ) * (a:ℂ) ^ (… ``
-
-**Definitions its proof touches:** [`ZetaEM.emInt`](#ZetaEM-emInt)
 
 **Feeds** (1 that use it)
 
@@ -442,9 +440,9 @@ line 263 · arrows read from text
 <a name="ZetaEM-emRem_step"></a>
 ### `ZetaEM.emRem_step`
 
-line 276 · arrows read from text
+line 276
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The remainder step: the order-`k` remainder is the `k`-th boundary term plus the order-`(k+1)` remainder, for `k ≥ 1`, `0 < N`, `Re s + k > 1`.
 
@@ -460,11 +458,13 @@ emRem k N s = emTerm k N s + emRem (k+1) N s
   - `` hN : 0 < N ``
   - `` hs : 1 < s.re + k ``
 
+**Stated with:** [`ZetaEM.emRem`](#ZetaEM-emRem), [`ZetaEM.emTerm`](#ZetaEM-emTerm)
+
 **Fed by** (1 theorem its proof uses)
 
   - [`ZetaEM.emInt_step`](#ZetaEM-emInt_step) — `` ((k:ℂ) + 1) * emInt k N s = -((bernoulliFun (k+1) 0 : ℂ) * (N:ℂ) ^ (-(s + k))) + (s + k) * emInt (k+1) N s ``
 
-**Definitions its proof touches:** [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emInt`](#ZetaEM-emInt), [`ZetaEM.emRem`](#ZetaEM-emRem), [`ZetaEM.emTerm`](#ZetaEM-emTerm)
+**Definitions its proof touches:** [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emInt`](#ZetaEM-emInt)
 
 **Feeds** (1 that use it)
 
@@ -473,9 +473,9 @@ emRem k N s = emTerm k N s + emRem (k+1) N s
 <a name="ZetaEM-sum_range_succ_eq_sum_Icc"></a>
 ### `ZetaEM.sum_range_succ_eq_sum_Icc`
 
-line 292 · arrows read from text
+line 292
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The sum `Σ_{n ≤ N} 1/n^s` equals `Σ_{n ∈ [1, N]} n^{−s}` for `s ≠ 0`.
 
@@ -499,9 +499,9 @@ line 292 · arrows read from text
 <a name="ZetaEM-sum_range_eq_sum_Icc"></a>
 ### `ZetaEM.sum_range_eq_sum_Icc`
 
-line 304 · arrows read from text
+line 304
 
-**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The shifted sum `Σ_{n < N} 1/(n+1)^s` equals `Σ_{n ∈ [1, N]} n^{−s}`.
 
@@ -523,7 +523,7 @@ line 304 · arrows read from text
 <a name="ZetaEM-zeta_eq_em_one"></a>
 ### `ZetaEM.zeta_eq_em_one`
 
-line 315 · arrows read from text
+line 315
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -541,11 +541,11 @@ riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) /
   - `` hs : 0 < s.re ``
   - `` hs1 : s ≠ 1 ``
 
+**Stated with:** [`ZetaEM.emInt`](#ZetaEM-emInt)
+
 **Fed by** (1 theorem its proof uses)
 
   - [`ZetaEM.sum_range_succ_eq_sum_Icc`](#ZetaEM-sum_range_succ_eq_sum_Icc) — `` ∑ n ∈ Finset.range (N + 1), 1 / (n : ℂ) ^ s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) ``
-
-**Definitions its proof touches:** [`ZetaEM.emInt`](#ZetaEM-emInt)
 
 **Feeds** (1 that use it)
 
@@ -554,7 +554,7 @@ riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) /
 <a name="ZetaEM-zeta_eq_em"></a>
 ### `ZetaEM.zeta_eq_em`
 
-line 338 · arrows read from text
+line 338
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -573,12 +573,14 @@ riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) /
   - `` hs : 0 < s.re ``
   - `` hs1 : s ≠ 1 ``
 
+**Stated with:** [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emRem`](#ZetaEM-emRem)
+
 **Fed by** (2 theorems its proof uses)
 
   - [`ZetaEM.emRem_step`](#ZetaEM-emRem_step) — `` emRem k N s = emTerm k N s + emRem (k+1) N s ``
   - [`ZetaEM.zeta_eq_em_one`](#ZetaEM-zeta_eq_em_one) — `` riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) / (1 - s) - (N:ℂ) ^ (-s) / 2 - s * emInt 1 N s ``
 
-**Definitions its proof touches:** [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emRem`](#ZetaEM-emRem)
+**Definitions its proof touches:** [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emInt`](#ZetaEM-emInt), [`ZetaEM.emTerm`](#ZetaEM-emTerm)
 
 **Feeds** (1 that use it)
 
@@ -587,9 +589,9 @@ riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) /
 <a name="ZetaEM-norm_emInt_le"></a>
 ### `ZetaEM.norm_emInt_le`
 
-line 357 · arrows read from text
+line 357
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The order-`k` tail integral has norm at most `bernBound k · N^{1−σ−k}/(σ+k−1)` when `σ + k > 1`.
 
@@ -605,11 +607,11 @@ line 357 · arrows read from text
   - `` hN : 0 < N ``
   - `` hs : 1 < s.re + k ``
 
+**Stated with:** [`ZetaEM.bernBound`](#ZetaEM-bernBound), [`ZetaEM.emInt`](#ZetaEM-emInt)
+
 **Fed by** (1 theorem its proof uses)
 
   - [`ZetaEM.norm_integral_bern_cpow_le`](#ZetaEM-norm_integral_bern_cpow_le) — `` ‖∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) ^ w‖ ≤ bernBound k * (-a ^ (w.re + 1) / (w.re + 1)) ``
-
-**Definitions its proof touches:** [`ZetaEM.bernBound`](#ZetaEM-bernBound), [`ZetaEM.emInt`](#ZetaEM-emInt)
 
 **Feeds** (1 that use it)
 
@@ -618,9 +620,9 @@ line 357 · arrows read from text
 <a name="ZetaEM-norm_remainder_le"></a>
 ### `ZetaEM.norm_remainder_le`
 
-line 373 · arrows read from text
+line 373
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The remainder bound: for `σ + k > 1` and `0 < N`, the order-`k` remainder has norm at most `(∏_{i<k}‖s+i‖/k!)·bernBound k·N^{1−σ−k}/(σ+k−1)`.
 
@@ -636,11 +638,13 @@ line 373 · arrows read from text
   - `` hN : 0 < N ``
   - `` hs : 1 < s.re + k ``
 
+**Stated with:** [`ZetaEM.bernBound`](#ZetaEM-bernBound), [`ZetaEM.emRem`](#ZetaEM-emRem)
+
 **Fed by** (1 theorem its proof uses)
 
   - [`ZetaEM.norm_emInt_le`](#ZetaEM-norm_emInt_le) — `` ‖emInt k N s‖ ≤ bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + k - 1)) ``
 
-**Definitions its proof touches:** [`ZetaEM.bernBound`](#ZetaEM-bernBound), [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emRem`](#ZetaEM-emRem)
+**Definitions its proof touches:** [`ZetaEM.emCoef`](#ZetaEM-emCoef), [`ZetaEM.emInt`](#ZetaEM-emInt)
 
 **Feeds** (1 that use it)
 
@@ -649,9 +653,9 @@ line 373 · arrows read from text
 <a name="ZetaEM-norm_emTerm"></a>
 ### `ZetaEM.norm_emTerm`
 
-line 381 · arrows read from text
+line 381
 
-**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The `j`-th boundary term has norm `∏_{i<j}‖s+i‖·|B_{j+1}(0)|/(j+1)!·N^{−σ−j}`.
 
@@ -667,9 +671,9 @@ line 381 · arrows read from text
   - `` hN : 0 < N ``
   - `` s : ℂ ``
 
-**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
+**Stated with:** [`ZetaEM.emTerm`](#ZetaEM-emTerm)
 
-**Definitions its proof touches:** [`ZetaEM.emTerm`](#ZetaEM-emTerm)
+**Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
 **Feeds** (1 that use it)
 
@@ -678,7 +682,7 @@ line 381 · arrows read from text
 <a name="ZetaEM-prod_norm_le"></a>
 ### `ZetaEM.prod_norm_le`
 
-line 392 · arrows read from text
+line 392
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -704,7 +708,7 @@ line 392 · arrows read from text
 <a name="ZetaEM-norm_zeta_sub_partial_le"></a>
 ### `ZetaEM.norm_zeta_sub_partial_le`
 
-line 412 · arrows read from text
+line 412
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
@@ -725,6 +729,8 @@ line 412 · arrows read from text
   - `` hs1 : s ≠ 1 ``
   - `` hsN : ‖s‖ + k ≤ N ``
 
+**Stated with:** [`ZetaEM.emConst`](#ZetaEM-emConst)
+
 **Fed by** (5 theorems its proof uses)
 
   - [`ZetaEM.bernBound_nonneg`](#ZetaEM-bernBound_nonneg) — `` 0 ≤ bernBound k ``
@@ -733,7 +739,7 @@ line 412 · arrows read from text
   - [`ZetaEM.prod_norm_le`](#ZetaEM-prod_norm_le) — `` ∏ i ∈ Finset.range j, ‖s + i‖ ≤ (‖s‖ + k) ^ j ``
   - [`ZetaEM.zeta_eq_em`](#ZetaEM-zeta_eq_em) — `` riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) / (1 - s) - (N:ℂ) ^ (-s) / 2 + emBoundary k N s + emRem k N s ``
 
-**Definitions its proof touches:** [`ZetaEM.bernBound`](#ZetaEM-bernBound), [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emConst`](#ZetaEM-emConst), [`ZetaEM.emRem`](#ZetaEM-emRem)
+**Definitions its proof touches:** [`ZetaEM.bernBound`](#ZetaEM-bernBound), [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emRem`](#ZetaEM-emRem), [`ZetaEM.emTerm`](#ZetaEM-emTerm)
 
 **Feeds:** nothing. It is an end.
 

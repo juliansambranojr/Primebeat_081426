@@ -6,7 +6,7 @@ Every declaration in every Lean file of this repo: what it proves, what it needs
 
 ## The table first
 
-The table is the number line's own rate of change, counted at the doublings. It comes before anything else here. Green: counting, integers only (117 theorems). Violet: its shape, by analysis with no ζ (921). Blue: read with ζ (521). Every counting theorem is listed in [`TABLE.md`](./TABLE.md).
+The table is the number line's own rate of change, counted at the doublings. It comes before anything else here. Green: counting, integers only (111 theorems). Violet: its shape, by analysis with no ζ (912). Blue: read with ζ (536). Every counting theorem is listed in [`TABLE.md`](./TABLE.md).
 
 ```mermaid
 flowchart LR
@@ -21,7 +21,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>13 theorems counting,<br/>in 4 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>7 theorems counting,<br/>in 3 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -43,7 +43,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>670 theorems shape,<br/>in 94 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>661 theorems shape,<br/>in 94 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -52,7 +52,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>500 theorems reads ζ,<br/>in 78 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>515 theorems reads ζ,<br/>in 78 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -171,24 +171,20 @@ The arrows are Lean's record of what each statement and proof uses (`python3 uti
 
 | check | result |
 |---|---|
-| declarations whose arrows come from Lean | 1874 of 1906 |
+| declarations whose arrows come from Lean | 1901 of 1906 |
 | source declarations Lean does not hold | 0 |
 | Lean constants that are neither a source declaration nor a helper of one | 0 |
-| Lean's helper constants, followed through to their owners | 2790 |
+| Lean's helper constants, followed through to their owners | 2805 |
 | notation and macro constants | 125 |
 | declarations in `TablePort/` copies resting on different declarations than the original | 0 |
 | files changed since the last dump (arrows read from text) | 1 |
-| files never dumped | 1 |
+| files never dumped | 0 |
 
 **Files changed since the last dump:**
 
-- `lean_stage3/Stage3/ZetaEM.lean`
-
-**Files never dumped:**
-
 - `lean_stage3/Stage3/DirichletMeanW.lean`
 
-Reading names out of the source text instead, on the same declarations: 4215 arrows agree with Lean, 488 that Lean records are not visible in the text, 24 names occur in the text without Lean recording a use. That is the error a page carries when it says "read from the source text".
+Reading names out of the source text instead, on the same declarations: 4265 arrows agree with Lean, 492 that Lean records are not visible in the text, 24 names occur in the text without Lean recording a use. That is the error a page carries when it says "read from the source text".
 
 ## `lean/` — the table's tree, Lean v4.28.0
 
@@ -593,7 +589,7 @@ flowchart LR
   f15 --> f126
   f10 --> f127
   f13 --> f127
-  f16 --> f127
+  f17 --> f127
   f20 --> f127
   f22 --> f127
   f31 --> f127

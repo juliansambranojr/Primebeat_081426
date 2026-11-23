@@ -22682,7 +22682,7 @@
   "namespaces": [
    "DirichletMeanW"
   ],
-  "lines": 257,
+  "lines": 259,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -22777,7 +22777,7 @@
     "name": "dirichlet_mean_value_weighted",
     "ns": "DirichletMeanW",
     "full": "DirichletMeanW.dirichlet_mean_value_weighted",
-    "line": 134,
+    "line": 136,
     "why": "On a window `[T₁, T₂]`, the mean square of a finite Dirichlet sum `Σ_{n ≤ N} a_n n^{-it}` is at most `Σ |a_n|²·(T₂ − T₁ + 6n(1 + log N))`, each term charged its own index `n`.",
     "sorry": false,
     "needs": [
@@ -22816,7 +22816,7 @@
     "name": "dirichlet_mean_value_weighted_sigma",
     "ns": "DirichletMeanW",
     "full": "DirichletMeanW.dirichlet_mean_value_weighted_sigma",
-    "line": 220,
+    "line": 222,
     "why": "With a real part `σ`, the mean square on `[T₁, T₂]` of `Σ_{n ≤ N} a_n n^{-(σ+it)}` is at most `Σ |a_n|²·n^{-2σ}·(T₂ − T₁ + 6n(1 + log N))`, each term charged its own index `n`.",
     "sorry": false,
     "needs": [
@@ -65720,7 +65720,7 @@
   ],
   "lines": 516,
   "copy_of": null,
-  "fresh": false,
+  "fresh": true,
   "imports_files": [],
   "decls": [
    {
@@ -65740,14 +65740,16 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt_step",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem_step",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emInt_le",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_remainder_le",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em_one"
     ]
    },
@@ -65768,9 +65770,9 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem_step",
@@ -65795,13 +65797,15 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emBoundary",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem_step",
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emTerm"
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emTerm",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em"
     ]
    },
    {
@@ -65823,11 +65827,11 @@
     "proof": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm"
     ],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em"
@@ -65853,12 +65857,12 @@
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt"
     ],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem_step",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_remainder_le",
@@ -65882,9 +65886,9 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound_nonneg",
@@ -65913,9 +65917,9 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.hasDerivWithinAt_fract",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.interval_ibp"
     ]
@@ -65936,9 +65940,9 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.continuous_bernoulliFun_fract",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.interval_ibp"
     ]
@@ -65958,15 +65962,15 @@
     "proves": "|bernoulliFun k (Int.fract x)| ≤ bernBound k",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound"
     ],
-    "exact": false,
+    "proof": [],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound"
     ],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound_nonneg",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.integrableOn_bern_cpow",
@@ -65988,17 +65992,18 @@
     "proves": "0 ≤ bernBound k",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound_nonneg",
-    "stmt": [],
-    "proof": [
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
+    "stmt": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound"
     ],
-    "exact": false,
+    "proof": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le"
+    ],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound"
     ],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
     ]
@@ -66019,9 +66024,9 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.measurable_bern",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.integrableOn_bern_cpow"
     ]
@@ -66048,13 +66053,13 @@
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.measurable_bern"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.measurable_bern"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.interval_ibp",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.tail_ibp"
@@ -66076,17 +66081,18 @@
     "proves": "‖∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) ^ w‖ ≤ bernBound k * (-a ^ (w.re + 1) / (w.re + 1))",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_integral_bern_cpow_le",
-    "stmt": [],
-    "proof": [
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
+    "stmt": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound"
     ],
-    "exact": false,
+    "proof": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le"
+    ],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emInt_le"
     ]
@@ -66114,13 +66120,13 @@
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.hasDerivWithinAt_fract",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.integrableOn_bern_cpow"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.continuous_bernoulliFun_fract",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.hasDerivWithinAt_fract",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.integrableOn_bern_cpow"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.tail_ibp"
     ]
@@ -66148,14 +66154,14 @@
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.integrableOn_bern_cpow",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.interval_ibp"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.integrableOn_bern_cpow",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.interval_ibp"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt_step"
     ]
@@ -66176,17 +66182,18 @@
     "proves": "((k:ℂ) + 1) * emInt k N s = -((bernoulliFun (k+1) 0 : ℂ) * (N:ℂ) ^ (-(s + k))) + (s + k) * emInt (k+1) N s",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt_step",
-    "stmt": [],
+    "stmt": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt"
+    ],
     "proof": [
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.tail_ibp"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.tail_ibp"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem_step"
     ]
@@ -66207,15 +66214,16 @@
     "proves": "emRem k N s = emTerm k N s + emRem (k+1) N s",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem_step",
-    "stmt": [],
-    "proof": [
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt_step",
+    "stmt": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm"
     ],
-    "exact": false,
+    "proof": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt_step"
+    ],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
@@ -66223,7 +66231,7 @@
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em"
     ]
@@ -66245,9 +66253,9 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.sum_range_succ_eq_sum_Icc",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em_one"
     ]
@@ -66269,9 +66277,9 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.sum_range_eq_sum_Icc",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": []
    },
    {
@@ -66290,12 +66298,13 @@
     "proves": "riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) / (1 - s) - (N:ℂ) ^ (-s) / 2 - s * emInt 1 N s",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em_one",
-    "stmt": [],
+    "stmt": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt"
+    ],
     "proof": [
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.sum_range_succ_eq_sum_Icc"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.sum_range_succ_eq_sum_Icc"
@@ -66322,20 +66331,25 @@
     "proves": "riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) / (1 - s) - (N:ℂ) ^ (-s) / 2 + emBoundary k N s + emRem k N s",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emBoundary",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem"
+    ],
+    "proof": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem_step",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em_one"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emBoundary",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem_step",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em_one"
     ],
     "layer": "zeta",
@@ -66359,19 +66373,20 @@
     "proves": "‖emInt k N s‖ ≤ bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + k - 1))",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emInt_le",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt"
+    ],
+    "proof": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_integral_bern_cpow_le"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_integral_bern_cpow_le"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_remainder_le"
     ]
@@ -66392,21 +66407,24 @@
     "proves": "‖emRem k N s‖ ≤ (∏ i ∈ Finset.range k, ‖s + i‖) / k.factorial * (bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + k - 1)))",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_remainder_le",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem"
+    ],
+    "proof": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emInt_le"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emCoef",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emInt",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emInt_le"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
     ]
@@ -66427,15 +66445,15 @@
     "proves": "‖emTerm j N s‖ = (∏ i ∈ Finset.range j, ‖s + i‖) * |bernoulliFun (j+1) 0| / (j+1).factorial * (N:ℝ) ^ (-s.re - j)",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emTerm",
-    "stmt": [],
-    "proof": [
+    "stmt": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm"
     ],
-    "exact": false,
+    "proof": [],
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm"
     ],
-    "layer": "shape",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
     ]
@@ -66457,7 +66475,7 @@
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.prod_norm_le",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
     "layer": "shape",
     "used_by": [
@@ -66482,11 +66500,11 @@
     "proof": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound"
     ],
-    "layer": "count",
+    "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
     ]
@@ -66510,25 +66528,28 @@
     "proves": "‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) ^ (1 - s) / (1 - s)‖ ≤ emConst k * (N : ℝ) ^ (-s.re) * (1 + (‖s‖ + k) ^ k * (N : ℝ) ^ (1 - (k : ℝ)))",
     "file": "lean_stage3/Stage3/ZetaEM.lean",
     "id": "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le",
-    "stmt": [],
+    "stmt": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
     "proof": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound_nonneg",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emBoundary",
-     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emTerm",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_remainder_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.prod_norm_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound_nonneg",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emBoundary",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emRem",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emTerm",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_emTerm",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_remainder_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.prod_norm_le",
@@ -67344,11 +67365,12 @@
    "Stage3.FiniteOffLinePi",
    "Stage3.DirichletMean",
    "Stage3.Mollified",
-   "Stage3.ZetaEM"
+   "Stage3.ZetaEM",
+   "Stage3.DirichletMeanW"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 158,
+  "lines": 159,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -67369,6 +67391,7 @@
    "lean_stage3/Stage3/CellZeros.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/DirichletMean.lean",
+   "lean_stage3/Stage3/DirichletMeanW.lean",
    "lean_stage3/Stage3/EdgeBound.lean",
    "lean_stage3/Stage3/EdgeNum.lean",
    "lean_stage3/Stage3/ExplicitBump.lean",

@@ -4,10 +4,10 @@
 
 DirichletMeanW — block C1b of `lean_stage3/design/carlson.md`. 2026-11-23. A weighted mean value theorem for a finite Dirichlet sum. It replaces the uniform length `N` of block C1 by each term's own index: for `S(t) = Σ_{n ≤ N} a_n n^{-it}` the integral of `|S|²` over a window of length `L` is at most `Σ |a_n|²·(L + 6n(1 + log N))`. The square expands into a double sum as in `DirichletMean`. Off the diagonal the kernel is at most `2/|log m − log n|`. A weighted Schur test with weights `1/n` charges row `m` the cost…
 
-5 theorems, 0 definitions, 257 lines. 
+5 theorems, 0 definitions, 259 lines. 
 
 **Imports:** [`DirichletMean`](../lean_stage3/DirichletMean.md)  
-**Imported by:** nothing
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
 
 ## The picture
 
@@ -128,7 +128,7 @@ line 94 · arrows read from text
 <a name="DirichletMeanW-dirichlet_mean_value_weighted"></a>
 ### `DirichletMeanW.dirichlet_mean_value_weighted`
 
-line 134 · arrows read from text
+line 136 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -162,7 +162,7 @@ line 134 · arrows read from text
 <a name="DirichletMeanW-dirichlet_mean_value_weighted_sigma"></a>
 ### `DirichletMeanW.dirichlet_mean_value_weighted_sigma`
 
-line 220 · arrows read from text
+line 222 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 

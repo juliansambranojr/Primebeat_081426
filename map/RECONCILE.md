@@ -33,7 +33,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (488)
+## Uses Lean records that the text does not show (492)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -516,6 +516,10 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`WeilWindow.m2_ge`](lean_stage3/WeilWindow.md#WeilWindow-m2_ge) | [`WeilWindow.continuous_x2P`](lean_stage3/WeilWindow.md#WeilWindow-continuous_x2P) | theorem |
 | [`WeilWindow.Sigma_ge_mul`](lean_stage3/WeilWindow.md#WeilWindow-Sigma_ge_mul) | [`WeilWindow.P`](lean_stage3/WeilWindow.md#WeilWindow-P) | def |
 | [`WeilWindow.Sigma_ge`](lean_stage3/WeilWindow.md#WeilWindow-Sigma_ge) | [`WeilWindow.m2`](lean_stage3/WeilWindow.md#WeilWindow-m2) | def |
+| [`ZetaEM.zeta_eq_em`](lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | [`ZetaEM.emInt`](lean_stage3/ZetaEM.md#ZetaEM-emInt) | def |
+| [`ZetaEM.zeta_eq_em`](lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | [`ZetaEM.emTerm`](lean_stage3/ZetaEM.md#ZetaEM-emTerm) | def |
+| [`ZetaEM.norm_remainder_le`](lean_stage3/ZetaEM.md#ZetaEM-norm_remainder_le) | [`ZetaEM.emInt`](lean_stage3/ZetaEM.md#ZetaEM-emInt) | def |
+| [`ZetaEM.norm_zeta_sub_partial_le`](lean_stage3/ZetaEM.md#ZetaEM-norm_zeta_sub_partial_le) | [`ZetaEM.emTerm`](lean_stage3/ZetaEM.md#ZetaEM-emTerm) | def |
 | [`ZetaGrowth.zeta1_eq_zeta`](lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta1_eq_zeta) | [`ZetaGrowth.emA`](lean_stage3/ZetaGrowth.md#ZetaGrowth-emA) | def |
 | [`ZetaGrowth.zeta1_analyticOnNhd`](lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta1_analyticOnNhd) | [`ZetaGrowth.emA`](lean_stage3/ZetaGrowth.md#ZetaGrowth-emA) | def |
 | [`Bridge.contDiff_kOf`](lean_bridge/WeilBridge.md#Bridge-contDiff_kOf) | [`Bridge.tiltF`](lean_bridge/WeilBridge.md#Bridge-tiltF) | def |

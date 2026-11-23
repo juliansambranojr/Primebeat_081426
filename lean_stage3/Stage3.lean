@@ -147,6 +147,7 @@ import Stage3.FiniteOffLinePi
 import Stage3.DirichletMean
 import Stage3.Mollified
 import Stage3.ZetaEM
+import Stage3.DirichletMeanW
 
 namespace Stage3
 

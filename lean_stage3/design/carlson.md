@@ -31,7 +31,7 @@ Diagonal `T·Σ|a_n|²`. Off the diagonal `|∫ e^(−itθ)| ≤ 2/|θ|`,
 `|log m − log n| ≥ |m − n|/N`, harmonic sum. Elementary; the sharper form
 without the logarithm is not needed.
 
-### C1b The same with each term charged its own index — being built (decision: unit 0449)
+### C1b The same with each term charged its own index — PROVED (unit 0450: `DirichletMeanW.dirichlet_mean_value_weighted`, `_sigma`), `c = 6`; decision: unit 0449
 
 C1 charges the length `N` to every term. In C4 the sum has length `N·X` and
 coefficients that decay, and the uniform charge gives `N·X^(2−2u)`, above `T`

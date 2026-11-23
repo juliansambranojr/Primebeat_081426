@@ -1,22 +1,22 @@
 flowchart LR
-  n0["<b>hasDerivWithinAt_fract</b><br/>HasDerivWithinAt Int.fract 1 (Ioi x) x"]:::cnt
-  n1["<b>continuous_bernoulliFun_fract</b><br/>Continuous (fun x : ℝ ↦ bernoulliFun k (Int.fract x))"]:::cnt
-  n2["<b>abs_bernoulliFun_fract_le</b><br/>|bernoulliFun k (Int.fract x)| ≤ bernBound k"]:::cnt
-  n3["<b>bernBound_nonneg</b><br/>0 ≤ bernBound k"]:::cnt
-  n4["<b>measurable_bern</b><br/>Measurable (fun x : ℝ ↦ bernoulliFun k (Int.fract x))"]:::cnt
-  n5["<b>integrableOn_bern_cpow</b><br/>IntegrableOn (fun x : ℝ ↦ ((bernoulliFun k (Int.fract x) : ℝ) : …"]:::shp
-  n6["<b>norm_integral_bern_cpow_le</b><br/>‖∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) …"]:::shp
-  n7["<b>interval_ibp</b><br/>((k:ℂ) + 1) * ∫ x in a..b, ((bernoulliFun k (Int.fract x) : ℝ) :…"]:::shp
-  n8["<b>tail_ibp</b><br/>((k:ℂ) + 1) * ∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) …"]:::shp
-  n9["<b>emInt_step</b><br/>((k:ℂ) + 1) * emInt k N s = -((bernoulliFun (k+1) 0 : ℂ) * (N:ℂ)…"]:::shp
-  n10["<b>emRem_step</b><br/>emRem k N s = emTerm k N s + emRem (k+1) N s"]:::shp
-  n11["<b>sum_range_succ_eq_sum_Icc</b><br/>∑ n ∈ Finset.range (N + 1), 1 / (n : ℂ) ^ s = ∑ n ∈ Finset.Icc 1…"]:::shp
-  n12["<b>sum_range_eq_sum_Icc ■</b><br/>∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s = ∑ n ∈ Finset.Icc 1 N…"]:::cnt
+  n0["<b>hasDerivWithinAt_fract</b><br/>HasDerivWithinAt Int.fract 1 (Ioi x) x"]:::shp
+  n1["<b>continuous_bernoulliFun_fract</b><br/>Continuous (fun x : ℝ ↦ bernoulliFun k (Int.fract x))"]:::thm
+  n2["<b>abs_bernoulliFun_fract_le</b><br/>|bernoulliFun k (Int.fract x)| ≤ bernBound k"]:::thm
+  n3["<b>bernBound_nonneg</b><br/>0 ≤ bernBound k"]:::thm
+  n4["<b>measurable_bern</b><br/>Measurable (fun x : ℝ ↦ bernoulliFun k (Int.fract x))"]:::thm
+  n5["<b>integrableOn_bern_cpow</b><br/>IntegrableOn (fun x : ℝ ↦ ((bernoulliFun k (Int.fract x) : ℝ) : …"]:::thm
+  n6["<b>norm_integral_bern_cpow_le</b><br/>‖∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) : ℂ) * (x:ℂ) …"]:::thm
+  n7["<b>interval_ibp</b><br/>((k:ℂ) + 1) * ∫ x in a..b, ((bernoulliFun k (Int.fract x) : ℝ) :…"]:::thm
+  n8["<b>tail_ibp</b><br/>((k:ℂ) + 1) * ∫ x in Ioi a, ((bernoulliFun k (Int.fract x) : ℝ) …"]:::thm
+  n9["<b>emInt_step</b><br/>((k:ℂ) + 1) * emInt k N s = -((bernoulliFun (k+1) 0 : ℂ) * (N:ℂ)…"]:::thm
+  n10["<b>emRem_step</b><br/>emRem k N s = emTerm k N s + emRem (k+1) N s"]:::thm
+  n11["<b>sum_range_succ_eq_sum_Icc</b><br/>∑ n ∈ Finset.range (N + 1), 1 / (n : ℂ) ^ s = ∑ n ∈ Finset.Icc 1…"]:::thm
+  n12["<b>sum_range_eq_sum_Icc ■</b><br/>∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s = ∑ n ∈ Finset.Icc 1 N…"]:::thm
   n13["<b>zeta_eq_em_one</b><br/>riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (…"]:::thm
   n14["<b>zeta_eq_em</b><br/>riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (…"]:::thm
-  n15["<b>norm_emInt_le</b><br/>‖emInt k N s‖ ≤ bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + …"]:::shp
-  n16["<b>norm_remainder_le</b><br/>‖emRem k N s‖ ≤ (∏ i ∈ Finset.range k, ‖s + i‖) / k.factorial * …"]:::shp
-  n17["<b>norm_emTerm</b><br/>‖emTerm j N s‖ = (∏ i ∈ Finset.range j, ‖s + i‖) * |bernoulliFun…"]:::shp
+  n15["<b>norm_emInt_le</b><br/>‖emInt k N s‖ ≤ bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + …"]:::thm
+  n16["<b>norm_remainder_le</b><br/>‖emRem k N s‖ ≤ (∏ i ∈ Finset.range k, ‖s + i‖) / k.factorial * …"]:::thm
+  n17["<b>norm_emTerm</b><br/>‖emTerm j N s‖ = (∏ i ∈ Finset.range j, ‖s + i‖) * |bernoulliFun…"]:::thm
   n18["<b>prod_norm_le</b><br/>∏ i ∈ Finset.range j, ‖s + i‖ ≤ (‖s‖ + k) ^ j"]:::shp
   n19["<b>norm_zeta_sub_partial_le ■</b><br/>‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) …"]:::thm
   n0 --> n7

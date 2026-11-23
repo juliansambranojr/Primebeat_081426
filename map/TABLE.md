@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>13 theorems counting,<br/>in 4 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>7 theorems counting,<br/>in 3 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>670 theorems shape,<br/>in 94 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>661 theorems shape,<br/>in 94 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>500 theorems reads ζ,<br/>in 78 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>515 theorems reads ζ,<br/>in 78 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 117 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 921 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 521 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 111 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 912 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 536 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 13 | 670 | 500 |
+| `lean_stage3/` | 7 | 661 | 515 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -305,15 +305,4 @@ Mollified — block C2 of `lean_stage3/design/carlson.md`. 2026-11-23. The produ
 WeilPowerClean — the clean shell. Rung 5, eighteenth slice; worksheet § 13 block 13h. 2026-09-07.
 
 - [`WeilPowerClean.exists_unblocked`](./lean_stage3/WeilPowerClean.md#WeilPowerClean-exists_unblocked) — `` ∃ k, k < K ∧ ∀ j ∈ S, k ∉ B j `` More shells than the members can block leaves one shell in no member's blocking set.
-
-### [`ZetaEM`](./lean_stage3/ZetaEM.md) — 6
-
-ZetaEM — block C3 of `lean_stage3/design/carlson.md`. 2026-11-23. Euler–Maclaurin for the Riemann zeta function to any order `k ≥ 1` on `Re s > 0`, with the remainder bounded. The periodic Bernoulli function `P_k(x) = B_k({x})` has right derivative `k·P_{k-1}` everywhere and is continuous for `k ≠ 1`, so one integration by parts on `[a, b]` needs no splitting at the integers. Passing `b → ∞` gives the step `(k+1)·I_k = −B_{k+1}({a})·a^{−s−k} + (s+k)·I_{k+1}` for the tail integrals `I_k(a, s) = ∫_{x>a} P_k(x)·x^{−s−…
-
-- [`ZetaEM.hasDerivWithinAt_fract`](./lean_stage3/ZetaEM.md#ZetaEM-hasDerivWithinAt_fract) — `` HasDerivWithinAt Int.fract 1 (Ioi x) x `` The fractional part has right derivative `1` at every real `x`.
-- [`ZetaEM.continuous_bernoulliFun_fract`](./lean_stage3/ZetaEM.md#ZetaEM-continuous_bernoulliFun_fract) — `` Continuous (fun x : ℝ ↦ bernoulliFun k (Int.fract x)) `` For `k ≠ 1` the periodic Bernoulli function `x ↦ B_k({x})` is continuous.
-- [`ZetaEM.abs_bernoulliFun_fract_le`](./lean_stage3/ZetaEM.md#ZetaEM-abs_bernoulliFun_fract_le) — `` |bernoulliFun k (Int.fract x)| ≤ bernBound k `` The periodic Bernoulli function is bounded in absolute value by `bernBound k`.
-- [`ZetaEM.bernBound_nonneg`](./lean_stage3/ZetaEM.md#ZetaEM-bernBound_nonneg) — `` 0 ≤ bernBound k `` The bound `bernBound k` is nonnegative.
-- [`ZetaEM.measurable_bern`](./lean_stage3/ZetaEM.md#ZetaEM-measurable_bern) — `` Measurable (fun x : ℝ ↦ bernoulliFun k (Int.fract x)) `` The periodic Bernoulli function is measurable.
-- [`ZetaEM.sum_range_eq_sum_Icc`](./lean_stage3/ZetaEM.md#ZetaEM-sum_range_eq_sum_Icc) — `` ∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) `` The shifted sum `Σ_{n < N} 1/(n+1)^s` equals `Σ_{n ∈ [1, N]} n^{−s}`.
 
