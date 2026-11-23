@@ -31,6 +31,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiFixedRow.abs_wd_le`](./lean_stage3/PiFixedRow.md#PiFixedRow-abs_wd_le) | theorem | shape | `PiFixedRow` | \|wd t\| ≤ 4 |
 | [`Stage3.abscissa_gives_power`](./lean_stage3/Abscissa.md#Stage3-abscissa_gives_power) | theorem | shape | `Abscissa` | K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ |
 | [`Stage3.add_zq_ne_zero`](./lean_stage3/Stirling.md#Stage3-add_zq_ne_zero) | theorem | shape | `Stirling` | (n : ℂ) + zq t ≠ 0 |
+| [`FilterLadder.Afl`](./lean_stage3/FilterLadder.md#FilterLadder-Afl) | def | reads ζ | `FilterLadder` | ℝ |
 | [`Measured.agreement_elliptic`](./lean/Measured.md#Measured-agreement_elliptic) | theorem | shape | `Measured` | measured_elliptic_max_dev &lt; 1e-15 |
 | [`Measured.agreement_offsets_match`](./lean/Measured.md#Measured-agreement_offsets_match) | theorem | shape | `Measured` | \|measured_offset_smooth - measured_offset_resid\| &lt; 0.001 |
 | [`Measured.agreement_radius_smooth`](./lean/Measured.md#Measured-agreement_radius_smooth) | theorem | shape | `Measured` | \|measured_radius_smooth - 0.5 * (1 + measured_offset_smooth)\| &lt; 1e-9 |
@@ -260,6 +261,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Mollified.coef_one`](./lean_stage3/Mollified.md#Mollified-coef_one) | theorem | counting | `Mollified` | coef X N 1 = 1 |
 | [`Mollified.coef_sq_le`](./lean_stage3/Mollified.md#Mollified-coef_sq_le) | theorem | shape | `Mollified` | (coef X N n : ℝ) ^ 2 ≤ (tauBelow X n : ℝ) ^ 2 |
 | [`PairIdentity.coeff_eq_one_iff_base_two`](./lean/PairIdentity.md#PairIdentity-coeff_eq_one_iff_base_two) | theorem | counting | `PairIdentity` | (b - 1) ^ (d + 1) = 1 ↔ b = 2 |
+| [`FilterLadder.coeff_posPoly`](./lean_stage3/FilterLadder.md#FilterLadder-coeff_posPoly) | theorem | counting | `FilterLadder` | (posPoly q).coeff i = ‖q.coeff i‖ |
 | [`WeilPowerCompare.compare_le`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-compare_le) | theorem | shape | `WeilPowerCompare` | ‖S m w‖ ≤ (2 * (m : ℝ) + 3) * (‖w‖ / s) * Real.exp (Eup m w - Elow m s) * (S m (s : ℂ)).re |
 | [`WeilPowerSharp.compare_sharp`](./lean_stage3/WeilPowerSharp.md#WeilPowerSharp-compare_sharp) | theorem | shape | `WeilPowerSharp` | ‖S m w‖ ≤ ‖w‖ / s * Real.exp (((w ^ 2).re - s ^ 2) / (Real.pi ^ 2 * ((m : ℝ) + 1)) + s ^ 2 / (Real.pi ^ 2 * ((m : ℝ) + 1) * ((m : ℝ) + 2)) + (‖w‖ ^ 4 + s ^ 4) / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) * (S… |
 | [`WeilPowerCompare.compare_suppressed`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-compare_suppressed) | theorem | shape | `WeilPowerCompare` | ‖S m (wOf ε' Δ h)‖ ≤ (2 * (m : ℝ) + 3) * (‖wOf ε' Δ h‖ / (ε * h)) * Real.exp (rate m ε' Δ ε * h ^ 2 / 2) * (S m ((ε * h : ℝ) : ℂ)).re |
@@ -548,7 +550,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`PerronTwo.far_terms_sum_two`](./lean_stage3/PerronTwo.md#PerronTwo-far_terms_sum_two) | theorem | shape | `PerronTwo` | (∑' n : ℕ, if 1/2 ≤ \|Real.log (x / n)\| then ArithmeticFunction.vonMangoldt n * (x / n) ^ (1 + 1/Real.log x) / (T * \|Real.log (x / n)\|) else 0) ≤ 300 * x * Real.log (x * T) ^ 2 / T |
 | [`WeilPowerSelect.farDelta_le`](./lean_stage3/WeilPowerSelect.md#WeilPowerSelect-farDelta_le) | theorem | shape | `WeilPowerSelect` | ε' ^ 2 - Δ ^ 2 ≤ 0 |
 | [`Elephant.filter_couples_iff_isPrimePow`](./lean/Elephant.md#Elephant-filter_couples_iff_isPrimePow) | theorem | shape | `Elephant` | vonMangoldt (b ^ k) ≠ 0 ↔ IsPrimePow b |
+| [`FilterLadder.filter_mode`](./lean_stage3/FilterLadder.md#FilterLadder-filter_mode) | theorem | counting | `FilterLadder` | ∑ j ∈ range (N + 1), (q ^ m).coeff j * z ^ (n - j) = z ^ n * (q.eval z⁻¹) ^ m |
 | [`Elephant.filter_ne_zero_at_zeta_zero`](./lean/Elephant.md#Elephant-filter_ne_zero_at_zeta_zero) | theorem | reads ζ | `Elephant` | (Sym b ρ) ^ d ≠ 0 |
+| [`FilterLadder.filtered_modes_small`](./lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small) | theorem | reads ζ | `FilterLadder` | ∃ A : ℝ, ∀ (q : Polynomial ℂ) (n m : ℕ), 2 ≤ n → m * q.natDegree &lt; n → ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros =&gt; σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (… |
+| [`FilterLadder.filtered_modes_small_sq`](./lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) | theorem | reads ζ | `FilterLadder` | ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros =&gt; σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2:ℂ) ^ (ρ : ℂ))⁻¹)) ^ m * ((2:ℂ) ^ (ρ : ℂ)) ^ n‖ ≤ … |
 | [`AttainedPi.fin_bound`](./lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | theorem | reads ζ | `AttainedPi` | ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ slack Θ θ₁ C M ε r + 2 * ε * ((2:ℝ) ^ Θ) ^ r |
 | [`AttainedPi.fin_eventually`](./lean_stage3/AttainedPi.md#AttainedPi-fin_eventually) | theorem | reads ζ | `AttainedPi` | ∀ᶠ r : ℕ in atTop, ‖∑ ρ ∈ topRow Θ r, LadderMean.coef ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ r‖ ≤ ε * ((2:ℝ) ^ Θ) ^ r |
 | [`Slice3.finalBoundConst_le`](./lean_stage3/LineBound.md#Slice3-finalBoundConst_le) | theorem | shape | `LineBound` | 16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:ℝ) ^ 2 / (29/32) - 29/32) * Real.log ((15/16)/(29/32))) ≤ 3991 |
@@ -562,6 +567,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.floorConstSplit`](./lean_stage3/GlueFloor.md#Stage3-floorConstSplit) | def | shape | `GlueFloor` | ℝ |
 | [`Stage3.floorConstSplit_nonneg`](./lean_stage3/GlueFloor.md#Stage3-floorConstSplit_nonneg) | theorem | shape | `GlueFloor` | 0 ≤ floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀ |
 | [`Propagation.flux_form`](./lean/Propagation.md#Propagation-flux_form) | theorem | counting | `Propagation` | tableFrom N r (d + 1) + tableFrom N (r - 1) d = tableFrom N r d |
+| [`FilterLadder.formula_row`](./lean_stage3/FilterLadder.md#FilterLadder-formula_row) | theorem | reads ζ | `FilterLadder` | ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 |
 | [`WeilPowerBands.four_h_add_nonneg`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-four_h_add_nonneg) | theorem | shape | `WeilPowerBands` | 0 ≤ 4 * h ^ 2 + cFarM m / h ^ 2 |
 | [`WeilSeries.four_h_add_nonneg`](./lean_stage3/WeilSeries.md#WeilSeries-four_h_add_nonneg) | theorem | shape | `WeilSeries` | 0 ≤ 4 * h ^ 2 + cFar / h ^ 2 |
 | [`Stage3.four_le_log_of_theta`](./lean_stage3/ThetaPull.md#Stage3-four_le_log_of_theta) | theorem | shape | `ThetaPull` | (4:ℝ) ≤ Real.log X |
@@ -812,10 +818,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`PerronKernel.kernel_sum_bound`](./lean_stage3/PerronKernel.md#PerronKernel-kernel_sum_bound) | theorem | reads ζ | `PerronKernel` | ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 600 * x * Real.log (x * T) ^ 2 / T + 12 * Real.log x |
 | [`PerronTwo.kernel_sum_bound_two`](./lean_stage3/PerronTwo.md#PerronTwo-kernel_sum_bound_two) | theorem | reads ζ | `PerronTwo` | ‖(∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * (perronI (x/n) (1 + 1/Real.log x) T - perronδ (x/n)))‖ ≤ 700 * x * Real.log (x * T) ^ 2 / T + 17 * Real.log x |
 | [`LandauRates.key_ineq`](./lean_stage3/LandauRates.md#LandauRates-key_ineq) | theorem | shape | `LandauRates` | 4 * (lam - Real.log (1 - δ / 12)) &lt; (1 + δ) * (Real.log (1 + δ / 3) - lam) ∧ 0 &lt; Real.log (1 + δ / 3) - lam ∧ 0 &lt; lam - Real.log (1 - δ / 12) |
+| [`FilterLadder.Kf`](./lean_stage3/FilterLadder.md#FilterLadder-Kf) | def | reads ζ | `FilterLadder` | ℝ |
+| [`FilterLadder.Kf_nonneg`](./lean_stage3/FilterLadder.md#FilterLadder-Kf_nonneg) | theorem | reads ζ | `FilterLadder` | 0 ≤ Kf |
 | [`Bridge.kOf`](./lean_bridge/WeilBridge.md#Bridge-kOf) | def | shape | `WeilBridge` | ℝ → ℂ |
 | [`Bridge.kOfM`](./lean_bridge/WeilBridge.md#Bridge-kOfM) | def | shape | `WeilBridge` | ℝ → ℂ |
 | [`WeilBridgeLeaf.kOfM`](./lean_stage3/WeilBridgeLeaf.md#WeilBridgeLeaf-kOfM) | def | shape | `WeilBridgeLeaf` | ℝ → ℂ |
 | [`Bridge.kOfM_eq`](./lean_bridge/WeilBridge.md#Bridge-kOfM_eq) | theorem | shape | `WeilBridge` | kOfM G = kOf G |
+| [`FilterLadder.ladder`](./lean_stage3/FilterLadder.md#FilterLadder-ladder) | def | counting | `FilterLadder` | ℂ |
 | [`CellResidual.ladder_le`](./lean_stage3/CellResidual.md#CellResidual-ladder_le) | theorem | shape | `CellResidual` | \|resid a (r₀ + (n : ℤ))\| ≤ M + 4 * (\|C\| * (1 + (2 : ℝ) ^ (-(1 : ℝ) / 2))) * ((r₀ : ℝ) + n + 1) * (2 : ℝ) ^ (((r₀ : ℝ) + n) / 2) |
 | [`Zeros.LaddersMeet`](./lean/ZerosStencil.md#Zeros-LaddersMeet) | def | counting | `ZerosStencil` | Prop |
 | [`Bridge.laplace`](./lean_bridge/WeilBridge.md#Bridge-laplace) | def | shape | `WeilBridge` | ℂ |
@@ -1016,6 +1025,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`JointLadder.nat_log_indep`](./lean/JointLadder.md#JointLadder-nat_log_indep) | theorem | shape | `JointLadder` | a = 0 ∧ b = 0 |
 | [`DirichletMean.natCast_cpow_neg_I_mul`](./lean_stage3/DirichletMean.md#DirichletMean-natCast_cpow_neg_I_mul) | theorem | shape | `DirichletMean` | (n : ℂ) ^ (-(Complex.I * (t : ℂ))) = Complex.exp (Complex.I * ((-Real.log n : ℝ) : ℂ) * t) |
 | [`Elephant.natCast_mul_cpow`](./lean/Elephant.md#Elephant-natCast_mul_cpow) | theorem | shape | `Elephant` | ((m * n : ℕ) : ℂ) ^ s = (m : ℂ) ^ s * (n : ℂ) ^ s |
+| [`FilterLadder.natDegree_posPoly_le`](./lean_stage3/FilterLadder.md#FilterLadder-natDegree_posPoly_le) | theorem | counting | `FilterLadder` | (posPoly q).natDegree ≤ q.natDegree |
 | [`PerronKernel.near_diagonal_sum`](./lean_stage3/PerronKernel.md#PerronKernel-near_diagonal_sum) | theorem | shape | `PerronKernel` | (∑' n : ℕ, if 0 &lt; \|Real.log (x / n)\| ∧ \|Real.log (x / n)\| &lt; 1/2 then ArithmeticFunction.vonMangoldt n * min 1 (1/(T * \|Real.log (x / n)\|)) else 0) ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x |
 | [`PerronTwo.near_diagonal_sum_two`](./lean_stage3/PerronTwo.md#PerronTwo-near_diagonal_sum_two) | theorem | shape | `PerronTwo` | (∑' n : ℕ, if 0 &lt; \|Real.log (x / n)\| ∧ \|Real.log (x / n)\| &lt; 1/2 then ArithmeticFunction.vonMangoldt n * min 1 (1/(T * \|Real.log (x / n)\|)) else 0) ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x |
 | [`WeilPowerAssembly.near_nonneg`](./lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-near_nonneg) | theorem | reads ζ | `WeilPowerAssembly` | 0 ≤ ∑ ρ ∈ near_set, WeilPowerBands.termW h γ m ρ |
@@ -1044,6 +1054,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiRemainder.norm_efRem_le_low`](./lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_low) | theorem | reads ζ | `PiRemainder` | ‖efRem T t‖ ≤ (7 + zinv T) * t |
 | [`ZetaEM.norm_emInt_le`](./lean_stage3/ZetaEM.md#ZetaEM-norm_emInt_le) | theorem | reads ζ | `ZetaEM` | ‖emInt k N s‖ ≤ bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + k - 1)) |
 | [`ZetaEM.norm_emTerm`](./lean_stage3/ZetaEM.md#ZetaEM-norm_emTerm) | theorem | reads ζ | `ZetaEM` | ‖emTerm j N s‖ = (∏ i ∈ Finset.range j, ‖s + i‖) * \|bernoulliFun (j+1) 0\| / (j+1).factorial * (N:ℝ) ^ (-s.re - j) |
+| [`FilterLadder.norm_eval_le_Wb`](./lean_stage3/FilterLadder.md#FilterLadder-norm_eval_le_Wb) | theorem | counting | `FilterLadder` | ‖q.eval u‖ ≤ Wb ‖u‖ q |
+| [`FilterLadder.norm_eval_le_Wn`](./lean_stage3/FilterLadder.md#FilterLadder-norm_eval_le_Wn) | theorem | shape | `FilterLadder` | ‖q.eval u‖ ≤ Wn q |
 | [`WeilPowerPhase.norm_exp_delta_sub_one_le`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-norm_exp_delta_sub_one_le) | theorem | shape | `WeilPowerPhase` | ‖Complex.exp (delta m w n) - 1‖ ≤ 2 * q m w |
 | [`LeftKernel.norm_exp_tI`](./lean_stage3/LeftKernel.md#LeftKernel-norm_exp_tI) | theorem | shape | `LeftKernel` | ‖Complex.exp ((L:ℂ) * ((t:ℂ) * Complex.I))‖ = 1 |
 | [`WeilPowerBounds.norm_factor_ge`](./lean_stage3/WeilPowerBounds.md#WeilPowerBounds-norm_factor_ge) | theorem | shape | `WeilPowerBounds` | w.re ^ 2 ≤ ‖w ^ 2 + (a : ℂ) ^ 2‖ |
@@ -1281,6 +1293,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.pole_away`](./lean_stage3/JensenCount.md#Stage3-pole_away) | theorem | shape | `JensenCount` | 2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1 |
 | [`Stage3.pole_away_centre`](./lean_stage3/JensenCount.md#Stage3-pole_away_centre) | theorem | shape | `JensenCount` | v ≠ 1 |
 | [`Transform.poleLattice`](./lean/Transform.md#Transform-poleLattice) | def | shape | `Transform` | AddSubgroup ℂ |
+| [`FilterLadder.posPoly`](./lean_stage3/FilterLadder.md#FilterLadder-posPoly) | def | counting | `FilterLadder` | Polynomial ℝ |
 | [`TableDepths.pow_lower`](./lean_stage3/TableDepths.md#TableDepths-pow_lower) | theorem | shape | `TableDepths` | (0.6931:ℝ) ^ k ≤ Real.log 2 ^ k |
 | [`JointDialGate.powerSaving_relErr`](./lean_stage3/JointDialGate.md#JointDialGate-powerSaving_relErr) | theorem | shape | `JointDialGate` | StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1))) |
 | [`RelativeGate.powerSaving_relErr`](./lean/RelativeGate.md#RelativeGate-powerSaving_relErr) | theorem | shape | `RelativeGate` | StmtRelErrWindow f L r n (A * (2 : ℝ) ^ (((r : ℝ) - n) * (θ - 1))) |
@@ -1463,6 +1476,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Isogeny.rowOf`](./lean/Isogeny.md#Isogeny-rowOf) | def | counting | `Isogeny` | ℤ |
 | [`Isogeny.rowOf_eq_rowN`](./lean/Isogeny.md#Isogeny-rowOf_eq_rowN) | theorem | counting | `Isogeny` | rowOf P b r = rowN (fun n =&gt; P (b ^ n)) 1 r |
 | [`FiniteOffLinePi.rpow_doubling`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rpow_doubling) | theorem | shape | `FiniteOffLinePi` | ((2:ℝ) ^ r) ^ b = ((2:ℝ) ^ b) ^ r |
+| [`FilterLadder.rpow_half_eq`](./lean_stage3/FilterLadder.md#FilterLadder-rpow_half_eq) | theorem | shape | `FilterLadder` | (2:ℝ) ^ (-(j:ℝ) / 2) = (Real.sqrt 2)⁻¹ ^ j |
 | [`Transform.rpow_left_inj`](./lean/Transform.md#Transform-rpow_left_inj) | theorem | shape | `Transform` | b ^ x = b ^ y ↔ x = y |
 | [`Stage3.rpow_neg_half_mul`](./lean_stage3/PsiToPi.md#Stage3-rpow_neg_half_mul) | theorem | shape | `PsiToPi` | t ^ (-(1 : ℝ) / 2) * (t * Real.log t ^ 2) = Real.sqrt t * Real.log t ^ 2 |
 | [`RHPull.rpow_one_add`](./lean_stage3/LineBound.md#RHPull-rpow_one_add) | theorem | shape | `LineBound` | X ^ (1 + 1 / Real.log X) = Real.exp 1 * X |
@@ -1593,6 +1607,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.sqPos_eq`](./lean_stage3/ExplicitBump.md#Stage3-sqPos_eq) | theorem | shape | `ExplicitBump` | (max 0 u) ^ 2 = if u ≤ 0 then 0 else u ^ 2 |
 | [`FiniteOffLinePi.sqrt_doubling`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-sqrt_doubling) | theorem | shape | `FiniteOffLinePi` | Real.sqrt ((2:ℝ) ^ r) = Real.sqrt 2 ^ r |
 | [`Stage3.sqrt_le_rpow_theta`](./lean_stage3/ThetaPi.md#Stage3-sqrt_le_rpow_theta) | theorem | shape | `ThetaPi` | Real.sqrt x ≤ x ^ θ |
+| [`FilterLadder.sqrt_split`](./lean_stage3/FilterLadder.md#FilterLadder-sqrt_split) | theorem | shape | `FilterLadder` | Real.sqrt 2 ^ n * (Real.sqrt 2)⁻¹ ^ j = Real.sqrt 2 ^ (n - j) |
 | [`MirrorArea.square_iff`](./lean_stage3/MirrorArea.md#MirrorArea-square_iff) | theorem | shape | `MirrorArea` | (‖(b : ℂ) ^ ρ‖ = Real.sqrt b ∧ ‖(b : ℂ) ^ (1 - ρ)‖ = Real.sqrt b) ↔ ρ.re = 1 / 2 |
 | [`ZeroSquares.square_lower`](./lean_stage3/ZeroSquares.md#ZeroSquares-square_lower) | theorem | reads ζ | `ZeroSquares` | Real.pi * δ ^ 2 ≤ ∫ u in (σ - δ)..(1 + δ), innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u |
 | [`NyquistPeak.stationary_maximum`](./lean/NyquistPeak.md#NyquistPeak-stationary_maximum) | theorem | shape | `NyquistPeak` | HasDerivAt (gain d) 0 Real.pi ∧ (∀ θ : ℝ, gain d θ ≤ gain d Real.pi) ∧ (∀ θ : ℝ, \|Real.sin (θ / 2)\| ≠ 1 → gain d θ &lt; gain d Real.pi) |
@@ -1936,6 +1951,14 @@ Sorted by name. Search this file before saying something is missing.
 | [`PiFixedRow.w_le_two`](./lean_stage3/PiFixedRow.md#PiFixedRow-w_le_two) | theorem | shape | `PiFixedRow` | w t ≤ 2 |
 | [`ZeroSummable.w_nonneg`](./lean_stage3/ZeroSummable.md#ZeroSummable-w_nonneg) | theorem | reads ζ | `ZeroSummable` | 0 ≤ w ρ |
 | [`PiFixedRow.w_pos`](./lean_stage3/PiFixedRow.md#PiFixedRow-w_pos) | theorem | shape | `PiFixedRow` | 0 &lt; w t |
+| [`FilterLadder.Wb`](./lean_stage3/FilterLadder.md#FilterLadder-Wb) | def | counting | `FilterLadder` | ℝ |
+| [`FilterLadder.Wb_eq_eval`](./lean_stage3/FilterLadder.md#FilterLadder-Wb_eq_eval) | theorem | counting | `FilterLadder` | Wb t q = (posPoly q).eval t |
+| [`FilterLadder.Wb_eq_range`](./lean_stage3/FilterLadder.md#FilterLadder-Wb_eq_range) | theorem | counting | `FilterLadder` | Wb t q = ∑ j ∈ range N, ‖q.coeff j‖ * t ^ j |
+| [`FilterLadder.Wb_mono`](./lean_stage3/FilterLadder.md#FilterLadder-Wb_mono) | theorem | counting | `FilterLadder` | Wb t q ≤ Wb t' q |
+| [`FilterLadder.Wb_mul_le`](./lean_stage3/FilterLadder.md#FilterLadder-Wb_mul_le) | theorem | counting | `FilterLadder` | Wb t (p * q) ≤ Wb t p * Wb t q |
+| [`FilterLadder.Wb_nonneg`](./lean_stage3/FilterLadder.md#FilterLadder-Wb_nonneg) | theorem | counting | `FilterLadder` | 0 ≤ Wb t q |
+| [`FilterLadder.Wb_one`](./lean_stage3/FilterLadder.md#FilterLadder-Wb_one) | theorem | counting | `FilterLadder` | Wb t (1 : Polynomial ℂ) = 1 |
+| [`FilterLadder.Wb_pow_le`](./lean_stage3/FilterLadder.md#FilterLadder-Wb_pow_le) | theorem | counting | `FilterLadder` | Wb t (q ^ m) ≤ Wb t q ^ m |
 | [`PiFixedRow.wd`](./lean_stage3/PiFixedRow.md#PiFixedRow-wd) | def | shape | `PiFixedRow` | ℝ |
 | [`Stage3.weak_anti_x₀`](./lean_stage3/Statement.md#Stage3-weak_anti_x-) | theorem | shape | `Statement` | StmtSchoenfeldWeak C k x₀' pi li |
 | [`Stage3.weak_mono`](./lean_stage3/Statement.md#Stage3-weak_mono) | theorem | shape | `Statement` | StmtSchoenfeldWeak C' k x₀ pi li |
@@ -1973,6 +1996,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`LeftSmooth.wL_ne_one`](./lean_stage3/LeftSmooth.md#LeftSmooth-wL_ne_one) | theorem | shape | `LeftSmooth` | wL t ≠ 1 |
 | [`LeftSmooth.wL_re`](./lean_stage3/LeftSmooth.md#LeftSmooth-wL_re) | theorem | shape | `LeftSmooth` | (wL t).re = 5/4 |
 | [`WeilPowerBridge.wm`](./lean_stage3/WeilPowerBridge.md#WeilPowerBridge-wm) | def | shape | `WeilPowerBridge` | ℂ |
+| [`FilterLadder.Wn`](./lean_stage3/FilterLadder.md#FilterLadder-Wn) | def | counting | `FilterLadder` | ℝ |
+| [`FilterLadder.Wn_eq_Wb`](./lean_stage3/FilterLadder.md#FilterLadder-Wn_eq_Wb) | theorem | shape | `FilterLadder` | Wn q = Wb (Real.sqrt 2)⁻¹ q |
+| [`FilterLadder.Wn_nonneg`](./lean_stage3/FilterLadder.md#FilterLadder-Wn_nonneg) | theorem | shape | `FilterLadder` | 0 ≤ Wn q |
+| [`FilterLadder.Wn_pow_le`](./lean_stage3/FilterLadder.md#FilterLadder-Wn_pow_le) | theorem | shape | `FilterLadder` | Wn (q ^ m) ≤ Wn q ^ m |
 | [`WobbleCount.wobbleSum`](./lean_stage3/WobbleCount.md#WobbleCount-wobbleSum) | def | shape | `WobbleCount` | ℂ |
 | [`WobbleCount.wobbleSum_expansion`](./lean_stage3/WobbleCount.md#WobbleCount-wobbleSum_expansion) | theorem | reads ζ | `WobbleCount` | ∃ E : ℂ, ‖E‖ ≤ ‖ρ‖ * ‖ρ + 1‖ / 4 ∧ wobbleSum ρ N = riemannZeta ρ * (N : ℂ) ^ ρ + (N : ℂ) / (1 - ρ) + 1 / 2 + E |
 | [`WeilPowerCompare.wOf`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-wOf) | def | shape | `WeilPowerCompare` | ℂ |
@@ -1984,6 +2011,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerBridge.wp_re`](./lean_stage3/WeilPowerBridge.md#WeilPowerBridge-wp_re) | theorem | shape | `WeilPowerBridge` | (wp h γ ρ).re = (ρ.re - 1 / 2) * h |
 | [`PiZeros.wt`](./lean_stage3/PiZeros.md#PiZeros-wt) | def | shape | `PiZeros` | ℂ |
 | [`PiZeros.wt_continuousOn`](./lean_stage3/PiZeros.md#PiZeros-wt_continuousOn) | theorem | shape | `PiZeros` | ContinuousOn wt (Set.uIcc 2 x) |
+| [`FilterLadder.wz`](./lean_stage3/FilterLadder.md#FilterLadder-wz) | def | reads ζ | `FilterLadder` | ℂ |
 | [`WeilPowerPhase.x`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-x) | def | shape | `WeilPowerPhase` | ℂ |
 | [`WeilPowerPhase.x_eq_mul`](./lean_stage3/WeilPowerPhase.md#WeilPowerPhase-x_eq_mul) | theorem | shape | `WeilPowerPhase` | x w j = w ^ 2 * ((hterm j : ℝ) : ℂ) |
 | [`WeilPowerGauss.x_norm`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-x_norm) | theorem | shape | `WeilPowerGauss` | ‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ = ‖w‖ ^ 2 / (Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2) |

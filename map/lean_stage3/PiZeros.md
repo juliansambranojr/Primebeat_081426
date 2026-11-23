@@ -32,9 +32,10 @@ flowchart LR
   x3(["<b>PiFixedRow</b><br/>4 theorems"]):::ext
   x4(["<b>PiRemainder</b><br/>integrable_efRem<br/>norm_tr_efRem_le_of<br/>norm_zeroPartialSum_le"]):::ext
   x5(["<b>FiniteOffLine</b><br/>tsum_sub_eq_sum"]):::ext
-  x6(["<b>FixedRowTwo</b><br/>pi_fixed_row_two<br/>table_cell_fixed_row_two"]):::ext
-  x7(["<b>CellZeros</b><br/>4 theorems"]):::ext
-  x8(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
+  x6(["<b>FilterLadder</b><br/>formula_row"]):::ext
+  x7(["<b>FixedRowTwo</b><br/>pi_fixed_row_two<br/>table_cell_fixed_row_two"]):::ext
+  x8(["<b>CellZeros</b><br/>4 theorems"]):::ext
+  x9(["<b>CellResidual</b><br/>table_cell_eq"]):::ext
   n0 --> n1
   n1 --> n2
   n1 --> n4
@@ -56,9 +57,10 @@ flowchart LR
   n10 -.-> x1
   n10 -.-> x2
   n14 -.-> x3
-  n14 -.-> x6
+  n14 -.-> x7
   n6 -.-> x3
   n6 -.-> x4
+  n6 -.-> x6
   n7 -.-> x3
   n7 -.-> x4
   n8 -.-> x1
@@ -68,14 +70,14 @@ flowchart LR
   n9 -.-> x1
   n9 -.-> x2
   n9 -.-> x3
-  n9 -.-> x6
+  n9 -.-> x7
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n5
   x5 -.-> n6
-  x7 -.-> n12
-  x7 -.-> n14
+  x8 -.-> n12
   x8 -.-> n14
+  x9 -.-> n14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -364,8 +366,9 @@ Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : �
 
   - [`FiniteOffLine.tsum_sub_eq_sum`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-tsum_sub_eq_sum) (FiniteOffLine) — `` ∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ ``
 
-**Feeds** (4 that use it)
+**Feeds** (5 that use it)
 
+  - [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) (FilterLadder) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
   - [`PiFixedRow.norm_low_integral_le`](../lean_stage3/PiFixedRow.md#PiFixedRow-norm_low_integral_le) (PiFixedRow) — `` ‖∫ t in (2:ℝ)..16, efRem T t * wt t‖ ≤ Clow ``
   - [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem) (PiRemainder) — `` IntervalIntegrable (efRem T) volume 2 x ``
   - [`PiRemainder.norm_zeroPartialSum_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_zeroPartialSum_le) (PiRemainder) — `` ‖Stage3.zeroPartialSum t T‖ ≤ t * zinv T ``

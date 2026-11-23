@@ -19,7 +19,7 @@ multiplication by `q(1/z)`. So a filter `q^m` reweights the mode of a zero by
 ray becomes `|z_ρ|·|q(u_ρ)|^λ`. A filter that is small where the modes
 accumulate moves the largest rate to a place where it is attained.
 
-## S1 The filtered ladder — `Stage3/FilterLadder.lean`
+## S1 The filtered ladder — PROVED (unit 0466: `FilterLadder.filtered_modes_small_sq`, `filter_mode`, `Wn_pow_le`; factor `n²`, constant `Afl C = C + Kf + 39000·Mlow`, `1/2 ≤ σ` suffices)
 
 `a_k = ψ(2^k) − 2^k`. `‖q‖_W = Σ_j |q_j|·2^(−j/2)`; it is submultiplicative,
 `‖q^m‖_W ≤ ‖q‖_W^m`, and `|q(u)| ≤ ‖q‖_W` for `|u| ≤ 2^(−1/2)`.

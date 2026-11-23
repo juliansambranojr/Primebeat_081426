@@ -36,6 +36,7 @@ below with their outcome.
                 `PiRemainder.zinv_le_log`, `PiZeros.zeroPartialSum_eq_sum`
     OUT         blocks S2, S3; the count in place of `ψ`; the screening
                 arrangement
+    OUTCOME     proved, unit 0466; the factor is `n²`, the constant free of `σ`
 
 ### 2026-11-23 · block G3 of `design/floor.md`: `Stage3/FixedRowTwo.lean`
 

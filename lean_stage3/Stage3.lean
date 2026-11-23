@@ -162,6 +162,7 @@ import Stage3.PiFixedRow
 import Stage3.PerronTwo
 import Stage3.ExplicitTwo
 import Stage3.FixedRowTwo
+import Stage3.FilterLadder
 
 namespace Stage3
 

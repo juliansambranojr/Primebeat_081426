@@ -26053,6 +26053,8 @@
     "used_by": [
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_eq_zero_sum_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_fixed_row_two",
@@ -26083,6 +26085,8 @@
     "used_by": [
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_left_two",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_eq_zero_sum_two",
@@ -26276,6 +26280,8 @@
     "used_by": [
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
      "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.left_edge_bound_two",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_eq_zero_sum_two",
@@ -26380,10 +26386,942 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_eq_zero_sum_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/FilterLadder.lean",
+  "module": "Stage3.FilterLadder",
+  "stem": "FilterLadder",
+  "header": "FilterLadder — block S1 of `lean_stage3/design/stencil.md`. 2026-11-23. The filtered ladder. Put `a_k = ψ(2^k) − 2^k`. A polynomial `q` acts on the ladder by `Σ_j q_j·a_{n−j}`, and on a mode `z^n` as multiplication by `q(1/z)`. With the weighted norm `‖q‖_W = Σ_j |q_j|·2^(−j/2)`, which is submultiplicative, the filter `q^m` with `m·deg q < n` reads only rows `≥ 1`. If the ladder is of square-root size, `|a_k| ≤ C·k²·√2^k`, then the explicit formula at `x = 2^k` and the one height `2^n` for every `k ≤ n` writes the …",
+  "imports": [
+   "Stage3.FiniteOffLinePi",
+   "Stage3.FixedRowTwo"
+  ],
+  "opens": [
+   "FiniteOffLine",
+   "Finset",
+   "Kadiri",
+   "PiRemainder",
+   "PiZeros",
+   "Polynomial"
+  ],
+  "namespaces": [
+   "FilterLadder"
+  ],
+  "lines": 561,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/FiniteOffLinePi.lean",
+   "lean_stage3/Stage3/FixedRowTwo.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "Wb",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wb",
+    "line": 41,
+    "why": "The weighted size of a polynomial at weight `t`: the sum of the sizes of its coefficients, the `j`-th times `t^j`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ",
+     "q : Polynomial ℂ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_eval",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_range",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mono",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_one",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_pow_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wb"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Wn",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wn",
+    "line": 45,
+    "why": "The weighted norm of the design: the `j`-th coefficient's size times `2^(−j/2)`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_pow_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_half_eq",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.rpow_half_eq",
+    "line": 49,
+    "why": "The weight `2^(−j/2)` is the `j`-th power of `1/√2`.",
+    "sorry": false,
+    "needs": [
+     "j : ℕ"
+    ],
+    "proves": "(2:ℝ) ^ (-(j:ℝ) / 2) = (Real.sqrt 2)⁻¹ ^ j",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.rpow_half_eq",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wn_eq_Wb",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wn_eq_Wb",
+    "line": 56,
+    "why": "The weighted norm of the design is the weighted size at weight `1/√2`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ"
+    ],
+    "proves": "Wn q = Wb (Real.sqrt 2)⁻¹ q",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.rpow_half_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.rpow_half_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_pow_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wb_eq_range",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wb_eq_range",
+    "line": 62,
+    "why": "The weighted size is the same sum over any range longer than the degree.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ",
+     "q : Polynomial ℂ",
+     "hN : q.natDegree < N"
+    ],
+    "proves": "Wb t q = ∑ j ∈ range N, ‖q.coeff j‖ * t ^ j",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_range",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wb_nonneg",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wb_nonneg",
+    "line": 74,
+    "why": "The weighted size is nonnegative at a nonnegative weight.",
+    "sorry": false,
+    "needs": [
+     "ht : 0 ≤ t",
+     "q : Polynomial ℂ"
+    ],
+    "proves": "0 ≤ Wb t q",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_pow_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wn_nonneg",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wn_nonneg",
+    "line": 78,
+    "why": "The weighted norm of the design is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ"
+    ],
+    "proves": "0 ≤ Wn q",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "posPoly",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.posPoly",
+    "line": 83,
+    "why": "The real polynomial whose coefficients are the sizes of the coefficients of `q`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ"
+    ],
+    "proves": "Polynomial ℝ",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_eval",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.coeff_posPoly",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.natDegree_posPoly_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "coeff_posPoly",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.coeff_posPoly",
+    "line": 87,
+    "why": "Each coefficient of `posPoly q` is the size of the same coefficient of `q`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ",
+     "i : ℕ"
+    ],
+    "proves": "(posPoly q).coeff i = ‖q.coeff i‖",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.coeff_posPoly",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.natDegree_posPoly_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wb_eq_eval",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wb_eq_eval",
+    "line": 98,
+    "why": "The weighted size is the value of `posPoly q` at the weight.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ",
+     "q : Polynomial ℂ"
+    ],
+    "proves": "Wb t q = (posPoly q).eval t",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_eval",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "natDegree_posPoly_le",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.natDegree_posPoly_le",
+    "line": 104,
+    "why": "The degree of `posPoly q` is at most that of `q`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ"
+    ],
+    "proves": "(posPoly q).natDegree ≤ q.natDegree",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.natDegree_posPoly_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.coeff_posPoly",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.coeff_posPoly",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wb_mul_le",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wb_mul_le",
+    "line": 112,
+    "why": "The weighted size is submultiplicative. At a nonnegative weight, `Wb t (p·q) ≤ Wb t p · Wb t q`: each coefficient of the product is at most the same coefficient of `posPoly p · posPoly q`, whose value at `t` is the product.",
+    "sorry": false,
+    "needs": [
+     "ht : 0 ≤ t",
+     "p q : Polynomial ℂ"
+    ],
+    "proves": "Wb t (p * q) ≤ Wb t p * Wb t q",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_eval",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_range",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.coeff_posPoly",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.natDegree_posPoly_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_eval",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_range",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.coeff_posPoly",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.natDegree_posPoly_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.posPoly"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wb_one",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wb_one",
+    "line": 133,
+    "why": "The weighted size of the constant `1` is `1`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "Wb t (1 : Polynomial ℂ) = 1",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wb_pow_le",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wb_pow_le",
+    "line": 138,
+    "why": "The weighted size of a power is at most the power of the weighted size.",
+    "sorry": false,
+    "needs": [
+     "ht : 0 ≤ t",
+     "q : Polynomial ℂ",
+     "m : ℕ"
+    ],
+    "proves": "Wb t (q ^ m) ≤ Wb t q ^ m",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_pow_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mul_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_one"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_pow_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wn_pow_le",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wn_pow_le",
+    "line": 149,
+    "why": "Fact (i) of block S1. The weighted norm of a power is at most the power of the weighted norm: `‖q^m‖_W ≤ ‖q‖_W^m`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ",
+     "m : ℕ"
+    ],
+    "proves": "Wn (q ^ m) ≤ Wn q ^ m",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_pow_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_pow_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_pow_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_eval_le_Wb",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.norm_eval_le_Wb",
+    "line": 158,
+    "why": "The value of a polynomial at `u` has size at most its weighted size at `|u|`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ",
+     "u : ℂ"
+    ],
+    "proves": "‖q.eval u‖ ≤ Wb ‖u‖ q",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wb",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Wb_mono",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Wb_mono",
+    "line": 166,
+    "why": "The weighted size grows with the weight.",
+    "sorry": false,
+    "needs": [
+     "ht : 0 ≤ t",
+     "htt : t ≤ t'",
+     "q : Polynomial ℂ"
+    ],
+    "proves": "Wb t q ≤ Wb t' q",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mono",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wn"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_eval_le_Wn",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.norm_eval_le_Wn",
+    "line": 174,
+    "why": "Fact (ii) of block S1. For `|u| ≤ 2^(−1/2)` the value `q(u)` has size at most `‖q‖_W`. For `|u| ≤ 2^(−β)` in general, `norm_eval_le_Wb` and `Wb_mono` give `|q(u)| ≤ Wb (2^(−β)) q = Σ_j |q_j|·2^(−jβ)`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ",
+     "hu : ‖u‖ ≤ (Real.sqrt 2)⁻¹"
+    ],
+    "proves": "‖q.eval u‖ ≤ Wn q",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wn",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mono",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wb"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_mono",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.norm_eval_le_Wb"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "filter_mode",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.filter_mode",
+    "line": 181,
+    "why": "Fact (iii) of block S1: the filter on a mode. If `(q^m)` has degree at most `N ≤ n` and `z ≠ 0`, then `Σ_{j≤N} (q^m)_j·z^(n−j) = z^n·q(1/z)^m`.",
+    "sorry": false,
+    "needs": [
+     "q : Polynomial ℂ",
+     "hN : (q ^ m).natDegree ≤ N",
+     "hNn : N ≤ n",
+     "hz : z ≠ 0"
+    ],
+    "proves": "∑ j ∈ range (N + 1), (q ^ m).coeff j * z ^ (n - j) = z ^ n * (q.eval z⁻¹) ^ m",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filter_mode",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "ladder",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.ladder",
+    "line": 195,
+    "why": "The ladder: `a_k = ψ(2^k) − 2^k`, as a complex number.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.ladder",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Kf",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Kf",
+    "line": 199,
+    "why": "The constant of the explicit formula on the rows `k ≤ n` at height `2^n`: `4·c1t + c3t + Bleft2`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Kf_nonneg",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Kf_nonneg",
+    "line": 202,
+    "why": "The constant `Kf` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Kf",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "wz",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.wz",
+    "line": 210,
+    "why": "The weight of a zero in the explicit formula: its order over the zero.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.wz",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "formula_row",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.formula_row",
+    "line": 215,
+    "why": "The explicit formula on one row, at the one height `2^n`. For `1 ≤ k ≤ n`, the ladder at row `k` plus the sum over the zeros below `2^n` of `m(ρ)/ρ·(2^ρ)^k` has size at most `Kf·n²`. The set of zeros is the same for every `k`.",
+    "sorry": false,
+    "needs": [
+     "hk : 1 ≤ k",
+     "hkn : k ≤ n"
+    ],
+    "proves": "‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.ladder",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.wz",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.cpow_doubling",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.Bleft2",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c1t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.c3t",
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.explicit_formula_all_two",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.ladder",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.wz",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.cpow_doubling",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Bleft2_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c1t_nonneg",
+     "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.c3t_nonneg",
+     "lean_stage3/Stage3/PiZeros.lean::PiZeros.zeroPartialSum_eq_sum"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Afl",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.Afl",
+    "line": 279,
+    "why": "The constant of the filtered sum: `C + Kf + 39000·Mlow`. It depends on the constant `C` of the hypothesis and on nothing else.",
+    "sorry": false,
+    "needs": [
+     "C : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sqrt_split",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.sqrt_split",
+    "line": 282,
+    "why": "`√2^n · (1/√2)^j = √2^(n−j)` for `j ≤ n`.",
+    "sorry": false,
+    "needs": [
+     "hj : j ≤ n"
+    ],
+    "proves": "Real.sqrt 2 ^ n * (Real.sqrt 2)⁻¹ ^ j = Real.sqrt 2 ^ (n - j)",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.sqrt_split",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "filtered_modes_small_sq",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.filtered_modes_small_sq",
+    "line": 294,
+    "why": "The filtered modes of the zeros with real part at least `σ`, sharp form. Let the ladder be of square-root size, `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1`, and let `σ ≥ 1/2`. For every polynomial `q` and every `n ≥ 2`, `m` with `m·deg q < n`, the sum over the zeros below `2^n` with real part at least `σ` of `m(ρ)/ρ·q(2^(−ρ))^m·(2^ρ)^n` has size at most `Afl C·n²·2^(σn)·‖q‖_W^m`.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ : 1/2 ≤ σ",
+     "q : Polynomial ℂ",
+     "hn : 2 ≤ n",
+     "hmn : m * q.natDegree < n"
+    ],
+    "proves": "‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2:ℂ) ^ (ρ : ℂ))⁻¹)) ^ m * ((2:ℂ) ^ (ρ : ℂ)) ^ n‖ ≤ Afl C * (n:ℝ)^2 * (2:ℝ)^(σ * n) * Wn q ^ m",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_range",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_pow_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filter_mode",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.ladder",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.sqrt_split",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.wz",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_eq_range",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wb_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_eq_Wb",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_pow_le",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filter_mode",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.ladder",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.sqrt_split",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.wz",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_two_cpow",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.order_nonneg",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR",
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.zinv_le_log"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "filtered_modes_small",
+    "ns": "FilterLadder",
+    "full": "FilterLadder.filtered_modes_small",
+    "line": 518,
+    "why": "Block S1: the filtered modes of the zeros with real part at least `σ`. Let the ladder be of square-root size, `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for `k ≥ 1`, and let `σ > 1/2`. There is one constant `A` (it is `Afl C`, and depends on `C` alone) such that for every polynomial `q` and every `n ≥ 2`, `m` with `m·deg q < n`, the sum over the zeros below `2^n` with real part at least `σ` of `m(ρ)/ρ·q(2^(−ρ))^m·(2^ρ)^n` has size at most `A·n⁴·2^(σn)·‖q‖_W^m`. The sharp form with `n²` is `filtered_modes_small_sq`.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ : 1/2 < σ"
+    ],
+    "proves": "∃ A : ℝ, ∀ (q : Polynomial ℂ) (n m : ℕ), 2 ≤ n → m * q.natDegree < n → ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2:ℂ) ^ (ρ : ℂ))⁻¹)) ^ m * ((2:ℂ) ^ (ρ : ℂ)) ^ n‖ ≤ A * (n:ℝ)^4 * (2:ℝ)^(σ * n) * Wn q ^ m",
+    "file": "lean_stage3/Stage3/FilterLadder.lean",
+    "id": "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Wn_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.ZF",
+     "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.two_le_Mlow"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -26450,6 +27388,9 @@
      "lean_stage3/Stage3/CellFixedRow.lean::CellFixedRow.cell_zero_sum_finset_all",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_eq_zero_sum_rows",
      "lean_stage3/Stage3/CellRows.lean::CellRows.cell_tail_tendsto",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.cell_zero_sum_finset",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.mem_ZF",
@@ -26571,6 +27512,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.finite_off_line",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.sum_order_onLineInv_le",
@@ -26796,6 +27738,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLine.lean::FiniteOffLine.norm_term_le"
     ]
    },
@@ -27306,6 +28249,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
     ]
    },
@@ -27332,6 +28276,7 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.band_small",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_eventually",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.norm_order_mul",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.ordR_nonneg",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
@@ -27367,6 +28312,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound"
     ]
    },
@@ -27670,6 +28616,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_tr_efRem_le_height_two"
     ]
@@ -27696,6 +28644,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
@@ -27726,6 +28676,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Kf_nonneg",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.Api2_nonneg",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.cell_fixed_row_two",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.norm_integrand_two_le",
@@ -42863,6 +43815,8 @@
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.slack",
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.slack_isLittleO",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.Afl",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.rowBound_isLittleO",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
@@ -42905,6 +43859,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.sum_order_inv_sq_le",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.zinv_dyadic_le",
@@ -43050,6 +44006,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of",
@@ -43130,6 +44087,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.fin_bound",
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.filtered_modes_small_sq",
      "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.row_bound",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_tr_efRem_le_of"
     ]
@@ -44485,6 +45443,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/FilterLadder.lean::FilterLadder.formula_row",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.norm_low_integral_le",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_zeroPartialSum_le",
@@ -75940,11 +76899,12 @@
    "Stage3.PiFixedRow",
    "Stage3.PerronTwo",
    "Stage3.ExplicitTwo",
-   "Stage3.FixedRowTwo"
+   "Stage3.FixedRowTwo",
+   "Stage3.FilterLadder"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 173,
+  "lines": 174,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -75973,6 +76933,7 @@
    "lean_stage3/Stage3/ExplicitBump.lean",
    "lean_stage3/Stage3/ExplicitLeft.lean",
    "lean_stage3/Stage3/ExplicitTwo.lean",
+   "lean_stage3/Stage3/FilterLadder.lean",
    "lean_stage3/Stage3/FiniteOffLine.lean",
    "lean_stage3/Stage3/FiniteOffLinePi.lean",
    "lean_stage3/Stage3/FixedRowTwo.lean",
