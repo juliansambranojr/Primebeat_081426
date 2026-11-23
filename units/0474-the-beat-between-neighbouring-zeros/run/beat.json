@@ -1,0 +1,212 @@
+{
+ "zeros_used": 12,
+ "cutoffs": 48,
+ "cutoff_lo": 1000,
+ "cutoff_hi": 3000000,
+ "span_logN": 8.006,
+ "frequency_resolution": 0.785,
+ "median_abs_signed_sum": 0.00535,
+ "median_sum_of_sizes": 0.08348,
+ "median_ratio_signed_to_sizes": 0.073,
+ "zeros": [
+  {
+   "rank": 1,
+   "height": 14.1347,
+   "gap_below": null,
+   "gap_above": 6.8873,
+   "turning_rate": 6.9,
+   "share": 0.466,
+   "nearer_gap_to_rate": 6.8873,
+   "rate_minus_gap": 0.013,
+   "rms_residual": 0.00379
+  },
+  {
+   "rank": 2,
+   "height": 21.022,
+   "gap_below": 6.8873,
+   "gap_above": 3.9888,
+   "turning_rate": 3.99,
+   "share": 0.654,
+   "nearer_gap_to_rate": 3.9888,
+   "rate_minus_gap": 0.001,
+   "rms_residual": 0.00466
+  },
+  {
+   "rank": 3,
+   "height": 25.0109,
+   "gap_below": 3.9888,
+   "gap_above": 5.414,
+   "turning_rate": 3.89,
+   "share": 0.493,
+   "nearer_gap_to_rate": 3.9888,
+   "rate_minus_gap": -0.099,
+   "rms_residual": 0.00538
+  },
+  {
+   "rank": 4,
+   "height": 30.4249,
+   "gap_below": 5.414,
+   "gap_above": 2.5102,
+   "turning_rate": 2.54,
+   "share": 0.707,
+   "nearer_gap_to_rate": 2.5102,
+   "rate_minus_gap": 0.03,
+   "rms_residual": 0.01266
+  },
+  {
+   "rank": 5,
+   "height": 32.9351,
+   "gap_below": 2.5102,
+   "gap_above": 4.6511,
+   "turning_rate": 2.54,
+   "share": 0.647,
+   "nearer_gap_to_rate": 2.5102,
+   "rate_minus_gap": 0.03,
+   "rms_residual": 0.01389
+  },
+  {
+   "rank": 6,
+   "height": 37.5862,
+   "gap_below": 4.6511,
+   "gap_above": 3.3325,
+   "turning_rate": 3.4,
+   "share": 0.39,
+   "nearer_gap_to_rate": 3.3325,
+   "rate_minus_gap": 0.067,
+   "rms_residual": 0.00962
+  },
+  {
+   "rank": 7,
+   "height": 40.9187,
+   "gap_below": 3.3325,
+   "gap_above": 2.4084,
+   "turning_rate": 2.58,
+   "share": 0.731,
+   "nearer_gap_to_rate": 2.4084,
+   "rate_minus_gap": 0.172,
+   "rms_residual": 0.01128
+  },
+  {
+   "rank": 8,
+   "height": 43.3271,
+   "gap_below": 2.4084,
+   "gap_above": 4.6781,
+   "turning_rate": 2.4,
+   "share": 0.56,
+   "nearer_gap_to_rate": 2.4084,
+   "rate_minus_gap": -0.008,
+   "rms_residual": 0.01461
+  },
+  {
+   "rank": 9,
+   "height": 48.0052,
+   "gap_below": 4.6781,
+   "gap_above": 1.7687,
+   "turning_rate": 1.66,
+   "share": 0.688,
+   "nearer_gap_to_rate": 1.7687,
+   "rate_minus_gap": -0.109,
+   "rms_residual": 0.02852
+  },
+  {
+   "rank": 10,
+   "height": 49.7738,
+   "gap_below": 1.7687,
+   "gap_above": 3.1965,
+   "turning_rate": 1.58,
+   "share": 0.621,
+   "nearer_gap_to_rate": 1.7687,
+   "rate_minus_gap": -0.189,
+   "rms_residual": 0.03055
+  },
+  {
+   "rank": 11,
+   "height": 52.9703,
+   "gap_below": 3.1965,
+   "gap_above": 3.4759,
+   "turning_rate": 3.22,
+   "share": 0.623,
+   "nearer_gap_to_rate": 3.1965,
+   "rate_minus_gap": 0.024,
+   "rms_residual": 0.01358
+  },
+  {
+   "rank": 12,
+   "height": 56.4462,
+   "gap_below": 3.4759,
+   "gap_above": null,
+   "turning_rate": 2.65,
+   "share": 0.362,
+   "nearer_gap_to_rate": 3.4759,
+   "rate_minus_gap": -0.826,
+   "rms_residual": 0.01032
+  }
+ ],
+ "corr_rate_with_gap": 0.984,
+ "median_abs_rate_minus_gap": 0.049,
+ "rates_within_resolution": 11,
+ "matched_gap_is_closer_neighbour": 12,
+ "corr_rate_with_closer_gap": 0.984,
+ "closest_pair_gap": 1.7687,
+ "pairs": [
+  {
+   "pair": "1-2",
+   "gap": 6.8873,
+   "correlation": -0.146
+  },
+  {
+   "pair": "2-3",
+   "gap": 3.9888,
+   "correlation": -0.8
+  },
+  {
+   "pair": "3-4",
+   "gap": 5.414,
+   "correlation": -0.207
+  },
+  {
+   "pair": "4-5",
+   "gap": 2.5102,
+   "correlation": -0.946
+  },
+  {
+   "pair": "5-6",
+   "gap": 4.6511,
+   "correlation": -0.554
+  },
+  {
+   "pair": "6-7",
+   "gap": 3.3325,
+   "correlation": -0.037
+  },
+  {
+   "pair": "7-8",
+   "gap": 2.4084,
+   "correlation": -0.714
+  },
+  {
+   "pair": "8-9",
+   "gap": 4.6781,
+   "correlation": -0.04
+  },
+  {
+   "pair": "9-10",
+   "gap": 1.7687,
+   "correlation": -0.872
+  },
+  {
+   "pair": "10-11",
+   "gap": 3.1965,
+   "correlation": -0.66
+  },
+  {
+   "pair": "11-12",
+   "gap": 3.4759,
+   "correlation": -0.152
+  }
+ ],
+ "pairs_negative": 11,
+ "pairs_total": 11,
+ "mean_pair_correlation": -0.466,
+ "mean_far_correlation": -0.0
+}
