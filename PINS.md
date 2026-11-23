@@ -59,7 +59,7 @@ below with their outcome.
     DEPENDS     `Stage3.no_zero_right_of_theta`, `StepsPole.steps_pole`,
                 `StepsPeak.S`
     OUT         where the rise happens
-    OUTCOME     `rain_psi` proved, unit 0489; `rain_steps` pending
+    OUTCOME     `rain_psi` proved, unit 0489; `rain_steps` proved, unit 0493
 
 ### 2026-11-23 · block J5 of `design/closedloop.md`: `Stage3/BandJoin.lean`
 

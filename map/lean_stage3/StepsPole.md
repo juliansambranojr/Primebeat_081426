@@ -13,16 +13,18 @@ StepsPole — block R4 of `lean_stage3/design/runs.md`. 2026-11-23. Unit 0472 tu
 
 ```mermaid
 flowchart LR
-  n0["<b>steps_sum ■</b><br/>LSeries (fun n =＞ (ArithmeticFunction.vonMangoldt n : ℂ)) s = - …"]:::thm
+  n0["<b>steps_sum</b><br/>LSeries (fun n =＞ (ArithmeticFunction.vonMangoldt n : ℂ)) s = - …"]:::thm
   n1["<b>order_pos</b><br/>0 ＜ analyticOrderNatAt riemannZeta (ρ : ℂ)"]:::thm
   n2["<b>steps_pole ■</b><br/>Tendsto (fun s : ℂ =＞ (s - (ρ : ℂ)) * (- deriv riemannZeta s / r…"]:::thm
   n3["<b>steps_pole_ne_zero ■</b><br/>-(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0"]:::thm
   n4["<b>steps_regular ■</b><br/>AnalyticAt ℂ (fun t : ℂ =＞ deriv riemannZeta t / riemannZeta t) …"]:::thm
-  x0(["<b>ContourShift</b><br/>zeta_analyticAt<br/>zeta_local_data_zero<br/>zeta_order_ne_top"]):::ext
+  x0(["<b>StepsBelow</b><br/>mellin_identity"]):::ext
+  x1(["<b>ContourShift</b><br/>zeta_analyticAt<br/>zeta_local_data_zero<br/>zeta_order_ne_top"]):::ext
   n1 --> n3
-  x0 -.-> n1
-  x0 -.-> n2
-  x0 -.-> n4
+  n0 -.-> x0
+  x1 -.-> n1
+  x1 -.-> n2
+  x1 -.-> n4
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -58,7 +60,9 @@ LSeries (fun n => (ArithmeticFunction.vonMangoldt n : ℂ)) s = - deriv riemannZ
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds:** nothing. It connects to nothing.
+**Feeds** (1 that use it)
+
+  - [`StepsBelow.mellin_identity`](../lean_stage3/StepsBelow.md#StepsBelow-mellin_identity) (StepsBelow) — `` -deriv ζ (s + w) / ζ (s + w) = w * (w + 1) * (mellin (Rtr s) (-w - 1) + kap s / (s + w - 1)) ``
 
 <a name="StepsPole-order_pos"></a>
 ### `StepsPole.order_pos`

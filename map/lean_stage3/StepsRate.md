@@ -7,7 +7,7 @@ StepsRate — block R8 of `lean_stage3/design/runs.md`. 2026-11-23. The second s
 2 theorems, 0 definitions, 141 lines. 
 
 **Imports:** [`StepsPeak`](../lean_stage3/StepsPeak.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BandJoin`](../lean_stage3/BandJoin.md), [`CompositeSplit`](../lean_stage3/CompositeSplit.md), [`RateBelow`](../lean_stage3/RateBelow.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`BandJoin`](../lean_stage3/BandJoin.md), [`CompositeSplit`](../lean_stage3/CompositeSplit.md), [`RateBelow`](../lean_stage3/RateBelow.md), [`StepsBelow`](../lean_stage3/StepsBelow.md)
 
 ## The picture
 

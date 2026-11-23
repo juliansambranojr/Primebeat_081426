@@ -1,0 +1,38 @@
+flowchart LR
+  n0["<b>term_integral_eq</b><br/>∫ x in Ioi (1:ℝ), coef s n * (tent n x : ℂ) * (x:ℂ) ^ (-w - 2) =…"]:::thm
+  n1["<b>tsum_terms</b><br/>∑' n : ℕ, coef s n * (tent n x : ℂ) * (x:ℂ) ^ (-w - 2) = B s x *…"]:::cnt
+  n2["<b>D_integral_eq_mellin</b><br/>∫ x in Ioi (1:ℝ), D s x * (x:ℂ) ^ (-w - 2) = mellin (Rtr s) (-w …"]:::cnt
+  n3["<b>mellin_identity</b><br/>-deriv ζ (s + w) / ζ (s + w) = w * (w + 1) * (mellin (Rtr s) (-w…"]:::thm
+  n4["<b>Fz_eq</b><br/>Fz s z = -deriv ζ z / ζ z"]:::thm
+  n5["<b>Fz_differentiableAt</b><br/>DifferentiableAt ℂ (Fz s) z"]:::shp
+  n6["<b>anchor_mem</b><br/>((max θ X + 1 : ℝ) : ℂ) ∈ Stage3.regionθ θ ∧ X ＜ ((max θ X + 1 :…"]:::shp
+  n7["<b>eqOn_zero_of_agree</b><br/>Set.EqOn (fun z : ℂ ↦ F z * ζ z + deriv ζ z) 0 (Stage3.regionθ θ…"]:::thm
+  n8["<b>zeta_ne_zero_of_agree</b><br/>ζ ρ ≠ 0"]:::thm
+  n9["<b>zeta_ne_zero_of_steps_bound</b><br/>ζ ρ ≠ 0"]:::thm
+  n10["<b>rain_steps ■</b><br/>∃ N : ℕ, N₀ ≤ N ∧ 2 ≤ N ∧ C * (N : ℝ) ^ δ ＜ ‖StepsPeak.S N s - S…"]:::thm
+  x0(["<b>diagram 1</b><br/>9 theorems"]):::ext
+  x1(["<b>StepsPole</b><br/>steps_sum"]):::ext
+  n0 --> n3
+  n1 --> n3
+  n2 --> n3
+  n3 --> n4
+  n4 --> n9
+  n5 --> n9
+  n6 --> n7
+  n6 --> n8
+  n7 --> n8
+  n8 --> n9
+  n9 --> n10
+  x0 -.-> n0
+  x0 -.-> n1
+  x0 -.-> n3
+  x0 -.-> n5
+  x1 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

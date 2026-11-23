@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0493: at a zero, the turned steps to a cutoff, less their smooth term, exceed every bound below the zero's rate at cutoffs beyond any start (`StepsBelow.rain_steps`); with unit 0487 the run's size rate is held from both sides.
 - [open]   2026-11-23  Unit 0492 (decision, EXPLORATORY): bounding the residual at N by adding sizes across the scales N/m loses a factor that grows with N; the pieces share a sign and the residual at N is a small difference of large pieces. That route is closed; a proof has to take the scales together.
 - [open]   2026-11-23  Unit 0491: the numbers up to N are the combinations of the primes up to √N plus, for each new prime, its multiples, with nothing counted twice (`Compression.compression`). The size of the residual of the combinations' count is not derived.
 - [open]   2026-11-23  Unit 0490: the composite table has no signs: every composite up to N counted once under its least prime, each part the table's count at the scale N/p (`CompositeSplit.composites_no_signs`). No bound is derived from it.

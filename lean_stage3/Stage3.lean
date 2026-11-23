@@ -184,6 +184,7 @@ import Stage3.BandJoin
 import Stage3.RateBelow
 import Stage3.CompositeSplit
 import Stage3.Compression
+import Stage3.StepsBelow
 
 namespace Stage3
 
