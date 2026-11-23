@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Zero-density project (`design/carlson.md`, seven blocks C1-C7, on Julian's word). C1 PROVED (unit 0446, `DirichletMean.dirichlet_mean_value`): mean square of a finite Dirichlet sum over [0,T] <= (T + 8N(1+log N)) times the sum of squared coefficients. Opus worker, built and read here. Next: C2 the mollified finite sum.
 - [open]   2026-11-23  J10e PROVED (unit 0445, `FiniteOffLinePi.finite_off_line_pi`): finitely many zeros off the line + |pi(2^r) - Li(2^r)| <= C r^2 sqrt2^r from some row on => RH. The count at the doublings alone, one ladder. Uses units 0442, 0444 and the size of one zero's part of the count. Written by an Opus worker, built and read here. Open: infinitely many off the line; cells at depth.
 - [open]   2026-11-23  T2b PROVED (unit 0444, `PiRemainder.norm_tr_efRem_le`): the explicit formula's remainder passed to the count, at height x, is <= A sqrt x log^2 x for x >= 256, no hypothesis on the zeros. With unit 0442: pi - Li = minus the zero sum below x, within O(sqrt x log^2 x). Written by an Opus worker, built and read here. Open: the finite off-line theorem on the count.
 - [open]   2026-11-23  Descriptions: a docstring added above each of the 325 theorems the map listed with none (463 lines, no existing line changed), ported copies mirrored. Three trees build; index reads 0 without a docstring claim; welds, ports and map clean. Module line counts recorded in earlier units predate these lines.

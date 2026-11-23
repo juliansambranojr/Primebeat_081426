@@ -144,6 +144,7 @@ import Stage3.CellRows
 import Stage3.PiZeros
 import Stage3.PiRemainder
 import Stage3.FiniteOffLinePi
+import Stage3.DirichletMean
 
 namespace Stage3
 

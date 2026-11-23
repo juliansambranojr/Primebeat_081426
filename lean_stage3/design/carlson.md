@@ -23,7 +23,7 @@ for `σ > 5/8`. Opened 2026-11-23:
 `M_X(s) = Σ_{n < X} μ(n)·n^(−s)`, `f = ζ·M_X − 1`. At a zero `ρ` of ζ,
 `f(ρ) = −1`.
 
-### C1 Mean value of a finite Dirichlet sum — `Stage3/DirichletMean.lean`
+### C1 Mean value of a finite Dirichlet sum — PROVED (unit 0446: `DirichletMean.dirichlet_mean_value`, `dirichlet_mean_value_window`, `dirichlet_mean_value_sigma`), `c = 8`
 
     ∫₀ᵀ |Σ_{n ≤ N} a_n·n^(−it)|² dt ≤ (T + c·N·(1 + log N))·Σ |a_n|².
 

@@ -331,6 +331,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.differentiableAt_gammaR`](./lean_stage3/ArgIdentity.md#Stage3-differentiableAt_gammaR) | theorem | shape | `ArgIdentity` | DifferentiableAt ℂ Gammaℝ s |
 | [`LandauPoleLocal.differentiableAt_Phi`](./lean_stage3/LandauPoleLocal.md#LandauPoleLocal-differentiableAt_Phi) | theorem | reads ζ | `LandauPoleLocal` | DifferentiableAt ℂ LandauMellinG.Phi s |
 | [`Stage3.digamma_term_norm_le`](./lean_stage3/Stirling.md#Stage3-digamma_term_norm_le) | theorem | reads ζ | `Stirling` | ‖1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z)‖ ≤ 4 / ((n : ℝ) + 1) ^ 2 |
+| [`DirichletMean.dirichlet_mean_value`](./lean_stage3/DirichletMean.md#DirichletMean-dirichlet_mean_value) | theorem | shape | `DirichletMean` | ∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 |
+| [`DirichletMean.dirichlet_mean_value_sigma`](./lean_stage3/DirichletMean.md#DirichletMean-dirichlet_mean_value_sigma) | theorem | shape | `DirichletMean` | ∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-((σ : ℂ) + Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * (n : ℝ) ^ (-2 * σ) |
+| [`DirichletMean.dirichlet_mean_value_window`](./lean_stage3/DirichletMean.md#DirichletMean-dirichlet_mean_value_window) | theorem | shape | `DirichletMean` | ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T₂ - T₁ + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 |
 | [`WeilSeries.dist_ge`](./lean_stage3/WeilSeries.md#WeilSeries-dist_ge) | theorem | shape | `WeilSeries` | 9 / 5 * \|(idx t : ℝ) - (idx γ : ℝ)\| - 9 / 5 ≤ \|t - γ\| |
 | [`ContourShift.div_sub_eq_dslope`](./lean_stage3/ContourShift.md#ContourShift-div_sub_eq_dslope) | theorem | shape | `ContourShift` | f s / (s - p) = f p / (s - p) + dslope f p s |
 | [`Glue.Dln`](./lean_stage3/GlueNum.md#Glue-Dln) | def | reads ζ | `GlueNum` | ℝ |
@@ -608,6 +611,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.integral_log_half`](./lean_stage3/Stirling.md#Stage3-integral_log_half) | theorem | shape | `Stirling` | (∫ t in (1 : ℝ)..T, Real.log (t / 2)) = T * Real.log (T / 2) - T + 1 + Real.log 2 |
 | [`ArgLegs.integral_logDeriv_eq_log_sub`](./lean_stage3/ArgLegs.md#ArgLegs-integral_logDeriv_eq_log_sub) | theorem | shape | `ArgLegs` | ∫ x in a..b, g' x / g x = Complex.log (g b) - Complex.log (g a) |
 | [`RHPull.integral_shift_inv`](./lean_stage3/LineBound.md#RHPull-integral_shift_inv) | theorem | shape | `LineBound` | ∫ t in (0:ℝ)..T, (1 + t)⁻¹ = Real.log (1 + T) |
+| [`DirichletMean.integral_sq_norm_eq`](./lean_stage3/DirichletMean.md#DirichletMean-integral_sq_norm_eq) | theorem | shape | `DirichletMean` | ((∫ t in T₁..T₂, ‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 : ℝ) : ℂ) = ∑ m ∈ Icc 1 N, ∑ n ∈ Icc 1 N, a m * (starRingEnd ℂ) (a n) * ∫ t in T₁..T₂, Complex.exp (Complex.I * ((Real.lo… |
 | [`LandauTaylor.integrand_norm_le`](./lean_stage3/LandauTaylor.md#LandauTaylor-integrand_norm_le) | theorem | reads ζ | `LandauTaylor` | ‖(LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)‖ ≤ 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (k + 1) * y ^ (-a - 1)) |
 | [`RHPull.integrand_norm_le`](./lean_stage3/LineBound.md#RHPull-integrand_norm_le) | theorem | reads ζ | `LineBound` | ‖SmoothedChebyshevIntegrand ν ε X ((σRH X : ℂ) + I * (t : ℂ))‖ ≤ 11100 * (Real.log X) ^ 2 * M * X ^ (σRH X) |
 | [`RHPull.integrand_norm_le_horiz`](./lean_stage3/LineBound.md#RHPull-integrand_norm_le_horiz) | theorem | reads ζ | `LineBound` | ‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (1996 * Real.log (84 * t) + (29 * Real.log t + 129) * Real.log X) * M * X ^ σ |
@@ -624,6 +628,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.intervalIntegral_re`](./lean_stage3/ArgIdentity.md#Stage3-intervalIntegral_re) | theorem | shape | `ArgIdentity` | (∫ t in a..b, f t).re = ∫ t in a..b, (f t).re |
 | [`WeilPowerShell.inv_exp_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-inv_exp_le) | theorem | shape | `WeilPowerShell` | 1 / Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2))) ≤ Real.exp (2 * (e' ^ 2 + D ^ 2 + e ^ 2) * (1 / ((lam : ℝ) * Real.pi ^ 2))) |
 | [`Stage3.inv_le_dyadic_sum`](./lean_stage3/Assembly.md#Stage3-inv_le_dyadic_sum) | theorem | shape | `Assembly` | ∀ γ : ℝ, 1 ≤ γ → γ &lt; 2 ^ (K + 1) → γ⁻¹ ≤ ∑ j ∈ Finset.range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if γ &lt; 2 ^ (j + 1) then 1 else 0) |
+| [`DirichletMean.inv_log_gap`](./lean_stage3/DirichletMean.md#DirichletMean-inv_log_gap) | theorem | shape | `DirichletMean` | 2 / \|Real.log n - Real.log m\| ≤ 2 * N * \|(m : ℝ) - n\|⁻¹ |
 | [`Stage3.inv_log_le_theta`](./lean_stage3/ThetaPsi.md#Stage3-inv_log_le_theta) | theorem | shape | `ThetaPsi` | 1 / Real.log X ≤ (1 - θ) / 2 |
 | [`RouteNum.inv_log_two_le`](./lean_stage3/RouteNum.md#RouteNum-inv_log_two_le) | theorem | shape | `RouteNum` | 1 / Real.log 2 ≤ 1.4428 |
 | [`PiRemainder.inv_norm_le_dyadic`](./lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_dyadic) | theorem | reads ζ | `PiRemainder` | ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if \|(ρ : ℂ).im\| &lt; 2 ^ (j + 1) then 1 else 0) |
@@ -718,6 +723,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauMellinG.log_cpow_integral`](./lean_stage3/LandauMellinG.md#LandauMellinG-log_cpow_integral) | theorem | shape | `LandauMellinG` | ∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s - 1) ^ 2 |
 | [`LandauMellinG.log_cpow_norm_le`](./lean_stage3/LandauMellinG.md#LandauMellinG-log_cpow_norm_le) | theorem | shape | `LandauMellinG` | ‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖ ≤ y ^ ((s.re - 1) / 2 - s.re) / ((s.re - 1) / 2) |
 | [`LandauChebyshev.log_four_lt_two`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-log_four_lt_two) | theorem | shape | `LandauChebyshev` | Real.log 4 &lt; 2 |
+| [`DirichletMean.log_gap`](./lean_stage3/DirichletMean.md#DirichletMean-log_gap) | theorem | shape | `DirichletMean` | ((m : ℝ) - n) / N ≤ Real.log m - Real.log n |
 | [`JointLadder.log_indep`](./lean/JointLadder.md#JointLadder-log_indep) | theorem | shape | `JointLadder` | l = 0 ∧ k = 0 |
 | [`Stage3.log_norm_z_le`](./lean_stage3/Stirling.md#Stage3-log_norm_z_le) | theorem | shape | `Stirling` | \|Real.log ‖(1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I‖ - Real.log (t / 2)\| ≤ 1 / (4 * t) |
 | [`LandauKernel.log_pow_integrable`](./lean_stage3/LandauKernel.md#LandauKernel-log_pow_integrable) | theorem | shape | `LandauKernel` | IntegrableOn (fun y : ℝ =&gt; Real.log y ^ n * y ^ (-a - 1)) (Ioi 1) |
@@ -870,6 +876,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ArgCount.N_mono`](./lean_stage3/ArgCount.md#ArgCount-N_mono) | theorem | reads ζ | `ArgCount` | riemannZeta.N T ≤ riemannZeta.N T' |
 | [`ArgCount.N_nonneg`](./lean_stage3/ArgCount.md#ArgCount-N_nonneg) | theorem | reads ζ | `ArgCount` | 0 ≤ riemannZeta.N T |
 | [`JointLadder.nat_log_indep`](./lean/JointLadder.md#JointLadder-nat_log_indep) | theorem | shape | `JointLadder` | a = 0 ∧ b = 0 |
+| [`DirichletMean.natCast_cpow_neg_I_mul`](./lean_stage3/DirichletMean.md#DirichletMean-natCast_cpow_neg_I_mul) | theorem | shape | `DirichletMean` | (n : ℂ) ^ (-(Complex.I * (t : ℂ))) = Complex.exp (Complex.I * ((-Real.log n : ℝ) : ℂ) * t) |
 | [`Elephant.natCast_mul_cpow`](./lean/Elephant.md#Elephant-natCast_mul_cpow) | theorem | shape | `Elephant` | ((m * n : ℕ) : ℂ) ^ s = (m : ℂ) ^ s * (n : ℂ) ^ s |
 | [`PerronKernel.near_diagonal_sum`](./lean_stage3/PerronKernel.md#PerronKernel-near_diagonal_sum) | theorem | shape | `PerronKernel` | (∑' n : ℕ, if 0 &lt; \|Real.log (x / n)\| ∧ \|Real.log (x / n)\| &lt; 1/2 then ArithmeticFunction.vonMangoldt n * min 1 (1/(T * \|Real.log (x / n)\|)) else 0) ≤ 100 * x * Real.log (x * T) ^ 2 / T + 4 * Real.log x |
 | [`WeilPowerAssembly.near_nonneg`](./lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-near_nonneg) | theorem | reads ζ | `WeilPowerAssembly` | 0 ≤ ∑ ρ ∈ near_set, WeilPowerBands.termW h γ m ρ |
@@ -902,6 +909,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauTrig.norm_geom_Ico_le`](./lean_stage3/LandauTrig.md#LandauTrig-norm_geom_Ico_le) | theorem | shape | `LandauTrig` | ‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖ |
 | [`WeilPowerGeom.norm_geom_le`](./lean_stage3/WeilPowerGeom.md#WeilPowerGeom-norm_geom_le) | theorem | shape | `WeilPowerGeom` | ‖∑ m ∈ Finset.Ico a b, Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2)‖ ≤ geomBound z a b |
 | [`WeilPowerGeomGen.norm_geom_le_gen`](./lean_stage3/WeilPowerGeomGen.md#WeilPowerGeomGen-norm_geom_le_gen) | theorem | shape | `WeilPowerGeomGen` | ‖∑ h ∈ Finset.Ico a b, Complex.exp (z * ((α * (h : ℝ) + β₀ : ℝ) : ℂ))‖ ≤ geomBoundGen z α β₀ a b |
+| [`DirichletMean.norm_integral_exp_le`](./lean_stage3/DirichletMean.md#DirichletMean-norm_integral_exp_le) | theorem | shape | `DirichletMean` | ‖∫ t in T₁..T₂, Complex.exp (Complex.I * (θ : ℂ) * t)‖ ≤ 2 / \|θ\| |
 | [`FiniteOffLinePi.norm_integrand`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_integrand) | theorem | shape | `FiniteOffLinePi` | ‖(t : ℂ) ^ ρ / ρ * wt t‖ = ‖ρ‖⁻¹ * (t ^ ρ.re * (t * Real.log t ^ 2)⁻¹) |
 | [`FiniteOffLinePi.norm_ipart_le`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_ipart_le) | theorem | shape | `FiniteOffLinePi` | ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ ρ.re / (ρ.re * Real.log x ^ 2)) |
 | [`BoxBounds.norm_le_of_sq`](./lean_stage3/BoxBounds.md#BoxBounds-norm_le_of_sq) | theorem | shape | `BoxBounds` | ‖z‖ ≤ c |
@@ -1368,6 +1376,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`GateEval.sq_le_two_rpow`](./lean_stage3/GateEval.md#GateEval-sq_le_two_rpow) | theorem | shape | `GateEval` | r ^ 2 ≤ 6400 * (2:ℝ) ^ ((r - 80) / 2) |
 | [`ZetaGrowth.sq_mul_zeta_analytic`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-sq_mul_zeta_analytic) | theorem | reads ζ | `ZetaGrowth` | AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s |
 | [`ContourShift.sq_mul_zeta_analyticAt_one`](./lean_stage3/ContourShift.md#ContourShift-sq_mul_zeta_analyticAt_one) | theorem | reads ζ | `ContourShift` | AnalyticAt ℂ (fun s ↦ (s - 1)^2 * riemannZeta s) 1 |
+| [`DirichletMean.sq_norm_sum_eq`](./lean_stage3/DirichletMean.md#DirichletMean-sq_norm_sum_eq) | theorem | shape | `DirichletMean` | ((‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 : ℝ) : ℂ) = ∑ m ∈ Icc 1 N, ∑ n ∈ Icc 1 N, a m * (starRingEnd ℂ) (a n) * Complex.exp (Complex.I * ((Real.log n - Real.log m : ℝ) : ℂ) * t… |
 | [`Chain.sq_rpow_half`](./lean/Chain.md#Chain-sq_rpow_half) | theorem | shape | `Chain` | (b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ)) |
 | [`ZetaGrowth.sq_zeta_band_bound`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-sq_zeta_band_bound) | theorem | reads ζ | `ZetaGrowth` | ∃ C : ℝ, 0 &lt; C ∧ ∀ s : ℂ, -1/2 ≤ s.re → s.re ≤ 4 → ‖(s - 1)^2 * riemannZeta s‖ ≤ C * (2 + \|s.im\|) ^ 4 |
 | [`BoxBounds.sq_zeta_band_explicit`](./lean_stage3/BoxBounds.md#BoxBounds-sq_zeta_band_explicit) | theorem | reads ζ | `BoxBounds` | ‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 * (2 + \|s.im\|) ^ 4 |
@@ -1466,7 +1475,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilTiles.sum_by_bands`](./lean_stage3/WeilTiles.md#WeilTiles-sum_by_bands) | theorem | reads ζ | `WeilTiles` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.NontrivialZeros =&gt; idx (ρ : ℂ).im), M k * (15 * Real.log (centre k) + 73) |
 | [`WeilPowerTail.sum_hterm_sq_le`](./lean_stage3/WeilPowerTail.md#WeilPowerTail-sum_hterm_sq_le) | theorem | shape | `WeilPowerTail` | ∑ j ∈ Finset.Ico (m + 1) n, hterm j ^ 2 ≤ 1 / (3 * Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3) |
 | [`VonKoch.sum_Icc_vonMangoldt`](./lean_stage3/VonKochScaffold.md#VonKoch-sum_Icc_vonMangoldt) | theorem | reads ζ | `VonKochScaffold` | ∑ k ∈ Finset.Icc 1 n, ArithmeticFunction.vonMangoldt k = ψ n |
+| [`DirichletMean.sum_inv_dist_le`](./lean_stage3/DirichletMean.md#DirichletMean-sum_inv_dist_le) | theorem | shape | `DirichletMean` | ∑ n ∈ Icc 1 N, (if m = n then 0 else \|(m : ℝ) - n\|⁻¹) ≤ 2 * (1 + Real.log N) |
+| [`DirichletMean.sum_inv_Icc_le`](./lean_stage3/DirichletMean.md#DirichletMean-sum_inv_Icc_le) | theorem | shape | `DirichletMean` | ∑ k ∈ Icc 1 N, (k : ℝ)⁻¹ ≤ 1 + Real.log N |
 | [`LandauCrude.sum_inv_le`](./lean_stage3/LandauCrude.md#LandauCrude-sum_inv_le) | theorem | shape | `LandauCrude` | ∑ n ∈ Finset.range (N + 1), ((n : ℝ))⁻¹ ≤ 1 + Real.log N |
+| [`DirichletMean.sum_inv_le_harmonic`](./lean_stage3/DirichletMean.md#DirichletMean-sum_inv_le_harmonic) | theorem | shape | `DirichletMean` | ∑ n ∈ s, ((g n : ℕ) : ℝ)⁻¹ ≤ ∑ k ∈ Icc 1 N, (k : ℝ)⁻¹ |
 | [`WeilPowerGauss.sum_inv_pow4_le`](./lean_stage3/WeilPowerGauss.md#WeilPowerGauss-sum_inv_pow4_le) | theorem | shape | `WeilPowerGauss` | ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / ((m : ℝ) + 1) ^ 3 |
 | [`WeilPowerTail.sum_inv_pow4_le_third`](./lean_stage3/WeilPowerTail.md#WeilPowerTail-sum_inv_pow4_le_third) | theorem | shape | `WeilPowerTail` | ∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 4 ≤ 1 / 3 * (1 / ((m : ℝ) + 1) ^ 3 - 1 / (n : ℝ) ^ 3) |
 | [`Stage3.sum_inv_pow_two_le`](./lean_stage3/ZeroSum.md#Stage3-sum_inv_pow_two_le) | theorem | shape | `ZeroSum` | (∑ j ∈ range n, ((2 : ℝ) ^ j)⁻¹) ≤ 2 |
@@ -1480,6 +1492,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerSigma.sum_lower_amgm`](./lean_stage3/WeilPowerSigma.md#WeilPowerSigma-sum_lower_amgm) | theorem | shape | `WeilPowerSigma` | 1 / ((m : ℝ) + 2) + 1 / (2 * ((m : ℝ) + 2) ^ 2) - 1 / ((n : ℝ) + 1) - 1 / (2 * ((n : ℝ) + 1) ^ 2) ≤ ∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 |
 | [`WeilOnLine.sum_lower_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-sum_lower_le) | theorem | reads ζ | `WeilOnLine` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ B h γ |
 | [`WeilPowerOnLine.sum_lower_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le) | theorem | reads ζ | `WeilPowerOnLine` | ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ B h γ m |
+| [`DirichletMean.sum_mul_mul_le`](./lean_stage3/DirichletMean.md#DirichletMean-sum_mul_mul_le) | theorem | shape | `DirichletMean` | ∑ m ∈ s, ∑ n ∈ s, A m * A n * K m n ≤ R * ∑ m ∈ s, A m ^ 2 |
 | [`ZetaGrowth.sum_norm_le`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-sum_norm_le) | theorem | shape | `ZetaGrowth` | ‖∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s‖ ≤ (N:ℝ) * (N:ℝ) ^ ((1:ℝ)/2) |
 | [`WeilOnLine.sum_onLine_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-sum_onLine_le) | theorem | reads ζ | `WeilOnLine` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ onLineBound h γ |
 | [`WeilPowerOnLine.sum_onLine_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | theorem | reads ζ | `WeilPowerOnLine` | ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ onLineBound h γ m |

@@ -22283,6 +22283,387 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/DirichletMean.lean",
+  "module": "Stage3.DirichletMean",
+  "stem": "DirichletMean",
+  "header": "DirichletMean — block C1 of `lean_stage3/design/carlson.md`. 2026-11-23. An elementary mean value theorem for a finite Dirichlet sum. For `S(t) = Σ_{n ≤ N} a_n n^{-it}` the integral of `|S|²` over a window of length `L` is at most `(L + 8N(1 + log N))·Σ |a_n|²`. The square expands into a double sum; the diagonal gives `L·Σ|a_n|²`. Off the diagonal each integral of `e^{itθ}` is at most `2/|θ|`, the gap `|log m − log n|` is at least `|m − n|/N`, and the harmonic sum bounds each row by `4N(1 + log N)`. A real part `σ`…",
+  "imports": [],
+  "opens": [
+   "Finset"
+  ],
+  "namespaces": [
+   "DirichletMean"
+  ],
+  "lines": 350,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "natCast_cpow_neg_I_mul",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.natCast_cpow_neg_I_mul",
+    "line": 39,
+    "why": "For `n ≥ 1`, the power `n^{-it}` is the exponential `exp(i·(−log n)·t)`.",
+    "sorry": false,
+    "needs": [
+     "hn : 1 ≤ n",
+     "t : ℝ"
+    ],
+    "proves": "(n : ℂ) ^ (-(Complex.I * (t : ℂ))) = Complex.exp (Complex.I * ((-Real.log n : ℝ) : ℂ) * t)",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.natCast_cpow_neg_I_mul",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sq_norm_sum_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sq_norm_sum_eq",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.sq_norm_sum_eq",
+    "line": 50,
+    "why": "The squared norm of a finite Dirichlet sum at height `t` is the double sum of `a_m · conj a_n · e^{it(log n − log m)}`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "a : ℕ → ℂ",
+     "t : ℝ"
+    ],
+    "proves": "((‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 : ℝ) : ℂ) = ∑ m ∈ Icc 1 N, ∑ n ∈ Icc 1 N, a m * (starRingEnd ℂ) (a n) * Complex.exp (Complex.I * ((Real.log n - Real.log m : ℝ) : ℂ) * t)",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sq_norm_sum_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.natCast_cpow_neg_I_mul"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.natCast_cpow_neg_I_mul"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.integral_sq_norm_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_sq_norm_eq",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.integral_sq_norm_eq",
+    "line": 73,
+    "why": "The integral of the squared norm over `[T₁, T₂]` is the double sum of `a_m · conj a_n` times the integral of `e^{it(log n − log m)}`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "a : ℕ → ℂ",
+     "T₁ T₂ : ℝ"
+    ],
+    "proves": "((∫ t in T₁..T₂, ‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 : ℝ) : ℂ) = ∑ m ∈ Icc 1 N, ∑ n ∈ Icc 1 N, a m * (starRingEnd ℂ) (a n) * ∫ t in T₁..T₂, Complex.exp (Complex.I * ((Real.log n - Real.log m : ℝ) : ℂ) * t)",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.integral_sq_norm_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sq_norm_sum_eq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sq_norm_sum_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_integral_exp_le",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.norm_integral_exp_le",
+    "line": 89,
+    "why": "For a nonzero real frequency `θ`, the integral of `e^{iθt}` over any window has norm at most `2/|θ|`.",
+    "sorry": false,
+    "needs": [
+     "hθ : θ ≠ 0",
+     "T₁ T₂ : ℝ"
+    ],
+    "proves": "‖∫ t in T₁..T₂, Complex.exp (Complex.I * (θ : ℂ) * t)‖ ≤ 2 / |θ|",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.norm_integral_exp_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "log_gap",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.log_gap",
+    "line": 106,
+    "why": "For `1 ≤ n < m ≤ N`, the gap between the logarithms is at least `(m − n)/N`.",
+    "sorry": false,
+    "needs": [
+     "hn : 1 ≤ n",
+     "hnm : n < m",
+     "hm : m ≤ N"
+    ],
+    "proves": "((m : ℝ) - n) / N ≤ Real.log m - Real.log n",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.log_gap",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.inv_log_gap"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "inv_log_gap",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.inv_log_gap",
+    "line": 120,
+    "why": "For distinct `m, n` in `[1, N]`, `2/|log n − log m|` is at most `2N/|m − n|`.",
+    "sorry": false,
+    "needs": [
+     "hm : m ∈ Icc 1 N",
+     "hn : n ∈ Icc 1 N",
+     "hne : m ≠ n"
+    ],
+    "proves": "2 / |Real.log n - Real.log m| ≤ 2 * N * |(m : ℝ) - n|⁻¹",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.inv_log_gap",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.log_gap"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.log_gap"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_inv_le_harmonic",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.sum_inv_le_harmonic",
+    "line": 149,
+    "why": "A sum of `1/g(n)` over a set on which `g` is injective with values in `[1, N]` is at most the harmonic sum up to `N`.",
+    "sorry": false,
+    "needs": [
+     "s : Finset ℕ",
+     "g : ℕ → ℕ",
+     "hg : Set.InjOn g s",
+     "hmap : ∀ n ∈ s, g n ∈ Icc 1 N"
+    ],
+    "proves": "∑ n ∈ s, ((g n : ℕ) : ℝ)⁻¹ ≤ ∑ k ∈ Icc 1 N, (k : ℝ)⁻¹",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_le_harmonic",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_dist_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_inv_Icc_le",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.sum_inv_Icc_le",
+    "line": 159,
+    "why": "The harmonic sum `Σ_{k=1}^{N} 1/k` is at most `1 + log N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "∑ k ∈ Icc 1 N, (k : ℝ)⁻¹ ≤ 1 + Real.log N",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_Icc_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_dist_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_inv_dist_le",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.sum_inv_dist_le",
+    "line": 166,
+    "why": "For `m` in `[1, N]`, the sum of `1/|m − n|` over the other `n` in `[1, N]` is at most `2(1 + log N)`.",
+    "sorry": false,
+    "needs": [
+     "hm : m ∈ Icc 1 N"
+    ],
+    "proves": "∑ n ∈ Icc 1 N, (if m = n then 0 else |(m : ℝ) - n|⁻¹) ≤ 2 * (1 + Real.log N)",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_dist_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_Icc_le",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_le_harmonic"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_Icc_le",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_le_harmonic"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_mul_mul_le",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.sum_mul_mul_le",
+    "line": 206,
+    "why": "For a symmetric nonnegative kernel `K` whose rows sum to at most `R`, the quadratic form `Σ_m Σ_n A_m A_n K_{mn}` is at most `R · Σ A_m²`.",
+    "sorry": false,
+    "needs": [
+     "s : Finset ℕ",
+     "A : ℕ → ℝ",
+     "K : ℕ → ℕ → ℝ",
+     "R : ℝ",
+     "hK0 : ∀ m ∈ s, ∀ n ∈ s, 0 ≤ K m n",
+     "hsym : ∀ m n, K m n = K n m",
+     "hrow : ∀ m ∈ s, ∑ n ∈ s, K m n ≤ R"
+    ],
+    "proves": "∑ m ∈ s, ∑ n ∈ s, A m * A n * K m n ≤ R * ∑ m ∈ s, A m ^ 2",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_mul_mul_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_window"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dirichlet_mean_value_window",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.dirichlet_mean_value_window",
+    "line": 231,
+    "why": "On a window `[T₁, T₂]`, the mean square of a finite Dirichlet sum `Σ_{n ≤ N} a_n n^{-it}` is at most `(T₂ − T₁ + 8N(1 + log N))·Σ |a_n|²`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "a : ℕ → ℂ",
+     "h : T₁ ≤ T₂"
+    ],
+    "proves": "∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T₂ - T₁ + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_window",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.integral_sq_norm_eq",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.inv_log_gap",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.norm_integral_exp_le",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_dist_le",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_mul_mul_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.integral_sq_norm_eq",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.inv_log_gap",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.norm_integral_exp_le",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_inv_dist_le",
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.sum_mul_mul_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dirichlet_mean_value",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.dirichlet_mean_value",
+    "line": 301,
+    "why": "On `[0, T]`, the mean square of a finite Dirichlet sum `Σ_{n ≤ N} a_n n^{-it}` is at most `(T + 8N(1 + log N))·Σ |a_n|²`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "a : ℕ → ℂ",
+     "hT : 0 ≤ T"
+    ],
+    "proves": "∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_window"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_window"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_sigma"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dirichlet_mean_value_sigma",
+    "ns": "DirichletMean",
+    "full": "DirichletMean.dirichlet_mean_value_sigma",
+    "line": 309,
+    "why": "With a real part `σ`, the mean square on `[0, T]` of `Σ_{n ≤ N} a_n n^{-(σ+it)}` is at most `(T + 8N(1 + log N))·Σ |a_n|²·n^{-2σ}`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "a : ℕ → ℂ",
+     "σ : ℝ",
+     "hT : 0 ≤ T"
+    ],
+    "proves": "∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-((σ : ℂ) + Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * (n : ℝ) ^ (-2 * σ)",
+    "file": "lean_stage3/Stage3/DirichletMean.lean",
+    "id": "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value_sigma",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.dirichlet_mean_value"
+    ],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/EdgeBound.lean",
   "module": "Stage3.EdgeBound",
   "stem": "EdgeBound",
@@ -65498,11 +65879,12 @@
    "Stage3.CellRows",
    "Stage3.PiZeros",
    "Stage3.PiRemainder",
-   "Stage3.FiniteOffLinePi"
+   "Stage3.FiniteOffLinePi",
+   "Stage3.DirichletMean"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 155,
+  "lines": 156,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -65522,6 +65904,7 @@
    "lean_stage3/Stage3/CellRows.lean",
    "lean_stage3/Stage3/CellZeros.lean",
    "lean_stage3/Stage3/ContourShift.lean",
+   "lean_stage3/Stage3/DirichletMean.lean",
    "lean_stage3/Stage3/EdgeBound.lean",
    "lean_stage3/Stage3/EdgeNum.lean",
    "lean_stage3/Stage3/ExplicitBump.lean",
