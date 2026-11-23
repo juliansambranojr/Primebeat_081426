@@ -7,7 +7,7 @@ CompositeSplit — block R10 of `lean_stage3/design/runs.md`. 2026-11-23. The co
 6 theorems, 1 definition, 152 lines. 
 
 **Imports:** [`SieveExact`](../lean_stage3/SieveExact.md), [`StepsRate`](../lean_stage3/StepsRate.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Compression`](../lean_stage3/Compression.md)
 
 ## The picture
 

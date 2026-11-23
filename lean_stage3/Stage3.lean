@@ -183,6 +183,7 @@ import Stage3.StepsRate
 import Stage3.BandJoin
 import Stage3.RateBelow
 import Stage3.CompositeSplit
+import Stage3.Compression
 
 namespace Stage3
 

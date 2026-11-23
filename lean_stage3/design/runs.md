@@ -208,3 +208,25 @@ Not derived here: a bound from that tie.
 
 - `card_least_prime`, `composites_by_least_prime`, `composite_part`,
   `composites_no_signs`.
+
+## R11 The primes as the compression of the composites — `Stage3/Compression.lean`
+
+Julian, 2026-11-23: the primes are the compression of the composites up to
+that step; the composites exhaust their combinations and demand a prime, or
+they would repeat.
+
+Exact form at the step `√N → N`. `smooth N`: the `n ≤ N` all of whose primes
+are at most `√N`, the combinations of the primes so far. A number `n ≤ N`
+with two different primes `p, q > √N` would have `pq ≤ n ≤ N < (√N+1)²`, so
+it has at most one. The `n ≤ N` that are not combinations are the multiples
+of the new primes, each under exactly one new prime:
+
+    N = smooth N + Σ_{√N < p ≤ N} ⌊N/p⌋.
+
+No signs, nothing counted twice. Read for the open step: the new primes with
+their multiples are exactly what the combinations leave. The residual of the
+right-hand sum is minus the residual of `smooth N`.
+
+- `unique_new_prime`, `nonSmooth_eq_biUnion`, `compression`.
+
+Not derived: a size for the residual of `smooth N`.

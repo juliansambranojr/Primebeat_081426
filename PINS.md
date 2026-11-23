@@ -22,6 +22,18 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R11 of `design/runs.md`: `Stage3/Compression.lean`
+
+    DONE        `unique_new_prime`: a number up to `N` has at most one prime
+                above `√N`. `compression`: the numbers up to `N` are the
+                combinations of the primes up to `√N` and the multiples of
+                the new primes, nothing counted twice; one unit
+    ASSUMED     Julian, 2026-11-23: "Primes are compression of the composites
+                up to that step". Written and built here
+    DEPENDS     `SieveExact.card_multiples`, Mathlib `Finset.card_biUnion`
+    OUT         the size of the residual of the combinations' count
+    OUTCOME     proved, unit 0491
+
 ### 2026-11-23 · block R10 of `design/runs.md`: `Stage3/CompositeSplit.lean`
 
     DONE        `composites_by_least_prime`: every composite up to `N` once,

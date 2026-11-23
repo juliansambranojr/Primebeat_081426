@@ -5,7 +5,7 @@ ThetaConverse — the Landau converse of the θ-dial. 2026-09-01. `ThetaPsi.psi_
 14 theorems, 1 definition, 451 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ThetaPi`](../lean_stage3/ThetaPi.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`RateBelow`](../lean_stage3/RateBelow.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`RateBelow`](../lean_stage3/RateBelow.md), [`StepsBelow`](../lean_stage3/StepsBelow.md)
 
 ## The picture
 

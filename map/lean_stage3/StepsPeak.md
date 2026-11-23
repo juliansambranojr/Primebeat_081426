@@ -34,7 +34,8 @@ flowchart LR
   x1(["<b>ExplicitTwo</b><br/>explicit_formula_all_two"]):::ext
   x2(["<b>FixedRowTwo</b><br/>Bleft2_nonneg<br/>c1t_nonneg<br/>c3t_nonneg"]):::ext
   x3(["<b>StepsRate</b><br/>norm_K_le_pow<br/>rate_upper"]):::ext
-  x4(["<b>FiniteOffLine</b><br/>order_nonneg"]):::ext
+  x4(["<b>StepsBelow</b><br/>K_one"]):::ext
+  x5(["<b>FiniteOffLine</b><br/>order_nonneg"]):::ext
   n0 --> n4
   n1 --> n2
   n1 --> n5
@@ -55,14 +56,15 @@ flowchart LR
   n8 --> n9
   n9 --> n13
   n11 -.-> x3
+  n11 -.-> x4
   n15 -.-> x3
   n9 -.-> x3
   x0 -.-> n5
   x1 -.-> n7
   x2 -.-> n7
   x2 -.-> n8
-  x4 -.-> n15
-  x4 -.-> n16
+  x5 -.-> n15
+  x5 -.-> n16
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -85,7 +87,7 @@ def · line 44
 The ramp `f(u) = u^(−s)·(1 − u/N)`.
 
 - **Is:** `` ramp (N : ℕ) (s : ℂ) (u : ℝ) : ℂ := (u : ℂ) ^ (-s) * (1 - (u : ℂ) / (N : ℂ)) ``
-- **Used by 3:** [`StepsPeak.S`](#StepsPeak-S), [`StepsPeak.S_eq_integral`](#StepsPeak-S_eq_integral), [`StepsPeak.hasDerivAt_ramp`](#StepsPeak-hasDerivAt_ramp)
+- **Used by 4:** [`StepsBelow.B_nat`](../lean_stage3/StepsBelow.md#StepsBelow-B_nat), [`StepsPeak.S`](#StepsPeak-S), [`StepsPeak.S_eq_integral`](#StepsPeak-S_eq_integral), [`StepsPeak.hasDerivAt_ramp`](#StepsPeak-hasDerivAt_ramp)
 
 <a name="StepsPeak-slope"></a>
 ### `StepsPeak.slope`
@@ -106,7 +108,7 @@ The turned steps to the cutoff `N`, with the ramp: `S(N,s) = Σ_{n ≤ N} Λ(n)�
 
 - **Is:** `` S (N : ℕ) (s : ℂ) : ℂ := ∑ n ∈ Icc 0 N, ramp N s n * (ArithmeticFunction.vonMangoldt n : ℂ) ``
 - **Built from:** [`StepsPeak.ramp`](#StepsPeak-ramp)
-- **Used by 6:** [`StepsPeak.S_eq_integral`](#StepsPeak-S_eq_integral), [`StepsPeak.peak_at_zero`](#StepsPeak-peak_at_zero), [`StepsPeak.peak_formula`](#StepsPeak-peak_formula), [`StepsPeak.peak_height`](#StepsPeak-peak_height), [`StepsPeak.peak_identity`](#StepsPeak-peak_identity), [`StepsRate.rate_upper`](../lean_stage3/StepsRate.md#StepsRate-rate_upper)
+- **Used by 9:** [`StepsBelow.B_nat`](../lean_stage3/StepsBelow.md#StepsBelow-B_nat), [`StepsBelow.D_nat`](../lean_stage3/StepsBelow.md#StepsBelow-D_nat), [`StepsBelow.D_nat_le`](../lean_stage3/StepsBelow.md#StepsBelow-D_nat_le), [`StepsPeak.S_eq_integral`](#StepsPeak-S_eq_integral), [`StepsPeak.peak_at_zero`](#StepsPeak-peak_at_zero), [`StepsPeak.peak_formula`](#StepsPeak-peak_formula), [`StepsPeak.peak_height`](#StepsPeak-peak_height), [`StepsPeak.peak_identity`](#StepsPeak-peak_identity), [`StepsRate.rate_upper`](../lean_stage3/StepsRate.md#StepsRate-rate_upper)
 
 <a name="StepsPeak-K"></a>
 ### `StepsPeak.K`
@@ -117,7 +119,7 @@ The kernel of a power, `K(a) = ∫_2^N u^a·g(u) du`.
 
 - **Is:** `` K (N : ℕ) (s a : ℂ) : ℂ := ∫ u in (2:ℝ)..(N:ℝ), (u : ℂ) ^ a * slope N s u ``
 - **Built from:** [`StepsPeak.slope`](#StepsPeak-slope)
-- **Used by 9:** [`StepsPeak.K_eq`](#StepsPeak-K_eq), [`StepsPeak.K_self`](#StepsPeak-K_self), [`StepsPeak.norm_K_le`](#StepsPeak-norm_K_le), [`StepsPeak.peak_at_zero`](#StepsPeak-peak_at_zero), [`StepsPeak.peak_formula`](#StepsPeak-peak_formula), [`StepsPeak.peak_height`](#StepsPeak-peak_height), [`StepsPeak.peak_identity`](#StepsPeak-peak_identity), [`StepsRate.norm_K_le_pow`](../lean_stage3/StepsRate.md#StepsRate-norm_K_le_pow), [`StepsRate.rate_upper`](../lean_stage3/StepsRate.md#StepsRate-rate_upper)
+- **Used by 17:** [`StepsBelow.B_eq_Bk`](../lean_stage3/StepsBelow.md#StepsBelow-B_eq_Bk), [`StepsBelow.B_nat`](../lean_stage3/StepsBelow.md#StepsBelow-B_nat), [`StepsBelow.Bk`](../lean_stage3/StepsBelow.md#StepsBelow-Bk), [`StepsBelow.Bk_continuous`](../lean_stage3/StepsBelow.md#StepsBelow-Bk_continuous), [`StepsBelow.Bk_eq`](../lean_stage3/StepsBelow.md#StepsBelow-Bk_eq), [`StepsBelow.D_nat`](../lean_stage3/StepsBelow.md#StepsBelow-D_nat), [`StepsBelow.D_nat_le`](../lean_stage3/StepsBelow.md#StepsBelow-D_nat_le), [`StepsBelow.K_one`](../lean_stage3/StepsBelow.md#StepsBelow-K_one), [`StepsPeak.K_eq`](#StepsPeak-K_eq), [`StepsPeak.K_self`](#StepsPeak-K_self), [`StepsPeak.norm_K_le`](#StepsPeak-norm_K_le), [`StepsPeak.peak_at_zero`](#StepsPeak-peak_at_zero), [`StepsPeak.peak_formula`](#StepsPeak-peak_formula), [`StepsPeak.peak_height`](#StepsPeak-peak_height), [`StepsPeak.peak_identity`](#StepsPeak-peak_identity), [`StepsRate.norm_K_le_pow`](../lean_stage3/StepsRate.md#StepsRate-norm_K_le_pow), [`StepsRate.rate_upper`](../lean_stage3/StepsRate.md#StepsRate-rate_upper)
 
 <a name="StepsPeak-C1"></a>
 ### `StepsPeak.C1`
@@ -485,8 +487,9 @@ K N s a = s * ((N:ℂ) ^ (a - s) - 2 ^ (a - s)) / (a - s) - (s - 1) * ((N:ℂ) ^
 
 **Definitions its proof touches:** [`StepsPeak.K`](#StepsPeak-K), [`StepsPeak.slope`](#StepsPeak-slope)
 
-**Feeds** (2 that use it)
+**Feeds** (3 that use it)
 
+  - [`StepsBelow.K_one`](../lean_stage3/StepsBelow.md#StepsBelow-K_one) (StepsBelow) — `` K N s 1 = kap s * (N:ℂ) ^ (1 - s) + c0 s + c1 s / N ``
   - [`StepsPeak.norm_K_le`](#StepsPeak-norm_K_le) — `` ‖K N s a‖ ≤ (‖s‖ / ‖a - s‖ + ‖s - 1‖ / ‖a - s + 1‖) * 2 ``
   - [`StepsRate.norm_K_le_pow`](../lean_stage3/StepsRate.md#StepsRate-norm_K_le_pow) (StepsRate) — `` ‖K N s a‖ ≤ (‖s‖ / ‖a - s‖ + ‖s - 1‖ / ‖a - s + 1‖) * 2 * (N : ℝ) ^ δ ``
 

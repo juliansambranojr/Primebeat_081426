@@ -24206,6 +24206,169 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Compression.lean",
+  "module": "Stage3.Compression",
+  "stem": "Compression",
+  "header": "Compression — block R11 of `lean_stage3/design/runs.md`. 2026-11-23. The primes as the compression of the composites. The combinations of the primes up to `√N` never repeat and do not fill the numbers up to `N`. What they leave is exactly the new primes, each with its multiples, and no number is counted twice: a number up to `N` has at most one prime factor above `√N`.",
+  "imports": [
+   "Stage3.CompositeSplit"
+  ],
+  "opens": [
+   "Classical",
+   "Finset",
+   "SieveExact"
+  ],
+  "namespaces": [
+   "Compression"
+  ],
+  "lines": 85,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/CompositeSplit.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "smooth",
+    "ns": "Compression",
+    "full": "Compression.smooth",
+    "line": 25,
+    "why": "The numbers from `1` to `N` that are combinations of the primes up to `√N`: every prime dividing them is at most `√N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℕ",
+    "file": "lean_stage3/Stage3/Compression.lean",
+    "id": "lean_stage3/Stage3/Compression.lean::Compression.smooth",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Compression.lean::Compression.compression"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "newPrimes",
+    "ns": "Compression",
+    "full": "Compression.newPrimes",
+    "line": 29,
+    "why": "The new primes: those above `√N`, up to `N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "Finset ℕ",
+    "file": "lean_stage3/Stage3/Compression.lean",
+    "id": "lean_stage3/Stage3/Compression.lean::Compression.newPrimes",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Compression.lean::Compression.compression",
+     "lean_stage3/Stage3/Compression.lean::Compression.nonSmooth_eq_biUnion"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "unique_new_prime",
+    "ns": "Compression",
+    "full": "Compression.unique_new_prime",
+    "line": 33,
+    "why": "No number is claimed twice. A number up to `N` has at most one prime factor above `√N`.",
+    "sorry": false,
+    "needs": [
+     "hn1 : 1 ≤ n",
+     "hn : n ≤ N",
+     "hp : p.Prime",
+     "hq : q.Prime",
+     "hpN : Nat.sqrt N < p",
+     "hqN : Nat.sqrt N < q",
+     "hpn : p ∣ n",
+     "hqn : q ∣ n"
+    ],
+    "proves": "p = q",
+    "file": "lean_stage3/Stage3/Compression.lean",
+    "id": "lean_stage3/Stage3/Compression.lean::Compression.unique_new_prime",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Compression.lean::Compression.compression"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "nonSmooth_eq_biUnion",
+    "ns": "Compression",
+    "full": "Compression.nonSmooth_eq_biUnion",
+    "line": 45,
+    "why": "The numbers that are not combinations of the primes so far are the multiples of the new primes.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "(Icc 1 N).filter (fun n => ¬ ∀ p : ℕ, p.Prime → p ∣ n → p ≤ Nat.sqrt N) = (newPrimes N).biUnion (fun p => (Icc 1 N).filter (fun n => p ∣ n))",
+    "file": "lean_stage3/Stage3/Compression.lean",
+    "id": "lean_stage3/Stage3/Compression.lean::Compression.nonSmooth_eq_biUnion",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Compression.lean::Compression.newPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Compression.lean::Compression.newPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Compression.lean::Compression.compression"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "compression",
+    "ns": "Compression",
+    "full": "Compression.compression",
+    "line": 59,
+    "why": "The compression. The numbers up to `N` are the combinations of the primes up to `√N`, and for each new prime its multiples up to `N`, with nothing counted twice.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "N = smooth N + ∑ p ∈ newPrimes N, N / p",
+    "file": "lean_stage3/Stage3/Compression.lean",
+    "id": "lean_stage3/Stage3/Compression.lean::Compression.compression",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Compression.lean::Compression.newPrimes",
+     "lean_stage3/Stage3/Compression.lean::Compression.nonSmooth_eq_biUnion",
+     "lean_stage3/Stage3/Compression.lean::Compression.smooth",
+     "lean_stage3/Stage3/Compression.lean::Compression.unique_new_prime",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Compression.lean::Compression.newPrimes",
+     "lean_stage3/Stage3/Compression.lean::Compression.nonSmooth_eq_biUnion",
+     "lean_stage3/Stage3/Compression.lean::Compression.smooth",
+     "lean_stage3/Stage3/Compression.lean::Compression.unique_new_prime",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples"
+    ],
+    "layer": "count",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/ContourShift.lean",
   "module": "Stage3.ContourShift",
   "stem": "ContourShift",
@@ -55664,6 +55827,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/Compression.lean::Compression.compression",
      "lean_stage3/Stage3/SelfBound.lean::SelfBound.log_sum_eq",
      "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum"
     ]
@@ -57771,6 +57935,817 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/StepsBelow.lean",
+  "module": "Stage3.StepsBelow",
+  "stem": "StepsBelow",
+  "header": "StepsBelow — block R9 of `lean_stage3/design/runs.md`, the turned steps. 2026-11-23.",
+  "imports": [
+   "Stage3.StepsRate",
+   "Stage3.ThetaConverse"
+  ],
+  "opens": [
+   "Complex",
+   "Filter",
+   "Kadiri",
+   "MeasureTheory",
+   "Set",
+   "StepsPeak",
+   "Topology"
+  ],
+  "namespaces": [
+   "StepsBelow"
+  ],
+  "lines": 229,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/StepsRate.lean",
+   "lean_stage3/Stage3/ThetaConverse.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "coef",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.coef",
+    "line": 39,
+    "why": "The weight `a_n = Λ(n)·n^(−s)`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "n : ℕ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef_zero"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tent",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.tent",
+    "line": 42,
+    "why": "The tent `(x − n)_+`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "x : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_interp",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq_zero",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_nonneg"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Bk",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.Bk",
+    "line": 45,
+    "why": "The staircase truncated to the first `K` steps.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "K : ℕ",
+     "x : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_interp",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "B",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.B",
+    "line": 48,
+    "why": "The staircase `B(x) = Σ_{n≤x} a_n·(x − n)`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "x : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_interp",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "coef_zero",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.coef_zero",
+    "line": 50,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : ℂ"
+    ],
+    "proves": "coef s 0 = 0",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "tent_nonneg",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.tent_nonneg",
+    "line": 52,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "n : ℕ",
+     "x : ℝ"
+    ],
+    "proves": "0 ≤ tent n x",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "tent_eq_zero",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.tent_eq_zero",
+    "line": 54,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : x ≤ n"
+    ],
+    "proves": "tent n x = 0",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_interp",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tent_eq",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.tent_eq",
+    "line": 57,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "h : (n:ℝ) ≤ x"
+    ],
+    "proves": "tent n x = x - n",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_interp",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Bk_eq",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.Bk_eq",
+    "line": 60,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hK : x < K",
+     "hKK : K ≤ K'"
+    ],
+    "proves": "Bk s K' x = Bk s K x",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "lt_floor_succ",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.lt_floor_succ",
+    "line": 69,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "x < ((⌊x⌋₊ + 1 : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.lt_floor_succ",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "B_eq_Bk",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.B_eq_Bk",
+    "line": 72,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hK : x < K"
+    ],
+    "proves": "B s x = Bk s K x",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_eq",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.lt_floor_succ",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_eq",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.lt_floor_succ",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_interp",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Bk_continuous",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.Bk_continuous",
+    "line": 78,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "K : ℕ"
+    ],
+    "proves": "Continuous (Bk s K)",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_continuous",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_continuous"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "B_continuous",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.B_continuous",
+    "line": 82,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : ℂ"
+    ],
+    "proves": "Continuous (B s)",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_continuous",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.lt_floor_succ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.lt_floor_succ"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "B_nat",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.B_nat",
+    "line": 91,
+    "why": "At the integers the staircase is the cutoff times the turned steps.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "hN : 2 ≤ N"
+    ],
+    "proves": "B s N = (N : ℂ) * S N s",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.coef",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.ramp"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "B_interp",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.B_interp",
+    "line": 108,
+    "why": "Linear between the integers.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "N : ℕ",
+     "h1 : (N:ℝ) ≤ x",
+     "h2 : x ≤ N + 1"
+    ],
+    "proves": "B s x = ((1 - (x - N) : ℝ) : ℂ) * B s N + ((x - N : ℝ) : ℂ) * B s ((N + 1 : ℕ) : ℝ)",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_interp",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.tent_eq_zero"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "kap",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.kap",
+    "line": 134,
+    "why": "`κ = 1/((1−s)(2−s))`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.kap",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c0",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.c0",
+    "line": 136,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c0",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat_le",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c1",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.c1",
+    "line": 138,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c1",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat_le",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "natC_ne_zero",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.natC_ne_zero",
+    "line": 140,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N"
+    ],
+    "proves": "(N:ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_ne_zero",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_cpow_two_sub"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "natC_cpow_two_sub",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.natC_cpow_two_sub",
+    "line": 146,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "s : ℂ"
+    ],
+    "proves": "(N:ℂ) ^ (2 - s) = (N:ℂ) ^ (1 - s) * N",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_cpow_two_sub",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_ne_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_ne_zero"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "K_one",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.K_one",
+    "line": 152,
+    "why": "The smooth term in closed form: `K(1) = κ·N^(1−s) + c₀ + c₁/N`.",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "hs1 : s ≠ 1",
+     "hs2 : s ≠ 2"
+    ],
+    "proves": "K N s 1 = kap s * (N:ℂ) ^ (1 - s) + c0 s + c1 s / N",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c0",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c1",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.kap",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_cpow_two_sub",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_ne_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c0",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c1",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.kap",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_cpow_two_sub",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_ne_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "D",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.D",
+    "line": 167,
+    "why": "The staircase less its smooth part.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "x : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.kap"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.kap"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "D_nat",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.D_nat",
+    "line": 169,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "hs1 : s ≠ 1",
+     "hs2 : s ≠ 2"
+    ],
+    "proves": "D s N = (N:ℂ) * (S N s - K N s 1) + (N:ℂ) * c0 s + c1 s",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c0",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c1",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_cpow_two_sub",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_ne_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c0",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c1",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_cpow_two_sub",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.natC_ne_zero",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "D_nat_le",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.D_nat_le",
+    "line": 176,
+    "why": "",
+    "sorry": false,
+    "needs": [
+     "hN : 2 ≤ N",
+     "hs1 : s ≠ 1",
+     "hs2 : s ≠ 2",
+     "hδ : 0 ≤ δ",
+     "H : ‖S N s - K N s 1‖ ≤ C * (N:ℝ) ^ δ"
+    ],
+    "proves": "‖D s N‖ ≤ (|C| + ‖c0 s‖ + ‖c1 s‖) * (N:ℝ) ^ (1 + δ)",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c0",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c0",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.c1",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K",
+     "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "pow_diff_le",
+    "ns": "StepsBelow",
+    "full": "StepsBelow.pow_diff_le",
+    "line": 200,
+    "why": "A difference of the smooth power, by the integral of its derivative.",
+    "sorry": false,
+    "needs": [
+     "hs : 0 < s.re",
+     "hs2 : s ≠ 2",
+     "hx : 1 ≤ x",
+     "hxy : x ≤ y"
+    ],
+    "proves": "‖(y:ℂ) ^ (2 - s) - (x:ℂ) ^ (2 - s)‖ ≤ ‖2 - s‖ * (y * (y - x))",
+    "file": "lean_stage3/Stage3/StepsBelow.lean",
+    "id": "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.pow_diff_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/StepsPeak.lean",
   "module": "Stage3.StepsPeak",
   "stem": "StepsPeak",
@@ -57820,6 +58795,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.hasDerivAt_ramp"
@@ -57884,6 +58860,9 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat_le",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.S_eq_integral",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_at_zero",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.peak_formula",
@@ -57917,6 +58896,14 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_eq_Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.B_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_continuous",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.Bk_eq",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.D_nat_le",
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_eq",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.K_self",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le",
@@ -58373,6 +59360,7 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/StepsBelow.lean::StepsBelow.K_one",
      "lean_stage3/Stage3/StepsPeak.lean::StepsPeak.norm_K_le",
      "lean_stage3/Stage3/StepsRate.lean::StepsRate.norm_K_le_pow"
     ]
@@ -86785,11 +87773,12 @@
    "Stage3.StepsRate",
    "Stage3.BandJoin",
    "Stage3.RateBelow",
-   "Stage3.CompositeSplit"
+   "Stage3.CompositeSplit",
+   "Stage3.Compression"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 194,
+  "lines": 195,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -86814,6 +87803,7 @@
    "lean_stage3/Stage3/ClosedLoopChain.lean",
    "lean_stage3/Stage3/ClosedLoopJoin.lean",
    "lean_stage3/Stage3/CompositeSplit.lean",
+   "lean_stage3/Stage3/Compression.lean",
    "lean_stage3/Stage3/ContourShift.lean",
    "lean_stage3/Stage3/CountEuler.lean",
    "lean_stage3/Stage3/CountModes.lean",
