@@ -48494,7 +48494,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
+    ]
    },
    {
     "kind": "theorem",
@@ -85818,7 +85820,7 @@
   "namespaces": [
    "WholeChain"
   ],
-  "lines": 94,
+  "lines": 95,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -85848,6 +85850,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
@@ -85864,6 +85867,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.WobbleSqrt",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
@@ -85881,7 +85885,7 @@
     "name": "table_side",
     "ns": "WholeChain",
     "full": "WholeChain.table_side",
-    "line": 50,
+    "line": 51,
     "why": "The table's side. What is proved of the table at every `N`, with no zero in the statement.",
     "sorry": false,
     "needs": [],
@@ -85920,7 +85924,7 @@
     "name": "steps_side",
     "ns": "WholeChain",
     "full": "WholeChain.steps_side",
-    "line": 69,
+    "line": 70,
     "why": "The steps' side. What a zero does: it carries weight that is not zero, it makes the staircase leave every bound below its rate, and it makes the turned steps to a cutoff do the same.",
     "sorry": false,
     "needs": [],

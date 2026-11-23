@@ -12,7 +12,7 @@ sealed: false
 
 **Question.** Block J8 of `lean_stage3/design/closedloop.md`. Do all the blocks of the day end in a single place?
 
-**What was proved.** `lean_stage3/Stage3/WholeChain.lean`: `module_lines` 93 lines, `theorems_proved` 3 theorems, `defs` 0 definitions, `sorries` 0 sorries, `pins` 3 axiom pins. The first build had `errors_first` 0 error lines; clean on build `builds` 1. The package builds at `jobs_package` 8881 jobs, the module at `jobs_module` 8850. Traps unchanged, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
+**What was proved.** `lean_stage3/Stage3/WholeChain.lean`: `module_lines` 94 lines, `theorems_proved` 3 theorems, `defs` 0 definitions, `sorries` 0 sorries, `pins` 3 axiom pins. The first build had `errors_first` 0 error lines; clean on build `builds` 1. The package builds at `jobs_package` 8881 jobs, the module at `jobs_module` 8850. Traps unchanged, `traps_added` 0; `assumed_pins` 0; loop version `loop_version` 22, `steps_skipped` 2 steps skipped as before.
 
 `whole_chain`: the spiral link is the Riemann hypothesis; it is a single zero at each height; it is every cell of every dyadic ladder at square-root size; it is the sieve's wobble at square-root size; it is every zero on the middle circle of the band; it is every zero's mode the size of its mirror's; it is every zero a centre; it is the staircase not running away.
 

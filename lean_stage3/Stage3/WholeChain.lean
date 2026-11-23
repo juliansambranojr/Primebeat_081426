@@ -39,8 +39,9 @@ theorem whole_chain :
     (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros,
       ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧
     (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧
-    (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) :=
-  ⟨OneChain.one_chain.1, OneChain.one_chain.2.1, OneChain.one_chain.2.2.2,
+    (SpiralLink.SpiralLink ↔ Saddle.NoRunaway) := by
+  have h := OneChain.one_chain
+  exact ⟨h.1, h.2.1, h.2.2.2,
     HalfSieve.spiralLink_iff_wobble, BandJoin.spiralLink_iff_middle,
     ShareLink.spiralLink_iff_meet, Saddle.spiralLink_iff_centres,
     Saddle.spiralLink_iff_noRunaway⟩

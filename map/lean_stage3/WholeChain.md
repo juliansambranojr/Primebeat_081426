@@ -4,7 +4,7 @@
 
 WholeChain — block J8 of `lean_stage3/design/closedloop.md`. 2026-11-23. The closing theorem. `OneChain.one_chain` was written before the later blocks of the day. This file names them, so that every branch of the tree ends in one place.
 
-3 theorems, 0 definitions, 94 lines. 
+3 theorems, 0 definitions, 95 lines. 
 
 **Imports:** [`Compression`](../lean_stage3/Compression.md), [`RunTheorems`](../lean_stage3/RunTheorems.md), [`Saddle`](../lean_stage3/Saddle.md), [`SelfBound`](../lean_stage3/SelfBound.md), [`StepsBelow`](../lean_stage3/StepsBelow.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -18,28 +18,30 @@ flowchart LR
   n2["<b>steps_side ■</b><br/>(∀ ρ : NontrivialZeros, -(analyticOrderNatAt riemannZeta (ρ : ℂ)…"]:::thm
   x0(["<b>BandJoin</b><br/>spiralLink_iff_middle"]):::ext
   x1(["<b>HalfSieve</b><br/>spiralLink_iff_wobble"]):::ext
-  x2(["<b>Saddle</b><br/>spiralLink_iff_centres<br/>spiralLink_iff_noRunaway"]):::ext
-  x3(["<b>ShareLink</b><br/>spiralLink_iff_meet"]):::ext
-  x4(["<b>CompositeSplit</b><br/>composites_no_signs"]):::ext
-  x5(["<b>Compression</b><br/>compression"]):::ext
-  x6(["<b>RunTheorems</b><br/>mode_fold"]):::ext
-  x7(["<b>SelfBound</b><br/>self_bound"]):::ext
-  x8(["<b>SieveExact</b><br/>pi_by_sieve"]):::ext
-  x9(["<b>RateBelow</b><br/>rain_psi"]):::ext
-  x10(["<b>StepsBelow</b><br/>rain_steps"]):::ext
-  x11(["<b>StepsPole</b><br/>steps_pole_ne_zero"]):::ext
+  x2(["<b>OneChain</b><br/>one_chain"]):::ext
+  x3(["<b>Saddle</b><br/>spiralLink_iff_centres<br/>spiralLink_iff_noRunaway"]):::ext
+  x4(["<b>ShareLink</b><br/>spiralLink_iff_meet"]):::ext
+  x5(["<b>CompositeSplit</b><br/>composites_no_signs"]):::ext
+  x6(["<b>Compression</b><br/>compression"]):::ext
+  x7(["<b>RunTheorems</b><br/>mode_fold"]):::ext
+  x8(["<b>SelfBound</b><br/>self_bound"]):::ext
+  x9(["<b>SieveExact</b><br/>pi_by_sieve"]):::ext
+  x10(["<b>RateBelow</b><br/>rain_psi"]):::ext
+  x11(["<b>StepsBelow</b><br/>rain_steps"]):::ext
+  x12(["<b>StepsPole</b><br/>steps_pole_ne_zero"]):::ext
   x0 -.-> n0
   x1 -.-> n0
   x10 -.-> n2
   x11 -.-> n2
+  x12 -.-> n2
   x2 -.-> n0
   x3 -.-> n0
-  x4 -.-> n1
+  x4 -.-> n0
   x5 -.-> n1
   x6 -.-> n1
   x7 -.-> n1
   x8 -.-> n1
-  x9 -.-> n2
+  x9 -.-> n1
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -69,10 +71,11 @@ line 32 · arrows read from text
 (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀) ∧ (SpiralLink.SpiralLink ↔ HalfSieve.WobbleSqrt) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2 : ℂ) ^ (-(ρ : ℂ))‖ = BandJoin.bandR (1 / 2)) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, Saddle.stretch ρ = 1) ∧ (SpiralLink.SpiralLink ↔ Saddle.NoRunaway)
 ```
 
-**Fed by** (5 theorems its proof uses)
+**Fed by** (6 theorems its proof uses)
 
   - [`BandJoin.spiralLink_iff_middle`](../lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) (BandJoin) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ``
   - [`HalfSieve.spiralLink_iff_wobble`](../lean_stage3/HalfSieve.md#HalfSieve-spiralLink_iff_wobble) (HalfSieve) — `` SpiralLink.SpiralLink ↔ WobbleSqrt ``
+  - [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain) (OneChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, restoringFor… ``
   - [`Saddle.spiralLink_iff_centres`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_centres) (Saddle) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1 ``
   - [`Saddle.spiralLink_iff_noRunaway`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) (Saddle) — `` SpiralLink.SpiralLink ↔ NoRunaway ``
   - [`ShareLink.spiralLink_iff_meet`](../lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet) (ShareLink) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ``
@@ -84,7 +87,7 @@ line 32 · arrows read from text
 <a name="WholeChain-table_side"></a>
 ### `WholeChain.table_side`
 
-line 50 · arrows read from text
+line 51 · arrows read from text
 
 **Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
@@ -111,7 +114,7 @@ line 50 · arrows read from text
 <a name="WholeChain-steps_side"></a>
 ### `WholeChain.steps_side`
 
-line 69 · arrows read from text
+line 70 · arrows read from text
 
 **Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 

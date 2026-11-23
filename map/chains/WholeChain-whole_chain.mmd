@@ -1,64 +1,103 @@
 flowchart LR
-  f0["<b>Nonvanishing</b><br/>1 used"]:::ext
-  f1["<b>JensenCount</b><br/>12 used"]:::thm
-  f2["<b>LandauWindow</b><br/>2 used"]:::thm
-  f3["<b>ClosedLoopJoin</b><br/>6 used"]:::thm
-  f4["<b>PsiToPi</b><br/>3 used"]:::thm
-  f5["<b>CellResidual</b><br/>4 used"]:::thm
-  f6["<b>LineBound</b><br/>54 used"]:::thm
-  f7["<b>Abscissa</b><br/>6 used"]:::thm
-  f8["<b>RowLeaves</b><br/>2 used"]:::thm
+  f0["<b>Nonvanishing</b><br/>4 used"]:::ext
+  f1["<b>AssemblyFloor</b><br/>5 used"]:::thm
+  f2["<b>JensenCount</b><br/>17 used"]:::thm
+  f3["<b>LandauWindow</b><br/>2 used"]:::thm
+  f4["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
+  f5["<b>PerronKernel</b><br/>33 used"]:::thm
+  f6["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f7["<b>RvMCrude</b><br/>3 used"]:::thm
+  f8["<b>ArgCrude</b><br/>3 used"]:::thm
   f9["<b>SieveExact</b><br/>15 used"]:::thm
-  f10["<b>SieveResidual</b><br/>3 used"]:::thm
-  f11["<b>Statement</b><br/>1 used"]:::thm
-  f12["<b>ThetaLine</b><br/>3 used"]:::thm
-  f13["<b>ThetaPi</b><br/>1 used"]:::thm
-  f14["<b>ThetaPull</b><br/>6 used"]:::thm
-  f15["<b>ThetaPsi</b><br/>14 used"]:::thm
-  f16["<b>VonKochScaffold</b><br/>24 used"]:::thm
-  f17["<b>PiToPsi</b><br/>12 used"]:::thm
-  f18["<b>ThetaConverse</b><br/>12 used"]:::thm
-  f19["<b>RateBelow</b><br/>1 used"]:::thm
-  f20["<b>WeilOnLine</b><br/>1 used"]:::thm
-  f21["<b>SpiralLink</b><br/>6 used"]:::thm
-  f22["<b>BandJoin</b><br/>5 used"]:::thm
-  f23["<b>HalfSieve</b><br/>11 used"]:::thm
-  f24["<b>ShareLink</b><br/>4 used"]:::thm
-  f25["<b>Saddle</b><br/>8 used"]:::thm
-  f26["<b>WholeChain</b><br/>whole_chain"]:::end_
-  f2 --> f3
-  f0 --> f5
-  f4 --> f5
-  f1 --> f6
-  f4 --> f6
-  f6 --> f7
-  f4 --> f8
-  f4 --> f10
-  f9 --> f10
-  f7 --> f12
-  f12 --> f14
-  f14 --> f15
-  f6 --> f16
+  f10["<b>Statement</b><br/>1 used"]:::thm
+  f11["<b>PsiToPi</b><br/>13 used"]:::thm
+  f12["<b>LineBound</b><br/>54 used"]:::thm
+  f13["<b>Abscissa</b><br/>6 used"]:::thm
+  f14["<b>RowLeaves</b><br/>2 used"]:::thm
+  f15["<b>SieveResidual</b><br/>3 used"]:::thm
+  f16["<b>Stirling</b><br/>20 used"]:::thm
+  f17["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f18["<b>ArgLegs</b><br/>10 used"]:::thm
+  f19["<b>ArgCount</b><br/>14 used"]:::thm
+  f20["<b>ThetaLine</b><br/>3 used"]:::thm
+  f21["<b>ThetaPi</b><br/>1 used"]:::thm
+  f22["<b>ThetaPull</b><br/>6 used"]:::thm
+  f23["<b>ThetaPsi</b><br/>14 used"]:::thm
+  f24["<b>VonKochScaffold</b><br/>24 used"]:::thm
+  f25["<b>ThetaConverse</b><br/>12 used"]:::thm
+  f26["<b>RateBelow</b><br/>1 used"]:::thm
+  f27["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f28["<b>SpiralLink</b><br/>10 used"]:::thm
+  f29["<b>BandJoin</b><br/>5 used"]:::thm
+  f30["<b>ShareLink</b><br/>4 used"]:::thm
+  f31["<b>Saddle</b><br/>8 used"]:::thm
+  f32["<b>ZeroSum</b><br/>7 used"]:::thm
+  f33["<b>Assembly</b><br/>8 used"]:::thm
+  f34["<b>ContourShift</b><br/>29 used"]:::thm
+  f35["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f36["<b>EdgeBound</b><br/>17 used"]:::thm
+  f37["<b>Glue</b><br/>5 used"]:::thm
+  f38["<b>GlueFloor</b><br/>8 used"]:::thm
+  f39["<b>PiToPsi</b><br/>13 used"]:::thm
+  f40["<b>CellResidual</b><br/>16 used"]:::thm
+  f41["<b>HalfSieve</b><br/>11 used"]:::thm
+  f42["<b>OneChain</b><br/>2 used"]:::thm
+  f43["<b>WholeChain</b><br/>whole_chain"]:::end_
+  f3 --> f4
+  f2 --> f6
+  f7 --> f8
+  f10 --> f11
+  f2 --> f12
+  f11 --> f12
+  f12 --> f13
+  f11 --> f14
+  f9 --> f15
+  f11 --> f15
+  f7 --> f16
   f8 --> f17
-  f11 --> f17
   f16 --> f17
-  f13 --> f18
-  f15 --> f18
-  f16 --> f18
+  f17 --> f18
+  f6 --> f19
   f18 --> f19
-  f3 --> f21
-  f20 --> f21
-  f21 --> f22
-  f10 --> f23
-  f17 --> f23
-  f21 --> f23
-  f21 --> f24
-  f19 --> f25
+  f13 --> f20
+  f20 --> f22
+  f22 --> f23
+  f12 --> f24
+  f21 --> f25
+  f23 --> f25
   f24 --> f25
-  f5 --> f26
-  f22 --> f26
-  f23 --> f26
   f25 --> f26
+  f4 --> f28
+  f27 --> f28
+  f28 --> f29
+  f28 --> f30
+  f26 --> f31
+  f30 --> f31
+  f32 --> f33
+  f2 --> f34
+  f33 --> f34
+  f34 --> f35
+  f35 --> f36
+  f36 --> f37
+  f1 --> f38
+  f5 --> f38
+  f11 --> f38
+  f19 --> f38
+  f37 --> f38
+  f14 --> f39
+  f24 --> f39
+  f38 --> f39
+  f0 --> f40
+  f39 --> f40
+  f15 --> f41
+  f28 --> f41
+  f39 --> f41
+  f28 --> f42
+  f40 --> f42
+  f29 --> f43
+  f31 --> f43
+  f41 --> f43
+  f42 --> f43
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

@@ -14,7 +14,7 @@ OneChain — block J4 of `lean_stage3/design/closedloop.md`. 2026-11-23. The cap
 ```mermaid
 flowchart LR
   n0["<b>spiralLink_iff_cells</b><br/>SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSq…"]:::thm
-  n1["<b>one_chain ■</b><br/>(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.Spiral…"]:::thm
+  n1["<b>one_chain</b><br/>(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.Spiral…"]:::thm
   n2["<b>table_of_spiralLink ■</b><br/>∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ …"]:::thm
   n3["<b>spiralLink_of_finite ■</b><br/>SpiralLink.SpiralLink"]:::thm
   n4["<b>spiralLink_of_attained ■</b><br/>SpiralLink.SpiralLink"]:::thm
@@ -24,21 +24,23 @@ flowchart LR
   x0(["<b>CellResidual</b><br/>RH_iff_cells<br/>table_cell_resid"]):::ext
   x1(["<b>ClosedLoopJoin</b><br/>rh_iff_force_zero"]):::ext
   x2(["<b>SpiralLink</b><br/>rh_iff_spiralLink<br/>spiralLink_iff_one"]):::ext
-  x3(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
-  x4(["<b>AttainedPi</b><br/>attained_off_line_pi"]):::ext
-  x5(["<b>FilterAttained</b><br/>attained_psi"]):::ext
-  x6(["<b>FilterAccum</b><br/>rh_of_finite_accumulation"]):::ext
-  x7(["<b>CountEuler</b><br/>euler_exposed_false"]):::ext
+  x3(["<b>WholeChain</b><br/>whole_chain"]):::ext
+  x4(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
+  x5(["<b>AttainedPi</b><br/>attained_off_line_pi"]):::ext
+  x6(["<b>FilterAttained</b><br/>attained_psi"]):::ext
+  x7(["<b>FilterAccum</b><br/>rh_of_finite_accumulation"]):::ext
+  x8(["<b>CountEuler</b><br/>euler_exposed_false"]):::ext
   n0 --> n1
+  n1 -.-> x3
   x0 -.-> n0
   x0 -.-> n2
   x1 -.-> n1
   x2 -.-> n1
-  x3 -.-> n3
-  x4 -.-> n4
-  x5 -.-> n5
-  x6 -.-> n6
-  x7 -.-> n7
+  x4 -.-> n3
+  x5 -.-> n4
+  x6 -.-> n5
+  x7 -.-> n6
+  x8 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -102,7 +104,9 @@ line 61 · arrows read from text
 
 **Definitions its proof touches:** [`CellResidual.CellsSqrt`](../lean_stage3/CellResidual.md#CellResidual-CellsSqrt), [`ClosedLoopJoin.restoringForce`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-restoringForce), [`SpiralLink.OneAtEachHeight`](../lean_stage3/SpiralLink.md#SpiralLink-OneAtEachHeight), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 
 <a name="OneChain-table_of_spiralLink"></a>
 ### `OneChain.table_of_spiralLink`

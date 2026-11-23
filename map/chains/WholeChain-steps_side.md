@@ -1,6 +1,6 @@
 # What `WholeChain.steps_side` rests on
 
-[`WholeChain.steps_side`](../lean_stage3/WholeChain.md#WholeChain-steps_side) in `lean_stage3/Stage3/WholeChain.lean`, line 69.
+[`WholeChain.steps_side`](../lean_stage3/WholeChain.md#WholeChain-steps_side) in `lean_stage3/Stage3/WholeChain.lean`, line 70.
 
 **Why.** The steps' side. What a zero does: it carries weight that is not zero, it makes the staircase leave every bound below its rate, and it makes the turned steps to a cutoff do the same.
 

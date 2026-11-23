@@ -1,5 +1,5 @@
 key	value	source
-module_lines	93	wc -l lean_stage3/Stage3/WholeChain.lean
+module_lines	94	wc -l lean_stage3/Stage3/WholeChain.lean
 theorems_proved	3	grep -c ^theorem lean_stage3/Stage3/WholeChain.lean
 defs	0	grep -c ^def
 axioms	3	#print axioms: propext, Classical.choice, Quot.sound
