@@ -188,3 +188,23 @@ tree ends in one file.
 These are conjunctions of theorems already proved. Nothing new is proved here.
 
 **Not here.** `SpiralLink` with no hypothesis.
+
+## J9 The Holy Family's channel — `Stage3/HolyChannel.lean`
+
+Julian, 2026-11-23: primes are the seal of the composites; every prime carries
+the first residual, the Holy Family's uneven pair 1/3 and 2/3, as a seed and
+never resolves it. The zero is the mirror that lets the residual pass: it sits
+at the pair's midpoint, the channel, and is never a member of the pair. Two
+facing mirrors cannot tell A from B only when they are one mirror.
+
+- `holy_pair_shares`: a zero whose share is the support `J` has its mirror at
+  the condition `M`. The Holy Family is the shape of a pair split unevenly.
+- `member_is_two`: a zero at a member's share is a different point from its
+  mirror, and its mode does not meet its mirror's.
+- `meet_iff_channel`: a zero meets its mirror exactly when its share is the
+  Holy Family's midpoint; `channel_iff_self_mirror`: exactly when it is its own
+  mirror.
+- `ZeroIsChannel`: every zero sits at the midpoint of the Holy Family.
+  `spiralLink_iff_channel`: `SpiralLink ↔ ZeroIsChannel`.
+
+**Not here.** `ZeroIsChannel` with no hypothesis.

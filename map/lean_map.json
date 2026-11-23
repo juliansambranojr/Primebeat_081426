@@ -22963,7 +22963,13 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_is_mirror_pair",
-     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_pair_area"
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_pair_area",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half"
     ]
    },
    {
@@ -22991,7 +22997,8 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
-     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force"
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two"
     ]
    },
    {
@@ -23020,7 +23027,8 @@
     ],
     "layer": "count",
     "used_by": [
-     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force"
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two"
     ]
    },
    {
@@ -23046,7 +23054,9 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half"
+    ]
    },
    {
     "kind": "theorem",
@@ -23071,7 +23081,9 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares"
+    ]
    },
    {
     "kind": "theorem",
@@ -23923,6 +23935,7 @@
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
@@ -37852,6 +37865,280 @@
     "used_by": [
      "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/HolyChannel.lean",
+  "module": "Stage3.HolyChannel",
+  "stem": "HolyChannel",
+  "header": "HolyChannel — block J9 of `lean_stage3/design/closedloop.md`. 2026-11-23. Julian's Holy Family is an uneven mirror pair: support `J = 1/3`, condition `M = 2/3`, adding to one, the condition the mirror of the support. Every prime carries that pair as its residual and never resolves it. The zero is the channel the residual passes through: it sits at the pair's midpoint and is never a member. Two facing mirrors cannot tell A from B exactly when they are one mirror; a zero is its own mirror exactly at the midpoint.",
+  "imports": [
+   "Stage3.ClosedLoopChain",
+   "Stage3.ShareLink"
+  ],
+  "opens": [
+   "ClosedLoopChain",
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "HolyChannel"
+  ],
+  "lines": 102,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ClosedLoopChain.lean",
+   "lean_stage3/Stage3/ShareLink.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "holy",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.holy",
+    "line": 29,
+    "why": "",
+    "sorry": false,
+    "needs": [],
+    "proves": "HolyFamily",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "midpoint_half",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.midpoint_half",
+    "line": 32,
+    "why": "The midpoint of any Holy Family is one half.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "(hf.J + hf.M) / 2 = 1 / 2",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_critical_line"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_critical_line"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "holy_pair_shares",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.holy_pair_shares",
+    "line": 37,
+    "why": "The pair's shape. A zero whose share is the support has its mirror at the condition.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re = hf.J"
+    ],
+    "proves": "((mirrorZ ρ : NontrivialZeros) : ℂ).re = hf.M",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_is_mirror_pair",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_is_mirror_pair",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "member_is_two",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.member_is_two",
+    "line": 44,
+    "why": "A member is two mirrors. A zero at the share of either member of the Holy Family is a different point from its mirror, and at every total above one its mode and its mirror's are different sizes.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re = hf.J ∨ (ρ : ℂ).re = hf.M",
+     "hT : 1 < T"
+    ],
+    "proves": "mirrorZ ρ ≠ ρ ∧ ‖(T : ℂ) ^ (ρ : ℂ)‖ ≠ ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_joseph",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.derive_mary",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "meet_iff_channel",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.meet_iff_channel",
+    "line": 57,
+    "why": "The channel. A zero's mode meets its mirror's exactly when the zero's share is the Holy Family's midpoint.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "hT : 1 < T",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = (hf.J + hf.M) / 2",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "channel_iff_self_mirror",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.channel_iff_self_mirror",
+    "line": 65,
+    "why": "One mirror. A zero is at the channel exactly when it is its own mirror.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "(ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "ZeroIsChannel",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.ZeroIsChannel",
+    "line": 71,
+    "why": "Every zero sits at the midpoint of the Holy Family: the channel.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_channel",
+    "ns": "HolyChannel",
+    "full": "HolyChannel.spiralLink_iff_channel",
+    "line": 76,
+    "why": "The link, as the channel. The spiral link holds exactly when every zero is the channel of the Holy Family.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ ZeroIsChannel",
+    "file": "lean_stage3/Stage3/HolyChannel.lean",
+    "id": "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.ZeroIsChannel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
    }
   ]
  },
@@ -56244,6 +56531,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet"
     ]
    },
@@ -57299,6 +57588,10 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
@@ -57368,6 +57661,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
      "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
@@ -57406,6 +57700,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.channel_iff_self_mirror",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
     ]
@@ -57500,6 +57796,7 @@
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained",
@@ -57564,6 +57861,7 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.spiralLink_iff_channel",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet"
@@ -89653,11 +89951,12 @@
    "Stage3.StepsBelow",
    "Stage3.ShareLink",
    "Stage3.Saddle",
-   "Stage3.WholeChain"
+   "Stage3.WholeChain",
+   "Stage3.HolyChannel"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 199,
+  "lines": 200,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -89705,6 +90004,7 @@
    "lean_stage3/Stage3/GlueFloor.lean",
    "lean_stage3/Stage3/GlueNum.lean",
    "lean_stage3/Stage3/HalfSieve.lean",
+   "lean_stage3/Stage3/HolyChannel.lean",
    "lean_stage3/Stage3/IndicatorContDiff.lean",
    "lean_stage3/Stage3/JensenCount.lean",
    "lean_stage3/Stage3/JointDialGate.lean",

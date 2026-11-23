@@ -7,7 +7,7 @@ ShareLink — block J6 of `lean_stage3/design/closedloop.md`. 2026-11-23. The ta
 8 theorems, 0 definitions, 114 lines. 
 
 **Imports:** [`BandJoin`](../lean_stage3/BandJoin.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Saddle`](../lean_stage3/Saddle.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`HolyChannel`](../lean_stage3/HolyChannel.md), [`Saddle`](../lean_stage3/Saddle.md)
 
 ## The picture
 
@@ -23,8 +23,9 @@ flowchart LR
   n7["<b>spiralLink_iff_meet</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ …"]:::thm
   x0(["<b>Saddle</b><br/>stretch_eq"]):::ext
   x1(["<b>SpiralLink</b><br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
-  x2(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
-  x3(["<b>WholeChain</b><br/>whole_chain"]):::ext
+  x2(["<b>HolyChannel</b><br/>meet_iff_channel<br/>member_is_two"]):::ext
+  x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
@@ -32,11 +33,12 @@ flowchart LR
   n1 --> n4
   n4 --> n7
   n0 -.-> x0
-  n7 -.-> x3
+  n4 -.-> x2
+  n7 -.-> x4
   x1 -.-> n2
   x1 -.-> n4
   x1 -.-> n7
-  x2 -.-> n7
+  x3 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -190,8 +192,10 @@ line 57 · arrows read from text
 
 **Definitions its proof touches:** [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ)
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
+  - [`HolyChannel.meet_iff_channel`](../lean_stage3/HolyChannel.md#HolyChannel-meet_iff_channel) (HolyChannel) — `` ‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = (hf.J + hf.M) / 2 ``
+  - [`HolyChannel.member_is_two`](../lean_stage3/HolyChannel.md#HolyChannel-member_is_two) (HolyChannel) — `` mirrorZ ρ ≠ ρ ∧ ‖(T : ℂ) ^ (ρ : ℂ)‖ ≠ ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ``
   - [`ShareLink.spiralLink_iff_meet`](#ShareLink-spiralLink_iff_meet) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ``
 
 <a name="ShareLink-meet_sqrt_iff"></a>

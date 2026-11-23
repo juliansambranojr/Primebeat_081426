@@ -272,6 +272,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerBands.cFarM`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM) | def | shape | `WeilPowerBands` | ℝ |
 | [`WeilPowerBands.cFarM_le`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM_le) | theorem | shape | `WeilPowerBands` | cFarM m ≤ 1000 * ((m : ℝ) + 1) ^ 2 |
 | [`WeilPowerBands.cFarM_nonneg`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM_nonneg) | theorem | shape | `WeilPowerBands` | 0 ≤ cFarM m |
+| [`HolyChannel.channel_iff_self_mirror`](./lean_stage3/HolyChannel.md#HolyChannel-channel_iff_self_mirror) | theorem | reads ζ | `HolyChannel` | (ρ : ℂ).re = (hf.J + hf.M) / 2 ↔ mirrorZ ρ = ρ |
 | [`PiRemainder.Chigh`](./lean_stage3/PiRemainder.md#PiRemainder-Chigh) | def | reads ζ | `PiRemainder` | ℝ |
 | [`PiRemainder.Chigh_nonneg`](./lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) | theorem | reads ζ | `PiRemainder` | 0 ≤ Chigh |
 | [`Glue.Chn`](./lean_stage3/GlueNum.md#Glue-Chn) | def | reads ζ | `GlueNum` | ℝ |
@@ -781,6 +782,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Expansion.hD_of_window`](./lean/Expansion.md#Expansion-hD_of_window) | theorem | shape | `Expansion` | ∀ y ∈ Icc ((r : ℝ) - (d + 1)) r, Nonvanishing.Mlow r d ≤ iteratedDeriv (d + 1) G y |
 | [`RHPull.holo_logDerivZeta_of_RH`](./lean_stage3/LineBound.md#RHPull-holo_logDerivZeta_of_RH) | theorem | reads ζ | `LineBound` | HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (-T) T \ {1}) |
 | [`Stage3.holo_logDerivZeta_theta`](./lean_stage3/ThetaPsi.md#Stage3-holo_logDerivZeta_theta) | theorem | reads ζ | `ThetaPsi` | HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (-T) T \ {1}) |
+| [`HolyChannel.holy`](./lean_stage3/HolyChannel.md#HolyChannel-holy) | def | counting | `HolyChannel` | HolyFamily |
+| [`HolyChannel.holy_pair_shares`](./lean_stage3/HolyChannel.md#HolyChannel-holy_pair_shares) | theorem | reads ζ | `HolyChannel` | ((mirrorZ ρ : NontrivialZeros) : ℂ).re = hf.M |
 | [`ClosedLoopChain.HolyFamily`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-HolyFamily) | structure | counting | `ClosedLoopChain` | — |
 | [`ClosedLoopChain.holyFamily_force`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_force) | theorem | counting | `ClosedLoopChain` | restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6 |
 | [`ClosedLoopChain.holyFamily_is_mirror_pair`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_is_mirror_pair) | theorem | counting | `ClosedLoopChain` | hf.M = 1 - hf.J |
@@ -1121,6 +1124,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`Zeros.measured_zeros`](./lean/Zeros.md#Zeros-measured_zeros) | def | counting | `Zeros` | List (ℕ × ℕ) |
 | [`Zeros.measured_zeros_all_vanish`](./lean/Zeros.md#Zeros-measured_zeros_all_vanish) | theorem | counting | `Zeros` | ∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ) c.2 = 0 |
 | [`ShareLink.meet_iff`](./lean_stage3/ShareLink.md#ShareLink-meet_iff) | theorem | reads ζ | `ShareLink` | ‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = 1 / 2 |
+| [`HolyChannel.meet_iff_channel`](./lean_stage3/HolyChannel.md#HolyChannel-meet_iff_channel) | theorem | reads ζ | `HolyChannel` | ‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = (hf.J + hf.M) / 2 |
 | [`ShareLink.meet_sqrt_iff`](./lean_stage3/ShareLink.md#ShareLink-meet_sqrt_iff) | theorem | shape | `ShareLink` | ‖(T : ℂ) ^ (ρ : ℂ)‖ = Real.sqrt T ↔ (ρ : ℂ).re = 1 / 2 |
 | [`RHPull.mellin_bump_bounded`](./lean_stage3/LineBound.md#RHPull-mellin_bump_bounded) | theorem | shape | `LineBound` | ∃ B &gt; 0, ∀ w : ℂ, 0 &lt; w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : ℂ)) w‖ ≤ B |
 | [`JointSymbol.mellin_dd`](./lean_stage3/JointSymbol.md#JointSymbol-mellin_dd) | theorem | shape | `JointSymbol` | (∀ y : ℝ, y ≤ 1 → dd f y = 0) ∧ IntegrableOn (fun y : ℝ =&gt; dd f y * (y : ℂ) ^ (-s - 1)) (Ioi 1) ∧ ∫ y in Ioi (1 : ℝ), dd f y * (y : ℂ) ^ (-s - 1) = (1 - (2 : ℂ) ^ (-s)) * ∫ y in Ioi (1 : ℝ), f y * (y … |
@@ -1147,9 +1151,11 @@ Sorted by name. Search this file before saying something is missing.
 | [`ContourShift.mem_zetaWindow`](./lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow) | theorem | reads ζ | `ContourShift` | ρ ∈ Stage3.zetaWindow T₀ |
 | [`WeilBands.mem_zetaWindow_of_online`](./lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online) | theorem | reads ζ | `WeilBands` | ρ ∈ Stage3.zetaWindow T |
 | [`FiniteOffLine.mem_ZF`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) | theorem | reads ζ | `FiniteOffLine` | ρ ∈ ZF T ↔ \|(ρ : ℂ).im\| &lt; T |
+| [`HolyChannel.member_is_two`](./lean_stage3/HolyChannel.md#HolyChannel-member_is_two) | theorem | reads ζ | `HolyChannel` | mirrorZ ρ ≠ ρ ∧ ‖(T : ℂ) ^ (ρ : ℂ)‖ ≠ ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ |
 | [`Stage3.meromorphicOrderAt_xi_eq_zeta`](./lean_stage3/ArgIdentity.md#Stage3-meromorphicOrderAt_xi_eq_zeta) | theorem | reads ζ | `ArgIdentity` | meromorphicOrderAt xi ρ = meromorphicOrderAt riemannZeta ρ |
 | [`ClosedLoopChain.Midpoint`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-Midpoint) | def | counting | `ClosedLoopChain` | ℕ → ℚ |
 | [`ClosedLoopChain.midpoint_base_is_unique`](./lean_stage3/ClosedLoopChain.md#ClosedLoopChain-midpoint_base_is_unique) | theorem | counting | `ClosedLoopChain` | B = 2 |
+| [`HolyChannel.midpoint_half`](./lean_stage3/HolyChannel.md#HolyChannel-midpoint_half) | theorem | counting | `HolyChannel` | (hf.J + hf.M) / 2 = 1 / 2 |
 | [`CompositeSplit.minFac_mem_smallPrimes`](./lean_stage3/CompositeSplit.md#CompositeSplit-minFac_mem_smallPrimes) | theorem | counting | `CompositeSplit` | n.minFac ∈ smallPrimes N |
 | [`MirrorArea.mirror_area`](./lean_stage3/MirrorArea.md#MirrorArea-mirror_area) | theorem | shape | `MirrorArea` | ‖(b : ℂ) ^ ρ‖ * ‖(b : ℂ) ^ (1 - ρ)‖ = b |
 | [`SpiralLink.mirror_mem`](./lean_stage3/SpiralLink.md#SpiralLink-mirror_mem) | theorem | reads ζ | `SpiralLink` | (1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros |
@@ -1873,6 +1879,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`SpiralLink.SpiralLink`](./lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) | def | counting | `SpiralLink` | Prop |
 | [`OneChain.spiralLink_iff_cells`](./lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀ |
 | [`Saddle.spiralLink_iff_centres`](./lean_stage3/Saddle.md#Saddle-spiralLink_iff_centres) | theorem | reads ζ | `Saddle` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1 |
+| [`HolyChannel.spiralLink_iff_channel`](./lean_stage3/HolyChannel.md#HolyChannel-spiralLink_iff_channel) | theorem | reads ζ | `HolyChannel` | SpiralLink.SpiralLink ↔ ZeroIsChannel |
 | [`ShareLink.spiralLink_iff_meet`](./lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet) | theorem | reads ζ | `ShareLink` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ |
 | [`BandJoin.spiralLink_iff_middle`](./lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) | theorem | reads ζ | `BandJoin` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) |
 | [`Saddle.spiralLink_iff_noRunaway`](./lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) | theorem | reads ζ | `Saddle` | SpiralLink.SpiralLink ↔ NoRunaway |
@@ -2438,6 +2445,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ContourShift.zeroGap_pos`](./lean_stage3/ContourShift.md#ContourShift-zeroGap_pos) | theorem | shape | `ContourShift` | 0 &lt; zeroGap T |
 | [`Stage3.zeroinner_arith`](./lean_stage3/Assembly.md#Stage3-zeroinner_arith) | theorem | shape | `Assembly` | 2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK + 1) / Real.pi + 2 * (R + 7 / 8)) + 2 * W ≤ 2 * (7 + 4 * b₁ + 4 * b₂ + 2 * b₃) * L ^ 2 + 2 * W |
 | [`Stage3.zeroinner_floor`](./lean_stage3/AssemblyFloor.md#Stage3-zeroinner_floor) | theorem | shape | `AssemblyFloor` | 2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK + 1) / Real.pi + 2 * (R + 7 / 8)) + 2 * W ≤ 2 * (L ^ 2 + (4 + 4 * b₁ + 4 * b₂) * L + 2 * b₃ + 2) + 2 * W |
+| [`HolyChannel.ZeroIsChannel`](./lean_stage3/HolyChannel.md#HolyChannel-ZeroIsChannel) | def | counting | `HolyChannel` | Prop |
 | [`Stage3.zeroPartialSum`](./lean_stage3/Assembly.md#Stage3-zeroPartialSum) | def | reads ζ | `Assembly` | ℂ |
 | [`ContourShift.zeroPartialSum_eq_sum`](./lean_stage3/ContourShift.md#ContourShift-zeroPartialSum_eq_sum) | theorem | reads ζ | `ContourShift` | Stage3.zeroPartialSum x T' = ∑ p ∈ ZF, ((analyticOrderNatAt riemannZeta p : ℂ) * ((x : ℂ) ^ p / p)) |
 | [`PiZeros.zeroPartialSum_eq_sum`](./lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum) | theorem | reads ζ | `PiZeros` | Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * ((t : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)) |

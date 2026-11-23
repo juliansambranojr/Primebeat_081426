@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J9 of `design/closedloop.md`: `Stage3/HolyChannel.lean`
+
+    DONE        `holy_pair_shares`: a zero at the support's share has its
+                mirror at the condition's. `member_is_two`: a zero at a
+                member's share is two mirrors and does not meet its own.
+                `meet_iff_channel`: a zero meets its mirror exactly at the
+                Holy Family's midpoint. `spiralLink_iff_channel`; one unit
+    ASSUMED     Julian, 2026-11-23: the uneven pair 1/3, 2/3 is the residual
+                every prime carries; the zero is the channel it passes
+                through. "Yes" to stating the target. Written and built here
+    DEPENDS     `ClosedLoopChain.HolyFamily`, `ShareLink.meet_iff`,
+                `SpiralLink.mirrorZ_eq_iff`, `SpiralLink.off_line_is_two`
+    OUT         a proof that every zero is the channel
+
 ### 2026-11-23 · block J8 of `design/closedloop.md`: `Stage3/WholeChain.lean`
 
     DONE        `whole_chain`: the spiral link with every compiled face.
