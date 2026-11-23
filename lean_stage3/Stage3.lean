@@ -189,6 +189,7 @@ import Stage3.ShareLink
 import Stage3.Saddle
 import Stage3.WholeChain
 import Stage3.HolyChannel
+import Stage3.Readings
 
 namespace Stage3
 

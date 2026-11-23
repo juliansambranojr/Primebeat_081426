@@ -22969,7 +22969,8 @@
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.holy_pair_shares",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.meet_iff_channel",
      "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.member_is_two",
-     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half"
+     "lean_stage3/Stage3/HolyChannel.lean::HolyChannel.midpoint_half",
+     "lean_stage3/Stage3/Readings.lean::Readings.force_at_family"
     ]
    },
    {
@@ -23142,7 +23143,9 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.force_at_family"
+    ]
    },
    {
     "kind": "def",
@@ -23166,7 +23169,8 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.row_at_midpoint",
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition",
-     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.ignition_is_zeta_zero"
+     "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.ignition_is_zeta_zero",
+     "lean_stage3/Stage3/Readings.lean::Readings.offset_fixed"
     ]
    },
    {
@@ -23223,7 +23227,9 @@
      "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.structural_ignition"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.offset_fixed"
+    ]
    },
    {
     "kind": "theorem",
@@ -23595,7 +23601,8 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction",
-     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+     "lean_stage3/Stage3/Readings.lean::Readings.force_at_family"
     ]
    },
    {
@@ -54564,6 +54571,383 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Readings.lean",
+  "module": "Stage3.Readings",
+  "stem": "Readings",
+  "header": "Readings — block J10 of `lean_stage3/design/closedloop.md`. 2026-11-23. The runs and readings of the day, each in its exact form.",
+  "imports": [
+   "Stage3.ClosedLoopChain",
+   "Stage3.Saddle"
+  ],
+  "opens": [
+   "ClosedLoopChain",
+   "ClosedLoopJoin",
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "Readings"
+  ],
+  "lines": 169,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ClosedLoopChain.lean",
+   "lean_stage3/Stage3/Saddle.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "half_rung_ratio",
+    "ns": "Readings",
+    "full": "Readings.half_rung_ratio",
+    "line": 33,
+    "why": "A half rung. The length of a rung between two half powers, over its top, is one less the reciprocal of the square root of two, at every index.",
+    "sorry": false,
+    "needs": [
+     "k : ℝ"
+    ],
+    "proves": "((2 : ℝ) ^ (k / 2) - 2 ^ ((k - 1) / 2)) / 2 ^ (k / 2) = 1 - 1 / Real.sqrt 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.half_rung_ratio",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "half_regime_shares",
+    "ns": "Readings",
+    "full": "Readings.half_regime_shares",
+    "line": 47,
+    "why": "The two halves of a doubling. Cut at the half power, the lower half of `[2^n, 2^(n+1)]` holds `√2 − 1` of its length and the upper half `2 − √2`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "(Real.sqrt 2 * 2 ^ n - 2 ^ n) / 2 ^ n = Real.sqrt 2 - 1 ∧ (2 ^ (n + 1) - Real.sqrt 2 * 2 ^ n) / (2 : ℝ) ^ n = 2 - Real.sqrt 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.half_regime_shares",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "net_is_sum_of_steps",
+    "ns": "Readings",
+    "full": "Readings.net_is_sum_of_steps",
+    "line": 63,
+    "why": "The net is the sum of the steps. Assign every term of the sieve to a prime (its largest prime factor, in unit 0499); the net rounding is the sum over the primes of each prime's step.",
+    "sorry": false,
+    "needs": [
+     "g : ℕ → ℕ",
+     "hg : ∀ d ∈ D, g d ∈ P",
+     "f : ℕ → ℝ"
+    ],
+    "proves": "∑ d ∈ D, f d = ∑ p ∈ P, ∑ d ∈ D.filter (fun d => g d = p), f d",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.net_is_sum_of_steps",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "five_sixths_midpoint",
+    "ns": "Readings",
+    "full": "Readings.five_sixths_midpoint",
+    "line": 71,
+    "why": "Five sixths is the midpoint of two thirds and the whole.",
+    "sorry": false,
+    "needs": [],
+    "proves": "((2 : ℝ) / 3 + 1) / 2 = 5 / 6",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.five_sixths_midpoint",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "five_sixths_step",
+    "ns": "Readings",
+    "full": "Readings.five_sixths_step",
+    "line": 74,
+    "why": "From two thirds to five sixths is one sixth, the mirror of five sixths.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(5 : ℝ) / 6 - 2 / 3 = 1 / 6 ∧ 1 - (5 : ℝ) / 6 = 1 / 6",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.five_sixths_step",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "force_at_family",
+    "ns": "Readings",
+    "full": "Readings.force_at_family",
+    "line": 79,
+    "why": "The force at the Holy Family. The closed loop's restoring force at the support and at the condition is five sixths.",
+    "sorry": false,
+    "needs": [
+     "hf : HolyFamily"
+    ],
+    "proves": "restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.force_at_family",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.HolyFamily",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.holyFamily_force",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "paper_lemma_zero",
+    "ns": "Readings",
+    "full": "Readings.paper_lemma_zero",
+    "line": 85,
+    "why": "The printed Lemma 5.4. The mismatch `|2.5 − (6ε + 0.5)|` is zero exactly at `ε = 1/3`, which is `σ = 5/6`.",
+    "sorry": false,
+    "needs": [
+     "ε : ℝ"
+    ],
+    "proves": "|(2.5 : ℝ) - (6 * ε + 0.5)| = 0 ↔ ε = 1 / 3",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paper_lemma_zero",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "lattice_opens",
+    "ns": "Readings",
+    "full": "Readings.lattice_opens",
+    "line": 91,
+    "why": "The lattice opens. Five and seven are prime, the first of the two classes modulo six past the scaffold of two and three.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Nat.Prime 5 ∧ 5 % 6 = 5 ∧ Nat.Prime 7 ∧ 7 % 6 = 1",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.lattice_opens",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "paperMid",
+    "ns": "Readings",
+    "full": "Readings.paperMid",
+    "line": 96,
+    "why": "The paper's midpoint of the regime `[2^k, 2^(k+1) − 1]`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "ℚ",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paperMid",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paper_first_mid",
+     "lean_stage3/Stage3/Readings.lean::Readings.paper_mid_rec",
+     "lean_stage3/Stage3/Readings.lean::Readings.paper_mid_values"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "paper_mid_rec",
+    "ns": "Readings",
+    "full": "Readings.paper_mid_rec",
+    "line": 100,
+    "why": "The paper's recurrence. From the regime `[2, 3]` on, each midpoint is twice the one before plus one half: `2.5, 5.5, 11.5, 23.5, …`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "paperMid (k + 1) = 2 * paperMid k + 1 / 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paper_mid_rec",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "paper_mid_values",
+    "ns": "Readings",
+    "full": "Readings.paper_mid_values",
+    "line": 106,
+    "why": "The regime `[2, 3]` has midpoint five halves, and `[4, 7]` eleven halves.",
+    "sorry": false,
+    "needs": [],
+    "proves": "paperMid 1 = 5 / 2 ∧ paperMid 2 = 11 / 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paper_mid_values",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "paper_first_mid",
+    "ns": "Readings",
+    "full": "Readings.paper_first_mid",
+    "line": 113,
+    "why": "The first regime. The paper's `[0, 1]` with midpoint one half does not obey the recurrence into `[2, 3]`: twice one half plus one half is not five halves.",
+    "sorry": false,
+    "needs": [],
+    "proves": "2 * (1 / 2 : ℚ) + 1 / 2 ≠ paperMid 1",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.paper_first_mid",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Readings.lean::Readings.paperMid"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "offset_fixed",
+    "ns": "Readings",
+    "full": "Readings.offset_fixed",
+    "line": 121,
+    "why": "The offset is fixed. At every doubling the midpoint stands one half above the integer below; the statement has no zero in it.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.offset_fixed",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.Midpoint",
+     "lean_stage3/Stage3/ClosedLoopChain.lean::ClosedLoopChain.ignition_energy_is_half"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "iv_exact",
+    "ns": "Readings",
+    "full": "Readings.iv_exact",
+    "line": 126,
+    "why": "(iv), exact. A zero off the line makes the staircase run away from the square-root frame.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re ≠ 1 / 2"
+    ],
+    "proves": "¬ Saddle.NoRunaway",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.iv_exact",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "wire_holds_iff",
+    "ns": "Readings",
+    "full": "Readings.wire_holds_iff",
+    "line": 137,
+    "why": "The wire holds. The link holds exactly when the current never outruns the wire: the staircase stays in the square-root frame at every `N` from some point on.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ Saddle.NoRunaway",
+    "file": "lean_stage3/Stage3/Readings.lean",
+    "id": "lean_stage3/Stage3/Readings.lean::Readings.wire_holds_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/RealSegment.lean",
   "module": "Stage3.RealSegment",
   "stem": "RealSegment",
@@ -56105,6 +56489,8 @@
     ],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.iv_exact",
+     "lean_stage3/Stage3/Readings.lean::Readings.wire_holds_iff",
      "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
      "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
@@ -56207,6 +56593,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/Readings.lean::Readings.wire_holds_iff",
      "lean_stage3/Stage3/WholeChain.lean::WholeChain.whole_chain"
     ]
    }
@@ -57804,6 +58191,7 @@
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite_accumulation",
      "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
+     "lean_stage3/Stage3/Readings.lean::Readings.wire_holds_iff",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
@@ -89952,11 +90340,12 @@
    "Stage3.ShareLink",
    "Stage3.Saddle",
    "Stage3.WholeChain",
-   "Stage3.HolyChannel"
+   "Stage3.HolyChannel",
+   "Stage3.Readings"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 200,
+  "lines": 201,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -90047,6 +90436,7 @@
    "lean_stage3/Stage3/PsiToPi.lean",
    "lean_stage3/Stage3/RateBelow.lean",
    "lean_stage3/Stage3/ReZetaCount.lean",
+   "lean_stage3/Stage3/Readings.lean",
    "lean_stage3/Stage3/RealSegment.lean",
    "lean_stage3/Stage3/RouteGate.lean",
    "lean_stage3/Stage3/RouteNum.lean",

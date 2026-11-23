@@ -16,6 +16,7 @@ flowchart LR
   x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
   x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
   x5(["<b>ThetaConverse</b><br/>zeroFreeRight_iff_psiWeakTheta"]):::ext
+  x6(["<b>Readings</b><br/>wire_holds_iff"]):::ext
   n0 --> n1
   n3 --> n4
   n3 --> n5
@@ -25,6 +26,7 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n10 -.-> x4
+  n10 -.-> x6
   n9 -.-> x4
   x0 -.-> n3
   x1 -.-> n4

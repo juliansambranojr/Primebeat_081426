@@ -208,3 +208,28 @@ facing mirrors cannot tell A from B only when they are one mirror.
   `spiralLink_iff_channel`: `SpiralLink ↔ ZeroIsChannel`.
 
 **Not here.** `ZeroIsChannel` with no hypothesis.
+
+## J10 The day's runs and readings — `Stage3/Readings.lean`
+
+Julian, 2026-11-23, asked for the runs and readings of the day proved. Each is
+given its exact form; what has none is named.
+
+- Unit 0497: `half_rung_ratio`, a rung's length over its top is
+  `1 − 1/√2`; `half_regime_shares`, the halves of a doubling hold `√2 − 1`
+  and `2 − √2`.
+- Unit 0499: `net_is_sum_of_steps`, the net rounding is the sum of the
+  primes' steps, grouped by any assignment of terms to primes.
+- 5/6: `five_sixths_midpoint`, `five_sixths_step`, `force_at_family` (the
+  closed loop's force at 1/3 and 2/3 is 5/6), `paper_lemma_zero` (the printed
+  Lemma 5.4 is zero exactly at ε = 1/3), `lattice_opens` (5 and 7 are the
+  first primes of the two classes mod 6), `paper_mid_rec` (the paper's
+  midpoints from [2,3] on obey M' = 2M + 1/2) and `paper_first_mid` ([0,1]
+  does not).
+- Paper §5.3 (iv): `offset_fixed`, the offset is 1/2 at every doubling, a
+  statement with no zero in it; `iv_exact`, an off-line zero makes the
+  staircase run away.
+- Current and wire: `wire_holds_iff`, the balance at every N is the link.
+
+**Not here.** The measured magnitudes of 0492, 0499 and the 1.5 table (kernel
+computation at these sizes); no memory (measured against, unit 0499);
+SpiralLink.

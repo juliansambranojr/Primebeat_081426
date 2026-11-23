@@ -15,7 +15,7 @@ flowchart LR
     t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
     t29["<b>Zeros</b><br/>15 counting"]:::cnt
     t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
-    lean_stage3_count(["<b>Stage 3</b><br/>97 theorems counting,<br/>in 21 files"]):::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>107 theorems counting,<br/>in 22 files"]):::cnt
   end
   subgraph shape["ITS SHAPE: analysis, no ζ"]
     direction TB
@@ -37,7 +37,7 @@ flowchart LR
     t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
     t24["<b>Superposition</b><br/>4 shape"]:::shp
     t25["<b>TransferOp</b><br/>7 shape"]:::shp
-    lean_stage3_shape(["<b>Stage 3</b><br/>890 theorems shape,<br/>in 123 files"]):::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>893 theorems shape,<br/>in 124 files"]):::shp
     lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
   end
   subgraph zeta["READ WITH ζ"]
@@ -46,7 +46,7 @@ flowchart LR
     t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
     t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
     t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
-    lean_stage3_zeta(["<b>Stage 3</b><br/>717 theorems reads ζ,<br/>in 111 files"]):::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>718 theorems reads ζ,<br/>in 112 files"]):::thm
     lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
   end
   rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
@@ -94,16 +94,16 @@ flowchart LR
 
 Three layers, decided by Lean's record of each proof and everything beneath it (`utilities/lean_dump/Dump.lean` holds the lists; the test errs upward):
 
-- **Counting** (green), 201 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
-- **Shape** (violet), 1141 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
-- **Reads ζ** (blue), 738 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
+- **Counting** (green), 211 theorems. Integers only. No analysis and no ζ anywhere in the statement, the proof, or anything they rest on.
+- **Shape** (violet), 1144 theorems. Real or complex analysis, with no ζ: the symbol of the difference, the modes, the size of the smooth part.
+- **Reads ζ** (blue), 739 theorems. The zeta function, its zeros, or the Riemann hypothesis enter, in it or beneath it.
 
 A file sits in the highest layer any of its theorems reaches; its box says how many of each it holds. Arrows between files are imports, indirect ones left out.
 
 | tree | counting | shape | reads ζ |
 |---|---|---|---|
 | `lean/` | 104 | 237 | 19 |
-| `lean_stage3/` | 97 | 890 | 717 |
+| `lean_stage3/` | 107 | 893 | 718 |
 | `lean_bridge/` | 0 | 14 | 2 |
 
 ## Every counting theorem
@@ -404,6 +404,21 @@ PiFixedRow — block F4 of `lean_stage3/design/leftedge.md`. 2026-11-23. The int
 
 - [`PiFixedRow.sum_sq_div_pow_eq`](./lean_stage3/PiFixedRow.md#PiFixedRow-sum_sq_div_pow_eq) — `` ∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 + (2 * (n:ℝ) ^ 2 + 12 * n + 22) * ((2:ℝ) ^ n)⁻¹ = 22 `` The closed form behind `Σ_j (j+2)²/2^j ≤ 22`: the partial sum plus a vanishing tail is exactly `22`.
 - [`PiFixedRow.sum_sq_div_pow_le`](./lean_stage3/PiFixedRow.md#PiFixedRow-sum_sq_div_pow_le) — `` ∑ j ∈ range n, ((2:ℝ) ^ j)⁻¹ * ((j:ℝ) + 2) ^ 2 ≤ 22 `` The partial sums of `(j+2)²/2^j` are at most `22`.
+
+### [`Readings`](./lean_stage3/Readings.md) — 10
+
+Readings — block J10 of `lean_stage3/design/closedloop.md`. 2026-11-23. The runs and readings of the day, each in its exact form.
+
+- [`Readings.net_is_sum_of_steps`](./lean_stage3/Readings.md#Readings-net_is_sum_of_steps) — `` ∑ d ∈ D, f d = ∑ p ∈ P, ∑ d ∈ D.filter (fun d => g d = p), f d `` The net is the sum of the steps. Assign every term of the sieve to a prime (its largest prime factor, in unit 0499); the net rounding is the sum over the primes of each prime's step.
+- [`Readings.five_sixths_midpoint`](./lean_stage3/Readings.md#Readings-five_sixths_midpoint) — `` ((2 : ℝ) / 3 + 1) / 2 = 5 / 6 `` Five sixths is the midpoint of two thirds and the whole.
+- [`Readings.five_sixths_step`](./lean_stage3/Readings.md#Readings-five_sixths_step) — `` (5 : ℝ) / 6 - 2 / 3 = 1 / 6 ∧ 1 - (5 : ℝ) / 6 = 1 / 6 `` From two thirds to five sixths is one sixth, the mirror of five sixths.
+- [`Readings.force_at_family`](./lean_stage3/Readings.md#Readings-force_at_family) — `` restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6 `` The force at the Holy Family. The closed loop's restoring force at the support and at the condition is five sixths.
+- [`Readings.paper_lemma_zero`](./lean_stage3/Readings.md#Readings-paper_lemma_zero) — `` |(2.5 : ℝ) - (6 * ε + 0.5)| = 0 ↔ ε = 1 / 3 `` The printed Lemma 5.4. The mismatch `|2.5 − (6ε + 0.5)|` is zero exactly at `ε = 1/3`, which is `σ = 5/6`.
+- [`Readings.lattice_opens`](./lean_stage3/Readings.md#Readings-lattice_opens) — `` Nat.Prime 5 ∧ 5 % 6 = 5 ∧ Nat.Prime 7 ∧ 7 % 6 = 1 `` The lattice opens. Five and seven are prime, the first of the two classes modulo six past the scaffold of two and three.
+- [`Readings.paper_mid_rec`](./lean_stage3/Readings.md#Readings-paper_mid_rec) — `` paperMid (k + 1) = 2 * paperMid k + 1 / 2 `` The paper's recurrence. From the regime `[2, 3]` on, each midpoint is twice the one before plus one half: `2.5, 5.5, 11.5, 23.5, …`.
+- [`Readings.paper_mid_values`](./lean_stage3/Readings.md#Readings-paper_mid_values) — `` paperMid 1 = 5 / 2 ∧ paperMid 2 = 11 / 2 `` The regime `[2, 3]` has midpoint five halves, and `[4, 7]` eleven halves.
+- [`Readings.paper_first_mid`](./lean_stage3/Readings.md#Readings-paper_first_mid) — `` 2 * (1 / 2 : ℚ) + 1 / 2 ≠ paperMid 1 `` The first regime. The paper's `[0, 1]` with midpoint one half does not obey the recurrence into `[2, 3]`: twice one half plus one half is not five halves.
+- [`Readings.offset_fixed`](./lean_stage3/Readings.md#Readings-offset_fixed) — `` Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2 `` The offset is fixed. At every doubling the midpoint stands one half above the integer below; the statement has no zero in it.
 
 ### [`Saddle`](./lean_stage3/Saddle.md) — 3
 

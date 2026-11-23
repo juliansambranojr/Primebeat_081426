@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  J10 PROVED (unit 0500, `Readings`): the day's runs and readings in exact form. Half-regime ratios exact (1 - 1/sqrt 2, sqrt 2 - 1, 2 - sqrt 2); five sixths is the force at 1/3 and 2/3; the paper's (iv) exact: the offset stays 1/2, an off-line zero shows as the runaway. Not proved: measured sizes (kernel), no memory (measured against), the wire at every N.
 - [open]   2026-11-23  Unit 0499 (run, EXPLORATORY): a prime's sieve rounding remembers the primes before it. Neighbouring steps correlate 0.998 at 2^24 (0.952 with the smooth trend removed); the net rounding reaches 7.75 sqrt(x), against 0.63 for random signs. The table's residual narrows collectively, where the smooth part meets the roundings.
 - [open]   2026-11-23  J9 PROVED (unit 0498, `HolyChannel`): Julian's Holy Family read as the residual's pair. A zero at the share 1/3 has its mirror at 2/3 and is two mirrors (`member_is_two`); a zero meets its mirror exactly at the pair's midpoint, where it is its own mirror. `spiralLink_iff_channel`: the link is every zero the channel. Not proved: that every zero is.
 - [open]   2026-11-23  Unit 0497 (run, EXPLORATORY): the table with regimes of one half, to 2^26.5: one cell where prime and composite are both zero; deep zeros on both sides; totals fall by 1 − 1/√2 per depth; the exponent is cut evenly and the numbers 41 to 59.

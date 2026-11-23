@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J10 of `design/closedloop.md`: `Stage3/Readings.lean`
+
+    DONE        each run and reading of the day stated in Lean where it has
+                an exact form, proved where Lean accepts it, the stopping
+                step named where it does not; one unit
+    ASSUMED     Julian, 2026-11-23: "prove" the runs (0492, 0497, 0499, the
+                1.5 table) and the readings (current and wire, 5/6, no memory,
+                paper §5.3 (iv)). Measured counts at 2^24 and beyond are not
+                checked by the kernel without `native_decide`, which the repo
+                refuses. Written and built here
+    DEPENDS     `ClosedLoopChain`, `ClosedLoopJoin.restoringForce`,
+                `Saddle.spiralLink_iff_noRunaway`
+    OUT         SpiralLink itself
+
 ### 2026-11-23 · block J9 of `design/closedloop.md`: `Stage3/HolyChannel.lean`
 
     DONE        `holy_pair_shares`: a zero at the support's share has its

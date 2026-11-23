@@ -7,7 +7,7 @@ Saddle — block J7 of `lean_stage3/design/closedloop.md`. 2026-11-23. The table
 11 theorems, 2 definitions, 199 lines. 
 
 **Imports:** [`RateBelow`](../lean_stage3/RateBelow.md), [`ShareLink`](../lean_stage3/ShareLink.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WholeChain`](../lean_stage3/WholeChain.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Readings`](../lean_stage3/Readings.md), [`WholeChain`](../lean_stage3/WholeChain.md)
 
 ## The picture
 
@@ -30,6 +30,7 @@ flowchart LR
   x3(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
   x4(["<b>WholeChain</b><br/>whole_chain"]):::ext
   x5(["<b>ThetaConverse</b><br/>zeroFreeRight_iff_psiWeakTheta"]):::ext
+  x6(["<b>Readings</b><br/>wire_holds_iff"]):::ext
   n0 --> n1
   n3 --> n4
   n3 --> n5
@@ -39,6 +40,7 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n10 -.-> x4
+  n10 -.-> x6
   n9 -.-> x4
   x0 -.-> n3
   x1 -.-> n4
@@ -81,7 +83,7 @@ The staircase does not run away in the square-root frame: from some point on it 
 
 - **Is:** `` NoRunaway : Prop := ∃ (C : ℝ) (k : ℕ) (x₀ : ℝ), Stage3.StmtPsiWeakTheta (1 / 2) C k x₀ ``
 - **Built from:** [`Stage3.StmtPsiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta)
-- **Used by 3:** [`Saddle.centre_of_noRunaway`](#Saddle-centre_of_noRunaway), [`Saddle.spiralLink_iff_noRunaway`](#Saddle-spiralLink_iff_noRunaway), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
+- **Used by 5:** [`Readings.iv_exact`](../lean_stage3/Readings.md#Readings-iv_exact), [`Readings.wire_holds_iff`](../lean_stage3/Readings.md#Readings-wire_holds_iff), [`Saddle.centre_of_noRunaway`](#Saddle-centre_of_noRunaway), [`Saddle.spiralLink_iff_noRunaway`](#Saddle-spiralLink_iff_noRunaway), [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain)
 
 ## Theorems
 
@@ -391,7 +393,8 @@ SpiralLink.SpiralLink ↔ NoRunaway
 
 **Definitions its proof touches:** [`Stage3.StmtZeroFreeRight`](../lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight), [`Saddle.NoRunaway`](#Saddle-NoRunaway), [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`Readings.wire_holds_iff`](../lean_stage3/Readings.md#Readings-wire_holds_iff) (Readings) — `` SpiralLink.SpiralLink ↔ Saddle.NoRunaway ``
   - [`WholeChain.whole_chain`](../lean_stage3/WholeChain.md#WholeChain-whole_chain) (WholeChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.Ce… ``
 

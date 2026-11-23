@@ -7,7 +7,7 @@ ClosedLoopChain — block J3 of `lean_stage3/design/closedloop.md`. 2026-11-23. 
 16 theorems, 5 definitions, 213 lines. 
 
 **Imports:** [`SpiralLink`](../lean_stage3/SpiralLink.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`HolyChannel`](../lean_stage3/HolyChannel.md), [`OneChain`](../lean_stage3/OneChain.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`HolyChannel`](../lean_stage3/HolyChannel.md), [`OneChain`](../lean_stage3/OneChain.md), [`Readings`](../lean_stage3/Readings.md)
 
 ## The picture
 
@@ -18,9 +18,9 @@ flowchart LR
   n2["<b>derive_critical_line</b><br/>(hf.J + hf.M) / 2 = 1 / 2"]:::cnt
   n3["<b>holyFamily_is_mirror_pair</b><br/>hf.M = 1 - hf.J"]:::cnt
   n4["<b>holyFamily_pair_area ■</b><br/>b ^ hf.J * b ^ hf.M = b"]:::shp
-  n5["<b>holyFamily_force ■</b><br/>restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6"]:::cnt
+  n5["<b>holyFamily_force</b><br/>restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6"]:::cnt
   n6["<b>structural_ignition</b><br/>Midpoint n = (2 ^ n : ℚ) - 1 / 2"]:::cnt
-  n7["<b>ignition_energy_is_half ■</b><br/>Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2"]:::cnt
+  n7["<b>ignition_energy_is_half</b><br/>Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2"]:::cnt
   n8["<b>floor_midpoint</b><br/>⌊((Midpoint n : ℚ) : ℝ)⌋₊ = 2 ^ n - 1"]:::cnt
   n9["<b>row_at_midpoint ■</b><br/>Nat.primeCounting ⌊((Midpoint n : ℚ) : ℝ)⌋₊ = Nat.primeCounting …"]:::cnt
   n10["<b>boundary_is_two ■</b><br/>B = 2"]:::cnt
@@ -31,7 +31,8 @@ flowchart LR
   n15["<b>generalized_at_half ■</b><br/>generalizedPrimeBeat N (1 / 2) t = primeBeat N t"]:::shp
   x0(["<b>HolyChannel</b><br/>holy_pair_shares<br/>member_is_two<br/>midpoint_half"]):::ext
   x1(["<b>ClosedLoopJoin</b><br/>force_eq"]):::ext
-  x2(["<b>HalfSieve</b><br/>ignition_is_zeta_zero"]):::ext
+  x2(["<b>Readings</b><br/>force_at_family<br/>offset_fixed"]):::ext
+  x3(["<b>HalfSieve</b><br/>ignition_is_zeta_zero"]):::ext
   n0 --> n1
   n0 --> n5
   n1 --> n5
@@ -42,7 +43,9 @@ flowchart LR
   n1 -.-> x0
   n2 -.-> x0
   n3 -.-> x0
-  n6 -.-> x2
+  n5 -.-> x2
+  n6 -.-> x3
+  n7 -.-> x2
   x1 -.-> n5
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -66,7 +69,7 @@ structure · line 38
 Support and condition: two parts of one whole, the second twice the first. Restated from the closed loop, Part I.
 
 - **Is:** `` HolyFamily where J : ℝ M : ℝ unity : J + M = 1 womb_ratio : M = 2 * J ``
-- **Used by 12:** [`ClosedLoopChain.derive_critical_line`](#ClosedLoopChain-derive_critical_line), [`ClosedLoopChain.derive_joseph`](#ClosedLoopChain-derive_joseph), [`ClosedLoopChain.derive_mary`](#ClosedLoopChain-derive_mary), [`ClosedLoopChain.holyFamily_force`](#ClosedLoopChain-holyFamily_force), [`ClosedLoopChain.holyFamily_is_mirror_pair`](#ClosedLoopChain-holyFamily_is_mirror_pair), [`ClosedLoopChain.holyFamily_pair_area`](#ClosedLoopChain-holyFamily_pair_area), [`HolyChannel.channel_iff_self_mirror`](../lean_stage3/HolyChannel.md#HolyChannel-channel_iff_self_mirror), [`HolyChannel.holy`](../lean_stage3/HolyChannel.md#HolyChannel-holy), [`HolyChannel.holy_pair_shares`](../lean_stage3/HolyChannel.md#HolyChannel-holy_pair_shares), [`HolyChannel.meet_iff_channel`](../lean_stage3/HolyChannel.md#HolyChannel-meet_iff_channel), [`HolyChannel.member_is_two`](../lean_stage3/HolyChannel.md#HolyChannel-member_is_two), [`HolyChannel.midpoint_half`](../lean_stage3/HolyChannel.md#HolyChannel-midpoint_half)
+- **Used by 13:** [`ClosedLoopChain.derive_critical_line`](#ClosedLoopChain-derive_critical_line), [`ClosedLoopChain.derive_joseph`](#ClosedLoopChain-derive_joseph), [`ClosedLoopChain.derive_mary`](#ClosedLoopChain-derive_mary), [`ClosedLoopChain.holyFamily_force`](#ClosedLoopChain-holyFamily_force), [`ClosedLoopChain.holyFamily_is_mirror_pair`](#ClosedLoopChain-holyFamily_is_mirror_pair), [`ClosedLoopChain.holyFamily_pair_area`](#ClosedLoopChain-holyFamily_pair_area), [`HolyChannel.channel_iff_self_mirror`](../lean_stage3/HolyChannel.md#HolyChannel-channel_iff_self_mirror), [`HolyChannel.holy`](../lean_stage3/HolyChannel.md#HolyChannel-holy), [`HolyChannel.holy_pair_shares`](../lean_stage3/HolyChannel.md#HolyChannel-holy_pair_shares), [`HolyChannel.meet_iff_channel`](../lean_stage3/HolyChannel.md#HolyChannel-meet_iff_channel), [`HolyChannel.member_is_two`](../lean_stage3/HolyChannel.md#HolyChannel-member_is_two), [`HolyChannel.midpoint_half`](../lean_stage3/HolyChannel.md#HolyChannel-midpoint_half), [`Readings.force_at_family`](../lean_stage3/Readings.md#Readings-force_at_family)
 
 <a name="ClosedLoopChain-Midpoint"></a>
 ### `ClosedLoopChain.Midpoint`
@@ -76,7 +79,7 @@ def · line 80
 The midpoint of each doubling. Restated from the closed loop, Part III.
 
 - **Is:** `` Midpoint : ℕ → ℚ | 0 => 1 / 2 | (n + 1) => 2 * Midpoint n + 1 / 2 ``
-- **Used by 5:** [`ClosedLoopChain.floor_midpoint`](#ClosedLoopChain-floor_midpoint), [`ClosedLoopChain.ignition_energy_is_half`](#ClosedLoopChain-ignition_energy_is_half), [`ClosedLoopChain.row_at_midpoint`](#ClosedLoopChain-row_at_midpoint), [`ClosedLoopChain.structural_ignition`](#ClosedLoopChain-structural_ignition), [`HalfSieve.ignition_is_zeta_zero`](../lean_stage3/HalfSieve.md#HalfSieve-ignition_is_zeta_zero)
+- **Used by 6:** [`ClosedLoopChain.floor_midpoint`](#ClosedLoopChain-floor_midpoint), [`ClosedLoopChain.ignition_energy_is_half`](#ClosedLoopChain-ignition_energy_is_half), [`ClosedLoopChain.row_at_midpoint`](#ClosedLoopChain-row_at_midpoint), [`ClosedLoopChain.structural_ignition`](#ClosedLoopChain-structural_ignition), [`HalfSieve.ignition_is_zeta_zero`](../lean_stage3/HalfSieve.md#HalfSieve-ignition_is_zeta_zero), [`Readings.offset_fixed`](../lean_stage3/Readings.md#Readings-offset_fixed)
 
 <a name="ClosedLoopChain-primeBeatTerm"></a>
 ### `ClosedLoopChain.primeBeatTerm`
@@ -277,7 +280,9 @@ restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6
 
 **Definitions its proof touches:** [`ClosedLoopChain.HolyFamily`](#ClosedLoopChain-HolyFamily), [`ClosedLoopJoin.restoringForce`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-restoringForce)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Readings.force_at_family`](../lean_stage3/Readings.md#Readings-force_at_family) (Readings) — `` restoringForce hf.J = 5 / 6 ∧ restoringForce hf.M = 5 / 6 ``
 
 <a name="ClosedLoopChain-structural_ignition"></a>
 ### `ClosedLoopChain.structural_ignition`
@@ -333,7 +338,9 @@ Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2
 
 **Definitions its proof touches:** [`ClosedLoopChain.Midpoint`](#ClosedLoopChain-Midpoint)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Readings.offset_fixed`](../lean_stage3/Readings.md#Readings-offset_fixed) (Readings) — `` Midpoint n - ((2 ^ n : ℚ) - 1) = 1 / 2 ``
 
 <a name="ClosedLoopChain-floor_midpoint"></a>
 ### `ClosedLoopChain.floor_midpoint`
