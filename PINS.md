@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · blocks G1, G2 of `design/floor.md`: `Stage3/PerronTwo.lean`, `Stage3/ExplicitTwo.lean`
+
+    DONE        `PerronTwo.explicit_formula_perron_two`: Perron's formula for
+                `2 ≤ x`, `2 ≤ T`, error `700·x·log²(xT)/T + 18·log x`; one
+                unit. `ExplicitTwo.explicit_formula_all_two`: the explicit
+                formula for `2 ≤ x`, every `T ≥ 2`, error
+                `c1t·x·log²(xT)/T + c3t·log x + Bleft2·x^(−1/4)`; one unit
+    ASSUMED     Julian, 2026-11-23: "The explicit formula below x = 16 is
+                still not in the tree". A parallel chain in new files; no
+                proved file edited, no existing constant changed. Written by
+                Opus workers; read and built here
+    DEPENDS     `Stage3/PerronKernel.lean`, `ContourShift.residue_rectangle_of_local`,
+                `Glue.zeta_logderiv_good_bound_num`,
+                `Slice5.norm_logDerivZeta_of_one_lt_re`,
+                `LeftKernel.kernel_bound`, `LeftSmooth.logDeriv_sum`
+    OUT         numerals above `c1t`, `c3t`; the cells at the lowest rows
+
 ### 2026-11-23 · block F4 of `design/leftedge.md`: `Stage3/PiFixedRow.lean`
 
     DONE        `pi_fixed_row`: for `16 ≤ x`, every tolerance, from some
