@@ -343,8 +343,6 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.digamma_term_norm_le`](./lean_stage3/Stirling.md#Stage3-digamma_term_norm_le) | theorem | reads ζ | `Stirling` | ‖1 / ((n : ℂ) + 1) - 1 / ((n : ℂ) + z)‖ ≤ 4 / ((n : ℝ) + 1) ^ 2 |
 | [`DirichletMean.dirichlet_mean_value`](./lean_stage3/DirichletMean.md#DirichletMean-dirichlet_mean_value) | theorem | shape | `DirichletMean` | ∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 |
 | [`DirichletMean.dirichlet_mean_value_sigma`](./lean_stage3/DirichletMean.md#DirichletMean-dirichlet_mean_value_sigma) | theorem | shape | `DirichletMean` | ∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-((σ : ℂ) + Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * (n : ℝ) ^ (-2 * σ) |
-| [`DirichletMeanW.dirichlet_mean_value_weighted`](./lean_stage3/DirichletMeanW.md#DirichletMeanW-dirichlet_mean_value_weighted) | theorem | shape | `DirichletMeanW` | ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * ((T₂ - T₁) + 6 * n * (1 + Real.log N)) |
-| [`DirichletMeanW.dirichlet_mean_value_weighted_sigma`](./lean_stage3/DirichletMeanW.md#DirichletMeanW-dirichlet_mean_value_weighted_sigma) | theorem | shape | `DirichletMeanW` | ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-((σ : ℂ) + Complex.I * (t : ℂ)))‖ ^ 2 ≤ ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 * (n : ℝ) ^ (-2 * σ) * ((T₂ - T₁) + 6 * n * (1 + Real.log N)) |
 | [`DirichletMean.dirichlet_mean_value_window`](./lean_stage3/DirichletMean.md#DirichletMean-dirichlet_mean_value_window) | theorem | shape | `DirichletMean` | ∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 ≤ (T₂ - T₁ + 8 * N * (1 + Real.log N)) * ∑ n ∈ Finset.Icc 1 N, ‖a n‖ ^ 2 |
 | [`WeilSeries.dist_ge`](./lean_stage3/WeilSeries.md#WeilSeries-dist_ge) | theorem | shape | `WeilSeries` | 9 / 5 * \|(idx t : ℝ) - (idx γ : ℝ)\| - 9 / 5 ≤ \|t - γ\| |
 | [`ContourShift.div_sub_eq_dslope`](./lean_stage3/ContourShift.md#ContourShift-div_sub_eq_dslope) | theorem | shape | `ContourShift` | f s / (s - p) = f p / (s - p) + dslope f p s |
@@ -747,7 +745,6 @@ Sorted by name. Search this file before saying something is missing.
 | [`LandauMellinG.log_cpow_norm_le`](./lean_stage3/LandauMellinG.md#LandauMellinG-log_cpow_norm_le) | theorem | shape | `LandauMellinG` | ‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖ ≤ y ^ ((s.re - 1) / 2 - s.re) / ((s.re - 1) / 2) |
 | [`LandauChebyshev.log_four_lt_two`](./lean_stage3/LandauChebyshev.md#LandauChebyshev-log_four_lt_two) | theorem | shape | `LandauChebyshev` | Real.log 4 &lt; 2 |
 | [`DirichletMean.log_gap`](./lean_stage3/DirichletMean.md#DirichletMean-log_gap) | theorem | shape | `DirichletMean` | ((m : ℝ) - n) / N ≤ Real.log m - Real.log n |
-| [`DirichletMeanW.log_gap_larger`](./lean_stage3/DirichletMeanW.md#DirichletMeanW-log_gap_larger) | theorem | shape | `DirichletMeanW` | ((q : ℝ) - p) / q ≤ Real.log q - Real.log p |
 | [`JointLadder.log_indep`](./lean/JointLadder.md#JointLadder-log_indep) | theorem | shape | `JointLadder` | l = 0 ∧ k = 0 |
 | [`Stage3.log_norm_z_le`](./lean_stage3/Stirling.md#Stage3-log_norm_z_le) | theorem | shape | `Stirling` | \|Real.log ‖(1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I‖ - Real.log (t / 2)\| ≤ 1 / (4 * t) |
 | [`LandauKernel.log_pow_integrable`](./lean_stage3/LandauKernel.md#LandauKernel-log_pow_integrable) | theorem | shape | `LandauKernel` | IntegrableOn (fun y : ℝ =&gt; Real.log y ^ n * y ^ (-a - 1)) (Ioi 1) |
@@ -1529,7 +1526,6 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilOnLine.sum_lower_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-sum_lower_le) | theorem | reads ζ | `WeilOnLine` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ B h γ |
 | [`WeilPowerOnLine.sum_lower_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le) | theorem | reads ζ | `WeilPowerOnLine` | ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ B h γ m |
 | [`DirichletMean.sum_mul_mul_le`](./lean_stage3/DirichletMean.md#DirichletMean-sum_mul_mul_le) | theorem | shape | `DirichletMean` | ∑ m ∈ s, ∑ n ∈ s, A m * A n * K m n ≤ R * ∑ m ∈ s, A m ^ 2 |
-| [`DirichletMeanW.sum_mul_mul_le_weighted`](./lean_stage3/DirichletMeanW.md#DirichletMeanW-sum_mul_mul_le_weighted) | theorem | counting | `DirichletMeanW` | ∑ m ∈ s, ∑ n ∈ s, A m * A n * K m n ≤ ∑ m ∈ s, A m ^ 2 * R m |
 | [`ZetaGrowth.sum_norm_le`](./lean_stage3/ZetaGrowth.md#ZetaGrowth-sum_norm_le) | theorem | shape | `ZetaGrowth` | ‖∑ n ∈ Finset.range N, 1 / ((n:ℂ) + 1) ^ s‖ ≤ (N:ℝ) * (N:ℝ) ^ ((1:ℝ)/2) |
 | [`WeilOnLine.sum_onLine_le`](./lean_stage3/WeilOnLine.md#WeilOnLine-sum_onLine_le) | theorem | reads ζ | `WeilOnLine` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ onLineBound h γ |
 | [`WeilPowerOnLine.sum_onLine_le`](./lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | theorem | reads ζ | `WeilPowerOnLine` | ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ onLineBound h γ m |
@@ -1729,7 +1725,6 @@ Sorted by name. Search this file before saying something is missing.
 | [`JointFloorGate.weakWindow_relErr`](./lean_stage3/JointFloorGate.md#JointFloorGate-weakWindow_relErr) | theorem | shape | `JointFloorGate` | JointDialGate.StmtRelErrWindow f L r n (C * (Real.log 2 * r) ^ k * (2 : ℝ) ^ (-(((r : ℝ) - n) / 2))) |
 | [`WeilSeries.weight_le`](./lean_stage3/WeilSeries.md#WeilSeries-weight_le) | theorem | shape | `WeilSeries` | 15 * Real.log (centre k) + 73 ≤ 88 * ((k : ℝ) + 1) |
 | [`WeilSeries.weight_nonneg`](./lean_stage3/WeilSeries.md#WeilSeries-weight_nonneg) | theorem | shape | `WeilSeries` | 0 ≤ 15 * Real.log (centre k) + 73 |
-| [`DirichletMeanW.weighted_gap`](./lean_stage3/DirichletMeanW.md#DirichletMeanW-weighted_gap) | theorem | shape | `DirichletMeanW` | 2 / \|Real.log n - Real.log m\| * ((m : ℝ) / n) ≤ 2 * m * (\|(m : ℝ) - n\|⁻¹ + (n : ℝ)⁻¹) |
 | [`WeilBands.weightedTerm`](./lean_stage3/WeilBands.md#WeilBands-weightedTerm) | def | reads ζ | `WeilBands` | ℝ |
 | [`WeilOnLine.weightedTerm_conjZ`](./lean_stage3/WeilOnLine.md#WeilOnLine-weightedTerm_conjZ) | theorem | reads ζ | `WeilOnLine` | weightedTerm h γ (conjZ ρ) = weightedTerm h γ ρ |
 | [`WeilTiles.weightedTerm_nonneg`](./lean_stage3/WeilTiles.md#WeilTiles-weightedTerm_nonneg) | theorem | reads ζ | `WeilTiles` | 0 ≤ weightedTerm h γ ρ |
