@@ -5,7 +5,7 @@ ZetaEM — block C3 of `lean_stage3/design/carlson.md`. 2026-11-23. Euler–Macl
 20 theorems, 7 definitions, 516 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`MollifiedMean`](../lean_stage3/MollifiedMean.md)
 
 ## The picture
 
@@ -30,7 +30,8 @@ flowchart LR
   n16["<b>norm_remainder_le</b><br/>‖emRem k N s‖ ≤ (∏ i ∈ Finset.range k, ‖s + i‖) / k.factorial * …"]:::thm
   n17["<b>norm_emTerm</b><br/>‖emTerm j N s‖ = (∏ i ∈ Finset.range j, ‖s + i‖) * |bernoulliFun…"]:::thm
   n18["<b>prod_norm_le</b><br/>∏ i ∈ Finset.range j, ‖s + i‖ ≤ (‖s‖ + k) ^ j"]:::shp
-  n19["<b>norm_zeta_sub_partial_le ■</b><br/>‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) …"]:::thm
+  n19["<b>norm_zeta_sub_partial_le</b><br/>‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) …"]:::thm
+  x0(["<b>MollifiedMean</b><br/>emConst_nonneg<br/>mean_sq_f_le"]):::ext
   n0 --> n7
   n1 --> n7
   n10 --> n14
@@ -53,6 +54,8 @@ flowchart LR
   n7 --> n8
   n8 --> n9
   n9 --> n10
+  n19 -.-> x0
+  n3 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -127,7 +130,7 @@ def · line 75
 The supremum of `|B_k|` on `[0, 1]`.
 
 - **Is:** `` bernBound (k : ℕ) : ℝ := sSup ((fun x : ℝ ↦ |bernoulliFun k x|) '' Icc 0 1) ``
-- **Used by 9:** [`ZetaEM.abs_bernoulliFun_fract_le`](#ZetaEM-abs_bernoulliFun_fract_le), [`ZetaEM.bernBound_nonneg`](#ZetaEM-bernBound_nonneg), [`ZetaEM.emConst`](#ZetaEM-emConst), [`ZetaEM.integrableOn_bern_cpow`](#ZetaEM-integrableOn_bern_cpow), [`ZetaEM.norm_emInt_le`](#ZetaEM-norm_emInt_le), [`ZetaEM.norm_integral_bern_cpow_le`](#ZetaEM-norm_integral_bern_cpow_le), [`ZetaEM.norm_remainder_le`](#ZetaEM-norm_remainder_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.tail_ibp`](#ZetaEM-tail_ibp)
+- **Used by 10:** [`MollifiedMean.emConst_nonneg`](../lean_stage3/MollifiedMean.md#MollifiedMean-emConst_nonneg), [`ZetaEM.abs_bernoulliFun_fract_le`](#ZetaEM-abs_bernoulliFun_fract_le), [`ZetaEM.bernBound_nonneg`](#ZetaEM-bernBound_nonneg), [`ZetaEM.emConst`](#ZetaEM-emConst), [`ZetaEM.integrableOn_bern_cpow`](#ZetaEM-integrableOn_bern_cpow), [`ZetaEM.norm_emInt_le`](#ZetaEM-norm_emInt_le), [`ZetaEM.norm_integral_bern_cpow_le`](#ZetaEM-norm_integral_bern_cpow_le), [`ZetaEM.norm_remainder_le`](#ZetaEM-norm_remainder_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le), [`ZetaEM.tail_ibp`](#ZetaEM-tail_ibp)
 
 <a name="ZetaEM-emConst"></a>
 ### `ZetaEM.emConst`
@@ -138,7 +141,7 @@ The constant of the corollary: `1/2 + Σ_{1 ≤ j < k} |B_{j+1}(0)|/(j+1)! + ber
 
 - **Is:** `` emConst (k : ℕ) : ℝ := 1 / 2 + (∑ j ∈ Finset.Ico 1 k, |bernoulliFun (j+1) 0| / (j+1).factorial) + bernBound k / k.factorial ``
 - **Built from:** [`ZetaEM.bernBound`](#ZetaEM-bernBound)
-- **Used by 1:** [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le)
+- **Used by 3:** [`MollifiedMean.emConst_nonneg`](../lean_stage3/MollifiedMean.md#MollifiedMean-emConst_nonneg), [`MollifiedMean.mean_sq_f_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-mean_sq_f_le), [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le)
 
 ## Theorems
 
@@ -248,8 +251,9 @@ line 104
 
   - [`ZetaEM.abs_bernoulliFun_fract_le`](#ZetaEM-abs_bernoulliFun_fract_le) — `` |bernoulliFun k (Int.fract x)| ≤ bernBound k ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
+  - [`MollifiedMean.emConst_nonneg`](../lean_stage3/MollifiedMean.md#MollifiedMean-emConst_nonneg) (MollifiedMean) — `` 0 ≤ ZetaEM.emConst k ``
   - [`ZetaEM.norm_zeta_sub_partial_le`](#ZetaEM-norm_zeta_sub_partial_le) — `` ‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) ^ (1 - s) / (1 - s)‖ ≤ emConst k * (N : ℝ) ^ (-s.re) * (1 + (‖s‖ + k) ^ k * (N : ℝ) ^ … ``
 
 <a name="ZetaEM-measurable_bern"></a>
@@ -741,5 +745,7 @@ line 412
 
 **Definitions its proof touches:** [`ZetaEM.bernBound`](#ZetaEM-bernBound), [`ZetaEM.emBoundary`](#ZetaEM-emBoundary), [`ZetaEM.emRem`](#ZetaEM-emRem), [`ZetaEM.emTerm`](#ZetaEM-emTerm)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`MollifiedMean.mean_sq_f_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-mean_sq_f_le) (MollifiedMean) — `` ∫ t in (1:ℝ)..T, ‖f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ 3 * (T * (2 / (1 - (2:ℝ) ^ (1 - 2 * u))) * (X:ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3 + 2… ``
 

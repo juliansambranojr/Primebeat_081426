@@ -71,7 +71,7 @@ functions. The tree's `ZetaGrowth` has order two. Order `k` large is what lets
 `N` be `T^(1+ε)`: at order two `N` must be `T^(4/3)` and the saving is lost for
 `σ ≤ 5/8`. This is the stage where a lost factor would be a design failure.
 
-### C4 The mean square of `f` on a vertical line
+### C4 The mean square of `f` on a vertical line — PROVED (unit 0451: `MollifiedMean.mean_sq_f_le`, with C2b `sum_coef_sq_up_le`); window `[1, T]`, `u ∈ (1/2, 2]`, `2 ≤ X ≤ N`, `T + 3 + k ≤ N`
 
 For `1/2 < u ≤ 2`, from C1–C3 with `N = T^(1+ε)`:
 

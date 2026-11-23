@@ -22684,7 +22684,7 @@
   ],
   "lines": 259,
   "copy_of": null,
-  "fresh": false,
+  "fresh": true,
   "imports_files": [
    "lean_stage3/Stage3/DirichletMean.lean"
   ],
@@ -22706,7 +22706,7 @@
     "id": "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.log_gap_larger",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
     "layer": "shape",
     "used_by": [
@@ -22733,7 +22733,7 @@
     "proof": [
      "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.log_gap_larger"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.log_gap_larger"
     ],
@@ -22765,9 +22765,9 @@
     "id": "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.sum_mul_mul_le_weighted",
     "stmt": [],
     "proof": [],
-    "exact": false,
+    "exact": true,
     "uses": [],
-    "layer": "count",
+    "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.dirichlet_mean_value_weighted"
     ]
@@ -22797,7 +22797,7 @@
      "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.sum_mul_mul_le_weighted",
      "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.weighted_gap"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.integral_sq_norm_eq",
      "lean_stage3/Stage3/DirichletMean.lean::DirichletMean.norm_integral_exp_le",
@@ -22832,12 +22832,14 @@
     "proof": [
      "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.dirichlet_mean_value_weighted"
     ],
-    "exact": false,
+    "exact": true,
     "uses": [
      "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.dirichlet_mean_value_weighted"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le"
+    ]
    }
   ]
  },
@@ -34711,7 +34713,12 @@
      "lean_stage3/Stage3/Mollified.lean::Mollified.coef_sq_le",
      "lean_stage3/Stage3/Mollified.lean::Mollified.prod_eq_sum",
      "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le",
-     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le"
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_b_sq_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_coef_sq_up_le"
     ]
    },
    {
@@ -34738,7 +34745,9 @@
      "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
     ],
     "layer": "shape",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq"
+    ]
    },
    {
     "kind": "theorem",
@@ -34765,7 +34774,9 @@
      "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq"
+    ]
    },
    {
     "kind": "theorem",
@@ -34793,7 +34804,9 @@
      "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
     ],
     "layer": "count",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq"
+    ]
    },
    {
     "kind": "theorem",
@@ -35022,7 +35035,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le"
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_coef_sq_up_le"
     ]
    },
    {
@@ -35046,7 +35060,8 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le"
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_coef_sq_up_le"
     ]
    },
    {
@@ -35080,6 +35095,517 @@
      "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le"
     ],
     "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/MollifiedMean.lean",
+  "module": "Stage3.MollifiedMean",
+  "stem": "MollifiedMean",
+  "header": "MollifiedMean — block C4 of `lean_stage3/design/carlson.md`. 2026-11-23. The mean square of `f_X(s) = ζ(s)·M_X(s) − 1` along `Re s = u`, `1/2 < u ≤ 2`, over `t ∈ [1, T]`. Euler–Maclaurin of order `k` (block C3) writes `ζ = P_N − N^{1−s}/(1−s) + E` with `‖E‖ ≤ A_k N^{−u}(1 + (T+2+k)^k N^{1−k})`. Then `f = (P_N·M_X − 1) − N^{1−s}/(1−s)·M_X + E·M_X`. The first piece is the Dirichlet sum of block C2 with its terms below `X` gone, and the weighted mean value theorem (block C1b) charges it `T·Σ_{n ≥ X} c_n² n^{−2u} + 6 l…",
+  "imports": [
+   "Stage3.ZetaEM",
+   "Stage3.Mollified",
+   "Stage3.DirichletMeanW"
+  ],
+  "opens": [
+   "Finset"
+  ],
+  "namespaces": [
+   "MollifiedMean"
+  ],
+  "lines": 486,
+  "copy_of": null,
+  "fresh": true,
+  "imports_files": [
+   "lean_stage3/Stage3/DirichletMeanW.lean",
+   "lean_stage3/Stage3/Mollified.lean",
+   "lean_stage3/Stage3/ZetaEM.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "M",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.M",
+    "line": 45,
+    "why": "The Möbius sum `M_X(s) = Σ_{1 ≤ d < X} μ(d)·d^(−s)`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_M_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "f",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.f",
+    "line": 49,
+    "why": "The mollified function `f_X(s) = ζ(s)·M_X(s) − 1`.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "s : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "b",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.b",
+    "line": 52,
+    "why": "The coefficient of `P_N·M_X − 1`: `coef X N n` for `X ≤ n`, and `0` below `X`.",
+    "sorry": false,
+    "needs": [
+     "X N n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_b_sq_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "emConst_nonneg",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.emConst_nonneg",
+    "line": 55,
+    "why": "The Euler–Maclaurin constant `A_k` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ"
+    ],
+    "proves": "0 ≤ ZetaEM.emConst k",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.emConst_nonneg",
+    "stmt": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound_nonneg"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound_nonneg",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_M_le",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.norm_M_le",
+    "line": 65,
+    "why": "For `Re s ≥ 0` the Möbius sum has norm at most `X`, each of its terms having norm at most one.",
+    "sorry": false,
+    "needs": [
+     "X : ℕ",
+     "hs : 0 ≤ s.re"
+    ],
+    "proves": "‖M X s‖ ≤ X",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_M_le",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_smooth_le",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.norm_smooth_le",
+    "line": 85,
+    "why": "At `s = u + it` with `t > 0`, the smooth term satisfies `‖N^(1−s)/(1−s)‖ ≤ N^(1−u)/t`, because `|1 − s| ≥ t`.",
+    "sorry": false,
+    "needs": [
+     "hN : 0 < N",
+     "u : ℝ",
+     "ht : 0 < t"
+    ],
+    "proves": "‖(N : ℂ) ^ (1 - ((u : ℂ) + Complex.I * (t : ℂ))) / (1 - ((u : ℂ) + Complex.I * (t : ℂ)))‖ ≤ (N : ℝ) ^ (1 - u) / t",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_smooth_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "PM_sub_one_eq",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.PM_sub_one_eq",
+    "line": 101,
+    "why": "For `2 ≤ X ≤ N`, the product `P_N·M_X` minus one is the Dirichlet sum over `n ≤ N·X` with the coefficients `b`, the terms below `X` other than `n = 1` vanishing and the `n = 1` term being one.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "hX : 2 ≤ X",
+     "hXN : X ≤ N"
+    ],
+    "proves": "(∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * M X s - 1 = ∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^ (-s)",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_eq_zero",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_one",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.prod_eq_sum"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_eq_zero",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef_one",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.prod_eq_sum",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "f_eq",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.f_eq",
+    "line": 129,
+    "why": "For `2 ≤ X ≤ N`, `f_X(s)` is the Dirichlet sum of `P_N·M_X − 1`, minus the smooth term times `M_X`, plus the Euler–Maclaurin error `ζ − P_N + N^(1−s)/(1−s)` times `M_X`.",
+    "sorry": false,
+    "needs": [
+     "s : ℂ",
+     "hX : 2 ≤ X",
+     "hXN : X ≤ N"
+    ],
+    "proves": "f X s = ∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^ (-s) + (-((N : ℂ) ^ (1 - s) / (1 - s))) * M X s + (riemannZeta s - ∑ n ∈ Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) ^ (1 - s) / (1 - s)) * M X s",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.PM_sub_one_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_sq_add_three",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.norm_sq_add_three",
+    "line": 138,
+    "why": "The square of the norm of a sum of three terms is at most three times the sum of their squared norms.",
+    "sorry": false,
+    "needs": [
+     "x y z : ℂ"
+    ],
+    "proves": "‖x + y + z‖ ^ 2 ≤ 3 * (‖x‖ ^ 2 + ‖y‖ ^ 2 + ‖z‖ ^ 2)",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_sq_add_three",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "rpow_sq",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.rpow_sq",
+    "line": 145,
+    "why": "For `x ≥ 0`, the square of `x^a` is `x^(2a)`.",
+    "sorry": false,
+    "needs": [
+     "hx : 0 ≤ x",
+     "a : ℝ"
+    ],
+    "proves": "(x ^ a) ^ 2 = x ^ (2 * a)",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.rpow_sq",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_b_sq_eq",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.sum_b_sq_eq",
+    "line": 152,
+    "why": "For `1 ≤ X`, a sum over `[1, Y]` of `b_n²·w_n` is the sum over `[X, Y]` of `coef²·w_n`.",
+    "sorry": false,
+    "needs": [
+     "hX : 1 ≤ X",
+     "N Y : ℕ",
+     "w : ℕ → ℝ"
+    ],
+    "proves": "∑ n ∈ Icc 1 Y, b X N n ^ 2 * w n = ∑ n ∈ Icc X Y, (Mollified.coef X N n : ℝ) ^ 2 * w n",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_b_sq_eq",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b"
+    ],
+    "proof": [],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sum_coef_sq_up_le",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.sum_coef_sq_up_le",
+    "line": 167,
+    "why": "Block C2b: for `u > 1/2`, the squared coefficients weighted upward by `n^(1−2u)` sum over `[1, Y]` to at most `4·(1 + log X)³·(1 + log Y)·max 1 (Y^(2−2u))`.",
+    "sorry": false,
+    "needs": [
+     "u : ℝ",
+     "hu : 1 / 2 < u",
+     "X N Y : ℕ"
+    ],
+    "proves": "∑ n ∈ Icc 1 Y, (Mollified.coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (1 - 2 * u) ≤ 4 * (1 + Real.log X) ^ 3 * (1 + Real.log Y) * max 1 ((Y : ℝ) ^ (2 - 2 * u))",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_coef_sq_up_le",
+    "stmt": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_Ico_dyadic",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_Ico_dyadic",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "integral_inv_sq_le",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.integral_inv_sq_le",
+    "line": 258,
+    "why": "The integral of `t^(−2)` over `[1, T]` is at most one.",
+    "sorry": false,
+    "needs": [
+     "hT : 1 ≤ T"
+    ],
+    "proves": "∫ t in (1:ℝ)..T, (t ^ 2)⁻¹ ≤ 1",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.integral_inv_sq_le",
+    "stmt": [],
+    "proof": [],
+    "exact": true,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mean_sq_main_le",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.mean_sq_main_le",
+    "line": 277,
+    "why": "On `[1, T]` along `Re s = u > 1/2`, the mean square of the Dirichlet sum of `P_N·M_X − 1` is at most `T·(2/(1 − 2^(1−2u)))·X^(1−2u)·(1 + log X)³` plus `24·(1 + log NX)²·(1 + log X)³·max 1 ((NX)^(2−2u))`.",
+    "sorry": false,
+    "needs": [
+     "hX : 1 ≤ X",
+     "hu : 1 / 2 < u",
+     "hT : 1 ≤ T"
+    ],
+    "proves": "∫ t in (1:ℝ)..T, ‖∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^ (-((u : ℂ) + Complex.I * (t : ℂ)))‖ ^ 2 ≤ T * (2 / (1 - (2:ℝ) ^ (1 - 2 * u))) * (X:ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3 + 24 * (1 + Real.log ((N * X : ℕ) : ℝ)) ^ 2 * (1 + Real.log X) ^ 3 * max 1 (((N * X : ℕ) : ℝ) ^ (2 - 2 * u))",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.dirichlet_mean_value_weighted_sigma",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_b_sq_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_coef_sq_up_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/DirichletMeanW.lean::DirichletMeanW.dirichlet_mean_value_weighted_sigma",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.coef",
+     "lean_stage3/Stage3/Mollified.lean::Mollified.sum_coef_sq_weighted_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_b_sq_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.sum_coef_sq_up_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "mean_sq_f_le",
+    "ns": "MollifiedMean",
+    "full": "MollifiedMean.mean_sq_f_le",
+    "line": 338,
+    "why": "The mean square of `f_X = ζ·M_X − 1` over `t ∈ [1, T]` on the line `Re s = u`, for `1/2 < u ≤ 2`, `k ≥ 2`, `2 ≤ X ≤ N` and `T + 3 + k ≤ N`, is at most three times the sum of the main term `T·X^(1−2u)·logs`, the off-diagonal term `(NX)^(2−2u)·logs`, the smooth term `X²·N^(2−2u)` and the Euler–Maclaurin term `T·X²·A_k²·N^(−2u)·(1 + (T+2+k)^k·N^(1−k))²`.",
+    "sorry": false,
+    "needs": [
+     "k : ℕ",
+     "hk : 2 ≤ k",
+     "hX : 2 ≤ X",
+     "hXN : X ≤ N",
+     "hu : 1 / 2 < u",
+     "hu2 : u ≤ 2",
+     "hT : 1 ≤ T",
+     "hTN : T + 3 + k ≤ N"
+    ],
+    "proves": "∫ t in (1:ℝ)..T, ‖f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ 3 * (T * (2 / (1 - (2:ℝ) ^ (1 - 2 * u))) * (X:ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3 + 24 * (1 + Real.log ((N * X : ℕ) : ℝ)) ^ 2 * (1 + Real.log X) ^ 3 * max 1 (((N * X : ℕ) : ℝ) ^ (2 - 2 * u)) + (X:ℝ) ^ 2 * (N:ℝ) ^ (2 - 2 * u) + T * (X:ℝ) ^ 2 * ZetaEM.emConst k ^ 2 * (N:ℝ) ^ (-2 * u) * (1 + (T + 2 + k) ^ k * (N:ℝ) ^ (1 - (k:ℝ))) ^ 2)",
+    "file": "lean_stage3/Stage3/MollifiedMean.lean",
+    "id": "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
+    "stmt": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst"
+    ],
+    "proof": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.emConst_nonneg",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.integral_inv_sq_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_M_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_smooth_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_sq_add_three",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.rpow_sq",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
+    ],
+    "exact": true,
+    "uses": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.M",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.b",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.emConst_nonneg",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.f_eq",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.integral_inv_sq_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_main_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_M_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_smooth_le",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.norm_sq_add_three",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.rpow_sq",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst",
+     "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
+    ],
+    "layer": "zeta",
     "used_by": []
    }
   ]
@@ -65890,6 +66416,7 @@
     "uses": [],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.emConst_nonneg",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.abs_bernoulliFun_fract_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.bernBound_nonneg",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.emConst",
@@ -66005,6 +66532,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.emConst_nonneg",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
     ]
    },
@@ -66506,6 +67034,8 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.emConst_nonneg",
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le",
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.norm_zeta_sub_partial_le"
     ]
    },
@@ -66556,7 +67086,9 @@
      "lean_stage3/Stage3/ZetaEM.lean::ZetaEM.zeta_eq_em"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/MollifiedMean.lean::MollifiedMean.mean_sq_f_le"
+    ]
    }
   ]
  },
@@ -67366,11 +67898,12 @@
    "Stage3.DirichletMean",
    "Stage3.Mollified",
    "Stage3.ZetaEM",
-   "Stage3.DirichletMeanW"
+   "Stage3.DirichletMeanW",
+   "Stage3.MollifiedMean"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 159,
+  "lines": 160,
   "copy_of": null,
   "fresh": true,
   "imports_files": [
@@ -67430,6 +67963,7 @@
    "lean_stage3/Stage3/LowEdge.lean",
    "lean_stage3/Stage3/MirrorArea.lean",
    "lean_stage3/Stage3/Mollified.lean",
+   "lean_stage3/Stage3/MollifiedMean.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PiRemainder.lean",
    "lean_stage3/Stage3/PiToPsi.lean",

@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · blocks C2 to C4 of `design/carlson.md`: `Mollified`, `ZetaEM`, `MollifiedMean`
+
+    DONE        C2 `Mollified.prod_eq_sum`, `sum_coef_sq_weighted_le`; C3
+                `ZetaEM.zeta_eq_em`, `norm_zeta_sub_partial_le`; C4 with C2b
+                `MollifiedMean.mean_sq_f_le`, `sum_coef_sq_up_le`: the mean
+                square of `ζ·M − 1` on a line right of one half, four terms,
+                each below the first power of the height for short `X` and
+                `N` a small power above `T`; three units
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". Each
+                written by an Opus worker from a brief; read and built here
+    DEPENDS     `ZetaGrowth`, `DirichletMeanW`, Mathlib `bernoulliFun`
+    OUT         blocks C5 to C7
+    OUTCOME     proved, units 0447, 0448, 0451
+
 ### 2026-11-23 · the repair of block C1: `Stage3/DirichletMeanW.lean`, block C1b of `design/carlson.md`
 
     DONE        `dirichlet_mean_value_weighted`, `_sigma`: the mean square of

@@ -1,0 +1,20 @@
+key	value	source
+module_lines	485	wc -l lean_stage3/Stage3/MollifiedMean.lean
+theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/MollifiedMean.lean
+defs	3	M, f, b
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/MollifiedMean.lean
+pins	3	sum_coef_sq_up_le, mean_sq_main_le, mean_sq_f_le
+errors_first	6	the worker's first lake build Stage3.MollifiedMean, as it reported
+builds	2	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8842	lake build (full Stage3), Build completed successfully
+jobs_module	8679	run/build.log, lake build Stage3.MollifiedMean
+loop_version	22	lean_stage3/LOOP.md version line
+design	carlson.md#c4	the mean square of f on a vertical line
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+terms	4	mean_sq_f_le, the terms inside the bound
+outer_const	3	mean_sq_f_le
+up_const	4	sum_coef_sq_up_le
+second_const	24	mean_sq_f_le, the second term

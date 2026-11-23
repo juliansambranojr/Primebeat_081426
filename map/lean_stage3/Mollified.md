@@ -5,15 +5,15 @@ Mollified — block C2 of `lean_stage3/design/carlson.md`. 2026-11-23. The produ
 12 theorems, 3 definitions, 312 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`MollifiedMean`](../lean_stage3/MollifiedMean.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>prod_eq_sum ■</b><br/>(∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * (∑ d ∈ Ico 1 X, (ArithmeticFun…"]:::shp
-  n1["<b>coef_one ■</b><br/>coef X N 1 = 1"]:::cnt
-  n2["<b>coef_eq_zero ■</b><br/>coef X N n = 0"]:::cnt
+  n0["<b>prod_eq_sum</b><br/>(∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * (∑ d ∈ Ico 1 X, (ArithmeticFun…"]:::shp
+  n1["<b>coef_one</b><br/>coef X N 1 = 1"]:::cnt
+  n2["<b>coef_eq_zero</b><br/>coef X N n = 0"]:::cnt
   n3["<b>abs_coef_le</b><br/>|coef X N n| ≤ tauBelow X n"]:::cnt
   n4["<b>card_Icc_dvd</b><br/>((Icc 1 Y).filter (k ∣ ·)).card = Y / k"]:::cnt
   n5["<b>tauBelow_sq_le</b><br/>tauBelow X n ^ 2 ≤ ((triples X).filter (fun t =＞ t.1 * t.2.1 * t…"]:::cnt
@@ -22,7 +22,8 @@ flowchart LR
   n8["<b>coef_sq_le</b><br/>(coef X N n : ℝ) ^ 2 ≤ (tauBelow X n : ℝ) ^ 2"]:::shp
   n9["<b>sum_coef_sq_le</b><br/>∑ n ∈ Icc 1 Y, (coef X N n : ℝ) ^ 2 ≤ Y * (1 + Real.log X) ^ 3"]:::shp
   n10["<b>sum_Ico_dyadic</b><br/>∑ n ∈ Ico X (2 ^ J * X), f n = ∑ j ∈ range J, ∑ n ∈ Ico (2 ^ j *…"]:::shp
-  n11["<b>sum_coef_sq_weighted_le ■</b><br/>∑ n ∈ Icc X Y, (coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (-2 * u) ≤ 2 / (…"]:::shp
+  n11["<b>sum_coef_sq_weighted_le</b><br/>∑ n ∈ Icc X Y, (coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (-2 * u) ≤ 2 / (…"]:::shp
+  x0(["<b>MollifiedMean</b><br/>PM_sub_one_eq<br/>mean_sq_main_le<br/>sum_coef_sq_up_le"]):::ext
   n10 --> n11
   n3 --> n8
   n4 --> n7
@@ -31,6 +32,12 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n11
+  n0 -.-> x0
+  n1 -.-> x0
+  n10 -.-> x0
+  n11 -.-> x0
+  n2 -.-> x0
+  n9 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -63,7 +70,7 @@ def · line 46
 The coefficient of `n^(−s)` in the product of `Σ_{m ≤ N} m^(−s)` and `Σ_{d < X} μ(d)d^(−s)`.
 
 - **Is:** `` coef (X N n : ℕ) : ℤ := ∑ d ∈ (Nat.divisors n).filter (fun d => d < X ∧ n / d ≤ N), ArithmeticFunction.moebius d ``
-- **Used by 7:** [`Mollified.abs_coef_le`](#Mollified-abs_coef_le), [`Mollified.coef_eq_zero`](#Mollified-coef_eq_zero), [`Mollified.coef_one`](#Mollified-coef_one), [`Mollified.coef_sq_le`](#Mollified-coef_sq_le), [`Mollified.prod_eq_sum`](#Mollified-prod_eq_sum), [`Mollified.sum_coef_sq_le`](#Mollified-sum_coef_sq_le), [`Mollified.sum_coef_sq_weighted_le`](#Mollified-sum_coef_sq_weighted_le)
+- **Used by 12:** [`Mollified.abs_coef_le`](#Mollified-abs_coef_le), [`Mollified.coef_eq_zero`](#Mollified-coef_eq_zero), [`Mollified.coef_one`](#Mollified-coef_one), [`Mollified.coef_sq_le`](#Mollified-coef_sq_le), [`Mollified.prod_eq_sum`](#Mollified-prod_eq_sum), [`Mollified.sum_coef_sq_le`](#Mollified-sum_coef_sq_le), [`Mollified.sum_coef_sq_weighted_le`](#Mollified-sum_coef_sq_weighted_le), [`MollifiedMean.PM_sub_one_eq`](../lean_stage3/MollifiedMean.md#MollifiedMean-PM_sub_one_eq), [`MollifiedMean.b`](../lean_stage3/MollifiedMean.md#MollifiedMean-b), [`MollifiedMean.mean_sq_main_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-mean_sq_main_le), [`MollifiedMean.sum_b_sq_eq`](../lean_stage3/MollifiedMean.md#MollifiedMean-sum_b_sq_eq), [`MollifiedMean.sum_coef_sq_up_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-sum_coef_sq_up_le)
 
 <a name="Mollified-triples"></a>
 ### `Mollified.triples`
@@ -101,7 +108,9 @@ line 51
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`MollifiedMean.PM_sub_one_eq`](../lean_stage3/MollifiedMean.md#MollifiedMean-PM_sub_one_eq) (MollifiedMean) — `` (∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * M X s - 1 = ∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^ (-s) ``
 
 <a name="Mollified-coef_one"></a>
 ### `Mollified.coef_one`
@@ -128,7 +137,9 @@ coef X N 1 = 1
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`MollifiedMean.PM_sub_one_eq`](../lean_stage3/MollifiedMean.md#MollifiedMean-PM_sub_one_eq) (MollifiedMean) — `` (∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * M X s - 1 = ∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^ (-s) ``
 
 <a name="Mollified-coef_eq_zero"></a>
 ### `Mollified.coef_eq_zero`
@@ -156,7 +167,9 @@ coef X N n = 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`MollifiedMean.PM_sub_one_eq`](../lean_stage3/MollifiedMean.md#MollifiedMean-PM_sub_one_eq) (MollifiedMean) — `` (∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * M X s - 1 = ∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^ (-s) ``
 
 <a name="Mollified-abs_coef_le"></a>
 ### `Mollified.abs_coef_le`
@@ -352,9 +365,10 @@ line 211
 
 **Definitions its proof touches:** [`Mollified.tauBelow`](#Mollified-tauBelow)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Mollified.sum_coef_sq_weighted_le`](#Mollified-sum_coef_sq_weighted_le) — `` ∑ n ∈ Icc X Y, (coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (-2 * u) ≤ 2 / (1 - (2 : ℝ) ^ (1 - 2 * u)) * (X : ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3 ``
+  - [`MollifiedMean.sum_coef_sq_up_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-sum_coef_sq_up_le) (MollifiedMean) — `` ∑ n ∈ Icc 1 Y, (Mollified.coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (1 - 2 * u) ≤ 4 * (1 + Real.log X) ^ 3 * (1 + Real.log Y) * max 1 ((Y : ℝ) ^ (2 - 2 * u)) ``
 
 <a name="Mollified-sum_Ico_dyadic"></a>
 ### `Mollified.sum_Ico_dyadic`
@@ -378,9 +392,10 @@ line 216
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`Mollified.sum_coef_sq_weighted_le`](#Mollified-sum_coef_sq_weighted_le) — `` ∑ n ∈ Icc X Y, (coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (-2 * u) ≤ 2 / (1 - (2 : ℝ) ^ (1 - 2 * u)) * (X : ℝ) ^ (1 - 2 * u) * (1 + Real.log X) ^ 3 ``
+  - [`MollifiedMean.sum_coef_sq_up_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-sum_coef_sq_up_le) (MollifiedMean) — `` ∑ n ∈ Icc 1 Y, (Mollified.coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (1 - 2 * u) ≤ 4 * (1 + Real.log X) ^ 3 * (1 + Real.log Y) * max 1 ((Y : ℝ) ^ (2 - 2 * u)) ``
 
 <a name="Mollified-sum_coef_sq_weighted_le"></a>
 ### `Mollified.sum_coef_sq_weighted_le`
@@ -411,5 +426,7 @@ line 228
   - [`Mollified.sum_Ico_dyadic`](#Mollified-sum_Ico_dyadic) — `` ∑ n ∈ Ico X (2 ^ J * X), f n = ∑ j ∈ range J, ∑ n ∈ Ico (2 ^ j * X) (2 ^ (j + 1) * X), f n ``
   - [`Mollified.sum_coef_sq_le`](#Mollified-sum_coef_sq_le) — `` ∑ n ∈ Icc 1 Y, (coef X N n : ℝ) ^ 2 ≤ Y * (1 + Real.log X) ^ 3 ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`MollifiedMean.mean_sq_main_le`](../lean_stage3/MollifiedMean.md#MollifiedMean-mean_sq_main_le) (MollifiedMean) — `` ∫ t in (1:ℝ)..T, ‖∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^ (-((u : ℂ) + Complex.I * (t : ℂ)))‖ ^ 2 ≤ T * (2 / (1 - (2:ℝ) ^ (1 - 2 * u))) * (X:ℝ)… ``
 

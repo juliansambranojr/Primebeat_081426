@@ -1,0 +1,41 @@
+flowchart LR
+  n0["<b>emConst_nonneg</b><br/>0 ≤ ZetaEM.emConst k"]:::thm
+  n1["<b>norm_M_le</b><br/>‖M X s‖ ≤ X"]:::shp
+  n2["<b>norm_smooth_le</b><br/>‖(N : ℂ) ^ (1 - ((u : ℂ) + Complex.I * (t : ℂ))) / (1 - ((u : ℂ)…"]:::shp
+  n3["<b>PM_sub_one_eq</b><br/>(∑ m ∈ Icc 1 N, (m : ℂ) ^ (-s)) * M X s - 1 = ∑ n ∈ Icc 1 (N * X…"]:::shp
+  n4["<b>f_eq</b><br/>f X s = ∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^ (-s) + (-…"]:::thm
+  n5["<b>norm_sq_add_three</b><br/>‖x + y + z‖ ^ 2 ≤ 3 * (‖x‖ ^ 2 + ‖y‖ ^ 2 + ‖z‖ ^ 2)"]:::shp
+  n6["<b>rpow_sq</b><br/>(x ^ a) ^ 2 = x ^ (2 * a)"]:::shp
+  n7["<b>sum_b_sq_eq</b><br/>∑ n ∈ Icc 1 Y, b X N n ^ 2 * w n = ∑ n ∈ Icc X Y, (Mollified.coe…"]:::shp
+  n8["<b>sum_coef_sq_up_le</b><br/>∑ n ∈ Icc 1 Y, (Mollified.coef X N n : ℝ) ^ 2 * (n : ℝ) ^ (1 - 2…"]:::shp
+  n9["<b>integral_inv_sq_le</b><br/>∫ t in (1:ℝ)..T, (t ^ 2)⁻¹ ≤ 1"]:::shp
+  n10["<b>mean_sq_main_le</b><br/>∫ t in (1:ℝ)..T, ‖∑ n ∈ Icc 1 (N * X), (b X N n : ℂ) * (n : ℂ) ^…"]:::shp
+  n11["<b>mean_sq_f_le ■</b><br/>∫ t in (1:ℝ)..T, ‖f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ 3 *…"]:::thm
+  x0(["<b>ZetaEM</b><br/>bernBound_nonneg<br/>norm_zeta_sub_partial_le"]):::ext
+  x1(["<b>Mollified</b><br/>6 theorems"]):::ext
+  x2(["<b>DirichletMeanW</b><br/>dirichlet_mean_value_weighted_sigma"]):::ext
+  n0 --> n11
+  n1 --> n11
+  n10 --> n11
+  n2 --> n11
+  n3 --> n4
+  n4 --> n11
+  n5 --> n11
+  n6 --> n11
+  n7 --> n10
+  n8 --> n10
+  n9 --> n11
+  x0 -.-> n0
+  x0 -.-> n11
+  x1 -.-> n10
+  x1 -.-> n3
+  x1 -.-> n8
+  x2 -.-> n10
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

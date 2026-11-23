@@ -2,7 +2,7 @@
 
 The arrows in this map are Lean's. This page lists every place where reading names out of the source text would have said something different, so the difference can be opened and looked at.
 
-## Names in the text that Lean does not record as a use (24)
+## Names in the text that Lean does not record as a use (25)
 
 A local variable sharing a definition's name, a same-named theorem in another namespace, or an abbreviation Lean unfolds while elaborating.
 
@@ -17,6 +17,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.finalBoundConst_le` | `lean_stage3/Stage3/LineBound.lean:536` |
 | [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:536` |
 | [`RHPull.holo_logDerivZeta_of_RH`](lean_stage3/LineBound.md#RHPull-holo_logDerivZeta_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:1041` |
+| [`MollifiedMean.norm_sq_add_three`](lean_stage3/MollifiedMean.md#MollifiedMean-norm_sq_add_three) | `MollifiedMean.b` | `lean_stage3/Stage3/MollifiedMean.lean:138` |
 | [`WeilPowerAssembly.phiW_contDiff_one`](lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-phiW_contDiff_one) | `WeilPowerPhase.x` | `lean_stage3/Stage3/WeilPowerAssembly.lean:107` |
 | [`WeilPowerAssembly.isTest_phiWC`](lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-isTest_phiWC) | `WeilPowerPhase.x` | `lean_stage3/Stage3/WeilPowerAssembly.lean:260` |
 | [`WeilPowerBands.termW_nonneg`](lean_stage3/WeilPowerBands.md#WeilPowerBands-termW_nonneg) | `WeilTiles.online_term_nonneg` | `lean_stage3/Stage3/WeilPowerBands.lean:62` |
@@ -33,7 +34,7 @@ A local variable sharing a definition's name, a same-named theorem in another na
 | [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
 | [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (492)
+## Uses Lean records that the text does not show (493)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -240,6 +241,7 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`RHPull.psi_weak_of_RH`](lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) | [`RHPull.half_lt_σRH`](lean_stage3/LineBound.md#RHPull-half_lt_-RH) | theorem |
 | [`RHPull.psi_weak_of_RH`](lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) | [`RHPull.σRH`](lean_stage3/LineBound.md#RHPull--RH) | def |
 | [`Mollified.sum_coef_sq_le`](lean_stage3/Mollified.md#Mollified-sum_coef_sq_le) | [`Mollified.tauBelow`](lean_stage3/Mollified.md#Mollified-tauBelow) | def |
+| [`MollifiedMean.mean_sq_main_le`](lean_stage3/MollifiedMean.md#MollifiedMean-mean_sq_main_le) | [`Mollified.coef`](lean_stage3/Mollified.md#Mollified-coef) | def |
 | [`PerronKernel.perron_kernel_coarse_lt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_coarse_lt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_kernel_decay_lt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_decay_lt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_kernel_decay_gt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_decay_gt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |

@@ -148,6 +148,7 @@ import Stage3.DirichletMean
 import Stage3.Mollified
 import Stage3.ZetaEM
 import Stage3.DirichletMeanW
+import Stage3.MollifiedMean
 
 namespace Stage3
 
