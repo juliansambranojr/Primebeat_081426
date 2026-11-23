@@ -22,6 +22,21 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R2 of `design/runs.md`: `Stage3/SieveExact.lean`
+
+    DONE        `pi_by_sieve`, `row_by_sieve`: the count of primes up to `N`
+                from the primes up to `√N`, exactly, for every `N ≥ 2`.
+                `sieve_by_level`, `level_card`: by levels, each level a
+                binomial coefficient of terms. `sieve_split`,
+                `smoothPart_eq_prod`: the count is `N·Π(1 − 1/p)` less the
+                net of the roundings; one unit
+    ASSUMED     Julian, 2026-11-23: "The runs should be theorems." The exact
+                core of unit 0475. Written by an Opus worker; read and built
+                here
+    DEPENDS     Mathlib
+    OUT         the size of the net rounding
+    OUTCOME     proved, unit 0481
+
 ### 2026-11-23 · block R1 of `design/runs.md`: `Stage3/RunTheorems.lean`
 
     DONE        `mode_fold`: a height shows on the ladder only up to

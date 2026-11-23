@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  R2 PROVED (unit 0481, `SieveExact`): the half carries the row at every row. pi(N) from the primes up to sqrt N, exactly, for every N >= 2; by levels, each a binomial coefficient of terms; the count is N prod(1 - 1/p) less the net of the roundings. What unit 0475 computed on 15 rows, with nothing computed. Next: the size of the net rounding.
 - [open]   2026-11-23  R1 PROVED (unit 0480, `RunTheorems`): the exact cores of runs 0473 and 0474 as theorems at every row. `mode_fold`: 2^(rho + 2 pi i k/log 2) = 2^rho. `two_mode_beat`, `zero_pair_beat`: two modes together carry a term turning at the difference of their heights. Next: the sieve's exact sum (unit 0475) for every row.
 - [open]   2026-11-23  J4 PROVED (unit 0479, `OneChain.one_chain`): Julian's closed loop tied to the tree. RH, the spiral link, one zero at each height, the restoring force at rest, and every dyadic cell at sqrt size are one statement; the count's and psi's ladder theorems of joint 10 give the link in their closed cases. Open: the link with no hypothesis. Next: the map.
 - [open]   2026-11-23  J3 PROVED (unit 0478, `ClosedLoopChain`): the rest of Julian's closed loop joined to the tree. The Holy Family (1/3, 2/3) is a mirror pair with the mirror's area; pi up to the doubling's midpoint 2^n - 1/2 is the table's row; a term of the Prime Beat is minus the imaginary part of the step p^-(1/2+it). Every Part I to XI now ties to the table by a theorem.

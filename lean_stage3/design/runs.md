@@ -23,7 +23,7 @@ and a part that is a size.
 - `zero_pair_beat`: for two zeros the turning term is
   `2^((β₁+β₂)k)·exp(i·k·(γ₁−γ₂)·log 2)` times the weights.
 
-## R2 The sieve, exactly — not yet built
+## R2 The sieve, exactly — PROVED (unit 0481: `SieveExact.pi_by_sieve`, `row_by_sieve`, `sieve_by_level`, `level_card`, `sieve_split`, `smoothPart_eq_prod`, `abs_netRounding_le`)
 
 `π(x) − π(√x) + 1 = Σ_{d | P(√x)} μ(d)·⌊x/d⌋` for every `x`. The sizes of
 units 0472 to 0475 that are of the strength of the Riemann hypothesis stay

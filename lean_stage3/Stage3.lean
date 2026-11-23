@@ -173,6 +173,7 @@ import Stage3.SpiralLink
 import Stage3.ClosedLoopChain
 import Stage3.OneChain
 import Stage3.RunTheorems
+import Stage3.SieveExact
 
 namespace Stage3
 

@@ -1,0 +1,19 @@
+key	value	source
+module_lines	269	wc -l lean_stage3/Stage3/SieveExact.lean
+theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/SieveExact.lean
+defs	5	smallPrimes, survivors, smoothPart, netRounding, roundingMass
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/SieveExact.lean
+pins	6	sieve_sum, pi_by_sieve, row_by_sieve, level_card, sieve_split, smoothPart_eq_prod
+errors_first	3	the worker's first three builds, which failed, as it reported
+builds	4	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8867	lake build (full Stage3), Build completed successfully
+jobs_module	8655	run/build.log, lake build Stage3.SieveExact
+loop_version	22	lean_stage3/LOOP.md version line
+design	runs.md#r2	the sieve, exactly
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_run	475	unit 0475, the run on rows 10 to 24
+floor_N	2	the hypothesis 2 ≤ N
+first_row	1	row_by_sieve: 1 ≤ r

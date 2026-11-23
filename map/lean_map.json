@@ -54086,6 +54086,654 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/SieveExact.lean",
+  "module": "Stage3.SieveExact",
+  "stem": "SieveExact",
+  "header": "# Stage3.SieveExact — the sieve of Legendre, exactly Block R2 of `lean_stage3/design/runs.md` (\"The sieve, exactly\"). An exploratory run (unit 0475) checked on rows 10..24 that the number of primes up to `2^r` is given exactly by the sieve of Legendre from the primes up to `2^(r/2)`. This module proves that identity for every `N`, with nothing computed.",
+  "imports": [],
+  "opens": [
+   "Finset"
+  ],
+  "namespaces": [
+   "SieveExact"
+  ],
+  "lines": 270,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "smallPrimes",
+    "ns": "SieveExact",
+    "full": "SieveExact.smallPrimes",
+    "line": 30,
+    "why": "The primes up to the square root of `N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "Finset ℕ",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.level_card",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.prime_of_mem_smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.row_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_by_level",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_by_level_sign",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart_eq_prod",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "survivors",
+    "ns": "SieveExact",
+    "full": "SieveExact.survivors",
+    "line": 33,
+    "why": "The integers from 1 to `N` that no prime up to `√N` divides.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "Finset ℕ",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "prime_of_mem_smallPrimes",
+    "ns": "SieveExact",
+    "full": "SieveExact.prime_of_mem_smallPrimes",
+    "line": 37,
+    "why": "Every member of `smallPrimes N` is prime.",
+    "sorry": false,
+    "needs": [
+     "hp : p ∈ smallPrimes N"
+    ],
+    "proves": "p.Prime",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.prime_of_mem_smallPrimes",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "forall_dvd_iff_prod_dvd",
+    "ns": "SieveExact",
+    "full": "SieveExact.forall_dvd_iff_prod_dvd",
+    "line": 41,
+    "why": "For a set of primes, all of them divide `n` exactly when their product does.",
+    "sorry": false,
+    "needs": [
+     "T : Finset ℕ",
+     "hT : ∀ p ∈ T, p.Prime",
+     "n : ℕ"
+    ],
+    "proves": "(∀ p ∈ T, p ∣ n) ↔ (∏ p ∈ T, p) ∣ n",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.forall_dvd_iff_prod_dvd",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_filter_not_dvd"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_filter_not_dvd",
+    "ns": "SieveExact",
+    "full": "SieveExact.card_filter_not_dvd",
+    "line": 49,
+    "why": "Inclusion and exclusion over any finite set `A`: the members of `A` that no prime of `s` divides, counted as an alternating sum of the members that the products of subsets of `s` divide.",
+    "sorry": false,
+    "needs": [
+     "A s : Finset ℕ",
+     "hs : ∀ p ∈ s, p.Prime"
+    ],
+    "proves": "((A.filter (fun n => ∀ p ∈ s, ¬ p ∣ n)).card : ℤ) = ∑ T ∈ s.powerset, (-1 : ℤ) ^ T.card * ((A.filter (fun n => (∏ p ∈ T, p) ∣ n)).card : ℤ)",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_filter_not_dvd",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.forall_dvd_iff_prod_dvd"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.forall_dvd_iff_prod_dvd"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_multiples",
+    "ns": "SieveExact",
+    "full": "SieveExact.card_multiples",
+    "line": 75,
+    "why": "The multiples of `d` in `[1, N]` number `N / d`.",
+    "sorry": false,
+    "needs": [
+     "N d : ℕ"
+    ],
+    "proves": "((Finset.Icc 1 N).filter (fun n => d ∣ n)).card = N / d",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sieve_sum",
+    "ns": "SieveExact",
+    "full": "SieveExact.sieve_sum",
+    "line": 82,
+    "why": "Inclusion and exclusion: the survivors of the sieve number the alternating sum, over the sets `T` of primes up to `√N`, of `⌊N / ∏ T⌋`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "((survivors N).card : ℤ) = ∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ)",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_filter_not_dvd",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.prime_of_mem_smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_filter_not_dvd",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_multiples",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.prime_of_mem_smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "survivors_eq",
+    "ns": "SieveExact",
+    "full": "SieveExact.survivors_eq",
+    "line": 95,
+    "why": "For `2 ≤ N`, the survivors of the sieve are `1` and the primes above `√N` up to `N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 2 ≤ N"
+    ],
+    "proves": "survivors N = insert 1 ((Finset.Icc 1 N).filter (fun n => Nat.Prime n ∧ Nat.sqrt N < n))",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_survivors"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "card_survivors",
+    "ns": "SieveExact",
+    "full": "SieveExact.card_survivors",
+    "line": 127,
+    "why": "For `2 ≤ N`, the survivors together with the primes up to `√N` number one more than the primes up to `N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 2 ≤ N"
+    ],
+    "proves": "(survivors N).card + Nat.primeCounting (Nat.sqrt N) = 1 + Nat.primeCounting N",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_survivors",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors_eq"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "pi_by_sieve",
+    "ns": "SieveExact",
+    "full": "SieveExact.pi_by_sieve",
+    "line": 156,
+    "why": "For `2 ≤ N`, the number of primes up to `N` from the primes up to `√N` alone: `π(N) = π(√N) - 1 + Σ_T (-1)^|T| ⌊N / ∏ T⌋`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ",
+     "hN : 2 ≤ N"
+    ],
+    "proves": "(Nat.primeCounting N : ℤ) = (Nat.primeCounting (Nat.sqrt N) : ℤ) - 1 + ∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ)",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.card_survivors",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.row_by_sieve"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "row_by_sieve",
+    "ns": "SieveExact",
+    "full": "SieveExact.row_by_sieve",
+    "line": 170,
+    "why": "The ladder: `pi_by_sieve` at `N = 2 ^ r`, the table's row `r`.",
+    "sorry": false,
+    "needs": [
+     "r : ℕ",
+     "hr : 1 ≤ r"
+    ],
+    "proves": "(Nat.primeCounting (2 ^ r) : ℤ) = (Nat.primeCounting (Nat.sqrt (2 ^ r)) : ℤ) - 1 + ∑ T ∈ (smallPrimes (2 ^ r)).powerset, (-1 : ℤ) ^ T.card * ((2 ^ r / ∏ p ∈ T, p : ℕ) : ℤ)",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.row_by_sieve",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.pi_by_sieve",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "sieve_by_level",
+    "ns": "SieveExact",
+    "full": "SieveExact.sieve_by_level",
+    "line": 184,
+    "why": "The sieve's sum arranged by level: the sets `T` grouped by their size `k`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ) = ∑ k ∈ Finset.range ((smallPrimes N).card + 1), ∑ T ∈ (smallPrimes N).powersetCard k, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ)",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_by_level",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_by_level_sign"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sieve_by_level_sign",
+    "ns": "SieveExact",
+    "full": "SieveExact.sieve_by_level_sign",
+    "line": 191,
+    "why": "The sum by level with the sign of each level pulled out: level `k` carries `(-1)^k`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "∑ T ∈ (smallPrimes N).powerset, (-1 : ℤ) ^ T.card * ((N / ∏ p ∈ T, p : ℕ) : ℤ) = ∑ k ∈ Finset.range ((smallPrimes N).card + 1), (-1 : ℤ) ^ k * ∑ T ∈ (smallPrimes N).powersetCard k, ((N / ∏ p ∈ T, p : ℕ) : ℤ)",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_by_level_sign",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_by_level",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_by_level",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "level_card",
+    "ns": "SieveExact",
+    "full": "SieveExact.level_card",
+    "line": 202,
+    "why": "The number of terms at level `k` is a binomial coefficient: a row of Pascal.",
+    "sorry": false,
+    "needs": [
+     "N k : ℕ"
+    ],
+    "proves": "((smallPrimes N).powersetCard k).card = ((smallPrimes N).card).choose k",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.level_card",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "smoothPart",
+    "ns": "SieveExact",
+    "full": "SieveExact.smoothPart",
+    "line": 211,
+    "why": "The exact-fraction part of the sieve's sum.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℚ",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart_eq_prod"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "netRounding",
+    "ns": "SieveExact",
+    "full": "SieveExact.netRounding",
+    "line": 215,
+    "why": "The net of the roundings, with their signs.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℚ",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.abs_netRounding_le",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "roundingMass",
+    "ns": "SieveExact",
+    "full": "SieveExact.roundingMass",
+    "line": 219,
+    "why": "The roundings added in size.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "ℚ",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.abs_netRounding_le",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass_nonneg"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "natDiv_eq_sub_fract",
+    "ns": "SieveExact",
+    "full": "SieveExact.natDiv_eq_sub_fract",
+    "line": 223,
+    "why": "A natural quotient is the exact fraction less its fractional part.",
+    "sorry": false,
+    "needs": [
+     "n d : ℕ"
+    ],
+    "proves": "((n / d : ℕ) : ℚ) = (n : ℚ) / (d : ℚ) - Int.fract ((n : ℚ) / (d : ℚ))",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.natDiv_eq_sub_fract",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sieve_split",
+    "ns": "SieveExact",
+    "full": "SieveExact.sieve_split",
+    "line": 229,
+    "why": "The survivors' count is the exact-fraction part less the net of the roundings.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "((survivors N).card : ℚ) = smoothPart N - netRounding N",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_split",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.natDiv_eq_sub_fract",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.natDiv_eq_sub_fract",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.sieve_sum",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.survivors"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "smoothPart_eq_prod",
+    "ns": "SieveExact",
+    "full": "SieveExact.smoothPart_eq_prod",
+    "line": 246,
+    "why": "The exact-fraction part is `N` times the product of `1 - 1/p` over the primes up to `√N`.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ))",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart_eq_prod",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smallPrimes",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.smoothPart"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "abs_netRounding_le",
+    "ns": "SieveExact",
+    "full": "SieveExact.abs_netRounding_le",
+    "line": 259,
+    "why": "The net of the roundings is at most their mass in size.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "|netRounding N| ≤ roundingMass N",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.abs_netRounding_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.netRounding",
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "roundingMass_nonneg",
+    "ns": "SieveExact",
+    "full": "SieveExact.roundingMass_nonneg",
+    "line": 266,
+    "why": "The rounding mass is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "N : ℕ"
+    ],
+    "proves": "0 ≤ roundingMass N",
+    "file": "lean_stage3/Stage3/SieveExact.lean",
+    "id": "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/SieveExact.lean::SieveExact.roundingMass"
+    ],
+    "layer": "count",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/SpiralLink.lean",
   "module": "Stage3.SpiralLink",
   "stem": "SpiralLink",
@@ -83443,11 +84091,12 @@
    "Stage3.SpiralLink",
    "Stage3.ClosedLoopChain",
    "Stage3.OneChain",
-   "Stage3.RunTheorems"
+   "Stage3.RunTheorems",
+   "Stage3.SieveExact"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 184,
+  "lines": 185,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -83538,6 +84187,7 @@
    "lean_stage3/Stage3/RowLeaves.lean",
    "lean_stage3/Stage3/RunTheorems.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
+   "lean_stage3/Stage3/SieveExact.lean",
    "lean_stage3/Stage3/SpiralLink.lean",
    "lean_stage3/Stage3/SquareMean.lean",
    "lean_stage3/Stage3/Statement.lean",
