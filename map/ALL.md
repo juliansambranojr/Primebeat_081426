@@ -1338,6 +1338,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`ZeroSummable.order_le_log_pos`](./lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos) | theorem | reads ζ | `ZeroSummable` | ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log ((ρ : ℂ).im + 1) + 73 |
 | [`ZeroSummable.order_le_shell`](./lean_stage3/ZeroSummable.md#ZeroSummable-order_le_shell) | theorem | reads ζ | `ZeroSummable` | ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 103 * ((j : ℝ) + 1) |
 | [`FiniteOffLine.order_nonneg`](./lean_stage3/FiniteOffLine.md#FiniteOffLine-order_nonneg) | theorem | reads ζ | `FiniteOffLine` | (0 : ℝ) ≤ ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) |
+| [`StepsPole.order_pos`](./lean_stage3/StepsPole.md#StepsPole-order_pos) | theorem | reads ζ | `StepsPole` | 0 &lt; analyticOrderNatAt riemannZeta (ρ : ℂ) |
 | [`FiniteOffLinePi.ordR`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) | def | reads ζ | `FiniteOffLinePi` | ℝ |
 | [`FiniteOffLinePi.ordR_nonneg`](./lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR_nonneg) | theorem | reads ζ | `FiniteOffLinePi` | 0 ≤ ordR ρ |
 | [`LeftKernel.osc_by_parts`](./lean_stage3/LeftKernel.md#LeftKernel-osc_by_parts) | theorem | shape | `LeftKernel` | ‖∫ t in a..b, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * h t‖ ≤ (‖h a‖ + ‖h b‖ + ∫ t in a..b, ‖h' t‖) / Real.log y |
@@ -1825,6 +1826,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`StencilWeil.stencilTest`](./lean_stage3/StencilWeil.md#StencilWeil-stencilTest) | def | shape | `StencilWeil` | ℝ → ℂ |
 | [`StencilWeil.stencilTest_zero_outside`](./lean_stage3/StencilWeil.md#StencilWeil-stencilTest_zero_outside) | theorem | shape | `StencilWeil` | stencilTest d φ u = 0 |
 | [`CellResidual.step_le`](./lean_stage3/CellResidual.md#CellResidual-step_le) | theorem | shape | `CellResidual` | \|resid a r - resid a (r - 1)\| ≤ C * cellSize r 0 |
+| [`StepsPole.steps_pole`](./lean_stage3/StepsPole.md#StepsPole-steps_pole) | theorem | reads ζ | `StepsPole` | Tendsto (fun s : ℂ =&gt; (s - (ρ : ℂ)) * (- deriv riemannZeta s / riemannZeta s / s)) (𝓝[≠] (ρ : ℂ)) (𝓝 (-(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ))) |
+| [`StepsPole.steps_pole_ne_zero`](./lean_stage3/StepsPole.md#StepsPole-steps_pole_ne_zero) | theorem | reads ζ | `StepsPole` | -(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0 |
+| [`StepsPole.steps_regular`](./lean_stage3/StepsPole.md#StepsPole-steps_regular) | theorem | reads ζ | `StepsPole` | AnalyticAt ℂ (fun t : ℂ =&gt; deriv riemannZeta t / riemannZeta t) s |
+| [`StepsPole.steps_sum`](./lean_stage3/StepsPole.md#StepsPole-steps_sum) | theorem | reads ζ | `StepsPole` | LSeries (fun n =&gt; (ArithmeticFunction.vonMangoldt n : ℂ)) s = - deriv riemannZeta s / riemannZeta s |
 | [`Chain.StmtA1`](./lean/Chain.md#Chain-StmtA1) | def | shape | `Chain` | Prop |
 | [`Chain.StmtA2`](./lean/Chain.md#Chain-StmtA2) | def | reads ζ | `Chain` | Prop |
 | [`Chain.StmtA3`](./lean/Chain.md#Chain-StmtA3) | def | reads ζ | `Chain` | Prop |

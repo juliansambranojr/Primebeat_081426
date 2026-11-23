@@ -7,7 +7,7 @@ SieveResidual — block R3 of `lean_stage3/design/runs.md`. 2026-11-23. The roun
 4 theorems, 1 definition, 86 lines. 
 
 **Imports:** [`PiZeros`](../lean_stage3/PiZeros.md), [`SieveExact`](../lean_stage3/SieveExact.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`StepsPole`](../lean_stage3/StepsPole.md)
 
 ## The picture
 

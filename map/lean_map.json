@@ -23734,6 +23734,8 @@
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_principal_part",
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.differentiableAt_Phi",
      "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.order_pos",
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_regular",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_mul_zeta_analytic"
     ]
    },
@@ -24101,7 +24103,8 @@
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_conj",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_reflect",
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_zeros_rectangle_finite",
-     "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_principal_part"
+     "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_principal_part",
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.order_pos"
     ]
    },
    {
@@ -24136,7 +24139,8 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/ContourShift.lean::ContourShift.residue_identity",
-     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two"
+     "lean_stage3/Stage3/ExplicitTwo.lean::ExplicitTwo.residue_identity_two",
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_pole"
     ]
    },
    {
@@ -56370,6 +56374,160 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/StepsPole.lean",
+  "module": "Stage3.StepsPole",
+  "stem": "StepsPole",
+  "header": "StepsPole — block R4 of `lean_stage3/design/runs.md`. 2026-11-23. Unit 0472 turned the steps of the staircase and saw them line up at the heights of the zeros. The exact core: the sum of the turned steps is the logarithmic derivative of zeta, and it has a pole at every nontrivial zero, whose weight is the zero's order over the zero, the same weight the zero carries in the table's residual.",
+  "imports": [
+   "Stage3.SieveResidual",
+   "Stage3.ContourShift"
+  ],
+  "opens": [
+   "Filter",
+   "Kadiri",
+   "Topology"
+  ],
+  "namespaces": [
+   "StepsPole"
+  ],
+  "lines": 111,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/ContourShift.lean",
+   "lean_stage3/Stage3/SieveResidual.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "steps_sum",
+    "ns": "StepsPole",
+    "full": "StepsPole.steps_sum",
+    "line": 30,
+    "why": "The turned steps. Right of the line `Re s = 1` the sum over the integers of the step `Λ(n)` turned and weighed by `n^(−s)` is minus the logarithmic derivative of zeta.",
+    "sorry": false,
+    "needs": [
+     "hs : 1 < s.re"
+    ],
+    "proves": "LSeries (fun n => (ArithmeticFunction.vonMangoldt n : ℂ)) s = - deriv riemannZeta s / riemannZeta s",
+    "file": "lean_stage3/Stage3/StepsPole.lean",
+    "id": "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_sum",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "order_pos",
+    "ns": "StepsPole",
+    "full": "StepsPole.order_pos",
+    "line": 36,
+    "why": "A nontrivial zero has order at least one.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "0 < analyticOrderNatAt riemannZeta (ρ : ℂ)",
+    "file": "lean_stage3/Stage3/StepsPole.lean",
+    "id": "lean_stage3/Stage3/StepsPole.lean::StepsPole.order_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_ne_top"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt",
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_order_ne_top"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_pole_ne_zero"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "steps_pole",
+    "ns": "StepsPole",
+    "full": "StepsPole.steps_pole",
+    "line": 52,
+    "why": "The pole at a zero. At a nontrivial zero `ρ` of order `m`, the turned steps' sum over `s`, times the distance `s − ρ`, tends to `−m/ρ`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "Tendsto (fun s : ℂ => (s - (ρ : ℂ)) * (- deriv riemannZeta s / riemannZeta s / s)) (𝓝[≠] (ρ : ℂ)) (𝓝 (-(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ)))",
+    "file": "lean_stage3/Stage3/StepsPole.lean",
+    "id": "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_pole",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_local_data_zero"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "steps_pole_ne_zero",
+    "ns": "StepsPole",
+    "full": "StepsPole.steps_pole_ne_zero",
+    "line": 81,
+    "why": "The pole is there: its weight is not zero.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "-(analyticOrderNatAt riemannZeta (ρ : ℂ) : ℂ) / (ρ : ℂ) ≠ 0",
+    "file": "lean_stage3/Stage3/StepsPole.lean",
+    "id": "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_pole_ne_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.order_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/StepsPole.lean::StepsPole.order_pos"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "steps_regular",
+    "ns": "StepsPole",
+    "full": "StepsPole.steps_regular",
+    "line": 94,
+    "why": "No pole away from the zeros. Where zeta does not vanish, and away from `1`, the logarithmic derivative of zeta is analytic.",
+    "sorry": false,
+    "needs": [
+     "hs1 : s ≠ 1",
+     "hz : riemannZeta s ≠ 0"
+    ],
+    "proves": "AnalyticAt ℂ (fun t : ℂ => deriv riemannZeta t / riemannZeta t) s",
+    "file": "lean_stage3/Stage3/StepsPole.lean",
+    "id": "lean_stage3/Stage3/StepsPole.lean::StepsPole.steps_regular",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/Stirling.lean",
   "module": "Stage3.Stirling",
   "stem": "Stirling",
@@ -84326,11 +84484,12 @@
    "Stage3.OneChain",
    "Stage3.RunTheorems",
    "Stage3.SieveExact",
-   "Stage3.SieveResidual"
+   "Stage3.SieveResidual",
+   "Stage3.StepsPole"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 186,
+  "lines": 187,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -84427,6 +84586,7 @@
    "lean_stage3/Stage3/SquareMean.lean",
    "lean_stage3/Stage3/Statement.lean",
    "lean_stage3/Stage3/StencilWeil.lean",
+   "lean_stage3/Stage3/StepsPole.lean",
    "lean_stage3/Stage3/Stirling.lean",
    "lean_stage3/Stage3/TableDepths.lean",
    "lean_stage3/Stage3/TableRoute.lean",

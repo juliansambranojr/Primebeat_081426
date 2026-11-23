@@ -40,3 +40,14 @@ true form: take from the net rounding its own smooth part
 
 - `net_wobble (hN : 2 ≤ N)`, and `net_wobble_rows (hm : 1 ≤ m)` at `N = 2^(2m)`
   with `√N = 2^m`: the residual at row `2m` less the residual at row `m`.
+
+## R4 The steps' pole at a zero — `Stage3/StepsPole.lean`
+
+The exact core of unit 0472. `steps_sum`: for `Re s > 1` the turned steps
+`Σ Λ(n)·n^(−s)` are `−ζ'/ζ(s)`. `steps_pole`: at a nontrivial zero `ρ` of
+order `m`, `(s − ρ)·(−ζ'/ζ(s)/s) → −m/ρ`; `steps_pole_ne_zero`, `order_pos`.
+`steps_regular`: away from the zeros and from `1` the logarithmic derivative
+is analytic. From `ContourShift.zeta_local_data_zero` at `x = 1`.
+
+The weight of the pole, `m/ρ`, is the weight the zero carries in the table's
+residual (`FilterLadder.wz`).

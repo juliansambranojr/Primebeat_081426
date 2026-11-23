@@ -22,6 +22,19 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block R4 of `design/runs.md`: `Stage3/StepsPole.lean`
+
+    DONE        `steps_sum`: the turned steps are `−ζ'/ζ` for `Re s > 1`.
+                `steps_pole`, `steps_pole_ne_zero`: a pole at every nontrivial
+                zero, of weight `m/ρ`. `steps_regular`: none elsewhere; one
+                unit
+    ASSUMED     Julian, 2026-11-23: "The runs should be theorems." The exact
+                core of unit 0472. Written and built here
+    DEPENDS     `ContourShift.zeta_local_data_zero`, Mathlib
+                `LSeries_vonMangoldt_eq_deriv_riemannZeta_div`
+    OUT         the height of a finite peak; the size rate
+    OUTCOME     proved, unit 0483
+
 ### 2026-11-23 · block R3 of `design/runs.md`: `Stage3/SieveResidual.lean`
 
     DONE        `net_wobble`: for `N ≥ 2`, the sieve's net rounding less its
