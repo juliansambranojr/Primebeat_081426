@@ -22,6 +22,23 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · a zero-density bound with a power saving, built here: `lean_stage3/design/carlson.md`
+
+    DONE        nothing yet. Seven blocks C1 to C7 in `design/carlson.md`:
+                mean value of a finite Dirichlet sum; the mollified finite
+                sum; zeta as a finite sum to any order; the mean square of
+                `ζ·M − 1` on a line; zeros from the mean square; the bound
+                and summability; joint 10 when the largest real part is
+                attained
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves, which
+                is a large project". A saving at every real part above one
+                half is the target; Carlson's exact exponent is not needed.
+                Blocks go to Opus workers one at a time; each file is read
+                and built here before it is recorded
+    DEPENDS     Mathlib; `ZetaGrowth`; `ArgCount.rvM_crude`; `LadderMean`
+    OUT         the case where the real parts approach a line without
+                reaching it
+
 ### 2026-11-23 · joint 10, the finite case on the count: `Stage3/FiniteOffLinePi.lean`, block J10e of `joints.md`
 
     DONE        `finite_off_line_pi`: a finite set holds every zero off the
