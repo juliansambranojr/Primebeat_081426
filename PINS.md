@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block G3 of `design/floor.md`: `Stage3/FixedRowTwo.lean`
+
+    DONE        `cell_fixed_row_two` for `r ≥ d + 1`, `pi_fixed_row_two` for
+                `x ≥ 2`, `table_cell_fixed_row_two` for `r ≥ d + 2`: T3 at a
+                fixed row at every row where the cell's identity holds; one
+                unit
+    ASSUMED     Julian, 2026-11-23: "Ok do it". The fixed-row theorems
+                restated on the formula from `x = 2`. Written by an Opus
+                worker; read and built here
+    DEPENDS     `ExplicitTwo.explicit_formula_all_two`,
+                `CellFixedRow.tendsto_log_sq_div`, `PiZeros.pi_eq_zero_sum`,
+                `table_cell_eq_zero_sum`, `PiRemainder.integrable_efRem`
+    OUT         joint 10; numerals above the constants
+
 ### 2026-11-23 · blocks G1, G2 of `design/floor.md`: `Stage3/PerronTwo.lean`, `Stage3/ExplicitTwo.lean`
 
     DONE        `PerronTwo.explicit_formula_perron_two`: Perron's formula for

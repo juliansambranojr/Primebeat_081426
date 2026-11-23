@@ -62,3 +62,19 @@ theorem stands beside the old one.
   `c3t = 18 + K0/log 2`; `1 ≤ log(xT)` from `4 ≤ x·T`.
 - `series_side_two`, `smooth_side_two`, `left_edge_bound_two`:
   `Bleft2 = 4·Bleft`.
+
+## G3 The fixed row at every row — `Stage3/FixedRowTwo.lean`
+
+`CellFixedRow` and `PiFixedRow` read `LeftSmooth.explicit_formula_all` and
+carry its floor: `r ≥ d + 4`, `r ≥ d + 6`, `x ≥ 16`. On
+`ExplicitTwo.explicit_formula_all_two` the same proofs reach the lowest rows.
+
+- `cell_eq_zero_sum_two`, `cell_fixed_row_two (hr : d + 1 ≤ r)`: the cell of
+  `ψ`; the stencil reads rows `r − j ≥ 1`, `2^(r−j) ≥ 2`. What stays:
+  `2^d·(c3t·log 2·r + Bleft2)`.
+- `tr_efRem_fixed_two (hx : 2 ≤ x)`: the passage of the remainder. The whole
+  integral `∫₂ˣ` is read from the formula; no stretch below the floor is
+  left, so `PiFixedRow.norm_low_integral_le` is not used.
+- `pi_fixed_row_two (hx : 2 ≤ x)`, `table_cell_fixed_row_two (hr : d + 2 ≤ r)`:
+  the count and the table's cell. `d + 2 ≤ r` is the hypothesis of
+  `PiZeros.table_cell_eq_zero_sum` itself.
