@@ -1,13 +1,13 @@
 flowchart LR
-  n0["<b>uLam_nonneg</b><br/>0 ≤ WeilPowerGeomGen.uLam lam h"]:::thm
-  n1["<b>uLam_le</b><br/>WeilPowerGeomGen.uLam lam h ≤ (h : ℝ) / ((lam : ℝ) * Real.pi ^ 2…"]:::thm
-  n2["<b>cos_ge_lin</b><br/>1 - 2 * θ / Real.pi ≤ Real.cos θ"]:::thm
-  n3["<b>bracket_nonneg</b><br/>0 ≤ (e' ^ 2 - D ^ 2) * Real.cos θ - 2 * e' * D * Real.sin θ"]:::thm
-  n4["<b>re_term_eq</b><br/>(WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zOf e'…"]:::thm
-  n5["<b>phase_le</b><br/>4 * e' * D * WeilPowerGeomGen.uLam lam h ≤ 4 * e' * D * ((b : ℝ)…"]:::thm
-  n6["<b>term_nonneg</b><br/>0 ≤ (WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zO…"]:::thm
-  n7["<b>shellSum_nonneg</b><br/>0 ≤ WeilPowerShell.shellSum e' D e lam a b"]:::thm
-  n8["<b>shellSum_nonneg_abs</b><br/>0 ≤ WeilPowerShell.shellSum e' D e lam a b"]:::end_
+  n0["<b>uLam_nonneg</b><br/>0 ≤ WeilPowerGeomGen.uLam lam h"]:::shp
+  n1["<b>uLam_le</b><br/>WeilPowerGeomGen.uLam lam h ≤ (h : ℝ) / ((lam : ℝ) * Real.pi ^ 2…"]:::shp
+  n2["<b>cos_ge_lin</b><br/>1 - 2 * θ / Real.pi ≤ Real.cos θ"]:::shp
+  n3["<b>bracket_nonneg</b><br/>0 ≤ (e' ^ 2 - D ^ 2) * Real.cos θ - 2 * e' * D * Real.sin θ"]:::shp
+  n4["<b>re_term_eq</b><br/>(WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zOf e'…"]:::shp
+  n5["<b>phase_le</b><br/>4 * e' * D * WeilPowerGeomGen.uLam lam h ≤ 4 * e' * D * ((b : ℝ)…"]:::shp
+  n6["<b>term_nonneg</b><br/>0 ≤ (WeilPowerShell.coef e' D e * Complex.exp (WeilPowerShell.zO…"]:::shp
+  n7["<b>shellSum_nonneg</b><br/>0 ≤ WeilPowerShell.shellSum e' D e lam a b"]:::shp
+  n8["<b>shellSum_nonneg_abs ■</b><br/>0 ≤ WeilPowerShell.shellSum e' D e lam a b"]:::shp
   x0(["<b>WeilPowerPhase</b><br/>sigma_ge"]):::ext
   x1(["<b>WeilPowerGeomGen</b><br/>uLam_bracket"]):::ext
   x2(["<b>WeilPowerShell</b><br/>shellSum_neg<br/>zOf_im<br/>zOf_re"]):::ext
@@ -23,6 +23,9 @@ flowchart LR
   x1 -.-> n1
   x2 -.-> n4
   x2 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

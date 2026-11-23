@@ -51,6 +51,7 @@ def phiW (h γ : ℝ) (m : ℕ) (u : ℝ) : ℝ :=
 /-- The complex-valued test function WeilDetect reads. -/
 def phiWC (h γ : ℝ) (m : ℕ) : ℝ → ℂ := fun u => ((phiW h γ m u : ℝ) : ℂ)
 
+/-- The complex-valued test function `phiWC h γ m` has zero imaginary part at every `u`. -/
 theorem phiWC_real (h γ : ℝ) (m : ℕ) (u : ℝ) : (phiWC h γ m u).im = 0 := by
   unfold phiWC; simp
 
@@ -112,6 +113,8 @@ theorem term_eq_neg_sq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : ℂ) :
   rw [e1, e2, what_neg hh]
   ring
 
+/-- For `h > 0`, the real part of the zero-form term at `ρ` is `(Im ŵ)² − (Re ŵ)²`, where `ŵ`
+is the window's transform `what h γ m` at `ρ − 1/2`. -/
 theorem term_re_eq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : ℂ) :
     (laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).re
       = (what h γ m (ρ - 1 / 2)).im ^ 2 - (what h γ m (ρ - 1 / 2)).re ^ 2 := by
@@ -161,6 +164,8 @@ theorem online_term_eq {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) {ρ : ℂ} (h
   rw [Complex.I_sq]
   ring
 
+/-- For `h > 0` and `ρ` with real part `1/2`, the real part of the zero-form term at `ρ` is
+nonnegative. -/
 theorem online_term_nonneg {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) {ρ : ℂ} (hρ : ρ.re = 1 / 2) :
     0 ≤ (laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).re := by
   rw [online_term_eq hh γ m hρ, Complex.ofReal_re]

@@ -1,15 +1,15 @@
 flowchart LR
-  n0["<b>σθ_half</b><br/>σθ (1/2) X = RHPull.σRH X"]:::end_
-  n1["<b>σθ_re</b><br/>((σθ θ X : ℂ) + I * (t : ℂ)).re = σθ θ X"]:::thm
+  n0["<b>σθ_half ■</b><br/>σθ (1/2) X = RHPull.σRH X"]:::shp
+  n1["<b>σθ_re</b><br/>((σθ θ X : ℂ) + I * (t : ℂ)).re = σθ θ X"]:::shp
   n2["<b>zeta_ne_zero_right_of</b><br/>ζ s ≠ 0"]:::thm
   n3["<b>zeroFreeRight_of_RH</b><br/>StmtZeroFreeRight (1/2)"]:::thm
-  n4["<b>zeroFreeRight_mono</b><br/>StmtZeroFreeRight θ'"]:::end_
-  n5["<b>rpow_σθ</b><br/>X ^ (σθ θ X) = Real.exp 1 * X ^ θ"]:::thm
-  n6["<b>rpow_σθ_half</b><br/>X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X"]:::end_
-  n7["<b>abscissa_gives_power</b><br/>K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ"]:::end_
-  n8["<b>zeroFreeRight_one</b><br/>StmtZeroFreeRight 1"]:::end_
+  n4["<b>zeroFreeRight_mono ■</b><br/>StmtZeroFreeRight θ'"]:::thm
+  n5["<b>rpow_σθ</b><br/>X ^ (σθ θ X) = Real.exp 1 * X ^ θ"]:::shp
+  n6["<b>rpow_σθ_half ■</b><br/>X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X"]:::shp
+  n7["<b>abscissa_gives_power ■</b><br/>K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ"]:::shp
+  n8["<b>zeroFreeRight_one ■</b><br/>StmtZeroFreeRight 1"]:::thm
   n9["<b>logDerivZeta_crude_theta</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::thm
-  n10["<b>logDerivZeta_crude_half</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::end_
+  n10["<b>logDerivZeta_crude_half ■</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::thm
   x0(["<b>ThetaPsi</b><br/>5 theorems"]):::ext
   x1(["<b>ThetaPull</b><br/>4 theorems"]):::ext
   x2(["<b>ThetaLine</b><br/>logDerivZeta_compact_theta<br/>logDerivZeta_line_half<br/>logDerivZeta_sq_at_X_theta"]):::ext
@@ -35,6 +35,9 @@ flowchart LR
   x3 -.-> n3
   x3 -.-> n9
   x5 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

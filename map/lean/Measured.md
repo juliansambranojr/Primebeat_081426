@@ -11,13 +11,16 @@ The chain's numbers, as a Lean object. Third layer of `lean/`. Not a proof file 
 
 ```mermaid
 flowchart LR
-  n0["<b>agreement_offsets_match</b><br/>|measured_offset_smooth - measured_offset_resid| ＜ 0.001"]:::end_
-  n1["<b>agreement_radius_smooth</b><br/>|measured_radius_smooth - 0.5 * (1 + measured_offset_smooth)| ＜ …"]:::end_
-  n2["<b>agreement_rank_11a1</b><br/>|measured_rank_11a1 - predicted_rank_11a1| ＜ 0.05"]:::end_
-  n3["<b>agreement_rank_389a1</b><br/>|measured_rank_389a1 - predicted_rank_389a1| ＜ 0.01"]:::end_
-  n4["<b>agreement_rank_37a1</b><br/>|measured_rank_37a1 - predicted_rank_37a1| ＜ 0.3"]:::end_
-  n5["<b>agreement_elliptic</b><br/>measured_elliptic_max_dev ＜ 1e-15"]:::end_
-  n6["<b>agreement_weil_balance</b><br/>|measured_weil_arithmetic - measured_weil_spectral| ＜ 1e-6 * mea…"]:::end_
+  n0["<b>agreement_offsets_match ■</b><br/>|measured_offset_smooth - measured_offset_resid| ＜ 0.001"]:::shp
+  n1["<b>agreement_radius_smooth ■</b><br/>|measured_radius_smooth - 0.5 * (1 + measured_offset_smooth)| ＜ …"]:::shp
+  n2["<b>agreement_rank_11a1 ■</b><br/>|measured_rank_11a1 - predicted_rank_11a1| ＜ 0.05"]:::shp
+  n3["<b>agreement_rank_389a1 ■</b><br/>|measured_rank_389a1 - predicted_rank_389a1| ＜ 0.01"]:::shp
+  n4["<b>agreement_rank_37a1 ■</b><br/>|measured_rank_37a1 - predicted_rank_37a1| ＜ 0.3"]:::shp
+  n5["<b>agreement_elliptic ■</b><br/>measured_elliptic_max_dev ＜ 1e-15"]:::shp
+  n6["<b>agreement_weil_balance ■</b><br/>|measured_weil_arithmetic - measured_weil_spectral| ＜ 1e-6 * mea…"]:::shp
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -25,7 +28,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -250,6 +253,8 @@ Primes contributing to the mollified Weil form, out of 36 in the window. `result
 
 line 65
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The one numeric relation that carries an inference. The two offsets agree to well under a tenth of a percentage point. That agreement is what identifies them as a truncation artifact rather than a real difference between the two circles — a signal would not produce the same offset in both. `results/transform_radius.json` → `difference_of_offsets = 0.0006200921056682684`.
 
 **Proves**
@@ -268,6 +273,8 @@ line 65
 ### `Measured.agreement_radius_smooth`
 
 line 71
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The smooth control sits above `b^(-1) = 0.5` by the measured offset.
 
@@ -288,6 +295,8 @@ line 71
 
 line 96
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Ranks 0 and 2 land inside 0.05. Rank 1 does NOT — it is 0.25 high, which is the slow convergence of the product at `X ≤ 30000`, not a disagreement about the rank. Encoded at the honest tolerance rather than a flattering one.
 
 **Proves**
@@ -306,6 +315,8 @@ line 96
 ### `Measured.agreement_rank_389a1`
 
 line 101
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Rank 2 lands inside 0.01 — the tightest of the three curves.
 
@@ -326,6 +337,8 @@ line 101
 
 line 107
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Rank 1 needs a tolerance of 0.3. Recorded as such — the separation between ranks is unambiguous, the third decimal is not.
 
 **Proves**
@@ -345,6 +358,8 @@ line 107
 
 line 124
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Agreement at machine epsilon: the deviation is one ulp of a float64.
 
 **Proves**
@@ -363,6 +378,8 @@ measured_elliptic_max_dev < 1e-15
 ### `Measured.agreement_weil_balance`
 
 line 140
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The two sides agree to 5.7e-7 relative. NOTE: this is a normalisation check, not a test — summing over known zeros presupposes they lie on the line.
 

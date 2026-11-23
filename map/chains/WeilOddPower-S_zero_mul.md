@@ -1,6 +1,6 @@
 # What `WeilOddPower.S_zero_mul` rests on
 
-[`WeilOddPower.S_zero_mul`](../lean_stage3/WeilOddPower.md#WeilOddPower-S_zero_mul) in `lean_stage3/Stage3/WeilOddPower.lean`, line 166.
+[`WeilOddPower.S_zero_mul`](../lean_stage3/WeilOddPower.md#WeilOddPower-S_zero_mul) in `lean_stage3/Stage3/WeilOddPower.lean`, line 171.
 
 **Why.** At `m = 0`: `S 0 w · (w² + π²) = 2π·sinh w`, the elementary integral of `sin(πx)e^{wx}`.
 
@@ -25,6 +25,9 @@ flowchart LR
   f2["<b>WeilOddPower</b><br/>S_zero_mul"]:::end_
   f0 --> f1
   f1 --> f2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

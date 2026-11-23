@@ -2,7 +2,7 @@
 
 WeilPowerSigma — the tail sum to order `1/m`: `σ(m) = Σ_{j≥m+2} 1/(π²j²)` bracketed sharply enough that `u m = (m+1)²σ(m)` is `(m+½)/π²` plus a correction of size `1/m`. Rung 5, thirteenth slice; worksheet § 13 block 13c. 2026-09-06.
 
-10 theorems, 1 definition, 256 lines. Arrows are Lean's own record of what each proof uses.
+10 theorems, 1 definition, 257 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilPowerPhase`](../lean_stage3/WeilPowerPhase.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerGeomGen`](../lean_stage3/WeilPowerGeomGen.md)
@@ -11,16 +11,16 @@ WeilPowerSigma — the tail sum to order `1/m`: `σ(m) = Σ_{j≥m+2} 1/(π²j²
 
 ```mermaid
 flowchart LR
-  n0["<b>sum_telescope_half</b><br/>∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, (1 / ((j : ℝ) +…"]:::thm
-  n1["<b>sum_upper_half</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 ≤ 2 / (2 * (m …"]:::thm
-  n2["<b>sum_telescope_amgm</b><br/>∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, ((1 / ((j : ℝ) …"]:::thm
-  n3["<b>sum_lower_amgm</b><br/>1 / ((m : ℝ) + 2) + 1 / (2 * ((m : ℝ) + 2) ^ 2) - 1 / ((n : ℝ) +…"]:::thm
-  n4["<b>sigma_le_half</b><br/>sigma m ≤ 2 / (Real.pi ^ 2 * (2 * (m : ℝ) + 3))"]:::thm
-  n5["<b>sigma_ge_amgm</b><br/>1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) + 1 / (2 * Real.pi ^ 2 * ((m :…"]:::thm
-  n6["<b>u_def</b><br/>u m = ((m : ℝ) + 1) ^ 2 * sigma m"]:::thm
-  n7["<b>r_pos</b><br/>1 / (2 * Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2) ≤ u m - ((m : ℝ) + 1 /…"]:::thm
-  n8["<b>r_le</b><br/>u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2 ≤ 1 / (Real.pi ^ 2 * (4 * …"]:::thm
-  n9["<b>u_mono</b><br/>u m ≤ u (m + 1)"]:::end_
+  n0["<b>sum_telescope_half</b><br/>∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, (1 / ((j : ℝ) +…"]:::shp
+  n1["<b>sum_upper_half</b><br/>∑ j ∈ Finset.Ico (m + 1) n, 1 / ((j : ℝ) + 1) ^ 2 ≤ 2 / (2 * (m …"]:::shp
+  n2["<b>sum_telescope_amgm</b><br/>∀ n : ℕ, m + 1 ≤ n → ∑ j ∈ Finset.Ico (m + 1) n, ((1 / ((j : ℝ) …"]:::shp
+  n3["<b>sum_lower_amgm</b><br/>1 / ((m : ℝ) + 2) + 1 / (2 * ((m : ℝ) + 2) ^ 2) - 1 / ((n : ℝ) +…"]:::shp
+  n4["<b>sigma_le_half</b><br/>sigma m ≤ 2 / (Real.pi ^ 2 * (2 * (m : ℝ) + 3))"]:::shp
+  n5["<b>sigma_ge_amgm</b><br/>1 / (Real.pi ^ 2 * ((m : ℝ) + 2)) + 1 / (2 * Real.pi ^ 2 * ((m :…"]:::shp
+  n6["<b>u_def</b><br/>u m = ((m : ℝ) + 1) ^ 2 * sigma m"]:::shp
+  n7["<b>r_pos</b><br/>1 / (2 * Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2) ≤ u m - ((m : ℝ) + 1 /…"]:::shp
+  n8["<b>r_le</b><br/>u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2 ≤ 1 / (Real.pi ^ 2 * (4 * …"]:::shp
+  n9["<b>u_mono ■</b><br/>u m ≤ u (m + 1)"]:::shp
   x0(["<b>WeilPowerPhase</b><br/>sigmaN_eq<br/>sigmaN_tendsto"]):::ext
   x1(["<b>WeilPowerGeomGen</b><br/>uLam_bracket<br/>uLam_eq"]):::ext
   n0 --> n1
@@ -38,6 +38,9 @@ flowchart LR
   n8 -.-> x1
   x0 -.-> n4
   x0 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -45,7 +48,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -66,6 +69,8 @@ The normalized tail sum `u m = (m+1)²σ(m)`, the exponent's shape at `λ = 1`.
 ### `WeilPowerSigma.sum_telescope_half`
 
 line 58
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Telescoping the half-shifted differences.
 
@@ -89,6 +94,8 @@ line 58
 ### `WeilPowerSigma.sum_upper_half`
 
 line 73
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The sharp upper bound for the tail sum, `2/(2m+3)`.
 
@@ -116,6 +123,8 @@ line 73
 
 line 98
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Telescoping the AM–GM differences.
 
 **Proves**
@@ -138,6 +147,8 @@ line 98
 ### `WeilPowerSigma.sum_lower_amgm`
 
 line 116
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The sharp lower bound for the tail sum, to order `1/n²` on both ends.
 
@@ -164,6 +175,8 @@ line 116
 ### `WeilPowerSigma.sigma_le_half`
 
 line 140
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `σ` from above, `2/(π²(2m+3))`: sharper than unit 0347's `1/(π²(m+1))`.
 
@@ -196,6 +209,8 @@ sigma m ≤ 2 / (Real.pi ^ 2 * (2 * (m : ℝ) + 3))
 
 line 154
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `σ` from below, with the `1/m²` term: sharper than unit 0347's `1/(π²(m+2))`.
 
 **Proves**
@@ -225,7 +240,11 @@ line 154
 <a name="WeilPowerSigma-u_def"></a>
 ### `WeilPowerSigma.u_def`
 
-line 189
+line 190
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The normalized tail sum unfolded: `u m = (m+1)²·sigma m`.
 
 **Proves**
 
@@ -250,7 +269,9 @@ u m = ((m : ℝ) + 1) ^ 2 * sigma m
 <a name="WeilPowerSigma-r_pos"></a>
 ### `WeilPowerSigma.r_pos`
 
-line 192
+line 193
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The correction is positive, at least `1/(2π²(m+2)²)`.
 
@@ -281,7 +302,9 @@ line 192
 <a name="WeilPowerSigma-r_le"></a>
 ### `WeilPowerSigma.r_le`
 
-line 208
+line 209
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The correction is `O(1/m)`, at most `1/(π²(4m+6))`.
 
@@ -312,7 +335,9 @@ u m - ((m : ℝ) + 1 / 2) / Real.pi ^ 2 ≤ 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 
 <a name="WeilPowerSigma-u_mono"></a>
 ### `WeilPowerSigma.u_mono`
 
-line 223
+line 224
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `u` is increasing: the step `1/π²` beats the correction's whole range.
 

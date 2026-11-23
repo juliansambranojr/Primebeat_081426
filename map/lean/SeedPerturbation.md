@@ -11,26 +11,26 @@ SeedPerturbation — changing the seed convention cannot reach a deep cell. THE 
 
 ```mermaid
 flowchart LR
-  n0["<b>tableFrom_zero</b><br/>tableFrom (fun _ : ℤ =＞ (0 : ℤ)) r d = 0"]:::thm
-  n1["<b>tableFrom_sub</b><br/>tableFrom (fun x =＞ N x - e x) r d = tableFrom N r d - tableFrom…"]:::thm
-  n2["<b>tableFrom_eq_zero_of_vanishing_above</b><br/>tableFrom e r d = 0"]:::thm
-  n3["<b>cell_eq_of_seed_perturbation</b><br/>tableFrom (fun x =＞ N x - e x) r d = tableFrom N r d"]:::thm
-  n4["<b>zero_stable_of_seed_perturbation</b><br/>tableFrom (fun x =＞ N x - e x) r d = 0"]:::end_
-  n5["<b>zero_iff_of_seed_perturbation</b><br/>tableFrom (fun x =＞ N x - e x) r d = 0 ↔ tableFrom N r d = 0"]:::end_
-  n6["<b>tableFrom_at_boundary</b><br/>tableFrom e r d = (-1) ^ d * e R"]:::thm
-  n7["<b>boundary_can_move</b><br/>tableFrom e r d ≠ 0"]:::thm
-  n8["<b>cell_ne_at_boundary</b><br/>tableFrom (fun x =＞ N x - e x) r d ≠ tableFrom N r d"]:::thm
-  n9["<b>window_bottoms_correct</b><br/>zero_cells.map (fun c =＞ (c.1 : ℤ) - (c.2 : ℤ)) = zero_window_bo…"]:::end_
-  n10["<b>protected_at_R_two</b><br/>zero_cells.map (fun c =＞ decide (2 ＜ (c.1 : ℤ) - (c.2 : ℤ))) = […"]:::end_
-  n11["<b>protected_at_R_three</b><br/>zero_cells.map (fun c =＞ decide (3 ＜ (c.1 : ℤ) - (c.2 : ℤ))) = […"]:::end_
-  n12["<b>silence46_vanishes_above_three</b><br/>∀ s : ℤ, 3 ＜ s → silence46_excess s = 0"]:::thm
-  n13["<b>silence46_alive_at_three</b><br/>silence46_excess 3 ≠ 0"]:::thm
-  n14["<b>measured_silence46_matches_shift</b><br/>[4 - tableFrom silence46_excess 4 1, 16 - tableFrom silence46_ex…"]:::end_
-  n15["<b>silence46_deep_cells_fixed</b><br/>tableFrom (fun x =＞ N x - silence46_excess x) 8 3 = tableFrom N …"]:::end_
-  n16["<b>silence46_cell_4_1_moves</b><br/>tableFrom (fun x =＞ N x - silence46_excess x) 4 1 ≠ tableFrom N …"]:::end_
-  n17["<b>emptied_vanishes_above_two</b><br/>∀ s : ℤ, 2 ＜ s → emptied_excess s = 0"]:::thm
-  n18["<b>measured_emptied_matches_shift</b><br/>[1 - tableFrom emptied_excess 2 1, 4 - tableFrom emptied_excess …"]:::end_
-  n19["<b>emptied_protected_cells_fixed</b><br/>tableFrom (fun x =＞ N x - emptied_excess x) 4 1 = tableFrom N 4 …"]:::end_
+  n0["<b>tableFrom_zero</b><br/>tableFrom (fun _ : ℤ =＞ (0 : ℤ)) r d = 0"]:::cnt
+  n1["<b>tableFrom_sub</b><br/>tableFrom (fun x =＞ N x - e x) r d = tableFrom N r d - tableFrom…"]:::cnt
+  n2["<b>tableFrom_eq_zero_of_vanishing_above</b><br/>tableFrom e r d = 0"]:::cnt
+  n3["<b>cell_eq_of_seed_perturbation</b><br/>tableFrom (fun x =＞ N x - e x) r d = tableFrom N r d"]:::cnt
+  n4["<b>zero_stable_of_seed_perturbation ■</b><br/>tableFrom (fun x =＞ N x - e x) r d = 0"]:::cnt
+  n5["<b>zero_iff_of_seed_perturbation ■</b><br/>tableFrom (fun x =＞ N x - e x) r d = 0 ↔ tableFrom N r d = 0"]:::cnt
+  n6["<b>tableFrom_at_boundary</b><br/>tableFrom e r d = (-1) ^ d * e R"]:::cnt
+  n7["<b>boundary_can_move</b><br/>tableFrom e r d ≠ 0"]:::cnt
+  n8["<b>cell_ne_at_boundary</b><br/>tableFrom (fun x =＞ N x - e x) r d ≠ tableFrom N r d"]:::cnt
+  n9["<b>window_bottoms_correct ■</b><br/>zero_cells.map (fun c =＞ (c.1 : ℤ) - (c.2 : ℤ)) = zero_window_bo…"]:::cnt
+  n10["<b>protected_at_R_two ■</b><br/>zero_cells.map (fun c =＞ decide (2 ＜ (c.1 : ℤ) - (c.2 : ℤ))) = […"]:::cnt
+  n11["<b>protected_at_R_three ■</b><br/>zero_cells.map (fun c =＞ decide (3 ＜ (c.1 : ℤ) - (c.2 : ℤ))) = […"]:::cnt
+  n12["<b>silence46_vanishes_above_three</b><br/>∀ s : ℤ, 3 ＜ s → silence46_excess s = 0"]:::cnt
+  n13["<b>silence46_alive_at_three</b><br/>silence46_excess 3 ≠ 0"]:::cnt
+  n14["<b>measured_silence46_matches_shift ■</b><br/>[4 - tableFrom silence46_excess 4 1, 16 - tableFrom silence46_ex…"]:::cnt
+  n15["<b>silence46_deep_cells_fixed ■</b><br/>tableFrom (fun x =＞ N x - silence46_excess x) 8 3 = tableFrom N …"]:::cnt
+  n16["<b>silence46_cell_4_1_moves ■</b><br/>tableFrom (fun x =＞ N x - silence46_excess x) 4 1 ≠ tableFrom N …"]:::cnt
+  n17["<b>emptied_vanishes_above_two</b><br/>∀ s : ℤ, 2 ＜ s → emptied_excess s = 0"]:::cnt
+  n18["<b>measured_emptied_matches_shift ■</b><br/>[1 - tableFrom emptied_excess 2 1, 4 - tableFrom emptied_excess …"]:::cnt
+  n19["<b>emptied_protected_cells_fixed ■</b><br/>tableFrom (fun x =＞ N x - emptied_excess x) 4 1 = tableFrom N 4 …"]:::cnt
   x0(["<b>Propagation</b><br/>outside_cone_zero"]):::ext
   x1(["<b>Construction</b><br/>tableFrom_add<br/>tableFrom_smul<br/>zero_determined_by_row"]):::ext
   n0 --> n2
@@ -52,6 +52,9 @@ flowchart LR
   n0 -.-> x0
   x1 -.-> n1
   x1 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -59,7 +62,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -150,6 +153,8 @@ The same four cells of `dyadic_composite_extended_emptied_32.csv`.
 
 line 74
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The zero row builds the zero table.
 
 **Proves**
@@ -176,6 +181,8 @@ tableFrom (fun _ : ℤ => (0 : ℤ)) r d = 0
 ### `SeedPerturbation.tableFrom_sub`
 
 line 85
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Linearity, in the form the convention change needs. Replacing the depth-0 row `N` by `N − e` subtracts `tableFrom e` from every cell of the table, at every depth.
 
@@ -208,6 +215,8 @@ tableFrom (fun x => N x - e x) r d = tableFrom N r d - tableFrom e r d
 
 line 108
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The excess table vanishes past the excess. If `e` is zero on every rung strictly above `R`, then every cell whose window bottom `r − d` clears `R` reads only zeros, so the cell is zero.
 
 **Proves**
@@ -239,6 +248,8 @@ tableFrom e r d = 0
 ### `SeedPerturbation.cell_eq_of_seed_perturbation`
 
 line 124
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The claim. Changing the seed convention replaces the depth-0 row `N` by `N − e`. If `e` vanishes on every rung strictly above `R`, then every cell at `(r,d)` with `r − d > R` is IDENTICAL under both conventions.
 
@@ -274,6 +285,8 @@ tableFrom (fun x => N x - e x) r d = tableFrom N r d
 
 line 134
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The corollary. A zero at `(r,d)` with `r − d > R` is a zero under both conventions. The seed convention cannot have put it there and cannot take it away.
 
 **Proves**
@@ -303,6 +316,8 @@ tableFrom (fun x => N x - e x) r d = 0
 
 line 143
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The same statement as an equivalence, which is the honest form: past the excess, the two conventions have the same zero set. Neither direction is a weaker claim than the other.
 
 **Proves**
@@ -330,6 +345,8 @@ tableFrom (fun x => N x - e x) r d = 0 ↔ tableFrom N r d = 0
 ### `SeedPerturbation.tableFrom_at_boundary`
 
 line 157
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The boundary cell, exactly. When the window bottom sits on `R` itself, `d` backward differences leave `(−1)^d · e R` — the whole excess, signed. Every higher entry of the window is already zero, so the bottom entry is all there is.
 
@@ -361,6 +378,8 @@ tableFrom e r d = (-1) ^ d * e R
 
 line 177
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** `r − d > R` cannot be relaxed to `r − d ≥ R`. Take `R` to be the largest rung where `e` is non-zero, which is what `R_e` means. Then every cell with `r − d = R` moves, by exactly `±e R`. The strict inequality is not slack in the proof; it is the boundary.
 
 **Proves**
@@ -391,6 +410,8 @@ tableFrom e r d ≠ 0
 ### `SeedPerturbation.cell_ne_at_boundary`
 
 line 185
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The same fact said about the two conventions rather than about `e`: at the boundary the cell genuinely differs.
 
@@ -424,6 +445,8 @@ tableFrom (fun x => N x - e x) r d ≠ tableFrom N r d
 
 line 221
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The window bottoms `r − d` of the four zeros are `1, 3, 5, 14`, computed rather than transcribed.
 
 **Proves**
@@ -442,6 +465,8 @@ zero_cells.map (fun c => (c.1 : ℤ) - (c.2 : ℤ)) = zero_window_bottoms
 ### `SeedPerturbation.protected_at_R_two`
 
 line 227
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Which zeros the theorem protects when 2 and 3 are the excluded primes. `R_e = 2`, so `(2,1)` is unprotected and the other three are fixed. This is the prediction, stated before looking at any perturbed table.
 
@@ -462,6 +487,8 @@ zero_cells.map (fun c => decide (2 < (c.1 : ℤ) - (c.2 : ℤ))) = [false, true,
 
 line 233
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** And when the excess reaches rung 3 — which `silence46` does, since 6 sits in `(4,8]`. Now `(4,1)` falls to the boundary as well.
 
 **Proves**
@@ -480,6 +507,8 @@ zero_cells.map (fun c => decide (3 < (c.1 : ℤ) - (c.2 : ℤ))) = [false, false
 ### `SeedPerturbation.silence46_vanishes_above_three`
 
 line 251
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The `silence46` excess is confined to rungs 2 and 3 — the hypothesis `cell_eq_of_seed_perturbation` needs, at `R_e = 3`.
 
@@ -503,6 +532,8 @@ line 251
 
 line 258
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** And rung 3 genuinely carries excess, so `boundary_can_move` has its `e R ≠ 0`.
 
 **Proves**
@@ -524,6 +555,8 @@ silence46_excess 3 ≠ 0
 
 line 275
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The falsifier. Subtracting `tableFrom silence46_excess` from the three measured base cells reproduces the three measured silenced cells exactly — including the one that MOVED. `(4,1)` sits at `r − d = 3 = R_e`, and the shift `tableFrom e 4 1 = −1` carries 4 to 5, which is what the file says. `(8,3)` and `(20,6)` clear `R_e` and do not move.
 
 **Proves**
@@ -542,6 +575,8 @@ line 275
 ### `SeedPerturbation.silence46_deep_cells_fixed`
 
 line 284
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The two deep cells are protected by the theorem, not by arithmetic luck: `8 − 3 = 5 > 3` and `20 − 6 = 14 > 3`, so `cell_eq_of_seed_perturbation` applies and no computation is needed.
 
@@ -568,6 +603,8 @@ tableFrom (fun x => N x - silence46_excess x) 8 3 = tableFrom N 8 3 ∧ tableFro
 ### `SeedPerturbation.silence46_cell_4_1_moves`
 
 line 292
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** And `(4,1)` is not protected, for the reason the theorem gives rather than by inspection: `4 − 1 = 3 = R_e`, so `boundary_can_move` fires.
 
@@ -596,6 +633,8 @@ tableFrom (fun x => N x - silence46_excess x) 4 1 ≠ tableFrom N 4 1
 
 line 316
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The emptied variant's excess is confined to rungs 1 and 2 — `R_e = 2`, the same profile as excluding the primes 2 and 3.
 
 **Proves**
@@ -617,6 +656,8 @@ line 316
 
 line 333
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The second falsifier, at `R_e = 2`. The three cells the theorem protects are unmoved in the file, and the one it does not protect — `(2,1)`, window bottom `1` — moved from 1 to 0, by exactly the predicted shift `tableFrom e 2 1 = e 2 − e 1 = 1`.
 
 **Proves**
@@ -635,6 +676,8 @@ line 333
 ### `SeedPerturbation.emptied_protected_cells_fixed`
 
 line 342
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The three protected cells, again by theorem rather than by computation: `4 − 1 = 3 > 2`, `8 − 3 = 5 > 2`, `20 − 6 = 14 > 2`.
 

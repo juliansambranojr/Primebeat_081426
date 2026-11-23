@@ -134,6 +134,26 @@ import Stage3.PiToPsi
 import Stage3.CellResidual
 import Stage3.AliasClass
 import Stage3.LadderFading
+import Stage3.LadderMean
+import Stage3.StencilWeil
+import Stage3.WobbleCount
+import Stage3.MirrorArea
+import Stage3.FiniteOffLine
+import Stage3.CellBdiff
+import Stage3.CellRows
+import Stage3.PiZeros
+import Stage3.PiRemainder
+import Stage3.FiniteOffLinePi
+import Stage3.DirichletMean
+import Stage3.Mollified
+import Stage3.ZetaEM
+import Stage3.DirichletMeanW
+import Stage3.MollifiedMean
+import Stage3.SquareMean
+import Stage3.ZeroSquares
+import Stage3.ZeroDensity
+import Stage3.ZeroSummable
+import Stage3.AttainedPi
 
 namespace Stage3
 

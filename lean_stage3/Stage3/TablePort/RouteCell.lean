@@ -25,6 +25,9 @@ namespace RouteCell
 
 open Set
 
+/-- If `80 ≤ r`, the integer rows `N (r - k)` for `k ≤ 7` equal the backward differences of `f`,
+and `f` sits within relative error `ρ < (log 2)^6/(2·r·3^7)` of the main term on the window
+of `8` rows ending at `r`, then the table cell `tableFrom N r 6` at depth six is nonzero. -/
 theorem cell_ne_zero_of_route {N : ℤ → ℤ} {f : ℤ → ℝ} {r : ℤ} (hr : 80 ≤ r)
     (hrow : ∀ k ∈ Finset.range (6 + 2),
       ((N (r - k) : ℤ) : ℝ) = Nonvanishing.bdiffZ f (r - k))

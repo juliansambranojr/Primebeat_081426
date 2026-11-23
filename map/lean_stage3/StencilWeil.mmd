@@ -1,0 +1,35 @@
+flowchart LR
+  n0["<b>laplace_shift</b><br/>laplace (fun u =＞ φ (u + a)) z = Complex.exp (z * (a : ℂ)) * lap…"]:::shp
+  n1["<b>integrable_shift_term</b><br/>Integrable (fun u : ℝ =＞ φ (u + a) * Complex.exp (-(z * (u : ℂ))…"]:::shp
+  n2["<b>laplace_stencilTest</b><br/>laplace (stencilTest d φ) z = (1 - (2 : ℂ) ^ z) ^ d * laplace φ …"]:::shp
+  n3["<b>stencilTest_zero_outside</b><br/>stencilTest d φ u = 0"]:::shp
+  n4["<b>isTest_stencilTest</b><br/>IsTest (L + 2 * (d * Real.log 2)) (stencilTest d φ)"]:::shp
+  n5["<b>zeroForm_stencilTest ■</b><br/>zeroForm (stencilTest d φ) = riemannZeta.zeroes_sum (Set.Ioo 0 1…"]:::thm
+  n6["<b>mirror_symbol_on_line ■</b><br/>(1 - (2 : ℂ) ^ (-ρ)) * (1 - (2 : ℂ) ^ (-(1 - ρ))) = ((‖1 - (2 : …"]:::shp
+  n7["<b>restoringForce_eq</b><br/>restoringForce b ρ = 2 * |ρ.re - 1 / 2| * Real.log b"]:::shp
+  n8["<b>restoringForce_eq_zero_iff</b><br/>restoringForce b ρ = 0 ↔ ρ.re = 1 / 2"]:::shp
+  n9["<b>handshake_iff ■</b><br/>‖(b : ℂ) ^ ρ‖ = ‖(b : ℂ) ^ (1 - ρ)‖ ↔ ρ.re = 1 / 2"]:::shp
+  n10["<b>restoringForce_mono ■</b><br/>restoringForce b ρ ≤ restoringForce c ρ"]:::shp
+  n11["<b>zeroForm_stencilTest_eq_primeSide ■</b><br/>zeroForm (stencilTest d φ) = WeilBridgeLeaf.primeSideM (WeilBrid…"]:::thm
+  n12["<b>zeroForm_stencilTest_nonneg_of_RH ■</b><br/>0 ≤ (zeroForm (stencilTest d φ)).re"]:::thm
+  x0(["<b>WeilBridgeLeaf</b><br/>zeroForm_eq_primeSide"]):::ext
+  x1(["<b>WeilDetect</b><br/>zeroForm_nonneg_of_RH"]):::ext
+  n0 --> n2
+  n1 --> n2
+  n2 --> n5
+  n3 --> n4
+  n4 --> n11
+  n4 --> n12
+  n7 --> n10
+  n7 --> n8
+  n8 --> n9
+  x0 -.-> n11
+  x1 -.-> n12
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

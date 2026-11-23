@@ -83,12 +83,14 @@ theorem euler_sinh (w : ℂ) :
 /-- `D m = ∏_{j<m+1} π²(j+1)²`. -/
 def D (m : ℕ) : ℝ := ∏ j ∈ Finset.range (m + 1), (Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2)
 
+/-- The product `D m` is positive. -/
 theorem D_pos (m : ℕ) : 0 < D m := by
   unfold D
   apply Finset.prod_pos
   intro j _
   positivity
 
+/-- The product `D m` in closed form: `D m = π^(2(m+1))·((m+1)!)²`. -/
 theorem D_eq (m : ℕ) : D m = Real.pi ^ (2 * (m + 1)) * (((m + 1).factorial : ℕ) : ℝ) ^ 2 := by
   unfold D
   rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_range, Finset.prod_pow]
@@ -135,6 +137,7 @@ theorem cprime_eq (m : ℕ) :
   field_simp
   linear_combination (-(Real.pi ^ (2 * m + 1 + 1))) * hcb
 
+/-- The constant `cS m / D m` is at most `4/(π(m+1))`. -/
 theorem cprime_le (m : ℕ) : cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1)) := by
   rw [cprime_eq]
   have hcb : ((Nat.centralBinom (m + 1) : ℕ) : ℝ) ≤ 4 ^ (m + 1) := by
@@ -145,6 +148,7 @@ theorem cprime_le (m : ℕ) : cS m / D m ≤ 4 / (Real.pi * ((m : ℝ) + 1)) := 
       ≤ 4 ^ (m + 1) * (Real.pi * ((m : ℝ) + 1)) := by gcongr
     _ = 4 * (Real.pi * ((m : ℝ) + 1) * 4 ^ m) := by ring
 
+/-- The constant `cS m / D m` is at least `4/(π(m+1)(2m+3))`. -/
 theorem cprime_ge (m : ℕ) :
     4 / (Real.pi * ((m : ℝ) + 1) * (2 * (m : ℝ) + 3)) ≤ cS m / D m := by
   rw [cprime_eq]
@@ -157,6 +161,7 @@ theorem cprime_ge (m : ℕ) :
   have key := mul_le_mul_of_nonneg_right hcb (by positivity : (0 : ℝ) ≤ Real.pi * ((m : ℝ) + 1))
   nlinarith [key]
 
+/-- The constant `cS m / D m` is positive. -/
 theorem cprime_pos (m : ℕ) : 0 < cS m / D m :=
   lt_of_lt_of_le (by have := Real.pi_pos; positivity) (cprime_ge m)
 
@@ -324,12 +329,14 @@ theorem norm_x_le {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((
     _ ≤ Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2 / 2 := by gcongr
     _ = 1 / 2 * (Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2) := by ring
 
+/-- Helper: the real part of a factor's argument `w²/(π²(j+1)²)` is `Re(w²)/(π²(j+1)²)`. -/
 theorem x_re (w : ℂ) (j : ℕ) :
     (w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)).re = (w ^ 2).re / (Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2) := by
   have hden : ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2) = (((Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2 : ℝ)) : ℂ) := by
     push_cast; ring
   rw [hden, Complex.div_ofReal_re]
 
+/-- Helper: the norm of a factor's argument `w²/(π²(j+1)²)` is `‖w‖²/(π²(j+1)²)`. -/
 theorem x_norm (w : ℂ) (j : ℕ) :
     ‖w ^ 2 / ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2)‖ = ‖w‖ ^ 2 / (Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2) := by
   have hden : ((Real.pi : ℂ) ^ 2 * ((j : ℂ) + 1) ^ 2) = (((Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2 : ℝ)) : ℂ) := by
@@ -363,6 +370,8 @@ theorem norm_T_le (m : ℕ) {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((
         · apply Finset.sum_congr rfl; intro j _; field_simp
         · apply Finset.sum_congr rfl; intro j _; field_simp; try ring
 
+/-- If `‖w‖² ≤ π²(m+2)²/2` and `0 ≤ Re(w²)`, then the tail product `T m w n` has norm at most
+`exp(Re(w²)/(π²(m+1)) + ‖w‖⁴/(π⁴(m+1)³))` for every `n`. -/
 theorem norm_T_le_pos {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2)
     (hre : 0 ≤ (w ^ 2).re) (n : ℕ) :
     ‖T m w n‖ ≤ Real.exp ((w ^ 2).re / (Real.pi ^ 2 * ((m : ℝ) + 1))
@@ -379,6 +388,8 @@ theorem norm_T_le_pos {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 
         gcongr
     _ = _ := by field_simp
 
+/-- If `‖w‖² ≤ π²(m+2)²/2`, `Re(w²) ≤ 0` and `2m+3 ≤ n`, then the tail product `T m w n` has
+norm at most `exp(Re(w²)·(m+2)/(π²(2m+3)²) + ‖w‖⁴/(π⁴(m+1)³))`. -/
 theorem norm_T_le_neg {m : ℕ} {w : ℂ} (hsmall : ‖w‖ ^ 2 ≤ Real.pi ^ 2 * ((m : ℝ) + 2) ^ 2 / 2)
     (hre : (w ^ 2).re ≤ 0) {n : ℕ} (hn : 2 * m + 3 ≤ n) :
     ‖T m w n‖ ≤ Real.exp ((w ^ 2).re * ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + 3) ^ 2)
@@ -444,6 +455,7 @@ theorem norm_S_le_gauss_neg {m : ℕ} {w : ℂ} (hne : QS m w ≠ 0)
 def Tr (m : ℕ) (s : ℝ) (n : ℕ) : ℝ :=
   ∏ j ∈ Finset.Ico (m + 1) n, (1 + s ^ 2 / (Real.pi ^ 2 * ((j : ℝ) + 1) ^ 2))
 
+/-- At a real point `s` the tail product `T m s n` is the cast of the real tail `Tr m s n`. -/
 theorem T_ofReal (m : ℕ) (s : ℝ) (n : ℕ) : T m (s : ℂ) n = ((Tr m s n : ℝ) : ℂ) := by
   unfold T Tr g
   push_cast

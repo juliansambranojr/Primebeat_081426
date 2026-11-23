@@ -40,6 +40,9 @@ def StmtRelErrWindow (f L : ℤ → ℝ) (r : ℤ) (n : ℕ) (ρ : ℝ) : Prop :
   ∀ k ∈ range (n + 1),
     |f (r - k) - L (r - k)| ≤ ρ * (2 : ℝ) ^ ((r : ℝ) - k)
 
+/-- Joint 3: the dial's bound read at the rows. If `StmtSchoenfeldWeakTheta θ C k x₀ pi li`
+holds, `f` and `L` are `pi` and `li` at `2^m`, and `x₀ ≤ 2^(r−n)`, then for every `j ≤ n`,
+`|f(r−j) − L(r−j)| ≤ C·x^θ·(log x)^k` at `x = 2^(r−j)`. -/
 theorem thetaWindow_of_global {θ C : ℝ} {k : ℕ} {x₀ : ℝ} {pi li : ℝ → ℝ}
     {f L : ℤ → ℝ} {r : ℤ} {n : ℕ}
     (hpi : Stage3.StmtSchoenfeldWeakTheta θ C k x₀ pi li)
@@ -59,6 +62,8 @@ theorem thetaWindow_of_global {θ C : ℝ} {k : ℕ} {x₀ : ℝ} {pi li : ℝ �
   rw [hf (r - j), hL (r - j), hcast]
   exact hpi _ hx₀y
 
+/-- Joint 4: the log power is absorbed into a larger exponent. If `0 ≤ C`, `θ < θ'` and
+`1 ≤ x`, then `C·x^θ·(log x)^k ≤ A·x^θ'` with `A = C / (2(θ'−θ)/(2(k+1)))^k`. -/
 theorem log_absorbed {θ θ' C : ℝ} {k : ℕ} (hC : 0 ≤ C) (hθ : θ < θ')
     {x : ℝ} (hx : 1 ≤ x) :
     C * x ^ θ * Real.log x ^ k
@@ -100,6 +105,10 @@ theorem powerSaving_relErr {f L : ℤ → ℝ} {r : ℤ} {n : ℕ} {A θ : ℝ}
   refine Real.rpow_le_rpow_of_exponent_le (by norm_num) ?_
   nlinarith [hkn, hθ]
 
+/-- Joints 3, 4, 5 composed. If `StmtSchoenfeldWeakTheta θ C k x₀ pi li` holds with `0 ≤ C`,
+`θ < θ' ≤ 1`, `f` and `L` are `pi` and `li` at `2^m`, `x₀ ≤ 2^(r−n)` and `0 ≤ r − n`, then the
+gate's statement `StmtRelErrWindow f L r n ρ` holds with
+`ρ = C / (2(θ'−θ)/(2(k+1)))^k · 2^((r−n)(θ'−1))`. -/
 theorem relErrWindow_of_theta {θ θ' C : ℝ} {k : ℕ} {x₀ : ℝ} {pi li : ℝ → ℝ}
     {f L : ℤ → ℝ} {r : ℤ} {n : ℕ}
     (hpi : Stage3.StmtSchoenfeldWeakTheta θ C k x₀ pi li) (hC : 0 ≤ C)
@@ -119,6 +128,9 @@ theorem relErrWindow_of_theta {θ θ' C : ℝ} {k : ℕ} {x₀ : ℝ} {pi li : �
     Real.one_le_rpow (by norm_num) (by linarith)
   exact le_trans (thetaWindow_of_global hpi hf hL hbot j hj) (log_absorbed hC hθ hx1)
 
+/-- From a window bound on `G` at `θ`, with `1/2 ≤ θ < 1`, `0 < δ` and `θ < θ' ≤ 1`: there are
+`A ≥ 0` and `x₀` such that for all `r`, `n` with `x₀ ≤ 2^(r−n)` and `0 ≤ r − n`, the gate's
+statement holds on the rows of `π` and `Li` with relative error `A·2^((r−n)(θ'−1))`. -/
 theorem relErrWindow_of_window {θ δ C₀ θ' : ℝ} (hθlo : 1 / 2 ≤ θ) (hθ1 : θ < 1)
     (hδ : 0 < δ) (hW : LandauWindow.WindowBound θ δ C₀) (hθ : θ < θ') (hθ' : θ' ≤ 1) :
     ∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ (r : ℤ) (n : ℕ), x₀ ≤ (2 : ℝ) ^ ((r : ℝ) - n) →

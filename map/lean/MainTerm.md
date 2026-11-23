@@ -11,16 +11,16 @@ MainTerm — stage 2: the difference calculus that discharges hM's structure. `N
 
 ```mermaid
 flowchart LR
-  n0["<b>iter_bdiffR_eq_fwdDiff</b><br/>(bdiffR^[n]) g x = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℝ))^[n] g x"]:::thm
-  n1["<b>iter_bdiffR_eq_sum</b><br/>(bdiffR^[n]) g x = ∑ k ∈ range (n + 1), (-1 : ℝ) ^ k * (n.choose…"]:::thm
-  n2["<b>stencilR_eq_iter</b><br/>Nonvanishing.stencilR n (fun k : ℤ =＞ G k) r = (bdiffR^[n]) G r"]:::thm
-  n3["<b>deriv_bdiffR</b><br/>deriv (bdiffR g) = bdiffR (deriv g)"]:::thm
-  n4["<b>contDiff_bdiffR</b><br/>ContDiff ℝ (⊤ : ℕ∞) (bdiffR g)"]:::thm
-  n5["<b>iteratedDeriv_bdiffR</b><br/>iteratedDeriv n (bdiffR g) = bdiffR (iteratedDeriv n g)"]:::thm
-  n6["<b>bdiffR_lb</b><br/>m ≤ bdiffR g x"]:::thm
-  n7["<b>iter_bdiffR_lb</b><br/>m ≤ (bdiffR^[n]) g x"]:::thm
-  n8["<b>stencilR_ge_of</b><br/>c ≤ |Nonvanishing.stencilR (d + 1) (fun k : ℤ =＞ G k) r|"]:::thm
-  n9["<b>tableFrom_ne_zero_of_deriv</b><br/>Construction.tableFrom N r d ≠ 0"]:::thm
+  n0["<b>iter_bdiffR_eq_fwdDiff</b><br/>(bdiffR^[n]) g x = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℝ))^[n] g x"]:::shp
+  n1["<b>iter_bdiffR_eq_sum</b><br/>(bdiffR^[n]) g x = ∑ k ∈ range (n + 1), (-1 : ℝ) ^ k * (n.choose…"]:::shp
+  n2["<b>stencilR_eq_iter</b><br/>Nonvanishing.stencilR n (fun k : ℤ =＞ G k) r = (bdiffR^[n]) G r"]:::shp
+  n3["<b>deriv_bdiffR</b><br/>deriv (bdiffR g) = bdiffR (deriv g)"]:::shp
+  n4["<b>contDiff_bdiffR</b><br/>ContDiff ℝ (⊤ : ℕ∞) (bdiffR g)"]:::shp
+  n5["<b>iteratedDeriv_bdiffR</b><br/>iteratedDeriv n (bdiffR g) = bdiffR (iteratedDeriv n g)"]:::shp
+  n6["<b>bdiffR_lb</b><br/>m ≤ bdiffR g x"]:::shp
+  n7["<b>iter_bdiffR_lb</b><br/>m ≤ (bdiffR^[n]) g x"]:::shp
+  n8["<b>stencilR_ge_of</b><br/>c ≤ |Nonvanishing.stencilR (d + 1) (fun k : ℤ =＞ G k) r|"]:::shp
+  n9["<b>tableFrom_ne_zero_of_deriv</b><br/>Construction.tableFrom N r d ≠ 0"]:::shp
   x0(["<b>RelativeLi</b><br/>tableFrom_ne_zero_of_relErr_li"]):::ext
   x1(["<b>Nonvanishing</b><br/>tableFrom_ne_zero_of"]):::ext
   x2(["<b>Expansion</b><br/>tableFrom_ne_zero_of_li"]):::ext
@@ -36,6 +36,9 @@ flowchart LR
   n8 -.-> x0
   n9 -.-> x2
   x1 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -43,7 +46,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -63,6 +66,8 @@ Unit backward differencing on real functions of a real variable.
 ### `MainTerm.iter_bdiffR_eq_fwdDiff`
 
 line 61
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The ℝ-domain twin of `Nonvanishing.iter_bdiffZ_eq_fwdDiff`.
 
@@ -90,6 +95,8 @@ line 61
 ### `MainTerm.iter_bdiffR_eq_sum`
 
 line 76
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `n` unit differences are the stencil, on the real line. At an integer point this meets `Nonvanishing.stencilR` (the bridge below).
 
@@ -120,6 +127,8 @@ line 76
 
 line 94
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The bridge to `Nonvanishing.stencilR`. At an integer point, the real iterate reads the same values the ℤ-indexed stencil reads.
 
 **Proves**
@@ -149,6 +158,8 @@ Nonvanishing.stencilR n (fun k : ℤ => G k) r = (bdiffR^[n]) G r
 
 line 104
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Δ commutes with d/dx. Needs differentiability of `g`; the shift is `HasDerivAt.comp` with `x ↦ x − 1`.
 
 **Proves**
@@ -174,6 +185,8 @@ deriv (bdiffR g) = bdiffR (deriv g)
 
 line 116
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Δ preserves smoothness.
 
 **Proves**
@@ -198,6 +211,8 @@ ContDiff ℝ (⊤ : ℕ∞) (bdiffR g)
 ### `MainTerm.iteratedDeriv_bdiffR`
 
 line 121
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Δ commutes with iterated derivatives.
 
@@ -227,6 +242,8 @@ iteratedDeriv n (bdiffR g) = bdiffR (iteratedDeriv n g)
 
 line 132
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The single step: derivative floor ⟹ difference floor. Shift by `m·y` and cite monotonicity-from-derivative on `[x−1, x]`.
 
 **Proves**
@@ -252,6 +269,8 @@ m ≤ bdiffR g x
 ### `MainTerm.iter_bdiffR_lb`
 
 line 158
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The induction: MVT retired. If the `n`-th derivative clears `m` on `[x−n, x]`, the `n`-fold difference does.
 
@@ -285,6 +304,8 @@ m ≤ (bdiffR^[n]) g x
 
 line 185
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The floor, on the stencil. If the `(d+1)`-th derivative of the interpolant clears `c > 0` on the window, the stencil clears `c` — and hence its absolute value does, which is `hM`'s shape.
 
 **Proves**
@@ -316,6 +337,8 @@ c ≤ |Nonvanishing.stencilR (d + 1) (fun k : ℤ => G k) r|
 ### `MainTerm.tableFrom_ne_zero_of_deriv`
 
 line 198
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The arrow, with hM discharged into a derivative bound. `Nonvanishing.tableFrom_ne_zero_of` again, but the main-term hypothesis is now about the `(d+1)`-th derivative of a smooth interpolant of li — the difference calculus between them is proved. What remains: the expansion of that derivative (stage 2b) and Schoenfeld (stage 3).
 

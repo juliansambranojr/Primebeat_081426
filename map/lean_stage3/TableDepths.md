@@ -2,7 +2,7 @@
 
 TableDepths — block E11 of `lean_stage3/design/joints.md`. 2026-11-22. `TableRoute.cell_ne_zero_of_RH` is depth six. The same route and gate at any depth, from one numeric check at one row, and the instances that fall inside the computed table.
 
-14 theorems, 0 definitions, 313 lines. Arrows are Lean's own record of what each proof uses.
+14 theorems, 0 definitions, 320 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`TableRoute`](../lean_stage3/TableRoute.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -11,20 +11,20 @@ TableDepths — block E11 of `lean_stage3/design/joints.md`. 2026-11-22. `TableR
 
 ```mermaid
 flowchart LR
-  n0["<b>sq_le_gen</b><br/>r ^ 2 ≤ r₀ ^ 2 * (2:ℝ) ^ ((r - r₀) / 2)"]:::thm
-  n1["<b>gate_ineq_gen</b><br/>414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - ((d:ℝ) + 1)) / 2)) …"]:::thm
+  n0["<b>sq_le_gen</b><br/>r ^ 2 ≤ r₀ ^ 2 * (2:ℝ) ^ ((r - r₀) / 2)"]:::shp
+  n1["<b>gate_ineq_gen</b><br/>414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - ((d:ℝ) + 1)) / 2)) …"]:::shp
   n2["<b>cell_ne_zero_gen</b><br/>Construction.tableFrom TableRoute.rowN r d ≠ 0"]:::thm
-  n3["<b>two_rpow_neg_nat</b><br/>(2:ℝ) ^ (-(n:ℝ)) = 1 / (2:ℝ) ^ n"]:::thm
-  n4["<b>two_rpow_neg_nat_half</b><br/>(2:ℝ) ^ (-(n:ℝ) + 1 / 2) ≤ 1.4143 / (2:ℝ) ^ n"]:::thm
-  n5["<b>pow_lower</b><br/>(0.6931:ℝ) ^ k ≤ Real.log 2 ^ k"]:::thm
-  n6["<b>depth_one</b><br/>Construction.tableFrom TableRoute.rowN r 1 ≠ 0"]:::end_
-  n7["<b>depth_two</b><br/>Construction.tableFrom TableRoute.rowN r 2 ≠ 0"]:::end_
-  n8["<b>depth_three</b><br/>Construction.tableFrom TableRoute.rowN r 3 ≠ 0"]:::end_
-  n9["<b>depth_four</b><br/>Construction.tableFrom TableRoute.rowN r 4 ≠ 0"]:::end_
-  n10["<b>depth_five</b><br/>Construction.tableFrom TableRoute.rowN r 5 ≠ 0"]:::end_
-  n11["<b>depth_six</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::end_
-  n12["<b>depth_seven</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::end_
-  n13["<b>depth_eight</b><br/>Construction.tableFrom TableRoute.rowN r 8 ≠ 0"]:::end_
+  n3["<b>two_rpow_neg_nat</b><br/>(2:ℝ) ^ (-(n:ℝ)) = 1 / (2:ℝ) ^ n"]:::shp
+  n4["<b>two_rpow_neg_nat_half</b><br/>(2:ℝ) ^ (-(n:ℝ) + 1 / 2) ≤ 1.4143 / (2:ℝ) ^ n"]:::shp
+  n5["<b>pow_lower</b><br/>(0.6931:ℝ) ^ k ≤ Real.log 2 ^ k"]:::shp
+  n6["<b>depth_one ■</b><br/>Construction.tableFrom TableRoute.rowN r 1 ≠ 0"]:::thm
+  n7["<b>depth_two ■</b><br/>Construction.tableFrom TableRoute.rowN r 2 ≠ 0"]:::thm
+  n8["<b>depth_three ■</b><br/>Construction.tableFrom TableRoute.rowN r 3 ≠ 0"]:::thm
+  n9["<b>depth_four ■</b><br/>Construction.tableFrom TableRoute.rowN r 4 ≠ 0"]:::thm
+  n10["<b>depth_five ■</b><br/>Construction.tableFrom TableRoute.rowN r 5 ≠ 0"]:::thm
+  n11["<b>depth_six ■</b><br/>Construction.tableFrom TableRoute.rowN r 6 ≠ 0"]:::thm
+  n12["<b>depth_seven ■</b><br/>Construction.tableFrom TableRoute.rowN r 7 ≠ 0"]:::thm
+  n13["<b>depth_eight ■</b><br/>Construction.tableFrom TableRoute.rowN r 8 ≠ 0"]:::thm
   x0(["<b>Interpolant</b><br/>liRow_eq<br/>tableFrom_ne_zero_of_relErr_liRow"]):::ext
   x1(["<b>GateEval</b><br/>routeConst_le"]):::ext
   x2(["<b>RouteNum</b><br/>relErrWindow_route_num"]):::ext
@@ -58,6 +58,9 @@ flowchart LR
   x0 -.-> n2
   x1 -.-> n2
   x2 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -65,14 +68,18 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
 <a name="TableDepths-sq_le_gen"></a>
 ### `TableDepths.sq_le_gen`
 
-line 27
+line 28
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `6 ≤ r₀ ≤ r`, then `r² ≤ r₀²·2^((r−r₀)/2)`.
 
 **Proves**
 
@@ -94,7 +101,11 @@ r ^ 2 ≤ r₀ ^ 2 * (2:ℝ) ^ ((r - r₀) / 2)
 <a name="TableDepths-gate_ineq_gen"></a>
 ### `TableDepths.gate_ineq_gen`
 
-line 62
+line 66
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The gate's gap at every row `r ≥ r₀ ≥ 6` from its value at `r₀`: if `414·(2·3^(d+1))·r₀²·2^(−(r₀−(d+1))/2) ≤ a` and `a·log 2 < (log 2)^d`, then `414·(log 2·r)·2^(−(r−(d+1))/2) < (log 2)^d / (2·r·3^(d+1))`.
 
 **Proves**
 
@@ -121,7 +132,9 @@ line 62
 <a name="TableDepths-cell_ne_zero_gen"></a>
 ### `TableDepths.cell_ne_zero_gen`
 
-line 92
+line 96
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The route and the gate at depth `d`.
 
@@ -167,7 +180,11 @@ Construction.tableFrom TableRoute.rowN r d ≠ 0
 <a name="TableDepths-two_rpow_neg_nat"></a>
 ### `TableDepths.two_rpow_neg_nat`
 
-line 152
+line 157
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the real power `2^(−n)` equals `1/2^n` for a natural number `n`.
 
 **Proves**
 
@@ -194,7 +211,11 @@ line 152
 <a name="TableDepths-two_rpow_neg_nat_half"></a>
 ### `TableDepths.two_rpow_neg_nat_half`
 
-line 155
+line 161
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: `2^(−n + 1/2) ≤ 1.4143/2^n` for a natural number `n`.
 
 **Proves**
 
@@ -218,7 +239,11 @@ line 155
 <a name="TableDepths-pow_lower"></a>
 ### `TableDepths.pow_lower`
 
-line 164
+line 171
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: `0.6931^k ≤ (log 2)^k` for every natural number `k`.
 
 **Proves**
 
@@ -246,7 +271,9 @@ line 164
 <a name="TableDepths-depth_one"></a>
 ### `TableDepths.depth_one`
 
-line 168
+line 175
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Depth one, from row 74.
 
@@ -274,7 +301,9 @@ Construction.tableFrom TableRoute.rowN r 1 ≠ 0
 <a name="TableDepths-depth_two"></a>
 ### `TableDepths.depth_two`
 
-line 180
+line 187
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Depth two, from row 75.
 
@@ -302,7 +331,9 @@ Construction.tableFrom TableRoute.rowN r 2 ≠ 0
 <a name="TableDepths-depth_three"></a>
 ### `TableDepths.depth_three`
 
-line 195
+line 202
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Depth three, from row 76.
 
@@ -330,7 +361,9 @@ Construction.tableFrom TableRoute.rowN r 3 ≠ 0
 <a name="TableDepths-depth_four"></a>
 ### `TableDepths.depth_four`
 
-line 210
+line 217
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Depth four, from row 77.
 
@@ -358,7 +391,9 @@ Construction.tableFrom TableRoute.rowN r 4 ≠ 0
 <a name="TableDepths-depth_five"></a>
 ### `TableDepths.depth_five`
 
-line 225
+line 232
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Depth five, from row 78.
 
@@ -386,7 +421,9 @@ Construction.tableFrom TableRoute.rowN r 5 ≠ 0
 <a name="TableDepths-depth_six"></a>
 ### `TableDepths.depth_six`
 
-line 240
+line 247
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Depth six, from row 80.
 
@@ -414,7 +451,9 @@ Construction.tableFrom TableRoute.rowN r 6 ≠ 0
 <a name="TableDepths-depth_seven"></a>
 ### `TableDepths.depth_seven`
 
-line 260
+line 267
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Depth seven, from row 85.
 
@@ -442,7 +481,9 @@ Construction.tableFrom TableRoute.rowN r 7 ≠ 0
 <a name="TableDepths-depth_eight"></a>
 ### `TableDepths.depth_eight`
 
-line 280
+line 287
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Depth eight, from row 91.
 

@@ -2,10 +2,10 @@
 
 JensenCount — `StmtLocalCount` discharged: the Backlund-style local zero count for `ζ`, with explicit constants.
 
-17 theorems, 3 definitions, 538 lines. Arrows are Lean's own record of what each proof uses.
+17 theorems, 3 definitions, 552 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ArgCrude`](../lean_stage3/ArgCrude.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgIdentity`](../lean_stage3/ArgIdentity.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`LineBound`](../lean_stage3/LineBound.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ArgIdentity`](../lean_stage3/ArgIdentity.md), [`ContourShift`](../lean_stage3/ContourShift.md), [`LineBound`](../lean_stage3/LineBound.md), [`ReZetaCount`](../lean_stage3/ReZetaCount.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md), [`ZeroSquares`](../lean_stage3/ZeroSquares.md)
 
 ## The picture
 
@@ -14,8 +14,8 @@ flowchart LR
   n0["<b>zeta_centre_lower</b><br/>(1 : ℝ) / 3 ≤ ‖ζ (2 + Complex.I * T)‖"]:::thm
   n1["<b>zeta_disk_upper</b><br/>‖ζ w‖ ≤ 28 * T"]:::thm
   n2["<b>zeta_centre_ne_zero</b><br/>ζ (2 + Complex.I * (T : ℂ)) ≠ 0"]:::thm
-  n3["<b>pole_away</b><br/>2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1"]:::thm
-  n4["<b>pole_away_centre</b><br/>v ≠ 1"]:::thm
+  n3["<b>pole_away</b><br/>2 * z + (2 + Complex.I * (T : ℂ)) ≠ 1"]:::shp
+  n4["<b>pole_away_centre</b><br/>v ≠ 1"]:::shp
   n5["<b>zetaWindowTwo_finite</b><br/>{ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite"]:::thm
   n6["<b>zetaWindow_finite</b><br/>(zetaWindow T).Finite"]:::thm
   n7["<b>zeta_comp_analytic</b><br/>AnalyticAt ℂ (fun z : ℂ =＞ ζ (2 * z + (2 + Complex.I * (T : ℂ)))…"]:::thm
@@ -23,7 +23,7 @@ flowchart LR
   n9["<b>jensenF_zero_eq_one</b><br/>jensenF T 0 = 1"]:::thm
   n10["<b>jensenF_zeros_finite</b><br/>(SetOfZeros 1 (jensenF T)).Finite"]:::thm
   n11["<b>jensenF_bound</b><br/>‖jensenF T z‖ ≤ 84 * T"]:::thm
-  n12["<b>analyticOrderNatAt_fun_comp_affine</b><br/>analyticOrderNatAt (fun w : ℂ =＞ g (a * w + b)) z = analyticOrde…"]:::thm
+  n12["<b>analyticOrderNatAt_fun_comp_affine</b><br/>analyticOrderNatAt (fun w : ℂ =＞ g (a * w + b)) z = analyticOrde…"]:::shp
   n13["<b>jensenF_order</b><br/>analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w +…"]:::thm
   n14["<b>zeta_local_zero_count</b><br/>∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ :…"]:::thm
   n15["<b>zetaLocalCount_eq</b><br/>zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analy…"]:::thm
@@ -38,9 +38,11 @@ flowchart LR
   x7(["<b>Glue</b><br/>band_order_sum_le"]):::ext
   x8(["<b>GlueNum</b><br/>band_order_sum_le_num"]):::ext
   x9(["<b>WeilBands</b><br/>band_count"]):::ext
-  x10(["<b>LowCount</b><br/>low_ball_count"]):::ext
-  x11(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
-  x12(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
+  x10(["<b>ZeroSquares</b><br/>card_fiber_le"]):::ext
+  x11(["<b>ZeroSummable</b><br/>order_le_log_pos"]):::ext
+  x12(["<b>LowCount</b><br/>low_ball_count"]):::ext
+  x13(["<b>LowEdge</b><br/>gz_partial_fraction_low<br/>low_ball_count_wide"]):::ext
+  x14(["<b>ArgIdentity</b><br/>rvM_of_sFromLocal"]):::ext
   n0 --> n11
   n1 --> n11
   n10 --> n14
@@ -72,22 +74,26 @@ flowchart LR
   n10 -.-> x3
   n11 -.-> x0
   n11 -.-> x3
-  n12 -.-> x10
-  n12 -.-> x11
+  n12 -.-> x12
+  n12 -.-> x13
   n12 -.-> x5
   n12 -.-> x6
+  n14 -.-> x10
+  n14 -.-> x11
   n14 -.-> x4
   n14 -.-> x5
   n14 -.-> x6
   n14 -.-> x7
   n14 -.-> x8
   n14 -.-> x9
-  n16 -.-> x12
+  n16 -.-> x14
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x3
   n4 -.-> x0
   n4 -.-> x3
+  n6 -.-> x10
+  n6 -.-> x11
   n6 -.-> x4
   n6 -.-> x5
   n6 -.-> x6
@@ -98,6 +104,9 @@ flowchart LR
   n8 -.-> x3
   n9 -.-> x0
   n9 -.-> x3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -105,24 +114,24 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
 <a name="Stage3-zetaWindow"></a>
 ### `Stage3.zetaWindow`
 
-def · line 259
+def · line 260
 
 The window. `ζ`'s zeros in the closed disk of radius `7/4` about `2 + iT`. On the critical line this disk covers `|γ - T| ≤ √(13/16)` ≈ `0.901`, an interval of positive length — which is what radius `3/2` fails to do, being tangent to the line and so catching only `γ = T`.
 
 - **Is:** `` zetaWindow (T : ℝ) : Set ℂ := {ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 7 / 4} ``
-- **Used by 13:** [`ContourShift.goodT_exists`](../lean_stage3/ContourShift.md#ContourShift-goodT_exists), [`ContourShift.mem_zetaWindow`](../lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow), [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le), [`EdgeBound.ball_order_sum_le_num`](../lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num), [`Glue.band_order_sum_le`](../lean_stage3/Glue.md#Glue-band_order_sum_le), [`Glue.band_order_sum_le_num`](../lean_stage3/GlueNum.md#Glue-band_order_sum_le_num), [`Stage3.localCount_holds`](#Stage3-localCount_holds), [`Stage3.zetaLocalCount`](#Stage3-zetaLocalCount), [`Stage3.zetaLocalCount_eq`](#Stage3-zetaLocalCount_eq), [`Stage3.zetaWindow_finite`](#Stage3-zetaWindow_finite), [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count), [`WeilBands.band_count`](../lean_stage3/WeilBands.md#WeilBands-band_count), [`WeilBands.mem_zetaWindow_of_online`](../lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online)
+- **Used by 16:** [`ContourShift.goodT_exists`](../lean_stage3/ContourShift.md#ContourShift-goodT_exists), [`ContourShift.mem_zetaWindow`](../lean_stage3/ContourShift.md#ContourShift-mem_zetaWindow), [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le), [`EdgeBound.ball_order_sum_le_num`](../lean_stage3/EdgeNum.md#EdgeBound-ball_order_sum_le_num), [`Glue.band_order_sum_le`](../lean_stage3/Glue.md#Glue-band_order_sum_le), [`Glue.band_order_sum_le_num`](../lean_stage3/GlueNum.md#Glue-band_order_sum_le_num), [`Stage3.localCount_holds`](#Stage3-localCount_holds), [`Stage3.zetaLocalCount`](#Stage3-zetaLocalCount), [`Stage3.zetaLocalCount_eq`](#Stage3-zetaLocalCount_eq), [`Stage3.zetaWindow_finite`](#Stage3-zetaWindow_finite), [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count), [`WeilBands.band_count`](../lean_stage3/WeilBands.md#WeilBands-band_count), [`WeilBands.mem_zetaWindow_of_online`](../lean_stage3/WeilBands.md#WeilBands-mem_zetaWindow_of_online), [`ZeroSquares.card_fiber_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le), [`ZeroSquares.window_mem`](../lean_stage3/ZeroSquares.md#ZeroSquares-window_mem), [`ZeroSummable.order_le_log_pos`](../lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos)
 
 <a name="Stage3-jensenF"></a>
 ### `Stage3.jensenF`
 
-def · line 269
+def · line 271
 
 The normalised local model. `f z = ζ (2z + 2 + iT) / ζ (2 + iT)`; the closed unit ball maps onto `|s - (2+iT)| ≤ 2`.
 
@@ -132,7 +141,7 @@ The normalised local model. `f z = ζ (2z + 2 + iT) / ζ (2 + iT)`; the closed u
 <a name="Stage3-zetaLocalCount"></a>
 ### `Stage3.zetaLocalCount`
 
-def · line 441
+def · line 453
 
 The count function. Total zero order of `ζ` in `|s - (2+iT)| ≤ 7/4`.
 
@@ -145,7 +154,11 @@ The count function. Total zero order of `ζ` in `|s - (2+iT)| ≤ 7/4`.
 <a name="Stage3-zeta_centre_lower"></a>
 ### `Stage3.zeta_centre_lower`
 
-line 75
+line 76
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For every real `T`, the norm of `ζ` at the centre `2 + iT` is at least `1/3`.
 
 **Proves**
 
@@ -168,7 +181,9 @@ line 75
 <a name="Stage3-zeta_disk_upper"></a>
 ### `Stage3.zeta_disk_upper`
 
-line 123
+line 124
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The majorant on the wide disk. `‖ζ w‖ ≤ 28 T` for `T ≥ 2` and `‖w - (2 + iT)‖ ≤ 15/8`; this is the `R = 15/16` radius of the Jensen step pulled back through `s = 2z + (2 + iT)`. On that disk `Re w ≥ 1/8 > 0` and `Im w ≥ T - 15/8 ≥ 1/8`, so the pole at `s = 1` is avoided with room.
 
@@ -193,7 +208,9 @@ line 123
 <a name="Stage3-zeta_centre_ne_zero"></a>
 ### `Stage3.zeta_centre_ne_zero`
 
-line 197
+line 198
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The centre `2 + iT` has real part `2`, hence `ζ` does not vanish there.
 
@@ -224,7 +241,9 @@ line 197
 <a name="Stage3-pole_away"></a>
 ### `Stage3.pole_away`
 
-line 205
+line 206
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The pole stays outside the mapped ball. For `T ≥ 2` and `‖z‖ ≤ 11/10`, the point `2z + (2 + iT)` is never the pole `s = 1`.
 
@@ -248,7 +267,9 @@ line 205
 <a name="Stage3-pole_away_centre"></a>
 ### `Stage3.pole_away_centre`
 
-line 218
+line 219
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The pole stays outside the window. For `T ≥ 2`, every point within `11/5` of `2 + iT` differs from `1`.
 
@@ -274,7 +295,9 @@ v ≠ 1
 <a name="Stage3-zetaWindowTwo_finite"></a>
 ### `Stage3.zetaWindowTwo_finite`
 
-line 232
+line 233
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `ζ` has finitely many zeros within `2` of the centre.
 
@@ -301,7 +324,11 @@ line 232
 <a name="Stage3-zetaWindow_finite"></a>
 ### `Stage3.zetaWindow_finite`
 
-line 262
+line 264
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2`, the window of zeros of `ζ` within `7/4` of `2 + iT` is finite.
 
 **Proves**
 
@@ -319,7 +346,7 @@ line 262
 
   - [`Stage3.zetaWindowTwo_finite`](#Stage3-zetaWindowTwo_finite) — `` {ρ : ℂ | ζ ρ = 0 ∧ ‖ρ - (2 + Complex.I * (T : ℂ))‖ ≤ 2}.Finite ``
 
-**Feeds** (9 that use it)
+**Feeds** (11 that use it)
 
   - [`ContourShift.goodT_exists`](../lean_stage3/ContourShift.md#ContourShift-goodT_exists) (ContourShift) — `` ∃ T' ∈ Set.Icc T (T+1), ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → zeroGap T ≤ |ρ.im - T'| ``
   - [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le) (EdgeBound) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real… ``
@@ -330,11 +357,17 @@ line 262
   - [`Stage3.zetaLocalCount_eq`](#Stage3-zetaLocalCount_eq) — `` zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ``
   - [`Stage3.zeta_local_zero_count`](#Stage3-zeta_local_zero_count) — `` ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ 15 * Real.log T + 73 ``
   - [`WeilBands.band_count`](../lean_stage3/WeilBands.md#WeilBands-band_count) (WeilBands) — `` ∑ ρ ∈ S, (analyticOrderNatAt riemannZeta ρ : ℝ) ≤ 15 * Real.log T + 73 ``
+  - [`ZeroSquares.card_fiber_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le) (ZeroSquares) — `` (W.card : ℝ) ≤ 15 * Real.log T + 73 ``
+  - [`ZeroSummable.order_le_log_pos`](../lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos) (ZeroSummable) — `` ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log ((ρ : ℂ).im + 1) + 73 ``
 
 <a name="Stage3-zeta_comp_analytic"></a>
 ### `Stage3.zeta_comp_analytic`
 
-line 272
+line 275
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2` and `‖w‖ ≤ 11/10`, the map `z ↦ ζ (2z + (2 + iT))` is analytic at `w`.
 
 **Proves**
 
@@ -359,7 +392,11 @@ AnalyticAt ℂ (fun z : ℂ => ζ (2 * z + (2 + Complex.I * (T : ℂ)))) w
 <a name="Stage3-jensenF_analytic"></a>
 ### `Stage3.jensenF_analytic`
 
-line 277
+line 282
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2`, the normalised local model `jensenF T` is analytic on a neighbourhood of the closed unit ball.
 
 **Proves**
 
@@ -386,7 +423,11 @@ AnalyticOnNhd ℂ (jensenF T) (Metric.closedBall (0 : ℂ) 1)
 <a name="Stage3-jensenF_zero_eq_one"></a>
 ### `Stage3.jensenF_zero_eq_one`
 
-line 284
+line 290
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The normalised local model takes the value `1` at the origin: `jensenF T 0 = 1`.
 
 **Proves**
 
@@ -413,7 +454,11 @@ jensenF T 0 = 1
 <a name="Stage3-jensenF_zeros_finite"></a>
 ### `Stage3.jensenF_zeros_finite`
 
-line 288
+line 296
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2`, the zero set `SetOfZeros 1 (jensenF T)` of the normalised local model at radius `1` is finite.
 
 **Proves**
 
@@ -441,7 +486,11 @@ line 288
 <a name="Stage3-jensenF_bound"></a>
 ### `Stage3.jensenF_bound`
 
-line 306
+line 316
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2` and `‖z‖ ≤ 15/16`, the normalised local model satisfies `‖jensenF T z‖ ≤ 84 T`.
 
 **Proves**
 
@@ -470,7 +519,9 @@ line 306
 <a name="Stage3-analyticOrderNatAt_fun_comp_affine"></a>
 ### `Stage3.analyticOrderNatAt_fun_comp_affine`
 
-line 324
+line 334
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The analytic order is unchanged by an invertible affine change of variable.
 
@@ -500,7 +551,11 @@ analyticOrderNatAt (fun w : ℂ => g (a * w + b)) z = analyticOrderNatAt g (a * 
 <a name="Stage3-jensenF_order"></a>
 ### `Stage3.jensenF_order`
 
-line 336
+line 348
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2` and `‖w‖ ≤ 11/10`, the analytic order of `jensenF T` at `w` equals the analytic order of `ζ` at `2w + (2 + iT)`.
 
 **Proves**
 
@@ -528,7 +583,9 @@ analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w + (2 + Complex.I
 <a name="Stage3-zeta_local_zero_count"></a>
 ### `Stage3.zeta_local_zero_count`
 
-line 354
+line 366
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE LOCAL ZERO COUNT. For every `T ≥ 2`, the total order of the zeros of `ζ` in the closed disk `|s - (2 + iT)| ≤ 7/4` — a disk which meets the critical line in the segment `|γ - T| ≤ √(13/16)` — is at most `15 log T + 73`.
 
@@ -555,7 +612,7 @@ line 354
 
 **Definitions its proof touches:** [`Stage3.jensenF`](#Stage3-jensenF)
 
-**Feeds** (7 that use it)
+**Feeds** (9 that use it)
 
   - [`ContourShift.goodT_exists`](../lean_stage3/ContourShift.md#ContourShift-goodT_exists) (ContourShift) — `` ∃ T' ∈ Set.Icc T (T+1), ∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → zeroGap T ≤ |ρ.im - T'| ``
   - [`EdgeBound.ball_order_sum_le`](../lean_stage3/EdgeBound.md#EdgeBound-ball_order_sum_le) (EdgeBound) — `` ∃ C : ℝ, 0 < C ∧ ∀ T' : ℝ, 2 ≤ T' → (∑ w ∈ (gz_zeros_ball_finite T' (by norm_num : (0:ℝ) ≤ 46/25)).toFinset, (analyticOrderNatAt gz w : ℝ)) ≤ C * Real… ``
@@ -564,11 +621,17 @@ line 354
   - [`Glue.band_order_sum_le_num`](../lean_stage3/GlueNum.md#Glue-band_order_sum_le_num) (GlueNum) — `` ∀ T : ℝ, 2 ≤ T → ∀ F : Finset ℂ, (∀ ρ ∈ F, riemannZeta ρ = 0 ∧ (0 < ρ.re ∧ ρ.re < 1) ∧ T ≤ |ρ.im| ∧ |ρ.im| ≤ T + 1) → (∑ ρ ∈ F, (analyticOrderNatAt ri… ``
   - [`Stage3.localCount_holds`](#Stage3-localCount_holds) — `` StmtLocalCount zetaLocalCount 15 73 ``
   - [`WeilBands.band_count`](../lean_stage3/WeilBands.md#WeilBands-band_count) (WeilBands) — `` ∑ ρ ∈ S, (analyticOrderNatAt riemannZeta ρ : ℝ) ≤ 15 * Real.log T + 73 ``
+  - [`ZeroSquares.card_fiber_le`](../lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le) (ZeroSquares) — `` (W.card : ℝ) ≤ 15 * Real.log T + 73 ``
+  - [`ZeroSummable.order_le_log_pos`](../lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos) (ZeroSummable) — `` ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ) ≤ 15 * Real.log ((ρ : ℂ).im + 1) + 73 ``
 
 <a name="Stage3-zetaLocalCount_eq"></a>
 ### `Stage3.zetaLocalCount_eq`
 
-line 444
+line 458
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `T ≥ 2`, the count function `zetaLocalCount T` equals the sum of the analytic orders of `ζ` over the finite window of zeros within `7/4` of `2 + iT`.
 
 **Proves**
 
@@ -591,7 +654,9 @@ zetaLocalCount T = ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNat
 <a name="Stage3-localCount_holds"></a>
 ### `Stage3.localCount_holds`
 
-line 455
+line 469
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE LEAF, DISCHARGED. `StmtLocalCount` holds for the concrete zeta zero count with the explicit constants `A₁ = 15`, `A₃ = 73`. Entry 130's budget accepts `A₁ ≤ 100`, `A₃ ≤ 1000`, so these clear it with room; the widening from radius `3/2` to `7/4` cost roughly a factor of two in `A₁` and is paid out of that budget.
 

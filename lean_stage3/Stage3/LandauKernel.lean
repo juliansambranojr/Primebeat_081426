@@ -30,6 +30,7 @@ noncomputable section
 
 open MeasureTheory Set Filter Topology
 
+/-- For `a > 0`, `n` a natural and `y ≥ 1`: `(log y)^n ≤ y^(a/2) / (a/(2(n+1)))^n`. -/
 theorem log_pow_le {a : ℝ} (ha : 0 < a) (n : ℕ) {y : ℝ} (hy : 1 ≤ y) :
     Real.log y ^ n ≤ y ^ (a / 2) / (a / (2 * (n + 1))) ^ n := by
   have hy0 : 0 < y := by linarith
@@ -63,6 +64,8 @@ private lemma kernel_le {a : ℝ} (ha : 0 < a) (n : ℕ) {y : ℝ} (hy : 1 ≤ y
   rw [div_mul_eq_mul_div, e] at h
   exact h
 
+/-- For `a > 0` and every natural `n`, the kernel `(log y)^n · y^(−a−1)` is integrable
+on `(1, ∞)`. -/
 theorem log_pow_integrable {a : ℝ} (ha : 0 < a) (n : ℕ) :
     IntegrableOn (fun y : ℝ => Real.log y ^ n * y ^ (-a - 1)) (Ioi 1) := by
   have hbound : IntegrableOn
@@ -81,6 +84,7 @@ theorem log_pow_integrable {a : ℝ} (ha : 0 < a) (n : ℕ) :
   rw [Real.norm_of_nonneg hnn]
   exact kernel_le ha n hy1
 
+/-- For `a > 0` and every natural `n`, `(log y)^n · y^(−a)` tends to `0` as `y → ∞`. -/
 private lemma tendsto_log_pow_mul {a : ℝ} (ha : 0 < a) (n : ℕ) :
     Tendsto (fun y : ℝ => Real.log y ^ n * y ^ (-a)) atTop (𝓝 0) := by
   have hlim : Tendsto (fun y : ℝ => y ^ (-(a / 2)) / (a / (2 * ((n : ℝ) + 1))) ^ n)
@@ -99,6 +103,8 @@ private lemma tendsto_log_pow_mul {a : ℝ} (ha : 0 < a) (n : ℕ) :
     rw [div_mul_eq_mul_div, e] at h
     exact h
 
+/-- For `a > 0` and `y > 0`, the primitive `−(log t)^(k+1)·t^(−a)/a` has derivative
+`(log y)^(k+1)·y^(−a−1) − ((k+1)/a)·(log y)^k·y^(−a−1)` at `y`. -/
 private lemma hasDerivAt_prim {a : ℝ} (ha : 0 < a) (k : ℕ) {y : ℝ} (hy : 0 < y) :
     HasDerivAt (fun t : ℝ => -(Real.log t ^ (k + 1) * t ^ (-a)) / a)
       (Real.log y ^ (k + 1) * y ^ (-a - 1)
@@ -115,6 +121,8 @@ private lemma hasDerivAt_prim {a : ℝ} (ha : 0 < a) (k : ℕ) {y : ℝ} (hy : 0
   field_simp
   try ring
 
+/-- The kernel's integral: for `a > 0` and every natural `k`,
+`∫₁^∞ (log y)^k · y^(−a−1) dy = k!/a^(k+1)`. -/
 theorem log_pow_integral {a : ℝ} (ha : 0 < a) (k : ℕ) :
     ∫ y in Ioi (1 : ℝ), Real.log y ^ k * y ^ (-a - 1) = k.factorial / a ^ (k + 1) := by
   induction k with

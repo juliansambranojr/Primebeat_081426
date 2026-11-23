@@ -2,7 +2,7 @@
 
 ExplicitBump — a concrete `ν`, so `mellin_bump_bounded`'s `B` is a numeral. WHY THIS FILE EXISTS. `RHPull.psi_weak_of_RH` (`Stage3/LineBound.lean:2357`) assembles its constant from four distinct existentials:
 
-12 theorems, 3 definitions, 246 lines. Arrows are Lean's own record of what each proof uses.
+12 theorems, 3 definitions, 250 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -11,18 +11,18 @@ ExplicitBump — a concrete `ν`, so `mellin_bump_bounded`'s `B` is a numeral. W
 
 ```mermaid
 flowchart LR
-  n0["<b>sqPos_eq</b><br/>(max 0 u) ^ 2 = if u ≤ 0 then 0 else u ^ 2"]:::lone
-  n1["<b>hasDerivAt_sqPos</b><br/>HasDerivAt (fun t : ℝ =＞ (max 0 t) ^ 2) (2 * max 0 u) u"]:::thm
-  n2["<b>contDiff_sqPos</b><br/>ContDiff ℝ 1 (fun t : ℝ =＞ (max 0 t) ^ 2)"]:::thm
-  n3["<b>bumpP_nonpos_of_le</b><br/>bumpP x ≤ 0"]:::thm
-  n4["<b>bumpP_nonpos_of_ge</b><br/>bumpP x ≤ 0"]:::thm
-  n5["<b>bumpC_pos</b><br/>0 ＜ bumpC"]:::thm
-  n6["<b>bump_nonneg</b><br/>0 ≤ bump x"]:::end_
-  n7["<b>bump_support</b><br/>Function.support bump ⊆ Set.Icc (1/2 : ℝ) 2"]:::end_
-  n8["<b>bump_contDiff</b><br/>ContDiff ℝ 1 bump"]:::end_
-  n9["<b>bumpP_le</b><br/>bumpP x ≤ 9/16"]:::thm
-  n10["<b>bump_le</b><br/>bump x ≤ bumpC * (9/16) ^ 2"]:::thm
-  n11["<b>bump_le_numeral</b><br/>bump x ≤ 1.4757"]:::end_
+  n0["<b>sqPos_eq ■</b><br/>(max 0 u) ^ 2 = if u ≤ 0 then 0 else u ^ 2"]:::shp
+  n1["<b>hasDerivAt_sqPos</b><br/>HasDerivAt (fun t : ℝ =＞ (max 0 t) ^ 2) (2 * max 0 u) u"]:::shp
+  n2["<b>contDiff_sqPos</b><br/>ContDiff ℝ 1 (fun t : ℝ =＞ (max 0 t) ^ 2)"]:::shp
+  n3["<b>bumpP_nonpos_of_le</b><br/>bumpP x ≤ 0"]:::shp
+  n4["<b>bumpP_nonpos_of_ge</b><br/>bumpP x ≤ 0"]:::shp
+  n5["<b>bumpC_pos</b><br/>0 ＜ bumpC"]:::shp
+  n6["<b>bump_nonneg ■</b><br/>0 ≤ bump x"]:::shp
+  n7["<b>bump_support ■</b><br/>Function.support bump ⊆ Set.Icc (1/2 : ℝ) 2"]:::shp
+  n8["<b>bump_contDiff ■</b><br/>ContDiff ℝ 1 bump"]:::shp
+  n9["<b>bumpP_le</b><br/>bumpP x ≤ 9/16"]:::shp
+  n10["<b>bump_le</b><br/>bump x ≤ bumpC * (9/16) ^ 2"]:::shp
+  n11["<b>bump_le_numeral ■</b><br/>bump x ≤ 1.4757"]:::shp
   n1 --> n2
   n10 --> n11
   n2 --> n8
@@ -31,6 +31,9 @@ flowchart LR
   n5 --> n10
   n5 --> n6
   n9 --> n10
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -38,14 +41,14 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
 <a name="Stage3-bumpP"></a>
 ### `Stage3.bumpP`
 
-def · line 125
+def · line 126
 
 The interval polynomial: `p x = (x − 1/2)(2 − x)`, positive exactly on `Ioo (1/2) 2`.
 
@@ -55,7 +58,7 @@ The interval polynomial: `p x = (x − 1/2)(2 − x)`, positive exactly on `Ioo 
 <a name="Stage3-bumpC"></a>
 ### `Stage3.bumpC`
 
-def · line 129
+def · line 130
 
 The normalising constant `c = 1 / ∫_{1/2}^{2} p²/x`, in closed form. `∫ p²/x = 33/16 − (3/2)·log 2`.
 
@@ -65,7 +68,7 @@ The normalising constant `c = 1 / ∫_{1/2}^{2} p²/x`, in closed form. `∫ p²
 <a name="Stage3-bump"></a>
 ### `Stage3.bump`
 
-def · line 133
+def · line 134
 
 The explicit bump. `C¹`, supported exactly on `Icc (1/2) 2`, non-negative, and normalised so `∫ ν(x)/x dx = 1`.
 
@@ -79,6 +82,8 @@ The explicit bump. `C¹`, supported exactly on `Icc (1/2) 2`, non-negative, and 
 ### `Stage3.sqPos_eq`
 
 line 60
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `(max 0 u)²` written without the max, for differentiation.
 
@@ -101,6 +106,8 @@ line 60
 
 line 68
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The derivative of `(max 0 ·)²` is `2·max 0 ·`, everywhere — including at the join, where both one-sided derivatives vanish.
 
 **Proves**
@@ -122,7 +129,11 @@ HasDerivAt (fun t : ℝ => (max 0 t) ^ 2) (2 * max 0 u) u
 <a name="Stage3-contDiff_sqPos"></a>
 ### `Stage3.contDiff_sqPos`
 
-line 112
+line 113
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The squared positive part `t ↦ (max 0 t)²` is continuously differentiable.
 
 **Proves**
 
@@ -141,7 +152,11 @@ ContDiff ℝ 1 (fun t : ℝ => (max 0 t) ^ 2)
 <a name="Stage3-bumpP_nonpos_of_le"></a>
 ### `Stage3.bumpP_nonpos_of_le`
 
-line 135
+line 137
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `x ≤ 1/2`, the interval polynomial satisfies `bumpP x ≤ 0`.
 
 **Proves**
 
@@ -164,7 +179,11 @@ bumpP x ≤ 0
 <a name="Stage3-bumpP_nonpos_of_ge"></a>
 ### `Stage3.bumpP_nonpos_of_ge`
 
-line 141
+line 144
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `x ≥ 2`, the interval polynomial satisfies `bumpP x ≤ 0`.
 
 **Proves**
 
@@ -187,7 +206,9 @@ bumpP x ≤ 0
 <a name="Stage3-bumpC_pos"></a>
 ### `Stage3.bumpC_pos`
 
-line 146
+line 149
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `∫ p²/x` is positive, so `bumpC` is well defined and positive.
 
@@ -209,7 +230,11 @@ line 146
 <a name="Stage3-bump_nonneg"></a>
 ### `Stage3.bump_nonneg`
 
-line 154
+line 158
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The explicit bump is non-negative at every real `x`.
 
 **Proves**
 
@@ -234,7 +259,9 @@ line 154
 <a name="Stage3-bump_support"></a>
 ### `Stage3.bump_support`
 
-line 160
+line 164
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Support. Off `Icc (1/2) 2` the polynomial is non-positive, so the positive part is zero.
 
@@ -258,7 +285,9 @@ Function.support bump ⊆ Set.Icc (1/2 : ℝ) 2
 <a name="Stage3-bump_contDiff"></a>
 ### `Stage3.bump_contDiff`
 
-line 176
+line 180
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `C¹`. The polynomial is smooth and the positive-part square is `C¹`, so the composite is.
 
@@ -281,7 +310,9 @@ ContDiff ℝ 1 bump
 <a name="Stage3-bumpP_le"></a>
 ### `Stage3.bumpP_le`
 
-line 185
+line 189
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `p` peaks at `x = 5/4` with value `9/16`.
 
@@ -306,7 +337,9 @@ bumpP x ≤ 9/16
 <a name="Stage3-bump_le"></a>
 ### `Stage3.bump_le`
 
-line 190
+line 194
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The sup of the bump, at the peak: `sup ν = c·(9/16)²`.
 
@@ -336,7 +369,9 @@ bump x ≤ bumpC * (9/16) ^ 2
 <a name="Stage3-bump_le_numeral"></a>
 ### `Stage3.bump_le_numeral`
 
-line 200
+line 204
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The numeral. `sup ν ≤ 1.4757`, hence `mellin_bump_bounded`'s `B = 3·sup‖ν‖ + 1 ≤ 5.4271`. Both bounds are decimal, so a consumer can carry them arithmetically.
 

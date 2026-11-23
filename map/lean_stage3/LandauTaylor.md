@@ -2,7 +2,7 @@
 
 LandauTaylor — the derivatives of `Phi` on `Re s > 1`, from the primes: iteratedDeriv k Phi s = ∫₁^∞ G(y)·(−log y)^k·y^(−s−1) dy.
 
-6 theorems, 1 definition, 182 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 1 definition, 192 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauChebyshev`](../lean_stage3/LandauChebyshev.md), [`LandauKernel`](../lean_stage3/LandauKernel.md), [`LandauMellinG`](../lean_stage3/LandauMellinG.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPrimeSide`](../lean_stage3/LandauPrimeSide.md)
@@ -12,11 +12,11 @@ LandauTaylor — the derivatives of `Phi` on `Re s > 1`, from the primes: iterat
 ```mermaid
 flowchart LR
   n0["<b>integrand_norm_le</b><br/>‖(LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-…"]:::thm
-  n1["<b>bound_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ 8 * (Real.log y ^ k * y ^ (-a - 1) + …"]:::thm
+  n1["<b>bound_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ 8 * (Real.log y ^ k * y ^ (-a - 1) + …"]:::shp
   n2["<b>mellinLog_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (LandauWindow.G y : ℂ) * (-(Real.log …"]:::thm
   n3["<b>mellinLog_hasDerivAt</b><br/>HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s"]:::thm
   n4["<b>iteratedDeriv_Phi</b><br/>iteratedDeriv k LandauMellinG.Phi s = mellinLog k s"]:::thm
-  n5["<b>mellinLog_real</b><br/>mellinLog k (σ : ℂ) = (-1) ^ k * ((∫ y in Ioi (1 : ℝ), LandauWin…"]:::thm
+  n5["<b>mellinLog_real</b><br/>mellinLog k (σ : ℂ) = (-1) ^ k * ((∫ y in Ioi (1 : ℝ), LandauWin…"]:::shp
   x0(["<b>LandauChebyshev</b><br/>abs_G_le_log"]):::ext
   x1(["<b>LandauKernel</b><br/>log_pow_integrable"]):::ext
   x2(["<b>LandauMellinG</b><br/>G_mellin_integrable<br/>mellin_G"]):::ext
@@ -34,6 +34,9 @@ flowchart LR
   x1 -.-> n1
   x2 -.-> n2
   x2 -.-> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -41,7 +44,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -62,6 +65,8 @@ def · line 40
 ### `LandauTaylor.integrand_norm_le`
 
 line 45
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The domination: for `Re s ≥ 1 + a` the integrand is at most this.
 
@@ -91,7 +96,11 @@ line 45
 <a name="LandauTaylor-bound_integrable"></a>
 ### `LandauTaylor.bound_integrable`
 
-line 70
+line 72
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `a > 0`, the dominating function `8·((log y)^k·y^(−a−1) + (log y)^(k+1)·y^(−a−1))` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -116,7 +125,11 @@ IntegrableOn (fun y : ℝ => 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (
 <a name="LandauTaylor-mellinLog_integrable"></a>
 ### `LandauTaylor.mellinLog_integrable`
 
-line 76
+line 80
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1` and every `k`, the integrand of `mellinLog k s`, `G(y)·(−log y)^k·y^(−s−1)`, is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -145,7 +158,11 @@ IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ 
 <a name="LandauTaylor-mellinLog_hasDerivAt"></a>
 ### `LandauTaylor.mellinLog_hasDerivAt`
 
-line 98
+line 104
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1` and every `k`, the function `mellinLog k` has complex derivative `mellinLog (k+1) s` at `s`.
 
 **Proves**
 
@@ -175,7 +192,11 @@ HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s
 <a name="LandauTaylor-iteratedDeriv_Phi"></a>
 ### `LandauTaylor.iteratedDeriv_Phi`
 
-line 140
+line 148
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1`, the `k`-th derivative of `Phi` at `s` equals `mellinLog k s`, the integral `∫₁^∞ G(y)·(−log y)^k·y^(−s−1) dy`.
 
 **Proves**
 
@@ -204,7 +225,11 @@ iteratedDeriv k LandauMellinG.Phi s = mellinLog k s
 <a name="LandauTaylor-mellinLog_real"></a>
 ### `LandauTaylor.mellinLog_real`
 
-line 155
+line 165
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** At a real point `σ`, `mellinLog k σ` equals `(−1)^k` times the real integral `∫₁^∞ G(y)·(log y)^k·y^(−σ−1) dy`.
 
 **Proves**
 

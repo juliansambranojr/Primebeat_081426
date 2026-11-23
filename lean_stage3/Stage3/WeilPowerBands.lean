@@ -57,10 +57,14 @@ def termW (h γ : ℝ) (m : ℕ) (ρ : ℂ) : ℝ :=
 def weightedTermW (h γ : ℝ) (m : ℕ) (ρ : Kadiri.NontrivialZeros) : ℝ :=
   termW h γ m ρ * ((riemannZeta.order (ρ : ℂ) : ℤ) : ℝ)
 
+/-- If `0 < h` and `ρ` has real part `1/2`, then the term `termW h γ m ρ` of the zero form at
+the switched window is nonnegative. -/
 theorem termW_nonneg {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) {ρ : ℂ} (hρ : ρ.re = 1 / 2) :
     0 ≤ termW h γ m ρ :=
   online_term_nonneg hh γ m hρ
 
+/-- If `0 < h` and the nontrivial zero `ρ` has real part `1/2`, then the term with its
+multiplicity, `weightedTermW h γ m ρ`, is nonnegative. -/
 theorem weightedTermW_nonneg {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : Kadiri.NontrivialZeros)
     (hρ : (ρ : ℂ).re = 1 / 2) : 0 ≤ weightedTermW h γ m ρ := by
   unfold weightedTermW
@@ -134,6 +138,9 @@ theorem sum_by_bands {h γ : ℝ} (m : ℕ) (S : Finset Kadiri.NontrivialZeros)
     subst hρk
     exact hM ρ hρS
 
+/-- For a finite set `S` of zeros on the line with imaginary part at least `11/10`, a
+nonnegative band bound `M` on the terms and a summable band series, the sum of the weighted
+terms over `S` is at most the full band series `Σ' k, M k·(15·log(centre k) + 73)`. -/
 theorem sum_le_bandSeries {h γ : ℝ} (m : ℕ) (S : Finset Kadiri.NontrivialZeros)
     (hS : ∀ ρ ∈ S, (ρ : ℂ).re = 1 / 2 ∧ 11 / 10 ≤ (ρ : ℂ).im)
     (M : ℕ → ℝ) (hM0 : ∀ k, 0 ≤ M k)
@@ -169,11 +176,13 @@ theorem tsum_upper_le {h γ : ℝ} (hh : 0 < h) (m : ℕ) (M : ℕ → ℝ) (hM0
 /-- The near-band radius, in band steps: `max 1 (5(m+1)/h)`. -/
 def r (h : ℝ) (m : ℕ) : ℝ := max 1 (5 * ((m : ℝ) + 1) / h)
 
+/-- The near-band radius `r h m` is at least `1`. -/
 theorem one_le_r (h : ℝ) (m : ℕ) : 1 ≤ r h m := le_max_left _ _
 
 /-- The far constant: `cS m² · (200/81)² · (10(m+1)²)^{−2m}`. -/
 def cFarM (m : ℕ) : ℝ := cS m ^ 2 * (200 / 81) ^ 2 * (1 / (10 * ((m : ℝ) + 1) ^ 2)) ^ (2 * m)
 
+/-- The far constant `cFarM m` is nonnegative. -/
 theorem cFarM_nonneg (m : ℕ) : 0 ≤ cFarM m := by
   unfold cFarM
   positivity
@@ -246,6 +255,7 @@ def M (h γ : ℝ) (m : ℕ) (k : ℕ) : ℝ :=
   if |(k : ℝ) - (idx γ : ℝ)| ≤ r h m then 4 * h ^ 2
   else cFarM m / (h ^ 2 * |(k : ℝ) - (idx γ : ℝ)| ^ 4)
 
+/-- The dominating band bound `M h γ m k` is nonnegative for every band `k`. -/
 theorem M_nonneg (h γ : ℝ) (m k : ℕ) : 0 ≤ M h γ m k := by
   unfold M
   split_ifs
@@ -350,11 +360,13 @@ theorem term_le_M {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) (m : ℕ) (ρ
 def A (h γ : ℝ) (m : ℕ) : ℝ :=
   88 * ((idx γ : ℝ) + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ 2)
 
+/-- Helper: the factor `4h² + cFarM m / h²` is nonnegative. -/
 theorem four_h_add_nonneg (h : ℝ) (m : ℕ) : 0 ≤ 4 * h ^ 2 + cFarM m / h ^ 2 := by
   have h1 : 0 ≤ cFarM m / h ^ 2 := div_nonneg (cFarM_nonneg m) (sq_nonneg h)
   have h2 : 0 ≤ 4 * h ^ 2 := by positivity
   linarith
 
+/-- The crude constant `A h γ m` is nonnegative. -/
 theorem A_nonneg (h γ : ℝ) (m : ℕ) : 0 ≤ A h γ m := by
   unfold A
   have := one_le_r h m
@@ -452,6 +464,8 @@ theorem tsum_upper_le_explicit {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) 
   intro ρ hre him
   exact term_le_M hh hγ m ρ hre him
 
+/-- If `11/10 ≤ γ`, then the crude constant `A h γ m` is at most
+`88·(γ + r h m + 2)⁴·(4h² + cFarM m / h²)`, the band index of `γ` replaced by `γ`. -/
 theorem A_le {h γ : ℝ} (hγ : 11 / 10 ≤ γ) (m : ℕ) :
     A h γ m ≤ 88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 + cFarM m / h ^ 2) := by
   unfold A

@@ -2,7 +2,7 @@
 
 JointWindowDial — joint 1 of `SECTIONS.md`: the Landau window onto the dial. Block 1 of `lean_stage3/design/joints.md`. 2026-11-22.
 
-3 theorems, 0 definitions, 66 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 0 definitions, 72 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauCriterion`](../lean_stage3/LandauCriterion.md), [`ThetaPi`](../lean_stage3/ThetaPi.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`JointDialGate`](../lean_stage3/JointDialGate.md)
@@ -12,7 +12,7 @@ JointWindowDial — joint 1 of `SECTIONS.md`: the Landau window onto the dial. B
 ```mermaid
 flowchart LR
   n0["<b>zeroFreeRight_of_window</b><br/>Stage3.StmtZeroFreeRight θ"]:::thm
-  n1["<b>psiWeakTheta_of_window</b><br/>∃ C' ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |Chebyshev.psi t - t| ≤ C'…"]:::end_
+  n1["<b>psiWeakTheta_of_window ■</b><br/>∃ C' ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |Chebyshev.psi t - t| ≤ C'…"]:::thm
   n2["<b>schoenfeldWeakTheta_of_window</b><br/>∃ C' ＞ 0, ∃ x₀ : ℝ, Stage3.StmtSchoenfeldWeakTheta θ C' 2 x₀ (fu…"]:::thm
   x0(["<b>LandauCriterion</b><br/>stmtLandauWindow"]):::ext
   x1(["<b>ThetaPsi</b><br/>psi_weak_of_theta"]):::ext
@@ -24,6 +24,9 @@ flowchart LR
   x0 -.-> n0
   x1 -.-> n1
   x2 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -31,14 +34,18 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
 <a name="JointWindowDial-zeroFreeRight_of_window"></a>
 ### `JointWindowDial.zeroFreeRight_of_window`
 
-line 33
+line 35
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `0 < θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives the zero-free half-plane `StmtZeroFreeRight θ`: ζ has no zero with real part above `θ`.
 
 **Proves**
 
@@ -67,7 +74,11 @@ Stage3.StmtZeroFreeRight θ
 <a name="JointWindowDial-psiWeakTheta_of_window"></a>
 ### `JointWindowDial.psiWeakTheta_of_window`
 
-line 38
+line 42
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `1/2 ≤ θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives `C' > 0` and `x₀` with `|ψ(t) − t| ≤ C'·t^θ·log³ t` for all `t ≥ x₀`.
 
 **Proves**
 
@@ -94,7 +105,11 @@ line 38
 <a name="JointWindowDial-schoenfeldWeakTheta_of_window"></a>
 ### `JointWindowDial.schoenfeldWeakTheta_of_window`
 
-line 44
+line 50
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `1/2 ≤ θ < 1` and `0 < δ`, a window bound on `G` at `θ` gives `C' > 0` and `x₀` with `|π(x) − Li(x)| ≤ C'·x^θ·log² x` for all `x ≥ x₀`.
 
 **Proves**
 

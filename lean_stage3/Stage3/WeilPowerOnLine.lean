@@ -53,6 +53,8 @@ theorem term_conj {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) {ρ : ℂ} (hρ : 
   rw [e1, e2, PsiW_neg, PsiW_neg]
   ring
 
+/-- For `h > 0` and a nontrivial zero `ρ` with real part `1/2`, the weighted on-line term at
+the conjugate zero `conjZ ρ` equals the weighted on-line term at `ρ`. -/
 theorem weightedTermW_conjZ {h : ℝ} (hh : 0 < h) (γ : ℝ) (m : ℕ) (ρ : Kadiri.NontrivialZeros)
     (hρ : (ρ : ℂ).re = 1 / 2) : weightedTermW h γ m (conjZ ρ) = weightedTermW h γ m ρ := by
   have hne : (ρ : ℂ) ≠ 1 := by
@@ -170,6 +172,8 @@ theorem sum_onLine_le {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) (m : ℕ)
   unfold onLineBound
   linarith
 
+/-- For `h > 0` and `γ ≥ 11/10`, the sum of the weighted on-line terms over any finite set of
+on-line zeros is at most `onLineBound h γ m`. -/
 theorem sum_onLine_subtype_le {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) (m : ℕ)
     (s : Finset OnLine) :
     ∑ ρ ∈ s, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m := by

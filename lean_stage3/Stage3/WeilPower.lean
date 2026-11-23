@@ -49,35 +49,44 @@ open Complex WeilWindow WeilTransform intervalIntegral Real
 /-- The half-angle cosine `c(x) = cos(πx/2)`; `P = c²`. -/
 def c (x : ℝ) : ℝ := Real.cos (Real.pi * x / 2)
 
+/-- The raised-cosine window is the square of the half-angle cosine: `P x = c x ^ 2`. -/
 theorem P_eq_c_sq (x : ℝ) : P x = c x ^ 2 := rfl
 
+/-- The `m`-th power of the window is the `2m`-th power of the half-angle cosine. -/
 theorem P_pow (m : ℕ) (x : ℝ) : P x ^ m = c x ^ (2 * m) := by
   rw [P_eq_c_sq, ← pow_mul]
 
+/-- The half-angle cosine vanishes at the right endpoint: `c 1 = 0`. -/
 theorem c_one : c 1 = 0 := by
   unfold c; rw [mul_one, Real.cos_pi_div_two]
 
+/-- The half-angle cosine vanishes at the left endpoint: `c (-1) = 0`. -/
 theorem c_neg_one : c (-1) = 0 := by
   unfold c
   rw [show Real.pi * (-1) / 2 = -(Real.pi / 2) by ring, Real.cos_neg, Real.cos_pi_div_two]
 
+/-- Helper: the half-angle cosine `c` is continuous. -/
 theorem continuous_c : Continuous c := by
   unfold c; fun_prop
 
 attribute [fun_prop] continuous_c
 
+/-- For `n ≠ 0`, the `n`-th power of the half-angle cosine vanishes at `1`. -/
 theorem c_pow_one {n : ℕ} (hn : n ≠ 0) : c 1 ^ n = 0 := by
   rw [c_one]; exact zero_pow hn
 
+/-- For `n ≠ 0`, the `n`-th power of the half-angle cosine vanishes at `-1`. -/
 theorem c_pow_neg_one {n : ℕ} (hn : n ≠ 0) : c (-1) ^ n = 0 := by
   rw [c_neg_one]; exact zero_pow hn
 
+/-- The half-angle cosine `c` has derivative `-(π/2)·sin(πx/2)` at every real `x`. -/
 theorem hasDerivAt_c (x : ℝ) :
     HasDerivAt c (-(Real.pi / 2) * Real.sin (Real.pi * x / 2)) x := by
   have h := (Real.hasDerivAt_cos (Real.pi * x / 2)).comp x
     (((hasDerivAt_id' x).const_mul Real.pi).div_const 2)
   exact h.congr_deriv (by ring)
 
+/-- The half-angle sine `sin(πy/2)` has derivative `(π/2)·c x` at every real `x`. -/
 theorem hasDerivAt_s (x : ℝ) :
     HasDerivAt (fun y : ℝ => Real.sin (Real.pi * y / 2)) (Real.pi / 2 * c x) x := by
   have h := (Real.hasDerivAt_sin (Real.pi * x / 2)).comp x
@@ -92,6 +101,7 @@ def f1 (k : ℕ) (x : ℝ) : ℝ :=
 def f2 (k : ℕ) (x : ℝ) : ℝ :=
   ((k : ℝ) + 2) * (Real.pi / 2) ^ 2 * (((k : ℝ) + 1) * c x ^ k - ((k : ℝ) + 2) * c x ^ (k + 2))
 
+/-- The power `c^{k+1}` of the half-angle cosine has derivative `f1 k x` at every real `x`. -/
 theorem hasDerivAt_f (k : ℕ) (x : ℝ) : HasDerivAt (fun y : ℝ => c y ^ (k + 1)) (f1 k x) x := by
   have h := (hasDerivAt_c x).pow (k + 1)
   simp only [Nat.add_sub_cancel] at h
@@ -100,6 +110,7 @@ theorem hasDerivAt_f (k : ℕ) (x : ℝ) : HasDerivAt (fun y : ℝ => c y ^ (k +
   push_cast
   ring
 
+/-- The first derivative `f1 (k+1)` of `c^{k+2}` has derivative `f2 k x` at every real `x`. -/
 theorem hasDerivAt_f1 (k : ℕ) (x : ℝ) : HasDerivAt (f1 (k + 1)) (f2 k x) x := by
   have h := ((hasDerivAt_f k x).const_mul (((k : ℝ) + 1) + 1)).mul
     ((hasDerivAt_s x).const_mul (-(Real.pi / 2)))
@@ -113,18 +124,22 @@ theorem hasDerivAt_f1 (k : ℕ) (x : ℝ) : HasDerivAt (f1 (k + 1)) (f2 k x) x :
   unfold f2 f1
   linear_combination (((k : ℝ) + 2) * (Real.pi / 2) ^ 2 * ((k : ℝ) + 1) * c x ^ k) * hs
 
+/-- Helper: the first derivative `f1 k` of `c^{k+1}` is continuous. -/
 theorem continuous_f1 (k : ℕ) : Continuous (f1 k) := by
   unfold f1
   exact (continuous_const.mul (continuous_c.pow k)).mul (continuous_const.mul (by fun_prop))
 
+/-- Helper: the second derivative `f2 k` of `c^{k+2}` is continuous. -/
 theorem continuous_f2 (k : ℕ) : Continuous (f2 k) := by
   unfold f2
   exact continuous_const.mul ((continuous_const.mul (continuous_c.pow k)).sub
     (continuous_const.mul (continuous_c.pow (k + 2))))
 
+/-- The derivative `f1 (k+1)` of `c^{k+2}` vanishes at the right endpoint `1`. -/
 theorem f1_one (k : ℕ) : f1 (k + 1) 1 = 0 := by
   unfold f1; rw [c_one]; simp
 
+/-- The derivative `f1 (k+1)` of `c^{k+2}` vanishes at the left endpoint `-1`. -/
 theorem f1_neg_one (k : ℕ) : f1 (k + 1) (-1) = 0 := by
   unfold f1; rw [c_neg_one]; simp
 
@@ -132,6 +147,7 @@ theorem f1_neg_one (k : ℕ) : f1 (k + 1) (-1) = 0 := by
 def K (m : ℕ) (w : ℂ) : ℂ :=
   ∫ x in (-1 : ℝ)..1, ((P x ^ m : ℝ) : ℂ) * Complex.exp (w * (x : ℂ))
 
+/-- For complex `w`, the map `y ↦ e^{wy}` on the reals has derivative `w·e^{wx}` at `x`. -/
 theorem hasDerivAt_E (w : ℂ) (x : ℝ) :
     HasDerivAt (fun y : ℝ => Complex.exp (w * (y : ℂ))) (w * Complex.exp (w * (x : ℂ))) x := by
   have h := ((Complex.hasDerivAt_exp (w * (x : ℂ))).comp (x : ℂ)
@@ -223,12 +239,14 @@ def Q (m : ℕ) (w : ℂ) : ℂ :=
 /-- `2·π^{2m}·(2m)!/4^m`, the numerator's constant. -/
 def cK (m : ℕ) : ℝ := 2 * Real.pi ^ (2 * m) * ((2 * m).factorial : ℝ) / 4 ^ m
 
+/-- The denominator's step: `Q (m+1) w = Q m w · (w² + π²(m+1)²)`. -/
 theorem Q_succ (m : ℕ) (w : ℂ) :
     Q (m + 1) w = Q m w * (w ^ 2 + (Real.pi : ℂ) ^ 2 * ((m : ℂ) + 1) ^ 2) := by
   unfold Q
   rw [Finset.prod_range_succ]
   ring
 
+/-- The numerator constant's step: `cK (m+1) = (m+1)(2m+1)π²/2 · cK m`. -/
 theorem cK_succ (m : ℕ) :
     cK (m + 1) = ((m : ℝ) + 1) * (2 * (m : ℝ) + 1) * Real.pi ^ 2 / 2 * cK m := by
   unfold cK
@@ -240,6 +258,7 @@ theorem cK_succ (m : ℕ) :
   field_simp
   ring
 
+/-- The base case of the closed form: `K 0 w · w = 2·sinh w` at every complex `w`. -/
 theorem K_zero_mul (w : ℂ) : K 0 w * w = 2 * Complex.sinh w := by
   unfold K
   simp only [pow_zero, Complex.ofReal_one, one_mul]
@@ -277,6 +296,7 @@ theorem cK_one : cK 1 = Real.pi ^ 2 := by
   norm_num [Nat.factorial]
   ring
 
+/-- The closed form at `m = 1`: `K 1 w · w(w² + π²) = π²·sinh w` at every complex `w`. -/
 theorem K_one_mul (w : ℂ) :
     K 1 w * (w * (w ^ 2 + (Real.pi : ℂ) ^ 2)) = (Real.pi : ℂ) ^ 2 * Complex.sinh w := by
   have h := K_mul_Q 1 w

@@ -11,18 +11,18 @@ WeilPowerGeom — the geometric sum and the harmonic correction: the two sums th
 
 ```mermaid
 flowchart LR
-  n0["<b>norm_one_sub_exp_ge</b><br/>Real.exp w.re * |Real.sin w.im| ≤ ‖1 - Complex.exp w‖"]:::thm
-  n1["<b>sin_im_ge</b><br/>2 * z.im / Real.pi ^ 3 ≤ Real.sin (z.im / Real.pi ^ 2)"]:::thm
-  n2["<b>rho_ne_one</b><br/>Complex.exp (z / (Real.pi : ℂ) ^ 2) ≠ 1"]:::thm
-  n3["<b>exp_shift</b><br/>Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2) = Comple…"]:::thm
-  n4["<b>geom_Ico</b><br/>∑ m ∈ Finset.Ico a b, x ^ m = (x ^ b - x ^ a) / (x - 1)"]:::thm
-  n5["<b>norm_geom_le</b><br/>‖∑ m ∈ Finset.Ico a b, Complex.exp (z * ((m : ℂ) + 1 / 2) / (Rea…"]:::thm
-  n6["<b>exp_lin_le_Mab</b><br/>Real.exp (z.re * ((m : ℝ) + 1 / 2) / Real.pi ^ 2) ≤ Mab z a b"]:::thm
-  n7["<b>log_step</b><br/>1 / ((m : ℝ) + 1) ≤ Real.log ((m : ℝ) + 1) - Real.log m"]:::thm
-  n8["<b>log_telescope</b><br/>∀ b : ℕ, a ≤ b → ∑ m ∈ Finset.Ico a b, 1 / ((m : ℝ) + 1) ≤ Real.…"]:::thm
-  n9["<b>harmonic_quarter</b><br/>∑ m ∈ Finset.Ico a b, 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 6)) ≤ (R…"]:::thm
-  n10["<b>norm_corr_le</b><br/>‖Complex.exp (z * (u m : ℂ)) - Complex.exp (z * ((m : ℂ) + 1 / 2…"]:::thm
-  n11["<b>norm_sum_exp_u_le</b><br/>‖∑ m ∈ Finset.Ico a b, Complex.exp (z * (u m : ℂ))‖ ≤ geomBound …"]:::end_
+  n0["<b>norm_one_sub_exp_ge</b><br/>Real.exp w.re * |Real.sin w.im| ≤ ‖1 - Complex.exp w‖"]:::shp
+  n1["<b>sin_im_ge</b><br/>2 * z.im / Real.pi ^ 3 ≤ Real.sin (z.im / Real.pi ^ 2)"]:::shp
+  n2["<b>rho_ne_one</b><br/>Complex.exp (z / (Real.pi : ℂ) ^ 2) ≠ 1"]:::shp
+  n3["<b>exp_shift</b><br/>Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2) = Comple…"]:::shp
+  n4["<b>geom_Ico</b><br/>∑ m ∈ Finset.Ico a b, x ^ m = (x ^ b - x ^ a) / (x - 1)"]:::shp
+  n5["<b>norm_geom_le</b><br/>‖∑ m ∈ Finset.Ico a b, Complex.exp (z * ((m : ℂ) + 1 / 2) / (Rea…"]:::shp
+  n6["<b>exp_lin_le_Mab</b><br/>Real.exp (z.re * ((m : ℝ) + 1 / 2) / Real.pi ^ 2) ≤ Mab z a b"]:::shp
+  n7["<b>log_step</b><br/>1 / ((m : ℝ) + 1) ≤ Real.log ((m : ℝ) + 1) - Real.log m"]:::shp
+  n8["<b>log_telescope</b><br/>∀ b : ℕ, a ≤ b → ∑ m ∈ Finset.Ico a b, 1 / ((m : ℝ) + 1) ≤ Real.…"]:::shp
+  n9["<b>harmonic_quarter</b><br/>∑ m ∈ Finset.Ico a b, 1 / (Real.pi ^ 2 * (4 * (m : ℝ) + 6)) ≤ (R…"]:::shp
+  n10["<b>norm_corr_le</b><br/>‖Complex.exp (z * (u m : ℂ)) - Complex.exp (z * ((m : ℂ) + 1 / 2…"]:::shp
+  n11["<b>norm_sum_exp_u_le ■</b><br/>‖∑ m ∈ Finset.Ico a b, Complex.exp (z * (u m : ℂ))‖ ≤ geomBound …"]:::shp
   x0(["<b>WeilPowerGeomGen</b><br/>norm_geom_le_gen<br/>norm_sum_exp_u_le_gen<br/>rho_ne_one_gen"]):::ext
   n0 --> n2
   n0 --> n5
@@ -40,6 +40,9 @@ flowchart LR
   n0 -.-> x0
   n4 -.-> x0
   n8 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -47,7 +50,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -78,6 +81,8 @@ The geometric sum's bound: the two endpoint values over the separation of `ρ = 
 
 line 90
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The separation of `exp w` from `1`, from the imaginary part alone.
 
 **Proves**
@@ -104,6 +109,8 @@ Real.exp w.re * |Real.sin w.im| ≤ ‖1 - Complex.exp w‖
 
 line 99
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Jordan's inequality at the phase `z.im/π²`, linear in `z.im`.
 
 **Proves**
@@ -128,6 +135,8 @@ line 99
 ### `WeilPowerGeom.rho_ne_one`
 
 line 114
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The ratio `ρ = exp(z/π²)` is not `1`: its distance to `1` is at least `exp(z.re/π²)·2 z.im/π³ > 0`.
 
@@ -156,6 +165,8 @@ Complex.exp (z / (Real.pi : ℂ) ^ 2) ≠ 1
 
 line 135
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The geometric factorization of the shifted exponential.
 
 **Proves**
@@ -179,6 +190,8 @@ Complex.exp (z * ((m : ℂ) + 1 / 2) / (Real.pi : ℂ) ^ 2) = Complex.exp (z / (
 ### `WeilPowerGeom.geom_Ico`
 
 line 147
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The geometric series over `Ico a b`; Mathlib's `geom_sum_Ico`, which this Mathlib does state (as a `lemma`, so a `theorem`-only grep misses it).
 
@@ -204,6 +217,8 @@ line 147
 ### `WeilPowerGeom.norm_geom_le`
 
 line 152
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The geometric sum is bounded independently of the range length.
 
@@ -238,6 +253,8 @@ line 152
 
 line 240
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The geometric factor at an interior `m` is at most its value at an endpoint: the exponent is linear in `m`, so the sign of `z.re` picks the end.
 
 **Proves**
@@ -264,6 +281,8 @@ Real.exp (z.re * ((m : ℝ) + 1 / 2) / Real.pi ^ 2) ≤ Mab z a b
 
 line 256
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** One harmonic step against the logarithm, `1/(m+1) ≤ log(m+1) − log m`.
 
 **Proves**
@@ -286,6 +305,8 @@ line 256
 ### `WeilPowerGeom.log_telescope`
 
 line 269
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The harmonic sum over `Ico a b` is at most `log b − log a`.
 
@@ -313,6 +334,8 @@ line 269
 
 line 282
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The correction sum's majorant, `(log b − log a)/(4π²)`.
 
 **Proves**
@@ -339,6 +362,8 @@ line 282
 
 line 301
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** One term's correction, `2‖z‖·r m` times the geometric factor.
 
 **Proves**
@@ -363,6 +388,8 @@ line 301
 ### `WeilPowerGeom.norm_sum_exp_u_le`
 
 line 352
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The averaged sum: bounded by the range-free geometric bound plus a logarithm of the range.
 

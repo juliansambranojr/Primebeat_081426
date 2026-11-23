@@ -2,7 +2,7 @@
 
 Abscissa — the contour's abscissa as a parameter, with RH as one instance. WHY THIS FILE EXISTS. `lean_stage3/Stage3/LineBound.lean:1091` defines
 
-11 theorems, 2 definitions, 413 lines. Arrows are Lean's own record of what each proof uses.
+11 theorems, 2 definitions, 414 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LineBound`](../lean_stage3/LineBound.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`ThetaLine`](../lean_stage3/ThetaLine.md)
@@ -11,17 +11,17 @@ Abscissa — the contour's abscissa as a parameter, with RH as one instance. WHY
 
 ```mermaid
 flowchart LR
-  n0["<b>σθ_half</b><br/>σθ (1/2) X = RHPull.σRH X"]:::end_
-  n1["<b>σθ_re</b><br/>((σθ θ X : ℂ) + I * (t : ℂ)).re = σθ θ X"]:::thm
+  n0["<b>σθ_half ■</b><br/>σθ (1/2) X = RHPull.σRH X"]:::shp
+  n1["<b>σθ_re</b><br/>((σθ θ X : ℂ) + I * (t : ℂ)).re = σθ θ X"]:::shp
   n2["<b>zeta_ne_zero_right_of</b><br/>ζ s ≠ 0"]:::thm
   n3["<b>zeroFreeRight_of_RH</b><br/>StmtZeroFreeRight (1/2)"]:::thm
-  n4["<b>zeroFreeRight_mono</b><br/>StmtZeroFreeRight θ'"]:::end_
-  n5["<b>rpow_σθ</b><br/>X ^ (σθ θ X) = Real.exp 1 * X ^ θ"]:::thm
-  n6["<b>rpow_σθ_half</b><br/>X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X"]:::end_
-  n7["<b>abscissa_gives_power</b><br/>K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ"]:::end_
-  n8["<b>zeroFreeRight_one</b><br/>StmtZeroFreeRight 1"]:::end_
+  n4["<b>zeroFreeRight_mono ■</b><br/>StmtZeroFreeRight θ'"]:::thm
+  n5["<b>rpow_σθ</b><br/>X ^ (σθ θ X) = Real.exp 1 * X ^ θ"]:::shp
+  n6["<b>rpow_σθ_half ■</b><br/>X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X"]:::shp
+  n7["<b>abscissa_gives_power ■</b><br/>K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ"]:::shp
+  n8["<b>zeroFreeRight_one ■</b><br/>StmtZeroFreeRight 1"]:::thm
   n9["<b>logDerivZeta_crude_theta</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::thm
-  n10["<b>logDerivZeta_crude_half</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::end_
+  n10["<b>logDerivZeta_crude_half ■</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::thm
   x0(["<b>ThetaPsi</b><br/>5 theorems"]):::ext
   x1(["<b>ThetaPull</b><br/>4 theorems"]):::ext
   x2(["<b>ThetaLine</b><br/>logDerivZeta_compact_theta<br/>logDerivZeta_line_half<br/>logDerivZeta_sq_at_X_theta"]):::ext
@@ -47,6 +47,9 @@ flowchart LR
   x3 -.-> n3
   x3 -.-> n9
   x5 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -54,7 +57,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -71,7 +74,7 @@ The parameterised abscissa. `σθ θ X = θ + 1/log X`. The existing `RHPull.σR
 <a name="Stage3-StmtZeroFreeRight"></a>
 ### `Stage3.StmtZeroFreeRight`
 
-def · line 112
+def · line 113
 
 A zero-free half-plane at `θ`. This is the whole content the contour pull requires: nothing vanishes strictly to the right of `θ`, the pole at `s = 1` excepted. RH is the case `θ = 1/2`.
 
@@ -84,6 +87,8 @@ A zero-free half-plane at `θ`. This is the whole content the contour pull requi
 ### `Stage3.σθ_half`
 
 line 102
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The weld. At `θ = 1/2` this is the abscissa the built machine already uses, definitionally.
 
@@ -106,7 +111,11 @@ line 102
 <a name="Stage3---_re"></a>
 ### `Stage3.σθ_re`
 
-line 104
+line 105
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The point `σθ θ X + i·t` on the abscissa's vertical line has real part `σθ θ X`.
 
 **Proves**
 
@@ -130,7 +139,9 @@ line 104
 <a name="Stage3-zeta_ne_zero_right_of"></a>
 ### `Stage3.zeta_ne_zero_right_of`
 
-line 118
+line 119
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The consumer lemma, in the shape the machine uses. Mirrors `RHPull.zeta_ne_zero_of_RH` with the hypothesis carried as a parameter rather than as RH.
 
@@ -159,7 +170,9 @@ line 118
 <a name="Stage3-zeroFreeRight_of_RH"></a>
 ### `Stage3.zeroFreeRight_of_RH`
 
-line 125
+line 126
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** RH is the `θ = 1/2` instance. The proof is `RHPull.zeta_ne_zero_of_RH`'s, unchanged — which is the point: the lemma never needed RH as such, only a zero-free half-plane.
 
@@ -190,7 +203,9 @@ StmtZeroFreeRight (1/2)
 <a name="Stage3-zeroFreeRight_mono"></a>
 ### `Stage3.zeroFreeRight_mono`
 
-line 133
+line 134
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A weaker exponent is a weaker hypothesis. Moving the half-plane right only removes obligations, so the family is monotone in `θ` — this is what makes `θ` a dial rather than a relabelling.
 
@@ -214,7 +229,9 @@ StmtZeroFreeRight θ'
 <a name="Stage3-rpow_--"></a>
 ### `Stage3.rpow_σθ`
 
-line 144
+line 145
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The abscissa identity at general `θ`. `X^(θ + 1/log X) = e·X^θ`. This is the whole arithmetic content of the choice of abscissa: the `1/log X` correction contributes a bare factor of `e`, and the `θ` contributes `X^θ`. `RHPull.rpow_σRH` is the `θ = 1/2` case, where `X^(1/2) = √X`.
 
@@ -243,7 +260,9 @@ X ^ (σθ θ X) = Real.exp 1 * X ^ θ
 <a name="Stage3-rpow_--_half"></a>
 ### `Stage3.rpow_σθ_half`
 
-line 154
+line 155
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The `θ = 1/2` case is the built one, so the generalisation recovers `RHPull.rpow_σRH` rather than competing with it.
 
@@ -269,7 +288,9 @@ X ^ (σθ (1/2) X) = Real.exp 1 * Real.sqrt X
 <a name="Stage3-abscissa_gives_power"></a>
 ### `Stage3.abscissa_gives_power`
 
-line 164
+line 165
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Where the power saving comes from. The vertical segment's bound carries `X^(σθ θ X)`, and `rpow_σθ` turns that into `e·X^θ`. So a contour run at abscissa `θ` produces a bound of shape `X^θ·(log X)^k` — which is exactly the POWER SAVING form entry 277 measured the census to need, with `θ = 0.7464` closing depth 6. At `θ = 1/2` it is `√X`, the RH-strength bound the built machine produces.
 
@@ -296,7 +317,9 @@ K * X ^ (σθ θ X) = (Real.exp 1 * K) * X ^ θ
 <a name="Stage3-zeroFreeRight_one"></a>
 ### `Stage3.zeroFreeRight_one`
 
-line 174
+line 175
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The unconditional endpoint. `θ = 1` holds outright, from Mathlib's non-vanishing on the closed half-plane `1 ≤ re s`. So the family is non-empty and the open question is exactly how far left of `1` it can be pushed.
 
@@ -315,7 +338,9 @@ StmtZeroFreeRight 1
 <a name="Stage3-logDerivZeta_crude_theta"></a>
 ### `Stage3.logDerivZeta_crude_theta`
 
-line 186
+line 187
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The crude bound on `\zeta'/\zeta` on a vertical line, at a general zero-free abscissa `θ`. `Slice3.logDerivZeta_crude` is the case `θ = 1/2`, via `zeroFreeRight_of_RH`, with identical constants.
 
@@ -358,7 +383,9 @@ line 186
 <a name="Stage3-logDerivZeta_crude_half"></a>
 ### `Stage3.logDerivZeta_crude_half`
 
-line 368
+line 369
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The weld at `θ = 1/2`. Under RH the general bound specialises to exactly `Slice3.logDerivZeta_crude`'s statement, numerals included — so the generalisation recovers the built theorem rather than competing with it.
 

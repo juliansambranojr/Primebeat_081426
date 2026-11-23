@@ -871,3 +871,271 @@ truncated explicit formula at heights above `x²` (`hTx : T ≤ x²` today). Not
 opened: upstream's `FioriKadiriSwidinsky` and `BKLNW_app`, which name zero
 density.
 
+### J10c Infinitely many zeros on one line do not fade — PROVED (unit 0432: `LadderMean.mean_extract`, `line_not_fading_summable`), summability a hypothesis; the general case's stopping point is unit 0431
+
+J10b by induction reaches finitely many modes. For infinitely many on one
+circle, average along the rows.
+
+**The mechanism.** Let `h(r) = Σ_i C_i·w_i^r` with `|w_i| = 1` and
+`Σ |C_i| < ∞`. Fix `k`. The mean over `r < N` of `h(r)·w_k^(−r)` is
+`Σ_i C_i·A_N(w_i/w_k)`, where `A_N(ξ)` is the mean of `ξ^r`: it is `1` when
+`ξ = 1`, at most `2/(N·|ξ − 1|)` otherwise, and at most `1` always. By
+dominated convergence the mean tends to `Σ_{w_i = w_k} C_i`, the weight of the
+folded class of `k`. If `h(r) → 0` the mean tends to `0`. So every folded
+class has weight `0`.
+
+**Theorems** (`LadderMean`):
+
+- `geom_mean_norm_le`, `geom_mean_tendsto_zero`: the two facts about `A_N`.
+- `mean_extract`: `‖w i‖ = 1`, `Summable ‖C i‖`, `Σ' i, C i·w i^r → 0`
+  ⊢ `Σ' i, (if w i = w k then C i else 0) = 0`.
+- `line_not_fading_summable`: `S` a set of zeros with `Re ρ = β` on `S`,
+  `ρ₀ ∈ S`, `Summable ‖m(ρ)/ρ‖` over `S`, any depth `d`
+  ⊢ `Σ' ρ ∈ S, m(ρ)/ρ·Sym 2 ρ^d·mode 2 ρ r / (2^β)^r` does not tend to `0`.
+  The class of `ρ₀` has weight `(Σ m/ρ)·(1 − z₀⁻¹)^d`; the sum has positive
+  real part (J10a, now for infinitely many terms).
+
+**What this does not reach.** It needs one line to dominate. See the decision
+unit for the case with no largest real part.
+
+### T4 The stencil in Weil's form, and the restoring force — PROVED (unit 0433: `StencilWeil.laplace_stencilTest`, `isTest_stencilTest`, `zeroForm_stencilTest`, `mirror_symbol_on_line`, `restoringForce_eq`, `handshake_iff`, `zeroForm_stencilTest_eq_primeSide`)
+
+`papers/Connes-Measured.md` § E3 to E8 (O37, notebook entry 40): the difference
+stencil, mollified, is a test function for Weil's form, and the explicit
+formula balances on it numerically. `JointSymbol` has the transform of the
+differenced row. Not in Lean: the stencil inside `WeilDetect.zeroForm`.
+
+**The object.** In the variable `u = log x` one doubling is the shift by
+`log 2`. For a test function `φ`,
+`stencilTest d φ (u) = Σ_{k ≤ d} (−1)^k·C(d,k)·φ(u + k·log 2)`.
+
+**Its transform.** `laplace (φ(· + a)) z = e^(za)·laplace φ z`, so
+`laplace (stencilTest d φ) z = (1 − 2^z)^d·laplace φ z`. At `z = −ρ` the factor
+is the table's symbol `1 − 2^(−ρ)` to the depth; at `z = −(1−ρ)` it is the
+symbol at the mirror point.
+
+**In the form.** `zeroForm (stencilTest d φ)` is the sum over the zeros of
+`((1 − 2^(−ρ))·(1 − 2^(−(1−ρ))))^d·φ̂(−ρ)·φ̂(−(1−ρ))`, with multiplicity. On the
+line `1 − ρ` is the conjugate of `ρ` and the symbol pair is `|1 − 2^(−ρ)|²`.
+
+**The restoring force.** `lean_primebeat`'s closed-loop file has two locks: the
+handshake `p^(−σ) = p^(−(1−σ))`, and a restoring force `5·|σ − 1/2|`. Both are
+the imbalance between a weight and its mirror. Read off a mode of the table:
+`restoringForce b ρ = |log‖b^ρ‖ − log‖b^(1−ρ)‖| = 2·|Re ρ − 1/2|·log b`.
+Zero exactly on the line; proportional to the displacement; larger at larger
+`b`.
+
+**Theorems** (`StencilWeil`):
+
+- `laplace_shift`, `laplace_stencilTest (hφ : IsTest L φ)`.
+- `isTest_stencilTest (hφ : IsTest L φ) : IsTest (L + 2·(d·log 2)) (stencilTest d φ)`.
+- `zeroForm_stencilTest`: the form on the stencil, zero by zero.
+- `mirror_symbol_on_line (h : ρ.re = 1/2)`: the symbol pair is `‖1 − 2^(−ρ)‖²`.
+- `restoringForce_eq (hb : 1 < b)`, `restoringForce_eq_zero_iff`, `handshake_iff`,
+  `restoringForce_mono`.
+- `zeroForm_stencilTest_eq_primeSide (h : StmtWeilBridge)`: the form on the
+  stencil is its prime side.
+- `zeroForm_stencilTest_nonneg_of_RH`.
+
+**Not here.** That the form on the stencil is nonnegative without RH; that a
+zero off the line makes it negative for some `φ` and depth (`StmtDetect`).
+
+### W1 Why the number line has zeros — PROVED (unit 0434: `WobbleCount.count_identity`, `wobbleSum_expansion`, `invisible_iff`)
+
+Two facts about the integers, both counting: counted in steps they are evenly
+spaced, and each is built from primes in one way. The second, summed over the
+integers up to `N`, is `Σ_{n ≤ N} log n = Σ_{d ≤ N} ψ(N/d)`: the prime content
+`ψ` read at `N, N/2, N/3, …` adds to something as smooth as the integers
+(upstream `vonMangoldt_mul_zeta : Λ * ζ = log`, and `sum_Ioc_mul_eq_sum_sum`).
+
+So a wobble `c·x^ρ` in `ψ` contributes `c·Σ_{d ≤ N} (N/d)^ρ` to the left side.
+By the Euler–Maclaurin form the tree already has (`ZetaGrowth.zeta1_eq_zeta`,
+`tail_norm_le`), for `0 < Re ρ`, `ρ ≠ 1`:
+
+`Σ_{d ≤ N} (N/d)^ρ = ζ(ρ)·N^ρ + N/(1−ρ) + 1/2 + E`, `|E| ≤ |ρ|·|ρ+1|/4`.
+
+`N/(1−ρ)` is smooth. `|N^ρ| = N^(Re ρ)` is unbounded. So what is left after the
+smooth term is bounded in `N` exactly when `ζ(ρ) = 0`: the zeros are the
+wobbles the prime count can carry while the integers stay evenly spaced.
+
+**Theorems** (`WobbleCount`):
+
+- `count_identity (N)`: `Σ_{n ∈ Ioc 0 N} log n = Σ_{d ∈ Ioc 0 N} Σ_{m ∈ Ioc 0 (N/d)} Λ m`.
+- `wobbleSum_expansion (hN : 0 < N) (hρ : 0 < ρ.re) (hρ1 : ρ ≠ 1)`:
+  `∃ E, ‖E‖ ≤ ‖ρ‖·‖ρ+1‖/4 ∧ wobbleSum ρ N = ζ ρ·N^ρ + N/(1−ρ) + 1/2 + E`.
+- `invisible_iff (hρ) (hρ1)`:
+  `(∃ C, ∀ N, 0 < N → ‖wobbleSum ρ N − N/(1−ρ)‖ ≤ C) ↔ ζ ρ = 0`.
+
+**Not here.** Which real parts the zeros have. The identity is exact for every
+`N` whatever the zeros do, so it cannot place them.
+
+
+### S1 The mirror pair as a rectangle of fixed area — PROVED (unit 0437: `MirrorArea.mirror_area`, `square_iff`, `long_side_of_off_line`)
+
+A mode of the table at base `b` has size `‖b^ρ‖ = b^(Re ρ)`. Its mirror has
+size `‖b^(1−ρ)‖ = b^(1 − Re ρ)`. Read them as the two sides of a rectangle.
+The exponents add to one, so the product is `b` whatever `ρ` is: the area is
+fixed by the base. One side gives the other, `b` over it, at every base.
+
+The square has both sides `√b`. A side is `√b` exactly when `Re ρ = 1/2`
+(take logarithms; `log b > 0`). Off the line one exponent is above one half,
+so one side is above `√b`. Block T4's `restoringForce` is the absolute value
+of `log (side / mirror side)`.
+
+**Theorems** (`MirrorArea`):
+
+- `mirror_area (hb : 0 < b) ρ`: `‖b^ρ‖ * ‖b^(1−ρ)‖ = b`.
+- `mirror_side (hb : 0 < b) ρ`: `‖b^(1−ρ)‖ = b / ‖b^ρ‖`.
+- `side_eq_sqrt_iff (hb : 1 < b) ρ`: `‖b^ρ‖ = √b ↔ ρ.re = 1/2`.
+- `square_iff (hb : 1 < b) ρ`: `(‖b^ρ‖ = √b ∧ ‖b^(1−ρ)‖ = √b) ↔ ρ.re = 1/2`.
+- `long_side_of_off_line (hb : 1 < b) (h : ρ.re ≠ 1/2)`: `√b < max ‖b^ρ‖ ‖b^(1−ρ)‖`.
+- `restoringForce_eq_log_ratio (hb : 0 < b) ρ`: `restoringForce b ρ = |log (‖b^ρ‖ / ‖b^(1−ρ)‖)|`.
+
+**Earlier in the tree.** `lean/Transform.lean`, in `z = b^(−s)`:
+`zmap_pair_product`, `pair_collapses_iff_critical`,
+`riemannHypothesis_iff_pair_collapses`. S1 restates it in Stage 3 and joins it
+to `restoringForce`.
+
+**Not here.** What forces equal sides. The area holds for every `ρ`.
+
+
+### J10d Finitely many zeros off the line: the one-ladder converse — PROVED (unit 0439: `FiniteOffLine.finite_off_line`, `sum_order_onLineInv_le`, `err_le`)
+
+Hypotheses: a finite set `F` holds every zero with `Re ρ ≠ 1/2`; at one depth
+`d`, from some row on, `|stencil d ψ(2^·) r − 2^r·(1/2)^d| ≤ C·r²·√2^r`.
+
+Suppose a zero has `Re > 1/2`. It is in `F`. Let `β` be the largest real part
+in `F` and `S` the zeros of `F` on that line. At row `r` take the height
+`T = 2^(r−d)` in `CellZeros.cell_eq_zero_sum` (`T ≤ x²` holds, and `F` is below
+`T` from some row on). Split the zeros below `T`:
+
+- `S`: the sum `LadderFading.line_not_fading` speaks of.
+- `F \ S`: finitely many, each `≤ c_ρ·2^(r·Re ρ)` with `Re ρ < β`.
+- the rest: on the line, each `≤ m/|ρ|·2^d·√2^r`. By the dyadic weights and the
+  zero count (`Kadiri.weighted_cumulative_count_le`, `Stage3.dyadic_abs_N_sum_le`
+  with `ArgCount.rvM_crude`, and no zero of height zero),
+  `Σ_{|γ| < 2^(K+1), Re = 1/2} m/|ρ| ≤ 6000·(K+2)²`.
+
+The error of `cell_eq_zero_sum` at this height is `≤ const·r²`: `x/T ≤ 2^d`,
+`log(xT) ≤ 2r`, `log x ≤ r`, `x^(−1/4) ≤ 1`.
+
+So the sum over `S` is `O(r²·√2^r + r² + Σ_{F\S} c_ρ·2^(r·Re ρ)) = o(2^(rβ))`,
+against `line_not_fading`. Hence no zero has `Re > 1/2`, and
+`LandauWindow.rh_of_zeroFree_half` gives RH.
+
+**Theorems** (`FiniteOffLine`): `sum_order_onLineInv_le`, `dyadic_count_le`,
+`norm_term_le`, `cell_zero_sum_finset`, `err_le`, `finite_off_line`.
+
+**Not here.** Infinitely many zeros off the line. The cells of `π`: that is T2.
+
+
+### T1b Joint T1 on the table tree's operator — PROVED (unit 0440: `CellBdiff.stencil_eq_bdiff_iter`, `cell_eq_modeSum_bdiff`)
+
+`CellZeros.stencil d a r = Σ_{j ≤ d} (−1)^j·C(d,j)·a(r − j)` is `d` backward
+differences written out. The table tree writes them as `Chain.bdiff^[d]`, the
+operator `Chain.A4` and `Superposition.bdiff_sum` are stated on.
+
+- `bdZ a x = a x − a (x − 1)` on rows `ℤ → ℂ`; `bdZ^[n] a r = stencil n a r`
+  by Mathlib's `fwdDiff_iter_eq_sum_shift` at step `−1`, as
+  `TablePort/Nonvanishing.iter_bdiffZ_eq_stencilR` does over `ℝ`.
+- if `g : ℂ → ℂ` agrees with `a` on the integers, `bdiff^[d] g r = bdZ^[d] a r`
+  (induction on `d`).
+- `psiRow z = ψ(2^(Re z))`; `psiRow n = ψ(2^n)`.
+- `cell_eq_modeSum_bdiff`: `CellModes.cell_eq_modeSum` with
+  `bdiff^[d] psiRow r` in the place of the stencil.
+
+**Not here.** `CellZeros.stencil` stays in the modules that use it.
+
+
+### T3a The height taken to infinity along the rows — PROVED (unit 0441: `CellRows.cell_eq_zero_sum_rows`, `cell_tail_tendsto`)
+
+`cell_eq_zero_sum` holds for `2 ≤ T ≤ (2^(r−d))²`. Take `T = 2^(r−d)`, the
+doubling of the cell's lowest row; it tends to infinity with the row. By
+`FiniteOffLine.err_le` the error is then `≤ 2^d·(4·2^d·c1n + c3n + c4n)·r²`.
+Over `√2^r` that tends to zero (`n²·q^n → 0`, `q = 1/√2`).
+
+- `cell_eq_zero_sum_rows (hr : r = d + K + 1) (hK : 3 ≤ K)`: the bound.
+- `cell_tail_tendsto d`: the difference over `√2^r` tends to `0`.
+
+**Not here.** The height to infinity at a fixed row. `cell_eq_zero_sum` asks
+`T ≤ x²`; above it the explicit formula is not in the tree.
+
+
+### T2 The integer table's cell as a sum over the zeros — PROVED as an identity (unit 0442: `PiZeros.pi_eq_zero_sum`, `table_cell_eq_zero_sum`, `norm_tr_psiTheta_le`); the bound on one remainder OPEN
+
+The passage from `ψ` to `π` is linear. Put
+`tr f x = f x / log x + ∫₂ˣ f t / (t·log²t) dt`. `Stage3.pi_sub_Li_eq` is
+`π(⌊x⌋) − Li x = tr (θ − id) x`. For any height `T`,
+
+    θ t − t = efRem T t − Σ_{|γ|<T} m(ρ)·t^ρ/ρ − (ψ t − θ t),
+
+`efRem T t = ψ t − t + zeroPartialSum t T`. Each piece is interval integrable
+on `[2, x]` (`ψ`, `θ` monotone; `t^ρ` continuous away from `0`; the sum
+finite), so `tr` passes through:
+
+    π(⌊x⌋) − Li x = −Σ_{|γ|<T} m(ρ)·piMode ρ x + tr (efRem T) x − tr (ψ − θ) x,
+
+`piMode ρ x = tr (t ↦ t^ρ/ρ) x = x^ρ/(ρ·log x) + ∫₂ˣ t^(ρ−1)/(ρ·log²t) dt`.
+
+`|ψ − θ| ≤ 2√t·log t` gives `‖tr (ψ − θ) x‖ ≤ 2√x + (4/log 2)·√x ≤ 8√x`.
+
+The cell: `CellResidual.table_cell_eq` writes the table's cell less the smooth
+cell as the stencil of order `d + 1` of `π − Li` at the doublings; the stencil
+is linear; for `d + 2 ≤ r` every row it reads has `2^m ≥ 2`.
+
+**Theorems** (`PiZeros`): `tr_sub`, `tr_const_mul`, `tr_sum`,
+`pi_sub_Li_eq_tr`, `pi_eq_zero_sum`, `norm_tr_psiTheta_le`,
+`table_cell_eq_zero_sum`.
+
+**Not here.** A bound on `tr (efRem T) x`. The explicit formula bounds
+`efRem T t` for `T ≤ t²` only, so `∫₂^{√T}` needs its own estimate. Also the
+closed form of `piMode` as a logarithmic integral of `x^ρ`.
+
+
+### T2b The remainder of T2 at square-root size — PROVED (unit 0444: `PiRemainder.norm_tr_efRem_le`, `norm_tr_efRem_le_of`, `zinv_le_log`)
+
+`tr (efRem x) x`, the height equal to `x`, for `x ≥ 256`. Split `∫₂ˣ` at `√x`.
+
+- `t ≥ √x`: then `x ≤ t²` and `Glue.explicit_formula_split_num` bounds
+  `efRem x t`; against the weight the integrand is `≤ 4·Chigh/√x`, the piece
+  `≤ 4·Chigh·√x`, `Chigh = 4·c1n + c3n + c4n`.
+- `t < √x`: `|ψ t − t| ≤ 7t`-type bound and `‖zeroPartialSum t x‖ ≤ t·zinv x`,
+  `zinv T = Σ_{|γ|<T} m(ρ)/|ρ|` over all zeros. The zeros of height below one
+  are finitely many, `Mlow = 2 + Σ 1/|ρ|` over them; the rest go under the
+  dyadic count: `zinv x ≤ Mlow·39000·log²x`. The piece is `≤ 3·(7 + zinv x)·√x`.
+- the endpoint `efRem x x / log x ≤ Chigh·log x`.
+
+`Arem = 5·Chigh + 21 + 3·Mlow·39000`.
+
+With `PiZeros.pi_eq_zero_sum` and `norm_tr_psiTheta_le`: for `x ≥ 256`,
+`π(⌊x⌋) − Li x = −Σ_{|γ|<x} m(ρ)·piMode ρ x + O(√x·log²x)`. The corollary is
+not written.
+
+**Not here.** A general height. The cells: the finite off-line theorem on the
+count.
+
+
+### J10e Finitely many zeros off the line, on the count — PROVED (unit 0445: `FiniteOffLinePi.finite_off_line_pi`, `norm_ipart_le`, `row_bound`)
+
+J10d with the prime count in the place of `ψ`. Hypotheses: a finite `F` holds
+every zero with `Re ρ ≠ 1/2`; from some row on,
+`|π(2^r) − Li(2^r)| ≤ C·r²·√2^r`.
+
+At `x = 2^r` and height `x`, units 0442 and 0444 give
+`π − Li = −Σ_{|γ|<x} m(ρ)·piMode ρ x + O(√x·log²x)`. One zero's part:
+
+    piMode ρ x = x^ρ/(ρ·log x) + ∫₂ˣ (t^ρ/ρ)/(t·log²t) dt.
+
+`norm_ipart_le`: for `Re ρ = b ∈ (0,1]`, `x ≥ 4`, the integral is
+`≤ (1/|ρ|)·(3√x + 4x^b/(b·log²x))`: a constant bound on `[2, √x]`; on
+`[√x, x]` the comparison `1/log²t ≤ 4/log²x` and `∫ t^(b−1) dt`. A constant
+bound on the upper piece would lose `x^((1−b)/2)`.
+
+So on the line `|piMode ρ x| ≤ 12√x/|ρ|`, summed by `zinv_le_log`; on the top
+line `β`, `log x·piMode ρ x = x^ρ/ρ + O(x^β/log x)`; below it in `F`, a crude
+`x^(Re ρ)`. Multiplying the identity by `log x = r·log 2`, the top-line sum
+`Σ_S (m/ρ)·(2^ρ)^r` is `o(2^(rβ))` (`rowBound_isLittleO`), against
+`LadderFading.line_not_fading` at depth `0`.
+
+**Not here.** The cells at depth `d` of the integer table; infinitely many
+zeros off the line.

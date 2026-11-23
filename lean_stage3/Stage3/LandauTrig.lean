@@ -39,6 +39,8 @@ open scoped ComplexConjugate
 
 variable {ι : Type*}
 
+/-- If `w` has modulus one and `w ≠ 1`, then the geometric sum of `w^n` over a block of `N`
+consecutive `n` starting at `a` has norm at most `2/‖w - 1‖`. -/
 theorem norm_geom_Ico_le {w : ℂ} (hw : ‖w‖ = 1) (hw1 : w ≠ 1) (a N : ℕ) :
     ‖∑ n ∈ Finset.Ico a (a + N), w ^ n‖ ≤ 2 / ‖w - 1‖ := by
   have hpos : 0 < ‖w - 1‖ := norm_pos_iff.mpr (sub_ne_zero.mpr hw1)
@@ -57,6 +59,9 @@ private lemma re_mul_geom_ge (c : ℂ) {w : ℂ} (hw : ‖w‖ = 1) (hw1 : w ≠
     exact mul_le_mul_of_nonneg_left (norm_geom_Ico_le hw hw1 a N) (norm_nonneg c)
   linarith [neg_abs_le (c * ∑ n ∈ Finset.Ico a (a + N), w ^ n).re]
 
+/-- For `T n = Σ_j c_j·z_j^n` real-valued with every `z_j` of modulus one and the coefficient at
+`z_j = 1` of nonnegative real part, the sum of `T` over any block of consecutive `n` is at
+least `-Σ_j ‖c_j‖·(2/‖z_j - 1‖)`. -/
 theorem sum_block_ge (s : Finset ι) (c z : ι → ℂ)
     (hz : ∀ j ∈ s, ‖z j‖ = 1) (hconst : ∀ j ∈ s, z j = 1 → 0 ≤ (c j).re)
     (T : ℕ → ℝ) (hT : ∀ n, (T n : ℂ) = ∑ j ∈ s, c j * z j ^ n) (a N : ℕ) :
@@ -80,6 +85,8 @@ theorem sum_block_ge (s : Finset ι) (c z : ι → ℂ)
     positivity
   · exact re_mul_geom_ge (c j) (hz j hj) h1 a N
 
+/-- For `T n = Σ_j c_j·z_j^n` real-valued with every `z_j` of modulus one, `|T n|` is at most
+`Σ_j ‖c_j‖` for every `n`. -/
 theorem abs_le_sum_norm (s : Finset ι) (c z : ι → ℂ) (hz : ∀ j ∈ s, ‖z j‖ = 1)
     (T : ℕ → ℝ) (hT : ∀ n, (T n : ℂ) = ∑ j ∈ s, c j * z j ^ n) (n : ℕ) :
     |T n| ≤ ∑ j ∈ s, ‖c j‖ := by
@@ -88,6 +95,9 @@ theorem abs_le_sum_norm (s : Finset ι) (c z : ι → ℂ) (hz : ∀ j ∈ s, �
   refine le_trans (norm_sum_le _ _) (Finset.sum_le_sum fun j hj => ?_)
   rw [norm_mul, norm_pow, hz j hj, one_pow, mul_one]
 
+/-- For `T n = Σ_j c_j·z_j^n` real-valued with the `z_j` of modulus one and distinct, the sum of
+`T²` over a block of `N` consecutive `n` is at least `N·Σ_j ‖c_j‖²` minus the off-diagonal
+sum `Σ_{j ≠ l} ‖c_j‖·‖c_l‖·(2/‖z_j·conj z_l - 1‖)`. -/
 theorem sum_sq_block_ge [DecidableEq ι] (s : Finset ι) (c z : ι → ℂ)
     (hz : ∀ j ∈ s, ‖z j‖ = 1) (hinj : Set.InjOn z s)
     (T : ℕ → ℝ) (hT : ∀ n, (T n : ℂ) = ∑ j ∈ s, c j * z j ^ n) (a N : ℕ) :
@@ -155,6 +165,9 @@ theorem sum_sq_block_ge [DecidableEq ι] (s : Finset ι) (c z : ι → ℂ)
     rw [norm_mul, Complex.norm_conj] at this
     exact this
 
+/-- For `T n = Σ_j c_j·z_j^n` real-valued with the `z_j` of modulus one and distinct, the
+coefficient at `z_j = 1` of nonnegative real part and some `c_j ≠ 0`, there are `τ > 0` and
+`N₀` such that every block of `N ≥ N₀` consecutive `n` holds an `n` with `τ ≤ T n`. -/
 theorem exists_large_in_block [DecidableEq ι] (s : Finset ι) (c z : ι → ℂ)
     (hz : ∀ j ∈ s, ‖z j‖ = 1) (hinj : Set.InjOn z s)
     (hconst : ∀ j ∈ s, z j = 1 → 0 ≤ (c j).re) (hne : ∃ j ∈ s, c j ≠ 0)

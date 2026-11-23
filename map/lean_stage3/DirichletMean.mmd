@@ -1,0 +1,39 @@
+flowchart LR
+  n0["<b>natCast_cpow_neg_I_mul</b><br/>(n : ℂ) ^ (-(Complex.I * (t : ℂ))) = Complex.exp (Complex.I * ((…"]:::shp
+  n1["<b>sq_norm_sum_eq</b><br/>((‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * (t : ℂ)))‖ ^ 2 …"]:::shp
+  n2["<b>integral_sq_norm_eq</b><br/>((∫ t in T₁..T₂, ‖∑ n ∈ Icc 1 N, a n * (n : ℂ) ^ (-(Complex.I * …"]:::shp
+  n3["<b>norm_integral_exp_le</b><br/>‖∫ t in T₁..T₂, Complex.exp (Complex.I * (θ : ℂ) * t)‖ ≤ 2 / |θ|"]:::shp
+  n4["<b>log_gap</b><br/>((m : ℝ) - n) / N ≤ Real.log m - Real.log n"]:::shp
+  n5["<b>inv_log_gap</b><br/>2 / |Real.log n - Real.log m| ≤ 2 * N * |(m : ℝ) - n|⁻¹"]:::shp
+  n6["<b>sum_inv_le_harmonic</b><br/>∑ n ∈ s, ((g n : ℕ) : ℝ)⁻¹ ≤ ∑ k ∈ Icc 1 N, (k : ℝ)⁻¹"]:::shp
+  n7["<b>sum_inv_Icc_le</b><br/>∑ k ∈ Icc 1 N, (k : ℝ)⁻¹ ≤ 1 + Real.log N"]:::shp
+  n8["<b>sum_inv_dist_le</b><br/>∑ n ∈ Icc 1 N, (if m = n then 0 else |(m : ℝ) - n|⁻¹) ≤ 2 * (1 +…"]:::shp
+  n9["<b>sum_mul_mul_le</b><br/>∑ m ∈ s, ∑ n ∈ s, A m * A n * K m n ≤ R * ∑ m ∈ s, A m ^ 2"]:::shp
+  n10["<b>dirichlet_mean_value_window</b><br/>∫ t in T₁..T₂, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Complex…"]:::shp
+  n11["<b>dirichlet_mean_value</b><br/>∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-(Compl…"]:::shp
+  n12["<b>dirichlet_mean_value_sigma ■</b><br/>∫ t in (0:ℝ)..T, ‖∑ n ∈ Finset.Icc 1 N, a n * (n : ℂ) ^ (-((σ : …"]:::shp
+  x0(["<b>DirichletMeanW</b><br/>dirichlet_mean_value_weighted"]):::ext
+  n0 --> n1
+  n1 --> n2
+  n10 --> n11
+  n11 --> n12
+  n2 --> n10
+  n3 --> n10
+  n4 --> n5
+  n5 --> n10
+  n6 --> n8
+  n7 --> n8
+  n8 --> n10
+  n9 --> n10
+  n2 -.-> x0
+  n3 -.-> x0
+  n7 -.-> x0
+  n8 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

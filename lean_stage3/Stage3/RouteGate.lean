@@ -30,6 +30,9 @@ open Finset
 
 noncomputable section
 
+/-- Assuming RH, there are constants `c₁ c₃ c₄ ≥ 0` such that for every `x₀ ≥ 16` and
+all `r`, `n` with `x₀² ≤ 2^(r−n)`, the rows of `π` meet `StmtRelErrWindow` against the main
+term `2/log 2 + ∫ t in 1..m, exp (log 2·t)/t`, with the `floorConstSplit` bound at `W = 0`. -/
 theorem relErrWindow_route (hRH : RiemannHypothesis) :
     ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ →
       ∀ (r : ℤ) (n : ℕ), x₀ ^ 2 ≤ (2 : ℝ) ^ ((r : ℝ) - n) →

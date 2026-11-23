@@ -55,25 +55,30 @@ def q1 (x : ℝ) : ℝ := 1 / 2 + Real.cos (Real.pi * x) / 2 - Real.pi * x / 2 *
 /-- `q''`. -/
 def q2 (x : ℝ) : ℝ := -Real.pi * Real.sin (Real.pi * x) - Real.pi ^ 2 * x / 2 * Real.cos (Real.pi * x)
 
+/-- The product of `x` with the window `P x` equals the envelope `q x`. -/
 theorem q_eq (x : ℝ) : x * P x = q x := by
   unfold q; rw [P_eq]; ring
 
+/-- Helper: the function `y ↦ cos (π·y)` has derivative `-sin (π·x)·π` at every real `x`. -/
 theorem hasDerivAt_cos_pi (x : ℝ) :
     HasDerivAt (fun y : ℝ => Real.cos (Real.pi * y)) (-Real.sin (Real.pi * x) * Real.pi) x := by
   have h := (Real.hasDerivAt_cos (Real.pi * x)).comp x ((hasDerivAt_id' x).const_mul Real.pi)
   exact h.congr_deriv (by ring)
 
+/-- Helper: the function `y ↦ sin (π·y)` has derivative `cos (π·x)·π` at every real `x`. -/
 theorem hasDerivAt_sin_pi (x : ℝ) :
     HasDerivAt (fun y : ℝ => Real.sin (Real.pi * y)) (Real.cos (Real.pi * x) * Real.pi) x := by
   have h := (Real.hasDerivAt_sin (Real.pi * x)).comp x ((hasDerivAt_id' x).const_mul Real.pi)
   exact h.congr_deriv (by ring)
 
+/-- The envelope `q` has derivative `q1 x` at every real `x`. -/
 theorem hasDerivAt_q (x : ℝ) : HasDerivAt q (q1 x) x := by
   have h : HasDerivAt (fun y : ℝ => y * (1 + Real.cos (Real.pi * y)) / 2) (q1 x) x := by
     refine (((hasDerivAt_id' x).mul ((hasDerivAt_cos_pi x).const_add 1)).div_const 2).congr_deriv ?_
     unfold q1; ring
   exact h
 
+/-- The first derivative `q1` of the envelope has derivative `q2 x` at every real `x`. -/
 theorem hasDerivAt_q1 (x : ℝ) : HasDerivAt q1 (q2 x) x := by
   have h : HasDerivAt
       (fun y : ℝ => 1 / 2 + Real.cos (Real.pi * y) / 2 - Real.pi * y / 2 * Real.sin (Real.pi * y))
@@ -83,22 +88,28 @@ theorem hasDerivAt_q1 (x : ℝ) : HasDerivAt q1 (q2 x) x := by
     unfold q2; ring
   exact h
 
+/-- The envelope `q` vanishes at the right end `1`. -/
 theorem q_one : q 1 = 0 := by
   unfold q; simp [Real.cos_pi]
 
+/-- The envelope `q` vanishes at the left end `-1`. -/
 theorem q_neg_one : q (-1) = 0 := by
   unfold q; simp [Real.cos_pi]
 
+/-- The first derivative `q1` of the envelope vanishes at the right end `1`. -/
 theorem q1_one : q1 1 = 0 := by
   unfold q1; simp [Real.cos_pi, Real.sin_pi]; norm_num
 
+/-- The first derivative `q1` of the envelope vanishes at the left end `-1`. -/
 theorem q1_neg_one : q1 (-1) = 0 := by
   unfold q1; simp [Real.cos_pi, Real.sin_pi]; norm_num
 
+/-- Helper: the first derivative `q1` of the envelope is continuous. -/
 @[fun_prop]
 theorem continuous_q1 : Continuous q1 := by
   unfold q1; fun_prop
 
+/-- Helper: the second derivative `q2` of the envelope is continuous. -/
 @[fun_prop]
 theorem continuous_q2 : Continuous q2 := by
   unfold q2; fun_prop

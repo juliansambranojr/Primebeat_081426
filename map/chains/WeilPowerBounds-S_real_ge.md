@@ -1,6 +1,6 @@
 # What `WeilPowerBounds.S_real_ge` rests on
 
-[`WeilPowerBounds.S_real_ge`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-S_real_ge) in `lean_stage3/Stage3/WeilPowerBounds.lean`, line 217.
+[`WeilPowerBounds.S_real_ge`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-S_real_ge) in `lean_stage3/Stage3/WeilPowerBounds.lean`, line 223.
 
 **Why.** Lower bound at the target. For `1 ≤ s`, `cS m · e^s / (4·(s² + π²(m+1)²)^{m+1}) ≤ Re (S m s)`.
 
@@ -27,6 +27,9 @@ flowchart LR
   f0 --> f1
   f1 --> f2
   f2 --> f3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

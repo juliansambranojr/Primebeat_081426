@@ -11,13 +11,13 @@ ZeroCells — the four zeros are one object with four names, and the kernel now 
 
 ```mermaid
 flowchart LR
-  n0["<b>construction_eq</b><br/>Construction.measured_zeros = Zeros.measured_zeros"]:::thm
-  n1["<b>seedPerturbation_eq</b><br/>SeedPerturbation.zero_cells = Zeros.measured_zeros"]:::thm
-  n2["<b>pairIdentity_eq</b><br/>PairIdentity.zero_cells = Zeros.measured_zeros"]:::thm
-  n3["<b>construction_all_vanish</b><br/>∀ c ∈ Construction.measured_zeros, Construction.tableFrom Zeros.…"]:::end_
-  n4["<b>seedPerturbation_all_vanish</b><br/>∀ c ∈ SeedPerturbation.zero_cells, Construction.tableFrom Zeros.…"]:::end_
-  n5["<b>pairIdentity_all_vanish</b><br/>∀ c ∈ PairIdentity.zero_cells, Construction.tableFrom Zeros.dyad…"]:::end_
-  n6["<b>all_four_have_length_four</b><br/>Construction.measured_zeros.length = 4 ∧ SeedPerturbation.zero_c…"]:::end_
+  n0["<b>construction_eq</b><br/>Construction.measured_zeros = Zeros.measured_zeros"]:::cnt
+  n1["<b>seedPerturbation_eq</b><br/>SeedPerturbation.zero_cells = Zeros.measured_zeros"]:::cnt
+  n2["<b>pairIdentity_eq</b><br/>PairIdentity.zero_cells = Zeros.measured_zeros"]:::cnt
+  n3["<b>construction_all_vanish ■</b><br/>∀ c ∈ Construction.measured_zeros, Construction.tableFrom Zeros.…"]:::cnt
+  n4["<b>seedPerturbation_all_vanish ■</b><br/>∀ c ∈ SeedPerturbation.zero_cells, Construction.tableFrom Zeros.…"]:::cnt
+  n5["<b>pairIdentity_all_vanish ■</b><br/>∀ c ∈ PairIdentity.zero_cells, Construction.tableFrom Zeros.dyad…"]:::cnt
+  n6["<b>all_four_have_length_four ■</b><br/>Construction.measured_zeros.length = 4 ∧ SeedPerturbation.zero_c…"]:::cnt
   x0(["<b>Zeros</b><br/>measured_zeros_all_vanish"]):::ext
   n0 --> n3
   n1 --> n4
@@ -25,6 +25,9 @@ flowchart LR
   x0 -.-> n3
   x0 -.-> n4
   x0 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -32,7 +35,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -40,6 +43,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `ZeroCells.construction_eq`
 
 line 53
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The construction module's list is the computed one. `rfl`, and that is what makes it a check: edit either list and this stops compiling.
 
@@ -62,6 +67,8 @@ Construction.measured_zeros = Zeros.measured_zeros
 
 line 61
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The seed-perturbation module's list is the computed one. It was re-read independently from `imported/lattice_mapper/32bit/dyadic_difference_table_32.csv`, so this equality is also a statement that the imported table and `pi2n_cache` agree at those four cells.
 
 **Proves**
@@ -83,6 +90,8 @@ SeedPerturbation.zero_cells = Zeros.measured_zeros
 
 line 65
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The pair-identity module's list is the computed one.
 
 **Proves**
@@ -103,6 +112,8 @@ PairIdentity.zero_cells = Zeros.measured_zeros
 ### `ZeroCells.construction_all_vanish`
 
 line 70
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Every cell `Construction.measured_zeros` names vanishes — now derived, not transcribed.
 
@@ -128,6 +139,8 @@ line 70
 
 line 76
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Every cell `SeedPerturbation.zero_cells` names vanishes.
 
 **Proves**
@@ -152,6 +165,8 @@ line 76
 
 line 82
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Every cell `PairIdentity.zero_cells` names vanishes.
 
 **Proves**
@@ -175,6 +190,8 @@ line 82
 ### `ZeroCells.all_four_have_length_four`
 
 line 90
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** All four names, one length. The "exactly four" of the papers is now a property of a single object rather than of four lists that happen to agree.
 

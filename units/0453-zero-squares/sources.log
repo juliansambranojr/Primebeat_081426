@@ -1,0 +1,44 @@
+# check_prose_source.py  2026-11-23T01:42:48Z
+# unit: 0453-zero-squares
+# sources searched: 418
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23612
+  Prove Carlson's bound ourselves, which is a large project
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25419
+  theorem card_zeros_le {σ δ T : ℝ} (hσ : 1 / 2 < σ - δ) (hσ1 : σ ≤ 1) (hδ : 0 < δ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25420
+  (hδ4 : δ ≤ 1 / 4) (hT : 5 ≤ T) (X : ℕ) (Z : Finset ℂ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25421
+  (hZ : ∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re < 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25424
+  * ∫ u in (σ - δ)..(1 + δ), ∫ t in (1:ℝ)..T,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:409
+  ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a59c4dea61d19afaa.jsonl:1156
+  theorem square_lower (X : ℕ) {σ δ : ℝ} (hδ : 0 < δ) (hδ4 : δ ≤ 1 / 4) {ρ : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a59c4dea61d19afaa.jsonl:1157
+  (hz : riemannZeta ρ = 0) (hσρ : σ ≤ ρ.re) (hρ1 : ρ.re < 1) (n : ℕ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a59c4dea61d19afaa.jsonl:1158
+  (hn1 : (n : ℝ) + 2 ≤ ρ.im) (hn2 : ρ.im < (n : ℝ) + 3) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a59c4dea61d19afaa.jsonl:1159
+  Real.pi * δ ^ 2 ≤ ∫ u in (σ - δ)..(1 + δ), innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a59c4dea61d19afaa.jsonl:1250
+  theorem strips_le (X : ℕ) {T : ℝ} (L : ℕ) (hLT : (L : ℝ) + 3 ≤ T) (u : ℝ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a59c4dea61d19afaa.jsonl:1251
+  ∑ n ∈ Finset.range L, innerI X ((n : ℝ) + 7 / 4) ((n : ℝ) + 13 / 4) u
+
+# 13 found, 0 missing

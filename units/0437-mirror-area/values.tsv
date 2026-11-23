@@ -1,0 +1,16 @@
+key	value	source
+module_lines	121	wc -l lean_stage3/Stage3/MirrorArea.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/MirrorArea.lean
+defs	0	grep -c ^def lean_stage3/Stage3/MirrorArea.lean
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/MirrorArea.lean
+pins	3	mirror_area, square_iff, long_side_of_off_line
+errors_first	0	first lake build Stage3.MirrorArea: clean
+builds	1	the first build; a later rebuild changed the header comment only
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8831	lake build (full Stage3), Build completed successfully
+jobs_module	3668	run/build.log, lake build Stage3.MirrorArea
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#s1	the mirror pair as a rectangle of fixed area
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

@@ -5,30 +5,31 @@ CellResidual — block T5 of `lean_stage3/design/joints.md`, second part. 2026-1
 15 theorems, 4 definitions, 500 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`PiToPsi`](../lean_stage3/PiToPsi.md), [`TableRoute`](../lean_stage3/TableRoute.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiZeros`](../lean_stage3/PiZeros.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>stencilR_abs_le</b><br/>|stencilR n g r| ≤ B * (1 + t) ^ n"]:::thm
-  n1["<b>stencilR_one</b><br/>stencilR 1 g r = g r - g (r - 1)"]:::thm
-  n2["<b>weak_nonneg</b><br/>StmtSchoenfeldWeak (max C 0) 1 (max x₀ 2) (fun x =＞ (Nat.primeCo…"]:::thm
-  n3["<b>resid_le</b><br/>|resid a m| ≤ (C * Real.sqrt 2 * Real.log 2) * (((m : ℝ) + 1) * …"]:::thm
-  n4["<b>cells_of_schoenfeldWeak</b><br/>CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀"]:::thm
+  n0["<b>stencilR_abs_le</b><br/>|stencilR n g r| ≤ B * (1 + t) ^ n"]:::shp
+  n1["<b>stencilR_one</b><br/>stencilR 1 g r = g r - g (r - 1)"]:::shp
+  n2["<b>weak_nonneg</b><br/>StmtSchoenfeldWeak (max C 0) 1 (max x₀ 2) (fun x =＞ (Nat.primeCo…"]:::shp
+  n3["<b>resid_le</b><br/>|resid a m| ≤ (C * Real.sqrt 2 * Real.log 2) * (((m : ℝ) + 1) * …"]:::shp
+  n4["<b>cells_of_schoenfeldWeak</b><br/>CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀"]:::shp
   n5["<b>cells_of_RH</b><br/>∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀"]:::thm
-  n6["<b>step_le</b><br/>|resid a r - resid a (r - 1)| ≤ C * cellSize r 0"]:::thm
-  n7["<b>two_rpow_half_ge</b><br/>(4 : ℝ) / 3 ≤ (2 : ℝ) ^ ((1 : ℝ) / 2)"]:::thm
-  n8["<b>ladder_le</b><br/>|resid a (r₀ + (n : ℤ))| ≤ M + 4 * (|C| * (1 + (2 : ℝ) ^ (-(1 : …"]:::thm
-  n9["<b>base_bound</b><br/>∃ M : ℝ, ∀ a ∈ Set.Icc (1 : ℝ) 2, |resid a r₀| ≤ M"]:::thm
-  n10["<b>schoenfeldWeak_of_cells</b><br/>∃ C' x₁ : ℝ, StmtSchoenfeldWeak C' 1 x₁ (fun x =＞ (Nat.primeCoun…"]:::thm
-  n11["<b>RH_iff_cells</b><br/>RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀"]:::end_
-  n12["<b>tableFrom_cast</b><br/>((Construction.tableFrom N r d : ℤ) : ℝ) = stencilR (d + 1) f r"]:::thm
-  n13["<b>table_cell_eq</b><br/>((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencil…"]:::thm
-  n14["<b>table_cell_resid</b><br/>∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ …"]:::end_
+  n6["<b>step_le</b><br/>|resid a r - resid a (r - 1)| ≤ C * cellSize r 0"]:::shp
+  n7["<b>two_rpow_half_ge</b><br/>(4 : ℝ) / 3 ≤ (2 : ℝ) ^ ((1 : ℝ) / 2)"]:::shp
+  n8["<b>ladder_le</b><br/>|resid a (r₀ + (n : ℤ))| ≤ M + 4 * (|C| * (1 + (2 : ℝ) ^ (-(1 : …"]:::shp
+  n9["<b>base_bound</b><br/>∃ M : ℝ, ∀ a ∈ Set.Icc (1 : ℝ) 2, |resid a r₀| ≤ M"]:::shp
+  n10["<b>schoenfeldWeak_of_cells</b><br/>∃ C' x₁ : ℝ, StmtSchoenfeldWeak C' 1 x₁ (fun x =＞ (Nat.primeCoun…"]:::shp
+  n11["<b>RH_iff_cells ■</b><br/>RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀"]:::thm
+  n12["<b>tableFrom_cast</b><br/>((Construction.tableFrom N r d : ℤ) : ℝ) = stencilR (d + 1) f r"]:::shp
+  n13["<b>table_cell_eq</b><br/>((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencil…"]:::shp
+  n14["<b>table_cell_resid ■</b><br/>∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ …"]:::thm
   x0(["<b>Nonvanishing</b><br/>iter_bdiffZ_eq_stencilR<br/>stencilR_row<br/>stencilR_sub"]):::ext
   x1(["<b>PiToPsi</b><br/>RH_iff_schoenfeldWeak<br/>RH_of_schoenfeldWeak<br/>continuousOn_Li"]):::ext
   x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
+  x3(["<b>PiZeros</b><br/>table_cell_eq_zero_sum"]):::ext
   n0 --> n4
   n1 --> n6
   n10 --> n11
@@ -43,6 +44,7 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n9 --> n10
+  n13 -.-> x3
   x0 -.-> n1
   x0 -.-> n12
   x0 -.-> n13
@@ -50,6 +52,9 @@ flowchart LR
   x1 -.-> n5
   x1 -.-> n9
   x2 -.-> n12
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -57,7 +62,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -70,7 +75,7 @@ The residual of the count on the rung `a·2^m`.
 
 - **Is:** `` resid (a : ℝ) (m : ℤ) : ℝ := (Nat.primeCounting ⌊a * (2 : ℝ) ^ (m : ℝ)⌋₊ : ℝ) - Stage3.Li (a * (2 : ℝ) ^ (m : ℝ)) ``
 - **Built from:** [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li)
-- **Used by 8:** [`CellResidual.base_bound`](#CellResidual-base_bound), [`CellResidual.cellResid`](#CellResidual-cellResid), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.resid_le`](#CellResidual-resid_le), [`CellResidual.schoenfeldWeak_of_cells`](#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_eq`](#CellResidual-table_cell_eq)
+- **Used by 9:** [`CellResidual.base_bound`](#CellResidual-base_bound), [`CellResidual.cellResid`](#CellResidual-cellResid), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.resid_le`](#CellResidual-resid_le), [`CellResidual.schoenfeldWeak_of_cells`](#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_eq`](#CellResidual-table_cell_eq), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum)
 
 <a name="CellResidual-cellResid"></a>
 ### `CellResidual.cellResid`
@@ -81,7 +86,7 @@ The residual of the cell `(r, d)` on the ladder started at `a`.
 
 - **Is:** `` cellResid (a : ℝ) (r : ℤ) (d : ℕ) : ℝ := stencilR (d + 1) (resid a) r ``
 - **Built from:** [`Nonvanishing.stencilR`](../lean/Nonvanishing.md#Nonvanishing-stencilR), [`CellResidual.resid`](#CellResidual-resid)
-- **Used by 5:** [`CellResidual.CellsSqrt`](#CellResidual-CellsSqrt), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_eq`](#CellResidual-table_cell_eq), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid)
+- **Used by 6:** [`CellResidual.CellsSqrt`](#CellResidual-CellsSqrt), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_eq`](#CellResidual-table_cell_eq), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum)
 
 <a name="CellResidual-cellSize"></a>
 ### `CellResidual.cellSize`
@@ -111,6 +116,8 @@ Every cell of every dyadic ladder has its residual at square-root size.
 
 line 69
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A cell is no larger than its window allows. If the values the stencil reads shrink by a factor `t` per step down the window, the cell is at most the top bound times `(1 + t)^n`.
 
 **Proves**
@@ -135,6 +142,8 @@ line 69
 ### `CellResidual.stencilR_one`
 
 line 90
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The stencil of order one is one backward difference.
 
@@ -166,6 +175,8 @@ stencilR 1 g r = g r - g (r - 1)
 
 line 95
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The square-root bound on the count may be taken with a constant that is not negative and a starting point of at least two.
 
 **Proves**
@@ -190,6 +201,8 @@ StmtSchoenfeldWeak (max C 0) 1 (max x₀ 2) (fun x => (Nat.primeCounting ⌊x⌋
 ### `CellResidual.resid_le`
 
 line 108
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** One rung. Under the square-root bound on the count, the residual on the rung `a·2^m` is at most a constant times `(m + 1)·2^(m/2)`.
 
@@ -219,6 +232,8 @@ line 108
 ### `CellResidual.cells_of_schoenfeldWeak`
 
 line 144
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Forward. The `π`-side bound gives every cell of every ladder.
 
@@ -253,6 +268,8 @@ CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀
 
 line 186
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Forward, from the Riemann hypothesis. Under it every cell of every dyadic ladder has its residual at square-root size.
 
 **Proves**
@@ -285,6 +302,8 @@ line 186
 
 line 197
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A depth-0 cell is the difference of two neighbouring rungs, so `CellsSqrt` bounds that difference.
 
 **Proves**
@@ -316,6 +335,8 @@ line 197
 
 line 205
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The square root of two is at least four thirds; the telescoping sum closes on this.
 
 **Proves**
@@ -334,6 +355,8 @@ line 205
 ### `CellResidual.ladder_le`
 
 line 215
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The depth-0 cells, summed up one ladder.
 
@@ -369,6 +392,8 @@ line 215
 
 line 287
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The first rung, bounded over the whole range of starting points.
 
 **Proves**
@@ -398,6 +423,8 @@ line 287
 ### `CellResidual.schoenfeldWeak_of_cells`
 
 line 319
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Converse. The cells at square-root size give the `π`-side bound.
 
@@ -429,6 +456,8 @@ line 319
 
 line 423
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The Riemann hypothesis is the cells at square-root size, over every dyadic ladder.
 
 **Proves**
@@ -453,6 +482,8 @@ RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀
 ### `CellResidual.tableFrom_cast`
 
 line 431
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The integer cell, cast, is the stencil of the count one order up.
 
@@ -484,6 +515,8 @@ line 431
 
 line 447
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The table's cell minus the smooth cell is the residual on the ladder `a = 1`.
 
 **Proves**
@@ -506,14 +539,17 @@ line 447
 
 **Definitions its proof touches:** [`Nonvanishing.bdiffZ`](../lean/Nonvanishing.md#Nonvanishing-bdiffZ), [`CellResidual.resid`](#CellResidual-resid)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid) — `` ∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → |((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m … ``
+  - [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) (PiZeros) — `` ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑… ``
 
 <a name="CellResidual-table_cell_resid"></a>
 ### `CellResidual.table_cell_resid`
 
 line 467
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** On the table itself. Under the Riemann hypothesis every cell of the dyadic table stays within square-root size of the smooth cell.
 

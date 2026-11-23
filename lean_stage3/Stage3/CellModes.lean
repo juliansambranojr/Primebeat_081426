@@ -31,6 +31,7 @@ open Finset
 
 noncomputable section
 
+/-- At an integer `r`, the base-2 mode of exponent `ρ` is the integer power `(2^ρ)^r`. -/
 theorem mode_two_int (ρ : ℂ) (r : ℤ) : Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r := by
   unfold Chain.mode
   have h2 : (((2:ℝ)) : ℂ) = 2 := by norm_num
@@ -39,6 +40,7 @@ theorem mode_two_int (ρ : ℂ) (r : ℤ) : Chain.mode 2 ρ (r : ℂ) = ((2:ℂ)
   congr 1
   ring
 
+/-- The base-2 symbol at `ρ` is `1 − (2^ρ)⁻¹`. -/
 theorem sym_two (ρ : ℂ) : Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹ := by
   unfold Chain.Sym
   have h2 : (((2:ℝ)) : ℂ) = 2 := by norm_num

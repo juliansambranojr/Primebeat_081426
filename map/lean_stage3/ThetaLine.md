@@ -14,7 +14,7 @@ flowchart LR
   n0["<b>logDerivZeta_compact_theta</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::thm
   n1["<b>logDerivZeta_sq_at_X_theta</b><br/>‖deriv ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((θ + 1/R…"]:::thm
   n2["<b>logDerivZeta_line_theta</b><br/>‖deriv ζ (((θ + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((θ + 1/R…"]:::thm
-  n3["<b>logDerivZeta_line_half</b><br/>‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 +…"]:::end_
+  n3["<b>logDerivZeta_line_half ■</b><br/>‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 +…"]:::thm
   x0(["<b>Abscissa</b><br/>logDerivZeta_crude_theta<br/>zeroFreeRight_of_RH<br/>zeta_ne_zero_right_of"]):::ext
   x1(["<b>JensenCount</b><br/>zeta_centre_lower<br/>zeta_centre_ne_zero"]):::ext
   x2(["<b>LineBound</b><br/>7 theorems"]):::ext
@@ -29,6 +29,9 @@ flowchart LR
   x1 -.-> n0
   x2 -.-> n0
   x2 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -36,7 +39,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -44,6 +47,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `Stage3.logDerivZeta_compact_theta`
 
 line 60
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The compact patch at a general zero-free abscissa. `|t| ≤ 2`, `θ < σ₁ ≤ (1+θ)/2`: `‖ζ'/ζ (σ₁ + it)‖ ≤ 14530 + 2/(1−θ) + 212/(σ₁ − θ)`. `Slice4.logDerivZeta_compact` is the `θ = 1/2` instance (where the pole term is `4` and `14534 ≤ 14535`).
 
@@ -87,6 +92,8 @@ line 60
 
 line 296
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** `logDerivZeta_sq_at_X` at general `θ`. On `σ₁ = θ + 1/log X` the denominator `σ₁ − θ` is `1/log X` for EVERY `θ`, so `11100` survives unchanged. `Slice3.logDerivZeta_sq_at_X` is the `θ = 1/2` instance.
 
 **Proves**
@@ -118,6 +125,8 @@ line 296
 ### `Stage3.logDerivZeta_line_theta`
 
 line 343
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The vertical line at abscissa `θ`, uniform in `|t| ≤ X`. On `σ₁ = θ + 1/log X` with `log X ≥ 2/(1−θ)` and `|t| ≤ X`: `‖ζ'/ζ‖ ≤ 11100 (log X)²`.
 
@@ -152,6 +161,8 @@ line 343
 ### `Stage3.logDerivZeta_line_half`
 
 line 393
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The weld at `θ = 1/2`. Under RH the general line bound is `Slice4b.logDerivZeta_line`'s statement, with `2/(1 − 1/2) = 4`.
 

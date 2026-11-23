@@ -15,18 +15,20 @@ flowchart LR
   n1["<b>half_le_norm_of_RH</b><br/>1 / 2 ≤ ‖(ρ : ℂ)‖"]:::thm
   n2["<b>norm_cpow_of_RH</b><br/>‖(x : ℂ) ^ (ρ : ℂ)‖ = Real.sqrt x"]:::thm
   n3["<b>norm_term_le_of_RH</b><br/>‖(x : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)‖ ≤ 2 * Real.sqrt x"]:::thm
-  n4["<b>norm_zeroPartialSum_le</b><br/>‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖ ≤ 2 * Real.sqrt x * (2 * …"]:::end_
-  n5["<b>inv_le_dyadic_sum</b><br/>∀ γ : ℝ, 1 ≤ γ → γ ＜ 2 ^ (K + 1) → γ⁻¹ ≤ ∑ j ∈ Finset.range (K +…"]:::thm
+  n4["<b>norm_zeroPartialSum_le ■</b><br/>‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖ ≤ 2 * Real.sqrt x * (2 * …"]:::thm
+  n5["<b>inv_le_dyadic_sum</b><br/>∀ γ : ℝ, 1 ≤ γ → γ ＜ 2 ^ (K + 1) → γ⁻¹ ≤ ∑ j ∈ Finset.range (K +…"]:::shp
   n6["<b>norm_term_le_dyadic</b><br/>‖(x : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)‖ ≤ 2 * Real.sqrt x * ∑ j ∈ Finset.r…"]:::thm
   n7["<b>norm_zeroPartialSum_le_sharp</b><br/>‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖ ≤ 2 * Real.sqrt x * ∑ j ∈…"]:::thm
   n8["<b>norm_zeroPartialSum_le_logsq</b><br/>‖zeroPartialSum x ((2 : ℝ) ^ (K + 1))‖ ≤ 2 * Real.sqrt x * (2 * …"]:::thm
-  n9["<b>rem_arith</b><br/>c₁ * xx * G ^ 2 / TT + c₂ * L ≤ (9 * c₁ + c₂) * L ^ 2"]:::thm
-  n10["<b>zeroinner_arith</b><br/>2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK …"]:::thm
-  n11["<b>assembly_arith</b><br/>A ≤ (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 * W) * S …"]:::thm
-  n12["<b>psiWeak_of_RH_EF_NT</b><br/>StmtPsiWeak (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 *…"]:::end_
-  x0(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le<br/>sum_inv_pow_two_le"]):::ext
-  x1(["<b>AssemblyFloor</b><br/>psiWeak_floor"]):::ext
-  x2(["<b>GlueFloor</b><br/>psiWeak_floor_split"]):::ext
+  n9["<b>rem_arith</b><br/>c₁ * xx * G ^ 2 / TT + c₂ * L ≤ (9 * c₁ + c₂) * L ^ 2"]:::shp
+  n10["<b>zeroinner_arith</b><br/>2 * (Real.log 2 / (2 * Real.pi) * (KK + 1) * (KK + 2) + 3 * (KK …"]:::shp
+  n11["<b>assembly_arith</b><br/>A ≤ (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 * W) * S …"]:::shp
+  n12["<b>psiWeak_of_RH_EF_NT ■</b><br/>StmtPsiWeak (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 *…"]:::thm
+  x0(["<b>FiniteOffLine</b><br/>onLineInv_le_dyadic"]):::ext
+  x1(["<b>PiRemainder</b><br/>inv_norm_le_dyadic"]):::ext
+  x2(["<b>ZeroSum</b><br/>dyadic_abs_N_sum_le<br/>sum_inv_pow_two_le"]):::ext
+  x3(["<b>AssemblyFloor</b><br/>psiWeak_floor"]):::ext
+  x4(["<b>GlueFloor</b><br/>psiWeak_floor_split"]):::ext
   n0 --> n1
   n0 --> n2
   n1 --> n3
@@ -41,9 +43,14 @@ flowchart LR
   n7 --> n8
   n8 --> n12
   n9 --> n12
-  n8 -.-> x1
-  n8 -.-> x2
-  x0 -.-> n8
+  n5 -.-> x0
+  n5 -.-> x1
+  n8 -.-> x3
+  n8 -.-> x4
+  x2 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -51,7 +58,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -63,7 +70,7 @@ def · line 92
 The order-weighted partial zero sum below height `T`: `Σ_{|γ|<T} m(ρ)·x^ρ/ρ`.
 
 - **Is:** `` zeroPartialSum (x T : ℝ) : ℂ := ∑' ρ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : NontrivialZeros) : ℂ) : ℤ) : ℂ) * ((x : ℂ) ^ ((ρ : NontrivialZeros) : ℂ) / ((ρ : NontrivialZeros) : ℂ)) ``
-- **Used by 18:** [`Stage3.StmtExplicitFormula`](#Stage3-StmtExplicitFormula), [`Stage3.StmtExplicitFormulaPoly`](#Stage3-StmtExplicitFormulaPoly), [`Stage3.norm_zeroPartialSum_le`](#Stage3-norm_zeroPartialSum_le), [`Stage3.norm_zeroPartialSum_le_logsq`](#Stage3-norm_zeroPartialSum_le_logsq), [`Stage3.norm_zeroPartialSum_le_sharp`](#Stage3-norm_zeroPartialSum_le_sharp), [`Stage3.psiWeak_of_RH_EF_NT`](#Stage3-psiWeak_of_RH_EF_NT), [`Stage3.psiWeak_floor`](../lean_stage3/AssemblyFloor.md#Stage3-psiWeak_floor), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`CellZeros.stencil_zeroPartialSum`](../lean_stage3/CellZeros.md#CellZeros-stencil_zeroPartialSum), [`ContourShift.residue_identity`](../lean_stage3/ContourShift.md#ContourShift-residue_identity), [`ContourShift.zeroPartialSum_eq_sum`](../lean_stage3/ContourShift.md#ContourShift-zeroPartialSum_eq_sum), [`Glue.explicit_formula_poly`](../lean_stage3/Glue.md#Glue-explicit_formula_poly), [`Glue.zeroPartialSum_swap`](../lean_stage3/Glue.md#Glue-zeroPartialSum_swap), [`Glue.explicit_formula_split`](../lean_stage3/GlueFloor.md#Glue-explicit_formula_split), [`Stage3.StmtExplicitFormulaSplit`](../lean_stage3/GlueFloor.md#Stage3-StmtExplicitFormulaSplit), [`Stage3.psiWeak_floor_split`](../lean_stage3/GlueFloor.md#Stage3-psiWeak_floor_split), [`Glue.explicit_formula_split_num`](../lean_stage3/GlueNum.md#Glue-explicit_formula_split_num), [`Glue.zeroPartialSum_swap_num`](../lean_stage3/GlueNum.md#Glue-zeroPartialSum_swap_num)
+- **Used by 25:** [`Stage3.StmtExplicitFormula`](#Stage3-StmtExplicitFormula), [`Stage3.StmtExplicitFormulaPoly`](#Stage3-StmtExplicitFormulaPoly), [`Stage3.norm_zeroPartialSum_le`](#Stage3-norm_zeroPartialSum_le), [`Stage3.norm_zeroPartialSum_le_logsq`](#Stage3-norm_zeroPartialSum_le_logsq), [`Stage3.norm_zeroPartialSum_le_sharp`](#Stage3-norm_zeroPartialSum_le_sharp), [`Stage3.psiWeak_of_RH_EF_NT`](#Stage3-psiWeak_of_RH_EF_NT), [`Stage3.psiWeak_floor`](../lean_stage3/AssemblyFloor.md#Stage3-psiWeak_floor), [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum), [`CellZeros.stencil_zeroPartialSum`](../lean_stage3/CellZeros.md#CellZeros-stencil_zeroPartialSum), [`ContourShift.residue_identity`](../lean_stage3/ContourShift.md#ContourShift-residue_identity), [`ContourShift.zeroPartialSum_eq_sum`](../lean_stage3/ContourShift.md#ContourShift-zeroPartialSum_eq_sum), [`Glue.explicit_formula_poly`](../lean_stage3/Glue.md#Glue-explicit_formula_poly), [`Glue.zeroPartialSum_swap`](../lean_stage3/Glue.md#Glue-zeroPartialSum_swap), [`Glue.explicit_formula_split`](../lean_stage3/GlueFloor.md#Glue-explicit_formula_split), [`Stage3.StmtExplicitFormulaSplit`](../lean_stage3/GlueFloor.md#Stage3-StmtExplicitFormulaSplit), [`Stage3.psiWeak_floor_split`](../lean_stage3/GlueFloor.md#Stage3-psiWeak_floor_split), [`Glue.explicit_formula_split_num`](../lean_stage3/GlueNum.md#Glue-explicit_formula_split_num), [`Glue.zeroPartialSum_swap_num`](../lean_stage3/GlueNum.md#Glue-zeroPartialSum_swap_num), [`PiRemainder.integrable_efRem`](../lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem), [`PiRemainder.norm_efRem_le_high`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high), [`PiRemainder.norm_efRem_le_low`](../lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_low), [`PiRemainder.norm_zeroPartialSum_le`](../lean_stage3/PiRemainder.md#PiRemainder-norm_zeroPartialSum_le), [`PiZeros.efRem`](../lean_stage3/PiZeros.md#PiZeros-efRem), [`PiZeros.pi_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum), [`PiZeros.zeroPartialSum_eq_sum`](../lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum)
 
 <a name="Stage3-StmtExplicitFormula"></a>
 ### `Stage3.StmtExplicitFormula`
@@ -94,6 +101,8 @@ The `T ≤ x²`-regime form — the shape the contour proof delivers (`Glue.expl
 
 line 53
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Under RH every nontrivial zero sits on the critical line. The strip membership rules out the trivial zeros and `s = 1`, so Mathlib's `RiemannHypothesis` applies directly.
 
 **Proves**
@@ -118,6 +127,8 @@ line 53
 ### `Stage3.half_le_norm_of_RH`
 
 line 65
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Under RH, `|ρ| ≥ 1/2`.
 
@@ -145,6 +156,8 @@ line 65
 ### `Stage3.norm_cpow_of_RH`
 
 line 73
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The RH collapse: `‖x^ρ‖ = √x` for `x > 0`.
 
@@ -174,6 +187,8 @@ line 73
 
 line 80
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Each zero term is at most `2√x` in norm, from `|ρ| ≥ 1/2`.
 
 **Proves**
@@ -202,6 +217,8 @@ line 80
 
 line 118
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The zero side controlled by the count, under RH: `‖zeroPartialSum x 2^(K+1)‖ ≤ 2√x·(2|N(2^(K+1))| + W)`, through IEANTN's sorry-free `weighted_cumulative_count_le`. With ZeroSum's `N_abs_le` this is `√x`·(T·log T)-arithmetic under hNT.
 
 **Proves**
@@ -229,6 +246,8 @@ line 118
 
 line 163
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Scalar dyadic domination: for `1 ≤ γ < 2^(K+1)`, `γ⁻¹ ≤ Σ_{j≤K} (2^j)⁻¹·[γ < 2^(j+1)]` — the largest surviving indicator sits at the shell containing `γ`, and its weight already dominates.
 
 **Proves**
@@ -243,14 +262,18 @@ line 163
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`Stage3.norm_term_le_dyadic`](#Stage3-norm_term_le_dyadic) — `` ‖(x : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)‖ ≤ 2 * Real.sqrt x * ∑ j ∈ Finset.range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0) ``
+  - [`FiniteOffLine.onLineInv_le_dyadic`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-onLineInv_le_dyadic) (FiniteOffLine) — `` onLineInv ρ ≤ 2 * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0) ``
+  - [`PiRemainder.inv_norm_le_dyadic`](../lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_dyadic) (PiRemainder) — `` ‖(ρ : ℂ)‖⁻¹ ≤ Mlow * ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if |(ρ : ℂ).im| < 2 ^ (j + 1) then 1 else 0) ``
 
 <a name="Stage3-norm_term_le_dyadic"></a>
 ### `Stage3.norm_term_le_dyadic`
 
 line 203
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Each zero term is dominated by the dyadic indicator weights: `‖x^ρ/ρ‖ ≤ 2√x·Σ_{j≤K} (2^j)⁻¹·[|γ| < 2^(j+1)]` for `|γ| < 2^(K+1)`.
 
@@ -283,6 +306,8 @@ line 203
 
 line 265
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The sharp zero-side bound, dyadic form. Under RH, the zero side is controlled level by level: each level's weighted count enters through IEANTN's sorry-free `weighted_cumulative_count_le`, reached by the scalar domination — no shell partition anywhere.
 
 **Proves**
@@ -311,6 +336,8 @@ line 265
 ### `Stage3.norm_zeroPartialSum_le_logsq`
 
 line 364
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The zero side at `√x·(log T)²`, under RH + hNT — the sharp form. Combining the dyadic bound with ZeroSum's counting arithmetic: with `T = 2^(K+1)`, the zero side is at most `2√x·(2·[(log 2/2π)(K+1)(K+2) + 3(K+1)/π + 2(RvM(T) + 7/8)] + 2W)`.
 
@@ -349,6 +376,8 @@ line 364
 
 line 398
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Scalar arithmetic of the remainder: `x ≤ T`, `0 ≤ G ≤ 3L`, `1 ≤ L` give `c₁·x·G²/T + c₂·L ≤ (9c₁+c₂)·L²`.
 
 **Proves**
@@ -378,6 +407,8 @@ c₁ * xx * G ^ 2 / TT + c₂ * L ≤ (9 * c₁ + c₂) * L ^ 2
 ### `Stage3.zeroinner_arith`
 
 line 417
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Scalar arithmetic of the zero side's inner factor: the dyadic level bounds and the RvM bound turn the `(K, RvM)` expression into `2·(7+4b₁+4b₂+2b₃)·L² + 2W`.
 
@@ -409,6 +440,8 @@ line 417
 
 line 443
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Scalar arithmetic of the final absorption into `C·S·L²`.
 
 **Proves**
@@ -439,6 +472,8 @@ A ≤ (9 * c₁ + c₂ + 28 + 16 * b₁ + 16 * b₂ + 8 * b₃ + 4 * W) * S * L 
 ### `Stage3.psiWeak_of_RH_EF_NT`
 
 line 468
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE ASSEMBLY — the decomposition closed. Under hRH (Mathlib's `RiemannHypothesis`), hEF (`StmtExplicitFormula c₁ c₂ x₁` — the truncated explicit formula, the open leaf), and hNT (`Riemann_vonMangoldt_bound b₁ b₂ b₃` — Rosser Th. 19, the other open leaf), the ψ-side weak bound holds with computed constant: `StmtPsiWeak (9c₁ + c₂ + 28 + 16b₁ + 16b₂ + 8b₃ + 4W) 2 (max x₁ 16)`. The dyadic level is chosen from `x` itself (`K = Nat.log 2 ⌊x⌋`, so `x < 2^(K+1) ≤ 2x`). PsiToPi's `schoenfeldWeak_of_psiWeak` carries the conclusion to `π − Li`, Statement's `weakWindow_of_global` to the window, O68's arit…
 

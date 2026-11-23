@@ -1,0 +1,87 @@
+flowchart LR
+  subgraph count["THE TABLE: counting, integers only"]
+    direction TB
+    t1["<b>Construction</b><br/>6 counting"]:::cnt
+    t10["<b>Isogeny</b><br/>9 counting"]:::cnt
+    t17["<b>PairIdentity</b><br/>13 counting"]:::cnt
+    t18["<b>Propagation</b><br/>9 counting"]:::cnt
+    t23["<b>SeedPerturbation</b><br/>20 counting"]:::cnt
+    t27["<b>TwinLattice</b><br/>3 counting"]:::cnt
+    t28["<b>ZeroCells</b><br/>7 counting"]:::cnt
+    t29["<b>Zeros</b><br/>15 counting"]:::cnt
+    t30["<b>ZerosStencil</b><br/>16 counting"]:::cnt
+    lean_stage3_count(["<b>Stage 3</b><br/>6 theorems counting,<br/>in 2 files"]):::cnt
+  end
+  subgraph shape["ITS SHAPE: analysis, no ζ"]
+    direction TB
+    t2["<b>Covering</b><br/>1 counting · 5 shape"]:::shp
+    t3["<b>Crossover</b><br/>6 shape"]:::shp
+    t4["<b>DeepZeroBand</b><br/>2 counting · 12 shape"]:::shp
+    t7["<b>Expansion</b><br/>1 counting · 16 shape"]:::shp
+    t8["<b>GeneratorPeak</b><br/>6 shape"]:::shp
+    t9["<b>Interpolant</b><br/>8 shape"]:::shp
+    t11["<b>JointLadder</b><br/>1 counting · 13 shape"]:::shp
+    t12["<b>MainTerm</b><br/>10 shape"]:::shp
+    t13["<b>Measured</b><br/>7 shape"]:::shp
+    t14["<b>Nonvanishing</b><br/>8 shape"]:::shp
+    t15["<b>Nyquist</b><br/>5 shape"]:::shp
+    t16["<b>NyquistPeak</b><br/>20 shape"]:::shp
+    t19["<b>RelativeGate</b><br/>8 shape"]:::shp
+    t20["<b>RelativeLi</b><br/>3 shape"]:::shp
+    t21["<b>RouteCell</b><br/>1 shape"]:::shp
+    t22["<b>Schoenfeld</b><br/>2 shape"]:::shp
+    t24["<b>Superposition</b><br/>4 shape"]:::shp
+    t25["<b>TransferOp</b><br/>7 shape"]:::shp
+    lean_stage3_shape(["<b>Stage 3</b><br/>694 theorems shape,<br/>in 100 files"]):::shp
+    lean_bridge_shape(["<b>Bridge</b><br/>14 theorems shape,<br/>in 1 file"]):::shp
+  end
+  subgraph zeta["READ WITH ζ"]
+    direction TB
+    t0["<b>Chain</b><br/>30 shape · 2 reads ζ"]:::thm
+    t5["<b>Elephant</b><br/>1 counting · 20 shape · 8 reads ζ"]:::thm
+    t6["<b>EulerFactorChain</b><br/>14 shape · 2 reads ζ"]:::thm
+    t26["<b>Transform</b><br/>32 shape · 7 reads ζ"]:::thm
+    lean_stage3_zeta(["<b>Stage 3</b><br/>559 theorems reads ζ,<br/>in 83 files"]):::thm
+    lean_bridge_zeta(["<b>Bridge</b><br/>2 theorems reads ζ,<br/>in 1 file"]):::thm
+  end
+  rh{{"<b>RiemannHypothesis</b><br/>one reading of the table"}}:::rh
+  t1 --> t0
+  t6 --> t0
+  t17 --> t4
+  t26 --> t4
+  t29 --> t4
+  t12 --> t7
+  t20 --> t9
+  t29 --> t10
+  t0 --> t11
+  t15 --> t11
+  t14 --> t12
+  t0 --> t13
+  t30 --> t14
+  t0 --> t16
+  t15 --> t16
+  t1 --> t17
+  t23 --> t18
+  t14 --> t19
+  t7 --> t20
+  t19 --> t20
+  t9 --> t21
+  t7 --> t22
+  t1 --> t23
+  t0 --> t24
+  t0 --> t25
+  t0 --> t26
+  t17 --> t28
+  t23 --> t28
+  t29 --> t28
+  t1 --> t29
+  t29 --> t30
+  count --> shape --> zeta --> rh
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef thm fill:#eef4ff,stroke:#335,color:#111
+  classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
+  classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
+  classDef bad fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
+  classDef ext fill:#fff8e1,stroke:#b80,color:#111

@@ -3,60 +3,67 @@ flowchart LR
   f1["Construction<br/>6 theorems"]:::thm
   f2["Covering<br/>6 theorems"]:::thm
   f3["Crossover<br/>6 theorems"]:::thm
-  f4["Elephant<br/>29 theorems"]:::thm
-  f5["EulerFactorChain<br/>16 theorems"]:::thm
-  f6["Expansion<br/>17 theorems"]:::thm
-  f7["GeneratorPeak<br/>6 theorems"]:::thm
-  f8["Interpolant<br/>8 theorems"]:::thm
-  f9["Isogeny<br/>9 theorems"]:::thm
-  f10["JointLadder<br/>14 theorems"]:::thm
-  f11["MainTerm<br/>10 theorems"]:::thm
-  f12["Measured<br/>7 theorems"]:::thm
-  f13["Nonvanishing<br/>8 theorems"]:::thm
-  f14["Nyquist<br/>5 theorems"]:::thm
-  f15["NyquistPeak<br/>20 theorems"]:::thm
-  f16["PairIdentity<br/>13 theorems"]:::thm
-  f17["Propagation<br/>9 theorems"]:::thm
-  f18["RelativeGate<br/>8 theorems"]:::thm
-  f19["RelativeLi<br/>3 theorems"]:::thm
-  f20["RouteCell<br/>1 theorem"]:::thm
-  f21["Schoenfeld<br/>2 theorems"]:::thm
-  f22["SeedPerturbation<br/>20 theorems"]:::thm
-  f23["Superposition<br/>4 theorems"]:::thm
-  f24["TransferOp<br/>7 theorems"]:::thm
-  f25["Transform<br/>39 theorems"]:::thm
-  f26["TwinLattice<br/>3 theorems"]:::thm
-  f27["ZeroCells<br/>7 theorems"]:::thm
-  f28["Zeros<br/>15 theorems"]:::thm
-  f29["ZerosStencil<br/>16 theorems"]:::thm
+  f4["DeepZeroBand<br/>14 theorems"]:::thm
+  f5["Elephant<br/>29 theorems"]:::thm
+  f6["EulerFactorChain<br/>16 theorems"]:::thm
+  f7["Expansion<br/>17 theorems"]:::thm
+  f8["GeneratorPeak<br/>6 theorems"]:::thm
+  f9["Interpolant<br/>8 theorems"]:::thm
+  f10["Isogeny<br/>9 theorems"]:::thm
+  f11["JointLadder<br/>14 theorems"]:::thm
+  f12["MainTerm<br/>10 theorems"]:::thm
+  f13["Measured<br/>7 theorems"]:::thm
+  f14["Nonvanishing<br/>8 theorems"]:::thm
+  f15["Nyquist<br/>5 theorems"]:::thm
+  f16["NyquistPeak<br/>20 theorems"]:::thm
+  f17["PairIdentity<br/>13 theorems"]:::thm
+  f18["Propagation<br/>9 theorems"]:::thm
+  f19["RelativeGate<br/>8 theorems"]:::thm
+  f20["RelativeLi<br/>3 theorems"]:::thm
+  f21["RouteCell<br/>1 theorem"]:::thm
+  f22["Schoenfeld<br/>2 theorems"]:::thm
+  f23["SeedPerturbation<br/>20 theorems"]:::thm
+  f24["Superposition<br/>4 theorems"]:::thm
+  f25["TransferOp<br/>7 theorems"]:::thm
+  f26["Transform<br/>39 theorems"]:::thm
+  f27["TwinLattice<br/>3 theorems"]:::thm
+  f28["ZeroCells<br/>7 theorems"]:::thm
+  f29["Zeros<br/>15 theorems"]:::thm
+  f30["ZerosStencil<br/>16 theorems"]:::thm
   f1 --> f0
-  f5 --> f0
-  f11 --> f6
-  f19 --> f8
-  f28 --> f9
-  f0 --> f10
-  f14 --> f10
-  f13 --> f11
-  f0 --> f12
-  f29 --> f13
-  f0 --> f15
-  f14 --> f15
-  f1 --> f16
-  f22 --> f17
-  f13 --> f18
-  f6 --> f19
-  f18 --> f19
-  f8 --> f20
-  f6 --> f21
-  f1 --> f22
-  f0 --> f23
+  f6 --> f0
+  f17 --> f4
+  f26 --> f4
+  f29 --> f4
+  f12 --> f7
+  f20 --> f9
+  f29 --> f10
+  f0 --> f11
+  f15 --> f11
+  f14 --> f12
+  f0 --> f13
+  f30 --> f14
+  f0 --> f16
+  f15 --> f16
+  f1 --> f17
+  f23 --> f18
+  f14 --> f19
+  f7 --> f20
+  f19 --> f20
+  f9 --> f21
+  f7 --> f22
+  f1 --> f23
   f0 --> f24
   f0 --> f25
-  f16 --> f27
-  f22 --> f27
-  f28 --> f27
-  f1 --> f28
-  f28 --> f29
+  f0 --> f26
+  f17 --> f28
+  f23 --> f28
+  f29 --> f28
+  f1 --> f29
+  f29 --> f30
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

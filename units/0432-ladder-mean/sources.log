@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-22T20:07:17Z
+# unit: 0432-ladder-mean
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:11113
+  Source: session transcript, 2026-11-22, after the merge of pull request 8
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10586
+  The harder general case
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10815
+  theorem mean_extract {ι : Type*} (w C : ι → ℂ) (hw : ∀ i, ‖w i‖ = 1)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10816
+  (hC : Summable fun i => ‖C i‖) (k : ι)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10817
+  (h : Tendsto (fun r : ℕ => ∑' i, C i * w i ^ r) atTop (𝓝 0)) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10818
+  ∑' i, (if w i = w k then C i else 0) = 0 := by
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10879
+  theorem line_not_fading_summable (S : Set Kadiri.NontrivialZeros) {β : ℝ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10880
+  (hβ : ∀ ρ ∈ S, (ρ : ℂ).re = β) (ρ₀ : Kadiri.NontrivialZeros) (hρ₀ : ρ₀ ∈ S)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10881
+  (hsum : Summable fun ρ : S => ‖coef ρ‖) (d : ℕ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10883
+  (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10884
+  * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r : ℤ)) : ℂ))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:10153
+  / ((((2 : ℝ) ^ β : ℝ)) : ℂ) ^ r) atTop (𝓝 0) := by
+
+# 12 found, 0 missing

@@ -1087,6 +1087,7 @@ theorem vonMangoldt_rpow_tsum {c : ℝ} (hc1 : 1 < c) :
       (Real.rpow_nonneg (Nat.cast_nonneg n) _))
     (vonMangoldt_rpow_partial hc1)
 
+/-- For `c > 1`, the series of `Λ(n)·n^(−c)` over the natural numbers is summable. -/
 theorem vonMangoldt_rpow_summable {c : ℝ} (hc1 : 1 < c) :
     Summable (fun n : ℕ ↦ ArithmeticFunction.vonMangoldt n * (n : ℝ) ^ (-c)) :=
   summable_of_sum_le

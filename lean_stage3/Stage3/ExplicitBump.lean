@@ -109,6 +109,7 @@ theorem hasDerivAt_sqPos (u : ℝ) :
     rw [max_eq_right hpos.le]
     exact h2.congr_of_eventuallyEq hev
 
+/-- The squared positive part `t ↦ (max 0 t)²` is continuously differentiable. -/
 theorem contDiff_sqPos : ContDiff ℝ 1 (fun t : ℝ => (max 0 t) ^ 2) := by
   rw [contDiff_one_iff_deriv]
   refine ⟨fun u => (hasDerivAt_sqPos u).differentiableAt, ?_⟩
@@ -132,12 +133,14 @@ def bumpC : ℝ := 1 / (33/16 - (3/2) * Real.log 2)
 non-negative, and normalised so `∫ ν(x)/x dx = 1`. -/
 def bump (x : ℝ) : ℝ := bumpC * (max 0 (bumpP x)) ^ 2
 
+/-- Helper: for `x ≤ 1/2`, the interval polynomial satisfies `bumpP x ≤ 0`. -/
 theorem bumpP_nonpos_of_le {x : ℝ} (hx : x ≤ 1/2) : bumpP x ≤ 0 := by
   unfold bumpP
   rcases le_total x 2 with h | h
   · exact mul_nonpos_of_nonpos_of_nonneg (by linarith) (by linarith)
   · nlinarith
 
+/-- Helper: for `x ≥ 2`, the interval polynomial satisfies `bumpP x ≤ 0`. -/
 theorem bumpP_nonpos_of_ge {x : ℝ} (hx : 2 ≤ x) : bumpP x ≤ 0 := by
   unfold bumpP
   nlinarith
@@ -151,6 +154,7 @@ theorem bumpC_pos : 0 < bumpC := by
   have : (0:ℝ) < 33/16 - (3/2) * Real.log 2 := by nlinarith
   positivity
 
+/-- The explicit bump is non-negative at every real `x`. -/
 theorem bump_nonneg (x : ℝ) : 0 ≤ bump x := by
   unfold bump
   exact mul_nonneg bumpC_pos.le (sq_nonneg _)

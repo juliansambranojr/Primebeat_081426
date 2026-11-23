@@ -5,7 +5,7 @@ WeilBridgeLeaf — the zero-set lemma and the bridge leaf: `zeroForm` gets a pri
 4 theorems, 5 definitions, 141 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilDetect`](../lean_stage3/WeilDetect.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`StencilWeil`](../lean_stage3/StencilWeil.md)
 
 ## The picture
 
@@ -14,10 +14,15 @@ flowchart LR
   n0["<b>order_eq_toNat</b><br/>riemannZeta.order ρ = (((analyticOrderAt riemannZeta ρ).toNat : …"]:::thm
   n1["<b>zeroes_rect_strip</b><br/>riemannZeta.zeroes_rect (Set.Ioo 0 1) Set.univ = {ρ : ℂ | rieman…"]:::thm
   n2["<b>zeroForm_eq_strip</b><br/>zeroForm G = ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 ＜ ρ.re ∧ ρ.re…"]:::thm
-  n3["<b>zeroForm_eq_primeSide</b><br/>zeroForm G = primeSideM (kOfM G)"]:::end_
+  n3["<b>zeroForm_eq_primeSide</b><br/>zeroForm G = primeSideM (kOfM G)"]:::thm
+  x0(["<b>StencilWeil</b><br/>zeroForm_stencilTest_eq_primeSide"]):::ext
   n0 --> n2
   n1 --> n2
   n2 --> n3
+  n3 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -25,7 +30,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -58,7 +63,7 @@ def · line 51
 
 - **Is:** `` kOfM (G : ℝ → ℂ) : ℝ → ℂ := MeasureTheory.convolution (tiltF G) (fun u => (starRingEnd ℂ) (tiltF G (-u))) (ContinuousLinearMap.mul ℝ ℂ) MeasureTheory.volume ``
 - **Built from:** [`WeilBridgeLeaf.tiltF`](#WeilBridgeLeaf-tiltF)
-- **Used by 2:** [`WeilBridgeLeaf.StmtWeilBridge`](#WeilBridgeLeaf-StmtWeilBridge), [`WeilBridgeLeaf.zeroForm_eq_primeSide`](#WeilBridgeLeaf-zeroForm_eq_primeSide)
+- **Used by 3:** [`StencilWeil.zeroForm_stencilTest_eq_primeSide`](../lean_stage3/StencilWeil.md#StencilWeil-zeroForm_stencilTest_eq_primeSide), [`WeilBridgeLeaf.StmtWeilBridge`](#WeilBridgeLeaf-StmtWeilBridge), [`WeilBridgeLeaf.zeroForm_eq_primeSide`](#WeilBridgeLeaf-zeroForm_eq_primeSide)
 
 <a name="WeilBridgeLeaf-primeSideM"></a>
 ### `WeilBridgeLeaf.primeSideM`
@@ -69,7 +74,7 @@ The prime side: the pole terms, minus the prime sum, plus the archimedean integr
 
 - **Is:** `` primeSideM (k : ℝ → ℂ) : ℂ := ft k (Complex.I / 2) + ft k (-Complex.I / 2) - ∑' n : ℕ, ((ArithmeticFunction.vonMangoldt n / Real.sqrt n : ℝ) : ℂ) * (k (Real.log n) + k (-Real.log n)) + (1 / (2 * Real.pi) : ℂ) * ∫ r : ℝ, ft k r * (((logDeriv Complex.Gamma (1 / 4 + Complex.I * r / 2)).re - Real.log Real.pi : ℝ) : ℂ) ``
 - **Built from:** [`WeilBridgeLeaf.ft`](#WeilBridgeLeaf-ft)
-- **Used by 2:** [`WeilBridgeLeaf.StmtWeilBridge`](#WeilBridgeLeaf-StmtWeilBridge), [`WeilBridgeLeaf.zeroForm_eq_primeSide`](#WeilBridgeLeaf-zeroForm_eq_primeSide)
+- **Used by 3:** [`StencilWeil.zeroForm_stencilTest_eq_primeSide`](../lean_stage3/StencilWeil.md#StencilWeil-zeroForm_stencilTest_eq_primeSide), [`WeilBridgeLeaf.StmtWeilBridge`](#WeilBridgeLeaf-StmtWeilBridge), [`WeilBridgeLeaf.zeroForm_eq_primeSide`](#WeilBridgeLeaf-zeroForm_eq_primeSide)
 
 <a name="WeilBridgeLeaf-StmtWeilBridge"></a>
 ### `WeilBridgeLeaf.StmtWeilBridge`
@@ -80,7 +85,7 @@ The bridge, as a statement.
 
 - **Is:** `` StmtWeilBridge : Prop := ∀ (L : ℝ) (G : ℝ → ℂ), IsTest L G → Summable (fun ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1} => (((analyticOrderAt riemannZeta (ρ : ℂ)).toNat : ℕ) : ℂ) * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ))))) ∧ ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 1}, (((analyticOrderAt riemannZeta (ρ : ℂ)).toNat : ℕ) : ℂ) * (laplace G (-(ρ : ℂ)) * laplace G (-(1 - (ρ : ℂ)))) = prime… ``
 - **Built from:** [`WeilBridgeLeaf.kOfM`](#WeilBridgeLeaf-kOfM), [`WeilBridgeLeaf.primeSideM`](#WeilBridgeLeaf-primeSideM), [`WeilDetect.IsTest`](../lean_stage3/WeilDetect.md#WeilDetect-IsTest), [`WeilDetect.laplace`](../lean_stage3/WeilDetect.md#WeilDetect-laplace)
-- **Used by 1:** [`WeilBridgeLeaf.zeroForm_eq_primeSide`](#WeilBridgeLeaf-zeroForm_eq_primeSide)
+- **Used by 2:** [`StencilWeil.zeroForm_stencilTest_eq_primeSide`](../lean_stage3/StencilWeil.md#StencilWeil-zeroForm_stencilTest_eq_primeSide), [`WeilBridgeLeaf.zeroForm_eq_primeSide`](#WeilBridgeLeaf-zeroForm_eq_primeSide)
 
 ## Theorems
 
@@ -88,6 +93,8 @@ The bridge, as a statement.
 ### `WeilBridgeLeaf.order_eq_toNat`
 
 line 75
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Upstream's order at a point other than the pole is the analytic order.
 
@@ -112,6 +119,8 @@ riemannZeta.order ρ = (((analyticOrderAt riemannZeta ρ).toNat : ℕ) : ℤ)
 
 line 87
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Upstream's rectangle over `(0, 1)` is the strip set.
 
 **Proves**
@@ -130,6 +139,8 @@ riemannZeta.zeroes_rect (Set.Ioo 0 1) Set.univ = {ρ : ℂ | riemannZeta ρ = 0 
 ### `WeilBridgeLeaf.zeroForm_eq_strip`
 
 line 96
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The zero-set lemma. `zeroForm` over Mathlib's zero set and analytic order.
 
@@ -159,6 +170,8 @@ zeroForm G = ∑' ρ : {ρ : ℂ | riemannZeta ρ = 0 ∧ 0 < ρ.re ∧ ρ.re < 
 
 line 117
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The prime side of Weil's form.
 
 **Proves**
@@ -180,5 +193,7 @@ zeroForm G = primeSideM (kOfM G)
 
 **Definitions its proof touches:** [`WeilDetect.laplace`](../lean_stage3/WeilDetect.md#WeilDetect-laplace)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`StencilWeil.zeroForm_stencilTest_eq_primeSide`](../lean_stage3/StencilWeil.md#StencilWeil-zeroForm_stencilTest_eq_primeSide) (StencilWeil) — `` zeroForm (stencilTest d φ) = WeilBridgeLeaf.primeSideM (WeilBridgeLeaf.kOfM (stencilTest d φ)) ``
 

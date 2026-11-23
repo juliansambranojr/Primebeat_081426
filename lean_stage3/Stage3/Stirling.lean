@@ -613,6 +613,8 @@ theorem re_sub_log_norm_le {w : ℂ} (hw : 0 < w.re) (hw1 : ‖w‖ ≤ 2) :
 /-- The quarter-line point, named: `zq t = 1/4 + it/2`. -/
 noncomputable def zq (t : ℝ) : ℂ := (1 : ℂ) / 4 + (t : ℂ) / 2 * Complex.I
 
+/-- The phase integrand at `t` is the real part of the digamma function at the quarter-line
+point `zq t`. -/
 theorem phasePoint_eq (t : ℝ) :
     phasePoint t = (Complex.digamma (zq t)).re := rfl
 

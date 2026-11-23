@@ -471,6 +471,7 @@ on the critical line `Re s = 1/2`, where the gain is `1 − b^(−1/2)` and not
 zero. Same phase condition, different line: the C2 floor is where the critical
 line passes closest to the zero lattice. -/
 
+/-- Helper: for `b > 0`, the square of `b^(−1/2)` is `b^(−1)`. -/
 private theorem sq_rpow_half {b : ℝ} (hb : 0 < b) :
     (b ^ (-(1:ℝ)/2)) ^ 2 = b ^ (-(1:ℝ)) := by
   rw [← Real.rpow_natCast (b ^ (-(1:ℝ)/2)) 2, ← Real.rpow_mul hb.le]

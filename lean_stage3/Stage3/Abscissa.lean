@@ -101,6 +101,7 @@ def σθ (θ X : ℝ) : ℝ := θ + 1 / Real.log X
 already uses, definitionally. -/
 theorem σθ_half (X : ℝ) : σθ (1/2) X = RHPull.σRH X := rfl
 
+/-- The point `σθ θ X + i·t` on the abscissa's vertical line has real part `σθ θ X`. -/
 theorem σθ_re (θ X t : ℝ) : ((σθ θ X : ℂ) + I * (t : ℂ)).re = σθ θ X := by
   simp [σθ]
 

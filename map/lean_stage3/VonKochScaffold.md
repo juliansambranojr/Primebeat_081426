@@ -2,7 +2,7 @@
 
 # Von Koch converse — roadmap B1, COMPLETE (∃ C x₀, ∀ t ≥ x₀, |ψ t − t| ≤ C·√t·(log t)³) → RiemannHypothesis
 
-21 theorems, 4 definitions, 654 lines. Arrows are Lean's own record of what each proof uses.
+21 theorems, 4 definitions, 662 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LineBound`](../lean_stage3/LineBound.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiToPsi`](../lean_stage3/PiToPsi.md), [`ThetaConverse`](../lean_stage3/ThetaConverse.md)
@@ -22,12 +22,12 @@ flowchart LR
   n8["<b>measurable_psi</b><br/>Measurable (fun t : ℝ ↦ ψ t)"]:::thm
   n9["<b>integrable_psi_cpow</b><br/>IntegrableOn (fun t : ℝ ↦ ((ψ t : ℝ) : ℂ) * (t : ℂ) ^ (-(s + 1))…"]:::thm
   n10["<b>F_eq_neg_logDeriv</b><br/>F s = -deriv riemannZeta s / riemannZeta s"]:::thm
-  n11["<b>isOpen_region</b><br/>IsOpen region"]:::thm
-  n12["<b>preconnected_region</b><br/>IsPreconnected region"]:::thm
+  n11["<b>isOpen_region</b><br/>IsOpen region"]:::shp
+  n12["<b>preconnected_region</b><br/>IsPreconnected region"]:::shp
   n13["<b>zeta_analyticOnNhd</b><br/>AnalyticOnNhd ℂ riemannZeta region"]:::thm
   n14["<b>F_analyticOnNhd</b><br/>AnalyticOnNhd ℂ F region"]:::thm
   n15["<b>F_mul_zeta_add_deriv_eqOn_zero</b><br/>Set.EqOn (fun s : ℂ ↦ F s * riemannZeta s + deriv riemannZeta s)…"]:::thm
-  n16["<b>F_eq_neg_logDeriv_ext</b><br/>F s = -deriv riemannZeta s / riemannZeta s"]:::end_
+  n16["<b>F_eq_neg_logDeriv_ext ■</b><br/>F s = -deriv riemannZeta s / riemannZeta s"]:::thm
   n17["<b>no_zero_right_of_half</b><br/>riemannZeta ρ ≠ 0"]:::thm
   n18["<b>RH_of_no_zero_right_of_half</b><br/>RiemannHypothesis"]:::thm
   n19["<b>RH_of_psiWeak</b><br/>RiemannHypothesis"]:::thm
@@ -67,6 +67,9 @@ flowchart LR
   n3 -.-> x0
   n4 -.-> x0
   x1 -.-> n20
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -74,7 +77,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -113,7 +116,7 @@ The truncated error, as a function on `(0,∞)`: `E` on `(1,∞)`, zero below.
 <a name="VonKoch-region"></a>
 ### `VonKoch.region`
 
-def · line 354
+def · line 357
 
 The working region: past the critical line, minus the pole.
 
@@ -125,7 +128,11 @@ The working region: past the critical line, minus the pole.
 <a name="VonKoch-measurable_psi-"></a>
 ### `VonKoch.measurable_psi'`
 
-line 40
+line 41
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Helper: the Chebyshev function `ψ` is measurable as a function of a real variable.
 
 **Proves**
 
@@ -142,7 +149,11 @@ Measurable (fun t : ℝ ↦ ψ t)
 <a name="VonKoch-Etr_measurable"></a>
 ### `VonKoch.Etr_measurable`
 
-line 47
+line 49
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Helper: the truncated error `Etr` is measurable.
 
 **Proves**
 
@@ -163,7 +174,9 @@ Measurable Etr
 <a name="VonKoch-E_le_linear"></a>
 ### `VonKoch.E_le_linear`
 
-line 52
+line 54
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Crude bound, no hypothesis: `|E t| ≤ (log 4 + 5)·t` for `t ≥ 0`.
 
@@ -189,7 +202,9 @@ line 52
 <a name="VonKoch-E_integral_eq_mellin"></a>
 ### `VonKoch.E_integral_eq_mellin`
 
-line 60
+line 62
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The E-integral IS the Mellin transform of `Etr` at `-s` — as raw integrals, no convergence needed.
 
@@ -215,7 +230,9 @@ line 60
 <a name="VonKoch-Etr_locallyIntegrable"></a>
 ### `VonKoch.Etr_locallyIntegrable`
 
-line 80
+line 82
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `Etr` is locally integrable on `(0,∞)`.
 
@@ -242,7 +259,9 @@ MeasureTheory.LocallyIntegrableOn Etr (Set.Ioi 0)
 <a name="VonKoch-F_differentiableAt"></a>
 ### `VonKoch.F_differentiableAt`
 
-line 118
+line 120
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** V1 — F is differentiable on `re s > 1/2`, given the von Koch bound. The hypothesis is consumed here: `E = O(t^{1/2+δ})` at infinity makes the Mellin transform of `Etr` differentiable at `-s` whenever `re s > 1/2 + δ`.
 
@@ -275,7 +294,9 @@ DifferentiableAt ℂ F s
 <a name="VonKoch-sum_Icc_vonMangoldt"></a>
 ### `VonKoch.sum_Icc_vonMangoldt`
 
-line 196
+line 198
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The partial sums of `Λ` over `Icc 1 n` are `ψ n`.
 
@@ -298,7 +319,9 @@ line 196
 <a name="VonKoch-psi_partial_bigO"></a>
 ### `VonKoch.psi_partial_bigO`
 
-line 203
+line 205
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** ψ is O(x) unconditionally, in big-O form on ℕ.
 
@@ -319,7 +342,9 @@ line 203
 <a name="VonKoch-measurable_psi"></a>
 ### `VonKoch.measurable_psi`
 
-line 217
+line 219
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The ψ-integrand is integrable on `Ioi 1` for `re s > 1`.
 
@@ -338,7 +363,11 @@ Measurable (fun t : ℝ ↦ ψ t)
 <a name="VonKoch-integrable_psi_cpow"></a>
 ### `VonKoch.integrable_psi_cpow`
 
-line 224
+line 227
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1`, the function `ψ t · t^(−(s+1))` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -361,7 +390,9 @@ IntegrableOn (fun t : ℝ ↦ ((ψ t : ℝ) : ℂ) * (t : ℂ) ^ (-(s + 1))) (Se
 <a name="VonKoch-F_eq_neg_logDeriv"></a>
 ### `VonKoch.F_eq_neg_logDeriv`
 
-line 262
+line 265
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** V2 — the identity on `re s > 1`. The Mellin–Stieltjes representation is Mathlib's `LSeries_eq_mul_integral_of_nonneg` (partial sums `O(n^1)`, from unconditional Chebyshev); `LSeries_vonMangoldt_eq_deriv_riemannZeta_div` names the left side; `integral_Ioi_cpow_of_lt` evaluates the main term.
 
@@ -392,7 +423,11 @@ F s = -deriv riemannZeta s / riemannZeta s
 <a name="VonKoch-isOpen_region"></a>
 ### `VonKoch.isOpen_region`
 
-line 356
+line 360
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The working region `{s | 1/2 < Re s ∧ s ≠ 1}` is open.
 
 **Proves**
 
@@ -413,7 +448,11 @@ IsOpen region
 <a name="VonKoch-preconnected_region"></a>
 ### `VonKoch.preconnected_region`
 
-line 363
+line 368
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The working region `{s | 1/2 < Re s ∧ s ≠ 1}` is preconnected.
 
 **Proves**
 
@@ -433,7 +472,11 @@ IsPreconnected region
 <a name="VonKoch-zeta_analyticOnNhd"></a>
 ### `VonKoch.zeta_analyticOnNhd`
 
-line 416
+line 422
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The Riemann zeta function is analytic on the working region.
 
 **Proves**
 
@@ -455,7 +498,11 @@ AnalyticOnNhd ℂ riemannZeta region
 <a name="VonKoch-F_analyticOnNhd"></a>
 ### `VonKoch.F_analyticOnNhd`
 
-line 420
+line 428
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** If `|ψ t − t| ≤ C·√t·(log t)³` for all `t ≥ x₀`, then the completed object `F` is analytic on the working region.
 
 **Proves**
 
@@ -481,7 +528,9 @@ AnalyticOnNhd ℂ F region
 <a name="VonKoch-F_mul_zeta_add_deriv_eqOn_zero"></a>
 ### `VonKoch.F_mul_zeta_add_deriv_eqOn_zero`
 
-line 427
+line 435
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The load-bearing identity: `F·ζ + ζ′` vanishes on the whole region.
 
@@ -512,7 +561,9 @@ Set.EqOn (fun s : ℂ ↦ F s * riemannZeta s + deriv riemannZeta s) 0 region
 <a name="VonKoch-F_eq_neg_logDeriv_ext"></a>
 ### `VonKoch.F_eq_neg_logDeriv_ext`
 
-line 445
+line 453
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** V3 — agreement extends to the punctured half-plane. From `F·ζ + ζ′ ≡ 0` on the region: divide by `ζ` where it does not vanish.
 
@@ -542,7 +593,9 @@ F s = -deriv riemannZeta s / riemannZeta s
 <a name="VonKoch-no_zero_right_of_half"></a>
 ### `VonKoch.no_zero_right_of_half`
 
-line 460
+line 468
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** V4 — no zeros right of the line. At a hypothetical zero `ρ`, factor `ζ = (z−ρ)^(k+1)·g` with `g ρ ≠ 0`. The identity `F·ζ + ζ′ = 0` factors as `(z−ρ)^k · [(k+1)·g + (z−ρ)·(F·g + g′)] = 0`; off `ρ` the power is nonzero, so the bracket vanishes on the punctured neighbourhood — yet it is continuous at `ρ` with value `(k+1)·g ρ ≠ 0`. (Order `⊤` would make `ζ` vanish identically on the region, against `ζ(2) ≠ 0`.)
 
@@ -575,7 +628,9 @@ riemannZeta ρ ≠ 0
 <a name="VonKoch-RH_of_no_zero_right_of_half"></a>
 ### `VonKoch.RH_of_no_zero_right_of_half`
 
-line 550
+line 558
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** V5 — reflection. No zeros right of the line forces every nontrivial zero onto it: a zero at `re < 1/2` inside the strip reflects through `riemannZeta_one_sub` to one at `re > 1/2`.
 
@@ -599,7 +654,9 @@ RiemannHypothesis
 <a name="VonKoch-RH_of_psiWeak"></a>
 ### `VonKoch.RH_of_psiWeak`
 
-line 632
+line 640
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** B1 — the converse, assembled from V1–V5.
 
@@ -625,7 +682,9 @@ RiemannHypothesis
 <a name="VonKoch-RH_iff_psiWeak"></a>
 ### `VonKoch.RH_iff_psiWeak`
 
-line 641
+line 649
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** B2 — the equivalence. RH holds iff `ψ` satisfies the von Koch bound at one extra logarithm (von Koch's own exponent is `k = 2`; `k = 3` is the coarsened route's price). Forward is `RHPull.stmtPsiWeak_of_RH`; the converse is B1.
 

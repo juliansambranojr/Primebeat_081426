@@ -59,6 +59,7 @@ local notation "ψ" => ChebyshevPsi
 
 /-! ## Facts from the single hypothesis `2/(1−θ) ≤ log X` -/
 
+/-- If `θ < 1` and `2/(1 − θ) ≤ log X`, then `1/log X ≤ (1 − θ)/2`. -/
 theorem inv_log_le_theta {θ X : ℝ} (hθhi : θ < 1) (hLX : 2 / (1 - θ) ≤ Real.log X) :
     1 / Real.log X ≤ (1 - θ) / 2 := by
   have h1θ : (0:ℝ) < 1 - θ := by linarith
@@ -69,11 +70,13 @@ theorem inv_log_le_theta {θ X : ℝ} (hθhi : θ < 1) (hLX : 2 / (1 - θ) ≤ R
   rw [div_le_div_iff₀ hLpos (by norm_num)]
   linarith
 
+/-- If `θ < 1` and `2/(1 − θ) ≤ log X`, then the abscissa `σθ θ X = θ + 1/log X` is below `1`. -/
 theorem σθ_lt_one {θ X : ℝ} (hθhi : θ < 1) (hLX : 2 / (1 - θ) ≤ Real.log X) :
     σθ θ X < 1 := by
   have := inv_log_le_theta hθhi hLX
   simp only [σθ]; linarith
 
+/-- If `0 < log X`, then `θ` is strictly below the abscissa `σθ θ X = θ + 1/log X`. -/
 theorem lt_σθ {θ X : ℝ} (hLX : 0 < Real.log X) : θ < σθ θ X := by
   have : (0:ℝ) < 1 / Real.log X := by positivity
   simp only [σθ]; linarith
@@ -334,6 +337,9 @@ theorem I2_norm_le_theta {θ : ℝ} (hθ : StmtZeroFreeRight θ)
 
 /-! ## The Mellin factor on the line -/
 
+/-- For `1/2 ≤ θ < 1`, a `C¹` bump `ν` supported in `[1/2, 2]` whose Mellin transform is bounded
+by `B` on `0 < Re w ≤ 2`, `0 < ε < 1` and `2/(1 − θ) ≤ log X`: the Mellin transform of the
+smoothed bump at the point `s = σθ θ X + i·t` of the line has norm at most `B·‖s‖⁻¹`. -/
 theorem mellin_vert_le_theta {θ : ℝ} (hθlo : 1/2 ≤ θ) (hθhi : θ < 1)
     {ν : ℝ → ℝ} (diffν : ContDiff ℝ 1 ν)
     (suppν : ν.support ⊆ Set.Icc (1/2 : ℝ) 2) {B : ℝ}

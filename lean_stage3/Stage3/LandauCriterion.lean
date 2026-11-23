@@ -34,6 +34,11 @@ noncomputable section
 
 open Set
 
+/-- The two bounds on the primes' integral `Ik σ₀ k / k!` cannot both hold. Given `σ₀ > 1`,
+`0 < δ ≤ 1`, `C ≥ 0`, `σ₀ − 1 < r ≤ (σ₀ − 1)(1 + δ²/240)`, `r < σ₀ − θ`, `r < R`, `τ > 0`,
+the lower bound `τ/r^(k+1) − C₁/R^k ≤ Ik σ₀ k / k!` for some `k` in every run of at least `N₀`
+consecutive naturals, and windows `[Y, Y^(1+δ)]` at arbitrarily large `Y` on which
+`G y ≤ C·y^θ`, the conclusion is `False`. -/
 theorem contradiction {σ₀ θ δ C r R τ C₁ : ℝ} {N₀ : ℕ} (hσ : 1 < σ₀) (hδ0 : 0 < δ)
     (hδ1 : δ ≤ 1) (hC : 0 ≤ C) (hra : σ₀ - 1 < r)
     (hr3 : r ≤ (σ₀ - 1) * (1 + δ ^ 2 / 240)) (hrθ : r < σ₀ - θ) (hrR : r < R)
@@ -191,6 +196,9 @@ theorem contradiction {σ₀ θ δ C r R τ C₁ : ℝ} {N₀ : ℕ} (hσ : 1 < 
   rw [e0, mul_add, mul_add, mul_add, e1, e2, e3, e4] at h2
   linarith
 
+/-- The Landau window criterion holds: for `0 < θ < 1`, `δ > 0` and any `C`, if
+`G y ≤ C·y^θ` on a window `[Y, Y^(1+δ)]` for arbitrarily large `Y`, then `riemannZeta`
+has no zero with real part above `θ`. -/
 theorem stmtLandauWindow : LandauWindow.StmtLandauWindow := by
   intro θ δ C hθ0 _ hδ hW s hs hzero
   have hs1 : s.re < 1 := by
@@ -216,6 +224,9 @@ theorem stmtLandauWindow : LandauWindow.StmtLandauWindow := by
     have h := hYwin y ⟨hy.1, le_trans hy.2 hsub⟩
     exact le_trans h (mul_le_mul_of_nonneg_right (le_max_left _ _) (Real.rpow_nonneg hy0.le _))
 
+/-- Conditional: if for every `θ` in `(1/2, 1)` there are `δ > 0` and `C` with the window
+bound `WindowBound θ δ C`, then `RiemannHypothesis` holds. The window bound is a hypothesis
+of this statement. -/
 theorem rh_of_windows
     (hW : ∀ θ : ℝ, 1 / 2 < θ → θ < 1 → ∃ δ C : ℝ, 0 < δ ∧ LandauWindow.WindowBound θ δ C) :
     RiemannHypothesis :=

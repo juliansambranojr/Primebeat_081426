@@ -1,0 +1,16 @@
+key	value	source
+module_lines	126	wc -l lean_stage3/Stage3/CellBdiff.lean
+theorems_proved	6	grep -c ^theorem lean_stage3/Stage3/CellBdiff.lean
+defs	2	bdZ, psiRow
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/CellBdiff.lean
+pins	2	stencil_eq_bdiff_iter, cell_eq_modeSum_bdiff
+errors_first	0	first lake build Stage3.CellBdiff: clean
+builds	1	the first build
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8833	lake build (full Stage3), Build completed successfully
+jobs_module	8742	run/build.log, lake build Stage3.CellBdiff
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#t1b	joint T1 on the table tree's operator
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

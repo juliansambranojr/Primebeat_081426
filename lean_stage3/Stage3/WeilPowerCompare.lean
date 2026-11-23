@@ -87,17 +87,20 @@ def cE (m : ℕ) : ℝ := ((m : ℝ) + 2) / (Real.pi ^ 2 * (2 * (m : ℝ) + 3) ^
 /-- The quartic error coefficient `1/(π⁴(m+1)³)`. -/
 def cQ (m : ℕ) : ℝ := 1 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)
 
+/-- The strong Gaussian coefficient `cP m` is positive. -/
 theorem cP_pos (m : ℕ) : 0 < cP m := by
   unfold cP
   have : (0 : ℝ) < (m : ℝ) + 1 := by positivity
   positivity
 
+/-- The weak Gaussian coefficient `cE m` is positive. -/
 theorem cE_pos (m : ℕ) : 0 < cE m := by
   unfold cE
   have h1 : (0 : ℝ) < (m : ℝ) + 2 := by positivity
   have h2 : (0 : ℝ) < 2 * (m : ℝ) + 3 := by positivity
   positivity
 
+/-- The quartic error coefficient `cQ m` is positive. -/
 theorem cQ_pos (m : ℕ) : 0 < cQ m := by
   unfold cQ
   have : (0 : ℝ) < (m : ℝ) + 1 := by positivity
@@ -205,23 +208,29 @@ theorem compare_le {m : ℕ} {w : ℂ} {s : ℝ} (hne : QS m w ≠ 0)
 offset `Δ`: `w = (ε + iΔ)h`. -/
 def wOf (ε Δ h : ℝ) : ℂ := ((ε : ℂ) + Complex.I * (Δ : ℂ)) * (h : ℂ)
 
+/-- The real part of the point `wOf ε Δ h = (ε + iΔ)h` is `ε·h`. -/
 theorem wOf_re (ε Δ h : ℝ) : (wOf ε Δ h).re = ε * h := by
   simp [wOf]
 
+/-- The imaginary part of the point `wOf ε Δ h = (ε + iΔ)h` is `Δ·h`. -/
 theorem wOf_im (ε Δ h : ℝ) : (wOf ε Δ h).im = Δ * h := by
   simp [wOf]
 
+/-- The real part of the square of `wOf ε Δ h` is `(ε² − Δ²)·h²`. -/
 theorem wOf_sq_re (ε Δ h : ℝ) : ((wOf ε Δ h) ^ 2).re = (ε ^ 2 - Δ ^ 2) * h ^ 2 := by
   rw [pow_two, Complex.mul_re, wOf_re, wOf_im]
   ring
 
+/-- The squared norm of `wOf ε Δ h` is `(ε² + Δ²)·h²`. -/
 theorem norm_wOf_sq (ε Δ h : ℝ) : ‖wOf ε Δ h‖ ^ 2 = (ε ^ 2 + Δ ^ 2) * h ^ 2 := by
   rw [Complex.sq_norm, Complex.normSq_apply, wOf_re, wOf_im]
   ring
 
+/-- The fourth power of the norm of `wOf ε Δ h` is `((ε² + Δ²)·h²)²`. -/
 theorem norm_wOf_pow4 (ε Δ h : ℝ) : ‖wOf ε Δ h‖ ^ 4 = ((ε ^ 2 + Δ ^ 2) * h ^ 2) ^ 2 := by
   rw [show (4 : ℕ) = 2 * 2 from rfl, pow_mul, norm_wOf_sq]
 
+/-- If `ε ≠ 0` and `h ≠ 0`, then `QS m` is nonzero at the point `wOf ε Δ h`. -/
 theorem QS_ne_zero_wOf {m : ℕ} {ε Δ h : ℝ} (hε : ε ≠ 0) (hh : h ≠ 0) :
     QS m (wOf ε Δ h) ≠ 0 := by
   apply QS_ne_zero

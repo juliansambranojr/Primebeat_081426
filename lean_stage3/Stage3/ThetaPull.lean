@@ -48,6 +48,7 @@ local notation "ζ" => riemannZeta
 
 /-! ## The two helpers, needing only `1/2 < σ` -/
 
+/-- If `1/2 ≤ θ` and `0 < log X`, then the abscissa `σθ θ X = θ + 1/log X` exceeds `1/2`. -/
 theorem half_lt_σθ {θ X : ℝ} (hθlo : 1/2 ≤ θ) (hLX : 0 < Real.log X) :
     (1:ℝ)/2 < σθ θ X := by
   have : (0:ℝ) < 1 / Real.log X := by positivity
@@ -72,6 +73,8 @@ theorem kernel_le_theta {θ X t : ℝ} (hθlo : 1/2 ≤ θ) (hLX : 0 < Real.log 
     div_le_div_iff₀ hpos2 hpos1]
   nlinarith
 
+/-- If `1/2 ≤ θ` and `0 < log X`, then the point `σθ θ X + i·t` of the line has norm at least
+`(1 + |t|)/3`. -/
 theorem norm_line_ge_theta {θ X t : ℝ} (hθlo : 1/2 ≤ θ) (hLX : 0 < Real.log X) :
     (1 + |t|) / 3 ≤ ‖((σθ θ X : ℂ)) + I * (t : ℂ)‖ := by
   have hσ := half_lt_σθ hθlo hLX

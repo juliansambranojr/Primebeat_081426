@@ -22,6 +22,332 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block C7 of `design/carlson.md`: `Stage3/AttainedPi.lean`
+
+    DONE        `attained_off_line_pi`: one zero has the largest real part,
+                and `|π(2^r) − Li(2^r)| ≤ C·r²·√2^r` from some row on; then
+                RH. Any number of zeros off the line; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". The
+                second of unit 0431's three cases. Written by an Opus worker;
+                read and built here
+    DEPENDS     `ZeroSummable.summable_norm_coef`, `sum_le_const`,
+                `LadderMean.line_not_fading_summable`,
+                `PiZeros.pi_eq_zero_sum`, `PiRemainder.norm_tr_efRem_le_of`
+    OUT         the case where the largest real part is not attained
+    OUTCOME     proved, unit 0456
+
+### 2026-11-23 · block C6b of `design/carlson.md`: `Stage3/ZeroSummable.lean`
+
+    DONE        `summable_order_div`: for `σ > 1/2` the order over the size is
+                summable over the zeros with `Re ρ ≥ σ`. `summable_norm_coef`:
+                the hypothesis of `LadderMean.line_not_fading_summable`, for
+                any set of zeros with real parts `≥ σ`; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". Written
+                by an Opus worker; read and built here
+    DEPENDS     `ZeroDensity.zero_density`, `Stage3.zeta_local_zero_count`,
+                `WeilOnLine.conjZ`, `WeilBands.order_eq_analyticOrderNatAt`
+    OUT         block C7
+    OUTCOME     proved, unit 0455
+
+### 2026-11-23 · block C6 of `design/carlson.md`: `Stage3/ZeroDensity.lean`
+
+    DONE        `zero_density`: for `1/2 < σ ≤ 1` there are `θ < 1`, `C`, `T₀`
+                with `#Z ≤ C·T^θ` for every finite set `Z` of zeros with
+                `σ ≤ Re ρ < 1`, `2 ≤ Im ρ ≤ T − 2`, `T ≥ T₀`;
+                `θ = 1 − 5δ²`, `δ = (σ − 1/2)/4`; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". A
+                saving at every `σ > 1/2`; Carlson's exponent is not claimed.
+                Written by an Opus worker; read and built here
+    DEPENDS     `ZeroSquares.card_zeros_le`, `MollifiedMean.mean_sq_f_le`
+    OUT         summability of `m(ρ)/|ρ|`; block C7
+    OUTCOME     proved, unit 0454
+
+### 2026-11-23 · block C5 of `design/carlson.md`, second half: `Stage3/ZeroSquares.lean`
+
+    DONE        `card_zeros_le`: for a finite set `Z` of zeros with
+                `σ ≤ Re ρ < 1`, `2 ≤ Im ρ ≤ T − 2`,
+                `π·δ²·#Z ≤ 3·(15 log T + 73)·` the integral of `‖f X‖²` over
+                `[σ − δ, 1 + δ] × [1, T]`; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". Written
+                by an Opus worker; read and built here. `σ ≤ 1` was added by
+                the worker: the statement fails without it on the empty set
+    DEPENDS     `SquareMean.sq_mean_lower`, `Stage3.zeta_local_zero_count`,
+                `MollifiedMean.f`
+    OUT         blocks C6, C7
+    OUTCOME     proved, unit 0453
+
+### 2026-11-23 · block C5 of `design/carlson.md`, first half: `Stage3/SquareMean.lean`
+
+    DONE        `sq_mean_lower`: for `f` differentiable on a set containing
+                the closed square of half-side `δ` about `c`,
+                `π·δ²·‖f c‖² ≤` the iterated integral of `‖f‖²` over the
+                square; one unit
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". Block
+                C5a. Written by an Opus worker; read and built here
+    DEPENDS     Mathlib: circle averages, polar coordinates, Fubini
+    OUT         the count of zeros; blocks C6, C7
+    OUTCOME     proved, unit 0452
+
+### 2026-11-23 · blocks C2 to C4 of `design/carlson.md`: `Mollified`, `ZetaEM`, `MollifiedMean`
+
+    DONE        C2 `Mollified.prod_eq_sum`, `sum_coef_sq_weighted_le`; C3
+                `ZetaEM.zeta_eq_em`, `norm_zeta_sub_partial_le`; C4 with C2b
+                `MollifiedMean.mean_sq_f_le`, `sum_coef_sq_up_le`: the mean
+                square of `ζ·M − 1` on a line right of one half, four terms,
+                each below the first power of the height for short `X` and
+                `N` a small power above `T`; three units
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves". Each
+                written by an Opus worker from a brief; read and built here
+    DEPENDS     `ZetaGrowth`, `DirichletMeanW`, Mathlib `bernoulliFun`
+    OUT         blocks C5 to C7
+    OUTCOME     proved, units 0447, 0448, 0451
+
+### 2026-11-23 · the repair of block C1: `Stage3/DirichletMeanW.lean`, block C1b of `design/carlson.md`
+
+    DONE        `dirichlet_mean_value_weighted`, `_sigma`: the mean square of
+                a finite Dirichlet sum over a window is at most the sum of
+                `|a_n|²·((T₂ − T₁) + 6n(1 + log N))`; one unit
+    ASSUMED     unit 0449: block C1 charges `N` to every term and block C4
+                then loses the saving. Written by an Opus worker from a brief
+    DEPENDS     `DirichletMean.integral_sq_norm_eq`, `norm_integral_exp_le`
+    OUT         block C4
+    OUTCOME     proved, unit 0450
+
+### 2026-11-23 · a zero-density bound with a power saving, built here: `lean_stage3/design/carlson.md`
+
+    DONE        nothing yet. Seven blocks C1 to C7 in `design/carlson.md`:
+                mean value of a finite Dirichlet sum; the mollified finite
+                sum; zeta as a finite sum to any order; the mean square of
+                `ζ·M − 1` on a line; zeros from the mean square; the bound
+                and summability; joint 10 when the largest real part is
+                attained
+    ASSUMED     Julian, 2026-11-23: "Prove Carlson's bound ourselves, which
+                is a large project". A saving at every real part above one
+                half is the target; Carlson's exact exponent is not needed.
+                Blocks go to Opus workers one at a time; each file is read
+                and built here before it is recorded
+    DEPENDS     Mathlib; `ZetaGrowth`; `ArgCount.rvM_crude`; `LadderMean`
+    OUT         the case where the real parts approach a line without
+                reaching it
+
+### 2026-11-23 · joint 10, the finite case on the count: `Stage3/FiniteOffLinePi.lean`, block J10e of `joints.md`
+
+    DONE        `finite_off_line_pi`: a finite set holds every zero off the
+                line, and the prime count at the doublings is within
+                `C·r²·√2^r` of `Li`; then RH. With it `norm_ipart_le`,
+                `norm_piMode_le`, `norm_piMode_half` (the size of one zero's
+                part of the count) and `row_bound`; one unit
+    ASSUMED     Julian, 2026-11-23: "work on the open inside these". Written
+                by an Opus worker from a brief with the statement and the
+                route; read for shortcuts and built here
+    DEPENDS     `PiZeros.pi_eq_zero_sum`, `PiRemainder.norm_tr_efRem_le_of`,
+                `zinv_le_log`, `LadderFading.line_not_fading`
+    OUT         infinitely many zeros off the line; the cells at depth
+    OUTCOME     proved, unit 0445; clean on the worker's first build
+
+### 2026-11-23 · the open bound of joint T2: `Stage3/PiRemainder.lean`, block T2b of `joints.md`
+
+    DONE        `norm_tr_efRem_le`: constants `A`, `x₀` with
+                `‖tr (efRem x) x‖ ≤ A·√x·log²x` for `x ≥ x₀`, the height
+                equal to `x`, no hypothesis on the zeros.
+                `norm_tr_efRem_le_of` with `A = Arem`, `x₀ = 256`.
+                `zinv_le_log`: the zeros below a height, all of them,
+                weighted by order over size, add to at most a constant times
+                the square of the logarithm; one unit
+    ASSUMED     Julian, 2026-11-23: "work on the open inside these". Written
+                by an Opus worker from a brief, as he asked for the limits;
+                the file was read for shortcuts and built here
+    DEPENDS     `Glue.explicit_formula_split_num`, `PiZeros`,
+                `FiniteOffLine.dyadic_count_le`
+    OUT         a general height; the finite off-line theorem on the cells
+                of the count
+    OUTCOME     proved, unit 0444
+
+### 2026-11-22 · a description on every theorem that had none
+
+    DONE        a docstring above each of the 325 theorems the map listed
+                with no description, in the three Lean trees; the three
+                ported copies in `Stage3/TablePort` given the same lines
+    ASSUMED     Julian, 2026-11-22: "go for all of it". The second of the
+                items. Written by four workers from the statements; each
+                says what its theorem states and no more
+    DEPENDS     the three trees build; `check_port.py`, `check_weld.py`,
+                `theorem_index.py`, `lean_map.py --check`
+    OUT         any change to a statement or a proof
+    OUTCOME     463 lines added, no existing line changed; three trees
+                build; the index reads 0 theorems with no docstring claim
+
+### 2026-11-22 · joints T2 and T3: `Stage3/PiZeros.lean` (block T2) and `Stage3/CellRows.lean` (block T3a)
+
+    DONE        T2. `pi_eq_zero_sum`: for `x ≥ 2` and any height, the count
+                minus Li is minus the sum over the zeros below the height of
+                each zero's part `piMode`, plus the passage of the explicit
+                formula's remainder, minus the passage of `ψ − θ`; an
+                identity. `table_cell_eq_zero_sum`: the same for the table's
+                cell. `norm_tr_psiTheta_le`: the `ψ − θ` part is `≤ 8√x`.
+                T3a. `cell_eq_zero_sum_rows`, `cell_tail_tendsto`: with the
+                height `2^(r−d)` at row `r` the cell and its zero sum differ
+                by `≤ A_d·r²`, which over `√2^r` tends to zero; two units
+    ASSUMED     Julian, 2026-11-22: "go for all of it". The fourth of four.
+                T2 is given as an identity with its remainders named. T3 is
+                given along the rows; at a fixed row the height is capped at
+                the square of the row's doubling by `cell_eq_zero_sum`
+    DEPENDS     `Stage3.pi_sub_Li_eq`, `CellResidual.table_cell_eq`,
+                `FiniteOffLine.err_le`, `cell_zero_sum_finset`
+    OUT         a bound on the passage of the explicit formula's remainder;
+                the explicit formula above the square of `x`
+    OUTCOME     proved, units 0441 and 0442
+
+### 2026-11-22 · joint T1 on the table tree's operator: `Stage3/CellBdiff.lean`, block T1b of `joints.md`
+
+    DONE        `stencil_eq_bdiff_iter`: `CellZeros.stencil d` on a row is
+                `Chain.bdiff` iterated `d` times on any function of `ℂ` that
+                agrees with the row on the integers. `cell_eq_modeSum_bdiff`:
+                the cell theorem with `bdiff^[d]`, `Sym`, `mode`, `modeSum`,
+                all four the table tree's; one unit
+    ASSUMED     Julian, 2026-11-22: "go for all of it". The third of four:
+                the NOTEPAD line of the same day says `CellZeros` repeats the
+                table tree's operator. `CellZeros` is sealed and stays; the
+                equality is proved beside it
+    DEPENDS     `CellModes.cell_eq_modeSum`, `Chain.bdiff`,
+                Mathlib `fwdDiff_iter_eq_sum_shift`
+    OUT         retiring `CellZeros.stencil` from the modules after it
+    OUTCOME     proved, unit 0440; clean on the first build
+
+### 2026-11-22 · joint 10, the finite case assembled: `Stage3/FiniteOffLine.lean`, block J10d of `joints.md`
+
+    DONE        `finite_off_line`: a finite set holds every zero off the
+                line, and at one depth the cells of the log-weighted count on
+                the one ladder are within `C·r²·√2^r` of their main term;
+                then RH. With it `sum_order_onLineInv_le`, `dyadic_count_le`
+                (the zeros on the line, weighted by `1/|ρ|`, below a height),
+                `err_le`, `norm_term_le`; one unit
+    ASSUMED     Julian, 2026-11-22: "go for all of it". The first of four:
+                the finite-off-line conditional theorem. Stated on the cells
+                of `ψ`, as `CellZeros.cell_eq_zero_sum` is; the passage to the
+                cells of `π` is joint T2
+    DEPENDS     `CellZeros.cell_eq_zero_sum`, `LadderFading.line_not_fading`,
+                `ArgCount.rvM_crude`, `Stage3.dyadic_abs_N_sum_le`,
+                `LandauWindow.rh_of_zeroFree_half`
+    OUT         infinitely many zeros off the line (unit 0431)
+    OUTCOME     proved, unit 0439
+
+### 2026-11-22 · the deep zero, inverted, and the band: `lean/DeepZeroBand.lean`
+
+    DONE        `share`: a cell over its total. `share_add`, `share_mirror`:
+                the prime share and the composite share add to one, so the
+                composite table is `x ↦ 1 − x` on shares. `deep_zero_share`,
+                `deep_zero_inverse_share`: at (20,6) they are 0 and 1.
+                `deep_zero_on_outer_circle`,
+                `deep_zero_inverse_on_inner_circle`: under `z = b^(−x)` those
+                are the two edges of `Transform`'s band. `share_pair_product`,
+                `share_on_middle_circle_iff`, `share_in_band`,
+                `band_in_annulus`; one unit
+    ASSUMED     Julian, 2026-11-22: "Build the join". The band is read as
+                `Transform`'s annulus between the outer and inner circles;
+                the inverse of the deep zero as the composite cell, his
+                "the inverse of this table is the dyadic composite table"
+    DEPENDS     `Zeros.zero_20_6`, `PairIdentity.pair_identity`,
+                `Transform.zmap_pair_product`, `on_critical_line_iff_norm`
+    OUT         any identification of a cell's share with the real part of a
+                zero of zeta
+    OUTCOME     proved, unit 0438; clean on the first build
+
+### 2026-11-22 · the mirror pair as a rectangle of fixed area: `Stage3/MirrorArea.lean`, block S1 of `joints.md`
+
+    DONE        `mirror_area`: a mode at base `b` and its mirror multiply to
+                `b`. `mirror_side`: one side gives the other. `square_iff`:
+                both sides are `√b` exactly on the line.
+                `long_side_of_off_line`: off the line one side is above `√b`.
+                `restoringForce_eq_log_ratio`: block T4's force is the
+                logarithm of the ratio of the sides; one unit
+    ASSUMED     Julian, 2026-11-22: "Yes but look at the lean theroems I feel
+                we chased a rectangle before. If not, let build". A first search
+                missed it: `lean/Transform.lean` has the rectangle as a pair
+                (`zmap_pair_product`, `pair_collapses_iff_critical`). This
+                module restates it in Stage 3 and joins it to T4's force. Sides are `‖b^ρ‖` and `‖b^(1−ρ)‖`
+    DEPENDS     `StencilWeil.restoringForce`; Mathlib
+    OUT         any statement that forces equal sides
+    OUTCOME     proved, unit 0437; clean on the first build
+
+### 2026-11-22 · log the two exploratory measurements as run units
+
+    DONE        two run units, each with its script in `run/`, run through
+                `lab run`: the residual of the prime count against the
+                logarithmic integral at each doubling; the depth-6 cells as
+                smooth cell plus wobble
+    ASSUMED     Julian, 2026-11-22: "Yes log them". Both EXPLORATORY: no
+                prereg, no verdict. `pi2n_cache.json` is the count
+    DEPENDS     `pi2n_cache.json`, `mpmath`
+    OUT         any reading of the numbers as a verdict; any new measurement
+    OUTCOME     units 0435 and 0436 written and checked
+
+### 2026-11-22 · why the number line has zeros: `Stage3/WobbleCount.lean`, block W1 of `joints.md`
+
+    DONE        `count_identity`: the logarithms of the integers up to `N`
+                add to the prime content read at `N`, `N/2`, `N/3`, …
+                (`Σ log n = Σ_d Σ_{m ≤ N/d} Λ m`). `wobbleSum ρ N`: a wobble
+                `x^ρ` read at `N/1, …, N/N` and added. `wobbleSum_expansion`:
+                it is `ζ(ρ)·N^ρ + N/(1−ρ) + 1/2` up to a bounded term.
+                `invisible_iff`: after the smooth term `N/(1−ρ)` the sum
+                stays bounded in `N` exactly when `ζ(ρ) = 0`; one unit
+    ASSUMED     Julian, 2026-11-22: "build 'a wobble is invisible to the
+                integer count exactly when it sits at a zero'". "Invisible" is
+                made exact as: bounded after the smooth term. Stated for
+                `0 < Re ρ`, `ρ ≠ 1`, at integer `N`
+    DEPENDS     `ZetaGrowth.zeta1_eq_zeta`, `tail_norm_le`; upstream
+                `ArithmeticFunction.vonMangoldt_mul_zeta`,
+                `sum_Ioc_mul_eq_sum_sum`
+    OUT         the size of the wobbles; nothing here bounds a real part
+    OUTCOME     done as pinned; unit 0434, clean on its second build
+
+### 2026-11-22 · joint T4, the stencil in Weil's form and the restoring force: `Stage3/StencilWeil.lean`, block T4 of `joints.md`
+
+    DONE        `stencilTest d φ`: the table's depth-`d` stencil applied to a
+                test function along the doublings; it is again a test
+                function; its transform is the symbol to the depth times
+                `φ`'s; so each zero enters Weil's form with weight the symbol
+                at the zero times the symbol at its mirror, to the depth; on
+                the line that weight is a square; `restoringForce b ρ`, the
+                difference of the logarithms of a mode's size and its
+                mirror's, equals `2·|Re ρ − 1/2|·log b`, is zero exactly on
+                the line, and grows with `b`; with the bridge, the form on
+                the stencil equals its prime side; one unit
+    ASSUMED     Julian, 2026-11-22: "Yes", to building T4 as the restoring
+                force read off the table. The force is the mirror imbalance of
+                the mode, the quantity common to the handshake and the
+                restoring force of `lean_primebeat`'s closed-loop file, read
+                the same day. That it restores, in the sense that an off-line
+                zero is impossible, is not claimed and is not in this piece
+    DEPENDS     `WeilDetect`, `WeilBridgeLeaf`; `papers/Connes-Measured.md` § E
+                (the stencil as a test function, measured, O37)
+    OUT         positivity of the form without RH; `StmtDetect`
+    OUTCOME     done as pinned; unit 0433, clean on its second build
+
+### 2026-11-22 · joint 10 on one ladder, the general case: a decision unit, and `Stage3/LadderMean.lean`, block J10c of `joints.md`
+
+    DONE        a decision unit recording where the general case stops: the
+                reduction (zero density, then an absolutely summable sum of
+                modes), the obstruction (summable sums of modes can vanish at
+                every row when the modes accumulate; Wolff, Denjoy), the
+                sub-case that closes (largest real part attained) and the one
+                with no argument (not attained). `LadderMean`: an absolutely
+                summable sum of rotations that tends to zero has every folded
+                class summing to zero (`mean_extract`, by averaging along the
+                rows); so infinitely many zeros on one vertical line, with
+                `Σ m/|ρ|` finite, cannot fade from the cells
+                (`line_not_fading_summable`); one Lean unit
+    ASSUMED     Julian, 2026-11-22: "The harder general case". The general
+                case is not closed by this; the decision unit says where and
+                why. Summability of `Σ m/|ρ|` over the zeros off the line is a
+                hypothesis of the theorem; it follows from a zero-density
+                estimate that is not in the tree
+    DEPENDS     units 0429, 0430
+    OUT         the zero-density estimate; the sub-case with no largest real
+                part; the converse itself
+    OUTCOME     done as pinned; units 0431 (decision) and 0432 (`LadderMean`,
+                clean on its first build)
+
 ### 2026-11-22 · joint 10 on one ladder, second piece: `Stage3/LadderFading.lean`, block J10b of `joints.md`
 
     DONE        `not_tendsto_powerSum`: finitely many distinct modes of one

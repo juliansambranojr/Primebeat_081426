@@ -1,6 +1,8 @@
 # What `JointDialGate.relErrWindow_of_window` rests on
 
-[`JointDialGate.relErrWindow_of_window`](../lean_stage3/JointDialGate.md#JointDialGate-relErrWindow_of_window) in `lean_stage3/Stage3/JointDialGate.lean`, line 122.
+[`JointDialGate.relErrWindow_of_window`](../lean_stage3/JointDialGate.md#JointDialGate-relErrWindow_of_window) in `lean_stage3/Stage3/JointDialGate.lean`, line 134.
+
+**Why.** From a window bound on `G` at `θ`, with `1/2 ≤ θ < 1`, `0 < δ` and `θ < θ' ≤ 1`: there are `A ≥ 0` and `x₀` such that for all `r`, `n` with `x₀ ≤ 2^(r−n)` and `0 ≤ r − n`, the gate's statement holds on the rows of `π` and `Li` with relative error `A·2^((r−n)(θ'−1))`.
 
 **Proves**
 
@@ -79,6 +81,9 @@ flowchart LR
   f17 --> f25
   f24 --> f25
   f25 --> f26
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

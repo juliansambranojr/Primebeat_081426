@@ -11,13 +11,16 @@ WeilPowerCount — the short-interval count leaf, and the range that closes. Run
 
 ```mermaid
 flowchart LR
-  n0["<b>card_le_of_leaf</b><br/>(S.card : ℝ) ≤ c₁ * Real.log T + c₂"]:::thm
-  n1["<b>exists_range_log</b><br/>∃ L : ℝ, 0 ≤ L ∧ ∀ M : ℝ, 0 ≤ M → M ≤ D + L → (c₁ * M + c₂) * ((…"]:::lone
-  n2["<b>count_lt_shells</b><br/>N * (W + 1) ＜ K"]:::lone
-  n3["<b>exists_clean_shell_of_leaf</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::end_
+  n0["<b>card_le_of_leaf</b><br/>(S.card : ℝ) ≤ c₁ * Real.log T + c₂"]:::shp
+  n1["<b>exists_range_log ■</b><br/>∃ L : ℝ, 0 ≤ L ∧ ∀ M : ℝ, 0 ≤ M → M ≤ D + L → (c₁ * M + c₂) * ((…"]:::shp
+  n2["<b>count_lt_shells ■</b><br/>N * (W + 1) ＜ K"]:::shp
+  n3["<b>exists_clean_shell_of_leaf ■</b><br/>∃ k, k ＜ K ∧ ∀ j ∈ S, k ∉ B j"]:::shp
   x0(["<b>WeilPowerClean</b><br/>exists_clean_shell_of_count"]):::ext
   n0 --> n3
   x0 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -25,7 +28,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -45,6 +48,8 @@ The short-interval zero-count leaf: the number of zeros the target carries at he
 ### `WeilPowerCount.card_le_of_leaf`
 
 line 74
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** A member set counted by the leaf is bounded by `c₁ log T + c₂`.
 
@@ -74,6 +79,8 @@ line 74
 
 line 85
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The closure: with `α = c₁(W+1)lρ < 1` there is an `L ≥ 0` — namely `(c₂(W+1)lρ + E + αD)/(1 − α)` — at which the shells fit for every count parameter `M` below `D + L`. This is what removes unit 0351's circularity: the demand is linear in `L` and the coefficient is `α`.
 
 **Proves**
@@ -100,6 +107,8 @@ line 85
 
 line 111
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The shell count in `ℕ`, read off the same inequality scaled by `lρ`.
 
 **Proves**
@@ -121,6 +130,8 @@ N * (W + 1) < K
 ### `WeilPowerCount.exists_clean_shell_of_leaf`
 
 line 121
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** 13h's clean shell with the member count supplied by the leaf rather than assumed.
 

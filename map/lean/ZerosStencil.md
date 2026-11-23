@@ -11,22 +11,22 @@ ZerosStencil — the Mathlib-dependent half of `Zeros.lean`. Split out of `Zeros
 
 ```mermaid
 flowchart LR
-  n0["<b>tableFrom_eq_fwdDiff</b><br/>Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))…"]:::thm
-  n1["<b>tableFrom_eq_stencil</b><br/>Construction.tableFrom N r d = stencil d (fun k =＞ N (r - k))"]:::thm
-  n2["<b>stencil_add</b><br/>stencil N (fun k =＞ g k + h k) = stencil N g + stencil N h"]:::end_
-  n3["<b>stencil_smul</b><br/>stencil N (fun k =＞ c * g k) = c * stencil N g"]:::end_
-  n4["<b>stencil_annihilates_const</b><br/>stencil N (fun _ =＞ c) = 0"]:::end_
-  n5["<b>stencil_eq_wings</b><br/>stencil N g = wingPlus N g - wingMinus N g"]:::thm
-  n6["<b>stencil_eq_zero_iff_wings</b><br/>stencil N g = 0 ↔ wingPlus N g = wingMinus N g"]:::thm
-  n7["<b>tableFrom_eq_zero_iff_wings</b><br/>Construction.tableFrom N r d = 0 ↔ wingPlus d (fun k =＞ N (r - k…"]:::thm
-  n8["<b>repeat_iff_wings</b><br/>Construction.tableFrom N r d = Construction.tableFrom N (r - 1) …"]:::end_
-  n9["<b>stencil_weights_antisymm</b><br/>((-1 : ℤ)) ^ (N - k) * (N.choose (N - k)) = -(((-1 : ℤ)) ^ k * (…"]:::lone
-  n10["<b>stencil_arms_eq</b><br/>(∑ k ∈ Finset.range (N + 1), (1 + (-1 : ℤ) ^ k) * (N.choose k)) …"]:::lone
-  n11["<b>stencil_arm_doubled</b><br/>(∑ k ∈ Finset.range (N + 1), (1 + (-1 : ℤ) ^ k) * (N.choose k)) …"]:::lone
-  n12["<b>window_exclusive_of_prime_exponent</b><br/>b = 2 ∧ k = 7"]:::lone
-  n13["<b>base_of_meets_two</b><br/>∃ i, b = 2 ^ i"]:::lone
-  n14["<b>factorization_proportional</b><br/>n * b.factorization p = m * c.factorization p"]:::thm
-  n15["<b>primeFactors_eq_of_meets</b><br/>b.primeFactors = c.primeFactors"]:::end_
+  n0["<b>tableFrom_eq_fwdDiff</b><br/>Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))…"]:::cnt
+  n1["<b>tableFrom_eq_stencil</b><br/>Construction.tableFrom N r d = stencil d (fun k =＞ N (r - k))"]:::cnt
+  n2["<b>stencil_add ■</b><br/>stencil N (fun k =＞ g k + h k) = stencil N g + stencil N h"]:::cnt
+  n3["<b>stencil_smul ■</b><br/>stencil N (fun k =＞ c * g k) = c * stencil N g"]:::cnt
+  n4["<b>stencil_annihilates_const ■</b><br/>stencil N (fun _ =＞ c) = 0"]:::cnt
+  n5["<b>stencil_eq_wings</b><br/>stencil N g = wingPlus N g - wingMinus N g"]:::cnt
+  n6["<b>stencil_eq_zero_iff_wings</b><br/>stencil N g = 0 ↔ wingPlus N g = wingMinus N g"]:::cnt
+  n7["<b>tableFrom_eq_zero_iff_wings</b><br/>Construction.tableFrom N r d = 0 ↔ wingPlus d (fun k =＞ N (r - k…"]:::cnt
+  n8["<b>repeat_iff_wings ■</b><br/>Construction.tableFrom N r d = Construction.tableFrom N (r - 1) …"]:::cnt
+  n9["<b>stencil_weights_antisymm ■</b><br/>((-1 : ℤ)) ^ (N - k) * (N.choose (N - k)) = -(((-1 : ℤ)) ^ k * (…"]:::cnt
+  n10["<b>stencil_arms_eq ■</b><br/>(∑ k ∈ Finset.range (N + 1), (1 + (-1 : ℤ) ^ k) * (N.choose k)) …"]:::cnt
+  n11["<b>stencil_arm_doubled ■</b><br/>(∑ k ∈ Finset.range (N + 1), (1 + (-1 : ℤ) ^ k) * (N.choose k)) …"]:::cnt
+  n12["<b>window_exclusive_of_prime_exponent ■</b><br/>b = 2 ∧ k = 7"]:::cnt
+  n13["<b>base_of_meets_two ■</b><br/>∃ i, b = 2 ^ i"]:::cnt
+  n14["<b>factorization_proportional</b><br/>n * b.factorization p = m * c.factorization p"]:::cnt
+  n15["<b>primeFactors_eq_of_meets ■</b><br/>b.primeFactors = c.primeFactors"]:::cnt
   x0(["<b>Nonvanishing</b><br/>tableFrom_ne_zero_of"]):::ext
   x1(["<b>RelativeGate</b><br/>tableFrom_ne_zero_of_relErr"]):::ext
   x2(["<b>CellResidual</b><br/>tableFrom_cast"]):::ext
@@ -41,6 +41,9 @@ flowchart LR
   n1 -.-> x1
   n1 -.-> x2
   x3 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -48,7 +51,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -99,6 +102,8 @@ Two ladders share a rung above `x = 1` exactly when some power of one is a power
 
 line 39
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The table's `d`-fold backward difference is `(-1)^d` times Mathlib's `d`-fold forward difference at step `-1`. The bridge exists so that `tableFrom_eq_stencil` can borrow Mathlib's binomial theorem rather than redo the index bookkeeping.
 
 **Proves**
@@ -125,6 +130,8 @@ Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))^[d] N r
 ### `Zeros.tableFrom_eq_stencil`
 
 line 66
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The operator IS Pascal. The cell at `(r,d)` — `d` backward differences of the row — equals the alternating binomial stencil of order `d` applied to the `d+1` row values in its window.
 
@@ -158,6 +165,8 @@ Construction.tableFrom N r d = stencil d (fun k => N (r - k))
 
 line 84
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The stencil is linear in the sampled values. So a zero is a single linear equation on the `N+1` values of `pi` inside its window — one condition, hence codimension one. Nothing here says when it is satisfied.
 
 **Proves**
@@ -181,6 +190,8 @@ stencil N (fun k => g k + h k) = stencil N g + stencil N h
 ### `Zeros.stencil_smul`
 
 line 91
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** And scalars pass through — linearity's other half, beside `stencil_add`.
 
@@ -207,6 +218,8 @@ stencil N (fun k => c * g k) = c * stencil N g
 
 line 100
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The stencil's positive and negative arms carry equal total weight. For `N = 7` each arm sums to 64: the balance is exact by construction, not by anything about the primes.
 
 **Proves**
@@ -231,6 +244,8 @@ stencil N (fun _ => c) = 0
 ### `Zeros.stencil_eq_wings`
 
 line 127
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The fold is an identity, not a test. `cell = wing⁺ − wing⁻`, always.
 
@@ -257,6 +272,8 @@ stencil N g = wingPlus N g - wingMinus N g
 ### `Zeros.stencil_eq_zero_iff_wings`
 
 line 141
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** A zero is where the wings balance.
 
@@ -285,6 +302,8 @@ stencil N g = 0 ↔ wingPlus N g = wingMinus N g
 ### `Zeros.tableFrom_eq_zero_iff_wings`
 
 line 147
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The cell, folded. Through `tableFrom_eq_stencil`: the table's cell at `(r,d)` vanishes exactly when the two wings of its window balance.
 
@@ -318,6 +337,8 @@ Construction.tableFrom N r d = 0 ↔ wingPlus d (fun k => N (r - k)) = wingMinus
 
 line 156
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Two readings of one fact. `zero_iff_repeat` says a cell vanishes iff the row repeats at the depth below. This says it vanishes iff the wings balance. The repeat reading and the fold reading are the same statement, and until now nothing in the tree connected them.
 
 **Proves**
@@ -347,6 +368,8 @@ Construction.tableFrom N r d = Construction.tableFrom N (r - 1) d ↔ wingPlus (
 
 line 177
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The stencil is antisymmetric when its order is odd. Reflecting an index about the midpoint negates its weight, because `(N-k) + k = N` is odd and so the two indices have opposite parity.
 
 **Proves**
@@ -370,6 +393,8 @@ line 177
 
 line 202
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The two arms weigh the same. `stencil_annihilates_const` says the signed weights cancel; written as two sums, that is the positive-index arm equalling the negative-index arm. `(1 + (-1)^k)` is twice the indicator of even `k` and `(1 - (-1)^k)` twice the indicator of odd `k`, so this is the split with the division cleared.
 
 **Proves**
@@ -391,6 +416,8 @@ line 202
 
 line 217
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** And each arm is `2^(N-1)`. Doubled, an arm is the whole row, `2^N`. With `stencil_arms_eq` that fixes both at half the row -- 64 and 64 at `N = 7`, 8 and 8 at `N = 4`, which is what `The-Fold.md` § B1 reports.
 
 **Proves**
@@ -411,6 +438,8 @@ line 217
 ### `Zeros.window_exclusive_of_prime_exponent`
 
 line 232
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The (20,6) window is base-2 exclusive. Depth 6 spans a ratio of `2^7`. Since 7 is prime, no integer base `b >= 2` reaches that window at any integer depth `k >= 2`. Base 2 at depth 6 is the only way to look through it.
 
@@ -436,6 +465,8 @@ b = 2 ∧ k = 7
 
 line 273
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Only powers of two reach a dyadic window. If any positive power of `b` equals a power of 2, then `b` is itself a power of 2. So the ladders meeting base 2 are exactly `2, 4, 8, 16, …` and no others -- which is the general form of `window_exclusive_of_prime_exponent`, stated for every window rather than for `2^7`.
 
 **Proves**
@@ -457,6 +488,8 @@ line 273
 ### `Zeros.factorization_proportional`
 
 line 284
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Two ladders that meet have proportional exponents. If some power of `b` equals some power of `c`, then at every prime the two exponents stand in the ratio `m : n`. This is the "shared lineage" of `Commensurate-Ladders.md` § A2 in exact form -- not that `b` and `c` are related somehow, but that their prime signatures are one vector scaled two ways.
 
@@ -481,6 +514,8 @@ n * b.factorization p = m * c.factorization p
 ### `Zeros.primeFactors_eq_of_meets`
 
 line 295
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** And they are built from the same primes. Proportionality with both exponents nonzero forces the supports to agree, so ladders that meet are made of one prime set. Bases 2 and 3 meet nowhere above `x = 1` for exactly this reason -- there is no common ancestor because there is no common prime.
 

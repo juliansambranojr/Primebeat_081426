@@ -23,12 +23,15 @@ noncomputable def c0 (T' : ℝ) : ℂ := 3/2 + Complex.I * T'
 /-- `g = (s−1)²·ζ` — entire, zeros = ζ-zeros plus an order-1 zero at 1. -/
 noncomputable def gz (s : ℂ) : ℂ := (s - 1)^2 * riemannZeta s
 
+/-- The function `gz = (s−1)²·ζ` is analytic at every complex point `s`. -/
 theorem gz_analytic (s : ℂ) : AnalyticAt ℂ gz s := ZetaGrowth.sq_mul_zeta_analytic s
 
+/-- The imaginary part of the ball center `c0 T'` is `T'`. -/
 theorem c0_im (T' : ℝ) : (c0 T').im = T' := by
   rw [c0]
   simp
 
+/-- The real part of the ball center `c0 T'` is `3/2`. -/
 theorem c0_re (T' : ℝ) : (c0 T').re = 3/2 := by
   rw [c0]
   simp

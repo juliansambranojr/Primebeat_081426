@@ -2,7 +2,7 @@
 
 WeilTiles — the heights tiled by bands. Rung 4b, second half, slice B1 of the detection ladder (units 0316–0321). 2026-09-06.
 
-8 theorems, 3 definitions, 170 lines. Arrows are Lean's own record of what each proof uses.
+8 theorems, 3 definitions, 175 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilBands`](../lean_stage3/WeilBands.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilSeries`](../lean_stage3/WeilSeries.md)
@@ -11,12 +11,12 @@ WeilTiles — the heights tiled by bands. Rung 4b, second half, slice B1 of the 
 
 ```mermaid
 flowchart LR
-  n0["<b>two_le_centre</b><br/>2 ≤ centre k"]:::thm
-  n1["<b>idx_spec</b><br/>|t - centre (idx t)| ≤ 9 / 10"]:::thm
-  n2["<b>online_term_nonneg</b><br/>0 ≤ (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re"]:::thm
+  n0["<b>two_le_centre</b><br/>2 ≤ centre k"]:::shp
+  n1["<b>idx_spec</b><br/>|t - centre (idx t)| ≤ 9 / 10"]:::shp
+  n2["<b>online_term_nonneg</b><br/>0 ≤ (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re"]:::shp
   n3["<b>weightedTerm_nonneg</b><br/>0 ≤ weightedTerm h γ ρ"]:::thm
   n4["<b>sum_by_bands</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.Nont…"]:::thm
-  n5["<b>bandSeries_nonneg</b><br/>0 ≤ M k * (15 * Real.log (centre k) + 73)"]:::thm
+  n5["<b>bandSeries_nonneg</b><br/>0 ≤ M k * (15 * Real.log (centre k) + 73)"]:::shp
   n6["<b>sum_le_bandSeries</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ ∑' k : ℕ, M k * (15 * Real.log (ce…"]:::thm
   n7["<b>tsum_upper_le</b><br/>∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ ∑' k : ℕ, M k * (15 * Real.…"]:::thm
   x0(["<b>WeilPowerBands</b><br/>bandSeries_summable<br/>sum_by_bands<br/>sum_le_bandSeries"]):::ext
@@ -43,6 +43,9 @@ flowchart LR
   n7 -.-> x1
   x2 -.-> n2
   x4 -.-> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -50,7 +53,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -77,7 +80,7 @@ Band index of a height `t`; meaningful for `t ≥ 11/10`.
 <a name="WeilTiles-Upper"></a>
 ### `WeilTiles.Upper`
 
-abbrev · line 126
+abbrev · line 131
 
 On-line zeros of height at least `11/10`.
 
@@ -89,7 +92,11 @@ On-line zeros of height at least `11/10`.
 <a name="WeilTiles-two_le_centre"></a>
 ### `WeilTiles.two_le_centre`
 
-line 46
+line 47
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: every band centre satisfies `2 ≤ centre k`.
 
 **Proves**
 
@@ -116,7 +123,9 @@ line 46
 <a name="WeilTiles-idx_spec"></a>
 ### `WeilTiles.idx_spec`
 
-line 52
+line 53
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Every height `t ≥ 11/10` lies within `9/10` of its band centre.
 
@@ -143,7 +152,9 @@ line 52
 <a name="WeilTiles-online_term_nonneg"></a>
 ### `WeilTiles.online_term_nonneg`
 
-line 67
+line 68
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The on-line term is a real square, hence nonnegative.
 
@@ -174,7 +185,11 @@ line 67
 <a name="WeilTiles-weightedTerm_nonneg"></a>
 ### `WeilTiles.weightedTerm_nonneg`
 
-line 72
+line 75
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `h > 0` and a nontrivial zero `ρ` with real part `1/2`, the weighted term `weightedTerm h γ ρ` is nonnegative.
 
 **Proves**
 
@@ -206,7 +221,9 @@ line 72
 <a name="WeilTiles-sum_by_bands"></a>
 ### `WeilTiles.sum_by_bands`
 
-line 81
+line 84
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Sum by bands. A finite set of on-line zeros of height `≥ 11/10`, split by band index, has weighted sum at most the band series over the indices that occur.
 
@@ -239,7 +256,11 @@ line 81
 <a name="WeilTiles-bandSeries_nonneg"></a>
 ### `WeilTiles.bandSeries_nonneg`
 
-line 108
+line 113
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: if every `M k` is nonnegative, then each band series term `M k · (15·log (centre k) + 73)` is nonnegative.
 
 **Proves**
 
@@ -269,7 +290,9 @@ line 108
 <a name="WeilTiles-sum_le_bandSeries"></a>
 ### `WeilTiles.sum_le_bandSeries`
 
-line 115
+line 120
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A finite on-line sum of height `≥ 11/10` is at most the full band series.
 
@@ -303,7 +326,9 @@ line 115
 <a name="WeilTiles-tsum_upper_le"></a>
 ### `WeilTiles.tsum_upper_le`
 
-line 132
+line 137
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Upper on-line sum. The full weighted sum over on-line zeros of height `≥ 11/10` is at most the band series, for any nonnegative summable `M` dominating the terms at their band indices.
 

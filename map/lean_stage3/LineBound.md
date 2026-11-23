@@ -2,7 +2,7 @@
 
 This file has no header comment.
 
-70 theorems, 2 definitions, 2494 lines. Arrows are Lean's own record of what each proof uses.
+70 theorems, 2 definitions, 2500 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Assembly`](../lean_stage3/Assembly.md), [`JensenCount`](../lean_stage3/JensenCount.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Abscissa`](../lean_stage3/Abscissa.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)
@@ -14,10 +14,10 @@ This file has no header comment.
 ```mermaid
 flowchart LR
   n0["<b>zeta_ne_zero_of_RH</b><br/>ζ s ≠ 0"]:::thm
-  n1["<b>log_3029_ge</b><br/>(1:ℝ)/30 ≤ Real.log (30/29)"]:::lone
-  n2["<b>finalBoundConst_le</b><br/>16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:…"]:::thm
+  n1["<b>log_3029_ge ■</b><br/>(1:ℝ)/30 ≤ Real.log (30/29)"]:::shp
+  n2["<b>finalBoundConst_le</b><br/>16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:…"]:::shp
   n3["<b>logDerivZeta_crude</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::thm
-  n4["<b>logDerivZeta_sq_at_t</b><br/>‖deriv ζ (((1/2 + 1/Real.log t : ℝ)) + I * (t : ℂ)) / ζ (((1/2 +…"]:::end_
+  n4["<b>logDerivZeta_sq_at_t ■</b><br/>‖deriv ζ (((1/2 + 1/Real.log t : ℝ)) + I * (t : ℂ)) / ζ (((1/2 +…"]:::thm
   n5["<b>logDerivZeta_sq_at_X</b><br/>‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 +…"]:::thm
   n6["<b>zeta_ne_zero_of_RH</b><br/>ζ s ≠ 0"]:::thm
   n7["<b>zetaE_eq</b><br/>zetaE s = (s - 1) * ζ s"]:::thm
@@ -25,23 +25,23 @@ flowchart LR
   n9["<b>zetaE_differentiableAt_of_ne</b><br/>DifferentiableAt ℂ zetaE s"]:::thm
   n10["<b>zetaE_differentiable</b><br/>Differentiable ℂ zetaE"]:::thm
   n11["<b>logDeriv_zetaE</b><br/>deriv zetaE s / zetaE s = 1 / (s - 1) + deriv ζ s / ζ s"]:::thm
-  n12["<b>zetaE_ne_zero_of_RH</b><br/>zetaE s ≠ 0"]:::end_
+  n12["<b>zetaE_ne_zero_of_RH ■</b><br/>zetaE s ≠ 0"]:::thm
   n13["<b>zetaE_disk_upper</b><br/>‖zetaE w‖ ≤ 430"]:::thm
-  n14["<b>log_1300_le</b><br/>Real.log 1300 ≤ 7.28"]:::thm
-  n15["<b>finalBoundConst_le</b><br/>16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:…"]:::thm
+  n14["<b>log_1300_le</b><br/>Real.log 1300 ≤ 7.28"]:::shp
+  n15["<b>finalBoundConst_le</b><br/>16 * ((181:ℝ)/200) ^ 2 / ((181/200) - (3/4)) ^ 3 + 1 / (((15/16:…"]:::shp
   n16["<b>logDerivZeta_compact</b><br/>‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ …"]:::thm
   n17["<b>logDerivZeta_norm_neg</b><br/>‖deriv ζ ((σ : ℂ) + I * ((-t : ℝ) : ℂ)) / ζ ((σ : ℂ) + I * ((-t …"]:::thm
   n18["<b>logDerivZeta_line</b><br/>‖deriv ζ (((1/2 + 1/Real.log X : ℝ)) + I * (t : ℂ)) / ζ (((1/2 +…"]:::thm
-  n19["<b>schoenfeldWeak_of_psiWeak_three</b><br/>Stage3.StmtSchoenfeldWeak (3 * C + 13) 2 (max (x₀ ^ 2) 9) (fun x…"]:::end_
-  n20["<b>pseries_tail_le</b><br/>∑' (n : ℕ), ((n + 1 + 1 : ℕ) : ℝ) ^ (-1 - b) ≤ 1 / b"]:::thm
-  n21["<b>pseries_le</b><br/>∑' (n : ℕ), ((n : ℝ)) ^ (-1 - b) ≤ 1 + 1 / b"]:::thm
+  n19["<b>schoenfeldWeak_of_psiWeak_three ■</b><br/>Stage3.StmtSchoenfeldWeak (3 * C + 13) 2 (max (x₀ ^ 2) 9) (fun x…"]:::shp
+  n20["<b>pseries_tail_le</b><br/>∑' (n : ℕ), ((n + 1 + 1 : ℕ) : ℝ) ^ (-1 - b) ≤ 1 / b"]:::shp
+  n21["<b>pseries_le</b><br/>∑' (n : ℕ), ((n : ℝ)) ^ (-1 - b) ≤ 1 + 1 / b"]:::shp
   n22["<b>vonMangoldt_term_le</b><br/>‖LSeries.term (fun k : ℕ =＞ ((vonMangoldt k : ℝ) : ℂ)) ((1 + 2 *…"]:::thm
   n23["<b>norm_logDerivZeta_of_one_lt_re</b><br/>‖deriv ζ s / ζ s‖ ≤ 2 / (s.re - 1) + 4 / (s.re - 1) ^ 2"]:::thm
-  n24["<b>norm_logDerivZeta_sigma0</b><br/>‖deriv ζ (((1 + 1 / L : ℝ) : ℂ) + I * (t : ℂ)) / ζ (((1 + 1 / L …"]:::end_
+  n24["<b>norm_logDerivZeta_sigma0 ■</b><br/>‖deriv ζ (((1 + 1 / L : ℝ) : ℂ) + I * (t : ℂ)) / ζ (((1 + 1 / L …"]:::thm
   n25["<b>zeta_ne_zero_of_RH</b><br/>ζ s ≠ 0"]:::thm
   n26["<b>holo_logDerivZeta_of_RH</b><br/>HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ…"]:::thm
   n27["<b>pull_at_RH_abscissa</b><br/>SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ Smoo…"]:::thm
-  n28["<b>σRH_re</b><br/>((σRH X : ℂ) + I * (t : ℂ)).re = σRH X"]:::thm
+  n28["<b>σRH_re</b><br/>((σRH X : ℂ) + I * (t : ℂ)).re = σRH X"]:::shp
   n29["<b>integrand_norm_le</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σRH X : ℂ) + I * (t : ℂ))‖ ≤…"]:::thm
   x0(["<b>Abscissa</b><br/>logDerivZeta_crude_theta<br/>zeroFreeRight_of_RH"]):::ext
   x1(["<b>ThetaLine</b><br/>logDerivZeta_compact_theta<br/>logDerivZeta_line_theta"]):::ext
@@ -100,6 +100,9 @@ flowchart LR
   x2 -.-> n16
   x2 -.-> n3
   x5 -.-> n19
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -113,34 +116,34 @@ flowchart LR
 flowchart LR
   n0["<b>I37_norm_le</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (2 * T) * (11100 *…"]:::thm
   n1["<b>integrand_norm_le_horiz</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) + I * (t : ℂ))‖ ≤ (19…"]:::thm
-  n2["<b>horiz_length</b><br/>(1 + 1 / Real.log X) - σRH X = 1 / 2"]:::thm
+  n2["<b>horiz_length</b><br/>(1 + 1 / Real.log X) - σRH X = 1 / 2"]:::shp
   n3["<b>I8_norm_le</b><br/>‖I₈ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * …"]:::thm
   n4["<b>integrand_norm_le_horiz_neg</b><br/>‖SmoothedChebyshevIntegrand ν ε X ((σ : ℂ) - (T : ℂ) * I)‖ ≤ (19…"]:::thm
   n5["<b>I2_norm_le</b><br/>‖I₂ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (1 / 2) * ((1996 * …"]:::thm
-  n6["<b>smoothedChebyshev_sub_main_norm_le</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::end_
-  n7["<b>norm_sq_line</b><br/>‖((σ : ℂ) + I * (t : ℂ))‖ ^ 2 = σ ^ 2 + t ^ 2"]:::thm
-  n8["<b>half_lt_σRH</b><br/>(1:ℝ)/2 ＜ σRH X"]:::thm
-  n9["<b>kernel_le</b><br/>((σRH X) ^ 2 + t ^ 2)⁻¹ ≤ 4 * (1 + t ^ 2)⁻¹"]:::thm
-  n10["<b>integral_kernel_le</b><br/>∫ t in (-T)..T, ((1:ℝ) + t ^ 2)⁻¹ ≤ Real.pi"]:::thm
+  n6["<b>smoothedChebyshev_sub_main_norm_le ■</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::thm
+  n7["<b>norm_sq_line</b><br/>‖((σ : ℂ) + I * (t : ℂ))‖ ^ 2 = σ ^ 2 + t ^ 2"]:::shp
+  n8["<b>half_lt_σRH</b><br/>(1:ℝ)/2 ＜ σRH X"]:::shp
+  n9["<b>kernel_le</b><br/>((σRH X) ^ 2 + t ^ 2)⁻¹ ≤ 4 * (1 + t ^ 2)⁻¹"]:::shp
+  n10["<b>integral_kernel_le</b><br/>∫ t in (-T)..T, ((1:ℝ) + t ^ 2)⁻¹ ≤ Real.pi"]:::shp
   n11["<b>I37_norm_le_decay</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * Real.pi * (11100 *…"]:::thm
-  n12["<b>rpow_σRH</b><br/>X ^ (σRH X) = Real.exp 1 * Real.sqrt X"]:::thm
+  n12["<b>rpow_σRH</b><br/>X ^ (σRH X) = Real.exp 1 * Real.sqrt X"]:::shp
   n13["<b>I37_sqrt_form</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (22200 * Real.exp 1 * C / ε) * Real.sqrt…"]:::thm
-  n14["<b>smoothedChebyshev_sqrt_bound</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::end_
-  n15["<b>kernel_modulus_le</b><br/>‖((x : ℂ)) ^ (w - 1)‖ ≤ 2"]:::thm
-  n16["<b>mellin_bump_bounded</b><br/>∃ B ＞ 0, ∀ w : ℂ, 0 ＜ w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : …"]:::thm
+  n14["<b>smoothedChebyshev_sqrt_bound ■</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::thm
+  n15["<b>kernel_modulus_le</b><br/>‖((x : ℂ)) ^ (w - 1)‖ ≤ 2"]:::shp
+  n16["<b>mellin_bump_bounded</b><br/>∃ B ＞ 0, ∀ w : ℂ, 0 ＜ w.re → w.re ≤ 2 → ‖mellin (fun x ↦ (ν x : …"]:::shp
   n17["<b>mellin_smooth1_le</b><br/>‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) s‖ ≤ B * ‖s‖⁻¹"]:::thm
-  n18["<b>norm_line_ge</b><br/>(1 + |t|) / 3 ≤ ‖((σRH X : ℂ)) + I * (t : ℂ)‖"]:::thm
-  n19["<b>integral_shift_inv</b><br/>∫ t in (0:ℝ)..T, (1 + t)⁻¹ = Real.log (1 + T)"]:::thm
-  n20["<b>integral_abs_kernel</b><br/>∫ t in (-T)..T, (1 + |t|)⁻¹ = 2 * Real.log (1 + T)"]:::thm
+  n18["<b>norm_line_ge</b><br/>(1 + |t|) / 3 ≤ ‖((σRH X : ℂ)) + I * (t : ℂ)‖"]:::shp
+  n19["<b>integral_shift_inv</b><br/>∫ t in (0:ℝ)..T, (1 + t)⁻¹ = Real.log (1 + T)"]:::shp
+  n20["<b>integral_abs_kernel</b><br/>∫ t in (-T)..T, (1 + |t|)⁻¹ = 2 * Real.log (1 + T)"]:::shp
   n21["<b>I37_norm_le_epsfree</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (1 / (2 * Real.pi)) * (6 * Real.log (1 +…"]:::thm
   n22["<b>I37_sqrt_log3</b><br/>‖I₃₇ ν ε T X (σRH X)‖ ≤ (66600 * Real.exp 1 * B / Real.pi) * Rea…"]:::thm
   n23["<b>psi_sub_self_le</b><br/>|ψ X - X| ≤ E₁ + E₂ + E₃"]:::thm
-  n24["<b>eps_choice_ok</b><br/>c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.l…"]:::lone
-  n25["<b>psi_weak_at</b><br/>|ψ X - X| ≤ (c₁ + c₂ + c₃) * Real.sqrt X * (Real.log X) ^ 3"]:::end_
+  n24["<b>eps_choice_ok ■</b><br/>c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.l…"]:::shp
+  n25["<b>psi_weak_at ■</b><br/>|ψ X - X| ≤ (c₁ + c₂ + c₃) * Real.sqrt X * (Real.log X) ^ 3"]:::thm
   n26["<b>bump_exists</b><br/>∃ ν : ℝ → ℝ, ContDiff ℝ 1 ν ∧ (∀ x ＞ 0, 0 ≤ ν x) ∧ ν.support ⊆ S…"]:::thm
-  n27["<b>norm_ge_height</b><br/>T ≤ ‖((σ : ℂ)) + I * (T : ℂ)‖"]:::thm
+  n27["<b>norm_ge_height</b><br/>T ≤ ‖((σ : ℂ)) + I * (T : ℂ)‖"]:::shp
   n28["<b>mellin_horiz_le</b><br/>‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) + I * (T : ℂ))‖ ≤…"]:::thm
-  n29["<b>inv_sqrt_mul_self</b><br/>(Real.sqrt X)⁻¹ * X = Real.sqrt X"]:::thm
+  n29["<b>inv_sqrt_mul_self</b><br/>(Real.sqrt X)⁻¹ * X = Real.sqrt X"]:::shp
   x0(["<b>diagram 1</b><br/>4 theorems"]):::ext
   x1(["<b>diagram 3</b><br/>6 theorems"]):::ext
   x2(["<b>ThetaPull</b><br/>I37_norm_le_decay_theta<br/>I37_norm_le_epsfree_theta<br/>norm_line_ge_theta"]):::ext
@@ -198,6 +201,9 @@ flowchart LR
   x0 -.-> n21
   x0 -.-> n4
   x0 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -209,14 +215,14 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  n0["<b>instantiation_arithmetic</b><br/>c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.l…"]:::thm
-  n1["<b>horiz_small</b><br/>(1 / (2 * Real.pi)) * (1 / 2) * ((1996 * Real.log (84 * X) + (29…"]:::thm
+  n0["<b>instantiation_arithmetic</b><br/>c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.l…"]:::shp
+  n1["<b>horiz_small</b><br/>(1 / (2 * Real.pi)) * (1 / 2) * ((1996 * Real.log (84 * X) + (29…"]:::shp
   n2["<b>mellin_main_const</b><br/>∃ Cmain ＞ 0, ∃ ε₀ ＞ 0, ∀ ε : ℝ, 0 ＜ ε → ε ＜ ε₀ → ‖mellin (fun x …"]:::thm
   n3["<b>contour_at_instantiation</b><br/>‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) …"]:::thm
-  n4["<b>norm_ge_height_neg</b><br/>T ≤ ‖((σ : ℂ)) - (T : ℂ) * I‖"]:::thm
+  n4["<b>norm_ge_height_neg</b><br/>T ≤ ‖((σ : ℂ)) - (T : ℂ) * I‖"]:::shp
   n5["<b>mellin_horiz_le_neg</b><br/>‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σ : ℂ) - (T : ℂ) * I)‖ ≤…"]:::thm
   n6["<b>mellin_vert_le</b><br/>‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σRH X : ℂ) + I * (t : ℂ)…"]:::thm
-  n7["<b>rpow_one_add</b><br/>X ^ (1 + 1 / Real.log X) = Real.exp 1 * X"]:::thm
+  n7["<b>rpow_one_add</b><br/>X ^ (1 + 1 / Real.log X) = Real.exp 1 * X"]:::shp
   n8["<b>psi_weak_of_RH</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t…"]:::thm
   n9["<b>stmtPsiWeak_of_RH</b><br/>∃ C ＞ 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀"]:::thm
   x0(["<b>diagram 2</b><br/>11 theorems"]):::ext
@@ -245,6 +251,9 @@ flowchart LR
   x0 -.-> n8
   x2 -.-> n3
   x2 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -252,7 +261,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -269,7 +278,7 @@ The pole absorbed. `zetaE s = (s-1)·ζ s`, with the removable singularity at `s
 <a name="RHPull--RH"></a>
 ### `RHPull.σRH`
 
-def · line 1091
+def · line 1096
 
 The abscissa.
 
@@ -282,6 +291,8 @@ The abscissa.
 ### `Slice3.zeta_ne_zero_of_RH`
 
 line 23
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Under RH, ζ has no zero with `1/2 < re s`, other than `s = 1`.
 
@@ -309,6 +320,8 @@ line 23
 
 line 37
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `log (30/29) ≥ 1/30`.
 
 **Proves**
@@ -325,6 +338,8 @@ line 37
 ### `Slice3.finalBoundConst_le`
 
 line 43
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** LEVER 2 — the FinalBound constant at `r' = 3/4, r = 181/200, R' = 29/32, R = 15/16`.
 
@@ -346,6 +361,8 @@ line 43
 ### `Slice3.logDerivZeta_crude`
 
 line 74
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Slice 3. Under RH, for `t ≥ 2` and `1/2 < σ₁ ≤ 3/2`, `‖ζ'/ζ (σ₁ + it)‖ ≤ 1996 log(84 t) + (29 log t + 129)/(σ₁ - 1/2)`.
 
@@ -387,6 +404,8 @@ line 74
 
 line 257
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Corollary A — the literal `log²|t|` shape, at a `t`-tied abscissa. `σ₁ = 1/2 + 1/log t` gives `‖ζ'/ζ‖ ≤ 21600 (log t)²`. The abscissa moves with `t`, so this is not a vertical line.
 
 **Proves**
@@ -410,6 +429,8 @@ line 257
 ### `Slice3.logDerivZeta_sq_at_X`
 
 line 295
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Corollary B — the vertical-line shape the ψ-side actually consumes. `σ₁ = 1/2 + 1/log X` fixed, `2 ≤ t ≤ X`, `log X ≥ 1`: `‖ζ'/ζ‖ ≤ 11100 (log X)²`, uniformly in `t` on the truncation range.
 
@@ -439,6 +460,8 @@ line 295
 
 line 354
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** Under RH, `ζ` has no zero with `1/2 < re s`, other than `s = 1`.
 
 **Proves**
@@ -463,7 +486,11 @@ line 354
 <a name="Slice4-zetaE_eq"></a>
 ### `Slice4.zetaE_eq`
 
-line 371
+line 372
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Away from `s = 1`, `zetaE s = (s − 1)·ζ s`.
 
 **Proves**
 
@@ -491,7 +518,11 @@ zetaE s = (s - 1) * ζ s
 <a name="Slice4-zetaE_one"></a>
 ### `Slice4.zetaE_one`
 
-line 374
+line 376
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** At the filled-in point, `zetaE 1 = 1`.
 
 **Proves**
 
@@ -511,7 +542,11 @@ zetaE 1 = 1
 <a name="Slice4-zetaE_differentiableAt_of_ne"></a>
 ### `Slice4.zetaE_differentiableAt_of_ne`
 
-line 376
+line 379
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Helper: `zetaE` is complex differentiable at every `s ≠ 1`.
 
 **Proves**
 
@@ -536,7 +571,11 @@ DifferentiableAt ℂ zetaE s
 <a name="Slice4-zetaE_differentiable"></a>
 ### `Slice4.zetaE_differentiable`
 
-line 384
+line 388
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** `zetaE` is complex differentiable everywhere, including at `s = 1`.
 
 **Proves**
 
@@ -558,7 +597,9 @@ Differentiable ℂ zetaE
 <a name="Slice4-logDeriv_zetaE"></a>
 ### `Slice4.logDeriv_zetaE`
 
-line 394
+line 398
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The log-derivative shift. `zetaE'/zetaE = 1/(s-1) + ζ'/ζ`.
 
@@ -587,7 +628,11 @@ deriv zetaE s / zetaE s = 1 / (s - 1) + deriv ζ s / ζ s
 <a name="Slice4-zetaE_ne_zero_of_RH"></a>
 ### `Slice4.zetaE_ne_zero_of_RH`
 
-line 409
+line 414
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Under RH, `zetaE s ≠ 0` for every `s` with `1/2 < Re s`.
 
 **Proves**
 
@@ -613,7 +658,9 @@ zetaE s ≠ 0
 <a name="Slice4-zetaE_disk_upper"></a>
 ### `Slice4.zetaE_disk_upper`
 
-line 418
+line 423
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The majorant on the wide disk, pole included. `‖zetaE w‖ ≤ 430` for `|t| ≤ 2` and `‖w - (2 + it)‖ ≤ 15/8`.
 
@@ -643,7 +690,9 @@ line 418
 <a name="Slice4-log_1300_le"></a>
 ### `Slice4.log_1300_le`
 
-line 493
+line 498
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `log 1300 ≤ 7.28`, from `1300² ≤ 2^21`.
 
@@ -663,7 +712,9 @@ Real.log 1300 ≤ 7.28
 <a name="Slice4-finalBoundConst_le"></a>
 ### `Slice4.finalBoundConst_le`
 
-line 503
+line 508
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** LEVER 2 — the FinalBound constant at `r' = 3/4, r = 181/200, R' = 29/32, R = 15/16` — the same radii as slice 3.
 
@@ -682,7 +733,9 @@ line 503
 <a name="Slice4-logDerivZeta_compact"></a>
 ### `Slice4.logDerivZeta_compact`
 
-line 531
+line 536
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Slice 4 — the compact patch. Under RH, for `|t| ≤ 2` and `1/2 < σ₁ ≤ 3/4`, `‖ζ'/ζ (σ₁ + it)‖ ≤ 14535 + 212/(σ₁ - 1/2)`.
 
@@ -720,7 +773,9 @@ line 531
 <a name="Slice4b-logDerivZeta_norm_neg"></a>
 ### `Slice4b.logDerivZeta_norm_neg`
 
-line 789
+line 794
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Reflection: the log-derivative's norm is even in `t`.
 
@@ -746,7 +801,9 @@ line 789
 <a name="Slice4b-logDerivZeta_line"></a>
 ### `Slice4b.logDerivZeta_line`
 
-line 801
+line 806
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Slice 4b — the vertical line, uniform in `t`. Under RH, on `σ₁ = 1/2 + 1/log X` with `log X ≥ 4` and `|t| ≤ X`: `‖ζ'/ζ‖ ≤ 11100 (log X)²`.
 
@@ -775,7 +832,9 @@ line 801
 <a name="Slice8-schoenfeldWeak_of_psiWeak_three"></a>
 ### `Slice8.schoenfeldWeak_of_psiWeak_three`
 
-line 848
+line 853
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Slice 8 — PsiToPi at `k = 3`. A ψ-side weak bound at exponent `3` delivers `StmtSchoenfeldWeak (3C+13) 2` — the shape entry 231's census gate is stated against.
 
@@ -802,7 +861,9 @@ Stage3.StmtSchoenfeldWeak (3 * C + 13) 2 (max (x₀ ^ 2) 9) (fun x => (Nat.prime
 <a name="Slice5-pseries_tail_le"></a>
 ### `Slice5.pseries_tail_le`
 
-line 879
+line 884
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Integral test: for `b > 0`, `∑_{n ≥ 2} n^{-1-b} ≤ 1/b`.
 
@@ -825,7 +886,9 @@ line 879
 <a name="Slice5-pseries_le"></a>
 ### `Slice5.pseries_le`
 
-line 902
+line 907
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** For `b > 0`, `∑_{n ≥ 0} n^{-1-b} ≤ 1 + 1/b` (the `n = 0` term is `0`).
 
@@ -850,7 +913,9 @@ line 902
 <a name="Slice5-vonMangoldt_term_le"></a>
 ### `Slice5.vonMangoldt_term_le`
 
-line 918
+line 923
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `Λ n / n^σ ≤ (1/b) · n^{-1-b}` when `σ = 1 + 2b`, `b > 0`.
 
@@ -874,7 +939,9 @@ line 918
 <a name="Slice5-norm_logDerivZeta_of_one_lt_re"></a>
 ### `Slice5.norm_logDerivZeta_of_one_lt_re`
 
-line 948
+line 953
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Slice 5. For `Re s > 1`, elementary and RH-free: `‖ζ'/ζ(s)‖ ≤ 2/(Re s - 1) + 4/(Re s - 1)²`.
 
@@ -900,7 +967,9 @@ line 948
 <a name="Slice5-norm_logDerivZeta_sigma0"></a>
 ### `Slice5.norm_logDerivZeta_sigma0`
 
-line 991
+line 996
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Corollary — the shape the `I₁`/`I₉` integrals consume. At the standard abscissa `σ₀ = 1 + 1/L` with `L ≥ 1`, uniformly in `t`: `‖ζ'/ζ(σ₀ + it)‖ ≤ 2 L + 4 L²`.
 
@@ -923,7 +992,9 @@ line 991
 <a name="RHPull-zeta_ne_zero_of_RH"></a>
 ### `RHPull.zeta_ne_zero_of_RH`
 
-line 1031
+line 1036
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Under RH, `ζ` has no zero right of the critical line.
 
@@ -951,7 +1022,9 @@ line 1031
 <a name="RHPull-holo_logDerivZeta_of_RH"></a>
 ### `RHPull.holo_logDerivZeta_of_RH`
 
-line 1036
+line 1041
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The holomorphy hypothesis is free under RH.
 
@@ -977,7 +1050,9 @@ HolomorphicOn (deriv riemannZeta / riemannZeta) (Set.Icc σ₁ 2 ×ℂ Set.Icc (
 <a name="RHPull-pull_at_RH_abscissa"></a>
 ### `RHPull.pull_at_RH_abscissa`
 
-line 1056
+line 1061
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The pull, instantiated at the RH abscissa. `SmoothedChebyshevPull1` with `σ₁ = 1/2 + 1/log X`. Its holomorphy hypothesis is discharged by RH, so the contour lands exactly on the line `Slice4b.logDerivZeta_line` controls.
 
@@ -1014,7 +1089,11 @@ SmoothedChebyshev SmoothingF ε X = I₁ SmoothingF ε X T - I₂ SmoothingF ε 
 <a name="RHPull--RH_re"></a>
 ### `RHPull.σRH_re`
 
-line 1093
+line 1099
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the point `σRH X + i·t` has real part `σRH X`.
 
 **Proves**
 
@@ -1038,7 +1117,9 @@ line 1093
 <a name="RHPull-integrand_norm_le"></a>
 ### `RHPull.integrand_norm_le`
 
-line 1099
+line 1105
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Pointwise bound on the pull integrand along the RH abscissa. `‖(-ζ'/ζ)·𝓜·X^s‖` with the line bound on the first factor, the Mellin bound on the second, and `‖X^s‖ = X^σ₁` on the third.
 
@@ -1072,7 +1153,9 @@ line 1099
 <a name="RHPull-I37_norm_le"></a>
 ### `RHPull.I37_norm_le`
 
-line 1131
+line 1137
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** I₃₇ bounded at the RH abscissa. The vertical segment, with the line bound on `ζ'/ζ` and a uniform Mellin bound `M`.
 
@@ -1105,7 +1188,9 @@ line 1131
 <a name="RHPull-integrand_norm_le_horiz"></a>
 ### `RHPull.integrand_norm_le_horiz`
 
-line 1181
+line 1187
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Pointwise bound on the horizontal segments. For `σ` between the RH abscissa and `1 + 1/log X`, at height `t` with `2 ≤ |t|`, `Slice3.logDerivZeta_crude` applies and `1/(σ - 1/2) ≤ log X` on that range.
 
@@ -1138,7 +1223,9 @@ line 1181
 <a name="RHPull-horiz_length"></a>
 ### `RHPull.horiz_length`
 
-line 1238
+line 1244
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The horizontal segment has length exactly `1/2`.
 
@@ -1164,7 +1251,9 @@ line 1238
 <a name="RHPull-I8_norm_le"></a>
 ### `RHPull.I8_norm_le`
 
-line 1242
+line 1248
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** I₈ bounded at the RH abscissa — the upper horizontal segment.
 
@@ -1198,7 +1287,9 @@ line 1242
 <a name="RHPull-integrand_norm_le_horiz_neg"></a>
 ### `RHPull.integrand_norm_le_horiz_neg`
 
-line 1303
+line 1309
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Pointwise bound on the lower horizontal segment, through the conjugate symmetry `Slice4b.logDerivZeta_norm_neg`.
 
@@ -1232,7 +1323,9 @@ line 1303
 <a name="RHPull-I2_norm_le"></a>
 ### `RHPull.I2_norm_le`
 
-line 1363
+line 1369
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** I₂ bounded at the RH abscissa — the lower horizontal segment.
 
@@ -1266,7 +1359,9 @@ line 1363
 <a name="RHPull-smoothedChebyshev_sub_main_norm_le"></a>
 ### `RHPull.smoothedChebyshev_sub_main_norm_le`
 
-line 1423
+line 1429
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE ASSEMBLY — every contour piece summed at the RH abscissa. `pull_at_RH_abscissa` splits the smoothed Chebyshev into five pieces plus the main term; the triangle inequality and the four bounds close it. `B₁` and `B₉` come from PNT+'s `I1Bound` / `I9Bound`, which are `σ₁`-independent.
 
@@ -1311,7 +1406,9 @@ line 1423
 <a name="RHPull-norm_sq_line"></a>
 ### `RHPull.norm_sq_line`
 
-line 1484
+line 1490
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `‖σ + it‖² = σ² + t²`.
 
@@ -1337,7 +1434,9 @@ line 1484
 <a name="RHPull-half_lt_-RH"></a>
 ### `RHPull.half_lt_σRH`
 
-line 1490
+line 1496
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `σRH X > 1/2`.
 
@@ -1365,7 +1464,9 @@ line 1490
 <a name="RHPull-kernel_le"></a>
 ### `RHPull.kernel_le`
 
-line 1496
+line 1502
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The Cauchy kernel on the line is dominated by `4/(1+t²)`.
 
@@ -1392,7 +1493,9 @@ line 1496
 <a name="RHPull-integral_kernel_le"></a>
 ### `RHPull.integral_kernel_le`
 
-line 1507
+line 1513
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `∫_{-T}^{T} (1+t²)⁻¹ ≤ π`.
 
@@ -1416,7 +1519,9 @@ line 1507
 <a name="RHPull-I37_norm_le_decay"></a>
 ### `RHPull.I37_norm_le_decay`
 
-line 1523
+line 1529
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** I₃₇, T-free. Integrating the Mellin factor's `1/‖s‖²` decay instead of taking a uniform sup removes `T` entirely, leaving `X^σ₁ = e·√X` times `log²X`. This is the bound that makes the whole route land at `√X log²X`.
 
@@ -1452,7 +1557,9 @@ line 1523
 <a name="RHPull-rpow_-RH"></a>
 ### `RHPull.rpow_σRH`
 
-line 1589
+line 1595
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Where the `√X` comes from. `X^(1/2 + 1/log X) = e·√X`. No zero sum, no explicit formula — the square root is the abscissa.
 
@@ -1479,7 +1586,9 @@ X ^ (σRH X) = Real.exp 1 * Real.sqrt X
 <a name="RHPull-I37_sqrt_form"></a>
 ### `RHPull.I37_sqrt_form`
 
-line 1601
+line 1607
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The vertical segment in `√X log²X` form.
 
@@ -1514,7 +1623,9 @@ line 1601
 <a name="RHPull-smoothedChebyshev_sqrt_bound"></a>
 ### `RHPull.smoothedChebyshev_sqrt_bound`
 
-line 1629
+line 1635
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE CAPSTONE — the smoothed Chebyshev error in `√X log²X` form. Every contour piece bounded at the RH abscissa, with the vertical segment carrying the `√X` through `X^σ₁ = e·√X` and the horizontals killed by the Mellin factor's `T⁻²` once `T ≥ √X`. No explicit formula, no zero sum.
 
@@ -1559,7 +1670,9 @@ line 1629
 <a name="RHPull-kernel_modulus_le"></a>
 ### `RHPull.kernel_modulus_le`
 
-line 1689
+line 1695
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** On `[1/2, 2]` with `0 < re w ≤ 2`, the kernel `x^(w-1)` has modulus at most 2.
 
@@ -1584,7 +1697,9 @@ line 1689
 <a name="RHPull-mellin_bump_bounded"></a>
 ### `RHPull.mellin_bump_bounded`
 
-line 1723
+line 1729
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The missing lemma: `𝓜ν` is UNIFORMLY bounded on the strip. `MellinOfPsi` gives `C/‖w‖`, which blows up at the origin where the true function tends to `∫ν(x)/x dx = 1`. That blow-up is what forces the `ε⁻¹` in `MellinOfSmooth1b`, and the `ε⁻¹` is what caps the hEF-free route at `X^{3/4}`. This bound is ε-free, so the route reaches `√X`.
 
@@ -1611,7 +1726,9 @@ line 1723
 <a name="RHPull-mellin_smooth1_le"></a>
 ### `RHPull.mellin_smooth1_le`
 
-line 1776
+line 1782
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The ε-free Mellin bound. `MellinOfSmooth1a` factors `𝓜(Smooth1 ν ε)(s) = s⁻¹ · 𝓜ν(εs)`; feeding it the UNIFORM bound on `𝓜ν` instead of `MellinOfPsi`'s decaying one gives `B/‖s‖` with no `ε` at all. This is what lets `ε = X^(-1/2)` be chosen freely, and it is the difference between `X^{3/4}` and `√X`.
 
@@ -1643,7 +1760,9 @@ line 1776
 <a name="RHPull-norm_line_ge"></a>
 ### `RHPull.norm_line_ge`
 
-line 1799
+line 1805
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** On the RH abscissa, `‖s‖ ≥ (1+|t|)/3`.
 
@@ -1671,7 +1790,9 @@ line 1799
 <a name="RHPull-integral_shift_inv"></a>
 ### `RHPull.integral_shift_inv`
 
-line 1809
+line 1815
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `∫₀ᵀ (1+t)⁻¹ = log(1+T)`.
 
@@ -1694,7 +1815,9 @@ line 1809
 <a name="RHPull-integral_abs_kernel"></a>
 ### `RHPull.integral_abs_kernel`
 
-line 1831
+line 1837
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `∫₋ᵀᵀ (1+|t|)⁻¹ = 2 log(1+T)`.
 
@@ -1720,7 +1843,9 @@ line 1831
 <a name="RHPull-I37_norm_le_epsfree"></a>
 ### `RHPull.I37_norm_le_epsfree`
 
-line 1873
+line 1879
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** I₃₇ with the ε-free Mellin bound. `‖𝓜‖ ≤ B/‖s‖` and `‖s‖ ≥ (1+|t|)/3` give a majorant `3B/(1+|t|)`, whose integral is `6B·log(1+T)`. No `ε` anywhere — this is the version that lets `ε = X^(-1/2)` be chosen freely.
 
@@ -1755,7 +1880,9 @@ line 1873
 <a name="RHPull-I37_sqrt_log3"></a>
 ### `RHPull.I37_sqrt_log3`
 
-line 1935
+line 1941
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The vertical segment at `√X log³X`, ε-free.
 
@@ -1789,7 +1916,9 @@ line 1935
 <a name="RHPull-psi_sub_self_le"></a>
 ### `RHPull.psi_sub_self_le`
 
-line 1983
+line 1989
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The ψ triangle. `ψ X - X` split through the smoothed Chebyshev and the Mellin main term: closeness + contour + main-term correction.
 
@@ -1816,7 +1945,9 @@ line 1983
 <a name="RHPull-eps_choice_ok"></a>
 ### `RHPull.eps_choice_ok`
 
-line 2015
+line 2021
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The choice `ε = X^(-1/2)` closes the smoothing arithmetic. `ε·X·log X = √X·log X ≤ √X·log³X`, so the smoothing error is already in the target shape. This is the step the `ε⁻¹` used to forbid.
 
@@ -1839,7 +1970,9 @@ c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.log X) ^ 3
 <a name="RHPull-psi_weak_at"></a>
 ### `RHPull.psi_weak_at`
 
-line 2035
+line 2041
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** StmtPsiWeak, in shape. Each error piece bounded by its constant times `√X·log³X` gives `|ψ X - X| ≤ (c₁+c₂+c₃)·√X·log³X`, which is exactly the `StmtPsiWeak _ 3 _` predicate at `X`.
 
@@ -1866,7 +1999,9 @@ line 2035
 <a name="RHPull-bump_exists"></a>
 ### `RHPull.bump_exists`
 
-line 2058
+line 2064
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A concrete bump, with mass-one on `Ioi 0`. `SmoothExistence` states the mass condition over `Ici 0`; `{0}` is null, so it transfers.
 
@@ -1886,7 +2021,9 @@ line 2058
 <a name="RHPull-norm_ge_height"></a>
 ### `RHPull.norm_ge_height`
 
-line 2073
+line 2079
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `‖σ + iT‖ ≥ T` for `T ≥ 0`.
 
@@ -1911,7 +2048,9 @@ T ≤ ‖((σ : ℂ)) + I * (T : ℂ)‖
 <a name="RHPull-mellin_horiz_le"></a>
 ### `RHPull.mellin_horiz_le`
 
-line 2080
+line 2086
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The Mellin factor on the horizontal segments decays like `1/T`.
 
@@ -1945,7 +2084,9 @@ line 2080
 <a name="RHPull-inv_sqrt_mul_self"></a>
 ### `RHPull.inv_sqrt_mul_self`
 
-line 2105
+line 2111
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `(√X)⁻¹ · X = √X`.
 
@@ -1969,7 +2110,9 @@ line 2105
 <a name="RHPull-instantiation_arithmetic"></a>
 ### `RHPull.instantiation_arithmetic`
 
-line 2118
+line 2124
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The instantiation arithmetic. At `ε = X^(-1/2)` and `T = X` every error piece lands under `c·√X·log³X`:
 
@@ -1996,7 +2139,9 @@ c * (Real.sqrt X)⁻¹ * X * Real.log X ≤ c * Real.sqrt X * (Real.log X) ^ 3 �
 <a name="RHPull-horiz_small"></a>
 ### `RHPull.horiz_small`
 
-line 2152
+line 2158
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Horizontal contribution at `T = X` is `O(log²X)`. With `M ≤ B/X` and `X^(1+1/log X) = e·X`, the `X` cancels outright.
 
@@ -2022,7 +2167,9 @@ line 2152
 <a name="RHPull-mellin_main_const"></a>
 ### `RHPull.mellin_main_const`
 
-line 2202
+line 2208
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Unpacking `MellinOfSmooth1c`. It is stated as `(fun ε ↦ 𝓜(Smooth1 ν ε) 1 − 1) =O[𝓝[>]0] id`; this extracts a constant and a threshold below which the main-term correction is linear in `ε`.
 
@@ -2048,7 +2195,9 @@ line 2202
 <a name="RHPull-contour_at_instantiation"></a>
 ### `RHPull.contour_at_instantiation`
 
-line 2232
+line 2238
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The contour bound at the instantiation. `ε`-free vertical, `B/T` horizontals, `I₁`/`I₉` from PNT+ — all summed.
 
@@ -2095,7 +2244,9 @@ line 2232
 <a name="RHPull-norm_ge_height_neg"></a>
 ### `RHPull.norm_ge_height_neg`
 
-line 2292
+line 2298
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `‖σ - iT‖ ≥ T`.
 
@@ -2120,7 +2271,9 @@ T ≤ ‖((σ : ℂ)) - (T : ℂ) * I‖
 <a name="RHPull-mellin_horiz_le_neg"></a>
 ### `RHPull.mellin_horiz_le_neg`
 
-line 2302
+line 2308
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The Mellin factor on the lower horizontal decays like `1/T`.
 
@@ -2154,7 +2307,9 @@ line 2302
 <a name="RHPull-mellin_vert_le"></a>
 ### `RHPull.mellin_vert_le`
 
-line 2319
+line 2325
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The Mellin factor on the RH abscissa, in the ε-free `B/‖s‖` form.
 
@@ -2189,7 +2344,9 @@ line 2319
 <a name="RHPull-rpow_one_add"></a>
 ### `RHPull.rpow_one_add`
 
-line 2345
+line 2351
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `X^(1 + 1/log X) = e·X`.
 
@@ -2214,7 +2371,9 @@ X ^ (1 + 1 / Real.log X) = Real.exp 1 * X
 <a name="RHPull-psi_weak_of_RH"></a>
 ### `RHPull.psi_weak_of_RH`
 
-line 2357
+line 2363
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** StmtPsiWeak under RH, with no explicit formula. Every constant is obtained: `B` from `mellin_bump_bounded`, `Cclose` from `SmoothedChebyshevClose`, `C₁`/`C₉` from `I1Bound`/`I9Bound`, `Cmain` from `MellinOfSmooth1c`. The parameters are `ε = X^(-1/2)` and `T = X`.
 
@@ -2253,7 +2412,9 @@ line 2357
 <a name="RHPull-stmtPsiWeak_of_RH"></a>
 ### `RHPull.stmtPsiWeak_of_RH`
 
-line 2485
+line 2491
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `StmtPsiWeak` under RH, with no explicit formula — the leaf's consumer, discharged. `Assembly.psiWeak_of_RH_EF_NT` reaches this from hRH + hEF + hNT; this reaches it from hRH alone.
 

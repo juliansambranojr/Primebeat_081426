@@ -1,0 +1,18 @@
+key	value	source
+module_lines	886	wc -l lean_stage3/Stage3/AttainedPi.lean
+theorems_proved	17	grep -c ^theorem lean_stage3/Stage3/AttainedPi.lean
+defs	5	topRow, slack, lineSet, term, tailTerm
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/AttainedPi.lean
+pins	3	attained_off_line_pi, fin_bound, band_small
+errors_first	16	the worker's first lake build Stage3.AttainedPi, as it reported: about this many real errors from six causes
+builds	3	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8847	lake build (full Stage3), Build completed successfully
+jobs_module	8811	run/build.log, lake build Stage3.AttainedPi
+loop_version	22	lean_stage3/LOOP.md version line
+design	carlson.md#c7	joint 10 when the largest real part is attained
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+cases_of_0431	3	unit 0431, the cases of the general converse
+cases_closed	2	units 0445 and this one

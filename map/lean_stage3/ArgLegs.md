@@ -11,13 +11,13 @@ ArgLegs — block H1 of `lean_stage3/design/hnt.md`, "The two contour legs". The
 
 ```mermaid
 flowchart LR
-  n0["<b>abs_arg_sub_le_pi</b><br/>|z.arg - w.arg| ≤ Real.pi"]:::thm
-  n1["<b>mem_slitPlane_of_re_nonneg</b><br/>z ∈ Complex.slitPlane"]:::thm
-  n2["<b>integral_logDeriv_eq_log_sub</b><br/>∫ x in a..b, g' x / g x = Complex.log (g b) - Complex.log (g a)"]:::thm
-  n3["<b>im_integral_le_pi_of_re_nonneg</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi"]:::thm
-  n4["<b>im_integral_le_pi_of_re_nonpos</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi"]:::thm
-  n5["<b>re_sign_const</b><br/>(∀ x ∈ Set.Icc a b, 0 ≤ (g x).re) ∨ (∀ x ∈ Set.Icc a b, (g x).re…"]:::thm
-  n6["<b>segment_im_integral_le</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi * ((Z.card : ℝ) + 1)"]:::thm
+  n0["<b>abs_arg_sub_le_pi</b><br/>|z.arg - w.arg| ≤ Real.pi"]:::shp
+  n1["<b>mem_slitPlane_of_re_nonneg</b><br/>z ∈ Complex.slitPlane"]:::shp
+  n2["<b>integral_logDeriv_eq_log_sub</b><br/>∫ x in a..b, g' x / g x = Complex.log (g b) - Complex.log (g a)"]:::shp
+  n3["<b>im_integral_le_pi_of_re_nonneg</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi"]:::shp
+  n4["<b>im_integral_le_pi_of_re_nonpos</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi"]:::shp
+  n5["<b>re_sign_const</b><br/>(∀ x ∈ Set.Icc a b, 0 ≤ (g x).re) ∨ (∀ x ∈ Set.Icc a b, (g x).re…"]:::shp
+  n6["<b>segment_im_integral_le</b><br/>|(∫ x in a..b, g' x / g x).im| ≤ Real.pi * ((Z.card : ℝ) + 1)"]:::shp
   n7["<b>vertical_leg_le</b><br/>|(∫ t in (0:ℝ)..T, logDeriv riemannZeta (2 + (t : ℂ) * Complex.I…"]:::thm
   n8["<b>horizontal_leg_le</b><br/>|(∫ x in (1/2:ℝ)..2, logDeriv riemannZeta ((x : ℂ) + T * Complex…"]:::thm
   n9["<b>zetaArgContour_le</b><br/>|Stage3.zetaArgContour T| ≤ (Z.card : ℝ) + 3 / 2"]:::thm
@@ -38,6 +38,9 @@ flowchart LR
   n9 -.-> x1
   x0 -.-> n7
   x0 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -45,7 +48,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -53,6 +56,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `ArgLegs.abs_arg_sub_le_pi`
 
 line 56
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Two points of the closed right half-plane have arguments within `π`.
 
@@ -78,6 +83,8 @@ line 56
 
 line 64
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A nonzero point of the closed right half-plane lies in the slit plane.
 
 **Proves**
@@ -102,6 +109,8 @@ z ∈ Complex.slitPlane
 ### `ArgLegs.integral_logDeriv_eq_log_sub`
 
 line 74
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The fundamental theorem of calculus for `g'/g` in the slit plane.
 
@@ -129,6 +138,8 @@ line 74
 ### `ArgLegs.im_integral_le_pi_of_re_nonneg`
 
 line 89
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** One piece, `Re g ≥ 0`: the imaginary part of `∫ g'/g` moves by at most `π`.
 
@@ -162,6 +173,8 @@ line 89
 
 line 102
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** One piece, `Re g ≤ 0`: the same bound, applied at `-g`.
 
 **Proves**
@@ -191,6 +204,8 @@ line 102
 
 line 117
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** With no zero of `Re g` inside `(a, b)`, the sign of `Re g` is constant on `[a, b]`.
 
 **Proves**
@@ -214,6 +229,8 @@ line 117
 ### `ArgLegs.segment_im_integral_le`
 
 line 147
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The segment bound: one piece per zero of `Re g` inside `(a, b)`, plus one.
 
@@ -248,6 +265,8 @@ line 147
 
 line 211
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The vertical leg at `Re s = 2`, where `Re ζ > 0`, costs at most `π/2`.
 
 **Proves**
@@ -275,6 +294,8 @@ line 211
 ### `ArgLegs.horizontal_leg_le`
 
 line 292
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The horizontal leg on `[1/2, 2]` at height `T`, one piece per zero of `Re ζ`.
 
@@ -304,6 +325,8 @@ line 292
 ### `ArgLegs.zetaArgContour_le`
 
 line 354
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The two legs together: `|zetaArgContour T| ≤ q + 3/2` with `q = |Z|`.
 

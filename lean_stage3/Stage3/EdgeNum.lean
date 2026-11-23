@@ -32,6 +32,7 @@ noncomputable def C1n : ℝ :=
       + 1 / (((49/50:ℝ) ^ 2 / (19/20) - 19/20) * Real.log ((49/50:ℝ) / (19/20)))) / 2
     * (Real.log (135 * 81 / (4 * ‖riemannZeta 3 / riemannZeta (3/2)‖) + 2) / Real.log 2 + 4)
 
+/-- The partial fraction's constant `C1n` is positive. -/
 theorem C1n_pos : 0 < C1n := by
   have h1 : (0:ℝ) < Real.log ((49/50:ℝ) / (19/20)) := Real.log_pos (by norm_num)
   have h2 : (0:ℝ) < (49/50:ℝ) ^ 2 / (19/20) - 19/20 := by norm_num
@@ -302,6 +303,7 @@ noncomputable def C2n : ℝ :=
       ((1:ℝ) + Complex.I * (6:ℝ))).toFinset, (analyticOrderNatAt riemannZeta ρ : ℝ))
     / Real.log 2 + 8 * (15 + 88 / Real.log 2) + 1
 
+/-- The ball count's constant `C2n` is positive. -/
 theorem C2n_pos : 0 < C2n := by
   have hM : (0:ℝ) ≤ ∑ ρ ∈ (ContourShift.zeta_zeros_rectangle_finite (0:ℂ)
       ((1:ℝ) + Complex.I * (6:ℝ))).toFinset, (analyticOrderNatAt riemannZeta ρ : ℝ) :=
@@ -582,6 +584,7 @@ theorem ball_order_sum_le_num :
 /-- The edge constant. -/
 noncomputable def Cen : ℝ := C1n + C2n + 1 / Real.log 2
 
+/-- The edge constant `Cen` is positive. -/
 theorem Cen_pos : 0 < Cen := by
   have h1 := C1n_pos
   have h2 := C2n_pos

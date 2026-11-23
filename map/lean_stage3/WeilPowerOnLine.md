@@ -2,7 +2,7 @@
 
 WeilPowerOnLine — the switched window's on-line background, all heights. Rung 5, eighth slice. 2026-09-06.
 
-11 theorems, 2 definitions, 228 lines. Arrows are Lean's own record of what each proof uses.
+11 theorems, 2 definitions, 232 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilOnLine`](../lean_stage3/WeilOnLine.md), [`WeilPowerBands`](../lean_stage3/WeilPowerBands.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerAssembly`](../lean_stage3/WeilPowerAssembly.md)
@@ -11,16 +11,16 @@ WeilPowerOnLine — the switched window's on-line background, all heights. Rung 
 
 ```mermaid
 flowchart LR
-  n0["<b>PsiW_neg</b><br/>PsiW m (-t) = -PsiW m t"]:::thm
-  n1["<b>term_conj</b><br/>termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ"]:::thm
+  n0["<b>PsiW_neg</b><br/>PsiW m (-t) = -PsiW m t"]:::shp
+  n1["<b>term_conj</b><br/>termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ"]:::shp
   n2["<b>weightedTermW_conjZ</b><br/>weightedTermW h γ m (conjZ ρ) = weightedTermW h γ m ρ"]:::thm
   n3["<b>sum_upper_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ B h γ m"]:::thm
   n4["<b>sum_lower_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ B h γ m"]:::thm
   n5["<b>sum_low_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ 4 * h ^ 2 * lowCount"]:::thm
   n6["<b>sum_onLine_le</b><br/>∑ ρ ∈ S, weightedTermW h γ m ρ ≤ onLineBound h γ m"]:::thm
   n7["<b>sum_onLine_subtype_le</b><br/>∑ ρ ∈ s, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m"]:::thm
-  n8["<b>tsum_onLine_le</b><br/>∑' ρ : OnLine, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m"]:::end_
-  n9["<b>summable_onLine</b><br/>Summable (fun ρ : OnLine =＞ weightedTermW h γ m ρ.1)"]:::end_
+  n8["<b>tsum_onLine_le ■</b><br/>∑' ρ : OnLine, weightedTermW h γ m ρ.1 ≤ onLineBound h γ m"]:::thm
+  n9["<b>summable_onLine ■</b><br/>Summable (fun ρ : OnLine =＞ weightedTermW h γ m ρ.1)"]:::thm
   n10["<b>onLineBound_le</b><br/>onLineBound h γ m ≤ 2 * (88 * (γ + r h m + 2) ^ 4 * (4 * h ^ 2 +…"]:::thm
   x0(["<b>WeilPowerBackground</b><br/>online_term_eq<br/>online_term_le_near"]):::ext
   x1(["<b>WeilPowerBands</b><br/>7 theorems"]):::ext
@@ -47,6 +47,9 @@ flowchart LR
   x2 -.-> n4
   x2 -.-> n5
   x3 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -54,14 +57,14 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
 <a name="WeilPowerOnLine-B"></a>
 ### `WeilPowerOnLine.B`
 
-def · line 67
+def · line 69
 
 One side's bound: `A h γ m · π²/6`.
 
@@ -72,7 +75,7 @@ One side's bound: `A h γ m · π²/6`.
 <a name="WeilPowerOnLine-onLineBound"></a>
 ### `WeilPowerOnLine.onLineBound`
 
-def · line 136
+def · line 138
 
 The on-line background bound: `2·B h γ m + 4h²·lowCount`.
 
@@ -86,6 +89,8 @@ The on-line background bound: `2·B h γ m + 4h²·lowCount`.
 ### `WeilPowerOnLine.PsiW_neg`
 
 line 37
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `PsiW` is odd.
 
@@ -114,6 +119,8 @@ PsiW m (-t) = -PsiW m t
 ### `WeilPowerOnLine.term_conj`
 
 line 45
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The on-line term is invariant under conjugation of the zero.
 
@@ -146,7 +153,11 @@ termW h γ m ((starRingEnd ℂ) ρ) = termW h γ m ρ
 <a name="WeilPowerOnLine-weightedTermW_conjZ"></a>
 ### `WeilPowerOnLine.weightedTermW_conjZ`
 
-line 56
+line 58
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `h > 0` and a nontrivial zero `ρ` with real part `1/2`, the weighted on-line term at the conjugate zero `conjZ ρ` equals the weighted on-line term at `ρ`.
 
 **Proves**
 
@@ -177,7 +188,9 @@ weightedTermW h γ m (conjZ ρ) = weightedTermW h γ m ρ
 <a name="WeilPowerOnLine-sum_upper_le"></a>
 ### `WeilPowerOnLine.sum_upper_le`
 
-line 70
+line 72
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Finite on-line sums of height `≥ 11/10`.
 
@@ -215,7 +228,9 @@ line 70
 <a name="WeilPowerOnLine-sum_lower_le"></a>
 ### `WeilPowerOnLine.sum_lower_le`
 
-line 81
+line 83
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Negative heights.
 
@@ -250,7 +265,9 @@ line 81
 <a name="WeilPowerOnLine-sum_low_le"></a>
 ### `WeilPowerOnLine.sum_low_le`
 
-line 104
+line 106
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The low band. Finite on-line sums of height `|t| ≤ 11/10`.
 
@@ -284,7 +301,9 @@ line 104
 <a name="WeilPowerOnLine-sum_onLine_le"></a>
 ### `WeilPowerOnLine.sum_onLine_le`
 
-line 139
+line 141
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** All heights.
 
@@ -319,7 +338,11 @@ line 139
 <a name="WeilPowerOnLine-sum_onLine_subtype_le"></a>
 ### `WeilPowerOnLine.sum_onLine_subtype_le`
 
-line 173
+line 177
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `h > 0` and `γ ≥ 11/10`, the sum of the weighted on-line terms over any finite set of on-line zeros is at most `onLineBound h γ m`.
 
 **Proves**
 
@@ -348,7 +371,9 @@ line 173
 <a name="WeilPowerOnLine-tsum_onLine_le"></a>
 ### `WeilPowerOnLine.tsum_onLine_le`
 
-line 186
+line 190
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The on-line background of the switched window.
 
@@ -376,7 +401,9 @@ line 186
 <a name="WeilPowerOnLine-summable_onLine"></a>
 ### `WeilPowerOnLine.summable_onLine`
 
-line 194
+line 198
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The on-line series is summable.
 
@@ -406,7 +433,9 @@ Summable (fun ρ : OnLine => weightedTermW h γ m ρ.1)
 <a name="WeilPowerOnLine-onLineBound_le"></a>
 ### `WeilPowerOnLine.onLineBound_le`
 
-line 202
+line 206
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The on-line background, in `γ`, `h` and `m` alone.
 

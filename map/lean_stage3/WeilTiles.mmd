@@ -1,10 +1,10 @@
 flowchart LR
-  n0["<b>two_le_centre</b><br/>2 ≤ centre k"]:::thm
-  n1["<b>idx_spec</b><br/>|t - centre (idx t)| ≤ 9 / 10"]:::thm
-  n2["<b>online_term_nonneg</b><br/>0 ≤ (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re"]:::thm
+  n0["<b>two_le_centre</b><br/>2 ≤ centre k"]:::shp
+  n1["<b>idx_spec</b><br/>|t - centre (idx t)| ≤ 9 / 10"]:::shp
+  n2["<b>online_term_nonneg</b><br/>0 ≤ (laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re"]:::shp
   n3["<b>weightedTerm_nonneg</b><br/>0 ≤ weightedTerm h γ ρ"]:::thm
   n4["<b>sum_by_bands</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ ∑ k ∈ S.image (fun ρ : Kadiri.Nont…"]:::thm
-  n5["<b>bandSeries_nonneg</b><br/>0 ≤ M k * (15 * Real.log (centre k) + 73)"]:::thm
+  n5["<b>bandSeries_nonneg</b><br/>0 ≤ M k * (15 * Real.log (centre k) + 73)"]:::shp
   n6["<b>sum_le_bandSeries</b><br/>∑ ρ ∈ S, weightedTerm h γ ρ ≤ ∑' k : ℕ, M k * (15 * Real.log (ce…"]:::thm
   n7["<b>tsum_upper_le</b><br/>∑' ρ : Upper, weightedTerm h γ ρ.1 ≤ ∑' k : ℕ, M k * (15 * Real.…"]:::thm
   x0(["<b>WeilPowerBands</b><br/>bandSeries_summable<br/>sum_by_bands<br/>sum_le_bandSeries"]):::ext
@@ -31,6 +31,9 @@ flowchart LR
   n7 -.-> x1
   x2 -.-> n2
   x4 -.-> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

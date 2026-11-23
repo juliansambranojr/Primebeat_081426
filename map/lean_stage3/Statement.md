@@ -11,12 +11,12 @@ Statement — step 2: the weak bound family, and the bridges between shapes. O68
 
 ```mermaid
 flowchart LR
-  n0["<b>schoenfeld_iff_weak</b><br/>StmtSchoenfeld pi li ↔ StmtSchoenfeldWeak (1 / (8 * Real.pi)) 1 …"]:::thm
-  n1["<b>weak_anti_x₀</b><br/>StmtSchoenfeldWeak C k x₀' pi li"]:::end_
-  n2["<b>weak_mono</b><br/>StmtSchoenfeldWeak C' k x₀ pi li"]:::end_
-  n3["<b>weakWindow_of_global</b><br/>StmtWeakWindow C k f L r n"]:::thm
-  n4["<b>weakWindow_at_schoenfeld</b><br/>StmtWeakWindow (1 / (8 * Real.pi)) 1 f L r n ↔ StmtSchoenfeldWin…"]:::thm
-  n5["<b>window_of_global</b><br/>StmtSchoenfeldWindow f L r n"]:::end_
+  n0["<b>schoenfeld_iff_weak</b><br/>StmtSchoenfeld pi li ↔ StmtSchoenfeldWeak (1 / (8 * Real.pi)) 1 …"]:::shp
+  n1["<b>weak_anti_x₀ ■</b><br/>StmtSchoenfeldWeak C k x₀' pi li"]:::shp
+  n2["<b>weak_mono ■</b><br/>StmtSchoenfeldWeak C' k x₀ pi li"]:::shp
+  n3["<b>weakWindow_of_global</b><br/>StmtWeakWindow C k f L r n"]:::shp
+  n4["<b>weakWindow_at_schoenfeld</b><br/>StmtWeakWindow (1 / (8 * Real.pi)) 1 f L r n ↔ StmtSchoenfeldWin…"]:::shp
+  n5["<b>window_of_global ■</b><br/>StmtSchoenfeldWindow f L r n"]:::shp
   x0(["<b>JointFloorGate</b><br/>relErrWindow_floor_of_RH"]):::ext
   x1(["<b>RouteNum</b><br/>relErrWindow_route_num"]):::ext
   n0 --> n5
@@ -24,6 +24,9 @@ flowchart LR
   n4 --> n5
   n3 -.-> x0
   n3 -.-> x1
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -31,7 +34,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -82,6 +85,8 @@ The weak bound translated to the dyadic window: at `x = 2^(r−j)` the bound rea
 
 line 70
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Schoenfeld is a member of the family: Corollary 1 is exactly `C = 1/(8π), k = 1, x₀ = 2657`.
 
 **Proves**
@@ -102,6 +107,8 @@ StmtSchoenfeld pi li ↔ StmtSchoenfeldWeak (1 / (8 * Real.pi)) 1 2657 pi li
 ### `Stage3.weak_anti_x₀`
 
 line 78
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** A lower floor only strengthens the hypothesis.
 
@@ -127,6 +134,8 @@ StmtSchoenfeldWeak C k x₀' pi li
 
 line 85
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** A larger constant only weakens the hypothesis (needs `1 ≤ x₀` so the envelope `√x·(log x)^k` is nonnegative on the range).
 
 **Proves**
@@ -151,6 +160,8 @@ StmtSchoenfeldWeak C' k x₀ pi li
 ### `Stage3.weakWindow_of_global`
 
 line 101
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The bridge, weak form: the global weak bound implies the window bound whenever the window bottom clears the floor: `x₀ ≤ 2^(r−n)`. The translation is `√(2^y) = 2^(y/2)` and `log(2^y) = y·log 2`, exactly as in the bench's special case.
 
@@ -182,6 +193,8 @@ StmtWeakWindow C k f L r n
 
 line 136
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** At Schoenfeld's parameters the weak window is the bench's window: `C = 1/(8π), k = 1` recovers `StmtSchoenfeldWindow`'s bound character for character.
 
 **Proves**
@@ -202,6 +215,8 @@ StmtWeakWindow (1 / (8 * Real.pi)) 1 f L r n ↔ StmtSchoenfeldWindow f L r n
 ### `Stage3.window_of_global`
 
 line 149
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The composition — the bench bridge reproved on this toolchain. Identical statement to the bench's `Schoenfeld.window_of_global` (lean/Schoenfeld.lean, v4.28.0, kernel-checked there); proved here through the weak family, demonstrating the weld carries.
 

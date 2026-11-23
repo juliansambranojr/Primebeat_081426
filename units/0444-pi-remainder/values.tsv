@@ -1,0 +1,17 @@
+key	value	source
+module_lines	521	wc -l lean_stage3/Stage3/PiRemainder.lean
+theorems_proved	15	grep -c ^theorem lean_stage3/Stage3/PiRemainder.lean
+defs	4	Mlow, zinv, Chigh, Arem
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/PiRemainder.lean
+pins	3	norm_tr_efRem_le_of, norm_tr_efRem_le, zinv_le_log
+errors_first	5	the worker's first lake build Stage3.PiRemainder, as it reported
+builds	2	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8836	lake build (full Stage3), Build completed successfully
+jobs_module	8791	run/build.log, lake build Stage3.PiRemainder
+floor	256	norm_tr_efRem_le_of
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#t2b	the remainder of T2 at square-root size
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

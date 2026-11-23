@@ -39,6 +39,8 @@ open MeasureTheory Set Filter
 def Ik (σ : ℝ) (k : ℕ) : ℝ :=
   ∫ y in Ioi (1 : ℝ), LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)
 
+/-- For real `σ > 1` and every natural `k`, the integrand `G(y)·(log y)^k·y^(−σ−1)` of `Ik`
+is integrable on `(1, ∞)`. -/
 theorem Ik_integrable {σ : ℝ} (hσ : 1 < σ) (k : ℕ) :
     IntegrableOn (fun y : ℝ => LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)) (Ioi 1) := by
   have hs : 1 < ((σ : ℝ) : ℂ).re := by simpa using hσ
@@ -57,11 +59,15 @@ theorem Ik_integrable {σ : ℝ} (hσ : 1 < σ) (k : ℕ) :
   rw [hval, Complex.ofReal_re, ← mul_assoc, ← pow_add, ← two_mul, pow_mul]
   norm_num
 
+/-- For real `σ > 1`, the `k`-th derivative of `Phi` at `σ` is `(−1)^k · Ik σ k`. -/
 theorem iteratedDeriv_Phi_eq_Ik {σ : ℝ} (hσ : 1 < σ) (k : ℕ) :
     iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k : ℝ) : ℂ) := by
   have hs : 1 < ((σ : ℝ) : ℂ).re := by simpa using hσ
   rw [LandauTaylor.iteratedDeriv_Phi k hs, LandauTaylor.mellinLog_real, Ik]
 
+/-- The upper bound on the primes' integral. For `σ > 1`, `θ < σ`, `C ≥ 0`, `Y ≥ 1`, `δ ≥ 0`,
+a window bound `G y ≤ C·y^θ` on `[Y, Y^(1+δ)]`, and shifts `b > 0`, `0 < b' < σ − 1`:
+`Ik σ k ≤ C·k!/(σ−θ)^(k+1) + 8·Y^b·k!/(σ−1+b)^(k+1) + 8·(Y^(1+δ))^(−b')·k!/(σ−1−b')^(k+1)`. -/
 theorem Ik_le {σ θ δ C Y b b' : ℝ} (hσ : 1 < σ) (hθ : θ < σ) (hC : 0 ≤ C) (hY : 1 ≤ Y)
     (hδ : 0 ≤ δ) (hwin : ∀ y ∈ Icc Y (Y ^ (1 + δ)), LandauWindow.G y ≤ C * y ^ θ)
     (hb : 0 < b) (hb' : 0 < b') (hb'a : b' < σ - 1) (k : ℕ) :

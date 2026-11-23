@@ -11,12 +11,12 @@ WeilPowerBridge — the term at an actual zero: two sidebands, the far one bound
 
 ```mermaid
 flowchart LR
-  n0["<b>im_sq_sub_re_sq</b><br/>z.im ^ 2 - z.re ^ 2 = -(z ^ 2).re"]:::thm
-  n1["<b>term_eq_sidebands</b><br/>WeilPowerBands.termW h γ m ρ = -((h / 2) ^ 2 * (((S m (wm h γ ρ)…"]:::thm
-  n2["<b>term_le_sidebands</b><br/>WeilPowerBands.termW h γ m ρ ≤ -((h / 2) ^ 2 * (((S m (wm h γ ρ)…"]:::thm
-  n3["<b>wp_re</b><br/>(wp h γ ρ).re = (ρ.re - 1 / 2) * h"]:::thm
-  n4["<b>wp_im</b><br/>(wp h γ ρ).im = (ρ.im + γ) * h"]:::thm
-  n5["<b>far_sideband_le</b><br/>‖S m (wp h γ ρ)‖ ≤ cS m * Real.cosh ((ρ.re - 1 / 2) * h) * (2 / …"]:::thm
+  n0["<b>im_sq_sub_re_sq</b><br/>z.im ^ 2 - z.re ^ 2 = -(z ^ 2).re"]:::shp
+  n1["<b>term_eq_sidebands</b><br/>WeilPowerBands.termW h γ m ρ = -((h / 2) ^ 2 * (((S m (wm h γ ρ)…"]:::shp
+  n2["<b>term_le_sidebands</b><br/>WeilPowerBands.termW h γ m ρ ≤ -((h / 2) ^ 2 * (((S m (wm h γ ρ)…"]:::shp
+  n3["<b>wp_re</b><br/>(wp h γ ρ).re = (ρ.re - 1 / 2) * h"]:::shp
+  n4["<b>wp_im</b><br/>(wp h γ ρ).im = (ρ.im + γ) * h"]:::shp
+  n5["<b>far_sideband_le</b><br/>‖S m (wp h γ ρ)‖ ≤ cS m * Real.cosh ((ρ.re - 1 / 2) * h) * (2 / …"]:::shp
   n6["<b>term_le_at_zero</b><br/>WeilPowerBands.termW h γ m (ρ : ℂ) ≤ -((h / 2) ^ 2 * ((cS m / D …"]:::thm
   x0(["<b>WeilOddPower</b><br/>what_eq"]):::ext
   x1(["<b>WeilPowerBackground</b><br/>term_re_eq"]):::ext
@@ -34,6 +34,9 @@ flowchart LR
   x1 -.-> n1
   x2 -.-> n5
   x3 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -41,7 +44,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -72,6 +75,8 @@ The near sideband: `w₋ = (ρ − 1/2 − iγ)h`.
 
 line 79
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `Im(z)² − Re(z)² = −Re(z²)`: the arithmetic that turns the background's term into a square.
 
 **Proves**
@@ -94,6 +99,8 @@ z.im ^ 2 - z.re ^ 2 = -(z ^ 2).re
 ### `WeilPowerBridge.term_eq_sidebands`
 
 line 85
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The term of the zero form at `ρ`, read at the two sidebands: the window is a cosine at height `γ` times an envelope, so `what` is `(h/2)(S₊ + S₋)` and the term is `−(h/2)²` times the real part of its square.
 
@@ -129,6 +136,8 @@ WeilPowerBands.termW h γ m ρ = -((h / 2) ^ 2 * (((S m (wm h γ ρ)) ^ 2).re + 
 
 line 103
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The same term with the two unbounded pieces sent to their norms: `Re(S₊S₋) ≥ −‖S₊‖‖S₋‖` and `Re(S₊²) ≥ −‖S₊‖²`, and a larger bracket makes the term more negative.
 
 **Proves**
@@ -159,6 +168,8 @@ WeilPowerBands.termW h γ m ρ ≤ -((h / 2) ^ 2 * (((S m (wm h γ ρ)) ^ 2).re 
 
 line 127
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `Re w₊ = (ρ.re − 1/2)h`.
 
 **Proves**
@@ -185,6 +196,8 @@ line 127
 
 line 133
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `Im w₊ = (ρ.im + γ)h`: the far sideband sits at about `2γh` when `ρ` is near height `γ`.
 
 **Proves**
@@ -210,6 +223,8 @@ line 133
 ### `WeilPowerBridge.far_sideband_le`
 
 line 139
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The far sideband is § 4's decay: once the far condition holds at `w₊`, `‖S m w₊‖` is `cS m·cosh((ρ.re − 1/2)h)` times `(2/((ρ.im + γ)h)²)^(m+1)`.
 
@@ -239,6 +254,8 @@ line 139
 ### `WeilPowerBridge.term_le_at_zero`
 
 line 154
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The term at an actual nontrivial zero of zeta, every constant explicit: 13b's lower bound on the near sideband, § 4's decay on the far one, and the cross term between them. This is the ladder attached to a zero.
 

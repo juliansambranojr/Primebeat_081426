@@ -11,7 +11,7 @@ ArgCrude — hNT slice 2: the argument-principle half of Backlund, decomposed to
 
 ```mermaid
 flowchart LR
-  n0["<b>sCrude_of_local</b><br/>StmtSCrude S (a * A₁) (a * A₃ + b)"]:::thm
+  n0["<b>sCrude_of_local</b><br/>StmtSCrude S (a * A₁) (a * A₃ + b)"]:::shp
   n1["<b>backlundArg_of_identity</b><br/>StmtBacklundArg θ B₁ B₃"]:::thm
   n2["<b>argCrude_of_pieces</b><br/>StmtBacklundArg θ (a * A₁) (a * A₃ + b)"]:::thm
   n3["<b>rvM_of_stirling_and_pieces</b><br/>riemannZeta.Riemann_vonMangoldt_bound (B₁ + a * A₁) 0 (B₃ + (a *…"]:::thm
@@ -25,6 +25,9 @@ flowchart LR
   n2 -.-> x1
   n3 -.-> x1
   x2 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -32,7 +35,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -83,6 +86,8 @@ Backlund's step: the argument is controlled by the local count. `a` and `b` are 
 
 line 86
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Count to argument bound. Needs `0 ≤ a`; the count enters positively.
 
 **Proves**
@@ -109,6 +114,8 @@ StmtSCrude S (a * A₁) (a * A₃ + b)
 ### `Stage3.backlundArg_of_identity`
 
 line 99
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Identity plus bound gives the Arg half.
 
@@ -137,6 +144,8 @@ StmtBacklundArg θ B₁ B₃
 ### `Stage3.argCrude_of_pieces`
 
 line 113
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** THE ASSEMBLY. The rectangle identity, the Jensen count and Backlund's step give the argument half of the decomposition, with every constant explicit. What remains open after this module is exactly: the identity, the step, and a concrete `cnt` discharged from upstream `ZerosBound`.
 
@@ -169,6 +178,8 @@ StmtBacklundArg θ (a * A₁) (a * A₃ + b)
 ### `Stage3.rvM_of_stirling_and_pieces`
 
 line 124
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The full hNT band from the two halves, restated through this decomposition. With the Stirling half already discharged (`Stage3.backlundPhase_holds : StmtBacklundPhase phaseTheta 97 98`, entry 140), supplying the three pieces here delivers `Riemann_vonMangoldt_bound`.
 

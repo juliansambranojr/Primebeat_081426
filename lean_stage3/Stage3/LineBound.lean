@@ -368,11 +368,14 @@ theorem zeta_ne_zero_of_RH (hRH : RiemannHypothesis) {s : ℂ}
 singularity at `s = 1` filled in with its residue `1`.  Entire. -/
 def zetaE : ℂ → ℂ := Function.update (fun s => (s - 1) * ζ s) 1 1
 
+/-- Away from `s = 1`, `zetaE s = (s − 1)·ζ s`. -/
 theorem zetaE_eq {s : ℂ} (hs : s ≠ 1) : zetaE s = (s - 1) * ζ s :=
   Function.update_of_ne hs _ _
 
+/-- At the filled-in point, `zetaE 1 = 1`. -/
 theorem zetaE_one : zetaE 1 = 1 := Function.update_self _ _ _
 
+/-- Helper: `zetaE` is complex differentiable at every `s ≠ 1`. -/
 theorem zetaE_differentiableAt_of_ne {s : ℂ} (hs : s ≠ 1) :
     DifferentiableAt ℂ zetaE s := by
   have heq : zetaE =ᶠ[nhds s] (fun u : ℂ => (u - 1) * ζ u) := by
@@ -381,6 +384,7 @@ theorem zetaE_differentiableAt_of_ne {s : ℂ} (hs : s ≠ 1) :
   refine DifferentiableAt.congr_of_eventuallyEq ?_ heq
   exact ((differentiableAt_id).sub_const 1).mul (differentiableAt_riemannZeta hs)
 
+/-- `zetaE` is complex differentiable everywhere, including at `s = 1`. -/
 theorem zetaE_differentiable : Differentiable ℂ zetaE := by
   intro s
   rcases ne_or_eq s 1 with hs | rfl
@@ -406,6 +410,7 @@ theorem logDeriv_zetaE {s : ℂ} (hs : s ≠ 1) (hz : ζ s ≠ 0) :
   rw [hd, zetaE_eq hs]
   field_simp
 
+/-- Under RH, `zetaE s ≠ 0` for every `s` with `1/2 < Re s`. -/
 theorem zetaE_ne_zero_of_RH (hRH : RiemannHypothesis) {s : ℂ} (hs : 1/2 < s.re) :
     zetaE s ≠ 0 := by
   rcases eq_or_ne s 1 with rfl | hs1
@@ -1090,6 +1095,7 @@ local notation "ζ" => riemannZeta
 /-- The abscissa. -/
 noncomputable def σRH (X : ℝ) : ℝ := 1 / 2 + 1 / Real.log X
 
+/-- Helper: the point `σRH X + i·t` has real part `σRH X`. -/
 theorem σRH_re (X t : ℝ) : ((σRH X : ℂ) + I * (t : ℂ)).re = σRH X := by
   simp [σRH]
 

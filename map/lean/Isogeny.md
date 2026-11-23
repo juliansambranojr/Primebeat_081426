@@ -11,16 +11,19 @@ Isogeny — what the isogeny does to the row. `Transform.tau_ratio_of_meet` prov
 
 ```mermaid
 flowchart LR
-  n0["<b>rowOf_eq_rowN</b><br/>rowOf P b r = rowN (fun n =＞ P (b ^ n)) 1 r"]:::end_
-  n1["<b>telescope</b><br/>∑ j ∈ range k, (g (m + j + 1) - g (m + j)) = g (m + k) - g m"]:::thm
-  n2["<b>rowN_eq_blockSum</b><br/>rowN Q k r = ∑ j ∈ range k, rowN Q 1 (k * r + j)"]:::end_
-  n3["<b>row_two_eq_pair</b><br/>rowN Q 2 r = rowN Q 1 (2 * r) + rowN Q 1 (2 * r + 1)"]:::end_
-  n4["<b>row_three_eq_triple</b><br/>rowN Q 3 r = rowN Q 1 (3 * r) + rowN Q 1 (3 * r + 1) + rowN Q 1 …"]:::end_
-  n5["<b>rowN_comp</b><br/>rowN Q (k * l) r = rowN (fun n =＞ Q (k * n)) l r"]:::end_
-  n6["<b>dyadicRow_eq_rowN</b><br/>Zeros.dyadicRow ((r : ℤ) + 1) = rowN Zeros.pi2 1 r"]:::end_
-  n7["<b>measured_row_four</b><br/>(List.range 10).map (rowN Zeros.pi2 2) = [2, 4, 12, 36, 118, 392…"]:::end_
-  n8["<b>measured_row_eight</b><br/>(List.range 6).map (rowN Zeros.pi2 3) = [4, 14, 79, 467, 2948, 1…"]:::end_
+  n0["<b>rowOf_eq_rowN ■</b><br/>rowOf P b r = rowN (fun n =＞ P (b ^ n)) 1 r"]:::cnt
+  n1["<b>telescope</b><br/>∑ j ∈ range k, (g (m + j + 1) - g (m + j)) = g (m + k) - g m"]:::cnt
+  n2["<b>rowN_eq_blockSum ■</b><br/>rowN Q k r = ∑ j ∈ range k, rowN Q 1 (k * r + j)"]:::cnt
+  n3["<b>row_two_eq_pair ■</b><br/>rowN Q 2 r = rowN Q 1 (2 * r) + rowN Q 1 (2 * r + 1)"]:::cnt
+  n4["<b>row_three_eq_triple ■</b><br/>rowN Q 3 r = rowN Q 1 (3 * r) + rowN Q 1 (3 * r + 1) + rowN Q 1 …"]:::cnt
+  n5["<b>rowN_comp ■</b><br/>rowN Q (k * l) r = rowN (fun n =＞ Q (k * n)) l r"]:::cnt
+  n6["<b>dyadicRow_eq_rowN ■</b><br/>Zeros.dyadicRow ((r : ℤ) + 1) = rowN Zeros.pi2 1 r"]:::cnt
+  n7["<b>measured_row_four ■</b><br/>(List.range 10).map (rowN Zeros.pi2 2) = [2, 4, 12, 36, 118, 392…"]:::cnt
+  n8["<b>measured_row_eight ■</b><br/>(List.range 6).map (rowN Zeros.pi2 3) = [4, 14, 79, 467, 2948, 1…"]:::cnt
   n1 --> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -28,7 +31,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -59,6 +62,8 @@ The "count up to `x`" reading, for a `P` that eats values rather than exponents.
 
 line 51
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The bridge: composing `P` with `b^·` turns one into the other.
 
 **Proves**
@@ -83,6 +88,8 @@ rowOf P b r = rowN (fun n => P (b ^ n)) 1 r
 
 line 58
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Telescoping over `Finset.range`. Stated for an arbitrary `g : ℕ → ℤ` because that is all the identity below needs.
 
 **Proves**
@@ -106,6 +113,8 @@ line 58
 ### `Isogeny.rowN_eq_blockSum`
 
 line 68
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The isogeny on the row. Passing from a ladder to its `k`-th power sums the row in blocks of `k`. Holds for any `Q`; no arithmetic input is used.
 
@@ -133,6 +142,8 @@ rowN Q k r = ∑ j ∈ range k, rowN Q 1 (k * r + j)
 
 line 78
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Base 4's row is base 2's row summed in pairs.
 
 **Proves**
@@ -156,6 +167,8 @@ rowN Q 2 r = rowN Q 1 (2 * r) + rowN Q 1 (2 * r + 1)
 ### `Isogeny.row_three_eq_triple`
 
 line 85
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** Base 8's row is base 2's row summed in triples.
 
@@ -181,6 +194,8 @@ rowN Q 3 r = rowN Q 1 (3 * r) + rowN Q 1 (3 * r + 1) + rowN Q 1 (3 * r + 2)
 
 line 94
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Decimation composes. Reading a ladder at `k` and then at `l` is reading it at `k*l` — so `{2,4,8}` is a chain and not three separate relations.
 
 **Proves**
@@ -204,6 +219,8 @@ rowN Q (k * l) r = rowN (fun n => Q (k * n)) l r
 ### `Isogeny.dyadicRow_eq_rowN`
 
 line 102
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The weld to the measured row. `Zeros.dyadicRow` indexes from the top over `ℤ` and is windowed to `1 ≤ r ≤ 20`; inside that window it is `rowN Zeros.pi2 1` shifted by one.
 
@@ -229,6 +246,8 @@ Zeros.dyadicRow ((r : ℤ) + 1) = rowN Zeros.pi2 1 r
 
 line 115
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The measured base-4 row, from the 21 pinned values and nothing else. These are the numbers `row_two_eq_pair` says are base 2's row summed in pairs.
 
 **Proves**
@@ -247,6 +266,8 @@ line 115
 ### `Isogeny.measured_row_eight`
 
 line 121
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The measured base-8 row, same 21 values read at decimation 3.
 

@@ -32,12 +32,16 @@ noncomputable section
 
 open Filter Topology Metric
 
+/-- The `k`-th derivative of `s ↦ (s − q)⁻¹` at `c` is `(−1)^k·k!·(c − q)^(−1−k)`. -/
 theorem iteratedDeriv_inv_sub (k : ℕ) (q c : ℂ) :
     iteratedDeriv k (fun s : ℂ => (s - q)⁻¹) c
       = (-1) ^ k * (k.factorial : ℂ) * (c - q) ^ (-1 - (k : ℤ)) := by
   have h := congrFun (iteratedDeriv_comp_sub_const (n := k) (f := (Inv.inv : ℂ → ℂ)) (s := q)) c
   rw [h, iteratedDeriv_eq_iterate, iter_deriv_inv]
 
+/-- If `f` is differentiable at every point of `U` off the finite set `P`, and near each
+`p ∈ P` has the local form `f = h + A p/(s − p)` with `h` analytic at `p`, then there is a
+`g` differentiable on `U` with `g = f − Σ_{q ∈ P} A q/(s − q)` off `P`. -/
 theorem exists_differentiableOn_sub_poles {U : Set ℂ} {P : Finset ℂ}
     {f A : ℂ → ℂ} (hf : ∀ s ∈ U, s ∉ P → DifferentiableAt ℂ f s)
     (hloc : ∀ p ∈ P, ∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧
@@ -101,6 +105,10 @@ theorem exists_differentiableOn_sub_poles {U : Set ℂ} {P : Finset ℂ}
         (differentiableAt_id.sub (differentiableAt_const _)) hxq
     exact (heq.differentiableAt_iff.mpr ((hf x hxU hxP).sub hd2)).differentiableWithinAt
 
+/-- If the closed ball of radius `R > 0` about `c` lies in the open set `U`, `c ∉ P`, and `g` is
+differentiable on `U` with `g = f − Σ_{q ∈ P} A q/(s − q)` off `P`, then there is a `C` such
+that for every `k` the `k`-th derivative of `f` at `c` is within `k!·C/R^k` of
+`Σ_{q ∈ P} A q·(−1)^k·k!·(c − q)^(−1−k)`. -/
 theorem taylor_coeff_sub_poles {c : ℂ} {R : ℝ} (hR : 0 < R) {U : Set ℂ} (hU : IsOpen U)
     (hball : closedBall c R ⊆ U) {P : Finset ℂ} {f A g : ℂ → ℂ} (hcP : c ∉ P)
     (hg : DifferentiableOn ℂ g U)

@@ -1,0 +1,19 @@
+key	value	source
+module_lines	489	wc -l lean_stage3/Stage3/ZeroDensity.lean
+theorems_proved	10	grep -c ^theorem lean_stage3/Stage3/ZeroDensity.lean
+defs	1	bConst
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ZeroDensity.lean
+pins	3	zero_density, inner_le, term4_le
+errors_first	3	the worker's first lake build Stage3.ZeroDensity, as it reported
+builds	4	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8845	lake build (full Stage3), Build completed successfully
+jobs_module	8721	run/build.log, lake build Stage3.ZeroDensity
+loop_version	22	lean_stage3/LOOP.md version line
+design	carlson.md#c6	the bound, and summability
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+margin_div	4	zero_density, the margin is the excess of the real part over one half divided by this
+exp_num	5	zero_density, the exponent is one minus this times the square of the margin
+im_low	2	zero_density, the hypothesis on the zeros

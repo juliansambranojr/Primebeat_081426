@@ -33,6 +33,7 @@ open Complex Topology Set
 /-- The band count's constant. -/
 noncomputable def Csn : ℝ := 8 * (15 + 88 / Real.log 2)
 
+/-- The band count's constant `Csn` is positive. -/
 theorem Csn_pos : 0 < Csn := by
   have hl : (0:ℝ) < Real.log 2 := Real.log_pos (by norm_num)
   unfold Csn
@@ -41,6 +42,7 @@ theorem Csn_pos : 0 < Csn := by
 /-- The good-height constant. -/
 noncomputable def Cpn : ℝ := EdgeBound.Cen * 2 * (180 + 1060 / Real.log 2)
 
+/-- The good-height constant `Cpn` is positive. -/
 theorem Cpn_pos : 0 < Cpn := by
   have hl : (0:ℝ) < Real.log 2 := Real.log_pos (by norm_num)
   have h := EdgeBound.Cen_pos
@@ -50,6 +52,7 @@ theorem Cpn_pos : 0 < Cpn := by
 /-- The horizontal-edge constant. -/
 noncomputable def Chn : ℝ := Cpn * 3 * (9/4)
 
+/-- The horizontal-edge constant `Chn` is positive. -/
 theorem Chn_pos : 0 < Chn := by
   have h := Cpn_pos
   unfold Chn
@@ -58,6 +61,7 @@ theorem Chn_pos : 0 < Chn := by
 /-- The left-edge constant. -/
 noncomputable def Dln : ℝ := 36 * EdgeBound.Cen + 9 * (1620000 + 1) / Real.log 2
 
+/-- The left-edge constant `Dln` is positive. -/
 theorem Dln_pos : 0 < Dln := by
   have hl : (0:ℝ) < Real.log 2 := Real.log_pos (by norm_num)
   have h := EdgeBound.Cen_pos
@@ -69,16 +73,19 @@ noncomputable def c1n : ℝ := 2400 + 2 * Chn + Csn
 noncomputable def c3n : ℝ := 13 + ‖deriv riemannZeta 0 / riemannZeta 0‖ / 2
 noncomputable def c4n : ℝ := 72 * Dln
 
+/-- The explicit formula's first constant `c1n` is nonnegative. -/
 theorem c1n_nonneg : 0 ≤ c1n := by
   have h1 := Chn_pos
   have h2 := Csn_pos
   unfold c1n
   positivity
 
+/-- The explicit formula's constant `c3n` is nonnegative. -/
 theorem c3n_nonneg : 0 ≤ c3n := by
   unfold c3n
   positivity
 
+/-- The explicit formula's constant `c4n` is nonnegative. -/
 theorem c4n_nonneg : 0 ≤ c4n := by
   have h := Dln_pos
   unfold c4n

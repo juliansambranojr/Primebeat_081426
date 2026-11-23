@@ -11,15 +11,18 @@ Nyquist — why an entire family of integer-base approaches must fail, rather th
 
 ```mermaid
 flowchart LR
-  n0["<b>aliases_of_offset</b><br/>Aliases b γ (γ - 2 * π * k / Real.log b)"]:::thm
-  n1["<b>nyquist_no_go</b><br/>∃ γ', |γ'| ＜ |γ| ∧ Aliases b γ γ'"]:::thm
-  n2["<b>base_bound_of_resolvable</b><br/>b ≤ Real.exp (π / γ)"]:::end_
-  n3["<b>base_two_past_nyquist</b><br/>nyquist 2 ＜ γ"]:::end_
-  n4["<b>base_two_fails_by_three</b><br/>3 * nyquist 2 ＜ 14"]:::end_
+  n0["<b>aliases_of_offset</b><br/>Aliases b γ (γ - 2 * π * k / Real.log b)"]:::shp
+  n1["<b>nyquist_no_go</b><br/>∃ γ', |γ'| ＜ |γ| ∧ Aliases b γ γ'"]:::shp
+  n2["<b>base_bound_of_resolvable ■</b><br/>b ≤ Real.exp (π / γ)"]:::shp
+  n3["<b>base_two_past_nyquist ■</b><br/>nyquist 2 ＜ γ"]:::shp
+  n4["<b>base_two_fails_by_three ■</b><br/>3 * nyquist 2 ＜ 14"]:::shp
   x0(["<b>JointLadder</b><br/>exists_dyadic_alias_ne"]):::ext
   n0 --> n1
   n1 --> n2
   n0 -.-> x0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -27,7 +30,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -69,6 +72,8 @@ The Nyquist frequency of a `b`-adic ladder: the highest frequency the rungs can 
 
 line 68
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The aliasing offset. Shifting a frequency by `2πk / log b` changes nothing the ladder can see.
 
 **Proves**
@@ -99,6 +104,8 @@ Aliases b γ (γ - 2 * π * k / Real.log b)
 
 line 91
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** THE NO-GO. Past the Nyquist frequency there is always a frequency of strictly smaller modulus that the ladder cannot distinguish from `γ`. So `γ` is not identifiable from `b`-adic samples — not because the measurement is noisy, but because a different answer fits the same data exactly.
 
 **Proves**
@@ -127,6 +134,8 @@ line 91
 ### `Nyquist.base_bound_of_resolvable`
 
 line 110
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Entry 26's inequality, as the contrapositive. If no smaller-modulus frequency aliases with `γ` — that is, if `γ` really is identifiable from the ladder — then the base is bounded: `b ≤ exp(π/γ)`. For `γ₁` this is the recorded `1.2489`.
 
@@ -158,6 +167,8 @@ b ≤ Real.exp (π / γ)
 
 line 131
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Base 2 is past its own Nyquist frequency at every `γ ≥ 14`, and `γ₁ = 14.134…` is such a `γ`. So by `nyquist_no_go`, no dyadic ladder identifies it.
 
 **Proves**
@@ -181,6 +192,8 @@ nyquist 2 < γ
 ### `Nyquist.base_two_fails_by_three`
 
 line 143
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Entry 26's "fails by a factor of three", proved. Three times base 2's Nyquist frequency still does not reach 14, so `γ₁` sits past it with a factor to spare.
 

@@ -647,6 +647,9 @@ def StmtExplicitFormulaSplit (c₁ c₃ c₄ x₁ : ℝ) : Prop :=
       ≤ c₁ * x * Real.log (x * T) ^ 2 / T + c₃ * Real.log x
         + c₄ * ((Real.log x)^2 * x ^ (-(1:ℝ)/4))
 
+/-- There are nonnegative constants `c₁`, `c₃`, `c₄` for which the truncated explicit formula
+with the left edge as its own term, `StmtExplicitFormulaSplit c₁ c₃ c₄ 16`, holds from
+`x = 16` on. -/
 theorem stmtEF_split :
     ∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ StmtExplicitFormulaSplit c₁ c₃ c₄ 16 :=
   Glue.explicit_formula_split
@@ -655,6 +658,8 @@ theorem stmtEF_split :
 def floorConstSplit (c₁ c₃ c₄ b₁ b₂ b₃ W x₀ : ℝ) : ℝ :=
   floorConst c₁ c₃ b₁ b₂ b₃ W x₀ + c₄ * x₀ ^ (-(1:ℝ)/4) / Real.sqrt x₀
 
+/-- If `c₁`, `c₃`, `c₄`, `b₁`, `b₂`, `b₃`, `W` are nonnegative and `x₀ ≥ 16`, then the
+assembly constant `floorConstSplit` at floor `x₀` is nonnegative. -/
 theorem floorConstSplit_nonneg {c₁ c₃ c₄ b₁ b₂ b₃ W x₀ : ℝ} (hc₁ : 0 ≤ c₁)
     (hc₃ : 0 ≤ c₃) (hc₄ : 0 ≤ c₄) (hb₁ : 0 ≤ b₁) (hb₂ : 0 ≤ b₂) (hb₃ : 0 ≤ b₃)
     (hW : 0 ≤ W) (hx₀ : 16 ≤ x₀) :

@@ -48,8 +48,10 @@ noncomputable section
 `VonKoch.region` is the `θ = 1/2` case. -/
 def regionθ (θ : ℝ) : Set ℂ := {s : ℂ | θ < s.re ∧ s ≠ 1}
 
+/-- At `θ = 1/2` the working region `regionθ` is `VonKoch.region`. -/
 theorem regionθ_half : regionθ (1/2) = VonKoch.region := rfl
 
+/-- For every `θ`, the working region `regionθ θ` is open. -/
 theorem isOpen_regionθ (θ : ℝ) : IsOpen (regionθ θ) := by
   have h : regionθ θ = {s : ℂ | θ < s.re} ∩ {(1:ℂ)}ᶜ := by
     ext s
@@ -128,6 +130,7 @@ theorem preconnected_regionθ (θ : ℝ) : IsPreconnected (regionθ θ) := by
   rw [hcover]
   exact hS3
 
+/-- For every `θ`, `ζ` is analytic on the working region `regionθ θ`. -/
 theorem zeta_analyticOnNhd_regionθ (θ : ℝ) : AnalyticOnNhd ℂ ζ (regionθ θ) :=
   DifferentiableOn.analyticOnNhd
     (fun _ hs ↦ (differentiableAt_riemannZeta hs.2).differentiableWithinAt) (isOpen_regionθ θ)
@@ -224,6 +227,8 @@ theorem F_differentiableAt_theta {θ C : ℝ} {k : ℕ} {x₀ : ℝ}
     hmel.comp s differentiable_neg.differentiableAt
   exact h1.add (differentiableAt_id.mul h2)
 
+/-- Given the bound `StmtPsiWeakTheta θ C k x₀` on the error of `ψ`, the function
+`VonKoch.F` is analytic on the working region `regionθ θ`. -/
 theorem F_analyticOnNhd_theta {θ C : ℝ} {k : ℕ} {x₀ : ℝ}
     (h : StmtPsiWeakTheta θ C k x₀) :
     AnalyticOnNhd ℂ VonKoch.F (regionθ θ) :=

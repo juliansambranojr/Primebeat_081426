@@ -2,7 +2,7 @@
 
 LandauMellinG — the Mellin transform of `G` on `Re s > 1`. Block 2b of `lean_stage3/design/landau.md`. 2026-11-22.
 
-10 theorems, 2 definitions, 265 lines. Arrows are Lean's own record of what each proof uses.
+10 theorems, 2 definitions, 280 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauMellin`](../lean_stage3/LandauMellin.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md)
@@ -13,12 +13,12 @@ LandauMellinG — the Mellin transform of `G` on `Re s > 1`. Block 2b of `lean_s
 flowchart LR
   n0["<b>LSeries_vonMangoldt_real_ne_zero</b><br/>L ↗Λ (σ : ℂ) ≠ 0"]:::thm
   n1["<b>rampSum_mellin_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (LandauWindow.rampSum y : ℂ) * (y : ℂ…"]:::thm
-  n2["<b>hasDerivAt_logPrim</b><br/>HasDerivAt (logPrim s) ((Real.log y : ℂ) * (y : ℂ) ^ (-s)) y"]:::thm
-  n3["<b>log_cpow_norm_le</b><br/>‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖ ≤ y ^ ((s.re - 1) / 2 - s.re…"]:::thm
-  n4["<b>log_cpow_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (I…"]:::thm
-  n5["<b>tendsto_logPrim</b><br/>Tendsto (logPrim s) atTop (𝓝 0)"]:::thm
-  n6["<b>log_cpow_integral</b><br/>∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s -…"]:::thm
-  n7["<b>G_integrand_eq</b><br/>(LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = (LandauWindow.ramp…"]:::thm
+  n2["<b>hasDerivAt_logPrim</b><br/>HasDerivAt (logPrim s) ((Real.log y : ℂ) * (y : ℂ) ^ (-s)) y"]:::shp
+  n3["<b>log_cpow_norm_le</b><br/>‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖ ≤ y ^ ((s.re - 1) / 2 - s.re…"]:::shp
+  n4["<b>log_cpow_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (I…"]:::shp
+  n5["<b>tendsto_logPrim</b><br/>Tendsto (logPrim s) atTop (𝓝 0)"]:::shp
+  n6["<b>log_cpow_integral</b><br/>∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s -…"]:::shp
+  n7["<b>G_integrand_eq</b><br/>(LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = (LandauWindow.ramp…"]:::shp
   n8["<b>G_mellin_integrable</b><br/>IntegrableOn (fun y : ℝ =＞ (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-…"]:::thm
   n9["<b>mellin_G</b><br/>∫ y in Ioi (1 : ℝ), (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) …"]:::thm
   x0(["<b>LandauMellin</b><br/>mellin_rampSum"]):::ext
@@ -42,6 +42,9 @@ flowchart LR
   n9 -.-> x2
   x0 -.-> n1
   x0 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -49,7 +52,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -66,7 +69,7 @@ The Mellin transform of `G`: the `Φ` of the worksheet.
 <a name="LandauMellinG-logPrim"></a>
 ### `LandauMellinG.logPrim`
 
-def · line 115
+def · line 118
 
 The primitive of `log y · y^(−s)`.
 
@@ -78,7 +81,11 @@ The primitive of `log y · y^(−s)`.
 <a name="LandauMellinG-LSeries_vonMangoldt_real_ne_zero"></a>
 ### `LandauMellinG.LSeries_vonMangoldt_real_ne_zero`
 
-line 47
+line 48
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For real `σ > 1`, the L-series of the von Mangoldt function is nonzero at `σ`.
 
 **Proves**
 
@@ -99,7 +106,11 @@ L ↗Λ (σ : ℂ) ≠ 0
 <a name="LandauMellinG-rampSum_mellin_integrable"></a>
 ### `LandauMellinG.rampSum_mellin_integrable`
 
-line 77
+line 80
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1`, the Mellin integrand of the ramp sum, `rampSum y · y^(−s−1)`, is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -126,7 +137,11 @@ IntegrableOn (fun y : ℝ => (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 
 <a name="LandauMellinG-hasDerivAt_logPrim"></a>
 ### `LandauMellinG.hasDerivAt_logPrim`
 
-line 118
+line 123
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `s ≠ 1` and `y > 0`, the primitive `logPrim s` has derivative `log y · y^(−s)` at `y`.
 
 **Proves**
 
@@ -150,7 +165,11 @@ HasDerivAt (logPrim s) ((Real.log y : ℂ) * (y : ℂ) ^ (-s)) y
 <a name="LandauMellinG-log_cpow_norm_le"></a>
 ### `LandauMellinG.log_cpow_norm_le`
 
-line 137
+line 144
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `Re s > 1` and `y > 1`, with `ε = (Re s − 1)/2`, the norm of `log y · y^(−s)` is at most `y^(ε − Re s) / ε`.
 
 **Proves**
 
@@ -172,7 +191,11 @@ line 137
 <a name="LandauMellinG-log_cpow_integrable"></a>
 ### `LandauMellinG.log_cpow_integrable`
 
-line 151
+line 159
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `Re s > 1`, the function `log y · y^(−s)` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -197,7 +220,11 @@ IntegrableOn (fun y : ℝ => (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (Ioi 1)
 <a name="LandauMellinG-tendsto_logPrim"></a>
 ### `LandauMellinG.tendsto_logPrim`
 
-line 166
+line 175
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `Re s > 1`, the primitive `logPrim s` tends to `0` at `+∞`.
 
 **Proves**
 
@@ -220,7 +247,11 @@ Tendsto (logPrim s) atTop (𝓝 0)
 <a name="LandauMellinG-log_cpow_integral"></a>
 ### `LandauMellinG.log_cpow_integral`
 
-line 191
+line 201
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `Re s > 1`, the integral of `log y · y^(−s)` over `(1, ∞)` equals `1/(s−1)²`.
 
 **Proves**
 
@@ -247,7 +278,11 @@ line 191
 <a name="LandauMellinG-G_integrand_eq"></a>
 ### `LandauMellinG.G_integrand_eq`
 
-line 207
+line 219
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `y > 1`, the Mellin integrand `G y · y^(−s−1)` splits as `rampSum y · y^(−s−1) − log y · y^(−s) + (1+γ) · y^(−s)`.
 
 **Proves**
 
@@ -272,7 +307,11 @@ line 207
 <a name="LandauMellinG-G_mellin_integrable"></a>
 ### `LandauMellinG.G_mellin_integrable`
 
-line 220
+line 233
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1`, the Mellin integrand `G y · y^(−s−1)` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -302,7 +341,11 @@ IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1)) (I
 <a name="LandauMellinG-mellin_G"></a>
 ### `LandauMellinG.mellin_G`
 
-line 229
+line 244
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `Re s > 1`, the Mellin transform of `G` over `(1, ∞)`, `∫ G y · y^(−s−1) dy`, equals `Phi s`.
 
 **Proves**
 

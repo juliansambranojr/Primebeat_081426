@@ -1,0 +1,38 @@
+# check_prose_source.py  2026-11-23T02:04:36Z
+# unit: 0455-zero-summable
+# sources searched: 420
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23612
+  Prove Carlson's bound ourselves, which is a large project
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25786
+  theorem summable_order_div {σ : ℝ} (hσ : 1 / 2 < σ) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25787
+  Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.NontrivialZeros) : ℂ).re} =>
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25788
+  ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℝ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:1035
+  / ‖((ρ : Kadiri.NontrivialZeros) : ℂ)‖ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25794
+  theorem summable_norm_coef (S : Set NontrivialZeros) {σ : ℝ} (hσ : 1 / 2 < σ)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25795
+  (hS : ∀ ρ ∈ S, σ ≤ (ρ : ℂ).re) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25835
+  Summable fun ρ : S => ‖LadderMean.coef ρ‖ :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a626cd0fa50e8e610.jsonl:765
+  theorem sum_le_const {σ : ℝ} (hσ : 1 / 2 < σ) (hσ1 : σ ≤ 1) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-abe4b8167df4e9d03.jsonl:1395
+  ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) →
+
+# 11 found, 0 missing

@@ -1,0 +1,26 @@
+# check_prose_source.py  2026-11-23T00:26:52Z
+# unit: 0444-pi-remainder
+# sources searched: 409
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23416
+  Source: session transcript, 2026-11-23, after unit 0443
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23156
+  Yes to the units then work on the open inside these
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23259
+  theorem norm_tr_efRem_le_of {x : ℝ} (hx : 256 ≤ x) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aad115bc150372ead.jsonl:1704
+  ‖tr (efRem x) x‖ ≤ Arem * Real.sqrt x * Real.log x ^ 2 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23263
+  ∃ A x₀ : ℝ, 0 ≤ A ∧ ∀ x : ℝ, x₀ ≤ x →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23315
+  ‖PiZeros.tr (PiZeros.efRem x) x‖ ≤ A * Real.sqrt x * Real.log x ^ 2 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-aad115bc150372ead.jsonl:1519
+  theorem zinv_le_log {x : ℝ} (hx : 4 ≤ x) : zinv x ≤ Mlow * 39000 * Real.log x ^ 2 :=
+
+# 7 found, 0 missing

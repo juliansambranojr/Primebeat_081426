@@ -27,6 +27,9 @@ open Finset
 
 noncomputable section
 
+/-- Helper: the arithmetic of `routeConst` at the floor `2^36`. If `c1 ≤ 88216610000`,
+`c3 ≤ 15`, `c4 ≤ 6468930000` and `24.95 ≤ ℓ`, then the expression with `ℓ` in place of the
+logarithm of the floor is at most `414`. -/
 theorem floor_bound {c1 c3 c4 ℓ : ℝ} (hc1' : c1 ≤ 88216610000)
     (hc3' : c3 ≤ 15) (hc4' : c4 ≤ 6468930000) (hℓ : 24.95 ≤ ℓ) :
     3 * (4 + (16 + 16 * 112 + 16 * 0) / ℓ + (8 * 698 + 8 + 4 * 0) / ℓ ^ 2
@@ -53,6 +56,7 @@ theorem floor_bound {c1 c3 c4 ℓ : ℝ} (hc1' : c1 ≤ 88216610000)
     linarith
   linarith
 
+/-- The route constant at the floor `2^36` is at most `414`. -/
 theorem routeConst_le : Stage3.routeConst ((2:ℝ) ^ (36:ℕ)) ≤ 414 := by
   have hlog : Real.log ((2:ℝ) ^ (36:ℕ)) = 36 * Real.log 2 := by
     rw [Real.log_pow]
@@ -74,6 +78,7 @@ theorem routeConst_le : Stage3.routeConst ((2:ℝ) ^ (36:ℕ)) ≤ 414 := by
   rw [hlog, hsqrt, hq]
   exact floor_bound RouteNum.c1n_le RouteNum.c3n_le RouteNum.c4n_le hℓ
 
+/-- Helper: if `80 ≤ r`, then `r² ≤ 6400·2^((r - 80)/2)`. -/
 theorem sq_le_two_rpow {r : ℝ} (hr : 80 ≤ r) :
     r ^ 2 ≤ 6400 * (2:ℝ) ^ ((r - 80) / 2) := by
   have hL := Real.log_two_gt_d9
@@ -96,6 +101,8 @@ theorem sq_le_two_rpow {r : ℝ} (hr : 80 ≤ r) :
     nlinarith
   linarith
 
+/-- The gate's inequality at depth six: if `80 ≤ r`, then
+`414·(log 2·r)·2^(-((r - 7)/2)) < (log 2)^6/(2·r·3^7)`. -/
 theorem gate_ineq {r : ℝ} (hr : 80 ≤ r) :
     414 * (Real.log 2 * r) ^ 1 * (2:ℝ) ^ (-((r - 7) / 2))
       < Real.log 2 ^ 6 / (2 * r * 3 ^ 7) := by

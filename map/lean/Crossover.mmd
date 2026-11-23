@@ -1,12 +1,15 @@
 flowchart LR
-  n0["<b>ratio_strictMono</b><br/>StrictMono (ratio A B x y)"]:::thm
-  n1["<b>at_most_one_crossover</b><br/>i = j"]:::end_
-  n2["<b>dominance_flips</b><br/>ratio A B x y i ＜ 1 ∧ 1 ＜ ratio A B x y j"]:::end_
-  n3["<b>no_crossover_of_single</b><br/>ratio A 0 x y j ≠ 1"]:::end_
-  n4["<b>count_does_not_determine_spread</b><br/>(6.892378652639774e-07 : ℝ) ＜ 0.0736589 ∧ (0.0736589 : ℝ) / 6.89…"]:::lone
-  n5["<b>spread_is_non_monotone</b><br/>(0.0591885 : ℝ) ＜ 0.3026405 ∧ (0.0219312 : ℝ) ＜ 0.3026405"]:::lone
+  n0["<b>ratio_strictMono</b><br/>StrictMono (ratio A B x y)"]:::shp
+  n1["<b>at_most_one_crossover ■</b><br/>i = j"]:::shp
+  n2["<b>dominance_flips ■</b><br/>ratio A B x y i ＜ 1 ∧ 1 ＜ ratio A B x y j"]:::shp
+  n3["<b>no_crossover_of_single ■</b><br/>ratio A 0 x y j ≠ 1"]:::shp
+  n4["<b>count_does_not_determine_spread ■</b><br/>(6.892378652639774e-07 : ℝ) ＜ 0.0736589 ∧ (0.0736589 : ℝ) / 6.89…"]:::shp
+  n5["<b>spread_is_non_monotone ■</b><br/>(0.0591885 : ℝ) ＜ 0.3026405 ∧ (0.0219312 : ℝ) ＜ 0.3026405"]:::shp
   n0 --> n1
   n0 --> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

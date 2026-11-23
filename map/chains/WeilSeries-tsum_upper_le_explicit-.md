@@ -1,6 +1,6 @@
 # What `WeilSeries.tsum_upper_le_explicit'` rests on
 
-[`WeilSeries.tsum_upper_le_explicit'`](../lean_stage3/WeilSeries.md#WeilSeries-tsum_upper_le_explicit-) in `lean_stage3/Stage3/WeilSeries.lean`, line 294.
+[`WeilSeries.tsum_upper_le_explicit'`](../lean_stage3/WeilSeries.md#WeilSeries-tsum_upper_le_explicit-) in `lean_stage3/Stage3/WeilSeries.lean`, line 301.
 
 **Why.** Upper on-line background, in `γ` and `h` alone: `≤ 88·(γ+3)⁴·(4h² + cFar/h²)·π²/6`.
 
@@ -38,6 +38,9 @@ flowchart LR
   f5 --> f6
   f6 --> f7
   f7 --> f8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

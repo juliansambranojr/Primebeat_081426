@@ -2,7 +2,7 @@
 
 # Elephant.lean — the one object, derived from nothing Standalone. This file imports Mathlib and imports no module of this development. It defines
 
-29 theorems, 7 definitions, 665 lines. Arrows are Lean's own record of what each proof uses.
+29 theorems, 7 definitions, 667 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** nothing in this tree  
 **Imported by:** nothing
@@ -11,35 +11,35 @@
 
 ```mermaid
 flowchart LR
-  n0["<b>symbol_of_difference</b><br/>(b : ℂ) ^ (r * ρ) - (b : ℂ) ^ ((r - 1) * ρ) = Sym b ρ * (b : ℂ) …"]:::thm
-  n1["<b>sym_pow_expand</b><br/>(Sym b ρ) ^ d = ∑ k ∈ Finset.range (d + 1), (-1 : ℂ) ^ k * (d.ch…"]:::end_
-  n2["<b>cpow_neg_pow</b><br/>((b : ℂ) ^ (-ρ)) ^ k = (b : ℂ) ^ (-((k : ℂ) * ρ))"]:::lone
-  n3["<b>norm_cpow_neg</b><br/>‖(b : ℂ) ^ (-s)‖ = b ^ (-s.re)"]:::thm
-  n4["<b>norm_sym_band</b><br/>1 - b ^ (-(1:ℝ)/2) ≤ ‖Sym b ((1:ℂ)/2 + γ * Complex.I)‖ ∧ ‖Sym b …"]:::thm
-  n5["<b>norm_sym_imaginary</b><br/>‖Sym b ((γ : ℂ) * Complex.I)‖ = 2 * |Real.sin (γ * Real.log b / …"]:::end_
-  n6["<b>sym_eq_zero_iff</b><br/>Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * Complex.I / …"]:::thm
-  n7["<b>lattice_step</b><br/>Sym b ((k : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ S…"]:::end_
-  n8["<b>sym_tprod_eq_zeta</b><br/>∏' p : Nat.Primes, (Sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s"]:::end_
-  n9["<b>primeTable_eq_stencil</b><br/>((fwdDiff (1 : ℕ))^[d] (primeRow b)) r = ∑ k ∈ Finset.range (d +…"]:::end_
-  n10["<b>sym_ne_zero_on_critical_line</b><br/>Sym b ((1 : ℂ)/2 + γ * Complex.I) ≠ 0"]:::end_
-  n11["<b>zeta_zero_weight_band</b><br/>(1 - b ^ (-(1:ℝ)/2)) ^ d ≤ ‖Sym b ρ‖ ^ d ∧ ‖Sym b ρ‖ ^ d ≤ (1 + …"]:::end_
-  n12["<b>bdiff_mode</b><br/>bdiff (mode b ρ) r = Sym b ρ * mode b ρ r"]:::thm
-  n13["<b>bdiff_iter_mode</b><br/>(bdiff^[d]) (mode b ρ) r = (Sym b ρ) ^ d * mode b ρ r"]:::end_
-  n14["<b>bdiff_iter_modeSum</b><br/>(bdiff^[d]) (fun r =＞ ∑ i ∈ s, c i * mode b (ρ i) r) r = ∑ i ∈ s…"]:::thm
-  n15["<b>primeTable_eq_sym_weighted</b><br/>(bdiff^[d]) (primeRowZ b) r = ∑ i ∈ s, c i * (Sym (b : ℝ) (ρ i))…"]:::end_
+  n0["<b>symbol_of_difference</b><br/>(b : ℂ) ^ (r * ρ) - (b : ℂ) ^ ((r - 1) * ρ) = Sym b ρ * (b : ℂ) …"]:::shp
+  n1["<b>sym_pow_expand ■</b><br/>(Sym b ρ) ^ d = ∑ k ∈ Finset.range (d + 1), (-1 : ℂ) ^ k * (d.ch…"]:::shp
+  n2["<b>cpow_neg_pow ■</b><br/>((b : ℂ) ^ (-ρ)) ^ k = (b : ℂ) ^ (-((k : ℂ) * ρ))"]:::shp
+  n3["<b>norm_cpow_neg</b><br/>‖(b : ℂ) ^ (-s)‖ = b ^ (-s.re)"]:::shp
+  n4["<b>norm_sym_band</b><br/>1 - b ^ (-(1:ℝ)/2) ≤ ‖Sym b ((1:ℂ)/2 + γ * Complex.I)‖ ∧ ‖Sym b …"]:::shp
+  n5["<b>norm_sym_imaginary ■</b><br/>‖Sym b ((γ : ℂ) * Complex.I)‖ = 2 * |Real.sin (γ * Real.log b / …"]:::shp
+  n6["<b>sym_eq_zero_iff</b><br/>Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * Complex.I / …"]:::shp
+  n7["<b>lattice_step ■</b><br/>Sym b ((k : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ S…"]:::shp
+  n8["<b>sym_tprod_eq_zeta ■</b><br/>∏' p : Nat.Primes, (Sym ((p : ℕ) : ℝ) s)⁻¹ = riemannZeta s"]:::thm
+  n9["<b>primeTable_eq_stencil ■</b><br/>((fwdDiff (1 : ℕ))^[d] (primeRow b)) r = ∑ k ∈ Finset.range (d +…"]:::cnt
+  n10["<b>sym_ne_zero_on_critical_line ■</b><br/>Sym b ((1 : ℂ)/2 + γ * Complex.I) ≠ 0"]:::shp
+  n11["<b>zeta_zero_weight_band ■</b><br/>(1 - b ^ (-(1:ℝ)/2)) ^ d ≤ ‖Sym b ρ‖ ^ d ∧ ‖Sym b ρ‖ ^ d ≤ (1 + …"]:::thm
+  n12["<b>bdiff_mode</b><br/>bdiff (mode b ρ) r = Sym b ρ * mode b ρ r"]:::shp
+  n13["<b>bdiff_iter_mode ■</b><br/>(bdiff^[d]) (mode b ρ) r = (Sym b ρ) ^ d * mode b ρ r"]:::shp
+  n14["<b>bdiff_iter_modeSum</b><br/>(bdiff^[d]) (fun r =＞ ∑ i ∈ s, c i * mode b (ρ i) r) r = ∑ i ∈ s…"]:::shp
+  n15["<b>primeTable_eq_sym_weighted ■</b><br/>(bdiff^[d]) (primeRowZ b) r = ∑ i ∈ s, c i * (Sym (b : ℝ) (ρ i))…"]:::shp
   n16["<b>logDeriv_zeta_coeffs</b><br/>LSeries (fun n =＞ (vonMangoldt n : ℂ)) s = -deriv riemannZeta s …"]:::thm
-  n17["<b>filter_couples_iff_isPrimePow</b><br/>vonMangoldt (b ^ k) ≠ 0 ↔ IsPrimePow b"]:::lone
-  n18["<b>coupling_coeff</b><br/>∑ k ∈ Finset.Icc 1 d, ((d.choose k : ℝ) * (-1) ^ k * vonMangoldt…"]:::lone
-  n19["<b>natCast_mul_cpow</b><br/>((m * n : ℕ) : ℂ) ^ s = (m : ℂ) ^ s * (n : ℂ) ^ s"]:::thm
+  n17["<b>filter_couples_iff_isPrimePow ■</b><br/>vonMangoldt (b ^ k) ≠ 0 ↔ IsPrimePow b"]:::shp
+  n18["<b>coupling_coeff ■</b><br/>∑ k ∈ Finset.Icc 1 d, ((d.choose k : ℝ) * (-1) ^ k * vonMangoldt…"]:::shp
+  n19["<b>natCast_mul_cpow</b><br/>((m * n : ℕ) : ℂ) ^ s = (m : ℂ) ^ s * (n : ℂ) ^ s"]:::shp
   n20["<b>cpow_neg_mul_lseries</b><br/>(b : ℂ) ^ (-s) * LSeries a s = LSeries (fun m =＞ if b ∣ m then a…"]:::thm
   n21["<b>sym_mul_lseries</b><br/>Sym ((b : ℕ) : ℝ) s * LSeries a s = LSeries a s - LSeries (fun m…"]:::thm
-  n22["<b>sym_mul_logDeriv_zeta</b><br/>Sym (b : ℝ) s * (-deriv riemannZeta s / riemannZeta s) = LSeries…"]:::end_
-  n23["<b>sum_primeIndicator</b><br/>∑ m ∈ Finset.range (x + 1), primeIndicator m = (Nat.primeCountin…"]:::thm
-  n24["<b>sum_shift</b><br/>∑ m ∈ Finset.range (x + 1), (if b ∣ m then a (m / b) else 0) = ∑…"]:::thm
-  n25["<b>summatory_sym</b><br/>∑ m ∈ Finset.range (x + 1), (a m - (if b ∣ m then a (m / b) else…"]:::thm
-  n26["<b>primeCount_backward_diff</b><br/>∑ m ∈ Finset.range (b ^ (r + 1) + 1), (primeIndicator m - (if b …"]:::end_
+  n22["<b>sym_mul_logDeriv_zeta ■</b><br/>Sym (b : ℝ) s * (-deriv riemannZeta s / riemannZeta s) = LSeries…"]:::thm
+  n23["<b>sum_primeIndicator</b><br/>∑ m ∈ Finset.range (x + 1), primeIndicator m = (Nat.primeCountin…"]:::shp
+  n24["<b>sum_shift</b><br/>∑ m ∈ Finset.range (x + 1), (if b ∣ m then a (m / b) else 0) = ∑…"]:::shp
+  n25["<b>summatory_sym</b><br/>∑ m ∈ Finset.range (x + 1), (a m - (if b ∣ m then a (m / b) else…"]:::shp
+  n26["<b>primeCount_backward_diff ■</b><br/>∑ m ∈ Finset.range (b ^ (r + 1) + 1), (primeIndicator m - (if b …"]:::shp
   n27["<b>zeta_ne_zero_of_re_eq_zero</b><br/>riemannZeta ρ ≠ 0"]:::thm
-  n28["<b>filter_ne_zero_at_zeta_zero</b><br/>(Sym b ρ) ^ d ≠ 0"]:::end_
+  n28["<b>filter_ne_zero_at_zeta_zero ■</b><br/>(Sym b ρ) ^ d ≠ 0"]:::thm
   n0 --> n12
   n12 --> n13
   n12 --> n14
@@ -57,6 +57,9 @@ flowchart LR
   n4 --> n11
   n6 --> n28
   n6 --> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -64,7 +67,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -91,7 +94,7 @@ The table is a difference of prime counts. `Δ^d` applied to `n ↦ π(bⁿ)` is
 <a name="Elephant-bdiff"></a>
 ### `Elephant.bdiff`
 
-def · line 230
+def · line 232
 
 A backward difference on a row indexed by `ℤ`.
 
@@ -101,7 +104,7 @@ A backward difference on a row indexed by `ℤ`.
 <a name="Elephant-mode"></a>
 ### `Elephant.mode`
 
-def · line 233
+def · line 235
 
 The mode `r ↦ b ^ (r ρ)`.
 
@@ -111,7 +114,7 @@ The mode `r ↦ b ^ (r ρ)`.
 <a name="Elephant-IsModeRow"></a>
 ### `Elephant.IsModeRow`
 
-def · line 283
+def · line 285
 
 The explicit-formula hypothesis, named and visible. A row is a mode row when its values on the `b`-ladder are a finite superposition of `b^(rρ)`. This is NOT satisfiable by `π` with a finite index set — `π` is a step function, and the explicit formula is an infinite sum with a main term. Trying to discharge it is what showed that. It is kept because it is the correct shape of the bridge and because `coupling_coeff` below reaches the same base law by a route that needs no such hypothesis.
 
@@ -122,7 +125,7 @@ The explicit-formula hypothesis, named and visible. A row is a mode row when its
 <a name="Elephant-primeRowZ"></a>
 ### `Elephant.primeRowZ`
 
-def · line 288
+def · line 290
 
 The prime-counting row on the `b`-ladder, `r ↦ π(b^r)`.
 
@@ -132,7 +135,7 @@ The prime-counting row on the `b`-ladder, `r ↦ π(b^r)`.
 <a name="Elephant-primeIndicator"></a>
 ### `Elephant.primeIndicator`
 
-def · line 451
+def · line 453
 
 The prime indicator, whose partial sums are `π`.
 
@@ -145,6 +148,8 @@ The prime indicator, whose partial sums are `π`.
 ### `Elephant.symbol_of_difference`
 
 line 38
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The symbol is the difference operator. Differencing a mode in `r` multiplies it by `Sym b ρ`. This is the whole reason the table and the Euler factor are the same thing.
 
@@ -172,6 +177,8 @@ line 38
 
 line 51
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The stencil is the symbol, expanded. No hypothesis on `b`.
 
 **Proves**
@@ -197,6 +204,8 @@ line 51
 
 line 65
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Each term sits at a power of the base. The expansion of `Sym ^ d` is a Dirichlet polynomial supported on `{1, b, …, b^d}`.
 
 **Proves**
@@ -219,6 +228,8 @@ line 65
 ### `Elephant.norm_cpow_neg`
 
 line 79
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The modulus of `b ^ (-s)` is `b ^ (-s.re)`.
 
@@ -243,6 +254,8 @@ line 79
 ### `Elephant.norm_sym_band`
 
 line 87
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The band. On the critical line the symbol's modulus lies between `1 - b^(-1/2)` and `1 + b^(-1/2)` — the law of cosines on sides `1` and `b^(-1/2)`.
 
@@ -273,6 +286,8 @@ line 87
 
 line 107
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The gain. On the imaginary axis the symbol's modulus is `2|sin(γ log b / 2)|`; raised to the depth this is the depth-`d` gain, and its maximum `2` at phase `π` is the ceiling.
 
 **Proves**
@@ -296,6 +311,8 @@ line 107
 ### `Elephant.sym_eq_zero_iff`
 
 line 123
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The lattice. `Sym b s = 0` exactly on `(2πi / log b) ℤ`.
 
@@ -325,6 +342,8 @@ Sym b s = 0 ↔ ∃ k : ℤ, s = (k : ℂ) * (2 * Real.pi * Complex.I / Real.log
 
 line 150
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The step. Consecutive zeros of `Sym` are `2πi / log b` apart. This is the actual spacing statement; `2π/L = 2(π/L)` is arithmetic and proves nothing.
 
 **Proves**
@@ -352,6 +371,8 @@ Sym b ((k : ℂ) * (2 * Real.pi * Complex.I / Real.log b)) = 0 ∧ Sym b (((k + 
 
 line 168
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The definition is not an analogy. The reciprocal of `Sym` at the primes, multiplied over all of them, is `riemannZeta`. Everything above is therefore a statement about ζ's Euler factors, and the base law does NOT follow from this product's index set -- bases 4, 9, 16, 27 index no factor here either, yet they carry full signal. The correct mechanism is `Λ(b) ≠ 0`, i.e. von Mangoldt support, which is the prime POWERS.
 
 **Proves**
@@ -373,7 +394,11 @@ line 168
 <a name="Elephant-primeTable_eq_stencil"></a>
 ### `Elephant.primeTable_eq_stencil`
 
-line 181
+line 183
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
+**Why.** The `d`-fold forward difference of the prime row `n ↦ π(bⁿ)` at `r` equals the alternating binomial stencil `∑ k ≤ d, (−1)^(d−k)·C(d,k)·π(b^(r+k))`.
 
 **Proves**
 
@@ -395,7 +420,9 @@ line 181
 <a name="Elephant-sym_ne_zero_on_critical_line"></a>
 ### `Elephant.sym_ne_zero_on_critical_line`
 
-line 194
+line 196
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The filter and ζ's nontrivial zeros never collide. `Sym`'s zeros sit on the imaginary axis (`sym_eq_zero_iff`), and every nontrivial zero of ζ has real part strictly between `0` and `1`; on the critical line the modulus is bounded below by `1 - b^(-1/2) > 0`. So no zeta zero is killed by the table's weight at any depth.
 
@@ -421,7 +448,9 @@ Sym b ((1 : ℂ)/2 + γ * Complex.I) ≠ 0
 <a name="Elephant-zeta_zero_weight_band"></a>
 ### `Elephant.zeta_zero_weight_band`
 
-line 209
+line 211
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The band, at a zeta zero on the critical line, to every depth. This is the ceiling and floor of what the depth-`d` table can do to a zero of ζ. The hypothesis `riemannZeta ρ = 0` is carried to say what the point is; the bound itself needs only `ρ.re = 1/2`.
 
@@ -449,7 +478,9 @@ line 209
 <a name="Elephant-bdiff_mode"></a>
 ### `Elephant.bdiff_mode`
 
-line 236
+line 238
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** One difference multiplies a mode by `Sym`.
 
@@ -479,7 +510,9 @@ bdiff (mode b ρ) r = Sym b ρ * mode b ρ r
 <a name="Elephant-bdiff_iter_mode"></a>
 ### `Elephant.bdiff_iter_mode`
 
-line 245
+line 247
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Depth. `d` differences multiply a mode by `Sym ^ d`. This is the step the prose called "depth `d` gives `Sym ^ d`", which had no theorem.
 
@@ -507,7 +540,9 @@ line 245
 <a name="Elephant-bdiff_iter_modeSum"></a>
 ### `Elephant.bdiff_iter_modeSum`
 
-line 259
+line 261
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The same for a finite superposition of modes.
 
@@ -539,7 +574,9 @@ line 259
 <a name="Elephant-primeTable_eq_sym_weighted"></a>
 ### `Elephant.primeTable_eq_sym_weighted`
 
-line 296
+line 298
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The join. If the prime-counting row on the `b`-ladder is a mode row, then differencing it `d` times multiplies every mode by `Sym ^ d` — the Euler factor at `b`, to the `d`. This is the statement that `Nat.primeCounting` and `Sym` never met in; it holds under `IsModeRow` and under nothing weaker that this file provides.
 
@@ -567,7 +604,9 @@ line 296
 <a name="Elephant-logDeriv_zeta_coeffs"></a>
 ### `Elephant.logDeriv_zeta_coeffs`
 
-line 313
+line 315
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The Dirichlet coefficients of `-ζ'/ζ` are von Mangoldt. This is the side of ζ the table actually reads: not the Euler product's index set, but the log-derivative's coefficients.
 
@@ -590,7 +629,9 @@ LSeries (fun n => (vonMangoldt n : ℂ)) s = -deriv riemannZeta s / riemannZeta 
 <a name="Elephant-filter_couples_iff_isPrimePow"></a>
 ### `Elephant.filter_couples_iff_isPrimePow`
 
-line 328
+line 330
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The base law. `Sym b ρ ^ d` expanded is supported exactly on the frequencies `b ^ k` (`cpow_neg_pow`), and the coefficient of `-ζ'/ζ` at frequency `n` is `Λ n` (`logDeriv_zeta_coeffs`). So the table's filter reads ζ at `b ^ k` with weight `Λ (b ^ k)`, and that weight is nonzero for every `k ≥ 1` exactly when `b` is a PRIME POWER.
 
@@ -611,7 +652,9 @@ vonMangoldt (b ^ k) ≠ 0 ↔ IsPrimePow b
 <a name="Elephant-coupling_coeff"></a>
 ### `Elephant.coupling_coeff`
 
-line 348
+line 350
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The base law with its magnitude, proved. The filter `Sym b ρ ^ d` expanded is supported on `b ^ k` (`cpow_neg_pow`); the coefficient of `-ζ'/ζ` at `b ^ k` is `Λ (b ^ k)` (`logDeriv_zeta_coeffs`). Summing the filter against those coefficients over `k = 1 … d` collapses:
 
@@ -633,7 +676,9 @@ line 348
 <a name="Elephant-natCast_mul_cpow"></a>
 ### `Elephant.natCast_mul_cpow`
 
-line 386
+line 388
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** New lemma. `cpow` splits over a product of positive naturals. Mathlib's product rules for `cpow` carry branch-cut side conditions that do not fit here; on the positive reals there is no cut, and this is the form the shift needs.
 
@@ -658,7 +703,9 @@ line 386
 <a name="Elephant-cpow_neg_mul_lseries"></a>
 ### `Elephant.cpow_neg_mul_lseries`
 
-line 401
+line 403
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Multiplying by `b^(-s)` shifts an L-series' coefficients up the `b`-ladder.
 
@@ -685,7 +732,9 @@ line 401
 <a name="Elephant-sym_mul_lseries"></a>
 ### `Elephant.sym_mul_lseries`
 
-line 431
+line 433
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The central sentence. `Sym b s` applied to an L-series differences its coefficients along the `b`-ladder. No summability hypothesis, no explicit formula, no assumption on what the coefficients are.
 
@@ -714,7 +763,9 @@ Sym ((b : ℕ) : ℝ) s * LSeries a s = LSeries a s - LSeries (fun m => if b ∣
 <a name="Elephant-sym_mul_logDeriv_zeta"></a>
 ### `Elephant.sym_mul_logDeriv_zeta`
 
-line 441
+line 443
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** On ζ. Differencing the von Mangoldt data along the `b`-ladder IS multiplying `-ζ'/ζ` by the Euler factor at `b`. Primes on the left, ζ on the right, and the operator between them is `Sym`.
 
@@ -741,7 +792,9 @@ Sym (b : ℝ) s * (-deriv riemannZeta s / riemannZeta s) = LSeries (fun n => (vo
 <a name="Elephant-sum_primeIndicator"></a>
 ### `Elephant.sum_primeIndicator`
 
-line 454
+line 456
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Its partial sums ARE `Nat.primeCounting`.
 
@@ -766,7 +819,9 @@ line 454
 <a name="Elephant-sum_shift"></a>
 ### `Elephant.sum_shift`
 
-line 461
+line 463
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** New lemma. Summing the `b`-shifted coefficients up to `x` is summing the originals up to `x / b`. A finite reindexing along `k ↦ b·k`; no analysis.
 
@@ -791,7 +846,9 @@ line 461
 <a name="Elephant-summatory_sym"></a>
 ### `Elephant.summatory_sym`
 
-line 485
+line 487
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The summatory reading of `Sym`. Multiplying by the Euler factor at `b` on the Dirichlet side is the operation `A(x) ↦ A(x) - A(x/b)` on the summatory side.
 
@@ -818,7 +875,9 @@ line 485
 <a name="Elephant-primeCount_backward_diff"></a>
 ### `Elephant.primeCount_backward_diff`
 
-line 493
+line 495
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** For π. At `x = b^(r+1)` the summatory reading is exactly the table's backward difference of the prime counting function along the `b`-ladder. This is the sentence for `π`, not only for `Λ`.
 
@@ -845,7 +904,9 @@ line 493
 <a name="Elephant-zeta_ne_zero_of_re_eq_zero"></a>
 ### `Elephant.zeta_ne_zero_of_re_eq_zero`
 
-line 507
+line 509
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** ζ has no zeros on the imaginary axis. `ζ 0 = -1/2`, and for `ρ = it` with `t ≠ 0` the functional equation carries `ζ ρ` to `ζ (1 - ρ)`, which sits on the zero-free line `re = 1`.
 
@@ -868,7 +929,9 @@ riemannZeta ρ ≠ 0
 <a name="Elephant-filter_ne_zero_at_zeta_zero"></a>
 ### `Elephant.filter_ne_zero_at_zeta_zero`
 
-line 534
+line 536
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The step. `Sym`'s zeros lie on the imaginary axis (`sym_eq_zero_iff`); ζ has none there. So at every zero of ζ the table's depth-`d` weight is nonzero: the table loses no zero of ζ, at any base and any depth. This is the link from the table to the zeros that needs no explicit formula.
 

@@ -2,7 +2,7 @@
 
 WeilPowerBackground — the switched window as a test function of the explicit formula, every term of the zero form as minus a square, and the on-line terms bounded. Rung 5, fifth slice. 2026-09-06.
 
-16 theorems, 3 definitions, 265 lines. Arrows are Lean's own record of what each proof uses.
+16 theorems, 3 definitions, 270 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilDetect`](../lean_stage3/WeilDetect.md), [`WeilPowerBounds`](../lean_stage3/WeilPowerBounds.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilPowerBands`](../lean_stage3/WeilPowerBands.md)
@@ -11,22 +11,22 @@ WeilPowerBackground — the switched window as a test function of the explicit f
 
 ```mermaid
 flowchart LR
-  n0["<b>phiWC_real</b><br/>(phiWC h γ m u).im = 0"]:::thm
-  n1["<b>laplace_phiW</b><br/>laplace (phiWC h γ m) z = what h γ m (-z - 1 / 2)"]:::thm
-  n2["<b>S_eq_sinh</b><br/>S m w = ∫ x in (-1 : ℝ)..1, ((q m x : ℝ) : ℂ) * Complex.sinh (w …"]:::thm
-  n3["<b>S_neg</b><br/>S m (-w) = -S m w"]:::thm
-  n4["<b>what_neg</b><br/>what h γ m (-z) = -what h γ m z"]:::thm
-  n5["<b>term_eq_neg_sq</b><br/>laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = …"]:::thm
-  n6["<b>term_re_eq</b><br/>(laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).…"]:::thm
-  n7["<b>S_I_mul</b><br/>S m (Complex.I * (t : ℂ)) = Complex.I * (PsiW m t : ℂ)"]:::thm
-  n8["<b>what_I</b><br/>what h γ m (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * (…"]:::thm
-  n9["<b>online_term_eq</b><br/>laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = …"]:::thm
-  n10["<b>online_term_nonneg</b><br/>0 ≤ (laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ…"]:::thm
-  n11["<b>abs_q_le_one</b><br/>|q m x| ≤ 1"]:::thm
-  n12["<b>PsiW_le_two</b><br/>|PsiW m t| ≤ 2"]:::thm
-  n13["<b>online_term_le_near</b><br/>(laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).…"]:::thm
-  n14["<b>PsiW_le_far</b><br/>|PsiW m t| ≤ cS m * (2 / t ^ 2) ^ (m + 1)"]:::thm
-  n15["<b>online_term_le_far</b><br/>(laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).…"]:::thm
+  n0["<b>phiWC_real</b><br/>(phiWC h γ m u).im = 0"]:::shp
+  n1["<b>laplace_phiW</b><br/>laplace (phiWC h γ m) z = what h γ m (-z - 1 / 2)"]:::shp
+  n2["<b>S_eq_sinh</b><br/>S m w = ∫ x in (-1 : ℝ)..1, ((q m x : ℝ) : ℂ) * Complex.sinh (w …"]:::shp
+  n3["<b>S_neg</b><br/>S m (-w) = -S m w"]:::shp
+  n4["<b>what_neg</b><br/>what h γ m (-z) = -what h γ m z"]:::shp
+  n5["<b>term_eq_neg_sq</b><br/>laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = …"]:::shp
+  n6["<b>term_re_eq</b><br/>(laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).…"]:::shp
+  n7["<b>S_I_mul</b><br/>S m (Complex.I * (t : ℂ)) = Complex.I * (PsiW m t : ℂ)"]:::shp
+  n8["<b>what_I</b><br/>what h γ m (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * (…"]:::shp
+  n9["<b>online_term_eq</b><br/>laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = …"]:::shp
+  n10["<b>online_term_nonneg</b><br/>0 ≤ (laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ…"]:::shp
+  n11["<b>abs_q_le_one</b><br/>|q m x| ≤ 1"]:::shp
+  n12["<b>PsiW_le_two</b><br/>|PsiW m t| ≤ 2"]:::shp
+  n13["<b>online_term_le_near</b><br/>(laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).…"]:::shp
+  n14["<b>PsiW_le_far</b><br/>|PsiW m t| ≤ cS m * (2 / t ^ 2) ^ (m + 1)"]:::shp
+  n15["<b>online_term_le_far</b><br/>(laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ))).…"]:::shp
   x0(["<b>WeilPowerAssembly</b><br/>isTest_phiWC"]):::ext
   x1(["<b>WeilOddPower</b><br/>continuous_q<br/>q_odd<br/>what_eq"]):::ext
   x2(["<b>WeilTransform</b><br/>odd_integral_exp"]):::ext
@@ -64,6 +64,9 @@ flowchart LR
   x2 -.-> n2
   x6 -.-> n11
   x7 -.-> n14
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -71,7 +74,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -100,7 +103,7 @@ The complex-valued test function WeilDetect reads.
 <a name="WeilPowerBackground-PsiW"></a>
 ### `WeilPowerBackground.PsiW`
 
-def · line 122
+def · line 125
 
 `PsiW m t = ∫₋₁¹ q m x · sin(tx) dx`: the transform on the line, real.
 
@@ -113,7 +116,11 @@ def · line 122
 <a name="WeilPowerBackground-phiWC_real"></a>
 ### `WeilPowerBackground.phiWC_real`
 
-line 54
+line 55
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The complex-valued test function `phiWC h γ m` has zero imaginary part at every `u`.
 
 **Proves**
 
@@ -138,7 +145,9 @@ line 54
 <a name="WeilPowerBackground-laplace_phiW"></a>
 ### `WeilPowerBackground.laplace_phiW`
 
-line 59
+line 60
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The transform in the explicit formula's convention. `laplace φ z = what h γ m (−z − 1/2)`.
 
@@ -168,7 +177,9 @@ laplace (phiWC h γ m) z = what h γ m (-z - 1 / 2)
 <a name="WeilPowerBackground-S_eq_sinh"></a>
 ### `WeilPowerBackground.S_eq_sinh`
 
-line 81
+line 82
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The odd envelope's transform through `sinh`: unit 0318's odd-part lemma.
 
@@ -199,7 +210,9 @@ S m w = ∫ x in (-1 : ℝ)..1, ((q m x : ℝ) : ℂ) * Complex.sinh (w * (x : �
 <a name="WeilPowerBackground-S_neg"></a>
 ### `WeilPowerBackground.S_neg`
 
-line 87
+line 88
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `S` is odd.
 
@@ -229,7 +242,9 @@ S m (-w) = -S m w
 <a name="WeilPowerBackground-what_neg"></a>
 ### `WeilPowerBackground.what_neg`
 
-line 95
+line 96
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The window's transform is odd.
 
@@ -262,7 +277,9 @@ what h γ m (-z) = -what h γ m z
 <a name="WeilPowerBackground-term_eq_neg_sq"></a>
 ### `WeilPowerBackground.term_eq_neg_sq`
 
-line 106
+line 107
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Every term is minus a square.
 
@@ -294,7 +311,11 @@ laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = -(what h γ 
 <a name="WeilPowerBackground-term_re_eq"></a>
 ### `WeilPowerBackground.term_re_eq`
 
-line 115
+line 118
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `h > 0`, the real part of the zero-form term at `ρ` is `(Im ŵ)² − (Re ŵ)²`, where `ŵ` is the window's transform `what h γ m` at `ρ − 1/2`.
 
 **Proves**
 
@@ -322,7 +343,9 @@ line 115
 <a name="WeilPowerBackground-S_I_mul"></a>
 ### `WeilPowerBackground.S_I_mul`
 
-line 125
+line 128
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `S m (it) = i·PsiW m t`.
 
@@ -353,7 +376,9 @@ S m (Complex.I * (t : ℂ)) = Complex.I * (PsiW m t : ℂ)
 <a name="WeilPowerBackground-what_I"></a>
 ### `WeilPowerBackground.what_I`
 
-line 138
+line 141
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The window's transform on the line: `what h γ m (it) = i(h/2)[PsiW(h(t+γ)) + PsiW(h(t−γ))]`.
 
@@ -386,7 +411,9 @@ what h γ m (Complex.I * (t : ℂ)) = Complex.I * ((h : ℂ) / 2) * ((PsiW m (h 
 <a name="WeilPowerBackground-online_term_eq"></a>
 ### `WeilPowerBackground.online_term_eq`
 
-line 150
+line 153
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** On the line the term is a real square.
 
@@ -422,7 +449,11 @@ laplace (phiWC h γ m) (-ρ) * laplace (phiWC h γ m) (-(1 - ρ)) = (((h / 2) ^ 
 <a name="WeilPowerBackground-online_term_nonneg"></a>
 ### `WeilPowerBackground.online_term_nonneg`
 
-line 164
+line 169
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `h > 0` and `ρ` with real part `1/2`, the real part of the zero-form term at `ρ` is nonnegative.
 
 **Proves**
 
@@ -452,7 +483,9 @@ line 164
 <a name="WeilPowerBackground-abs_q_le_one"></a>
 ### `WeilPowerBackground.abs_q_le_one`
 
-line 170
+line 175
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `|q m x| ≤ 1` on `[−1, 1]`.
 
@@ -483,7 +516,9 @@ line 170
 <a name="WeilPowerBackground-PsiW_le_two"></a>
 ### `WeilPowerBackground.PsiW_le_two`
 
-line 181
+line 186
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `|PsiW m t| ≤ 2`.
 
@@ -513,7 +548,9 @@ line 181
 <a name="WeilPowerBackground-online_term_le_near"></a>
 ### `WeilPowerBackground.online_term_le_near`
 
-line 196
+line 201
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Near the carrier: the on-line term is at most `4h²`.
 
@@ -547,7 +584,9 @@ line 196
 <a name="WeilPowerBackground-PsiW_le_far"></a>
 ### `WeilPowerBackground.PsiW_le_far`
 
-line 215
+line 220
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `|PsiW m t| ≤ cS m·(2/t²)^{m+1}` when `2π²(m+1)² ≤ t²`: unit 0331's far bound at real part zero.
 
@@ -577,7 +616,9 @@ line 215
 <a name="WeilPowerBackground-online_term_le_far"></a>
 ### `WeilPowerBackground.online_term_le_far`
 
-line 223
+line 228
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Away from the carrier: for `h|γ_ρ ∓ γ|` both at least `√2·π(m+1)`, the on-line term is at most `(h/2)²·[cS m·(2/(h(γ_ρ−γ))²)^{m+1} + cS m·(2/(h(γ_ρ+γ))²)^{m+1}]²`.
 

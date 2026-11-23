@@ -1,24 +1,24 @@
 flowchart LR
-  n0["<b>gammaR_eq_exp_mul</b><br/>Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Compl…"]:::thm
-  n1["<b>differentiableAt_gammaR</b><br/>DifferentiableAt ℂ Gammaℝ s"]:::thm
-  n2["<b>logDeriv_gammaR</b><br/>logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamm…"]:::thm
+  n0["<b>gammaR_eq_exp_mul</b><br/>Gammaℝ s = Complex.exp (-(Real.log Real.pi : ℂ) / 2 * s) * Compl…"]:::shp
+  n1["<b>differentiableAt_gammaR</b><br/>DifferentiableAt ℂ Gammaℝ s"]:::shp
+  n2["<b>logDeriv_gammaR</b><br/>logDeriv Gammaℝ s = -(Real.log Real.pi : ℂ) / 2 + Complex.digamm…"]:::shp
   n3["<b>logDeriv_xi_split</b><br/>logDeriv xi s = 1 / s + 1 / (s - 1) + logDeriv Gammaℝ s + logDer…"]:::thm
-  n4["<b>intervalIntegral_re</b><br/>(∫ t in a..b, f t).re = ∫ t in a..b, (f t).re"]:::thm
-  n5["<b>intervalIntegral_im</b><br/>(∫ t in a..b, f t).im = ∫ t in a..b, (f t).im"]:::lone
+  n4["<b>intervalIntegral_re</b><br/>(∫ t in a..b, f t).re = ∫ t in a..b, (f t).re"]:::shp
+  n5["<b>intervalIntegral_im ■</b><br/>(∫ t in a..b, f t).im = ∫ t in a..b, (f t).im"]:::shp
   n6["<b>logDeriv_gammaR_conj</b><br/>logDeriv Gammaℝ (conj s) = conj (logDeriv Gammaℝ s)"]:::thm
   n7["<b>logDeriv_gammaR_im_eq_zero</b><br/>(logDeriv Gammaℝ ((x : ℝ) : ℂ)).im = 0"]:::thm
-  n8["<b>integral_inv_vertical</b><br/>(∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹) = -Complex.I * (C…"]:::thm
-  n9["<b>integral_inv_horizontal</b><br/>(∫ x in a..b, (((x : ℂ) - d) + T * Complex.I)⁻¹) = Complex.log (…"]:::thm
-  n10["<b>arg_sum_eq_pi</b><br/>Complex.arg ((1/2 : ℝ) + T * Complex.I) + Complex.arg ((-(1/2) :…"]:::thm
-  n11["<b>elem_fold_eq_pi</b><br/>(∫ t in (0:ℝ)..T, elemLD (2 + (t : ℂ) * Complex.I)).re - (∫ x in…"]:::thm
-  n12["<b>logDeriv_gammaR_analyticAt</b><br/>AnalyticAt ℂ (logDeriv Gammaℝ) z"]:::thm
-  n13["<b>logDeriv_gammaR_continuousAt</b><br/>ContinuousAt (logDeriv Gammaℝ) z"]:::thm
+  n8["<b>integral_inv_vertical</b><br/>(∫ t in (0:ℝ)..T, ((c : ℂ) + t * Complex.I)⁻¹) = -Complex.I * (C…"]:::shp
+  n9["<b>integral_inv_horizontal</b><br/>(∫ x in a..b, (((x : ℂ) - d) + T * Complex.I)⁻¹) = Complex.log (…"]:::shp
+  n10["<b>arg_sum_eq_pi</b><br/>Complex.arg ((1/2 : ℝ) + T * Complex.I) + Complex.arg ((-(1/2) :…"]:::shp
+  n11["<b>elem_fold_eq_pi</b><br/>(∫ t in (0:ℝ)..T, elemLD (2 + (t : ℂ) * Complex.I)).re - (∫ x in…"]:::shp
+  n12["<b>logDeriv_gammaR_analyticAt</b><br/>AnalyticAt ℂ (logDeriv Gammaℝ) z"]:::shp
+  n13["<b>logDeriv_gammaR_continuousAt</b><br/>ContinuousAt (logDeriv Gammaℝ) z"]:::shp
   n14["<b>logDeriv_gammaR_holo</b><br/>HolomorphicOn (logDeriv Gammaℝ) {s : ℂ | 0 ＜ s.re}"]:::thm
-  n15["<b>logDeriv_gammaR_comp_continuous</b><br/>Continuous fun x : ℝ =＞ logDeriv Gammaℝ (g x)"]:::thm
+  n15["<b>logDeriv_gammaR_comp_continuous</b><br/>Continuous fun x : ℝ =＞ logDeriv Gammaℝ (g x)"]:::shp
   n16["<b>gammaR_fold_eq_phaseTheta</b><br/>(∫ t in (0:ℝ)..T, logDeriv Gammaℝ (2 + (t : ℂ) * Complex.I)).re …"]:::thm
   n17["<b>stmtArgIdentity_holds</b><br/>StmtArgIdentity phaseTheta argS"]:::thm
-  n18["<b>backlundArg_of_sFromLocal</b><br/>StmtBacklundArg phaseTheta (a * A₁) (a * A₃ + b)"]:::end_
-  n19["<b>rvM_of_sFromLocal</b><br/>riemannZeta.Riemann_vonMangoldt_bound (97 + a * 15) 0 (98 + (a *…"]:::end_
+  n18["<b>backlundArg_of_sFromLocal ■</b><br/>StmtBacklundArg phaseTheta (a * A₁) (a * A₃ + b)"]:::thm
+  n19["<b>rvM_of_sFromLocal ■</b><br/>riemannZeta.Riemann_vonMangoldt_bound (97 + a * 15) 0 (98 + (a *…"]:::thm
   n20["<b>logDeriv_zeta_analyticAt</b><br/>AnalyticAt ℂ (logDeriv riemannZeta) z"]:::thm
   n21["<b>logDeriv_zeta_continuousAt</b><br/>ContinuousAt (logDeriv riemannZeta) z"]:::thm
   n22["<b>argS_eq_zetaArgContour</b><br/>argS T = zetaArgContour T"]:::thm
@@ -64,6 +64,9 @@ flowchart LR
   x3 -.-> n18
   x3 -.-> n19
   x4 -.-> n19
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

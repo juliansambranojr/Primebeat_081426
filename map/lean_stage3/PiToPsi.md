@@ -11,16 +11,16 @@ PiToPsi — block T5 of `lean_stage3/design/joints.md`, first part. 2026-11-22. 
 
 ```mermaid
 flowchart LR
-  n0["<b>Li_two</b><br/>Stage3.Li 2 = 2 / Real.log 2"]:::thm
-  n1["<b>continuousOn_Li</b><br/>ContinuousOn Stage3.Li (Ioi 1)"]:::thm
-  n2["<b>uIcc_two_subset</b><br/>uIcc (2 : ℝ) x ⊆ Ioi 1"]:::thm
-  n3["<b>intervalIntegrable_Li_div</b><br/>IntervalIntegrable (fun t : ℝ =＞ Stage3.Li t / t) volume 2 x"]:::thm
-  n4["<b>intervalIntegrable_pi_div</b><br/>IntervalIntegrable (fun t : ℝ =＞ (Nat.primeCounting ⌊t⌋₊ : ℝ) / …"]:::thm
-  n5["<b>Li_mul_log_sub_integral</b><br/>Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = …"]:::thm
-  n6["<b>intervalIntegrable_relRes</b><br/>IntervalIntegrable relRes volume 2 x"]:::thm
-  n7["<b>theta_sub_id_eq</b><br/>θ x - x = ((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x) * Real.lo…"]:::thm
-  n8["<b>relRes_tail_le</b><br/>(∫ t in x₀..x, |relRes t|) ≤ 2 * (C * Real.log x) * Real.sqrt x"]:::thm
-  n9["<b>psiWeak_of_schoenfeldWeak</b><br/>∃ C' ＞ 0, ∃ x₁ : ℝ, StmtPsiWeak C' 3 x₁"]:::thm
+  n0["<b>Li_two</b><br/>Stage3.Li 2 = 2 / Real.log 2"]:::shp
+  n1["<b>continuousOn_Li</b><br/>ContinuousOn Stage3.Li (Ioi 1)"]:::shp
+  n2["<b>uIcc_two_subset</b><br/>uIcc (2 : ℝ) x ⊆ Ioi 1"]:::shp
+  n3["<b>intervalIntegrable_Li_div</b><br/>IntervalIntegrable (fun t : ℝ =＞ Stage3.Li t / t) volume 2 x"]:::shp
+  n4["<b>intervalIntegrable_pi_div</b><br/>IntervalIntegrable (fun t : ℝ =＞ (Nat.primeCounting ⌊t⌋₊ : ℝ) / …"]:::shp
+  n5["<b>Li_mul_log_sub_integral</b><br/>Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = …"]:::shp
+  n6["<b>intervalIntegrable_relRes</b><br/>IntervalIntegrable relRes volume 2 x"]:::shp
+  n7["<b>theta_sub_id_eq</b><br/>θ x - x = ((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x) * Real.lo…"]:::shp
+  n8["<b>relRes_tail_le</b><br/>(∫ t in x₀..x, |relRes t|) ≤ 2 * (C * Real.log x) * Real.sqrt x"]:::shp
+  n9["<b>psiWeak_of_schoenfeldWeak</b><br/>∃ C' ＞ 0, ∃ x₁ : ℝ, StmtPsiWeak C' 3 x₁"]:::shp
   n10["<b>RH_of_schoenfeldWeak</b><br/>RiemannHypothesis"]:::thm
   n11["<b>RH_iff_schoenfeldWeak</b><br/>RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x…"]:::thm
   x0(["<b>RowLeaves</b><br/>hasDerivAt_Li"]):::ext
@@ -53,6 +53,9 @@ flowchart LR
   x2 -.-> n8
   x3 -.-> n10
   x4 -.-> n11
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -60,7 +63,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -82,6 +85,8 @@ The residual of the count against `Stage3.Li`, relative to `t`.
 
 line 44
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** At two the smooth count is `2 / log 2`: its integral part is empty there.
 
 **Proves**
@@ -102,6 +107,8 @@ Stage3.Li 2 = 2 / Real.log 2
 ### `PiToPsi.continuousOn_Li`
 
 line 49
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The smooth count `Li` is continuous past one, because it has a derivative there.
 
@@ -127,6 +134,8 @@ ContinuousOn Stage3.Li (Ioi 1)
 
 line 53
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Every point between two and `x` is past one, where `Li` and `log` behave.
 
 **Proves**
@@ -151,6 +160,8 @@ uIcc (2 : ℝ) x ⊆ Ioi 1
 ### `PiToPsi.intervalIntegrable_Li_div`
 
 line 59
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `Li t / t` can be integrated from two to `x`.
 
@@ -182,6 +193,8 @@ IntervalIntegrable (fun t : ℝ => Stage3.Li t / t) volume 2 x
 
 line 68
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The count over `t` can be integrated from two to `x`: the count only steps upward.
 
 **Proves**
@@ -207,6 +220,8 @@ IntervalIntegrable (fun t : ℝ => (Nat.primeCounting ⌊t⌋₊ : ℝ) / t) vol
 ### `PiToPsi.Li_mul_log_sub_integral`
 
 line 86
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `Li` undone. `Li x · log x` minus the integral of `Li t / t` from two is exactly `x`. This is the smooth side of the passage from the count back to `θ`.
 
@@ -237,6 +252,8 @@ Stage3.Li x * Real.log x - ∫ t in (2 : ℝ)..x, Stage3.Li t / t = x
 ### `PiToPsi.intervalIntegrable_relRes`
 
 line 112
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The relative residual can be integrated from two to `x`.
 
@@ -269,6 +286,8 @@ IntervalIntegrable relRes volume 2 x
 
 line 122
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `θ` from `π`, with `Stage3.Li` taken off both sides.
 
 **Proves**
@@ -297,6 +316,8 @@ line 122
 ### `PiToPsi.relRes_tail_le`
 
 line 139
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The tail of `∫ |relRes|` under the `π`-side bound.
 
@@ -328,6 +349,8 @@ line 139
 ### `PiToPsi.psiWeak_of_schoenfeldWeak`
 
 line 185
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** From the count to `ψ`. The square-root bound on `π − Stage3.Li` gives the bound on `ψ` at two more logarithms.
 
@@ -362,6 +385,8 @@ line 185
 
 line 271
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** The square-root bound on the count gives the Riemann hypothesis.
 
 **Proves**
@@ -392,6 +417,8 @@ RiemannHypothesis
 ### `PiToPsi.RH_iff_schoenfeldWeak`
 
 line 288
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The Riemann hypothesis is the square-root bound on the count.
 

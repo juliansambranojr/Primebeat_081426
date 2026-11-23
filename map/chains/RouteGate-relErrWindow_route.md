@@ -1,6 +1,8 @@
 # What `RouteGate.relErrWindow_route` rests on
 
-[`RouteGate.relErrWindow_route`](../lean_stage3/RouteGate.md#RouteGate-relErrWindow_route) in `lean_stage3/Stage3/RouteGate.lean`, line 33.
+[`RouteGate.relErrWindow_route`](../lean_stage3/RouteGate.md#RouteGate-relErrWindow_route) in `lean_stage3/Stage3/RouteGate.lean`, line 36.
+
+**Why.** Assuming RH, there are constants `c₁ c₃ c₄ ≥ 0` such that for every `x₀ ≥ 16` and all `r`, `n` with `x₀² ≤ 2^(r−n)`, the rows of `π` meet `StmtRelErrWindow` against the main term `2/log 2 + ∫ t in 1..m, exp (log 2·t)/t`, with the `floorConstSplit` bound at `W = 0`.
 
 **Proves**
 
@@ -68,6 +70,9 @@ flowchart LR
   f5 --> f23
   f10 --> f23
   f22 --> f23
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

@@ -2,7 +2,7 @@
 
 LandauPrimeSide — the primes' reading of the Taylor coefficients of `Phi`, bounded from above by a window bound on `G`. Block 7a of `lean_stage3/design/landau.md`. 2026-11-22.
 
-3 theorems, 1 definition, 184 lines. Arrows are Lean's own record of what each proof uses.
+3 theorems, 1 definition, 190 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauTail`](../lean_stage3/LandauTail.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauZeroSide`](../lean_stage3/LandauZeroSide.md)
@@ -28,6 +28,9 @@ flowchart LR
   x2 -.-> n2
   x3 -.-> n2
   x4 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -35,7 +38,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -55,7 +58,11 @@ def · line 39
 <a name="LandauPrimeSide-Ik_integrable"></a>
 ### `LandauPrimeSide.Ik_integrable`
 
-line 42
+line 44
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For real `σ > 1` and every natural `k`, the integrand `G(y)·(log y)^k·y^(−σ−1)` of `Ik` is integrable on `(1, ∞)`.
 
 **Proves**
 
@@ -81,7 +88,11 @@ IntegrableOn (fun y : ℝ => LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1)) 
 <a name="LandauPrimeSide-iteratedDeriv_Phi_eq_Ik"></a>
 ### `LandauPrimeSide.iteratedDeriv_Phi_eq_Ik`
 
-line 60
+line 63
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For real `σ > 1`, the `k`-th derivative of `Phi` at `σ` is `(−1)^k · Ik σ k`.
 
 **Proves**
 
@@ -110,7 +121,11 @@ iteratedDeriv k LandauMellinG.Phi (σ : ℂ) = (-1) ^ k * ((Ik σ k : ℝ) : ℂ
 <a name="LandauPrimeSide-Ik_le"></a>
 ### `LandauPrimeSide.Ik_le`
 
-line 65
+line 71
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The upper bound on the primes' integral. For `σ > 1`, `θ < σ`, `C ≥ 0`, `Y ≥ 1`, `δ ≥ 0`, a window bound `G y ≤ C·y^θ` on `[Y, Y^(1+δ)]`, and shifts `b > 0`, `0 < b' < σ − 1`: `Ik σ k ≤ C·k!/(σ−θ)^(k+1) + 8·Y^b·k!/(σ−1+b)^(k+1) + 8·(Y^(1+δ))^(−b')·k!/(σ−1−b')^(k+1)`.
 
 **Proves**
 

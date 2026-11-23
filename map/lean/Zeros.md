@@ -5,38 +5,43 @@ Zeros — what is provable about the four exact zeros, and what is not. THE MEAS
 15 theorems, 7 definitions, 298 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Construction`](../lean/Construction.md)  
-**Imported by:** [`Isogeny`](../lean/Isogeny.md), [`Nonvanishing`](../lean/Nonvanishing.md), [`ZeroCells`](../lean/ZeroCells.md), [`ZerosStencil`](../lean/ZerosStencil.md)
+**Imported by:** [`DeepZeroBand`](../lean/DeepZeroBand.md), [`Isogeny`](../lean/Isogeny.md), [`Nonvanishing`](../lean/Nonvanishing.md), [`ZeroCells`](../lean/ZeroCells.md), [`ZerosStencil`](../lean/ZerosStencil.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>tableFrom_isTable</b><br/>IsTable (Construction.tableFrom N)"]:::thm
-  n1["<b>zero_iff_repeat</b><br/>f r (d + 1) = 0 ↔ f r d = f (r - 1) d"]:::thm
-  n2["<b>neg_below_zero</b><br/>Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (…"]:::end_
-  n3["<b>pair_shares_diagonal</b><br/>(r - 1) - (d : ℤ) = r - ((d + 1 : ℕ) : ℤ)"]:::lone
-  n4["<b>window_shared_of_composite_exponent</b><br/>(4 : ℕ) ^ 2 = 2 ^ 4"]:::lone
-  n5["<b>zero_2_1</b><br/>Construction.tableFrom dyadicRow 2 1 = 0"]:::end_
-  n6["<b>zero_4_1</b><br/>Construction.tableFrom dyadicRow 4 1 = 0"]:::end_
-  n7["<b>zero_8_3</b><br/>Construction.tableFrom dyadicRow 8 3 = 0"]:::end_
-  n8["<b>zero_20_6</b><br/>Construction.tableFrom dyadicRow 20 6 = 0"]:::end_
-  n9["<b>measured_zeros_all_vanish</b><br/>∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ)…"]:::thm
-  n10["<b>nonzero_7_3</b><br/>Construction.tableFrom dyadicRow 7 3 = 5"]:::end_
-  n11["<b>nonzero_19_6</b><br/>Construction.tableFrom dyadicRow 19 6 = 343"]:::end_
-  n12["<b>four_zeros_only</b><br/>measured_zeros.length = 4"]:::end_
-  n13["<b>zero_at_20_6_of_repeat</b><br/>Construction.tableFrom N 20 6 = 0"]:::end_
-  n14["<b>zero_at_8_3_of_repeat</b><br/>Construction.tableFrom N 8 3 = 0"]:::end_
+  n0["<b>tableFrom_isTable</b><br/>IsTable (Construction.tableFrom N)"]:::cnt
+  n1["<b>zero_iff_repeat</b><br/>f r (d + 1) = 0 ↔ f r d = f (r - 1) d"]:::cnt
+  n2["<b>neg_below_zero ■</b><br/>Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (…"]:::cnt
+  n3["<b>pair_shares_diagonal ■</b><br/>(r - 1) - (d : ℤ) = r - ((d + 1 : ℕ) : ℤ)"]:::cnt
+  n4["<b>window_shared_of_composite_exponent ■</b><br/>(4 : ℕ) ^ 2 = 2 ^ 4"]:::cnt
+  n5["<b>zero_2_1 ■</b><br/>Construction.tableFrom dyadicRow 2 1 = 0"]:::cnt
+  n6["<b>zero_4_1 ■</b><br/>Construction.tableFrom dyadicRow 4 1 = 0"]:::cnt
+  n7["<b>zero_8_3 ■</b><br/>Construction.tableFrom dyadicRow 8 3 = 0"]:::cnt
+  n8["<b>zero_20_6</b><br/>Construction.tableFrom dyadicRow 20 6 = 0"]:::cnt
+  n9["<b>measured_zeros_all_vanish</b><br/>∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ)…"]:::cnt
+  n10["<b>nonzero_7_3 ■</b><br/>Construction.tableFrom dyadicRow 7 3 = 5"]:::cnt
+  n11["<b>nonzero_19_6 ■</b><br/>Construction.tableFrom dyadicRow 19 6 = 343"]:::cnt
+  n12["<b>four_zeros_only ■</b><br/>measured_zeros.length = 4"]:::cnt
+  n13["<b>zero_at_20_6_of_repeat ■</b><br/>Construction.tableFrom N 20 6 = 0"]:::cnt
+  n14["<b>zero_at_8_3_of_repeat ■</b><br/>Construction.tableFrom N 8 3 = 0"]:::cnt
   x0(["<b>Construction</b><br/>tableFrom_isTableOf"]):::ext
   x1(["<b>ZerosStencil</b><br/>repeat_iff_wings"]):::ext
-  x2(["<b>ZeroCells</b><br/>construction_all_vanish<br/>pairIdentity_all_vanish<br/>seedPerturbation_all_vanish"]):::ext
+  x2(["<b>DeepZeroBand</b><br/>deep_zero_share"]):::ext
+  x3(["<b>ZeroCells</b><br/>construction_all_vanish<br/>pairIdentity_all_vanish<br/>seedPerturbation_all_vanish"]):::ext
   n0 --> n13
   n0 --> n14
   n1 --> n13
   n1 --> n14
   n0 -.-> x1
   n1 -.-> x1
-  n9 -.-> x2
+  n8 -.-> x2
+  n9 -.-> x3
   x0 -.-> n0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -44,7 +49,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -87,7 +92,7 @@ The depth-0 row `N(r) = π(2^r) − π(2^(r−1))`: the primes in `(2^(r−1), 2
 
 - **Is:** `` dyadicRow : ℤ → ℤ := fun r => if 1 ≤ r ∧ r ≤ 20 then pi2 r.toNat - pi2 (r - 1).toNat else 0 ``
 - **Built from:** [`Zeros.pi2`](#Zeros-pi2)
-- **Used by 11:** [`Isogeny.dyadicRow_eq_rowN`](../lean/Isogeny.md#Isogeny-dyadicRow_eq_rowN), [`ZeroCells.construction_all_vanish`](../lean/ZeroCells.md#ZeroCells-construction_all_vanish), [`ZeroCells.pairIdentity_all_vanish`](../lean/ZeroCells.md#ZeroCells-pairIdentity_all_vanish), [`ZeroCells.seedPerturbation_all_vanish`](../lean/ZeroCells.md#ZeroCells-seedPerturbation_all_vanish), [`Zeros.measured_zeros_all_vanish`](#Zeros-measured_zeros_all_vanish), [`Zeros.nonzero_19_6`](#Zeros-nonzero_19_6), [`Zeros.nonzero_7_3`](#Zeros-nonzero_7_3), [`Zeros.zero_20_6`](#Zeros-zero_20_6), [`Zeros.zero_2_1`](#Zeros-zero_2_1), [`Zeros.zero_4_1`](#Zeros-zero_4_1), [`Zeros.zero_8_3`](#Zeros-zero_8_3)
+- **Used by 16:** [`DeepZeroBand.compRow`](../lean/DeepZeroBand.md#DeepZeroBand-compRow), [`DeepZeroBand.deep_cell_15_6`](../lean/DeepZeroBand.md#DeepZeroBand-deep_cell_15_6), [`DeepZeroBand.deep_zero_on_outer_circle`](../lean/DeepZeroBand.md#DeepZeroBand-deep_zero_on_outer_circle), [`DeepZeroBand.deep_zero_share`](../lean/DeepZeroBand.md#DeepZeroBand-deep_zero_share), [`DeepZeroBand.share_15_6_neg`](../lean/DeepZeroBand.md#DeepZeroBand-share_15_6_neg), [`Isogeny.dyadicRow_eq_rowN`](../lean/Isogeny.md#Isogeny-dyadicRow_eq_rowN), [`ZeroCells.construction_all_vanish`](../lean/ZeroCells.md#ZeroCells-construction_all_vanish), [`ZeroCells.pairIdentity_all_vanish`](../lean/ZeroCells.md#ZeroCells-pairIdentity_all_vanish), [`ZeroCells.seedPerturbation_all_vanish`](../lean/ZeroCells.md#ZeroCells-seedPerturbation_all_vanish), [`Zeros.measured_zeros_all_vanish`](#Zeros-measured_zeros_all_vanish), [`Zeros.nonzero_19_6`](#Zeros-nonzero_19_6), [`Zeros.nonzero_7_3`](#Zeros-nonzero_7_3), [`Zeros.zero_20_6`](#Zeros-zero_20_6), [`Zeros.zero_2_1`](#Zeros-zero_2_1), [`Zeros.zero_4_1`](#Zeros-zero_4_1), [`Zeros.zero_8_3`](#Zeros-zero_8_3)
 
 <a name="Zeros-measured_repeat_20_6"></a>
 ### `Zeros.measured_repeat_20_6`
@@ -124,6 +129,8 @@ The centered (skew-adjoint) table has no exact zeros at all, `r <= 62`, `d <= 30
 
 line 76
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The bench's table is one. The hypothesis of `zero_iff_repeat` now has a witness: it is the second conjunct of `Construction.tableFrom_isTableOf`, which itself depends on no axioms.
 
 **Proves**
@@ -152,6 +159,8 @@ IsTable (Construction.tableFrom N)
 ### `Zeros.zero_iff_repeat`
 
 line 81
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** A zero is exactly a repeat one depth up. This is definitional, and it is the only characterisation of a zero the chain supplies.
 
@@ -182,6 +191,8 @@ f r (d + 1) = 0 ↔ f r d = f (r - 1) d
 
 line 95
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** A zero puts its left neighbour, negated, directly beneath it. With the cell above vanishing, the recurrence has nothing to subtract from.
 
 **Proves**
@@ -208,6 +219,8 @@ Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (r - 1) d
 
 line 105
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** And those two cells share a diagonal. The left neighbour sits at `(r-1, d)` and the copy at `(r, d+1)`, and `r - d` is the same for both. So every zero places a `±v` pair as adjacent cells on the diagonal one in -- `±343` at `(20,6)`, `±5` at `(8,3)`, both measured in `The-Fold.md` § C3.
 
 **Proves**
@@ -230,6 +243,8 @@ line 105
 
 line 115
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** The (8,3) window is shared. Depth 3 spans `2^4 = 4^2`, so base 4 reaches it at depth 1. Against `Zeros.window_exclusive_of_prime_exponent`, which puts base 2 alone in the (20,6) window, the two deep zeros are different kinds of object.
 
 **Proves**
@@ -246,6 +261,8 @@ line 115
 ### `Zeros.zero_2_1`
 
 line 171
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** `(2,1)` vanishes: `1·1 − 1·1 = 0`, computed by the kernel from `pi2`.
 
@@ -266,6 +283,8 @@ Construction.tableFrom dyadicRow 2 1 = 0
 
 line 173
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** `(4,1)` vanishes: `1·2 − 1·2 = 0`.
 
 **Proves**
@@ -284,6 +303,8 @@ Construction.tableFrom dyadicRow 4 1 = 0
 ### `Zeros.zero_8_3`
 
 line 175
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** `(8,3)` vanishes: `23 − 3·13 + 3·7 − 5 = 0`, four values of `π`.
 
@@ -304,6 +325,8 @@ Construction.tableFrom dyadicRow 8 3 = 0
 
 line 178
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** `(20,6)` vanishes: the depth-6 stencil on seven values of `π`, spanning `2^13` to `2^20`. The deep zero, computed.
 
 **Proves**
@@ -316,12 +339,16 @@ Construction.tableFrom dyadicRow 20 6 = 0
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`DeepZeroBand.deep_zero_share`](../lean/DeepZeroBand.md#DeepZeroBand-deep_zero_share) (DeepZeroBand) — `` share Zeros.dyadicRow 20 6 13 = 0 ``
 
 <a name="Zeros-measured_zeros_all_vanish"></a>
 ### `Zeros.measured_zeros_all_vanish`
 
 line 182
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The list's own claim, as a theorem. Every cell `measured_zeros` names vanishes on the dyadic row.
 
@@ -346,6 +373,8 @@ line 182
 
 line 187
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** A non-zero neighbour, so the check can fail.
 
 **Proves**
@@ -364,6 +393,8 @@ Construction.tableFrom dyadicRow 7 3 = 5
 ### `Zeros.nonzero_19_6`
 
 line 191
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The `+343` of `papers/The-Fold.md` § C3, the partner of the `−343` that a zero at `(20,6)` forces onto `(20,7)`.
 
@@ -384,6 +415,8 @@ Construction.tableFrom dyadicRow 19 6 = 343
 
 line 203
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Four zeros in 1953 cells. Recorded, not derived.
 
 **Proves**
@@ -402,6 +435,8 @@ measured_zeros.length = 4
 ### `Zeros.zero_at_20_6_of_repeat`
 
 line 210
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The measured repeat gives the deep zero, through the theorem. `O27` reads `d5` at `r = 19` and `r = 20` as both 623; `zero_iff_repeat` turns that into `(20,6) = 0` without computing anything. The measurement is the input and the vanishing is the output, which is the only direction this file supports.
 
@@ -430,6 +465,8 @@ Construction.tableFrom N 20 6 = 0
 ### `Zeros.zero_at_8_3_of_repeat`
 
 line 219
+
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
 
 **Why.** The same for the other deep zero, where the repeated value is 4.
 

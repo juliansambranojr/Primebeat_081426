@@ -1,0 +1,59 @@
+# check_prose_source.py  2026-11-23T01:55:34Z
+# unit: 0454-zero-density
+# sources searched: 419
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23612
+  Prove Carlson's bound ourselves, which is a large project
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25591
+  theorem zero_density {σ : ℝ} (hσ : 1 / 2 < σ) (hσ1 : σ ≤ 1) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25592
+  ∃ θ C T₀ : ℝ, θ < 1 ∧ 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ,
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:25593
+  (∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re < 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2) →
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:903
+  theorem inner_le {δ T u : ℝ} {k X N : ℕ} (hδ : 0 < δ) (hδ8 : δ ≤ 1 / 8) (hk2 : 2 ≤ k)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:904
+  (hk : 1 ≤ δ * ((k:ℝ) - 1)) (hT2 : 2 ≤ T) (hTk : (k:ℝ) + 2 ≤ T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:905
+  (hX : T ^ δ ≤ X) (hX2 : (X:ℝ) ≤ 2 * T ^ δ) (hN : T ^ (1 + δ) ≤ N)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:906
+  (hN2 : (N:ℝ) ≤ 2 * T ^ (1 + δ)) (hX2' : 2 ≤ X) (hXN : X ≤ N) (hTN : T + 3 + k ≤ N)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:907
+  (hu : 6 * δ ≤ 2 * u - 1) (hu2 : u ≤ 2) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:908
+  ∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:909
+  ≤ bConst δ k * T ^ (1 - 6 * δ ^ 2) * (1 + Real.log T) ^ 5 :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:822
+  theorem term4_le {δ T u E : ℝ} {k X N : ℕ} (hδ : 0 < δ) (hT : 1 ≤ T)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:823
+  (hk : 1 ≤ δ * ((k:ℝ) - 1)) (hTk : T + 2 + k ≤ 2 * T) (hu : 1 / 2 ≤ u)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:824
+  (hX2 : (X:ℝ) ≤ 2 * T ^ δ) (hN : T ^ (1 + δ) ≤ N) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:825
+  T * (X:ℝ) ^ 2 * E ^ 2 * (N:ℝ) ^ (-2 * u)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24980
+  * (1 + (T + 2 + k) ^ k * (N:ℝ) ^ (1 - (k:ℝ))) ^ 2
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a08da66c51359c059.jsonl:827
+  ≤ 4 * E ^ 2 * (1 + 2 ^ k) ^ 2 * T ^ δ :=
+
+# 18 found, 0 missing

@@ -1,6 +1,6 @@
 # What `RHPull.smoothedChebyshev_sub_main_norm_le` rests on
 
-[`RHPull.smoothedChebyshev_sub_main_norm_le`](../lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sub_main_norm_le) in `lean_stage3/Stage3/LineBound.lean`, line 1423.
+[`RHPull.smoothedChebyshev_sub_main_norm_le`](../lean_stage3/LineBound.md#RHPull-smoothedChebyshev_sub_main_norm_le) in `lean_stage3/Stage3/LineBound.lean`, line 1429.
 
 **Why.** THE ASSEMBLY — every contour piece summed at the RH abscissa. `pull_at_RH_abscissa` splits the smoothed Chebyshev into five pieces plus the main term; the triangle inequality and the four bounds close it. `B₁` and `B₉` come from PNT+'s `I1Bound` / `I9Bound`, which are `σ₁`-independent.
 
@@ -40,6 +40,9 @@ flowchart LR
   f0["<b>JensenCount</b><br/>12 used"]:::thm
   f1["<b>LineBound</b><br/>smoothedChebyshev_sub_main_norm_le"]:::end_
   f0 --> f1
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

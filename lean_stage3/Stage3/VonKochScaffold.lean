@@ -37,6 +37,7 @@ noncomputable def F (s : ℂ) : ℂ :=
 /-- The truncated error, as a function on `(0,∞)`: `E` on `(1,∞)`, zero below. -/
 noncomputable def Etr : ℝ → ℂ := Set.indicator (Set.Ioi 1) (fun t : ℝ ↦ ((E t : ℝ) : ℂ))
 
+/-- Helper: the Chebyshev function `ψ` is measurable as a function of a real variable. -/
 theorem measurable_psi' : Measurable (fun t : ℝ ↦ ψ t) := by
   have : (fun t : ℝ ↦ ψ t)
       = (fun n : ℕ ↦ ∑ k ∈ Finset.Ioc 0 n, ArithmeticFunction.vonMangoldt k)
@@ -44,6 +45,7 @@ theorem measurable_psi' : Measurable (fun t : ℝ ↦ ψ t) := by
   rw [this]
   exact Measurable.comp (.of_discrete) Nat.measurable_floor
 
+/-- Helper: the truncated error `Etr` is measurable. -/
 theorem Etr_measurable : Measurable Etr :=
   ((Complex.measurable_ofReal.comp
     (measurable_psi'.sub measurable_id)).indicator measurableSet_Ioi)
@@ -221,6 +223,7 @@ theorem measurable_psi : Measurable (fun t : ℝ ↦ ψ t) := by
   rw [this]
   exact Measurable.comp (.of_discrete) Nat.measurable_floor
 
+/-- For `Re s > 1`, the function `ψ t · t^(−(s+1))` is integrable on `(1, ∞)`. -/
 theorem integrable_psi_cpow {s : ℂ} (hs : 1 < s.re) :
     IntegrableOn (fun t : ℝ ↦ ((ψ t : ℝ) : ℂ) * (t : ℂ) ^ (-(s + 1)))
       (Set.Ioi (1:ℝ)) := by
@@ -353,6 +356,7 @@ argument. -/
 /-- The working region: past the critical line, minus the pole. -/
 def region : Set ℂ := {s : ℂ | 1/2 < s.re ∧ s ≠ 1}
 
+/-- The working region `{s | 1/2 < Re s ∧ s ≠ 1}` is open. -/
 theorem isOpen_region : IsOpen region := by
   have h : region = {s : ℂ | 1/2 < s.re} ∩ {(1:ℂ)}ᶜ := by
     ext s
@@ -360,6 +364,7 @@ theorem isOpen_region : IsOpen region := by
   rw [h]
   exact (isOpen_lt continuous_const Complex.continuous_re).inter isOpen_compl_singleton
 
+/-- The working region `{s | 1/2 < Re s ∧ s ≠ 1}` is preconnected. -/
 theorem preconnected_region : IsPreconnected region := by
   have hA : IsPreconnected {s : ℂ | 1/2 < s.re ∧ 0 < s.im} := by
     rw [Set.setOf_and]
@@ -413,10 +418,13 @@ theorem preconnected_region : IsPreconnected region := by
   rw [hcover]
   exact hS3
 
+/-- The Riemann zeta function is analytic on the working region. -/
 theorem zeta_analyticOnNhd : AnalyticOnNhd ℂ riemannZeta region :=
   DifferentiableOn.analyticOnNhd
     (fun _ hs ↦ (differentiableAt_riemannZeta hs.2).differentiableWithinAt) isOpen_region
 
+/-- If `|ψ t − t| ≤ C·√t·(log t)³` for all `t ≥ x₀`, then the completed object `F`
+is analytic on the working region. -/
 theorem F_analyticOnNhd {C x₀ : ℝ}
     (hbound : ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * Real.sqrt t * (Real.log t) ^ 3) :
     AnalyticOnNhd ℂ F region :=

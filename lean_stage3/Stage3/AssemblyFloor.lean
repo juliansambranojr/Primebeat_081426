@@ -42,6 +42,8 @@ def floorConst (c₁ c₂ b₁ b₂ b₃ W x₀ : ℝ) : ℝ :=
     + (8 * b₃ + 8 + 4 * W) / Real.log x₀ ^ 2
     + 18 * c₁ / (x₀ * Real.sqrt x₀) + c₂ / (Real.sqrt x₀ * Real.log x₀)
 
+/-- If `c₁`, `c₂`, `b₁`, `b₂`, `b₃`, `W` are nonnegative and `16 ≤ x₀`, then the assembly's
+constant `floorConst c₁ c₂ b₁ b₂ b₃ W x₀` is nonnegative. -/
 theorem floorConst_nonneg {c₁ c₂ b₁ b₂ b₃ W x₀ : ℝ} (hc₁ : 0 ≤ c₁) (hc₂ : 0 ≤ c₂)
     (hb₁ : 0 ≤ b₁) (hb₂ : 0 ≤ b₂) (hb₃ : 0 ≤ b₃) (hW : 0 ≤ W) (hx₀ : 16 ≤ x₀) :
     0 ≤ floorConst c₁ c₂ b₁ b₂ b₃ W x₀ := by

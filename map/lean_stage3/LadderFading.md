@@ -5,21 +5,30 @@ LadderFading — block J10b of `lean_stage3/design/joints.md`. 2026-11-22. Joint
 4 theorems, 0 definitions, 162 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AliasClass`](../lean_stage3/AliasClass.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md), [`LadderMean`](../lean_stage3/LadderMean.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>sum_sub_shift</b><br/>(∑ z ∈ Z, c z * z ^ (r + 1)) - z₀ * ∑ z ∈ Z, c z * z ^ r = ∑ z ∈…"]:::thm
-  n1["<b>not_tendsto_powerSum</b><br/>∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖…"]:::thm
-  n2["<b>one_sub_inv_ne_zero</b><br/>(1 : ℂ) - z⁻¹ ≠ 0"]:::thm
-  n3["<b>line_not_fading</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) :…"]:::end_
-  x0(["<b>AliasClass</b><br/>alias_weight<br/>sum_order_div_ne_zero<br/>zero_re_pos"]):::ext
+  n0["<b>sum_sub_shift</b><br/>(∑ z ∈ Z, c z * z ^ (r + 1)) - z₀ * ∑ z ∈ Z, c z * z ^ r = ∑ z ∈…"]:::shp
+  n1["<b>not_tendsto_powerSum</b><br/>∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖…"]:::shp
+  n2["<b>one_sub_inv_ne_zero</b><br/>(1 : ℂ) - z⁻¹ ≠ 0"]:::shp
+  n3["<b>line_not_fading</b><br/>¬ Tendsto (fun r : ℕ =＞ (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) :…"]:::thm
+  x0(["<b>LadderMean</b><br/>line_not_fading_summable"]):::ext
+  x1(["<b>AliasClass</b><br/>alias_weight<br/>sum_order_div_ne_zero<br/>zero_re_pos"]):::ext
+  x2(["<b>FiniteOffLine</b><br/>finite_off_line"]):::ext
+  x3(["<b>FiniteOffLinePi</b><br/>finite_off_line_pi"]):::ext
   n0 --> n1
   n1 --> n3
   n2 --> n3
-  x0 -.-> n3
+  n2 -.-> x0
+  n3 -.-> x2
+  n3 -.-> x3
+  x1 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -27,7 +36,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -35,6 +44,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `LadderFading.sum_sub_shift`
 
 line 35
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** One difference removes one mode. Differencing a sum of modes with the symbol of `z₀` deletes the mode `z₀` and multiplies each other weight by `z − z₀`.
 
@@ -62,6 +73,8 @@ line 35
 
 line 46
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Finitely many modes of one size do not fade. If the modes `z ∈ Z` all have modulus `R` and at least one has a weight that is not zero, their sum along the rows, measured against `R^r`, does not tend to zero.
 
 **Proves**
@@ -87,6 +100,8 @@ line 46
 
 line 92
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Outside the unit circle the symbol `1 − z⁻¹` is not zero.
 
 **Proves**
@@ -101,14 +116,17 @@ line 92
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LadderFading.line_not_fading`](#LadderFading-line_not_fading) — `` ¬ Tendsto (fun r : ℕ => (∑ ρ ∈ S, (((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ)) / (ρ : ℂ) * Chain.Sym 2 (ρ : ℂ) ^ d * Chain.mode 2 (ρ : ℂ) (((r : ℤ)) : ℂ)) … ``
+  - [`LadderMean.line_not_fading_summable`](../lean_stage3/LadderMean.md#LadderMean-line_not_fading_summable) (LadderMean) — `` ¬ Tendsto (fun r : ℕ => (∑' ρ : S, coef ρ * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d * Chain.mode 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) (((r … ``
 
 <a name="LadderFading-line_not_fading"></a>
 ### `LadderFading.line_not_fading`
 
 line 103
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A finite line of zeros does not fade from the cells. Take any nonempty finite set of zeros of ζ with one real part `β`. Their contribution to the cell `(r, d)` of the table's own ladder, measured against `2^(rβ)`, does not tend to zero as the rows go on.
 
@@ -135,5 +153,8 @@ line 103
   - [`LadderFading.not_tendsto_powerSum`](#LadderFading-not_tendsto_powerSum) — `` ∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖ = R) → (∃ z ∈ Z, c z ≠ 0) → ¬ Tendsto (fun r : ℕ => (∑ z ∈ Z, c z * z ^ r) / ((R : ℂ)… ``
   - [`LadderFading.one_sub_inv_ne_zero`](#LadderFading-one_sub_inv_ne_zero) — `` (1 : ℂ) - z⁻¹ ≠ 0 ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (2 that use it)
+
+  - [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) (FiniteOffLine) — `` RiemannHypothesis ``
+  - [`FiniteOffLinePi.finite_off_line_pi`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) (FiniteOffLinePi) — `` RiemannHypothesis ``
 

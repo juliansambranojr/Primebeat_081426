@@ -2,7 +2,7 @@
 
 CellZeros — block T1 of `lean_stage3/design/joints.md`. 2026-11-22. The cell as a sum over the zeros. For the row `ψ(2^n)` of the log-weighted prime count along the doublings, the `d`-fold backward difference at `r` is the main term `2^r·(1 − 1/2)^d` minus a sum over the zeros of ζ below a height, each zero a mode `(2^ρ)^r` multiplied by the symbol `(1 − 2^(−ρ))` once per depth, within a stated error. No RH.
 
-10 theorems, 1 definition, 187 lines. Arrows are Lean's own record of what each proof uses.
+10 theorems, 1 definition, 195 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`GlueNum`](../lean_stage3/GlueNum.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`CellModes`](../lean_stage3/CellModes.md)
@@ -11,18 +11,21 @@ CellZeros — block T1 of `lean_stage3/design/joints.md`. 2026-11-22. The cell a
 
 ```mermaid
 flowchart LR
-  n0["<b>stencil_add</b><br/>stencil d (fun n =＞ a n + b n) r = stencil d a r + stencil d b r"]:::thm
-  n1["<b>stencil_sub</b><br/>stencil d (fun n =＞ a n - b n) r = stencil d a r - stencil d b r"]:::thm
-  n2["<b>stencil_const_mul</b><br/>stencil d (fun n =＞ c * a n) r = c * stencil d a r"]:::thm
-  n3["<b>stencil_sum</b><br/>stencil d (fun n =＞ ∑ i ∈ s, f i n) r = ∑ i ∈ s, stencil d (f i)…"]:::thm
-  n4["<b>stencil_mode</b><br/>stencil d (fun n : ℤ =＞ w ^ n) r = w ^ r * (1 - w⁻¹) ^ d"]:::thm
-  n5["<b>norm_stencil_le</b><br/>‖stencil d a r‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * B j"]:::thm
-  n6["<b>cpow_two_zpow</b><br/>(((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n"]:::thm
-  n7["<b>two_cpow_ne_zero</b><br/>(2:ℂ) ^ ρ ≠ 0"]:::thm
+  n0["<b>stencil_add</b><br/>stencil d (fun n =＞ a n + b n) r = stencil d a r + stencil d b r"]:::shp
+  n1["<b>stencil_sub</b><br/>stencil d (fun n =＞ a n - b n) r = stencil d a r - stencil d b r"]:::shp
+  n2["<b>stencil_const_mul</b><br/>stencil d (fun n =＞ c * a n) r = c * stencil d a r"]:::shp
+  n3["<b>stencil_sum</b><br/>stencil d (fun n =＞ ∑ i ∈ s, f i n) r = ∑ i ∈ s, stencil d (f i)…"]:::shp
+  n4["<b>stencil_mode</b><br/>stencil d (fun n : ℤ =＞ w ^ n) r = w ^ r * (1 - w⁻¹) ^ d"]:::shp
+  n5["<b>norm_stencil_le</b><br/>‖stencil d a r‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * B j"]:::shp
+  n6["<b>cpow_two_zpow</b><br/>(((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n"]:::shp
+  n7["<b>two_cpow_ne_zero</b><br/>(2:ℂ) ^ ρ ≠ 0"]:::shp
   n8["<b>stencil_zeroPartialSum</b><br/>stencil d (fun n : ℤ =＞ Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r =…"]:::thm
   n9["<b>cell_eq_zero_sum</b><br/>‖stencil d (fun n : ℤ =＞ (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2…"]:::thm
-  x0(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
-  x1(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
+  x0(["<b>PiZeros</b><br/>stencil_neg<br/>table_cell_eq_zero_sum"]):::ext
+  x1(["<b>FiniteOffLinePi</b><br/>cpow_doubling"]):::ext
+  x2(["<b>GlueNum</b><br/>explicit_formula_split_num"]):::ext
+  x3(["<b>CellModes</b><br/>cell_eq_modeSum"]):::ext
+  x4(["<b>FiniteOffLine</b><br/>cell_zero_sum_finset"]):::ext
   n0 --> n9
   n1 --> n9
   n2 --> n8
@@ -33,8 +36,17 @@ flowchart LR
   n6 --> n8
   n7 --> n8
   n8 --> n9
-  n9 -.-> x1
-  x0 -.-> n9
+  n0 -.-> x0
+  n1 -.-> x0
+  n2 -.-> x0
+  n3 -.-> x0
+  n6 -.-> x1
+  n9 -.-> x3
+  n9 -.-> x4
+  x2 -.-> n9
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -42,7 +54,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -54,14 +66,18 @@ def · line 37
 The `d`-fold backward difference of a row, read at `r`.
 
 - **Is:** `` stencil (d : ℕ) (a : ℤ → ℂ) (r : ℤ) : ℂ := ∑ j ∈ range (d + 1), (-1 : ℂ) ^ j * (d.choose j : ℂ) * a (r - j) ``
-- **Used by 9:** [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum), [`CellZeros.norm_stencil_le`](#CellZeros-norm_stencil_le), [`CellZeros.stencil_add`](#CellZeros-stencil_add), [`CellZeros.stencil_const_mul`](#CellZeros-stencil_const_mul), [`CellZeros.stencil_mode`](#CellZeros-stencil_mode), [`CellZeros.stencil_sub`](#CellZeros-stencil_sub), [`CellZeros.stencil_sum`](#CellZeros-stencil_sum), [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum)
+- **Used by 20:** [`CellBdiff.cell_eq_modeSum_bdiff`](../lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff), [`CellBdiff.iter_bdZ_eq_stencil`](../lean_stage3/CellBdiff.md#CellBdiff-iter_bdZ_eq_stencil), [`CellBdiff.stencil_eq_bdiff_iter`](../lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter), [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum), [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows), [`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto), [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum), [`CellZeros.norm_stencil_le`](#CellZeros-norm_stencil_le), [`CellZeros.stencil_add`](#CellZeros-stencil_add), [`CellZeros.stencil_const_mul`](#CellZeros-stencil_const_mul), [`CellZeros.stencil_mode`](#CellZeros-stencil_mode), [`CellZeros.stencil_sub`](#CellZeros-stencil_sub), [`CellZeros.stencil_sum`](#CellZeros-stencil_sum), [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum), [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset), [`FiniteOffLine.finite_off_line`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line), [`PiZeros.stencilR_cast`](../lean_stage3/PiZeros.md#PiZeros-stencilR_cast), [`PiZeros.stencil_congr`](../lean_stage3/PiZeros.md#PiZeros-stencil_congr), [`PiZeros.stencil_neg`](../lean_stage3/PiZeros.md#PiZeros-stencil_neg), [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum)
 
 ## Theorems
 
 <a name="CellZeros-stencil_add"></a>
 ### `CellZeros.stencil_add`
 
-line 40
+line 41
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The stencil of a sum of two rows is the sum of their stencils.
 
 **Proves**
 
@@ -79,14 +95,19 @@ stencil d (fun n => a n + b n) r = stencil d a r + stencil d b r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
+  - [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) (PiZeros) — `` ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑… ``
 
 <a name="CellZeros-stencil_sub"></a>
 ### `CellZeros.stencil_sub`
 
-line 46
+line 48
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The stencil of a difference of two rows is the difference of their stencils.
 
 **Proves**
 
@@ -104,14 +125,19 @@ stencil d (fun n => a n - b n) r = stencil d a r - stencil d b r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellZeros.cell_eq_zero_sum`](#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T},… ``
+  - [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) (PiZeros) — `` ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑… ``
 
 <a name="CellZeros-stencil_const_mul"></a>
 ### `CellZeros.stencil_const_mul`
 
-line 52
+line 55
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The stencil of a row multiplied by a constant `c` is `c` times the stencil of the row.
 
 **Proves**
 
@@ -130,14 +156,20 @@ stencil d (fun n => c * a n) r = c * stencil d a r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum) — `` stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Ka… ``
+  - [`PiZeros.stencil_neg`](../lean_stage3/PiZeros.md#PiZeros-stencil_neg) (PiZeros) — `` CellZeros.stencil n (fun m => -a m) r = -CellZeros.stencil n a r ``
+  - [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) (PiZeros) — `` ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑… ``
 
 <a name="CellZeros-stencil_sum"></a>
 ### `CellZeros.stencil_sum`
 
-line 58
+line 62
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The stencil of a finite sum of rows is the sum of the stencils of the rows.
 
 **Proves**
 
@@ -156,14 +188,17 @@ stencil d (fun n => ∑ i ∈ s, f i n) r = ∑ i ∈ s, stencil d (f i) r
 
 **Fed by:** no theorem of this repo; it stands on Mathlib and the definitions below.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum) — `` stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Ka… ``
+  - [`PiZeros.table_cell_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-table_cell_eq_zero_sum) (PiZeros) — `` ((((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r : ℝ) : ℂ) = -∑… ``
 
 <a name="CellZeros-stencil_mode"></a>
 ### `CellZeros.stencil_mode`
 
-line 65
+line 69
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** On a mode the stencil is the symbol to the `d`.
 
@@ -191,7 +226,11 @@ stencil d (fun n : ℤ => w ^ n) r = w ^ r * (1 - w⁻¹) ^ d
 <a name="CellZeros-norm_stencil_le"></a>
 ### `CellZeros.norm_stencil_le`
 
-line 78
+line 84
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If the row entry at `r - j` has norm at most `B j` for each `j ≤ d`, then the norm of the stencil at `r` is at most `Σ_{j ≤ d} C(d,j)·B j`.
 
 **Proves**
 
@@ -218,7 +257,11 @@ line 78
 <a name="CellZeros-cpow_two_zpow"></a>
 ### `CellZeros.cpow_two_zpow`
 
-line 87
+line 94
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For an integer `n` and complex `ρ`, the real number `2^n` raised to `ρ` equals `(2^ρ)^n`.
 
 **Proves**
 
@@ -233,14 +276,19 @@ line 87
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellZeros.stencil_zeroPartialSum`](#CellZeros-stencil_zeroPartialSum) — `` stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Ka… ``
+  - [`FiniteOffLinePi.cpow_doubling`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-cpow_doubling) (FiniteOffLinePi) — `` (((2:ℝ) ^ r : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ r ``
 
 <a name="CellZeros-two_cpow_ne_zero"></a>
 ### `CellZeros.two_cpow_ne_zero`
 
-line 100
+line 108
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the complex power `2^ρ` is nonzero for every complex `ρ`.
 
 **Proves**
 
@@ -261,7 +309,9 @@ line 100
 <a name="CellZeros-stencil_zeroPartialSum"></a>
 ### `CellZeros.stencil_zeroPartialSum`
 
-line 105
+line 113
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The stencil passes through the sum over the zeros.
 
@@ -294,7 +344,9 @@ stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {
 <a name="CellZeros-cell_eq_zero_sum"></a>
 ### `CellZeros.cell_eq_zero_sum`
 
-line 129
+line 137
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The cell as a sum over the zeros.
 
@@ -325,7 +377,8 @@ line 129
 
 **Definitions its proof touches:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum) (CellModes) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : … ``
+  - [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset) (FiniteOffLine) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1),… ``
 

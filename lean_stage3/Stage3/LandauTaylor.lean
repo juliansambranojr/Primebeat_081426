@@ -67,12 +67,16 @@ private lemma integrand_norm_le {a : ℝ} {s : ℂ} (has : 1 + a ≤ s.re) (k : 
         mul_le_mul_of_nonneg_left hyP (by positivity)
     _ = 8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (k + 1) * y ^ (-a - 1)) := by ring
 
+/-- Helper: for `a > 0`, the dominating function
+`8·((log y)^k·y^(−a−1) + (log y)^(k+1)·y^(−a−1))` is integrable on `(1, ∞)`. -/
 private lemma bound_integrable {a : ℝ} (ha : 0 < a) (k : ℕ) :
     IntegrableOn (fun y : ℝ =>
       8 * (Real.log y ^ k * y ^ (-a - 1) + Real.log y ^ (k + 1) * y ^ (-a - 1))) (Ioi 1) :=
   ((LandauKernel.log_pow_integrable ha k).add
     (LandauKernel.log_pow_integrable ha (k + 1))).const_mul 8
 
+/-- For `Re s > 1` and every `k`, the integrand of `mellinLog k s`,
+`G(y)·(−log y)^k·y^(−s−1)`, is integrable on `(1, ∞)`. -/
 theorem mellinLog_integrable {s : ℂ} (hs : 1 < s.re) (k : ℕ) :
     IntegrableOn (fun y : ℝ =>
       (LandauWindow.G y : ℂ) * (-(Real.log y : ℂ)) ^ k * (y : ℂ) ^ (-s - 1)) (Ioi 1) := by
@@ -95,6 +99,8 @@ theorem mellinLog_integrable {s : ℂ} (hs : 1 < s.re) (k : ℕ) :
   filter_upwards [ae_restrict_mem measurableSet_Ioi] with y hy
   exact integrand_norm_le (by linarith) k (mem_Ioi.mp hy)
 
+/-- For `Re s > 1` and every `k`, the function `mellinLog k` has complex derivative
+`mellinLog (k+1) s` at `s`. -/
 theorem mellinLog_hasDerivAt {s : ℂ} (hs : 1 < s.re) (k : ℕ) :
     HasDerivAt (mellinLog k) (mellinLog (k + 1) s) s := by
   have ha : 0 < (s.re - 1) / 2 := by linarith
@@ -137,6 +143,8 @@ theorem mellinLog_hasDerivAt {s : ℂ} (hs : 1 < s.re) (k : ℕ) :
       ring)
   exact key.2
 
+/-- For `Re s > 1`, the `k`-th derivative of `Phi` at `s` equals `mellinLog k s`,
+the integral `∫₁^∞ G(y)·(−log y)^k·y^(−s−1) dy`. -/
 theorem iteratedDeriv_Phi (k : ℕ) {s : ℂ} (hs : 1 < s.re) :
     iteratedDeriv k LandauMellinG.Phi s = mellinLog k s := by
   induction k generalizing s with
@@ -152,6 +160,8 @@ theorem iteratedDeriv_Phi (k : ℕ) {s : ℂ} (hs : 1 < s.re) :
     rw [iteratedDeriv_succ, heq.deriv_eq]
     exact (mellinLog_hasDerivAt hs k).deriv
 
+/-- At a real point `σ`, `mellinLog k σ` equals `(−1)^k` times the real integral
+`∫₁^∞ G(y)·(log y)^k·y^(−σ−1) dy`. -/
 theorem mellinLog_real (σ : ℝ) (k : ℕ) :
     mellinLog k (σ : ℂ) = (-1) ^ k *
       ((∫ y in Ioi (1 : ℝ), LandauWindow.G y * Real.log y ^ k * y ^ (-σ - 1) : ℝ) : ℂ) := by

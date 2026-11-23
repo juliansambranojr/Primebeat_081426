@@ -1,30 +1,35 @@
 flowchart LR
-  n0["<b>tableFrom_isTable</b><br/>IsTable (Construction.tableFrom N)"]:::thm
-  n1["<b>zero_iff_repeat</b><br/>f r (d + 1) = 0 ↔ f r d = f (r - 1) d"]:::thm
-  n2["<b>neg_below_zero</b><br/>Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (…"]:::end_
-  n3["<b>pair_shares_diagonal</b><br/>(r - 1) - (d : ℤ) = r - ((d + 1 : ℕ) : ℤ)"]:::lone
-  n4["<b>window_shared_of_composite_exponent</b><br/>(4 : ℕ) ^ 2 = 2 ^ 4"]:::lone
-  n5["<b>zero_2_1</b><br/>Construction.tableFrom dyadicRow 2 1 = 0"]:::end_
-  n6["<b>zero_4_1</b><br/>Construction.tableFrom dyadicRow 4 1 = 0"]:::end_
-  n7["<b>zero_8_3</b><br/>Construction.tableFrom dyadicRow 8 3 = 0"]:::end_
-  n8["<b>zero_20_6</b><br/>Construction.tableFrom dyadicRow 20 6 = 0"]:::end_
-  n9["<b>measured_zeros_all_vanish</b><br/>∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ)…"]:::thm
-  n10["<b>nonzero_7_3</b><br/>Construction.tableFrom dyadicRow 7 3 = 5"]:::end_
-  n11["<b>nonzero_19_6</b><br/>Construction.tableFrom dyadicRow 19 6 = 343"]:::end_
-  n12["<b>four_zeros_only</b><br/>measured_zeros.length = 4"]:::end_
-  n13["<b>zero_at_20_6_of_repeat</b><br/>Construction.tableFrom N 20 6 = 0"]:::end_
-  n14["<b>zero_at_8_3_of_repeat</b><br/>Construction.tableFrom N 8 3 = 0"]:::end_
+  n0["<b>tableFrom_isTable</b><br/>IsTable (Construction.tableFrom N)"]:::cnt
+  n1["<b>zero_iff_repeat</b><br/>f r (d + 1) = 0 ↔ f r d = f (r - 1) d"]:::cnt
+  n2["<b>neg_below_zero ■</b><br/>Construction.tableFrom N r (d + 1) = -Construction.tableFrom N (…"]:::cnt
+  n3["<b>pair_shares_diagonal ■</b><br/>(r - 1) - (d : ℤ) = r - ((d + 1 : ℕ) : ℤ)"]:::cnt
+  n4["<b>window_shared_of_composite_exponent ■</b><br/>(4 : ℕ) ^ 2 = 2 ^ 4"]:::cnt
+  n5["<b>zero_2_1 ■</b><br/>Construction.tableFrom dyadicRow 2 1 = 0"]:::cnt
+  n6["<b>zero_4_1 ■</b><br/>Construction.tableFrom dyadicRow 4 1 = 0"]:::cnt
+  n7["<b>zero_8_3 ■</b><br/>Construction.tableFrom dyadicRow 8 3 = 0"]:::cnt
+  n8["<b>zero_20_6</b><br/>Construction.tableFrom dyadicRow 20 6 = 0"]:::cnt
+  n9["<b>measured_zeros_all_vanish</b><br/>∀ c ∈ measured_zeros, Construction.tableFrom dyadicRow (c.1 : ℤ)…"]:::cnt
+  n10["<b>nonzero_7_3 ■</b><br/>Construction.tableFrom dyadicRow 7 3 = 5"]:::cnt
+  n11["<b>nonzero_19_6 ■</b><br/>Construction.tableFrom dyadicRow 19 6 = 343"]:::cnt
+  n12["<b>four_zeros_only ■</b><br/>measured_zeros.length = 4"]:::cnt
+  n13["<b>zero_at_20_6_of_repeat ■</b><br/>Construction.tableFrom N 20 6 = 0"]:::cnt
+  n14["<b>zero_at_8_3_of_repeat ■</b><br/>Construction.tableFrom N 8 3 = 0"]:::cnt
   x0(["<b>Construction</b><br/>tableFrom_isTableOf"]):::ext
   x1(["<b>ZerosStencil</b><br/>repeat_iff_wings"]):::ext
-  x2(["<b>ZeroCells</b><br/>construction_all_vanish<br/>pairIdentity_all_vanish<br/>seedPerturbation_all_vanish"]):::ext
+  x2(["<b>DeepZeroBand</b><br/>deep_zero_share"]):::ext
+  x3(["<b>ZeroCells</b><br/>construction_all_vanish<br/>pairIdentity_all_vanish<br/>seedPerturbation_all_vanish"]):::ext
   n0 --> n13
   n0 --> n14
   n1 --> n13
   n1 --> n14
   n0 -.-> x1
   n1 -.-> x1
-  n9 -.-> x2
+  n8 -.-> x2
+  n9 -.-> x3
   x0 -.-> n0
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

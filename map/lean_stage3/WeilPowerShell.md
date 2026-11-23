@@ -11,21 +11,21 @@ WeilPowerShell — one shell member's weighted sum, explicit. Rung 5, sixteenth 
 
 ```mermaid
 flowchart LR
-  n0["<b>zOf_re</b><br/>(zOf e' D e).re = 2 * (e' ^ 2 - D ^ 2 - e ^ 2)"]:::thm
-  n1["<b>zOf_im</b><br/>(zOf e' D e).im = 4 * e' * D"]:::thm
-  n2["<b>norm_zOf_le</b><br/>‖zOf e' D e‖ ≤ 2 * (e' ^ 2 + D ^ 2 + e ^ 2)"]:::thm
-  n3["<b>norm_coef</b><br/>‖coef e' D e‖ = (e' ^ 2 + D ^ 2) / e ^ 2"]:::thm
-  n4["<b>uSh_bracket</b><br/>∀ k : ℕ, 0 ≤ uSh lam k - ((k : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - …"]:::thm
-  n5["<b>sum_uSh_eq</b><br/>∑ h ∈ Finset.Ico a b, coef e' D e * Complex.exp (zOf e' D e * ((…"]:::thm
-  n6["<b>im_alpha_le</b><br/>(zOf e' D e).im * (1 / ((lam : ℝ) * Real.pi ^ 2)) ≤ Real.pi / 2"]:::thm
-  n7["<b>norm_zOf_c_le</b><br/>‖zOf e' D e‖ * (1 / (2 * (lam : ℝ) ^ 3 * Real.pi ^ 2)) ≤ (a : ℝ)…"]:::thm
-  n8["<b>exp_end_le</b><br/>Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2) * (k …"]:::thm
-  n9["<b>MabGen_le</b><br/>WeilPowerGeomGen.MabGen (zOf e' D e) (1 / ((lam : ℝ) * Real.pi ^…"]:::thm
-  n10["<b>inv_exp_le</b><br/>1 / Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2)))…"]:::thm
-  n11["<b>geomBound_le</b><br/>WeilPowerGeomGen.geomBoundGen (zOf e' D e) (1 / ((lam : ℝ) * Rea…"]:::thm
-  n12["<b>shellSum_le</b><br/>|shellSum e' D e lam a b| ≤ (e' ^ 2 + D ^ 2) / e ^ 2 * Real.exp …"]:::thm
-  n13["<b>shellSum_neg</b><br/>shellSum e' (-D) e lam a b = shellSum e' D e lam a b"]:::thm
-  n14["<b>shellSum_le_abs</b><br/>|shellSum e' D e lam a b| ≤ (e' ^ 2 + |D| ^ 2) / e ^ 2 * Real.ex…"]:::end_
+  n0["<b>zOf_re</b><br/>(zOf e' D e).re = 2 * (e' ^ 2 - D ^ 2 - e ^ 2)"]:::shp
+  n1["<b>zOf_im</b><br/>(zOf e' D e).im = 4 * e' * D"]:::shp
+  n2["<b>norm_zOf_le</b><br/>‖zOf e' D e‖ ≤ 2 * (e' ^ 2 + D ^ 2 + e ^ 2)"]:::shp
+  n3["<b>norm_coef</b><br/>‖coef e' D e‖ = (e' ^ 2 + D ^ 2) / e ^ 2"]:::shp
+  n4["<b>uSh_bracket</b><br/>∀ k : ℕ, 0 ≤ uSh lam k - ((k : ℝ) / ((lam : ℝ) * Real.pi ^ 2) - …"]:::shp
+  n5["<b>sum_uSh_eq</b><br/>∑ h ∈ Finset.Ico a b, coef e' D e * Complex.exp (zOf e' D e * ((…"]:::shp
+  n6["<b>im_alpha_le</b><br/>(zOf e' D e).im * (1 / ((lam : ℝ) * Real.pi ^ 2)) ≤ Real.pi / 2"]:::shp
+  n7["<b>norm_zOf_c_le</b><br/>‖zOf e' D e‖ * (1 / (2 * (lam : ℝ) ^ 3 * Real.pi ^ 2)) ≤ (a : ℝ)…"]:::shp
+  n8["<b>exp_end_le</b><br/>Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2) * (k …"]:::shp
+  n9["<b>MabGen_le</b><br/>WeilPowerGeomGen.MabGen (zOf e' D e) (1 / ((lam : ℝ) * Real.pi ^…"]:::shp
+  n10["<b>inv_exp_le</b><br/>1 / Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2)))…"]:::shp
+  n11["<b>geomBound_le</b><br/>WeilPowerGeomGen.geomBoundGen (zOf e' D e) (1 / ((lam : ℝ) * Rea…"]:::shp
+  n12["<b>shellSum_le</b><br/>|shellSum e' D e lam a b| ≤ (e' ^ 2 + D ^ 2) / e ^ 2 * Real.exp …"]:::shp
+  n13["<b>shellSum_neg</b><br/>shellSum e' (-D) e lam a b = shellSum e' D e lam a b"]:::shp
+  n14["<b>shellSum_le_abs ■</b><br/>|shellSum e' D e lam a b| ≤ (e' ^ 2 + |D| ^ 2) / e ^ 2 * Real.ex…"]:::shp
   x0(["<b>WeilPowerNear</b><br/>re_term_eq<br/>shellSum_nonneg_abs"]):::ext
   x1(["<b>WeilPowerGeomGen</b><br/>norm_sum_exp_u_le_gen<br/>uLam_bracket"]):::ext
   n0 --> n8
@@ -52,6 +52,9 @@ flowchart LR
   n13 -.-> x0
   x1 -.-> n12
   x1 -.-> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -59,7 +62,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -112,6 +115,8 @@ One shell member's weighted sum over the range `[a, b)`.
 
 line 98
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The real part of the exponent's coefficient.
 
 **Proves**
@@ -137,6 +142,8 @@ line 98
 ### `WeilPowerShell.zOf_im`
 
 line 102
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The imaginary part of the exponent's coefficient: the phase's rate.
 
@@ -166,6 +173,8 @@ line 102
 
 line 107
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The size of the exponent's coefficient.
 
 **Proves**
@@ -193,6 +202,8 @@ line 107
 
 line 121
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The member's weight, in size.
 
 **Proves**
@@ -217,6 +228,8 @@ line 121
 ### `WeilPowerShell.uSh_bracket`
 
 line 128
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The bracket G7 for the patched sequence, at every `k` including `0`.
 
@@ -247,6 +260,8 @@ line 128
 
 line 152
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The patch does not change the sum: over `Ico a b` with `1 ≤ a` no index is `0`.
 
 **Proves**
@@ -273,6 +288,8 @@ line 152
 ### `WeilPowerShell.im_alpha_le`
 
 line 164
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Jordan's hypothesis G3 holds at the shell's phase: `4ε'Δ ≤ 1` and `1/(λπ²) ≤ 1/9 < π/2`.
 
@@ -304,6 +321,8 @@ line 164
 ### `WeilPowerShell.norm_zOf_c_le`
 
 line 178
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The hypothesis G6 holds: `‖z‖ ≤ 3/2` and `c ≤ 1/18`, so the product is under `1 ≤ a + 1`.
 
@@ -339,6 +358,8 @@ line 178
 
 line 201
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The geometric factor at an interior index is at most `M = e^{2ηb/(λπ²)}`: the exponent is nonnegative and at most `αb`, and `z.re ≤ 2η`.
 
 **Proves**
@@ -372,6 +393,8 @@ Real.exp ((zOf e' D e).re * (1 / ((lam : ℝ) * Real.pi ^ 2) * (k : ℝ) + -1 / 
 
 line 242
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The endpoint factor is at most `M`.
 
 **Proves**
@@ -403,6 +426,8 @@ WeilPowerGeomGen.MabGen (zOf e' D e) (1 / ((lam : ℝ) * Real.pi ^ 2)) (-1 / (2 
 
 line 251
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The reciprocal of the ratio's modulus, bounded by the size of `z`.
 
 **Proves**
@@ -430,6 +455,8 @@ line 251
 ### `WeilPowerShell.geomBound_le`
 
 line 263
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The geometric part of the shell member's bound, explicit in `ε', Δ, ε, η, λ, b`.
 
@@ -465,6 +492,8 @@ WeilPowerGeomGen.geomBoundGen (zOf e' D e) (1 / ((lam : ℝ) * Real.pi ^ 2)) (-1
 ### `WeilPowerShell.shellSum_le`
 
 line 316
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** One shell member's weighted sum, explicit. The geometric part does not grow with the range; the correction grows like its logarithm.
 
@@ -514,6 +543,8 @@ line 316
 
 line 454
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The sum is even in `Δ`: the member at `ε' − iΔ` is the conjugate of the member at `ε' + iΔ`, and the real part does not see the conjugation.
 
 **Proves**
@@ -542,6 +573,8 @@ shellSum e' (-D) e lam a b = shellSum e' D e lam a b
 ### `WeilPowerShell.shellSum_le_abs`
 
 line 474
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The bound at a signed `Δ`, through the evenness.
 

@@ -2,7 +2,7 @@
 
 RowLeaves — block E4 of `lean_stage3/design/joints.md`. 2026-11-22. Two leaves the route to the gate left open (unit 0412).
 
-7 theorems, 0 definitions, 161 lines. Arrows are Lean's own record of what each proof uses.
+7 theorems, 0 definitions, 165 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`PsiToPi`](../lean_stage3/PsiToPi.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiToPsi`](../lean_stage3/PiToPsi.md), [`RouteGate`](../lean_stage3/RouteGate.md)
@@ -11,12 +11,12 @@ RowLeaves — block E4 of `lean_stage3/design/joints.md`. 2026-11-22. Two leaves
 
 ```mermaid
 flowchart LR
-  n0["<b>continuousOn_inv_log_sq_Ioi</b><br/>ContinuousOn (fun t : ℝ =＞ 1 / Real.log t ^ 2) (Ioi 1)"]:::thm
-  n1["<b>hasDerivAt_Li</b><br/>HasDerivAt Li (1 / Real.log y) y"]:::thm
-  n2["<b>hasDerivAt_Li_two_rpow</b><br/>HasDerivAt (fun u : ℝ =＞ Li ((2 : ℝ) ^ u)) (Real.exp (Real.log 2…"]:::thm
-  n3["<b>continuousOn_exp_div</b><br/>ContinuousOn (fun t : ℝ =＞ Real.exp (Real.log 2 * t) / t) (Ioi 0…"]:::thm
-  n4["<b>hasDerivAt_rowIntegral</b><br/>HasDerivAt (fun u : ℝ =＞ 2 / Real.log 2 + ∫ t in (1 : ℝ)..u, Rea…"]:::thm
-  n5["<b>Li_two_rpow</b><br/>Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp …"]:::thm
+  n0["<b>continuousOn_inv_log_sq_Ioi</b><br/>ContinuousOn (fun t : ℝ =＞ 1 / Real.log t ^ 2) (Ioi 1)"]:::shp
+  n1["<b>hasDerivAt_Li</b><br/>HasDerivAt Li (1 / Real.log y) y"]:::shp
+  n2["<b>hasDerivAt_Li_two_rpow</b><br/>HasDerivAt (fun u : ℝ =＞ Li ((2 : ℝ) ^ u)) (Real.exp (Real.log 2…"]:::shp
+  n3["<b>continuousOn_exp_div</b><br/>ContinuousOn (fun t : ℝ =＞ Real.exp (Real.log 2 * t) / t) (Ioi 0…"]:::shp
+  n4["<b>hasDerivAt_rowIntegral</b><br/>HasDerivAt (fun u : ℝ =＞ 2 / Real.log 2 + ∫ t in (1 : ℝ)..u, Rea…"]:::shp
+  n5["<b>Li_two_rpow</b><br/>Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp …"]:::shp
   n6["<b>norm_logDerivZeta_zero</b><br/>‖deriv riemannZeta 0 / riemannZeta 0‖ = Real.log (2 * Real.pi)"]:::thm
   x0(["<b>PiToPsi</b><br/>Li_mul_log_sub_integral<br/>continuousOn_Li"]):::ext
   x1(["<b>RouteGate</b><br/>relErrWindow_route"]):::ext
@@ -30,6 +30,9 @@ flowchart LR
   n5 -.-> x1
   n5 -.-> x2
   n6 -.-> x2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -37,14 +40,18 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
 <a name="Stage3-continuousOn_inv_log_sq_Ioi"></a>
 ### `Stage3.continuousOn_inv_log_sq_Ioi`
 
-line 31
+line 32
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: `t ↦ 1/(log t)²` is continuous on `(1, ∞)`.
 
 **Proves**
 
@@ -61,7 +68,9 @@ ContinuousOn (fun t : ℝ => 1 / Real.log t ^ 2) (Ioi 1)
 <a name="Stage3-hasDerivAt_Li"></a>
 ### `Stage3.hasDerivAt_Li`
 
-line 41
+line 42
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `Li′ = 1/log` beyond one.
 
@@ -90,7 +99,9 @@ HasDerivAt Li (1 / Real.log y) y
 <a name="Stage3-hasDerivAt_Li_two_rpow"></a>
 ### `Stage3.hasDerivAt_Li_two_rpow`
 
-line 70
+line 71
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The derivative of `x ↦ Li (2^x)` is `e^(log 2·x)/x`.
 
@@ -117,7 +128,11 @@ HasDerivAt (fun u : ℝ => Li ((2 : ℝ) ^ u)) (Real.exp (Real.log 2 * x) / x) x
 <a name="Stage3-continuousOn_exp_div"></a>
 ### `Stage3.continuousOn_exp_div`
 
-line 87
+line 89
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the row integrand `t ↦ exp (log 2 · t)/t` is continuous on `(0, ∞)`.
 
 **Proves**
 
@@ -134,7 +149,11 @@ ContinuousOn (fun t : ℝ => Real.exp (Real.log 2 * t) / t) (Ioi 0)
 <a name="Stage3-hasDerivAt_rowIntegral"></a>
 ### `Stage3.hasDerivAt_rowIntegral`
 
-line 95
+line 99
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `x > 0`, the row function `u ↦ 2/log 2 + ∫ t in 1..u, exp (log 2 · t)/t` has derivative `exp (log 2 · x)/x` at `x`.
 
 **Proves**
 
@@ -157,7 +176,9 @@ HasDerivAt (fun u : ℝ => 2 / Real.log 2 + ∫ t in (1 : ℝ)..u, Real.exp (Rea
 <a name="Stage3-Li_two_rpow"></a>
 ### `Stage3.Li_two_rpow`
 
-line 114
+line 118
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The main term at the doublings. Stage 3's `Li` at `2^x` is the antiderivative of `2^t/t` through `2/log 2` at `x = 1`.
 
@@ -186,7 +207,9 @@ Li ((2 : ℝ) ^ x) = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Real.exp (Real.log 
 <a name="Stage3-norm_logDerivZeta_zero"></a>
 ### `Stage3.norm_logDerivZeta_zero`
 
-line 135
+line 139
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `K0`, as a number.
 

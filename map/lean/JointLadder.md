@@ -11,20 +11,20 @@ JointLadder — the joint `{2^m 3^n}` grid has NO aliases, and its difference op
 
 ```mermaid
 flowchart LR
-  n0["<b>two_pow_ne_three_pow</b><br/>(2 : ℕ) ^ l ≠ 3 ^ k"]:::thm
-  n1["<b>nat_log_indep</b><br/>a = 0 ∧ b = 0"]:::thm
-  n2["<b>log_indep</b><br/>l = 0 ∧ k = 0"]:::thm
-  n3["<b>irrational_log_two_div_log_three</b><br/>Irrational (Real.log 2 / Real.log 3)"]:::thm
-  n4["<b>triadic_winds_densely_on_dyadic</b><br/>DenseRange (fun k : ℤ =＞ k • ((2 * Real.pi / Real.log 3 : ℝ) : A…"]:::end_
-  n5["<b>offset_of_aliases</b><br/>∃ j : ℤ, (γ - γ') * jointSample m n = 2 * Real.pi * j"]:::thm
-  n6["<b>jointAliases_iff_eq</b><br/>JointAliases γ γ' ↔ γ = γ'"]:::thm
-  n7["<b>exists_dyadic_alias_ne</b><br/>∃ γ' : ℝ, γ' ≠ γ ∧ Nyquist.Aliases 2 γ γ'"]:::thm
-  n8["<b>dyadic_alias_resolved_jointly</b><br/>∃ γ' : ℝ, γ' ≠ γ ∧ Nyquist.Aliases 2 γ γ' ∧ ¬ JointAliases γ γ'"]:::end_
-  n9["<b>d2_d3_comm</b><br/>d2 (d3 f) = d3 (d2 f)"]:::end_
-  n10["<b>d2_jmode</b><br/>d2 (jmode ρ) r m = Chain.Sym 2 ρ * jmode ρ r m"]:::end_
-  n11["<b>d3_jmode</b><br/>d3 (jmode ρ) r m = Chain.Sym 3 ρ * jmode ρ r m"]:::end_
-  n12["<b>d2_iter_jmode</b><br/>(d2^[a]) (jmode ρ) = fun r m =＞ (Chain.Sym 2 ρ) ^ a * jmode ρ r …"]:::end_
-  n13["<b>d3_iter_jmode</b><br/>(d3^[b]) (jmode ρ) = fun r m =＞ (Chain.Sym 3 ρ) ^ b * jmode ρ r …"]:::end_
+  n0["<b>two_pow_ne_three_pow</b><br/>(2 : ℕ) ^ l ≠ 3 ^ k"]:::cnt
+  n1["<b>nat_log_indep</b><br/>a = 0 ∧ b = 0"]:::shp
+  n2["<b>log_indep</b><br/>l = 0 ∧ k = 0"]:::shp
+  n3["<b>irrational_log_two_div_log_three</b><br/>Irrational (Real.log 2 / Real.log 3)"]:::shp
+  n4["<b>triadic_winds_densely_on_dyadic ■</b><br/>DenseRange (fun k : ℤ =＞ k • ((2 * Real.pi / Real.log 3 : ℝ) : A…"]:::shp
+  n5["<b>offset_of_aliases</b><br/>∃ j : ℤ, (γ - γ') * jointSample m n = 2 * Real.pi * j"]:::shp
+  n6["<b>jointAliases_iff_eq</b><br/>JointAliases γ γ' ↔ γ = γ'"]:::shp
+  n7["<b>exists_dyadic_alias_ne</b><br/>∃ γ' : ℝ, γ' ≠ γ ∧ Nyquist.Aliases 2 γ γ'"]:::shp
+  n8["<b>dyadic_alias_resolved_jointly ■</b><br/>∃ γ' : ℝ, γ' ≠ γ ∧ Nyquist.Aliases 2 γ γ' ∧ ¬ JointAliases γ γ'"]:::shp
+  n9["<b>d2_d3_comm ■</b><br/>d2 (d3 f) = d3 (d2 f)"]:::shp
+  n10["<b>d2_jmode ■</b><br/>d2 (jmode ρ) r m = Chain.Sym 2 ρ * jmode ρ r m"]:::shp
+  n11["<b>d3_jmode ■</b><br/>d3 (jmode ρ) r m = Chain.Sym 3 ρ * jmode ρ r m"]:::shp
+  n12["<b>d2_iter_jmode ■</b><br/>(d2^[a]) (jmode ρ) = fun r m =＞ (Chain.Sym 2 ρ) ^ a * jmode ρ r …"]:::shp
+  n13["<b>d3_iter_jmode ■</b><br/>(d3^[b]) (jmode ρ) = fun r m =＞ (Chain.Sym 3 ρ) ^ b * jmode ρ r …"]:::shp
   x0(["<b>Chain</b><br/>second_ladder_winds_densely"]):::ext
   x1(["<b>Nyquist</b><br/>aliases_of_offset"]):::ext
   n0 --> n1
@@ -37,6 +37,9 @@ flowchart LR
   n7 --> n8
   x0 -.-> n4
   x1 -.-> n7
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -44,7 +47,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -106,6 +109,8 @@ Backward differencing in the triadic index.
 
 line 72
 
+**Counting.** Integers only: nothing in its statement or proof, or in anything it rests on, uses analysis or ζ.
+
 **Why.** Parity kills it. A positive power of two is never a power of three: `2 ∣ 2^l` while `2 ∤ 3^k`.
 
 **Proves**
@@ -128,6 +133,8 @@ line 72
 ### `JointLadder.nat_log_indep`
 
 line 81
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The same, over `ℕ` and in logarithmic form: `a·log 2 = b·log 3` forces `a = b = 0`.
 
@@ -153,6 +160,8 @@ a = 0 ∧ b = 0
 ### `JointLadder.log_indep`
 
 line 111
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `log 2` and `log 3` are independent over `ℤ`. This is the fact `Chain.second_ladder_winds_densely` needs to fire at `(2, 3)`, and the fact that closes the joint alias lattice.
 
@@ -180,6 +189,8 @@ l = 0 ∧ k = 0
 
 line 171
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `log 2 / log 3` is irrational. A rational value `p/n` gives `n·log 2 = p·log 3`, which `log_indep` forces to `n = p = 0`, against `n ≠ 0`.
 
 **Proves**
@@ -201,6 +212,8 @@ Irrational (Real.log 2 / Real.log 3)
 
 line 190
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The triadic ladder winds densely on the dyadic circle. The general theorem, instantiated: the `3`-ladder's period steps around the `2`-ladder's circle never close, so the two ladders share no period at any scale. `Chain.joint_gain_periodic_of_commensurate` is the opposite case — commensurate ladders, whose orbit is finite — and this shows `(2, 3)` is not in it.
 
 **Proves**
@@ -220,6 +233,8 @@ DenseRange (fun k : ℤ => k • ((2 * Real.pi / Real.log 3 : ℝ) : AddCircle (
 ### `JointLadder.offset_of_aliases`
 
 line 212
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Reading the aliasing relation at a single rung: the phase offset is an integer multiple of `2π`.
 
@@ -246,6 +261,8 @@ line 212
 ### `JointLadder.jointAliases_iff_eq`
 
 line 234
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** THE JOINT NO-GO, in reverse. On the `{2^m 3^n}` grid two frequencies agree at every rung only if they are EQUAL. The grid has no nonzero alias whatsoever — the obstruction that makes `γ₁` unidentifiable from a single integer base does not exist here.
 
@@ -277,6 +294,8 @@ JointAliases γ γ' ↔ γ = γ'
 
 line 267
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Every frequency has a dyadic alias distinct from it — the single ladder's obstruction, restated from `Nyquist.aliases_of_offset`.
 
 **Proves**
@@ -304,6 +323,8 @@ line 267
 
 line 287
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** THE CONTRAST, AS ONE STATEMENT. For every frequency there is a different frequency that the dyadic ladder cannot separate from it and the joint grid can. This is the precise sense in which the joint instrument is not obstructed by what obstructs the single one, and it is what makes a NULL reading on the joint orbit a statement about the estimator rather than about identifiability.
 
 **Proves**
@@ -330,6 +351,8 @@ line 287
 
 line 313
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The two directions commute, so `Δ₂^a Δ₃^b` is well defined regardless of the order the differences are taken in.
 
 **Proves**
@@ -352,6 +375,8 @@ d2 (d3 f) = d3 (d2 f)
 ### `JointLadder.d2_jmode`
 
 line 319
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The dyadic direction carries the Euler factor at 2.
 
@@ -377,6 +402,8 @@ d2 (jmode ρ) r m = Chain.Sym 2 ρ * jmode ρ r m
 
 line 333
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The triadic direction carries the Euler factor at 3.
 
 **Proves**
@@ -401,6 +428,8 @@ d3 (jmode ρ) r m = Chain.Sym 3 ρ * jmode ρ r m
 
 line 347
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Iterating the dyadic direction.
 
 **Proves**
@@ -424,6 +453,8 @@ line 347
 ### `JointLadder.d3_iter_jmode`
 
 line 366
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Iterating the triadic direction.
 

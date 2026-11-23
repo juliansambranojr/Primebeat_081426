@@ -1,63 +1,60 @@
-# What `CellModes.cell_eq_modeSum` rests on
+# What `CellRows.cell_tail_tendsto` rests on
 
-[`CellModes.cell_eq_modeSum`](../lean_stage3/CellModes.md#CellModes-cell_eq_modeSum) in `lean_stage3/Stage3/CellModes.lean`, line 48.
+[`CellRows.cell_tail_tendsto`](../lean_stage3/CellRows.md#CellRows-cell_tail_tendsto) in `lean_stage3/Stage3/CellRows.lean`, line 44.
 
-**Why.** The cell as a reweighted sum of modes, one for each zero.
+**Why.** The tail of the zero sum is inside the error. With the height `2^(r−d)` at row `r`, the distance between the cell and its zero sum, over `√2^r`, tends to zero.
 
 **Proves**
 
 ```lean
-‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - Chain.Sym 2 1 ^ d * Chain.mode 2 1 (r : ℂ) + Superposition.modeSum 2 (fun ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T} => ((ρ : Kadiri.NontrivialZeros) : ℂ)) (fun ρ => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℂ) / ((ρ : Kadiri.NontrivialZeros) : ℂ) * Chain.Sym 2 ((ρ : Kadiri.NontrivialZeros) : ℂ) ^ d) Finset.univ (r : ℂ)‖ ≤ ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ (r - (j : ℤ)) * Real.log ((2:ℝ) ^ (r - (j : ℤ)) * T) ^ 2 / T + Glue.c3n * Real.log ((2:ℝ) ^ (r - (j : ℤ))) + Glue.c4n * ((Real.log ((2:ℝ) ^ (r - (j : ℤ)))) ^ 2 * ((2:ℝ) ^ (r - (j : ℤ))) ^ (-(1:ℝ) / 4)))
+Tendsto (fun r : ℕ => ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF ((2:ℝ) ^ (r - d)), term d (r : ℤ) ρ‖ / Real.sqrt 2 ^ r) atTop (𝓝 0)
 ```
 
 **Needs** (its hypotheses)
 
   - `` d : ℕ ``
-  - `` r : ℤ ``
-  - `` h16 : 16 ≤ (2:ℝ) ^ (r - (d : ℤ)) ``
-  - `` hT : 2 ≤ T ``
-  - `` hTx : T ≤ ((2:ℝ) ^ (r - (d : ℤ))) ^ 2 ``
 
-Behind it: 142 theorems and 26 definitions in 16 files. Every one is listed below; Lean recorded each step.
+Behind it: 148 theorems and 25 definitions in 15 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
-  f0["<b>Chain</b><br/>2 used"]:::ext
-  f1["<b>Superposition</b><br/>1 used"]:::ext
-  f2["<b>Assembly</b><br/>1 used"]:::thm
-  f3["<b>Glue</b><br/>1 used"]:::thm
-  f4["<b>JensenCount</b><br/>17 used"]:::thm
-  f5["<b>ContourShift</b><br/>29 used"]:::thm
-  f6["<b>PerronKernel</b><br/>33 used"]:::thm
-  f7["<b>ZetaGrowth</b><br/>20 used"]:::thm
-  f8["<b>BoxBounds</b><br/>6 used"]:::thm
-  f9["<b>EdgeBound</b><br/>14 used"]:::thm
-  f10["<b>EdgeNum</b><br/>9 used"]:::thm
-  f11["<b>LowCount</b><br/>1 used"]:::thm
-  f12["<b>LowEdge</b><br/>4 used"]:::thm
-  f13["<b>GlueNum</b><br/>17 used"]:::thm
-  f14["<b>CellZeros</b><br/>11 used"]:::thm
-  f15["<b>CellModes</b><br/>cell_eq_modeSum"]:::end_
-  f0 --> f1
-  f2 --> f5
-  f4 --> f5
+  f0["<b>Assembly</b><br/>1 used"]:::thm
+  f1["<b>Glue</b><br/>1 used"]:::thm
+  f2["<b>JensenCount</b><br/>17 used"]:::thm
+  f3["<b>ContourShift</b><br/>29 used"]:::thm
+  f4["<b>PerronKernel</b><br/>33 used"]:::thm
+  f5["<b>ZetaGrowth</b><br/>20 used"]:::thm
+  f6["<b>BoxBounds</b><br/>6 used"]:::thm
+  f7["<b>EdgeBound</b><br/>14 used"]:::thm
+  f8["<b>EdgeNum</b><br/>9 used"]:::thm
+  f9["<b>LowCount</b><br/>1 used"]:::thm
+  f10["<b>LowEdge</b><br/>4 used"]:::thm
+  f11["<b>GlueNum</b><br/>20 used"]:::thm
+  f12["<b>CellZeros</b><br/>11 used"]:::thm
+  f13["<b>FiniteOffLine</b><br/>6 used"]:::thm
+  f14["<b>CellRows</b><br/>cell_tail_tendsto"]:::end_
+  f0 --> f3
+  f2 --> f3
+  f3 --> f5
+  f5 --> f6
   f5 --> f7
+  f6 --> f8
   f7 --> f8
+  f6 --> f9
   f7 --> f9
-  f8 --> f10
   f9 --> f10
+  f1 --> f11
+  f4 --> f11
   f8 --> f11
-  f9 --> f11
+  f10 --> f11
   f11 --> f12
-  f3 --> f13
-  f6 --> f13
-  f10 --> f13
   f12 --> f13
   f13 --> f14
-  f1 --> f15
-  f14 --> f15
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -70,15 +67,6 @@ An arrow A → B reads "B uses something proved or defined in A"; indirect arrow
 ## Every declaration on the way
 
 Files in dependency order. ★ marks what the theorem's own proof uses directly.
-
-### [`Chain`](../lean/Chain.md) — 2
-
-- ★ [`Chain.Sym`](../lean/Chain.md#Chain-Sym) — *def*
-- ★ [`Chain.mode`](../lean/Chain.md#Chain-mode) — *def*
-
-### [`Superposition`](../lean/Superposition.md) — 1
-
-- ★ [`Superposition.modeSum`](../lean/Superposition.md#Superposition-modeSum) — *def*
 
 ### [`Assembly`](../lean_stage3/Assembly.md) — 1
 
@@ -248,7 +236,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`EdgeBound.logDerivZeta_low_edge`](../lean_stage3/LowEdge.md#EdgeBound-logDerivZeta_low_edge) — `` ‖deriv riemannZeta u / riemannZeta u‖ ≤ 1620000 ``
 - [`EdgeBound.logDerivZeta_short_segment`](../lean_stage3/LowEdge.md#EdgeBound-logDerivZeta_short_segment) — `` ‖deriv riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + t * Complex.I)‖ ≤ 1620000 ``
 
-### [`GlueNum`](../lean_stage3/GlueNum.md) — 17
+### [`GlueNum`](../lean_stage3/GlueNum.md) — 20
 
 - [`Glue.Csn`](../lean_stage3/GlueNum.md#Glue-Csn) — *def*
 - [`Glue.Csn_pos`](../lean_stage3/GlueNum.md#Glue-Csn_pos) — `` 0 < Csn ``
@@ -261,6 +249,9 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - ★ [`Glue.c1n`](../lean_stage3/GlueNum.md#Glue-c1n) — *def*
 - ★ [`Glue.c3n`](../lean_stage3/GlueNum.md#Glue-c3n) — *def*
 - ★ [`Glue.c4n`](../lean_stage3/GlueNum.md#Glue-c4n) — *def*
+- [`Glue.c1n_nonneg`](../lean_stage3/GlueNum.md#Glue-c1n_nonneg) — `` 0 ≤ c1n ``
+- [`Glue.c3n_nonneg`](../lean_stage3/GlueNum.md#Glue-c3n_nonneg) — `` 0 ≤ c3n ``
+- [`Glue.c4n_nonneg`](../lean_stage3/GlueNum.md#Glue-c4n_nonneg) — `` 0 ≤ c4n ``
 - [`Glue.band_order_sum_le_num`](../lean_stage3/GlueNum.md#Glue-band_order_sum_le_num) — `` ∀ T : ℝ, 2 ≤ T → ∀ F : Finset ℂ, (∀ ρ ∈ F, riemannZeta ρ = 0 ∧ (0 < ρ.re ∧ ρ.re < 1) ∧ T ≤ |ρ.im| ∧ |ρ.im| ≤ T + 1) → (∑ ρ ∈ F, (analyticOrderNatAt riemannZeta … ``
 - [`Glue.zeroPartialSum_swap_num`](../lean_stage3/GlueNum.md#Glue-zeroPartialSum_swap_num) — `` ∀ x T T' : ℝ, 16 ≤ x → 2 ≤ T → T ≤ T' → T' ≤ T + 1 → ‖Stage3.zeroPartialSum x T' - Stage3.zeroPartialSum x T‖ ≤ Csn * x * Real.log T / T ``
 - [`Glue.zeta_logderiv_good_bound_num`](../lean_stage3/GlueNum.md#Glue-zeta_logderiv_good_bound_num) — `` ∀ T T' : ℝ, 2 ≤ T → T' ∈ Set.Icc T (T+1) → (∀ ρ : ℂ, riemannZeta ρ = 0 → 0 < ρ.re → ContourShift.zeroGap T ≤ |ρ.im - T'|) → ∀ u : ℂ, |u.im| = T' → -1/4 ≤ u.re →… ``
@@ -280,10 +271,18 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`CellZeros.cpow_two_zpow`](../lean_stage3/CellZeros.md#CellZeros-cpow_two_zpow) — `` (((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n ``
 - [`CellZeros.two_cpow_ne_zero`](../lean_stage3/CellZeros.md#CellZeros-two_cpow_ne_zero) — `` (2:ℂ) ^ ρ ≠ 0 ``
 - [`CellZeros.stencil_zeroPartialSum`](../lean_stage3/CellZeros.md#CellZeros-stencil_zeroPartialSum) — `` stencil d (fun n : ℤ => Stage3.zeroPartialSum ((2:ℝ) ^ n) T) r = ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemannZeta.order ((ρ : Kadiri.Nontr… ``
-- ★ [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemann… ``
+- [`CellZeros.cell_eq_zero_sum`](../lean_stage3/CellZeros.md#CellZeros-cell_eq_zero_sum) — `` ‖stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑' ρ : {ρ : Kadiri.NontrivialZeros // |(ρ : ℂ).im| < T}, ((riemann… ``
 
-### [`CellModes`](../lean_stage3/CellModes.md) — 2
+### [`FiniteOffLine`](../lean_stage3/FiniteOffLine.md) — 6
 
-- ★ [`CellModes.mode_two_int`](../lean_stage3/CellModes.md#CellModes-mode_two_int) — `` Chain.mode 2 ρ (r : ℂ) = ((2:ℂ) ^ ρ) ^ r ``
-- ★ [`CellModes.sym_two`](../lean_stage3/CellModes.md#CellModes-sym_two) — `` Chain.Sym 2 ρ = 1 - ((2:ℂ) ^ ρ)⁻¹ ``
+- ★ [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) — *def*
+- [`FiniteOffLine.mem_ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) — `` ρ ∈ ZF T ↔ |(ρ : ℂ).im| < T ``
+- [`FiniteOffLine.tsum_sub_eq_sum`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-tsum_sub_eq_sum) — `` ∑' σ : {ρ : NontrivialZeros // |(ρ : ℂ).im| < T}, f σ.1 = ∑ ρ ∈ ZF T, f ρ ``
+- ★ [`FiniteOffLine.term`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-term) — *def*
+- [`FiniteOffLine.cell_zero_sum_finset`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-cell_zero_sum_finset) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) r - (2:ℂ) ^ r * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF T, term d r ρ‖ ≤ ∑ j ∈ range (d + 1), (d.choose… ``
+- [`FiniteOffLine.err_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-err_le) — `` ∑ j ∈ range (d + 1), (d.choose j : ℝ) * (Glue.c1n * (2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * Real.log ((2:ℝ) ^ ((r : ℤ) - (j : ℤ)) * (2:ℝ) ^ (K + 1)) ^ 2 / (2:ℝ) ^ (K + 1)… ``
+
+### [`CellRows`](../lean_stage3/CellRows.md) — 1
+
+- ★ [`CellRows.cell_eq_zero_sum_rows`](../lean_stage3/CellRows.md#CellRows-cell_eq_zero_sum_rows) — `` ‖CellZeros.stencil d (fun n : ℤ => (Chebyshev.psi ((2:ℝ) ^ n) : ℂ)) (r : ℤ) - (2:ℂ) ^ (r : ℤ) * (1 - (2:ℂ)⁻¹) ^ d + ∑ ρ ∈ ZF ((2:ℝ) ^ (K + 1)), term d (r : ℤ) ρ… ``
 

@@ -1,6 +1,6 @@
 # What `VonKoch.F_eq_neg_logDeriv_ext` rests on
 
-[`VonKoch.F_eq_neg_logDeriv_ext`](../lean_stage3/VonKochScaffold.md#VonKoch-F_eq_neg_logDeriv_ext) in `lean_stage3/Stage3/VonKochScaffold.lean`, line 445.
+[`VonKoch.F_eq_neg_logDeriv_ext`](../lean_stage3/VonKochScaffold.md#VonKoch-F_eq_neg_logDeriv_ext) in `lean_stage3/Stage3/VonKochScaffold.lean`, line 453.
 
 **Why.** V3 — agreement extends to the punctured half-plane. From `F·ζ + ζ′ ≡ 0` on the region: divide by `ζ` where it does not vanish.
 
@@ -24,6 +24,9 @@ Behind it: 16 theorems and 4 definitions in 1 file. Every one is listed below; L
 ```mermaid
 flowchart LR
   f0["<b>VonKochScaffold</b><br/>F_eq_neg_logDeriv_ext"]:::end_
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

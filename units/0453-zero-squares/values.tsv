@@ -1,0 +1,21 @@
+key	value	source
+module_lines	401	wc -l lean_stage3/Stage3/ZeroSquares.lean
+theorems_proved	17	grep -c ^theorem lean_stage3/Stage3/ZeroSquares.lean
+defs	2	sqG, innerI
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/ZeroSquares.lean
+pins	3	card_zeros_le, square_lower, strips_le
+errors_first	1	the worker's first lake build Stage3.ZeroSquares, as it reported
+builds	2	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8844	lake build (full Stage3), Build completed successfully
+jobs_module	8720	run/build.log, lake build Stage3.ZeroSquares
+loop_version	22	lean_stage3/LOOP.md version line
+design	carlson.md#c5	zeros from the mean square
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+overlap	3	card_zeros_le, the constant in front
+count_log	15	card_zeros_le, from Stage3.zeta_local_zero_count
+count_const	73	card_zeros_le, from Stage3.zeta_local_zero_count
+im_low	2	card_zeros_le, the hypothesis on the zeros
+height_min	5	card_zeros_le, the hypothesis on T

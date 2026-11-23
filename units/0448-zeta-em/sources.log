@@ -1,0 +1,41 @@
+# check_prose_source.py  2026-11-23T01:11:24Z
+# unit: 0448-zeta-em
+# sources searched: 414
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23612
+  Prove Carlson's bound ourselves, which is a large project
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24522
+  theorem zeta_eq_em {k : ℕ} (hk : 1 ≤ k) {N : ℕ} (hN : 0 < N) {s : ℂ} (hs : 0 < s.re)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24524
+  riemannZeta s = ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) - (N:ℂ) ^ (1 - s) / (1 - s)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a18d92946def6247e.jsonl:1937
+  - (N:ℂ) ^ (-s) / 2 + emBoundary k N s + emRem k N s :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24527
+  theorem norm_remainder_le (k : ℕ) {N : ℕ} (hN : 0 < N) {s : ℂ} (hs : 1 < s.re + k) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24528
+  ‖emRem k N s‖ ≤ (∏ i ∈ Finset.range k, ‖s + i‖) / k.factorial
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a18d92946def6247e.jsonl:1969
+  * (bernBound k * ((N:ℝ) ^ (1 - s.re - k) / (s.re + k - 1))) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24531
+  theorem norm_zeta_sub_partial_le (k : ℕ) (hk : 2 ≤ k) {N : ℕ} (hN : 0 < N) {s : ℂ}
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24532
+  (hσ : 0 < s.re) (hs1 : s ≠ 1) (hsN : ‖s‖ + k ≤ N) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24533
+  ‖riemannZeta s - ∑ n ∈ Finset.Icc 1 N, (n : ℂ) ^ (-s) + (N : ℂ) ^ (1 - s) / (1 - s)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:24577
+  ≤ emConst k * (N : ℝ) ^ (-s.re) * (1 + (‖s‖ + k) ^ k * (N : ℝ) ^ (1 - (k : ℝ))) :=
+
+# 12 found, 0 missing

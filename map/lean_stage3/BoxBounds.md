@@ -2,7 +2,7 @@
 
 BoxBounds — blocks E7a and E7b of `lean_stage3/design/joints.md`. 2026-11-22. Two of the quantities the explicit-formula route took from existence statements, as numerals.
 
-6 theorems, 0 definitions, 211 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 0 definitions, 212 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LowCount`](../lean_stage3/LowCount.md)
@@ -11,7 +11,7 @@ BoxBounds — blocks E7a and E7b of `lean_stage3/design/joints.md`. 2026-11-22. 
 
 ```mermaid
 flowchart LR
-  n0["<b>norm_le_of_sq</b><br/>‖z‖ ≤ c"]:::thm
+  n0["<b>norm_le_of_sq</b><br/>‖z‖ ≤ c"]:::shp
   n1["<b>sq_zeta_box</b><br/>‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135"]:::thm
   n2["<b>sq_zeta_band_explicit</b><br/>‖(s - 1) ^ 2 * riemannZeta s‖ ≤ 135 * (2 + |s.im|) ^ 4"]:::thm
   n3["<b>norm_zeta_three_halves_le</b><br/>‖riemannZeta (3 / 2)‖ ≤ 7 / 2"]:::thm
@@ -35,6 +35,9 @@ flowchart LR
   n5 -.-> x4
   x1 -.-> n1
   x1 -.-> n2
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -42,14 +45,18 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
 <a name="BoxBounds-norm_le_of_sq"></a>
 ### `BoxBounds.norm_le_of_sq`
 
-line 30
+line 31
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: for `c ≥ 0`, if `(Re z)² + (Im z)² ≤ c²` then `‖z‖ ≤ c`.
 
 **Proves**
 
@@ -73,7 +80,9 @@ line 30
 <a name="BoxBounds-sq_zeta_box"></a>
 ### `BoxBounds.sq_zeta_box`
 
-line 40
+line 41
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The compact patch, with a numeral.
 
@@ -104,7 +113,9 @@ line 40
 <a name="BoxBounds-sq_zeta_band_explicit"></a>
 ### `BoxBounds.sq_zeta_band_explicit`
 
-line 90
+line 91
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The band bound with its constant named.
 
@@ -135,7 +146,9 @@ line 90
 <a name="BoxBounds-norm_zeta_three_halves_le"></a>
 ### `BoxBounds.norm_zeta_three_halves_le`
 
-line 122
+line 123
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `‖ζ(3/2)‖ ≤ 7/2`, from the strip formula at its first level.
 
@@ -154,7 +167,9 @@ line 122
 <a name="BoxBounds-one_le_norm_zeta_three"></a>
 ### `BoxBounds.one_le_norm_zeta_three`
 
-line 165
+line 166
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `1 ≤ ‖ζ 3‖`, from the Dirichlet series.
 
@@ -173,7 +188,9 @@ line 165
 <a name="BoxBounds-zeta_ratio_ge"></a>
 ### `BoxBounds.zeta_ratio_ge`
 
-line 184
+line 185
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `cζ`, bounded below by a numeral.
 

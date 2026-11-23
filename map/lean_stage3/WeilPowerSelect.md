@@ -2,7 +2,7 @@
 
 WeilPowerSelect — selection of the target. Rung 5, tenth slice, worksheet section 8. 2026-09-06.
 
-7 theorems, 1 definition, 191 lines. Arrows are Lean's own record of what each proof uses.
+7 theorems, 1 definition, 192 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilPowerCompare`](../lean_stage3/WeilPowerCompare.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -11,16 +11,19 @@ WeilPowerSelect — selection of the target. Rung 5, tenth slice, worksheet sect
 
 ```mermaid
 flowchart LR
-  n0["<b>farDelta_le</b><br/>ε' ^ 2 - Δ ^ 2 ≤ 0"]:::lone
-  n1["<b>exists_step_le</b><br/>∃ k ＜ N, f (k + 1) ≤ f k + δ"]:::thm
-  n2["<b>δSel_pos</b><br/>0 ＜ δSel K' lam h"]:::thm
-  n3["<b>exists_target_step</b><br/>∃ k : ℕ, (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam) ∧ (E (k + 1)…"]:::thm
-  n4["<b>target_bound</b><br/>∃ k : ℕ, (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam) ∧ ∀ ε', 0 ≤ …"]:::end_
-  n5["<b>target_height_le</b><br/>T + (k : ℝ) / 2 ≤ T + h / (8 * K' * Real.pi ^ 2 * lam)"]:::lone
-  n6["<b>target_ge_box</b><br/>E 0 ≤ E k"]:::lone
+  n0["<b>farDelta_le ■</b><br/>ε' ^ 2 - Δ ^ 2 ≤ 0"]:::shp
+  n1["<b>exists_step_le</b><br/>∃ k ＜ N, f (k + 1) ≤ f k + δ"]:::shp
+  n2["<b>δSel_pos</b><br/>0 ＜ δSel K' lam h"]:::shp
+  n3["<b>exists_target_step</b><br/>∃ k : ℕ, (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam) ∧ (E (k + 1)…"]:::shp
+  n4["<b>target_bound ■</b><br/>∃ k : ℕ, (k : ℝ) ≤ h / (4 * K' * Real.pi ^ 2 * lam) ∧ ∀ ε', 0 ≤ …"]:::shp
+  n5["<b>target_height_le ■</b><br/>T + (k : ℝ) / 2 ≤ T + h / (8 * K' * Real.pi ^ 2 * lam)"]:::shp
+  n6["<b>target_ge_box ■</b><br/>E 0 ≤ E k"]:::shp
   n1 --> n3
   n2 --> n3
   n3 --> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -28,7 +31,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -48,6 +51,8 @@ The step size, `K'π²λ/h`.
 ### `WeilPowerSelect.farDelta_le`
 
 line 68
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Far heights need no selection. A zero with real part offset in `[0, 1/2]` and height offset at least `1/2` already has `ε'² ≤ Δ²`, with no choice of target at all.
 
@@ -72,6 +77,8 @@ line 68
 
 line 80
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The pigeonhole lemma. A sequence, nonnegative at `0` and bounded above by `B` at every step, cannot climb by more than `δ` at every one of `N` steps once `N·δ > B`. Monotonicity of `f` is not needed: boundedness at each step is already enough to stop the climb.
 
 **Proves**
@@ -95,7 +102,11 @@ line 80
 <a name="WeilPowerSelect--Sel_pos"></a>
 ### `WeilPowerSelect.δSel_pos`
 
-line 104
+line 105
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `K'`, `lam` and `h` are positive, then the step size `δSel K' lam h` is positive.
 
 **Proves**
 
@@ -120,7 +131,9 @@ line 104
 <a name="WeilPowerSelect-exists_target_step"></a>
 ### `WeilPowerSelect.exists_target_step`
 
-line 112
+line 113
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The step exists, with its height explicit. `E`'s square cannot climb by more than `δSel K' λ h` at every step past `h/(4K'π²λ)`.
 
@@ -151,7 +164,9 @@ line 112
 <a name="WeilPowerSelect-target_bound"></a>
 ### `WeilPowerSelect.target_bound`
 
-line 148
+line 149
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Selection of the target. There is a step `k`, at height at most `h/(4K'π²λ)` above the box's own step, whose `(k+1)`-neighbours all meet the cluster's criterion against `E k`.
 
@@ -179,7 +194,9 @@ line 148
 <a name="WeilPowerSelect-target_height_le"></a>
 ### `WeilPowerSelect.target_height_le`
 
-line 159
+line 160
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The step's height above the box: `T + k/2 ≤ T + h/(8K'π²λ)`.
 
@@ -200,7 +217,9 @@ T + (k : ℝ) / 2 ≤ T + h / (8 * K' * Real.pi ^ 2 * lam)
 <a name="WeilPowerSelect-target_ge_box"></a>
 ### `WeilPowerSelect.target_ge_box`
 
-line 169
+line 170
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The target's own real-part offset is at least the box zero's.
 

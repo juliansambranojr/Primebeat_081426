@@ -1,0 +1,17 @@
+key	value	source
+module_lines	572	wc -l lean_stage3/Stage3/FiniteOffLine.lean
+theorems_proved	12	grep -c ^theorem lean_stage3/Stage3/FiniteOffLine.lean
+defs	3	ZF, onLineInv, term
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/FiniteOffLine.lean
+pins	3	sum_order_onLineInv_le, err_le, finite_off_line
+errors_first	4	first lake build Stage3.FiniteOffLine: one wrong namespace on a lemma, four error lines
+builds	5	the first half twice, the whole three times
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8832	lake build (full Stage3), Build completed successfully
+jobs_module	8747	run/build.log, lake build Stage3.FiniteOffLine
+count_const	6000	sum_order_onLineInv_le with dyadic_count_le: 2 times 3000
+loop_version	22	lean_stage3/LOOP.md version line
+design	joints.md#j10d	finitely many zeros off the line: the one-ladder converse
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass

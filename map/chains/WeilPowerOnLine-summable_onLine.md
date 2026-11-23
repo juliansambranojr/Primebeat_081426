@@ -1,6 +1,6 @@
 # What `WeilPowerOnLine.summable_onLine` rests on
 
-[`WeilPowerOnLine.summable_onLine`](../lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-summable_onLine) in `lean_stage3/Stage3/WeilPowerOnLine.lean`, line 194.
+[`WeilPowerOnLine.summable_onLine`](../lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-summable_onLine) in `lean_stage3/Stage3/WeilPowerOnLine.lean`, line 198.
 
 **Why.** The on-line series is summable.
 
@@ -52,6 +52,9 @@ flowchart LR
   f12 --> f13
   f4 --> f14
   f13 --> f14
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

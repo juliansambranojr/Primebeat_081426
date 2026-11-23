@@ -1,0 +1,17 @@
+# check_prose_source.py  2026-11-22T21:34:32Z
+# unit: 0435-doubling-residual-pi-minus-li
+# sources searched: 402
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:5995
+  Source: session transcript, 2026-11-22
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16196
+  pi(2^r) - li(2^r) at each doubling, r = 4..62, from the repo's pi(2^n) cache.
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16198
+  Writes the residual, its ratio to sqrt(x)/log x and to sqrt(x)*log x, and how
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:16199
+  often the residual's size grew from one doubling to the next.
+
+# 4 found, 0 missing

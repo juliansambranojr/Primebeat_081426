@@ -34,6 +34,7 @@ def F (x : ℝ) : ℝ := 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t
 /-- The interpolant: `F` cut off smoothly below one half. -/
 def liRow (x : ℝ) : ℝ := Real.smoothTransition (4 * x - 1) * F x
 
+/-- Helper: the integrand `f2x` (`2^x/x`) is smooth on the positive half-line. -/
 theorem f2x_contDiffOn : ContDiffOn ℝ (⊤ : ℕ∞) Expansion.f2x (Ioi 0) := by
   unfold Expansion.f2x
   apply ContDiffOn.div
@@ -42,9 +43,11 @@ theorem f2x_contDiffOn : ContDiffOn ℝ (⊤ : ℕ∞) Expansion.f2x (Ioi 0) := 
   · intro x hx
     exact ne_of_gt hx
 
+/-- Helper: the integrand `f2x` is continuous on the positive half-line. -/
 theorem f2x_continuousOn : ContinuousOn Expansion.f2x (Ioi 0) :=
   f2x_contDiffOn.continuousOn
 
+/-- For `x > 0`, the antiderivative `F` has derivative `f2x x` at `x`. -/
 theorem F_hasDerivAt {x : ℝ} (hx : 0 < x) : HasDerivAt F (Expansion.f2x x) x := by
   have hsub : uIcc (1 : ℝ) x ⊆ Ioi 0 := by
     intro t ht
@@ -61,11 +64,13 @@ theorem F_hasDerivAt {x : ℝ} (hx : 0 < x) : HasDerivAt F (Expansion.f2x x) x :
   unfold F
   exact h.const_add _
 
+/-- The antiderivative `F` is smooth on the positive half-line. -/
 theorem F_contDiffOn : ContDiffOn ℝ (⊤ : ℕ∞) F (Ioi 0) := by
   rw [contDiffOn_infty_iff_deriv_of_isOpen isOpen_Ioi]
   refine ⟨fun x hx => (F_hasDerivAt hx).differentiableAt.differentiableWithinAt, ?_⟩
   exact f2x_contDiffOn.congr fun x hx => (F_hasDerivAt hx).deriv
 
+/-- The interpolant `liRow` is smooth on the whole real line. -/
 theorem liRow_contDiff : ContDiff ℝ (⊤ : ℕ∞) liRow := by
   rw [contDiff_iff_contDiffAt]
   intro x
@@ -84,12 +89,15 @@ theorem liRow_contDiff : ContDiff ℝ (⊤ : ℕ∞) liRow := by
         ((contDiff_const.mul contDiff_id).sub contDiff_const)).contDiffAt
     exact h1.mul (F_contDiffOn.contDiffAt (Ioi_mem_nhds hx0))
 
+/-- For `x ≥ 1/2`, the interpolant equals the antiderivative:
+`liRow x = 2/log 2 + ∫ t in 1..x, f2x t`. -/
 theorem liRow_eq {x : ℝ} (hx : 1 / 2 ≤ x) :
     liRow x = 2 / Real.log 2 + ∫ t in (1 : ℝ)..x, Expansion.f2x t := by
   unfold liRow
   rw [Real.smoothTransition.one_of_one_le (by linarith), one_mul]
   rfl
 
+/-- For `x > 1/2`, the interpolant `liRow` has derivative `f2x x` at `x`. -/
 theorem liRow_hasDerivAt {x : ℝ} (hx : x ∈ Ioi ((1 : ℝ) / 2)) :
     HasDerivAt liRow (Expansion.f2x x) x := by
   have hx' : (1 : ℝ) / 2 < x := hx

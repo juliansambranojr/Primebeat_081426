@@ -2,7 +2,7 @@
 
 # The contour shift — slices 2, 3, 4 (hEF's build order, entry 257) Written as the slice map for the contour shift, with named `sorry`s so the obligations were real Lean statements before proof. S2 and S4 are proved here; S3 is proved downstream (`EdgeBound`, `Glue`) and its placeholder is gone. Sorry-free since 2026-09-01.
 
-28 theorems, 1 definition, 1430 lines. Arrows are Lean's own record of what each proof uses.
+28 theorems, 1 definition, 1432 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`Assembly`](../lean_stage3/Assembly.md), [`JensenCount`](../lean_stage3/JensenCount.md), [`PerronKernel`](../lean_stage3/PerronKernel.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauPoleLocal`](../lean_stage3/LandauPoleLocal.md), [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)
@@ -11,8 +11,8 @@
 
 ```mermaid
 flowchart LR
-  n0["<b>zeroGap_pos</b><br/>0 ＜ zeroGap T"]:::thm
-  n1["<b>zeroGap_le</b><br/>zeroGap T ≤ 9/10"]:::thm
+  n0["<b>zeroGap_pos</b><br/>0 ＜ zeroGap T"]:::shp
+  n1["<b>zeroGap_le</b><br/>zeroGap T ≤ 9/10"]:::shp
   n2["<b>zeta_analyticAt</b><br/>AnalyticAt ℂ riemannZeta ρ"]:::thm
   n3["<b>one_le_zeta_order</b><br/>1 ≤ analyticOrderNatAt riemannZeta ρ"]:::thm
   n4["<b>partner_zero</b><br/>∃ ρ' : ℂ, riemannZeta ρ' = 0 ∧ ρ'.im = ρ.im ∧ 1/2 ≤ ρ'.re ∧ ρ'.r…"]:::thm
@@ -22,8 +22,8 @@ flowchart LR
   n8["<b>rectangleIntegral_sum_poles</b><br/>RectangleIntegral' (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w = ∑ p ∈ …"]:::thm
   n9["<b>residue_rectangle_multi</b><br/>RectangleIntegral' f z w = ∑ p ∈ P, A p"]:::thm
   n10["<b>residue_rectangle_of_local</b><br/>RectangleIntegral' f z w = ∑ p ∈ P, A p"]:::thm
-  n11["<b>analyticAt_dslope</b><br/>AnalyticAt ℂ (dslope f p) p"]:::thm
-  n12["<b>div_sub_eq_dslope</b><br/>f s / (s - p) = f p / (s - p) + dslope f p s"]:::thm
+  n11["<b>analyticAt_dslope</b><br/>AnalyticAt ℂ (dslope f p) p"]:::shp
+  n12["<b>div_sub_eq_dslope</b><br/>f s / (s - p) = f p / (s - p) + dslope f p s"]:::shp
   n13["<b>zeta_local_data</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h p ∧ ∀ᶠ s in nhdsWithin p {p}ᶜ, - der…"]:::thm
   n14["<b>zeta_order_ne_top</b><br/>analyticOrderAt riemannZeta ρ ≠ ⊤"]:::thm
   n15["<b>zeta_local_data_zero</b><br/>∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in nhdsWithin ρ {ρ}ᶜ, - der…"]:::thm
@@ -35,7 +35,7 @@ flowchart LR
   n21["<b>zeta_zeros_rectangle_finite</b><br/>{ρ : ℂ | riemannZeta ρ = 0 ∧ ρ ∈ Rectangle z w}.Finite"]:::thm
   n22["<b>order_bridge</b><br/>((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZe…"]:::thm
   n23["<b>zeroPartialSum_eq_sum</b><br/>Stage3.zeroPartialSum x T' = ∑ p ∈ ZF, ((analyticOrderNatAt riem…"]:::thm
-  n24["<b>analyticAt_conj_conj</b><br/>AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) (…"]:::thm
+  n24["<b>analyticAt_conj_conj</b><br/>AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) (…"]:::shp
   n25["<b>zeta_order_conj</b><br/>analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrd…"]:::thm
   n26["<b>zeta_order_reflect</b><br/>analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyti…"]:::thm
   n27["<b>residue_identity</b><br/>RectangleIntegral' (fun s : ℂ ↦ (- deriv riemannZeta s / riemann…"]:::thm
@@ -138,6 +138,9 @@ flowchart LR
   n6 -.-> x1
   n6 -.-> x3
   x8 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -145,7 +148,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -164,7 +167,11 @@ The ordinate gap the pigeonhole delivers: crude-explicit, `1/(180·log T + 1060)
 <a name="ContourShift-zeroGap_pos"></a>
 ### `ContourShift.zeroGap_pos`
 
-line 45
+line 46
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `T ≥ 2`, the ordinate gap `zeroGap T` is positive.
 
 **Proves**
 
@@ -189,7 +196,11 @@ line 45
 <a name="ContourShift-zeroGap_le"></a>
 ### `ContourShift.zeroGap_le`
 
-line 50
+line 52
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `T ≥ 2`, the ordinate gap `zeroGap T` is at most `9/10`.
 
 **Proves**
 
@@ -214,7 +225,9 @@ zeroGap T ≤ 9/10
 <a name="ContourShift-zeta_analyticAt"></a>
 ### `ContourShift.zeta_analyticAt`
 
-line 57
+line 59
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `ζ` is analytic away from the pole.
 
@@ -253,7 +266,9 @@ AnalyticAt ℂ riemannZeta ρ
 <a name="ContourShift-one_le_zeta_order"></a>
 ### `ContourShift.one_le_zeta_order`
 
-line 64
+line 66
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** At a zero away from the pole, the order is at least one.
 
@@ -281,7 +296,9 @@ line 64
 <a name="ContourShift-partner_zero"></a>
 ### `ContourShift.partner_zero`
 
-line 103
+line 105
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The reflection partner: every ordinate of a nontrivial zero carries a zero with `re ∈ [1/2, 1)` at the same ordinate.
 
@@ -306,7 +323,9 @@ line 103
 <a name="ContourShift-mem_zetaWindow"></a>
 ### `ContourShift.mem_zetaWindow`
 
-line 133
+line 135
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Membership in a `zetaWindow` from coordinate bounds.
 
@@ -338,7 +357,9 @@ line 133
 <a name="ContourShift-goodT_exists"></a>
 ### `ContourShift.goodT_exists`
 
-line 151
+line 153
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Slice 2 — good heights exist.
 
@@ -374,7 +395,9 @@ line 151
 <a name="ContourShift-borderIntegrable_sum_poles"></a>
 ### `ContourShift.borderIntegrable_sum_poles`
 
-line 339
+line 341
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A finite sum of simple-pole principal parts is border-integrable when every pole is interior.
 
@@ -398,7 +421,9 @@ RectangleBorderIntegrable (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w
 <a name="ContourShift-rectangleIntegral_sum_poles"></a>
 ### `ContourShift.rectangleIntegral_sum_poles`
 
-line 354
+line 356
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The rectangle integral of a finite sum of simple-pole principal parts, all poles interior, is the sum of the residues.
 
@@ -425,7 +450,9 @@ RectangleIntegral' (fun s ↦ ∑ p ∈ P, A p / (s - p)) z w = ∑ p ∈ P, A p
 <a name="ContourShift-residue_rectangle_multi"></a>
 ### `ContourShift.residue_rectangle_multi`
 
-line 387
+line 389
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The multi-pole residue theorem on a rectangle. If `f` agrees off the pole set with `g + Σ_p A p/(s − p)` for `g` holomorphic on the whole rectangle and every pole interior, then the rectangle integral of `f` collects every residue.
 
@@ -455,7 +482,9 @@ RectangleIntegral' f z w = ∑ p ∈ P, A p
 <a name="ContourShift-residue_rectangle_of_local"></a>
 ### `ContourShift.residue_rectangle_of_local`
 
-line 416
+line 418
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The residue theorem from local data. `f` holomorphic on the rectangle off a finite interior pole set, and at each pole `p` equal to `(analytic at p) + A p/(s − p)` on a punctured neighborhood: the rectangle integral collects every residue. The global extension is glued from the local analytic parts.
 
@@ -484,7 +513,9 @@ RectangleIntegral' f z w = ∑ p ∈ P, A p
 <a name="ContourShift-analyticAt_dslope"></a>
 ### `ContourShift.analyticAt_dslope`
 
-line 498
+line 500
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `dslope` of an analytic function is analytic at the point.
 
@@ -508,7 +539,9 @@ AnalyticAt ℂ (dslope f p) p
 <a name="ContourShift-div_sub_eq_dslope"></a>
 ### `ContourShift.div_sub_eq_dslope`
 
-line 504
+line 506
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Off the point, `f s/(s−p)` splits as `f p/(s−p) + dslope f p s`.
 
@@ -532,7 +565,9 @@ f s / (s - p) = f p / (s - p) + dslope f p s
 <a name="ContourShift-zeta_local_data"></a>
 ### `ContourShift.zeta_local_data`
 
-line 517
+line 519
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The local pole data of `G = (−ζ′/ζ)·x^s/s` at a factorization point. Where `ζ` factors as `(s−p)^n·g` with `g` analytic and nonvanishing at `p ≠ 0`, `G` splits as `analytic + (−n·x^p/p)/(s−p)` on a punctured neighborhood: the pole is simple with residue `−n·x^p/p`. Covers every nontrivial zero (`n = order ≥ 1`) and the pole of `ζ` at `1` (`n = −1`, residue `+x`) in one statement.
 
@@ -563,7 +598,9 @@ line 517
 <a name="ContourShift-zeta_order_ne_top"></a>
 ### `ContourShift.zeta_order_ne_top`
 
-line 591
+line 593
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The order of `ζ` at any point off the pole is finite (identity theorem on `ℂ∖{1}`, as in `one_le_zeta_order`).
 
@@ -593,7 +630,9 @@ analyticOrderAt riemannZeta ρ ≠ ⊤
 <a name="ContourShift-zeta_local_data_zero"></a>
 ### `ContourShift.zeta_local_data_zero`
 
-line 614
+line 616
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Local pole data of `G` at a nontrivial zero: residue `−(order)·x^ρ/ρ`.
 
@@ -623,7 +662,9 @@ line 614
 <a name="ContourShift-zeta_local_data_one"></a>
 ### `ContourShift.zeta_local_data_one`
 
-line 639
+line 641
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Local pole data of `G` at `1`: residue `+x`. The factorization `ζ = (s−1)^{−1}·g` is built from the completed zeta function.
 
@@ -648,7 +689,9 @@ line 639
 <a name="ContourShift-zeta_local_data_origin"></a>
 ### `ContourShift.zeta_local_data_origin`
 
-line 712
+line 714
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Local pole data of `G` at `0`: residue `−ζ′(0)/ζ(0)`.
 
@@ -675,7 +718,9 @@ line 712
 <a name="ContourShift-zeta_ne_zero_of_re_mem"></a>
 ### `ContourShift.zeta_ne_zero_of_re_mem`
 
-line 741
+line 743
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** No zeros on the strip `re ∈ [−1, 0]`: the functional equation carries nonvanishing over from `re ∈ [1, 2]`. The cosine factor can only vanish at `s = 1`, where `ζ` has its pole instead.
 
@@ -708,7 +753,9 @@ riemannZeta w ≠ 0
 <a name="ContourShift-sq_mul_zeta_analyticAt_one"></a>
 ### `ContourShift.sq_mul_zeta_analyticAt_one`
 
-line 801
+line 803
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `(s−1)²·ζ` is analytic at `1`, from the unconditional completed-zeta formula (junk values at `s = 1` agree on both sides).
 
@@ -728,7 +775,9 @@ AnalyticAt ℂ (fun s ↦ (s - 1)^2 * riemannZeta s) 1
 <a name="ContourShift-zeta_meromorphicOn"></a>
 ### `ContourShift.zeta_meromorphicOn`
 
-line 856
+line 858
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `ζ` is meromorphic on any set.
 
@@ -754,7 +803,9 @@ MeromorphicOn riemannZeta U
 <a name="ContourShift-zeta_zeros_rectangle_finite"></a>
 ### `ContourShift.zeta_zeros_rectangle_finite`
 
-line 864
+line 866
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The zeros of `ζ` in a closed rectangle form a finite set.
 
@@ -790,7 +841,9 @@ line 864
 <a name="ContourShift-order_bridge"></a>
 ### `ContourShift.order_bridge`
 
-line 887
+line 889
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The ledger's `riemannZeta.order` agrees with `analyticOrderNatAt` away from the pole (mirrors PNT+ KadiriZeroCounting's own bridge).
 
@@ -816,7 +869,9 @@ line 887
 <a name="ContourShift-zeroPartialSum_eq_sum"></a>
 ### `ContourShift.zeroPartialSum_eq_sum`
 
-line 905
+line 907
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** `zeroPartialSum` as a concrete finite sum, over any `Finset` enumerating exactly the nontrivial zeros below the height.
 
@@ -845,7 +900,9 @@ Stage3.zeroPartialSum x T' = ∑ p ∈ ZF, ((analyticOrderNatAt riemannZeta p : 
 <a name="ContourShift-analyticAt_conj_conj"></a>
 ### `ContourShift.analyticAt_conj_conj`
 
-line 939
+line 941
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Analyticity transports through conjugation: `conj ∘ g ∘ conj` is analytic at `conj p`.
 
@@ -868,7 +925,9 @@ AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) ((starRin
 <a name="ContourShift-zeta_order_conj"></a>
 ### `ContourShift.zeta_order_conj`
 
-line 968
+line 970
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The order of `ζ` at the conjugate of a point equals the order at the point (`ζ(conj s) = conj ζ(s)`).
 
@@ -898,7 +957,9 @@ analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrderNatAt riema
 <a name="ContourShift-zeta_order_reflect"></a>
 ### `ContourShift.zeta_order_reflect`
 
-line 1026
+line 1028
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The reflection-order lemma: the order of `ζ` at `1 − conj ρ` equals the order at `ρ`, on the open strip — the functional equation's factor is analytic and nonvanishing there.
 
@@ -929,7 +990,9 @@ analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyticOrderNatAt r
 <a name="ContourShift-residue_identity"></a>
 ### `ContourShift.residue_identity`
 
-line 1217
+line 1219
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Slice 4 — the residue identity on the good rectangle. The zeros enter here: pulling the line integral to `σ = −1` collects the pole at `1` (residue `x`), the pole at `0` (residue `−ζ′/ζ(0)`), and every nontrivial zero below height `T'` (residue `−m_ρ·x^ρ/ρ`).
 

@@ -2,7 +2,7 @@
 
 WeilBackground — the window as a test function of the explicit formula, and the on-line terms of the zero side. Rung 4b, first half, of the detection ladder (units 0316–0319). 2026-09-06.
 
-7 theorems, 2 definitions, 217 lines. Arrows are Lean's own record of what each proof uses.
+7 theorems, 2 definitions, 218 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilDetect`](../lean_stage3/WeilDetect.md), [`WeilLobe`](../lean_stage3/WeilLobe.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`WeilBands`](../lean_stage3/WeilBands.md), [`WeilOffLine`](../lean_stage3/WeilOffLine.md)
@@ -11,13 +11,13 @@ WeilBackground — the window as a test function of the explicit formula, and th
 
 ```mermaid
 flowchart LR
-  n0["<b>phiC_real</b><br/>(phiC h γ u).im = 0"]:::thm
-  n1["<b>laplace_phi</b><br/>laplace (phiC h γ) z = ghat h γ (-z - 1 / 2)"]:::thm
-  n2["<b>Psi_bound</b><br/>|WeilTransform.Psi s| ≤ (2 * Real.pi + Real.pi ^ 2) / s ^ 2"]:::thm
-  n3["<b>Psi_le_two</b><br/>|WeilTransform.Psi s| ≤ 2"]:::thm
-  n4["<b>online_term_eq</b><br/>laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = (((h /…"]:::thm
-  n5["<b>online_term_le_near</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re ≤ 4…"]:::thm
-  n6["<b>online_term_le_far</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re ≤ (…"]:::thm
+  n0["<b>phiC_real</b><br/>(phiC h γ u).im = 0"]:::shp
+  n1["<b>laplace_phi</b><br/>laplace (phiC h γ) z = ghat h γ (-z - 1 / 2)"]:::shp
+  n2["<b>Psi_bound</b><br/>|WeilTransform.Psi s| ≤ (2 * Real.pi + Real.pi ^ 2) / s ^ 2"]:::shp
+  n3["<b>Psi_le_two</b><br/>|WeilTransform.Psi s| ≤ 2"]:::shp
+  n4["<b>online_term_eq</b><br/>laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = (((h /…"]:::shp
+  n5["<b>online_term_le_near</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re ≤ 4…"]:::shp
+  n6["<b>online_term_le_far</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re ≤ (…"]:::shp
   x0(["<b>WeilOffLine</b><br/>term_eq_neg_sq"]):::ext
   x1(["<b>WeilLobe</b><br/>SigmaC_bound"]):::ext
   x2(["<b>WeilTransform</b><br/>SigmaC_I_mul<br/>ghat_ofReal_I"]):::ext
@@ -43,6 +43,9 @@ flowchart LR
   x2 -.-> n4
   x3 -.-> n3
   x4 -.-> n4
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -50,7 +53,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -81,7 +84,11 @@ The complex-valued test function WeilDetect reads.
 <a name="WeilBackground-phiC_real"></a>
 ### `WeilBackground.phiC_real`
 
-line 57
+line 58
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The complex-valued test function `phiC h γ` has zero imaginary part at every `u`.
 
 **Proves**
 
@@ -105,7 +112,9 @@ line 57
 <a name="WeilBackground-laplace_phi"></a>
 ### `WeilBackground.laplace_phi`
 
-line 62
+line 63
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The transform in the explicit formula's convention. `laplace φ z = ghat h γ (−z − 1/2)`.
 
@@ -135,7 +144,9 @@ laplace (phiC h γ) z = ghat h γ (-z - 1 / 2)
 <a name="WeilBackground-Psi_bound"></a>
 ### `WeilBackground.Psi_bound`
 
-line 85
+line 86
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `|Ψ(s)| ≤ (2π + π²)/s²` for `s ≠ 0`: the lobe bound at a purely imaginary argument, where `cosh(Re w) = 1` and `‖w‖ = |s|`.
 
@@ -165,7 +176,9 @@ line 85
 <a name="WeilBackground-Psi_le_two"></a>
 ### `WeilBackground.Psi_le_two`
 
-line 103
+line 104
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `|Ψ(s)| ≤ 2`: the integrand is at most `1` in absolute value on an interval of length `2`.
 
@@ -195,7 +208,9 @@ line 103
 <a name="WeilBackground-online_term_eq"></a>
 ### `WeilBackground.online_term_eq`
 
-line 125
+line 126
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** On the line the term is a squared modulus: for `Re ρ = 1/2`, `laplace φ(−ρ)·laplace φ(−(1−ρ)) = (h/2)²·[Ψ(h(γ_ρ + γ)) + Ψ(h(γ_ρ − γ))]²`.
 
@@ -232,7 +247,9 @@ laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = (((h / 2) ^ 2 * (W
 <a name="WeilBackground-online_term_le_near"></a>
 ### `WeilBackground.online_term_le_near`
 
-line 149
+line 150
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Near the carrier: the on-line term is at most `4h²` (from `|Ψ| ≤ 2`).
 
@@ -265,7 +282,9 @@ line 149
 <a name="WeilBackground-online_term_le_far"></a>
 ### `WeilBackground.online_term_le_far`
 
-line 168
+line 169
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Away from the carrier: for `|γ_ρ − γ| ≥ 1` and `γ_ρ + γ ≥ 1`, the on-line term is at most `(h/2)²·[C/(h(γ_ρ−γ))² + C/(h(γ_ρ+γ))²]²`, `C = 2π + π²`.
 

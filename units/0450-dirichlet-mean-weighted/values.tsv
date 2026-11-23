@@ -1,0 +1,18 @@
+key	value	source
+module_lines	258	wc -l lean_stage3/Stage3/DirichletMeanW.lean
+theorems_proved	5	grep -c ^theorem lean_stage3/Stage3/DirichletMeanW.lean
+defs	0	none
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/DirichletMeanW.lean
+pins	2	dirichlet_mean_value_weighted, dirichlet_mean_value_weighted_sigma
+errors_first	1	the worker's first lake build Stage3.DirichletMeanW, as it reported
+builds	3	the worker's builds, as it reported
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8841	lake build (full Stage3), Build completed successfully
+jobs_module	8656	run/build.log, lake build Stage3.DirichletMeanW
+loop_version	22	lean_stage3/LOOP.md version line
+design	carlson.md#c1b	the same with each term charged its own index
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+row_const	6	dirichlet_mean_value_weighted
+ring_lines	2	lines 89 and 110 of the module, ring after field_simp

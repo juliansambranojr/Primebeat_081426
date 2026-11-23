@@ -30,6 +30,7 @@ noncomputable section
 
 open scoped ArithmeticFunction.vonMangoldt
 
+/-- For `y ≥ 1`, the ramp sum satisfies `rampSum y ≤ y·(log y + (log 4 + 4))`. -/
 theorem rampSum_le_log {y : ℝ} (hy : 1 ≤ y) :
     LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4)) := by
   have hy0 : 0 < y := by linarith
@@ -67,12 +68,14 @@ theorem rampSum_le_log {y : ℝ} (hy : 1 ≤ y) :
     _ ≤ y * (Real.log y + (Real.log 4 + 4)) :=
         mul_le_mul_of_nonneg_left (by linarith) hy0.le
 
+/-- Helper: `log 4 < 2`. -/
 private lemma log_four_lt_two : Real.log 4 < 2 := by
   have h : Real.log 4 = 2 * Real.log 2 := by
     rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]; norm_num
   rw [h]
   linarith [Real.log_two_lt_d9]
 
+/-- For `y ≥ 1`, the function `G` satisfies `G y ≤ 8·y`. -/
 theorem G_le {y : ℝ} (hy : 1 ≤ y) : LandauWindow.G y ≤ 8 * y := by
   have hy0 : 0 < y := by linarith
   have h1 := rampSum_le_log hy
@@ -81,6 +84,7 @@ theorem G_le {y : ℝ} (hy : 1 ≤ y) : LandauWindow.G y ≤ 8 * y := by
   rw [LandauWindow.G]
   nlinarith
 
+/-- For `y ≥ 1`, the function `G` satisfies `−(y·log y) ≤ G y`. -/
 theorem neg_le_G {y : ℝ} (hy : 1 ≤ y) : -(y * Real.log y) ≤ LandauWindow.G y := by
   have hy0 : 0 < y := by linarith
   have h0 := LandauCrude.rampSum_nonneg y
@@ -90,6 +94,7 @@ theorem neg_le_G {y : ℝ} (hy : 1 ≤ y) : -(y * Real.log y) ≤ LandauWindow.G
   rw [LandauWindow.G]
   linarith
 
+/-- For `y ≥ 1`, the function `G` satisfies `|G y| ≤ 8·y·(1 + log y)`. -/
 theorem abs_G_le_log {y : ℝ} (hy : 1 ≤ y) :
     |LandauWindow.G y| ≤ 8 * y * (1 + Real.log y) := by
   have hy0 : 0 < y := by linarith

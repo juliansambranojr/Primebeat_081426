@@ -2,38 +2,39 @@
 
 The arrows in this map are Lean's. This page lists every place where reading names out of the source text would have said something different, so the difference can be opened and looked at.
 
-## Names in the text that Lean does not record as a use (24)
+## Names in the text that Lean does not record as a use (25)
 
 A local variable sharing a definition's name, a same-named theorem in another namespace, or an abbreviation Lean unfolds while elaborating.
 
 | in | the text names | line |
 |---|---|---|
-| [`Chain.ceiling_base`](lean/Chain.md#Chain-ceiling_base) | `Chain.h` | `lean/Chain.lean:512` |
+| [`Chain.ceiling_base`](lean/Chain.md#Chain-ceiling_base) | `Chain.h` | `lean/Chain.lean:513` |
 | [`TransferOp.mode_ne_zero`](lean/TransferOp.md#TransferOp-mode_ne_zero) | `Chain.h` | `lean/TransferOp.lean:70` |
 | [`TransferOp.eigenvalue_zero_iff_lattice`](lean/TransferOp.md#TransferOp-eigenvalue_zero_iff_lattice) | `Chain.h` | `lean/TransferOp.lean:105` |
 | [`Transform.torus_shift`](lean/Transform.md#Transform-torus_shift) | `Transform.Torus` | `lean/Transform.lean:268` |
 | [`Transform.torus_period`](lean/Transform.md#Transform-torus_period) | `Transform.Torus` | `lean/Transform.lean:274` |
-| [`Slice4.zetaE_ne_zero_of_RH`](lean_stage3/LineBound.md#Slice4-zetaE_ne_zero_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:409` |
-| [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.finalBoundConst_le` | `lean_stage3/Stage3/LineBound.lean:531` |
-| [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:531` |
-| [`RHPull.holo_logDerivZeta_of_RH`](lean_stage3/LineBound.md#RHPull-holo_logDerivZeta_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:1036` |
+| [`Slice4.zetaE_ne_zero_of_RH`](lean_stage3/LineBound.md#Slice4-zetaE_ne_zero_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:414` |
+| [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.finalBoundConst_le` | `lean_stage3/Stage3/LineBound.lean:536` |
+| [`Slice4.logDerivZeta_compact`](lean_stage3/LineBound.md#Slice4-logDerivZeta_compact) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:536` |
+| [`RHPull.holo_logDerivZeta_of_RH`](lean_stage3/LineBound.md#RHPull-holo_logDerivZeta_of_RH) | `Slice3.zeta_ne_zero_of_RH` | `lean_stage3/Stage3/LineBound.lean:1041` |
+| [`MollifiedMean.norm_sq_add_three`](lean_stage3/MollifiedMean.md#MollifiedMean-norm_sq_add_three) | `MollifiedMean.b` | `lean_stage3/Stage3/MollifiedMean.lean:138` |
 | [`WeilPowerAssembly.phiW_contDiff_one`](lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-phiW_contDiff_one) | `WeilPowerPhase.x` | `lean_stage3/Stage3/WeilPowerAssembly.lean:107` |
 | [`WeilPowerAssembly.isTest_phiWC`](lean_stage3/WeilPowerAssembly.md#WeilPowerAssembly-isTest_phiWC) | `WeilPowerPhase.x` | `lean_stage3/Stage3/WeilPowerAssembly.lean:260` |
-| [`WeilPowerBands.termW_nonneg`](lean_stage3/WeilPowerBands.md#WeilPowerBands-termW_nonneg) | `WeilTiles.online_term_nonneg` | `lean_stage3/Stage3/WeilPowerBands.lean:60` |
-| [`WeilPowerBands.band_sum_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:71` |
-| [`WeilPowerBands.band_sum_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:71` |
-| [`WeilPowerBands.sum_by_bands`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:111` |
-| [`WeilPowerBands.sum_by_bands`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:111` |
-| [`WeilPowerBands.sum_le_bandSeries`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_le_bandSeries) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:137` |
-| [`WeilPowerBands.sum_le_bandSeries`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_le_bandSeries) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:137` |
-| [`WeilPowerBands.tsum_upper_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-tsum_upper_le) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:147` |
+| [`WeilPowerBands.termW_nonneg`](lean_stage3/WeilPowerBands.md#WeilPowerBands-termW_nonneg) | `WeilTiles.online_term_nonneg` | `lean_stage3/Stage3/WeilPowerBands.lean:62` |
+| [`WeilPowerBands.band_sum_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:75` |
+| [`WeilPowerBands.band_sum_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:75` |
+| [`WeilPowerBands.sum_by_bands`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:115` |
+| [`WeilPowerBands.sum_by_bands`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_by_bands) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:115` |
+| [`WeilPowerBands.sum_le_bandSeries`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_le_bandSeries) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerBands.lean:144` |
+| [`WeilPowerBands.sum_le_bandSeries`](lean_stage3/WeilPowerBands.md#WeilPowerBands-sum_le_bandSeries) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:144` |
+| [`WeilPowerBands.tsum_upper_le`](lean_stage3/WeilPowerBands.md#WeilPowerBands-tsum_upper_le) | `WeilPowerBands.M` | `lean_stage3/Stage3/WeilPowerBands.lean:154` |
 | [`WeilPowerBridge.term_le_at_zero`](lean_stage3/WeilPowerBridge.md#WeilPowerBridge-term_le_at_zero) | `WeilOddPower.q` | `lean_stage3/Stage3/WeilPowerBridge.lean:154` |
-| [`WeilPowerOnLine.sum_upper_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_upper_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:70` |
-| [`WeilPowerOnLine.sum_lower_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:81` |
-| [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:104` |
-| [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:139` |
+| [`WeilPowerOnLine.sum_upper_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_upper_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:72` |
+| [`WeilPowerOnLine.sum_lower_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_lower_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:83` |
+| [`WeilPowerOnLine.sum_low_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_low_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:106` |
+| [`WeilPowerOnLine.sum_onLine_le`](lean_stage3/WeilPowerOnLine.md#WeilPowerOnLine-sum_onLine_le) | `WeilOddPower.S` | `lean_stage3/Stage3/WeilPowerOnLine.lean:141` |
 
-## Uses Lean records that the text does not show (465)
+## Uses Lean records that the text does not show (533)
 
 Found by `simp`, by unfolding, through an instance, or under another name.
 
@@ -52,6 +53,9 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`Chain.A1`](lean/Chain.md#Chain-A1) | [`Chain.bdiff`](lean/Chain.md#Chain-bdiff) | def |
 | [`Chain.A1`](lean/Chain.md#Chain-A1) | [`Chain.mode`](lean/Chain.md#Chain-mode) | def |
 | [`Construction.eq_of_same_row`](lean/Construction.md#Construction-eq_of_same_row) | [`Construction.tableFrom`](lean/Construction.md#Construction-tableFrom) | def |
+| [`DeepZeroBand.deep_zero_share`](lean/DeepZeroBand.md#DeepZeroBand-deep_zero_share) | [`Construction.tableFrom`](lean/Construction.md#Construction-tableFrom) | def |
+| [`DeepZeroBand.deep_zero_inverse_share`](lean/DeepZeroBand.md#DeepZeroBand-deep_zero_inverse_share) | [`Construction.tableFrom`](lean/Construction.md#Construction-tableFrom) | def |
+| [`DeepZeroBand.share_15_6_neg`](lean/DeepZeroBand.md#DeepZeroBand-share_15_6_neg) | [`Construction.tableFrom`](lean/Construction.md#Construction-tableFrom) | def |
 | [`Expansion.F_floor`](lean/Expansion.md#Expansion-F_floor) | [`Expansion.S`](lean/Expansion.md#Expansion-S) | def |
 | [`Expansion.hD_of_window`](lean/Expansion.md#Expansion-hD_of_window) | [`Expansion.F`](lean/Expansion.md#Expansion-F) | def |
 | [`Interpolant.f2x_continuousOn`](lean/Interpolant.md#Interpolant-f2x_continuousOn) | [`Interpolant.f2x_contDiffOn`](lean/Interpolant.md#Interpolant-f2x_contDiffOn) | theorem |
@@ -115,6 +119,37 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`Stage3.rvM_of_sFromLocal`](lean_stage3/ArgIdentity.md#Stage3-rvM_of_sFromLocal) | [`Stage3.phaseTheta`](lean_stage3/Stirling.md#Stage3-phaseTheta) | def |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | [`Stage3.StmtExplicitFormulaPoly`](lean_stage3/Assembly.md#Stage3-StmtExplicitFormulaPoly) | def |
 | [`Stage3.schoenfeldWeak_floor_of_RH`](lean_stage3/AssemblyFloor.md#Stage3-schoenfeldWeak_floor_of_RH) | [`Stage3.StmtPsiWeak`](lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak) | def |
+| [`AttainedPi.norm_ipart_le_of_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le) | [`FiniteOffLinePi.ipart`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def |
+| [`AttainedPi.norm_ipart_le_of_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le) | [`FiniteOffLinePi.norm_integrand`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_integrand) | theorem |
+| [`AttainedPi.norm_log_ipart_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_log_ipart_le) | [`FiniteOffLinePi.ipart`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def |
+| [`AttainedPi.norm_log_piMode_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le) | [`FiniteOffLinePi.ipart`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def |
+| [`AttainedPi.norm_log_piMode_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le) | [`FiniteOffLinePi.piMode_eq`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq) | theorem |
+| [`AttainedPi.slack_isLittleO`](lean_stage3/AttainedPi.md#AttainedPi-slack_isLittleO) | [`PiRemainder.Arem`](lean_stage3/PiRemainder.md#PiRemainder-Arem) | def |
+| [`AttainedPi.slack_isLittleO`](lean_stage3/AttainedPi.md#AttainedPi-slack_isLittleO) | [`PiRemainder.Mlow`](lean_stage3/PiRemainder.md#PiRemainder-Mlow) | def |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.cpow_doubling`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-cpow_doubling) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.ipart`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) | def |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.norm_order_mul`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_order_mul) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.ordR`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) | def |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.ordR_nonneg`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR_nonneg) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.piMode_eq`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.rpow_doubling`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rpow_doubling) | theorem |
+| [`AttainedPi.fin_bound`](lean_stage3/AttainedPi.md#AttainedPi-fin_bound) | [`FiniteOffLinePi.sqrt_doubling`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-sqrt_doubling) | theorem |
+| [`AttainedPi.band_small`](lean_stage3/AttainedPi.md#AttainedPi-band_small) | [`FiniteOffLinePi.ordR`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) | def |
+| [`AttainedPi.fin_eventually`](lean_stage3/AttainedPi.md#AttainedPi-fin_eventually) | [`FiniteOffLinePi.ordR`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) | def |
+| [`AttainedPi.fin_eventually`](lean_stage3/AttainedPi.md#AttainedPi-fin_eventually) | [`ZeroSummable.w`](lean_stage3/ZeroSummable.md#ZeroSummable-w) | def |
+| [`AttainedPi.norm_term`](lean_stage3/AttainedPi.md#AttainedPi-norm_term) | [`AttainedPi.mem_lineSet`](lean_stage3/AttainedPi.md#AttainedPi-mem_lineSet) | theorem |
+| [`AttainedPi.norm_tailTerm_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_tailTerm_le) | [`AttainedPi.term`](lean_stage3/AttainedPi.md#AttainedPi-term) | def |
+| [`AttainedPi.norm_tailTerm_le`](lean_stage3/AttainedPi.md#AttainedPi-norm_tailTerm_le) | [`FiniteOffLine.ZF`](lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) | def |
+| [`AttainedPi.summable_line`](lean_stage3/AttainedPi.md#AttainedPi-summable_line) | [`AttainedPi.mem_lineSet`](lean_stage3/AttainedPi.md#AttainedPi-mem_lineSet) | theorem |
+| [`AttainedPi.tsum_split`](lean_stage3/AttainedPi.md#AttainedPi-tsum_split) | [`AttainedPi.mem_lineSet`](lean_stage3/AttainedPi.md#AttainedPi-mem_lineSet) | theorem |
+| [`AttainedPi.tendsto_tail`](lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail) | [`AttainedPi.lineSet`](lean_stage3/AttainedPi.md#AttainedPi-lineSet) | def |
+| [`AttainedPi.tendsto_tail`](lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail) | [`AttainedPi.term`](lean_stage3/AttainedPi.md#AttainedPi-term) | def |
+| [`AttainedPi.tendsto_tail`](lean_stage3/AttainedPi.md#AttainedPi-tendsto_tail) | [`LadderMean.coef`](lean_stage3/LadderMean.md#LadderMean-coef) | def |
+| [`AttainedPi.attained_off_line_pi`](lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) | [`AttainedPi.mem_lineSet`](lean_stage3/AttainedPi.md#AttainedPi-mem_lineSet) | theorem |
+| [`AttainedPi.attained_off_line_pi`](lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) | [`AttainedPi.tailTerm`](lean_stage3/AttainedPi.md#AttainedPi-tailTerm) | def |
+| [`AttainedPi.attained_off_line_pi`](lean_stage3/AttainedPi.md#AttainedPi-attained_off_line_pi) | [`AttainedPi.term`](lean_stage3/AttainedPi.md#AttainedPi-term) | def |
+| [`CellBdiff.stencil_eq_bdiff_iter`](lean_stage3/CellBdiff.md#CellBdiff-stencil_eq_bdiff_iter) | [`CellBdiff.bdZ`](lean_stage3/CellBdiff.md#CellBdiff-bdZ) | def |
+| [`CellBdiff.cell_eq_modeSum_bdiff`](lean_stage3/CellBdiff.md#CellBdiff-cell_eq_modeSum_bdiff) | [`CellZeros.stencil`](lean_stage3/CellZeros.md#CellZeros-stencil) | def |
 | [`CellResidual.cellResid`](lean_stage3/CellResidual.md#CellResidual-cellResid) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
 | [`CellResidual.stencilR_abs_le`](lean_stage3/CellResidual.md#CellResidual-stencilR_abs_le) | [`Nonvanishing.stencilR`](lean/Nonvanishing.md#Nonvanishing-stencilR) | def |
 | [`CellResidual.stencilR_one`](lean_stage3/CellResidual.md#CellResidual-stencilR_one) | [`Nonvanishing.bdiffZ`](lean/Nonvanishing.md#Nonvanishing-bdiffZ) | def |
@@ -152,6 +187,12 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`Stage3.bump_contDiff`](lean_stage3/ExplicitBump.md#Stage3-bump_contDiff) | [`Stage3.bumpC`](lean_stage3/ExplicitBump.md#Stage3-bumpC) | def |
 | [`Stage3.bump_contDiff`](lean_stage3/ExplicitBump.md#Stage3-bump_contDiff) | [`Stage3.contDiff_sqPos`](lean_stage3/ExplicitBump.md#Stage3-contDiff_sqPos) | theorem |
 | [`Stage3.bump_le`](lean_stage3/ExplicitBump.md#Stage3-bump_le) | [`Stage3.bumpC_pos`](lean_stage3/ExplicitBump.md#Stage3-bumpC_pos) | theorem |
+| [`FiniteOffLine.finite_off_line`](lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) | [`Chain.Sym`](lean/Chain.md#Chain-Sym) | def |
+| [`FiniteOffLine.finite_off_line`](lean_stage3/FiniteOffLine.md#FiniteOffLine-finite_off_line) | [`Chain.mode`](lean/Chain.md#Chain-mode) | def |
+| [`FiniteOffLinePi.rowBound_isLittleO`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO) | [`PiRemainder.Arem`](lean_stage3/PiRemainder.md#PiRemainder-Arem) | def |
+| [`FiniteOffLinePi.rowBound_isLittleO`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-rowBound_isLittleO) | [`PiRemainder.Mlow`](lean_stage3/PiRemainder.md#PiRemainder-Mlow) | def |
+| [`FiniteOffLinePi.finite_off_line_pi`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) | [`Chain.Sym`](lean/Chain.md#Chain-Sym) | def |
+| [`FiniteOffLinePi.finite_off_line_pi`](lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-finite_off_line_pi) | [`Chain.mode`](lean/Chain.md#Chain-mode) | def |
 | [`GateEval.routeConst_le`](lean_stage3/GateEval.md#GateEval-routeConst_le) | [`Glue.c1n`](lean_stage3/GlueNum.md#Glue-c1n) | def |
 | [`GateEval.routeConst_le`](lean_stage3/GateEval.md#GateEval-routeConst_le) | [`Glue.c3n`](lean_stage3/GlueNum.md#Glue-c3n) | def |
 | [`GateEval.routeConst_le`](lean_stage3/GateEval.md#GateEval-routeConst_le) | [`Glue.c4n`](lean_stage3/GlueNum.md#Glue-c4n) | def |
@@ -228,6 +269,8 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`RHPull.mellin_vert_le`](lean_stage3/LineBound.md#RHPull-mellin_vert_le) | [`RHPull.σRH_re`](lean_stage3/LineBound.md#RHPull--RH_re) | theorem |
 | [`RHPull.psi_weak_of_RH`](lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) | [`RHPull.half_lt_σRH`](lean_stage3/LineBound.md#RHPull-half_lt_-RH) | theorem |
 | [`RHPull.psi_weak_of_RH`](lean_stage3/LineBound.md#RHPull-psi_weak_of_RH) | [`RHPull.σRH`](lean_stage3/LineBound.md#RHPull--RH) | def |
+| [`Mollified.sum_coef_sq_le`](lean_stage3/Mollified.md#Mollified-sum_coef_sq_le) | [`Mollified.tauBelow`](lean_stage3/Mollified.md#Mollified-tauBelow) | def |
+| [`MollifiedMean.mean_sq_main_le`](lean_stage3/MollifiedMean.md#MollifiedMean-mean_sq_main_le) | [`Mollified.coef`](lean_stage3/Mollified.md#Mollified-coef) | def |
 | [`PerronKernel.perron_kernel_coarse_lt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_coarse_lt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_kernel_decay_lt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_decay_lt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_kernel_decay_gt`](lean_stage3/PerronKernel.md#PerronKernel-perron_kernel_decay_gt) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
@@ -240,10 +283,21 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`PerronKernel.kernel_diff_summable`](lean_stage3/PerronKernel.md#PerronKernel-kernel_diff_summable) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.perron_to_psi`](lean_stage3/PerronKernel.md#PerronKernel-perron_to_psi) | [`PerronKernel.perronδ`](lean_stage3/PerronKernel.md#PerronKernel-perron-) | def |
 | [`PerronKernel.explicit_formula_perron`](lean_stage3/PerronKernel.md#PerronKernel-explicit_formula_perron) | [`PerronKernel.perronI`](lean_stage3/PerronKernel.md#PerronKernel-perronI) | def |
+| [`PiRemainder.inv_norm_le_Mlow`](lean_stage3/PiRemainder.md#PiRemainder-inv_norm_le_Mlow) | [`FiniteOffLine.mem_ZF`](lean_stage3/FiniteOffLine.md#FiniteOffLine-mem_ZF) | theorem |
+| [`PiRemainder.zinv_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-zinv_nonneg) | [`FiniteOffLine.ZF`](lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) | def |
+| [`PiRemainder.norm_zeroPartialSum_le`](lean_stage3/PiRemainder.md#PiRemainder-norm_zeroPartialSum_le) | [`FiniteOffLine.ZF`](lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF) | def |
+| [`PiRemainder.Chigh_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) | [`Glue.c1n`](lean_stage3/GlueNum.md#Glue-c1n) | def |
+| [`PiRemainder.Chigh_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) | [`Glue.c3n`](lean_stage3/GlueNum.md#Glue-c3n) | def |
+| [`PiRemainder.Chigh_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Chigh_nonneg) | [`Glue.c4n`](lean_stage3/GlueNum.md#Glue-c4n) | def |
+| [`PiRemainder.norm_efRem_le_high`](lean_stage3/PiRemainder.md#PiRemainder-norm_efRem_le_high) | [`Stage3.zeroPartialSum`](lean_stage3/Assembly.md#Stage3-zeroPartialSum) | def |
+| [`PiRemainder.integrable_efRem`](lean_stage3/PiRemainder.md#PiRemainder-integrable_efRem) | [`Stage3.zeroPartialSum`](lean_stage3/Assembly.md#Stage3-zeroPartialSum) | def |
+| [`PiRemainder.Arem_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Arem_nonneg) | [`PiRemainder.Chigh`](lean_stage3/PiRemainder.md#PiRemainder-Chigh) | def |
+| [`PiRemainder.Arem_nonneg`](lean_stage3/PiRemainder.md#PiRemainder-Arem_nonneg) | [`PiRemainder.Mlow`](lean_stage3/PiRemainder.md#PiRemainder-Mlow) | def |
 | [`PiToPsi.intervalIntegrable_Li_div`](lean_stage3/PiToPsi.md#PiToPsi-intervalIntegrable_Li_div) | [`PiToPsi.continuousOn_Li`](lean_stage3/PiToPsi.md#PiToPsi-continuousOn_Li) | theorem |
 | [`PiToPsi.RH_of_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | [`Stage3.StmtPsiWeak`](lean_stage3/PsiToPi.md#Stage3-StmtPsiWeak) | def |
 | [`PiToPsi.RH_of_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) | [`VonKoch.RH_iff_psiWeak`](lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) | theorem |
 | [`PiToPsi.RH_iff_schoenfeldWeak`](lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) | [`Stage3.floorConstSplit`](lean_stage3/GlueFloor.md#Stage3-floorConstSplit) | def |
+| [`PiZeros.pi_eq_zero_sum`](lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum) | [`Stage3.zeroPartialSum`](lean_stage3/Assembly.md#Stage3-zeroPartialSum) | def |
 | [`ReZetaCount.F_zero_eq_one`](lean_stage3/ReZetaCount.md#ReZetaCount-F_zero_eq_one) | [`ReZetaCount.G`](lean_stage3/ReZetaCount.md#ReZetaCount-G) | def |
 | [`ReZetaCount.reZeros`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeros) | [`ReZetaCount.reZeroSet`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet) | def |
 | [`ReZetaCount.mem_reZeros`](lean_stage3/ReZetaCount.md#ReZetaCount-mem_reZeros) | [`ReZetaCount.reZeroSet_finite`](lean_stage3/ReZetaCount.md#ReZetaCount-reZeroSet_finite) | theorem |
@@ -493,6 +547,21 @@ Found by `simp`, by unfolding, through an instance, or under another name.
 | [`WeilWindow.m2_ge`](lean_stage3/WeilWindow.md#WeilWindow-m2_ge) | [`WeilWindow.continuous_x2P`](lean_stage3/WeilWindow.md#WeilWindow-continuous_x2P) | theorem |
 | [`WeilWindow.Sigma_ge_mul`](lean_stage3/WeilWindow.md#WeilWindow-Sigma_ge_mul) | [`WeilWindow.P`](lean_stage3/WeilWindow.md#WeilWindow-P) | def |
 | [`WeilWindow.Sigma_ge`](lean_stage3/WeilWindow.md#WeilWindow-Sigma_ge) | [`WeilWindow.m2`](lean_stage3/WeilWindow.md#WeilWindow-m2) | def |
+| [`ZeroSquares.differentiableOn_f`](lean_stage3/ZeroSquares.md#ZeroSquares-differentiableOn_f) | [`MollifiedMean.M`](lean_stage3/MollifiedMean.md#MollifiedMean-M) | def |
+| [`ZeroSquares.f_at_zero`](lean_stage3/ZeroSquares.md#ZeroSquares-f_at_zero) | [`MollifiedMean.M`](lean_stage3/MollifiedMean.md#MollifiedMean-M) | def |
+| [`ZeroSquares.continuous_sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-continuous_sqG) | [`MollifiedMean.f`](lean_stage3/MollifiedMean.md#MollifiedMean-f) | def |
+| [`ZeroSquares.sqG_nonneg`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG_nonneg) | [`MollifiedMean.f`](lean_stage3/MollifiedMean.md#MollifiedMean-f) | def |
+| [`ZeroSquares.continuous_innerI`](lean_stage3/ZeroSquares.md#ZeroSquares-continuous_innerI) | [`ZeroSquares.sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG) | def |
+| [`ZeroSquares.innerI_nonneg`](lean_stage3/ZeroSquares.md#ZeroSquares-innerI_nonneg) | [`ZeroSquares.sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG) | def |
+| [`ZeroSquares.innerI_mono`](lean_stage3/ZeroSquares.md#ZeroSquares-innerI_mono) | [`ZeroSquares.sqG`](lean_stage3/ZeroSquares.md#ZeroSquares-sqG) | def |
+| [`ZeroSquares.card_fiber_le`](lean_stage3/ZeroSquares.md#ZeroSquares-card_fiber_le) | [`Stage3.zetaWindow`](lean_stage3/JensenCount.md#Stage3-zetaWindow) | def |
+| [`ZeroSummable.order_le_log_pos`](lean_stage3/ZeroSummable.md#ZeroSummable-order_le_log_pos) | [`Stage3.zetaWindow`](lean_stage3/JensenCount.md#Stage3-zetaWindow) | def |
+| [`ZeroSummable.summable_order_div`](lean_stage3/ZeroSummable.md#ZeroSummable-summable_order_div) | [`ZeroSummable.w`](lean_stage3/ZeroSummable.md#ZeroSummable-w) | def |
+| [`ZeroSummable.summable_norm_coef`](lean_stage3/ZeroSummable.md#ZeroSummable-summable_norm_coef) | [`ZeroSummable.w`](lean_stage3/ZeroSummable.md#ZeroSummable-w) | def |
+| [`ZetaEM.zeta_eq_em`](lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | [`ZetaEM.emInt`](lean_stage3/ZetaEM.md#ZetaEM-emInt) | def |
+| [`ZetaEM.zeta_eq_em`](lean_stage3/ZetaEM.md#ZetaEM-zeta_eq_em) | [`ZetaEM.emTerm`](lean_stage3/ZetaEM.md#ZetaEM-emTerm) | def |
+| [`ZetaEM.norm_remainder_le`](lean_stage3/ZetaEM.md#ZetaEM-norm_remainder_le) | [`ZetaEM.emInt`](lean_stage3/ZetaEM.md#ZetaEM-emInt) | def |
+| [`ZetaEM.norm_zeta_sub_partial_le`](lean_stage3/ZetaEM.md#ZetaEM-norm_zeta_sub_partial_le) | [`ZetaEM.emTerm`](lean_stage3/ZetaEM.md#ZetaEM-emTerm) | def |
 | [`ZetaGrowth.zeta1_eq_zeta`](lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta1_eq_zeta) | [`ZetaGrowth.emA`](lean_stage3/ZetaGrowth.md#ZetaGrowth-emA) | def |
 | [`ZetaGrowth.zeta1_analyticOnNhd`](lean_stage3/ZetaGrowth.md#ZetaGrowth-zeta1_analyticOnNhd) | [`ZetaGrowth.emA`](lean_stage3/ZetaGrowth.md#ZetaGrowth-emA) | def |
 | [`Bridge.contDiff_kOf`](lean_bridge/WeilBridge.md#Bridge-contDiff_kOf) | [`Bridge.tiltF`](lean_bridge/WeilBridge.md#Bridge-tiltF) | def |

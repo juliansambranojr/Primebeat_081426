@@ -30,11 +30,13 @@ open Finset
 
 noncomputable section
 
+/-- Helper: `1 / log 2 ≤ 1.4428`. -/
 theorem inv_log_two_le : 1 / Real.log 2 ≤ 1.4428 := by
   have hl : (0:ℝ) < Real.log 2 := Real.log_pos (by norm_num)
   rw [div_le_iff₀ hl]
   nlinarith [Real.log_two_gt_d9]
 
+/-- The partial fraction's constant `C1n` is at most `1909224`. -/
 theorem C1n_le : EdgeBound.C1n ≤ 1909224 := by
   have hlogR : (3:ℝ) / 98 ≤ Real.log ((49/50:ℝ) / (19/20)) := by
     have h1 : Real.log (95 / 98) ≤ 95 / 98 - 1 := Real.log_le_sub_one_of_pos (by norm_num)
@@ -92,6 +94,7 @@ theorem C1n_le : EdgeBound.C1n ≤ 1909224 := by
   unfold EdgeBound.C1n
   exact key _ _ hG0 hG hA0 hA
 
+/-- The ball count's constant `C2n` is at most `2167`. -/
 theorem C2n_le : EdgeBound.C2n ≤ 2167 := by
   have hM := EdgeBound.low_rect_count
   have hM0 : (0:ℝ) ≤ ∑ ρ ∈ (ContourShift.zeta_zeros_rectangle_finite (0:ℂ)
@@ -112,6 +115,7 @@ theorem C2n_le : EdgeBound.C2n ≤ 2167 := by
   norm_num at h1 h2 ⊢
   linarith
 
+/-- The edge constant `Cen` is at most `1911393`. -/
 theorem Cen_le : EdgeBound.Cen ≤ 1911393 := by
   have h1 := C1n_le
   have h2 := C2n_le
@@ -120,6 +124,7 @@ theorem Cen_le : EdgeBound.Cen ≤ 1911393 := by
   norm_num at h3 ⊢
   linarith
 
+/-- The good-height constant `Cpn` is at most `6534550000`. -/
 theorem Cpn_le : Glue.Cpn ≤ 6534550000 := by
   have h1 := Cen_le
   have h0 := EdgeBound.Cen_pos
@@ -136,11 +141,13 @@ theorem Cpn_le : Glue.Cpn ≤ 6534550000 := by
   norm_num at h4 ⊢
   linarith
 
+/-- The horizontal-edge constant `Chn` is at most `44108300000`. -/
 theorem Chn_le : Glue.Chn ≤ 44108300000 := by
   have h1 := Cpn_le
   unfold Glue.Chn
   linarith
 
+/-- The band count's constant `Csn` is at most `1136`. -/
 theorem Csn_le : Glue.Csn ≤ 1136 := by
   have hi := inv_log_two_le
   have h2 : (88:ℝ) / Real.log 2 ≤ 88 * 1.4428 := by
@@ -150,6 +157,7 @@ theorem Csn_le : Glue.Csn ≤ 1136 := by
   norm_num at h2 ⊢
   linarith
 
+/-- The left-edge constant `Dln` is at most `89846200`. -/
 theorem Dln_le : Glue.Dln ≤ 89846200 := by
   have h1 := Cen_le
   have hi := inv_log_two_le
@@ -160,12 +168,14 @@ theorem Dln_le : Glue.Dln ≤ 89846200 := by
   norm_num at h2 ⊢
   linarith
 
+/-- The explicit formula's first constant `c1n` is at most `88216610000`. -/
 theorem c1n_le : Glue.c1n ≤ 88216610000 := by
   have h1 := Chn_le
   have h2 := Csn_le
   unfold Glue.c1n
   linarith
 
+/-- The explicit formula's constant `c3n` is at most `15`. -/
 theorem c3n_le : Glue.c3n ≤ 15 := by
   unfold Glue.c3n
   rw [Stage3.norm_logDerivZeta_zero]
@@ -177,6 +187,7 @@ theorem c3n_le : Glue.c3n ≤ 15 := by
   have h3 := Real.log_two_lt_d9
   linarith
 
+/-- The explicit formula's constant `c4n` is at most `6468930000`. -/
 theorem c4n_le : Glue.c4n ≤ 6468930000 := by
   have h1 := Dln_le
   unfold Glue.c4n

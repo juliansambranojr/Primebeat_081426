@@ -11,13 +11,13 @@ TransferOp — bdiff named as the operator it is, in Mathlib's own vocabulary. `
 
 ```mermaid
 flowchart LR
-  n0["<b>bdiffL_apply</b><br/>bdiffL f = bdiff f"]:::thm
-  n1["<b>mode_ne_zero'</b><br/>mode b ρ r ≠ 0"]:::thm
-  n2["<b>mode_ne_zero</b><br/>mode b ρ ≠ 0"]:::thm
-  n3["<b>mode_hasEigenvector</b><br/>bdiffL.HasEigenvector (Sym b ρ) (mode b ρ)"]:::thm
-  n4["<b>sym_hasEigenvalue</b><br/>bdiffL.HasEigenvalue (Sym b ρ)"]:::end_
-  n5["<b>mode_pow</b><br/>(bdiffL ^ N) (mode b ρ) = (Sym b ρ) ^ N • mode b ρ"]:::end_
-  n6["<b>eigenvalue_zero_iff_lattice</b><br/>bdiffL (mode b ρ) = 0 ↔ ∃ k : ℤ, ρ = (k : ℂ) * (2 * Real.pi * I …"]:::end_
+  n0["<b>bdiffL_apply</b><br/>bdiffL f = bdiff f"]:::shp
+  n1["<b>mode_ne_zero'</b><br/>mode b ρ r ≠ 0"]:::shp
+  n2["<b>mode_ne_zero</b><br/>mode b ρ ≠ 0"]:::shp
+  n3["<b>mode_hasEigenvector</b><br/>bdiffL.HasEigenvector (Sym b ρ) (mode b ρ)"]:::shp
+  n4["<b>sym_hasEigenvalue ■</b><br/>bdiffL.HasEigenvalue (Sym b ρ)"]:::shp
+  n5["<b>mode_pow ■</b><br/>(bdiffL ^ N) (mode b ρ) = (Sym b ρ) ^ N • mode b ρ"]:::shp
+  n6["<b>eigenvalue_zero_iff_lattice ■</b><br/>bdiffL (mode b ρ) = 0 ↔ ∃ k : ℤ, ρ = (k : ℂ) * (2 * Real.pi * I …"]:::shp
   x0(["<b>Chain</b><br/>A1<br/>sym_eq_zero_iff"]):::ext
   n0 --> n6
   n1 --> n2
@@ -27,6 +27,9 @@ flowchart LR
   n3 --> n5
   x0 -.-> n3
   x0 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -34,7 +37,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -55,6 +58,8 @@ def · line 47
 ### `TransferOp.bdiffL_apply`
 
 line 61
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The packaging is definitional: applying the endomorphism is applying `bdiff`.
 
@@ -80,6 +85,8 @@ bdiffL f = bdiff f
 ### `TransferOp.mode_ne_zero'`
 
 line 64
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** A mode never vanishes: `b^(rρ) ≠ 0` for `b ≠ 0`.
 
@@ -108,6 +115,8 @@ mode b ρ r ≠ 0
 
 line 70
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Hence a mode is not the zero function.
 
 **Proves**
@@ -135,6 +144,8 @@ mode b ρ ≠ 0
 ### `TransferOp.mode_hasEigenvector`
 
 line 78
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The mode is an eigenvector, in Mathlib's sense. `Chain.A1` is the pointwise identity; this is the same fact carried into `Module.End.HasEigenvector`, which is what makes the operator reading a structure rather than a description.
 
@@ -168,6 +179,8 @@ bdiffL.HasEigenvector (Sym b ρ) (mode b ρ)
 
 line 90
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** `Sym b ρ` is in the point spectrum. Every value of the symbol is an eigenvalue of the difference operator.
 
 **Proves**
@@ -196,6 +209,8 @@ bdiffL.HasEigenvalue (Sym b ρ)
 
 line 97
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Depth is the operator power on the eigenline. `(bdiffL^N) mode = Sym^N • mode` — `Chain.A4` as an operator identity, via Mathlib's `HasEigenvector.pow_apply`.
 
 **Proves**
@@ -222,6 +237,8 @@ line 97
 ### `TransferOp.eigenvalue_zero_iff_lattice`
 
 line 105
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The kernel eigenvalue sits exactly on the pole lattice. The mode is annihilated — eigenvalue 0 — precisely when `ρ ∈ (2πi/log b)·ℤ`, which is `Chain.sym_eq_zero_iff` read as a statement about the operator. This is the lattice `Transform.sym_zero_on_outer_circle` carries to `|z| = 1`.
 

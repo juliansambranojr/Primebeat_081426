@@ -2,7 +2,7 @@
 
 LandauZeroSide — the zeros' reading of the Taylor coefficients of `Phi`, from below. Block 7b of `lean_stage3/design/landau.md`. 2026-11-22.
 
-2 theorems, 0 definitions, 301 lines. Arrows are Lean's own record of what each proof uses.
+2 theorems, 0 definitions, 305 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauPoleDisc`](../lean_stage3/LandauPoleDisc.md), [`LandauPrimeSide`](../lean_stage3/LandauPrimeSide.md), [`LandauTrig`](../lean_stage3/LandauTrig.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauCriterion`](../lean_stage3/LandauCriterion.md)
@@ -11,7 +11,7 @@ LandauZeroSide — the zeros' reading of the Taylor coefficients of `Phi`, from 
 
 ```mermaid
 flowchart LR
-  n0["<b>exists_gap</b><br/>∃ R₂ : ℝ, r ＜ R₂ ∧ R₂ ≤ R₃ ∧ ∀ ρ ∈ F, ‖c - ρ‖ ＜ R₂ → ‖c - ρ‖ ≤ r"]:::thm
+  n0["<b>exists_gap</b><br/>∃ R₂ : ℝ, r ＜ R₂ ∧ R₂ ≤ R₃ ∧ ∀ ρ ∈ F, ‖c - ρ‖ ＜ R₂ → ‖c - ρ‖ ≤ r"]:::shp
   n1["<b>zero_side</b><br/>∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 ＜ r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r ＜…"]:::thm
   x0(["<b>ContourShift</b><br/>one_le_zeta_order<br/>zeta_order_conj"]):::ext
   x1(["<b>LandauPoleDisc</b><br/>Phi_taylor_on_disc"]):::ext
@@ -24,6 +24,9 @@ flowchart LR
   x1 -.-> n1
   x2 -.-> n1
   x3 -.-> n1
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -31,7 +34,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
@@ -39,6 +42,8 @@ An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a th
 ### `LandauZeroSide.exists_gap`
 
 line 38
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** Past the nearest points of a finite set there is a gap.
 
@@ -64,7 +69,11 @@ line 38
 <a name="LandauZeroSide-zero_side"></a>
 ### `LandauZeroSide.zero_side`
 
-line 54
+line 58
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The zeros' lower bound on the primes' integral. For a zero `ρ₀` of `riemannZeta` and a real `σ₀ > 1` with `‖σ₀ − ρ₀‖ < σ₀`, there are `r, R, τ, C₁, N₀` with `σ₀ − 1 < r ≤ ‖σ₀ − ρ₀‖`, `r < R`, `τ > 0`, `C₁ ≥ 0`, such that every run of at least `N₀` consecutive naturals contains a `k` with `τ/r^(k+1) − C₁/R^k ≤ Ik σ₀ k / k!`.
 
 **Proves**
 

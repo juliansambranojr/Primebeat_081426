@@ -43,6 +43,7 @@ open Complex WeilDetect WeilBackground WeilBands WeilTiles Real
 /-- The far constant `(2π+π²)²·(10/9)⁴`. -/
 def cFar : ℝ := (2 * Real.pi + Real.pi ^ 2) ^ 2 * (10 / 9) ^ 4
 
+/-- The far constant `cFar` is nonnegative. -/
 theorem cFar_nonneg : 0 ≤ cFar := by
   unfold cFar
   positivity
@@ -52,6 +53,7 @@ def M (h γ : ℝ) (k : ℕ) : ℝ :=
   if |(k : ℝ) - (idx γ : ℝ)| ≤ 1 then 4 * h ^ 2
   else cFar / (h ^ 2 * |(k : ℝ) - (idx γ : ℝ)| ^ 4)
 
+/-- The dominating band series `M h γ k` is nonnegative at every band `k`. -/
 theorem M_nonneg (h γ : ℝ) (k : ℕ) : 0 ≤ M h γ k := by
   unfold M
   split_ifs
@@ -140,11 +142,13 @@ theorem term_le_M {h γ : ℝ} (hh : 0 < h) (hγ : 11 / 10 ≤ γ) (ρ : Kadiri.
 /-- The crude constant: `M k·(15·log (centre k) + 73) ≤ A/(k+1)³`. -/
 def A (h γ : ℝ) : ℝ := 88 * ((idx γ : ℝ) + 3) ^ 4 * (4 * h ^ 2 + cFar / h ^ 2)
 
+/-- Helper: the factor `4h² + cFar/h²` of the crude constant is nonnegative for every `h`. -/
 theorem four_h_add_nonneg (h : ℝ) : 0 ≤ 4 * h ^ 2 + cFar / h ^ 2 := by
   have h1 : 0 ≤ cFar / h ^ 2 := div_nonneg cFar_nonneg (sq_nonneg h)
   have h2 : 0 ≤ 4 * h ^ 2 := by positivity
   linarith
 
+/-- The crude constant `A h γ` is nonnegative. -/
 theorem A_nonneg (h γ : ℝ) : 0 ≤ A h γ := by
   unfold A
   exact mul_nonneg (mul_nonneg (by norm_num) (by positivity)) (four_h_add_nonneg h)
@@ -158,6 +162,7 @@ theorem weight_le (k : ℕ) : 15 * Real.log (centre k) + 73 ≤ 88 * ((k : ℝ) 
   rw [hc] at h1 ⊢
   linarith
 
+/-- The band weight `15·log (centre k) + 73` is nonnegative at every band `k`. -/
 theorem weight_nonneg (k : ℕ) : 0 ≤ 15 * Real.log (centre k) + 73 := by
   have := Real.log_nonneg (by linarith [two_le_centre k] : 1 ≤ centre k)
   linarith
@@ -218,6 +223,7 @@ theorem bandTerm_le_A {h γ : ℝ} (hh : 0 < h) (k : ℕ) :
       _ ≤ 88 * (K + 3) ^ 4 * d ^ 4 * cFar + 88 * (K + 3) ^ 4 * d ^ 4 * (4 * h ^ 4) := by
           linarith
 
+/-- Helper: the shifted series `Σ 1/(k+1)³` over the naturals is summable. -/
 theorem summable_shift3 : Summable (fun k : ℕ => 1 / ((k : ℝ) + 1) ^ 3) := by
   have h := (summable_nat_add_iff 1).mpr
     (Real.summable_one_div_nat_pow.mpr (by norm_num : 1 < 3))
@@ -226,6 +232,7 @@ theorem summable_shift3 : Summable (fun k : ℕ => 1 / ((k : ℝ) + 1) ^ 3) := b
   push_cast
   ring
 
+/-- Helper: the shifted series `Σ 1/(k+1)²` over the naturals is summable. -/
 theorem summable_shift2 : Summable (fun k : ℕ => 1 / ((k : ℝ) + 1) ^ 2) := by
   have h := (summable_nat_add_iff 1).mpr
     (Real.summable_one_div_nat_pow.mpr (by norm_num : 1 < 2))

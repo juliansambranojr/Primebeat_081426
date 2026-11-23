@@ -49,28 +49,34 @@ def m2 : ℝ := ∫ x in (-1 : ℝ)..1, x ^ 2 * P x
 /-- The odd-envelope integral `Σ(s) = ∫₋₁¹ x·P(x)·sinh(s x) dx`. -/
 def Sigma (s : ℝ) : ℝ := ∫ x in (-1 : ℝ)..1, x * P x * Real.sinh (s * x)
 
+/-- The raised-cosine window is nonnegative at every real `x`. -/
 theorem P_nonneg (x : ℝ) : 0 ≤ P x := by
   unfold P; positivity
 
+/-- The raised-cosine window is at most `1` at every real `x`. -/
 theorem P_le_one (x : ℝ) : P x ≤ 1 := by
   unfold P
   have h := Real.cos_sq_le_one (Real.pi * x / 2)
   simpa using h
 
+/-- The raised-cosine window vanishes at the right endpoint `x = 1`. -/
 theorem P_one : P 1 = 0 := by
   unfold P
   rw [show Real.pi * 1 / 2 = Real.pi / 2 by ring, Real.cos_pi_div_two]
   norm_num
 
+/-- The raised-cosine window vanishes at the left endpoint `x = −1`. -/
 theorem P_neg_one : P (-1) = 0 := by
   unfold P
   rw [show Real.pi * (-1) / 2 = -(Real.pi / 2) by ring, Real.cos_neg, Real.cos_pi_div_two]
   norm_num
 
+/-- Helper: the raised-cosine window is continuous. -/
 @[fun_prop]
 theorem continuous_P : Continuous P := by
   unfold P; fun_prop
 
+/-- Helper: the second-moment integrand `x²·P(x)` is continuous. -/
 theorem continuous_x2P : Continuous fun x : ℝ => x ^ 2 * P x :=
   (continuous_pow 2).mul continuous_P
 
@@ -95,6 +101,7 @@ theorem P_ge_half {x : ℝ} (hx : |x| ≤ 1 / 2) : 1 / 2 ≤ P x := by
     rw [div_pow, Real.sq_sqrt (by norm_num)]; norm_num
   linarith
 
+/-- Upper bound on the second moment of the window: `m₂ ≤ 2/3`. -/
 theorem m2_le : m2 ≤ 2 / 3 := by
   unfold m2
   have h : (∫ x in (-1 : ℝ)..1, x ^ 2 * P x) ≤ ∫ x in (-1 : ℝ)..1, x ^ 2 := by
@@ -108,6 +115,7 @@ theorem m2_le : m2 ≤ 2 / 3 := by
     rw [integral_pow]; norm_num
   linarith
 
+/-- Lower bound on the second moment of the window: `1/24 ≤ m₂`. -/
 theorem m2_ge : 1 / 24 ≤ m2 := by
   unfold m2
   have hint : IntervalIntegrable (fun x : ℝ => x ^ 2 * P x) MeasureTheory.volume (-1) 1 :=
@@ -137,6 +145,8 @@ theorem mul_sinh_ge {s : ℝ} (hs : 0 ≤ s) (x : ℝ) : s * x ^ 2 ≤ x * Real.
   · have h : Real.sinh (s * x) ≤ s * x := Real.sinh_le_self_iff.mpr (by nlinarith)
     nlinarith
 
+/-- For `s ≥ 0`, the odd-envelope integral is at least `s` times the second moment:
+`s·m₂ ≤ Σ(s)`. -/
 theorem Sigma_ge_mul {s : ℝ} (hs : 0 ≤ s) : s * m2 ≤ Sigma s := by
   unfold Sigma m2
   rw [← integral_const_mul]
@@ -149,6 +159,7 @@ theorem Sigma_ge_mul {s : ℝ} (hs : 0 ≤ s) : s * m2 ≤ Sigma s := by
     have hP := P_nonneg x
     nlinarith [mul_le_mul_of_nonneg_left h hP]
 
+/-- For `s ≥ 0`, the odd-envelope integral satisfies `s/24 ≤ Σ(s)`. -/
 theorem Sigma_ge {s : ℝ} (hs : 0 ≤ s) : s / 24 ≤ Sigma s := by
   have h1 := Sigma_ge_mul hs
   have h2 := m2_ge

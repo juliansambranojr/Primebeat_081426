@@ -2,7 +2,7 @@
 
 ThetaConverse — the Landau converse of the θ-dial. 2026-09-01. `ThetaPsi.psi_weak_of_theta` and `ThetaPi.schoenfeldWeakTheta_of_zeroFree` run one way: a zero-free half-plane `re s > θ` gives `|ψ − x| ≤ C·x^θ·log^k x`. This file runs the other way:
 
-14 theorems, 1 definition, 446 lines. Arrows are Lean's own record of what each proof uses.
+14 theorems, 1 definition, 451 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ThetaPi`](../lean_stage3/ThetaPi.md), [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -11,20 +11,20 @@ ThetaConverse — the Landau converse of the θ-dial. 2026-09-01. `ThetaPsi.psi_
 
 ```mermaid
 flowchart LR
-  n0["<b>regionθ_half</b><br/>regionθ (1/2) = VonKoch.region"]:::end_
-  n1["<b>isOpen_regionθ</b><br/>IsOpen (regionθ θ)"]:::thm
-  n2["<b>preconnected_regionθ</b><br/>IsPreconnected (regionθ θ)"]:::thm
+  n0["<b>regionθ_half ■</b><br/>regionθ (1/2) = VonKoch.region"]:::shp
+  n1["<b>isOpen_regionθ</b><br/>IsOpen (regionθ θ)"]:::shp
+  n2["<b>preconnected_regionθ</b><br/>IsPreconnected (regionθ θ)"]:::shp
   n3["<b>zeta_analyticOnNhd_regionθ</b><br/>AnalyticOnNhd ℂ ζ (regionθ θ)"]:::thm
-  n4["<b>log_pow_isBigO_rpow</b><br/>(fun t : ℝ ↦ (Real.log t) ^ k) =O[Filter.atTop] (fun t : ℝ ↦ t ^…"]:::thm
+  n4["<b>log_pow_isBigO_rpow</b><br/>(fun t : ℝ ↦ (Real.log t) ^ k) =O[Filter.atTop] (fun t : ℝ ↦ t ^…"]:::shp
   n5["<b>F_differentiableAt_theta</b><br/>DifferentiableAt ℂ VonKoch.F s"]:::thm
   n6["<b>F_analyticOnNhd_theta</b><br/>AnalyticOnNhd ℂ VonKoch.F (regionθ θ)"]:::thm
-  n7["<b>anchor_mem_regionθ</b><br/>((max θ 1 + 1 : ℝ) : ℂ) ∈ regionθ θ ∧ 1 ＜ ((max θ 1 + 1 : ℝ) : ℂ…"]:::thm
+  n7["<b>anchor_mem_regionθ</b><br/>((max θ 1 + 1 : ℝ) : ℂ) ∈ regionθ θ ∧ 1 ＜ ((max θ 1 + 1 : ℝ) : ℂ…"]:::shp
   n8["<b>F_mul_zeta_add_deriv_eqOn_zero_theta</b><br/>Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ …"]:::thm
   n9["<b>no_zero_right_of_theta</b><br/>ζ ρ ≠ 0"]:::thm
   n10["<b>zeroFreeRight_of_psiWeakTheta</b><br/>StmtZeroFreeRight θ"]:::thm
-  n11["<b>zeroFreeRight_iff_psiWeakTheta</b><br/>StmtZeroFreeRight θ ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 …"]:::end_
-  n12["<b>RH_of_psiWeakTheta_half</b><br/>RiemannHypothesis"]:::end_
-  n13["<b>zeroFreeRight_one_of_chebyshev</b><br/>StmtZeroFreeRight 1"]:::end_
+  n11["<b>zeroFreeRight_iff_psiWeakTheta ■</b><br/>StmtZeroFreeRight θ ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 …"]:::thm
+  n12["<b>RH_of_psiWeakTheta_half ■</b><br/>RiemannHypothesis"]:::thm
+  n13["<b>zeroFreeRight_one_of_chebyshev ■</b><br/>StmtZeroFreeRight 1"]:::thm
   x0(["<b>VonKochScaffold</b><br/>5 theorems"]):::ext
   x1(["<b>ThetaPsi</b><br/>psi_weak_of_theta"]):::ext
   n1 --> n3
@@ -50,6 +50,9 @@ flowchart LR
   x0 -.-> n5
   x0 -.-> n8
   x1 -.-> n11
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -57,7 +60,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -76,7 +79,11 @@ The working region at abscissa `θ`: right of `θ`, minus the pole. `VonKoch.reg
 <a name="Stage3-region-_half"></a>
 ### `Stage3.regionθ_half`
 
-line 51
+line 52
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** At `θ = 1/2` the working region `regionθ` is `VonKoch.region`.
 
 **Proves**
 
@@ -93,7 +100,11 @@ regionθ (1/2) = VonKoch.region
 <a name="Stage3-isOpen_region-"></a>
 ### `Stage3.isOpen_regionθ`
 
-line 53
+line 55
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For every `θ`, the working region `regionθ θ` is open.
 
 **Proves**
 
@@ -118,7 +129,9 @@ IsOpen (regionθ θ)
 <a name="Stage3-preconnected_region-"></a>
 ### `Stage3.preconnected_regionθ`
 
-line 65
+line 67
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The region is connected, for every `θ`. For `θ < 1`: four convex pieces — upper half, lower half, the strip `θ < re < 1`, and `re > 1` — glued at `((θ+1)/2, ±1)` and `(2, 1)`; this is `VonKoch.preconnected_region` with the gluing point `3/4` replaced by `(θ+1)/2`. For `θ ≥ 1` the pole is already outside the half-plane and the region is the convex set `{re > θ}`.
 
@@ -144,7 +157,11 @@ IsPreconnected (regionθ θ)
 <a name="Stage3-zeta_analyticOnNhd_region-"></a>
 ### `Stage3.zeta_analyticOnNhd_regionθ`
 
-line 131
+line 134
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For every `θ`, `ζ` is analytic on the working region `regionθ θ`.
 
 **Proves**
 
@@ -170,7 +187,9 @@ AnalyticOnNhd ℂ ζ (regionθ θ)
 <a name="Stage3-log_pow_isBigO_rpow"></a>
 ### `Stage3.log_pow_isBigO_rpow`
 
-line 139
+line 142
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `(log t)^k = O(t^δ)` at `∞` for every `δ > 0` and every `k`. The `k = 0` case is `1 ≤ t^δ`; for `k ≥ 1`, `log = o(t^(δ/k))` raised to the `k`.
 
@@ -194,7 +213,9 @@ line 139
 <a name="Stage3-F_differentiableAt_theta"></a>
 ### `Stage3.F_differentiableAt_theta`
 
-line 161
+line 164
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** V1 at `θ`. `E = O(t^(θ+δ))` at `∞` for `δ := (re s − θ)/2 > 0`, and `Etr = 0` below `1`, so `mellin Etr` is differentiable at `−s`. This is `VonKoch.F_differentiableAt` with `t^θ·log^k t` for `√t·log³ t`; the hypothesis is consumed here and nowhere else.
 
@@ -228,7 +249,11 @@ DifferentiableAt ℂ VonKoch.F s
 <a name="Stage3-F_analyticOnNhd_theta"></a>
 ### `Stage3.F_analyticOnNhd_theta`
 
-line 227
+line 232
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** Given the bound `StmtPsiWeakTheta θ C k x₀` on the error of `ψ`, the function `VonKoch.F` is analytic on the working region `regionθ θ`.
 
 **Proves**
 
@@ -254,7 +279,9 @@ AnalyticOnNhd ℂ VonKoch.F (regionθ θ)
 <a name="Stage3-anchor_mem_region-"></a>
 ### `Stage3.anchor_mem_regionθ`
 
-line 242
+line 247
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The anchor `max θ 1 + 1`: in the region, with `re > 1`, for every `θ`. `VonKoch` used `2`, which leaves the region once `θ ≥ 2`.
 
@@ -280,7 +307,9 @@ line 242
 <a name="Stage3-F_mul_zeta_add_deriv_eqOn_zero_theta"></a>
 ### `Stage3.F_mul_zeta_add_deriv_eqOn_zero_theta`
 
-line 253
+line 258
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The load-bearing identity: `F·ζ + ζ′` vanishes on the whole region.
 
@@ -311,7 +340,9 @@ Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ θ)
 <a name="Stage3-no_zero_right_of_theta"></a>
 ### `Stage3.no_zero_right_of_theta`
 
-line 280
+line 285
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** V4 at `θ`. At a hypothetical zero `ρ` with `re ρ > θ`, factor `ζ = (z−ρ)^(k+1)·g` with `g ρ ≠ 0`. The identity `F·ζ + ζ′ = 0` factors as `(z−ρ)^k · [(k+1)·g + (z−ρ)·(F·g + g′)] = 0`; off `ρ` the power is nonzero, so the bracket vanishes on the punctured neighbourhood — yet it is continuous at `ρ` with value `(k+1)·g ρ ≠ 0`. Order `⊤` would make `ζ` vanish identically on the region, against `ζ ≠ 0` at the anchor. `VonKoch.no_zero_right_of_half`, with the region at `θ`.
 
@@ -347,7 +378,9 @@ line 280
 <a name="Stage3-zeroFreeRight_of_psiWeakTheta"></a>
 ### `Stage3.zeroFreeRight_of_psiWeakTheta`
 
-line 374
+line 379
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The Landau converse of the θ-dial. A ψ-bound at exponent `θ` — any `C`, any `k`, any floor `x₀` — forces `ζ ≠ 0` on `re s > θ`, `s ≠ 1`. No side hypothesis: `θ`, `C`, `x₀` are unconstrained, because the bound is only read through `‖·‖` above `max x₀ 1`, and the region is connected for every `θ`.
 
@@ -376,7 +409,9 @@ StmtZeroFreeRight θ
 <a name="Stage3-zeroFreeRight_iff_psiWeakTheta"></a>
 ### `Stage3.zeroFreeRight_iff_psiWeakTheta`
 
-line 382
+line 387
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The abscissa of ψ's error is the supremum of the zeros' real parts. For `θ ∈ [1/2, 1)`: a zero-free half-plane at `θ` holds iff ψ has a `C·t^θ·log³ t` bound. Forward is `ThetaPsi.psi_weak_of_theta` (which is where `[1/2, 1)` is needed); the converse is this file, and holds for every `θ`.
 
@@ -403,7 +438,9 @@ StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀
 <a name="Stage3-RH_of_psiWeakTheta_half"></a>
 ### `Stage3.RH_of_psiWeakTheta_half`
 
-line 389
+line 394
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The weld at `θ = 1/2`: `VonKoch.RH_of_psiWeak`'s statement through the dial, via `Abscissa`'s `StmtZeroFreeRight (1/2)` and V5's reflection.
 
@@ -429,7 +466,9 @@ RiemannHypothesis
 <a name="Stage3-zeroFreeRight_one_of_chebyshev"></a>
 ### `Stage3.zeroFreeRight_one_of_chebyshev`
 
-line 401
+line 406
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The primes are a subset of the numbers, so `ψ(x) ≤ c·x` (`Chebyshev.psi_le_const_mul_self`, `c = log 4 + 4`), so the count's fluctuation is at most `x`, so no zero has real part above `1`. The Euler-product wall as a corollary of the converse: this is the `θ = 1`, `k = 0` instance, with `C = log 4 + 5` and floor `1`; the hypothesis is genuinely opened at `θ = 1` since the region `{re > 1}` is convex.
 

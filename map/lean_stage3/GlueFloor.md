@@ -2,7 +2,7 @@
 
 GlueFloor — block E2 of `lean_stage3/design/joints.md`. 2026-11-22. `Glue.edge_left_bound` proves the left edge of the explicit formula's contour is at most `72·D·log²x·x^(−1/4)` and then rounds that to `C·log x` (unit 0408: that rounding is the whole of `c₂`). Three copies with a different last line each (`LOOP.md` § 3); `Glue.lean` is untouched.
 
-6 theorems, 2 definitions, 834 lines. Arrows are Lean's own record of what each proof uses.
+6 theorems, 2 definitions, 839 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`GlueNum`](../lean_stage3/GlueNum.md), [`JointFloorGate`](../lean_stage3/JointFloorGate.md), [`PiToPsi`](../lean_stage3/PiToPsi.md)
@@ -14,7 +14,7 @@ flowchart LR
   n0["<b>edge_left_sharp</b><br/>∃ D : ℝ, 0 ＜ D ∧ ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIn…"]:::thm
   n1["<b>explicit_formula_split</b><br/>∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x T : ℝ, 16 ≤ x → 2…"]:::thm
   n2["<b>stmtEF_split</b><br/>∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ StmtExplicitFormulaSp…"]:::thm
-  n3["<b>floorConstSplit_nonneg</b><br/>0 ≤ floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀"]:::thm
+  n3["<b>floorConstSplit_nonneg</b><br/>0 ≤ floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀"]:::shp
   n4["<b>psiWeak_floor_split</b><br/>StmtPsiWeak (floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀) 2 x₀"]:::thm
   n5["<b>schoenfeldWeak_floor_split_of_RH</b><br/>∃ c₁ c₃ c₄ : ℝ, 0 ≤ c₁ ∧ 0 ≤ c₃ ∧ 0 ≤ c₄ ∧ ∀ x₀ : ℝ, 16 ≤ x₀ → S…"]:::thm
   x0(["<b>ContourShift</b><br/>4 theorems"]):::ext
@@ -48,6 +48,9 @@ flowchart LR
   x7 -.-> n4
   x8 -.-> n5
   x9 -.-> n5
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -55,7 +58,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -73,7 +76,7 @@ The truncated explicit formula with the left edge as its own term.
 <a name="Stage3-floorConstSplit"></a>
 ### `Stage3.floorConstSplit`
 
-def · line 655
+def · line 658
 
 The constant of the assembly at floor `x₀`, left edge at its own size.
 
@@ -87,6 +90,8 @@ The constant of the assembly at floor `x₀`, left edge at its own size.
 ### `Glue.edge_left_sharp`
 
 line 37
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The left edge at its own size: `≤ 72·D·log²x·x^(−1/4)` for `T′ ≤ 2x²`. `Glue.edge_left_bound`'s proof, stopped before its last two steps.
 
@@ -118,6 +123,8 @@ line 37
 
 line 408
 
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
 **Why.** THE TRUNCATED EXPLICIT FORMULA — hEF's deliverable, in the `T ≤ x²` regime the consumer uses: constants exist with `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c₁·x·log²(xT)/T + c₂·log x`.
 
 **Proves**
@@ -146,7 +153,11 @@ line 408
 <a name="Stage3-stmtEF_split"></a>
 ### `Stage3.stmtEF_split`
 
-line 650
+line 653
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** There are nonnegative constants `c₁`, `c₃`, `c₄` for which the truncated explicit formula with the left edge as its own term, `StmtExplicitFormulaSplit c₁ c₃ c₄ 16`, holds from `x = 16` on.
 
 **Proves**
 
@@ -167,7 +178,11 @@ line 650
 <a name="Stage3-floorConstSplit_nonneg"></a>
 ### `Stage3.floorConstSplit_nonneg`
 
-line 658
+line 663
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** If `c₁`, `c₃`, `c₄`, `b₁`, `b₂`, `b₃`, `W` are nonnegative and `x₀ ≥ 16`, then the assembly constant `floorConstSplit` at floor `x₀` is nonnegative.
 
 **Proves**
 
@@ -204,7 +219,9 @@ line 658
 <a name="Stage3-psiWeak_floor_split"></a>
 ### `Stage3.psiWeak_floor_split`
 
-line 672
+line 677
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The assembly at floor `x₀`, left edge at its own size. Under RH, the truncated explicit formula and the zero-count band, `|ψ x − x| ≤ floorConst … x₀ · √x · log²x` for `x ≥ x₀`. The height is the power of two in `(x²/2, x²]`.
 
@@ -249,7 +266,9 @@ StmtPsiWeak (floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀) 2 x₀
 <a name="Stage3-schoenfeldWeak_floor_split_of_RH"></a>
 ### `Stage3.schoenfeldWeak_floor_split_of_RH`
 
-line 806
+line 811
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** From RH to the `π` side, floor a parameter, left edge at its own size.
 

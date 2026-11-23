@@ -2,7 +2,7 @@
 
 LandauChebyshev — the bound on `G` of Chebyshev's order: `G y ≤ 8y` and `|G(y)| ≤ 8y(1 + log y)` for `y ≥ 1`. Block 5b of `lean_stage3/design/landau.md`. 2026-11-22.
 
-5 theorems, 0 definitions, 118 lines. Arrows are Lean's own record of what each proof uses.
+5 theorems, 0 definitions, 123 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`LandauCrude`](../lean_stage3/LandauCrude.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LandauTaylor`](../lean_stage3/LandauTaylor.md)
@@ -12,9 +12,9 @@ LandauChebyshev — the bound on `G` of Chebyshev's order: `G y ≤ 8y` and `|G(
 ```mermaid
 flowchart LR
   n0["<b>rampSum_le_log</b><br/>LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4))"]:::thm
-  n1["<b>log_four_lt_two</b><br/>Real.log 4 ＜ 2"]:::thm
+  n1["<b>log_four_lt_two</b><br/>Real.log 4 ＜ 2"]:::shp
   n2["<b>G_le</b><br/>LandauWindow.G y ≤ 8 * y"]:::thm
-  n3["<b>neg_le_G</b><br/>-(y * Real.log y) ≤ LandauWindow.G y"]:::thm
+  n3["<b>neg_le_G</b><br/>-(y * Real.log y) ≤ LandauWindow.G y"]:::shp
   n4["<b>abs_G_le_log</b><br/>|LandauWindow.G y| ≤ 8 * y * (1 + Real.log y)"]:::thm
   x0(["<b>LandauPrimeSide</b><br/>Ik_le"]):::ext
   x1(["<b>LandauCrude</b><br/>rampSum_nonneg"]):::ext
@@ -26,6 +26,9 @@ flowchart LR
   n2 -.-> x0
   n4 -.-> x2
   x1 -.-> n3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -33,14 +36,18 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Theorems
 
 <a name="LandauChebyshev-rampSum_le_log"></a>
 ### `LandauChebyshev.rampSum_le_log`
 
-line 33
+line 34
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `y ≥ 1`, the ramp sum satisfies `rampSum y ≤ y·(log y + (log 4 + 4))`.
 
 **Proves**
 
@@ -63,7 +70,11 @@ LandauWindow.rampSum y ≤ y * (Real.log y + (Real.log 4 + 4))
 <a name="LandauChebyshev-log_four_lt_two"></a>
 ### `LandauChebyshev.log_four_lt_two`
 
-line 70
+line 72
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: `log 4 < 2`.
 
 **Proves**
 
@@ -80,7 +91,11 @@ Real.log 4 < 2
 <a name="LandauChebyshev-G_le"></a>
 ### `LandauChebyshev.G_le`
 
-line 76
+line 79
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `y ≥ 1`, the function `G` satisfies `G y ≤ 8·y`.
 
 **Proves**
 
@@ -109,7 +124,11 @@ LandauWindow.G y ≤ 8 * y
 <a name="LandauChebyshev-neg_le_G"></a>
 ### `LandauChebyshev.neg_le_G`
 
-line 84
+line 88
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** For `y ≥ 1`, the function `G` satisfies `−(y·log y) ≤ G y`.
 
 **Proves**
 
@@ -136,7 +155,11 @@ line 84
 <a name="LandauChebyshev-abs_G_le_log"></a>
 ### `LandauChebyshev.abs_G_le_log`
 
-line 93
+line 98
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** For `y ≥ 1`, the function `G` satisfies `|G y| ≤ 8·y·(1 + log y)`.
 
 **Proves**
 

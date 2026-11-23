@@ -11,11 +11,14 @@ Schoenfeld — stage 3's interface: the literature sentence, verbatim. `Expansio
 
 ```mermaid
 flowchart LR
-  n0["<b>window_of_global</b><br/>Nonvanishing.StmtSchoenfeldWindow f L r n"]:::thm
-  n1["<b>tableFrom_ne_zero_of_schoenfeld</b><br/>Construction.tableFrom N r d ≠ 0"]:::end_
+  n0["<b>window_of_global</b><br/>Nonvanishing.StmtSchoenfeldWindow f L r n"]:::shp
+  n1["<b>tableFrom_ne_zero_of_schoenfeld ■</b><br/>Construction.tableFrom N r d ≠ 0"]:::shp
   x0(["<b>Expansion</b><br/>tableFrom_ne_zero_of_li"]):::ext
   n0 --> n1
   x0 -.-> n1
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -23,7 +26,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -43,6 +46,8 @@ Schoenfeld 1976, Corollary 1, verbatim shape: for all `x ≥ 2657`, `|π(x) − 
 ### `Schoenfeld.window_of_global`
 
 line 44
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The bridge: the global sentence implies the bench-shaped window hypothesis whenever the window bottom clears `12`, since `2^12 = 4096 ≥ 2657`. The translation is `√(2^y) = 2^(y/2)` and `log(2^y) = y·log 2`.
 
@@ -71,6 +76,8 @@ Nonvanishing.StmtSchoenfeldWindow f L r n
 ### `Schoenfeld.tableFrom_ne_zero_of_schoenfeld`
 
 line 86
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The arrow, with the literature sentence as its one analytic input. Identical to `Expansion.tableFrom_ne_zero_of_li` except that `hS` is replaced by `StmtSchoenfeld` — Schoenfeld's published inequality character for character — plus the compatibility of `f` and `G` with `pi` and `li` at the points `2^m`, and the window bottom raised to `12 ≤ r − (d+1)` so every window point clears Schoenfeld's floor `x ≥ 2657`.
 

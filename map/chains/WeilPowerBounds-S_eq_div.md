@@ -1,6 +1,8 @@
 # What `WeilPowerBounds.S_eq_div` rests on
 
-[`WeilPowerBounds.S_eq_div`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-S_eq_div) in `lean_stage3/Stage3/WeilPowerBounds.lean`, line 90.
+[`WeilPowerBounds.S_eq_div`](../lean_stage3/WeilPowerBounds.md#WeilPowerBounds-S_eq_div) in `lean_stage3/Stage3/WeilPowerBounds.lean`, line 94.
+
+**Why.** If `Re w ≠ 0`, then the odd transform is the quotient `S m w = cS m · sinh w / QS m w`.
 
 **Proves**
 
@@ -25,6 +27,9 @@ flowchart LR
   f0 --> f1
   f1 --> f2
   f2 --> f3
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3

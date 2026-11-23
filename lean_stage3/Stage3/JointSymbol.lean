@@ -44,6 +44,9 @@ def dd (f : ℝ → ℂ) : ℝ → ℂ := fun y => f y - f (y / 2)
 /-- `G` on `y > 1`, zero below: the row starts at the first regime. -/
 def cutG (y : ℝ) : ℂ := if 1 < y then (LandauWindow.G y : ℂ) else 0
 
+/-- If `f` vanishes on `y ≤ 1` and `f(y)·y^(−s−1)` is integrable on `(1, ∞)`, then
+`f(y/2)·y^(−s−1)` is integrable there and its integral is `2^(−s)` times that of
+`f(y)·y^(−s−1)`. -/
 theorem mellin_shift {s : ℂ} {f : ℝ → ℂ} (hf0 : ∀ y : ℝ, y ≤ 1 → f y = 0)
     (hint : IntegrableOn (fun y : ℝ => f y * (y : ℂ) ^ (-s - 1)) (Ioi 1)) :
     IntegrableOn (fun y : ℝ => f (y / 2) * (y : ℂ) ^ (-s - 1)) (Ioi 1) ∧
@@ -117,6 +120,9 @@ private lemma mellin_dd {s : ℂ} {f : ℝ → ℂ} (hf0 : ∀ y : ℝ, y ≤ 1 
   · rw [heq]; exact hint.sub hSint
   · rw [heq, integral_sub hint hSint, hS]; ring
 
+/-- If `f` vanishes on `y ≤ 1` and `f(y)·y^(−s−1)` is integrable on `(1, ∞)`, then the
+depth-`d` difference `dd^[d] f` has both properties and its transform over `(1, ∞)` is
+`(1 − 2^(−s))^d` times the transform of `f`. -/
 private lemma mellin_dd_iter_aux {s : ℂ} {f : ℝ → ℂ} (hf0 : ∀ y : ℝ, y ≤ 1 → f y = 0)
     (hint : IntegrableOn (fun y : ℝ => f y * (y : ℂ) ^ (-s - 1)) (Ioi 1)) (d : ℕ) :
     (∀ y : ℝ, y ≤ 1 → (dd^[d] f) y = 0) ∧
@@ -133,6 +139,8 @@ private lemma mellin_dd_iter_aux {s : ℂ} {f : ℝ → ℂ} (hf0 : ∀ y : ℝ,
     rw [he', he, pow_succ]
     ring
 
+/-- For `Re s > 1` and depth `d`, the transform of the depth-`d` difference of the cut row:
+`∫₁^∞ (dd^[d] cutG)(y)·y^(−s−1) dy = (1 − 2^(−s))^d · Phi s`. -/
 theorem mellin_dd_iter {s : ℂ} (hs : 1 < s.re) (d : ℕ) :
     ∫ y in Ioi (1 : ℝ), (dd^[d] cutG) y * (y : ℂ) ^ (-s - 1)
       = (1 - (2 : ℂ) ^ (-s)) ^ d * LandauMellinG.Phi s := by
@@ -150,11 +158,16 @@ theorem mellin_dd_iter {s : ℂ} (hs : 1 < s.re) (d : ℕ) :
     exact (setIntegral_congr_fun measurableSet_Ioi hcutG).symm
   rw [(mellin_dd_iter_aux hcut0 hint d).2.2, hM]
 
+/-- The table's rule: the depth-`d+1` difference at `y` is the depth-`d` difference at `y`
+minus the depth-`d` difference at `y/2`. -/
 theorem dd_iter_rule (f : ℝ → ℂ) (d : ℕ) (y : ℝ) :
     (dd^[d + 1] f) y = (dd^[d] f) y - (dd^[d] f) (y / 2) := by
   rw [Function.iterate_succ_apply']
   rfl
 
+/-- For a zero `ρ` of `riemannZeta` with `ρ ≠ 0` and `ρ ≠ 1`, and any depth `d`: near `ρ`
+and off it, `(1 − 2^(−s))^d · Phi s` is a function analytic at `ρ` plus
+`(1 − 2^(−ρ))^d · A/(s − ρ)`, where `A = m/(ρ(1−ρ))` and `m` is the order of the zero. -/
 theorem symPhi_principal_part {ρ : ℂ} (h0 : ρ ≠ 0) (h1 : ρ ≠ 1)
     (hz : riemannZeta ρ = 0) (d : ℕ) :
     ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ,

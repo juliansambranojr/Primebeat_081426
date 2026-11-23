@@ -44,6 +44,7 @@ def Phi (s : ℂ) : ℂ :=
   -deriv riemannZeta s / riemannZeta s / (s * (s - 1))
     - 1 / (s - 1) ^ 2 + (1 + (Real.eulerMascheroniConstant : ℂ)) / (s - 1)
 
+/-- For real `σ > 1`, the L-series of the von Mangoldt function is nonzero at `σ`. -/
 theorem LSeries_vonMangoldt_real_ne_zero {σ : ℝ} (hσ : 1 < σ) : L ↗Λ (σ : ℂ) ≠ 0 := by
   have hs : 1 < ((σ : ℝ) : ℂ).re := by simpa using hσ
   have hsum := ArithmeticFunction.LSeriesSummable_vonMangoldt hs
@@ -74,6 +75,8 @@ theorem LSeries_vonMangoldt_real_ne_zero {σ : ℝ} (hσ : 1 < σ) : L ↗Λ (σ
   simp at hre
   linarith
 
+/-- For `Re s > 1`, the Mellin integrand of the ramp sum, `rampSum y · y^(−s−1)`,
+is integrable on `(1, ∞)`. -/
 theorem rampSum_mellin_integrable {s : ℂ} (hs : 1 < s.re) :
     IntegrableOn (fun y : ℝ => (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1) := by
   have hσ : 1 < ((s.re : ℝ) : ℂ).re := by simpa using hs
@@ -115,6 +118,8 @@ theorem rampSum_mellin_integrable {s : ℂ} (hs : 1 < s.re) :
 private def logPrim (s : ℂ) (t : ℝ) : ℂ :=
   (t : ℂ) ^ (-s + 1) / (-s + 1) * (Real.log t : ℂ) - (t : ℂ) ^ (-s + 1) / (-s + 1) / (-s + 1)
 
+/-- Helper: for `s ≠ 1` and `y > 0`, the primitive `logPrim s` has derivative
+`log y · y^(−s)` at `y`. -/
 private lemma hasDerivAt_logPrim {s : ℂ} (hs1 : -s + 1 ≠ 0) {y : ℝ} (hy : 0 < y) :
     HasDerivAt (logPrim s) ((Real.log y : ℂ) * (y : ℂ) ^ (-s)) y := by
   have hr : -s ≠ -1 := by
@@ -134,6 +139,8 @@ private lemma hasDerivAt_logPrim {s : ℂ} (hs1 : -s + 1 ≠ 0) {y : ℝ} (hy : 
   field_simp
   try ring
 
+/-- Helper: for `Re s > 1` and `y > 1`, with `ε = (Re s − 1)/2`, the norm of
+`log y · y^(−s)` is at most `y^(ε − Re s) / ε`. -/
 private lemma log_cpow_norm_le {s : ℂ} (hs : 1 < s.re) {y : ℝ} (hy : 1 < y) :
     ‖(Real.log y : ℂ) * (y : ℂ) ^ (-s)‖
       ≤ y ^ ((s.re - 1) / 2 - s.re) / ((s.re - 1) / 2) := by
@@ -148,6 +155,7 @@ private lemma log_cpow_norm_le {s : ℂ} (hs : 1 < s.re) {y : ℝ} (hy : 1 < y) 
   rw [div_eq_mul_inv] at this
   exact mul_le_mul_of_nonneg_right this (Real.rpow_nonneg hy0.le _)
 
+/-- For `Re s > 1`, the function `log y · y^(−s)` is integrable on `(1, ∞)`. -/
 theorem log_cpow_integrable {s : ℂ} (hs : 1 < s.re) :
     IntegrableOn (fun y : ℝ => (Real.log y : ℂ) * (y : ℂ) ^ (-s)) (Ioi 1) := by
   have hbound : IntegrableOn
@@ -163,6 +171,7 @@ theorem log_cpow_integrable {s : ℂ} (hs : 1 < s.re) :
   filter_upwards [ae_restrict_mem measurableSet_Ioi] with y hy
   exact log_cpow_norm_le hs (mem_Ioi.mp hy)
 
+/-- Helper: for `Re s > 1`, the primitive `logPrim s` tends to `0` at `+∞`. -/
 private lemma tendsto_logPrim {s : ℂ} (hs : 1 < s.re) :
     Tendsto (logPrim s) atTop (𝓝 0) := by
   have hr : 0 < s.re - 1 := by linarith
@@ -188,6 +197,7 @@ private lemma tendsto_logPrim {s : ℂ} (hs : 1 < s.re) :
   rw [logPrim]
   ring
 
+/-- For `Re s > 1`, the integral of `log y · y^(−s)` over `(1, ∞)` equals `1/(s−1)²`. -/
 theorem log_cpow_integral {s : ℂ} (hs : 1 < s.re) :
     ∫ y in Ioi (1 : ℝ), (Real.log y : ℂ) * (y : ℂ) ^ (-s) = 1 / (s - 1) ^ 2 := by
   have hs1 : -s + 1 ≠ 0 := by
@@ -204,6 +214,8 @@ theorem log_cpow_integral {s : ℂ} (hs : 1 < s.re) :
   field_simp
   try ring
 
+/-- Helper: for `y > 1`, the Mellin integrand `G y · y^(−s−1)` splits as
+`rampSum y · y^(−s−1) − log y · y^(−s) + (1+γ) · y^(−s)`. -/
 private lemma G_integrand_eq (s : ℂ) {y : ℝ} (hy : 1 < y) :
     (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1)
       = (LandauWindow.rampSum y : ℂ) * (y : ℂ) ^ (-s - 1)
@@ -217,6 +229,7 @@ private lemma G_integrand_eq (s : ℂ) {y : ℝ} (hy : 1 < y) :
   push_cast
   ring
 
+/-- For `Re s > 1`, the Mellin integrand `G y · y^(−s−1)` is integrable on `(1, ∞)`. -/
 theorem G_mellin_integrable {s : ℂ} (hs : 1 < s.re) :
     IntegrableOn (fun y : ℝ => (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1)) (Ioi 1) := by
   have hC : IntegrableOn (fun y : ℝ => (y : ℂ) ^ (-s)) (Ioi (1 : ℝ)) :=
@@ -226,6 +239,8 @@ theorem G_mellin_integrable {s : ℂ} (hs : 1 < s.re) :
   refine h.congr_fun (fun y hy => ?_) measurableSet_Ioi
   exact (G_integrand_eq s (mem_Ioi.mp hy)).symm
 
+/-- For `Re s > 1`, the Mellin transform of `G` over `(1, ∞)`,
+`∫ G y · y^(−s−1) dy`, equals `Phi s`. -/
 theorem mellin_G {s : ℂ} (hs : 1 < s.re) :
     ∫ y in Ioi (1 : ℝ), (LandauWindow.G y : ℂ) * (y : ℂ) ^ (-s - 1) = Phi s := by
   have hs1 : -s + 1 ≠ 0 := by

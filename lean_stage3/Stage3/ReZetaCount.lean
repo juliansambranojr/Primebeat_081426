@@ -190,6 +190,7 @@ theorem G_zero_ne (T : ℝ) : G T 0 ≠ 0 := by
   rw [G_zero_eq, Complex.ofReal_ne_zero]
   exact ne_of_gt (by linarith)
 
+/-- The normalised model `F T` takes the value `1` at the centre `0`. -/
 theorem F_zero_eq_one (T : ℝ) : F T 0 = 1 := div_self (G_zero_ne T)
 
 /-- **The pole stays off both arguments.** -/
@@ -211,6 +212,8 @@ theorem arg_ne_one {T : ℝ} (hT : 2 ≤ T) {z : ℂ} (hz : ‖z‖ < 11 / 10) :
     rw [h, Complex.one_im] at him
     nlinarith [norm_nonneg z]
 
+/-- If `2 ≤ T`, then the normalised model `F T` is analytic at every point of the closed unit
+disk. -/
 theorem F_analytic {T : ℝ} (hT : 2 ≤ T) :
     AnalyticOnNhd ℂ (F T) (Metric.closedBall (0 : ℂ) 1) := by
   intro z hz
@@ -377,6 +380,8 @@ theorem reZeroSet_finite {T : ℝ} (hT : 2 ≤ T) : (reZeroSet T).Finite := by
 /-- The zeros of `Re ζ` on the segment, as a `Finset`. -/
 def reZeros {T : ℝ} (hT : 2 ≤ T) : Finset ℝ := (reZeroSet_finite hT).toFinset
 
+/-- If `2 ≤ T`, then `x` belongs to the finite set `reZeros` exactly when `x` lies in the open
+segment `(1/2, 2)` and `Re ζ(x + iT) = 0`. -/
 theorem mem_reZeros {T : ℝ} (hT : 2 ≤ T) {x : ℝ} :
     x ∈ reZeros hT ↔
       x ∈ Set.Ioo (1/2 : ℝ) 2 ∧ (riemannZeta ((x : ℂ) + T * Complex.I)).re = 0 := by

@@ -2,7 +2,7 @@
 
 # S3 — the edge bound (FinalBound rescale + gap-eating) The Landau partial fraction transported from PNT+'s normalized `FinalBound` (unit ball) to the ball at `3/2 + iT′`, for `g = (s−1)²·ζ` (entire; the pole cleared, one extra order-1 zero at `1`). Inputs: `ZetaGrowth.sq_zeta_band_bound` (the B), PNT+'s `ZetaFixedLowerBound` (the f(0)), `ContourShift`'s good heights, fences, and reflection-order (the eating).
 
-15 theorems, 2 definitions, 835 lines. Arrows are Lean's own record of what each proof uses.
+15 theorems, 2 definitions, 838 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Glue`](../lean_stage3/Glue.md), [`LowCount`](../lean_stage3/LowCount.md)
@@ -12,8 +12,8 @@
 ```mermaid
 flowchart LR
   n0["<b>gz_analytic</b><br/>AnalyticAt ℂ gz s"]:::thm
-  n1["<b>c0_im</b><br/>(c0 T').im = T'"]:::thm
-  n2["<b>c0_re</b><br/>(c0 T').re = 3/2"]:::thm
+  n1["<b>c0_im</b><br/>(c0 T').im = T'"]:::shp
+  n2["<b>c0_re</b><br/>(c0 T').re = 3/2"]:::shp
   n3["<b>gz_lower</b><br/>4 * ‖riemannZeta 3 / riemannZeta (3/2)‖ ≤ ‖gz (c0 T')‖"]:::thm
   n4["<b>zeta_ratio_pos</b><br/>(0:ℝ) ＜ ‖riemannZeta 3 / riemannZeta (3/2)‖"]:::thm
   n5["<b>gz_c0_ne</b><br/>gz (c0 T') ≠ 0"]:::thm
@@ -99,6 +99,9 @@ flowchart LR
   x4 -.-> n9
   x8 -.-> n11
   x8 -.-> n8
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -106,7 +109,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -135,7 +138,11 @@ def · line 24
 <a name="EdgeBound-gz_analytic"></a>
 ### `EdgeBound.gz_analytic`
 
-line 26
+line 27
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
+
+**Why.** The function `gz = (s−1)²·ζ` is analytic at every complex point `s`.
 
 **Proves**
 
@@ -164,7 +171,11 @@ AnalyticAt ℂ gz s
 <a name="EdgeBound-c0_im"></a>
 ### `EdgeBound.c0_im`
 
-line 28
+line 30
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The imaginary part of the ball center `c0 T'` is `T'`.
 
 **Proves**
 
@@ -195,7 +206,11 @@ line 28
 <a name="EdgeBound-c0_re"></a>
 ### `EdgeBound.c0_re`
 
-line 32
+line 35
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** The real part of the ball center `c0 T'` is `3/2`.
 
 **Proves**
 
@@ -227,7 +242,9 @@ line 32
 <a name="EdgeBound-gz_lower"></a>
 ### `EdgeBound.gz_lower`
 
-line 37
+line 40
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The explicit lower bound at the center.
 
@@ -256,7 +273,9 @@ line 37
 <a name="EdgeBound-zeta_ratio_pos"></a>
 ### `EdgeBound.zeta_ratio_pos`
 
-line 61
+line 64
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The lower-bound constant is positive.
 
@@ -278,7 +297,9 @@ line 61
 <a name="EdgeBound-gz_c0_ne"></a>
 ### `EdgeBound.gz_c0_ne`
 
-line 70
+line 73
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The center's value is nonzero.
 
@@ -307,7 +328,9 @@ gz (c0 T') ≠ 0
 <a name="EdgeBound-gz_zero_cases"></a>
 ### `EdgeBound.gz_zero_cases`
 
-line 77
+line 80
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** A `gz`-zero is `1` or a `ζ`-zero.
 
@@ -334,7 +357,9 @@ w = 1 ∨ riemannZeta w = 0
 <a name="EdgeBound-gz_zeros_ball_finite"></a>
 ### `EdgeBound.gz_zeros_ball_finite`
 
-line 87
+line 90
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The `gz`-zeros in any ball around the center are finite.
 
@@ -380,7 +405,9 @@ line 87
 <a name="EdgeBound-gz_partial_fraction"></a>
 ### `EdgeBound.gz_partial_fraction`
 
-line 128
+line 131
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The rescaled Landau partial fraction. At any height `T′ ≥ 2` and any `u` on the segment `re ∈ [−1/4, 2]` at that height that is not a `gz`-zero, the log-derivative of `gz` minus the simple-pole sum over `gz`-zeros within `46/25` of the center is `≤ C·log T′`. Transported from PNT+'s normalized `FinalBound` with radii `22/25 < 23/25 < 19/20 < 49/50`.
 
@@ -410,7 +437,9 @@ line 128
 <a name="EdgeBound-gz_order_eq"></a>
 ### `EdgeBound.gz_order_eq`
 
-line 365
+line 368
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Away from `1`, the order of `gz` is the order of `ζ` — the factor `(s−1)²` carries order zero there.
 
@@ -439,7 +468,9 @@ analyticOrderNatAt gz w = analyticOrderNatAt riemannZeta w
 <a name="EdgeBound-ball_zero_shape"></a>
 ### `EdgeBound.ball_zero_shape`
 
-line 386
+line 389
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Every ball zero at heights `≥ 2` is a `ζ`-zero on the open strip, with ordinate within `46/25` of `T′`.
 
@@ -477,7 +508,9 @@ riemannZeta w = 0 ∧ (0 < w.re ∧ w.re < 1) ∧ |w.im - T'| ≤ 46/25
 <a name="EdgeBound-ball_order_sum_le"></a>
 ### `EdgeBound.ball_order_sum_le`
 
-line 417
+line 420
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The ball order-count: the total multiplicity of `gz`-zeros in the `46/25`-ball at height `T′` is `≤ C·log T′` — four Jensen windows for `T′ ≥ 4` with the reflection charging left-zeros to partners, and a fixed-rectangle constant for `T′ < 4`.
 
@@ -508,7 +541,9 @@ line 417
 <a name="EdgeBound-gz_logderiv"></a>
 ### `EdgeBound.gz_logderiv`
 
-line 680
+line 683
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The log-derivative identity: `gz′/gz = 2/(s−1) + ζ′/ζ` away from the pole and the zeros.
 
@@ -536,7 +571,9 @@ deriv gz u / gz u = 2/(u - 1) + deriv riemannZeta u / riemannZeta u
 <a name="EdgeBound-deriv_zeta_conj"></a>
 ### `EdgeBound.deriv_zeta_conj`
 
-line 702
+line 705
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** Conjugation transfers the derivative of `ζ`.
 
@@ -565,7 +602,9 @@ deriv riemannZeta ((starRingEnd ℂ) s) = (starRingEnd ℂ) (deriv riemannZeta s
 <a name="EdgeBound-edge_bound_core"></a>
 ### `EdgeBound.edge_bound_core`
 
-line 717
+line 720
+
+**Reads ζ.** It, or something it rests on, uses the zeta function, its zeros or the Riemann hypothesis.
 
 **Why.** The pointwise edge bound, unified. For `u` on the band `re ∈ [−1/4, 2]` at height `t ≥ 2`, with a lower bound `δ ≤ 1` on the distance from `u` to every ball zero: `‖ζ′/ζ(u)‖ ≤ C·(log t)/δ + C·log t`. Both edges specialize this: the left edge with `δ = 1/4`, the good horizontals with `δ = zeroGap T`.
 

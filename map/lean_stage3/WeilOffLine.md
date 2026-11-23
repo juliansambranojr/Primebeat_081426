@@ -2,7 +2,7 @@
 
 WeilOffLine — every term of the zero form is minus a square, and the sign of an off-line zero's own term. Rung 5, first slice of the detection ladder (units 0316–0325). 2026-09-06.
 
-7 theorems, 1 definition, 152 lines. Arrows are Lean's own record of what each proof uses.
+7 theorems, 1 definition, 153 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`WeilBackground`](../lean_stage3/WeilBackground.md)  
 **Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
@@ -11,13 +11,13 @@ WeilOffLine — every term of the zero form is minus a square, and the sign of a
 
 ```mermaid
 flowchart LR
-  n0["<b>SigmaC_neg</b><br/>SigmaC (-w) = -SigmaC w"]:::thm
-  n1["<b>ghat_neg</b><br/>ghat h γ (-z) = -ghat h γ z"]:::thm
-  n2["<b>term_eq_neg_sq</b><br/>laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat…"]:::thm
-  n3["<b>term_re_eq</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (…"]:::thm
-  n4["<b>offPt_sub_half</b><br/>offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)"]:::thm
-  n5["<b>offline_term_le</b><br/>(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - off…"]:::thm
-  n6["<b>offline_term_le_explicit</b><br/>(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - off…"]:::end_
+  n0["<b>SigmaC_neg</b><br/>SigmaC (-w) = -SigmaC w"]:::shp
+  n1["<b>ghat_neg</b><br/>ghat h γ (-z) = -ghat h γ z"]:::shp
+  n2["<b>term_eq_neg_sq</b><br/>laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat…"]:::shp
+  n3["<b>term_re_eq</b><br/>(laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ))).re = (…"]:::shp
+  n4["<b>offPt_sub_half</b><br/>offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)"]:::shp
+  n5["<b>offline_term_le</b><br/>(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - off…"]:::shp
+  n6["<b>offline_term_le_explicit ■</b><br/>(laplace (phiC h γ) (-offPt ε γ) * laplace (phiC h γ) (-(1 - off…"]:::shp
   x0(["<b>WeilTransform</b><br/>ghat_eq<br/>ghat_offline"]):::ext
   x1(["<b>WeilBackground</b><br/>laplace_phi"]):::ext
   x2(["<b>WeilLobe</b><br/>lobe_bound"]):::ext
@@ -31,6 +31,9 @@ flowchart LR
   x0 -.-> n5
   x1 -.-> n2
   x2 -.-> n6
+  classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
+  classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
+  classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
   classDef thm fill:#eef4ff,stroke:#335,color:#111
   classDef end_ fill:#e7f7e7,stroke:#2a7,color:#111,stroke-width:2px
   classDef lone fill:#fff,stroke:#999,color:#111,stroke-dasharray:4 3
@@ -38,7 +41,7 @@ flowchart LR
   classDef ext fill:#fff8e1,stroke:#b80,color:#111
 ```
 
-An arrow A → B reads "A is used in the proof of B". Blue: theorem. Green: a theorem nothing else uses (an end). Dashed: connects to nothing. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
+An arrow A → B reads "A is used in the proof of B". Green: counting, integers only. Violet: shape, analysis with no ζ. Blue: reads ζ. A name ending in ■ is an end: nothing else uses it. Red: contains `sorry`. Yellow: theorems in another file, counted; a dotted arrow crosses files. Definitions are not drawn; they are listed below the diagram.
 
 ## Definitions
 
@@ -58,6 +61,8 @@ The off-line point the tuned window reads: `ρ = 1/2 + ε + iγ`.
 ### `WeilOffLine.SigmaC_neg`
 
 line 44
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** `Σc` is odd: `sinh` is odd.
 
@@ -85,6 +90,8 @@ SigmaC (-w) = -SigmaC w
 ### `WeilOffLine.ghat_neg`
 
 line 53
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The window's transform is odd.
 
@@ -118,6 +125,8 @@ ghat h γ (-z) = -ghat h γ z
 
 line 64
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** Every term is minus a square. For any `ρ`, `laplace φ(−ρ)·laplace φ(−(1−ρ)) = −ghat h γ (ρ − 1/2)²`.
 
 **Proves**
@@ -148,6 +157,8 @@ laplace (phiC h γ) (-ρ) * laplace (phiC h γ) (-(1 - ρ)) = -(ghat h γ (ρ - 
 
 line 73
 
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
 **Why.** The real part of a term is `(Im g)² − (Re g)²` at `g = ghat h γ (ρ − 1/2)`.
 
 **Proves**
@@ -175,7 +186,11 @@ line 73
 <a name="WeilOffLine-offPt_sub_half"></a>
 ### `WeilOffLine.offPt_sub_half`
 
-line 82
+line 83
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
+
+**Why.** Helper: the off-line point minus one half is `offPt ε γ − 1/2 = ε + iγ`.
 
 **Proves**
 
@@ -198,7 +213,9 @@ offPt ε γ - 1 / 2 = (ε : ℂ) + Complex.I * (γ : ℂ)
 <a name="WeilOffLine-offline_term_le"></a>
 ### `WeilOffLine.offline_term_le`
 
-line 88
+line 89
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The off-line term is negative. With `g = (h/2)[lobe + Σ(εh)]` and the lobe at most the main term in norm, `term.re ≤ −(h/2)²·Σ(εh)·(Σ(εh) − 2‖lobe‖)`.
 
@@ -230,7 +247,9 @@ line 88
 <a name="WeilOffLine-offline_term_le_explicit"></a>
 ### `WeilOffLine.offline_term_le_explicit`
 
-line 119
+line 120
+
+**Shape.** Uses real or complex analysis; nothing in it or beneath it reads ζ.
 
 **Why.** The same with unit 0319's lobe bound in place of the lobe: for `γ > 0`, if `(2π + π²)·cosh(εh)/(2γh)² ≤ Σ(εh)` then `term.re ≤ −(h/2)²·Σ(εh)·(Σ(εh) − 2(2π + π²)·cosh(εh)/(2γh)²)`.
 

@@ -45,11 +45,13 @@ open Complex WeilWindow WeilTransform WeilPower intervalIntegral Real
 /-- The odd envelope `sin(πx)·P(x)^m`. -/
 def q (m : ℕ) (x : ℝ) : ℝ := Real.sin (Real.pi * x) * P x ^ m
 
+/-- The envelope `q m` is odd: `q m (-x) = -q m x`. -/
 theorem q_odd (m : ℕ) (x : ℝ) : q m (-x) = -q m x := by
   unfold q
   rw [show Real.pi * (-x) = -(Real.pi * x) by ring, Real.sin_neg, P_even]
   ring
 
+/-- Helper: the odd envelope `q m` is continuous. -/
 theorem continuous_q (m : ℕ) : Continuous (q m) := by
   unfold q
   exact (by fun_prop : Continuous fun x : ℝ => Real.sin (Real.pi * x)).mul (continuous_P.pow m)
@@ -136,9 +138,12 @@ def QS (m : ℕ) (w : ℂ) : ℂ :=
 /-- `2·π^{2m+1}·(2m+1)!/4^m`: the odd transform's constant. -/
 def cS (m : ℕ) : ℝ := 2 * Real.pi ^ (2 * m + 1) * ((2 * m + 1).factorial : ℝ) / 4 ^ m
 
+/-- The even transform's denominator at `m+1` is `w` times the odd transform's denominator:
+`Q (m+1) w = w · QS m w`. -/
 theorem Q_succ_eq (m : ℕ) (w : ℂ) : Q (m + 1) w = w * QS m w := by
   unfold Q QS; ring
 
+/-- The odd transform's constant against the even one's: `cS m · (m+1)π = 2 · cK (m+1)`. -/
 theorem cS_eq (m : ℕ) : cS m * (((m : ℝ) + 1) * Real.pi) = 2 * cK (m + 1) := by
   unfold cS cK
   have h2 : 2 * (m + 1) = 2 * m + 1 + 1 := by ring
