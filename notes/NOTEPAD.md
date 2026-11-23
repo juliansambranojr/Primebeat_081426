@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0488: the band of the deep zero joined to the chain: every zero lands strictly inside the band, a zero and its mirror multiply to one half as a cell's two shares do, and the spiral link is every zero on the middle circle (`BandJoin.spiralLink_iff_middle`).
 - [open]   2026-11-23  Unit 0487: away from the zeros the turned steps to a cutoff, less their smooth term, grow at most as the cutoff to the largest real part of a zero below the height less the real part of the point (`StepsRate.rate_upper`). The lower half of the rate is not stated.
 - [open]   2026-11-23  Unit 0486: the staircase read at N, N/2, …, N/N adds up to the logarithms of the integers up to N, at every N (`SelfBound.self_bound`); the residuals across the scales are tied by a quantity with no prime in it. A bound at one scale needs the Möbius signs.
 - [open]   2026-11-23  Unit 0485: the half of every doubling is minus zeta at zero; it cancels in the sieve by Pascal; the spiral link holds exactly when the sieve's wobble stays at square-root size (`HalfSieve.spiralLink_iff_wobble`). The wobble's size is open.

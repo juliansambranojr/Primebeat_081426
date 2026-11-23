@@ -20379,6 +20379,407 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/BandJoin.lean",
+  "module": "Stage3.BandJoin",
+  "stem": "BandJoin",
+  "header": "BandJoin — block J5 of `lean_stage3/design/closedloop.md`. 2026-11-23. The band of the deep zero and the strip of the zeros, under one map.",
+  "imports": [
+   "Stage3.StepsRate",
+   "Stage3.HalfSieve"
+  ],
+  "opens": [
+   "Kadiri"
+  ],
+  "namespaces": [
+   "BandJoin"
+  ],
+  "lines": 134,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/HalfSieve.lean",
+   "lean_stage3/Stage3/StepsRate.lean"
+  ],
+  "decls": [
+   {
+    "kind": "def",
+    "name": "bandR",
+    "ns": "BandJoin",
+    "full": "BandJoin.bandR",
+    "line": 36,
+    "why": "The band's map at base `2`: a share, or a real part, `x` goes to `2^(−x)`.",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_in_band",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_middle_iff",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_mirror",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_one",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_strictAnti",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_zero",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.share_pair",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bandR_zero",
+    "ns": "BandJoin",
+    "full": "BandJoin.bandR_zero",
+    "line": 39,
+    "why": "Share `0`, the deep zero, is on the outer circle.",
+    "sorry": false,
+    "needs": [],
+    "proves": "bandR 0 = 1",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_in_band",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_in_band"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bandR_one",
+    "ns": "BandJoin",
+    "full": "BandJoin.bandR_one",
+    "line": 42,
+    "why": "Share `1`, the inverse of the deep zero, is on the inner circle.",
+    "sorry": false,
+    "needs": [],
+    "proves": "bandR 1 = 1 / 2",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_in_band",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_in_band"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bandR_mirror",
+    "ns": "BandJoin",
+    "full": "BandJoin.bandR_mirror",
+    "line": 48,
+    "why": "The mirror. A share and its mirror multiply to one half.",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "bandR x * bandR (1 - x) = 1 / 2",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_mirror",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.share_pair",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bandR_strictAnti",
+    "ns": "BandJoin",
+    "full": "BandJoin.bandR_strictAnti",
+    "line": 56,
+    "why": "The band's map is strictly decreasing.",
+    "sorry": false,
+    "needs": [],
+    "proves": "StrictAnti bandR",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_strictAnti",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_in_band"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "bandR_in_band",
+    "ns": "BandJoin",
+    "full": "BandJoin.bandR_in_band",
+    "line": 62,
+    "why": "The band. A share between `0` and `1` lands between the two circles.",
+    "sorry": false,
+    "needs": [
+     "h0 : 0 ≤ x",
+     "h1 : x ≤ 1"
+    ],
+    "proves": "1 / 2 ≤ bandR x ∧ bandR x ≤ 1",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_in_band",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_one",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_zero"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_one",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_zero"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "bandR_middle_iff",
+    "ns": "BandJoin",
+    "full": "BandJoin.bandR_middle_iff",
+    "line": 70,
+    "why": "The middle circle is reached exactly at one half.",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "bandR x = bandR (1 / 2) ↔ x = 1 / 2",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_middle_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "share_pair",
+    "ns": "BandJoin",
+    "full": "BandJoin.share_pair",
+    "line": 75,
+    "why": "A cell's two shares. Two parts of a total have shares whose images multiply to one half.",
+    "sorry": false,
+    "needs": [
+     "ht : tot ≠ 0",
+     "h : P + C = tot"
+    ],
+    "proves": "bandR (P / tot) * bandR (C / tot) = 1 / 2",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.share_pair",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_mirror"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_mirror"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zero_image",
+    "ns": "BandJoin",
+    "full": "BandJoin.zero_image",
+    "line": 84,
+    "why": "A zero under the band's map. The size of `2^(−ρ)` is the band's map at the real part of `ρ`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (ρ:ℂ).re",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_in_band",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zero_in_band",
+    "ns": "BandJoin",
+    "full": "BandJoin.zero_in_band",
+    "line": 90,
+    "why": "Every zero is strictly inside the band.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "1 / 2 < ‖(2:ℂ) ^ (-(ρ:ℂ))‖ ∧ ‖(2:ℂ) ^ (-(ρ:ℂ))‖ < 1",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_in_band",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_one",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_strictAnti",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_zero",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_one",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_strictAnti",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_zero",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zero_pair",
+    "ns": "BandJoin",
+    "full": "BandJoin.zero_pair",
+    "line": 101,
+    "why": "A zero and its mirror multiply to one half, as the prime share and the composite share of a cell do.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(2:ℂ) ^ (-(ρ:ℂ))‖ * ‖(2:ℂ) ^ (-((SpiralLink.mirrorZ ρ : NontrivialZeros):ℂ))‖ = 1 / 2",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_mirror",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_mirror",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "zero_middle_iff",
+    "ns": "BandJoin",
+    "full": "BandJoin.zero_middle_iff",
+    "line": 106,
+    "why": "A zero is on the middle circle exactly when its real part is one half.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ↔ (ρ:ℂ).re = 1 / 2",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_middle_iff",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR_middle_iff",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_image"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_middle",
+    "ns": "BandJoin",
+    "full": "BandJoin.spiralLink_iff_middle",
+    "line": 112,
+    "why": "The loop on the band. The spiral link holds exactly when every zero is on the middle circle of the band.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2)",
+    "file": "lean_stage3/Stage3/BandJoin.lean",
+    "id": "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.bandR",
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_middle_iff",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/BoxBounds.lean",
   "module": "Stage3.BoxBounds",
   "stem": "BoxBounds",
@@ -23510,6 +23911,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
@@ -55745,6 +56147,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_im",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re",
@@ -55806,6 +56209,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirror_pair_area",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.off_line_is_two"
@@ -55929,6 +56333,7 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_iff_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.spiralLink_of_wobble",
      "lean_stage3/Stage3/HalfSieve.lean::HalfSieve.wobble_of_spiralLink",
@@ -55990,6 +56395,7 @@
     ],
     "layer": "zeta",
     "used_by": [
+     "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
     ]
    },
@@ -86087,11 +86493,12 @@
    "Stage3.StepsPeak",
    "Stage3.HalfSieve",
    "Stage3.SelfBound",
-   "Stage3.StepsRate"
+   "Stage3.StepsRate",
+   "Stage3.BandJoin"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 191,
+  "lines": 192,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -86104,6 +86511,7 @@
    "lean_stage3/Stage3/Assembly.lean",
    "lean_stage3/Stage3/AssemblyFloor.lean",
    "lean_stage3/Stage3/AttainedPi.lean",
+   "lean_stage3/Stage3/BandJoin.lean",
    "lean_stage3/Stage3/BoxBounds.lean",
    "lean_stage3/Stage3/BoxFinite.lean",
    "lean_stage3/Stage3/CellBdiff.lean",

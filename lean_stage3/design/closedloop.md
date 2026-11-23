@@ -97,4 +97,26 @@ The capstone. `SpiralLink` is tied to the tree's main theorems:
 Its pins read through the explicit formula at every height, the zero-density
 bound, the filters and the count's modes.
 
+## J5 The band and the strip — `Stage3/BandJoin.lean`
+
+`lean/DeepZeroBand.lean` (toolchain v4.28.0, composed by statement) sends a
+cell's share `x` to `b^(−x)`: share `0`, the deep zero, on the outer circle;
+share `1` on the inner; the prime and composite shares of a cell multiplying
+to `b^(−1)`; the middle circle at share one half. Its header says nothing
+there identifies a share with the real part of a zero.
+
+The join. `bandR x = 2^(−x)`. `‖2^(−ρ)‖ = bandR (Re ρ)`. So the one map
+carries a share and the real part of a zero alike:
+
+- `bandR_zero`, `bandR_one`, `bandR_mirror`, `bandR_in_band`,
+  `bandR_middle_iff`, `share_pair`: the band's statements at base `2`.
+- `zero_in_band`: every nontrivial zero lands strictly between the circles.
+- `zero_pair`: a zero and its mirror multiply to one half, as the two shares
+  of a cell do.
+- `zero_middle_iff`, `spiralLink_iff_middle`: `SpiralLink` exactly when every
+  zero is on the middle circle.
+
+The share of a cell and the real part of a zero are still two numbers. The
+join is that the band, its mirror and its middle are the same for both.
+
 **Not here.** `SpiralLink` with no hypothesis.

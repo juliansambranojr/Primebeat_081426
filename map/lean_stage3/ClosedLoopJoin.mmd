@@ -15,7 +15,8 @@ flowchart LR
   x2(["<b>SpiralLink</b><br/>off_line_is_two<br/>rh_iff_one_at_each_height<br/>rh_iff_spiralLink"]):::ext
   x3(["<b>MirrorArea</b><br/>long_side_of_off_line"]):::ext
   x4(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
-  x5(["<b>OneChain</b><br/>one_chain"]):::ext
+  x5(["<b>BandJoin</b><br/>spiralLink_iff_middle"]):::ext
+  x6(["<b>OneChain</b><br/>one_chain"]):::ext
   n0 --> n1
   n0 --> n2
   n2 --> n6
@@ -30,7 +31,8 @@ flowchart LR
   n10 -.-> x2
   n5 -.-> x2
   n8 -.-> x2
-  n9 -.-> x5
+  n8 -.-> x5
+  n9 -.-> x6
   x1 -.-> n1
   x1 -.-> n7
   x3 -.-> n7

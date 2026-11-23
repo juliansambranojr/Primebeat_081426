@@ -98,6 +98,13 @@ Sorted by name. Search this file before saying something is missing.
 | [`AttainedPi.band_small`](./lean_stage3/AttainedPi.md#AttainedPi-band_small) | theorem | reads ζ | `AttainedPi` | ∃ η : ℝ, 0 &lt; η ∧ η ≤ (Θ - 1 / 2) / 2 ∧ ∀ F : Finset NontrivialZeros, (∀ ρ ∈ F, Θ - η &lt; (ρ : ℂ).re ∧ (ρ : ℂ).re &lt; Θ) → ∑ ρ ∈ F, ordR ρ * ‖(ρ : ℂ)‖⁻¹ ≤ ε |
 | [`WeilBands.band_sum_le`](./lean_stage3/WeilBands.md#WeilBands-band_sum_le) | theorem | reads ζ | `WeilBands` | ∑ ρ ∈ S, weightedTerm h γ ρ ≤ M * (15 * Real.log T + 73) |
 | [`WeilPowerBands.band_sum_le`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-band_sum_le) | theorem | reads ζ | `WeilPowerBands` | ∑ ρ ∈ S, weightedTermW h γ m ρ ≤ M * (15 * Real.log T + 73) |
+| [`BandJoin.bandR`](./lean_stage3/BandJoin.md#BandJoin-bandR) | def | counting | `BandJoin` | ℝ |
+| [`BandJoin.bandR_in_band`](./lean_stage3/BandJoin.md#BandJoin-bandR_in_band) | theorem | shape | `BandJoin` | 1 / 2 ≤ bandR x ∧ bandR x ≤ 1 |
+| [`BandJoin.bandR_middle_iff`](./lean_stage3/BandJoin.md#BandJoin-bandR_middle_iff) | theorem | counting | `BandJoin` | bandR x = bandR (1 / 2) ↔ x = 1 / 2 |
+| [`BandJoin.bandR_mirror`](./lean_stage3/BandJoin.md#BandJoin-bandR_mirror) | theorem | shape | `BandJoin` | bandR x * bandR (1 - x) = 1 / 2 |
+| [`BandJoin.bandR_one`](./lean_stage3/BandJoin.md#BandJoin-bandR_one) | theorem | shape | `BandJoin` | bandR 1 = 1 / 2 |
+| [`BandJoin.bandR_strictAnti`](./lean_stage3/BandJoin.md#BandJoin-bandR_strictAnti) | theorem | shape | `BandJoin` | StrictAnti bandR |
+| [`BandJoin.bandR_zero`](./lean_stage3/BandJoin.md#BandJoin-bandR_zero) | theorem | counting | `BandJoin` | bandR 0 = 1 |
 | [`WeilPowerBands.bandSeries_le`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-bandSeries_le) | theorem | reads ζ | `WeilPowerBands` | ∑' k : ℕ, M h γ m k * (15 * Real.log (centre k) + 73) ≤ A h γ m * (Real.pi ^ 2 / 6) |
 | [`WeilSeries.bandSeries_le`](./lean_stage3/WeilSeries.md#WeilSeries-bandSeries_le) | theorem | reads ζ | `WeilSeries` | ∑' k : ℕ, M h γ k * (15 * Real.log (centre k) + 73) ≤ A h γ * (Real.pi ^ 2 / 6) |
 | [`WeilTiles.bandSeries_nonneg`](./lean_stage3/WeilTiles.md#WeilTiles-bandSeries_nonneg) | theorem | shape | `WeilTiles` | 0 ≤ M k * (15 * Real.log (centre k) + 73) |
@@ -1745,6 +1752,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`DeepZeroBand.share_in_band`](./lean/DeepZeroBand.md#DeepZeroBand-share_in_band) | theorem | shape | `DeepZeroBand` | 0 ≤ (P : ℝ) / 2 ^ e ∧ (P : ℝ) / 2 ^ e ≤ 1 |
 | [`DeepZeroBand.share_mirror`](./lean/DeepZeroBand.md#DeepZeroBand-share_mirror) | theorem | shape | `DeepZeroBand` | share C r d e = 1 - share P r d e |
 | [`DeepZeroBand.share_on_middle_circle_iff`](./lean/DeepZeroBand.md#DeepZeroBand-share_on_middle_circle_iff) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-(x : ℂ))‖ = b ^ (-(1 : ℝ) / 2) ↔ x = 1 / 2 |
+| [`BandJoin.share_pair`](./lean_stage3/BandJoin.md#BandJoin-share_pair) | theorem | shape | `BandJoin` | bandR (P / tot) * bandR (C / tot) = 1 / 2 |
 | [`DeepZeroBand.share_pair_product`](./lean/DeepZeroBand.md#DeepZeroBand-share_pair_product) | theorem | shape | `DeepZeroBand` | ‖(b : ℂ) ^ (-((share P r d e : ℝ) : ℂ))‖ * ‖(b : ℂ) ^ (-((share C r d e : ℝ) : ℂ))‖ = b ^ (-(1 : ℝ)) |
 | [`ZeroSummable.shell_bound_le`](./lean_stage3/ZeroSummable.md#ZeroSummable-shell_bound_le) | theorem | shape | `ZeroSummable` | 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) * (103 * ((j : ℝ) + 1) / 2 ^ j) ≤ 206 * C * (4 : ℝ) ^ (max θ 0) * (((j : ℝ) + 1) * ((2 : ℝ) ^ (max θ 0) / 2) ^ j) |
 | [`ZeroSummable.shell_sum_le`](./lean_stage3/ZeroSummable.md#ZeroSummable-shell_sum_le) | theorem | reads ζ | `ZeroSummable` | ∑ ρ ∈ F, w ρ ≤ 2 * (C * ((2 : ℝ) ^ (j + 1) + 2) ^ θ) * (103 * ((j : ℝ) + 1) / 2 ^ j) |
@@ -1801,6 +1809,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`SieveExact.smoothPart_eq_prod`](./lean_stage3/SieveExact.md#SieveExact-smoothPart_eq_prod) | theorem | counting | `SieveExact` | smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) |
 | [`SpiralLink.SpiralLink`](./lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) | def | counting | `SpiralLink` | Prop |
 | [`OneChain.spiralLink_iff_cells`](./lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀ |
+| [`BandJoin.spiralLink_iff_middle`](./lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) | theorem | reads ζ | `BandJoin` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) |
 | [`SpiralLink.spiralLink_iff_one`](./lean_stage3/SpiralLink.md#SpiralLink-spiralLink_iff_one) | theorem | reads ζ | `SpiralLink` | SpiralLink ↔ OneAtEachHeight |
 | [`HalfSieve.spiralLink_iff_wobble`](./lean_stage3/HalfSieve.md#HalfSieve-spiralLink_iff_wobble) | theorem | reads ζ | `HalfSieve` | SpiralLink.SpiralLink ↔ WobbleSqrt |
 | [`OneChain.spiralLink_of_attained`](./lean_stage3/OneChain.md#OneChain-spiralLink_of_attained) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink |
@@ -2313,6 +2322,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`Construction.zero_determined_by_row`](./lean/Construction.md#Construction-zero_determined_by_row) | theorem | counting | `Construction` | tableFrom N r d = tableFrom M r d |
 | [`SeedPerturbation.zero_iff_of_seed_perturbation`](./lean/SeedPerturbation.md#SeedPerturbation-zero_iff_of_seed_perturbation) | theorem | counting | `SeedPerturbation` | tableFrom (fun x =&gt; N x - e x) r d = 0 ↔ tableFrom N r d = 0 |
 | [`Zeros.zero_iff_repeat`](./lean/Zeros.md#Zeros-zero_iff_repeat) | theorem | counting | `Zeros` | f r (d + 1) = 0 ↔ f r d = f (r - 1) d |
+| [`BandJoin.zero_image`](./lean_stage3/BandJoin.md#BandJoin-zero_image) | theorem | shape | `BandJoin` | ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (ρ:ℂ).re |
+| [`BandJoin.zero_in_band`](./lean_stage3/BandJoin.md#BandJoin-zero_in_band) | theorem | shape | `BandJoin` | 1 / 2 &lt; ‖(2:ℂ) ^ (-(ρ:ℂ))‖ ∧ ‖(2:ℂ) ^ (-(ρ:ℂ))‖ &lt; 1 |
+| [`BandJoin.zero_middle_iff`](./lean_stage3/BandJoin.md#BandJoin-zero_middle_iff) | theorem | shape | `BandJoin` | ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ↔ (ρ:ℂ).re = 1 / 2 |
+| [`BandJoin.zero_pair`](./lean_stage3/BandJoin.md#BandJoin-zero_pair) | theorem | reads ζ | `BandJoin` | ‖(2:ℂ) ^ (-(ρ:ℂ))‖ * ‖(2:ℂ) ^ (-((SpiralLink.mirrorZ ρ : NontrivialZeros):ℂ))‖ = 1 / 2 |
 | [`RunTheorems.zero_pair_beat`](./lean_stage3/RunTheorems.md#RunTheorems-zero_pair_beat) | theorem | shape | `RunTheorems` | (c₁ * (starRingEnd ℂ) c₂ * ((2:ℂ) ^ ρ₁ * (starRingEnd ℂ) ((2:ℂ) ^ ρ₂)) ^ k) = c₁ * (starRingEnd ℂ) c₂ * ((((2:ℝ) ^ ((ρ₁.re + ρ₂.re) * (k:ℝ)) : ℝ) : ℂ) * Complex.exp ((((k:ℝ) * ((ρ₁.im - ρ₂.im) * Real.… |
 | [`AliasClass.zero_re_pos`](./lean_stage3/AliasClass.md#AliasClass-zero_re_pos) | theorem | reads ζ | `AliasClass` | 0 &lt; (ρ : ℂ).re |
 | [`LandauZeroSide.zero_side`](./lean_stage3/LandauZeroSide.md#LandauZeroSide-zero_side) | theorem | reads ζ | `LandauZeroSide` | ∃ r R τ C₁ : ℝ, ∃ N₀ : ℕ, σ₀ - 1 &lt; r ∧ r ≤ ‖(σ₀ : ℂ) - ρ₀‖ ∧ r &lt; R ∧ 0 &lt; τ ∧ 0 ≤ C₁ ∧ ∀ a N : ℕ, N₀ ≤ N → ∃ k ∈ Finset.Ico a (a + N), τ / r ^ (k + 1) - C₁ / R ^ k ≤ LandauPrimeSide.Ik σ₀ k / k.factori… |

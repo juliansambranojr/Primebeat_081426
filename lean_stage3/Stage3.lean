@@ -180,6 +180,7 @@ import Stage3.StepsPeak
 import Stage3.HalfSieve
 import Stage3.SelfBound
 import Stage3.StepsRate
+import Stage3.BandJoin
 
 namespace Stage3
 

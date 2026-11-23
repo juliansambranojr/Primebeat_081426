@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J5 of `design/closedloop.md`: `Stage3/BandJoin.lean`
+
+    DONE        `zero_image`, `zero_in_band`: every zero lands strictly inside
+                the band of the deep zero. `zero_pair`: a zero and its mirror
+                multiply to one half, as a cell's two shares do
+                (`share_pair`). `spiralLink_iff_middle`: the link is every
+                zero on the middle circle; one unit
+    ASSUMED     Julian, 2026-11-23: "the inversion of the deep zero flips the
+                table into a band". `lean/DeepZeroBand.lean` restated at base
+                two, composed by statement. Written and built here
+    DEPENDS     `SpiralLink.mirrorZ_re`, `ClosedLoopJoin.rh_iff_re_half`
+    OUT         an identification of a cell's share with a zero's real part
+    OUTCOME     proved, unit 0488
+
 ### 2026-11-23 · block R8 of `design/runs.md`: `Stage3/StepsRate.lean`
 
     DONE        `norm_K_le_pow`: a zero's kernel is at most the cutoff to the
