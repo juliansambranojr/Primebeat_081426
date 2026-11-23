@@ -79,3 +79,22 @@ its join to the table.
 
 With J1 and J2 every Part of the closed loop from I to XI has its statements
 in Stage 3 and a theorem tying it to the table, its mirror, or the zeros.
+
+## J4 One chain — `Stage3/OneChain.lean`
+
+The capstone. `SpiralLink` is tied to the tree's main theorems:
+
+- `one_chain`: RH ↔ `SpiralLink` ↔ `OneAtEachHeight` ↔ the force at rest at
+  every zero ↔ every cell of every dyadic ladder at square-root size
+  (`CellResidual.RH_iff_cells`).
+- `table_of_spiralLink`: the link gives the integer table's cells at
+  square-root size (`table_cell_resid`).
+- `spiralLink_of_finite`, `spiralLink_of_attained`: the count's ladder bound
+  gives the link in the two closed cases of joint 10.
+- `spiralLink_of_attained_psi`, `spiralLink_of_finite_accumulation`: on ψ.
+- `no_exposed_zero`: `CountEuler.euler_exposed_false`.
+
+Its pins read through the explicit formula at every height, the zero-density
+bound, the filters and the count's modes.
+
+**Not here.** `SpiralLink` with no hypothesis.

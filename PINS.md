@@ -22,6 +22,27 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J4 of `design/closedloop.md`: `Stage3/OneChain.lean`
+
+    DONE        `one_chain`: RH, `SpiralLink`, `OneAtEachHeight`, the force at
+                rest at every zero, and every cell of every dyadic ladder at
+                square-root size are one statement. `table_of_spiralLink`;
+                `spiralLink_of_finite`, `spiralLink_of_attained`,
+                `spiralLink_of_attained_psi`,
+                `spiralLink_of_finite_accumulation`; `no_exposed_zero`; one
+                unit
+    ASSUMED     Julian, 2026-11-23: "Is the loop compiled by itself or does
+                it connect to every theorem in the tree". The capstone that
+                ties the loop to the tree's main theorems. Written and built
+                here
+    DEPENDS     `SpiralLink.rh_iff_spiralLink`, `CellResidual.RH_iff_cells`,
+                `table_cell_resid`, `AttainedPi.attained_off_line_pi`,
+                `FiniteOffLinePi.finite_off_line_pi`,
+                `FilterAccum.rh_of_finite_accumulation`,
+                `CountEuler.euler_exposed_false`
+    OUT         `SpiralLink` with no hypothesis; the map
+    OUTCOME     proved, unit 0479
+
 ### 2026-11-23 · block J3 of `design/closedloop.md`: `Stage3/ClosedLoopChain.lean`
 
     DONE        the closed loop's Parts I, III, IV, V, VI restated and joined:

@@ -1,30 +1,26 @@
-# What `CellResidual.table_cell_resid` rests on
+# What `OneChain.one_chain` rests on
 
-[`CellResidual.table_cell_resid`](../lean_stage3/CellResidual.md#CellResidual-table_cell_resid) in `lean_stage3/Stage3/CellResidual.lean`, line 467.
+[`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain) in `lean_stage3/Stage3/OneChain.lean`, line 61.
 
-**Why.** On the table itself. Under the Riemann hypothesis every cell of the dyadic table stays within square-root size of the smooth cell.
+**Why.** One chain. The Riemann hypothesis, the spiral link, one zero at each height, the restoring force at rest at every zero, and every cell of every dyadic ladder at square-root size are one statement.
 
 **Proves**
 
 ```lean
-∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → |((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r| ≤ C * cellSize r d
+(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀)
 ```
 
-**Needs** (its hypotheses)
-
-  - `` hRH : RiemannHypothesis ``
-
-Behind it: 351 theorems and 51 definitions in 28 files. Every one is listed below; Lean recorded each step.
+Behind it: 369 theorems and 55 definitions in 30 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
-  f0["<b>Construction</b><br/>1 used"]:::ext
-  f1["<b>Nonvanishing</b><br/>6 used"]:::ext
-  f2["<b>ZerosStencil</b><br/>3 used"]:::ext
-  f3["<b>AssemblyFloor</b><br/>5 used"]:::thm
-  f4["<b>JensenCount</b><br/>17 used"]:::thm
+  f0["<b>Nonvanishing</b><br/>4 used"]:::ext
+  f1["<b>AssemblyFloor</b><br/>5 used"]:::thm
+  f2["<b>JensenCount</b><br/>17 used"]:::thm
+  f3["<b>LandauWindow</b><br/>2 used"]:::thm
+  f4["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
   f5["<b>PerronKernel</b><br/>33 used"]:::thm
   f6["<b>ReZetaCount</b><br/>19 used"]:::thm
   f7["<b>RvMCrude</b><br/>3 used"]:::thm
@@ -37,22 +33,24 @@ flowchart LR
   f14["<b>ArgIdentity</b><br/>54 used"]:::thm
   f15["<b>ArgLegs</b><br/>10 used"]:::thm
   f16["<b>ArgCount</b><br/>14 used"]:::thm
-  f17["<b>TableRoute</b><br/>1 used"]:::thm
-  f18["<b>VonKochScaffold</b><br/>24 used"]:::thm
-  f19["<b>ZeroSum</b><br/>7 used"]:::thm
-  f20["<b>Assembly</b><br/>8 used"]:::thm
-  f21["<b>ContourShift</b><br/>29 used"]:::thm
-  f22["<b>ZetaGrowth</b><br/>21 used"]:::thm
-  f23["<b>EdgeBound</b><br/>17 used"]:::thm
-  f24["<b>Glue</b><br/>5 used"]:::thm
-  f25["<b>GlueFloor</b><br/>8 used"]:::thm
-  f26["<b>PiToPsi</b><br/>13 used"]:::thm
-  f27["<b>CellResidual</b><br/>table_cell_resid"]:::end_
-  f0 --> f2
-  f4 --> f6
+  f17["<b>VonKochScaffold</b><br/>24 used"]:::thm
+  f18["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f19["<b>SpiralLink</b><br/>10 used"]:::thm
+  f20["<b>ZeroSum</b><br/>7 used"]:::thm
+  f21["<b>Assembly</b><br/>8 used"]:::thm
+  f22["<b>ContourShift</b><br/>29 used"]:::thm
+  f23["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f24["<b>EdgeBound</b><br/>17 used"]:::thm
+  f25["<b>Glue</b><br/>5 used"]:::thm
+  f26["<b>GlueFloor</b><br/>8 used"]:::thm
+  f27["<b>PiToPsi</b><br/>13 used"]:::thm
+  f28["<b>CellResidual</b><br/>16 used"]:::thm
+  f29["<b>OneChain</b><br/>one_chain"]:::end_
+  f3 --> f4
+  f2 --> f6
   f7 --> f8
   f9 --> f10
-  f4 --> f11
+  f2 --> f11
   f10 --> f11
   f10 --> f12
   f7 --> f13
@@ -61,25 +59,27 @@ flowchart LR
   f14 --> f15
   f6 --> f16
   f15 --> f16
-  f11 --> f18
-  f19 --> f20
-  f4 --> f21
+  f11 --> f17
+  f4 --> f19
+  f18 --> f19
   f20 --> f21
+  f2 --> f22
   f21 --> f22
   f22 --> f23
   f23 --> f24
-  f3 --> f25
-  f5 --> f25
-  f10 --> f25
-  f16 --> f25
   f24 --> f25
-  f12 --> f26
-  f18 --> f26
+  f1 --> f26
+  f5 --> f26
+  f10 --> f26
+  f16 --> f26
   f25 --> f26
-  f1 --> f27
-  f2 --> f27
+  f12 --> f27
   f17 --> f27
   f26 --> f27
+  f0 --> f28
+  f27 --> f28
+  f19 --> f29
+  f28 --> f29
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -96,24 +96,12 @@ An arrow A → B reads "B uses something proved or defined in A"; indirect arrow
 
 Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
-### [`Construction`](../lean/Construction.md) — 1
-
-- ★ [`Construction.tableFrom`](../lean/Construction.md#Construction-tableFrom) — *def*
-
-### [`Nonvanishing`](../lean/Nonvanishing.md) — 6
+### [`Nonvanishing`](../lean/Nonvanishing.md) — 4
 
 - [`Nonvanishing.bdiffZ`](../lean/Nonvanishing.md#Nonvanishing-bdiffZ) — *def*
-- ★ [`Nonvanishing.stencilR`](../lean/Nonvanishing.md#Nonvanishing-stencilR) — *def*
+- [`Nonvanishing.stencilR`](../lean/Nonvanishing.md#Nonvanishing-stencilR) — *def*
 - [`Nonvanishing.iter_bdiffZ_eq_fwdDiff`](../lean/Nonvanishing.md#Nonvanishing-iter_bdiffZ_eq_fwdDiff) — `` (bdiffZ^[n]) g r = (-1 : ℝ) ^ n * (fwdDiff (-1 : ℤ))^[n] g r ``
 - [`Nonvanishing.iter_bdiffZ_eq_stencilR`](../lean/Nonvanishing.md#Nonvanishing-iter_bdiffZ_eq_stencilR) — `` (bdiffZ^[n]) g r = stencilR n g r ``
-- [`Nonvanishing.stencilR_row`](../lean/Nonvanishing.md#Nonvanishing-stencilR_row) — `` stencilR d (bdiffZ g) r = stencilR (d + 1) g r ``
-- [`Nonvanishing.stencilR_sub`](../lean/Nonvanishing.md#Nonvanishing-stencilR_sub) — `` stencilR n (fun x => f x - L x) r = stencilR n f r - stencilR n L r ``
-
-### [`ZerosStencil`](../lean/ZerosStencil.md) — 3
-
-- [`Zeros.tableFrom_eq_fwdDiff`](../lean/ZerosStencil.md#Zeros-tableFrom_eq_fwdDiff) — `` Construction.tableFrom N r d = (-1 : ℤ) ^ d * (fwdDiff (-1 : ℤ))^[d] N r ``
-- [`Zeros.stencil`](../lean/ZerosStencil.md#Zeros-stencil) — *def*
-- [`Zeros.tableFrom_eq_stencil`](../lean/ZerosStencil.md#Zeros-tableFrom_eq_stencil) — `` Construction.tableFrom N r d = stencil d (fun k => N (r - k)) ``
 
 ### [`AssemblyFloor`](../lean_stage3/AssemblyFloor.md) — 5
 
@@ -142,6 +130,24 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.analyticOrderNatAt_fun_comp_affine`](../lean_stage3/JensenCount.md#Stage3-analyticOrderNatAt_fun_comp_affine) — `` analyticOrderNatAt (fun w : ℂ => g (a * w + b)) z = analyticOrderNatAt g (a * z + b) ``
 - [`Stage3.jensenF_order`](../lean_stage3/JensenCount.md#Stage3-jensenF_order) — `` analyticOrderNatAt (jensenF T) w = analyticOrderNatAt ζ (2 * w + (2 + Complex.I * (T : ℂ))) ``
 - [`Stage3.zeta_local_zero_count`](../lean_stage3/JensenCount.md#Stage3-zeta_local_zero_count) — `` ∑ ρ ∈ (zetaWindow_finite hT).toFinset, (analyticOrderNatAt ζ ρ : ℝ) ≤ 15 * Real.log T + 73 ``
+
+### [`LandauWindow`](../lean_stage3/LandauWindow.md) — 2
+
+- [`LandauWindow.zeta_neg_nat_ne_zero`](../lean_stage3/LandauWindow.md#LandauWindow-zeta_neg_nat_ne_zero) — `` riemannZeta (-(n : ℂ)) ≠ 0 ``
+- [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) — `` RiemannHypothesis ``
+
+### [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md) — 10
+
+- [`ClosedLoopJoin.epsilon`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-epsilon) — *def*
+- ★ [`ClosedLoopJoin.restoringForce`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-restoringForce) — *def*
+- [`ClosedLoopJoin.primeWeight`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-primeWeight) — *def*
+- [`ClosedLoopJoin.isHermitianHandshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-isHermitianHandshake) — *def*
+- [`ClosedLoopJoin.force_eq`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_eq) — `` restoringForce σ = 5 * |σ - 1 / 2| ``
+- [`ClosedLoopJoin.force_eq_zero_iff`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_eq_zero_iff) — `` restoringForce σ = 0 ↔ σ = 1 / 2 ``
+- [`ClosedLoopJoin.handshake_iff_half`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-handshake_iff_half) — `` isHermitianHandshake σ ↔ σ = 1 / 2 ``
+- [`ClosedLoopJoin.rh_iff_re_half`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_re_half) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2 ``
+- ★ [`ClosedLoopJoin.rh_iff_force_zero`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_force_zero) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 ``
+- [`ClosedLoopJoin.rh_iff_handshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-rh_iff_handshake) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re ``
 
 ### [`PerronKernel`](../lean_stage3/PerronKernel.md) — 33
 
@@ -219,7 +225,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`PsiToPi`](../lean_stage3/PsiToPi.md) — 13
 
-- ★ [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li) — *def*
+- [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li) — *def*
 - [`Stage3.continuousOn_inv_log_sq`](../lean_stage3/PsiToPi.md#Stage3-continuousOn_inv_log_sq) — `` ContinuousOn (fun t : ℝ => 1 / Real.log t ^ 2) (Set.uIcc a x) ``
 - [`Stage3.continuousOn_inv_mul_log_sq`](../lean_stage3/PsiToPi.md#Stage3-continuousOn_inv_mul_log_sq) — `` ContinuousOn (fun t : ℝ => (t * Real.log t ^ 2)⁻¹) (Set.uIcc a x) ``
 - [`Stage3.integrable_theta_term`](../lean_stage3/PsiToPi.md#Stage3-integrable_theta_term) — `` IntervalIntegrable (fun t => θ t / (t * Real.log t ^ 2)) volume a x ``
@@ -405,10 +411,6 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ArgCount.sCrude_holds`](../lean_stage3/ArgCount.md#ArgCount-sCrude_holds) — `` Stage3.StmtSCrude Stage3.argS 15 600 ``
 - [`ArgCount.rvM_crude`](../lean_stage3/ArgCount.md#ArgCount-rvM_crude) — `` riemannZeta.Riemann_vonMangoldt_bound 112 0 698 ``
 
-### [`TableRoute`](../lean_stage3/TableRoute.md) — 1
-
-- ★ [`TableRoute.rowN`](../lean_stage3/TableRoute.md#TableRoute-rowN) — *def*
-
 ### [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md) — 24
 
 - [`VonKoch.E`](../lean_stage3/VonKochScaffold.md#VonKoch-E) — *def*
@@ -435,6 +437,23 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`VonKoch.RH_of_no_zero_right_of_half`](../lean_stage3/VonKochScaffold.md#VonKoch-RH_of_no_zero_right_of_half) — `` RiemannHypothesis ``
 - [`VonKoch.RH_of_psiWeak`](../lean_stage3/VonKochScaffold.md#VonKoch-RH_of_psiWeak) — `` RiemannHypothesis ``
 - [`VonKoch.RH_iff_psiWeak`](../lean_stage3/VonKochScaffold.md#VonKoch-RH_iff_psiWeak) — `` RiemannHypothesis ↔ ∃ C > 0, ∃ x₀ : ℝ, Stage3.StmtPsiWeak C 3 x₀ ``
+
+### [`WeilOnLine`](../lean_stage3/WeilOnLine.md) — 1
+
+- [`WeilOnLine.conj_mem`](../lean_stage3/WeilOnLine.md#WeilOnLine-conj_mem) — `` (starRingEnd ℂ) (ρ : ℂ) ∈ Kadiri.NontrivialZeros ``
+
+### [`SpiralLink`](../lean_stage3/SpiralLink.md) — 10
+
+- [`SpiralLink.mirror_mem`](../lean_stage3/SpiralLink.md#SpiralLink-mirror_mem) — `` (1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros ``
+- [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ) — *def*
+- [`SpiralLink.mirrorZ_im`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_im) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ).im ``
+- [`SpiralLink.mirrorZ_re`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_re) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re ``
+- [`SpiralLink.mirrorZ_eq_iff`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_eq_iff) — `` mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2 ``
+- ★ [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) — *def*
+- ★ [`SpiralLink.OneAtEachHeight`](../lean_stage3/SpiralLink.md#SpiralLink-OneAtEachHeight) — *def*
+- ★ [`SpiralLink.rh_iff_spiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_spiralLink) — `` RiemannHypothesis ↔ SpiralLink ``
+- [`SpiralLink.rh_iff_one_at_each_height`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_one_at_each_height) — `` RiemannHypothesis ↔ OneAtEachHeight ``
+- ★ [`SpiralLink.spiralLink_iff_one`](../lean_stage3/SpiralLink.md#SpiralLink-spiralLink_iff_one) — `` SpiralLink ↔ OneAtEachHeight ``
 
 ### [`ZeroSum`](../lean_stage3/ZeroSum.md) — 7
 
@@ -568,17 +587,26 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`PiToPsi.RH_of_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-RH_of_schoenfeldWeak) — `` RiemannHypothesis ``
 - [`PiToPsi.RH_iff_schoenfeldWeak`](../lean_stage3/PiToPsi.md#PiToPsi-RH_iff_schoenfeldWeak) — `` RiemannHypothesis ↔ ∃ C x₀ : ℝ, StmtSchoenfeldWeak C 1 x₀ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li ``
 
-### [`CellResidual`](../lean_stage3/CellResidual.md) — 11
+### [`CellResidual`](../lean_stage3/CellResidual.md) — 16
 
 - [`CellResidual.resid`](../lean_stage3/CellResidual.md#CellResidual-resid) — *def*
-- ★ [`CellResidual.cellResid`](../lean_stage3/CellResidual.md#CellResidual-cellResid) — *def*
-- ★ [`CellResidual.cellSize`](../lean_stage3/CellResidual.md#CellResidual-cellSize) — *def*
+- [`CellResidual.cellResid`](../lean_stage3/CellResidual.md#CellResidual-cellResid) — *def*
+- [`CellResidual.cellSize`](../lean_stage3/CellResidual.md#CellResidual-cellSize) — *def*
 - ★ [`CellResidual.CellsSqrt`](../lean_stage3/CellResidual.md#CellResidual-CellsSqrt) — *def*
 - [`CellResidual.stencilR_abs_le`](../lean_stage3/CellResidual.md#CellResidual-stencilR_abs_le) — `` |stencilR n g r| ≤ B * (1 + t) ^ n ``
+- [`CellResidual.stencilR_one`](../lean_stage3/CellResidual.md#CellResidual-stencilR_one) — `` stencilR 1 g r = g r - g (r - 1) ``
 - [`CellResidual.weak_nonneg`](../lean_stage3/CellResidual.md#CellResidual-weak_nonneg) — `` StmtSchoenfeldWeak (max C 0) 1 (max x₀ 2) (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li ``
 - [`CellResidual.resid_le`](../lean_stage3/CellResidual.md#CellResidual-resid_le) — `` |resid a m| ≤ (C * Real.sqrt 2 * Real.log 2) * (((m : ℝ) + 1) * (2 : ℝ) ^ ((m : ℝ) / 2)) ``
 - [`CellResidual.cells_of_schoenfeldWeak`](../lean_stage3/CellResidual.md#CellResidual-cells_of_schoenfeldWeak) — `` CellsSqrt (C * Real.sqrt 2 * Real.log 2) r₀ ``
-- ★ [`CellResidual.cells_of_RH`](../lean_stage3/CellResidual.md#CellResidual-cells_of_RH) — `` ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ ``
-- [`CellResidual.tableFrom_cast`](../lean_stage3/CellResidual.md#CellResidual-tableFrom_cast) — `` ((Construction.tableFrom N r d : ℤ) : ℝ) = stencilR (d + 1) f r ``
-- ★ [`CellResidual.table_cell_eq`](../lean_stage3/CellResidual.md#CellResidual-table_cell_eq) — `` ((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r = cellResid 1 r d ``
+- [`CellResidual.cells_of_RH`](../lean_stage3/CellResidual.md#CellResidual-cells_of_RH) — `` ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ ``
+- [`CellResidual.step_le`](../lean_stage3/CellResidual.md#CellResidual-step_le) — `` |resid a r - resid a (r - 1)| ≤ C * cellSize r 0 ``
+- [`CellResidual.two_rpow_half_ge`](../lean_stage3/CellResidual.md#CellResidual-two_rpow_half_ge) — `` (4 : ℝ) / 3 ≤ (2 : ℝ) ^ ((1 : ℝ) / 2) ``
+- [`CellResidual.ladder_le`](../lean_stage3/CellResidual.md#CellResidual-ladder_le) — `` |resid a (r₀ + (n : ℤ))| ≤ M + 4 * (|C| * (1 + (2 : ℝ) ^ (-(1 : ℝ) / 2))) * ((r₀ : ℝ) + n + 1) * (2 : ℝ) ^ (((r₀ : ℝ) + n) / 2) ``
+- [`CellResidual.base_bound`](../lean_stage3/CellResidual.md#CellResidual-base_bound) — `` ∃ M : ℝ, ∀ a ∈ Set.Icc (1 : ℝ) 2, |resid a r₀| ≤ M ``
+- [`CellResidual.schoenfeldWeak_of_cells`](../lean_stage3/CellResidual.md#CellResidual-schoenfeldWeak_of_cells) — `` ∃ C' x₁ : ℝ, StmtSchoenfeldWeak C' 1 x₁ (fun x => (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li ``
+- [`CellResidual.RH_iff_cells`](../lean_stage3/CellResidual.md#CellResidual-RH_iff_cells) — `` RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀ ``
+
+### [`OneChain`](../lean_stage3/OneChain.md) — 1
+
+- ★ [`OneChain.spiralLink_iff_cells`](../lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells) — `` SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀ ``
 

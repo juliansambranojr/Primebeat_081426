@@ -7,7 +7,7 @@ flowchart LR
   n5["<b>tsum_split</b><br/>∑' ρ, (S σ).indicator (fun ρ =＞ LadderMean.coef ρ * ratio q a b …"]:::thm
   n6["<b>tendsto_full</b><br/>Tendsto (fun k : ℕ =＞ ∑' ρ, (S σ).indicator (fun ρ =＞ LadderMean…"]:::thm
   n7["<b>filter_attained_false</b><br/>False"]:::thm
-  n8["<b>attained_psi ■</b><br/>RiemannHypothesis"]:::thm
+  n8["<b>attained_psi</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>ZeroSummable</b><br/>summable_norm_coef"]):::ext
   x1(["<b>FilterLadder</b><br/>Wn_nonneg<br/>filtered_modes_small_sq"]):::ext
   x2(["<b>FiniteOffLine</b><br/>mem_ZF<br/>norm_two_cpow"]):::ext
@@ -15,6 +15,7 @@ flowchart LR
   x4(["<b>LadderMean</b><br/>mean_extract"]):::ext
   x5(["<b>FilterAccum</b><br/>finite_accumulation_false"]):::ext
   x6(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x7(["<b>OneChain</b><br/>spiralLink_of_attained_psi"]):::ext
   n0 --> n2
   n1 --> n4
   n1 --> n5
@@ -27,6 +28,7 @@ flowchart LR
   n6 --> n7
   n7 --> n8
   n7 -.-> x5
+  n8 -.-> x7
   x0 -.-> n1
   x1 -.-> n2
   x1 -.-> n6

@@ -7,7 +7,7 @@ CountEuler — block N3-E of `lean_stage3/design/countmodes.md`, from its sectio
 46 theorems, 14 definitions, 913 lines. 
 
 **Imports:** [`AliasClass`](../lean_stage3/AliasClass.md), [`CountReduction`](../lean_stage3/CountReduction.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`OneChain`](../lean_stage3/OneChain.md)
 
 ## The picture
 
@@ -123,7 +123,7 @@ flowchart LR
   n12["<b>term_class</b><br/>Tendsto (fun m : ℕ =＞ ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop …"]:::thm
   n13["<b>term_other</b><br/>Tendsto (fun m : ℕ =＞ ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop …"]:::thm
   n14["<b>core</b><br/>False"]:::thm
-  n15["<b>euler_exposed_false ■</b><br/>∃ E : ℝ, σ ≤ E ∧ E ＜ Θ ∧ ∀ (ρ₁ : Kadiri.NontrivialZeros), E ＜ (ρ…"]:::thm
+  n15["<b>euler_exposed_false</b><br/>∃ E : ℝ, σ ≤ E ∧ E ＜ Θ ∧ ∀ (ρ₁ : Kadiri.NontrivialZeros), E ＜ (ρ…"]:::thm
   x0(["<b>CountModes</b><br/>4 theorems"]):::ext
   x1(["<b>diagram 1</b><br/>11 theorems"]):::ext
   x2(["<b>FiniteOffLinePi</b><br/>norm_order_mul<br/>ordR_nonneg"]):::ext
@@ -131,6 +131,7 @@ flowchart LR
   x4(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>summable_J"]):::ext
   x5(["<b>ZeroSummable</b><br/>summable_order_div"]):::ext
   x6(["<b>FiniteOffLine</b><br/>norm_two_cpow"]):::ext
+  x7(["<b>OneChain</b><br/>no_exposed_zero"]):::ext
   n0 --> n2
   n1 --> n4
   n1 --> n5
@@ -149,6 +150,7 @@ flowchart LR
   n8 --> n12
   n8 --> n13
   n9 --> n14
+  n15 -.-> x7
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n11
@@ -1807,5 +1809,7 @@ line 893 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.no_exposed_zero`](../lean_stage3/OneChain.md#OneChain-no_exposed_zero) (OneChain) — `` ∃ E : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ (ρ₁ : NontrivialZeros), E < (ρ₁:ℂ).re → ∀ κ r₀ : ℝ, 0 ≤ κ → r₀ < ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ → (∀ ρ : NontrivialZeros, σ ≤ (ρ:ℂ).re … ``
 

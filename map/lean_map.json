@@ -1652,6 +1652,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.table_cell_fixed_row_two",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
@@ -7995,6 +7996,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.table_cell_fixed_row_two",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.stencilR_cast",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum"
@@ -20369,7 +20371,9 @@
      "lean_stage3/Stage3/ZeroSummable.lean::ZeroSummable.summable_norm_coef"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained"
+    ]
    }
   ]
  },
@@ -21393,7 +21397,8 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.cells_of_schoenfeldWeak",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
-     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink"
     ]
    },
    {
@@ -21429,7 +21434,9 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.ladder_le",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.schoenfeldWeak_of_cells",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.step_le",
-     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid"
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells"
     ]
    },
    {
@@ -21846,7 +21853,9 @@
      "lean_stage3/Stage3/Statement.lean::Stage3.StmtSchoenfeldWeak"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells"
+    ]
    },
    {
     "kind": "theorem",
@@ -21972,7 +21981,9 @@
      "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink"
+    ]
    }
   ]
  },
@@ -23159,7 +23170,8 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_join",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.off_line_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
-     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction"
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.structural_contradiction",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
     ]
    },
    {
@@ -23526,7 +23538,9 @@
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
+    ]
    },
    {
     "kind": "theorem",
@@ -26635,7 +26649,9 @@
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.no_exposed_zero"
+    ]
    }
   ]
  },
@@ -31442,7 +31458,9 @@
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite_accumulation"
+    ]
    }
   ]
  },
@@ -31978,7 +31996,9 @@
      "lean_stage3/Stage3/LandauWindow.lean::LandauWindow.rh_of_zeroFree_half"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained_psi"
+    ]
    }
   ]
  },
@@ -34179,7 +34199,9 @@
      "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite"
+    ]
    }
   ]
  },
@@ -47035,6 +47057,295 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/OneChain.lean",
+  "module": "Stage3.OneChain",
+  "stem": "OneChain",
+  "header": "OneChain — block J4 of `lean_stage3/design/closedloop.md`. 2026-11-23. The capstone: Julian's closed loop tied to the tree's main theorems, so that the loop and the tree are one chain of theorems.",
+  "imports": [
+   "Stage3.ClosedLoopChain",
+   "Stage3.CellResidual",
+   "Stage3.AttainedPi",
+   "Stage3.FilterAccum",
+   "Stage3.CountEuler"
+  ],
+  "opens": [
+   "ClosedLoopJoin",
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "OneChain"
+  ],
+  "lines": 154,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/AttainedPi.lean",
+   "lean_stage3/Stage3/CellResidual.lean",
+   "lean_stage3/Stage3/ClosedLoopChain.lean",
+   "lean_stage3/Stage3/CountEuler.lean",
+   "lean_stage3/Stage3/FilterAccum.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_cells",
+    "ns": "OneChain",
+    "full": "OneChain.spiralLink_iff_cells",
+    "line": 54,
+    "why": "The loop and the table. The spiral link holds exactly when every cell of every dyadic ladder stays at square-root size: a statement about the count of primes with no zero in it.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀",
+    "file": "lean_stage3/Stage3/OneChain.lean",
+    "id": "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.RH_iff_cells",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_chain",
+    "ns": "OneChain",
+    "full": "OneChain.one_chain",
+    "line": 61,
+    "why": "One chain. The Riemann hypothesis, the spiral link, one zero at each height, the restoring force at rest at every zero, and every cell of every dyadic ladder at square-root size are one statement.",
+    "sorry": false,
+    "needs": [],
+    "proves": "(RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0) ∧ (SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀)",
+    "file": "lean_stage3/Stage3/OneChain.lean",
+    "id": "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.CellsSqrt",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.OneAtEachHeight",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "table_of_spiralLink",
+    "ns": "OneChain",
+    "full": "OneChain.table_of_spiralLink",
+    "line": 71,
+    "why": "From the loop to the integer table. If the spiral link holds, every cell of the integer table stays within square-root size of the smooth cell.",
+    "sorry": false,
+    "needs": [
+     "h : SpiralLink.SpiralLink"
+    ],
+    "proves": "∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → |((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d + 1) (fun m : ℤ => Stage3.Li ((2 : ℝ) ^ (m : ℝ))) r| ≤ C * CellResidual.cellSize r d",
+    "file": "lean_stage3/Stage3/OneChain.lean",
+    "id": "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
+    "stmt": [],
+    "proof": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "exact": false,
+    "uses": [
+     "lean/Construction.lean::Construction.tableFrom",
+     "lean/Nonvanishing.lean::Nonvanishing.stencilR",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.cellSize",
+     "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/TableRoute.lean::TableRoute.rowN"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_of_finite",
+    "ns": "OneChain",
+    "full": "OneChain.spiralLink_of_finite",
+    "line": 79,
+    "why": "From the count's ladder to the loop, finitely many zeros off the line.",
+    "sorry": false,
+    "needs": [
+     "F : Finset NontrivialZeros",
+     "hF : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≠ 1 / 2 → ρ ∈ F",
+     "C : ℝ",
+     "hrows : ∀ᶠ r : ℕ in Filter.atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) - Stage3.Li ((2:ℝ) ^ r)| ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r"
+    ],
+    "proves": "SpiralLink.SpiralLink",
+    "file": "lean_stage3/Stage3/OneChain.lean",
+    "id": "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FiniteOffLinePi.lean::FiniteOffLinePi.finite_off_line_pi",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_of_attained",
+    "ns": "OneChain",
+    "full": "OneChain.spiralLink_of_attained",
+    "line": 87,
+    "why": "From the count's ladder to the loop, a largest real part attained.",
+    "sorry": false,
+    "needs": [
+     "ρ₀ : NontrivialZeros",
+     "hmax : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re",
+     "C : ℝ",
+     "hrows : ∀ᶠ r : ℕ in Filter.atTop, |(Nat.primeCounting ⌊(2:ℝ) ^ r⌋₊ : ℝ) - Stage3.Li ((2:ℝ) ^ r)| ≤ C * (r : ℝ) ^ 2 * Real.sqrt 2 ^ r"
+    ],
+    "proves": "SpiralLink.SpiralLink",
+    "file": "lean_stage3/Stage3/OneChain.lean",
+    "id": "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.attained_off_line_pi",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/AttainedPi.lean::AttainedPi.attained_off_line_pi",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_of_attained_psi",
+    "ns": "OneChain",
+    "full": "OneChain.spiralLink_of_attained_psi",
+    "line": 95,
+    "why": "From ψ's ladder to the loop, a largest real part attained.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "ρ₀ : NontrivialZeros",
+     "hmax : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re"
+    ],
+    "proves": "SpiralLink.SpiralLink",
+    "file": "lean_stage3/Stage3/OneChain.lean",
+    "id": "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained_psi",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAttained.lean::FilterAttained.attained_psi",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_of_finite_accumulation",
+    "ns": "OneChain",
+    "full": "OneChain.spiralLink_of_finite_accumulation",
+    "line": 103,
+    "why": "From ψ's ladder to the loop, modes accumulating at finitely many points.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hfin : ∀ σ : ℝ, 1/2 < σ → ∃ P : Finset ℂ, (∀ p ∈ P, p ≠ 0) ∧ (∀ ε : ℝ, 0 < ε → {z : ℂ | ∃ ρ : NontrivialZeros, σ ≤ (ρ : ℂ).re ∧ (2:ℂ) ^ (ρ : ℂ) = z ∧ ∀ p ∈ P, ε ≤ ‖z - p‖}.Finite) ∧ (∀ ρ : NontrivialZeros, σ < (ρ : ℂ).re → (2:ℂ) ^ (ρ : ℂ) ∉ P)"
+    ],
+    "proves": "SpiralLink.SpiralLink",
+    "file": "lean_stage3/Stage3/OneChain.lean",
+    "id": "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite_accumulation",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.rh_of_finite_accumulation",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/FilterAccum.lean::FilterAccum.rh_of_finite_accumulation",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "no_exposed_zero",
+    "ns": "OneChain",
+    "full": "OneChain.no_exposed_zero",
+    "line": 118,
+    "why": "The count's ladder excludes an exposed zero. Under the square-root bound on the count at the doublings there is an exponent below the bound on the real parts such that no zero right of it has its mode strictly outside a disc, centred on the ray opposite to it, that holds the mode of every other zero right of the line.",
+    "sorry": false,
+    "needs": [
+     "hH : ∀ k : ℕ, 1 ≤ k → |(Nat.primeCounting ⌊(2:ℝ)^k⌋₊ : ℝ) - Stage3.Li ((2:ℝ)^k)| ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k",
+     "hσ : 1/2 < σ",
+     "hσΘ : σ < Θ",
+     "hΘ1 : Θ ≤ 1",
+     "hΘ : ∀ ρ : NontrivialZeros, (ρ:ℂ).re ≤ Θ"
+    ],
+    "proves": "∃ E : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ (ρ₁ : NontrivialZeros), E < (ρ₁:ℂ).re → ∀ κ r₀ : ℝ, 0 ≤ κ → r₀ < ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ → (∀ ρ : NontrivialZeros, σ ≤ (ρ:ℂ).re → (2:ℂ)^(ρ:ℂ) ≠ (2:ℂ)^(ρ₁:ℂ) → ‖(2:ℂ)^(ρ:ℂ) + (κ:ℂ) * ((2:ℂ)^(ρ₁:ℂ) / ‖(2:ℂ)^(ρ₁:ℂ)‖)‖ ≤ r₀) → False",
+    "file": "lean_stage3/Stage3/OneChain.lean",
+    "id": "lean_stage3/Stage3/OneChain.lean::OneChain.no_exposed_zero",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.euler_exposed_false",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/CountEuler.lean::CountEuler.euler_exposed_false",
+     "lean_stage3/Stage3/PsiToPi.lean::Stage3.Li"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/PerronKernel.lean",
   "module": "Stage3.PerronKernel",
   "stem": "PerronKernel",
@@ -51495,6 +51806,10 @@
      "lean_stage3/Stage3/JointFloorGate.lean::JointFloorGate.relErrWindow_floor_of_RH",
      "lean_stage3/Stage3/JointWindowDial.lean::JointWindowDial.schoenfeldWeakTheta_of_window",
      "lean_stage3/Stage3/LineBound.lean::Slice8.schoenfeldWeak_of_psiWeak_three",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.no_exposed_zero",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.pi_fixed_row",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiToPsi.lean::PiToPsi.Li_mul_log_sub_integral",
@@ -53880,6 +54195,13 @@
     ],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_iff_cells",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_attained_psi",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite_accumulation",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
     ]
@@ -53902,6 +54224,7 @@
     "uses": [],
     "layer": "count",
     "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
     ]
@@ -53929,7 +54252,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
+    ]
    },
    {
     "kind": "theorem",
@@ -53989,7 +54314,9 @@
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain"
+    ]
    }
   ]
  },
@@ -59205,6 +59532,7 @@
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_eq",
      "lean_stage3/Stage3/CellResidual.lean::CellResidual.table_cell_resid",
      "lean_stage3/Stage3/FixedRowTwo.lean::FixedRowTwo.table_cell_fixed_row_two",
+     "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
      "lean_stage3/Stage3/PiFixedRow.lean::PiFixedRow.table_cell_fixed_row",
      "lean_stage3/Stage3/PiZeros.lean::PiZeros.table_cell_eq_zero_sum",
      "lean_stage3/Stage3/TableDepths.lean::TableDepths.cell_ne_zero_gen",
@@ -82964,11 +83292,12 @@
    "Stage3.CountEuler",
    "Stage3.ClosedLoopJoin",
    "Stage3.SpiralLink",
-   "Stage3.ClosedLoopChain"
+   "Stage3.ClosedLoopChain",
+   "Stage3.OneChain"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 182,
+  "lines": 183,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -83044,6 +83373,7 @@
    "lean_stage3/Stage3/MirrorArea.lean",
    "lean_stage3/Stage3/Mollified.lean",
    "lean_stage3/Stage3/MollifiedMean.lean",
+   "lean_stage3/Stage3/OneChain.lean",
    "lean_stage3/Stage3/PerronKernel.lean",
    "lean_stage3/Stage3/PerronTwo.lean",
    "lean_stage3/Stage3/PiFixedRow.lean",

@@ -1,24 +1,21 @@
-# What `CountEuler.euler_exposed_false` rests on
+# What `OneChain.spiralLink_of_finite_accumulation` rests on
 
-[`CountEuler.euler_exposed_false`](../lean_stage3/CountEuler.md#CountEuler-euler_exposed_false) in `lean_stage3/Stage3/CountEuler.lean`, line 893.
+[`OneChain.spiralLink_of_finite_accumulation`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_finite_accumulation) in `lean_stage3/Stage3/OneChain.lean`, line 103.
 
-**Why.** No mode outside a disc holding the others (block N3-E). Let the count of primes at the doublings stay within `C·k²·√2^k` of `Li`, let `1/2 < σ < Θ ≤ 1`, and let every zero have real part at most `Θ`. Then there is `E` with `σ ≤ E < Θ` such that no zero `ρ₁` with real part above `E` has its mode `z₁ = 2^ρ₁` strictly outside a disc, centred at `−κ·z₁/|z₁|` (`κ ≥ 0`) on the ray opposite to it, of radius `r₀ < |z₁| + κ`, which holds every other mode of the zeros right of `σ`.
+**Why.** From ψ's ladder to the loop, modes accumulating at finitely many points.
 
 **Proves**
 
 ```lean
-∃ E : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ (ρ₁ : Kadiri.NontrivialZeros), E < (ρ₁:ℂ).re → ∀ κ r₀ : ℝ, 0 ≤ κ → r₀ < ‖(2:ℂ)^(ρ₁:ℂ)‖ + κ → (∀ ρ : Kadiri.NontrivialZeros, σ ≤ (ρ:ℂ).re → (2:ℂ)^(ρ:ℂ) ≠ (2:ℂ)^(ρ₁:ℂ) → ‖(2:ℂ)^(ρ:ℂ) + (κ:ℂ) * ((2:ℂ)^(ρ₁:ℂ) / ‖(2:ℂ)^(ρ₁:ℂ)‖)‖ ≤ r₀) → False
+SpiralLink.SpiralLink
 ```
 
 **Needs** (its hypotheses)
 
-  - `` hH : ∀ k : ℕ, 1 ≤ k → |(Nat.primeCounting ⌊(2:ℝ)^k⌋₊ : ℝ) - Stage3.Li ((2:ℝ)^k)| ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k ``
-  - `` hσ : 1/2 < σ ``
-  - `` hσΘ : σ < Θ ``
-  - `` hΘ1 : Θ ≤ 1 ``
-  - `` hΘ : ∀ ρ : Kadiri.NontrivialZeros, (ρ:ℂ).re ≤ Θ ``
+  - `` hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k ``
+  - `` hfin : ∀ σ : ℝ, 1/2 < σ → ∃ P : Finset ℂ, (∀ p ∈ P, p ≠ 0) ∧ (∀ ε : ℝ, 0 < ε → {z : ℂ | ∃ ρ : NontrivialZeros, σ ≤ (ρ : ℂ).re ∧ (2:ℂ) ^ (ρ : ℂ) = z ∧ ∀ p ∈ P, ε ≤ ‖z - p‖}.Finite) ∧ (∀ ρ : NontrivialZeros, σ < (ρ : ℂ).re → (2:ℂ) ^ (ρ : ℂ) ∉ P) ``
 
-Behind it: 528 theorems and 98 definitions in 47 files. Every one is listed below; Lean recorded each step.
+Behind it: 459 theorems and 91 definitions in 51 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -26,109 +23,116 @@ Behind it: 528 theorems and 98 definitions in 47 files. Every one is listed belo
 flowchart LR
   f0["<b>AliasClass</b><br/>3 used"]:::thm
   f1["<b>Assembly</b><br/>2 used"]:::thm
-  f2["<b>DirichletMean</b><br/>7 used"]:::thm
-  f3["<b>DirichletMeanW</b><br/>5 used"]:::thm
-  f4["<b>Glue</b><br/>1 used"]:::thm
-  f5["<b>JensenCount</b><br/>17 used"]:::thm
-  f6["<b>ContourShift</b><br/>28 used"]:::thm
-  f7["<b>LeftKernel</b><br/>9 used"]:::thm
-  f8["<b>LeftSmooth</b><br/>47 used"]:::thm
-  f9["<b>CellFixedRow</b><br/>1 used"]:::thm
-  f10["<b>LineBound</b><br/>4 used"]:::thm
-  f11["<b>Mollified</b><br/>15 used"]:::thm
-  f12["<b>PerronKernel</b><br/>25 used"]:::thm
-  f13["<b>PerronTwo</b><br/>10 used"]:::thm
-  f14["<b>PsiToPi</b><br/>6 used"]:::thm
-  f15["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f16["<b>RealSegment</b><br/>4 used"]:::thm
-  f17["<b>RvMCrude</b><br/>3 used"]:::thm
-  f18["<b>ArgCrude</b><br/>3 used"]:::thm
-  f19["<b>SquareMean</b><br/>6 used"]:::thm
-  f20["<b>Stirling</b><br/>20 used"]:::thm
-  f21["<b>ArgIdentity</b><br/>54 used"]:::thm
-  f22["<b>ArgLegs</b><br/>10 used"]:::thm
-  f23["<b>ArgCount</b><br/>14 used"]:::thm
-  f24["<b>WeilBands</b><br/>1 used"]:::thm
-  f25["<b>WeilOnLine</b><br/>3 used"]:::thm
-  f26["<b>ZeroSum</b><br/>7 used"]:::thm
-  f27["<b>FiniteOffLine</b><br/>6 used"]:::thm
-  f28["<b>PiRemainder</b><br/>7 used"]:::thm
-  f29["<b>PiZeros</b><br/>16 used"]:::thm
-  f30["<b>CountModes</b><br/>30 used"]:::thm
-  f31["<b>FiniteOffLinePi</b><br/>6 used"]:::thm
-  f32["<b>AttainedPi</b><br/>5 used"]:::thm
-  f33["<b>ZetaEM</b><br/>26 used"]:::thm
-  f34["<b>MollifiedMean</b><br/>15 used"]:::thm
-  f35["<b>ZeroSquares</b><br/>19 used"]:::thm
-  f36["<b>ZeroDensity</b><br/>11 used"]:::thm
-  f37["<b>ZeroSummable</b><br/>13 used"]:::thm
-  f38["<b>ZetaGrowth</b><br/>20 used"]:::thm
-  f39["<b>BoxBounds</b><br/>3 used"]:::thm
-  f40["<b>EdgeBound</b><br/>14 used"]:::thm
-  f41["<b>EdgeNum</b><br/>9 used"]:::thm
-  f42["<b>GlueNum</b><br/>6 used"]:::thm
-  f43["<b>ExplicitTwo</b><br/>16 used"]:::thm
-  f44["<b>FixedRowTwo</b><br/>8 used"]:::thm
-  f45["<b>CountReduction</b><br/>13 used"]:::thm
-  f46["<b>CountEuler</b><br/>euler_exposed_false"]:::end_
-  f2 --> f3
-  f1 --> f6
-  f5 --> f6
-  f4 --> f8
-  f6 --> f8
+  f2["<b>CellZeros</b><br/>1 used"]:::thm
+  f3["<b>ClosedLoopJoin</b><br/>2 used"]:::thm
+  f4["<b>DirichletMean</b><br/>7 used"]:::thm
+  f5["<b>DirichletMeanW</b><br/>5 used"]:::thm
+  f6["<b>Glue</b><br/>1 used"]:::thm
+  f7["<b>JensenCount</b><br/>17 used"]:::thm
+  f8["<b>ContourShift</b><br/>28 used"]:::thm
+  f9["<b>LadderMean</b><br/>4 used"]:::thm
+  f10["<b>LandauWindow</b><br/>2 used"]:::thm
+  f11["<b>LeftKernel</b><br/>9 used"]:::thm
+  f12["<b>LeftSmooth</b><br/>47 used"]:::thm
+  f13["<b>CellFixedRow</b><br/>1 used"]:::thm
+  f14["<b>LineBound</b><br/>4 used"]:::thm
+  f15["<b>Mollified</b><br/>15 used"]:::thm
+  f16["<b>PerronKernel</b><br/>25 used"]:::thm
+  f17["<b>PerronTwo</b><br/>10 used"]:::thm
+  f18["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f19["<b>RealSegment</b><br/>4 used"]:::thm
+  f20["<b>RvMCrude</b><br/>3 used"]:::thm
+  f21["<b>ArgCrude</b><br/>3 used"]:::thm
+  f22["<b>SpiralLink</b><br/>1 used"]:::thm
+  f23["<b>SquareMean</b><br/>6 used"]:::thm
+  f24["<b>Stirling</b><br/>20 used"]:::thm
+  f25["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f26["<b>ArgLegs</b><br/>10 used"]:::thm
+  f27["<b>ArgCount</b><br/>14 used"]:::thm
+  f28["<b>WeilBands</b><br/>1 used"]:::thm
+  f29["<b>WeilOnLine</b><br/>3 used"]:::thm
+  f30["<b>ZeroSum</b><br/>7 used"]:::thm
+  f31["<b>FiniteOffLine</b><br/>6 used"]:::thm
+  f32["<b>FiniteOffLinePi</b><br/>3 used"]:::thm
+  f33["<b>PiRemainder</b><br/>7 used"]:::thm
+  f34["<b>PiZeros</b><br/>1 used"]:::thm
+  f35["<b>ZetaEM</b><br/>26 used"]:::thm
+  f36["<b>MollifiedMean</b><br/>15 used"]:::thm
+  f37["<b>ZeroSquares</b><br/>19 used"]:::thm
+  f38["<b>ZeroDensity</b><br/>11 used"]:::thm
+  f39["<b>ZeroSummable</b><br/>14 used"]:::thm
+  f40["<b>ZetaGrowth</b><br/>20 used"]:::thm
+  f41["<b>BoxBounds</b><br/>3 used"]:::thm
+  f42["<b>EdgeBound</b><br/>14 used"]:::thm
+  f43["<b>EdgeNum</b><br/>9 used"]:::thm
+  f44["<b>GlueNum</b><br/>6 used"]:::thm
+  f45["<b>ExplicitTwo</b><br/>16 used"]:::thm
+  f46["<b>FixedRowTwo</b><br/>3 used"]:::thm
+  f47["<b>FilterLadder</b><br/>24 used"]:::thm
+  f48["<b>FilterAttained</b><br/>12 used"]:::thm
+  f49["<b>FilterAccum</b><br/>13 used"]:::thm
+  f50["<b>OneChain</b><br/>spiralLink_of_finite_accumulation"]:::end_
+  f4 --> f5
+  f1 --> f8
   f7 --> f8
-  f8 --> f9
+  f6 --> f12
+  f8 --> f12
+  f11 --> f12
   f12 --> f13
-  f5 --> f15
-  f17 --> f18
-  f17 --> f20
-  f18 --> f21
+  f16 --> f17
+  f7 --> f18
   f20 --> f21
-  f21 --> f22
-  f15 --> f23
-  f22 --> f23
-  f16 --> f27
-  f23 --> f27
+  f3 --> f22
+  f20 --> f24
+  f21 --> f25
+  f24 --> f25
+  f25 --> f26
+  f18 --> f27
   f26 --> f27
-  f1 --> f28
-  f27 --> f28
-  f1 --> f29
-  f14 --> f29
-  f27 --> f29
-  f29 --> f30
-  f29 --> f31
+  f19 --> f31
+  f27 --> f31
+  f30 --> f31
+  f2 --> f32
   f31 --> f32
-  f3 --> f34
-  f11 --> f34
-  f33 --> f34
-  f5 --> f35
-  f19 --> f35
-  f34 --> f35
+  f1 --> f33
+  f31 --> f33
+  f1 --> f34
+  f31 --> f34
+  f5 --> f36
+  f15 --> f36
   f35 --> f36
-  f24 --> f37
-  f25 --> f37
-  f27 --> f37
+  f7 --> f37
+  f23 --> f37
   f36 --> f37
-  f6 --> f38
+  f37 --> f38
+  f9 --> f39
+  f28 --> f39
+  f29 --> f39
+  f31 --> f39
   f38 --> f39
-  f38 --> f40
-  f39 --> f41
+  f8 --> f40
   f40 --> f41
-  f41 --> f42
-  f8 --> f43
-  f10 --> f43
-  f13 --> f43
+  f40 --> f42
+  f41 --> f43
   f42 --> f43
-  f9 --> f44
-  f29 --> f44
   f43 --> f44
-  f28 --> f45
-  f30 --> f45
-  f32 --> f45
-  f37 --> f45
+  f12 --> f45
+  f14 --> f45
+  f17 --> f45
   f44 --> f45
-  f0 --> f46
+  f13 --> f46
   f45 --> f46
+  f32 --> f47
+  f33 --> f47
+  f34 --> f47
+  f46 --> f47
+  f0 --> f48
+  f39 --> f48
+  f47 --> f48
+  f10 --> f49
+  f48 --> f49
+  f22 --> f50
+  f49 --> f50
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -155,6 +159,15 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 - [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum) — *def*
 - [`Stage3.inv_le_dyadic_sum`](../lean_stage3/Assembly.md#Stage3-inv_le_dyadic_sum) — `` ∀ γ : ℝ, 1 ≤ γ → γ < 2 ^ (K + 1) → γ⁻¹ ≤ ∑ j ∈ Finset.range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (if γ < 2 ^ (j + 1) then 1 else 0) ``
+
+### [`CellZeros`](../lean_stage3/CellZeros.md) — 1
+
+- [`CellZeros.cpow_two_zpow`](../lean_stage3/CellZeros.md#CellZeros-cpow_two_zpow) — `` (((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n ``
+
+### [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md) — 2
+
+- [`ClosedLoopJoin.primeWeight`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-primeWeight) — *def*
+- [`ClosedLoopJoin.isHermitianHandshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-isHermitianHandshake) — *def*
 
 ### [`DirichletMean`](../lean_stage3/DirichletMean.md) — 7
 
@@ -228,6 +241,18 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ContourShift.analyticAt_conj_conj`](../lean_stage3/ContourShift.md#ContourShift-analyticAt_conj_conj) — `` AnalyticAt ℂ (fun w ↦ (starRingEnd ℂ) (g ((starRingEnd ℂ) w))) ((starRingEnd ℂ) p) ``
 - [`ContourShift.zeta_order_conj`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_conj) — `` analyticOrderNatAt riemannZeta ((starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
 - [`ContourShift.zeta_order_reflect`](../lean_stage3/ContourShift.md#ContourShift-zeta_order_reflect) — `` analyticOrderNatAt riemannZeta (1 - (starRingEnd ℂ) ρ) = analyticOrderNatAt riemannZeta ρ ``
+
+### [`LadderMean`](../lean_stage3/LadderMean.md) — 4
+
+- [`LadderMean.geom_mean_norm_le`](../lean_stage3/LadderMean.md#LadderMean-geom_mean_norm_le) — `` ‖((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r‖ ≤ 1 ``
+- [`LadderMean.geom_mean_tendsto_zero`](../lean_stage3/LadderMean.md#LadderMean-geom_mean_tendsto_zero) — `` Tendsto (fun N : ℕ => ((N : ℝ)⁻¹ : ℝ) • ∑ r ∈ range N, ξ ^ r) atTop (𝓝 0) ``
+- [`LadderMean.mean_extract`](../lean_stage3/LadderMean.md#LadderMean-mean_extract) — `` ∑' i, (if w i = w k then C i else 0) = 0 ``
+- [`LadderMean.coef`](../lean_stage3/LadderMean.md#LadderMean-coef) — *def*
+
+### [`LandauWindow`](../lean_stage3/LandauWindow.md) — 2
+
+- [`LandauWindow.zeta_neg_nat_ne_zero`](../lean_stage3/LandauWindow.md#LandauWindow-zeta_neg_nat_ne_zero) — `` riemannZeta (-(n : ℂ)) ≠ 0 ``
+- [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) — `` RiemannHypothesis ``
 
 ### [`LeftKernel`](../lean_stage3/LeftKernel.md) — 9
 
@@ -361,15 +386,6 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`PerronTwo.perron_sum_eq_integral_two`](../lean_stage3/PerronTwo.md#PerronTwo-perron_sum_eq_integral_two) — `` (∑' n : ℕ, (ArithmeticFunction.vonMangoldt n : ℂ) * perronI (x/n) (1 + 1/Real.log x) T) = (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv riemannZeta… ``
 - [`PerronTwo.explicit_formula_perron_two`](../lean_stage3/PerronTwo.md#PerronTwo-explicit_formula_perron_two) — `` ‖(Chebyshev.psi x : ℂ) - (2 * (Real.pi:ℂ) * Complex.I)⁻¹ * ∫ t in (-T)..T, (- deriv riemannZeta (((1 + 1/Real.log x : ℝ):ℂ) + Complex.I * t) / riemannZeta (((1 … ``
 
-### [`PsiToPi`](../lean_stage3/PsiToPi.md) — 6
-
-- ★ [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li) — *def*
-- [`Stage3.continuousOn_inv_log_sq`](../lean_stage3/PsiToPi.md#Stage3-continuousOn_inv_log_sq) — `` ContinuousOn (fun t : ℝ => 1 / Real.log t ^ 2) (Set.uIcc a x) ``
-- [`Stage3.continuousOn_inv_mul_log_sq`](../lean_stage3/PsiToPi.md#Stage3-continuousOn_inv_mul_log_sq) — `` ContinuousOn (fun t : ℝ => (t * Real.log t ^ 2)⁻¹) (Set.uIcc a x) ``
-- [`Stage3.integrable_theta_term`](../lean_stage3/PsiToPi.md#Stage3-integrable_theta_term) — `` IntervalIntegrable (fun t => θ t / (t * Real.log t ^ 2)) volume a x ``
-- [`Stage3.pi_sub_Li_eq`](../lean_stage3/PsiToPi.md#Stage3-pi_sub_Li_eq) — `` (Nat.primeCounting ⌊x⌋₊ : ℝ) - Li x = (θ x - x) / Real.log x + ∫ t in (2 : ℝ)..x, (θ t - t) / (t * Real.log t ^ 2) ``
-- [`Stage3.integral_A_rpow_le`](../lean_stage3/PsiToPi.md#Stage3-integral_A_rpow_le) — `` (∫ t in a..x, A * t ^ (-(1 : ℝ) / 2)) ≤ 2 * A * Real.sqrt x ``
-
 ### [`ReZetaCount`](../lean_stage3/ReZetaCount.md) — 19
 
 - [`ReZetaCount.G`](../lean_stage3/ReZetaCount.md#ReZetaCount-G) — *def*
@@ -410,6 +426,10 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.StmtArgIdentity`](../lean_stage3/ArgCrude.md#Stage3-StmtArgIdentity) — *def*
 - [`Stage3.StmtSCrude`](../lean_stage3/ArgCrude.md#Stage3-StmtSCrude) — *def*
 - [`Stage3.backlundArg_of_identity`](../lean_stage3/ArgCrude.md#Stage3-backlundArg_of_identity) — `` StmtBacklundArg θ B₁ B₃ ``
+
+### [`SpiralLink`](../lean_stage3/SpiralLink.md) — 1
+
+- ★ [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) — *def*
 
 ### [`SquareMean`](../lean_stage3/SquareMean.md) — 6
 
@@ -559,6 +579,12 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`FiniteOffLine.dyadic_count_le`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-dyadic_count_le) — `` ∑ j ∈ range (K + 1), ((2 : ℝ) ^ j)⁻¹ * (2 * |riemannZeta.N ((2 : ℝ) ^ (j + 1))| + weightedZeroHeightBucket) ≤ 3000 * ((K : ℝ) + 2) ^ 2 ``
 - [`FiniteOffLine.norm_two_cpow`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-norm_two_cpow) — `` ‖(2:ℂ) ^ ρ‖ = (2:ℝ) ^ ρ.re ``
 
+### [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md) — 3
+
+- [`FiniteOffLinePi.cpow_doubling`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-cpow_doubling) — `` (((2:ℝ) ^ r : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ r ``
+- [`FiniteOffLinePi.ordR`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) — *def*
+- [`FiniteOffLinePi.ordR_nonneg`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR_nonneg) — `` 0 ≤ ordR ρ ``
+
 ### [`PiRemainder`](../lean_stage3/PiRemainder.md) — 7
 
 - [`PiRemainder.Mlow`](../lean_stage3/PiRemainder.md#PiRemainder-Mlow) — *def*
@@ -569,74 +595,9 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`PiRemainder.zinv`](../lean_stage3/PiRemainder.md#PiRemainder-zinv) — *def*
 - [`PiRemainder.zinv_le_log`](../lean_stage3/PiRemainder.md#PiRemainder-zinv_le_log) — `` zinv x ≤ Mlow * 39000 * Real.log x ^ 2 ``
 
-### [`PiZeros`](../lean_stage3/PiZeros.md) — 16
+### [`PiZeros`](../lean_stage3/PiZeros.md) — 1
 
-- [`PiZeros.wt`](../lean_stage3/PiZeros.md#PiZeros-wt) — *def*
-- [`PiZeros.tr`](../lean_stage3/PiZeros.md#PiZeros-tr) — *def*
-- [`PiZeros.wt_continuousOn`](../lean_stage3/PiZeros.md#PiZeros-wt_continuousOn) — `` ContinuousOn wt (Set.uIcc 2 x) ``
-- [`PiZeros.integrable_mul_wt`](../lean_stage3/PiZeros.md#PiZeros-integrable_mul_wt) — `` IntervalIntegrable (fun t => f t * wt t) volume 2 x ``
-- [`PiZeros.tr_sub`](../lean_stage3/PiZeros.md#PiZeros-tr_sub) — `` tr (fun t => f t - g t) x = tr f x - tr g x ``
-- [`PiZeros.tr_const_mul`](../lean_stage3/PiZeros.md#PiZeros-tr_const_mul) — `` tr (fun t => c * f t) x = c * tr f x ``
-- [`PiZeros.tr_sum`](../lean_stage3/PiZeros.md#PiZeros-tr_sum) — `` tr (fun t => ∑ i ∈ s, f i t) x = ∑ i ∈ s, tr (f i) x ``
-- [`PiZeros.pi_sub_Li_eq_tr`](../lean_stage3/PiZeros.md#PiZeros-pi_sub_Li_eq_tr) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = tr (fun t => ((θ t - t : ℝ) : ℂ)) x ``
-- [`PiZeros.piMode`](../lean_stage3/PiZeros.md#PiZeros-piMode) — *def*
-- [`PiZeros.efRem`](../lean_stage3/PiZeros.md#PiZeros-efRem) — *def*
-- [`PiZeros.psiTheta`](../lean_stage3/PiZeros.md#PiZeros-psiTheta) — *def*
 - [`PiZeros.zeroPartialSum_eq_sum`](../lean_stage3/PiZeros.md#PiZeros-zeroPartialSum_eq_sum) — `` Stage3.zeroPartialSum t T = ∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * ((t : ℂ) ^ (ρ : ℂ) / (ρ : ℂ)) ``
-- [`PiZeros.integrable_ofReal_of_monotone`](../lean_stage3/PiZeros.md#PiZeros-integrable_ofReal_of_monotone) — `` IntervalIntegrable (fun t => ((f t : ℝ) : ℂ)) volume 2 x ``
-- [`PiZeros.integrable_cpow`](../lean_stage3/PiZeros.md#PiZeros-integrable_cpow) — `` IntervalIntegrable (fun t : ℝ => (t : ℂ) ^ ρ / ρ) volume 2 x ``
-- [`PiZeros.pi_eq_zero_sum`](../lean_stage3/PiZeros.md#PiZeros-pi_eq_zero_sum) — `` (((Nat.primeCounting ⌊x⌋₊ : ℝ) - Stage3.Li x : ℝ) : ℂ) = -∑ ρ ∈ ZF T, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * piMode (ρ : ℂ) x + tr (efRem T) x - tr psiTheta x ``
-- [`PiZeros.norm_tr_psiTheta_le`](../lean_stage3/PiZeros.md#PiZeros-norm_tr_psiTheta_le) — `` ‖tr psiTheta x‖ ≤ 8 * Real.sqrt x ``
-
-### [`CountModes`](../lean_stage3/CountModes.md) — 30
-
-- [`CountModes.norm_tail_le`](../lean_stage3/CountModes.md#CountModes-norm_tail_le) — `` ‖∫ x in Set.Ioi ((1 : ℕ) : ℝ), ((⌊x⌋ : ℂ) + 1 / 2 - (x : ℂ)) / (x : ℂ) ^ ((b : ℂ) + 1)‖ ≤ 1 / (2 * b) ``
-- [`CountModes.riemannZeta_ne_zero_of_Ioo`](../lean_stage3/CountModes.md#CountModes-riemannZeta_ne_zero_of_Ioo) — `` riemannZeta (b : ℂ) ≠ 0 ``
-- [`CountModes.im_ne_zero`](../lean_stage3/CountModes.md#CountModes-im_ne_zero) — `` (ρ : ℂ).im ≠ 0 ``
-- [`CountModes.J`](../lean_stage3/CountModes.md#CountModes-J) — *def*
-- [`CountModes.sub_ofReal_ne_zero`](../lean_stage3/CountModes.md#CountModes-sub_ofReal_ne_zero) — `` w - (s : ℂ) ≠ 0 ``
-- [`CountModes.continuous_integrand`](../lean_stage3/CountModes.md#CountModes-continuous_integrand) — `` Continuous (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s)) ``
-- [`CountModes.norm_integrand_le`](../lean_stage3/CountModes.md#CountModes-norm_integrand_le) — `` ‖Complex.exp ((k:ℂ) * (w - s)) / (w - s)‖ ≤ Real.exp (k * w.re) / |w.im| * Real.exp (-k * s) ``
-- [`CountModes.integral_exp_neg_mul`](../lean_stage3/CountModes.md#CountModes-integral_exp_neg_mul) — `` ∫ s in Set.Ioi (0:ℝ), Real.exp (-k * s) = 1 / k ``
-- [`CountModes.integrable_J`](../lean_stage3/CountModes.md#CountModes-integrable_J) — `` IntegrableOn (fun s : ℝ => Complex.exp ((k:ℂ) * (w - s)) / (w - s)) (Set.Ioi 0) ``
-- [`CountModes.norm_J_le`](../lean_stage3/CountModes.md#CountModes-norm_J_le) — `` ‖J k w‖ ≤ Real.exp (k * w.re) / (k * |w.im|) ``
-- [`CountModes.integrand_sub`](../lean_stage3/CountModes.md#CountModes-integrand_sub) — `` Complex.exp ((k:ℂ) * (w - s)) / (w - s) - Complex.exp (((1:ℕ):ℂ) * (w - s)) / (w - s) = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((w - s) * v) ``
-- [`CountModes.integral_inner`](../lean_stage3/CountModes.md#CountModes-integral_inner) — `` ∫ s in Set.Ioi (0:ℝ), Complex.exp ((w - s) * v) = Complex.exp ((v:ℂ) * w) / (v:ℂ) ``
-- [`CountModes.integrable_prod`](../lean_stage3/CountModes.md#CountModes-integrable_prod) — `` Integrable (Function.uncurry fun (s v : ℝ) => Complex.exp ((w - s) * v)) ((volume.restrict (Set.Ioi (0:ℝ))).prod (volume.restrict (Set.Ioc (1:ℝ) k))) ``
-- [`CountModes.J_sub`](../lean_stage3/CountModes.md#CountModes-J_sub) — `` J k w - J 1 w = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * w) / (v:ℂ) ``
-- [`CountModes.cpow_two_rpow`](../lean_stage3/CountModes.md#CountModes-cpow_two_rpow) — `` (((2:ℝ) ^ v : ℝ) : ℂ) ^ ρ = Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ))) ``
-- [`CountModes.term1_eq`](../lean_stage3/CountModes.md#CountModes-term1_eq) — `` (((2:ℝ) ^ v : ℝ) : ℂ) ^ ρ / ρ / (Real.log ((2:ℝ) ^ v) : ℂ) = Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ))) / ((v:ℂ) * (ρ * (Real.log 2 : ℂ))) ``
-- [`CountModes.continuousOn_integrand`](../lean_stage3/CountModes.md#CountModes-continuousOn_integrand) — `` ContinuousOn (fun t : ℝ => (t : ℂ) ^ ρ / ρ * PiZeros.wt t) (Set.Ioi 1) ``
-- [`CountModes.hasDerivAt_ipart`](../lean_stage3/CountModes.md#CountModes-hasDerivAt_ipart) — `` HasDerivAt (fun u => ∫ t in (2:ℝ)..u, (t : ℂ) ^ ρ / ρ * PiZeros.wt t) ((y : ℂ) ^ ρ / ρ * PiZeros.wt y) y ``
-- [`CountModes.hasDerivAt_term1`](../lean_stage3/CountModes.md#CountModes-hasDerivAt_term1) — `` HasDerivAt (fun u : ℝ => Complex.exp ((u:ℂ) * w) / ((u:ℂ) * w)) ((Complex.exp ((v:ℂ) * w) * w * ((v:ℂ) * w) - Complex.exp ((v:ℂ) * w) * w) / ((v:ℂ) * w) ^ 2) v ``
-- [`CountModes.hasDerivAt_piMode_two_rpow`](../lean_stage3/CountModes.md#CountModes-hasDerivAt_piMode_two_rpow) — `` HasDerivAt (fun u : ℝ => PiZeros.piMode ρ ((2:ℝ) ^ u)) (Complex.exp ((v:ℂ) * (ρ * (Real.log 2 : ℂ))) / (v:ℂ)) v ``
-- [`CountModes.piMode_doubling_sub_of`](../lean_stage3/CountModes.md#CountModes-piMode_doubling_sub_of) — `` PiZeros.piMode ρ ((2:ℝ) ^ k) - PiZeros.piMode ρ 2 = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * (ρ * Real.log 2)) / (v:ℂ) ``
-- [`CountModes.piMode_doubling_sub`](../lean_stage3/CountModes.md#CountModes-piMode_doubling_sub) — `` PiZeros.piMode (ρ:ℂ) ((2:ℝ) ^ k) - PiZeros.piMode (ρ:ℂ) 2 = ∫ v in (1:ℝ)..(k:ℝ), Complex.exp ((v:ℂ) * ((ρ:ℂ) * Real.log 2)) / (v:ℂ) ``
-- [`CountModes.im_w`](../lean_stage3/CountModes.md#CountModes-im_w) — `` (ρ * (Real.log 2 : ℂ)).im = ρ.im * Real.log 2 ``
-- [`CountModes.re_w`](../lean_stage3/CountModes.md#CountModes-re_w) — `` (ρ * (Real.log 2 : ℂ)).re = ρ.re * Real.log 2 ``
-- [`CountModes.w_im_ne_zero`](../lean_stage3/CountModes.md#CountModes-w_im_ne_zero) — `` ((ρ:ℂ) * (Real.log 2 : ℂ)).im ≠ 0 ``
-- [`CountModes.cst`](../lean_stage3/CountModes.md#CountModes-cst) — *def*
-- [`CountModes.piMode_doubling`](../lean_stage3/CountModes.md#CountModes-piMode_doubling) — `` PiZeros.piMode (ρ:ℂ) ((2:ℝ)^k) = J k ((ρ:ℂ) * Real.log 2) + cst ρ ``
-- [`CountModes.norm_J_doubling_le`](../lean_stage3/CountModes.md#CountModes-norm_J_doubling_le) — `` ‖J k ((ρ:ℂ) * Real.log 2)‖ ≤ (2:ℝ)^((k:ℝ) * (ρ:ℂ).re) / (k * (|(ρ:ℂ).im| * Real.log 2)) ``
-- [`CountModes.norm_piMode_two_le`](../lean_stage3/CountModes.md#CountModes-norm_piMode_two_le) — `` ‖PiZeros.piMode (ρ:ℂ) 2‖ ≤ 2 / (|(ρ:ℂ).im| * Real.log 2) ``
-- [`CountModes.norm_cst_le`](../lean_stage3/CountModes.md#CountModes-norm_cst_le) — `` ‖cst ρ‖ ≤ 4 / (|(ρ:ℂ).im| * Real.log 2) ``
-
-### [`FiniteOffLinePi`](../lean_stage3/FiniteOffLinePi.md) — 6
-
-- [`FiniteOffLinePi.ipart`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ipart) — *def*
-- [`FiniteOffLinePi.piMode_eq`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-piMode_eq) — `` piMode ρ x = (x : ℂ) ^ ρ / ρ / (Real.log x : ℂ) + ipart ρ x ``
-- [`FiniteOffLinePi.norm_integrand`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_integrand) — `` ‖(t : ℂ) ^ ρ / ρ * wt t‖ = ‖ρ‖⁻¹ * (t ^ ρ.re * (t * Real.log t ^ 2)⁻¹) ``
-- [`FiniteOffLinePi.ordR`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR) — *def*
-- [`FiniteOffLinePi.ordR_nonneg`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-ordR_nonneg) — `` 0 ≤ ordR ρ ``
-- [`FiniteOffLinePi.norm_order_mul`](../lean_stage3/FiniteOffLinePi.md#FiniteOffLinePi-norm_order_mul) — `` ‖((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * w‖ = ordR ρ * ‖w‖ ``
-
-### [`AttainedPi`](../lean_stage3/AttainedPi.md) — 5
-
-- [`AttainedPi.norm_ipart_le_of_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_ipart_le_of_le) — `` ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * Real.sqrt x + 4 * x ^ c / (c * Real.log x ^ 2)) ``
-- [`AttainedPi.one_le_log`](../lean_stage3/AttainedPi.md#AttainedPi-one_le_log) — `` 1 ≤ Real.log x ``
-- [`AttainedPi.norm_log_ipart_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_ipart_le) — `` Real.log x * ‖ipart ρ x‖ ≤ ‖ρ‖⁻¹ * (3 * (Real.sqrt x * Real.log x) + 8 * (x ^ max ρ.re (1 / 2) / Real.log x)) ``
-- [`AttainedPi.norm_log_piMode_le`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_le) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (x ^ ρ.re + 3 * (Real.sqrt x * Real.log x) + 8 * (x ^ max ρ.re (1 / 2) / Real.log x)) ``
-- [`AttainedPi.norm_log_piMode_low`](../lean_stage3/AttainedPi.md#AttainedPi-norm_log_piMode_low) — `` Real.log x * ‖piMode ρ x‖ ≤ ‖ρ‖⁻¹ * (9 * x ^ θ₁ + 3 * (Real.sqrt x * Real.log x)) ``
 
 ### [`ZetaEM`](../lean_stage3/ZetaEM.md) — 26
 
@@ -721,7 +682,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ZeroDensity.inner_le`](../lean_stage3/ZeroDensity.md#ZeroDensity-inner_le) — `` ∫ t in (1:ℝ)..T, ‖MollifiedMean.f X ((u : ℂ) + Complex.I * (t : ℂ))‖ ^ 2 ≤ bConst δ k * T ^ (1 - 6 * δ ^ 2) * (1 + Real.log T) ^ 5 ``
 - [`ZeroDensity.zero_density`](../lean_stage3/ZeroDensity.md#ZeroDensity-zero_density) — `` ∃ θ C T₀ : ℝ, θ < 1 ∧ 0 ≤ C ∧ ∀ T : ℝ, T₀ ≤ T → ∀ Z : Finset ℂ, (∀ ρ ∈ Z, riemannZeta ρ = 0 ∧ σ ≤ ρ.re ∧ ρ.re < 1 ∧ 2 ≤ ρ.im ∧ ρ.im ≤ T - 2) → (Z.card : ℝ) ≤ C … ``
 
-### [`ZeroSummable`](../lean_stage3/ZeroSummable.md) — 13
+### [`ZeroSummable`](../lean_stage3/ZeroSummable.md) — 14
 
 - [`ZeroSummable.w`](../lean_stage3/ZeroSummable.md#ZeroSummable-w) — *def*
 - [`ZeroSummable.w_nonneg`](../lean_stage3/ZeroSummable.md#ZeroSummable-w_nonneg) — `` 0 ≤ w ρ ``
@@ -735,7 +696,8 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ZeroSummable.summable_shell`](../lean_stage3/ZeroSummable.md#ZeroSummable-summable_shell) — `` Summable fun j : ℕ => K * (((j : ℝ) + 1) * r ^ j) ``
 - [`ZeroSummable.dyadic_index`](../lean_stage3/ZeroSummable.md#ZeroSummable-dyadic_index) — `` (2 : ℝ) ^ (Nat.log 2 ⌊x⌋₊) ≤ x ∧ x < 2 ^ (Nat.log 2 ⌊x⌋₊ + 1) ``
 - [`ZeroSummable.sum_le_const`](../lean_stage3/ZeroSummable.md#ZeroSummable-sum_le_const) — `` ∃ M : ℝ, ∀ v : Finset NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ : ℂ).re) → ∑ ρ ∈ v, w ρ ≤ M ``
-- [`ZeroSummable.summable_order_div`](../lean_stage3/ZeroSummable.md#ZeroSummable-summable_order_div) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ ((ρ : Kadiri.NontrivialZeros) : ℂ).re} => ((riemannZeta.order ((ρ : Kadiri.NontrivialZeros) : ℂ) : ℤ) : ℝ) /… ``
+- [`ZeroSummable.norm_coef`](../lean_stage3/ZeroSummable.md#ZeroSummable-norm_coef) — `` ‖LadderMean.coef ρ‖ = w ρ ``
+- [`ZeroSummable.summable_norm_coef`](../lean_stage3/ZeroSummable.md#ZeroSummable-summable_norm_coef) — `` Summable fun ρ : S => ‖LadderMean.coef ρ‖ ``
 
 ### [`ZetaGrowth`](../lean_stage3/ZetaGrowth.md) — 20
 
@@ -823,92 +785,67 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`ExplicitTwo.left_edge_bound_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-left_edge_bound_two) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft2 * x ^ (-(1:ℝ)/4) ``
 - [`ExplicitTwo.explicit_formula_all_two`](../lean_stage3/ExplicitTwo.md#ExplicitTwo-explicit_formula_all_two) — `` ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ c1t * x * Real.log (x*T)^2 / T + c3t * Real.log x + Bleft2 * x ^ (-(1:ℝ)/4) ``
 
-### [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md) — 8
+### [`FixedRowTwo`](../lean_stage3/FixedRowTwo.md) — 3
 
 - [`FixedRowTwo.c1t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c1t_nonneg) — `` 0 ≤ ExplicitTwo.c1t ``
 - [`FixedRowTwo.c3t_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-c3t_nonneg) — `` 0 ≤ ExplicitTwo.c3t ``
 - [`FixedRowTwo.Bleft2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Bleft2_nonneg) — `` 0 ≤ ExplicitTwo.Bleft2 ``
-- [`FixedRowTwo.Api2`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2) — *def*
-- [`FixedRowTwo.Api2_nonneg`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-Api2_nonneg) — `` 0 ≤ Api2 ``
-- [`FixedRowTwo.norm_integrand_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integrand_two_le) — `` ‖efRem T t * wt t‖ ≤ 9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T + Api2 * t⁻¹ ``
-- [`FixedRowTwo.norm_integral_two_le`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_integral_two_le) — `` ‖∫ t in (2:ℝ)..x, efRem T t * wt t‖ ≤ (x - 2) * (9 / 4 * ExplicitTwo.c1t * Real.log (x * T) ^ 2 / T) + Api2 * Real.log (x / 2) ``
-- [`FixedRowTwo.norm_tr_efRem_le_height_two`](../lean_stage3/FixedRowTwo.md#FixedRowTwo-norm_tr_efRem_le_height_two) — `` ‖tr (efRem T) x‖ ≤ Api2 * (1 + Real.log x) + 4 * ExplicitTwo.c1t * x * Real.log (x * T) ^ 2 / T ``
 
-### [`CountReduction`](../lean_stage3/CountReduction.md) — 13
+### [`FilterLadder`](../lean_stage3/FilterLadder.md) — 24
 
-- [`CountReduction.cim`](../lean_stage3/CountReduction.md#CountReduction-cim) — *def*
-- [`CountReduction.two_le_cim`](../lean_stage3/CountReduction.md#CountReduction-two_le_cim) — `` 2 ≤ cim ``
-- [`CountReduction.inv_abs_im_le`](../lean_stage3/CountReduction.md#CountReduction-inv_abs_im_le) — `` |(ρ : ℂ).im|⁻¹ ≤ cim * ‖(ρ : ℂ)‖⁻¹ ``
-- [`CountReduction.ratio_pow`](../lean_stage3/CountReduction.md#CountReduction-ratio_pow) — `` ((2:ℝ) ^ θ' / 2) ^ k = (2:ℝ) ^ (-(k:ℝ) * (1 - θ')) ``
-- [`CountReduction.sum_tail_le`](../lean_stage3/CountReduction.md#CountReduction-sum_tail_le) — `` ∑ j ∈ s, ((j:ℝ) + 1) * r ^ j ≤ ((k:ℝ) + 1) * r ^ k * ∑' i : ℕ, ((i:ℝ) + 1) * r ^ i ``
-- [`CountReduction.tail_rate`](../lean_stage3/CountReduction.md#CountReduction-tail_rate) — `` ∃ θ' Ct : ℝ, 0 ≤ θ' ∧ θ' < 1 ∧ 0 ≤ Ct ∧ ∀ (k : ℕ), 1 ≤ k → ∀ v : Finset Kadiri.NontrivialZeros, (∀ ρ ∈ v, σ ≤ (ρ:ℂ).re ∧ (2:ℝ)^k ≤ |(ρ:ℂ).im|) → ∑ ρ ∈ v, ((riem… ``
-- [`CountReduction.norm_term_le`](../lean_stage3/CountReduction.md#CountReduction-norm_term_le) — `` ‖((riemannZeta.order (ρ:ℂ) : ℤ) : ℂ) * CountModes.J k ((ρ:ℂ) * Real.log 2)‖ ≤ cim * (2:ℝ) ^ ((k:ℝ) * b) / (k * Real.log 2) * (((riemannZeta.order (ρ:ℂ) : ℤ) : ℝ… ``
-- [`CountReduction.summable_J`](../lean_stage3/CountReduction.md#CountReduction-summable_J) — `` Summable fun ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re} => ‖((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) * CountModes.J k (((ρ:Kadiri.Nont… ``
-- [`CountReduction.pow_rpow`](../lean_stage3/CountReduction.md#CountReduction-pow_rpow) — `` ((2:ℝ) ^ k) ^ b = (2:ℝ) ^ ((k:ℝ) * b) ``
-- [`CountReduction.rpow_mono`](../lean_stage3/CountReduction.md#CountReduction-rpow_mono) — `` (2:ℝ) ^ ((k:ℝ) * a) ≤ (2:ℝ) ^ ((k:ℝ) * b) ``
-- [`CountReduction.sqrt_pow_le`](../lean_stage3/CountReduction.md#CountReduction-sqrt_pow_le) — `` Real.sqrt 2 ^ k ≤ (2:ℝ) ^ ((k:ℝ) * e) ``
-- [`CountReduction.one_le_rpow_two`](../lean_stage3/CountReduction.md#CountReduction-one_le_rpow_two) — `` 1 ≤ (2:ℝ) ^ ((k:ℝ) * e) ``
-- ★ [`CountReduction.count_modes_small`](../lean_stage3/CountReduction.md#CountReduction-count_modes_small) — `` ∃ E A : ℝ, σ ≤ E ∧ E < Θ ∧ ∀ k : ℕ, 2 ≤ k → ‖∑' ρ : {ρ : Kadiri.NontrivialZeros // σ ≤ (ρ:ℂ).re}, ((riemannZeta.order ((ρ:Kadiri.NontrivialZeros):ℂ) : ℤ) : ℂ) *… ``
+- [`FilterLadder.Wb`](../lean_stage3/FilterLadder.md#FilterLadder-Wb) — *def*
+- [`FilterLadder.Wn`](../lean_stage3/FilterLadder.md#FilterLadder-Wn) — *def*
+- [`FilterLadder.rpow_half_eq`](../lean_stage3/FilterLadder.md#FilterLadder-rpow_half_eq) — `` (2:ℝ) ^ (-(j:ℝ) / 2) = (Real.sqrt 2)⁻¹ ^ j ``
+- [`FilterLadder.Wn_eq_Wb`](../lean_stage3/FilterLadder.md#FilterLadder-Wn_eq_Wb) — `` Wn q = Wb (Real.sqrt 2)⁻¹ q ``
+- [`FilterLadder.Wb_eq_range`](../lean_stage3/FilterLadder.md#FilterLadder-Wb_eq_range) — `` Wb t q = ∑ j ∈ range N, ‖q.coeff j‖ * t ^ j ``
+- [`FilterLadder.Wb_nonneg`](../lean_stage3/FilterLadder.md#FilterLadder-Wb_nonneg) — `` 0 ≤ Wb t q ``
+- [`FilterLadder.Wn_nonneg`](../lean_stage3/FilterLadder.md#FilterLadder-Wn_nonneg) — `` 0 ≤ Wn q ``
+- [`FilterLadder.posPoly`](../lean_stage3/FilterLadder.md#FilterLadder-posPoly) — *def*
+- [`FilterLadder.coeff_posPoly`](../lean_stage3/FilterLadder.md#FilterLadder-coeff_posPoly) — `` (posPoly q).coeff i = ‖q.coeff i‖ ``
+- [`FilterLadder.Wb_eq_eval`](../lean_stage3/FilterLadder.md#FilterLadder-Wb_eq_eval) — `` Wb t q = (posPoly q).eval t ``
+- [`FilterLadder.natDegree_posPoly_le`](../lean_stage3/FilterLadder.md#FilterLadder-natDegree_posPoly_le) — `` (posPoly q).natDegree ≤ q.natDegree ``
+- [`FilterLadder.Wb_mul_le`](../lean_stage3/FilterLadder.md#FilterLadder-Wb_mul_le) — `` Wb t (p * q) ≤ Wb t p * Wb t q ``
+- [`FilterLadder.Wb_one`](../lean_stage3/FilterLadder.md#FilterLadder-Wb_one) — `` Wb t (1 : Polynomial ℂ) = 1 ``
+- [`FilterLadder.Wb_pow_le`](../lean_stage3/FilterLadder.md#FilterLadder-Wb_pow_le) — `` Wb t (q ^ m) ≤ Wb t q ^ m ``
+- [`FilterLadder.Wn_pow_le`](../lean_stage3/FilterLadder.md#FilterLadder-Wn_pow_le) — `` Wn (q ^ m) ≤ Wn q ^ m ``
+- [`FilterLadder.filter_mode`](../lean_stage3/FilterLadder.md#FilterLadder-filter_mode) — `` ∑ j ∈ range (N + 1), (q ^ m).coeff j * z ^ (n - j) = z ^ n * (q.eval z⁻¹) ^ m ``
+- [`FilterLadder.ladder`](../lean_stage3/FilterLadder.md#FilterLadder-ladder) — *def*
+- [`FilterLadder.Kf`](../lean_stage3/FilterLadder.md#FilterLadder-Kf) — *def*
+- [`FilterLadder.Kf_nonneg`](../lean_stage3/FilterLadder.md#FilterLadder-Kf_nonneg) — `` 0 ≤ Kf ``
+- [`FilterLadder.wz`](../lean_stage3/FilterLadder.md#FilterLadder-wz) — *def*
+- [`FilterLadder.formula_row`](../lean_stage3/FilterLadder.md#FilterLadder-formula_row) — `` ‖ladder k + ∑ ρ ∈ ZF ((2:ℝ) ^ n), wz ρ * ((2:ℂ) ^ (ρ : ℂ)) ^ k‖ ≤ Kf * (n:ℝ) ^ 2 ``
+- [`FilterLadder.Afl`](../lean_stage3/FilterLadder.md#FilterLadder-Afl) — *def*
+- [`FilterLadder.sqrt_split`](../lean_stage3/FilterLadder.md#FilterLadder-sqrt_split) — `` Real.sqrt 2 ^ n * (Real.sqrt 2)⁻¹ ^ j = Real.sqrt 2 ^ (n - j) ``
+- [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) — `` ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2:ℂ) ^ (ρ :… ``
 
-### [`CountEuler`](../lean_stage3/CountEuler.md) — 59
+### [`FilterAttained`](../lean_stage3/FilterAttained.md) — 12
 
-- [`CountEuler.binom_shift`](../lean_stage3/CountEuler.md#CountEuler-binom_shift) — `` ∑ j ∈ Finset.range (m + 1), (m.choose j : ℂ) * (-c) ^ (m - j) * ζ ^ (j + 1) = ζ * (ζ - c) ^ m ``
-- [`CountEuler.zeta`](../lean_stage3/CountEuler.md#CountEuler-zeta) — *def*
-- [`CountEuler.coefE`](../lean_stage3/CountEuler.md#CountEuler-coefE) — *def*
-- [`CountEuler.seg`](../lean_stage3/CountEuler.md#CountEuler-seg) — *def*
-- [`CountEuler.F`](../lean_stage3/CountEuler.md#CountEuler-F) — *def*
-- [`CountEuler.zeta_pow`](../lean_stage3/CountEuler.md#CountEuler-zeta_pow) — `` zeta w s ^ k / (w - s) = Complex.exp ((k:ℂ) * (w - s)) / (w - s) ``
-- [`CountEuler.J_eq_zeta`](../lean_stage3/CountEuler.md#CountEuler-J_eq_zeta) — `` CountModes.J k w = ∫ s in Set.Ioi (0:ℝ), zeta w s ^ k / (w - s) ``
-- [`CountEuler.integrable_zeta_pow`](../lean_stage3/CountEuler.md#CountEuler-integrable_zeta_pow) — `` IntegrableOn (fun s : ℝ => zeta w s ^ k / (w - s)) (Set.Ioi 0) ``
-- [`CountEuler.seg_sum`](../lean_stage3/CountEuler.md#CountEuler-seg_sum) — `` seg w c m s = ∑ j ∈ Finset.range (m + 1), coefE c m j * (zeta w s ^ (j + 1) / (w - s)) ``
-- [`CountEuler.transform_eq`](../lean_stage3/CountEuler.md#CountEuler-transform_eq) — `` ∑ j ∈ Finset.range (m + 1), coefE c m j * CountModes.J (j + 1) w = F w c m ``
-- [`CountEuler.transform_le`](../lean_stage3/CountEuler.md#CountEuler-transform_le) — `` ‖∑ j ∈ Finset.range (m + 1), coefE c m j * a (j + 1)‖ ≤ A * ((m:ℝ) + 1) ^ 2 * X * (X + ‖c‖) ^ m ``
-- [`CountEuler.seg_in_ball`](../lean_stage3/CountEuler.md#CountEuler-seg_in_ball) — `` ‖z * (t:ℂ) - c‖ ≤ r ``
-- [`CountEuler.others_le`](../lean_stage3/CountEuler.md#CountEuler-others_le) — `` ‖F w c m‖ ≤ ‖Complex.exp w‖ * r ^ m / |w.im| ``
-- [`CountEuler.lor`](../lean_stage3/CountEuler.md#CountEuler-lor) — *def*
-- [`CountEuler.lor_nonneg`](../lean_stage3/CountEuler.md#CountEuler-lor_nonneg) — `` 0 ≤ lor w s ``
-- [`CountEuler.lor_eq`](../lean_stage3/CountEuler.md#CountEuler-lor_eq) — `` lor w s = Real.pi / |w.im| * ProbabilityTheory.cauchyPDFReal w.re ‖w.im‖₊ s ``
-- [`CountEuler.integrable_lor`](../lean_stage3/CountEuler.md#CountEuler-integrable_lor) — `` Integrable (lor w) ``
-- [`CountEuler.integral_lor`](../lean_stage3/CountEuler.md#CountEuler-integral_lor) — `` ∫ s, lor w s = Real.pi / |w.im| ``
-- [`CountEuler.setIntegral_lor_le`](../lean_stage3/CountEuler.md#CountEuler-setIntegral_lor_le) — `` ∫ s in Set.Ioi (0:ℝ), lor w s ≤ Real.pi / |w.im| ``
-- [`CountEuler.norm_sub_sq`](../lean_stage3/CountEuler.md#CountEuler-norm_sub_sq) — `` ‖(w - (s:ℂ)) ^ 2‖ = (s - w.re) ^ 2 + w.im ^ 2 ``
-- [`CountEuler.gf`](../lean_stage3/CountEuler.md#CountEuler-gf) — *def*
-- [`CountEuler.gf_nonneg`](../lean_stage3/CountEuler.md#CountEuler-gf_nonneg) — `` 0 ≤ gf p κ s ``
-- [`CountEuler.gf_le`](../lean_stage3/CountEuler.md#CountEuler-gf_le) — `` gf p κ s ≤ p + κ ``
-- [`CountEuler.gf_lt`](../lean_stage3/CountEuler.md#CountEuler-gf_lt) — `` gf p κ s < p + κ ``
-- [`CountEuler.gf_zero`](../lean_stage3/CountEuler.md#CountEuler-gf_zero) — `` gf p κ 0 = p + κ ``
-- [`CountEuler.hasDerivAt_gf`](../lean_stage3/CountEuler.md#CountEuler-hasDerivAt_gf) — `` HasDerivAt (gf p κ) (p * (Real.exp (-s) * -1)) s ``
-- [`CountEuler.Pc`](../lean_stage3/CountEuler.md#CountEuler-Pc) — *def*
-- [`CountEuler.Qc`](../lean_stage3/CountEuler.md#CountEuler-Qc) — *def*
-- [`CountEuler.Gc`](../lean_stage3/CountEuler.md#CountEuler-Gc) — *def*
-- [`CountEuler.integrable_Pc`](../lean_stage3/CountEuler.md#CountEuler-integrable_Pc) — `` IntegrableOn (Pc w p κ m) (Set.Ioi 0) ``
-- [`CountEuler.norm_Qc_le`](../lean_stage3/CountEuler.md#CountEuler-norm_Qc_le) — `` ‖Qc w p κ n s‖ ≤ (p + κ) ^ n * lor w s ``
-- [`CountEuler.integrable_Qc`](../lean_stage3/CountEuler.md#CountEuler-integrable_Qc) — `` IntegrableOn (Qc w p κ n) (Set.Ioi 0) ``
-- [`CountEuler.hasDerivAt_Gc`](../lean_stage3/CountEuler.md#CountEuler-hasDerivAt_Gc) — `` HasDerivAt (Gc w p κ (m + 1)) (Pc w p κ m s - Qc w p κ (m + 1) s / ((m + 1 : ℕ) : ℂ)) s ``
-- [`CountEuler.tendsto_Gc`](../lean_stage3/CountEuler.md#CountEuler-tendsto_Gc) — `` Tendsto (Gc w p κ (m + 1)) atTop (𝓝 0) ``
-- [`CountEuler.class_main`](../lean_stage3/CountEuler.md#CountEuler-class_main) — `` ∫ s in Set.Ioi (0:ℝ), Pc w p κ m s = (((p + κ) ^ (m + 1) : ℝ) : ℂ) / (((m + 1 : ℕ) : ℂ) * w) + (∫ s in Set.Ioi (0:ℝ), Qc w p κ (m + 1) s) / ((m + 1 : ℕ) : ℂ) ``
-- [`CountEuler.seg_class`](../lean_stage3/CountEuler.md#CountEuler-seg_class) — `` seg w (-(κ:ℂ) * u) m s = u ^ (m + 1) * Pc w p κ m s ``
-- [`CountEuler.F_class`](../lean_stage3/CountEuler.md#CountEuler-F_class) — `` F w (-(κ:ℂ) * u) m = u ^ (m + 1) * ∫ s in Set.Ioi (0:ℝ), Pc w p κ m s ``
-- [`CountEuler.Nn`](../lean_stage3/CountEuler.md#CountEuler-Nn) — *def*
-- [`CountEuler.norm_Nn`](../lean_stage3/CountEuler.md#CountEuler-norm_Nn) — `` ‖Nn u R m‖ = R ^ (m + 1) / ((m + 1 : ℕ) : ℝ) ``
-- [`CountEuler.Qn`](../lean_stage3/CountEuler.md#CountEuler-Qn) — *def*
-- [`CountEuler.norm_Qn_le`](../lean_stage3/CountEuler.md#CountEuler-norm_Qn_le) — `` ‖Qn w p κ n s‖ ≤ lor w s ``
-- [`CountEuler.continuous_Qn`](../lean_stage3/CountEuler.md#CountEuler-continuous_Qn) — `` Continuous (Qn w p κ n) ``
-- [`CountEuler.class_ratio`](../lean_stage3/CountEuler.md#CountEuler-class_ratio) — `` F w (-(κ:ℂ) * u) m / Nn u (p + κ) m = 1 / w + ∫ s in Set.Ioi (0:ℝ), Qn w p κ (m + 1) s ``
-- [`CountEuler.class_lim`](../lean_stage3/CountEuler.md#CountEuler-class_lim) — `` Tendsto (fun m : ℕ => ∫ s in Set.Ioi (0:ℝ), Qn w p κ (m + 1) s) atTop (𝓝 0) ``
-- [`CountEuler.norm_Qn_int_le`](../lean_stage3/CountEuler.md#CountEuler-norm_Qn_int_le) — `` ‖∫ s in Set.Ioi (0:ℝ), Qn w p κ n s‖ ≤ Real.pi / |w.im| ``
-- [`CountEuler.class_tendsto`](../lean_stage3/CountEuler.md#CountEuler-class_tendsto) — `` Tendsto (fun m : ℕ => F w (-(κ:ℂ) * u) m / Nn u (p + κ) m) atTop (𝓝 (1 / w)) ``
-- [`CountEuler.class_bound`](../lean_stage3/CountEuler.md#CountEuler-class_bound) — `` ‖F w (-(κ:ℂ) * u) m / Nn u (p + κ) m‖ ≤ (1 + Real.pi) / |w.im| ``
-- [`CountEuler.others_ratio_le`](../lean_stage3/CountEuler.md#CountEuler-others_ratio_le) — `` ‖F w c m / Nn u R m‖ ≤ ‖Complex.exp w‖ / (r * |w.im|) * (((m + 1 : ℕ) : ℝ) * (r / R) ^ (m + 1)) ``
-- [`CountEuler.ordC`](../lean_stage3/CountEuler.md#CountEuler-ordC) — *def*
-- [`CountEuler.wz`](../lean_stage3/CountEuler.md#CountEuler-wz) — *def*
-- [`CountEuler.aSum`](../lean_stage3/CountEuler.md#CountEuler-aSum) — *def*
-- [`CountEuler.two_cpow_eq`](../lean_stage3/CountEuler.md#CountEuler-two_cpow_eq) — `` (2:ℂ) ^ ρ = Complex.exp (ρ * Real.log 2) ``
-- [`CountEuler.norm_ordC_mul`](../lean_stage3/CountEuler.md#CountEuler-norm_ordC_mul) — `` ‖ordC ρ * x‖ = FiniteOffLinePi.ordR ρ * ‖x‖ ``
-- [`CountEuler.re_ord_div_w_pos`](../lean_stage3/CountEuler.md#CountEuler-re_ord_div_w_pos) — `` 0 < (ordC ρ * (1 / wz ρ)).re ``
-- [`CountEuler.summable_ord_im`](../lean_stage3/CountEuler.md#CountEuler-summable_ord_im) — `` Summable fun ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re} => FiniteOffLinePi.ordR ρ.1 / |(wz ρ.1).im| ``
-- [`CountEuler.tsum_transform`](../lean_stage3/CountEuler.md#CountEuler-tsum_transform) — `` ∑ j ∈ Finset.range (m + 1), coefE c m j * aSum σ (j + 1) = ∑' ρ : {ρ : NontrivialZeros // σ ≤ (ρ:ℂ).re}, ordC ρ.1 * F (wz ρ.1) c m ``
-- [`CountEuler.term_class`](../lean_stage3/CountEuler.md#CountEuler-term_class) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 (ordC ρ * (1 / wz ρ))) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLineP… ``
-- [`CountEuler.term_other`](../lean_stage3/CountEuler.md#CountEuler-term_other) — `` Tendsto (fun m : ℕ => ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop (𝓝 0) ∧ ∀ m : ℕ, ‖ordC ρ * (F (wz ρ) c m / Nn u R m)‖ ≤ K₃ * (FiniteOffLinePi.ordR ρ / |(wz ρ).i… ``
-- ★ [`CountEuler.core`](../lean_stage3/CountEuler.md#CountEuler-core) — `` False ``
+- [`FilterAttained.xi`](../lean_stage3/FilterAttained.md#FilterAttained-xi) — *def*
+- [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S) — *def*
+- [`FilterAttained.ratio`](../lean_stage3/FilterAttained.md#FilterAttained-ratio) — *def*
+- [`FilterAttained.xi_pow`](../lean_stage3/FilterAttained.md#FilterAttained-xi_pow) — `` xi q a b ρ ^ k = (q.eval (((2:ℂ) ^ (ρ : ℂ))⁻¹)) ^ (a * k) * ((2:ℂ) ^ (ρ : ℂ)) ^ (b * k) ``
+- [`FilterAttained.summable_S`](../lean_stage3/FilterAttained.md#FilterAttained-summable_S) — `` Summable ((S σ).indicator fun ρ => ‖LadderMean.coef ρ‖) ``
+- [`FilterAttained.finite_part_le`](../lean_stage3/FilterAttained.md#FilterAttained-finite_part_le) — `` ‖∑ ρ ∈ (ZF ((2:ℝ) ^ (b * k))).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), LadderMean.coef ρ * ratio q a b M ρ ^ k‖ ≤ FilterLadder.Afl C * (b:ℝ) ^ 2 * (k… ``
+- [`FilterAttained.tailT`](../lean_stage3/FilterAttained.md#FilterAttained-tailT) — *def*
+- [`FilterAttained.norm_tailT_le`](../lean_stage3/FilterAttained.md#FilterAttained-norm_tailT_le) — `` ‖tailT q a b σ M k ρ‖ ≤ (S σ).indicator (fun ρ => ‖LadderMean.coef ρ‖) ρ ``
+- [`FilterAttained.tendsto_tailT`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_tailT) — `` Tendsto (fun k : ℕ => ∑' ρ, tailT q a b σ M k ρ) atTop (𝓝 0) ``
+- [`FilterAttained.tsum_split`](../lean_stage3/FilterAttained.md#FilterAttained-tsum_split) — `` ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ = ∑ ρ ∈ (ZF ((2:ℝ) ^ (b * k))).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), La… ``
+- [`FilterAttained.tendsto_full`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_full) — `` Tendsto (fun k : ℕ => ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ) atTop (𝓝 0) ``
+- [`FilterAttained.filter_attained_false`](../lean_stage3/FilterAttained.md#FilterAttained-filter_attained_false) — `` False ``
+
+### [`FilterAccum`](../lean_stage3/FilterAccum.md) — 13
+
+- [`FilterAccum.qP`](../lean_stage3/FilterAccum.md#FilterAccum-qP) — *def*
+- [`FilterAccum.eval_qP`](../lean_stage3/FilterAccum.md#FilterAccum-eval_qP) — `` (qP P).eval w = ∏ p ∈ P, (w - p⁻¹) ``
+- [`FilterAccum.L`](../lean_stage3/FilterAccum.md#FilterAccum-L) — *def*
+- [`FilterAccum.L_pos`](../lean_stage3/FilterAccum.md#FilterAccum-L_pos) — `` 0 < L P ``
+- [`FilterAccum.xiz`](../lean_stage3/FilterAccum.md#FilterAccum-xiz) — *def*
+- [`FilterAccum.xi_eq_xiz`](../lean_stage3/FilterAccum.md#FilterAccum-xi_eq_xiz) — `` FilterAttained.xi q 1 b ρ = xiz q b ((2:ℂ) ^ (ρ : ℂ)) ``
+- [`FilterAccum.one_le_norm_mode`](../lean_stage3/FilterAccum.md#FilterAccum-one_le_norm_mode) — `` 1 ≤ ‖(2:ℂ) ^ (ρ : ℂ)‖ ``
+- [`FilterAccum.norm_mode_le_two`](../lean_stage3/FilterAccum.md#FilterAccum-norm_mode_le_two) — `` ‖(2:ℂ) ^ (ρ : ℂ)‖ ≤ 2 ``
+- [`FilterAccum.norm_xiz_near_le`](../lean_stage3/FilterAccum.md#FilterAccum-norm_xiz_near_le) — `` ‖xiz (qP P) b z‖ ≤ 2 ^ b * (ε * L P) ``
+- [`FilterAccum.eval_qP_ne_zero`](../lean_stage3/FilterAccum.md#FilterAccum-eval_qP_ne_zero) — `` (qP P).eval z⁻¹ ≠ 0 ``
+- [`FilterAccum.exists_b`](../lean_stage3/FilterAccum.md#FilterAccum-exists_b) — `` ∃ b : ℕ, q.natDegree < b ∧ W < c * r ^ b ``
+- [`FilterAccum.finite_accumulation_false`](../lean_stage3/FilterAccum.md#FilterAccum-finite_accumulation_false) — `` False ``
+- ★ [`FilterAccum.rh_of_finite_accumulation`](../lean_stage3/FilterAccum.md#FilterAccum-rh_of_finite_accumulation) — `` RiemannHypothesis ``
 

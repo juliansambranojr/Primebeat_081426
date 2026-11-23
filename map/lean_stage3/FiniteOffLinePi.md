@@ -23,7 +23,7 @@ flowchart LR
   n9["<b>norm_order_mul</b><br/>‖((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * w‖ = ordR ρ * ‖w‖"]:::thm
   n10["<b>rowBound_isLittleO</b><br/>(fun r : ℕ =＞ rowBound F S β C r) =o[atTop] fun r : ℕ =＞ ((2:ℝ) …"]:::thm
   n11["<b>row_bound</b><br/>‖∑ ρ ∈ S, ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) * (((2:ℂ) ^ (ρ :…"]:::thm
-  n12["<b>finite_off_line_pi ■</b><br/>RiemannHypothesis"]:::thm
+  n12["<b>finite_off_line_pi</b><br/>RiemannHypothesis"]:::thm
   x0(["<b>AttainedPi</b><br/>fin_bound<br/>norm_ipart_le_of_le<br/>norm_log_piMode_le"]):::ext
   x1(["<b>PiZeros</b><br/>4 theorems"]):::ext
   x2(["<b>CellZeros</b><br/>cpow_two_zpow"]):::ext
@@ -34,6 +34,7 @@ flowchart LR
   x7(["<b>CellModes</b><br/>mode_two_int"]):::ext
   x8(["<b>LadderFading</b><br/>line_not_fading"]):::ext
   x9(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x10(["<b>OneChain</b><br/>spiralLink_of_finite"]):::ext
   n0 --> n11
   n0 --> n3
   n1 --> n2
@@ -51,6 +52,7 @@ flowchart LR
   n9 --> n11
   n0 -.-> x0
   n1 -.-> x0
+  n12 -.-> x10
   n5 -.-> x0
   n6 -.-> x0
   n7 -.-> x0
@@ -547,5 +549,7 @@ RiemannHypothesis
 
 **Definitions its proof touches:** [`Chain.Sym`](../lean/Chain.md#Chain-Sym), [`Chain.mode`](../lean/Chain.md#Chain-mode), [`FiniteOffLine.ZF`](../lean_stage3/FiniteOffLine.md#FiniteOffLine-ZF), [`FiniteOffLinePi.rowBound`](#FiniteOffLinePi-rowBound)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.spiralLink_of_finite`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_finite) (OneChain) — `` SpiralLink.SpiralLink ``
 

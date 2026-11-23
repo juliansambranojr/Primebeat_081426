@@ -22,13 +22,14 @@ flowchart LR
   n6["<b>structural_contradiction</b><br/>restoringForce σ ≠ 0 ∧ ¬ isHermitianHandshake σ"]:::shp
   n7["<b>off_line_zero ■</b><br/>restoringForce (ρ : ℂ).re ≠ 0 ∧ ¬ isHermitianHandshake (ρ : ℂ).r…"]:::shp
   n8["<b>rh_iff_re_half</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2"]:::thm
-  n9["<b>rh_iff_force_zero ■</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ…"]:::thm
+  n9["<b>rh_iff_force_zero</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ…"]:::thm
   n10["<b>rh_iff_handshake</b><br/>RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake …"]:::thm
   x0(["<b>ClosedLoopChain</b><br/>holyFamily_force"]):::ext
   x1(["<b>StencilWeil</b><br/>restoringForce_eq<br/>restoringForce_eq_zero_iff"]):::ext
   x2(["<b>SpiralLink</b><br/>off_line_is_two<br/>rh_iff_one_at_each_height<br/>rh_iff_spiralLink"]):::ext
   x3(["<b>MirrorArea</b><br/>long_side_of_off_line"]):::ext
   x4(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
+  x5(["<b>OneChain</b><br/>one_chain"]):::ext
   n0 --> n1
   n0 --> n2
   n2 --> n6
@@ -43,6 +44,7 @@ flowchart LR
   n10 -.-> x2
   n5 -.-> x2
   n8 -.-> x2
+  n9 -.-> x5
   x1 -.-> n1
   x1 -.-> n7
   x3 -.-> n7
@@ -80,7 +82,7 @@ The closed loop's restoring force. Restated from Part VII.
 
 - **Is:** `` restoringForce (σ : ℝ) : ℝ := |(2.5 : ℝ) - 5 * ((1 / 2 : ℝ) + epsilon σ)| ``
 - **Built from:** [`ClosedLoopJoin.epsilon`](#ClosedLoopJoin-epsilon)
-- **Used by 7:** [`ClosedLoopChain.holyFamily_force`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_force), [`ClosedLoopJoin.force_eq`](#ClosedLoopJoin-force_eq), [`ClosedLoopJoin.force_eq_zero_iff`](#ClosedLoopJoin-force_eq_zero_iff), [`ClosedLoopJoin.force_join`](#ClosedLoopJoin-force_join), [`ClosedLoopJoin.off_line_zero`](#ClosedLoopJoin-off_line_zero), [`ClosedLoopJoin.rh_iff_force_zero`](#ClosedLoopJoin-rh_iff_force_zero), [`ClosedLoopJoin.structural_contradiction`](#ClosedLoopJoin-structural_contradiction)
+- **Used by 8:** [`ClosedLoopChain.holyFamily_force`](../lean_stage3/ClosedLoopChain.md#ClosedLoopChain-holyFamily_force), [`ClosedLoopJoin.force_eq`](#ClosedLoopJoin-force_eq), [`ClosedLoopJoin.force_eq_zero_iff`](#ClosedLoopJoin-force_eq_zero_iff), [`ClosedLoopJoin.force_join`](#ClosedLoopJoin-force_join), [`ClosedLoopJoin.off_line_zero`](#ClosedLoopJoin-off_line_zero), [`ClosedLoopJoin.rh_iff_force_zero`](#ClosedLoopJoin-rh_iff_force_zero), [`ClosedLoopJoin.structural_contradiction`](#ClosedLoopJoin-structural_contradiction), [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain)
 
 <a name="ClosedLoopJoin-primeWeight"></a>
 ### `ClosedLoopJoin.primeWeight`
@@ -385,7 +387,9 @@ RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0
 
 **Definitions its proof touches:** [`ClosedLoopJoin.restoringForce`](#ClosedLoopJoin-restoringForce)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain) (OneChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, restoringFor… ``
 
 <a name="ClosedLoopJoin-rh_iff_handshake"></a>
 ### `ClosedLoopJoin.rh_iff_handshake`

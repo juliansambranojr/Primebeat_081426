@@ -19,11 +19,12 @@ flowchart LR
   n3["<b>mirrorZ_eq_iff</b><br/>mirrorZ ρ = ρ ↔ (ρ : ℂ).re = 1 / 2"]:::thm
   n4["<b>mirror_pair_area ■</b><br/>‖(b : ℂ) ^ (ρ : ℂ)‖ * ‖(b : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) …"]:::thm
   n5["<b>off_line_is_two ■</b><br/>mirrorZ ρ ≠ ρ ∧ ((mirrorZ ρ : NontrivialZeros) : ℂ).im = (ρ : ℂ)…"]:::thm
-  n6["<b>rh_iff_spiralLink ■</b><br/>RiemannHypothesis ↔ SpiralLink"]:::thm
+  n6["<b>rh_iff_spiralLink</b><br/>RiemannHypothesis ↔ SpiralLink"]:::thm
   n7["<b>rh_iff_one_at_each_height</b><br/>RiemannHypothesis ↔ OneAtEachHeight"]:::thm
-  n8["<b>spiralLink_iff_one ■</b><br/>SpiralLink ↔ OneAtEachHeight"]:::thm
+  n8["<b>spiralLink_iff_one</b><br/>SpiralLink ↔ OneAtEachHeight"]:::thm
   x0(["<b>WeilOnLine</b><br/>conj_mem"]):::ext
   x1(["<b>ClosedLoopJoin</b><br/>handshake_iff_half<br/>rh_iff_handshake<br/>rh_iff_re_half"]):::ext
+  x2(["<b>OneChain</b><br/>one_chain"]):::ext
   n1 --> n3
   n1 --> n5
   n1 --> n7
@@ -33,6 +34,8 @@ flowchart LR
   n3 --> n5
   n3 --> n7
   n7 --> n8
+  n6 -.-> x2
+  n8 -.-> x2
   x0 -.-> n0
   x1 -.-> n5
   x1 -.-> n6
@@ -71,7 +74,7 @@ The spiral link (Julian's paper, §6.3): the walk closes only where the closed l
 
 - **Is:** `` SpiralLink : Prop := ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re ``
 - **Built from:** [`ClosedLoopJoin.isHermitianHandshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-isHermitianHandshake)
-- **Used by 2:** [`SpiralLink.rh_iff_spiralLink`](#SpiralLink-rh_iff_spiralLink), [`SpiralLink.spiralLink_iff_one`](#SpiralLink-spiralLink_iff_one)
+- **Used by 9:** [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain), [`OneChain.spiralLink_iff_cells`](../lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells), [`OneChain.spiralLink_of_attained`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_attained), [`OneChain.spiralLink_of_attained_psi`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_attained_psi), [`OneChain.spiralLink_of_finite`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_finite), [`OneChain.spiralLink_of_finite_accumulation`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_finite_accumulation), [`OneChain.table_of_spiralLink`](../lean_stage3/OneChain.md#OneChain-table_of_spiralLink), [`SpiralLink.rh_iff_spiralLink`](#SpiralLink-rh_iff_spiralLink), [`SpiralLink.spiralLink_iff_one`](#SpiralLink-spiralLink_iff_one)
 
 <a name="SpiralLink-OneAtEachHeight"></a>
 ### `SpiralLink.OneAtEachHeight`
@@ -81,7 +84,7 @@ def · line 126
 There is one zero. No two nontrivial zeros share a height.
 
 - **Is:** `` OneAtEachHeight : Prop := ∀ ρ ρ' : NontrivialZeros, (ρ : ℂ).im = (ρ' : ℂ).im → ρ = ρ' ``
-- **Used by 2:** [`SpiralLink.rh_iff_one_at_each_height`](#SpiralLink-rh_iff_one_at_each_height), [`SpiralLink.spiralLink_iff_one`](#SpiralLink-spiralLink_iff_one)
+- **Used by 3:** [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain), [`SpiralLink.rh_iff_one_at_each_height`](#SpiralLink-rh_iff_one_at_each_height), [`SpiralLink.spiralLink_iff_one`](#SpiralLink-spiralLink_iff_one)
 
 ## Theorems
 
@@ -281,7 +284,9 @@ RiemannHypothesis ↔ SpiralLink
 
 **Definitions its proof touches:** [`SpiralLink.SpiralLink`](#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain) (OneChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, restoringFor… ``
 
 <a name="SpiralLink-rh_iff_one_at_each_height"></a>
 ### `SpiralLink.rh_iff_one_at_each_height`
@@ -331,5 +336,7 @@ SpiralLink ↔ OneAtEachHeight
 
 **Definitions its proof touches:** [`SpiralLink.OneAtEachHeight`](#SpiralLink-OneAtEachHeight), [`SpiralLink.SpiralLink`](#SpiralLink-SpiralLink)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain) (OneChain) — `` (RiemannHypothesis ↔ SpiralLink.SpiralLink) ∧ (SpiralLink.SpiralLink ↔ OneAtEachHeight) ∧ (SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, restoringFor… ``
 

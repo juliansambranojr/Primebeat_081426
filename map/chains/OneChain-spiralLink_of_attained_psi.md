@@ -1,21 +1,22 @@
-# What `FilterAccum.rh_of_finite_accumulation` rests on
+# What `OneChain.spiralLink_of_attained_psi` rests on
 
-[`FilterAccum.rh_of_finite_accumulation`](../lean_stage3/FilterAccum.md#FilterAccum-rh_of_finite_accumulation) in `lean_stage3/Stage3/FilterAccum.lean`, line 218.
+[`OneChain.spiralLink_of_attained_psi`](../lean_stage3/OneChain.md#OneChain-spiralLink_of_attained_psi) in `lean_stage3/Stage3/OneChain.lean`, line 95.
 
-**Why.** Finitely many accumulation points on every line right of `1/2`, and the ladder of `ψ` of square-root size: then the Riemann hypothesis holds. Let `|ψ(2^k) − 2^k| ≤ C·k²·√2^k` for every `k ≥ 1`. Suppose that for every `σ > 1/2` the modes `2^ρ` of the zeros with real part at least `σ` accumulate only at the points of a finite set `P` of nonzero points (for every `ε > 0` the mode values at distance at least `ε` from all of `P` are finitely many), none of which is the mode of a zero with real part above `σ`. Then the Riemann hypothesis holds.
+**Why.** From ψ's ladder to the loop, a largest real part attained.
 
 **Proves**
 
 ```lean
-RiemannHypothesis
+SpiralLink.SpiralLink
 ```
 
 **Needs** (its hypotheses)
 
   - `` hH : ∀ k : ℕ, 1 ≤ k → ‖(Chebyshev.psi ((2:ℝ)^k) : ℂ) - (((2:ℝ)^k : ℝ) : ℂ)‖ ≤ C * (k:ℝ)^2 * Real.sqrt 2 ^ k ``
-  - `` hfin : ∀ σ : ℝ, 1/2 < σ → ∃ P : Finset ℂ, (∀ p ∈ P, p ≠ 0) ∧ (∀ ε : ℝ, 0 < ε → {z : ℂ | ∃ ρ : Kadiri.NontrivialZeros, σ ≤ (ρ : ℂ).re ∧ (2:ℂ) ^ (ρ : ℂ) = z ∧ ∀ p ∈ P, ε ≤ ‖z - p‖}.Finite) ∧ (∀ ρ : Kadiri.NontrivialZeros, σ < (ρ : ℂ).re → (2:ℂ) ^ (ρ : ℂ) ∉ P) ``
+  - `` ρ₀ : NontrivialZeros ``
+  - `` hmax : ∀ ρ : NontrivialZeros, (ρ : ℂ).re ≤ (ρ₀ : ℂ).re ``
 
-Behind it: 458 theorems and 88 definitions in 48 files. Every one is listed below; Lean recorded each step.
+Behind it: 450 theorems and 88 definitions in 50 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
@@ -24,109 +25,113 @@ flowchart LR
   f0["<b>AliasClass</b><br/>3 used"]:::thm
   f1["<b>Assembly</b><br/>2 used"]:::thm
   f2["<b>CellZeros</b><br/>1 used"]:::thm
-  f3["<b>DirichletMean</b><br/>7 used"]:::thm
-  f4["<b>DirichletMeanW</b><br/>5 used"]:::thm
-  f5["<b>Glue</b><br/>1 used"]:::thm
-  f6["<b>JensenCount</b><br/>17 used"]:::thm
-  f7["<b>ContourShift</b><br/>28 used"]:::thm
-  f8["<b>LadderMean</b><br/>4 used"]:::thm
-  f9["<b>LandauWindow</b><br/>2 used"]:::thm
-  f10["<b>LeftKernel</b><br/>9 used"]:::thm
-  f11["<b>LeftSmooth</b><br/>47 used"]:::thm
-  f12["<b>CellFixedRow</b><br/>1 used"]:::thm
-  f13["<b>LineBound</b><br/>4 used"]:::thm
-  f14["<b>Mollified</b><br/>15 used"]:::thm
-  f15["<b>PerronKernel</b><br/>25 used"]:::thm
-  f16["<b>PerronTwo</b><br/>10 used"]:::thm
-  f17["<b>ReZetaCount</b><br/>19 used"]:::thm
-  f18["<b>RealSegment</b><br/>4 used"]:::thm
-  f19["<b>RvMCrude</b><br/>3 used"]:::thm
-  f20["<b>ArgCrude</b><br/>3 used"]:::thm
-  f21["<b>SquareMean</b><br/>6 used"]:::thm
-  f22["<b>Stirling</b><br/>20 used"]:::thm
-  f23["<b>ArgIdentity</b><br/>54 used"]:::thm
-  f24["<b>ArgLegs</b><br/>10 used"]:::thm
-  f25["<b>ArgCount</b><br/>14 used"]:::thm
-  f26["<b>WeilBands</b><br/>1 used"]:::thm
-  f27["<b>WeilOnLine</b><br/>3 used"]:::thm
-  f28["<b>ZeroSum</b><br/>7 used"]:::thm
-  f29["<b>FiniteOffLine</b><br/>6 used"]:::thm
-  f30["<b>FiniteOffLinePi</b><br/>3 used"]:::thm
-  f31["<b>PiRemainder</b><br/>7 used"]:::thm
-  f32["<b>PiZeros</b><br/>1 used"]:::thm
-  f33["<b>ZetaEM</b><br/>26 used"]:::thm
-  f34["<b>MollifiedMean</b><br/>15 used"]:::thm
-  f35["<b>ZeroSquares</b><br/>19 used"]:::thm
-  f36["<b>ZeroDensity</b><br/>11 used"]:::thm
-  f37["<b>ZeroSummable</b><br/>14 used"]:::thm
-  f38["<b>ZetaGrowth</b><br/>20 used"]:::thm
-  f39["<b>BoxBounds</b><br/>3 used"]:::thm
-  f40["<b>EdgeBound</b><br/>14 used"]:::thm
-  f41["<b>EdgeNum</b><br/>9 used"]:::thm
-  f42["<b>GlueNum</b><br/>6 used"]:::thm
-  f43["<b>ExplicitTwo</b><br/>16 used"]:::thm
-  f44["<b>FixedRowTwo</b><br/>3 used"]:::thm
-  f45["<b>FilterLadder</b><br/>24 used"]:::thm
-  f46["<b>FilterAttained</b><br/>12 used"]:::thm
-  f47["<b>FilterAccum</b><br/>rh_of_finite_accumulation"]:::end_
-  f3 --> f4
-  f1 --> f7
-  f6 --> f7
-  f5 --> f11
-  f7 --> f11
-  f10 --> f11
+  f3["<b>ClosedLoopJoin</b><br/>2 used"]:::thm
+  f4["<b>DirichletMean</b><br/>7 used"]:::thm
+  f5["<b>DirichletMeanW</b><br/>5 used"]:::thm
+  f6["<b>Glue</b><br/>1 used"]:::thm
+  f7["<b>JensenCount</b><br/>17 used"]:::thm
+  f8["<b>ContourShift</b><br/>28 used"]:::thm
+  f9["<b>LadderMean</b><br/>4 used"]:::thm
+  f10["<b>LandauWindow</b><br/>2 used"]:::thm
+  f11["<b>LeftKernel</b><br/>9 used"]:::thm
+  f12["<b>LeftSmooth</b><br/>47 used"]:::thm
+  f13["<b>CellFixedRow</b><br/>1 used"]:::thm
+  f14["<b>LineBound</b><br/>4 used"]:::thm
+  f15["<b>Mollified</b><br/>15 used"]:::thm
+  f16["<b>PerronKernel</b><br/>25 used"]:::thm
+  f17["<b>PerronTwo</b><br/>10 used"]:::thm
+  f18["<b>ReZetaCount</b><br/>19 used"]:::thm
+  f19["<b>RealSegment</b><br/>4 used"]:::thm
+  f20["<b>RvMCrude</b><br/>3 used"]:::thm
+  f21["<b>ArgCrude</b><br/>3 used"]:::thm
+  f22["<b>SpiralLink</b><br/>1 used"]:::thm
+  f23["<b>SquareMean</b><br/>6 used"]:::thm
+  f24["<b>Stirling</b><br/>20 used"]:::thm
+  f25["<b>ArgIdentity</b><br/>54 used"]:::thm
+  f26["<b>ArgLegs</b><br/>10 used"]:::thm
+  f27["<b>ArgCount</b><br/>14 used"]:::thm
+  f28["<b>WeilBands</b><br/>1 used"]:::thm
+  f29["<b>WeilOnLine</b><br/>3 used"]:::thm
+  f30["<b>ZeroSum</b><br/>7 used"]:::thm
+  f31["<b>FiniteOffLine</b><br/>6 used"]:::thm
+  f32["<b>FiniteOffLinePi</b><br/>3 used"]:::thm
+  f33["<b>PiRemainder</b><br/>7 used"]:::thm
+  f34["<b>PiZeros</b><br/>1 used"]:::thm
+  f35["<b>ZetaEM</b><br/>26 used"]:::thm
+  f36["<b>MollifiedMean</b><br/>15 used"]:::thm
+  f37["<b>ZeroSquares</b><br/>19 used"]:::thm
+  f38["<b>ZeroDensity</b><br/>11 used"]:::thm
+  f39["<b>ZeroSummable</b><br/>14 used"]:::thm
+  f40["<b>ZetaGrowth</b><br/>20 used"]:::thm
+  f41["<b>BoxBounds</b><br/>3 used"]:::thm
+  f42["<b>EdgeBound</b><br/>14 used"]:::thm
+  f43["<b>EdgeNum</b><br/>9 used"]:::thm
+  f44["<b>GlueNum</b><br/>6 used"]:::thm
+  f45["<b>ExplicitTwo</b><br/>16 used"]:::thm
+  f46["<b>FixedRowTwo</b><br/>3 used"]:::thm
+  f47["<b>FilterLadder</b><br/>24 used"]:::thm
+  f48["<b>FilterAttained</b><br/>13 used"]:::thm
+  f49["<b>OneChain</b><br/>spiralLink_of_attained_psi"]:::end_
+  f4 --> f5
+  f1 --> f8
+  f7 --> f8
+  f6 --> f12
+  f8 --> f12
   f11 --> f12
-  f15 --> f16
-  f6 --> f17
-  f19 --> f20
-  f19 --> f22
-  f20 --> f23
-  f22 --> f23
-  f23 --> f24
-  f17 --> f25
+  f12 --> f13
+  f16 --> f17
+  f7 --> f18
+  f20 --> f21
+  f3 --> f22
+  f20 --> f24
+  f21 --> f25
   f24 --> f25
-  f18 --> f29
-  f25 --> f29
-  f28 --> f29
-  f2 --> f30
-  f29 --> f30
-  f1 --> f31
-  f29 --> f31
-  f1 --> f32
-  f29 --> f32
-  f4 --> f34
-  f14 --> f34
-  f33 --> f34
-  f6 --> f35
-  f21 --> f35
-  f34 --> f35
+  f25 --> f26
+  f18 --> f27
+  f26 --> f27
+  f19 --> f31
+  f27 --> f31
+  f30 --> f31
+  f2 --> f32
+  f31 --> f32
+  f1 --> f33
+  f31 --> f33
+  f1 --> f34
+  f31 --> f34
+  f5 --> f36
+  f15 --> f36
   f35 --> f36
-  f8 --> f37
-  f26 --> f37
-  f27 --> f37
-  f29 --> f37
+  f7 --> f37
+  f23 --> f37
   f36 --> f37
-  f7 --> f38
+  f37 --> f38
+  f9 --> f39
+  f28 --> f39
+  f29 --> f39
+  f31 --> f39
   f38 --> f39
-  f38 --> f40
-  f39 --> f41
+  f8 --> f40
   f40 --> f41
-  f41 --> f42
-  f11 --> f43
-  f13 --> f43
-  f16 --> f43
+  f40 --> f42
+  f41 --> f43
   f42 --> f43
-  f12 --> f44
   f43 --> f44
-  f30 --> f45
-  f31 --> f45
-  f32 --> f45
+  f12 --> f45
+  f14 --> f45
+  f17 --> f45
   f44 --> f45
-  f0 --> f46
-  f37 --> f46
+  f13 --> f46
   f45 --> f46
-  f9 --> f47
+  f32 --> f47
+  f33 --> f47
+  f34 --> f47
   f46 --> f47
+  f0 --> f48
+  f10 --> f48
+  f39 --> f48
+  f47 --> f48
+  f22 --> f49
+  f48 --> f49
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -157,6 +162,11 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`CellZeros`](../lean_stage3/CellZeros.md) — 1
 
 - [`CellZeros.cpow_two_zpow`](../lean_stage3/CellZeros.md#CellZeros-cpow_two_zpow) — `` (((2:ℝ) ^ n : ℝ) : ℂ) ^ ρ = ((2:ℂ) ^ ρ) ^ n ``
+
+### [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md) — 2
+
+- [`ClosedLoopJoin.primeWeight`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-primeWeight) — *def*
+- [`ClosedLoopJoin.isHermitianHandshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-isHermitianHandshake) — *def*
 
 ### [`DirichletMean`](../lean_stage3/DirichletMean.md) — 7
 
@@ -241,7 +251,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 ### [`LandauWindow`](../lean_stage3/LandauWindow.md) — 2
 
 - [`LandauWindow.zeta_neg_nat_ne_zero`](../lean_stage3/LandauWindow.md#LandauWindow-zeta_neg_nat_ne_zero) — `` riemannZeta (-(n : ℂ)) ≠ 0 ``
-- ★ [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) — `` RiemannHypothesis ``
+- [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) — `` RiemannHypothesis ``
 
 ### [`LeftKernel`](../lean_stage3/LeftKernel.md) — 9
 
@@ -415,6 +425,10 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.StmtArgIdentity`](../lean_stage3/ArgCrude.md#Stage3-StmtArgIdentity) — *def*
 - [`Stage3.StmtSCrude`](../lean_stage3/ArgCrude.md#Stage3-StmtSCrude) — *def*
 - [`Stage3.backlundArg_of_identity`](../lean_stage3/ArgCrude.md#Stage3-backlundArg_of_identity) — `` StmtBacklundArg θ B₁ B₃ ``
+
+### [`SpiralLink`](../lean_stage3/SpiralLink.md) — 1
+
+- ★ [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) — *def*
 
 ### [`SquareMean`](../lean_stage3/SquareMean.md) — 6
 
@@ -803,7 +817,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`FilterLadder.sqrt_split`](../lean_stage3/FilterLadder.md#FilterLadder-sqrt_split) — `` Real.sqrt 2 ^ n * (Real.sqrt 2)⁻¹ ^ j = Real.sqrt 2 ^ (n - j) ``
 - [`FilterLadder.filtered_modes_small_sq`](../lean_stage3/FilterLadder.md#FilterLadder-filtered_modes_small_sq) — `` ‖∑ ρ ∈ (FiniteOffLine.ZF ((2:ℝ)^n)).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), ((riemannZeta.order (ρ : ℂ) : ℤ) : ℂ) / (ρ : ℂ) * (q.eval (((2:ℂ) ^ (ρ :… ``
 
-### [`FilterAttained`](../lean_stage3/FilterAttained.md) — 12
+### [`FilterAttained`](../lean_stage3/FilterAttained.md) — 13
 
 - [`FilterAttained.xi`](../lean_stage3/FilterAttained.md#FilterAttained-xi) — *def*
 - [`FilterAttained.S`](../lean_stage3/FilterAttained.md#FilterAttained-S) — *def*
@@ -817,19 +831,5 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`FilterAttained.tsum_split`](../lean_stage3/FilterAttained.md#FilterAttained-tsum_split) — `` ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ = ∑ ρ ∈ (ZF ((2:ℝ) ^ (b * k))).filter (fun ρ : NontrivialZeros => σ ≤ (ρ : ℂ).re), La… ``
 - [`FilterAttained.tendsto_full`](../lean_stage3/FilterAttained.md#FilterAttained-tendsto_full) — `` Tendsto (fun k : ℕ => ∑' ρ, (S σ).indicator (fun ρ => LadderMean.coef ρ * ratio q a b M ρ ^ k) ρ) atTop (𝓝 0) ``
 - [`FilterAttained.filter_attained_false`](../lean_stage3/FilterAttained.md#FilterAttained-filter_attained_false) — `` False ``
-
-### [`FilterAccum`](../lean_stage3/FilterAccum.md) — 12
-
-- [`FilterAccum.qP`](../lean_stage3/FilterAccum.md#FilterAccum-qP) — *def*
-- [`FilterAccum.eval_qP`](../lean_stage3/FilterAccum.md#FilterAccum-eval_qP) — `` (qP P).eval w = ∏ p ∈ P, (w - p⁻¹) ``
-- [`FilterAccum.L`](../lean_stage3/FilterAccum.md#FilterAccum-L) — *def*
-- [`FilterAccum.L_pos`](../lean_stage3/FilterAccum.md#FilterAccum-L_pos) — `` 0 < L P ``
-- [`FilterAccum.xiz`](../lean_stage3/FilterAccum.md#FilterAccum-xiz) — *def*
-- [`FilterAccum.xi_eq_xiz`](../lean_stage3/FilterAccum.md#FilterAccum-xi_eq_xiz) — `` FilterAttained.xi q 1 b ρ = xiz q b ((2:ℂ) ^ (ρ : ℂ)) ``
-- [`FilterAccum.one_le_norm_mode`](../lean_stage3/FilterAccum.md#FilterAccum-one_le_norm_mode) — `` 1 ≤ ‖(2:ℂ) ^ (ρ : ℂ)‖ ``
-- [`FilterAccum.norm_mode_le_two`](../lean_stage3/FilterAccum.md#FilterAccum-norm_mode_le_two) — `` ‖(2:ℂ) ^ (ρ : ℂ)‖ ≤ 2 ``
-- [`FilterAccum.norm_xiz_near_le`](../lean_stage3/FilterAccum.md#FilterAccum-norm_xiz_near_le) — `` ‖xiz (qP P) b z‖ ≤ 2 ^ b * (ε * L P) ``
-- [`FilterAccum.eval_qP_ne_zero`](../lean_stage3/FilterAccum.md#FilterAccum-eval_qP_ne_zero) — `` (qP P).eval z⁻¹ ≠ 0 ``
-- [`FilterAccum.exists_b`](../lean_stage3/FilterAccum.md#FilterAccum-exists_b) — `` ∃ b : ℕ, q.natDegree < b ∧ W < c * r ^ b ``
-- ★ [`FilterAccum.finite_accumulation_false`](../lean_stage3/FilterAccum.md#FilterAccum-finite_accumulation_false) — `` False ``
+- ★ [`FilterAttained.attained_psi`](../lean_stage3/FilterAttained.md#FilterAttained-attained_psi) — `` RiemannHypothesis ``
 

@@ -1,9 +1,9 @@
 flowchart LR
-  f0["<b>Construction</b><br/>1 used"]:::ext
-  f1["<b>Nonvanishing</b><br/>6 used"]:::ext
-  f2["<b>ZerosStencil</b><br/>3 used"]:::ext
-  f3["<b>AssemblyFloor</b><br/>5 used"]:::thm
-  f4["<b>JensenCount</b><br/>17 used"]:::thm
+  f0["<b>Nonvanishing</b><br/>4 used"]:::ext
+  f1["<b>AssemblyFloor</b><br/>5 used"]:::thm
+  f2["<b>JensenCount</b><br/>17 used"]:::thm
+  f3["<b>LandauWindow</b><br/>2 used"]:::thm
+  f4["<b>ClosedLoopJoin</b><br/>10 used"]:::thm
   f5["<b>PerronKernel</b><br/>33 used"]:::thm
   f6["<b>ReZetaCount</b><br/>19 used"]:::thm
   f7["<b>RvMCrude</b><br/>3 used"]:::thm
@@ -16,22 +16,24 @@ flowchart LR
   f14["<b>ArgIdentity</b><br/>54 used"]:::thm
   f15["<b>ArgLegs</b><br/>10 used"]:::thm
   f16["<b>ArgCount</b><br/>14 used"]:::thm
-  f17["<b>TableRoute</b><br/>1 used"]:::thm
-  f18["<b>VonKochScaffold</b><br/>24 used"]:::thm
-  f19["<b>ZeroSum</b><br/>7 used"]:::thm
-  f20["<b>Assembly</b><br/>8 used"]:::thm
-  f21["<b>ContourShift</b><br/>29 used"]:::thm
-  f22["<b>ZetaGrowth</b><br/>21 used"]:::thm
-  f23["<b>EdgeBound</b><br/>17 used"]:::thm
-  f24["<b>Glue</b><br/>5 used"]:::thm
-  f25["<b>GlueFloor</b><br/>8 used"]:::thm
-  f26["<b>PiToPsi</b><br/>13 used"]:::thm
-  f27["<b>CellResidual</b><br/>table_cell_resid"]:::end_
-  f0 --> f2
-  f4 --> f6
+  f17["<b>VonKochScaffold</b><br/>24 used"]:::thm
+  f18["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f19["<b>SpiralLink</b><br/>10 used"]:::thm
+  f20["<b>ZeroSum</b><br/>7 used"]:::thm
+  f21["<b>Assembly</b><br/>8 used"]:::thm
+  f22["<b>ContourShift</b><br/>29 used"]:::thm
+  f23["<b>ZetaGrowth</b><br/>21 used"]:::thm
+  f24["<b>EdgeBound</b><br/>17 used"]:::thm
+  f25["<b>Glue</b><br/>5 used"]:::thm
+  f26["<b>GlueFloor</b><br/>8 used"]:::thm
+  f27["<b>PiToPsi</b><br/>13 used"]:::thm
+  f28["<b>CellResidual</b><br/>16 used"]:::thm
+  f29["<b>OneChain</b><br/>one_chain"]:::end_
+  f3 --> f4
+  f2 --> f6
   f7 --> f8
   f9 --> f10
-  f4 --> f11
+  f2 --> f11
   f10 --> f11
   f10 --> f12
   f7 --> f13
@@ -40,25 +42,27 @@ flowchart LR
   f14 --> f15
   f6 --> f16
   f15 --> f16
-  f11 --> f18
-  f19 --> f20
-  f4 --> f21
+  f11 --> f17
+  f4 --> f19
+  f18 --> f19
   f20 --> f21
+  f2 --> f22
   f21 --> f22
   f22 --> f23
   f23 --> f24
-  f3 --> f25
-  f5 --> f25
-  f10 --> f25
-  f16 --> f25
   f24 --> f25
-  f12 --> f26
-  f18 --> f26
+  f1 --> f26
+  f5 --> f26
+  f10 --> f26
+  f16 --> f26
   f25 --> f26
-  f1 --> f27
-  f2 --> f27
+  f12 --> f27
   f17 --> f27
   f26 --> f27
+  f0 --> f28
+  f27 --> f28
+  f19 --> f29
+  f28 --> f29
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

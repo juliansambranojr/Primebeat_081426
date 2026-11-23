@@ -14,7 +14,7 @@ flowchart LR
   n12["<b>term_class</b><br/>Tendsto (fun m : ℕ =＞ ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop …"]:::thm
   n13["<b>term_other</b><br/>Tendsto (fun m : ℕ =＞ ordC ρ * (F (wz ρ) c m / Nn u R m)) atTop …"]:::thm
   n14["<b>core</b><br/>False"]:::thm
-  n15["<b>euler_exposed_false ■</b><br/>∃ E : ℝ, σ ≤ E ∧ E ＜ Θ ∧ ∀ (ρ₁ : Kadiri.NontrivialZeros), E ＜ (ρ…"]:::thm
+  n15["<b>euler_exposed_false</b><br/>∃ E : ℝ, σ ≤ E ∧ E ＜ Θ ∧ ∀ (ρ₁ : Kadiri.NontrivialZeros), E ＜ (ρ…"]:::thm
   x0(["<b>CountModes</b><br/>4 theorems"]):::ext
   x1(["<b>diagram 1</b><br/>11 theorems"]):::ext
   x2(["<b>FiniteOffLinePi</b><br/>norm_order_mul<br/>ordR_nonneg"]):::ext
@@ -22,6 +22,7 @@ flowchart LR
   x4(["<b>CountReduction</b><br/>count_modes_small<br/>inv_abs_im_le<br/>summable_J"]):::ext
   x5(["<b>ZeroSummable</b><br/>summable_order_div"]):::ext
   x6(["<b>FiniteOffLine</b><br/>norm_two_cpow"]):::ext
+  x7(["<b>OneChain</b><br/>no_exposed_zero"]):::ext
   n0 --> n2
   n1 --> n4
   n1 --> n5
@@ -40,6 +41,7 @@ flowchart LR
   n8 --> n12
   n8 --> n13
   n9 --> n14
+  n15 -.-> x7
   x0 -.-> n0
   x0 -.-> n10
   x0 -.-> n11

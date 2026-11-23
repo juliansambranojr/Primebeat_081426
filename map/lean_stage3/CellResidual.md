@@ -5,7 +5,7 @@ CellResidual — block T5 of `lean_stage3/design/joints.md`, second part. 2026-1
 15 theorems, 4 definitions, 500 lines. Arrows are Lean's own record of what each proof uses.
 
 **Imports:** [`PiToPsi`](../lean_stage3/PiToPsi.md), [`TableRoute`](../lean_stage3/TableRoute.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`PiZeros`](../lean_stage3/PiZeros.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`OneChain`](../lean_stage3/OneChain.md), [`PiZeros`](../lean_stage3/PiZeros.md)
 
 ## The picture
 
@@ -22,14 +22,15 @@ flowchart LR
   n8["<b>ladder_le</b><br/>|resid a (r₀ + (n : ℤ))| ≤ M + 4 * (|C| * (1 + (2 : ℝ) ^ (-(1 : …"]:::shp
   n9["<b>base_bound</b><br/>∃ M : ℝ, ∀ a ∈ Set.Icc (1 : ℝ) 2, |resid a r₀| ≤ M"]:::shp
   n10["<b>schoenfeldWeak_of_cells</b><br/>∃ C' x₁ : ℝ, StmtSchoenfeldWeak C' 1 x₁ (fun x =＞ (Nat.primeCoun…"]:::shp
-  n11["<b>RH_iff_cells ■</b><br/>RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀"]:::thm
+  n11["<b>RH_iff_cells</b><br/>RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀"]:::thm
   n12["<b>tableFrom_cast</b><br/>((Construction.tableFrom N r d : ℤ) : ℝ) = stencilR (d + 1) f r"]:::shp
   n13["<b>table_cell_eq</b><br/>((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - stencil…"]:::shp
-  n14["<b>table_cell_resid ■</b><br/>∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ …"]:::thm
+  n14["<b>table_cell_resid</b><br/>∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ …"]:::thm
   x0(["<b>Nonvanishing</b><br/>iter_bdiffZ_eq_stencilR<br/>stencilR_row<br/>stencilR_sub"]):::ext
   x1(["<b>PiToPsi</b><br/>RH_iff_schoenfeldWeak<br/>RH_of_schoenfeldWeak<br/>continuousOn_Li"]):::ext
-  x2(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
-  x3(["<b>PiZeros</b><br/>table_cell_eq_zero_sum"]):::ext
+  x2(["<b>OneChain</b><br/>spiralLink_iff_cells<br/>table_of_spiralLink"]):::ext
+  x3(["<b>ZerosStencil</b><br/>tableFrom_eq_stencil"]):::ext
+  x4(["<b>PiZeros</b><br/>table_cell_eq_zero_sum"]):::ext
   n0 --> n4
   n1 --> n6
   n10 --> n11
@@ -44,14 +45,16 @@ flowchart LR
   n7 --> n8
   n8 --> n10
   n9 --> n10
-  n13 -.-> x3
+  n11 -.-> x2
+  n13 -.-> x4
+  n14 -.-> x2
   x0 -.-> n1
   x0 -.-> n12
   x0 -.-> n13
   x1 -.-> n11
   x1 -.-> n5
   x1 -.-> n9
-  x2 -.-> n12
+  x3 -.-> n12
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -96,7 +99,7 @@ def · line 60
 Square-root size at the cell `(r, d)`.
 
 - **Is:** `` cellSize (r : ℤ) (d : ℕ) : ℝ := (1 + (2 : ℝ) ^ (-(1 : ℝ) / 2)) ^ (d + 1) * ((r : ℝ) + 1) * (2 : ℝ) ^ ((r : ℝ) / 2) ``
-- **Used by 5:** [`CellResidual.CellsSqrt`](#CellResidual-CellsSqrt), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid)
+- **Used by 6:** [`CellResidual.CellsSqrt`](#CellResidual-CellsSqrt), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid), [`OneChain.table_of_spiralLink`](../lean_stage3/OneChain.md#OneChain-table_of_spiralLink)
 
 <a name="CellResidual-CellsSqrt"></a>
 ### `CellResidual.CellsSqrt`
@@ -107,7 +110,7 @@ Every cell of every dyadic ladder has its residual at square-root size.
 
 - **Is:** `` CellsSqrt (C : ℝ) (r₀ : ℤ) : Prop := ∀ a ∈ Set.Icc (1 : ℝ) 2, ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → |cellResid a r d| ≤ C * cellSize r d ``
 - **Built from:** [`CellResidual.cellResid`](#CellResidual-cellResid), [`CellResidual.cellSize`](#CellResidual-cellSize)
-- **Used by 7:** [`CellResidual.RH_iff_cells`](#CellResidual-RH_iff_cells), [`CellResidual.cells_of_RH`](#CellResidual-cells_of_RH), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.schoenfeldWeak_of_cells`](#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid)
+- **Used by 9:** [`CellResidual.RH_iff_cells`](#CellResidual-RH_iff_cells), [`CellResidual.cells_of_RH`](#CellResidual-cells_of_RH), [`CellResidual.cells_of_schoenfeldWeak`](#CellResidual-cells_of_schoenfeldWeak), [`CellResidual.ladder_le`](#CellResidual-ladder_le), [`CellResidual.schoenfeldWeak_of_cells`](#CellResidual-schoenfeldWeak_of_cells), [`CellResidual.step_le`](#CellResidual-step_le), [`CellResidual.table_cell_resid`](#CellResidual-table_cell_resid), [`OneChain.one_chain`](../lean_stage3/OneChain.md#OneChain-one_chain), [`OneChain.spiralLink_iff_cells`](../lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells)
 
 ## Theorems
 
@@ -476,7 +479,9 @@ RiemannHypothesis ↔ ∃ (C : ℝ) (r₀ : ℤ), CellsSqrt C r₀
 
 **Definitions its proof touches:** [`Stage3.Li`](../lean_stage3/PsiToPi.md#Stage3-Li), [`Stage3.StmtSchoenfeldWeak`](../lean_stage3/Statement.md#Stage3-StmtSchoenfeldWeak)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.spiralLink_iff_cells`](../lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells) (OneChain) — `` SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀ ``
 
 <a name="CellResidual-tableFrom_cast"></a>
 ### `CellResidual.tableFrom_cast`
@@ -572,5 +577,7 @@ line 467
 
 **Definitions its proof touches:** [`CellResidual.CellsSqrt`](#CellResidual-CellsSqrt), [`CellResidual.cellResid`](#CellResidual-cellResid)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`OneChain.table_of_spiralLink`](../lean_stage3/OneChain.md#OneChain-table_of_spiralLink) (OneChain) — `` ∃ (C : ℝ) (r₀ : ℤ), ∀ (d : ℕ) (r : ℤ), r₀ + ((d + 1 : ℕ) : ℤ) ≤ r → |((Construction.tableFrom TableRoute.rowN r d : ℤ) : ℝ) - Nonvanishing.stencilR (d… ``
 

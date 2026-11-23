@@ -7,7 +7,7 @@ ClosedLoopChain — block J3 of `lean_stage3/design/closedloop.md`. 2026-11-23. 
 16 theorems, 5 definitions, 213 lines. 
 
 **Imports:** [`SpiralLink`](../lean_stage3/SpiralLink.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`OneChain`](../lean_stage3/OneChain.md)
 
 ## The picture
 
