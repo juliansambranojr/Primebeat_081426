@@ -18814,6 +18814,7 @@
      "lean_stage3/Stage3/GlueFloor.lean::Stage3.psiWeak_floor_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.zeroPartialSum_swap_num",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.integrable_efRem",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_low",
@@ -22394,6 +22395,7 @@
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_left_sharp_num",
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.Phi_principal_part",
      "lean_stage3/Stage3/LandauPoleLocal.lean::LandauPoleLocal.differentiableAt_Phi",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
      "lean_stage3/Stage3/ZetaGrowth.lean::ZetaGrowth.sq_mul_zeta_analytic"
     ]
    },
@@ -25354,7 +25356,8 @@
     ],
     "layer": "zeta",
     "used_by": [
-     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any"
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_any",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
     ]
    },
    {
@@ -26955,7 +26958,8 @@
      "lean_stage3/Stage3/GlueFloor.lean::Glue.explicit_formula_split",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_horizontal_bound_num",
      "lean_stage3/Stage3/GlueNum.lean::Glue.edge_left_sharp_num",
-     "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num"
+     "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
    {
@@ -27840,6 +27844,7 @@
      "lean_stage3/Stage3/GateEval.lean::GateEval.routeConst_le",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c1n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
@@ -27881,6 +27886,7 @@
      "lean_stage3/Stage3/GateEval.lean::GateEval.routeConst_le",
      "lean_stage3/Stage3/GlueNum.lean::Glue.c3n_nonneg",
      "lean_stage3/Stage3/GlueNum.lean::Glue.explicit_formula_split_num",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.Chigh_nonneg",
      "lean_stage3/Stage3/PiRemainder.lean::PiRemainder.norm_efRem_le_high",
@@ -33097,7 +33103,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece"
     ]
    },
    {
@@ -33129,7 +33136,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound"
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
     ]
    },
    {
@@ -33158,7 +33167,8 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
     ]
    },
    {
@@ -33259,7 +33269,9 @@
     ],
     "layer": "shape",
     "used_by": [
-     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side"
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ]
    },
    {
@@ -33294,6 +33306,1666 @@
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm",
      "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.vmTerm_nonneg"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/LeftSmooth.lean",
+  "module": "Stage3.LeftSmooth",
+  "stem": "LeftSmooth",
+  "header": "LeftSmooth — blocks F2c, F2 and F3 of `lean_stage3/design/leftedge.md`. 2026-11-23.",
+  "imports": [
+   "Stage3.LeftKernel"
+  ],
+  "opens": [
+   "Complex",
+   "MeasureTheory",
+   "Set"
+  ],
+  "namespaces": [
+   "LeftSmooth"
+  ],
+  "lines": 913,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/LeftKernel.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "arctan_int_le",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.arctan_int_le",
+    "line": 35,
+    "why": "The arctan integral: for `a > 0`, `∫_{−T}^{T} dt/(a²+t²) ≤ π/a`.",
+    "sorry": false,
+    "needs": [
+     "ha : 0 < a"
+    ],
+    "proves": "(∫ t in (-T)..T, 1 / (a ^ 2 + t ^ 2)) ≤ Real.pi / a",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kernel_conj",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.kernel_conj",
+    "line": 62,
+    "why": "The conjugate kernel. For `y > 1`, `T ≥ 0`, `c > 0`: `‖∫_{−T}^{T} y^(it)/(c − it) dt‖ ≤ (2 + π)/(c·log y)`; the endpoint terms are bounded by `1/c`, so the bound does not see `T`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hT : 0 ≤ T",
+     "hc : 0 < c"
+    ],
+    "proves": "‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((c:ℂ) - (t:ℂ) * Complex.I)⁻¹‖ ≤ (2 + Real.pi) / (c * Real.log y)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cos_sq_le_norm_cos",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.cos_sq_le_norm_cos",
+    "line": 116,
+    "why": "The squared norm of `cos(a + ib)` is at least `cos²a + b²` (it equals `cos²a + sinh²b`).",
+    "sorry": false,
+    "needs": [
+     "a b : ℝ"
+    ],
+    "proves": "Real.cos a ^ 2 + b ^ 2 ≤ ‖Complex.cos ((a:ℂ) + (b:ℂ) * Complex.I)‖ ^ 2",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_le_norm_cos",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cos_sq_mul_norm_sin_le",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.cos_sq_mul_norm_sin_le",
+    "line": 137,
+    "why": "`cos²a·‖sin(a + ib)‖² ≤ ‖cos(a + ib)‖²`; so `‖tan(a+ib)‖ ≤ 1/|cos a|`.",
+    "sorry": false,
+    "needs": [
+     "a b : ℝ"
+    ],
+    "proves": "Real.cos a ^ 2 * ‖Complex.sin ((a:ℂ) + (b:ℂ) * Complex.I)‖ ^ 2 ≤ ‖Complex.cos ((a:ℂ) + (b:ℂ) * Complex.I)‖ ^ 2",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_mul_norm_sin_le",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Gs",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Gs",
+    "line": 173,
+    "why": "The smooth factor of the functional equation, as a function of `w = 1 − s`: `G(w) = log 2π − ψ(w) + (π/2)·tan(πw/2)`, with `ψ` the digamma function.",
+    "sorry": false,
+    "needs": [
+     "w : ℂ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "logDeriv_sum",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.logDeriv_sum",
+    "line": 179,
+    "why": "The logarithmic derivative of the functional equation. For `Re w > 1` with `cos(πw/2) ≠ 0`: `ζ(1−w) ≠ 0` and `ζ′/ζ(1−w) + ζ′/ζ(w) = G(w)`.",
+    "sorry": false,
+    "needs": [
+     "hw : 1 < w.re",
+     "hcos : Complex.cos ((Real.pi:ℂ) * w / 2) ≠ 0"
+    ],
+    "proves": "riemannZeta (1 - w) ≠ 0 ∧ deriv riemannZeta (1 - w) / riemannZeta (1 - w) + deriv riemannZeta w / riemannZeta w = Gs w",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "sL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.sL",
+    "line": 260,
+    "why": "The point `s = −1/4 + it` of the left line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.wL",
+    "line": 263,
+    "why": "The reflected point `w = 5/4 − it = 1 − s`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_digamma_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "one_sub_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.one_sub_wL",
+    "line": 266,
+    "why": "`1 − w = s` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "1 - wL t = sL t",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wL_re",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.wL_re",
+    "line": 272,
+    "why": "`Re w = 5/4`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(wL t).re = 5/4",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_digamma_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_sL_sq",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_sL_sq",
+    "line": 277,
+    "why": "`‖s‖² = 1/16 + t²` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "‖sL t‖ ^ 2 = 1/16 + t ^ 2",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_sL_ge",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_sL_ge",
+    "line": 283,
+    "why": "`‖s‖ ≥ 1/4` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "1/4 ≤ ‖sL t‖",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sL_ne",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.sL_ne",
+    "line": 289,
+    "why": "`s ≠ 0` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "sL t ≠ 0",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "arg_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.arg_wL",
+    "line": 296,
+    "why": "The tangent's argument on the line: `πw/2 = 5π/8 − i·πt/2`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "(Real.pi:ℂ) * wL t / 2 = ((5 * Real.pi / 8 : ℝ):ℂ) + ((-(Real.pi * t / 2)) : ℝ) * Complex.I",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "kc",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.kc",
+    "line": 303,
+    "why": "The cosine constant `κ = |cos(5π/8)|`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "kc_pos",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.kc_pos",
+    "line": 306,
+    "why": "`κ > 0`: `cos(5π/8) < 0`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 < kc",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_cos_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_cos_wL",
+    "line": 314,
+    "why": "`‖cos(πw/2)‖² ≥ κ² + t²` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "kc ^ 2 + t ^ 2 ≤ ‖Complex.cos ((Real.pi:ℂ) * wL t / 2)‖ ^ 2",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_le_norm_cos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_le_norm_cos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cos_wL_ne",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.cos_wL_ne",
+    "line": 328,
+    "why": "`cos(πw/2) ≠ 0` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "Complex.cos ((Real.pi:ℂ) * wL t / 2) ≠ 0",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tan_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_tan_wL",
+    "line": 336,
+    "why": "`‖tan(πw/2)‖ ≤ 1/κ` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "‖Complex.tan ((Real.pi:ℂ) * wL t / 2)‖ ≤ 1 / kc",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_mul_norm_sin_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arg_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_sq_mul_norm_sin_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.hasDerivAt_wL",
+    "line": 350,
+    "why": "`t ↦ w(t)` has derivative `−i`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt wL (-Complex.I) t",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_sL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.hasDerivAt_sL",
+    "line": 356,
+    "why": "`t ↦ s(t)` has derivative `i`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt sL Complex.I t",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_sL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_sL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_sL",
+    "line": 362,
+    "why": "`t ↦ s(t)` is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous sL",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_wL",
+    "line": 367,
+    "why": "`t ↦ w(t)` is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous wL",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tanPiece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.tanPiece",
+    "line": 372,
+    "why": "The tangent piece `tan(πw/2)/s` along the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "tanPiece'",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.tanPiece'",
+    "line": 376,
+    "why": "The derivative of the tangent piece.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "hasDerivAt_tanPiece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.hasDerivAt_tanPiece",
+    "line": 381,
+    "why": "The tangent piece has derivative `tanPiece'`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "HasDerivAt tanPiece (tanPiece' t) t",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_tan_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_tan_wL",
+    "line": 390,
+    "why": "The tangent along the line is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous fun t : ℝ => Complex.tan ((Real.pi:ℂ) * wL t / 2)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tan_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_tanPiece'",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_tanPiece'",
+    "line": 399,
+    "why": "The derivative of the tangent piece is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous tanPiece'",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece'",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "norm_tanPiece'_le",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.norm_tanPiece'_le",
+    "line": 413,
+    "why": "The pointwise bound on the derivative of the tangent piece: `‖h′(t)‖ ≤ 2π/(κ²+t²) + (1/κ)/((1/4)²+t²)`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "‖tanPiece' t‖ ≤ 2 * Real.pi * (1 / (kc ^ 2 + t ^ 2)) + (1 / kc) * (1 / ((1/4:ℝ) ^ 2 + t ^ 2))",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_cos_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_sq",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "tan_piece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.tan_piece",
+    "line": 451,
+    "why": "The tangent piece by parts. For `y > 1` and `T ≥ 0`: `‖∫_{−T}^{T} y^(it)·tan(πw/2)/s dt‖ ≤ (8 + 2π² + 4π)/(κ·log y)`.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hT : 0 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * tanPiece t‖ ≤ (8 + 2 * Real.pi ^ 2 + 4 * Real.pi) / (kc * Real.log y)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.osc_by_parts",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.arctan_int_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_sL_ge",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tanPiece'_le",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.norm_tan_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece'",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "dgTerm",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.dgTerm",
+    "line": 519,
+    "why": "The digamma-series weight `1/((n+1)(n+5/4))`.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dgTerm_nonneg",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.dgTerm_nonneg",
+    "line": 522,
+    "why": "Each weight `1/((n+1)(n+5/4))` is nonnegative.",
+    "sorry": false,
+    "needs": [
+     "n : ℕ"
+    ],
+    "proves": "0 ≤ dgTerm n",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm"
+    ],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "dgTerm_summable",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.dgTerm_summable",
+    "line": 527,
+    "why": "The weights `1/((n+1)(n+5/4))` are summable.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Summable dgTerm",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_digamma_wL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_digamma_wL",
+    "line": 536,
+    "why": "The digamma function along `w = 5/4 − it` is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous fun t : ℝ => Complex.digamma (wL t)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_digamma_wL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "shape",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_cpow_tI",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_cpow_tI",
+    "line": 543,
+    "why": "`y^(it)` is continuous in `t` for `y > 0`.",
+    "sorry": false,
+    "needs": [
+     "hy : 0 < y"
+    ],
+    "proves": "Continuous fun t : ℝ => (y:ℂ) ^ ((t:ℂ) * Complex.I)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "digamma_piece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.digamma_piece",
+    "line": 553,
+    "why": "The digamma piece by the series. For `y > 1` and `T ≥ 0`: `‖∫_{−T}^{T} y^(it)·(−ψ(w) − γ)/s dt‖ ≤ (Σ' 1/((n+1)(n+5/4)))·(2+π)/log y`. Termwise, `(−ψ(w) − γ)/s = Σ 1/((n+1)(n+w))` since `w − 1 = −s`, and each term is the conjugate kernel.",
+    "sorry": false,
+    "needs": [
+     "hy : 1 < y",
+     "hT : 0 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * ((2 + Real.pi) / Real.log y)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.norm_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_summable",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kernel_conj",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_tanPiece",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_tanPiece",
+    "line": 660,
+    "why": "The tangent piece is continuous.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Continuous tanPiece",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.hasDerivAt_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "cpow_sL",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.cpow_sL",
+    "line": 665,
+    "why": "On the line, `x^s = x^(−1/4)·x^(it)` for `x > 0`.",
+    "sorry": false,
+    "needs": [
+     "hx : 0 < x",
+     "t : ℝ"
+    ],
+    "proves": "(x:ℂ) ^ (sL t) = ((x ^ (-(1:ℝ)/4) : ℝ):ℂ) * (x:ℂ) ^ ((t:ℂ) * Complex.I)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "c0",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.c0",
+    "line": 672,
+    "why": "The constant of the smooth factor's flat part: `log 2π + γ`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℂ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Nsm",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Nsm",
+    "line": 676,
+    "why": "The numerator of the smooth-side constant: `‖log 2π + γ‖·(1+4π) + (Σ' 1/((n+1)(n+5/4)))·(2+π) + (π/2)·(8+2π²+4π)/κ`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "Nsm_nonneg",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Nsm_nonneg",
+    "line": 681,
+    "why": "The numerator `Nsm` is nonnegative.",
+    "sorry": false,
+    "needs": [],
+    "proves": "0 ≤ Nsm",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Bsm",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Bsm",
+    "line": 689,
+    "why": "The smooth-side constant `Bsm = Nsm / log 16`, free of `x` and `T`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "smooth_side",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.smooth_side",
+    "line": 697,
+    "why": "F2c, the smooth side. For `16 ≤ x` and `2 ≤ T`, with `s = −1/4 + it` and `w = 5/4 − it`, the integral of `(ζ′/ζ(s) + ζ′/ζ(w))·x^s/s` over `[−T, T]` has norm at most `Bsm·x^(−1/4)`. Inside, the sum of the two logarithmic derivatives is `log 2π − ψ(w) + (π/2)·tan(πw/2)`, and each of its three parts is integrated by parts against `x^(it)` (the digamma part termwise through its series).",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)) / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖ ≤ Bsm * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.kernel_bound",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Gs",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Nsm_nonneg",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.c0",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_cpow_tI",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cpow_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.dgTerm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.digamma_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.kc_pos",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tanPiece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.tan_piece",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "continuous_logDeriv_path",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.continuous_logDeriv_path",
+    "line": 814,
+    "why": "Along a continuous path that avoids `1` and the zeros of `ζ`, the logarithmic derivative `ζ′/ζ` is continuous.",
+    "sorry": false,
+    "needs": [
+     "hp : Continuous p",
+     "h1 : ∀ t, p t ≠ 1",
+     "h0 : ∀ t, riemannZeta (p t) ≠ 0"
+    ],
+    "proves": "Continuous fun t => deriv riemannZeta (p t) / riemannZeta (p t)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ContourShift.lean::ContourShift.zeta_analyticAt"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_sL_ne",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.zeta_sL_ne",
+    "line": 824,
+    "why": "`ζ(s) ≠ 0` on the line `Re s = −1/4`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "riemannZeta (sL t) ≠ 0",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.cos_wL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.logDeriv_sum",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.one_sub_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "zeta_wL_ne",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.zeta_wL_ne",
+    "line": 830,
+    "why": "`ζ(w) ≠ 0` on the line `Re w = 5/4`.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "riemannZeta (wL t) ≠ 0",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "sL_ne_one",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.sL_ne_one",
+    "line": 834,
+    "why": "`s ≠ 1` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "sL t ≠ 1",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "wL_ne_one",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.wL_ne_one",
+    "line": 841,
+    "why": "`w ≠ 1` on the line.",
+    "sorry": false,
+    "needs": [
+     "t : ℝ"
+    ],
+    "proves": "wL t ≠ 1",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_re"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "Bleft",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.Bleft",
+    "line": 849,
+    "why": "The left-edge constant `Bleft = Bsm + Bser`.",
+    "sorry": false,
+    "needs": [],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "left_edge_bound",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.left_edge_bound",
+    "line": 855,
+    "why": "F2, the left edge at every height. For `16 ≤ x` and `2 ≤ T`, the integral of `−ζ′/ζ(s)·x^s/s` up `Re s = −1/4` from `−T` to `T` has norm at most `Bleft·x^(−1/4)`, with `Bleft` free of `x` and `T`: the smooth side plus the series side.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Glue.lean::Glue.Gf",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.Bser",
+     "lean_stage3/Stage3/LeftKernel.lean::LeftKernel.series_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bsm",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_logDeriv_path",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.continuous_wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.sL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.smooth_side",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.wL_ne_one",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_sL_ne",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.zeta_wL_ne"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "explicit_formula_all",
+    "ns": "LeftSmooth",
+    "full": "LeftSmooth.explicit_formula_all",
+    "line": 900,
+    "why": "F3, the explicit formula at every height. For `16 ≤ x` and every `T ≥ 2`: `‖ψ(x) − x + Σ_{|γ|<T} m·x^ρ/ρ‖ ≤ c1n·x·log²(xT)/T + c3n·log x + Bleft·x^(−1/4)`, with no cap on `T` and the left edge bounded free of the height.",
+    "sorry": false,
+    "needs": [
+     "hx : 16 ≤ x",
+     "hT : 2 ≤ T"
+    ],
+    "proves": "‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + Bleft * x ^ (-(1:ℝ)/4)",
+    "file": "lean_stage3/Stage3/LeftSmooth.lean",
+    "id": "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.explicit_formula_all",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Assembly.lean::Stage3.zeroPartialSum",
+     "lean_stage3/Stage3/ExplicitLeft.lean::ExplicitLeft.explicit_formula_left",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c1n",
+     "lean_stage3/Stage3/GlueNum.lean::Glue.c3n",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.Bleft",
+     "lean_stage3/Stage3/LeftSmooth.lean::LeftSmooth.left_edge_bound"
     ],
     "layer": "zeta",
     "used_by": []
@@ -71232,11 +72904,12 @@
    "Stage3.ZeroSummable",
    "Stage3.AttainedPi",
    "Stage3.ExplicitLeft",
-   "Stage3.LeftKernel"
+   "Stage3.LeftKernel",
+   "Stage3.LeftSmooth"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 167,
+  "lines": 168,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -71294,6 +72967,7 @@
    "lean_stage3/Stage3/LandauWindow.lean",
    "lean_stage3/Stage3/LandauZeroSide.lean",
    "lean_stage3/Stage3/LeftKernel.lean",
+   "lean_stage3/Stage3/LeftSmooth.lean",
    "lean_stage3/Stage3/LineBound.lean",
    "lean_stage3/Stage3/LowCount.lean",
    "lean_stage3/Stage3/LowEdge.lean",

@@ -20,19 +20,21 @@ flowchart LR
   x0(["<b>GlueNum</b><br/>5 theorems"]):::ext
   x1(["<b>ContourShift</b><br/>4 theorems"]):::ext
   x2(["<b>PerronKernel</b><br/>explicit_formula_perron"]):::ext
-  x3(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
-  x4(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
-  x5(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
+  x3(["<b>LeftSmooth</b><br/>explicit_formula_all"]):::ext
+  x4(["<b>EdgeBound</b><br/>ball_zero_shape<br/>deriv_zeta_conj<br/>gz_zeros_ball_finite"]):::ext
+  x5(["<b>EdgeNum</b><br/>Cen_pos<br/>edge_bound_core_num"]):::ext
+  x6(["<b>LowEdge</b><br/>logDerivZeta_short_segment"]):::ext
   n1 --> n3
   n2 --> n3
+  n1 -.-> x3
   x0 -.-> n0
   x0 -.-> n1
   x1 -.-> n1
   x1 -.-> n2
   x2 -.-> n1
-  x3 -.-> n2
   x4 -.-> n2
   x5 -.-> n2
+  x6 -.-> n2
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -115,9 +117,10 @@ line 42 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.zeroPartialSum`](../lean_stage3/Assembly.md#Stage3-zeroPartialSum), [`Glue.Gf`](../lean_stage3/Glue.md#Glue-Gf), [`Glue.Chn`](../lean_stage3/GlueNum.md#Glue-Chn), [`Glue.Csn`](../lean_stage3/GlueNum.md#Glue-Csn), [`Glue.c1n`](../lean_stage3/GlueNum.md#Glue-c1n), [`Glue.c3n`](../lean_stage3/GlueNum.md#Glue-c3n)
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`ExplicitLeft.explicit_formula_any`](#ExplicitLeft-explicit_formula_any) — `` ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + Aleft * (Real.log (T+1))^2… ``
+  - [`LeftSmooth.explicit_formula_all`](../lean_stage3/LeftSmooth.md#LeftSmooth-explicit_formula_all) (LeftSmooth) — `` ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖ ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x + Bleft * x ^ (-(1:ℝ)/4) ``
 
 <a name="ExplicitLeft-edge_left_any"></a>
 ### `ExplicitLeft.edge_left_any`

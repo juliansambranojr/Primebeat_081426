@@ -6,7 +6,8 @@ flowchart LR
   n4["<b>kernel_bound</b><br/>‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) / ((a:ℂ) + (t:ℂ) …"]:::shp
   n5["<b>vmTerm_nonneg</b><br/>0 ≤ vmTerm n"]:::shp
   n6["<b>vmTerm_summable ■</b><br/>Summable vmTerm"]:::thm
-  n7["<b>series_side ■</b><br/>‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I…"]:::thm
+  n7["<b>series_side</b><br/>‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I…"]:::thm
+  x0(["<b>LeftSmooth</b><br/>5 theorems"]):::ext
   n0 --> n2
   n0 --> n3
   n0 --> n7
@@ -16,6 +17,10 @@ flowchart LR
   n3 --> n4
   n4 --> n7
   n5 --> n7
+  n2 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
+  n7 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px

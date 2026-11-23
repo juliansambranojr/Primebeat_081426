@@ -39,7 +39,7 @@ ended at `8·D·log²T'·x^(−1/4)`. Together: the formula
 at every height with `A·log²(T+1)·x^(−1/4)` in the error. The lost factor,
 stated.
 
-## F2 The left edge bounded at every height
+## F2 The left edge bounded at every height — PROVED (units 0459, 0460: `LeftSmooth.smooth_side`, `left_edge_bound`, `explicit_formula_all`)
 
 Target: `‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ B·x^(−1/4)` for `16 ≤ x`,
 `2 ≤ T'`, `B` free of both.
@@ -67,6 +67,14 @@ dominated convergence.
   Then by parts: `|∫ x^(it)·h dt| ≤ (2·|h(T)| + ∫|h'|)/log x`, and
   `∫|h'| ≤ ∫ A/((1+t)·(1/4+t)) + A·log(2+t)/(1/16+t²) dt < ∞`.
 - **F2, the edge.** F2b + F2c.
+
+**As built (unit 0460).** The signs above are right (`LeftSmooth.logDeriv_sum`).
+F2c took a different route from the one written above. With `w − 1 = −s`,
+the digamma series gives `(−ψ(w) − γ)/s = Σ 1/((n+1)(n+w))`; sum and integral
+exchange and each term is a kernel bounded by `(2+π)/(c·log y)`
+(`kernel_conj`, endpoints bounded by `1/c` so the bounds sum). The tangent's
+derivative is `≤ 1/(κ²+t²)` from `|cos(a+ib)|² ≥ cos²a + b²`. No derivative of
+digamma and no growth bound on it is used.
 
 ## F3 T3 at a fixed row
 

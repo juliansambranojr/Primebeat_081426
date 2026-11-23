@@ -45,13 +45,14 @@ flowchart LR
   x3(["<b>ExplicitLeft</b><br/>edge_left_any<br/>explicit_formula_left"]):::ext
   x4(["<b>GlueFloor</b><br/>edge_left_sharp<br/>explicit_formula_split"]):::ext
   x5(["<b>LandauPoleLocal</b><br/>Phi_principal_part<br/>differentiableAt_Phi"]):::ext
-  x6(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic"]):::ext
-  x7(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
-  x8(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
-  x9(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
-  x10(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
-  x11(["<b>LowCount</b><br/>low_rect_count"]):::ext
-  x12(["<b>RouteNum</b><br/>C2n_le"]):::ext
+  x6(["<b>LeftSmooth</b><br/>continuous_logDeriv_path"]):::ext
+  x7(["<b>ZetaGrowth</b><br/>sq_mul_zeta_analytic"]):::ext
+  x8(["<b>LandauZeroSide</b><br/>zero_side"]):::ext
+  x9(["<b>EdgeNum</b><br/>C2n_pos<br/>ball_order_sum_le_num"]):::ext
+  x10(["<b>JensenCount</b><br/>zetaWindow_finite<br/>zeta_local_zero_count"]):::ext
+  x11(["<b>LowEdge</b><br/>logDerivZeta_low_edge"]):::ext
+  x12(["<b>LowCount</b><br/>low_rect_count"]):::ext
+  x13(["<b>RouteNum</b><br/>C2n_le"]):::ext
   n0 --> n27
   n1 --> n6
   n10 --> n27
@@ -101,11 +102,11 @@ flowchart LR
   n14 -.-> x5
   n18 -.-> x0
   n18 -.-> x1
-  n18 -.-> x10
+  n18 -.-> x11
   n18 -.-> x2
   n18 -.-> x3
   n18 -.-> x4
-  n19 -.-> x6
+  n19 -.-> x7
   n2 -.-> x0
   n2 -.-> x1
   n2 -.-> x2
@@ -113,36 +114,37 @@ flowchart LR
   n2 -.-> x4
   n2 -.-> x5
   n2 -.-> x6
+  n2 -.-> x7
   n21 -.-> x0
   n21 -.-> x1
-  n21 -.-> x11
   n21 -.-> x12
+  n21 -.-> x13
   n21 -.-> x2
-  n21 -.-> x8
+  n21 -.-> x9
   n23 -.-> x0
   n23 -.-> x1
   n25 -.-> x0
   n25 -.-> x1
-  n25 -.-> x7
+  n25 -.-> x8
   n26 -.-> x0
   n26 -.-> x1
   n26 -.-> x2
-  n26 -.-> x8
+  n26 -.-> x9
   n27 -.-> x0
   n27 -.-> x1
   n27 -.-> x3
   n27 -.-> x4
   n3 -.-> x5
-  n3 -.-> x7
+  n3 -.-> x8
   n5 -.-> x0
   n5 -.-> x1
   n5 -.-> x2
-  n5 -.-> x8
+  n5 -.-> x9
   n6 -.-> x0
   n6 -.-> x1
   n6 -.-> x3
   n6 -.-> x4
-  x9 -.-> n6
+  x10 -.-> n6
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -248,7 +250,7 @@ AnalyticAt ℂ riemannZeta ρ
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (18 that use it)
+**Feeds** (19 that use it)
 
   - [`ContourShift.one_le_zeta_order`](#ContourShift-one_le_zeta_order) — `` 1 ≤ analyticOrderNatAt riemannZeta ρ ``
   - [`ContourShift.order_bridge`](#ContourShift-order_bridge) — `` ((riemannZeta.order ρ : ℤ) : ℂ) = ((analyticOrderNatAt riemannZeta ρ : ℕ) : ℂ) ``
@@ -267,6 +269,7 @@ AnalyticAt ℂ riemannZeta ρ
   - [`Glue.edge_left_sharp_num`](../lean_stage3/GlueNum.md#Glue-edge_left_sharp_num) (GlueNum) — `` ∀ x T' : ℝ, 16 ≤ x → 2 ≤ T' → T' ≤ 2*x^2 → ‖VIntegral (Gf x) (-1/4) (-T') T'‖ ≤ 72 * Dln * ((Real.log x)^2 * x ^ (-(1:ℝ)/4)) ``
   - [`LandauPoleLocal.Phi_principal_part`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-Phi_principal_part) (LandauPoleLocal) — `` ∃ h : ℂ → ℂ, AnalyticAt ℂ h ρ ∧ ∀ᶠ s in 𝓝[≠] ρ, LandauMellinG.Phi s = h s + (analyticOrderNatAt riemannZeta ρ : ℂ) / (ρ * (1 - ρ)) / (s - ρ) ``
   - [`LandauPoleLocal.differentiableAt_Phi`](../lean_stage3/LandauPoleLocal.md#LandauPoleLocal-differentiableAt_Phi) (LandauPoleLocal) — `` DifferentiableAt ℂ LandauMellinG.Phi s ``
+  - [`LeftSmooth.continuous_logDeriv_path`](../lean_stage3/LeftSmooth.md#LeftSmooth-continuous_logDeriv_path) (LeftSmooth) — `` Continuous fun t => deriv riemannZeta (p t) / riemannZeta (p t) ``
   - [`ZetaGrowth.sq_mul_zeta_analytic`](../lean_stage3/ZetaGrowth.md#ZetaGrowth-sq_mul_zeta_analytic) (ZetaGrowth) — `` AnalyticAt ℂ (fun z : ℂ ↦ (z - 1)^2 * riemannZeta z) s ``
 
 <a name="ContourShift-one_le_zeta_order"></a>

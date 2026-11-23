@@ -1,0 +1,47 @@
+# check_prose_source.py  2026-11-23T04:26:54Z
+# unit: 0460-left-edge-bound
+# sources searched: 424
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:23199
+  Source: session transcript, 2026-11-23
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:26151
+  T3 at a fixed row (the explicit formula above x²).
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28079
+  theorem smooth_side {x T : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28080
+  ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28081
+  / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28082
+  + deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27885
+  / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27886
+  * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I))
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27887
+  / (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I)‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28088
+  theorem left_edge_bound {x T : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc/subagents/agent-a0861cd161253f2a1.jsonl:2485
+  ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) :=
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:28091
+  theorem explicit_formula_all {x T : ℝ} (hx : 16 ≤ x) (hT : 2 ≤ T) :
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:32147
+  ‖(Chebyshev.psi x : ℂ) - (x:ℂ) + Stage3.zeroPartialSum x T‖
+
+FOUND  session/d2968cf2-ba85-5b2d-a2ea-bf06a81f4dbc.jsonl:27475
+  ≤ Glue.c1n * x * Real.log (x*T)^2 / T + Glue.c3n * Real.log x
+
+# 14 found, 0 missing

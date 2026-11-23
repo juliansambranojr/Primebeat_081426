@@ -7,7 +7,7 @@ LeftKernel — blocks F2a and F2b of `lean_stage3/design/leftedge.md`. 2026-11-2
 8 theorems, 2 definitions, 366 lines. 
 
 **Imports:** [`ExplicitLeft`](../lean_stage3/ExplicitLeft.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`LeftSmooth`](../lean_stage3/LeftSmooth.md)
 
 ## The picture
 
@@ -20,7 +20,8 @@ flowchart LR
   n4["<b>kernel_bound</b><br/>‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) / ((a:ℂ) + (t:ℂ) …"]:::shp
   n5["<b>vmTerm_nonneg</b><br/>0 ≤ vmTerm n"]:::shp
   n6["<b>vmTerm_summable ■</b><br/>Summable vmTerm"]:::thm
-  n7["<b>series_side ■</b><br/>‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I…"]:::thm
+  n7["<b>series_side</b><br/>‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I…"]:::thm
+  x0(["<b>LeftSmooth</b><br/>5 theorems"]):::ext
   n0 --> n2
   n0 --> n3
   n0 --> n7
@@ -30,6 +31,10 @@ flowchart LR
   n3 --> n4
   n4 --> n7
   n5 --> n7
+  n2 -.-> x0
+  n3 -.-> x0
+  n4 -.-> x0
+  n7 -.-> x0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -63,7 +68,7 @@ The series-side constant: `((1 + 4π)/log 16)·Σ' n, Λ(n)·n^(−5/4)`.
 
 - **Is:** `` Bser : ℝ := ((1 + 4 * Real.pi) / Real.log 16) * ∑' n : ℕ, vmTerm n ``
 - **Built from:** [`LeftKernel.vmTerm`](#LeftKernel-vmTerm)
-- **Used by 1:** [`LeftKernel.series_side`](#LeftKernel-series_side)
+- **Used by 3:** [`LeftKernel.series_side`](#LeftKernel-series_side), [`LeftSmooth.Bleft`](../lean_stage3/LeftSmooth.md#LeftSmooth-Bleft), [`LeftSmooth.left_edge_bound`](../lean_stage3/LeftSmooth.md#LeftSmooth-left_edge_bound)
 
 ## Theorems
 
@@ -146,9 +151,10 @@ line 38 · arrows read from text
   - [`LeftKernel.cpow_tI`](#LeftKernel-cpow_tI) — `` (y:ℂ) ^ ((t:ℂ) * Complex.I) = Complex.exp ((Real.log y : ℂ) * ((t:ℂ) * Complex.I)) ``
   - [`LeftKernel.norm_exp_tI`](#LeftKernel-norm_exp_tI) — `` ‖Complex.exp ((L:ℂ) * ((t:ℂ) * Complex.I))‖ = 1 ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LeftKernel.series_side`](#LeftKernel-series_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
+  - [`LeftSmooth.digamma_piece`](../lean_stage3/LeftSmooth.md#LeftSmooth-digamma_piece) (LeftSmooth) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((-Complex.digamma (wL t) - (Real.eulerMascheroniConstant:ℂ)) * (sL t)⁻¹)‖ ≤ (∑' n : ℕ, dgTerm n) * (… ``
 
 <a name="LeftKernel-osc_by_parts"></a>
 ### `LeftKernel.osc_by_parts`
@@ -177,9 +183,11 @@ line 45 · arrows read from text
   - [`LeftKernel.cpow_tI`](#LeftKernel-cpow_tI) — `` (y:ℂ) ^ ((t:ℂ) * Complex.I) = Complex.exp ((Real.log y : ℂ) * ((t:ℂ) * Complex.I)) ``
   - [`LeftKernel.norm_exp_tI`](#LeftKernel-norm_exp_tI) — `` ‖Complex.exp ((L:ℂ) * ((t:ℂ) * Complex.I))‖ = 1 ``
 
-**Feeds** (1 that use it)
+**Feeds** (3 that use it)
 
   - [`LeftKernel.kernel_bound`](#LeftKernel-kernel_bound) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) / ((a:ℂ) + (t:ℂ) * Complex.I)‖ ≤ (2 / T + Real.pi / |a|) / Real.log y ``
+  - [`LeftSmooth.kernel_conj`](../lean_stage3/LeftSmooth.md#LeftSmooth-kernel_conj) (LeftSmooth) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * ((c:ℂ) - (t:ℂ) * Complex.I)⁻¹‖ ≤ (2 + Real.pi) / (c * Real.log y) ``
+  - [`LeftSmooth.tan_piece`](../lean_stage3/LeftSmooth.md#LeftSmooth-tan_piece) (LeftSmooth) — `` ‖∫ t in (-T)..T, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * tanPiece t‖ ≤ (8 + 2 * Real.pi ^ 2 + 4 * Real.pi) / (kc * Real.log y) ``
 
 <a name="LeftKernel-kernel_bound"></a>
 ### `LeftKernel.kernel_bound`
@@ -206,9 +214,10 @@ line 101 · arrows read from text
 
   - [`LeftKernel.osc_by_parts`](#LeftKernel-osc_by_parts) — `` ‖∫ t in a..b, ((y:ℂ) ^ ((t:ℂ) * Complex.I)) * h t‖ ≤ (‖h a‖ + ‖h b‖ + ∫ t in a..b, ‖h' t‖) / Real.log y ``
 
-**Feeds** (1 that use it)
+**Feeds** (2 that use it)
 
   - [`LeftKernel.series_side`](#LeftKernel-series_side) — `` ‖∫ t in (-T)..T, (deriv riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I) / riemannZeta ((5/4:ℂ) - (t:ℂ) * Complex.I)) * ((x:ℂ) ^ (((-1/4 : ℝ):ℂ) + (t:ℂ) * Co… ``
+  - [`LeftSmooth.smooth_side`](../lean_stage3/LeftSmooth.md#LeftSmooth-smooth_side) (LeftSmooth) — `` ‖∫ t in (-T)..T, (deriv riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) / riemannZeta (((-1/4 : ℝ):ℂ) + (t:ℂ) * Complex.I) + deriv riemannZeta ((5/4:… ``
 
 <a name="LeftKernel-vmTerm_nonneg"></a>
 ### `LeftKernel.vmTerm_nonneg`
@@ -287,5 +296,7 @@ line 205 · arrows read from text
 
 **Definitions its proof touches:** [`LeftKernel.Bser`](#LeftKernel-Bser), [`LeftKernel.vmTerm`](#LeftKernel-vmTerm)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`LeftSmooth.left_edge_bound`](../lean_stage3/LeftSmooth.md#LeftSmooth-left_edge_bound) (LeftSmooth) — `` ‖VIntegral (Glue.Gf x) (-1/4) (-T) T‖ ≤ Bleft * x ^ (-(1:ℝ)/4) ``
 

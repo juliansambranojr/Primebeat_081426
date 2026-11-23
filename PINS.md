@@ -39,7 +39,7 @@ below with their outcome.
                 `LSeries_vonMangoldt_eq_deriv_riemannZeta_div`, PNT+
                 `Complex.hasSum_digamma`
     OUT         the cell at a fixed row (block F3)
-    OUTCOME     `LeftKernel` proved, unit 0459; `LeftSmooth` being built
+    OUTCOME     proved: `LeftKernel` unit 0459, `LeftSmooth` unit 0460
 
 ### 2026-11-23 · block F1 of `design/leftedge.md`: `Stage3/ExplicitLeft.lean`
 

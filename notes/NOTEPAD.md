@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  F2 PROVED (unit 0460, `LeftSmooth.left_edge_bound`, `explicit_formula_all`): the left edge <= Bleft x^(-1/4) at every height; the explicit formula for all T >= 2 with error c1n x log^2(xT)/T + c3n log x + Bleft x^(-1/4). Unit 0457's lost factor is gone. Opus worker, built and read here. Next: F3, the cell at a fixed row (being built).
 - [open]   2026-11-23  F2a, F2b PROVED (unit 0459, `LeftKernel.osc_by_parts`, `kernel_bound`, `series_side`): the turning factor x^(it) integrated by parts; the Dirichlet-series half of the left edge <= Bser x^(-1/4) at every height, no log of the height. Opus worker, built and read here. Next: the gamma-factor half and the join (being built).
 - [open]   2026-11-23  F1 PROVED (unit 0458, `ExplicitLeft.explicit_formula_any`): the explicit formula at every height T >= 2, no cap at x^2; the left edge kept as a term, bounded by 8 Dln log^2 T' x^(-1/4). Unit 0457 names that log^2 as the lost factor: the cap was used once, at the left edge. Opus worker, built and read here. Next: F2, the edge bounded free of the height.
 - [open]   2026-11-23  C7 PROVED (unit 0456, `AttainedPi.attained_off_line_pi`): if some zero has the largest real part and |pi(2^r) - Li(2^r)| <= C r^2 sqrt2^r from some row on, then RH; any number of zeros off the line. Second of unit 0431's three cases, on the integer count. Opus worker, built and read here. Open: the largest real part not attained.
