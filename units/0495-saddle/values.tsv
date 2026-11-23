@@ -1,0 +1,18 @@
+key	value	source
+module_lines	198	wc -l lean_stage3/Stage3/Saddle.lean
+theorems_proved	11	grep -c ^theorem lean_stage3/Stage3/Saddle.lean
+defs	1	grep -c ^def
+axioms	3	#print axioms: propext, Classical.choice, Quot.sound
+sorries	0	grep -c sorry lean_stage3/Stage3/Saddle.lean
+pins	6	fold_rounding, fold_mirror, saddle_area, saddle_of_off_line, saddle_runs_away, spiralLink_iff_noRunaway
+errors_first	0	the first lake build Stage3.Saddle here
+builds	1	the build here before the unit's own
+traps_added	0	lean_stage3/TRAPS.md unchanged
+assumed_pins	0	no hypothesis beyond the block's
+jobs_package	8880	lake build (full Stage3), Build completed successfully
+jobs_module	8844	run/build.log, lake build Stage3.Saddle
+loop_version	22	lean_stage3/LOOP.md version line
+design	closedloop.md#j7	stretch, fold, and the saddle
+steps_skipped	2	LOOP.md section 0 (no orient hook in a cloud session) and section 2's scratch pass
+unit_tie	486	unit 0486
+unit_scales	492	unit 0492

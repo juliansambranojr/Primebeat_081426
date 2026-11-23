@@ -17,6 +17,7 @@ grep 'entry 1'                   # all lines pointing at notebook entry 1
 
 ## Threads
 
+- [open]   2026-11-23  Unit 0495: one row down is the baker's fold on every rounding; a zero off the line is a saddle of area one and makes the staircase run away in the square-root frame; the spiral link is the staircase not running away (`Saddle.spiralLink_iff_noRunaway`). No runaway is unproved.
 - [open]   2026-11-23  Unit 0494: the real part of a zero is the share of the total its mode takes on the multiplying scale; a zero and its mirror split the total as primes and composites do, and meet at the square root exactly at one half (`ShareLink.meet_sqrt_iff`). Open: that the zeros' mirror is the table's swap.
 - [open]   2026-11-23  Unit 0493: at a zero, the turned steps to a cutoff, less their smooth term, exceed every bound below the zero's rate at cutoffs beyond any start (`StepsBelow.rain_steps`); with unit 0487 the run's size rate is held from both sides.
 - [open]   2026-11-23  Unit 0492 (decision, EXPLORATORY): bounding the residual at N by adding sizes across the scales N/m loses a factor that grows with N; the pieces share a sign and the residual at N is a small difference of large pieces. That route is closed; a proof has to take the scales together.

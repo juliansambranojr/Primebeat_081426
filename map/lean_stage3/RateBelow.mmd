@@ -1,6 +1,8 @@
 flowchart LR
-  n0["<b>rain_psi ■</b><br/>∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k ＜ |Chebyshev.psi x …"]:::thm
+  n0["<b>rain_psi</b><br/>∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k ＜ |Chebyshev.psi x …"]:::thm
   x0(["<b>ThetaConverse</b><br/>no_zero_right_of_theta"]):::ext
+  x1(["<b>Saddle</b><br/>saddle_runs_away"]):::ext
+  n0 -.-> x1
   x0 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111

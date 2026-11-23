@@ -265,6 +265,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`RouteNum.Cen_le`](./lean_stage3/RouteNum.md#RouteNum-Cen_le) | theorem | reads ζ | `RouteNum` | EdgeBound.Cen ≤ 1911393 |
 | [`EdgeBound.Cen_pos`](./lean_stage3/EdgeNum.md#EdgeBound-Cen_pos) | theorem | reads ζ | `EdgeNum` | 0 &lt; Cen |
 | [`WeilTiles.centre`](./lean_stage3/WeilTiles.md#WeilTiles-centre) | def | shape | `WeilTiles` | ℝ |
+| [`Saddle.centre_iff`](./lean_stage3/Saddle.md#Saddle-centre_iff) | theorem | shape | `Saddle` | stretch ρ = 1 ↔ (ρ : ℂ).re = 1 / 2 |
+| [`Saddle.centre_of_noRunaway`](./lean_stage3/Saddle.md#Saddle-centre_of_noRunaway) | theorem | reads ζ | `Saddle` | stretch ρ = 1 |
 | [`WeilSeries.cFar`](./lean_stage3/WeilSeries.md#WeilSeries-cFar) | def | shape | `WeilSeries` | ℝ |
 | [`WeilSeries.cFar_nonneg`](./lean_stage3/WeilSeries.md#WeilSeries-cFar_nonneg) | theorem | shape | `WeilSeries` | 0 ≤ cFar |
 | [`WeilPowerBands.cFarM`](./lean_stage3/WeilPowerBands.md#WeilPowerBands-cFarM) | def | shape | `WeilPowerBands` | ℝ |
@@ -641,6 +643,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`Stage3.floorConstSplit`](./lean_stage3/GlueFloor.md#Stage3-floorConstSplit) | def | shape | `GlueFloor` | ℝ |
 | [`Stage3.floorConstSplit_nonneg`](./lean_stage3/GlueFloor.md#Stage3-floorConstSplit_nonneg) | theorem | shape | `GlueFloor` | 0 ≤ floorConstSplit c₁ c₃ c₄ b₁ b₂ b₃ W x₀ |
 | [`Propagation.flux_form`](./lean/Propagation.md#Propagation-flux_form) | theorem | counting | `Propagation` | tableFrom N r (d + 1) + tableFrom N (r - 1) d = tableFrom N r d |
+| [`Saddle.fold_fract`](./lean_stage3/Saddle.md#Saddle-fold_fract) | theorem | counting | `Saddle` | Int.fract (2 * x) = if Int.fract x &lt; 1 / 2 then 2 * Int.fract x else 2 * Int.fract x - 1 |
+| [`Saddle.fold_mirror`](./lean_stage3/Saddle.md#Saddle-fold_mirror) | theorem | counting | `Saddle` | Int.fract (2 * (1 - x)) = 1 - Int.fract (2 * x) |
+| [`Saddle.fold_rounding`](./lean_stage3/Saddle.md#Saddle-fold_rounding) | theorem | counting | `Saddle` | Int.fract (2 * (N : ℝ) / (d : ℝ)) = if Int.fract ((N : ℝ) / (d : ℝ)) &lt; 1 / 2 then 2 * Int.fract ((N : ℝ) / (d : ℝ)) else 2 * Int.fract ((N : ℝ) / (d : ℝ)) - 1 |
 | [`SieveExact.forall_dvd_iff_prod_dvd`](./lean_stage3/SieveExact.md#SieveExact-forall_dvd_iff_prod_dvd) | theorem | counting | `SieveExact` | (∀ p ∈ T, p ∣ n) ↔ (∏ p ∈ T, p) ∣ n |
 | [`ClosedLoopJoin.force_eq`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_eq) | theorem | counting | `ClosedLoopJoin` | restoringForce σ = 5 * \|σ - 1 / 2\| |
 | [`ClosedLoopJoin.force_eq_zero_iff`](./lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-force_eq_zero_iff) | theorem | counting | `ClosedLoopJoin` | restoringForce σ = 0 ↔ σ = 1 / 2 |
@@ -1346,6 +1351,7 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerShell.norm_zOf_c_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-norm_zOf_c_le) | theorem | shape | `WeilPowerShell` | ‖zOf e' D e‖ * (1 / (2 * (lam : ℝ) ^ 3 * Real.pi ^ 2)) ≤ (a : ℝ) + 1 |
 | [`WeilPowerShell.norm_zOf_le`](./lean_stage3/WeilPowerShell.md#WeilPowerShell-norm_zOf_le) | theorem | shape | `WeilPowerShell` | ‖zOf e' D e‖ ≤ 2 * (e' ^ 2 + D ^ 2 + e ^ 2) |
 | [`Stage3.normSq_add_zq`](./lean_stage3/Stirling.md#Stage3-normSq_add_zq) | theorem | shape | `Stirling` | ‖(n : ℂ) + zq t‖ ^ 2 = ((n : ℝ) + 1 / 4) ^ 2 + (t / 2) ^ 2 |
+| [`Saddle.NoRunaway`](./lean_stage3/Saddle.md#Saddle-NoRunaway) | def | shape | `Saddle` | Prop |
 | [`LadderFading.not_tendsto_powerSum`](./lean_stage3/LadderFading.md#LadderFading-not_tendsto_powerSum) | theorem | shape | `LadderFading` | ∀ (n : ℕ) (Z : Finset ℂ) (c : ℂ → ℂ), Z.card = n → (∀ z ∈ Z, ‖z‖ = R) → (∃ z ∈ Z, c z ≠ 0) → ¬ Tendsto (fun r : ℕ =&gt; (∑ z ∈ Z, c z * z ^ r) / ((R : ℂ)) ^ r) atTop (𝓝 0) |
 | [`LeftSmooth.Nsm`](./lean_stage3/LeftSmooth.md#LeftSmooth-Nsm) | def | shape | `LeftSmooth` | ℝ |
 | [`LeftSmooth.Nsm_nonneg`](./lean_stage3/LeftSmooth.md#LeftSmooth-Nsm_nonneg) | theorem | shape | `LeftSmooth` | 0 ≤ Nsm |
@@ -1762,6 +1768,9 @@ Sorted by name. Search this file before saying something is missing.
 | [`WeilPowerSharp.S_real_ge_sharp`](./lean_stage3/WeilPowerSharp.md#WeilPowerSharp-S_real_ge_sharp) | theorem | shape | `WeilPowerSharp` | cS m / D m * s * Real.exp (s ^ 2 / (Real.pi ^ 2 * ((m : ℝ) + 2)) - s ^ 4 / (Real.pi ^ 4 * ((m : ℝ) + 1) ^ 3)) ≤ (S m (s : ℂ)).re |
 | [`WeilPowerCompare.S_real_pos`](./lean_stage3/WeilPowerCompare.md#WeilPowerCompare-S_real_pos) | theorem | shape | `WeilPowerCompare` | 0 &lt; (S m (s : ℂ)).re |
 | [`WeilOddPower.S_zero_mul`](./lean_stage3/WeilOddPower.md#WeilOddPower-S_zero_mul) | theorem | shape | `WeilOddPower` | S 0 w * (w ^ 2 + (Real.pi : ℂ) ^ 2) = 2 * (Real.pi : ℂ) * Complex.sinh w |
+| [`Saddle.saddle_area`](./lean_stage3/Saddle.md#Saddle-saddle_area) | theorem | reads ζ | `Saddle` | stretch ρ * stretch (mirrorZ ρ) = 1 |
+| [`Saddle.saddle_of_off_line`](./lean_stage3/Saddle.md#Saddle-saddle_of_off_line) | theorem | reads ζ | `Saddle` | (1 &lt; stretch ρ ∧ stretch (mirrorZ ρ) &lt; 1) ∨ (stretch ρ &lt; 1 ∧ 1 &lt; stretch (mirrorZ ρ)) |
+| [`Saddle.saddle_runs_away`](./lean_stage3/Saddle.md#Saddle-saddle_runs_away) | theorem | reads ζ | `Saddle` | ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k &lt; \|Chebyshev.psi x - x\| |
 | [`Nyquist.sample`](./lean/Nyquist.md#Nyquist-sample) | def | shape | `Nyquist` | ℝ |
 | [`Stage3.schoenfeld_iff_weak`](./lean_stage3/Statement.md#Stage3-schoenfeld_iff_weak) | theorem | shape | `Statement` | StmtSchoenfeld pi li ↔ StmtSchoenfeldWeak (1 / (8 * Real.pi)) 1 2657 pi li |
 | [`HalfSieve.schoenfeld_of_wobble`](./lean_stage3/HalfSieve.md#HalfSieve-schoenfeld_of_wobble) | theorem | shape | `HalfSieve` | ∃ K : ℝ, StmtSchoenfeldWeak K 1 2 (fun x =&gt; (Nat.primeCounting ⌊x⌋₊ : ℝ)) Stage3.Li |
@@ -1863,8 +1872,10 @@ Sorted by name. Search this file before saying something is missing.
 | [`SieveExact.smoothPart_eq_prod`](./lean_stage3/SieveExact.md#SieveExact-smoothPart_eq_prod) | theorem | counting | `SieveExact` | smoothPart N = (N : ℚ) * ∏ p ∈ smallPrimes N, (1 - 1 / (p : ℚ)) |
 | [`SpiralLink.SpiralLink`](./lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) | def | counting | `SpiralLink` | Prop |
 | [`OneChain.spiralLink_iff_cells`](./lean_stage3/OneChain.md#OneChain-spiralLink_iff_cells) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink ↔ ∃ (C : ℝ) (r₀ : ℤ), CellResidual.CellsSqrt C r₀ |
+| [`Saddle.spiralLink_iff_centres`](./lean_stage3/Saddle.md#Saddle-spiralLink_iff_centres) | theorem | reads ζ | `Saddle` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1 |
 | [`ShareLink.spiralLink_iff_meet`](./lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet) | theorem | reads ζ | `ShareLink` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ |
 | [`BandJoin.spiralLink_iff_middle`](./lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) | theorem | reads ζ | `BandJoin` | SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) |
+| [`Saddle.spiralLink_iff_noRunaway`](./lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) | theorem | reads ζ | `Saddle` | SpiralLink.SpiralLink ↔ NoRunaway |
 | [`SpiralLink.spiralLink_iff_one`](./lean_stage3/SpiralLink.md#SpiralLink-spiralLink_iff_one) | theorem | reads ζ | `SpiralLink` | SpiralLink ↔ OneAtEachHeight |
 | [`HalfSieve.spiralLink_iff_wobble`](./lean_stage3/HalfSieve.md#HalfSieve-spiralLink_iff_wobble) | theorem | reads ζ | `HalfSieve` | SpiralLink.SpiralLink ↔ WobbleSqrt |
 | [`OneChain.spiralLink_of_attained`](./lean_stage3/OneChain.md#OneChain-spiralLink_of_attained) | theorem | reads ζ | `OneChain` | SpiralLink.SpiralLink |
@@ -1982,6 +1993,8 @@ Sorted by name. Search this file before saying something is missing.
 | [`Bridge.stmtWeilBridge_holds`](./lean_bridge/WeilBridge.md#Bridge-stmtWeilBridge_holds) | theorem | reads ζ | `WeilBridge` | StmtWeilBridge |
 | [`WeilDetect.StmtWeilPositive`](./lean_stage3/WeilDetect.md#WeilDetect-StmtWeilPositive) | def | reads ζ | `WeilDetect` | Prop |
 | [`Stage3.StmtZeroFreeRight`](./lean_stage3/Abscissa.md#Stage3-StmtZeroFreeRight) | def | reads ζ | `Abscissa` | Prop |
+| [`Saddle.stretch`](./lean_stage3/Saddle.md#Saddle-stretch) | def | shape | `Saddle` | ℝ |
+| [`Saddle.stretch_eq`](./lean_stage3/Saddle.md#Saddle-stretch_eq) | theorem | shape | `Saddle` | stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re |
 | [`GeneratorPeak.strictAnti_of_lt`](./lean/GeneratorPeak.md#GeneratorPeak-strictAnti_of_lt) | theorem | shape | `GeneratorPeak` | StrictAnti (score R P α β) |
 | [`GeneratorPeak.strictMono_of_lt`](./lean/GeneratorPeak.md#GeneratorPeak-strictMono_of_lt) | theorem | shape | `GeneratorPeak` | StrictMono (score R P α β) |
 | [`Transform.strip_is_fundamental_domain`](./lean/Transform.md#Transform-strip_is_fundamental_domain) | theorem | shape | `Transform` | ‖(b : ℂ) ^ (-s)‖ = 1 ∧ (s + 1).re = 1 ∧ ‖(b : ℂ) ^ (-(s + 1))‖ = b ^ (-(1 : ℝ)) |

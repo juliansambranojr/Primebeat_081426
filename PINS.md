@@ -22,6 +22,20 @@ below with their outcome.
 
 ## Current
 
+### 2026-11-23 · block J7 of `design/closedloop.md`: `Stage3/Saddle.lean`
+
+    DONE        `fold_rounding`, `fold_mirror`: one row down is the baker's
+                fold on every rounding, and it commutes with the mirror.
+                `saddle_area`, `saddle_of_off_line`, `centre_iff`: off the
+                line a saddle, on the line a centre. `saddle_runs_away`.
+                `spiralLink_iff_noRunaway`, `spiralLink_iff_centres`; one unit
+    ASSUMED     Julian, 2026-11-23: "Go for sequence 1-3 and saddle". Written
+                and built here
+    DEPENDS     `RateBelow.rain_psi`, `ShareLink.mode_size`,
+                `Stage3.zeroFreeRight_iff_psiWeakTheta`
+    OUT         a proof that the staircase does not run away
+    OUTCOME     proved, unit 0495; step (3) stated, unproved
+
 ### 2026-11-23 · block J6 of `design/closedloop.md`: `Stage3/ShareLink.lean`
 
     DONE        `share_is_re`: the real part of a zero is the share of the

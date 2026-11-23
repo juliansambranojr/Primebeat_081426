@@ -7,14 +7,16 @@ RateBelow — block R9 of `lean_stage3/design/runs.md`, the staircase. 2026-11-2
 1 theorem, 0 definitions, 39 lines. 
 
 **Imports:** [`StepsRate`](../lean_stage3/StepsRate.md), [`ThetaConverse`](../lean_stage3/ThetaConverse.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Saddle`](../lean_stage3/Saddle.md)
 
 ## The picture
 
 ```mermaid
 flowchart LR
-  n0["<b>rain_psi ■</b><br/>∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k ＜ |Chebyshev.psi x …"]:::thm
+  n0["<b>rain_psi</b><br/>∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k ＜ |Chebyshev.psi x …"]:::thm
   x0(["<b>ThetaConverse</b><br/>no_zero_right_of_theta"]):::ext
+  x1(["<b>Saddle</b><br/>saddle_runs_away"]):::ext
+  n0 -.-> x1
   x0 -.-> n0
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
@@ -59,5 +61,7 @@ line 24 · arrows read from text
 
 **Definitions its proof touches:** [`Stage3.StmtPsiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta)
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Saddle.saddle_runs_away`](../lean_stage3/Saddle.md#Saddle-saddle_runs_away) (Saddle) — `` ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k < |Chebyshev.psi x - x| ``
 

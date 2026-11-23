@@ -1,43 +1,50 @@
-# What `Stage3.zeroFreeRight_iff_psiWeakTheta` rests on
+# What `Saddle.spiralLink_iff_noRunaway` rests on
 
-[`Stage3.zeroFreeRight_iff_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_iff_psiWeakTheta) in `lean_stage3/Stage3/ThetaConverse.lean`, line 387.
+[`Saddle.spiralLink_iff_noRunaway`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) in `lean_stage3/Stage3/Saddle.lean`, line 155.
 
-**Why.** The abscissa of ψ's error is the supremum of the zeros' real parts. For `θ ∈ [1/2, 1)`: a zero-free half-plane at `θ` holds iff ψ has a `C·t^θ·log³ t` bound. Forward is `ThetaPsi.psi_weak_of_theta` (which is where `[1/2, 1)` is needed); the converse is this file, and holds for every `θ`.
+**Why.** The loop is the staircase not running away.
 
 **Proves**
 
 ```lean
-StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀
+SpiralLink.SpiralLink ↔ NoRunaway
 ```
 
-**Needs** (its hypotheses)
-
-  - `` hθlo : 1/2 ≤ θ ``
-  - `` hθhi : θ < 1 ``
-
-Behind it: 82 theorems and 9 definitions in 9 files. Every one is listed below; Lean recorded each step.
+Behind it: 92 theorems and 16 definitions in 15 files. Every one is listed below; Lean recorded each step.
 
 ## The files it passes through
 
 ```mermaid
 flowchart LR
-  f0["<b>JensenCount</b><br/>12 used"]:::thm
-  f1["<b>LineBound</b><br/>25 used"]:::thm
-  f2["<b>Abscissa</b><br/>6 used"]:::thm
-  f3["<b>ThetaLine</b><br/>3 used"]:::thm
-  f4["<b>ThetaPi</b><br/>1 used"]:::thm
-  f5["<b>ThetaPull</b><br/>6 used"]:::thm
-  f6["<b>ThetaPsi</b><br/>14 used"]:::thm
-  f7["<b>VonKochScaffold</b><br/>13 used"]:::thm
-  f8["<b>ThetaConverse</b><br/>zeroFreeRight_iff_psiWeakTheta"]:::end_
-  f0 --> f2
-  f1 --> f2
+  f0["<b>ClosedLoopJoin</b><br/>3 used"]:::thm
+  f1["<b>JensenCount</b><br/>12 used"]:::thm
+  f2["<b>LineBound</b><br/>25 used"]:::thm
+  f3["<b>Abscissa</b><br/>6 used"]:::thm
+  f4["<b>ShareLink</b><br/>1 used"]:::thm
+  f5["<b>ThetaLine</b><br/>3 used"]:::thm
+  f6["<b>ThetaPi</b><br/>1 used"]:::thm
+  f7["<b>ThetaPull</b><br/>6 used"]:::thm
+  f8["<b>ThetaPsi</b><br/>14 used"]:::thm
+  f9["<b>VonKochScaffold</b><br/>13 used"]:::thm
+  f10["<b>ThetaConverse</b><br/>12 used"]:::thm
+  f11["<b>RateBelow</b><br/>1 used"]:::thm
+  f12["<b>WeilOnLine</b><br/>1 used"]:::thm
+  f13["<b>SpiralLink</b><br/>4 used"]:::thm
+  f14["<b>Saddle</b><br/>spiralLink_iff_noRunaway"]:::end_
+  f1 --> f3
   f2 --> f3
   f3 --> f5
-  f5 --> f6
-  f4 --> f8
-  f6 --> f8
+  f5 --> f7
   f7 --> f8
+  f6 --> f10
+  f8 --> f10
+  f9 --> f10
+  f10 --> f11
+  f0 --> f13
+  f12 --> f13
+  f4 --> f14
+  f11 --> f14
+  f13 --> f14
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -53,6 +60,12 @@ An arrow A → B reads "B uses something proved or defined in A"; indirect arrow
 ## Every declaration on the way
 
 Files in dependency order. ★ marks what the theorem's own proof uses directly.
+
+### [`ClosedLoopJoin`](../lean_stage3/ClosedLoopJoin.md) — 3
+
+- [`ClosedLoopJoin.epsilon`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-epsilon) — *def*
+- [`ClosedLoopJoin.primeWeight`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-primeWeight) — *def*
+- [`ClosedLoopJoin.isHermitianHandshake`](../lean_stage3/ClosedLoopJoin.md#ClosedLoopJoin-isHermitianHandshake) — *def*
 
 ### [`JensenCount`](../lean_stage3/JensenCount.md) — 12
 
@@ -106,6 +119,10 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.rpow_σθ`](../lean_stage3/Abscissa.md#Stage3-rpow_--) — `` X ^ (σθ θ X) = Real.exp 1 * X ^ θ ``
 - [`Stage3.logDerivZeta_crude_theta`](../lean_stage3/Abscissa.md#Stage3-logDerivZeta_crude_theta) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 1996 * Real.log (84 * t) + (29 * Real.log t + 129) / (σ₁ - θ) ``
 
+### [`ShareLink`](../lean_stage3/ShareLink.md) — 1
+
+- [`ShareLink.mode_size`](../lean_stage3/ShareLink.md#ShareLink-mode_size) — `` ‖(T : ℂ) ^ (ρ : ℂ)‖ = T ^ (ρ : ℂ).re ``
+
 ### [`ThetaLine`](../lean_stage3/ThetaLine.md) — 3
 
 - [`Stage3.logDerivZeta_compact_theta`](../lean_stage3/ThetaLine.md#Stage3-logDerivZeta_compact_theta) — `` ‖deriv ζ ((σ₁ : ℂ) + I * (t : ℂ)) / ζ ((σ₁ : ℂ) + I * (t : ℂ))‖ ≤ 14530 + 2 / (1 - θ) + 212 / (σ₁ - θ) ``
@@ -114,7 +131,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 
 ### [`ThetaPi`](../lean_stage3/ThetaPi.md) — 1
 
-- ★ [`Stage3.StmtPsiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta) — *def*
+- [`Stage3.StmtPsiWeakTheta`](../lean_stage3/ThetaPi.md#Stage3-StmtPsiWeakTheta) — *def*
 
 ### [`ThetaPull`](../lean_stage3/ThetaPull.md) — 6
 
@@ -140,7 +157,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.mellin_vert_le_theta`](../lean_stage3/ThetaPsi.md#Stage3-mellin_vert_le_theta) — `` ‖mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) ((σθ θ X : ℂ) + I * (t : ℂ))‖ ≤ B * ‖((σθ θ X : ℂ)) + I * (t : ℂ)‖⁻¹ ``
 - [`Stage3.contour_at_instantiation_theta`](../lean_stage3/ThetaPsi.md#Stage3-contour_at_instantiation_theta) — `` ‖SmoothedChebyshev ν ε X - mellin (fun x ↦ (Smooth1 ν ε x : ℂ)) 1 * X‖ ≤ B₁ + B₉ + (66600 * Real.exp 1 * B / Real.pi) * X ^ θ * (Real.log X) ^ 3 + (1 / (2 * Rea… ``
 - [`Stage3.theta_instantiation_arithmetic`](../lean_stage3/ThetaPsi.md#Stage3-theta_instantiation_arithmetic) — `` c * (X ^ (1 - θ))⁻¹ * X * Real.log X ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c * X * Real.log X / ((X ^ (1 - θ))⁻¹ * X) ≤ c * X ^ θ * (Real.log X) ^ 3 ∧ c * ((X ^ (1 -… ``
-- ★ [`Stage3.psi_weak_of_theta`](../lean_stage3/ThetaPsi.md#Stage3-psi_weak_of_theta) — `` ∃ C > 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * t ^ θ * (Real.log t) ^ 3 ``
+- [`Stage3.psi_weak_of_theta`](../lean_stage3/ThetaPsi.md#Stage3-psi_weak_of_theta) — `` ∃ C > 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * t ^ θ * (Real.log t) ^ 3 ``
 
 ### [`VonKochScaffold`](../lean_stage3/VonKochScaffold.md) — 13
 
@@ -158,7 +175,7 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`VonKoch.integrable_psi_cpow`](../lean_stage3/VonKochScaffold.md#VonKoch-integrable_psi_cpow) — `` IntegrableOn (fun t : ℝ ↦ ((ψ t : ℝ) : ℂ) * (t : ℂ) ^ (-(s + 1))) (Set.Ioi (1:ℝ)) ``
 - [`VonKoch.F_eq_neg_logDeriv`](../lean_stage3/VonKochScaffold.md#VonKoch-F_eq_neg_logDeriv) — `` F s = -deriv riemannZeta s / riemannZeta s ``
 
-### [`ThetaConverse`](../lean_stage3/ThetaConverse.md) — 11
+### [`ThetaConverse`](../lean_stage3/ThetaConverse.md) — 12
 
 - [`Stage3.regionθ`](../lean_stage3/ThetaConverse.md#Stage3-region-) — *def*
 - [`Stage3.isOpen_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-isOpen_region-) — `` IsOpen (regionθ θ) ``
@@ -170,5 +187,30 @@ Files in dependency order. ★ marks what the theorem's own proof uses directly.
 - [`Stage3.anchor_mem_regionθ`](../lean_stage3/ThetaConverse.md#Stage3-anchor_mem_region-) — `` ((max θ 1 + 1 : ℝ) : ℂ) ∈ regionθ θ ∧ 1 < ((max θ 1 + 1 : ℝ) : ℂ).re ``
 - [`Stage3.F_mul_zeta_add_deriv_eqOn_zero_theta`](../lean_stage3/ThetaConverse.md#Stage3-F_mul_zeta_add_deriv_eqOn_zero_theta) — `` Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ θ) ``
 - [`Stage3.no_zero_right_of_theta`](../lean_stage3/ThetaConverse.md#Stage3-no_zero_right_of_theta) — `` ζ ρ ≠ 0 ``
-- ★ [`Stage3.zeroFreeRight_of_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_of_psiWeakTheta) — `` StmtZeroFreeRight θ ``
+- [`Stage3.zeroFreeRight_of_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_of_psiWeakTheta) — `` StmtZeroFreeRight θ ``
+- ★ [`Stage3.zeroFreeRight_iff_psiWeakTheta`](../lean_stage3/ThetaConverse.md#Stage3-zeroFreeRight_iff_psiWeakTheta) — `` StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀ ``
+
+### [`RateBelow`](../lean_stage3/RateBelow.md) — 1
+
+- [`RateBelow.rain_psi`](../lean_stage3/RateBelow.md#RateBelow-rain_psi) — `` ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ θ * Real.log x ^ k < |Chebyshev.psi x - x| ``
+
+### [`WeilOnLine`](../lean_stage3/WeilOnLine.md) — 1
+
+- [`WeilOnLine.conj_mem`](../lean_stage3/WeilOnLine.md#WeilOnLine-conj_mem) — `` (starRingEnd ℂ) (ρ : ℂ) ∈ Kadiri.NontrivialZeros ``
+
+### [`SpiralLink`](../lean_stage3/SpiralLink.md) — 4
+
+- [`SpiralLink.mirror_mem`](../lean_stage3/SpiralLink.md#SpiralLink-mirror_mem) — `` (1 - (starRingEnd ℂ) (ρ : ℂ)) ∈ NontrivialZeros ``
+- [`SpiralLink.mirrorZ`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ) — *def*
+- [`SpiralLink.mirrorZ_re`](../lean_stage3/SpiralLink.md#SpiralLink-mirrorZ_re) — `` ((mirrorZ ρ : NontrivialZeros) : ℂ).re = 1 - (ρ : ℂ).re ``
+- ★ [`SpiralLink.SpiralLink`](../lean_stage3/SpiralLink.md#SpiralLink-SpiralLink) — *def*
+
+### [`Saddle`](../lean_stage3/Saddle.md) — 6
+
+- [`Saddle.stretch`](../lean_stage3/Saddle.md#Saddle-stretch) — *def*
+- [`Saddle.stretch_eq`](../lean_stage3/Saddle.md#Saddle-stretch_eq) — `` stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re ``
+- [`Saddle.centre_iff`](../lean_stage3/Saddle.md#Saddle-centre_iff) — `` stretch ρ = 1 ↔ (ρ : ℂ).re = 1 / 2 ``
+- [`Saddle.saddle_runs_away`](../lean_stage3/Saddle.md#Saddle-saddle_runs_away) — `` ∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k < |Chebyshev.psi x - x| ``
+- ★ [`Saddle.NoRunaway`](../lean_stage3/Saddle.md#Saddle-NoRunaway) — *def*
+- ★ [`Saddle.centre_of_noRunaway`](../lean_stage3/Saddle.md#Saddle-centre_of_noRunaway) — `` stretch ρ = 1 ``
 

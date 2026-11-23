@@ -15126,6 +15126,7 @@
      "lean_stage3/Stage3/Abscissa.lean::Stage3.zeroFreeRight_one",
      "lean_stage3/Stage3/Abscissa.lean::Stage3.zeta_ne_zero_right_of",
      "lean_stage3/Stage3/JointWindowDial.lean::JointWindowDial.zeroFreeRight_of_window",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.zeroFreeRight_iff_psiWeakTheta",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.zeroFreeRight_of_psiWeakTheta",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.zeroFreeRight_one_of_chebyshev",
@@ -23540,7 +23541,11 @@
     "layer": "count",
     "used_by": [
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.force_eq",
-     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce"
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.restoringForce",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_iff",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq"
     ]
    },
    {
@@ -23914,6 +23919,7 @@
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_force_zero",
      "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_handshake",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_one_at_each_height"
     ]
@@ -53615,7 +53621,9 @@
      "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away"
+    ]
    }
   ]
  },
@@ -55479,6 +55487,421 @@
  },
  {
   "tree": "lean_stage3",
+  "path": "lean_stage3/Stage3/Saddle.lean",
+  "module": "Stage3.Saddle",
+  "stem": "Saddle",
+  "header": "Saddle — block J7 of `lean_stage3/design/closedloop.md`. 2026-11-23. The table as stretch-and-fold, and a zero off the line as a saddle.",
+  "imports": [
+   "Stage3.ShareLink",
+   "Stage3.RateBelow"
+  ],
+  "opens": [
+   "ClosedLoopJoin",
+   "Kadiri",
+   "SpiralLink"
+  ],
+  "namespaces": [
+   "Saddle"
+  ],
+  "lines": 199,
+  "copy_of": null,
+  "fresh": false,
+  "imports_files": [
+   "lean_stage3/Stage3/RateBelow.lean",
+   "lean_stage3/Stage3/ShareLink.lean"
+  ],
+  "decls": [
+   {
+    "kind": "theorem",
+    "name": "fold_fract",
+    "ns": "Saddle",
+    "full": "Saddle.fold_fract",
+    "line": 41,
+    "why": "The baker's fold. Doubling a number doubles its fractional part and folds it back into the unit.",
+    "sorry": false,
+    "needs": [
+     "x : ℝ"
+    ],
+    "proves": "Int.fract (2 * x) = if Int.fract x < 1 / 2 then 2 * Int.fract x else 2 * Int.fract x - 1",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.fold_fract",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.fold_rounding"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "fold_rounding",
+    "ns": "Saddle",
+    "full": "Saddle.fold_rounding",
+    "line": 58,
+    "why": "One row down. The rounding of `2N/d` is the rounding of `N/d`, doubled and folded.",
+    "sorry": false,
+    "needs": [
+     "N d : ℕ"
+    ],
+    "proves": "Int.fract (2 * (N : ℝ) / (d : ℝ)) = if Int.fract ((N : ℝ) / (d : ℝ)) < 1 / 2 then 2 * Int.fract ((N : ℝ) / (d : ℝ)) else 2 * Int.fract ((N : ℝ) / (d : ℝ)) - 1",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.fold_rounding",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.fold_fract"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.fold_fract"
+    ],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "fold_mirror",
+    "ns": "Saddle",
+    "full": "Saddle.fold_mirror",
+    "line": 67,
+    "why": "The fold commutes with the mirror. Away from the fold's own edge, the fold of the mirror image is the mirror image of the fold.",
+    "sorry": false,
+    "needs": [
+     "x : ℝ",
+     "h : Int.fract (2 * x) ≠ 0"
+    ],
+    "proves": "Int.fract (2 * (1 - x)) = 1 - Int.fract (2 * x)",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.fold_mirror",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "count",
+    "used_by": []
+   },
+   {
+    "kind": "def",
+    "name": "stretch",
+    "ns": "Saddle",
+    "full": "Saddle.stretch",
+    "line": 78,
+    "why": "The factor one doubling puts on a zero's mode, against the square root of the total.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "ℝ",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+    "stmt": [],
+    "proof": [],
+    "exact": false,
+    "uses": [],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_iff",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "stretch_eq",
+    "ns": "Saddle",
+    "full": "Saddle.stretch_eq",
+    "line": 82,
+    "why": "The factor is two to the closed loop's `ε`.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/ShareLink.lean::ShareLink.mode_size"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_iff",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "saddle_area",
+    "ns": "Saddle",
+    "full": "Saddle.saddle_area",
+    "line": 87,
+    "why": "Area one. The factor of a zero times the factor of its mirror is one.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "stretch ρ * stretch (mirrorZ ρ) = 1",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "centre_iff",
+    "ns": "Saddle",
+    "full": "Saddle.centre_iff",
+    "line": 95,
+    "why": "A centre. The factor is one exactly on the line.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "stretch ρ = 1 ↔ (ρ : ℂ).re = 1 / 2",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.centre_iff",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "saddle_of_off_line",
+    "ns": "Saddle",
+    "full": "Saddle.saddle_of_off_line",
+    "line": 109,
+    "why": "A saddle. Off the line one factor is above one and the other below.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re ≠ 1 / 2"
+    ],
+    "proves": "(1 < stretch ρ ∧ stretch (mirrorZ ρ) < 1) ∨ (stretch ρ < 1 ∧ 1 < stretch (mirrorZ ρ))",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.epsilon",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "saddle_runs_away",
+    "ns": "Saddle",
+    "full": "Saddle.saddle_runs_away",
+    "line": 124,
+    "why": "A saddle runs away. If some zero is off the line, the staircase leaves every bound of square-root size, beyond every start.",
+    "sorry": false,
+    "needs": [
+     "ρ : NontrivialZeros",
+     "h : (ρ : ℂ).re ≠ 1 / 2",
+     "C : ℝ",
+     "k : ℕ",
+     "x₀ : ℝ"
+    ],
+    "proves": "∃ x : ℝ, x₀ ≤ x ∧ C * x ^ ((1 : ℝ) / 2) * Real.log x ^ k < |Chebyshev.psi x - x|",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_re"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway"
+    ]
+   },
+   {
+    "kind": "def",
+    "name": "NoRunaway",
+    "ns": "Saddle",
+    "full": "Saddle.NoRunaway",
+    "line": 136,
+    "why": "The staircase does not run away in the square-root frame: from some point on it stays within a constant times the square root times a power of the logarithm.",
+    "sorry": false,
+    "needs": [],
+    "proves": "Prop",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ThetaPi.lean::Stage3.StmtPsiWeakTheta"
+    ],
+    "layer": "shape",
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "centre_of_noRunaway",
+    "ns": "Saddle",
+    "full": "Saddle.centre_of_noRunaway",
+    "line": 141,
+    "why": "No runaway, no saddle. If the staircase does not run away, every zero is a centre.",
+    "sorry": false,
+    "needs": [
+     "h : NoRunaway",
+     "ρ : NontrivialZeros"
+    ],
+    "proves": "stretch ρ = 1",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_iff",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_iff",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch"
+    ],
+    "layer": "zeta",
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway"
+    ]
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_centres",
+    "ns": "Saddle",
+    "full": "Saddle.spiralLink_iff_centres",
+    "line": 149,
+    "why": "The loop is every zero a centre.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_iff",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/ClosedLoopJoin.lean::ClosedLoopJoin.rh_iff_re_half",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_iff",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   },
+   {
+    "kind": "theorem",
+    "name": "spiralLink_iff_noRunaway",
+    "ns": "Saddle",
+    "full": "Saddle.spiralLink_iff_noRunaway",
+    "line": 155,
+    "why": "The loop is the staircase not running away.",
+    "sorry": false,
+    "needs": [],
+    "proves": "SpiralLink.SpiralLink ↔ NoRunaway",
+    "file": "lean_stage3/Stage3/Saddle.lean",
+    "id": "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
+    "stmt": [],
+    "proof": [
+     "lean_stage3/Stage3/Abscissa.lean::Stage3.StmtZeroFreeRight",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/ThetaConverse.lean::Stage3.zeroFreeRight_iff_psiWeakTheta"
+    ],
+    "exact": false,
+    "uses": [
+     "lean_stage3/Stage3/Abscissa.lean::Stage3.StmtZeroFreeRight",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.centre_of_noRunaway",
+     "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.SpiralLink",
+     "lean_stage3/Stage3/ThetaConverse.lean::Stage3.zeroFreeRight_iff_psiWeakTheta"
+    ],
+    "layer": "zeta",
+    "used_by": []
+   }
+  ]
+ },
+ {
+  "tree": "lean_stage3",
   "path": "lean_stage3/Stage3/SelfBound.lean",
   "module": "Stage3.SelfBound",
   "stem": "SelfBound",
@@ -55677,6 +56100,7 @@
     "uses": [],
     "layer": "shape",
     "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.stretch_eq",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_sqrt_iff",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.share_is_re"
@@ -56845,6 +57269,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.pair_shares_add",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
@@ -56910,6 +57337,9 @@
     "layer": "zeta",
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.zero_pair",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_area",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_of_off_line",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.saddle_runs_away",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.meet_iff",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.pair_shares_add",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.mirrorZ_eq_iff",
@@ -57046,6 +57476,8 @@
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite",
      "lean_stage3/Stage3/OneChain.lean::OneChain.spiralLink_of_finite_accumulation",
      "lean_stage3/Stage3/OneChain.lean::OneChain.table_of_spiralLink",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.rh_iff_spiralLink",
      "lean_stage3/Stage3/SpiralLink.lean::SpiralLink.spiralLink_iff_one"
@@ -57100,6 +57532,7 @@
     "used_by": [
      "lean_stage3/Stage3/BandJoin.lean::BandJoin.spiralLink_iff_middle",
      "lean_stage3/Stage3/OneChain.lean::OneChain.one_chain",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_centres",
      "lean_stage3/Stage3/ShareLink.lean::ShareLink.spiralLink_iff_meet"
     ]
    },
@@ -65757,7 +66190,9 @@
      "lean_stage3/Stage3/ThetaPsi.lean::Stage3.psi_weak_of_theta"
     ],
     "layer": "zeta",
-    "used_by": []
+    "used_by": [
+     "lean_stage3/Stage3/Saddle.lean::Saddle.spiralLink_iff_noRunaway"
+    ]
    },
    {
     "kind": "theorem",
@@ -66055,6 +66490,7 @@
     "layer": "shape",
     "used_by": [
      "lean_stage3/Stage3/RateBelow.lean::RateBelow.rain_psi",
+     "lean_stage3/Stage3/Saddle.lean::Saddle.NoRunaway",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.F_analyticOnNhd_theta",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.F_differentiableAt_theta",
      "lean_stage3/Stage3/ThetaConverse.lean::Stage3.F_mul_zeta_add_deriv_eqOn_zero_theta",
@@ -89023,11 +89459,12 @@
    "Stage3.CompositeSplit",
    "Stage3.Compression",
    "Stage3.StepsBelow",
-   "Stage3.ShareLink"
+   "Stage3.ShareLink",
+   "Stage3.Saddle"
   ],
   "opens": [],
   "namespaces": [],
-  "lines": 197,
+  "lines": 198,
   "copy_of": null,
   "fresh": false,
   "imports_files": [
@@ -89123,6 +89560,7 @@
    "lean_stage3/Stage3/RowLeaves.lean",
    "lean_stage3/Stage3/RunTheorems.lean",
    "lean_stage3/Stage3/RvMCrude.lean",
+   "lean_stage3/Stage3/Saddle.lean",
    "lean_stage3/Stage3/SelfBound.lean",
    "lean_stage3/Stage3/ShareLink.lean",
    "lean_stage3/Stage3/SieveExact.lean",

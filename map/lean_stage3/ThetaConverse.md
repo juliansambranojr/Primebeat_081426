@@ -22,12 +22,13 @@ flowchart LR
   n8["<b>F_mul_zeta_add_deriv_eqOn_zero_theta</b><br/>Set.EqOn (fun s : ℂ ↦ VonKoch.F s * ζ s + deriv ζ s) 0 (regionθ …"]:::thm
   n9["<b>no_zero_right_of_theta</b><br/>ζ ρ ≠ 0"]:::thm
   n10["<b>zeroFreeRight_of_psiWeakTheta</b><br/>StmtZeroFreeRight θ"]:::thm
-  n11["<b>zeroFreeRight_iff_psiWeakTheta ■</b><br/>StmtZeroFreeRight θ ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 …"]:::thm
+  n11["<b>zeroFreeRight_iff_psiWeakTheta</b><br/>StmtZeroFreeRight θ ↔ ∃ C ＞ 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 …"]:::thm
   n12["<b>RH_of_psiWeakTheta_half ■</b><br/>RiemannHypothesis"]:::thm
   n13["<b>zeroFreeRight_one_of_chebyshev ■</b><br/>StmtZeroFreeRight 1"]:::thm
   x0(["<b>VonKochScaffold</b><br/>5 theorems"]):::ext
   x1(["<b>RateBelow</b><br/>rain_psi"]):::ext
   x2(["<b>ThetaPsi</b><br/>psi_weak_of_theta"]):::ext
+  x3(["<b>Saddle</b><br/>spiralLink_iff_noRunaway"]):::ext
   n1 --> n3
   n1 --> n6
   n1 --> n9
@@ -46,6 +47,7 @@ flowchart LR
   n7 --> n9
   n8 --> n9
   n9 --> n10
+  n11 -.-> x3
   n9 -.-> x1
   x0 -.-> n12
   x0 -.-> n13
@@ -436,7 +438,9 @@ StmtZeroFreeRight θ ↔ ∃ C > 0, ∃ x₀ : ℝ, StmtPsiWeakTheta θ C 3 x₀
   - [`Stage3.zeroFreeRight_of_psiWeakTheta`](#Stage3-zeroFreeRight_of_psiWeakTheta) — `` StmtZeroFreeRight θ ``
   - [`Stage3.psi_weak_of_theta`](../lean_stage3/ThetaPsi.md#Stage3-psi_weak_of_theta) (ThetaPsi) — `` ∃ C > 0, ∃ x₀ : ℝ, ∀ t : ℝ, x₀ ≤ t → |ψ t - t| ≤ C * t ^ θ * (Real.log t) ^ 3 ``
 
-**Feeds:** nothing. It is an end.
+**Feeds** (1 that use it)
+
+  - [`Saddle.spiralLink_iff_noRunaway`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_noRunaway) (Saddle) — `` SpiralLink.SpiralLink ↔ NoRunaway ``
 
 <a name="Stage3-RH_of_psiWeakTheta_half"></a>
 ### `Stage3.RH_of_psiWeakTheta_half`

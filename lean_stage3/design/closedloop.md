@@ -144,4 +144,30 @@ every mode; the zeros' mirror keeps the height and reflects the real part. On
 the adding side the split is uneven (the prime share of a rung is near
 `1/(r·log 2)`). Nothing here forces the multiplying split to be even.
 
+## J7 Stretch, fold, and the saddle — `Stage3/Saddle.lean`
+
+Julian, 2026-11-23: Lorenz's butterfly and the baker's map; "A saddle point?"
+His sequence: (1) the table is stretch-by-two and fold, on one surface with
+two sides; (2) a zero off the line is a stretch the fold does not bring back;
+(3) the table is bounded by itself, so it has no such direction.
+
+**(1) The fold.** One row down, `N ↦ 2N`.
+`fract(2x) = 2·fract x` for `fract x < 1/2`, else `2·fract x − 1`; so for each
+`d` the rounding of `2N/d` is the baker's fold of the rounding of `N/d`. The
+fold commutes with `x ↦ 1 − x` away from its edge.
+
+**(2) The saddle.** `stretch ρ = ‖2^ρ‖/√2 = 2^ε`, `ε = Re ρ − 1/2`
+(`ClosedLoopJoin.epsilon`). `stretch ρ · stretch (mirror ρ) = 1`. Off the line
+one factor exceeds one and the other is below: a saddle. On the line both are
+one: a centre. A zero enters the table with weight `m/ρ ≠ 0`
+(`StepsPole.steps_pole_ne_zero`), and `RateBelow.rain_psi` at `θ = 1/2` makes
+the staircase leave every square-root bound: `saddle_runs_away`.
+
+**(3) Put to Lean.** `NoRunaway`: from some point on
+`|ψ(x) − x| ≤ C·x^(1/2)·log^k x`. `centre_of_noRunaway`,
+`spiralLink_iff_noRunaway`, `spiralLink_iff_centres`. Lean accepts (3) as the
+same statement as the link. It has no proof of (3): `SelfBound.self_bound`
+ties the scales exactly, and unit 0492 measured that a bound at one scale does
+not follow from it by adding sizes.
+
 **Not here.** `SpiralLink` with no hypothesis.

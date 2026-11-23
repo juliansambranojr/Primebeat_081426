@@ -7,7 +7,7 @@ ShareLink — block J6 of `lean_stage3/design/closedloop.md`. 2026-11-23. The ta
 8 theorems, 0 definitions, 114 lines. 
 
 **Imports:** [`BandJoin`](../lean_stage3/BandJoin.md)  
-**Imported by:** [`Stage3`](../lean_stage3/Stage3.md)
+**Imported by:** [`Stage3`](../lean_stage3/Stage3.md), [`Saddle`](../lean_stage3/Saddle.md)
 
 ## The picture
 
@@ -21,18 +21,20 @@ flowchart LR
   n5["<b>meet_sqrt_iff ■</b><br/>‖(T : ℂ) ^ (ρ : ℂ)‖ = Real.sqrt T ↔ (ρ : ℂ).re = 1 / 2"]:::shp
   n6["<b>swap_flips_residual ■</b><br/>C = (T - S) - R"]:::cnt
   n7["<b>spiralLink_iff_meet ■</b><br/>SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ …"]:::thm
-  x0(["<b>SpiralLink</b><br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
-  x1(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
+  x0(["<b>Saddle</b><br/>stretch_eq"]):::ext
+  x1(["<b>SpiralLink</b><br/>mirrorZ_re<br/>rh_iff_spiralLink"]):::ext
+  x2(["<b>ClosedLoopJoin</b><br/>rh_iff_re_half"]):::ext
   n0 --> n1
   n0 --> n4
   n0 --> n5
   n1 --> n2
   n1 --> n4
   n4 --> n7
-  x0 -.-> n2
-  x0 -.-> n4
-  x0 -.-> n7
+  n0 -.-> x0
+  x1 -.-> n2
+  x1 -.-> n4
   x1 -.-> n7
+  x2 -.-> n7
   classDef cnt fill:#dff5ec,stroke:#17694a,color:#111
   classDef shp fill:#f1ecfb,stroke:#5b3fa0,color:#111
   classDef rh fill:#ffe5e5,stroke:#c22,color:#111,stroke-width:2px
@@ -69,8 +71,9 @@ line 32 · arrows read from text
 
 **Fed by:** no theorem of this repo; it stands on Mathlib.
 
-**Feeds** (3 that use it)
+**Feeds** (4 that use it)
 
+  - [`Saddle.stretch_eq`](../lean_stage3/Saddle.md#Saddle-stretch_eq) (Saddle) — `` stretch ρ = (2 : ℝ) ^ epsilon (ρ : ℂ).re ``
   - [`ShareLink.meet_iff`](#ShareLink-meet_iff) — `` ‖(T : ℂ) ^ (ρ : ℂ)‖ = ‖(T : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ↔ (ρ : ℂ).re = 1 / 2 ``
   - [`ShareLink.meet_sqrt_iff`](#ShareLink-meet_sqrt_iff) — `` ‖(T : ℂ) ^ (ρ : ℂ)‖ = Real.sqrt T ↔ (ρ : ℂ).re = 1 / 2 ``
   - [`ShareLink.share_is_re`](#ShareLink-share_is_re) — `` Real.logb T ‖(T : ℂ) ^ (ρ : ℂ)‖ = (ρ : ℂ).re ``

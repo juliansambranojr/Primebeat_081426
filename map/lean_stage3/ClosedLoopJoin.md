@@ -30,8 +30,9 @@ flowchart LR
   x3(["<b>MirrorArea</b><br/>long_side_of_off_line"]):::ext
   x4(["<b>LandauWindow</b><br/>rh_of_zeroFree_half"]):::ext
   x5(["<b>BandJoin</b><br/>spiralLink_iff_middle"]):::ext
-  x6(["<b>ShareLink</b><br/>spiralLink_iff_meet"]):::ext
-  x7(["<b>OneChain</b><br/>one_chain"]):::ext
+  x6(["<b>Saddle</b><br/>spiralLink_iff_centres"]):::ext
+  x7(["<b>ShareLink</b><br/>spiralLink_iff_meet"]):::ext
+  x8(["<b>OneChain</b><br/>one_chain"]):::ext
   n0 --> n1
   n0 --> n2
   n2 --> n6
@@ -48,7 +49,8 @@ flowchart LR
   n8 -.-> x2
   n8 -.-> x5
   n8 -.-> x6
-  n9 -.-> x7
+  n8 -.-> x7
+  n9 -.-> x8
   x1 -.-> n1
   x1 -.-> n7
   x3 -.-> n7
@@ -75,7 +77,7 @@ def · line 47
 The displacement from one half. Restated from the closed loop, Part VII.
 
 - **Is:** `` epsilon (σ : ℝ) : ℝ := σ - (1 / 2 : ℝ) ``
-- **Used by 2:** [`ClosedLoopJoin.force_eq`](#ClosedLoopJoin-force_eq), [`ClosedLoopJoin.restoringForce`](#ClosedLoopJoin-restoringForce)
+- **Used by 6:** [`ClosedLoopJoin.force_eq`](#ClosedLoopJoin-force_eq), [`ClosedLoopJoin.restoringForce`](#ClosedLoopJoin-restoringForce), [`Saddle.centre_iff`](../lean_stage3/Saddle.md#Saddle-centre_iff), [`Saddle.saddle_area`](../lean_stage3/Saddle.md#Saddle-saddle_area), [`Saddle.saddle_of_off_line`](../lean_stage3/Saddle.md#Saddle-saddle_of_off_line), [`Saddle.stretch_eq`](../lean_stage3/Saddle.md#Saddle-stretch_eq)
 
 <a name="ClosedLoopJoin-restoringForce"></a>
 ### `ClosedLoopJoin.restoringForce`
@@ -363,11 +365,12 @@ RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, (ρ : ℂ).re = 1 / 2
 
   - [`LandauWindow.rh_of_zeroFree_half`](../lean_stage3/LandauWindow.md#LandauWindow-rh_of_zeroFree_half) (LandauWindow) — `` RiemannHypothesis ``
 
-**Feeds** (5 that use it)
+**Feeds** (6 that use it)
 
   - [`BandJoin.spiralLink_iff_middle`](../lean_stage3/BandJoin.md#BandJoin-spiralLink_iff_middle) (BandJoin) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖(2:ℂ) ^ (-(ρ:ℂ))‖ = bandR (1 / 2) ``
   - [`ClosedLoopJoin.rh_iff_force_zero`](#ClosedLoopJoin-rh_iff_force_zero) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, restoringForce (ρ : ℂ).re = 0 ``
   - [`ClosedLoopJoin.rh_iff_handshake`](#ClosedLoopJoin-rh_iff_handshake) — `` RiemannHypothesis ↔ ∀ ρ : NontrivialZeros, isHermitianHandshake (ρ : ℂ).re ``
+  - [`Saddle.spiralLink_iff_centres`](../lean_stage3/Saddle.md#Saddle-spiralLink_iff_centres) (Saddle) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, stretch ρ = 1 ``
   - [`ShareLink.spiralLink_iff_meet`](../lean_stage3/ShareLink.md#ShareLink-spiralLink_iff_meet) (ShareLink) — `` SpiralLink.SpiralLink ↔ ∀ ρ : NontrivialZeros, ‖((2 : ℝ) : ℂ) ^ (ρ : ℂ)‖ = ‖((2 : ℝ) : ℂ) ^ ((mirrorZ ρ : NontrivialZeros) : ℂ)‖ ``
   - [`SpiralLink.rh_iff_one_at_each_height`](../lean_stage3/SpiralLink.md#SpiralLink-rh_iff_one_at_each_height) (SpiralLink) — `` RiemannHypothesis ↔ OneAtEachHeight ``
 
